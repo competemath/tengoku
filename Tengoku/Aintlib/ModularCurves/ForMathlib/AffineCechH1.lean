@@ -88,7 +88,9 @@ Let `M` be a module over a commutative ring `R`, and let `f g : R` be coprime.  
 `c : M_{fg}` on the overlap `D(fg)` is an additive `1`-coboundary for the two-chart cover
 `{D(f), D(g)}`: there exist `a : M_f` and `b : M_g` with
 `c = (a restricted to M_{fg}) - (b restricted to M_{fg})`, the restrictions being the canonical
-`IsLocalizedModule.liftOfLE` maps.-/
+`IsLocalizedModule.liftOfLE` maps.
+@isnad1 id=ex.1h11v.s9.1443b8de773c from=translated src=- shape=ef22bd33 vocab=25911c8c
+-/
 theorem exists_sub_liftOfLE_eq_of_isCoprime (hfg : IsCoprime f g) (c : Mfg) :
     ∃ (a : Mf) (b : Mg),
       c = liftOfLE (Submonoid.powers f) (Submonoid.powers f ⊔ Submonoid.powers g)
@@ -126,7 +128,9 @@ theorem exists_sub_liftOfLE_eq_of_isCoprime (hfg : IsCoprime f g) (c : Mfg) :
     show q * g ^ b + p * f ^ a = 1 by linear_combination hpq, one_smul]
 
 /-- **Affine Čech `H¹` vanishing, packaged as surjectivity.**  For coprime `f g`, the
-Mayer–Vietoris difference map `M_f × M_g → M_{fg}`, `(a, b) ↦ a|_{fg} - b|_{fg}`, is surjective.-/
+Mayer–Vietoris difference map `M_f × M_g → M_{fg}`, `(a, b) ↦ a|_{fg} - b|_{fg}`, is surjective.
+@isnad1 id=surjecti.1h10v.s9.f067d262f428 from=translated src=- shape=6aa53f33 vocab=60a81756
+-/
 theorem sub_liftOfLE_surjective (hfg : IsCoprime f g) :
     Function.Surjective fun ab : Mf × Mg =>
       liftOfLE (Submonoid.powers f) (Submonoid.powers f ⊔ Submonoid.powers g)
@@ -139,7 +143,9 @@ theorem sub_liftOfLE_surjective (hfg : IsCoprime f g) :
 
 /-- Bridge: a localization of `M` at `Submonoid.powers (f * g)` is also a localization at the join
 `Submonoid.powers f ⊔ Submonoid.powers g`.  This lets a consumer holding the overlap module in the
-`powers (f * g)` form feed it to `exists_sub_liftOfLE_eq_of_isCoprime`.-/
+`powers (f * g)` form feed it to `exists_sub_liftOfLE_eq_of_isCoprime`.
+@isnad1 id=islocali.0h6v.s7.efc98ec64060 from=translated src=- shape=a65d87d2 vocab=84f2cfcc
+-/
 theorem isLocalizedModule_sup_of_powers_mul {N : Type*} [AddCommGroup N] [Module R N]
     (l : M →ₗ[R] N) [IsLocalizedModule (Submonoid.powers (f * g)) l] :
     IsLocalizedModule (Submonoid.powers f ⊔ Submonoid.powers g) l := by
@@ -165,7 +171,9 @@ variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M]
 /-- Restriction (`liftOfLE`) maps between localized modules compose: restricting from `S₁` to `S₂`
 and then to `S₃` is restricting from `S₁` to `S₃`.  The final inclusion is taken as a separate
 argument `h₃` so both orientations rewrite cleanly (all proofs of `S₁ ≤ S₃` are definitionally
-equal).-/
+equal).
+@isnad1 id=eq.3h12v.s9.2941091e2ecc from=translated src=- shape=b93a6a7f vocab=92ea6342
+-/
 theorem liftOfLE_liftOfLE {M₁ M₂ M₃ : Type*}
     [AddCommGroup M₁] [Module R M₁] [AddCommGroup M₂] [Module R M₂]
     [AddCommGroup M₃] [Module R M₃]
@@ -180,7 +188,9 @@ theorem liftOfLE_liftOfLE {M₁ M₂ M₃ : Type*}
 
 /-- **Power denominator-clearing.**  Every element of the localization of `M` at the join
 `S₁ ⊔ powers g` becomes, after multiplication by a suitable power `g ^ n`, the restriction of an
-element of the localization at `S₁` alone.-/
+element of the localization at `S₁` alone.
+@isnad1 id=ex.0h9v.s9.c04013303916 from=translated src=- shape=de1c2d4f vocab=e800c534
+-/
 theorem exists_liftOfLE_eq_pow_smul {M₁ M₂ : Type*}
     [AddCommGroup M₁] [Module R M₁] [AddCommGroup M₂] [Module R M₂]
     (S₁ : Submonoid R) (g : R) (l₁ : M →ₗ[R] M₁) (l₂ : M →ₗ[R] M₂)
@@ -199,7 +209,9 @@ theorem exists_liftOfLE_eq_pow_smul {M₁ M₂ : Type*}
   rw [← hxy]
 
 /-- **Power torsion-killing.**  If an element of the localization of `M` at `P` dies in the
-further localization at `P ⊔ powers g`, it is killed by a power of `g`.-/
+further localization at `P ⊔ powers g`, it is killed by a power of `g`.
+@isnad1 id=ex.1h9v.s9.e6270751e826 from=translated src=- shape=add64c2e vocab=e800c534
+-/
 theorem exists_pow_smul_eq_zero_of_liftOfLE_eq_zero {M₂ M₃ : Type*}
     [AddCommGroup M₂] [Module R M₂] [AddCommGroup M₃] [Module R M₃]
     (P : Submonoid R) (g : R) (l₂ : M →ₗ[R] M₂) (l₃ : M →ₗ[R] M₃)
@@ -232,7 +244,9 @@ variable {R : Type*} [CommRing R] {M : Type*} [AddCommGroup M] [Module R M] {f g
 `Submonoid.powers (f * g * h)` is also a localization at the double join
 `Submonoid.powers f ⊔ Submonoid.powers g ⊔ Submonoid.powers h`.  This lets a consumer holding the
 triple overlap module in the `powers (fᵢ * fⱼ * fₖ)` form feed it to
-`exists_sub_liftOfLE_eq_of_span_eq_top`.-/
+`exists_sub_liftOfLE_eq_of_span_eq_top`.
+@isnad1 id=islocali.0h7v.s8.d27b74483115 from=translated src=- shape=f0cf12fd vocab=84f2cfcc
+-/
 theorem isLocalizedModule_sup_sup_of_powers_mul {N : Type*} [AddCommGroup N] [Module R N]
     (l : M →ₗ[R] N) [IsLocalizedModule (Submonoid.powers (f * g * h)) l] :
     IsLocalizedModule (Submonoid.powers f ⊔ Submonoid.powers g ⊔ Submonoid.powers h) l := by
@@ -278,7 +292,9 @@ uniform power `Γ` of `f k`, and average against a partition of unity
 `∑ k, g k * f k ^ (Γ + N) = 1`.
 
 No alternating/normalization hypothesis on `c` is needed (the degenerate instances of the cocycle
-law are part of `hcoc`).-/
+law are part of `hcoc`).
+@isnad1 id=ex.2h11v.s11.4066a6eb990e from=translated src=- shape=66e49264 vocab=336aec5b
+-/
 theorem exists_sub_liftOfLE_eq_of_span_eq_top (f : ι → R)
     (li : ∀ i, M →ₗ[R] Mi i) (lij : ∀ i j, M →ₗ[R] Mij i j)
     (lijk : ∀ i j k, M →ₗ[R] Mijk i j k)

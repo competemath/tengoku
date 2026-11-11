@@ -61,7 +61,9 @@ noncomputable def FormalGroup.dX_at_zero (F : FormalGroup R) : PowerSeries R :=
 /-- The constant coefficient of `F_X(0, T)` is `1`.
 
 The coefficient of `X¹Y⁰` in `F(X, Y)` is `1` because `F(X, 0) = X`
-implies that the `X¹`-coefficient of `F` (at `Y = 0`) equals `1`.-/
+implies that the `X¹`-coefficient of `F` (at `Y = 0`) equals `1`.
+@isnad1 id=eq.0h2v.s6.554ac5548d64 from=translated src=- shape=d17ed41b vocab=811d1c17
+-/
 theorem FormalGroup.dX_at_zero_constantCoeff (F : FormalGroup R) :
     @PowerSeries.constantCoeff R _ F.dX_at_zero = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, dX_at_zero, PowerSeries.coeff_mk]
@@ -99,7 +101,9 @@ theorem FormalGroup.dX_at_zero_constantCoeff (F : FormalGroup R) :
     · -- Variable 1 has positive exponent: 0^(d 1) kills the product.
       rw [zero_pow hd1, mul_zero, map_zero]
 
-/-- `F_X(0, T)` is a unit in `R⟦T⟧`.-/
+/-- `F_X(0, T)` is a unit in `R⟦T⟧`.
+@isnad1 id=isunit.0h2v.s4.96dcf3a2a048 from=translated src=- shape=d45d0cce vocab=fc640c14
+-/
 theorem FormalGroup.dX_at_zero_isUnit (F : FormalGroup R) :
     IsUnit (F.dX_at_zero) := by
   rw [PowerSeries.isUnit_iff_constantCoeff, F.dX_at_zero_constantCoeff]
@@ -121,21 +125,27 @@ Reference: Silverman IV.4, Prop. 4.2.-/
 noncomputable def FormalGroup.invariantDiff (F : FormalGroup R) : PowerSeries R :=
   PowerSeries.invOfUnit F.dX_at_zero 1
 
-/-- `F_X(0, T) * ω_F = 1`.-/
+/-- `F_X(0, T) * ω_F = 1`.
+@isnad1 id=eq.0h2v.s5.9a45d4599614 from=translated src=- shape=e5f85758 vocab=ec04c54c
+-/
 @[simp]
 theorem FormalGroup.dX_at_zero_mul_invariantDiff (F : FormalGroup R) :
     F.dX_at_zero * F.invariantDiff = 1 :=
   PowerSeries.mul_invOfUnit F.dX_at_zero 1
     (by rw [F.dX_at_zero_constantCoeff]; rfl)
 
-/-- `ω_F * F_X(0, T) = 1`.-/
+/-- `ω_F * F_X(0, T) = 1`.
+@isnad1 id=eq.0h2v.s5.8c2fc1c6b95d from=translated src=- shape=e5f85758 vocab=ec04c54c
+-/
 @[simp]
 theorem FormalGroup.invariantDiff_mul_dX_at_zero (F : FormalGroup R) :
     F.invariantDiff * F.dX_at_zero = 1 :=
   PowerSeries.invOfUnit_mul F.dX_at_zero 1
     (by rw [F.dX_at_zero_constantCoeff]; rfl)
 
-/-- The constant coefficient of `ω_F` is `1` (normalized).-/
+/-- The constant coefficient of `ω_F` is `1` (normalized).
+@isnad1 id=eq.0h2v.s6.a3cd42ab48d9 from=translated src=- shape=d17ed41b vocab=5d09d88d
+-/
 @[simp]
 theorem FormalGroup.invariantDiff_constantCoeff (F : FormalGroup R) :
     @PowerSeries.constantCoeff R _ F.invariantDiff = 1 := by
@@ -154,7 +164,9 @@ This is the formal-group analogue of `φ*(ω) = a_φ · ω` on elliptic curves. 
 variable {F G : FormalGroup R}
 
 /-- `HasSubst` for a formal group homomorphism: the constant coefficient is zero,
-hence nilpotent, so substitution is well-defined.-/
+hence nilpotent, so substitution is well-defined.
+@isnad1 id=hassubst.0h4v.s4.47067c6357a1 from=translated src=- shape=583345ae vocab=25a9ae96
+-/
 theorem FormalGroupHom.hasSubst (f : FormalGroupHom F G) :
     PowerSeries.HasSubst (S := R) f.toSeries :=
   PowerSeries.HasSubst.of_constantCoeff_zero' f.zero_const
@@ -830,6 +842,9 @@ private theorem coeff_10_lhs (F G : FormalGroup R) (f : FormalGroupHom F G) (n :
     PowerSeries.coeff n (PowerSeries.derivative R f.toSeries * F.dX_at_zero) :=
   (coeff_10_subst_eq_sum F G f n).trans (coeff_derivative_mul_dX_eq_sum F G f n).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.002ea63e6c0b from=translated src=- shape=c236f36a vocab=e84d2935
+-/
 theorem FormalGroup.dX_at_zero_chain (f : FormalGroupHom F G) :
     (PowerSeries.derivative R f.toSeries) * F.dX_at_zero =
       PowerSeries.C (PowerSeries.coeff 1 f.toSeries) *
@@ -882,7 +897,9 @@ This is the formal-group analogue of `φ*(ω) = a_φ · ω` for elliptic curves
 and connects the linear coefficient of a homomorphism to the pullback of the
 invariant differential.
 
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Corollary 4.3.-/
+Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Corollary 4.3.
+@isnad1 id=eq.0h4v.s8.5a0f20a3c287 from=translated src=- shape=ec00f928 vocab=084eb183
+-/
 theorem FormalGroup.invariantDiff_chain (f : FormalGroupHom F G) :
     PowerSeries.subst f.toSeries G.invariantDiff *
       (PowerSeries.derivative R f.toSeries) =
@@ -1365,7 +1382,9 @@ private lemma subst_zero_F_pderiv0_eq (F : FormalGroup R) :
 /-- **Silverman IV.4.2, intermediate step**: translation identity for
 `F.dX_at_zero`.
 `(dX_at_zero F)(T) · F_X(T, S) = (dX_at_zero F)(F(T, S))`
-in `MvPowerSeries (Fin 2) R`.-/
+in `MvPowerSeries (Fin 2) R`.
+@isnad1 id=eq.0h2v.s7.8b6f6ae93a78 from=translated src=- shape=739c3d65 vocab=bdb9be80
+-/
 theorem dX_at_zero_translation (F : FormalGroup R) :
     PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R) F.dX_at_zero *
         MvPowerSeries.pderiv' 0 F.toSeries =
@@ -1396,7 +1415,9 @@ in `MvPowerSeries (Fin 2) R`, where `T = X 0`, `S = X 1`,
 `F_X = pderiv' 0 F.toSeries`, and `ω_F` is viewed as a bivariate series via
 `PowerSeries.subst`.
 
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Prop. 4.2.-/
+Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Prop. 4.2.
+@isnad1 id=eq.0h2v.s7.e07bbf765960 from=translated src=- shape=cb7cb0c6 vocab=a54c8173
+-/
 theorem invariantDiff_translation (F : FormalGroup R) :
     PowerSeries.subst (F.toSeries : MvPowerSeries (Fin 2) R) F.invariantDiff *
         MvPowerSeries.pderiv' 0 F.toSeries =

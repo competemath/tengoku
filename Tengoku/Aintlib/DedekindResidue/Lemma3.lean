@@ -30,7 +30,9 @@ variable (K : Type*) [Field K] [NumberField K]
 /-- **Absolute convergence of the zero side at the auxiliary function** (`Re s > 1`):
 under GRH every zero is `ρ = 1/2 + iγ_ρ`, where `Φ_{F_{s,X}}(ρ) = F̂_{s,X}(γ_ρ)` decays
 like `1/γ_ρ²` (Lemma 2), so the divisor-weighted series over the zero index converges
-absolutely by the Landau-type bound `∑_ρ m_ρ/(1+γ_ρ²) < ∞`.-/
+absolutely by the Landau-type bound `∑_ρ m_ρ/(1+γ_ρ²) < ∞`.
+@isnad1 id=summable.3h3v.s6.7a3fc3237060 from=translated src=- shape=d951fd12 vocab=dce5a98d
+-/
 theorem summable_zetaZeros_paperPhi_auxF (hGRH : GeneralizedRiemannHypothesis K)
     (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1 < s.re) :
     Summable (fun ρ : ZetaZeros K =>
@@ -111,7 +113,9 @@ Belabas–Friedman Lemma 3): under GRH, for `1 < X` and `0 < a ≤ 1/4` with
 `a < Re s − 1`, the divisor-weighted sum of `Φ_{F_{s,X}}` over the full zero index
 equals Poitou's right-hand side of the explicit formula at `F_{s,X}`. This removes
 the `T → ∞` limit from `weil_explicit_formula_auxF` (uniqueness of limits against
-`tendsto_finsum_window_zetaZeros`).-/
+`tendsto_finsum_window_zetaZeros`).
+@isnad1 id=eq.5h4v.s9.dca208843e48 from=translated src=- shape=92a82aa6 vocab=38e2b663
+-/
 theorem tsum_zetaZeros_paperPhi_auxF_eq (hGRH : GeneralizedRiemannHypothesis K)
     (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4)
     (has : a < s.re - 1) :
@@ -166,7 +170,9 @@ noncomputable def zeroIntTerm (s : ℂ) (X : ℝ) (γ : ℝ) : ℂ :=
 
 /-- **The three-piece split of the Fourier transform of the auxiliary function**:
 Lemma 2's closed form (eq. (8)) and its `γ = 0` companion, packaged as one total
-identity `F̂_{s,X}(γ) = sin-piece + cos-piece − integral-piece`.-/
+identity `F̂_{s,X}(γ) = sin-piece + cos-piece − integral-piece`.
+@isnad1 id=eq.2h3v.s6.fe513e62a26b from=translated src=- shape=bd27f533 vocab=8902310e
+-/
 theorem paperFourierIntegral_auxF_split (s : ℂ) {X : ℝ} (hX : 1 < X)
     (hs : 1/2 < s.re) (γ : ℝ) :
     paperFourierIntegral (auxF s X) γ
@@ -189,7 +195,9 @@ theorem paperFourierIntegral_auxF_split (s : ℂ) {X : ℝ} (hX : 1 < X)
 
 /-- The eq-(8) tail integrand is integrable on `(T, ∞)`: on the tail `F_{s,X}` is the
 exponential kernel `T·e^{hT}·e^{−ht}/t`, and the cofactor `cos(tγ)·(ht+1)/t²` is
-continuous and bounded there.-/
+continuous and bounded there.
+@isnad1 id=integrab.2h3v.s7.b0b6d45285bb from=translated src=- shape=598f6bd3 vocab=0848a546
+-/
 theorem integrableOn_auxF_tail_kernel (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re)
     (γ : ℝ) :
     MeasureTheory.IntegrableOn (fun t : ℝ =>
@@ -249,7 +257,9 @@ theorem integrableOn_auxF_tail_kernel (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2
 /-! ### Norm bounds at real `σ` and summability of the three zero-series -/
 
 /-- Generic summability wrapper: any test function with a `c/(h²+γ²)` bound
-(`h := σ − 1/2 > 0`) is divisor-summable over the zero index (Landau).-/
+(`h := σ − 1/2 > 0`) is divisor-summable over the zero index (Landau).
+@isnad1 id=summable.2h4v.s7.2aef42605bc9 from=translated src=- shape=4c417d54 vocab=6d831953
+-/
 theorem summable_zetaZeros_mul_of_norm_le {σ : ℝ} (hσ : 1/2 < σ) {f : ℝ → ℂ} {c : ℝ}
     (hf : ∀ γ : ℝ, ‖f γ‖ ≤ c / ((σ - 1/2)^2 + γ^2)) :
     Summable (fun ρ : ZetaZeros K => (zetaZeroDivisor K ρ.1 : ℂ) * f ρ.1.im) := by
@@ -269,7 +279,9 @@ theorem summable_zetaZeros_mul_of_norm_le {σ : ℝ} (hσ : 1/2 < σ) {f : ℝ �
     _ = c * ((zetaZeroDivisor K ρ.1 : ℝ) / ((σ - 1/2)^2 + ρ.1.im^2)) := by ring
 
 /-- **Sine-piece bound**: `‖zeroSinTerm‖ ≤ 2h²T/(h²+γ²)` — `|sin(Tγ)| ≤ T|γ|` kills
-the `1/γ`, uniformly through the plateau at `γ = 0`.-/
+the `1/γ`, uniformly through the plateau at `γ = 0`.
+@isnad1 id=le.2h3v.s7.8c09ac3dbb7a from=translated src=- shape=d7927b7c vocab=e2a59bd7
+-/
 theorem norm_zeroSinTerm_le {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X) (γ : ℝ) :
     ‖zeroSinTerm (σ:ℂ) X γ‖
       ≤ 2*(σ - 1/2)^2 * Real.log X / ((σ - 1/2)^2 + γ^2) := by
@@ -313,7 +325,9 @@ theorem norm_zeroSinTerm_le {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X) (
               = 2*(σ - 1/2)^2 * Real.log X * |γ| by ring,
             mul_div_mul_right _ _ hγ']
 
-/-- **Cosine-piece bound**: `‖zeroCosTerm‖ ≤ 2(h + 1/T)/(h²+γ²)`.-/
+/-- **Cosine-piece bound**: `‖zeroCosTerm‖ ≤ 2(h + 1/T)/(h²+γ²)`.
+@isnad1 id=le.2h3v.s7.e5e3f2ca58b9 from=translated src=- shape=7f1f2ea7 vocab=b94056d9
+-/
 theorem norm_zeroCosTerm_le {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X) (γ : ℝ) :
     ‖zeroCosTerm (σ:ℂ) X γ‖
       ≤ 2*((σ - 1/2) + 1/Real.log X) / ((σ - 1/2)^2 + γ^2) := by
@@ -341,7 +355,9 @@ noncomputable def auxFTailNormBound (σ X : ℝ) : ℝ :=
   ∫ t in Set.Ioi (Real.log X), ‖auxF (σ:ℂ) X t * ((((σ:ℂ) - 1/2)*t + 1)/(t:ℂ)^2)‖
 
 /-- **Integral-piece bound**: `‖zeroIntTerm‖ ≤ 4·M₀/(h²+γ²)` with the γ-free tail
-constant `M₀ = ∫‖F_{s,X}·(ht+1)/t²‖`.-/
+constant `M₀ = ∫‖F_{s,X}·(ht+1)/t²‖`.
+@isnad1 id=le.2h3v.s7.179bff441880 from=translated src=- shape=0b577cfa vocab=c071ff3e
+-/
 theorem norm_zeroIntTerm_le {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X) (γ : ℝ) :
     ‖zeroIntTerm (σ:ℂ) X γ‖
       ≤ 4 * auxFTailNormBound σ X / ((σ - 1/2)^2 + γ^2) := by
@@ -384,7 +400,9 @@ theorem norm_zeroIntTerm_le {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X) (
 
 /-- **The three-series split of the zero side** (the Lemma 3 display's zero sums):
 under GRH at real `σ > 1`, the absolutely convergent zero sum of the explicit formula
-splits into the sine, cosine and tail-integral series, each absolutely convergent.-/
+splits into the sine, cosine and tail-integral series, each absolutely convergent.
+@isnad1 id=eq.3h3v.s8.f5f7c5f0d2a3 from=translated src=- shape=94464a91 vocab=c1d60848
+-/
 theorem tsum_zetaZeros_paperPhi_auxF_split (hGRH : GeneralizedRiemannHypothesis K)
     {σ X : ℝ} (hσ : 1 < σ) (hX : 1 < X) :
     ∑' ρ : ZetaZeros K, (zetaZeroDivisor K ρ.1 : ℂ) * paperPhi (auxF (σ:ℂ) X) ρ.1
@@ -430,7 +448,9 @@ collapses to `(1/g_σ(T))·log ζ_K(σ) = T·e^{hT}·log ζ_K(σ)` by the logari
 product, and `H(0)` differs from it by the finitely-supported plateau defect
 `∑_{N𝔭^m ≤ X} (log N𝔭/N𝔭^{m/2})·(1 − f_{σ,X}(m log N𝔭))`. -/
 
-/-- On the real ray the auxiliary function is the coercion of its real avatar.-/
+/-- On the real ray the auxiliary function is the coercion of its real avatar.
+@isnad1 id=eq.0h3v.s6.db2945f4af03 from=translated src=- shape=9f65fd2d vocab=87f71df1
+-/
 theorem auxF_ofReal (σ X t : ℝ) :
     auxF (σ:ℂ) X t
       = ((if |t| ≤ Real.log X then 1
@@ -445,7 +465,9 @@ theorem auxF_ofReal (σ X t : ℝ) :
 
 /-- **The pure-kernel prime sum is the logarithm** (B–F eq. (4) folded into the
 `f_{σ,X}` weights): `∑_{𝔭,m} (log N𝔭/N𝔭^{m/2})·f_{σ,X}(m log N𝔭)
-= T·e^{hT}·log ζ_K(σ)` for real `σ > 1`.-/
+= T·e^{hT}·log ζ_K(σ)` for real `σ > 1`.
+@isnad1 id=eq.1h3v.s11.355b99402223 from=translated src=- shape=4c94bb5e vocab=3173e303
+-/
 theorem tsum_kernel_eq_log_zeta {σ : ℝ} (hσ : 1 < σ) (X : ℝ) :
     ∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,
       Real.log (Ideal.absNorm pk.1.1)
@@ -489,7 +511,9 @@ theorem tsum_kernel_eq_log_zeta {σ : ℝ} (hσ : 1 < σ) (X : ℝ) :
             / ((pk.2+1 : ℕ) : ℝ)) := by ring
 
 /-- **Finiteness of the plateau**: only finitely many prime powers satisfy
-`m·log N𝔭 ≤ log X`.-/
+`m·log N𝔭 ≤ log X`.
+@isnad1 id=finite.1h2v.s10.c9dd91eb481b from=translated src=- shape=3e1d3366 vocab=0982ada6
+-/
 theorem finite_plateau_support {X : ℝ} (hX : 1 < X) :
     {pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ |
       (((pk.2+1 : ℕ)) : ℝ) * Real.log (Ideal.absNorm pk.1.1) ≤ Real.log X}.Finite := by
@@ -536,7 +560,9 @@ theorem finite_plateau_support {X : ℝ} (hX : 1 < X) :
     exact Prod.ext (Subtype.ext h.1) h.2
 
 /-- **Summability of the kernel-weighted prime series** (its terms are
-`T·e^{hT}·N^{-mσ}/m`, cf. `tsum_kernel_eq_log_zeta`).-/
+`T·e^{hT}·N^{-mσ}/m`, cf. `tsum_kernel_eq_log_zeta`).
+@isnad1 id=summable.1h3v.s11.8b1f70b03549 from=translated src=- shape=a94457c0 vocab=a32a1ac0
+-/
 theorem summable_kernel {σ : ℝ} (hσ : 1 < σ) (X : ℝ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
       Real.log (Ideal.absNorm pk.1.1)
@@ -575,7 +601,9 @@ theorem summable_kernel {σ : ℝ} (hσ : 1 < σ) (X : ℝ) :
 
 /-- **The prime side at the origin splits** (real `σ > 1`): the finitely-supported
 plateau defect plus `T·e^{hT}·log ζ_K(σ)` — the bookkeeping step of Belabas–Friedman's
-Lemma 3 that makes `log ζ_K` appear in the explicit formula.-/
+Lemma 3 that makes `log ζ_K` appear in the explicit formula.
+@isnad1 id=eq.2h4v.s12.f0e5eb4ae651 from=translated src=- shape=7489415c vocab=4fe08904
+-/
 theorem primeSideH_auxF_zero_split (a : ℝ) {σ X : ℝ} (hσ : 1 < σ) (hX : 1 < X) :
     primeSideH K a (auxF (σ:ℂ) X) 0
       = ((∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,
@@ -695,7 +723,9 @@ $$ 2\,T e^{hT} \log ζ_K(σ) = Φ(0) + Φ(1) + \log Δ_K + c_Γ
   - 2\!\!\sum_{mL ≤ T}\frac{\log N}{N^{m/2}}(1 - f_{σ,X}(mL))
   - S_{\sin} - S_{\cos} + S_{\mathrm{int}}, $$
 where `S_sin`, `S_cos`, `S_int` are the three absolutely convergent zero-series of
-eq. (13) and `c_Γ = -(n_K(γ_E + \log 8π) + r_1 π/2)`.-/
+eq. (13) and `c_Γ = -(n_K(γ_E + \log 8π) + r_1 π/2)`.
+@isnad1 id=eq.6h4v.s12.09d98405628c from=translated src=- shape=2dc055f0 vocab=e1d0ccdf
+-/
 theorem lemma3_display (hGRH : GeneralizedRiemannHypothesis K)
     {σ X : ℝ} (hσ : 1 < σ) (hX : 1 < X) {a : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4)
     (has : a < σ - 1) :

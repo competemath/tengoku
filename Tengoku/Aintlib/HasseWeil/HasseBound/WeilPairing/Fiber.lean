@@ -41,7 +41,9 @@ def fiberEquivKer (f : W.Point →+ W.Point) {P₀ Q : W.Point} (hP₀ : f P₀ 
   left_inv := fun ⟨P, hP⟩ => by simp
   right_inv := fun ⟨T, hT⟩ => by simp
 
-/-- **Fibres are finite when the kernel is.**-/
+/-- **Fibres are finite when the kernel is.**
+@isnad1 id=finite.1h4v.s8.c7826bcb96fd from=translated src=- shape=a0b54497 vocab=6b36d7c9
+-/
 theorem fiber_finite (f : W.Point →+ W.Point) (h : Finite f.ker) (Q : W.Point) :
     Finite {P : W.Point // f P = Q} := by
   rcases Classical.em (∃ P₀, f P₀ = Q) with ⟨P₀, hP₀⟩ | hempty
@@ -50,7 +52,9 @@ theorem fiber_finite (f : W.Point →+ W.Point) (h : Finite f.ker) (Q : W.Point)
     infer_instance
 
 /-- **Fibre cardinality = kernel cardinality** (for a nonempty fibre). The constant fibre size that
-makes `deg = #ker` for a separable isogeny (Silverman III.4.10c).-/
+makes `deg = #ker` for a separable isogeny (Silverman III.4.10c).
+@isnad1 id=eq.1h5v.s8.9a2e97e5447b from=translated src=- shape=da53c839 vocab=9c7791a5
+-/
 theorem fiber_card_eq_ker_card (f : W.Point →+ W.Point) {P₀ Q : W.Point} (hP₀ : f P₀ = Q) :
     Nat.card {P : W.Point // f P = Q} = Nat.card f.ker :=
   Nat.card_eq_of_bijective _ (fiberEquivKer f hP₀).bijective

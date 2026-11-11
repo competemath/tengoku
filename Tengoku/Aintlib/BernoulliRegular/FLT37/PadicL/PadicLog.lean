@@ -62,19 +62,30 @@ defined as a `tsum` over all `n : ℕ` (the `n = 0` term being `0`).-/
 noncomputable def padicLog (x : ℚ_[p]) : ℚ_[p] :=
   ∑' n : ℕ, padicLogSummand x n
 
+/--
+@isnad1 id=eq.0h2v.s6.4bf4eb3b6b55 from=translated src=- shape=009afb99 vocab=3a46c0c6
+-/
 theorem padicLog_eq_tsum (x : ℚ_[p]) :
     padicLog x = ∑' n : ℕ, padicLogSummand x n := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.50a2b60ed262 from=translated src=- shape=338c1eff vocab=83cdab16
+-/
 @[simp]
 theorem padicLogSummand_zero (x : ℚ_[p]) : padicLogSummand x 0 = 0 := by
   simp [padicLogSummand]
 
+/--
+@isnad1 id=eq.1h3v.s7.e658bf100b5b from=translated src=- shape=73ab085b vocab=60e197f5
+-/
 theorem padicLogSummand_of_ne_zero (x : ℚ_[p]) {n : ℕ} (hn : n ≠ 0) :
     padicLogSummand x n = (-1) ^ (n + 1) * (x - 1) ^ n / (n : ℚ_[p]) := by
   simp [padicLogSummand, hn]
 
 /-- At `x = 1`, every summand vanishes (because `(1 - 1)^n = 0` for `n ≥ 1`),
-so `log_p 1 = 0`.-/
+so `log_p 1 = 0`.
+@isnad1 id=eq.0h1v.s5.1e7048d055ea from=translated src=- shape=0d106450 vocab=733a79da
+-/
 @[simp]
 theorem padicLog_one : padicLog (1 : ℚ_[p]) = 0 := by
   have h : ∀ n : ℕ, padicLogSummand (1 : ℚ_[p]) n = 0 := by

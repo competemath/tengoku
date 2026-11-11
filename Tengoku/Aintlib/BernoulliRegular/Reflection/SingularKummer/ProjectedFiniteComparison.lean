@@ -24,7 +24,9 @@ namespace ProjectedFiniteComparison
 
 variable {A : Type*} [AddCommGroup A] [Finite A]
 
-/-- The finite comparison applied to the range of an additive endomorphism.-/
+/-- The finite comparison applied to the range of an additive endomorphism.
+@isnad1 id=iff.0h3v.s9.33d7c0703e11 from=translated src=- shape=d928ff56 vocab=fc4f7ff2
+-/
 theorem endomorphismRange_elementaryQuotient_nontrivial_iff_torsion_nontrivial
     (e : A →+ A) (n : ℕ) :
     Nontrivial (elementaryQuotient e.range n) ↔
@@ -33,7 +35,9 @@ theorem endomorphismRange_elementaryQuotient_nontrivial_iff_torsion_nontrivial
     (A := e.range) n
 
 /-- Direction used in the singular-Kummer argument: a nontrivial elementary quotient of a projected
-finite component gives nontrivial torsion in that same projected component.-/
+finite component gives nontrivial torsion in that same projected component.
+@isnad1 id=nontrivi.1h3v.s9.277ede10bddb from=translated src=- shape=23fb7869 vocab=fc4f7ff2
+-/
 theorem torsion_nontrivial_of_endomorphismRange_elementaryQuotient_nontrivial
     (e : A →+ A) {n : ℕ} :
     Nontrivial (elementaryQuotient e.range n) →
@@ -43,7 +47,9 @@ theorem torsion_nontrivial_of_endomorphismRange_elementaryQuotient_nontrivial
 
 variable {R M : Type*} [Ring R] [AddCommGroup M] [Module R M] [Finite M]
 
-/-- The same comparison for the range of a linear endomorphism.-/
+/-- The same comparison for the range of a linear endomorphism.
+@isnad1 id=iff.0h4v.s10.9a46b35e6733 from=translated src=- shape=3482c870 vocab=7e0f5b7a
+-/
 theorem linearRange_elementaryQuotient_nontrivial_iff_torsion_nontrivial
     (e : M →ₗ[R] M) (n : ℕ) :
     Nontrivial (elementaryQuotient (LinearMap.range e) n) ↔
@@ -51,7 +57,9 @@ theorem linearRange_elementaryQuotient_nontrivial_iff_torsion_nontrivial
   elementaryQuotient_nontrivial_iff_torsionBySubgroup_nontrivial
     (A := LinearMap.range e) n
 
-/-- Direction used in the singular-Kummer argument for a linear projected component.-/
+/-- Direction used in the singular-Kummer argument for a linear projected component.
+@isnad1 id=nontrivi.1h4v.s10.33fb5f51eba2 from=translated src=- shape=df915279 vocab=7e0f5b7a
+-/
 theorem torsion_nontrivial_of_linearRange_elementaryQuotient_nontrivial
     (e : M →ₗ[R] M) {n : ℕ} :
     Nontrivial (elementaryQuotient (LinearMap.range e) n) →
@@ -61,7 +69,9 @@ theorem torsion_nontrivial_of_linearRange_elementaryQuotient_nontrivial
 
 variable {p : ℕ} {V : Type*} [AddCommGroup V] [Module (ZMod p) V]
 
-/-- In a `ZMod p`-module, every element is killed by `p`.-/
+/-- In a `ZMod p`-module, every element is killed by `p`.
+@isnad1 id=eq.0h2v.s5.9134d72fb914 from=translated src=- shape=22f2f6c6 vocab=cca2456e
+-/
 theorem torsionBySubgroup_eq_top_of_zmodModule :
     torsionBySubgroup V p = ⊤ := by
   ext x
@@ -70,7 +80,9 @@ theorem torsionBySubgroup_eq_top_of_zmodModule :
 variable {W : Type*} [AddCommGroup W] [Module (ZMod p) W]
 
 /-- The `p`-torsion subgroup of a projected `ZMod p`-linear range is the whole
-range.-/
+range.
+@isnad1 id=eq.0h3v.s10.2d988d11d22b from=translated src=- shape=864d8208 vocab=08490ab9
+-/
 theorem linearRange_torsionBySubgroup_eq_top_zmod
     (e : W →ₗ[ZMod p] W) :
     torsionBySubgroup (LinearMap.range e) p = ⊤ :=
@@ -78,7 +90,9 @@ theorem linearRange_torsionBySubgroup_eq_top_zmod
     (p := p) (V := LinearMap.range e)
 
 /-- If the `p`-torsion of a projected `ZMod p`-linear range is nontrivial, then
-the projected range itself is nontrivial.-/
+the projected range itself is nontrivial.
+@isnad1 id=nontrivi.1h3v.s10.581ed36d1b26 from=translated src=- shape=d5c9d7ef vocab=1b34a889
+-/
 theorem linearRange_nontrivial_of_torsion_nontrivial_zmod
     (e : W →ₗ[ZMod p] W) :
     Nontrivial (torsionBySubgroup (LinearMap.range e) p) →
@@ -88,7 +102,9 @@ theorem linearRange_nontrivial_of_torsion_nontrivial_zmod
   exact ⟨⟨x.1, 0, fun hzero ↦ hx (Subtype.ext hzero)⟩⟩
 
 /-- Conversely, a nontrivial projected range in a `ZMod p`-module has
-nontrivial `p`-torsion.-/
+nontrivial `p`-torsion.
+@isnad1 id=nontrivi.1h3v.s10.3681fa5d4778 from=translated src=- shape=7605d296 vocab=1b34a889
+-/
 theorem torsion_nontrivial_of_linearRange_nontrivial_zmod
     (e : W →ₗ[ZMod p] W) :
     Nontrivial (LinearMap.range e) →
@@ -105,7 +121,9 @@ variable [Finite W]
 
 /-- The bridge used for the singular-Kummer argument: a nontrivial elementary
 quotient of a projected `ZMod p` component forces the projected component
-itself to be nontrivial.-/
+itself to be nontrivial.
+@isnad1 id=ne.1h3v.s8.507dbec213e4 from=translated src=- shape=67856077 vocab=0e9d0107
+-/
 theorem linearRange_ne_bot_of_elementaryQuotient_nontrivial_zmod
     (e : W →ₗ[ZMod p] W)
     (hV : Nontrivial (elementaryQuotient (LinearMap.range e) p)) :
@@ -121,7 +139,9 @@ variable [NeZero p]
 
 /-- Character-projection form of the finite comparison: if the elementary
 quotient of a projected component is nontrivial, then the projected component
-itself is nontrivial.-/
+itself is nontrivial.
+@isnad1 id=ne.1h4v.s9.5b2d8be308b9 from=translated src=- shape=ee390635 vocab=6410213e
+-/
 theorem characterProjection_range_ne_bot_of_elementaryQuotient_nontrivial_zmod
     (i : ℕ) (ρ : CharacterProjection.Delta p →* W ≃ₗ[ZMod p] W)
     (hV :
@@ -134,7 +154,9 @@ theorem characterProjection_range_ne_bot_of_elementaryQuotient_nontrivial_zmod
   linearRange_ne_bot_of_elementaryQuotient_nontrivial_zmod
     (p := p) (CharacterProjection.characterProjection (p := p) i ρ) hV
 
-/-- The same statement as a `Nontrivial` instance for the projected component.-/
+/-- The same statement as a `Nontrivial` instance for the projected component.
+@isnad1 id=nontrivi.1h4v.s9.8db5577b646c from=translated src=- shape=2e802c53 vocab=2829f715
+-/
 theorem characterProjection_range_nontrivial_of_elementaryQuotient_nontrivial_zmod
     (i : ℕ) (ρ : CharacterProjection.Delta p →* W ≃ₗ[ZMod p] W)
     (hV :

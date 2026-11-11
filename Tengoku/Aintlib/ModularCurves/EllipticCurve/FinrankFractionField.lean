@@ -30,7 +30,9 @@ namespace ModularCurves
 /-- **(K4 algebraic core)** For a finite flat algebra `S` over a **domain** `R`, the
 scheme-theoretic fibre rank of `Spec S ⟶ Spec R` at any point equals the `R`-module rank of
 `S`. Over a domain this module rank is the generic-fibre degree `[Frac S : Frac R]`, so this is
-the "scheme fibre-rank = function-field degree" identity in affine algebraic form.-/
+the "scheme fibre-rank = function-field degree" identity in affine algebraic form.
+@isnad1 id=eq.0h3v.s7.17477f7f9fad from=translated src=- shape=e30460cb vocab=63ac9fe9
+-/
 lemma finrank_SpecMap_algebraMap_eq_finrank (R S : Type u) [CommRing R] [CommRing S]
     [Algebra R S] [IsDomain R] [Module.Finite R S] [Module.Flat R S] (x : PrimeSpectrum R) :
     (Spec.map (CommRingCat.ofHom (algebraMap R S))).finrank x = Module.finrank R S := by
@@ -41,7 +43,9 @@ lemma finrank_SpecMap_algebraMap_eq_finrank (R S : Type u) [CommRing R] [CommRin
 `RingHom.finrank` of `algebraMap R S` at any prime equals the `R`-module rank of `S`. This is the
 bare `RingHom.finrank` counterpart of `finrank_SpecMap_algebraMap_eq_finrank`: it turns the `appTop`
 ring-map rank produced by `finrank_of_isAffine` (on the affine `Z`-chart of the model) into a
-concrete module rank `Module.finrank Γ(Z) Γ([N]⁻¹Z)`, which is then the fibre degree of `[N]`.-/
+concrete module rank `Module.finrank Γ(Z) Γ([N]⁻¹Z)`, which is then the fibre degree of `[N]`.
+@isnad1 id=eq.0h3v.s7.8065f87662eb from=translated src=- shape=d031c3d0 vocab=be832430
+-/
 lemma finrank_algebraMap_eq_module_finrank (R S : Type u) [CommRing R] [CommRing S] [Algebra R S]
     [IsDomain R] [Module.Finite R S] [Module.Flat R S] (x : PrimeSpectrum R) :
     (algebraMap R S).finrank x = Module.finrank R S := by
@@ -56,7 +60,9 @@ fibre-rank = module-rank identity (`finrank_SpecMap_algebraMap_eq_finrank`) with
 localisation-invariance of `finrank` (`Algebra.IsAlgebraic.finrank_of_isFractionRing`, valid since a
 finite algebra is integral hence algebraic). This is the "scheme fibre rank = function-field degree"
 bridge in its reusable affine form — the identity at the heart of the `[N]`-degree keystone (with
-`FR = FS = K(E)` and the extension taken along `[N]`) and its arbitrary-`E/S` generalisation.-/
+`FR = FS = K(E)` and the extension taken along `[N]`) and its arbitrary-`E/S` generalisation.
+@isnad1 id=eq.0h5v.s8.dd05b354fd2b from=translated src=- shape=7f77e3b4 vocab=c0f55ac4
+-/
 lemma finrank_SpecMap_eq_functionField_finrank (R S : Type u) [CommRing R] [CommRing S]
     [Algebra R S] [IsDomain R] [IsDomain S] [Module.Finite R S] [Module.Flat R S] [FaithfulSMul R S]
     (FR FS : Type u) [Field FR] [Field FS] [Algebra R FR] [IsFractionRing R FR] [Algebra S FS]

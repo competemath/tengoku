@@ -33,7 +33,9 @@ noncomputable def restrictScalarsFullyFaithfulOfSurjective
     ext x
     rfl
 
-/-- The extension--restriction counit along a surjective ring homomorphism is invertible.-/
+/-- The extension--restriction counit along a surjective ring homomorphism is invertible.
+@isnad1 id=isiso.1h4v.s8.9989a0da777d from=translated src=- shape=06bd3d9e vocab=f9c4ba85
+-/
 theorem isIso_extendRestrictScalars_counit_app_of_surjective
     [CommRing R] [CommRing S] (f : R →+* S) (hf : Function.Surjective f)
     (M : ModuleCat.{max w v} S) :

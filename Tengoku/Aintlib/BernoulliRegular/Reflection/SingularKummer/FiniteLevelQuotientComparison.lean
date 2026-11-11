@@ -30,7 +30,9 @@ variable {p m : ℕ} [NeZero p] [NeZero m]
 variable {A : Type*} [AddCommGroup A] [Module (ZMod m) A]
 
 /-- Natural-number scalar multiplication on `A / pA` agrees with scalar
-multiplication by its class in `ZMod p`.-/
+multiplication by its class in `ZMod p`.
+@isnad1 id=eq.0h4v.s7.3a8740b691be from=translated src=- shape=b51d8d87 vocab=f9b5b6e7
+-/
 theorem nsmul_elementaryQuotient_eq_zmod_smul
     (n : ℕ) (x : ElementaryQuotient A p) :
     n • x = (n : ZMod p) • x := by
@@ -41,7 +43,9 @@ theorem nsmul_elementaryQuotient_eq_zmod_smul
   exact nsmul_eq_mod_nsmul n hpx
 
 /-- Scalar multiplication before quotienting by `pA` depends only on the
-coefficient modulo `p`.-/
+coefficient modulo `p`.
+@isnad1 id=eq.2h6v.s9.037ec0e2ba48 from=translated src=- shape=204f22dd vocab=953cc8f0
+-/
 theorem quotientMap_zmod_smul_eq_of_castHom_eq
     (hm : p ∣ m) (c : ZMod m) (a : ZMod p) (x : A)
     (hc : ZMod.castHom hm (ZMod p) c = a) :
@@ -70,7 +74,9 @@ theorem quotientMap_zmod_smul_eq_of_castHom_eq
 
 /-- The exact finite-level projection descends to the usual mod-`p`
 projection on `A / pA`, provided its coefficients reduce to the usual
-character-projection coefficients.-/
+character-projection coefficients.
+@isnad1 id=eq.2h7v.s9.56b57b344a29 from=translated src=- shape=168bdb52 vocab=31492d63
+-/
 theorem quotientMap_finiteLevelProjection
     (hm : p ∣ m) (i : ℕ)
     (rho : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
@@ -106,7 +112,9 @@ theorem quotientMap_finiteLevelProjection
             CharacterProjection.projection]
 
 /-- The exact finite-level projection subgroup maps onto the mod-`p`
-component `V_i`.-/
+component `V_i`.
+@isnad1 id=le.2h6v.s10.2e9cfd09b7eb from=translated src=- shape=8607327c vocab=c0992338
+-/
 theorem elementaryComponent_le_finiteLevelComponent_image
     (hm : p ∣ m) (i : ℕ)
     (rho : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))

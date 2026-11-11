@@ -64,14 +64,23 @@ def Y : W.toAffine.Point → R
   | @some _ _ _ _ y _ => y
 
 variable (W) in
+/--
+@isnad1 id=not.0h2v.s5.818888446f08 from=translated src=- shape=de93fc7b vocab=50183114
+-/
 @[simp] lemma not_neZero_zero : ¬(NeZero (0 : W.toAffine.Point)) :=
   fun ⟨h⟩ ↦ h rfl
 
+/--
+@isnad1 id=equation.0h3v.s5.d571409b2613 from=translated src=- shape=f6f7f85c vocab=d4caded7
+-/
 lemma equation_X_Y [NeZero P] : W.toAffine.Equation P.X P.Y := by
   cases P with
   | zero => exact (not_neZero_zero W).elim (by assumption)
   | some _ _ h => exact h.1
 
+/--
+@isnad1 id=eq.0h3v.s8.9aa8e31a9c6d from=translated src=- shape=188e8069 vocab=955e2ccf
+-/
 lemma equation_X_Y' [NeZero P] : P.Y^2 + W.a₁ * P.X * P.Y + W.a₃ * P.Y
     = P.X^3 + W.a₂ * P.X^2 + W.a₄ * P.X + W.a₆ :=
   (Affine.equation_iff ..).1 P.equation_X_Y
@@ -89,9 +98,15 @@ def pY : R :=
 class TwiceNeZero : Prop extends P.NeZero where
   twiceNeZero : IsUnit P.pY
 
+/--
+@isnad1 id=isunit.0h3v.s5.296584ce0642 from=translated src=- shape=aa31663e vocab=324d9682
+-/
 lemma isUnit_pY [P.TwiceNeZero] : IsUnit P.pY :=
   TwiceNeZero.twiceNeZero
 
+/--
+@isnad1 id=ne.0h3v.s5.01716d96ae17 from=translated src=- shape=1feb6552 vocab=1d6c3da5
+-/
 lemma pY_ne_zero [P.TwiceNeZero] [Nontrivial R] : P.pY ≠ 0 :=
   P.isUnit_pY.ne_zero
 
@@ -99,13 +114,22 @@ lemma pY_ne_zero [P.TwiceNeZero] [Nontrivial R] : P.pY ≠ 0 :=
 def pY_inv [P.TwiceNeZero] : Rˣ :=
   P.isUnit_pY.unit⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s6.a800e5d97580 from=translated src=- shape=95f199b2 vocab=92ea4d02
+-/
 @[simp] lemma pY_mul_inv [P.TwiceNeZero] : P.pY * P.pY_inv = 1 := by
   have : P.isUnit_pY.unit * P.isUnit_pY.unit⁻¹ = 1 := mul_inv_cancel _
   rwa [Units.ext_iff, Units.val_mul, IsUnit.unit_spec] at this
 
+/--
+@isnad1 id=eq.0h3v.s6.4a5176a59d13 from=translated src=- shape=6be1742d vocab=92ea4d02
+-/
 @[simp] lemma pY_inv_mul [P.TwiceNeZero] : (P.pY_inv : R) * P.pY = 1 :=
   (mul_comm ..).trans P.pY_mul_inv
 
+/--
+@isnad1 id=eq.0h3v.s5.13b5b05b1eab from=translated src=- shape=780e42d8 vocab=b2824cc1
+-/
 @[simp] lemma pY_inv_inv [P.TwiceNeZero] : P.pY_inv⁻¹ = P.pY := by
   rw [pY_inv, inv_inv]; rfl
 
@@ -118,10 +142,16 @@ def μ [P.TwiceNeZero] : R :=
 class ThriceNeZero : Prop extends P.NeZero where
   thriceNeZero : IsUnit ((W.a₂ + 3 * P.X) * P.pY ^ 2 + P.pX * W.a₁ * P.pY - P.pX ^ 2)
 
+/--
+@isnad1 id=isunit.0h3v.s7.7d601524f6f4 from=translated src=- shape=d3fe13cd vocab=1200e6b4
+-/
 lemma thriceNeZero_isUnit [P.ThriceNeZero] :
     IsUnit ((W.a₂ + 3 * P.X) * P.pY ^ 2 + P.pX * W.a₁ * P.pY - P.pX ^ 2) :=
   ThriceNeZero.thriceNeZero
 
+/--
+@isnad1 id=isunit.0h3v.s5.36c2283c4cd7 from=translated src=- shape=d84c4e8d vocab=b7ab69e2
+-/
 lemma isUnit_μ [P.TwiceNeZero] [P.ThriceNeZero] : IsUnit P.μ := by
   have h1 : P.pY * (P.pY_inv : R) = 1 := P.pY_mul_inv
   have h : P.μ = ((W.a₂ + 3 * P.X) * P.pY ^ 2 + P.pX * W.a₁ * P.pY - P.pX ^ 2)
@@ -136,13 +166,22 @@ lemma isUnit_μ [P.TwiceNeZero] [P.ThriceNeZero] : IsUnit P.μ := by
 def μ_inv [P.TwiceNeZero] [P.ThriceNeZero] : Rˣ :=
   P.isUnit_μ.unit⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s6.ef9e1a94b060 from=translated src=- shape=ed959169 vocab=92c20062
+-/
 @[simp] lemma μ_mul_inv [P.TwiceNeZero] [P.ThriceNeZero] : P.μ * P.μ_inv = 1 := by
   have : P.isUnit_μ.unit * P.isUnit_μ.unit⁻¹ = 1 := mul_inv_cancel _
   rwa [Units.ext_iff, Units.val_mul, IsUnit.unit_spec] at this
 
+/--
+@isnad1 id=eq.0h3v.s6.bb78fb5bbeae from=translated src=- shape=b7a5d2ad vocab=92c20062
+-/
 @[simp] lemma μ_inv_mul [P.TwiceNeZero] [P.ThriceNeZero] : (P.μ_inv : R) * P.μ = 1 :=
   (mul_comm ..).trans P.μ_mul_inv
 
+/--
+@isnad1 id=eq.0h3v.s6.d9a4cbda30b0 from=translated src=- shape=5d08d9ed vocab=965d8ff5
+-/
 @[simp] lemma μ_inv_inv [P.TwiceNeZero] [P.ThriceNeZero] : P.μ_inv⁻¹ = P.μ := by
   rw [μ_inv, inv_inv]; rfl
 
@@ -160,18 +199,33 @@ def ofNeZero : VariableChange R where
   s := 0
   t := P.Y
 
+/--
+@isnad1 id=eq.0h3v.s5.4b5dab2d44a2 from=translated src=- shape=4cbca9ef vocab=7027e471
+-/
 @[simp] lemma ofNeZero_a₆ [P.NeZero] : (W.ofNeZero P • W).a₆ = 0 :=
   equation_zero.1 <| (equation_iff_variableChange ..).1 <| P.equation_X_Y
 
+/--
+@isnad1 id=eq.0h3v.s6.1dedb43ed10a from=translated src=- shape=642fe7a8 vocab=6ad4c731
+-/
 @[simp] lemma ofNeZero_a₄ : (W.ofNeZero P • W).a₄ = -P.pX := by
   simp [variableChange_a₄, ofNeZero, Point.pX]; ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s5.99dd12e28db2 from=translated src=- shape=f8e57650 vocab=1da40a69
+-/
 @[simp] lemma ofNeZero_a₃ : (W.ofNeZero P • W).a₃ = P.pY := by
   simp [variableChange_a₃, ofNeZero, Point.pY]; ring_nf
 
+/--
+@isnad1 id=eq.0h3v.s6.7a2518a3bf57 from=translated src=- shape=18e90803 vocab=456aa170
+-/
 @[simp] lemma ofNeZero_a₂ : (W.ofNeZero P • W).a₂ = W.a₂ + 3 * P.X := by
   simp [variableChange_a₂, ofNeZero]
 
+/--
+@isnad1 id=eq.0h3v.s5.54fa8471ceec from=translated src=- shape=4bb9e47b vocab=5fbee58e
+-/
 @[simp] lemma ofNeZero_a₁ : (W.ofNeZero P • W).a₁ = W.a₁ := by
   simp [variableChange_a₁, ofNeZero]
 
@@ -191,24 +245,39 @@ def ofTwiceNeZero [P.TwiceNeZero] : VariableChange R where
   s := -P.pX * P.pY_inv
   t := P.Y
 
+/--
+@isnad1 id=eq.0h3v.s5.c3d7d329d5cf from=translated src=- shape=1a0a07d7 vocab=45cb7270
+-/
 lemma ofTwiceNeZero_eq [P.TwiceNeZero] : W.ofTwiceNeZero P =
     W.ofTwiceNeZero_aux P * W.ofNeZero P := by
   simp [ofTwiceNeZero, ofTwiceNeZero_aux, ofNeZero, VariableChange.mul_def]
 
+/--
+@isnad1 id=eq.0h3v.s5.6b04368f715e from=translated src=- shape=4cbca9ef vocab=d5f052a0
+-/
 @[simp] lemma ofTwiceNeZero_a₆ [P.TwiceNeZero] : (W.ofTwiceNeZero P • W).a₆ = 0 := by
   rw [ofTwiceNeZero_eq, mul_smul, variableChange_a₆, ofTwiceNeZero_aux]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.1af23e27ca4a from=translated src=- shape=4cbca9ef vocab=677dd01d
+-/
 @[simp] lemma ofTwiceNeZero_a₄ [P.TwiceNeZero] : (W.ofTwiceNeZero P • W).a₄ = 0 := calc
   _ = -P.pX + P.pX * P.pY_inv * P.pY := by
     rw [ofTwiceNeZero_eq, mul_smul, variableChange_a₄, ofTwiceNeZero_aux]
     simp
   _ = 0 := by rw [mul_assoc, P.pY_inv_mul, mul_one, neg_add_cancel]
 
+/--
+@isnad1 id=eq.0h3v.s5.66c2ce57c3d1 from=translated src=- shape=bd94e0e5 vocab=a89abfa3
+-/
 @[simp] lemma ofTwiceNeZero_a₃ [P.TwiceNeZero] : (W.ofTwiceNeZero P • W).a₃ = P.pY := by
     rw [ofTwiceNeZero_eq, mul_smul, variableChange_a₃, ofTwiceNeZero_aux]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s5.8a0b38be58b4 from=translated src=- shape=bd94e0e5 vocab=0b890f9d
+-/
 @[simp] lemma ofTwiceNeZero_a₂ [P.TwiceNeZero] : (W.ofTwiceNeZero P • W).a₂ = P.μ := by
     rw [ofTwiceNeZero_eq, mul_smul, variableChange_a₂, ofTwiceNeZero_aux, Point.μ]
     simp
@@ -230,6 +299,9 @@ def toTateNF [P.TwiceNeZero] [P.ThriceNeZero] : VariableChange R where
   s := -P.pX * P.pY_inv
   t := P.Y
 
+/--
+@isnad1 id=eq.0h3v.s6.2af44c5c16ef from=translated src=- shape=78fc5ded vocab=c1e90463
+-/
 lemma toTateNF_eq [P.TwiceNeZero] [P.ThriceNeZero] : W.toTateNF P =
     W.toTateNF_aux P * W.ofTwiceNeZero P := by
   simp [toTateNF, toTateNF_aux, ofTwiceNeZero, VariableChange.mul_def]
@@ -249,14 +321,22 @@ namespace Affine.Point
 
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R} (P : W.toAffine.Point)
 
+/--
+@isnad1 id=eq.1h4v.s5.df62c94ff1ac from=translated src=- shape=1c5ac369 vocab=84c88a1d
+-/
 @[simp] lemma X_some {x y : R} (h : W.toAffine.Nonsingular x y) :
     (Affine.Point.some x y h).X = x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.19d68e88656d from=translated src=- shape=375b6c35 vocab=7e7c2790
+-/
 @[simp] lemma Y_some {x y : R} (h : W.toAffine.Nonsingular x y) :
     (Affine.Point.some x y h).Y = y := rfl
 
 /-- On the curve, the `ThriceNeZero` quantity is the value of the `3`-division
-polynomial: `(a₂ + 3X)·pY² + pX·a₁·pY − pX² = Ψ₃.eval X`.-/
+polynomial: `(a₂ + 3X)·pY² + pX·a₁·pY − pX² = Ψ₃.eval X`.
+@isnad1 id=eq.0h3v.s7.9487984f2026 from=translated src=- shape=968901db vocab=5bf8b110
+-/
 lemma Ψ₃_eval_X [P.NeZero] :
     W.Ψ₃.eval P.X
       = (W.a₂ + 3 * P.X) * P.pY ^ 2 + P.pX * W.a₁ * P.pY - P.pX ^ 2 := by
@@ -265,14 +345,18 @@ lemma Ψ₃_eval_X [P.NeZero] :
     Polynomial.eval_pow, Polynomial.eval_C, Polynomial.eval_X, Polynomial.eval_ofNat]
   linear_combination (-(W.a₁ ^ 2 + 4 * W.a₂ + 12 * P.X)) * h
 
-/-- Bridge: a point on the curve with `IsUnit (ψ₂-value)` satisfies `TwiceNeZero`.-/
+/-- Bridge: a point on the curve with `IsUnit (ψ₂-value)` satisfies `TwiceNeZero`.
+@isnad1 id=twicenez.1h3v.s5.3d5deae46af1 from=translated src=- shape=5c7e2331 vocab=a4672400
+-/
 lemma twiceNeZero_of_isUnit [P.NeZero] (h : IsUnit (W.ψ₂.evalEval P.X P.Y)) :
     P.TwiceNeZero where
   toNeZero := ‹P.NeZero›
   twiceNeZero := by
     rwa [ψ₂, Affine.evalEval_polynomialY] at h
 
-/-- Bridge: a point on the curve with `IsUnit (Ψ₃-value)` satisfies `ThriceNeZero`.-/
+/-- Bridge: a point on the curve with `IsUnit (Ψ₃-value)` satisfies `ThriceNeZero`.
+@isnad1 id=thricene.1h3v.s5.914185535512 from=translated src=- shape=2d3efa00 vocab=cc9bab63
+-/
 lemma thriceNeZero_of_isUnit [P.NeZero] (h : IsUnit (W.Ψ₃.eval P.X)) :
     P.ThriceNeZero where
   toNeZero := ‹P.NeZero›
@@ -284,14 +368,22 @@ namespace Affine
 
 variable {R : Type*} [CommRing R] (W : Affine R) (P : W.toAffine.Point)
 
+/--
+@isnad1 id=eq.0h3v.s5.78007c77df32 from=translated src=- shape=d77727ff vocab=102f3fec
+-/
 @[simp] lemma toTateNF_r [P.TwiceNeZero] [P.ThriceNeZero] : (W.toTateNF P).r = P.X := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.1e3ee3c77701 from=translated src=- shape=d77727ff vocab=620dc334
+-/
 @[simp] lemma toTateNF_t [P.TwiceNeZero] [P.ThriceNeZero] : (W.toTateNF P).t = P.Y := rfl
 
 /-- **Uniqueness of the Tate-normalising variable change** (the uniqueness half of
 Loeffler Prop 3.3.4; not in PR #25218): a variable change carrying `P` to `(0,0)`
 (`r = P.X`, `t = P.Y`) whose result has `a₄ = 0` and `a₂ = a₃` is `toTateNF`.
-Note the `a₆`-condition is not even needed.-/
+Note the `a₆`-condition is not even needed.
+@isnad1 id=eq.4h4v.s7.76868d0de92f from=translated src=- shape=2d284cba vocab=bbf3b034
+-/
 theorem toTateNF_unique [P.TwiceNeZero] [P.ThriceNeZero] (vc : VariableChange R)
     (hr : vc.r = P.X) (ht : vc.t = P.Y)
     (h₄ : (vc • W).a₄ = 0) (h₂₃ : (vc • W).a₂ = (vc • W).a₃) :

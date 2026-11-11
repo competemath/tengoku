@@ -31,7 +31,9 @@ open MeasureTheory
 open scoped Real
 
 /-- The paper Fourier transform of an even function reduces to a cosine transform on the
-positive ray.-/
+positive ray.
+@isnad1 id=eq.2h2v.s7.69ec54254ad8 from=translated src=- shape=50829f4e vocab=b479eea8
+-/
 theorem paperFourierIntegral_even (F : ℝ → ℂ) (hF : ∀ t, F (-t) = F t) (γ : ℝ)
     (hInt : Integrable (fun t : ℝ => F t * Complex.exp (Complex.I * t * γ))) :
     paperFourierIntegral F γ
@@ -64,7 +66,9 @@ theorem paperFourierIntegral_even (F : ℝ → ℂ) (hF : ∀ t, F (-t) = F t) (
     ring_nf
 
 open scoped Real in
-/-- The plateau contribution: `∫_0^T cos(tγ) dt = sin(Tγ)/γ` (`γ ≠ 0`, `T ≥ 0`).-/
+/-- The plateau contribution: `∫_0^T cos(tγ) dt = sin(Tγ)/γ` (`γ ≠ 0`, `T ≥ 0`).
+@isnad1 id=eq.2h2v.s6.350158be8e54 from=translated src=- shape=03118bdc vocab=7a0de3fe
+-/
 theorem integral_plateau_cos {T γ : ℝ} (hT : 0 ≤ T) (hγ : γ ≠ 0) :
     (∫ t in Set.Ioc (0:ℝ) T, ((Real.cos (t * γ) : ℝ) : ℂ))
       = ((Real.sin (T * γ) / γ : ℝ) : ℂ) := by
@@ -75,7 +79,9 @@ theorem integral_plateau_cos {T γ : ℝ} (hT : 0 ≤ T) (hγ : γ ≠ 0) :
   rw [smul_eq_mul, zero_mul, Real.sin_zero, sub_zero, div_eq_inv_mul]
 
 /-- The global exponential bound on the auxiliary function:
-`‖F_{s,X}(t)‖ ≤ e^{h_r T}·e^{-h_r|t|}` with `h_r = Re s − 1/2 ≥ 0`, `T = log X ≥ 0`.-/
+`‖F_{s,X}(t)‖ ≤ e^{h_r T}·e^{-h_r|t|}` with `h_r = Re s − 1/2 ≥ 0`, `T = log X ≥ 0`.
+@isnad1 id=le.2h3v.s7.3ffb10a32ab5 from=translated src=- shape=a0d8aa5d vocab=d05cf45e
+-/
 theorem norm_auxF_le (s : ℂ) {X : ℝ} (hX : 1 ≤ X) (hs : 1/2 ≤ s.re) (t : ℝ) :
     ‖auxF s X t‖ ≤ Real.exp ((s.re - 1/2) * Real.log X)
       * Real.exp (-(s.re - 1/2) * |t|) := by
@@ -112,7 +118,9 @@ theorem norm_auxF_le (s : ℂ) {X : ℝ} (hX : 1 ≤ X) (hs : 1/2 ≤ s.re) (t :
           congr 1
           ring
 
-/-- Two-sided exponential decay is integrable on the line.-/
+/-- Two-sided exponential decay is integrable on the line.
+@isnad1 id=integrab.1h1v.s5.ee4765f45657 from=translated src=- shape=702dd196 vocab=c5397d2b
+-/
 theorem integrable_exp_neg_mul_abs {b : ℝ} (hb : 0 < b) :
     Integrable (fun t : ℝ => Real.exp (-b * |t|)) := by
   have hneg : IntegrableOn (fun t : ℝ => Real.exp (-b * |t|)) (Set.Iic 0) :=
@@ -125,7 +133,9 @@ theorem integrable_exp_neg_mul_abs {b : ℝ} (hb : 0 < b) :
   simpa only [Set.Iic_union_Ioi, integrableOn_univ] using hneg.union hpos
 
 /-- The paper Fourier kernel against `F_{s,X}` is integrable on the line
-(`Re s > 1/2`, `X ≥ 1`).-/
+(`Re s > 1/2`, `X ≥ 1`).
+@isnad1 id=integrab.2h3v.s6.b766b8886b4c from=translated src=- shape=097ea090 vocab=ae3bd8d0
+-/
 theorem integrable_auxF_kernel (s : ℂ) {X : ℝ} (hX : 1 ≤ X) (hs : 1/2 < s.re) (γ : ℝ) :
     Integrable (fun t : ℝ => auxF s X t * Complex.exp (Complex.I * t * γ)) := by
   refine Integrable.mono'
@@ -143,7 +153,9 @@ theorem integrable_auxF_kernel (s : ℂ) {X : ℝ} (hX : 1 ≤ X) (hs : 1/2 < s.
   exact norm_auxF_le s hX (le_of_lt hs) t
 
 /-- Belabas–Friedman eq. (7), first derivative: on `t > 0`,
-`d/dt [e^{-ht}/t] = -(h + 1/t)·e^{-ht}/t`.-/
+`d/dt [e^{-ht}/t] = -(h + 1/t)·e^{-ht}/t`.
+@isnad1 id=hasderiv.1h2v.s7.e858a628c5a1 from=translated src=- shape=c22f403c vocab=addcdb68
+-/
 theorem hasDerivAt_gAux_core (h : ℂ) {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun u : ℝ => Complex.exp (-h * u) / u)
       (-(h + 1/t) * (Complex.exp (-h * t) / t)) t := by
@@ -162,7 +174,9 @@ theorem hasDerivAt_gAux_core (h : ℂ) {t : ℝ} (ht : 0 < t) :
   ring
 
 /-- Belabas–Friedman eq. (7), second derivative: on `t > 0`, the derivative of
-`-(h+1/t)·e^{-ht}/t` is `(h² + (2ht+2)/t²)·e^{-ht}/t`.-/
+`-(h+1/t)·e^{-ht}/t` is `(h² + (2ht+2)/t²)·e^{-ht}/t`.
+@isnad1 id=hasderiv.1h2v.s8.f47393e2d2f9 from=translated src=- shape=6f6afcb0 vocab=7ea03a15
+-/
 theorem hasDerivAt_gAux_deriv (h : ℂ) {t : ℝ} (ht : 0 < t) :
     HasDerivAt (fun u : ℝ => -(h + 1/u) * (Complex.exp (-h * u) / u))
       ((h^2 + (2*h*t + 2)/t^2) * (Complex.exp (-h * t) / t)) t := by
@@ -189,7 +203,9 @@ theorem hasDerivAt_gAux_deriv (h : ℂ) {t : ℝ} (ht : 0 < t) :
 
 /-- Master decay bound: a continuous multiplier `φ` bounded on `(T, ∞)` times the
 kernel `e^{-ht}/t` (with `Re h > 0`, `T > 0`) is integrable on `(T, ∞)`, by comparison
-with `(C/T)·e^{-Re h · t}`.-/
+with `(C/T)·e^{-Re h · t}`.
+@isnad1 id=integrab.4h4v.s7.5aced2318aba from=translated src=- shape=7f9f26cb vocab=cde9c91a
+-/
 theorem integrableOn_bounded_mul_exp_div {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T)
     {φ : ℝ → ℂ} (hφc : ContinuousOn φ (Set.Ioi T)) {C : ℝ}
     (hφb : ∀ t ∈ Set.Ioi T, ‖φ t‖ ≤ C) :
@@ -219,7 +235,9 @@ theorem integrableOn_bounded_mul_exp_div {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT
         mul_le_mul (hφb t ht) hle (by positivity) hC0
     _ = C / T * Real.exp (-h.re * t) := by ring
 
-/-- The kernel `e^{-ht}/t` times an eventually-bounded multiplier tends to `0` at `∞`.-/
+/-- The kernel `e^{-ht}/t` times an eventually-bounded multiplier tends to `0` at `∞`.
+@isnad1 id=tendsto.2h3v.s6.877088c507ba from=translated src=- shape=f2d9fe8c vocab=69a628a7
+-/
 theorem tendsto_exp_div_mul_atTop {h : ℂ} (hh : 0 < h.re) {v : ℝ → ℂ} {C : ℝ}
     (hv : ∀ᶠ t : ℝ in Filter.atTop, ‖v t‖ ≤ C) :
     Filter.Tendsto (fun t : ℝ => Complex.exp (-h * t) / t * v t) Filter.atTop (nhds 0) := by
@@ -247,7 +265,9 @@ theorem tendsto_exp_div_mul_atTop {h : ℂ} (hh : 0 < h.re) {v : ℝ → ℂ} {C
     _ = C * Real.exp (-(h.re * t)) := by ring
 
 /-- The affine-plus-inverse norm bound `‖h + 1/t‖ ≤ ‖h‖ + 1/T` for `T > 0` and `t ≥ T`,
-used throughout the exponential-tail integrations by parts.-/
+used throughout the exponential-tail integrations by parts.
+@isnad1 id=le.2h3v.s6.9493ca92f68d from=translated src=- shape=864812c7 vocab=22bad16c
+-/
 theorem norm_affine_inv_le (h : ℂ) {t T : ℝ} (hT : 0 < T) (ht : T ≤ t) :
     ‖h + 1 / (t : ℂ)‖ ≤ ‖h‖ + 1 / T := by
   refine le_trans (norm_add_le _ _) ?_
@@ -258,7 +278,9 @@ theorem norm_affine_inv_le (h : ℂ) {t T : ℝ} (hT : 0 < T) (ht : T ≤ t) :
   linarith
 
 /-- The bound `‖(h·t + 1)/t²‖ ≤ ‖h‖/T + 1/T²` for `T > 0` and `t ≥ T`,
-the second-order counterpart of `norm_affine_inv_le` for the remainder integrand.-/
+the second-order counterpart of `norm_affine_inv_le` for the remainder integrand.
+@isnad1 id=le.2h3v.s7.3592130a13cc from=translated src=- shape=bd85d199 vocab=01d0067a
+-/
 theorem norm_affine_div_sq_le (h : ℂ) {t T : ℝ} (hT : 0 < T) (ht : T ≤ t) :
     ‖(h * (t : ℂ) + 1) / (t : ℂ) ^ 2‖ ≤ ‖h‖ / T + 1 / T ^ 2 := by
   have htpos : 0 < t := lt_of_lt_of_le hT ht
@@ -274,7 +296,9 @@ theorem norm_affine_div_sq_le (h : ℂ) {t T : ℝ} (hT : 0 < T) (ht : T ≤ t) 
 
 /-- First integration by parts for the Fourier tail (Belabas–Friedman, proof of Lemma 2):
 with `g(t) = e^{-ht}/t`,
-`∫_T^∞ (g′(t)·sin(tγ)/γ + g(t)·cos(tγ)) dt = -g(T)·sin(Tγ)/γ`.-/
+`∫_T^∞ (g′(t)·sin(tγ)/γ + g(t)·cos(tγ)) dt = -g(T)·sin(Tγ)/γ`.
+@isnad1 id=eq.3h3v.s8.d14ae164c801 from=translated src=- shape=ebfb8e69 vocab=1c413f42
+-/
 theorem integral_Ioi_gAux_ibp₁ (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 < T)
     (hγ : γ ≠ 0) :
     (∫ t in Set.Ioi T,
@@ -344,7 +368,9 @@ theorem integral_Ioi_gAux_ibp₁ (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 
     gcongr
     exact abs_le.mpr ⟨Real.neg_one_le_sin _, Real.sin_le_one _⟩
 
-/-- Integrability of the kernel against a bounded continuous real multiplier.-/
+/-- Integrability of the kernel against a bounded continuous real multiplier.
+@isnad1 id=integrab.4h4v.s7.db4fd0bc7951 from=translated src=- shape=a280f3ed vocab=3f298e30
+-/
 theorem integrableOn_exp_div_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T)
     {ψ : ℝ → ℝ} (hψc : Continuous ψ) {C : ℝ} (hψb : ∀ t, |ψ t| ≤ C) :
     IntegrableOn (fun t : ℝ => Complex.exp (-h * t) / t * ((ψ t : ℝ) : ℂ))
@@ -356,7 +382,9 @@ theorem integrableOn_exp_div_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 
   exact this.congr_fun (fun t _ => by ring) measurableSet_Ioi
 
 /-- Integrability of the first-derivative term `-(h+1/t)·e^{-ht}/t` against a bounded
-continuous real multiplier.-/
+continuous real multiplier.
+@isnad1 id=integrab.4h4v.s7.620270faba4a from=translated src=- shape=47dcb119 vocab=f7d7e67a
+-/
 theorem integrableOn_gAux_deriv_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T)
     {ψ : ℝ → ℝ} (hψc : Continuous ψ) {C : ℝ} (hψb : ∀ t, |ψ t| ≤ C) :
     IntegrableOn (fun t : ℝ =>
@@ -377,7 +405,9 @@ theorem integrableOn_gAux_deriv_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT
     exact norm_affine_inv_le h hT (le_of_lt ht)
 
 /-- Integrability of the second-derivative term `(h²+(2ht+2)/t²)·e^{-ht}/t` against a
-bounded continuous real multiplier.-/
+bounded continuous real multiplier.
+@isnad1 id=integrab.4h4v.s7.ac7548726c3b from=translated src=- shape=349d900e vocab=524306a3
+-/
 theorem integrableOn_gAux_deriv2_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T)
     {ψ : ℝ → ℝ} (hψc : Continuous ψ) {C : ℝ} (hψb : ∀ t, |ψ t| ≤ C) :
     IntegrableOn (fun t : ℝ =>
@@ -415,7 +445,9 @@ theorem integrableOn_gAux_deriv2_mul_real {h : ℂ} (hh : 0 < h.re) {T : ℝ} (h
 
 /-- Second integration by parts for the Fourier tail: with `g(t) = e^{-ht}/t`,
 `∫_T^∞ (g″(t)·(-cos(tγ)/γ²) + g′(t)·sin(tγ)/γ) dt =
-(h+1/T)·g(T)·cos(Tγ)/γ²`, stated with the boundary value in raw `-(u(T)·v(T))` form.-/
+(h+1/T)·g(T)·cos(Tγ)/γ²`, stated with the boundary value in raw `-(u(T)·v(T))` form.
+@isnad1 id=eq.3h3v.s8.b48a1c8d1f41 from=translated src=- shape=d6d0ae3f vocab=41b31451
+-/
 theorem integral_Ioi_gAux_ibp₂ (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 < T)
     (hγ : γ ≠ 0) :
     (∫ t in Set.Ioi T,
@@ -482,7 +514,9 @@ theorem integral_Ioi_gAux_ibp₂ (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 
 /-- **The Fourier tail identity** (Belabas–Friedman, proof of Lemma 2, eq. (8) tail):
 with `g(t) = e^{-ht}/t` and `Re h > 0`, for `T > 0` and `γ ≠ 0`,
 `(h²+γ²)·∫_T^∞ g(t)cos(tγ) dt
-  = -γ·g(T)·sin(Tγ) + (h+1/T)·g(T)·cos(Tγ) - 2∫_T^∞ cos(tγ)·g(t)·(ht+1)/t² dt`.-/
+  = -γ·g(T)·sin(Tγ) + (h+1/T)·g(T)·cos(Tγ) - 2∫_T^∞ cos(tγ)·g(t)·(ht+1)/t² dt`.
+@isnad1 id=eq.3h3v.s8.325a05991050 from=translated src=- shape=a9f4b37b vocab=8b08c9c3
+-/
 theorem tail_integral_identity (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 < T)
     (hγ : γ ≠ 0) :
     (h^2 + γ^2) * ∫ t in Set.Ioi T,
@@ -564,7 +598,9 @@ theorem tail_integral_identity (h : ℂ) (hh : 0 < h.re) {T γ : ℝ} (hT : 0 < 
 
 /-- On the tail `t > log X`, the auxiliary function factors as a constant times the
 exponential kernel: `F_{s,X}(t) = log X · e^{h·log X} · (e^{-h t}/t)` with `h = s - 1/2`
-(the `|t| > log X` branch of `auxF`, rearranged).-/
+(the `|t| > log X` branch of `auxF`, rearranged).
+@isnad1 id=eq.2h3v.s7.b9305de66c0c from=translated src=- shape=85e6130b vocab=6ebdea4b
+-/
 theorem auxF_of_gt (s : ℂ) {X : ℝ} (hX : 1 < X) {t : ℝ} (ht : Real.log X < t) :
     auxF s X t
       = (Real.log X : ℂ) * Complex.exp ((s - 1/2) * (Real.log X : ℂ))
@@ -585,7 +621,9 @@ theorem auxF_of_gt (s : ℂ) {X : ℝ} (hX : 1 < X) {t : ℝ} (ht : Real.log X <
 Fourier transform of the auxiliary function `F_{s,X}` in closed form. With `h = s - 1/2`
 and `T = log X`,
 `F̂(γ) = 2h²·sin(Tγ)/((h²+γ²)γ) + 2(h+1/T)·cos(Tγ)/(h²+γ²)
-        - 4/(h²+γ²)·∫_T^∞ cos(tγ)·F_{s,X}(t)·(ht+1)/t² dt`.-/
+        - 4/(h²+γ²)·∫_T^∞ cos(tγ)·F_{s,X}(t)·(ht+1)/t² dt`.
+@isnad1 id=eq.3h3v.s9.d3b3d7eb6874 from=translated src=- shape=c6d32ffe vocab=4ab5c596
+-/
 theorem fourier_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) {γ : ℝ}
     (hγ : γ ≠ 0) :
     paperFourierIntegral (auxF s X) γ
@@ -709,7 +747,9 @@ theorem fourier_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) {γ : �
 
 /-- FTC on `(T,∞)` for the second-derivative kernel: with `g(t) = e^{-ht}/t` and `Re h > 0`,
 `∫_T^∞ (h² + (2ht+2)/t²)·g(t) dt = (h + 1/T)·g(T)`. The integrand has antiderivative
-`-(h + 1/t)·g(t)`, which vanishes at `∞`.-/
+`-(h + 1/t)·g(t)`, which vanishes at `∞`.
+@isnad1 id=eq.2h2v.s7.7e19d6371e2f from=translated src=- shape=739d3cd2 vocab=ae9a740b
+-/
 theorem integral_Ioi_gAux_deriv2 {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T) :
     (∫ t in Set.Ioi T, (h^2 + (2*h*t + 2)/t^2) * (Complex.exp (-h * t) / t))
       = (h + 1/(T:ℂ)) * (Complex.exp (-h * (T:ℂ)) / (T:ℂ)) := by
@@ -735,7 +775,9 @@ theorem integral_Ioi_gAux_deriv2 {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T
       rw [norm_neg]
       exact norm_affine_inv_le h hT htT
 
-/-- Integrability on `(T,∞)` of the remainder kernel `g(t)·(ht+1)/t²`, `g(t) = e^{-ht}/t`.-/
+/-- Integrability on `(T,∞)` of the remainder kernel `g(t)·(ht+1)/t²`, `g(t) = e^{-ht}/t`.
+@isnad1 id=integrab.2h2v.s7.0a08efe2da72 from=translated src=- shape=0ccedfbe vocab=88a171bd
+-/
 theorem integrableOn_gAux_mul_affine_div_sq {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T) :
     IntegrableOn (fun t : ℝ =>
       (Complex.exp (-h * t) / t) * ((h*t + 1)/t^2)) (Set.Ioi T) := by
@@ -752,7 +794,9 @@ theorem integrableOn_gAux_mul_affine_div_sq {h : ℂ} (hh : 0 < h.re) {T : ℝ} 
 
 /-- Linearity split of the second-derivative-kernel integral into plain and remainder parts:
 with `g(t) = e^{-ht}/t`,
-`∫_T^∞ (h²+(2ht+2)/t²)·g = h²·∫_T^∞ g + 2·∫_T^∞ g·(ht+1)/t²`.-/
+`∫_T^∞ (h²+(2ht+2)/t²)·g = h²·∫_T^∞ g + 2·∫_T^∞ g·(ht+1)/t²`.
+@isnad1 id=eq.2h2v.s8.17ebfbbffe7a from=translated src=- shape=253f617a vocab=ae9a740b
+-/
 theorem integral_Ioi_gAux_deriv2_split {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT : 0 < T) :
     (∫ t in Set.Ioi T, (h^2 + (2*h*t + 2)/t^2) * (Complex.exp (-h * t) / t))
       = h^2 * (∫ t in Set.Ioi T, Complex.exp (-h * t) / t)
@@ -772,7 +816,9 @@ theorem integral_Ioi_gAux_deriv2_split {h : ℂ} (hh : 0 < h.re) {T : ℝ} (hT :
 (the `sin(γT)/((h²+γ²)γ)`-term becomes its limit `T/h²`, giving
 `F̂(0) = 2T + 2(h+1/T)/h² - 4/h²·∫_T^∞ F_{s,X}(t)(ht+1)/t² dt`). Lean's total-function
 semantics of `sin(γT)/γ` at `γ = 0` stores junk, so the paper's single display is
-faithfully rendered as this separate companion.-/
+faithfully rendered as this separate companion.
+@isnad1 id=eq.2h2v.s8.bc9dadd91b7c from=translated src=- shape=2fcd6d58 vocab=e3c34e50
+-/
 theorem fourier_auxF_zero (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) :
     paperFourierIntegral (auxF s X) 0
       = 2 * (Real.log X : ℂ)

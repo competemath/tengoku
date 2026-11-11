@@ -47,6 +47,9 @@ def integralProjection
     (CharacterProjection.characterProjectionCoefficient (p := p) i d).val •
       (Multiplicative.toAdd (ρ d)).toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h5v.s9.1cb9ebfb73b6 from=translated src=- shape=ba4249f5 vocab=5432790e
+-/
 @[simp]
 theorem integralProjection_apply
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)) (x : A) :
@@ -62,7 +65,9 @@ abbrev integralComponentSubgroup
     AddSubgroup A :=
   (integralProjection (p := p) i ρ).range
 
-/-- The integer lift induces the usual character projection on `A / pA`.-/
+/-- The integer lift induces the usual character projection on `A / pA`.
+@isnad1 id=eq.0h5v.s9.727b8feb8ff2 from=translated src=- shape=f553b641 vocab=f2695e57
+-/
 theorem quotientMap_integralProjection
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)) (x : A) :
     quotientMap A p (integralProjection (p := p) i ρ x) =
@@ -70,7 +75,9 @@ theorem quotientMap_integralProjection
   simp [integralProjection, CharacterProjection.characterProjection,
     CharacterProjection.projection]
 
-/-- On `A[p]`, the integer lift is the usual torsion character projection.-/
+/-- On `A[p]`, the integer lift is the usual torsion character projection.
+@isnad1 id=eq.0h5v.s8.b839aeb1ffe9 from=translated src=- shape=f65f996a vocab=5bf183f0
+-/
 theorem torsionProjection_apply_coe
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
     (x : PTorsion A p) :

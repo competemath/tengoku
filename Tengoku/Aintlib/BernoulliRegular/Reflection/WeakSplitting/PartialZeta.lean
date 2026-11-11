@@ -60,6 +60,9 @@ zeta function on the half-plane where the Euler product converges.-/
 def dedekindZetaPartial (F : Finset (HeightOneSpectrum (𝓞 K))) (s : ℂ) : ℂ :=
   dedekindZeta K s * ∏ p ∈ F, (1 - (Ideal.absNorm p.asIdeal : ℂ) ^ (-s))
 
+/--
+@isnad1 id=eq.0h2v.s5.c83b758bf6b1 from=translated src=- shape=2a97966e vocab=76efbfa4
+-/
 @[simp]
 theorem dedekindZetaPartial_empty (s : ℂ) :
     dedekindZetaPartial K ∅ s = dedekindZeta K s := by
@@ -73,6 +76,9 @@ local factors evaluated at `s = 1`.-/
 def dedekindZetaPartialResidue (F : Finset (HeightOneSpectrum (𝓞 K))) : ℂ :=
   (dedekindZeta_residue K : ℂ) * ∏ p ∈ F, (1 - (Ideal.absNorm p.asIdeal : ℂ)⁻¹)
 
+/--
+@isnad1 id=eq.0h1v.s5.4d29f6bbbd5a from=translated src=- shape=56000ca4 vocab=c2db1c63
+-/
 @[simp]
 theorem dedekindZetaPartialResidue_empty :
     dedekindZetaPartialResidue K ∅ = (dedekindZeta_residue K : ℂ) := by
@@ -82,7 +88,9 @@ theorem dedekindZetaPartialResidue_empty :
 The partial Dedekind zeta function `dedekindZetaPartial K F` has a simple
 pole at `s = 1` with residue `dedekindZetaPartialResidue K F`. This follows
 from the corresponding fact for the full Dedekind zeta function together with
-continuity at `s = 1` of each removed local factor.-/
+continuity at `s = 1` of each removed local factor.
+@isnad1 id=tendsto.0h2v.s6.be553ece3573 from=translated src=- shape=2730f190 vocab=09c657f9
+-/
 theorem tendsto_sub_one_mul_dedekindZetaPartial_nhdsGT
     (F : Finset (HeightOneSpectrum (𝓞 K))) :
     Tendsto (fun s : ℝ ↦ (s - 1) * dedekindZetaPartial K F s) (𝓝[>] 1)

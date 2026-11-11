@@ -58,7 +58,9 @@ def stickelbergerCoefficientPackage (c : (ZMod p)ˣ → ℤ) :
     MonoidAlgebra ℤ (ZMod p)ˣ :=
   ∑ a : (ZMod p)ˣ, MonoidAlgebra.single a⁻¹ (c a)
 
-/-- The coefficient at `a⁻¹` in the Stickelberger coefficient package.-/
+/-- The coefficient at `a⁻¹` in the Stickelberger coefficient package.
+@isnad1 id=eq.0h3v.s7.ba4df221cf3b from=translated src=- shape=df30d33c vocab=b88eda3b
+-/
 @[simp] lemma stickelbergerCoefficientPackage_apply_inv
     (c : (ZMod p)ˣ → ℤ) (a : (ZMod p)ˣ) :
     (stickelbergerCoefficientPackage (p := p) c).coeff a⁻¹ = c a := by
@@ -79,21 +81,27 @@ def stickelbergerElement : MonoidAlgebra ℚ (ZMod p)ˣ :=
 def stickelbergerScaled : MonoidAlgebra ℤ (ZMod p)ˣ :=
   ∑ a : (ZMod p)ˣ, ((a : ZMod p).val : ℤ) • MonoidAlgebra.single a⁻¹ (1 : ℤ)
 
-/-- Unfolding `stickelbergerElement`.-/
+/-- Unfolding `stickelbergerElement`.
+@isnad1 id=eq.0h1v.s8.60df4baa8974 from=translated src=- shape=147d84a4 vocab=50b1cf3f
+-/
 @[simp] lemma stickelbergerElement_def :
     stickelbergerElement p =
       (p : ℚ)⁻¹ •
         ∑ a : (ZMod p)ˣ, ((a : ZMod p).val : ℚ) • MonoidAlgebra.single a⁻¹ (1 : ℚ) :=
   rfl
 
-/-- Unfolding `stickelbergerScaled`.-/
+/-- Unfolding `stickelbergerScaled`.
+@isnad1 id=eq.0h1v.s8.79ac640cdf85 from=translated src=- shape=09845c76 vocab=b4dcd5e5
+-/
 @[simp] lemma stickelbergerScaled_def :
     stickelbergerScaled p =
       ∑ a : (ZMod p)ˣ, ((a : ZMod p).val : ℤ) • MonoidAlgebra.single a⁻¹ (1 : ℤ) :=
   rfl
 
 /-- The scaled Stickelberger element is the coefficient package attached to
-the canonical integer lifts of units.-/
+the canonical integer lifts of units.
+@isnad1 id=eq.0h1v.s6.63c11a312fbc from=translated src=- shape=84dda599 vocab=7f0d5254
+-/
 lemma stickelbergerScaled_eq_stickelbergerCoefficientPackage :
     stickelbergerScaled p =
       stickelbergerCoefficientPackage (p := p)
@@ -101,14 +109,18 @@ lemma stickelbergerScaled_eq_stickelbergerCoefficientPackage :
   simp only [stickelbergerScaled, stickelbergerCoefficientPackage]
   exact Finset.sum_congr rfl fun a _ ↦ by rw [MonoidAlgebra.smul_single]; simp
 
-/-- The coefficient at `a⁻¹` in `p · θ_p`.-/
+/-- The coefficient at `a⁻¹` in `p · θ_p`.
+@isnad1 id=eq.0h2v.s7.3ff0751dcf6d from=translated src=- shape=aae6dbcd vocab=98d29d4d
+-/
 @[simp] lemma stickelbergerScaled_apply_inv (a : (ZMod p)ˣ) :
     (stickelbergerScaled p).coeff a⁻¹ = ((a : ZMod p).val : ℤ) := by
   rw [stickelbergerScaled_eq_stickelbergerCoefficientPackage]
   simp
 
 /-- The coefficient function for `p · θ_p`: casting `stickelbergerScaled` into `ℚ`
-via the canonical ring homomorphism gives `p • stickelbergerElement p`.-/
+via the canonical ring homomorphism gives `p • stickelbergerElement p`.
+@isnad1 id=eq.0h1v.s8.cb4134b9735b from=translated src=- shape=95a2270d vocab=50b1cf3f
+-/
 theorem smul_stickelbergerElement :
     (p : ℚ) • stickelbergerElement p =
       ∑ a : (ZMod p)ˣ, ((a : ZMod p).val : ℚ) • MonoidAlgebra.single a⁻¹ (1 : ℚ) := by

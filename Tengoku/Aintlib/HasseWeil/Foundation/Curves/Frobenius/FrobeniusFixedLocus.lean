@@ -111,14 +111,18 @@ private theorem card_frobRootsFinset : (frobRootsFinset (K := K)).card = Fintype
     rw [← card_baseImageFinset]
     exact Finset.card_le_card baseImage_subset_roots
 
-/-- **The image of `K` is exactly the root set of `X ^ q - X` in the algebraic closure.**-/
+/-- **The image of `K` is exactly the root set of `X ^ q - X` in the algebraic closure.**
+@isnad1 id=eq.0h1v.s4.d27e70c19649 from=translated src=- shape=6746b013 vocab=3bb958ae
+-/
 theorem range_algebraMap_eq_roots_X_pow_card_sub_X :
     (baseImageFinset (K := K)) = (frobRootsFinset (K := K)) :=
   Finset.eq_of_subset_of_card_le baseImage_subset_roots
     (by rw [card_frobRootsFinset, card_baseImageFinset])
 
 /-- **Frobenius fixed-point criterion.** For a finite field `K`, an element of the algebraic
-closure is fixed by the `q`-power map (`q = Fintype.card K`) iff it lies in the image of `K`.-/
+closure is fixed by the `q`-power map (`q = Fintype.card K`) iff it lies in the image of `K`.
+@isnad1 id=iff.0h2v.s7.8fb49652584a from=translated src=- shape=b63e1af4 vocab=09687bba
+-/
 theorem frobenius_fixed_iff_mem_baseField (a : AlgebraicClosure K) :
     a ^ Fintype.card K = a ↔ a ∈ Set.range (algebraMap K (AlgebraicClosure K)) := by
   rw [← mem_frobRootsFinset_iff, ← mem_baseImageFinset_iff,

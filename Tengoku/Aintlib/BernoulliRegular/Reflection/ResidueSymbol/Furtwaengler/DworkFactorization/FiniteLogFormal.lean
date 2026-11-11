@@ -28,7 +28,9 @@ open PowerSeries
 
 variable {A : Type*} [CommRing A] [Algebra ℚ A]
 
-/-- The derivative of `log(1+X)` is inverse to `1+X` as a formal series.-/
+/-- The derivative of `log(1+X)` is inverse to `1+X` as a formal series.
+@isnad1 id=eq.0h1v.s8.76c3b25eea6d from=translated src=- shape=b7b76e1c vocab=d3c287c5
+-/
 theorem deriv_log_mul_one_add_X :
     (d⁄dX A (PowerSeries.log A)) * (1 + PowerSeries.X) = 1 := by
   have h :=
@@ -37,6 +39,9 @@ theorem deriv_log_mul_one_add_X :
   rw [map_mul, map_one] at h
   simpa [PowerSeries.deriv_log, PowerSeries.rescale_mk, PowerSeries.rescale_X] using h
 
+/--
+@isnad1 id=eq.1h2v.s8.3a750bdbc432 from=translated src=- shape=5a849fab vocab=75503536
+-/
 theorem subst_deriv_log_mul_one_add {a : PowerSeries A} (ha : PowerSeries.HasSubst a) :
     (PowerSeries.subst a (d⁄dX A (PowerSeries.log A))) * (1 + a) = 1 := by
   have h := congrArg (PowerSeries.subst a) (deriv_log_mul_one_add_X (A := A))
@@ -53,7 +58,9 @@ theorem subst_deriv_log_mul_one_add {a : PowerSeries A} (ha : PowerSeries.HasSub
 
 The dummy variable `T` is the `PowerSeries.X`; in later quotient arguments,
 the coefficient of `T^d` is the total-degree-`d` part of the two-variable
-identity.-/
+identity.
+@isnad1 id=eq.0h3v.s9.dcbf6f75a804 from=translated src=- shape=fe5b55a6 vocab=d285982e
+-/
 theorem log_subst_mul_one_add_scaled [IsAddTorsionFree A] (x y : A) :
     PowerSeries.subst
         ((1 + PowerSeries.X * PowerSeries.C x) *
@@ -151,7 +158,9 @@ theorem log_subst_mul_one_add_scaled [IsAddTorsionFree A] (x y : A) :
 /-- Expanded form of `log_subst_mul_one_add_scaled`.
 
 The argument of the left logarithm is `T*x + T*y + T^2*x*y`, the principal-unit
-coordinate of `(1+T*x)*(1+T*y)`.-/
+coordinate of `(1+T*x)*(1+T*y)`.
+@isnad1 id=eq.0h3v.s9.029adaa3670e from=translated src=- shape=5b7b8c4d vocab=98658f43
+-/
 theorem log_subst_add_add_mul_scaled [IsAddTorsionFree A] (x y : A) :
     PowerSeries.subst
         (PowerSeries.X * PowerSeries.C x + PowerSeries.X * PowerSeries.C y +
@@ -171,7 +180,9 @@ theorem log_subst_add_add_mul_scaled [IsAddTorsionFree A] (x y : A) :
 
 /-- Coefficient extraction from the scaled two-variable formal logarithm
 identity.  The coefficient of `T^n` is the homogeneous total-degree `n` part
-of the identity in `x` and `y`.-/
+of the identity in `x` and `y`.
+@isnad1 id=eq.0h4v.s10.0749c4c79154 from=translated src=- shape=61a83b46 vocab=8eb52107
+-/
 theorem coeff_log_subst_add_add_mul_scaled [IsAddTorsionFree A] (x y : A) (n : ℕ) :
     PowerSeries.coeff n
         (PowerSeries.subst

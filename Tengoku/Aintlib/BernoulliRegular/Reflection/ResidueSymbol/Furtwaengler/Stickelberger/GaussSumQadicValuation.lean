@@ -56,7 +56,9 @@ variable {R' : Type*} [CommRing R']
 
 /-- **Raised q-adic containment from cyclotomic additive character.**
 Direct corollary lifting `residueGaussSum_mem_ideal_of_psi_pow_form` to
-arbitrary powers via `Ideal.pow_mem_pow`.-/
+arbitrary powers via `Ideal.pow_mem_pow`.
+@isnad1 id=mem.6h10v.s8.afb34ef0be56 from=translated src=- shape=db5d8527 vocab=6becc20e
+-/
 theorem residueGaussSum_pow_mem_ideal_pow_of_psi_pow_form
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -81,7 +83,9 @@ This is a ring-element-level precursor to the prime ideal factorisation:
 the principal ideal `(g(χ_q)^p)` divides the principal ideal `((#k)^p)`,
 hence in any Dedekind extension the prime support of `(g(χ_q)^p)` is
 contained in that of `((#k)^p)` (which is exactly the rational prime
-under `q`).-/
+under `q`).
+@isnad1 id=dvd.4h6v.s7.47a83b2692af from=translated src=- shape=652a2e0f vocab=d8e20432
+-/
 theorem residueGaussSum_pow_p_dvd_card_pow
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -117,7 +121,9 @@ private lemma Finset.pow_card_dvd_prod_of_each {α β : Type*} [CommMonoid β]
 
 This is the classical ramification statement, formulated as a divisibility:
 the cyclotomic identity `q = ∏_{a=1}^{q-1} (1 - ζ^a)` together with the
-associate relations among the factors gives `(ζ-1)^{q-1} | q`.-/
+associate relations among the factors gives `(ζ-1)^{q-1} | q`.
+@isnad1 id=mem.1h3v.s7.f766f649f18d from=translated src=- shape=152597b9 vocab=9dccc91a
+-/
 theorem natCast_mem_zeta_sub_one_pow_sub_one
     {R : Type*} [CommRing R] [IsDomain R]
     {q : ℕ} [hq : Fact q.Prime] {ζ : R} (hζ : IsPrimitiveRoot ζ q) :
@@ -149,7 +155,9 @@ theorem natCast_mem_zeta_sub_one_pow_sub_one
 primitive `q`-th root of unity `ζ` (q prime), if a prime ideal `Q` contains
 `ζ - 1`, then it contains `q`. This is the converse of
 `zeta_sub_one_mem_of_natCast_mem`, completing the equivalence
-`q ∈ Q ↔ ζ - 1 ∈ Q` for prime ideals.-/
+`q ∈ Q ↔ ζ - 1 ∈ Q` for prime ideals.
+@isnad1 id=mem.2h4v.s7.f49f3d66bc21 from=translated src=- shape=a07df612 vocab=8ca975e0
+-/
 theorem natCast_mem_of_zeta_sub_one_mem
     {R : Type*} [CommRing R] [IsDomain R]
     {q : ℕ} [hq : Fact q.Prime] {ζ : R} (hζ : IsPrimitiveRoot ζ q)
@@ -177,7 +185,9 @@ valuation calculation in Phase C.
 
 /-- **Taylor expansion modulo `I^2`.** For any `x` in a commutative ring `R`
 and any natural `n`, the difference `x^n - 1 - n · (x - 1)` is divisible by
-`(x - 1)^2`. Hence if `x - 1 ∈ I`, then `x^n - 1 ≡ n · (x - 1) (mod I^2)`.-/
+`(x - 1)^2`. Hence if `x - 1 ∈ I`, then `x^n - 1 ≡ n · (x - 1) (mod I^2)`.
+@isnad1 id=dvd.0h3v.s7.58179db6df2c from=translated src=- shape=e3ec9d99 vocab=37e649c1
+-/
 theorem pow_sub_one_sub_smul_sub_one_dvd_sq
     {R : Type*} [CommRing R] (x : R) (n : ℕ) :
     (x - 1) ^ 2 ∣ x ^ n - 1 - (n : R) * (x - 1) := by
@@ -195,7 +205,9 @@ theorem pow_sub_one_sub_smul_sub_one_dvd_sq
       exact ⟨(n : R), by ring⟩
 
 /-- **Taylor expansion as ideal containment.** If `x - 1 ∈ I` for an ideal
-`I`, then `x^n - 1 - n · (x - 1) ∈ I^2`.-/
+`I`, then `x^n - 1 - n · (x - 1) ∈ I^2`.
+@isnad1 id=mem.1h4v.s8.89cee69cf506 from=translated src=- shape=325d65c1 vocab=1527c8df
+-/
 theorem pow_sub_one_sub_smul_sub_one_mem_sq
     {R : Type*} [CommRing R] (x : R) (n : ℕ)
     {I : Ideal R} (h : x - 1 ∈ I) :
@@ -214,7 +226,9 @@ any ideal `I` containing `ζ - 1`.
 This is the *first-order Taylor expansion* of `g(χ, ψ)` near the point
 `ψ ≡ 1 (mod I)`. The non-vanishing of `∑ χ(x) · f(x)` modulo `I` then
 determines whether `ord_I(g(χ, ψ)) = 1`, which together with
-`ord_I(ζ - 1) = 1` (Phase B+) controls the leading q-adic term.-/
+`ord_I(ζ - 1) = 1` (Phase B+) controls the leading q-adic term.
+@isnad1 id=mem.3h7v.s9.d89c1b17e81b from=translated src=- shape=0c96f08d vocab=fa65e558
+-/
 theorem gaussSum_sub_smul_mem_sq_of_psi_pow
     {R : Type*} [CommRing R] [Fintype R] [IsDomain R]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -249,7 +263,9 @@ term `(ζ - 1) · S` is not in `I²` (where `S = ∑ χ(x) · f(x)`), then
 In a Dedekind domain context, the hypothesis `(ζ - 1) * S ∉ I²` can be
 verified via the two independent conditions `ord_I(ζ - 1) = 1` and
 `S ∉ I` (i.e., `S` is a unit modulo `I`). This is the usual route to
-showing `ord_I(g(χ, ψ)) = 1`.-/
+showing `ord_I(g(χ, ψ)) = 1`.
+@isnad1 id=not.4h7v.s9.6328fc8e8b52 from=translated src=- shape=9b02528b vocab=fa65e558
+-/
 theorem gaussSum_not_mem_sq_of_psi_pow
     {R : Type*} [CommRing R] [Fintype R] [IsDomain R]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -290,7 +306,9 @@ containment with the Phase C non-vanishing criterion.
 This is the "valuation 1" instance of the Stickelberger weight (the simplest
 case `s(p, q, 1) = 1` when `p ∣ q − 1`, i.e., the residue field is exactly
 `𝔽_q`). The general Stickelberger weight `s = (q^f − 1)/p` for residue
-degree `f > 1` requires further analysis via the chain identity.-/
+degree `f > 1` requires further analysis via the chain identity.
+@isnad1 id=and.7h10v.s9.456a4de30454 from=translated src=- shape=b8e3f784 vocab=a96f38ed
+-/
 theorem residueGaussSum_qadic_ord_eq_one_under_nondeg
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']

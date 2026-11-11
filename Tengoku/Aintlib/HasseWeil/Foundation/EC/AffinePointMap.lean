@@ -44,8 +44,14 @@ noncomputable def map : W.toAffine.Point → (W.map f).toAffine.Point
   | .zero => .zero
   | .some x y h => .some (f x) (f y) ((Affine.map_nonsingular W.toAffine hf x y).mpr h)
 
+/--
+@isnad1 id=eq.1h4v.s6.b2fe4c54481c from=translated src=- shape=56bf8c12 vocab=526f0e4b
+-/
 @[simp] theorem map_zero : map f hf (.zero : W.toAffine.Point) = .zero := rfl
 
+/--
+@isnad1 id=eq.2h6v.s7.2c827c798382 from=translated src=- shape=9983f42d vocab=3541eb48
+-/
 @[simp] theorem map_some {x y : R} (h : W.toAffine.Nonsingular x y) :
     map f hf (.some x y h) =
       .some (f x) (f y) ((Affine.map_nonsingular W.toAffine hf x y).mpr h) :=
@@ -70,7 +76,9 @@ variable {F F' : Type*} [Field F] [Field F'] [DecidableEq F] [DecidableEq F']
     * `(0, P)`, `(P, 0)` : trivial via `map_zero`.
     * `some + some` with Y-cancellation : both sides are `0` (preserved under `f`).
     * `some + some` without Y-cancellation : both sides are `some (addX ...) (addY ...)`,
-      and `f` commutes with `addX`, `addY`, `slope`, `negY` (mathlib equivariance).-/
+      and `f` commutes with `addX`, `addY`, `slope`, `negY` (mathlib equivariance).
+@isnad1 id=eq.0h6v.s7.40c0dc62a43b from=translated src=- shape=25d5384c vocab=cfe581b1
+-/
 theorem map_add (P Q : W.toAffine.Point) :
     map f f.injective (P + Q) = map f f.injective P + map f f.injective Q := by
   rcases P with _ | ⟨x₁, y₁, h₁⟩ <;> rcases Q with _ | ⟨x₂, y₂, h₂⟩
@@ -91,7 +99,9 @@ theorem map_add (P Q : W.toAffine.Point) :
     · rw [Affine.map_slope, Affine.map_addX]
     · rw [Affine.map_slope, Affine.map_addY]
 
-/-- `Point.map f` preserves negation: `-map f P = map f (-P)`.-/
+/-- `Point.map f` preserves negation: `-map f P = map f (-P)`.
+@isnad1 id=eq.0h5v.s7.19e4f65c5194 from=translated src=- shape=b016db65 vocab=b68dfed2
+-/
 theorem map_neg (P : W.toAffine.Point) :
     -map f f.injective P = map f f.injective (-P) := by
   rcases P with _ | ⟨x, y, h⟩
@@ -109,7 +119,9 @@ noncomputable def mapAddMonoidHom :
   map_add' := map_add f
 
 /-- `Point.map f` commutes with integer scalar multiplication. Direct from
-    `AddMonoidHom.map_zsmul` since `mapAddMonoidHom` is an `AddMonoidHom`.-/
+    `AddMonoidHom.map_zsmul` since `mapAddMonoidHom` is an `AddMonoidHom`.
+@isnad1 id=eq.0h6v.s8.217e320dc66b from=translated src=- shape=15d8daa5 vocab=47b29271
+-/
 theorem map_zsmul (n : ℤ) (P : W.toAffine.Point) :
     map f f.injective (n • P) = n • map f f.injective P :=
   (mapAddMonoidHom f).map_zsmul n P

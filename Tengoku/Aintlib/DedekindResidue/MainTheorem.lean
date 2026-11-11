@@ -274,7 +274,9 @@ private lemma scaled_error_le {K : Type*} [Field K] [NumberField K]
 degree `n > 1`. Under GRH for `ζ_K` and RH for `ζ_ℚ`, for `X ≥ 69`,
 `|log κ_K − f_K(X)| ≤ (2.324 log Δ_K / (√X log 3X)) ·
 ((1 + 3.88/log(X/9))·(1 + 2/√(log Δ_K))² + 4.26(n−1)/(√X log Δ_K))`, where
-`κ_K = dedekindZeta_residue K` and `Δ_K = |disc K|`.-/
+`κ_K = dedekindZeta_residue K` and `Δ_K = |disc K|`.
+@isnad1 id=le.4h2v.s8.22fcae920631 from=translated src=- shape=50ec9223 vocab=ef5080ab
+-/
 theorem belabas_friedman_bound {K : Type*} [Field K] [NumberField K] (hn : 1 < Module.finrank ℚ K)
     (hGRH : GeneralizedRiemannHypothesis K) (hRH : RiemannHypothesis) {X : ℝ} (hX : 69 ≤ X) :
     |Real.log (dedekindZeta_residue K) - fK K X|

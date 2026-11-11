@@ -71,7 +71,9 @@ constant coefficient of `η.toSeries`.-/
 noncomputable def scalar (η : InvariantDifferential F) : R :=
   PowerSeries.constantCoeff η.toSeries
 
-/-- The defining equation: `η.toSeries · F_X(0, T) = C η.scalar`.-/
+/-- The defining equation: `η.toSeries · F_X(0, T) = C η.scalar`.
+@isnad1 id=eq.0h3v.s6.8c8c6b29a61d from=translated src=- shape=a96fe039 vocab=5fe8774c
+-/
 theorem toSeries_mul_dX_at_zero (η : InvariantDifferential F) :
     η.toSeries * F.dX_at_zero = PowerSeries.C η.scalar := by
   obtain ⟨c, hc⟩ := η.mul_dX_isConstant
@@ -82,7 +84,9 @@ theorem toSeries_mul_dX_at_zero (η : InvariantDifferential F) :
 
 /-- Every invariant differential is a scalar multiple of `F.invariantDiff`.
 
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4.2 (second part).-/
+Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4.2 (second part).
+@isnad1 id=eq.0h3v.s6.3f1d0e64e395 from=translated src=- shape=7484ebbf vocab=14e44dc3
+-/
 theorem toSeries_eq_scalar_smul (η : InvariantDifferential F) :
     η.toSeries = η.scalar • F.invariantDiff :=
   calc η.toSeries
@@ -100,7 +104,9 @@ Reference: Silverman IV.4.2 (def of normalized).-/
 def IsNormalized (η : InvariantDifferential F) : Prop :=
   η.scalar = 1
 
-/-- A normalized invariant differential has `toSeries = F.invariantDiff`.-/
+/-- A normalized invariant differential has `toSeries = F.invariantDiff`.
+@isnad1 id=iff.0h3v.s5.b58e9b0681ab from=translated src=- shape=fe813c05 vocab=60925599
+-/
 theorem isNormalized_iff (η : InvariantDifferential F) :
     η.IsNormalized ↔ η.toSeries = F.invariantDiff := by
   constructor
@@ -122,14 +128,18 @@ noncomputable def FormalGroup.normalizedDifferential (F : FormalGroup R) :
   mul_dX_isConstant := ⟨1, by
     rw [F.invariantDiff_mul_dX_at_zero]; exact (map_one PowerSeries.C).symm⟩
 
-/-- The normalized invariant differential is normalized: `ω_F(0) = 1`.-/
+/-- The normalized invariant differential is normalized: `ω_F(0) = 1`.
+@isnad1 id=isnormal.0h2v.s4.93f9e24a8cbc from=translated src=- shape=bb2418e6 vocab=4e509d9c
+-/
 theorem FormalGroup.normalizedDifferential_isNormalized (F : FormalGroup R) :
     F.normalizedDifferential.IsNormalized :=
   F.invariantDiff_constantCoeff
 
 /-- **Uniqueness** of the normalized invariant differential.
 
-Reference: Silverman IV.4.2.-/
+Reference: Silverman IV.4.2.
+@isnad1 id=eq.1h3v.s5.fe6de4141918 from=translated src=- shape=128937ed vocab=06a2d189
+-/
 theorem FormalGroup.normalizedDifferential_unique (F : FormalGroup R)
     {η : InvariantDifferential F} (h : η.IsNormalized) :
     η.toSeries = F.normalizedDifferential.toSeries :=
@@ -158,7 +168,9 @@ For a formal group homomorphism `f : F → G` with `f(T) = c₁T + O(T²)`:
 `ω_G(f(T)) · f'(T) = c₁ · ω_F(T)`,
 where `ω_F, ω_G` are the normalized invariant differentials.
 
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Cor. 4.3.-/
+Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4, Cor. 4.3.
+@isnad1 id=eq.0h4v.s8.d0ccda413fe4 from=translated src=- shape=b004d0e8 vocab=afb2a66e
+-/
 theorem FormalGroupHom.invariantDifferential_chain {F G : FormalGroup R}
     (f : FormalGroupHom F G) :
     PowerSeries.subst f.toSeries G.normalizedDifferential.toSeries *
@@ -171,7 +183,9 @@ theorem FormalGroupHom.invariantDifferential_chain {F G : FormalGroup R}
 are equal when their underlying power series agree. Proof-irrelevance handles
 the `mul_dX_isConstant` field, which is a `Prop`.
 
-This is an alternative form of `InvariantDifferential.mk.injEq`.-/
+This is an alternative form of `InvariantDifferential.mk.injEq`.
+@isnad1 id=eq.1h4v.s5.3c1f078b1a7c from=translated src=- shape=e5c4e6d4 vocab=3bccf96d
+-/
 @[ext]
 theorem InvariantDifferential.ext {F : FormalGroup R}
     {η₁ η₂ : InvariantDifferential F} (h : η₁.toSeries = η₂.toSeries) : η₁ = η₂ := by
@@ -183,7 +197,9 @@ Strong form of `normalizedDifferential_unique`: any normalized invariant
 differential equals `F.normalizedDifferential` as elements of
 `InvariantDifferential F`.
 
-Reference: Silverman IV.4.2.-/
+Reference: Silverman IV.4.2.
+@isnad1 id=eq.1h3v.s4.ac664daccfcb from=translated src=- shape=cbd8dfa4 vocab=49b45bac
+-/
 theorem FormalGroup.normalizedDifferential_unique' (F : FormalGroup R)
     (η : InvariantDifferential F) (h : η.IsNormalized) :
     η = F.normalizedDifferential :=

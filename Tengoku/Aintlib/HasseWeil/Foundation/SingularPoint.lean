@@ -39,11 +39,15 @@ def Singular (W : WeierstrassCurve R) (x y : R) : Prop :=
 
 variable {W : WeierstrassCurve R}
 
-/-- A singular point satisfies the Weierstrass equation.-/
+/-- A singular point satisfies the Weierstrass equation.
+@isnad1 id=equation.1h4v.s4.823fb3e68940 from=translated src=- shape=722058f7 vocab=5626770c
+-/
 theorem Singular.equation {x y : R} (h : W.Singular x y) :
     W.toAffine.Equation x y := h.1
 
-/-- A singular point is not nonsingular.-/
+/-- A singular point is not nonsingular.
+@isnad1 id=not.1h4v.s4.120c7ef9ba97 from=translated src=- shape=092ce98e vocab=e149a86d
+-/
 theorem Singular.not_nonsingular {x y : R} (h : W.Singular x y) :
     ¬W.toAffine.Nonsingular x y := by
   rintro ⟨_, hx | hy⟩
@@ -54,7 +58,9 @@ theorem Singular.not_nonsingular {x y : R} (h : W.Singular x y) :
 
 variable {F : Type*} [Field F]
 
-/-- A singular point on a Weierstrass curve over a field forces `Δ = 0`.-/
+/-- A singular point on a Weierstrass curve over a field forces `Δ = 0`.
+@isnad1 id=eq.1h4v.s5.25fe2bd67bd3 from=translated src=- shape=db018f10 vocab=20df2593
+-/
 theorem Δ_eq_zero_of_singular {W : WeierstrassCurve F} {x y : F}
     (h : W.Singular x y) : W.Δ = 0 := by
   by_contra hΔ
@@ -71,7 +77,9 @@ def tangentConeDisc (W : WeierstrassCurve R) (x : R) : R :=
 
 /-- At a singular point, `c₄ = (tangentConeDisc x₀)²`.
 The proof uses the singularity conditions `∂F/∂X = 0` and `∂F/∂Y = 0` to eliminate
-`a₃` and `a₄` from the expression `c₄ = b₂² - 24b₄`.-/
+`a₃` and `a₄` from the expression `c₄ = b₂² - 24b₄`.
+@isnad1 id=eq.1h4v.s5.b6ca8027b6fd from=translated src=- shape=b451ea18 vocab=2cb42dc9
+-/
 theorem c₄_eq_tangentConeDisc_sq_of_singular {W : WeierstrassCurve R} {x y : R}
     (h : W.Singular x y) : W.c₄ = (W.tangentConeDisc x) ^ 2 := by
   obtain ⟨_, hpX, hpY⟩ := h
@@ -93,7 +101,9 @@ The proof uses `twoTorsionPolynomial_discr : discr(4x³ + b₂x² + 2b₄x + b�
 When `Δ = 0`, the cubic has a repeated root `x₀`. Setting `y₀ = -(a₁x₀ + a₃)/2`,
 the point `(x₀, y₀)` is singular on the curve.
 
-Reference: Silverman III.1.4.-/
+Reference: Silverman III.1.4.
+@isnad1 id=ex.2h2v.s6.b8baa488a429 from=translated src=- shape=5ae3f955 vocab=3ff0d2be
+-/
 theorem exists_singular_of_Δ_eq_zero (h2 : (2 : F) ≠ 0) (hΔ : W.Δ = 0) :
     ∃ x y, W.Singular x y := by
   have h4 : (4 : F) ≠ 0 := fun h => h2 (mul_self_eq_zero.mp (by linear_combination h))
@@ -182,14 +192,18 @@ Reference: Silverman III.1.4(c).-/
 def HasCusp (W : WeierstrassCurve R) : Prop :=
   ∃ x y, W.Singular x y ∧ W.tangentConeDisc x = 0
 
-/-- A nodal curve has `Δ = 0` and `c₄ ≠ 0`.-/
+/-- A nodal curve has `Δ = 0` and `c₄ ≠ 0`.
+@isnad1 id=and.1h2v.s6.204505be865f from=translated src=- shape=c678d19a vocab=81810256
+-/
 theorem HasNode.Δ_eq_zero_and_c₄_ne_zero {W : WeierstrassCurve F} (h : W.HasNode) :
     W.Δ = 0 ∧ W.c₄ ≠ 0 := by
   obtain ⟨x, y, hsing, hdisc⟩ := h
   exact ⟨Δ_eq_zero_of_singular hsing,
     by rw [c₄_eq_tangentConeDisc_sq_of_singular hsing]; exact pow_ne_zero 2 hdisc⟩
 
-/-- A cuspidal curve has `Δ = 0` and `c₄ = 0`.-/
+/-- A cuspidal curve has `Δ = 0` and `c₄ = 0`.
+@isnad1 id=and.1h2v.s6.9627db3afd95 from=translated src=- shape=4c432fe5 vocab=2faf98bb
+-/
 theorem HasCusp.Δ_eq_zero_and_c₄_eq_zero {W : WeierstrassCurve F} (h : W.HasCusp) :
     W.Δ = 0 ∧ W.c₄ = 0 := by
   obtain ⟨x, y, hsing, hdisc⟩ := h
@@ -197,7 +211,9 @@ theorem HasCusp.Δ_eq_zero_and_c₄_eq_zero {W : WeierstrassCurve F} (h : W.HasC
     by rw [c₄_eq_tangentConeDisc_sq_of_singular hsing, hdisc]; ring⟩
 
 /-- Over an algebraically closed field of characteristic ≠ 2, a Weierstrass curve has a node
-iff `Δ = 0 ∧ c₄ ≠ 0`. Reference: Silverman III.1.4(b).-/
+iff `Δ = 0 ∧ c₄ ≠ 0`. Reference: Silverman III.1.4(b).
+@isnad1 id=iff.1h2v.s6.7cd14b80601f from=translated src=- shape=7bb19b2d vocab=8d761376
+-/
 theorem hasNode_iff [IsAlgClosed F] {W : WeierstrassCurve F} (h2 : (2 : F) ≠ 0) :
     W.HasNode ↔ W.Δ = 0 ∧ W.c₄ ≠ 0 := by
   constructor
@@ -208,7 +224,9 @@ theorem hasNode_iff [IsAlgClosed F] {W : WeierstrassCurve F} (h2 : (2 : F) ≠ 0
       rw [c₄_eq_tangentConeDisc_sq_of_singular hsing, hdisc]; ring)⟩
 
 /-- Over an algebraically closed field of characteristic ≠ 2, a Weierstrass curve has a cusp
-iff `Δ = 0 ∧ c₄ = 0`. Reference: Silverman III.1.4(c).-/
+iff `Δ = 0 ∧ c₄ = 0`. Reference: Silverman III.1.4(c).
+@isnad1 id=iff.1h2v.s6.55066ec77a6d from=translated src=- shape=5e1e9e43 vocab=6d8f7932
+-/
 theorem hasCusp_iff [IsAlgClosed F] {W : WeierstrassCurve F} (h2 : (2 : F) ≠ 0) :
     W.HasCusp ↔ W.Δ = 0 ∧ W.c₄ = 0 := by
   constructor

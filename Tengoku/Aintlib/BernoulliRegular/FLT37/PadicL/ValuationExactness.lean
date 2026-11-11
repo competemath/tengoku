@@ -40,7 +40,9 @@ namespace BernoulliRegular.FLT37.PadicL
 
 variable {p : ℕ} [hp : Fact p.Prime]
 
-/-- The `ℚ_[p]`-valuation is invariant under negation.-/
+/-- The `ℚ_[p]`-valuation is invariant under negation.
+@isnad1 id=eq.0h2v.s4.d86a1b0d8073 from=translated src=- shape=1fd21ab6 vocab=968b02b6
+-/
 theorem Padic.valuation_neg (x : ℚ_[p]) : (-x).valuation = x.valuation := by
   rcases eq_or_ne x 0 with rfl | hx
   · simp
@@ -51,18 +53,24 @@ theorem Padic.valuation_neg (x : ℚ_[p]) : (-x).valuation = x.valuation := by
   rwa [_root_.Padic.norm_eq_zpow_neg_valuation hnx, _root_.Padic.norm_eq_zpow_neg_valuation hx,
     zpow_right_inj₀ hp_pos hp_ne_one, neg_inj] at h_norm
 
-/-- The `ℤ_[p]`-valuation is invariant under negation.-/
+/-- The `ℤ_[p]`-valuation is invariant under negation.
+@isnad1 id=eq.0h2v.s5.45df4f7b8e6f from=translated src=- shape=dbf29e05 vocab=7311e96e
+-/
 theorem PadicInt.valuation_neg (x : ℤ_[p]) : (-x).valuation = x.valuation := by
   simp only [_root_.PadicInt.valuation]
   rw [_root_.PadicInt.coe_neg, Padic.valuation_neg]
 
-/-- A `p`-adic integer with valuation `0` is a unit.-/
+/-- A `p`-adic integer with valuation `0` is a unit.
+@isnad1 id=isunit.2h2v.s6.bc604ee8546e from=translated src=- shape=537a53af vocab=fe2ed134
+-/
 theorem PadicInt.isUnit_of_valuation_eq_zero {x : ℤ_[p]} (hx : x ≠ 0)
     (hv : x.valuation = 0) : IsUnit x := by
   rw [_root_.PadicInt.isUnit_iff, _root_.PadicInt.norm_eq_zpow_neg_valuation hx, hv]
   simp
 
-/-- A `p`-adic integer that is **not** divisible by `p` has valuation `0`.-/
+/-- A `p`-adic integer that is **not** divisible by `p` has valuation `0`.
+@isnad1 id=eq.1h2v.s6.0ff9022e57b2 from=translated src=- shape=486f2a69 vocab=81955ac9
+-/
 theorem PadicInt.valuation_eq_zero_of_not_dvd {x : ℤ_[p]} (hx : ¬ (p : ℤ_[p]) ∣ x) :
     x.valuation = 0 := by
   have hx0 : x ≠ 0 := by rintro rfl; exact hx (dvd_zero _)
@@ -73,7 +81,9 @@ theorem PadicInt.valuation_eq_zero_of_not_dvd {x : ℤ_[p]} (hx : ¬ (p : ℤ_[p
   rw [pow_one, Ideal.mem_span_singleton] at hmem
   exact hx hmem
 
-/-- A `p`-adic **unit** has valuation `0`.-/
+/-- A `p`-adic **unit** has valuation `0`.
+@isnad1 id=eq.1h2v.s5.24b61cb645a9 from=translated src=- shape=b4156556 vocab=fe2ed134
+-/
 theorem PadicInt.valuation_eq_zero_of_isUnit {x : ℤ_[p]} (hx : IsUnit x) :
     x.valuation = 0 := by
   apply PadicInt.valuation_eq_zero_of_not_dvd
@@ -95,7 +105,9 @@ modulo `p^N` and `v_p(y) < N`, then `v_p(x) = v_p(y)`.
 
 This is the sharpness criterion used in the Prop 8.12 assembly: a congruence
 `log_p E_i^{(N)} ≡ (explicit) mod p^N` with the explicit side of valuation `< N`
-pins down the valuation of `log_p E_i^{(N)}` exactly.-/
+pins down the valuation of `log_p E_i^{(N)}` exactly.
+@isnad1 id=eq.3h4v.s8.3acbaeefb165 from=translated src=- shape=3cc49123 vocab=316e6f33
+-/
 theorem PadicInt.valuation_sub_eq_of_lt {x y : ℤ_[p]} {N : ℕ} (hy0 : y ≠ 0)
     (hcong : x - y ∈ (Ideal.span {(p : ℤ_[p]) ^ N} : Ideal ℤ_[p]))
     (hy : y.valuation < N) : x.valuation = y.valuation := by
@@ -129,7 +141,9 @@ theorem PadicInt.valuation_sub_eq_of_lt {x y : ℤ_[p]} {N : ℕ} (hy0 : y ≠ 0
   omega
 
 /-- **The exactness lemma over `ℚ_[p]`** (B-C1.3): if `x - y` has `p`-adic
-valuation `≥ N` and `v_p(y) < N`, then `v_p(x) = v_p(y)`.-/
+valuation `≥ N` and `v_p(y) < N`, then `v_p(x) = v_p(y)`.
+@isnad1 id=eq.3h4v.s6.7ea0a34a3e29 from=translated src=- shape=49e351c9 vocab=adf8c357
+-/
 theorem Padic.valuation_sub_eq_of_lt {x y : ℚ_[p]} {N : ℤ} (hy0 : y ≠ 0)
     (hcong : N ≤ (x - y).valuation) (hy : y.valuation < N) :
     x.valuation = y.valuation := by

@@ -49,9 +49,15 @@ commutative semiring. For `R = k = 𝔽_{ℓ ^ f}` this equals
 def traceSum (ℓ f : ℕ) (x : R) : R :=
   ∑ i ∈ Finset.range f, x ^ (ℓ ^ i)
 
+/--
+@isnad1 id=eq.0h3v.s5.0ebe74186b8b from=translated src=- shape=addebc18 vocab=e52e1d3c
+-/
 @[simp] theorem traceSum_zero_arg (ℓ : ℕ) (x : R) : traceSum ℓ 0 x = 0 := by
   simp [traceSum]
 
+/--
+@isnad1 id=eq.0h4v.s6.91072035a4bc from=translated src=- shape=6ae9bee1 vocab=73577106
+-/
 theorem traceSum_succ (ℓ f : ℕ) (x : R) :
     traceSum ℓ (f + 1) x = traceSum ℓ f x + x ^ (ℓ ^ f) := by
   simp [traceSum, Finset.sum_range_succ]
@@ -61,7 +67,9 @@ semiring `R` and `x ∈ R`:
 
 `(traceSum ℓ f x)^n = ∑_{ks ∈ piAntidiag (range f) n} multinomial · ∏ x^{ℓ^i · k_i}`.
 
-Specialisation of mathlib's `Finset.sum_pow_eq_sum_piAntidiag`.-/
+Specialisation of mathlib's `Finset.sum_pow_eq_sum_piAntidiag`.
+@isnad1 id=eq.0h5v.s7.d46a55fee4b2 from=translated src=- shape=b257d6be vocab=7b370616
+-/
 theorem traceSum_pow_eq_sum_multinomial (ℓ f : ℕ) (x : R) (n : ℕ) :
     (traceSum ℓ f x) ^ n =
       ∑ k ∈ Finset.piAntidiag (Finset.range f) n,
@@ -71,7 +79,9 @@ theorem traceSum_pow_eq_sum_multinomial (ℓ f : ℕ) (x : R) (n : ℕ) :
   exact Finset.sum_pow_eq_sum_piAntidiag (Finset.range f) (fun i => x ^ (ℓ ^ i)) n
 
 /-- **Multinomial expansion of `(traceSum x)^n`, simplified power form.**
-The product `∏ (x^{ℓ^i})^{k_i}` collapses to `x^{Σ k_i · ℓ^i}`.-/
+The product `∏ (x^{ℓ^i})^{k_i}` collapses to `x^{Σ k_i · ℓ^i}`.
+@isnad1 id=eq.0h5v.s7.377e56376f58 from=translated src=- shape=1d325beb vocab=ae41233d
+-/
 theorem traceSum_pow_eq_sum_multinomial' (ℓ f : ℕ) (x : R) (n : ℕ) :
     (traceSum ℓ f x) ^ n =
       ∑ k ∈ Finset.piAntidiag (Finset.range f) n,
@@ -88,7 +98,9 @@ theorem traceSum_pow_eq_sum_multinomial' (ℓ f : ℕ) (x : R) (n : ℕ) :
 Bridge between the integer formula `traceSum` and the genuine algebraic
 trace. For `K = 𝔽_ℓ` and `L = k = 𝔽_{ℓ ^ f}` with `Nat.card K = ℓ`:
 
-`algebraMap K L (Algebra.trace K L x ^ n) = (traceSum ℓ f x) ^ n`.-/
+`algebraMap K L (Algebra.trace K L x ^ n) = (traceSum ℓ f x) ^ n`.
+@isnad1 id=eq.2h6v.s8.1d432e003ca1 from=translated src=- shape=562ea5dc vocab=24aca847
+-/
 theorem algebraMap_trace_pow_eq_traceSum_pow
     {K L : Type*} [Field K] [Field L] [Finite L] [Algebra K L]
     {ℓ f : ℕ} (h_card_K : Nat.card K = ℓ) (h_finrank : Module.finrank K L = f)

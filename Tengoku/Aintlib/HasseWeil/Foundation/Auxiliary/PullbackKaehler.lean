@@ -59,6 +59,9 @@ namespace TwistedKaehler
 
 variable (f : S →ₐ[R] S)
 
+/--
+@isnad1 id=eq.1h5v.s6.0d74f9cbce2d from=translated src=- shape=c5dd0909 vocab=6ed444df
+-/
 @[ext]
 theorem ext {x y : TwistedKaehler f} (h : x.out = y.out) : x = y := by
   cases x; cases y; congr
@@ -68,9 +71,21 @@ noncomputable instance : Add (TwistedKaehler f) := ⟨fun x y ↦ ⟨x.out + y.o
 noncomputable instance : Neg (TwistedKaehler f) := ⟨fun x ↦ ⟨-x.out⟩⟩
 noncomputable instance : Sub (TwistedKaehler f) := ⟨fun x y ↦ ⟨x.out - y.out⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.1191fd6a92fa from=translated src=- shape=2f5aa53a vocab=6ed444df
+-/
 @[simp] theorem out_zero : (0 : TwistedKaehler f).out = 0 := rfl
+/--
+@isnad1 id=eq.0h5v.s7.9aee2556239f from=translated src=- shape=abcf9165 vocab=6503478c
+-/
 @[simp] theorem out_add (x y : TwistedKaehler f) : (x + y).out = x.out + y.out := rfl
+/--
+@isnad1 id=eq.0h4v.s7.0304661e3daa from=translated src=- shape=1ad82272 vocab=c4abb663
+-/
 @[simp] theorem out_neg (x : TwistedKaehler f) : (-x).out = -x.out := rfl
+/--
+@isnad1 id=eq.0h5v.s7.856d723328c7 from=translated src=- shape=abcf9165 vocab=bfdfa83a
+-/
 @[simp] theorem out_sub (x y : TwistedKaehler f) : (x - y).out = x.out - y.out := rfl
 
 noncomputable instance : AddCommGroup (TwistedKaehler f) where
@@ -87,6 +102,9 @@ noncomputable instance : AddCommGroup (TwistedKaehler f) where
 noncomputable instance instSMul : SMul S (TwistedKaehler f) where
   smul s x := ⟨f s • x.out⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.8ecc2a1816d1 from=translated src=- shape=1ef60a1f vocab=b86479ff
+-/
 @[simp] theorem out_smul_S (s : S) (x : TwistedKaehler f) :
     (s • x).out = f s • x.out := rfl
 
@@ -103,6 +121,9 @@ noncomputable instance instModule : Module S (TwistedKaehler f) where
 noncomputable instance instSMulR : SMul R (TwistedKaehler f) where
   smul r x := ⟨r • x.out⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.1402df3bf7ea from=translated src=- shape=fdc66e71 vocab=51478f22
+-/
 @[simp] theorem out_smul_R (r : R) (x : TwistedKaehler f) :
     (r • x : TwistedKaehler f).out = r • x.out := rfl
 
@@ -156,7 +177,9 @@ noncomputable def pullbackKaehler (f : S →ₐ[R] S) :
       change (lift (x + y)).out = (lift x).out + (lift y).out
       rw [map_add]; rfl }
 
-/-- The pullback of `D x` is `D (f x)`.-/
+/-- The pullback of `D x` is `D (f x)`.
+@isnad1 id=eq.0h4v.s9.4869cf678bfb from=translated src=- shape=6c9ae1ab vocab=2d94ec65
+-/
 @[simp]
 theorem pullbackKaehler_D (f : S →ₐ[R] S) (x : S) :
     f.pullbackKaehler (KaehlerDifferential.D R S x) =
@@ -166,7 +189,9 @@ theorem pullbackKaehler_D (f : S →ₐ[R] S) (x : S) :
   rw [Derivation.liftKaehlerDifferential_comp_D]
   rfl
 
-/-- The pullback is `R`-linear.-/
+/-- The pullback is `R`-linear.
+@isnad1 id=eq.0h5v.s9.43a55b479496 from=translated src=- shape=a4d6590b vocab=af7a66ad
+-/
 theorem pullbackKaehler_smul_R (f : S →ₐ[R] S) (r : R) (ω : Ω[S⁄R]) :
     f.pullbackKaehler (r • ω) = r • f.pullbackKaehler ω := by
   -- pullbackKaehler is the .out of an S-linear map (in the twisted module).
@@ -176,7 +201,9 @@ theorem pullbackKaehler_smul_R (f : S →ₐ[R] S) (r : R) (ω : Ω[S⁄R]) :
   rw [LinearMap.map_smul_of_tower]
   rfl
 
-/-- The pullback is `f`-semilinear: an `S`-scalar `s` becomes `f s` after pullback.-/
+/-- The pullback is `f`-semilinear: an `S`-scalar `s` becomes `f s` after pullback.
+@isnad1 id=eq.0h5v.s9.c633039750c5 from=translated src=- shape=62f0ce44 vocab=af7a66ad
+-/
 theorem pullbackKaehler_smul_S (f : S →ₐ[R] S) (s : S) (ω : Ω[S⁄R]) :
     f.pullbackKaehler (s • ω) = f s • f.pullbackKaehler ω := by
   -- The lifted map is S-linear in the twisted action: lift(s • ω) = s •_twisted lift(ω)
@@ -205,7 +232,9 @@ private theorem ext_of_D {f₁ f₂ : Ω[S⁄R] →+ Ω[S⁄R]}
   · intro s x _ hx
     exact h_smul s x hx
 
-/-- The pullback for the identity algebra hom is the identity.-/
+/-- The pullback for the identity algebra hom is the identity.
+@isnad1 id=eq.0h2v.s7.110948c41ebe from=translated src=- shape=530e4616 vocab=b63db63d
+-/
 @[simp]
 theorem pullbackKaehler_id : (AlgHom.id R S).pullbackKaehler = AddMonoidHom.id _ := by
   refine ext_of_D (fun s ω hω ↦ ?_) (fun x ↦ ?_)
@@ -216,7 +245,9 @@ theorem pullbackKaehler_id : (AlgHom.id R S).pullbackKaehler = AddMonoidHom.id _
 /-- The pullback respects composition. Note: `AlgHom.comp f g = f ∘ g` (apply `g`
 first, then `f`), so the induced pullback on Ω composes in the SAME order:
 `(f.comp g).pullbackKaehler = f.pullbackKaehler ∘ g.pullbackKaehler` (apply
-`g.pullbackKaehler` first, then `f.pullbackKaehler`).-/
+`g.pullbackKaehler` first, then `f.pullbackKaehler`).
+@isnad1 id=eq.0h4v.s8.ad77d7693d37 from=translated src=- shape=2cf720a2 vocab=db1ee045
+-/
 @[simp]
 theorem pullbackKaehler_comp (f g : S →ₐ[R] S) :
     (f.comp g).pullbackKaehler =

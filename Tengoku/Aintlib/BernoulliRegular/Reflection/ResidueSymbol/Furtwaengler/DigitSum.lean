@@ -43,16 +43,23 @@ namespace Furtwaengler
 `a = Σ digit_i · ℓ^i`. Wraps `Nat.digits ℓ a` summation for legibility.-/
 def digitSum (ℓ a : ℕ) : ℕ := (Nat.digits ℓ a).sum
 
+/--
+@isnad1 id=eq.0h1v.s4.43f760ce6de1 from=translated src=- shape=1d838610 vocab=c51e5661
+-/
 @[simp] theorem digitSum_zero (ℓ : ℕ) : digitSum ℓ 0 = 0 := by
   simp [digitSum]
 
-/-- `digitSum ℓ a ≤ a`: the digit sum never exceeds the number itself.-/
+/-- `digitSum ℓ a ≤ a`: the digit sum never exceeds the number itself.
+@isnad1 id=le.0h2v.s3.231390df1b4a from=translated src=- shape=bf83e09e vocab=5f2290ca
+-/
 theorem digitSum_le_self (ℓ a : ℕ) : digitSum ℓ a ≤ a := by
   simp only [digitSum]
   exact Nat.digit_sum_le ℓ a
 
 /-- For `a < ℓ` and `2 ≤ ℓ`, the only digit is `a` itself, so
-`digitSum ℓ a = a`.-/
+`digitSum ℓ a = a`.
+@isnad1 id=eq.2h2v.s4.ce79577e8bfb from=translated src=- shape=9474e4c0 vocab=2f10ec36
+-/
 theorem digitSum_eq_self_of_lt {ℓ a : ℕ} (hℓ : 2 ≤ ℓ) (ha : a < ℓ) :
     digitSum ℓ a = a := by
   simp only [digitSum]

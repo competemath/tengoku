@@ -52,7 +52,9 @@ variable {R : Type*} [CommRing R]
 
 /-- Two formal group homomorphisms `F → G` are equal iff their underlying
 power series are equal. The other fields (`zero_const`, `preserves_add`)
-are propositions, so proof-irrelevance handles them.-/
+are propositions, so proof-irrelevance handles them.
+@isnad1 id=eq.1h5v.s5.00ffe26f6a1e from=translated src=- shape=b8b8fe4e vocab=ab9aefa5
+-/
 @[ext]
 theorem FormalGroupHom.ext {F G : FormalGroup R} {f g : FormalGroupHom F G}
     (h : f.toSeries = g.toSeries) : f = g := by
@@ -87,18 +89,24 @@ noncomputable def FormalGroupHom.id (F : FormalGroup R) : FormalGroupHom F F whe
     rw [heq]
     exact (congr_fun MvPowerSeries.subst_self F.toSeries).symm
 
-/-- The identity hom has underlying series `X`.-/
+/-- The identity hom has underlying series `X`.
+@isnad1 id=eq.0h2v.s4.b342988371b6 from=translated src=- shape=117e6d70 vocab=b4c6cd86
+-/
 @[simp]
 theorem FormalGroupHom.id_toSeries (F : FormalGroup R) :
     (FormalGroupHom.id F).toSeries = PowerSeries.X := rfl
 
-/-- The linear coefficient of the identity hom is `1`.-/
+/-- The linear coefficient of the identity hom is `1`.
+@isnad1 id=eq.0h2v.s7.2c8029c57270 from=translated src=- shape=931ff3bd vocab=05968295
+-/
 @[simp]
 theorem FormalGroupHom.coeff_one_id (F : FormalGroup R) :
     PowerSeries.coeff 1 (FormalGroupHom.id F).toSeries = 1 := by
   simp
 
-/-- The identity hom equals `mulByNatHom F 1`.-/
+/-- The identity hom equals `mulByNatHom F 1`.
+@isnad1 id=eq.0h2v.s4.dd8bdd923fe2 from=translated src=- shape=272e278d vocab=f3c6ac91
+-/
 theorem FormalGroupHom.id_eq_mulByNatHom_one (F : FormalGroup R) :
     FormalGroupHom.id F = F.mulByNatHom 1 := by
   ext
@@ -111,7 +119,9 @@ to verify the `preserves_add` axiom of `FormalGroupHom.comp` below. -/
 
 /-- Commutation identity: substituting `MvPowerSeries.subst A B` for the
 variable of a `PowerSeries` can be replaced by first substituting `B` and
-then applying the `MvPowerSeries.subst A` operation on the result.-/
+then applying the `MvPowerSeries.subst A` operation on the result.
+@isnad1 id=eq.2h6v.s7.cefa25c7bdce from=translated src=- shape=1670a3e9 vocab=f134471d
+-/
 theorem PowerSeries_subst_MvSubst_eq {σ τ : Type*}
     (A : σ → MvPowerSeries τ R) (hA : MvPowerSeries.HasSubst A)
     (B : MvPowerSeries σ R) (hB : MvPowerSeries.constantCoeff B = 0)
@@ -250,13 +260,17 @@ noncomputable def FormalGroupHom.comp
       simp only [Matrix.cons_val_one, Matrix.cons_val_zero]
       rw [PowerSeries.subst_comp_subst_apply hf_ps hX1_ps g.toSeries]
 
-/-- The underlying series of `g.comp f` is `PowerSeries.subst f.toSeries g.toSeries`.-/
+/-- The underlying series of `g.comp f` is `PowerSeries.subst f.toSeries g.toSeries`.
+@isnad1 id=eq.0h6v.s6.91fa3093d29f from=translated src=- shape=341b1567 vocab=cb78b449
+-/
 @[simp]
 theorem FormalGroupHom.comp_toSeries
     (g : FormalGroupHom G H') (f : FormalGroupHom F G) :
     (g.comp f).toSeries = PowerSeries.subst f.toSeries g.toSeries := rfl
 
-/-- Left identity for composition: `(id G).comp f = f`.-/
+/-- Left identity for composition: `(id G).comp f = f`.
+@isnad1 id=eq.0h4v.s5.f8aeceded15f from=translated src=- shape=2b84bbd7 vocab=ff976a7a
+-/
 @[simp]
 theorem FormalGroupHom.id_comp (f : FormalGroupHom F G) :
     (FormalGroupHom.id G).comp f = f := by
@@ -265,7 +279,9 @@ theorem FormalGroupHom.id_comp (f : FormalGroupHom F G) :
   -- Goal: `PowerSeries.subst f.toSeries PowerSeries.X = f.toSeries`.
   exact PowerSeries.subst_X (PowerSeries.HasSubst.of_constantCoeff_zero' f.zero_const)
 
-/-- Right identity for composition: `f.comp (id F) = f`.-/
+/-- Right identity for composition: `f.comp (id F) = f`.
+@isnad1 id=eq.0h4v.s5.7d282ad44bc6 from=translated src=- shape=22514a74 vocab=ff976a7a
+-/
 @[simp]
 theorem FormalGroupHom.comp_id (f : FormalGroupHom F G) :
     f.comp (FormalGroupHom.id F) = f := by
@@ -304,7 +320,9 @@ This is an immediate corollary of `FormalGroupHom.id_eq_mulByNatHom_one`:
 since `id F = mulByNatHom F 1`, the identity hom witnesses both sides of the
 isomorphism pair.
 
-The general unit case `(n : R) ∈ R*` is deferred; see the module doc above.-/
+The general unit case `(n : R) ∈ R*` is deferred; see the module doc above.
+@isnad1 id=and.0h2v.s6.3124e674701b from=translated src=- shape=cf74f669 vocab=e33403b2
+-/
 theorem FormalGroup.mulByNatHom_one_isIso (F : FormalGroup R) :
     (F.mulByNatHom 1).comp (FormalGroupHom.id F) = FormalGroupHom.id F ∧
       (FormalGroupHom.id F).comp (F.mulByNatHom 1) = FormalGroupHom.id F := by
@@ -319,7 +337,9 @@ theorem FormalGroup.mulByNatHom_one_isIso (F : FormalGroup R) :
 
 /-- Existence form of `mulByNatHom_one_isIso`: there exists a two-sided
 inverse to `mulByNatHom F 1`. This is the form matching the ticket acceptance
-criteria (`T-IV-2-008`, restricted to the `n = 1` case).-/
+criteria (`T-IV-2-008`, restricted to the `n = 1` case).
+@isnad1 id=ex.0h2v.s6.7fea65d8f125 from=translated src=- shape=a25aea68 vocab=e33403b2
+-/
 theorem FormalGroup.mulByNatHom_one_exists_inverse (F : FormalGroup R) :
     ∃ g : FormalGroupHom F F,
       g.comp (F.mulByNatHom 1) = FormalGroupHom.id F ∧
@@ -363,7 +383,9 @@ The witness is `compInverseOfUnit (mulByNatHom F n).toSeries (n : R) hn`
 This is the **primary acceptance theorem for T-IV-2-008** (general unit
 case). The stronger statement "`mulByNatHom F n` is an isomorphism of
 formal groups" requires packaging `g` as a `FormalGroupHom`, which needs
-the left-inverse identity `subst f g = X` (not yet available).-/
+the left-inverse identity `subst f g = X` (not yet available).
+@isnad1 id=ex.1h3v.s7.881666aae821 from=translated src=- shape=10ebb795 vocab=1c79b582
+-/
 theorem FormalGroup.mulByNatHom_hasInverse (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) :
     ∃ g : PowerSeries R,
@@ -380,7 +402,9 @@ theorem FormalGroup.mulByNatHom_hasInverse (F : FormalGroup R) (n : ℕ)
 
 /-- Enriched existence form: also asserts the linear-coefficient identity
 `coeff 1 g = (hn.unit)⁻¹`. Useful for downstream consumers that need to
-know the leading term of the inverse.-/
+know the leading term of the inverse.
+@isnad1 id=ex.1h3v.s7.3149aeeac966 from=translated src=- shape=ced44e65 vocab=a5eba098
+-/
 theorem FormalGroup.mulByNatHom_hasInverse' (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) :
     ∃ g : PowerSeries R,
@@ -409,14 +433,18 @@ noncomputable def FormalGroup.mulByNatInvSeries (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) : PowerSeries R :=
   compInverseOfUnit (F.mulByNatHom n).toSeries ((n : ℕ) : R) hn
 
-/-- `constantCoeff (mulByNatInvSeries F n hn) = 0`.-/
+/-- `constantCoeff (mulByNatInvSeries F n hn) = 0`.
+@isnad1 id=eq.1h3v.s6.a0327bf17369 from=translated src=- shape=f00a3fc4 vocab=07cfb6d6
+-/
 @[simp]
 theorem FormalGroup.constantCoeff_mulByNatInvSeries (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) :
     @PowerSeries.constantCoeff R _ (F.mulByNatInvSeries n hn) = 0 :=
   compInverseOfUnit_constantCoeff _ _ hn
 
-/-- `mulByNatInvSeries F n hn` admits substitution.-/
+/-- `mulByNatInvSeries F n hn` admits substitution.
+@isnad1 id=hassubst.1h3v.s5.9972779fe43e from=translated src=- shape=e23d5dce vocab=8201f70f
+-/
 theorem FormalGroup.mulByNatInvSeries_hasSubst (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) :
     PowerSeries.HasSubst (F.mulByNatInvSeries n hn) :=
@@ -424,7 +452,9 @@ theorem FormalGroup.mulByNatInvSeries_hasSubst (F : FormalGroup R) (n : ℕ)
 
 /-- **The key right-inverse identity** at the power series level:
 `subst (mulByNatInvSeries F n hn) (mulByNatHom F n).toSeries = X`.
-Equivalently, `[n] ∘ inv = id` at the series level.-/
+Equivalently, `[n] ∘ inv = id` at the series level.
+@isnad1 id=eq.1h3v.s6.92858359e007 from=translated src=- shape=7c24dbd6 vocab=ae2b87aa
+-/
 theorem FormalGroup.subst_mulByNatInvSeries_mulByNatHom (F : FormalGroup R) (n : ℕ)
     (hn : IsUnit ((n : ℕ) : R)) :
     PowerSeries.subst (F.mulByNatInvSeries n hn) (F.mulByNatHom n).toSeries =
@@ -489,7 +519,9 @@ and `mulByNatInvSeries F n hn` are mutual compositional inverses.
 4. Apply associativity `subst h (subst g f) = subst (subst h g) f`:
    - LHS becomes `subst h X = h` (using `subst g f = X` and `subst_X`).
    - RHS becomes `subst X f = f` (using `subst h g = X` and `PowerSeries.X_subst`).
-5. Therefore `h = f`, so `subst f g = subst h g = X`.-/
+5. Therefore `h = f`, so `subst f g = subst h g = X`.
+@isnad1 id=eq.1h3v.s6.65f49b4eb6a8 from=translated src=- shape=8c8367be vocab=ae2b87aa
+-/
 theorem FormalGroup.subst_mulByNatHom_mulByNatInvSeries (F : FormalGroup R) {n : ℕ}
     (hn : IsUnit ((n : ℕ) : R)) :
     PowerSeries.subst (F.mulByNatHom n).toSeries (F.mulByNatInvSeries n hn) =
@@ -511,7 +543,9 @@ theorem FormalGroup.subst_mulByNatHom_mulByNatInvSeries (F : FormalGroup R) {n :
 /-- **Corollary of T-IV-2-008b** (series-level recovery formula): for
 `x : PowerSeries R` admitting substitution, applying `[n]` and then the
 inverse `mulByNatInvSeries` recovers `x`:
-`subst (subst x [n].toSeries) (mulByNatInvSeries F n hn) = x`.-/
+`subst (subst x [n].toSeries) (mulByNatInvSeries F n hn) = x`.
+@isnad1 id=eq.2h4v.s6.940f9c9b8210 from=translated src=- shape=0f579c5a vocab=245a342f
+-/
 theorem FormalGroup.subst_mulByNatHom_subst_mulByNatInvSeries (F : FormalGroup R) {n : ℕ}
     (hn : IsUnit ((n : ℕ) : R)) (x : PowerSeries R) (hx : PowerSeries.HasSubst x) :
     PowerSeries.subst (PowerSeries.subst x (F.mulByNatHom n).toSeries)
@@ -538,7 +572,9 @@ theorem FormalGroup.subst_mulByNatHom_subst_mulByNatInvSeries (F : FormalGroup R
 This is the cleanest series-level form of "[n] is injective on `F(M)`",
 required by `T-IV-3-007` (torsion has `p`-power order). The evaluation-level
 analogue (i.e. for elements of the maximal ideal `M`, via `MvPowerSeries.eval₂`)
-follows by composing with the appropriate evaluation morphism.-/
+follows by composing with the appropriate evaluation morphism.
+@isnad1 id=eq.3h4v.s6.2185a1e32a34 from=translated src=- shape=33ef6413 vocab=631c5573
+-/
 theorem FormalGroup.mulByNatHom_subst_injective_of_unit (F : FormalGroup R) {n : ℕ}
     (hn : IsUnit ((n : ℕ) : R)) {x : PowerSeries R} (hx : PowerSeries.HasSubst x)
     (h : PowerSeries.subst x (F.mulByNatHom n).toSeries = 0) : x = 0 := by

@@ -33,12 +33,30 @@ variable (W : WeierstrassCurve R)
 /-- The base change of `W` to the fraction field `K`.-/
 abbrev curveK : WeierstrassCurve K := W.map (algebraMap R K)
 
+/--
+@isnad1 id=eq.0h3v.s6.9fc8c3c77da9 from=translated src=- shape=758bf0e6 vocab=b92754c3
+-/
 @[simp] lemma curveK_a₁ : (curveK R K W).a₁ = algebraMap R K W.a₁ := by simp [curveK]
+/--
+@isnad1 id=eq.0h3v.s6.9c139c2f26bd from=translated src=- shape=758bf0e6 vocab=145c98fe
+-/
 @[simp] lemma curveK_a₂ : (curveK R K W).a₂ = algebraMap R K W.a₂ := by simp [curveK]
+/--
+@isnad1 id=eq.0h3v.s6.d729c8beb5c8 from=translated src=- shape=758bf0e6 vocab=555969c8
+-/
 @[simp] lemma curveK_a₃ : (curveK R K W).a₃ = algebraMap R K W.a₃ := by simp [curveK]
+/--
+@isnad1 id=eq.0h3v.s6.a52c4e67007b from=translated src=- shape=758bf0e6 vocab=9ead48fd
+-/
 @[simp] lemma curveK_a₄ : (curveK R K W).a₄ = algebraMap R K W.a₄ := by simp [curveK]
+/--
+@isnad1 id=eq.0h3v.s6.1293c9c88012 from=translated src=- shape=758bf0e6 vocab=852b54b4
+-/
 @[simp] lemma curveK_a₆ : (curveK R K W).a₆ = algebraMap R K W.a₆ := by simp [curveK]
 
+/--
+@isnad1 id=iff.0h5v.s9.c79ed211089f from=translated src=- shape=62bb3e73 vocab=c35b43e4
+-/
 lemma curveK_equation_iff (x y : K) :
     (curveK R K W).toAffine.Equation x y ↔
       y ^ 2 + algebraMap R K W.a₁ * x * y + algebraMap R K W.a₃ * y =

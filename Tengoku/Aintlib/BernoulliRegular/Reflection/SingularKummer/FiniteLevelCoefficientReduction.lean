@@ -27,7 +27,9 @@ variable {p m : ℕ} [NeZero p] [NeZero m]
 
 omit [NeZero m] in
 /-- Inversion of `|Delta|` is compatible with reduction from `ZMod m` to
-`ZMod p`, provided `|Delta|` is a unit modulo `m`.-/
+`ZMod p`, provided `|Delta|` is a unit modulo `m`.
+@isnad1 id=eq.2h2v.s7.0a428356064a from=translated src=- shape=d97d8f66 vocab=243b8ffb
+-/
 theorem cast_card_delta_inv
     (hm : p ∣ m)
     (hcard : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod m)) :
@@ -40,7 +42,9 @@ theorem cast_card_delta_inv
 
 omit [NeZero m] in
 /-- If a finite-level character reduces to `a ↦ a^i`, then its exact
-idempotent coefficients reduce to the usual mod-`p` coefficients.-/
+idempotent coefficients reduce to the usual mod-`p` coefficients.
+@isnad1 id=eq.3h5v.s9.f1c4ad5fce19 from=translated src=- shape=08b1e1b9 vocab=94481dd2
+-/
 theorem coefficient_cast_eq_of_character_cast
     (hm : p ∣ m)
     (hcard : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod m))
@@ -59,7 +63,9 @@ theorem coefficient_cast_eq_of_character_cast
 variable {A : Type*} [AddCommGroup A] [Module (ZMod m) A] [Finite A]
 
 /-- Version of the finite-level bridge where coefficient reduction is derived
-from character reduction.-/
+from character reduction.
+@isnad1 id=torsionc.5h6v.s9.70566c1ceeb8 from=translated src=- shape=07f2abb6 vocab=a1090e14
+-/
 theorem torsionComponentNontrivial_of_finiteLevelCharacter_cast
     (hcardp : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod p))
     (hcardm : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod m))

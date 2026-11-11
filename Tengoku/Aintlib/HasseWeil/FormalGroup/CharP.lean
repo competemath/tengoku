@@ -96,7 +96,9 @@ series of a formal group is a power series in `T^p`.
 Concretely, there exists `g : PowerSeries R` with
 `(F.mulByNatHom p).toSeries = g.expand p hp`, equivalently `[p](T) = g(T^p)`.
 
-Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4.4.-/
+Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.4.4.
+@isnad1 id=ex.0h3v.s7.25eeba6ee030 from=translated src=- shape=64b04c00 vocab=86e2d632
+-/
 theorem FormalGroup.mulByP_exists_expand (F : FormalGroup R) (p : ℕ)
     [hp_prime : Fact p.Prime] [CharP R p] :
     ∃ g : PowerSeries R, (F.mulByNatHom p).toSeries =
@@ -127,7 +129,9 @@ characteristic `p`, `[p](T) = p·f(T) + g(T^p)` for some `f, g`. In characterist
 `p` the term `p·f` vanishes and we can take `f = 0`.
 
 This mirrors the statement in Silverman, but the simpler form
-`FormalGroup.mulByP_exists_expand` is usually more useful.-/
+`FormalGroup.mulByP_exists_expand` is usually more useful.
+@isnad1 id=ex.0h3v.s8.3a5cb0a2fdc6 from=translated src=- shape=35130351 vocab=d7b4915c
+-/
 theorem FormalGroup.mulByP_decomposition (F : FormalGroup R) (p : ℕ)
     [hp_prime : Fact p.Prime] [CharP R p] :
     ∃ f g : PowerSeries R,

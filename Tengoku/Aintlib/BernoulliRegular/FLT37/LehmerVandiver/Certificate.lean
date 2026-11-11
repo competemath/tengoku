@@ -98,7 +98,9 @@ def lehmerVandiverNonTrivial (p i ℓ t k : ℕ) : Prop :=
 
 /-- **Admissibility of `t = 2` for the Lehmer-Vandiver test at `ℓ = 149,
 k = 4`:** `2^4 ≢ 1 (mod 149)`. Required by the hypotheses of Washington
-Theorem 9.5.-/
+Theorem 9.5.
+@isnad1 id=ne.0h0v.s7.a2e566f61c2a from=translated src=- shape=d97f5998 vocab=4056605a
+-/
 theorem two_pow_four_ne_one_mod_one_hundred_forty_nine :
     (2 : ZMod 149) ^ 4 ≠ 1 := by
   decide
@@ -122,7 +124,9 @@ and ultimately discharging `Vandiver37PlusCoprime` (`LV006`).
 Proved by kernel `decide` with bumped `maxRecDepth` (matching the
 convention used by `bernoulli_decide` in this project). This avoids any
 `native_decide` axiom and keeps the axiom set at the standard
-`[propext, Classical.choice, Quot.sound]`.-/
+`[propext, Classical.choice, Quot.sound]`.
+@isnad1 id=lehmerva.0h0v.s4.3d8b5edbc56d from=translated src=- shape=64711edf vocab=bbb91358
+-/
 theorem lehmerVandiverNonTrivial_thirtyseven :
     lehmerVandiverNonTrivial 37 32 149 2 4 := by
   simp only [lehmerVandiverNonTrivial]

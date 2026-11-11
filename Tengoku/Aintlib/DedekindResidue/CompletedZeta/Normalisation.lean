@@ -44,7 +44,9 @@ noncomputable def gammaFactor (K : Type*) [Field K] [NumberField K] (s : ℂ) : 
   Gammaℝ s ^ nrRealPlaces K * Gammaℂ s ^ nrComplexPlaces K
 
 /-- The gamma factor is nonvanishing on the right half-plane `Re s > 0` (each `Γℝ`, `Γℂ`
-factor is).-/
+factor is).
+@isnad1 id=ne.1h2v.s5.70ab07bcd085 from=translated src=- shape=36f92116 vocab=27c5d862
+-/
 theorem gammaFactor_ne_zero_of_re_pos (K : Type*) [Field K] [NumberField K] {s : ℂ}
     (hs : 0 < s.re) : gammaFactor K s ≠ 0 := by
   refine mul_ne_zero (pow_ne_zero _ (Gammaℝ_ne_zero_of_re_pos hs)) (pow_ne_zero _ ?_)

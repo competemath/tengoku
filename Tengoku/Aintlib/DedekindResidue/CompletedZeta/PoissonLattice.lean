@@ -40,7 +40,9 @@ variable {ι : Type*} [Fintype ι]
 /-- **Fourier transform under a linear change of variables** (`GL` version; mathlib has only
 the isometry case). For an invertible linear `T` on Euclidean space,
 `𝓕(g ∘ T) w = |det T|⁻¹ · 𝓕 g ((T⁻¹)^* w)`, by the substitution `v ↦ T⁻¹ v` (Haar scaling
-`|det T|⁻¹`) and moving `T⁻¹` across the pairing to its adjoint.-/
+`|det T|⁻¹`) and moving `T⁻¹` across the pairing to its adjoint.
+@isnad1 id=eq.0h4v.s13.67308537e2b9 from=translated src=- shape=2d72420b vocab=0fa9f0bb
+-/
 theorem fourier_comp_linearEquiv
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (g : EuclideanSpace ℝ ι → ℂ)
     (w : EuclideanSpace ℝ ι) :
@@ -97,7 +99,9 @@ theorem eq_of_inner_basis_eq {x y : EuclideanSpace ℝ ι}
   exact sub_eq_zero.mp hz
 
 /-- **P3b.** The lattice-basis change of variables sends the integer point `n` to the lattice
-element of `L` with `b`-coordinates `n`.-/
+element of `L` with `b`-coordinates `n`.
+@isnad1 id=eq.0h4v.s12.5f5772c15298 from=translated src=- shape=3158c578 vocab=af41c459
+-/
 theorem latticeEquiv_zpoint (L : Submodule ℤ (EuclideanSpace ℝ ι)) [DiscreteTopology L]
     [IsZLattice ℝ L] (b : Module.Basis ι ℤ L) (n : ι → ℤ) :
     ((EuclideanSpace.basisFun ι ℝ).toBasis.equiv (b.ofZLatticeBasis ℝ) (Equiv.refl ι))
@@ -124,7 +128,9 @@ theorem latticeEquiv_zpoint (L : Submodule ℤ (EuclideanSpace ℝ ι)) [Discret
   rw [map_smul, hTb]
 
 /-- **P3c.** The inverse-adjoint of the lattice-basis change of variables sends the integer
-point `m` to the element of the dual lattice with dual-basis coordinates `m`.-/
+point `m` to the element of the dual lattice with dual-basis coordinates `m`.
+@isnad1 id=eq.0h4v.s13.b8743b5a1db3 from=translated src=- shape=1e9734f9 vocab=7edea0ad
+-/
 theorem adjoint_symm_latticeEquiv_zpoint [DecidableEq ι]
     (L : Submodule ℤ (EuclideanSpace ℝ ι)) [DiscreteTopology L]
     [IsZLattice ℝ L] (b : Module.Basis ι ℤ L) (m : ι → ℤ) :
@@ -166,7 +172,9 @@ theorem adjoint_symm_latticeEquiv_zpoint [DecidableEq ι]
   rw [hLHS, hRHS]
 
 /-- **P3d.** The determinant of the lattice-basis change of variables is (up to sign) the
-covolume of the lattice.-/
+covolume of the lattice.
+@isnad1 id=eq.0h3v.s12.0fcb1c04a1ff from=translated src=- shape=e3cc90b8 vocab=691c2f4b
+-/
 theorem abs_det_latticeEquiv (L : Submodule ℤ (EuclideanSpace ℝ ι)) [DiscreteTopology L]
     [IsZLattice ℝ L] (b : Module.Basis ι ℤ L) :
     |LinearMap.det (((EuclideanSpace.basisFun ι ℝ).toBasis.equiv
@@ -194,7 +202,9 @@ theorem abs_det_latticeEquiv (L : Submodule ℤ (EuclideanSpace ℝ ι)) [Discre
 
 /-- **Sup-norm transport.** Restriction norms of translates conjugate cleanly under an
 invertible linear map: the translate of `g ∘ T` by `T⁻¹v` on `K` has the same sup-norm as the
-translate of `g` by `v` on `T(K)`.-/
+translate of `g` by `v` on `T(K)`.
+@isnad1 id=eq.1h5v.s12.7e1fd41015e8 from=translated src=- shape=90146810 vocab=03e04cd7
+-/
 theorem norm_restrict_comp_linearEquiv (g : C(EuclideanSpace ℝ ι, ℂ))
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (hTcont : Continuous ⇑T)
     (K : Compacts (EuclideanSpace ℝ ι)) (v : EuclideanSpace ℝ ι) :
@@ -220,7 +230,9 @@ theorem norm_restrict_comp_linearEquiv (g : C(EuclideanSpace ℝ ι, ℂ))
       _ ≤ _ := h2
 
 /-- Transport of the local-summability hypothesis through the lattice change of variables:
-`ℤ^ι`-translates of `g ∘ T` on `K` are the `L`-translates of `g` on `T(K)`.-/
+`ℤ^ι`-translates of `g ∘ T` on `K` are the `L`-translates of `g` on `T(K)`.
+@isnad1 id=summable.3h6v.s12.bcb7be0ac0ab from=translated src=- shape=c32182c7 vocab=171f194c
+-/
 theorem summable_norm_comp_addRight_zpoint {L : Submodule ℤ (EuclideanSpace ℝ ι)}
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (hTcont : Continuous ⇑T)
     (eL : (ι → ℤ) ≃ L)
@@ -244,7 +256,9 @@ theorem summable_norm_comp_addRight_zpoint {L : Submodule ℤ (EuclideanSpace �
   exact hsummable.congr (fun n => (heq n).symm)
 
 /-- Transport of the Fourier-side summability through the lattice change of variables,
-via `fourier_comp_linearEquiv`.-/
+via `fourier_comp_linearEquiv`.
+@isnad1 id=summable.3h5v.s13.24c5ea7f0294 from=translated src=- shape=d111f718 vocab=2a6ab0ec
+-/
 theorem summable_fourier_zpoint_of_equiv {L : Submodule ℤ (EuclideanSpace ℝ ι)}
     [DiscreteTopology L] [IsZLattice ℝ L]
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (hTcont : Continuous ⇑T)
@@ -267,6 +281,9 @@ theorem summable_fourier_zpoint_of_equiv {L : Submodule ℤ (EuclideanSpace ℝ 
   exact h1.congr (fun m => (h𝓕 m).symm)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.2h5v.s12.9fcf4e04dac7 from=translated src=- shape=42300c4d vocab=29adf47d
+-/
 theorem tsum_comp_zpoint_of_equiv {L : Submodule ℤ (EuclideanSpace ℝ ι)}
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (hTcont : Continuous ⇑T)
     (eL : (ι → ℤ) ≃ L)
@@ -279,6 +296,9 @@ theorem tsum_comp_zpoint_of_equiv {L : Submodule ℤ (EuclideanSpace ℝ ι)}
     show g (T (zpoint n)) = _
     rw [hTz n])
 
+/--
+@isnad1 id=eq.2h5v.s13.cc6413c1515e from=translated src=- shape=c16b6553 vocab=dac4d11c
+-/
 theorem tsum_fourier_zpoint_of_equiv {L : Submodule ℤ (EuclideanSpace ℝ ι)}
     [DiscreteTopology L] [IsZLattice ℝ L]
     (T : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) (hTcont : Continuous ⇑T)
@@ -310,7 +330,9 @@ whose Fourier transform is summable over the dual lattice `L♯`,
 Proof: conjugate the `ℤ^ι` formula by the lattice-basis change of variables `T`; the sum side
 reindexes by `latticeEquiv_zpoint`, the Fourier side by `fourier_comp_linearEquiv` +
 `adjoint_symm_latticeEquiv_zpoint` (the inverse-adjoint carries `ℤ^ι` onto `L♯`), and
-`|det T| = covol(L)` by `abs_det_latticeEquiv`.-/
+`|det T| = covol(L)` by `abs_det_latticeEquiv`.
+@isnad1 id=eq.2h3v.s12.65919e51cbdc from=translated src=- shape=78d94f93 vocab=5676f741
+-/
 theorem tsum_eq_tsum_fourier_zlattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {g : C(EuclideanSpace ℝ ι, ℂ)}
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),

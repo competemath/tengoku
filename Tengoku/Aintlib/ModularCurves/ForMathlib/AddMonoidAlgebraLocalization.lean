@@ -85,7 +85,9 @@ private theorem awayBack_mapDomain {x : A}
   exact RingHom.congr_fun h p
 
 /-- An additive monoid localization away from `x` induces a ring localization of additive
-monoid algebras away from the monomial supported at `x`.-/
+monoid algebras away from the monomial supported at `x`.
+@isnad1 id=away.0h5v.s6.bd9edfc3c0f9 from=translated src=- shape=fc405631 vocab=af861d27
+-/
 theorem isLocalizationAway_of_isLocalizationMap {x : A}
     (F : AddSubmonoid.LocalizationMap.AwayMap x B) :
     letI := (mapDomainRingHom R F.toAddMonoidHom).toAlgebra

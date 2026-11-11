@@ -80,6 +80,9 @@ def charIdempotent [Invertible ((Fintype.card G : R))] (χ : MulChar G R) :
 
 variable [Invertible ((Fintype.card G : R))]
 
+/--
+@isnad1 id=eq.0h3v.s8.24493b5c2ffa from=translated src=- shape=3471bd53 vocab=36da4438
+-/
 @[simp] lemma charIdempotent_def (χ : MulChar G R) :
     charIdempotent χ =
       ⅟(Fintype.card G : R) • ∑ σ : G, χ σ • MonoidAlgebra.single σ⁻¹ (1 : R) := rfl
@@ -107,7 +110,9 @@ section Orthogonality
 variable (χ ψ : MulChar G R)
 
 /-- The explicit expansion of `ε_χ · ε_ψ` as a scalar multiple of the
-basic character-weighted sum. Independent of whether `χ = ψ`.-/
+basic character-weighted sum. Independent of whether `χ = ψ`.
+@isnad1 id=eq.0h4v.s9.e63b84691f1c from=translated src=- shape=00633f97 vocab=2b7f55c4
+-/
 lemma charIdempotent_mul_aux :
     charIdempotent χ * charIdempotent ψ =
       (⅟(Fintype.card G : R) * ⅟(Fintype.card G : R)) •
@@ -145,7 +150,9 @@ lemma charIdempotent_mul_aux :
   rw [map_mul, mul_assoc]
 
 /-- The "inner character sum" `∑_σ χ σ · χ σ⁻¹` equals `|G|` for any character `χ`.
-This is the diagonal case used to prove `ε_χ² = ε_χ`.-/
+This is the diagonal case used to prove `ε_χ² = ε_χ`.
+@isnad1 id=eq.0h3v.s7.6b50ab35985c from=translated src=- shape=9c69cc9c vocab=ac5c342a
+-/
 lemma sum_char_mul_char_inv_self :
     (∑ σ : G, χ σ * χ σ⁻¹) = (Fintype.card G : R) := by
   -- `χ σ * χ σ⁻¹ = χ (σ * σ⁻¹) = χ 1 = 1` for every σ, so the sum is `|G| * 1`.
@@ -153,7 +160,9 @@ lemma sum_char_mul_char_inv_self :
     nsmul_eq_mul, mul_one]
 
 /-- The "inner character sum" `∑_σ χ σ · ψ σ⁻¹` vanishes when `χ ≠ ψ`. This
-is the off-diagonal case used to prove orthogonality.-/
+is the off-diagonal case used to prove orthogonality.
+@isnad1 id=eq.1h4v.s7.e4873a1d32c0 from=translated src=- shape=e86bf509 vocab=f4079717
+-/
 lemma sum_char_mul_char_inv_of_ne [IsDomain R] (h : χ ≠ ψ) :
     (∑ σ : G, χ σ * ψ σ⁻¹) = 0 := by
   -- Rewrite χ σ * ψ σ⁻¹ = (χ · ψ⁻¹) σ; use sum_eq_zero_of_ne_one.
@@ -170,7 +179,9 @@ lemma sum_char_mul_char_inv_of_ne [IsDomain R] (h : χ ≠ ψ) :
   simp_rw [key]
   exact MulChar.sum_eq_zero_of_ne_one hne
 
-/-- Diekmann Lemma 50 (part 1): `ε_χ` is an idempotent element.-/
+/-- Diekmann Lemma 50 (part 1): `ε_χ` is an idempotent element.
+@isnad1 id=isidempo.0h3v.s6.5811818a650c from=translated src=- shape=74ef5c2e vocab=45d23b02
+-/
 theorem isIdempotentElem_charIdempotent (χ : MulChar G R) :
     IsIdempotentElem (charIdempotent χ) := by
   simp only [IsIdempotentElem]
@@ -178,7 +189,9 @@ theorem isIdempotentElem_charIdempotent (χ : MulChar G R) :
   -- (⅟n * ⅟n) • (n • ε) = ⅟n • ε via cancellation.
   rw [smul_smul, mul_assoc, invOf_mul_self, mul_one]
 
-/-- Diekmann Lemma 50 (part 2): distinct character idempotents are orthogonal.-/
+/-- Diekmann Lemma 50 (part 2): distinct character idempotents are orthogonal.
+@isnad1 id=eq.1h4v.s7.5220c92f560d from=translated src=- shape=d14ab3e8 vocab=95444a68
+-/
 theorem charIdempotent_mul_of_ne [IsDomain R] {χ ψ : MulChar G R} (h : χ ≠ ψ) :
     charIdempotent χ * charIdempotent ψ = 0 := by
   rw [charIdempotent_mul_aux χ ψ, sum_char_mul_char_inv_of_ne χ ψ h, zero_smul,
@@ -187,7 +200,9 @@ theorem charIdempotent_mul_of_ne [IsDomain R] {χ ψ : MulChar G R} (h : χ ≠ 
 end Orthogonality
 
 /-- Diekmann Lemma 50: the family `{ε_χ : χ : MulChar G R}` is a system of
-orthogonal idempotents in the group algebra `R[G]`.-/
+orthogonal idempotents in the group algebra `R[G]`.
+@isnad1 id=orthogon.0h2v.s6.7e0da02fba1d from=translated src=- shape=27c92fe9 vocab=cb5f8a11
+-/
 theorem orthogonalIdempotents_charIdempotent [IsDomain R] :
     OrthogonalIdempotents (fun χ : MulChar G R ↦ charIdempotent χ) where
   idem χ := isIdempotentElem_charIdempotent χ
@@ -223,6 +238,9 @@ variable [IsDomain R] [HasEnoughRootsOfUnity R (Monoid.exponent G)]
 attribute [local instance] Fintype.ofFinite
 
 -- For a group `G`, `Monoid.exponent Gˣ = Monoid.exponent G`: `toUnits : G ≃* Gˣ`.
+/--
+@isnad1 id=hasenoug.0h2v.s6.941d600855fe from=translated src=- shape=b0a24c8b vocab=417e72c8
+-/
 lemma hasEnoughRootsOfUnity_units_of_group :
     HasEnoughRootsOfUnity R (Monoid.exponent Gˣ) := by
   rw [Monoid.exponent_eq_of_mulEquiv (toUnits (G := G)).symm]
@@ -230,7 +248,9 @@ lemma hasEnoughRootsOfUnity_units_of_group :
 
 /-- Generalisation of `DirichletCharacter.sum_characters_eq_zero` to any
 finite commutative group `G`: for `a ≠ 1`, the sum of `χ a` over all
-multiplicative characters `χ : MulChar G R` vanishes.-/
+multiplicative characters `χ : MulChar G R` vanishes.
+@isnad1 id=eq.1h3v.s7.07e1ec941d67 from=translated src=- shape=c13fb30a vocab=77923bb3
+-/
 theorem MulChar.sum_characters_eq_zero_of_finite_group
     {a : G} (ha : a ≠ 1) :
     ∑ χ : MulChar G R, χ a = 0 := by
@@ -242,7 +262,9 @@ theorem MulChar.sum_characters_eq_zero_of_finite_group
 
 /-- Generalisation of `DirichletCharacter.sum_characters_eq`: for any
 `a : G`, the sum of `χ a` over all multiplicative characters
-`χ : MulChar G R` equals `|G|` when `a = 1`, and `0` otherwise.-/
+`χ : MulChar G R` equals `|G|` when `a = 1`, and `0` otherwise.
+@isnad1 id=eq.0h3v.s7.d1e4e3934b08 from=translated src=- shape=f1173640 vocab=192a02f6
+-/
 theorem MulChar.sum_characters_eq (a : G) :
     ∑ χ : MulChar G R, χ a =
       if a = 1 then (Fintype.card G : R) else 0 := by
@@ -273,7 +295,9 @@ The idempotents `ε_χ` sum to `1` in `R[G]`. The computation, writing
 -/
 
 /-- **Diekmann Lemma 50 (part 3)**: the family of character idempotents
-`{ε_χ : χ : MulChar G R}` is complete, i.e. sums to `1` in `R[G]`.-/
+`{ε_χ : χ : MulChar G R}` is complete, i.e. sums to `1` in `R[G]`.
+@isnad1 id=eq.0h2v.s7.621ce56b2f39 from=translated src=- shape=01ffe3c4 vocab=76b47c2f
+-/
 theorem charIdempotent_sum_eq_one :
     ∑ χ : MulChar G R, charIdempotent χ = (1 : MonoidAlgebra R G) := by
   -- Expand the definition of `charIdempotent`, pull the common scalar
@@ -314,7 +338,9 @@ here (Step D in the ticket plan).
 -/
 
 /-- **Diekmann Lemma 50 / Cor 51**: the character idempotents form a
-complete system of orthogonal idempotents in `R[G]`.-/
+complete system of orthogonal idempotents in `R[G]`.
+@isnad1 id=complete.0h2v.s7.c2f83276d4f1 from=translated src=- shape=7d17eb17 vocab=379b21ce
+-/
 theorem completeOrthogonalIdempotents_charIdempotent :
     CompleteOrthogonalIdempotents (fun χ : MulChar G R ↦ charIdempotent χ) where
   __ := orthogonalIdempotents_charIdempotent
@@ -360,7 +386,9 @@ the `c`-odd part.-/
 def minusIdempotent (c : G) : MonoidAlgebra R G :=
   ⅟(2 : R) • (MonoidAlgebra.single (1 : G) (1 : R) - MonoidAlgebra.single c 1)
 
-/-- The plus and minus idempotents sum to `1`.-/
+/-- The plus and minus idempotents sum to `1`.
+@isnad1 id=eq.0h3v.s7.c497709e9af4 from=translated src=- shape=1742eb41 vocab=cc3156e8
+-/
 theorem plusIdempotent_add_minusIdempotent (c : G) :
     plusIdempotent (R := R) c + minusIdempotent c = 1 := by
   simp only [plusIdempotent, minusIdempotent, ← smul_add]
@@ -371,7 +399,9 @@ theorem plusIdempotent_add_minusIdempotent (c : G) :
   rfl
 
 /-- Key computational identity: multiplication by `single c 1` scales each
-character idempotent `ε_χ` by the eigenvalue `χ c`.-/
+character idempotent `ε_χ` by the eigenvalue `χ c`.
+@isnad1 id=eq.0h4v.s8.161def7570e4 from=translated src=- shape=2f20414b vocab=e21b3550
+-/
 lemma single_mul_charIdempotent (c : G) (χ : MulChar G R) :
     MonoidAlgebra.single c (1 : R) * charIdempotent χ = χ c • charIdempotent χ := by
   rw [charIdempotent_def, mul_smul_comm, smul_comm (χ c) (⅟((Fintype.card G : R)))]
@@ -390,7 +420,9 @@ lemma single_mul_charIdempotent (c : G) (χ : MulChar G R) :
         simp_rw [Finset.smul_sum, smul_smul]
 
 /-- `ε_+(c) * ε_χ = (⅟2 · (1 + χ c)) • ε_χ`: the eigenvalue behaviour of `ε_+(c)`
-on the character idempotents.-/
+on the character idempotents.
+@isnad1 id=eq.0h4v.s8.f8e06d7eb88c from=translated src=- shape=7f298a6c vocab=d90d8276
+-/
 lemma plusIdempotent_mul_charIdempotent (c : G) (χ : MulChar G R) :
     plusIdempotent (R := R) c * charIdempotent χ =
       (⅟(2 : R) * (1 + χ c)) • charIdempotent χ := by
@@ -403,7 +435,9 @@ lemma plusIdempotent_mul_charIdempotent (c : G) (χ : MulChar G R) :
 
 /-- **Diekmann Cor 52 (plus side)**: `ε_+(c) = ∑_{χ : χ c = 1} ε_χ` for `c` an
 involution. In the specialisation `G = (ZMod p)ˣ`, `c = -1`, this is the sum
-of `ε_χ` over even Dirichlet characters.-/
+of `ε_χ` over even Dirichlet characters.
+@isnad1 id=eq.1h3v.s8.e775e6bd9733 from=translated src=- shape=28f33b24 vocab=421d91f7
+-/
 theorem plusIdempotent_eq_sum_even (c : G) (hc : c * c = 1) :
     plusIdempotent (R := R) c =
       letI := Classical.decEq R
@@ -430,7 +464,9 @@ theorem plusIdempotent_eq_sum_even (c : G) (hc : c * c = 1) :
     show (1 : R) + 1 = 2 by ring, invOf_mul_self, one_smul]
 
 /-- **Diekmann Cor 52 (minus side)**: `ε_-(c) = ∑_{χ : χ c = -1} ε_χ` for `c`
-an involution.-/
+an involution.
+@isnad1 id=eq.1h3v.s8.3fdd2a15d680 from=translated src=- shape=09cfb6ca vocab=d0ca3717
+-/
 theorem minusIdempotent_eq_sum_odd (c : G) (hc : c * c = 1) :
     minusIdempotent (R := R) c =
       letI := Classical.decEq R

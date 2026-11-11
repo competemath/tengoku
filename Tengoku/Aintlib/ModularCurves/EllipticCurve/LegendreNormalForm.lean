@@ -39,13 +39,30 @@ variable {R : Type u} [CommRing R]
 def legendreCurve (lam : R) : WeierstrassCurve R :=
   ⟨0, -(lam + 1), 0, lam, 0⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.c97ad82e4617 from=translated src=- shape=713098bd vocab=c1580dd9
+-/
 @[simp] theorem legendreCurve_a₁ (lam : R) : (legendreCurve lam).a₁ = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.e4eea0340d42 from=translated src=- shape=1f0bcd9f vocab=ae187714
+-/
 @[simp] theorem legendreCurve_a₂ (lam : R) : (legendreCurve lam).a₂ = -(lam + 1) := rfl
+/--
+@isnad1 id=eq.0h2v.s4.8c3cd7c9bc76 from=translated src=- shape=713098bd vocab=4dea56a9
+-/
 @[simp] theorem legendreCurve_a₃ (lam : R) : (legendreCurve lam).a₃ = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.ec53ccf65251 from=translated src=- shape=1c9622f3 vocab=d9edebda
+-/
 @[simp] theorem legendreCurve_a₄ (lam : R) : (legendreCurve lam).a₄ = lam := rfl
+/--
+@isnad1 id=eq.0h2v.s4.435ebc3ad555 from=translated src=- shape=713098bd vocab=0e3db2f6
+-/
 @[simp] theorem legendreCurve_a₆ (lam : R) : (legendreCurve lam).a₆ = 0 := rfl
 
-/-- **(T-E14a)** The discriminant of the Legendre curve is `16 λ² (λ−1)²`.-/
+/-- **(T-E14a)** The discriminant of the Legendre curve is `16 λ² (λ−1)²`.
+@isnad1 id=eq.0h2v.s7.5c65fa2a4f3f from=translated src=- shape=2c126001 vocab=8bbc0ae2
+-/
 theorem legendreCurve_Δ (lam : R) :
     (legendreCurve lam).Δ = 16 * lam ^ 2 * (lam - 1) ^ 2 := by
   simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
@@ -54,7 +71,9 @@ theorem legendreCurve_Δ (lam : R) :
   ring
 
 /-- **(T-E14a)** Over a base with `2` invertible, the Legendre curve is elliptic iff
-`λ(λ−1)` is a unit.-/
+`λ(λ−1)` is a unit.
+@isnad1 id=iff.1h2v.s6.926394c54e76 from=translated src=- shape=1acb910c vocab=8c9fa8c2
+-/
 theorem legendreCurve_isElliptic_iff (h2 : IsUnit (2 : R)) (lam : R) :
     (legendreCurve lam).IsElliptic ↔ IsUnit (lam * (lam - 1)) := by
   rw [WeierstrassCurve.isElliptic_iff, legendreCurve_Δ]
@@ -72,18 +91,24 @@ theorem legendreCurve_isElliptic_iff (h2 : IsUnit (2 : R)) (lam : R) :
 instance (lam : R) : (legendreCurve lam).IsCharNeTwoNF :=
   ⟨rfl, rfl⟩
 
-/-- The Legendre family is natural in the base ring: coefficient-wise mapping.-/
+/-- The Legendre family is natural in the base ring: coefficient-wise mapping.
+@isnad1 id=eq.0h4v.s6.4c62f17d4d4f from=translated src=- shape=fd2ab5a1 vocab=b4c6c7be
+-/
 theorem legendreCurve_map {R' : Type u} [CommRing R'] (f : R →+* R') (lam : R) :
     (legendreCurve lam).map f = legendreCurve (f lam) := by
   ext <;> simp [legendreCurve, WeierstrassCurve.map, map_neg, map_add, map_one]
 
-/-- **(T-E14a-b0)** `(0, 0)` lies on the Legendre curve.-/
+/-- **(T-E14a-b0)** `(0, 0)` lies on the Legendre curve.
+@isnad1 id=equation.0h2v.s5.cdc12e85c273 from=translated src=- shape=cddd87fb vocab=8171e1b3
+-/
 theorem legendreCurve_equation_zero (lam : R) :
     (legendreCurve lam).toAffine.Equation 0 0 := by
   rw [WeierstrassCurve.Affine.equation_iff]
   simp
 
-/-- **(T-E14a-b0)** `(1, 0)` lies on the Legendre curve.-/
+/-- **(T-E14a-b0)** `(1, 0)` lies on the Legendre curve.
+@isnad1 id=equation.0h2v.s5.06411e9fdb94 from=translated src=- shape=cddd87fb vocab=8171e1b3
+-/
 theorem legendreCurve_equation_one (lam : R) :
     (legendreCurve lam).toAffine.Equation 1 0 := by
   rw [WeierstrassCurve.Affine.equation_iff]
@@ -95,13 +120,17 @@ theorem legendreCurve_equation_one (lam : R) :
   ring
 
 /-- **(T-E14a-b0)** `x = 0` is a `2`-torsion abscissa of the Legendre curve: the cubic
-vanishes there.-/
+vanishes there.
+@isnad1 id=eq.0h2v.s7.52646651734f from=translated src=- shape=6e1b0900 vocab=66b38831
+-/
 theorem legendreCurve_cubic_zero (lam : R) :
     (0 : R) ^ 3 + (legendreCurve lam).a₂ * 0 ^ 2 + (legendreCurve lam).a₄ * 0 +
       (legendreCurve lam).a₆ = 0 := by
   simp
 
-/-- **(T-E14a-b0)** `x = 1` is a `2`-torsion abscissa of the Legendre curve.-/
+/-- **(T-E14a-b0)** `x = 1` is a `2`-torsion abscissa of the Legendre curve.
+@isnad1 id=eq.0h2v.s7.643ab07df2da from=translated src=- shape=6e1b0900 vocab=66b38831
+-/
 theorem legendreCurve_cubic_one (lam : R) :
     (1 : R) ^ 3 + (legendreCurve lam).a₂ * 1 ^ 2 + (legendreCurve lam).a₄ * 1 +
       (legendreCurve lam).a₆ = 0 := by
@@ -113,7 +142,9 @@ curve (`a₁ = a₃ = 0`) whose cubic has the marked `2`-torsion abscissae `p` a
 (the `x(P₂) = 0, x(Q₂) = 1`-locus shape after the `ω`-pinning of `u`) is carried by the
 pure translation `x ↦ x + p` to the Legendre curve of `λ = −a₂ − 3p − 1`. No scaling is
 needed — the `δ`-condition has already spent it; this is why KM's coupled problem is
-rigid while the plain `Γ(2)`-naive one is not.-/
+rigid while the plain `Γ(2)`-naive one is not.
+@isnad1 id=eq.4h3v.s9.4150dee78f00 from=translated src=- shape=c5b4a6ce vocab=93f9d01f
+-/
 theorem translation_smul_eq_legendreCurve {W : WeierstrassCurve R}
     (h1 : W.a₁ = 0) (h3 : W.a₃ = 0) {p : R}
     (hp : p ^ 3 + W.a₂ * p ^ 2 + W.a₄ * p + W.a₆ = 0)
@@ -139,7 +170,9 @@ theorem translation_smul_eq_legendreCurve {W : WeierstrassCurve R}
 Legendre curve to a Legendre curve and fixing the two marked `2`-torsion abscissae
 (`x' = u⁻²(x − r)` sends `0 ↦ 0` and `1 ↦ 1`) is `⟨u, 0, 0, 0⟩` with `u² = 1`, and the
 `λ`-parameter is unchanged: the coupled problem has exactly the `{±1}`-ambiguity of
-KM's engine group.-/
+KM's engine group.
+@isnad1 id=and.4h4v.s8.68d8080e5f31 from=translated src=- shape=e3615d22 vocab=4c8d032e
+-/
 theorem legendreCurve_vc_marked (h2 : IsUnit (2 : R)) {C : VariableChange R}
     {lam lam' : R} (hC : C • legendreCurve lam = legendreCurve lam')
     (hP : ((C.u⁻¹ : Rˣ) : R) ^ 2 * (0 - C.r) = 0)
@@ -194,7 +227,9 @@ with `u² = e₂ − e₁`: the roots become `0`, `1` and `λ = u⁻²(e₃ − 
 The splitting hypothesis is given by the three coefficient identities (Vieta); over an
 algebraically closed field they hold for the roots of the cubic, and the square root `u`
 exists there, which is Silverman's hypothesis "char ≠ 2 and `K` algebraically closed".
-No division is used, so the statement holds over an arbitrary commutative ring.-/
+No division is used, so the statement holds over an arbitrary commutative ring.
+@isnad1 id=eq.6h6v.s8.c2e3e8e77753 from=translated src=- shape=eb479a06 vocab=90cee312
+-/
 theorem scale_translate_smul_eq_legendreCurve {W : WeierstrassCurve R}
     (h1 : W.a₁ = 0) (h3 : W.a₃ = 0) {e₁ e₂ e₃ : R} (u : Rˣ)
     (ha₂ : W.a₂ = -(e₁ + e₂ + e₃))
@@ -223,7 +258,9 @@ theorem scale_translate_smul_eq_legendreCurve {W : WeierstrassCurve R}
 /-- **(T-G3a-SUB2b, complete the square)** With `2` invertible, every Weierstrass curve
 is carried to char-≠2 normal form (`a₁ = a₃ = 0`) by the variable change
 `⟨1, 0, −a₁/2, −a₃/2⟩`. (Silverman AEC III.1: "if char K ≠ 2 we may complete the
-square".)-/
+square".)
+@isnad1 id=eq.1h2v.s8.6cd609a2b50d from=translated src=- shape=d4da57e2 vocab=9e3648b3
+-/
 theorem completeSquareVC_a₁ {W : WeierstrassCurve R} (h2 : IsUnit (2 : R)) :
     ((⟨1, 0, -(h2.unit⁻¹ : Rˣ) * W.a₁, -(h2.unit⁻¹ : Rˣ) * W.a₃⟩ :
       VariableChange R) • W).a₁ = 0 := by
@@ -234,6 +271,9 @@ theorem completeSquareVC_a₁ {W : WeierstrassCurve R} (h2 : IsUnit (2 : R)) :
   simp only [inv_one, Units.val_one, one_mul]
   linear_combination (-W.a₁) * h
 
+/--
+@isnad1 id=eq.1h2v.s8.9fda16d321f5 from=translated src=- shape=f5679285 vocab=9e3648b3
+-/
 theorem completeSquareVC_a₃ {W : WeierstrassCurve R} (h2 : IsUnit (2 : R)) :
     ((⟨1, 0, -(h2.unit⁻¹ : Rˣ) * W.a₁, -(h2.unit⁻¹ : Rˣ) * W.a₃⟩ :
       VariableChange R) • W).a₃ = 0 := by
@@ -248,7 +288,9 @@ theorem completeSquareVC_a₃ {W : WeierstrassCurve R} (h2 : IsUnit (2 : R)) :
 /-- **(T-G3a-SUB2, algebra level)** Composite of the two steps: complete the square,
 then scale-and-translate. If, after completing the square, the cubic splits with roots
 `e₁, e₂, e₃` and `e₂ − e₁` is the square of a unit, the curve is variable-change
-equivalent to a Legendre curve.-/
+equivalent to a Legendre curve.
+@isnad1 id=ex.5h6v.s10.09d3c1e64f26 from=translated src=- shape=be6a3a25 vocab=85f167c2
+-/
 theorem exists_variableChange_eq_legendreCurve {W : WeierstrassCurve R}
     (h2 : IsUnit (2 : R)) {e₁ e₂ e₃ : R} (u : Rˣ)
     (ha₂ : ((⟨1, 0, -(h2.unit⁻¹ : Rˣ) * W.a₁, -(h2.unit⁻¹ : Rˣ) * W.a₃⟩ :
@@ -281,7 +323,9 @@ private theorem cubic_coeff_eq {a₂ a₄ a₆ b₂ b₄ b₆ : R}
 
 /-- **(T-G3a-SUB2c)** Over an algebraically closed field a monic cubic splits, with
 Vieta's identities: there are roots `e₁ e₂ e₃` with `a₂ = −(e₁+e₂+e₃)`,
-`a₄ = e₁e₂+e₁e₃+e₂e₃` and `a₆ = −e₁e₂e₃`.-/
+`a₄ = e₁e₂+e₁e₃+e₂e₃` and `a₆ = −e₁e₂e₃`.
+@isnad1 id=ex.0h4v.s7.221801d92473 from=translated src=- shape=2816ff26 vocab=3830e947
+-/
 theorem exists_roots_vieta_cubic {k : Type u} [Field k] [IsAlgClosed k] (a₂ a₄ a₆ : k) :
     ∃ e₁ e₂ e₃ : k, a₂ = -(e₁ + e₂ + e₃) ∧
       a₄ = e₁ * e₂ + e₁ * e₃ + e₂ * e₃ ∧ a₆ = -(e₁ * e₂ * e₃) := by
@@ -317,7 +361,9 @@ theorem exists_roots_vieta_cubic {k : Type u} [Field k] [IsAlgClosed k] (a₂ a�
 /-- **(T-G3a-SUB2, field level — Silverman AEC III.1 Prop 1.7(b))** Over an
 algebraically closed field with `2 ≠ 0`, every Weierstrass curve whose completed-square
 cubic has two distinct roots is variable-change equivalent to a Legendre curve. (The
-distinctness hypothesis is what `Δ ≠ 0` supplies for an elliptic curve.)-/
+distinctness hypothesis is what `Δ ≠ 0` supplies for an elliptic curve.)
+@isnad1 id=ex.2h2v.s10.46bf03e6d006 from=translated src=- shape=1e0ebaf8 vocab=d149fe13
+-/
 theorem exists_variableChange_eq_legendreCurve_of_isAlgClosed {k : Type u} [Field k]
     [IsAlgClosed k] (h2 : IsUnit (2 : k)) (W : WeierstrassCurve k)
     (hne : ∀ e₁ e₂ e₃ : k,
@@ -346,7 +392,9 @@ theorem exists_variableChange_eq_legendreCurve_of_isAlgClosed {k : Type u} [Fiel
 /-- **(T-G3a-SUB2f)** On a char-≠2 normal-form chart (`a₁ = a₃ = 0`), a point fixed by
 the negation (i.e. a `2`-torsion point) has `y = 0`, and its abscissa is a root of the
 cubic. This is the bridge from a level-`2` structure to the roots `e₁, e₂` consumed by
-`exists_variableChange_eq_legendreCurve`.-/
+`exists_variableChange_eq_legendreCurve`.
+@isnad1 id=and.5h4v.s8.6ab2708edfd1 from=translated src=- shape=8a731dad vocab=2bad8941
+-/
 theorem two_torsion_coords_of_charNeTwoNF (h2 : IsUnit (2 : R)) {W : WeierstrassCurve R}
     (h1 : W.a₁ = 0) (h3 : W.a₃ = 0) {p q : R}
     (heq : W.toAffine.Equation p q) (hneg : -q - W.a₁ * p - W.a₃ = q) :
@@ -365,7 +413,9 @@ theorem two_torsion_coords_of_charNeTwoNF (h2 : IsUnit (2 : R)) {W : Weierstrass
 same abscissa coincide: both have `y = 0` by
 `two_torsion_coords_of_charNeTwoNF`. Contrapositive: **distinct** marked `2`-torsion
 points have **distinct** abscissae — the input `e₁ ≠ e₂` of the Legendre variable
-change.-/
+change.
+@isnad1 id=eq.8h6v.s8.d2b899a95855 from=translated src=- shape=44b38f6c vocab=d86d3886
+-/
 theorem two_torsion_abscissa_injective (h2 : IsUnit (2 : R)) {W : WeierstrassCurve R}
     (h1 : W.a₁ = 0) (h3 : W.a₃ = 0) {p p' q q' : R}
     (heq : W.toAffine.Equation p q) (hneg : -q - W.a₁ * p - W.a₃ = q)
@@ -380,7 +430,9 @@ unit
 splits with Vieta's identities **in that order**: the third root is
 `e₃ = −(a₂ + p + p')`. This is the ordered form consumed by
 `exists_variableChange_eq_legendreCurve` (whose `e₁, e₂` are the two *marked*
-`2`-torsion abscissae).-/
+`2`-torsion abscissae).
+@isnad1 id=ex.3h6v.s9.fb0000b6a560 from=translated src=- shape=ae99b7fe vocab=cdd81cc3
+-/
 theorem exists_third_root_vieta {a₂ a₄ a₆ p p' : R}
     (hp : p ^ 3 + a₂ * p ^ 2 + a₄ * p + a₆ = 0)
     (hp' : p' ^ 3 + a₂ * p' ^ 2 + a₄ * p' + a₆ = 0) (hne : IsUnit (p - p')) :
@@ -404,7 +456,9 @@ abscissa to `0` and the second to `1`.
 This is the complete algebraic content of Silverman AEC III.1 Prop 1.7(b); the scheme-
 level `IsLegendreDatum` statement (SUB2h) is obtained from it by transporting the chart
 along `LocalPresentation.ofVC`, its markings along `MarksAt.ofVC` and its `ω`-basis
-along `IsAdapted.ofVC`.-/
+along `IsAdapted.ofVC`.
+@isnad1 id=ex.8h6v.s9.0d8b3aa96201 from=translated src=- shape=3dc8fcd6 vocab=ec8f1540
+-/
 theorem exists_legendre_variableChange_of_two_torsion {k : Type u} [Field k]
     [IsAlgClosed k] (h2 : IsUnit (2 : k)) {W : WeierstrassCurve k}
     (h1 : W.a₁ = 0) (h3 : W.a₃ = 0) {p p' q q' : k}

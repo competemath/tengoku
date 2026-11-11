@@ -87,7 +87,9 @@ we reach a contradiction.
 4. Write `e = q · e₁`, substitute, divide by `q²`. Mod `q`: `0 ≡ e₁²α³`, so `q ∣ e₁`.
 5. Write `e₁ = q · e₂`, substitute, divide by `q`. Now `γ²u³ ≡ 0 (mod q)`,
    and since `q ∤ u` we get `q ∣ γ`.
-6. But `q ∣ γ` and `q ∣ e` contradicts `IsRelPrime γ e`.-/
+6. But `q ∣ γ` and `q ∣ e` contradicts `IsRelPrime γ e`.
+@isnad1 id=false.4h6v.s9.fb93f83995cd from=translated src=- shape=2ddfb34f vocab=accdecdc
+-/
 theorem den_no_simple_prime_factor_of_on_curve (W : WeierstrassCurve R)
     {x y : K}
     (heq : y ^ 2 + algebraMap R K W.a₁ * x * y + algebraMap R K W.a₃ * y =
@@ -176,7 +178,9 @@ theorem den_no_simple_prime_factor_of_on_curve (W : WeierstrassCurve R)
 /-- Corollary: if the denominator of `x` is prime, we get a contradiction.
 
 This is a special case of `den_no_simple_prime_factor_of_on_curve` where
-`q = den(x)` — a prime element trivially has `q² ∤ q`.-/
+`q = den(x)` — a prime element trivially has `q² ∤ q`.
+@isnad1 id=false.2h5v.s9.a7e13cc93071 from=translated src=- shape=681529fa vocab=02b04549
+-/
 theorem den_not_prime_of_on_curve (W : WeierstrassCurve R)
     {x y : K}
     (heq : y ^ 2 + algebraMap R K W.a₁ * x * y + algebraMap R K W.a₃ * y =

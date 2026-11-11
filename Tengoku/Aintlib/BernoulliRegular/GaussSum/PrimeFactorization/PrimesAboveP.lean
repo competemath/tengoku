@@ -50,6 +50,9 @@ noncomputable def primesAboveP : Finset (Ideal (𝓞 L)) :=
   IsDedekindDomain.primesOverFinset 𝔭 (𝓞 L)
 
 omit [IsCyclotomicExtension {p * (p - 1)} ℚ L] in
+/--
+@isnad1 id=iff.0h3v.s7.4fdf269c9cb5 from=translated src=- shape=d3d3894b vocab=1f237781
+-/
 lemma mem_primesAboveP_iff {P : Ideal (𝓞 L)} :
     P ∈ primesAboveP p L ↔ P ∈ Ideal.primesOver 𝔭 (𝓞 L) := by
   haveI : (Ideal.span ({(p : ℤ)} : Set ℤ) : Ideal ℤ).IsMaximal :=
@@ -59,12 +62,18 @@ lemma mem_primesAboveP_iff {P : Ideal (𝓞 L)} :
   exact _root_.IsDedekindDomain.mem_primesOverFinset_iff hp_ne_bot (𝓞 L)
 
 omit [IsCyclotomicExtension {p * (p - 1)} ℚ L] in
+/--
+@isnad1 id=eq.0h2v.s7.53809a509e1f from=translated src=- shape=5a322295 vocab=d548b078
+-/
 lemma coe_primesAboveP :
     (↑(primesAboveP p L) : Set (Ideal (𝓞 L))) = Ideal.primesOver 𝔭 (𝓞 L) := by
   ext P
   rw [Finset.mem_coe, mem_primesAboveP_iff]
 
 omit [IsCyclotomicExtension {p * (p - 1)} ℚ L] in
+/--
+@isnad1 id=nonempty.0h2v.s5.7095c7034d6e from=translated src=- shape=6caf2e49 vocab=3b3bd0a1
+-/
 lemma primesAboveP_nonempty : (primesAboveP p L).Nonempty := by
   classical
   haveI : (Ideal.span ({(p : ℤ)} : Set ℤ) : Ideal ℤ).IsMaximal :=
@@ -80,24 +89,39 @@ noncomputable def distinguishedPrimeAboveP : Ideal (𝓞 L) :=
   Classical.choose (primesAboveP_nonempty (p := p) (L := L))
 
 omit [IsCyclotomicExtension {p * (p - 1)} ℚ L] in
+/--
+@isnad1 id=mem.0h2v.s6.8f6e6e0b842e from=translated src=- shape=4cae85ca vocab=d59d7fa8
+-/
 lemma distinguishedPrimeAboveP_mem :
     distinguishedPrimeAboveP p L ∈ primesAboveP p L :=
   Classical.choose_spec (primesAboveP_nonempty (p := p) (L := L))
 
 omit [IsCyclotomicExtension {p * (p - 1)} ℚ L] in
+/--
+@isnad1 id=mem.0h2v.s6.58179ddcbb22 from=translated src=- shape=bdafda1e vocab=e22b09da
+-/
 lemma distinguishedPrimeAboveP_mem_primesOver :
     distinguishedPrimeAboveP p L ∈ Ideal.primesOver 𝔭 (𝓞 L) :=
   (mem_primesAboveP_iff (p := p) (L := L)).1
     (distinguishedPrimeAboveP_mem (p := p) (L := L))
 
+/--
+@isnad1 id=isprime.0h2v.s5.614d509faa51 from=translated src=- shape=38c7f5d7 vocab=6430fb07
+-/
 instance distinguishedPrimeAboveP_isPrime :
     (distinguishedPrimeAboveP p L).IsPrime :=
   (distinguishedPrimeAboveP_mem_primesOver (p := p) (L := L)).1
 
+/--
+@isnad1 id=liesover.0h2v.s6.cff366fca86a from=translated src=- shape=38204f07 vocab=a670006e
+-/
 instance distinguishedPrimeAboveP_liesOver :
     (distinguishedPrimeAboveP p L).LiesOver 𝔭 :=
   (distinguishedPrimeAboveP_mem_primesOver (p := p) (L := L)).2
 
+/--
+@isnad1 id=ex.1h3v.s10.e26af60daf53 from=translated src=- shape=a62ed1d6 vocab=69beb0ae
+-/
 lemma exists_galois_smul_distinguishedPrimeAboveP_eq {P : Ideal (𝓞 L)}
     (hP : P ∈ primesAboveP p L) :
     ∃ σ : Gal(L / ℚ), σ • distinguishedPrimeAboveP p L = P := by

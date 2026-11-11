@@ -42,7 +42,9 @@ variable {R : Type*} [CommRing R] (W : WeierstrassCurve.Affine R)
 section NegInvolution
 
 /-- The polynomial identity: evaluating `W.polynomial` at `W.negPolynomial` via `eval₂` gives
-`W.polynomial` back. This is the key identity ensuring the negation involution is well-defined.-/
+`W.polynomial` back. This is the key identity ensuring the negation involution is well-defined.
+@isnad1 id=eq.0h2v.s6.9043969d4891 from=translated src=- shape=6cc56bd9 vocab=9d0d3133
+-/
 lemma eval₂_polynomial_negPolynomial :
     W.polynomial.eval₂ (C : R[X] →+* R[X][Y]) W.negPolynomial = W.polynomial := by
   simp only [polynomial, negPolynomial, eval₂_add, eval₂_sub, eval₂_mul, eval₂_pow, eval₂_X,
@@ -63,25 +65,36 @@ noncomputable def negInvolution : W.CoordinateRing →+* W.CoordinateRing :=
   AdjoinRoot.lift (AdjoinRoot.of W.polynomial)
     (AdjoinRoot.mk W.polynomial W.negPolynomial) (negInvolution_aux W)
 
+/--
+@isnad1 id=eq.0h2v.s9.5148501a974b from=translated src=- shape=66b8f867 vocab=09014f0c
+-/
 @[simp]
 lemma negInvolution_root :
     W.negInvolution (AdjoinRoot.root W.polynomial) =
       AdjoinRoot.mk W.polynomial W.negPolynomial :=
   AdjoinRoot.lift_root (negInvolution_aux W)
 
+/--
+@isnad1 id=eq.0h3v.s9.a24615e20004 from=translated src=- shape=20edc394 vocab=839adaee
+-/
 @[simp]
 lemma negInvolution_of (p : R[X]) :
     W.negInvolution (AdjoinRoot.of W.polynomial p) =
       AdjoinRoot.of W.polynomial p :=
   AdjoinRoot.lift_of (negInvolution_aux W)
 
+/--
+@isnad1 id=eq.0h3v.s10.ef3437c03e8a from=translated src=- shape=acc942de vocab=4ea7f680
+-/
 @[simp]
 lemma negInvolution_mk_C (p : R[X]) :
     W.negInvolution (AdjoinRoot.mk W.polynomial (C p)) =
       AdjoinRoot.mk W.polynomial (C p) :=
   negInvolution_of W p
 
-/-- The negation involution applied to `mk Y` gives `mk negPolynomial`.-/
+/-- The negation involution applied to `mk Y` gives `mk negPolynomial`.
+@isnad1 id=eq.0h2v.s9.bebf09883cce from=translated src=- shape=17c0082f vocab=7049e2b7
+-/
 @[simp]
 lemma negInvolution_mk_Y :
     W.negInvolution (CoordinateRing.mk W Y) =
@@ -89,7 +102,9 @@ lemma negInvolution_mk_Y :
   change W.negInvolution (AdjoinRoot.root W.polynomial) = _
   rw [negInvolution_root]
 
-/-- Applying negInvolution to `mk negPolynomial` gives `mk Y` (= root).-/
+/-- Applying negInvolution to `mk negPolynomial` gives `mk Y` (= root).
+@isnad1 id=eq.0h2v.s9.9fb788c5bbf4 from=translated src=- shape=c51c321e vocab=09014f0c
+-/
 lemma negInvolution_mk_negPolynomial :
     W.negInvolution (AdjoinRoot.mk W.polynomial W.negPolynomial) =
       AdjoinRoot.root W.polynomial := by
@@ -101,7 +116,9 @@ lemma negInvolution_mk_negPolynomial :
   rw [hmk, map_sub, map_neg, negInvolution_root, negInvolution_of, hmk]
   ring
 
-/-- The negation involution is involutive: applying it twice is the identity.-/
+/-- The negation involution is involutive: applying it twice is the identity.
+@isnad1 id=involuti.0h2v.s7.2562129b6448 from=translated src=- shape=10de890f vocab=cdb7cecf
+-/
 lemma negInvolution_involutive : Function.Involutive W.negInvolution := by
   intro x
   have h : W.negInvolution.comp W.negInvolution = RingHom.id _ := by
@@ -113,7 +130,9 @@ lemma negInvolution_involutive : Function.Involutive W.negInvolution := by
         RingHom.id_apply]
   exact RingHom.congr_fun h x
 
-/-- The negation involution applied to a scalar-multiplied element.-/
+/-- The negation involution applied to a scalar-multiplied element.
+@isnad1 id=eq.0h4v.s9.d2bcb2a3ddfe from=translated src=- shape=e91f9b01 vocab=7225b368
+-/
 lemma negInvolution_smul (p : R[X]) (f : W.CoordinateRing) :
     W.negInvolution (p • f) = p • W.negInvolution f := by
   rw [CoordinateRing.smul, map_mul, negInvolution_mk_C, ← CoordinateRing.smul]
@@ -145,7 +164,9 @@ private lemma smul_basis_eq_of_eq {p₁ q₁ p₂ q₂ : F[X]}
 
 open CoordinateRing
 
-/-- The negation involution applied to `p • 1 + q • Y` in the coordinate ring.-/
+/-- The negation involution applied to `p • 1 + q • Y` in the coordinate ring.
+@isnad1 id=eq.0h4v.s10.31700abc15f8 from=translated src=- shape=564df3f2 vocab=5db7a140
+-/
 lemma negInvolution_smul_basis (p q : F[X]) :
     W.negInvolution (p • (1 : W.CoordinateRing) + q • CoordinateRing.mk W (Y : F[X][Y])) =
       (p - q * (C W.a₁ * X + C W.a₃)) • (1 : W.CoordinateRing) +
@@ -155,7 +176,9 @@ lemma negInvolution_smul_basis (p q : F[X]) :
   ring
 
 /-- In a field of characteristic not 2, the negation involution fixes `f` iff `f` lies in the
-image of `F[X]` (i.e., `f` only depends on `x`, not `y`).-/
+image of `F[X]` (i.e., `f` only depends on `x`, not `y`).
+@isnad1 id=iff.0h3v.s8.c04da086cf3d from=translated src=- shape=7375e98b vocab=63fbb13e
+-/
 lemma negInvolution_eq_iff [NeZero (2 : F)] (f : W.CoordinateRing) :
     W.negInvolution f = f ↔ ∃ p : F[X], f = p • (1 : W.CoordinateRing) := by
   constructor

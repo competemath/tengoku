@@ -33,7 +33,9 @@ variable {p : ℕ} [NeZero p]
 variable {M : Type*} [AddCommGroup M] [Module (ZMod p) M]
 
 /-- The `i`-th character coefficient at `a`, multiplied back by `a ^ i`, leaves
-just the inverse of `|Delta|`.-/
+just the inverse of `|Delta|`.
+@isnad1 id=eq.0h3v.s7.d3fa9b1d9ccc from=translated src=- shape=4d488d52 vocab=3f5eccf8
+-/
 theorem characterProjectionCoefficient_mul_pow
     (i : ℕ) (a : Delta p) :
     characterProjectionCoefficient (p := p) i a * ((a : ZMod p) ^ i) =
@@ -71,7 +73,9 @@ private theorem characterProjection_apply_of_forall_apply_eq_smul
             smul_smul, ZMod.mul_inv_of_unit _ hcard, one_smul]
 
 /-- A character projection acts as the identity on its range, provided
-`|Delta|` is invertible in `ZMod p`.-/
+`|Delta|` is invertible in `ZMod p`.
+@isnad1 id=eq.2h5v.s9.91546d6a232d from=translated src=- shape=52f6f678 vocab=156d8ec7
+-/
 theorem characterProjection_apply_eq_self_of_mem_range
     (hcard : IsUnit (Fintype.card (Delta p) : ZMod p))
     (i : ℕ) (ρ : Delta p →* M ≃ₗ[ZMod p] M)
@@ -82,7 +86,9 @@ theorem characterProjection_apply_eq_self_of_mem_range
     fun a ↦ mem_characterProjection_range_apply (p := p) i ρ a hx
 
 /-- Conversely, an element satisfying the character eigenrelation lies in the
-projection range.-/
+projection range.
+@isnad1 id=mem.2h5v.s10.9ee55d90432d from=translated src=- shape=679ea1ea vocab=3d38595d
+-/
 theorem mem_characterProjection_range_of_forall_apply_eq_smul
     (hcard : IsUnit (Fintype.card (Delta p) : ZMod p))
     (i : ℕ) (ρ : Delta p →* M ≃ₗ[ZMod p] M)
@@ -91,7 +97,9 @@ theorem mem_characterProjection_range_of_forall_apply_eq_smul
     x ∈ LinearMap.range (characterProjection (p := p) i ρ) :=
   ⟨x, characterProjection_apply_of_forall_apply_eq_smul (p := p) hcard i ρ hx⟩
 
-/-- Idempotence of the character projection, as an elementwise statement.-/
+/-- Idempotence of the character projection, as an elementwise statement.
+@isnad1 id=eq.1h5v.s9.a5ddd6d5b3e2 from=translated src=- shape=cb009b82 vocab=bbe0a174
+-/
 theorem characterProjection_apply_characterProjection
     (hcard : IsUnit (Fintype.card (Delta p) : ZMod p))
     (i : ℕ) (ρ : Delta p →* M ≃ₗ[ZMod p] M) (x : M) :

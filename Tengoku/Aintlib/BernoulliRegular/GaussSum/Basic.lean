@@ -53,7 +53,9 @@ variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- **T025**: The Gauss sum of the trivial Dirichlet character modulo a
 prime `p`, paired with the standard additive character
-`ZMod.stdAddChar : AddChar (ZMod p) ℂ`, evaluates to `-1`.-/
+`ZMod.stdAddChar : AddChar (ZMod p) ℂ`, evaluates to `-1`.
+@isnad1 id=eq.0h1v.s6.af986c4aab66 from=translated src=- shape=6e72ae0e vocab=5907bc7f
+-/
 theorem gaussSum_one_stdAddChar :
     gaussSum (1 : DirichletCharacter ℂ p) (ZMod.stdAddChar (N := p)) = -1 := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -103,7 +105,9 @@ theorem gaussSum_one_stdAddChar :
 
 /-- **T026**: For a non-trivial Dirichlet character `χ` modulo a prime `p`,
 `τ(χ) · τ(χ̄) = χ(-1) · p`, where `τ(χ) = gaussSum χ ZMod.stdAddChar` is
-the classical Gauss sum.-/
+the classical Gauss sum.
+@isnad1 id=eq.1h2v.s7.6f173e2fbf97 from=translated src=- shape=75cb71e6 vocab=0e33c36f
+-/
 theorem gaussSum_mul_gaussSum_inv_stdAddChar
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     gaussSum χ (ZMod.stdAddChar (N := p)) *
@@ -141,7 +145,9 @@ theorem gaussSum_mul_gaussSum_inv_stdAddChar
   exact h3
 
 /-- The standard Jacobi-sum factorization specialized to Dirichlet characters
-modulo the prime `p` and the additive character `ZMod.stdAddChar`.-/
+modulo the prime `p` and the additive character `ZMod.stdAddChar`.
+@isnad1 id=eq.1h3v.s8.8130fb3015bf from=translated src=- shape=a91f9ce7 vocab=5b30f1b2
+-/
 theorem gaussSum_mul_gaussSum_eq_jacobiSum_mul_gaussSum_stdAddChar
     {χ φ : DirichletCharacter ℂ p} (hχφ : χ * φ ≠ 1) :
     gaussSum χ (ZMod.stdAddChar (N := p)) *
@@ -151,7 +157,9 @@ theorem gaussSum_mul_gaussSum_eq_jacobiSum_mul_gaussSum_stdAddChar
     (jacobiSum_mul_nontrivial hχφ (ZMod.stdAddChar (N := p))).symm
 
 /-- The Jacobi sum attached to two Dirichlet characters modulo the prime `p`
-does not vanish as soon as their product is nontrivial.-/
+does not vanish as soon as their product is nontrivial.
+@isnad1 id=ne.1h3v.s7.2bf5c4a5efad from=translated src=- shape=b8c41a42 vocab=a4f6dcf9
+-/
 theorem jacobiSum_ne_zero_stdAddChar
     {χ φ : DirichletCharacter ℂ p} (hχφ : χ * φ ≠ 1) :
     jacobiSum χ φ ≠ 0 := by
@@ -185,7 +193,9 @@ theorem jacobiSum_ne_zero_stdAddChar
 
 /-- **T027a**: For a prime modulus `p`, any non-trivial Dirichlet character
 is primitive. Follows from `χ.conductor ∣ p` and the fact that the only
-character factoring through `1` is the trivial character.-/
+character factoring through `1` is the trivial character.
+@isnad1 id=isprimit.1h2v.s6.c83688810e85 from=translated src=- shape=cb3718e5 vocab=792d9a6e
+-/
 theorem DirichletCharacter.isPrimitive_of_ne_one
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     χ.IsPrimitive := by
@@ -202,14 +212,18 @@ noncomputable def quadraticCharComplex : DirichletCharacter ℂ p :=
   (quadraticChar (ZMod p)).ringHomComp (Int.castRingHom ℂ)
 
 /-- **T023d1a**: The quadratic character modulo `p`, after base change to
-`ℂ`, is still quadratic.-/
+`ℂ`, is still quadratic.
+@isnad1 id=isquadra.0h1v.s4.b758794271fc from=translated src=- shape=4fbd66bd vocab=b8e5c501
+-/
 theorem quadraticCharComplex_isQuadratic :
     (quadraticCharComplex p).IsQuadratic := by
   simpa [quadraticCharComplex] using
     (quadraticChar_isQuadratic (F := ZMod p)).comp (Int.castRingHom ℂ)
 
 /-- **T023d1a**: For odd prime `p`, the quadratic character modulo `p` is
-nontrivial after base change to `ℂ`.-/
+nontrivial after base change to `ℂ`.
+@isnad1 id=ne.1h1v.s6.5465b795b044 from=translated src=- shape=2c47b15a vocab=00817c3e
+-/
 theorem quadraticCharComplex_ne_one (hp₂ : p ≠ 2) :
     quadraticCharComplex p ≠ 1 := by
   simpa [quadraticCharComplex] using
@@ -218,20 +232,26 @@ theorem quadraticCharComplex_ne_one (hp₂ : p ≠ 2) :
       (quadraticChar_ne_one (F := ZMod p) ((ZMod.ringChar_zmod_n p).substr hp₂))
 
 /-- **T023d1a**: The quadratic character modulo `p` is self-inverse after
-base change to `ℂ`.-/
+base change to `ℂ`.
+@isnad1 id=eq.0h1v.s5.b69de3e651dc from=translated src=- shape=ed03f30f vocab=1a9f5afb
+-/
 theorem quadraticCharComplex_inv :
     (quadraticCharComplex p)⁻¹ = quadraticCharComplex p := by
   simpa using
     (quadraticCharComplex_isQuadratic (p := p)).inv
 
 /-- **T023d1a**: Equivalently, the square of the quadratic character modulo
-`p` is the trivial character after base change to `ℂ`.-/
+`p` is the trivial character after base change to `ℂ`.
+@isnad1 id=eq.0h1v.s7.97f5621b6158 from=translated src=- shape=0169d367 vocab=d5e4981b
+-/
 theorem quadraticCharComplex_sq_eq_one :
     quadraticCharComplex p ^ 2 = 1 := by
   simpa using
     (quadraticCharComplex_isQuadratic (p := p)).sq_eq_one
 
-/-- **T023d1a**: The quadratic character at `-1` is given by `χ₄(p)`.-/
+/-- **T023d1a**: The quadratic character at `-1` is given by `χ₄(p)`.
+@isnad1 id=eq.1h1v.s7.a226ba0447d6 from=translated src=- shape=4f2eb5c8 vocab=44e68ef0
+-/
 theorem quadraticCharComplex_eval_neg_one_eq_chi4 (hp₂ : p ≠ 2) :
     quadraticCharComplex p (-1) = ZMod.χ₄ p := by
   rw [quadraticCharComplex, MulChar.ringHomComp_apply,
@@ -239,7 +259,9 @@ theorem quadraticCharComplex_eval_neg_one_eq_chi4 (hp₂ : p ≠ 2) :
   rfl
 
 /-- **T023d1a**: The value of the quadratic character at `-1` is determined
-by `p % 4`.-/
+by `p % 4`.
+@isnad1 id=eq.1h1v.s7.def8ad816bb9 from=translated src=- shape=0cb74d27 vocab=4f39c358
+-/
 theorem quadraticCharComplex_eval_neg_one (hp₂ : p ≠ 2) :
     quadraticCharComplex p (-1) = if p % 4 = 1 then 1 else -1 := by
   have hp_odd : p % 2 = 1 := by
@@ -249,14 +271,18 @@ theorem quadraticCharComplex_eval_neg_one (hp₂ : p ≠ 2) :
   simp [hp_odd]
 
 /-- **T023d1a**: If `p ≡ 1 (mod 4)`, the quadratic character takes the value
-`1` at `-1`.-/
+`1` at `-1`.
+@isnad1 id=eq.2h1v.s7.4618286d2142 from=translated src=- shape=ff70ea96 vocab=b14439d6
+-/
 theorem quadraticCharComplex_eval_neg_one_of_mod_four_eq_one (hp₂ : p ≠ 2)
     (hp₄ : p % 4 = 1) :
     quadraticCharComplex p (-1) = 1 := by
   simp [quadraticCharComplex_eval_neg_one (p := p) hp₂, hp₄]
 
 /-- **T023d1a**: If `p ≡ 3 (mod 4)`, the quadratic character takes the value
-`-1` at `-1`.-/
+`-1` at `-1`.
+@isnad1 id=eq.2h1v.s7.b217b28fe720 from=translated src=- shape=4b121156 vocab=b14439d6
+-/
 theorem quadraticCharComplex_eval_neg_one_of_mod_four_eq_three (hp₂ : p ≠ 2)
     (hp₄ : p % 4 = 3) :
     quadraticCharComplex p (-1) = -1 := by
@@ -264,7 +290,9 @@ theorem quadraticCharComplex_eval_neg_one_of_mod_four_eq_three (hp₂ : p ≠ 2)
 
 /-- **T023d1b**: The number of square roots of `a : ZMod p` is
 `1 + quadraticChar (ZMod p) a`, in the integer-valued normalization used by
-mathlib's quadratic-character API.-/
+mathlib's quadratic-character API.
+@isnad1 id=eq.1h2v.s8.b24a0ae7739c from=translated src=- shape=56fe248a vocab=efe08b69
+-/
 theorem quadraticChar_card_sqrts_zmod (hp₂ : p ≠ 2) (a : ZMod p) :
     (({x : ZMod p | x ^ 2 = a}.toFinset.card : ℤ)) =
       quadraticChar (ZMod p) a + 1 := by
@@ -272,7 +300,9 @@ theorem quadraticChar_card_sqrts_zmod (hp₂ : p ≠ 2) (a : ZMod p) :
     (quadraticChar_card_sqrts (F := ZMod p) ((ZMod.ringChar_zmod_n p).substr hp₂) a)
 
 /-- **T023d1b**: The same square-root counting identity, rewritten using the
-`ℂ`-valued quadratic character packaged for the quadratic Gauss-sum argument.-/
+`ℂ`-valued quadratic character packaged for the quadratic Gauss-sum argument.
+@isnad1 id=eq.1h2v.s8.f35c65b3acc3 from=translated src=- shape=3243bfe0 vocab=dee9e098
+-/
 theorem quadraticCharComplex_card_sqrts (hp₂ : p ≠ 2) (a : ZMod p) :
     (({x : ZMod p | x ^ 2 = a}.toFinset.card : ℂ)) =
       quadraticCharComplex p a + 1 := by
@@ -286,7 +316,9 @@ theorem quadraticCharComplex_card_sqrts (hp₂ : p ≠ 2) (a : ZMod p) :
 
 /-- **T023d1c**: The discrete Fourier transform of the square-root counting
 function is the quadratic exponential sum obtained by counting fibers of the
-map `x ↦ x^2`.-/
+map `x ↦ x^2`.
+@isnad1 id=eq.0h2v.s9.50872b91cc34 from=translated src=- shape=3f902cb5 vocab=4a122aad
+-/
 theorem dft_squareRootCount (k : ZMod p) :
     ZMod.dft (fun a : ZMod p ↦ (({x : ZMod p | x ^ 2 = a}.toFinset.card : ℂ))) k =
       ∑ x : ZMod p, ZMod.stdAddChar (N := p) (-(k * x ^ 2)) := by
@@ -324,7 +356,9 @@ theorem dft_squareRootCount (k : ZMod p) :
 
 /-- **T023d1c**: Rewriting the direct-counting Fourier transform identity in
 terms of `quadraticCharComplex p a + 1`, using the square-counting package
-from `T023d1b`.-/
+from `T023d1b`.
+@isnad1 id=eq.1h2v.s8.2ac8d810c37b from=translated src=- shape=8650cc2c vocab=99075440
+-/
 theorem dft_quadraticCharComplex_add_one (hp₂ : p ≠ 2) (k : ZMod p) :
     ZMod.dft (fun a : ZMod p ↦ quadraticCharComplex p a + 1) k =
       ∑ x : ZMod p, ZMod.stdAddChar (N := p) (-(k * x ^ 2)) := by
@@ -337,7 +371,9 @@ theorem dft_quadraticCharComplex_add_one (hp₂ : p ≠ 2) (k : ZMod p) :
   exact dft_squareRootCount (p := p) k
 
 /-- **T023d1d**: The discrete Fourier transform of the complex-valued
-quadratic character is the inverse character times its Gauss sum.-/
+quadratic character is the inverse character times its Gauss sum.
+@isnad1 id=eq.1h2v.s8.6e70e285f483 from=translated src=- shape=d418ec29 vocab=a9850bcc
+-/
 theorem dft_quadraticCharComplex_eq_gaussSum (hp₂ : p ≠ 2) (k : ZMod p) :
     ZMod.dft (quadraticCharComplex p) k =
       quadraticCharComplex p (-k) *
@@ -351,7 +387,9 @@ theorem dft_quadraticCharComplex_eq_gaussSum (hp₂ : p ≠ 2) (k : ZMod p) :
       (χ := quadraticCharComplex p) hprim k)
 
 /-- The discrete Fourier transform of the constant-one function on `ZMod p` is
-`p` at `0` and `0` away from `0`.-/
+`p` at `0` and `0` away from `0`.
+@isnad1 id=eq.0h2v.s8.93fa43d3916d from=translated src=- shape=ac764f38 vocab=3a223374
+-/
 theorem dft_const_one (k : ZMod p) :
     ZMod.dft (fun _ : ZMod p ↦ (1 : ℂ)) k = if k = 0 then p else 0 := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -374,7 +412,9 @@ theorem dft_const_one (k : ZMod p) :
 
 /-- **T023d1d**: The Fourier transform of the square-counting normalization
 `quadraticCharComplex p + 1` is the sum of the quadratic-character Gauss-sum
-term and the transform of the constant function.-/
+term and the transform of the constant function.
+@isnad1 id=eq.1h2v.s8.bd5cc3583640 from=translated src=- shape=e306967c vocab=25b07d52
+-/
 theorem dft_quadraticCharComplex_add_one_eq_gaussSum (hp₂ : p ≠ 2) (k : ZMod p) :
     ZMod.dft (fun a : ZMod p ↦ quadraticCharComplex p a + 1) k =
       quadraticCharComplex p (-k) *
@@ -386,7 +426,9 @@ theorem dft_quadraticCharComplex_add_one_eq_gaussSum (hp₂ : p ≠ 2) (k : ZMod
 
 /-- **T023d1d**: Away from `0`, the constant term vanishes, so the Fourier
 transform of `quadraticCharComplex p + 1` is exactly the quadratic Gauss-sum
-term.-/
+term.
+@isnad1 id=eq.2h2v.s8.7418704e95c3 from=translated src=- shape=b5600133 vocab=86e2c90b
+-/
 theorem dft_quadraticCharComplex_add_one_of_ne_zero (hp₂ : p ≠ 2)
     {k : ZMod p} (hk : k ≠ 0) :
     ZMod.dft (fun a : ZMod p ↦ quadraticCharComplex p a + 1) k =
@@ -394,7 +436,9 @@ theorem dft_quadraticCharComplex_add_one_of_ne_zero (hp₂ : p ≠ 2)
         gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) := by
   simpa [hk] using dft_quadraticCharComplex_add_one_eq_gaussSum (p := p) hp₂ k
 
-/-- Conjugating the standard additive character negates its input.-/
+/-- Conjugating the standard additive character negates its input.
+@isnad1 id=eq.0h2v.s7.fb757bbe358d from=translated src=- shape=ee43b1e7 vocab=3fe0aa72
+-/
 theorem conj_stdAddChar (a : ZMod p) :
   conj (ZMod.stdAddChar (N := p) a) = ZMod.stdAddChar (N := p) (-a) := by
   rw [ZMod.stdAddChar_apply, ← Circle.coe_inv_eq_conj, ← AddChar.map_neg_eq_inv,
@@ -402,7 +446,9 @@ theorem conj_stdAddChar (a : ZMod p) :
 
 /-- **T023d1e**: Specializing the two Fourier-transform computations at
 `k = -1` identifies the quadratic Gauss sum with the quadratic exponential sum
-`∑ x, stdAddChar (x^2)`.-/
+`∑ x, stdAddChar (x^2)`.
+@isnad1 id=eq.1h1v.s7.36a3fe586ec0 from=translated src=- shape=a51367c2 vocab=733cb55a
+-/
 theorem gaussSum_quadraticCharComplex_eq_squareExponentialSum (hp₂ : p ≠ 2) :
     gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) =
       ∑ x : ZMod p, ZMod.stdAddChar (N := p) (x ^ 2) := by
@@ -422,7 +468,9 @@ theorem gaussSum_quadraticCharComplex_eq_squareExponentialSum (hp₂ : p ≠ 2) 
 
 /-- **T023d1e**: Conjugating the quadratic Gauss sum multiplies it by the
 quadratic character evaluated at `-1`. Equivalently,
-`conj τ = quadraticCharComplex p (-1) * τ`.-/
+`conj τ = quadraticCharComplex p (-1) * τ`.
+@isnad1 id=eq.1h1v.s7.321860e97346 from=translated src=- shape=af7e8901 vocab=4e9223a9
+-/
 theorem conj_gaussSum_quadraticCharComplex_eq_eval_neg_one_mul (hp₂ : p ≠ 2) :
     conj (gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p))) =
       quadraticCharComplex p (-1) *
@@ -446,7 +494,9 @@ theorem conj_gaussSum_quadraticCharComplex_eq_eval_neg_one_mul (hp₂ : p ≠ 2)
             (k := (1 : ZMod p)) one_ne_zero
 
 /-- **T023d1e**: If `p ≡ 1 (mod 4)`, the quadratic Gauss sum is fixed by
-complex conjugation, hence is real.-/
+complex conjugation, hence is real.
+@isnad1 id=eq.2h1v.s6.eaeb468f847a from=translated src=- shape=87c5670b vocab=a2543a57
+-/
 theorem conj_gaussSum_quadraticCharComplex_eq_self_of_mod_four_eq_one
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 1) :
   conj (gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p))) =
@@ -455,7 +505,9 @@ theorem conj_gaussSum_quadraticCharComplex_eq_self_of_mod_four_eq_one
     quadraticCharComplex_eval_neg_one_of_mod_four_eq_one (p := p) hp₂ hp₄, one_mul]
 
 /-- **T023d1e**: If `p ≡ 3 (mod 4)`, the quadratic Gauss sum changes sign
-under complex conjugation, hence is purely imaginary.-/
+under complex conjugation, hence is purely imaginary.
+@isnad1 id=eq.2h1v.s6.b834a625a7e8 from=translated src=- shape=1978de0a vocab=9595fa69
+-/
 theorem conj_gaussSum_quadraticCharComplex_eq_neg_self_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
   conj (gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p))) =
@@ -464,7 +516,9 @@ theorem conj_gaussSum_quadraticCharComplex_eq_neg_self_of_mod_four_eq_three
     quadraticCharComplex_eval_neg_one_of_mod_four_eq_three (p := p) hp₂ hp₄, neg_one_mul]
 
 /-- **T023d1f**: The square of the quadratic Gauss sum is
-`quadraticCharComplex p (-1) * p`.-/
+`quadraticCharComplex p (-1) * p`.
+@isnad1 id=eq.1h1v.s7.efe49f6788ca from=translated src=- shape=2bff9471 vocab=0f041e21
+-/
 theorem gaussSum_quadraticCharComplex_sq (hp₂ : p ≠ 2) :
     gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) ^ 2 =
       quadraticCharComplex p (-1) * p := by
@@ -476,7 +530,9 @@ theorem gaussSum_quadraticCharComplex_sq (hp₂ : p ≠ 2) :
       (ZMod.isPrimitive_stdAddChar p)
 
 /-- **T023d1f**: If `p ≡ 1 (mod 4)`, then the quadratic Gauss sum is one of
-`±√p`.-/
+`±√p`.
+@isnad1 id=or.2h1v.s6.c91b4780cd9e from=translated src=- shape=db2bf6c6 vocab=fb1d6542
+-/
 theorem gaussSum_quadraticCharComplex_eq_or_neg_eq_sqrt_of_mod_four_eq_one
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 1) :
     gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) =
@@ -508,7 +564,9 @@ theorem gaussSum_quadraticCharComplex_eq_or_neg_eq_sqrt_of_mod_four_eq_one
     simp [τ, hr, hrneg]
 
 /-- **T023d1f**: If `p ≡ 3 (mod 4)`, then the quadratic Gauss sum is one of
-`± I * √p`.-/
+`± I * √p`.
+@isnad1 id=or.2h1v.s6.6c7565658fbb from=translated src=- shape=924fb453 vocab=e100a79f
+-/
 theorem gaussSum_quadraticCharComplex_eq_or_neg_eq_I_mul_sqrt_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) =
@@ -568,7 +626,9 @@ multiplies the Gauss sum by `χ⁻¹ a`. This encodes the action of the Galois
 automorphism `σ_a` on `τ(χ)`.
 
 In classical notation: `σ_a(τ(χ)) = χ⁻¹(a) · τ(χ)`, since applying `σ_a`
-to `ζ_p^b = stdAddChar b` gives `ζ_p^(ab) = (stdAddChar.mulShift a) b`.-/
+to `ζ_p^b = stdAddChar b` gives `ζ_p^(ab) = (stdAddChar.mulShift a) b`.
+@isnad1 id=eq.1h3v.s7.3708407dcc01 from=translated src=- shape=dc871f6b vocab=e3200db6
+-/
 theorem gaussSum_stdAddChar_mulShift {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1)
     (a : ZMod p) :
     gaussSum χ ((ZMod.stdAddChar : AddChar (ZMod p) ℂ).mulShift a) =
@@ -578,7 +638,9 @@ theorem gaussSum_stdAddChar_mulShift {χ : DirichletCharacter ℂ p} (hχ : χ �
 
 /-- **T027c (character-side)**: `χ a` is integral over `ℤ` for any Dirichlet
 character `χ : DirichletCharacter ℂ p`. Uses `χ^(p-1) = 1` + membership in
-`Algebra.adjoin ℤ {μ_{p-1}}`, which is contained in the integral closure.-/
+`Algebra.adjoin ℤ {μ_{p-1}}`, which is contained in the integral closure.
+@isnad1 id=isintegr.0h3v.s5.5e40218f2d88 from=translated src=- shape=de0d5c91 vocab=183632c5
+-/
 theorem DirichletCharacter.isIntegral_apply (χ : DirichletCharacter ℂ p) (a : ZMod p) :
     IsIntegral ℤ (χ a) := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -596,7 +658,9 @@ theorem DirichletCharacter.isIntegral_apply (χ : DirichletCharacter ℂ p) (a :
     (adjoin_le_integralClosure (hμ.isIntegral hp_sub) h_mem)
 
 /-- **T027c (additive-side)**: the standard additive character values are
-integral over `ℤ` (each is a `p`-th root of unity).-/
+integral over `ℤ` (each is a `p`-th root of unity).
+@isnad1 id=isintegr.0h2v.s6.131fb2c85da3 from=translated src=- shape=9ce9b882 vocab=08b545fc
+-/
 theorem ZMod.isIntegral_stdAddChar (a : ZMod p) :
     IsIntegral ℤ ((ZMod.stdAddChar : AddChar (ZMod p) ℂ) a) := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -608,7 +672,9 @@ theorem ZMod.isIntegral_stdAddChar (a : ZMod p) :
   simp [hx_pow]
 
 /-- **T027c**: the Gauss sum `τ(χ) = gaussSum χ ZMod.stdAddChar` for a
-Dirichlet character `χ` modulo a prime `p` is an algebraic integer.-/
+Dirichlet character `χ` modulo a prime `p` is an algebraic integer.
+@isnad1 id=isintegr.0h2v.s5.34cd7e440eaf from=translated src=- shape=a22a7d42 vocab=fefc5cd2
+-/
 theorem isIntegral_gaussSum_stdAddChar (χ : DirichletCharacter ℂ p) :
     IsIntegral ℤ (gaussSum χ (ZMod.stdAddChar : AddChar (ZMod p) ℂ)) := by
   simp only [gaussSum]
@@ -621,7 +687,9 @@ Stickelberger infrastructure: `ζ_{p(p-1)} := exp(2πi/(p(p-1))) ∈ ℂ`.-/
 noncomputable def stickelbergerComplexRoot : ℂ :=
   Complex.exp (2 * Real.pi * Complex.I / (p * (p - 1) : ℕ))
 
-/-- `stickelbergerComplexRoot p` is a primitive `p(p-1)`-th root of unity.-/
+/-- `stickelbergerComplexRoot p` is a primitive `p(p-1)`-th root of unity.
+@isnad1 id=isprimit.0h1v.s5.0817ce142b47 from=translated src=- shape=718eef93 vocab=1034d4ee
+-/
 theorem stickelbergerComplexRoot_isPrimitiveRoot :
     IsPrimitiveRoot (stickelbergerComplexRoot p) (p * (p - 1)) := by
   have hp_pos : 0 < p := hp.out.pos
@@ -633,7 +701,9 @@ theorem stickelbergerComplexRoot_isPrimitiveRoot :
 character `χ` modulo a prime `p` lies in `Algebra.adjoin ℤ {ζ}` where
 `ζ = stickelbergerComplexRoot p` is the canonical primitive `p(p-1)`-th
 root of unity `exp(2πi/(p(p-1)))`. This pins the integrality of `τ(χ)`
-to a concrete subring of `ℂ`, one step toward Stickelberger's theorem.-/
+to a concrete subring of `ℂ`, one step toward Stickelberger's theorem.
+@isnad1 id=mem.0h2v.s6.c7ba6cda6b82 from=translated src=- shape=40ed2ada vocab=3efeed1b
+-/
 theorem gaussSum_mem_algebraAdjoin_stickelbergerComplexRoot
     (χ : DirichletCharacter ℂ p) :
     gaussSum χ (ZMod.stdAddChar : AddChar (ZMod p) ℂ) ∈
@@ -686,7 +756,9 @@ theorem gaussSum_mem_algebraAdjoin_stickelbergerComplexRoot
       (Algebra.self_mem_adjoin_singleton _ _) _) _
 
 /-- **T027d1** (existential form): the Gauss sum `τ(χ)` lies in
-`Algebra.adjoin ℤ {ζ}` for some primitive `p(p-1)`-th root of unity `ζ`.-/
+`Algebra.adjoin ℤ {ζ}` for some primitive `p(p-1)`-th root of unity `ζ`.
+@isnad1 id=ex.0h2v.s6.3012e40ef5bd from=translated src=- shape=1057badd vocab=a02e64b0
+-/
 theorem gaussSum_mem_algebraAdjoin_primitiveRoot_p_mul_pm1
     (χ : DirichletCharacter ℂ p) :
     ∃ ζ : ℂ, IsPrimitiveRoot ζ (p * (p - 1)) ∧

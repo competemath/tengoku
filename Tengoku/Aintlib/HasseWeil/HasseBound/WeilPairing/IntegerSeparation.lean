@@ -35,7 +35,9 @@ namespace HasseWeil.WeilPairing
 The arithmetic core of the Route-2 endgame: a nonzero integer has only finitely many prime
 divisors, but there are infinitely many primes `≠ p`, so if every such prime divides `D` then
 `D = 0`.  (Witness: choose a prime `ℓ ≥ max(|D|+1, p+1)`; it is `≠ p` and exceeds `|D|`, yet
-`ℓ ∣ D` forces `ℓ ≤ |D|` when `D ≠ 0`.)-/
+`ℓ ∣ D` forces `ℓ ≤ |D|` when `D ≠ 0`.)
+@isnad1 id=eq.1h2v.s4.d28a4af0ef2b from=translated src=- shape=15ba0f89 vocab=89026490
+-/
 theorem int_eq_zero_of_dvd_all_primes_ne {D : ℤ} {p : ℕ}
     (h : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p → (ℓ : ℤ) ∣ D) : D = 0 := by
   by_contra hD
@@ -55,7 +57,9 @@ theorem int_eq_zero_of_dvd_all_primes_ne {D : ℤ} {p : ℕ}
 
 If `A ≡ B (mod ℓ)` (as elements of `ZMod ℓ`) for every prime `ℓ ≠ p`, then `A = B` as integers.
 This is the Route-2 endgame: with `A = deg(rπ − s)` and `B = qr² − t·rs + s²`, the per-`ℓ`
-determinant–degree congruence from the finite-level Weil pairing forces the integer identity.-/
+determinant–degree congruence from the finite-level Weil pairing forces the integer identity.
+@isnad1 id=eq.1h3v.s5.1649a0f205c9 from=translated src=- shape=d1d78f32 vocab=535311de
+-/
 theorem int_eq_of_congr_all_primes_ne {A B : ℤ} {p : ℕ}
     (h : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p → (A : ZMod ℓ) = (B : ZMod ℓ)) : A = B := by
   have hsub : A - B = 0 := by

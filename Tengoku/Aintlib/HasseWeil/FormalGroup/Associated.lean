@@ -62,7 +62,9 @@ polynomial and apply `MvPolynomial.eval₂_add`, which is unconditional. -/
 /-- **`Ĝ_a(M)` has `+_F = +`** (Silverman IV.3.1.1, operation form).
 
 For the additive formal group `F(X, Y) = X + Y` and `x, y ∈ M`, the formal-group
-operation `evalAdd x y` coincides with the underlying ring addition.-/
+operation `evalAdd x y` coincides with the underlying ring addition.
+@isnad1 id=eq.0h3v.s7.01d5f17ab43d from=translated src=- shape=45307083 vocab=6d552d08
+-/
 theorem evalAdd_additiveFormalGroup (x y : maximalIdeal R) :
     (additiveFormalGroup R).evalAdd x y = x.1 + y.1 := by
   change MvPowerSeries.eval₂ (RingHom.id R) (![x.1, y.1] : Fin 2 → R)
@@ -81,7 +83,9 @@ theorem evalAdd_additiveFormalGroup (x y : maximalIdeal R) :
 /-- **`Ĝ_m(M)` has `x +_F y = x + y + x·y`** (Silverman IV.3.1.2, operation form).
 
 For the multiplicative formal group `F(X, Y) = X + Y + XY` and `x, y ∈ M`, the
-formal-group operation evaluates to `x + y + x·y`.-/
+formal-group operation evaluates to `x + y + x·y`.
+@isnad1 id=eq.0h3v.s8.0958285643a1 from=translated src=- shape=bdd9dbf4 vocab=c1785110
+-/
 theorem evalAdd_multiplicativeFormalGroup (x y : maximalIdeal R) :
     (multiplicativeFormalGroup R).evalAdd x y = x.1 + y.1 + x.1 * y.1 := by
   change MvPowerSeries.eval₂ (RingHom.id R) (![x.1, y.1] : Fin 2 → R)
@@ -102,7 +106,9 @@ theorem evalAdd_multiplicativeFormalGroup (x y : maximalIdeal R) :
 
 The map `x ↦ 1 + x` between `M` and `1 + M` sends the formal-group operation
 `x +_F y = x + y + x·y` to ordinary multiplication:
-`1 + (x +_F y) = (1 + x)·(1 + y)`.-/
+`1 + (x +_F y) = (1 + x)·(1 + y)`.
+@isnad1 id=eq.0h3v.s8.67c0a7e33df1 from=translated src=- shape=55c27f2d vocab=c1785110
+-/
 theorem evalAdd_multiplicativeFormalGroup_one_add (x y : maximalIdeal R) :
     1 + (multiplicativeFormalGroup R).evalAdd x y = (1 + x.1) * (1 + y.1) := by
   rw [evalAdd_multiplicativeFormalGroup x y]
@@ -123,7 +129,9 @@ variable [IsLinearTopology R R] [T2Space R] [CompleteSpace R]
 /-- **`Ĝ_a(M)` has `-_F = -`** (Silverman IV.3.1.1).
 
 For the additive formal group, the formal-group negation `evalNeg x` coincides
-with the underlying ring negation.-/
+with the underlying ring negation.
+@isnad1 id=eq.1h2v.s7.b1e057302f40 from=translated src=- shape=46105dfb vocab=19bd5d5e
+-/
 theorem evalNeg_additiveFormalGroup
     (hAdic : IsAdic (maximalIdeal R))
     (x : maximalIdeal R) :
@@ -151,7 +159,9 @@ linear terms) or in `M^{2n} ⊆ M^n` (from higher-order terms). -/
 
 omit [IsUniformAddGroup R] [IsLinearTopology R R] [T2Space R] [CompleteSpace R] in
 /-- Each power `(maximalIdeal R)^n` is closed in the `M`-adic topology: it is one
-of the basic open neighbourhoods of `0`, hence also closed.-/
+of the basic open neighbourhoods of `0`, hence also closed.
+@isnad1 id=isclosed.1h2v.s7.cee8f87e5782 from=translated src=- shape=fae0b8be vocab=b2f77bce
+-/
 lemma maximalIdeal_pow_isClosed
     (hAdic : IsAdic (maximalIdeal R)) (n : ℕ) :
     IsClosed (((maximalIdeal R) ^ n : Ideal R) : Set R) :=
@@ -165,7 +175,9 @@ Every term `coeff d F.toSeries * ∏ s, (![x,y] s)^(d s)` of the `hasSum`
 decomposition lies in `M^n`:
   * `d = 0`: `coeff 0 F.toSeries = 0` (constant coefficient of a formal group law).
   * `d ≠ 0`: pick any `s` with `d s ≥ 1`, then `(![x,y] s)^(d s) ∈ M^n` by
-    `Ideal.pow_mem_of_mem`, so the whole product is in `M^n`.-/
+    `Ideal.pow_mem_of_mem`, so the whole product is in `M^n`.
+@isnad1 id=mem.3h5v.s9.6656cd34e684 from=translated src=- shape=c88ec8e2 vocab=e386b671
+-/
 theorem FormalGroup.evalAdd_pow_mem
     (hAdic : IsAdic (maximalIdeal R))
     (F : FormalGroup R) (n : ℕ) {x y : maximalIdeal R}
@@ -206,7 +218,9 @@ theorem FormalGroup.evalAdd_pow_mem
 Each term `coeff k F.inverse * x.1 ^ k` of the `hasSum` for
 `PowerSeries.eval₂ id x.1 F.inverse` lies in `M^n`:
   * `k = 0`: `coeff 0 F.inverse = 0`.
-  * `k ≥ 1`: `x.1 ^ k ∈ M^n` by `Ideal.pow_mem_of_mem`.-/
+  * `k ≥ 1`: `x.1 ^ k ∈ M^n` by `Ideal.pow_mem_of_mem`.
+@isnad1 id=mem.2h4v.s8.05bad4ab0510 from=translated src=- shape=bbe1cc3b vocab=be1b31f2
+-/
 theorem FormalGroup.evalNeg_pow_mem
     (hAdic : IsAdic (maximalIdeal R))
     (F : FormalGroup R) (n : ℕ) {x : maximalIdeal R}
@@ -244,7 +258,9 @@ noncomputable def FormalGroup.evalGroup_powerIdeal
   add_mem' := fun {x y} hx hy ↦ F.evalAdd_pow_mem hAdic n hx hy
   neg_mem' := fun {x} hx ↦ F.evalNeg_pow_mem hAdic n hx
 
-/-- The `F(M^n)` filtration is monotone: `m ≤ n ⇒ F(M^n) ⊆ F(M^m)`.-/
+/-- The `F(M^n)` filtration is monotone: `m ≤ n ⇒ F(M^n) ⊆ F(M^m)`.
+@isnad1 id=le.2h4v.s7.e4424e980411 from=translated src=- shape=0f8de661 vocab=74b75983
+-/
 theorem FormalGroup.evalGroup_powerIdeal_mono
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R)) {m n : ℕ} (hmn : m ≤ n) :
     F.evalGroup_powerIdeal hAdic n ≤ F.evalGroup_powerIdeal hAdic m := by
@@ -355,7 +371,9 @@ private theorem nsmul_val_succ
 
 /-- **nsmul/formal-[n] bridge**. On the wrapper `F.EvalGroup hAdic`, the
 `AddGroup` scalar action `n • x` agrees (at the underlying ring level) with
-`PowerSeries.eval₂ (RingHom.id R) x.val.1 (F.mulByNatHom n).toSeries`.-/
+`PowerSeries.eval₂ (RingHom.id R) x.val.1 (F.mulByNatHom n).toSeries`.
+@isnad1 id=eq.1h4v.s8.e60ec31553f7 from=translated src=- shape=ee1e140b vocab=175168b9
+-/
 theorem FormalGroup.EvalGroup.nsmul_val
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R))
     (n : ℕ) (x : F.EvalGroup hAdic) :
@@ -518,7 +536,9 @@ over `d : Fin 2 →₀ ℕ`. Split the index set into the "low-degree" finset
 `S = {0, single 0 1, single 1 1}` and its complement. The low-degree sum is
 `0 + x + y = x + y` (using `constantCoeff F = 0`, `coeff_10 F = coeff_01 F = 1`).
 The tail sum lies in `M^(n+1)` because for every `d` with `d 0 + d 1 ≥ 2`,
-the monomial `x^(d 0) * y^(d 1)` sits in `M^(n*(d 0 + d 1)) ⊆ M^(2n) ⊆ M^(n+1)`.-/
+the monomial `x^(d 0) * y^(d 1)` sits in `M^(n*(d 0 + d 1)) ⊆ M^(2n) ⊆ M^(n+1)`.
+@isnad1 id=mem.4h5v.s9.283d1175f198 from=translated src=- shape=c0d51ee5 vocab=b9ba5860
+-/
 theorem FormalGroup.evalAdd_sub_add_mem_pow_succ
     (hAdic : IsAdic (maximalIdeal R))
     (F : FormalGroup R) {n : ℕ} (hn : 1 ≤ n)
@@ -574,7 +594,9 @@ from ordinary negation `-x` by an element of `M^(n+1)`:
 
 This follows from applying the congruence `F(u, v) ≡ u + v (mod M^(n+1))` to
 `u := x` and `v := F.evalNeg x` (which lies in `M^n`), noting that
-`F(x, F.evalNeg x) = 0` by the inverse axiom.-/
+`F(x, F.evalNeg x) = 0` by the inverse axiom.
+@isnad1 id=mem.3h4v.s8.2c03a7043b7f from=translated src=- shape=5000a647 vocab=d716aaab
+-/
 theorem FormalGroup.evalNeg_add_mem_pow_succ
     (hAdic : IsAdic (maximalIdeal R))
     (F : FormalGroup R) {n : ℕ} (hn : 1 ≤ n)
@@ -620,7 +642,9 @@ noncomputable def FormalGroup.evalGroup_powerIdeal_toQuot
     exact Ideal.Quotient.eq.mpr (F.evalAdd_sub_add_mem_pow_succ hAdic hn x.2 y.2)
 
 /-- The kernel of `evalGroup_powerIdeal_toQuot` is `F(M^(n+1))` embedded in
-`F(M^n)` via `AddSubgroup.addSubgroupOf`.-/
+`F(M^n)` via `AddSubgroup.addSubgroupOf`.
+@isnad1 id=eq.2h3v.s9.431c89519634 from=translated src=- shape=d5766d90 vocab=cd7094b9
+-/
 theorem FormalGroup.evalGroup_powerIdeal_toQuot_ker
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R)) {n : ℕ} (hn : 1 ≤ n) :
     (F.evalGroup_powerIdeal_toQuot hAdic hn).ker =
@@ -638,7 +662,9 @@ theorem FormalGroup.evalGroup_powerIdeal_toQuot_ker
     exact (Ideal.Quotient.eq_zero_iff_mem).mpr hx
 
 /-- The image of `evalGroup_powerIdeal_toQuot` is `Ideal.map (Ideal.Quotient.mk _) M^n`
-— i.e., the elements of `R / M^(n+1)` representable by some `m ∈ M^n`.-/
+— i.e., the elements of `R / M^(n+1)` representable by some `m ∈ M^n`.
+@isnad1 id=eq.2h3v.s11.f3ff5b0ee6f0 from=translated src=- shape=2c52b0a7 vocab=b62cfbf9
+-/
 theorem FormalGroup.evalGroup_powerIdeal_toQuot_range
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R)) {n : ℕ} (hn : 1 ≤ n) :
     (F.evalGroup_powerIdeal_toQuot hAdic hn).range =
@@ -718,7 +744,9 @@ For `a ∈ M`, if `PowerSeries.eval₂ id a.1 [n].toSeries = 0`, then `a.1 = 0`.
 
 The proof applies `eval₂ id a.1` to the series-level left-inverse identity
 `subst [n].toSeries invSeries = X` (from `Hom.lean`), then uses the
-substitution bridge `eval₂_subst_bridge` to transport the evaluation through.-/
+substitution bridge `eval₂_subst_bridge` to transport the evaluation through.
+@isnad1 id=eq.3h4v.s8.822223c0ac49 from=translated src=- shape=bd3a15dd vocab=8c1566a7
+-/
 theorem FormalGroup.eval_mulByNatHom_injective_of_unit
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R))
     {n : ℕ} (hn : IsUnit ((n : ℕ) : R))
@@ -763,7 +791,9 @@ theorem FormalGroup.eval_mulByNatHom_injective_of_unit
 
 /-- **nsmul injectivity on `F.EvalGroup hAdic`** (when `(n : R)` is a unit).
 
-For `x : F.EvalGroup hAdic`, if `n • x = 0`, then `x = 0`.-/
+For `x : F.EvalGroup hAdic`, if `n • x = 0`, then `x = 0`.
+@isnad1 id=eq.3h4v.s8.9098b975c02c from=translated src=- shape=44c8379e vocab=b94a5f72
+-/
 theorem FormalGroup.EvalGroup.nsmul_injective_of_unit
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R))
     {n : ℕ} (hn : IsUnit ((n : ℕ) : R))
@@ -786,7 +816,9 @@ theorem FormalGroup.EvalGroup.nsmul_injective_of_unit
 has order a power of `p`, provided the residue field has characteristic `p`.
 
 The residue-characteristic hypothesis is packaged as
-`hR : ∀ m : ℕ, ¬ p ∣ m → IsUnit ((m : ℕ) : R)`.-/
+`hR : ∀ m : ℕ, ¬ p ∣ m → IsUnit ((m : ℕ) : R)`.
+@isnad1 id=ex.4h4v.s7.5975541cd059 from=translated src=- shape=e329feeb vocab=784a0ac5
+-/
 theorem FormalGroup.EvalGroup.addOrderOf_isPowOf
     (F : FormalGroup R) (hAdic : IsAdic (maximalIdeal R))
     (p : ℕ) (hp : p.Prime)
@@ -949,7 +981,9 @@ into the maximal ideal after reducing mod the residue field). -/
 omit [UniformSpace R] [IsUniformAddGroup R] [IsTopologicalRing R]
   [IsLinearTopology R R] [T2Space R] [CompleteSpace R] in
 /-- Helper: in a local ring with residue field of characteristic `p`, any
-natural number `m` not divisible by `p` is a unit when cast to `R`.-/
+natural number `m` not divisible by `p` is a unit when cast to `R`.
+@isnad1 id=isunit.1h3v.s6.227499edd0d7 from=translated src=- shape=c461742d vocab=0bd3b375
+-/
 theorem isUnit_natCast_of_not_dvd_residueChar (p : ℕ)
     [CharP (IsLocalRing.ResidueField R) p] {m : ℕ} (hm : ¬ p ∣ m) :
     IsUnit ((m : ℕ) : R) := by
@@ -964,7 +998,9 @@ theorem isUnit_natCast_of_not_dvd_residueChar (p : ℕ)
 /-- **Silverman IV.6.1** (residue-char form of T-IV-3-007).
 
 For a formal group `F` over a complete local ring `R` whose residue field has
-characteristic `p`, every torsion element of `F(M)` has order a power of `p`.-/
+characteristic `p`, every torsion element of `F(M)` has order a power of `p`.
+@isnad1 id=ex.3h4v.s7.80c4660a6a9a from=translated src=- shape=75452106 vocab=a15126b6
+-/
 theorem FormalGroup.EvalGroup.addOrderOf_isPowOf_residueChar
     (F : FormalGroup R) (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (p : ℕ) (hp : p.Prime) [CharP (IsLocalRing.ResidueField R) p]

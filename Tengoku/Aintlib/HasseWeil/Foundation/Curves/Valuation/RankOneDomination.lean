@@ -44,7 +44,9 @@ and `DiscreteValuationRing` API) so that the place classification need not impor
 namespace HasseWeil.Curves
 
 /-- **A surjective `ℤᵐ⁰`-valued valuation is nontrivial**: surjectivity hits `exp 1`, an
-element with valuation `≠ 0, 1`.-/
+element with valuation `≠ 0, 1`.
+@isnad1 id=isnontri.1h2v.s6.ebe9c4a31af2 from=translated src=- shape=a4c0ccb5 vocab=76583cc6
+-/
 theorem isNontrivial_of_surjective_withZeroInt {F : Type*} [Field F]
     (v : Valuation F (WithZero (Multiplicative ℤ))) (hv : Function.Surjective v) :
     v.IsNontrivial := by
@@ -56,7 +58,9 @@ theorem isNontrivial_of_surjective_withZeroInt {F : Type*} [Field F]
       (WithZero.exp_zero).symm, Ne, WithZero.exp_inj]; norm_num
 
 /-- **The valuation subring of a surjective `ℤᵐ⁰`-valued valuation is proper** (`≠ ⊤`), from
-`isNontrivial_of_surjective_withZeroInt` via `Valuation.valuationSubring_eq_top_iff`.-/
+`isNontrivial_of_surjective_withZeroInt` via `Valuation.valuationSubring_eq_top_iff`.
+@isnad1 id=ne.1h2v.s6.18a0747c08f8 from=translated src=- shape=e338d2d3 vocab=0d7446dd
+-/
 theorem valuationSubring_ne_top_of_surjective_withZeroInt {F : Type*} [Field F]
     (v : Valuation F (WithZero (Multiplicative ℤ))) (hv : Function.Surjective v) :
     v.valuationSubring ≠ ⊤ := fun htop =>
@@ -67,7 +71,9 @@ theorem valuationSubring_ne_top_of_surjective_withZeroInt {F : Type*} [Field F]
 `ℤᵐ⁰ = WithZero (Multiplicative ℤ)`-valued valuation on a field has a *discrete valuation ring* as
 its valuation subring (rank one).  Surjectivity onto `ℤᵐ⁰` forces the value group to be all of `⊤`,
 hence cyclic and nontrivial, whence `Valuation.valuationSubring_isDiscreteValuationRing` applies.
-This is the rank-one input demanded by `rankOne_valuationSubring_le_eq_of_ne_top`.-/
+This is the rank-one input demanded by `rankOne_valuationSubring_le_eq_of_ne_top`.
+@isnad1 id=isdiscre.1h2v.s6.b1a3daaa4447 from=translated src=- shape=287eacfd vocab=48671435
+-/
 theorem valuationSubring_isDVR_of_surjective_withZeroInt
     {F : Type*} [Field F] (v : Valuation F (WithZero (Multiplicative ℤ)))
     (hv : Function.Surjective v) :
@@ -153,7 +159,9 @@ identity: writing `v e = exp 1` (surjectivity of `v`) and `w x = (w e)^{log(v x)
 positive (`1 < w e` from `1 < v e`), so `c = 1` (`log_w_uniformizer_eq_one`) and
 `w x = exp(log(v x)) = v x`.  Used to upgrade a valuation *equivalence* (from
 valuation-subring maximality) to the *value identity* of two normalized adic
-valuations on `K(C)`.-/
+valuations on `K(C)`.
+@isnad1 id=eq.3h3v.s7.1e6b6948d606 from=translated src=- shape=e30be7b7 vocab=72375f7c
+-/
 theorem Valuation.isEquiv_iff_eq_of_surjective_withZeroInt
     {F : Type*} [Field F] (v w : Valuation F (WithZero (Multiplicative ℤ)))
     (hv : Function.Surjective v) (hw : Function.Surjective w) (h : v.IsEquiv w) :
@@ -181,7 +189,9 @@ in the `LocalSubring` domination order), then `v.IsEquiv w` — because every
 valuation subring is maximal for domination (`ValuationSubring.isMax_toLocalSubring`),
 so `O_v ≤ O_w` forces `O_v = O_w`, whence the valuations are equivalent
 (`Valuation.isEquiv_iff_valuationSubring`). This is the "the reverse maximal-order
-inclusion is FREE" step of the valuation identification.-/
+inclusion is FREE" step of the valuation identification.
+@isnad1 id=isequiv.1h4v.s6.d2ef90e1265d from=translated src=- shape=335e4b3e vocab=ffbd5b47
+-/
 theorem Valuation.isEquiv_of_valuationSubring_le
     {F : Type*} [Field F] {Γ₀ : Type*} [LinearOrderedCommGroupWithZero Γ₀]
     (v w : Valuation F Γ₀)
@@ -242,7 +252,9 @@ A DVR has exactly two primes, `⊥` and the maximal ideal
 (`IsDiscreteValuationRing.iff_pid_with_one_nonzero_prime`: `∃! P ≠ ⊥, P.IsPrime`).
 The bottom prime gives the whole field (`ofPrime A ⊥ = ⊤`), the maximal ideal gives
 `A` (`ofPrime A m_A = A`). So `A ≤ B`, `B ≠ ⊤` forces `idealOfLE A B = m_A`, whence
-`B = ofPrime A m_A = A`.-/
+`B = ofPrime A m_A = A`.
+@isnad1 id=eq.2h3v.s6.dd3dfe767b3e from=translated src=- shape=e5ec68d1 vocab=ec7155f2
+-/
 theorem rankOne_valuationSubring_le_eq_of_ne_top {L : Type*} [Field L]
     (A B : ValuationSubring L) [IsDiscreteValuationRing A]
     (hAB : A ≤ B) (hB : B ≠ ⊤) : A = B := by

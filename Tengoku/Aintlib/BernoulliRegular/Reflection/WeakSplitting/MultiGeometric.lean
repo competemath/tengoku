@@ -51,7 +51,9 @@ open Filter Topology Finset
 
 /--
 The tsum of the constant function `1 : ℂ` over the function type `β → ℕ`,
-when `β` is empty, equals `1`. The function type is then a singleton.-/
+when `β` is empty, equals `1`. The function type is then a singleton.
+@isnad1 id=eq.0h1v.s5.a79fb7a67eaf from=translated src=- shape=3de35c51 vocab=3593c6fe
+-/
 theorem tsum_const_one_of_isEmpty_pi {β : Type*} [IsEmpty β] :
     ∑' (_ : β → ℕ), (1 : ℂ) = 1 := by
   have : Unique (β → ℕ) := Pi.uniqueOfIsEmpty _
@@ -171,7 +173,9 @@ private lemma norm_summable_and_prod_eq {α : Type*} (T : Finset α)
 **Norm-summability of the multivariate geometric series (REF-21c2a2A).**
 For a finset `T` and a complex family `z` with `‖z a‖ < 1` on `T`, the
 function `f ↦ ‖∏ a ∈ T.attach, (z a.1) ^ (f a)‖` is summable over
-`↥T → ℕ`.-/
+`↥T → ℕ`.
+@isnad1 id=summable.1h3v.s7.1bf3c26439b5 from=translated src=- shape=b681340d vocab=b2cd2cb1
+-/
 theorem norm_summable_prod_pow {α : Type*} (T : Finset α) (z : α → ℂ)
     (hz : ∀ a ∈ T, ‖z a‖ < 1) :
     Summable (fun f : ↥T → ℕ ↦ ‖∏ a ∈ T.attach, (z a.1) ^ (f a)‖) :=
@@ -180,7 +184,9 @@ theorem norm_summable_prod_pow {α : Type*} (T : Finset α) (z : α → ℂ)
 /--
 **Multidimensional geometric-series identity (REF-21c2a2A).** For a finset
 `T` and a complex family `z` with `‖z a‖ < 1` on `T`, the product of inverse
-local factors equals the tsum over `↥T → ℕ` of the multivariate monomial.-/
+local factors equals the tsum over `↥T → ℕ` of the multivariate monomial.
+@isnad1 id=eq.1h3v.s7.6cabb7693214 from=translated src=- shape=56b43bcc vocab=fff52402
+-/
 theorem prod_one_sub_inv_eq_tsum_pi {α : Type*} (T : Finset α) (z : α → ℂ)
     (hz : ∀ a ∈ T, ‖z a‖ < 1) :
     ∏ a ∈ T, (1 - z a)⁻¹ =

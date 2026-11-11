@@ -54,7 +54,9 @@ then `Dν = q·r² − t·rs + s²` as integers.
 
 Proof: by the 2×2 identity (`det_smul_sub_smul_one_fin_two_of`), `det(r·M − s·1) = q·r² − t·rs + s²`
 in `ZMod ℓ`, so the hypothesis gives `Dν ≡ q·r² − t·rs + s² (mod ℓ)` for every prime `ℓ ≠ p`;
-integer separation (`int_eq_of_congr_all_primes_ne`) lifts this to an equality of integers.-/
+integer separation (`int_eq_of_congr_all_primes_ne`) lifts this to an equality of integers.
+@isnad1 id=eq.1h6v.s9.6f57403ced95 from=translated src=- shape=55603090 vocab=8c870c01
+-/
 theorem deg_eq_of_frobMatrix_data {p : ℕ} {q t Dν r s : ℤ}
     (h : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →
       ∃ M : Matrix (Fin 2) (Fin 2) (ZMod ℓ),
@@ -71,7 +73,9 @@ theorem deg_eq_of_frobMatrix_data {p : ℕ} {q t Dν r s : ℤ}
 
 /-- **Non-negativity corollary (Leaf 1).** If additionally `Dν` is a degree (a non-negative
 integer, e.g. `Dν = deg(rπ − s)`), the residual yields `0 ≤ q·r² − t·rs + s²` — exactly the Hasse
-quadratic-form non-negativity.-/
+quadratic-form non-negativity.
+@isnad1 id=le.2h6v.s9.b9314387d417 from=translated src=- shape=59a2bff2 vocab=2ed69bdb
+-/
 theorem qf_nonneg_of_frobMatrix_data {p : ℕ} {q t Dν r s : ℤ} (hDν : 0 ≤ Dν)
     (h : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →
       ∃ M : Matrix (Fin 2) (Fin 2) (ZMod ℓ),
@@ -88,7 +92,9 @@ trace.  We package the residual purely in terms of `det M = q`, `det(1 − M) = 
 
 /-- **Per-`ℓ` congruence from the det-only Frobenius data.** If `M` (the matrix of Frobenius on
 `E[ℓ]`) has `det M = q`, `det(1 − M) = q+1−t` (`= #E`), and `det(rM − sI) = Dν`, then
-`Dν ≡ qr² − trs + s² (mod ℓ)`.-/
+`Dν ≡ qr² − trs + s² (mod ℓ)`.
+@isnad1 id=eq.3h7v.s9.a0dd52b6ab27 from=translated src=- shape=4a7ca429 vocab=76d9ca32
+-/
 theorem frob_det_congruence {ℓ : ℕ} {M : Matrix (Fin 2) (Fin 2) (ZMod ℓ)} {q t Dν r s : ℤ}
     (hdetM : M.det = (q : ZMod ℓ))
     (hdet1M : (1 - M).det = ((q + 1 - t : ℤ) : ZMod ℓ))
@@ -105,7 +111,9 @@ theorem frob_det_congruence {ℓ : ℕ} {M : Matrix (Fin 2) (Fin 2) (ZMod ℓ)} 
 
 /-- **Route-2A det-only reduction → `deg(rπ − s) = N`.** From the per-`ℓ` det-only Frobenius data
 (for every prime `ℓ ≠ p`), the signed degree identity `deg(rπ − s) = q·r² − t·rs + s²` follows. This
-is the interface the finite-level Weil pairing discharges via `PairingDet`.-/
+is the interface the finite-level Weil pairing discharges via `PairingDet`.
+@isnad1 id=eq.1h6v.s9.45e5ab2ec6e0 from=translated src=- shape=6b757bcb vocab=2579f62b
+-/
 theorem deg_eq_of_frob_det_data {p : ℕ} {q t Dν r s : ℤ}
     (h : ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →
       ∃ M : Matrix (Fin 2) (Fin 2) (ZMod ℓ),

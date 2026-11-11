@@ -47,6 +47,9 @@ def projection
     M →ₗ[ZMod p] M :=
   ∑ a : Delta p, c a • (ρ a : M →ₗ[ZMod p] M)
 
+/--
+@isnad1 id=eq.0h5v.s10.3855f6133aff from=translated src=- shape=391d9577 vocab=de46a976
+-/
 @[simp]
 theorem projection_apply
     (ρ : Delta p →* M ≃ₗ[ZMod p] M) (c : Delta p → ZMod p) (x : M) :
@@ -65,7 +68,9 @@ def characterProjection
     M →ₗ[ZMod p] M :=
   projection (p := p) ρ (characterProjectionCoefficient (p := p) i)
 
-/-- Equivariant linear maps commute with every finite-sum projection.-/
+/-- Equivariant linear maps commute with every finite-sum projection.
+@isnad1 id=eq.1h8v.s11.ff105189d80e from=translated src=- shape=94748d3e vocab=77803839
+-/
 theorem map_projection_apply
     (ρM : Delta p →* M ≃ₗ[ZMod p] M)
     (ρN : Delta p →* N ≃ₗ[ZMod p] N)
@@ -77,7 +82,9 @@ theorem map_projection_apply
   simp [projection, hf]
 
 /-- Commutation of an equivariant linear map with a finite-sum projection,
-as an equality of linear maps.-/
+as an equality of linear maps.
+@isnad1 id=eq.1h7v.s11.07b281521620 from=translated src=- shape=fd1cbbe2 vocab=b9af29f3
+-/
 theorem projection_commute
     (ρM : Delta p →* M ≃ₗ[ZMod p] M)
     (ρN : Delta p →* N ≃ₗ[ZMod p] N)
@@ -90,7 +97,9 @@ theorem projection_commute
   exact map_projection_apply (p := p) ρM ρN f hf c x
 
 /-- A surjective equivariant linear map maps the range of a source projection
-onto the range of the matching target projection.-/
+onto the range of the matching target projection.
+@isnad1 id=eq.2h7v.s11.c3f6551c19ab from=translated src=- shape=f53821f3 vocab=a026e4f5
+-/
 theorem map_projection_range_eq_range_of_surjective
     (ρM : Delta p →* M ≃ₗ[ZMod p] M)
     (ρN : Delta p →* N ≃ₗ[ZMod p] N)
@@ -104,7 +113,9 @@ theorem map_projection_range_eq_range_of_surjective
   exact LinearMap.range_comp_of_range_eq_top _ (LinearMap.range_eq_top.mpr hf_surj)
 
 /-- The previous range-surjectivity statement for the standard `i`-th
-character projection.-/
+character projection.
+@isnad1 id=eq.2h7v.s11.27f2269b85a8 from=translated src=- shape=c4280517 vocab=266c6016
+-/
 theorem map_characterProjection_range_eq_range_of_surjective
     (i : ℕ)
     (ρM : Delta p →* M ≃ₗ[ZMod p] M)

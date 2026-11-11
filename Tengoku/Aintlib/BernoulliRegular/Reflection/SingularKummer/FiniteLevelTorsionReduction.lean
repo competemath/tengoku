@@ -28,7 +28,9 @@ variable {p m : ℕ} [NeZero p] [NeZero m]
 variable {A : Type*} [AddCommGroup A] [Module (ZMod m) A]
 
 /-- Natural-number scalar multiplication on a `p`-torsion element agrees with
-scalar multiplication by its class in `ZMod p`.-/
+scalar multiplication by its class in `ZMod p`.
+@isnad1 id=eq.0h4v.s8.cfcbc02a2f3c from=translated src=- shape=280bd767 vocab=aef7095f
+-/
 theorem nsmul_ptorsion_eq_zmod_smul
     (n : ℕ) (x : TorsionComponent.PTorsion A p) :
     n • (x : A) = (((n : ZMod p) • x : TorsionComponent.PTorsion A p) : A) := by
@@ -36,7 +38,9 @@ theorem nsmul_ptorsion_eq_zmod_smul
   exact nsmul_eq_mod_nsmul n x.2
 
 /-- Scalar multiplication by an element of `ZMod m` on a `p`-torsion element
-depends only on its image in `ZMod p`.-/
+depends only on its image in `ZMod p`.
+@isnad1 id=eq.2h6v.s8.893440665d60 from=translated src=- shape=132e8d0c vocab=8dbb0668
+-/
 theorem zmod_smul_ptorsion_eq_of_castHom_eq
     (hm : p ∣ m) (c : ZMod m) (a : ZMod p)
     (x : TorsionComponent.PTorsion A p)
@@ -55,7 +59,9 @@ theorem zmod_smul_ptorsion_eq_of_castHom_eq
 
 /-- If the finite-level character reduces to the mod-`p` character
 `a ↦ a^i`, then every `p`-torsion element in the exact finite-level component
-lies in the existing `A[p]_i` component.-/
+lies in the existing `A[p]_i` component.
+@isnad1 id=mem.4h7v.s9.ac6b99adc040 from=translated src=- shape=d89d3bba vocab=d0189ce2
+-/
 theorem mem_torsionComponent_of_mem_finiteLevelComponent
     (hcard : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod p))
     (hm : p ∣ m) (i : ℕ)

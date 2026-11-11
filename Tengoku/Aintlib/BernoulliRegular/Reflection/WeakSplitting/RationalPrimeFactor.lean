@@ -74,7 +74,9 @@ variable (L : Type*) [Field L] [NumberField L]
 
 /--
 For a rational prime `q`, every prime `Q ∈ IsDedekindDomain.primesOverFinset (q) (𝓞 L)` is
-nonzero, hence has nonzero absolute norm and is `1 < Ideal.absNorm Q`.-/
+nonzero, hence has nonzero absolute norm and is `1 < Ideal.absNorm Q`.
+@isnad1 id=lt.2h3v.s8.e408fcf4ff83 from=translated src=- shape=bc3c4e62 vocab=60e2f88f
+-/
 theorem one_lt_absNorm_of_mem_primesOverFinset_rat
     {q : ℕ} (hq : q.Prime) {Q : Ideal (𝓞 L)}
     (hQ : Q ∈ IsDedekindDomain.primesOverFinset (Ideal.span ({(q : ℤ)} : Set ℤ)) (𝓞 L)) :
@@ -91,7 +93,9 @@ theorem one_lt_absNorm_of_mem_primesOverFinset_rat
 
 /--
 For a rational prime `q`, every prime `Q ∈ IsDedekindDomain.primesOverFinset (q) (𝓞 L)` has
-nonzero absolute norm.-/
+nonzero absolute norm.
+@isnad1 id=ne.2h3v.s8.9d7013cd1752 from=translated src=- shape=766c02e8 vocab=1654b5ba
+-/
 theorem absNorm_ne_zero_of_mem_primesOverFinset_rat
     {q : ℕ} (hq : q.Prime) {Q : Ideal (𝓞 L)}
     (hQ : Q ∈ IsDedekindDomain.primesOverFinset (Ideal.span ({(q : ℤ)} : Set ℤ)) (𝓞 L)) :
@@ -101,7 +105,9 @@ theorem absNorm_ne_zero_of_mem_primesOverFinset_rat
 
 /--
 The local Euler factor `dedekindLocalFactorRat L q` is continuous in `s`
-when `q` is a rational prime.-/
+when `q` is a rational prime.
+@isnad1 id=continuo.1h2v.s5.60bed093c4dd from=translated src=- shape=25fcda20 vocab=9a23f824
+-/
 theorem dedekindLocalFactorRat_continuous {q : ℕ} (hq : q.Prime) :
     Continuous (fun s : ℂ => dedekindLocalFactorRat L q s) := by
   simp only [dedekindLocalFactorRat]
@@ -113,7 +119,9 @@ theorem dedekindLocalFactorRat_continuous {q : ℕ} (hq : q.Prime) :
 For a positive rational prime `q ≥ 2`, the local Euler factor
 `dedekindLocalFactorRat L q s` is nonzero in the half-plane `Re(s) > 0`,
 since each factor `(1 - N(Q)^{-s})` is nonzero (`N(Q) ≥ 2` and
-`‖N(Q)^{-s}‖ < 1` when `Re(s) > 0`).-/
+`‖N(Q)^{-s}‖ < 1` when `Re(s) > 0`).
+@isnad1 id=ne.2h3v.s5.f416519f584b from=translated src=- shape=922bafe3 vocab=99d8c501
+-/
 theorem dedekindLocalFactorRat_ne_zero {q : ℕ} (hq : q.Prime) {s : ℂ} (hs : 0 < s.re) :
     dedekindLocalFactorRat L q s ≠ 0 := by
   simp only [dedekindLocalFactorRat]

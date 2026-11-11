@@ -42,7 +42,9 @@ variable {R : Type*} [CommRing R]
 
 /-- **Char-3 b-relation, generic in `R`**: `b₈ = b₂ · b₆ - b₄²`.
     Specialisation of mathlib's `WeierstrassCurve.b_relation` (`4·b₈ = b₂·b₆ - b₄²`)
-    via `4 = 1` in char 3.-/
+    via `4 = 1` in char 3.
+@isnad1 id=eq.0h2v.s6.fa6cf86d5682 from=translated src=- shape=463655c4 vocab=3f465ae7
+-/
 theorem b_relation_of_charP_three [CharP R 3] (W : WeierstrassCurve R) :
     W.b₈ = W.b₂ * W.b₆ - W.b₄ ^ 2 := by
   linear_combination W.b_relation - W.b₈ * CharP.cast_eq_zero R 3

@@ -36,7 +36,9 @@ definite quadratic form ⟹ `|t| ≤ 2√q`).
 namespace HasseWeil.WeilPairing
 
 /-- **Balanced remainder.** For `0 < q` and any `a`, there is `r` with `|a − 2qr| ≤ q`
-(the nearest-integer approximation of `a/(2q)`).-/
+(the nearest-integer approximation of `a/(2q)`).
+@isnad1 id=ex.1h2v.s5.0b82f7248434 from=translated src=- shape=bc439a02 vocab=f7c65b8a
+-/
 theorem exists_int_balanced {q : ℤ} (hq : 0 < q) (a : ℤ) : ∃ r : ℤ, |a - 2 * q * r| ≤ q := by
   have hm : (0 : ℤ) < 2 * q := by linarith
   refine ⟨(a + q) / (2 * q), ?_⟩
@@ -60,7 +62,9 @@ private theorem qf_nonneg_of_disc {q t : ℤ} (hq : 0 < q) (hdisc : t ^ 2 ≤ 4 
 non-negative on **all** `(r,s)`.
 
 Step 1 forces `t² ≤ 4q` (a contradiction otherwise, via a `p`-coprime witness `s = ℓⁿ`); step 2 is
-the positive-semidefiniteness `4q·Q = (2qr − ts)² + (4q − t²)s² ≥ 0`.-/
+the positive-semidefiniteness `4q·Q = (2qr − ts)² + (4q − t²)s² ≥ 0`.
+@isnad1 id=le.3h5v.s7.d46c67c18d2d from=translated src=- shape=ec05f485 vocab=b37f1b72
+-/
 theorem qf_nonneg_of_nonneg_on_coprime {q t : ℤ} (hq : 0 < q) {p : ℕ} (hp : p.Prime)
     (h : ∀ r s : ℤ, ¬ (p : ℤ) ∣ s → 0 ≤ q * r ^ 2 - t * r * s + s ^ 2) :
     ∀ r s : ℤ, 0 ≤ q * r ^ 2 - t * r * s + s ^ 2 := by
@@ -110,7 +114,9 @@ balanced-remainder argument: if `Δ := t² − 4q > 0`, set `C := q − t + 1`, 
 `r := m·t + 1`, `s := 2·m·q + 1`.  Then `p ∣ m` makes `r ≡ s ≡ 1 (mod p)`, so `p ∤ r, s`, while the
 `ring` identity `Q(m·t+1, 2·m·q+1) = (4q − t²)(q·m² + m) + (q − t + 1) = −Δ·(q·m² + m) + C` is
 `< 0` (since `Δ·(q·m² + m) ≥ q·m² + m ≥ |C| + 1 > C`), contradicting `Q ≥ 0`.  Step 2 reuses the
-positive-semidefiniteness `4q·Q = (2qr − ts)² + (4q − t²)s² ≥ 0`.-/
+positive-semidefiniteness `4q·Q = (2qr − ts)² + (4q − t²)s² ≥ 0`.
+@isnad1 id=le.3h5v.s7.5fabd1328efe from=translated src=- shape=01ffa0e5 vocab=b37f1b72
+-/
 theorem qf_nonneg_of_nonneg_on_coprime_both {q t : ℤ} (hq : 0 < q) {p : ℕ} (hp : p.Prime)
     (h : ∀ r s : ℤ, ¬ (p : ℤ) ∣ r → ¬ (p : ℤ) ∣ s →
       0 ≤ q * r ^ 2 - t * r * s + s ^ 2) :

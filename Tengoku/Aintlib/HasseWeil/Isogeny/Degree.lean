@@ -51,13 +51,17 @@ noncomputable def sepDegree (φ : PullbackIsogeny F W₁ W₂) : ℕ :=
 def IsSeparable (φ : PullbackIsogeny F W₁ W₂) : Prop :=
   φ.sepDegree = φ.degree
 
-/-- The separable degree divides the total degree.-/
+/-- The separable degree divides the total degree.
+@isnad1 id=dvd.0h4v.s5.2ac29b979b11 from=translated src=- shape=738c2cb2 vocab=3a82fbfa
+-/
 theorem sepDegree_dvd_degree (φ : PullbackIsogeny F W₁ W₂) :
     φ.sepDegree ∣ φ.degree := by
   simp only [sepDegree, degree]
   exact @Field.finSepDegree_dvd_finrank W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra
 
-/-- For a finite extension, the separable degree is at most the total degree.-/
+/-- For a finite extension, the separable degree is at most the total degree.
+@isnad1 id=le.1h4v.s9.bd9b134a8b71 from=translated src=- shape=b0949314 vocab=f0ca6ba0
+-/
 theorem sepDegree_le_degree (φ : PullbackIsogeny F W₁ W₂)
     (hfin : @FiniteDimensional W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra.toModule) :
     φ.sepDegree ≤ φ.degree := by

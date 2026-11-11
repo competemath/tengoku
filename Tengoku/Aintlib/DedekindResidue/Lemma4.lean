@@ -35,7 +35,9 @@ The mean value theorem gives `|sin(γT) − sin(γT')| ≤ |γ|(T − T')`, so t
 of the sine series at two cutoffs loses the `1/γ` and is bounded by
 `(T−T')·2h²·Σ_ρ m_ρ/(h²+γ_ρ²)` — no `log X` loss. -/
 
-/-- Pointwise: `‖zeroSinTerm at X − zeroSinTerm at X'‖ ≤ 2h²(T−T')/(h²+γ²)`.-/
+/-- Pointwise: `‖zeroSinTerm at X − zeroSinTerm at X'‖ ≤ 2h²(T−T')/(h²+γ²)`.
+@isnad1 id=le.3h4v.s7.0690c14bec4b from=translated src=- shape=6f14d650 vocab=e2a59bd7
+-/
 theorem norm_zeroSinTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (hX' : 1 < X')
     (hXX : X' ≤ X) (γ : ℝ) :
     ‖zeroSinTerm (σ:ℂ) X γ - zeroSinTerm (σ:ℂ) X' γ‖
@@ -90,7 +92,9 @@ theorem norm_zeroSinTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (hX' : 
           field_simp
 
 /-- **The sine-difference estimate**: the two-cutoff difference of the sine series is
-bounded by `2h²(T−T')·Σ_ρ m_ρ/(h²+γ_ρ²)`.-/
+bounded by `2h²(T−T')·Σ_ρ m_ρ/(h²+γ_ρ²)`.
+@isnad1 id=le.3h4v.s8.65e1e44325e6 from=translated src=- shape=8660e8db vocab=26aa2906
+-/
 theorem norm_tsum_zeroSinTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (hX' : 1 < X')
     (hXX : X' ≤ X) :
     ‖(∑' ρ : ZetaZeros K, (zetaZeroDivisor K ρ.1 : ℂ) * zeroSinTerm (σ:ℂ) X ρ.1.im)
@@ -145,7 +149,9 @@ integral is evaluated exactly by the kernel antiderivative
 constants lost. -/
 
 /-- Generic norm bound: a `c/(h²+γ²)`-bounded test function has divisor-weighted
-series bounded by `c·Σ_ρ m_ρ/(h²+γ_ρ²)`.-/
+series bounded by `c·Σ_ρ m_ρ/(h²+γ_ρ²)`.
+@isnad1 id=le.2h4v.s8.44d87e8cdd2e from=translated src=- shape=7c12970c vocab=103d5ce4
+-/
 theorem norm_tsum_zetaZeros_mul_le {σ : ℝ} (hσ : 1/2 < σ) {f : ℝ → ℂ} {c : ℝ}
     (hf : ∀ γ : ℝ, ‖f γ‖ ≤ c / ((σ - 1/2)^2 + γ^2)) :
     ‖∑' ρ : ZetaZeros K, (zetaZeroDivisor K ρ.1 : ℂ) * f ρ.1.im‖
@@ -173,7 +179,9 @@ theorem norm_tsum_zetaZeros_mul_le {σ : ℝ} (hσ : 1/2 < σ) {f : ℝ → ℂ}
 
 /-- **The cosine-terms estimate**: the two-cutoff difference of the cosine series is
 bounded by `(2(h+1/T) + 2(h+1/T'))·Σ_ρ m_ρ/(h²+γ_ρ²)` (triangle inequality, `|cos|≤1`
-at each cutoff).-/
+at each cutoff).
+@isnad1 id=le.3h4v.s9.5bf3d195b038 from=translated src=- shape=031fdabc vocab=c6ab0d9c
+-/
 theorem norm_tsum_zeroCosTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (hX' : 1 < X')
     (hXX : X' ≤ X) :
     ‖(∑' ρ : ZetaZeros K, (zetaZeroDivisor K ρ.1 : ℂ) * zeroCosTerm (σ:ℂ) X ρ.1.im)
@@ -188,7 +196,9 @@ theorem norm_tsum_zeroCosTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (h
   · exact norm_tsum_zetaZeros_mul_le K hσ (fun γ => norm_zeroCosTerm_le hσ hX γ)
   · exact norm_tsum_zetaZeros_mul_le K hσ (fun γ => norm_zeroCosTerm_le hσ hX' γ)
 
-/-- The kernel `(h + 1/t)e^{−ht}/t` is integrable on `(T, ∞)`.-/
+/-- The kernel `(h + 1/t)e^{−ht}/t` is integrable on `(T, ∞)`.
+@isnad1 id=integrab.2h2v.s6.f6650c72fe20 from=translated src=- shape=55b417fe vocab=24cb8d5c
+-/
 theorem integrableOn_kernel {h T : ℝ} (hh : 0 < h) (hT : 0 < T) :
     MeasureTheory.IntegrableOn
       (fun t : ℝ => (h + 1/t) * Real.exp (-h*t) / t) (Set.Ioi T) := by
@@ -211,7 +221,9 @@ theorem integrableOn_kernel {h T : ℝ} (hh : 0 < h) (hT : 0 < T) :
       _ = (h + 1/T) / T * Real.exp (-h*t) := by ring
 
 /-- **The exact kernel integral** (paper eq:diffeq consequence, lines 460–467):
-`∫_T^∞ (h + 1/t)·e^{−ht}/t · dt = e^{−hT}/T` — the antiderivative is `−e^{−ht}/t`.-/
+`∫_T^∞ (h + 1/t)·e^{−ht}/t · dt = e^{−hT}/T` — the antiderivative is `−e^{−ht}/t`.
+@isnad1 id=eq.2h2v.s7.799a796e24d6 from=translated src=- shape=1dbb6022 vocab=12502851
+-/
 theorem integral_Ioi_kernel_eval {h T : ℝ} (hh : 0 < h) (hT : 0 < T) :
     ∫ t in Set.Ioi T, (h + 1/t) * Real.exp (-h*t) / t = Real.exp (-h*T) / T := by
   have hderiv : ∀ t ∈ Set.Ioi T, HasDerivAt (fun u : ℝ => -(Real.exp (-h*u) / u))
@@ -248,7 +260,9 @@ theorem integral_Ioi_kernel_eval {h T : ℝ} (hh : 0 < h) (hT : 0 < T) :
 
 /-- **The refined integral-piece bound**: `‖zeroIntTerm‖ ≤ 4/(T·(h²+γ²))` — the
 tail integral is at most `1/T` by the exact kernel antiderivative (no opaque
-constant).-/
+constant).
+@isnad1 id=le.2h3v.s7.24f4bc631568 from=translated src=- shape=c9c99b22 vocab=65f3f0c4
+-/
 theorem norm_zeroIntTerm_le_refined {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 1 < X)
     (γ : ℝ) :
     ‖zeroIntTerm (σ:ℂ) X γ‖
@@ -324,7 +338,9 @@ theorem norm_zeroIntTerm_le_refined {σ : ℝ} (hσ : 1/2 < σ) {X : ℝ} (hX : 
         field_simp
 
 /-- **The integral-terms estimate**: the two-cutoff difference of the tail-integral
-series is bounded by `(4/T + 4/T')·Σ_ρ m_ρ/(h²+γ_ρ²)`.-/
+series is bounded by `(4/T + 4/T')·Σ_ρ m_ρ/(h²+γ_ρ²)`.
+@isnad1 id=le.3h4v.s8.704b5e2c1d9a from=translated src=- shape=d4bc99e1 vocab=92f6743f
+-/
 theorem norm_tsum_zeroIntTerm_sub_le {σ : ℝ} (hσ : 1/2 < σ) {X X' : ℝ} (hX' : 1 < X')
     (hXX : X' ≤ X) :
     ‖(∑' ρ : ZetaZeros K, (zetaZeroDivisor K ρ.1 : ℂ) * zeroIntTerm (σ:ℂ) X ρ.1.im)
@@ -356,9 +372,15 @@ on `e^{U/2}·L(U)` being decreasing, which follows from `L(U) ≤ 1/sinh U`
 noncomputable def archKernelL (U : ℝ) : ℝ :=
   Real.log (1 + Real.exp (-U)) - Real.log (1 - Real.exp (-U))
 
+/--
+@isnad1 id=lt.1h1v.s4.a562033d8faa from=translated src=- shape=0d5dc311 vocab=379b737d
+-/
 theorem exp_neg_lt_one {U : ℝ} (hU : 0 < U) : Real.exp (-U) < 1 :=
   Real.exp_lt_one_iff.mpr (by linarith)
 
+/--
+@isnad1 id=lt.1h1v.s4.b60cce15e7e8 from=translated src=- shape=35bd48ee vocab=69e3a097
+-/
 theorem archKernelL_pos {U : ℝ} (hU : 0 < U) : 0 < archKernelL U := by
   have he1 : Real.exp (-U) < 1 := exp_neg_lt_one hU
   have he0 : 0 < Real.exp (-U) := Real.exp_pos _
@@ -369,7 +391,9 @@ theorem archKernelL_pos {U : ℝ} (hU : 0 < U) : 0 < archKernelL U := by
   rw [archKernelL]
   linarith
 
-/-- `sinh U = (1 − x²)/(2x)` for `x = e^{−U}`.-/
+/-- `sinh U = (1 − x²)/(2x)` for `x = e^{−U}`.
+@isnad1 id=eq.0h1v.s6.022aada21c8c from=translated src=- shape=476d59fc vocab=7ff6eaa6
+-/
 theorem sinh_eq_exp_neg {U : ℝ} :
     Real.sinh U = (1 - Real.exp (-U)^2) / (2*Real.exp (-U)) := by
   have hxU : Real.exp U = (Real.exp (-U))⁻¹ := by
@@ -378,7 +402,9 @@ theorem sinh_eq_exp_neg {U : ℝ} :
   have hne : Real.exp (-U) ≠ 0 := (Real.exp_pos _).ne'
   field_simp
 
-/-- **(A)** `L(U) ≤ 2/sinh U` (crude log bounds suffice for the factor 2).-/
+/-- **(A)** `L(U) ≤ 2/sinh U` (crude log bounds suffice for the factor 2).
+@isnad1 id=le.1h1v.s5.5074e089888f from=translated src=- shape=07dccf84 vocab=97c8c477
+-/
 theorem archKernelL_le_two_inv_sinh {U : ℝ} (hU : 0 < U) :
     archKernelL U ≤ 2 / Real.sinh U := by
   set x : ℝ := Real.exp (-U) with hx_def
@@ -413,7 +439,9 @@ theorem archKernelL_le_two_inv_sinh {U : ℝ} (hU : 0 < U) :
   linarith
 
 /-- The derivative of the weighted kernel:
-`d/dU (e^{U/2}·L(U)) = e^{U/2}·(L(U)/2 − 1/sinh U)`.-/
+`d/dU (e^{U/2}·L(U)) = e^{U/2}·(L(U)/2 − 1/sinh U)`.
+@isnad1 id=hasderiv.1h1v.s7.9f218c3db5e6 from=translated src=- shape=06ca39a4 vocab=b83610ba
+-/
 theorem hasDerivAt_exp_half_mul_archKernelL {U : ℝ} (hU : 0 < U) :
     HasDerivAt (fun U : ℝ => Real.exp (U/2) * archKernelL U)
       (Real.exp (U/2) * (archKernelL U / 2 - 1 / Real.sinh U)) U := by
@@ -461,7 +489,9 @@ theorem hasDerivAt_exp_half_mul_archKernelL {U : ℝ} (hU : 0 < U) :
     ring
   exact hval ▸ h3
 
-/-- **(B)** `e^{U/2}·L(U)` is antitone on `(0, ∞)`.-/
+/-- **(B)** `e^{U/2}·L(U)` is antitone on `(0, ∞)`.
+@isnad1 id=antitone.0h0v.s5.d7c0c3da9bd3 from=translated src=- shape=85c68264 vocab=c835d74d
+-/
 theorem antitoneOn_exp_half_mul_archKernelL :
     AntitoneOn (fun U : ℝ => Real.exp (U/2) * archKernelL U) (Set.Ioi 0) := by
   refine antitoneOn_of_deriv_nonpos (convex_Ioi 0) ?_ ?_ ?_
@@ -495,13 +525,17 @@ two-cutoff difference is the interval integral of the `U`-derivative
 noncomputable def auxFCut (σ U y : ℝ) : ℝ :=
   if y ≤ U then 1 else U/y * Real.exp (-(σ - 1/2)*(y - U))
 
-/-- On the real ray, `auxF` at cutoff `X` is the coercion of `auxFCut σ (log X)`.-/
+/-- On the real ray, `auxF` at cutoff `X` is the coercion of `auxFCut σ (log X)`.
+@isnad1 id=eq.1h3v.s4.ac22706492db from=translated src=- shape=4f14bb29 vocab=ea3ad98f
+-/
 theorem auxF_eq_auxFCut (σ : ℝ) (X : ℝ) {y : ℝ} (hy : 0 < y) :
     auxF (σ:ℂ) X y = ((auxFCut σ (Real.log X) y : ℝ) : ℂ) := by
   rw [auxF_ofReal, auxFCut, abs_of_pos hy]
 
 /-- The tail branch extends continuously through the kink: for `U ≤ y`,
-`auxFCut σ U y = (U/y)e^{−h(y−U)}`.-/
+`auxFCut σ U y = (U/y)e^{−h(y−U)}`.
+@isnad1 id=eq.2h3v.s6.721f3b9062dd from=translated src=- shape=25448025 vocab=9ee6ab8d
+-/
 theorem auxFCut_eq_tail {σ U y : ℝ} (hy : 0 < y) (hU : U ≤ y) :
     auxFCut σ U y = U/y * Real.exp (-(σ - 1/2)*(y - U)) := by
   rw [auxFCut]
@@ -512,7 +546,9 @@ theorem auxFCut_eq_tail {σ U y : ℝ} (hy : 0 < y) (hU : U ≤ y) :
       div_self hy.ne', one_mul]
   · rw [ite_eq_right hcase]
 
-/-- The `U`-derivative of the tail branch.-/
+/-- The `U`-derivative of the tail branch.
+@isnad1 id=hasderiv.0h3v.s7.255a3aa587d1 from=translated src=- shape=866dbd61 vocab=fc4acc5f
+-/
 theorem hasDerivAt_auxFCut_tail {σ y : ℝ} (U : ℝ) :
     HasDerivAt (fun U : ℝ => U/y * Real.exp (-(σ - 1/2)*(y - U)))
       ((1 + (σ - 1/2)*U)/y * Real.exp (-(σ - 1/2)*(y - U))) U := by
@@ -537,6 +573,9 @@ theorem hasDerivAt_auxFCut_tail {σ y : ℝ} (U : ℝ) :
 noncomputable def cutKernel (σ y U : ℝ) : ℝ :=
   if U < y then (1 + (σ - 1/2)*U)/y * Real.exp (-(σ - 1/2)*(y - U)) else 0
 
+/--
+@isnad1 id=le.3h3v.s6.88a9219b3e3a from=translated src=- shape=59c8ee7f vocab=af74c938
+-/
 theorem cutKernel_nonneg {σ y U : ℝ} (hσ : 1/2 < σ) (hy : 0 < y) (hU : 0 ≤ U) :
     0 ≤ cutKernel σ y U := by
   rw [cutKernel]
@@ -546,11 +585,17 @@ theorem cutKernel_nonneg {σ y U : ℝ} (hσ : 1/2 < σ) (hy : 0 < y) (hU : 0 �
     positivity
   · rw [ite_eq_right hcase]
 
+/--
+@isnad1 id=measurab.0h2v.s3.44667cc435b5 from=translated src=- shape=443e0365 vocab=fed01c17
+-/
 theorem measurable_cutKernel (σ y : ℝ) : Measurable (cutKernel σ y) := by
   refine Measurable.ite (measurableSet_lt measurable_id measurable_const) ?_
     measurable_const
   fun_prop
 
+/--
+@isnad1 id=interval.4h4v.s6.9cc64e3700b1 from=translated src=- shape=e743a1bb vocab=c2244801
+-/
 theorem intervalIntegrable_cutKernel {σ y : ℝ} (hσ : 1/2 < σ) (hy : 0 < y)
     {T' T : ℝ} (hT' : 0 < T') (hTT : T' ≤ T) :
     IntervalIntegrable (cutKernel σ y) MeasureTheory.volume T' T := by
@@ -585,7 +630,9 @@ theorem intervalIntegrable_cutKernel {σ y : ℝ} (hσ : 1/2 < σ) (hy : 0 < y)
       positivity
 
 /-- **(C1) The cutoff-difference representation**: for `0 < T' ≤ T` and `y > 0`,
-`F_{σ,e^T}(y) − F_{σ,e^{T'}}(y) = ∫_{T'}^T cutKernel σ y U dU`.-/
+`F_{σ,e^T}(y) − F_{σ,e^{T'}}(y) = ∫_{T'}^T cutKernel σ y U dU`.
+@isnad1 id=eq.4h4v.s6.045c6b46943d from=translated src=- shape=c14097d0 vocab=75619521
+-/
 theorem auxFCut_sub_eq_integral {σ : ℝ} (hσ : 1/2 < σ) {T' T y : ℝ} (hT' : 0 < T')
     (hTT : T' ≤ T) (hy : 0 < y) :
     auxFCut σ T y - auxFCut σ T' y = ∫ U in T'..T, cutKernel σ y U := by
@@ -654,6 +701,9 @@ theorem auxFCut_sub_eq_integral {σ : ℝ} (hσ : 1/2 < σ) {T' T y : ℝ} (hT' 
 `∫_U^∞ dy/(e^y−1) = −log(1−e^{−U})` and `∫_U^∞ dy/(e^y+1) = log(1+e^{−U})` — the two
 halves of the `archKernelL` closed form. -/
 
+/--
+@isnad1 id=integrab.1h1v.s6.ec1a0876eeee from=translated src=- shape=c7d0285d vocab=bbb47d0f
+-/
 theorem integrableOn_inv_exp_sub_one {U : ℝ} (hU : 0 < U) :
     MeasureTheory.IntegrableOn (fun y : ℝ => 1/(Real.exp y - 1)) (Set.Ioi U) := by
   have hbound : ∀ y ∈ Set.Ioi U, ‖1/(Real.exp y - 1)‖
@@ -691,6 +741,9 @@ theorem integrableOn_inv_exp_sub_one {U : ℝ} (hU : 0 < U) :
     calc ‖1/(Real.exp y - 1)‖ ≤ (1 - Real.exp (-U))⁻¹ * Real.exp (-y) := h1
       _ = (1 - Real.exp (-U))⁻¹ * Real.exp (-1*y) := by norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.35afb01fa659 from=translated src=- shape=2a4efaea vocab=ee72f9a6
+-/
 theorem integral_Ioi_inv_exp_sub_one {U : ℝ} (hU : 0 < U) :
     ∫ y in Set.Ioi U, 1/(Real.exp y - 1) = -Real.log (1 - Real.exp (-U)) := by
   have hderiv : ∀ y ∈ Set.Ioi U, HasDerivAt (fun y : ℝ => Real.log (1 - Real.exp (-y)))
@@ -732,6 +785,9 @@ theorem integral_Ioi_inv_exp_sub_one {U : ℝ} (hU : 0 < U) :
   rw [hkey]
   ring
 
+/--
+@isnad1 id=integrab.1h1v.s6.4be0c71588d0 from=translated src=- shape=c7d0285d vocab=2ac2ef47
+-/
 theorem integrableOn_inv_exp_add_one {U : ℝ} (hU : 0 < U) :
     MeasureTheory.IntegrableOn (fun y : ℝ => 1/(Real.exp y + 1)) (Set.Ioi U) := by
   refine (integrableOn_inv_exp_sub_one hU).mono' ?_ ?_
@@ -749,6 +805,9 @@ theorem integrableOn_inv_exp_add_one {U : ℝ} (hU : 0 < U) :
     have h2 : Real.exp y - 1 ≤ Real.exp y + 1 := by linarith
     exact one_div_le_one_div_of_le h1 h2
 
+/--
+@isnad1 id=eq.1h1v.s6.19ea9dfcaabe from=translated src=- shape=60b5a273 vocab=9d56dab6
+-/
 theorem integral_Ioi_inv_exp_add_one {U : ℝ} (hU : 0 < U) :
     ∫ y in Set.Ioi U, 1/(Real.exp y + 1) = Real.log (1 + Real.exp (-U)) := by
   have hderiv : ∀ y ∈ Set.Ioi U, HasDerivAt (fun y : ℝ => -Real.log (1 + Real.exp (-y)))
@@ -793,6 +852,9 @@ For `y > U` the cut kernel is at most `(h+1/U)e^{−h(y−U)}`, the combined wei
 `h ≥ 1/2` the exponentials collapse to the `h`-free `e^{U/2}`, leaving exactly the
 closed-form tails of `archKernelL U`. -/
 
+/--
+@isnad1 id=eq.0h1v.s6.0432be04c370 from=translated src=- shape=875ee10f vocab=f8b9e0a3
+-/
 theorem two_sinh_half_eq {y : ℝ} : 2 * Real.sinh (y/2)
     = Real.exp (-(y/2)) * (Real.exp y - 1) := by
   have h1 : Real.exp (-(y/2)) * Real.exp y = Real.exp (y/2) := by
@@ -802,6 +864,9 @@ theorem two_sinh_half_eq {y : ℝ} : 2 * Real.sinh (y/2)
   rw [Real.sinh_eq, mul_sub, mul_one, h1]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.585dcd87db70 from=translated src=- shape=875ee10f vocab=31a4d6aa
+-/
 theorem two_cosh_half_eq {y : ℝ} : 2 * Real.cosh (y/2)
     = Real.exp (-(y/2)) * (Real.exp y + 1) := by
   have h1 : Real.exp (-(y/2)) * Real.exp y = Real.exp (y/2) := by
@@ -812,7 +877,9 @@ theorem two_cosh_half_eq {y : ℝ} : 2 * Real.cosh (y/2)
   ring
 
 /-- Pointwise: `(w₁+w₂)(y)·cutKernel σ y U ≤ (h+1/U)e^{U/2}·(1/(e^y−1)+1/(e^y+1))`
-for `1 ≤ σ` and `0 < U < y`.-/
+for `1 ≤ σ` and `0 < U < y`.
+@isnad1 id=le.3h3v.s8.b7513e4c582b from=translated src=- shape=8c6991e0 vocab=73310730
+-/
 theorem weight_mul_cutKernel_le {σ : ℝ} (hσ1 : 1 ≤ σ) {U y : ℝ} (hU : 0 < U)
     (hyU : U < y) :
     (1/(2*Real.sinh (y/2)) + 1/(2*Real.cosh (y/2))) * cutKernel σ y U
@@ -864,7 +931,9 @@ theorem weight_mul_cutKernel_le {σ : ℝ} (hσ1 : 1 ≤ σ) {U y : ℝ} (hU : 0
 
 /-- **(C2b) The inner bound**: for `1 ≤ σ` and `U > 0`,
 `∫_{y>U} (1/(2sinh(y/2)) + 1/(2cosh(y/2)))·cutKernel σ y U dy
-  ≤ (h + 1/U)·e^{U/2}·L(U)`.-/
+  ≤ (h + 1/U)·e^{U/2}·L(U)`.
+@isnad1 id=le.2h2v.s8.85dbc2895f8a from=translated src=- shape=7bafbfa3 vocab=22679c7a
+-/
 theorem inner_arch_bound {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ} (hU : 0 < U) :
     ∫ y in Set.Ioi U,
       (1/(2*Real.sinh (y/2)) + 1/(2*Real.cosh (y/2))) * cutKernel σ y U
@@ -932,10 +1001,16 @@ theorem inner_arch_bound {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ} (hU : 0 < U) :
 noncomputable def archWeight (y : ℝ) : ℝ :=
   1/(2*Real.sinh (y/2)) + 1/(2*Real.cosh (y/2))
 
+/--
+@isnad1 id=measurab.0h0v.s2.2d654850f6a0 from=translated src=- shape=e3d48bcb vocab=1ccdb84b
+-/
 theorem measurable_archWeight : Measurable archWeight := by
   unfold archWeight
   fun_prop
 
+/--
+@isnad1 id=le.1h1v.s4.f8c36481175d from=translated src=- shape=a8dc2df9 vocab=6ddb905d
+-/
 theorem archWeight_nonneg {y : ℝ} (hy : 0 < y) : 0 ≤ archWeight y := by
   have hs : 0 < Real.sinh (y/2) := Real.sinh_pos_iff.mpr (by linarith)
   have hc : 0 < Real.cosh (y/2) := Real.cosh_pos _
@@ -943,7 +1018,9 @@ theorem archWeight_nonneg {y : ℝ} (hy : 0 < y) : 0 ≤ archWeight y := by
   positivity
 
 /-- The weighted cut kernel is integrable on `(0, ∞)` in `y` (it vanishes on
-`(0, U]` and is dominated beyond).-/
+`(0, U]` and is dominated beyond).
+@isnad1 id=integrab.2h2v.s6.16678d0227d6 from=translated src=- shape=230fe80e vocab=9af53b3b
+-/
 theorem integrableOn_archWeight_mul_cutKernel {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ}
     (hU : 0 < U) :
     MeasureTheory.IntegrableOn (fun y : ℝ => archWeight y * cutKernel σ y U)
@@ -977,7 +1054,9 @@ theorem integrableOn_archWeight_mul_cutKernel {σ : ℝ} (hσ1 : 1 ≤ σ) {U : 
     exact weight_mul_cutKernel_le hσ1 hU hy
 
 /-- Extending the inner integral to `(0, ∞)` costs nothing: the cut kernel vanishes
-below the cutoff.-/
+below the cutoff.
+@isnad1 id=eq.2h2v.s6.82c374ff9f9d from=translated src=- shape=a81118bd vocab=1dbd901e
+-/
 theorem integral_archWeight_mul_cutKernel_Ioi_zero {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ}
     (hU : 0 < U) :
     ∫ y in Set.Ioi 0, archWeight y * cutKernel σ y U
@@ -995,7 +1074,9 @@ theorem integral_archWeight_mul_cutKernel_Ioi_zero {σ : ℝ} (hσ1 : 1 ≤ σ) 
       (Set.Ioi_subset_Ioi hU.le)),
     MeasureTheory.setIntegral_eq_zero_of_forall_eq_zero hzero, zero_add]
 
-/-- The inner bound with the packaged weight.-/
+/-- The inner bound with the packaged weight.
+@isnad1 id=le.2h2v.s7.e4aa50fe4619 from=translated src=- shape=3824e7ed vocab=789de105
+-/
 theorem inner_arch_bound' {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ} (hU : 0 < U) :
     ∫ y in Set.Ioi 0, archWeight y * cutKernel σ y U
       ≤ (σ - 1/2 + 1/U) * Real.exp (U/2) * archKernelL U := by
@@ -1006,7 +1087,9 @@ theorem inner_arch_bound' {σ : ℝ} (hσ1 : 1 ≤ σ) {U : ℝ} (hU : 0 < U) :
 /-- **(c4) The archimedean difference estimate**: for `1 ≤ σ`, `0 < T' ≤ T`,
 `∫_{y>0} (w₁+w₂)(y)·(F_{σ,e^T}(y) − F_{σ,e^{T'}}(y)) dy
   ≤ (T−T')·(h+1/T')·e^{T'/2}·L(T')` — the paper's `β`-bound with no constant
-loss.-/
+loss.
+@isnad1 id=le.3h3v.s7.174f72d9b8db from=translated src=- shape=08cf3814 vocab=4bfb0ab8
+-/
 theorem arch_sum_diff_le {σ : ℝ} (hσ1 : 1 ≤ σ) {T' T : ℝ} (hT' : 0 < T')
     (hTT : T' ≤ T) :
     ∫ y in Set.Ioi 0, archWeight y * (auxFCut σ T y - auxFCut σ T' y)
@@ -1111,6 +1194,9 @@ Subtracting the `ℚ`-instance of the Lemma-3 display kills the field-independen
 `Φ(0) + Φ(1)` (the test function is the same), `log Δ_ℚ = 0`, and shifts the
 archimedean coefficients by one (`n_ℚ = r_ℚ = 1`). -/
 
+/--
+@isnad1 id=eq.7h4v.s13.dd2de4943a80 from=translated src=- shape=c76f1f98 vocab=4b924403
+-/
 theorem lemma4_relative_display (hGRH : GeneralizedRiemannHypothesis K)
     (hRH : RiemannHypothesis)
     {σ X : ℝ} (hσ : 1 < σ) (hX : 1 < X) {a : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4)
@@ -1188,7 +1274,9 @@ noncomputable def plateauSum (K : Type*) [Field K] [NumberField K] (σ X : ℝ) 
       else 0)
 
 /-- **The two-cutoff difference of the relative display** (L4-b): all cutoff-free
-terms cancel.-/
+terms cancel.
+@isnad1 id=eq.8h5v.s10.d8e380363fbd from=translated src=- shape=dea9381a vocab=aed73969
+-/
 theorem lemma4_diff_display (hGRH : GeneralizedRiemannHypothesis K)
     (hRH : RiemannHypothesis)
     {σ : ℝ} (hσ : 1 < σ) {X' X : ℝ} (hX' : 1 < X') (hXX : X' ≤ X)
@@ -1233,7 +1321,9 @@ theorem lemma4_diff_display (hGRH : GeneralizedRiemannHypothesis K)
 
 /-! ### Realifying the archimedean display integrals (L4-c-i) -/
 
-/-- The display's archimedean integrals are coercions of their real avatars.-/
+/-- The display's archimedean integrals are coercions of their real avatars.
+@isnad1 id=eq.0h3v.s7.d41f39a046e7 from=translated src=- shape=61fcbd31 vocab=09020e6e
+-/
 theorem arch_display_integral_eq (σ X : ℝ) (w : ℝ → ℝ) :
     (∫ y in Set.Ioi (0:ℝ), ((w y : ℝ) : ℂ) * (1 - auxF (σ:ℂ) X y))
       = ((∫ y in Set.Ioi (0:ℝ), w y * (1 - auxFCut σ (Real.log X) y) : ℝ) : ℂ) := by
@@ -1243,6 +1333,9 @@ theorem arch_display_integral_eq (σ X : ℝ) (w : ℝ → ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=measurab.0h2v.s4.6ac24051cfca from=translated src=- shape=0065e2fe vocab=774e6375
+-/
 theorem measurable_one_sub_auxFCut (σ T : ℝ) :
     Measurable (fun y : ℝ => 1 - auxFCut σ T y) := by
   refine measurable_const.sub ?_
@@ -1251,7 +1344,9 @@ theorem measurable_one_sub_auxFCut (σ T : ℝ) :
     measurable_const ?_
   fun_prop
 
-/-- `0 ≤ 1 − F_{σ,e^T}(y) ≤ 1` for `y, T > 0`, `σ > 1/2`.-/
+/-- `0 ≤ 1 − F_{σ,e^T}(y) ≤ 1` for `y, T > 0`, `σ > 1/2`.
+@isnad1 id=and.3h3v.s6.1007645e7315 from=translated src=- shape=55467bd2 vocab=da968bd7
+-/
 theorem one_sub_auxFCut_mem {σ T y : ℝ} (hσ : 1/2 < σ) (hT : 0 < T) (hy : 0 < y) :
     0 ≤ 1 - auxFCut σ T y ∧ 1 - auxFCut σ T y ≤ 1 := by
   rw [auxFCut]
@@ -1279,7 +1374,9 @@ theorem one_sub_auxFCut_mem {σ T y : ℝ} (hσ : 1/2 < σ) (hT : 0 < T) (hy : 0
     · have h4 : 0 ≤ T/y * Real.exp (-(σ - 1/2)*(y - T)) := by positivity
       linarith
 
-/-- `2 sinh(y/2) = e^{y/2}(1 − e^{−y})`.-/
+/-- `2 sinh(y/2) = e^{y/2}(1 − e^{−y})`.
+@isnad1 id=eq.0h1v.s6.8e27c9dd3dca from=translated src=- shape=dbb4912b vocab=f8b9e0a3
+-/
 theorem two_sinh_half_eq' {y : ℝ} : 2 * Real.sinh (y/2)
     = Real.exp (y/2) * (1 - Real.exp (-y)) := by
   have h1 : Real.exp (y/2) * Real.exp (-y) = Real.exp (-(y/2)) := by
@@ -1289,7 +1386,9 @@ theorem two_sinh_half_eq' {y : ℝ} : 2 * Real.sinh (y/2)
   rw [Real.sinh_eq, mul_sub, mul_one, h1]
   ring
 
-/-- The sinh-weighted `(1 − F)`-integrand is integrable on `(0, ∞)`.-/
+/-- The sinh-weighted `(1 − F)`-integrand is integrable on `(0, ∞)`.
+@isnad1 id=integrab.2h2v.s7.0b151e341b0b from=translated src=- shape=ba2a2f0b vocab=4e2b4990
+-/
 theorem integrableOn_sinh_weight_one_sub {σ T : ℝ} (hσ : 1/2 < σ) (hT : 0 < T) :
     MeasureTheory.IntegrableOn
       (fun y : ℝ => 1/(2*Real.sinh (y/2)) * (1 - auxFCut σ T y)) (Set.Ioi 0) := by
@@ -1338,7 +1437,9 @@ theorem integrableOn_sinh_weight_one_sub {σ T : ℝ} (hσ : 1/2 < σ) (hT : 0 <
         _ = 1/(2*Real.sinh (y/2)) := mul_one _
         _ ≤ (1 - Real.exp (-T))⁻¹ * Real.exp (-(1/2)*y) := hwval
 
-/-- The cosh-weighted `(1 − F)`-integrand is integrable on `(0, ∞)`.-/
+/-- The cosh-weighted `(1 − F)`-integrand is integrable on `(0, ∞)`.
+@isnad1 id=integrab.2h2v.s7.60f38789a236 from=translated src=- shape=ba2a2f0b vocab=35640cd0
+-/
 theorem integrableOn_cosh_weight_one_sub {σ T : ℝ} (hσ : 1/2 < σ) (hT : 0 < T) :
     MeasureTheory.IntegrableOn
       (fun y : ℝ => 1/(2*Real.cosh (y/2)) * (1 - auxFCut σ T y)) (Set.Ioi 0) := by
@@ -1362,21 +1463,27 @@ theorem integrableOn_cosh_weight_one_sub {σ T : ℝ} (hσ : 1/2 < σ) (hT : 0 <
 
 /-! ### The archimedean difference, realified and bounded (L4-c-ii) -/
 
-/-- `arch_display_integral_eq` at the sinh weight.-/
+/-- `arch_display_integral_eq` at the sinh weight.
+@isnad1 id=eq.0h2v.s7.c1a5d66157d9 from=translated src=- shape=d1eafe48 vocab=38ae35a2
+-/
 theorem arch_display_sinh_eq (σ X : ℝ) :
     (∫ y in Set.Ioi (0:ℝ), ((1/(2 * Real.sinh (y/2)) : ℝ) : ℂ) * (1 - auxF (σ:ℂ) X y))
       = ((∫ y in Set.Ioi (0:ℝ),
           1/(2 * Real.sinh (y/2)) * (1 - auxFCut σ (Real.log X) y) : ℝ) : ℂ) :=
   arch_display_integral_eq σ X _
 
-/-- `arch_display_integral_eq` at the cosh weight.-/
+/-- `arch_display_integral_eq` at the cosh weight.
+@isnad1 id=eq.0h2v.s7.472fd68cd2e7 from=translated src=- shape=d1eafe48 vocab=3c7b5aa3
+-/
 theorem arch_display_cosh_eq (σ X : ℝ) :
     (∫ y in Set.Ioi (0:ℝ), ((1/(2 * Real.cosh (y/2)) : ℝ) : ℂ) * (1 - auxF (σ:ℂ) X y))
       = ((∫ y in Set.Ioi (0:ℝ),
           1/(2 * Real.cosh (y/2)) * (1 - auxFCut σ (Real.log X) y) : ℝ) : ℂ) :=
   arch_display_integral_eq σ X _
 
-/-- Raising the cutoff raises the test function: `F_{σ,e^{T'}} ≤ F_{σ,e^T}` pointwise.-/
+/-- Raising the cutoff raises the test function: `F_{σ,e^{T'}} ≤ F_{σ,e^T}` pointwise.
+@isnad1 id=le.4h4v.s6.74acedab31b1 from=translated src=- shape=e35ac5d2 vocab=da968bd7
+-/
 theorem auxFCut_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T y : ℝ} (hT' : 0 < T')
     (hTT : T' ≤ T) (hy : 0 < y) :
     0 ≤ auxFCut σ T y - auxFCut σ T' y := by
@@ -1384,7 +1491,9 @@ theorem auxFCut_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T y : ℝ} (hT' : 0 <
   exact MeasureTheory.setIntegral_nonneg measurableSet_Ioc
     (fun U hU => cutKernel_nonneg hσ hy (hT'.trans hU.1).le)
 
-/-- The sinh-weighted cutoff difference is integrable on `(0, ∞)`.-/
+/-- The sinh-weighted cutoff difference is integrable on `(0, ∞)`.
+@isnad1 id=integrab.3h3v.s7.3504296f9ab5 from=translated src=- shape=9518310d vocab=4e2b4990
+-/
 theorem integrableOn_sinh_weight_sub {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 < T')
     (hT : 0 < T) :
     MeasureTheory.IntegrableOn
@@ -1394,7 +1503,9 @@ theorem integrableOn_sinh_weight_sub {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (h
     (integrableOn_sinh_weight_one_sub hσ hT)).congr_fun
     (fun y _ => by simp only [Pi.sub_apply]; ring) measurableSet_Ioi
 
-/-- The cosh-weighted cutoff difference is integrable on `(0, ∞)`.-/
+/-- The cosh-weighted cutoff difference is integrable on `(0, ∞)`.
+@isnad1 id=integrab.3h3v.s7.2a9fcdbf74b5 from=translated src=- shape=9518310d vocab=35640cd0
+-/
 theorem integrableOn_cosh_weight_sub {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 < T')
     (hT : 0 < T) :
     MeasureTheory.IntegrableOn
@@ -1405,7 +1516,9 @@ theorem integrableOn_cosh_weight_sub {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (h
     (fun y _ => by simp only [Pi.sub_apply]; ring) measurableSet_Ioi
 
 /-- The difference of sinh-weighted `(1−F)`-integrals is minus the cutoff-difference
-integral.-/
+integral.
+@isnad1 id=eq.3h3v.s8.88d625a57bc0 from=translated src=- shape=c9781587 vocab=81d6b450
+-/
 theorem sinh_integral_diff_eq {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 < T')
     (hT : 0 < T) :
     (∫ y in Set.Ioi (0:ℝ), 1/(2 * Real.sinh (y/2)) * (1 - auxFCut σ T y))
@@ -1417,7 +1530,9 @@ theorem sinh_integral_diff_eq {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 
   exact MeasureTheory.setIntegral_congr_fun measurableSet_Ioi (fun y _ => by ring)
 
 /-- The difference of cosh-weighted `(1−F)`-integrals is minus the cutoff-difference
-integral.-/
+integral.
+@isnad1 id=eq.3h3v.s8.ca7d0b15afa7 from=translated src=- shape=c9781587 vocab=a258eb92
+-/
 theorem cosh_integral_diff_eq {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 < T')
     (hT : 0 < T) :
     (∫ y in Set.Ioi (0:ℝ), 1/(2 * Real.cosh (y/2)) * (1 - auxFCut σ T y))
@@ -1428,7 +1543,9 @@ theorem cosh_integral_diff_eq {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ} (hT' : 0 
     (integrableOn_cosh_weight_one_sub hσ hT'), ← MeasureTheory.integral_neg]
   exact MeasureTheory.setIntegral_congr_fun measurableSet_Ioi (fun y _ => by ring)
 
-/-- The sinh cutoff-difference integral is nonnegative.-/
+/-- The sinh cutoff-difference integral is nonnegative.
+@isnad1 id=le.3h3v.s7.e12a12841ef7 from=translated src=- shape=1bf07ad2 vocab=81574ee1
+-/
 theorem integral_sinh_weight_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
     (hT' : 0 < T') (hTT : T' ≤ T) :
     0 ≤ ∫ y in Set.Ioi (0:ℝ),
@@ -1438,7 +1555,9 @@ theorem integral_sinh_weight_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
   have hs : 0 < Real.sinh (y/2) := Real.sinh_pos_iff.mpr (by linarith)
   exact mul_nonneg (by positivity) (auxFCut_sub_nonneg hσ hT' hTT hy0)
 
-/-- The cosh cutoff-difference integral is nonnegative.-/
+/-- The cosh cutoff-difference integral is nonnegative.
+@isnad1 id=le.3h3v.s7.67d30fbf57fa from=translated src=- shape=1bf07ad2 vocab=96bd3025
+-/
 theorem integral_cosh_weight_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
     (hT' : 0 < T') (hTT : T' ≤ T) :
     0 ≤ ∫ y in Set.Ioi (0:ℝ),
@@ -1449,7 +1568,9 @@ theorem integral_cosh_weight_sub_nonneg {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
   exact mul_nonneg (by positivity) (auxFCut_sub_nonneg hσ hT' hTT hy0)
 
 /-- The combined-weight cutoff-difference integral splits into its sinh and cosh
-parts.-/
+parts.
+@isnad1 id=eq.3h3v.s8.3f64146e84d6 from=translated src=- shape=5b59ce43 vocab=79a21bbc
+-/
 theorem integral_archWeight_sub_split {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
     (hT' : 0 < T') (hT : 0 < T) :
     ∫ y in Set.Ioi (0:ℝ), archWeight y * (auxFCut σ T y - auxFCut σ T' y)
@@ -1465,7 +1586,9 @@ theorem integral_archWeight_sub_split {σ : ℝ} (hσ : 1/2 < σ) {T' T : ℝ}
 
 /-- **The place-count combination bound**: for `n = r₁ + 2r₂ ≥ 2` and `D₁, D₂ ≥ 0`,
 `|(n−1)·D₁ + (r₁−1)·D₂| ≤ (n−1)·(D₁+D₂)` — the paper's `|r_K − r_k| ≤ n_K − n_k`
-step (B–F lines 497–501) at `k = ℚ`.-/
+step (B–F lines 497–501) at `k = ℚ`.
+@isnad1 id=le.3h3v.s7.c4e29217cbeb from=translated src=- shape=9d65b5dc vocab=7820e434
+-/
 theorem abs_place_combination_le (hn : 1 < Module.finrank ℚ K) {D₁ D₂ : ℝ}
     (hD₁ : 0 ≤ D₁) (hD₂ : 0 ≤ D₂) :
     |((NumberField.InfinitePlace.nrRealPlaces K : ℝ)
@@ -1511,7 +1634,9 @@ theorem abs_place_combination_le (hn : 1 < Module.finrank ℚ K) {D₁ D₂ : �
         exact add_le_add le_rfl (mul_le_mul_of_nonneg_right habs2 hD₂)
     _ = ((Module.finrank ℚ K : ℝ) - 1) * (D₁ + D₂) := by ring
 
-/-- Triangle inequality for the display's arch + zero-side combination.-/
+/-- Triangle inequality for the display's arch + zero-side combination.
+@isnad1 id=le.7h14v.s7.94e976dbb525 from=translated src=- shape=42006aa3 vocab=70eb1e37
+-/
 theorem norm_arch_zero_comb_le {A SK SQ CK CQ IK IQ : ℂ} {b sk sq ck cq ik iq : ℝ}
     (hA : ‖A‖ ≤ b) (hSK : ‖SK‖ ≤ sk) (hSQ : ‖SQ‖ ≤ sq) (hCK : ‖CK‖ ≤ ck)
     (hCQ : ‖CQ‖ ≤ cq) (hIK : ‖IK‖ ≤ ik) (hIQ : ‖IQ‖ ≤ iq) :
@@ -1544,7 +1669,9 @@ relative display is bounded by the archimedean term
 `(n−1)(T−T')(h+1/T')e^{T'/2}L(T')` plus the coefficient
 `2h²(T−T') + 2(h+1/T) + 2(h+1/T') + 4/T + 4/T'` times the two fields' zero sums
 (`T = log X`, `T' = log X'`, `h = σ−1/2`). `σ → 1⁺` (L4-d) turns this into the
-paper's `Explicit2` with `c_{a,T}`.-/
+paper's `Explicit2` with `c_{a,T}`.
+@isnad1 id=le.9h5v.s9.73ba69b40e61 from=translated src=- shape=e7aab7f2 vocab=9a5161fb
+-/
 theorem lemma4_sigma_estimate (hGRH : GeneralizedRiemannHypothesis K)
     (hRH : RiemannHypothesis) (hn : 1 < Module.finrank ℚ K)
     {σ : ℝ} (hσ : 1 < σ) {X' X : ℝ} (hX' : 1 < X') (hXX : X' ≤ X)
@@ -1705,12 +1832,17 @@ log-ratio, whose limit is `log κ_K − log κ_ℚ` (the divergences of `log ζ_
 (termwise antitone in `σ`). Taking `σ → 1⁺` in the inequality yields the paper's
 `Explicit2` (in our ×2 normalisation) with `h = 1/2` pinned. -/
 
+/--
+@isnad1 id=le.0h2v.s4.fa7fd3fdca78 from=translated src=- shape=664eb244 vocab=b407908b
+-/
 theorem zeroSumSigma_nonneg (σ : ℝ) : 0 ≤ zeroSumSigma K σ :=
   tsum_nonneg fun ρ => div_nonneg
     (by exact_mod_cast zetaZeroDivisor_nonneg K ρ.1) (by positivity)
 
 /-- The zero sum is antitone in `σ` past the critical line: each term
-`m_ρ/((σ−1/2)² + γ²)` decreases as `σ` grows.-/
+`m_ρ/((σ−1/2)² + γ²)` decreases as `σ` grows.
+@isnad1 id=le.2h3v.s5.1f44c436bdf4 from=translated src=- shape=632a7bd4 vocab=ccdbf807
+-/
 theorem zeroSumSigma_anti {σ' σ : ℝ} (hσ' : 1/2 < σ') (hσσ : σ' ≤ σ) :
     zeroSumSigma K σ ≤ zeroSumSigma K σ' := by
   refine Summable.tsum_le_tsum (fun ρ => ?_)
@@ -1726,7 +1858,9 @@ theorem zeroSumSigma_anti {σ' σ : ℝ} (hσ' : 1/2 < σ') (hσσ : σ' ≤ σ)
   have hsq : (σ' - 1/2)^2 ≤ (σ - 1/2)^2 := by nlinarith
   nlinarith
 
-/-- The plateau sum is the finite sum over the plateau support.-/
+/-- The plateau sum is the finite sum over the plateau support.
+@isnad1 id=eq.1h3v.s12.415e22c0fac6 from=translated src=- shape=e06e35a8 vocab=ce382326
+-/
 theorem plateauSum_eq_sum {X : ℝ} (hX : 1 < X) (σ : ℝ) :
     plateauSum K σ X = ∑ pk ∈ (finite_plateau_support K hX).toFinset,
       (if (((pk.2+1 : ℕ)) : ℝ) * Real.log (Ideal.absNorm pk.1.1) ≤ Real.log X
@@ -1744,7 +1878,9 @@ theorem plateauSum_eq_sum {X : ℝ} (hX : 1 < X) (σ : ℝ) :
   exact ite_eq_right hpk
 
 /-- The plateau sum is continuous in `σ` (its support is finite and
-`σ`-independent, and each term is an exponential in `σ`).-/
+`σ`-independent, and each term is an exponential in `σ`).
+@isnad1 id=tendsto.1h2v.s6.c65994875da7 from=translated src=- shape=03521c68 vocab=c77bfeda
+-/
 theorem tendsto_plateauSum {X : ℝ} (hX : 1 < X) :
     Filter.Tendsto (fun σ : ℝ => plateauSum K σ X) (nhdsWithin 1 (Set.Ioi 1))
       (nhds (plateauSum K 1 X)) := by
@@ -1779,7 +1915,9 @@ theorem tendsto_plateauSum {X : ℝ} (hX : 1 < X) :
   rw [plateauSum_eq_sum K hX 1]
   exact hs.mono_left (nhdsWithin_le_nhds (s := Set.Ioi 1))
 
-/-- The real-part class number formula: `(σ−1)·ζ_K(σ).re → κ_K` as `σ → 1⁺`.-/
+/-- The real-part class number formula: `(σ−1)·ζ_K(σ).re → κ_K` as `σ → 1⁺`.
+@isnad1 id=tendsto.0h1v.s6.4da09c524086 from=translated src=- shape=d6bbb624 vocab=c99919c0
+-/
 theorem tendsto_sub_one_mul_dedekindZeta_re :
     Filter.Tendsto (fun σ : ℝ => (σ - 1) * (NumberField.dedekindZeta K (σ:ℂ)).re)
       (nhdsWithin 1 (Set.Ioi 1)) (nhds (NumberField.dedekindZeta_residue K)) := by
@@ -1794,7 +1932,9 @@ theorem tendsto_sub_one_mul_dedekindZeta_re :
   rw [show ((σ:ℂ) - 1) = ((σ - 1 : ℝ) : ℂ) by push_cast; ring,
     Complex.re_ofReal_mul]
 
-/-- `log((σ−1)·ζ_K(σ).re) → log κ_K` as `σ → 1⁺`.-/
+/-- `log((σ−1)·ζ_K(σ).re) → log κ_K` as `σ → 1⁺`.
+@isnad1 id=tendsto.0h1v.s6.63fcf419d410 from=translated src=- shape=2b6aedb0 vocab=6c3b013c
+-/
 theorem tendsto_log_sub_one_mul_dedekindZeta :
     Filter.Tendsto (fun σ : ℝ =>
         Real.log ((σ - 1) * (NumberField.dedekindZeta K (σ:ℂ)).re))
@@ -1806,7 +1946,9 @@ theorem tendsto_log_sub_one_mul_dedekindZeta :
 
 /-- **The relative log-residue limit**: as `σ → 1⁺`,
 `log ζ_K(σ) − log ζ_ℚ(σ) → log κ_K − log κ_ℚ` — the individual divergences cancel
-against the shared `log(σ−1)`.-/
+against the shared `log(σ−1)`.
+@isnad1 id=tendsto.0h1v.s6.3d1d599f5ab8 from=translated src=- shape=964d66ff vocab=2056a8c7
+-/
 theorem tendsto_log_dedekindZeta_ratio :
     Filter.Tendsto (fun σ : ℝ => Real.log ((NumberField.dedekindZeta K (σ:ℂ)).re)
         - Real.log ((NumberField.dedekindZeta ℚ (σ:ℂ)).re))
@@ -1821,7 +1963,9 @@ theorem tendsto_log_dedekindZeta_ratio :
     Real.log_mul (by linarith) (dedekindZeta_ofReal_re_pos ℚ h1).ne']
   ring
 
-/-- The cutoff weight `T·e^{(σ−1/2)T}` tends to `T·√X` (`T = log X`).-/
+/-- The cutoff weight `T·e^{(σ−1/2)T}` tends to `T·√X` (`T = log X`).
+@isnad1 id=tendsto.1h1v.s6.b1e5fcc82c7f from=translated src=- shape=ce4085c9 vocab=9c0a1c13
+-/
 theorem tendsto_cutoff_weight {X : ℝ} (hX : 1 < X) :
     Filter.Tendsto (fun σ : ℝ => Real.log X * Real.exp ((σ - 1/2) * Real.log X))
       (nhdsWithin 1 (Set.Ioi 1)) (nhds (Real.log X * Real.sqrt X)) := by
@@ -1842,7 +1986,9 @@ for cutoffs `1 < X' ≤ X` (`T = log X`, `T' = log X'`),
 `|2(T√X − T'√X')·log(κ_K/κ_ℚ) + 2ΔP_K − 2ΔP_ℚ|` is at most
 `(n−1)(T−T')(1/2+1/T')e^{T'/2}L(T') + [2·(1/2)²(T−T') + 2(1/2+1/T) + 2(1/2+1/T')
 + 4/T + 4/T']·(Σ_K + Σ_ℚ)` with `Σ = Σ_ρ m_ρ/(1/4+γ_ρ²)`. Dividing by 2 recovers
-the paper's `a/4 + 1 + 3/T + 3/T' ≤ c_{a,T}` and `a·e^{−T'/2}β(T')`.-/
+the paper's `a/4 + 1 + 3/T + 3/T' ≤ c_{a,T}` and `a·e^{−T'/2}β(T')`.
+@isnad1 id=le.5h3v.s9.fcf47d6766de from=translated src=- shape=c1a0fb6c vocab=fc4226b0
+-/
 theorem lemma4_explicit2 (hGRH : GeneralizedRiemannHypothesis K)
     (hRH : RiemannHypothesis) (hn : 1 < Module.finrank ℚ K)
     {X' X : ℝ} (hX' : 1 < X') (hXX : X' ≤ X) :

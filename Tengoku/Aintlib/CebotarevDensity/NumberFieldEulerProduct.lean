@@ -49,11 +49,17 @@ abbrev NonzeroIdeal : Type _ := {I : Ideal (𝓞 L) // I ≠ ⊥}
 noncomputable def idealNormMultiplicity (n : ℕ) : ℕ :=
   Nat.card {I : NonzeroIdeal L // Ideal.absNorm I.1 = n}
 
+/--
+@isnad1 id=eq.0h1v.s4.642ab4c63a12 from=translated src=- shape=0586f221 vocab=f2cb2599
+-/
 lemma idealNormMultiplicity_zero : idealNormMultiplicity L 0 = 0 := by
   unfold idealNormMultiplicity
   rw [Nat.card_eq_zero]
   exact Or.inl ⟨fun ⟨⟨I, hI⟩, hnorm⟩ ↦ hI (Ideal.absNorm_eq_zero_iff.mp hnorm)⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.eda511047263 from=translated src=- shape=ca9f3550 vocab=8d1d8b5b
+-/
 lemma dedekindZeta_eq_tsum_idealNormMultiplicity {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta L s =
       ∑' n : ℕ, (idealNormMultiplicity L n : ℂ) * (n : ℂ) ^ (-s) := by
@@ -81,7 +87,9 @@ lemma dedekindZeta_eq_tsum_idealNormMultiplicity {s : ℂ} (hs : 1 < s.re) :
 
 /-- The partial sums of the ideal-norm multiplicity counting function grow like `O(n)`: the number
 of nonzero ideals of `𝓞 L` with norm `≤ n` is `∑_{k ≤ n} idealNormMultiplicity L k`, and
-`NumberField.Ideal.tendsto_norm_le_div_atTop₀` says this count is asymptotic to `c · n`.-/
+`NumberField.Ideal.tendsto_norm_le_div_atTop₀` says this count is asymptotic to `c · n`.
+@isnad1 id=isbigo.0h1v.s6.0b9f7024fad1 from=translated src=- shape=17580dcd vocab=c27c6503
+-/
 lemma sum_idealNormMultiplicity_isBigO :
     (fun n : ℕ ↦ ∑ k ∈ Finset.Icc 1 n, (idealNormMultiplicity L k : ℝ))
       =O[Filter.atTop] (fun n : ℕ ↦ (n : ℝ) ^ (1 : ℝ)) := by
@@ -119,6 +127,9 @@ lemma sum_idealNormMultiplicity_isBigO :
   push_cast
   rfl
 
+/--
+@isnad1 id=summable.1h2v.s6.e2bc00f8dc9e from=translated src=- shape=091106b0 vocab=7557915a
+-/
 lemma summable_idealNormMultiplicity_mul_cpow_neg {s : ℂ} (hs : 1 < s.re) :
     Summable fun n : ℕ ↦ ‖(idealNormMultiplicity L n : ℂ) * (n : ℂ) ^ (-s)‖ := by
   classical
@@ -255,7 +266,9 @@ private lemma prod_natCast_cpow {ι : Type*} (S : Finset ι) (m : ι → ℕ) (z
     rw [Finset.prod_insert ha, Finset.prod_insert ha, ih, Nat.cast_mul,
       Complex.natCast_mul_natCast_cpow]
 
-/-- For `1 < Re s`, the ratio `N𝔭^{-s}` of a nonzero prime ideal has norm `< 1` (since `N𝔭 ≥ 2`).-/
+/-- For `1 < Re s`, the ratio `N𝔭^{-s}` of a nonzero prime ideal has norm `< 1` (since `N𝔭 ≥ 2`).
+@isnad1 id=lt.1h3v.s9.863084857ade from=translated src=- shape=0f5483f6 vocab=831a3ec3
+-/
 lemma norm_absNorm_cpow_neg_lt_one {s : ℂ} (hs : 1 < s.re)
     (𝔭 : {𝔭 : Ideal (𝓞 L) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) :
     ‖(Ideal.absNorm 𝔭.1 : ℂ) ^ (-s)‖ < 1 := by
@@ -265,7 +278,9 @@ lemma norm_absNorm_cpow_neg_lt_one {s : ℂ} (hs : 1 < s.re)
   rw [Complex.norm_natCast_cpow_of_pos (by lia), Complex.neg_re]
   exact Real.rpow_lt_one_of_one_lt_of_neg (by exact_mod_cast h2.trans_lt' one_lt_two) (by linarith)
 
-/-- The norm of `∏_𝔭 𝔭^{e 𝔭}` factors as `∏_𝔭 (N𝔭)^{e 𝔭}`.-/
+/-- The norm of `∏_𝔭 𝔭^{e 𝔭}` factors as `∏_𝔭 (N𝔭)^{e 𝔭}`.
+@isnad1 id=eq.0h3v.s12.12c3ae0207d6 from=translated src=- shape=a611bf6e vocab=faac5224
+-/
 theorem absNorm_prod_pow_of_primeIdeal
     (S : Finset {𝔭 : Ideal (𝓞 L) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) (e : S → ℕ) :
     Ideal.absNorm (∏ 𝔭 ∈ S.attach, 𝔭.1.1 ^ e 𝔭) =
@@ -273,7 +288,9 @@ theorem absNorm_prod_pow_of_primeIdeal
   rw [map_prod]
   exact Finset.prod_congr rfl fun 𝔭 _ ↦ map_pow Ideal.absNorm 𝔭.1.1 (e 𝔭)
 
-/-- `∏_𝔭 N𝔭^{-(e 𝔭)·s} = (N(∏_𝔭 𝔭^{e 𝔭}))^{-s}`.-/
+/-- `∏_𝔭 N𝔭^{-(e 𝔭)·s} = (N(∏_𝔭 𝔭^{e 𝔭}))^{-s}`.
+@isnad1 id=eq.0h4v.s12.6dbfbc97d743 from=translated src=- shape=cdf4093e vocab=6ea67a39
+-/
 theorem prod_absNorm_cpow_eq_absNorm_prod_pow_cpow {s : ℂ}
     (S : Finset {𝔭 : Ideal (𝓞 L) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) (e : S → ℕ) :
     (∏ 𝔭 ∈ S.attach, (Ideal.absNorm 𝔭.1.1 : ℂ) ^ (-(e 𝔭 : ℂ) * s)) =
@@ -309,7 +326,9 @@ private lemma tsum_absNormFiber {M : Type*} [AddCommGroup M] [TopologicalSpace M
   (tsum_congr fun y : {I : NonzeroIdeal L // Ideal.absNorm I.1 = n} ↦ by rw [y.2]).trans
     (tsum_const (g n))
 
-/-- For `1 < Re s`, `∑_𝔞 N𝔞^{-s}` over nonzero ideals of `𝓞 L` has sum `ζ_K(s)`.-/
+/-- For `1 < Re s`, `∑_𝔞 N𝔞^{-s}` over nonzero ideals of `𝓞 L` has sum `ζ_K(s)`.
+@isnad1 id=hassum.1h2v.s8.1a945773cb93 from=translated src=- shape=70473ae1 vocab=b9b1cbee
+-/
 theorem hasSum_nonzeroIdeal_absNorm_cpow {s : ℂ} (hs : 1 < s.re) :
     HasSum (fun I : NonzeroIdeal L ↦ (Ideal.absNorm I.1 : ℂ) ^ (-s))
       (NumberField.dedekindZeta L s) := by
@@ -537,7 +556,9 @@ open UniqueFactorizationMonoid in
 /-- **Weighted prime-ideal Euler product**: for a completely-multiplicative weight `w` with
 `‖w 𝔞‖ ≤ 1` and `1 < Re s`,
 `∑_𝔞 w(𝔞) N𝔞^{-s} = ∏_𝔭 (1 - w(𝔭) N𝔭^{-s})^{-1}` over the nonzero prime ideals. This is the
-`w`-twisted analogue of `dedekindZeta_eq_tprod_primeIdeal` (Sharifi 7.1.18).-/
+`w`-twisted analogue of `dedekindZeta_eq_tprod_primeIdeal` (Sharifi 7.1.18).
+@isnad1 id=eq.4h3v.s10.b188c6ee65e2 from=translated src=- shape=731a9bb9 vocab=769d85a9
+-/
 theorem weighted_eulerProduct_eq_tsum {s : ℂ} (hs : 1 < s.re)
     (w : Ideal (𝓞 L) → ℂ) (hw_one : w ⊤ = 1)
     (hw_mul : ∀ {𝔞 𝔟 : Ideal (𝓞 L)}, 𝔞 ≠ ⊥ → 𝔟 ≠ ⊥ → w (𝔞 * 𝔟) = w 𝔞 * w 𝔟)
@@ -602,7 +623,9 @@ theorem weighted_eulerProduct_eq_tsum {s : ℂ} (hs : 1 < s.re)
 
 open UniqueFactorizationMonoid in
 /-- **Prime-ideal Euler product** (Sharifi, *Algebraic Number Theory*, Theorem 7.1.12,
-p. 140): for `1 < Re s`, `ζ_K(s) = ∏_𝔭 (1 - N𝔭^{-s})^{-1}` over the nonzero prime ideals.-/
+p. 140): for `1 < Re s`, `ζ_K(s) = ∏_𝔭 (1 - N𝔭^{-s})^{-1}` over the nonzero prime ideals.
+@isnad1 id=eq.1h2v.s9.5aa23dec56c3 from=translated src=- shape=779efc0e vocab=e10086dc
+-/
 theorem dedekindZeta_eq_tprod_primeIdeal {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta L s =
       ∏' 𝔭 : {𝔭 : Ideal (𝓞 L) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥},

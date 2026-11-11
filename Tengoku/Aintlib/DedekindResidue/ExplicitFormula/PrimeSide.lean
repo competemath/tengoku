@@ -43,32 +43,42 @@ open scoped ENNReal NNReal
 variable (K : Type*) [Field K] [NumberField K]
 
 /-- The absolute norm of a nonzero prime ideal is nonzero (`absNorm I = 0 ↔ I = ⊥`, and the
-ideal is nonzero).-/
+ideal is nonzero).
+@isnad1 id=ne.0h2v.s8.f77fd2cf1759 from=translated src=- shape=a4717754 vocab=74bfdb96
+-/
 theorem absNorm_ne_zero_of_prime {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}} :
     Ideal.absNorm 𝔭.1 ≠ 0 :=
   fun h => 𝔭.2.2 (Ideal.absNorm_eq_zero_iff.mp h)
 
 /-- The absolute norm of a nonzero prime ideal is not `1` (`absNorm I = 1 ↔ I = ⊤`, and a
-prime ideal is proper).-/
+prime ideal is proper).
+@isnad1 id=ne.0h2v.s8.ba5aa819fed7 from=translated src=- shape=a4717754 vocab=74bfdb96
+-/
 theorem absNorm_ne_one_of_prime {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}} :
     Ideal.absNorm 𝔭.1 ≠ 1 :=
   fun h => 𝔭.2.1.ne_top (Ideal.absNorm_eq_one_iff.mp h)
 
 /-- A nonzero prime ideal has absolute norm at least `2` (it is neither `0` nor `1`). This is
-the arithmetic fact underlying every prime-power Dirichlet estimate in this file.-/
+the arithmetic fact underlying every prime-power Dirichlet estimate in this file.
+@isnad1 id=le.0h2v.s8.495eb96f81a3 from=translated src=- shape=216a5cf5 vocab=e5efc06c
+-/
 theorem two_le_absNorm_of_prime {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}} :
     2 ≤ Ideal.absNorm 𝔭.1 := by
   have h0 : Ideal.absNorm 𝔭.1 ≠ 0 := absNorm_ne_zero_of_prime K
   have h1 : Ideal.absNorm 𝔭.1 ≠ 1 := absNorm_ne_one_of_prime K
   omega
 
-/-- Real-cast form of `two_le_absNorm_of_prime`: `(2 : ℝ) ≤ N𝔭`.-/
+/-- Real-cast form of `two_le_absNorm_of_prime`: `(2 : ℝ) ≤ N𝔭`.
+@isnad1 id=le.0h2v.s8.bffedd812e99 from=translated src=- shape=10e7e6b1 vocab=61e83e8d
+-/
 theorem two_le_absNorm_of_prime_real {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}} :
     (2 : ℝ) ≤ (Ideal.absNorm 𝔭.1 : ℝ) := by
   exact_mod_cast two_le_absNorm_of_prime (K := K) (𝔭 := 𝔭)
 
 /-- For a nonzero prime ideal and real exponent `σ > 1`, `2·N𝔭^{-σ} < 1`: the Euler-factor
-smallness estimate that forces non-vanishing and the uniform inverse bound.-/
+smallness estimate that forces non-vanishing and the uniform inverse bound.
+@isnad1 id=lt.1h3v.s9.45a1cf732cf1 from=translated src=- shape=1c1ef73a vocab=f8fc9d82
+-/
 theorem two_mul_rpow_neg_lt_one {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}} {σ : ℝ}
     (hσ : 1 < σ) : 2 * (Ideal.absNorm 𝔭.1 : ℝ) ^ (-σ) < 1 := by
   have hN2 : (2 : ℝ) ≤ (Ideal.absNorm 𝔭.1 : ℝ) := two_le_absNorm_of_prime_real K
@@ -87,7 +97,9 @@ theorem two_mul_rpow_neg_lt_one {𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime �
   linarith
 
 /-- Prime-ideal norm sums converge for real exponent `σ > 1` (comparison with the full
-ideal Dirichlet series).-/
+ideal Dirichlet series).
+@isnad1 id=summable.1h2v.s9.c1fe095fab29 from=translated src=- shape=3a918353 vocab=f639fb0a
+-/
 theorem summable_primeIdeal_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} =>
       (Ideal.absNorm 𝔭.1 : ℝ) ^ (-σ)) := by
@@ -112,7 +124,9 @@ theorem summable_primeIdeal_rpow {σ : ℝ} (hσ : 1 < σ) :
   exact (hσsum.comp_injective hinj).congr (fun 𝔭 => rfl)
 
 /-- Log-weighted prime-ideal norm sums converge for `σ > 1`: absorb the logarithm
-into a slightly smaller exponent.-/
+into a slightly smaller exponent.
+@isnad1 id=summable.1h2v.s10.db4800965163 from=translated src=- shape=c5eeaf21 vocab=72c1f153
+-/
 theorem summable_primeIdeal_log_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} =>
       Real.log (Ideal.absNorm 𝔭.1) * (Ideal.absNorm 𝔭.1 : ℝ) ^ (-σ)) := by
@@ -146,7 +160,9 @@ theorem summable_primeIdeal_log_rpow {σ : ℝ} (hσ : 1 < σ) :
           rw [← Real.rpow_add hNpos, show δ + -σ = -(σ - δ) by ring]
 
 /-- Logarithmic derivative of a single Euler factor:
-`(d/dz) log (1 - c^{-z})⁻¹ = -(log c)·c^{-z}/(1 - c^{-z})`.-/
+`(d/dz) log (1 - c^{-z})⁻¹ = -(log c)·c^{-z}/(1 - c^{-z})`.
+@isnad1 id=eq.1h2v.s6.a4d231d24942 from=translated src=- shape=1e0bfb45 vocab=90e098d8
+-/
 theorem logDeriv_euler_factor {c : ℂ} (hc : c ≠ 0) (z : ℂ) :
     logDeriv (fun w => (1 - c ^ (-w))⁻¹) z
       = -(Complex.log c * c ^ (-z) / (1 - c ^ (-z))) := by
@@ -172,7 +188,9 @@ theorem logDeriv_euler_factor {c : ℂ} (hc : c ≠ 0) (z : ℂ) :
   ring
 
 /-- On a compact subset of the half-plane `Re > 1`, the real part attains a minimum
-`σ₀ > 1`.-/
+`σ₀ > 1`.
+@isnad1 id=ex.3h1v.s6.e42ee93aeda1 from=translated src=- shape=84d69c5f vocab=8f4538c2
+-/
 theorem exists_min_re_of_isCompact {S : Set ℂ} (hS : IsCompact S) (hne : S.Nonempty)
     (hsub : S ⊆ {z : ℂ | 1 < z.re}) :
     ∃ σ₀ : ℝ, 1 < σ₀ ∧ ∀ x ∈ S, σ₀ ≤ x.re := by
@@ -180,7 +198,9 @@ theorem exists_min_re_of_isCompact {S : Set ℂ} (hS : IsCompact S) (hne : S.Non
     (Complex.continuous_re.continuousOn)
   exact ⟨z₀.re, hsub hz₀S, fun x hx => hz₀min hx⟩
 
-/-- Norm bound for the Euler-factor correction on `Re ≥ σ₀ > 1`.-/
+/-- Norm bound for the Euler-factor correction on `Re ≥ σ₀ > 1`.
+@isnad1 id=le.2h4v.s9.1510df3c482e from=translated src=- shape=9e55548f vocab=60715974
+-/
 theorem euler_g_bound (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) {x : ℂ} {σ₀ : ℝ}
     (h1 : 1 < σ₀) (h2 : σ₀ ≤ x.re) :
     ‖(1 - (Ideal.absNorm 𝔭.1 : ℂ) ^ (-x))⁻¹ - 1‖
@@ -231,7 +251,9 @@ theorem euler_g_bound (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 �
     _ = 2 * (Ideal.absNorm 𝔭.1 : ℝ) ^ (-σ₀) := by ring
 
 /-- The Euler product over prime ideals is locally uniformly multipliable on the
-half-plane `Re > 1`.-/
+half-plane `Re > 1`.
+@isnad1 id=multipli.0h1v.s9.975a763d26b0 from=translated src=- shape=5fd56cfc vocab=35c186b1
+-/
 theorem multipliableLocallyUniformlyOn_eulerFactors :
     MultipliableLocallyUniformlyOn
       (fun (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) (z : ℂ) =>
@@ -277,7 +299,9 @@ theorem multipliableLocallyUniformlyOn_eulerFactors :
       Nat.cast_eq_zero] at h0
     exact hne0 h0
 
-/-- Euler factors do not vanish on `Re > 1`.-/
+/-- Euler factors do not vanish on `Re > 1`.
+@isnad1 id=ne.1h3v.s9.8d55d22e1583 from=translated src=- shape=0bbd83b4 vocab=e73e41ff
+-/
 theorem euler_factor_ne_zero (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) {x : ℂ}
     (hx : 1 < x.re) :
     (1 : ℂ) - (Ideal.absNorm 𝔭.1 : ℂ) ^ (-x) ≠ 0 := by
@@ -287,7 +311,9 @@ theorem euler_factor_ne_zero (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 
   simp only [inv_zero, zero_sub, norm_neg, norm_one] at hb
   linarith [two_mul_rpow_neg_lt_one K (𝔭 := 𝔭) hx]
 
-/-- The inverse Euler factor has norm at most `2` on `Re > 1`.-/
+/-- The inverse Euler factor has norm at most `2` on `Re > 1`.
+@isnad1 id=le.1h3v.s9.f057e173064d from=translated src=- shape=17a0754c vocab=da687493
+-/
 theorem euler_inv_norm_le_two (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥}) {x : ℂ}
     (hx : 1 < x.re) :
     ‖((1 : ℂ) - (Ideal.absNorm 𝔭.1 : ℂ) ^ (-x))⁻¹‖ ≤ 2 := by
@@ -304,7 +330,9 @@ theorem euler_inv_norm_le_two (𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧
 
 /-- **SP2-vM: the prime-side series** (Poitou p. 6-02): for `Re s > 1`,
 `−ζ_K'/ζ_K(s) = ∑_𝔭 log(N𝔭)·N𝔭^{-s}/(1 − N𝔭^{-s})`, differentiating the Euler
-product through the locally uniform convergence.-/
+product through the locally uniform convergence.
+@isnad1 id=eq.1h2v.s10.157ad25125f1 from=translated src=- shape=91fe9635 vocab=cd3ca1fd
+-/
 theorem neg_logDeriv_dedekindZeta_eq_tsum {s : ℂ} (hs : 1 < s.re) :
     -(logDeriv (NumberField.dedekindZeta K) s)
       = ∑' 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥},
@@ -395,7 +423,9 @@ theorem neg_logDeriv_dedekindZeta_eq_tsum {s : ℂ} (hs : 1 < s.re) :
         refine tsum_congr (fun 𝔭 => ?_)
         rw [hld_eq 𝔭, neg_neg]
 
-/-- Summability of the prime-power family `log(N𝔭)·N𝔭^{-(k+1)σ}` for `σ > 1`.-/
+/-- Summability of the prime-power family `log(N𝔭)·N𝔭^{-(k+1)σ}` for `σ > 1`.
+@isnad1 id=summable.1h2v.s10.5676a53c571f from=translated src=- shape=917953a7 vocab=da788ad1
+-/
 theorem summable_primeIdeal_pow_log_rpow {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
       Real.log (Ideal.absNorm pk.1.1)
@@ -481,7 +511,9 @@ theorem summable_primeIdeal_pow_log_rpow {σ : ℝ} (hσ : 1 < σ) :
 
 /-- **The prime-power expansion of `−ζ_K'/ζ_K`** (Poitou p. 6-02): for `Re s > 1`,
 `−ζ_K'/ζ_K(s) = ∑_{𝔭,m≥1} log(N𝔭)·N𝔭^{-ms}`, expanding each Euler factor
-geometrically.-/
+geometrically.
+@isnad1 id=eq.1h2v.s10.1f399d6d19c5 from=translated src=- shape=e8c96113 vocab=3e751505
+-/
 theorem neg_logDeriv_dedekindZeta_eq_tsum_prod {s : ℂ} (hs : 1 < s.re) :
     -(logDeriv (NumberField.dedekindZeta K) s)
       = ∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,
@@ -554,7 +586,9 @@ theorem neg_logDeriv_dedekindZeta_eq_tsum_prod {s : ℂ} (hs : 1 < s.re) :
         rw [hcpow k]
 
 /-- The ideals of the ring of integers form a countable type: each ideal has finite
-absolute norm and there are finitely many ideals of each norm.-/
+absolute norm and there are finitely many ideals of each norm.
+@isnad1 id=countabl.0h1v.s4.af35fdf00e5e from=translated src=- shape=763df72c vocab=a65b2dfc
+-/
 instance countable_ideal_ringOfIntegers (K : Type*) [Field K] [NumberField K] :
     Countable (Ideal (𝓞 K)) := by
   have h0 : (Set.univ : Set (Ideal (𝓞 K))) = ⋃ n : ℕ, {I | Ideal.absNorm I = n} := by
@@ -568,7 +602,9 @@ instance countable_ideal_ringOfIntegers (K : Type*) [Field K] [NumberField K] :
 
 /-- A pointwise `tsum` of integrable functions with summable `L¹` norms is
 integrable (companion to `MeasureTheory.integral_tsum_of_summable_integral_norm`,
-which computes its integral).-/
+which computes its integral).
+@isnad1 id=integrab.2h2v.s7.b31b5d741bf1 from=translated src=- shape=4658ff44 vocab=d4e733aa
+-/
 theorem integrable_tsum_of_summable_integral_norm {ι : Type*} [Countable ι]
     {F : ι → ℝ → ℂ} (hF_int : ∀ i, Integrable (F i) (volume : Measure ℝ))
     (hF_sum : Summable fun i => ∫ a : ℝ, ‖F i a‖) :
@@ -594,7 +630,9 @@ theorem integrable_tsum_of_summable_integral_norm {ι : Type*} [Countable ι]
           (NNReal.summable_coe.1 hF_sum.abs))
 
 /-- **Translation identity**: multiplying a Fourier-type integral by `e^{-itβ}`
-translates the integrand by `β`.-/
+translates the integrand by `β`.
+@isnad1 id=eq.0h3v.s7.3625a5c69113 from=translated src=- shape=b8bae13b vocab=cc222842
+-/
 theorem integral_translate_cexp (G : ℝ → ℂ) (β t : ℝ) :
     (∫ x : ℝ, G x * Complex.exp ((t*x : ℝ) * Complex.I))
         * Complex.exp (((-(t*β)) : ℝ) * Complex.I)
@@ -632,7 +670,9 @@ noncomputable def primeSideH (a : ℝ) (F : ℝ → ℂ) (u : ℝ) : ℂ :=
           * ((Real.exp ((1/2+a)
               * (u + (((pk.2+1 : ℕ)) : ℝ) * Real.log (Ideal.absNorm pk.1.1))) : ℝ) : ℂ))
 
-/-- Each prime-power term of `primeSideH` is integrable.-/
+/-- Each prime-power term of `primeSideH` is integrable.
+@isnad1 id=integrab.1h4v.s11.6a41fa9d488b from=translated src=- shape=3b237799 vocab=97643438
+-/
 theorem integrable_primeSideH_term {a : ℝ} {F : ℝ → ℂ}
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)))
     (pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ) :
@@ -647,7 +687,9 @@ theorem integrable_primeSideH_term {a : ℝ} {F : ℝ → ℂ}
   exact hFa.comp_add_right _
 
 /-- The `L¹` norms of the `primeSideH` terms are summable, with the geometric
-values `log(N𝔭)·N𝔭^{-m(1+a)}·‖F_a‖₁`.-/
+values `log(N𝔭)·N𝔭^{-m(1+a)}·‖F_a‖₁`.
+@isnad1 id=summable.1h3v.s11.802aa540441f from=translated src=- shape=8e5c5383 vocab=34028b67
+-/
 theorem summable_integral_norm_primeSideH {a : ℝ} (ha : 0 < a) (F : ℝ → ℂ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
       ∫ u : ℝ, ‖((Real.log (Ideal.absNorm pk.1.1)
@@ -702,7 +744,9 @@ theorem summable_integral_norm_primeSideH {a : ℝ} (ha : 0 < a) (F : ℝ → �
   refine Summable.congr ?_ (fun pk => (hval pk).symm)
   exact (summable_primeIdeal_pow_log_rpow K (by linarith : (1:ℝ) < 1+a)).mul_right _
 
-/-- `primeSideH` is integrable.-/
+/-- `primeSideH` is integrable.
+@isnad1 id=integrab.2h3v.s7.5dcda869245b from=translated src=- shape=38564819 vocab=394011e1
+-/
 theorem integrable_primeSideH {a : ℝ} (ha : 0 < a) {F : ℝ → ℂ}
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ))) :
     Integrable (primeSideH K a F) (volume : Measure ℝ) :=
@@ -716,7 +760,9 @@ partie ultramétrique"): on the edge `s = 1+a+it`,
 `Φ(s)·(−ζ_K'/ζ_K(s)) = ∫ H(u)·e^{itu} du`,
 
 expanding the Dirichlet series, translating each prime-power term, and summing
-back under the integral.-/
+back under the integral.
+@isnad1 id=eq.2h4v.s8.e3c3417b9bde from=translated src=- shape=135812a4 vocab=8e050491
+-/
 theorem paperPhi_mul_neg_logDeriv_eq (K : Type*) [Field K] [NumberField K]
     {a : ℝ} (ha : 0 < a) {F : ℝ → ℂ}
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)))
@@ -888,7 +934,9 @@ theorem paperPhi_mul_neg_logDeriv_eq (K : Type*) [Field K] [NumberField K]
   exact tsum_mul_right
 
 /-- Summability of the prime-power logarithmic series `∑ N𝔭^{-(m+1)σ}/(m+1)`
-(dominated by the von Mangoldt series via `log N𝔭 ≥ log 2`).-/
+(dominated by the von Mangoldt series via `log N𝔭 ≥ log 2`).
+@isnad1 id=summable.1h2v.s10.d1d72b24cedb from=translated src=- shape=19a1082c vocab=b879c0a9
+-/
 theorem summable_primeIdeal_pow_div {σ : ℝ} (hσ : 1 < σ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
       (Ideal.absNorm pk.1.1 : ℝ) ^ (-(((pk.2+1 : ℕ)) : ℝ) * σ) / ((pk.2+1 : ℕ) : ℝ)) := by
@@ -916,7 +964,9 @@ theorem summable_primeIdeal_pow_div {σ : ℝ} (hσ : 1 < σ) :
           exact mul_le_mul_of_nonneg_right hlogN hrpow
 
 /-- **The Dedekind zeta function as an exponential** (log-Euler product, prime-ideal
-form): `ζ_K(s) = exp(∑_𝔭 -log(1 - N𝔭^{-s}))` on `Re s > 1`.-/
+form): `ζ_K(s) = exp(∑_𝔭 -log(1 - N𝔭^{-s}))` on `Re s > 1`.
+@isnad1 id=eq.1h2v.s9.deef1af6d3b7 from=translated src=- shape=434b3e3e vocab=6ee7a813
+-/
 theorem dedekindZeta_eq_exp_tsum {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta K s
       = Complex.exp (∑' 𝔭 : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥},
@@ -936,7 +986,9 @@ theorem dedekindZeta_eq_exp_tsum {s : ℂ} (hs : 1 < s.re) :
   exact H
 
 /-- **The Dedekind zeta function as an exponential of the prime-power series**:
-`ζ_K(s) = exp(∑_{𝔭,m} N𝔭^{-(m+1)s}/(m+1))` on `Re s > 1`.-/
+`ζ_K(s) = exp(∑_{𝔭,m} N𝔭^{-(m+1)s}/(m+1))` on `Re s > 1`.
+@isnad1 id=eq.1h2v.s10.678ecbffba02 from=translated src=- shape=32d73ceb vocab=c6d8f9d3
+-/
 theorem dedekindZeta_eq_exp_tsum_prod {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta K s
       = Complex.exp (∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,
@@ -991,7 +1043,9 @@ theorem dedekindZeta_eq_exp_tsum_prod {s : ℂ} (hs : 1 < s.re) :
     Complex.cpow_nat_mul]
 
 /-- On the real ray `σ > 1`, `ζ_K(σ)` is the coercion of the positive real number
-`exp(∑_{𝔭,m} N𝔭^{-(m+1)σ}/(m+1))`.-/
+`exp(∑_{𝔭,m} N𝔭^{-(m+1)σ}/(m+1))`.
+@isnad1 id=eq.1h2v.s10.e9b8d1b3575a from=translated src=- shape=7091d961 vocab=673431d4
+-/
 theorem dedekindZeta_ofReal_eq {σ : ℝ} (hσ : 1 < σ) :
     NumberField.dedekindZeta K (σ : ℂ)
       = ((Real.exp (∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,
@@ -1009,14 +1063,18 @@ theorem dedekindZeta_ofReal_eq {σ : ℝ} (hσ : 1 < σ) :
   push_cast
   ring_nf
 
-/-- `ζ_K(σ) > 0` on the real ray, read on the real part.-/
+/-- `ζ_K(σ) > 0` on the real ray, read on the real part.
+@isnad1 id=lt.1h2v.s5.e4cd07decc25 from=translated src=- shape=f614967e vocab=c9dcf3bd
+-/
 theorem dedekindZeta_ofReal_re_pos {σ : ℝ} (hσ : 1 < σ) :
     0 < (NumberField.dedekindZeta K (σ : ℂ)).re := by
   rw [dedekindZeta_ofReal_eq K hσ, Complex.ofReal_re]
   exact Real.exp_pos _
 
 /-- **The logarithmic Euler product on the real ray** (B–F eq. (4)):
-`log ζ_K(σ) = ∑_{𝔭,m} N𝔭^{-(m+1)σ}/(m+1)` for `σ > 1`.-/
+`log ζ_K(σ) = ∑_{𝔭,m} N𝔭^{-(m+1)σ}/(m+1)` for `σ > 1`.
+@isnad1 id=eq.1h2v.s10.fdbf58c3e4ac from=translated src=- shape=a470e41b vocab=ed7132a1
+-/
 theorem real_log_dedekindZeta {σ : ℝ} (hσ : 1 < σ) :
     Real.log ((NumberField.dedekindZeta K (σ : ℂ)).re)
       = ∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,

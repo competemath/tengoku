@@ -45,7 +45,9 @@ variable (B : Type*) [CommRing B] [IsDomain B]
 variable [Algebra A B] [Module.IsTorsionFree A B]
 
 /-- Non-zero divisors of `A` map into non-zero divisors of `B` under an
-injective algebra map.-/
+injective algebra map.
+@isnad1 id=le.0h2v.s7.fdbe587601fd from=translated src=- shape=8df40521 vocab=1f204b8b
+-/
 lemma algebraMap_nonZeroDivisors_le :
     A⁰ ≤ Submonoid.comap (algebraMap A B) B⁰ :=
   nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _
@@ -66,7 +68,9 @@ abbrev fractionRingMap : FractionRing A →+* FractionRing B :=
 
 /-- The fractional-ideal pushforward sends principal fractional ideals to
 principal fractional ideals — the key compatibility for the class-group
-descent.-/
+descent.
+@isnad1 id=eq.0h3v.s10.99c9001510b7 from=translated src=- shape=55f052db vocab=2b9dfbea
+-/
 lemma extensionMap_spanSingleton (x : FractionRing A) :
     extensionMap A B (spanSingleton _ x) =
       spanSingleton _ (fractionRingMap A B x) :=
@@ -100,7 +104,9 @@ noncomputable def extensionMap : ClassGroup A →* ClassGroup B :=
 
 /-- The class-group descent applied to `QuotientGroup.mk α` is
 `QuotientGroup.mk` of the unit-pushforward — by definition of
-`extensionMap` as a `QuotientGroup.map`.-/
+`extensionMap` as a `QuotientGroup.map`.
+@isnad1 id=eq.0h3v.s13.0bd044547219 from=translated src=- shape=5cc758a1 vocab=cbec5c47
+-/
 @[simp]
 lemma extensionMap_quotientMk (α : (FractionalIdeal A⁰ (FractionRing A))ˣ) :
     extensionMap A B (QuotientGroup.mk α) =
@@ -116,7 +122,9 @@ variable [Algebra A B] [Module.IsTorsionFree A B]
 
 /-- Compatibility: the class-group map sends the class of a non-zero ideal
 `I ∈ (Ideal A)⁰` to the class of its image `I · B = I.map (algebraMap A B)`
-in `ClassGroup B`.-/
+in `ClassGroup B`.
+@isnad1 id=eq.0h3v.s12.50b8c06b1a06 from=translated src=- shape=d1cad83c vocab=3377af8c
+-/
 lemma extensionMap_mk0 (I : (Ideal A)⁰) :
     extensionMap A B (ClassGroup.mk0 I) =
       ClassGroup.mk0 ⟨I.1.map (algebraMap A B),
@@ -133,7 +141,9 @@ lemma extensionMap_mk0 (I : (Ideal A)⁰) :
   exact FractionalIdeal.extendedHom_coeIdeal_eq_map (L := FractionRing B) (B := B) I.1
 
 /-- `extensionMap` sends `ClassGroup.mk I` to `ClassGroup.mk` of the
-pushed-forward unit.-/
+pushed-forward unit.
+@isnad1 id=eq.0h3v.s13.6e6ef247f8bd from=translated src=- shape=aba21c1e vocab=b31c3b0d
+-/
 @[simp]
 theorem extensionMap_mk (I : (FractionalIdeal A⁰ (FractionRing A))ˣ) :
     extensionMap A B (ClassGroup.mk (FractionRing A) I) =
@@ -144,7 +154,9 @@ theorem extensionMap_mk (I : (FractionalIdeal A⁰ (FractionRing A))ˣ) :
 
 omit [IsDedekindDomain A] in
 /-- `extensionMap` sends `ClassGroup.mk0 I` to `ClassGroup.mk` of the
-pushed-forward fractional ideal.-/
+pushed-forward fractional ideal.
+@isnad1 id=eq.0h3v.s13.84286bdd2d9b from=translated src=- shape=6be2832c vocab=a22002c1
+-/
 theorem extensionMap_mk0' [IsDedekindDomain A] (I : (Ideal A)⁰) :
     extensionMap A B (ClassGroup.mk0 I) =
       ClassGroup.mk (FractionRing B) (Units.map (FractionalIdeal.extensionMap A B).toMonoidHom
@@ -152,7 +164,9 @@ theorem extensionMap_mk0' [IsDedekindDomain A] (I : (Ideal A)⁰) :
   rw [← ClassGroup.mk_mk0 (K := FractionRing A), extensionMap_mk]
 
 /-- Injectivity of `extensionMap` reduces to: every fractional ideal of `A`
-whose pushforward to `B` is principal was already principal.-/
+whose pushforward to `B` is principal was already principal.
+@isnad1 id=iff.0h2v.s13.e16281406e40 from=translated src=- shape=be634b47 vocab=41d68012
+-/
 theorem extensionMap_injective_iff :
     Function.Injective (extensionMap A B) ↔
       ∀ I : (FractionalIdeal A⁰ (FractionRing A))ˣ,

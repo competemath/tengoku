@@ -30,19 +30,25 @@ projection `.ι` is attempted at the pre-coercion type `TopologicalSpace.Opens (
 Naming the open once, with its `Scheme.Opens` type declared, is the fix.-/
 abbrev specBasicOpen (A : CommRingCat) (f : A) : (Spec A).Opens := PrimeSpectrum.basicOpen f
 
-/-- `D(f · g) = D(f) ⊓ D(g)`, at `Scheme.Opens` type.-/
+/-- `D(f · g) = D(f) ⊓ D(g)`, at `Scheme.Opens` type.
+@isnad1 id=eq.0h3v.s6.cbd0a4d04292 from=translated src=- shape=43a73510 vocab=018aa6c8
+-/
 lemma specBasicOpen_mul (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) = specBasicOpen A f ⊓ specBasicOpen A g :=
   PrimeSpectrum.basicOpen_mul f g
 
 /-- `D(f · g) ≤ D(f)`, at `Scheme.Opens` type. Stated once, with `A` a *variable*: applying
 `PrimeSpectrum.basicOpen_mul_le_left` directly at a concrete `A` forces the defeq
-`(Spec A).Opens ≡ Opens (PrimeSpectrum A)`, which unfolds `A` and can blow up `whnf`.-/
+`(Spec A).Opens ≡ Opens (PrimeSpectrum A)`, which unfolds `A` and can blow up `whnf`.
+@isnad1 id=le.0h3v.s6.f31ed39e91f4 from=translated src=- shape=ce47bbee vocab=7df5ae49
+-/
 lemma specBasicOpen_mul_le_left (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) ≤ specBasicOpen A f :=
   PrimeSpectrum.basicOpen_mul_le_left f g
 
-/-- `D(f · g) ≤ D(g)`, at `Scheme.Opens` type.-/
+/-- `D(f · g) ≤ D(g)`, at `Scheme.Opens` type.
+@isnad1 id=le.0h3v.s6.3889e7aefeef from=translated src=- shape=ecdd6d89 vocab=7df5ae49
+-/
 lemma specBasicOpen_mul_le_right (A : CommRingCat) (f g : A) :
     specBasicOpen A (f * g) ≤ specBasicOpen A g :=
   PrimeSpectrum.basicOpen_mul_le_right f g
@@ -56,7 +62,9 @@ noncomputable def specBasicOpenIsoAway (A : CommRingCat) (f : A) :
       rw [Scheme.Opens.range_ι]
       exact PrimeSpectrum.localization_away_comap_range (Localization.Away f) f
 
-/-- `specBasicOpenIsoAway` is the isomorphism factoring the localization map through `D(f)`.-/
+/-- `specBasicOpenIsoAway` is the isomorphism factoring the localization map through `D(f)`.
+@isnad1 id=eq.0h2v.s8.78043dcf6a04 from=translated src=- shape=13b661f1 vocab=e00c9119
+-/
 @[reassoc (attr := simp)]
 lemma specBasicOpenIsoAway_hom_ι (A : CommRingCat) (f : A) :
     (specBasicOpenIsoAway A f).hom ≫ (specBasicOpen A f).ι =
@@ -68,7 +76,9 @@ localization map `Localization.Away f → Localization.Away (f * g)`.
 
 Proved by cancelling the monomorphism `D(f).ι`: both sides then compute the structure map of
 `Localization.Away (f * g)` over `A`, one by `specBasicOpenIsoAway_hom_ι`, the other by
-`IsLocalization.Away.awayToAwayRight_eq`.-/
+`IsLocalization.Away.awayToAwayRight_eq`.
+@isnad1 id=eq.0h3v.s10.ee9cccf7d8d8 from=translated src=- shape=f6dd8385 vocab=38ce24a7
+-/
 lemma specBasicOpenIsoAway_hom_homOfLE (A : CommRingCat) (f g : A) :
     (specBasicOpenIsoAway A (f * g)).hom ≫
         (Spec A).homOfLE (specBasicOpen_mul_le_left A f g) =
@@ -82,7 +92,9 @@ lemma specBasicOpenIsoAway_hom_homOfLE (A : CommRingCat) (f g : A) :
   exact (RingHom.ext fun a =>
     (IsLocalization.Away.awayToAwayRight_eq (S := Localization.Away f) f g a)).symm
 
-/-- The mirror of `specBasicOpenIsoAway_hom_homOfLE` for the inclusion `D(f * g) ⊆ D(g)`.-/
+/-- The mirror of `specBasicOpenIsoAway_hom_homOfLE` for the inclusion `D(f * g) ⊆ D(g)`.
+@isnad1 id=eq.0h3v.s10.f65c4047d48a from=translated src=- shape=d021459b vocab=defdacd7
+-/
 lemma specBasicOpenIsoAway_hom_homOfLE' (A : CommRingCat) (f g : A) :
     (specBasicOpenIsoAway A (f * g)).hom ≫
         (Spec A).homOfLE (specBasicOpen_mul_le_right A f g) =
@@ -97,7 +109,9 @@ lemma specBasicOpenIsoAway_hom_homOfLE' (A : CommRingCat) (f g : A) :
     (IsLocalization.Away.awayToAwayLeft_eq (S := Localization.Away g) g f a)).symm
 
 /-- The `inv`-side form of `specBasicOpenIsoAway_hom_homOfLE`: restricting a morphism defined on
-`D(f)` along `D(f · g) ⊆ D(f)` corresponds to base-changing it along `Away f → Away (f · g)`.-/
+`D(f)` along `D(f · g) ⊆ D(f)` corresponds to base-changing it along `Away f → Away (f · g)`.
+@isnad1 id=eq.0h3v.s10.5ff4eb439c66 from=translated src=- shape=798094b7 vocab=c84da72e
+-/
 @[reassoc]
 lemma homOfLE_specBasicOpenIsoAway_inv (A : CommRingCat) (f g : A) :
     (Spec A).homOfLE (specBasicOpen_mul_le_left A f g) ≫ (specBasicOpenIsoAway A f).inv =
@@ -107,7 +121,9 @@ lemma homOfLE_specBasicOpenIsoAway_inv (A : CommRingCat) (f g : A) :
     specBasicOpenIsoAway_hom_homOfLE, Category.assoc, Iso.hom_inv_id, Category.comp_id,
     Iso.hom_inv_id_assoc]
 
-/-- The `D(f · g) ⊆ D(g)` mirror of `homOfLE_specBasicOpenIsoAway_inv`.-/
+/-- The `D(f · g) ⊆ D(g)` mirror of `homOfLE_specBasicOpenIsoAway_inv`.
+@isnad1 id=eq.0h3v.s10.66cdcff95de3 from=translated src=- shape=1a4f69f7 vocab=548e688c
+-/
 @[reassoc]
 lemma homOfLE_specBasicOpenIsoAway_inv' (A : CommRingCat) (f g : A) :
     (Spec A).homOfLE (specBasicOpen_mul_le_right A f g) ≫ (specBasicOpenIsoAway A g).inv =
@@ -124,7 +140,9 @@ pulled back along `f : X ⟶ Spec A`, agree on `f ⁻¹ᵁ D(b · c)` as soon as
 Everything here is stated for *variable* `X`, `Y`, `A`. That is deliberate: instantiated at a
 concrete scheme (a pullback of `Proj` charts, say) the `rw`s below would force `whnf` to unfold
 `Limits.pullback`, `MvPolynomial` and quotient carriers, and blow the heartbeat budget. As a
-general lemma it is instantiated by application, and no unfolding ever happens.-/
+general lemma it is instantiated by application, and no unfolding ever happens.
+@isnad1 id=eq.1h8v.s12.695e2211bc71 from=translated src=- shape=29d9cdf4 vocab=00c406fe
+-/
 lemma homOfLE_morphismRestrict_agree {X Y : Scheme} (A : CommRingCat) (f : X ⟶ Spec A) (b c : A)
     (Fb : Spec (CommRingCat.of (Localization.Away b)) ⟶ Y)
     (Fc : Spec (CommRingCat.of (Localization.Away c)) ⟶ Y)
@@ -152,7 +170,9 @@ the cover `Scheme.Opens.iSupOpenCover U` is exactly pairwise agreement on the in
 `U k ⊓ U l`: the pullback of two `homOfLE`s IS the intersection (`isPullback_opens_inf_le`).
 
 As with `homOfLE_morphismRestrict_agree`, this is stated over variable `X`, `Y`, so that no
-concrete scheme is ever unfolded.-/
+concrete scheme is ever unfolded.
+@isnad1 id=eq.1h7v.s11.cc521522eec8 from=translated src=- shape=0a2936ec vocab=d1dff0fd
+-/
 lemma glueMorphisms_hf_of_agree {X : Scheme} {J : Type*} (U : J → X.Opens) {Y : Scheme}
     (F : ∀ k, (U k).toScheme ⟶ Y)
     (h : ∀ k l, X.homOfLE (inf_le_left : U k ⊓ U l ≤ U k) ≫ F k =
@@ -171,7 +191,9 @@ to the `k`-th image piece gives `(f.isoImage (U k)).inv` composed with the `k`-t
 
 Stated over variable schemes on purpose: instantiated at a concrete `Proj` chart-product, the
 `isoImage` naturality rewrites (`isoImage_hom_homOfLE`) drive `whnf` into the pullback carrier and
-blow the heartbeat budget. As a general lemma it is applied, never unfolded.-/
+blow the heartbeat budget. As a general lemma it is applied, never unfolded.
+@isnad1 id=eq.0h8v.s10.1e7a4d17492e from=translated src=- shape=0b3631f5 vocab=0691c724
+-/
 lemma homOfLE_isoImage_inv_iSup {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f] {J : Type*}
     (U : J → X.Opens) (k : J) {Z : Scheme} (g : (⨆ i, U i).toScheme ⟶ Z) :
     Y.homOfLE (f.image_mono (le_iSup U k)) ≫ (f.isoImage (⨆ i, U i)).inv ≫ g =
@@ -184,7 +206,9 @@ lemma homOfLE_isoImage_inv_iSup {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f]
 /-- **(variable-scheme σ-immersion identity)** For an open immersion `p : X ⟶ Z`, an iso `e : X ≅ Y`
 and an open `U : Y.Opens`, the chain `isoImage.inv ≫ (e.hom ∣_ U) ≫ U.ι ≫ e.inv ≫ p` collapses to
 the image inclusion `(p ''ᵁ (e.hom ⁻¹ᵁ U)).ι`. Stated over variable schemes so instantiation at a
-concrete `Proj` chart-product never drives `whnf` into the pullback carrier.-/
+concrete `Proj` chart-product never drives `whnf` into the pullback carrier.
+@isnad1 id=eq.0h6v.s10.1cee096520ec from=translated src=- shape=60b70b06 vocab=157677fb
+-/
 lemma isoImage_inv_morphismRestrict_ι {X Y Z : Scheme} (p : X ⟶ Z) [IsOpenImmersion p]
     (e : X ≅ Y) (U : Y.Opens) :
     (p.isoImage (e.hom ⁻¹ᵁ U)).inv ≫ (e.hom ∣_ U) ≫ U.ι ≫ e.inv ≫ p =
@@ -199,7 +223,9 @@ the elaborator sees is the trivial `Spec.map (a ≫ b) = Spec.map b ≫ Spec.map
 concrete localization tower (`E` a triple `Localization.Away`), the conclusion still matches by
 structure — `Spec.map ?b ≫ Spec.map ?a ≫ ?rest` — so `isDefEq` never unfolds `E`. Combining the two
 `Spec.map`s *at the concrete tower* instead (`rw [← Spec.map_comp_assoc]` on the goal) forces a
-defeq through `E` and blows the heartbeat budget; routing through this lemma keeps it under 5k.-/
+defeq through `E` and blows the heartbeat budget; routing through this lemma keeps it under 5k.
+@isnad1 id=eq.1h10v.s7.db916c82d3a5 from=translated src=- shape=272c2369 vocab=3de41be7
+-/
 lemma spec_map_comp_congr {A B D E : CommRingCat} {X : Scheme}
     (a : A ⟶ B) (b : B ⟶ E) (a' : A ⟶ D) (b' : D ⟶ E)
     (rest : Spec A ⟶ X) (h : a ≫ b = a' ≫ b') :
@@ -207,7 +233,9 @@ lemma spec_map_comp_congr {A B D E : CommRingCat} {X : Scheme}
   rw [← Spec.map_comp_assoc, ← Spec.map_comp_assoc, h]
 
 /-- An open immersion's image functor preserves binary intersections. (`f ''ᵁ` is injective with
-`f ⁻¹ᵁ` as a partial inverse, so it respects `⊓`.) Upstream candidate.-/
+`f ⁻¹ᵁ` as a partial inverse, so it respects `⊓`.) Upstream candidate.
+@isnad1 id=eq.0h5v.s8.7fbfd0e4e98c from=translated src=- shape=74cafb61 vocab=737a9d41
+-/
 lemma Scheme.Hom.image_inf {X Y : Scheme} (f : X ⟶ Y) [IsOpenImmersion f] (U V : X.Opens) :
     f ''ᵁ (U ⊓ V) = f ''ᵁ U ⊓ f ''ᵁ V := by
   calc f ''ᵁ (U ⊓ V)

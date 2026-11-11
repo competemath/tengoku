@@ -32,7 +32,9 @@ section SignInvariant
 variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- The discrete Fourier transform of the standard basis vector at `x` is the
-`x`-th Fourier kernel row.-/
+`x`-th Fourier kernel row.
+@isnad1 id=eq.0h3v.s8.7c659b13aa12 from=translated src=- shape=5ed8a822 vocab=d2554df5
+-/
 theorem dft_basisFun_apply (x k : ZMod p) :
     ZMod.dft (Pi.basisFun ℂ (ZMod p) x) k =
       ZMod.stdAddChar (N := p) (-(x * k)) := by
@@ -41,14 +43,18 @@ theorem dft_basisFun_apply (x k : ZMod p) :
   rw [Finset.sum_ite_eq' Finset.univ x (fun y : ZMod p ↦ ZMod.stdAddChar (N := p) (-(y * k)))]
   simp
 
-/-- The DFT sends the delta function at `0` to the constant-one function.-/
+/-- The DFT sends the delta function at `0` to the constant-one function.
+@isnad1 id=eq.0h1v.s8.e742286b4763 from=translated src=- shape=4a5deca8 vocab=3aff00d0
+-/
 theorem dft_deltaZero_eq_constOne :
     ZMod.dft (Pi.basisFun ℂ (ZMod p) (0 : ZMod p)) = fun _ : ZMod p ↦ (1 : ℂ) := by
   ext k
   rw [dft_basisFun_apply (p := p) (x := (0 : ZMod p)) (k := k)]
   simp
 
-/-- The DFT of the constant-one function is concentrated at `0`.-/
+/-- The DFT of the constant-one function is concentrated at `0`.
+@isnad1 id=eq.0h2v.s8.93fa43d3916d from=translated src=- shape=ac764f38 vocab=3a223374
+-/
 theorem dft_constOne (k : ZMod p) :
     ZMod.dft (fun _ : ZMod p ↦ (1 : ℂ)) k = if k = 0 then p else 0 := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -69,7 +75,9 @@ theorem dft_constOne (k : ZMod p) :
       AddChar.sum_eq_zero_of_ne_one hne
     simpa [AddChar.mulShift_apply, mul_comm, mul_left_comm, mul_assoc] using hsum
 
-/-- Equivalently, the DFT sends the constant-one function to `p • δ₀`.-/
+/-- Equivalently, the DFT sends the constant-one function to `p • δ₀`.
+@isnad1 id=eq.0h1v.s8.53f58f27c316 from=translated src=- shape=2e26977b vocab=7867b1f3
+-/
 theorem dft_constOne_eq_prime_smul_deltaZero :
     ZMod.dft (fun _ : ZMod p ↦ (1 : ℂ)) =
       (p : ℂ) • Pi.basisFun ℂ (ZMod p) (0 : ZMod p) := by
@@ -80,7 +88,9 @@ theorem dft_constOne_eq_prime_smul_deltaZero :
   · simp [dft_constOne (p := p), hk, Pi.basisFun_apply]
 
 /-- The DFT interchanges the `δ₀` and constant-one lines, so this `2 × 2`
-block has trace `0`.-/
+block has trace `0`.
+@isnad1 id=and.0h1v.s9.30d613f39695 from=translated src=- shape=a9976628 vocab=7867b1f3
+-/
 theorem dft_constOne_deltaZero_offDiagonal :
     ZMod.dft (Pi.basisFun ℂ (ZMod p) (0 : ZMod p)) =
         (1 : ℂ) • (fun _ : ZMod p ↦ (1 : ℂ)) ∧
@@ -95,14 +105,18 @@ sign-detecting invariant used in the `T023d1g` plan.-/
 noncomputable def quadraticDftTraceInvariant : ℂ :=
   ∑ x : ZMod p, ZMod.stdAddChar (N := p) (-(x ^ 2))
 
-/-- Unfolding the invariant just gives the diagonal kernel sum.-/
+/-- Unfolding the invariant just gives the diagonal kernel sum.
+@isnad1 id=eq.0h1v.s7.116e9db56389 from=translated src=- shape=8d09515c vocab=84dfb80a
+-/
 theorem quadraticDftTraceInvariant_def :
     quadraticDftTraceInvariant p =
       ∑ x : ZMod p, ZMod.stdAddChar (N := p) (-(x ^ 2)) :=
   rfl
 
 /-- The sign invariant is literally the trace of `ZMod.dft` on the standard
-basis of the function space `ZMod p → ℂ`.-/
+basis of the function space `ZMod p → ℂ`.
+@isnad1 id=eq.0h1v.s9.b74cba19a63e from=translated src=- shape=dc312da5 vocab=4bdc153f
+-/
 theorem quadraticDftTraceInvariant_eq_trace_dft :
     quadraticDftTraceInvariant p =
       LinearMap.trace ℂ (ZMod p → ℂ)
@@ -120,14 +134,18 @@ theorem quadraticDftTraceInvariant_eq_trace_dft :
   rw [dft_basisFun_apply]
   simp [pow_two]
 
-/-- Conjugating the standard additive character negates its input.-/
+/-- Conjugating the standard additive character negates its input.
+@isnad1 id=eq.0h2v.s7.b6b8277bd99a from=translated src=- shape=5652481b vocab=3fe0aa72
+-/
 theorem stdAddChar_neg_eq_conj (a : ZMod p) :
     ZMod.stdAddChar (N := p) (-a) = conj (ZMod.stdAddChar (N := p) a) := by
   symm
   rw [ZMod.stdAddChar_apply, ← Circle.coe_inv_eq_conj, ← AddChar.map_neg_eq_inv,
     ← ZMod.stdAddChar_apply]
 
-/-- The sign invariant is the conjugate quadratic Gauss sum.-/
+/-- The sign invariant is the conjugate quadratic Gauss sum.
+@isnad1 id=eq.1h1v.s6.21ad40cdde3a from=translated src=- shape=ae8912ca vocab=d0ea17a8
+-/
 theorem quadraticDftTraceInvariant_eq_conj_gaussSum
     (hp₂ : p ≠ 2) :
     quadraticDftTraceInvariant p =
@@ -145,7 +163,9 @@ theorem quadraticDftTraceInvariant_eq_conj_gaussSum
           rw [gaussSum_quadraticCharComplex_eq_squareExponentialSum (p := p) hp₂]
 
 /-- Any nontrivial Dirichlet character is sent by the DFT to a scalar multiple
-of its inverse character.-/
+of its inverse character.
+@isnad1 id=eq.1h2v.s9.8e2acaf09c38 from=translated src=- shape=4a153ce2 vocab=51f46675
+-/
 theorem dft_eq_scalar_smul_inv_character {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) :
     ZMod.dft χ =
@@ -168,7 +188,9 @@ theorem dft_eq_scalar_smul_inv_character {χ : DirichletCharacter ℂ p}
 
 /-- Hence every nontrivial character pair `(χ, χ⁻¹)` is an off-diagonal DFT
 block; when `χ ≠ χ⁻¹`, this is the local cancellation mechanism behind
-`T023d1g1a`.-/
+`T023d1g1a`.
+@isnad1 id=ex.1h2v.s9.c76cb7297b16 from=translated src=- shape=0a3b3028 vocab=3dd43cb3
+-/
 theorem dft_nontrivial_character_pair_offDiagonal {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) :
     ∃ a b : ℂ,
@@ -196,6 +218,9 @@ noncomputable def characterPairSubmodule (χ : DirichletCharacter ℂ p) :
       ![(χ : ZMod p → ℂ), ((χ⁻¹ : DirichletCharacter ℂ p) : ZMod p → ℂ)])
 
 omit hp in
+/--
+@isnad1 id=mem.0h2v.s7.45551cf05a89 from=translated src=- shape=cedd82c0 vocab=22e0fe3a
+-/
 theorem character_mem_characterPairSubmodule (χ : DirichletCharacter ℂ p) :
     (χ : ZMod p → ℂ) ∈ characterPairSubmodule (p := p) χ := by
   apply Submodule.subset_span
@@ -203,6 +228,9 @@ theorem character_mem_characterPairSubmodule (χ : DirichletCharacter ℂ p) :
   simp
 
 omit hp in
+/--
+@isnad1 id=mem.0h2v.s7.f9459c9632dd from=translated src=- shape=b377a71b vocab=ad9f4d2b
+-/
 theorem invCharacter_mem_characterPairSubmodule (χ : DirichletCharacter ℂ p) :
     ((χ⁻¹ : DirichletCharacter ℂ p) : ZMod p → ℂ) ∈
       characterPairSubmodule (p := p) χ := by
@@ -211,7 +239,9 @@ theorem invCharacter_mem_characterPairSubmodule (χ : DirichletCharacter ℂ p) 
   simp
 
 /-- A character and its inverse span a genuine `2`-dimensional block unless the
-character is self-dual.-/
+character is self-dual.
+@isnad1 id=linearin.1h2v.s7.d93fa335dd57 from=translated src=- shape=3f7d543e vocab=b8b8084d
+-/
 theorem character_inv_linearIndependent {χ : DirichletCharacter ℂ p}
     (hχself : χ ≠ χ⁻¹) :
     LinearIndependent ℂ
@@ -231,7 +261,9 @@ theorem character_inv_linearIndependent {χ : DirichletCharacter ℂ p}
   have hx := congrFun ha x
   simpa [Pi.smul_apply, ha1] using hx
 
-/-- The DFT preserves the span of a nontrivial character and its inverse.-/
+/-- The DFT preserves the span of a nontrivial character and its inverse.
+@isnad1 id=mem.2h3v.s9.d56fe0a6ca84 from=translated src=- shape=b1f674c6 vocab=4363a093
+-/
 theorem dft_maps_characterPairSubmodule {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) {f : ZMod p → ℂ}
     (hf : f ∈ characterPairSubmodule (p := p) χ) :
@@ -257,7 +289,9 @@ theorem dft_maps_characterPairSubmodule {χ : DirichletCharacter ℂ p}
 /-- An endomorphism acting off-diagonally on a two-element basis has trace `0`.
 If `b : Basis (Fin 2) R M` and `f : M →ₗ[R] M` satisfies `f (b 0) = a • b 1` and
 `f (b 1) = c • b 0`, then both diagonal matrix entries of `f` in the basis `b`
-vanish, so `LinearMap.trace R M f = 0`.-/
+vanish, so `LinearMap.trace R M f = 0`.
+@isnad1 id=eq.2h6v.s9.dbf10f9f5dfe from=translated src=- shape=f78f57ad vocab=e31c9f83
+-/
 theorem trace_eq_zero_of_offDiagonal_fin_two {R : Type*} [CommRing R]
     {M : Type*} [AddCommGroup M] [Module R M]
     (b : Module.Basis (Fin 2) R M) (f : M →ₗ[R] M) {a c : R}
@@ -269,7 +303,9 @@ theorem trace_eq_zero_of_offDiagonal_fin_two {R : Type*} [CommRing R]
   simp [Matrix.diag_apply, LinearMap.toMatrix_apply, h0, h1]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- On a non-self-dual character pair, the restricted DFT block has trace `0`.-/
+/-- On a non-self-dual character pair, the restricted DFT block has trace `0`.
+@isnad1 id=eq.2h2v.s11.978ca5b32be0 from=translated src=- shape=511e05e2 vocab=b0c1999b
+-/
 theorem trace_restrict_characterPairSubmodule_eq_zero {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) (hχself : χ ≠ χ⁻¹) :
     LinearMap.trace ℂ (characterPairSubmodule (p := p) χ)
@@ -325,13 +361,17 @@ noncomputable def complexCharacterMulEquivUnits : DirichletCharacter ℂ p ≃* 
   exact (MulChar.mulEquiv_units (ZMod p) ℂ).some
 
 omit hp in
-/-- A self-inverse character squares to the trivial character.-/
+/-- A self-inverse character squares to the trivial character.
+@isnad1 id=eq.1h2v.s7.c456443c46eb from=translated src=- shape=b611f109 vocab=e926b9b3
+-/
 theorem selfInverse_character_sq_eq_one {χ : DirichletCharacter ℂ p}
     (hχself : χ = χ⁻¹) : χ ^ 2 = 1 := by
   simpa [pow_two] using congrArg (fun ψ : DirichletCharacter ℂ p ↦ ψ * χ) hχself
 
 /-- Under the chosen unit-group equivalence, a self-inverse character maps to
-an element of `(ZMod p)ˣ` whose square is `1`.-/
+an element of `(ZMod p)ˣ` whose square is `1`.
+@isnad1 id=eq.1h2v.s8.f09661eaed90 from=translated src=- shape=82f17030 vocab=80939b72
+-/
 theorem selfInverse_character_image_sq_eq_one {χ : DirichletCharacter ℂ p}
     (hχself : χ = χ⁻¹) :
     ((complexCharacterMulEquivUnits (p := p) χ : (ZMod p)ˣ) : ZMod p) ^ 2 = 1 := by
@@ -341,7 +381,9 @@ theorem selfInverse_character_image_sq_eq_one {χ : DirichletCharacter ℂ p}
   simpa [Units.val_pow_eq_pow_val] using
     congrArg (fun u : (ZMod p)ˣ ↦ (u : ZMod p)) hsq_units
 
-/-- Hence a self-inverse character maps to `1` or `-1` in `ZMod p`.-/
+/-- Hence a self-inverse character maps to `1` or `-1` in `ZMod p`.
+@isnad1 id=or.1h2v.s9.ecc1e4536e02 from=translated src=- shape=61edb316 vocab=c4e55c71
+-/
 theorem selfInverse_character_image_eq_one_or_neg_one {χ : DirichletCharacter ℂ p}
     (hχself : χ = χ⁻¹) :
     ((complexCharacterMulEquivUnits (p := p) χ : (ZMod p)ˣ) : ZMod p) = 1 ∨
@@ -349,7 +391,9 @@ theorem selfInverse_character_image_eq_one_or_neg_one {χ : DirichletCharacter �
   sq_eq_one_iff.mp <|
     selfInverse_character_image_sq_eq_one (p := p) (χ := χ) hχself
 
-/-- Repackaging the previous lemma back in the unit group.-/
+/-- Repackaging the previous lemma back in the unit group.
+@isnad1 id=or.1h2v.s9.5735145ae071 from=translated src=- shape=e9437b42 vocab=29af2ef7
+-/
 theorem selfInverse_character_image_units_eq_one_or_neg_one {χ : DirichletCharacter ℂ p}
     (hχself : χ = χ⁻¹) :
     complexCharacterMulEquivUnits (p := p) χ = 1 ∨
@@ -364,7 +408,9 @@ theorem selfInverse_character_image_units_eq_one_or_neg_one {χ : DirichletChara
 
 /-- The hard bridge for `T023d1g1a3`: under the chosen equivalence, the
 quadratic complex Dirichlet character corresponds to the unique nontrivial
-order-`2` unit `-1`.-/
+order-`2` unit `-1`.
+@isnad1 id=eq.1h1v.s8.9aa9dc8d4b71 from=translated src=- shape=d9fc089a vocab=374edbdb
+-/
 theorem complexCharacterMulEquivUnits_quadraticCharComplex (hp₂ : p ≠ 2) :
     complexCharacterMulEquivUnits (p := p) (quadraticCharComplex p) = (-1 : (ZMod p)ˣ) := by
   rcases selfInverse_character_image_units_eq_one_or_neg_one
@@ -376,7 +422,9 @@ theorem complexCharacterMulEquivUnits_quadraticCharComplex (hp₂ : p ≠ 2) :
     simpa using hχ
   · exact hχ
 
-/-- A self-inverse complex Dirichlet character is either trivial or quadratic.-/
+/-- A self-inverse complex Dirichlet character is either trivial or quadratic.
+@isnad1 id=or.2h2v.s7.c1f8b5606cfb from=translated src=- shape=f2b25257 vocab=1a9f5afb
+-/
 theorem selfInverse_character_eq_one_or_quadratic (hp₂ : p ≠ 2)
     {χ : DirichletCharacter ℂ p} (hχself : χ = χ⁻¹) :
     χ = 1 ∨ χ = quadraticCharComplex p := by
@@ -394,7 +442,9 @@ theorem selfInverse_character_eq_one_or_quadratic (hp₂ : p ≠ 2)
             exact complexCharacterMulEquivUnits_quadraticCharComplex (p := p) hp₂
 
 /-- The only nontrivial self-inverse complex Dirichlet character mod `p` is the
-quadratic character.-/
+quadratic character.
+@isnad1 id=eq.3h2v.s7.d2ecb8e34b8f from=translated src=- shape=f91027a4 vocab=1a9f5afb
+-/
 theorem nontrivial_selfInverse_character_eq_quadratic (hp₂ : p ≠ 2)
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) (hχself : χ = χ⁻¹) :
     χ = quadraticCharComplex p := by
@@ -405,7 +455,9 @@ theorem nontrivial_selfInverse_character_eq_quadratic (hp₂ : p ≠ 2)
 /-- Packaged output of the `T023d1g1a` cancellation step: once the trivial
 `δ₀/1` block and all non-self-dual character pairs are shown to contribute zero
 to the Fourier trace, the quadratic line is the only surviving term. This
-identity is already recoverable from the phase package in `T023d1e`.-/
+identity is already recoverable from the phase package in `T023d1e`.
+@isnad1 id=eq.1h1v.s7.38c77e0ece3b from=translated src=- shape=2808371f vocab=bf339b05
+-/
 theorem quadraticDftTraceInvariant_nonquadratic_contributions_cancel
     (hp₂ : p ≠ 2) :
     quadraticDftTraceInvariant p =
@@ -415,7 +467,9 @@ theorem quadraticDftTraceInvariant_nonquadratic_contributions_cancel
     conj_gaussSum_quadraticCharComplex_eq_eval_neg_one_mul (p := p) hp₂]
 
 /-- The surviving quadratic trace contribution can be rewritten using the
-quadratic exponential sum isolated in `T023d1e`.-/
+quadratic exponential sum isolated in `T023d1e`.
+@isnad1 id=eq.1h1v.s7.7519cbe58676 from=translated src=- shape=61dec3c6 vocab=ce82eb7d
+-/
 theorem quadraticDftTraceInvariant_eq_eval_neg_one_mul_squareExponentialSum
     (hp₂ : p ≠ 2) :
     quadraticDftTraceInvariant p =
@@ -425,7 +479,9 @@ theorem quadraticDftTraceInvariant_eq_eval_neg_one_mul_squareExponentialSum
     gaussSum_quadraticCharComplex_eq_squareExponentialSum (p := p) hp₂]
 
 /-- If `p ≡ 1 (mod 4)`, the sign-detecting trace invariant is the quadratic
-Gauss sum itself.-/
+Gauss sum itself.
+@isnad1 id=eq.2h1v.s5.5bf7e9737a18 from=translated src=- shape=a02efa3c vocab=faf122c6
+-/
 theorem quadraticDftTraceInvariant_eq_gaussSum_of_mod_four_eq_one
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 1) :
     quadraticDftTraceInvariant p =
@@ -434,7 +490,9 @@ theorem quadraticDftTraceInvariant_eq_gaussSum_of_mod_four_eq_one
     quadraticCharComplex_eval_neg_one_of_mod_four_eq_one (p := p) hp₂ hp₄, one_mul]
 
 /-- If `p ≡ 3 (mod 4)`, the sign-detecting trace invariant is minus the
-quadratic Gauss sum.-/
+quadratic Gauss sum.
+@isnad1 id=eq.2h1v.s5.6ec4ce9c7bb7 from=translated src=- shape=169041e3 vocab=b791d18d
+-/
 theorem quadraticDftTraceInvariant_eq_neg_gaussSum_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     quadraticDftTraceInvariant p =

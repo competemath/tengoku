@@ -120,7 +120,9 @@ and `R` a commutative ring with no zero divisors,
 
 This is a strengthening of `PowerSeries.le_order_subst`, which only provides
 the `≤` direction. The hypothesis `constantCoeff f = 0` is needed so that
-the substitution is well-defined (`HasSubst f`).-/
+the substitution is well-defined (`HasSubst f`).
+@isnad1 id=eq.1h3v.s7.d105eab390f2 from=translated src=- shape=c13407c4 vocab=674e2b3a
+-/
 theorem order_subst [NoZeroDivisors R] {f g : PowerSeries R}
     (hf : PowerSeries.constantCoeff f = 0) :
     PowerSeries.order ((PowerSeries.subst f g : PowerSeries R)) = g.order * f.order := by

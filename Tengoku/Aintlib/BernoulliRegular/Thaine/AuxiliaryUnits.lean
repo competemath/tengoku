@@ -59,7 +59,9 @@ noncomputable def auxiliaryZetaToInteger
   haveI : NeZero ℓ := ⟨Fact.out (p := ℓ.Prime) |>.ne_zero⟩
   (IsCyclotomicExtension.zeta_spec ℓ K M).toInteger
 
-/-- The auxiliary `ζ_ℓ` (as `𝓞 M`) is a primitive `ℓ`-th root of unity.-/
+/-- The auxiliary `ζ_ℓ` (as `𝓞 M`) is a primitive `ℓ`-th root of unity.
+@isnad1 id=isprimit.0h3v.s6.5ce6c1f347c1 from=translated src=- shape=9c78cc81 vocab=e10f9f0d
+-/
 theorem auxiliaryZetaToInteger_isPrimitiveRoot
     (ℓ : ℕ) [Fact ℓ.Prime]
     (K : Type*) [Field K] [NumberField K]
@@ -85,7 +87,9 @@ noncomputable def auxiliaryCyclotomicUnitMinusOne
     [IsCyclotomicExtension {ℓ} K M] : 𝓞 M :=
   auxiliaryZetaToInteger ℓ K M - 1
 
-/-- The two forms differ by a sign.-/
+/-- The two forms differ by a sign.
+@isnad1 id=eq.0h3v.s6.0836f0aa1b59 from=translated src=- shape=1b08846f vocab=8b0b02cd
+-/
 theorem auxiliaryCyclotomicUnitOneMinus_eq_neg
     (ℓ : ℕ) [Fact ℓ.Prime]
     (K : Type*) [Field K] [NumberField K]

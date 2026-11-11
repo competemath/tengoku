@@ -72,7 +72,9 @@ namespace HasseWeil.WeilPairing
 /-- **`CoordinateRing.map f` on a base constant** `algebraMap a` is `algebraMap (f a)`.  The
 coordinate-ring shadow of "a field map acts on the constant coefficients": `algebraMap R R[E] a =
 mk (C (C a))`, and `CoordinateRing.map f` sends `mk x ↦ mk (x.map (mapRingHom f))`, which sends
-`C (C a) ↦ C (C (f a)) = algebraMap S (E.map f)[E] (f a)`.-/
+`C (C a) ↦ C (C (f a)) = algebraMap S (E.map f)[E] (f a)`.
+@isnad1 id=eq.0h5v.s9.8772d5c6bf3a from=translated src=- shape=e469f6de vocab=a59ea9ac
+-/
 theorem coordRingMap_algebraMap_base {R S : Type*} [CommRing R] [CommRing S]
     (W' : WeierstrassCurve.Affine R) (f : R →+* S) (a : R) :
     WeierstrassCurve.Affine.CoordinateRing.map W' f (algebraMap R W'.CoordinateRing a) =
@@ -106,6 +108,9 @@ variable [(W.baseChange (AlgebraicClosure K)).toAffine.IsElliptic]
 noncomputable abbrev coeffFrobEquiv : AlgebraicClosure K ≃+* AlgebraicClosure K :=
   (FiniteField.frobeniusAlgEquivOfAlgebraic K (AlgebraicClosure K)).toRingEquiv
 
+/--
+@isnad1 id=eq.0h2v.s8.9c06af944da1 from=translated src=- shape=0370cac8 vocab=82a829d1
+-/
 @[simp] theorem coeffFrobEquiv_apply (a : AlgebraicClosure K) :
     coeffFrobEquiv (K := K) a = a ^ Fintype.card K := by
   show (FiniteField.frobeniusAlgEquivOfAlgebraic K (AlgebraicClosure K)) a = a ^ Fintype.card K
@@ -115,7 +120,9 @@ noncomputable abbrev coeffFrobEquiv : AlgebraicClosure K ≃+* AlgebraicClosure 
 `WeierstrassCurve`):
 mapping `W.baseChange K̄` along `e = frobeniusAlgEquivOfAlgebraic K K̄` returns `W.baseChange K̄`,
 because `e` is a `K`-algebra hom and so fixes `algebraMap K K̄`.  Direct from `map_map` +
-`e.commutes`.-/
+`e.commutes`.
+@isnad1 id=eq.0h2v.s8.159e5c5c22fd from=translated src=- shape=8e362689 vocab=248e97ad
+-/
 theorem frobeniusGalois_baseChange_map_eq :
     (W.baseChange (AlgebraicClosure K)).map
         (FiniteField.frobeniusAlgEquivOfAlgebraic K (AlgebraicClosure K)).toAlgHom.toRingHom =
@@ -129,7 +136,9 @@ theorem frobeniusGalois_baseChange_map_eq :
   exact (FiniteField.frobeniusAlgEquivOfAlgebraic K (AlgebraicClosure K)).commutes x
 
 /-- **`CoordinateRing.map e` is surjective** for a ring **equiv** `e` of the base field: every
-`mk q` in the target is the image of `mk (q.map (mapRingHom e.symm))`, since `e ∘ e.symm = id`.-/
+`mk q` in the target is the image of `mk (q.map (mapRingHom e.symm))`, since `e ∘ e.symm = id`.
+@isnad1 id=surjecti.0h3v.s12.a21fb7d18029 from=translated src=- shape=c510566f vocab=ff2635bc
+-/
 theorem coordRingMap_surjective (e : AlgebraicClosure K ≃+* AlgebraicClosure K) :
     Function.Surjective
       (WeierstrassCurve.Affine.CoordinateRing.map (W.baseChange (AlgebraicClosure K)).toAffine
@@ -152,7 +161,9 @@ theorem coordRingMap_surjective (e : AlgebraicClosure K ≃+* AlgebraicClosure K
     · simp only [RingHom.comp_apply, Polynomial.coe_mapRingHom, Polynomial.map_X, RingHom.id_apply]
   rw [hid, Polynomial.map_id]
 
-/-- **`CoordinateRing.map e` is bijective** for a ring equiv `e` of the base field.-/
+/-- **`CoordinateRing.map e` is bijective** for a ring equiv `e` of the base field.
+@isnad1 id=bijectiv.0h3v.s12.5ff5b0bdac29 from=translated src=- shape=c510566f vocab=a1ed28dc
+-/
 theorem coordRingMap_bijective (e : AlgebraicClosure K ≃+* AlgebraicClosure K) :
     Function.Bijective
       (WeierstrassCurve.Affine.CoordinateRing.map (W.baseChange (AlgebraicClosure K)).toAffine
@@ -170,6 +181,9 @@ noncomputable def crFrobEquiv :
           AlgebraicClosure K →+* AlgebraicClosure K)).toAffine.CoordinateRing :=
   RingEquiv.ofBijective _ (coordRingMap_bijective W (coeffFrobEquiv (K := K)))
 
+/--
+@isnad1 id=eq.0h3v.s14.206d225b82df from=translated src=- shape=4824c891 vocab=ff4f6f03
+-/
 @[simp] theorem crFrobEquiv_apply
     (z : (W.baseChange (AlgebraicClosure K)).toAffine.CoordinateRing) :
     crFrobEquiv W z =
@@ -187,7 +201,9 @@ noncomputable def ffFrobEquivRaw :
 
 /-- **The curve equality** `(W.baseChange K̄).map e = W.baseChange K̄` for `e = coeffFrobEquiv`
 (the coefficient `q`-power Frobenius fixes `K`).  Repackaging of `frobeniusGalois_baseChange_map_eq`
-with `e` as a `RingEquiv`-coerced ring hom.-/
+with `e` as a `RingEquiv`-coerced ring hom.
+@isnad1 id=eq.0h2v.s8.5f11cc100db1 from=translated src=- shape=3d853dca vocab=e63d610d
+-/
 theorem map_coeffFrobEquiv_eq :
     (W.baseChange (AlgebraicClosure K)).map
         (coeffFrobEquiv (K := K) : AlgebraicClosure K →+* AlgebraicClosure K) =
@@ -221,7 +237,9 @@ noncomputable def frobeniusFunctionFieldEquiv :
 mapped curve's function field).  Factor `algebraMap K̄ K̄(E) = (algebraMap R[E] K̄(E)) ∘ (algebraMap
 K̄
 R[E])` (`IsScalarTower`), push through `IsFractionRing.ringEquivOfRingEquiv_algebraMap` and
-`coordRingMap_algebraMap_base`, and use `coeffFrobEquiv a = a^#K`.-/
+`coordRingMap_algebraMap_base`, and use `coeffFrobEquiv a = a^#K`.
+@isnad1 id=eq.0h3v.s16.40f773198a5a from=translated src=- shape=62f5a5f9 vocab=45214dfc
+-/
 theorem ffFrobEquivRaw_algebraMap (a : AlgebraicClosure K) :
     ffFrobEquivRaw W (algebraMap (AlgebraicClosure K)
         (W.baseChange (AlgebraicClosure K)).toAffine.FunctionField a) =
@@ -245,7 +263,9 @@ theorem ffFrobEquivRaw_algebraMap (a : AlgebraicClosure K) :
 
 /-- **`ffFrobCast` commutes with the base `algebraMap`**: the codomain `RingEquiv.cast` along the
 curve equality `(W.baseChange K̄).map e = W.baseChange K̄` fixes every base constant `algebraMap b`.
-By `subst` on the curve equality (then the cast is `rfl`).-/
+By `subst` on the curve equality (then the cast is `rfl`).
+@isnad1 id=eq.0h3v.s16.28e6d09b0fe3 from=translated src=- shape=14403f95 vocab=dc3db69f
+-/
 theorem ffFrobCast_algebraMap (b : AlgebraicClosure K) :
     ffFrobCast W (algebraMap (AlgebraicClosure K)
         ((W.baseChange (AlgebraicClosure K)).map
@@ -268,7 +288,9 @@ theorem ffFrobCast_algebraMap (b : AlgebraicClosure K) :
 `FrobeniusGaloisData`):
 the arithmetic Frobenius `σ = frobeniusFunctionFieldEquiv` `q`-powers the `K̄`-coefficients,
 `σ(algebraMap a) = algebraMap (a ^ #K)`.  Composition of `ffFrobEquivRaw_algebraMap` (the raw lift)
-and `ffFrobCast_algebraMap` (the codomain cast fixes constants).-/
+and `ffFrobCast_algebraMap` (the codomain cast fixes constants).
+@isnad1 id=eq.0h3v.s14.a79a870edc3f from=translated src=- shape=2f518530 vocab=0f202024
+-/
 theorem frobeniusFunctionFieldEquiv_algebraMap (a : AlgebraicClosure K) :
     frobeniusFunctionFieldEquiv W (algebraMap (AlgebraicClosure K)
         (W.baseChange (AlgebraicClosure K)).toAffine.FunctionField a) =

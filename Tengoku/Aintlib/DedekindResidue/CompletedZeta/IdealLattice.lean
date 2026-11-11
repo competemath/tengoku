@@ -77,7 +77,9 @@ instance (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : IsZLattice ℝ (idealZLattice
 open scoped Classical in
 /-- The covolume of the Euclidean-coordinates ideal lattice is mathlib's
 `covolume_idealLattice`: `N(I) · 2^{-r₂} · √|Δ_K|`. Both coordinate changes
-(`euclidean.toMixed` and the orthonormal `repr`) are measure-preserving.-/
+(`euclidean.toMixed` and the orthonormal `repr`) are measure-preserving.
+@isnad1 id=eq.0h2v.s10.c9e85aeb8a39 from=translated src=- shape=6898c593 vocab=0ce9d2c5
+-/
 theorem covolume_idealZLattice (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ZLattice.covolume (idealZLattice K I) volume
       = (FractionalIdeal.absNorm (I : FractionalIdeal (𝓞 K)⁰ K))
@@ -102,7 +104,9 @@ open scoped Classical in
 /-- The transformation law of the ideal theta, with the covolume evaluated by
 `covolume_idealZLattice`: `Θ_I(t) = (N(I)·2^{-r₂}·√|Δ_K|)⁻¹·t^{-n/2}·Θ_{(L_I)♯}(1/t)`.
 Identifying the dual lattice `(L_I)♯` with the ideal lattice of `(I·𝔡_K)⁻¹` (the codifferent
-twist) is SP1-AGE-2.-/
+twist) is SP1-AGE-2.
+@isnad1 id=eq.1h3v.s10.4a708cee1363 from=translated src=- shape=d17cadc1 vocab=664e30f5
+-/
 theorem idealTheta_transform (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht : 0 < t) :
     idealTheta K I t
       = ((FractionalIdeal.absNorm (I : FractionalIdeal (𝓞 K)⁰ K))
@@ -120,6 +124,9 @@ noncomputable def embeddingCoords (x : K) : EuclideanSpace ℝ (index K) :=
   (euclidean.stdOrthonormalBasis K).repr ((euclidean.toMixed K).symm (mixedEmbedding K x))
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s10.49f91c33fff1 from=translated src=- shape=f0203d4e vocab=5eb6e631
+-/
 theorem embeddingCoords_apply (x : K) (i : index K) :
     embeddingCoords K x i = (stdBasis K).repr (mixedEmbedding K x) i := by
   rw [embeddingCoords]
@@ -131,16 +138,25 @@ theorem embeddingCoords_apply (x : K) (i : index K) :
   rw [← h2, OrthonormalBasis.coe_toBasis_repr_apply]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.4b58027bd7fe from=translated src=- shape=377dd789 vocab=eaf5eb74
+-/
 theorem embeddingCoords_isReal (x : K) (w : {w : InfinitePlace K // IsReal w}) :
     embeddingCoords K x (Sum.inl w) = embedding_of_isReal w.2 x := by
   rw [embeddingCoords_apply, stdBasis_apply_isReal, mixedEmbedding_apply_isReal]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.8f9a2154bdc4 from=translated src=- shape=4debb770 vocab=221e1474
+-/
 theorem embeddingCoords_isComplex_fst (x : K) (w : {w : InfinitePlace K // IsComplex w}) :
     embeddingCoords K x (Sum.inr ⟨w, 0⟩) = ((w : InfinitePlace K).embedding x).re := by
   rw [embeddingCoords_apply, stdBasis_apply_isComplex_fst, mixedEmbedding_apply_isComplex]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.548cdc1a07c8 from=translated src=- shape=4debb770 vocab=0eebc84a
+-/
 theorem embeddingCoords_isComplex_snd (x : K) (w : {w : InfinitePlace K // IsComplex w}) :
     embeddingCoords K x (Sum.inr ⟨w, 1⟩) = ((w : InfinitePlace K).embedding x).im := by
   rw [embeddingCoords_apply, stdBasis_apply_isComplex_snd, mixedEmbedding_apply_isComplex]
@@ -151,6 +167,9 @@ noncomputable def dualityWeights : index K → ℝ :=
   Sum.elim (fun _ => 1) (fun p => if p.2 = 0 then 2 else -2)
 
 omit [NumberField K] in
+/--
+@isnad1 id=ne.0h2v.s4.a801abd7d3e3 from=translated src=- shape=428f6990 vocab=5acbe80f
+-/
 theorem dualityWeights_ne_zero : ∀ i, dualityWeights K i ≠ 0 := by
   rintro (w | ⟨w, j⟩)
   · norm_num [dualityWeights]
@@ -160,7 +179,9 @@ open scoped RealInnerProductSpace in
 open scoped Classical in
 /-- **The duality pairing dictionary** (SP1-AGE-2 core): pairing the `dualityWeights`-scaled
 coordinates of `σ(b)` against the coordinates of `σ(a)` computes the rational trace form:
-`⟪D·ζ(b), ζ(a)⟫ = Tr_{K/ℚ}(b·a)`.-/
+`⟪D·ζ(b), ζ(a)⟫ = Tr_{K/ℚ}(b·a)`.
+@isnad1 id=eq.0h3v.s10.62e169556165 from=translated src=- shape=1f819107 vocab=ec54198f
+-/
 theorem inner_diagScale_embeddingCoords (a b : K) :
     ⟪(diagScale (dualityWeights K) (dualityWeights_ne_zero K)) (embeddingCoords K b),
       embeddingCoords K a⟫ = ((Algebra.trace ℚ K (b * a) : ℚ) : ℝ) := by
@@ -210,7 +231,9 @@ theorem inner_diagScale_embeddingCoords (a b : K) :
 
 open scoped Classical in
 /-- Membership in the Euclidean-coordinates ideal lattice: exactly the coordinate vectors of
-elements of the fractional ideal.-/
+elements of the fractional ideal.
+@isnad1 id=iff.0h3v.s10.b1abe47dfc4e from=translated src=- shape=003766c3 vocab=df2ffb57
+-/
 theorem mem_idealZLattice (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : EuclideanSpace ℝ (index K)) :
     x ∈ idealZLattice K I
       ↔ ∃ a ∈ (I : FractionalIdeal (𝓞 K)⁰ K), embeddingCoords K a = x := by
@@ -232,7 +255,9 @@ theorem mem_idealZLattice (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : Euclidean
     rw [embeddingCoords]
     simp
 
-/-- `absNorm` of the inverse fractional ideal is the inverse norm.-/
+/-- `absNorm` of the inverse fractional ideal is the inverse norm.
+@isnad1 id=eq.1h2v.s9.f13ccc1f74ee from=translated src=- shape=84a512c5 vocab=4825ef48
+-/
 theorem fracAbsNorm_inv (J : FractionalIdeal (𝓞 K)⁰ K) (hJ : J ≠ 0) :
     FractionalIdeal.absNorm J⁻¹ = (FractionalIdeal.absNorm J)⁻¹ := by
   have h1 : J * J⁻¹ = 1 := mul_inv_cancel₀ hJ
@@ -248,7 +273,9 @@ noncomputable def dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     (FractionalIdeal.dual_ne_zero ℤ ℚ (Units.ne_zero I))
 
 /-- The norm of the trace-dual ideal: `N(I^∨) = N(I)⁻¹·|Δ_K|⁻¹` (via
-`dual_eq_mul_inv`, `coeIdeal_differentIdeal`, and `absNorm_differentIdeal = |Δ_K|`).-/
+`dual_eq_mul_inv`, `coeIdeal_differentIdeal`, and `absNorm_differentIdeal = |Δ_K|`).
+@isnad1 id=eq.0h2v.s10.ed3437aa0420 from=translated src=- shape=db3d8d53 vocab=99217e5d
+-/
 theorem absNorm_dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     FractionalIdeal.absNorm ((dualIdealUnit K I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
         FractionalIdeal (𝓞 K)⁰ K)
@@ -269,7 +296,9 @@ theorem absNorm_dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
 
 open scoped Classical in
 /-- The product of the duality weights is `(-4)^{r₂}` (each complex place contributes
-`2·(-2)`).-/
+`2·(-2)`).
+@isnad1 id=eq.0h1v.s7.88e1ca39c189 from=translated src=- shape=e42edb25 vocab=602ef93c
+-/
 theorem prod_dualityWeights :
     (∏ i : index K, dualityWeights K i) = (-4 : ℝ) ^ nrComplexPlaces K := by
   rw [Fintype.prod_sum_type]
@@ -288,7 +317,9 @@ theorem prod_dualityWeights :
 
 open scoped RealInnerProductSpace Classical in
 /-- The twisted dual-ideal lattice pairs integrally with the ideal lattice: containment half
-of the duality identification, by the pairing dictionary + `FractionalIdeal.mem_dual`.-/
+of the duality identification, by the pairing dictionary + `FractionalIdeal.mem_dual`.
+@isnad1 id=le.0h2v.s11.11387381358e from=translated src=- shape=31a57c8b vocab=5f90ee71
+-/
 theorem comap_le_dualZLattice (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ZLattice.comap ℝ (idealZLattice K (dualIdealUnit K I))
         ((diagScale (dualityWeights K)
@@ -323,7 +354,9 @@ open scoped Classical in
 the ideal lattice of the trace-dual ideal `I^∨ = (I·𝔡_K)⁻¹`, twisted by the duality scaling
 `diagScale (dualityWeights K)` (the `conj ∘ double` matrix at complex places). Proven by the
 integral-pairing containment plus covolume rigidity
-(`|det| = 4^{r₂}`, `N(I^∨) = N(I)⁻¹|Δ|⁻¹`, and the covolume reciprocal).-/
+(`|det| = 4^{r₂}`, `N(I^∨) = N(I)⁻¹|Δ|⁻¹`, and the covolume reciprocal).
+@isnad1 id=eq.0h2v.s11.b44b3a04bf51 from=translated src=- shape=e9517c0f vocab=319a8a73
+-/
 theorem dualZLattice_idealZLattice (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     dualZLattice (idealZLattice K I)
       = ZLattice.comap ℝ (idealZLattice K (dualIdealUnit K I))

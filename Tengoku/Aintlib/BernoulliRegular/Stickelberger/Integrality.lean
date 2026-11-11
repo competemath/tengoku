@@ -57,7 +57,9 @@ def stickelbergerCorrectedInt (c : (ZMod p)ˣ) : MonoidAlgebra ℤ (ZMod p)ˣ :=
   ∑ b : (ZMod p)ˣ,
     stickelbergerCorrectedCoeff p c b • MonoidAlgebra.single b⁻¹ (1 : ℤ)
 
-/-- `c.val * b.val ≡ (c * b).val (mod p)`, hence the difference is divisible by `p`.-/
+/-- `c.val * b.val ≡ (c * b).val (mod p)`, hence the difference is divisible by `p`.
+@isnad1 id=dvd.0h3v.s7.5e483c75f5e1 from=translated src=- shape=b3fadc5e vocab=9180ca0f
+-/
 lemma val_mul_sub_val_mul_dvd (c b : (ZMod p)ˣ) :
     (p : ℤ) ∣ ((c : ZMod p).val * (b : ZMod p).val -
         ((c * b : (ZMod p)ˣ) : ZMod p).val : ℤ) := by
@@ -67,7 +69,9 @@ lemma val_mul_sub_val_mul_dvd (c b : (ZMod p)ˣ) :
   rw [ZMod.natCast_zmod_val, ZMod.natCast_zmod_val, ZMod.natCast_zmod_val]
   ring
 
-/-- `p * (stickelbergerCorrectedCoeff c b) = c.val * b.val - (c * b).val`.-/
+/-- `p * (stickelbergerCorrectedCoeff c b) = c.val * b.val - (c * b).val`.
+@isnad1 id=eq.0h3v.s7.ae6c349d3e51 from=translated src=- shape=84b97600 vocab=52e2e3a1
+-/
 lemma stickelbergerCorrectedCoeff_mul_p (c b : (ZMod p)ˣ) :
     (p : ℤ) * stickelbergerCorrectedCoeff p c b =
       ((c : ZMod p).val * (b : ZMod p).val -
@@ -75,7 +79,9 @@ lemma stickelbergerCorrectedCoeff_mul_p (c b : (ZMod p)ˣ) :
   simp only [stickelbergerCorrectedCoeff]
   exact Int.mul_ediv_cancel' (val_mul_sub_val_mul_dvd p c b)
 
-/-- Rational form: the coefficient difference equals `p * (corrected coeff : ℚ)`.-/
+/-- Rational form: the coefficient difference equals `p * (corrected coeff : ℚ)`.
+@isnad1 id=eq.0h3v.s7.179805c0bc61 from=translated src=- shape=f932062e vocab=649e99a1
+-/
 lemma rat_stickelbergerCorrectedCoeff (c b : (ZMod p)ˣ) :
     ((c : ZMod p).val * (b : ZMod p).val : ℚ) - (((c * b : (ZMod p)ˣ) : ZMod p).val : ℚ)
       = (p : ℚ) * (stickelbergerCorrectedCoeff p c b : ℚ) := by
@@ -86,7 +92,9 @@ lemma rat_stickelbergerCorrectedCoeff (c b : (ZMod p)ˣ) :
   push_cast at h ⊢
   linarith
 
-/-- Multiplying `single c 1` into `stickelbergerScaled p` reindexes the sum.-/
+/-- Multiplying `single c 1` into `stickelbergerScaled p` reindexes the sum.
+@isnad1 id=eq.0h2v.s9.8a9dd2cf0a07 from=translated src=- shape=38fda12b vocab=bb73437d
+-/
 lemma single_mul_stickelbergerScaled (c : (ZMod p)ˣ) :
     MonoidAlgebra.single c (1 : ℤ) * stickelbergerScaled p =
       ∑ b : (ZMod p)ˣ, (((b * c : (ZMod p)ˣ) : ZMod p).val : ℤ) •
@@ -110,7 +118,9 @@ lemma single_mul_stickelbergerScaled (c : (ZMod p)ˣ) :
     rw [hb, mul_smul_comm, MonoidAlgebra.single_mul_single, one_mul]
     rw [show c * a⁻¹ = (a * c⁻¹)⁻¹ from by group]
 
-/-- Expanding `(c.val • 1) * stickelbergerScaled p`.-/
+/-- Expanding `(c.val • 1) * stickelbergerScaled p`.
+@isnad1 id=eq.0h2v.s9.b785c5bc6c2e from=translated src=- shape=4a65c823 vocab=bb73437d
+-/
 lemma smul_one_mul_stickelbergerScaled (c : (ZMod p)ˣ) :
     (((c : ZMod p).val : ℤ) • (1 : MonoidAlgebra ℤ (ZMod p)ˣ)) * stickelbergerScaled p =
       ∑ a : (ZMod p)ˣ, (((c : ZMod p).val : ℤ) * ((a : ZMod p).val : ℤ)) •
@@ -125,7 +135,9 @@ lemma smul_one_mul_stickelbergerScaled (c : (ZMod p)ˣ) :
 
 This is the integer-coefficient form of the Stickelberger integrality statement:
 the integer element `stickelbergerCorrectedInt p c` maps under `ℤ → ℚ` to
-`(c.val • 1 - σ_c) * θ_p`.-/
+`(c.val • 1 - σ_c) * θ_p`.
+@isnad1 id=eq.0h2v.s9.8db7dc9bcf2b from=translated src=- shape=279676ec vocab=104b1502
+-/
 theorem p_smul_stickelbergerCorrectedInt (c : (ZMod p)ˣ) :
     (p : ℤ) • stickelbergerCorrectedInt p c =
       (((c : ZMod p).val : ℤ) • (1 : MonoidAlgebra ℤ (ZMod p)ˣ) -
@@ -148,7 +160,9 @@ theorem p_smul_stickelbergerCorrectedInt (c : (ZMod p)ˣ) :
   linarith
 
 /-- The image of `stickelbergerScaled p` under `ℤ → ℚ` equals
-`p • stickelbergerElement p`.-/
+`p • stickelbergerElement p`.
+@isnad1 id=eq.0h1v.s9.82f3344ce6a5 from=translated src=- shape=c3008379 vocab=104098de
+-/
 lemma mapRangeRingHom_stickelbergerScaled :
     MonoidAlgebra.mapRingHom (ZMod p)ˣ (Int.castRingHom ℚ) (stickelbergerScaled p) =
       (p : ℚ) • stickelbergerElement p := by
@@ -162,7 +176,9 @@ lemma mapRangeRingHom_stickelbergerScaled :
 
 /-- The corrected Stickelberger element `(c.val • 1 - σ_c) · θ_p` has integer
 coefficients: it equals the image of `stickelbergerCorrectedInt p c ∈ ℤ[(ZMod p)ˣ]`
-under the coefficient cast `ℤ → ℚ`.-/
+under the coefficient cast `ℤ → ℚ`.
+@isnad1 id=eq.0h2v.s9.6940db0e27b5 from=translated src=- shape=a3fc0b7a vocab=ea05bbd8
+-/
 theorem mapRangeRingHom_stickelbergerCorrectedInt (c : (ZMod p)ˣ) :
     MonoidAlgebra.mapRingHom (ZMod p)ˣ (Int.castRingHom ℚ)
         (stickelbergerCorrectedInt p c) =

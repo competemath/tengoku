@@ -92,23 +92,33 @@ noncomputable def FormalGroup.inverse (F : FormalGroup R) : PowerSeries R :=
 
 /-! ### Basic coefficient lemmas -/
 
+/--
+@isnad1 id=eq.0h2v.s5.eea9a3887f03 from=translated src=- shape=217e3f21 vocab=32f428c8
+-/
 @[simp]
 theorem FormalGroup.inverseTrunc_zero (F : FormalGroup R) :
     F.inverseTrunc 0 = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.e377806ea63a from=translated src=- shape=b999d37c vocab=54eb6e13
+-/
 @[simp]
 theorem FormalGroup.inverseCoeff_zero (F : FormalGroup R) :
     F.inverseCoeff 0 = 0 := by
   simp [FormalGroup.inverseCoeff]
 
-/-- The `0`-th coefficient of `inverse F` is zero.-/
+/-- The `0`-th coefficient of `inverse F` is zero.
+@isnad1 id=eq.0h2v.s7.8521eb73a155 from=translated src=- shape=bc3cb118 vocab=9bc1f457
+-/
 @[simp]
 theorem FormalGroup.inverse_coeff_zero (F : FormalGroup R) :
     PowerSeries.coeff 0 F.inverse = 0 := by
   simp [FormalGroup.inverse]
 
-/-- The constant coefficient of `inverse F` is zero.-/
+/-- The constant coefficient of `inverse F` is zero.
+@isnad1 id=eq.0h2v.s6.39d58db2ea28 from=translated src=- shape=d17ed41b vocab=ce3c1d33
+-/
 @[simp]
 theorem FormalGroup.inverse_constantCoeff (F : FormalGroup R) :
     @PowerSeries.constantCoeff R _ F.inverse = 0 := by
@@ -122,7 +132,9 @@ degree-`(n+1)` correction does not change lower coefficients — and that
 `inverseTrunc F n` has zero constant coefficient. -/
 
 /-- `inverseTrunc F (n+1)` differs from `inverseTrunc F n` only by a monomial
-of degree `n+1`; in particular, its lower coefficients coincide.-/
+of degree `n+1`; in particular, its lower coefficients coincide.
+@isnad1 id=eq.1h4v.s8.16364a2d7d88 from=translated src=- shape=36ef9b5d vocab=fa838cfc
+-/
 theorem FormalGroup.coeff_inverseTrunc_succ_of_le (F : FormalGroup R)
     (n k : ℕ) (hk : k ≤ n) :
     PowerSeries.coeff k (F.inverseTrunc (n + 1)) =
@@ -136,7 +148,9 @@ theorem FormalGroup.coeff_inverseTrunc_succ_of_le (F : FormalGroup R)
   rw [ite_eq_right (by omega : k ≠ n + 1), add_zero]
 
 /-- For `k ≤ n`, the `k`-th coefficient of `inverseTrunc F n` equals the
-stable coefficient `inverseCoeff F k`.-/
+stable coefficient `inverseCoeff F k`.
+@isnad1 id=eq.1h4v.s7.78b13bf2b763 from=translated src=- shape=60c6aea9 vocab=342a1a67
+-/
 theorem FormalGroup.coeff_inverseTrunc_of_le (F : FormalGroup R)
     (n k : ℕ) (hk : k ≤ n) :
     PowerSeries.coeff k (F.inverseTrunc n) = F.inverseCoeff k := by
@@ -155,19 +169,25 @@ theorem FormalGroup.coeff_inverseTrunc_of_le (F : FormalGroup R)
       subst this
       rfl
 
-/-- `inverseTrunc F n` has zero constant coefficient.-/
+/-- `inverseTrunc F n` has zero constant coefficient.
+@isnad1 id=eq.0h3v.s6.1dc46d250590 from=translated src=- shape=d355250c vocab=b4925011
+-/
 theorem FormalGroup.inverseTrunc_constantCoeff (F : FormalGroup R) (n : ℕ) :
     @PowerSeries.constantCoeff R _ (F.inverseTrunc n) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply,
     F.coeff_inverseTrunc_of_le n 0 (Nat.zero_le _)]
   exact F.inverseCoeff_zero
 
-/-- `inverseTrunc F n` admits substitution (zero constant coefficient).-/
+/-- `inverseTrunc F n` admits substitution (zero constant coefficient).
+@isnad1 id=hassubst.0h3v.s4.f36ceb058bfb from=translated src=- shape=22a400fe vocab=63584851
+-/
 theorem FormalGroup.inverseTrunc_hasSubst (F : FormalGroup R) (n : ℕ) :
     PowerSeries.HasSubst (F.inverseTrunc n) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (F.inverseTrunc_constantCoeff n)
 
-/-- `inverse F` admits substitution.-/
+/-- `inverse F` admits substitution.
+@isnad1 id=hassubst.0h2v.s4.00034e78548f from=translated src=- shape=06ca3aa5 vocab=18127dce
+-/
 theorem FormalGroup.inverse_hasSubst (F : FormalGroup R) :
     PowerSeries.HasSubst F.inverse :=
   PowerSeries.HasSubst.of_constantCoeff_zero' F.inverse_constantCoeff
@@ -177,7 +197,9 @@ theorem FormalGroup.inverse_hasSubst (F : FormalGroup R) :
 We compute `coeff 1 (inverse F) = -1`. This follows from unfolding the
 definition of `inverseTrunc F 1` and using `coeff_one_fAdd`. -/
 
-/-- The linear coefficient of `inverse F` is `-1`.-/
+/-- The linear coefficient of `inverse F` is `-1`.
+@isnad1 id=eq.0h2v.s7.8b511de73a2c from=translated src=- shape=3fe22fd7 vocab=1a0b2027
+-/
 @[simp]
 theorem FormalGroup.inverse_coeff_one (F : FormalGroup R) :
     PowerSeries.coeff 1 F.inverse = -1 := by
@@ -278,7 +300,9 @@ private theorem coeff_fAdd_X_eq_finsum
 
 /-- **MvPowerSeries stabilisation for the `![X, g]` substitution**: if `g₁` and
 `g₂` have zero constant coefficient and agree up to degree `n`, then
-`fAdd F X g₁` and `fAdd F X g₂` agree up to degree `n`.-/
+`fAdd F X g₁` and `fAdd F X g₂` agree up to degree `n`.
+@isnad1 id=eq.4h6v.s9.35b292dfa59b from=translated src=- shape=20b04d7d vocab=070b7817
+-/
 theorem FormalGroup.coeff_fAdd_X_eq_of_coeff_eq
     (F : FormalGroup R) (g₁ g₂ : PowerSeries R)
     (h1 : @PowerSeries.constantCoeff R _ g₁ = 0)
@@ -512,7 +536,9 @@ coefficient and any `c ∈ R`,
 
 This is the two-variable analogue of `coeff_subst_add_monomial` from
 `Logarithm.lean`. The "+ c" arises from the fact that the coefficient of `Y`
-in `F(X, Y)` is `1` (second unit axiom, see `FormalGroup.coeff_01`).-/
+in `F(X, Y)` is `1` (second unit axiom, see `FormalGroup.coeff_01`).
+@isnad1 id=eq.1h5v.s9.c4492b39bd31 from=translated src=- shape=d626621d vocab=5c31bc50
+-/
 theorem FormalGroup.coeff_fAdd_X_add_monomial (F : FormalGroup R)
     (g : PowerSeries R) (n : ℕ) (c : R)
     (hg : @PowerSeries.constantCoeff R _ g = 0) :
@@ -617,7 +643,9 @@ By induction on `n`:
 - `n → n+1`: use stabilization (Lemma `coeff_fAdd_X_eq_of_coeff_eq`) for `k ≤ n`
   and monomial-addition (Lemma `coeff_fAdd_X_add_monomial`) for `k = n+1`,
   noting that the correction `c = -coeff (n+1) (fAdd F X prev)` exactly cancels
-  the previous coefficient.-/
+  the previous coefficient.
+@isnad1 id=eq.1h4v.s7.2c06041bccc4 from=translated src=- shape=367e5086 vocab=cd5a788e
+-/
 theorem FormalGroup.inverseTrunc_fAdd_coeff_eq_zero
     (F : FormalGroup R) (n k : ℕ) (hk : k ≤ n) :
     PowerSeries.coeff k
@@ -643,7 +671,9 @@ theorem FormalGroup.inverseTrunc_fAdd_coeff_eq_zero
 This is the defining identity of the formal inverse. The proof uses the
 polynomial-tail / substitution-stabilization / induction pattern: at each
 degree `k`, `fAdd F X (inverse F)` agrees with `fAdd F X (inverseTrunc F k)`,
-and the latter vanishes at degree `k` by the core invariant.-/
+and the latter vanishes at degree `k` by the core invariant.
+@isnad1 id=eq.0h2v.s5.5e8d63e3a377 from=translated src=- shape=ff4cc93d vocab=0e5d8494
+-/
 theorem FormalGroup.fAdd_X_inverse_eq_zero (F : FormalGroup R) :
     HasseWeil.FG.fAdd F PowerSeries.X F.inverse = 0 := by
   -- Extensional: coeff k agrees for all k.

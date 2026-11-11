@@ -61,7 +61,9 @@ noncomputable def fK (K : Type*) [Field K] [NumberField K] (X : ℝ) : ℝ :=
 `σ = 1` plateau sum of the explicit-formula display. At `σ = 1` the plateau tail
 `e^{−(σ−1/2)(m log N𝔭 − log X)}` is `√X/N𝔭^{m/2}`, and the boundary term
 `N𝔭^m = X` vanishes on both sides (which reconciles the strict/non-strict
-cutoffs).-/
+cutoffs).
+@isnad1 id=eq.1h2v.s5.e3915f3ada08 from=translated src=- shape=7213d200 vocab=a19bf120
+-/
 theorem bSum_eq_neg_plateauSum {X : ℝ} (hX : 1 < X) :
     bSum K X = -plateauSum K 1 X := by
   rw [bSum, plateauSum, ← tsum_neg]
@@ -133,7 +135,9 @@ theorem bSum_eq_neg_plateauSum {X : ℝ} (hX : 1 < X) :
         ite_eq_right (by intro h1; exact hlt (lt_of_le_of_ne h1 heq))]
       norm_num
 
-/-- The relative-sum bridge: `B_{K/ℚ}(X) = −(P_K(1,X) − P_ℚ(1,X))`.-/
+/-- The relative-sum bridge: `B_{K/ℚ}(X) = −(P_K(1,X) − P_ℚ(1,X))`.
+@isnad1 id=eq.1h2v.s5.df7491ed4c06 from=translated src=- shape=3ae55fe8 vocab=fe105a80
+-/
 theorem bSumRel_eq_neg_plateau_diff {X : ℝ} (hX : 1 < X) :
     bSumRel K X = -(plateauSum K 1 X - plateauSum ℚ 1 X) := by
   rw [bSumRel, bSum_eq_neg_plateauSum K hX, bSum_eq_neg_plateauSum ℚ hX]
@@ -142,7 +146,9 @@ theorem bSumRel_eq_neg_plateau_diff {X : ℝ} (hX : 1 < X) :
 /-! ### eq:Diff and Step1 (T12-a-ii/iii) -/
 
 /-- **eq:Diff** (B–F line 568): the cutoff-weight difference at `a = log 9`:
-`√X·log X − √(X/9)·log(X/9) = (2/3)·√X·log(3X)`.-/
+`√X·log X − √(X/9)·log(X/9) = (2/3)·√X·log(3X)`.
+@isnad1 id=eq.1h1v.s7.e66e1d1d87c9 from=translated src=- shape=b9fd393a vocab=f6cbb811
+-/
 theorem cutoff_weight_diff {X : ℝ} (hX9 : 9 < X) :
     Real.log X * Real.sqrt X - Real.log (X/9) * Real.sqrt (X/9)
       = (2/3) * Real.sqrt X * Real.log (3*X) := by
@@ -163,7 +169,9 @@ theorem cutoff_weight_diff {X : ℝ} (hX9 : 9 < X) :
 
 /-- **Step1** (B–F line 575, ×2 normalisation): under GRH + RH, `n ≥ 2`, `X > 9`,
 `(4/3)·√X·log(3X)·|log κ_K − f_K(X)|` is at most the archimedean bound plus the
-`c`-coefficient times the two zero sums, at cutoffs `X` and `X/9`.-/
+`c`-coefficient times the two zero sums, at cutoffs `X` and `X/9`.
+@isnad1 id=le.4h2v.s9.25c223424af9 from=translated src=- shape=a8cb2363 vocab=b9c25f90
+-/
 theorem step1 (hGRH : GeneralizedRiemannHypothesis K) (hRH : RiemannHypothesis)
     (hn : 1 < Module.finrank ℚ K) {X : ℝ} (hX9 : 9 < X) :
     (4/3) * Real.sqrt X * Real.log (3*X)
@@ -208,7 +216,9 @@ theorem step1 (hGRH : GeneralizedRiemannHypothesis K) (hRH : RiemannHypothesis)
   rw [habs_eq, abs_mul, abs_of_nonneg hfacnn] at hkey
   exact hkey
 
-/-- The exponential weight is at most one for nonnegative arguments.-/
+/-- The exponential weight is at most one for nonnegative arguments.
+@isnad1 id=le.2h2v.s6.414c2715d050 from=translated src=- shape=0f62f639 vocab=9b15d243
+-/
 theorem exp_weight_le_one {σ y : ℝ} (hσ : 1/2 < σ) (hy : 0 ≤ y) :
     Real.exp (-(σ - 1/2) * y) ≤ 1 := by
   refine Real.exp_le_one_iff.mpr ?_
@@ -218,7 +228,9 @@ theorem exp_weight_le_one {σ y : ℝ} (hσ : 1/2 < σ) (hy : 0 ≤ y) :
 /-! ### The archimedean integrals, elementarily (T12-b, no digamma) -/
 
 /-- The sinh-weighted exponential integrand is integrable: bounded by `σ−1/2` on
-`(0,1]` (since `sinh x ≥ x`), exponentially small beyond.-/
+`(0,1]` (since `sinh x ≥ x`), exponentially small beyond.
+@isnad1 id=integrab.1h1v.s7.ef437f9ae630 from=translated src=- shape=aa73074e vocab=6ed56b86
+-/
 theorem integrableOn_sinh_weight_exp {σ : ℝ} (hσ : 1/2 < σ) :
     MeasureTheory.IntegrableOn
       (fun y : ℝ => 1/(2 * Real.sinh (y/2)) * (1 - Real.exp (-(σ - 1/2) * y)))
@@ -297,7 +309,9 @@ theorem integrableOn_sinh_weight_exp {σ : ℝ} (hσ : 1/2 < σ) :
       _ ≤ (1 - Real.exp (-1))⁻¹ * Real.exp (-(1/2) * y) := hfrac
 
 /-- **The sinh-integral recurrence** `I(σ+1) = I(σ) + 1/σ`: the difference
-integrand collapses to `e^{−σy}` (the `sinh` cancels).-/
+integrand collapses to `e^{−σy}` (the `sinh` cancels).
+@isnad1 id=eq.1h1v.s8.b6419d32c89e from=translated src=- shape=8c254a3d vocab=6c35cb91
+-/
 theorem sinh_int_rec {σ : ℝ} (hσ : 1/2 < σ) :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.sinh (y/2)) * (1 - Real.exp (-((σ+1) - 1/2) * y)))
@@ -335,7 +349,9 @@ theorem sinh_int_rec {σ : ℝ} (hσ : 1/2 < σ) :
       integral_exp_neg_mul_Ioi hσ0]
   linarith
 
-/-- **Monotonicity of the sinh integral in `σ`.**-/
+/-- **Monotonicity of the sinh integral in `σ`.**
+@isnad1 id=le.2h2v.s8.24c5be093da7 from=translated src=- shape=9cbc8b2e vocab=b1bac670
+-/
 theorem sinh_int_mono {σ σ' : ℝ} (hσ : 1/2 < σ) (hσσ' : σ ≤ σ') :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.sinh (y/2)) * (1 - Real.exp (-(σ - 1/2) * y)))
@@ -352,7 +368,9 @@ theorem sinh_int_mono {σ σ' : ℝ} (hσ : 1/2 < σ) (hσσ' : σ ≤ σ') :
   linarith
 
 /-- **`I(1) = 2 log 2`** by the fundamental theorem of calculus: the integrand is
-`e^{−y/2}/(1+e^{−y/2})`, the derivative of `−2·log(1+e^{−y/2})`.-/
+`e^{−y/2}/(1+e^{−y/2})`, the derivative of `−2·log(1+e^{−y/2})`.
+@isnad1 id=eq.0h0v.s7.9063852ea940 from=translated src=- shape=272bcf6e vocab=964f7f6b
+-/
 theorem sinh_int_one :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.sinh (y/2)) * (1 - Real.exp (-((1:ℝ) - 1/2) * y)))
@@ -415,7 +433,9 @@ theorem sinh_int_one :
   rw [hkey]
   norm_num
 
-/-- The cosh integrand is integrable (dominated by the pure cosh kernel).-/
+/-- The cosh integrand is integrable (dominated by the pure cosh kernel).
+@isnad1 id=integrab.1h1v.s7.d5348469936e from=translated src=- shape=aa73074e vocab=ebe0ba1b
+-/
 theorem integrableOn_cosh_weight_exp {σ : ℝ} (hσ : 1/2 < σ) :
     MeasureTheory.IntegrableOn
       (fun y : ℝ => 1/(2 * Real.cosh (y/2)) * (1 - Real.exp (-(σ - 1/2) * y)))
@@ -438,7 +458,9 @@ theorem integrableOn_cosh_weight_exp {σ : ℝ} (hσ : 1/2 < σ) :
     exact one_div_le_one_div_of_le (by positivity) (by linarith)
 
 /-- The pure `1/(2 * cosh (y/2))` kernel is integrable on `Set.Ioi 0`, dominated by
-`e^(-y/2)`. Shared by `cosh_int_le` and `cosh_int_two`.-/
+`e^(-y/2)`. Shared by `cosh_int_le` and `cosh_int_two`.
+@isnad1 id=integrab.0h0v.s6.26e8efda6eb1 from=translated src=- shape=51f4eeb8 vocab=a1a8ae38
+-/
 theorem integrableOn_inv_two_cosh_half :
     MeasureTheory.IntegrableOn
       (fun y : ℝ => 1/(2 * Real.cosh (y/2))) (Set.Ioi 0) := by
@@ -458,7 +480,9 @@ theorem integrableOn_inv_two_cosh_half :
     rw [div_le_iff₀ (by positivity)]
     nlinarith [Real.exp_pos (-(1/2) * y), Real.exp_pos (y/2)]
 
-/-- **The cosh integral is at most `π/2`.**-/
+/-- **The cosh integral is at most `π/2`.**
+@isnad1 id=le.1h1v.s7.0242f2c36b8b from=translated src=- shape=d5008fa0 vocab=07fa1be4
+-/
 theorem cosh_int_le {σ : ℝ} (hσ : 1/2 < σ) :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.cosh (y/2)) * (1 - Real.exp (-(σ - 1/2) * y))) ≤ π/2 := by
@@ -473,7 +497,9 @@ theorem cosh_int_le {σ : ℝ} (hσ : 1/2 < σ) :
 
 /-- **`I_cosh(2) = π/2 − (1 − log 2)`** by FTC: the tail integrand
 `e^{−3y/2}/(2cosh(y/2)) = e^{−2y}/(1+e^{−y})` is the derivative of
-`log(1+e^{−y}) − e^{−y}`.-/
+`log(1+e^{−y}) − e^{−y}`.
+@isnad1 id=eq.0h0v.s7.1b19a01b64f7 from=translated src=- shape=0361232e vocab=58cc6176
+-/
 theorem cosh_int_two :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.cosh (y/2)) * (1 - Real.exp (-((2:ℝ) - 1/2) * y)))
@@ -565,17 +591,23 @@ theorem cosh_int_two :
 
 /-! ### The `d_{K,σ}` numerics (T12-b N3) -/
 
-/-- `ℚ` has exactly one real place.-/
+/-- `ℚ` has exactly one real place.
+@isnad1 id=eq.0h0v.s3.3cf684155b70 from=translated src=- shape=b0ae1d2b vocab=9226ba62
+-/
 theorem nrRealPlaces_rat : NumberField.InfinitePlace.nrRealPlaces ℚ = 1 :=
   NumberField.InfinitePlace.nrRealPlaces_eq_one_of_finrank_eq_one (Module.finrank_self ℚ)
 
-/-- `ℚ` has no complex places.-/
+/-- `ℚ` has no complex places.
+@isnad1 id=eq.0h0v.s3.5fddb82cff27 from=translated src=- shape=b0ae1d2b vocab=109f5dcd
+-/
 theorem nrComplexPlaces_rat : NumberField.InfinitePlace.nrComplexPlaces ℚ = 0 := by
   have h := NumberField.InfinitePlace.card_add_two_mul_card_eq_rank ℚ
   rw [nrRealPlaces_rat, Module.finrank_self] at h
   omega
 
-/-- **`I_sinh(2) = 1 + 2 log 2`** from the recurrence and `I_sinh(1) = 2 log 2`.-/
+/-- **`I_sinh(2) = 1 + 2 log 2`** from the recurrence and `I_sinh(1) = 2 log 2`.
+@isnad1 id=eq.0h0v.s7.397d444b984e from=translated src=- shape=8df6b0fc vocab=fcf13c99
+-/
 theorem sinh_int_two :
     (∫ y in Set.Ioi (0:ℝ),
         1/(2 * Real.sinh (y/2)) * (1 - Real.exp (-((2:ℝ) - 1/2) * y)))
@@ -585,13 +617,17 @@ theorem sinh_int_two :
   rw [show ((2:ℝ) - 1/2) = ((1:ℝ)+1) - 1/2 by norm_num, h]
   ring
 
-/-- The von Mangoldt Dirichlet sum is nonnegative.-/
+/-- The von Mangoldt Dirichlet sum is nonnegative.
+@isnad1 id=le.0h2v.s4.2ddb68e5411b from=translated src=- shape=664eb244 vocab=005d52b3
+-/
 theorem vonMangoldtSum_nonneg (σ : ℝ) : 0 ≤ vonMangoldtSum K σ :=
   tsum_nonneg fun _ => mul_nonneg (Real.log_natCast_nonneg _)
     (Real.rpow_nonneg (Nat.cast_nonneg _) _)
 
 /-- `log (8 * π) = 3 * log 2 + log π`, the Γ-constant that appears in the `dSigma`
-numerics (`dSigma_rat_two_eq`, `dSigma_ge`).-/
+numerics (`dSigma_rat_two_eq`, `dSigma_ge`).
+@isnad1 id=eq.0h0v.s5.4b9ab24cb2b8 from=translated src=- shape=de6ddcd6 vocab=4e9e2a79
+-/
 theorem log_eight_mul_pi_eq : Real.log (8 * π) = 3 * Real.log 2 + Real.log π := by
   rw [Real.log_mul (by norm_num) Real.pi_ne_zero,
     show (8:ℝ) = 2^3 by norm_num, Real.log_pow]
@@ -601,7 +637,9 @@ theorem log_eight_mul_pi_eq : Real.log (8 * π) = 3 * Real.log 2 + Real.log π :
 /-- **`d_{ℚ,2} = 2W + γ + log π − 1`**, `W = vonMangoldtSum ℚ 2` (B–F lines 603–612 at
 `k = ℚ`, `σ = 2`): with `n = r₁ = 1`, `I_sinh(2) = 1 + 2 log 2`,
 `I_cosh(2) = π/2 − (1 − log 2)` and `log 8π = 3 log 2 + log π`, the Γ-constant and the
-archimedean integrals collapse elementarily.-/
+archimedean integrals collapse elementarily.
+@isnad1 id=eq.0h0v.s6.c710bec778e2 from=translated src=- shape=a514f3ea vocab=7e6a512f
+-/
 theorem dSigma_rat_two_eq :
     dSigma ℚ 2 = 2 * vonMangoldtSum ℚ 2
       + Real.eulerMascheroniConstant + Real.log π - 1 := by
@@ -614,7 +652,9 @@ theorem dSigma_rat_two_eq :
 (B–F lines 603–612): drop `W ≥ 0` and `r₁·(π/2 − I_cosh) ≥ 0`, bound
 `n·(γ + log 8π − I_sinh(σ)) ≥ 2·(…)` (the bracket is nonnegative since
 `I_sinh(σ) ≤ I_sinh(2) = 1 + 2log2 < γ + log 8π`), and use
-`I_sinh(σ) + 1/σ = I_sinh(σ+1) ≤ I_sinh(3) = 3/2 + 2 log 2`.-/
+`I_sinh(σ) + 1/σ = I_sinh(σ+1) ≤ I_sinh(3) = 3/2 + 2 log 2`.
+@isnad1 id=le.3h2v.s7.07b31833e413 from=translated src=- shape=2a859d3f vocab=59e7827e
+-/
 theorem dSigma_ge (hn : 1 < Module.finrank ℚ K) {σ : ℝ} (hσ : 1 < σ) (hσ2 : σ ≤ 2) :
     2 * Real.eulerMascheroniConstant + 2 * Real.log (2*π) - 3 ≤ dSigma K σ := by
   have hσh : (1:ℝ)/2 < σ := by linarith
@@ -691,7 +731,9 @@ theorem dSigma_ge (hn : 1 < Module.finrank ℚ K) {σ : ℝ} (hσ : 1 < σ) (hσ
 /-! ### The ℚ-side von Mangoldt certificate (T12-b N4) -/
 
 /-- The natural number `p` is a prime element of `𝓞 ℚ` when it is a prime
-(transport along `𝓞 ℚ ≃+* ℤ`).-/
+(transport along `𝓞 ℚ ≃+* ℤ`).
+@isnad1 id=prime.1h1v.s5.101c3d91e80d from=translated src=- shape=1609a91d vocab=b5e6fef2
+-/
 theorem prime_natCast_ringOfIntegers_rat {p : ℕ} (hp : p.Prime) :
     Prime ((p : 𝓞 ℚ)) := by
   have h : Prime (Rat.ringOfIntegersEquiv ((p : 𝓞 ℚ))) := by
@@ -709,7 +751,9 @@ noncomputable def ratPrimeIdeal (p : ℕ) (hp : p.Prime) :
       (Ideal.span_singleton_eq_bot.mp hbot)⟩
 
 /-- The ideal `ratPrimeIdeal p` has absolute norm `p` (the norm of `p : 𝓞 ℚ`
-is `p^1` since `𝓞 ℚ` has `ℤ`-rank one).-/
+is `p^1` since `𝓞 ℚ` has `ℤ`-rank one).
+@isnad1 id=eq.1h1v.s8.a3c86374f6ac from=translated src=- shape=3d638d8f vocab=8f75f848
+-/
 theorem absNorm_ratPrimeIdeal (p : ℕ) (hp : p.Prime) :
     Ideal.absNorm (ratPrimeIdeal p hp).1 = p := by
   show Ideal.absNorm (Ideal.span {(p : 𝓞 ℚ)}) = p
@@ -719,7 +763,9 @@ theorem absNorm_ratPrimeIdeal (p : ℕ) (hp : p.Prime) :
     pow_one, Int.natAbs_natCast]
 
 /-- The von Mangoldt term at `(ratPrimeIdeal p, m)` and `σ = 2` is
-`log p / p^(2(m+1))`.-/
+`log p / p^(2(m+1))`.
+@isnad1 id=eq.1h2v.s9.c64f5e346b12 from=translated src=- shape=53733a7a vocab=96b553ea
+-/
 theorem vonMangoldt_term_ratPrimeIdeal (p : ℕ) (hp : p.Prime) (m : ℕ) :
     Real.log (Ideal.absNorm (ratPrimeIdeal p hp).1)
       * (Ideal.absNorm (ratPrimeIdeal p hp).1 : ℝ) ^ (-(((m+1 : ℕ)) : ℝ) * 2)
@@ -738,7 +784,9 @@ noncomputable def vmIndex : Fin 9 → {𝔭 : Ideal (𝓞 ℚ) // 𝔭.IsPrime �
     (ratPrimeIdeal 13 (by norm_num), 0)]
 
 /-- The nine sample indices are pairwise distinct (separated by the invariant
-`(absNorm, exponent)`).-/
+`(absNorm, exponent)`).
+@isnad1 id=injectiv.0h0v.s7.684a2e9136a2 from=translated src=- shape=18bedeac vocab=3ebb296e
+-/
 theorem vmIndex_injective : Function.Injective vmIndex := by
   have hkey : ∀ i, (Ideal.absNorm (vmIndex i).1.1, (vmIndex i).2)
       = ![(2,0),(2,1),(2,2),(3,0),(3,1),(5,0),(7,0),(11,0),(13,0)] i := by
@@ -754,7 +802,9 @@ theorem vmIndex_injective : Function.Injective vmIndex := by
 
 /-- **The nine-term von Mangoldt certificate at `σ = 2`** (T12-b N4):
 `W = Σ_{𝔭,m} log N𝔭·N𝔭^{−2m} ≥ (21/64)·log 2 + (10/81)·log 3 + log 5/25 + log 7/49
-+ log 11/121 + log 13/169` (the terms `2^1,2^2,2^3,3^1,3^2,5,7,11,13`).-/
++ log 11/121 + log 13/169` (the terms `2^1,2^2,2^3,3^1,3^2,5,7,11,13`).
+@isnad1 id=le.0h0v.s8.d1f6ab65ea24 from=translated src=- shape=bf65d009 vocab=551740f8
+-/
 theorem vonMangoldtSum_rat_two_ge :
     Real.log 2 * (21/64) + Real.log 3 * (10/81) + Real.log 5 * (1/25)
       + Real.log 7 * (1/49) + Real.log 11 * (1/121) + Real.log 13 * (1/169)
@@ -779,7 +829,9 @@ theorem vonMangoldtSum_rat_two_ge :
 
 /-- From `2 ^ a ≤ p ^ b` in `ℕ` (with `2 ≤ p`), deduce `a * log 2 ≤ b * log p` by
 taking logs of the cast inequality. The `hl7`/`hl11`/`hl13` power comparisons in
-`zeroSumSigma_rat_le` are instances.-/
+`zeroSumSigma_rat_le` are instances.
+@isnad1 id=le.2h3v.s6.7af2840cde2d from=translated src=- shape=9a3cccf6 vocab=b83cb17c
+-/
 theorem mul_log_two_le_mul_log_of_pow_le {a b p : ℕ} (_hp : 2 ≤ p) (h : 2 ^ a ≤ p ^ b) :
     (a : ℝ) * Real.log 2 ≤ (b : ℝ) * Real.log p := by
   have hlog := Real.log_le_log (by positivity : (0:ℝ) < 2 ^ a)
@@ -790,7 +842,9 @@ theorem mul_log_two_le_mul_log_of_pow_le {a b p : ℕ} (_hp : 2 ≤ p) (h : 2 ^ 
 under RH, `Σ_ρ m_ρ/(¼+γ_ρ²) ≤ 2γ_E + 2 log 2π − 3` — the ℚ-zero sum is at most the
 `d_{K,σ}` lower bound. Via `landau_stark_estimate` at `ℚ`, `σ = 2` (`log Δ_ℚ = 0`),
 `d_{ℚ,2} = 2W + γ_E + log π − 1`, and the nine-term `W`-certificate, the inequality
-reduces to `12 ≤ 6W + 5γ_E + 5 log π + 2 log 2`, which holds with margin `0.38`.-/
+reduces to `12 ≤ 6W + 5γ_E + 5 log π + 2 log 2`, which holds with margin `0.38`.
+@isnad1 id=le.1h0v.s6.18521436a041 from=translated src=- shape=629119f6 vocab=6dded484
+-/
 theorem zeroSumSigma_rat_le (hRH : RiemannHypothesis) :
     zeroSumSigma ℚ 1 ≤ 2 * Real.eulerMascheroniConstant + 2 * Real.log (2*π) - 3 := by
   have h1 := landau_stark_estimate ℚ (generalizedRiemannHypothesis_rat hRH)
@@ -822,7 +876,9 @@ theorem zeroSumSigma_rat_le (hRH : RiemannHypothesis) :
 /-! ### The β-bound (T12-b N5) -/
 
 /-- The quintic Mercator upper bound `log(1+u) ≤ u − u²/2 + u³/3 − u⁴/4 + u⁵/5` for
-`u ≥ 0`: the deficit has derivative `u⁵/(1+u) ≥ 0` and vanishes at `0`.-/
+`u ≥ 0`: the deficit has derivative `u⁵/(1+u) ≥ 0` and vanishes at `0`.
+@isnad1 id=le.1h1v.s7.b82ee34e9e8d from=translated src=- shape=ed28541d vocab=1789be8f
+-/
 theorem log_one_add_le_quintic {u : ℝ} (hu : 0 ≤ u) :
     Real.log (1 + u) ≤ u - u^2/2 + u^3/3 - u^4/4 + u^5/5 := by
   have hderiv : ∀ x ∈ Set.Ici (0:ℝ),
@@ -867,7 +923,9 @@ theorem log_one_add_le_quintic {u : ℝ} (hu : 0 ≤ u) :
   linarith
 
 /-- `L(t) = log(1 + 2/(e^t − 1))` for `t > 0`: the two log-halves of the archimedean
-kernel combine over the common denominator `e^t − 1`.-/
+kernel combine over the common denominator `e^t − 1`.
+@isnad1 id=eq.1h1v.s5.d58d2f141bb6 from=translated src=- shape=27e50f2a vocab=c3fc3aa3
+-/
 theorem archKernelL_eq_log_one_add {t : ℝ} (ht : 0 < t) :
     archKernelL t = Real.log (1 + 2/(Real.exp t - 1)) := by
   have hE1 : (1:ℝ) < Real.exp t := by
@@ -884,7 +942,9 @@ theorem archKernelL_eq_log_one_add {t : ℝ} (ht : 0 < t) :
   field_simp
   ring
 
-/-- Small-argument exponential upper bound `e^x ≤ 1/(1−x)` for `x < 1`.-/
+/-- Small-argument exponential upper bound `e^x ≤ 1/(1−x)` for `x < 1`.
+@isnad1 id=le.1h1v.s5.29401d8f6436 from=translated src=- shape=055aa61e vocab=a208717b
+-/
 theorem exp_le_one_div_one_sub {x : ℝ} (hx : x < 1) :
     Real.exp x ≤ 1/(1-x) := by
   have h1 : (0:ℝ) < 1 - x := by linarith
@@ -899,7 +959,9 @@ theorem exp_le_one_div_one_sub {x : ℝ} (hx : x < 1) :
   linarith
 
 /-- The threshold certificate `log(23/3) ≥ 2.0246` (via `e² < 7.3890561` and
-`e^{0.0246} ≤ 1/(1 − 0.0246)`).-/
+`e^{0.0246} ≤ 1/(1 − 0.0246)`).
+@isnad1 id=le.0h0v.s5.36d587033846 from=translated src=- shape=ea5bba05 vocab=d98f8198
+-/
 theorem log_twentyThree_thirds_ge : (2.0246:ℝ) ≤ Real.log (23/3) := by
   rw [Real.le_log_iff_exp_le (by norm_num : (0:ℝ) < 23/3)]
   have he2 : Real.exp 2 ≤ 2.7182818286^2 := by
@@ -918,7 +980,9 @@ theorem log_twentyThree_thirds_ge : (2.0246:ℝ) ≤ Real.log (23/3) := by
 /-- **The β-bound** (T12-b N5, B–F line 594): `(1/2 + 1/t)·e^t·L(t) ≤ 2` for
 `t ≥ log(23/3)` (i.e. `t = log(X/9)`, `X ≥ 69`). Via the quintic Mercator bound at
 `u = 2/(e^t−1) ≤ 3/10`: `e^t·L ≤ (2+u)(1−u/2+u²/3−u³/4+u⁴/5)
-= 2 + u²(1−u)/6 + (3/20)u⁴ + u⁵/5 ≤ 2.012201`, and `(1/2+1/t) ≤ 1/2+1/2.0246`.-/
+= 2 + u²(1−u)/6 + (3/20)u⁴ + u⁵/5 ≤ 2.012201`, and `(1/2+1/t) ≤ 1/2+1/2.0246`.
+@isnad1 id=le.1h1v.s6.a47e3c27feea from=translated src=- shape=af92dd51 vocab=3dff5edb
+-/
 theorem beta_bound_core {t : ℝ} (ht : Real.log (23/3) ≤ t) :
     (1/2 + 1/t) * (Real.exp t * archKernelL t) ≤ 2 := by
   have ht' : (2.0246:ℝ) ≤ t := le_trans log_twentyThree_thirds_ge ht
@@ -964,7 +1028,9 @@ theorem beta_bound_core {t : ℝ} (ht : Real.log (23/3) ≤ t) :
     _ ≤ 2 := by norm_num
 
 /-- The β-bound in the halved-exponential form used by `step1`'s archimedean term:
-`(1/2 + 1/t)·e^{t/2}·L(t) ≤ 2·e^{−t/2}`.-/
+`(1/2 + 1/t)·e^{t/2}·L(t) ≤ 2·e^{−t/2}`.
+@isnad1 id=le.1h1v.s7.d01cb873909b from=translated src=- shape=25ab880b vocab=dc1cc9eb
+-/
 theorem beta_bound_half {t : ℝ} (ht : Real.log (23/3) ≤ t) :
     (1/2 + 1/t) * Real.exp (t/2) * archKernelL t ≤ 2 * Real.exp (-(t/2)) := by
   have hcore := beta_bound_core ht

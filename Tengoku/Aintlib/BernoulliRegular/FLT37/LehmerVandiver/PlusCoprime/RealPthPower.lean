@@ -82,7 +82,9 @@ private theorem algReal_injective :
 omit [IsCyclotomicExtension {p} ℚ K] in
 /-- For odd prime `p`, the embedding `(𝓞 K⁺)ˣ → (𝓞 K)ˣ` reflects `p`-th-power-ness:
 a unit of `(𝓞 K⁺)ˣ` becomes a `p`-th power in `(𝓞 K)ˣ` iff it is already a `p`-th
-power in `(𝓞 K⁺)ˣ`.-/
+power in `(𝓞 K⁺)ˣ`.
+@isnad1 id=iff.1h3v.s11.d7867199f1ae from=translated src=- shape=e224b8f0 vocab=864a7a9d
+-/
 theorem isPthPower_image_iff (hp_odd : p ≠ 2) (u : (𝓞 (NumberField.maximalRealSubfield K))ˣ) :
     (∃ α : (𝓞 K)ˣ, algReal u = α ^ p) ↔
       ∃ β : (𝓞 (NumberField.maximalRealSubfield K))ˣ, u = β ^ p := by

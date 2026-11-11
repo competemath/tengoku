@@ -53,6 +53,9 @@ def subgroupElementaryQuotientMap (B : AddSubgroup A) (p : ℕ) :
       change (p • (y : B) : A) ∈ multiplesSubgroup A p
       exact ⟨(y : A), rfl⟩)
 
+/--
+@isnad1 id=eq.0h4v.s9.5a01346290b4 from=translated src=- shape=c6d3efbf vocab=715eb30f
+-/
 @[simp]
 theorem subgroupElementaryQuotientMap_mk
     (B : AddSubgroup A) (p : ℕ) (x : B) :
@@ -67,6 +70,9 @@ def subgroupElementaryQuotientLinearMap [NeZero p]
     ElementaryQuotient B p →ₗ[ZMod p] ElementaryQuotient A p :=
   (subgroupElementaryQuotientMap B p).toZModLinearMap p
 
+/--
+@isnad1 id=eq.0h4v.s9.31c1550c978f from=translated src=- shape=912bb97b vocab=39ea94b4
+-/
 @[simp]
 theorem subgroupElementaryQuotientLinearMap_mk [NeZero p]
     (B : AddSubgroup A) (x : B) :
@@ -75,6 +81,9 @@ theorem subgroupElementaryQuotientLinearMap_mk [NeZero p]
       (QuotientAddGroup.mk (x : A) : ElementaryQuotient A p) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.2f5e32f3379b from=translated src=- shape=bec1bf90 vocab=f9b5b6e7
+-/
 theorem nsmul_elementaryQuotient_eq_zmod_smul [NeZero p]
     (n : ℕ) (x : ElementaryQuotient A p) :
     n • x = (n : ZMod p) • x := by
@@ -84,6 +93,9 @@ theorem nsmul_elementaryQuotient_eq_zmod_smul [NeZero p]
     simp
   exact nsmul_eq_mod_nsmul n hpx
 
+/--
+@isnad1 id=eq.0h4v.s8.406c447dbc19 from=translated src=- shape=1111ee6c vocab=7cfd6223
+-/
 theorem quotientMap_nsmul_eq_zmod_smul [NeZero p]
     (n : ℕ) (x : A) :
     quotientMap A p (n • x) = (n : ZMod p) • quotientMap A p x := by
@@ -91,6 +103,9 @@ theorem quotientMap_nsmul_eq_zmod_smul [NeZero p]
   exact nsmul_elementaryQuotient_eq_zmod_smul (p := p) n
     (quotientMap A p x)
 
+/--
+@isnad1 id=mem.0h3v.s6.496491be768f from=translated src=- shape=6c5dcec6 vocab=e9048b91
+-/
 theorem nsmul_ordCompl_mem_primaryComponent
     [Fact p.Prime] [Finite A] (x : A) :
     (ordCompl[p] (addOrderOf x)) • x ∈ AddCommGroup.primaryComponent A p := by
@@ -113,7 +128,9 @@ elementary quotient `A / pA`.
 
 For `x : A`, write `q` for the prime-to-`p` part of `addOrderOf x`. Then
 `q • x` lies in the `p`-primary component, while `q` is a unit modulo `p`, so
-the class of `x` in `A/pA` is a `ZMod p`-multiple of the image of `q • x`.-/
+the class of `x` in `A/pA` is a `ZMod p`-multiple of the image of `q • x`.
+@isnad1 id=surjecti.0h2v.s9.56bb868afd1b from=translated src=- shape=8521de1a vocab=f00bfeba
+-/
 theorem primaryComponent_elementaryQuotientLinearMap_surjective
     [Fact p.Prime] [Finite A] [NeZero p] :
     Function.Surjective
@@ -158,7 +175,9 @@ theorem primaryComponent_elementaryQuotientLinearMap_surjective
           simp
 
 /-- If the image of `B / pB` contains the projected component `V_i`, then
-nontriviality of `V_i` forces `B / pB` to be nontrivial.-/
+nontriviality of `V_i` forces `B / pB` to be nontrivial.
+@isnad1 id=nontrivi.2h5v.s9.5cab3e095d67 from=translated src=- shape=36f8bcfd vocab=5e452331
+-/
 theorem elementaryQuotient_nontrivial_of_component_le_subgroup_image
     [NeZero p] (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
     (B : AddSubgroup A)
@@ -175,7 +194,9 @@ theorem elementaryQuotient_nontrivial_of_component_le_subgroup_image
 /-- Finite-level component comparison.  The hypotheses are precisely the two
 facts supplied by an exact finite-level character component `B`: it covers
 `V_i` modulo `p`, and its `p`-torsion lies in the corresponding projected
-component of `A[p]`.-/
+component of `A[p]`.
+@isnad1 id=torsionc.3h5v.s12.24968b2bfe54 from=translated src=- shape=a4899116 vocab=8ffbd5e7
+-/
 theorem torsionComponentNontrivial_of_finiteLevelSubgroup
     [NeZero p] (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
     (B : AddSubgroup A) [Finite B]

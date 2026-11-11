@@ -37,7 +37,9 @@ variable (R K : Type*) [CommRing R] [IsDomain R]
 variable [Field K] [Algebra R K] [IsFractionRing R K]
 
 /-- The `p`-th power of a singular pair is the principal pair attached to its
-generator.-/
+generator.
+@isnad1 id=eq.0h4v.s10.bee0b013b9fe from=translated src=- shape=e05ba54a vocab=2f7b9cf0
+-/
 theorem pow_eq_principalPair_generator (p : ℕ) (s : SingularPair R K p) :
     s ^ p = principalPair (R := R) (K := K) p (generator s) := by
   apply Subtype.ext
@@ -47,7 +49,9 @@ theorem pow_eq_principalPair_generator (p : ℕ) (s : SingularPair R K p) :
   · change generator s ^ p = generator s ^ p
     rfl
 
-/-- The image of a singular pair in the singular quotient is killed by `p`.-/
+/-- The image of a singular pair in the singular quotient is killed by `p`.
+@isnad1 id=eq.0h4v.s13.81adee2eb38d from=translated src=- shape=0372de71 vocab=613344b1
+-/
 theorem singularGroup_mk_pow_eq_one (p : ℕ) (s : SingularPair R K p) :
     ((QuotientGroup.mk s : SingularGroup (R := R) (K := K) p) ^ p) = 1 := by
   rw [← QuotientGroup.mk_pow]
@@ -55,7 +59,9 @@ theorem singularGroup_mk_pow_eq_one (p : ℕ) (s : SingularPair R K p) :
     (N := principalPairSubgroup (R := R) (K := K) p) (s ^ p)).2
       ⟨generator s, (pow_eq_principalPair_generator (R := R) (K := K) p s).symm⟩
 
-/-- Every element of the singular quotient is killed by `p`.-/
+/-- Every element of the singular quotient is killed by `p`.
+@isnad1 id=eq.0h4v.s9.67d7635a30a7 from=translated src=- shape=6140daef vocab=e02e7851
+-/
 theorem singularGroup_pow_eq_one (p : ℕ)
     (x : SingularGroup (R := R) (K := K) p) :
     x ^ p = 1 := by
@@ -63,7 +69,9 @@ theorem singularGroup_pow_eq_one (p : ℕ)
   intro s
   exact singularGroup_mk_pow_eq_one (R := R) (K := K) p s
 
-/-- Every element of `A[p]` is killed by `p`, by definition.-/
+/-- Every element of `A[p]` is killed by `p`, by definition.
+@isnad1 id=eq.0h3v.s9.44708398b7dc from=translated src=- shape=bb6e4102 vocab=f582db9e
+-/
 theorem classGroupPTorsion_pow_eq_one (p : ℕ)
     (x : classGroupPTorsion (R := R) p) :
     x ^ p = 1 :=

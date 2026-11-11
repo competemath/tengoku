@@ -66,7 +66,9 @@ structure IsAdmissibleTestFn (F : ℝ → ℂ) : Prop where
 /-- **T-BV workhorse**: on an order-connected set `s`, a function continuous on `s`
 with derivative `f'` on the interior has total variation at most `∫_s ‖f'‖`.
 (Each partition increment is `‖∫ f'‖ ≤ ∫ ‖f'‖` by the fundamental theorem of calculus;
-adjacent segments chain into one interval inside `s`.)-/
+adjacent segments chain into one interval inside `s`.)
+@isnad1 id=le.4h3v.s7.7d9b8c525edb from=translated src=- shape=e797e60e vocab=ca6c85c2
+-/
 theorem eVariationOn_le_integral_norm_deriv {f f' : ℝ → ℂ} {s : Set ℝ}
     (hs : s.OrdConnected) (hcont : ContinuousOn f s)
     (hderiv : ∀ x ∈ interior s, HasDerivAt f (f' x) x)
@@ -116,7 +118,9 @@ theorem eVariationOn_le_integral_norm_deriv {f f' : ℝ → ℂ} {s : Set ℝ}
     _ ≤ ENNReal.ofReal (∫ x in s, ‖f' x‖) := ENNReal.ofReal_le_ofReal hreal
 
 /-- A function continuous on an order-connected set with integrable derivative on the
-interior has bounded variation there.-/
+interior has bounded variation there.
+@isnad1 id=boundedv.4h3v.s7.68da9bd3270e from=translated src=- shape=159628e3 vocab=281645b0
+-/
 theorem boundedVariationOn_of_deriv_integrable {f f' : ℝ → ℂ} {s : Set ℝ}
     (hs : s.OrdConnected) (hcont : ContinuousOn f s)
     (hderiv : ∀ x ∈ interior s, HasDerivAt f (f' x) x)
@@ -128,7 +132,9 @@ theorem boundedVariationOn_of_deriv_integrable {f f' : ℝ → ℂ} {s : Set ℝ
 /-- **T-BV, piecewise form**: a function continuous on `[a,∞)`, differentiable off a
 single kink at `b` (with `a ≤ b`), whose derivative is integrable on `[a,∞)`, has
 bounded variation on `[a,∞)`. This is the shape the paper's `F_{s,X}` (kink at
-`t = log X`) discharges.-/
+`t = log X`) discharges.
+@isnad1 id=boundedv.5h4v.s8.9d849ea45209 from=translated src=- shape=0c652c7d vocab=a548406b
+-/
 theorem boundedVariationOn_Ici_of_piecewise_deriv {f f' : ℝ → ℂ} {a b : ℝ}
     (hab : a ≤ b) (hcont : ContinuousOn f (Set.Ici a))
     (hd1 : ∀ x ∈ Set.Ioo a b, HasDerivAt f (f' x) x)

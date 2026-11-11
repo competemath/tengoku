@@ -24,7 +24,9 @@ universe u
 
 namespace AlgebraicGeometry
 
-/-- Inverse image commutes with the finite product open indexing a Cech cochain factor.-/
+/-- Inverse image commutes with the finite product open indexing a Cech cochain factor.
+@isnad1 id=eq.0h7v.s8.8cf39a8aed1c from=translated src=- shape=5f1c7208 vocab=f84110d9
+-/
 theorem Scheme.Hom.preimage_cechIntersection
     {X Y : Scheme.{u}} (g : Y ⟶ X) {ι : Type u}
     (U : ι → X.Opens) (n : ℕ) (i : Fin (n + 1) → ι) :
@@ -59,12 +61,18 @@ noncomputable def baseModulePresheaf {X S : Scheme.{u}} (π : X ⟶ S)
       (op (⊤ : X.Opens)) (initialOpOfTerminal isTerminalTop)).obj M.1 ⋙
     ModuleCat.restrictScalars π.appTop.hom
 
+/--
+@isnad1 id=eq.0h5v.s11.375acfbf852d from=translated src=- shape=cc4bd687 vocab=33270f46
+-/
 @[simp]
 theorem baseModulePresheaf_obj_coe {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) (V : X.Opensᵒᵖ) :
     ((baseModulePresheaf π M).obj V : Type u) = M.presheaf.obj V :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s15.34dd64364885 from=translated src=- shape=e4057c6e vocab=1ced047c
+-/
 @[simp]
 theorem baseModulePresheaf_map_apply {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) {V W : X.Opensᵒᵖ} (f : V ⟶ W)
@@ -72,7 +80,9 @@ theorem baseModulePresheaf_map_apply {X S : Scheme.{u}} (π : X ⟶ S)
     ((baseModulePresheaf π M).map f).hom x = M.presheaf.map f x :=
   rfl
 
-/-- The base-linear presheaf underlying a scheme module is a sheaf.-/
+/-- The base-linear presheaf underlying a scheme module is a sheaf.
+@isnad1 id=issheaf.0h4v.s10.7d2bbfcad312 from=translated src=- shape=2fbba852 vocab=b9fcdee3
+-/
 theorem baseModulePresheaf_isSheaf {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) :
     Presheaf.IsSheaf (Opens.grothendieckTopology X)
@@ -93,12 +103,18 @@ noncomputable def baseModuleSheaf {X S : Scheme.{u}} (π : X ⟶ S)
       (ModuleCat.{u} Γ(S, (⊤ : S.Opens))) :=
   ⟨baseModulePresheaf π M, baseModulePresheaf_isSheaf π M⟩
 
+/--
+@isnad1 id=eq.0h5v.s12.01d19dbc77c3 from=translated src=- shape=bc3e8e3b vocab=20270444
+-/
 @[simp]
 theorem baseModuleSheaf_obj_coe {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) (V : X.Opensᵒᵖ) :
     ((baseModuleSheaf π M).obj.obj V : Type u) = M.presheaf.obj V :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s17.e2e29f9df397 from=translated src=- shape=759fdbe9 vocab=2ecd5eb3
+-/
 @[simp]
 theorem baseModuleSheaf_map_apply {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) {V W : X.Opensᵒᵖ} (f : V ⟶ W)
@@ -115,12 +131,18 @@ noncomputable def baseModulePresheafFunctor {X S : Scheme.{u}} (π : X ⟶ S) :
     (Functor.whiskeringRight X.Opensᵒᵖ _ _).obj
       (ModuleCat.restrictScalars π.appTop.hom)
 
+/--
+@isnad1 id=eq.0h4v.s11.bb76654cbb7f from=translated src=- shape=69aa2fdb vocab=9e6843ae
+-/
 @[simp]
 theorem baseModulePresheafFunctor_obj {X S : Scheme.{u}} (π : X ⟶ S)
     (M : X.Modules) :
     (baseModulePresheafFunctor π).obj M = baseModulePresheaf π M :=
   rfl
 
+/--
+@isnad1 id=preserve.0h3v.s12.9e190b85a3a3 from=translated src=- shape=3979a91d vocab=cebe3b01
+-/
 instance baseModulePresheafFunctor_preservesZeroMorphisms
     {X S : Scheme.{u}} (π : X ⟶ S) :
     (baseModulePresheafFunctor π).PreservesZeroMorphisms where
@@ -184,7 +206,9 @@ noncomputable def baseModulePresheafRestrictAppIso
   rw [Scheme.Hom.comp_appTop]
   exact (hrestrict (π.appTop r)).symm
 
-/-- Naturality of the base-linear section isomorphism for restriction along an open immersion.-/
+/-- Naturality of the base-linear section isomorphism for restriction along an open immersion.
+@isnad1 id=eq.0h9v.s14.ea80752a5c3b from=translated src=- shape=3446500c vocab=de50ebec
+-/
 theorem baseModulePresheafRestrictAppIso_hom_naturality
     {Y S Z : Scheme.{u}} (π : Y ⟶ S) (f : Z ⟶ Y) [IsOpenImmersion f]
     (M : Y.Modules) {U V : Z.Opens} (i : op V ⟶ op U) :
@@ -261,6 +285,9 @@ noncomputable def baseCechComplexFunctor {X S : Scheme.{u}} (π : X ⟶ S)
     X.Modules ⥤ CochainComplex (ModuleCat.{u} Γ(S, (⊤ : S.Opens))) ℕ :=
   baseModulePresheafFunctor π ⋙ cechComplexFunctor U
 
+/--
+@isnad1 id=eq.0h6v.s13.a8004cb373d1 from=translated src=- shape=326d4083 vocab=4f06cd2f
+-/
 @[simp]
 theorem baseCechComplexFunctor_obj {X S : Scheme.{u}} (π : X ⟶ S)
     {ι : Type u} (U : ι → X.Opens) (M : X.Modules) :

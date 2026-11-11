@@ -70,7 +70,9 @@ namespace IsThaineAuxiliary
 
 /-- A Thaine auxiliary prime is `≥ 1` (since `p^n ∣ ℓ - 1` requires
 `ℓ ≥ p^n + 1` or `ℓ = 1`; for the prime case `ℓ ≥ 2` so the genuine
-content is `p^n ∣ ℓ - 1`).-/
+content is `p^n ∣ ℓ - 1`).
+@isnad1 id=le.3h3v.s4.a2dbd8466831 from=translated src=- shape=9a1e04e6 vocab=76e49abd
+-/
 theorem one_le_of_ne_p_of_prime {p n ℓ : ℕ} (_ : p.Prime)
     (hℓ_prime : ℓ.Prime) (_ : IsThaineAuxiliary p n ℓ) : 1 ≤ ℓ :=
   hℓ_prime.one_lt.le
@@ -88,7 +90,9 @@ end IsThaineAuxiliary
 /-- **Concrete example for FLT37 / level 1**: the LV-prime ℓ = 149 satisfies
 `IsThaineAuxiliary 37 1 149`. Here the level is `n = 1`; higher-level
 auxiliaries (n ≥ 2) needed for Kolyvagin descent of the annihilator are
-constructed in `T-THAINE-3`.-/
+constructed in `T-THAINE-3`.
+@isnad1 id=isthaine.0h0v.s4.a24200b2b3bc from=translated src=- shape=b850a97b vocab=134ee40e
+-/
 theorem isThaineAuxiliary_thirtyseven_one_one_forty_nine :
     IsThaineAuxiliary 37 1 149 where
   ne_p := by decide
@@ -103,7 +107,9 @@ def ThaineAuxiliaryExistence (p n : ℕ) : Prop :=
   ∃ ℓ : ℕ, ℓ.Prime ∧ IsThaineAuxiliary p n ℓ
 
 /-- For the FLT37 setting (p = 37, n = 1), existence is witnessed by
-ℓ = 149.-/
+ℓ = 149.
+@isnad1 id=thaineau.0h0v.s3.ffe481b89ec1 from=translated src=- shape=6d6f5044 vocab=d9ddcd7a
+-/
 theorem thaineAuxiliaryExistence_thirtyseven_one :
     ThaineAuxiliaryExistence 37 1 :=
   ⟨149, by decide, isThaineAuxiliary_thirtyseven_one_one_forty_nine⟩
@@ -130,7 +136,9 @@ private theorem isThaineAuxiliary_of_cast_eq_one {p n ℓ : ℕ} (hp : p.Prime) 
 
 /-- **Infinitude of Thaine-auxiliary primes** (unconditional). For any
 prime `p` and any `n ≥ 1`, the set of primes ℓ with `IsThaineAuxiliary
-p n ℓ` is infinite, by Dirichlet density on the congruence `ℓ ≡ 1 (mod p^n)`.-/
+p n ℓ` is infinite, by Dirichlet density on the congruence `ℓ ≡ 1 (mod p^n)`.
+@isnad1 id=infinite.2h2v.s4.539ef64270e7 from=translated src=- shape=fe987ce1 vocab=7eee30c3
+-/
 theorem infinite_setOf_thaineAuxiliary
     (p : ℕ) (hp : p.Prime) (n : ℕ) (hn : 1 ≤ n) :
     {ℓ : ℕ | ℓ.Prime ∧ IsThaineAuxiliary p n ℓ}.Infinite := by
@@ -141,7 +149,9 @@ theorem infinite_setOf_thaineAuxiliary
 
 /-- **Generic Thaine-auxiliary existence via Dirichlet density**
 (unconditional): for any prime `p` and any `n ≥ 1` there is a prime `ℓ ≠ p`
-with `p^n ∣ ℓ - 1`. Immediate from `infinite_setOf_thaineAuxiliary`.-/
+with `p^n ∣ ℓ - 1`. Immediate from `infinite_setOf_thaineAuxiliary`.
+@isnad1 id=thaineau.2h2v.s4.8555c4035292 from=translated src=- shape=bd4e4d39 vocab=e662abef
+-/
 theorem thaineAuxiliaryExistence_of_prime
     (p : ℕ) (hp : p.Prime) (n : ℕ) (hn : 1 ≤ n) :
     ThaineAuxiliaryExistence p n :=

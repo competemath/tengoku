@@ -31,7 +31,9 @@ open Matrix
 /-- **The 2×2 determinant identity** `det(r·M − s·1) = r²·det M − r·s·tr M + s²`.
 
 The characteristic-polynomial value of `M` at the "point" `(r,s)`, written without forming the
-characteristic polynomial: a direct `det_fin_two` computation.-/
+characteristic polynomial: a direct `det_fin_two` computation.
+@isnad1 id=eq.0h4v.s8.69d465609cad from=translated src=- shape=b711f6f8 vocab=5a2f6a35
+-/
 theorem det_smul_sub_smul_one_fin_two {R : Type*} [CommRing R]
     (M : Matrix (Fin 2) (Fin 2) R) (r s : R) :
     (r • M - s • (1 : Matrix (Fin 2) (Fin 2) R)).det
@@ -46,7 +48,9 @@ theorem det_smul_sub_smul_one_fin_two {R : Type*} [CommRing R]
 
 /-- **Specialised to the Frobenius matrix data** `det M = q`, `tr M = t`:
 `det(r·M − s·1) = q·r² − t·r·s + s²`.  This is the exact value the finite-level pairing must match
-with `deg(rπ − s)` modulo `ℓ`.-/
+with `deg(rπ − s)` modulo `ℓ`.
+@isnad1 id=eq.2h6v.s9.08cb1da8a213 from=translated src=- shape=45ccc66c vocab=5a2f6a35
+-/
 theorem det_smul_sub_smul_one_fin_two_of {R : Type*} [CommRing R]
     (M : Matrix (Fin 2) (Fin 2) R) (r s q t : R)
     (hdet : M.det = q) (htr : M.trace = t) :
@@ -54,7 +58,9 @@ theorem det_smul_sub_smul_one_fin_two_of {R : Type*} [CommRing R]
   rw [det_smul_sub_smul_one_fin_two, hdet, htr]; ring
 
 /-- **Trace from `det(1 − M)`** (2×2): `(1 − M).det = 1 − tr M + det M`. The assembly reads the
-Frobenius trace off `det(1 − π|E[ℓ]) = deg(1 − π) = #E`, giving `tr(π|E[ℓ]) = 1 + q − #E = t`.-/
+Frobenius trace off `det(1 − π|E[ℓ]) = deg(1 − π) = #E`, giving `tr(π|E[ℓ]) = 1 + q − #E = t`.
+@isnad1 id=eq.0h2v.s8.1ef16eaafa76 from=translated src=- shape=11cd18c6 vocab=75cc02db
+-/
 theorem det_one_sub_fin_two {R : Type*} [CommRing R] (M : Matrix (Fin 2) (Fin 2) R) :
     (1 - M).det = 1 - M.trace + M.det := by
   have hlit : (1 : Matrix (Fin 2) (Fin 2) R) - M

@@ -26,7 +26,9 @@ namespace ComponentProjection
 variable {G H : Type*} [Group G] [Group H]
 
 /-- A surjective homomorphism commuting with two endomorphisms maps the source
-projection range onto the target projection range.-/
+projection range onto the target projection range.
+@isnad1 id=eq.2h5v.s8.d54ea64c6c4d from=translated src=- shape=be38ec06 vocab=c691bdcf
+-/
 theorem map_range_eq_range_of_surjective_of_commute
     (φ : G →* H) (eG : G →* G) (eH : H →* H)
     (hφ : Function.Surjective φ)
@@ -40,7 +42,9 @@ variable [Field K] [Algebra R K] [IsFractionRing R K]
 
 /-- Singular-sequence specialization: commuting projection operators on `S`
 and `A[p]` give a surjection from the projected singular component to the
-projected class-group component.-/
+projected class-group component.
+@isnad1 id=eq.1h5v.s13.23827e2c6a6f from=translated src=- shape=d7ca7d4d vocab=59db0445
+-/
 theorem singular_map_range_eq_range_of_commute
     (p : ℕ)
     (eS :
@@ -61,7 +65,9 @@ theorem singular_map_range_eq_range_of_commute
     hcomm
 
 /-- If the projected `A[p]` component is nontrivial, then there is a singular
-class in the projected singular component with nontrivial image.-/
+class in the projected singular component with nontrivial image.
+@isnad1 id=ex.2h5v.s13.84adffa7c665 from=translated src=- shape=07d6a215 vocab=a9ed3bbf
+-/
 theorem exists_singular_projection_lift_of_target_ne_bot
     (p : ℕ)
     (eS :

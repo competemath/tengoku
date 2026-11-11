@@ -64,7 +64,9 @@ namespace BernoulliRegular
 
 namespace Furtwaengler
 
-/-- **Aux 1**: For `x < ℓ`, `digitSum ℓ (x + ℓ · y) = x + digitSum ℓ y`.-/
+/-- **Aux 1**: For `x < ℓ`, `digitSum ℓ (x + ℓ · y) = x + digitSum ℓ y`.
+@isnad1 id=eq.2h3v.s5.935e0b8b5dee from=translated src=- shape=1be49f77 vocab=76d54b68
+-/
 theorem digitSum_add_mul_eq {ℓ : ℕ} (hℓ : 1 < ℓ) (x y : ℕ) (hx : x < ℓ) :
     digitSum ℓ (x + ℓ * y) = x + digitSum ℓ y := by
   rcases eq_or_ne x 0 with rfl | hx0
@@ -80,7 +82,9 @@ theorem digitSum_add_mul_eq {ℓ : ℕ} (hℓ : 1 < ℓ) (x y : ℕ) (hx : x < �
 /-- **Helper for Aux 2 — successor sub-additivity.**
 `digitSum (a + 1) ≤ digitSum a + 1`. Adding 1 increases the digit sum
 by at most 1; it can decrease via carries (e.g., 99 → 100 in base 10
-goes from digit sum 18 to digit sum 1).-/
+goes from digit sum 18 to digit sum 1).
+@isnad1 id=le.1h2v.s5.197d8d8320e2 from=translated src=- shape=1ff547c2 vocab=45b13959
+-/
 theorem digitSum_succ_le {ℓ : ℕ} (hℓ : 1 < ℓ) (a : ℕ) :
     digitSum ℓ (a + 1) ≤ digitSum ℓ a + 1 := by
   induction a using Nat.strong_induction_on with
@@ -128,7 +132,9 @@ Strong induction on `a + b`. Cases:
 - Both ≥ 1: decompose `a = a₀ + ℓ·a'`, `b = b₀ + ℓ·b'` with `a₀, b₀ < ℓ`.
   - No carry (`a₀ + b₀ < ℓ`): use Aux 1 and IH at `(a', b')`.
   - Carry (`a₀ + b₀ ≥ ℓ`): use Aux 1, IH at `(a', b' + 1)`, and
-    `digitSum_succ_le` for `b' + 1`.-/
+    `digitSum_succ_le` for `b' + 1`.
+@isnad1 id=le.1h3v.s5.c1f77f9a5839 from=translated src=- shape=35da9c2a vocab=45b13959
+-/
 theorem digitSum_add_le {ℓ : ℕ} (hℓ : 1 < ℓ) :
     ∀ (a b : ℕ), digitSum ℓ (a + b) ≤ digitSum ℓ a + digitSum ℓ b := by
   -- Strong induction on a + b
@@ -196,14 +202,18 @@ theorem digitSum_add_le {ℓ : ℕ} (hℓ : 1 < ℓ) :
     have h_succ : digitSum ℓ (b' + 1) ≤ digitSum ℓ b' + 1 := digitSum_succ_le hℓ b'
     omega
 
-/-- **Aux 3**: `digitSum ℓ (ℓ · n) = digitSum ℓ n`.-/
+/-- **Aux 3**: `digitSum ℓ (ℓ · n) = digitSum ℓ n`.
+@isnad1 id=eq.1h2v.s4.d8757965f091 from=translated src=- shape=eced341f vocab=cdcf5362
+-/
 theorem digitSum_mul_left {ℓ : ℕ} (hℓ : 1 < ℓ) (n : ℕ) :
     digitSum ℓ (ℓ * n) = digitSum ℓ n := by
   have := digitSum_add_mul_eq hℓ 0 n (by omega)
   simpa using this
 
 /-- **Helper**: when all digits `k_i` satisfy `k_i < ℓ`, the standard digit-sum
-identity holds: `digitSum ℓ (Σ k_i · ℓ^i) = Σ k_i`.-/
+identity holds: `digitSum ℓ (Σ k_i · ℓ^i) = Σ k_i`.
+@isnad1 id=eq.2h3v.s6.d2ea477729fc from=translated src=- shape=56d6a910 vocab=08ca2ace
+-/
 theorem digitSum_eq_sum_of_all_lt
     {ℓ : ℕ} (hℓ : 1 < ℓ) :
     ∀ (f : ℕ) (k : ℕ → ℕ), (∀ i, i < f → k i < ℓ) →
@@ -249,7 +259,9 @@ write `S = k 0 + ℓ · T` where `T := Σ_{i < f} k(i+1) · ℓ^i`. Then
 - `= digitSum ℓ (k 0) + digitSum ℓ T` (Aux 3, `digitSum_mul_left`)
 - `≤ k 0 + digitSum ℓ T` (`digitSum_le_self`)
 - `≤ k 0 + Σ k(i+1)` (IH on the shifted sequence)
-- `= Σ k_i`.-/
+- `= Σ k_i`.
+@isnad1 id=le.1h3v.s6.81814e563121 from=translated src=- shape=c3876214 vocab=21b44d9f
+-/
 theorem decomp_weight_ge_digitSum
     {ℓ : ℕ} (hℓ : 2 ≤ ℓ) :
     ∀ (f : ℕ) (k : ℕ → ℕ),
@@ -296,7 +308,9 @@ such decomposition is the standard base-ℓ digit vector of `a`.
 This is the standard uniqueness-of-base-`ℓ`-representation theorem.
 Proof by induction on `f`: at each step, `k 0 = a mod ℓ` (forced by
 the modular reduction), and the shifted sequence is then determined
-by the IH.-/
+by the IH.
+@isnad1 id=existsun.2h3v.s6.da88f1a79156 from=translated src=- shape=dd510732 vocab=4e62e5f5
+-/
 theorem digitSum_decomp_unique_at_minimum
     {ℓ : ℕ} (hℓ : 2 ≤ ℓ) (f : ℕ) (a : ℕ)
     (h_a_lt : a < ℓ ^ f) :

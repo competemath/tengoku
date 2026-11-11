@@ -24,7 +24,9 @@ open Complex NumberField
 
 variable (K : Type*) [Field K] [NumberField K]
 
-/-- The theta constant term `h·w⁻¹·vol` is positive.-/
+/-- The theta constant term `h·w⁻¹·vol` is positive.
+@isnad1 id=lt.0h1v.s4.7a99a0664e3f from=translated src=- shape=31b077a1 vocab=3e150394
+-/
 theorem heckeFConst_pos : 0 < heckeFConst K := by
   rw [heckeFConst]
   have h1 : 0 < (Fintype.card (ClassGroup (𝓞 K)) : ℝ) := by
@@ -35,7 +37,9 @@ theorem heckeFConst_pos : 0 < heckeFConst K := by
   positivity
 
 /-- The entire completion does not vanish at `1`: its value there is `2g₀/adjust`,
-a positive multiple of the class-number–regulator constant.-/
+a positive multiple of the class-number–regulator constant.
+@isnad1 id=ne.0h1v.s4.cdfcbb67d9f5 from=translated src=- shape=0586f221 vocab=8ffb4ad7
+-/
 theorem completedDedekindZetaEntire_one_ne_zero :
     completedDedekindZetaEntire K 1 ≠ 0 := by
   have hval : completedDedekindZetaEntire K 1
@@ -49,7 +53,9 @@ theorem completedDedekindZetaEntire_one_ne_zero :
   · exact_mod_cast (heckeAdjust_pos K).ne'
   · exact_mod_cast (heckeFConst_pos K).ne'
 
-/-- The entire completion does not vanish at `0`: its value there is `2f₀/adjust`.-/
+/-- The entire completion does not vanish at `0`: its value there is `2f₀/adjust`.
+@isnad1 id=ne.0h1v.s4.cb189695a28d from=translated src=- shape=0586f221 vocab=8ffb4ad7
+-/
 theorem completedDedekindZetaEntire_zero_ne_zero :
     completedDedekindZetaEntire K 0 ≠ 0 := by
   have hval : completedDedekindZetaEntire K 0
@@ -64,7 +70,9 @@ theorem completedDedekindZetaEntire_zero_ne_zero :
   · exact_mod_cast (heckeFConst_pos K).ne'
 
 /-- **GRH pins the zeros to the critical line**: every zero of the entire completion
-has real part `1/2`.-/
+has real part `1/2`.
+@isnad1 id=eq.2h2v.s5.33f24acddc66 from=translated src=- shape=370510f1 vocab=693367b4
+-/
 theorem re_eq_half_of_completedDedekindZetaEntire_eq_zero
     (hGRH : GeneralizedRiemannHypothesis K) {ρ : ℂ}
     (hρ : completedDedekindZetaEntire K ρ = 0) : ρ.re = 1/2 := by
@@ -110,7 +118,9 @@ local order, this agrees with every window divisor on the window.-/
 noncomputable def zetaZeroDivisor : ℂ → ℤ :=
   MeromorphicOn.divisor (completedDedekindZetaEntire K) Set.univ
 
-/-- The global divisor's support is locally finite.-/
+/-- The global divisor's support is locally finite.
+@isnad1 id=locallyf.0h1v.s5.7bea76673098 from=translated src=- shape=abe3ce94 vocab=6018310a
+-/
 theorem locallyFiniteSupport_zetaZeroDivisor :
     LocallyFiniteSupport (zetaZeroDivisor K) := by
   intro z
@@ -120,7 +130,9 @@ theorem locallyFiniteSupport_zetaZeroDivisor :
   exact ⟨t, ht, hfin⟩
 
 /-- **The zero set is countable**: the support of the global divisor is a countable
-subset of `ℂ` (locally finite ⟹ finite on each closed ball ⟹ countable union).-/
+subset of `ℂ` (locally finite ⟹ finite on each closed ball ⟹ countable union).
+@isnad1 id=countabl.0h1v.s4.485959657fc5 from=translated src=- shape=fd96bebd vocab=f96198e4
+-/
 theorem countable_support_zetaZeroDivisor :
     (Function.support (zetaZeroDivisor K)).Countable := by
   have hfin : ∀ n : ℕ,
@@ -146,19 +158,25 @@ through the divisor value).-/
 def ZetaZeros : Type _ := {ρ : ℂ // zetaZeroDivisor K ρ ≠ 0}
 
 /-- Membership in the zero index is equivalent to being a zero of the entire
-completion.-/
+completion.
+@isnad1 id=iff.0h2v.s5.dd6c07947b01 from=translated src=- shape=537dbb0e vocab=e6959a7e
+-/
 theorem zetaZeroDivisor_ne_zero_iff {ρ : ℂ} :
     zetaZeroDivisor K ρ ≠ 0 ↔ completedDedekindZetaEntire K ρ = 0 :=
   ⟨fun h => completedDedekindZetaEntire_eq_zero_of_divisor_ne_zero K (U := Set.univ) h,
     fun h => divisor_ne_zero_of_completedDedekindZetaEntire_eq_zero K (Set.mem_univ ρ) h⟩
 
-/-- **Under GRH every indexed zero sits on the critical line.**-/
+/-- **Under GRH every indexed zero sits on the critical line.**
+@isnad1 id=eq.1h2v.s5.d231300d7949 from=translated src=- shape=1da1045b vocab=4a878331
+-/
 theorem ZetaZeros_re_eq_half (hGRH : GeneralizedRiemannHypothesis K)
     (ρ : ZetaZeros K) : (ρ.1).re = 1/2 :=
   re_eq_half_of_completedDedekindZetaEntire_eq_zero K hGRH
     ((zetaZeroDivisor_ne_zero_iff K).mp ρ.2)
 
-/-- The window divisors agree with the global divisor on their windows.-/
+/-- The window divisors agree with the global divisor on their windows.
+@isnad1 id=eq.1h3v.s6.8dd23aaef0cb from=translated src=- shape=cdfcb610 vocab=1939b72b
+-/
 theorem divisor_apply_eq_zetaZeroDivisor {U : Set ℂ} {u : ℂ} (hu : u ∈ U) :
     (MeromorphicOn.divisor (completedDedekindZetaEntire K) U) u
       = zetaZeroDivisor K u := by
@@ -167,7 +185,9 @@ theorem divisor_apply_eq_zetaZeroDivisor {U : Set ℂ} {u : ℂ} (hu : u ∈ U) 
   rw [MeromorphicOn.divisor_apply (hm U) hu, zetaZeroDivisor,
     MeromorphicOn.divisor_apply (hm Set.univ) (Set.mem_univ u)]
 
-/-- The global divisor is nonnegative (the completion is entire).-/
+/-- The global divisor is nonnegative (the completion is entire).
+@isnad1 id=le.0h2v.s4.672d40c6551f from=translated src=- shape=c8279772 vocab=8f0e1bee
+-/
 @[simp]
 theorem zetaZeroDivisor_nonneg (u : ℂ) : 0 ≤ zetaZeroDivisor K u := by
   rw [zetaZeroDivisor]
@@ -175,7 +195,9 @@ theorem zetaZeroDivisor_nonneg (u : ℂ) : 0 ≤ zetaZeroDivisor K u := by
     analyticAt_completedDedekindZetaEntire K ζ)) u
 
 /-- A finite family of indexed zeros inside a closed ball contributes at most the
-ball's divisor finsum.-/
+ball's divisor finsum.
+@isnad1 id=le.1h4v.s7.738591342bfc from=translated src=- shape=4e20c5de vocab=935b7cc3
+-/
 theorem sum_zetaZeroDivisor_le_ball_finsum (c₀ : ℂ) (r : ℝ)
     (u : Finset (ZetaZeros K)) (hu : ∀ ρ ∈ u, (ρ : ZetaZeros K).1 ∈ Metric.closedBall c₀ r) :
     (∑ ρ ∈ u, zetaZeroDivisor K ρ.1)
@@ -221,7 +243,9 @@ theorem sum_zetaZeroDivisor_le_ball_finsum (c₀ : ℂ) (r : ℝ)
 
 /-- **The unit-slab zero count** (Jensen counting made summation-ready): there is a
 constant `C` with: for every `n`, any finite family of indexed zeros with ordinates
-in `[n, n+1]` (either sign) has divisor-weighted count at most `C·log(3+n)`.-/
+in `[n, n+1]` (either sign) has divisor-weighted count at most `C·log(3+n)`.
+@isnad1 id=ex.0h1v.s7.03bc1fcb1408 from=translated src=- shape=5af7e6ed vocab=6e4b99d0
+-/
 theorem exists_slab_zetaZeroDivisor_sum_le :
     ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, ∀ u : Finset (ZetaZeros K),
       (∀ ρ ∈ u, (n:ℝ) ≤ |((ρ : ZetaZeros K).1).im| ∧ |((ρ : ZetaZeros K).1).im| ≤ n+1) →
@@ -365,7 +389,9 @@ theorem exists_slab_zetaZeroDivisor_sum_le :
           linarith
 
 /-- The slab-count majorant series `∑ log(3+n)/(h²+n²)` converges
-(`log(3+n) ≤ 2√(n+1+ ...)` elementary, no asymptotics).-/
+(`log(3+n) ≤ 2√(n+1+ ...)` elementary, no asymptotics).
+@isnad1 id=summable.1h1v.s6.3044d8e315a1 from=translated src=- shape=c1332bec vocab=f8ace298
+-/
 theorem summable_log_div_sq (h : ℝ) (hh : 0 < h) :
     Summable (fun n : ℕ => Real.log (3+(n:ℝ)) / (h^2 + (n:ℝ)^2)) := by
   set c₁ : ℝ := min (h^2) (1/4) with hc₁
@@ -441,7 +467,9 @@ theorem summable_log_div_sq (h : ℝ) (hh : 0 < h) :
           linear_combination hs2
 
 /-- **Landau-type absolute convergence over the zero index**: for every `h > 0`,
-`∑_ρ div(ρ)/(h² + γ_ρ²)` converges.-/
+`∑_ρ div(ρ)/(h² + γ_ρ²)` converges.
+@isnad1 id=summable.1h2v.s7.f224302d6d87 from=translated src=- shape=7415cd39 vocab=25413f1b
+-/
 theorem summable_zetaZeros_inv_sq (h : ℝ) (hh : 0 < h) :
     Summable (fun ρ : ZetaZeros K =>
       (zetaZeroDivisor K ρ.1 : ℝ) / (h^2 + ((ρ : ZetaZeros K).1).im^2)) := by
@@ -515,7 +543,9 @@ theorem summable_zetaZeros_inv_sq (h : ℝ) (hh : 0 < h) :
 
 /-- **Finitely many indexed zeros in a bounded set**: the zeros of the entire
 completion lying in any bounded subset of `ℂ` form a finite subfamily of the zero
-index.-/
+index.
+@isnad1 id=finite.1h2v.s6.2a25aeead0dc from=translated src=- shape=cb6cdb75 vocab=7352d107
+-/
 theorem finite_zetaZeros_mem_of_isBounded {W : Set ℂ} (hW : Bornology.IsBounded W) :
     {ρ : ZetaZeros K | ρ.1 ∈ W}.Finite := by
   obtain ⟨R, hR⟩ := hW.subset_closedBall (0 : ℂ)
@@ -529,7 +559,9 @@ theorem finite_zetaZeros_mem_of_isBounded {W : Set ℂ} (hW : Bornology.IsBounde
 
 /-- **The window bridge (b5-i)**: on a bounded window `W`, the divisor-weighted
 finsum against any test function collapses to the finite sum over the indexed
-zeros lying in `W`, each weighted by the global divisor.-/
+zeros lying in `W`, each weighted by the global divisor.
+@isnad1 id=eq.1h3v.s7.3b0acb4a0ace from=translated src=- shape=11bfb2b6 vocab=ea784ec8
+-/
 theorem finsum_divisor_mul_eq_sum_zetaZeros (φ : ℂ → ℂ) {W : Set ℂ}
     (hW : Bornology.IsBounded W) :
     ∑ᶠ z, ((MeromorphicOn.divisor (completedDedekindZetaEntire K) W) z : ℂ) * φ z
@@ -565,7 +597,9 @@ theorem finsum_divisor_mul_eq_sum_zetaZeros (φ : ℂ → ℂ) {W : Set ℂ}
 `T n → ∞` the divisor-weighted window finsums of the explicit formula converge to
 the absolutely-summable series over the full zero index. This upgrades the
 `weil_explicit_formula` limit from a statement about window sums to a statement
-about `∑'_ρ` — the form Belabas–Friedman's Lemma 3 sums take.-/
+about `∑'_ρ` — the form Belabas–Friedman's Lemma 3 sums take.
+@isnad1 id=tendsto.4h4v.s8.e6d08b4a0b78 from=translated src=- shape=ba25498e vocab=f0a6c780
+-/
 theorem tendsto_finsum_window_zetaZeros (hGRH : GeneralizedRiemannHypothesis K) {φ : ℂ → ℂ}
     (hsum : Summable (fun ρ : ZetaZeros K => (zetaZeroDivisor K ρ.1 : ℂ) * φ ρ.1))
     {a : ℝ} (ha : 0 < a) {T : ℕ → ℝ} (hT : Filter.Tendsto T Filter.atTop Filter.atTop) :

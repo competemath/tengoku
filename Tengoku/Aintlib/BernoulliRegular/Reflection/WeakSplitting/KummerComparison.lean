@@ -65,7 +65,9 @@ private lemma ne_bot_of_liesOver_span_int_q {q : ℕ} (hq : q.Prime)
 /--
 For a tower `ℤ → 𝓞 K → 𝓞 L` and a rational prime `q`, the set of `L`-
 primes above `q` decomposes as the disjoint union over `K`-primes above
-`q` of the `L`-primes above each `K`-prime.-/
+`q` of the `L`-primes above each `K`-prime.
+@isnad1 id=eq.1h3v.s7.6055988d1caf from=translated src=- shape=80c86c93 vocab=12da4628
+-/
 theorem primesOverFinset_rat_eq_biUnion (q : ℕ) (hq : q.Prime) :
     IsDedekindDomain.primesOverFinset (Ideal.span ({(q : ℤ)} : Set ℤ)) (𝓞 L) =
       (IsDedekindDomain.primesOverFinset (Ideal.span ({(q : ℤ)} : Set ℤ)) (𝓞 K)).biUnion
@@ -112,7 +114,9 @@ theorem primesOverFinset_rat_eq_biUnion (q : ℕ) (hq : q.Prime) :
 
 /--
 Different `K`-primes above `q` have disjoint sets of `L`-primes above them,
-because each `L`-prime sits over a unique `K`-prime (its contraction).-/
+because each `L`-prime sits over a unique `K`-prime (its contraction).
+@isnad1 id=disjoint.4h5v.s8.4c412682199c from=translated src=- shape=109465ab vocab=a83651f2
+-/
 theorem primesOverFinset_disjoint_of_ne (q : ℕ) (hq : q.Prime)
     {P P' : Ideal (𝓞 K)}
     (hP : P ∈ IsDedekindDomain.primesOverFinset

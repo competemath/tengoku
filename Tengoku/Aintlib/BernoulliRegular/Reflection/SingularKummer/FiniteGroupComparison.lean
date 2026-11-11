@@ -56,7 +56,9 @@ abbrev elementaryQuotient (A : Type*) [AddCommGroup A] (n : ℕ) : Type _ :=
   A ⧸ multiplesSubgroup A n
 
 /-- For an endomorphism of a finite additive abelian group, the quotient by its
-range is nontrivial if and only if its kernel is nontrivial.-/
+range is nontrivial if and only if its kernel is nontrivial.
+@isnad1 id=iff.0h2v.s6.13468e96dacb from=translated src=- shape=d0679de6 vocab=166584d0
+-/
 theorem quotient_range_nontrivial_iff_ker_nontrivial
     [Finite A] (f : A →+ A) :
     Nontrivial (A ⧸ f.range) ↔ Nontrivial f.ker := by
@@ -72,7 +74,9 @@ theorem quotient_range_nontrivial_iff_ker_nontrivial
       (Finite.injective_iff_surjective.2
         ((AddMonoidHom.range_eq_top).1 h_range)))
 
-/-- The quotient `A / nA` is nontrivial if and only if `A[n]` is nontrivial.-/
+/-- The quotient `A / nA` is nontrivial if and only if `A[n]` is nontrivial.
+@isnad1 id=iff.0h2v.s5.2a046613bfea from=translated src=- shape=654fd580 vocab=cd342718
+-/
 theorem elementaryQuotient_nontrivial_iff_torsionBySubgroup_nontrivial
     [Finite A] (n : ℕ) :
     Nontrivial (elementaryQuotient A n) ↔ Nontrivial (torsionBySubgroup A n) :=
@@ -80,7 +84,9 @@ theorem elementaryQuotient_nontrivial_iff_torsionBySubgroup_nontrivial
     (A := A) (nsmulAddMonoidHom (α := A) n)
 
 /-- The direction used to pass from a nonzero elementary quotient to
-`n`-torsion.-/
+`n`-torsion.
+@isnad1 id=nontrivi.1h2v.s5.2f33a39f75ff from=translated src=- shape=ecec68fa vocab=cd342718
+-/
 theorem torsionBySubgroup_nontrivial_of_elementaryQuotient_nontrivial
     [Finite A] {n : ℕ} :
     Nontrivial (elementaryQuotient A n) → Nontrivial (torsionBySubgroup A n) :=
@@ -88,7 +94,9 @@ theorem torsionBySubgroup_nontrivial_of_elementaryQuotient_nontrivial
     (A := A) n).1
 
 /-- The reverse direction, useful when switching back from `n`-torsion to the
-elementary quotient.-/
+elementary quotient.
+@isnad1 id=nontrivi.1h2v.s5.5e5948c118e9 from=translated src=- shape=6f4dfad4 vocab=cd342718
+-/
 theorem elementaryQuotient_nontrivial_of_torsionBySubgroup_nontrivial
     [Finite A] {n : ℕ} :
     Nontrivial (torsionBySubgroup A n) → Nontrivial (elementaryQuotient A n) :=

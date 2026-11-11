@@ -510,7 +510,9 @@ private theorem isIso_affineTildeAdjunction_unit_app
   change IsIso (α ≫ β)
   exact @IsIso.comp_isIso _ _ _ _ _ α β hα hβ
 
-/-- Pullback between affine schemes preserves quasicoherent modules.-/
+/-- Pullback between affine schemes preserves quasicoherent modules.
+@isnad1 id=isquasic.0h4v.s8.3d6264d9bdfa from=translated src=- shape=617933f1 vocab=289d21e7
+-/
 theorem isQuasicoherent_pullback_of_isAffine
     {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y] (g : Y ⟶ X)
     (M : X.Modules) [M.IsQuasicoherent] :
@@ -952,7 +954,9 @@ private theorem affinePullbackΓCoreIso_hom_comp_unit
         (affinePushforwardΓIso g).hom.app ((pullback g).obj M)) hReduce
 
 /-- The affine pullback comparison sends a pure tensor with coefficient one
-to the section supplied by the pullback-adjunction unit.-/
+to the section supplied by the pullback-adjunction unit.
+@isnad1 id=eq.0h5v.s16.52a5955bfe76 from=translated src=- shape=41aa3853 vocab=09cef1fc
+-/
 theorem affinePullbackΓIso_hom_one_tmul
     {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y]
     (g : Y ⟶ X) (M : X.Modules) [M.IsQuasicoherent]
@@ -965,7 +969,9 @@ theorem affinePullbackΓIso_hom_one_tmul
   exact h
 
 /-- On affine schemes, invertibility of the extension-of-scalars unit on
-global sections implies invertibility of the geometric pullback unit.-/
+global sections implies invertibility of the geometric pullback unit.
+@isnad1 id=isiso.0h4v.s15.247873222c14 from=translated src=- shape=ab292fd1 vocab=3d19d59a
+-/
 theorem isIso_pullbackPushforward_unit_of_isAffine_of_isIso_extendScalars_unit
     {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y]
     (g : Y ⟶ X) (M : X.Modules) [M.IsQuasicoherent]
@@ -1013,7 +1019,9 @@ theorem isIso_pullbackPushforward_unit_of_isAffine_of_isIso_extendScalars_unit
   infer_instance
 
 /-- For a tilde sheaf on an affine spectrum, an invertible extension-of-scalars
-unit implies that the geometric pullback unit is invertible.-/
+unit implies that the geometric pullback unit is invertible.
+@isnad1 id=isiso.0h4v.s9.f3fe26c49282 from=translated src=- shape=ab662704 vocab=9a9dd254
+-/
 theorem isIso_pullbackPushforward_unit_tilde_of_isIso_extendScalars_unit
     {R S : CommRingCat.{u}} (φ : R ⟶ S) (M : ModuleCat R)
     [IsIso ((ModuleCat.extendRestrictScalarsAdj φ.hom).unit.app M)] :

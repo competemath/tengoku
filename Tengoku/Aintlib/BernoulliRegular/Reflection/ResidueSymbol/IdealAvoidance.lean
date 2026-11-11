@@ -28,7 +28,9 @@ open scoped BigOperators nonZeroDivisors
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
 
 /-- If `I` is nonzero and `P` is maximal, then `I` contains an element not in
-`P * I`.-/
+`P * I`.
+@isnad1 id=ex.1h3v.s7.f98bed9338a5 from=translated src=- shape=081fede5 vocab=7270f123
+-/
 theorem exists_mem_notMem_mul_left (I P : Ideal R) (hI : I ≠ ⊥) [P.IsMaximal] :
     ∃ x : R, x ∈ I ∧ x ∉ P * I := by
   have hlt : P * I < I := by
@@ -40,7 +42,9 @@ theorem exists_mem_notMem_mul_left (I P : Ideal R) (hI : I ≠ ⊥) [P.IsMaximal
 /-- Simultaneous finite-prime avoidance inside a nonzero ideal.
 
 Given finitely many maximal ideals `S` and a nonzero ideal `I`, there is a
-nonzero `x ∈ I` whose image in each `I / P I` is nonzero.-/
+nonzero `x ∈ I` whose image in each `I / P I` is nonzero.
+@isnad1 id=ex.2h3v.s8.98772eded40a from=translated src=- shape=f30695b4 vocab=10aa5a88
+-/
 theorem exists_mem_notMem_mul_left_finset (I : Ideal R) (hI : I ≠ ⊥)
     (S : Finset (Ideal R)) (hSmax : ∀ P ∈ S, P.IsMaximal) :
     ∃ x : R, x ≠ 0 ∧ x ∈ I ∧ ∀ P ∈ S, x ∉ P * I := by
@@ -119,7 +123,9 @@ theorem exists_mem_notMem_mul_left_finset (I : Ideal R) (hI : I ≠ ⊥)
 
 omit [IsDedekindDomain R] in
 /-- If `I` is coprime to a prime `P`, then an element of `I` not lying in
-`P * I` is not itself in `P`.-/
+`P * I` is not itself in `P`.
+@isnad1 id=not.3h4v.s7.fbe8d0732f5f from=translated src=- shape=f7c58a7c vocab=3ff571db
+-/
 theorem notMem_prime_of_mem_notMem_mul_left_of_isCoprime
     {I P : Ideal R} {x : R} (hxI : x ∈ I) (hxPI : x ∉ P * I)
     (hcop : IsCoprime I P) : x ∉ P := by
@@ -131,7 +137,9 @@ theorem notMem_prime_of_mem_notMem_mul_left_of_isCoprime
 
 /-- Finite-prime avoidance inside a nonzero ideal, upgraded to principal
 coprimality when the ambient ideal is already coprime to the prescribed
-maximal ideals.-/
+maximal ideals.
+@isnad1 id=ex.3h3v.s8.ec64f5e48885 from=translated src=- shape=34759178 vocab=8ad96293
+-/
 theorem exists_mem_coprime_principal_finset (I : Ideal R) (hI : I ≠ ⊥)
     (S : Finset (Ideal R)) (hSmax : ∀ P ∈ S, P.IsMaximal)
     (hIcop : ∀ P ∈ S, IsCoprime I P) :
@@ -158,7 +166,9 @@ theorem exists_mem_coprime_principal_finset (I : Ideal R) (hI : I ≠ ⊥)
 /-- Single-prime ideal avoidance for class representatives.
 
 Every ideal class has a nonzero integral representative coprime to a prescribed
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=ex.0h3v.s11.a8c64232967e from=translated src=- shape=25086458 vocab=9c771406
+-/
 theorem exists_class_representative_coprime_singleton (c : ClassGroup R)
     (P : Ideal R) [P.IsMaximal] :
     ∃ J : (Ideal R)⁰, ClassGroup.mk0 J = c ∧ IsCoprime (J : Ideal R) P := by
@@ -199,7 +209,9 @@ theorem exists_class_representative_coprime_singleton (c : ClassGroup R)
 /-- Finite-prime ideal avoidance for class representatives.
 
 Every ideal class has a nonzero integral representative coprime to each ideal
-in a prescribed finite set of maximal ideals.-/
+in a prescribed finite set of maximal ideals.
+@isnad1 id=ex.1h3v.s11.4cb2f4e33f21 from=translated src=- shape=3142bd99 vocab=6d69628b
+-/
 theorem exists_class_representative_coprime_finset (c : ClassGroup R)
     (S : Finset (Ideal R)) (hSmax : ∀ P ∈ S, P.IsMaximal) :
     ∃ J : (Ideal R)⁰,
@@ -239,7 +251,9 @@ theorem exists_class_representative_coprime_finset (c : ClassGroup R)
     exact hx_not_mem P hP hx_mem_mul
 
 /-- Version of `exists_class_representative_coprime_finset` for nonzero prime
-ideals in a Dedekind domain.-/
+ideals in a Dedekind domain.
+@isnad1 id=ex.2h3v.s11.3836b305df02 from=translated src=- shape=9d09ffde vocab=8571f40a
+-/
 theorem exists_class_representative_coprime_prime_finset (c : ClassGroup R)
     (S : Finset (Ideal R))
     (hSprime : ∀ P ∈ S, P.IsPrime) (hS_ne : ∀ P ∈ S, P ≠ ⊥) :

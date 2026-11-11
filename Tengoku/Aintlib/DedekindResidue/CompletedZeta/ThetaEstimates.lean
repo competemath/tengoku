@@ -39,7 +39,9 @@ open scoped nonZeroDivisors Real
 variable {ι : Type*} [Fintype ι]
 
 /-- Every discrete additive subgroup of a normed space has a positive shortest-vector
-bound: nonzero elements have norm at least `δ` for some `δ > 0`.-/
+bound: nonzero elements have norm at least `δ` for some `δ > 0`.
+@isnad1 id=ex.0h2v.s10.93112759e861 from=translated src=- shape=b668a733 vocab=f55fdb4a
+-/
 theorem exists_pos_norm_le_of_discrete (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] :
     ∃ δ : ℝ, 0 < δ ∧ ∀ v : L, v ≠ 0 → δ ≤ ‖(v : EuclideanSpace ℝ ι)‖ := by
@@ -55,7 +57,9 @@ theorem exists_pos_norm_le_of_discrete (L : Submodule ℤ (EuclideanSpace ℝ ι
 
 open scoped Classical in
 /-- Summability of the real weighted Gaussian over a lattice, for weights bounded below by
-a positive constant (restriction of the `ThetaLattice` machinery to the point `0`).-/
+a positive constant (restriction of the `ThetaLattice` machinery to the point `0`).
+@isnad1 id=summable.2h4v.s10.d9a8342df077 from=translated src=- shape=3d51c5bb vocab=9ee698b0
+-/
 theorem summable_real_weightedGaussian (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {c : ι → ℝ} {a : ℝ} (ha : 0 < a)
     (hca : ∀ i, a ≤ c i) :
@@ -77,7 +81,9 @@ theorem summable_real_weightedGaussian (L : Submodule ℤ (EuclideanSpace ℝ ι
 
 open scoped Classical in
 /-- The zero-removed weighted Gaussian lattice sum decays like `exp(-π(a-a₀)δ²)` for
-weights `≥ a`: pull the shortest-vector Gaussian factor out of every term.-/
+weights `≥ a`: pull the shortest-vector Gaussian factor out of every term.
+@isnad1 id=le.5h6v.s12.c2747d40c9c4 from=translated src=- shape=74b22887 vocab=5b4d53fa
+-/
 theorem tsum_ite_gaussian_tail (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {a a₀ δ : ℝ} (ha₀ : 0 < a₀) (haa : a₀ ≤ a)
     (hδ : 0 < δ) (hδL : ∀ v : L, v ≠ 0 → δ ≤ ‖(v : EuclideanSpace ℝ ι)‖)
@@ -135,7 +141,9 @@ theorem tsum_ite_gaussian_tail (L : Submodule ℤ (EuclideanSpace ℝ ι))
 variable (K : Type*) [Field K] [NumberField K]
 
 open scoped Classical in
-/-- Splitting the Hecke theta at the zero lattice point: `Θ_I(c) = 1 + Θ*_I(c)`.-/
+/-- Splitting the Hecke theta at the zero lattice point: `Θ_I(c) = 1 + Θ*_I(c)`.
+@isnad1 id=eq.2h4v.s13.e58d00ad15e6 from=translated src=- shape=ff5614e2 vocab=52ccf8cd
+-/
 theorem heckeTheta_eq_one_add (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     {c : InfinitePlace K → ℝ} {a : ℝ} (ha : 0 < a) (hca : ∀ w, a ≤ c w) :
     heckeTheta K I c
@@ -153,7 +161,9 @@ theorem heckeTheta_eq_one_add (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
 
 open scoped Classical in
 /-- Uniform box bound for `fullLog`: on any coordinate-bounded set of `logSpace`,
-`|fullLog u w| ≤ card·R`.-/
+`|fullLog u w| ≤ card·R`.
+@isnad1 id=le.2h4v.s6.0ed0c64852a0 from=translated src=- shape=7983c948 vocab=b7aba957
+-/
 theorem abs_fullLog_le {u : logSpace K} {R : ℝ} (hR : 0 ≤ R)
     (hu : ∀ i, |u i| ≤ R) (w : InfinitePlace K) :
     |fullLog K u w| ≤ (Fintype.card (InfinitePlace K)) * R := by
@@ -179,7 +189,9 @@ theorem abs_fullLog_le {u : logSpace K} {R : ℝ} (hR : 0 ≤ R)
 
 open scoped Classical in
 /-- **Uniform lower bound for the Hecke weights over any bounded set** of the log-torus:
-`c(t,u)_w ≥ m·t^{1/n}` with `m > 0` depending only on the bound.-/
+`c(t,u)_w ≥ m·t^{1/n}` with `m > 0` depending only on the bound.
+@isnad1 id=le.3h5v.s7.a372b315206e from=translated src=- shape=196131ca vocab=ed24c84c
+-/
 theorem le_heckeWeights_of_bounded {R : ℝ} (hR : 0 ≤ R) {u : logSpace K}
     (hu : ∀ i, |u i| ≤ R) {t : ℝ} (ht : 0 ≤ t) (w : InfinitePlace K) :
     Real.exp (-(2 * (Fintype.card (InfinitePlace K)) * R))
@@ -207,7 +219,9 @@ theorem le_heckeWeights_of_bounded {R : ℝ} (hR : 0 ≤ R) {u : logSpace K}
 open scoped Classical in
 /-- **Exponential deviation bound for the Hecke theta over the unit box**: uniformly in
 `u` in the fundamental box and `t ≥ 1`,
-`0 ≤ Θ_I(c(t,u)) − 1 ≤ C·exp(−c'·t^{1/n})`.-/
+`0 ≤ Θ_I(c(t,u)) − 1 ≤ C·exp(−c'·t^{1/n})`.
+@isnad1 id=ex.0h2v.s11.6a6c7ea8c2ff from=translated src=- shape=caccf981 vocab=d0ebe72c
+-/
 theorem exists_heckeTheta_dev_bound (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ∃ C c' : ℝ, 0 < C ∧ 0 < c' ∧
       ∀ {t : ℝ}, 1 ≤ t → ∀ u ∈ ZSpan.fundamentalDomain
@@ -276,7 +290,9 @@ theorem exists_heckeTheta_dev_bound (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     rw [hexp]
     ring
 
-/-- Monotone comparison for weighted Gaussian terms.-/
+/-- Monotone comparison for weighted Gaussian terms.
+@isnad1 id=le.1h4v.s7.43b86e45c891 from=translated src=- shape=fe6c7005 vocab=3e536ee5
+-/
 theorem exp_weighted_le_exp_iso {c : ι → ℝ} {a : ℝ} (hca : ∀ i, a ≤ c i)
     (x : EuclideanSpace ℝ ι) :
     Real.exp (-π * ∑ i, c i * (x i) ^ 2) ≤ Real.exp (-π * ∑ i, a * (x i) ^ 2) := by
@@ -287,7 +303,9 @@ theorem exp_weighted_le_exp_iso {c : ι → ℝ} {a : ℝ} (hca : ∀ i, a ≤ c
 
 open scoped Classical in
 /-- `fun u ↦ fullLog K u w` is continuous: on `w = w₀` it is the negated sum of the other
-coordinates, otherwise a coordinate projection.-/
+coordinates, otherwise a coordinate projection.
+@isnad1 id=continuo.0h2v.s6.11b8079d2823 from=translated src=- shape=ab17e7cc vocab=a2703ad9
+-/
 lemma continuous_fullLog (w : InfinitePlace K) :
     Continuous (fun u : logSpace K => fullLog K u w) := by
   rw [show (fun u : logSpace K => fullLog K u w)
@@ -300,7 +318,9 @@ lemma continuous_fullLog (w : InfinitePlace K) :
 
 open scoped Classical in
 /-- Each place-weight `heckeWeights K q.1 q.2 w` is continuous in `q` on the box
-`Ioi a ×ˢ ball 0 R` (`a > 0` keeps the `rpow` base positive).-/
+`Ioi a ×ˢ ball 0 R` (`a > 0` keeps the `rpow` base positive).
+@isnad1 id=continuo.1h4v.s8.6c52f317117b from=translated src=- shape=b1ea4a09 vocab=9beae142
+-/
 lemma continuousOn_heckeWeights_apply (a R : ℝ) (ha : 0 < a) (w : InfinitePlace K) :
     ContinuousOn (fun q : ℝ × logSpace K => heckeWeights K q.1 q.2 w)
       (Set.Ioi a ×ˢ Metric.ball (0 : logSpace K) R) := by
@@ -319,7 +339,9 @@ lemma continuousOn_heckeWeights_apply (a R : ℝ) (ha : 0 < a) (w : InfinitePlac
 
 open scoped Classical in
 /-- On the box `Ioi a ×ˢ ball 0 R`, every place-weight of `heckeWeights K q.1 q.2` is
-bounded below by `a' = m · a ^ (1/[K:ℚ])`, with `m = exp(-2·#places·R)`.-/
+bounded below by `a' = m · a ^ (1/[K:ℚ])`, with `m = exp(-2·#places·R)`.
+@isnad1 id=le.5h7v.s8.98798170e6c8 from=translated src=- shape=994571c9 vocab=fb9d1738
+-/
 lemma le_placeWeights_heckeWeights_on_box (a m R a' : ℝ) (ha : 0 < a) (hR : 0 ≤ R)
     (ha'_def : a' = m * a ^ ((1 : ℝ) / (Module.finrank ℚ K)))
     (hm_def : m = Real.exp (-(2 * (Fintype.card (InfinitePlace K)) * R))) :
@@ -346,7 +368,9 @@ lemma le_placeWeights_heckeWeights_on_box (a m R a' : ℝ) (ha : 0 < a) (hR : 0 
 
 open scoped Classical in
 /-- **Joint continuity of the Hecke theta** in the ray parameter and the log-torus
-variable, at every positive `t`.-/
+variable, at every positive `t`.
+@isnad1 id=continuo.1h3v.s8.866d831796f0 from=translated src=- shape=b08bf111 vocab=4e85ca79
+-/
 theorem continuousAt_heckeTheta_heckeWeights (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     {p : ℝ × logSpace K} (hp : 0 < p.1) :
     ContinuousAt (fun q : ℝ × logSpace K =>
@@ -392,7 +416,9 @@ theorem continuousAt_heckeTheta_heckeWeights (I : (FractionalIdeal (𝓞 K)⁰ K
 
 open scoped Classical in
 /-- Isotropic comparison for the full theta: weights bounded below give a theta bounded by
-the isotropic lattice Gaussian.-/
+the isotropic lattice Gaussian.
+@isnad1 id=le.2h4v.s11.108292207d66 from=translated src=- shape=7ef3f084 vocab=cec3d05b
+-/
 theorem heckeTheta_le_iso (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {c : InfinitePlace K → ℝ}
     {a : ℝ} (ha : 0 < a) (hca : ∀ w, a ≤ c w) :
     heckeTheta K I c ≤ ∑' v : idealZLattice K I,
@@ -405,7 +431,9 @@ theorem heckeTheta_le_iso (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {c : InfiniteP
     (summable_real_weightedGaussian _ ha (fun i => le_refl a))
 
 open scoped Classical in
-/-- The fundamental box of the unit lattice has coordinate-bounded elements.-/
+/-- The fundamental box of the unit lattice has coordinate-bounded elements.
+@isnad1 id=ex.0h1v.s11.cb71223fb6fc from=translated src=- shape=05a7fece vocab=446b56d5
+-/
 theorem exists_box_coord_bound :
     ∃ R : ℝ, 0 ≤ R ∧ ∀ u ∈ ZSpan.fundamentalDomain
       ((Module.Free.chooseBasis ℤ (unitLattice K)).ofZLatticeBasis ℝ),
@@ -423,7 +451,9 @@ theorem exists_box_coord_bound :
     _ ≤ max R₀ 0 := le_max_left _ _
 
 open scoped Classical in
-/-- **Continuity of the unit-averaged theta** on the positive ray.-/
+/-- **Continuity of the unit-averaged theta** on the positive ray.
+@isnad1 id=continuo.0h2v.s7.a7c70445b3bc from=translated src=- shape=47918606 vocab=b86dec76
+-/
 theorem continuousOn_heckeG (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ContinuousOn (heckeG K I) (Set.Ioi (0 : ℝ)) := by
   intro t₀ ht₀
@@ -511,6 +541,9 @@ noncomputable def unitBoxVol : ℝ :=
     ((Module.Free.chooseBasis ℤ (unitLattice K)).ofZLatticeBasis ℝ))).toReal
 
 open scoped Classical in
+/--
+@isnad1 id=lt.0h1v.s4.43867da7790d from=translated src=- shape=31b077a1 vocab=99448e20
+-/
 theorem unitBoxVol_pos : 0 < unitBoxVol K := by
   rw [unitBoxVol]
   exact ENNReal.toReal_pos (ZSpan.measure_fundamentalDomain_ne_zero _)
@@ -518,7 +551,9 @@ theorem unitBoxVol_pos : 0 < unitBoxVol K := by
 
 open scoped Classical in
 /-- **Exponential approach of `g_I` to its constant term**: for `t ≥ 1`,
-`|g_I(t) − w⁻¹·vol| ≤ C·exp(−c'·t^{1/n})`.-/
+`|g_I(t) − w⁻¹·vol| ≤ C·exp(−c'·t^{1/n})`.
+@isnad1 id=ex.0h2v.s8.9543c134900d from=translated src=- shape=f2be4ba6 vocab=377b1177
+-/
 theorem exists_heckeG_dev_bound (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ∃ C c' : ℝ, 0 < C ∧ 0 < c' ∧ ∀ {t : ℝ}, 1 ≤ t →
       |heckeG K I t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K|

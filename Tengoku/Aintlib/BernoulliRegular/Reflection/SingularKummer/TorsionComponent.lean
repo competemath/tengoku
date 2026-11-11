@@ -69,6 +69,9 @@ def torsionAddEquiv (p : ℕ) (e : A ≃+ A) :
     apply Subtype.ext
     simp
 
+/--
+@isnad1 id=eq.0h4v.s8.08e6cedb1b72 from=translated src=- shape=9561af0f vocab=8aab309c
+-/
 @[simp]
 theorem torsionAddEquiv_apply_coe (p : ℕ) (e : A ≃+ A) (x : PTorsion A p) :
     ((torsionAddEquiv p e x : PTorsion A p) : A) = e x.1 :=
@@ -83,6 +86,9 @@ def torsionLinearEquiv [NeZero p] (e : A ≃+ A) :
     left_inv := (torsionAddEquiv p e).left_inv
     right_inv := (torsionAddEquiv p e).right_inv }
 
+/--
+@isnad1 id=eq.0h4v.s8.0ca3ff54dab6 from=translated src=- shape=a37abaf7 vocab=141aebb6
+-/
 @[simp]
 theorem torsionLinearEquiv_apply_coe [NeZero p]
     (e : A ≃+ A) (x : PTorsion A p) :
@@ -103,6 +109,9 @@ def torsionAction [NeZero p]
     ext x
     simp [torsionLinearEquiv, torsionAddEquiv, map_mul]
 
+/--
+@isnad1 id=eq.0h5v.s11.3ed5f4d5de28 from=translated src=- shape=b675e736 vocab=c878bb26
+-/
 @[simp]
 theorem torsionAction_apply_coe [NeZero p]
     (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
@@ -113,6 +122,9 @@ theorem torsionAction_apply_coe [NeZero p]
       PTorsion A p) : A) = (Multiplicative.toAdd (ρ d)) x.1
   simp
 
+/--
+@isnad1 id=eq.0h4v.s8.871533946040 from=translated src=- shape=c681b646 vocab=e774e99d
+-/
 @[simp]
 theorem coe_zmod_smul [NeZero p] (a : ZMod p) (x : PTorsion A p) :
     ((a • x : PTorsion A p) : A) = a.val • (x : A) := by
@@ -139,12 +151,18 @@ abbrev torsionComponent [NeZero p]
     Submodule (ZMod p) (PTorsion A p) :=
   LinearMap.range (torsionProjection (p := p) i ρ)
 
+/--
+@isnad1 id=eq.0h4v.s8.fcaedba46329 from=translated src=- shape=4afea1df vocab=9865c8a8
+-/
 theorem torsionComponent_eq_range_projection [NeZero p]
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)) :
     torsionComponent (p := p) i ρ =
       LinearMap.range (torsionProjection (p := p) i ρ) :=
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s8.aba7727983eb from=translated src=- shape=8e6361ac vocab=e5287a66
+-/
 theorem mem_torsionComponent_iff_exists [NeZero p]
     {i : ℕ} {ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)}
     {x : PTorsion A p} :
@@ -158,6 +176,9 @@ def TorsionComponentNontrivial [NeZero p]
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)) : Prop :=
   torsionComponent (p := p) i ρ ≠ ⊥
 
+/--
+@isnad1 id=ex.1h4v.s8.58eb6cb8a097 from=translated src=- shape=0121b538 vocab=1e846bc1
+-/
 theorem exists_ne_zero_mem_torsionComponent [NeZero p]
     {i : ℕ} {ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)}
     (h : TorsionComponentNontrivial (p := p) i ρ) :
@@ -167,6 +188,9 @@ theorem exists_ne_zero_mem_torsionComponent [NeZero p]
     Submodule.exists_mem_ne_zero_of_ne_bot h
   exact ⟨x, hxne, hxmem⟩
 
+/--
+@isnad1 id=torsionc.1h4v.s8.527489d9fc41 from=translated src=- shape=c52af5d7 vocab=1e846bc1
+-/
 theorem torsionComponentNontrivial_of_exists_ne_zero_mem [NeZero p]
     {i : ℕ} {ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)}
     (h : ∃ x : PTorsion A p,
@@ -176,6 +200,9 @@ theorem torsionComponentNontrivial_of_exists_ne_zero_mem [NeZero p]
   rw [TorsionComponentNontrivial]
   exact (Submodule.ne_bot_iff _).2 ⟨x, hxmem, hxne⟩
 
+/--
+@isnad1 id=iff.0h4v.s8.f667f40eee2c from=translated src=- shape=3c4513f8 vocab=1e846bc1
+-/
 theorem torsionComponentNontrivial_iff_exists_ne_zero_mem [NeZero p]
     (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A)) :
     TorsionComponentNontrivial (p := p) i ρ ↔

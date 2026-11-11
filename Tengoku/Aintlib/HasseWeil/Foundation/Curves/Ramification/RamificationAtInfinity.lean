@@ -96,15 +96,24 @@ noncomputable def polyToFieldOfInv {L : Type*} [Field L] [Algebra k L]
     (f : L) : Polynomial k →ₐ[k] L :=
   Polynomial.aeval f⁻¹
 
+/--
+@isnad1 id=eq.0h3v.s7.c7d3f8bb0ed3 from=translated src=- shape=3e6571a2 vocab=146bdb48
+-/
 @[simp] theorem polyToFieldOfInv_X {L : Type*} [Field L] [Algebra k L]
     (f : L) : polyToFieldOfInv (k := k) f Polynomial.X = f⁻¹ :=
   Polynomial.aeval_X f⁻¹
 
+/--
+@isnad1 id=eq.0h4v.s8.630efbec7804 from=translated src=- shape=6896bbce vocab=da453f58
+-/
 @[simp] theorem polyToFieldOfInv_C {L : Type*} [Field L] [Algebra k L]
     (f : L) (c : k) :
     polyToFieldOfInv (k := k) f (Polynomial.C c) = algebraMap k L c :=
   Polynomial.aeval_C f⁻¹ c
 
+/--
+@isnad1 id=injectiv.1h3v.s7.4e2dc375a0c7 from=translated src=- shape=7cabc0e9 vocab=9e001176
+-/
 theorem polyToFieldOfInv_injective_of_transcendental
     {L : Type*} [Field L] [Algebra k L]
     {f : L} (hf : Transcendental k f⁻¹) :
@@ -112,14 +121,18 @@ theorem polyToFieldOfInv_injective_of_transcendental
   transcendental_iff_injective.mp hf
 
 /-- Sending a polynomial to its `f⁻¹`-evaluation factors as the algebra
-map `k → L` composed with the constant polynomial.-/
+map `k → L` composed with the constant polynomial.
+@isnad1 id=eq.0h4v.s8.c2f7c8a8dbea from=translated src=- shape=77674783 vocab=13162505
+-/
 @[simp] theorem polyToFieldOfInv_algebraMap_eq
     {L : Type*} [Field L] [Algebra k L] (f : L) (c : k) :
     polyToFieldOfInv (k := k) f (algebraMap k _ c) = algebraMap k L c := by
   rw [Polynomial.algebraMap_eq, polyToFieldOfInv_C]
 
 /-- `polyToFieldOfInv f` is nonzero on a nonzero polynomial when `f⁻¹` is
-transcendental.-/
+transcendental.
+@isnad1 id=ne.2h4v.s8.d6fbd2c98bb1 from=translated src=- shape=70ba8687 vocab=83d5d9c9
+-/
 theorem polyToFieldOfInv_ne_zero_of_ne_zero
     {L : Type*} [Field L] [Algebra k L]
     {f : L} (hf : Transcendental k f⁻¹) {p : Polynomial k} (hp : p ≠ 0) :
@@ -140,7 +153,9 @@ noncomputable def ratFunToFieldOfInv {L : Type*} [Field L] [Algebra k L]
     (g := polyToFieldOfInv (k := k) f)
     (polyToFieldOfInv_injective_of_transcendental hf)
 
-/-- `ratFunToFieldOfInv hf` is injective as a `k`-algebra map between fields.-/
+/-- `ratFunToFieldOfInv hf` is injective as a `k`-algebra map between fields.
+@isnad1 id=injectiv.1h3v.s9.99a89dc6e865 from=translated src=- shape=d2dbfd9f vocab=d4c0edc8
+-/
 theorem ratFunToFieldOfInv_injective {L : Type*} [Field L] [Algebra k L]
     {f : L} (hf : Transcendental k f⁻¹) :
     Function.Injective (ratFunToFieldOfInv hf) :=
@@ -171,7 +186,9 @@ noncomputable instance algebraPolynomial
   ((polyToFieldOfInv (k := k) f).toRingHom : Polynomial k →+* L).toAlgebra
 
 /-- `algebraMap (Polynomial k) (LinfAt f)` is `polyToFieldOfInv f` as a
-function (composed with the identity transport to `LinfAt f`).-/
+function (composed with the identity transport to `LinfAt f`).
+@isnad1 id=eq.0h4v.s8.59fa2f933969 from=translated src=- shape=767f2e7f vocab=5c60c307
+-/
 theorem algebraMap_polynomial_apply
     {L : Type*} [Field L] [Algebra k L] (f : L) (p : Polynomial k) :
     (algebraMap (Polynomial k) (LinfAt (k := k) f) p : L) =
@@ -189,7 +206,9 @@ noncomputable instance algebraFractionRing
     FractionRing (Polynomial k) →+* L).toAlgebra
 
 /-- `algebraMap (FractionRing (Polynomial k)) (LinfAt f)` is
-`ratFunToFieldOfInv hf` as a function.-/
+`ratFunToFieldOfInv hf` as a function.
+@isnad1 id=eq.0h4v.s10.d2858185f17d from=translated src=- shape=859ec963 vocab=990cf89e
+-/
 theorem algebraMap_fractionRing_apply
     {L : Type*} [Field L] [Algebra k L] (f : L)
     [hf : Fact (Transcendental k f⁻¹)]
@@ -201,7 +220,9 @@ theorem algebraMap_fractionRing_apply
 
 /-- The `Polynomial k → FractionRing (Polynomial k) → LinfAt f` tower
 commutes: this is the universal property of `IsFractionRing.lift` applied to
-the lift `ratFunToFieldOfInv`.-/
+the lift `ratFunToFieldOfInv`.
+@isnad1 id=isscalar.0h3v.s9.8c983df29110 from=translated src=- shape=cbaedda5 vocab=084ae525
+-/
 instance isScalarTower_polynomial_fractionRing
     {L : Type*} [Field L] [Algebra k L] (f : L)
     [hf : Fact (Transcendental k f⁻¹)] :
@@ -287,10 +308,16 @@ the morphism `f : C → ℙ¹`.-/
 noncomputable abbrev xIdeal : Ideal (Polynomial k) :=
   Ideal.span {Polynomial.X}
 
+/--
+@isnad1 id=ismaxima.0h1v.s4.1b2612500cc3 from=translated src=- shape=aa7e0af4 vocab=f38a3048
+-/
 instance xIdeal_isMaximal : (xIdeal (k := k)).IsMaximal :=
   ((Ideal.span_singleton_prime Polynomial.X_ne_zero).mpr Polynomial.prime_X).isMaximal
     (by rw [Ne, Ideal.span_singleton_eq_bot]; exact Polynomial.X_ne_zero)
 
+/--
+@isnad1 id=ne.0h1v.s6.5c3ce6c8ac77 from=translated src=- shape=1714d602 vocab=0065aea4
+-/
 theorem xIdeal_ne_bot : (xIdeal (k := k)) ≠ ⊥ := by
   rw [xIdeal, Ne, Ideal.span_singleton_eq_bot]
   exact Polynomial.X_ne_zero
@@ -315,7 +342,9 @@ noncomputable def Sinf.ordAt {L : Type*} [Field L] [Algebra k L] {f : L}
   letI := data.algPoly
   fun P ↦ -(Ideal.ramificationIdx' (xIdeal (k := k)) P : ℤ)
 
-/-- The natural-number coercion: `(−ord_P f).toNat = e_P`.-/
+/-- The natural-number coercion: `(−ord_P f).toNat = e_P`.
+@isnad1 id=eq.0h5v.s7.4172481538d4 from=translated src=- shape=4f7f5605 vocab=ffdd7631
+-/
 theorem Sinf.toNat_neg_ordAt_eq_ramificationIdx
     {L : Type*} [Field L] [Algebra k L] {f : L}
     (data : Sinf (k := k) f) :
@@ -357,7 +386,9 @@ noncomputable def Sinf.algBaseFromCarrier
 
 /-- The `Polynomial k ⧸ xIdeal`-finrank of a module agrees with its
 `k`-finrank, given a compatible scalar tower `k → (Polynomial k ⧸ xIdeal)
-→ M`. Uses `quotientXAlgEquiv` plus the tower formula.-/
+→ M`. Uses `quotientXAlgEquiv` plus the tower formula.
+@isnad1 id=eq.0h2v.s9.885dbb73c708 from=translated src=- shape=fe478cc2 vocab=651890be
+-/
 theorem finrank_residue_eq_finrank_k
     {M : Type*} [AddCommGroup M] [Module (Polynomial k ⧸ xIdeal (k := k)) M]
     [Module k M] [IsScalarTower k (Polynomial k ⧸ xIdeal (k := k)) M]

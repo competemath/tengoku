@@ -45,6 +45,9 @@ def subgroupTorsionToTorsion (B : AddSubgroup A) (p : ℕ) :
     apply Subtype.ext
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.472886bbd50b from=translated src=- shape=907b7085 vocab=ab1d43bf
+-/
 @[simp]
 theorem subgroupTorsionToTorsion_apply_coe
     (B : AddSubgroup A) (p : ℕ) (x : torsionBySubgroup B p) :
@@ -54,7 +57,9 @@ theorem subgroupTorsionToTorsion_apply_coe
 
 /-- If a finite subgroup has nontrivial quotient modulo `p`, and its
 `p`-torsion lies in a chosen projected component of `A[p]`, then that projected
-component is nontrivial.-/
+component is nontrivial.
+@isnad1 id=torsionc.2h5v.s12.fe4cf5c2eb0a from=translated src=- shape=d1ce92e9 vocab=30d43641
+-/
 theorem torsionComponentNontrivial_of_projectedSubgroup
     [NeZero p] (i : ℕ) (ρ : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
     (B : AddSubgroup A) [Finite B]

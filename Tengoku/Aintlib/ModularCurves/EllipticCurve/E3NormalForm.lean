@@ -53,7 +53,9 @@ variable {W : WeierstrassCurve R} (P : W.toAffine.Point)
 in **flex normal form** `y² + a₁xy + a₃y = x³`.
 
 `ofTwiceNeZero` moves `P` to the origin with horizontal tangent (`a₄ = a₆ = 0`
-unconditionally) and leaves `a₂ = P.μ`; the flex hypothesis `P.μ = 0` clears it.-/
+unconditionally) and leaves `a₂ = P.μ`; the flex hypothesis `P.μ = 0` clears it.
+@isnad1 id=isflexnf.1h3v.s6.2d1e500f0b66 from=translated src=- shape=29dbab90 vocab=db4c4682
+-/
 theorem ofTwiceNeZero_isFlexNF [P.TwiceNeZero] (hμ : P.μ = 0) :
     (W.toAffine.ofTwiceNeZero P • W).IsFlexNF :=
   ⟨by rw [ofTwiceNeZero_a₂, hμ], ofTwiceNeZero_a₄ .., ofTwiceNeZero_a₆ ..⟩
@@ -78,7 +80,9 @@ variable {F : Type*} [Field F] [DecidableEq F]
 
 /-- **(Stage A, the `P`-killing ★)** On a flex-normal-form curve `y² + a₁xy + a₃y = x³`
 over a field with `a₃ ≠ 0`, the origin is `3`-torsion: the tangent at `(0,0)` is
-horizontal (slope `0`, since `a₄ = 0`), so `2P = (0, −a₃) = −P`.-/
+horizontal (slope `0`, since `a₄ = 0`), so `2P = (0, −a₃) = −P`.
+@isnad1 id=eq.3h2v.s7.c602b96b76e9 from=translated src=- shape=b3eb0649 vocab=529ae074
+-/
 theorem three_zsmul_some_origin {W : WeierstrassCurve F} (hW : W.IsFlexNF)
     (ha₃ : W.a₃ ≠ 0) (h : W.toAffine.Nonsingular 0 0) :
     (3 : ℤ) • (Affine.Point.some 0 0 h : W.toAffine.Point) = 0 := by
@@ -106,7 +110,9 @@ theorem three_zsmul_some_origin {W : WeierstrassCurve F} (hW : W.IsFlexNF)
 `a₃ = −3γ²−β−3βγ`, `a₂ = a₄ = a₆ = 0`) over a field, the marked point `(γ, β+γ)` is
 `3`-torsion whenever `β + γ − 3βγ ≠ 0` (the non-`2`-torsion certificate, a unit on the
 universal `ℰ₃`): the tangent at `Q` has slope `1` — numerator and denominator both equal
-`β + γ − 3βγ` — so `2Q = (γ, 3βγ) = −Q`.-/
+`β + γ − 3βγ` — so `2Q = (γ, 3βγ) = −Q`.
+@isnad1 id=eq.6h4v.s9.167908a4840a from=translated src=- shape=815c9c35 vocab=f45bfd68
+-/
 theorem three_zsmul_some_e3Q {W : WeierstrassCurve F} {β γ : F}
     (ha₁ : W.a₁ = 3 * γ - 1) (ha₂ : W.a₂ = 0)
     (ha₃ : W.a₃ = -3 * γ ^ 2 - β - 3 * β * γ) (ha₄ : W.a₄ = 0)
@@ -152,7 +158,9 @@ namespace Affine.Point
 
 open Polynomial in
 /-- **(the bridge ★★)** On any Weierstrass curve over a field, a `3`-torsion affine
-point roots the `3`-division polynomial: `3•P = 0 → Ψ₃(x(P)) = 0`.-/
+point roots the `3`-division polynomial: `3•P = 0 → Ψ₃(x(P)) = 0`.
+@isnad1 id=eq.2h4v.s7.56b6bb4e213d from=translated src=- shape=cf8b5c5e vocab=3fdc042e
+-/
 theorem psi3_eval_eq_zero_of_three_zsmul {F : Type*} [Field F] [DecidableEq F]
     {W : WeierstrassCurve F} {x y : F} (h : W.toAffine.Nonsingular x y)
     (h3 : (3 : ℤ) • (Affine.Point.some x y h : W.toAffine.Point) = 0) :
@@ -196,7 +204,9 @@ theorem psi3_eval_eq_zero_of_three_zsmul {F : Type*} [Field F] [DecidableEq F]
 open Polynomial in
 /-- **(the bridge, `μ`-form ★)** A `3`-torsion affine point over a field is nowhere
 `2`-torsion (`TwiceNeZero`) and has vanishing `μ` — the exact inputs of the flex
-normalization `ofTwiceNeZero_isFlexNF`.-/
+normalization `ofTwiceNeZero_isFlexNF`.
+@isnad1 id=eq.2h4v.s7.84c6e6946f1c from=translated src=- shape=1b240ccd vocab=a555023f
+-/
 theorem mu_eq_zero_of_three_zsmul {F : Type*} [Field F] [DecidableEq F]
     {W : WeierstrassCurve F} {x y : F} (h : W.toAffine.Nonsingular x y)
     (h3 : (3 : ℤ) • (Affine.Point.some x y h : W.toAffine.Point) = 0)
@@ -218,7 +228,9 @@ theorem mu_eq_zero_of_three_zsmul {F : Type*} [Field F] [DecidableEq F]
   rw [hkey, hpsiX, zero_mul]
 
 /-- **(the bridge, `TwiceNeZero`-form)** Over a field, a `3`-torsion affine point is
-nowhere `2`-torsion.-/
+nowhere `2`-torsion.
+@isnad1 id=twicenez.2h4v.s7.9efbddea0e5b from=translated src=- shape=8e7ab17b vocab=04a507a3
+-/
 theorem twiceNeZero_of_three_zsmul {F : Type*} [Field F] [DecidableEq F]
     {W : WeierstrassCurve F} {x y : F} (h : W.toAffine.Nonsingular x y)
     (h3 : (3 : ℤ) • (Affine.Point.some x y h : W.toAffine.Point) = 0) :

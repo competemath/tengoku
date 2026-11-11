@@ -61,7 +61,9 @@ noncomputable def complexEmbedding_of_primitiveRoot
 
 omit [CharZero L] in
 /-- The complex embedding sends the distinguished primitive root of `L`
-to the specified complex primitive root.-/
+to the specified complex primitive root.
+@isnad1 id=eq.1h3v.s6.474cd98b5903 from=translated src=- shape=91362cf9 vocab=3c52916f
+-/
 theorem complexEmbedding_of_primitiveRoot_apply_zeta {ζ_C : ℂ} (hζ_C : IsPrimitiveRoot ζ_C n) :
     complexEmbedding_of_primitiveRoot n L hζ_C
         (IsCyclotomicExtension.zeta n ℚ L) = ζ_C := by
@@ -79,7 +81,9 @@ theorem complexEmbedding_of_primitiveRoot_apply_zeta {ζ_C : ℂ} (hζ_C : IsPri
 
 omit [CharZero L] in
 /-- The image of the complex embedding contains the specified primitive
-root, hence the entire `ℤ`-subalgebra it generates.-/
+root, hence the entire `ℤ`-subalgebra it generates.
+@isnad1 id=le.1h3v.s7.102cf8150b24 from=translated src=- shape=9bfff8b3 vocab=6eef3cf9
+-/
 theorem complexEmbedding_of_primitiveRoot_range_contains_adjoin
     {ζ_C : ℂ} (hζ_C : IsPrimitiveRoot ζ_C n) :
     Algebra.adjoin ℤ ({ζ_C} : Set ℂ) ≤
@@ -96,11 +100,15 @@ section StickelbergerEmbedding
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
-/-- Positivity of `p * (p - 1)`.-/
+/-- Positivity of `p * (p - 1)`.
+@isnad1 id=lt.0h1v.s5.8f74bce9ed24 from=translated src=- shape=728e0727 vocab=9af8b9da
+-/
 theorem stickelberger_nsize_pos : 0 < p * (p - 1) :=
   Nat.mul_pos hp.out.pos (by have := hp.out.one_lt; omega)
 
-/-- `NeZero` instance for `p * (p - 1)` when `p` is prime.-/
+/-- `NeZero` instance for `p * (p - 1)` when `p` is prime.
+@isnad1 id=nezero.0h1v.s5.d77805fc29f4 from=translated src=- shape=7846cb1f vocab=6a94f6ad
+-/
 instance stickelberger_neZero : NeZero (p * (p - 1)) :=
   ⟨(stickelberger_nsize_pos p).ne'⟩
 
@@ -117,7 +125,9 @@ noncomputable def stickelbergerEmbedding : L →ₐ[ℚ] ℂ :=
 
 omit [CharZero L] in
 /-- The Stickelberger embedding sends `ζ_L` to the canonical complex
-primitive root.-/
+primitive root.
+@isnad1 id=eq.0h2v.s7.e297c0503fbd from=translated src=- shape=998c4982 vocab=9db6dc26
+-/
 theorem stickelbergerEmbedding_apply_zeta :
     stickelbergerEmbedding p L
         (IsCyclotomicExtension.zeta (p * (p - 1)) ℚ L) =
@@ -133,7 +143,9 @@ of the Stickelberger embedding `L →ₐ[ℚ] ℂ`.
 This combines T027d1 (`τ(χ) ∈ Algebra.adjoin ℤ {stickelbergerComplexRoot}`)
 with the embedding's image containing that adjoin. The existential
 consequence — that `τ(χ)` lifts to a canonical element of `L` — is the
-content of `gaussSum_stickelbergerEmbedding_preimage`.-/
+content of `gaussSum_stickelbergerEmbedding_preimage`.
+@isnad1 id=mem.0h3v.s7.75a0722893ee from=translated src=- shape=bec10c94 vocab=d24d9bdf
+-/
 theorem gaussSum_mem_range_stickelbergerEmbedding
     (χ : DirichletCharacter ℂ p) :
     gaussSum χ (ZMod.stdAddChar : AddChar (ZMod p) ℂ) ∈
@@ -155,7 +167,9 @@ noncomputable def gaussSumLift (χ : DirichletCharacter ℂ p) : L :=
 
 omit [CharZero L] in
 /-- The canonical lift `gaussSumLift` satisfies
-`emb (gaussSumLift) = gaussSum χ stdAddChar`.-/
+`emb (gaussSumLift) = gaussSum χ stdAddChar`.
+@isnad1 id=eq.0h3v.s7.ea29856738fe from=translated src=- shape=a252385b vocab=21782239
+-/
 theorem stickelbergerEmbedding_gaussSumLift (χ : DirichletCharacter ℂ p) :
     stickelbergerEmbedding p L (gaussSumLift p L χ) =
       gaussSum χ (ZMod.stdAddChar : AddChar (ZMod p) ℂ) :=
@@ -168,7 +182,9 @@ lies in the ring of integers `𝒪_L`.
 
 This combines T027c (integrality of `gaussSum χ stdAddChar` over `ℤ`
 as an element of `ℂ`) with the injectivity of the Stickelberger
-embedding `L →ₐ[ℚ] ℂ` via `RingHom.IsIntegralElem.map_iff`.-/
+embedding `L →ₐ[ℚ] ℂ` via `RingHom.IsIntegralElem.map_iff`.
+@isnad1 id=isintegr.0h3v.s6.22d8cba62408 from=translated src=- shape=14c8cc09 vocab=ef545e59
+-/
 theorem isIntegral_gaussSumLift (χ : DirichletCharacter ℂ p) :
     IsIntegral ℤ (gaussSumLift p L χ) := by
   -- Injectivity of the Stickelberger embedding (as ring hom on a field).
@@ -194,7 +210,9 @@ theorem isIntegral_gaussSumLift (χ : DirichletCharacter ℂ p) :
 modulo a prime: `τ(χ) ≠ 0` in `ℂ`.
 
 This is `gaussSum_ne_zero_of_nontrivial` applied to our setting (primitivity
-of `ZMod.stdAddChar` plus the standard non-vanishing hypothesis).-/
+of `ZMod.stdAddChar` plus the standard non-vanishing hypothesis).
+@isnad1 id=ne.1h2v.s6.104adde80915 from=translated src=- shape=17ab22aa vocab=113b7255
+-/
 theorem gaussSum_ne_zero {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     gaussSum χ (ZMod.stdAddChar : AddChar (ZMod p) ℂ) ≠ 0 := by
   haveI : NeZero p := ⟨hp.out.ne_zero⟩
@@ -204,7 +222,9 @@ theorem gaussSum_ne_zero {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
 
 omit [CharZero L] in
 /-- The canonical lift `gaussSumLift` is non-zero for any non-trivial
-Dirichlet character.-/
+Dirichlet character.
+@isnad1 id=ne.1h3v.s7.708dd9714c55 from=translated src=- shape=0afe1b90 vocab=f49e015b
+-/
 theorem gaussSumLift_ne_zero {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     gaussSumLift p L χ ≠ 0 := by
   intro hzero
@@ -220,7 +240,9 @@ noncomputable def gaussSumIntegers (χ : DirichletCharacter ℂ p) :
   ⟨gaussSumLift p L χ, isIntegral_gaussSumLift p L χ⟩
 
 omit [CharZero L] in
-/-- The underlying `L`-element of `gaussSumIntegers` is `gaussSumLift`.-/
+/-- The underlying `L`-element of `gaussSumIntegers` is `gaussSumLift`.
+@isnad1 id=eq.0h3v.s6.2b0ee2522f56 from=translated src=- shape=ab817a81 vocab=eda4d3b4
+-/
 theorem gaussSumIntegers_val (χ : DirichletCharacter ℂ p) :
     haveI : NumberField L := IsCyclotomicExtension.numberField {p * (p - 1)} ℚ L
     ((gaussSumIntegers p L χ : NumberField.RingOfIntegers L) : L) =
@@ -228,7 +250,9 @@ theorem gaussSumIntegers_val (χ : DirichletCharacter ℂ p) :
   rfl
 
 omit [CharZero L] in
-/-- `gaussSumIntegers` is non-zero for non-trivial `χ`.-/
+/-- `gaussSumIntegers` is non-zero for non-trivial `χ`.
+@isnad1 id=ne.1h3v.s7.b767be4f9f8c from=translated src=- shape=17cd11d7 vocab=134aad3a
+-/
 theorem gaussSumIntegers_ne_zero {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     haveI : NumberField L := IsCyclotomicExtension.numberField {p * (p - 1)} ℚ L
     gaussSumIntegers p L χ ≠ 0 := by
@@ -251,7 +275,9 @@ This is the Dedekind-domain factorisation identity
 `Ideal.span {τ} = ∏ 𝔭^{v_𝔭((τ))}` made concrete via
 `UniqueFactorizationMonoid.normalizedFactors_prod` on the principal ideal.
 The specific `v_𝔭` values at non-`p` primes is Stickelberger's theorem
-(T027d, deferred); this lemma assembles the ideal-theoretic wrapper.-/
+(T027d, deferred); this lemma assembles the ideal-theoretic wrapper.
+@isnad1 id=eq.1h3v.s8.21500586f46a from=translated src=- shape=01a945a1 vocab=17e66a2b
+-/
 theorem gaussSum_ideal_factorisation {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     haveI : NumberField L := IsCyclotomicExtension.numberField {p * (p - 1)} ℚ L
     (Ideal.span ({gaussSumIntegers p L χ} :
@@ -269,7 +295,9 @@ theorem gaussSum_ideal_factorisation {χ : DirichletCharacter ℂ p} (hχ : χ �
   exact (Ideal.prod_normalizedFactors_eq_self h_ne).symm
 
 /-- Auxiliary: `χ(-1) ∈ {1, -1}` for any Dirichlet character `χ` modulo a
-prime `p`, since `χ(-1)² = χ(1) = 1` in a field of characteristic zero.-/
+prime `p`, since `χ(-1)² = χ(1) = 1` in a field of characteristic zero.
+@isnad1 id=or.0h2v.s7.1cf426b61f17 from=translated src=- shape=0c8ff0c7 vocab=6742a6dc
+-/
 theorem DirichletCharacter.chi_neg_one_sq (χ : DirichletCharacter ℂ p) :
     χ (-1) = 1 ∨ χ (-1) = -1 := by
   have h_sq : χ (-1) * χ (-1) = 1 := by
@@ -289,7 +317,9 @@ using that `χ(-1) = ±1` is a unit.
 As a step toward the full Stickelberger theorem (T027d), this pins down
 the *total* `𝔭`-adic valuation contribution of `(τ(χ))·(τ(χ̄))` at each
 prime above `p`, complementing the splitting information needed at other
-primes.-/
+primes.
+@isnad1 id=eq.1h3v.s8.51a6bd0d0b77 from=translated src=- shape=a35aa7fb vocab=7314f65e
+-/
 theorem gaussSum_ideal_mul_inv_eq_span_p
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     haveI : NumberField L := IsCyclotomicExtension.numberField {p * (p - 1)} ℚ L

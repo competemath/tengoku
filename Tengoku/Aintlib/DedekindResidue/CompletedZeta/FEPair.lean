@@ -39,7 +39,9 @@ open NumberField.Units NumberField.Units.dirichletUnitTheorem MeasureTheory
 open Asymptotics Filter
 open scoped nonZeroDivisors Real
 
-/-- A stretched-exponential `exp(-c·x^p)` beats every power at infinity.-/
+/-- A stretched-exponential `exp(-c·x^p)` beats every power at infinity.
+@isnad1 id=isbigo.2h3v.s6.e0f01de2f86f from=translated src=- shape=26264c44 vocab=0613738a
+-/
 theorem isBigO_exp_neg_rpow {c p : ℝ} (hc : 0 < c) (hp : 0 < p) (r : ℝ) :
     (fun x : ℝ => Real.exp (-c * x ^ p)) =O[atTop] fun x : ℝ => x ^ r := by
   have h1 : (fun y : ℝ => y ^ (-r / p)) =O[atTop] (fun y => Real.exp (c * y)) :=
@@ -74,6 +76,9 @@ theorem isBigO_exp_neg_rpow {c p : ℝ} (hc : 0 < c) (hp : 0 < p) (r : ℝ) :
 variable (K : Type*) [Field K] [NumberField K]
 
 open scoped Classical in
+/--
+@isnad1 id=continuo.0h2v.s5.c03321504bc0 from=translated src=- shape=7ad38be0 vocab=a331f01e
+-/
 theorem continuousOn_heckeGClass (C : ClassGroup (𝓞 K)) :
     ContinuousOn (heckeGClass K C) (Set.Ioi (0:ℝ)) := by
   have hN := idealNormR_pos K (classRep K C)
@@ -89,11 +94,17 @@ theorem continuousOn_heckeGClass (C : ClassGroup (𝓞 K)) :
   exact Set.mem_Ioi.mpr (by positivity)
 
 open scoped Classical in
+/--
+@isnad1 id=continuo.0h1v.s5.c63ea1f89838 from=translated src=- shape=27a35e60 vocab=ad166033
+-/
 theorem continuousOn_heckeF : ContinuousOn (heckeF K) (Set.Ioi (0:ℝ)) := by
   change ContinuousOn (fun x => ∑ C : ClassGroup (𝓞 K), heckeGClass K C x) _
   exact continuousOn_finsetSum _ (fun C _ => continuousOn_heckeGClass K C)
 
 open scoped Classical in
+/--
+@isnad1 id=ex.0h2v.s7.20f692ebc8fd from=translated src=- shape=5376b2a7 vocab=0fa20c55
+-/
 theorem exists_heckeGClass_dev_bound (C : ClassGroup (𝓞 K)) :
     ∃ Cb c' x₀ : ℝ, 0 < Cb ∧ 0 < c' ∧ 1 ≤ x₀ ∧ ∀ {x : ℝ}, x₀ ≤ x →
       |heckeGClass K C x - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K|
@@ -132,6 +143,9 @@ noncomputable def heckeFConst : ℝ :=
   (Fintype.card (ClassGroup (𝓞 K)) : ℝ) * ((torsionOrder K : ℝ)⁻¹ * unitBoxVol K)
 
 open scoped Classical in
+/--
+@isnad1 id=ex.0h1v.s7.25857db5f897 from=translated src=- shape=6a30f7f8 vocab=ab149169
+-/
 theorem exists_heckeF_dev_bound :
     ∃ Cb c' x₀ : ℝ, 0 < Cb ∧ 0 < c' ∧ 1 ≤ x₀ ∧ ∀ {x : ℝ}, x₀ ≤ x →
       |heckeF K x - heckeFConst K|
@@ -173,7 +187,9 @@ theorem exists_heckeF_dev_bound :
         rw [Finset.sum_mul]
 
 open scoped Classical in
-/-- Rapid decay: the total theta approaches its constant term faster than any power.-/
+/-- Rapid decay: the total theta approaches its constant term faster than any power.
+@isnad1 id=isbigo.0h2v.s5.864c68833308 from=translated src=- shape=39a40335 vocab=94971de3
+-/
 theorem heckeF_sub_const_isBigO (r : ℝ) :
     (fun x : ℝ => heckeF K x - heckeFConst K) =O[atTop] fun x : ℝ => x ^ r := by
   obtain ⟨Cb, c', x₀, hCb, hc', hx₀, hdev⟩ := exists_heckeF_dev_bound K

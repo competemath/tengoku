@@ -38,7 +38,9 @@ open scoped nonZeroDivisors Real ENNReal NNReal
 
 variable (K : Type*) [Field K] [NumberField K]
 
-/-- Continuity of the box integrand `u ↦ heckeTheta I (heckeWeights t u)`, for `t > 0`.-/
+/-- Continuity of the box integrand `u ↦ heckeTheta I (heckeWeights t u)`, for `t > 0`.
+@isnad1 id=continuo.1h3v.s8.281a7e65b34a from=translated src=- shape=133d5a62 vocab=4e4771be
+-/
 theorem continuous_heckeTheta_heckeWeights (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ}
     (ht : 0 < t) :
     Continuous (fun u : logSpace K => heckeTheta K I (heckeWeights K t u)) := by
@@ -55,7 +57,9 @@ theorem continuous_heckeTheta_heckeWeights (I : (FractionalIdeal (𝓞 K)⁰ K)�
 
 open scoped Classical in
 /-- The deviation of `g_I` from its constant term is the box integral of the zero-removed
-theta (valid for every `t > 0`).-/
+theta (valid for every `t > 0`).
+@isnad1 id=eq.1h3v.s12.d9eeab8dfb57 from=translated src=- shape=43fd8d2c vocab=2650c540
+-/
 theorem heckeG_sub_const_eq (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht : 0 < t) :
     heckeG K I t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K
       = (torsionOrder K : ℝ)⁻¹ * ∫ u in ZSpan.fundamentalDomain
@@ -112,7 +116,9 @@ theorem heckeG_sub_const_eq (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (h
   ring
 
 open scoped Classical in
-/-- Unit-scaling preserves membership in the ideal lattice of an integral ideal.-/
+/-- Unit-scaling preserves membership in the ideal lattice of an integral ideal.
+@isnad1 id=mem.1h4v.s13.e29f558e1553 from=translated src=- shape=cc516718 vocab=5cde8a29
+-/
 theorem unit_smul_mem_idealLattice (J : (Ideal (𝓞 K))⁰) (u : (𝓞 K)ˣ) {x : mixedSpace K}
     (hx : x ∈ mixedEmbedding.idealLattice K (FractionalIdeal.mk0 K J)) :
     u • x ∈ mixedEmbedding.idealLattice K (FractionalIdeal.mk0 K J) := by
@@ -127,6 +133,9 @@ theorem unit_smul_mem_idealLattice (J : (Ideal (𝓞 K))⁰) (u : (𝓞 K)ˣ) {x
 
 omit [NumberField K] in
 open scoped Classical in
+/--
+@isnad1 id=ne.1h3v.s8.bcc76d866bb4 from=translated src=- shape=32c0edd7 vocab=49d54365
+-/
 theorem unit_smul_ne_zero (u : (𝓞 K)ˣ) {x : mixedSpace K} (hx : x ≠ 0) : u • x ≠ 0 := by
   intro h0
   apply hx
@@ -250,6 +259,9 @@ noncomputable def euclidMixedEquiv : EuclideanSpace ℝ (index K) ≃ₗ[ℝ] mi
     (euclidean.toMixed K).toLinearEquiv
 
 open scoped Classical in
+/--
+@isnad1 id=iff.0h3v.s11.f1343f4e1292 from=translated src=- shape=781aa445 vocab=6ce48e5a
+-/
 theorem mem_idealZLattice_iff_euclidMixed (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (v : EuclideanSpace ℝ (index K)) :
     v ∈ idealZLattice K I ↔ euclidMixedEquiv K v ∈ mixedEmbedding.idealLattice K I := by
@@ -278,6 +290,9 @@ noncomputable def euclidConeEquiv (J : (Ideal (𝓞 K))⁰) :
     simpa using hmem
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s10.86db66107ff1 from=translated src=- shape=58b18bf9 vocab=d1636d0a
+-/
 theorem euclidMixedEquiv_symm_mixedEmbedding (x : K) :
     (euclidMixedEquiv K).symm (mixedEmbedding K x) = embeddingCoords K x := by
   rw [euclidMixedEquiv, embeddingCoords]
@@ -285,7 +300,9 @@ theorem euclidMixedEquiv_symm_mixedEmbedding (x : K) :
 
 open scoped Classical in
 /-- The image of `logEmbedding` of a fundamental-system power is the corresponding
-ℤ-combination of the `basisUnitLattice` box basis.-/
+ℤ-combination of the `basisUnitLattice` box basis.
+@isnad1 id=eq.0h2v.s11.e5bbae0b4afa from=translated src=- shape=4e3c28ff vocab=b9850b2f
+-/
 theorem logEmbedding_prod_fundSystem (n : Fin (rank K) → ℤ) :
     logEmbedding K (Additive.ofMul (∏ i, fundSystem K i ^ (n i)))
       = ∑ i, n i • (((basisUnitLattice K).ofZLatticeBasis ℝ) i : logSpace K) := by
@@ -304,7 +321,9 @@ theorem logEmbedding_prod_fundSystem (n : Fin (rank K) → ℤ) :
 
 open scoped Classical in
 /-- **Per-point unit shift**: the Gaussian argument of a unit-scaled point at
-log-coordinates `u` is that of the original point at translated coordinates.-/
+log-coordinates `u` is that of the original point at translated coordinates.
+@isnad1 id=eq.0h5v.s11.83fc852096b8 from=translated src=- shape=0af8910c vocab=303d07da
+-/
 theorem sum_placeWeights_unit_smul (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) (y : K) :
     ∑ i : index K, placeWeights K (heckeWeights K t u) i
         * (((euclidMixedEquiv K).symm (ε • mixedEmbedding K y)) i) ^ 2
@@ -322,7 +341,9 @@ theorem sum_placeWeights_unit_smul (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) 
 
 open scoped Classical in
 /-- Cone points of an integral ideal form a countable family (they sit inside the ideal
-lattice, which is a discrete subgroup).-/
+lattice, which is a discrete subgroup).
+@isnad1 id=countabl.0h2v.s9.c5a29195c651 from=translated src=- shape=c162935b vocab=f5b88475
+-/
 instance instCountableIdealSet (J : (Ideal (𝓞 K))⁰) : Countable (idealSet K J) := by
   have hinj : Function.Injective (fun a : idealSet K J =>
       (⟨(a : mixedSpace K), a.2.2⟩ :
@@ -335,7 +356,9 @@ instance instCountableIdealSet (J : (Ideal (𝓞 K))⁰) : Countable (idealSet K
 
 open scoped Classical in
 /-- **Tiling the log-space by unit-box translates, `lintegral` version** — no
-integrability hypothesis needed.-/
+integrability hypothesis needed.
+@isnad1 id=eq.0h2v.s10.c979e86a2280 from=translated src=- shape=30cbda7c vocab=a7ecf42f
+-/
 theorem lintegral_eq_tsum_box_shift (f : logSpace K → ℝ≥0∞) :
     ∫⁻ u, f u = ∑' n : Fin (rank K) → ℤ,
       ∫⁻ u in ZSpan.fundamentalDomain ((basisUnitLattice K).ofZLatticeBasis ℝ),
@@ -386,7 +409,9 @@ theorem lintegral_eq_tsum_box_shift (f : logSpace K → ℝ≥0∞) :
 
 open scoped Classical in
 /-- `ℝ≥0∞`-valued cone-unfolding of a zero-removed lattice sum (same unfolding, for
-lintegral-valued families).-/
+lintegral-valued families).
+@isnad1 id=eq.0h3v.s15.035f571cd3c6 from=translated src=- shape=a3032613 vocab=7275d626
+-/
 theorem tsum_ite_eq_tsum_coneUnfold_ennreal (J : (Ideal (𝓞 K))⁰)
     (g : EuclideanSpace ℝ (index K) → ℝ≥0∞) :
     (∑' v : idealZLattice K (FractionalIdeal.mk0 K J),
@@ -467,6 +492,9 @@ noncomputable def conePreimage (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) : K 
   algebraMap (𝓞 K) K ((preimageOfMemIntegerSet (idealSetMap K J a)) : 𝓞 K)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s9.4cca151d0d54 from=translated src=- shape=0005cd42 vocab=f1d4cd49
+-/
 theorem mixedEmbedding_conePreimage (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     mixedEmbedding K (conePreimage K J a) = (a : mixedSpace K) := by
   rw [conePreimage, show (algebraMap (𝓞 K) K
@@ -481,10 +509,16 @@ noncomputable def gaussTerm (t : ℝ) (u : logSpace K)
   Real.exp (-π * ∑ i : index K, placeWeights K (heckeWeights K t u) i * (x i) ^ 2)
 
 open scoped Classical in
+/--
+@isnad1 id=lt.0h4v.s5.0406824dba97 from=translated src=- shape=e4172778 vocab=2cac8126
+-/
 theorem gaussTerm_pos (t : ℝ) (u : logSpace K) (x : EuclideanSpace ℝ (index K)) :
     0 < gaussTerm K t u x := Real.exp_pos _
 
 open scoped Classical in
+/--
+@isnad1 id=continuo.0h3v.s6.473f33036d36 from=translated src=- shape=bd433c13 vocab=b09db77e
+-/
 theorem continuous_gaussTerm (t : ℝ) (c : EuclideanSpace ℝ (index K)) :
     Continuous (fun u : logSpace K => gaussTerm K t u c) := by
   refine Real.continuous_exp.comp ?_
@@ -513,7 +547,9 @@ theorem continuous_gaussTerm (t : ℝ) (c : EuclideanSpace ℝ (index K)) :
       exact hw _
 
 open scoped Classical in
-/-- The unit shift of a Gaussian term, in `gaussTerm` form.-/
+/-- The unit shift of a Gaussian term, in `gaussTerm` form.
+@isnad1 id=eq.0h5v.s11.ee12f26f5baf from=translated src=- shape=738e7fc7 vocab=4874d593
+-/
 theorem gaussTerm_unit_smul (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) (y : K) :
     gaussTerm K t u ((euclidMixedEquiv K).symm (ε • mixedEmbedding K y))
       = gaussTerm K t (u + logEmbedding K (Additive.ofMul ε)) (embeddingCoords K y) := by
@@ -522,7 +558,9 @@ theorem gaussTerm_unit_smul (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) (y : K)
     (sum_placeWeights_unit_smul K t u ε y)
 
 open scoped Classical in
-/-- **The box lintegral of the theta tail, fully unfolded** along the fundamental cone.-/
+/-- **The box lintegral of the theta tail, fully unfolded** along the fundamental cone.
+@isnad1 id=eq.1h3v.s12.4a45e00d3244 from=translated src=- shape=f51f70cc vocab=ca619256
+-/
 theorem lintegral_box_theta_tail (J : (Ideal (𝓞 K))⁰) {t : ℝ} (ht : 0 < t) :
     ∫⁻ u in ZSpan.fundamentalDomain ((basisUnitLattice K).ofZLatticeBasis ℝ),
       ENNReal.ofReal
@@ -648,6 +686,9 @@ noncomputable def heckeLogMap : (ℝ × logSpace K) →ₗ[ℝ] (InfinitePlace K
     ring
 
 open scoped Classical in
+/--
+@isnad1 id=injectiv.0h1v.s8.1a70daa0f6b4 from=translated src=- shape=6c0170a2 vocab=273e221a
+-/
 theorem heckeLogMap_injective : Function.Injective (heckeLogMap K) := by
   rw [← LinearMap.ker_eq_bot, Submodule.eq_bot_iff]
   rintro ⟨τ, u⟩ hp
@@ -700,6 +741,9 @@ theorem heckeLogMap_injective : Function.Injective (heckeLogMap K) := by
   rfl
 
 open scoped Classical in
+/--
+@isnad1 id=bijectiv.0h1v.s8.3534418595f5 from=translated src=- shape=6c0170a2 vocab=a1bcc720
+-/
 theorem heckeLogMap_bijective : Function.Bijective (heckeLogMap K) := by
   have hdim : Module.finrank ℝ (ℝ × logSpace K)
       = Module.finrank ℝ (InfinitePlace K → ℝ) := by
@@ -728,7 +772,9 @@ open scoped Classical in
 /-- **The point-dependence of the Gaussian factors through the norm**: the whole-space
 lintegral of a Gaussian term at the point `ζ(y)` is that at `ζ(1)` with the ray parameter
 scaled by `|N(y)|²` — via the proven `x`-absorption (`sq_mul_heckeWeights`) and
-translation invariance. No Jacobian needed.-/
+translation invariance. No Jacobian needed.
+@isnad1 id=eq.2h3v.s9.bf05eb3c70ff from=translated src=- shape=337b8bba vocab=b91b383e
+-/
 theorem lintegral_gaussTerm_eq_norm_scaled {y : K} (hy : y ≠ 0) {t : ℝ} (ht : 0 ≤ t) :
     ∫⁻ u : logSpace K, ENNReal.ofReal (gaussTerm K t u (embeddingCoords K y))
       = ∫⁻ u : logSpace K, ENNReal.ofReal
@@ -751,7 +797,9 @@ theorem lintegral_gaussTerm_eq_norm_scaled {y : K} (hy : y ≠ 0) {t : ℝ} (ht 
       (embeddingCoords K 1))) (xShift K y)
 
 open scoped Classical in
-/-- 1-D Mellin scaling for lower integrals over the positive ray.-/
+/-- 1-D Mellin scaling for lower integrals over the positive ray.
+@isnad1 id=eq.2h3v.s7.47e6a387291e from=translated src=- shape=d303a757 vocab=53d2b51d
+-/
 theorem lintegral_Ioi_mellin_scale {c : ℝ} (hc : 0 < c) (σ : ℝ) (H : ℝ → ℝ≥0∞)
     (hH : AEMeasurable H (volume.restrict (Set.Ioi (0:ℝ)))) :
     ∫⁻ t in Set.Ioi (0:ℝ), ENNReal.ofReal (t ^ (σ - 1)) * H (c * t)
@@ -810,7 +858,9 @@ theorem lintegral_Ioi_mellin_scale {c : ℝ} (hc : 0 < c) (σ : ℝ) (H : ℝ �
   rw [show (1 : ℝ) - σ + -1 = -σ by ring]
 
 open scoped Classical in
-/-- The norm of the canonical preimage of a cone point is its integer norm.-/
+/-- The norm of the canonical preimage of a cone point is its integer norm.
+@isnad1 id=eq.0h3v.s9.3205ca8f2807 from=translated src=- shape=792ef1a3 vocab=93612b58
+-/
 theorem abs_norm_conePreimage (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     ((|Algebra.norm ℚ (conePreimage K J a)| : ℚ) : ℝ)
       = (intNorm (idealSetMap K J a) : ℝ) := by
@@ -820,7 +870,9 @@ theorem abs_norm_conePreimage (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
 
 open scoped Classical in
 /-- **The counting step (δ)**: the cone-point norm sum is `torsionOrder` times the sum
-over nonzero principal ideals divisible by `J`.-/
+over nonzero principal ideals divisible by `J`.
+@isnad1 id=eq.0h3v.s13.fd62ff38e14d from=translated src=- shape=869fbdd4 vocab=3507d86c
+-/
 theorem tsum_idealSet_norm_rpow (J : (Ideal (𝓞 K))⁰) (σ : ℝ) :
     ∑' a : idealSet K J,
       ENNReal.ofReal (((((|Algebra.norm ℚ (conePreimage K J a)| : ℚ) : ℝ)) ^ 2) ^ (-σ))
@@ -978,7 +1030,9 @@ noncomputable def principalDvdEquiv (J : (Ideal (𝓞 K))⁰) :
 
 open scoped Classical in
 /-- **The class fiber (δ-2)**: the sum over principal ideals divisible by `J` is the
-`N(J)^{-2σ}`-scaled sum over the ideal class `[J]⁻¹`.-/
+`N(J)^{-2σ}`-scaled sum over the ideal class `[J]⁻¹`.
+@isnad1 id=eq.0h3v.s15.d29a1808409d from=translated src=- shape=a8e80ad2 vocab=adb1b5e6
+-/
 theorem tsum_principal_dvd_eq (J : (Ideal (𝓞 K))⁰) (σ : ℝ) :
     (∑' I : {I : (Ideal (𝓞 K))⁰ // (J : Ideal (𝓞 K)) ∣ (I : Ideal (𝓞 K))
         ∧ Submodule.IsPrincipal ((I : (Ideal (𝓞 K))⁰) : Ideal (𝓞 K))},
@@ -1005,7 +1059,9 @@ theorem tsum_principal_dvd_eq (J : (Ideal (𝓞 K))⁰) (σ : ℝ) :
     ENNReal.ofReal_mul (by positivity), mul_comm (ENNReal.ofReal _)]
 
 /-- **The per-place Gamma integral in exponential coordinates**:
-`∫ e^{aλ − π e^λ} dλ = π^{-a}·Γ(a)`.-/
+`∫ e^{aλ − π e^λ} dλ = π^{-a}·Γ(a)`.
+@isnad1 id=eq.1h1v.s6.eb7bff124d02 from=translated src=- shape=54c7c8f9 vocab=92599371
+-/
 theorem lintegral_exp_mul_sub_pi_exp {a : ℝ} (ha : 0 < a) :
     ∫⁻ l : ℝ, ENNReal.ofReal (Real.exp (a * l - π * Real.exp l))
       = ENNReal.ofReal (π ^ (-a) * Real.Gamma a) := by
@@ -1080,16 +1136,24 @@ noncomputable def heckeJacobian : ℝ≥0 :=
     (volume : Measure (InfinitePlace K → ℝ))
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h1v.s10.6ee04debf972 from=translated src=- shape=07ab3a39 vocab=8f12c9b7
+-/
 theorem map_heckeLogCLE_volume :
     Measure.map (heckeLogCLE K) (volume : Measure (ℝ × logSpace K))
       = heckeJacobian K • (volume : Measure (InfinitePlace K → ℝ)) :=
   Measure.isAddLeftInvariant_eq_smul _ _
 
 open scoped Classical in
+/--
+@isnad1 id=lt.0h1v.s4.f94ce2a373f2 from=translated src=- shape=31b077a1 vocab=6a7e0727
+-/
 theorem heckeJacobian_pos : 0 < heckeJacobian K :=
   Measure.addHaarScalarFactor_pos_of_isAddHaarMeasure _ _
 
-/-- Integrability of the exponential-coordinates Gamma integrand.-/
+/-- Integrability of the exponential-coordinates Gamma integrand.
+@isnad1 id=integrab.1h1v.s6.41abdedfff30 from=translated src=- shape=a1fffc09 vocab=71afde78
+-/
 theorem integrable_exp_mul_sub_pi_exp {a : ℝ} (ha : 0 < a) :
     Integrable (fun l : ℝ => Real.exp (a * l - π * Real.exp l)) := by
   constructor
@@ -1099,7 +1163,9 @@ theorem integrable_exp_mul_sub_pi_exp {a : ℝ} (ha : 0 < a) :
     rw [lintegral_exp_mul_sub_pi_exp ha]
     exact ENNReal.ofReal_lt_top
 
-/-- The Bochner form of the per-place Gamma integral.-/
+/-- The Bochner form of the per-place Gamma integral.
+@isnad1 id=eq.1h1v.s6.07a1f8c68de1 from=translated src=- shape=9f1fd5da vocab=62901f81
+-/
 theorem integral_exp_mul_sub_pi_exp {a : ℝ} (ha : 0 < a) :
     ∫ l : ℝ, Real.exp (a * l - π * Real.exp l) = π ^ (-a) * Real.Gamma a := by
   have h1 : ENNReal.ofReal (∫ l : ℝ, Real.exp (a * l - π * Real.exp l))
@@ -1115,7 +1181,9 @@ theorem integral_exp_mul_sub_pi_exp {a : ℝ} (ha : 0 < a) :
   exact (ENNReal.ofReal_eq_ofReal_iff h2 h3).mp h1
 
 open scoped Classical in
-/-- The weighted row-sum of the Hecke substitution recovers the ray coordinate.-/
+/-- The weighted row-sum of the Hecke substitution recovers the ray coordinate.
+@isnad1 id=eq.0h2v.s9.0bf0d1ced520 from=translated src=- shape=a00b8a60 vocab=acd7d490
+-/
 theorem sum_mult_heckeLogCLE (p : ℝ × logSpace K) :
     ∑ w : InfinitePlace K, (mult w : ℝ) * (heckeLogCLE K p) w = p.1 := by
   have happ : ∀ w : InfinitePlace K, (heckeLogCLE K p) w
@@ -1145,7 +1213,9 @@ theorem sum_mult_heckeLogCLE (p : ℝ × logSpace K) :
 
 open scoped Classical in
 /-- **The universal Mellin constant in closed form**: the change of variables along the
-Hecke substitution factorises the master integral into per-place Gamma integrals.-/
+Hecke substitution factorises the master integral into per-place Gamma integrals.
+@isnad1 id=eq.1h2v.s10.5837ee4d6394 from=translated src=- shape=4b237f7d vocab=5f92e552
+-/
 theorem lintegral_exp_heckeLog (σ : ℝ) (hσ : 0 < σ) :
     ∫⁻ p : ℝ × logSpace K, ENNReal.ofReal (Real.exp (σ * p.1
         - π * ∑ w : InfinitePlace K, Real.exp ((heckeLogCLE K p) w)))
@@ -1209,7 +1279,9 @@ theorem lintegral_exp_heckeLog (σ : ℝ) (hσ : 0 < σ) :
 
 open scoped Classical in
 /-- The Hecke weights at ray parameter `e^τ` are the exponentials of the substitution
-coordinates.-/
+coordinates.
+@isnad1 id=eq.0h4v.s9.5ca510898c4a from=translated src=- shape=621e9361 vocab=cda93814
+-/
 theorem heckeWeights_exp (τ : ℝ) (u : logSpace K) (w : InfinitePlace K) :
     heckeWeights K (Real.exp τ) u w = Real.exp ((heckeLogCLE K (τ, u)) w) := by
   rw [heckeWeights]
@@ -1222,7 +1294,9 @@ theorem heckeWeights_exp (τ : ℝ) (u : logSpace K) (w : InfinitePlace K) :
 
 open scoped Classical in
 /-- The Gaussian term at the unit point in exponential ray coordinates is the master
-integrand's exponential factor.-/
+integrand's exponential factor.
+@isnad1 id=eq.0h3v.s9.ac00e911b6a1 from=translated src=- shape=780b2567 vocab=be32479d
+-/
 theorem gaussTerm_exp_eq (τ : ℝ) (u : logSpace K) :
     gaussTerm K (Real.exp τ) u (embeddingCoords K 1)
       = Real.exp (-π * ∑ w : InfinitePlace K, Real.exp ((heckeLogCLE K (τ, u)) w)) := by
@@ -1235,7 +1309,9 @@ theorem gaussTerm_exp_eq (τ : ℝ) (u : logSpace K) :
 
 open scoped Classical in
 /-- **The universal Mellin constant M₀, evaluated**: the `(t,u)`-double lintegral of the
-Gaussian at the unit point equals the Jacobian times the Γ-product.-/
+Gaussian at the unit point equals the Jacobian times the Γ-product.
+@isnad1 id=eq.1h2v.s8.eb08662d9c8c from=translated src=- shape=0df7f2fb vocab=809bd7e6
+-/
 theorem lintegral_M0_eq {σ : ℝ} (hσ : 0 < σ) :
     (∫⁻ t in Set.Ioi (0:ℝ), ENNReal.ofReal (t ^ (σ - 1))
         * ∫⁻ u : logSpace K, ENNReal.ofReal (gaussTerm K t u (embeddingCoords K 1)))
@@ -1291,7 +1367,9 @@ theorem lintegral_M0_eq {σ : ℝ} (hσ : 0 < σ) :
 
 open scoped Classical in
 /-- The `ENNReal` form of the theta deviation: `ofReal(g_I(t) − w⁻¹·vol)` is
-`ofReal(w⁻¹)` times the box lintegral of the tail.-/
+`ofReal(w⁻¹)` times the box lintegral of the tail.
+@isnad1 id=eq.1h3v.s12.2e8848f3fb04 from=translated src=- shape=b7245efc vocab=26bbd054
+-/
 theorem ofReal_heckeG_sub_const (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht : 0 < t) :
     ENNReal.ofReal (heckeG K I t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K)
       = ENNReal.ofReal ((torsionOrder K : ℝ)⁻¹)
@@ -1358,7 +1436,9 @@ theorem ofReal_heckeG_sub_const (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ
 
 open scoped Classical in
 /-- The box lintegral of a `unitLattice`-periodic function does not depend on the choice
-of ℤ-basis (the lintegral version, hypothesis-free).-/
+of ℤ-basis (the lintegral version, hypothesis-free).
+@isnad1 id=eq.1h2v.s12.2b8671422217 from=translated src=- shape=a473eecc vocab=58567fb6
+-/
 theorem setLIntegral_box_swap (f : logSpace K → ℝ≥0∞)
     (hf : ∀ l ∈ unitLattice K, ∀ x, f (l + x) = f x) :
     ∫⁻ u in ZSpan.fundamentalDomain
@@ -1376,6 +1456,9 @@ theorem setLIntegral_box_swap (f : logSpace K → ℝ≥0∞)
   exact hf (l : logSpace K) l.2 x
 
 open scoped Classical in
+/--
+@isnad1 id=ne.0h3v.s9.4f8f8c16bea3 from=translated src=- shape=f428aec0 vocab=4d3c3575
+-/
 theorem conePreimage_ne_zero (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
     conePreimage K J a ≠ 0 := by
   intro h0
@@ -1387,7 +1470,9 @@ theorem conePreimage_ne_zero (J : (Ideal (𝓞 K))⁰) (a : idealSet K J) :
 
 open scoped Classical in
 /-- **The per-class Mellin chain at unit scale (e-ii)**: the lintegral Mellin transform of
-the deviation of `g` over an integral ideal, fully evaluated.-/
+the deviation of `g` over an integral ideal, fully evaluated.
+@isnad1 id=eq.1h3v.s12.57daa7667902 from=translated src=- shape=43acddbc vocab=76bd66ac
+-/
 theorem lintegral_mellin_heckeG_dev (J : (Ideal (𝓞 K))⁰) {σ : ℝ} (hσ : 0 < σ) :
     (∫⁻ t in Set.Ioi (0:ℝ), ENNReal.ofReal (t ^ (σ - 1))
         * ENNReal.ofReal (heckeG K (FractionalIdeal.mk0 K J) t
@@ -1505,7 +1590,9 @@ theorem lintegral_mellin_heckeG_dev (J : (Ideal (𝓞 K))⁰) {σ : ℝ} (hσ : 
 open scoped Classical in
 /-- The scaled-argument deviation of the class theta, Mellin-evaluated (e-iii): all the
 `w`, `N(J)` and `s_C` factors cancel, leaving `β^{-σ}` times the Γ-constant times the
-partial zeta sum over the inverse class.-/
+partial zeta sum over the inverse class.
+@isnad1 id=eq.1h3v.s15.40db90a6de07 from=translated src=- shape=385394f3 vocab=f51a6df6
+-/
 theorem lintegral_mellin_heckeGClass_dev (C : ClassGroup (𝓞 K)) {σ : ℝ} (hσ : 0 < σ) :
     (∫⁻ t in Set.Ioi (0:ℝ), ENNReal.ofReal (t ^ (σ - 1))
         * ENNReal.ofReal (heckeGClass K C t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K))
@@ -1600,7 +1687,9 @@ theorem lintegral_mellin_heckeGClass_dev (C : ClassGroup (𝓞 K)) {σ : ℝ} (h
         rw [hw_cancel, hNJcancel, one_mul, one_mul]
 
 open scoped Classical in
-/-- The theta deviation is nonnegative at every positive ray parameter.-/
+/-- The theta deviation is nonnegative at every positive ray parameter.
+@isnad1 id=le.1h3v.s7.061364ead21a from=translated src=- shape=1b127f91 vocab=4b99fd08
+-/
 theorem heckeG_dev_nonneg (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht : 0 < t) :
     0 ≤ heckeG K I t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K := by
   rw [heckeG_sub_const_eq K I ht]
@@ -1624,6 +1713,9 @@ theorem heckeG_dev_nonneg (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht 
   linarith
 
 open scoped Classical in
+/--
+@isnad1 id=le.1h3v.s6.9ffe5b253215 from=translated src=- shape=ee021882 vocab=7de78c44
+-/
 theorem heckeGClass_dev_nonneg (C : ClassGroup (𝓞 K)) {t : ℝ} (ht : 0 < t) :
     0 ≤ heckeGClass K C t - (torsionOrder K : ℝ)⁻¹ * unitBoxVol K := by
   have hNpos := idealNormR_pos K (classRep K C)
@@ -1635,7 +1727,9 @@ theorem heckeGClass_dev_nonneg (C : ClassGroup (𝓞 K)) {t : ℝ} (ht : 0 < t) 
 
 open scoped Classical in
 /-- **The total Mellin identity (e-iv)**: the lintegral Mellin transform of the total
-theta deviation equals `β^{-σ}` times the Γ-constant times the full ideal sum.-/
+theta deviation equals `β^{-σ}` times the Γ-constant times the full ideal sum.
+@isnad1 id=eq.1h2v.s11.ddf9fed542a3 from=translated src=- shape=1dbb8567 vocab=6554cd29
+-/
 theorem lintegral_mellin_heckeF_dev {σ : ℝ} (hσ : 0 < σ) :
     (∫⁻ t in Set.Ioi (0:ℝ), ENNReal.ofReal (t ^ (σ - 1))
         * ENNReal.ofReal (heckeF K t - heckeFConst K))
@@ -1771,7 +1865,9 @@ noncomputable def idealNormLeEquiv (n : ℕ) :
       rw [hNk]
 
 open scoped Classical in
-/-- Partial sums of the norm-count coefficients are the cumulative ideal counts.-/
+/-- Partial sums of the norm-count coefficients are the cumulative ideal counts.
+@isnad1 id=eq.0h2v.s10.6de00c952ae6 from=translated src=- shape=39a5d409 vocab=25390180
+-/
 theorem sum_count_eq_card_le (n : ℕ) :
     ∑ k ∈ Finset.Icc 1 n,
       (Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = k} : ℝ)
@@ -1788,7 +1884,9 @@ theorem sum_count_eq_card_le (n : ℕ) :
 
 open scoped Classical in
 /-- **Summability of the ideal norm sums** for real `s > 1`, from the ideal-counting
-asymptotics.-/
+asymptotics.
+@isnad1 id=lseriess.1h2v.s8.a165acfcb82b from=translated src=- shape=7ddbbe8e vocab=55973732
+-/
 theorem count_LSeriesSummable {s : ℝ} (hs : 1 < s) :
     LSeriesSummable (fun n =>
       ((Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = n} : ℝ) : ℂ)) (s : ℂ) := by
@@ -1826,7 +1924,9 @@ theorem count_LSeriesSummable {s : ℝ} (hs : 1 < s) :
     rw [sum_count_eq_card_le K n]
 
 /-- Forgetting the nonzero-divisor witness embeds the nonzero-divisor ideals of `𝓞 K` of
-norm `n` into all ideals of norm `n`; the resulting map is injective.-/
+norm `n` into all ideals of norm `n`; the resulting map is injective.
+@isnad1 id=injectiv.0h2v.s12.0220af88178a from=translated src=- shape=c9b1be46 vocab=080b8594
+-/
 theorem normFiber_forget_injective (n : ℕ) :
     Function.Injective (fun b : {b : (Ideal (𝓞 K))⁰ //
         Ideal.absNorm ((b : (Ideal (𝓞 K))⁰) : Ideal (𝓞 K)) = n} =>
@@ -1858,7 +1958,9 @@ noncomputable def normFiberEquiv (n : ℕ) (hn : n ≠ 0) :
 
 open scoped Classical in
 /-- **Summability of the ideal norm sums** for real `s > 1`, from the ideal-counting
-asymptotics.-/
+asymptotics.
+@isnad1 id=summable.1h2v.s11.5c0dac4a5545 from=translated src=- shape=ec5a8f02 vocab=cee2c29b
+-/
 theorem summable_ideal_norm_rpow {s : ℝ} (hs : 1 < s) :
     Summable (fun b : (Ideal (𝓞 K))⁰ =>
       ((Ideal.absNorm ((b : (Ideal (𝓞 K))⁰) : Ideal (𝓞 K)) : ℝ)) ^ (-s)) := by
@@ -1928,7 +2030,9 @@ theorem summable_ideal_norm_rpow {s : ℝ} (hs : 1 < s) :
     exact Nat.card_congr (normFiberEquiv K n hn).symm
 
 open scoped Classical in
-/-- The `ℝ≥0∞` ideal sum is `ofReal` of the real one (e-v-b).-/
+/-- The `ℝ≥0∞` ideal sum is `ofReal` of the real one (e-v-b).
+@isnad1 id=eq.1h2v.s12.ab2a1bab8a19 from=translated src=- shape=e2d28808 vocab=388abaf5
+-/
 theorem tsum_ideal_ofReal_eq {s : ℝ} (hs : 1 < s) :
     (∑' b : (Ideal (𝓞 K))⁰,
       ENNReal.ofReal (((Ideal.absNorm ((b : (Ideal (𝓞 K))⁰) : Ideal (𝓞 K)) : ℝ)) ^ (-s)))
@@ -1938,7 +2042,9 @@ theorem tsum_ideal_ofReal_eq {s : ℝ} (hs : 1 < s) :
     (summable_ideal_norm_rpow K hs)).symm
 
 open scoped Classical in
-/-- The Dedekind zeta function at real `s > 1` is the (real) ideal-type norm sum (e-v-a).-/
+/-- The Dedekind zeta function at real `s > 1` is the (real) ideal-type norm sum (e-v-a).
+@isnad1 id=eq.1h2v.s11.5d2f6e7ae66e from=translated src=- shape=11f0c193 vocab=c3b44934
+-/
 theorem dedekindZeta_real_eq {s : ℝ} (hs : 1 < s) :
     dedekindZeta K (s : ℂ)
       = ((∑' b : (Ideal (𝓞 K))⁰,
@@ -2006,6 +2112,9 @@ theorem dedekindZeta_real_eq {s : ℝ} (hs : 1 < s) :
     exact Nat.card_congr (normFiberEquiv K n hn).symm
 
 open scoped Classical in
+/--
+@isnad1 id=le.1h2v.s5.6009ef448e16 from=translated src=- shape=8d342ef7 vocab=6010a9e1
+-/
 theorem heckeF_dev_nonneg {t : ℝ} (ht : 0 < t) :
     0 ≤ heckeF K t - heckeFConst K := by
   have hFsum : heckeF K t - heckeFConst K
@@ -2017,7 +2126,9 @@ theorem heckeF_dev_nonneg {t : ℝ} (ht : 0 < t) :
   exact Finset.sum_nonneg (fun C _ => heckeGClass_dev_nonneg K C ht)
 
 /-- Positivity of the Gamma-product factor `∏ w, π^(-mult w·σ)·Γ(mult w·σ)` of the closed
-Hecke Λ-form (each factor is positive for `σ > 0`).-/
+Hecke Λ-form (each factor is positive for `σ > 0`).
+@isnad1 id=le.1h2v.s6.80eb8131d0e4 from=translated src=- shape=be8a8be4 vocab=ae52a24f
+-/
 theorem prod_pi_rpow_mul_Gamma_nonneg {σ : ℝ} (hσ0 : 0 < σ) :
     0 ≤ ∏ w : InfinitePlace K,
       π ^ (-((mult w : ℝ) * σ)) * Real.Gamma ((mult w : ℝ) * σ) := by
@@ -2029,7 +2140,9 @@ theorem prod_pi_rpow_mul_Gamma_nonneg {σ : ℝ} (hσ0 : 0 < σ) :
   positivity
 
 /-- Nonnegativity of the closed real Λ-form (a `heckeBeta` power times the nonnegative
-Gamma-product times a nonnegative ideal-norm `tsum`).-/
+Gamma-product times a nonnegative ideal-norm `tsum`).
+@isnad1 id=le.1h2v.s11.bfe600da68d9 from=translated src=- shape=4474ec2d vocab=ca9f9670
+-/
 theorem heckeClosedLambdaForm_nonneg {σ : ℝ} (hσ0 : 0 < σ) :
     (0:ℝ) ≤ (heckeBeta K) ^ (-σ)
       * ((((heckeJacobian K : ℝ≥0)) : ℝ)
@@ -2047,7 +2160,9 @@ theorem heckeClosedLambdaForm_nonneg {σ : ℝ} (hσ0 : 0 < σ) :
 
 open scoped Classical in
 /-- The `ENNReal.ofReal` of the Mellin integral of the Hecke theta deviation equals the
-`ofReal` of the closed Γ–ζ form; the ENNReal core of `heckeFEPair_Λ_real`.-/
+`ofReal` of the closed Γ–ζ form; the ENNReal core of `heckeFEPair_Λ_real`.
+@isnad1 id=eq.4h2v.s11.0490f92b9890 from=translated src=- shape=f958977c vocab=c0311630
+-/
 theorem ennreal_ofReal_integral_heckeF_dev_eq {σ : ℝ} (hσ0 : 0 < σ) (h2σ : 1 < 2 * σ)
     (hri : IntegrableOn (fun t : ℝ => t ^ (σ - 1) * (heckeF K t - heckeFConst K))
       (Set.Ioi (0:ℝ)) volume)
@@ -2097,7 +2212,9 @@ theorem ennreal_ofReal_integral_heckeF_dev_eq {σ : ℝ} (hσ0 : 0 < σ) (h2σ :
 
 open scoped Classical in
 /-- **The Λ-value identification (e-vi)**: at real `σ > 1/2` the abstract completed
-function of the Hecke theta pair is the closed Γ–ζ form.-/
+function of the Hecke theta pair is the closed Γ–ζ form.
+@isnad1 id=eq.1h2v.s11.edf8f9149b3a from=translated src=- shape=9cab5708 vocab=a38895e1
+-/
 theorem heckeFEPair_Λ_real {σ : ℝ} (hσ : 1/2 < σ) :
     (heckeFEPair K).Λ (σ : ℂ)
       = (((heckeBeta K) ^ (-σ)

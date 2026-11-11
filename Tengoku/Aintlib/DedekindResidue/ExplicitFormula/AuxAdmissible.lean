@@ -38,7 +38,9 @@ open MeasureTheory
 open scoped Real
 
 /-- Kink-free closed form for `auxF` (valid for `X > 1`): on both branches,
-`F_{s,X}(t) = (T/max(|t|,T))·e^{-h(max(|t|,T)-T)}` with `T = log X`.-/
+`F_{s,X}(t) = (T/max(|t|,T))·e^{-h(max(|t|,T)-T)}` with `T = log X`.
+@isnad1 id=eq.1h3v.s6.34d16e36a52d from=translated src=- shape=841e99ad vocab=0559e3f4
+-/
 theorem auxF_eq_max (s : ℂ) {X : ℝ} (hX : 1 < X) (t : ℝ) :
     auxF s X t
       = ((Real.log X / max |t| (Real.log X) : ℝ) : ℂ)
@@ -53,7 +55,9 @@ theorem auxF_eq_max (s : ℂ) {X : ℝ} (hX : 1 < X) (t : ℝ) :
   · rw [ite_eq_right (not_le.mpr hgt), max_eq_left (le_of_lt hgt)]
 
 /-- `F_{s,X}` is continuous (for `X > 1`): both branches glue along `|t| = log X`,
-as the kink-free `max` form shows.-/
+as the kink-free `max` form shows.
+@isnad1 id=continuo.1h2v.s5.01c89a4cb837 from=translated src=- shape=87a6ab20 vocab=71e61a06
+-/
 theorem continuous_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) : Continuous (auxF s X) := by
   have hT0 : 0 < Real.log X := Real.log_pos hX
   have hmax : Continuous (fun t : ℝ => max |t| (Real.log X)) :=
@@ -69,7 +73,9 @@ theorem continuous_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) : Continuous (auxF s X)
         (continuous_const.mul (Complex.continuous_ofReal.comp (hmax.sub continuous_const)))
   exact this.congr (fun t => (auxF_eq_max s hX t).symm)
 
-/-- The jump-average condition holds trivially for the continuous `F_{s,X}`.-/
+/-- The jump-average condition holds trivially for the continuous `F_{s,X}`.
+@isnad1 id=ex.1h3v.s6.bdbd33f45ef9 from=translated src=- shape=11bb879f vocab=354b00f0
+-/
 theorem auxF_jump_avg (s : ℂ) {X : ℝ} (hX : 1 < X) (x : ℝ) :
     ∃ L R : ℂ,
       Filter.Tendsto (auxF s X) (nhdsWithin x (Set.Iio x)) (nhds L)
@@ -86,7 +92,9 @@ variable (s : ℂ) {X : ℝ}
 
 /-- Tail identity for a general real weight `c`: beyond the plateau,
 `F_{s,X}(t)e^{ct} = T e^{(s-1/2)T}·e^{mt}/t` with `m = c - (s - 1/2)`, in the `-(-m)`
-spelling the kernel lemmas produce.-/
+spelling the kernel lemmas produce.
+@isnad1 id=eq.2h4v.s7.a068799664f7 from=translated src=- shape=baceba61 vocab=ce573ba2
+-/
 theorem auxF_mul_exp_tail_eq' (hX : 1 < X) (c : ℝ) :
     ∀ t ∈ Set.Ioi (Real.log X),
       auxF s X t * ((Real.exp (c * t) : ℝ) : ℂ)
@@ -109,7 +117,9 @@ theorem auxF_mul_exp_tail_eq' (hX : 1 < X) (c : ℝ) :
 
 /-- On the tail, the exponentially weighted auxiliary function is a constant times the
 kernel `e^{mt}/t`, `m = (1/2+ε) - h`. Stated with the `-(-m)` spelling that the kernel
-lemmas (`hasDerivAt_gAux_core` etc. at `h := -m`) produce.-/
+lemmas (`hasDerivAt_gAux_core` etc. at `h := -m`) produce.
+@isnad1 id=eq.2h3v.s8.4400d024729a from=translated src=- shape=38ce0ff9 vocab=7b32e376
+-/
 theorem auxF_mul_exp_tail_eq (hX : 1 < X) :
     ∀ t ∈ Set.Ioi (Real.log X),
       auxF s X t * ((Real.exp ((1/2 + (s.re - 1)/2) * t) : ℝ) : ℂ)
@@ -117,7 +127,9 @@ theorem auxF_mul_exp_tail_eq (hX : 1 < X) :
           * (Complex.exp (-(-(((1/2 + (s.re - 1)/2 : ℝ) : ℂ) - (s - 1/2))) * t) / t) :=
   auxF_mul_exp_tail_eq' s hX (1/2 + (s.re - 1)/2)
 
-/-- The real part of the tail-kernel exponent parameter is `(Re s - 1)/2 > 0`.-/
+/-- The real part of the tail-kernel exponent parameter is `(Re s - 1)/2 > 0`.
+@isnad1 id=lt.1h1v.s7.1ee5a1bd0533 from=translated src=- shape=7966da13 vocab=29443a83
+-/
 theorem tailExponent_re_pos (hs : 1 < s.re) :
     0 < (-((((1/2 + (s.re - 1)/2 : ℝ)) : ℂ) - (s - 1/2))).re := by
   have : (-((((1/2 + (s.re - 1)/2 : ℝ)) : ℂ) - (s - 1/2))).re
@@ -127,7 +139,9 @@ theorem tailExponent_re_pos (hs : 1 < s.re) :
   rw [this]
   linarith
 
-/-- **Integrability of the weighted test function** on `[0,∞)` (same `ε`).-/
+/-- **Integrability of the weighted test function** on `[0,∞)` (same `ε`).
+@isnad1 id=integrab.2h2v.s7.f125a3293a52 from=translated src=- shape=6f3b8575 vocab=467c4133
+-/
 theorem auxF_mul_exp_integrable (hX : 1 < X) (hs : 1 < s.re) :
     IntegrableOn
       (fun x : ℝ => auxF s X x * ((Real.exp ((1/2 + (s.re - 1)/2) * x) : ℝ) : ℂ))
@@ -153,7 +167,9 @@ theorem auxF_mul_exp_integrable (hX : 1 < X) (hs : 1 < s.re) :
     ring
 
 /-- **Bounded variation of the `c`-weighted auxiliary function on the half line**, for
-any real weight `c < Re s - 1/2` (the tail exponent then still decays).-/
+any real weight `c < Re s - 1/2` (the tail exponent then still decays).
+@isnad1 id=boundedv.2h3v.s6.d22c13186856 from=translated src=- shape=f1d7992d vocab=6ea74af1
+-/
 theorem auxF_mul_exp_bv_Ici (hX : 1 < X) {c : ℝ} (hc : c < s.re - 1/2) :
     BoundedVariationOn
       (fun x : ℝ => auxF s X x * ((Real.exp (c * x) : ℝ) : ℂ)) (Set.Ici 0) := by
@@ -237,7 +253,9 @@ theorem auxF_mul_exp_bv_Ici (hX : 1 < X) {c : ℝ} (hc : c < s.re - 1/2) :
 
 /-- **Bounded variation of the weighted test function** (with `ε = (Re s - 1)/2`,
 requiring `Re s > 1` exactly as in the paper's proof of Lemma 3, where the explicit
-formula is first applied for `Re s > 1`).-/
+formula is first applied for `Re s > 1`).
+@isnad1 id=boundedv.2h2v.s7.a0a15f0c7e92 from=translated src=- shape=60755ae8 vocab=6eecb75b
+-/
 theorem auxF_mul_exp_bv (hX : 1 < X) (hs : 1 < s.re) :
     BoundedVariationOn
       (fun x : ℝ => auxF s X x * ((Real.exp ((1/2 + (s.re - 1)/2) * x) : ℝ) : ℂ))
@@ -246,7 +264,9 @@ theorem auxF_mul_exp_bv (hX : 1 < X) (hs : 1 < s.re) :
 
 /-- **Bounded variation of the `c`-weighted auxiliary function on the whole line**, for
 `|c| < Re s - 1/2`: the positive ray directly, the negative ray by the evenness
-reflection (which flips the weight's sign).-/
+reflection (which flips the weight's sign).
+@isnad1 id=boundedv.3h3v.s7.8e35ce3f1620 from=translated src=- shape=78baf157 vocab=b8018103
+-/
 theorem boundedVariationOn_auxF_mul_exp (hX : 1 < X) {c : ℝ}
     (hcl : -(s.re - 1/2) < c) (hcr : c < s.re - 1/2) :
     BoundedVariationOn
@@ -273,20 +293,26 @@ theorem boundedVariationOn_auxF_mul_exp (hX : 1 < X) {c : ℝ}
       ⟨Set.self_mem_Ici, fun x hx => hx⟩]
   exact ENNReal.add_ne_top.mpr ⟨hIic, hpos⟩
 
-/-- The real-part projection is `1`-Lipschitz.-/
+/-- The real-part projection is `1`-Lipschitz.
+@isnad1 id=lipschit.0h0v.s4.3fb9fa8d471c from=translated src=- shape=c80f5d6d vocab=5d88e61d
+-/
 theorem lipschitzWith_complex_re : LipschitzWith 1 Complex.re := by
   convert (RCLike.lipschitzWith_re (K := ℂ)) using 1
   ext z
   rfl
 
-/-- The imaginary-part projection is `1`-Lipschitz.-/
+/-- The imaginary-part projection is `1`-Lipschitz.
+@isnad1 id=lipschit.0h0v.s4.966894af95c8 from=translated src=- shape=c80f5d6d vocab=3756f1f4
+-/
 theorem lipschitzWith_complex_im : LipschitzWith 1 Complex.im := by
   convert (RCLike.lipschitzWith_im (K := ℂ)) using 1
   ext z
   rfl
 
 /-- **Bounded variation of `F_{s,X}` on the whole line** (for `Re s > 1/2`): the `c = 0`
-case of `boundedVariationOn_auxF_mul_exp`, with the trivial `e^{0·x} = 1` weight removed.-/
+case of `boundedVariationOn_auxF_mul_exp`, with the trivial `e^{0·x} = 1` weight removed.
+@isnad1 id=boundedv.2h2v.s6.37548cd248d2 from=translated src=- shape=d651b429 vocab=df9a4bc0
+-/
 theorem boundedVariationOn_auxF (hX : 1 < X) (hs : 1/2 < s.re) :
     BoundedVariationOn (auxF s X) Set.univ := by
   have h1 := boundedVariationOn_auxF_mul_exp s hX (c := 0) (by linarith) (by linarith)
@@ -296,20 +322,26 @@ theorem boundedVariationOn_auxF (hX : 1 < X) (hs : 1/2 < s.re) :
   rwa [h2] at h1
 
 /-- **`hre` at the auxiliary function**: the real part of `F_{s,X}` has locally bounded
-variation on the line.-/
+variation on the line.
+@isnad1 id=locallyb.2h2v.s6.3c76c57eb0a9 from=translated src=- shape=cbbefe49 vocab=d6f898ae
+-/
 theorem locallyBoundedVariationOn_auxF_re (hX : 1 < X) (hs : 1/2 < s.re) :
     LocallyBoundedVariationOn (fun u : ℝ => (auxF s X u).re) Set.univ :=
   (lipschitzWith_complex_re.comp_boundedVariationOn
     (boundedVariationOn_auxF s hX hs)).locallyBoundedVariationOn
 
-/-- **`him` at the auxiliary function**.-/
+/-- **`him` at the auxiliary function**.
+@isnad1 id=locallyb.2h2v.s6.fbaa82126200 from=translated src=- shape=7685c501 vocab=23210171
+-/
 theorem locallyBoundedVariationOn_auxF_im (hX : 1 < X) (hs : 1/2 < s.re) :
     LocallyBoundedVariationOn (fun u : ℝ => (auxF s X u).im) Set.univ :=
   (lipschitzWith_complex_im.comp_boundedVariationOn
     (boundedVariationOn_auxF s hX hs)).locallyBoundedVariationOn
 
 /-- **`hGre` at the auxiliary function**: the real part of `F_{s,X}(x)e^{(1/2+a)x}` has
-locally bounded variation on the line, for `0 < a < Re s - 1`.-/
+locally bounded variation on the line, for `0 < a < Re s - 1`.
+@isnad1 id=locallyb.3h3v.s6.790eb68780c4 from=translated src=- shape=9d056712 vocab=8ff278c5
+-/
 theorem locallyBoundedVariationOn_auxF_mul_exp_re (hX : 1 < X) {a : ℝ}
     (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn (fun x : ℝ =>
@@ -318,7 +350,9 @@ theorem locallyBoundedVariationOn_auxF_mul_exp_re (hX : 1 < X) {a : ℝ}
     (boundedVariationOn_auxF_mul_exp s hX (c := 1/2 + a)
       (by linarith) (by linarith))).locallyBoundedVariationOn
 
-/-- **`hGim` at the auxiliary function**.-/
+/-- **`hGim` at the auxiliary function**.
+@isnad1 id=locallyb.3h3v.s6.549c6df0adbd from=translated src=- shape=edd5cda8 vocab=ec4200f6
+-/
 theorem locallyBoundedVariationOn_auxF_mul_exp_im (hX : 1 < X) {a : ℝ}
     (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn (fun x : ℝ =>
@@ -328,7 +362,9 @@ theorem locallyBoundedVariationOn_auxF_mul_exp_im (hX : 1 < X) {a : ℝ}
       (by linarith) (by linarith))).locallyBoundedVariationOn
 
 /-- **`hFa` at the auxiliary function**: the `c`-weighted auxiliary function is
-integrable on the whole line for `|c| < Re s - 1/2`.-/
+integrable on the whole line for `|c| < Re s - 1/2`.
+@isnad1 id=integrab.2h3v.s6.03c47ada0ece from=translated src=- shape=c1b58599 vocab=816a1ff0
+-/
 theorem integrable_auxF_mul_exp (hX : 1 < X) {c : ℝ} (hc : |c| < s.re - 1/2) :
     Integrable (fun x : ℝ => auxF s X x * ((Real.exp (c * x) : ℝ) : ℂ)) := by
   have hs : 1/2 ≤ s.re := by
@@ -358,7 +394,9 @@ theorem integrable_auxF_mul_exp (hX : 1 < X) {c : ℝ} (hc : |c| < s.re - 1/2) :
           congr 2
           ring
 
-/-- On the tail, the difference quotient is `1/x - c·e^{-hx}/x²` with `c = T·e^{hT}`.-/
+/-- On the tail, the difference quotient is `1/x - c·e^{-hx}/x²` with `c = T·e^{hT}`.
+@isnad1 id=eq.2h3v.s7.f405e2365bf9 from=translated src=- shape=7a576fca vocab=219e187a
+-/
 theorem auxF_diffQuot_tail_eq (hX : 1 < X) :
     ∀ x ∈ Set.Ici (Real.log X),
       (1 - auxF s X x) / (x : ℂ)
@@ -386,7 +424,9 @@ theorem auxF_diffQuot_tail_eq (hX : 1 < X) :
     field_simp
 
 /-- Continuity of the difference quotient `(1 - F_{s,X}(x))/x` on `[0,∞)`: zero on the
-plateau `[0, log X]`, the explicit tail formula beyond.-/
+plateau `[0, log X]`, the explicit tail formula beyond.
+@isnad1 id=continuo.1h2v.s6.f88bc0de4bc7 from=translated src=- shape=3b93a9be vocab=ab5f7006
+-/
 theorem continuousOn_auxF_diffQuot (hX : 1 < X) :
     ContinuousOn (fun x : ℝ => (1 - auxF s X x) / (x : ℂ)) (Set.Ici 0) := by
   have hT0 : 0 < Real.log X := Real.log_pos hX
@@ -428,7 +468,9 @@ theorem continuousOn_auxF_diffQuot (hX : 1 < X) :
         (auxF_diffQuot_tail_eq s hX x hxT))
 
 /-- The difference quotient is differentiable on the tail `(log X, ∞)`, with the explicit
-derivative of `1/x - c·exp(-(s-1/2)x)/x²`.-/
+derivative of `1/x - c·exp(-(s-1/2)x)/x²`.
+@isnad1 id=hasderiv.2h3v.s8.549bc0aaa89e from=translated src=- shape=0c150377 vocab=e83af63d
+-/
 theorem hasDerivAt_auxF_diffQuot_tail (hX : 1 < X) :
     ∀ x ∈ Set.Ioi (Real.log X),
       HasDerivAt (fun x : ℝ => (1 - auxF s X x) / (x : ℂ))
@@ -459,7 +501,9 @@ theorem hasDerivAt_auxF_diffQuot_tail (hX : 1 < X) :
   field_simp
   ring
 
-/-- Integrability on the tail of the exponentially-decaying part of the derivative.-/
+/-- Integrability on the tail of the exponentially-decaying part of the derivative.
+@isnad1 id=integrab.2h2v.s8.d26197ead5a0 from=translated src=- shape=5bdc6b3c vocab=4a84fb14
+-/
 theorem integrableOn_auxF_diffQuot_tail (hX : 1 < X) (hs : 1 < s.re) :
     IntegrableOn (fun x : ℝ =>
         ((Real.log X : ℝ) : ℂ) * Complex.exp ((s - 1/2) * (Real.log X : ℂ))
@@ -504,7 +548,9 @@ theorem integrableOn_auxF_diffQuot_tail (hX : 1 < X) (hs : 1 < s.re) :
           gcongr <;> exact le_of_lt hx
 
 /-- Integrability of the piecewise derivative `f'` on `[0,∞)`: zero on the plateau,
-`1/x²`-plus-exponential-decay on the tail.-/
+`1/x²`-plus-exponential-decay on the tail.
+@isnad1 id=integrab.2h2v.s8.79d226888c29 from=translated src=- shape=33dc2f38 vocab=f58226a0
+-/
 theorem integrableOn_auxF_diffQuot_deriv (hX : 1 < X) (hs : 1 < s.re) :
     IntegrableOn (fun x : ℝ => if x < Real.log X then 0
       else -(1/(x:ℂ)^2)
@@ -544,7 +590,9 @@ theorem integrableOn_auxF_diffQuot_deriv (hX : 1 < X) (hs : 1 < s.re) :
     simp only [Pi.add_apply, Pi.neg_apply]
 
 /-- **Bounded variation of the difference quotient** `(1 - F_{s,X}(x))/x` on `[0,∞)`:
-zero on the plateau, explicitly differentiable with integrable derivative on the tail.-/
+zero on the plateau, explicitly differentiable with integrable derivative on the tail.
+@isnad1 id=boundedv.2h2v.s6.422269bc03e9 from=translated src=- shape=3bd5de14 vocab=99af964f
+-/
 theorem auxF_diffQuot_bv (hX : 1 < X) (hs : 1 < s.re) :
     BoundedVariationOn (fun x : ℝ => (1 - auxF s X x) / (x : ℂ)) (Set.Ici 0) := by
   have hT0 : 0 < Real.log X := Real.log_pos hX
@@ -574,7 +622,9 @@ theorem auxF_diffQuot_bv (hX : 1 < X) (hs : 1 < s.re) :
 /-- **`F_{s,X}` is an admissible test function** for the Weil–Poitou explicit formula,
 for `Re s > 1` and `X > 1` — exactly the regime in which the paper first applies the
 explicit formula (Lemma 3's proof; `Re s > 1/2` is then reached by analytic
-continuation, not by re-checking admissibility). Witness: `ε = (Re s - 1)/2`.-/
+continuation, not by re-checking admissibility). Witness: `ε = (Re s - 1)/2`.
+@isnad1 id=isadmiss.2h2v.s4.cacbc778c92d from=translated src=- shape=e6763864 vocab=aa317760
+-/
 theorem isAdmissibleTestFn_auxF {X : ℝ} (hX : 1 < X) (hs : 1 < s.re) :
     IsAdmissibleTestFn (auxF s X) := by
   refine ⟨auxF_neg s X,

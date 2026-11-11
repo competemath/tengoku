@@ -64,7 +64,9 @@ noncomputable def FormalGroupHom.height {F G : FormalGroup R}
     (p : ℕ) (f : FormalGroupHom F G) : ℕ∞ :=
   f.toSeries.order.map (padicValNat p)
 
-/-- The height of a zero formal group hom is `⊤`.-/
+/-- The height of a zero formal group hom is `⊤`.
+@isnad1 id=eq.1h5v.s5.52c740321b42 from=translated src=- shape=290f32de vocab=8eb789a7
+-/
 @[simp]
 theorem FormalGroupHom.height_zero_toSeries {F G : FormalGroup R} (p : ℕ)
     (f : FormalGroupHom F G) (hf : f.toSeries = 0) :
@@ -72,7 +74,9 @@ theorem FormalGroupHom.height_zero_toSeries {F G : FormalGroup R} (p : ℕ)
   rw [FormalGroupHom.height, hf, PowerSeries.order_zero]; rfl
 
 /-- The height of a formal group hom with nonzero underlying series is the
-`p`-adic valuation of the series' order.-/
+`p`-adic valuation of the series' order.
+@isnad1 id=eq.1h5v.s6.ef0d77c5ebcf from=translated src=- shape=751d8709 vocab=cfe909ee
+-/
 theorem FormalGroupHom.height_of_ne_zero {F G : FormalGroup R} (p : ℕ)
     (f : FormalGroupHom F G) (hf : f.toSeries ≠ 0) :
     f.height p = padicValNat p f.toSeries.order.toNat := by
@@ -86,7 +90,9 @@ Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.7.-/
 noncomputable def FormalGroup.height (F : FormalGroup R) (p : ℕ) : ℕ∞ :=
   (F.mulByNatHom p).height p
 
-/-- `FormalGroup.height F p = FormalGroupHom.height p (mulByNatHom F p)`.-/
+/-- `FormalGroup.height F p = FormalGroupHom.height p (mulByNatHom F p)`.
+@isnad1 id=eq.0h3v.s4.cdb4737c5410 from=translated src=- shape=9978ba79 vocab=8de24dc5
+-/
 theorem FormalGroup.height_eq (F : FormalGroup R) (p : ℕ) :
     F.height p = (F.mulByNatHom p).height p :=
   rfl
@@ -134,7 +140,9 @@ ring `R` with no zero divisors, and a prime `p`,
 `(g ∘ f).height p = f.height p + g.height p`.
 
 The proof uses `PowerSeries.order_subst` to reduce to the multiplicativity of
-`padicValNat` at a prime.-/
+`padicValNat` at a prime.
+@isnad1 id=eq.0h7v.s6.c2cb1b328e42 from=translated src=- shape=bc8f9383 vocab=ae88c309
+-/
 theorem FormalGroupHom.height_comp {F G H : FormalGroup R} [NoZeroDivisors R]
     (p : ℕ) [Fact p.Prime]
     (g : FormalGroupHom G H) (f : FormalGroupHom F G) :

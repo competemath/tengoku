@@ -70,36 +70,52 @@ def generator (s : SingularPair R K p) : Kˣ :=
   s.1.2
 
 omit [IsDomain R] in
-/-- The defining relation `(generator s) = (ideal s)^p`.-/
+/-- The defining relation `(generator s) = (ideal s)^p`.
+@isnad1 id=eq.0h4v.s10.17d0f27841fa from=translated src=- shape=3aa61ff5 vocab=ae3ea0ad
+-/
 theorem principal_eq_ideal_pow (s : SingularPair R K p) :
     toPrincipalIdeal R K (generator s) = ideal s ^ p :=
   s.2
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h3v.s9.b781cf6cecf7 from=translated src=- shape=d8db80d0 vocab=007e6199
+-/
 @[simp]
 theorem ideal_one :
     ideal (R := R) (K := K) (p := p) 1 = 1 :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h3v.s8.8b6c30ca0b7f from=translated src=- shape=1025694f vocab=6ed2b6bf
+-/
 @[simp]
 theorem generator_one :
     generator (R := R) (K := K) (p := p) 1 = 1 :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s9.372a65b02774 from=translated src=- shape=d81fc4a0 vocab=eb0bb2da
+-/
 @[simp]
 theorem ideal_mul (s t : SingularPair R K p) :
     ideal (s * t) = ideal s * ideal t :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s8.63d11a56d4cb from=translated src=- shape=19f85199 vocab=97a741f2
+-/
 @[simp]
 theorem generator_mul (s t : SingularPair R K p) :
     generator (s * t) = generator s * generator t :=
   rfl
 
-/-- Principal fractional ideals map to the trivial class.-/
+/-- Principal fractional ideals map to the trivial class.
+@isnad1 id=eq.0h3v.s10.bafe279db53d from=translated src=- shape=78dfcc30 vocab=a19a0dd5
+-/
 @[simp]
 theorem classGroup_mk_toPrincipalIdeal (x : Kˣ) :
     ClassGroup.mk (R := R) (K := K) (toPrincipalIdeal R K x) = 1 := by
@@ -116,13 +132,18 @@ def classMap (p : ℕ) : SingularPair R K p →* ClassGroup R where
     intro s t
     simp [ideal]
 
+/--
+@isnad1 id=eq.0h4v.s10.c423fe16caff from=translated src=- shape=07c33e4e vocab=fd97c347
+-/
 @[simp]
 theorem classMap_apply (s : SingularPair R K p) :
     classMap (R := R) (K := K) p s =
       ClassGroup.mk (R := R) (K := K) (ideal s) :=
   rfl
 
-/-- The class attached to a singular pair is killed by `p`.-/
+/-- The class attached to a singular pair is killed by `p`.
+@isnad1 id=eq.0h4v.s9.06dfcd624b23 from=translated src=- shape=3ec580ac vocab=874ea4dd
+-/
 theorem classMap_pow_eq_one (s : SingularPair R K p) :
     classMap (R := R) (K := K) p s ^ p = 1 := by
   change (ClassGroup.mk (R := R) (K := K) (ideal s)) ^ p = 1
@@ -130,7 +151,9 @@ theorem classMap_pow_eq_one (s : SingularPair R K p) :
   rw [← principal_eq_ideal_pow (R := R) (K := K) s]
   simp
 
-/-- If a class is killed by `p`, then it is represented by a singular pair.-/
+/-- If a class is killed by `p`, then it is represented by a singular pair.
+@isnad1 id=ex.1h4v.s9.fa3d2e0fc8f8 from=translated src=- shape=8892b292 vocab=874ea4dd
+-/
 theorem exists_of_class_pow_eq_one {c : ClassGroup R} (hc : c ^ p = 1) :
     ∃ s : SingularPair R K p, classMap (R := R) (K := K) p s = c := by
   refine ClassGroup.induction (R := R) K
@@ -175,13 +198,18 @@ def classMapToPTorsion (p : ℕ) :
     apply Subtype.ext
     simp [classMap]
 
+/--
+@isnad1 id=eq.0h4v.s11.71f60a2031f6 from=translated src=- shape=dd864f3a vocab=183297ac
+-/
 @[simp]
 theorem classMapToPTorsion_apply_coe (s : SingularPair R K p) :
     (classMapToPTorsion (R := R) (K := K) p s : ClassGroup R) =
       ClassGroup.mk (R := R) (K := K) (ideal s) :=
   rfl
 
-/-- Every `p`-torsion class is represented by a singular pair.-/
+/-- Every `p`-torsion class is represented by a singular pair.
+@isnad1 id=surjecti.0h3v.s10.08e098ef0877 from=translated src=- shape=e3f0405e vocab=542e32a9
+-/
 theorem classMapToPTorsion_surjective (p : ℕ) :
     Function.Surjective (classMapToPTorsion (R := R) (K := K) p) := by
   intro c
@@ -212,6 +240,9 @@ abbrev principalPairSubgroup (p : ℕ) : Subgroup (SingularPair R K p) :=
 abbrev SingularGroup (p : ℕ) : Type _ :=
   SingularPair R K p ⧸ principalPairSubgroup (R := R) (K := K) p
 
+/--
+@isnad1 id=eq.0h4v.s11.20e447dc9fac from=translated src=- shape=59999c08 vocab=ec6099f0
+-/
 @[simp]
 theorem classMapToPTorsion_principalPair (p : ℕ) (gamma : Kˣ) :
     classMapToPTorsion (R := R) (K := K) p
@@ -231,6 +262,9 @@ def singularGroupClassMapToPTorsion (p : ℕ) :
       obtain ⟨gamma, rfl⟩ := hs
       exact classMapToPTorsion_principalPair (R := R) (K := K) p gamma)
 
+/--
+@isnad1 id=eq.0h4v.s11.ffb47a58dbd2 from=translated src=- shape=765251fa vocab=068e8293
+-/
 @[simp]
 theorem singularGroupClassMapToPTorsion_mk (p : ℕ) (s : SingularPair R K p) :
     singularGroupClassMapToPTorsion (R := R) (K := K) p
@@ -238,7 +272,9 @@ theorem singularGroupClassMapToPTorsion_mk (p : ℕ) (s : SingularPair R K p) :
         classMapToPTorsion (R := R) (K := K) p s :=
   rfl
 
-/-- The singular-group class map is still surjective onto `A[p]`.-/
+/-- The singular-group class map is still surjective onto `A[p]`.
+@isnad1 id=surjecti.0h3v.s10.ccaa23c14235 from=translated src=- shape=e3f0405e vocab=61b82b4d
+-/
 theorem singularGroupClassMapToPTorsion_surjective (p : ℕ) :
     Function.Surjective
       (singularGroupClassMapToPTorsion (R := R) (K := K) p) := by
@@ -268,12 +304,18 @@ def unitPair (p : ℕ) : fractionalUnitSubgroup (R := R) (K := K) →*
     ext <;> simp
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s11.911cd683ddee from=translated src=- shape=6fac5bf5 vocab=2ee375e1
+-/
 @[simp]
 theorem unitPair_ideal (p : ℕ) (u : fractionalUnitSubgroup (R := R) (K := K)) :
     ideal (unitPair (R := R) (K := K) p u) = 1 :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s11.cc8428ebeac8 from=translated src=- shape=2918cb13 vocab=c49b491e
+-/
 @[simp]
 theorem unitPair_generator (p : ℕ) (u : fractionalUnitSubgroup (R := R) (K := K)) :
     generator (unitPair (R := R) (K := K) p u) = u.1 :=
@@ -287,6 +329,9 @@ def unitToSingularGroup (p : ℕ) :
     (unitPair (R := R) (K := K) p)
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s12.1214fa4c1c4c from=translated src=- shape=ff7b4130 vocab=f0317c9a
+-/
 @[simp]
 theorem unitToSingularGroup_apply (p : ℕ)
     (u : fractionalUnitSubgroup (R := R) (K := K)) :
@@ -295,6 +340,9 @@ theorem unitToSingularGroup_apply (p : ℕ)
         SingularGroup (R := R) (K := K) p) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.a305f5c38eab from=translated src=- shape=0d3d1786 vocab=f1cc9c0f
+-/
 @[simp]
 theorem singularGroupClassMapToPTorsion_unitToSingularGroup
     (p : ℕ) (u : fractionalUnitSubgroup (R := R) (K := K)) :

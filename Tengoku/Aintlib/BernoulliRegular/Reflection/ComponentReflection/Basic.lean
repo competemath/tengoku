@@ -93,12 +93,18 @@ def IsReflectionComponentIndex (p i : ℕ) : Prop :=
 def reflectedComponentIndex (p i : ℕ) : ℕ :=
   p - i
 
+/--
+@isnad1 id=isreflec.1h2v.s3.26872cd22cbc from=translated src=- shape=0ee5e33f vocab=9ebacadb
+-/
 theorem reflectedComponentIndex_isIndex
     {p i : ℕ} (hi : IsReflectionComponentIndex p i) :
     IsReflectionComponentIndex p (reflectedComponentIndex p i) := by
   dsimp [IsReflectionComponentIndex, reflectedComponentIndex] at hi ⊢
   omega
 
+/--
+@isnad1 id=odd.3h2v.s4.98a196e9a3a9 from=translated src=- shape=6c8c8424 vocab=aa290e3b
+-/
 theorem reflectedComponentIndex_odd_of_even
     {p i : ℕ} (hp_odd : Odd p) (hi : IsReflectionComponentIndex p i)
     (hi_even : Even i) :
@@ -125,7 +131,9 @@ component.  This is the precise odd/even split:
 
 * odd `i`: use the original component;
 * even `i`: use the reflected component `p - i`, which is odd because `p` is
-  odd.-/
+  odd.
+@isnad1 id=ex.3h3v.s5.872be89415e8 from=translated src=- shape=e2fb5c2a vocab=a071d2b5
+-/
 theorem exists_odd_nontrivial_of_nontrivial
     {p i : ℕ} (R : ComponentReflectionData p)
     (hp_odd : Odd p) (hi : IsReflectionComponentIndex p i)

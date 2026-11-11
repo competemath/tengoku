@@ -80,7 +80,9 @@ PID/principal ideal — only the coprimeness hypothesis.
 
 The reverse direction (torsion-free ⟹ coprime) requires more structure
 (see `rankOne_quotient_no_p_torsion_iff_generator_not_divisible` below
-for the iff in the PID case).-/
+for the iff in the PID case).
+@isnad1 id=eq.2h4v.s9.5ccd18e27c5d from=translated src=- shape=847e6f4f vocab=6d4ae9e4
+-/
 theorem rankOne_quotient_p_torsion_free_of_isCoprime
     {R : Type*} [CommRing R]
     {p a : R} (h : IsCoprime p a) :
@@ -100,7 +102,9 @@ if `p` does not divide `a`.
 statement after fixing isomorphisms `E ≃ Λ` and `C ≃ Λ` (via generators).
 The inclusion `C → E` becomes multiplication by `a`, and
 `(E/C)[p] = 0 ⟺ ¬ p ∣ a` is the assertion that the generator of `C`
-maps into `E` as an element not divisible by `p`.-/
+maps into `E` as an element not divisible by `p`.
+@isnad1 id=iff.2h3v.s9.52b764a44521 from=translated src=- shape=5edfdabd vocab=9f529409
+-/
 theorem rankOne_quotient_no_p_torsion_iff_generator_not_divisible
     {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
     {p : R} (hp : Prime p) {a : R} (ha : a ≠ 0) :
@@ -131,7 +135,9 @@ This is the direct module-theoretic specialisation of
 `rankOne_quotient_no_p_torsion_iff_generator_not_divisible`,
 parametrised by the iso `φ` (the "rank-1 identification"). It is the
 form directly applicable to the eigenspace specialisation
-`e_i (E⁺ ⊗ ℤ_p) ≃ₗ[ℤ_p] ℤ_p` once that decomposition is in place.-/
+`e_i (E⁺ ⊗ ℤ_p) ≃ₗ[ℤ_p] ℤ_p` once that decomposition is in place.
+@isnad1 id=iff.2h5v.s9.5fcd0e585141 from=translated src=- shape=36a48a08 vocab=017d34a3
+-/
 theorem rankOne_module_quotient_no_p_torsion_iff_generator_not_p_divisible
     {Λ : Type*} [CommRing Λ] [IsDomain Λ] [IsPrincipalIdealRing Λ]
     {p : Λ} (hp : Prime p)
@@ -162,7 +168,9 @@ the iso `φ : E ≃ₗ[Λ] Λ`), and `p : Λ` with `IsCoprime p (φ c)`,
    `(E ⧸ Λ·c)[p] = 0`.
 
 This is the most general forward direction at the module level —
-no domain or PID assumption needed.-/
+no domain or PID assumption needed.
+@isnad1 id=eq.2h6v.s9.f53d1e5d97d9 from=translated src=- shape=a236fe83 vocab=8f1c9a45
+-/
 theorem rankOne_module_quotient_p_torsion_free_of_isCoprime
     {Λ : Type*} [CommRing Λ]
     {p : Λ}

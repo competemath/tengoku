@@ -44,7 +44,9 @@ variable (K : Type*) [Field K] [NumberField K]
 
 /-- **The right-edge split of `Λ_ent'/Λ_ent`** (Poitou p. 6-01/6-02): on `Re s > 1`,
 
-`logDeriv Λ_ent(s) = 1/s + 1/(s-1) + (1/2)log|d| + γ_K'/γ_K(s) + ζ_K'/ζ_K(s)`.-/
+`logDeriv Λ_ent(s) = 1/s + 1/(s-1) + (1/2)log|d| + γ_K'/γ_K(s) + ζ_K'/ζ_K(s)`.
+@isnad1 id=eq.1h2v.s7.42e50c32cde1 from=translated src=- shape=19389c35 vocab=2d189f9b
+-/
 theorem logDeriv_completedDedekindZetaEntire_split {s : ℂ} (hs : 1 < s.re) :
     logDeriv (completedDedekindZetaEntire K) s
       = 1/s + 1/(s-1) + ((Real.log |NumberField.discr K| : ℝ) : ℂ)/2
@@ -170,7 +172,9 @@ theorem logDeriv_completedDedekindZetaEntire_split {s : ℂ} (hs : 1 < s.re) :
   ring
 
 /-- The complex exponential tail integral: for `Re z > 0`,
-`∫₀^∞ e^{-zv} dv = 1/z`.-/
+`∫₀^∞ e^{-zv} dv = 1/z`.
+@isnad1 id=eq.1h1v.s6.ffe9e619418f from=translated src=- shape=6026fe92 vocab=18b9d166
+-/
 theorem integral_cexp_neg_mul_Ioi {z : ℂ} (hz : 0 < z.re) :
     ∫ v in Set.Ioi (0:ℝ), Complex.exp (-(z * (v:ℂ))) = z⁻¹ := by
   have hzne : z ≠ 0 := by
@@ -230,7 +234,9 @@ theorem integral_cexp_neg_mul_Ioi {z : ℂ} (hz : 0 < z.re) :
   rw [show ((0:ℝ):ℂ) = (0:ℂ) from rfl, mul_zero, neg_zero, Complex.exp_zero]
   rw [zero_sub, neg_div, neg_neg, one_div]
 
-/-- Left rays as reflected right rays.-/
+/-- Left rays as reflected right rays.
+@isnad1 id=eq.0h1v.s5.df92ad3010a3 from=translated src=- shape=ac490ac4 vocab=69bebd5c
+-/
 theorem restrict_Iio_eq_map_sub (w : ℝ) :
     (volume : Measure ℝ).restrict (Set.Iio w)
       = Measure.map (fun v : ℝ => w - v) ((volume : Measure ℝ).restrict (Set.Ioi 0)) := by
@@ -249,7 +255,9 @@ theorem restrict_Iio_eq_map_sub (w : ℝ) :
     Measure.map_neg_eq_self, map_add_left_eq_self]
 
 /-- The complex exponential head integral: for `Re z > 0`,
-`∫_{-∞}^{w} e^{zu} du = e^{zw}/z`.-/
+`∫_{-∞}^{w} e^{zu} du = e^{zw}/z`.
+@isnad1 id=eq.1h2v.s6.c73aa1fa4356 from=translated src=- shape=2a0f47fc vocab=ddacf893
+-/
 theorem integral_cexp_mul_Iio {z : ℂ} (hz : 0 < z.re) (w : ℝ) :
     ∫ u in Set.Iio w, Complex.exp (z * (u:ℂ)) = Complex.exp (z * (w:ℂ)) / z := by
   have A : MeasurableEmbedding (fun v : ℝ => w - v) :=
@@ -267,7 +275,9 @@ theorem integral_cexp_mul_Iio {z : ℂ} (hz : 0 < z.re) (w : ℝ) :
   rw [h2, MeasureTheory.integral_const_mul, integral_cexp_neg_mul_Ioi hz,
     div_eq_mul_inv]
 
-/-- `e^{cu}` is integrable on left rays for `c > 0`.-/
+/-- `e^{cu}` is integrable on left rays for `c > 0`.
+@isnad1 id=integrab.1h2v.s5.350758cef2d4 from=translated src=- shape=04003540 vocab=4a18885c
+-/
 theorem integrableOn_exp_mul_Iio {c : ℝ} (hc : 0 < c) (w : ℝ) :
     IntegrableOn (fun u : ℝ => Real.exp (c*u)) (Set.Iio w) := by
   rw [IntegrableOn, restrict_Iio_eq_map_sub w]
@@ -287,7 +297,9 @@ theorem integrableOn_exp_mul_Iio {c : ℝ} (hc : 0 < c) (w : ℝ) :
   congr 1
   ring
 
-/-- `∫_{-∞}^w e^{cu} du = e^{cw}/c` for `c > 0`.-/
+/-- `∫_{-∞}^w e^{cu} du = e^{cw}/c` for `c > 0`.
+@isnad1 id=eq.1h2v.s6.4b65fe2f0186 from=translated src=- shape=62f74862 vocab=25691f3a
+-/
 theorem integral_exp_mul_Iio {c : ℝ} (hc : 0 < c) (w : ℝ) :
     ∫ u in Set.Iio w, Real.exp (c*u) = Real.exp (c*w)/c := by
   have A : MeasurableEmbedding (fun v : ℝ => w - v) :=
@@ -313,7 +325,9 @@ noncomputable def poleWindow (c : ℝ) (G : ℝ → ℂ) (u : ℝ) : ℂ :=
   2 * ((Real.exp (c*u) : ℝ) : ℂ)
     * ∫ w in Set.Ioi u, G w * ((Real.exp (-(c*w)) : ℝ) : ℂ)
 
-/-- The tail kernel is integrable on each right ray.-/
+/-- The tail kernel is integrable on each right ray.
+@isnad1 id=integrab.2h3v.s6.e4c31834ece5 from=translated src=- shape=aa61c861 vocab=8595c137
+-/
 theorem integrableOn_poleWindow_kernel (hc : 0 < c) (hG : Integrable G) (u : ℝ) :
     IntegrableOn (fun w : ℝ => G w * ((Real.exp (-(c*w)) : ℝ) : ℂ)) (Set.Ioi u) := by
   refine (hG.restrict).mul_bdd (c := Real.exp (-(c*u))) ?_ ?_
@@ -326,7 +340,9 @@ theorem integrableOn_poleWindow_kernel (hc : 0 < c) (hG : Integrable G) (u : ℝ
     rw [Complex.norm_real, Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
     exact Real.exp_le_exp.mpr (by nlinarith)
 
-/-- The global tail formula: `∫_{Ioi u} = ∫_{Ioi 0} - ∫_0^u`.-/
+/-- The global tail formula: `∫_{Ioi u} = ∫_{Ioi 0} - ∫_0^u`.
+@isnad1 id=eq.2h3v.s7.24642364d872 from=translated src=- shape=3f0b2c88 vocab=3aacbb83
+-/
 theorem tail_integral_eq (hc : 0 < c) (hG : Integrable G) (u : ℝ) :
     (∫ w in Set.Ioi u, G w * ((Real.exp (-(c*w)) : ℝ) : ℂ))
       = (∫ w in Set.Ioi (0:ℝ), G w * ((Real.exp (-(c*w)) : ℝ) : ℂ))
@@ -354,7 +370,9 @@ theorem tail_integral_eq (hc : 0 < c) (hG : Integrable G) (u : ℝ) :
     rw [hsplit]
     ring
 
-/-- `poleWindow` is continuous.-/
+/-- `poleWindow` is continuous.
+@isnad1 id=continuo.2h2v.s6.60ae70effe4c from=translated src=- shape=631eee3d vocab=76103781
+-/
 theorem continuous_poleWindow (hc : 0 < c) (hG : Integrable G) :
     Continuous (poleWindow c G) := by
   have hK_ii : ∀ a b : ℝ, IntervalIntegrable
@@ -375,13 +393,17 @@ theorem continuous_poleWindow (hc : 0 < c) (hG : Integrable G) :
   exact continuous_const.mul (Complex.continuous_ofReal.comp
     (Real.continuous_exp.comp (continuous_const.mul continuous_id)))
 
-/-- Value at the origin.-/
+/-- Value at the origin.
+@isnad1 id=eq.0h2v.s6.8dc1f2b77a11 from=translated src=- shape=64593d88 vocab=df122d72
+-/
 theorem poleWindow_zero :
     poleWindow c G 0 = 2 * ∫ w in Set.Ioi (0:ℝ), G w * ((Real.exp (-(c*w)) : ℝ) : ℂ) := by
   rw [poleWindow, mul_zero, Real.exp_zero]
   norm_num
 
-/-- The half-plane indicator product function behind `poleWindow` is integrable.-/
+/-- The half-plane indicator product function behind `poleWindow` is integrable.
+@isnad1 id=integrab.2h3v.s7.2fe51d1c159c from=translated src=- shape=1d7eb8da vocab=119cb916
+-/
 theorem integrable_poleWindow_pair (hc : 0 < c) (hG : Integrable G) (t : ℝ) :
     Integrable (fun p : ℝ × ℝ => ({q : ℝ × ℝ | q.1 < q.2}).indicator
       (fun q => (2 * ((Real.exp (c*q.1) : ℝ):ℂ) * Complex.exp ((t*q.1 : ℝ) * Complex.I))
@@ -475,7 +497,9 @@ theorem integrable_poleWindow_pair (hc : 0 < c) (hG : Integrable G) (t : ℝ) :
     refine Integrable.congr ((hG.norm.const_mul (2/c))) ?_
     exact Filter.Eventually.of_forall (fun w => (hval w).symm)
 
-/-- **The fixed-`t` pole-piece identity**: `∫ E_c(u) e^{itu} du = 2·(∫ G e^{itx})/(c+it)`.-/
+/-- **The fixed-`t` pole-piece identity**: `∫ E_c(u) e^{itu} du = 2·(∫ G e^{itx})/(c+it)`.
+@isnad1 id=eq.2h3v.s7.795a2b5e03d7 from=translated src=- shape=e1775a07 vocab=429fbd8f
+-/
 theorem integral_poleWindow_cexp (hc : 0 < c) (hG : Integrable G) (t : ℝ) :
     ∫ u : ℝ, poleWindow c G u * Complex.exp ((t*u : ℝ) * Complex.I)
       = 2 * (∫ x : ℝ, G x * Complex.exp ((t*x : ℝ) * Complex.I))
@@ -566,7 +590,9 @@ theorem integral_poleWindow_cexp (hc : 0 < c) (hG : Integrable G) (t : ℝ) :
     _ = 2 * (∫ x : ℝ, G x * Complex.exp ((t*x : ℝ) * Complex.I)) * z⁻¹ := by
         ring
 
-/-- `poleWindow` is integrable.-/
+/-- `poleWindow` is integrable.
+@isnad1 id=integrab.2h2v.s6.d51d4d6b3cf7 from=translated src=- shape=5732fbc1 vocab=33037635
+-/
 theorem integrable_poleWindow (hc : 0 < c) (hG : Integrable G) :
     Integrable (poleWindow c G) (volume : Measure ℝ) := by
   have h0 := (integrable_poleWindow_pair hc hG 0).integral_prod_left
@@ -600,7 +626,9 @@ theorem integrable_poleWindow (hc : 0 < c) (hG : Integrable G) :
 
 variable {a : ℝ} {F : ℝ → ℂ}
 
-/-- `Φ` on the edge `Re s = 1+a` is the Fourier integral of the weighted function.-/
+/-- `Φ` on the edge `Re s = 1+a` is the Fourier integral of the weighted function.
+@isnad1 id=eq.0h3v.s7.c3d610a1c0fe from=translated src=- shape=5b7d1eb6 vocab=726a57e7
+-/
 theorem paperPhi_edge (a : ℝ) (F : ℝ → ℂ) (t : ℝ) :
     paperPhi F (((1+a : ℝ):ℂ) + (t:ℂ)*Complex.I)
       = ∫ x : ℝ, (F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ))
@@ -615,7 +643,9 @@ theorem paperPhi_edge (a : ℝ) (F : ℝ → ℂ) (t : ℝ) :
   ring
 
 /-- The weighted function `F(x)e^{bx}`, `|b| ≤ 1/2`, is integrable for even `F`
-with `F·e^{(1/2+a)x} ∈ L¹`.-/
+with `F·e^{(1/2+a)x} ∈ L¹`.
+@isnad1 id=integrab.5h3v.s7.63b9d21181be from=translated src=- shape=e347fdb9 vocab=49dd55c0
+-/
 theorem integrable_F_mul_exp_half (ha : 0 < a) (hF : Integrable F)
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)))
@@ -651,7 +681,9 @@ theorem integrable_F_mul_exp_half (ha : 0 < a) (hF : Integrable F)
         mul_nonneg (norm_nonneg (F x)) (Real.exp_pos ((1/2+a)*x)).le]
 
 /-- **The value identification** (Poitou p. 6-07, Remarque): for even `F`,
-`E_a(0) + E_{1+a}(0) = Φ(0) + Φ(1)`.-/
+`E_a(0) + E_{1+a}(0) = Φ(0) + Φ(1)`.
+@isnad1 id=eq.4h2v.s8.efaafca8d8d9 from=translated src=- shape=d936f3ae vocab=ce813809
+-/
 theorem poleWindow_zero_add_eq (ha : 0 < a) (hF : Integrable F)
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ))) :
@@ -727,7 +759,9 @@ theorem poleWindow_zero_add_eq (ha : 0 < a) (hF : Integrable F)
   ring
 
 /-- **The pole-piece limit** (Poitou p. 6-01/6-07): the `1/s + 1/(s-1)` part of the
-edge integral converges to `2π(Φ(0) + Φ(1))`.-/
+edge integral converges to `2π(Φ(0) + Φ(1))`.
+@isnad1 id=tendsto.6h2v.s9.9cfc260f154d from=translated src=- shape=81e92ffa vocab=00e61649
+-/
 theorem tendsto_pole_piece (ha : 0 < a) (hF : Integrable F)
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)))
@@ -828,7 +862,9 @@ theorem tendsto_pole_piece (ha : 0 < a) (hF : Integrable F)
 
 /-- **The discriminant piece**: the constant `(1/2)log|d|` against the paired window
 converges to `2π F(0)·log|d|` (after the two edges double it). Stated for a general
-real constant `κ`: `lim ∫ (Φ(s)+Φ(1-s))·κ dt = 4π κ F(0)`.-/
+real constant `κ`: `lim ∫ (Φ(s)+Φ(1-s))·κ dt = 4π κ F(0)`.
+@isnad1 id=tendsto.6h5v.s9.6a68767a8f28 from=translated src=- shape=ecb5213a vocab=29ad9fa8
+-/
 theorem tendsto_const_piece (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFa : Integrable (fun x : ℝ => F x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)))
     (hGre : LocallyBoundedVariationOn (fun x : ℝ =>
@@ -893,7 +929,9 @@ theorem tendsto_const_piece (hFeven : ∀ x : ℝ, F (-x) = F x)
   rw [hlim] at h9
   exact h9
 
-/-- `Φ` on the critical line is the Fourier integral, in the window normal form.-/
+/-- `Φ` on the critical line is the Fourier integral, in the window normal form.
+@isnad1 id=eq.0h2v.s6.dd1fdf431f70 from=translated src=- shape=b719d15a vocab=49857339
+-/
 theorem paperPhi_half_line (F : ℝ → ℂ) (y : ℝ) :
     paperPhi F (((1/2 : ℝ):ℂ) + (y:ℂ)*Complex.I)
       = ∫ x : ℝ, F x * Complex.exp ((y*x : ℝ) * Complex.I) := by
@@ -906,7 +944,9 @@ theorem paperPhi_half_line (F : ℝ → ℂ) (y : ℝ) :
   ring_nf
 
 /-- **The Γ-edge limit** (Poitou p. 6-03, "Calcul de la partie archimédienne"):
-shift to the critical line, fold to the real part, and evaluate by `I_G`.-/
+shift to the critical line, fold to the real part, and evaluate by `I_G`.
+@isnad1 id=tendsto.16h4v.s10.5e446d51760e from=translated src=- shape=bad85049 vocab=a399a5ec
+-/
 theorem tendsto_gamma_edge (ha : 0 < a) (ha' : a ≤ 1/4)
     (hF : Integrable F)
     (hre : LocallyBoundedVariationOn (fun u : ℝ => (F u).re) Set.univ)
@@ -989,7 +1029,9 @@ theorem tendsto_gamma_edge (ha : 0 < a) (ha' : a ≤ 1/4)
   refine hcomb.congr (fun T => ?_)
   ring
 
-/-- Continuity in `t` of `Λ_ent'/Λ_ent(1+a+it)`.-/
+/-- Continuity in `t` of `Λ_ent'/Λ_ent(1+a+it)`.
+@isnad1 id=continuo.1h2v.s6.44ba9c109e73 from=translated src=- shape=28de9a51 vocab=34dd191d
+-/
 theorem continuous_logDeriv_completedDedekindZetaEntire_edge (ha : 0 < a) :
     Continuous (fun t : ℝ =>
       logDeriv (completedDedekindZetaEntire K) (((1+a : ℝ):ℂ) + (t:ℂ)*Complex.I)) := by
@@ -1012,7 +1054,9 @@ theorem continuous_logDeriv_completedDedekindZetaEntire_edge (ha : 0 < a) :
     completedDedekindZetaEntire_ne_zero_of_one_lt_re K hs
   exact ContinuousAt.div hd hv hne
 
-/-- Continuity in `t` of `γ_K'/γ_K(1+a+it)`.-/
+/-- Continuity in `t` of `γ_K'/γ_K(1+a+it)`.
+@isnad1 id=continuo.1h2v.s6.a5eabe81c412 from=translated src=- shape=28de9a51 vocab=57dd6b88
+-/
 theorem continuous_logDeriv_gammaFactor_edge (ha : 0 < a) :
     Continuous (fun t : ℝ =>
       logDeriv (gammaFactor K) (((1+a : ℝ):ℂ) + (t:ℂ)*Complex.I)) := by
@@ -1024,7 +1068,9 @@ theorem continuous_logDeriv_gammaFactor_edge (ha : 0 < a) :
   linarith
 
 /-- **The full edge-integral limit** — all four pieces of
-`∫ (Φ(s)+Φ(1-s))·Λ_ent'/Λ_ent(s)` on `Re s = 1+a` converge (Poitou (1) → (6)).-/
+`∫ (Φ(s)+Φ(1-s))·Λ_ent'/Λ_ent(s)` on `Re s = 1+a` converge (Poitou (1) → (6)).
+@isnad1 id=tendsto.25h6v.s11.e7ef1a3cd2f7 from=translated src=- shape=af877bc9 vocab=d1f5fd99
+-/
 theorem tendsto_edge_integral (ha : 0 < a) (ha' : a ≤ 1/4)
     (hF : Integrable F)
     (hre : LocallyBoundedVariationOn (fun u : ℝ => (F u).re) Set.univ)
@@ -1275,7 +1321,9 @@ sequence of contour heights `T n → ∞` along which the zero-capture sums of
 
 `Φ(0) + Φ(1) + log|d|·F(0) + I_G-terms − (H(0+) + H(0-))`,
 
-the right side of formula (6) before the prime-side unfolding of `H(0±)`.-/
+the right side of formula (6) before the prime-side unfolding of `H(0±)`.
+@isnad1 id=ex.25h6v.s11.06cbe2595349 from=translated src=- shape=4e26d73f vocab=69ce2af7
+-/
 theorem weil_explicit_formula (ha : 0 < a) (ha' : a ≤ 1/4)
     (hF : Integrable F)
     (hre : LocallyBoundedVariationOn (fun u : ℝ => (F u).re) Set.univ)
@@ -1540,7 +1588,9 @@ theorem weil_explicit_formula (ha : 0 < a) (ha' : a ≤ 1/4)
   rw [← mul_assoc, inv_mul_cancel₀ h2πi, one_mul]
 
 /-- **Quadratic Fourier decay of the auxiliary function** (readable from the
-Belabas–Friedman closed form, Lemma 2 eq. (8)): `‖F̂_{s,X}(γ)‖ = O(1/γ²)`.-/
+Belabas–Friedman closed form, Lemma 2 eq. (8)): `‖F̂_{s,X}(γ)‖ = O(1/γ²)`.
+@isnad1 id=ex.2h2v.s6.841e0d275fc2 from=translated src=- shape=e57828b8 vocab=ce701ad9
+-/
 theorem exists_norm_fourier_auxF_le (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) :
     ∃ C γ₀ : ℝ, 0 < C ∧ 1 ≤ γ₀ ∧ ∀ γ : ℝ, γ₀ ≤ |γ| →
       ‖paperFourierIntegral (auxF s X) γ‖ ≤ C / γ^2 := by
@@ -1740,7 +1790,9 @@ theorem exists_norm_fourier_auxF_le (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 <
         rw [hfin, div_le_div_iff_of_pos_right hγ2]
         linarith
 
-/-- Set-restricted Riemann–Lebesgue, `e^{+ixt}` kernel, `t → +∞`.-/
+/-- Set-restricted Riemann–Lebesgue, `e^{+ixt}` kernel, `t → +∞`.
+@isnad1 id=tendsto.1h2v.s6.fbd395a15faa from=translated src=- shape=db5a4af5 vocab=5736e936
+-/
 theorem tendsto_setIntegral_mul_cexp_atTop (q : ℝ → ℂ) (s : Set ℝ)
     (hs : MeasurableSet s) :
     Tendsto (fun t : ℝ => ∫ x in s, q x * Complex.exp ((t*x : ℝ) * Complex.I))
@@ -1758,7 +1810,9 @@ theorem tendsto_setIntegral_mul_cexp_atTop (q : ℝ → ℂ) (s : Set ℝ)
     ring_nf
   · rw [Set.indicator_of_notMem hx, Set.indicator_of_notMem hx, zero_mul]
 
-/-- Set-restricted Riemann–Lebesgue, `e^{+ixt}` kernel, `t → -∞`.-/
+/-- Set-restricted Riemann–Lebesgue, `e^{+ixt}` kernel, `t → -∞`.
+@isnad1 id=tendsto.1h2v.s6.20012a17c432 from=translated src=- shape=db5a4af5 vocab=afb5f1da
+-/
 theorem tendsto_setIntegral_mul_cexp_atBot (q : ℝ → ℂ) (s : Set ℝ)
     (hs : MeasurableSet s) :
     Tendsto (fun t : ℝ => ∫ x in s, q x * Complex.exp ((t*x : ℝ) * Complex.I))
@@ -1778,7 +1832,9 @@ theorem tendsto_setIntegral_mul_cexp_atBot (q : ℝ → ℂ) (s : Set ℝ)
     ring_nf
   · rw [Set.indicator_of_notMem hx, Set.indicator_of_notMem hx, zero_mul]
 
-/-- The plateau piece of `gammaFT` vanishes at `±∞`.-/
+/-- The plateau piece of `gammaFT` vanishes at `±∞`.
+@isnad1 id=tendsto.1h2v.s6.c5597c0c1c47 from=translated src=- shape=88701f27 vocab=ff8d61af
+-/
 theorem tendsto_gammaFT_plateau (F : ℝ → ℂ) (l : Filter ℝ)
     (habs : Tendsto (fun t : ℝ => |t|) l atTop) :
     Tendsto (fun t : ℝ =>
@@ -1808,7 +1864,9 @@ theorem tendsto_gammaFT_plateau (F : ℝ → ℂ) (l : Filter ℝ)
 
 /-- **Poitou's `γ` vanishes along any filter on which `|t| → ∞`** — Riemann–Lebesgue on
 both integral pieces (supplied as `hRL`, so this is filter-generic), `sincTail → 0` on the
-plateau piece. The `atTop`/`atBot` cases below are the two specialisations.-/
+plateau piece. The `atTop`/`atBot` cases below are the two specialisations.
+@isnad1 id=tendsto.2h2v.s7.556cf0e6007f from=translated src=- shape=c9556690 vocab=a02a3e99
+-/
 theorem tendsto_gammaFT_of_setIntegral (F : ℝ → ℂ) (l : Filter ℝ)
     (habs : Tendsto (fun t : ℝ => |t|) l atTop)
     (hRL : ∀ (q : ℝ → ℂ) (u : Set ℝ), MeasurableSet u →
@@ -1822,13 +1880,17 @@ theorem tendsto_gammaFT_of_setIntegral (F : ℝ → ℂ) (l : Filter ℝ)
   exact h0
 
 /-- **Poitou's `γ` vanishes at `+∞`** — unconditionally: Riemann–Lebesgue on both
-integral pieces, `sincTail → 0` on the plateau piece.-/
+integral pieces, `sincTail → 0` on the plateau piece.
+@isnad1 id=tendsto.0h1v.s5.948b394f1503 from=translated src=- shape=b940a6d7 vocab=86c6d521
+-/
 theorem tendsto_gammaFT_atTop (F : ℝ → ℂ) :
     Tendsto (gammaFT F) atTop (nhds 0) :=
   tendsto_gammaFT_of_setIntegral F atTop tendsto_abs_atTop_atTop
     tendsto_setIntegral_mul_cexp_atTop
 
-/-- **Poitou's `γ` vanishes at `-∞`** — unconditionally.-/
+/-- **Poitou's `γ` vanishes at `-∞`** — unconditionally.
+@isnad1 id=tendsto.0h1v.s5.9dcdb4fd220d from=translated src=- shape=b940a6d7 vocab=8a218a6d
+-/
 theorem tendsto_gammaFT_atBot (F : ℝ → ℂ) :
     Tendsto (gammaFT F) atBot (nhds 0) := by
   refine tendsto_gammaFT_of_setIntegral F atBot ?_ tendsto_setIntegral_mul_cexp_atBot
@@ -1840,7 +1902,9 @@ theorem tendsto_gammaFT_atBot (F : ℝ → ℂ) :
 /-- **The `γ = O(1/t)` bound from quadratic Fourier decay** (Poitou's Lemme 1 made
 quantitative): if the Fourier transform of `F` is `O(1/γ²)` beyond `γ₀`, then
 `‖γ_F(t)‖ ≤ C/|t|` there, via `γ' = -iφ` and the fundamental theorem of calculus
-against the vanishing at infinity.-/
+against the vanishing at infinity.
+@isnad1 id=le.5h4v.s8.1e828bbd5bae from=translated src=- shape=a5f880af vocab=9d1cad55
+-/
 theorem norm_gammaFT_le_of_fourier_decay {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     {C γ₀ : ℝ} (hγ₀ : 1 ≤ γ₀)
@@ -1958,7 +2022,9 @@ theorem norm_gammaFT_le_of_fourier_decay {F : ℝ → ℂ} (hF : Integrable F)
       exact hφc.comp continuous_neg
     · exact (tendsto_gammaFT_atBot F).comp tendsto_neg_atTop_atBot
 
-/-- The auxiliary function is integrable on the line (exponential decay).-/
+/-- The auxiliary function is integrable on the line (exponential decay).
+@isnad1 id=integrab.2h2v.s6.6e741d327deb from=translated src=- shape=0e2ebac8 vocab=0abcbfc5
+-/
 theorem integrable_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) :
     Integrable (auxF s X) := by
   refine Integrable.mono'
@@ -1972,7 +2038,9 @@ theorem integrable_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) :
 
 /-- The divided difference `(F(0) - F(x))/x` of the auxiliary function is integrable
 on the unit window: it vanishes on the plateau `|x| ≤ min 1 (log X)` and is bounded
-by a constant on the remainder.-/
+by a constant on the remainder.
+@isnad1 id=integrab.2h2v.s7.25a80061345f from=translated src=- shape=da29e1f8 vocab=3106294a
+-/
 theorem integrableOn_auxF_diffQuot_window (s : ℂ) {X : ℝ} (hX : 1 < X)
     (hs : 1/2 < s.re) :
     IntegrableOn (fun x : ℝ => (auxF s X 0 - auxF s X x)/(x:ℂ)) (Set.Ioc (-1) 1) := by
@@ -2025,7 +2093,9 @@ theorem integrableOn_auxF_diffQuot_window (s : ℂ) {X : ℝ} (hX : 1 < X)
     show (auxF s X 0 - auxF s X x) * ((x:ℂ))⁻¹ = (auxF s X 0 - auxF s X x)/(x:ℂ)
     rw [div_eq_mul_inv]
 
-/-- Convention bridge: the paper Fourier integral in window normal form.-/
+/-- Convention bridge: the paper Fourier integral in window normal form.
+@isnad1 id=eq.0h2v.s5.d3cdfd44af45 from=translated src=- shape=4a2a9560 vocab=71ff87d2
+-/
 theorem paperFourierIntegral_eq_muFT (F : ℝ → ℂ) (γ : ℝ) :
     paperFourierIntegral F γ = ∫ x : ℝ, F x * Complex.exp ((γ*x : ℝ) * Complex.I) := by
   rw [paperFourierIntegral]
@@ -2033,7 +2103,9 @@ theorem paperFourierIntegral_eq_muFT (F : ℝ → ℂ) (γ : ℝ) :
   push_cast
   ring_nf
 
-/-- `log(2+|t|)/|t| → 0` along any filter where `|t| → ∞`.-/
+/-- `log(2+|t|)/|t| → 0` along any filter where `|t| → ∞`.
+@isnad1 id=tendsto.1h1v.s6.b462189dcaef from=translated src=- shape=2a5aa64c vocab=8db22546
+-/
 theorem tendsto_log_two_add_abs_div_abs (l : Filter ℝ)
     (habs : Tendsto (fun t : ℝ => |t|) l atTop) :
     Tendsto (fun t : ℝ => Real.log (2 + |t|) / |t|) l (nhds 0) := by
@@ -2063,7 +2135,9 @@ theorem tendsto_log_two_add_abs_div_abs (l : Filter ℝ)
   exact h5.comp habs
 
 /-- **The boundary decay `ρ·γ → 0`** from the `O(log)`-kernel and an `O(1/t)`
-bound on `γ`.-/
+bound on `γ`.
+@isnad1 id=tendsto.5h5v.s7.e3587474680d from=translated src=- shape=1a916ac5 vocab=2a1a3e55
+-/
 theorem tendsto_rhoFT_mul_gammaFT_of_decay {F : ℝ → ℂ} {σ : ℝ}
     (hσ : 0 < σ) (hσl : -1 ≤ σ) (hσr : σ ≤ 2)
     {C γ₀ : ℝ}
@@ -2095,7 +2169,9 @@ theorem tendsto_rhoFT_mul_gammaFT_of_decay {F : ℝ → ℂ} {σ : ℝ}
         field_simp
 
 /-- **Boundary discharge at the auxiliary function**: `ρ_σ·γ_{F_{s,X}} → 0` along
-any `|t| → ∞` filter — the `htop2`/`hbot2` hypotheses of the Weil assembly.-/
+any `|t| → ∞` filter — the `htop2`/`hbot2` hypotheses of the Weil assembly.
+@isnad1 id=tendsto.6h4v.s7.e58ec17a3eaf from=translated src=- shape=37d637e5 vocab=221e7e5a
+-/
 theorem tendsto_boundary_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re)
     {σ : ℝ} (hσ : 0 < σ) (hσl : -1 ≤ σ) (hσr : σ ≤ 2) (l : Filter ℝ)
     (habs : Tendsto (fun t : ℝ => |t|) l atTop) :
@@ -2110,7 +2186,9 @@ theorem tendsto_boundary_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re)
   exact hφ γ hγ
 
 /-- **Boundary discharge at the half-scaled auxiliary function**: the
-`htop4`/`hbot4` hypotheses of the Weil assembly.-/
+`htop4`/`hbot4` hypotheses of the Weil assembly.
+@isnad1 id=tendsto.6h4v.s7.038c2d347c4a from=translated src=- shape=2ebe0f96 vocab=221e7e5a
+-/
 theorem tendsto_boundary_auxF_half (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re)
     {σ : ℝ} (hσ : 0 < σ) (hσl : -1 ≤ σ) (hσr : σ ≤ 2) (l : Filter ℝ)
     (habs : Tendsto (fun t : ℝ => |t|) l atTop) :
@@ -2172,7 +2250,9 @@ theorem tendsto_boundary_auxF_half (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < 
   linarith
 
 /-- The divided difference of the auxiliary function is square-integrable on the
-line: zero on the plateau, `O(1/|x|)` beyond it.-/
+line: zero on the plateau, `O(1/|x|)` beyond it.
+@isnad1 id=memlp.2h2v.s7.37eeb64cdcf9 from=translated src=- shape=f44c6356 vocab=ab580a64
+-/
 theorem memLp_two_auxF_diffQuot (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.re) :
     MemLp (fun x : ℝ => (auxF s X 0 - auxF s X x)/(x:ℂ)) 2 (volume : Measure ℝ) := by
   set δ : ℝ := min 1 (Real.log X) with hδ_def
@@ -2290,7 +2370,9 @@ theorem memLp_two_auxF_diffQuot (s : ℂ) {X : ℝ} (hX : 1 < X) (hs : 1/2 < s.r
 
 /-- **`hΦd` at the auxiliary function**: `Φ_{F_{s,X}}` is complex-differentiable at
 every point of the closed band `-a ≤ Re ζ ≤ 1+a`, for `0 < a < Re s - 1` (the band
-then sits strictly inside the convergence band `1 - Re s < Re ζ < Re s`).-/
+then sits strictly inside the convergence band `1 - Re s < Re ζ < Re s`).
+@isnad1 id=differen.5h4v.s7.9ad3afd7a641 from=translated src=- shape=d40e1b26 vocab=83efa72c
+-/
 theorem differentiableAt_paperPhi_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ}
     (ha : 0 < a) (has : a < s.re - 1) :
     ∀ ζ : ℂ, -a ≤ ζ.re → ζ.re ≤ 1+a → DifferentiableAt ℂ (paperPhi (auxF s X)) ζ := by
@@ -2313,7 +2395,9 @@ theorem differentiableAt_paperPhi_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ
     (by linarith) (by linarith)).differentiableAt
 
 /-- Even fold of the Poitou transform onto the positive half line:
-`Φ(z) = ∫₀^∞ F(x)(e^{wx} + e^{-wx}) dx`, `w = z - 1/2`.-/
+`Φ(z) = ∫₀^∞ F(x)(e^{wx} + e^{-wx}) dx`, `w = z - 1/2`.
+@isnad1 id=eq.3h2v.s8.8b307fffa703 from=translated src=- shape=4f526050 vocab=58fa566b
+-/
 theorem paperPhi_eq_half_line_fold {F : ℝ → ℂ} (heven : ∀ x : ℝ, F (-x) = F x) (z : ℂ)
     (hint : Integrable (fun x : ℝ => F x * Complex.exp ((z - 1/2) * x)))
     (hint2 : Integrable (fun x : ℝ => F x * Complex.exp (-(z - 1/2) * x))) :
@@ -2340,7 +2424,9 @@ theorem paperPhi_eq_half_line_fold {F : ℝ → ℂ} (heven : ∀ x : ℝ, F (-x
     ring
   rw [h1, h2]
 
-/-- Complex-kernel integrability of the auxiliary function, `|Re w| < Re s - 1/2`.-/
+/-- Complex-kernel integrability of the auxiliary function, `|Re w| < Re s - 1/2`.
+@isnad1 id=integrab.2h3v.s6.efed08eab86f from=translated src=- shape=d618ad4c vocab=bc337311
+-/
 theorem integrable_auxF_mul_cexp (s : ℂ) {X : ℝ} (hX : 1 < X) {w : ℂ}
     (hw : |w.re| < s.re - 1/2) :
     Integrable (fun x : ℝ => auxF s X x * Complex.exp (w * x)) := by
@@ -2374,7 +2460,9 @@ theorem integrable_auxF_mul_cexp (s : ℂ) {X : ℝ} (hX : 1 < X) {w : ℂ}
           ring
 
 /-- On the open tail, `F_{s,X}` is the explicit kernel `C₀·e^{-hx}/x`,
-`C₀ = T e^{hT}`, `h = s - 1/2`.-/
+`C₀ = T e^{hT}`, `h = s - 1/2`.
+@isnad1 id=eq.2h3v.s7.e9f87d8d11b4 from=translated src=- shape=647cd6f4 vocab=722c26c0
+-/
 theorem auxF_tail_form (s : ℂ) {X : ℝ} (hX : 1 < X) :
     ∀ y ∈ Set.Ioi (Real.log X),
       auxF s X y = ((Real.log X : ℝ) : ℂ) * Complex.exp ((s - 1/2) * (Real.log X : ℂ))
@@ -2386,7 +2474,9 @@ theorem auxF_tail_form (s : ℂ) {X : ℝ} (hX : 1 < X) :
   exact h0
 
 /-- The antisymmetric exponential kernel `e^{wx} - e^{-wx}` is bounded in norm by
-`2 e^{|Re w| x}` for `x ≥ 0`: each summand's real part is at most `|Re w| x`.-/
+`2 e^{|Re w| x}` for `x ≥ 0`: each summand's real part is at most `|Re w| x`.
+@isnad1 id=le.1h2v.s6.4d01931960fe from=translated src=- shape=d8220ba7 vocab=8fc327f8
+-/
 theorem norm_cexp_sub_cexp_neg_le (w : ℂ) {x : ℝ} (hx : 0 ≤ x) :
     ‖Complex.exp (w * x) - Complex.exp (-w * x)‖ ≤ 2 * Real.exp (|w.re| * x) := by
   refine le_trans (norm_sub_le _ _) ?_
@@ -2402,7 +2492,9 @@ theorem norm_cexp_sub_cexp_neg_le (w : ℂ) {x : ℝ} (hx : 0 ≤ x) :
   linarith
 
 /-- Pointwise bound on the tail-derivative kernel times the antisymmetric kernel:
-`‖F'(x)·(e^{wx}-e^{-wx})‖ ≤ 2e^{h_r T}(‖h‖+1/T)·e^{-(h_r-|Re w|)x}` for `x > T`.-/
+`‖F'(x)·(e^{wx}-e^{-wx})‖ ≤ 2e^{h_r T}(‖h‖+1/T)·e^{-(h_r-|Re w|)x}` for `x > T`.
+@isnad1 id=le.2h4v.s8.0fbc3134b676 from=translated src=- shape=b97c4d3b vocab=b2c76dae
+-/
 theorem norm_auxF_tail_deriv_mul_le (s : ℂ) {X : ℝ} (hX : 1 < X) (w : ℂ)
     {x : ℝ} (hx : Real.log X < x) :
     ‖(((Real.log X : ℝ) : ℂ) * Complex.exp ((s - 1/2) * (Real.log X : ℂ))
@@ -2484,7 +2576,9 @@ theorem norm_auxF_tail_deriv_mul_le (s : ℂ) {X : ℝ} (hX : 1 < X) (w : ℂ)
 
 with `F'` the explicit tail derivative. The antisymmetric kernel vanishes at the
 origin (killing that boundary term) and the plateau boundary term at `log X`
-cancels against the tail's.-/
+cancels against the tail's.
+@isnad1 id=eq.2h3v.s8.91a88e279470 from=translated src=- shape=a4f3b822 vocab=e6d8cd3c
+-/
 theorem mul_paperPhi_auxF_eq (s : ℂ) {X : ℝ} (hX : 1 < X) {z : ℂ}
     (hzl : |(z - 1/2).re| < s.re - 1/2) :
     (z - 1/2) * paperPhi (auxF s X) z
@@ -2674,7 +2768,9 @@ theorem mul_paperPhi_auxF_eq (s : ℂ) {X : ℝ} (hX : 1 < X) {z : ℂ}
 /-- **`hB` at the auxiliary function**: the σ-uniform band bound
 `‖Φ_{F_{s,X}}(σ+it)‖ ≤ M/max(|t|,1)` on `-a ≤ σ ≤ 1+a`, for `0 < a < Re s - 1`.
 Small `|t|` by the trivial `L¹` bound, large `|t|` by the integrated-by-parts
-identity and `‖w‖ ≥ |t|`.-/
+identity and `‖w‖ ≥ |t|`.
+@isnad1 id=ex.3h3v.s7.6457451656e4 from=translated src=- shape=bc03a0b2 vocab=69e104d8
+-/
 theorem exists_band_bound_paperPhi_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ}
     (ha : 0 < a) (has : a < s.re - 1) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ σ t : ℝ, -a ≤ σ → σ ≤ 1+a →
@@ -2779,7 +2875,9 @@ theorem exists_band_bound_paperPhi_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : �
       _ ≤ V₀ := h6
       _ ≤ max M₀ V₀ := le_max_right _ _
 
-/-- **`hBlog2` at the auxiliary function**: `(M/max(T,1))·log²(2+T) → 0`.-/
+/-- **`hBlog2` at the auxiliary function**: `(M/max(T,1))·log²(2+T) → 0`.
+@isnad1 id=tendsto.0h1v.s6.aa7bb13e256b from=translated src=- shape=9fc83370 vocab=fa212ee6
+-/
 theorem tendsto_div_max_mul_log_sq (M : ℝ) :
     Tendsto (fun T : ℝ => M / max T 1 * (Real.log (2+T))^2) atTop (nhds 0) := by
   -- log²(u)/u → 0
@@ -2825,7 +2923,9 @@ theorem tendsto_div_max_mul_log_sq (M : ℝ) :
   field_simp
 
 /-- The pole window of a continuous integrable symbol is `C¹` with derivative
-`c·E_c(u) - 2G(u)`.-/
+`c·E_c(u) - 2G(u)`.
+@isnad1 id=hasderiv.3h3v.s7.6d7b6391caee from=translated src=- shape=619536c9 vocab=559ea099
+-/
 theorem hasDerivAt_poleWindow (hc : 0 < c) (hG : Integrable G) (hGc : Continuous G)
     (u : ℝ) :
     HasDerivAt (poleWindow c G) ((c : ℂ) * poleWindow c G u - 2 * G u) u := by
@@ -2872,7 +2972,9 @@ theorem hasDerivAt_poleWindow (hc : 0 < c) (hG : Integrable G) (hGc : Continuous
     linear_combination (-2 : ℂ) * G u * heq
 
 /-- **`hE`-BV, complex level**: the sum of two pole windows of a continuous
-integrable symbol has locally bounded variation on the line.-/
+integrable symbol has locally bounded variation on the line.
+@isnad1 id=locallyb.4h3v.s7.192b6a0acfab from=translated src=- shape=efab6b82 vocab=513a0385
+-/
 theorem locallyBoundedVariationOn_poleWindow_add {c₁ c₂ : ℝ} (hc₁ : 0 < c₁)
     (hc₂ : 0 < c₂) (hG : Integrable G) (hGc : Continuous G) :
     LocallyBoundedVariationOn
@@ -2894,7 +2996,9 @@ theorem locallyBoundedVariationOn_poleWindow_add {c₁ c₂ : ℝ} (hc₁ : 0 < 
   · exact (continuous_const.mul (continuous_poleWindow hc₂ hG)).sub
       (continuous_const.mul hGc)
 
-/-- **`hEre` at the auxiliary function**.-/
+/-- **`hEre` at the auxiliary function**.
+@isnad1 id=locallyb.3h3v.s7.d4eb8ab6a9f2 from=translated src=- shape=a0e4f223 vocab=6de38afb
+-/
 theorem locallyBoundedVariationOn_poleWindow_auxF_re (s : ℂ) {X : ℝ} (hX : 1 < X)
     {a : ℝ} (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn (fun u : ℝ =>
@@ -2911,7 +3015,9 @@ theorem locallyBoundedVariationOn_poleWindow_auxF_re (s : ℂ) {X : ℝ} (hX : 1
   exact lipschitzWith_complex_re.comp_locallyBoundedVariationOn
     (locallyBoundedVariationOn_poleWindow_add ha (by linarith) hG hGc)
 
-/-- **`hEim` at the auxiliary function**.-/
+/-- **`hEim` at the auxiliary function**.
+@isnad1 id=locallyb.3h3v.s7.cab5fb15098f from=translated src=- shape=e6ff42a3 vocab=05a73399
+-/
 theorem locallyBoundedVariationOn_poleWindow_auxF_im (s : ℂ) {X : ℝ} (hX : 1 < X)
     {a : ℝ} (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn (fun u : ℝ =>
@@ -2929,7 +3035,9 @@ theorem locallyBoundedVariationOn_poleWindow_auxF_im (s : ℂ) {X : ℝ} (hX : 1
     (locallyBoundedVariationOn_poleWindow_add ha (by linarith) hG hGc)
 
 /-- **Variation of a pointwise-convergent series is at most the sum of the
-variations** (the countable subadditivity of total variation).-/
+variations** (the countable subadditivity of total variation).
+@isnad1 id=le.1h3v.s7.e7ea32d1d687 from=translated src=- shape=4447d0dd vocab=aa999278
+-/
 theorem eVariationOn_tsum_le {ι : Type*} (f : ι → ℝ → ℂ) (s : Set ℝ)
     (hsum : ∀ x ∈ s, Summable (fun i => f i x)) :
     eVariationOn (fun x => ∑' i, f i x) s ≤ ∑' i, eVariationOn (f i) s := by
@@ -2953,7 +3061,9 @@ theorem eVariationOn_tsum_le {ι : Type*} (f : ι → ℝ → ℂ) (s : Set ℝ)
     _ ≤ ∑' i, eVariationOn (f i) s :=
         ENNReal.tsum_le_tsum (fun i => eVariationOn.sum_le hu us)
 
-/-- Variation of a scaled translate: `Var(w·g(·+β)) ≤ ‖w‖·Var(g)` on the line.-/
+/-- Variation of a scaled translate: `Var(w·g(·+β)) ≤ ‖w‖·Var(g)` on the line.
+@isnad1 id=le.0h3v.s7.6f7339151199 from=translated src=- shape=6c9592f5 vocab=a0beda8d
+-/
 theorem eVariationOn_smul_translate_le (g : ℝ → ℂ) (w : ℂ) (β : ℝ) :
     eVariationOn (fun u : ℝ => w * g (u + β)) Set.univ
       ≤ (‖w‖₊ : ℝ≥0∞) * eVariationOn g Set.univ := by
@@ -2967,7 +3077,9 @@ theorem eVariationOn_smul_translate_le (g : ℝ → ℂ) (w : ℂ) (β : ℝ) :
   exact eVariationOn.comp_le_of_monotoneOn g (fun u : ℝ => u + β)
     (fun x _ y _ hxy => by simpa using hxy) (Set.mapsTo_univ _ _)
 
-/-- The uniform bound on the weighted auxiliary symbol `G = F_{s,X}·e^{(1/2+a)x}`.-/
+/-- The uniform bound on the weighted auxiliary symbol `G = F_{s,X}·e^{(1/2+a)x}`.
+@isnad1 id=le.3h4v.s7.a6b2b8e340f8 from=translated src=- shape=ef4b6967 vocab=559c53ac
+-/
 theorem norm_auxF_mul_exp_le (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) (x : ℝ) :
     ‖auxF s X x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)‖
@@ -2994,7 +3106,9 @@ theorem norm_auxF_mul_exp_le (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
         nlinarith
     _ = Real.exp ((s.re - 1/2) * Real.log X) := mul_one _
 
-/-- The prime-side weights are nonnegative and summable at exponent `1+a`.-/
+/-- The prime-side weights are nonnegative and summable at exponent `1+a`.
+@isnad1 id=le.0h3v.s10.1c427638d997 from=translated src=- shape=c1d798a4 vocab=8311cdcc
+-/
 theorem primeSideH_weight_nonneg
     (pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ) :
     0 ≤ Real.log (Ideal.absNorm pk.1.1)
@@ -3002,7 +3116,9 @@ theorem primeSideH_weight_nonneg
   refine mul_nonneg (Real.log_natCast_nonneg _) ?_
   positivity
 
-/-- Pointwise summability of the prime-side series at the auxiliary function.-/
+/-- Pointwise summability of the prime-side series at the auxiliary function.
+@isnad1 id=summable.3h5v.s11.310ca03d5c6d from=translated src=- shape=bdbc7fbd vocab=874da441
+-/
 theorem summable_primeSideH_term_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) (u : ℝ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
@@ -3025,7 +3141,9 @@ theorem summable_primeSideH_term_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 <
 
 /-- **`hH`-BV, complex level**: the prime side of the explicit formula has bounded
 variation on the whole line at the auxiliary function: the variation of the series
-is at most the (convergent) weighted sum of the variations of the translates.-/
+is at most the (convergent) weighted sum of the variations of the translates.
+@isnad1 id=boundedv.3h4v.s6.28084fb27aa6 from=translated src=- shape=ba8503ed vocab=c6ad0c6a
+-/
 theorem boundedVariationOn_primeSideH_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) :
     BoundedVariationOn (primeSideH K a (auxF s X)) Set.univ := by
@@ -3069,7 +3187,9 @@ theorem boundedVariationOn_primeSideH_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha 
   rw [ENNReal.tsum_mul_right]
   exact ENNReal.mul_ne_top hwtop hGbv
 
-/-- **`hHre` at the auxiliary function**.-/
+/-- **`hHre` at the auxiliary function**.
+@isnad1 id=locallyb.3h4v.s6.2fdc75f0643b from=translated src=- shape=e5fe36c4 vocab=af6e3698
+-/
 theorem locallyBoundedVariationOn_primeSideH_auxF_re (s : ℂ) {X : ℝ} (hX : 1 < X)
     (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn
@@ -3077,7 +3197,9 @@ theorem locallyBoundedVariationOn_primeSideH_auxF_re (s : ℂ) {X : ℝ} (hX : 1
   (lipschitzWith_complex_re.comp_boundedVariationOn
     (boundedVariationOn_primeSideH_auxF K s hX ha has)).locallyBoundedVariationOn
 
-/-- **`hHim` at the auxiliary function**.-/
+/-- **`hHim` at the auxiliary function**.
+@isnad1 id=locallyb.3h4v.s6.13311542692c from=translated src=- shape=283ecb34 vocab=171d344d
+-/
 theorem locallyBoundedVariationOn_primeSideH_auxF_im (s : ℂ) {X : ℝ} (hX : 1 < X)
     (ha : 0 < a) (has : a < s.re - 1) :
     LocallyBoundedVariationOn
@@ -3085,7 +3207,9 @@ theorem locallyBoundedVariationOn_primeSideH_auxF_im (s : ℂ) {X : ℝ} (hX : 1
   (lipschitzWith_complex_im.comp_boundedVariationOn
     (boundedVariationOn_primeSideH_auxF K s hX ha has)).locallyBoundedVariationOn
 
-/-- The prime side is continuous at the auxiliary function (Weierstrass M-test).-/
+/-- The prime side is continuous at the auxiliary function (Weierstrass M-test).
+@isnad1 id=continuo.3h4v.s6.7e8be43aba96 from=translated src=- shape=7af53e74 vocab=e14ded4c
+-/
 theorem continuous_primeSideH_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) :
     Continuous (primeSideH K a (auxF s X)) := by
@@ -3112,7 +3236,9 @@ theorem continuous_primeSideH_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     refine mul_le_mul_of_nonneg_left ?_ (primeSideH_weight_nonneg K pk)
     exact norm_auxF_mul_exp_le s hX ha has _
 
-/-- **`hHp` at the auxiliary function**: the right limit at `0` is the value.-/
+/-- **`hHp` at the auxiliary function**: the right limit at `0` is the value.
+@isnad1 id=tendsto.3h4v.s6.6bad4b2e171a from=translated src=- shape=32cd5e69 vocab=d50e7670
+-/
 theorem tendsto_primeSideH_auxF_right (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) :
     Tendsto (primeSideH K a (auxF s X)) (nhdsWithin 0 (Set.Ioi 0))
@@ -3120,7 +3246,9 @@ theorem tendsto_primeSideH_auxF_right (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 <
   ((continuous_primeSideH_auxF K s hX ha has).continuousAt).tendsto.mono_left
     nhdsWithin_le_nhds
 
-/-- **`hHm` at the auxiliary function**: the left limit at `0` is the value.-/
+/-- **`hHm` at the auxiliary function**: the left limit at `0` is the value.
+@isnad1 id=tendsto.3h4v.s6.667d7920cdd2 from=translated src=- shape=32cd5e69 vocab=2e6a0e06
+-/
 theorem tendsto_primeSideH_auxF_left (s : ℂ) {X : ℝ} (hX : 1 < X) (ha : 0 < a)
     (has : a < s.re - 1) :
     Tendsto (primeSideH K a (auxF s X)) (nhdsWithin 0 (Set.Iio 0))
@@ -3133,7 +3261,9 @@ milestone): every hypothesis of `weil_explicit_formula` holds for `F = F_{s,X}`
 when `1 < X` and `0 < a ≤ 1/4` with `a < Re s - 1`. The zero-capture sums over
 the zeros of `Λ_K` in the band `-a < Re ρ < 1+a` along good heights converge to
 Poitou's right-hand side, with both one-sided prime-side limits equal to
-`H(0)`.-/
+`H(0)`.
+@isnad1 id=ex.4h4v.s9.43044045cfae from=translated src=- shape=40e6b906 vocab=66adafe3
+-/
 theorem weil_explicit_formula_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ}
     (ha : 0 < a) (ha' : a ≤ 1/4) (has : a < s.re - 1) :
     ∃ T : ℕ → ℝ, Tendsto T atTop atTop ∧
@@ -3190,7 +3320,9 @@ theorem weil_explicit_formula_auxF (s : ℂ) {X : ℝ} (hX : 1 < X) {a : ℝ}
 
 /-- **The prime-side value at the origin** (Poitou's `H(0⁺) + H(0⁻)` term made
 explicit, B–F p. 5): the band parameter `a` collapses out, leaving
-`H(0) = ∑_{𝔭,m} log N𝔭 · N𝔭^{-m/2} · F(m log N𝔭)`.-/
+`H(0) = ∑_{𝔭,m} log N𝔭 · N𝔭^{-m/2} · F(m log N𝔭)`.
+@isnad1 id=eq.0h3v.s11.f859030ac631 from=translated src=- shape=406b97c8 vocab=59fd80be
+-/
 theorem primeSideH_auxF_zero_eq (a : ℝ) (F : ℝ → ℂ) :
     primeSideH K a F 0
       = ∑' pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ,

@@ -43,21 +43,39 @@ noncomputable def baseChange (L : Type*) [Field L] [Algebra F L] :
     SmoothPlaneCurve L where
   toAffine := C.toAffine.baseChange L
 
+/--
+@isnad1 id=eq.0h3v.s5.1605cea3d1ae from=translated src=- shape=e44f0fa3 vocab=dcbffbba
+-/
 @[simp] theorem baseChange_toAffine (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine = C.toAffine.baseChange L := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.f948108c2d1c from=translated src=- shape=4f140b71 vocab=0043b14e
+-/
 @[simp] theorem baseChange_a₁ (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine.a₁ = algebraMap F L C.toAffine.a₁ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.c27914597ff9 from=translated src=- shape=4f140b71 vocab=503bdd5e
+-/
 @[simp] theorem baseChange_a₂ (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine.a₂ = algebraMap F L C.toAffine.a₂ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.bb0171eae571 from=translated src=- shape=4f140b71 vocab=df302b7b
+-/
 @[simp] theorem baseChange_a₃ (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine.a₃ = algebraMap F L C.toAffine.a₃ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.19558c59c9ee from=translated src=- shape=4f140b71 vocab=85d4d51e
+-/
 @[simp] theorem baseChange_a₄ (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine.a₄ = algebraMap F L C.toAffine.a₄ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.3271fb6b54be from=translated src=- shape=4f140b71 vocab=3e13d1b0
+-/
 @[simp] theorem baseChange_a₆ (L : Type*) [Field L] [Algebra F L] :
     (C.baseChange L).toAffine.a₆ = algebraMap F L C.toAffine.a₆ := rfl
 
@@ -79,9 +97,15 @@ noncomputable def includePoint (C : SmoothPlaneCurve F) (L : Type*) [Field L]
     (Affine.map_nonsingular C.toAffine (f := algebraMap F L)
       (FaithfulSMul.algebraMap_injective F L) P.x P.y).mpr P.nonsingular
 
+/--
+@isnad1 id=eq.0h4v.s6.4d97bd29c83a from=translated src=- shape=18b77011 vocab=e2f6d94e
+-/
 @[simp] theorem includePoint_x (L : Type*) [Field L] [Algebra F L]
     (P : C.SmoothPoint) : (C.includePoint L P).x = algebraMap F L P.x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.3dcd7ae6977a from=translated src=- shape=18b77011 vocab=ad9b58ce
+-/
 @[simp] theorem includePoint_y (L : Type*) [Field L] [Algebra F L]
     (P : C.SmoothPoint) : (C.includePoint L P).y = algebraMap F L P.y := rfl
 

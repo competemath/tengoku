@@ -43,7 +43,9 @@ open Nat
 The classical Legendre formula `v_p(n!) = (n - s_p(n)) / (p - 1)`, where
 `s_p(n)` is the sum of the base-`p` digits of `n`, implies this bound since
 `s_p(n) ≥ 1` for `n ≥ 1`. We state the inequality in `ℝ` to avoid divisibility
-issues.-/
+issues.
+@isnad1 id=le.1h2v.s6.89a0895cb789 from=translated src=- shape=6ed44b8d vocab=a33be2aa
+-/
 theorem padicValNat_factorial_le (p : ℕ) [hp : Fact p.Prime] {n : ℕ} (hn : 1 ≤ n) :
     (padicValNat p n.factorial : ℝ) ≤ (n - 1 : ℝ) / (p - 1) := by
   have hp2 : 2 ≤ p := hp.out.two_le
@@ -62,7 +64,9 @@ theorem padicValNat_factorial_le (p : ℕ) [hp : Fact p.Prime] {n : ℕ} (hn : 1
     _ ≤ ((n - 1 : ℕ) : ℝ) := by exact_mod_cast hle_nat
     _ = (n : ℝ) - 1 := by rw [Nat.cast_sub hn]; push_cast; ring
 
-/-- Coarser bound without the hypothesis `1 ≤ n`: `v_p(n!) ≤ n / (p - 1)`.-/
+/-- Coarser bound without the hypothesis `1 ≤ n`: `v_p(n!) ≤ n / (p - 1)`.
+@isnad1 id=le.0h2v.s5.dc85f23ad96a from=translated src=- shape=4b04e568 vocab=a33be2aa
+-/
 theorem padicValNat_factorial_div_le (p : ℕ) [hp : Fact p.Prime] (n : ℕ) :
     (padicValNat p n.factorial : ℝ) ≤ (n : ℝ) / (p - 1) := by
   have hp1_posR : (0 : ℝ) < (p : ℝ) - 1 := by

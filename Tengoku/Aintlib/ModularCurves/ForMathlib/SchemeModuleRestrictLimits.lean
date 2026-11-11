@@ -52,7 +52,9 @@ private theorem sheafPushforward_preservesLimits
   exact preservesLimits_of_reflects_of_preserves
     (SheafOfModules.pushforward φ) (SheafOfModules.forget S)
 
-/-- Restriction of scheme modules along an open immersion preserves all limits.-/
+/-- Restriction of scheme modules along an open immersion preserves all limits.
+@isnad1 id=preserve.0h3v.s5.d67e6bdfb7a1 from=translated src=- shape=bdcf7e6f vocab=4211f1e6
+-/
 theorem restrictFunctor_preservesLimits
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] :
     PreservesLimits (restrictFunctor f) := by

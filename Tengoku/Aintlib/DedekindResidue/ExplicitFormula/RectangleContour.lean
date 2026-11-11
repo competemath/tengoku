@@ -46,14 +46,18 @@ noncomputable def rectangleIntegral (f : ℂ → ℂ) (z w : ℂ) : ℂ :=
     + Complex.I • (∫ y : ℝ in z.im..w.im, f (w.re + y * Complex.I))
     - Complex.I • (∫ y : ℝ in z.im..w.im, f (z.re + y * Complex.I))
 
-/-- `log(-u) = log u - πi` in the upper half-plane.-/
+/-- `log(-u) = log u - πi` in the upper half-plane.
+@isnad1 id=eq.1h1v.s5.0c5851f41e4f from=translated src=- shape=5cf8103d vocab=4d99a4d1
+-/
 theorem log_neg_of_im_pos {u : ℂ} (hu : 0 < u.im) :
     Complex.log (-u) = Complex.log u - Real.pi * Complex.I := by
   rw [Complex.log, Complex.log, norm_neg, arg_neg_eq_arg_sub_pi_of_im_pos hu]
   push_cast
   ring
 
-/-- `log(-u) = log u + πi` in the lower half-plane.-/
+/-- `log(-u) = log u + πi` in the lower half-plane.
+@isnad1 id=eq.1h1v.s5.2770e74ae880 from=translated src=- shape=a71bd848 vocab=d7eb6f2b
+-/
 theorem log_neg_of_im_neg {u : ℂ} (hu : u.im < 0) :
     Complex.log (-u) = Complex.log u + Real.pi * Complex.I := by
   have h := log_neg_of_im_pos (u := -u) (by simp only [Complex.neg_im]; linarith)
@@ -61,7 +65,9 @@ theorem log_neg_of_im_neg {u : ℂ} (hu : u.im < 0) :
   linear_combination -h
 
 /-- FTC on a horizontal segment staying in the slit plane:
-`∫_{a}^{b} (x + ci − ρ)⁻¹ dx = log(b + ci − ρ) − log(a + ci − ρ)`.-/
+`∫_{a}^{b} (x + ci − ρ)⁻¹ dx = log(b + ci − ρ) − log(a + ci − ρ)`.
+@isnad1 id=eq.1h4v.s7.357e1fe4cae0 from=translated src=- shape=467a178e vocab=9a08074e
+-/
 theorem integral_horizontal_inv_sub {a b c : ℝ} {ρ : ℂ}
     (h : ∀ x ∈ Set.uIcc a b, ((x:ℂ) + (c:ℂ) * Complex.I - ρ) ∈ Complex.slitPlane) :
     ∫ x : ℝ in a..b, ((x:ℂ) + (c:ℂ) * Complex.I - ρ)⁻¹
@@ -86,7 +92,9 @@ theorem integral_horizontal_inv_sub {a b c : ℝ} {ρ : ℂ}
   exact integral_eq_sub_of_hasDerivAt hderiv hcont
 
 /-- FTC on a vertical segment staying in the slit plane:
-`i·∫_{c}^{d} (b + yi − ρ)⁻¹ dy = log(b + di − ρ) − log(b + ci − ρ)`.-/
+`i·∫_{c}^{d} (b + yi − ρ)⁻¹ dy = log(b + di − ρ) − log(b + ci − ρ)`.
+@isnad1 id=eq.1h4v.s7.7ac4b4f20975 from=translated src=- shape=b56f46c9 vocab=682d48d8
+-/
 theorem smul_integral_vertical_inv_sub {b c d : ℝ} {ρ : ℂ}
     (h : ∀ y ∈ Set.uIcc c d, ((b:ℂ) + (y:ℂ) * Complex.I - ρ) ∈ Complex.slitPlane) :
     Complex.I • (∫ y : ℝ in c..d, ((b:ℂ) + (y:ℂ) * Complex.I - ρ)⁻¹)
@@ -118,7 +126,9 @@ theorem smul_integral_vertical_inv_sub {b c d : ℝ} {ρ : ℂ}
 
 /-- **The rectangle winding integral** (SP2-RECT R-c core): for `ρ` in the open
 rectangle with corners `z` (bottom-left) and `w` (top-right),
-`∮_{∂R} (ζ − ρ)⁻¹ dζ = 2πi`.-/
+`∮_{∂R} (ζ − ρ)⁻¹ dζ = 2πi`.
+@isnad1 id=eq.4h3v.s6.a008e07bcfef from=translated src=- shape=4611ba4a vocab=1590338f
+-/
 theorem rectangleIntegral_inv_sub {z w ρ : ℂ}
     (h1 : z.re < ρ.re) (h2 : ρ.re < w.re) (h3 : z.im < ρ.im) (h4 : ρ.im < w.im) :
     rectangleIntegral (fun ζ => (ζ - ρ)⁻¹) z w = 2 * Real.pi * Complex.I := by
@@ -216,7 +226,9 @@ theorem rectangleIntegral_inv_sub {z w ρ : ℂ}
 
 /-- **Rectangle Cauchy–Goursat** (wrapper of mathlib's off-countable version in the
 `rectangleIntegral` packaging): the boundary integral of a function continuous on the
-closed rectangle and differentiable off a countable set vanishes.-/
+closed rectangle and differentiable off a countable set vanishes.
+@isnad1 id=eq.3h4v.s7.aa10fe7fef08 from=translated src=- shape=3d098b3d vocab=29d3fbff
+-/
 theorem rectangleIntegral_eq_zero {f : ℂ → ℂ} {z w : ℂ} {s : Set ℂ} (hs : s.Countable)
     (Hc : ContinuousOn f (Set.uIcc z.re w.re ×ℂ Set.uIcc z.im w.im))
     (Hd : ∀ x ∈ (Set.Ioo (min z.re w.re) (max z.re w.re) ×ℂ
@@ -226,7 +238,9 @@ theorem rectangleIntegral_eq_zero {f : ℂ → ℂ} {z w : ℂ} {s : Set ℂ} (h
   exact Complex.integral_boundary_rect_eq_zero_of_differentiable_on_off_countable
     f z w s hs Hc Hd
 
-/-- Horizontal-segment split of `Φ(ζ)(ζ-ρ)⁻¹` into `dslope + Φ(ρ)·(ζ-ρ)⁻¹`.-/
+/-- Horizontal-segment split of `Φ(ζ)(ζ-ρ)⁻¹` into `dslope + Φ(ρ)·(ζ-ρ)⁻¹`.
+@isnad1 id=eq.3h6v.s8.143bd43be5e2 from=translated src=- shape=c6f047b9 vocab=50e2efe5
+-/
 theorem integral_horizontal_split {Φ : ℂ → ℂ} {ρ : ℂ} {a b c : ℝ} {R : Set ℂ}
     (hcont : ContinuousOn (dslope Φ ρ) R)
     (hseg : ∀ x ∈ Set.uIcc a b, ((x:ℂ) + (c:ℂ) * Complex.I) ∈ R)
@@ -255,7 +269,9 @@ theorem integral_horizontal_split {Φ : ℂ → ℂ} {ρ : ℂ} {a b c : ℝ} {R
   rw [intervalIntegral.integral_congr hsplit, intervalIntegral.integral_add hds_int
     (hinv_int.const_mul (Φ ρ)), intervalIntegral.integral_const_mul]
 
-/-- Vertical-segment split of `Φ(ζ)(ζ-ρ)⁻¹` into `dslope + Φ(ρ)·(ζ-ρ)⁻¹`.-/
+/-- Vertical-segment split of `Φ(ζ)(ζ-ρ)⁻¹` into `dslope + Φ(ρ)·(ζ-ρ)⁻¹`.
+@isnad1 id=eq.3h6v.s8.2af953c9bc96 from=translated src=- shape=c226266d vocab=50e2efe5
+-/
 theorem integral_vertical_split {Φ : ℂ → ℂ} {ρ : ℂ} {b c d : ℝ} {R : Set ℂ}
     (hcont : ContinuousOn (dslope Φ ρ) R)
     (hseg : ∀ y ∈ Set.uIcc c d, ((b:ℂ) + (y:ℂ) * Complex.I) ∈ R)
@@ -307,7 +323,9 @@ private theorem rectangleIntegral_dslope_eq_zero {Φ : ℂ → ℂ} {z w ρ : �
 
 /-- **The rectangle Cauchy integral formula** (SP2-RECT R-c): for `Φ` differentiable
 on (a neighbourhood of each point of) the closed rectangle and `ρ` in the open
-rectangle, `∮_{∂R} Φ(ζ)(ζ − ρ)⁻¹ dζ = 2πi·Φ(ρ)`.-/
+rectangle, `∮_{∂R} Φ(ζ)(ζ − ρ)⁻¹ dζ = 2πi·Φ(ρ)`.
+@isnad1 id=eq.5h4v.s7.14eeedc4f15b from=translated src=- shape=8d6e5c79 vocab=2f7c7ec4
+-/
 theorem rectangleIntegral_cauchy {Φ : ℂ → ℂ} {z w ρ : ℂ}
     (hΦ : ∀ ζ ∈ Set.uIcc z.re w.re ×ℂ Set.uIcc z.im w.im, DifferentiableAt ℂ Φ ζ)
     (h1 : z.re < ρ.re) (h2 : ρ.re < w.re) (h3 : z.im < ρ.im) (h4 : ρ.im < w.im) :
@@ -397,6 +415,9 @@ theorem rectangleIntegral_cauchy {Φ : ℂ → ℂ} {z w ρ : ℂ}
 def rectangleBoundary (z w : ℂ) : Set ℂ :=
   (Set.uIcc z.re w.re ×ℂ {z.im, w.im}) ∪ ({z.re, w.re} ×ℂ Set.uIcc z.im w.im)
 
+/--
+@isnad1 id=mem.1h3v.s5.fad6fc0e4fa0 from=translated src=- shape=8dfebb52 vocab=f2252e18
+-/
 theorem horizontal_mem_rectangleBoundary_bot {z w : ℂ} {x : ℝ}
     (hx : x ∈ Set.uIcc z.re w.re) :
     ((x:ℂ) + (z.im:ℂ) * Complex.I) ∈ rectangleBoundary z w := by
@@ -406,6 +427,9 @@ theorem horizontal_mem_rectangleBoundary_bot {z w : ℂ} {x : ℝ}
   · simpa using hx
   · simp
 
+/--
+@isnad1 id=mem.1h3v.s5.798ab5450d85 from=translated src=- shape=3e36fc4e vocab=f2252e18
+-/
 theorem horizontal_mem_rectangleBoundary_top {z w : ℂ} {x : ℝ}
     (hx : x ∈ Set.uIcc z.re w.re) :
     ((x:ℂ) + (w.im:ℂ) * Complex.I) ∈ rectangleBoundary z w := by
@@ -415,6 +439,9 @@ theorem horizontal_mem_rectangleBoundary_top {z w : ℂ} {x : ℝ}
   · simpa using hx
   · simp
 
+/--
+@isnad1 id=mem.1h3v.s5.f318b23d4aee from=translated src=- shape=47789b66 vocab=f2252e18
+-/
 theorem vertical_mem_rectangleBoundary_left {z w : ℂ} {y : ℝ}
     (hy : y ∈ Set.uIcc z.im w.im) :
     ((z.re:ℂ) + (y:ℂ) * Complex.I) ∈ rectangleBoundary z w := by
@@ -424,6 +451,9 @@ theorem vertical_mem_rectangleBoundary_left {z w : ℂ} {y : ℝ}
   · simp
   · simpa using hy
 
+/--
+@isnad1 id=mem.1h3v.s5.2b368dfccd8f from=translated src=- shape=1697ea8e vocab=f2252e18
+-/
 theorem vertical_mem_rectangleBoundary_right {z w : ℂ} {y : ℝ}
     (hy : y ∈ Set.uIcc z.im w.im) :
     ((w.re:ℂ) + (y:ℂ) * Complex.I) ∈ rectangleBoundary z w := by
@@ -433,7 +463,9 @@ theorem vertical_mem_rectangleBoundary_right {z w : ℂ} {y : ℝ}
   · simp
   · simpa using hy
 
-/-- The boundary integral only sees boundary values.-/
+/-- The boundary integral only sees boundary values.
+@isnad1 id=eq.1h4v.s4.eb3b22d3e5db from=translated src=- shape=2a5dabee vocab=f142d326
+-/
 theorem rectangleIntegral_congr {f g : ℂ → ℂ} {z w : ℂ}
     (h : Set.EqOn f g (rectangleBoundary z w)) :
     rectangleIntegral f z w = rectangleIntegral g z w := by
@@ -452,7 +484,9 @@ theorem rectangleIntegral_congr {f g : ℂ → ℂ} {z w : ℂ}
     refine intervalIntegral.integral_congr (fun y hy => ?_)
     exact h (vertical_mem_rectangleBoundary_left hy)
 
-/-- Scalar multiples pass through the boundary integral.-/
+/-- Scalar multiples pass through the boundary integral.
+@isnad1 id=eq.0h4v.s5.225830c1a937 from=translated src=- shape=9e5dc2d8 vocab=4ff96e2f
+-/
 theorem rectangleIntegral_const_mul (c : ℂ) (f : ℂ → ℂ) (z w : ℂ) :
     rectangleIntegral (fun ζ => c * f ζ) z w = c * rectangleIntegral f z w := by
   rw [rectangleIntegral, rectangleIntegral]
@@ -462,7 +496,9 @@ theorem rectangleIntegral_const_mul (c : ℂ) (f : ℂ → ℂ) (z w : ℂ) :
   ring
 
 /-- Finite sums pass through the boundary integral, given continuity of each summand
-on the boundary.-/
+on the boundary.
+@isnad1 id=eq.1h5v.s6.0aeddd645510 from=translated src=- shape=c4339ed9 vocab=d21e19e9
+-/
 theorem rectangleIntegral_finset_sum {ι : Type*} (F : Finset ι) (f : ι → ℂ → ℂ)
     {z w : ℂ} (hf : ∀ i ∈ F, ContinuousOn (f i) (rectangleBoundary z w)) :
     rectangleIntegral (fun ζ => ∑ i ∈ F, f i ζ) z w
@@ -499,7 +535,9 @@ theorem rectangleIntegral_finset_sum {ι : Type*} (F : Finset ι) (f : ι → �
   refine Finset.sum_congr rfl (fun i _ => ?_)
   rw [rectangleIntegral]
 
-/-- Sums pass through the boundary integral, given continuity on the boundary.-/
+/-- Sums pass through the boundary integral, given continuity on the boundary.
+@isnad1 id=eq.2h4v.s6.3e93b5301992 from=translated src=- shape=43c995db vocab=8701d079
+-/
 theorem rectangleIntegral_add {f g : ℂ → ℂ} {z w : ℂ}
     (hf : ContinuousOn f (rectangleBoundary z w))
     (hg : ContinuousOn g (rectangleBoundary z w)) :
@@ -520,7 +558,9 @@ theorem rectangleIntegral_add {f g : ℂ → ℂ} {z w : ℂ}
     by_cases hi : i = 0 <;> simp [hi, hf, hg]
 
 /-- The logarithmic derivative of a peeled factorization, pointwise: away from the
-zeros, `H'/H = ∑ dᵤ/(ζ−u) + g'/g`.-/
+zeros, `H'/H = ∑ dᵤ/(ζ−u) + g'/g`.
+@isnad1 id=eq.7h6v.s7.43cb50cb2066 from=translated src=- shape=e507ee23 vocab=d61015a7
+-/
 theorem logDeriv_eq_sum_add_of_factorization {U : Set ℂ} (hUo : IsOpen U)
     {H g : ℂ → ℂ} {F : Finset ℂ} {d : ℂ → ℤ}
     (hfac : ∀ z ∈ U, H z = (∏ u ∈ F, (z - u) ^ d u) * g z)

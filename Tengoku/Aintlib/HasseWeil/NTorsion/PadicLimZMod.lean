@@ -51,7 +51,9 @@ abbrev limZModCast (n : ℕ) : ZMod (ℓ ^ (n + 1)) →+* ZMod (ℓ ^ n) :=
   ZMod.castHom (pow_dvd_pow ℓ n.le_succ) (ZMod (ℓ ^ n))
 
 omit [Fact ℓ.Prime] in
-/-- The general (non-adjacent) compatibility of a sequence implies the adjacent one.-/
+/-- The general (non-adjacent) compatibility of a sequence implies the adjacent one.
+@isnad1 id=eq.1h3v.s10.987dc2463e80 from=translated src=- shape=33b5d633 vocab=b5dcfd5d
+-/
 theorem adjacentCompat_of_compat {f : Π n : ℕ, ZMod (ℓ ^ n)}
     (h : ∀ (k₁ k₂ : ℕ) (hk : k₁ ≤ k₂),
       ZMod.castHom (pow_dvd_pow ℓ hk) (ZMod (ℓ ^ k₁)) (f k₂) = f k₁) (n : ℕ) :
@@ -59,7 +61,9 @@ theorem adjacentCompat_of_compat {f : Π n : ℕ, ZMod (ℓ ^ n)}
   h n (n + 1) n.le_succ
 
 omit [Fact ℓ.Prime] in
-/-- An adjacent-compatible sequence is compatible for every `k₁ ≤ k₂` (telescoping).-/
+/-- An adjacent-compatible sequence is compatible for every `k₁ ≤ k₂` (telescoping).
+@isnad1 id=eq.2h4v.s10.ee1ae7098300 from=translated src=- shape=dc75a0ad vocab=b5dcfd5d
+-/
 theorem compat_of_adjacentCompat {f : Π n : ℕ, ZMod (ℓ ^ n)}
     (h : ∀ n, limZModCast ℓ n (f (n + 1)) = f n)
     (k₁ k₂ : ℕ) (hk : k₁ ≤ k₂) :
@@ -87,6 +91,9 @@ def compatSubring : Subring (Π n : ℕ, ZMod (ℓ ^ n)) where
     simp only [Pi.neg_apply, map_neg, hf n]
 
 omit [Fact ℓ.Prime] in
+/--
+@isnad1 id=iff.0h2v.s9.96f123a34d01 from=translated src=- shape=76c399fa vocab=7705a271
+-/
 @[simp] theorem mem_compatSubring (f : Π n : ℕ, ZMod (ℓ ^ n)) :
     f ∈ compatSubring ℓ ↔
       ∀ n, ZMod.castHom (pow_dvd_pow ℓ n.le_succ) (ZMod (ℓ ^ n)) (f (n + 1)) = f n := Iff.rfl
@@ -97,7 +104,9 @@ def compatProj (n : ℕ) : compatSubring ℓ →+* ZMod (ℓ ^ n) :=
 
 omit [Fact ℓ.Prime] in
 /-- The projection family `compatProj` is compatible with the tower's connecting maps
-(`ZMod.castHom`), so `PadicInt.lift` applies to it.-/
+(`ZMod.castHom`), so `PadicInt.lift` applies to it.
+@isnad1 id=eq.1h3v.s11.a990eb5b08f1 from=translated src=- shape=31219fc1 vocab=9fce9639
+-/
 theorem compatProj_compat (k₁ k₂ : ℕ) (hk : k₁ ≤ k₂) :
     (ZMod.castHom (pow_dvd_pow ℓ hk) (ZMod (ℓ ^ k₁))).comp (compatProj ℓ k₂) = compatProj ℓ k₁ := by
   ext x
@@ -116,13 +125,21 @@ noncomputable def padicToLimZMod : ℤ_[ℓ] →+* compatSubring ℓ :=
     (fun z n => RingHom.congr_fun (PadicInt.zmod_cast_comp_toZModPow n (n + 1) n.le_succ) z)
 
 omit [Fact ℓ.Prime] in
+/--
+@isnad1 id=eq.0h3v.s11.20193de95fa5 from=translated src=- shape=65ef9f1e vocab=97254c96
+-/
 @[simp] theorem compatProj_apply (n : ℕ) (x : compatSubring ℓ) :
     compatProj ℓ n x = x.val n := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.c21d68a9e98d from=translated src=- shape=a416179f vocab=93de8f66
+-/
 @[simp] theorem padicToLimZMod_val (z : ℤ_[ℓ]) (n : ℕ) :
     (padicToLimZMod ℓ z).val n = PadicInt.toZModPow n z := rfl
 
-/-- The defining property of the inverse: `toZModPow n (limZModToPadic ℓ x) = x.val n`.-/
+/-- The defining property of the inverse: `toZModPow n (limZModToPadic ℓ x) = x.val n`.
+@isnad1 id=eq.0h3v.s12.f5baa1ce747a from=translated src=- shape=7bc30ab2 vocab=79ce1f8b
+-/
 @[simp] theorem toZModPow_limZModToPadic (n : ℕ) (x : compatSubring ℓ) :
     PadicInt.toZModPow n (limZModToPadic ℓ x) = x.val n := by
   simpa [limZModToPadic, compatProj]

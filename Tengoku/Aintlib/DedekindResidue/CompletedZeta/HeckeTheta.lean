@@ -39,14 +39,18 @@ open scoped nonZeroDivisors Real
 variable (K : Type*) [Field K] [NumberField K]
 
 /-- The `ℝ`-cast field degree `[K : ℚ]` is positive — the packaged `Module.finrank_pos` used
-for the degree denominators throughout the Hecke-weight normalisation.-/
+for the degree denominators throughout the Hecke-weight normalisation.
+@isnad1 id=lt.0h1v.s5.f3596797379b from=translated src=- shape=6f759d16 vocab=51b3f8b9
+-/
 theorem finrank_pos_real : (0 : ℝ) < (Module.finrank ℚ K : ℝ) := by
   have := Module.finrank_pos (R := ℚ) (M := K)
   positivity
 
 omit [NumberField K] in
 /-- The `ℝ`-cast local multiplicity `mult w` is nonzero (`1` at real, `2` at complex places) —
-the recurring side goal for the `field_simp`s that divide by `mult w`.-/
+the recurring side goal for the `field_simp`s that divide by `mult w`.
+@isnad1 id=ne.0h2v.s4.77f0f60907ad from=translated src=- shape=fd2f49e5 vocab=5c4642b8
+-/
 theorem mult_ne_zero_real (w : InfinitePlace K) : (mult w : ℝ) ≠ 0 := by
   have := mult_pos (w := w)
   positivity
@@ -58,7 +62,9 @@ noncomputable def placeWeights (c : InfinitePlace K → ℝ) : index K → ℝ :
 
 open scoped Classical in
 /-- The place-weighted square-sum of the embedding coordinates is the weighted sum of squared
-place absolute values: `∑ᵢ c_i·ζ(x)ᵢ² = ∑_w c_w·w(x)²`.-/
+place absolute values: `∑ᵢ c_i·ζ(x)ᵢ² = ∑_w c_w·w(x)²`.
+@isnad1 id=eq.0h3v.s7.d2bb619c8aa2 from=translated src=- shape=2bd68195 vocab=8d7e39d8
+-/
 theorem sum_placeWeights_embeddingCoords_sq (c : InfinitePlace K → ℝ) (x : K) :
     (∑ i : index K, placeWeights K c i * embeddingCoords K x i ^ 2)
       = ∑ w : InfinitePlace K, c w * (w x) ^ 2 := by
@@ -111,6 +117,9 @@ noncomputable def mulCoords (x : K) :
       ((euclidean.stdOrthonormalBasis K).repr.symm.toLinearEquiv.toLinearMap))
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s8.6c64147464d4 from=translated src=- shape=8fbb0c8f vocab=d3b1247e
+-/
 theorem mulCoords_embeddingCoords (x a : K) :
     mulCoords K x (embeddingCoords K a) = embeddingCoords K (x * a) := by
   rw [mulCoords, embeddingCoords, embeddingCoords]
@@ -166,7 +175,9 @@ noncomputable def unitMulLatticeEquiv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (�
 open scoped Classical in
 /-- **Unit equivariance of the Hecke theta** (the symmetry making the unit average
 well-defined): scaling the place weights by `w(ε)²` for a unit `ε` leaves the theta of the
-ideal lattice unchanged — multiplication by `ε` permutes the lattice points.-/
+ideal lattice unchanged — multiplication by `ε` permutes the lattice points.
+@isnad1 id=eq.0h4v.s8.e0dfa9299f2a from=translated src=- shape=a3c606c7 vocab=bf63752f
+-/
 theorem heckeTheta_unit_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (ε : (𝓞 K)ˣ)
     (c : InfinitePlace K → ℝ) :
     heckeTheta K I (fun w => (w (algebraMap (𝓞 K) K (ε : 𝓞 K))) ^ 2 * c w)
@@ -196,6 +207,9 @@ noncomputable def dualPlaceWeights (c : InfinitePlace K → ℝ) : InfinitePlace
 
 open scoped Classical in
 omit [NumberField K] in
+/--
+@isnad1 id=eq.0h3v.s5.c96705f1d058 from=translated src=- shape=474b079f vocab=3104e463
+-/
 theorem placeWeights_dualPlaceWeights (c : InfinitePlace K → ℝ) (i : index K) :
     placeWeights K (dualPlaceWeights K c) i
       = (placeWeights K c i)⁻¹ * (dualityWeights K i) ^ 2 := by
@@ -210,7 +224,9 @@ open scoped Classical in
 /-- **The inversion law of the multivariable Hecke theta** (SP1-AGE-3):
 `Θ_I(c) = covol(L_I)⁻¹ · (∏ᵢ c-coords)^{-1/2} · Θ_{I^∨}(dual weights)` — Poisson summation
 over the ideal lattice, with the dual side identified as the theta of the trace-dual ideal
-via `dualZLattice_idealZLattice` (the duality twist absorbed into the weights).-/
+via `dualZLattice_idealZLattice` (the duality twist absorbed into the weights).
+@isnad1 id=eq.1h3v.s10.4868e61a4953 from=translated src=- shape=b3798d63 vocab=59b5d555
+-/
 theorem heckeTheta_inversion (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (c : InfinitePlace K → ℝ) (hc : ∀ w, 0 < c w) :
     heckeTheta K I c
@@ -248,6 +264,9 @@ noncomputable def fullLog (u : logSpace K) : InfinitePlace K → ℝ := fun w =>
   else u ⟨w, h⟩
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s9.04d6c60bdb0c from=translated src=- shape=56ae95cb vocab=0cf3ef7f
+-/
 theorem fullLog_logEmbedding (ε : (𝓞 K)ˣ) (w : InfinitePlace K) :
     fullLog K (logEmbedding K (Additive.ofMul ε)) w
       = mult w * Real.log (w (algebraMap (𝓞 K) K (ε : 𝓞 K))) := by
@@ -258,6 +277,9 @@ theorem fullLog_logEmbedding (ε : (𝓞 K)ˣ) (w : InfinitePlace K) :
   · rw [logEmbedding_component]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h3v.s7.1a1310c8dd87 from=translated src=- shape=e986181e vocab=5fc83a9a
+-/
 theorem fullLog_add (u v : logSpace K) :
     fullLog K (u + v) = fullLog K u + fullLog K v := by
   funext w
@@ -275,6 +297,9 @@ Mellin transform) and equivariance under `u ↦ u + logEmbedding ε` matching
 noncomputable def heckeWeights (t : ℝ) (u : logSpace K) : InfinitePlace K → ℝ := fun w =>
   t ^ ((1 : ℝ) / (Module.finrank ℚ K)) * Real.exp (2 * fullLog K u w / mult w)
 
+/--
+@isnad1 id=lt.1h4v.s5.ca084a8d1b4e from=translated src=- shape=dba15783 vocab=5bff6430
+-/
 theorem heckeWeights_pos {t : ℝ} (ht : 0 < t) (u : logSpace K) (w : InfinitePlace K) :
     0 < heckeWeights K t u w := by
   rw [heckeWeights]
@@ -282,7 +307,9 @@ theorem heckeWeights_pos {t : ℝ} (ht : 0 < t) (u : logSpace K) (w : InfinitePl
 
 open scoped Classical in
 /-- **Equivariance of the Hecke weights**: translating `u` by the log of a unit scales the
-weights by `w(ε)²` — exactly the scaling `heckeTheta_unit_mul` absorbs.-/
+weights by `w(ε)²` — exactly the scaling `heckeTheta_unit_mul` absorbs.
+@isnad1 id=eq.0h4v.s9.15a10f7e1478 from=translated src=- shape=33303ede vocab=9c5b84b9
+-/
 theorem heckeWeights_add_logEmbedding (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) :
     heckeWeights K t (u + logEmbedding K (Additive.ofMul ε))
       = fun w => (w (algebraMap (𝓞 K) K (ε : 𝓞 K))) ^ 2 * heckeWeights K t u w := by
@@ -307,7 +334,9 @@ theorem heckeWeights_add_logEmbedding (t : ℝ) (u : logSpace K) (ε : (𝓞 K)�
 open scoped Classical in
 /-- **Periodicity of the theta integrand modulo the unit lattice**: the Hecke-weighted theta
 is invariant under `u ↦ u + logEmbedding ε` — the equivariance of the weights matches the
-unit symmetry of the theta exactly. This makes the unit-box average well-defined.-/
+unit symmetry of the theta exactly. This makes the unit-box average well-defined.
+@isnad1 id=eq.0h5v.s9.6c704931e225 from=translated src=- shape=be7681b0 vocab=8bb617b9
+-/
 theorem heckeTheta_heckeWeights_periodic (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (t : ℝ) (u : logSpace K) (ε : (𝓞 K)ˣ) :
     heckeTheta K I (heckeWeights K t (u + logEmbedding K (Additive.ofMul ε)))
@@ -316,6 +345,9 @@ theorem heckeTheta_heckeWeights_periodic (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
   exact heckeTheta_unit_mul K I ε _
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s5.475c5e9aba8b from=translated src=- shape=1dc63edc vocab=3933713a
+-/
 theorem sum_fullLog (u : logSpace K) : ∑ w : InfinitePlace K, fullLog K u w = 0 := by
   rw [Fintype.sum_eq_add_sum_subtype_ne _ (w₀ : InfinitePlace K)]
   have h1 : fullLog K u (w₀ : InfinitePlace K)
@@ -331,7 +363,9 @@ theorem sum_fullLog (u : logSpace K) : ∑ w : InfinitePlace K, fullLog K u w = 
 
 open scoped Classical in
 /-- **The norm-ray property**: the place-multiplicity-weighted product of the Hecke weights
-is exactly `t` — the Mellin variable. (`∑ mult = n` and the trace-zero sum of `fullLog`.)-/
+is exactly `t` — the Mellin variable. (`∑ mult = n` and the trace-zero sum of `fullLog`.)
+@isnad1 id=eq.1h3v.s6.b7bf9bda5e7b from=translated src=- shape=0e5a2fc3 vocab=7931128b
+-/
 theorem prod_heckeWeights_pow_mult {t : ℝ} (ht : 0 < t) (u : logSpace K) :
     ∏ w : InfinitePlace K, (heckeWeights K t u w) ^ mult w = t := by
   have hn : (0:ℝ) < (Module.finrank ℚ K : ℝ) := finrank_pos_real K
@@ -364,7 +398,9 @@ noncomputable def heckeG (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (t : ℝ) : ℝ
       heckeTheta K I (heckeWeights K t u)
 
 open scoped Classical in
-/-- `fullLog` is odd.-/
+/-- `fullLog` is odd.
+@isnad1 id=eq.0h2v.s6.0acba57b84b0 from=translated src=- shape=c2e65a75 vocab=4210de09
+-/
 theorem fullLog_neg (u : logSpace K) : fullLog K (-u) = -fullLog K u := by
   funext w
   simp only [fullLog, Pi.neg_apply]
@@ -374,7 +410,9 @@ theorem fullLog_neg (u : logSpace K) : fullLog K (-u) = -fullLog K u := by
 
 open scoped Classical in
 /-- The duality bookkeeping of the Hecke weights: the dual weights of `c(t,u)` are the
-weights `c(1/t, -u)` scaled by `1` at real and `4` at complex places.-/
+weights `c(1/t, -u)` scaled by `1` at real and `4` at complex places.
+@isnad1 id=eq.1h4v.s7.df14d38695d4 from=translated src=- shape=536dc5f7 vocab=674f3fff
+-/
 theorem dualPlaceWeights_heckeWeights {t : ℝ} (ht : 0 < t) (u : logSpace K)
     (w : InfinitePlace K) :
     dualPlaceWeights K (heckeWeights K t u) w
@@ -395,7 +433,9 @@ theorem dualPlaceWeights_heckeWeights {t : ℝ} (ht : 0 < t) (u : logSpace K)
 
 open scoped Classical in
 /-- The coordinate product of place weights is the multiplicity-weighted place product:
-real places contribute once, complex places (two coordinates) twice.-/
+real places contribute once, complex places (two coordinates) twice.
+@isnad1 id=eq.0h2v.s7.d5b04b1a7d62 from=translated src=- shape=853485ba vocab=5ca11394
+-/
 theorem prod_placeWeights (c : InfinitePlace K → ℝ) :
     (∏ i : index K, placeWeights K c i) = ∏ w : InfinitePlace K, c w ^ mult w := by
   rw [Fintype.prod_sum_type, Fintype.prod_prod_type,
@@ -417,7 +457,9 @@ theorem prod_placeWeights (c : InfinitePlace K → ℝ) :
 
 open scoped Classical in
 /-- The coordinate product of the Hecke weights is the Mellin variable `t` — so the middle
-factor of `heckeTheta_inversion` at the Hecke weights is exactly `(√t)⁻¹`.-/
+factor of `heckeTheta_inversion` at the Hecke weights is exactly `(√t)⁻¹`.
+@isnad1 id=eq.1h3v.s7.0ed8d43d6579 from=translated src=- shape=42cb891e vocab=d4b78430
+-/
 theorem prod_placeWeights_heckeWeights {t : ℝ} (ht : 0 < t) (u : logSpace K) :
     (∏ i : index K, placeWeights K (heckeWeights K t u) i) = t := by
   rw [prod_placeWeights]
@@ -425,7 +467,9 @@ theorem prod_placeWeights_heckeWeights {t : ℝ} (ht : 0 < t) (u : logSpace K) :
 
 open scoped Classical in
 /-- Every zero-sum place vector is the trace-zero extension of its restriction: `fullLog` is
-onto the trace-zero hyperplane.-/
+onto the trace-zero hyperplane.
+@isnad1 id=eq.1h2v.s6.219ec91bb8c9 from=translated src=- shape=d56faf2b vocab=26686d1d
+-/
 theorem fullLog_restrict (y : InfinitePlace K → ℝ) (hy : ∑ w, y w = 0) :
     fullLog K (fun w : {w : InfinitePlace K // w ≠ (w₀ : InfinitePlace K)} => y w) = y := by
   funext w
@@ -445,6 +489,9 @@ noncomputable def dualShift : logSpace K :=
       - 2 * nrComplexPlaces K * Real.log 4 / Module.finrank ℚ K)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s7.79af1767f6b7 from=translated src=- shape=67fe5480 vocab=25f5aa7b
+-/
 theorem fullLog_dualShift (w : InfinitePlace K) :
     fullLog K (dualShift K) w
       = (mult w : ℝ) / 2 * ((if IsReal w then 0 else Real.log 4)
@@ -498,6 +545,9 @@ theorem fullLog_dualShift (w : InfinitePlace K) :
       field_simp
     rw [h1, h2, sub_self]
 
+/--
+@isnad1 id=eq.2h5v.s7.6780d649ce53 from=translated src=- shape=1b75478c vocab=29963168
+-/
 theorem heckeWeights_mul_left {a t : ℝ} (ha : 0 ≤ a) (ht : 0 ≤ t) (u : logSpace K)
     (w : InfinitePlace K) :
     heckeWeights K (a * t) u w
@@ -506,6 +556,9 @@ theorem heckeWeights_mul_left {a t : ℝ} (ha : 0 ≤ a) (ht : 0 ≤ t) (u : log
   ring
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h5v.s7.e0aca50afb68 from=translated src=- shape=67b793bb vocab=5ea0271b
+-/
 theorem heckeWeights_add_right (t : ℝ) (u v : logSpace K) (w : InfinitePlace K) :
     heckeWeights K t (u + v) w
       = Real.exp (2 * fullLog K v w / mult w) * heckeWeights K t u w := by
@@ -518,7 +571,9 @@ theorem heckeWeights_add_right (t : ℝ) (u v : logSpace K) (w : InfinitePlace K
 open scoped Classical in
 /-- **The `(1;4)`-absorption identity.** Multiplying the Hecke weights by the duality factor
 (`1` at real places, `4` at complex ones) is reabsorbed as a norm-ray scaling by
-`4^(2·r₂)` together with the fixed trace-zero log-shift `dualShift`.-/
+`4^(2·r₂)` together with the fixed trace-zero log-shift `dualShift`.
+@isnad1 id=eq.1h4v.s7.e30636242776 from=translated src=- shape=6066d231 vocab=557eecb0
+-/
 theorem ite_mul_heckeWeights {t : ℝ} (ht : 0 ≤ t) (u : logSpace K) (w : InfinitePlace K) :
     (if IsReal w then (1 : ℝ) else 4) * heckeWeights K t u w
       = heckeWeights K ((4 : ℝ) ^ (2 * nrComplexPlaces K) * t) (u + dualShift K) w := by
@@ -556,7 +611,9 @@ open scoped Classical in
 /-- **Weights duality, fully absorbed.** The dual of the Hecke weights at `(t, u)` is the
 Hecke weights at `(4^(2r₂)·t⁻¹, -u + dualShift)` — inversion of the norm-ray parameter,
 negation in the log-torus, and a fixed translation. This is the exact bookkeeping needed
-for the inversion of the unit-averaged theta `heckeG`.-/
+for the inversion of the unit-averaged theta `heckeG`.
+@isnad1 id=eq.1h3v.s7.95ebfed7989a from=translated src=- shape=a144fafa vocab=0d2b60d3
+-/
 theorem dualPlaceWeights_heckeWeights_eq {t : ℝ} (ht : 0 < t) (u : logSpace K) :
     dualPlaceWeights K (heckeWeights K t u)
       = heckeWeights K ((4 : ℝ) ^ (2 * nrComplexPlaces K) * t⁻¹) (-u + dualShift K) := by
@@ -566,7 +623,9 @@ theorem dualPlaceWeights_heckeWeights_eq {t : ℝ} (ht : 0 < t) (u : logSpace K)
 open scoped Classical in
 /-- Integrating a lattice-periodic function over a `ZSpan` fundamental box is invariant
 under the affine involution `u ↦ -u + s`: the preimage of the box is again a fundamental
-domain, and periodic integrals agree on any two fundamental domains.-/
+domain, and periodic integrals agree on any two fundamental domains.
+@isnad1 id=eq.1h5v.s9.669ef3416936 from=translated src=- shape=11c06c89 vocab=12e58255
+-/
 theorem setIntegral_fundamentalDomain_comp_neg_add {ι κ : Type*} [Fintype ι] [Fintype κ]
     (b : Module.Basis κ ℝ (ι → ℝ)) (s : ι → ℝ) (f : (ι → ℝ) → ℝ)
     (hf : ∀ l : Submodule.span ℤ (Set.range ⇑b), ∀ x, f (↑l + x) = f x) :
@@ -606,7 +665,9 @@ open scoped Classical in
 /-- **Inversion for the unit-averaged Hecke theta** `g_I`: the Mellin-ready form of the
 theta transformation. The `(1;4)`-duality factor has been absorbed into the norm-ray
 parameter (`4^(2r₂)·t⁻¹`) and a fundamental-domain translation, which the box integral
-does not see.-/
+does not see.
+@isnad1 id=eq.1h3v.s9.32d32e115386 from=translated src=- shape=4e49798c vocab=721394ae
+-/
 theorem heckeG_inversion (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht : 0 < t) :
     heckeG K I t
       = (ZLattice.covolume (idealZLattice K I) volume)⁻¹ * (Real.sqrt t)⁻¹
@@ -648,7 +709,9 @@ theorem heckeG_inversion (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) {t : ℝ} (ht :
 open scoped Classical in
 /-- Translation-only version of `setIntegral_fundamentalDomain_comp_neg_add`: the box
 integral of a lattice-periodic function is translation invariant. Derived by applying the
-negation lemma twice (with shifts `s` then `0`).-/
+negation lemma twice (with shifts `s` then `0`).
+@isnad1 id=eq.1h5v.s9.7a6b466467f5 from=translated src=- shape=43b0f840 vocab=63cb96ce
+-/
 theorem setIntegral_fundamentalDomain_comp_add {ι κ : Type*} [Fintype ι] [Fintype κ]
     (b : Module.Basis κ ℝ (ι → ℝ)) (s : ι → ℝ) (f : (ι → ℝ) → ℝ)
     (hf : ∀ l : Submodule.span ℤ (Set.range ⇑b), ∀ x, f (↑l + x) = f x) :
@@ -681,6 +744,9 @@ noncomputable def xShift (x : K) : logSpace K :=
         / Module.finrank ℚ K
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h2v.s7.ed2217005f5b from=translated src=- shape=7d05bbe8 vocab=c6570785
+-/
 theorem sum_mult_mul_log (x : K) (hx : x ≠ 0) :
     ∑ w : InfinitePlace K, (mult w : ℝ) * Real.log (w x)
       = Real.log ((|Algebra.norm ℚ x| : ℚ) : ℝ) := by
@@ -693,6 +759,9 @@ theorem sum_mult_mul_log (x : K) (hx : x ≠ 0) :
     prod_eq_abs_norm]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.1h3v.s7.2319427a3d1b from=translated src=- shape=fdeba121 vocab=c87a2c3e
+-/
 theorem fullLog_xShift {x : K} (hx : x ≠ 0) (w : InfinitePlace K) :
     fullLog K (xShift K x) w
       = (mult w : ℝ) * Real.log (w x)
@@ -719,7 +788,9 @@ theorem fullLog_xShift {x : K} (hx : x ≠ 0) (w : InfinitePlace K) :
 open scoped Classical in
 /-- **The `x`-absorption identity.** Multiplying the Hecke weights by `(w x)²` (the effect
 of the lattice `L_I ↦ L_{xI}`) is reabsorbed as a norm-ray scaling by `|N(x)|²` together
-with the trace-zero log-shift `xShift x`.-/
+with the trace-zero log-shift `xShift x`.
+@isnad1 id=eq.2h5v.s8.7ff6559096d6 from=translated src=- shape=fc2d48a3 vocab=c56b4e88
+-/
 theorem sq_mul_heckeWeights {x : K} (hx : x ≠ 0) {t : ℝ} (ht : 0 ≤ t) (u : logSpace K)
     (w : InfinitePlace K) :
     (w x) ^ 2 * heckeWeights K t u w
@@ -758,7 +829,9 @@ theorem sq_mul_heckeWeights {x : K} (hx : x ≠ 0) {t : ℝ} (ht : 0 ≤ t) (u :
   rw [← mul_assoc, hscal]
 
 open scoped Classical in
-/-- Membership in the lattice of `x·I` (`x ∈ Kˣ` acting through `toPrincipalIdeal`).-/
+/-- Membership in the lattice of `x·I` (`x ∈ Kˣ` acting through `toPrincipalIdeal`).
+@isnad1 id=iff.0h4v.s11.914874630fd9 from=translated src=- shape=12fb2cd6 vocab=0e67a46c
+-/
 theorem mem_idealZLattice_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : Kˣ)
     (v : EuclideanSpace ℝ (index K)) :
     v ∈ idealZLattice K (toPrincipalIdeal (𝓞 K) K x * I)
@@ -812,7 +885,9 @@ noncomputable def smulLatticeEquiv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : 
 
 open scoped Classical in
 /-- **Principal rescaling of the Hecke theta**: the theta of `x·I` is the theta of `I`
-with the place weights scaled by `(w x)²`.-/
+with the place weights scaled by `(w x)²`.
+@isnad1 id=eq.0h4v.s10.e1aa9b4dc73c from=translated src=- shape=bda41fd8 vocab=7427322e
+-/
 theorem heckeTheta_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : Kˣ)
     (c : InfinitePlace K → ℝ) :
     heckeTheta K (toPrincipalIdeal (𝓞 K) K x * I) c
@@ -835,7 +910,9 @@ theorem heckeTheta_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : K�
 
 open scoped Classical in
 /-- **Principal rescaling of the unit-averaged theta**: `g_{x·I}(t) = g_I(|N(x)|²·t)`.
-This is what makes the normalised class theta `Ĝ_C` well-defined on ideal classes.-/
+This is what makes the normalised class theta `Ĝ_C` well-defined on ideal classes.
+@isnad1 id=eq.1h4v.s11.fa92ce73297e from=translated src=- shape=19b10399 vocab=d220e595
+-/
 theorem heckeG_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (x : Kˣ) {t : ℝ}
     (ht : 0 ≤ t) :
     heckeG K (toPrincipalIdeal (𝓞 K) K x * I) t

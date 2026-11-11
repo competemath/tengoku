@@ -32,7 +32,9 @@ variable {A : Type*} [AddCommGroup A] [Module (ZMod m) A] [Finite A]
 /-- The final finite-level comparison: an exact lifted character idempotent
 whose coefficients and character reduce to the expected mod-`p` data converts
 nontriviality of `V_i` into nontriviality of the corresponding `A[p]_i`
-component.-/
+component.
+@isnad1 id=torsionc.5h6v.s9.ccec3aa977c5 from=translated src=- shape=380610a4 vocab=53ce229b
+-/
 theorem torsionComponentNontrivial_of_finiteLevelCharacter
     (hcard : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod p))
     (hm : p ∣ m) (i : ℕ)

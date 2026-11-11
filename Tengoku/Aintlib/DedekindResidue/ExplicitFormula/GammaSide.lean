@@ -59,7 +59,9 @@ open MeasureTheory Complex intervalIntegral Real Filter SchwartzMap
 open scoped FourierTransform ContDiff ComplexConjugate InnerProductSpace ENNReal
 
 /-- The Frullani kernel is a parameter integral of the exponential: for `x > 0`,
-`(e^{-x} - e^{-tx})/x = ∫_1^t e^{-sx} ds` (the primitive is `s ↦ -e^{-sx}/x`).-/
+`(e^{-x} - e^{-tx})/x = ∫_1^t e^{-sx} ds` (the primitive is `s ↦ -e^{-sx}/x`).
+@isnad1 id=eq.1h2v.s6.cecf0233274b from=translated src=- shape=3cbfaae8 vocab=dbb97377
+-/
 theorem frullani_kernel_eq_intervalIntegral (t : ℝ) {x : ℝ} (hx : 0 < x) :
     (Real.exp (-x) - Real.exp (-(t*x))) / x = ∫ s in (1:ℝ)..t, Real.exp (-(s*x)) := by
   have hprim : ∀ s : ℝ, HasDerivAt (fun s' : ℝ => -Real.exp (-(s'*x)) / x)
@@ -86,7 +88,9 @@ theorem frullani_kernel_eq_intervalIntegral (t : ℝ) {x : ℝ} (hx : 0 < x) :
 
 /-- **Frullani integral for the logarithm** (Γψ-c1): for `t > 0`,
 `∫₀^∞ (e^{-x} - e^{-tx})/x dx = log t`. The kernel is `∫_1^t e^{-sx} ds`; Fubini and
-`∫₀^∞ e^{-sx} dx = 1/s` reduce it to `∫_1^t ds/s`.-/
+`∫₀^∞ e^{-sx} dx = 1/s` reduce it to `∫_1^t ds/s`.
+@isnad1 id=eq.1h1v.s6.85dbae3fe53c from=translated src=- shape=c0afe36f vocab=0429c825
+-/
 theorem integral_frullani_log {t : ℝ} (ht : 0 < t) :
     ∫ x in Set.Ioi (0:ℝ), (Real.exp (-x) - Real.exp (-(t*x))) / x = Real.log t := by
   have hker : ∀ x : ℝ, 0 < x →
@@ -164,7 +168,9 @@ theorem integral_frullani_log {t : ℝ} (ht : 0 < t) :
     rw [one_div, Real.log_inv, neg_neg]
 
 /-- The log-weighted Gamma integrand is integrable: `∫₀^∞ t^{a-1} e^{-t} |log t| dt < ∞`
-for `a > 0` (Γψ-c2b). Near `0` the log loses to `t^{a/2}`; at infinity `log t ≤ t`.-/
+for `a > 0` (Γψ-c2b). Near `0` the log loses to `t^{a/2}`; at infinity `log t ≤ t`.
+@isnad1 id=integrab.1h1v.s6.320d24fec735 from=translated src=- shape=be315daf vocab=aa2dd60f
+-/
 theorem integrableOn_rpow_mul_exp_neg_mul_abs_log {a : ℝ} (ha : 0 < a) :
     IntegrableOn (fun t : ℝ => t ^ (a-1) * Real.exp (-t) * |Real.log t|)
       (Set.Ioi 0) := by
@@ -227,7 +233,9 @@ theorem integrableOn_rpow_mul_exp_neg_mul_abs_log {a : ℝ} (ha : 0 < a) :
           linarith
 
 /-- The Frullani kernel is dominated exponentially: `|(e^{-x} - e^{-tx})/x| ≤ |t-1| e^{-mx}`
-with `m = min 1 t`, hence integrable on `(0, ∞)` for each `t > 0` (Γψ-c2 slice bound).-/
+with `m = min 1 t`, hence integrable on `(0, ∞)` for each `t > 0` (Γψ-c2 slice bound).
+@isnad1 id=le.1h2v.s6.1c31bbc0f37a from=translated src=- shape=aa5f11a2 vocab=377c3282
+-/
 theorem abs_frullani_kernel_le (t : ℝ) {x : ℝ} (hx : 0 < x) :
     |(Real.exp (-x) - Real.exp (-(t*x))) / x| ≤ |t - 1| * Real.exp (-(min 1 t * x)) := by
   rw [frullani_kernel_eq_intervalIntegral t hx]
@@ -249,7 +257,9 @@ theorem abs_frullani_kernel_le (t : ℝ) {x : ℝ} (hx : 0 < x) :
     _ = |t - 1| * Real.exp (-(min 1 t * x)) := mul_comm _ _
 
 /-- Inner evaluation of the Gauss double integral (Γψ-c2, fixed `x > 0`):
-`∫₀^∞ t^{z-1} e^{-t} (e^{-x} - e^{-tx})/x dt = Γ(z)·(e^{-x} - (1+x)^{-z})/x`.-/
+`∫₀^∞ t^{z-1} e^{-t} (e^{-x} - e^{-tx})/x dt = Γ(z)·(e^{-x} - (1+x)^{-z})/x`.
+@isnad1 id=eq.2h2v.s7.504e1b2b8c90 from=translated src=- shape=f0b22de9 vocab=4a140171
+-/
 theorem integral_gauss_inner {z : ℂ} (hz : 0 < z.re) {x : ℝ} (hx : 0 < x) :
     (∫ t : ℝ in Set.Ioi 0, (t:ℂ) ^ (z-1)
         * ((Real.exp (-t) * ((Real.exp (-x) - Real.exp (-(t*x))) / x) : ℝ) : ℂ))
@@ -323,7 +333,9 @@ theorem integral_gauss_inner {z : ℂ} (hz : 0 < z.re) {x : ℝ} (hx : 0 < x) :
 
 /-- **Gauss's first integral for the digamma function** (Γψ-c2): for `Re z > 0`,
 `ψ(z) = ∫₀^∞ (e^{-x} - (1+x)^{-z})/x dx`. Obtained from `Γ'(z) = ∫ t^{z-1}e^{-t} log t dt`
-by writing `log t` as a Frullani integral and applying Fubini.-/
+by writing `log t` as a Frullani integral and applying Fubini.
+@isnad1 id=eq.1h1v.s6.e1cf37221df9 from=translated src=- shape=83140efd vocab=d3434916
+-/
 theorem digamma_eq_integral_gauss_one {z : ℂ} (hz : 0 < z.re) :
     Complex.digamma z = ∫ x in Set.Ioi (0:ℝ),
       (((Real.exp (-x) : ℝ) : ℂ) - ((1+x : ℝ) : ℂ) ^ (-z)) / (x:ℂ) := by
@@ -498,7 +510,9 @@ theorem digamma_eq_integral_gauss_one {z : ℂ} (hz : 0 < z.re) :
 
 /-- The Gauss integrand `(e^{-x} - (1+x)^{-z})/x` is integrable on `(0, ∞)` for
 `Re z > 0`: bounded near `0` (the singularities cancel to first order) and dominated by
-`e^{-x}/x₀ + x^{-(1+Re z)}` in the tail.-/
+`e^{-x}/x₀ + x^{-(1+Re z)}` in the tail.
+@isnad1 id=integrab.1h1v.s6.dc6cc31c4855 from=translated src=- shape=30245b9b vocab=e3138e44
+-/
 theorem integrableOn_gauss_one_integrand {z : ℂ} (hz : 0 < z.re) :
     IntegrableOn
       (fun x : ℝ => (((Real.exp (-x) : ℝ) : ℂ) - ((1+x : ℝ) : ℂ) ^ (-z)) / (x:ℂ))
@@ -641,7 +655,9 @@ difference so that both counterterms cancel): for `σ > 0` real and `Re w > 0`,
 
 `ψ(w) - ψ(σ) = ∫₀^∞ (e^{-σu} - e^{-wu})/(1 - e^{-u}) du`.
 
-Change of variables `x = e^u - 1` in the difference of two Gauss first-form integrals.-/
+Change of variables `x = e^u - 1` in the difference of two Gauss first-form integrals.
+@isnad1 id=eq.2h2v.s7.09cbece22840 from=translated src=- shape=910c1a13 vocab=b934b5a4
+-/
 theorem digamma_sub_digamma_eq_integral {σ : ℝ} (hσ : 0 < σ) {w : ℂ} (hw : 0 < w.re) :
     Complex.digamma w - Complex.digamma (σ:ℂ)
       = ∫ u in Set.Ioi (0:ℝ),
@@ -740,7 +756,9 @@ theorem digamma_sub_digamma_eq_integral {σ : ℝ} (hσ : 0 < σ) {w : ℂ} (hw 
 
 /-- The exponential difference kernel of `digamma_sub_digamma_eq_integral` is integrable
 on `(0, ∞)`: near `0` the numerator vanishes to first order, and the tail decays
-exponentially.-/
+exponentially.
+@isnad1 id=integrab.2h2v.s7.357f52768c8d from=translated src=- shape=8d02ab82 vocab=2993db31
+-/
 theorem integrableOn_digamma_diff_kernel {σ : ℝ} (hσ : 0 < σ) {w : ℂ} (hw : 0 < w.re) :
     IntegrableOn (fun u : ℝ =>
       (Complex.exp (-(σ:ℂ) * (u:ℂ)) - Complex.exp (-w * (u:ℂ)))
@@ -888,7 +906,9 @@ theorem integrableOn_digamma_diff_kernel {σ : ℝ} (hσ : 0 < σ) {w : ℂ} (hw
             positivity
 
 /-- Pointwise real part of Poitou's difference kernel: for `u > 0`,
-`Re((e^{-σu} - e^{-(σ+it)u})/(1-e^{-u})) = e^{-σu}(1 - cos(tu))/(1-e^{-u})`.-/
+`Re((e^{-σu} - e^{-(σ+it)u})/(1-e^{-u})) = e^{-σu}(1 - cos(tu))/(1-e^{-u})`.
+@isnad1 id=eq.1h3v.s7.fa7b26a59cae from=translated src=- shape=0ec48976 vocab=19d5117a
+-/
 theorem re_digamma_diff_kernel_apply {σ : ℝ} (t : ℝ) {u : ℝ} (hu : 0 < u) :
     ((Complex.exp (-(σ:ℂ) * (u:ℂ)) - Complex.exp (-((σ:ℂ) + (t:ℂ)*Complex.I) * (u:ℂ)))
         / (1 - Complex.exp (-(u:ℂ)))).re
@@ -920,7 +940,9 @@ theorem re_digamma_diff_kernel_apply {σ : ℝ} (t : ℝ) {u : ℝ} (hu : 0 < u)
   field_simp
 
 /-- **Poitou's cosine-kernel identity** (p. 6-04): for `σ > 0`,
-`Re(ψ(σ+it) - ψ(σ)) = ∫₀^∞ e^{-σu}(1 - cos(tu))/(1-e^{-u}) du`.-/
+`Re(ψ(σ+it) - ψ(σ)) = ∫₀^∞ e^{-σu}(1 - cos(tu))/(1-e^{-u}) du`.
+@isnad1 id=eq.1h2v.s7.1bda60de0e77 from=translated src=- shape=3e216fd7 vocab=66a66cf1
+-/
 theorem re_digamma_sub_eq_integral {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
     (Complex.digamma ((σ:ℂ) + (t:ℂ)*Complex.I) - Complex.digamma (σ:ℂ)).re
       = ∫ u in Set.Ioi (0:ℝ),
@@ -936,7 +958,9 @@ theorem re_digamma_sub_eq_integral {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
   exact re_digamma_diff_kernel_apply t hu
 
 /-- The `σ = 1/2` kernel is the hyperbolic-sine kernel (Poitou p. 6-04, first display):
-`e^{-u/2}/(1 - e^{-u}) = 1/(2 sinh(u/2))`.-/
+`e^{-u/2}/(1 - e^{-u}) = 1/(2 sinh(u/2))`.
+@isnad1 id=eq.1h1v.s6.d2593dc4501f from=translated src=- shape=65f5870b vocab=20af1ab9
+-/
 theorem exp_half_div_one_sub_exp_neg {u : ℝ} (hu : 0 < u) :
     Real.exp (-(u/2)) / (1 - Real.exp (-u)) = 1/(2 * Real.sinh (u/2)) := by
   have hsh : 2 * Real.sinh (u/2) = Real.exp (u/2) - Real.exp (-(u/2)) := by
@@ -955,7 +979,9 @@ theorem exp_half_div_one_sub_exp_neg {u : ℝ} (hu : 0 < u) :
   rw [Real.exp_zero]
 
 /-- **The elementary cosh integral** (Poitou p. 6-04): `∫₀^∞ du/(2 cosh(u/2)) = π/2`.
-Substituting `v = e^{u/2}` gives `2∫₁^∞ dv/(1+v²) = 2(π/2 - π/4)`.-/
+Substituting `v = e^{u/2}` gives `2∫₁^∞ dv/(1+v²) = 2(π/2 - π/4)`.
+@isnad1 id=eq.0h0v.s6.d7bc3ba22233 from=translated src=- shape=71f50fd5 vocab=0c567912
+-/
 theorem integral_inv_two_cosh_half :
     ∫ u in Set.Ioi (0:ℝ), 1/(2 * Real.cosh (u/2)) = π/2 := by
   set g : ℝ → ℝ := fun u => Real.exp (u/2) with hg
@@ -1019,7 +1045,9 @@ theorem integral_inv_two_cosh_half :
     nlinarith [h3, Real.exp_pos (u/2)]
   rw [hpt, ← hcov, hval]
 
-/-- The real cosine kernel of `re_digamma_sub_eq_integral` is integrable on `(0, ∞)`.-/
+/-- The real cosine kernel of `re_digamma_sub_eq_integral` is integrable on `(0, ∞)`.
+@isnad1 id=integrab.1h2v.s6.361d2e900ae9 from=translated src=- shape=8e67e5e4 vocab=734bf30e
+-/
 theorem integrableOn_re_diff_kernel {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
     IntegrableOn
       (fun u : ℝ => Real.exp (-(σ*u)) * (1 - Real.cos (t*u)) / (1 - Real.exp (-u)))
@@ -1037,7 +1065,9 @@ theorem integrableOn_re_diff_kernel {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
 `π/2 - ∫_0^t sin u/u du` (Poitou p. 6-05, the `γ₁ + γ₃` term).-/
 noncomputable def sincTail (t : ℝ) : ℝ := π/2 - ∫ u in (0:ℝ)..t, Real.sin u / u
 
-/-- The truncated tail integrals converge to `sincTail`.-/
+/-- The truncated tail integrals converge to `sincTail`.
+@isnad1 id=tendsto.0h1v.s5.9b79caabcf66 from=translated src=- shape=97cd3ffc vocab=5abf0ff4
+-/
 theorem tendsto_integral_sinc_window (t : ℝ) :
     Tendsto (fun X : ℝ => ∫ u in t..X, Real.sin u / u) atTop (nhds (sincTail t)) := by
   have h0 : ∀ X : ℝ, (∫ u in t..X, Real.sin u / u)
@@ -1051,13 +1081,17 @@ theorem tendsto_integral_sinc_window (t : ℝ) :
   rw [sincTail]
   exact (tendsto_integral_sinc_atTop).sub_const _
 
-/-- `sincTail` vanishes at infinity.-/
+/-- `sincTail` vanishes at infinity.
+@isnad1 id=tendsto.0h0v.s4.00a5bf584ecf from=translated src=- shape=95bb6042 vocab=2552f477
+-/
 theorem tendsto_sincTail_atTop : Tendsto sincTail atTop (nhds 0) := by
   have h0 := tendsto_integral_sinc_atTop.const_sub (π/2)
   simp only [sub_self] at h0
   exact h0
 
-/-- `sincTail` is differentiable away from `0`, with derivative `-sin t/t`.-/
+/-- `sincTail` is differentiable away from `0`, with derivative `-sin t/t`.
+@isnad1 id=hasderiv.1h1v.s5.3a75cc589937 from=translated src=- shape=ba3f17fc vocab=831a6bdd
+-/
 theorem hasDerivAt_sincTail {t : ℝ} (ht : t ≠ 0) :
     HasDerivAt sincTail (-(Real.sin t / t)) t := by
   have h0 : HasDerivAt (fun t : ℝ => ∫ u in (0:ℝ)..t, Real.sin u / u)
@@ -1076,7 +1110,9 @@ theorem hasDerivAt_sincTail {t : ℝ} (ht : t ≠ 0) :
   simpa using h1
 
 /-- The symmetric exponential tails equal the sinc tail: for `t > 0`,
-`∫_1^X (e^{itx} - e^{-itx})/x dx → 2i·sincTail t` (Poitou p. 6-05, `γ₁ + γ₃`).-/
+`∫_1^X (e^{itx} - e^{-itx})/x dx → 2i·sincTail t` (Poitou p. 6-05, `γ₁ + γ₃`).
+@isnad1 id=tendsto.1h1v.s7.6041dd9c9ff6 from=translated src=- shape=386028ad vocab=6ec3560b
+-/
 theorem tendsto_integral_cexp_sub_div_window {t : ℝ} (ht : 0 < t) :
     Tendsto (fun X : ℝ => ∫ x in (1:ℝ)..X,
         (Complex.exp ((t*x : ℝ) * Complex.I) - Complex.exp (-((t*x : ℝ)) * Complex.I))
@@ -1119,7 +1155,9 @@ theorem tendsto_integral_cexp_sub_div_window {t : ℝ} (ht : 0 < t) :
 
 /-- **Differentiation of a Fourier-type set integral** (Lemme 1 engine, Poitou p. 6-05):
 if `G` and `x·G(x)` are integrable on `s`, then `t ↦ ∫_s G(x) e^{itx} dx` is
-differentiable with derivative `∫_s i·x·G(x) e^{itx} dx`.-/
+differentiable with derivative `∫_s i·x·G(x) e^{itx} dx`.
+@isnad1 id=hasderiv.2h3v.s8.3191e8afc427 from=translated src=- shape=55bdf2ce vocab=dad34212
+-/
 theorem hasDerivAt_integral_mul_cexp {G : ℝ → ℂ} {s : Set ℝ}
     (hG : IntegrableOn G s) (hxG : IntegrableOn (fun x : ℝ => (x:ℂ) * G x) s) (t : ℝ) :
     HasDerivAt (fun τ : ℝ => ∫ x in s, G x * Complex.exp ((τ * x : ℝ) * Complex.I))
@@ -1181,7 +1219,9 @@ noncomputable def gammaFT (F : ℝ → ℂ) (t : ℝ) : ℂ :=
   - ∫ x in (Set.Ioc (-1:ℝ) 1)ᶜ, F x/(x:ℂ) * Complex.exp ((t*x : ℝ) * Complex.I)
 
 /-- Dividing an integrable `F` by `x` stays integrable on the complement of the unit
-window `{x | |x| ≥ 1}`, since `‖F x / x‖ ≤ ‖F x‖` there.-/
+window `{x | |x| ≥ 1}`, since `‖F x / x‖ ≤ ‖F x‖` there.
+@isnad1 id=integrab.1h1v.s6.c92638102d5c from=translated src=- shape=b37b0c3e vocab=7b42c305
+-/
 theorem integrableOn_div_ofReal_compl_Ioc {F : ℝ → ℂ} (hF : Integrable F) :
     IntegrableOn (fun x : ℝ => F x/(x:ℂ)) (Set.Ioc (-1:ℝ) 1)ᶜ := by
   refine MeasureTheory.Integrable.mono' (hF.integrableOn.norm) ?_ ?_
@@ -1203,7 +1243,9 @@ theorem integrableOn_div_ofReal_compl_Ioc {F : ℝ → ℂ} (hF : Integrable F) 
     exact div_le_self (norm_nonneg _) hx1
 
 /-- **Lemme 1** (Poitou p. 6-04/6-05): away from `t = 0`, Poitou's `γ` is differentiable
-with `γ'(t) = -i·φ(t)`, `φ` the Fourier transform of `F`.-/
+with `γ'(t) = -i·φ(t)`, `φ` the Fourier transform of `F`.
+@isnad1 id=hasderiv.3h2v.s8.e67b424be2d8 from=translated src=- shape=65021348 vocab=4a1ef426
+-/
 theorem hasDerivAt_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     {t : ℝ} (ht : t ≠ 0) :
@@ -1410,7 +1452,9 @@ theorem hasDerivAt_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
   rw [hval] at hsum
   exact hsum
 
-/-- Chord bound: `‖e^{iθ} - 1‖ ≤ |θ|` (via `‖e^{iθ}-1‖ = 2|sin(θ/2)|`).-/
+/-- Chord bound: `‖e^{iθ} - 1‖ ≤ |θ|` (via `‖e^{iθ}-1‖ = 2|sin(θ/2)|`).
+@isnad1 id=le.0h1v.s5.b850c908c8c3 from=translated src=- shape=67956a06 vocab=95df0439
+-/
 theorem norm_cexp_mul_I_sub_one_le (θ : ℝ) :
     ‖Complex.exp ((θ:ℂ) * Complex.I) - 1‖ ≤ |θ| := by
   have h0 : Complex.exp ((θ:ℂ) * Complex.I) - 1
@@ -1449,13 +1493,17 @@ theorem norm_cexp_mul_I_sub_one_le (θ : ℝ) :
 noncomputable def rhoFT (k : ℝ → ℂ) (t : ℝ) : ℂ :=
   ∫ x : ℝ, k x * ((1 - Complex.exp ((t*x : ℝ) * Complex.I))/(x:ℂ))
 
-/-- Poitou's `rho` vanishes at zero.-/
+/-- Poitou's `rho` vanishes at zero.
+@isnad1 id=eq.0h1v.s4.5011770ed95f from=translated src=- shape=777ad2f6 vocab=5dbc0625
+-/
 @[simp]
 theorem rhoFT_zero (k : ℝ → ℂ) : rhoFT k 0 = 0 := by
   rw [rhoFT]
   simp
 
-/-- The `ρ` integrand is integrable for integrable `k` (chord bound `≤ |t|·‖k‖`).-/
+/-- The `ρ` integrand is integrable for integrable `k` (chord bound `≤ |t|·‖k‖`).
+@isnad1 id=integrab.1h2v.s7.caaaf221d518 from=translated src=- shape=2b4963b0 vocab=f17ff926
+-/
 theorem integrable_rhoFT_integrand {k : ℝ → ℂ} (hk : Integrable k) (t : ℝ) :
     Integrable (fun x : ℝ => k x * ((1 - Complex.exp ((t*x : ℝ) * Complex.I))/(x:ℂ))) := by
   refine MeasureTheory.Integrable.mono' (g := fun x => |t| * ‖k x‖)
@@ -1482,7 +1530,9 @@ theorem integrable_rhoFT_integrand {k : ℝ → ℂ} (hk : Integrable k) (t : �
         _ = |t| * |x| := abs_mul t x
 
 /-- **Lemme 2, derivative of `ρ`** (Poitou p. 6-06): `ρ'(t) = -i·μ(t)` with
-`μ(t) = ∫ k(x) e^{itx} dx`.-/
+`μ(t) = ∫ k(x) e^{itx} dx`.
+@isnad1 id=hasderiv.1h2v.s7.da957a7c3556 from=translated src=- shape=d1e57963 vocab=97658b71
+-/
 theorem hasDerivAt_rhoFT {k : ℝ → ℂ} (hk : Integrable k) (t : ℝ) :
     HasDerivAt (rhoFT k)
       (-Complex.I * ∫ x : ℝ, k x * Complex.exp ((t*x : ℝ) * Complex.I)) t := by
@@ -1552,7 +1602,9 @@ theorem hasDerivAt_rhoFT {k : ℝ → ℂ} (hk : Integrable k) (t : ℝ) :
       rw [hval] at h5
       exact h5
 
-/-- `μ` is continuous (dominated convergence).-/
+/-- `μ` is continuous (dominated convergence).
+@isnad1 id=continuo.1h1v.s6.317184c02e2b from=translated src=- shape=498d1bcc vocab=b65f29e4
+-/
 theorem continuous_muFT {k : ℝ → ℂ} (hk : Integrable k) :
     Continuous (fun t : ℝ => ∫ x : ℝ, k x * Complex.exp ((t*x : ℝ) * Complex.I)) := by
   refine continuous_iff_continuousAt.mpr (fun t => ?_)
@@ -1572,13 +1624,17 @@ theorem continuous_muFT {k : ℝ → ℂ} (hk : Integrable k) :
       fun_prop
     exact h1.const_mul _
 
-/-- `ρ` is continuous (it is differentiable everywhere).-/
+/-- `ρ` is continuous (it is differentiable everywhere).
+@isnad1 id=continuo.1h1v.s6.8c7e2f85466d from=translated src=- shape=929a36e4 vocab=a63c42f2
+-/
 theorem continuous_rhoFT {k : ℝ → ℂ} (hk : Integrable k) :
     Continuous (rhoFT k) := by
   refine continuous_iff_continuousAt.mpr (fun t => ?_)
   exact (hasDerivAt_rhoFT hk t).continuousAt
 
-/-- The sinc tail is globally bounded.-/
+/-- The sinc tail is globally bounded.
+@isnad1 id=ex.0h0v.s4.1f0e020c1570 from=translated src=- shape=8929f852 vocab=c34b0e0a
+-/
 theorem exists_bound_sincTail : ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, |sincTail t| ≤ C := by
   obtain ⟨C, hCpos, hC⟩ := exists_bound_primitive_sinc
   refine ⟨π/2 + C, by positivity, fun t => ?_⟩
@@ -1605,7 +1661,9 @@ theorem exists_bound_sincTail : ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, |sincTail t|
         rw [abs_of_pos (by positivity : (0:ℝ) < π/2)]
         linarith
 
-/-- Continuity in `t` of Fourier-type set integrals (dominated convergence).-/
+/-- Continuity in `t` of Fourier-type set integrals (dominated convergence).
+@isnad1 id=continuo.1h2v.s6.e0a54a6bb7bd from=translated src=- shape=fe290222 vocab=9d06b977
+-/
 theorem continuous_integral_mul_cexp {G : ℝ → ℂ} {s : Set ℝ} (hG : IntegrableOn G s) :
     Continuous (fun t : ℝ => ∫ x in s, G x * Complex.exp ((t*x : ℝ) * Complex.I)) := by
   refine continuous_iff_continuousAt.mpr (fun t => ?_)
@@ -1626,7 +1684,9 @@ theorem continuous_integral_mul_cexp {G : ℝ → ℂ} {s : Set ℝ} (hG : Integ
     exact h1.const_mul _
 
 /-- `γ` is globally bounded on any compact window: the continuous pieces are bounded on
-compacts and the sinc-tail jump term is globally bounded.-/
+compacts and the sinc-tail jump term is globally bounded.
+@isnad1 id=ex.2h3v.s7.ba98eab3dc13 from=translated src=- shape=6056d2d9 vocab=a01e18ef
+-/
 theorem exists_bound_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     (a b : ℝ) :
@@ -1683,7 +1743,9 @@ theorem exists_bound_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
   linarith
 
 /-- **Integration by parts off zero** (Lemme 2, p. 6-06): on an interval avoiding `0`,
-`∫_c^d ρφ = i(ρ(d)γ(d) - ρ(c)γ(c)) - ∫_c^d μγ`.-/
+`∫_c^d ρφ = i(ρ(d)γ(d) - ρ(c)γ(c)) - ∫_c^d μγ`.
+@isnad1 id=eq.4h4v.s8.8cc835728f83 from=translated src=- shape=3083ccdb vocab=0ed66c50
+-/
 theorem integral_rhoFT_mul_phi_eq {k F : ℝ → ℂ} (hk : Integrable k) (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     {c d : ℝ} (h0 : (0:ℝ) ∉ Set.uIcc c d) :
@@ -1734,7 +1796,9 @@ theorem integral_rhoFT_mul_phi_eq {k F : ℝ → ℂ} (hk : Integrable k) (hF : 
 /-- **The fixed-`T` boundary identity** (Lemme 2, p. 6-06): letting `ε → 0` in the
 integration by parts on `[-T, -ε]` and `[ε, T]`, the `ρ(±ε)γ(±ε)` boundary terms vanish
 (`ρ(0) = 0`, `γ` bounded near `0`), leaving
-`∫_{-T}^T ρφ = i(ρ(T)γ(T) - ρ(-T)γ(-T)) - ∫_{-T}^T μγ`.-/
+`∫_{-T}^T ρφ = i(ρ(T)γ(T) - ρ(-T)γ(-T)) - ∫_{-T}^T μγ`.
+@isnad1 id=eq.5h3v.s8.f264d67bdfcc from=translated src=- shape=d2ee21a7 vocab=9f89e238
+-/
 theorem integral_rhoFT_mul_phi_symm {k F : ℝ → ℂ} (hk : Integrable k) (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     (hμγ : Integrable (fun t : ℝ =>
@@ -1922,7 +1986,9 @@ theorem integral_rhoFT_mul_phi_symm {k F : ℝ → ℂ} (hk : Integrable k) (hF 
 
 /-- **Lemme 2** (Poitou p. 6-06): with the boundary decay `ργ → 0` at `±∞` and `μγ`
 integrable, the symmetric truncations `∫_{-T}^{T} ρ(t)φ(t) dt` converge as `T → ∞`,
-with value `-∫_ℝ μ(t)γ(t) dt`.-/
+with value `-∫_ℝ μ(t)γ(t) dt`.
+@isnad1 id=tendsto.6h2v.s9.90114fc4a6c9 from=translated src=- shape=1c8fce17 vocab=9dca3a72
+-/
 theorem tendsto_integral_rhoFT_mul_phi {k F : ℝ → ℂ}
     (hk : Integrable k) (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
@@ -1962,7 +2028,9 @@ theorem tendsto_integral_rhoFT_mul_phi {k F : ℝ → ℂ}
   simpa using h1
 
 /-- **Convention bridge** (P-b): the kernel transform `μ(t) = ∫ k(x)e^{itx} dx` is the
-mathlib Fourier integral at `-t/(2π)`.-/
+mathlib Fourier integral at `-t/(2π)`.
+@isnad1 id=eq.0h2v.s6.45e8b310204d from=translated src=- shape=1f0a962d vocab=5ac41896
+-/
 theorem muFT_eq_fourierIntegral (k : ℝ → ℂ) (t : ℝ) :
     (∫ x : ℝ, k x * Complex.exp ((t*x : ℝ) * Complex.I))
       = 𝓕 k (-t/(2*π)) := by
@@ -1976,7 +2044,9 @@ theorem muFT_eq_fourierIntegral (k : ℝ → ℂ) (t : ℝ) :
   ring
 
 /-- **Multiplication formula against Schwartz functions** (Pa-1): for integrable `f`,
-`∫ 𝓕Φ(x) • f(x) dx = ∫ Φ(ξ) • 𝓕f(ξ) dξ`.-/
+`∫ 𝓕Φ(x) • f(x) dx = ∫ Φ(ξ) • 𝓕f(ξ) dξ`.
+@isnad1 id=eq.1h2v.s8.9a1d9c21a890 from=translated src=- shape=02619536 vocab=ee6b8cec
+-/
 theorem integral_fourier_schwartz_smul {f : ℝ → ℂ} (hf : Integrable f)
     (Φ : SchwartzMap ℝ ℂ) :
     ∫ x : ℝ, (𝓕 (Φ : ℝ → ℂ)) x • f x = ∫ ξ : ℝ, (Φ : ℝ → ℂ) ξ • (𝓕 f) ξ := by
@@ -1997,7 +2067,9 @@ theorem integral_fourier_schwartz_smul {f : ℝ → ℂ} (hf : Integrable f)
 integrable and square-integrable, the abstract `L²` Fourier transform (extended from
 Schwartz functions) agrees a.e. with the pointwise Fourier integral. Both sides define
 the same tempered distribution, and locally integrable functions are a.e.-determined by
-their distributional action.-/
+their distributional action.
+@isnad1 id=eventual.2h1v.s9.8e8e1488977d from=translated src=- shape=38301b75 vocab=00985951
+-/
 theorem coeFn_fourier_toLp_two {f : ℝ → ℂ} (hf1 : Integrable f)
     (hf2 : MemLp f 2 (volume : Measure ℝ)) :
     ((𝓕 (hf2.toLp f) : Lp ℂ 2 (volume : Measure ℝ)) : ℝ → ℂ) =ᵐ[volume] 𝓕 f := by
@@ -2076,7 +2148,9 @@ theorem coeFn_fourier_toLp_two {f : ℝ → ℂ} (hf1 : Integrable f)
   exact sub_eq_zero.mp hx
 
 /-- The Fourier transform of the conjugate reflection is the conjugate transform:
-`𝓕(conj ∘ k ∘ neg) = conj ∘ 𝓕k`.-/
+`𝓕(conj ∘ k ∘ neg) = conj ∘ 𝓕k`.
+@isnad1 id=eq.0h2v.s7.29e682804095 from=translated src=- shape=6aa86e00 vocab=efe5863b
+-/
 theorem fourier_conj_neg (k : ℝ → ℂ) (ξ : ℝ) :
     𝓕 (fun x : ℝ => conj (k (-x))) ξ = conj (𝓕 k ξ) := by
   rw [Real.fourier_real_eq_integral_exp_smul, Real.fourier_real_eq_integral_exp_smul]
@@ -2100,7 +2174,9 @@ theorem fourier_conj_neg (k : ℝ → ℂ) (ξ : ℝ) :
 
 /-- **The mixed Plancherel pairing**: for `k ∈ L¹ ∩ L²` and `h ∈ L²` (not necessarily
 integrable), `∫ 𝓕k(ξ)·(𝓕₂h)(ξ) dξ = ∫ k(-x)·h(x) dx`, where `𝓕₂h` is (a representative
-of) the `L²` Fourier transform.-/
+of) the `L²` Fourier transform.
+@isnad1 id=eq.3h2v.s10.c4e0a6d5e4a2 from=translated src=- shape=c368a48d vocab=bdaba5db
+-/
 theorem integral_fourier_mul_fourierL2 {k h : ℝ → ℂ}
     (hk1 : Integrable k) (hk2 : MemLp k 2 (volume : Measure ℝ))
     (hh2 : MemLp h 2 (volume : Measure ℝ)) :
@@ -2141,7 +2217,9 @@ theorem integral_fourier_mul_fourierL2 {k h : ℝ → ℂ}
   exact hpair
 
 /-- Two-sided version of the symmetric-tail limit: for `t ≠ 0`,
-`∫_1^X (e^{itx} - e^{-itx})/x dx → 2i·sign(t)·sincTail|t|`.-/
+`∫_1^X (e^{itx} - e^{-itx})/x dx → 2i·sign(t)·sincTail|t|`.
+@isnad1 id=tendsto.1h1v.s7.e764f4cf0610 from=translated src=- shape=c2c87dc2 vocab=b30fcfbc
+-/
 theorem tendsto_integral_cexp_sub_div_window' {t : ℝ} (ht : t ≠ 0) :
     Tendsto (fun X : ℝ => ∫ x in (1:ℝ)..X,
         (Complex.exp ((t*x : ℝ) * Complex.I) - Complex.exp (-((t*x : ℝ)) * Complex.I))
@@ -2457,7 +2535,9 @@ private theorem tendsto_gammaFT_decomp {F : ℝ → ℂ} (hF : Integrable F) (t 
   exact hfinal
 
 /-- **Pointwise convergence of truncated Fourier integrals to Poitou's `γ`** (P-c, step 1):
-for `t ≠ 0`, `∫_{-n}^{n} (F(0)-F(x))/x · e^{itx} dx → gammaFT F t`.-/
+for `t ≠ 0`, `∫_{-n}^{n} (F(0)-F(x))/x · e^{itx} dx → gammaFT F t`.
+@isnad1 id=tendsto.3h2v.s8.2c3b5503b6d8 from=translated src=- shape=4b5ef083 vocab=bcad0bfc
+-/
 theorem tendsto_truncated_fourier_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     {t : ℝ} (ht : t ≠ 0) :
@@ -2471,7 +2551,9 @@ theorem tendsto_truncated_fourier_gammaFT {F : ℝ → ℂ} (hF : Integrable F)
   exact (hEq n hn).symm
 
 /-- **L² convergence of truncations**: for `g ∈ L²`,
-`eLpNorm (1_{(-n,n]}·g - g) 2 → 0`.-/
+`eLpNorm (1_{(-n,n]}·g - g) 2 → 0`.
+@isnad1 id=tendsto.1h1v.s7.dcaa724272a3 from=translated src=- shape=85063fc8 vocab=8f87257e
+-/
 theorem tendsto_eLpNorm_indicator_truncation {g : ℝ → ℂ}
     (hg : MemLp g 2 (volume : Measure ℝ)) :
     Tendsto (fun n : ℕ => eLpNorm
@@ -2538,7 +2620,9 @@ theorem tendsto_eLpNorm_indicator_truncation {g : ℝ → ℂ}
 /-- **Poitou's `γ` is the `L²` Fourier transform** (P-c): for `F` integrable with
 `(F(0)-F(x))/x` locally integrable at `0` and square-integrable, `gammaFT F` agrees a.e.
 with a representative of the `L²` Fourier transform of `(F(0)-F(x))/x`, reflected and
-rescaled to the `e^{itx}` convention.-/
+rescaled to the `e^{itx}` convention.
+@isnad1 id=eventual.3h1v.s10.b4bd78623182 from=translated src=- shape=3cc692f7 vocab=c813ad12
+-/
 theorem gammaFT_ae_eq_fourierL2 {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
@@ -2664,7 +2748,9 @@ theorem gammaFT_ae_eq_fourierL2 {F : ℝ → ℂ} (hF : Integrable F)
   exact tendsto_nhds_unique hpt hlim
 
 /-- **`μγ` is integrable** (P-d prerequisite): the product of the two transforms is
-integrable, being a.e. a product of two `L²` representatives after rescaling.-/
+integrable, being a.e. a product of two `L²` representatives after rescaling.
+@isnad1 id=integrab.5h2v.s8.9c65d7c29bf6 from=translated src=- shape=16a9087d vocab=50180be8
+-/
 theorem integrable_muFT_mul_gammaFT {k F : ℝ → ℂ}
     (hk1 : Integrable k) (hk2 : MemLp k 2 (volume : Measure ℝ))
     (hF : Integrable F)
@@ -2709,7 +2795,9 @@ theorem integrable_muFT_mul_gammaFT {k F : ℝ → ℂ}
 
 /-- **The Plancherel evaluation of `∫μγ`** (P-d, Poitou p. 6-06): for `k ∈ L¹∩L²` and
 admissible `F`,
-`∫ μ(t)γ(t) dt = 2π ∫ k(-x)·(F(0)-F(x))/x dx`.-/
+`∫ μ(t)γ(t) dt = 2π ∫ k(-x)·(F(0)-F(x))/x dx`.
+@isnad1 id=eq.5h2v.s9.a97110dcefe4 from=translated src=- shape=4388117c vocab=b90cf2bc
+-/
 theorem integral_muFT_mul_gammaFT {k F : ℝ → ℂ}
     (hk1 : Integrable k) (hk2 : MemLp k 2 (volume : Measure ℝ))
     (hF : Integrable F)
@@ -2773,7 +2861,9 @@ admissible `F` with the boundary decay `ρ(t)γ(t) → 0`, the symmetric truncat
 
 `lim_{T→∞} ∫_{-T}^T ρ(t)·φ(t) dt = -2π ∫ k(-x)·(F(0)-F(x))/x dx`.
 
-For odd `k` the right side is `+2π ∫ k(x)·(F(0)-F(x))/x dx`.-/
+For odd `k` the right side is `+2π ∫ k(x)·(F(0)-F(x))/x dx`.
+@isnad1 id=tendsto.7h2v.s9.e9a66d414657 from=translated src=- shape=90a8381a vocab=18cf2479
+-/
 theorem tendsto_integral_rhoFT_mul_phi_eq_plancherel {k F : ℝ → ℂ}
     (hk1 : Integrable k) (hk2 : MemLp k 2 (volume : Measure ℝ))
     (hF : Integrable F)
@@ -2794,18 +2884,24 @@ theorem tendsto_integral_rhoFT_mul_phi_eq_plancherel {k F : ℝ → ℂ}
 noncomputable def poitouKernel (σ : ℝ) (x : ℝ) : ℝ :=
   Real.sign x * (|x| * Real.exp (-(σ*|x|)) / (1 - Real.exp (-|x|)))
 
-/-- Poitou's kernel is odd.-/
+/-- Poitou's kernel is odd.
+@isnad1 id=eq.0h2v.s4.11367ec69e9c from=translated src=- shape=52cedbb1 vocab=ec7883cc
+-/
 theorem poitouKernel_neg (σ x : ℝ) : poitouKernel σ (-x) = -poitouKernel σ x := by
   rw [poitouKernel, poitouKernel, Real.sign_neg, abs_neg]
   ring
 
-/-- The defining formula for Poitou's kernel on the positive half-line.-/
+/-- The defining formula for Poitou's kernel on the positive half-line.
+@isnad1 id=eq.1h2v.s6.8d55b9c0d029 from=translated src=- shape=5e8d5ebd vocab=eae9c77b
+-/
 theorem poitouKernel_of_pos {σ x : ℝ} (hx : 0 < x) :
     poitouKernel σ x = x * Real.exp (-(σ*x)) / (1 - Real.exp (-x)) := by
   rw [poitouKernel, Real.sign_of_pos hx, abs_of_pos hx, one_mul]
 
 /-- The kernel profile bound: `|poitouKernel σ x| ≤ (1+|x|)e^{-σ|x|}` (from
-`y/(1-e^{-y}) ≤ 1+y`, i.e. `(1+y)e^{-y} ≤ 1`).-/
+`y/(1-e^{-y}) ≤ 1+y`, i.e. `(1+y)e^{-y} ≤ 1`).
+@isnad1 id=le.0h2v.s5.d6ddc51e4405 from=translated src=- shape=e6615fe5 vocab=9c6bc5b4
+-/
 theorem abs_poitouKernel_le (σ : ℝ) (x : ℝ) :
     |poitouKernel σ x| ≤ (1 + |x|) * Real.exp (-(σ*|x|)) := by
   rcases lt_trichotomy x 0 with hx | hx | hx
@@ -2842,7 +2938,9 @@ theorem abs_poitouKernel_le (σ : ℝ) (x : ℝ) :
     nlinarith [Real.exp_pos (-(σ*|x|)), Real.exp_pos (-|x|), abs_nonneg x,
       mul_pos (Real.exp_pos (-(σ*|x|))) hden]
 
-/-- The exponential-polynomial majorant bound: `(1+|x|)e^{-a|x|} ≤ (1+2/a)e^{-a|x|/2}`.-/
+/-- The exponential-polynomial majorant bound: `(1+|x|)e^{-a|x|} ≤ (1+2/a)e^{-a|x|/2}`.
+@isnad1 id=le.1h2v.s7.f3ecd5a0e924 from=translated src=- shape=4a3c50eb vocab=2366a8a4
+-/
 theorem one_add_abs_mul_exp_le {a : ℝ} (ha : 0 < a) (x : ℝ) :
     (1 + |x|) * Real.exp (-(a*|x|)) ≤ (1 + 2/a) * Real.exp (-(a*|x|/2)) := by
   have h1 : |x| * Real.exp (-(a*|x|)) ≤ (2/a) * Real.exp (-(a*|x|/2)) := by
@@ -2861,7 +2959,9 @@ theorem one_add_abs_mul_exp_le {a : ℝ} (ha : 0 < a) (x : ℝ) :
     nlinarith [abs_nonneg x]
   nlinarith [Real.exp_pos (-(a*|x|/2))]
 
-/-- The exponential-polynomial majorant is integrable on the whole line.-/
+/-- The exponential-polynomial majorant is integrable on the whole line.
+@isnad1 id=integrab.1h1v.s6.4344dc3657bf from=translated src=- shape=5ffab677 vocab=43c9f1e4
+-/
 theorem integrable_one_add_abs_mul_exp {a : ℝ} (ha : 0 < a) :
     Integrable (fun x : ℝ => (1 + |x|) * Real.exp (-(a*|x|))) := by
   have hmeas : AEStronglyMeasurable (fun x : ℝ => (1 + |x|) * Real.exp (-(a*|x|)))
@@ -2879,7 +2979,9 @@ theorem integrable_one_add_abs_mul_exp {a : ℝ} (ha : 0 < a) :
     exact one_add_abs_mul_exp_le ha x)
 
 /-- Total form of the Poitou kernel: `sign x·|x| = x` collapses the piecewise
-definition.-/
+definition.
+@isnad1 id=eq.0h2v.s6.0cdc01a43d7f from=translated src=- shape=a91c6981 vocab=e136bbc4
+-/
 theorem poitouKernel_eq (σ x : ℝ) :
     poitouKernel σ x = x * Real.exp (-(σ*|x|)) / (1 - Real.exp (-|x|)) := by
   have hs : Real.sign x * |x| = x := by
@@ -2892,14 +2994,18 @@ theorem poitouKernel_eq (σ x : ℝ) :
       = (Real.sign x * |x|) * Real.exp (-(σ*|x|)) / (1 - Real.exp (-|x|)) from by ring,
     hs]
 
-/-- The Poitou kernel is measurable.-/
+/-- The Poitou kernel is measurable.
+@isnad1 id=measurab.0h1v.s3.8f1afa6cdf95 from=translated src=- shape=f736e2c1 vocab=62822c58
+-/
 theorem measurable_poitouKernel (σ : ℝ) : Measurable (poitouKernel σ) := by
   have h0 : poitouKernel σ = fun x => x * Real.exp (-(σ*|x|)) / (1 - Real.exp (-|x|)) :=
     funext (poitouKernel_eq σ)
   rw [h0]
   fun_prop
 
-/-- The (complexified) Poitou kernel is integrable (K3).-/
+/-- The (complexified) Poitou kernel is integrable (K3).
+@isnad1 id=integrab.1h1v.s5.b191a8d01258 from=translated src=- shape=e477d9ae vocab=9b5e5f29
+-/
 theorem integrable_poitouKernel {σ : ℝ} (hσ : 0 < σ) :
     Integrable (fun x : ℝ => ((poitouKernel σ x : ℝ) : ℂ)) := by
   refine MeasureTheory.Integrable.mono' (integrable_one_add_abs_mul_exp hσ) ?_ ?_
@@ -2908,7 +3014,9 @@ theorem integrable_poitouKernel {σ : ℝ} (hσ : 0 < σ) :
     rw [Complex.norm_real, Real.norm_eq_abs]
     exact abs_poitouKernel_le σ x
 
-/-- The (complexified) Poitou kernel is square-integrable (K4).-/
+/-- The (complexified) Poitou kernel is square-integrable (K4).
+@isnad1 id=memlp.1h1v.s6.a09025661444 from=translated src=- shape=285fd27f vocab=e14cb72f
+-/
 theorem memLp_two_poitouKernel {σ : ℝ} (hσ : 0 < σ) :
     MemLp (fun x : ℝ => ((poitouKernel σ x : ℝ) : ℂ)) 2 (volume : Measure ℝ) := by
   have hmaj : MemLp (fun x : ℝ => (1 + |x|) * Real.exp (-(σ*|x|))) 2
@@ -2945,7 +3053,9 @@ theorem memLp_two_poitouKernel {σ : ℝ} (hσ : 0 < σ) :
 
 /-- **The ρ-fold identity** (K5, Poitou p. 6-06): for the odd Poitou kernel,
 `ρ(t) = 2(Re ψ(σ+it) - ψ(σ))` — in particular `ρ` is real-valued. This is the bridge
-between the abstract Proposition 3 and the digamma kernel identities.-/
+between the abstract Proposition 3 and the digamma kernel identities.
+@isnad1 id=eq.1h2v.s6.6e3934bc242f from=translated src=- shape=d5c50cec vocab=25947c68
+-/
 theorem rhoFT_poitouKernel {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
     rhoFT (fun x => ((poitouKernel σ x : ℝ) : ℂ)) t
       = (((2 * ((Complex.digamma ((σ:ℂ) + (t:ℂ)*Complex.I)
@@ -3059,7 +3169,9 @@ theorem rhoFT_poitouKernel {σ : ℝ} (hσ : 0 < σ) (t : ℝ) :
   rw [MeasureTheory.integral_const_mul, re_digamma_sub_eq_integral hσ t]
 
 /-- The even-`F` fold of the kernel pairing: for even `F`,
-`∫_ℝ k_σ(-x)·(F(0)-F(x))/x dx = -2∫₀^∞ e^{-σy}(F(0)-F(y))/(1-e^{-y}) dy`.-/
+`∫_ℝ k_σ(-x)·(F(0)-F(x))/x dx = -2∫₀^∞ e^{-σy}(F(0)-F(y))/(1-e^{-y}) dy`.
+@isnad1 id=eq.3h2v.s8.75cbdeca904e from=translated src=- shape=635e8fc7 vocab=ab9f4338
+-/
 theorem integral_poitouKernel_neg_mul {σ : ℝ} (hσ : 0 < σ) {F : ℝ → ℂ}
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
@@ -3148,7 +3260,9 @@ even admissible `F` with the boundary decay `ργ → 0`,
    = 4π ∫₀^∞ e^{-σy}(F(0)-F(y))/(1-e^{-y}) dy`,
 
 equivalently `(1/2π)∫(Re ψ(σ+it) - ψ(σ))φ(t)dt = ∫₀^∞ e^{-σx}(F(0)-F(x))/(1-e^{-x})dx`
-— exactly Poitou's display.-/
+— exactly Poitou's display.
+@isnad1 id=tendsto.7h2v.s9.0ba514875b5f from=translated src=- shape=74d148e2 vocab=232e0e49
+-/
 theorem prop3_poitou {σ : ℝ} (hσ : 0 < σ) {F : ℝ → ℂ} (hF : Integrable F)
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
@@ -3188,7 +3302,9 @@ theorem prop3_poitou {σ : ℝ} (hσ : 0 < σ) {F : ℝ → ℂ} (hF : Integrabl
 
 /-- `Complex.Gamma` is differentiable at every `s` in the right half-plane: on `0 < s.re`
 the nonvanishing side-condition `∀ m, s ≠ -m` of `Complex.differentiableAt_Gamma` is
-automatic.-/
+automatic.
+@isnad1 id=differen.1h1v.s6.92cc370f20b0 from=translated src=- shape=f4fff64d vocab=7d1d60b7
+-/
 theorem differentiableAt_Gamma_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ Complex.Gamma s := by
   refine Complex.differentiableAt_Gamma _ (fun m => ?_)
@@ -3199,7 +3315,9 @@ theorem differentiableAt_Gamma_of_re_pos {s : ℂ} (hs : 0 < s.re) :
   have h2 : (0:ℝ) ≤ m := Nat.cast_nonneg m
   linarith
 
-/-- **`d log Γℝ`** (Γψ-b, Poitou p. 6-03): `(Γℝ'/Γℝ)(s) = -½ log π + ½ ψ(s/2)`.-/
+/-- **`d log Γℝ`** (Γψ-b, Poitou p. 6-03): `(Γℝ'/Γℝ)(s) = -½ log π + ½ ψ(s/2)`.
+@isnad1 id=eq.1h1v.s6.8016d157d065 from=translated src=- shape=5002e920 vocab=dab02e9a
+-/
 theorem logDeriv_Gammaℝ {s : ℂ} (hs : 0 < s.re) :
     logDeriv Complex.Gammaℝ s
       = -(1/2) * Complex.log π + (1/2) * Complex.digamma (s/2) := by
@@ -3251,7 +3369,9 @@ theorem logDeriv_Gammaℝ {s : ℂ} (hs : 0 < s.re) :
     · exact differentiableAt_id.div_const 2
   rw [hlog1, hlog2]
 
-/-- Differentiability of `Γℝ` on the right half-plane.-/
+/-- Differentiability of `Γℝ` on the right half-plane.
+@isnad1 id=differen.1h1v.s6.73a3112ac517 from=translated src=- shape=f4fff64d vocab=32bdf864
+-/
 theorem differentiableAt_Gammaℝ_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ Complex.Gammaℝ s := by
   have hs2 : 0 < (s/2).re := by
@@ -3271,7 +3391,9 @@ theorem differentiableAt_Gammaℝ_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     exact (h0.const_cpow (Or.inl hπ)).differentiableAt
   · exact (differentiableAt_Gamma_of_re_pos hs2).comp s (differentiableAt_id.div_const 2)
 
-/-- `Γℂ` is nonvanishing on the right half-plane.-/
+/-- `Γℂ` is nonvanishing on the right half-plane.
+@isnad1 id=ne.1h1v.s4.12c3ee06b340 from=translated src=- shape=555d9df8 vocab=057a8307
+-/
 theorem Gammaℂ_ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     Complex.Gammaℂ s ≠ 0 := by
   have hbase : (2 * (π : ℂ)) ≠ 0 :=
@@ -3281,7 +3403,9 @@ theorem Gammaℂ_ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) :
   rw [Ne, Complex.cpow_eq_zero_iff, not_and_or]
   exact Or.inl hbase
 
-/-- Differentiability of `Γℂ` on the right half-plane.-/
+/-- Differentiability of `Γℂ` on the right half-plane.
+@isnad1 id=differen.1h1v.s6.c7b5bac39176 from=translated src=- shape=f4fff64d vocab=b3882058
+-/
 theorem differentiableAt_Gammaℂ_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ Complex.Gammaℂ s := by
   have hbase : (2 * (π : ℂ)) ≠ 0 :=
@@ -3294,7 +3418,9 @@ theorem differentiableAt_Gammaℂ_of_re_pos {s : ℂ} (hs : 0 < s.re) :
   · exact ((hasDerivAt_id s).neg.const_cpow (Or.inl hbase)).differentiableAt
   · exact differentiableAt_Gamma_of_re_pos hs
 
-/-- **`d log Γℂ`** (Γψ-b): `(Γℂ'/Γℂ)(s) = -log(2π) + ψ(s)` on the right half-plane.-/
+/-- **`d log Γℂ`** (Γψ-b): `(Γℂ'/Γℂ)(s) = -log(2π) + ψ(s)` on the right half-plane.
+@isnad1 id=eq.1h1v.s5.42a216aea075 from=translated src=- shape=e8cec878 vocab=2ff7c8dc
+-/
 theorem logDeriv_Gammaℂ {s : ℂ} (hs : 0 < s.re) :
     logDeriv Complex.Gammaℂ s
       = -Complex.log (2*π) + Complex.digamma s := by
@@ -3324,7 +3450,9 @@ theorem logDeriv_Gammaℂ {s : ℂ} (hs : 0 < s.re) :
   rw [h1, Complex.digamma_def]
 
 /-- **`d log γ_K`** (Γψ-b, Poitou p. 6-03): on the right half-plane,
-`(γ_K'/γ_K)(s) = r₁(-½ log π + ½ ψ(s/2)) + r₂(-log 2π + ψ(s))`.-/
+`(γ_K'/γ_K)(s) = r₁(-½ log π + ½ ψ(s/2)) + r₂(-log 2π + ψ(s))`.
+@isnad1 id=eq.1h2v.s7.183ddc4395ab from=translated src=- shape=340cb7c5 vocab=fcda6794
+-/
 theorem logDeriv_gammaFactor (K : Type*) [Field K] [NumberField K] {s : ℂ}
     (hs : 0 < s.re) :
     logDeriv (gammaFactor K) s
@@ -3347,7 +3475,9 @@ theorem logDeriv_gammaFactor (K : Type*) [Field K] [NumberField K] {s : ℂ}
   rw [logDeriv_fun_pow (differentiableAt_Gammaℂ_of_re_pos hs)]
   rw [logDeriv_Gammaℝ hs, logDeriv_Gammaℂ hs]
 
-/-- `logDeriv` of a `c^{s/2}`-prefactor: `(c^{s/2}·f)'/(c^{s/2}·f) = ½ log c + f'/f`.-/
+/-- `logDeriv` of a `c^{s/2}`-prefactor: `(c^{s/2}·f)'/(c^{s/2}·f) = ½ log c + f'/f`.
+@isnad1 id=eq.3h3v.s7.e4b828ba926c from=translated src=- shape=4f11d15c vocab=20dd9e65
+-/
 theorem logDeriv_cpow_half_mul {c : ℂ} (hc : c ≠ 0) {f : ℂ → ℂ} {s : ℂ}
     (hf : f s ≠ 0) (hd : DifferentiableAt ℂ f s) :
     logDeriv (fun w : ℂ => c ^ (w/2) * f w) s
@@ -3371,7 +3501,9 @@ variable (K : Type*) [Field K] [NumberField K]
 
 /-- **The Γ-side logarithmic derivative is `O(log|t|)` in the critical band**
 (Γψ-a prerequisite; Poitou p. 6-03 "\|G'/G(s)\| est O(log|t|) dans une bande
-verticale"): from the `d log γ_K` expansion and the digamma window bound A6.-/
+verticale"): from the `d log γ_K` expansion and the digamma window bound A6.
+@isnad1 id=ex.0h1v.s7.ad31cec24a7a from=translated src=- shape=ffed95b2 vocab=8880e734
+-/
 theorem exists_norm_logDeriv_gammaFactor_le :
     ∃ C : ℝ, 0 < C ∧ ∀ σ t : ℝ, 1/4 ≤ σ → σ ≤ 5/4 → 4 ≤ |t| →
       ‖logDeriv (gammaFactor K) ((σ:ℂ) + (t:ℂ) * Complex.I)‖
@@ -3471,7 +3603,9 @@ theorem exists_norm_logDeriv_gammaFactor_le :
   linarith
 
 /-- `ψ(3/4) - ψ(1/4) = π`, derived from the Gauss-difference integral and the
-`∫ 1/(2 cosh(x/2)) = π/2` evaluation (Poitou p. 6-04; no reflection formula needed).-/
+`∫ 1/(2 cosh(x/2)) = π/2` evaluation (Poitou p. 6-04; no reflection formula needed).
+@isnad1 id=eq.0h0v.s5.efceb4d4a3dd from=translated src=- shape=f647f032 vocab=92af56f9
+-/
 theorem digamma_three_quarter_sub_quarter :
     Complex.digamma ((3/4 : ℝ) : ℂ) - Complex.digamma ((1/4 : ℝ) : ℂ) = ((π : ℝ) : ℂ) := by
   have hw : (0:ℝ) < (((3/4 : ℝ) : ℂ)).re := by
@@ -3535,7 +3669,9 @@ theorem digamma_three_quarter_sub_quarter :
   ring
 
 /-- Log-derivative of the Legendre duplication formula at `s = 1/4`:
-`ψ(1/4) + ψ(3/4) = 2 ψ(1/2) - 2 log 2`.-/
+`ψ(1/4) + ψ(3/4) = 2 ψ(1/2) - 2 log 2`.
+@isnad1 id=eq.0h0v.s7.8ea9f72d87a8 from=translated src=- shape=cec25755 vocab=1cc246e2
+-/
 theorem digamma_quarter_add_three_quarter :
     Complex.digamma ((1/4 : ℝ) : ℂ) + Complex.digamma ((3/4 : ℝ) : ℂ)
       = 2 * Complex.digamma ((1/2 : ℝ) : ℂ) - 2 * Complex.log 2 := by
@@ -3643,7 +3779,9 @@ theorem digamma_quarter_add_three_quarter :
   exact hfg
 
 /-- **`ψ(1/2) - ψ(1/4) = π/2 + log 2`** (Poitou p. 6-04, the value
-`∫₀^∞ dx/(2 ch(x/2)) = -ψ(1/4) + ψ(1/2) - log 2 = π/2` rearranged).-/
+`∫₀^∞ dx/(2 ch(x/2)) = -ψ(1/4) + ψ(1/2) - log 2 = π/2` rearranged).
+@isnad1 id=eq.0h0v.s6.c65cd7f7f816 from=translated src=- shape=351395ac vocab=5d6cab84
+-/
 theorem digamma_half_sub_quarter :
     Complex.digamma ((1/2 : ℝ) : ℂ) - Complex.digamma ((1/4 : ℝ) : ℂ)
       = ((π/2 + Real.log 2 : ℝ) : ℂ) := by
@@ -3656,7 +3794,9 @@ theorem digamma_half_sub_quarter :
   push_cast at h1 h2 ⊢
   linear_combination h1/2 - h2/2
 
-/-- Pushforward of Lebesgue measure under `x ↦ x/2` is `2 • volume`.-/
+/-- Pushforward of Lebesgue measure under `x ↦ x/2` is `2 • volume`.
+@isnad1 id=eq.0h0v.s6.ab99776b5ea3 from=translated src=- shape=b46fb54a vocab=0e07e024
+-/
 theorem map_volume_half_mul :
     Measure.map (fun x : ℝ => (2:ℝ)⁻¹ * x) (volume : Measure ℝ)
       = (2 : ℝ≥0∞) • (volume : Measure ℝ) := by
@@ -3665,7 +3805,9 @@ theorem map_volume_half_mul :
   rw [show ((2:ℝ) : ℝ) = ((2:ℕ) : ℝ) by norm_num, ENNReal.ofReal_natCast]
   norm_num
 
-/-- Integrability of the half-scaled test function `x ↦ F(x/2)/2`.-/
+/-- Integrability of the half-scaled test function `x ↦ F(x/2)/2`.
+@isnad1 id=integrab.1h1v.s6.2316e90eb3b1 from=translated src=- shape=9f14b5d4 vocab=41a10e9e
+-/
 theorem integrable_halfScale {F : ℝ → ℂ} (hF : Integrable F) :
     Integrable (fun x : ℝ => F (x/2) / 2) := by
   have h0 : Integrable (fun x : ℝ => F ((2:ℝ)⁻¹ * x)) :=
@@ -3675,7 +3817,9 @@ theorem integrable_halfScale {F : ℝ → ℂ} (hF : Integrable F) :
   rw [show (2:ℝ)⁻¹ * x = x/2 by ring]
 
 /-- The near-zero local integrability hypothesis transfers to the half-scaled
-test function.-/
+test function.
+@isnad1 id=integrab.1h1v.s7.05d9b58d1051 from=translated src=- shape=d17602a8 vocab=18cd2039
+-/
 theorem integrableOn_halfScale_div {F : ℝ → ℂ}
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1)) :
     IntegrableOn (fun x : ℝ => (F 0/2 - F (x/2)/2)/(x:ℂ)) (Set.Ioc (-1) 1) := by
@@ -3715,7 +3859,9 @@ theorem integrableOn_halfScale_div {F : ℝ → ℂ}
   ring
 
 /-- The global square-integrability hypothesis transfers to the half-scaled
-test function.-/
+test function.
+@isnad1 id=memlp.1h1v.s8.4baebce8e69b from=translated src=- shape=6b49122a vocab=4cbe3b4b
+-/
 theorem memLp_two_halfScale_div {F : ℝ → ℂ}
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
     MemLp (fun x : ℝ => (F 0/2 - F (x/2)/2)/(x:ℂ)) 2 (volume : Measure ℝ) := by
@@ -3744,7 +3890,9 @@ the local and global divided-difference hypotheses and the boundary decay for th
 half-scaled data,
 
 `lim_{T→∞} ∫_{-T}^T 2(Re ψ(1/4 + it/2) - ψ(1/4))·φ(t) dt
-   = 8π ∫₀^∞ e^{-x/2}(F(0) - F(x))/(1 - e^{-2x}) dx`.-/
+   = 8π ∫₀^∞ e^{-x/2}(F(0) - F(x))/(1 - e^{-2x}) dx`.
+@isnad1 id=tendsto.6h1v.s9.520d58ed9348 from=translated src=- shape=ff447831 vocab=e4e78723
+-/
 theorem prop3_poitou_quarter {F : ℝ → ℂ} (hF : Integrable F)
     (hFeven : ∀ x : ℝ, F (-x) = F x)
     (hFdiv : IntegrableOn (fun x : ℝ => (F 0 - F x)/(x:ℂ)) (Set.Ioc (-1) 1))
@@ -3882,7 +4030,9 @@ theorem prop3_poitou_quarter {F : ℝ → ℂ} (hF : Integrable F)
   exact h9
 /-- The sinh limit kernel `(F(0) - F(x))/(2 sinh(x/2))` is integrable on `(0,∞)`:
 it is the product of the square-integrable Poitou kernel at `σ = 1/2` and the
-square-integrable divided difference.-/
+square-integrable divided difference.
+@isnad1 id=integrab.1h1v.s7.880016ae5f61 from=translated src=- shape=f4831145 vocab=5a70db14
+-/
 theorem integrableOn_sinh_kernel_mul {F : ℝ → ℂ}
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
     IntegrableOn (fun y : ℝ => ((1/(2 * Real.sinh (y/2)) : ℝ) : ℂ) * (F 0 - F y))
@@ -3911,7 +4061,9 @@ theorem integrableOn_sinh_kernel_mul {F : ℝ → ℂ}
   field_simp
 
 /-- The cosh limit kernel `(F(0) - F(x))/(2 cosh(x/2))` is integrable on `(0,∞)`:
-dominated by the sinh kernel.-/
+dominated by the sinh kernel.
+@isnad1 id=integrab.2h1v.s8.0b5d6fd22bfb from=translated src=- shape=6486b4a4 vocab=f03cfc50
+-/
 theorem integrableOn_cosh_kernel_mul {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
     IntegrableOn (fun y : ℝ => ((1/(2 * Real.cosh (y/2)) : ℝ) : ℂ) * (F 0 - F y))
@@ -3943,7 +4095,9 @@ theorem integrableOn_cosh_kernel_mul {F : ℝ → ℂ} (hF : Integrable F)
     exact mul_le_mul_of_nonneg_right h1 (norm_nonneg _)
 
 /-- Kernel conversion for the `σ = 1/2` Proposition-3 limit: the Gauss kernel is
-the sinh kernel.-/
+the sinh kernel.
+@isnad1 id=eq.0h1v.s7.13d20d9a7edc from=translated src=- shape=4300299a vocab=a74e7027
+-/
 theorem integral_gauss_half_eq_sinh {F : ℝ → ℂ} :
     (∫ y in Set.Ioi (0:ℝ),
         ((Real.exp (-(1/2*y)) / (1 - Real.exp (-y)) : ℝ) : ℂ) * (F 0 - F y))
@@ -3955,7 +4109,9 @@ theorem integral_gauss_half_eq_sinh {F : ℝ → ℂ} :
     exp_half_div_one_sub_exp_neg hy]
 
 /-- Kernel conversion for the quarter-point limit: the `e^{-y/2}/(1-e^{-2y})`
-kernel is the average of the sinh and cosh kernels, so its integral splits.-/
+kernel is the average of the sinh and cosh kernels, so its integral splits.
+@isnad1 id=eq.2h1v.s9.f4d6a2fb3a34 from=translated src=- shape=dc7ecd59 vocab=bf807d02
+-/
 theorem integral_gauss_quarter_eq_sinh_add_cosh {F : ℝ → ℂ} (hF : Integrable F)
     (hFdiv2 : MemLp (fun x : ℝ => (F 0 - F x)/(x:ℂ)) 2 (volume : Measure ℝ)) :
     (∫ y in Set.Ioi (0:ℝ),
@@ -3996,7 +4152,9 @@ theorem integral_gauss_quarter_eq_sinh_add_cosh {F : ℝ → ℂ} (hF : Integrab
   ring
 
 /-- **The pointwise split of `2 Re (γ_K'/γ_K)(1/2 + it)`** (Poitou p. 6-03, the
-`I_G(T)` integrand): constants plus the two digamma difference kernels.-/
+`I_G(T)` integrand): constants plus the two digamma difference kernels.
+@isnad1 id=eq.0h2v.s8.c4910f9ec600 from=translated src=- shape=fdd8d2e7 vocab=8de8adc1
+-/
 theorem two_re_logDeriv_gammaFactor_half (K : Type*) [Field K] [NumberField K] (t : ℝ) :
     2 * (logDeriv (gammaFactor K) (((1/2:ℝ):ℂ) + (t:ℂ)*Complex.I)).re
       = -((((NumberField.InfinitePlace.nrRealPlaces K : ℝ)
@@ -4060,7 +4218,9 @@ boundary decay hypotheses at both digamma points,
           + n ∫₀^∞ (F(0)-F(x))/(2 sinh(x/2)) dx
           + r₁ ∫₀^∞ (F(0)-F(x))/(2 cosh(x/2)) dx }`,
 
-where `n = [K:ℚ]`, `r₁` is the number of real places and `γ_E` Euler's constant.-/
+where `n = [K:ℚ]`, `r₁` is the number of real places and `γ_E` Euler's constant.
+@isnad1 id=tendsto.11h2v.s10.3dd11d460dc0 from=translated src=- shape=3f8db94f vocab=69cf0401
+-/
 theorem tendsto_IG_gammaFactor (K : Type*) [Field K] [NumberField K]
     {F : ℝ → ℂ} (hF : Integrable F)
     (hre : LocallyBoundedVariationOn (fun u : ℝ => (F u).re) Set.univ)
@@ -4227,7 +4387,9 @@ theorem tendsto_IG_gammaFactor (K : Type*) [Field K] [NumberField K]
   exact hsum
 
 /-- **Schwarz reflection for the digamma function** on the right half-plane:
-`ψ(z̄) = conj ψ(z)`, from the Gauss integral representation. (Not yet in mathlib.)-/
+`ψ(z̄) = conj ψ(z)`, from the Gauss integral representation. (Not yet in mathlib.)
+@isnad1 id=eq.1h1v.s6.36488485c900 from=translated src=- shape=f8ce9af1 vocab=980accda
+-/
 theorem digamma_conj {z : ℂ} (hz : 0 < z.re) :
     Complex.digamma (starRingEnd ℂ z) = starRingEnd ℂ (Complex.digamma z) := by
   have hzc : 0 < ((starRingEnd ℂ) z).re := by
@@ -4246,7 +4408,9 @@ theorem digamma_conj {z : ℂ} (hz : 0 < z.re) :
       exact Real.pi_ne_zero.symm),
     Complex.conj_ofReal]
 
-/-- **Schwarz reflection for `γ_K'/γ_K`** on the right half-plane.-/
+/-- **Schwarz reflection for `γ_K'/γ_K`** on the right half-plane.
+@isnad1 id=eq.1h2v.s7.deb5d9dc1f4b from=translated src=- shape=bd005b64 vocab=33e37152
+-/
 theorem logDeriv_gammaFactor_conj (K : Type*) [Field K] [NumberField K]
     {s : ℂ} (hs : 0 < s.re) :
     logDeriv (gammaFactor K) (starRingEnd ℂ s)
@@ -4270,7 +4434,9 @@ theorem logDeriv_gammaFactor_conj (K : Type*) [Field K] [NumberField K]
     Complex.conj_ofReal]
 
 /-- `γ_K'/γ_K` is differentiable on the right half-plane (the derivative of an
-analytic nonvanishing function divided by it).-/
+analytic nonvanishing function divided by it).
+@isnad1 id=differen.1h2v.s6.f9e71b50c509 from=translated src=- shape=dd9948c7 vocab=035e92d5
+-/
 theorem differentiableAt_logDeriv_gammaFactor (K : Type*) [Field K] [NumberField K]
     {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ (logDeriv (gammaFactor K)) s := by
@@ -4292,7 +4458,9 @@ theorem differentiableAt_logDeriv_gammaFactor (K : Type*) [Field K] [NumberField
 remplacer `I_G^a(T)` par `I_G(T)`"): for entire `Φ` bounded on the band by `B|t|`,
 and `g` analytic on the right half-plane with `‖g‖ ≤ C|t|` on the sub-band, the
 difference of the two symmetric vertical integrals of `(Φ(s) + Φ(1-s))·g(s)`
-vanishes as `T → ∞` provided `B·C → 0`.-/
+vanishes as `T → ∞` provided `B·C → 0`.
+@isnad1 id=tendsto.6h5v.s9.573a3cadfc8c from=translated src=- shape=d7b5f7bc vocab=3c6b060d
+-/
 theorem tendsto_shift_vertical_sub {a : ℝ} (ha : 0 < a) {Φ g : ℂ → ℂ}
     (hΦ : ∀ ζ : ℂ, -a ≤ ζ.re → ζ.re ≤ 1+a → DifferentiableAt ℂ Φ ζ)
     (hg : ∀ s : ℂ, 0 < s.re → DifferentiableAt ℂ g s)
@@ -4441,7 +4609,9 @@ theorem tendsto_shift_vertical_sub {a : ℝ} (ha : 0 < a) {Φ g : ℂ → ℂ}
   filter_upwards [Filter.eventually_ge_atTop (4:ℝ)] with T hT
   exact hkey T hT
 
-/-- Continuity of `y ↦ γ_K'/γ_K(1/2 + iy)`.-/
+/-- Continuity of `y ↦ γ_K'/γ_K(1/2 + iy)`.
+@isnad1 id=continuo.0h1v.s6.3d622b017e54 from=translated src=- shape=61d35b4e vocab=c2762d0e
+-/
 theorem continuous_logDeriv_gammaFactor_half (K : Type*) [Field K] [NumberField K] :
     Continuous (fun y : ℝ =>
       logDeriv (gammaFactor K) (((1/2:ℝ):ℂ) + (y:ℂ)*Complex.I)) := by
@@ -4456,7 +4626,9 @@ theorem continuous_logDeriv_gammaFactor_half (K : Type*) [Field K] [NumberField 
 `Φ` restricts on the critical line to the Fourier integral `φ`, the shifted vertical
 integral coincides with the `I_G` integrand at every height `T`. The reflection
 `t ↦ -t` together with Schwarz reflection for `γ_K` produces the real part; no
-reality assumption on `F` is needed.-/
+reality assumption on `F` is needed.
+@isnad1 id=eq.3h4v.s9.08b389661a69 from=translated src=- shape=3d6ec45b vocab=1938687d
+-/
 theorem integral_half_line_fold (K : Type*) [Field K] [NumberField K]
     {F : ℝ → ℂ} (hF : Integrable F) (hFeven : ∀ x : ℝ, F (-x) = F x)
     {Φ : ℂ → ℂ}
@@ -4547,7 +4719,9 @@ theorem integral_half_line_fold (K : Type*) [Field K] [NumberField K]
 
 /-- **The `ρ`-kernel is `O(log|t|)`** (Poitou p. 6-06: "ce qu'on sait être de
 l'ordre de log t pour t grand"): the boundary-decay input for Lemme 2, discharged
-from the digamma window bound A6.-/
+from the digamma window bound A6.
+@isnad1 id=ex.3h1v.s6.8eaf69423766 from=translated src=- shape=022cc51b vocab=99ac43e3
+-/
 theorem exists_norm_rhoFT_poitouKernel_le {σ : ℝ} (hσ : 0 < σ) (hσl : -1 ≤ σ)
     (hσr : σ ≤ 2) :
     ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, 2 ≤ |t| →

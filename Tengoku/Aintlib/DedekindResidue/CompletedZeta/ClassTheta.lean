@@ -44,7 +44,9 @@ variable (K : Type*) [Field K] [NumberField K]
 
 /-- Two invertible fractional ideals lie in the same ideal class iff they differ by a
 principal fractional ideal (general fraction field version of `ClassGroup.mk_eq_mk`,
-via `ClassGroup.mk_eq_one_iff`).-/
+via `ClassGroup.mk_eq_one_iff`).
+@isnad1 id=iff.0h3v.s12.c9152f3d9deb from=translated src=- shape=049721d3 vocab=d8f6b8c9
+-/
 theorem classGroup_mk_eq_mk_iff {I J : (FractionalIdeal (𝓞 K)⁰ K)ˣ} :
     ClassGroup.mk K I = ClassGroup.mk K J
       ↔ ∃ x : Kˣ, toPrincipalIdeal (𝓞 K) K x * I = J := by
@@ -76,7 +78,9 @@ theorem classGroup_mk_eq_mk_iff {I J : (FractionalIdeal (𝓞 K)⁰ K)ˣ} :
       exact ⟨⟨(x : K), by rw [coe_toPrincipalIdeal, FractionalIdeal.coe_spanSingleton]⟩⟩
     rw [h1, one_mul]
 
-/-- The units-inverse of an invertible fractional ideal is the fractional-ideal inverse.-/
+/-- The units-inverse of an invertible fractional ideal is the fractional-ideal inverse.
+@isnad1 id=eq.0h2v.s9.f69017011fbc from=translated src=- shape=1b311df8 vocab=9514d8b3
+-/
 theorem val_unit_inv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ((I⁻¹ : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : FractionalIdeal (𝓞 K)⁰ K)
       = (I : FractionalIdeal (𝓞 K)⁰ K)⁻¹ := by
@@ -87,6 +91,9 @@ theorem val_unit_inv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
 noncomputable def idealNormR (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : ℝ :=
   ((FractionalIdeal.absNorm (I : FractionalIdeal (𝓞 K)⁰ K) : ℚ) : ℝ)
 
+/--
+@isnad1 id=ne.0h2v.s9.95b59aa0204a from=translated src=- shape=365957a2 vocab=f6c458fc
+-/
 theorem absNorm_unit_ne_zero (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     FractionalIdeal.absNorm (I : FractionalIdeal (𝓞 K)⁰ K) ≠ 0 := by
   have h1 : FractionalIdeal.absNorm (I : FractionalIdeal (𝓞 K)⁰ K)
@@ -94,11 +101,17 @@ theorem absNorm_unit_ne_zero (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     rw [← map_mul, mul_inv_cancel₀ (Units.ne_zero I), FractionalIdeal.absNorm_one]
   exact left_ne_zero_of_mul_eq_one h1
 
+/--
+@isnad1 id=lt.0h2v.s7.cbe2b3226d33 from=translated src=- shape=698b10a9 vocab=31b2f043
+-/
 theorem idealNormR_pos (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) : 0 < idealNormR K I := by
   rw [idealNormR, Rat.cast_pos]
   exact lt_of_le_of_ne (FractionalIdeal.absNorm_nonneg _)
     (Ne.symm (absNorm_unit_ne_zero K I))
 
+/--
+@isnad1 id=eq.0h3v.s10.5e9af17de82a from=translated src=- shape=286e04b2 vocab=7a36b1c4
+-/
 theorem idealNormR_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (y : Kˣ) :
     idealNormR K (toPrincipalIdeal (𝓞 K) K y * I)
       = ((|Algebra.norm ℚ (y : K)| : ℚ) : ℝ) * idealNormR K I := by
@@ -108,17 +121,25 @@ theorem idealNormR_principal_mul (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) (y : K�
 /-- The Hecke normalisation constant `β = 4^{r₂}/|Δ_K|`.-/
 noncomputable def heckeBeta : ℝ := 4 ^ nrComplexPlaces K / ((discr K).natAbs : ℝ)
 
+/--
+@isnad1 id=lt.0h1v.s4.c909dd12ce2e from=translated src=- shape=0fd5880b vocab=a1f26526
+-/
 theorem natAbs_discr_pos : (0 : ℝ) < ((discr K).natAbs : ℝ) := by
   have h := discr_ne_zero K
   exact_mod_cast Nat.pos_of_ne_zero (fun hc => h (Int.natAbs_eq_zero.mp hc))
 
+/--
+@isnad1 id=lt.0h1v.s4.f9276273e653 from=translated src=- shape=31b077a1 vocab=dbc8cb24
+-/
 theorem heckeBeta_pos : 0 < heckeBeta K := by
   rw [heckeBeta]
   have := natAbs_discr_pos K
   positivity
 
 open scoped Classical in
-/-- The normalised theta value `g_I(N(I)⁻²·β·x)` depends only on the ideal class of `I`.-/
+/-- The normalised theta value `g_I(N(I)⁻²·β·x)` depends only on the ideal class of `I`.
+@isnad1 id=eq.2h4v.s11.5530279c1d3e from=translated src=- shape=6a4a61af vocab=dc8458be
+-/
 theorem heckeG_normalized_eq_of_mk_eq {I J : (FractionalIdeal (𝓞 K)⁰ K)ˣ}
     (h : ClassGroup.mk K I = ClassGroup.mk K J) {x : ℝ} (hx : 0 ≤ x) :
     heckeG K I ((idealNormR K I)⁻¹ ^ 2 * heckeBeta K * x)
@@ -138,6 +159,9 @@ open scoped Classical in
 noncomputable def classRep (C : ClassGroup (𝓞 K)) : (FractionalIdeal (𝓞 K)⁰ K)ˣ :=
   FractionalIdeal.mk0 K ((ClassGroup.mk0_surjective C).choose)
 
+/--
+@isnad1 id=eq.0h2v.s10.25c9c8741275 from=translated src=- shape=ce2797aa vocab=ea53d6cf
+-/
 theorem mk_classRep (C : ClassGroup (𝓞 K)) : ClassGroup.mk K (classRep K C) = C := by
   rw [classRep, ClassGroup.mk_mk0]
   exact (ClassGroup.mk0_surjective C).choose_spec
@@ -150,13 +174,18 @@ noncomputable def heckeGClass (C : ClassGroup (𝓞 K)) (x : ℝ) : ℝ :=
     ((idealNormR K (classRep K C))⁻¹ ^ 2 * heckeBeta K * x)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.2h4v.s10.67b96955382c from=translated src=- shape=edb4c53a vocab=4c33411a
+-/
 theorem heckeGClass_eq {C : ClassGroup (𝓞 K)} (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ)
     (h : ClassGroup.mk K I = C) {x : ℝ} (hx : 0 ≤ x) :
     heckeGClass K C x = heckeG K I ((idealNormR K I)⁻¹ ^ 2 * heckeBeta K * x) := by
   rw [heckeGClass]
   exact heckeG_normalized_eq_of_mk_eq K (by rw [mk_classRep, ← h]) hx
 
-/-- `dualIdealUnit` factors as the dual of `1` times the inverse.-/
+/-- `dualIdealUnit` factors as the dual of `1` times the inverse.
+@isnad1 id=eq.0h2v.s10.5dd8e5472805 from=translated src=- shape=3b127b20 vocab=8714e12b
+-/
 theorem dualIdealUnit_eq_mul_inv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     dualIdealUnit K I = dualIdealUnit K 1 * I⁻¹ := by
   rw [← Units.val_inj, Units.val_mul]
@@ -170,11 +199,16 @@ theorem dualIdealUnit_eq_mul_inv (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
 noncomputable def dualClass (C : ClassGroup (𝓞 K)) : ClassGroup (𝓞 K) :=
   ClassGroup.mk K (dualIdealUnit K 1) * C⁻¹
 
+/--
+@isnad1 id=eq.0h2v.s11.8a2c02f391c5 from=translated src=- shape=f0fd596d vocab=957af9c8
+-/
 theorem mk_dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     ClassGroup.mk K (dualIdealUnit K I) = dualClass K (ClassGroup.mk K I) := by
   rw [dualIdealUnit_eq_mul_inv, map_mul, map_inv, dualClass]
 
-/-- `dualClass` is a bijection of the (finite) class group.-/
+/-- `dualClass` is a bijection of the (finite) class group.
+@isnad1 id=bijectiv.0h1v.s4.a405282664a2 from=translated src=- shape=1d49bb6d vocab=a42b4438
+-/
 theorem dualClass_bijective : Function.Bijective (dualClass K) := by
   have : dualClass K = (fun C => ClassGroup.mk K (dualIdealUnit K 1) * C) ∘ (fun C => C⁻¹) := by
     funext C
@@ -184,6 +218,9 @@ theorem dualClass_bijective : Function.Bijective (dualClass K) := by
     (Equiv.mulLeft (ClassGroup.mk K (dualIdealUnit K 1)))).bijective
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s7.3b388a0e62c4 from=translated src=- shape=a2983c2a vocab=561b57d1
+-/
 theorem idealNormR_dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
     idealNormR K (dualIdealUnit K I)
       = (idealNormR K I)⁻¹ * (((discr K).natAbs : ℝ))⁻¹ := by
@@ -194,7 +231,9 @@ theorem idealNormR_dualIdealUnit (I : (FractionalIdeal (𝓞 K)⁰ K)ˣ) :
 open scoped Classical in
 /-- **The clean Hecke symmetry of the normalised class theta**:
 `Ĝ_C(1/x) = √x · Ĝ_{C^∨}(x)` — the normalisation `β = 4^{r₂}/|Δ|` makes the coefficient
-exactly `1`.-/
+exactly `1`.
+@isnad1 id=eq.1h3v.s6.a7f9648bc563 from=translated src=- shape=e2892688 vocab=6bca5fbf
+-/
 theorem heckeGClass_inversion (C : ClassGroup (𝓞 K)) {x : ℝ} (hx : 0 < x) :
     heckeGClass K C (1 / x) = Real.sqrt x * heckeGClass K (dualClass K C) x := by
   have hNpos := idealNormR_pos K (classRep K C)
@@ -247,7 +286,9 @@ noncomputable def heckeF (x : ℝ) : ℝ := ∑ C : ClassGroup (𝓞 K), heckeGC
 
 open scoped Classical in
 /-- **Hecke symmetry of the total theta**: `f(1/x) = √x · f(x)` — summing the class
-inversion over the class group, along the `dualClass` bijection.-/
+inversion over the class group, along the `dualClass` bijection.
+@isnad1 id=eq.1h2v.s5.bf42b719f616 from=translated src=- shape=1bf6a0c8 vocab=ae415b17
+-/
 theorem heckeF_inversion {x : ℝ} (hx : 0 < x) :
     heckeF K (1 / x) = Real.sqrt x * heckeF K x := by
   rw [heckeF, heckeF, Finset.mul_sum,

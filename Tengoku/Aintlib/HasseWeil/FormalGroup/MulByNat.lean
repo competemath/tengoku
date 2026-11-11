@@ -283,6 +283,9 @@ private lemma hasSubst_const_Xi (i : Fin 2) :
       (fun _ : Unit ↦ MvPowerSeries.X i : Unit → MvPowerSeries (Fin 2) R) :=
   hasSubst_const_unit (MvPowerSeries.X i) (by simp)
 
+/--
+@isnad1 id=eq.2h3v.s8.fcfd976a203a from=translated src=- shape=b81829e3 vocab=a3074967
+-/
 lemma constantCoeff_univariate_subst
     (g : MvPowerSeries (Fin 2) R) (hg : MvPowerSeries.constantCoeff g = 0)
     (f : PowerSeries R) (hf : PowerSeries.constantCoeff f = 0) :
@@ -402,7 +405,9 @@ private lemma preservesAddCondition_step (F : FormalGroup.FormalGroup R)
 This is the axiom needed to package `mulByNatSeries F n` as a
 `FormalGroupHom F F`.
 
-Reference: Silverman IV.2.3.-/
+Reference: Silverman IV.2.3.
+@isnad1 id=eq.0h3v.s7.e7ca53c2d3fc from=translated src=- shape=5b342bd7 vocab=bd38a75a
+-/
 theorem mulByNatSeries_preserves_add (F : FormalGroup.FormalGroup R) (n : ℕ) :
     PowerSeries.subst F.toSeries (mulByNatSeries F n) =
       MvPowerSeries.subst
@@ -439,7 +444,9 @@ noncomputable def FormalGroup.mulByNatHom (F : FormalGroup R) (n : ℕ) :
   zero_const := HasseWeil.FG.constantCoeff_mulByNatSeries F n
   preserves_add := HasseWeil.FG.mulByNatSeries_preserves_add F n
 
-/-- The underlying power series of `mulByNatHom` is `mulByNatSeries`.-/
+/-- The underlying power series of `mulByNatHom` is `mulByNatSeries`.
+@isnad1 id=eq.0h3v.s4.b56d257f8fb3 from=translated src=- shape=27f99bf5 vocab=5b790be4
+-/
 @[simp]
 theorem FormalGroup.mulByNatHom_toSeries (F : FormalGroup R) (n : ℕ) :
     (F.mulByNatHom n).toSeries = HasseWeil.FG.mulByNatSeries F n :=
@@ -447,18 +454,24 @@ theorem FormalGroup.mulByNatHom_toSeries (F : FormalGroup R) (n : ℕ) :
 
 /-- The linear coefficient of `mulByNatHom F n` is `n`: `[n](T) = n·T + O(T²)`.
 
-Reference: Silverman IV.2.3(a).-/
+Reference: Silverman IV.2.3(a).
+@isnad1 id=eq.0h3v.s7.4973ca099f4e from=translated src=- shape=df9ccf85 vocab=9fb0b5ba
+-/
 @[simp]
 theorem FormalGroup.coeff_one_mulByNatHom (F : FormalGroup R) (n : ℕ) :
     PowerSeries.coeff 1 (F.mulByNatHom n).toSeries = (n : R) :=
   HasseWeil.FG.coeff_one_mulByNatSeries F n
 
-/-- `mulByNatHom F 0 = 0` (as power series).-/
+/-- `mulByNatHom F 0 = 0` (as power series).
+@isnad1 id=eq.0h2v.s5.7d787f9047d8 from=translated src=- shape=221b9222 vocab=e023e9aa
+-/
 @[simp]
 theorem FormalGroup.mulByNatHom_zero_toSeries (F : FormalGroup R) :
     (F.mulByNatHom 0).toSeries = 0 := rfl
 
-/-- `mulByNatHom F 1` is the identity: underlying series is `X`.-/
+/-- `mulByNatHom F 1` is the identity: underlying series is `X`.
+@isnad1 id=eq.0h2v.s5.715a263cd34e from=translated src=- shape=87a88079 vocab=4d8b2fcc
+-/
 @[simp]
 theorem FormalGroup.mulByNatHom_one_toSeries (F : FormalGroup R) :
     (F.mulByNatHom 1).toSeries = PowerSeries.X :=

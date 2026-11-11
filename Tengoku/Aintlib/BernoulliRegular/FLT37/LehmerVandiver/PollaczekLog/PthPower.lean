@@ -79,12 +79,16 @@ namespace IsPthPowerModPrime
 
 variable {p : ℕ} {𝔩 : Ideal R}
 
-/-- `1` is always a `p`-th power modulo any ideal: `1 = 1 ^ p`.-/
+/-- `1` is always a `p`-th power modulo any ideal: `1 = 1 ^ p`.
+@isnad1 id=ispthpow.0h3v.s5.f99c510647f4 from=translated src=- shape=f0560bbc vocab=90baa117
+-/
 theorem one : IsPthPowerModPrime p 𝔩 (1 : R) :=
   ⟨1, by simp⟩
 
 /-- The product of two elements that are each `p`-th powers modulo `𝔩`
-is again a `p`-th power modulo `𝔩`.-/
+is again a `p`-th power modulo `𝔩`.
+@isnad1 id=ispthpow.2h5v.s5.c8d73ac40ee9 from=translated src=- shape=5d958d45 vocab=161a30b6
+-/
 theorem mul {x y : R} (hx : IsPthPowerModPrime p 𝔩 x)
     (hy : IsPthPowerModPrime p 𝔩 y) : IsPthPowerModPrime p 𝔩 (x * y) := by
   obtain ⟨a, ha⟩ := hx
@@ -92,12 +96,16 @@ theorem mul {x y : R} (hx : IsPthPowerModPrime p 𝔩 x)
   exact ⟨a * b, by rw [map_mul, ha, hb, mul_pow]⟩
 
 /-- For any `x : R`, the element `x ^ p` is a `p`-th power modulo any
-ideal `𝔩`.-/
+ideal `𝔩`.
+@isnad1 id=ispthpow.0h4v.s5.14d5160b1856 from=translated src=- shape=f780bdfc vocab=5684823a
+-/
 theorem pow_self (x : R) : IsPthPowerModPrime p 𝔩 (x ^ p) :=
   ⟨Ideal.Quotient.mk 𝔩 x, by rw [map_pow]⟩
 
 /-- The natural-number power `x ^ n` of a `p`-th power is again a
-`p`-th power modulo `𝔩`.-/
+`p`-th power modulo `𝔩`.
+@isnad1 id=ispthpow.1h5v.s5.12f3f3ba8b38 from=translated src=- shape=407832c1 vocab=5684823a
+-/
 theorem pow {x : R} (hx : IsPthPowerModPrime p 𝔩 x) (n : ℕ) :
     IsPthPowerModPrime p 𝔩 (x ^ n) := by
   obtain ⟨a, ha⟩ := hx
@@ -119,7 +127,9 @@ power map has cardinality `Nat.card G / Nat.gcd (Nat.card G) p`. When
 `Nat.card G / p`. The kernel of `(· ^ (Nat.card G / p))` is therefore
 the same subgroup as the image of the `p`-th power map (both are the
 unique subgroup of index `p` in the cyclic group), and the criterion
-follows.-/
+follows.
+@isnad1 id=iff.1h3v.s6.2b4ebcaa457d from=translated src=- shape=16fd01ac vocab=fe84c3e6
+-/
 theorem isPthPower_iff_pow_card_div_eq_one {G : Type*} [CommGroup G]
     [Finite G] [IsCyclic G] {p : ℕ} (hp : p ∣ Nat.card G) (u : G) :
     (∃ v : G, u = v ^ p) ↔ u ^ (Nat.card G / p) = 1 := by
@@ -167,7 +177,9 @@ element `x ∉ 𝔩`, the element `x` is a `p`-th power modulo `𝔩` iff
 This is the residue test underlying Washington's Proposition 8.18 /
 Theorem 9.5: when `𝔩` is a prime of `𝓞 K` over a rational prime
 `ℓ ≡ 1 (mod p)` so that `R ⧸ 𝔩 ≅ 𝔽_ℓ`, the criterion becomes
-`x ^ k ≡ 1 (mod 𝔩)` where `ℓ = kp + 1`.-/
+`x ^ k ≡ 1 (mod 𝔩)` where `ℓ = kp + 1`.
+@isnad1 id=iff.3h4v.s8.6d99c50fbdf4 from=translated src=- shape=96cef664 vocab=8279ca45
+-/
 theorem isPthPowerModPrime_iff_pow_card_div_p_eq_one
     [𝔩.IsMaximal] [Fintype (R ⧸ 𝔩)] {p : ℕ} (hp_pos : 0 < p)
     (hp : p ∣ Fintype.card (R ⧸ 𝔩) - 1) {x : R} (hx : x ∉ 𝔩) :
@@ -205,7 +217,9 @@ theorem isPthPowerModPrime_iff_pow_card_div_p_eq_one
 /-- Hypothesis-free statement: in the same setting, the `p`-th-power
 predicate is equivalent to a single equation in `R ⧸ 𝔩` involving the
 ring-level power `x ^ ((q - 1) / p)`. This restated form avoids the
-`map_pow` rewrite and is convenient for downstream substitution.-/
+`map_pow` rewrite and is convenient for downstream substitution.
+@isnad1 id=iff.3h4v.s8.57cac74fc3d2 from=translated src=- shape=7be508b9 vocab=8279ca45
+-/
 theorem isPthPowerModPrime_iff_pow_card_div_p_eq_one'
     [𝔩.IsMaximal] [Fintype (R ⧸ 𝔩)] {p : ℕ} (hp_pos : 0 < p)
     (hp : p ∣ Fintype.card (R ⧸ 𝔩) - 1) {x : R} (hx : x ∉ 𝔩) :

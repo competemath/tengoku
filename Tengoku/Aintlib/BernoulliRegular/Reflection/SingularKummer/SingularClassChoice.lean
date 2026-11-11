@@ -31,7 +31,9 @@ variable [Module R M] [Module R N]
 
 /-- Linear analogue of the component-lifting lemma.  If a linear map sends a
 source submodule onto a nontrivial target submodule, then some element of the
-source submodule has nonzero image.-/
+source submodule has nonzero image.
+@isnad1 id=ex.2h6v.s7.4123136a5ad0 from=translated src=- shape=611fd291 vocab=f2ca9a25
+-/
 theorem exists_lift_of_map_eq_of_ne_bot
     (f : M →ₗ[R] N) (S : Submodule R M) (T : Submodule R N)
     (hmap : S.map f = T) (hT : T ≠ ⊥) :
@@ -45,7 +47,9 @@ theorem exists_lift_of_map_eq_of_ne_bot
   intro hx_zero
   exact hy_ne (Subtype.ext <| hx.symm.trans hx_zero)
 
-/-- Elementwise form of the linear component-lifting lemma.-/
+/-- Elementwise form of the linear component-lifting lemma.
+@isnad1 id=ex.2h6v.s7.f5ea45c6e54e from=translated src=- shape=d36f7588 vocab=9c401eb0
+-/
 theorem exists_mem_lift_with_nonzero_image_of_ne_bot
     (f : M →ₗ[R] N) (S : Submodule R M) (T : Submodule R N)
     (hmap : S.map f = T) (hT : T ≠ ⊥) :

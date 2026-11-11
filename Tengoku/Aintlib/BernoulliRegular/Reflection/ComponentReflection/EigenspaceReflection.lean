@@ -76,6 +76,9 @@ def eigenspace (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k : ℕ) :
     intro a
     rw [map_neg, hv a, smul_neg]
 
+/--
+@isnad1 id=iff.0h5v.s9.02385cee7697 from=translated src=- shape=3a1fd700 vocab=25537d59
+-/
 theorem mem_eigenspace_iff (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k : ℕ)
     (v : V) :
     v ∈ eigenspace galAction k ↔
@@ -103,7 +106,9 @@ structure EigenspaceProjectionData (galAction : (ZMod p)ˣ →* Module.End (ZMod
 
 Given a non-trivial `phi : V → ZMod p` of Galois weight `k` (encoded
 via the projection data: the projection preserves phi), the `k`-th
-eigenspace contains an element with non-zero phi-image.-/
+eigenspace contains an element with non-zero phi-image.
+@isnad1 id=ex.1h6v.s8.c038368fcb42 from=translated src=- shape=c34e916f vocab=f0a94fd2
+-/
 theorem exists_eigenspace_phi_nontrivial_of_projectionData
     {galAction : (ZMod p)ˣ →* Module.End (ZMod p) V}
     {phi : V →+ ZMod p} {k : ℕ}
@@ -115,7 +120,9 @@ theorem exists_eigenspace_phi_nontrivial_of_projectionData
 
 /-- **Eigenspace nontriviality from non-zero phi.** Wrapper version
 extracting just the eigenspace nontriviality (existence of a non-zero
-element).-/
+element).
+@isnad1 id=ex.1h6v.s8.7b967cc9e048 from=translated src=- shape=23d4e449 vocab=f0a94fd2
+-/
 theorem eigenspace_nontrivial_of_phi_nontrivial
     {galAction : (ZMod p)ˣ →* Module.End (ZMod p) V}
     {phi : V →+ ZMod p} {k : ℕ}
@@ -138,7 +145,9 @@ def standardEigenspaceProjection
 
 /-- **Standard projection lands in the eigenspace.** The explicit
 projection `π_k(v)` satisfies `galAction a (π_k v) = a^k • π_k v` for
-every `a ∈ (ZMod p)ˣ`, via the reindexing `b ↦ a * b` on the sum.-/
+every `a ∈ (ZMod p)ˣ`, via the reindexing `b ↦ a * b` on the sum.
+@isnad1 id=mem.0h5v.s7.a63db6d4dd09 from=translated src=- shape=c53525e7 vocab=ed17080d
+-/
 theorem standardEigenspaceProjection_mem_eigenspace
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k : ℕ) (v : V) :
     standardEigenspaceProjection galAction k v ∈ eigenspace galAction k := by
@@ -198,7 +207,9 @@ in `ZMod p`, the standard projection preserves `phi`'s value.
 
 Concretely: `phi(π_k v) = (p-1)⁻¹ · ∑_a a^{-k} · phi(σ_a v)
                        = (p-1)⁻¹ · ∑_a a^{-k} · a^k · phi v
-                       = (p-1)⁻¹ · (p-1) · phi v = phi v`.-/
+                       = (p-1)⁻¹ · (p-1) · phi v = phi v`.
+@isnad1 id=eq.2h6v.s10.2ea327ceb2a6 from=translated src=- shape=b0d76e5d vocab=7d04d5b6
+-/
 theorem standardEigenspaceProjection_phi_eq
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
     (phi : V →ₗ[ZMod p] ZMod p) (k : ℕ)
@@ -279,7 +290,9 @@ the sum `∑_{k=0}^{p-2} a^k` is `p-1` when `a = 1` and `0` otherwise.
 
 This is the standard character-orthogonality identity: each non-trivial
 multiplicative character of `(ZMod p)ˣ` integrates to 0, while the
-trivial character integrates to `p-1`.-/
+trivial character integrates to `p-1`.
+@isnad1 id=eq.0h2v.s8.51f1edb1e40f from=translated src=- shape=2c3b0d48 vocab=9150f6ca
+-/
 theorem geom_sum_zmod_units (a : (ZMod p)ˣ) :
     ∑ k ∈ Finset.range (p - 1), ((a : ZMod p) ^ k) =
       if a = 1 then ((p - 1 : ℕ) : ZMod p) else 0 := by
@@ -301,7 +314,9 @@ theorem geom_sum_zmod_units (a : (ZMod p)ˣ) :
     rw [ha_pow, sub_self, zero_div]
 
 /-- **Inverse-power form** of the character-orthogonality identity:
-`∑_{k=0}^{p-2} (a^{-k}) = if a = 1 then p-1 else 0` in `ZMod p`.-/
+`∑_{k=0}^{p-2} (a^{-k}) = if a = 1 then p-1 else 0` in `ZMod p`.
+@isnad1 id=eq.0h2v.s8.389b20e3f37b from=translated src=- shape=f6c5c5ea vocab=54ce23f6
+-/
 theorem geom_sum_zmod_units_inv (a : (ZMod p)ˣ) :
     ∑ k ∈ Finset.range (p - 1), (((a : ZMod p) ^ k)⁻¹) =
       if a = 1 then ((p - 1 : ℕ) : ZMod p) else 0 := by
@@ -318,7 +333,9 @@ theorem geom_sum_zmod_units_inv (a : (ZMod p)ˣ) :
 /-- **Substantively PROVED**: `StandardEigenspaceDecompositionComplete` for
 any `(ZMod p)ˣ`-action on a `ZMod p`-module, given that
 `((p - 1 : ℕ) : ZMod p)` is invertible (a standard fact for `p` prime,
-since `Fintype.card (ZMod p)ˣ = p - 1`).-/
+since `Fintype.card (ZMod p)ˣ = p - 1`).
+@isnad1 id=standard.1h3v.s8.e2899d9e9753 from=translated src=- shape=76810354 vocab=ea894151
+-/
 theorem standardEigenspaceDecompositionComplete_proof
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
     (h_pminus1_unit : IsUnit ((((Fintype.card (ZMod p)ˣ : ℕ) : ZMod p)))) :
@@ -388,6 +405,9 @@ def eigenspaceSubmodule (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k :
     show galAction a (c • v) = ((a : ZMod p) ^ k) • (c • v)
     rw [map_smul, hv a, smul_comm]
 
+/--
+@isnad1 id=iff.0h5v.s8.1d5259646867 from=translated src=- shape=6c71f77a vocab=35d05c04
+-/
 @[simp]
 theorem mem_eigenspaceSubmodule (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k : ℕ)
     (v : V) :
@@ -402,7 +422,9 @@ eigenspaces span the whole module. Translates the
 
 /-- **SP-1: Eigenspace decomposition of V**. Under
 `(((p - 1 : ℕ) : ZMod p))` invertible (true for `p` prime), the (p-1)
-eigenspaces sum to the whole module `V`.-/
+eigenspaces sum to the whole module `V`.
+@isnad1 id=eq.1h3v.s9.c278fad37bab from=translated src=- shape=8020bab2 vocab=e32790a7
+-/
 theorem eigenspaceSubmodule_top_eq_iSup
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
     (h_pminus1_unit : IsUnit ((((Fintype.card (ZMod p)ˣ : ℕ) : ZMod p)))) :
@@ -449,6 +471,9 @@ def fixedByGalAction (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (a : (Z
     show galAction a (c • v) = c • v
     rw [map_smul, hv]
 
+/--
+@isnad1 id=iff.0h5v.s9.6bb3e037ce0d from=translated src=- shape=ecd914cb vocab=01479319
+-/
 @[simp]
 theorem mem_fixedByGalAction (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
     (a : (ZMod p)ˣ) (v : V) :
@@ -480,7 +505,9 @@ private lemma two_isUnit_zmod (hp_odd : p ≠ 2) : IsUnit ((2 : ZMod p)) :=
 
 /-- **Even-eigenspace inclusion in σ_{-1}-fixed subspace.** Each
 even-character eigenspace lies in the +1-fixed subspace under
-`galAction (-1)`. Requires `p ≠ 2` so that `-1 ≠ 1` in `ZMod p`.-/
+`galAction (-1)`. Requires `p ≠ 2` so that `-1 ≠ 1` in `ZMod p`.
+@isnad1 id=le.2h4v.s8.8437da11a10e from=translated src=- shape=356f0a8d vocab=b1bb3fc7
+-/
 theorem eigenspaceSubmodule_even_le_fixed_neg_one
     (hp_odd : p ≠ 2)
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
@@ -497,7 +524,9 @@ theorem eigenspaceSubmodule_even_le_fixed_neg_one
 `π_k(galAction(b)(v)) = galAction(b)(π_k(v))`.
 
 Follows from commutativity of `(ZMod p)ˣ` and the definition of `π_k`
-as a linear combination of `galAction(a)`'s.-/
+as a linear combination of `galAction(a)`'s.
+@isnad1 id=eq.0h6v.s10.a2e68510b8a0 from=translated src=- shape=50b9fa07 vocab=26d267e9
+-/
 theorem standardEigenspaceProjection_commute_galAction
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V) (k : ℕ) (b : (ZMod p)ˣ) (v : V) :
     standardEigenspaceProjection galAction k (galAction b v) =
@@ -521,7 +550,9 @@ odd-character projection `π_k(v) = 0`.
 Proof: `π_k(v) ∈ V_k`, so `galAction(-1)(π_k(v)) = (-1)^k · π_k(v) = -π_k(v)`
 (k odd). But also, by commutativity of `π_k` with `galAction`:
 `galAction(-1)(π_k(v)) = π_k(galAction(-1)(v)) = π_k(v)`. So
-`π_k(v) = -π_k(v)`, i.e., `2 · π_k(v) = 0`, hence `π_k(v) = 0`.-/
+`π_k(v) = -π_k(v)`, i.e., `2 · π_k(v) = 0`, hence `π_k(v) = 0`.
+@isnad1 id=eq.3h5v.s9.b0c41b64d0c6 from=translated src=- shape=a8fbcd5b vocab=2925eacd
+-/
 theorem standardEigenspaceProjection_odd_eq_zero_of_fixed_neg_one
     (hp_odd : p ≠ 2)
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)
@@ -562,7 +593,9 @@ theorem standardEigenspaceProjection_odd_eq_zero_of_fixed_neg_one
   exact (two_isUnit_zmod hp_odd).smul_eq_zero.mp h2_smul
 
 /-- **σ_{-1}-fixed = ⨆_{i even} V_i**: the fixed subspace of `galAction (-1)`
-equals the direct sum of even-character eigenspaces.-/
+equals the direct sum of even-character eigenspaces.
+@isnad1 id=eq.2h3v.s9.44995aa0f145 from=translated src=- shape=a4ae20ea vocab=212b5e0e
+-/
 theorem fixed_neg_one_eq_iSup_eigenspaceSubmodule_even
     (hp_odd : p ≠ 2)
     (galAction : (ZMod p)ˣ →* Module.End (ZMod p) V)

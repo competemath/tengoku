@@ -74,6 +74,9 @@ noncomputable def fourierCyclotomicSingleDifferenceProduct : ℂ :=
 def fourierMatrixFin_eq_vandermondeGoal : Prop :=
   fourierMatrixFin p = fourierVandermonde p
 
+/--
+@isnad1 id=eq.0h3v.s7.ce9313dd9262 from=translated src=- shape=3aa9207f vocab=280ea9d3
+-/
 theorem fourierMatrixFin_apply (i j : Fin p) :
     fourierMatrixFin p i j =
       ZMod.stdAddChar (N := p) (-((i : ZMod p) * (j : ZMod p))) := by
@@ -81,7 +84,9 @@ theorem fourierMatrixFin_apply (i j : Fin p) :
   simp [fourierMatrix, zmodEquivFin_symm_apply]
 
 /-- The reindexed Fourier matrix is exactly the Vandermonde matrix on the
-Fourier nodes. This closes ticket `T023d1g2b1`.-/
+Fourier nodes. This closes ticket `T023d1g2b1`.
+@isnad1 id=eq.0h1v.s4.1f22f7ab2496 from=translated src=- shape=7b7d6742 vocab=89c6e555
+-/
 theorem fourierMatrixFin_eq_fourierVandermonde :
     fourierMatrixFin p = fourierVandermonde p := by
   ext i j
@@ -94,7 +99,9 @@ theorem fourierMatrixFin_eq_fourierVandermonde :
     _ = ZMod.stdAddChar (N := p) (-(i : ZMod p)) ^ (j : ℕ) :=
           AddChar.map_nsmul_eq_pow _ _ _
 
-/-- Each Fourier node is a natural power of the distinguished base root.-/
+/-- Each Fourier node is a natural power of the distinguished base root.
+@isnad1 id=eq.0h2v.s5.5000b3fdd60d from=translated src=- shape=dca3c9cb vocab=a9369120
+-/
 theorem fourierVandermondeNodes_eq_pow_fourierBaseRoot (i : Fin p) :
     fourierVandermondeNodes (p := p) i = fourierBaseRoot (p := p) ^ (i : ℕ) := by
   rw [fourierVandermondeNodes, fourierBaseRoot]
@@ -107,7 +114,9 @@ theorem fourierVandermondeNodes_eq_pow_fourierBaseRoot (i : Fin p) :
           AddChar.map_nsmul_eq_pow _ _ _
 
 /-- The Vandermonde product on the Fourier nodes is the usual product on the
-powers of the distinguished Fourier root.-/
+powers of the distinguished Fourier root.
+@isnad1 id=eq.0h1v.s6.a77c49511593 from=translated src=- shape=bf9ee4a4 vocab=0ff2bf94
+-/
 theorem fourierVandermondeProduct_eq_rootPowerProduct :
     fourierVandermondeProduct p =
       ∏ i : Fin p, ∏ j ∈ Finset.Ioi i,
@@ -120,7 +129,9 @@ theorem fourierVandermondeProduct_eq_rootPowerProduct :
   rw [fourierVandermondeNodes_eq_pow_fourierBaseRoot (p := p),
     fourierVandermondeNodes_eq_pow_fourierBaseRoot (p := p)]
 
-/-- Factor a difference of two Fourier powers by the smaller power.-/
+/-- Factor a difference of two Fourier powers by the smaller power.
+@isnad1 id=eq.1h3v.s7.b2d2180e70c1 from=translated src=- shape=6804be61 vocab=2e5d0968
+-/
 theorem fourierRootPowerDiff_eq_factor (i j : Fin p) (hij : i < j) :
     (fourierBaseRoot (p := p)) ^ (j : ℕ) - (fourierBaseRoot (p := p)) ^ (i : ℕ) =
       (fourierBaseRoot (p := p)) ^ (i : ℕ) *
@@ -134,7 +145,9 @@ theorem fourierRootPowerDiff_eq_factor (i j : Fin p) (hij : i < j) :
   ring
 
 /-- First cyclotomic normalization of the Vandermonde product: isolate the
-power-of-`ζ` contribution from the genuine root-of-unity differences.-/
+power-of-`ζ` contribution from the genuine root-of-unity differences.
+@isnad1 id=eq.0h1v.s7.13e2f6b4c088 from=translated src=- shape=6a3db5d8 vocab=4b0b9b85
+-/
 theorem fourierRootPowerProduct_eq_weightedRootProduct_mul_fourierCyclotomicDifferenceProduct :
     (∏ i : Fin p, ∏ j ∈ Finset.Ioi i,
       ((fourierBaseRoot (p := p)) ^ (j : ℕ) - (fourierBaseRoot (p := p)) ^ (i : ℕ))) =
@@ -171,7 +184,9 @@ theorem fourierRootPowerProduct_eq_weightedRootProduct_mul_fourierCyclotomicDiff
   rw [hsplit, Finset.prod_mul_distrib]
 
 /-- The Fourier Vandermonde product splits into a weighted root power and a
-cyclotomic difference product.-/
+cyclotomic difference product.
+@isnad1 id=eq.0h1v.s6.d1437f947cad from=translated src=- shape=52f833d9 vocab=442fcf5d
+-/
 theorem fourierVandermondeProduct_eq_weightedCyclotomicForm :
     fourierVandermondeProduct p =
       (∏ i : Fin p, (fourierBaseRoot (p := p)) ^ ((i : ℕ) * (p - 1 - (i : ℕ)))) *
@@ -193,7 +208,9 @@ theorem fourierVandermondeProduct_eq_weightedCyclotomicForm :
 
 omit hp in
 /-- The weighted exponent appearing in the Fourier root factor is the cubic
-binomial coefficient `n.choose 3`.-/
+binomial coefficient `n.choose 3`.
+@isnad1 id=eq.0h1v.s5.2299a798f668 from=translated src=- shape=155e5690 vocab=a849d593
+-/
 theorem sum_range_weightedRootExponent_eq_choose_three (n : ℕ) :
     ∑ i ∈ Finset.range n, i * (n - 1 - i) = n.choose 3 := by
   induction n with
@@ -218,7 +235,9 @@ theorem sum_range_weightedRootExponent_eq_choose_three (n : ℕ) :
         _ = (n + 1).choose 3 := by
               rw [Nat.choose_succ_succ' n 2, add_comm]
 
-/-- The weighted Fourier-root factor collapses to a single explicit power.-/
+/-- The weighted Fourier-root factor collapses to a single explicit power.
+@isnad1 id=eq.0h1v.s6.dab8015dfe70 from=translated src=- shape=feff8201 vocab=8faa0c69
+-/
 theorem weightedFourierRootProduct_eq_baseRoot_pow_choose_three :
     (∏ i : Fin p, (fourierBaseRoot (p := p)) ^ ((i : ℕ) * (p - 1 - (i : ℕ)))) =
       (fourierBaseRoot (p := p)) ^ (p.choose 3) := by
@@ -231,7 +250,9 @@ theorem weightedFourierRootProduct_eq_baseRoot_pow_choose_three :
   rw [hprod, Finset.prod_pow_eq_pow_sum, sum_range_weightedRootExponent_eq_choose_three]
 
 /-- The Fourier Vandermonde product with the weighted root contribution
-collapsed to a single power. This is the endpoint of `T023d1g2b2b1`.-/
+collapsed to a single power. This is the endpoint of `T023d1g2b2b1`.
+@isnad1 id=eq.0h1v.s5.246f8a05c827 from=translated src=- shape=da24bea3 vocab=b722da83
+-/
 theorem fourierVandermondeProduct_eq_chooseThreeCyclotomicForm :
     fourierVandermondeProduct p =
       (fourierBaseRoot (p := p)) ^ (p.choose 3) * fourierCyclotomicDifferenceProduct p := by
@@ -239,7 +260,9 @@ theorem fourierVandermondeProduct_eq_chooseThreeCyclotomicForm :
     weightedFourierRootProduct_eq_baseRoot_pow_choose_three (p := p)]
 
 /-- Multiplying one copy of each cyclotomic factor increments the exponent in
-the grouped single-difference product by `1`.-/
+the grouped single-difference product by `1`.
+@isnad1 id=eq.0h2v.s7.5dca24cc6fa5 from=translated src=- shape=2bc721cb vocab=409c6247
+-/
 theorem prod_range_singleDifference_mul_shiftedPowers (n : ℕ) (ζ : ℂ) :
     (∏ d ∈ Finset.range n, (ζ ^ (d + 1) - 1)) *
         (∏ d ∈ Finset.range n, (ζ ^ (d + 1) - 1) ^ (n - d)) =
@@ -253,7 +276,9 @@ theorem prod_range_singleDifference_mul_shiftedPowers (n : ℕ) (ζ : ℂ) :
   simpa [hshift] using (pow_succ' (ζ ^ (d + 1) - 1) (n - d)).symm
 
 /-- Reindex the two-variable `i < j` cyclotomic difference product by the
-single difference `d = j - i`.-/
+single difference `d = j - i`.
+@isnad1 id=eq.0h2v.s8.65fee559753f from=translated src=- shape=13a84202 vocab=1eb48d6a
+-/
 theorem finCyclotomicDifferenceProduct_eq_singleDifferenceProduct (n : ℕ) (ζ : ℂ) :
     (∏ i : Fin (n + 1), ∏ j ∈ Finset.Ioi i, (ζ ^ ((j : ℕ) - (i : ℕ)) - 1)) =
       ∏ d ∈ Finset.range n, (ζ ^ (d + 1) - 1) ^ (n - d) := by
@@ -295,7 +320,9 @@ theorem finCyclotomicDifferenceProduct_eq_singleDifferenceProduct (n : ℕ) (ζ 
         _ = ∏ d ∈ Finset.range (n + 1), a d ^ (n + 1 - d) := by
               rw [Finset.prod_range_succ]
 
-/-- The Fourier cyclotomic difference product in one-variable grouped form.-/
+/-- The Fourier cyclotomic difference product in one-variable grouped form.
+@isnad1 id=eq.0h1v.s3.b92073b98df5 from=translated src=- shape=3a23afc2 vocab=4fd2629a
+-/
 theorem fourierCyclotomicDifferenceProduct_eq_singleDifferenceProduct :
     fourierCyclotomicDifferenceProduct p = fourierCyclotomicSingleDifferenceProduct p := by
   have hbase :
@@ -323,7 +350,9 @@ theorem fourierCyclotomicDifferenceProduct_eq_singleDifferenceProduct :
   simpa [fourierCyclotomicDifferenceProduct, fourierCyclotomicSingleDifferenceProduct] using hcast
 
 /-- The Fourier Vandermonde product with both the weighted root factor and the
-cyclotomic-difference multiplicities made explicit.-/
+cyclotomic-difference multiplicities made explicit.
+@isnad1 id=eq.0h1v.s5.219c4091564d from=translated src=- shape=da24bea3 vocab=c57e3039
+-/
 theorem fourierVandermondeProduct_eq_chooseThreeSingleDifferenceForm :
     fourierVandermondeProduct p =
       (fourierBaseRoot (p := p)) ^ (p.choose 3) * fourierCyclotomicSingleDifferenceProduct p := by
@@ -331,13 +360,17 @@ theorem fourierVandermondeProduct_eq_chooseThreeSingleDifferenceForm :
     fourierCyclotomicDifferenceProduct_eq_singleDifferenceProduct (p := p)]
 
 /-- Mathlib's Vandermonde determinant formula, specialized to the Fourier
-nodes. This is the explicit product that remains to be simplified.-/
+nodes. This is the explicit product that remains to be simplified.
+@isnad1 id=eq.0h1v.s4.6e64f572c0b2 from=translated src=- shape=15b014bd vocab=62dd42a0
+-/
 theorem det_fourierVandermonde_eq_fourierVandermondeProduct :
     Matrix.det (fourierVandermonde p) = fourierVandermondeProduct p := by
   simp [fourierVandermonde, fourierVandermondeProduct, Matrix.det_vandermonde]
 
 /-- With the Fourier/Vandermonde identification in hand, the determinant route
-reduces `normalizedDft` to the explicit product over Fourier nodes.-/
+reduces `normalizedDft` to the explicit product over Fourier nodes.
+@isnad1 id=eq.0h1v.s5.df6f19977a7b from=translated src=- shape=1798c55f vocab=504acc43
+-/
 theorem det_normalizedFourierMatrixFin_eq_scale_mul_fourierVandermondeProduct :
     Matrix.det (normalizedFourierMatrixFin p) =
       ((Real.sqrt p : ℂ)⁻¹) ^ p * fourierVandermondeProduct p := by
@@ -347,7 +380,9 @@ theorem det_normalizedFourierMatrixFin_eq_scale_mul_fourierVandermondeProduct :
   simp
 
 /-- Packaged determinant skeleton for `T023d1g2b`: the remaining work is
-exactly the final simplification of the explicit cyclotomic product.-/
+exactly the final simplification of the explicit cyclotomic product.
+@isnad1 id=eq.0h1v.s9.860582c85c8d from=translated src=- shape=7f852cd2 vocab=ac444f51
+-/
 theorem det_normalizedDft_eq_scale_mul_fourierVandermondeProduct :
     LinearMap.det (normalizedDft p) =
       ((Real.sqrt p : ℂ)⁻¹) ^ p * fourierVandermondeProduct p := by
@@ -357,7 +392,9 @@ theorem det_normalizedDft_eq_scale_mul_fourierVandermondeProduct :
 
 /-- Packaged cyclotomic form for the determinant route. This is the endpoint of
 `T023d1g2b2a`; the remaining work is to evaluate the weighted root powers and
-the cyclotomic difference product explicitly.-/
+the cyclotomic difference product explicitly.
+@isnad1 id=eq.0h1v.s10.9246744644fb from=translated src=- shape=efe14cc4 vocab=6bcfded0
+-/
 theorem det_normalizedDft_eq_weightedCyclotomicForm :
     LinearMap.det (normalizedDft p) =
       ((Real.sqrt p : ℂ)⁻¹) ^ p *
@@ -367,7 +404,9 @@ theorem det_normalizedDft_eq_weightedCyclotomicForm :
     fourierVandermondeProduct_eq_weightedCyclotomicForm (p := p)]
 
 /-- Packaged determinant form after collapsing the weighted Fourier-root
-contribution to a single exponent.-/
+contribution to a single exponent.
+@isnad1 id=eq.0h1v.s10.5a4f3d25a4b5 from=translated src=- shape=6f6e9673 vocab=0d2c5b87
+-/
 theorem det_normalizedDft_eq_chooseThreeCyclotomicForm :
     LinearMap.det (normalizedDft p) =
       ((Real.sqrt p : ℂ)⁻¹) ^ p *
@@ -376,7 +415,9 @@ theorem det_normalizedDft_eq_chooseThreeCyclotomicForm :
     fourierVandermondeProduct_eq_chooseThreeCyclotomicForm (p := p)]
 
 /-- Packaged determinant form with the cyclotomic-difference product grouped by
-the single difference `d = j - i`. This is the endpoint of `T023d1g2b2b2`.-/
+the single difference `d = j - i`. This is the endpoint of `T023d1g2b2b2`.
+@isnad1 id=eq.0h1v.s10.48b00142e764 from=translated src=- shape=6f6e9673 vocab=dd2fe47c
+-/
 theorem det_normalizedDft_eq_chooseThreeSingleDifferenceForm :
     LinearMap.det (normalizedDft p) =
       ((Real.sqrt p : ℂ)⁻¹) ^ p *

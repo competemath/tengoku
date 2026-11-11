@@ -356,26 +356,41 @@ noncomputable def mulByNatSeries (F : FormalGroup.FormalGroup R) : ℕ → Power
 
 /-! ### Properties of fAdd and mulByNatSeries -/
 
+/--
+@isnad1 id=hassubst.2h3v.s7.fc22fcc6bdda from=translated src=- shape=f399e71c vocab=54acbc7a
+-/
 lemma hasSubst_pair (f g : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0) :
     MvPowerSeries.HasSubst (show Fin 2 → MvPowerSeries Unit R from ![f, g]) := by
   apply MvPowerSeries.hasSubst_of_constantCoeff_zero; intro s; fin_cases s <;> simpa
 
+/--
+@isnad1 id=eq.1h3v.s6.b63271e7f62a from=translated src=- shape=1f54ed37 vocab=d9298c13
+-/
 lemma subst_matrix_X0 {σ : Type*} (a : Fin 2 → MvPowerSeries σ R)
     (ha : MvPowerSeries.HasSubst a) :
     MvPowerSeries.subst a (MvPowerSeries.X (0 : Fin 2) : MvPowerSeries (Fin 2) R) = a 0 :=
   @MvPowerSeries.subst_X (Fin 2) R _ σ R _ _ _ ha 0
 
+/--
+@isnad1 id=eq.1h3v.s6.04701a1a0436 from=translated src=- shape=1f54ed37 vocab=d9298c13
+-/
 lemma subst_matrix_X1 {σ : Type*} (a : Fin 2 → MvPowerSeries σ R)
     (ha : MvPowerSeries.HasSubst a) :
     MvPowerSeries.subst a (MvPowerSeries.X (1 : Fin 2) : MvPowerSeries (Fin 2) R) = a 1 :=
   @MvPowerSeries.subst_X (Fin 2) R _ σ R _ _ _ ha 1
 
+/--
+@isnad1 id=eq.1h4v.s6.59037528d76f from=translated src=- shape=702e6482 vocab=d9298c13
+-/
 lemma subst_fin3_X {σ : Type*} (a : Fin 3 → MvPowerSeries σ R)
     (ha : MvPowerSeries.HasSubst a) (i : Fin 3) :
     MvPowerSeries.subst a (MvPowerSeries.X i : MvPowerSeries (Fin 3) R) = a i :=
   @MvPowerSeries.subst_X (Fin 3) R _ σ R _ _ _ ha i
 
+/--
+@isnad1 id=eq.1h4v.s6.29410a64e58d from=translated src=- shape=537c16ee vocab=ff478025
+-/
 lemma subst_zero_eq {σ τ : Type*} {a : σ → MvPowerSeries τ R}
     (ha : MvPowerSeries.HasSubst a) :
     MvPowerSeries.subst a (0 : MvPowerSeries σ R) = 0 := by
@@ -383,7 +398,9 @@ lemma subst_zero_eq {σ τ : Type*} {a : σ → MvPowerSeries τ R}
       MvPowerSeries.subst_coe]; simp
 
 /-- `constantCoeff (subst a f) = constantCoeff f` when all `a s` have vanishing
-    constant coefficient (i.e., when `a` maps all variables to series vanishing at 0).-/
+    constant coefficient (i.e., when `a` maps all variables to series vanishing at 0).
+@isnad1 id=eq.2h5v.s8.5ff86b5bec09 from=translated src=- shape=740985b6 vocab=0181967f
+-/
 theorem constantCoeff_subst_vanishing {σ τ : Type*}
     {a : σ → MvPowerSeries τ R} (ha : MvPowerSeries.HasSubst a)
     (hcc : ∀ s, MvPowerSeries.constantCoeff (a s) = 0)
@@ -402,7 +419,9 @@ theorem constantCoeff_subst_vanishing {σ τ : Type*}
     rw [← MvPowerSeries.coeff_zero_eq_constantCoeff] at this
     rw [this, smul_zero]
 
-/-- The constant coefficient of `F(X, Y)` is zero: `F(0, 0) = 0`.-/
+/-- The constant coefficient of `F(X, Y)` is zero: `F(0, 0) = 0`.
+@isnad1 id=eq.0h2v.s7.67f56d138fc8 from=translated src=- shape=e0b4d237 vocab=740348c2
+-/
 theorem constantCoeff_FG_toSeries (F : FormalGroup.FormalGroup R) :
     MvPowerSeries.constantCoeff F.toSeries = 0 := by
   have ha : MvPowerSeries.HasSubst
@@ -412,7 +431,9 @@ theorem constantCoeff_FG_toSeries (F : FormalGroup.FormalGroup R) :
   rw [constantCoeff_subst_vanishing ha (fun s ↦ by fin_cases s <;> simp)] at this
   simpa using this
 
-/-- `constantCoeff (fAdd F f g) = 0` when `f(0) = g(0) = 0`.-/
+/-- `constantCoeff (fAdd F f g) = 0` when `f(0) = g(0) = 0`.
+@isnad1 id=eq.2h4v.s7.ec4ff516c4aa from=translated src=- shape=94353f86 vocab=f1523bf2
+-/
 theorem constantCoeff_fAdd (F : FormalGroup.FormalGroup R) (f g : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0) :
     PowerSeries.constantCoeff (fAdd F f g) = 0 := by
@@ -425,14 +446,18 @@ theorem constantCoeff_fAdd (F : FormalGroup.FormalGroup R) (f g : PowerSeries R)
     if `f` and `g` both vanish at the origin (equivalently, have positive order),
     then so does `F(f, g)`. This is the formal-neighbourhood (QF Layer-1) brick
     expressing that `fAdd` maps `𝔪 × 𝔪 → 𝔪`.
-    Reference: Silverman IV.2.3 (the group law on the formal neighbourhood).-/
+    Reference: Silverman IV.2.3 (the group law on the formal neighbourhood).
+@isnad1 id=lt.2h4v.s6.b634336fe9bf from=translated src=- shape=fc714c63 vocab=c2d18f81
+-/
 theorem formalGroup_preserves_positive_order (F : FormalGroup.FormalGroup R)
     (f g : PowerSeries R) (hf : 0 < f.order) (hg : 0 < g.order) :
     0 < (fAdd F f g).order := by
   rw [pos_iff_ne_zero, PowerSeries.order_ne_zero_iff_constCoeff_eq_zero] at hf hg ⊢
   exact constantCoeff_fAdd F f g hf hg
 
-/-- `F(0, g) = g`: the formal group law with first argument zero returns the second.-/
+/-- `F(0, g) = g`: the formal group law with first argument zero returns the second.
+@isnad1 id=eq.1h3v.s6.a4e260412cc5 from=translated src=- shape=532611fb vocab=f1523bf2
+-/
 theorem fAdd_zero_left (F : FormalGroup.FormalGroup R) (g : PowerSeries R)
     (hg : PowerSeries.constantCoeff g = 0) :
     fAdd F 0 g = g := by
@@ -454,7 +479,9 @@ theorem fAdd_zero_left (F : FormalGroup.FormalGroup R) (g : PowerSeries R)
     · exact subst_matrix_X1 (show Fin 2 → MvPowerSeries Unit R from ![0, g]) hb
   rw [heq] at step; exact step
 
-/-- `[1](T) = T`: multiplication by 1 is the identity.-/
+/-- `[1](T) = T`: multiplication by 1 is the identity.
+@isnad1 id=eq.0h2v.s4.b57b25f80a82 from=translated src=- shape=9a1f6691 vocab=66941f3c
+-/
 theorem mulByNatSeries_one (F : FormalGroup.FormalGroup R) :
     mulByNatSeries F 1 = PowerSeries.X :=
   fAdd_zero_left F PowerSeries.X (by simp)
@@ -472,7 +499,9 @@ private lemma coeff_one_high_deg (f g : PowerSeries R)
       (pow_dvd_pow_of_dvd (PowerSeries.X_dvd_iff.mpr hg) _)
   exact (PowerSeries.X_pow_dvd_iff.mp this) 1 (by omega)
 
-/-- The coefficient of `X¹Y⁰` in `F(X, Y)` is `1` (from `F(X, 0) = X`).-/
+/-- The coefficient of `X¹Y⁰` in `F(X, Y)` is `1` (from `F(X, 0) = X`).
+@isnad1 id=eq.0h2v.s8.8e40a77cb2b3 from=translated src=- shape=41ec4ce7 vocab=e9c31286
+-/
 theorem FormalGroup.coeff_10 (F : FormalGroup.FormalGroup R) :
     MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1) F.toSeries = 1 := by
   have key := congr_arg (MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)) F.lunit
@@ -501,7 +530,9 @@ theorem FormalGroup.coeff_10 (F : FormalGroup.FormalGroup R) :
       · rfl
     · rw [zero_pow hd1, mul_zero, map_zero]
 
-/-- The coefficient of `X⁰Y¹` in `F(X, Y)` is `1` (from `F(0, Y) = Y`).-/
+/-- The coefficient of `X⁰Y¹` in `F(X, Y)` is `1` (from `F(0, Y) = Y`).
+@isnad1 id=eq.0h2v.s8.3cab269ceeea from=translated src=- shape=41ec4ce7 vocab=e9c31286
+-/
 theorem FormalGroup.coeff_01 (F : FormalGroup.FormalGroup R) :
     MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) 1) F.toSeries = 1 := by
   have key := congr_arg (MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) 1)) F.runit
@@ -532,7 +563,9 @@ theorem FormalGroup.coeff_01 (F : FormalGroup.FormalGroup R) :
     · rw [zero_pow hd0, zero_mul, map_zero]
 
 /-- The linear coefficient of `F(f, g)` is `coeff_1(f) + coeff_1(g)` when `f(0) = g(0) = 0`.
-    This is the abstract analogue of `pullbackCoeff_add` (Silverman III.5.6).-/
+    This is the abstract analogue of `pullbackCoeff_add` (Silverman III.5.6).
+@isnad1 id=eq.2h4v.s9.e3721c407b0f from=translated src=- shape=1139c2c4 vocab=105b832f
+-/
 theorem coeff_one_fAdd (F : FormalGroup.FormalGroup R) (f g : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0) :
     PowerSeries.coeff 1 (fAdd F f g) =
@@ -580,7 +613,9 @@ theorem coeff_one_fAdd (F : FormalGroup.FormalGroup R) (f g : PowerSeries R)
     Finsupp.single_eq_of_ne (show (1 : Fin 2) ≠ 0 from by decide),
     FormalGroup.coeff_10, FormalGroup.coeff_01, one_mul, mul_one]
 
-/-- The constant coefficient of `[m](T)` is `0`.-/
+/-- The constant coefficient of `[m](T)` is `0`.
+@isnad1 id=eq.0h3v.s6.3002e8d704f8 from=translated src=- shape=d355250c vocab=4b2b9af0
+-/
 theorem constantCoeff_mulByNatSeries (F : FormalGroup.FormalGroup R) (n : ℕ) :
     PowerSeries.constantCoeff (mulByNatSeries F n) = 0 := by
   induction n with
@@ -588,7 +623,9 @@ theorem constantCoeff_mulByNatSeries (F : FormalGroup.FormalGroup R) (n : ℕ) :
   | succ n ih => exact constantCoeff_fAdd F _ _ ih (by simp)
 
 /-- The leading coefficient of `[m](T)` is `m`: `[m](T) = m·T + O(T²)`.
-    Reference: Silverman IV.2.3(a).-/
+    Reference: Silverman IV.2.3(a).
+@isnad1 id=eq.0h3v.s7.91a75afbbb11 from=translated src=- shape=f1518d9a vocab=52fec753
+-/
 theorem coeff_one_mulByNatSeries (F : FormalGroup.FormalGroup R) (n : ℕ) :
     PowerSeries.coeff 1 (mulByNatSeries F n) = (n : R) := by
   induction n with
@@ -600,7 +637,9 @@ theorem coeff_one_mulByNatSeries (F : FormalGroup.FormalGroup R) (n : ℕ) :
 
 /-! ### Additional fAdd properties: zero_right, commutativity, associativity -/
 
-/-- `F(f, 0) = f`: the formal group law with second argument zero returns the first.-/
+/-- `F(f, 0) = f`: the formal group law with second argument zero returns the first.
+@isnad1 id=eq.1h3v.s6.4e8652027287 from=translated src=- shape=962e4c3a vocab=f1523bf2
+-/
 theorem fAdd_zero_right (F : FormalGroup.FormalGroup R) (f : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) :
     fAdd F f 0 = f := by
@@ -622,7 +661,9 @@ theorem fAdd_zero_right (F : FormalGroup.FormalGroup R) (f : PowerSeries R)
     · simp only []; exact subst_zero_eq hb
   rw [heq] at step; exact step
 
-/-- `F(f, g) = F(g, f)`: commutativity of the formal addition.-/
+/-- `F(f, g) = F(g, f)`: commutativity of the formal addition.
+@isnad1 id=eq.2h4v.s7.cf176bb7862b from=translated src=- shape=07fc3893 vocab=f1523bf2
+-/
 theorem fAdd_comm (F : FormalGroup.FormalGroup R) (f g : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0) :
     fAdd F f g = fAdd F g f := by
@@ -729,7 +770,9 @@ private lemma subst_fgh_X0_substYZ (F : FormalGroup.FormalGroup R) (f g h : Powe
     · exact subst_fin3_X _ h_fgh 1
     · exact subst_fin3_X _ h_fgh 2
 
-/-- `F(F(f, g), h) = F(f, F(g, h))`: associativity of the formal addition.-/
+/-- `F(F(f, g), h) = F(f, F(g, h))`: associativity of the formal addition.
+@isnad1 id=eq.3h5v.s8.e79ad782f256 from=translated src=- shape=8508c413 vocab=f1523bf2
+-/
 theorem fAdd_assoc (F : FormalGroup.FormalGroup R) (f g h : PowerSeries R)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0)
     (hh : PowerSeries.constantCoeff h = 0) :
@@ -746,7 +789,9 @@ theorem fAdd_assoc (F : FormalGroup.FormalGroup R) (f g h : PowerSeries R)
       subst_fgh_X0_substYZ F f g h h_fgh] at step
   exact step
 
-/-- `[m + n](T) = F([m](T), [n](T))`: addition formula for mulByNatSeries.-/
+/-- `[m + n](T) = F([m](T), [n](T))`: addition formula for mulByNatSeries.
+@isnad1 id=eq.0h4v.s5.51ea6a29712b from=translated src=- shape=d44355e3 vocab=47254984
+-/
 theorem mulByNatSeries_add (F : FormalGroup.FormalGroup R) (m n : ℕ) :
     mulByNatSeries F (m + n) = fAdd F (mulByNatSeries F m) (mulByNatSeries F n) := by
   induction n with

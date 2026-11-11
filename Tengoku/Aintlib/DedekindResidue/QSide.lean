@@ -20,14 +20,18 @@ namespace DedekindResidue
 
 open NumberField
 
-/-- `ℤ⧸(n)` has `n` elements, so the principal ideal `(n)` has absolute norm `n`.-/
+/-- `ℤ⧸(n)` has `n` elements, so the principal ideal `(n)` has absolute norm `n`.
+@isnad1 id=eq.0h1v.s7.94b4e5d38ead from=translated src=- shape=26325799 vocab=b86362c2
+-/
 theorem absNorm_span_natCast (n : ℕ) :
     Ideal.absNorm (Ideal.span {(n : ℤ)}) = n := by
   rw [Ideal.absNorm_apply, Submodule.cardQuot_apply]
   rw [Nat.card_congr (Int.quotientSpanEquivZMod n).toEquiv]
   exact Nat.card_zmod n
 
-/-- **There is exactly one ideal of `ℤ` of each positive norm.**-/
+/-- **There is exactly one ideal of `ℤ` of each positive norm.**
+@isnad1 id=eq.0h1v.s7.8096d5982688 from=translated src=- shape=27b7a447 vocab=e4666392
+-/
 theorem card_int_ideal_absNorm_eq (n : ℕ) :
     Nat.card {J : Ideal ℤ // Ideal.absNorm J = n} = 1 := by
   rw [Nat.card_eq_one_iff_unique]
@@ -52,7 +56,9 @@ theorem card_int_ideal_absNorm_eq (n : ℕ) :
   · exact ⟨⟨Ideal.span {(n : ℤ)}, absNorm_span_natCast n⟩⟩
 
 /-- The absolute ideal norm is invariant under a ring isomorphism (the quotients are
-isomorphic).-/
+isomorphic).
+@isnad1 id=eq.0h4v.s9.7edbc70a9dd9 from=translated src=- shape=176096b8 vocab=4ae6975c
+-/
 theorem absNorm_map_ringEquiv {R S : Type*} [CommRing R] [CommRing S]
     [IsDedekindDomain R] [IsDedekindDomain S]
     [Module.Free ℤ R] [Module.Finite ℤ R]
@@ -63,7 +69,9 @@ theorem absNorm_map_ringEquiv {R S : Type*} [CommRing R] [CommRing S]
   exact (Nat.card_congr (Ideal.quotientEquiv I (I.map (e : R →+* S)) e rfl).toEquiv).symm
 
 /-- **There is exactly one ideal of `𝓞 ℚ` of each norm** (transport along
-`𝓞 ℚ ≃+* ℤ`).-/
+`𝓞 ℚ ≃+* ℤ`).
+@isnad1 id=eq.0h1v.s8.50cbfdbb47a9 from=translated src=- shape=8a38b8a1 vocab=78476fa4
+-/
 theorem card_rat_ideal_absNorm_eq (n : ℕ) :
     Nat.card {I : Ideal (𝓞 ℚ) // Ideal.absNorm I = n} = 1 := by
   have e := Rat.ringOfIntegersEquiv
@@ -83,7 +91,9 @@ theorem card_rat_ideal_absNorm_eq (n : ℕ) :
   rw [Nat.card_congr hEquiv]
   exact card_int_ideal_absNorm_eq n
 
-/-- **`ζ_ℚ` is the Riemann zeta function** on `Re s > 1`.-/
+/-- **`ζ_ℚ` is the Riemann zeta function** on `Re s > 1`.
+@isnad1 id=eq.1h1v.s4.dcb78be8ac93 from=translated src=- shape=b76b296a vocab=b72e82e0
+-/
 theorem dedekindZeta_rat_eq_riemannZeta {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta ℚ s = riemannZeta s := by
   rw [NumberField.dedekindZeta, ← LSeries_one_eq_riemannZeta hs]
@@ -91,7 +101,9 @@ theorem dedekindZeta_rat_eq_riemannZeta {s : ℂ} (hs : 1 < s.re) :
   rw [card_rat_ideal_absNorm_eq n]
   simp
 
-/-- The completed-zeta prefactor of `ℚ` is `Γ_ℝ` (discriminant `1`, one real place).-/
+/-- The completed-zeta prefactor of `ℚ` is `Γ_ℝ` (discriminant `1`, one real place).
+@isnad1 id=eq.0h1v.s3.92efbb0cd620 from=translated src=- shape=25ac9e83 vocab=38b4e472
+-/
 theorem completedZetaPrefactor_rat (s : ℂ) :
     completedZetaPrefactor ℚ s = Complex.Gammaℝ s := by
   rw [completedZetaPrefactor, gammaFactor,
@@ -102,7 +114,9 @@ theorem completedZetaPrefactor_rat (s : ℂ) :
     Rat.numberField_discr]
   norm_num
 
-/-- **`completedRiemannZeta` is a completed Dedekind zeta function for `ℚ`.**-/
+/-- **`completedRiemannZeta` is a completed Dedekind zeta function for `ℚ`.**
+@isnad1 id=iscomple.0h0v.s2.5c42ce728e30 from=translated src=- shape=25b03439 vocab=45a3f32d
+-/
 theorem isCompletedDedekindZeta_rat :
     IsCompletedDedekindZeta ℚ completedRiemannZeta := by
   constructor
@@ -122,7 +136,9 @@ theorem isCompletedDedekindZeta_rat :
 
 /-- **The Riemann Hypothesis transfers to `GeneralizedRiemannHypothesis ℚ`**: any
 completed Dedekind zeta function for `ℚ` agrees with `completedRiemannZeta` away
-from the poles, whose zeros off the critical line RH excludes.-/
+from the poles, whose zeros off the critical line RH excludes.
+@isnad1 id=generali.1h0v.s2.4ffbc9175ee5 from=translated src=- shape=ffc494c5 vocab=562e7bb5
+-/
 theorem generalizedRiemannHypothesis_rat (hRH : RiemannHypothesis) :
     GeneralizedRiemannHypothesis ℚ := by
   intro Λ hΛ s hs hs1 hzero
@@ -145,7 +161,9 @@ theorem generalizedRiemannHypothesis_rat (hRH : RiemannHypothesis) :
 /-! ### `κ_ℚ = 1` (Q4) -/
 
 /-- The unit group of `ℤ` has rank `0`, so the regulator of `ℚ` is the empty
-determinant.-/
+determinant.
+@isnad1 id=eq.0h0v.s3.e178c7cb18bd from=translated src=- shape=b0ae1d2b vocab=fef14c19
+-/
 theorem regulator_rat_eq_one : NumberField.Units.regulator ℚ = 1 := by
   classical
   have : IsEmpty {w : NumberField.InfinitePlace ℚ //
@@ -154,13 +172,17 @@ theorem regulator_rat_eq_one : NumberField.Units.regulator ℚ = 1 := by
   rw [NumberField.Units.regulator_eq_det']
   simp
 
-/-- The torsion of `ℚ` is `{±1}`.-/
+/-- The torsion of `ℚ` is `{±1}`.
+@isnad1 id=eq.0h0v.s3.38770086ba5f from=translated src=- shape=b0ae1d2b vocab=16a47cda
+-/
 theorem torsionOrder_rat_eq_two : NumberField.Units.torsionOrder ℚ = 2 :=
   NumberField.Units.torsionOrder_eq_two_of_odd_finrank
     (by rw [Module.finrank_self]; exact odd_one)
 
 /-- **`κ_ℚ = 1`**: the residue of the Riemann zeta at `1` through the class number
-formula: `(2¹·(2π)⁰·1·1)/(2·√1) = 1`.-/
+formula: `(2¹·(2π)⁰·1·1)/(2·√1) = 1`.
+@isnad1 id=eq.0h0v.s3.fcd89a8b0f92 from=translated src=- shape=b0ae1d2b vocab=c3c3d806
+-/
 theorem dedekindZeta_residue_rat_eq_one : NumberField.dedekindZeta_residue ℚ = 1 := by
   rw [NumberField.dedekindZeta_residue_def,
     NumberField.InfinitePlace.nrRealPlaces_eq_one_of_finrank_eq_one

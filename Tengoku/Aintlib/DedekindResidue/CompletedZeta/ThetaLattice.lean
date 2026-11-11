@@ -52,7 +52,9 @@ convention — every theorem carries `0 < t`).-/
 noncomputable def thetaLattice (L : Submodule ℤ (EuclideanSpace ℝ ι)) (t : ℝ) : ℝ :=
   ∑' v : L, Real.exp (-(π * t) * ‖(v : EuclideanSpace ℝ ι)‖ ^ 2)
 
-/-- The theta sum converges for `t > 0`.-/
+/-- The theta sum converges for `t > 0`.
+@isnad1 id=summable.1h3v.s10.49ba32d01d44 from=translated src=- shape=c1cfd3ff vocab=cd6a980a
+-/
 theorem summable_thetaLattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {t : ℝ} (ht : 0 < t) :
     Summable (fun v : L => Real.exp (-(π * t) * ‖(v : EuclideanSpace ℝ ι)‖ ^ 2)) :=
@@ -65,7 +67,9 @@ mathlib's `fourier_gaussian_innerProductSpace` (`b = πt`).-/
 noncomputable def gaussianCM (t : ℝ) : C(EuclideanSpace ℝ ι, ℂ) :=
   ⟨fun x => Complex.exp (-(π * t : ℂ) * (‖x‖ : ℂ) ^ 2), by fun_prop⟩
 
-/-- Pointwise norm of the Gaussian: `‖e^{-πt‖x‖²}‖ = e^{-πt‖x‖²}` (the exponent is real).-/
+/-- Pointwise norm of the Gaussian: `‖e^{-πt‖x‖²}‖ = e^{-πt‖x‖²}` (the exponent is real).
+@isnad1 id=eq.0h3v.s7.1dd441de8c3a from=translated src=- shape=5d876e42 vocab=d3709479
+-/
 theorem norm_gaussianCM_apply (t : ℝ) (x : EuclideanSpace ℝ ι) :
     ‖gaussianCM t x‖ = Real.exp (-(π * t) * ‖x‖ ^ 2) := by
   simp only [gaussianCM, ContinuousMap.coe_mk]
@@ -74,7 +78,9 @@ theorem norm_gaussianCM_apply (t : ℝ) (x : EuclideanSpace ℝ ι) :
     push_cast; ring
   rw [this, Complex.ofReal_re]
 
-/-- Sub-level sets of a lattice are finite (lattice ∩ closed ball in a proper space).-/
+/-- Sub-level sets of a lattice are finite (lattice ∩ closed ball in a proper space).
+@isnad1 id=finite.0h3v.s10.5090742b417d from=translated src=- shape=c677a78f vocab=c13490c7
+-/
 theorem finite_norm_le_zlattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] (R : ℝ) :
     {v : L | ‖(v : EuclideanSpace ℝ ι)‖ ≤ R}.Finite := by
@@ -91,7 +97,9 @@ theorem finite_norm_le_zlattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
 translates of the Gaussian on any compact are summable: outside a finite sub-level set,
 `sup_{x∈K} e^{-πt‖x+v‖²} ≤ e^{πtR²}·e^{-(πt/2)‖v‖²}` (reverse triangle + `(a-R)² ≥ a²/2-R²`),
 and the right side is summable by `summable_gaussian_zlattice`. This discharges `h_norm` of
-the lattice Poisson formula at the Gaussian.-/
+the lattice Poisson formula at the Gaussian.
+@isnad1 id=summable.1h4v.s11.b4ae60a68ee9 from=translated src=- shape=fd911e7c vocab=7b1d5562
+-/
 theorem summable_norm_restrict_gaussianCM (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {t : ℝ} (ht : 0 < t)
     (K : Compacts (EuclideanSpace ℝ ι)) :
@@ -145,7 +153,9 @@ open scoped FourierTransform
 /-- **Θ3: the Fourier transform of the Gaussian** (mathlib's
 `fourier_gaussian_innerProductSpace` at `b = πt`, constants normalised):
 `𝓕(e^{-πt‖·‖²})(w) = t^{-n/2}·e^{-π‖w‖²/t}` — the Gaussian is self-dual up to the scaling
-`t ↦ 1/t` and the factor `t^{-n/2}` (Neukirch VII §3 shape).-/
+`t ↦ 1/t` and the factor `t^{-n/2}` (Neukirch VII §3 shape).
+@isnad1 id=eq.1h3v.s8.f7133cad0179 from=translated src=- shape=55755fe0 vocab=1cbe6e27
+-/
 theorem fourier_gaussianCM {t : ℝ} (ht : 0 < t) (w : EuclideanSpace ℝ ι) :
     𝓕 (⇑(gaussianCM (ι := ι) t)) w
       = ((t ^ (-(Fintype.card ι : ℝ) / 2) : ℝ) : ℂ) * gaussianCM t⁻¹ w := by
@@ -182,7 +192,9 @@ theorem fourier_gaussianCM {t : ℝ} (ht : 0 < t) (w : EuclideanSpace ℝ ι) :
 
 /-- The Fourier transforms of the Gaussian are summable over the dual lattice — the `h_sum`
 hypothesis of the lattice Poisson formula at the Gaussian (`Θ3` + `summable_gaussian_zlattice`
-over `L♯`, whose lattice instances come from `DualLattice.lean`).-/
+over `L♯`, whose lattice instances come from `DualLattice.lean`).
+@isnad1 id=summable.1h3v.s10.a1d8992d12b0 from=translated src=- shape=3f0fe3e6 vocab=aece8010
+-/
 theorem summable_fourier_gaussianCM (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {t : ℝ} (ht : 0 < t) :
     Summable fun w : dualZLattice L =>
@@ -201,7 +213,9 @@ theorem summable_fourier_gaussianCM (L : Submodule ℤ (EuclideanSpace ℝ ι))
     exact (summable_gaussian_zlattice (dualZLattice L) (by positivity)).mul_left _
   exact h1.congr (fun w => (fourier_gaussianCM ht _).symm)
 
-/-- Complexification of the theta sum: `↑Θ_M(s) = ∑'_{v∈M} gaussianCM s v`.-/
+/-- Complexification of the theta sum: `↑Θ_M(s) = ∑'_{v∈M} gaussianCM s v`.
+@isnad1 id=eq.1h3v.s10.2b2c9c58124c from=translated src=- shape=5c27da54 vocab=56d2bb9d
+-/
 theorem ofReal_thetaLattice (M : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology M] [IsZLattice ℝ M] {s : ℝ} (hs : 0 < s) :
     ((thetaLattice M s : ℝ) : ℂ) = ∑' v : M, gaussianCM (ι := ι) s (v : EuclideanSpace ℝ ι) := by
@@ -221,7 +235,9 @@ theorem ofReal_thetaLattice (M : Submodule ℤ (EuclideanSpace ℝ ι))
 /-- **The lattice theta transformation law** (SP1-AGΘ; Neukirch VII §3 shape):
 `Θ_L(t) = covol(L)⁻¹ · t^{-n/2} · Θ_{L♯}(1/t)` for `t > 0` — the Gaussian instantiation of
 Poisson summation over `L`. This is the analytic engine of the Hecke functional equation:
-applied to the ideal lattices of a number field it yields the completed `Λ_K` (SP1-AGE).-/
+applied to the ideal lattices of a number field it yields the completed `Λ_K` (SP1-AGE).
+@isnad1 id=eq.1h3v.s9.3d606c515f2d from=translated src=- shape=44119e2e vocab=43d83a87
+-/
 theorem thetaLattice_transform (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {t : ℝ} (ht : 0 < t) :
     thetaLattice L t = (ZLattice.covolume L volume)⁻¹ * t ^ (-(Fintype.card ι : ℝ) / 2)
@@ -259,10 +275,15 @@ noncomputable def diagScale (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) :
     field_simp [hc i]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h4v.s9.7d7af28a3db0 from=translated src=- shape=b5c74874 vocab=4b63aafc
+-/
 theorem diagScale_apply (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) (x : EuclideanSpace ℝ ι) (i : ι) :
     diagScale c hc x i = c i * x i := rfl
 
-/-- `diagScale` is self-adjoint (its matrix is diagonal).-/
+/-- `diagScale` is self-adjoint (its matrix is diagonal).
+@isnad1 id=eq.1h2v.s12.b23024def0c4 from=translated src=- shape=96176a10 vocab=8029b2ca
+-/
 theorem adjoint_diagScale (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) :
     LinearMap.adjoint ((diagScale c hc : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) :
       EuclideanSpace ℝ ι →ₗ[ℝ] EuclideanSpace ℝ ι)
@@ -279,7 +300,9 @@ theorem adjoint_diagScale (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) :
   rw [h1, h2]
   ring
 
-/-- The determinant of `diagScale` is the product of the weights.-/
+/-- The determinant of `diagScale` is the product of the weights.
+@isnad1 id=eq.1h2v.s11.6dac04b6f45e from=translated src=- shape=8f33d406 vocab=e5c7567d
+-/
 theorem det_diagScale (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) :
     LinearMap.det ((diagScale c hc : EuclideanSpace ℝ ι ≃ₗ[ℝ] EuclideanSpace ℝ ι) :
       EuclideanSpace ℝ ι →ₗ[ℝ] EuclideanSpace ℝ ι) = ∏ i, c i := by
@@ -305,7 +328,9 @@ infinite place). For positive weights it is the standard Gaussian composed with
 noncomputable def weightedGaussianCM (c : ι → ℝ) : C(EuclideanSpace ℝ ι, ℂ) :=
   ⟨fun x => Complex.exp (-(π : ℂ) * ∑ i, (c i : ℂ) * (x i : ℂ) ^ 2), by fun_prop⟩
 
-/-- The squared norm of a `diagScale √c`-scaled point is the weighted square sum.-/
+/-- The squared norm of a `diagScale √c`-scaled point is the weighted square sum.
+@isnad1 id=eq.1h3v.s9.71ff0ef3faa2 from=translated src=- shape=eb323e57 vocab=1a04563a
+-/
 theorem norm_diagScale_sqrt_sq (c : ι → ℝ) (hc : ∀ i, 0 < c i) (x : EuclideanSpace ℝ ι) :
     ‖diagScale (fun i => Real.sqrt (c i)) (fun i => Real.sqrt_ne_zero'.mpr (hc i)) x‖ ^ 2
       = ∑ i, c i * x i ^ 2 := by
@@ -315,7 +340,9 @@ theorem norm_diagScale_sqrt_sq (c : ι → ℝ) (hc : ∀ i, 0 < c i) (x : Eucli
 
 /-- **Structural identity**: the anisotropic Gaussian is the standard Gaussian pulled back
 along the diagonal scaling by `√c`. This feeds `fourier_comp_linearEquiv` (P3a) to compute
-its Fourier transform.-/
+its Fourier transform.
+@isnad1 id=eq.1h3v.s9.0562b7f041b5 from=translated src=- shape=9e2c2c15 vocab=918bc7c9
+-/
 theorem weightedGaussianCM_eq_comp (c : ι → ℝ) (hc : ∀ i, 0 < c i) (x : EuclideanSpace ℝ ι) :
     weightedGaussianCM c x
       = gaussianCM 1 ((diagScale (fun i => Real.sqrt (c i))
@@ -330,14 +357,18 @@ theorem weightedGaussianCM_eq_comp (c : ι → ℝ) (hc : ∀ i, 0 < c i) (x : E
   ring
 
 omit [Fintype ι] in
-/-- The inverse of a diagonal scaling scales by the inverse weights.-/
+/-- The inverse of a diagonal scaling scales by the inverse weights.
+@isnad1 id=eq.1h2v.s8.b8b9a78d5537 from=translated src=- shape=261d9c3c vocab=58a271d3
+-/
 theorem diagScale_symm (c : ι → ℝ) (hc : ∀ i, c i ≠ 0) :
     (diagScale c hc).symm = diagScale (fun i => (c i)⁻¹) (fun i => inv_ne_zero (hc i)) := by
   ext x i
   rfl
 
 omit [Fintype ι] in
-/-- Diagonal scalings with equal weight functions coincide.-/
+/-- Diagonal scalings with equal weight functions coincide.
+@isnad1 id=eq.2h3v.s7.226c252f8d01 from=translated src=- shape=6b069a06 vocab=e470bb5f
+-/
 theorem diagScale_congr {c c' : ι → ℝ} (h : c = c') (hc : ∀ i, c i ≠ 0) :
     diagScale c hc = diagScale c' (h ▸ hc) := by
   subst h
@@ -346,7 +377,9 @@ theorem diagScale_congr {c c' : ι → ℝ} (h : c = c') (hc : ∀ i, c i ≠ 0)
 /-- **The Fourier transform of the anisotropic Gaussian** (AGE-0 core):
 `𝓕(e^{-π∑cᵢxᵢ²})(w) = (∏cᵢ)^{-1/2}·e^{-π∑cᵢ⁻¹wᵢ²}` — via the structural identity,
 the GL change-of-variables law (P3a), self-adjointness and determinant of `diagScale`,
-and the self-duality of the standard Gaussian.-/
+and the self-duality of the standard Gaussian.
+@isnad1 id=eq.1h3v.s8.d4cf70c36763 from=translated src=- shape=2189c328 vocab=18b66bf1
+-/
 theorem fourier_weightedGaussianCM {c : ι → ℝ} (hc : ∀ i, 0 < c i) (w : EuclideanSpace ℝ ι) :
     𝓕 (⇑(weightedGaussianCM (ι := ι) c)) w
       = (Real.sqrt (∏ i, c i))⁻¹ • weightedGaussianCM (fun i => (c i)⁻¹) w := by
@@ -383,7 +416,9 @@ theorem fourier_weightedGaussianCM {c : ι → ℝ} (hc : ∀ i, 0 < c i) (w : E
   rw [diagScale_congr hw]
   exact (weightedGaussianCM_eq_comp (fun i => (c i)⁻¹) (fun i => inv_pos.mpr (hc i)) w).symm
 
-/-- Pointwise norm of the anisotropic Gaussian.-/
+/-- Pointwise norm of the anisotropic Gaussian.
+@isnad1 id=eq.0h3v.s7.eb9d9696bf0a from=translated src=- shape=bca6a24f vocab=5fe5000e
+-/
 theorem norm_weightedGaussianCM_apply (c : ι → ℝ) (y : EuclideanSpace ℝ ι) :
     ‖weightedGaussianCM c y‖ = Real.exp (-π * ∑ i, c i * y i ^ 2) := by
   simp only [weightedGaussianCM, ContinuousMap.coe_mk]
@@ -394,13 +429,17 @@ theorem norm_weightedGaussianCM_apply (c : ι → ℝ) (y : EuclideanSpace ℝ �
     ring
   rw [this, Complex.ofReal_re]
 
-/-- The squared Euclidean norm is the coordinate square sum.-/
+/-- The squared Euclidean norm is the coordinate square sum.
+@isnad1 id=eq.0h2v.s6.3e505a59bc55 from=translated src=- shape=fa2b8a68 vocab=530dfbe6
+-/
 theorem norm_sq_eq_sum (y : EuclideanSpace ℝ ι) : ‖y‖ ^ 2 = ∑ i, y i ^ 2 := by
   rw [EuclideanSpace.norm_eq, Real.sq_sqrt (by positivity)]
   exact Finset.sum_congr rfl (fun i _ => by rw [Real.norm_eq_abs, sq_abs])
 
 /-- Weighted-vs-isotropic comparison: with all weights `≥ a`, the anisotropic Gaussian is
-dominated by the isotropic one at parameter `a` (`gaussianCM` at `t = a`).-/
+dominated by the isotropic one at parameter `a` (`gaussianCM` at `t = a`).
+@isnad1 id=le.1h4v.s7.f825194a2672 from=translated src=- shape=2927a20d vocab=260f218c
+-/
 theorem norm_weightedGaussianCM_le (c : ι → ℝ) {a : ℝ} (hca : ∀ i, a ≤ c i)
     (y : EuclideanSpace ℝ ι) :
     ‖weightedGaussianCM c y‖ ≤ ‖gaussianCM a y‖ := by
@@ -414,7 +453,9 @@ theorem norm_weightedGaussianCM_le (c : ι → ℝ) {a : ℝ} (hca : ∀ i, a �
     nlinarith [hca i]
   nlinarith [Real.pi_pos]
 
-/-- `h_norm` for the anisotropic Gaussian, by comparison with the isotropic estimate `Θ1`.-/
+/-- `h_norm` for the anisotropic Gaussian, by comparison with the isotropic estimate `Θ1`.
+@isnad1 id=summable.2h5v.s11.c423903fb81f from=translated src=- shape=05250952 vocab=a30f11e2
+-/
 theorem summable_norm_restrict_weightedGaussianCM (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {c : ι → ℝ} {a : ℝ} (ha : 0 < a)
     (hca : ∀ i, a ≤ c i) (K : Compacts (EuclideanSpace ℝ ι)) :
@@ -430,7 +471,9 @@ theorem summable_norm_restrict_weightedGaussianCM (L : Submodule ℤ (EuclideanS
   exact norm_weightedGaussianCM_le c hca _
 
 /-- `h_sum` for the anisotropic Gaussian: its Fourier transforms are summable over the dual
-lattice (via `fourier_weightedGaussianCM` + isotropic comparison at the inverse upper bound).-/
+lattice (via `fourier_weightedGaussianCM` + isotropic comparison at the inverse upper bound).
+@isnad1 id=summable.3h4v.s10.8657cde1b7d2 from=translated src=- shape=72bd6af2 vocab=ba336df6
+-/
 theorem summable_fourier_weightedGaussianCM (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {c : ι → ℝ} (hc : ∀ i, 0 < c i)
     {B : ℝ} (hB : 0 < B) (hcB : ∀ i, c i ≤ B) :
@@ -452,7 +495,9 @@ theorem summable_fourier_weightedGaussianCM (L : Submodule ℤ (EuclideanSpace �
     exact h2
   exact h1.congr (fun w => (fourier_weightedGaussianCM hc _).symm)
 
-/-- Complexification of the weighted theta sum.-/
+/-- Complexification of the weighted theta sum.
+@isnad1 id=eq.2h4v.s11.7df5936611fb from=translated src=- shape=611e49c6 vocab=7118113f
+-/
 theorem ofReal_weightedTheta (M : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology M] [IsZLattice ℝ M] {d : ι → ℝ} {b : ℝ} (hb : 0 < b)
     (hdb : ∀ i, b ≤ d i) :
@@ -484,7 +529,9 @@ analytic engine of Hecke's functional equation for a number field with nontrivia
 
 for any positive weights `c` (no other hypotheses — bounds are derived internally). The
 isotropic `thetaLattice_transform` is the constant-weights case. Hecke integrates this over
-the unit fundamental domain in the weight space (SP1-AGE-3).-/
+the unit fundamental domain in the weight space (SP1-AGE-3).
+@isnad1 id=eq.1h3v.s11.18602d638693 from=translated src=- shape=fd10c1f7 vocab=40c75234
+-/
 theorem weightedThetaLattice_transform (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {c : ι → ℝ} (hc : ∀ i, 0 < c i) :
     ∑' v : L, Real.exp (-π * ∑ i, c i * ((v : EuclideanSpace ℝ ι) i) ^ 2)

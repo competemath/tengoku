@@ -52,7 +52,9 @@ variable {F : Type*} [Field F]
 variable {W₁ W₂ W₃ : Affine F} [W₁.IsElliptic] [W₂.IsElliptic] [W₃.IsElliptic]
 
 /-- The pullback of an isogeny is injective: any algebra homomorphism from a field
-    is injective because the kernel of a ring homomorphism from a field is trivial.-/
+    is injective because the kernel of a ring homomorphism from a field is trivial.
+@isnad1 id=injectiv.0h4v.s10.c0671ddb602f from=translated src=- shape=583d8fee vocab=539cd1ff
+-/
 theorem pullback_injective (φ : PullbackIsogeny F W₁ W₂) :
     Function.Injective φ.pullback :=
   φ.pullback.toRingHom.injective
@@ -73,13 +75,17 @@ noncomputable def comp (ψ : PullbackIsogeny F W₂ W₃) (φ : PullbackIsogeny 
     PullbackIsogeny F W₁ W₃ where
   pullback := φ.pullback.comp ψ.pullback
 
-/-- The algebra map from (ψ∘φ)* factors through φ* and ψ*.-/
+/-- The algebra map from (ψ∘φ)* factors through φ* and ψ*.
+@isnad1 id=eq.0h7v.s12.2c84d37bba09 from=translated src=- shape=cedcd8fb vocab=7a034909
+-/
 theorem comp_algebraMap_eq (ψ : PullbackIsogeny F W₂ W₃) (φ : PullbackIsogeny F W₁ W₂)
     (x : W₃.FunctionField) :
     (ψ.comp φ).pullback x = φ.pullback (ψ.pullback x) := rfl
 
 /-- **Degree multiplicativity**: `deg(ψ ∘ φ) = deg(φ) · deg(ψ)`.
-    Follows from the tower law for field extensions.-/
+    Follows from the tower law for field extensions.
+@isnad1 id=eq.0h6v.s6.a46dc03af355 from=translated src=- shape=4cd9ee81 vocab=45e4926d
+-/
 theorem comp_degree (ψ : PullbackIsogeny F W₂ W₃) (φ : PullbackIsogeny F W₁ W₂) :
     (ψ.comp φ).degree = φ.degree * ψ.degree := by
   simp only [degree]

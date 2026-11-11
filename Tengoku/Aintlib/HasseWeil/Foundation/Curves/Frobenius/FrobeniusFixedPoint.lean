@@ -86,6 +86,9 @@ noncomputable def geomFrobRingHom : AlgebraicClosure K →+* AlgebraicClosure K 
   (FiniteField.frobeniusAlgHom K (AlgebraicClosure K)).toRingHom
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.0h2v.s7.147cc20ef321 from=translated src=- shape=46564b9f vocab=a83e2953
+-/
 @[simp] theorem geomFrobRingHom_apply (a : AlgebraicClosure K) :
     geomFrobRingHom (K := K) a = a ^ Fintype.card K := by
   show (FiniteField.frobeniusAlgHom K (AlgebraicClosure K)) a = a ^ Fintype.card K
@@ -95,7 +98,9 @@ omit [DecidableEq K] in
 /-- **Codomain identification**: mapping the base-changed curve `W.baseChange L` over the
 geometric Frobenius `q`-power `K`-algebra hom returns `W.baseChange L` itself.  Direct
 from `WeierstrassCurve.map_baseChange` (the `q`-power map is a `K`-algebra hom, hence
-fixes `algebraMap K L`).-/
+fixes `algebraMap K L`).
+@isnad1 id=eq.0h2v.s6.3ebe7ea463b7 from=translated src=- shape=acd22082 vocab=3c8848eb
+-/
 @[simp] theorem map_geomFrob_baseChange_eq_self :
     (W.baseChange (AlgebraicClosure K)).map (geomFrobRingHom (K := K)) =
       W.baseChange (AlgebraicClosure K) := by
@@ -122,13 +127,18 @@ noncomputable def geomFrobeniusPointFun :
     (FiniteField.frobeniusAlgHom K (AlgebraicClosure K))
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.0h2v.s8.4b52a791b50f from=translated src=- shape=54595963 vocab=582246eb
+-/
 @[simp] theorem geomFrobeniusPointFun_zero :
     geomFrobeniusPointFun W (0 : (W.baseChange (AlgebraicClosure K)).toAffine.Point) = 0 := rfl
 
 omit [DecidableEq K] in
 /-- **`geomFrobeniusPointFun` on `some`**: applies the geometric Frobenius `q`-power
 to both coordinates.  Direct from `WeierstrassCurve.Affine.Point.map_some` together with
-`FiniteField.coe_frobeniusAlgHom` (`frobeniusAlgHom = (· ^ q)`).-/
+`FiniteField.coe_frobeniusAlgHom` (`frobeniusAlgHom = (· ^ q)`).
+@isnad1 id=eq.1h4v.s9.773bda0aef91 from=translated src=- shape=aa3adc95 vocab=aa437ccf
+-/
 theorem geomFrobeniusPointFun_some {x y : AlgebraicClosure K}
     (h : (W.baseChange (AlgebraicClosure K)).toAffine.Nonsingular x y) :
     geomFrobeniusPointFun W (.some x y h) =
@@ -153,10 +163,16 @@ noncomputable def includePointBC :
     (FaithfulSMul.algebraMap_injective K (AlgebraicClosure K))
 
 omit [Fintype K] [DecidableEq K] in
+/--
+@isnad1 id=eq.0h2v.s7.7aa21c255cee from=translated src=- shape=8be8d038 vocab=037cf845
+-/
 @[simp] theorem includePointBC_zero :
     includePointBC W (0 : W.toAffine.Point) = 0 := rfl
 
 omit [Fintype K] [DecidableEq K] in
+/--
+@isnad1 id=eq.1h4v.s8.9b86f9ddd453 from=translated src=- shape=3f0da2c2 vocab=ef1e5139
+-/
 @[simp] theorem includePointBC_some {x y : K} (h : W.toAffine.Nonsingular x y) :
     includePointBC W (.some x y h) =
       .some (algebraMap K (AlgebraicClosure K) x) (algebraMap K (AlgebraicClosure K) y)
@@ -166,7 +182,9 @@ omit [Fintype K] [DecidableEq K] in
 omit [Fintype K] [DecidableEq K] in
 set_option backward.isDefEq.respectTransparency false in
 /-- `includePointBC` is injective: it is `HasseWeil.Affine.Point.map` of the injective ring
-hom `algebraMap K L`, and the constructor `some` is injective in its coordinates.-/
+hom `algebraMap K L`, and the constructor `some` is injective in its coordinates.
+@isnad1 id=injectiv.0h2v.s5.e6d22c81baf9 from=translated src=- shape=ecbe5520 vocab=2d0592d5
+-/
 theorem includePointBC_injective : Function.Injective (includePointBC W) := by
   rintro (_ | ⟨x₁, y₁, h₁⟩) (_ | ⟨x₂, y₂, h₂⟩) hP
   · rfl
@@ -211,7 +229,9 @@ Proof by cases on `P`:
   The coordinate algebra uses `WeierstrassCurve.Affine.map_nonsingular` (a *ring-hom*
   nonsingularity transfer, matching `includePointBC`'s own definition via
   `HasseWeil.Affine.Point.map`) rather than the AlgHom-based `baseChange_nonsingular`, which
-  keeps the unifier off the doubly-base-changed curve term.-/
+  keeps the unifier off the doubly-base-changed curve term.
+@isnad1 id=iff.0h3v.s8.1ccebe2f3362 from=translated src=- shape=40328ae2 vocab=6122d651
+-/
 theorem geomFrobeniusPoint_fixed_iff_mem_range_includePointBC
     (P : (W.baseChange (AlgebraicClosure K)).toAffine.Point) :
     geomFrobeniusPointFun W P = P ↔ P ∈ Set.range (includePointBC W) := by
@@ -254,7 +274,9 @@ repackaged, so we state it that way and reduce to S2. -/
 
 omit [DecidableEq K] in
 /-- **S3 (set form)**: the fixed locus of the geometric Frobenius equals the image of the
-`K`-rational points.  This is S2 in `Set` form.-/
+`K`-rational points.  This is S2 in `Set` form.
+@isnad1 id=eq.0h2v.s7.4911699d765f from=translated src=- shape=5a61d75f vocab=e3fe3c1b
+-/
 theorem fixedLocus_geomFrobenius_eq_range_includePointBC :
     {P : (W.baseChange (AlgebraicClosure K)).toAffine.Point | geomFrobeniusPointFun W P = P} =
       Set.range (includePointBC W) := by
@@ -274,7 +296,9 @@ Combined with the algebraic-closed fibre count
 omit [DecidableEq K] in
 /-- **S4 (cardinality)**: the number of geometric-Frobenius-fixed `L`-points equals
 the `K`-rational point count `Fintype.card W.toAffine.Point` (= `pointCount`).  Reduces to S3
-(`fixedLocus … = range includePointBC`) plus injectivity of `includePointBC`.-/
+(`fixedLocus … = range includePointBC`) plus injectivity of `includePointBC`.
+@isnad1 id=eq.0h2v.s7.37c61bd275ae from=translated src=- shape=d3cde515 vocab=26c68295
+-/
 theorem ncard_fixedLocus_geomFrobenius_eq_pointCount [Fintype W.toAffine.Point] :
     {P : (W.baseChange (AlgebraicClosure K)).toAffine.Point |
         geomFrobeniusPointFun W P = P}.ncard = Fintype.card W.toAffine.Point := by
@@ -301,6 +325,9 @@ noncomputable def geomFrobeniusPoint :
     (FiniteField.frobeniusAlgHom K (AlgebraicClosure K))
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.0h3v.s9.70b8dc6ee7d8 from=translated src=- shape=93a9ccc6 vocab=daadbabf
+-/
 @[simp] theorem geomFrobeniusPoint_apply
     (P : (W.baseChange (AlgebraicClosure K)).toAffine.Point) :
     geomFrobeniusPoint W P = geomFrobeniusPointFun W P := rfl
@@ -314,13 +341,18 @@ noncomputable def oneSubGeomFrobHom :
   AddMonoidHom.id _ - geomFrobeniusPoint W
 
 omit [DecidableEq K] in
+/--
+@isnad1 id=eq.0h3v.s10.fd36a414a70f from=translated src=- shape=0026a15f vocab=690cf248
+-/
 @[simp] theorem oneSubGeomFrobHom_apply
     (P : (W.baseChange (AlgebraicClosure K)).toAffine.Point) :
     oneSubGeomFrobHom W P = P - geomFrobeniusPointFun W P := rfl
 
 omit [DecidableEq K] in
 /-- **PRIORITY 1 (kernel = fixed locus)**: `P ∈ ker(id − geomFrob) ⟺
-geomFrob P = P`. Direct from `sub_eq_zero`.-/
+geomFrob P = P`. Direct from `sub_eq_zero`.
+@isnad1 id=eq.0h2v.s9.68050a21b7e7 from=translated src=- shape=b786e788 vocab=47cb98fb
+-/
 theorem ker_oneSubGeomFrobHom_eq_fixedLocus :
     ((oneSubGeomFrobHom W).ker : Set (W.baseChange (AlgebraicClosure K)).toAffine.Point) =
       {P | geomFrobeniusPointFun W P = P} := by
@@ -332,7 +364,9 @@ omit [DecidableEq K] in
 /-- **PRIORITY 1 (cardinality)**: the geometric-Frobenius fixed locus, i.e.
 `ker(id − geomFrob)`, has cardinality `pointCount W`. Composes
 `ker_oneSubGeomFrobHom_eq_fixedLocus` with S4
-(`ncard_fixedLocus_geomFrobenius_eq_pointCount`).-/
+(`ncard_fixedLocus_geomFrobenius_eq_pointCount`).
+@isnad1 id=eq.0h2v.s9.8165e2560450 from=translated src=- shape=c4157f81 vocab=a1b4021f
+-/
 theorem ncard_ker_oneSubGeomFrobHom_eq_pointCount [Fintype W.toAffine.Point] :
     ((oneSubGeomFrobHom W).ker :
         Set (W.baseChange (AlgebraicClosure K)).toAffine.Point).ncard =

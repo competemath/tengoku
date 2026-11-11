@@ -57,7 +57,9 @@ variable {R' : Type*} [CommRing R']
 
 If χ : MulChar R R' has `χ^n = 1`, and σ : R' →+* R' is a ring hom that
 fixes χ (i.e., `σ ∘ χ = χ`) and shifts ψ by a unit `a` (i.e.,
-`σ ∘ ψ = AddChar.mulShift ψ a`), then σ fixes the `n`-th power of `g(χ, ψ)`.-/
+`σ ∘ ψ = AddChar.mulShift ψ a`), then σ fixes the `n`-th power of `g(χ, ψ)`.
+@isnad1 id=eq.3h7v.s8.5f335275570f from=translated src=- shape=119db26a vocab=b4e7c5f8
+-/
 theorem gaussSum_pow_invariant_of_pow_eq_one
     (χ : MulChar R R') (ψ : AddChar R R') {n : ℕ}
     (hχn : χ ^ n = 1)
@@ -80,7 +82,9 @@ theorem gaussSum_pow_invariant_of_pow_eq_one
 
 For the residue character `χ_q` (order `p`) and any ring hom σ : R' →+* R'
 fixing it and shifting ψ_q by some unit `a`, the `p`-th power of the
-residue Gauss sum is fixed by σ.-/
+residue Gauss sum is fixed by σ.
+@isnad1 id=eq.6h8v.s9.5971cc6fa3e1 from=translated src=- shape=e692e572 vocab=08f20887
+-/
 theorem residueGaussSum_pow_p_invariant
     {k : Type*} [Field k] [Fintype k]
     [IsDomain R']
@@ -103,7 +107,9 @@ theorem residueGaussSum_pow_p_invariant
 This is the input the Galois invariance lemma needs. The proof goes by
 extensionality: on units `↑u`, `MulChar.pow_apply_coe` reduces to
 `(residueMulChar (↑u))^p`, which we already know is `1`. On non-units
-(only `0` for a field), both sides are `0` by `MulChar.map_nonunit`.-/
+(only `0` for a field), both sides are `0` by `MulChar.map_nonunit`.
+@isnad1 id=eq.3h5v.s8.0e3007fb4f34 from=translated src=- shape=7523ea07 vocab=7acd3ff7
+-/
 theorem residueMulChar_pow_eq_one_mulChar
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommMonoidWithZero R']
@@ -117,7 +123,9 @@ theorem residueMulChar_pow_eq_one_mulChar
 
 /-- The order of the residue character is exactly `p`: it is `≤ p` (since
 `χ^p = 1`) and `≠ 1` (it is non-trivial), hence equals `p` because `p` is
-prime.-/
+prime.
+@isnad1 id=eq.3h5v.s7.ef7b3d8d0c91 from=translated src=- shape=4a554da8 vocab=2e1920b7
+-/
 theorem orderOf_residueMulChar
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -143,7 +151,9 @@ residue setup, using `orderOf_residueMulChar = p`. The Jacobi sums on
 the right live in the smaller subring spanned by `μ_p ⊆ R'` (since each
 `J(χ, χ^i)` is a sum of products of values of χ in `μ_p`); this
 prepares the descent of `g(χ_q)^p` into `K` (the smaller field of the
-intended cyclotomic application).-/
+intended cyclotomic application).
+@isnad1 id=eq.4h6v.s9.6568ceedc768 from=translated src=- shape=724a180a vocab=8a4f43be
+-/
 theorem residueGaussSum_pow_p_eq_prod_jacobiSum
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -167,7 +177,9 @@ theorem residueGaussSum_pow_p_eq_prod_jacobiSum
   exact key
 
 /-- For `i` with `1 ≤ i ≤ p - 1`, the `i`-th power of the residue character
-is non-trivial (since `orderOf χ_q = p`).-/
+is non-trivial (since `orderOf χ_q = p`).
+@isnad1 id=ne.5h6v.s8.5bef93e33466 from=translated src=- shape=0ce141e1 vocab=2b98ccd0
+-/
 theorem residueMulChar_pow_ne_one
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -193,7 +205,9 @@ theorem residueMulChar_pow_ne_one
 
 This is the residue specialisation of mathlib's `jacobiSum_mul_nontrivial`,
 expressing the Jacobi sum as a "Gauss sum quotient":
-`J(χ, χ^i) = g(χ) · g(χ^i) / g(χ^{i+1})` (in the field case).-/
+`J(χ, χ^i) = g(χ) · g(χ^i) / g(χ^{i+1})` (in the field case).
+@isnad1 id=eq.5h7v.s9.fff414ab343a from=translated src=- shape=c85868d7 vocab=d6a40491
+-/
 theorem residueJacobiSum_mul_gaussSum_eq
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -224,7 +238,9 @@ theorem residueJacobiSum_mul_gaussSum_eq
 Specialisation of mathlib's `jacobiSum_mul_jacobiSum_inv`, applicable
 once the target field `R'` has characteristic distinct from the residue
 field's characteristic (which holds when `R'` extends `K = ℚ(ζ_p)` in
-characteristic 0).-/
+characteristic 0).
+@isnad1 id=eq.6h6v.s9.ae63ae716946 from=translated src=- shape=ec478c69 vocab=221c038a
+-/
 theorem residueJacobiSum_mul_inv
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [Field R']
@@ -257,7 +273,9 @@ order `p` and `ψ_q` primitive, `g(χ_q, ψ_q) · g(χ_q^{p-1}, ψ_q) = χ_q(-1)
 This is the residue specialisation of mathlib's
 `gaussSum_mul_gaussSum_pow_orderOf_sub_one`, using `orderOf χ_q = p`.
 For `p` odd, `χ_q^{p-1} = χ_q^{-1}`, so this is the standard "norm
-relation" `g(χ) · g(χ⁻¹) = χ(-1) · #k`.-/
+relation" `g(χ) · g(χ⁻¹) = χ(-1) · #k`.
+@isnad1 id=eq.4h6v.s8.b332d6e590d1 from=translated src=- shape=a92f2f8c vocab=644a6a10
+-/
 theorem residueGaussSum_mul_gaussSum_pow_p_sub_one
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -310,7 +328,9 @@ character `χ` and an additive character `ψ` that is "constantly 1 mod `I`"
 
 The proof splits `g(χ, ψ) = ∑ χ(x) (ψ(x) - 1) + ∑ χ(x)`. The second sum
 vanishes because `χ ≠ 1` (via `MulChar.sum_eq_zero_of_ne_one`); the first
-is in `I` because each summand is (by closure under R'-multiplication).-/
+is in `I` because each summand is (by closure under R'-multiplication).
+@isnad1 id=mem.2h5v.s8.2d5beb523c5c from=translated src=- shape=81f7f9df vocab=eb95bf16
+-/
 theorem gaussSum_mem_ideal_of_addChar_sub_one_mem
     {R : Type*} [CommRing R] [Fintype R]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -330,7 +350,9 @@ If `x - 1 ∈ I`, then `x^n - 1 ∈ I` for all `n`. Useful when verifying the
 hypothesis of `gaussSum_mem_ideal_of_addChar_sub_one_mem` for the concrete
 additive character `ψ_q(x) = ζ_q^{Tr(x)}`: assuming `ζ_q - 1 ∈ P` (the
 cyclotomic ramification fact for `P` above `q`), this gives
-`ψ_q(x) - 1 = ζ_q^{Tr(x)} - 1 ∈ P` for all `x`.-/
+`ψ_q(x) - 1 = ζ_q^{Tr(x)} - 1 ∈ P` for all `x`.
+@isnad1 id=mem.1h4v.s7.8e87a82310e5 from=translated src=- shape=29caedcc vocab=0966d0fd
+-/
 theorem pow_sub_one_mem_of_sub_one_mem
     {R : Type*} [CommRing R] (x : R) (n : ℕ)
     {I : Ideal R} (h : x - 1 ∈ I) :
@@ -348,7 +370,9 @@ above the rational prime `q`. The hypothesis `ψ_q(x) - 1 ∈ P` for all `x`
 follows from `ζ_q ≡ 1 (mod P)`, which is the standard cyclotomic
 ramification fact `(ζ_q - 1)^{q-1} ∼ q`. Establishing this for a concrete
 `R' = K(ζ_q)` is a separate subticket (it needs ring-of-integers
-infrastructure not yet in scope).-/
+infrastructure not yet in scope).
+@isnad1 id=mem.4h7v.s8.502422fb6d50 from=translated src=- shape=bf688d84 vocab=88ffcb3c
+-/
 theorem residueGaussSum_mem_ideal_of_psi_sub_one_mem
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -371,7 +395,9 @@ This identifies how a Galois automorphism `σ` (concretely `σ_a` sending
 `ζ_R ↦ ζ_R^a`) permutes the residue character among its powers. Combined
 with `gaussSum_ringHomComp`, it gives the input the Galois-orbit step
 needs for the Galois orbit assembly: `σ_a(g(χ_q)) = g(χ_q^a, σ_a · ψ_q)`
-after suitable adjustment.-/
+after suitable adjustment.
+@isnad1 id=eq.4h7v.s8.68d916e5d259 from=translated src=- shape=70ae3d22 vocab=35d02fac
+-/
 theorem residueMulChar_ringHomComp_pow_eq
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -412,7 +438,9 @@ For any ring hom `σ : R' →+* R'` sending `ζ_R ↦ ζ_R^a`,
 
 This is the basic Galois transformation rule. The key inputs are
 `residueGaussSum_ringHomComp` and
-`residueMulChar_ringHomComp_pow_eq` (above).-/
+`residueMulChar_ringHomComp_pow_eq` (above).
+@isnad1 id=eq.4h8v.s8.5b00c82164b9 from=translated src=- shape=2504cc8f vocab=87ea4e1d
+-/
 theorem residueGaussSum_ringHomComp_pow_eq
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -431,7 +459,9 @@ theorem residueGaussSum_ringHomComp_pow_eq
       residueMulChar_ringHomComp_pow_eq zeta_q hzeta_q hdiv zeta_R hzeta_R σ a hσ]
 
 /-- Each value of `residueMulChar` lies in `Subring.closure {(ζ_R : R')}`,
-the subring generated by the chosen primitive `p`-th root of unity.-/
+the subring generated by the chosen primitive `p`-th root of unity.
+@isnad1 id=mem.3h6v.s7.b17cf2fa0b96 from=translated src=- shape=c52dc86f vocab=88bad9dc
+-/
 theorem residueMulChar_apply_mem_closure
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -449,7 +479,9 @@ theorem residueMulChar_apply_mem_closure
   · rw [MulChar.map_nonunit _ hx]
     exact Subring.zero_mem _
 
-/-- Each value of `(residueMulChar)^i` lies in `Subring.closure {(ζ_R : R')}`.-/
+/-- Each value of `(residueMulChar)^i` lies in `Subring.closure {(ζ_R : R')}`.
+@isnad1 id=mem.3h7v.s8.bcfe358d9fc1 from=translated src=- shape=ff9119ac vocab=f6a51cd6
+-/
 theorem residueMulChar_pow_apply_mem_closure
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -467,7 +499,9 @@ theorem residueMulChar_pow_apply_mem_closure
   · rw [MulChar.map_nonunit _ hy]
     exact Subring.zero_mem _
 
-/-- Each Jacobi sum `J(χ_q, χ_q^i)` lies in `Subring.closure {(ζ_R : R')}`.-/
+/-- Each Jacobi sum `J(χ_q, χ_q^i)` lies in `Subring.closure {(ζ_R : R')}`.
+@isnad1 id=mem.3h6v.s8.65fa45e7f253 from=translated src=- shape=528f90aa vocab=7df7948b
+-/
 theorem residueJacobiSum_mem_closure
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -490,7 +524,9 @@ provided `ψ_q` is primitive (so the Jacobi-sum chain identity applies).
 
 In the intended cyclotomic application with `R' = K(ζ_{Nq})` and
 `zeta_R ∈ K = ℚ(ζ_p)`, the closure equals `ℤ[ζ_p] = 𝓞_K`, so
-`g(χ_q, ψ_q)^p ∈ 𝓞_K` — the key descent exploited downstream.-/
+`g(χ_q, ψ_q)^p ∈ 𝓞_K` — the key descent exploited downstream.
+@isnad1 id=mem.4h6v.s7.ae0a647b310a from=translated src=- shape=d58e907a vocab=37e048d5
+-/
 theorem residueGaussSum_pow_p_mem_closure
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -530,7 +566,9 @@ private theorem isIntegral_of_mem_closure_singleton
 
 /-- **Algebraic-integer corollary for Jacobi sums.** `J(χ_q, χ_q^i)` is
 integral over `ℤ`. Follows from `residueJacobiSum_mem_closure` together
-with `IsPrimitiveRoot.isIntegral` for `ζ_R`.-/
+with `IsPrimitiveRoot.isIntegral` for `ζ_R`.
+@isnad1 id=isintegr.3h6v.s8.1d7037bbc001 from=translated src=- shape=9ad6a007 vocab=e6cd8829
+-/
 theorem residueJacobiSum_isIntegral
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R']
@@ -551,7 +589,9 @@ algebraic integer (integral over `ℤ`).
 Combines the Subring descent (`residueGaussSum_pow_p_mem_closure`) with
 the fact that `ζ_R` is integral over `ℤ`. In the intended cyclotomic
 application with `K = ℚ(ζ_p)`, this combined with `g(χ_q)^p ∈ K`
-(provable via Galois invariance) gives `g(χ_q)^p ∈ 𝓞_K`.-/
+(provable via Galois invariance) gives `g(χ_q)^p ∈ 𝓞_K`.
+@isnad1 id=isintegr.4h6v.s7.e4417e2724ba from=translated src=- shape=bc04b6c5 vocab=9219178e
+-/
 theorem residueGaussSum_pow_p_isIntegral
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -581,23 +621,34 @@ the integer exponent for the `a`-th Galois conjugate appearing in the
 prime factorisation of `g(χ_q^a)` at `q`.-/
 def stickelbergerWeight (p Nq a : ℕ) : ℕ := a * ((Nq - 1) / p)
 
+/--
+@isnad1 id=eq.0h2v.s4.052eef0410da from=translated src=- shape=9bf57cd7 vocab=fe5b2736
+-/
 @[simp]
 theorem stickelbergerWeight_zero_arg (p Nq : ℕ) :
     stickelbergerWeight p Nq 0 = 0 :=
   zero_mul _
 
+/--
+@isnad1 id=eq.0h2v.s5.d1d9f656c976 from=translated src=- shape=df7aafc6 vocab=9cf30179
+-/
 @[simp]
 theorem stickelbergerWeight_one_arg (p Nq : ℕ) :
     stickelbergerWeight p Nq 1 = (Nq - 1) / p :=
   one_mul _
 
+/--
+@isnad1 id=eq.0h3v.s5.7a2e4eb54ba3 from=translated src=- shape=fc4b6697 vocab=69b298e8
+-/
 theorem stickelbergerWeight_succ (p Nq a : ℕ) :
     stickelbergerWeight p Nq (a + 1) =
       stickelbergerWeight p Nq a + (Nq - 1) / p := by
   rw [stickelbergerWeight, stickelbergerWeight, Nat.add_mul, one_mul]
 
 /-- When `p ∣ Nq - 1`, the Stickelberger weight satisfies
-`p · weight(a) = a · (Nq - 1)`.-/
+`p · weight(a) = a · (Nq - 1)`.
+@isnad1 id=eq.1h3v.s5.806aee55c78b from=translated src=- shape=52ad562a vocab=5a314230
+-/
 theorem p_mul_stickelbergerWeight (p Nq a : ℕ) (hdiv : p ∣ Nq - 1) :
     p * stickelbergerWeight p Nq a = a * (Nq - 1) := by
   rw [stickelbergerWeight, Nat.mul_left_comm, Nat.mul_div_cancel' hdiv]
@@ -611,7 +662,9 @@ norm: `g(χ_q)^p · g(χ_q^{p-1})^p = (#k)^p`. This is the integer-level
 divisibility precursor to the prime-ideal-level Stickelberger formula.
 -/
 
-/-- `χ_q(-1)^p = 1` since `χ_q^p = 1` (as a `MulChar`).-/
+/-- `χ_q(-1)^p = 1` since `χ_q^p = 1` (as a `MulChar`).
+@isnad1 id=eq.3h5v.s7.28dd92a12675 from=translated src=- shape=a1423c98 vocab=68b57095
+-/
 theorem residueMulChar_neg_one_pow_eq_one
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommMonoidWithZero R']
@@ -632,7 +685,9 @@ theorem residueMulChar_neg_one_pow_eq_one
 This says the ideal `(g(χ_q)^p)` in `𝓞_K` divides `((#k)^p)`, which is a
 power of the rational prime under `q`. The full Stickelberger formula
 refines this divisibility to an exact prime-ideal factorisation; this
-identity is the ring-level precursor.-/
+identity is the ring-level precursor.
+@isnad1 id=eq.4h6v.s8.c3ad49b41367 from=translated src=- shape=0ab6d2e3 vocab=43e8fe0c
+-/
 theorem residueGaussSum_pow_p_mul_pow_p_sub_one_eq_card_pow
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -665,7 +720,9 @@ genuinely "cyclotomic-arithmetic" content from the underlying ring theory.
 
 /-- **q-adic ideal containment, raised power.** If the residue Gauss sum lies
 in an ideal `I`, then its `n`-th power lies in `I^n`. Direct corollary of
-`Ideal.pow_mem_pow`.-/
+`Ideal.pow_mem_pow`.
+@isnad1 id=mem.4h8v.s8.a9edb079722a from=translated src=- shape=603e0207 vocab=e69a53a2
+-/
 theorem residueGaussSum_pow_mem_ideal_pow
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -684,7 +741,9 @@ theorem residueGaussSum_pow_mem_ideal_pow
 and a prime ideal `P` contains `a`, then `P` contains `q`.
 
 This is a pure algebra lemma: any prime in the support of an element
-dividing `q^n` must lie above `q`.-/
+dividing `q^n` must lie above `q`.
+@isnad1 id=mem.2h6v.s7.b1d7217b2dd9 from=translated src=- shape=ac59f8d0 vocab=930937a4
+-/
 theorem prime_mem_of_mul_eq_pow {R : Type*} [CommRing R]
     {P : Ideal R} [hP : P.IsPrime] {a b q : R} {n : ℕ}
     (hab : a * b = q ^ n) (ha : a ∈ P) :
@@ -702,7 +761,9 @@ above the rational prime under `q`.
 
 This is the abstract content of "no extraneous prime factors": the only
 primes that can appear in the ideal factorisation of `(g(χ_q)^p)` lie above
-`q`. The exact exponents are then determined by the Stickelberger weights.-/
+`q`. The exact exponents are then determined by the Stickelberger weights.
+@isnad1 id=mem.5h7v.s8.03fade36dfc9 from=translated src=- shape=6a1cb575 vocab=21b654b1
+-/
 theorem residueGaussSum_pow_p_support_above_card
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']
@@ -760,7 +821,9 @@ The proof:
 3. By `IsPrimitiveRoot.isPrimitiveRoot_iff`, that `μ` equals `ζ^a` for
    some `a` coprime to `q`.
 4. By `IsPrimitiveRoot.associated_sub_one_pow_sub_one_of_coprime`,
-   `ζ - 1` and `ζ^a - 1` are associated, hence `ζ - 1 ∈ Q`.-/
+   `ζ - 1` and `ζ^a - 1` are associated, hence `ζ - 1 ∈ Q`.
+@isnad1 id=mem.2h4v.s7.420c8f1d7e56 from=translated src=- shape=e7fcdc23 vocab=518a5adb
+-/
 theorem zeta_sub_one_mem_of_natCast_mem
     {R : Type*} [CommRing R] [IsDomain R]
     {q : ℕ} [hq : Fact q.Prime] {ζ : R} (hζ : IsPrimitiveRoot ζ q)
@@ -795,7 +858,9 @@ theorem zeta_sub_one_mem_of_natCast_mem
 /-- **Iterated cyclotomic ramification.** Direct corollary: every power
 `ζ^n` of a primitive `q`-th root satisfies `ζ^n - 1 ∈ Q` for any prime
 ideal `Q` containing `q`. Combines `zeta_sub_one_mem_of_natCast_mem`
-with `pow_sub_one_mem_of_sub_one_mem`.-/
+with `pow_sub_one_mem_of_sub_one_mem`.
+@isnad1 id=mem.2h5v.s7.7d7c6ad2427b from=translated src=- shape=97e99541 vocab=8ad8149a
+-/
 theorem zeta_pow_sub_one_mem_of_natCast_mem
     {R : Type*} [CommRing R] [IsDomain R]
     {q : ℕ} [Fact q.Prime] {ζ : R} (hζ : IsPrimitiveRoot ζ q)
@@ -812,7 +877,9 @@ ideal `Q` of `R'` containing `q`. Hence `g(χ_q, ψ_q) ∈ Q`.
 This is the *concrete instantiation* of the abstract form for the standard
 cyclotomic additive character. The hypothesis `h_psi_pow` captures the
 trace-formula structure `ψ_q(x) = ζ_q^{Tr(x)}` of the standard primitive
-character on a finite field.-/
+character on a finite field.
+@isnad1 id=mem.6h9v.s8.3ec6a5ae235c from=translated src=- shape=f9461019 vocab=6becc20e
+-/
 theorem residueGaussSum_mem_ideal_of_psi_pow_form
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommRing R'] [IsDomain R']

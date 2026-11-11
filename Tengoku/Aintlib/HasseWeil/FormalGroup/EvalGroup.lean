@@ -84,7 +84,9 @@ variable [IsLinearTopology R R] [T2Space R] [CompleteSpace R]
 omit [IsUniformAddGroup R] [IsTopologicalRing R] [IsLinearTopology R R] [T2Space R]
   [CompleteSpace R] in
 /-- Elements of the maximal ideal are topologically nilpotent under the
-`M`-adic topology.-/
+`M`-adic topology.
+@isnad1 id=istopolo.2h2v.s6.c5188b10d332 from=translated src=- shape=cc8feae2 vocab=797ecf30
+-/
 lemma isTopologicallyNilpotent_of_mem_maximalIdeal
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     {x : R} (hx : x ∈ IsLocalRing.maximalIdeal R) :
@@ -111,7 +113,9 @@ private lemma hasEval_of_mem_maximalIdeal_general {σ : Type*} [Finite σ]
 omit [IsUniformAddGroup R] [IsTopologicalRing R] [IsLinearTopology R R] [T2Space R]
   [CompleteSpace R] in
 /-- Any function `a : Fin 2 → R` taking values in the maximal ideal satisfies
-`HasEval` for the `M`-adic topology.-/
+`HasEval` for the `M`-adic topology.
+@isnad1 id=haseval.2h2v.s6.2d12ee9ef565 from=translated src=- shape=9ce940f4 vocab=04aaf0e6
+-/
 lemma hasEval_of_mem_maximalIdeal
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     {a : Fin 2 → R} (ha : ∀ i, a i ∈ IsLocalRing.maximalIdeal R) :
@@ -133,7 +137,9 @@ omit [IsUniformAddGroup R] [IsLinearTopology R R] [T2Space R] [CompleteSpace R] 
 /-- The maximal ideal is closed in the `M`-adic topology.
 
 `M` is open (as the basis of neighborhoods of 0 at level 1, i.e. `M^1 = M`),
-hence closed.-/
+hence closed.
+@isnad1 id=isclosed.1h1v.s6.39e8ba8b3b3b from=translated src=- shape=795202c2 vocab=cff173f9
+-/
 lemma maximalIdeal_isClosed
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R)) :
     IsClosed (IsLocalRing.maximalIdeal R : Set R) := by
@@ -178,7 +184,9 @@ private theorem mvPowerSeries_eval_mem_maximalIdeal {σ : Type*} [Finite σ]
 
 /-- `evalAdd F x y ∈ M`. Follows from `constantCoeff F.toSeries = 0` and the
 fact that evaluation `eval₂` of a series with vanishing constant coefficient at
-a point in `M` lies in `M`.-/
+a point in `M` lies in `M`.
+@isnad1 id=mem.1h4v.s7.b8d0c1f59977 from=translated src=- shape=2999ea91 vocab=68668ee3
+-/
 theorem FormalGroup.evalAdd_mem
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (x y : IsLocalRing.maximalIdeal R) :
@@ -197,7 +205,9 @@ We compute `evalAdd F 0 0 = 0` directly from `constantCoeff F.toSeries = 0`.
 -/
 
 /-- `F(0, 0) = 0`: the formal group law evaluated at the origin gives zero,
-since `constantCoeff F.toSeries = 0`.-/
+since `constantCoeff F.toSeries = 0`.
+@isnad1 id=eq.1h2v.s7.5056e89595a7 from=translated src=- shape=5651bcb9 vocab=8a0d1e3e
+-/
 theorem FormalGroup.evalAdd_zero_zero
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) :
@@ -333,7 +343,9 @@ omit [IsLocalRing R] [UniformSpace R] [IsUniformAddGroup R] [IsTopologicalRing R
   [IsLinearTopology R R] [T2Space R] [CompleteSpace R] in
 /-- The coefficient swap induced by `F.comm`: `coeff d F.toSeries =
 coeff (finsupp_swap d) F.toSeries`. This is a consequence of
-`subst ![X 1, X 0] F.toSeries = F.toSeries`.-/
+`subst ![X 1, X 0] F.toSeries = F.toSeries`.
+@isnad1 id=eq.0h3v.s9.d2eb1f86dddf from=translated src=- shape=c3084a99 vocab=4fcca877
+-/
 theorem FormalGroup.coeff_swap (F : FormalGroup R) (d : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff d F.toSeries =
       MvPowerSeries.coeff (finsupp_swap d) F.toSeries := by
@@ -378,7 +390,9 @@ private lemma evalAdd_comm_term_eq (F : FormalGroup R) (x y : R) (d : Fin 2 →�
   simp only [Matrix.cons_val_zero]
   ring
 
-/-- Commutativity: `evalAdd F x y = evalAdd F y x`.-/
+/-- Commutativity: `evalAdd F x y = evalAdd F y x`.
+@isnad1 id=eq.1h4v.s7.49f03f497afe from=translated src=- shape=3a2ea2a2 vocab=68668ee3
+-/
 theorem FormalGroup.evalAdd_comm
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (x y : IsLocalRing.maximalIdeal R) :
@@ -464,7 +478,9 @@ private lemma coeff_single_X_pow_mul_zero_pow_of_ne
 omit [IsLocalRing R] [UniformSpace R] [IsUniformAddGroup R] [IsTopologicalRing R]
   [IsLinearTopology R R] [T2Space R] [CompleteSpace R] in
 /-- For any `j ≠ 1`, `coeff (j, 0) F.toSeries = 0`. This is the coefficient-level
-statement of `F.lunit` saying `F(X, 0) = X`.-/
+statement of `F.lunit` saying `F(X, 0) = X`.
+@isnad1 id=eq.1h3v.s8.5f8697caca88 from=translated src=- shape=d50145a3 vocab=e9c31286
+-/
 theorem FormalGroup.coeff_j0_of_ne_one (F : FormalGroup R) (j : ℕ) (hj : j ≠ 1) :
     MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) j) F.toSeries = 0 := by
   have ha : MvPowerSeries.HasSubst
@@ -547,7 +563,9 @@ private lemma evalAdd_zero_right_term_eq (F : FormalGroup R)
     have := DFunLike.congr_fun hcontra 1
     simpa [Finsupp.single_apply] using this
 
-/-- Right-unit: `evalAdd F x ⟨0, _⟩ = x.1`.-/
+/-- Right-unit: `evalAdd F x ⟨0, _⟩ = x.1`.
+@isnad1 id=eq.1h3v.s8.582bea4f7f05 from=translated src=- shape=05cf522a vocab=573c4701
+-/
 theorem FormalGroup.evalAdd_zero_right
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (x : IsLocalRing.maximalIdeal R) :
@@ -599,7 +617,9 @@ private lemma coeff_single_zero_pow_mul_X_pow_of_ne
 omit [IsLocalRing R] [UniformSpace R] [IsUniformAddGroup R] [IsTopologicalRing R]
   [IsLinearTopology R R] [T2Space R] [CompleteSpace R] in
 /-- For any `j ≠ 1`, `coeff (0, j) F.toSeries = 0`. Analogue of `coeff_j0_of_ne_one`
-via `F.runit`.-/
+via `F.runit`.
+@isnad1 id=eq.1h3v.s8.74f03498f7ce from=translated src=- shape=d50145a3 vocab=e9c31286
+-/
 theorem FormalGroup.coeff_0j_of_ne_one (F : FormalGroup R) (j : ℕ) (hj : j ≠ 1) :
     MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) j) F.toSeries = 0 := by
   have ha : MvPowerSeries.HasSubst
@@ -632,7 +652,9 @@ theorem FormalGroup.coeff_0j_of_ne_one (F : FormalGroup R) (j : ℕ) (hj : j ≠
       Matrix.cons_val_zero, Matrix.cons_val_one]
     rw [coeff_single_zero_pow_mul_X_pow_of_ne hd, smul_zero]
 
-/-- Left-unit: `evalAdd F ⟨0, _⟩ y = y.1`.-/
+/-- Left-unit: `evalAdd F ⟨0, _⟩ y = y.1`.
+@isnad1 id=eq.1h3v.s8.9ddc466dc248 from=translated src=- shape=caf16c24 vocab=573c4701
+-/
 theorem FormalGroup.evalAdd_zero_left
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (y : IsLocalRing.maximalIdeal R) :
@@ -662,7 +684,9 @@ noncomputable def FormalGroup.evalNeg (F : FormalGroup R)
 
 Follows from `constantCoeff F.inverse = 0` and the fact that univariate
 evaluation of a power series with vanishing constant coefficient at a point
-in `M` lies in `M`.-/
+in `M` lies in `M`.
+@isnad1 id=mem.1h3v.s7.ba0d9b9676d7 from=translated src=- shape=c8cae1bb vocab=d0eb3b84
+-/
 theorem FormalGroup.evalNeg_mem
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (x : IsLocalRing.maximalIdeal R) :
@@ -827,7 +851,9 @@ private theorem eval₂_subst_bridge_polynomial_agreement
 The bridge lemma says that evaluating a substitution equals the iterated
 evaluation, for values of `b` in `M`. -/
 
-/-- The substitution bridge: `eval₂ id b (subst a F) = eval₂ id (eval₂ id b ∘ a) F`.-/
+/-- The substitution bridge: `eval₂ id b (subst a F) = eval₂ id (eval₂ id b ∘ a) F`.
+@isnad1 id=eq.4h6v.s8.4b5f38b4f71c from=translated src=- shape=4cbae5bf vocab=c09fc50d
+-/
 theorem eval₂_subst_bridge {σ τ : Type*} [Finite σ] [Finite τ]
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     {a : σ → MvPowerSeries τ R}
@@ -907,7 +933,9 @@ private lemma eval₂_inverseSubstMap_eq (F : FormalGroup R)
     rfl
 
 /-- **The inverse axiom** (Silverman IV.3): `F(x, i(x)) = 0`, i.e.,
-`evalAdd F x (evalNeg F x) = 0`.-/
+`evalAdd F x (evalNeg F x) = 0`.
+@isnad1 id=eq.1h3v.s7.def8eb9d1baa from=translated src=- shape=ba27ef64 vocab=b5382c70
+-/
 theorem FormalGroup.evalAdd_evalNeg
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R) (x : IsLocalRing.maximalIdeal R) :
@@ -1134,7 +1162,9 @@ private lemma eval₂_triple_outerR_eq
   · exact eval₂_triple_subst_X12_eq_evalAdd hAdic F x y z
 
 /-- **Associativity of `evalAdd`** (Silverman IV.3):
-`F.evalAdd (F.evalAdd x y) z = F.evalAdd x (F.evalAdd y z)`.-/
+`F.evalAdd (F.evalAdd x y) z = F.evalAdd x (F.evalAdd y z)`.
+@isnad1 id=eq.1h5v.s8.79bef340792d from=translated src=- shape=63523d44 vocab=c904a9f2
+-/
 theorem FormalGroup.evalAdd_assoc
     (hAdic : IsAdic (IsLocalRing.maximalIdeal R))
     (F : FormalGroup R)
@@ -1189,15 +1219,24 @@ noncomputable instance : Neg (F.EvalGroup hAdic) :=
 
 omit [IsUniformAddGroup R] [IsTopologicalRing R] [IsLinearTopology R R]
   [T2Space R] [CompleteSpace R] in
+/--
+@isnad1 id=eq.1h2v.s7.c5fd31eab70c from=translated src=- shape=b14c27ae vocab=7b408671
+-/
 @[simp]
 theorem val_zero : (0 : F.EvalGroup hAdic).val = ⟨0, (IsLocalRing.maximalIdeal R).zero_mem⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s8.75961f5fd0c2 from=translated src=- shape=cfeb1b7b vocab=25904a88
+-/
 @[simp]
 theorem val_add (x y : F.EvalGroup hAdic) :
     (x + y).val = ⟨F.evalAdd x.val y.val, F.evalAdd_mem hAdic x.val y.val⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.0e7de4c016e2 from=translated src=- shape=88ab8c45 vocab=e020c4a7
+-/
 @[simp]
 theorem val_neg (x : F.EvalGroup hAdic) :
     (-x).val = ⟨F.evalNeg x.val, F.evalNeg_mem hAdic x.val⟩ :=

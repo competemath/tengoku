@@ -125,7 +125,9 @@ private theorem bijective_algebraMapGlued [Fintype ι]
 generating the unit ideal, every family `x i ∈ R[1/fᵢ]` that agrees on the pairwise overlap
 localizations `R[1/fᵢ, 1/fⱼ]` is the family of localizations of a single global element
 `y ∈ R`.  This is the existence half of the structure-sheaf sheaf condition on the basic
-cover `{D(fᵢ)}` of `Spec R`.-/
+cover `{D(fᵢ)}` of `Spec R`.
+@isnad1 id=ex.2h4v.s11.6e0e3b81154f from=translated src=- shape=5a12eafe vocab=32a8145f
+-/
 theorem exists_algebraMap_eq_of_span_eq_top [Fintype ι]
     (hf : Ideal.span (Set.range f) = ⊤)
     (x : ∀ i, Localization (Submonoid.powers (f i)))
@@ -142,7 +144,9 @@ theorem exists_algebraMap_eq_of_span_eq_top [Fintype ι]
   exact ⟨y, fun i => congrFun (congrArg Subtype.val hy) i⟩
 
 /-- **Separatedness half of the `H⁰` sheaf condition**: two global elements with the same
-localizations at every member of a covering family are equal.-/
+localizations at every member of a covering family are equal.
+@isnad1 id=eq.2h5v.s9.c9865b8614bb from=translated src=- shape=da838637 vocab=3550b69d
+-/
 theorem algebraMap_eq_iff_of_span_eq_top [Fintype ι]
     (hf : Ideal.span (Set.range f) = ⊤) {y z : R}
     (h : ∀ i, algebraMap R (Localization (Submonoid.powers (f i))) y
@@ -154,7 +158,9 @@ theorem algebraMap_eq_iff_of_span_eq_top [Fintype ι]
 /-- **`IsUnit` is Zariski-local on a finite basic cover**: an element of `R` whose image in
 every `R[1/fᵢ]` is a unit, for `f` a family generating the unit ideal, is itself a unit.
 (No finiteness of `ι` is needed: invertibility is detected at maximal ideals, and each
-maximal ideal misses some `fᵢ`.)-/
+maximal ideal misses some `fᵢ`.)
+@isnad1 id=isunit.2h4v.s8.ffec04928417 from=translated src=- shape=155f7c57 vocab=6bfc59a7
+-/
 theorem isUnit_of_span_eq_top (hf : Ideal.span (Set.range f) = ⊤) (y : R)
     (hy : ∀ i, IsUnit (algebraMap R (Localization (Submonoid.powers (f i))) y)) :
     IsUnit y := by
@@ -195,7 +201,9 @@ curve over `R`; if the local discriminants are units, so is the glued one.
 Stated (and proven) over a *variable* ring `R` on purpose: the coefficient extraction and
 the discriminant rewrite are cheap here, while at the concrete localization towers of a
 scheme's section rings they blow the `whnf` budget — consumers apply this lemma and never
-unfold.-/
+unfold.
+@isnad1 id=ex.2h4v.s10.cf8e277af9ba from=translated src=- shape=823fbcb2 vocab=d3e9dcb5
+-/
 theorem exists_weierstrassCurve_map_eq_of_span_eq_top {R : Type*} [CommRing R]
     {ι : Type*} [Fintype ι] (f : ι → R) (hf : Ideal.span (Set.range f) = ⊤)
     (V : ∀ i, WeierstrassCurve (Localization (Submonoid.powers (f i))))

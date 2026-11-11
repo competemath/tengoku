@@ -48,6 +48,9 @@ variable (X) in
 abbrev Modules.isQuasicoherent : ObjectProperty X.Modules :=
   SheafOfModules.isQuasicoherent X.ringCatSheaf
 
+/--
+@isnad1 id=iff.0h2v.s7.bcd80d32e26d from=translated src=- shape=add52e05 vocab=f3ace498
+-/
 @[simp]
 lemma Modules.isQuasicoherent_def {M : X.Modules} :
     Modules.isQuasicoherent X M ↔ M.IsQuasicoherent := by
@@ -247,7 +250,9 @@ end
 end Modules
 
 /-- On an affine spectrum, global sections send epimorphisms of quasicoherent modules to
-epimorphisms of modules.-/
+epimorphisms of modules.
+@isnad1 id=epi.0h4v.s8.49c6ff281386 from=translated src=- shape=0994bd99 vocab=cb9056de
+-/
 lemma Modules.moduleSpecΓ_epi_of_epi {M N : (Spec R).Modules} (f : M ⟶ N)
     [M.IsQuasicoherent] [N.IsQuasicoherent] [Epi f] :
     Epi (moduleSpecΓFunctor.map f) := by
@@ -268,7 +273,9 @@ lemma Modules.moduleSpecΓ_epi_of_epi {M N : (Spec R).Modules} (f : M ⟶ N)
   exact (tilde.functor R).epi_of_epi_map hmapped
 
 /-- On an affine spectrum, an epimorphism of quasicoherent modules is surjective on global
-sections.-/
+sections.
+@isnad1 id=surjecti.0h4v.s16.fe1a3ef698fa from=translated src=- shape=86341f9e vocab=69c6d7f7
+-/
 theorem Modules.isQuasicoherent_spec_surjective_of_epi
     {M N : (Spec R).Modules} (f : M ⟶ N)
     [M.IsQuasicoherent] [N.IsQuasicoherent] [Epi f] :
@@ -279,7 +286,9 @@ theorem Modules.isQuasicoherent_spec_surjective_of_epi
 noncomputable section
 
 /-- A section of a quasicoherent module on `D(f)` extends globally after multiplication by a
-power of `f`.-/
+power of `f`.
+@isnad1 id=ex.0h4v.s13.7c53d7c4495e from=translated src=- shape=7b0c3e80 vocab=b72363bc
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent
     (M : (Spec R).Modules) [M.IsQuasicoherent] (f : R)
     (s : Γ(M, specBasicOpen R f)) :
@@ -295,7 +304,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent
   exact ⟨n, t, ht.symm⟩
 
 /-- Finitely many sections of a quasicoherent module on `D(f)` extend globally after
-multiplication by one common power of `f`.-/
+multiplication by one common power of `f`.
+@isnad1 id=ex.0h5v.s13.b01becf2847f from=translated src=- shape=25d8ce4e vocab=7934183d
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite
     (M : (Spec R).Modules) [M.IsQuasicoherent] (f : R)
     {ι : Type*} [Finite ι] (s : ι → Γ(M, specBasicOpen R f)) :
@@ -310,7 +321,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite
     Nat.sub_add_cancel (hle i)]
 
 /-- A quasicoherent module on an affine spectrum with finitely many global generators has a
-finite module of global sections.-/
+finite module of global sections.
+@isnad1 id=finite.0h3v.s11.6dbd057de33a from=translated src=- shape=d5094b0d vocab=6b984847
+-/
 theorem Modules.globalSections_module_finite_of_generatingSections
     (M : (Spec R).Modules) [M.IsQuasicoherent]
     (G : M.GeneratingSections) [G.IsFiniteType] :
@@ -343,7 +356,9 @@ namespace Modules
 
 variable (φ : X ≅ Y)
 
-/-- Pullback of scheme modules along a scheme isomorphism is an equivalence.-/
+/-- Pullback of scheme modules along a scheme isomorphism is an equivalence.
+@isnad1 id=isequiva.0h3v.s4.6f3d57503ed9 from=translated src=- shape=b4104b0b vocab=2efb59b6
+-/
 theorem pullback_isEquivalence_of_iso :
     (pullback φ.hom).IsEquivalence :=
   Functor.IsEquivalence.mk' (pullback φ.inv)
@@ -361,7 +376,9 @@ instance : (restrictFunctor φ.hom).IsEquivalence :=
     (restrictFunctor_inv_restrictFunctor_hom_id φ.symm).symm
     (restrictFunctor_inv_restrictFunctor_hom_id φ)
 
-/-- Quasicoherence is invariant under restriction along a scheme isomorphism.-/
+/-- Quasicoherence is invariant under restriction along a scheme isomorphism.
+@isnad1 id=iff.0h4v.s8.ff21db5a7ef6 from=translated src=- shape=f450a3b5 vocab=96d3a5d9
+-/
 theorem isQuasicoherent_restrictFunctor_iff {M : Y.Modules} :
     (M.restrict φ.hom).IsQuasicoherent ↔ M.IsQuasicoherent := by
   refine ⟨fun _ ↦ ?_, fun _ ↦ inferInstance⟩
@@ -370,12 +387,17 @@ theorem isQuasicoherent_restrictFunctor_iff {M : Y.Modules} :
   simp only [Iso.symm_inv, Iso.symm_hom, Functor.comp_obj]
   infer_instance
 
-/-- Under a scheme isomorphism, quasicoherence is the inverse image of quasicoherence.-/
+/-- Under a scheme isomorphism, quasicoherence is the inverse image of quasicoherence.
+@isnad1 id=eq.0h3v.s5.e7acc53ddcca from=translated src=- shape=7d1b7bdc vocab=07ea74ef
+-/
 theorem isQuasicoherent_inverseImage_iso :
     (isQuasicoherent X).inverseImage (restrictFunctor φ.hom) = isQuasicoherent Y := by
   ext M
   simp [isQuasicoherent_restrictFunctor_iff]
 
+/--
+@isnad1 id=isquasic.0h4v.s8.68eb58f33ad0 from=translated src=- shape=24515dba vocab=879363e5
+-/
 instance isQuasicoherent_pushforward_of_iso {φ : X ⟶ Y} [IsIso φ]
     {M : X.Modules} [M.IsQuasicoherent] :
     ((pushforward φ).obj M).IsQuasicoherent := by
@@ -391,6 +413,9 @@ instance {S T : CommRingCat.{u}} (ψ : S ⟶ T) {M : (Spec T).Modules}
   rw [isQuasicoherent_iff_isIso_fromTildeΓ] at ⊢
   exact isIso_fromTildeΓ_pushforward ψ M
 
+/--
+@isnad1 id=isquasic.0h4v.s8.924e56db6f8b from=translated src=- shape=53682a60 vocab=6ba0f276
+-/
 instance isQuasicoherent_of_pushforward [IsAffine X] [IsAffine Y]
     (f : X ⟶ Y) (M : X.Modules) [M.IsQuasicoherent] :
     ((pushforward f).obj M).IsQuasicoherent := by
@@ -418,7 +443,9 @@ private noncomputable def presentationOfIsQuasicoherentOfIsAffine
     e.hom e.isIso_hom P
 
 /-- On an affine open, quasicoherence after scheme-module restriction implies
-quasicoherence of the corresponding module on the over-site.-/
+quasicoherence of the corresponding module on the over-site.
+@isnad1 id=isquasic.0h3v.s9.de9952267458 from=translated src=- shape=5358475a vocab=ffbb072e
+-/
 theorem isQuasicoherent_over_of_restrict_of_isAffineOpen
     {X : Scheme.{u}} (M : X.Modules) (U : X.Opens) [IsAffine U]
     [(M.restrict U.ι).IsQuasicoherent] : (M.over U).IsQuasicoherent := by
@@ -440,7 +467,9 @@ theorem isQuasicoherent_over_of_restrict_of_isAffineOpen
       e.inv e.isIso_inv Q
   exact Q'.isQuasicoherent
 
-/-- Pushforward along an affine morphism preserves quasicoherent modules.-/
+/-- Pushforward along an affine morphism preserves quasicoherent modules.
+@isnad1 id=isquasic.0h4v.s8.e14f36a7cbb8 from=translated src=- shape=e0ea2757 vocab=611c24d0
+-/
 theorem isQuasicoherent_pushforward_of_isAffineHom
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsAffineHom f]
     {M : X.Modules} [M.IsQuasicoherent] :
@@ -473,7 +502,9 @@ theorem isQuasicoherent_pushforward_of_isAffineHom
       (fun U : Y.affineOpens ↦ (U : Y.Opens)) hcover hlocal
 
 /-- On an affine scheme, the kernel of a morphism between quasicoherent modules is
-quasicoherent.-/
+quasicoherent.
+@isnad1 id=isquasic.0h4v.s9.095cbd3a1ad6 from=translated src=- shape=052f1465 vocab=180d7ea2
+-/
 theorem isQuasicoherent_kernel_of_isAffine
     {X : Scheme.{u}} [IsAffine X] {M N : X.Modules}
     [M.IsQuasicoherent] [N.IsQuasicoherent] (f : M ⟶ N) :
@@ -490,7 +521,9 @@ theorem isQuasicoherent_kernel_of_isAffine
       (PreservesKernel.iso F f).symm hKernel
   exact (isQuasicoherent_restrictFunctor_iff (isoSpec X).symm).mp hRestrict
 
-/-- The kernel of a morphism between quasicoherent modules on a scheme is quasicoherent.-/
+/-- The kernel of a morphism between quasicoherent modules on a scheme is quasicoherent.
+@isnad1 id=isquasic.0h4v.s9.0efc06115013 from=translated src=- shape=f5129aad vocab=95b96b48
+-/
 theorem isQuasicoherent_kernel
     {X : Scheme.{u}} {M N : X.Modules}
     [M.IsQuasicoherent] [N.IsQuasicoherent] (f : M ⟶ N) :
@@ -513,7 +546,9 @@ theorem isQuasicoherent_kernel
       (fun U : X.affineOpens ↦ (U : X.Opens)) hcover hlocal
 
 /-- The cokernel of a morphism between quasicoherent modules on a scheme is
-quasicoherent.-/
+quasicoherent.
+@isnad1 id=isquasic.0h4v.s9.a0812caee536 from=translated src=- shape=f5129aad vocab=66ebd36f
+-/
 theorem isQuasicoherent_cokernel
     {X : Scheme.{u}} {M N : X.Modules}
     [M.IsQuasicoherent] [N.IsQuasicoherent] (f : M ⟶ N) :
@@ -555,7 +590,9 @@ theorem isQuasicoherent_cokernel
       (fun U : X.affineOpens ↦ (U : X.Opens)) hcover hlocal
 
 /-- The image of a morphism between quasicoherent modules on a scheme is
-quasicoherent.-/
+quasicoherent.
+@isnad1 id=isquasic.0h4v.s9.4c44a42836e9 from=translated src=- shape=f5129aad vocab=68f469f6
+-/
 theorem isQuasicoherent_image
     {X : Scheme.{u}} {M N : X.Modules}
     [M.IsQuasicoherent] [N.IsQuasicoherent] (f : M ⟶ N) :
@@ -570,7 +607,9 @@ instance : (isQuasicoherent X).IsClosedUnderColimitsOfShape J := by
   rw [← isQuasicoherent_inverseImage_iso (isoSpec X).symm]
   exact ObjectProperty.IsClosedUnderColimitsOfShape.inverseImage ..
 
-/-- A coproduct of quasicoherent modules on a scheme is quasicoherent.-/
+/-- A coproduct of quasicoherent modules on a scheme is quasicoherent.
+@isnad1 id=isquasic.1h3v.s8.f45ec67e73c1 from=translated src=- shape=53496479 vocab=6937b07c
+-/
 theorem isQuasicoherent_coproduct
     {X : Scheme.{u}} {ι : Type} (M : ι → X.Modules)
     (hM : ∀ i, (M i).IsQuasicoherent) : (∐ M).IsQuasicoherent := by
@@ -604,7 +643,9 @@ instance [Finite J] :
 end Modules
 
 /-- On an affine scheme, an epimorphism of quasicoherent modules is surjective on global
-sections.-/
+sections.
+@isnad1 id=surjecti.0h4v.s16.714cb963dd66 from=translated src=- shape=d7039781 vocab=6d686a14
+-/
 theorem Modules.isQuasicoherent_surjective_of_epi [IsAffine X]
     {M N : X.Modules} (f : M ⟶ N)
     [M.IsQuasicoherent] [N.IsQuasicoherent] [Epi f] :
@@ -616,7 +657,9 @@ theorem Modules.isQuasicoherent_surjective_of_epi [IsAffine X]
   exact Modules.isQuasicoherent_spec_surjective_of_epi
     ((restrictFunctor (isoSpec X).inv).map f)
 
-/-- The global sections of a finite free sheaf form a finite module.-/
+/-- The global sections of a finite free sheaf form a finite module.
+@isnad1 id=finite.0h2v.s14.54682c5cd1e6 from=translated src=- shape=d9e1925a vocab=96326015
+-/
 theorem Modules.free_globalSections_module_finite
     (X : Scheme.{u}) (I : Type u) [Finite I] :
     Module.Finite (X.ringCatSheaf.obj.obj (op ⊤))
@@ -652,7 +695,9 @@ theorem Modules.free_globalSections_module_finite
   exact Module.Finite.equiv e.symm.toLinearEquiv
 
 /-- A quasicoherent module on an affine scheme with finitely many global generators has a
-finite module of global sections.-/
+finite module of global sections.
+@isnad1 id=finite.0h3v.s11.579666aae39e from=translated src=- shape=e5a8c46b vocab=e37edb0d
+-/
 theorem Modules.globalSections_module_finite_of_generatingSections_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     (G : M.GeneratingSections) [G.IsFiniteType] :
@@ -757,7 +802,9 @@ private theorem Modules.module_finite_app_of_over_generators_of_le
     infer_instance⟩
   exact Modules.module_finite_app_of_over_generators M V hV G''
 
-/-- A finite-type quasicoherent module on an affine spectrum has finite global sections.-/
+/-- A finite-type quasicoherent module on an affine spectrum has finite global sections.
+@isnad1 id=finite.0h2v.s11.2b13c6cf286a from=translated src=- shape=76f5396e vocab=9bff0fa8
+-/
 theorem Modules.globalSections_module_finite_of_isFiniteType
     (M : (Spec R).Modules) [M.IsQuasicoherent] [M.IsFiniteType] :
     Module.Finite R Γ(M, ⊤) := by
@@ -945,7 +992,9 @@ private theorem Modules.isLocalizedModuleAway_map_of_eq
   exact h
 
 /-- On an affine scheme, restriction of a quasicoherent module to a basic open is localization at
-the function defining that open.-/
+the function defining that open.
+@isnad1 id=away.0h3v.s14.3a9d21516b4a from=translated src=- shape=6d7c1643 vocab=300d50de
+-/
 theorem Modules.baseModulePresheaf_isLocalized_basicOpen
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     (f : Γ(X, ⊤)) :
@@ -1020,7 +1069,9 @@ private theorem Modules.isoSpecInv_isLocalized_basicOpen_of_isLocalized_basicOpe
     eTop.symm eBasic.symm hsquare htarget
 
 /-- On an affine scheme, a module whose restriction to every intrinsic basic
-open is localization of its global sections is quasicoherent.-/
+open is localization of its global sections is quasicoherent.
+@isnad1 id=isquasic.1h2v.s14.26332c56ac5e from=translated src=- shape=61aa2f98 vocab=300d50de
+-/
 theorem Modules.isQuasicoherent_of_isLocalized_basicOpen
     [IsAffine X] (M : X.Modules)
     (h : ∀ f : Γ(X, ⊤), IsLocalizedModule.Away f
@@ -1037,7 +1088,9 @@ theorem Modules.isQuasicoherent_of_isLocalized_basicOpen
       M f (h f))
 
 /-- A morphism between quasicoherent modules on an affine scheme is an
-isomorphism if it is an isomorphism on global sections.-/
+isomorphism if it is an isomorphism on global sections.
+@isnad1 id=isiso.1h4v.s12.fcde3cc9c32b from=translated src=- shape=241c0e36 vocab=f8c17e0c
+-/
 theorem Modules.isIso_of_isQuasicoherent_of_isIso_app_top
     [IsAffine X] {M N : X.Modules} (φ : M ⟶ N)
     [M.IsQuasicoherent] [N.IsQuasicoherent]
@@ -1081,7 +1134,9 @@ theorem Modules.isIso_of_isQuasicoherent_of_isIso_app_top
     (SheafOfModules.toSheaf.{u} X.ringCatSheaf) hreflect _ _ φ hmap
 
 /-- On an affine scheme, if a global section of a quasicoherent module vanishes on a basic open,
-then some power of the function defining that open annihilates the section.-/
+then some power of the function defining that open annihilates the section.
+@isnad1 id=ex.1h4v.s14.cfd187cebbc0 from=translated src=- shape=7d72cfa1 vocab=649637dc
+-/
 theorem Modules.exists_pow_smul_eq_zero_of_restrict_eq_zero_of_isQuasicoherent_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     (f : Γ(X, ⊤)) (t : Γ(M, ⊤))
@@ -1101,7 +1156,9 @@ theorem Modules.exists_pow_smul_eq_zero_of_restrict_eq_zero_of_isQuasicoherent_o
   simpa using hn
 
 /-- If a section of a quasicoherent module over an affine open vanishes on an intrinsic basic
-open, then some power of the function defining that basic open annihilates the section.-/
+open, then some power of the function defining that basic open annihilates the section.
+@isnad1 id=ex.1h5v.s13.154095d1257a from=translated src=- shape=04a4d807 vocab=9623684e
+-/
 theorem Modules.exists_pow_smul_eq_zero_of_restrict_eq_zero_of_isQuasicoherent_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent]
     (U : X.affineOpens) (f : Γ(X, U.1)) (t : Γ(M, U.1))
@@ -1170,7 +1227,9 @@ theorem Modules.exists_pow_smul_eq_zero_of_restrict_eq_zero_of_isQuasicoherent_o
   exact hn'
 
 /-- On an affine scheme, a section of a quasicoherent module over `D(f)` extends globally after
-multiplication by a power of the restriction of `f`.-/
+multiplication by a power of the restriction of `f`.
+@isnad1 id=ex.0h4v.s14.7f4751888eb3 from=translated src=- shape=d3a27257 vocab=2c78f61c
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     (f : Γ(X, ⊤)) (s : Γ(M, X.basicOpen f)) :
@@ -1185,7 +1244,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_of_isAffine
   exact ⟨n, t, ht.symm⟩
 
 /-- A section of a quasicoherent module on an intrinsic basic open of an affine open extends
-to the affine open after multiplication by a power of the restricted function.-/
+to the affine open after multiplication by a power of the restricted function.
+@isnad1 id=ex.0h5v.s13.2e0bf88e056a from=translated src=- shape=c60823b1 vocab=4a12d132
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent]
     (U : X.affineOpens) (f : Γ(X, U.1)) (s : Γ(M, X.basicOpen f)) :
@@ -1288,7 +1349,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_of_isAffineOpen
   exact hleft.trans ((congrArg eBasic.hom ht).trans hright)
 
 /-- Restriction of a quasicoherent module from an affine open to an intrinsic basic open is
-localization away from the function defining that basic open.-/
+localization away from the function defining that basic open.
+@isnad1 id=away.0h4v.s13.7ec680afeb73 from=translated src=- shape=48998dce vocab=58f2da26
+-/
 theorem Modules.isLocalizedModuleAway_basicOpen_of_isQuasicoherent_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent]
     (U : X.affineOpens) (f : Γ(X, U.1)) :
@@ -1337,7 +1400,9 @@ theorem Modules.isLocalizedModuleAway_basicOpen_of_isQuasicoherent_of_isAffineOp
         M U f t ht
 
 /-- Finitely many sections on an intrinsic basic open of an affine open extend to the affine
-open after multiplication by one common power of the restricted function.-/
+open after multiplication by one common power of the restricted function.
+@isnad1 id=ex.0h6v.s13.1f19a949a58c from=translated src=- shape=e1dc8176 vocab=378e29a9
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent]
     (U : X.affineOpens) (f : Γ(X, U.1)) {I : Type*} [Finite I]
@@ -1355,7 +1420,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite_of_isAffin
     Nat.sub_add_cancel (hle i)]
 
 /-- On an affine scheme, finitely many sections of a quasicoherent module over `D(f)` extend
-globally after multiplication by one common power of the restriction of `f`.-/
+globally after multiplication by one common power of the restriction of `f`.
+@isnad1 id=ex.0h5v.s14.0edb9996f2d6 from=translated src=- shape=575d81b8 vocab=f122e605
+-/
 theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     (f : Γ(X, ⊤)) {ι : Type*} [Finite ι]
@@ -1373,7 +1440,9 @@ theorem Modules.exists_restrict_eq_pow_smul_of_isQuasicoherent_finite_of_isAffin
   rw [M.map_smul, ht i, ← mul_smul, ← map_mul, ← pow_add,
     Nat.sub_add_cancel (hle i)]
 
-/-- A finite-type quasicoherent module has a finite module of sections on every affine open.-/
+/-- A finite-type quasicoherent module has a finite module of sections on every affine open.
+@isnad1 id=finite.0h3v.s10.7d2e2f786cf5 from=translated src=- shape=2c23cdcc vocab=2615ffa5
+-/
 theorem Modules.sections_module_finite_of_isFiniteType_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent] [M.IsFiniteType]
     (U : X.affineOpens) :
@@ -1437,7 +1506,9 @@ theorem Modules.sections_module_finite_of_isFiniteType_of_isAffineOpen
   exact Modules.module_finite_app_of_over_generators_of_le M hi
     (U.2.basicOpen g.1) (q.generators i)
 
-/-- A finite-type quasicoherent module on an affine scheme has finite global sections.-/
+/-- A finite-type quasicoherent module on an affine scheme has finite global sections.
+@isnad1 id=finite.0h2v.s11.777ea6961175 from=translated src=- shape=56c2d4c8 vocab=1da19bf7
+-/
 theorem Modules.globalSections_module_finite_of_isFiniteType_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent] [M.IsFiniteType] :
     Module.Finite Γ(X, ⊤) Γ(M, ⊤) := by
@@ -1519,7 +1590,9 @@ theorem Modules.globalSections_module_finite_of_isFiniteType_of_isAffine
     ((isAffineOpen_top X).basicOpen g.1) (q.generators i)
 
 /-- A quasicoherent module on an affine spectrum whose global sections are finite has finitely
-many global generating sections.-/
+many global generating sections.
+@isnad1 id=ex.0h2v.s11.0c3d1a6fd001 from=translated src=- shape=ab13124c vocab=6b984847
+-/
 theorem Modules.exists_generatingSections_of_moduleSpecΓ_finite
     (M : (Spec R).Modules) [M.IsQuasicoherent]
     [Module.Finite R Γ(M, ⊤)] :
@@ -1640,7 +1713,9 @@ private theorem Modules.moduleSpecΓ_finite_of_globalSections_module_finite_of_i
   exact Module.Finite.equiv eLeft.toLinearEquiv
 
 /-- A quasicoherent module with finite global sections on an affine scheme has finitely many
-global generating sections.-/
+global generating sections.
+@isnad1 id=ex.0h2v.s11.9b7825b6d46c from=translated src=- shape=4f675f42 vocab=e37edb0d
+-/
 theorem Modules.exists_generatingSections_of_globalSections_module_finite_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     [Module.Finite Γ(X, ⊤) Γ(M, ⊤)] :
@@ -1672,7 +1747,9 @@ theorem Modules.exists_generatingSections_of_globalSections_module_finite_of_isA
   exact ⟨G, inferInstance⟩
 
 /-- A finite-type quasicoherent module on an affine scheme has finitely many global generating
-sections.-/
+sections.
+@isnad1 id=ex.0h2v.s9.756ec0d4c33c from=translated src=- shape=8ae87b40 vocab=44c0dbaa
+-/
 theorem Modules.exists_generatingSections_of_isFiniteType_of_isAffine
     [IsAffine X] (M : X.Modules) [M.IsQuasicoherent]
     [M.IsFiniteType] :
@@ -1683,7 +1760,9 @@ theorem Modules.exists_generatingSections_of_isFiniteType_of_isAffine
     Modules.exists_generatingSections_of_globalSections_module_finite_of_isAffine M
 
 /-- If the sections of a quasicoherent module on an affine open are finite, then its restriction
-has finitely many global generating sections.-/
+has finitely many global generating sections.
+@isnad1 id=ex.0h3v.s11.f25571608c40 from=translated src=- shape=3e8b63a6 vocab=cc971c27
+-/
 theorem Modules.exists_generatingSections_restrict_of_sections_module_finite_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent]
     (U : X.affineOpens) [Module.Finite Γ(X, U.1) Γ(M, U.1)] :
@@ -1731,7 +1810,9 @@ theorem Modules.exists_generatingSections_restrict_of_sections_module_finite_of_
     Modules.exists_generatingSections_of_globalSections_module_finite_of_isAffine N
 
 /-- Restriction of a finite-type quasicoherent module to an affine open has finitely many global
-generating sections.-/
+generating sections.
+@isnad1 id=ex.0h3v.s10.9c284f7afb55 from=translated src=- shape=5e7bd802 vocab=c4e2d4ef
+-/
 theorem Modules.exists_generatingSections_restrict_of_isFiniteType_of_isAffineOpen
     (M : X.Modules) [M.IsQuasicoherent] [M.IsFiniteType]
     (U : X.affineOpens) :
@@ -1796,7 +1877,9 @@ noncomputable def generatingSectionsOverOfRestrict
   exact (SheafOfModules.GeneratingSections.equivOfIso e).symm G'
 
 /-- The over-site generating sections induced from finite generating sections of a restriction
-are finite.-/
+are finite.
+@isnad1 id=isfinite.0h4v.s9.0192c5bbc5a9 from=translated src=- shape=dc1c935e vocab=43782c7a
+-/
 theorem generatingSectionsOverOfRestrict_isFiniteType
     {X : Scheme.{u}} (M : X.Modules) (U : X.Opens)
     (G : (M.restrict U.ι).GeneratingSections) [G.IsFiniteType] :
@@ -1805,7 +1888,9 @@ theorem generatingSectionsOverOfRestrict_isFiniteType
     change Finite G.I
     exact SheafOfModules.GeneratingSections.IsFiniteType.finite
 
-/-- A quasicoherent module whose sections on every affine open are finite is of finite type.-/
+/-- A quasicoherent module whose sections on every affine open are finite is of finite type.
+@isnad1 id=isfinite.1h2v.s10.d5f72af1ab90 from=translated src=- shape=bf3a61f5 vocab=2615ffa5
+-/
 theorem isFiniteType_of_sections_module_finite
     {X : Scheme.{u}} (M : X.Modules) [M.IsQuasicoherent]
     (hfinite : ∀ U : X.affineOpens,
@@ -1853,7 +1938,9 @@ private theorem pushforward_sections_module_finite_of_isClosedImmersion
     (R := Γ(X, V.1)) (M := Γ(M, V.1))]
   exact hM.fg_top.restrictScalars_of_surjective (f.app_surjective U.1 U.2)
 
-/-- Pushforward along a closed immersion preserves finite-type quasicoherent modules.-/
+/-- Pushforward along a closed immersion preserves finite-type quasicoherent modules.
+@isnad1 id=isfinite.0h4v.s8.b067fa7d8bd4 from=translated src=- shape=1a639d5d vocab=e74351ff
+-/
 theorem isFiniteType_pushforward_of_isClosedImmersion
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsClosedImmersion f]
     {M : X.Modules} [M.IsQuasicoherent] [M.IsFiniteType] :
@@ -1864,7 +1951,9 @@ theorem isFiniteType_pushforward_of_isClosedImmersion
     (pushforward_sections_module_finite_of_isClosedImmersion f)
 
 /-- On a locally Noetherian scheme, the kernel of a morphism from a finite-type quasicoherent
-module to a quasicoherent module is of finite type.-/
+module to a quasicoherent module is of finite type.
+@isnad1 id=isfinite.0h4v.s9.603cec51c523 from=translated src=- shape=cd179726 vocab=2e99fe79
+-/
 theorem isFiniteType_kernel
     {X : Scheme.{u}} [IsLocallyNoetherian X]
     {M N : X.Modules} [M.IsQuasicoherent] [N.IsQuasicoherent] [M.IsFiniteType]
@@ -1937,7 +2026,9 @@ private theorem fin_coproduct_sections_module_finite
     e₀ ≪≫ e₁ ≪≫ e₂ ≪≫ e₃
   exact Module.Finite.equiv e.symm.toLinearEquiv
 
-/-- A finite coproduct of finite-type quasicoherent modules is of finite type.-/
+/-- A finite coproduct of finite-type quasicoherent modules is of finite type.
+@isnad1 id=isfinite.2h3v.s8.ae71e906dd86 from=translated src=- shape=cfc9f62f vocab=6c2df701
+-/
 theorem isFiniteType_fin_coproduct
     {X : Scheme.{u}} {r : ℕ} (M : Fin r → X.Modules)
     (hqc : ∀ i, (M i).IsQuasicoherent)
@@ -1949,7 +2040,9 @@ theorem isFiniteType_fin_coproduct
 
 end Modules
 
-/-- An epimorphism of quasicoherent modules is surjective on sections over an affine open.-/
+/-- An epimorphism of quasicoherent modules is surjective on sections over an affine open.
+@isnad1 id=surjecti.1h5v.s15.c7b83b785f93 from=translated src=- shape=faf260bb vocab=20170471
+-/
 theorem Modules.isQuasicoherent_app_surjective_of_epi
     (U : X.Opens) (hU : IsAffineOpen U)
     {M N : X.Modules} (f : M ⟶ N)

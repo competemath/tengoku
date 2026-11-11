@@ -32,30 +32,46 @@ variable (K : Type*) [Field K] [NumberField K]
 the two-sided exponential whose Poitou transform is `2h/(h² − (z−1/2)²)`.-/
 noncomputable def expTest (h : ℝ) (x : ℝ) : ℂ := ((Real.exp (-h * |x|) : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s3.4a9a585cce55 from=translated src=- shape=2ebf6c43 vocab=2cb6120c
+-/
 theorem expTest_neg (h x : ℝ) : expTest h (-x) = expTest h x := by
   unfold expTest
   rw [abs_neg]
 
+/--
+@isnad1 id=eq.0h1v.s4.1d33e79f3342 from=translated src=- shape=8fc7241c vocab=0b5df92a
+-/
 theorem expTest_zero (h : ℝ) : expTest h 0 = 1 := by
   unfold expTest
   simp
 
+/--
+@isnad1 id=continuo.0h1v.s4.074eced152db from=translated src=- shape=9bb0b988 vocab=c0972864
+-/
 theorem continuous_expTest (h : ℝ) : Continuous (expTest h) := by
   unfold expTest
   fun_prop
 
+/--
+@isnad1 id=eq.0h2v.s4.9467354f67ab from=translated src=- shape=5c0dc00d vocab=e2905189
+-/
 theorem norm_expTest (h x : ℝ) : ‖expTest h x‖ = Real.exp (-h * |x|) := by
   unfold expTest
   rw [Complex.norm_real, Real.norm_eq_abs, Real.abs_exp]
 
-/-- **`hF` at the Landau–Stark function.**-/
+/-- **`hF` at the Landau–Stark function.**
+@isnad1 id=integrab.1h1v.s5.2d5888f26b31 from=translated src=- shape=b07cb5a9 vocab=f7c18924
+-/
 theorem integrable_expTest {h : ℝ} (hh : 0 < h) : Integrable (expTest h) := by
   have h1 : Integrable (fun x : ℝ => Real.exp (-h * |x|)) :=
     integrable_exp_neg_mul_abs hh
   exact h1.ofReal
 
 /-- **`hFa` at the Landau–Stark function**: the `c`-weighted function is integrable
-for `|c| < h`.-/
+for `|c| < h`.
+@isnad1 id=integrab.1h2v.s6.fa9e9b094abc from=translated src=- shape=10dee9fa vocab=2fc46fad
+-/
 theorem integrable_expTest_mul_exp {h : ℝ} {c : ℝ} (hc : |c| < h) :
     Integrable (fun x : ℝ => expTest h x * ((Real.exp (c * x) : ℝ) : ℂ)) := by
   refine Integrable.mono'
@@ -75,7 +91,9 @@ theorem integrable_expTest_mul_exp {h : ℝ} {c : ℝ} (hc : |c| < h) :
 /-! ### Bounded variation of the weighted Landau–Stark function -/
 
 /-- On the positive ray, `F_h·e^{cx} = e^{(c−h)x}` has an integrable derivative,
-hence bounded variation.-/
+hence bounded variation.
+@isnad1 id=boundedv.1h2v.s6.817f80f7c7f2 from=translated src=- shape=6bd0278f vocab=a569a715
+-/
 theorem expTest_mul_exp_bv_Ici {h : ℝ} {c : ℝ} (hc : c < h) :
     BoundedVariationOn (fun x : ℝ => expTest h x * ((Real.exp (c * x) : ℝ) : ℂ))
       (Set.Ici 0) := by
@@ -112,7 +130,9 @@ theorem expTest_mul_exp_bv_Ici {h : ℝ} {c : ℝ} (hc : c < h) :
       (h1.const_mul (c - h)).ofReal
     exact h4
 
-/-- **BV of the weighted Landau–Stark function on the line** for `|c| < h`.-/
+/-- **BV of the weighted Landau–Stark function on the line** for `|c| < h`.
+@isnad1 id=boundedv.2h2v.s6.1c12fa8eca6e from=translated src=- shape=adad2467 vocab=498b3388
+-/
 theorem boundedVariationOn_expTest_mul_exp {h : ℝ} {c : ℝ}
     (hcl : -h < c) (hcr : c < h) :
     BoundedVariationOn (fun x : ℝ => expTest h x * ((Real.exp (c * x) : ℝ) : ℂ))
@@ -139,7 +159,9 @@ theorem boundedVariationOn_expTest_mul_exp {h : ℝ} {c : ℝ}
       ⟨Set.self_mem_Ici, fun x hx => hx⟩]
   exact ENNReal.add_ne_top.mpr ⟨hIic, hpos⟩
 
-/-- **BV of the Landau–Stark function on the line.**-/
+/-- **BV of the Landau–Stark function on the line.**
+@isnad1 id=boundedv.1h1v.s5.2bb4afcde094 from=translated src=- shape=574a771c vocab=33939865
+-/
 theorem boundedVariationOn_expTest {h : ℝ} (hh : 0 < h) :
     BoundedVariationOn (expTest h) Set.univ := by
   have h1 := boundedVariationOn_expTest_mul_exp (h := h) (c := 0) (by linarith) hh
@@ -148,19 +170,25 @@ theorem boundedVariationOn_expTest {h : ℝ} (hh : 0 < h) :
     rw [zero_mul, Real.exp_zero, Complex.ofReal_one, mul_one]
   rwa [h2] at h1
 
-/-- **`hre` at the Landau–Stark function.**-/
+/-- **`hre` at the Landau–Stark function.**
+@isnad1 id=locallyb.1h1v.s5.60453dcb06ae from=translated src=- shape=7c7fe395 vocab=148d9148
+-/
 theorem locallyBoundedVariationOn_expTest_re {h : ℝ} (hh : 0 < h) :
     LocallyBoundedVariationOn (fun u : ℝ => (expTest h u).re) Set.univ :=
   (lipschitzWith_complex_re.comp_boundedVariationOn
     (boundedVariationOn_expTest hh)).locallyBoundedVariationOn
 
-/-- **`him` at the Landau–Stark function.**-/
+/-- **`him` at the Landau–Stark function.**
+@isnad1 id=locallyb.1h1v.s5.b595a3e52000 from=translated src=- shape=7c7fe395 vocab=3a97cf21
+-/
 theorem locallyBoundedVariationOn_expTest_im {h : ℝ} (hh : 0 < h) :
     LocallyBoundedVariationOn (fun u : ℝ => (expTest h u).im) Set.univ :=
   (lipschitzWith_complex_im.comp_boundedVariationOn
     (boundedVariationOn_expTest hh)).locallyBoundedVariationOn
 
-/-- **`hGre` at the Landau–Stark function** (`c = 1/2+a < h`).-/
+/-- **`hGre` at the Landau–Stark function** (`c = 1/2+a < h`).
+@isnad1 id=locallyb.2h2v.s7.d63b695e13d9 from=translated src=- shape=6a9ede1c vocab=42fa9990
+-/
 theorem locallyBoundedVariationOn_expTest_mul_exp_re {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn (fun x : ℝ =>
@@ -168,7 +196,9 @@ theorem locallyBoundedVariationOn_expTest_mul_exp_re {h : ℝ} {a : ℝ}
   (lipschitzWith_complex_re.comp_boundedVariationOn
     (boundedVariationOn_expTest_mul_exp (by linarith) hah)).locallyBoundedVariationOn
 
-/-- **`hGim` at the Landau–Stark function.**-/
+/-- **`hGim` at the Landau–Stark function.**
+@isnad1 id=locallyb.2h2v.s7.e98d94963548 from=translated src=- shape=6a9ede1c vocab=9bbe5a74
+-/
 theorem locallyBoundedVariationOn_expTest_mul_exp_im {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn (fun x : ℝ =>
@@ -179,7 +209,9 @@ theorem locallyBoundedVariationOn_expTest_mul_exp_im {h : ℝ} {a : ℝ}
 /-! ### The divided difference `(F_h(0) − F_h(x))/x` -/
 
 /-- The divided difference of the Landau–Stark function is bounded by `h`
-(mean value bound `1 − e^{−t} ≤ t`).-/
+(mean value bound `1 − e^{−t} ≤ t`).
+@isnad1 id=le.1h2v.s5.b85494fb288a from=translated src=- shape=3a2e9e61 vocab=2fd5b693
+-/
 theorem norm_expTest_diffQuot_le {h : ℝ} (hh : 0 < h) (x : ℝ) :
     ‖(expTest h 0 - expTest h x)/(x:ℂ)‖ ≤ h := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -201,7 +233,9 @@ theorem norm_expTest_diffQuot_le {h : ℝ} (hh : 0 < h) (x : ℝ) :
     rw [h3]
     linarith
 
-/-- The divided difference `(F_h(0) − F_h(x))/x` is a.e.-strongly measurable.-/
+/-- The divided difference `(F_h(0) − F_h(x))/x` is a.e.-strongly measurable.
+@isnad1 id=aestrong.0h1v.s5.0eb254fcab07 from=translated src=- shape=ad720f64 vocab=c7150abf
+-/
 theorem aestronglyMeasurable_expTest_diffQuot (h : ℝ) :
     AEStronglyMeasurable (fun x : ℝ => (expTest h 0 - expTest h x)/(x:ℂ))
       (volume : Measure ℝ) := by
@@ -215,7 +249,9 @@ theorem aestronglyMeasurable_expTest_diffQuot (h : ℝ) :
     rw [div_eq_mul_inv]
 
 /-- **`hFdiv` at the Landau–Stark function**: the divided difference is integrable
-on the window.-/
+on the window.
+@isnad1 id=integrab.1h1v.s6.29be70b00aaa from=translated src=- shape=e58ab2f6 vocab=3520f430
+-/
 theorem integrableOn_expTest_diffQuot_window {h : ℝ} (hh : 0 < h) :
     IntegrableOn (fun x : ℝ => (expTest h 0 - expTest h x)/(x:ℂ))
       (Set.Ioc (-1) 1) := by
@@ -227,7 +263,9 @@ theorem integrableOn_expTest_diffQuot_window {h : ℝ} (hh : 0 < h) :
   · exact Filter.Eventually.of_forall (fun x => norm_expTest_diffQuot_le hh x)
 
 /-- **Far bound** for the divided difference: `‖(expTest h 0 - expTest h x)/x‖ ≤ 1/|x|`
-away from `0`, since the numerator has norm `≤ 1`. Companion to `norm_expTest_diffQuot_le`.-/
+away from `0`, since the numerator has norm `≤ 1`. Companion to `norm_expTest_diffQuot_le`.
+@isnad1 id=le.2h2v.s6.6664fce60c77 from=translated src=- shape=c71309f5 vocab=3c80422a
+-/
 theorem norm_expTest_diffQuot_le_inv_abs {h : ℝ} (hh : 0 < h) (x : ℝ) (hx : x ≠ 0) :
     ‖(expTest h 0 - expTest h x)/(x:ℂ)‖ ≤ 1/|x| := by
   rw [norm_div, Complex.norm_real, Real.norm_eq_abs]
@@ -245,7 +283,9 @@ theorem norm_expTest_diffQuot_le_inv_abs {h : ℝ} (hh : 0 < h) (x : ℝ) (hx : 
   linarith
 
 /-- Square-integrability on `Iic (-1)` follows from that on `Ioi 1` by the reflection
-`x ↦ -x`, under which `‖(expTest h 0 - expTest h x)/x‖²` is invariant (`expTest` is even).-/
+`x ↦ -x`, under which `‖(expTest h 0 - expTest h x)/x‖²` is invariant (`expTest` is even).
+@isnad1 id=integrab.1h1v.s7.ae917b978981 from=translated src=- shape=8a551b46 vocab=9066e9b7
+-/
 theorem integrableOn_Iic_expTest_diffQuot_sq {h : ℝ}
     (hraypos : IntegrableOn
       (fun x : ℝ => ‖(expTest h 0 - expTest h x)/(x:ℂ)‖^2) (Set.Ioi 1)) :
@@ -278,7 +318,9 @@ theorem integrableOn_Iic_expTest_diffQuot_sq {h : ℝ}
   rw [hnorm]
 
 /-- **`hFdiv2` at the Landau–Stark function**: the divided difference is
-square-integrable on the line (`≤ h` near `0`, `O(1/|x|)` beyond).-/
+square-integrable on the line (`≤ h` near `0`, `O(1/|x|)` beyond).
+@isnad1 id=memlp.1h1v.s6.349487377231 from=translated src=- shape=e6799748 vocab=6f4d0835
+-/
 theorem memLp_two_expTest_diffQuot {h : ℝ} (hh : 0 < h) :
     MemLp (fun x : ℝ => (expTest h 0 - expTest h x)/(x:ℂ)) 2 (volume : Measure ℝ) := by
   have hmeas := aestronglyMeasurable_expTest_diffQuot h
@@ -328,7 +370,9 @@ theorem memLp_two_expTest_diffQuot {h : ℝ} (hh : 0 < h) :
 /-! ### The closed form of the transform: `Φ_{F_h}(z) = 1/(h−(z−1/2)) + 1/(h+(z−1/2))` -/
 
 /-- The complex exponential is integrable on the right ray when its rate has
-positive real part.-/
+positive real part.
+@isnad1 id=integrab.1h1v.s6.ce07ddce59c9 from=translated src=- shape=9cbe82de vocab=39511130
+-/
 theorem integrableOn_Ioi_cexp_neg {c : ℂ} (hc : 0 < c.re) :
     MeasureTheory.IntegrableOn (fun x : ℝ => Complex.exp (-(c * x)))
       (Set.Ioi (0:ℝ)) := by
@@ -340,7 +384,9 @@ theorem integrableOn_Ioi_cexp_neg {c : ℂ} (hc : 0 < c.re) :
     refine Real.exp_le_exp.mpr (le_of_eq ?_)
     simp [Complex.mul_re]
 
-/-- `∫_0^∞ e^{−cx} dx = 1/c` for `Re c > 0`.-/
+/-- `∫_0^∞ e^{−cx} dx = 1/c` for `Re c > 0`.
+@isnad1 id=eq.1h1v.s6.cf6bff786d25 from=translated src=- shape=16fc6983 vocab=f55003f0
+-/
 theorem integral_Ioi_cexp_neg {c : ℂ} (hc : 0 < c.re) :
     ∫ x in Set.Ioi (0:ℝ), Complex.exp (-(c * x)) = 1/c := by
   have hc0 : c ≠ 0 := fun hc0 => by
@@ -388,7 +434,9 @@ theorem integral_Ioi_cexp_neg {c : ℂ} (hc : 0 < c.re) :
   field_simp
   ring
 
-/-- Reflecting a left-ray integral.-/
+/-- Reflecting a left-ray integral.
+@isnad1 id=eq.0h1v.s6.941d67cef116 from=translated src=- shape=df853add vocab=a3777515
+-/
 theorem integral_Iio_comp_neg (G : ℝ → ℂ) :
     ∫ x in Set.Iio (0:ℝ), G x = ∫ x in Set.Ioi (0:ℝ), G (-x) := by
   have A : MeasurableEmbedding fun x : ℝ => -x :=
@@ -403,7 +451,9 @@ theorem integral_Iio_comp_neg (G : ℝ → ℂ) :
     hmap, A.integral_map]
 
 /-- The weighted Landau–Stark kernel matches the pure exponential on the right
-ray.-/
+ray.
+@isnad1 id=eq.1h3v.s6.5126029f1a6f from=translated src=- shape=32988cac vocab=b55ca869
+-/
 theorem expTest_kernel_eq_Ici {h : ℝ} (z : ℂ) {x : ℝ} (hx : 0 ≤ x) :
     expTest h x * Complex.exp ((z - 1/2) * x)
       = Complex.exp (-(((h:ℂ) - (z - 1/2)) * x)) := by
@@ -415,7 +465,9 @@ theorem expTest_kernel_eq_Ici {h : ℝ} (z : ℂ) {x : ℝ} (hx : 0 ≤ x) :
 
 /-- **The closed form of the Poitou transform of `F_h`** on the convergence strip
 `|Re z − 1/2| < h`:
-`Φ_{F_h}(z) = 1/(h − (z−1/2)) + 1/(h + (z−1/2))`.-/
+`Φ_{F_h}(z) = 1/(h − (z−1/2)) + 1/(h + (z−1/2))`.
+@isnad1 id=eq.1h2v.s7.df83a9b72aba from=translated src=- shape=bd4218c3 vocab=6a564211
+-/
 theorem paperPhi_expTest {h : ℝ} {z : ℂ} (hz : |z.re - 1/2| < h) :
     paperPhi (expTest h) z
       = 1/((h:ℂ) - (z - 1/2)) + 1/((h:ℂ) + (z - 1/2)) := by
@@ -472,7 +524,9 @@ theorem paperPhi_expTest {h : ℝ} {z : ℂ} (hz : |z.re - 1/2| < h) :
   ring
 
 /-- The conjugate-pair combination collapses to the real rational
-`2h/(h²+γ²)`.-/
+`2h/(h²+γ²)`.
+@isnad1 id=eq.1h2v.s7.8e161ded95ef from=translated src=- shape=e7bc1a04 vocab=7efc85c4
+-/
 theorem one_div_sub_add_one_div_add_I {h γ : ℝ} (hh : 0 < h) :
     1/((h:ℂ) - (γ:ℂ)*Complex.I) + 1/((h:ℂ) + (γ:ℂ)*Complex.I)
       = ((2*h/(h^2 + γ^2) : ℝ) : ℂ) := by
@@ -499,7 +553,9 @@ theorem one_div_sub_add_one_div_add_I {h γ : ℝ} (hh : 0 < h) :
   ring
 
 /-- **The Fourier decay of `F̂_h`**: the transform is the rational
-`2h/(h²+γ²) ≤ 2h/γ²`.-/
+`2h/(h²+γ²) ≤ 2h/γ²`.
+@isnad1 id=ex.1h1v.s6.9a0327e11e4a from=translated src=- shape=32a6d644 vocab=a3c8cdc6
+-/
 theorem exists_norm_fourier_expTest_le {h : ℝ} (hh : 0 < h) :
     ∃ C γ₀ : ℝ, 0 < C ∧ 1 ≤ γ₀ ∧ ∀ γ : ℝ, γ₀ ≤ |γ| →
       ‖paperFourierIntegral (expTest h) γ‖ ≤ C / γ^2 := by
@@ -526,7 +582,9 @@ theorem exists_norm_fourier_expTest_le {h : ℝ} (hh : 0 < h) :
   nlinarith [sq_nonneg γ, sq_nonneg h]
 
 /-- **`hB` at the Landau–Stark function**: the band bound `M/max(|t|,1)` with
-`M = 2/δ + 2`, `δ = h − (1/2+a)`, straight from the closed form.-/
+`M = 2/δ + 2`, `δ = h − (1/2+a)`, straight from the closed form.
+@isnad1 id=ex.3h2v.s7.c40ed0a0ef1c from=translated src=- shape=bd17ab36 vocab=6ebd4d0a
+-/
 theorem exists_band_bound_paperPhi_expTest {h : ℝ} (hh : 0 < h) {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     ∃ M : ℝ, 0 ≤ M ∧ ∀ σ t : ℝ, -a ≤ σ → σ ≤ 1+a →
@@ -597,7 +655,9 @@ theorem exists_band_bound_paperPhi_expTest {h : ℝ} (hh : 0 < h) {a : ℝ}
         ring
 
 /-- **`hΦd` at the Landau–Stark function**: the transform is differentiable on the
-closed band (which sits strictly inside the convergence strip).-/
+closed band (which sits strictly inside the convergence strip).
+@isnad1 id=differen.4h3v.s7.2f80ee78f297 from=translated src=- shape=a196fc1f vocab=29974b4b
+-/
 theorem differentiableAt_paperPhi_expTest {h : ℝ} {a : ℝ}
     (_ha : 0 < a) (hah : 1/2 + a < h) :
     ∀ ζ : ℂ, -a ≤ ζ.re → ζ.re ≤ 1+a →
@@ -643,7 +703,9 @@ theorem differentiableAt_paperPhi_expTest {h : ℝ} {a : ℝ}
 /-! ### Boundary decay, the prime side, and the pole windows at `F_h` -/
 
 /-- **`htop2`/`hbot2` at the Landau–Stark function**: `ρ_σ·γ_{F_h} → 0` along any
-`|t| → ∞` filter.-/
+`|t| → ∞` filter.
+@isnad1 id=tendsto.5h3v.s6.268630950ade from=translated src=- shape=f61e4d38 vocab=8e6f0075
+-/
 theorem tendsto_boundary_expTest {h : ℝ} (hh : 0 < h)
     {σ : ℝ} (hσ : 0 < σ) (hσl : -1 ≤ σ) (hσr : σ ≤ 2) (l : Filter ℝ)
     (habs : Filter.Tendsto (fun t : ℝ => |t|) l atTop) :
@@ -658,7 +720,9 @@ theorem tendsto_boundary_expTest {h : ℝ} (hh : 0 < h)
   exact hφ γ hγ
 
 /-- **`htop4`/`hbot4` at the Landau–Stark function**: the half-scaled boundary
-decay.-/
+decay.
+@isnad1 id=tendsto.5h3v.s7.dc3c2c055681 from=translated src=- shape=e25c7257 vocab=2698b4a2
+-/
 theorem tendsto_boundary_expTest_half {h : ℝ} (hh : 0 < h)
     {σ : ℝ} (hσ : 0 < σ) (hσl : -1 ≤ σ) (hσr : σ ≤ 2) (l : Filter ℝ)
     (habs : Filter.Tendsto (fun t : ℝ => |t|) l atTop) :
@@ -719,7 +783,9 @@ theorem tendsto_boundary_expTest_half {h : ℝ} (hh : 0 < h)
   linarith
 
 /-- The uniform bound on the weighted Landau–Stark symbol
-`G = F_h·e^{(1/2+a)x}`.-/
+`G = F_h·e^{(1/2+a)x}`.
+@isnad1 id=le.2h3v.s6.6d4ab35d03ab from=translated src=- shape=45aa132d vocab=b9c93d6d
+-/
 theorem norm_expTest_mul_exp_le {h : ℝ} {a : ℝ} (ha : 0 < a) (hah : 1/2 + a < h)
     (x : ℝ) :
     ‖expTest h x * ((Real.exp ((1/2+a) * x) : ℝ) : ℂ)‖ ≤ 1 := by
@@ -731,13 +797,17 @@ theorem norm_expTest_mul_exp_le {h : ℝ} {a : ℝ} (ha : 0 < a) (hah : 1/2 + a 
   nlinarith [abs_nonneg x]
 
 /-- `‖(w : ℂ) * z‖ ≤ w` when `0 ≤ w` and `‖z‖ ≤ 1` — the Weierstrass-`M` step for
-the prime-side series.-/
+the prime-side series.
+@isnad1 id=le.2h2v.s5.520683b22bfa from=translated src=- shape=b2209e4c vocab=3b209a6d
+-/
 theorem norm_ofReal_mul_le_of_norm_le_one {w : ℝ} (hw : 0 ≤ w) {z : ℂ}
     (hz : ‖z‖ ≤ 1) : ‖(w : ℂ) * z‖ ≤ w := by
   rw [norm_mul, Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hw]
   exact mul_le_of_le_one_right hw hz
 
-/-- Pointwise summability of the prime-side series at the Landau–Stark function.-/
+/-- Pointwise summability of the prime-side series at the Landau–Stark function.
+@isnad1 id=summable.2h4v.s11.453dd6281e7c from=translated src=- shape=453eaefc vocab=917c5e5f
+-/
 theorem summable_primeSideH_term_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
     (hah : 1/2 + a < h) (u : ℝ) :
     Summable (fun pk : {𝔭 : Ideal (𝓞 K) // 𝔭.IsPrime ∧ 𝔭 ≠ ⊥} × ℕ =>
@@ -755,7 +825,9 @@ theorem summable_primeSideH_term_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
   exact norm_ofReal_mul_le_of_norm_le_one (primeSideH_weight_nonneg K pk)
     (norm_expTest_mul_exp_le ha hah _)
 
-/-- **`hH`-BV at the Landau–Stark function** (complex level).-/
+/-- **`hH`-BV at the Landau–Stark function** (complex level).
+@isnad1 id=boundedv.2h3v.s6.1cafe365612c from=translated src=- shape=649c7287 vocab=9ae91ac2
+-/
 theorem boundedVariationOn_primeSideH_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
     (hah : 1/2 + a < h) :
     BoundedVariationOn (primeSideH K a (expTest h)) Set.univ := by
@@ -796,7 +868,9 @@ theorem boundedVariationOn_primeSideH_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
   rw [ENNReal.tsum_mul_right]
   exact ENNReal.mul_ne_top hwtop hGbv
 
-/-- **`hHre` at the Landau–Stark function.**-/
+/-- **`hHre` at the Landau–Stark function.**
+@isnad1 id=locallyb.2h3v.s6.efd5022e8500 from=translated src=- shape=8ea03e4a vocab=8a056ba9
+-/
 theorem locallyBoundedVariationOn_primeSideH_expTest_re {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn
@@ -804,7 +878,9 @@ theorem locallyBoundedVariationOn_primeSideH_expTest_re {h : ℝ} {a : ℝ}
   (lipschitzWith_complex_re.comp_boundedVariationOn
     (boundedVariationOn_primeSideH_expTest K ha hah)).locallyBoundedVariationOn
 
-/-- **`hHim` at the Landau–Stark function.**-/
+/-- **`hHim` at the Landau–Stark function.**
+@isnad1 id=locallyb.2h3v.s6.01fcc8c07946 from=translated src=- shape=8ea03e4a vocab=e62a41b9
+-/
 theorem locallyBoundedVariationOn_primeSideH_expTest_im {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn
@@ -813,7 +889,9 @@ theorem locallyBoundedVariationOn_primeSideH_expTest_im {h : ℝ} {a : ℝ}
     (boundedVariationOn_primeSideH_expTest K ha hah)).locallyBoundedVariationOn
 
 /-- The prime side is continuous at the Landau–Stark function (Weierstrass
-M-test).-/
+M-test).
+@isnad1 id=continuo.2h3v.s6.8f46fdecb7a3 from=translated src=- shape=ff4adea3 vocab=92450981
+-/
 theorem continuous_primeSideH_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
     (hah : 1/2 + a < h) :
     Continuous (primeSideH K a (expTest h)) := by
@@ -837,7 +915,9 @@ theorem continuous_primeSideH_expTest {h : ℝ} {a : ℝ} (ha : 0 < a)
   · exact norm_ofReal_mul_le_of_norm_le_one (primeSideH_weight_nonneg K pk)
       (norm_expTest_mul_exp_le ha hah _)
 
-/-- **`hHp` at the Landau–Stark function.**-/
+/-- **`hHp` at the Landau–Stark function.**
+@isnad1 id=tendsto.2h3v.s6.5d50aa3d5b38 from=translated src=- shape=6a03c942 vocab=f3dbed80
+-/
 theorem tendsto_primeSideH_expTest_right {h : ℝ} {a : ℝ} (ha : 0 < a)
     (hah : 1/2 + a < h) :
     Filter.Tendsto (primeSideH K a (expTest h)) (nhdsWithin 0 (Set.Ioi 0))
@@ -845,7 +925,9 @@ theorem tendsto_primeSideH_expTest_right {h : ℝ} {a : ℝ} (ha : 0 < a)
   ((continuous_primeSideH_expTest K ha hah).continuousAt).tendsto.mono_left
     nhdsWithin_le_nhds
 
-/-- **`hHm` at the Landau–Stark function.**-/
+/-- **`hHm` at the Landau–Stark function.**
+@isnad1 id=tendsto.2h3v.s6.4f07e1224f54 from=translated src=- shape=6a03c942 vocab=0d9a0d7b
+-/
 theorem tendsto_primeSideH_expTest_left {h : ℝ} {a : ℝ} (ha : 0 < a)
     (hah : 1/2 + a < h) :
     Filter.Tendsto (primeSideH K a (expTest h)) (nhdsWithin 0 (Set.Iio 0))
@@ -853,7 +935,9 @@ theorem tendsto_primeSideH_expTest_left {h : ℝ} {a : ℝ} (ha : 0 < a)
   ((continuous_primeSideH_expTest K ha hah).continuousAt).tendsto.mono_left
     nhdsWithin_le_nhds
 
-/-- **BV of the pole-window sum** at the Landau–Stark symbol `G = F_h·e^{(1/2+a)x}`.-/
+/-- **BV of the pole-window sum** at the Landau–Stark symbol `G = F_h·e^{(1/2+a)x}`.
+@isnad1 id=locallyb.2h2v.s7.1b1b92027f29 from=translated src=- shape=02ec7b4b vocab=ad65225f
+-/
 theorem locallyBoundedVariationOn_poleWindow_sum_expTest {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn (fun u : ℝ =>
@@ -867,7 +951,9 @@ theorem locallyBoundedVariationOn_poleWindow_sum_expTest {h : ℝ} {a : ℝ}
     (continuous_expTest h).mul (Complex.continuous_ofReal.comp (by fun_prop))
   exact locallyBoundedVariationOn_poleWindow_add ha (by linarith) hG hGc
 
-/-- **`hEre` at the Landau–Stark function.**-/
+/-- **`hEre` at the Landau–Stark function.**
+@isnad1 id=locallyb.2h2v.s7.5ad4671a249a from=translated src=- shape=f574671a vocab=f1a4aa6b
+-/
 theorem locallyBoundedVariationOn_poleWindow_expTest_re {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn (fun u : ℝ =>
@@ -878,7 +964,9 @@ theorem locallyBoundedVariationOn_poleWindow_expTest_re {h : ℝ} {a : ℝ}
   lipschitzWith_complex_re.comp_locallyBoundedVariationOn
     (locallyBoundedVariationOn_poleWindow_sum_expTest ha hah)
 
-/-- **`hEim` at the Landau–Stark function.**-/
+/-- **`hEim` at the Landau–Stark function.**
+@isnad1 id=locallyb.2h2v.s7.4b9197d06b4e from=translated src=- shape=f574671a vocab=06e75952
+-/
 theorem locallyBoundedVariationOn_poleWindow_expTest_im {h : ℝ} {a : ℝ}
     (ha : 0 < a) (hah : 1/2 + a < h) :
     LocallyBoundedVariationOn (fun u : ℝ =>
@@ -891,7 +979,9 @@ theorem locallyBoundedVariationOn_poleWindow_expTest_im {h : ℝ} {a : ℝ}
 
 /-- **The Weil–Poitou explicit formula at the Landau–Stark function**: every
 hypothesis of `weil_explicit_formula` holds for `F_h(x) = e^{−h|x|}` when
-`0 < a ≤ 1/4` and `1/2 + a < h`.-/
+`0 < a ≤ 1/4` and `1/2 + a < h`.
+@isnad1 id=ex.3h3v.s9.f3ca83809efb from=translated src=- shape=81fe1b69 vocab=89d58093
+-/
 theorem weil_explicit_formula_expTest {h : ℝ} {a : ℝ}
     (ha : 0 < a) (ha' : a ≤ 1/4) (hah : 1/2 + a < h) :
     ∃ T : ℕ → ℝ, Filter.Tendsto T atTop atTop ∧
@@ -949,7 +1039,9 @@ theorem weil_explicit_formula_expTest {h : ℝ} {a : ℝ}
 
 /-! ### Evaluating the three sides: eq:Stark (L5-b) -/
 
-/-- **The transform value at a critical-line zero**: `Φ_{F_h}(1/2+iγ) = 2h/(h²+γ²)`.-/
+/-- **The transform value at a critical-line zero**: `Φ_{F_h}(1/2+iγ) = 2h/(h²+γ²)`.
+@isnad1 id=eq.2h2v.s6.70a2c3b0b9c2 from=translated src=- shape=bd6957e2 vocab=6148eed1
+-/
 theorem paperPhi_expTest_at_zero {h : ℝ} (hh : 0 < h) {ρ : ℂ} (hre : ρ.re = 1/2) :
     paperPhi (expTest h) ρ = ((2*h/(h^2 + ρ.im^2) : ℝ) : ℂ) := by
   have hz : |ρ.re - 1/2| < h := by
@@ -963,7 +1055,9 @@ theorem paperPhi_expTest_at_zero {h : ℝ} (hh : 0 < h) {ρ : ℂ} (hre : ρ.re 
   rw [hρ_eq]
   exact one_div_sub_add_one_div_add_I hh
 
-/-- **Absolute convergence of the zero side at the Landau–Stark function.**-/
+/-- **Absolute convergence of the zero side at the Landau–Stark function.**
+@isnad1 id=summable.2h2v.s6.11ffbc2ef299 from=translated src=- shape=09a753d0 vocab=8835b5ad
+-/
 theorem summable_zetaZeros_paperPhi_expTest (hGRH : GeneralizedRiemannHypothesis K)
     {h : ℝ} (hh : 1/2 < h) :
     Summable (fun ρ : ZetaZeros K =>
@@ -986,7 +1080,9 @@ noncomputable def vonMangoldtSum (K : Type*) [Field K] [NumberField K] (σ : ℝ
       * (Ideal.absNorm pk.1.1 : ℝ) ^ (-(((pk.2+1 : ℕ)) : ℝ) * σ)
 
 /-- **The prime side at the Landau–Stark function is the von Mangoldt sum**:
-`H(0) = Σ log N𝔭 · N𝔭^{−m/2}·e^{−h·m·log N𝔭} = Σ log N𝔭 · N𝔭^{−mσ}`, `σ = h+1/2`.-/
+`H(0) = Σ log N𝔭 · N𝔭^{−m/2}·e^{−h·m·log N𝔭} = Σ log N𝔭 · N𝔭^{−mσ}`, `σ = h+1/2`.
+@isnad1 id=eq.1h3v.s6.de0e1bca943a from=translated src=- shape=96bc1010 vocab=20df2bf8
+-/
 theorem primeSideH_expTest_zero_eq (a : ℝ) {h : ℝ} (_ : 0 < h) :
     primeSideH K a (expTest h) 0 = ((vonMangoldtSum K (h + 1/2) : ℝ) : ℂ) := by
   rw [primeSideH_auxF_zero_eq, vonMangoldtSum, Complex.ofReal_tsum]
@@ -1015,7 +1111,9 @@ theorem primeSideH_expTest_zero_eq (a : ℝ) {h : ℝ} (_ : 0 < h) :
   rw [mul_assoc, hkey]
 
 /-- **The pole terms at the Landau–Stark function**:
-`Φ(0) + Φ(1) = 2/(h+1/2) + 2/(h−1/2) = 2/σ + 2/(σ−1)`.-/
+`Φ(0) + Φ(1) = 2/(h+1/2) + 2/(h−1/2) = 2/σ + 2/(σ−1)`.
+@isnad1 id=eq.1h1v.s7.0836f7fffcdb from=translated src=- shape=c429f275 vocab=6826b08f
+-/
 theorem paperPhi_expTest_zero_add_one {h : ℝ} (hh : 1/2 < h) :
     paperPhi (expTest h) 0 + paperPhi (expTest h) 1
       = ((2/(h + 1/2) + 2/(h - 1/2) : ℝ) : ℂ) := by
@@ -1039,7 +1137,9 @@ theorem paperPhi_expTest_zero_add_one {h : ℝ} (hh : 1/2 < h) :
   field_simp
   ring
 
-/-- Realifying the archimedean integrals at the Landau–Stark function.-/
+/-- Realifying the archimedean integrals at the Landau–Stark function.
+@isnad1 id=eq.0h2v.s7.c50ce152175b from=translated src=- shape=f5255165 vocab=66538038
+-/
 theorem arch_expTest_integral_eq (h : ℝ) (w : ℝ → ℝ) :
     (∫ y in Set.Ioi (0:ℝ), ((w y : ℝ) : ℂ) * (expTest h 0 - expTest h y))
       = ((∫ y in Set.Ioi (0:ℝ), w y * (1 - Real.exp (-h * y)) : ℝ) : ℂ) := by
@@ -1055,7 +1155,9 @@ theorem arch_expTest_integral_eq (h : ℝ) (w : ℝ → ℝ) :
 `2(σ−1/2)·Σ_ρ m_ρ/((σ−1/2)²+γ_ρ²)
   = 2/σ + 2/(σ−1) + log Δ_K − [Γ-constant] + n·I_sinh(σ) + r₁·I_cosh(σ)
     − 2·Σ_{𝔭,m} log N𝔭·N𝔭^{−mσ}`,
-the explicit formula evaluated at the Landau–Stark function `F_{σ−1/2}`.-/
+the explicit formula evaluated at the Landau–Stark function `F_{σ−1/2}`.
+@isnad1 id=eq.2h2v.s9.b2e7ea9d85d7 from=translated src=- shape=86b6f556 vocab=d1bbdbfc
+-/
 theorem stark_identity (hGRH : GeneralizedRiemannHypothesis K) {σ : ℝ} (hσ : 1 < σ) :
     2*(σ - 1/2) * zeroSumSigma K σ
       = 2/σ + 2/(σ - 1) + Real.log |NumberField.discr K|
@@ -1149,7 +1251,9 @@ noncomputable def dSigma (K : Type*) [Field K] [NumberField K] (σ : ℝ) : ℝ 
           1/(2 * Real.cosh (y/2)) * (1 - Real.exp (-(σ - 1/2) * y)))
     - 2/σ
 
-/-- eq:Stark in `d_{K,σ}`-form: `2(σ−1/2)·Σ_σ = log Δ_K + 2/(σ−1) − d_{K,σ}`.-/
+/-- eq:Stark in `d_{K,σ}`-form: `2(σ−1/2)·Σ_σ = log Δ_K + 2/(σ−1) − d_{K,σ}`.
+@isnad1 id=eq.2h2v.s7.4cb09ae75306 from=translated src=- shape=a1871610 vocab=9761666d
+-/
 theorem stark_identity' (hGRH : GeneralizedRiemannHypothesis K) {σ : ℝ} (hσ : 1 < σ) :
     2*(σ - 1/2) * zeroSumSigma K σ
       = Real.log |NumberField.discr K| + 2/(σ - 1) - dSigma K σ := by
@@ -1157,7 +1261,9 @@ theorem stark_identity' (hGRH : GeneralizedRiemannHypothesis K) {σ : ℝ} (hσ 
   ring
 
 /-- **B–F Lemma 5 (`Estimate`, line 523)**: under GRH, for `σ > 1`,
-`Σ_ρ m_ρ/(¼+γ_ρ²) ≤ (2σ−1)·(log Δ_K + 2/(σ−1) − d_{K,σ})`.-/
+`Σ_ρ m_ρ/(¼+γ_ρ²) ≤ (2σ−1)·(log Δ_K + 2/(σ−1) − d_{K,σ})`.
+@isnad1 id=le.2h2v.s7.0d7cf7397fc4 from=translated src=- shape=34bf627f vocab=b25d10c7
+-/
 theorem landau_stark_estimate (hGRH : GeneralizedRiemannHypothesis K) {σ : ℝ}
     (hσ : 1 < σ) :
     zeroSumSigma K 1

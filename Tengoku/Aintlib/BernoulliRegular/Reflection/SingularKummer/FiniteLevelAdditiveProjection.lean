@@ -49,6 +49,9 @@ def addEquivToZModLinearEquiv (e : A ≃+ A) :
     left_inv := e.left_inv
     right_inv := e.right_inv }
 
+/--
+@isnad1 id=eq.0h4v.s8.694d2c6590f3 from=translated src=- shape=885cf723 vocab=8863f51b
+-/
 @[simp]
 theorem addEquivToZModLinearEquiv_apply (e : A ≃+ A) (x : A) :
     addEquivToZModLinearEquiv (m := m) e x = e x :=
@@ -66,6 +69,9 @@ def linearAction (rho : D →* Multiplicative (A ≃+ A)) :
     simp [addEquivToZModLinearEquiv, map_mul]
 
 omit [Fintype D] in
+/--
+@isnad1 id=eq.0h6v.s10.73e68945fc7c from=translated src=- shape=53db65eb vocab=f04ba647
+-/
 @[simp]
 theorem linearAction_apply (rho : D →* Multiplicative (A ≃+ A)) (d : D) (x : A) :
     linearAction (m := m) rho d x = Multiplicative.toAdd (rho d) x :=
@@ -87,6 +93,9 @@ abbrev componentSubmodule (rho : D →* Multiplicative (A ≃+ A)) (chi : D →*
     Submodule (ZMod m) A :=
   LinearMap.range (projection (m := m) rho chi)
 
+/--
+@isnad1 id=iff.0h6v.s8.aecb83f81c1f from=translated src=- shape=e720a8ce vocab=6da436f4
+-/
 theorem mem_componentSubgroup_iff
     (rho : D →* Multiplicative (A ≃+ A)) (chi : D →* (ZMod m)ˣ) {x : A} :
     x ∈ componentSubgroup (m := m) rho chi ↔
@@ -94,7 +103,9 @@ theorem mem_componentSubgroup_iff
   Iff.rfl
 
 /-- Elements in the exact projection subgroup satisfy the finite-level
-character relation.-/
+character relation.
+@isnad1 id=eq.1h7v.s10.1ee62a16282c from=translated src=- shape=cf6fbd31 vocab=e831babe
+-/
 theorem apply_eq_character_smul_of_mem_component
     (rho : D →* Multiplicative (A ≃+ A)) (chi : D →* (ZMod m)ˣ)
     (d : D) {x : A}
@@ -103,7 +114,9 @@ theorem apply_eq_character_smul_of_mem_component
   FiniteLevelIdempotent.mem_range_apply
     (m := m) (linearAction (m := m) rho) chi d hx
 
-/-- The exact finite-level projection acts as the identity on its own range.-/
+/-- The exact finite-level projection acts as the identity on its own range.
+@isnad1 id=eq.2h6v.s8.c8f6435b9624 from=translated src=- shape=190260e1 vocab=611bc6fd
+-/
 theorem projection_apply_eq_self_of_mem_component
     (hcard : IsUnit (Fintype.card D : ZMod m))
     (rho : D →* Multiplicative (A ≃+ A)) (chi : D →* (ZMod m)ˣ)
@@ -113,7 +126,9 @@ theorem projection_apply_eq_self_of_mem_component
   FiniteLevelIdempotent.projection_apply_eq_self_of_mem_range
     (m := m) hcard (linearAction (m := m) rho) chi hx
 
-/-- Idempotence of the exact finite-level additive projection.-/
+/-- Idempotence of the exact finite-level additive projection.
+@isnad1 id=eq.1h6v.s9.71e616788d1d from=translated src=- shape=4c0fbd20 vocab=093627db
+-/
 theorem projection_apply_projection
     (hcard : IsUnit (Fintype.card D : ZMod m))
     (rho : D →* Multiplicative (A ≃+ A)) (chi : D →* (ZMod m)ˣ) (x : A) :

@@ -63,7 +63,9 @@ def residueGaussSum [NeZero p]
   gaussSum (residueMulChar zeta_q hzeta_q hdiv zeta_R hzeta_R) psi_q
 
 omit [IsDomain R'] in
-/-- `residueGaussSum` unfolds to the Gauss sum of the residue character.-/
+/-- `residueGaussSum` unfolds to the Gauss sum of the residue character.
+@isnad1 id=eq.3h6v.s7.c6fd0e49620b from=translated src=- shape=676f927f vocab=6ee97b47
+-/
 @[simp]
 theorem residueGaussSum_def [NeZero p]
     (zeta_q : kˣ) (hzeta_q : IsPrimitiveRoot zeta_q p)
@@ -77,7 +79,9 @@ theorem residueGaussSum_def [NeZero p]
 /-- **Norm relation for the residue Gauss sum.** When `χ_q ≠ 1` and
 `ψ_q` is primitive, the product
 `g(χ_q, ψ_q) · g(χ_q⁻¹, ψ_q⁻¹) = #k`. This is the residue-Gauss-sum
-specialisation of mathlib's `gaussSum_mul_gaussSum_eq_card`.-/
+specialisation of mathlib's `gaussSum_mul_gaussSum_eq_card`.
+@isnad1 id=eq.5h6v.s8.b93a84dcde2c from=translated src=- shape=d1d1e075 vocab=d0d99f2f
+-/
 theorem residueGaussSum_mul_inv_eq_card [NeZero p]
     (zeta_q : kˣ) (hzeta_q : IsPrimitiveRoot zeta_q p)
     (hdiv : p ∣ Fintype.card k - 1)
@@ -108,7 +112,9 @@ namespace Furtwaengler
 
 /-- General Galois action: applying a ring hom `σ : R' →+* R''` to a Gauss
 sum is the same as taking the Gauss sum of the post-composed multiplicative
-and additive characters.-/
+and additive characters.
+@isnad1 id=eq.0h6v.s7.793e43eb8e37 from=translated src=- shape=84d5ae49 vocab=569674f2
+-/
 theorem _root_.gaussSum_ringHomComp
     {R : Type*} [CommRing R] [Fintype R]
     {R' R'' : Type*} [CommRing R'] [CommRing R'']
@@ -127,7 +133,9 @@ variable {p : ℕ}
 omit [IsDomain R'] in
 /-- **Galois action on the residue Gauss sum.** For any ring hom
 `σ : R' →+* R''`, applying `σ` to `residueGaussSum` yields the Gauss sum
-of the post-composed character data.-/
+of the post-composed character data.
+@isnad1 id=eq.3h8v.s8.928eed385d0d from=translated src=- shape=e3a3a50e vocab=27027f70
+-/
 theorem residueGaussSum_ringHomComp [NeZero p]
     {R'' : Type*} [CommRing R'']
     (zeta_q : kˣ) (hzeta_q : IsPrimitiveRoot zeta_q p)
@@ -160,7 +168,9 @@ namespace Furtwaengler
 open Reflection.ResidueSymbol.PowerResidue
 
 /-- `finiteFieldExponent` vanishes on `x` iff `finiteFieldUnit hdiv x = 1`,
-i.e. `x ^ ((#k - 1) / p) = 1`.-/
+i.e. `x ^ ((#k - 1) / p) = 1`.
+@isnad1 id=iff.2h4v.s7.8cba752d29bf from=translated src=- shape=2fd89226 vocab=4e8861db
+-/
 theorem finiteFieldExponent_eq_zero_iff
     {k : Type*} [Field k] [Fintype k]
     {p : ℕ} [NeZero p]
@@ -185,7 +195,9 @@ theorem finiteFieldExponent_eq_zero_iff
     simpa using this
 
 /-- Non-trivial finite-field power gives non-trivial residue character on
-that input. Useful for witnessing `residueMulChar ≠ 1`.-/
+that input. Useful for witnessing `residueMulChar ≠ 1`.
+@isnad1 id=ne.4h6v.s7.cf912964deaf from=translated src=- shape=0c33578b vocab=40bc3baa
+-/
 theorem residueMulChar_apply_ne_one_of_finiteFieldUnit_ne_one
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommMonoidWithZero R']
@@ -217,7 +229,9 @@ theorem residueMulChar_apply_ne_one_of_finiteFieldUnit_ne_one
   exact hx rfl
 
 /-- For `p` prime and `p ∣ #k - 1`, a generator of `kˣ` has `(#k - 1)/p`-power
-not equal to `1`. The proof uses that `kˣ` is cyclic of order `#k - 1`.-/
+not equal to `1`. The proof uses that `kˣ` is cyclic of order `#k - 1`.
+@isnad1 id=ex.1h2v.s6.c40798cc2f85 from=translated src=- shape=7de13e8b vocab=15aeb9e8
+-/
 theorem exists_finiteFieldUnit_ne_one
     {k : Type*} [Field k] [Fintype k]
     {p : ℕ} [hp : Fact p.Prime]
@@ -245,7 +259,9 @@ theorem exists_finiteFieldUnit_ne_one
   omega
 
 /-- The residue character `χ_q` is non-trivial: there is some unit in `kˣ`
-mapping to a non-`1` value.-/
+mapping to a non-`1` value.
+@isnad1 id=ne.3h5v.s7.dba299ecb866 from=translated src=- shape=f364f9fa vocab=a806648f
+-/
 theorem residueMulChar_ne_one
     {k : Type*} [Field k] [Fintype k]
     {R' : Type*} [CommMonoidWithZero R']

@@ -71,7 +71,9 @@ def IsCompletedDedekindZeta (K : Type*) [Field K] [NumberField K] (Λ : ℂ → 
 away from the poles `s = 0, 1`: the entire functions `s(s-1)Λᵢ(s)` agree on the open
 half-plane `Re s > 1`, hence everywhere by the identity theorem; cancel `s(s-1)`.
 (No condition can pin the values *at* `0` and `1` — the genuine `Λ_K` has simple poles
-there, so those values are junk by nature.)-/
+there, so those values are junk by nature.)
+@isnad1 id=eq.4h4v.s5.de9a628358e1 from=translated src=- shape=fa1e761a vocab=01c1a7de
+-/
 theorem IsCompletedDedekindZeta.eqOn {K : Type*} [Field K] [NumberField K]
     {Λ₁ Λ₂ : ℂ → ℂ} (h₁ : IsCompletedDedekindZeta K Λ₁)
     (h₂ : IsCompletedDedekindZeta K Λ₂) {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1) :

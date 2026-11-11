@@ -47,13 +47,17 @@ values in `ℂ`.-/
 def dirichletCharacterUnitMonoidHom (χ : DirichletCharacter ℂ p) : (ZMod p)ˣ →* ℂ :=
   (Units.coeHom ℂ).comp χ.toUnitHom
 
-/-- Evaluating that monoid hom is evaluating the character.-/
+/-- Evaluating that monoid hom is evaluating the character.
+@isnad1 id=eq.0h3v.s8.c2f99967dbed from=translated src=- shape=7199e7b8 vocab=df8c897e
+-/
 @[simp] theorem dirichletCharacterUnitMonoidHom_apply
     (χ : DirichletCharacter ℂ p) (u : (ZMod p)ˣ) :
     dirichletCharacterUnitMonoidHom (p := p) χ u = χ u := by
   simp [dirichletCharacterUnitMonoidHom]
 
-/-- A Dirichlet character is determined by its restriction to the unit group.-/
+/-- A Dirichlet character is determined by its restriction to the unit group.
+@isnad1 id=injectiv.0h1v.s6.e3bd37d7ec08 from=translated src=- shape=0c8b67aa vocab=1bf73281
+-/
 theorem dirichletCharacterUnitMonoidHom_injective :
     Function.Injective (dirichletCharacterUnitMonoidHom (p := p)) := by
   intro χ ψ hχψ
@@ -63,7 +67,9 @@ theorem dirichletCharacterUnitMonoidHom_injective :
     DFunLike.congr_fun hχψ u
   exact hcoe
 
-/-- Dirichlet characters are linearly independent on the unit group.-/
+/-- Dirichlet characters are linearly independent on the unit group.
+@isnad1 id=linearin.0h1v.s8.8913af59a76c from=translated src=- shape=74b93aac vocab=b26532db
+-/
 theorem linearIndependent_dirichletCharactersOnUnits :
     LinearIndependent ℂ (fun χ : DirichletCharacter ℂ p =>
       (dirichletCharacterUnitMonoidHom (p := p) χ : (ZMod p)ˣ → ℂ)) :=
@@ -71,7 +77,9 @@ theorem linearIndependent_dirichletCharactersOnUnits :
       (dirichletCharacterUnitMonoidHom (p := p))
       (dirichletCharacterUnitMonoidHom_injective (p := p))
 
-/-- Dirichlet characters are linearly independent as functions on `ZMod p`.-/
+/-- Dirichlet characters are linearly independent as functions on `ZMod p`.
+@isnad1 id=linearin.0h1v.s6.2aa5b17b9325 from=translated src=- shape=3e67a2a2 vocab=879c5a00
+-/
 theorem linearIndependent_dirichletCharacters :
     LinearIndependent ℂ (fun χ : DirichletCharacter ℂ p => (χ : ZMod p → ℂ)) := by
   apply LinearIndependent.of_comp (restrictUnitsLinear (p := p))
@@ -86,12 +94,16 @@ def evalAtZeroLinear : (ZMod p → ℂ) →ₗ[ℂ] ℂ where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
-/-- A Dirichlet character vanishes at `0`.-/
+/-- A Dirichlet character vanishes at `0`.
+@isnad1 id=eq.0h2v.s6.d6b7adc3d3ad from=translated src=- shape=e8789427 vocab=64907573
+-/
 @[simp] theorem dirichletCharacter_apply_zero (χ : DirichletCharacter ℂ p) :
     χ (0 : ZMod p) = 0 :=
   χ.map_zero
 
-/-- Hence every function in the span of the characters vanishes at `0`.-/
+/-- Hence every function in the span of the characters vanishes at `0`.
+@isnad1 id=le.0h1v.s7.4e7a1ea3cb37 from=translated src=- shape=dee9e954 vocab=7182caa4
+-/
 theorem span_dirichletCharacters_le_ker_evalAtZero :
     Submodule.span ℂ (Set.range fun χ : DirichletCharacter ℂ p => (χ : ZMod p → ℂ)) ≤
       LinearMap.ker (evalAtZeroLinear (p := p)) := by
@@ -100,7 +112,9 @@ theorem span_dirichletCharacters_le_ker_evalAtZero :
   change evalAtZeroLinear (p := p) ((χ : DirichletCharacter ℂ p) : ZMod p → ℂ) = 0
   simp [evalAtZeroLinear, dirichletCharacter_apply_zero]
 
-/-- …but `δ₀` does not, so `δ₀` is outside that span.-/
+/-- …but `δ₀` does not, so `δ₀` is outside that span.
+@isnad1 id=not.0h1v.s7.714fff72d0e5 from=translated src=- shape=8b9de468 vocab=af66fcc9
+-/
 theorem deltaZero_not_mem_span_dirichletCharacters :
     deltaZeroFunction (p := p) ∉
       Submodule.span ℂ (Set.range fun χ : DirichletCharacter ℂ p => (χ : ZMod p → ℂ)) := by
@@ -115,7 +129,9 @@ characters.-/
 def deltaZeroDirichletCharacterFamily : Option (DirichletCharacter ℂ p) → (ZMod p → ℂ) :=
   fun o => Option.casesOn' o (deltaZeroFunction (p := p)) fun χ => (χ : ZMod p → ℂ)
 
-/-- So `δ₀` together with the characters is a linearly independent family.-/
+/-- So `δ₀` together with the characters is a linearly independent family.
+@isnad1 id=linearin.0h1v.s5.1584837f37a5 from=translated src=- shape=ed436806 vocab=f0078b87
+-/
 theorem linearIndependent_deltaZeroDirichletCharacterFamily :
     LinearIndependent ℂ (deltaZeroDirichletCharacterFamily (p := p)) :=
   (linearIndependent_dirichletCharacters (p := p)).option
@@ -134,13 +150,17 @@ def deltaZeroDirichletCharacterBasis :
       rw [Module.finrank_fintype_fun_eq_card, ZMod.card]
       exact Nat.sub_add_cancel hp.out.one_le
 
-/-- The basis vector at `none` is `δ₀`.-/
+/-- The basis vector at `none` is `δ₀`.
+@isnad1 id=eq.0h1v.s7.16f2bd3e1dde from=translated src=- shape=b212168d vocab=0592b799
+-/
 @[simp] theorem deltaZeroDirichletCharacterBasis_apply_none :
     deltaZeroDirichletCharacterBasis (p := p) none = deltaZeroFunction (p := p) := by
   rw [deltaZeroDirichletCharacterBasis, coe_basisOfLinearIndependentOfCardEqFinrank]
   rfl
 
-/-- The basis vector at `some χ` is `χ`.-/
+/-- The basis vector at `some χ` is `χ`.
+@isnad1 id=eq.0h2v.s7.d3bfaee3b37c from=translated src=- shape=054f2023 vocab=52d91ba0
+-/
 @[simp] theorem deltaZeroDirichletCharacterBasis_apply_some
     (χ : DirichletCharacter ℂ p) :
     deltaZeroDirichletCharacterBasis (p := p) (some χ) = (χ : ZMod p → ℂ) := by
@@ -157,17 +177,23 @@ def trivialCharacterBlock : Submodule ℂ (ZMod p → ℂ) :=
   Submodule.span ℂ
     (Set.range ![deltaZeroFunction (p := p), ((1 : DirichletCharacter ℂ p) : ZMod p → ℂ)])
 
-/-- `δ₀` lies in the trivial block.-/
+/-- `δ₀` lies in the trivial block.
+@isnad1 id=mem.0h1v.s6.6ea009718537 from=translated src=- shape=914f9703 vocab=711bc2e1
+-/
 theorem deltaZero_mem_trivialBlock :
     deltaZeroFunction (p := p) ∈ trivialBlock (p := p) :=
   Submodule.subset_span ⟨0, by simp⟩
 
-/-- The constant-`1` function lies in the trivial block.-/
+/-- The constant-`1` function lies in the trivial block.
+@isnad1 id=mem.0h1v.s6.d36c01915dc5 from=translated src=- shape=3b2c9a95 vocab=637b14e6
+-/
 theorem constOne_mem_trivialBlock :
     (fun _ : ZMod p => (1 : ℂ)) ∈ trivialBlock (p := p) :=
   Submodule.subset_span ⟨1, by simp⟩
 
-/-- The constant-`1` function is `δ₀` plus the trivial character (which vanishes at `0`).-/
+/-- The constant-`1` function is `δ₀` plus the trivial character (which vanishes at `0`).
+@isnad1 id=eq.0h1v.s6.c4b22513f228 from=translated src=- shape=bf69cbe2 vocab=bc2393d0
+-/
 theorem constOne_eq_deltaZero_add_trivialCharacter :
     (fun _ : ZMod p => (1 : ℂ)) =
       deltaZeroFunction (p := p) + ((1 : DirichletCharacter ℂ p) : ZMod p → ℂ) := by
@@ -179,13 +205,17 @@ theorem constOne_eq_deltaZero_add_trivialCharacter :
       MulChar.one_apply (isUnit_iff_ne_zero.mpr hx)
     simp [deltaZeroFunction, hx, htriv]
 
-/-- Equivalently, the trivial character is the constant-`1` function minus `δ₀`.-/
+/-- Equivalently, the trivial character is the constant-`1` function minus `δ₀`.
+@isnad1 id=eq.0h1v.s6.24114f5a7972 from=translated src=- shape=b31f9f23 vocab=8ad15fe3
+-/
 theorem trivialCharacter_eq_constOne_sub_deltaZero :
     (((1 : DirichletCharacter ℂ p) : ZMod p → ℂ)) =
       (fun _ : ZMod p => (1 : ℂ)) - deltaZeroFunction (p := p) :=
   eq_sub_of_add_eq' (constOne_eq_deltaZero_add_trivialCharacter (p := p)).symm
 
-/-- The two generating sets therefore span the same block.-/
+/-- The two generating sets therefore span the same block.
+@isnad1 id=eq.0h1v.s5.c518a29e6872 from=translated src=- shape=bd0135f5 vocab=c66c8b68
+-/
 theorem trivialBlock_eq_trivialCharacterBlock :
     trivialBlock (p := p) = trivialCharacterBlock (p := p) := by
   refine le_antisymm ?_ ?_
@@ -205,13 +235,17 @@ theorem trivialBlock_eq_trivialCharacterBlock :
         (constOne_mem_trivialBlock (p := p))
         (deltaZero_mem_trivialBlock (p := p))
 
-/-- The trivial character lies in the trivial block.-/
+/-- The trivial character lies in the trivial block.
+@isnad1 id=mem.0h1v.s7.a89a985685e5 from=translated src=- shape=58dfc828 vocab=89383441
+-/
 theorem trivialCharacter_mem_trivialBlock :
     (((1 : DirichletCharacter ℂ p) : ZMod p → ℂ)) ∈ trivialBlock (p := p) := by
   rw [trivialBlock_eq_trivialCharacterBlock (p := p)]
   exact Submodule.subset_span ⟨1, by simp⟩
 
-/-- The normalized DFT sends `δ₀` to `p^(-1/2)` times the constant-`1` function.-/
+/-- The normalized DFT sends `δ₀` to `p^(-1/2)` times the constant-`1` function.
+@isnad1 id=eq.0h1v.s7.c5252dc8a3f7 from=translated src=- shape=823fb799 vocab=d92476da
+-/
 theorem normalizedDft_deltaZero :
     normalizedDft p (deltaZeroFunction (p := p)) =
       (Real.sqrt p : ℂ)⁻¹ • (fun _ : ZMod p => (1 : ℂ)) := by
@@ -219,7 +253,9 @@ theorem normalizedDft_deltaZero :
   rw [normalizedDft_apply, deltaZeroFunction, dft_deltaZero_eq_constOne]
   simp [smul_eq_mul]
 
-/-- …and the constant-`1` function to `p^(1/2)` times `δ₀`.-/
+/-- …and the constant-`1` function to `p^(1/2)` times `δ₀`.
+@isnad1 id=eq.0h1v.s7.cffff98e8b68 from=translated src=- shape=44cdcb36 vocab=6bc85e81
+-/
 theorem normalizedDft_constOne :
     normalizedDft p (fun _ : ZMod p => (1 : ℂ)) =
       (((Real.sqrt p : ℂ)⁻¹) * p) • deltaZeroFunction (p := p) := by
@@ -227,7 +263,9 @@ theorem normalizedDft_constOne :
   rw [normalizedDft_apply, congrFun (dft_constOne_eq_prime_smul_deltaZero (p := p)) x]
   simp [deltaZeroFunction, smul_eq_mul, mul_assoc]
 
-/-- Hence the normalized DFT preserves the trivial block.-/
+/-- Hence the normalized DFT preserves the trivial block.
+@isnad1 id=mem.1h2v.s8.3f4030c2df3b from=translated src=- shape=93ff89bf vocab=d009cb8f
+-/
 theorem normalizedDft_maps_trivialBlock {f : ZMod p → ℂ}
     (hf : f ∈ trivialBlock (p := p)) :
     normalizedDft p f ∈ trivialBlock (p := p) := by
@@ -248,7 +286,9 @@ theorem normalizedDft_maps_trivialBlock {f : ZMod p → ℂ}
     simpa using (trivialBlock (p := p)).smul_mem a hgm
 
 /-- It preserves each non-self-dual character-pair block, since it is a scalar
-multiple of the DFT.-/
+multiple of the DFT.
+@isnad1 id=mem.2h3v.s8.6542bc8c0116 from=translated src=- shape=d2a918ad vocab=423cdc94
+-/
 theorem normalizedDft_maps_characterPairSubmodule {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) {f : ZMod p → ℂ} (hf : f ∈ characterPairSubmodule (p := p) χ) :
     normalizedDft p f ∈ characterPairSubmodule (p := p) χ := by
@@ -263,14 +303,18 @@ theorem normalizedDft_maps_characterPairSubmodule {χ : DirichletCharacter ℂ p
 def quadraticCharacterLine : Submodule ℂ (ZMod p → ℂ) :=
   Submodule.span ℂ {((quadraticCharComplex p : DirichletCharacter ℂ p) : ZMod p → ℂ)}
 
-/-- The quadratic character spans the quadratic line.-/
+/-- The quadratic character spans the quadratic line.
+@isnad1 id=mem.0h1v.s7.86bfe687aed8 from=translated src=- shape=e0517020 vocab=29368f4a
+-/
 theorem quadraticCharComplex_mem_quadraticCharacterLine :
     ((quadraticCharComplex p : DirichletCharacter ℂ p) : ZMod p → ℂ) ∈
       quadraticCharacterLine (p := p) :=
   Submodule.mem_span_singleton_self _
 
 /-- The quadratic character is an eigenvector of the normalized DFT; the eigenvalue is
-the scalar whose branch is pinned down in `BranchChoice`.-/
+the scalar whose branch is pinned down in `BranchChoice`.
+@isnad1 id=eq.1h1v.s8.2f34b3875c55 from=translated src=- shape=76eafd11 vocab=31c24059
+-/
 theorem normalizedDft_quadraticCharComplex_eq_scalar_smul (hp₂ : p ≠ 2) :
     normalizedDft p (quadraticCharComplex p) =
       (((Real.sqrt p : ℂ)⁻¹) *
@@ -284,7 +328,9 @@ theorem normalizedDft_quadraticCharComplex_eq_scalar_smul (hp₂ : p ≠ 2) :
         (quadraticCharComplex_ne_one (p := p) hp₂)) x]
   simp [quadraticCharComplex_inv (p := p), smul_eq_mul, mul_left_comm, mul_comm]
 
-/-- Hence the normalized DFT preserves the quadratic line.-/
+/-- Hence the normalized DFT preserves the quadratic line.
+@isnad1 id=mem.2h2v.s8.505c16dcd774 from=translated src=- shape=c4762dfb vocab=3c52a762
+-/
 theorem normalizedDft_maps_quadraticCharacterLine (hp₂ : p ≠ 2) {f : ZMod p → ℂ}
     (hf : f ∈ quadraticCharacterLine (p := p)) :
     normalizedDft p f ∈ quadraticCharacterLine (p := p) := by
@@ -303,7 +349,9 @@ theorem normalizedDft_maps_quadraticCharacterLine (hp₂ : p ≠ 2) {f : ZMod p 
 
 /-- Each basis vector belongs to exactly the block type expected for later
 determinant bookkeeping: the trivial block, a non-self-dual character pair, or
-the quadratic line.-/
+the quadratic line.
+@isnad1 id=or.1h2v.s9.b366e84f38ec from=translated src=- shape=24b03261 vocab=166ddf30
+-/
 theorem deltaZeroDirichletCharacterBasis_mem_trivial_or_pair_or_quadratic
     (hp₂ : p ≠ 2) (i : Option (DirichletCharacter ℂ p)) :
     deltaZeroDirichletCharacterBasis (p := p) i ∈ trivialBlock (p := p) ∨

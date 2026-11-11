@@ -32,7 +32,9 @@ open Complex MeasureTheory
 open scoped Real
 
 /-- Exact modulus of `Γ` on the critical line `Re = 1/2`:
-`‖Γ(1/2+it)‖² = π/cosh(πt)`.-/
+`‖Γ(1/2+it)‖² = π/cosh(πt)`.
+@isnad1 id=eq.0h1v.s6.12f72ad2e725 from=translated src=- shape=b1c35fc3 vocab=74311b14
+-/
 theorem norm_Gamma_half_add_mul_I_sq (t : ℝ) :
     ‖Complex.Gamma (1/2 + t * Complex.I)‖^2 = π / Real.cosh (π * t) := by
   have key := Complex.Gamma_mul_Gamma_one_sub (1/2 + t * Complex.I)
@@ -60,7 +62,9 @@ theorem norm_Gamma_half_add_mul_I_sq (t : ℝ) :
   have hreal := Complex.ofReal_injective this
   rw [← hreal, Complex.normSq_eq_norm_sq]
 
-/-- Exact modulus of `Γ` on the line `Re = 1`: `‖Γ(1+it)‖² = πt/sinh(πt)` (`t ≠ 0`).-/
+/-- Exact modulus of `Γ` on the line `Re = 1`: `‖Γ(1+it)‖² = πt/sinh(πt)` (`t ≠ 0`).
+@isnad1 id=eq.1h1v.s6.12c2c7d4b23d from=translated src=- shape=29441b53 vocab=007de42a
+-/
 theorem norm_Gamma_one_add_mul_I_sq {t : ℝ} (ht : t ≠ 0) :
     ‖Complex.Gamma (1 + t * Complex.I)‖^2 = π * t / Real.sinh (π * t) := by
   have htI : (t : ℂ) * Complex.I ≠ 0 := by
@@ -103,7 +107,9 @@ theorem norm_Gamma_one_add_mul_I_sq {t : ℝ} (ht : t ≠ 0) :
   have hreal := Complex.ofReal_injective key2
   rw [← hreal, Complex.normSq_eq_norm_sq]
 
-/-- Triangle inequality for the Gamma integral: `‖Γ(z)‖ ≤ Γ(Re z)` on `Re z > 0`.-/
+/-- Triangle inequality for the Gamma integral: `‖Γ(z)‖ ≤ Γ(Re z)` on `Re z > 0`.
+@isnad1 id=le.1h1v.s4.f87db89b9f1f from=translated src=- shape=72e5c2f8 vocab=408076e9
+-/
 theorem norm_Gamma_le_Gamma_re {z : ℂ} (hz : 0 < z.re) :
     ‖Complex.Gamma z‖ ≤ Real.Gamma z.re := by
   rw [Complex.Gamma_eq_integral hz, Real.Gamma_eq_integral hz, Complex.GammaIntegral]
@@ -113,7 +119,9 @@ theorem norm_Gamma_le_Gamma_re {z : ℂ} (hz : 0 < z.re) :
     Complex.norm_cpow_eq_rpow_re_of_pos hx]
   simp [Complex.sub_re]
 
-/-- `‖sin(x+iy)‖² = sin²x + sinh²y`.-/
+/-- `‖sin(x+iy)‖² = sin²x + sinh²y`.
+@isnad1 id=eq.0h2v.s6.260454d641d9 from=translated src=- shape=3dc8f2bb vocab=f9a2ddaa
+-/
 theorem norm_sin_add_mul_I_sq (x y : ℝ) :
     ‖Complex.sin (x + y * Complex.I)‖^2 = Real.sin x ^ 2 + Real.sinh y ^ 2 := by
   rw [Complex.sin_add, Complex.cos_mul_I, Complex.sin_mul_I]
@@ -129,7 +137,9 @@ theorem norm_sin_add_mul_I_sq (x y : ℝ) :
   have h2 := Real.cosh_sq y
   nlinarith [Real.sinh_sq y]
 
-/-- `‖sin(πz)‖ ≤ e^{π|Im z|}`.-/
+/-- `‖sin(πz)‖ ≤ e^{π|Im z|}`.
+@isnad1 id=le.0h1v.s5.6c38b962111f from=translated src=- shape=77c61f76 vocab=eb90bc4b
+-/
 theorem norm_sin_pi_mul_le (z : ℂ) :
     ‖Complex.sin ((π : ℂ) * z)‖ ≤ Real.exp (π * |z.im|) := by
   have hdecomp : (π : ℂ) * z
@@ -153,7 +163,9 @@ theorem norm_sin_pi_mul_le (z : ℂ) :
     Real.exp_le_exp.mpr (neg_le_abs _)
   linarith
 
-/-- On `[1/2, 3/2]`, `Γ` is at most `max Γ(1/2) Γ(3/2)` (convexity).-/
+/-- On `[1/2, 3/2]`, `Γ` is at most `max Γ(1/2) Γ(3/2)` (convexity).
+@isnad1 id=le.1h1v.s6.ff075346ab71 from=translated src=- shape=e3c7da19 vocab=dd44642c
+-/
 theorem Gamma_le_max_of_mem_Icc {σ : ℝ} (hσ : σ ∈ Set.Icc (1/2 : ℝ) (3/2)) :
     Real.Gamma σ ≤ max (Real.Gamma (1/2)) (Real.Gamma (3/2)) := by
   have hseg : σ ∈ segment ℝ (1/2 : ℝ) (3/2) := by
@@ -257,7 +269,9 @@ private theorem norm_Gamma_sq_mul_sin_div_le_of_re_three_halves {w : ℂ}
   nlinarith [Real.pi_pos, sq_nonneg ‖w - 1‖]
 
 /-- The Phragmén–Lindelöf comparator bound: `‖Γ(z)²·sin(πz)/z²‖ ≤ 4π` on the closed
-strip `1/2 ≤ Re z ≤ 3/2`.-/
+strip `1/2 ≤ Re z ≤ 3/2`.
+@isnad1 id=le.2h1v.s7.016dbf94a4bd from=translated src=- shape=95199702 vocab=75fbe91f
+-/
 theorem norm_Gamma_sq_mul_sin_div_le {z : ℂ} (h1 : 1/2 ≤ z.re) (h2 : z.re ≤ 3/2) :
     ‖Complex.Gamma z ^ 2 * Complex.sin (π * z) / z ^ 2‖ ≤ 4 * π := by
   set f : ℂ → ℂ := fun w => Complex.Gamma w ^ 2 * Complex.sin (π * w) / w ^ 2 with hf
@@ -344,7 +358,9 @@ theorem norm_Gamma_sq_mul_sin_div_le {z : ℂ} (h1 : 1/2 ≤ z.re) (h2 : z.re �
   exact PhragmenLindelof.vertical_strip hfd hgrow hbdry_a hbdry_b h1 h2
 
 /-- **Decaying Γ-upper on the base strip** (AC-A1-iii payoff): for `1/2 ≤ σ ≤ 3/2` and
-`1 ≤ |t|`, `‖Γ(σ+it)‖ ≤ √(12π)·‖σ+it‖·e^{-π|t|/2}`.-/
+`1 ≤ |t|`, `‖Γ(σ+it)‖ ≤ √(12π)·‖σ+it‖·e^{-π|t|/2}`.
+@isnad1 id=le.3h2v.s7.be37cdd7c019 from=translated src=- shape=e9f85042 vocab=ba9c6adb
+-/
 theorem norm_Gamma_le_mul_exp {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2) (ht : 1 ≤ |t|) :
     ‖Complex.Gamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖
       ≤ Real.sqrt (12 * π) * ‖(σ : ℂ) + (t : ℂ) * Complex.I‖
@@ -443,7 +459,9 @@ theorem norm_Gamma_le_mul_exp {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2) (
         rw [Real.sqrt_sq (by positivity)]
 
 /-- Decaying Γ-upper on the left strip `-1/2 ≤ σ ≤ 1/2` (one recurrence step from the
-base strip; the pole at `z = 0` is harmless since `|t| ≥ 1`).-/
+base strip; the pole at `z = 0` is harmless since `|t| ≥ 1`).
+@isnad1 id=le.3h2v.s7.eb3f45cd9d4e from=translated src=- shape=1d9ade53 vocab=ba9c6adb
+-/
 theorem norm_Gamma_le_mul_exp_left {σ t : ℝ} (h1 : -(1/2) ≤ σ) (h2 : σ ≤ 1/2)
     (ht : 1 ≤ |t|) :
     ‖Complex.Gamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖
@@ -482,7 +500,9 @@ theorem norm_Gamma_le_mul_exp_left {σ t : ℝ} (h1 : -(1/2) ≤ σ) (h2 : σ �
         * Real.exp (-(π * |t|) / 2) := hbase
 
 /-- **Matching Γ-lower bound on the base strip** (AC-A1-v): for `1/2 ≤ σ ≤ 3/2`,
-`|t| ≥ 1`, `‖Γ(σ+it)‖ ≥ π·e^{-π|t|/2} / (√(12π)·‖(2-σ)-it‖)`.-/
+`|t| ≥ 1`, `‖Γ(σ+it)‖ ≥ π·e^{-π|t|/2} / (√(12π)·‖(2-σ)-it‖)`.
+@isnad1 id=le.3h2v.s7.695d492e9beb from=translated src=- shape=3a63246d vocab=91df12d8
+-/
 theorem le_norm_Gamma_base {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2) (ht : 1 ≤ |t|) :
     π / (Real.sqrt (12 * π) * ‖((2 - σ : ℝ) : ℂ) + ((-t : ℝ) : ℂ) * Complex.I‖)
       * Real.exp (-(π * |t|) / 2)
@@ -592,7 +612,9 @@ theorem le_norm_Gamma_base {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2) (ht 
 
 /-- Rightward propagation of the Γ-lower bound: each recurrence step multiplies by a
 factor of modulus `≥ |t| ≥ 1`, so the base-strip lower bound survives arbitrarily far
-to the right.-/
+to the right.
+@isnad1 id=le.3h3v.s7.ff5c9be79515 from=translated src=- shape=7b47e99c vocab=e175cb16
+-/
 theorem le_norm_Gamma_base_add_nat {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2)
     (ht : 1 ≤ |t|) (n : ℕ) :
     π / (Real.sqrt (12 * π) * ‖((2 - σ : ℝ) : ℂ) + ((-t : ℝ) : ℂ) * Complex.I‖)

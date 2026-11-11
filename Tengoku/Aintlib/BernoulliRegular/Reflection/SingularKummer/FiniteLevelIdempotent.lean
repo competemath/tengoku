@@ -53,6 +53,9 @@ def projection
     M →ₗ[ZMod m] M :=
   ∑ d : D, coefficient (m := m) chi d • (rho d : M →ₗ[ZMod m] M)
 
+/--
+@isnad1 id=eq.0h6v.s10.c157272c69fe from=translated src=- shape=f8c0a2e6 vocab=d0c5129e
+-/
 @[simp]
 theorem projection_apply
     (rho : D →* M ≃ₗ[ZMod m] M) (chi : D →* (ZMod m)ˣ) (x : M) :
@@ -60,6 +63,9 @@ theorem projection_apply
       ∑ d : D, coefficient (m := m) chi d • rho d x := by
   simp [projection]
 
+/--
+@isnad1 id=eq.0h5v.s8.e2b10ad951d5 from=translated src=- shape=03763eb0 vocab=3f5417f0
+-/
 theorem coefficient_inv_mul
     (chi : D →* (ZMod m)ˣ) (b a : D) :
     coefficient (m := m) chi (b⁻¹ * a) =
@@ -67,7 +73,9 @@ theorem coefficient_inv_mul
   rw [coefficient, coefficient, mul_inv_rev, inv_inv, map_mul, Units.val_mul]
   ring
 
-/-- The projection range is contained in the eigenspace for `chi`.-/
+/-- The projection range is contained in the eigenspace for `chi`.
+@isnad1 id=eq.0h7v.s10.06b68dd71e95 from=translated src=- shape=ee91c9dc vocab=0958e788
+-/
 theorem apply_projection
     (rho : D →* M ≃ₗ[ZMod m] M) (chi : D →* (ZMod m)ˣ)
     (b : D) (x : M) :
@@ -85,7 +93,9 @@ theorem apply_projection
           simp [projection, coefficient_inv_mul, smul_smul, Finset.smul_sum]
 
 /-- Elementwise eigenspace statement for the range of the exact finite-level
-projection.-/
+projection.
+@isnad1 id=eq.1h7v.s10.0b92cca8af8c from=translated src=- shape=00f706ec vocab=8eef3a39
+-/
 theorem mem_range_apply
     (rho : D →* M ≃ₗ[ZMod m] M) (chi : D →* (ZMod m)ˣ)
     (b : D) {x : M}
@@ -94,6 +104,9 @@ theorem mem_range_apply
   obtain ⟨y, rfl⟩ := hx
   exact apply_projection (m := m) rho chi b y
 
+/--
+@isnad1 id=eq.0h4v.s8.10dbe4551014 from=translated src=- shape=4c9f6cb9 vocab=6894bf3c
+-/
 theorem coefficient_mul_character
     (chi : D →* (ZMod m)ˣ) (d : D) :
     coefficient (m := m) chi d * (chi d : ZMod m) =
@@ -101,7 +114,9 @@ theorem coefficient_mul_character
   rw [coefficient, mul_assoc, ← Units.val_mul, ← map_mul, inv_mul_cancel, map_one,
     Units.val_one, mul_one]
 
-/-- A finite-level character projection acts as the identity on its own range.-/
+/-- A finite-level character projection acts as the identity on its own range.
+@isnad1 id=eq.2h6v.s9.1092a823e76c from=translated src=- shape=57f3af64 vocab=9c374829
+-/
 theorem projection_apply_eq_self_of_mem_range
     (hcard : IsUnit (Fintype.card D : ZMod m))
     (rho : D →* M ≃ₗ[ZMod m] M) (chi : D →* (ZMod m)ˣ)
@@ -123,7 +138,9 @@ theorem projection_apply_eq_self_of_mem_range
           rw [Finset.sum_const, Finset.card_univ, ← Nat.cast_smul_eq_nsmul (ZMod m), smul_smul,
             ZMod.mul_inv_of_unit _ hcard, one_smul]
 
-/-- Idempotence of the finite-level character projection.-/
+/-- Idempotence of the finite-level character projection.
+@isnad1 id=eq.1h6v.s9.78f63230f939 from=translated src=- shape=47183300 vocab=89e3171b
+-/
 theorem projection_apply_projection
     (hcard : IsUnit (Fintype.card D : ZMod m))
     (rho : D →* M ≃ₗ[ZMod m] M) (chi : D →* (ZMod m)ˣ) (x : M) :

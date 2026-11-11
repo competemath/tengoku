@@ -83,7 +83,9 @@ private lemma b_relation_poly :
 = 3·preΨ₄·Ψ₂Sq² − 3·preΨ₄²`.
 
 Multiplier: `M = b₈² + 4b₆b₈·X + 6b₄b₈·X² + 4b₂b₈·X³ + (b₂b₆ + 34b₈)·X⁴
-               + 36b₆·X⁵ + 18b₄·X⁶ + 4b₂·X⁷ + 9·X⁸`.-/
+               + 36b₆·X⁵ + 18b₄·X⁶ + 4b₂·X⁷ + 9·X⁸`.
+@isnad1 id=eq.0h2v.s10.c444c88aac5e from=translated src=- shape=aa5672fe vocab=94881a86
+-/
 lemma wronskian_aux_three :
     4 * W.Ψ₃ ^ 3 + 2 * W.preΨ₄ * W.Ψ₂Sq * Polynomial.derivative W.Ψ₃ -
       Polynomial.derivative (W.preΨ₄ * W.Ψ₂Sq) * W.Ψ₃ =
@@ -116,7 +118,9 @@ set_option maxHeartbeats 350000 in
 Multiplier `M(X)` is a degree-26 polynomial in `W.b₂, W.b₄, W.b₆, W.b₈` with
 integer coefficients, computed offline by polynomial division of `LHS - RHS`
 by `(4b₈ - b₂b₆ + b₄²)` over `ℤ[b₂, b₄, b₆, b₈]`. See
-`scripts/compute_multipliers.py` for the derivation.-/
+`scripts/compute_multipliers.py` for the derivation.
+@isnad1 id=eq.0h2v.s11.0f43004bd2e0 from=translated src=- shape=23c63b53 vocab=3bd15621
+-/
 lemma wronskian_aux_four :
     (W.preΨ₄ ^ 2 * W.Ψ₂Sq) ^ 2 -
     (Polynomial.derivative (W.Ψ₃ * (W.preΨ₄ * W.Ψ₂Sq ^ 2 - W.Ψ₃ ^ 3)) *

@@ -46,14 +46,18 @@ variable {R : Type*} [CommRing R] {p : ℕ} {𝔩 : Ideal R}
 namespace IsPthPowerModPrime
 
 /-- **`p`-th power lift**: if `x = α ^ p` in `R`, then `x` is a `p`-th
-power modulo any ideal `𝔩`.-/
+power modulo any ideal `𝔩`.
+@isnad1 id=ispthpow.1h5v.s5.24065294e4d5 from=translated src=- shape=da559c57 vocab=5684823a
+-/
 theorem of_pow {x α : R} (h : x = α ^ p) : IsPthPowerModPrime p 𝔩 x := by
   subst h
   exact pow_self α
 
 /-- **Unit-group form of the `p`-th power lift**: if `(u : R) = (α : R) ^ p`
 for units `u α : Rˣ`, then `(u : R)` is a `p`-th power modulo any ideal
-`𝔩`.-/
+`𝔩`.
+@isnad1 id=ispthpow.1h5v.s6.ef33976c1576 from=translated src=- shape=48dcaaea vocab=9b2c1114
+-/
 theorem of_isPthPower_unit {u α : Rˣ} (h : (u : R) = (α : R) ^ p) :
     IsPthPowerModPrime p 𝔩 (u : R) :=
   of_pow h
@@ -61,7 +65,9 @@ theorem of_isPthPower_unit {u α : Rˣ} (h : (u : R) = (α : R) ^ p) :
 end IsPthPowerModPrime
 
 /-- **Contrapositive of the lift**: if `x` is not a `p`-th power modulo
-`𝔩`, then there is no `α : R` with `x = α ^ p`.-/
+`𝔩`, then there is no `α : R` with `x = α ^ p`.
+@isnad1 id=ne.1h5v.s5.ff70e4e31035 from=translated src=- shape=55704da2 vocab=5684823a
+-/
 theorem not_pow_of_not_isPthPowerModPrime {x : R}
     (hx : ¬ IsPthPowerModPrime p 𝔩 x) :
     ∀ α : R, x ≠ α ^ p := by
@@ -70,7 +76,9 @@ theorem not_pow_of_not_isPthPowerModPrime {x : R}
 
 /-- **Contrapositive at the unit-group level**: if `(u : R)` is not a
 `p`-th power modulo `𝔩`, then there is no unit `α : Rˣ` with
-`(u : R) = (α : R) ^ p`.-/
+`(u : R) = (α : R) ^ p`.
+@isnad1 id=ne.1h5v.s6.aae175d9bf85 from=translated src=- shape=f7ca0c5d vocab=9b2c1114
+-/
 theorem not_isPthPower_unit_of_not_isPthPowerModPrime {u : Rˣ}
     (hu : ¬ IsPthPowerModPrime p 𝔩 (u : R)) :
     ∀ α : Rˣ, (u : R) ≠ (α : R) ^ p := by

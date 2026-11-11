@@ -36,7 +36,9 @@ universe u v w
 /-- Binomial truncation modulo an ideal power.
 
 If `π ∈ I`, then `(1 + π)^m` is congruent modulo `I^(s+1)` to the binomial
-sum truncated at degree `s`.-/
+sum truncated at degree `s`.
+@isnad1 id=mem.1h5v.s8.49f7de01fb7b from=translated src=- shape=44a9d772 vocab=a3fc9197
+-/
 theorem one_add_pow_sub_choose_sum_mem_pow
     {A : Type*} [CommRing A] {I : Ideal A} {π : A} (hπ : π ∈ I) (m s : ℕ) :
     (1 + π) ^ m -
@@ -106,7 +108,9 @@ noncomputable def binomialPointwiseApprox (a s : ℕ) : 𝓞 R' :=
       S.π ^ n * (Nat.choose (S.psiExponent x) n : 𝓞 R')
 
 /-- The pointwise and coefficient forms of the truncated binomial approximation
-are equal.-/
+are equal.
+@isnad1 id=eq.0h8v.s7.b65562d97203 from=translated src=- shape=73b4a2d5 vocab=c0551821
+-/
 theorem binomialPointwiseApprox_eq_coeffApprox (a s : ℕ) :
     S.binomialPointwiseApprox a s = S.binomialCoeffApprox a s := by
   classical
@@ -119,7 +123,9 @@ theorem binomialPointwiseApprox_eq_coeffApprox (a s : ℕ) :
   ring
 
 /-- The integral Gauss sum is congruent modulo `Q^(s+1)` to its binomial
-approximation through degree `s`.-/
+approximation through degree `s`.
+@isnad1 id=mem.0h8v.s8.938484f863e3 from=translated src=- shape=965fc851 vocab=d96ed69b
+-/
 theorem gaussSumInt_sub_binomialPointwiseApprox_mem_Q_pow (a s : ℕ) :
     S.gaussSumInt a - S.binomialPointwiseApprox a s ∈ S.Q ^ (s + 1) := by
   classical
@@ -159,14 +165,18 @@ theorem gaussSumInt_sub_binomialPointwiseApprox_mem_Q_pow (a s : ℕ) :
   exact htrunc
 
 /-- Coefficient-form version of
-`gaussSumInt_sub_binomialPointwiseApprox_mem_Q_pow`.-/
+`gaussSumInt_sub_binomialPointwiseApprox_mem_Q_pow`.
+@isnad1 id=mem.0h8v.s8.60a98ab22147 from=translated src=- shape=965fc851 vocab=98258420
+-/
 theorem gaussSumInt_sub_binomialCoeffApprox_mem_Q_pow (a s : ℕ) :
     S.gaussSumInt a - S.binomialCoeffApprox a s ∈ S.Q ^ (s + 1) := by
   rw [← S.binomialPointwiseApprox_eq_coeffApprox a s]
   exact S.gaussSumInt_sub_binomialPointwiseApprox_mem_Q_pow a s
 
 /-- If the coefficient approximation has a proposed leading term modulo
-`Q^(s+1)`, then the integral Gauss sum has the same leading congruence.-/
+`Q^(s+1)`, then the integral Gauss sum has the same leading congruence.
+@isnad1 id=mem.1h9v.s9.0e46f39b49c9 from=translated src=- shape=377705d5 vocab=98258420
+-/
 theorem gaussSumInt_sub_lead_mem_Q_pow_of_binomialCoeffApprox
     (a s : ℕ) {lead : 𝓞 R'}
     (hlead : S.binomialCoeffApprox a s - lead ∈ S.Q ^ (s + 1)) :
@@ -178,7 +188,9 @@ theorem gaussSumInt_sub_lead_mem_Q_pow_of_binomialCoeffApprox
   exact (S.Q ^ (s + 1)).add_mem happrox hlead
 
 /-- Exact-order consequence of a leading-term evaluation of the binomial
-coefficient approximation.-/
+coefficient approximation.
+@isnad1 id=and.3h8v.s10.6532160b34a5 from=translated src=- shape=247bbfa4 vocab=7147c1d5
+-/
 theorem gaussSumInt_qadic_ord_at_prime_of_binomialCoeffApprox
     (a : ℕ) {lead : 𝓞 R'}
     (h_lead_mem :

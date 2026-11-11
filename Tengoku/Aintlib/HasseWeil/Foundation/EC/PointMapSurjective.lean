@@ -49,7 +49,9 @@ variable {R S F K : Type*} [CommRing R] [CommRing S] {W' : WeierstrassCurve R}
 /-- **`Affine.Point.map` of a surjective field hom is surjective.**  For `f : F →ₐ[S] K` surjective,
 the induced group hom `W'⟮F⟯ →+ W'⟮K⟯` is onto: a target `some x' y' h'` is the image of
 `some x y h`, where `x, y` are `f`-preimages of `x', y'` and `h` is `h'` transported back through
-`WeierstrassCurve.Affine.baseChange_nonsingular f.injective`.-/
+`WeierstrassCurve.Affine.baseChange_nonsingular f.injective`.
+@isnad1 id=surjecti.1h6v.s9.e49989f6d1af from=translated src=- shape=dfbcf01e vocab=2d7aebdc
+-/
 theorem affinePointMap_surjective {f : F →ₐ[S] K} (hf : Function.Surjective f) :
     Function.Surjective (WeierstrassCurve.Affine.Point.map (W' := W') f) := by
   rintro (_ | ⟨x', y', h'⟩)
@@ -86,7 +88,9 @@ omit [DecidableEq K] in
 /-- **The geometric Frobenius `K`-algebra hom of `K̄` is surjective.**  It is the underlying map of
 the automorphism `FiniteField.frobeniusAlgEquivOfAlgebraic K K̄` (`K̄/K` algebraic ⟹ the
 `q`-power is
-an automorphism), so it is bijective; here we record surjectivity.-/
+an automorphism), so it is bijective; here we record surjectivity.
+@isnad1 id=surjecti.0h1v.s7.9cb04191c082 from=translated src=- shape=7ab398f8 vocab=9a95bf34
+-/
 theorem frobeniusAlgHom_surjective_algebraicClosure :
     Function.Surjective
       (FiniteField.frobeniusAlgHom K (AlgebraicClosure K)) := by
@@ -102,7 +106,9 @@ omit [W.toAffine.IsElliptic] [(W.baseChange (AlgebraicClosure K)).toAffine.IsEll
 /-- **The geometric Frobenius point map over `K̄` is surjective** (Silverman III.4.10a, Frobenius
 factor).  `geomFrobeniusPoint W = Affine.Point.map (Frobenius)` and the Frobenius `K`-algebra hom of
 `K̄` is surjective (`frobeniusAlgHom_surjective_algebraicClosure`), so `affinePointMap_surjective`
-applies.-/
+applies.
+@isnad1 id=surjecti.0h2v.s9.0f39371f5f68 from=translated src=- shape=0698c591 vocab=f93ebbd4
+-/
 theorem geomFrobeniusPoint_surjective :
     Function.Surjective (geomFrobeniusPoint W) := by
   change Function.Surjective (WeierstrassCurve.Affine.Point.map (W' := W)
@@ -113,7 +119,9 @@ omit [W.toAffine.IsElliptic] [(W.baseChange (AlgebraicClosure K)).toAffine.IsEll
   [DecidableEq K] in
 /-- **The geometric Frobenius point map over `K̄` is bijective.**  Surjective by
 `geomFrobeniusPoint_surjective`; injective as `Affine.Point.map` of an injective field hom
-(`WeierstrassCurve.Affine.Point.map_injective`).-/
+(`WeierstrassCurve.Affine.Point.map_injective`).
+@isnad1 id=bijectiv.0h2v.s9.37d7de1da0ef from=translated src=- shape=0698c591 vocab=a8fe6d80
+-/
 theorem geomFrobeniusPoint_bijective :
     Function.Bijective (geomFrobeniusPoint W) := by
   refine ⟨?_, geomFrobeniusPoint_surjective W⟩

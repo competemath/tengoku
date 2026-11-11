@@ -43,36 +43,53 @@ variable {F : Type*} [Field F]
 def legendreCurve (l : F) : WeierstrassCurve F :=
   { a₁ := 0, a₂ := -(1 + l), a₃ := 0, a₄ := l, a₆ := 0 }
 
-/-- The `a₁` coefficient of the Legendre curve: `a₁ = 0`.-/
+/-- The `a₁` coefficient of the Legendre curve: `a₁ = 0`.
+@isnad1 id=eq.0h2v.s4.8c7a72a45acd from=translated src=- shape=713098bd vocab=2a215edb
+-/
 @[simp]
 theorem legendreCurve_a₁ (l : F) : (legendreCurve l).a₁ = 0 := rfl
 
-/-- The `a₂` coefficient of the Legendre curve: `a₂ = -(1 + l)`.-/
+/-- The `a₂` coefficient of the Legendre curve: `a₂ = -(1 + l)`.
+@isnad1 id=eq.0h2v.s6.42542ca6f1b6 from=translated src=- shape=43c5cbed vocab=24bd5fef
+-/
 @[simp]
 theorem legendreCurve_a₂ (l : F) : (legendreCurve l).a₂ = -(1 + l) := rfl
 
-/-- The `a₃` coefficient of the Legendre curve: `a₃ = 0`.-/
+/-- The `a₃` coefficient of the Legendre curve: `a₃ = 0`.
+@isnad1 id=eq.0h2v.s4.87a470497f6b from=translated src=- shape=713098bd vocab=da60f1e2
+-/
 @[simp]
 theorem legendreCurve_a₃ (l : F) : (legendreCurve l).a₃ = 0 := rfl
 
-/-- The `a₄` coefficient of the Legendre curve: `a₄ = l`.-/
+/-- The `a₄` coefficient of the Legendre curve: `a₄ = l`.
+@isnad1 id=eq.0h2v.s4.f7eae1fb105c from=translated src=- shape=1c9622f3 vocab=b70f595e
+-/
 @[simp]
 theorem legendreCurve_a₄ (l : F) : (legendreCurve l).a₄ = l := rfl
 
-/-- The `a₆` coefficient of the Legendre curve: `a₆ = 0`.-/
+/-- The `a₆` coefficient of the Legendre curve: `a₆ = 0`.
+@isnad1 id=eq.0h2v.s4.06b608a32b2e from=translated src=- shape=713098bd vocab=abaa185b
+-/
 @[simp]
 theorem legendreCurve_a₆ (l : F) : (legendreCurve l).a₆ = 0 := rfl
 
+/--
+@isnad1 id=ischarne.0h2v.s4.73a388b91200 from=translated src=- shape=101348a6 vocab=27b10b35
+-/
 instance legendreCurve_isCharNeTwoNF (l : F) : (legendreCurve l).IsCharNeTwoNF :=
   ⟨rfl, rfl⟩
 
-/-- The discriminant of the Legendre curve `Y² = X(X − 1)(X − l)`.-/
+/-- The discriminant of the Legendre curve `Y² = X(X − 1)(X − l)`.
+@isnad1 id=eq.0h2v.s7.e2c0147c86cf from=translated src=- shape=2c126001 vocab=6d795aa0
+-/
 theorem legendreCurve_Δ (l : F) :
     (legendreCurve l).Δ = 16 * l ^ 2 * (l - 1) ^ 2 := by
   simp only [Δ_of_isCharNeTwoNF, legendreCurve_a₂, legendreCurve_a₄, legendreCurve_a₆]
   ring
 
-/-- The Legendre curve has `Δ ≠ 0` iff `l ≠ 0` and `l ≠ 1`.-/
+/-- The Legendre curve has `Δ ≠ 0` iff `l ≠ 0` and `l ≠ 1`.
+@isnad1 id=iff.0h2v.s6.9f463a7ca877 from=translated src=- shape=fbc67fed vocab=5c13ed90
+-/
 theorem legendreCurve_Δ_ne_zero_iff [NeZero (2 : F)] (l : F) :
     (legendreCurve l).Δ ≠ 0 ↔ l ≠ 0 ∧ l ≠ 1 := by
   have h2 : (2 : F) ≠ 0 := NeZero.ne 2
@@ -167,7 +184,9 @@ isomorphic to a Legendre curve `Y² = X(X − 1)(X − l)`.
 1. Put E in char ≠ 2 normal form: `Y² = X³ + aX² + bX + c`.
 2. The RHS has a root `e₁` over the algebraically closed field.
 3. Translate `X ↦ X + e₁` to get `Y² = X³ + a'X² + b'X` (constant term vanishes).
-4. Apply the helper lemma to get Legendre form.-/
+4. Apply the helper lemma to get Legendre form.
+@isnad1 id=ex.0h2v.s7.70fa6499045e from=translated src=- shape=378fec48 vocab=2139f530
+-/
 theorem exists_legendreCurve_iso
     (E : WeierstrassCurve F) [E.IsElliptic] :
     ∃ l : F, l ≠ 0 ∧ l ≠ 1 ∧

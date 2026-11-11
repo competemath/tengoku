@@ -48,14 +48,18 @@ namespace SemilocalUnitSplit
 
 variable {R : Type*} [CommRing R]
 
-/-- The algebra localization map is a localized-module map (the ring-to-module dictionary).-/
+/-- The algebra localization map is a localized-module map (the ring-to-module dictionary).
+@isnad1 id=islocali.0h2v.s7.8c660d393758 from=translated src=- shape=0f5719cb vocab=94f0c107
+-/
 theorem isLocalizedModule_algebraLinearMap (S : Submonoid R) :
     IsLocalizedModule S (Algebra.linearMap R (Localization S)) :=
   isLocalizedModule_iff_isLocalization.mpr inferInstance
 
 attribute [local instance] isLocalizedModule_algebraLinearMap
 
-/-- Ring-level and module-level localization fractions agree.-/
+/-- Ring-level and module-level localization fractions agree.
+@isnad1 id=eq.0h4v.s8.134172ffcf3c from=translated src=- shape=5390386d vocab=8b0395d8
+-/
 theorem mk'_ring_eq_mk'_module (S : Submonoid R) (x : R) (s : S) :
     IsLocalization.mk' (Localization S) x s
       = IsLocalizedModule.mk' (Algebra.linearMap R (Localization S)) x s := by
@@ -71,17 +75,25 @@ noncomputable def resLoc (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂) :
     Localization S₁ →+* Localization S₂ :=
   IsLocalization.map _ (RingHom.id R) (show S₁ ≤ S₂.comap (RingHom.id R) from h)
 
+/--
+@isnad1 id=eq.1h4v.s8.38e3b8227bb9 from=translated src=- shape=184aa229 vocab=02bd99a4
+-/
 theorem resLoc_algebraMap (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂) (r : R) :
     resLoc S₁ S₂ h (algebraMap R (Localization S₁) r) = algebraMap R (Localization S₂) r := by
   simp [resLoc, IsLocalization.map_eq]
 
+/--
+@isnad1 id=eq.1h5v.s8.26f9900aef39 from=translated src=- shape=fd3dd57a vocab=5ec3b101
+-/
 theorem resLoc_smul (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂) (r : R) (x : Localization S₁) :
     resLoc S₁ S₂ h (r • x) = r • resLoc S₁ S₂ h x := by
   rw [Algebra.smul_def, map_mul, resLoc_algebraMap, ← Algebra.smul_def]
 
 /-- The module-theoretic incarnation of `resLoc`: it is the `IsLocalizedModule.liftOfLE`
 comparison of the two algebra localizations.  This is the bridge along which the
-`AffineCechH1` toolkit applies to `resLoc`.-/
+`AffineCechH1` toolkit applies to `resLoc`.
+@isnad1 id=eq.1h4v.s9.4b1300431681 from=translated src=- shape=f9fc22b4 vocab=0a7ea360
+-/
 theorem resLoc_eq_liftOfLE (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂) (x : Localization S₁) :
     resLoc S₁ S₂ h x
       = liftOfLE S₁ S₂ h (Algebra.linearMap R (Localization S₁))
@@ -94,14 +106,18 @@ theorem resLoc_eq_liftOfLE (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂) (x : Lo
     rfl
   rw [hL, mk'_ring_eq_mk'_module S₁, liftOfLE_mk', ← mk'_ring_eq_mk'_module]
 
-/-- Composition of restrictions is restriction (any inclusion proof may be used).-/
+/-- Composition of restrictions is restriction (any inclusion proof may be used).
+@isnad1 id=eq.3h5v.s9.e1f7461ee6e2 from=translated src=- shape=05de6fc9 vocab=2fcbfd54
+-/
 theorem resLoc_resLoc (S₁ S₂ S₃ : Submonoid R) (h₁ : S₁ ≤ S₂) (h₂ : S₂ ≤ S₃) (h₃ : S₁ ≤ S₃)
     (x : Localization S₁) :
     resLoc S₂ S₃ h₂ (resLoc S₁ S₂ h₁ x) = resLoc S₁ S₃ h₃ x := by
   rw [resLoc_eq_liftOfLE, resLoc_eq_liftOfLE, resLoc_eq_liftOfLE, liftOfLE_liftOfLE]
 
 /-- Restriction to a localization on which the larger submonoid already acts invertibly is
-injective.-/
+injective.
+@isnad1 id=injectiv.2h3v.s8.da401aa3cf7d from=translated src=- shape=51640839 vocab=5d20cf63
+-/
 theorem resLoc_injective (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂)
     (hu : ∀ s ∈ S₂, IsUnit (algebraMap R (Localization S₁) s)) :
     Function.Injective (resLoc S₁ S₂ h) := by
@@ -120,7 +136,9 @@ theorem resLoc_injective (S₁ S₂ : Submonoid R) (h : S₁ ≤ S₂)
 
 section QuotientFibre
 
-/-- Cancellation of a unit scalar.-/
+/-- Cancellation of a unit scalar.
+@isnad1 id=eq.2h4v.s7.40af8ed15800 from=translated src=- shape=028344fd vocab=9b5cade0
+-/
 theorem smul_cancel_of_isUnit {A : Type*} [CommRing A] {V : Type*} [AddCommGroup V]
     [Module A V] {c : A} (hc : IsUnit c) {z : V} (h : c • z = 0) : z = 0 := by
   obtain ⟨u, rfl⟩ := hc
@@ -128,7 +146,9 @@ theorem smul_cancel_of_isUnit {A : Type*} [CommRing A] {V : Type*} [AddCommGroup
     _ = ((u⁻¹ : Aˣ) : A) • ((u : Aˣ) : A) • z := by rw [mul_smul]
     _ = 0 := by rw [h, smul_zero]
 
-/-- Every element of `(R⧸I) ⊗[R] X` is a pure tensor `1 ⊗ x` (the scalars surject from `R`).-/
+/-- Every element of `(R⧸I) ⊗[R] X` is a pure tensor `1 ⊗ x` (the scalars surject from `R`).
+@isnad1 id=ex.0h4v.s8.444fcdc51097 from=translated src=- shape=e8c16f09 vocab=2d76a009
+-/
 theorem exists_one_tmul (I : Ideal R) {X : Type*} [AddCommGroup X] [Module R X]
     (z : (R ⧸ I) ⊗[R] X) : ∃ x : X, z = 1 ⊗ₜ[R] x := by
   induction z using TensorProduct.induction_on with
@@ -143,21 +163,27 @@ theorem exists_one_tmul (I : Ideal R) {X : Type*} [AddCommGroup X] [Module R X]
     obtain ⟨x₂, rfl⟩ := h₂
     exact ⟨x₁ + x₂, (TensorProduct.tmul_add _ _ _).symm⟩
 
-/-- The `R`-action on `(R⧸I) ⊗[R] X` inside a pure tensor is the residue scalar action.-/
+/-- The `R`-action on `(R⧸I) ⊗[R] X` inside a pure tensor is the residue scalar action.
+@isnad1 id=eq.0h5v.s9.f70c90ad2e22 from=translated src=- shape=a8ff2a09 vocab=ebccc17f
+-/
 theorem one_tmul_smul (I : Ideal R) {X : Type*} [AddCommGroup X] [Module R X]
     (r : R) (x : X) :
     (1 ⊗ₜ[R] (r • x) : (R ⧸ I) ⊗[R] X) = Ideal.Quotient.mk I r • (1 ⊗ₜ[R] x) := by
   rw [TensorProduct.tmul_smul, ← Ideal.Quotient.algebraMap_eq, IsScalarTower.algebraMap_smul]
 
 /-- The kernel of `x ↦ 1 ⊗ x` into `(R⧸I) ⊗[R] X` is `I • ⊤`
-(`quotTensorEquivQuotSMul` in membership form).-/
+(`quotTensorEquivQuotSMul` in membership form).
+@isnad1 id=iff.0h4v.s9.238b776f9db3 from=translated src=- shape=2e266137 vocab=78ae3d23
+-/
 theorem one_tmul_eq_zero_iff (I : Ideal R) {X : Type*} [AddCommGroup X] [Module R X]
     (x : X) : (1 ⊗ₜ[R] x : (R ⧸ I) ⊗[R] X) = 0 ↔ x ∈ I • (⊤ : Submodule R X) := by
   rw [← (quotTensorEquivQuotSMul X I).map_eq_zero_iff,
     TensorProduct.quotTensorEquivQuotSMul_mk_one_tmul, Submodule.Quotient.mk_eq_zero]
 
 /-- **Power-clearing in `I • ⊤` along a localization**: a member of `I • ⊤` of the localized
-module is, after multiplication by a denominator, the image of a member of `I • ⊤` upstairs.-/
+module is, after multiplication by a denominator, the image of a member of `I • ⊤` upstairs.
+@isnad1 id=ex.1h7v.s9.c80926b91fa8 from=translated src=- shape=de31588e vocab=08297dfa
+-/
 theorem exists_smul_eq_of_mem_smul_top {M M' : Type*} [AddCommGroup M] [Module R M]
     [AddCommGroup M'] [Module R M'] (S : Submonoid R) (l : M →ₗ[R] M') [IsLocalizedModule S l]
     (I : Ideal R) {x : M'} (hx : x ∈ I • (⊤ : Submodule R M')) :
@@ -184,7 +210,9 @@ section AdditiveResLoc
 this file: an additive Čech `1`-cocycle valued in the pairwise-overlap localizations splits as a
 coboundary `c i j = a i - a j`.  Thin wrapper of
 `IsLocalizedModule.exists_sub_liftOfLE_eq_of_span_eq_top` along `resLoc_eq_liftOfLE`; this is
-the form the nilpotent-layer chart-Čech splits (`r`, `s`, then central `t`) consume.-/
+the form the nilpotent-layer chart-Čech splits (`r`, `s`, then central `t`) consume.
+@isnad1 id=ex.2h4v.s13.3e541bcb6ccf from=translated src=- shape=2577c9f6 vocab=bd24e1ce
+-/
 theorem exists_sub_resLoc_eq_of_span_eq_top {ι : Type*} [Fintype ι] (f : ι → R)
     (hf : Ideal.span (Set.range f) = ⊤)
     (c : ∀ i j, Localization (Submonoid.powers (f i) ⊔ Submonoid.powers (f j)))
@@ -242,6 +270,9 @@ noncomputable def gluedSubmodule :
   smul_mem' r x hx i j := by
     rw [Pi.smul_apply, Pi.smul_apply, resLoc_smul, resLoc_smul, hx i j, mul_smul_comm]
 
+/--
+@isnad1 id=iff.0h5v.s12.4404b48622e9 from=translated src=- shape=82255fda vocab=9513e95b
+-/
 theorem mem_gluedSubmodule_iff {x : ∀ i, Localization (Submonoid.powers (f i))} :
     x ∈ gluedSubmodule f u ↔ ∀ i j,
       resLoc (Submonoid.powers (f i)) (Submonoid.powers (f i) ⊔ Submonoid.powers (f j))
@@ -256,12 +287,17 @@ noncomputable def gluedProj (i₀ : ι) :
     gluedSubmodule f u →ₗ[R] Localization (Submonoid.powers (f i₀)) :=
   (LinearMap.proj i₀).comp (gluedSubmodule f u).subtype
 
+/--
+@isnad1 id=eq.0h6v.s12.0330e7a4b950 from=translated src=- shape=e81b7075 vocab=650f7fbc
+-/
 @[simp] theorem gluedProj_apply (i₀ : ι) (x : gluedSubmodule f u) :
     gluedProj f u i₀ x = x.1 i₀ :=
   rfl
 
 /-- Every element of the join `powers g ⊔ powers g` acts invertibly on `Localization (powers g)`
-(both factors of a `mem_sup` decomposition do).-/
+(both factors of a `mem_sup` decomposition do).
+@isnad1 id=isunit.1h3v.s8.a91d02a458c9 from=translated src=- shape=b981062d vocab=93a14dc8
+-/
 theorem isUnit_algebraMap_of_mem_sup_self (g : R) {s : R}
     (hs : s ∈ Submonoid.powers g ⊔ Submonoid.powers g) :
     IsUnit (algebraMap R (Localization (Submonoid.powers g)) s) := by
@@ -274,7 +310,9 @@ theorem isUnit_algebraMap_of_mem_sup_self (g : R) {s : R}
 generating the unit ideal and a normalized unit cocycle `u` on the basic cover `{D(fᵢ)}`, the
 component projection `gluedSubmodule → R[1/fᵢ₀]` is the localization of the glued module at
 `powers fᵢ₀`.  Surjectivity-after-clearing is the partition-of-unity extension argument;
-injectivity-torsion is componentwise power-killing.-/
+injectivity-torsion is componentwise power-killing.
+@isnad1 id=islocali.2h5v.s13.671be4fe3ee7 from=translated src=- shape=94c8a3e8 vocab=3fdfbc35
+-/
 theorem isLocalizedModule_gluedProj [Fintype ι]
     (hone : ∀ i, u i i = 1)
     (hcoc : ∀ i j k,
@@ -466,7 +504,9 @@ theorem isLocalizedModule_gluedProj [Fintype ι]
 
 /-! ### The semilocal finale: the glued module is free of rank one, and the cocycle splits -/
 
-/-- A covering family avoids any proper ideal at some index.-/
+/-- A covering family avoids any proper ideal at some index.
+@isnad1 id=ex.2h4v.s7.bad2bad6a67d from=translated src=- shape=88c9ebd7 vocab=50b95920
+-/
 theorem exists_notMem_of_span_eq_top (hf : Ideal.span (Set.range f) = ⊤) {P : Ideal R}
     (hP : P ≠ ⊤) : ∃ i, f i ∉ P := by
   by_contra h
@@ -477,7 +517,9 @@ theorem exists_notMem_of_span_eq_top (hf : Ideal.span (Set.range f) = ⊤) {P : 
   rintro x ⟨i, rfl⟩
   exact h i
 
-/-- Powers of an element outside a prime lie in its complement submonoid.-/
+/-- Powers of an element outside a prime lie in its complement submonoid.
+@isnad1 id=le.1h3v.s7.a15087389269 from=translated src=- shape=c4003b52 vocab=827052e9
+-/
 theorem powers_le_primeCompl {P : Ideal R} [P.IsPrime] {a : R} (ha : a ∉ P) :
     Submonoid.powers a ≤ P.primeCompl := by
   rintro x ⟨n, rfl⟩
@@ -490,7 +532,9 @@ The base change of the localization `gluedProj f u i` along `R → R⧸P` is bij
 surjectivity from `IsLocalizedModule.surj` plus invertibility of the image of `fᵢ` in the field
 `R⧸P`, injectivity from the `I • ⊤` power-clearing (`exists_smul_eq_of_mem_smul_top`) and
 `IsLocalizedModule.exists_of_eq`-torsion — and `(R⧸P) ⊗ Lᵢ` is spanned by the nonzero vector
-`1 ⊗ 1` (the classical `κ(P) ⊗ R_f ≅ κ(P)` for `f ∉ P`).-/
+`1 ⊗ 1` (the classical `κ(P) ⊗ R_f ≅ κ(P)` for `f ∉ P`).
+@isnad1 id=eq.3h6v.s14.1e91d1240175 from=translated src=- shape=724e7d2e vocab=124c9e04
+-/
 theorem finrank_quotient_tensor_gluedSubmodule [Fintype ι]
     (hone : ∀ i, u i i = 1)
     (hcoc : ∀ i j k,
@@ -592,7 +636,9 @@ theorem finrank_quotient_tensor_gluedSubmodule [Fintype ι]
 /-- **The glued module of a normalized unit cocycle over a semilocal ring is free of rank
 one.**  Finiteness and flatness are checked at the finitely many maximal ideals through the
 quasi-coherence isomorphisms `(gluedSubmodule)ₚ ≅ Rₚ`, and Stacks 02M9
-(`Module.nonempty_basis_of_flat_of_finrank_eq`) produces the rank-one basis.-/
+(`Module.nonempty_basis_of_flat_of_finrank_eq`) produces the rank-one basis.
+@isnad1 id=nonempty.3h4v.s13.5c985a515e55 from=translated src=- shape=e59d907b vocab=5e2d5a1d
+-/
 theorem nonempty_basis_gluedSubmodule [Fintype ι] [Finite (MaximalSpectrum R)]
     (hf : Ideal.span (Set.range f) = ⊤)
     (hone : ∀ i, u i i = 1)
@@ -644,7 +690,9 @@ finite basic cover `{D(fᵢ)}` splits: there are units `v i` of `R[1/fᵢ]` whos
 in the form `v i = u i j * v j` on every pairwise overlap.  (Equivalently `u i j = vᵢ/vⱼ` —
 this is `Pic R = 0` for semilocal `R`, in effective Čech form.)  A consumer normalizing
 Weierstrass-chart transitions rescales the `i`-th chart by `v i` and the transition `u`-components
-become `1`.-/
+become `1`.
+@isnad1 id=ex.3h4v.s13.761c041c5c38 from=translated src=- shape=04c4f7fc vocab=c09db53a
+-/
 theorem exists_units_eq_mul_of_span_eq_top [Fintype ι] [Finite (MaximalSpectrum R)]
     (hf : Ideal.span (Set.range f) = ⊤)
     (hone : ∀ i, u i i = 1)

@@ -27,7 +27,9 @@ namespace Furtwaengler
 
 This is the final ideal-calculus step in the Stickelberger congruence:
 all arithmetic work is concentrated in proving the leading congruence and
-the exact order of the leading term.-/
+the exact order of the leading term.
+@isnad1 id=and.3h5v.s9.7bbccce5eb32 from=translated src=- shape=2c82029c vocab=1551cced
+-/
 theorem exact_mem_pow_of_sub_mem_succ
     {R : Type*} [CommRing R] {I : Ideal R} {x y : R} {n : ℕ}
     (hy_mem : y ∈ I ^ n) (hy_not_mem_succ : y ∉ I ^ (n + 1))
@@ -52,7 +54,9 @@ namespace StickelbergerSetup
 variable (S : StickelbergerSetup p k R')
 
 /-- Non-triviality of the powers `χ_q^a` in the Stickelberger range
-`1 ≤ a ≤ p - 1`.-/
+`1 ≤ a ≤ p - 1`.
+@isnad1 id=ne.2h5v.s8.8f2b764bc625 from=translated src=- shape=b6a563ce vocab=54de25aa
+-/
 theorem residueChar_pow_ne_one {a : ℕ} (ha₁ : 1 ≤ a) (ha₂ : a ≤ p - 1) :
     S.residueChar ^ a ≠ 1 := fun h ↦ by
   -- `orderOf χ_q = p` divides `a`, but `1 ≤ a ≤ p - 1 < p`.
@@ -63,7 +67,9 @@ theorem residueChar_pow_ne_one {a : ℕ} (ha₁ : 1 ≤ a) (ha₂ : a ≤ p - 1)
 
 /-- Phase-B containment for every non-trivial power of the residue character.
 If the additive character is constantly `1` modulo `I`, then
-`g(χ_q^a, ψ_q) ∈ I` for `1 ≤ a ≤ p - 1`.-/
+`g(χ_q^a, ψ_q) ∈ I` for `1 ≤ a ≤ p - 1`.
+@isnad1 id=mem.3h6v.s8.e70f5d1bc66c from=translated src=- shape=03589e75 vocab=9808b9ad
+-/
 theorem gaussSum_residueChar_pow_mem_ideal {I : Ideal R'} {a : ℕ}
     (ha₁ : 1 ≤ a) (ha₂ : a ≤ p - 1)
     (hψ : ∀ x : k, S.psi_q x - 1 ∈ I) :
@@ -73,7 +79,9 @@ theorem gaussSum_residueChar_pow_mem_ideal {I : Ideal R'} {a : ℕ}
 
 /-- Cyclotomic form of `gaussSum_residueChar_pow_mem_ideal`: if
 `ψ_q(x) = ζ^f(x)` and the prime ideal contains the residue characteristic,
-then every Stickelberger-range Gauss sum lies in `Q`.-/
+then every Stickelberger-range Gauss sum lies in `Q`.
+@isnad1 id=mem.5h9v.s8.2a66d8735770 from=translated src=- shape=7a96463b vocab=3e1c4513
+-/
 theorem gaussSum_residueChar_pow_mem_ideal_of_q_mem
     {ℓ : ℕ} [Fact ℓ.Prime] {ζ : R'} (hζ : IsPrimitiveRoot ζ ℓ)
     (f : k → ℕ) (hf : ∀ x : k, S.psi_q x = ζ ^ f x)
@@ -87,7 +95,9 @@ theorem gaussSum_residueChar_pow_mem_ideal_of_q_mem
 /-- First-order exactness for every non-trivial power of the residue
 character.  This is the `s = 1` version of the Stickelberger congruence:
 the containment is Phase B, and non-membership in `Q^2` follows from the
-linear coefficient not vanishing modulo `Q`.-/
+linear coefficient not vanishing modulo `Q`.
+@isnad1 id=and.6h9v.s10.41834a4b5eac from=translated src=- shape=8598993c vocab=b23e902a
+-/
 theorem gaussSum_residueChar_pow_qadic_ord_eq_one_under_nondeg
     {ℓ : ℕ} [Fact ℓ.Prime] {ζ : R'} (hζ : IsPrimitiveRoot ζ ℓ)
     (f : k → ℕ) (hf : ∀ x : k, S.psi_q x = ζ ^ f x)
@@ -113,7 +123,9 @@ Let `s = digitSum ℓ (a * ((#k - 1) / p))`.  If a proposed leading term
 modulo `Q^(s+1)`, then the Gauss sum has the target exact order.
 
 The remaining mathematical content is to construct `lead` as the usual unit
-times `(ζ_ℓ - 1)^s` and prove the congruence.-/
+times `(ζ_ℓ - 1)^s` and prove the congruence.
+@isnad1 id=and.3h8v.s10.a2f6ba35a58e from=translated src=- shape=e9fba156 vocab=525d7d4d
+-/
 theorem stickelberger_qadic_ord_at_prime_of_leading_congruence
     (S : StickelbergerSetup p k R') {ℓ : ℕ} (a : ℕ) {Q : Ideal R'} {lead : R'}
     (h_lead_mem :

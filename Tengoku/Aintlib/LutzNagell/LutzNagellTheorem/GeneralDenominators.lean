@@ -44,7 +44,9 @@ for a prime `p`, then we reach a contradiction.
 This is the ℚ/ℤ specialisation of `LutzNagell.PID.den_not_prime_of_on_curve`: with `R = ℤ`,
 `K = ℚ`, the prime `p = x.den` is exactly the ring-theoretic denominator `IsFractionRing.den ℤ x`
 up to sign (`Rat.isFractionRingDen`), so the general "denominator is not prime" lemma applies
-directly.-/
+directly.
+@isnad1 id=false.3h4v.s7.6c7ce93523f6 from=translated src=- shape=e4870775 vocab=c203ffa4
+-/
 theorem den_ne_prime_of_on_general_curve {x y : ℚ}
     (heq : y ^ 2 + (W.a₁ : ℚ) * x * y + (W.a₃ : ℚ) * y =
       x ^ 3 + (W.a₂ : ℚ) * x ^ 2 + (W.a₄ : ℚ) * x + (W.a₆ : ℚ))

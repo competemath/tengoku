@@ -40,20 +40,28 @@ noncomputable def auxF (s : ℂ) (X t : ℝ) : ℂ :=
   else Complex.ofReal (Real.log X / |t|) *
     Complex.exp (-(s - 1 / 2) * Complex.ofReal (|t| - Real.log X))
 
-/-- `F_{s,X}` is even: `F(-t) = F(t)` — eqs. (11)–(12) depend on `t` only through `|t|`.-/
+/-- `F_{s,X}` is even: `F(-t) = F(t)` — eqs. (11)–(12) depend on `t` only through `|t|`.
+@isnad1 id=eq.0h3v.s4.7e57074819f5 from=translated src=- shape=0f00ca40 vocab=47933085
+-/
 @[simp] theorem auxF_neg (s : ℂ) (X t : ℝ) : auxF s X (-t) = auxF s X t := by
   unfold auxF; rw [abs_neg]
 
-/-- On the plateau `|t| ≤ log X`, `F_{s,X}(t) = 1` — eq. (11).-/
+/-- On the plateau `|t| ≤ log X`, `F_{s,X}(t) = 1` — eq. (11).
+@isnad1 id=eq.1h3v.s4.c2ede0243c13 from=translated src=- shape=b52eb2ed vocab=72b3b54f
+-/
 theorem auxF_of_le (s : ℂ) (X : ℝ) {t : ℝ} (h : |t| ≤ Real.log X) : auxF s X t = 1 := by
   unfold auxF; exact ite_eq_left h
 
-/-- `F_{s,X}(0) = 1` whenever `X ≥ 1` (so `log X ≥ 0`, putting `0` on the plateau).-/
+/-- `F_{s,X}(0) = 1` whenever `X ≥ 1` (so `log X ≥ 0`, putting `0` on the plateau).
+@isnad1 id=eq.1h2v.s5.880f36822c4d from=translated src=- shape=49af02a5 vocab=1fd28a3a
+-/
 theorem auxF_zero (s : ℂ) {X : ℝ} (hX : 1 ≤ X) : auxF s X 0 = 1 :=
   auxF_of_le s X (by rw [abs_zero]; exact Real.log_nonneg hX)
 
 /-- `F_{s,X}` is measurable (in fact continuous, but measurability is all the Lemma-2
-Fourier integral needs). The break locus `|t| = log X` is a measurable set.-/
+Fourier integral needs). The break locus `|t| = log X` is a measurable set.
+@isnad1 id=measurab.0h2v.s3.7ef327054899 from=translated src=- shape=271fd9f8 vocab=ccd41628
+-/
 theorem measurable_auxF (s : ℂ) (X : ℝ) : Measurable (auxF s X) := by
   unfold auxF
   refine Measurable.ite ?_ measurable_const ?_

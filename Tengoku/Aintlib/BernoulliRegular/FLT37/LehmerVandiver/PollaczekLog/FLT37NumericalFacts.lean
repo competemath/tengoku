@@ -40,13 +40,17 @@ section FLT37NumericalFacts
 
 set_option maxRecDepth 2000
 
-/-- The FLT37 Lehmer--Vandiver product is not one in `ZMod 149`.-/
+/-- The FLT37 Lehmer--Vandiver product is not one in `ZMod 149`.
+@isnad1 id=ne.0h0v.s6.3db194adf993 from=translated src=- shape=4f70d5d1 vocab=62993022
+-/
 theorem lehmerVandiverProduct_thirtyseven_ne_one :
     lehmerVandiverProduct 37 32 149 2 4 ≠ 1 := by
   simp only [lehmerVandiverProduct]
   decide
 
-/-- The denominator power in the FLT37 residue calculation is one in `ZMod 149`.-/
+/-- The denominator power in the FLT37 residue calculation is one in `ZMod 149`.
+@isnad1 id=eq.0h0v.s8.1319c584b4b1 from=translated src=- shape=a4cf7e7e vocab=d12bbcb8
+-/
 theorem one_sub_two_pow_four_pow_kS_eq_one :
     ((1 : ZMod 149) - 2 ^ 4) ^ (4 * 432345) = 1 := by
   have h148 : ((1 : ZMod 149) - 2 ^ 4) ^ 148 = 1 := by decide

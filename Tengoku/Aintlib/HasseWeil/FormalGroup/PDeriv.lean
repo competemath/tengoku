@@ -69,6 +69,9 @@ respect to the variable `s`. Concretely, the coefficient of `X^d` in
 def pderiv' (s : σ) (f : MvPowerSeries σ R) : MvPowerSeries σ R :=
   fun d ↦ (d s + 1 : ℕ) • coeff (R := R) (d + Finsupp.single s 1) f
 
+/--
+@isnad1 id=eq.0h5v.s8.48a19b2b891e from=translated src=- shape=78a0c239 vocab=8ea8a3d2
+-/
 @[simp]
 theorem coeff_pderiv' (s : σ) (f : MvPowerSeries σ R) (d : σ →₀ ℕ) :
     coeff (R := R) d (pderiv' s f) =
@@ -77,16 +80,25 @@ theorem coeff_pderiv' (s : σ) (f : MvPowerSeries σ R) (d : σ →₀ ℕ) :
 
 /-! ### Additive / linear API -/
 
+/--
+@isnad1 id=eq.0h3v.s5.9fc210e182fc from=translated src=- shape=2a6c3590 vocab=b52a5093
+-/
 @[simp]
 theorem pderiv_zero (s : σ) : pderiv' s (0 : MvPowerSeries σ R) = 0 := by
   ext d
   simp [coeff_pderiv']
 
+/--
+@isnad1 id=eq.0h5v.s6.cb234e5df4f5 from=translated src=- shape=6854705d vocab=0b5c994a
+-/
 theorem pderiv_add (s : σ) (f g : MvPowerSeries σ R) :
     pderiv' s (f + g) = pderiv' s f + pderiv' s g := by
   ext d
   simp [coeff_pderiv', map_add, smul_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.8d26962a57b0 from=translated src=- shape=5df0704f vocab=f05db792
+-/
 theorem pderiv_smul (s : σ) (r : R) (f : MvPowerSeries σ R) :
     pderiv' s (r • f) = r • pderiv' s f := by
   ext d
@@ -104,18 +116,27 @@ private lemma add_single_ne_zero (d : σ →₀ ℕ) (s : σ) :
   have hs := congrArg (fun f : σ →₀ ℕ ↦ f s) h
   simp at hs
 
+/--
+@isnad1 id=eq.0h3v.s5.48ea9755324e from=translated src=- shape=2a6c3590 vocab=b52a5093
+-/
 @[simp]
 theorem pderiv'_one (s : σ) : pderiv' s (1 : MvPowerSeries σ R) = 0 := by
   classical
   ext d
   rw [coeff_pderiv', coeff_one, ite_eq_right (add_single_ne_zero d s), smul_zero, coeff_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.20c2b71096a0 from=translated src=- shape=fd13846a vocab=fe1c2c54
+-/
 @[simp]
 theorem pderiv'_C (s : σ) (r : R) : pderiv' s (C (σ := σ) r) = 0 := by
   classical
   ext d
   rw [coeff_pderiv', coeff_C, ite_eq_right (add_single_ne_zero d s), smul_zero, coeff_zero]
 
+/--
+@isnad1 id=eq.0h3v.s5.6bab42f6d7e0 from=translated src=- shape=4c5a0533 vocab=68cb995b
+-/
 @[simp]
 theorem pderiv'_X_self (s : σ) : pderiv' s (X s : MvPowerSeries σ R) = 1 := by
   classical
@@ -133,6 +154,9 @@ theorem pderiv'_X_self (s : σ) : pderiv' s (X s : MvPowerSeries σ R) = 1 := by
       exact add_right_cancel this
     rw [ite_eq_right h, ite_eq_right hd, smul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s5.eb0b3a5f678f from=translated src=- shape=0fe8de40 vocab=68cb995b
+-/
 @[simp]
 theorem pderiv'_X_of_ne {s t : σ} (h : s ≠ t) :
     pderiv' s (X t : MvPowerSeries σ R) = 0 := by
@@ -302,7 +326,9 @@ private theorem coeff_pderiv_mul_right [DecidableEq σ] (s : σ) (f g : MvPowerS
     exact hne (smul_eq_zero_of_not_le hle _)
 
 /-- **Leibniz rule** for the partial derivative on multivariate formal
-power series.-/
+power series.
+@isnad1 id=eq.0h5v.s7.4b2030020916 from=translated src=- shape=f53656f2 vocab=f04c54f9
+-/
 theorem pderiv_mul (s : σ) (f g : MvPowerSeries σ R) :
     pderiv' s (f * g) = pderiv' s f * g + f * pderiv' s g := by
   classical
@@ -390,6 +416,9 @@ private lemma coeff_pderiv_monomial_not_single_le {s : σ} {n d : σ →₀ ℕ}
   rw [ite_eq_right hne, smul_zero]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.c8da8103d13c from=translated src=- shape=bbd12bac vocab=9dc12be1
+-/
 theorem pderiv_monomial (s : σ) (n : σ →₀ ℕ) (a : R) :
     pderiv' s (monomial n a) = monomial (n - Finsupp.single s 1) (a * n s) := by
   ext d
@@ -406,10 +435,16 @@ section CommRing
 
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s6.f567de93055f from=translated src=- shape=932bdc20 vocab=b3f3c1e3
+-/
 theorem pderiv_neg (s : σ) (f : MvPowerSeries σ R) : pderiv' s (-f) = -pderiv' s f := by
   ext d
   simp [coeff_pderiv']
 
+/--
+@isnad1 id=eq.0h5v.s6.bb404dd77b29 from=translated src=- shape=6854705d vocab=befd8a29
+-/
 theorem pderiv_sub (s : σ) (f g : MvPowerSeries σ R) :
     pderiv' s (f - g) = pderiv' s f - pderiv' s g := by
   ext d
@@ -423,6 +458,9 @@ section CommSemiring
 
 variable [CommSemiring R]
 
+/--
+@isnad1 id=eq.0h4v.s8.2c49ddb30d72 from=translated src=- shape=10f83806 vocab=9e815fde
+-/
 theorem pderiv'_coe (s : σ) (p : MvPolynomial σ R) :
     MvPowerSeries.pderiv' s (p : MvPowerSeries σ R) =
       ((MvPolynomial.pderiv s p : MvPolynomial σ R) : MvPowerSeries σ R) := by
@@ -445,7 +483,9 @@ variable [CommSemiring R] [TopologicalSpace R] [ContinuousConstSMul ℕ R]
 open scoped MvPowerSeries.WithPiTopology
 
 /-- The formal partial derivative `pderiv' s` is continuous in the product topology
-on `MvPowerSeries σ R`.-/
+on `MvPowerSeries σ R`.
+@isnad1 id=continuo.0h3v.s5.e360c837fb75 from=translated src=- shape=b025ac1e vocab=93dbbf92
+-/
 theorem continuous_pderiv (s : σ) :
     Continuous (MvPowerSeries.pderiv' (R := R) (σ := σ) s) := by
   classical
@@ -599,7 +639,9 @@ private theorem pderiv_subst_polynomial {σ : Type*} [Fintype σ]
 type `σ`. For `f : MvPowerSeries σ R`, a family `a : σ → MvPowerSeries τ R`
 with `HasSubst a`, and a target variable `t : τ`:
 
-`pderiv' t (subst a f) = ∑ s : σ, pderiv' t (a s) * subst a (pderiv' s f)`.-/
+`pderiv' t (subst a f) = ∑ s : σ, pderiv' t (a s) * subst a (pderiv' s f)`.
+@isnad1 id=eq.1h6v.s7.c41d7ad3271d from=translated src=- shape=54ea259b vocab=42093868
+-/
 theorem pderiv_subst {σ : Type*} [Fintype σ]
     (t : τ) {a : σ → MvPowerSeries τ R} (ha : MvPowerSeries.HasSubst a)
     (f : MvPowerSeries σ R) :
@@ -646,7 +688,9 @@ MvPowerSeries τ R` with `HasSubst a`, and a target variable `t : τ`:
                          + pderiv' t (a 1) * subst a (pderiv' 1 f)`.
 
 This is the form used in Silverman IV.4.2 (translation invariance of the
-invariant differential on a formal group).-/
+invariant differential on a formal group).
+@isnad1 id=eq.1h5v.s8.19fab64fe30f from=translated src=- shape=5a3f6467 vocab=fb8dc9ee
+-/
 theorem pderiv_subst_fin2
     (t : τ) {a : Fin 2 → MvPowerSeries τ R} (ha : MvPowerSeries.HasSubst a)
     (f : MvPowerSeries (Fin 2) R) :

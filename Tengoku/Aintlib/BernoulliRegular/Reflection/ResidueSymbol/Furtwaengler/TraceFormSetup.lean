@@ -92,13 +92,17 @@ variable {R' : Type w} [Field R'] [NumberField R'] [Algebra K R'] [IsScalarTower
 
 variable (S : TraceFormStickelbergerSetup ℓ p k K R')
 
-/-- Trace-form expression for the abstract additive character.-/
+/-- Trace-form expression for the abstract additive character.
+@isnad1 id=eq.0h7v.s9.afa2addf563a from=translated src=- shape=47aab2f1 vocab=4a004372
+-/
 theorem psi_eq_zeta_ell_pow_trace (x : k) :
     S.psi x =
       S.zeta_ell ^ ((Algebra.trace (ZMod ℓ) k ((S.traceScale : k) * x)).val) := by
   rw [S.psi_pow_form, S.psiExponent_trace]
 
-/-- Trace-form expression for the integral additive character.-/
+/-- Trace-form expression for the integral additive character.
+@isnad1 id=eq.0h7v.s9.5167562abfe9 from=translated src=- shape=bccfd652 vocab=5085f3d9
+-/
 theorem psiInt_eq_zeta_ell_int_pow_trace (x : k) :
     S.psiInt x =
       S.zeta_ell_int ^ ((Algebra.trace (ZMod ℓ) k ((S.traceScale : k) * x)).val) := by
@@ -106,13 +110,17 @@ theorem psiInt_eq_zeta_ell_int_pow_trace (x : k) :
   rw [S.psiExponent_trace]
 
 /-- Trace-form accessor for the Teichmüller compatibility of
-`residueCharInt` modulo `Q`.-/
+`residueCharInt` modulo `Q`.
+@isnad1 id=eq.0h7v.s8.450179730833 from=translated src=- shape=5ba70036 vocab=f5aa8166
+-/
 theorem residueCharInt_residueMap_eq_pow_d (x : kˣ) :
     S.residueMap (S.residueCharInt (x : k)) =
       (x : k) ^ ((Fintype.card k - 1) / p) :=
   S.toConcreteStickelbergerSetup.residueCharInt_residueMap_eq_pow_d x
 
-/-- Unit-lift form of the Teichmüller compatibility.-/
+/-- Unit-lift form of the Teichmüller compatibility.
+@isnad1 id=eq.1h8v.s9.4d95670d72ac from=translated src=- shape=0a3bd7ba vocab=f5aa8166
+-/
 theorem residueCharInt_residueMap_eq_pow_d_of_unit
     (x : kˣ) (u : (𝓞 R')ˣ) (hxu : (x : k) = S.residueMap (u : 𝓞 R')) :
     S.residueMap (S.residueCharInt (x : k)) =
@@ -161,13 +169,17 @@ variable (S : ConductorFlexibleTraceFormStickelbergerSetup ℓ p k K R')
 def concrete : ConductorFlexibleConcreteStickelbergerSetup ℓ p k K R' :=
   S.toConductorFlexibleConcreteStickelbergerSetup
 
-/-- Trace-form expression for the abstract additive character.-/
+/-- Trace-form expression for the abstract additive character.
+@isnad1 id=eq.0h7v.s9.bc5626cfc5a1 from=translated src=- shape=f87731f6 vocab=0b0b2a95
+-/
 theorem psi_eq_zeta_ell_pow_trace (x : k) :
     S.psi x =
       S.zeta_ell ^ ((Algebra.trace (ZMod ℓ) k ((S.traceScale : k) * x)).val) := by
   rw [S.toConductorFlexibleConcreteStickelbergerSetup.psi_pow_form, S.psiExponent_trace]
 
-/-- Trace-form expression for the integral additive character.-/
+/-- Trace-form expression for the integral additive character.
+@isnad1 id=eq.0h7v.s9.a127a1c825ba from=translated src=- shape=1779034c vocab=eb377cd9
+-/
 theorem psiInt_eq_zeta_ell_int_pow_trace (x : k) :
     S.psiInt x =
       S.zeta_ell_int ^ ((Algebra.trace (ZMod ℓ) k ((S.traceScale : k) * x)).val) := by
@@ -222,7 +234,9 @@ noncomputable def gaussSumIntAtScale (c : kˣ) (a : ℕ) : 𝓞 R' :=
 
 /-- Scale-removal: changing the trace scale multiplies the Gauss sum by
 the multiplicative character value at the inverse scale, which is a
-unit in `𝓞 R'`.-/
+unit in `𝓞 R'`.
+@isnad1 id=eq.0h8v.s9.ca134001ce7a from=translated src=- shape=9efe0be8 vocab=2b1c2b90
+-/
 theorem gaussSumIntAtScale_eq_charUnit_mul_one
     (c : kˣ) (a : ℕ) :
     S.gaussSumIntAtScale c a =
@@ -289,7 +303,9 @@ variable {R' : Type w} [Field R'] [NumberField R'] [Algebra K R'] [IsScalarTower
 variable (S : TraceFormStickelbergerSetup ℓ p k K R')
 
 /-- For a `TraceFormStickelbergerSetup`, the integral Gauss sum agrees
-with `gaussSumIntAtScale` evaluated at the bundle's `traceScale`.-/
+with `gaussSumIntAtScale` evaluated at the bundle's `traceScale`.
+@isnad1 id=eq.0h7v.s8.33e00e3466f3 from=translated src=- shape=c7e7eb24 vocab=4f5796b6
+-/
 theorem gaussSumInt_eq_gaussSumIntAtScale_traceScale (a : ℕ) :
     S.gaussSumInt a =
       S.toConcreteStickelbergerSetup.gaussSumIntAtScale S.traceScale a := by

@@ -51,7 +51,9 @@ variable {R K}
 variable (A : PrincipalIdealPreservingEquiv R K)
 
 omit [IsDomain R] in
-/-- Principal fractional ideals are preserved as a subgroup.-/
+/-- Principal fractional ideals are preserved as a subgroup.
+@isnad1 id=eq.0h3v.s11.d3ddd90de006 from=translated src=- shape=995f2e58 vocab=117b6719
+-/
 theorem map_principalSubgroup :
     (toPrincipalIdeal R K).range.map A.idealEquiv =
       (toPrincipalIdeal R K).range := by
@@ -77,6 +79,9 @@ def classGroupEquiv : ClassGroup R ≃* ClassGroup R :=
       A.map_principalSubgroup).trans
       (ClassGroup.equiv (R := R) K).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.be11af11d459 from=translated src=- shape=828f90e1 vocab=fd7f47cc
+-/
 @[simp]
 theorem classGroupEquiv_mk (I : (FractionalIdeal R⁰ K)ˣ) :
     A.classGroupEquiv (ClassGroup.mk (R := R) (K := K) I) =
@@ -110,6 +115,9 @@ def classGroupPTorsionEquiv (p : ℕ) :
     apply Subtype.ext
     simp
 
+/--
+@isnad1 id=eq.0h5v.s10.da46bb3af022 from=translated src=- shape=d5e32876 vocab=5c039b20
+-/
 @[simp]
 theorem classGroupPTorsionEquiv_apply_coe (p : ℕ)
     (c : classGroupPTorsion (R := R) p) :
@@ -152,18 +160,27 @@ def singularPairEquiv (p : ℕ) : SingularPair R K p ≃* SingularPair R K p whe
     apply Prod.ext <;> simp [ideal, generator]
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s11.fb0d7531c72a from=translated src=- shape=2b12d383 vocab=3478a19e
+-/
 @[simp]
 theorem singularPairEquiv_ideal (p : ℕ) (s : SingularPair R K p) :
     ideal (A.singularPairEquiv p s) = A.idealEquiv (ideal s) :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s10.767fba390d55 from=translated src=- shape=ef083856 vocab=10aad796
+-/
 @[simp]
 theorem singularPairEquiv_generator (p : ℕ) (s : SingularPair R K p) :
     generator (A.singularPairEquiv p s) = A.unitEquiv (generator s) :=
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s11.43c1b7b2cb7c from=translated src=- shape=0a29951b vocab=c5cc7eca
+-/
 @[simp]
 theorem singularPairEquiv_principalPair (p : ℕ) (gamma : Kˣ) :
     A.singularPairEquiv p (principalPair (R := R) (K := K) p gamma) =
@@ -177,7 +194,9 @@ theorem singularPairEquiv_principalPair (p : ℕ) (gamma : Kˣ) :
     simp
 
 omit [IsDomain R] in
-/-- Principal pairs are preserved as a subgroup.-/
+/-- Principal pairs are preserved as a subgroup.
+@isnad1 id=eq.0h4v.s11.ed4e97e76be6 from=translated src=- shape=40634bc3 vocab=36c5295a
+-/
 theorem map_principalPairSubgroup (p : ℕ) :
     (principalPairSubgroup (R := R) (K := K) p).map (A.singularPairEquiv p) =
       principalPairSubgroup (R := R) (K := K) p := by
@@ -201,6 +220,9 @@ def singularGroupEquiv (p : ℕ) :
     (A.map_principalPairSubgroup p)
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s12.c4fa00f89d43 from=translated src=- shape=9b475bb4 vocab=5ffaab3f
+-/
 @[simp]
 theorem singularGroupEquiv_mk (p : ℕ) (s : SingularPair R K p) :
     A.singularGroupEquiv p
@@ -231,6 +253,9 @@ def fractionalUnitEquiv :
     simp
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h4v.s11.262dd18da747 from=translated src=- shape=16f439f5 vocab=76363503
+-/
 @[simp]
 theorem fractionalUnitEquiv_apply_coe
     (u : fractionalUnitSubgroup (R := R) (K := K)) :
@@ -238,6 +263,9 @@ theorem fractionalUnitEquiv_apply_coe
   rfl
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h5v.s12.013cc3ec9d13 from=translated src=- shape=ec020325 vocab=1b5ad252
+-/
 @[simp]
 theorem singularPairEquiv_unitPair (p : ℕ)
     (u : fractionalUnitSubgroup (R := R) (K := K)) :
@@ -250,14 +278,18 @@ theorem singularPairEquiv_unitPair (p : ℕ)
   · rfl
 
 omit [IsDomain R] in
-/-- The unit map into the singular quotient is equivariant.-/
+/-- The unit map into the singular quotient is equivariant.
+@isnad1 id=eq.0h5v.s13.da9e2538f517 from=translated src=- shape=ec020325 vocab=2c4db003
+-/
 theorem unitToSingularGroup_equivariant (p : ℕ)
     (u : fractionalUnitSubgroup (R := R) (K := K)) :
     A.singularGroupEquiv p (unitToSingularGroup (R := R) (K := K) p u) =
       unitToSingularGroup (R := R) (K := K) p (A.fractionalUnitEquiv u) := by
   simp [unitToSingularGroup]
 
-/-- The singular-pair map to `A[p]` is equivariant.-/
+/-- The singular-pair map to `A[p]` is equivariant.
+@isnad1 id=eq.0h5v.s12.0454c2a116fd from=translated src=- shape=81a3b99d vocab=7a7cf0fd
+-/
 theorem classMapToPTorsion_equivariant (p : ℕ) (s : SingularPair R K p) :
     A.classGroupPTorsionEquiv p
         (classMapToPTorsion (R := R) (K := K) p s) =
@@ -267,7 +299,9 @@ theorem classMapToPTorsion_equivariant (p : ℕ) (s : SingularPair R K p) :
     ClassGroup.mk (R := R) (K := K) (A.idealEquiv (ideal s))
   simp
 
-/-- The singular quotient map `S → A[p]` is equivariant.-/
+/-- The singular quotient map `S → A[p]` is equivariant.
+@isnad1 id=eq.0h5v.s12.a9837e927c45 from=translated src=- shape=81a3b99d vocab=ca7c955e
+-/
 theorem singularGroupClassMapToPTorsion_equivariant (p : ℕ)
     (x : SingularGroup (R := R) (K := K) p) :
     A.classGroupPTorsionEquiv p

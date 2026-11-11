@@ -37,19 +37,25 @@ def standardDigit (ℓ a i : ℕ) : ℕ :=
   (Nat.digits ℓ a).getD i 0
 
 /-- In a base at least two, every extended standard digit is less than the
-base.-/
+base.
+@isnad1 id=lt.1h3v.s4.21a49132ed82 from=translated src=- shape=2958f4d1 vocab=33e336b0
+-/
 theorem standardDigit_lt_base {ℓ a i : ℕ} (hℓ : 2 ≤ ℓ) :
     standardDigit ℓ a i < ℓ := by
   simp only [standardDigit]
   rw [Nat.getD_digits a i hℓ]
   exact Nat.mod_lt _ (lt_of_lt_of_le (by decide : 0 < 2) hℓ)
 
-/-- If `ℓ` is prime and `n < ℓ`, then `ℓ` does not divide `n!`.-/
+/-- If `ℓ` is prime and `n < ℓ`, then `ℓ` does not divide `n!`.
+@isnad1 id=not.1h2v.s4.9f7acf010daf from=translated src=- shape=4d8ab2c6 vocab=8cd76d9e
+-/
 theorem factorial_not_dvd_of_lt_prime {ℓ n : ℕ} [Fact (Nat.Prime ℓ)] (hn : n < ℓ) :
     ¬ ℓ ∣ Nat.factorial n := fun h =>
   Nat.not_lt.mpr ((Nat.Prime.dvd_factorial (Fact.out : Nat.Prime ℓ)).mp h) hn
 
-/-- A product of factorials of numbers `< ℓ` is prime to `ℓ`.-/
+/-- A product of factorials of numbers `< ℓ` is prime to `ℓ`.
+@isnad1 id=not.1h4v.s5.30c27a89471b from=translated src=- shape=9062f6e2 vocab=b7b640bd
+-/
 theorem prod_factorial_not_dvd_of_lt_prime {α : Type*}
     {s : Finset α} {ℓ : ℕ} [Fact (Nat.Prime ℓ)] {d : α → ℕ}
     (hd : ∀ i ∈ s, d i < ℓ) :
@@ -59,7 +65,9 @@ theorem prod_factorial_not_dvd_of_lt_prime {α : Type*}
 
 /-- The product of factorials of the standard base-`ℓ` digits is prime to
 `ℓ`. This is the unit-denominator fact used in the leading coefficient of
-the digit-sum Stickelberger congruence.-/
+the digit-sum Stickelberger congruence.
+@isnad1 id=not.0h3v.s4.77223e01a34c from=translated src=- shape=a6263b24 vocab=288f0222
+-/
 theorem standardDigit_factorial_prod_not_dvd {ℓ a f : ℕ} [Fact (Nat.Prime ℓ)] :
     ¬ ℓ ∣ ∏ i ∈ Finset.range f, Nat.factorial (standardDigit ℓ a i) := by
   refine prod_factorial_not_dvd_of_lt_prime ?_
@@ -68,7 +76,9 @@ theorem standardDigit_factorial_prod_not_dvd {ℓ a f : ℕ} [Fact (Nat.Prime �
 
 /-- Carry-free multinomial non-vanishing modulo `ℓ`: if the total degree is
 strictly less than the prime `ℓ`, then the multinomial coefficient is not
-divisible by `ℓ`.-/
+divisible by `ℓ`.
+@isnad1 id=not.1h4v.s5.f1df68b90f98 from=translated src=- shape=649f1666 vocab=0d9f31a0
+-/
 theorem multinomial_not_dvd_of_sum_lt {α : Type*}
     {s : Finset α} {ℓ : ℕ} [Fact (Nat.Prime ℓ)] {d : α → ℕ}
     (hsum : (∑ i ∈ s, d i) < ℓ) :
@@ -82,7 +92,9 @@ theorem multinomial_not_dvd_of_sum_lt {α : Type*}
 
 /-- Standard-digit version of `multinomial_not_dvd_of_sum_lt`. The extra
 hypothesis is exactly the carry-free condition for the ordinary sum of the
-digits.-/
+digits.
+@isnad1 id=not.1h3v.s5.ceac3216f424 from=translated src=- shape=4624a2d4 vocab=8d532ce7
+-/
 theorem multinomial_digits_not_dvd {ℓ a f : ℕ} [Fact (Nat.Prime ℓ)]
     (hsum : (∑ i ∈ Finset.range f, standardDigit ℓ a i) < ℓ) :
     ¬ ℓ ∣ Nat.multinomial (Finset.range f) (standardDigit ℓ a) :=

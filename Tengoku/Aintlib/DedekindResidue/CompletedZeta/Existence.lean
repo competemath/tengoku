@@ -36,7 +36,9 @@ open scoped nonZeroDivisors Real ENNReal NNReal
 variable (K : Type*) [Field K] [NumberField K]
 
 open scoped Classical in
-/-- The place Γ-product splits into real and complex contributions.-/
+/-- The place Γ-product splits into real and complex contributions.
+@isnad1 id=eq.0h2v.s7.ce8c788ed7fa from=translated src=- shape=3d641012 vocab=d597e95e
+-/
 theorem prod_place_gamma (σ : ℝ) :
     (∏ w : InfinitePlace K, π ^ (-((mult w : ℝ) * σ)) * Real.Gamma ((mult w : ℝ) * σ))
       = (π ^ (-σ) * Real.Gamma σ) ^ (nrRealPlaces K)
@@ -65,7 +67,9 @@ theorem prod_place_gamma (σ : ℝ) :
       norm_num]
 
 open scoped Classical in
-/-- `Γℝ` at a real argument is real.-/
+/-- `Γℝ` at a real argument is real.
+@isnad1 id=eq.0h1v.s6.4002226ea424 from=translated src=- shape=d808636e vocab=3569fe55
+-/
 theorem Gammaℝ_ofReal (s : ℝ) :
     Complex.Gammaℝ (s : ℂ) = ((π ^ (-(s/2)) * Real.Gamma (s / 2) : ℝ) : ℂ) := by
   rw [Complex.Gammaℝ_def]
@@ -74,7 +78,9 @@ theorem Gammaℝ_ofReal (s : ℝ) :
   rw [Complex.Gamma_ofReal, ← Complex.ofReal_cpow Real.pi_pos.le, ← Complex.ofReal_mul]
 
 open scoped Classical in
-/-- `Γℂ` at a real argument is real.-/
+/-- `Γℂ` at a real argument is real.
+@isnad1 id=eq.0h1v.s5.c55b6c9edf54 from=translated src=- shape=f1ba56d9 vocab=288c2ee3
+-/
 theorem Gammaℂ_ofReal (s : ℝ) :
     Complex.Gammaℂ (s : ℂ) = ((2 * (2 * π) ^ (-s) * Real.Gamma s : ℝ) : ℂ) := by
   rw [Complex.Gammaℂ_def]
@@ -90,6 +96,9 @@ open scoped Classical in
 noncomputable def heckeAdjust : ℝ :=
   ((heckeJacobian K : ℝ≥0) : ℝ) * ((2 : ℝ) ^ (nrComplexPlaces K))⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s4.ff5b73f7c982 from=translated src=- shape=31b077a1 vocab=87191582
+-/
 theorem heckeAdjust_pos : 0 < heckeAdjust K := by
   rw [heckeAdjust]
   have hJ : (0:ℝ) < ((heckeJacobian K : ℝ≥0) : ℝ) := by
@@ -98,7 +107,9 @@ theorem heckeAdjust_pos : 0 < heckeAdjust K := by
 
 open scoped Classical in
 /-- **The agreement on the real ray (e-vii)**: for real `s > 1`,
-`Λ(s/2) = heckeAdjust · (prefactor · ζ_K)(s)`.-/
+`Λ(s/2) = heckeAdjust · (prefactor · ζ_K)(s)`.
+@isnad1 id=eq.1h2v.s6.c3e3664c3a87 from=translated src=- shape=303abb95 vocab=1ac23cc2
+-/
 theorem Λ_half_eq_prefactor_mul_zeta {s : ℝ} (hs : 1 < s) :
     (heckeFEPair K).Λ (((s / 2 : ℝ)) : ℂ)
       = ((heckeAdjust K : ℝ) : ℂ)
@@ -169,6 +180,9 @@ noncomputable def completedDedekindZetaEntire (s : ℂ) : ℂ :=
         - 2 * (s - 1) * (heckeFEPair K).f₀ + 2 * s * (heckeFEPair K).g₀)
 
 open scoped Classical in
+/--
+@isnad1 id=differen.0h1v.s6.7ede21d265c4 from=translated src=- shape=34ad9530 vocab=e4d4d7b9
+-/
 theorem differentiable_completedDedekindZetaEntire :
     Differentiable ℂ (completedDedekindZetaEntire K) := by
   refine Differentiable.const_mul ?_ _
@@ -180,6 +194,9 @@ theorem differentiable_completedDedekindZetaEntire :
   · fun_prop
 
 open scoped Classical in
+/--
+@isnad1 id=eq.2h2v.s6.2739d2502e5d from=translated src=- shape=936c8ee8 vocab=135933cf
+-/
 theorem completedDedekindZetaEntire_eq {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1) :
     completedDedekindZetaEntire K s = s * (s - 1) * completedDedekindZeta K s := by
   rw [completedDedekindZetaEntire, completedDedekindZeta]
@@ -205,7 +222,9 @@ theorem completedDedekindZetaEntire_eq {s : ℂ} (hs0 : s ≠ 0) (hs1 : s ≠ 1)
   ring
 
 open scoped Classical in
-/-- Agreement on the real ray, in the form used for the identity theorem.-/
+/-- Agreement on the real ray, in the form used for the identity theorem.
+@isnad1 id=eq.1h2v.s5.65c101cea8eb from=translated src=- shape=574d5e1f vocab=dd24c4cd
+-/
 theorem completedDedekindZeta_real {x : ℝ} (hx : 1 < x) :
     completedDedekindZeta K (x : ℂ)
       = completedZetaPrefactor K (x : ℂ) * dedekindZeta K (x : ℂ) := by
@@ -219,7 +238,9 @@ theorem completedDedekindZeta_real {x : ℝ} (hx : 1 < x) :
 
 open scoped Classical in
 /-- The completed Dedekind zeta is analytic on the half-plane `Re s > 1`: there it is a
-scalar multiple of `Λ(s/2)` for the Hecke functional-equation pair, avoiding the poles.-/
+scalar multiple of `Λ(s/2)` for the Hecke functional-equation pair, avoiding the poles.
+@isnad1 id=analytic.0h1v.s5.e5b170b20d69 from=translated src=- shape=da717a67 vocab=1c0a150c
+-/
 theorem analyticOnNhd_completedDedekindZeta :
     AnalyticOnNhd ℂ (completedDedekindZeta K) {z : ℂ | 1 < z.re} := by
   have hUopen : IsOpen {z : ℂ | 1 < z.re} :=
@@ -249,7 +270,9 @@ theorem analyticOnNhd_completedDedekindZeta :
 open scoped Classical in
 /-- The right-hand side `completedZetaPrefactor · dedekindZeta` is analytic on `Re s > 1`,
 given differentiability of `dedekindZeta` there: the prefactor is a `const_cpow` times a
-product of Gamma factors, each differentiable off its poles on the half-plane.-/
+product of Gamma factors, each differentiable off its poles on the half-plane.
+@isnad1 id=analytic.1h1v.s7.3cfcc6afa5db from=translated src=- shape=e3ba2778 vocab=286a4408
+-/
 theorem analyticOnNhd_completedZetaPrefactor_mul_dedekindZeta
     (hζat : ∀ z : ℂ, z ∈ {z : ℂ | 1 < z.re} → DifferentiableAt ℂ (dedekindZeta K) z) :
     AnalyticOnNhd ℂ
@@ -303,7 +326,9 @@ theorem analyticOnNhd_completedZetaPrefactor_mul_dedekindZeta
 
 open scoped Classical in
 /-- Frequent agreement of the two sides in `𝓝[≠] 2`: along the real sequence
-`2 + 1/(n+1) → 2` (each term in `Re s > 1`), `completedDedekindZeta_real` gives equality.-/
+`2 + 1/(n+1) → 2` (each term in `Re s > 1`), `completedDedekindZeta_real` gives equality.
+@isnad1 id=frequent.0h1v.s6.81bfae37bd85 from=translated src=- shape=e8822cd1 vocab=540f10dd
+-/
 theorem frequently_completedDedekindZeta_eq :
     ∃ᶠ z in nhdsWithin (2:ℂ) {(2:ℂ)}ᶜ,
       completedDedekindZeta K z = completedZetaPrefactor K z * dedekindZeta K z := by
@@ -333,7 +358,9 @@ theorem frequently_completedDedekindZeta_eq :
 
 open scoped Classical in
 /-- **The agreement on the half-plane** `Re s > 1`, by the identity theorem from the real
-ray.-/
+ray.
+@isnad1 id=eq.1h2v.s5.25c4be20c71b from=translated src=- shape=42f9f1f9 vocab=5a92eb0a
+-/
 theorem completedDedekindZeta_eq_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     completedDedekindZeta K s = completedZetaPrefactor K s * dedekindZeta K s := by
   have hUconn : IsPreconnected {z : ℂ | 1 < z.re} :=
@@ -366,7 +393,9 @@ theorem completedDedekindZeta_eq_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
 
 open scoped Classical in
 /-- **Hecke's theorem — the completed Dedekind zeta function exists** (the inhabitation of
-the characterisation, making `GeneralizedRiemannHypothesis K` non-vacuous).-/
+the characterisation, making `GeneralizedRiemannHypothesis K` non-vacuous).
+@isnad1 id=ex.0h1v.s4.ee662aadd4c2 from=translated src=- shape=e7b48a55 vocab=01c1a7de
+-/
 theorem exists_isCompletedDedekindZeta :
     ∃ Λ : ℂ → ℂ, IsCompletedDedekindZeta K Λ :=
   ⟨completedDedekindZeta K,
@@ -376,7 +405,9 @@ theorem exists_isCompletedDedekindZeta :
 
 open scoped Classical in
 /-- The constructed function satisfies the characterisation (the existence witness,
-named).-/
+named).
+@isnad1 id=iscomple.0h1v.s4.2cf1b0fe72da from=translated src=- shape=4c9b52a8 vocab=f24f2c2a
+-/
 theorem isCompletedDedekindZeta_completedDedekindZeta :
     IsCompletedDedekindZeta K (completedDedekindZeta K) :=
   ⟨fun _s hs => completedDedekindZeta_eq_of_one_lt_re K hs,
@@ -387,7 +418,9 @@ open scoped Classical in
 /-- **GRH through the constructed completed zeta**: now that the characterisation is
 inhabited (`exists_isCompletedDedekindZeta`) and unique off the poles
 (`IsCompletedDedekindZeta.eqOn`), the abstract GRH quantification is equivalent to
-nonvanishing of the concrete function `completedDedekindZeta`.-/
+nonvanishing of the concrete function `completedDedekindZeta`.
+@isnad1 id=iff.0h1v.s6.433c0d3c6f80 from=translated src=- shape=2aff770f vocab=5703a8d5
+-/
 theorem generalizedRiemannHypothesis_iff :
     GeneralizedRiemannHypothesis K
       ↔ ∀ s : ℂ, 1/2 < s.re → s ≠ 1 → completedDedekindZeta K s ≠ 0 := by
@@ -403,13 +436,17 @@ theorem generalizedRiemannHypothesis_iff :
     rw [hΛ.eqOn (isCompletedDedekindZeta_completedDedekindZeta K) hs0 hs1]
     exact hconc s hs hs1
 
-/-- The Hecke pair is self-dual: `f = g`, `f₀ = g₀`, and `ε = 1` is its own inverse.-/
+/-- The Hecke pair is self-dual: `f = g`, `f₀ = g₀`, and `ε = 1` is its own inverse.
+@isnad1 id=eq.0h1v.s5.681923bc1b42 from=translated src=- shape=8309a0b6 vocab=21798762
+-/
 theorem heckeFEPair_symm : (heckeFEPair K).symm = heckeFEPair K := by
   unfold WeakFEPair.symm heckeFEPair
   simp only [inv_one]
 
 /-- **The functional equation** `Λ_K(1-s) = Λ_K(s)` for the completed Dedekind zeta
-function (AC-A0).-/
+function (AC-A0).
+@isnad1 id=eq.0h2v.s5.963ab4db9991 from=translated src=- shape=f3f645bf vocab=aef95a0d
+-/
 theorem completedDedekindZeta_one_sub (s : ℂ) :
     completedDedekindZeta K (1 - s) = completedDedekindZeta K s := by
   have hfe := (heckeFEPair K).functional_equation (s/2)

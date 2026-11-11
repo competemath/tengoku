@@ -42,7 +42,9 @@ namespace DedekindResidue
 open MeasureTheory Complex intervalIntegral Real Filter
 
 /-- Antiderivative for the damped sine: `d/dt [-e^{-yt}(cos t + y sin t)/(1+y²)]
-= e^{-yt} sin t`.-/
+= e^{-yt} sin t`.
+@isnad1 id=hasderiv.0h2v.s7.13d72cd41ce4 from=translated src=- shape=ccd2094f vocab=c09624cb
+-/
 theorem hasDerivAt_exp_sin_primitive (y x : ℝ) :
     HasDerivAt (fun t : ℝ =>
       -(Real.exp (-(y*t)) * (Real.cos t + y * Real.sin t)) / (1 + y^2))
@@ -64,7 +66,9 @@ theorem hasDerivAt_exp_sin_primitive (y x : ℝ) :
     ring
   rwa [hval] at hfull
 
-/-- Closed form of the damped sine integral.-/
+/-- Closed form of the damped sine integral.
+@isnad1 id=eq.0h2v.s7.3b1935af2330 from=translated src=- shape=a1888e10 vocab=83b318f6
+-/
 theorem integral_exp_neg_mul_sin (y b : ℝ) :
     ∫ x in (0:ℝ)..b, Real.exp (-(y*x)) * Real.sin x
       = (1 - Real.exp (-(y*b)) * (Real.cos b + y * Real.sin b)) / (1 + y^2) := by
@@ -80,7 +84,9 @@ theorem integral_exp_neg_mul_sin (y b : ℝ) :
     add_zero, mul_one]
   ring
 
-/-- The inner exponential integral: `∫_{y>0} e^{-xy} dy = 1/x` for `x > 0`.-/
+/-- The inner exponential integral: `∫_{y>0} e^{-xy} dy = 1/x` for `x > 0`.
+@isnad1 id=eq.1h1v.s6.5596ab3235be from=translated src=- shape=5b95c2c1 vocab=70fd039b
+-/
 theorem integral_exp_neg_mul_Ioi {x : ℝ} (hx : 0 < x) :
     ∫ y in Set.Ioi (0:ℝ), Real.exp (-(x*y)) = 1/x := by
   have hderiv : ∀ t ∈ Set.Ici (0:ℝ),
@@ -110,7 +116,9 @@ theorem integral_exp_neg_mul_Ioi {x : ℝ} (hx : 0 < x) :
   rw [zero_sub, neg_div, neg_neg, one_div]
 
 /-- **The Fubini step of the Dirichlet integral**: for `b > 0`,
-`∫₀^b sin x/x dx = ∫_{y>0} (1 − e^{-yb}(cos b + y sin b))/(1+y²) dy`.-/
+`∫₀^b sin x/x dx = ∫_{y>0} (1 − e^{-yb}(cos b + y sin b))/(1+y²) dy`.
+@isnad1 id=eq.1h1v.s7.4558aebba639 from=translated src=- shape=93ac3ea0 vocab=831a93e0
+-/
 theorem integral_sinc_eq {b : ℝ} (hb : 0 < b) :
     (∫ x in (0:ℝ)..b, Real.sin x / x)
       = ∫ y in Set.Ioi (0:ℝ),
@@ -181,7 +189,9 @@ theorem integral_sinc_eq {b : ℝ} (hb : 0 < b) :
         exact integral_exp_neg_mul_sin y b
 
 /-- **The Dirichlet integral** (SP2-FJ-c): `∫₀^∞ sin x/x dx = π/2`, as a limit of the
-truncated integrals. Fubini against `1/x = ∫ e^{-xy} dy` plus dominated convergence.-/
+truncated integrals. Fubini against `1/x = ∫ e^{-xy} dy` plus dominated convergence.
+@isnad1 id=tendsto.0h0v.s6.00b5464ed52f from=translated src=- shape=b8500423 vocab=aa4694dd
+-/
 theorem tendsto_integral_sinc_atTop :
     Filter.Tendsto (fun b : ℝ => ∫ x in (0:ℝ)..b, Real.sin x / x)
       atTop (nhds (π/2)) := by
@@ -317,7 +327,9 @@ theorem tendsto_integral_sinc_atTop :
     simpa using h1
 
 /-- The sinc function is interval integrable on every interval (it is measurable and
-bounded by `1`).-/
+bounded by `1`).
+@isnad1 id=interval.0h2v.s5.0182ed33688b from=translated src=- shape=1984104c vocab=18cbcdec
+-/
 theorem intervalIntegrable_sinc (a b : ℝ) :
     IntervalIntegrable (fun x : ℝ => Real.sin x / x) volume a b := by
   refine intervalIntegrable_iff.mpr ?_
@@ -339,7 +351,9 @@ theorem intervalIntegrable_sinc (a b : ℝ) :
 
 /-- The sinc primitive is uniformly bounded on `[0, ∞)`: continuity on compacts plus
 the limit `π/2` at infinity. This is the constant `C_sinc` of Poitou's Fourier–Jordan
-argument (p. 6-03).-/
+argument (p. 6-03).
+@isnad1 id=ex.0h0v.s6.bfe782ad9059 from=translated src=- shape=ef451607 vocab=52f03d5b
+-/
 theorem exists_bound_primitive_sinc :
     ∃ C : ℝ, 0 < C ∧ ∀ b : ℝ, 0 ≤ b → |∫ x in (0:ℝ)..b, Real.sin x / x| ≤ C := by
   set g : ℝ → ℝ := fun b => ∫ x in (0:ℝ)..b, Real.sin x / x with hg
@@ -372,7 +386,9 @@ theorem exists_bound_primitive_sinc :
 
 /-- **Uniform sinc-window bound `C_sinc`** (FJ-c tail corollary): a single constant
 bounds `|∫_A^B sin x/x dx|` over all nonnegative windows. Used to control the
-variation part of the Fourier–Jordan near-zero estimate.-/
+variation part of the Fourier–Jordan near-zero estimate.
+@isnad1 id=ex.0h0v.s6.ab8b4104a91f from=translated src=- shape=dc8eb032 vocab=52f03d5b
+-/
 theorem exists_bound_integral_sinc :
     ∃ C : ℝ, 0 < C ∧ ∀ A B : ℝ, 0 ≤ A → 0 ≤ B →
       |∫ x in A..B, Real.sin x / x| ≤ C := by
@@ -389,7 +405,9 @@ theorem exists_bound_integral_sinc :
     _ ≤ C₀ + C₀ := add_le_add (hC₀ B hB) (hC₀ A hA)
     _ = 2 * C₀ := by ring
 
-/-- **Sinc scaling**: `∫_v^δ sin(Tu)/u du = ∫_{Tv}^{Tδ} sin x/x dx` for `T > 0`.-/
+/-- **Sinc scaling**: `∫_v^δ sin(Tu)/u du = ∫_{Tv}^{Tδ} sin x/x dx` for `T > 0`.
+@isnad1 id=eq.1h3v.s6.de55b446825c from=translated src=- shape=4ace37a0 vocab=7e907312
+-/
 theorem integral_sin_mul_div_eq (T v δ : ℝ) (hT : 0 < T) :
     ∫ u in v..δ, Real.sin (T * u) / u = ∫ x in (T*v)..(T*δ), Real.sin x / x := by
   have h1 : (fun u : ℝ => Real.sin (T * u) / u)
@@ -406,7 +424,9 @@ theorem integral_sin_mul_div_eq (T v δ : ℝ) (hT : 0 < T) :
   rw [h2, smul_smul, mul_inv_cancel₀ hT.ne', one_smul]
 
 /-- The scaled sinc window is uniformly bounded: with `C_sinc` from
-`exists_bound_integral_sinc`, `|∫_v^δ sin(Tu)/u du| ≤ C` for all `0 ≤ v, δ` and `T > 0`.-/
+`exists_bound_integral_sinc`, `|∫_v^δ sin(Tu)/u du| ≤ C` for all `0 ≤ v, δ` and `T > 0`.
+@isnad1 id=ex.0h0v.s6.b1fe61fb1ce8 from=translated src=- shape=08f1c630 vocab=fc2f2a48
+-/
 theorem exists_bound_integral_sin_mul_div :
     ∃ C : ℝ, 0 < C ∧ ∀ T v δ : ℝ, 0 < T → 0 ≤ v → 0 ≤ δ →
       |∫ u in v..δ, Real.sin (T * u) / u| ≤ C := by
@@ -415,7 +435,9 @@ theorem exists_bound_integral_sin_mul_div :
   rw [integral_sin_mul_div_eq T v δ hT]
   exact hC (T*v) (T*δ) (by positivity) (by positivity)
 
-/-- **FJ-e, plateau limit**: `∫_0^δ sin(Tu)/u du → π/2` as `T → ∞`, for fixed `δ > 0`.-/
+/-- **FJ-e, plateau limit**: `∫_0^δ sin(Tu)/u du → π/2` as `T → ∞`, for fixed `δ > 0`.
+@isnad1 id=tendsto.1h1v.s6.ab1bf5213a61 from=translated src=- shape=07b6bb48 vocab=5a245f69
+-/
 theorem tendsto_integral_sin_mul_div_atTop {δ : ℝ} (hδ : 0 < δ) :
     Tendsto (fun T : ℝ => ∫ u in (0:ℝ)..δ, Real.sin (T * u) / u)
       atTop (nhds (π/2)) := by
@@ -429,7 +451,9 @@ theorem tendsto_integral_sin_mul_div_atTop {δ : ℝ} (hδ : 0 < δ) :
   exact tendsto_integral_sinc_atTop.comp hcomp
 
 /-- The symmetric complex-exponential window integral: for `u ≠ 0`,
-`∫_{-T}^{T} e^{itu} dt = 2 sin(Tu)/u`.-/
+`∫_{-T}^{T} e^{itu} dt = 2 sin(Tu)/u`.
+@isnad1 id=eq.1h2v.s6.46db80b95a0b from=translated src=- shape=66196351 vocab=e9fd365f
+-/
 theorem integral_cexp_window {u : ℝ} (hu : u ≠ 0) (T : ℝ) :
     ∫ t : ℝ in (-T)..T, Complex.exp ((t : ℂ) * (u : ℂ) * Complex.I)
       = ((2 * Real.sin (T * u) / u : ℝ) : ℂ) := by
@@ -453,7 +477,9 @@ theorem integral_cexp_window {u : ℝ} (hu : u ≠ 0) (T : ℝ) :
 
 /-- **FJ-b, kernel collapse** (Poitou p. 6-03): for integrable `H`, Fubini collapses the
 symmetric Fourier window onto the Dirichlet kernel:
-`∫_{-T}^{T} (∫ H(u) e^{itu} du) dt = ∫ H(u) · 2sin(Tu)/u du`.-/
+`∫_{-T}^{T} (∫ H(u) e^{itu} du) dt = ∫ H(u) · 2sin(Tu)/u du`.
+@isnad1 id=eq.2h2v.s7.4997633bf4d5 from=translated src=- shape=eda42a1f vocab=2220b77f
+-/
 theorem integral_fourier_window_collapse {H : ℝ → ℂ} (hH : Integrable H) {T : ℝ}
     (hT : 0 < T) :
     (∫ t : ℝ in (-T)..T, ∫ u : ℝ, H u * Complex.exp ((t : ℂ) * (u : ℂ) * Complex.I))
@@ -498,7 +524,9 @@ theorem integral_fourier_window_collapse {H : ℝ → ℂ} (hH : Integrable H) {
   exact integral_cexp_window hu T
 
 /-- Riemann–Lebesgue for the kernel `e^{-iuT}`: for (any) `G`,
-`∫ G(u) e^{-iuT} du → 0` as `T → ∞`.-/
+`∫ G(u) e^{-iuT} du → 0` as `T → ∞`.
+@isnad1 id=tendsto.0h1v.s6.a6a0451a4f08 from=translated src=- shape=1a46dc09 vocab=3d112a7d
+-/
 theorem tendsto_integral_mul_cexp_neg_atTop (G : ℝ → ℂ) :
     Tendsto (fun T : ℝ => ∫ u : ℝ, G u * Complex.exp (-((u:ℂ) * (T:ℂ)) * Complex.I))
       atTop (nhds 0) := by
@@ -522,7 +550,9 @@ theorem tendsto_integral_mul_cexp_neg_atTop (G : ℝ → ℂ) :
   exact mul_comm _ _
 
 /-- Riemann–Lebesgue for the kernel `e^{+iuT}`: the sign-reflected companion of
-`tendsto_integral_mul_cexp_neg_atTop`, via the change of variables `u ↦ -u`.-/
+`tendsto_integral_mul_cexp_neg_atTop`, via the change of variables `u ↦ -u`.
+@isnad1 id=tendsto.0h1v.s6.8c7011fd5822 from=translated src=- shape=2220b0ab vocab=deba5dc8
+-/
 theorem tendsto_integral_mul_cexp_pos_atTop (G : ℝ → ℂ) :
     Tendsto (fun T : ℝ => ∫ u : ℝ, G u * Complex.exp ((u:ℂ) * (T:ℂ) * Complex.I))
       atTop (nhds 0) := by
@@ -536,7 +566,9 @@ theorem tendsto_integral_mul_cexp_pos_atTop (G : ℝ → ℂ) :
 
 /-- **FJ-d, Riemann–Lebesgue with the sine kernel**: for integrable `G`,
 `∫ G(u)·sin(Tu) du → 0` as `T → ∞`. Applied away from `u = 0` (to `G = H(u)/u` on
-`|u| ≥ δ`) in the Fourier–Jordan argument.-/
+`|u| ≥ δ`) in the Fourier–Jordan argument.
+@isnad1 id=tendsto.1h1v.s6.8ffcd40b97c3 from=translated src=- shape=9bc3af4a vocab=ed1c3fce
+-/
 theorem tendsto_integral_mul_sin_atTop {G : ℝ → ℂ} (hG : Integrable G) :
     Tendsto (fun T : ℝ => ∫ u : ℝ, G u * ((Real.sin (T * u) : ℝ) : ℂ))
       atTop (nhds 0) := by
@@ -589,7 +621,9 @@ whose windows `∫_v^δ K` are uniformly bounded by `C`, the right-continuous mo
 Proof: `ḡ(u) - ḡ(0) = μ((0,u])` for the Lebesgue–Stieltjes measure `μ` of `g`; Fubini on
 the triangle `{0 < v ≤ u ≤ δ}` turns the left side into `∫_{(0,δ]} (∫_v^δ K) dμ(v)`,
 bounded by `C·μ((0,δ])`. This is the engine of Jordan's near-zero variation estimate
-(Poitou p. 6-03).-/
+(Poitou p. 6-03).
+@isnad1 id=le.5h4v.s7.eefa4ee4f0ab from=translated src=- shape=398b0141 vocab=08e70e88
+-/
 theorem abs_integral_stieltjes_kernel_le {g K : ℝ → ℝ} (hg : Monotone g) {δ C : ℝ}
     (hδ : 0 < δ) (hKmeas : Measurable K)
     (hK : IntervalIntegrable K volume 0 δ)
@@ -729,7 +763,9 @@ theorem abs_integral_stieltjes_kernel_le {g K : ℝ → ℝ} (hg : Monotone g) {
     _ = C * (Function.rightLim g δ - Function.rightLim g 0) := by rw [hmass']
 
 /-- Transfer of the Stieltjes kernel bound from the right-continuous modification to `g`
-itself: monotone functions agree with `rightLim g` off a countable (hence null) set.-/
+itself: monotone functions agree with `rightLim g` off a countable (hence null) set.
+@isnad1 id=le.5h4v.s7.6939d4af1951 from=translated src=- shape=30279c28 vocab=08e70e88
+-/
 theorem abs_integral_monotone_kernel_le {g K : ℝ → ℝ} (hg : Monotone g) {δ C : ℝ}
     (hδ : 0 < δ) (hKmeas : Measurable K)
     (hK : IntervalIntegrable K volume 0 δ)
@@ -756,7 +792,9 @@ theorem abs_integral_monotone_kernel_le {g K : ℝ → ℝ} (hg : Monotone g) {�
   exact abs_integral_stieltjes_kernel_le hg hδ hKmeas hK hwin
 
 /-- Pointwise bound for a monotone function on a window: `|p u - c| ≤ max |p a - c| |p b - c|`
-for `u ∈ [a, b]`.-/
+for `u ∈ [a, b]`.
+@isnad1 id=le.2h5v.s6.b6d97a4a0469 from=translated src=- shape=33b6f376 vocab=449f9b74
+-/
 theorem abs_monotone_sub_le {p : ℝ → ℝ} (hp : Monotone p) {a b u c : ℝ}
     (hu : u ∈ Set.Icc a b) : |p u - c| ≤ max (|p a - c|) (|p b - c|) := by
   rcases le_or_gt c (p u) with h | h
@@ -775,7 +813,9 @@ theorem abs_monotone_sub_le {p : ℝ → ℝ} (hp : Monotone p) {a b u c : ℝ}
           exact le_abs_self _
 
 /-- The product of a monotone-difference factor and an interval-integrable kernel is
-interval integrable.-/
+interval integrable.
+@isnad1 id=interval.3h4v.s6.ab27039c2d49 from=translated src=- shape=7ee545c3 vocab=76051033
+-/
 theorem intervalIntegrable_monotone_sub_mul {p K : ℝ → ℝ} (hp : Monotone p) {δ c : ℝ}
     (hδ : 0 < δ) (hK : IntervalIntegrable K volume 0 δ) :
     IntervalIntegrable (fun u => (p u - c) * K u) volume 0 δ := by
@@ -790,7 +830,9 @@ theorem intervalIntegrable_monotone_sub_mul {p K : ℝ → ℝ} (hp : Monotone p
 /-- **FJ-f, difference-of-monotone form**: the near-zero kernel bound for a function of
 bounded variation presented as a difference `p - q` of monotone functions, right limits
 taken at `0`. The bound is `C` times the sum of the two monotone increments — the
-variation bound of Jordan's argument (Poitou p. 6-03).-/
+variation bound of Jordan's argument (Poitou p. 6-03).
+@isnad1 id=le.6h5v.s8.66ce64f2c8ac from=translated src=- shape=4f184f4c vocab=6869f123
+-/
 theorem abs_integral_monotone_sub_kernel_le {p q K : ℝ → ℝ}
     (hp : Monotone p) (hq : Monotone q) {δ C : ℝ}
     (hδ : 0 < δ) (hKmeas : Measurable K)
@@ -822,7 +864,9 @@ theorem abs_integral_monotone_sub_kernel_le {p q K : ℝ → ℝ}
         + (Function.rightLim q δ - Function.rightLim q 0)) := by ring
 
 /-- **FJ-g3**: the right increment of the right-continuous modification of a monotone
-function vanishes as the window shrinks: `rightLim g δ - rightLim g 0 → 0` as `δ → 0+`.-/
+function vanishes as the window shrinks: `rightLim g δ - rightLim g 0 → 0` as `δ → 0+`.
+@isnad1 id=tendsto.1h1v.s6.24ba5bd122c6 from=translated src=- shape=96f37023 vocab=b060c1fe
+-/
 theorem tendsto_rightLim_sub_rightLim {g : ℝ → ℝ} (hg : Monotone g) :
     Tendsto (fun δ : ℝ => Function.rightLim g δ - Function.rightLim g 0)
       (nhdsWithin 0 (Set.Ioi 0)) (nhds 0) := by
@@ -842,12 +886,16 @@ theorem tendsto_rightLim_sub_rightLim {g : ℝ → ℝ} (hg : Monotone g) :
   have := h1.sub_const (Function.rightLim g 0)
   simpa using this
 
-/-- The scaled Dirichlet kernel `u ↦ 2·sin(Tu)/u` is measurable.-/
+/-- The scaled Dirichlet kernel `u ↦ 2·sin(Tu)/u` is measurable.
+@isnad1 id=measurab.0h1v.s5.8d84b85a2830 from=translated src=- shape=2d8730f1 vocab=d7bcdf31
+-/
 theorem measurable_dirichlet_kernel (T : ℝ) :
     Measurable (fun u : ℝ => 2 * Real.sin (T * u) / u) := by
   fun_prop
 
-/-- The scaled Dirichlet kernel is bounded by `2|T|` (since `|sin x| ≤ |x|`).-/
+/-- The scaled Dirichlet kernel is bounded by `2|T|` (since `|sin x| ≤ |x|`).
+@isnad1 id=le.0h2v.s6.50727969843c from=translated src=- shape=51af6b82 vocab=d771ed5a
+-/
 theorem abs_dirichlet_kernel_le (T u : ℝ) :
     |2 * Real.sin (T * u) / u| ≤ 2 * |T| := by
   rcases eq_or_ne u 0 with hu | hu
@@ -858,7 +906,9 @@ theorem abs_dirichlet_kernel_le (T u : ℝ) :
     calc 2 * |Real.sin (T * u)| ≤ 2 * |T * u| := by linarith
       _ = 2 * |T| * |u| := by rw [abs_mul]; ring
 
-/-- The scaled Dirichlet kernel is interval integrable on `[0, δ]`.-/
+/-- The scaled Dirichlet kernel is interval integrable on `[0, δ]`.
+@isnad1 id=interval.0h2v.s5.07fea4ac456c from=translated src=- shape=6651223b vocab=bf1768b9
+-/
 theorem intervalIntegrable_dirichlet_kernel (T δ : ℝ) :
     IntervalIntegrable (fun u : ℝ => 2 * Real.sin (T * u) / u) volume 0 δ := by
   refine intervalIntegrable_iff.mpr ?_
@@ -873,7 +923,9 @@ theorem intervalIntegrable_dirichlet_kernel (T δ : ℝ) :
   exact abs_dirichlet_kernel_le T u
 
 /-- Windows of the scaled Dirichlet kernel are uniformly bounded (twice the sinc-window
-constant), independently of `T > 0` and of the window `[v, δ] ⊆ [0, ∞)`.-/
+constant), independently of `T > 0` and of the window `[v, δ] ⊆ [0, ∞)`.
+@isnad1 id=ex.0h0v.s6.c37951b30762 from=translated src=- shape=51d86454 vocab=7cc38fba
+-/
 theorem exists_bound_dirichlet_window :
     ∃ C : ℝ, 0 < C ∧ ∀ T v δ : ℝ, 0 < T → 0 ≤ v → 0 ≤ δ →
       |∫ u in v..δ, 2 * Real.sin (T * u) / u| ≤ C := by
@@ -891,7 +943,9 @@ theorem exists_bound_dirichlet_window :
 /-- **FJ-g2, near-zero remainder bound**: for `H` with monotone-decomposed real and
 imaginary parts and `Hp` the right-limit value at `0`, the remainder integral against the
 Dirichlet kernel is bounded by the window constant times the four monotone increments —
-uniformly in `T`.-/
+uniformly in `T`.
+@isnad1 id=le.11h9v.s9.88217e6568c3 from=translated src=- shape=f42efbe1 vocab=dd9149cc
+-/
 theorem norm_integral_sub_rightLim_kernel_le
     {p q r s : ℝ → ℝ} (hp : Monotone p) (hq : Monotone q)
     (hr : Monotone r) (hs : Monotone s) {H : ℝ → ℂ}
@@ -958,7 +1012,9 @@ theorem norm_integral_sub_rightLim_kernel_le
           (abs_integral_monotone_sub_kernel_le hr hs hδ
             (measurable_dirichlet_kernel T) (intervalIntegrable_dirichlet_kernel T δ) hwin)
 
-/-- The Dirichlet kernel is even.-/
+/-- The Dirichlet kernel is even.
+@isnad1 id=eq.0h2v.s6.2e0eacccd88d from=translated src=- shape=b3107d29 vocab=53622953
+-/
 theorem dirichlet_kernel_neg (T u : ℝ) :
     2 * Real.sin (T * -u) / -u = 2 * Real.sin (T * u) / u := by
   rw [mul_neg, Real.sin_neg]
@@ -967,7 +1023,9 @@ theorem dirichlet_kernel_neg (T u : ℝ) :
   · rw [mul_neg, neg_div_neg_eq]
 
 /-- Multiplying an integrable function by the Dirichlet kernel keeps it interval
-integrable on the window.-/
+integrable on the window.
+@isnad1 id=interval.2h3v.s7.7b73c3598f6a from=translated src=- shape=89b2cfd5 vocab=b03b9ea1
+-/
 theorem intervalIntegrable_mul_dirichlet {H : ℝ → ℂ} {δ : ℝ} (hδ : 0 < δ) (T : ℝ)
     (hHint : IntegrableOn H (Set.Ioc 0 δ)) :
     IntervalIntegrable (fun u => H u * ((2 * Real.sin (T * u) / u : ℝ) : ℂ))
@@ -981,7 +1039,9 @@ theorem intervalIntegrable_mul_dirichlet {H : ℝ → ℂ} {δ : ℝ} (hδ : 0 <
     exact abs_dirichlet_kernel_le T u
 
 /-- **FJ-g1, window split**: the full-line Dirichlet-kernel integral decomposes into a
-far part (`|u| > δ`, plus the null point `0`) and two reflected near windows.-/
+far part (`|u| > δ`, plus the null point `0`) and two reflected near windows.
+@isnad1 id=eq.2h3v.s8.ce8d4722d660 from=translated src=- shape=4f768e31 vocab=9a7052df
+-/
 theorem integral_dirichlet_split {H : ℝ → ℂ} (hH : Integrable H) {δ : ℝ}
     (hδ : 0 < δ) (T : ℝ) :
     ∫ u : ℝ, H u * ((2 * Real.sin (T * u) / u : ℝ) : ℂ)
@@ -1039,7 +1099,9 @@ theorem integral_dirichlet_split {H : ℝ → ℂ} (hH : Integrable H) {δ : ℝ
   abel
 
 /-- **FJ-g far limit**: for fixed `δ > 0` the far part of the Dirichlet-kernel integral
-vanishes as `T → ∞` (Riemann–Lebesgue applied to `H(u)·2/u` off `(-δ, δ)`).-/
+vanishes as `T → ∞` (Riemann–Lebesgue applied to `H(u)·2/u` off `(-δ, δ)`).
+@isnad1 id=tendsto.2h2v.s7.865b79141c54 from=translated src=- shape=cecd008a vocab=74531688
+-/
 theorem tendsto_integral_dirichlet_far {H : ℝ → ℂ} (hH : Integrable H) {δ : ℝ}
     (hδ : 0 < δ) :
     Tendsto (fun T : ℝ => ∫ u in (Set.Ioc 0 δ ∪ Set.Ico (-δ) 0)ᶜ,
@@ -1103,7 +1165,9 @@ theorem tendsto_integral_dirichlet_far {H : ℝ → ℂ} (hH : Integrable H) {δ
     ring
   · rw [Set.indicator_of_notMem hmem, Set.indicator_of_notMem hmem, zero_mul]
 
-/-- **FJ-g plateau limit**: `∫_0^δ 2·sin(Tu)/u du → π` as `T → ∞`.-/
+/-- **FJ-g plateau limit**: `∫_0^δ 2·sin(Tu)/u du → π` as `T → ∞`.
+@isnad1 id=tendsto.1h1v.s6.edb5c9c6fdad from=translated src=- shape=b61a883b vocab=1242ea9e
+-/
 theorem tendsto_integral_dirichlet_plateau {δ : ℝ} (hδ : 0 < δ) :
     Tendsto (fun T : ℝ => ∫ u in (0:ℝ)..δ, ((2 * Real.sin (T * u) / u : ℝ) : ℂ))
       atTop (nhds ((π : ℝ) : ℂ)) := by
@@ -1129,7 +1193,9 @@ one-sided limits `Hp` (from the right) and `Hm` (from the left) at `0`,
 
 The proof splits the line at `±δ`: the far part vanishes by Riemann–Lebesgue, the plateau
 contributes `π·(Hp + Hm)`, and the near-zero remainders are bounded — uniformly in `T` —
-by the Stieltjes window constant times the monotone increments, which vanish as `δ → 0+`.-/
+by the Stieltjes window constant times the monotone increments, which vanish as `δ → 0+`.
+@isnad1 id=tendsto.5h3v.s8.838cd405c0d4 from=translated src=- shape=8d3bd484 vocab=b15a7e3e
+-/
 theorem tendsto_integral_dirichlet_jordan {H : ℝ → ℂ} (hH : Integrable H)
     (hre : LocallyBoundedVariationOn (fun u => (H u).re) Set.univ)
     (him : LocallyBoundedVariationOn (fun u => (H u).im) Set.univ)
@@ -1399,7 +1465,9 @@ integrable `H` of bounded variation with one-sided limits `Hp`, `Hm` at `0`,
 `∫_{-T}^{T} (∫_ℝ H(u) e^{itu} du) dt  →  π(Hp + Hm)`  as `T → ∞`.
 
 With the jump-mean normalisation `H(0) = (Hp + Hm)/2` the right side is `2π·H(0)` —
-Poitou's form of the réciprocité de Fourier "sous la forme de Jordan".-/
+Poitou's form of the réciprocité de Fourier "sous la forme de Jordan".
+@isnad1 id=tendsto.5h3v.s8.8b477d80c93e from=translated src=- shape=a078991a vocab=2903bafd
+-/
 theorem tendsto_fourier_window_jordan {H : ℝ → ℂ} (hH : Integrable H)
     (hre : LocallyBoundedVariationOn (fun u => (H u).re) Set.univ)
     (him : LocallyBoundedVariationOn (fun u => (H u).im) Set.univ)
@@ -1422,7 +1490,9 @@ on Poitou's `H`, the prime-side edge integral converges:
 
 (For the concrete admissible test functions `H` is continuous at `0` with
 `H(0) = ∑ log(N𝔭)/N𝔭^{m/2}·F(m log N𝔭)`, recovering Poitou's `−2∑…` after the
-sign bookkeeping of the surrounding contour.)-/
+sign bookkeeping of the surrounding contour.)
+@isnad1 id=tendsto.7h5v.s9.e9107e49bf1a from=translated src=- shape=6e87cdeb vocab=5402f7f4
+-/
 theorem tendsto_prime_side (K : Type*) [Field K] [NumberField K]
     {a : ℝ} (ha : 0 < a) {F : ℝ → ℂ}
     (hFeven : ∀ x : ℝ, F (-x) = F x)

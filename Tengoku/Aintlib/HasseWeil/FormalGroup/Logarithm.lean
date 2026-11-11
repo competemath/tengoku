@@ -61,20 +61,26 @@ noncomputable def FormalGroup.log (F : FormalGroup R) [Module ℚ R] :
       PowerSeries.coeff (n - 1) F.normalizedDifferential.toSeries
 
 /-- The coefficient formula for `log F` at degree `n + 1`:
-`coeff (n + 1) (log F) = (1/(n+1)) • coeff n ω_F`.-/
+`coeff (n + 1) (log F) = (1/(n+1)) • coeff n ω_F`.
+@isnad1 id=eq.0h3v.s8.a4ad53e914f5 from=translated src=- shape=7d1ce78b vocab=15be6435
+-/
 theorem FormalGroup.log_coeff_succ (F : FormalGroup R) [Module ℚ R] (n : ℕ) :
     PowerSeries.coeff (n + 1) F.log =
       ((n + 1 : ℚ)⁻¹) •
         PowerSeries.coeff n F.normalizedDifferential.toSeries := by
   simp [FormalGroup.log, PowerSeries.coeff_mk]
 
-/-- The constant coefficient of `log F` is zero.-/
+/-- The constant coefficient of `log F` is zero.
+@isnad1 id=eq.0h2v.s7.a6b9331e7ed4 from=translated src=- shape=eda1d847 vocab=54b167a2
+-/
 @[simp]
 theorem FormalGroup.log_coeff_zero (F : FormalGroup R) [Module ℚ R] :
     PowerSeries.coeff 0 F.log = 0 := by
   simp [FormalGroup.log, PowerSeries.coeff_mk]
 
-/-- `constantCoeff (log F) = 0`.-/
+/-- `constantCoeff (log F) = 0`.
+@isnad1 id=eq.0h2v.s6.809a19030d48 from=translated src=- shape=4ef6af1d vocab=484e0d8c
+-/
 @[simp]
 theorem FormalGroup.log_constantCoeff (F : FormalGroup R) [Module ℚ R] :
     @PowerSeries.constantCoeff R _ F.log = 0 := by
@@ -82,7 +88,9 @@ theorem FormalGroup.log_constantCoeff (F : FormalGroup R) [Module ℚ R] :
   exact F.log_coeff_zero
 
 /-- The linear coefficient of `log F` is `1`, reflecting that
-`log_F(T) = T + O(T²)`.-/
+`log_F(T) = T + O(T²)`.
+@isnad1 id=eq.0h2v.s7.f5dbea8949c6 from=translated src=- shape=eda1d847 vocab=54b167a2
+-/
 @[simp]
 theorem FormalGroup.log_coeff_one (F : FormalGroup R) [Module ℚ R] :
     PowerSeries.coeff 1 F.log = 1 := by
@@ -144,23 +152,31 @@ Reference: Silverman, *The Arithmetic of Elliptic Curves*, IV.2, IV.5.-/
 noncomputable def compInverse (f : PowerSeries R) : PowerSeries R :=
   PowerSeries.mk (compInvCoeff f)
 
-/-- `compInvTrunc f 0 = 0`.-/
+/-- `compInvTrunc f 0 = 0`.
+@isnad1 id=eq.0h2v.s5.229ec0540e66 from=translated src=- shape=cee84e30 vocab=da5f245f
+-/
 @[simp]
 theorem compInvTrunc_zero (f : PowerSeries R) : compInvTrunc f 0 = 0 :=
   rfl
 
-/-- `compInvCoeff f 0 = 0`.-/
+/-- `compInvCoeff f 0 = 0`.
+@isnad1 id=eq.0h2v.s5.89b142002cf0 from=translated src=- shape=b999d37c vocab=4bd9dc02
+-/
 @[simp]
 theorem compInvCoeff_zero (f : PowerSeries R) : compInvCoeff f 0 = 0 := by
   simp [compInvCoeff]
 
-/-- The zeroth coefficient of `compInverse f` is zero.-/
+/-- The zeroth coefficient of `compInverse f` is zero.
+@isnad1 id=eq.0h2v.s7.1c042de38a2b from=translated src=- shape=6360d35b vocab=2b5e5914
+-/
 @[simp]
 theorem compInverse_coeff_zero (f : PowerSeries R) :
     PowerSeries.coeff 0 (compInverse f) = 0 := by
   simp [compInverse]
 
-/-- `constantCoeff (compInverse f) = 0`.-/
+/-- `constantCoeff (compInverse f) = 0`.
+@isnad1 id=eq.0h2v.s6.8ac6b7f966bb from=translated src=- shape=cf7f1d42 vocab=bd9c58eb
+-/
 @[simp]
 theorem compInverse_constantCoeff (f : PowerSeries R) :
     @PowerSeries.constantCoeff R _ (compInverse f) = 0 := by
@@ -190,7 +206,9 @@ private theorem coeff_one_subst_zero (f : PowerSeries R) :
 /-- The linear coefficient of `compInverse f` is always `1`, regardless of `f`.
 This is true unconditionally because the iterative construction in
 `compInvTrunc` chooses `c = 1` at the first step, ensuring the linear
-coefficient is fixed at `1`.-/
+coefficient is fixed at `1`.
+@isnad1 id=eq.0h2v.s7.708f11a949af from=translated src=- shape=6360d35b vocab=2b5e5914
+-/
 @[simp]
 theorem compInverse_coeff_one (f : PowerSeries R) :
     PowerSeries.coeff 1 (compInverse f) = 1 := by
@@ -241,7 +259,9 @@ variable {R : Type*} [CommRing R]
 
 open PowerSeries in
 /-- `compInvTrunc f (n+1)` differs from `compInvTrunc f n` only by a
-monomial of degree `n+1`; in particular its lower coefficients coincide.-/
+monomial of degree `n+1`; in particular its lower coefficients coincide.
+@isnad1 id=eq.1h4v.s8.1759bb6f8b80 from=translated src=- shape=f8148ae0 vocab=dabed868
+-/
 theorem coeff_compInvTrunc_succ_of_le (f : PowerSeries R) (n k : ℕ) (hk : k ≤ n) :
     PowerSeries.coeff k (compInvTrunc f (n + 1)) =
       PowerSeries.coeff k (compInvTrunc f n) := by
@@ -255,7 +275,9 @@ theorem coeff_compInvTrunc_succ_of_le (f : PowerSeries R) (n k : ℕ) (hk : k �
 
 open PowerSeries in
 /-- For `k ≤ n`, the `k`-th coefficient of `compInvTrunc f n` equals the
-stable coefficient `compInvCoeff f k`.-/
+stable coefficient `compInvCoeff f k`.
+@isnad1 id=eq.1h4v.s7.7c53d708e451 from=translated src=- shape=da506a0f vocab=de3620a3
+-/
 theorem coeff_compInvTrunc_of_le (f : PowerSeries R) (n k : ℕ) (hk : k ≤ n) :
     PowerSeries.coeff k (compInvTrunc f n) = compInvCoeff f k := by
   induction n with
@@ -274,7 +296,9 @@ theorem coeff_compInvTrunc_of_le (f : PowerSeries R) (n k : ℕ) (hk : k ≤ n) 
       rfl
 
 open PowerSeries in
-/-- `compInvTrunc f n` has zero constant coefficient.-/
+/-- `compInvTrunc f n` has zero constant coefficient.
+@isnad1 id=eq.0h3v.s6.c92ead2235a1 from=translated src=- shape=a56229b5 vocab=3f415b06
+-/
 theorem compInvTrunc_constantCoeff (f : PowerSeries R) (n : ℕ) :
     @PowerSeries.constantCoeff R _ (compInvTrunc f n) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
@@ -282,20 +306,26 @@ theorem compInvTrunc_constantCoeff (f : PowerSeries R) (n : ℕ) :
   simp
 
 open PowerSeries in
-/-- `compInvTrunc f n` admits substitution (zero constant coefficient).-/
+/-- `compInvTrunc f n` admits substitution (zero constant coefficient).
+@isnad1 id=hassubst.0h3v.s4.8ddb31b1a4d1 from=translated src=- shape=22a400fe vocab=ede1114b
+-/
 theorem compInvTrunc_hasSubst (f : PowerSeries R) (n : ℕ) :
     PowerSeries.HasSubst (compInvTrunc f n) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (compInvTrunc_constantCoeff f n)
 
 open PowerSeries in
-/-- `compInverse f` admits substitution.-/
+/-- `compInverse f` admits substitution.
+@isnad1 id=hassubst.0h2v.s4.edd5f91e5435 from=translated src=- shape=06ca3aa5 vocab=8d40ff02
+-/
 theorem compInverse_hasSubst (f : PowerSeries R) :
     PowerSeries.HasSubst (compInverse f) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (compInverse_constantCoeff f)
 
 open PowerSeries in
 /-- If `g₁` and `g₂` agree up to degree `n`, then so do their powers: for each
-`d`, the coefficients `coeff k (g₁^d) = coeff k (g₂^d)` for every `k ≤ n`.-/
+`d`, the coefficients `coeff k (g₁^d) = coeff k (g₂^d)` for every `k ≤ n`.
+@isnad1 id=eq.2h6v.s9.01175270cdae from=translated src=- shape=1e2bf744 vocab=604b431d
+-/
 theorem coeff_pow_eq_of_coeff_eq (g₁ g₂ : PowerSeries R)
     (n : ℕ) (hg : ∀ j ≤ n, PowerSeries.coeff j g₁ = PowerSeries.coeff j g₂)
     (d : ℕ) :
@@ -317,7 +347,9 @@ theorem coeff_pow_eq_of_coeff_eq (g₁ g₂ : PowerSeries R)
 open PowerSeries in
 /-- Substitution stabilisation: if `g₁` and `g₂` have zero constant coefficients
 and agree up to degree `n`, then `coeff k (subst g₁ f) = coeff k (subst g₂ f)`
-for every `k ≤ n`.-/
+for every `k ≤ n`.
+@isnad1 id=eq.4h6v.s9.b8c4af76a3ff from=translated src=- shape=8f33cdf5 vocab=5dcad2b4
+-/
 theorem coeff_subst_eq_of_coeff_eq (f g₁ g₂ : PowerSeries R)
     (h1 : @PowerSeries.constantCoeff R _ g₁ = 0)
     (h2 : @PowerSeries.constantCoeff R _ g₂ = 0)
@@ -354,7 +386,9 @@ a series `g` with zero constant coefficient, the coefficient of `X^(n+1)` in
 
 open PowerSeries in
 /-- If `g` has zero constant coefficient, then `coeff k (g^d)` for `d > k`
-vanishes.-/
+vanishes.
+@isnad1 id=eq.2h4v.s8.7bfd5f485299 from=translated src=- shape=587c57fb vocab=e2427a50
+-/
 theorem coeff_pow_eq_zero_of_gt (g : PowerSeries R)
     (hg : @PowerSeries.constantCoeff R _ g = 0) (k d : ℕ) (hdk : k < d) :
     PowerSeries.coeff k (g ^ d) = 0 := by
@@ -366,14 +400,18 @@ theorem coeff_pow_eq_zero_of_gt (g : PowerSeries R)
 /-! ### Monomial auxiliary lemmas -/
 
 open PowerSeries in
-/-- `C c * X^(n+1)` has zero constant coefficient.-/
+/-- `C c * X^(n+1)` has zero constant coefficient.
+@isnad1 id=eq.0h3v.s7.0bed590132be from=translated src=- shape=23edc1b2 vocab=a034c21d
+-/
 theorem monomial_constantCoeff_zero (n : ℕ) (c : R) :
     @PowerSeries.constantCoeff R _ (PowerSeries.C c * PowerSeries.X ^ (n + 1)) = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, PowerSeries.coeff_C_mul_X_pow]
   simp
 
 open PowerSeries in
-/-- The `j`-th power of a monomial: `(C c * X^(n+1))^j = C (c^j) * X^(j*(n+1))`.-/
+/-- The `j`-th power of a monomial: `(C c * X^(n+1))^j = C (c^j) * X^(j*(n+1))`.
+@isnad1 id=eq.0h4v.s8.35fb2948849f from=translated src=- shape=d5531111 vocab=597825ca
+-/
 theorem monomial_pow_eq (n : ℕ) (c : R) (j : ℕ) :
     (PowerSeries.C c * PowerSeries.X ^ (n + 1)) ^ j =
       PowerSeries.C (c ^ j) * PowerSeries.X ^ (j * (n + 1)) := by
@@ -381,7 +419,9 @@ theorem monomial_pow_eq (n : ℕ) (c : R) (j : ℕ) :
 
 open PowerSeries in
 /-- For the monomial `h = C c * X^(n+1)`, any `i`-th power for `i ≥ 2` has
-coefficient at `n+1` equal to `0`, because its order is `≥ 2(n+1) > n+1`.-/
+coefficient at `n+1` equal to `0`, because its order is `≥ 2(n+1) > n+1`.
+@isnad1 id=eq.1h4v.s8.20b08a295a67 from=translated src=- shape=65e312eb vocab=9ce52627
+-/
 theorem coeff_monomial_pow_high (n : ℕ) (c : R) (i : ℕ) (hi : 2 ≤ i) :
     PowerSeries.coeff (n + 1) ((PowerSeries.C c * PowerSeries.X ^ (n + 1)) ^ i) = 0 := by
   rw [monomial_pow_eq]
@@ -526,7 +566,9 @@ private theorem coeff_add_monomial_pow_eq_succ_succ (g : PowerSeries R)
 
 open PowerSeries in
 /-- Key fact: `coeff (n+1) ((g + h) ^ d) = coeff (n+1) (g^d) + (if d = 1 then c else 0)`,
-where `h = C c * X^(n+1)` and `g` has zero constant coefficient.-/
+where `h = C c * X^(n+1)` and `g` has zero constant coefficient.
+@isnad1 id=eq.1h5v.s9.681b17bb276c from=translated src=- shape=66878914 vocab=24b663c5
+-/
 theorem coeff_add_monomial_pow_eq (g : PowerSeries R)
     (hg : @PowerSeries.constantCoeff R _ g = 0) (n : ℕ) (c : R) (d : ℕ) :
     PowerSeries.coeff (n + 1)
@@ -540,7 +582,9 @@ theorem coeff_add_monomial_pow_eq (g : PowerSeries R)
 open PowerSeries in
 /-- Key identity for the induction step: when we add a monomial `C c * X^(n+1)`
 to `g` (with zero constant coefficient), the `(n+1)`-th coefficient of the
-substitution `subst (g + C c * X^(n+1)) f` increases by exactly `c * coeff 1 f`.-/
+substitution `subst (g + C c * X^(n+1)) f` increases by exactly `c * coeff 1 f`.
+@isnad1 id=eq.1h5v.s9.b816a3c2c8ea from=translated src=- shape=91785732 vocab=508dce2f
+-/
 theorem coeff_subst_add_monomial (f g : PowerSeries R) (n : ℕ) (c : R)
     (hg : @PowerSeries.constantCoeff R _ g = 0) :
     PowerSeries.coeff (n + 1)
@@ -654,7 +698,9 @@ assuming `constantCoeff f = 0` and `coeff 1 f = 1`.
 This is the essence of the iterative construction: each step `n+1` introduces
 a correction chosen precisely to make the `(n+1)`-th coefficient of
 `subst (compInvTrunc f (n+1)) f` match `[n+1 = 1]`, and earlier coefficients
-are preserved by substitution stabilisation.-/
+are preserved by substitution stabilisation.
+@isnad1 id=eq.3h4v.s8.452b02b8b8d7 from=translated src=- shape=8e57ebbb vocab=3840f3c4
+-/
 theorem compInvTrunc_subst_coeff_eq (f : PowerSeries R)
     (h0 : @PowerSeries.constantCoeff R _ f = 0) (h1 : PowerSeries.coeff 1 f = 1)
     (n k : ℕ) (hk : k ≤ n) :
@@ -680,7 +726,9 @@ theorem compInvTrunc_subst_coeff_eq (f : PowerSeries R)
 open PowerSeries in
 /-- **Main result** (T-IV-5-002, T-IV-5-003 core): `compInverse f` is a true
 right compositional inverse of `f`, i.e. `PowerSeries.subst (compInverse f) f = X`,
-whenever `constantCoeff f = 0` and `coeff 1 f = 1`.-/
+whenever `constantCoeff f = 0` and `coeff 1 f = 1`.
+@isnad1 id=eq.2h2v.s8.8488b574edcd from=translated src=- shape=5278a97d vocab=afdaa37a
+-/
 theorem subst_compInverse_eq_X (f : PowerSeries R)
     (h0 : @PowerSeries.constantCoeff R _ f = 0) (h1 : PowerSeries.coeff 1 f = 1) :
     PowerSeries.subst (compInverse f) f = PowerSeries.X := by
@@ -813,7 +861,9 @@ private theorem subst_compInverse_smul_eq_smul_X (f : PowerSeries R) {u v : R}
     _ = u • PowerSeries.X := by rw [hkey]
 
 open PowerSeries in
-/-- The constant coefficient of `compInverseOfUnit f u hu` is zero.-/
+/-- The constant coefficient of `compInverseOfUnit f u hu` is zero.
+@isnad1 id=eq.1h3v.s6.691f13c59428 from=translated src=- shape=a8b11a71 vocab=c233df8e
+-/
 @[simp]
 theorem compInverseOfUnit_constantCoeff (f : PowerSeries R) (u : R) (hu : IsUnit u) :
     @PowerSeries.constantCoeff R _ (compInverseOfUnit f u hu) = 0 := by
@@ -825,7 +875,9 @@ theorem compInverseOfUnit_constantCoeff (f : PowerSeries R) (u : R) (hu : IsUnit
     (smul_X_constantCoeff_zero v) _ (compInverse_constantCoeff _)
 
 open PowerSeries in
-/-- `compInverseOfUnit f u hu` admits substitution.-/
+/-- `compInverseOfUnit f u hu` admits substitution.
+@isnad1 id=hassubst.1h3v.s4.b03819952134 from=translated src=- shape=c8e10784 vocab=8eba5c9b
+-/
 theorem compInverseOfUnit_hasSubst (f : PowerSeries R) (u : R) (hu : IsUnit u) :
     PowerSeries.HasSubst (compInverseOfUnit f u hu) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (compInverseOfUnit_constantCoeff f u hu)
@@ -836,7 +888,9 @@ with `constantCoeff f = 0` and `coeff 1 f = u` (a unit),
 `subst (compInverseOfUnit f u hu) f = X`.
 
 This is the generalisation of `subst_compInverse_eq_X` from the monic case
-(`coeff 1 f = 1`) to the unit case (`coeff 1 f = u` for any unit `u`).-/
+(`coeff 1 f = 1`) to the unit case (`coeff 1 f = u` for any unit `u`).
+@isnad1 id=eq.3h3v.s8.3585da9408c5 from=translated src=- shape=16254fde vocab=c8d4cf73
+-/
 theorem subst_compInverseOfUnit_eq_X (f : PowerSeries R) (u : R) (hu : IsUnit u)
     (h0 : @PowerSeries.constantCoeff R _ f = 0)
     (h1 : PowerSeries.coeff 1 f = u) :
@@ -871,7 +925,9 @@ This follows from the construction
 `compInverseOfUnit f u hu = subst (v • X) (compInverse (v • f))` (with
 `v = (hu.unit)⁻¹`): substituting `v • X` is the rescale by `v`, and
 `coeff 1 (compInverse _) = 1` always (by `compInverse_coeff_one`), so
-`coeff 1 (rescale v _) = v * 1 = v`.-/
+`coeff 1 (rescale v _) = v * 1 = v`.
+@isnad1 id=eq.1h3v.s7.6680c1bd2348 from=translated src=- shape=826cf18a vocab=bca9cdfb
+-/
 @[simp]
 theorem compInverseOfUnit_coeff_one (f : PowerSeries R) (u : R) (hu : IsUnit u) :
     PowerSeries.coeff 1 (compInverseOfUnit f u hu) = ((hu.unit⁻¹ : Rˣ) : R) := by
@@ -897,13 +953,17 @@ noncomputable def FormalGroup.exp (F : FormalGroup R) [Module ℚ R] :
     PowerSeries R :=
   compInverse F.log
 
-/-- The constant coefficient of `exp F` is zero.-/
+/-- The constant coefficient of `exp F` is zero.
+@isnad1 id=eq.0h2v.s7.7bde66ca5df6 from=translated src=- shape=eda1d847 vocab=2082a5f2
+-/
 @[simp]
 theorem FormalGroup.exp_coeff_zero (F : FormalGroup R) [Module ℚ R] :
     PowerSeries.coeff 0 F.exp = 0 := by
   simp [FormalGroup.exp]
 
-/-- `constantCoeff (exp F) = 0`.-/
+/-- `constantCoeff (exp F) = 0`.
+@isnad1 id=eq.0h2v.s6.c110a26f5df1 from=translated src=- shape=4ef6af1d vocab=538963de
+-/
 @[simp]
 theorem FormalGroup.exp_constantCoeff (F : FormalGroup R) [Module ℚ R] :
     @PowerSeries.constantCoeff R _ F.exp = 0 := by
@@ -922,7 +982,9 @@ rational scalar cancels with `n`). -/
 this is axiomatic (built into the `FormalGroup` structure); over torsion-free
 ℤ-algebras it's the classical non-trivial statement.
 
-The exposed form is the bivariate identity `F(X, Y) = F(Y, X)`.-/
+The exposed form is the bivariate identity `F(X, Y) = F(Y, X)`.
+@isnad1 id=eq.0h2v.s7.23089b8b318d from=translated src=- shape=f000b28e vocab=72ba1829
+-/
 theorem FormalGroup.commutative (F : FormalGroup R) :
     MvPowerSeries.subst
         (![MvPowerSeries.X 1, MvPowerSeries.X 0] : Fin 2 → MvPowerSeries (Fin 2) R)
@@ -931,7 +993,9 @@ theorem FormalGroup.commutative (F : FormalGroup R) :
 
 /-- **Silverman IV.5.3** under the torsion-free hypothesis — same as
 `FormalGroup.commutative` in our framework (the hypothesis is not needed
-because commutativity is axiomatic).-/
+because commutativity is axiomatic).
+@isnad1 id=eq.0h2v.s7.a6b5b0ea2203 from=translated src=- shape=9234c69c vocab=dbd4d961
+-/
 theorem FormalGroup.commutative_of_torsion_free (F : FormalGroup R)
     [NoZeroSMulDivisors ℤ R] :
     MvPowerSeries.subst
@@ -946,7 +1010,9 @@ This is the `ℚ`-module-level identity that, after multiplying by `(n : ℚ)⁻
 recovers the explicit formula `log_F.coeff n = (n : ℚ)⁻¹ • ω_F.coeff (n-1)`
 (which is the content of `log_coeff_succ`). Over a torsion-free `ℤ`-algebra
 it shows `n · log_F.coeff n` lies in the image of `ω_F`, which is the
-`ℤ[a_i]`-containment stated in Silverman.-/
+`ℤ[a_i]`-containment stated in Silverman.
+@isnad1 id=eq.0h3v.s8.a2b07d1873c4 from=translated src=- shape=169c4fb7 vocab=5c679e2a
+-/
 theorem FormalGroup.log_coeff_succ_nsmul (F : FormalGroup R) [Module ℚ R] (n : ℕ) :
     (n + 1) • PowerSeries.coeff (n + 1) F.log =
       PowerSeries.coeff n F.normalizedDifferential.toSeries := by
@@ -1008,7 +1074,9 @@ def FormalGroup.LogPreservesAdd (F : FormalGroup R) [Module ℚ R] : Prop :=
 /-- `subst F.toSeries F.log` (the LHS of `LogPreservesAdd`) has zero constant
 coefficient. This is the bivariate-substitution constant coefficient computation.
 
-In particular, evaluated at `(0, 0)`, `log_F(F(0, 0)) = log_F(0) = 0`.-/
+In particular, evaluated at `(0, 0)`, `log_F(F(0, 0)) = log_F(0) = 0`.
+@isnad1 id=eq.0h2v.s7.bf33de93fae9 from=translated src=- shape=de775e7c vocab=b780b3d4
+-/
 theorem FormalGroup.constantCoeff_log_subst (F : FormalGroup R) [Module ℚ R] :
     MvPowerSeries.constantCoeff
         ((PowerSeries.subst F.toSeries F.log : MvPowerSeries (Fin 2) R)) = 0 :=
@@ -1018,7 +1086,9 @@ theorem FormalGroup.constantCoeff_log_subst (F : FormalGroup R) [Module ℚ R] :
 /-- The RHS of `LogPreservesAdd`, expanded: `subst (X 0) log + subst (X 1) log`
 has zero constant coefficient. Combined with
 `constantCoeff_log_subst`, this establishes the zeroth-coefficient case of
-`LogPreservesAdd`.-/
+`LogPreservesAdd`.
+@isnad1 id=eq.0h2v.s8.4a3dbbda6233 from=translated src=- shape=f9dacbac vocab=a02618d7
+-/
 theorem FormalGroup.constantCoeff_log_subst_X_add (F : FormalGroup R) [Module ℚ R] :
     @MvPowerSeries.constantCoeff (Fin 2) R _
         (PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R) F.log +
@@ -1030,7 +1100,9 @@ theorem FormalGroup.constantCoeff_log_subst_X_add (F : FormalGroup R) [Module �
 /-- **Constant-coefficient case of `LogPreservesAdd`**: the constant coefficient
 (i.e., the value at `(0, 0)`) of both sides of `LogPreservesAdd F` agree.
 
-This is a necessary condition for `LogPreservesAdd F`.-/
+This is a necessary condition for `LogPreservesAdd F`.
+@isnad1 id=eq.0h2v.s8.667f26a9b2d3 from=translated src=- shape=3205ebfe vocab=9d333448
+-/
 theorem FormalGroup.logPreservesAdd_constantCoeff (F : FormalGroup R) [Module ℚ R] :
     MvPowerSeries.constantCoeff
         ((PowerSeries.subst F.toSeries F.log : MvPowerSeries (Fin 2) R)) =
@@ -1102,7 +1174,9 @@ private theorem FormalGroup.normalizedDifferential_toSeries_additiveFormalGroup 
   exact h1
 
 /-- For the additive formal group, `log = X`. Since `ω_F = 1`, we have
-`log_F(T) = T + 0 + ... = T`.-/
+`log_F(T) = T + 0 + ... = T`.
+@isnad1 id=eq.0h1v.s5.9b1dd26c5128 from=translated src=- shape=7429a905 vocab=26e03538
+-/
 theorem FormalGroup.log_additiveFormalGroup [Module ℚ R] :
     (additiveFormalGroup R).log = PowerSeries.X := by
   -- We show `coeff n` agreement for all n. The n = 1 case gives `1`,
@@ -1128,7 +1202,9 @@ theorem FormalGroup.log_additiveFormalGroup [Module ℚ R] :
       PowerSeries.coeff_X, ite_eq_right (by omega : n + 1 + 1 ≠ 1)]
 
 /-- **Silverman IV.5.2 for `Ĝ_a`**: the additive formal group's log is
-the identity, and as a trivial consequence, it preserves addition.-/
+the identity, and as a trivial consequence, it preserves addition.
+@isnad1 id=logprese.0h1v.s4.565422be7d39 from=translated src=- shape=6bebe499 vocab=86208cd9
+-/
 theorem FormalGroup.additiveFormalGroup_logPreservesAdd [Module ℚ R] :
     (additiveFormalGroup R).LogPreservesAdd := by
   unfold FormalGroup.LogPreservesAdd
@@ -1164,7 +1240,9 @@ makes `R` torsion-free. -/
 
 This is the formal Silverman IV.5 definition of `log_F`: it is the unique
 power series with zero constant term whose derivative equals the normalized
-invariant differential.-/
+invariant differential.
+@isnad1 id=eq.0h2v.s5.4072077174f5 from=translated src=- shape=c98cc22e vocab=32f7976d
+-/
 theorem FormalGroup.pderiv_log (F : FormalGroup R) [Module ℚ R] :
     MvPowerSeries.pderiv' () F.log = F.invariantDiff := by
   ext n
@@ -1588,7 +1666,9 @@ private theorem eq_zero_of_pderiv_zero_and_subst_zero_X1 [Module ℚ R]
   rw [← hcoeff]
   exact (coeff_subst_zero_X1_at_single_1 h b).symm
 
-/-- **Silverman IV.5.2**: the formal logarithm preserves addition.-/
+/-- **Silverman IV.5.2**: the formal logarithm preserves addition.
+@isnad1 id=logprese.0h2v.s4.27bfc82833fc from=translated src=- shape=c7e203c0 vocab=4ed6b355
+-/
 theorem FormalGroup.logPreservesAdd (F : FormalGroup R) [Module ℚ R] :
     F.LogPreservesAdd := by
   unfold FormalGroup.LogPreservesAdd
@@ -1652,6 +1732,9 @@ noncomputable def FormalGroup.logHomOfLogPreservesAdd
     --       ![subst (X 0) log, subst (X 1) log] 0 + ![subst (X 0) log, subst (X 1) log] 1
     rfl
 
+/--
+@isnad1 id=eq.1h2v.s5.12ec59ed7d86 from=translated src=- shape=38ef3aa8 vocab=a87d4349
+-/
 @[simp]
 theorem FormalGroup.logHomOfLogPreservesAdd_toSeries
     (F : FormalGroup R) [Module ℚ R] (hlog : F.LogPreservesAdd) :
@@ -1674,6 +1757,9 @@ noncomputable def FormalGroup.logHom (F : FormalGroup R) [Module ℚ R] :
     FormalGroupHom F (additiveFormalGroup R) :=
   F.logHomOfLogPreservesAdd F.logPreservesAdd
 
+/--
+@isnad1 id=eq.0h2v.s5.4c98b371b8d0 from=translated src=- shape=9009e06b vocab=3f273fda
+-/
 @[simp]
 theorem FormalGroup.logHom_toSeries (F : FormalGroup R) [Module ℚ R] :
     F.logHom.toSeries = F.log := rfl

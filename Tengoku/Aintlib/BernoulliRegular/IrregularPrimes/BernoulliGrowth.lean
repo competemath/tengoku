@@ -27,7 +27,9 @@ noncomputable section
 abbrev zetaEvenSeries (k : ℕ) : ℝ :=
   ∑' n : ℕ, 1 / (n : ℝ) ^ (2 * k)
 
-/-- The zeta series at `2 * k`, `k ≠ 0`, is at least its `n = 1` term.-/
+/-- The zeta series at `2 * k`, `k ≠ 0`, is at least its `n = 1` term.
+@isnad1 id=le.1h1v.s4.2ddaed18eda1 from=translated src=- shape=c87724ab vocab=72cc1106
+-/
 theorem one_le_zetaEvenSeries {k : ℕ} (hk : k ≠ 0) :
     1 ≤ zetaEvenSeries k := by
   have hsummable : Summable (fun n : ℕ ↦ (1 : ℝ) / (n : ℝ) ^ (2 * k)) :=
@@ -39,7 +41,9 @@ theorem one_le_zetaEvenSeries {k : ℕ} (hk : k ≠ 0) :
   simpa [zetaEvenSeries] using hle
 
 /-- A one-sided lower bound for `|B_{2k}|` extracted from the zeta-value
-formula.-/
+formula.
+@isnad1 id=le.1h1v.s7.95e5b341de19 from=translated src=- shape=650830da vocab=dc3a4a3f
+-/
 theorem bernoulli_even_abs_lower_bound {k : ℕ} (hk : k ≠ 0) :
     ((2 * k)! : ℝ) / ((2 : ℝ) ^ (2 * k - 1) * Real.pi ^ (2 * k)) ≤
       |((bernoulli (2 * k) : ℚ) : ℝ)| := by
@@ -74,7 +78,9 @@ theorem bernoulli_even_abs_lower_bound {k : ℕ} (hk : k ≠ 0) :
     simpa [mul_comm] using hmul
   simpa [hC, hF, hB] using hdiv
 
-/-- The corresponding lower bound for `|B_{2k} / (2k)|`.-/
+/-- The corresponding lower bound for `|B_{2k} / (2k)|`.
+@isnad1 id=le.1h1v.s7.66648fc553da from=translated src=- shape=62becd3c vocab=de1c6958
+-/
 theorem bernoulli_div_self_abs_lower_bound {k : ℕ} (hk : k ≠ 0) :
     (Nat.factorial (2 * k - 1) : ℝ) /
         ((2 : ℝ) ^ (2 * k - 1) * Real.pi ^ (2 * k)) ≤
@@ -102,7 +108,9 @@ theorem bernoulli_div_self_abs_lower_bound {k : ℕ} (hk : k ≠ 0) :
   rwa [hright] at hdiv
 
 /-- Factorials dominate any fixed exponential, even after replacing `n!` by
-`(n - 1)!`.-/
+`(n - 1)!`.
+@isnad1 id=tendsto.1h1v.s6.7869d065b908 from=translated src=- shape=25276671 vocab=fc21c609
+-/
 theorem tendsto_factorial_pred_div_const_pow_atTop {A : ℝ} (hA : 0 < A) :
     Tendsto (fun n : ℕ ↦ (Nat.factorial (n - 1) : ℝ) / A ^ n) atTop atTop := by
   have hzero : Tendsto
@@ -124,7 +132,9 @@ theorem tendsto_factorial_pred_div_const_pow_atTop {A : ℝ} (hA : 0 < A) :
   rw [Pi.inv_apply]
   field_simp [pow_ne_zero n hA.ne', Nat.cast_ne_zero.mpr (Nat.factorial_ne_zero (n - 1))]
 
-/-- The map `k ↦ 2 * k` tends to infinity.-/
+/-- The map `k ↦ 2 * k` tends to infinity.
+@isnad1 id=tendsto.0h0v.s4.56c3d86a48af from=translated src=- shape=61611804 vocab=1ec85cf2
+-/
 theorem tendsto_two_mul_atTop : Tendsto (fun k : ℕ ↦ 2 * k) atTop atTop := by
   apply tendsto_atTop_atTop_of_monotone
   · intro a b hab
@@ -132,7 +142,9 @@ theorem tendsto_two_mul_atTop : Tendsto (fun k : ℕ ↦ 2 * k) atTop atTop := b
   · intro n
     exact ⟨n, by omega⟩
 
-/-- The lower bound for `|B_{2k}/(2k)|` tends to infinity.-/
+/-- The lower bound for `|B_{2k}/(2k)|` tends to infinity.
+@isnad1 id=tendsto.0h0v.s6.9b5f263efe4c from=translated src=- shape=36998e81 vocab=a359dcdb
+-/
 theorem tendsto_bernoulli_lower_bound_atTop :
     Tendsto
       (fun k : ℕ ↦ (Nat.factorial (2 * k - 1) : ℝ) /
@@ -160,7 +172,9 @@ theorem tendsto_bernoulli_lower_bound_atTop :
       rw [h2pow]
       field_simp [show (2 : ℝ) ≠ 0 by norm_num]
 
-/-- Diekmann's growth input: `|B_{2n}/(2n)|` tends to infinity.-/
+/-- Diekmann's growth input: `|B_{2n}/(2n)|` tends to infinity.
+@isnad1 id=tendsto.0h0v.s5.aed7c16cf58e from=translated src=- shape=bf95eac5 vocab=0d2e80d8
+-/
 theorem tendsto_abs_bernoulli_div_self_even :
     Tendsto
       (fun n : ℕ ↦ |(((bernoulli (2 * n) : ℚ) / (2 * n : ℚ) : ℚ) : ℝ)|)
@@ -170,7 +184,9 @@ theorem tendsto_abs_bernoulli_div_self_even :
   exact bernoulli_div_self_abs_lower_bound (k := k) (by omega)
 
 /-- For every positive even `C`, some even multiple `C * 2^t` has
-`|B_m/m| > 1`.-/
+`|B_m/m| > 1`.
+@isnad1 id=ex.2h1v.s6.ec910449f48b from=translated src=- shape=c1b5fa85 vocab=2b410a59
+-/
 theorem exists_large_even_multiple_abs_bernoulli_div_self_gt_one
     {C : ℕ} (hC_pos : 0 < C) (hC_even : Even C) :
     ∃ t : ℕ,

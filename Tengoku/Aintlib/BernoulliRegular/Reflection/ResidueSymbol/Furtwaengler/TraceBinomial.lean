@@ -89,7 +89,9 @@ ordinary character power.-/
 noncomputable def gaussSumIntRec (a : ℕ) : 𝓞 R' :=
   S.gaussSumInt (p - a)
 
-/-- The bundle's `binomialCoeffSum` agrees with `traceCharacterChooseSum`.-/
+/-- The bundle's `binomialCoeffSum` agrees with `traceCharacterChooseSum`.
+@isnad1 id=eq.0h8v.s8.c7659cde5b6e from=translated src=- shape=5f7b4faa vocab=b7d2cfa8
+-/
 theorem binomialCoeffSum_eq_traceCharacterChooseSum (a n : ℕ) :
     S.toConcreteStickelbergerSetup.binomialCoeffSum a n =
       S.traceCharacterChooseSum a n := by
@@ -97,7 +99,9 @@ theorem binomialCoeffSum_eq_traceCharacterChooseSum (a n : ℕ) :
   refine Finset.sum_congr rfl fun x _ ↦ ?_
   rw [S.psiExponent_trace]
 
-/-- The bundle's `binomialCoeffApprox` agrees with `traceBinomialApprox`.-/
+/-- The bundle's `binomialCoeffApprox` agrees with `traceBinomialApprox`.
+@isnad1 id=eq.0h8v.s8.c651abcb39bb from=translated src=- shape=5f7b4faa vocab=f1d7eb05
+-/
 theorem binomialCoeffApprox_eq_traceBinomialApprox (a s : ℕ) :
     S.toConcreteStickelbergerSetup.binomialCoeffApprox a s =
       S.traceBinomialApprox a s := by
@@ -106,18 +110,24 @@ theorem binomialCoeffApprox_eq_traceBinomialApprox (a s : ℕ) :
   rw [S.binomialCoeffSum_eq_traceCharacterChooseSum]
 
 /-- The reciprocal approximation is the ordinary approximation at index
-`p-a`.-/
+`p-a`.
+@isnad1 id=eq.0h8v.s8.83191470889c from=translated src=- shape=abe737ba vocab=737abca6
+-/
 theorem traceBinomialApproxRec_eq (a s : ℕ) :
     S.traceBinomialApproxRec a s = S.traceBinomialApprox (p - a) s := rfl
 
 /-- The integral Gauss sum is congruent modulo `Q^(s+1)` to its
-trace-form binomial approximation through `π`-degree `s`.-/
+trace-form binomial approximation through `π`-degree `s`.
+@isnad1 id=mem.0h8v.s9.89c291f94366 from=translated src=- shape=f0ac6e49 vocab=8503b343
+-/
 theorem gaussSumInt_sub_traceBinomialApprox_mem_Q_pow (a s : ℕ) :
     S.gaussSumInt a - S.traceBinomialApprox a s ∈ S.Q ^ (s + 1) := by
   rw [← S.binomialCoeffApprox_eq_traceBinomialApprox]
   exact S.toConcreteStickelbergerSetup.gaussSumInt_sub_binomialCoeffApprox_mem_Q_pow a s
 
-/-- Reciprocal-convention version of the trace-form binomial truncation.-/
+/-- Reciprocal-convention version of the trace-form binomial truncation.
+@isnad1 id=mem.0h8v.s9.b4e5f38d49c8 from=translated src=- shape=31da5990 vocab=280d0280
+-/
 theorem gaussSumIntRec_sub_traceBinomialApproxRec_mem_Q_pow (a s : ℕ) :
     S.gaussSumIntRec a - S.traceBinomialApproxRec a s ∈ S.Q ^ (s + 1) :=
   S.gaussSumInt_sub_traceBinomialApprox_mem_Q_pow (p - a) s
@@ -125,7 +135,9 @@ theorem gaussSumIntRec_sub_traceBinomialApproxRec_mem_Q_pow (a s : ℕ) :
 /-- Exact-order consequence of a leading-term evaluation of the
 trace-form binomial approximation. This is the trace-form analogue of
 `gaussSumInt_qadic_ord_at_prime_of_binomialCoeffApprox` and is the
-interface consumed downstream.-/
+interface consumed downstream.
+@isnad1 id=and.3h8v.s10.db2632fd114e from=translated src=- shape=9f3d2470 vocab=a2d313a8
+-/
 theorem gaussSumInt_qadic_ord_at_prime_of_traceLead
     (a : ℕ) {lead : 𝓞 R'}
     (h_lead_mem :
@@ -145,7 +157,9 @@ theorem gaussSumInt_qadic_ord_at_prime_of_traceLead
 
 /-- Reciprocal-convention exact-order consequence of a leading-term
 evaluation. This is the convention-correct interface for the digit-sum
-target `s_ℓ(a*d)`.-/
+target `s_ℓ(a*d)`.
+@isnad1 id=and.3h8v.s10.ddd8425f9929 from=translated src=- shape=155aa7f8 vocab=cd573213
+-/
 theorem gaussSumIntRec_qadic_ord_at_prime_of_traceLead
     (a : ℕ) {lead : 𝓞 R'}
     (h_lead_mem :

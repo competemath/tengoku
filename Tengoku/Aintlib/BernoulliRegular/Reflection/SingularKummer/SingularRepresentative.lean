@@ -29,7 +29,9 @@ variable (R K : Type*) [CommRing R] [IsDomain R]
 variable [Field K] [Algebra R K] [IsFractionRing R K]
 
 omit [IsDomain R] in
-/-- Every singular quotient class has a singular-pair representative.-/
+/-- Every singular quotient class has a singular-pair representative.
+@isnad1 id=ex.0h4v.s9.93179fac836c from=translated src=- shape=b0ba1890 vocab=5c9e4ccb
+-/
 theorem exists_representative (p : ℕ)
     (x : SingularGroup (R := R) (K := K) p) :
     ∃ s : SingularPair R K p,
@@ -39,7 +41,9 @@ theorem exists_representative (p : ℕ)
   exact ⟨s, rfl⟩
 
 /-- A singular quotient class with nontrivial image in `A[p]` has a
-singular-pair representative with nontrivial image in `A[p]`.-/
+singular-pair representative with nontrivial image in `A[p]`.
+@isnad1 id=ex.1h4v.s12.a20c2713111f from=translated src=- shape=e5ffff05 vocab=a1fc5133
+-/
 theorem exists_representative_of_nontrivial_class_image (p : ℕ)
     {x : SingularGroup (R := R) (K := K) p}
     (hx : singularGroupClassMapToPTorsion (R := R) (K := K) p x ≠ 1) :

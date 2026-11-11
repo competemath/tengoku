@@ -42,7 +42,9 @@ private theorem symJ_smul_inj {F : Type*} [CommRing F] {a b : F}
     (h : a • symJ F = b • symJ F) : a = b := by
   simpa [symJ, Matrix.smul_apply] using congrFun (congrFun h 0) 1
 
-/-- **Symplectic determinant identity:** `φᵀ J φ = (det φ) • J` for any `2×2` matrix `φ`.-/
+/-- **Symplectic determinant identity:** `φᵀ J φ = (det φ) • J` for any `2×2` matrix `φ`.
+@isnad1 id=eq.0h2v.s8.cd91e232992a from=translated src=- shape=add9802a vocab=ce2ffae2
+-/
 theorem transpose_mul_symJ_mul {F : Type*} [CommRing F] (φ : Matrix (Fin 2) (Fin 2) F) :
     φᵀ * symJ F * φ = φ.det • symJ F := by
   ext i j
@@ -52,7 +54,9 @@ theorem transpose_mul_symJ_mul {F : Type*} [CommRing F] (φ : Matrix (Fin 2) (Fi
 
 /-- **Weil-pairing determinant (Silverman III.8.6, abstract finite-level form).**
 If `ψ` is the symplectic adjoint of `φ` (`φᵀ J = J ψ`, the matrix form of `e(φS,T)=e(S,ψT)`) and
-`ψ φ = d • 1` (the dual relation `φ̂φ = [deg]`), then `det φ = d`.-/
+`ψ φ = d • 1` (the dual relation `φ̂φ = [deg]`), then `det φ = d`.
+@isnad1 id=eq.2h4v.s8.8a9d19b1add0 from=translated src=- shape=7cfda54d vocab=ce2ffae2
+-/
 theorem det_eq_of_symplectic_adjoint {F : Type*} [CommRing F]
     {φ ψ : Matrix (Fin 2) (Fin 2) F} {d : F}
     (hadj : φᵀ * symJ F = symJ F * ψ)
@@ -76,7 +80,9 @@ adjoint, no trace, and no additivity. This is the interface the pairing construc
 
 /-- **Weil-pairing determinant, scaling form (Silverman III.8.6).** If `φᵀ J φ = d • J` (the matrix
 form of the pairing scaling `e(φS,φT) = e(S,T)^d` with `d = deg φ`), then `det φ = d`. Holds for any
-single `φ` — no adjoint, no dual-additivity hypothesis.-/
+single `φ` — no adjoint, no dual-additivity hypothesis.
+@isnad1 id=eq.1h3v.s8.a7dee1d4e1aa from=translated src=- shape=6180e17c vocab=ce2ffae2
+-/
 theorem det_eq_of_symplectic_scaling {F : Type*} [CommRing F]
     {φ : Matrix (Fin 2) (Fin 2) F} {d : F}
     (hscale : φᵀ * symJ F * φ = d • symJ F) : φ.det = d :=
@@ -87,7 +93,9 @@ the Weil-pairing scaling `φᵀ J φ = (deg φ) • J` for each of `π`, `1−π
 `E[ℓ] ≅ 𝔽_ℓ²` are `M`, `1−M`, `r•M − s•1` since the `ℓ`-adic representation is a ring map), the
 three det facts `det M = q (= deg π)`, `det(1−M) = dE (= deg(1−π) = #E)`, and
 `det(r•M − s•1) = D (= deg(rπ−s))` all hold — with the **geometric** degrees on the right (each
-manifestly `≥ 0`).-/
+manifestly `≥ 0`).
+@isnad1 id=and.3h7v.s11.87bacda6d395 from=translated src=- shape=ba4b5a27 vocab=18b58f04
+-/
 theorem frob_det_data_of_scaling {F : Type*} [CommRing F]
     {M : Matrix (Fin 2) (Fin 2) F} {q dE r s D : F}
     (hπ : Mᵀ * symJ F * M = q • symJ F)
@@ -115,7 +123,9 @@ so `det(a•M + b•1) = a²q + abt + b²` by `det_eq_of_symplectic_adjoint`.  S
 /-- **The Frobenius pencil determinant.** Given the symplectic adjoint `Mᵀ J = J Mhat`, the norm
 `Mhat M = q • 1`, and the trace `M + Mhat = t • 1`, every linear combination has
 `det(a•M + b•1) = a²·q + a·b·t + b²`. This is the matrix-level evaluation of the characteristic
-form of Frobenius on `E[ℓ]` (Silverman III.8.6 applied to `a·π + b`).-/
+form of Frobenius on `E[ℓ]` (Silverman III.8.6 applied to `a·π + b`).
+@isnad1 id=eq.3h7v.s10.69a1e30dabf0 from=translated src=- shape=1107ccca vocab=34ce3518
+-/
 theorem det_smul_add_smul_one_eq {F : Type*} [CommRing F]
     {M Mhat : Matrix (Fin 2) (Fin 2) F} {q t : F}
     (hadj : Mᵀ * symJ F = symJ F * Mhat)
@@ -140,7 +150,9 @@ theorem det_smul_add_smul_one_eq {F : Type*} [CommRing F]
 /-- **The three Frobenius det facts** (the `Reduction` / `Assembly` interface), packaged from the
 symplectic adjoint, norm `π̂π = [q]`, and trace `π + π̂ = [t]` of Frobenius on `E[ℓ] ≅ 𝔽_ℓ²`. For
 every `(r,s)`: `det M = q`, `det(1 − M) = q+1−t (= #E)`, and
-`det(r•M − s•1) = q r² − t r s + s²`.-/
+`det(r•M − s•1) = q r² − t r s + s²`.
+@isnad1 id=and.3h7v.s10.ea9b0928adb2 from=translated src=- shape=840c2a64 vocab=b866a404
+-/
 theorem frob_det_data_of_adjoint_norm_trace {F : Type*} [CommRing F]
     {M Mhat : Matrix (Fin 2) (Fin 2) F} {q t : F}
     (hadj : Mᵀ * symJ F = symJ F * Mhat)
@@ -173,7 +185,9 @@ is the natural form of Prop 8.6 in terms of the linear endomorphism on `E[ℓ]`.
 /-- **`LinearMap.det` from the symplectic scaling.** For a rank-2 module `V` with basis `b`, a
 linear endomorphism `φ` whose matrix `M = toMatrix b b φ` satisfies the symplectic scaling
 `Mᵀ J M = d • J`, has `LinearMap.det φ = d`. The bridge from the `E[ℓ]`-as-module Frobenius to the
-matrix residual `frob_det_data_of_scaling`.-/
+matrix residual `frob_det_data_of_scaling`.
+@isnad1 id=eq.1h5v.s11.1b9c9226525b from=translated src=- shape=d271d4f6 vocab=9b6ef0a5
+-/
 theorem linearMap_det_eq_of_symplectic_scaling {R : Type*} [CommRing R]
     {V : Type*} [AddCommGroup V] [Module R V] (b : Module.Basis (Fin 2) R V)
     (φ : V →ₗ[R] V) {d : R}
@@ -191,7 +205,9 @@ scaling `ω(φx, φy) = (deg φ)·ω(x,y)` forces `det φ = deg φ` — with no 
 caller. This is what the finite-level pairing construction discharges directly. -/
 
 /-- **The `Λ²` scaling identity (rank 2):** for an alternating bilinear form `ω` and any `φ`,
-`ω(φ(b 0), φ(b 1)) = (det φ)·ω(b 0, b 1)`.-/
+`ω(φ(b 0), φ(b 1)) = (det φ)·ω(b 0, b 1)`.
+@isnad1 id=eq.1h5v.s11.0d5f6c4bbfa3 from=translated src=- shape=0e92aa6f vocab=e0918500
+-/
 theorem alternating_comp_eq_det_smul {F : Type*} [Field F] {V : Type*} [AddCommGroup V]
     [Module F V] (b : Module.Basis (Fin 2) F V) (ω : V →ₗ[F] V →ₗ[F] F)
     (halt : ∀ x, ω x x = 0) (φ : V →ₗ[F] V) :
@@ -215,7 +231,9 @@ theorem alternating_comp_eq_det_smul {F : Type*} [Field F] {V : Type*} [AddCommG
 /-- **Module-level Prop 8.6 (Silverman III.8.6):** for a rank-2 space `V`, a **nondegenerate**
 alternating bilinear form `ω` (witnessed by `ω(b 0, b 1) ≠ 0`), and `φ` with the scaling
 `ω(φx, φy) = d · ω(x, y)`, the determinant is `LinearMap.det φ = d`. The additivised Weil pairing
-supplies `ω` and the scaling with `d = deg φ`.-/
+supplies `ω` and the scaling with `d = deg φ`.
+@isnad1 id=eq.3h6v.s11.6d45bafd4c96 from=translated src=- shape=c7bada3a vocab=e0918500
+-/
 theorem det_eq_of_alternating_scaling {F : Type*} [Field F] {V : Type*} [AddCommGroup V]
     [Module F V] (b : Module.Basis (Fin 2) F V) (ω : V →ₗ[F] V →ₗ[F] F)
     (halt : ∀ x, ω x x = 0) (hnd : ω (b 0) (b 1) ≠ 0)
@@ -231,7 +249,9 @@ Frobenius `φ`, and the per-isogeny scalings `ω(ψ x, ψ y) = (deg ψ)·ω(x,y)
 (`= φ, id−φ, r•φ−s•id`), the matrix `M = toMatrix b φ` satisfies `det M = q`, `det(1−M) = dE`, and
 `det(r•M − s•1) = D` — with the geometric degrees `q = deg π`, `dE = deg(1−π) = #E`,
 `D = deg(rπ−s)`. This is what the AG Weil-pairing construction discharges; it feeds
-`Reduction.frob_det_congruence`.-/
+`Reduction.frob_det_congruence`.
+@isnad1 id=and.5h10v.s13.28ec4d4dff16 from=translated src=- shape=5503faee vocab=cd1c963b
+-/
 theorem frob_det_data_of_pairing_form {F : Type*} [Field F] {V : Type*} [AddCommGroup V]
     [Module F V] (b : Module.Basis (Fin 2) F V) (ω : V →ₗ[F] V →ₗ[F] F)
     (halt : ∀ x, ω x x = 0) (hnd : ω (b 0) (b 1) ≠ 0)

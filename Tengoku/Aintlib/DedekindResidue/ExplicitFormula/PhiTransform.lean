@@ -49,7 +49,9 @@ open MeasureTheory Complex
 noncomputable def paperPhi (F : ℝ → ℂ) (s : ℂ) : ℂ :=
   ∫ x : ℝ, F x * Complex.exp ((s - 1/2) * x)
 
-/-- Reflection of half-line integrability through `x ↦ -x`.-/
+/-- Reflection of half-line integrability through `x ↦ -x`.
+@isnad1 id=iff.0h1v.s6.8b4dea408ac7 from=translated src=- shape=a3cdaa4c vocab=88a57f2c
+-/
 theorem integrableOn_Iio_comp_neg_iff (G : ℝ → ℂ) :
     IntegrableOn G (Set.Iio (0:ℝ)) ↔ IntegrableOn (fun x => G (-x)) (Set.Ioi (0:ℝ)) := by
   have A : MeasurableEmbedding fun x : ℝ => -x :=
@@ -63,7 +65,9 @@ theorem integrableOn_Iio_comp_neg_iff (G : ℝ → ℂ) :
   rfl
 
 /-- **Half-line domination workhorse**: if `G·e^{(1/2+ε)x}` is integrable on `[0,∞)`
-and `Re c ≤ 1/2 + ε`, then `G·e^{cx}` is integrable on `[0,∞)`.-/
+and `Re c ≤ 1/2 + ε`, then `G·e^{cx}` is integrable on `[0,∞)`.
+@isnad1 id=integrab.2h3v.s7.656592439bd8 from=translated src=- shape=ba77d749 vocab=fdb09446
+-/
 theorem integrableOn_Ici_mul_cexp {G : ℝ → ℂ} {ε : ℝ}
     (hG : IntegrableOn (fun x : ℝ => G x * ((Real.exp ((1/2 + ε) * x) : ℝ) : ℂ))
       (Set.Ici 0))
@@ -94,7 +98,9 @@ theorem integrableOn_Ici_mul_cexp {G : ℝ → ℂ} {ε : ℝ}
   exact hprod.congr_fun (fun x _ => (hpt x).symm) measurableSet_Ici
 
 /-- **Φ-a: kernel integrability** in the closed band `-ε ≤ Re s ≤ 1 + ε` for an
-admissible test function (with the admissibility witness `ε` made explicit).-/
+admissible test function (with the admissibility witness `ε` made explicit).
+@isnad1 id=integrab.4h3v.s7.15179e12804d from=translated src=- shape=388ca9f6 vocab=8391e65d
+-/
 theorem integrable_paperPhi_kernel {F : ℝ → ℂ} (hF : IsAdmissibleTestFn F)
     {ε : ℝ}
     (hint : IntegrableOn (fun x : ℝ => F x * ((Real.exp ((1/2 + ε) * x) : ℝ) : ℂ))
@@ -132,7 +138,9 @@ theorem integrable_paperPhi_kernel {F : ℝ → ℂ} (hF : IsAdmissibleTestFn F)
     linarith
 
 /-- **Φ-b**: on the critical line, `Φ` is the paper's Fourier transform (B–F eq. (2)):
-`Φ(1/2 + iγ) = F̂(γ)`.-/
+`Φ(1/2 + iγ) = F̂(γ)`.
+@isnad1 id=eq.0h2v.s5.b42a5cb71584 from=translated src=- shape=05661cc4 vocab=0a204859
+-/
 theorem paperPhi_half_add_mul_I (F : ℝ → ℂ) (γ : ℝ) :
     paperPhi F (1/2 + (γ : ℂ) * Complex.I) = paperFourierIntegral F γ := by
   rw [paperPhi, paperFourierIntegral]
@@ -140,7 +148,9 @@ theorem paperPhi_half_add_mul_I (F : ℝ → ℂ) (γ : ℝ) :
   have : ((1:ℂ)/2 + (γ:ℂ) * Complex.I - 1/2) * x = Complex.I * x * γ := by ring
   simp only [this]
 
-/-- Full-line integrals are invariant under `x ↦ -x`.-/
+/-- Full-line integrals are invariant under `x ↦ -x`.
+@isnad1 id=eq.0h1v.s5.1254a740641c from=translated src=- shape=1bb15d4b vocab=4d6bf44a
+-/
 theorem integral_comp_neg_real (f : ℝ → ℂ) : ∫ x : ℝ, f (-x) = ∫ x : ℝ, f x := by
   have A : MeasurableEmbedding fun x : ℝ => -x :=
     (Homeomorph.neg ℝ).isClosedEmbedding.measurableEmbedding
@@ -150,7 +160,9 @@ theorem integral_comp_neg_real (f : ℝ → ℂ) : ∫ x : ℝ, f (-x) = ∫ x :
 
 /-- **Φ-c: the reflection** `Φ(1−s) = Φ(s)` for an even test function — this folds the
 left edge of Poitou's rectangle onto the right edge (his `{Φ(s) + Φ(1−s)}` is `2Φ(s)`
-for even `F`).-/
+for even `F`).
+@isnad1 id=eq.1h2v.s5.d6c897920fc2 from=translated src=- shape=3cdf7acf vocab=7a574b2f
+-/
 theorem paperPhi_one_sub {F : ℝ → ℂ} (heven : ∀ x : ℝ, F (-x) = F x) (s : ℂ) :
     paperPhi F (1 - s) = paperPhi F s := by
   rw [paperPhi, paperPhi]
@@ -163,7 +175,9 @@ theorem paperPhi_one_sub {F : ℝ → ℂ} (heven : ∀ x : ℝ, F (-x) = F x) (
   ring_nf
 
 /-- The two-sided majorant `‖F x‖·(e^{(1/2+ε)x} + e^{-(1/2+ε)x})` is integrable for an
-admissible test function: it is the sum of the kernel norms at the band endpoints.-/
+admissible test function: it is the sum of the kernel norms at the band endpoints.
+@isnad1 id=integrab.3h2v.s7.5a5066372128 from=translated src=- shape=26a448eb vocab=4c13981a
+-/
 theorem integrable_admissible_majorant {F : ℝ → ℂ} (hF : IsAdmissibleTestFn F)
     {ε : ℝ} (hε : 0 < ε)
     (hint : IntegrableOn (fun x : ℝ => F x * ((Real.exp ((1/2 + ε) * x) : ℝ) : ℂ))
@@ -212,7 +226,9 @@ private theorem abs_mul_exp_neg_le {c : ℝ} (hc : 0 < c) (x : ℝ) :
         mul_le_mul_of_nonneg_left h1 (one_div_nonneg.mpr hc.le)
 
 /-- **Φ holomorphy** (SP2-Φ-c): in the open band `-ε < Re s < 1+ε`, `Φ` is
-complex-differentiable with derivative `∫ x·F(x)·e^{(s-1/2)x} dx`.-/
+complex-differentiable with derivative `∫ x·F(x)·e^{(s-1/2)x} dx`.
+@isnad1 id=hasderiv.5h3v.s8.857dbf4f7e23 from=translated src=- shape=2687ae5e vocab=e2284f70
+-/
 theorem hasDerivAt_paperPhi {F : ℝ → ℂ} (hF : IsAdmissibleTestFn F)
     {ε : ℝ} (hε : 0 < ε)
     (hint : IntegrableOn (fun x : ℝ => F x * ((Real.exp ((1/2 + ε) * x) : ℝ) : ℂ))

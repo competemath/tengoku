@@ -53,14 +53,18 @@ noncomputable def zpoint (n : ι → ℤ) : EuclideanSpace ℝ ι :=
   (WithLp.equiv 2 (ι → ℝ)).symm (fun i => (n i : ℝ))
 
 omit [Fintype ι] in
-/-- `zpoint` is additive: it is the restriction of a linear map to the integer lattice.-/
+/-- `zpoint` is additive: it is the restriction of a linear map to the integer lattice.
+@isnad1 id=eq.0h3v.s6.bc52623dc5ae from=translated src=- shape=9bfc8bcf vocab=37112a30
+-/
 theorem zpoint_add (m n : ι → ℤ) : zpoint (m + n) = zpoint m + zpoint n := by
   ext i
   simp only [zpoint, PiLp.add_apply, Pi.add_apply, WithLp.equiv_symm_apply, WithLp.ofLp_toLp]
   push_cast; ring
 
 /-- The torus monomial `mFourier (-m)` is the Fourier character `x ↦ exp(-2πi⟨m,x⟩)` of the
-integer point `m`, written through the coordinatewise quotient `ℝ → AddCircle 1`.-/
+integer point `m`, written through the coordinatewise quotient `ℝ → AddCircle 1`.
+@isnad1 id=eq.0h3v.s7.f622e7be0a6f from=translated src=- shape=810e231a vocab=a8a1c9dd
+-/
 theorem mFourier_neg_coe (m : ι → ℤ) (x : ι → ℝ) :
     UnitAddTorus.mFourier (-m) (fun i => ((x i : ℝ) : AddCircle (1 : ℝ)))
       = Complex.exp (-(2 * (Real.pi : ℂ) * Complex.I) * ∑ i, (m i : ℂ) * (x i : ℂ)) := by
@@ -108,12 +112,17 @@ noncomputable def intEquivSpanBasisFun :
       choose k hk using hcoords
       exact ⟨k, Subtype.ext (funext (fun i => (hk i).symm))⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s10.b1486a242724 from=translated src=- shape=8e5827dc vocab=88c1e8a3
+-/
 theorem intEquivSpanBasisFun_coe (n : ι → ℤ) :
     ((intEquivSpanBasisFun n : Submodule.span ℤ (Set.range (Pi.basisFun ℝ ι))) : ι → ℝ)
       = fun i => (n i : ℝ) := rfl
 
 /-- A coordinate hyperplane `{x | x i = c}` in `ι → ℝ` is Lebesgue-null: it is a translate of
-the kernel of the `i`-th coordinate projection, a proper subspace.-/
+the kernel of the `i`-th coordinate projection, a proper subspace.
+@isnad1 id=eq.0h3v.s6.3e0ac857c4ba from=translated src=- shape=6c7b527f vocab=2fd8fa9a
+-/
 theorem volume_pi_hyperplane (i : ι) (c : ℝ) :
     (volume : Measure (ι → ℝ)) {x | x i = c} = 0 := by
   classical
@@ -137,7 +146,9 @@ theorem volume_pi_hyperplane (i : ι) (c : ℝ) :
   exact h0
 
 /-- The half-open boxes `(0,1]^ι` and `[0,1)^ι` agree up to Lebesgue-null sets: their
-symmetric difference lies in the union of the coordinate hyperplanes `{x i = 0}`, `{x i = 1}`.-/
+symmetric difference lies in the union of the coordinate hyperplanes `{x i = 0}`, `{x i = 1}`.
+@isnad1 id=eventual.0h1v.s7.2f27f417faf7 from=translated src=- shape=04090e5d vocab=a590e2be
+-/
 theorem iocBox_ae_icoBox :
     ({x : ι → ℝ | ∀ i, x i ∈ Set.Ioc (0:ℝ) 1} : Set (ι → ℝ))
       =ᵐ[(volume : Measure (ι → ℝ))] {x : ι → ℝ | ∀ i, x i ∈ Set.Ico (0:ℝ) 1} := by
@@ -171,7 +182,9 @@ theorem iocBox_ae_icoBox :
     · linarith
 
 /-- The `ZSpan` fundamental domain of the standard basis of `ι → ℝ` is the half-open box
-`[0,1)^ι` (coordinates are the basis representation).-/
+`[0,1)^ι` (coordinates are the basis representation).
+@isnad1 id=eq.0h1v.s6.209d03c9536c from=translated src=- shape=86b9217a vocab=3a9dd16c
+-/
 theorem fundamentalDomain_basisFun_eq :
     ZSpan.fundamentalDomain (Pi.basisFun ℝ ι)
       = {x : ι → ℝ | ∀ i, x i ∈ Set.Ico (0:ℝ) 1} := by
@@ -189,7 +202,9 @@ private theorem neg_intEquivSpanBasisFun_add (n : ι → ℤ) (x : ι → ℝ) :
 /-- **Box tiling of `ℝ^ι`.** For an integrable `f`, the integral over `ι → ℝ` is the sum over
 integer translates of the integral over the half-open box `(0,1]^ι` — the fundamental-domain
 decomposition for the standard integer lattice, in the `Ioc` normalisation used by the torus
-Fourier coefficients.-/
+Fourier coefficients.
+@isnad1 id=eq.1h2v.s8.02633c3c407b from=translated src=- shape=d71f8b58 vocab=44179ba9
+-/
 theorem integral_eq_tsum_integral_iocBox (f : (ι → ℝ) → ℂ) (hf : Integrable f) :
     ∫ x, f x = ∑' n : ι → ℤ, ∫ x in {x : ι → ℝ | ∀ i, x i ∈ Set.Ioc (0:ℝ) 1},
       f (x + fun i => (n i : ℝ)) := by
@@ -209,7 +224,9 @@ theorem integral_eq_tsum_integral_iocBox (f : (ι → ℝ) → ℂ) (hf : Integr
     exact neg_intEquivSpanBasisFun_add n x
 
 /-- **Box tiling of `ℝ^ι`, `lintegral` form.** No integrability needed: the lower integral over
-`ι → ℝ` is the sum over integer translates of the lower integral over the box `(0,1]^ι`.-/
+`ι → ℝ` is the sum over integer translates of the lower integral over the box `(0,1]^ι`.
+@isnad1 id=eq.0h2v.s7.2ae5d823f155 from=translated src=- shape=72a9c7d5 vocab=b79f5c7e
+-/
 theorem lintegral_eq_tsum_lintegral_iocBox (f : (ι → ℝ) → ENNReal) :
     ∫⁻ x, f x = ∑' n : ι → ℤ, ∫⁻ x in {x : ι → ℝ | ∀ i, x i ∈ Set.Ioc (0:ℝ) 1},
       f (x + fun i => (n i : ℝ)) := by
@@ -227,14 +244,18 @@ theorem lintegral_eq_tsum_lintegral_iocBox (f : (ι → ℝ) → ENNReal) :
   congr 1
   exact neg_intEquivSpanBasisFun_add n x
 
-/-- The torus monomials have pointwise norm `1` (each factor lies on the circle).-/
+/-- The torus monomials have pointwise norm `1` (each factor lies on the circle).
+@isnad1 id=eq.0h3v.s6.886b43411e1f from=translated src=- shape=7a8c15fc vocab=bb9c6d28
+-/
 theorem norm_mFourier_apply (n : ι → ℤ) (q : UnitAddTorus ι) :
     ‖UnitAddTorus.mFourier n q‖ = 1 := by
   simp only [UnitAddTorus.mFourier, ContinuousMap.coe_mk, norm_prod]
   refine Finset.prod_eq_one (fun i _ => ?_)
   simp [fourier_apply, Circle.norm_coe]
 
-/-- The half-open box `(0,1]^ι` has volume `1`.-/
+/-- The half-open box `(0,1]^ι` has volume `1`.
+@isnad1 id=eq.0h1v.s6.f26a7c8dec07 from=translated src=- shape=b75ffd38 vocab=033e07b8
+-/
 theorem volume_iocBox :
     (volume : Measure (ι → ℝ)) {x : ι → ℝ | ∀ i, x i ∈ Set.Ioc (0:ℝ) 1} = 1 := by
   have hset : {x : ι → ℝ | ∀ i, x i ∈ Set.Ioc (0:ℝ) 1}
@@ -256,14 +277,18 @@ noncomputable def unitBoxCompacts : Compacts (EuclideanSpace ℝ ι) :=
     exact hbox.image (PiLp.continuous_toLp 2 _)⟩
 
 omit [Fintype ι] in
-/-- `toLp` sends an integer shift in `ι → ℝ` to a `zpoint` shift in `EuclideanSpace ℝ ι`.-/
+/-- `toLp` sends an integer shift in `ι → ℝ` to a `zpoint` shift in `EuclideanSpace ℝ ι`.
+@isnad1 id=eq.0h3v.s7.7c7d4a941e9a from=translated src=- shape=8bc7a439 vocab=3893d877
+-/
 theorem toLp_add_intCast (x : ι → ℝ) (n : ι → ℤ) :
     WithLp.toLp 2 (x + fun i => (n i : ℝ)) = WithLp.toLp 2 x + zpoint n := by
   ext i
   simp only [zpoint, PiLp.add_apply, Pi.add_apply, WithLp.equiv_symm_apply]
 
 /-- **Central sup-norm estimate.** On the closed unit box, the `n`-translate of `g` is bounded
-by the sup-norm of its restriction to `unitBoxCompacts` — the quantity `h_norm` sums.-/
+by the sup-norm of its restriction to `unitBoxCompacts` — the quantity `h_norm` sums.
+@isnad1 id=le.1h4v.s9.247c1bcc3a88 from=translated src=- shape=854e0047 vocab=e5ac5bf6
+-/
 theorem norm_apply_le_restrict_unitBox (g : C(EuclideanSpace ℝ ι, ℂ)) (n : ι → ℤ) {x : ι → ℝ}
     (hx : ∀ i, x i ∈ Set.Icc (0:ℝ) 1) :
     ‖g (WithLp.toLp 2 x + zpoint n)‖
@@ -278,7 +303,9 @@ theorem norm_apply_le_restrict_unitBox (g : C(EuclideanSpace ℝ ι, ℂ)) (n : 
 /-- **Integrability of the twisted function.** Under local summability of the lattice
 translates, `y ↦ mFourier (-m) (π y) • g (toLp y)` is integrable on `ι → ℝ`: its `lintegral`
 tiles into box pieces, each bounded by the corresponding translate's sup-norm on the closed
-unit box, and those sup-norms are summable by `h_norm`.-/
+unit box, and those sup-norms are summable by `h_norm`.
+@isnad1 id=integrab.1h3v.s10.2fd0374cd136 from=translated src=- shape=0257940a vocab=33964835
+-/
 theorem integrable_mFourier_smul_comp_toLp (g : C(EuclideanSpace ℝ ι, ℂ)) (m : ι → ℤ)
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),
       Summable fun n : ι → ℤ => ‖(g.comp (ContinuousMap.addRight (zpoint n))).restrict K‖) :
@@ -330,7 +357,9 @@ theorem integrable_mFourier_smul_comp_toLp (g : C(EuclideanSpace ℝ ι, ℂ)) (
 /-- **`𝓕` bridge.** The Fourier transform of `g` at the lattice point `m`, an integral over the
 inner-product space `EuclideanSpace ℝ ι`, rewrites as an integral over `ι → ℝ` of the torus
 character `mFourier (-m)` against `g` — via the measure-preserving `WithLp` identification and
-`mFourier_neg_coe`. This is the analytic content connecting `𝓕` to the torus Fourier coefficient.-/
+`mFourier_neg_coe`. This is the analytic content connecting `𝓕` to the torus Fourier coefficient.
+@isnad1 id=eq.0h3v.s8.399752c0d91a from=translated src=- shape=7e7f19d6 vocab=5c7dabe7
+-/
 theorem fourierIntegral_zpoint_eq (g : EuclideanSpace ℝ ι → ℂ) (m : ι → ℤ) :
     𝓕 g (zpoint m) = ∫ x : ι → ℝ,
       UnitAddTorus.mFourier (-m) (fun i => ((x i : ℝ) : AddCircle (1 : ℝ)))
@@ -355,7 +384,9 @@ noncomputable def periodization (g : EuclideanSpace ℝ ι → ℂ) (x : Euclide
   ∑' n : ι → ℤ, g (x + zpoint n)
 
 omit [Fintype ι] in
-/-- The periodization is `ℤ^ι`-periodic: shifting by a lattice point reindexes the sum.-/
+/-- The periodization is `ℤ^ι`-periodic: shifting by a lattice point reindexes the sum.
+@isnad1 id=eq.0h4v.s6.3517d1a9a719 from=translated src=- shape=8510cda0 vocab=080532d6
+-/
 theorem periodization_add_zpoint (g : EuclideanSpace ℝ ι → ℂ) (x : EuclideanSpace ℝ ι)
     (k : ι → ℤ) : periodization g (x + zpoint k) = periodization g x := by
   unfold periodization
@@ -366,7 +397,9 @@ theorem periodization_add_zpoint (g : EuclideanSpace ℝ ι → ℂ) (x : Euclid
 /-- **Gaussian summability over a lattice.** For `a > 0`, the Gaussian `x ↦ exp(-a‖x‖²)` is
 summable over any `ℤ`-lattice `L ⊂ EuclideanSpace ℝ ι`. Proof: it is eventually dominated (as
 `‖x‖ → ∞`, which happens cofinitely on the lattice since sub-level sets are finite) by
-`‖x‖^{-d-1}`, which is summable by `ZLattice.summable_norm_rpow`.-/
+`‖x‖^{-d-1}`, which is summable by `ZLattice.summable_norm_rpow`.
+@isnad1 id=summable.1h3v.s10.b025c3d42f31 from=translated src=- shape=01379c22 vocab=763b116f
+-/
 theorem summable_gaussian_zlattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
     [DiscreteTopology L] [IsZLattice ℝ L] {a : ℝ} (ha : 0 < a) :
     Summable (fun z : L => Real.exp (-a * ‖(z : EuclideanSpace ℝ ι)‖ ^ 2)) := by
@@ -411,7 +444,9 @@ theorem summable_gaussian_zlattice (L : Submodule ℤ (EuclideanSpace ℝ ι))
 
 /-- Evaluation of the `C(·,·)`-valued periodization: under local summability of the lattice
 translates, the tsum of translates in `C(EuclideanSpace ℝ ι, ℂ)` evaluates pointwise to
-`periodization g`.-/
+`periodization g`.
+@isnad1 id=eq.1h3v.s10.c74ef662b836 from=translated src=- shape=8eccb137 vocab=00d31739
+-/
 theorem coe_tsum_comp_addRight_zpoint (g : C(EuclideanSpace ℝ ι, ℂ))
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),
       Summable fun n : ι → ℤ => ‖(g.comp (ContinuousMap.addRight (zpoint n))).restrict K‖)
@@ -423,7 +458,9 @@ theorem coe_tsum_comp_addRight_zpoint (g : C(EuclideanSpace ℝ ι, ℂ))
 omit [Fintype ι] in
 /-- **Descent well-definedness**: the periodization takes equal values at points of `ι → ℝ`
 with the same image on the torus (they differ by an integer vector, and the periodization is
-`ℤ^ι`-periodic).-/
+`ℤ^ι`-periodic).
+@isnad1 id=eq.1h4v.s7.7ec5290bfdee from=translated src=- shape=6895086e vocab=2740802c
+-/
 theorem periodization_toLp_congr (g : EuclideanSpace ℝ ι → ℂ) {x y : ι → ℝ}
     (h : ∀ i, ((x i : ℝ) : AddCircle (1 : ℝ)) = (y i : ℝ)) :
     periodization g (WithLp.toLp 2 x) = periodization g (WithLp.toLp 2 y) := by
@@ -453,7 +490,9 @@ noncomputable def torusPeriodizationFun (g : EuclideanSpace ℝ ι → ℂ) (q :
 
 omit [Fintype ι] in
 /-- The torus periodization descends the periodization: precomposed with the quotient map it
-is `periodization g ∘ toLp`.-/
+is `periodization g ∘ toLp`.
+@isnad1 id=eq.0h3v.s5.f4022aae42a2 from=translated src=- shape=85e6fcb0 vocab=3615e614
+-/
 theorem torusPeriodizationFun_coe (g : EuclideanSpace ℝ ι → ℂ) (x : ι → ℝ) :
     torusPeriodizationFun g (fun i => ((x i : ℝ) : AddCircle (1 : ℝ)))
       = periodization g (WithLp.toLp 2 x) :=
@@ -461,7 +500,9 @@ theorem torusPeriodizationFun_coe (g : EuclideanSpace ℝ ι → ℂ) (x : ι �
 
 /-- Under local summability of the lattice translates, the torus periodization is continuous:
 its composite with the (open quotient) projection `(ι → ℝ) → UnitAddTorus ι` is the continuous
-`C(·,·)`-valued tsum of translates.-/
+`C(·,·)`-valued tsum of translates.
+@isnad1 id=continuo.1h2v.s9.445418f85361 from=translated src=- shape=6635bb63 vocab=b7f0966a
+-/
 theorem continuous_torusPeriodizationFun (g : C(EuclideanSpace ℝ ι, ℂ))
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),
       Summable fun n : ι → ℤ => ‖(g.comp (ContinuousMap.addRight (zpoint n))).restrict K‖) :
@@ -480,7 +521,9 @@ theorem continuous_torusPeriodizationFun (g : C(EuclideanSpace ℝ ι, ℂ))
   exact (map_continuous _).comp (PiLp.continuous_toLp 2 _)
 
 omit [Fintype ι] in
-/-- The coordinatewise quotient to the torus kills integer shifts.-/
+/-- The coordinatewise quotient to the torus kills integer shifts.
+@isnad1 id=eq.0h3v.s6.1210d6e9947e from=translated src=- shape=7b688d67 vocab=603dee49
+-/
 theorem coe_add_intCast_eq (x : ι → ℝ) (n : ι → ℤ) :
     (fun i => (((x + fun i => (n i : ℝ)) i : ℝ) : AddCircle (1 : ℝ)))
       = (fun i => ((x i : ℝ) : AddCircle (1 : ℝ))) := by
@@ -495,7 +538,9 @@ the `m`-th torus Fourier coefficient of the periodization of `g` is the Fourier 
 `g` at the lattice point `m`. Proof: write the coefficient as a box integral, descend the
 periodization, swap sum and integral (dominated by the translate sup-norms), absorb the
 character into each translate by shift-invariance, reassemble the box tiling into `∫_{ℝ^ι}`,
-and identify the result via the `𝓕` bridge.-/
+and identify the result via the `𝓕` bridge.
+@isnad1 id=eq.1h3v.s9.108d5c333191 from=translated src=- shape=73fecc50 vocab=612c4340
+-/
 theorem mFourierCoeff_torusPeriodizationFun (g : C(EuclideanSpace ℝ ι, ℂ)) (m : ι → ℤ)
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),
       Summable fun n : ι → ℤ => ‖(g.comp (ContinuousMap.addRight (zpoint n))).restrict K‖) :
@@ -580,7 +625,9 @@ theorem mFourierCoeff_torusPeriodizationFun (g : C(EuclideanSpace ℝ ι, ℂ)) 
 /-- **`n`-dimensional Poisson summation over `ℤ^ι`** (SP1-AGP P.2). For a continuous `g` on
 `EuclideanSpace ℝ ι` whose lattice translates are locally summable and whose Fourier transform
 is summable over `ℤ^ι`, `∑_{n} g(n) = ∑_{m} 𝓕g(m)`. Assembled from the multivariate torus
-Fourier series and `mFourierCoeff_periodization`.-/
+Fourier series and `mFourierCoeff_periodization`.
+@isnad1 id=eq.2h2v.s10.a580facc05b8 from=translated src=- shape=5a710025 vocab=9f1dfbc7
+-/
 theorem tsum_eq_tsum_fourier_zpoint {g : C(EuclideanSpace ℝ ι, ℂ)}
     (h_norm : ∀ K : Compacts (EuclideanSpace ℝ ι),
         Summable fun n : ι → ℤ =>

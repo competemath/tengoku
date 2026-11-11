@@ -69,7 +69,9 @@ noncomputable def maximalIdealAt (C : SmoothPlaneCurve F) (P : C.SmoothPoint) :
   WeierstrassCurve.Affine.CoordinateRing.XYIdeal C.toAffine P.x (Polynomial.C P.y)
 
 /-- `maximalIdealAt` is a maximal ideal: its quotient is isomorphic (as an
-`F`-algebra) to `F`, which is a field.-/
+`F`-algebra) to `F`, which is a field.
+@isnad1 id=ismaxima.0h3v.s5.e5e7be47f27b from=translated src=- shape=78678d86 vocab=51d273e6
+-/
 theorem maximalIdealAt_isMaximal (C : SmoothPlaneCurve F) (P : C.SmoothPoint) :
     (C.maximalIdealAt P).IsMaximal :=
   Ideal.Quotient.maximal_of_isField _

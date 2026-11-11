@@ -114,94 +114,132 @@ variable {R' : Type w} [Field R'] [NumberField R'] [Algebra K R'] [IsScalarTower
 
 variable (S : ConcreteStickelbergerSetup ℓ p k K R')
 
-/-- Accessor for the primality of the residue characteristic.-/
+/-- Accessor for the primality of the residue characteristic.
+@isnad1 id=prime.0h1v.s3.b2377fda8d17 from=translated src=- shape=77e6bbc5 vocab=c1c9ca6d
+-/
 theorem ell_prime : Nat.Prime ℓ :=
   Fact.out
 
-/-- Accessor for the primality of the Kummer exponent.-/
+/-- Accessor for the primality of the Kummer exponent.
+@isnad1 id=prime.0h1v.s3.b2377fda8d17 from=translated src=- shape=77e6bbc5 vocab=c1c9ca6d
+-/
 theorem p_prime : Nat.Prime p :=
   Fact.out
 
-/-- The residue characteristic and Kummer exponent are distinct.-/
+/-- The residue characteristic and Kummer exponent are distinct.
+@isnad1 id=ne.0h6v.s7.0c798cc22d0b from=translated src=- shape=e09a9f41 vocab=7a68a8c7
+-/
 theorem ell_ne_p (S : ConcreteStickelbergerSetup ℓ p k K R') : ℓ ≠ p :=
   S.hℓ_ne_p
 
-/-- The residue-field root is primitive of order `p`.-/
+/-- The residue-field root is primitive of order `p`.
+@isnad1 id=isprimit.0h6v.s7.7759c9fe8ffa from=translated src=- shape=7f1572b1 vocab=18bbb757
+-/
 theorem zeta_k_isPrimitiveRoot : IsPrimitiveRoot S.zeta_k p :=
   S.hzeta_k
 
-/-- The target-field `p`-th root is primitive.-/
+/-- The target-field `p`-th root is primitive.
+@isnad1 id=isprimit.0h6v.s7.6cf1fdef42b5 from=translated src=- shape=fb1907d5 vocab=85992a41
+-/
 theorem zeta_p_isPrimitiveRoot : IsPrimitiveRoot S.zeta_p p :=
   S.hzeta_p
 
-/-- The integral lift of `ζ_p` maps to the selected root in `R'`.-/
+/-- The integral lift of `ζ_p` maps to the selected root in `R'`.
+@isnad1 id=eq.0h6v.s8.a280b26db71c from=translated src=- shape=a5b5b1d6 vocab=de51558c
+-/
 @[simp]
 theorem algebraMap_zeta_p_int :
     algebraMap (𝓞 R') R' S.zeta_p_int = (S.zeta_p : R'ˣ) :=
   S.zeta_p_int_spec
 
-/-- The integral lift of `ζ_p` is still primitive.-/
+/-- The integral lift of `ζ_p` is still primitive.
+@isnad1 id=isprimit.0h6v.s7.0914c57a9bb7 from=translated src=- shape=fb1907d5 vocab=00baa2ba
+-/
 theorem zeta_p_int_isPrimitiveRoot : IsPrimitiveRoot S.zeta_p_int p := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ NumberField.RingOfIntegers.coe_injective
   simpa [S.algebraMap_zeta_p_int] using (IsPrimitiveRoot.coe_units_iff.mpr S.hzeta_p)
 
-/-- The target-field `ℓ`-th root is primitive.-/
+/-- The target-field `ℓ`-th root is primitive.
+@isnad1 id=isprimit.0h6v.s7.6463612ba832 from=translated src=- shape=10613e62 vocab=9d4c688b
+-/
 theorem zeta_ell_isPrimitiveRoot : IsPrimitiveRoot S.zeta_ell ℓ :=
   S.hzeta_ell
 
-/-- The integral lift of `ζ_ℓ` is primitive in `𝓞 R'`.-/
+/-- The integral lift of `ζ_ℓ` is primitive in `𝓞 R'`.
+@isnad1 id=isprimit.0h6v.s7.b3c29c207a81 from=translated src=- shape=fea5df44 vocab=1095bf84
+-/
 theorem zeta_ell_int_isPrimitiveRoot : IsPrimitiveRoot S.zeta_ell_int ℓ := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ NumberField.RingOfIntegers.coe_injective
   simpa [S.zeta_ell_int_spec] using S.hzeta_ell
 
-/-- The cardinality divisibility required to define the residue character.-/
+/-- The cardinality divisibility required to define the residue character.
+@isnad1 id=dvd.0h6v.s7.9a7e2d9b66b4 from=translated src=- shape=3a92fa4d vocab=cf4a42d3
+-/
 theorem p_dvd_card_sub_one (S : ConcreteStickelbergerSetup ℓ p k K R') :
     p ∣ Fintype.card k - 1 :=
   S.hdiv
 
 /-- The prime ideal `Q` is available as an instance when working from the
-bundle.-/
+bundle.
+@isnad1 id=isprime.0h6v.s7.f0872caf09a0 from=translated src=- shape=767ab5b7 vocab=62c8a10e
+-/
 protected instance Q_isPrime : S.Q.IsPrime :=
   S.hQ_prime
 
-/-- The rational prime `ℓ` lies in the selected prime ideal.-/
+/-- The rational prime `ℓ` lies in the selected prime ideal.
+@isnad1 id=mem.0h6v.s8.5a80e3656203 from=translated src=- shape=3702baf4 vocab=f7250977
+-/
 theorem ell_mem_Q : (ℓ : 𝓞 R') ∈ S.Q :=
   S.hQ
 
 /-- Powers of the residue characteristic land in the corresponding powers of
 the selected prime. This is the elementary nilpotence input used when passing
-to `Q`-adic quotients.-/
+to `Q`-adic quotients.
+@isnad1 id=mem.0h7v.s8.3c590d918c0c from=translated src=- shape=20af3323 vocab=41bae4e9
+-/
 theorem natCast_ell_pow_mem_Q_pow (N : ℕ) :
     (ℓ : 𝓞 R') ^ N ∈ S.Q ^ N :=
   Ideal.pow_mem_pow S.hQ N
 
-/-- In the quotient modulo `Q^(N+1)`, the residue characteristic is nilpotent.-/
+/-- In the quotient modulo `Q^(N+1)`, the residue characteristic is nilpotent.
+@isnad1 id=eq.0h7v.s11.5c0c65c54128 from=translated src=- shape=1d9da2c2 vocab=db31b9ee
+-/
 theorem quotient_natCast_ell_pow_succ_eq_zero (N : ℕ) :
     (Ideal.Quotient.mk (S.Q ^ (N + 1)) (ℓ : 𝓞 R')) ^ (N + 1) = 0 := by
   rw [← map_pow, Ideal.Quotient.eq_zero_iff_mem]
   exact S.natCast_ell_pow_mem_Q_pow (N + 1)
 
-/-- Nilpotence form of `quotient_natCast_ell_pow_succ_eq_zero`.-/
+/-- Nilpotence form of `quotient_natCast_ell_pow_succ_eq_zero`.
+@isnad1 id=isnilpot.0h7v.s11.5930d159cd6f from=translated src=- shape=d07ce46b vocab=b139e703
+-/
 theorem quotient_natCast_ell_isNilpotent (N : ℕ) :
     IsNilpotent (Ideal.Quotient.mk (S.Q ^ (N + 1)) (ℓ : 𝓞 R')) :=
   ⟨N + 1, S.quotient_natCast_ell_pow_succ_eq_zero N⟩
 
-/-- The residue map has kernel `Q`.-/
+/-- The residue map has kernel `Q`.
+@isnad1 id=eq.0h6v.s8.401ec947bf70 from=translated src=- shape=f62eddc5 vocab=4b185270
+-/
 theorem residueMap_ker_eq : RingHom.ker S.residueMap = S.Q :=
   S.residueMap_ker
 
 /-- Membership in the selected prime is equivalent to vanishing under the
-residue map.-/
+residue map.
+@isnad1 id=iff.0h7v.s8.171d67b45df0 from=translated src=- shape=e54813ab vocab=cda47d28
+-/
 theorem mem_Q_iff_residueMap_eq_zero (x : 𝓞 R') :
     x ∈ S.Q ↔ S.residueMap x = 0 := by
   rw [← S.residueMap_ker_eq, RingHom.mem_ker]
 
-/-- The integral lift of `ζ_p` reduces to the selected finite-field root.-/
+/-- The integral lift of `ζ_p` reduces to the selected finite-field root.
+@isnad1 id=eq.0h6v.s8.320e0833c585 from=translated src=- shape=c837a689 vocab=c9c2dda9
+-/
 @[simp]
 theorem residueMap_zeta_p_int : S.residueMap S.zeta_p_int = (S.zeta_k : k) :=
   S.zeta_p_int_residue
 
-/-- The residue map is surjective.-/
+/-- The residue map is surjective.
+@isnad1 id=surjecti.0h6v.s8.887a96e08879 from=translated src=- shape=a51cb9de vocab=031472d1
+-/
 theorem residueMap_surjective' : Function.Surjective S.residueMap :=
   S.residueMap_surjective
 
@@ -212,12 +250,17 @@ def residueQuotientEquiv : 𝓞 R' ⧸ S.Q ≃+* k :=
     simpa using S.residueMap_ker)).trans
     (RingHom.quotientKerEquivOfSurjective S.residueMap_surjective)
 
+/--
+@isnad1 id=eq.0h7v.s10.63bedc259493 from=translated src=- shape=d4f74a94 vocab=5d4131e0
+-/
 @[simp]
 theorem residueQuotientEquiv_mk (x : 𝓞 R') :
     S.residueQuotientEquiv (Ideal.Quotient.mk S.Q x) = S.residueMap x := by
   simp [residueQuotientEquiv]
 
-/-- Elements outside `Q` become units modulo every positive power of `Q`.-/
+/-- Elements outside `Q` become units modulo every positive power of `Q`.
+@isnad1 id=isunit.1h8v.s11.31f3cf22fe8a from=translated src=- shape=4ca4b649 vocab=f243372a
+-/
 theorem quotient_mk_isUnit_of_not_mem_Q (N : ℕ) {s : 𝓞 R'} (hs : s ∉ S.Q) :
     IsUnit (Ideal.Quotient.mk (S.Q ^ (N + 1)) s) := by
   haveI : S.Q.IsMaximal := by
@@ -232,6 +275,9 @@ def quotientUnitOfNotMemQ
     (N : ℕ) (s : 𝓞 R') (hs : s ∉ S.Q) : (𝓞 R' ⧸ S.Q ^ (N + 1))ˣ :=
   (S.quotient_mk_isUnit_of_not_mem_Q N hs).unit
 
+/--
+@isnad1 id=eq.1h8v.s11.ee14ddbc6fc0 from=translated src=- shape=60d2e1fe vocab=b0696a5c
+-/
 @[simp]
 theorem quotientUnitOfNotMemQ_coe (N : ℕ) (s : 𝓞 R') (hs : s ∉ S.Q) :
     (S.quotientUnitOfNotMemQ N s hs : 𝓞 R' ⧸ S.Q ^ (N + 1)) =
@@ -244,6 +290,9 @@ def quotientInvOfNotMemQ
     (N : ℕ) (s : 𝓞 R') (hs : s ∉ S.Q) : 𝓞 R' ⧸ S.Q ^ (N + 1) :=
   ((S.quotientUnitOfNotMemQ N s hs)⁻¹ : (𝓞 R' ⧸ S.Q ^ (N + 1))ˣ)
 
+/--
+@isnad1 id=eq.1h8v.s11.c4e020601143 from=translated src=- shape=1b734295 vocab=25ac13e2
+-/
 @[simp]
 theorem quotient_mk_mul_quotientInvOfNotMemQ
     (N : ℕ) (s : 𝓞 R') (hs : s ∉ S.Q) :
@@ -251,6 +300,9 @@ theorem quotient_mk_mul_quotientInvOfNotMemQ
         S.quotientInvOfNotMemQ N s hs = 1 := by
   simp [quotientInvOfNotMemQ]
 
+/--
+@isnad1 id=eq.1h8v.s11.5d128cb06a04 from=translated src=- shape=5210a5f4 vocab=25ac13e2
+-/
 @[simp]
 theorem quotientInvOfNotMemQ_mul_quotient_mk
     (N : ℕ) (s : 𝓞 R') (hs : s ∉ S.Q) :
@@ -258,6 +310,9 @@ theorem quotientInvOfNotMemQ_mul_quotient_mk
         Ideal.Quotient.mk (S.Q ^ (N + 1)) s = 1 := by
   simp [quotientInvOfNotMemQ]
 
+/--
+@isnad1 id=eq.1h9v.s12.b1c2324251f4 from=translated src=- shape=a71bdf0f vocab=25ac13e2
+-/
 @[simp]
 theorem quotient_mk_mul_denominator_inv_of_not_mem_Q
     (N : ℕ) (x : 𝓞 R') {s : 𝓞 R'} (hs : s ∉ S.Q) :
@@ -266,6 +321,9 @@ theorem quotient_mk_mul_denominator_inv_of_not_mem_Q
       Ideal.Quotient.mk (S.Q ^ (N + 1)) x := by
   rw [map_mul, mul_assoc, S.quotient_mk_mul_quotientInvOfNotMemQ N s hs, mul_one]
 
+/--
+@isnad1 id=eq.1h9v.s12.d447bcfc673a from=translated src=- shape=a5e128f8 vocab=25ac13e2
+-/
 @[simp]
 theorem denominator_inv_mul_quotient_mk_mul_of_not_mem_Q
     (N : ℕ) (x : 𝓞 R') {s : 𝓞 R'} (hs : s ∉ S.Q) :
@@ -275,7 +333,9 @@ theorem denominator_inv_mul_quotient_mk_mul_of_not_mem_Q
   rw [map_mul, ← mul_assoc, S.quotientInvOfNotMemQ_mul_quotient_mk N s hs,
     one_mul]
 
-/-- The quotient map sends every local denominator away from `Q` to a unit.-/
+/-- The quotient map sends every local denominator away from `Q` to a unit.
+@isnad1 id=isunit.0h8v.s11.f73a7715be6c from=translated src=- shape=be104d18 vocab=8386ba96
+-/
 theorem quotient_mk_isUnit_primeCompl
     (N : ℕ) (s : S.Q.primeCompl) :
     IsUnit (Ideal.Quotient.mk (S.Q ^ (N + 1)) (s : 𝓞 R')) :=
@@ -293,6 +353,9 @@ def quotientLocalizationAwayQMap (N : ℕ) :
     (g := Ideal.Quotient.mk (S.Q ^ (N + 1)))
     (S.quotient_mk_isUnit_primeCompl N)
 
+/--
+@isnad1 id=eq.0h8v.s12.606c40d028d3 from=translated src=- shape=b6450e11 vocab=261b9f05
+-/
 @[simp]
 theorem quotientLocalizationAwayQMap_algebraMap
     (N : ℕ) (x : 𝓞 R') :
@@ -324,6 +387,9 @@ def quotientFractionEval
     𝓞 R' ⧸ S.Q ^ (N + 1) :=
   S.quotientFractionEvalPrimeCompl N x ⟨s, hs⟩
 
+/--
+@isnad1 id=eq.0h8v.s11.d6e36cf42ffc from=translated src=- shape=8a8e4fa9 vocab=e69fa630
+-/
 @[simp]
 theorem quotientFractionEvalPrimeCompl_one
     (N : ℕ) (x : 𝓞 R') :
@@ -335,6 +401,9 @@ theorem quotientFractionEvalPrimeCompl_one
         (S := Localization S.Q.primeCompl)
         x)
 
+/--
+@isnad1 id=eq.0h9v.s12.649506625d7c from=translated src=- shape=deba497c vocab=886a8662
+-/
 theorem quotientFractionEvalPrimeCompl_den_mul
     (N : ℕ) (x : 𝓞 R') (s : S.Q.primeCompl) :
     Ideal.Quotient.mk (S.Q ^ (N + 1)) (s : 𝓞 R') *
@@ -356,6 +425,9 @@ theorem quotientFractionEvalPrimeCompl_den_mul
           simp [quotientFractionEvalPrimeCompl, quotientLocalizationAwayQMap])
   exact h.symm
 
+/--
+@isnad1 id=eq.1h9v.s12.d91abed298a5 from=translated src=- shape=352b27ae vocab=70882c83
+-/
 theorem quotientFractionEval_den_mul
     (N : ℕ) (x s : 𝓞 R') (hs : s ∉ S.Q) :
     Ideal.Quotient.mk (S.Q ^ (N + 1)) s *
@@ -364,6 +436,9 @@ theorem quotientFractionEval_den_mul
   simpa [quotientFractionEval] using
     S.quotientFractionEvalPrimeCompl_den_mul N x ⟨s, hs⟩
 
+/--
+@isnad1 id=eq.1h9v.s11.1441c2442dd0 from=translated src=- shape=8e521fb1 vocab=e10bef69
+-/
 theorem quotientFractionEval_eq_mk_mul_inv
     (N : ℕ) (x s : 𝓞 R') (hs : s ∉ S.Q) :
     S.quotientFractionEval N x s hs =
@@ -374,6 +449,9 @@ theorem quotientFractionEval_eq_mk_mul_inv
     S.quotientFractionEval_den_mul N x s hs, mul_assoc,
     S.quotientInvOfNotMemQ_mul_quotient_mk N s hs, mul_one]
 
+/--
+@isnad1 id=eq.0h11v.s11.b885203ee6b5 from=translated src=- shape=c31d2f99 vocab=4e97d128
+-/
 theorem quotientFractionEvalPrimeCompl_add
     (N : ℕ) (x₁ x₂ : 𝓞 R') (s₁ s₂ : S.Q.primeCompl) :
     S.quotientFractionEvalPrimeCompl N
@@ -386,6 +464,9 @@ theorem quotientFractionEvalPrimeCompl_add
         (S := Localization S.Q.primeCompl)
         x₁ x₂ s₁ s₂)
 
+/--
+@isnad1 id=eq.0h11v.s11.ec957b4c7c16 from=translated src=- shape=c37edc61 vocab=8fbe353a
+-/
 theorem quotientFractionEvalPrimeCompl_mul
     (N : ℕ) (x₁ x₂ : 𝓞 R') (s₁ s₂ : S.Q.primeCompl) :
     S.quotientFractionEvalPrimeCompl N (x₁ * x₂) (s₁ * s₂) =
@@ -397,6 +478,9 @@ theorem quotientFractionEvalPrimeCompl_mul
         (S := Localization S.Q.primeCompl)
         x₁ x₂ s₁ s₂)
 
+/--
+@isnad1 id=eq.0h9v.s10.6c0733491b6c from=translated src=- shape=bd2c2a22 vocab=c18f3783
+-/
 theorem quotientFractionEvalPrimeCompl_neg
     (N : ℕ) (x : 𝓞 R') (s : S.Q.primeCompl) :
     S.quotientFractionEvalPrimeCompl N (-x) s =
@@ -407,6 +491,9 @@ theorem quotientFractionEvalPrimeCompl_neg
         (S := Localization S.Q.primeCompl)
         x s)
 
+/--
+@isnad1 id=eq.0h11v.s11.c95929ea4d7e from=translated src=- shape=d51e7455 vocab=b430b4fe
+-/
 theorem quotientFractionEvalPrimeCompl_sub
     (N : ℕ) (x₁ x₂ : 𝓞 R') (s₁ s₂ : S.Q.primeCompl) :
     S.quotientFractionEvalPrimeCompl N
@@ -419,6 +506,9 @@ theorem quotientFractionEvalPrimeCompl_sub
         (S := Localization S.Q.primeCompl)
         x₁ x₂ s₁ s₂)
 
+/--
+@isnad1 id=eq.0h10v.s11.c1d1fe56330c from=translated src=- shape=8e4f3515 vocab=c33e7a31
+-/
 theorem quotientFractionEvalPrimeCompl_pow
     (N : ℕ) (x : 𝓞 R') (s : S.Q.primeCompl) (m : ℕ) :
     S.quotientFractionEvalPrimeCompl N (x ^ m) (s ^ m) =
@@ -429,6 +519,9 @@ theorem quotientFractionEvalPrimeCompl_pow
         (S := Localization S.Q.primeCompl)
         x s m)
 
+/--
+@isnad1 id=eq.1h9v.s10.c45f62cabd2a from=translated src=- shape=2a7e9112 vocab=c33e7a31
+-/
 theorem quotientFractionEvalPrimeCompl_eq_zero_of_mem
     (N : ℕ) {x : 𝓞 R'} (s : S.Q.primeCompl)
     (hx : x ∈ S.Q ^ (N + 1)) :
@@ -438,6 +531,9 @@ theorem quotientFractionEvalPrimeCompl_eq_zero_of_mem
     S.quotientFractionEvalPrimeCompl_den_mul N x s]
   exact Ideal.Quotient.eq_zero_iff_mem.mpr hx
 
+/--
+@isnad1 id=eq.2h9v.s10.896f2d3c2773 from=translated src=- shape=6f77efc3 vocab=247b2cf9
+-/
 theorem quotientFractionEval_eq_zero_of_mem
     (N : ℕ) {x s : 𝓞 R'} (hs : s ∉ S.Q)
     (hx : x ∈ S.Q ^ (N + 1)) :
@@ -445,6 +541,9 @@ theorem quotientFractionEval_eq_zero_of_mem
   simpa [quotientFractionEval] using
     S.quotientFractionEvalPrimeCompl_eq_zero_of_mem N ⟨s, hs⟩ hx
 
+/--
+@isnad1 id=eq.1h10v.s9.1a7565e58393 from=translated src=- shape=65ca1d1a vocab=b413e524
+-/
 theorem quotientFractionEvalPrimeCompl_eq_of_sub_mem
     (N : ℕ) {x y : 𝓞 R'} (s : S.Q.primeCompl)
     (hxy : x - y ∈ S.Q ^ (N + 1)) :
@@ -457,6 +556,9 @@ theorem quotientFractionEvalPrimeCompl_eq_of_sub_mem
     S.quotientFractionEvalPrimeCompl_den_mul N y s]
   exact Ideal.Quotient.eq.mpr hxy
 
+/--
+@isnad1 id=eq.2h10v.s9.89b626eadb3a from=translated src=- shape=6fff1938 vocab=acbcb62a
+-/
 theorem quotientFractionEval_eq_of_sub_mem
     (N : ℕ) {x y s : 𝓞 R'} (hs : s ∉ S.Q)
     (hxy : x - y ∈ S.Q ^ (N + 1)) :
@@ -469,33 +571,46 @@ theorem quotientFractionEval_eq_of_sub_mem
 def residueUnitEquiv : (𝓞 R' ⧸ S.Q)ˣ ≃* kˣ :=
   Units.mapEquiv S.residueQuotientEquiv.toMulEquiv
 
+/--
+@isnad1 id=eq.0h7v.s11.f75d96e15324 from=translated src=- shape=1a1e6e1a vocab=febf6d5b
+-/
 @[simp]
 theorem residueUnitEquiv_val (u : (𝓞 R' ⧸ S.Q)ˣ) :
     ((S.residueUnitEquiv u : kˣ) : k) =
       S.residueQuotientEquiv (u : 𝓞 R' ⧸ S.Q) := by
   simp [residueUnitEquiv]
 
-/-- The chosen finite field has cardinality `ℓ ^ f`.-/
+/-- The chosen finite field has cardinality `ℓ ^ f`.
+@isnad1 id=eq.0h6v.s7.ae1c1408c933 from=translated src=- shape=47f3bbd6 vocab=630e3847
+-/
 theorem card_k_eq : Fintype.card k = ℓ ^ S.f :=
   S.card_k
 
-/-- The integral lift of `ζ_ℓ` maps to the selected root in `R'`.-/
+/-- The integral lift of `ζ_ℓ` maps to the selected root in `R'`.
+@isnad1 id=eq.0h6v.s8.cae45be4a096 from=translated src=- shape=174fc9c9 vocab=cd6a87b1
+-/
 theorem algebraMap_zeta_ell_int : algebraMap (𝓞 R') R' S.zeta_ell_int = S.zeta_ell :=
   S.zeta_ell_int_spec
 
-/-- The defining equation for `π` in `𝓞 R'`.-/
+/-- The defining equation for `π` in `𝓞 R'`.
+@isnad1 id=eq.0h6v.s8.91bcd60518da from=translated src=- shape=a0af1a9b vocab=53d0a1ee
+-/
 theorem π_def : S.π = S.zeta_ell_int - 1 :=
   S.hπ
 
 /-- The selected prime above `ℓ` contains `π = ζ_ℓ - 1`. This is the
 ramification containment available in the mixed cyclotomic field
-`ℚ(ζ_p, ζ_ℓ)`.-/
+`ℚ(ζ_p, ζ_ℓ)`.
+@isnad1 id=mem.0h6v.s8.9f9adcca525b from=translated src=- shape=1a3027a4 vocab=2028dc52
+-/
 theorem π_mem_Q : S.π ∈ S.Q := by
   rw [S.hπ]
   exact zeta_sub_one_mem_of_natCast_mem S.zeta_ell_int_isPrimitiveRoot S.hQ
 
 /-- The additive character is expressed in powers of the chosen primitive
-`ℓ`-th root.-/
+`ℓ`-th root.
+@isnad1 id=eq.0h7v.s8.4c452727aa39 from=translated src=- shape=9eb33cd1 vocab=6f941034
+-/
 theorem psi_pow_form (x : k) : S.psi x = S.zeta_ell ^ S.psiExponent x :=
   S.psi_eq_zeta_ell_pow x
 
@@ -519,19 +634,27 @@ def residueChar : MulChar k R' :=
 def teichmuller : (𝓞 R' ⧸ S.Q)ˣ →* R'ˣ :=
   S.residueChar.toUnitHom.comp S.residueUnitEquiv.toMonoidHom
 
+/--
+@isnad1 id=eq.0h7v.s11.2d19d0dbca84 from=translated src=- shape=5b13026d vocab=419bb617
+-/
 @[simp]
 theorem teichmuller_apply_coe (u : (𝓞 R' ⧸ S.Q)ˣ) :
     ((S.teichmuller u : R'ˣ) : R') =
       S.residueChar (S.residueQuotientEquiv (u : 𝓞 R' ⧸ S.Q)) := by
   simp [teichmuller]
 
+/--
+@isnad1 id=eq.0h7v.s11.8b0b28d69f7d from=translated src=- shape=55fddaca vocab=a2f4e611
+-/
 @[simp]
 theorem teichmuller_apply_mk_unit (u : (𝓞 R')ˣ) :
     ((S.teichmuller (Units.map (Ideal.Quotient.mk S.Q) u) : R'ˣ) : R') =
       S.residueChar (S.residueMap (u : 𝓞 R')) := by
   simp [teichmuller_apply_coe]
 
-/-- Concrete power form of the Teichmüller representative.-/
+/-- Concrete power form of the Teichmüller representative.
+@isnad1 id=eq.0h7v.s11.9a891ad5fe63 from=translated src=- shape=c20008dc vocab=e728c121
+-/
 theorem teichmuller_apply_eq_zeta_p_pow (u : (𝓞 R' ⧸ S.Q)ˣ) :
     ((S.teichmuller u : R'ˣ) : R') =
       ((S.zeta_p : R'ˣ) : R') ^
@@ -541,7 +664,9 @@ theorem teichmuller_apply_eq_zeta_p_pow (u : (𝓞 R' ⧸ S.Q)ˣ) :
     StickelbergerSetup.residueChar, residueMulChar_apply_unit]
   simp [abstractSetup]
 
-/-- The transported Teichmüller representative has order dividing `p`.-/
+/-- The transported Teichmüller representative has order dividing `p`.
+@isnad1 id=eq.0h7v.s10.aaff2aa78b09 from=translated src=- shape=68e1b764 vocab=961da301
+-/
 theorem teichmuller_pow_eq_one (u : (𝓞 R' ⧸ S.Q)ˣ) :
     S.teichmuller u ^ p = 1 := by
   apply Units.ext
@@ -554,28 +679,38 @@ theorem teichmuller_pow_eq_one (u : (𝓞 R' ⧸ S.Q)ˣ) :
 def gaussSum : R' :=
   S.abstractSetup.gaussSum
 
-/-- Accessor: `χ_q^p = 1` for the concrete residue character.-/
+/-- Accessor: `χ_q^p = 1` for the concrete residue character.
+@isnad1 id=eq.0h6v.s8.5c2f92d7ce5a from=translated src=- shape=ffd7a073 vocab=99138e30
+-/
 theorem residueChar_pow_eq_one : S.residueChar ^ p = 1 :=
   S.abstractSetup.residueChar_pow_eq_one
 
-/-- Accessor: the concrete residue character is non-trivial.-/
+/-- Accessor: the concrete residue character is non-trivial.
+@isnad1 id=ne.0h6v.s8.3abed2830367 from=translated src=- shape=95c10757 vocab=a30fa9e1
+-/
 theorem residueChar_ne_one : S.residueChar ≠ 1 :=
   S.abstractSetup.residueChar_ne_one
 
-/-- Accessor: the concrete Gauss sum satisfies the abstract norm relation.-/
+/-- Accessor: the concrete Gauss sum satisfies the abstract norm relation.
+@isnad1 id=eq.0h6v.s8.8c640a524396 from=translated src=- shape=53f134e9 vocab=0f68dd67
+-/
 theorem gaussSum_mul_inv_eq_card :
     S.gaussSum * _root_.gaussSum S.residueChar⁻¹ S.psi⁻¹ = Fintype.card k :=
   S.abstractSetup.gaussSum_mul_inv_eq_card
 
 /-- Accessor: concrete q-adic containment from a congruence of `psi` modulo
-an ideal.-/
+an ideal.
+@isnad1 id=mem.1h7v.s8.73896c07b36d from=translated src=- shape=f76037c8 vocab=fffb56c8
+-/
 theorem gaussSum_mem_ideal {I : Ideal R'} (h : ∀ x : k, S.psi x - 1 ∈ I) :
     S.gaussSum ∈ I :=
   S.abstractSetup.gaussSum_mem_ideal h
 
 /-- In the pure `ℓ`-cyclotomic field, every prime above `ℓ` is the prime
 generated by `ζ_ℓ - 1`. This is the exact mathlib ramification theorem in the
-form needed by the mixed setup's local `ℓ`-cyclotomic part.-/
+form needed by the mixed setup's local `ℓ`-cyclotomic part.
+@isnad1 id=eq.1h4v.s7.a8213173fadd from=translated src=- shape=d69f8c71 vocab=64cbc599
+-/
 theorem prime_over_ell_eq_span_zeta_sub_one
     {L : Type*} [Field L] [NumberField L] [IsCyclotomicExtension {ℓ} ℚ L]
     {ζ : L} (hζ : IsPrimitiveRoot ζ ℓ)
@@ -669,16 +804,22 @@ variable {R' : Type w} [Field R'] [NumberField R'] [Algebra K R'] [IsScalarTower
 
 variable (S : ConductorFlexibleConcreteStickelbergerSetup ℓ p k K R')
 
-/-- The selected over-prime is prime.-/
+/-- The selected over-prime is prime.
+@isnad1 id=isprime.0h6v.s7.a2b8364f512e from=translated src=- shape=19ce28f5 vocab=d489bd88
+-/
 protected instance Q_isPrime : S.Q.IsPrime :=
   S.hQ_prime
 
-/-- The residue map has kernel `Q`.-/
+/-- The residue map has kernel `Q`.
+@isnad1 id=eq.0h6v.s8.8c029999c35f from=translated src=- shape=877be30c vocab=31e52224
+-/
 theorem residueMap_ker_eq : RingHom.ker S.residueMap = S.Q :=
   S.residueMap_ker
 
 /-- Membership in the selected prime is equivalent to vanishing under the
-residue map.-/
+residue map.
+@isnad1 id=iff.0h7v.s8.ca0f23b62241 from=translated src=- shape=7af13356 vocab=5498283e
+-/
 theorem mem_Q_iff_residueMap_eq_zero (x : 𝓞 R') :
     x ∈ S.Q ↔ S.residueMap x = 0 := by
   rw [← S.residueMap_ker_eq, RingHom.mem_ker]
@@ -690,6 +831,9 @@ def residueQuotientEquiv : 𝓞 R' ⧸ S.Q ≃+* k :=
     simpa using S.residueMap_ker)).trans
     (RingHom.quotientKerEquivOfSurjective S.residueMap_surjective)
 
+/--
+@isnad1 id=eq.0h7v.s10.197c4f6f3def from=translated src=- shape=dea97ce5 vocab=6cb3cd79
+-/
 @[simp]
 theorem residueQuotientEquiv_mk (x : 𝓞 R') :
     S.residueQuotientEquiv (Ideal.Quotient.mk S.Q x) = S.residueMap x := by
@@ -714,7 +858,9 @@ def abstractSetup : StickelbergerSetup p k R' where
 def residueChar : MulChar k R' :=
   S.abstractSetup.residueChar
 
-/-- The integral lift of `ζ_p` is primitive in `𝓞 R'`.-/
+/-- The integral lift of `ζ_p` is primitive in `𝓞 R'`.
+@isnad1 id=isprimit.0h6v.s7.5b0eb574dfa0 from=translated src=- shape=cdb12f30 vocab=99b0ae94
+-/
 theorem zeta_p_int_isPrimitiveRoot : IsPrimitiveRoot S.zeta_p_int p := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ NumberField.RingOfIntegers.coe_injective
   simpa [S.zeta_p_int_spec] using (IsPrimitiveRoot.coe_units_iff.mpr S.hzeta_p)
@@ -723,18 +869,25 @@ theorem zeta_p_int_isPrimitiveRoot : IsPrimitiveRoot S.zeta_p_int p := by
 def zeta_p_int_unit : (𝓞 R')ˣ :=
   (S.zeta_p_int_isPrimitiveRoot.isUnit (Fact.out : Nat.Prime p).ne_zero).unit
 
+/--
+@isnad1 id=eq.0h6v.s7.dccf6f12c3bf from=translated src=- shape=2e78799e vocab=b30a667f
+-/
 @[simp]
 theorem zeta_p_int_unit_coe : (S.zeta_p_int_unit : 𝓞 R') = S.zeta_p_int := by
   simp [zeta_p_int_unit]
 
-/-- The unit lift of `ζ_p` reduces to the selected finite-field root.-/
+/-- The unit lift of `ζ_p` reduces to the selected finite-field root.
+@isnad1 id=eq.0h6v.s8.968fac5caa9f from=translated src=- shape=7a0516d2 vocab=d11a5e2f
+-/
 @[simp]
 theorem residueMap_zeta_p_int_unit :
     S.residueMap (S.zeta_p_int_unit : 𝓞 R') = (S.zeta_k : k) := by
   rw [S.zeta_p_int_unit_coe]
   exact S.zeta_p_int_residue
 
-/-- The unit lift of `ζ_p` remains primitive.-/
+/-- The unit lift of `ζ_p` remains primitive.
+@isnad1 id=isprimit.0h6v.s7.0224144d7fb4 from=translated src=- shape=0fe6bd2e vocab=b42503c1
+-/
 theorem zeta_p_int_unit_isPrimitiveRoot : IsPrimitiveRoot S.zeta_p_int_unit p := by
   simpa [zeta_p_int_unit] using
     S.zeta_p_int_isPrimitiveRoot.isUnit_unit (Fact.out : Nat.Prime p).ne_zero
@@ -745,30 +898,42 @@ def residueCharInt : MulChar k (𝓞 R') :=
   residueMulChar S.zeta_k S.hzeta_k S.hdiv S.zeta_p_int_unit
     S.zeta_p_int_unit_isPrimitiveRoot
 
-/-- The integral lift of `ζ_ℓ` maps to the selected root in `R'`.-/
+/-- The integral lift of `ζ_ℓ` maps to the selected root in `R'`.
+@isnad1 id=eq.0h6v.s8.4d0a71d45aaf from=translated src=- shape=c4c712a8 vocab=78fe3573
+-/
 theorem algebraMap_zeta_ell_int : algebraMap (𝓞 R') R' S.zeta_ell_int = S.zeta_ell :=
   S.zeta_ell_int_spec
 
-/-- The defining equation for `π` in `𝓞 R'`.-/
+/-- The defining equation for `π` in `𝓞 R'`.
+@isnad1 id=eq.0h6v.s7.4137b40a4b81 from=translated src=- shape=64083d35 vocab=84b4d777
+-/
 theorem π_def : S.π = S.zeta_ell_int - 1 :=
   S.hπ
 
-/-- The integral lift of `ζ_ℓ` is primitive in `𝓞 R'`.-/
+/-- The integral lift of `ζ_ℓ` is primitive in `𝓞 R'`.
+@isnad1 id=isprimit.0h6v.s7.21a6e64f768f from=translated src=- shape=4548d42d vocab=1392d641
+-/
 theorem zeta_ell_int_isPrimitiveRoot : IsPrimitiveRoot S.zeta_ell_int ℓ := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ NumberField.RingOfIntegers.coe_injective
   simpa [S.zeta_ell_int_spec] using S.hzeta_ell
 
-/-- The selected prime above `ℓ` contains `π = ζ_ℓ - 1`.-/
+/-- The selected prime above `ℓ` contains `π = ζ_ℓ - 1`.
+@isnad1 id=mem.0h6v.s8.d9edb6a311a4 from=translated src=- shape=82d9f573 vocab=e4134558
+-/
 theorem π_mem_Q : S.π ∈ S.Q := by
   rw [S.π_def]
   exact zeta_sub_one_mem_of_natCast_mem S.zeta_ell_int_isPrimitiveRoot S.hQ
 
-/-- Ideal form of `π_mem_Q`: the principal ideal `(π)` lies below `Q`.-/
+/-- Ideal form of `π_mem_Q`: the principal ideal `(π)` lies below `Q`.
+@isnad1 id=le.0h6v.s8.09369838023a from=translated src=- shape=0e930f87 vocab=d9685ced
+-/
 theorem span_pi_le_Q : Ideal.span ({S.π} : Set (𝓞 R')) ≤ S.Q :=
   (Ideal.span_singleton_le_iff_mem _).mpr S.π_mem_Q
 
 /-- The additive character is expressed in powers of the chosen primitive
-`ℓ`-th root.-/
+`ℓ`-th root.
+@isnad1 id=eq.0h7v.s8.3c13a918306d from=translated src=- shape=097a325c vocab=17f46f96
+-/
 theorem psi_pow_form (x : k) : S.psi x = S.zeta_ell ^ S.psiExponent x :=
   S.psi_eq_zeta_ell_pow x
 

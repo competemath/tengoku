@@ -60,6 +60,9 @@ noncomputable def zmodCharOfPrimitiveRoot
   haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   AddChar.zmodChar ℓ hzeta.pow_eq_one
 
+/--
+@isnad1 id=eq.1h4v.s7.848c42f79b5d from=translated src=- shape=e54d5d2b vocab=66134c4b
+-/
 @[simp]
 theorem zmodCharOfPrimitiveRoot_apply
     (hzeta : IsPrimitiveRoot zeta_ell ℓ) (a : ZMod ℓ) :
@@ -75,6 +78,9 @@ noncomputable def psiTraceForm (hzeta : IsPrimitiveRoot zeta_ell ℓ) :
   (zmodCharOfPrimitiveRoot ℓ R' hzeta).compAddMonoidHom
     (Algebra.trace (ZMod ℓ) k).toAddMonoidHom
 
+/--
+@isnad1 id=eq.1h5v.s8.e279f49637a3 from=translated src=- shape=050cdb83 vocab=dcddc95c
+-/
 @[simp]
 theorem psiTraceForm_apply (hzeta : IsPrimitiveRoot zeta_ell ℓ) (x : k) :
     psiTraceForm ℓ k R' hzeta x =
@@ -88,12 +94,17 @@ theorem psiTraceForm_apply (hzeta : IsPrimitiveRoot zeta_ell ℓ) (x : k) :
 noncomputable def psiTraceFormExponent : k → ℕ :=
   fun x ↦ (Algebra.trace (ZMod ℓ) k x).val
 
+/--
+@isnad1 id=eq.0h3v.s7.22a54097ac03 from=translated src=- shape=632f9947 vocab=21bd9c7c
+-/
 @[simp]
 theorem psiTraceFormExponent_apply (x : k) :
     psiTraceFormExponent ℓ k x = (Algebra.trace (ZMod ℓ) k x).val :=
   rfl
 
-/-- The defining equation `ψ(x) = ζ_ℓ ^ psiExponent(x)`.-/
+/-- The defining equation `ψ(x) = ζ_ℓ ^ psiExponent(x)`.
+@isnad1 id=eq.1h5v.s7.f73e80a0bb5b from=translated src=- shape=cf4a8b83 vocab=ece0312d
+-/
 theorem psiTraceForm_eq_zeta_ell_pow
     (hzeta : IsPrimitiveRoot zeta_ell ℓ) (x : k) :
     psiTraceForm ℓ k R' hzeta x = zeta_ell ^ psiTraceFormExponent ℓ k x := by
@@ -110,7 +121,9 @@ additive character is primitive. To show non-triviality, we exhibit
 
 /-- Non-triviality: there is `b ∈ k` with `ψ(b) ≠ 1`. The witness comes from
 `FiniteField.trace_to_zmod_nondegenerate` applied to `1 : k` after
-identifying `ringChar k = ℓ` (from the algebra structure and primality of ℓ).-/
+identifying `ringChar k = ℓ` (from the algebra structure and primality of ℓ).
+@isnad1 id=ne.2h4v.s7.23dfbbde8cdb from=translated src=- shape=8574d891 vocab=9a6875f1
+-/
 theorem psiTraceForm_ne_one [Finite k]
     (hzeta : IsPrimitiveRoot zeta_ell ℓ)
     (h_ringChar : ringChar k = ℓ) :
@@ -138,7 +151,9 @@ theorem psiTraceForm_ne_one [Finite k]
   rw [← ZMod.val_eq_zero]
   exact hzero
 
-/-- Primitivity of `psiTraceForm` (in a field target with `ringChar k = ℓ`).-/
+/-- Primitivity of `psiTraceForm` (in a field target with `ringChar k = ℓ`).
+@isnad1 id=isprimit.2h4v.s6.ac6fd536b541 from=translated src=- shape=0d3f46f0 vocab=279ee8dc
+-/
 theorem psiTraceForm_isPrimitive [Finite k]
     (hzeta : IsPrimitiveRoot zeta_ell ℓ)
     (h_ringChar : ringChar k = ℓ) :
@@ -223,7 +238,9 @@ noncomputable def mkFromTrace
   psi_eq_zeta_ell_pow := psiTraceForm_eq_zeta_ell_pow ℓ k R' hzeta_ell
 
 /-- For a bundle built via `mkFromTrace`, the `psi` field equals
-`psiTraceForm`. (Definitional, but exposed for downstream use.)-/
+`psiTraceForm`. (Definitional, but exposed for downstream use.)
+@isnad1 id=eq.15h14v.s10.e1f19625a256 from=translated src=- shape=88f3dd99 vocab=031db161
+-/
 @[simp]
 theorem mkFromTrace_psi
     (hℓ_ne_p : ℓ ≠ p)

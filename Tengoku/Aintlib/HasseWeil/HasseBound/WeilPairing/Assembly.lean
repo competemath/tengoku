@@ -39,7 +39,9 @@ open Matrix
 Given `0 < q`, a prime `p`, a degree function `deg` (with `deg r s = deg(rπ − s) ≥ 0`), and the
 per-`ℓ` Frobenius **det data** for every separable `rπ − s` (`p ∤ s`) — namely a matrix `M`
 over `ZMod ℓ` with `det M = q`, `det(1−M) = q+1−t`, and `det(rM − sI) = deg r s` — the
-Hasse quadratic form `q·r² − t·rs + s²` is non-negative for **all** `(r,s)`.-/
+Hasse quadratic form `q·r² − t·rs + s²` is non-negative for **all** `(r,s)`.
+@isnad1 id=le.4h6v.s9.0972cde39422 from=translated src=- shape=09066f65 vocab=46915ae5
+-/
 theorem qf_nonneg_of_frob_det_residual {p : ℕ} (hp : p.Prime) {q t : ℤ} (hq : 0 < q)
     (deg : ℤ → ℤ → ℤ) (hdeg_nonneg : ∀ r s, 0 ≤ deg r s)
     (hres : ∀ r s : ℤ, ¬ (p : ℤ) ∣ s → ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →
@@ -61,7 +63,9 @@ only on the **smaller** locus `{p ∤ r ∧ p ∤ s}` (both coordinates coprime 
 where the Weil-pairing pencil scaling is available without the inseparable `p ∣ r` geometric
 input.  The discriminant lift is the stronger `qf_nonneg_of_nonneg_on_coprime_both` (Route B);
 its proof is identical to the `{p ∤ s}` version (`deg_eq_of_frob_det_data` per `(r,s)` with
-`p ∤ r ∧ p ∤ s`).-/
+`p ∤ r ∧ p ∤ s`).
+@isnad1 id=le.4h6v.s9.8be6c3f897a5 from=translated src=- shape=52231bba vocab=46915ae5
+-/
 theorem qf_nonneg_of_frob_det_residual_both {p : ℕ} (hp : p.Prime) {q t : ℤ} (hq : 0 < q)
     (deg : ℤ → ℤ → ℤ) (hdeg_nonneg : ∀ r s, 0 ≤ deg r s)
     (hres : ∀ r s : ℤ, ¬ (p : ℤ) ∣ r → ¬ (p : ℤ) ∣ s → ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →
@@ -88,7 +92,9 @@ satisfying the **per-isogeny Weil-pairing scaling identities** `φᵀ J φ = (de
 This isolates the entire remaining mathematical work as the scaling identities — the direct output
 of the finite-level Weil pairing (`e(φS,φT) = e(S,T)^{deg φ}`), which holds per isogeny and
 needs no dual-additivity. The `det = deg` step is discharged internally by
-`frob_det_data_of_scaling`.-/
+`frob_det_data_of_scaling`.
+@isnad1 id=le.4h6v.s11.cd1c6196d9c0 from=translated src=- shape=ad1c0f14 vocab=01ef01e3
+-/
 theorem qf_nonneg_of_pairing_scaling {p : ℕ} (hp : p.Prime) {q t : ℤ} (hq : 0 < q)
     (deg : ℤ → ℤ → ℤ) (hdeg_nonneg : ∀ r s, 0 ≤ deg r s)
     (hscale : ∀ r s : ℤ, ¬ (p : ℤ) ∣ s → ∀ ℓ : ℕ, ℓ.Prime → ℓ ≠ p →

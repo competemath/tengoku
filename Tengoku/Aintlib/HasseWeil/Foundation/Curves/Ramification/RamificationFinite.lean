@@ -72,7 +72,9 @@ section InstanceLemmas
 omit [IsDedekindDomain A] [FiniteDimensional K L] [Algebra.IsSeparable K L]
   [IsIntegralClosure B A L] in
 include K L in
-/-- `A → B` is injective, since `A → K → L` is and it factors through `B`.-/
+/-- `A → B` is injective, since `A → K → L` is and it factors through `B`.
+@isnad1 id=faithful.0h4v.s7.f311c607a73f from=translated src=- shape=40c727b2 vocab=56b05698
+-/
 theorem faithfulSMul : FaithfulSMul A B := by
   rw [faithfulSMul_iff_algebraMap_injective]
   have h : Function.Injective (algebraMap A L) := by
@@ -83,35 +85,45 @@ theorem faithfulSMul : FaithfulSMul A B := by
 
 omit [IsDedekindDomain A] [Algebra A B] [IsScalarTower A B L] in
 include A L in
-/-- `B` is a domain, being a subring of the field `L`.-/
+/-- `B` is a domain, being a subring of the field `L`.
+@isnad1 id=isdomain.0h3v.s6.0921c7220b4e from=translated src=- shape=6def6fae vocab=f713b887
+-/
 theorem isDomain : IsDomain B :=
   Function.Injective.isDomain (algebraMap B L) (IsIntegralClosure.algebraMap_injective B A L)
 
 include A K L in
 /-- Krull–Akizuki, separable case: the integral closure of a Dedekind domain in a finite
 separable extension of its fraction field is Dedekind
-(mathlib's `IsIntegralClosure.isDedekindDomain`).-/
+(mathlib's `IsIntegralClosure.isDedekindDomain`).
+@isnad1 id=isdedeki.0h4v.s8.1eae06a35a47 from=translated src=- shape=31b7a328 vocab=32d930ab
+-/
 theorem isDedekindDomain : IsDedekindDomain B := by
   haveI := isDomain A L B
   exact IsIntegralClosure.isDedekindDomain A K L B
 
 include K L in
 /-- In the separable case the integral closure is module-finite over the base
-(mathlib's `IsIntegralClosure.finite`, via the trace pairing).-/
+(mathlib's `IsIntegralClosure.finite`, via the trace pairing).
+@isnad1 id=finite.0h4v.s8.8be3e0874ec0 from=translated src=- shape=8baa3c0c vocab=e75b64bc
+-/
 theorem module_finite : Module.Finite A B :=
   IsIntegralClosure.finite A K L B
 
 omit [Algebra.IsSeparable K L] in
 include A K in
 /-- `L` is the fraction field of `B`
-(mathlib's `IsIntegralClosure.isFractionRing_of_finite_extension`).-/
+(mathlib's `IsIntegralClosure.isFractionRing_of_finite_extension`).
+@isnad1 id=isfracti.0h4v.s8.c1ba84cd24a0 from=translated src=- shape=b4f3a18a vocab=31cc8398
+-/
 theorem isFractionRing : IsFractionRing B L := by
   haveI := isDomain A L B
   exact IsIntegralClosure.isFractionRing_of_finite_extension A K L B
 
 omit [FiniteDimensional K L] [Algebra.IsSeparable K L] in
 include K L in
-/-- `B` is a torsion-free `A`-module (both are domains and `A → B` is injective).-/
+/-- `B` is a torsion-free `A`-module (both are domains and `A → B` is injective).
+@isnad1 id=istorsio.0h4v.s7.265d5e1c8eac from=translated src=- shape=75495fe1 vocab=ef34fbd2
+-/
 theorem isTorsionFree : Module.IsTorsionFree A B := by
   haveI := isDomain A L B
   haveI := faithfulSMul A K L B
@@ -135,7 +147,9 @@ include K L
 /-- Separability of `L / K` transports to the canonical fraction fields: the extension
 `FractionRing B / FractionRing A` (with mathlib's `FractionRing.liftAlgebra` structure)
 is separable.  This is the form in which mathlib's different-ideal lemmas consume
-separability.-/
+separability.
+@isnad1 id=issepara.0h4v.s8.ee1956b02151 from=translated src=- shape=e8f4db12 vocab=19cb6383
+-/
 theorem isSeparable_fractionRing :
     Algebra.IsSeparable (FractionRing A) (FractionRing B) := by
   haveI := isFractionRing A K L B
@@ -152,7 +166,9 @@ theorem isSeparable_fractionRing :
   exact Algebra.IsSeparable.of_equiv_equiv _ _ H
 
 /-- **(b)** The different ideal of a separable extension is nonzero
-(mathlib's `differentIdeal_ne_bot`).-/
+(mathlib's `differentIdeal_ne_bot`).
+@isnad1 id=ne.0h4v.s8.6dbe526bb7bc from=translated src=- shape=721423cc vocab=f853164e
+-/
 theorem differentIdeal_ne_bot : differentIdeal A B ≠ ⊥ := by
   haveI := module_finite A K L B
   haveI := isSeparable_fractionRing A K L B
@@ -161,7 +177,9 @@ theorem differentIdeal_ne_bot : differentIdeal A B ≠ ⊥ := by
 /-- **(c)** A ramified prime divides the different ideal: if `P` is a nonzero prime of
 `B` with `e(P | P ∩ A) ≠ 1`, then `P ∣ 𝔇_{B/A}`.  This is mathlib's
 `dvd_differentIdeal_iff` (a prime divides the different iff it is not unramified)
-combined with `Ideal.ramificationIdx_eq_one_of_isUnramifiedAt`.-/
+combined with `Ideal.ramificationIdx_eq_one_of_isUnramifiedAt`.
+@isnad1 id=dvd.3h5v.s8.2c33be3646fa from=translated src=- shape=7edba5e8 vocab=68f13a19
+-/
 theorem dvd_differentIdeal_of_ramificationIdx_ne_one {P : Ideal B} (hP : P.IsPrime)
     (hPbot : P ≠ ⊥)
     (he : Ideal.ramificationIdx' (P.under A) P ≠ 1) :
@@ -194,7 +212,9 @@ def ramifiedUnderLocus : Set (Ideal A) :=
 include K L
 
 /-- **(d)** A nonzero ideal of the Dedekind domain `B` has finitely many divisors, so
-only finitely many ideals of `B` divide the different ideal.-/
+only finitely many ideals of `B` divide the different ideal.
+@isnad1 id=finite.0h4v.s8.bd0a1e8c31da from=translated src=- shape=80f63b20 vocab=bfc7cc93
+-/
 theorem finite_setOf_dvd_differentIdeal :
     {P : Ideal B | P ∣ differentIdeal A B}.Finite := by
   haveI : Fintype {P : Ideal B // P ∣ differentIdeal A B} :=
@@ -202,12 +222,16 @@ theorem finite_setOf_dvd_differentIdeal :
   exact Set.finite_coe_iff.mp
     (Finite.of_fintype {P : Ideal B // P ∣ differentIdeal A B})
 
-/-- **(d)** The bad locus is finite.-/
+/-- **(d)** The bad locus is finite.
+@isnad1 id=finite.0h4v.s8.66c1470f310f from=translated src=- shape=8e18cb26 vocab=31ee7af0
+-/
 theorem finite_ramifiedUnderLocus : (ramifiedUnderLocus A B).Finite :=
   ((finite_setOf_dvd_differentIdeal A K L B).image _).insert _
 
 /-- **(d)** The set of ramified primes of `B` (nonzero primes with ramification index
-over their contraction different from `1`) is finite.-/
+over their contraction different from `1`) is finite.
+@isnad1 id=finite.0h4v.s8.9e4dd4436610 from=translated src=- shape=00054740 vocab=640fa28f
+-/
 theorem finite_setOf_ramificationIdx_ne_one :
     {P : Ideal B | P.IsPrime ∧ P ≠ ⊥ ∧
       Ideal.ramificationIdx' (P.under A) P ≠ 1}.Finite :=
@@ -216,7 +240,9 @@ theorem finite_setOf_ramificationIdx_ne_one :
 
 /-- **(d)** The set of primes of `A` over which some prime of `B` ramifies is finite
 (it is contained in the image of the finite set of ramified primes of `B` under
-contraction).-/
+contraction).
+@isnad1 id=finite.0h4v.s8.eb91ccadc61c from=translated src=- shape=67c14a2e vocab=640fa28f
+-/
 theorem finite_setOf_under_ramified :
     {q : Ideal A | ∃ P : Ideal B, P.IsPrime ∧ P ≠ ⊥ ∧ P.under A = q ∧
       Ideal.ramificationIdx' q P ≠ 1}.Finite := by
@@ -226,7 +252,9 @@ theorem finite_setOf_under_ramified :
 
 /-- **(e), the W-3-facing statement**: away from the finite bad locus
 `ramifiedUnderLocus A B`, every prime of `B` lying over a given prime of `A` is
-unramified: `e(P | q) = 1`.-/
+unramified: `e(P | q) = 1`.
+@isnad1 id=eq.3h6v.s8.8cafb5a94611 from=translated src=- shape=e18509dd vocab=b9630615
+-/
 theorem ramificationIdx_eq_one_of_notMem {q : Ideal A}
     (hq : q ∉ ramifiedUnderLocus A B) {P : Ideal B} (hP : P.IsPrime)
     (hPq : P.under A = q) :
@@ -252,7 +280,9 @@ include K L in
 /-- Existential form of the main result, requiring nothing beyond the AKLB setup:
 **all but finitely many primes of `A` are unramified in `B`** — there is a finite set
 `S` of ideals of `A` such that for every `q ∉ S`, every prime `P` of `B` lying over `q`
-has ramification index `1`.-/
+has ramification index `1`.
+@isnad1 id=ex.0h4v.s8.3ed2fff36314 from=translated src=- shape=91507176 vocab=2600c85c
+-/
 theorem exists_finite_ramification_locus :
     ∃ S : Set (Ideal A), S.Finite ∧
       ∀ q : Ideal A, q ∉ S → ∀ P : Ideal B, P.IsPrime → P.under A = q →

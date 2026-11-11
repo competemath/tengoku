@@ -44,6 +44,9 @@ def mulEquivToAdditiveZModLinearEquiv (e : G ≃* H) :
       apply Additive.ext
       simp }
 
+/--
+@isnad1 id=eq.0h5v.s8.b9eb891d34ed from=translated src=- shape=e20f6d0a vocab=7f0e4d3e
+-/
 @[simp]
 theorem mulEquivToAdditiveZModLinearEquiv_apply_toMul
     (e : G ≃* H) (x : Additive G) :
@@ -64,6 +67,9 @@ def mulActionToAdditiveLinearAction (ρ : D →* G ≃* G) :
     change (ρ (a * b)) x.toMul = ((ρ a) * (ρ b)) x.toMul
     rw [map_mul]
 
+/--
+@isnad1 id=eq.0h6v.s10.183ef669931b from=translated src=- shape=067d305d vocab=4b4d932c
+-/
 @[simp]
 theorem mulActionToAdditiveLinearAction_apply_toMul
     (ρ : D →* G ≃* G) (d : D) (x : Additive G) :
@@ -72,7 +78,9 @@ theorem mulActionToAdditiveLinearAction_apply_toMul
   rfl
 
 /-- Multiplicative equivariance becomes linear equivariance after passing to
-additive `ZMod p`-modules.-/
+additive `ZMod p`-modules.
+@isnad1 id=eq.1h9v.s12.830027f92fb0 from=translated src=- shape=bc85bd98 vocab=707b7ec4
+-/
 theorem linear_equivariant_of_multiplicative_equivariant
     (φ : G →* H) (ρG : D →* G ≃* G) (ρH : D →* H ≃* H)
     (hφ : ∀ (d : D) (x : G), φ (ρG d x) = ρH d (φ x))

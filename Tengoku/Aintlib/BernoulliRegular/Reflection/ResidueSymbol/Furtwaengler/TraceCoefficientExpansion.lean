@@ -42,7 +42,9 @@ variable {R : Type*} [CommSemiring R]
 /-- Multinomial expansion of a scaled trace sum.
 
 This is the form used for trace-form additive characters, where the trace
-is evaluated at `c * x`.-/
+is evaluated at `c * x`.
+@isnad1 id=eq.0h6v.s7.2d85b9d31efb from=translated src=- shape=5f47f1ca vocab=4f920278
+-/
 theorem traceSum_mul_pow_eq_sum_multinomial
     (ℓ f : ℕ) (c x : R) (n : ℕ) :
     (traceSum ℓ f (c * x)) ^ n =
@@ -68,13 +70,17 @@ variable (S : TraceFormStickelbergerSetup ℓ p k K R')
 /-- The `ZMod ℓ`-dimension of the residue field is the setup parameter `f`.
 
 This lets the standard finite-field trace formula use the same `S.f` that
-appears in the Stickelberger digit-sum notation.-/
+appears in the Stickelberger digit-sum notation.
+@isnad1 id=eq.0h6v.s8.3bca3560a9ed from=translated src=- shape=9625d016 vocab=0d1d7539
+-/
 theorem trace_finrank_eq_f : Module.finrank (ZMod ℓ) k = S.f := by
   have hpow : ℓ ^ Module.finrank (ZMod ℓ) k = ℓ ^ S.f := by
     rw [FiniteField.pow_finrank_eq_card, S.card_k]
   exact Nat.pow_right_injective (Fact.out : Nat.Prime ℓ).one_lt hpow
 
-/-- Setup-specialised bridge from the algebraic trace to `traceSum`.-/
+/-- Setup-specialised bridge from the algebraic trace to `traceSum`.
+@isnad1 id=eq.0h8v.s9.dbfe6d53ffd9 from=translated src=- shape=ec98feb9 vocab=91ce563c
+-/
 theorem algebraMap_trace_pow_eq_traceSum_pow_setup (x : k) (n : ℕ) :
     algebraMap (ZMod ℓ) k (Algebra.trace (ZMod ℓ) k x) ^ n =
       (traceSum ℓ S.f x) ^ n :=
@@ -83,7 +89,9 @@ theorem algebraMap_trace_pow_eq_traceSum_pow_setup (x : k) (n : ℕ) :
     (Nat.card_zmod ℓ) S.trace_finrank_eq_f x n
 
 /-- Multinomial expansion of the `n`-th power of the scaled algebraic trace
-appearing in the trace-form additive character.-/
+appearing in the trace-form additive character.
+@isnad1 id=eq.0h8v.s9.8d564f98e2d1 from=translated src=- shape=efdd98bf vocab=99a098c3
+-/
 theorem algebraMap_scaled_trace_pow_eq_sum_multinomial
     (x : k) (n : ℕ) :
     algebraMap (ZMod ℓ) k
@@ -101,7 +109,9 @@ variable [DecidableEq k]
 
 /-- Unit-sum form of the scaled trace-power expansion.  After interchanging
 finite sums, each multi-index has an explicit natural coefficient, trace
-scale power, and monomial exponent.-/
+scale power, and monomial exponent.
+@isnad1 id=eq.0h8v.s10.1403522ece92 from=translated src=- shape=0b15049f vocab=b992c86d
+-/
 theorem unitSum_scaled_trace_pow_eq_sum_multinomial
     (A n : ℕ) :
     (∑ x : kˣ,
@@ -157,7 +167,9 @@ end UnitSums
 
 This replaces `Nat.choose` by the descending factorial, which is the
 integer-polynomial expression used by later coefficient-valuation
-arguments.-/
+arguments.
+@isnad1 id=eq.0h8v.s9.c4c8f491f159 from=translated src=- shape=4d5f1cce vocab=4effdd29
+-/
 theorem traceCharacterChooseSumRec_mul_factorial_eq_descFactorialSum
     (a n : ℕ) :
     S.traceCharacterChooseSumRec a n * (Nat.factorial n : 𝓞 R') =

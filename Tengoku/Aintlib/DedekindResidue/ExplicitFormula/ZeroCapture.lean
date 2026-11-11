@@ -35,25 +35,33 @@ variable (K : Type*) [Field K] [NumberField K]
 
 /-- `H = completedDedekindZetaEntire K` is analytic at every point (it is entire).
 The single reusable analyticity fact behind the divisor, zero-order and
-meromorphicity arguments for `H` throughout this file.-/
+meromorphicity arguments for `H` throughout this file.
+@isnad1 id=analytic.0h2v.s5.5f2f5427474a from=translated src=- shape=39a0e444 vocab=f4b53d9d
+-/
 theorem analyticAt_completedDedekindZetaEntire (ζ : ℂ) :
     AnalyticAt ℂ (completedDedekindZetaEntire K) ζ :=
   (differentiable_completedDedekindZetaEntire K).analyticAt ζ
 
 /-- Open rectangles are convex: they are intersections of linear preimages of
-intervals under `re` and `im`.-/
+intervals under `re` and `im`.
+@isnad1 id=convex.2h2v.s6.00f346f058f1 from=translated src=- shape=26ba8e11 vocab=617606b7
+-/
 theorem convex_reProdIm {s t : Set ℝ} (hs : Convex ℝ s) (ht : Convex ℝ t) :
     Convex ℝ (s ×ℂ t) :=
   (hs.linear_preimage Complex.reLm).inter (ht.linear_preimage Complex.imLm)
 
-/-- Open rectangles are bounded.-/
+/-- Open rectangles are bounded.
+@isnad1 id=isbounde.0h4v.s5.9f75a7613823 from=translated src=- shape=c287cec5 vocab=5981fb42
+-/
 theorem isBounded_Ioo_reProdIm (a b c d : ℝ) :
     Bornology.IsBounded (Set.Ioo a b ×ℂ Set.Ioo c d) :=
   (Metric.isBounded_Ioo a b).reProdIm (Metric.isBounded_Ioo c d)
 
 /-- **Rectangle zero-peeling** (SP2-RECT R-a): on an open rectangle where `H` is not
 identically zero, `H` factors as the divisor product times a zero-free analytic
-function — the rectangle version of `exists_H_ball_factorization`.-/
+function — the rectangle version of `exists_H_ball_factorization`.
+@isnad1 id=ex.2h6v.s8.deac512b6464 from=translated src=- shape=badf4dd4 vocab=29be9de4
+-/
 theorem exists_H_rectangle_factorization {a b c d : ℝ}
     {w : ℂ} (hw : w ∈ Set.Ioo a b ×ℂ Set.Ioo c d)
     (hHw : completedDedekindZetaEntire K w ≠ 0) :
@@ -112,7 +120,9 @@ theorem exists_H_rectangle_factorization {a b c d : ℝ}
 /-- **The rectangle argument principle for `H`** (SP2-RECT R-d): if `H` has no zeros
 on the boundary of the rectangle and `Φ` is holomorphic at every point of the closed
 rectangle, then `∮_{∂R} Φ·H'/H = 2πi·∑_ρ m_ρ·Φ(ρ)`, summed over the divisor of `H`
-on the open rectangle.-/
+on the open rectangle.
+@isnad1 id=eq.6h5v.s8.545d0640abb9 from=translated src=- shape=4381891d vocab=27e311cf
+-/
 theorem rectangleIntegral_mul_logDeriv_H {z w : ℂ} (hre : z.re < w.re) (him : z.im < w.im)
     {Φ : ℂ → ℂ}
     (hΦ : ∀ ζ ∈ Set.uIcc z.re w.re ×ℂ Set.uIcc z.im w.im, DifferentiableAt ℂ Φ ζ)
@@ -378,7 +388,9 @@ theorem rectangleIntegral_mul_logDeriv_H {z w : ℂ} (hre : z.re < w.re) (him : 
 
 /-- **Euler-product nonvanishing**: `ζ_K(s) ≠ 0` for `Re s > 1`. Each Euler factor is
 `1 + f_𝔭` with `f_𝔭 = (1 − N𝔭^{-s})⁻¹ − 1` absolutely summable, so the product is a
-nonzero limit (`tprod_one_add_ne_zero_of_summable`, the Dedekind-eta pattern).-/
+nonzero limit (`tprod_one_add_ne_zero_of_summable`, the Dedekind-eta pattern).
+@isnad1 id=ne.1h2v.s5.762bb036f4d6 from=translated src=- shape=36f92116 vocab=78649956
+-/
 theorem dedekindZeta_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta K s ≠ 0 := by
   rw [Chebotarev.dedekindZeta_eq_tprod_primeIdeal K hs]
@@ -474,7 +486,9 @@ theorem dedekindZeta_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
   rw [show (1:ℂ) + ((1 - x 𝔭)⁻¹ - 1) = (1 - x 𝔭)⁻¹ by ring]
   exact inv_ne_zero (hfac_ne 𝔭)
 
-/-- `H = completedDedekindZetaEntire` does not vanish on `Re s > 1`.-/
+/-- `H = completedDedekindZetaEntire` does not vanish on `Re s > 1`.
+@isnad1 id=ne.1h2v.s5.ea9201a018bf from=translated src=- shape=36f92116 vocab=88c4bea3
+-/
 theorem completedDedekindZetaEntire_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     completedDedekindZetaEntire K s ≠ 0 := by
   have hs0 : s ≠ 0 := by
@@ -500,7 +514,9 @@ theorem completedDedekindZetaEntire_ne_zero_of_one_lt_re {s : ℂ} (hs : 1 < s.r
     exact hbase ((Complex.cpow_eq_zero_iff _ _).mp h0).1
   · exact gammaFactor_ne_zero_of_re_pos K (by linarith)
   · exact dedekindZeta_ne_zero_of_one_lt_re K hs
-/-- `H` does not vanish on `Re s < 0` (functional-equation reflection).-/
+/-- `H` does not vanish on `Re s < 0` (functional-equation reflection).
+@isnad1 id=ne.1h2v.s5.6e7712c3703c from=translated src=- shape=88a6ffda vocab=88c4bea3
+-/
 theorem completedDedekindZetaEntire_ne_zero_of_re_lt_zero {s : ℂ} (hs : s.re < 0) :
     completedDedekindZetaEntire K s ≠ 0 := by
   rw [← completedDedekindZetaEntire_one_sub K s]
@@ -508,7 +524,9 @@ theorem completedDedekindZetaEntire_ne_zero_of_re_lt_zero {s : ℂ} (hs : s.re <
   rw [Complex.sub_re, Complex.one_re]
   linarith
 
-/-- **Strip confinement**: every zero of `H` has real part in `[0, 1]`.-/
+/-- **Strip confinement**: every zero of `H` has real part in `[0, 1]`.
+@isnad1 id=and.1h2v.s5.73668973e51e from=translated src=- shape=dab57ace vocab=aa39a140
+-/
 theorem re_mem_of_completedDedekindZetaEntire_eq_zero {ρ : ℂ}
     (h0 : completedDedekindZetaEntire K ρ = 0) : 0 ≤ ρ.re ∧ ρ.re ≤ 1 := by
   constructor
@@ -520,7 +538,9 @@ theorem re_mem_of_completedDedekindZetaEntire_eq_zero {ρ : ℂ}
 /-- **Separation pigeonhole** (SP2-RECT R-e core): in any unit interval there is a
 point at distance at least `1/(2(N+1))` from every member of a finite set of size at
 most `N` — among the `N+1` midpoints of equal subintervals, at least one is far from
-all of `S`, since distinct midpoints cannot share a close neighbour.-/
+all of `S`, since distinct midpoints cannot share a close neighbour.
+@isnad1 id=ex.1h3v.s6.b00d7e19a760 from=translated src=- shape=86e93dda vocab=3345c4ca
+-/
 theorem exists_dist_ge_of_card_le {S : Finset ℝ} {N : ℕ} (hcard : S.card ≤ N) (a : ℝ) :
     ∃ t ∈ Set.Icc a (a + 1), ∀ s ∈ S, 1 / (2 * (N + 1)) ≤ |t - s| := by
   classical
@@ -592,7 +612,9 @@ theorem exists_dist_ge_of_card_le {S : Finset ℝ} {N : ℕ} (hcard : S.card ≤
   linarith
 
 /-- `H` is not identically zero near any point (identity theorem with the witness
-`H(2) ≠ 0`), so its meromorphic order is everywhere finite.-/
+`H(2) ≠ 0`), so its meromorphic order is everywhere finite.
+@isnad1 id=ne.0h2v.s5.2c23199ebf14 from=translated src=- shape=bfd10294 vocab=382f4f2f
+-/
 theorem meromorphicOrderAt_completedDedekindZetaEntire_ne_top (u : ℂ) :
     meromorphicOrderAt (completedDedekindZetaEntire K) u ≠ ⊤ := by
   have hHanal : ∀ ζ : ℂ, AnalyticAt ℂ (completedDedekindZetaEntire K) ζ :=
@@ -611,7 +633,9 @@ theorem meromorphicOrderAt_completedDedekindZetaEntire_ne_top (u : ℂ) :
     norm_num
   exact h2 (hzero (Set.mem_univ _))
 
-/-- Points where the divisor of `H` is nonzero are zeros of `H`.-/
+/-- Points where the divisor of `H` is nonzero are zeros of `H`.
+@isnad1 id=eq.1h3v.s6.f2ce38f5f60e from=translated src=- shape=3bbc8ff2 vocab=26c5067d
+-/
 theorem completedDedekindZetaEntire_eq_zero_of_divisor_ne_zero {U : Set ℂ} {u : ℂ}
     (hu : (MeromorphicOn.divisor (completedDedekindZetaEntire K) U) u ≠ 0) :
     completedDedekindZetaEntire K u = 0 := by
@@ -625,7 +649,9 @@ theorem completedDedekindZetaEntire_eq_zero_of_divisor_ne_zero {U : Set ℂ} {u 
     simp
   · rw [ite_eq_right hcond]
 
-/-- Conversely, on an open set the divisor of `H` is nonzero at every zero of `H`.-/
+/-- Conversely, on an open set the divisor of `H` is nonzero at every zero of `H`.
+@isnad1 id=ne.2h3v.s6.f4dfd4b23181 from=translated src=- shape=8f92cbff vocab=77f4dc5b
+-/
 theorem divisor_ne_zero_of_completedDedekindZetaEntire_eq_zero {U : Set ℂ} {u : ℂ}
     (huU : u ∈ U) (h0 : completedDedekindZetaEntire K u = 0) :
     (MeromorphicOn.divisor (completedDedekindZetaEntire K) U) u ≠ 0 := by
@@ -647,7 +673,9 @@ theorem divisor_ne_zero_of_completedDedekindZetaEntire_eq_zero {U : Set ℂ} {u 
   · exact meromorphicOrderAt_completedDedekindZetaEntire_ne_top K u h
 
 /-- For `1 ≤ T`, one has `1 ≤ log (2 + T)` (since `2 + T ≥ e`). Base estimate for the
-`log`-height bounds along the explicit-formula contour.-/
+`log`-height bounds along the explicit-formula contour.
+@isnad1 id=le.1h1v.s5.a009d36324c4 from=translated src=- shape=a7df263e vocab=db4317e2
+-/
 theorem one_le_log_two_add {T : ℝ} (hT : 1 ≤ T) : (1:ℝ) ≤ Real.log (2 + T) := by
   have he : Real.exp 1 ≤ 2 + T := by
     have := Real.exp_one_lt_d9
@@ -657,7 +685,9 @@ theorem one_le_log_two_add {T : ℝ} (hT : 1 ≤ T) : (1:ℝ) ≤ Real.log (2 + 
 
 /-- `log`-doubling: if `1 ≤ B`, `0 < s` and `s ≤ 2(2 + B)` then
 `log s ≤ 2 · log (2 + B)`. Compares a height in the window `[T₀, T₀+1]` to the base
-height `T₀` at the cost of a factor `2` (from `log 2 ≤ 1`).-/
+height `T₀` at the cost of a factor `2` (from `log 2 ≤ 1`).
+@isnad1 id=le.3h2v.s6.4d063a09143b from=translated src=- shape=0db3fcdf vocab=0b0b6a82
+-/
 theorem log_le_two_mul_log_two_add {s B : ℝ} (hB : 1 ≤ B) (hs0 : 0 < s) (hs : s ≤ (2 + B) * 2) :
     Real.log s ≤ 2 * Real.log (2 + B) := by
   calc Real.log s ≤ Real.log ((2 + B) * 2) := Real.log_le_log hs0 hs
@@ -672,7 +702,9 @@ theorem log_le_two_mul_log_two_add {s B : ℝ} (hB : 1 ≤ B) (hs0 : 0 < s) (hs 
 /-- **Two-sided good heights** (SP2-RECT R-e, both edges): every unit window
 `[T₀, T₀+1]` at height `T₀ ≥ A+5` contains a height `T` separated from every zero
 ordinate in BOTH directions: `|T − Im ρ| ≥ c/log(2+T₀)` and `|T + Im ρ| ≥ c/log(2+T₀)`
-— the latter is the separation of the bottom edge `Im = −T` of the contour rectangle.-/
+— the latter is the separation of the bottom edge `Im = −T` of the contour rectangle.
+@isnad1 id=ex.0h1v.s7.492a2d29bef1 from=translated src=- shape=a5bfbde0 vocab=fdc44a6a
+-/
 theorem exists_good_height :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ c : ℝ, 0 < c ∧ c ≤ 1 ∧ ∀ T₀ : ℝ, A + 5 ≤ T₀ →
       ∃ T ∈ Set.Icc T₀ (T₀ + 1), ∀ ρ : ℂ, completedDedekindZetaEntire K ρ = 0 →
@@ -886,7 +918,9 @@ theorem exists_good_height :
 horizontal edges `Im = ±T` of the explicit-formula rectangle are zero-free for `H`
 and carry the Landau bound `‖H'/H‖ ≤ C·log²(2+T₀)` across the strip `-1/4 ≤ Re ≤ 5/4`.
 Combines the two-sided good-height separation with the exported zero count and the
-partial-fraction decomposition of AC-A5.-/
+partial-fraction decomposition of AC-A5.
+@isnad1 id=ex.0h1v.s9.57f856aafe82 from=translated src=- shape=4b5746cb vocab=89b9922e
+-/
 theorem exists_contour_height :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ c C : ℝ, 0 < c ∧ c ≤ 1 ∧ 0 < C ∧ ∀ T₀ : ℝ, A + 5 ≤ T₀ →
       ∃ T ∈ Set.Icc T₀ (T₀ + 1),
@@ -1058,7 +1092,9 @@ rectangle `[-a, 1+a] × [-T, T]`,
 `∮_{∂R} Φ·H'/H = 2πi·∑_ρ m_ρ·Φ(ρ)`,
 
 the sum over the divisor of `H` on the open rectangle. The vertical edges are
-zero-free automatically (`Re = -a < 0` and `Re = 1+a > 1`).-/
+zero-free automatically (`Re = -a < 0` and `Re = 1+a > 1`).
+@isnad1 id=eq.6h4v.s9.70bc929e5ac7 from=translated src=- shape=19161b8f vocab=974eb15e
+-/
 theorem rectangle_zero_capture {a T : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4) (hT : 0 < T)
     {Φ : ℂ → ℂ}
     (hΦ : ∀ ζ ∈ Set.uIcc (-a) (1+a) ×ℂ Set.uIcc (-T) T, DifferentiableAt ℂ Φ ζ)
@@ -1138,7 +1174,9 @@ theorem rectangle_zero_capture {a T : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4) (hT : 
   rw [hmain, hzre, hwre, hzim, hwim]
 
 /-- The functional equation makes the logarithmic derivative of `H` antisymmetric
-about `s = 1/2`: `H'/H(1-s) = -(H'/H)(s)`.-/
+about `s = 1/2`: `H'/H(1-s) = -(H'/H)(s)`.
+@isnad1 id=eq.0h2v.s6.4cb1689fac6a from=translated src=- shape=3029c6ec vocab=f484f8ca
+-/
 theorem logDeriv_completedDedekindZetaEntire_one_sub (s : ℂ) :
     logDeriv (completedDedekindZetaEntire K) (1 - s)
       = -(logDeriv (completedDedekindZetaEntire K) s) := by
@@ -1158,7 +1196,9 @@ theorem logDeriv_completedDedekindZetaEntire_one_sub (s : ℂ) :
 
 /-- **Vertical-edge folding** (SP2-RECT R-g, step 2): by the functional equation, the
 two vertical edges of the contour integral combine into a single integral over the
-right edge `Re = 1+a` against `Φ(s) + Φ(1-s)` — Poitou's `I(T)` shape (p. 6-02).-/
+right edge `Re = 1+a` against `Φ(s) + Φ(1-s)` — Poitou's `I(T)` shape (p. 6-02).
+@isnad1 id=eq.3h4v.s9.d297e11c7cfa from=translated src=- shape=56aed218 vocab=6c8048ea
+-/
 theorem rectangleIntegral_fold_vertical {a T : ℝ} (ha : 0 < a) (hT : 0 < T)
     {Φ : ℂ → ℂ} (hΦc : ContinuousOn Φ (Set.uIcc (-a) (1+a) ×ℂ Set.uIcc (-T) T)) :
     rectangleIntegral (fun ζ => Φ ζ * logDeriv (completedDedekindZetaEntire K) ζ)
@@ -1291,7 +1331,9 @@ contribution `2(1+2a)·C_Φ·C_l`:
 `‖2πi·∑_ρ m_ρ Φ(ρ) − i∫_{-T}^{T} (Φ+Φ(1-·))·H'/H((1+a)+iy) dy‖ ≤ 2(1+2a)·C_Φ·C_l`.
 
 As `T → ∞` through contour heights, `C_Φ = O(1/T)` (transform decay) and
-`C_l = O(log² T)` make the right side vanish — Poitou's `≡` modulo `o(1)`.-/
+`C_l = O(log² T)` make the right side vanish — Poitou's `≡` modulo `o(1)`.
+@isnad1 id=le.11h6v.s10.3290e5f11af8 from=translated src=- shape=30dacb2b vocab=e0eb9894
+-/
 theorem zero_capture_edge_form {a T : ℝ} (ha : 0 < a) (ha' : a ≤ 1/4) (hT : 0 < T)
     {Φ : ℂ → ℂ}
     (hΦ : ∀ ζ ∈ Set.uIcc (-a) (1+a) ×ℂ Set.uIcc (-T) T, DifferentiableAt ℂ Φ ζ)

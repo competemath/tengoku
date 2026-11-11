@@ -29,7 +29,9 @@ variable {C : Type u₁} {D : Type u₂}
 variable [Category.{v₁} C] [Category.{v₂} D]
 variable {L₁ L₂ : C ⥤ D} {R₁ R₂ : D ⥤ C}
 
-/-- A natural isomorphism of left adjoints transports invertibility of unit components.-/
+/-- A natural isomorphism of left adjoints transports invertibility of unit components.
+@isnad1 id=isiso.0h10v.s7.7489bf10fbe4 from=translated src=- shape=5f460ca3 vocab=e0792221
+-/
 theorem isIso_unit_app_of_natIso_left
     (adj₁ : L₁ ⊣ R₁) (adj₂ : L₂ ⊣ R₂)
     (e : L₂ ≅ L₁) (X : C)
@@ -55,7 +57,9 @@ theorem isIso_unit_app_of_natIso_left
       (adj₁.unit.app X) (β.app (L₁.obj X))
       (inferInstanceAs (IsIso (β.app (L₁.obj X)))) hleft
 
-/-- Unit-component invertibility is invariant under a natural isomorphism of left adjoints.-/
+/-- Unit-component invertibility is invariant under a natural isomorphism of left adjoints.
+@isnad1 id=iff.0h10v.s7.9df4fac2e1fe from=translated src=- shape=bd5ca966 vocab=e0792221
+-/
 theorem isIso_unit_app_iff_of_natIso_left
     (adj₁ : L₁ ⊣ R₁) (adj₂ : L₂ ⊣ R₂)
     (e : L₂ ≅ L₁) (X : C) :
@@ -76,7 +80,9 @@ variable {C : Type u₁} {D : Type u₂}
 variable [Category.{v₁} C] [Category.{v₂} D]
 variable {F G : C ⥤ D}
 
-/-- Component invertibility of a natural transformation transports across an object isomorphism.-/
+/-- Component invertibility of a natural transformation transports across an object isomorphism.
+@isnad1 id=isiso.0h8v.s6.c22823f5ba2a from=translated src=- shape=48657cd0 vocab=eb02f6a0
+-/
 theorem isIso_app_of_iso
     (η : F ⟶ G) {X Y : C} (e : X ≅ Y)
     [IsIso (η.app Y)] :

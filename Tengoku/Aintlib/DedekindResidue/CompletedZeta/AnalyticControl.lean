@@ -37,7 +37,9 @@ open scoped Real
 variable (K : Type*) [Field K] [NumberField K]
 
 /-- Elementary norm bound `‖σ + t·I‖ ≤ σ + |t|` for a nonnegative real abscissa `σ`;
-the peeling step behind the vertical-strip Γ-bounds.-/
+the peeling step behind the vertical-strip Γ-bounds.
+@isnad1 id=le.1h2v.s5.d8702930c6df from=translated src=- shape=2ad4c607 vocab=f564e162
+-/
 theorem norm_ofReal_add_mul_I_le (σ t : ℝ) (hσ : 0 ≤ σ) :
     ‖(σ : ℂ) + (t : ℂ) * Complex.I‖ ≤ σ + |t| := by
   refine le_trans (norm_add_le _ _) (le_of_eq ?_)
@@ -45,7 +47,9 @@ theorem norm_ofReal_add_mul_I_le (σ t : ℝ) (hσ : 0 ≤ σ) :
     Real.norm_eq_abs, Real.norm_eq_abs, abs_of_nonneg hσ]
 
 /-- Half-angle exponential rewrite `e^{-π|t/2|/2} = e^{-π|t|/4}`, converting the
-`Γ(·/2)` decay rate into the `Γℝ`/`Γℂ` envelope rate.-/
+`Γ(·/2)` decay rate into the `Γℝ`/`Γℂ` envelope rate.
+@isnad1 id=eq.0h1v.s6.8b75d21b8bd1 from=translated src=- shape=83df99f1 vocab=049c4fec
+-/
 theorem exp_neg_pi_abs_half_div_two (t : ℝ) :
     Real.exp (-(π * |t/2|) / 2) = Real.exp (-(π * |t|) / 4) := by
   congr 1
@@ -53,7 +57,9 @@ theorem exp_neg_pi_abs_half_div_two (t : ℝ) :
   ring
 
 /-- Pointwise Mellin triangle inequality for the entire completed theta transform:
-`‖Λ₀(s)‖` is at most the norm-integral at the real part.-/
+`‖Λ₀(s)‖` is at most the norm-integral at the real part.
+@isnad1 id=le.0h2v.s6.e8dacf00671e from=translated src=- shape=12be2115 vocab=3d4702dc
+-/
 theorem norm_heckeΛ₀_le (s : ℂ) :
     ‖(heckeFEPair K).Λ₀ s‖
       ≤ ∫ x in Set.Ioi (0:ℝ), x ^ (s.re - 1) * ‖(heckeFEPair K).f_modif x‖ := by
@@ -64,7 +70,9 @@ theorem norm_heckeΛ₀_le (s : ℂ) :
   simp [Complex.sub_re]
 
 /-- The norm-integrals converge at every real exponent (the strong pair has full-line
-Mellin convergence).-/
+Mellin convergence).
+@isnad1 id=integrab.0h2v.s6.efba3e447c3f from=translated src=- shape=910ac45e vocab=2ebf34e9
+-/
 theorem integrable_heckeΛ₀_norm (a : ℝ) :
     IntegrableOn (fun x : ℝ => x ^ (a - 1) * ‖(heckeFEPair K).f_modif x‖)
       (Set.Ioi 0) := by
@@ -81,7 +89,9 @@ theorem integrable_heckeΛ₀_norm (a : ℝ) :
 
 /-- **AC-A2: uniform vertical-strip bound for `Λ₀`** — on any strip `a ≤ Re s ≤ b`,
 `‖Λ₀(s)‖` is bounded by a constant depending only on the strip (and `K`), uniformly
-in the imaginary direction.-/
+in the imaginary direction.
+@isnad1 id=ex.0h3v.s5.d979a4f215d5 from=translated src=- shape=5e4b3f63 vocab=acfba626
+-/
 theorem exists_heckeΛ₀_strip_bound (a b : ℝ) :
     ∃ B : ℝ, ∀ s : ℂ, a ≤ s.re → s.re ≤ b → ‖(heckeFEPair K).Λ₀ s‖ ≤ B := by
   refine ⟨(∫ x in Set.Ioi (0:ℝ), x ^ (a - 1) * ‖(heckeFEPair K).f_modif x‖)
@@ -117,7 +127,9 @@ theorem exists_heckeΛ₀_strip_bound (a b : ℝ) :
 /-- **AC-A2-ii: polynomial strip bound for the entire completed zeta**
 `H(s) = s(s-1)Λ_K(s)`: on every vertical strip, `‖H(s)‖ ≤ B·(1+‖s‖)²` uniformly in
 the imaginary direction. This is the growth input for Jensen counting and the
-contour estimates.-/
+contour estimates.
+@isnad1 id=ex.1h3v.s6.5ad150a136f7 from=translated src=- shape=32ed4b46 vocab=8ae078a4
+-/
 theorem exists_completedDedekindZetaEntire_strip_bound (a b : ℝ) (hab : a ≤ b) :
     ∃ B : ℝ, 0 ≤ B ∧ ∀ s : ℂ, a ≤ s.re → s.re ≤ b →
       ‖completedDedekindZetaEntire K s‖ ≤ B * (1 + ‖s‖)^2 := by
@@ -182,7 +194,9 @@ theorem exists_completedDedekindZetaEntire_strip_bound (a b : ℝ) (hab : a ≤ 
 
 /-- **AC-A4 center lower bound**: far enough right, the Dedekind zeta function is at
 least `1/2` in modulus — the Dirichlet tail `∑_{n≥2} a_n n^{-σ}` decays like `2^{-σ}`
-once it converges, so it is eventually below `1/2`.-/
+once it converges, so it is eventually below `1/2`.
+@isnad1 id=ex.0h1v.s6.e6a4a004afae from=translated src=- shape=4965deda vocab=6a194416
+-/
 theorem exists_re_norm_dedekindZeta_ge_half :
     ∃ A : ℝ, 2 ≤ A ∧ ∀ s : ℂ, A ≤ s.re → 1/2 ≤ ‖dedekindZeta K s‖ := by
   set f : ℕ → ℂ := fun n => (Nat.card {I : Ideal (𝓞 K) // Ideal.absNorm I = n} : ℂ)
@@ -281,7 +295,9 @@ theorem exists_re_norm_dedekindZeta_ge_half :
   linarith [le_trans hRbound hm]
 
 /-- Decaying upper bound for `Γℝ` on `1 ≤ σ ≤ 2`, `|t| ≥ 2`:
-`‖Γℝ(σ+it)‖ ≤ √(12π)·(1+|t|)·e^{-π|t|/4}`.-/
+`‖Γℝ(σ+it)‖ ≤ √(12π)·(1+|t|)·e^{-π|t|/4}`.
+@isnad1 id=le.3h2v.s7.dd5a13323501 from=translated src=- shape=a73ae9a4 vocab=161f9309
+-/
 theorem norm_Gammaℝ_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2 ≤ |t|) :
     ‖Complex.Gammaℝ ((σ : ℂ) + (t : ℂ) * Complex.I)‖
       ≤ Real.sqrt (12 * π) * (1 + |t|) * Real.exp (-(π * |t|) / 4) := by
@@ -329,7 +345,9 @@ theorem norm_Gammaℝ_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2 �
     _ = Real.sqrt (12 * π) * (1 + |t|) * Real.exp (-(π * |t|) / 4) := by ring
 
 /-- Decaying upper bound for `Γℂ` on `1 ≤ σ ≤ 2`, `|t| ≥ 2`:
-`‖Γℂ(σ+it)‖ ≤ 8√(12π)·(1+|t|)²·e^{-π|t|/2}`.-/
+`‖Γℂ(σ+it)‖ ≤ 8√(12π)·(1+|t|)²·e^{-π|t|/2}`.
+@isnad1 id=le.3h2v.s7.cf41ef45a873 from=translated src=- shape=53400f89 vocab=c6d33ff5
+-/
 theorem norm_Gammaℂ_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2 ≤ |t|) :
     ‖Complex.Gammaℂ ((σ : ℂ) + (t : ℂ) * Complex.I)‖
       ≤ 8 * Real.sqrt (12 * π) * (1 + |t|)^2 * Real.exp (-(π * |t|) / 2) := by
@@ -408,7 +426,9 @@ theorem norm_Gammaℂ_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2 �
 
 /-- **Decaying upper for the archimedean factor** on `1 ≤ σ ≤ 2`, `|t| ≥ 2`:
 `‖γ_K(σ+it)‖ ≤ C_K·(1+|t|)^{n}·e^{-nπ|t|/4}` with `n = r₁ + 2r₂` — the envelope rate
-matched by the lower bounds (`Γℝ` decays at `π|t|/4` per factor, `Γℂ` at `π|t|/2`).-/
+matched by the lower bounds (`Γℝ` decays at `π|t|/4` per factor, `Γℂ` at `π|t|/2`).
+@isnad1 id=le.3h3v.s8.5255f6415786 from=translated src=- shape=8dd85ea3 vocab=eb22fe21
+-/
 theorem norm_gammaFactor_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2 ≤ |t|) :
     ‖gammaFactor K ((σ : ℂ) + (t : ℂ) * Complex.I)‖
       ≤ (Real.sqrt (12*π))^(nrRealPlaces K) * (8 * Real.sqrt (12*π))^(nrComplexPlaces K)
@@ -443,7 +463,9 @@ theorem norm_gammaFactor_le {σ t : ℝ} (h1 : 1 ≤ σ) (h2 : σ ≤ 2) (ht : 2
   push_cast
   ring
 
-/-- On `Re s ≥ 2` the Dedekind zeta function is bounded by its norm-sum at `2`.-/
+/-- On `Re s ≥ 2` the Dedekind zeta function is bounded by its norm-sum at `2`.
+@isnad1 id=le.1h2v.s8.b76b5aa8395b from=translated src=- shape=c3fb9229 vocab=57b5560c
+-/
 theorem norm_dedekindZeta_le_of_two_le_re {s : ℂ} (hs : 2 ≤ s.re) :
     ‖dedekindZeta K s‖
       ≤ ∑' n : ℕ, ‖LSeries.term
@@ -476,7 +498,9 @@ theorem norm_dedekindZeta_le_of_two_le_re {s : ℂ} (hs : 2 ≤ s.re) :
 
 /-- **Decaying upper for `H` on the line `Re = 2`** (A3-c): the polynomial factors and
 the prefactor are tame, the gamma factor supplies the `e^{-n_K π|t|/4}` envelope, and
-the zeta factor is bounded.-/
+the zeta factor is bounded.
+@isnad1 id=ex.0h1v.s7.ceb65dbbd404 from=translated src=- shape=51cf9100 vocab=148424de
+-/
 theorem exists_H_two_line_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ t : ℝ, 2 ≤ |t| →
       ‖completedDedekindZetaEntire K (((2:ℝ) : ℂ) + (t : ℂ) * Complex.I)‖
@@ -561,7 +585,9 @@ theorem exists_H_two_line_bound :
 
 /-- **The functional equation for the entire completed zeta** (A3-d):
 `H(1-s) = H(s)`, since `s(s-1)` is symmetric under `s ↦ 1-s` and `Λ_K(1-s) = Λ_K(s)`;
-the two exceptional points are absorbed by continuity.-/
+the two exceptional points are absorbed by continuity.
+@isnad1 id=eq.0h2v.s5.66e2b7801691 from=translated src=- shape=f3f645bf vocab=bb40a2f5
+-/
 theorem completedDedekindZetaEntire_one_sub (s : ℂ) :
     completedDedekindZetaEntire K (1 - s) = completedDedekindZetaEntire K s := by
   have hcont1 : Continuous (fun z : ℂ => completedDedekindZetaEntire K (1 - z)) :=
@@ -590,7 +616,9 @@ theorem completedDedekindZetaEntire_one_sub (s : ℂ) :
   ring
 
 /-- On the strip `-1 ≤ Re z ≤ 2`, the normalizer `z - 4` dominates both the constant 2
-and the height: `1 + |Im z| ≤ 2‖z - 4‖`.-/
+and the height: `1 + |Im z| ≤ 2‖z - 4‖`.
+@isnad1 id=le.2h1v.s6.e4fdbd30fdfd from=translated src=- shape=31a01d46 vocab=234b0711
+-/
 theorem one_add_abs_im_le_two_norm_sub_four {z : ℂ} (_h1 : -1 ≤ z.re) (h2 : z.re ≤ 2) :
     1 + |z.im| ≤ 2 * ‖z - 4‖ := by
   have hre4 : (z - 4).re = z.re - 4 := by simp
@@ -608,7 +636,9 @@ theorem one_add_abs_im_le_two_norm_sub_four {z : ℂ} (_h1 : -1 ≤ z.re) (h2 : 
 noncomputable def gammaExponent : ℕ := nrRealPlaces K + 2 * nrComplexPlaces K
 
 /-- Right boundary bound for the comparator
-`G = H⁴·sin(πz)^{n_K}/(z-4)^{4n_K+8}` on `Re z = 2`.-/
+`G = H⁴·sin(πz)^{n_K}/(z-4)^{4n_K+8}` on `Re z = 2`.
+@isnad1 id=ex.0h1v.s7.a79da2d02f3f from=translated src=- shape=9c246d85 vocab=5ed30e68
+-/
 theorem comparator_bound_right :
     ∃ M : ℝ, 0 < M ∧ ∀ t : ℝ,
       ‖completedDedekindZetaEntire K (((2:ℝ) : ℂ) + (t : ℂ) * Complex.I)‖^4
@@ -718,7 +748,9 @@ theorem comparator_bound_right :
           le_add_of_nonneg_left (by positivity)
 
 /-- Left boundary bound for the comparator on `Re z = -1`, by reflecting to the right
-boundary through the functional equation.-/
+boundary through the functional equation.
+@isnad1 id=ex.0h1v.s7.2fa395545982 from=translated src=- shape=fb74b845 vocab=83a4b075
+-/
 theorem comparator_bound_left :
     ∃ M : ℝ, 0 < M ∧ ∀ t : ℝ,
       ‖completedDedekindZetaEntire K (((-1:ℝ) : ℂ) + (t : ℂ) * Complex.I)‖^4
@@ -907,7 +939,9 @@ private theorem comparator_isBigO_growth {B : ℝ} (hB0 : 0 ≤ B)
   exact mul_le_mul_of_nonneg_left hexp_le (by positivity)
 
 /-- **The comparator is bounded on the whole strip** `-1 ≤ Re z ≤ 2`
-(Phragmén–Lindelöf between the two boundary bounds).-/
+(Phragmén–Lindelöf between the two boundary bounds).
+@isnad1 id=ex.0h1v.s7.0f8b87a5ede0 from=translated src=- shape=8b0da272 vocab=1c285d15
+-/
 theorem comparator_bound_strip :
     ∃ M : ℝ, 0 < M ∧ ∀ z : ℂ, -1 ≤ z.re → z.re ≤ 2 →
       ‖completedDedekindZetaEntire K z^4 * Complex.sin (π * z)^(gammaExponent K)
@@ -985,7 +1019,9 @@ theorem comparator_bound_strip :
 /-- **AC-A3 deliverable: the envelope-matched decaying upper bound for `H` on the
 critical strip.** For `-1 ≤ Re z ≤ 2` and `|Im z| ≥ 1`,
 `‖H(z)‖ ≤ C·(1+|Im z|)^{n_K+2}·e^{-n_K·π|Im z|/4}` — the same exponential rate as the
-center lower bounds, so Jensen ratios are polynomial.-/
+center lower bounds, so Jensen ratios are polynomial.
+@isnad1 id=ex.0h1v.s7.2535db19073a from=translated src=- shape=2d1fa7d3 vocab=f4a11481
+-/
 theorem exists_H_strip_decay :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℂ, -1 ≤ z.re → z.re ≤ 2 → 1 ≤ |z.im| →
       ‖completedDedekindZetaEntire K z‖
@@ -1117,7 +1153,9 @@ theorem exists_H_strip_decay :
     (by positivity)
 
 /-- Rightward propagation of the decaying Γ-upper bound: each recurrence step costs a
-factor `‖z‖ + n`, keeping the bound polynomial-times-decaying.-/
+factor `‖z‖ + n`, keeping the bound polynomial-times-decaying.
+@isnad1 id=le.3h3v.s8.f33b14e59b8d from=translated src=- shape=1220cc71 vocab=76046ab3
+-/
 theorem norm_Gamma_le_mul_exp_add_nat {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ ≤ 3/2)
     (ht : 1 ≤ |t|) (n : ℕ) :
     ‖Complex.Gamma (((σ + n : ℝ) : ℂ) + (t : ℂ) * Complex.I)‖
@@ -1176,7 +1214,9 @@ theorem norm_Gamma_le_mul_exp_add_nat {σ t : ℝ} (h1 : 1/2 ≤ σ) (h2 : σ �
             linarith
 
 /-- Every real `σ ≥ 1/2` decomposes as a base-strip point plus a natural number:
-`σ = σ₀ + n` with `σ₀ ∈ [1/2, 3/2)`.-/
+`σ = σ₀ + n` with `σ₀ ∈ [1/2, 3/2)`.
+@isnad1 id=ex.1h1v.s6.fd5064f61050 from=translated src=- shape=8847b424 vocab=54cd24a2
+-/
 theorem exists_base_add_nat {σ : ℝ} (h : 1/2 ≤ σ) :
     ∃ σ₀ : ℝ, ∃ n : ℕ, 1/2 ≤ σ₀ ∧ σ₀ < 3/2 ∧ σ = σ₀ + n := by
   refine ⟨σ - ⌊σ - 1/2⌋₊, ⌊σ - 1/2⌋₊, ?_, ?_, by ring⟩
@@ -1185,7 +1225,9 @@ theorem exists_base_add_nat {σ : ℝ} (h : 1/2 ≤ σ) :
   · have hflt : σ - 1/2 < ⌊σ - 1/2⌋₊ + 1 := Nat.lt_floor_add_one _
     linarith
 
-/-- Packaged decaying Γ-upper at an arbitrary abscissa `σ ≥ 1/2`.-/
+/-- Packaged decaying Γ-upper at an arbitrary abscissa `σ ≥ 1/2`.
+@isnad1 id=ex.1h1v.s7.55837fc98df1 from=translated src=- shape=18f7dc88 vocab=e4f54084
+-/
 theorem exists_norm_Gamma_le (σ : ℝ) (hσ : 1/2 ≤ σ) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ t : ℝ, 1 ≤ |t| →
       ‖Complex.Gamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖
@@ -1216,7 +1258,9 @@ theorem exists_norm_Gamma_le (σ : ℝ) (hσ : 1/2 ≤ σ) :
         rw [mul_pow, pow_succ]
         ring
 
-/-- Packaged matching Γ-lower at an arbitrary abscissa `σ ≥ 1/2`.-/
+/-- Packaged matching Γ-lower at an arbitrary abscissa `σ ≥ 1/2`.
+@isnad1 id=ex.1h1v.s7.ae29e41e66c7 from=translated src=- shape=d6495851 vocab=0edf6626
+-/
 theorem exists_le_norm_Gamma (σ : ℝ) (hσ : 1/2 ≤ σ) :
     ∃ c : ℝ, 0 < c ∧ ∀ t : ℝ, 1 ≤ |t| →
       c * Real.exp (-(π * |t|) / 2) / (1 + |t|)
@@ -1257,7 +1301,9 @@ theorem exists_le_norm_Gamma (σ : ℝ) (hσ : 1/2 ≤ σ) :
         * Real.exp (-(π * |t|) / 2) :=
         mul_le_mul_of_nonneg_right hmono (by positivity)
 
-/-- Matching lower bound for `Γℝ` at a fixed abscissa `σ ≥ 1`: rate `e^{-π|t|/4}`.-/
+/-- Matching lower bound for `Γℝ` at a fixed abscissa `σ ≥ 1`: rate `e^{-π|t|/4}`.
+@isnad1 id=ex.1h1v.s7.017bba619585 from=translated src=- shape=a7b5ccbe vocab=dacb1682
+-/
 theorem exists_le_norm_Gammaℝ (σ : ℝ) (hσ : 1 ≤ σ) :
     ∃ c : ℝ, 0 < c ∧ ∀ t : ℝ, 2 ≤ |t| →
       c * Real.exp (-(π * |t|) / 4) / (1 + |t|)
@@ -1297,7 +1343,9 @@ theorem exists_le_norm_Gammaℝ (σ : ℝ) (hσ : 1 ≤ σ) :
         * ‖Complex.Gamma (((σ/2 : ℝ) : ℂ) + ((t/2 : ℝ) : ℂ) * Complex.I)‖ :=
         mul_le_mul_of_nonneg_left hΓ (by positivity)
 
-/-- Matching lower bound for `Γℂ` at a fixed abscissa `σ ≥ 1`: rate `e^{-π|t|/2}`.-/
+/-- Matching lower bound for `Γℂ` at a fixed abscissa `σ ≥ 1`: rate `e^{-π|t|/2}`.
+@isnad1 id=ex.1h1v.s7.dbed2602fc23 from=translated src=- shape=a7b5ccbe vocab=dcb58f9b
+-/
 theorem exists_le_norm_Gammaℂ (σ : ℝ) (hσ : 1 ≤ σ) :
     ∃ c : ℝ, 0 < c ∧ ∀ t : ℝ, 2 ≤ |t| →
       c * Real.exp (-(π * |t|) / 2) / (1 + |t|)
@@ -1324,7 +1372,9 @@ theorem exists_le_norm_Gammaℂ (σ : ℝ) (hσ : 1 ≤ σ) :
 
 /-- Matching lower bound for the archimedean factor at a fixed abscissa `σ ≥ 1`:
 `‖γ_K(σ+it)‖ ≥ c·e^{-n_Kπ|t|/4}/(1+|t|)^{r₁+r₂}` — the same envelope rate as the
-upper bound `norm_gammaFactor_le`.-/
+upper bound `norm_gammaFactor_le`.
+@isnad1 id=ex.1h2v.s7.26b7e21d4592 from=translated src=- shape=598a60ce vocab=f16ba004
+-/
 theorem exists_gammaFactor_lower (σ : ℝ) (hσ : 1 ≤ σ) :
     ∃ c : ℝ, 0 < c ∧ ∀ t : ℝ, 2 ≤ |t| →
       c * Real.exp (-(((gammaExponent K : ℕ) : ℝ) * (π * |t|)) / 4)
@@ -1358,7 +1408,9 @@ theorem exists_gammaFactor_lower (σ : ℝ) (hσ : 1 ≤ σ) :
 
 /-- **A4 center lower bound**: at the abscissa `A` where `‖ζ_K‖ ≥ 1/2`, the entire
 completed zeta obeys the envelope-matched lower
-`‖H(A+it)‖ ≥ c·e^{-n_Kπ|t|/4}/(1+|t|)^{r₁+r₂}` for `|t| ≥ 2`.-/
+`‖H(A+it)‖ ≥ c·e^{-n_Kπ|t|/4}/(1+|t|)^{r₁+r₂}` for `|t| ≥ 2`.
+@isnad1 id=ex.0h1v.s7.ac7c557875c2 from=translated src=- shape=84f45496 vocab=16b27cdb
+-/
 theorem exists_H_center_lower :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ c : ℝ, 0 < c ∧ ∀ t : ℝ, 2 ≤ |t| →
       c * Real.exp (-(((gammaExponent K : ℕ) : ℝ) * (π * |t|)) / 4)
@@ -1432,7 +1484,9 @@ theorem exists_H_center_lower :
           (by norm_num) ?_
         positivity
 
-/-- σ-uniform decaying Γ-upper on `1/2 ≤ σ ≤ σ₁`, `|t| ≥ 1`.-/
+/-- σ-uniform decaying Γ-upper on `1/2 ≤ σ ≤ σ₁`, `|t| ≥ 1`.
+@isnad1 id=ex.0h1v.s7.61424ecca54a from=translated src=- shape=10d8c104 vocab=e4f54084
+-/
 theorem exists_norm_Gamma_le_range (σ₁ : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ σ t : ℝ, 1/2 ≤ σ → σ ≤ σ₁ → 1 ≤ |t| →
       ‖Complex.Gamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖
@@ -1483,7 +1537,9 @@ theorem exists_norm_Gamma_le_range (σ₁ : ℝ) :
     _ = (3/2 + N)^N * (Real.sqrt (12 * π) * (3/2)) * (1 + |t|)^(N+1)
         * Real.exp (-(π * |t|) / 2) := by ring
 
-/-- σ-uniform decaying upper for the archimedean factor on `1 ≤ σ ≤ σ₁`, `|t| ≥ 2`.-/
+/-- σ-uniform decaying upper for the archimedean factor on `1 ≤ σ ≤ σ₁`, `|t| ≥ 2`.
+@isnad1 id=ex.0h2v.s7.f22b54228211 from=translated src=- shape=91d07ea8 vocab=0c7ca346
+-/
 theorem exists_norm_gammaFactor_le_range (σ₁ : ℝ) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ σ t : ℝ, 1 ≤ σ → σ ≤ σ₁ → 2 ≤ |t| →
       ‖gammaFactor K ((σ : ℂ) + (t : ℂ) * Complex.I)‖
@@ -1576,7 +1632,9 @@ theorem exists_norm_gammaFactor_le_range (σ₁ : ℝ) :
   push_cast
   ring
 
-/-- Decaying H-upper to the right of the critical strip: `2 ≤ Re z ≤ σ₁`, `|Im z| ≥ 2`.-/
+/-- Decaying H-upper to the right of the critical strip: `2 ≤ Re z ≤ σ₁`, `|Im z| ≥ 2`.
+@isnad1 id=ex.1h2v.s7.8c22a47a72f4 from=translated src=- shape=347d3ae0 vocab=f4a11481
+-/
 theorem exists_H_upper_right (σ₁ : ℝ) (hσ₁ : 2 ≤ σ₁) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ z : ℂ, 2 ≤ z.re → z.re ≤ σ₁ → 2 ≤ |z.im| →
       ‖completedDedekindZetaEntire K z‖
@@ -1659,7 +1717,9 @@ theorem exists_H_upper_right (σ₁ : ℝ) (hσ₁ : 2 ≤ σ₁) :
         ring
 
 /-- Sphere-sup bound for the Jensen ball: at center `A+iT` with radius `A+1`, every
-point of the closed ball satisfies the decaying envelope bound (in terms of `|T|`).-/
+point of the closed ball satisfies the decaying envelope bound (in terms of `|T|`).
+@isnad1 id=ex.1h2v.s7.a175e5de2329 from=translated src=- shape=709fabad vocab=a30e9f7a
+-/
 theorem exists_H_ball_sup (A : ℝ) (hA : 2 ≤ A) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ T : ℝ, A + 5 ≤ |T| →
       ∀ z ∈ Metric.closedBall ((A : ℂ) + (T : ℂ) * Complex.I) (A + 1),
@@ -1748,7 +1808,9 @@ theorem exists_H_ball_sup (A : ℝ) (hA : 2 ≤ A) :
 /-- **AC-A4: per-height zero counting.** There are an abscissa `A` and a constant `C`
 such that for all heights `|T| ≥ A+5`, the number of zeros of `H` (with multiplicity)
 in the closed ball of radius `√(A²+1)` around `A+iT` — a ball containing the critical
-slab `0 ≤ Re ≤ 1`, `|Im - T| ≤ 1` — is at most `C·log(2+|T|)`.-/
+slab `0 ≤ Re ≤ 1`, `|Im - T| ≤ 1` — is at most `C·log(2+|T|)`.
+@isnad1 id=ex.0h1v.s8.68319d8221d6 from=translated src=- shape=05db56c1 vocab=f50e12c8
+-/
 theorem exists_ball_zero_count :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ C : ℝ, 0 < C ∧ ∀ T : ℝ, A + 5 ≤ |T| →
       ((∑ᶠ u, (MeromorphicOn.divisor (completedDedekindZetaEntire K)
@@ -1925,7 +1987,9 @@ theorem exists_ball_zero_count :
 /-- **Holomorphic logarithm on a convex open set** (A5-i): a zero-free holomorphic
 function on a nonempty convex open set has a holomorphic logarithm. The continuous
 branch comes from mathlib's simply-connected lifting; differentiability is local, via
-the principal branch of the quotient.-/
+the principal branch of the quotient.
+@isnad1 id=ex.5h2v.s7.0c5b03620576 from=translated src=- shape=dc2b1740 vocab=20d6dad1
+-/
 theorem exists_differentiableOn_log {U : Set ℂ} (hUo : IsOpen U) (hUc : Convex ℝ U)
     (hne : U.Nonempty) {f : ℂ → ℂ} (hf : DifferentiableOn ℂ f U)
     (h0 : ∀ z ∈ U, f z ≠ 0) :
@@ -1992,7 +2056,9 @@ theorem exists_differentiableOn_log {U : Set ℂ} (hUo : IsOpen U) (hUc : Convex
   exact (differentiableAt_const _).add ((hfat.div_const _).clog hslit)
 
 /-- Codiscrete-within agreement of continuous functions on an open set upgrades to
-genuine agreement (ℂ has no isolated points).-/
+genuine agreement (ℂ has no isolated points).
+@isnad1 id=eqon.4h3v.s6.10008f81470e from=translated src=- shape=26505620 vocab=6d0e16ef
+-/
 theorem eqOn_of_eventuallyEq_codiscreteWithin {f₁ f₂ : ℂ → ℂ} {U : Set ℂ}
     (hUo : IsOpen U) (h : f₁ =ᶠ[Filter.codiscreteWithin U] f₂)
     (h₁ : ContinuousOn f₁ U) (h₂ : ContinuousOn f₂ U) : Set.EqOn f₁ f₂ U := by
@@ -2025,7 +2091,9 @@ theorem eqOn_of_eventuallyEq_codiscreteWithin {f₁ f₂ : ℂ → ℂ} {U : Set
   exact hcod z hz hacc
 
 /-- **Zero-peeling on a ball** (A5-ii-b): on an open ball where `H` is not identically
-zero, `H` factors as the divisor product times a zero-free analytic function.-/
+zero, `H` factors as the divisor product times a zero-free analytic function.
+@isnad1 id=ex.2h4v.s8.486289ae1c81 from=translated src=- shape=270122ff vocab=f66e9fc1
+-/
 theorem exists_H_ball_factorization (c : ℂ) {R : ℝ}
     {w : ℂ} (hw : w ∈ Metric.ball c R)
     (hHw : completedDedekindZetaEntire K w ≠ 0) :
@@ -2084,7 +2152,9 @@ theorem exists_H_ball_factorization (c : ℂ) {R : ℝ}
 /-- Sphere-sup bound for the Landau ball: at center `A+iT` with the larger radius
 `A+3`, every point of the closed ball satisfies the decaying envelope bound (in
 terms of `|T|`). Left of the critical strip the functional equation reflects the
-bound from the right half-plane.-/
+bound from the right half-plane.
+@isnad1 id=ex.1h2v.s7.57147731cefa from=translated src=- shape=709fabad vocab=a30e9f7a
+-/
 theorem exists_H_ball_sup_big (A : ℝ) (hA : 2 ≤ A) :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ T : ℝ, A + 5 ≤ |T| →
       ∀ z ∈ Metric.closedBall ((A : ℂ) + (T : ℂ) * Complex.I) (A + 3),
@@ -2191,7 +2261,9 @@ theorem exists_H_ball_sup_big (A : ℝ) (hA : 2 ≤ A) :
 /-- **Per-height zero counting at the Landau radius.** Given the abscissa `A` with the
 envelope-matched center lower bound, the number of zeros of `H` (with multiplicity) in
 the closed ball of radius `A+2` around `A+iT` is at most `C·log(2+|T|)`. Parametric in
-`A` and the center bound so that downstream users can share one `A`.-/
+`A` and the center bound so that downstream users can share one `A`.
+@isnad1 id=ex.3h3v.s8.7ecd9a520e3e from=translated src=- shape=560609b6 vocab=c28979a8
+-/
 theorem exists_ball_zero_count_big (A : ℝ) (hA2 : 2 ≤ A) (cL : ℝ) (hcL : 0 < cL)
     (hlow : ∀ t : ℝ, 2 ≤ |t| →
       cL * Real.exp (-(((gammaExponent K : ℕ) : ℝ) * (π * |t|)) / 4)
@@ -2366,7 +2438,9 @@ theorem exists_ball_zero_count_big (A : ℝ) (hA2 : 2 ≤ A) (cL : ℝ) (hcL : 0
 ball `ball c r₁`; the cofactor `h` is analytic on the *large* ball `ball c r₂` and
 zero-free on the small ball. This is the shape the Landau/Titchmarsh maximum-principle
 argument needs: on spheres of intermediate radius the peeled product is bounded below by
-the separation, while `h` is still analytic there.-/
+the separation, while `h` is still analytic there.
+@isnad1 id=ex.3h5v.s8.aebb3b1a6245 from=translated src=- shape=508a7c66 vocab=bd21e4f5
+-/
 theorem exists_H_two_radius_factorization (c : ℂ) {r₁ r₂ : ℝ} (h12 : r₁ ≤ r₂)
     {w : ℂ} (hw : w ∈ Metric.ball c r₁)
     (hHw : completedDedekindZetaEntire K w ≠ 0) :
@@ -2488,7 +2562,9 @@ theorem exists_H_two_radius_factorization (c : ℂ) {r₁ r₂ : ℝ} (h12 : r�
 holomorphic and zero-free on `ball c r` with `‖h‖ ≤ mS` there and `mL ≤ ‖h c‖` at the
 center, then `‖h'/h‖ ≤ 32·r·(log(mS/mL) + 1)` on the concentric closed ball of radius
 `r - 3/4`. Chain: holomorphic logarithm on the convex ball, Borel–Carathéodory from the
-`Re`-bound `log(mS/mL)`, then the Schwarz derivative estimate on quarter-balls.-/
+`Re`-bound `log(mS/mL)`, then the Schwarz derivative estimate on quarter-balls.
+@isnad1 id=le.7h6v.s8.61962f70285d from=translated src=- shape=0fda217a vocab=0c6ed043
+-/
 theorem norm_logDeriv_le_of_norm_le {h : ℂ → ℂ} {c : ℂ} {r : ℝ} (hr : 3/4 < r)
     (hd : DifferentiableOn ℂ h (Metric.ball c r))
     (h0 : ∀ z ∈ Metric.ball c r, h z ≠ 0)
@@ -2725,7 +2801,9 @@ abscissa `A` and a constant `C` such that at every height `|T| ≥ A+5` the comp
 zeta factors through the zeros in `ball (A+iT) (A+2)` with a cofactor `h` that is
 analytic on `ball (A+iT) (A+3)`, zero-free on `ball (A+iT) (A+2)`, and whose
 logarithmic derivative is `O(log(2+|T|))` on the slab ball `closedBall (A+iT) (A+5/4)`
-— a ball containing the strip `-1 ≤ Re ≤ 2`, `|Im - T| ≤ 1`.-/
+— a ball containing the strip `-1 ≤ Re ≤ 2`, `|Im - T| ≤ 1`.
+@isnad1 id=ex.0h1v.s9.8a9b6ce2875f from=translated src=- shape=0fb33957 vocab=7a7264b1
+-/
 theorem exists_H_landau_cofactor :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ C : ℝ, 0 < C ∧ ∀ T : ℝ, A + 5 ≤ |T| →
       ((∑ᶠ u, (MeromorphicOn.divisor (completedDedekindZetaEntire K)
@@ -2993,7 +3071,9 @@ contains the strip `-1 ≤ Re s ≤ 2`, `|Im s - T| ≤ 1` — the logarithmic d
 of `H = completedDedekindZetaEntire` equals the sum of `m_ρ/(s-ρ)` over the zeros
 `ρ` in `ball (A+iT) (A+2)` (with multiplicity, encoded by the divisor), up to an
 error of at most `C·log(2+|T|)`. This is the workhorse for the explicit-formula
-contour estimates on horizontal segments.-/
+contour estimates on horizontal segments.
+@isnad1 id=ex.0h1v.s9.639d83df66b1 from=translated src=- shape=1b49e4de vocab=24f742ab
+-/
 theorem exists_logDeriv_partial_fractions :
     ∃ A : ℝ, 2 ≤ A ∧ ∃ C : ℝ, 0 < C ∧ ∀ T : ℝ, A + 5 ≤ |T| →
       ((∑ᶠ u, (MeromorphicOn.divisor (completedDedekindZetaEntire K)
@@ -3104,7 +3184,9 @@ theorem exists_logDeriv_partial_fractions :
     _ = ‖logDeriv h s‖ := by rw [add_sub_cancel_left]
     _ ≤ C * Real.log (2 + |T|) := hbound s hs
 
-/-- One-step downward recurrence in norm: `‖Γ(z)‖ = ‖Γ(z+1)‖/‖z‖` off the poles.-/
+/-- One-step downward recurrence in norm: `‖Γ(z)‖ = ‖Γ(z+1)‖/‖z‖` off the poles.
+@isnad1 id=eq.1h1v.s5.fb180834fc9a from=translated src=- shape=df47188c vocab=78210699
+-/
 theorem norm_Gamma_eq_norm_Gamma_add_one_div {z : ℂ} (hz : z ≠ 0) :
     ‖Complex.Gamma z‖ = ‖Complex.Gamma (z + 1)‖ / ‖z‖ := by
   rw [Complex.Gamma_add_one z hz, norm_mul]
@@ -3113,7 +3195,9 @@ theorem norm_Gamma_eq_norm_Gamma_add_one_div {z : ℂ} (hz : z ≠ 0) :
 /-- σ-uniform decaying Γ-upper on the window `-2 ≤ σ ≤ 3`, `|t| ≥ 1` (the wide window
 needed for unit balls around the explicit-formula contour). Left of `Re = -1/2` the
 recurrence `Γ(z) = Γ(z+1)/z` steps back into the reflected strip, and `‖z‖ ≥ |t| ≥ 1`
-only shrinks the bound.-/
+only shrinks the bound.
+@isnad1 id=ex.0h0v.s7.4d8ae890f18d from=translated src=- shape=26bfea0e vocab=e4f54084
+-/
 theorem exists_norm_Gamma_le_window :
     ∃ C : ℝ, 0 < C ∧ ∃ P : ℕ, ∀ σ t : ℝ, -2 ≤ σ → σ ≤ 3 → 1 ≤ |t| →
       ‖Complex.Gamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖
@@ -3222,7 +3306,9 @@ theorem exists_norm_Gamma_le_window :
 
 /-- σ-uniform Γ-lower on the window `-1 ≤ σ ≤ 2`, `|t| ≥ 1`, with the matching
 envelope: `‖Γ(σ+it)‖ ≥ c·e^{-π|t|/2}/(1+|t|)³`. Downward steps divide by at most
-`(1+|t|)` each; the base strip and one upward recurrence cover `σ ∈ [1/2, 2]`.-/
+`(1+|t|)` each; the base strip and one upward recurrence cover `σ ∈ [1/2, 2]`.
+@isnad1 id=ex.0h0v.s7.fa488a17661d from=translated src=- shape=45828e09 vocab=e4f54084
+-/
 theorem exists_le_norm_Gamma_window :
     ∃ c : ℝ, 0 < c ∧ ∀ σ t : ℝ, -1 ≤ σ → σ ≤ 2 → 1 ≤ |t| →
       c * Real.exp (-(π * |t|) / 2) / (1 + |t|)^3
@@ -3392,7 +3478,9 @@ theorem exists_le_norm_Gamma_window :
 /-- **AC-A6: vertical digamma bound.** On the contour window `-1 ≤ σ ≤ 2`, `|t| ≥ 2`,
 the digamma function satisfies `‖ψ(σ+it)‖ ≤ C·log(2+|t|)`. Landau's lemma applied to
 `Γ` on the unit ball around `σ+it`: the window sup and center bounds have matching
-envelopes `e^{-π|t'|/2}`, so the log-ratio is `O(log(2+|t|))`.-/
+envelopes `e^{-π|t'|/2}`, so the log-ratio is `O(log(2+|t|))`.
+@isnad1 id=ex.0h0v.s6.8c92d0952965 from=translated src=- shape=1e305919 vocab=81addb42
+-/
 theorem exists_norm_digamma_le :
     ∃ C : ℝ, 0 < C ∧ ∀ σ t : ℝ, -1 ≤ σ → σ ≤ 2 → 2 ≤ |t| →
       ‖Complex.digamma ((σ : ℂ) + (t : ℂ) * Complex.I)‖ ≤ C * Real.log (2 + |t|) := by

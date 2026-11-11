@@ -24,7 +24,9 @@ namespace ComponentChoice
 variable {G H : Type*} [Group G] [Group H]
 
 /-- If `φ` maps the subgroup `S` onto the subgroup `T`, and `T` is nontrivial,
-then some element of `S` has nontrivial image.-/
+then some element of `S` has nontrivial image.
+@isnad1 id=ex.1h5v.s7.d2f2d7998ce3 from=translated src=- shape=a75796fe vocab=5e4a5ada
+-/
 theorem exists_lift_of_map_eq_of_nontrivial
     (φ : G →* H) (S : Subgroup G) (T : Subgroup H)
     [Nontrivial T] (hmap : S.map φ = T) :
@@ -37,7 +39,9 @@ theorem exists_lift_of_map_eq_of_nontrivial
   intro hx_one
   exact hy_ne (by rw [← hx, hx_one])
 
-/-- A version using `T ≠ ⊥` instead of a typeclass `Nontrivial T`.-/
+/-- A version using `T ≠ ⊥` instead of a typeclass `Nontrivial T`.
+@isnad1 id=ex.2h5v.s7.6cf9a5a3a87f from=translated src=- shape=e42f8c7c vocab=77be7a3d
+-/
 theorem exists_lift_of_map_eq_of_ne_bot
     (φ : G →* H) (S : Subgroup G) (T : Subgroup H)
     (hmap : S.map φ = T) (hT : T ≠ ⊥) :
@@ -46,7 +50,9 @@ theorem exists_lift_of_map_eq_of_ne_bot
   exact exists_lift_of_map_eq_of_nontrivial φ S T hmap
 
 /-- Elementwise form: the lift can be viewed in the ambient source group and
-its image lies in the target component.-/
+its image lies in the target component.
+@isnad1 id=ex.2h5v.s7.0f4bddb047af from=translated src=- shape=dd98fca9 vocab=9ed2e2e3
+-/
 theorem exists_mem_lift_with_nontrivial_image_of_ne_bot
     (φ : G →* H) (S : Subgroup G) (T : Subgroup H)
     (hmap : S.map φ = T) (hT : T ≠ ⊥) :
@@ -57,7 +63,9 @@ theorem exists_mem_lift_with_nontrivial_image_of_ne_bot
   exact ⟨x.1, x.2, rfl⟩
 
 /-- A surjective component map forces the source component to be nontrivial
-whenever the target component is nontrivial.-/
+whenever the target component is nontrivial.
+@isnad1 id=ne.2h5v.s6.7bd89242ce03 from=translated src=- shape=79c91e2b vocab=33d285b0
+-/
 theorem source_ne_bot_of_map_eq_of_target_ne_bot
     (φ : G →* H) (S : Subgroup G) (T : Subgroup H)
     (hmap : S.map φ = T) (hT : T ≠ ⊥) :
@@ -74,7 +82,9 @@ variable [Field K] [Algebra R K] [IsFractionRing R K]
 /-- Singular-sequence form of the component-lifting lemma.  If a chosen
 component of the singular group maps onto a chosen component of `A[p]`, then a
 nontrivial element of the target component has a singular lift in the source
-component.-/
+component.
+@isnad1 id=ex.2h5v.s12.3452d0638e80 from=translated src=- shape=ea77cd54 vocab=74b85ed7
+-/
 theorem exists_singular_lift_of_component_map_eq_of_ne_bot
     (p : ℕ)
     (Scomp : Subgroup (SingularPair.SingularGroup (R := R) (K := K) p))
@@ -90,7 +100,9 @@ theorem exists_singular_lift_of_component_map_eq_of_ne_bot
     Scomp Acomp hmap hA
 
 /-- Elementwise singular-sequence form, with membership in the chosen source
-and target components recorded explicitly.-/
+and target components recorded explicitly.
+@isnad1 id=ex.2h5v.s12.ee335cab56eb from=translated src=- shape=c7ad2737 vocab=1b3d0b42
+-/
 theorem exists_singular_mem_lift_with_nontrivial_class_of_component_map_eq_of_ne_bot
     (p : ℕ)
     (Scomp : Subgroup (SingularPair.SingularGroup (R := R) (K := K) p))

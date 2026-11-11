@@ -28,7 +28,9 @@ is exactly nondivisibility of the integral determinant by `p`.
 This is the matrix form of the finite-index/free-lattice criterion: in bases,
 the subgroup inclusion is represented by an integral matrix `A`, the index is
 `|det A|`, and the mod-`p` map is injective exactly when the determinant of
-`A` over `ZMod p` is nonzero.-/
+`A` over `ZMod p` is nonzero.
+@isnad1 id=iff.0h3v.s6.69f58df973ac from=translated src=- shape=37993a9d vocab=0e00c816
+-/
 theorem intMatrix_index_not_dvd_iff_det_modP_ne_zero
     {ι : Type*} [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℤ) (p : ℕ) :
     (¬ (p : ℤ) ∣ A.det) ↔
@@ -39,7 +41,9 @@ theorem intMatrix_index_not_dvd_iff_det_modP_ne_zero
   change (¬ (p : ℤ) ∣ A.det) ↔ ¬ ((A.det : ZMod p) = 0)
   rw [ZMod.intCast_zmod_eq_zero_iff_dvd]
 
-/-- Reversed orientation of `intMatrix_index_not_dvd_iff_det_modP_ne_zero`.-/
+/-- Reversed orientation of `intMatrix_index_not_dvd_iff_det_modP_ne_zero`.
+@isnad1 id=iff.0h3v.s6.cb0fd72bfa68 from=translated src=- shape=ece8118e vocab=0e00c816
+-/
 theorem intMatrix_det_modP_ne_zero_iff_not_dvd
     {ι : Type*} [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℤ) (p : ℕ) :
     (A.map (Int.castRingHom (ZMod p))).det ≠ 0 ↔
