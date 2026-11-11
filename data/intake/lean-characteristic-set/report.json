@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "ecd982205bb7112aab5ea0640ba86c2bfb79ff8c25f84225a17d47dccb7a4703",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-characteristic-set",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 6
+}
