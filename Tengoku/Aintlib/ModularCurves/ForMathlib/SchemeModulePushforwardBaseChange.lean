@@ -233,7 +233,9 @@ noncomputable def pushforwardTopSection
     (eqToHom (Scheme.Hom.preimage_top f)).op m
 
 /-- A pushforward map on the top open commutes with the canonical top-open
-transport.-/
+transport.
+@isnad1 id=eq.0h7v.s12.e5c66cc71de6 from=translated src=- shape=9cb300e1 vocab=66f91f68
+-/
 theorem pushforwardMap_app_top_pushforwardTopSection
     {M N : X.Modules} (φ : M ⟶ N) (m : Γ(M, (⊤ : X.Opens))) :
     ((pushforward f).map φ).app (⊤ : S.Opens)
@@ -308,7 +310,9 @@ private theorem pullbackPushforwardBaseChangePushSquare_app_top
   exact happ
 
 /-- On global sections, cartesian pushforward base change sends the pullback
-unit along the base map to the pullback unit along the cartesian projection.-/
+unit along the base map to the pullback unit along the cartesian projection.
+@isnad1 id=eq.0h7v.s11.45c08e679a34 from=translated src=- shape=95dcb5ca vocab=61b82874
+-/
 theorem pullbackPushforwardBaseChange_app_top_pullbackUnit
     (M : X.Modules) (m : Γ(M, (⊤ : X.Opens))) :
     ((pullbackPushforwardBaseChange f t).app M).app (⊤ : T.Opens)

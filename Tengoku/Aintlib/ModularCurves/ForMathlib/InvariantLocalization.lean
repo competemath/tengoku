@@ -44,6 +44,9 @@ variable {h : B}
 
 namespace MulSemiringAction
 
+/--
+@isnad1 id=le.1h4v.s7.f0ed80dd69f3 from=translated src=- shape=8eae9e7d vocab=8113d8e4
+-/
 theorem powers_le_comap_toRingHom (hfix : ∀ g : G, g • h = h) (g : G) :
     Submonoid.powers h ≤ (Submonoid.powers h).comap (toRingHom G B g) := by
   rintro x ⟨n, rfl⟩
@@ -65,11 +68,17 @@ noncomputable def awayHom (hfix : ∀ g : G, g • h = h) (g : G) :
   IsLocalization.map (Localization.Away h) (toRingHom G B g)
     (powers_le_comap_toRingHom hfix g)
 
+/--
+@isnad1 id=eq.1h5v.s9.3b8a1aecf2ff from=translated src=- shape=873f8f55 vocab=2991cc7e
+-/
 theorem awayHom_algebraMap (hfix : ∀ g : G, g • h = h) (g : G) (b : B) :
     awayHom hfix g (algebraMap B (Localization.Away h) b) =
       algebraMap B (Localization.Away h) (g • b) :=
   IsLocalization.map_eq _ b
 
+/--
+@isnad1 id=eq.1h6v.s9.9b9fc9386066 from=translated src=- shape=21be8cd1 vocab=5747c62d
+-/
 theorem awayHom_mk' (hfix : ∀ g : G, g • h = h) (g : G) (b : B)
     (s : Submonoid.powers h) :
     awayHom hfix g (IsLocalization.mk' (Localization.Away h) b s) =
@@ -79,7 +88,9 @@ theorem awayHom_mk' (hfix : ∀ g : G, g • h = h) (g : G) (b : B)
   IsLocalization.map_mk' _ b s
 
 /-- `awayHom` on a fraction with invariant denominator `hⁿ`: only the numerator
-moves.-/
+moves.
+@isnad1 id=eq.1h6v.s9.f30ab806a177 from=translated src=- shape=0f33e744 vocab=e1bdf431
+-/
 theorem awayHom_mk'_pow (hfix : ∀ g : G, g • h = h) (g : G) (b : B) (n : ℕ) :
     awayHom hfix g (IsLocalization.mk' (Localization.Away h) b
         (⟨h ^ n, n, rfl⟩ : Submonoid.powers h)) =
@@ -88,12 +99,18 @@ theorem awayHom_mk'_pow (hfix : ∀ g : G, g • h = h) (g : G) (b : B) (n : ℕ
   rw [awayHom_mk']
   exact mk'_congr rfl (by show g • h ^ n = h ^ n; rw [smul_pow', hfix])
 
+/--
+@isnad1 id=eq.1h4v.s8.2eb8b7b0589f from=translated src=- shape=cc6f1495 vocab=de75bfbc
+-/
 theorem awayHom_one (hfix : ∀ g : G, g • h = h) (x : Localization.Away h) :
     awayHom hfix (1 : G) x = x := by
   obtain ⟨b, s, rfl⟩ := IsLocalization.exists_mk'_eq (Submonoid.powers h) x
   rw [awayHom_mk']
   exact mk'_congr (one_smul G b) (one_smul G (s : B))
 
+/--
+@isnad1 id=eq.1h6v.s9.c0ad86138686 from=translated src=- shape=71c6b53a vocab=d35dad6f
+-/
 theorem awayHom_mul (hfix : ∀ g : G, g • h = h) (g g' : G) (x : Localization.Away h) :
     awayHom hfix (g * g') x = awayHom hfix g (awayHom hfix g' x) := by
   obtain ⟨b, s, rfl⟩ := IsLocalization.exists_mk'_eq (Submonoid.powers h) x
@@ -120,7 +137,9 @@ fixed element of `Localization.Away h` is `b / hⁿ` for an invariant numerator 
 
 Stated via `awayHom` (`x` is fixed under the action `MulSemiringAction.away hfix`).
 No averaging over `G` — the numerator is corrected by a power of `h` instead, so
-there is no hypothesis on `|G|` being invertible in `B`.-/
+there is no hypothesis on `|G|` being invertible in `B`.
+@isnad1 id=ex.2h4v.s9.1518d03b540b from=translated src=- shape=d2778868 vocab=48495f53
+-/
 theorem exists_fixed_mk'_eq_of_forall_awayHom_eq [Finite G]
     (hfix : ∀ g : G, g • h = h) (x : Localization.Away h)
     (hx : ∀ g : G, awayHom hfix g x = x) :
@@ -158,6 +177,9 @@ section FixedSubalgebra
 
 variable (R : Type v) [CommRing R] [Algebra R B] [SMulCommClass G R B]
 
+/--
+@isnad1 id=le.0h4v.s11.c3e029ff4b43 from=translated src=- shape=04a12299 vocab=07f65231
+-/
 theorem Submonoid.powers_le_comap_algebraMap (h : FixedPoints.subalgebra R B G) :
     Submonoid.powers h ≤ (Submonoid.powers (h : B)).comap
       (algebraMap (FixedPoints.subalgebra R B G) B) := by
@@ -165,7 +187,9 @@ theorem Submonoid.powers_le_comap_algebraMap (h : FixedPoints.subalgebra R B G) 
   exact Submonoid.mem_comap.mpr ⟨n, by rw [map_pow]; rfl⟩
 
 /-- The localization at `h` of the inclusion of the fixed subalgebra is injective
-(T-Q3c(i)).-/
+(T-Q3c(i)).
+@isnad1 id=injectiv.0h4v.s12.2141af983ca9 from=translated src=- shape=2fc4401a vocab=aafc45a1
+-/
 theorem fixedPoints_awayMap_injective (h : FixedPoints.subalgebra R B G) :
     Function.Injective (IsLocalization.map (Localization.Away (h : B))
       (algebraMap (FixedPoints.subalgebra R B G) B)
@@ -182,7 +206,9 @@ theorem fixedPoints_awayMap_injective (h : FixedPoints.subalgebra R B G) :
   simpa using hc
 
 /-- The range of the localized inclusion `(Bᴳ)_h → B_h` consists exactly of the fixed
-points of the localized action (T-Q3c(ii)).-/
+points of the localized action (T-Q3c(ii)).
+@isnad1 id=iff.0h5v.s13.8f649c6e7c4c from=translated src=- shape=b2aea09c vocab=5c155ba4
+-/
 theorem mem_range_fixedPoints_awayMap_iff [Finite G]
     (h : FixedPoints.subalgebra R B G) (x : Localization.Away (h : B)) :
     x ∈ Set.range (IsLocalization.map (Localization.Away (h : B))

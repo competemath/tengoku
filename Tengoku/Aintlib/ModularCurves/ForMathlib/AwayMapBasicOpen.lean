@@ -18,7 +18,9 @@ universe u
 
 /-- If the restriction of a morphism between affine opens to corresponding
 basic opens is an isomorphism, then the canonical away map of its map on
-sections is bijective.-/
+sections is bijective.
+@isnad1 id=bijectiv.3h6v.s15.74fa15e26e9d from=translated src=- shape=7b307626 vocab=b49d0503
+-/
 theorem Scheme.Hom.awayMap_appLE_bijective_of_resLE_basicOpen_isIso
     {X Y : Scheme.{u}} (f : X ⟶ Y)
     {U : Y.Opens} (hU : IsAffineOpen U)

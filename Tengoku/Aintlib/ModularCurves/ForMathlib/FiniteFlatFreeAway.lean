@@ -23,7 +23,9 @@ namespace ModularCurves
 
 /-- **Finite flat f.p. algebras are free near every prime.** For `A / R` module-finite, flat,
 and finitely presented as an algebra, and `p` a prime of `R`, there is `r ∉ p` with
-`A[1/r]` free over `R[1/r]`.-/
+`A[1/r]` free over `R[1/r]`.
+@isnad1 id=ex.0h3v.s8.98adf27bed96 from=translated src=- shape=45ec8335 vocab=a8dcf4d0
+-/
 theorem exists_away_free_of_finite_of_flat (R A : Type*) [CommRing R] [CommRing A] [Algebra R A]
     [Module.Finite R A] [Module.Flat R A] [Algebra.FinitePresentation R A]
     (p : PrimeSpectrum R) :
@@ -44,7 +46,9 @@ theorem exists_away_free_of_finite_of_flat (R A : Type*) [CommRing R] [CommRing 
 concrete realization: a ring `R'` with `IsLocalization.Away r R'` and a module `M'` with
 `IsLocalizedModule (powers r) (g : M →ₗ[R] M')` compatible via a scalar tower. The linear
 equivalence of the two localized modules is semilinear over the canonical ring equivalence
-(`IsLocalization.algEquiv`), and freeness transports along semilinear equivalences.-/
+(`IsLocalization.algEquiv`), and freeness transports along semilinear equivalences.
+@isnad1 id=free.0h6v.s8.8e4195a8c732 from=translated src=- shape=4af8f46c vocab=cbdc5881
+-/
 theorem Module.Free.of_isLocalizedModule_away {R M : Type*} [CommRing R] [AddCommGroup M]
     [Module R M] (r : R) (R' M' : Type*) [CommRing R'] [Algebra R R']
     [IsLocalization.Away r R'] [AddCommGroup M'] [Module R M'] [Module R' M']

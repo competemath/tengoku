@@ -29,7 +29,9 @@ open TopologicalSpace Set
 variable {α : Type*} [TopologicalSpace α]
 
 /-- In a noetherian space, connected components are open: the complement of the component of
-`x` is the finite closed union of the irreducible components not contained in it.-/
+`x` is the finite closed union of the irreducible components not contained in it.
+@isnad1 id=isopen.0h2v.s4.dda7f991b8b0 from=translated src=- shape=2669ccc1 vocab=9a12ad69
+-/
 theorem TopologicalSpace.NoetherianSpace.isOpen_connectedComponent [NoetherianSpace α]
     (x : α) : IsOpen (connectedComponent x) := by
   have hfin : (irreducibleComponents α).Finite := NoetherianSpace.finite_irreducibleComponents

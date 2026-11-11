@@ -39,7 +39,9 @@ variable {S} in
 /-- The nontrivial half of the Amitsur equalizer: an element of a faithfully flat algebra
 whose two inclusions into `S ⊗[R] S` agree comes from `R`. Push the equation into the
 cokernel of `R → S`: `s ⊗ [1] = [1 ⊗ s]` there, the left side is `0`, and `x ↦ 1 ⊗ x` into a
-faithfully flat module is injective.-/
+faithfully flat module is injective.
+@isnad1 id=mem.1h3v.s8.7d38902e96a1 from=translated src=- shape=78fb9141 vocab=f54ea3f8
+-/
 theorem mem_range_algebraMap_of_tmul_eq {s : S}
     (h : s ⊗ₜ[R] (1 : S) = (1 : S) ⊗ₜ[R] s) : s ∈ Set.range (algebraMap R S) := by
   set N : Submodule R S := LinearMap.range (Algebra.linearMap R S) with hN
@@ -59,7 +61,9 @@ theorem mem_range_algebraMap_of_tmul_eq {s : S}
 
 variable {S} in
 /-- **The Amitsur equalizer of a faithfully flat algebra** (Stacks `descent-lemma-ff-exact`,
-degree ≤ 1): `s` comes from `R` if and only if `s ⊗ 1 = 1 ⊗ s` in `S ⊗[R] S`.-/
+degree ≤ 1): `s` comes from `R` if and only if `s ⊗ 1 = 1 ⊗ s` in `S ⊗[R] S`.
+@isnad1 id=iff.0h3v.s8.d5169bbd9b20 from=translated src=- shape=464f35ff vocab=f54ea3f8
+-/
 theorem mem_range_algebraMap_iff_tmul_eq (s : S) :
     s ∈ Set.range (algebraMap R S) ↔ s ⊗ₜ[R] (1 : S) = (1 : S) ⊗ₜ[R] s := by
   refine ⟨fun ⟨r, hr⟩ => ?_, mem_range_algebraMap_of_tmul_eq R⟩
@@ -67,7 +71,9 @@ theorem mem_range_algebraMap_iff_tmul_eq (s : S) :
 
 /-- The `AlgHom.equalizer` form of the Amitsur equalizer: the subalgebra of `S` where the two
 inclusions `S ⇉ S ⊗[R] S` agree is the bottom subalgebra. This is the shape consumed by the
-`[HG-B5]` descent bootstrap (compare `coinvariants ρ = AlgHom.equalizer ρ includeLeft`).-/
+`[HG-B5]` descent bootstrap (compare `coinvariants ρ = AlgHom.equalizer ρ includeLeft`).
+@isnad1 id=eq.0h2v.s8.f5508d72967d from=translated src=- shape=155e12ee vocab=591c689b
+-/
 theorem equalizer_includeLeft_includeRight_eq_bot :
     AlgHom.equalizer (Algebra.TensorProduct.includeLeft : S →ₐ[R] S ⊗[R] S)
       (Algebra.TensorProduct.includeRight : S →ₐ[R] S ⊗[R] S) = ⊥ := by

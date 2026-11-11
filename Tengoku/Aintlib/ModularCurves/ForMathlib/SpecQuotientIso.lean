@@ -29,7 +29,9 @@ universe u
 namespace ModularCurves
 
 /-- A quotient of a finite flat `R₀`-algebra `R` by an ideal `I` whose quotient has the same
-stalkwise rank as `R` is the trivial quotient: `Ideal.Quotient.mk I` is bijective.-/
+stalkwise rank as `R` is the trivial quotient: `Ideal.Quotient.mk I` is bijective.
+@isnad1 id=bijectiv.1h3v.s9.c16d3e70ec51 from=translated src=- shape=b97b125a vocab=d31448db
+-/
 theorem bijective_quotient_of_flat_rankAtStalk_eq {R₀ R : Type u} [CommRing R₀] [CommRing R]
     [Algebra R₀ R] [Module.Finite R₀ R] [Module.Flat R₀ R] (I : Ideal R)
     [Module.Finite R₀ (R ⧸ I)] [Module.Flat R₀ (R ⧸ I)]
@@ -40,7 +42,9 @@ theorem bijective_quotient_of_flat_rankAtStalk_eq {R₀ R : Type u} [CommRing R�
     (fun _ => rfl) Ideal.Quotient.mk_surjective
 
 /-- Under the hypotheses above, `Spec.map (Ideal.Quotient.mk I)` is an isomorphism — the
-closed immersion `Spec (R ⧸ I) ⟶ Spec R` is an isomorphism.-/
+closed immersion `Spec (R ⧸ I) ⟶ Spec R` is an isomorphism.
+@isnad1 id=isiso.1h3v.s8.e0f2a31e5343 from=translated src=- shape=2c61fbdc vocab=f1ac2ef7
+-/
 theorem isIso_SpecMap_quotient_of_flat_rankAtStalk_eq {R₀ R : Type u} [CommRing R₀] [CommRing R]
     [Algebra R₀ R] [Module.Finite R₀ R] [Module.Flat R₀ R] (I : Ideal R)
     [Module.Finite R₀ (R ⧸ I)] [Module.Flat R₀ (R ⧸ I)]
@@ -56,7 +60,9 @@ theorem isIso_SpecMap_quotient_of_flat_rankAtStalk_eq {R₀ R : Type u} [CommRin
 `R₀`-structure) is an isomorphism, and `Spec.map φ` is an isomorphism of schemes. This is
 the ready-to-consume affine core of the `Y(N)` same-degree-divisor-equality: on an affine
 piece over the base, the closed immersion of a subdivisor into an equal-degree divisor is an
-isomorphism.-/
+isomorphism.
+@isnad1 id=isiso.3h4v.s8.1590c9caa285 from=translated src=- shape=44558028 vocab=53ea5f36
+-/
 theorem isIso_SpecMap_of_surjective_of_flat_rankAtStalk_eq {R₀ : Type u} [CommRing R₀]
     {R S : Type u} [CommRing R] [CommRing S] [Algebra R₀ R] [Algebra R₀ S]
     [Module.Finite R₀ R] [Module.Flat R₀ R] [Module.Finite R₀ S] [Module.Flat R₀ S]

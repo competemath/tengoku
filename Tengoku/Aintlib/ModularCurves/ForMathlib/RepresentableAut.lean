@@ -41,7 +41,9 @@ noncomputable def transportHom (r : F.RepresentableBy Y) (η : F ⟶ F) : Y ⟶ 
   r.homEquiv.symm (η.app (op Y) (r.homEquiv (𝟙 Y)))
 
 /-- The characterizing property of `transportHom`: postcomposition with the
-transported endomorphism realizes `η` under the representing bijections.-/
+transported endomorphism realizes `η` under the representing bijections.
+@isnad1 id=eq.0h7v.s8.51f4daf6c893 from=translated src=- shape=1ae6f8eb vocab=7b612de7
+-/
 theorem homEquiv_comp_transportHom (r : F.RepresentableBy Y) (η : F ⟶ F)
     {X : C} (v : X ⟶ Y) :
     r.homEquiv (v ≫ r.transportHom η) = η.app (op X) (r.homEquiv v) := by
@@ -51,6 +53,9 @@ theorem homEquiv_comp_transportHom (r : F.RepresentableBy Y) (η : F ⟶ F)
       exact r.homEquiv_comp v (𝟙 Y)]
   exact (NatTrans.naturality_apply η v.op _).symm
 
+/--
+@isnad1 id=eq.0h4v.s6.6e475e0e7fc6 from=translated src=- shape=9d8ed1c9 vocab=cd57d65d
+-/
 @[simp]
 theorem transportHom_id (r : F.RepresentableBy Y) :
     r.transportHom (𝟙 F) = 𝟙 Y := by
@@ -60,6 +65,9 @@ theorem transportHom_id (r : F.RepresentableBy Y) :
   rw [h]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.7f29421048fb from=translated src=- shape=191c5f96 vocab=463aff65
+-/
 theorem transportHom_comp (r : F.RepresentableBy Y) (η θ : F ⟶ F) :
     r.transportHom (η ≫ θ) = r.transportHom η ≫ r.transportHom θ := by
   apply r.homEquiv.injective
@@ -92,6 +100,9 @@ noncomputable def autMulHom (r : F.RepresentableBy Y) : Aut F →* Aut Y where
     ext
     exact r.transportHom_comp e₂.hom e₁.hom
 
+/--
+@isnad1 id=eq.0h5v.s8.a6742aea9396 from=translated src=- shape=f27d5fdc vocab=e4ae85ad
+-/
 @[simp]
 theorem autMulHom_apply_hom (r : F.RepresentableBy Y) (e : Aut F) :
     (r.autMulHom e).hom = r.transportHom e.hom := rfl

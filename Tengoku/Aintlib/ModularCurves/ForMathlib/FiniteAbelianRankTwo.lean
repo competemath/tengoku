@@ -341,7 +341,9 @@ private def arrowProdAddEquiv (κ : Type) (A B : Type u) [AddCommGroup A]
 
 /-- **Torsion-count characterisation of `(ℤ/N)²`** (pure group theory; T-B6e). A group
 killed by `N ≠ 0` whose `d`-torsion has exactly `d ^ 2` elements for every divisor
-`d` of `N` is isomorphic to `(Fin 2 → ZMod N)`.-/
+`d` of `N` is isomorphic to `(Fin 2 → ZMod N)`.
+@isnad1 id=nonempty.3h2v.s7.41a226a9c754 from=translated src=- shape=866024a8 vocab=fae214e9
+-/
 theorem addEquiv_pi_fin_two_zmod_of_natCard (N : ℕ) (hN : N ≠ 0) (H : Type u)
     [AddCommGroup H] (hkill : ∀ x : H, N • x = 0)
     (hcount : ∀ d : ℕ, 0 < d → d ∣ N → Nat.card {x : H // d • x = 0} = d ^ 2) :

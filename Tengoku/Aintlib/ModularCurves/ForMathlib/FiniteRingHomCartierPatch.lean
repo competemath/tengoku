@@ -18,7 +18,9 @@ namespace RingHom.Finite
 variable {R S : Type*} [CommRing R] [CommRing S]
 
 /-- A finite ring homomorphism that is an isomorphism away from a Cartier
-divisor and is surjective along that divisor is bijective.-/
+divisor and is surjective along that divisor is bijective.
+@isnad1 id=bijectiv.4h4v.s9.1f289169098f from=translated src=- shape=875991e3 vocab=3e43a962
+-/
 theorem bijective_of_awayMap_bijective_of_mod_span
     (f : R →+* S) (hf : f.Finite) (r : R)
     (hr : r ∈ nonZeroDivisors R)
@@ -101,7 +103,9 @@ theorem bijective_of_awayMap_bijective_of_mod_span
 
 /-- A finite ring map satisfying the Cartier patch hypotheses is bijective if
 the principal ideal is the kernel of a quotient map whose composite with the
-finite map is surjective.-/
+finite map is surjective.
+@isnad1 id=bijectiv.5h6v.s9.ff79677a0f84 from=translated src=- shape=075a6f72 vocab=9c0d9d58
+-/
 theorem bijective_of_awayMap_bijective_of_ker_eq_span
     {T : Type*} [CommRing T]
     (f : R →+* S) (hf : f.Finite) (r : R)

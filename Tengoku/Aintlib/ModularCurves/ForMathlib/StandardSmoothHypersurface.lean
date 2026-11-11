@@ -55,6 +55,9 @@ noncomputable def hypersurfacePresentation :
       fin_cases a <;> fin_cases b <;> simp_all)
 
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=eq.0h3v.s9.065cb6849f16 from=translated src=- shape=87e8f87e vocab=84f4b0ea
+-/
 lemma pderiv_none_rename_some (p : MvPolynomial σ R) :
     pderiv (none : Option σ) (rename Option.some p) = 0 :=
   pderiv_eq_zero_of_notMem_vars fun h => by
@@ -63,6 +66,9 @@ lemma pderiv_none_rename_some (p : MvPolynomial σ R) :
 
 set_option backward.isDefEq.respectTransparency.types false in
 omit [Fintype σ] [DecidableEq σ] in
+/--
+@isnad1 id=isunit.0h4v.s8.48e7f8c6942c from=translated src=- shape=fbd6a143 vocab=efa3b92e
+-/
 lemma hypersurfacePresentation_jacobian_isUnit :
     IsUnit (hypersurfacePresentation f i).jacobian := by
   classical
@@ -106,6 +112,9 @@ noncomputable def hypersurfaceSubmersivePresentation :
   jacobian_isUnit := hypersurfacePresentation_jacobian_isUnit f i
 
 omit [DecidableEq σ] in
+/--
+@isnad1 id=isstanda.0h4v.s7.9ba341199706 from=translated src=- shape=33b83cba vocab=252da00d
+-/
 lemma hypersurfaceModel_isStandardSmoothOfRelativeDimension :
     Algebra.IsStandardSmoothOfRelativeDimension (Fintype.card σ - 1) R
       (HypersurfaceModel f i) := by
@@ -336,7 +345,9 @@ noncomputable def hypersurfaceAwayEquiv :
 omit [DecidableEq σ] in
 /-- **Localized hypersurfaces are standard smooth** of relative dimension `#σ - 1`:
 inverting a partial derivative of `f` on `R[Xⱼ]/(f)` yields a standard smooth
-`R`-algebra.-/
+`R`-algebra.
+@isnad1 id=isstanda.0h4v.s13.c7b63348c71d from=translated src=- shape=a84dce3a vocab=11a5e0bc
+-/
 theorem isStandardSmoothOfRelativeDimension_away_pderiv :
     Algebra.IsStandardSmoothOfRelativeDimension (Fintype.card σ - 1) R
       (Localization.Away (Ideal.Quotient.mk (Ideal.span {f}) (pderiv i f))) :=

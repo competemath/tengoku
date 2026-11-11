@@ -33,7 +33,9 @@ namespace AdjoinRoot
 variable {A B : Type*} [CommRing A] [CommRing B] (φ : A →+* B) (f : A[X])
 
 /-- A monic polynomial divides `p` as soon as it does so after an injective coefficient map into
-a domain: reduce `p` mod `f` and compare degrees.-/
+a domain: reduce `p` mod `f` and compare degrees.
+@isnad1 id=dvd.3h5v.s8.88e940d1225a from=translated src=- shape=a9cd5e2b vocab=643cc432
+-/
 theorem _root_.Polynomial.dvd_of_monic_of_map_dvd_map [Nontrivial A] [IsDomain B]
     {φ : A →+* B} (hφ : Function.Injective φ) {f p : A[X]} (hf : f.Monic)
     (h : f.map φ ∣ p.map φ) : f ∣ p := by
@@ -63,6 +65,9 @@ noncomputable def mapRingHom : AdjoinRoot f →+* AdjoinRoot (f.map φ) :=
     rw [← Polynomial.eval₂_map]
     exact AdjoinRoot.eval₂_root _
 
+/--
+@isnad1 id=eq.0h5v.s9.cb47d649344f from=translated src=- shape=80d29360 vocab=35abfd3d
+-/
 @[simp]
 lemma mapRingHom_mk (p : A[X]) :
     mapRingHom φ f (AdjoinRoot.mk f p) = AdjoinRoot.mk (f.map φ) (p.map φ) := by
@@ -70,7 +75,9 @@ lemma mapRingHom_mk (p : A[X]) :
   exact AdjoinRoot.aeval_eq _
 
 /-- **Monic descent.** For monic `f` and injective `φ` into a domain, the induced map of
-`AdjoinRoot`s is injective.-/
+`AdjoinRoot`s is injective.
+@isnad1 id=injectiv.2h4v.s8.93834ffd24ba from=translated src=- shape=6612eaa7 vocab=bbd7cb38
+-/
 theorem mapRingHom_injective [Nontrivial A] [IsDomain B] (hf : f.Monic)
     (hφ : Function.Injective φ) : Function.Injective (mapRingHom φ f) := by
   rw [injective_iff_map_eq_zero]
@@ -82,7 +89,9 @@ theorem mapRingHom_injective [Nontrivial A] [IsDomain B] (hf : f.Monic)
 
 /-- **Monic descent of `IsDomain`.** If `f` is monic and its image under an injective coefficient
 map is such that `AdjoinRoot (f.map φ)` is a domain, then `AdjoinRoot f` is a domain. This is the
-abstract form of mathlib's `WeierstrassCurve.Affine.CoordinateRing` domain argument.-/
+abstract form of mathlib's `WeierstrassCurve.Affine.CoordinateRing` domain argument.
+@isnad1 id=isdomain.2h4v.s7.949b65e94545 from=translated src=- shape=57227d18 vocab=4f7763ee
+-/
 theorem isDomain_of_monic_of_map [Nontrivial A] [IsDomain B] (hf : f.Monic)
     (hφ : Function.Injective φ) [IsDomain (AdjoinRoot (f.map φ))] : IsDomain (AdjoinRoot f) :=
   Function.Injective.isDomain (mapRingHom φ f) (mapRingHom_injective φ f hf hφ)
@@ -96,7 +105,9 @@ variable {σ A : Type*} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
 
 /-- The degree-zero part of a graded domain localized at a nonzero element is a domain: it embeds
 into the (domain) localization via `val`. The `IsDomain` sibling of
-`AlgebraicGeometry.Proj.isReduced_away`.-/
+`AlgebraicGeometry.Proj.isReduced_away`.
+@isnad1 id=isdomain.1h4v.s6.2cf03dde4625 from=translated src=- shape=1070c056 vocab=990b9dbd
+-/
 theorem isDomain_away [IsDomain A] {f : A} (hf : f ≠ 0) : IsDomain (Away 𝒜 f) := by
   haveI : IsDomain (Localization (Submonoid.powers f)) :=
     IsLocalization.isDomain_localization (powers_le_nonZeroDivisors_of_noZeroDivisors hf)

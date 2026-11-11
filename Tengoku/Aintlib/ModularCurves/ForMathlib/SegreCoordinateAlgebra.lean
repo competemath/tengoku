@@ -32,6 +32,9 @@ def segreCoordinateHom
       MvPolynomial (Fin (m + 1)) R ⊗[R] MvPolynomial (Fin (n + 1)) R :=
   MvPolynomial.aeval fun p => X p.1 ⊗ₜ[R] X p.2
 
+/--
+@isnad1 id=eq.0h5v.s11.d1d4885f0792 from=translated src=- shape=8335599b vocab=c2897a21
+-/
 @[simp]
 lemma segreCoordinateHom_X
     (R : Type u) [CommRing R] (m n : ℕ)
@@ -39,7 +42,9 @@ lemma segreCoordinateHom_X
     segreCoordinateHom R m n (X (i, j)) = X i ⊗ₜ[R] X j := by
   simp only [segreCoordinateHom, aeval_X]
 
-/-- The `2 × 2` minor relations vanish under the Segre coordinate map.-/
+/-- The `2 × 2` minor relations vanish under the Segre coordinate map.
+@isnad1 id=eq.0h7v.s11.ddfce9cafb60 from=translated src=- shape=8286e860 vocab=24801ba5
+-/
 lemma segreCoordinateHom_relation
     (R : Type u) [CommRing R] (m n : ℕ)
     (i i' : Fin (m + 1)) (j j' : Fin (n + 1)) :
@@ -49,7 +54,9 @@ lemma segreCoordinateHom_relation
   simp only [Algebra.TensorProduct.tmul_mul_tmul]
   ring_nf
 
-/-- Every defining `2 × 2` minor is homogeneous of degree two.-/
+/-- Every defining `2 × 2` minor is homogeneous of degree two.
+@isnad1 id=ishomoge.0h7v.s10.5e05b3aba23b from=translated src=- shape=7b6da074 vocab=8dc57368
+-/
 lemma segreRelation_isHomogeneous
     (R : Type u) [CommRing R] (m n : ℕ)
     (i i' : Fin (m + 1)) (j j' : Fin (n + 1)) :

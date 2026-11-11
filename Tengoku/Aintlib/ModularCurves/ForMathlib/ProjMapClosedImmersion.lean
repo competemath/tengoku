@@ -35,7 +35,9 @@ variable {A B σ τ : Type u}
   {𝒜 : ℕ → σ} {ℬ : ℕ → τ}
   [GradedRing 𝒜] [GradedRing ℬ]
 
-/-- Surjectivity of a graded ring map descends to every homogeneous component.-/
+/-- Surjectivity of a graded ring map descends to every homogeneous component.
+@isnad1 id=surjecti.1h8v.s9.0109e5e931b7 from=translated src=- shape=ba0b0f9b vocab=cf90a555
+-/
 lemma gradedAddHom_surjective_of_surjective
     (f : 𝒜 →+*ᵍ ℬ) (hf : Function.Surjective f) (d : ℕ) :
     Function.Surjective (f.gradedAddHom d) := by
@@ -47,7 +49,9 @@ lemma gradedAddHom_surjective_of_surjective
   rw [GradedRingHom.map_directSumDecompose, hx,
     DirectSum.decompose_of_mem_same ℬ y.2]
 
-/-- Componentwise surjectivity supplies the irrelevant-ideal condition for `Proj.map`.-/
+/-- Componentwise surjectivity supplies the irrelevant-ideal condition for `Proj.map`.
+@isnad1 id=le.1h7v.s9.6458f10aa8cf from=translated src=- shape=264cdf43 vocab=a6a4d804
+-/
 lemma irrelevant_le_map_of_componentwise_surjective
     (f : 𝒜 →+*ᵍ ℬ)
     (hcomponent : ∀ d : ℕ, Function.Surjective (f.gradedAddHom d)) :
@@ -60,14 +64,18 @@ lemma irrelevant_le_map_of_componentwise_surjective
   exact Ideal.mem_map_of_mem f
     (HomogeneousIdeal.mem_irrelevant_of_mem 𝒜 hd y.2)
 
-/-- Surjectivity supplies the irrelevant-ideal condition for `Proj.map`.-/
+/-- Surjectivity supplies the irrelevant-ideal condition for `Proj.map`.
+@isnad1 id=le.1h7v.s8.cc85300798f4 from=translated src=- shape=7d652839 vocab=a9d36e6b
+-/
 lemma irrelevant_le_map_of_surjective
     (f : 𝒜 →+*ᵍ ℬ) (hf : Function.Surjective f) :
     ℬ₊ ≤ 𝒜₊.map f :=
   irrelevant_le_map_of_componentwise_surjective f
     (gradedAddHom_surjective_of_surjective f hf)
 
-/-- Componentwise surjectivity survives degree-zero homogeneous localization.-/
+/-- Componentwise surjectivity survives degree-zero homogeneous localization.
+@isnad1 id=surjecti.2h9v.s10.d03e5261cc3f from=translated src=- shape=0dc372fd vocab=e4d785ac
+-/
 lemma awayMap_surjective_of_componentwise_surjective
     (f : 𝒜 →+*ᵍ ℬ)
     (hcomponent : ∀ d : ℕ, Function.Surjective (f.gradedAddHom d))
@@ -82,7 +90,9 @@ lemma awayMap_surjective_of_componentwise_surjective
   congr
   exact Subtype.ext_iff.mp ha'
 
-/-- The standard affine square associated to a graded ring map is cartesian.-/
+/-- The standard affine square associated to a graded ring map is cartesian.
+@isnad1 id=ispullba.3h9v.s9.d8dfa1a062c9 from=translated src=- shape=c5c8e842 vocab=7f9904fe
+-/
 lemma isPullback_awayMap_projMap
     (f : 𝒜 →+*ᵍ ℬ) (hf : ℬ₊ ≤ 𝒜₊.map f)
     {d : ℕ} {s : A} (hs : s ∈ 𝒜 d) (hd : 0 < d) :
@@ -96,7 +106,9 @@ lemma isPullback_awayMap_projMap
   · rw [Proj.opensRange_awayι, Proj.map_preimage_basicOpen,
       Proj.opensRange_awayι]
 
-/-- A componentwise-surjective graded ring map induces a closed immersion on `Proj`.-/
+/-- A componentwise-surjective graded ring map induces a closed immersion on `Proj`.
+@isnad1 id=isclosed.2h7v.s9.bef743c2bd17 from=translated src=- shape=89de491e vocab=56c0baa3
+-/
 theorem isClosedImmersion_projMap_of_componentwise_surjective
     (f : 𝒜 →+*ᵍ ℬ) (hf : ℬ₊ ≤ 𝒜₊.map f)
     (hcomponent : ∀ d : ℕ, Function.Surjective (f.gradedAddHom d)) :
@@ -165,7 +177,9 @@ theorem isClosedImmersion_projMap_of_componentwise_surjective
   exact IsClosedImmersion.spec_of_surjective _
     (awayMap_surjective_of_componentwise_surjective f hcomponent s.2.2)
 
-/-- A surjective graded ring map induces a closed immersion on `Proj`.-/
+/-- A surjective graded ring map induces a closed immersion on `Proj`.
+@isnad1 id=isclosed.2h7v.s8.43d508399f67 from=translated src=- shape=6e5864b4 vocab=0fbc6d4f
+-/
 theorem isClosedImmersion_projMap_of_surjective
     (f : 𝒜 →+*ᵍ ℬ) (hf : ℬ₊ ≤ 𝒜₊.map f)
     (hsurjective : Function.Surjective f) :

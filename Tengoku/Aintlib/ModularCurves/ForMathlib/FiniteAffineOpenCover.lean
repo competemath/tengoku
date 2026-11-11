@@ -18,7 +18,9 @@ universe u
 
 namespace AlgebraicGeometry
 
-/-- A compact scheme admits an affine open cover indexed by a finite type.-/
+/-- A compact scheme admits an affine open cover indexed by a finite type.
+@isnad1 id=ex.0h1v.s6.446e980abcd5 from=translated src=- shape=15ae979c vocab=9cfedccf
+-/
 theorem Scheme.exists_finite_affine_openCover (X : Scheme.{u}) [CompactSpace X] :
     ∃ (ι : Type u) (_ : Finite ι) (U : ι → X.Opens),
       IsOpenCover U ∧ ∀ i, IsAffineOpen (U i) := by
@@ -28,7 +30,9 @@ theorem Scheme.exists_finite_affine_openCover (X : Scheme.{u}) [CompactSpace X] 
   exact ⟨s, inferInstance, fun i ↦ i.1.1, hs, fun i ↦ i.1.2⟩
 
 /-- A compact quasi-separated scheme with finitely many generic points admits a finite affine
-open cover each of whose members contains every generic point.-/
+open cover each of whose members contains every generic point.
+@isnad1 id=ex.0h1v.s8.922035e346a9 from=translated src=- shape=47accfc3 vocab=c0fe7770
+-/
 theorem Scheme.exists_finite_affine_openCover_containing_genericPoints
     (X : Scheme.{u}) [CompactSpace X] [Finite (genericPoints X)]
     [QuasiSeparatedSpace X] :
@@ -47,7 +51,9 @@ theorem Scheme.exists_finite_affine_openCover_containing_genericPoints
     fun i η ↦ hηU i.1 η⟩
 
 /-- A compact quasi-separated scheme with finitely many generic points admits a finite affine
-open cover whose common intersection is dense.-/
+open cover whose common intersection is dense.
+@isnad1 id=ex.0h1v.s7.0496ea5485f1 from=translated src=- shape=efbcb8a9 vocab=2c2c6af8
+-/
 theorem Scheme.exists_finite_affine_openCover_dense_iInf
     (X : Scheme.{u}) [CompactSpace X] [Finite (genericPoints X)]
     [QuasiSeparatedSpace X] :
@@ -69,7 +75,9 @@ theorem Scheme.exists_finite_affine_openCover_dense_iInf
   rw [genericPoints.closure] at hclosure
   exact hclosure (Set.mem_univ x)
 
-/-- A Noetherian scheme admits a finite affine open cover whose common intersection is dense.-/
+/-- A Noetherian scheme admits a finite affine open cover whose common intersection is dense.
+@isnad1 id=ex.0h1v.s7.822e8a2e008e from=translated src=- shape=cefcb784 vocab=08a568f0
+-/
 theorem Scheme.exists_finite_affine_openCover_dense_iInf_of_isNoetherian
     (X : Scheme.{u}) [AlgebraicGeometry.IsNoetherian X] :
     ∃ (ι : Type u) (_ : Finite ι) (U : ι → X.Opens),
@@ -81,7 +89,9 @@ theorem Scheme.exists_finite_affine_openCover_dense_iInf_of_isNoetherian
   exact X.exists_finite_affine_openCover_dense_iInf
 
 /-- A Noetherian scheme admits a nonempty finite affine open cover whose common intersection
-is dense. The singleton empty cover handles the empty scheme.-/
+is dense. The singleton empty cover handles the empty scheme.
+@isnad1 id=ex.0h1v.s7.21f2fde6d03f from=translated src=- shape=6b980920 vocab=287ed387
+-/
 theorem Scheme.exists_nonempty_finite_affine_openCover_dense_iInf_of_isNoetherian
     (X : Scheme.{u}) [AlgebraicGeometry.IsNoetherian X] :
     ∃ (ι : Type u) (_ : Finite ι) (_ : Nonempty ι) (U : ι → X.Opens),
@@ -105,7 +115,9 @@ theorem Scheme.exists_nonempty_finite_affine_openCover_dense_iInf_of_isNoetheria
       fun _ ↦ isAffineOpen_bot X, by simpa using hDense'⟩
 
 /-- A proper scheme over an affine base has a finite affine open cover whose every
-nonempty finite intersection is affine.-/
+nonempty finite intersection is affine.
+@isnad1 id=ex.0h3v.s7.4e86393240c5 from=translated src=- shape=de790bc7 vocab=13a99ec3
+-/
 theorem Scheme.Hom.exists_finite_affine_openCover_of_isProper
     {X S : Scheme.{u}} (f : X ⟶ S) [IsProper f] [IsAffine S] :
     ∃ (ι : Type u) (_ : Finite ι) (U : ι → X.Opens),

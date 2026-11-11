@@ -48,6 +48,9 @@ noncomputable def mulAntipode : (A ⊗[R] A) →ₐ[R] A :=
   Algebra.TensorProduct.lift (HopfAlgebra.antipodeAlgHom R A) (AlgHom.id R A)
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s10.fd60ed5f9905 from=translated src=- shape=94a218d2 vocab=9313b9d4
+-/
 @[simp]
 theorem mulAntipode_tmul (a a' : A) :
     mulAntipode R A (a ⊗ₜ[R] a') = HopfAlgebra.antipode R a * a' := rfl
@@ -57,12 +60,17 @@ noncomputable def mulAntipodeRight : (A ⊗[R] A) →ₐ[R] A :=
   Algebra.TensorProduct.lift (AlgHom.id R A) (HopfAlgebra.antipodeAlgHom R A)
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s10.debb512262fc from=translated src=- shape=0127a75c vocab=e6f48917
+-/
 @[simp]
 theorem mulAntipodeRight_tmul (a a' : A) :
     mulAntipodeRight R A (a ⊗ₜ[R] a') = a * HopfAlgebra.antipode R a' := rfl
 
 /-- **The antipode axiom, algebra-map form**: `S(a₍₁₎)·a₍₂₎ = ε(a)·1` as an identity of
-algebra maps `A → A`, i.e. `mulAntipode ∘ Δ = unit ∘ ε`.-/
+algebra maps `A → A`, i.e. `mulAntipode ∘ Δ = unit ∘ ε`.
+@isnad1 id=eq.0h2v.s9.077b9ca4a95f from=translated src=- shape=c2839031 vocab=05199c38
+-/
 theorem mulAntipode_comp_comulAlgHom :
     (mulAntipode R A).comp (Bialgebra.comulAlgHom R A)
       = (Algebra.ofId R A).comp (Bialgebra.counitAlgHom R A) := by
@@ -74,7 +82,9 @@ theorem mulAntipode_comp_comulAlgHom :
   ext a
   simp [hlin]
 
-/-- **The other antipode axiom, algebra-map form**: `a₍₁₎·S(a₍₂₎) = ε(a)·1`.-/
+/-- **The other antipode axiom, algebra-map form**: `a₍₁₎·S(a₍₂₎) = ε(a)·1`.
+@isnad1 id=eq.0h2v.s9.d5ccaca0d541 from=translated src=- shape=c2839031 vocab=bade2704
+-/
 theorem mulAntipodeRight_comp_comulAlgHom :
     (mulAntipodeRight R A).comp (Bialgebra.comulAlgHom R A)
       = (Algebra.ofId R A).comp (Bialgebra.counitAlgHom R A) := by
@@ -96,17 +106,25 @@ noncomputable def coactionShear (ρ : B →ₐ[R] B ⊗[R] A) : (B ⊗[R] A) →
   Algebra.TensorProduct.lift ρ Algebra.TensorProduct.includeRight
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s11.b54bc6ef576d from=translated src=- shape=fd009226 vocab=550c2d97
+-/
 @[simp]
 theorem coactionShear_tmul (ρ : B →ₐ[R] B ⊗[R] A) (b : B) (a : A) :
     coactionShear ρ (b ⊗ₜ[R] a) = ρ b * (1 ⊗ₜ[R] a) := rfl
 
 /-- The shear trivialization: composing the plain inclusion with the shear recovers the
 co-action. This is the identity that transports `ρ`-side structure to left-side
-structure.-/
+structure.
+@isnad1 id=eq.0h4v.s9.bf2c6bce0ab8 from=translated src=- shape=adda5eb5 vocab=98d54f17
+-/
 theorem coactionShear_comp_includeLeft (ρ : B →ₐ[R] B ⊗[R] A) :
     (coactionShear ρ).comp Algebra.TensorProduct.includeLeft = ρ :=
   Algebra.TensorProduct.lift_comp_includeLeft _ _ (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h4v.s9.025cc1963702 from=translated src=- shape=65362180 vocab=e2301531
+-/
 theorem coactionShear_comp_includeRight (ρ : B →ₐ[R] B ⊗[R] A) :
     (coactionShear ρ).comp Algebra.TensorProduct.includeRight
       = Algebra.TensorProduct.includeRight :=
@@ -155,7 +173,9 @@ private theorem map_ofId_counit_eq :
 /-- **The inverse shear undoes the co-action**: `Ψ ∘ ρ = includeLeft`, i.e.
 `b₍₀₎ ⊗ S(b₍₀₎₍₁₎)·b₍₁₎ = b ⊗ 1`. The chain: coassociativity turns `assoc ∘ (ρ⊗id) ∘ ρ`
 into `(id ⊗ Δ) ∘ ρ`, the antipode axiom collapses `mulAntipode ∘ Δ` to `unit ∘ ε`, and
-counitality contracts the rest.-/
+counitality contracts the rest.
+@isnad1 id=eq.1h4v.s9.b458d5714e5e from=translated src=- shape=52ffb9ea vocab=3c916a29
+-/
 theorem coactionUnshear_comp_coaction (hρ : IsCoaction ρ) :
     (coactionUnshear ρ).comp ρ = Algebra.TensorProduct.includeLeft := by
   rw [coactionUnshear, AlgHom.comp_assoc, AlgHom.comp_assoc, hρ.coassoc,
@@ -163,7 +183,9 @@ theorem coactionUnshear_comp_coaction (hρ : IsCoaction ρ) :
     mulAntipode_comp_comulAlgHom, map_ofId_counit_eq, AlgHom.comp_assoc,
     AlgHom.comp_assoc, hρ.counit, AlgHom.comp_id]
 
-/-- The inverse shear fixes the right inclusion.-/
+/-- The inverse shear fixes the right inclusion.
+@isnad1 id=eq.0h4v.s9.48a5de85666f from=translated src=- shape=65362180 vocab=a5ff3230
+-/
 theorem coactionUnshear_comp_includeRight :
     (coactionUnshear ρ).comp Algebra.TensorProduct.includeRight
       = Algebra.TensorProduct.includeRight := by
@@ -188,7 +210,9 @@ private theorem mulAntipodeRight_comp_includeLeft :
   rw [HopfAlgebra.antipode_one, mul_one]
 
 /-- **The inverse shear undoes the shear**: `Ψ ∘ Φ = id`. On the left leg this is
-`coactionUnshear_comp_coaction`; the right leg is fixed by both.-/
+`coactionUnshear_comp_coaction`; the right leg is fixed by both.
+@isnad1 id=eq.1h4v.s10.2a8e4fd5c77b from=translated src=- shape=4c7b3e03 vocab=fd25a521
+-/
 theorem coactionUnshear_comp_coactionShear (hρ : IsCoaction ρ) :
     (coactionUnshear ρ).comp (coactionShear ρ) = AlgHom.id R (B ⊗[R] A) := by
   refine Algebra.TensorProduct.ext ?_ ?_
@@ -199,7 +223,9 @@ theorem coactionUnshear_comp_coactionShear (hρ : IsCoaction ρ) :
     rw [coactionShear_tmul, map_one, one_mul]
     exact AlgHom.congr_fun (coactionUnshear_comp_includeRight ρ) a
 
-/-- The inverse shear on the left inclusion: `Ψ(b ⊗ 1) = (id ⊗ S)(ρ(b))`.-/
+/-- The inverse shear on the left inclusion: `Ψ(b ⊗ 1) = (id ⊗ S)(ρ(b))`.
+@isnad1 id=eq.0h4v.s10.bcbc7af2620a from=translated src=- shape=e9945731 vocab=948940af
+-/
 theorem coactionUnshear_comp_includeLeft :
     (coactionUnshear ρ).comp Algebra.TensorProduct.includeLeft
       = (Algebra.TensorProduct.map (AlgHom.id R B)
@@ -217,7 +243,9 @@ noncomputable def coactionShearAnti : (B ⊗[R] A) →ₐ[R] B ⊗[R] A :=
     (Algebra.TensorProduct.includeRight.comp (HopfAlgebra.antipodeAlgHom R A))
     (fun _ _ => Commute.all _ _)
 
-/-- `Φ ∘ (id ⊗ S) = Ξ`.-/
+/-- `Φ ∘ (id ⊗ S) = Ξ`.
+@isnad1 id=eq.0h4v.s10.74afaa246735 from=translated src=- shape=b5abaedf vocab=e7b316e2
+-/
 theorem coactionShear_comp_map_antipode :
     (coactionShear ρ).comp (Algebra.TensorProduct.map (AlgHom.id R B)
         (HopfAlgebra.antipodeAlgHom R A))
@@ -232,7 +260,9 @@ theorem coactionShear_comp_map_antipode :
     rw [coactionShear_tmul, map_one, one_mul, coactionShearAnti]
     simp
 
-/-- `Ξ` as the associator composite `(id ⊗ (·)·S(·)) ∘ assoc ∘ (ρ ⊗ id)`.-/
+/-- `Ξ` as the associator composite `(id ⊗ (·)·S(·)) ∘ assoc ∘ (ρ ⊗ id)`.
+@isnad1 id=eq.0h4v.s12.397f485f1bf2 from=translated src=- shape=f6e280bd vocab=c5112143
+-/
 theorem coactionShearAnti_eq_composite :
     coactionShearAnti ρ
       = ((Algebra.TensorProduct.map (AlgHom.id R B) (mulAntipodeRight R A)).comp
@@ -254,7 +284,9 @@ theorem coactionShearAnti_eq_composite :
     simp [Algebra.TensorProduct.one_def]
 
 /-- **The mirror of Step 1**: `Ξ ∘ ρ = includeLeft`, i.e. `b₍₀₎ ⊗ b₍₀₎₍₁₎·S(b₍₁₎) = b ⊗ 1`
-— same chain with the other antipode axiom.-/
+— same chain with the other antipode axiom.
+@isnad1 id=eq.1h4v.s9.3925b1cc4106 from=translated src=- shape=52ffb9ea vocab=1da14d21
+-/
 theorem coactionShearAnti_comp_coaction (hρ : IsCoaction ρ) :
     (coactionShearAnti ρ).comp ρ = Algebra.TensorProduct.includeLeft := by
   rw [coactionShearAnti_eq_composite, AlgHom.comp_assoc, AlgHom.comp_assoc, hρ.coassoc,
@@ -262,7 +294,9 @@ theorem coactionShearAnti_comp_coaction (hρ : IsCoaction ρ) :
     mulAntipodeRight_comp_comulAlgHom, map_ofId_counit_eq, AlgHom.comp_assoc,
     AlgHom.comp_assoc, hρ.counit, AlgHom.comp_id]
 
-/-- **The shear undoes the inverse shear**: `Φ ∘ Ψ = id`.-/
+/-- **The shear undoes the inverse shear**: `Φ ∘ Ψ = id`.
+@isnad1 id=eq.1h4v.s10.673edbbcd0ea from=translated src=- shape=4c7b3e03 vocab=fd25a521
+-/
 theorem coactionShear_comp_coactionUnshear (hρ : IsCoaction ρ) :
     (coactionShear ρ).comp (coactionUnshear ρ) = AlgHom.id R (B ⊗[R] A) := by
   refine Algebra.TensorProduct.ext ?_ ?_
@@ -283,11 +317,16 @@ noncomputable def coactionShearEquiv (hρ : IsCoaction ρ) : (B ⊗[R] A) ≃ₐ
     (coactionShear_comp_coactionUnshear ρ hρ)
     (coactionUnshear_comp_coactionShear ρ hρ)
 
+/--
+@isnad1 id=eq.1h5v.s11.3ee2ea4c56fb from=translated src=- shape=bd4abe26 vocab=d2821412
+-/
 @[simp]
 theorem coactionShearEquiv_apply (hρ : IsCoaction ρ) (x : B ⊗[R] A) :
     coactionShearEquiv ρ hρ x = coactionShear ρ x := rfl
 
-/-- The shear trivialization, equiv form: `Φ(b ⊗ 1) = ρ(b)`.-/
+/-- The shear trivialization, equiv form: `Φ(b ⊗ 1) = ρ(b)`.
+@isnad1 id=eq.1h5v.s10.5a26573e1f61 from=translated src=- shape=abcd04a1 vocab=8da7e439
+-/
 theorem coactionShearEquiv_includeLeft (hρ : IsCoaction ρ) (b : B) :
     coactionShearEquiv ρ hρ (b ⊗ₜ[R] 1) = ρ b := by
   rw [coactionShearEquiv_apply, coactionShear_tmul, ← Algebra.TensorProduct.one_def,

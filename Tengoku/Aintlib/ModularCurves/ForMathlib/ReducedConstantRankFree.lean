@@ -105,7 +105,9 @@ is at least `n` at every prime, and exactly `n` at the closed point, is free.
 
 The `n`-at-the-closed-point hypothesis is what Nakayama consumes; the `≥ n` at the other primes is
 what upgrades "surjective" to "bijective" on each fibre. Both are supplied by local constancy of
-the fibre dimension, since every prime of a local ring is a generization of the closed point.-/
+the fibre dimension, since every prime of a local ring is a generization of the closed point.
+@isnad1 id=free.2h3v.s10.1f1ef6c25996 from=translated src=- shape=08fe99aa vocab=494257f6
+-/
 theorem free_of_isReduced_of_forall_le_finrank_fiber
     {R : Type u} [CommRing R] [IsLocalRing R] [IsReduced R]
     {M : Type u} [AddCommGroup M] [Module R M] [Module.Finite R M] (n : ℕ)
@@ -220,7 +222,9 @@ spent — it supplies `Module.FinitePresentation R M`). Over `R_I` the local for
 `free_of_isReduced_of_forall_le_finrank_fiber` applies: the primes of `R_I` are the primes `p ≤ I`
 of `R`, with the same residue fields and hence the same fibres, and every such `p` lies in *every*
 neighbourhood of `I`, so local constancy pins the fibre dimension to the single value
-`dim_{κ(I)} (M ⊗ κ(I))` on all of `Spec R_I`.-/
+`dim_{κ(I)} (M ⊗ κ(I))` on all of `Spec R_I`.
+@isnad1 id=projecti.1h2v.s10.4f1f94f0e1fc from=translated src=- shape=2da24d1f vocab=13557727
+-/
 theorem projective_of_isReduced_of_isLocallyConstant_finrank_fiber
     {R : Type u} [CommRing R] [IsReduced R] [IsNoetherianRing R]
     {M : Type u} [AddCommGroup M] [Module R M] [Module.Finite R M]

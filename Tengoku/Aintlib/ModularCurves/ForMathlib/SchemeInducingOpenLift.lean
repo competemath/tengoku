@@ -32,7 +32,9 @@ noncomputable def targetOpenOfIsInducing
   ⟨Classical.choose (hf.isOpen_iff.mp U.2),
     (Classical.choose_spec (hf.isOpen_iff.mp U.2)).1⟩
 
-/-- The chosen target open pulls back to the given source open.-/
+/-- The chosen target open pulls back to the given source open.
+@isnad1 id=eq.1h4v.s8.a43d8a1e8d63 from=translated src=- shape=af1b425a vocab=c2252fec
+-/
 @[simp]
 theorem preimage_targetOpenOfIsInducing
     {X Y : Scheme.{u}} (f : X ⟶ Y)
@@ -41,7 +43,9 @@ theorem preimage_targetOpenOfIsInducing
   apply Opens.ext
   exact (Classical.choose_spec (hf.isOpen_iff.mp U.2)).2
 
-/-- Membership in the lifted open is preserved by the inducing map.-/
+/-- Membership in the lifted open is preserved by the inducing map.
+@isnad1 id=mem.2h5v.s8.5bd9591808f9 from=translated src=- shape=bcd12085 vocab=1eef692c
+-/
 theorem mem_targetOpenOfIsInducing
     {X Y : Scheme.{u}} (f : X ⟶ Y)
     (hf : Topology.IsInducing f) (U : X.Opens)
@@ -57,7 +61,9 @@ noncomputable def closedImmersionTargetOpen
     (U : X.Opens) : Y.Opens :=
   i.targetOpenOfIsInducing i.isClosedEmbedding.isInducing U
 
-/-- A closed-immersion target open has the prescribed inverse image.-/
+/-- A closed-immersion target open has the prescribed inverse image.
+@isnad1 id=eq.0h4v.s7.13628f47ce83 from=translated src=- shape=8558f02b vocab=7fcc1af5
+-/
 @[simp]
 theorem preimage_closedImmersionTargetOpen
     {X Y : Scheme.{u}} (i : X ⟶ Y) [IsClosedImmersion i]

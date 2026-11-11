@@ -123,6 +123,9 @@ noncomputable def laurentExponentAwayMap (m : σ →₀ ℕ) :
         simpa using hi
       exact ⟨⟨0, AddSubmonoid.zero_mem _⟩, by simp [hxy]⟩)
 
+/--
+@isnad1 id=eq.0h4v.s8.d201f9d5d76d from=translated src=- shape=9f65f132 vocab=5e97f8d9
+-/
 @[simp]
 theorem laurentExponentAwayMap_apply (m a : σ →₀ ℕ) (i : σ) :
     (((laurentExponentAwayMap m) a : laurentExponentSubmonoid m) : σ →₀ ℤ) i = (a i : ℤ) := by

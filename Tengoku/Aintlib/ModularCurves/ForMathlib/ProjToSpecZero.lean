@@ -41,7 +41,9 @@ variable {R A S B : Type u} [CommRing R] [CommRing A] [Algebra R A]
 
 /-- For a positive-degree homogeneous element, the map on global sections induced by
 `Proj.awayι` is restriction to the basic open followed by the inverse of the canonical
-homogeneous-localization presentation.-/
+homogeneous-localization presentation.
+@isnad1 id=eq.2h5v.s14.5fe016dfb691 from=translated src=- shape=c2cb02b7 vocab=42a44e5f
+-/
 theorem Proj_awayι_appTop_ΓSpecIso (𝒜 : ℕ → Submodule R A) [GradedAlgebra 𝒜]
     {m : ℕ} (f : A) (f_deg : f ∈ 𝒜 m) (hm : 0 < m) :
     (Proj.awayι 𝒜 f f_deg hm).appTop ≫
@@ -73,7 +75,9 @@ theorem Proj_awayι_appTop_ΓSpecIso (𝒜 : ℕ → Submodule R A) [GradedAlgeb
   exact Quiver.Hom.unop_inj (Subsingleton.elim _ _)
 
 /-- The composite from a coefficient ring to sections on a positive projective basic open,
-then to its degree-zero homogeneous localization, is the canonical degree-zero map.-/
+then to its degree-zero homogeneous localization, is the canonical degree-zero map.
+@isnad1 id=eq.2h7v.s13.0fa00cf5376f from=translated src=- shape=c55b5c80 vocab=b72b5c09
+-/
 theorem Proj_structure_section_square (𝒜 : ℕ → Submodule R A) [GradedAlgebra 𝒜]
     (c : S →+* 𝒜 0) {m : ℕ} (f : A) (f_deg : f ∈ 𝒜 m) (hm : 0 < m) :
     (Scheme.ΓSpecIso (CommRingCat.of S)).inv ≫
@@ -123,12 +127,17 @@ def gradedRingHomZero (g : 𝒜 →+*ᵍ ℬ) : 𝒜 0 →+* ℬ 0 where
   map_zero' := Subtype.ext (by simp)
   map_add' a b := Subtype.ext (by simp)
 
+/--
+@isnad1 id=eq.0h8v.s11.6efed5feb46e from=translated src=- shape=ef38be19 vocab=c1ef4090
+-/
 @[simp] lemma gradedRingHomZero_coe (g : 𝒜 →+*ᵍ ℬ) (a : 𝒜 0) :
     (gradedRingHomZero g a : B) = g a := rfl
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Naturality of `Proj.toSpecZero` under `Proj.map`.** For a graded ring hom
-`g : 𝒜 →+*ᵍ ℬ`, the induced `Proj.map g` sits over `Spec` of the degree-`0` restriction.-/
+`g : 𝒜 →+*ᵍ ℬ`, the induced `Proj.map g` sits over `Spec` of the degree-`0` restriction.
+@isnad1 id=eq.1h7v.s11.cb71dcfd9720 from=translated src=- shape=b4c84b60 vocab=9bc6717b
+-/
 theorem map_comp_toSpecZero (g : 𝒜 →+*ᵍ ℬ)
     (hf : HomogeneousIdeal.irrelevant ℬ ≤ (HomogeneousIdeal.irrelevant 𝒜).map g) :
     Proj.map g hf ≫ Proj.toSpecZero 𝒜 =

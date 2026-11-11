@@ -26,7 +26,9 @@ namespace MvPolynomial.IsHomogeneous
 variable {R S σ : Type*} [CommSemiring R] [CommSemiring S]
 
 /-- Evaluating a homogeneous polynomial of degree `n` at a rescaled point multiplies the value
-by `c ^ n`.-/
+by `c ^ n`.
+@isnad1 id=eq.1h8v.s6.c1341a6ab755 from=translated src=- shape=4e9e608c vocab=425e9cb1
+-/
 theorem eval₂_mul_left {φ : MvPolynomial σ R} {n : ℕ} (hφ : φ.IsHomogeneous n)
     (f : R →+* S) (g : σ → S) (c : S) :
     MvPolynomial.eval₂ f (fun i => c * g i) φ = c ^ n * MvPolynomial.eval₂ f g φ := by
@@ -42,7 +44,9 @@ theorem eval₂_mul_left {φ : MvPolynomial σ R} {n : ℕ} (hφ : φ.IsHomogene
         rw [Finset.prod_pow_eq_pow_sum, ← hdeg]
         ring
 
-/-- The `aeval` form of `eval₂_mul_left`.-/
+/-- The `aeval` form of `eval₂_mul_left`.
+@isnad1 id=eq.1h7v.s8.e12b62d4cbb6 from=translated src=- shape=f461e3ca vocab=f404b438
+-/
 theorem aeval_mul_left [Algebra R S] {φ : MvPolynomial σ R} {n : ℕ} (hφ : φ.IsHomogeneous n)
     (g : σ → S) (c : S) :
     MvPolynomial.aeval (fun i => c * g i) φ = c ^ n * MvPolynomial.aeval g φ :=

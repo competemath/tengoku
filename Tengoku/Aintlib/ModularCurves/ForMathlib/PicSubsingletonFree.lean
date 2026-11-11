@@ -51,14 +51,18 @@ variable (R : Type*) [CommRing R] (M : Type*) [AddCommGroup M] [Module R M]
 
 This is a thin, explicit-hypothesis wrapper over mathlib's
 `instance [Subsingleton (Pic R)] : Module.Free R M`
-(see `CommRing.Pic.subsingleton_iff`).-/
+(see `CommRing.Pic.subsingleton_iff`).
+@isnad1 id=free.1h2v.s5.e46868ea78d8 from=translated src=- shape=fb690d7f vocab=b862e8b0
+-/
 theorem free_of_subsingleton_pic (hPic : Subsingleton (Pic R)) [Module.Invertible R M] :
     Module.Free R M :=
   haveI := hPic
   inferInstance
 
 /-- **Trivial Picard group ⟹ every invertible module is isomorphic to the base ring.** Combines
-`free_of_subsingleton_pic` with `Module.Invertible.free_iff_linearEquiv`.-/
+`free_of_subsingleton_pic` with `Module.Invertible.free_iff_linearEquiv`.
+@isnad1 id=nonempty.1h2v.s6.433c9d1ccdcb from=translated src=- shape=aee20e52 vocab=4d12be78
+-/
 theorem nonempty_linearEquiv_self_of_subsingleton_pic (hPic : Subsingleton (Pic R))
     [Module.Invertible R M] : Nonempty (M ≃ₗ[R] R) :=
   Module.Invertible.free_iff_linearEquiv.mp (free_of_subsingleton_pic R M hPic)
@@ -66,7 +70,9 @@ theorem nonempty_linearEquiv_self_of_subsingleton_pic (hPic : Subsingleton (Pic 
 /-- **Trivial Picard group ⟹ every invertible module has a rank-one basis.** The concrete
 `Basis (Fin 1) R M` form — a single global basis element — obtained by transporting the standard
 basis of `R` along the isomorphism `R ≃ₗ[R] M`. This is the shape the semilocal ω-triviality
-mouth-core needs (an `OmegaBasis`/global trivialisation of the `ω` line bundle).-/
+mouth-core needs (an `OmegaBasis`/global trivialisation of the `ω` line bundle).
+@isnad1 id=nonempty.1h2v.s5.7cb2dbae450e from=translated src=- shape=e566e215 vocab=c3501d5d
+-/
 theorem nonempty_basis_fin_one_of_subsingleton_pic (hPic : Subsingleton (Pic R))
     [Module.Invertible R M] : Nonempty (Basis (Fin 1) R M) :=
   (nonempty_linearEquiv_self_of_subsingleton_pic R M hPic).map fun e =>

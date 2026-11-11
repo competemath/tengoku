@@ -25,7 +25,9 @@ def pullbackPseudofunctor :=
   pseudofunctor.comp Bicategory.Adj.forget₁
 
 /-- The hom of the flexible composition isomorphism for the pullback pseudofunctor, evaluated
-on a module.-/
+on a module.
+@isnad1 id=eq.1h7v.s13.23dc50e77eb4 from=translated src=- shape=243e3587 vocab=039ec3de
+-/
 theorem pullbackPseudofunctor_mapComp'_hom_app
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     {k : X ⟶ Z} (h : f ≫ g = k) (M : Z.Modules) :
@@ -46,7 +48,9 @@ theorem pullbackPseudofunctor_mapComp'_hom_app
   rfl
 
 /-- The inverse of the flexible composition isomorphism for the pullback pseudofunctor,
-evaluated on a module.-/
+evaluated on a module.
+@isnad1 id=eq.1h7v.s13.aab8b5ee440b from=translated src=- shape=23be1ccd vocab=039ec3de
+-/
 theorem pullbackPseudofunctor_mapComp'_inv_app
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z)
     {k : X ⟶ Z} (h : f ≫ g = k) (M : Z.Modules) :
@@ -67,7 +71,9 @@ theorem pullbackPseudofunctor_mapComp'_inv_app
   rfl
 
 /-- Pulling a morphism to a further scheme using the descent API is ordinary pullback,
-conjugated by the two composition isomorphisms.-/
+conjugated by the two composition isomorphisms.
+@isnad1 id=eq.2h12v.s11.0e02f9119408 from=translated src=- shape=ae166bf0 vocab=a5620388
+-/
 theorem pullbackPseudofunctor_pullHom
     {X₁ X₂ Y Y' : Scheme.{u}} {M₁ : X₁.Modules} {M₂ : X₂.Modules}
     {f₁ : Y ⟶ X₁} {f₂ : Y ⟶ X₂}
@@ -98,7 +104,9 @@ noncomputable def pullbackDescentComparisonIso
     (((pullbackComp f₂ (f j)).app M) ≪≫ ((pullbackCongr hf₂).app M)).symm
 
 /-- The transition morphism in the pullback descent datum is the canonical comparison between
-the two iterated pullbacks.-/
+the two iterated pullbacks.
+@isnad1 id=eq.2h11v.s12.e76124ae7545 from=translated src=- shape=e1ed09d0 vocab=804b0c08
+-/
 theorem pullbackPseudofunctor_toDescentData_hom
     {I : Type u} {S : Scheme.{u}} {X : I → Scheme.{u}}
     (f : ∀ i, X i ⟶ S) (M : S.Modules) {Y : Scheme.{u}}
@@ -122,7 +130,9 @@ theorem pullbackPseudofunctor_toDescentData_hom
   rfl
 
 /-- Compatibility with the canonical pullback comparison is the commutativity
-condition for a morphism out of the pullback descent datum.-/
+condition for a morphism out of the pullback descent datum.
+@isnad1 id=eq.1h11v.s13.460570ef0a56 from=translated src=- shape=ae766662 vocab=56278c6d
+-/
 theorem pullbackPseudofunctorDescentIso_comm
     {I : Type u} {S : Scheme.{u}} {X : I → Scheme.{u}}
     (f : ∀ i, X i ⟶ S) (M : S.Modules)

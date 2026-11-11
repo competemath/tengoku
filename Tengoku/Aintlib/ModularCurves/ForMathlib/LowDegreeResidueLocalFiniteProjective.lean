@@ -25,7 +25,9 @@ variable {R : Type u} [CommRing R]
 variable {P Q : Type v} [AddCommGroup P] [Module R P]
   [AddCommGroup Q] [Module R Q]
 
-/-- Finiteness of a kernel descends across a bijective kernel base-change comparison.-/
+/-- Finiteness of a kernel descends across a bijective kernel base-change comparison.
+@isnad1 id=finite.1h5v.s12.e4e4db33caad from=translated src=- shape=de51bb43 vocab=fd1bf888
+-/
 theorem Module.Finite.ker_baseChange_of_bijective
     (A : Type w) [CommRing A] [Algebra R A]
     (f : P →ₗ[R] Q) [Module.Finite R (LinearMap.ker f)]
@@ -34,7 +36,9 @@ theorem Module.Finite.ker_baseChange_of_bijective
   let e := LinearEquiv.ofBijective (kerBaseChangeComparison A f) h
   exact Module.Finite.equiv e
 
-/-- Projectivity of a kernel descends across a bijective kernel base-change comparison.-/
+/-- Projectivity of a kernel descends across a bijective kernel base-change comparison.
+@isnad1 id=projecti.1h5v.s12.b074e8b2316f from=translated src=- shape=de51bb43 vocab=2c2d6241
+-/
 theorem Module.Projective.ker_baseChange_of_bijective
     (A : Type w) [CommRing A] [Algebra R A]
     (f : P →ₗ[R] Q) [Module.Projective R (LinearMap.ker f)]
@@ -68,12 +72,18 @@ section Noetherian
 
 variable [IsNoetherianRing R]
 
+/--
+@isnad1 id=finite.0h2v.s13.c95941c65090 from=translated src=- shape=0b2dd5e4 vocab=9e9ba789
+-/
 local instance residueLocalFiniteProjectiveHZeroFinite
     (S : ShortComplex (ModuleCat.{u} R))
     [Module.Finite R (LinearMap.ker S.f.hom)] :
     Module.Finite R (HZero S.moduleCatToCycles) :=
   Module.Finite.ker_moduleCatToCycles S
 
+/--
+@isnad1 id=finite.0h2v.s13.96a8d2aa5e90 from=translated src=- shape=0c311f01 vocab=1dc8257a
+-/
 local instance residueLocalFiniteProjectiveHOneFinite
     (S : ShortComplex (ModuleCat.{u} R)) [Module.Finite R S.homology] :
     Module.Finite R (HOne S.moduleCatToCycles) :=
@@ -82,7 +92,9 @@ local instance residueLocalFiniteProjectiveHOneFinite
 end Noetherian
 
 /-- The principal neighborhood in `HasAwayFiniteProjectiveKernelAt` remains
-surjective with finite-projective kernel after every further algebra base change.-/
+surjective with finite-projective kernel after every further algebra base change.
+@isnad1 id=ex.1h5v.s17.ad9caee0835c from=translated src=- shape=97198676 vocab=74291ed6
+-/
 theorem HasAwayFiniteProjectiveKernelAt.exists_away_forall_baseChange
     {P Q : Type u} [AddCommGroup P] [Module R P]
     [AddCommGroup Q] [Module R Q]

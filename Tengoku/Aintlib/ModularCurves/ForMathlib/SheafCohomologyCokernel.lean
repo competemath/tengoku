@@ -51,7 +51,9 @@ noncomputable def cokernelMapZeroIsoOne [Subsingleton (H S.X₂ 1)] :
     (cokernelIsCokernel T.f) (zeroOneShortComplex_exact hS).gIsCokernel
 
 /-- The cokernel comparison carries the cokernel projection to the connecting
-homomorphism.-/
+homomorphism.
+@isnad1 id=eq.1h3v.s11.ad1f7ac85a29 from=translated src=- shape=0a91bec7 vocab=052eed27
+-/
 @[reassoc]
 theorem cokernelMapZeroIsoOne_hom_fac [Subsingleton (H S.X₂ 1)] :
     cokernel.π ((functorH J 0).map S.g) ≫ (cokernelMapZeroIsoOne hS).hom =

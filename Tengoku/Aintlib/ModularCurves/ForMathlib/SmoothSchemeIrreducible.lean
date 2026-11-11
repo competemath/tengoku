@@ -35,7 +35,9 @@ namespace ModularCurves
 variable {k : Type u} [Field k] [IsAlgClosed k] {X : Scheme.{u}}
 
 /-- **(T-G4a brick 7 ★)** Every point of a scheme smooth of relative dimension one over
-`Spec k` (`k` algebraically closed) has an irreducible open neighbourhood.-/
+`Spec k` (`k` algebraically closed) has an irreducible open neighbourhood.
+@isnad1 id=ex.0h4v.s7.717fb0606730 from=translated src=- shape=8d608e9b vocab=381389b6
+-/
 theorem exists_isOpen_isIrreducible_nbhd_of_smooth (sX : X ⟶ Spec (CommRingCat.of k))
     [SmoothOfRelativeDimension 1 sX] (x : ↥X) :
     ∃ W : Set ↥X, IsOpen W ∧ x ∈ W ∧ IsIrreducible W := by
@@ -74,7 +76,9 @@ theorem exists_isOpen_isIrreducible_nbhd_of_smooth (sX : X ⟶ Spec (CommRingCat
 
 /-- **(T-G4a ★★ — leaf L1 of the geometric-irreducibility decomposition)** A nonempty
 **connected** scheme smooth of relative dimension one over an algebraically closed field is
-**irreducible**.-/
+**irreducible**.
+@isnad1 id=irreduci.0h3v.s6.992e7202f55b from=translated src=- shape=ce40f44f vocab=e858ff8b
+-/
 theorem irreducibleSpace_of_connectedSpace_of_smooth_curve
     (sX : X ⟶ Spec (CommRingCat.of k)) [SmoothOfRelativeDimension 1 sX]
     [Nonempty ↥X] [ConnectedSpace ↥X] : IrreducibleSpace ↥X :=

@@ -45,7 +45,9 @@ theorem IsStandardSmoothOfRelativeDimension.eq_of_nontrivial [Nontrivial C] {m n
   exact_mod_cast h1.symm.trans h2
 
 /-- A standard smooth algebra is standard smooth of relative dimension the rank of
-its module of differentials.-/
+its module of differentials.
+@isnad1 id=isstanda.0h2v.s6.bb53f9765bc8 from=translated src=- shape=9194db42 vocab=ea1b6f6e
+-/
 theorem IsStandardSmoothOfRelativeDimension.of_isStandardSmooth [Nontrivial C]
     [Algebra.FinitePresentation R C] [IsStandardSmooth R C] :
     IsStandardSmoothOfRelativeDimension (Module.finrank C Ω[C⁄R]) R C := by
@@ -58,7 +60,9 @@ variable (k A B : Type*) [CommRing k] [CommRing A] [CommRing B]
   [Algebra k A] [Algebra k B] [Algebra A B] [IsScalarTower k A B]
 
 /-- **[T-YR-6 (c1-E), `Ω`-half]** Projectivity of the module of differentials
-descends along formally étale faithfully flat extensions.-/
+descends along formally étale faithfully flat extensions.
+@isnad1 id=projecti.0h3v.s7.70bdcce93f76 from=translated src=- shape=7a513ef4 vocab=efbc0b94
+-/
 theorem projective_kaehlerDifferential_of_formallyEtale_faithfullyFlat
     [Algebra.FormallyEtale A B] [Module.FaithfullyFlat A B]
     [Algebra.FinitePresentation k A] [Module.Projective B Ω[B⁄k]] :
@@ -71,7 +75,9 @@ theorem projective_kaehlerDifferential_of_formallyEtale_faithfullyFlat
   exact Module.Flat.projective_of_finitePresentation
 
 /-- **[T-YR-6 (c1-E)]** Smoothness descends along finite étale faithfully flat
-extensions (over a noetherian base).-/
+extensions (over a noetherian base).
+@isnad1 id=smooth.0h3v.s7.d112dc549f1c from=translated src=- shape=b34928ad vocab=b65d8576
+-/
 theorem smooth_of_etale_faithfullyFlat [IsNoetherianRing k]
     [Algebra.Etale A B] [Module.Finite A B] [Module.FaithfullyFlat A B]
     [Algebra.Smooth k B] : Algebra.Smooth k A := by
@@ -90,7 +96,9 @@ variable [IsNoetherianRing k] [Algebra.Etale A B] [Module.Finite A B]
   [Module.FaithfullyFlat A B]
 
 /-- (Implementation) On a standard smooth basic open `A[1/f]` of `A`, the relative
-dimension over `k` is forced to be `1` by comparison with the étale cover.-/
+dimension over `k` is forced to be `1` by comparison with the étale cover.
+@isnad1 id=isstanda.1h5v.s8.7cfdf621b83e from=translated src=- shape=0b26c05e vocab=13dfe982
+-/
 theorem isStandardSmoothOfRelativeDimension_one_localizationAway
     [IsStandardSmoothOfRelativeDimension 1 k B]
     (p : Ideal A) [p.IsPrime] (f : A) (hf : f ∉ p)
@@ -182,7 +190,9 @@ universe u
 /-- **[T-YR-6 (c1)]** Smoothness of relative dimension one descends along finite
 étale faithfully flat covers: if `B` is finite étale and faithfully flat over `A`
 and standard smooth of relative dimension one over the noetherian base `k`, then
-`A` is locally standard smooth of relative dimension one over `k`.-/
+`A` is locally standard smooth of relative dimension one over `k`.
+@isnad1 id=locally.0h3v.s7.29181899870e from=translated src=- shape=612097aa vocab=d60032ea
+-/
 theorem locally_isStandardSmoothOfRelativeDimension_one_of_etale_faithfullyFlat
     (k A B : Type u) [CommRing k] [CommRing A] [CommRing B]
     [Algebra k A] [Algebra k B] [Algebra A B] [IsScalarTower k A B]
@@ -228,7 +238,9 @@ universe u
 
 /-- **[T-YR-6 (c1), scheme level]** If `Spec B ⟶ Spec A` is a finite étale
 faithfully flat cover and `Spec B ⟶ Spec k` is smooth of relative dimension one,
-then so is `Spec A ⟶ Spec k`.-/
+then so is `Spec A ⟶ Spec k`.
+@isnad1 id=smoothof.0h3v.s7.79b85df32c1f from=translated src=- shape=4456ac86 vocab=f917a7c8
+-/
 theorem smoothOfRelativeDimension_one_spec_map_of_etale_faithfullyFlat
     (k A B : Type u) [CommRing k] [CommRing A] [CommRing B]
     [Algebra k A] [Algebra k B] [Algebra A B] [IsScalarTower k A B]

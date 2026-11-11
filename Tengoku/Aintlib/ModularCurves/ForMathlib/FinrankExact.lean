@@ -49,14 +49,18 @@ variable {R : Type u} {M : Type v} {N : Type w} {P : Type x} [Semiring R]
   [Module R M] [Module R N] [Module R P]
   {f : M →ₗ[R] N} {g : N →ₗ[R] P}
 
-/-- A short exact sequence `0 → M → N → P → 0` with `P` projective splits: `N ≅ M × P`.-/
+/-- A short exact sequence `0 → M → N → P → 0` with `P` projective splits: `N ≅ M × P`.
+@isnad1 id=nonempty.3h6v.s8.71ce49fe9a36 from=translated src=- shape=cfcdd975 vocab=b7665c26
+-/
 theorem Function.Exact.nonempty_linearEquiv_prod_of_projective [Module.Projective R P]
     (h : Function.Exact f g) (hf : Function.Injective f) (hg : Function.Surjective g) :
     Nonempty (N ≃ₗ[R] M × P) :=
   (projective_lifting_property g .id hg).elim fun l hl ↦ ⟨(h.splitSurjectiveEquiv hf ⟨l, hl⟩).1⟩
 
 /-- Rank additivity in a short exact sequence `0 → M → N → P → 0` of modules with
-`M` and `P` finite free.-/
+`M` and `P` finite free.
+@isnad1 id=eq.3h6v.s8.26ced38ae567 from=translated src=- shape=15afb170 vocab=c5672cb4
+-/
 theorem Module.finrank_eq_add_of_exact [StrongRankCondition R] [Module.Free R M] [Module.Finite R M]
     [Module.Free R P] [Module.Finite R P] (h : Function.Exact f g) (hf : Function.Injective f)
     (hg : Function.Surjective g) : finrank R N = finrank R M + finrank R P :=
@@ -74,7 +78,9 @@ variable {R : Type u} {M : Type v} {N : Type w} {P : Type x} [CommRing R]
 attribute [local instance] free_of_flat_of_isLocalRing in
 /-- Pointwise rank additivity in a short exact sequence `0 → M → N → P → 0` with the
 outer terms finite flat: `rank_p N = rank_p M + rank_p P` at every prime `p`. The middle
-term needs no hypotheses.-/
+term needs no hypotheses.
+@isnad1 id=eq.3h7v.s8.c597d324a16e from=translated src=- shape=aa60c9ab vocab=482a8e48
+-/
 theorem Module.rankAtStalk_eq_add_of_exact [Module.Finite R M] [Module.Flat R M] [Module.Finite R P]
     [Module.Flat R P] (h : Function.Exact f g) (hf : Function.Injective f)
     (hg : Function.Surjective g) (p : PrimeSpectrum R) :

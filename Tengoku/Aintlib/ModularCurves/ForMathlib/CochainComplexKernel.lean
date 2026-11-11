@@ -61,7 +61,9 @@ noncomputable def kernelZeroLinearEquivOfHom
       exact ConcreteCategory.congr_hom hfg x.1)
 
 /-- The kernel equivalence induced by inverse cochain maps is given by the
-degree-zero component of the forward map.-/
+degree-zero component of the forward map.
+@isnad1 id=eq.2h6v.s15.1dd7cc17cf7b from=translated src=- shape=56c95e33 vocab=8f488d33
+-/
 theorem kernelZeroLinearEquivOfHom_coe
     {R : Type u} [CommRing R]
     {K L : CochainComplex (ModuleCat.{v} R) ℕ}
@@ -74,7 +76,9 @@ theorem kernelZeroLinearEquivOfHom_coe
   rfl
 
 /-- The inverse kernel equivalence induced by inverse cochain maps is given by
-the degree-zero component of the inverse map.-/
+the degree-zero component of the inverse map.
+@isnad1 id=eq.2h6v.s15.29835be86d75 from=translated src=- shape=79829da5 vocab=deaece20
+-/
 theorem kernelZeroLinearEquivOfHom_symm_coe
     {R : Type u} [CommRing R]
     {K L : CochainComplex (ModuleCat.{v} R) ℕ}
@@ -100,7 +104,9 @@ noncomputable def kernelZeroIsoOfIso
     (L.sc' 0 0 1).moduleCatCyclesIso
 
 /-- The kernel equivalence induced by a cochain-complex isomorphism commutes with the
-inclusions into degree zero.-/
+inclusions into degree zero.
+@isnad1 id=eq.0h4v.s14.083d74acd020 from=translated src=- shape=2a096b50 vocab=ab624737
+-/
 @[reassoc]
 theorem kernelZeroIsoOfIso_hom_subtype
     {R : Type u} [CommRing R]

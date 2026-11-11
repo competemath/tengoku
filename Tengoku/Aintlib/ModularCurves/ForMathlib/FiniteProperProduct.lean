@@ -35,6 +35,9 @@ abbrev π : obj p ⟶ S :=
 abbrev proj (i : ι) : obj p ⟶ Z i :=
   (Pi.π (fun i ↦ Over.mk (p i)) i).left
 
+/--
+@isnad1 id=eq.0h5v.s6.435d5cd29f7e from=translated src=- shape=3aad6f18 vocab=2028512a
+-/
 @[reassoc]
 lemma proj_comp (i : ι) : proj p i ≫ p i = π p :=
   (Pi.π (fun i ↦ Over.mk (p i)) i).w
@@ -45,6 +48,9 @@ def lift {T : Scheme.{u}} (q : T ⟶ S) (f : ∀ i, T ⟶ Z i)
   (Pi.lift (f := fun i ↦ Over.mk (p i)) (P := Over.mk q) fun i ↦
     Over.homMk (U := Over.mk q) (V := Over.mk (p i)) (f i) (hf i)).left
 
+/--
+@isnad1 id=eq.1h8v.s7.bc9b1931b7f2 from=translated src=- shape=12a0f850 vocab=05976bdc
+-/
 @[reassoc]
 lemma lift_proj {T : Scheme.{u}} (q : T ⟶ S) (f : ∀ i, T ⟶ Z i)
     (hf : ∀ i, f i ≫ p i = q) (i : ι) : lift p q f hf ≫ proj p i = f i := by
@@ -52,6 +58,9 @@ lemma lift_proj {T : Scheme.{u}} (q : T ⟶ S) (f : ∀ i, T ⟶ Z i)
     (fun i ↦ Over.homMk (U := Over.mk q) (V := Over.mk (p i)) (f i) (hf i)) i
   exact congrArg Over.Hom.left h
 
+/--
+@isnad1 id=eq.1h7v.s6.f2902f5e5bed from=translated src=- shape=f8150d49 vocab=15878448
+-/
 @[reassoc]
 lemma lift_comp {T : Scheme.{u}} (q : T ⟶ S) (f : ∀ i, T ⟶ Z i)
     (hf : ∀ i, f i ≫ p i = q) : lift p q f hf ≫ π p = q :=
@@ -59,7 +68,9 @@ lemma lift_comp {T : Scheme.{u}} (q : T ⟶ S) (f : ∀ i, T ⟶ Z i)
     Over.homMk (U := Over.mk q) (V := Over.mk (p i)) (f i) (hf i)).w
 
 /-- A map to a nonempty finite product is an immersion if all its coordinates are
-immersions.-/
+immersions.
+@isnad1 id=isimmers.2h7v.s6.6ea3e61ffba9 from=translated src=- shape=0b38346a vocab=4ff75e8e
+-/
 lemma lift_isImmersion [Nonempty ι] {T : Scheme.{u}} (q : T ⟶ S)
     (f : ∀ i, T ⟶ Z i) (hf : ∀ i, f i ≫ p i = q)
     (hfi : ∀ i, IsImmersion (f i)) : IsImmersion (lift p q f hf) := by
@@ -91,7 +102,9 @@ private lemma properOverObj_isClosedUnderBinaryProducts :
   rw [← hw]
   exact MorphismProperty.comp_mem (@IsProper : MorphismProperty Scheme.{u}) _ _ hfst hleft
 
-/-- A finite product over `S` of proper morphisms is proper over `S`.-/
+/-- A finite product over `S` of proper morphisms is proper over `S`.
+@isnad1 id=isproper.1h4v.s5.21a515ca2837 from=translated src=- shape=91fff61d vocab=7c4658b5
+-/
 lemma π_isProper (hp : ∀ i, IsProper (p i)) : IsProper (π p) := by
   let hmul : MorphismProperty.IsMultiplicative
       (@IsProper : MorphismProperty Scheme.{u}) := inferInstance
@@ -109,7 +122,9 @@ lemma π_isProper (hp : ∀ i, IsProper (p i)) : IsProper (π p) := by
   exact ObjectProperty.prop_product
     (MorphismProperty.overObj (@IsProper : MorphismProperty Scheme.{u}) (X := S)) hp
 
-/-- Every projection from a finite product of proper schemes over `S` is proper.-/
+/-- Every projection from a finite product of proper schemes over `S` is proper.
+@isnad1 id=isproper.1h5v.s5.dc10902cf0bf from=translated src=- shape=ccd818d0 vocab=fe96eab6
+-/
 lemma proj_isProper (hp : ∀ i, IsProper (p i)) (i : ι) : IsProper (proj p i) := by
   letI : IsProper (p i) := hp i
   have hπ : IsProper (π p) := π_isProper p hp

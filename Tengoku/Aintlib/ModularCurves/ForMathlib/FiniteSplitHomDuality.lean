@@ -172,7 +172,9 @@ theorem eq_zero_of_forall_algHom_eq_zero [Algebra.IsFiniteSplit k A] {x : A}
   have := congrArg e.symm this
   rwa [e.symm_apply_apply, map_zero] at this
 
-/-- The `k`-point count of a finite split algebra is its `k`-dimension.-/
+/-- The `k`-point count of a finite split algebra is its `k`-dimension.
+@isnad1 id=eq.0h2v.s6.537847eca0a3 from=translated src=- shape=21ca3bf3 vocab=4d8b32c0
+-/
 theorem card_algHom [Algebra.IsFiniteSplit k A] :
     Nat.card (A →ₐ[k] k) = Module.finrank k A := by
   classical
@@ -209,7 +211,9 @@ theorem card_algHom [Algebra.IsFiniteSplit k A] :
     e.toLinearEquiv.finrank_eq, Module.finrank_fin_fun]
 
 /-- **The hom-duality criterion**: an algebra map of finite split algebras whose dual
-map on `k`-points is bijective is itself bijective.-/
+map on `k`-points is bijective is itself bijective.
+@isnad1 id=bijectiv.1h4v.s8.fcb1f9f5faff from=translated src=- shape=9efb9639 vocab=65e90e8e
+-/
 theorem bijective_of_precomp_bijective [Algebra.IsFiniteSplit k A]
     [Algebra.IsFiniteSplit k B] (ψ : A →ₐ[k] B)
     (h : Function.Bijective fun g : B →ₐ[k] k => g.comp ψ) :
@@ -236,7 +240,9 @@ theorem bijective_of_precomp_bijective [Algebra.IsFiniteSplit k A]
 end Algebra.IsFiniteSplit
 
 /-- Bijectivity of a linear map over a field descends from any field extension:
-`ψ ⊗ K` bijective implies `ψ` bijective (faithful flatness of `K/k`).-/
+`ψ ⊗ K` bijective implies `ψ` bijective (faithful flatness of `K/k`).
+@isnad1 id=bijectiv.1h5v.s9.9b84bad7ac14 from=translated src=- shape=20c68743 vocab=cefc5856
+-/
 theorem LinearMap.bijective_of_bijective_lTensor_field {k : Type u} [Field k]
     (K : Type u) [Field K] [Algebra k K] {M N : Type u}
     [AddCommGroup M] [Module k M] [AddCommGroup N] [Module k N]
@@ -246,7 +252,9 @@ theorem LinearMap.bijective_of_bijective_lTensor_field {k : Type u} [Field k]
   exact (Module.FaithfullyFlat.lTensor_bijective_iff_bijective k K φ).mp h
 
 /-- Bijectivity of a residue-tensored map follows from bijectivity after a further
-field extension: `φ ⊗ K` bijective implies `φ ⊗ κ` bijective, for `R → κ → K`.-/
+field extension: `φ ⊗ K` bijective implies `φ ⊗ κ` bijective, for `R → κ → K`.
+@isnad1 id=bijectiv.1h6v.s10.a3133feb2649 from=translated src=- shape=0de82d6d vocab=d33d07e4
+-/
 theorem LinearMap.bijective_lTensor_of_bijective_baseChange_ext
     {R M N : Type u} [CommRing R] [AddCommGroup M] [Module R M]
     [AddCommGroup N] [Module R N] (φ : M →ₗ[R] N)

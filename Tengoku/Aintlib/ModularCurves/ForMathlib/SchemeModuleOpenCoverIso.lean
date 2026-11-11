@@ -21,7 +21,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 
 variable {X : Scheme.{u}}
 
-/-- Isomorphisms of scheme modules can be detected on a pointwise open cover.-/
+/-- Isomorphisms of scheme modules can be detected on a pointwise open cover.
+@isnad1 id=isiso.1h6v.s7.dd8b3fd48240 from=translated src=- shape=b03473ef vocab=7a7874ca
+-/
 theorem isIso_of_isIso_restrict_openCover
     {M N : X.Modules} (α : M ⟶ N)
     {ι : Type v} (U : ι → X.Opens)
@@ -84,7 +86,9 @@ theorem isIso_of_isIso_restrict_openCover
     mapPresheaf_app] using hfV
 
 /-- An isomorphism on the over-site of an open remains an isomorphism after
-scheme-module restriction to that open.-/
+scheme-module restriction to that open.
+@isnad1 id=isiso.0h5v.s10.86043535148b from=translated src=- shape=124592e4 vocab=eddeeac8
+-/
 theorem isIso_restrict_of_isIso_over
     {M N : X.Modules} (f : M ⟶ N) (U : X.Opens)
     [IsIso (f.over U)] :

@@ -38,17 +38,26 @@ noncomputable def underlyingStalkFunctor (x : X) :
   toSheaf X ⋙ TopCat.Sheaf.forget AddCommGrpCat.{u} X ⋙
     TopCat.Presheaf.stalkFunctor.{u, u + 1} AddCommGrpCat.{u} x
 
+/--
+@isnad1 id=additive.0h2v.s4.2601cd6f1712 from=translated src=- shape=f3fae900 vocab=30dc5400
+-/
 noncomputable instance underlyingStalkFunctor_additive (x : X) :
     (underlyingStalkFunctor x).Additive := by
   dsimp [underlyingStalkFunctor]
   infer_instance
 
+/--
+@isnad1 id=preserve.0h2v.s4.faab5eb53ec5 from=translated src=- shape=f3fae900 vocab=7e140fd2
+-/
 noncomputable instance underlyingStalkFunctor_preservesFiniteLimits
     (x : X) :
     PreservesFiniteLimits (underlyingStalkFunctor x) := by
   dsimp [underlyingStalkFunctor]
   infer_instance
 
+/--
+@isnad1 id=preserve.0h2v.s4.45356f8f4398 from=translated src=- shape=f3fae900 vocab=afb9840a
+-/
 noncomputable instance underlyingStalkFunctor_preservesFiniteColimits
     (x : X) :
     PreservesFiniteColimits (underlyingStalkFunctor x) := by
@@ -63,18 +72,27 @@ def stalkSupport (M : X.Modules) : Set X :=
 def closedStalkSupport (M : X.Modules) : Closeds X :=
   ⟨closure (stalkSupport M), isClosed_closure⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.702e968c3b6d from=translated src=- shape=ea5655c1 vocab=c1811fec
+-/
 @[simp]
 lemma mem_stalkSupport_iff (M : X.Modules) (x : X) :
     x ∈ stalkSupport M ↔
       ¬ IsZero ((underlyingStalkFunctor x).obj M) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s7.2b3c5898c72d from=translated src=- shape=104fe68f vocab=d185a83f
+-/
 @[simp]
 lemma mem_closedStalkSupport_iff (M : X.Modules) (x : X) :
     x ∈ closedStalkSupport M ↔
       x ∈ closure (stalkSupport M) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.1h2v.s6.c11378210ff9 from=translated src=- shape=941846de vocab=fd8a387f
+-/
 lemma isZero_X₂_iff_of_shortExact
     {C : Type*} [Category C] [Abelian C]
     {S : ShortComplex C} (hS : S.ShortExact) :
@@ -88,7 +106,9 @@ lemma isZero_X₂_iff_of_shortExact
     exact hS.exact.isZero_X₂
       (h₁.eq_of_src S.f 0) (h₃.eq_of_tgt S.g 0)
 
-/-- Nonzero-stalk support is additive across a short exact sequence.-/
+/-- Nonzero-stalk support is additive across a short exact sequence.
+@isnad1 id=eq.1h2v.s7.7c36b9be0e77 from=translated src=- shape=38681691 vocab=f0a5e7a3
+-/
 lemma stalkSupport_eq_union
     {S : ShortComplex X.Modules} (hS : S.ShortExact) :
     stalkSupport S.X₂ =
@@ -104,7 +124,9 @@ lemma stalkSupport_eq_union
         (¬ IsZero ((S.map Fx).X₃))
   tauto
 
-/-- Closed stalk support is additive across a short exact sequence.-/
+/-- Closed stalk support is additive across a short exact sequence.
+@isnad1 id=eq.1h2v.s7.2cecd170b28f from=translated src=- shape=38681691 vocab=426e8f12
+-/
 lemma closedStalkSupport_eq_sup
     {S : ShortComplex X.Modules} (hS : S.ShortExact) :
     closedStalkSupport S.X₂ =
@@ -116,7 +138,9 @@ lemma closedStalkSupport_eq_sup
         closure (stalkSupport S.X₃)
   rw [stalkSupport_eq_union hS, closure_union]
 
-/-- A zero module has empty closed stalk support.-/
+/-- A zero module has empty closed stalk support.
+@isnad1 id=eq.1h2v.s8.6236dda36022 from=translated src=- shape=9ece5c2d vocab=5ac4e475
+-/
 lemma closedStalkSupport_eq_bot_of_isZero
     (M : X.Modules) (hM : IsZero M) :
     closedStalkSupport M = ⊥ := by
@@ -129,7 +153,9 @@ lemma closedStalkSupport_eq_bot_of_isZero
     exact (underlyingStalkFunctor x).map_isZero hM
   rw [hs, closure_empty]
 
-/-- A scheme module with zero underlying stalk at every point is zero.-/
+/-- A scheme module with zero underlying stalk at every point is zero.
+@isnad1 id=iszero.1h2v.s5.87c6581e5648 from=translated src=- shape=a8433b29 vocab=91bddbe3
+-/
 lemma isZero_of_forall_underlyingStalk_isZero
     (M : X.Modules)
     (h : ∀ x : X, IsZero ((underlyingStalkFunctor x).obj M)) :
@@ -149,7 +175,9 @@ lemma isZero_of_forall_underlyingStalk_isZero
     apply F.map_injective
     exact hs.eq_of_tgt _ _
 
-/-- Empty closed stalk support characterizes the zero module.-/
+/-- Empty closed stalk support characterizes the zero module.
+@isnad1 id=iff.0h2v.s8.3807054fd754 from=translated src=- shape=425da272 vocab=5ac4e475
+-/
 lemma isZero_iff_closedStalkSupport_eq_bot (M : X.Modules) :
     IsZero M ↔ closedStalkSupport M = ⊥ := by
   refine ⟨closedStalkSupport_eq_bot_of_isZero M, ?_⟩
@@ -169,7 +197,9 @@ lemma isZero_iff_closedStalkSupport_eq_bot (M : X.Modules) :
   exact isZero_of_forall_underlyingStalk_isZero M hstalks
 
 /-- On an affine spectrum, the stalk of a tilde module vanishes exactly away from the
-ordinary commutative-algebra support.-/
+ordinary commutative-algebra support.
+@isnad1 id=iff.0h3v.s6.5ddd67197084 from=translated src=- shape=0ce4de2c vocab=d2fdf704
+-/
 lemma isZero_underlyingStalkFunctor_tilde_iff_not_mem_support
     {R : CommRingCat.{u}} (N : ModuleCat.{u} R) (x : Spec R) :
     IsZero ((underlyingStalkFunctor x).obj (tilde N)) ↔
@@ -199,7 +229,9 @@ lemma isZero_underlyingStalkFunctor_tilde_iff_not_mem_support
     exact e.toEquiv.subsingleton_congr.mp inferInstance
 
 /-- The nonzero-stalk support of a quasicoherent module on a spectrum is the support of its
-affine module of sections.-/
+affine module of sections.
+@isnad1 id=eq.0h2v.s8.19a57427ab4a from=translated src=- shape=9e9936a9 vocab=0c15749c
+-/
 lemma stalkSupport_eq_moduleSupport_of_spectrum
     {R : CommRingCat.{u}} (M : (Spec R).Modules)
     [M.IsQuasicoherent] :
@@ -221,7 +253,9 @@ lemma stalkSupport_eq_moduleSupport_of_spectrum
       x ∈ Module.support R (moduleSpecΓFunctor.obj M)
   tauto
 
-/-- The nonzero-stalk support of a finite-type quasicoherent module on a spectrum is closed.-/
+/-- The nonzero-stalk support of a finite-type quasicoherent module on a spectrum is closed.
+@isnad1 id=isclosed.0h2v.s8.e158613a7d55 from=translated src=- shape=8e0bfe9b vocab=366d8b03
+-/
 lemma isClosed_stalkSupport_of_spectrum
     {R : CommRingCat.{u}} (M : (Spec R).Modules)
     [M.IsFiniteType] [M.IsQuasicoherent] :
@@ -233,7 +267,9 @@ lemma isClosed_stalkSupport_of_spectrum
   exact Module.isClosed_support
 
 /-- Restriction along an open immersion identifies nonzero-stalk support with its inverse
-image.-/
+image.
+@isnad1 id=eq.0h4v.s7.60da6fcfed0c from=translated src=- shape=5663ff14 vocab=4af5f5cc
+-/
 lemma preimage_stalkSupport_of_openImmersion
     {Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f]
     (M : Y.Modules) :
@@ -287,7 +323,9 @@ private lemma exists_generatingSections_restrict_fromSpec
   exact ⟨G'', hG''⟩
 
 /-- Restriction of a finite-type quasicoherent module along an affine open's
-canonical spectrum presentation is finite type.-/
+canonical spectrum presentation is finite type.
+@isnad1 id=isfinite.1h3v.s11.f7308e70f547 from=translated src=- shape=0045368a vocab=3af89a54
+-/
 theorem isFiniteType_restrict_fromSpec
     (M : X.Modules) [M.IsQuasicoherent] [M.IsFiniteType]
     (U : X.Opens) (hU : IsAffineOpen U) :
@@ -296,7 +334,9 @@ theorem isFiniteType_restrict_fromSpec
   letI : G.IsFiniteType := hG
   exact isFiniteType_of_generatingSections (M.restrict hU.fromSpec) G
 
-/-- The nonzero-stalk locus of a finite-type quasicoherent module is closed.-/
+/-- The nonzero-stalk locus of a finite-type quasicoherent module is closed.
+@isnad1 id=isclosed.0h2v.s8.5729349ddbd1 from=translated src=- shape=0000adc2 vocab=8eba78a3
+-/
 lemma isClosed_stalkSupport
     (M : X.Modules) [M.IsFiniteType] [M.IsQuasicoherent] :
     IsClosed (stalkSupport M) := by
@@ -325,13 +365,17 @@ lemma isClosed_stalkSupport
     rfl
 
 /-- For a finite-type quasicoherent module, the closure in `closedStalkSupport` is
-redundant.-/
+redundant.
+@isnad1 id=eq.0h2v.s8.cd0ce7bae50a from=translated src=- shape=cf2d2703 vocab=e3db49cf
+-/
 lemma coe_closedStalkSupport_eq_stalkSupport
     (M : X.Modules) [M.IsFiniteType] [M.IsQuasicoherent] :
     (closedStalkSupport M : Set X) = stalkSupport M :=
   (isClosed_stalkSupport M).closure_eq
 
-/-- A submodule has support contained in that of the ambient module.-/
+/-- A submodule has support contained in that of the ambient module.
+@isnad1 id=le.0h4v.s6.0cf7aabcd1a7 from=translated src=- shape=91defbee vocab=2917b10c
+-/
 lemma closedStalkSupport_le_of_mono
     {M N : X.Modules} (f : M ⟶ N) [Mono f] :
     closedStalkSupport M ≤ closedStalkSupport N := by
@@ -347,7 +391,9 @@ lemma closedStalkSupport_le_of_mono
     exact le_sup_left
   simpa [S, ShortComplex.cokernelSequence] using hle
 
-/-- The support of a quotient is contained in that of its source.-/
+/-- The support of a quotient is contained in that of its source.
+@isnad1 id=le.0h4v.s6.4d39845a763b from=translated src=- shape=baa392a9 vocab=a361d405
+-/
 lemma closedStalkSupport_le_of_epi
     {M N : X.Modules} (f : M ⟶ N) [Epi f] :
     closedStalkSupport N ≤ closedStalkSupport M := by

@@ -36,7 +36,9 @@ noncomputable def map (rF : F.RepresentableBy YF) (rG : G.RepresentableBy YG) (�
   rG.homEquiv.symm (α.app (Opposite.op YF) (rF.homEquiv (𝟙 YF)))
 
 /-- **The characterising property.** Precomposing with the induced morphism corresponds,
-under the two representations, to applying `α`.-/
+under the two representations, to applying `α`.
+@isnad1 id=eq.0h10v.s9.bfdf62f329fe from=translated src=- shape=9ab0d2d2 vocab=e7ff0d5b
+-/
 theorem homEquiv_comp_map (rF : F.RepresentableBy YF) (rG : G.RepresentableBy YG)
     (α : F ⟶ G) {X : C} (f : X ⟶ YF) :
     rG.homEquiv (f ≫ rF.map rG α) = α.app (Opposite.op X) (rF.homEquiv f) := by
@@ -46,13 +48,17 @@ theorem homEquiv_comp_map (rF : F.RepresentableBy YF) (rG : G.RepresentableBy YG
     rw [← rF.homEquiv_comp f (𝟙 YF), Category.comp_id]
   rw [← hnat, hf]
 
-/-- The induced morphism sends the tautological element to `α` of it.-/
+/-- The induced morphism sends the tautological element to `α` of it.
+@isnad1 id=eq.0h8v.s8.8946d258bf86 from=translated src=- shape=7ee61e49 vocab=aecb7147
+-/
 @[simp] theorem homEquiv_map (rF : F.RepresentableBy YF) (rG : G.RepresentableBy YG)
     (α : F ⟶ G) :
     rG.homEquiv (rF.map rG α) = α.app (Opposite.op YF) (rF.homEquiv (𝟙 YF)) := by
   simpa using homEquiv_comp_map rF rG α (𝟙 YF)
 
-/-- The morphism induced by the identity transformation is the identity.-/
+/-- The morphism induced by the identity transformation is the identity.
+@isnad1 id=eq.0h4v.s6.80578379eede from=translated src=- shape=f3662da8 vocab=433d23e3
+-/
 @[simp] theorem map_id (rF : F.RepresentableBy YF) : rF.map rF (𝟙 F) = 𝟙 YF := by
   refine rF.homEquiv.injective ?_
   rw [homEquiv_map]

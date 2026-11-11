@@ -28,14 +28,18 @@ namespace AlgebraicGeometry.Scheme.IdealSheafData
 
 variable {X : Scheme.{u}} (J : X.IdealSheafData)
 
-/-- On an affine open, a positive-power subscheme has the expected kernel.-/
+/-- On an affine open, a positive-power subscheme has the expected kernel.
+@isnad1 id=eq.0h4v.s14.62e737a7b99f from=translated src=- shape=18cde17a vocab=bc4aa7f3
+-/
 @[simp]
 theorem ker_positivePower_subschemeι_app (n : ℕ) (U : X.affineOpens) :
     RingHom.ker ((J ^ (n + 1)).subschemeι.app U).hom =
       (J.ideal U) ^ (n + 1) := by
   simpa using (J ^ (n + 1)).ker_subschemeι_app U
 
-/-- Passing to a positive power does not change the underlying closed subset.-/
+/-- Passing to a positive power does not change the underlying closed subset.
+@isnad1 id=eq.0h3v.s9.50630b9846b6 from=translated src=- shape=3b632b06 vocab=dafdde9d
+-/
 @[simp]
 theorem range_positivePower_subschemeι (n : ℕ) :
     Set.range (J ^ (n + 1)).subschemeι = J.support := by

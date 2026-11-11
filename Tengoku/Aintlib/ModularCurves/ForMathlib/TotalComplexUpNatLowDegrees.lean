@@ -28,6 +28,9 @@ noncomputable def πTotalUpNat (q p n : ℕ) :
       if hp : p' = p then (K.XXIsoOfEq _ _ _ hq hp).hom else 0
     else 0
 
+/--
+@isnad1 id=eq.1h7v.s10.e269ce9bb6d1 from=translated src=- shape=f0e7252f vocab=ad7259d0
+-/
 @[reassoc (attr := simp)]
 theorem ιTotal_πTotalUpNat (q' p' n : ℕ) (h : q' + p' = n) (q p : ℕ) :
     K.ιTotal (.up ℕ) q' p' n h ≫ K.πTotalUpNat q p n =
@@ -36,12 +39,17 @@ theorem ιTotal_πTotalUpNat (q' p' n : ℕ) (h : q' + p' = n) (q p : ℕ) :
       else 0 := by
   simp [πTotalUpNat]
 
+/--
+@isnad1 id=eq.0h4v.s9.7fc63df43341 from=translated src=- shape=93c21fb9 vocab=56993c65
+-/
 @[simp]
 theorem ιTotal_πTotalUpNat_self (q p : ℕ) :
     K.ιTotal (.up ℕ) q p (q + p) rfl ≫ K.πTotalUpNat q p (q + p) = 𝟙 _ := by
   simp [πTotalUpNat]
 
-/-- Total degree zero consists only of bidegree `(0,0)`.-/
+/-- Total degree zero consists only of bidegree `(0,0)`.
+@isnad1 id=eq.0h2v.s8.23bc41477f47 from=translated src=- shape=c8afc6cc vocab=56993c65
+-/
 theorem totalUpNat_zero_decomposition :
     K.πTotalUpNat 0 0 0 ≫ K.ιTotal (.up ℕ) 0 0 0 rfl = 𝟙 _ := by
   apply HomologicalComplex₂.total.hom_ext
@@ -52,7 +60,9 @@ theorem totalUpNat_zero_decomposition :
   subst q p
   simp
 
-/-- Total degree one is the sum of bidegrees `(0,1)` and `(1,0)`.-/
+/-- Total degree one is the sum of bidegrees `(0,1)` and `(1,0)`.
+@isnad1 id=eq.0h2v.s10.bee7505f3154 from=translated src=- shape=fc311f93 vocab=56993c65
+-/
 theorem totalUpNat_one_decomposition :
     K.πTotalUpNat 0 1 1 ≫ K.ιTotal (.up ℕ) 0 1 1 rfl +
       K.πTotalUpNat 1 0 1 ≫ K.ιTotal (.up ℕ) 1 0 1 rfl = 𝟙 _ := by
@@ -66,7 +76,9 @@ theorem totalUpNat_one_decomposition :
     simp
 
 /-- The total differential on a bidegree is the resolution differential plus the
-signed Cech differential.-/
+signed Cech differential.
+@isnad1 id=eq.0h4v.s11.27d417114be4 from=translated src=- shape=b4705443 vocab=75e9780e
+-/
 @[reassoc]
 theorem ιTotal_d_upNat (q p : ℕ) :
     K.ιTotal (.up ℕ) q p (q + p) rfl ≫

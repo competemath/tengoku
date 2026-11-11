@@ -27,7 +27,9 @@ variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
 namespace Module
 
-/-- A finitely generated ideal cutting out the support has a power in the annihilator.-/
+/-- A finitely generated ideal cutting out the support has a power in the annihilator.
+@isnad1 id=ex.2h3v.s7.add5b18a848b from=translated src=- shape=fe91b487 vocab=2ba7ee06
+-/
 theorem exists_pow_le_annihilator_of_fg_of_support_subset_zeroLocus
     [Module.Finite R M] (I : Ideal R) (hI : I.FG)
     (hsupport : Module.support R M ⊆ zeroLocus I) :
@@ -37,7 +39,9 @@ theorem exists_pow_le_annihilator_of_fg_of_support_subset_zeroLocus
     (zeroLocus_subset_zeroLocus_iff (Module.annihilator R M) I).mp hsupport
   exact Ideal.exists_pow_le_of_le_radical_of_fg hradical hI
 
-/-- Noetherian form of support-ideal annihilation.-/
+/-- Noetherian form of support-ideal annihilation.
+@isnad1 id=ex.1h3v.s7.052f3fc3ffb0 from=translated src=- shape=c096e707 vocab=98ff6a94
+-/
 theorem exists_pow_le_annihilator_of_support_subset_zeroLocus
     [Module.Finite R M] [IsNoetherianRing R] (I : Ideal R)
     (hsupport : Module.support R M ⊆ zeroLocus I) :
@@ -45,7 +49,9 @@ theorem exists_pow_le_annihilator_of_support_subset_zeroLocus
   exists_pow_le_annihilator_of_fg_of_support_subset_zeroLocus
     I (IsNoetherian.noetherian I) hsupport
 
-/-- Return support-ideal annihilation in the quotient-module interface.-/
+/-- Return support-ideal annihilation in the quotient-module interface.
+@isnad1 id=ex.1h3v.s7.8e698308c298 from=translated src=- shape=5679479b vocab=3fba0966
+-/
 theorem exists_pow_isTorsionBySet_of_support_subset_zeroLocus
     [Module.Finite R M] [IsNoetherianRing R] (I : Ideal R)
     (hsupport : Module.support R M ⊆ zeroLocus I) :

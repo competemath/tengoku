@@ -25,7 +25,9 @@ namespace ModularCurves
 
 variable {R : Type u} [CommRing R]
 
-/-- A tensor product with a subsingleton right factor is a subsingleton.-/
+/-- A tensor product with a subsingleton right factor is a subsingleton.
+@isnad1 id=subsingl.0h3v.s6.0c58561acb22 from=translated src=- shape=984ae179 vocab=e3735ba3
+-/
 theorem TensorProduct.subsingleton_right (A : Type v) [CommRing A] [Algebra R A]
     (M : Type v) [AddCommGroup M] [Module R M] [Subsingleton M] :
     Subsingleton (A ⊗[R] M) := by
@@ -37,7 +39,9 @@ theorem TensorProduct.subsingleton_right (A : Type v) [CommRing A] [Algebra R A]
 
 /-- Positive-tail exactness of a bounded complex of flat modules after a base change `A`
 transports along any algebra tower `R → A → C`: the base-changed complex has flat terms
-and flat cokernels, so its exactness is universal.-/
+and flat cokernels, so its exactness is universal.
+@isnad1 id=exact.2h7v.s12.8a240d37f54f from=translated src=- shape=74345622 vocab=5b56a9e6
+-/
 theorem LinearMap.baseChange_exact_of_bounded_flat_baseChange_exact
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
     [∀ n, Module.Flat R (M n)]
@@ -66,7 +70,9 @@ theorem LinearMap.baseChange_exact_of_bounded_flat_baseChange_exact
       (LinearMap.ext fun y ↦ (hexact q hq).apply_apply_eq_zero y) (hexact q hq)
   exact (LinearMap.baseChange_baseChange_exact_iff A C (d q) (d (q + 1))).mp hAC
 
-/-- Bijectivity of the kernel base-change comparison composes along an algebra tower.-/
+/-- Bijectivity of the kernel base-change comparison composes along an algebra tower.
+@isnad1 id=bijectiv.2h6v.s15.3385dd09c2df from=translated src=- shape=26cffee4 vocab=a0d697dc
+-/
 theorem kerBaseChangeComparison_bijective_of_tower
     {R : Type u} [CommRing R] {P Q : Type u} [AddCommGroup P] [AddCommGroup Q]
     [Module R P] [Module R Q] (f : P →ₗ[R] Q)

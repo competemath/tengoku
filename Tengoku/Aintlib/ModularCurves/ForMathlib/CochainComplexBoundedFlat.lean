@@ -26,7 +26,9 @@ namespace ModularCurves
 variable {R : Type u} [CommRing R]
 
 /-- A bounded cochain complex of flat modules with finite homology is exact over the base when
-it is exact after every field base change.-/
+it is exact after every field base change.
+@isnad1 id=exact.2h4v.s13.cfa43cef34c9 from=translated src=- shape=827c6c3e vocab=6cecf251
+-/
 theorem HomologicalComplex.functionExact_of_bounded_flat_forall_field_baseChange_exact_of_finite_homology
     (C : CochainComplex (ModuleCat.{v} R) ℕ)
     [∀ q, Module.Flat R (C.X q)]
@@ -63,7 +65,9 @@ theorem HomologicalComplex.functionExact_of_bounded_flat_forall_field_baseChange
     M d N hcomp hfinite hfield q hq
 
 /-- A bounded flat cochain complex with finite homology over a local ring is exact when its
-residue-field base change is exact.-/
+residue-field base change is exact.
+@isnad1 id=exact.2h4v.s13.a51c768459f5 from=translated src=- shape=feab437f vocab=58c4d35e
+-/
 theorem
   HomologicalComplex.functionExact_of_bounded_flat_residueField_baseChange_exact_of_finite_homology
     [IsLocalRing R]
@@ -110,7 +114,9 @@ theorem
       M d N hcomp hfinite hresidue q hq
 
 /-- Finite degree-zero homology of a cochain complex gives a finite kernel of its first
-differential.-/
+differential.
+@isnad1 id=finite.0h2v.s11.34697c342c20 from=translated src=- shape=0074ef22 vocab=45cc064a
+-/
 theorem HomologicalComplex.finite_kernel_zero_of_finite_homology
     (C : CochainComplex (ModuleCat.{v} R) ℕ)
     [Module.Finite R (C.homology 0)] :

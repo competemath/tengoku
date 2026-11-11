@@ -36,7 +36,9 @@ private theorem cancelBaseChange_one_one_tmul
 
 /-- A prescribed singleton basis after localization remains a prescribed
 singleton basis after any compatible scalar extension and linear
-equivalence.-/
+equivalence.
+@isnad1 id=ex.2h9v.s10.6472181cc406 from=translated src=- shape=099a545b vocab=4ccc2ac5
+-/
 theorem Module.exists_basis_singleton_of_localized_baseChange
     {R K V W : Type*} [CommRing R] [CommRing K]
     [AddCommGroup V] [Module R V] [AddCommGroup W] [Module K W]
@@ -177,7 +179,9 @@ private theorem localized_toSpanSingleton_bijective_of_fiber_ne_zero
     fR fM).mp hlocalBijective
 
 /-- If an element of a finitely presented flat module is nonzero in a rank-one residue fibre,
-then it is the unique vector of a basis after localizing away from an element outside the prime.-/
+then it is the unique vector of a basis after localizing away from an element outside the prime.
+@isnad1 id=ex.2h4v.s10.4c2ee525968b from=translated src=- shape=bba8a216 vocab=b27afb89
+-/
 theorem Module.FinitePresentation.exists_notMem_basis_singleton_of_fiber_ne_zero
     {R M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.FinitePresentation R M] [Module.Flat R M]
@@ -229,7 +233,9 @@ theorem Module.FinitePresentation.exists_notMem_basis_singleton_of_fiber_ne_zero
   simp [l, LinearMap.toSpanSingleton_apply]
 
 /-- A prescribed element of a finite flat rank-one module that is nonzero in
-every maximal residue fibre is the unique vector of a global singleton basis.-/
+every maximal residue fibre is the unique vector of a global singleton basis.
+@isnad1 id=ex.2h3v.s9.901a4b5db5f6 from=translated src=- shape=2df09706 vocab=e153998d
+-/
 theorem Module.exists_basis_singleton_of_forall_maximal_fiber_ne_zero
     {R M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Finite R M] [Module.Flat R M]
@@ -253,7 +259,9 @@ theorem Module.exists_basis_singleton_of_forall_maximal_fiber_ne_zero
   simp [l, LinearMap.toSpanSingleton_apply]
 
 /-- Nonvanishing after scalar extension to a field implies nonvanishing in the
-residue fibre determined by the kernel of the field structure map.-/
+residue fibre determined by the kernel of the field structure map.
+@isnad1 id=ne.2h5v.s9.79eace3744a3 from=translated src=- shape=6de3695b vocab=c0c89897
+-/
 theorem Module.one_tmul_fiber_ne_zero_of_field_ne_zero
     {R M K : Type u} [CommRing R] [AddCommGroup M] [Module R M]
     [Field K] [Algebra R K]
@@ -293,7 +301,9 @@ theorem Module.one_tmul_fiber_ne_zero_of_field_ne_zero
 
 /-- If an element of a finitely presented flat module is nonzero after base change to a field
 whose structure-map kernel is `p`, then it is the unique vector of a basis on a principal
-neighbourhood of `p`.-/
+neighbourhood of `p`.
+@isnad1 id=ex.3h5v.s10.80e48769f833 from=translated src=- shape=49d7c810 vocab=bba122af
+-/
 theorem Module.FinitePresentation.exists_notMem_basis_singleton_of_field_ne_zero
     {R M K : Type u} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.FinitePresentation R M] [Module.Flat R M]

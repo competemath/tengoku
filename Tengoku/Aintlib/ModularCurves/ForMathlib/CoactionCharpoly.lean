@@ -61,13 +61,18 @@ noncomputable def rightCoeff (i : hopfBasisIndex R A) : M ⊗[R] A →ₗ[R] M :
     (LinearMap.lTensor M ((hopfBasis R A).coord i))
 
 omit [Module.Finite R A] in
+/--
+@isnad1 id=eq.0h6v.s10.8ddd305e865e from=translated src=- shape=67c6d203 vocab=09ab9b13
+-/
 @[simp]
 theorem rightCoeff_tmul (i : hopfBasisIndex R A) (m : M) (x : A) :
     rightCoeff R A i (m ⊗ₜ[R] x) = (hopfBasis R A).coord i x • m := by
   simp [rightCoeff]
 
 /-- Every element of `M ⊗[R] A` is the sum of its right coefficients tensor basis
-vectors.-/
+vectors.
+@isnad1 id=eq.0h4v.s10.7ee766f6d4d2 from=translated src=- shape=b10d7b42 vocab=b6054fbb
+-/
 theorem sum_rightCoeff_tmul (x : M ⊗[R] A) :
     ∑ i, rightCoeff R A i x ⊗ₜ[R] (hopfBasis R A) i = x := by
   classical
@@ -88,14 +93,18 @@ theorem sum_rightCoeff_tmul (x : M ⊗[R] A) :
     simp only [map_add, TensorProduct.add_tmul]
     rw [Finset.sum_add_distrib, ihx, ihy]
 
-/-- Right coefficients of a basis-indexed sum of pure tensors.-/
+/-- Right coefficients of a basis-indexed sum of pure tensors.
+@isnad1 id=eq.0h5v.s10.058f955e738e from=translated src=- shape=0fd722e3 vocab=b6054fbb
+-/
 theorem rightCoeff_sum_tmul (x : hopfBasisIndex R A → M) (k : hopfBasisIndex R A) :
     rightCoeff R A k (∑ i, x i ⊗ₜ[R] (hopfBasis R A) i) = x k := by
   classical
   rw [map_sum]
   simp [Module.Basis.coord_apply, Module.Basis.repr_self, Finsupp.single_apply]
 
-/-- Basis-indexed sums of pure tensors are determined by their right coefficients.-/
+/-- Basis-indexed sums of pure tensors are determined by their right coefficients.
+@isnad1 id=eq.1h5v.s10.5ddfd1672a1f from=translated src=- shape=cfef2f56 vocab=d8aae932
+-/
 theorem sum_tmul_injective' {x y : hopfBasisIndex R A → M}
     (h : ∑ i, x i ⊗ₜ[R] (hopfBasis R A) i = ∑ i, y i ⊗ₜ[R] (hopfBasis R A) i) :
     x = y := by
@@ -109,13 +118,17 @@ end RightCoeff
 noncomputable def comulMatrixR : Matrix (hopfBasisIndex R A) (hopfBasisIndex R A) A :=
   fun i j => rightCoeff R A i (Coalgebra.comul ((hopfBasis R A) j))
 
-/-- The defining expansion of the right-slot Δ-matrix.-/
+/-- The defining expansion of the right-slot Δ-matrix.
+@isnad1 id=eq.0h3v.s11.319b46db0600 from=translated src=- shape=c5862991 vocab=e5e699e3
+-/
 theorem comul_hopfBasis' (j : hopfBasisIndex R A) :
     Coalgebra.comul ((hopfBasis R A) j)
       = ∑ i, comulMatrixR R A i j ⊗ₜ[R] (hopfBasis R A) i :=
   (sum_rightCoeff_tmul R A _).symm
 
-/-- **Counit identity of the right-slot Δ-matrix**: `ε(T̃ᵢⱼ) = δᵢⱼ`.-/
+/-- **Counit identity of the right-slot Δ-matrix**: `ε(T̃ᵢⱼ) = δᵢⱼ`.
+@isnad1 id=eq.0h4v.s9.a9497f6dabca from=translated src=- shape=fd654fc1 vocab=ffa06d81
+-/
 theorem counit_comulMatrixR (i j : hopfBasisIndex R A) :
     Coalgebra.counit (R := R) (comulMatrixR R A i j) = if i = j then (1 : R) else 0 := by
   classical
@@ -138,7 +151,9 @@ theorem counit_comulMatrixR (i j : hopfBasisIndex R A) :
   exact congrFun (sum_tmul_injective' R A hlaw) i
 
 /-- **Matrix-comultiplication identity of the right-slot Δ-matrix**:
-`Δ(T̃ᵢⱼ) = ∑ₖ T̃ₖⱼ ⊗ T̃ᵢₖ` — coassociativity along the basis, mirrored.-/
+`Δ(T̃ᵢⱼ) = ∑ₖ T̃ₖⱼ ⊗ T̃ᵢₖ` — coassociativity along the basis, mirrored.
+@isnad1 id=eq.0h4v.s10.1bbe62038a9b from=translated src=- shape=518857a9 vocab=130b4070
+-/
 theorem comul_comulMatrixR (i j : hopfBasisIndex R A) :
     Coalgebra.comul (R := R) (comulMatrixR R A i j)
       = ∑ k, comulMatrixR R A k j ⊗ₜ[R] comulMatrixR R A i k := by
@@ -184,7 +199,9 @@ noncomputable def comulMatrixRRepr (i j : hopfBasisIndex R A) :
   eq := (comul_comulMatrixR R A i j).symm
 
 /-- The entrywise antipode inverts the right-slot Δ-matrix from the right:
-`T̃ * T̃.map S = 1`.-/
+`T̃ * T̃.map S = 1`.
+@isnad1 id=eq.0h2v.s9.c9d503f518e6 from=translated src=- shape=ae768a5c vocab=363dedb6
+-/
 theorem comulMatrixR_mul_antipodeMatrixR :
     comulMatrixR R A * (comulMatrixR R A).map (HopfAlgebra.antipode R) = 1 := by
   classical
@@ -199,7 +216,9 @@ theorem comulMatrixR_mul_antipodeMatrixR :
   simpa [comulMatrixRRepr, apply_ite (algebraMap R A)] using h
 
 /-- The entrywise antipode inverts the right-slot Δ-matrix from the left:
-`T̃.map S * T̃ = 1`.-/
+`T̃.map S * T̃ = 1`.
+@isnad1 id=eq.0h2v.s9.51d85951dbf8 from=translated src=- shape=7372ef7b vocab=363dedb6
+-/
 theorem antipodeMatrixR_mul_comulMatrixR :
     (comulMatrixR R A).map (HopfAlgebra.antipode R) * comulMatrixR R A = 1 := by
   classical
@@ -213,7 +232,9 @@ theorem antipodeMatrixR_mul_comulMatrixR :
     rw [Matrix.map_apply, mul_comm]]
   simpa [comulMatrixRRepr, apply_ite (algebraMap R A)] using h
 
-/-- The right-slot Δ-matrix is a unit.-/
+/-- The right-slot Δ-matrix is a unit.
+@isnad1 id=isunit.0h2v.s8.2210977683cb from=translated src=- shape=2408b086 vocab=cfd318c1
+-/
 theorem isUnit_comulMatrixR : IsUnit (comulMatrixR R A) :=
   ⟨⟨comulMatrixR R A, (comulMatrixR R A).map (HopfAlgebra.antipode R),
     comulMatrixR_mul_antipodeMatrixR R A, antipodeMatrixR_mul_comulMatrixR R A⟩, rfl⟩
@@ -228,14 +249,18 @@ noncomputable def mulMatrix (u : B ⊗[R] A) :
     Matrix (hopfBasisIndex R A) (hopfBasisIndex R A) B :=
   fun i j => rightCoeff R A i (u * (1 : B) ⊗ₜ[R] (hopfBasis R A) j)
 
-/-- The defining expansion of the multiplication matrix.-/
+/-- The defining expansion of the multiplication matrix.
+@isnad1 id=eq.0h5v.s10.919455a461bd from=translated src=- shape=8c9be3ff vocab=2e0f3e4f
+-/
 theorem mul_one_tmul_hopfBasis (u : B ⊗[R] A) (j : hopfBasisIndex R A) :
     u * (1 : B) ⊗ₜ[R] (hopfBasis R A) j
       = ∑ i, mulMatrix R A u i j ⊗ₜ[R] (hopfBasis R A) i :=
   (sum_rightCoeff_tmul R A _).symm
 
 /-- **Transport of the multiplication matrix along an algebra map** `φ : B → B''`:
-the matrix of `(φ ⊗ id)(u)` is the entrywise `φ`-image of the matrix of `u`.-/
+the matrix of `(φ ⊗ id)(u)` is the entrywise `φ`-image of the matrix of `u`.
+@isnad1 id=eq.0h6v.s10.7785c27723bf from=translated src=- shape=19541024 vocab=84db60d8
+-/
 theorem mulMatrix_map {B'' : Type*} [CommRing B''] [Algebra R B''] (φ : B →ₐ[R] B'')
     (u : B ⊗[R] A) :
     mulMatrix R A ((Algebra.TensorProduct.map φ (AlgHom.id R A)) u)
@@ -258,7 +283,9 @@ theorem mulMatrix_map {B'' : Type*} [CommRing B''] [Algebra R B''] (φ : B →�
   rfl
 
 omit [Module.Finite R A] in
-/-- `rightCoeff` commutes with the left `B`-action on `B ⊗[R] A`.-/
+/-- `rightCoeff` commutes with the left `B`-action on `B ⊗[R] A`.
+@isnad1 id=eq.0h6v.s10.2c60ee5aeddd from=translated src=- shape=c7dd648d vocab=7fa37027
+-/
 theorem rightCoeff_smul (i : hopfBasisIndex R A) (b : B) (x : B ⊗[R] A) :
     rightCoeff R A i (b • x) = b * rightCoeff R A i x := by
   induction x with
@@ -269,7 +296,9 @@ theorem rightCoeff_smul (i : hopfBasisIndex R A) (b : B) (x : B ⊗[R] A) :
   | add x y ihx ihy => rw [smul_add, map_add, map_add, ihx, ihy, mul_add]
 
 omit [Module.Finite R A] in
-/-- The multiplication matrix of the left inclusion is scalar: `mulMatrix (b ⊗ 1) = b•1`.-/
+/-- The multiplication matrix of the left inclusion is scalar: `mulMatrix (b ⊗ 1) = b•1`.
+@isnad1 id=eq.0h4v.s8.cd6253736d07 from=translated src=- shape=7fc1af0b vocab=3b0c522b
+-/
 theorem mulMatrix_includeLeft (b : B) :
     mulMatrix R A (b ⊗ₜ[R] (1 : A)) = Matrix.diagonal (fun _ => b) := by
   classical
@@ -283,7 +312,9 @@ theorem mulMatrix_includeLeft (b : B) :
   · simp [h]
   · simp [h, Ne.symm h]
 
-/-- Multiplicativity of the multiplication matrix: `mulMatrix (u·v) = mulMatrix u * mulMatrix v`.-/
+/-- Multiplicativity of the multiplication matrix: `mulMatrix (u·v) = mulMatrix u * mulMatrix v`.
+@isnad1 id=eq.0h5v.s9.8b744143bfd0 from=translated src=- shape=fc109be4 vocab=bdc4e240
+-/
 theorem mulMatrix_mul (u v : B ⊗[R] A) :
     mulMatrix R A (u * v) = mulMatrix R A u * mulMatrix R A v := by
   classical
@@ -322,7 +353,9 @@ noncomputable def deltaTilde : (B ⊗[R] A) →ₐ[R] (B ⊗[R] A) ⊗[R] A :=
     (Algebra.TensorProduct.map (AlgHom.id R B) (Bialgebra.comulAlgHom R A))
 
 omit [Module.Free R A] [Module.Finite R A] in
-/-- The coassociativity bridge: on the image of the co-action, `δ̃` is `ρ ⊗ id`.-/
+/-- The coassociativity bridge: on the image of the co-action, `δ̃` is `ρ ⊗ id`.
+@isnad1 id=eq.1h4v.s11.60f41f90eb37 from=translated src=- shape=d2f7032e vocab=fe26e9d8
+-/
 theorem deltaTilde_comp_coaction (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) :
     (deltaTilde R A).comp ρ
       = (Algebra.TensorProduct.map ρ (AlgHom.id R A)).comp ρ := by
@@ -334,7 +367,9 @@ theorem deltaTilde_comp_coaction (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction
     ext <;> rfl]
   rw [AlgHom.id_comp]
 
-/-- `δ̃` of the right inclusion, expanded along the right-slot Δ-matrix.-/
+/-- `δ̃` of the right inclusion, expanded along the right-slot Δ-matrix.
+@isnad1 id=eq.0h4v.s12.22803e9dbbb1 from=translated src=- shape=01a181bf vocab=cca50de9
+-/
 theorem deltaTilde_one_tmul (j : hopfBasisIndex R A) :
     deltaTilde R A ((1 : B) ⊗ₜ[R] (hopfBasis R A) j)
       = ∑ p, ((1 : B) ⊗ₜ[R] comulMatrixR R A p j) ⊗ₜ[R] (hopfBasis R A) p := by
@@ -352,7 +387,9 @@ theorem deltaTilde_one_tmul (j : hopfBasisIndex R A) :
   simp
 
 omit [Module.Free R A] [Module.Finite R A] in
-/-- `δ̃` of a left-inclusion scalar is the ambient left-inclusion scalar.-/
+/-- `δ̃` of a left-inclusion scalar is the ambient left-inclusion scalar.
+@isnad1 id=eq.0h4v.s11.ded4cb955c76 from=translated src=- shape=67e8ecb7 vocab=ee934318
+-/
 theorem deltaTilde_tmul_one (b : B) :
     deltaTilde R A (b ⊗ₜ[R] (1 : A))
       = (b ⊗ₜ[R] (1 : A)) ⊗ₜ[R] (1 : A) := by
@@ -370,7 +407,9 @@ theorem deltaTilde_tmul_one (b : B) :
 
 /-- The LHS `deltaTilde`-expansion of the conjugation identity: `Δ̃(ρf · (1 ⊗ eⱼ))`
 expands, via the co-action square `deltaTilde_comp_coaction`, into a double sum over the
-Hopf basis with `mulMatrix (ρ f)` coefficients.-/
+Hopf basis with `mulMatrix (ρ f)` coefficients.
+@isnad1 id=eq.1h6v.s12.4715b0134431 from=translated src=- shape=2f829b0c vocab=cb219e4f
+-/
 theorem deltaTilde_coaction_mul_hopfBasis (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) (f : B) :
     ∀ j, deltaTilde R A ((ρ f) * (1 : B) ⊗ₜ[R] (hopfBasis R A) j)
       = ∑ q, (∑ p, ρ (mulMatrix R A (ρ f) q p) * ((1 : B) ⊗ₜ[R] comulMatrixR R A p j))
@@ -403,7 +442,9 @@ theorem deltaTilde_coaction_mul_hopfBasis (ρ : B →ₐ[R] B ⊗[R] A) (hρ : I
   exact Finset.sum_congr rfl fun q _ => (TensorProduct.sum_tmul _ _ _).symm
 
 /-- The RHS `deltaTilde`-expansion of the conjugation identity: `Δ̃(∑ₖ Mₖⱼ ⊗ eₖ)`
-(where `M = mulMatrix (ρ f)`) expands into a double sum over the Hopf basis.-/
+(where `M = mulMatrix (ρ f)`) expands into a double sum over the Hopf basis.
+@isnad1 id=eq.0h6v.s12.f44ff0d8d21a from=translated src=- shape=bb0664d9 vocab=831b6493
+-/
 theorem deltaTilde_sum_mulMatrix_hopfBasis (ρ : B →ₐ[R] B ⊗[R] A) (f : B) :
     ∀ j, deltaTilde R A (∑ k, mulMatrix R A (ρ f) k j ⊗ₜ[R] (hopfBasis R A) k)
       = ∑ q, (∑ k, ((1 : B) ⊗ₜ[R] comulMatrixR R A q k)
@@ -435,7 +476,9 @@ theorem deltaTilde_sum_mulMatrix_hopfBasis (ρ : B →ₐ[R] B ⊗[R] A) (f : B)
 
 /-- **The conjugation identity (★)**: for a co-action `ρ` and `f : B`, with
 `M := mulMatrix (ρ f)` and `Θ := (comulMatrixR).map includeRight`,
-`M.map ρ * Θ = Θ * M.map includeLeft` in matrices over `B ⊗[R] A`.-/
+`M.map ρ * Θ = Θ * M.map includeLeft` in matrices over `B ⊗[R] A`.
+@isnad1 id=eq.1h5v.s12.85c3ff672da8 from=translated src=- shape=5d7d9682 vocab=7842dd7d
+-/
 theorem mulMatrix_map_coaction_conj (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) (f : B) :
     (mulMatrix R A (ρ f)).map ρ
         * (comulMatrixR R A).map (Algebra.TensorProduct.includeRight (R := R) (A := B))
@@ -466,7 +509,9 @@ section Integrality
 variable {B : Type*} [CommRing B] [Algebra R B]
 
 /-- Characteristic polynomials of matrices conjugate by an explicitly invertible matrix
-agree.-/
+agree.
+@isnad1 id=eq.2h6v.s7.2f584fe6edd2 from=translated src=- shape=45bb4f14 vocab=87ab2ee1
+-/
 theorem _root_.Matrix.charpoly_eq_of_conj {n : Type*} [Fintype n] [DecidableEq n]
     {K : Type*} [CommRing K] {N₁ N₂ U V : Matrix n n K} (hUV : U * V = 1)
     (hconj : N₁ * U = U * N₂) : N₁.charpoly = N₂.charpoly := by
@@ -501,12 +546,17 @@ multiplication matrix of `ρ(f)` on `B ⊗[R] A`. Monic, with coinvariant coeffi
 noncomputable def coactionCharpoly (ρ : B →ₐ[R] B ⊗[R] A) (f : B) : Polynomial B :=
   (mulMatrix R A (ρ f)).charpoly
 
+/--
+@isnad1 id=monic.0h5v.s8.9ebbc47cc9dc from=translated src=- shape=ca290617 vocab=2ebc7fd6
+-/
 theorem coactionCharpoly_monic (ρ : B →ₐ[R] B ⊗[R] A) (f : B) :
     (coactionCharpoly R A ρ f).Monic :=
   Matrix.charpoly_monic _
 
 /-- **03BH, comodule form**: the coefficients of the co-action charpoly are coinvariant —
-`map ρ P = map ι P` via the conjugation identity (★).-/
+`map ρ P = map ι P` via the conjugation identity (★).
+@isnad1 id=eq.1h5v.s10.d651ba3ab349 from=translated src=- shape=9b5592e4 vocab=e31841dd
+-/
 theorem map_coactionCharpoly (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) (f : B) :
     (coactionCharpoly R A ρ f).map ρ.toRingHom
       = (coactionCharpoly R A ρ f).map
@@ -529,6 +579,9 @@ theorem map_coactionCharpoly (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ)
     simpa [map_mul, RingHom.mapMatrix_apply] using h
   exact Matrix.charpoly_eq_of_conj hUV (mulMatrix_map_coaction_conj R A ρ hρ f)
 
+/--
+@isnad1 id=mem.1h6v.s8.eddb11be129b from=translated src=- shape=2ef87d22 vocab=fcb702e4
+-/
 theorem coactionCharpoly_coeff_mem (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) (f : B)
     (k : ℕ) : (coactionCharpoly R A ρ f).coeff k ∈ coinvariants ρ := by
   simpa [Polynomial.coeff_map, mem_coinvariants] using
@@ -580,7 +633,9 @@ theorem eq_zero_of_mulMatrix_eq_zero {u : B ⊗[R] A} (h : mulMatrix R A u = 0) 
   simp
 
 /-- **Cayley–Hamilton, scalar form**: the co-action charpoly, evaluated through the left
-inclusion at `ρ(f)`, vanishes — `∑ᵢ (Pᵢ ⊗ 1)·ρ(f)^i = 0`.-/
+inclusion at `ρ(f)`, vanishes — `∑ᵢ (Pᵢ ⊗ 1)·ρ(f)^i = 0`.
+@isnad1 id=eq.0h5v.s10.0c46b080a68c from=translated src=- shape=fb2e5f4f vocab=2f1d945f
+-/
 theorem eval₂_includeLeft_coactionCharpoly (ρ : B →ₐ[R] B ⊗[R] A) (f : B) :
     Polynomial.eval₂ (Algebra.TensorProduct.includeLeft (S := R)).toRingHom (ρ f)
       (coactionCharpoly R A ρ f) = 0 := by
@@ -610,12 +665,18 @@ noncomputable def counitRetraction : (B ⊗[R] A) →ₐ[R] B :=
     (Algebra.TensorProduct.map (AlgHom.id R B) (Bialgebra.counitAlgHom R A))
 
 omit [Module.Free R A] [Module.Finite R A] in
+/--
+@isnad1 id=eq.1h4v.s8.636b90fbff28 from=translated src=- shape=28b92cb3 vocab=03884b80
+-/
 theorem counitRetraction_comp_coaction (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) :
     (counitRetraction R A).comp ρ = AlgHom.id R B := by
   rw [counitRetraction, AlgHom.comp_assoc]
   exact hρ.counit
 
 omit [Module.Free R A] [Module.Finite R A] in
+/--
+@isnad1 id=eq.0h3v.s8.382ab47ac78e from=translated src=- shape=55c0c956 vocab=b5e07b41
+-/
 theorem counitRetraction_comp_includeLeft :
     (counitRetraction R A).comp (Algebra.TensorProduct.includeLeft (S := R))
       = AlgHom.id R B := by
@@ -628,7 +689,9 @@ theorem counitRetraction_comp_includeLeft :
 
 /-- **03BJ, comodule form — the integrality theorem**: every element of `B` is integral
 over the co-invariants of a co-action of a finite free Hopf algebra, via the monic
-co-action charpoly.-/
+co-action charpoly.
+@isnad1 id=isintegr.1h5v.s9.e67d39b6b535 from=translated src=- shape=f173899a vocab=444ed207
+-/
 theorem isIntegral_coinvariants (ρ : B →ₐ[R] B ⊗[R] A) (hρ : IsCoaction ρ) (f : B) :
     IsIntegral (coinvariants ρ) f := by
   classical

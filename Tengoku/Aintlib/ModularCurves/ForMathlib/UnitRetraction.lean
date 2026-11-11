@@ -25,7 +25,9 @@ local ring (Nakayama); globally it glues by
 open IsLocalRing
 
 /-- Over a local ring, `1` in a nontrivial finite flat (hence free) algebra is
-unimodular: some linear functional sends it to `1`.-/
+unimodular: some linear functional sends it to `1`.
+@isnad1 id=ex.0h2v.s8.5f52eec56c12 from=translated src=- shape=ec8638e6 vocab=e437e17f
+-/
 theorem IsLocalRing.exists_linearMap_one_eq_one
     (L C : Type*) [CommRing L] [IsLocalRing L] [CommRing C] [Algebra L C]
     [Module.Finite L C] [Module.Flat L C] [Nontrivial C] :
@@ -62,7 +64,9 @@ open TensorProduct in
 retraction of its unit map: there is `r : B →ₗ[R] R` with `r ∘ (R → B) = id`.
 Locally at each maximal ideal this is unimodularity of `1` in a finite free
 module (`IsLocalRing.exists_linearMap_one_eq_one`); the local retractions glue
-by `LinearMap.split_injective_of_localization_maximal`.-/
+by `LinearMap.split_injective_of_localization_maximal`.
+@isnad1 id=ex.0h2v.s8.0dcbb836d0a2 from=translated src=- shape=30293b89 vocab=ee0200ec
+-/
 theorem Algebra.exists_retraction_of_faithfullyFlat
     {R B : Type*} [CommRing R] [CommRing B] [Algebra R B]
     [Module.FinitePresentation R B] [Module.FaithfullyFlat R B] :

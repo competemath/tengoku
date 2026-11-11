@@ -20,7 +20,9 @@ open scoped nonZeroDivisors
 
 namespace RingHom.Flat
 
-/-- A flat map of commutative rings carries nonzerodivisors to nonzerodivisors.-/
+/-- A flat map of commutative rings carries nonzerodivisors to nonzerodivisors.
+@isnad1 id=mem.2h4v.s7.9c59c4bd1e2d from=translated src=- shape=a3768563 vocab=b63d7413
+-/
 theorem map_mem_nonZeroDivisors {R S : Type*} [CommRing R] [CommRing S]
     {f : R →+* S} (hf : f.Flat) {r : R} (hr : r ∈ nonZeroDivisors R) :
     f r ∈ nonZeroDivisors S := by

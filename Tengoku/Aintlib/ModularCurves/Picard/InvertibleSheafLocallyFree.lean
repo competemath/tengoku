@@ -122,19 +122,25 @@ private instance invertibleQuasicoherentData_isFinitePresentation {M : X.Modules
       dsimp [SheafOfModules.LocalGeneratorsData.quasiCoherentData]
       infer_instance
 
-/-- An invertible scheme module is locally free in mathlib's sheaf-theoretic sense.-/
+/-- An invertible scheme module is locally free in mathlib's sheaf-theoretic sense.
+@isnad1 id=islocall.1h2v.s7.4f96c8249e95 from=translated src=- shape=055f5e9a vocab=c3aaab9e
+-/
 theorem IsInvertible.isLocallyFree {M : X.Modules} (hM : IsInvertible M) :
     M.IsLocallyFree :=
   (invertibleLocalGeneratorsData hM).isLocallyFree
 
 set_option backward.isDefEq.respectTransparency.types false in
-/-- An invertible scheme module is quasicoherent.-/
+/-- An invertible scheme module is quasicoherent.
+@isnad1 id=isquasic.1h2v.s7.ed3e2ae8142a from=translated src=- shape=055f5e9a vocab=9c8855d3
+-/
 theorem IsInvertible.isQuasicoherent {M : X.Modules} (hM : IsInvertible M) :
     M.IsQuasicoherent := by
   letI : M.IsLocallyFree := hM.isLocallyFree
   infer_instance
 
-/-- An invertible scheme module is finitely presented in mathlib's sheaf-theoretic sense.-/
+/-- An invertible scheme module is finitely presented in mathlib's sheaf-theoretic sense.
+@isnad1 id=isfinite.1h2v.s7.3b0526f7ee37 from=translated src=- shape=055f5e9a vocab=4ba27067
+-/
 theorem IsInvertible.isFinitePresentation {M : X.Modules} (hM : IsInvertible M) :
     M.IsFinitePresentation :=
   { exists_quasicoherentData :=
@@ -200,7 +206,9 @@ private instance localCokernelPresentation_isFinite {M N : X.Modules} (f : M ⟶
   dsimp only [localCokernelPresentation]
   infer_instance
 
-/-- The cokernel of a morphism between invertible scheme modules is finitely presented.-/
+/-- The cokernel of a morphism between invertible scheme modules is finitely presented.
+@isnad1 id=isfinite.2h4v.s7.ad3ec3f1aa40 from=translated src=- shape=7bf86d7a vocab=5d869328
+-/
 theorem IsInvertible.cokernel_isFinitePresentation {M N : X.Modules}
     (hM : IsInvertible M) (hN : IsInvertible N) (f : M ⟶ N) :
     (Limits.cokernel f).IsFinitePresentation := by

@@ -36,12 +36,17 @@ the functions on the quotient chart.-/
 def coinvariants (ρ : B →ₐ[R] B ⊗[R] A) : Subalgebra R B :=
   AlgHom.equalizer ρ Algebra.TensorProduct.includeLeft
 
+/--
+@isnad1 id=iff.0h5v.s9.3cfa15fabdca from=translated src=- shape=7e1512d7 vocab=bd6bf0bd
+-/
 @[simp]
 theorem mem_coinvariants {ρ : B →ₐ[R] B ⊗[R] A} {b : B} :
     b ∈ coinvariants ρ ↔ ρ b = b ⊗ₜ[R] 1 := by
   rw [coinvariants, AlgHom.mem_equalizer, Algebra.TensorProduct.includeLeft_apply]
 
-/-- The restriction of the co-action to the co-invariants is the trivial co-action `b ↦ b ⊗ₜ 1`.-/
+/-- The restriction of the co-action to the co-invariants is the trivial co-action `b ↦ b ⊗ₜ 1`.
+@isnad1 id=eq.0h5v.s9.98fae5e5a5d8 from=translated src=- shape=87b42e5b vocab=7cf96404
+-/
 theorem coinvariants_coaction (ρ : B →ₐ[R] B ⊗[R] A) (b : coinvariants ρ) :
     ρ b = (b : B) ⊗ₜ[R] 1 :=
   mem_coinvariants.mp b.2
@@ -51,7 +56,9 @@ If `φB` intertwines the two co-actions through *any* comparison map `T` of the 
 that carries `b ⊗ 1` to `φB b ⊗ 1`, then `φB` maps co-invariants to co-invariants. (`T` is
 data: at the chart-restriction instantiation it is the tensor of the two section
 restrictions, and the square is the geometric equivariance of the restricted action —
-`[HG-C4c]`.)-/
+`[HG-C4c]`.)
+@isnad1 id=mem.3h11v.s11.9683f280eb48 from=translated src=- shape=0c242ec1 vocab=82d964cc
+-/
 theorem mem_coinvariants_of_map {R' A' B' : Type*} [CommRing R'] [CommRing A'] [CommRing B']
     [Algebra R' A'] [Algebra R' B'] {ρ : B →ₐ[R] B ⊗[R] A} {ρ' : B' →ₐ[R'] B' ⊗[R'] A'}
     (φB : B →+* B') (T : B ⊗[R] A →+* B' ⊗[R'] A')

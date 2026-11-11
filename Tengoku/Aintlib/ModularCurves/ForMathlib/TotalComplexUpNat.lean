@@ -32,6 +32,9 @@ instance upNat_tensorSigns : TensorSigns (up ℕ) where
         pow_succ _ _
       _ = -((-1 : ℤˣ) ^ p) := by rw [mul_neg, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s6.4601ab9a7562 from=translated src=- shape=b135d8c5 vocab=3b8ae2f7
+-/
 @[simp]
 lemma ε_up_ℕ (n : ℕ) : (up ℕ).ε n = (-1 : ℤˣ) ^ n :=
   rfl
@@ -61,6 +64,9 @@ instance upNat_totalComplexShapeSymmetry :
     rw [one_mul, mul_add, mul_one]
     exact (pow_add (-1 : ℤˣ) (p * q) p).symm
 
+/--
+@isnad1 id=eq.0h2v.s6.62ecea299ead from=translated src=- shape=ba128e1f vocab=823b12b9
+-/
 @[simp]
 lemma σ_up_ℕ (p q : ℕ) :
     σ (up ℕ) (up ℕ) (up ℕ) p q = (-1 : ℤˣ) ^ (p * q) :=

@@ -39,7 +39,9 @@ open CategoryTheory AlgebraicGeometry TopologicalSpace
 namespace ModularCurves
 
 /-- A scheme locally of finite type over a field has a Jacobson underlying space (the base
-`Spec K` is a single point, hence Jacobson).-/
+`Spec K` is a single point, hence Jacobson).
+@isnad1 id=jacobson.0h3v.s5.c0be98f080ea from=translated src=- shape=99e73c5d vocab=ffe5f61f
+-/
 theorem jacobsonSpace_of_locallyOfFiniteType_over_field {X : Scheme.{u}} {K : Type u}
     [Field K] (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f] :
     JacobsonSpace ↥X := by
@@ -48,7 +50,9 @@ theorem jacobsonSpace_of_locallyOfFiniteType_over_field {X : Scheme.{u}} {K : Ty
   exact LocallyOfFiniteType.jacobsonSpace f
 
 /-- **(Gap B bridge, part 1)** If the closed points of a scheme locally of finite type over a
-field are connected in the subspace topology, the scheme is connected.-/
+field are connected in the subspace topology, the scheme is connected.
+@isnad1 id=preconne.0h3v.s7.50ed48b66ede from=translated src=- shape=518c9781 vocab=e9022c96
+-/
 theorem preconnectedSpace_of_closedPoints {X : Scheme.{u}} {K : Type u} [Field K]
     (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f]
     [PreconnectedSpace (closedPoints ↥X)] : PreconnectedSpace ↥X := by
@@ -60,7 +64,9 @@ theorem preconnectedSpace_of_closedPoints {X : Scheme.{u}} {K : Type u} [Field K
 
 /-- **(Gap B bridge, part 2)** Connectedness transfers along a surjective morphism of
 schemes: applied to `Y ⊗ ℂ → Y ⊗ ℚ̄` this is the insensitivity of geometric connectedness
-to the extension of algebraically closed fields.-/
+to the extension of algebraically closed fields.
+@isnad1 id=connecte.0h3v.s5.b8cea437560a from=translated src=- shape=52920965 vocab=779fcc75
+-/
 theorem connectedSpace_of_surjective {X Y : Scheme.{u}} (f : X ⟶ Y) [Surjective f]
     [ConnectedSpace ↥X] : ConnectedSpace ↥Y :=
   Function.Surjective.connectedSpace (Scheme.Hom.surjective f) f.continuous

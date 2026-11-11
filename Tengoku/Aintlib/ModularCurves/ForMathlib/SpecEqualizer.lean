@@ -36,7 +36,9 @@ noncomputable def specEqualizerπ (f g : B →ₐ[R] C) :
     Spec (CommRingCat.of B) ⟶ Spec (CommRingCat.of (AlgHom.equalizer f g)) :=
   Spec.map (CommRingCat.ofHom (AlgHom.equalizer f g).val.toRingHom)
 
-/-- The equalizer inclusion coequalizes `f` and `g` at the ring level: `incl ≫ f = incl ≫ g`.-/
+/-- The equalizer inclusion coequalizes `f` and `g` at the ring level: `incl ≫ f = incl ≫ g`.
+@isnad1 id=eq.0h5v.s9.b5be53536780 from=translated src=- shape=6d6ec905 vocab=ee159092
+-/
 theorem equalizer_val_comp (f g : B →ₐ[R] C) :
     f.toRingHom.comp (AlgHom.equalizer f g).val.toRingHom
       = g.toRingHom.comp (AlgHom.equalizer f g).val.toRingHom :=
@@ -44,7 +46,9 @@ theorem equalizer_val_comp (f g : B →ₐ[R] C) :
 
 /-- **The affine coequalizer cofork.** `specEqualizerπ f g : Spec B ⟶ Spec (eq f g)` coequalizes the
 two maps `Spec.map f, Spec.map g : Spec C ⇉ Spec B`. (Its universality — that `Spec (eq f g)` is the
-colimit — is the deferred finite-locally-free content.)-/
+colimit — is the deferred finite-locally-free content.)
+@isnad1 id=eq.0h5v.s8.6b1364e7e3c9 from=translated src=- shape=639b557b vocab=2e9e4054
+-/
 theorem specMap_comp_specEqualizerπ (f g : B →ₐ[R] C) :
     Spec.map (CommRingCat.ofHom f.toRingHom) ≫ specEqualizerπ f g
       = Spec.map (CommRingCat.ofHom g.toRingHom) ≫ specEqualizerπ f g := by

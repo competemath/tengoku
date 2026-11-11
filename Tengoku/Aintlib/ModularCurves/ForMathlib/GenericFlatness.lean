@@ -60,7 +60,9 @@ variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
 /-- **Prime-quotient injection** (Stacks 10.62.1 building block): a nonzero module over a
 Noetherian ring receives an injection from `R ⧸ 𝔭` for some prime `𝔭`. Take an associated
-prime `𝔭 = Ann(x)`; then `r ↦ r • x` has kernel `𝔭` and descends to an injection.-/
+prime `𝔭 = Ann(x)`; then `r ↦ r • x` has kernel `𝔭` and descends to an injection.
+@isnad1 id=ex.0h2v.s8.8a1642536c09 from=translated src=- shape=b7996a1f vocab=e96cb2b6
+-/
 theorem exists_primeQuotient_injection [IsNoetherianRing R] [Nontrivial M] :
     ∃ p : Ideal R, p.IsPrime ∧ ∃ f : (R ⧸ p) →ₗ[R] M, Function.Injective f := by
   obtain ⟨I, hI⟩ := associatedPrimes.nonempty R M
@@ -76,7 +78,9 @@ theorem exists_primeQuotient_injection [IsNoetherianRing R] [Nontrivial M] :
 /-- **Extension of free is free** (Stacks 0516, GF2): the middle term of a short exact sequence
 `0 → A → M → B → 0` of `R`-modules with `A` and `B` free is itself free. Since `B` is free it is
 projective, so the surjection `M → B` splits, giving `M ≃ₗ A × B`; a product of free modules is
-free.-/
+free.
+@isnad1 id=free.3h6v.s8.deae9b47452c from=translated src=- shape=fc658db9 vocab=31d7b005
+-/
 theorem free_of_exact_of_free {R A M B : Type*} [Ring R]
     [AddCommGroup A] [Module R A] [AddCommGroup M] [Module R M] [AddCommGroup B] [Module R B]
     (j : A →ₗ[R] M) (g : M →ₗ[R] B) (hj : Function.Injective j) (hg : Function.Surjective g)
@@ -88,7 +92,9 @@ theorem free_of_exact_of_free {R A M B : Type*} [Ring R]
 /-- **Support annihilation** (Stacks 10.40.5, GF4): if the support of a finite `R`-module `N`
 avoids a prime `𝔭`, then some `g ∉ 𝔭` annihilates `N`. For a finite module the support is the
 zero locus of the annihilator, so `𝔭 ∉ Supp N` means `Ann N ⊄ 𝔭`, i.e. there is `g ∈ Ann N`
-with `g ∉ 𝔭`.-/
+with `g ∉ 𝔭`.
+@isnad1 id=ex.1h3v.s7.a1d19362dd86 from=translated src=- shape=7fb5a00e vocab=3c9c7b31
+-/
 theorem exists_smul_eq_zero_of_notMem_support {R N : Type*} [CommRing R]
     [AddCommGroup N] [Module R N] [Module.Finite R N] (p : PrimeSpectrum R)
     (hp : p ∉ Module.support R N) : ∃ g ∉ p.asIdeal, ∀ n : N, g • n = 0 := by
@@ -100,7 +106,9 @@ theorem exists_smul_eq_zero_of_notMem_support {R N : Type*} [CommRing R]
 `K ⊗[R] S` (`K = FractionRing R`) of a finite-type `R`-algebra `S` admits a Noether normalization
 over `K`, i.e. a finite injective `K`-algebra map from a polynomial ring
 `K[X₀, …, X_{d-1}]`. This is Noether normalization over the field `K` applied to the base change
-`K ⊗[R] S`, which is finite-type over `K`.-/
+`K ⊗[R] S`, which is finite-type over `K`.
+@isnad1 id=ex.0h2v.s11.307614442ac9 from=translated src=- shape=f529fa90 vocab=d73609bc
+-/
 theorem exists_noetherNormalization_baseChange {R S : Type*} [CommRing R] [IsDomain R]
     [CommRing S] [Algebra R S] [Algebra.FiniteType R S]
     [Nontrivial ((FractionRing R) ⊗[R] S)] :

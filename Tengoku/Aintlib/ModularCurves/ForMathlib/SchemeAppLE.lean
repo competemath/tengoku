@@ -26,39 +26,51 @@ open CategoryTheory
 
 namespace AlgebraicGeometry
 
-/-- The `appLE` of an identity morphism is the identity.-/
+/-- The `appLE` of an identity morphism is the identity.
+@isnad1 id=eq.1h2v.s9.f8f43f2c7fb7 from=translated src=- shape=933f3698 vocab=6891efb9
+-/
 theorem appLE_id {X : Scheme.{u}} {U : X.Opens} (e : U ≤ (𝟙 X) ⁻¹ᵁ U) :
     Scheme.Hom.appLE (𝟙 X) U U e = 𝟙 _ := by
   rw [Scheme.Hom.appLE, AlgebraicGeometry.Scheme.Hom.id_app]
   exact (Category.id_comp _).trans (X.presheaf.map_id _)
 
-/-- `appLE` between the top opens is `appTop`.-/
+/-- `appLE` between the top opens is `appTop`.
+@isnad1 id=eq.0h3v.s9.8dc495f019a7 from=translated src=- shape=215500e2 vocab=b1037f03
+-/
 theorem appLE_top_top {X Y : Scheme.{u}} (f : X ⟶ Y) :
     Scheme.Hom.appLE f ⊤ ⊤ le_top = f.appTop := by
   simp only [Scheme.Hom.appLE, TopologicalSpace.Opens.map_top, homOfLE_refl, op_id,
     CategoryTheory.Functor.map_id, Scheme.Hom.appTop]
   exact Category.comp_id _
 
-/-- The `⊤`-restriction of an open immersion's sections is the section iso.-/
+/-- The `⊤`-restriction of an open immersion's sections is the section iso.
+@isnad1 id=eq.0h2v.s9.cf608e96d51c from=translated src=- shape=07a2e521 vocab=bbd6b726
+-/
 theorem ι_appLE_top {X : Scheme.{u}} (U : X.Opens) :
     U.ι.appLE U ⊤ U.ι_preimage_self.ge = U.topIso.inv := by
   rw [Scheme.Opens.ι_appLE, Scheme.Opens.topIso_inv]
   congr 1
 
-/-- `resLE` transported along an equality of morphisms.-/
+/-- `resLE` transported along an equality of morphisms.
+@isnad1 id=eq.2h6v.s9.5dc6375bf947 from=translated src=- shape=1d088c65 vocab=20ee0da7
+-/
 theorem appLE_congr_hom_resLE {X Y : Scheme.{u}} {f g : X ⟶ Y} (h : f = g) (U : Y.Opens)
     (W : X.Opens) {e : W ≤ f ⁻¹ᵁ U} :
     f.resLE U W e = g.resLE U W (h ▸ e) := by
   subst h; rfl
 
-/-- `appLE` transported along an equality of morphisms.-/
+/-- `appLE` transported along an equality of morphisms.
+@isnad1 id=eq.2h6v.s9.eafd9d0e988d from=translated src=- shape=ddcac5d7 vocab=a3599977
+-/
 theorem appLE_congr_hom {X Y : Scheme.{u}} {f g : X ⟶ Y} (h : f = g) (U : Y.Opens)
     (W : X.Opens) (e : W ≤ f ⁻¹ᵁ U) :
     f.appLE U W e = g.appLE U W (h ▸ e) := by
   subst h; rfl
 
 /-- The canonical affine-chart morphism induces the inverse `ΓSpec` identification on
-sections.-/
+sections.
+@isnad1 id=eq.1h2v.s13.b62c0706ae3d from=translated src=- shape=c4e18ca3 vocab=c7d93f1e
+-/
 theorem IsAffineOpen.fromSpec_appLE_comp_ΓSpecIso
     {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U) :
     hU.fromSpec.appLE U ⊤

@@ -41,7 +41,9 @@ variable (R S M : Type*) [CommRing R] [CommRing S] [Algebra R S]
   [AddCommGroup M] [Module R M] [Module.FaithfullyFlat R S]
 
 /-- **Faithfully flat descent of module finiteness** (Stacks 03C4 (1)): if `S ⊗[R] M` is a
-finite `S`-module and `S` is faithfully flat over `R`, then `M` is a finite `R`-module.-/
+finite `S`-module and `S` is faithfully flat over `R`, then `M` is a finite `R`-module.
+@isnad1 id=finite.0h3v.s7.4433fed0254b from=translated src=- shape=a7731069 vocab=c2a79257
+-/
 theorem Module.Finite.of_finite_tensorProduct [h : Module.Finite S (S ⊗[R] M)] :
     Module.Finite R M := by
   classical
@@ -86,7 +88,9 @@ finitely presented `S`-module and `S` is faithfully flat over `R`, then `M` is a
 presented `R`-module. Present `M` by a finite free cover; by flatness the kernel base-changes
 to the kernel of the base-changed cover, which is finitely generated
 (`Module.FinitePresentation.fg_ker`), so `Module.Finite.of_finite_tensorProduct` descends its
-generation and the free cover presents `M`.-/
+generation and the free cover presents `M`.
+@isnad1 id=finitepr.0h3v.s7.77e09e3e93be from=translated src=- shape=a7731069 vocab=0130effc
+-/
 theorem Module.FinitePresentation.of_finitePresentation_tensorProduct
     [hfp : Module.FinitePresentation S (S ⊗[R] M)] :
     Module.FinitePresentation R M := by

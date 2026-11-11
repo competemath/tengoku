@@ -27,7 +27,9 @@ universe u
 variable {R : Type u} [CommSemiring R]
 
 /-- If `x` belongs to a minimal prime `p`, some element outside `p` makes `x` nilpotent after
-multiplication.-/
+multiplication.
+@isnad1 id=ex.2h3v.s7.07dd2efb63f4 from=translated src=- shape=c5023299 vocab=f2830897
+-/
 lemma Ideal.exists_notMem_isNilpotent_mul_of_mem_minimalPrimes
     {p : Ideal R} (hp : p ∈ minimalPrimes R) {x : R} (hx : x ∈ p) :
     ∃ y ∉ p, IsNilpotent (x * y) := by
@@ -49,7 +51,9 @@ lemma Ideal.exists_notMem_isNilpotent_mul_of_mem_minimalPrimes
     _ = 0 := by rw [hs, zero_mul]
 
 /-- A minimal prime has a basic-open neighborhood disjoint from any quasi-compact open that does
-not contain it.-/
+not contain it.
+@isnad1 id=ex.3h3v.s7.702bc044ec41 from=translated src=- shape=5491c945 vocab=a913c63c
+-/
 lemma PrimeSpectrum.exists_basicOpen_disjoint_of_mem_minimalPrimes
     (p : PrimeSpectrum R) (hp : p.asIdeal ∈ minimalPrimes R)
     (W : Opens (PrimeSpectrum R)) (hW : IsCompact (W : Set (PrimeSpectrum R)))
@@ -99,7 +103,9 @@ namespace AlgebraicGeometry
 variable {X : Scheme.{u}} {U W : X.Opens} (hU : IsAffineOpen U) {x : X}
 
 /-- A generic point of an irreducible component corresponds to a minimal prime in every affine
-open containing it.-/
+open containing it.
+@isnad1 id=mem.3h3v.s11.3eafd8ed83fe from=translated src=- shape=5dc8a844 vocab=8b9a143d
+-/
 lemma IsAffineOpen.primeIdealOf_mem_minimalPrimes_of_closure_mem_irreducibleComponents
     (hxU : x ∈ U) (hx : closure {x} ∈ irreducibleComponents X) :
     (hU.primeIdealOf ⟨x, hxU⟩).asIdeal ∈ minimalPrimes Γ(X, U) := by
@@ -125,7 +131,9 @@ lemma IsAffineOpen.primeIdealOf_mem_minimalPrimes_of_closure_mem_irreducibleComp
     PrimeSpectrum.vanishingIdeal_mem_minimalPrimes]
 
 /-- Inside an affine chart, a generic point of an irreducible component has a basic-open
-neighborhood disjoint from any open whose pullback to the chart is compact and omits the point.-/
+neighborhood disjoint from any open whose pullback to the chart is compact and omits the point.
+@isnad1 id=ex.5h4v.s11.4cfd3ccdc8b8 from=translated src=- shape=e36ecd23 vocab=5e148c3d
+-/
 lemma IsAffineOpen.exists_basicOpen_disjoint_of_closure_mem_irreducibleComponents
     (hxU : x ∈ U) (hx : closure {x} ∈ irreducibleComponents X)
     (hW : IsCompact (hU.fromSpec ⁻¹ᵁ W : Set (Spec Γ(X, U)))) (hxW : x ∉ W) :
@@ -169,7 +177,9 @@ lemma IsAffineOpen.exists_basicOpen_disjoint_of_closure_mem_irreducibleComponent
   exact hfW.le_bot ⟨hqf, hqW⟩
 
 /-- If a scheme has finitely many generic points of irreducible components, then each generic
-point has an affine-open neighborhood disjoint from the closures of all the other generic points.-/
+point has an affine-open neighborhood disjoint from the closures of all the other generic points.
+@isnad1 id=ex.0h2v.s9.0e2ad48e0346 from=translated src=- shape=fa25fc36 vocab=633dff70
+-/
 lemma genericPoints.exists_affineOpen_disjoint_closure
     [Finite (genericPoints X)] (η : genericPoints X) :
     ∃ V : X.Opens, IsAffineOpen V ∧ η.1 ∈ V ∧
@@ -198,7 +208,9 @@ lemma genericPoints.exists_affineOpen_disjoint_closure
   exact hVC hxV (Set.mem_iUnion_of_mem ζ (Set.mem_iUnion_of_mem hζ hxζ))
 
 /-- A finite set of generic points on a quasi-separated scheme admits pairwise-disjoint affine
-open neighborhoods.-/
+open neighborhoods.
+@isnad1 id=ex.0h1v.s8.5a3eeb0e8f5a from=translated src=- shape=54d305f9 vocab=02907d69
+-/
 lemma genericPoints.exists_pairwise_disjoint_affineOpens
     [Finite (genericPoints X)] [QuasiSeparatedSpace X] :
     ∃ U : genericPoints X → X.Opens,
@@ -241,7 +253,9 @@ lemma genericPoints.exists_pairwise_disjoint_affineOpens
   exact ⟨⟨ζ, hηζ.symm⟩, X.basicOpen_le (f η) hxη, X.basicOpen_le (f ζ) hxζ⟩
 
 /-- A quasi-separated scheme with finitely many generic points has an affine open containing all
-of them.-/
+of them.
+@isnad1 id=ex.0h1v.s7.7ee34941d9bc from=translated src=- shape=287ff190 vocab=89d221f1
+-/
 lemma genericPoints.exists_affineOpen_containing
     [Finite (genericPoints X)] [QuasiSeparatedSpace X] :
     ∃ U : X.Opens, IsAffineOpen U ∧ ∀ η : genericPoints X, η.1 ∈ U := by
@@ -251,7 +265,9 @@ lemma genericPoints.exists_affineOpen_containing
   exact TopologicalSpace.Opens.mem_iSup.mpr ⟨η, hηU η⟩
 
 /-- Given an arbitrary point on a quasi-separated scheme with finitely many generic points, there
-is an affine open containing that point and every generic point.-/
+is an affine open containing that point and every generic point.
+@isnad1 id=ex.0h2v.s8.3bc633f7d2d3 from=translated src=- shape=2c84194c vocab=89d221f1
+-/
 lemma genericPoints.exists_affineOpen_containing_point
     [Finite (genericPoints X)] [QuasiSeparatedSpace X] (x : X) :
     ∃ U : X.Opens, IsAffineOpen U ∧ x ∈ U ∧

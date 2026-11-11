@@ -33,7 +33,9 @@ def closedStalkSupportComplement (M : X.Modules) : X.Opens :=
   ⟨(closedStalkSupport M : Set X)ᶜ,
     (closedStalkSupport M).2.isOpen_compl⟩
 
-/-- A finite-type quasicoherent module vanishes away from its closed stalk support.-/
+/-- A finite-type quasicoherent module vanishes away from its closed stalk support.
+@isnad1 id=iszero.0h2v.s8.e0b2499b059a from=translated src=- shape=f3f023fb vocab=4b4906ce
+-/
 theorem isZero_restrict_closedStalkSupportComplement
     (M : X.Modules) [M.IsFiniteType] [M.IsQuasicoherent] :
     IsZero (M.restrict (closedStalkSupportComplement M).ι) := by
@@ -53,7 +55,9 @@ theorem isZero_restrict_closedStalkSupportComplement
     exact hxSupport
   exact x.property hxClosed
 
-/-- A module vanishing on an open has no support point in the image of that open.-/
+/-- A module vanishing on an open has no support point in the image of that open.
+@isnad1 id=not.1h5v.s9.fc7c9f88789a from=translated src=- shape=c4629da7 vocab=667f169a
+-/
 theorem not_mem_closedStalkSupport_of_isZero_restrict
     (j : U ⟶ X) [IsOpenImmersion j]
     (K : X.Modules) [K.IsFiniteType] [K.IsQuasicoherent]
@@ -67,7 +71,9 @@ theorem not_mem_closedStalkSupport_of_isZero_restrict
   exact hx' ((underlyingStalkFunctor x).map_isZero hK)
 
 /-- Support containment is strict if the smaller module vanishes on an open
-containing a support point of the larger module.-/
+containing a support point of the larger module.
+@isnad1 id=lt.3h6v.s9.abe77834cd69 from=translated src=- shape=3e7c67db vocab=e1009ad1
+-/
 theorem closedStalkSupport_lt_of_le_of_isZero_restrict
     (j : U ⟶ X) [IsOpenImmersion j]
     (K M : X.Modules) [K.IsFiniteType] [K.IsQuasicoherent]

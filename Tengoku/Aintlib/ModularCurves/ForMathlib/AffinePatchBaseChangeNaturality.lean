@@ -88,7 +88,9 @@ noncomputable def affinePatchRestrictionTensorHom
       (AlgHom.id Γ(S, (⊤ : S.Opens)) Γ(T, (⊤ : T.Opens)))).toRingHom
 
 /-- The left tensor generator pulls a function on `U` back along
-`U ×_S T ⟶ U`.-/
+`U ×_S T ⟶ U`.
+@isnad1 id=eq.1h6v.s16.77c18aebd8dd from=translated src=- shape=157fd5eb vocab=044efcb7
+-/
 theorem pullbackPreimageΓIsoTensor_inv_includeLeft
     {X S T : Scheme.{u}} (f : X ⟶ S) (t : T ⟶ S) (U : X.Opens)
     (hU : IsAffineOpen U) [IsAffine S] [IsAffine T] :
@@ -117,7 +119,9 @@ theorem pullbackPreimageΓIsoTensor_inv_includeLeft
     pullbackPreimageIsoPullbackRestrict_hom_fst]
 
 /-- The right tensor generator pulls a function on `T` back along
-`U ×_S T ⟶ T`.-/
+`U ×_S T ⟶ T`.
+@isnad1 id=eq.1h6v.s16.ea023c6507b3 from=translated src=- shape=ee01cc34 vocab=95fda336
+-/
 theorem pullbackPreimageΓIsoTensor_inv_includeRight
     {X S T : Scheme.{u}} (f : X ⟶ S) (t : T ⟶ S) (U : X.Opens)
     (hU : IsAffineOpen U) [IsAffine S] [IsAffine T] :

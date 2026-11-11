@@ -113,7 +113,9 @@ private lemma comap_ideal_top_ker_le_map [IsAffine X] [IsAffine Y]
 
 /-- Over affine schemes, the scheme-theoretic preimage of an ideal sheaf has top-value
 the extension of the top-value: `(I.comap f).ideal ⊤ = (I.ideal ⊤).map f.appTop`.
-The heart of `comap_mul`.-/
+The heart of `comap_mul`.
+@isnad1 id=eq.2h4v.s12.ee3fdc735c02 from=translated src=- shape=d2ae201f vocab=d96867e2
+-/
 theorem comap_ideal_top_of_isAffine [IsAffine X] [IsAffine Y]
     (I : Y.IdealSheafData) (f : X ⟶ Y) (hX : IsAffineOpen (⊤ : X.Opens))
     (hY : IsAffineOpen (⊤ : Y.Opens)) :
@@ -150,7 +152,9 @@ theorem comap_ideal_top_of_isAffine [IsAffine X] [IsAffine Y]
     rwa [hz, map_zero] at hcomp
 
 /-- Over affine schemes, the scheme-theoretic preimage of ideal sheaves is
-multiplicative.-/
+multiplicative.
+@isnad1 id=eq.0h5v.s6.e4acf8b20278 from=translated src=- shape=b66dbc23 vocab=eec1ab72
+-/
 theorem comap_mul_of_isAffine [IsAffine X] [IsAffine Y]
     (I J : Y.IdealSheafData) (f : X ⟶ Y) :
     (I * J).comap f = I.comap f * J.comap f := by
@@ -161,7 +165,9 @@ theorem comap_mul_of_isAffine [IsAffine X] [IsAffine Y]
     comap_ideal_top_of_isAffine J f (isAffineOpen_top X) (isAffineOpen_top Y)]
 
 /-- The `⊤`-value of the double preimage along an affine `U ≤ f⁻¹V`, expressed through
-the restriction `f.resLE`.-/
+the restriction `f.resLE`.
+@isnad1 id=eq.1h6v.s15.ed85e4d9b370 from=translated src=- shape=626778d9 vocab=3d298a67
+-/
 theorem comap_comap_ι_ideal_top (K : Y.IdealSheafData) (f : X ⟶ Y)
     (U : X.affineOpens) (V : Y.affineOpens) (hUV : U.1 ≤ f ⁻¹ᵁ V.1) :
     haveI : IsAffine U.1.toScheme := U.2
@@ -178,7 +184,9 @@ theorem comap_comap_ι_ideal_top (K : Y.IdealSheafData) (f : X ⟶ Y)
 
 /-- **The scheme-theoretic preimage of ideal sheaves is multiplicative**:
 `(I * J).comap f = I.comap f * J.comap f`. Globalises the affine case
-`comap_mul_of_isAffine` over a cover by affines `U x ≤ f⁻¹(V x)` via `ext_of_iSup_eq_top`.-/
+`comap_mul_of_isAffine` over a cover by affines `U x ≤ f⁻¹(V x)` via `ext_of_iSup_eq_top`.
+@isnad1 id=eq.0h5v.s5.57094ed51626 from=translated src=- shape=c46e1b8d vocab=a946add9
+-/
 theorem comap_mul (I J : Y.IdealSheafData) (f : X ⟶ Y) :
     (I * J).comap f = I.comap f * J.comap f := by
   classical
@@ -255,10 +263,15 @@ noncomputable def comapMonoidHom (f : X ⟶ Y) :
   map_one' := by rw [one_eq_top, comap_top, one_eq_top]
   map_mul' I J := comap_mul I J f
 
+/--
+@isnad1 id=eq.0h4v.s6.74c588097bcf from=translated src=- shape=f0cdb82f vocab=c4aac75a
+-/
 @[simp] lemma comapMonoidHom_apply (f : X ⟶ Y) (K : Y.IdealSheafData) :
     comapMonoidHom f K = K.comap f := rfl
 
-/-- The scheme-theoretic preimage of a finite product of ideal sheaves.-/
+/-- The scheme-theoretic preimage of a finite product of ideal sheaves.
+@isnad1 id=eq.0h6v.s6.3d8b55276ab0 from=translated src=- shape=1c7cb964 vocab=3b477f46
+-/
 lemma comap_prod {ι : Type*} (s : Finset ι) (K : ι → Y.IdealSheafData) (f : X ⟶ Y) :
     (∏ i ∈ s, K i).comap f = ∏ i ∈ s, (K i).comap f :=
   map_prod (comapMonoidHom f) K s
@@ -273,11 +286,16 @@ noncomputable def idealMonoidHom (X : Scheme.{u}) :
     simp [one_eq_top, ideal_top, Ideal.one_eq_top]
   map_mul' I J := ideal_mul I J
 
+/--
+@isnad1 id=eq.0h2v.s13.89dd56657b8b from=translated src=- shape=3a38f383 vocab=afe9063e
+-/
 @[simp] lemma idealMonoidHom_apply (X : Scheme.{u}) (I : X.IdealSheafData) :
     idealMonoidHom X I = I.ideal := rfl
 
 /-- For an isomorphism of schemes, pushing an ideal sheaf forward along the hom agrees with
-pulling it back along the inverse.-/
+pulling it back along the inverse.
+@isnad1 id=eq.0h4v.s5.68e2ecb03d1a from=translated src=- shape=d3041de7 vocab=3e8d8aaf
+-/
 lemma map_hom_eq_comap_inv {X Y : Scheme.{u}} (φ : X ≅ Y) (I : X.IdealSheafData) :
     I.map φ.hom = I.comap φ.inv := by
   refine le_antisymm ?_ ?_
@@ -289,13 +307,17 @@ lemma map_hom_eq_comap_inv {X Y : Scheme.{u}} (φ : X ≅ Y) (I : X.IdealSheafDa
     rw [← comap_comp, φ.hom_inv_id, comap_id]
 
 /-- The kernel of a morphism postcomposed with an isomorphism is the `comap` of the kernel
-along the inverse.-/
+along the inverse.
+@isnad1 id=eq.0h5v.s5.ffd2913d85c1 from=translated src=- shape=8a6f940a vocab=8fe00a71
+-/
 lemma _root_.AlgebraicGeometry.Scheme.Hom.ker_comp_iso {T X Y : Scheme.{u}} (z : T ⟶ X)
     (φ : X ≅ Y) : Scheme.Hom.ker (z ≫ φ.hom) = (Scheme.Hom.ker z).comap φ.inv := by
   rw [Scheme.Hom.ker_comp]
   exact map_hom_eq_comap_inv φ z.ker
 
-/-- Precomposition with an isomorphism does not change the kernel ideal sheaf.-/
+/-- Precomposition with an isomorphism does not change the kernel ideal sheaf.
+@isnad1 id=eq.0h5v.s5.080b1b32029a from=translated src=- shape=c90321c3 vocab=0c76d628
+-/
 lemma _root_.AlgebraicGeometry.Scheme.Hom.ker_iso_comp {X Y Z : Scheme.{u}} (τ : X ⟶ Y)
     [IsIso τ] (f : Y ⟶ Z) : Scheme.Hom.ker (τ ≫ f) = Scheme.Hom.ker f := by
   rw [Scheme.Hom.ker_comp, Scheme.Hom.ker_eq_bot_of_isIso, map_bot]
@@ -303,7 +325,9 @@ lemma _root_.AlgebraicGeometry.Scheme.Hom.ker_iso_comp {X Y Z : Scheme.{u}} (τ 
 /-- **Factoring through a pulled-back subscheme = factoring through the original after
 composing** (the `comapIso` dictionary). A map `g : T ⟶ X` factors through the scheme-
 theoretic preimage `(I.comap f).subscheme` iff its composite `g ≫ f` factors through
-`I.subscheme`.-/
+`I.subscheme`.
+@isnad1 id=iff.0h6v.s7.3a1eb2f60877 from=translated src=- shape=fc5c4327 vocab=9af10688
+-/
 lemma exists_factor_comap_iff {X Y T : Scheme.{u}} (I : Y.IdealSheafData) (f : X ⟶ Y)
     (g : T ⟶ X) :
     (∃ h : T ⟶ (I.comap f).subscheme, h ≫ (I.comap f).subschemeι = g) ↔

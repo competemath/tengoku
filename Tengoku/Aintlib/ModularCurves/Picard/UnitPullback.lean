@@ -41,6 +41,9 @@ noncomputable def unitEndomorphismOfTopSection {X : Scheme.{u}}
   (Scheme.Modules.unitObj X).unitHomEquiv.symm
     (moduleSectionsOfTop _ r)
 
+/--
+@isnad1 id=eq.0h4v.s16.2d3b59887075 from=translated src=- shape=170c6778 vocab=d3355ebf
+-/
 @[simp]
 theorem unitEndomorphismOfTopSection_app_apply {X : Scheme.{u}}
     (r : Γ(X, (⊤ : X.Opens))) (W : X.Opens) (a : Γ(X, W)) :
@@ -49,7 +52,9 @@ theorem unitEndomorphismOfTopSection_app_apply {X : Scheme.{u}}
   rfl
 
 /-- Composition of structure-sheaf scalar endomorphisms is multiplication of
-their defining top-open sections.-/
+their defining top-open sections.
+@isnad1 id=eq.0h3v.s11.2e17e140fa18 from=translated src=- shape=9063c44d vocab=43010583
+-/
 theorem unitEndomorphismOfTopSection_comp {X : Scheme.{u}}
     (r s : Γ(X, (⊤ : X.Opens))) :
     unitEndomorphismOfTopSection r ≫ unitEndomorphismOfTopSection s =
@@ -64,7 +69,9 @@ theorem unitEndomorphismOfTopSection_comp {X : Scheme.{u}}
       (homOfLE (le_top : U.unop ≤ (⊤ : X.Opens))).op (r * s)
   rw [map_mul, mul_assoc]
 
-/-- Multiplication by the unit section is the identity of the structure sheaf.-/
+/-- Multiplication by the unit section is the identity of the structure sheaf.
+@isnad1 id=eq.0h1v.s10.cfbaec4b6a0a from=translated src=- shape=ffc818fb vocab=cd3664a3
+-/
 theorem unitEndomorphismOfTopSection_one {X : Scheme.{u}} :
     unitEndomorphismOfTopSection (1 : Γ(X, (⊤ : X.Opens))) = 𝟙 _ := by
   apply SheafOfModules.hom_ext
@@ -90,12 +97,18 @@ noncomputable def unitAutomorphismOfTopUnit {X : Scheme.{u}}
         (r : Γ(X, (⊤ : X.Opens))) = 1 := r.inv_mul
     rw [h, unitEndomorphismOfTopSection_one]
 
+/--
+@isnad1 id=eq.0h2v.s11.f2be5c2554cf from=translated src=- shape=81f2e0ca vocab=ffbb6d9a
+-/
 @[simp]
 theorem unitAutomorphismOfTopUnit_hom {X : Scheme.{u}}
     (r : Γ(X, (⊤ : X.Opens))ˣ) :
     (unitAutomorphismOfTopUnit r).hom = unitEndomorphismOfTopSection r :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s12.32bb61b7390b from=translated src=- shape=6d3723eb vocab=fcf3c56d
+-/
 @[simp]
 theorem unitAutomorphismOfTopUnit_inv {X : Scheme.{u}}
     (r : Γ(X, (⊤ : X.Opens))ˣ) :
@@ -103,6 +116,9 @@ theorem unitAutomorphismOfTopUnit_inv {X : Scheme.{u}}
       unitEndomorphismOfTopSection (↑r⁻¹ : Γ(X, (⊤ : X.Opens))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s13.2f1ba80cf40d from=translated src=- shape=53a04dcf vocab=6e4d7dff
+-/
 theorem unitEndomorphismOfTopSection_comp_unitToPushforward
     {X Y : Scheme.{u}} (f : X ⟶ Y) (r : Γ(Y, (⊤ : Y.Opens))) :
     unitEndomorphismOfTopSection r ≫
@@ -145,6 +161,9 @@ theorem unitEndomorphismOfTopSection_comp_unitToPushforward
       rw [hmap]
       congr 1
 
+/--
+@isnad1 id=eq.0h4v.s12.7984e25b61a0 from=translated src=- shape=ccd372c9 vocab=c1691534
+-/
 theorem pullback_unitEndomorphismOfTopSection
     {X Y : Scheme.{u}} (f : X ⟶ Y) (r : Γ(Y, (⊤ : Y.Opens))) :
     (Scheme.Modules.pullbackUnitIso f).inv ≫

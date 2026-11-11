@@ -66,7 +66,9 @@ and `n` the rank of `G` — so this leaf is exactly the last two sentences of Ta
 "we can use the determinant homomorphism `GLₙ(A') → (A')*` to conclude that `λⁿ = 1`." -/
 
 /-- The determinant of a `unit` matrix and of its inverse multiply to `1`: `det ↑A · det ↑A⁻¹ = 1`.
-A packaging of `Matrix.det_mul` + `Units.mul_inv` used repeatedly below.-/
+A packaging of `Matrix.det_mul` + `Units.mul_inv` used repeatedly below.
+@isnad1 id=eq.0h3v.s7.4c850813055f from=translated src=- shape=9996a4bd vocab=978c88e7
+-/
 theorem det_val_mul_det_val_inv {S : Type u} [CommRing S] {n : ℕ}
     (A : (Matrix (Fin n) (Fin n) S)ˣ) :
     (↑A : Matrix (Fin n) (Fin n) S).det * (↑A⁻¹ : Matrix (Fin n) (Fin n) S).det = 1 := by
@@ -77,7 +79,9 @@ matrix `λ • Iₙ` is a commutator `A · B · A⁻¹ · B⁻¹` of invertible 
 
 Proof: `det` is multiplicative and `S` is commutative, so `det(A B A⁻¹ B⁻¹) = 1`; and
 `det(λ • Iₙ) = λⁿ` by `Matrix.det_smul`. This is the leaf discharged purely from mathlib
-(`Matrix.det_smul`, `Matrix.det_mul`, `Matrix.det_one`, `Units.mul_inv`).-/
+(`Matrix.det_smul`, `Matrix.det_mul`, `Matrix.det_one`, `Units.mul_inv`).
+@isnad1 id=eq.1h5v.s9.ffe018ed94c4 from=translated src=- shape=07f1070c vocab=9c90b735
+-/
 theorem pow_eq_one_of_smul_one_eq_commutator {S : Type u} [CommRing S] {n : ℕ}
     (lam : S) (A B : (Matrix (Fin n) (Fin n) S)ˣ)
     (h : lam • (1 : Matrix (Fin n) (Fin n) S) = ↑(A * B * A⁻¹ * B⁻¹)) :
@@ -105,7 +109,9 @@ theorem pow_eq_one_of_smul_one_eq_commutator {S : Type u} [CommRing S] {n : ℕ}
 `λ • id_M` is a commutator `P Q P⁻¹ Q⁻¹` of `S`-linear automorphisms of `M`, then `λⁿ = 1`.
 
 Proof: `LinearMap.det` is a monoid hom killing commutators over the commutative ring `S`, and
-`det(λ • id_M) = λ^(finrank M) = λⁿ` (`LinearMap.det_smul`, `LinearMap.det_id`).-/
+`det(λ • id_M) = λ^(finrank M) = λⁿ` (`LinearMap.det_smul`, `LinearMap.det_id`).
+@isnad1 id=eq.2h6v.s10.75d1c137beb8 from=translated src=- shape=1bb602c2 vocab=c6db733f
+-/
 theorem pow_eq_one_of_smul_id_eq_commutator {S : Type u} [CommRing S]
     {M : Type w} [AddCommGroup M] [Module S M] [Module.Free S M] [Module.Finite S M]
     {n : ℕ} (hn : Module.finrank S M = n) (lam : S)
@@ -150,12 +156,17 @@ viewed in `A'_B = WithConv (A →ₗ[R] B)` as the group-like element `λ_φ`. T
 `G(B)` is convolution, so the `k`-th convolution power `(pointConv φ)^k` is `k • Q`.-/
 def pointConv (φ : A →ₐ[R] B) : WithConv (A →ₗ[R] B) := toConv φ.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s8.7ceb9d6b2713 from=translated src=- shape=57b07582 vocab=f8763a45
+-/
 @[simp] lemma ofConv_pointConv (φ : A →ₐ[R] B) : ofConv (pointConv φ) = φ.toLinearMap := rfl
 
 /-- The convolution inverse of a point is the point composed with the antipode: this is the
 Hopf-algebra identity `∑ φ(a₍₁₎) · φ(S a₍₂₎) = φ(∑ a₍₁₎ · S a₍₂₎) = φ(ε(a) • 1) = ε_B(a)`,
 i.e. `λ_φ · (λ_φ ∘ S) = 1` in `A'_B`. (Tate p. 144: "λ is group-like iff it is invertible in
-`A'` and the map `λ : A → R` is multiplicative … invertible iff `λ(1) = 1`.")-/
+`A'` and the map `λ : A → R` is multiplicative … invertible iff `λ(1) = 1`.")
+@isnad1 id=eq.0h4v.s10.4ebdb9ed4be4 from=translated src=- shape=dc350a49 vocab=f8cceaf0
+-/
 theorem mul_pointConv_antipode_eq_one (φ : A →ₐ[R] B) :
     pointConv φ * toConv (φ.toLinearMap ∘ₗ antipode R) = 1 := by
   ext a
@@ -170,7 +181,9 @@ theorem mul_pointConv_antipode_eq_one (φ : A →ₐ[R] B) :
 /-- **(T-D5c — corollary.)** A `B`-point `φ` is a *unit* in `A'_B` (its convolution inverse
 being `φ ∘ S`). This is the statement that the points of `G` are group-like elements of `A'`,
 in particular invertible — needed so `λ_φ · Iₙ ∈ GLₙ(A'_B)` in the determinant step. Requires
-`G` commutative (`IsCocomm R A`) so that `A'_B` is a commutative ring.-/
+`G` commutative (`IsCocomm R A`) so that `A'_B` is a commutative ring.
+@isnad1 id=isunit.0h4v.s8.0e6c092826bc from=translated src=- shape=6df2b6e7 vocab=af9e5cd3
+-/
 theorem isUnit_pointConv [IsCocomm R A] (φ : A →ₐ[R] B) : IsUnit (pointConv φ) :=
   ⟨⟨pointConv φ, toConv (φ.toLinearMap ∘ₗ antipode R), mul_pointConv_antipode_eq_one φ,
     by rw [mul_comm]; exact mul_pointConv_antipode_eq_one φ⟩, rfl⟩
@@ -201,7 +214,9 @@ variable {S : Type*} [CommRing S] {M : Type*} [CommRing M] [Algebra S M]
 
 /-- Conjugating right-multiplication `R_u` by an `S`-algebra automorphism `τ` and then
 composing with `R_{u⁻¹}` yields right-multiplication by `u⁻¹ · τ(u)`:
-`τ ∘ R_u ∘ τ⁻¹ ∘ R_{u⁻¹} = R_{u⁻¹ · τ(u)}`. Pure ring theory (`map_mul`, associativity).-/
+`τ ∘ R_u ∘ τ⁻¹ ∘ R_{u⁻¹} = R_{u⁻¹ · τ(u)}`. Pure ring theory (`map_mul`, associativity).
+@isnad1 id=eq.0h4v.s9.d254a6fbb2db from=translated src=- shape=07506dec vocab=1949c314
+-/
 theorem mulRight_conj_mulRight_inv (τ : M ≃ₐ[S] M) (u : Mˣ) :
     (τ.toLinearMap ∘ₗ LinearMap.mulRight S (↑u : M)) ∘ₗ
         (τ.symm.toLinearMap ∘ₗ LinearMap.mulRight S (↑u⁻¹ : M))
@@ -219,7 +234,9 @@ variable {R : Type*} [CommRing R] {S : Type*} [CommRing S] [Algebra R S]
 variable {A : Type*} [CommRing A] [Algebra R A]
 
 /-- Over `M = S ⊗_R A`, right multiplication by `λ ⊗ 1` is the scalar `λ • id_M`
-(`R_{λ⊗1} = λ • id`). This is the identification `ℓ = λ • Iₙ` of Tate §3.8 (p. 144).-/
+(`R_{λ⊗1} = λ • id`). This is the identification `ℓ = λ • Iₙ` of Tate §3.8 (p. 144).
+@isnad1 id=eq.0h4v.s11.a0a37096a09c from=translated src=- shape=18948d8d vocab=f81dbcbd
+-/
 theorem mulRight_tmul_one (lam : S) :
     LinearMap.mulRight S ((lam ⊗ₜ[R] 1 : S ⊗[R] A)) = lam • LinearMap.id := by
   refine LinearMap.ext fun z => ?_
@@ -236,7 +253,9 @@ end RightMulTensor
 /-- **(T-D5e-τ chain link 1.)** The scalar tower `R → B → A'_B`: the `R`- and `B`-algebra
 structures on `S = WithConv (A →ₗ[R] B)` are compatible (transported through the `ofConv`
 bijection via `WithConv.ofConv_smul`). This unblocks `pointAlgHom` (the point as an
-`R`-algebra map `A → S`) and hence the automorphism `τ`.-/
+`R`-algebra map `A → S`) and hence the automorphism `τ`.
+@isnad1 id=isscalar.0h3v.s10.b1b499c62a3f from=translated src=- shape=f19b6c2a vocab=ee0f2e4e
+-/
 instance instIsScalarTowerWithConv {R : Type u} [CommRing R] {A : Type v} [AddCommGroup A]
     [Module R A] {B : Type w} [CommRing B] [Algebra R B] :
     IsScalarTower R B (WithConv (A →ₗ[R] B)) where
@@ -280,6 +299,9 @@ noncomputable def rightTranslationAlgHom (φ : A →ₐ[R] B) : A →ₐ[R] B �
   (Algebra.TensorProduct.map φ (AlgHom.id R A)).comp (Bialgebra.comulAlgHom R A)
 
 omit [IsCocomm R A] in
+/--
+@isnad1 id=eq.0h4v.s11.f0646582cc98 from=translated src=- shape=4cc6b134 vocab=620e1fb2
+-/
 @[simp] lemma rightTranslationAlgHom_toLinearMap (φ : A →ₐ[R] B) :
     (rightTranslationAlgHom φ).toLinearMap
       = (Algebra.TensorProduct.map φ (AlgHom.id R A)).toLinearMap ∘ₗ Coalgebra.comul := by
@@ -310,6 +332,9 @@ noncomputable def psiLinearEquiv :
     rTensorHomEquivHomRTensor R A B A ≪≫ₗ
     (WithConv.linearEquiv R (A →ₗ[R] B ⊗[R] A)).symm
 
+/--
+@isnad1 id=eq.0h6v.s14.32c5f98421c1 from=translated src=- shape=5582685d vocab=1ce6ecba
+-/
 @[simp] lemma psiLinearEquiv_tmul_ofConv (f : WithConv (A →ₗ[R] B)) (a : A) (x : A) :
     (psiLinearEquiv (f ⊗ₜ[R] a) : WithConv (A →ₗ[R] B ⊗[R] A)).ofConv x = f.ofConv x ⊗ₜ[R] a := by
   simp only [psiLinearEquiv, LinearEquiv.trans_apply, TensorProduct.congr_tmul,
@@ -317,7 +342,9 @@ noncomputable def psiLinearEquiv :
     WithConv.symm_linearEquiv_apply, WithConv.ofConv_toConv,
     TensorProduct.rTensorHomToHomRTensor_apply]
 
-/-- `Ψ` preserves the unit: `1_M = 1_S ⊗ 1_A ↦ 1_T` (both send `x ↦ ε(x) • (1 ⊗ 1)`).-/
+/-- `Ψ` preserves the unit: `1_M = 1_S ⊗ 1_A ↦ 1_T` (both send `x ↦ ε(x) • (1 ⊗ 1)`).
+@isnad1 id=eq.0h3v.s14.efb66e22ef62 from=translated src=- shape=1a967ced vocab=aeacadd7
+-/
 lemma psiLinearEquiv_one :
     psiLinearEquiv (1 : WithConv (A →ₗ[R] B) ⊗[R] A) = 1 := by
   apply WithConv.ext
@@ -328,7 +355,9 @@ lemma psiLinearEquiv_one :
 /-- `Ψ` is multiplicative: it carries the tensor-of-algebras product on `M = A'_B ⊗_R A` to the
 convolution product on `T = A'_{B⊗A}`. On generators both sides send
 `x ↦ ∑ (f x₍₁₎ · g x₍₂₎) ⊗ (a·c)` (the convolution Sweedler sum), by `convMul_apply` on each
-side.-/
+side.
+@isnad1 id=eq.0h5v.s15.44f36758ca5b from=translated src=- shape=149e554c vocab=37561760
+-/
 lemma psiLinearEquiv_mul (m₁ m₂ : WithConv (A →ₗ[R] B) ⊗[R] A) :
     psiLinearEquiv (m₁ * m₂) = psiLinearEquiv m₁ * psiLinearEquiv m₂ := by
   induction m₁ using TensorProduct.induction_on with
@@ -354,6 +383,9 @@ noncomputable def psiAlgEquiv :
     WithConv (A →ₗ[R] B) ⊗[R] A ≃ₐ[R] WithConv (A →ₗ[R] B ⊗[R] A) :=
   AlgEquiv.ofLinearEquiv psiLinearEquiv psiLinearEquiv_one psiLinearEquiv_mul
 
+/--
+@isnad1 id=eq.0h4v.s14.da95a28cad50 from=translated src=- shape=536c501e vocab=df1a25fd
+-/
 @[simp] lemma psiAlgEquiv_apply (m : WithConv (A →ₗ[R] B) ⊗[R] A) :
     psiAlgEquiv m = psiLinearEquiv m := rfl
 
@@ -375,21 +407,31 @@ noncomputable def leftPointHom (φ : A →ₐ[R] B) :
   (Algebra.TensorProduct.includeLeft :
     WithConv (A →ₗ[R] B) →ₐ[R] WithConv (A →ₗ[R] B) ⊗[R] A).comp (pointAlgHom φ)
 
+/--
+@isnad1 id=eq.0h5v.s12.9c0b6b9e6ca9 from=translated src=- shape=4d10f20b vocab=79f1739b
+-/
 @[simp] lemma leftPointHom_apply (φ : A →ₐ[R] B) (a : A) :
     leftPointHom φ a = pointAlgHom φ a ⊗ₜ[R] (1 : A) := rfl
 
 /-- `translationEndo φ (s ⊗ a') = (s ⊗ 1) · translationTarget φ a'` (from the tensor-lift on
-generators; `Algebra.ofId S M s = s ⊗ 1`).-/
+generators; `Algebra.ofId S M s = s ⊗ 1`).
+@isnad1 id=eq.0h6v.s14.5dc214bf8ad9 from=translated src=- shape=f4ae4b69 vocab=537a70d7
+-/
 lemma translationEndo_tmul (φ : A →ₐ[R] B) (s : WithConv (A →ₗ[R] B)) (a' : A) :
     translationEndo φ (s ⊗ₜ[R] a') = (s ⊗ₜ[R] (1 : A)) * translationTarget φ a' := by
   rw [translationEndo, Algebra.TensorProduct.lift_tmul, Algebra.ofId_apply,
     Algebra.TensorProduct.algebraMap_apply, Algebra.algebraMap_self_apply]
 
+/--
+@isnad1 id=eq.0h5v.s13.51517dbcb9cd from=translated src=- shape=1eed4cff vocab=091dfc9a
+-/
 lemma translationEndo_one_tmul (φ : A →ₐ[R] B) (a : A) :
     translationEndo φ (1 ⊗ₜ[R] a) = translationTarget φ a := by
   rw [translationEndo_tmul, ← Algebra.TensorProduct.one_def, one_mul]
 
-/-- `translationTarget φ a = ∑ ptS φ(a₍₁₎) ⊗ a₍₂₎` in any Sweedler representation of `a`.-/
+/-- `translationTarget φ a = ∑ ptS φ(a₍₁₎) ⊗ a₍₂₎` in any Sweedler representation of `a`.
+@isnad1 id=eq.0h7v.s12.470be1da3744 from=translated src=- shape=4f982599 vocab=39581516
+-/
 lemma translationTarget_apply (φ : A →ₐ[R] B) (a : A) {ι : Type*} (repr : Coalgebra.Repr R a ι) :
     translationTarget φ a = ∑ i ∈ repr.index, pointAlgHom φ (repr.left i) ⊗ₜ[R] repr.right i := by
   rw [translationTarget, AlgHom.comp_apply,
@@ -398,7 +440,9 @@ lemma translationTarget_apply (φ : A →ₐ[R] B) (a : A) {ι : Type*} (repr : 
 
 /-- **(T-D5e-τ, L1.)** In `A'_M`,
 `translationEndo φ ∘ translationTarget ψ = Pψ ⋆ (translationTarget φ as a point)`: both send
-`a ↦ ∑ (ptS ψ(a₍₁₎) ⊗ 1) · translationTarget φ(a₍₂₎)`.-/
+`a ↦ ∑ (ptS ψ(a₍₁₎) ⊗ 1) · translationTarget φ(a₍₂₎)`.
+@isnad1 id=eq.0h6v.s15.f407af351614 from=translated src=- shape=2c02858d vocab=c2b5ae17
+-/
 lemma translationEndo_translationTarget_conv (φ ψ : A →ₐ[R] B) (a : A) :
     translationEndo φ (translationTarget ψ a)
       = (pointConv (leftPointHom ψ) * pointConv (translationTarget φ)) a := by
@@ -410,7 +454,9 @@ lemma translationEndo_translationTarget_conv (φ ψ : A →ₐ[R] B) (a : A) :
     leftPointHom_apply]
 
 /-- **(T-D5e-τ, L2.)** `translationTarget φ = Pφ ⋆ η` in `A'_M`, `η = pointConv includeRight`:
-both send `a ↦ ∑ (ptS φ(a₍₁₎) ⊗ 1)(1 ⊗ a₍₂₎) = ∑ ptS φ(a₍₁₎) ⊗ a₍₂₎`.-/
+both send `a ↦ ∑ (ptS φ(a₍₁₎) ⊗ 1)(1 ⊗ a₍₂₎) = ∑ ptS φ(a₍₁₎) ⊗ a₍₂₎`.
+@isnad1 id=eq.0h4v.s15.26b05b78f260 from=translated src=- shape=72f2b2b2 vocab=3163d1a3
+-/
 lemma pointConv_translationTarget_eq (φ : A →ₐ[R] B) :
     pointConv (translationTarget φ)
       = pointConv (leftPointHom φ) * pointConv (Algebra.TensorProduct.includeRight) := by
@@ -426,14 +472,18 @@ lemma pointConv_translationTarget_eq (φ : A →ₐ[R] B) :
     leftPointHom_apply, Algebra.TensorProduct.includeRight_apply,
     Algebra.TensorProduct.tmul_mul_tmul, one_mul, mul_one]
 
-/-- `leftPointHom (φ ∘ S) = leftPointHom φ ∘ S` (the antipode passes through the point).-/
+/-- `leftPointHom (φ ∘ S) = leftPointHom φ ∘ S` (the antipode passes through the point).
+@isnad1 id=eq.0h4v.s11.70998b0bc1d5 from=translated src=- shape=cfe07aab vocab=fd8a4c64
+-/
 lemma leftPointHom_comp_antipode (φ : A →ₐ[R] B) :
     leftPointHom (φ.comp (antipodeAlgHom R A)) = (leftPointHom φ).comp (antipodeAlgHom R A) := by
   ext a
   simp only [leftPointHom_apply, AlgHom.comp_apply, pointAlgHom, AlgHom.comp_apply]
 
 /-- **(T-D5e-τ inverse.)** `Pφ ⋆ Pφ' = 1` in `A'_M` (`φ' = φ ∘ S`): the antipode gives the
-convolution inverse of the left-point (`mul_pointConv_antipode_eq_one`).-/
+convolution inverse of the left-point (`mul_pointConv_antipode_eq_one`).
+@isnad1 id=eq.0h4v.s15.3dc391315acb from=translated src=- shape=beac7759 vocab=7159fa01
+-/
 lemma leftPointConv_mul_antipode (φ : A →ₐ[R] B) :
     pointConv (leftPointHom φ) * pointConv (leftPointHom (φ.comp (antipodeAlgHom R A))) = 1 := by
   have h : pointConv (leftPointHom (φ.comp (antipodeAlgHom R A)))
@@ -444,7 +494,9 @@ lemma leftPointConv_mul_antipode (φ : A →ₐ[R] B) :
 
 /-- **(T-D5e-τ crux.)** `translationEndo φ (translationTarget ψ a) = 1 ⊗ a` whenever the left-points
 of `ψ` and `φ` are convolution-inverse (`Pψ ⋆ Pφ = 1`). Both antipode compositions of the
-right-translation reduce to this.-/
+right-translation reduce to this.
+@isnad1 id=eq.1h6v.s15.8a0747920a11 from=translated src=- shape=4c4f6f45 vocab=e8ff4a50
+-/
 lemma translationEndo_translationTarget_of_mul_eq_one (φ ψ : A →ₐ[R] B)
     (h : pointConv (leftPointHom ψ) * pointConv (leftPointHom φ) = 1) (a : A) :
     translationEndo φ (translationTarget ψ a) = 1 ⊗ₜ[R] a := by
@@ -476,6 +528,9 @@ noncomputable def translationEquiv (φ : A →ₐ[R] B) :
       exact translationEndo_translationTarget_of_mul_eq_one (φ.comp (antipodeAlgHom R A)) φ
         (leftPointConv_mul_antipode φ) a)
 
+/--
+@isnad1 id=eq.0h5v.s14.aeba0925186a from=translated src=- shape=1d557bef vocab=1a65f651
+-/
 @[simp] lemma translationEquiv_apply (φ : A →ₐ[R] B) (m : WithConv (A →ₗ[R] B) ⊗[R] A) :
     translationEquiv φ m = translationEndo φ m := rfl
 
@@ -496,7 +551,9 @@ noncomputable def coev : WithConv (A →ₗ[R] B) ⊗[R] A :=
 
 /-- **(T-D5e-core, key A.)** `Ψ(u) = pointConv (includeRight)`: under the comparison iso the
 coevaluation is the universal point `a ↦ 1 ⊗ a` of `T` (dual-basis collapse
-`∑ᵢ eᵢ'(x) • eᵢ = x`).-/
+`∑ᵢ eᵢ'(x) • eᵢ = x`).
+@isnad1 id=eq.0h3v.s12.ad7fe39d6831 from=translated src=- shape=3efdd6c1 vocab=621adea0
+-/
 lemma psiAlgEquiv_coev :
     psiAlgEquiv coev = pointConv (Algebra.TensorProduct.includeRight : A →ₐ[R] B ⊗[R] A) := by
   apply WithConv.ext
@@ -516,7 +573,9 @@ lemma psiAlgEquiv_coev :
   conv_rhs => rw [← (Module.Free.chooseBasis R A).sum_repr x, TensorProduct.tmul_sum]
   exact Finset.sum_congr rfl fun i _ => TensorProduct.smul_tmul _ _ _
 
-/-- `rightTranslationAlgHom φ a = ∑ φ(a₍₁₎) ⊗ a₍₂₎` in any Sweedler representation of `a`.-/
+/-- `rightTranslationAlgHom φ a = ∑ φ(a₍₁₎) ⊗ a₍₂₎` in any Sweedler representation of `a`.
+@isnad1 id=eq.0h7v.s10.d5d3ddf9a666 from=translated src=- shape=7cfde49c vocab=fb538b81
+-/
 lemma rightTranslationAlgHom_apply (φ : A →ₐ[R] B) (a : A) {ι : Type*}
     (repr : Coalgebra.Repr R a ι) :
     rightTranslationAlgHom φ a = ∑ i ∈ repr.index, φ (repr.left i) ⊗ₜ[R] repr.right i := by
@@ -525,7 +584,9 @@ lemma rightTranslationAlgHom_apply (φ : A →ₐ[R] B) (a : A) {ι : Type*}
   exact Finset.sum_congr rfl fun i _ => by rw [Algebra.TensorProduct.map_tmul, AlgHom.id_apply]
 
 /-- `translationEndo φ (f ⊗ a) = ∑ (φ(a₍₁₎) • f) ⊗ a₍₂₎` (convolution with the point-element is a
-scalar action; `f · ptS φ(a₍₁₎) = φ(a₍₁₎) • f`).-/
+scalar action; `f · ptS φ(a₍₁₎) = φ(a₍₁₎) • f`).
+@isnad1 id=eq.0h6v.s13.1037c1e6a295 from=translated src=- shape=9bbf4ee2 vocab=588519cd
+-/
 lemma translationEndo_tmul_expand (φ : A →ₐ[R] B) (f : WithConv (A →ₗ[R] B)) (a : A) :
     translationEndo φ (f ⊗ₜ[R] a)
       = ∑ i ∈ (ℛ R a).index, (φ ((ℛ R a).left i) • f) ⊗ₜ[R] (ℛ R a).right i := by
@@ -537,7 +598,9 @@ lemma translationEndo_tmul_expand (φ : A →ₐ[R] B) (f : WithConv (A →ₗ[R
 
 /-- **(T-D5e-core generator formula.)** `Ψ(τ (f ⊗ a))(x) = (f(x) ⊗ 1) · (∑ φ(a₍₁₎) ⊗ a₍₂₎)` — the
 key that makes the coevaluation computation basis-free: `x` enters only through `f(x)`, and the
-right-translation `∑ φ(a₍₁₎) ⊗ a₍₂₎` is undivided.-/
+right-translation `∑ φ(a₍₁₎) ⊗ a₍₂₎` is undivided.
+@isnad1 id=eq.0h7v.s14.a40a6b1ebb9a from=translated src=- shape=b12381b2 vocab=97aeb6d3
+-/
 lemma psiAlgEquiv_translationEndo_tmul (φ : A →ₐ[R] B) (f : WithConv (A →ₗ[R] B)) (a x : A) :
     (psiAlgEquiv (translationEndo φ (f ⊗ₜ[R] a))).ofConv x
       = (f.ofConv x ⊗ₜ[R] (1 : A)) * rightTranslationAlgHom φ a := by
@@ -551,7 +614,9 @@ lemma psiAlgEquiv_translationEndo_tmul (φ : A →ₐ[R] B) (f : WithConv (A →
 /-- **(T-D5e-core, LHS of Lemma 3.8.2.)** `Ψ(τ u) = pointConv (rightTranslationAlgHom φ)`: applying
 `τ` to the coevaluation and pushing through `Ψ` gives the point `a ↦ ∑ φ(a₍₁₎) ⊗ a₍₂₎`, by the
 generator formula and the dual-basis collapse
-`∑ᵢ eᵢ'(x) • rightTranslation(eᵢ) = rightTranslation x`.-/
+`∑ᵢ eᵢ'(x) • rightTranslation(eᵢ) = rightTranslation x`.
+@isnad1 id=eq.0h4v.s13.09b5d1c86865 from=translated src=- shape=c75490d5 vocab=62b4906b
+-/
 lemma psiAlgEquiv_translationEndo_coev (φ : A →ₐ[R] B) :
     psiAlgEquiv (translationEndo φ coev) = pointConv (rightTranslationAlgHom φ) := by
   apply WithConv.ext
@@ -571,7 +636,9 @@ lemma psiAlgEquiv_translationEndo_coev (φ : A →ₐ[R] B) :
   simp only [step, ← map_smul, ← map_sum, (Module.Free.chooseBasis R A).sum_repr]
 
 /-- **(T-D5e-core, RHS of Lemma 3.8.2.)** `Ψ(λ ⊗ 1) = pointConv (includeLeft ∘ φ)`, the point
-`a ↦ φ(a) ⊗ 1` of `T`.-/
+`a ↦ φ(a) ⊗ 1` of `T`.
+@isnad1 id=eq.0h4v.s12.e955a69dc3ce from=translated src=- shape=e11cd855 vocab=3e9e9481
+-/
 lemma psiAlgEquiv_pointConv_tmul_one (φ : A →ₐ[R] B) :
     psiAlgEquiv (pointConv φ ⊗ₜ[R] (1 : A))
       = pointConv ((Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] A).comp φ) := by
@@ -584,7 +651,9 @@ lemma psiAlgEquiv_pointConv_tmul_one (φ : A →ₐ[R] B) :
 /-- **(T-D5e-core — Tate's Lemma 3.8.2, `τ(u) = u · (λ ⊗ 1)`.)** The sole remaining ingredient of
 Deligne's proof. After applying the comparison iso `Ψ` (injective) it becomes the cocommutativity
 identity `∑ φ(a₍₁₎) ⊗ a₍₂₎ = ∑ φ(a₍₂₎) ⊗ a₍₁₎` (`comm_comul`): both sides are
-`(φ ⊗ id)(Δ a)` since `Δ` is cocommutative.-/
+`(φ ⊗ id)(Δ a)` since `Δ` is cocommutative.
+@isnad1 id=eq.0h4v.s13.7b35de3a4bc7 from=translated src=- shape=b3b10c3c vocab=a7b44c6a
+-/
 lemma coev_relation (φ : A →ₐ[R] B) :
     translationEndo φ coev = coev * (pointConv φ ⊗ₜ[R] (1 : A)) := by
   have key : psiAlgEquiv (translationEndo φ coev)
@@ -624,7 +693,9 @@ the comparison iso `Ψ = psiAlgEquiv : M ≅ A'_{B⊗A}` carries it to the unive
 `pointConv (includeRight)`, which `isUnit_pointConv` shows invertible; `τ = translationEquiv φ` is
 the right-translation automorphism; and `τ(u) = u · (λ ⊗ 1)` is `coev_relation`, which under `Ψ`
 becomes cocommutativity `∑ φ(a₍₁₎) ⊗ a₍₂₎ = ∑ φ(a₍₂₎) ⊗ a₍₁₎`. All pieces live in the
-`DeligneLeaf` section above.-/
+`DeligneLeaf` section above.
+@isnad1 id=ex.0h4v.s14.7e1d58d35aa7 from=translated src=- shape=7145b27a vocab=b84e0f60
+-/
 theorem deligne_operators (φ : A →ₐ[R] B) [Module.Free R A] [Module.Finite R A] :
     ∃ (u : (WithConv (A →ₗ[R] B) ⊗[R] A)ˣ)
       (τ : WithConv (A →ₗ[R] B) ⊗[R] A ≃ₐ[WithConv (A →ₗ[R] B)] WithConv (A →ₗ[R] B) ⊗[R] A),
@@ -649,7 +720,9 @@ Stated in the form the determinant step (`pow_eq_one_of_smul_id_eq_commutator`) 
 `S := A'_B = WithConv (A →ₗ[R] B)` and the free `S`-module `M = S ⊗_R A`, there exist units
 `P Q` of `End_S M` (i.e. `S`-linear automorphisms of `M`) with `λ • id_M = P Q P⁻¹ Q⁻¹`. Proof
 deferred to the sub-tickets T-D5e1–e5 (tensor module, `τ_λ`, right-mult operators, Lemma 3.8.2,
-commutator identity).-/
+commutator identity).
+@isnad1 id=ex.0h4v.s17.4330e9502e64 from=translated src=- shape=4ad38c51 vocab=da6e6b5a
+-/
 theorem exists_commutator_eq_pointConv_smul_one (φ : A →ₐ[R] B)
     [Module.Free R A] [Module.Finite R A] :
     ∃ P Q : (WithConv (A →ₗ[R] B) ⊗[R] A →ₗ[WithConv (A →ₗ[R] B)]
@@ -694,7 +767,9 @@ the determinant step (`pow_eq_one_of_smul_id_eq_commutator`).
 The rank `n` is taken as `finrank S (S ⊗_R A)` (supplied by the caller) rather than reduced to
 `finrank R A`: the reduction `finrank S (S ⊗_R A) = finrank R A` needs `StrongRankCondition` on
 both rings (i.e. a nontrivial base), which the geometric consumer (Layer B) provides in context.
-See `deligne_pointConv_pow_finrank` for that reduced form.-/
+See `deligne_pointConv_pow_finrank` for that reduced form.
+@isnad1 id=eq.1h5v.s11.cb49deccf1dd from=translated src=- shape=57bf57e2 vocab=0f11ae4e
+-/
 theorem deligne_pointConv_pow (φ : A →ₐ[R] B) [Module.Free R A] [Module.Finite R A]
     {n : ℕ}
     (hn : Module.finrank (WithConv (A →ₗ[R] B)) (WithConv (A →ₗ[R] B) ⊗[R] A) = n) :
@@ -708,7 +783,9 @@ theorem deligne_pointConv_pow (φ : A →ₐ[R] B) [Module.Free R A] [Module.Fin
 Deligne's theorem reads `(pointConv φ)^(finrank R A) = 1`: the point is killed by the order
 `finrank R A` of `G`. Uses `Module.finrank_baseChange` (`finrank S (S ⊗_R A) = finrank R A`),
 which requires `StrongRankCondition R` — supplied here by `[Nontrivial R]` via
-`commRing_strongRankCondition`.-/
+`commRing_strongRankCondition`.
+@isnad1 id=eq.0h4v.s10.5b2d6e5f71d4 from=translated src=- shape=8d1459e0 vocab=d76858f8
+-/
 theorem deligne_pointConv_pow_finrank (φ : A →ₐ[R] B) [Module.Free R A] [Module.Finite R A]
     [Nontrivial R] [Nontrivial (WithConv (A →ₗ[R] B))] :
     (pointConv φ) ^ (Module.finrank R A) = 1 :=
@@ -722,7 +799,9 @@ the point group — the exact form the geometric bridge (`RelEffCartierDiv.IsSub
 consumes once it identifies the curve's group law on a subgroup divisor with convolution of points.
 Obtained from `deligne_pointConv_pow_finrank` by transporting along the injective forgetful
 `AlgHom → LinearMap` (mathlib's `AlgHom.toLinearMap_convPow`/`toLinearMap_convOne`).
-Mathlib-upstream candidate alongside the linear form.-/
+Mathlib-upstream candidate alongside the linear form.
+@isnad1 id=eq.0h4v.s9.775801b990e6 from=translated src=- shape=01d02900 vocab=ef06e236
+-/
 theorem deligne_point_pow_eq_one (φ : A →ₐ[R] B) [Module.Free R A] [Module.Finite R A]
     [Nontrivial R] [Nontrivial (WithConv (A →ₗ[R] B))] :
     (toConv φ : WithConv (A →ₐ[R] B)) ^ (Module.finrank R A) = 1 := by

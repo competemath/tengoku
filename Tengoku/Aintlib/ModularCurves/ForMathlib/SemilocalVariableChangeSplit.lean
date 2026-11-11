@@ -246,7 +246,9 @@ Layer by layer: the `u`-cocycle splits since `Pic R = 0` for semilocal `R`
 are additive and split by the affine Čech `H¹` vanishing
 (`exists_sub_resLoc_eq_of_span_eq_top`); after the `(r,s)`-correction the residual central
 `t`-cocycle is additive and splits likewise.  A consumer rescales the `i`-th Weierstrass
-chart by `D i`; the corrected transitions are `1`, so the corrected charts glue.-/
+chart by `D i`; the corrected transitions are `1`, so the corrected charts glue.
+@isnad1 id=ex.3h4v.s13.ccaa14d3b673 from=translated src=- shape=d5917fc1 vocab=9770af25
+-/
 theorem exists_variableChange_eq_mul_of_span_eq_top [Fintype ι]
     [Finite (MaximalSpectrum R)] (hf : Ideal.span (Set.range f) = ⊤)
     (T : ∀ i j,

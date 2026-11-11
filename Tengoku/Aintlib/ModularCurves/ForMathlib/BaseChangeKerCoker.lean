@@ -84,7 +84,9 @@ variable {P : Type*} {Q : Type*} [AddCommGroup P] [AddCommGroup Q]
 `(R¹f_*𝓛) ⊗ k(s) ≅ H¹(E_s, 𝓛(s)) = 0` for all geometric points `s ∈ S`, we know that
 `R¹f_*𝓛 = 0`"). A finitely generated module whose base change to every `R`-field is
 trivial is trivial. Finiteness is necessary: over `ℤ`, the module `ℚ/ℤ` is divisible
-and torsion, so `K ⊗ ℚ/ℤ = 0` for every `ℤ`-field `K`, yet `ℚ/ℤ ≠ 0`.-/
+and torsion, so `K ⊗ ℚ/ℤ = 0` for every `ℤ`-field `K`, yet `ℚ/ℤ ≠ 0`.
+@isnad1 id=subsingl.1h2v.s6.60035ce6e46f from=translated src=- shape=02728abd vocab=06d691b9
+-/
 theorem Module.subsingleton_of_forall_field_tensor_subsingleton
     (N : Type v) [AddCommGroup N] [Module R N] [Module.Finite R N]
     (h : ∀ (K : Type u) [Field K] [Algebra R K], Subsingleton (K ⊗[R] N)) :
@@ -99,7 +101,9 @@ variable (M : Type*) [AddCommGroup M] [Module R M]
 
 /-- **Purity of a submodule with flat quotient** (the mechanism of Mumford §5 Lemma 2;
 Stacks 00HL; `Tor₁(Q/N, M) = 0` in Tor-free form): if `Q ⧸ N` is flat, then
-`N ⊗ M → Q ⊗ M` is injective for every `M`.-/
+`N ⊗ M → Q ⊗ M` is injective for every `M`.
+@isnad1 id=injectiv.0h4v.s10.d2dab48b89fc from=translated src=- shape=9dfc18fb vocab=5eed4f75
+-/
 theorem Module.Flat.lTensor_subtype_injective_of_flat_quotient
     (N : Submodule R Q) [Module.Flat R (Q ⧸ N)] :
     Function.Injective (N.subtype.lTensor M) :=
@@ -108,7 +112,9 @@ theorem Module.Flat.lTensor_subtype_injective_of_flat_quotient
 
 /-- **Two-out-of-three for flatness** (Mumford §5 p. 49: "it is easy to see that all
 the modules `Z^p = Ker(L^p → L^{p+1})` are flat too"): a submodule of a flat module
-with flat quotient is flat.-/
+with flat quotient is flat.
+@isnad1 id=flat.0h3v.s7.20997a130a47 from=translated src=- shape=93b73efa vocab=ac2181ff
+-/
 theorem Module.Flat.of_flat_quotient
     (N : Submodule R Q) [Module.Flat R Q] [Module.Flat R (Q ⧸ N)] :
     Module.Flat R N := by
@@ -117,7 +123,9 @@ theorem Module.Flat.of_flat_quotient
   exact (Module.Flat.rTensor_preserves_injective_linearMap _ I.injective_subtype).comp
     (Module.Flat.lTensor_subtype_injective_of_flat_quotient I N)
 
-/-- A binary product of flat modules is flat.-/
+/-- A binary product of flat modules is flat.
+@isnad1 id=flat.0h3v.s6.7dece049a80a from=translated src=- shape=1208ce7f vocab=0221ee20
+-/
 theorem Module.Flat.prod
     {M : Type v} {N : Type*} [AddCommGroup M] [AddCommGroup N]
     [Module R M] [Module R N] [Module.Flat R M] [Module.Flat R N] :
@@ -159,6 +167,9 @@ noncomputable def kerLTensorComparison :
     rw [LinearMap.mem_ker, ← LinearMap.comp_apply, ← LinearMap.lTensor_comp,
       LinearMap.comp_ker_subtype, LinearMap.lTensor_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h6v.s12.2468a92215d1 from=translated src=- shape=329c34f3 vocab=1c2530a7
+-/
 @[simp]
 theorem kerLTensorComparison_coe (x : M ⊗[R] (LinearMap.ker f)) :
     (kerLTensorComparison M f x : M ⊗[R] P) = (LinearMap.ker f).subtype.lTensor M x :=
@@ -167,7 +178,9 @@ theorem kerLTensorComparison_coe (x : M ⊗[R] (LinearMap.ker f)) :
 /-- **Kernel base change under flat cokernel** (GME p. 82: "`T₁` is an exact functor if
 `R¹f_*𝓛 = T₁(O_S)` is locally-free. In this case, `T₀` is also exact."; GME Lemma
 1.10.4(ii); Mumford §5 Cor. 2's mechanism). If `Q` is flat and `Q ⧸ range f` is flat,
-the canonical map `M ⊗ ker f → ker (f.lTensor M)` is bijective for every `M`.-/
+the canonical map `M ⊗ ker f → ker (f.lTensor M)` is bijective for every `M`.
+@isnad1 id=bijectiv.0h5v.s11.9e57924385f1 from=translated src=- shape=4981b855 vocab=2b32c8e3
+-/
 theorem kerLTensorComparison_bijective
     [Module.Flat R Q] [Module.Flat R (Q ⧸ LinearMap.range f)] :
     Function.Bijective (kerLTensorComparison M f) := by
@@ -206,14 +219,18 @@ private lemma kerRetractionOfSurjective_comp_subtype [Module.Projective R Q]
   simp [kerRetractionOfSurjective, LinearMap.mem_ker.mp x.property]
 
 /-- The kernel of a surjection between projective modules is projective, over an arbitrary
-base ring.-/
+base ring.
+@isnad1 id=projecti.1h4v.s8.664ad4a05041 from=translated src=- shape=b6aef6bd vocab=dc53c618
+-/
 theorem Module.Projective.ker_of_surjective [Module.Projective R P]
     [Module.Projective R Q] (hf : Function.Surjective f) :
     Module.Projective R (LinearMap.ker f) :=
   .of_split (LinearMap.ker f).subtype (kerRetractionOfSurjective f hf)
     (kerRetractionOfSurjective_comp_subtype f hf)
 
-/-- The kernel of a surjection from a finite module onto a projective module is finite.-/
+/-- The kernel of a surjection from a finite module onto a projective module is finite.
+@isnad1 id=finite.1h4v.s8.d4e58c02ad4d from=translated src=- shape=053a0ad4 vocab=7a0d3c5c
+-/
 theorem Module.Finite.ker_of_surjective_of_projective [Module.Finite R P]
     [Module.Projective R Q] (hf : Function.Surjective f) :
     Module.Finite R (LinearMap.ker f) :=
@@ -229,7 +246,9 @@ variable (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)
 
 /-- In a bounded exact sequence of flat modules, every cokernel is flat. This is the
 backwards induction used for a bounded flat Cech complex: the terminal cokernel is zero,
-and exactness identifies each preceding cokernel with the range of the next differential.-/
+and exactness identifies each preceding cokernel with the range of the next differential.
+@isnad1 id=flat.2h5v.s10.1d64492757b5 from=translated src=- shape=21055811 vocab=c9fec99e
+-/
 theorem Module.Flat.quotient_range_of_bounded_exact [∀ n, Module.Flat R (M n)]
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hexact : ∀ n, n < N → Function.Exact (d n) (d (n + 1)))
@@ -246,7 +265,9 @@ theorem Module.Flat.quotient_range_of_bounded_exact [∀ n, Module.Flat R (M n)]
             (LinearMap.exact_iff.mp (hexact k hk)).symm ≪≫ₗ
           LinearMap.quotKerEquivRange (d (k + 1)))
 
-/-- Every cycle module in a bounded exact sequence of flat modules is flat.-/
+/-- Every cycle module in a bounded exact sequence of flat modules is flat.
+@isnad1 id=flat.2h5v.s10.1d4909c1998a from=translated src=- shape=91ad6bd2 vocab=b5899367
+-/
 theorem Module.Flat.ker_of_bounded_exact_at [∀ n, Module.Flat R (M n)]
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hexact : ∀ n, n < N → Function.Exact (d n) (d (n + 1)))
@@ -260,7 +281,9 @@ theorem Module.Flat.ker_of_bounded_exact_at [∀ n, Module.Flat R (M n)]
     Module.Flat.of_linearEquiv (LinearMap.quotKerEquivRange (d n))
   exact Module.Flat.of_flat_quotient _
 
-/-- The degree-zero kernel of a bounded exact sequence of flat modules is flat.-/
+/-- The degree-zero kernel of a bounded exact sequence of flat modules is flat.
+@isnad1 id=flat.1h4v.s10.7a1651906313 from=translated src=- shape=e9cf4dc0 vocab=12c48fa7
+-/
 theorem Module.Flat.ker_of_bounded_exact [∀ n, Module.Flat R (M n)]
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hexact : ∀ n, n < N → Function.Exact (d n) (d (n + 1))) :
@@ -268,7 +291,9 @@ theorem Module.Flat.ker_of_bounded_exact [∀ n, Module.Flat R (M n)]
   Module.Flat.ker_of_bounded_exact_at M d N hexact 0 (Nat.zero_le N)
 
 /-- The cokernel in degree `k` is flat when a bounded complex of flat modules is exact
-from degree `k` onward. No exactness in lower degrees is required.-/
+from degree `k` onward. No exactness in lower degrees is required.
+@isnad1 id=flat.2h5v.s10.bfd118517580 from=translated src=- shape=47189244 vocab=c9fec99e
+-/
 theorem Module.Flat.quotient_range_of_bounded_exact_from [∀ n, Module.Flat R (M n)]
     (N k : ℕ) (hk : k ≤ N) [Subsingleton (M (N + 1))]
     (hexact : ∀ n, k ≤ n → n < N → Function.Exact (d n) (d (n + 1))) :
@@ -290,7 +315,9 @@ theorem Module.Flat.quotient_range_of_bounded_exact_from [∀ n, Module.Flat R (
       (Nat.zero_le (N - k))
 
 /-- The cycle module in degree `k` is flat when a bounded complex of flat modules is exact
-from degree `k` onward. No exactness in lower degrees is required.-/
+from degree `k` onward. No exactness in lower degrees is required.
+@isnad1 id=flat.2h5v.s10.345408dd951f from=translated src=- shape=a7382860 vocab=b5899367
+-/
 theorem Module.Flat.ker_of_bounded_exact_from [∀ n, Module.Flat R (M n)]
     (N k : ℕ) (hk : k ≤ N) [Subsingleton (M (N + 1))]
     (hexact : ∀ n, k ≤ n → n < N → Function.Exact (d n) (d (n + 1))) :
@@ -305,7 +332,9 @@ theorem Module.Flat.ker_of_bounded_exact_from [∀ n, Module.Flat R (M n)]
 
 /-- A finite degree-zero cycle module in a bounded exact sequence of flat modules over a
 Noetherian ring is projective. This is the finite-flat step in Mumford, *Abelian Varieties*,
-§5, Lemma 1.-/
+§5, Lemma 1.
+@isnad1 id=projecti.1h4v.s11.1b8095566038 from=translated src=- shape=c735b198 vocab=d047acd2
+-/
 theorem Module.Projective.ker_of_bounded_exact_of_finite [IsNoetherianRing R]
     [∀ n, Module.Flat R (M n)] [Module.Finite R (LinearMap.ker (d 0))]
     (N : ℕ) [Subsingleton (M (N + 1))]
@@ -318,7 +347,9 @@ theorem Module.Projective.ker_of_bounded_exact_of_finite [IsNoetherianRing R]
   exact Module.Flat.projective_of_finitePresentation
 
 /-- Kernels in degree zero commute with arbitrary tensor products for a bounded exact
-sequence of flat modules.-/
+sequence of flat modules.
+@isnad1 id=bijectiv.1h5v.s13.7e92aa6322f8 from=translated src=- shape=da20fb03 vocab=e8a83c68
+-/
 theorem kerLTensorComparison_bijective_of_bounded_exact
     (A : Type*) [AddCommGroup A] [Module R A] [∀ n, Module.Flat R (M n)]
     (N : ℕ) [Subsingleton (M (N + 1))]
@@ -367,7 +398,9 @@ private theorem baseChange_surjective_iff_subsingleton_coker
   rw [← LinearMap.range_eq_top, hrange, hcoker]
 
 /-- If a linear map with finite target is surjective on the residue fibre at a prime,
-then it is surjective after restricting to a principal neighbourhood of that prime.-/
+then it is surjective after restricting to a principal neighbourhood of that prime.
+@isnad1 id=ex.1h5v.s12.129c270c7b57 from=translated src=- shape=17a83aeb vocab=6712d205
+-/
 theorem LinearMap.exists_away_baseChange_surjective_of_residueField
     [Module.Finite R Q] (f : P →ₗ[R] Q) (p : Ideal R) [p.IsPrime]
     (h : Function.Surjective (f.baseChange p.ResidueField)) :
@@ -395,7 +428,9 @@ theorem LinearMap.exists_away_baseChange_surjective_of_residueField
 `O_S`-free, then `f_*𝓛` is also locally `O_S`-free"; cf. Mumford p. 49: "`K⁰` is
 `A`-projective, since it is `A`-flat and finitely generated over a noetherian `A`").
 Over a noetherian ring, if `P` is projective, `Q` is finite flat and `Q ⧸ range f` is
-flat, then `ker f` is a projective module.-/
+flat, then `ker f` is a projective module.
+@isnad1 id=projecti.0h4v.s8.cda65e7e593c from=translated src=- shape=be03512e vocab=14b9e20a
+-/
 theorem Module.Projective.ker_of_flat_coker (f : P →ₗ[R] Q) [IsNoetherianRing R]
     [Module.Finite R P] [Module.Projective R P]
     [Module.Finite R Q] [Module.Flat R Q] [Module.Flat R (Q ⧸ LinearMap.range f)] :
@@ -419,13 +454,18 @@ def LinearMap.codRestrictToKer (f : P →ₗ[R] Q) (g : Q →ₗ[R] T)
   LinearMap.codRestrict _ f fun x ↦ by
     rw [LinearMap.mem_ker, ← LinearMap.comp_apply, h, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.1h7v.s9.36dcc4974f96 from=translated src=- shape=cc64314c vocab=3d2c1a07
+-/
 @[simp]
 theorem LinearMap.codRestrictToKer_coe (f : P →ₗ[R] Q) (g : Q →ₗ[R] T)
     (h : g ∘ₗ f = 0) (x : P) :
     (LinearMap.codRestrictToKer f g h x : Q) = f x :=
   rfl
 
-/-- A complex is exact precisely when its first map surjects onto the kernel of its second.-/
+/-- A complex is exact precisely when its first map surjects onto the kernel of its second.
+@isnad1 id=iff.1h6v.s10.af2f3d7613ce from=translated src=- shape=3b250ae5 vocab=abd896f7
+-/
 theorem LinearMap.codRestrictToKer_surjective_iff_exact
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0) :
     Function.Surjective (LinearMap.codRestrictToKer f g h) ↔ Function.Exact f g := by
@@ -447,7 +487,9 @@ theorem LinearMap.codRestrictToKer_surjective_iff_exact
     exact ⟨p, Subtype.ext hp⟩
 
 /-- If `A → B → C` is exact, `B` and `C` are flat, and the second map is
-surjective, then the quotient of `A` by the kernel of the first map is flat.-/
+surjective, then the quotient of `A` by the kernel of the first map is flat.
+@isnad1 id=flat.2h6v.s9.2502b4ad0cba from=translated src=- shape=0d3d5e09 vocab=5884f7e0
+-/
 theorem Module.Flat.quotient_ker_of_exact_surjective
     {A B C : Type*} [AddCommGroup A] [AddCommGroup B] [AddCommGroup C]
     [Module R A] [Module R B] [Module R C]
@@ -464,7 +506,9 @@ theorem Module.Flat.quotient_ker_of_exact_surjective
       (LinearEquiv.ofEq _ _ (LinearMap.exact_iff.mp hexact).symm))
 
 /-- Over a noetherian ring, the finite quotient supplied by an exact sequence ending in
-a surjection of flat modules is projective.-/
+a surjection of flat modules is projective.
+@isnad1 id=projecti.2h6v.s9.9d1325e0480e from=translated src=- shape=655638a3 vocab=e5200a7a
+-/
 theorem Module.Projective.quotient_ker_of_exact_surjective
     {A B C : Type*} [AddCommGroup A] [AddCommGroup B] [AddCommGroup C]
     [Module R A] [Module R B] [Module R C]
@@ -497,6 +541,9 @@ noncomputable def kerBaseChangeComparison :
     rw [LinearMap.mem_ker, ← LinearMap.comp_apply, ← LinearMap.baseChange_comp,
       LinearMap.comp_ker_subtype, LinearMap.baseChange_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h6v.s13.1118fc386e02 from=translated src=- shape=1097c54e vocab=1a84222a
+-/
 @[simp]
 theorem kerBaseChangeComparison_coe (x : A ⊗[R] (LinearMap.ker f)) :
     (kerBaseChangeComparison A f x : A ⊗[R] P) = (LinearMap.ker f).subtype.baseChange A x :=
@@ -555,7 +602,9 @@ noncomputable def LinearMap.baseChangeBaseChangeKernelEquiv
 
 /-- **Fibre identification** (GME p. 107: "Again by Lemma 1.10.4, we know `f_*𝓛` is
 locally free and `(f_*𝓛) ⊗ k(s) ≅ f_*(𝓛(s))`"): for an `R`-algebra `A`, if `Q` and
-`Q ⧸ range f` are flat then `A ⊗[R] ker f → ker (f.baseChange A)` is bijective.-/
+`Q ⧸ range f` are flat then `A ⊗[R] ker f → ker (f.baseChange A)` is bijective.
+@isnad1 id=bijectiv.0h5v.s12.aa7d1a6d049a from=translated src=- shape=d8835b76 vocab=b0963757
+-/
 theorem kerBaseChangeComparison_bijective
     [Module.Flat R Q] [Module.Flat R (Q ⧸ LinearMap.range f)] :
     Function.Bijective (kerBaseChangeComparison A f) :=
@@ -565,7 +614,9 @@ theorem kerBaseChangeComparison_bijective
   kerLTensorComparison_bijective A f
 
 /-- If the scalar-extension algebra is flat, the canonical comparison from the
-base change of a kernel to the kernel of the base-changed map is bijective.-/
+base change of a kernel to the kernel of the base-changed map is bijective.
+@isnad1 id=bijectiv.0h5v.s12.6e46eed4592f from=translated src=- shape=9285dcc3 vocab=34011c64
+-/
 theorem kerBaseChangeComparison_bijective_of_flat
     [Module.Flat R A] :
     Function.Bijective (kerBaseChangeComparison A f) := by
@@ -584,7 +635,9 @@ theorem kerBaseChangeComparison_bijective_of_flat
   exact (LinearMap.tensorKerEquiv A A f).bijective
 
 /-- Extending scalars between fields preserves the dimension of the kernel of a
-base-changed linear map.-/
+base-changed linear map.
+@isnad1 id=eq.0h6v.s11.4c6ebcade03c from=translated src=- shape=b0044b53 vocab=77fc797c
+-/
 theorem LinearMap.finrank_ker_baseChange_eq
     (A B : Type u) [Field A] [Field B]
     [Algebra R A] [Algebra R B] [Algebra A B] [IsScalarTower R A B]
@@ -602,7 +655,9 @@ theorem LinearMap.finrank_ker_baseChange_eq
 
 /-- If the differential is surjective and its target is projective, its kernel commutes with
 every algebra base change. This is the arbitrary-base endpoint used when a length-one
-Grothendieck complex has vanishing degree-one cohomology.-/
+Grothendieck complex has vanishing degree-one cohomology.
+@isnad1 id=bijectiv.1h5v.s12.7470d298bfaf from=translated src=- shape=0e451607 vocab=e50b61e1
+-/
 theorem kerBaseChangeComparison_bijective_of_surjective [Module.Projective R Q]
     (hf : Function.Surjective f) :
     Function.Bijective (kerBaseChangeComparison A f) := by
@@ -613,7 +668,9 @@ theorem kerBaseChangeComparison_bijective_of_surjective [Module.Projective R Q]
   exact kerBaseChangeComparison_bijective A f
 
 /-- The algebra-linear degree-zero kernel comparison for a bounded exact sequence of
-flat modules.-/
+flat modules.
+@isnad1 id=bijectiv.1h5v.s13.c9383a13fcf1 from=translated src=- shape=ca5c8dc2 vocab=5d20394b
+-/
 theorem kerBaseChangeComparison_bijective_of_bounded_exact
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
     (d : ∀ n, M n →ₗ[R] M (n + 1)) [∀ n, Module.Flat R (M n)]
@@ -623,7 +680,9 @@ theorem kerBaseChangeComparison_bijective_of_bounded_exact
   kerLTensorComparison_bijective_of_bounded_exact M d A N hexact
 
 /-- Cycles in degree `k` commute with arbitrary algebra base change when a bounded complex
-of flat modules is exact from degree `k` onward.-/
+of flat modules is exact from degree `k` onward.
+@isnad1 id=bijectiv.2h6v.s13.681ea9ce6198 from=translated src=- shape=2d68184c vocab=b0ce96d8
+-/
 theorem kerBaseChangeComparison_bijective_of_bounded_exact_from
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
     (d : ∀ n, M n →ₗ[R] M (n + 1))
@@ -639,14 +698,18 @@ section Exactness
 
 variable {T : Type*} [AddCommGroup T] [Module R T]
 
-/-- Base change preserves the relation that two consecutive linear maps compose to zero.-/
+/-- Base change preserves the relation that two consecutive linear maps compose to zero.
+@isnad1 id=eq.1h7v.s10.33e105a3fa5f from=translated src=- shape=596c5ebd vocab=5dc9ec82
+-/
 theorem LinearMap.baseChange_comp_eq_zero
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0)
     (A : Type*) [CommRing A] [Algebra R A] :
     g.baseChange A ∘ₗ f.baseChange A = 0 := by
   rw [← LinearMap.baseChange_comp, h, LinearMap.baseChange_zero]
 
-/-- Factoring a complex through its second kernel commutes with algebra base change.-/
+/-- Factoring a complex through its second kernel commutes with algebra base change.
+@isnad1 id=eq.1h7v.s12.e18ce998ad31 from=translated src=- shape=c9f72f83 vocab=d1b64d82
+-/
 theorem kerBaseChangeComparison_comp_codRestrictToKer_baseChange
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0) :
     kerBaseChangeComparison A g ∘ₗ
@@ -662,7 +725,9 @@ theorem kerBaseChangeComparison_comp_codRestrictToKer_baseChange
   rfl
 
 /-- If formation of the second kernel commutes with base change, then the base-changed
-map into cycles has the same kernel as the base change of the original first map.-/
+map into cycles has the same kernel as the base change of the original first map.
+@isnad1 id=eq.2h7v.s12.3f2e52d211d4 from=translated src=- shape=afd207e3 vocab=769d0eb8
+-/
 theorem LinearMap.ker_baseChange_codRestrictToKer_eq
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0)
     (A : Type*) [CommRing A] [Algebra R A]
@@ -695,7 +760,9 @@ section Exactness
 variable {T : Type*} [AddCommGroup T] [Module R T]
 
 /-- In an algebra tower, exactness after iterated base change is equivalent to exactness
-after direct base change.-/
+after direct base change.
+@isnad1 id=iff.0h8v.s12.ba3e00b9bb05 from=translated src=- shape=5d12fb12 vocab=383e0d03
+-/
 theorem LinearMap.baseChange_baseChange_exact_iff
     (A : Type*) (B : Type*)
     [CommRing A] [CommRing B]
@@ -724,7 +791,9 @@ theorem LinearMap.baseChange_baseChange_exact_iff
   exact (Function.Exact.iff_of_ladder_linearEquiv hf hg).symm
 
 /-- Exactness after base change can be checked after a further faithfully flat
-scalar extension.-/
+scalar extension.
+@isnad1 id=iff.0h8v.s11.811379310019 from=translated src=- shape=f6801427 vocab=79f4b068
+-/
 theorem LinearMap.baseChange_exact_iff_of_faithfullyFlat
     (A : Type*) (B : Type*)
     [CommRing A] [CommRing B]
@@ -739,7 +808,9 @@ theorem LinearMap.baseChange_exact_iff_of_faithfullyFlat
       (f.baseChange A) (g.baseChange A)).symm
 
 /-- An exact pair remains exact after arbitrary algebra base change when the target and
-the cokernel of the second map are flat.-/
+the cokernel of the second map are flat.
+@isnad1 id=exact.2h7v.s10.33584e6f54e2 from=translated src=- shape=05a94c0a vocab=b2543af3
+-/
 theorem LinearMap.baseChange_exact_of_exact_of_flat_coker
     (A : Type*) [CommRing A] [Algebra R A]
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0)
@@ -755,7 +826,9 @@ theorem LinearMap.baseChange_exact_of_exact_of_flat_coker
 
 /-- Exactness after base change to every prime residue field implies exactness after base
 change to every field algebra. The algebra map to a field factors through the residue field
-of its kernel prime, and the remaining field extension is flat.-/
+of its kernel prime, and the remaining field extension is flat.
+@isnad1 id=exact.1h7v.s13.ec62e4f2fb98 from=translated src=- shape=e383ce50 vocab=e95217ff
+-/
 theorem LinearMap.baseChange_exact_of_forall_residueField_baseChange_exact
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T)
     (hres : ∀ p : PrimeSpectrum R,
@@ -814,7 +887,9 @@ theorem LinearMap.baseChange_exact_of_forall_residueField_baseChange_exact
 
 /-- Exactness of a complex can be checked on every field fibre when its homology is finite
 and formation of the second kernel commutes with base change. The flatness hypotheses are the
-module-theoretic criterion ensuring that kernel comparison.-/
+module-theoretic criterion ensuring that kernel comparison.
+@isnad1 id=exact.2h6v.s11.c675c4f85d75 from=translated src=- shape=d09e3952 vocab=245456b2
+-/
 theorem LinearMap.exact_of_forall_field_baseChange_exact_of_finite
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0)
     [Module.Flat R T] [Module.Flat R (T ⧸ LinearMap.range g)]
@@ -843,7 +918,9 @@ theorem LinearMap.exact_of_forall_field_baseChange_exact_of_finite
   exact hcoker
 
 /-- Over a local ring, exactness of a pair can be checked on the residue field when its
-homology is finite and formation of the second kernel commutes with base change.-/
+homology is finite and formation of the second kernel commutes with base change.
+@isnad1 id=exact.2h6v.s12.448f89e9d2f3 from=translated src=- shape=6418a2ea vocab=be747b10
+-/
 theorem LinearMap.exact_of_residueField_baseChange_exact_of_finite
     [IsLocalRing R]
     (f : P →ₗ[R] Q) (g : Q →ₗ[R] T) (h : g ∘ₗ f = 0)
@@ -887,7 +964,9 @@ theorem LinearMap.exact_of_residueField_baseChange_exact_of_finite
 
 /-- Over a Noetherian ring, the middle module of an exact pair is finite when the two
 surrounding modules are finite. This is the module-theoretic sandwich used in long exact
-cohomology sequences.-/
+cohomology sequences.
+@isnad1 id=finite.1h6v.s8.72c3cd1200cb from=translated src=- shape=d8fcf922 vocab=63519796
+-/
 theorem Module.Finite.of_exact_of_finite [IsNoetherianRing R]
     {M : Type*} {N : Type*} {T : Type*}
     [AddCommGroup M] [AddCommGroup N] [AddCommGroup T]
@@ -941,7 +1020,9 @@ private theorem boundedFlatCokerAndExactOfFiniteHomology
 /-- A bounded complex of flat modules with finite explicit homology is exact when every
 field base change is exact. Boundedness lets one descend from the terminal zero term: the
 next cokernel is flat, finite homology detects exactness on field fibres, and exactness
-identifies the preceding cokernel with a flat range.-/
+identifies the preceding cokernel with a flat range.
+@isnad1 id=exact.4h5v.s13.ba8aca08b610 from=translated src=- shape=98f59974 vocab=d11aa5c2
+-/
 theorem LinearMap.exact_of_bounded_flat_forall_field_baseChange_exact_of_finite_homology
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
     (d : ∀ n, M n →ₗ[R] M (n + 1)) [∀ n, Module.Flat R (M n)]
@@ -1002,7 +1083,9 @@ private theorem boundedFlatCokerAndExactOfFiniteHomologyAtResidue
       exact ⟨Module.Flat.of_linearEquiv e, fun _ ↦ hexact⟩
 
 /-- A bounded complex of flat modules with finite explicit homology over a local ring is
-exact when its residue-field base change is exact.-/
+exact when its residue-field base change is exact.
+@isnad1 id=exact.4h5v.s13.3c5f2ce93edd from=translated src=- shape=d61e53dd vocab=36af0935
+-/
 theorem LinearMap.exact_of_bounded_flat_residueField_baseChange_exact_of_finite_homology
     [IsLocalRing R]
     (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)]
@@ -1031,7 +1114,9 @@ variable (M : ℕ → Type v) [∀ n, AddCommGroup (M n)] [∀ n, Module R (M n)
   (d : ∀ n, M n →ₗ[R] M (n + 1))
 
 /-- Arbitrary algebra base change preserves every exact pair in a bounded exact complex
-of flat modules. This is the tensor-stability statement in Mumford §5, Lemma 2.-/
+of flat modules. This is the tensor-stability statement in Mumford §5, Lemma 2.
+@isnad1 id=exact.2h6v.s12.3a339f7bd61b from=translated src=- shape=51c282ca vocab=a39cd503
+-/
 theorem LinearMap.baseChange_exact_of_bounded_exact
     (A : Type*) [CommRing A] [Algebra R A] [∀ n, Module.Flat R (M n)]
     (N : ℕ) [Subsingleton (M (N + 1))]
@@ -1057,7 +1142,9 @@ private theorem projective_range_of_projective_coker
   infer_instance
 
 /-- Over an arbitrary ring, the kernel of a map between projective modules with projective
-cokernel is projective.-/
+cokernel is projective.
+@isnad1 id=projecti.0h4v.s8.2f5b2ad8d784 from=translated src=- shape=e7a15fa2 vocab=d1de6eb1
+-/
 theorem Module.Projective.ker_of_projective_coker
     (f : P →ₗ[R] Q) [Module.Projective R P] [Module.Projective R Q]
     [Module.Projective R (Q ⧸ LinearMap.range f)] :
@@ -1070,7 +1157,9 @@ theorem Module.Projective.ker_of_projective_coker
   infer_instance
 
 /-- Over an arbitrary ring, the kernel of a map from a finite module to a projective module
-with projective cokernel is finite.-/
+with projective cokernel is finite.
+@isnad1 id=finite.0h4v.s8.f6fb501841a1 from=translated src=- shape=514119b0 vocab=f82c9570
+-/
 theorem Module.Finite.ker_of_projective_coker
     (f : P →ₗ[R] Q) [Module.Finite R P] [Module.Projective R Q]
     [Module.Projective R (Q ⧸ LinearMap.range f)] :
@@ -1131,7 +1220,9 @@ private theorem boundedCokerFiniteProjectiveAndExact
         fun _ ↦ hexact⟩
 
 /-- Every cokernel in a bounded finite-projective complex is finite when the complex is
-exact after base change to every field.-/
+exact after base change to every field.
+@isnad1 id=finite.3h5v.s12.5af32258ad0b from=translated src=- shape=0bc6d771 vocab=6356414e
+-/
 theorem Module.Finite.quotient_range_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1142,7 +1233,9 @@ theorem Module.Finite.quotient_range_of_bounded_forall_field_baseChange_exact
   (boundedCokerFiniteProjectiveAndExact M d N hcomp hfield n hn).1.1
 
 /-- Every cokernel in a bounded finite-projective complex is projective when the complex is
-exact after base change to every field.-/
+exact after base change to every field.
+@isnad1 id=projecti.3h5v.s12.ebb8e6a5973c from=translated src=- shape=0e94e04a vocab=6356414e
+-/
 theorem Module.Projective.quotient_range_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1153,7 +1246,9 @@ theorem Module.Projective.quotient_range_of_bounded_forall_field_baseChange_exac
   (boundedCokerFiniteProjectiveAndExact M d N hcomp hfield n hn).1.2
 
 /-- A bounded complex of finite projective modules is exact when every field base change is
-exact.-/
+exact.
+@isnad1 id=exact.3h5v.s12.ab430b0bc78f from=translated src=- shape=9bba1771 vocab=d67efab7
+-/
 theorem LinearMap.exact_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1164,7 +1259,9 @@ theorem LinearMap.exact_of_bounded_forall_field_baseChange_exact
   (boundedCokerFiniteProjectiveAndExact M d N hcomp hfield n hn.le).2 hn
 
 /-- The degree-zero kernel of a bounded finite-projective complex that is exact on every
-field fibre is finite.-/
+field fibre is finite.
+@isnad1 id=finite.2h4v.s12.0fac564d0fcd from=translated src=- shape=a3e8c501 vocab=4a7bfdb2
+-/
 theorem Module.Finite.ker_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1177,7 +1274,9 @@ theorem Module.Finite.ker_of_bounded_forall_field_baseChange_exact
   exact Module.Finite.ker_of_projective_coker (d 0)
 
 /-- The degree-zero kernel of a bounded finite-projective complex that is exact on every
-field fibre is projective.-/
+field fibre is projective.
+@isnad1 id=projecti.2h4v.s12.4af99970b63b from=translated src=- shape=0e43037f vocab=4a7bfdb2
+-/
 theorem Module.Projective.ker_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1190,7 +1289,9 @@ theorem Module.Projective.ker_of_bounded_forall_field_baseChange_exact
   exact Module.Projective.ker_of_projective_coker (d 0)
 
 /-- The degree-zero kernel of a bounded finite-projective complex that is exact on every
-field fibre commutes with arbitrary algebra base change.-/
+field fibre commutes with arbitrary algebra base change.
+@isnad1 id=bijectiv.2h5v.s14.79bb5e265f92 from=translated src=- shape=994a889b vocab=434fd677
+-/
 theorem kerBaseChangeComparison_bijective_of_bounded_forall_field_baseChange_exact
     (A : Type*) [CommRing A] [Algebra R A]
     (N : ℕ) [Subsingleton (M (N + 1))]
@@ -1202,7 +1303,9 @@ theorem kerBaseChangeComparison_bijective_of_bounded_forall_field_baseChange_exa
     (LinearMap.exact_of_bounded_forall_field_baseChange_exact M d N hcomp hfield)
 
 /-- The degree-zero kernel of a bounded finite-projective complex has constant rank `r`
-when its base change to every residue field has kernel dimension `r`.-/
+when its base change to every residue field has kernel dimension `r`.
+@isnad1 id=eq.3h5v.s14.8cd4fd9451a9 from=translated src=- shape=12f1e098 vocab=630576b1
+-/
 theorem Module.rankAtStalk_ker_eq_of_bounded_forall_field_baseChange_exact
     (N : ℕ) [Subsingleton (M (N + 1))]
     (hcomp : ∀ n, d (n + 1) ∘ₗ d n = 0)
@@ -1232,7 +1335,9 @@ end BoundedFiniteProjectiveComplex
 
 /-- Near a prime where the residue-fibre differential is surjective, a differential
 between finite projective modules has finite projective kernel, and that kernel commutes
-with every further algebra base change.-/
+with every further algebra base change.
+@isnad1 id=ex.1h5v.s17.820a0c859616 from=translated src=- shape=e0c23371 vocab=359a2be5
+-/
 theorem LinearMap.exists_away_finiteProjective_ker_of_residueField_surjective
     [Module.Finite R P] [Module.Projective R P]
     [Module.Finite R Q] [Module.Projective R Q]

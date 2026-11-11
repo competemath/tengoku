@@ -32,7 +32,9 @@ variable {C : Type u} [Category.{u} C] [HasBinaryProducts C]
   [∀ X : C, HasWeakSheafify (J.over X) AddCommGrpCat.{u}]
   [∀ X : C, (J.over X).WEqualsLocallyBijective AddCommGrpCat.{u}]
 
-/-- A quotient of a finite-type sheaf of modules is finite type.-/
+/-- A quotient of a finite-type sheaf of modules is finite type.
+@isnad1 id=isfinite.0h6v.s7.aa2db0dffe26 from=translated src=- shape=8eb4f300 vocab=c770ebd4
+-/
 theorem isFiniteType_of_epi
     {M N : SheafOfModules.{u} R} (p : M ⟶ N)
     [Epi p] [M.IsFiniteType] :

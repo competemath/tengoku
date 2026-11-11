@@ -57,15 +57,24 @@ variable (k : Type u) [Field k]
 
 /-! `k` is initial in `FiniteEtale k` (leaf AG-GG-1.3a). -/
 
+/--
+@isnad1 id=subsingl.0h2v.s6.41476531ceaf from=translated src=- shape=950ef1b4 vocab=e8c8b066
+-/
 instance subsingletonHomFromSelf (A : CommAlgCat.FiniteEtale.{u} k) :
     Subsingleton (CommAlgCat.FiniteEtale.of k k ⟶ A) :=
   ⟨fun f g => by ext⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s6.ea38d06bb0af from=translated src=- shape=950ef1b4 vocab=70c33d43
+-/
 instance nonemptyHomFromSelf (A : CommAlgCat.FiniteEtale.{u} k) :
     Nonempty (CommAlgCat.FiniteEtale.of k k ⟶ A) :=
   ⟨ObjectProperty.homMk
     (show CommAlgCat.of k k ⟶ A.obj from CommAlgCat.ofHom (Algebra.ofId k A.obj))⟩
 
+/--
+@isnad1 id=hasiniti.0h1v.s4.b2c614b62cc3 from=translated src=- shape=1666ae32 vocab=e5fba94a
+-/
 instance hasInitial : HasInitial (CommAlgCat.FiniteEtale.{u} k) :=
   hasInitial_of_unique (CommAlgCat.FiniteEtale.of k k)
 
@@ -98,6 +107,9 @@ noncomputable def productFanIsLimit {ι : Type} [Finite ι]
       refine funext fun i => ?_
       exact congrArg (fun q => q.hom.hom x) (hm i))
 
+/--
+@isnad1 id=hasfinit.0h1v.s4.fb0ae9b305d0 from=translated src=- shape=1666ae32 vocab=96f46adb
+-/
 instance hasFiniteProducts : HasFiniteProducts (CommAlgCat.FiniteEtale.{u} k) where
   out n :=
     { has_limit := fun F => by
@@ -115,14 +127,18 @@ variable (A B C : Type u) [CommRing A] [CommRing B] [CommRing C]
   [Algebra A B] [Algebra A C] [IsScalarTower k A B] [IsScalarTower k A C]
 
 /-- The tensor product of finite étale `k`-algebras over a finite étale `k`-algebra is
-étale over `k` (uses the two-out-of-three property for étale maps).-/
+étale over `k` (uses the two-out-of-three property for étale maps).
+@isnad1 id=etale.0h4v.s8.f43be78f3a4e from=translated src=- shape=5d57246b vocab=44d93ab8
+-/
 theorem etale_tensorProduct [Algebra.Etale k A] [Algebra.Etale k B] [Algebra.Etale k C] :
     Algebra.Etale k (B ⊗[A] C) := by
   haveI : Algebra.Etale A C := Algebra.Etale.of_restrictScalars k A C
   haveI : Algebra.Etale B (B ⊗[A] C) := inferInstance
   exact Algebra.Etale.comp k B (B ⊗[A] C)
 
-/-- The tensor product of finite `k`-algebras over a `k`-algebra is finite over `k`.-/
+/-- The tensor product of finite `k`-algebras over a `k`-algebra is finite over `k`.
+@isnad1 id=finite.0h4v.s8.a0d7239862de from=translated src=- shape=02bd0d6f vocab=65fcf861
+-/
 theorem finite_tensorProduct [Module.Finite k B] [Module.Finite k C] :
     Module.Finite k (B ⊗[A] C) := by
   haveI : Module.Finite A C := Module.Finite.of_restrictScalars_finite k A C
@@ -211,6 +227,9 @@ noncomputable def spanPushoutCoconeIsColimit : IsColimit (spanPushoutCocone f g)
         exact (map_add _ _ _).trans
           (((congrArg₂ (· + ·) ih₁ ih₂).trans (map_add _ _ _).symm))
 
+/--
+@isnad1 id=haspusho.0h1v.s4.b80f05730838 from=translated src=- shape=1666ae32 vocab=a48e6119
+-/
 instance hasPushouts : HasPushouts (CommAlgCat.FiniteEtale.{u} k) where
   has_colimit F := by
     haveI : HasColimit (span (F.map WalkingSpan.Hom.fst) (F.map WalkingSpan.Hom.snd)) :=
@@ -230,7 +249,9 @@ section EtaleSubalgebra
 
 variable {k : Type u} [Field k] {A : Type u} [CommRing A] [Algebra k A]
 
-/-- Every element of a finite étale algebra over a field is separable.-/
+/-- Every element of a finite étale algebra over a field is separable.
+@isnad1 id=issepara.0h3v.s6.a5c3452b990d from=translated src=- shape=06aa6992 vocab=dc77188e
+-/
 theorem isSeparable_of_etale [Module.Finite k A] [Algebra.Etale k A] (x : A) :
     IsSeparable k x := by
   classical
@@ -272,7 +293,9 @@ theorem isSeparable_of_etale [Module.Finite k A] [Algebra.Etale k A] (x : A) :
   exact Polynomial.Separable.of_dvd hFsep (minpoly.dvd k x hann)
 
 /-- A finite reduced algebra over a field all of whose elements are separable is étale.
-This is the common core of `etale_subalgebra` and `etale_quotient`.-/
+This is the common core of `etale_subalgebra` and `etale_quotient`.
+@isnad1 id=etale.1h2v.s6.ab645a23f59d from=translated src=- shape=28abcf8f vocab=42af9501
+-/
 theorem etale_of_isSeparable (B : Type u) [CommRing B] [Algebra k B] [Module.Finite k B]
     [IsReduced B] (hsep : ∀ x : B, IsSeparable k x) : Algebra.Etale k B := by
   classical
@@ -295,7 +318,9 @@ theorem etale_of_isSeparable (B : Type u) [CommRing B] [Algebra k B] [Module.Fin
     (Algebra.FinitePresentation.of_finiteType).mp inferInstance
   exact ⟨inferInstance, inferInstance⟩
 
-/-- A subalgebra of a finite étale algebra over a field is étale.-/
+/-- A subalgebra of a finite étale algebra over a field is étale.
+@isnad1 id=etale.0h3v.s7.f2f7c0b4adbe from=translated src=- shape=8e0cc11c vocab=b5be40d5
+-/
 theorem etale_subalgebra [Module.Finite k A] [Algebra.Etale k A] (B : Subalgebra k A) :
     Algebra.Etale k B := by
   haveI : Module.Finite k B := inferInstanceAs (Module.Finite k B.toSubmodule)
@@ -311,7 +336,9 @@ theorem etale_subalgebra [Module.Finite k A] [Algebra.Etale k A] (B : Subalgebra
 
 /-- Every quotient of a finite étale algebra over a field is étale.  Every ideal is
 complemented (the algebra is semisimple), which forces it to be radical, so the quotient
-is reduced; separability of elements descends along the quotient map.-/
+is reduced; separability of elements descends along the quotient map.
+@isnad1 id=etale.0h3v.s6.1c6a60476ad3 from=translated src=- shape=602fd0e1 vocab=e0fc3dee
+-/
 theorem etale_quotient [Module.Finite k A] [Algebra.Etale k A] (J : Ideal A) :
     Algebra.Etale k (A ⧸ J) := by
   haveI : IsReduced A := Algebra.FormallyUnramified.isReduced_of_field k A
@@ -427,6 +454,9 @@ noncomputable def actionFixedPointsConeIsLimit : IsLimit (actionFixedPointsCone 
     have h := congrArg (fun q => q.hom.hom t) (hm (SingleObj.star H))
     exact Subtype.ext h
 
+/--
+@isnad1 id=haslimit.0h2v.s5.41bbdb4d0c8f from=translated src=- shape=75477b9b vocab=837d5239
+-/
 instance hasLimitsOfShapeSingleObj :
     HasLimitsOfShape (SingleObj H) (CommAlgCat.FiniteEtale.{u} k) where
   has_limit F := HasLimit.mk ⟨_, actionFixedPointsConeIsLimit F⟩
@@ -442,7 +472,9 @@ section EpiSurjective
 variable {k : Type u} [Field k]
 
 /-- A finite étale algebra over `k` has exactly `finrank` many homomorphisms into the
-separable closure of `k`.-/
+separable closure of `k`.
+@isnad1 id=eq.0h2v.s8.1471a97758c7 from=translated src=- shape=03ae086c vocab=053c6d2c
+-/
 theorem natCard_algHom_sepClosure (A : Type u) [CommRing A] [Algebra k A]
     [Module.Finite k A] [Algebra.Etale k A] :
     Nat.card (A →ₐ[k] SeparableClosure k) = Module.finrank k A := by
@@ -451,7 +483,9 @@ theorem natCard_algHom_sepClosure (A : Type u) [CommRing A] [Algebra k A]
     natCard_algHom_eq_finrank (SeparableClosure k) (SeparableClosure k ⊗[k] A)]
   exact Module.finrank_baseChange
 
-/-- Epimorphisms in the category of finite étale algebras over a field are surjective.-/
+/-- Epimorphisms in the category of finite étale algebras over a field are surjective.
+@isnad1 id=surjecti.0h4v.s9.be95ea697646 from=translated src=- shape=37c7ea3f vocab=ee6788d0
+-/
 theorem surjective_of_epi {X Y : CommAlgCat.FiniteEtale.{u} k} (π : Y ⟶ X) [Epi π] :
     Function.Surjective π.hom.hom := by
   classical
@@ -537,7 +571,9 @@ variable {k : Type u} [Field k]
 
 /-- Chinese remainder bijectivity: if `φ : B →ₐ[k] C` is surjective and the ideal `J`
 is a complement of `ker φ`, then `(φ, mkₐ J) : B → C × (B ⧸ J)` is bijective. The
-idempotent `e + f = 1` splitting `ker φ ⊕ J` gives both directions.-/
+idempotent `e + f = 1` splitting `ker φ ⊕ J` gives both directions.
+@isnad1 id=bijectiv.2h5v.s9.4ae01a19f5c9 from=translated src=- shape=ed7f837f vocab=42280082
+-/
 theorem bijective_algHom_prod_mkₐ_of_isCompl {B C : Type u} [CommRing B] [Algebra k B]
     [CommRing C] [Algebra k C] (φ : B →ₐ[k] C) (hsurj : Function.Surjective φ)
     {J : Ideal B} (hIJ : IsCompl (RingHom.ker φ) J) :
@@ -581,7 +617,9 @@ theorem bijective_algHom_prod_mkₐ_of_isCompl {B C : Type u} [CommRing B] [Alge
 
 /-- Chinese remainder splitting along an epimorphism of finite étale algebras: the
 source is the binary product of the target and the quotient by a complement of the
-kernel.  This is the content of axiom (G3) for `(FiniteEtale k)ᵒᵖ`.-/
+kernel.  This is the content of axiom (G3) for `(FiniteEtale k)ᵒᵖ`.
+@isnad1 id=ex.0h4v.s8.e21cd926ec35 from=translated src=- shape=ac37f5bf vocab=2590730b
+-/
 theorem monoInducesIsoOnDirectSummand_op {X Y : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ}
     (i : X ⟶ Y) [Mono i] : ∃ (Z : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ) (u : Z ⟶ Y),
     Nonempty (IsColimit (BinaryCofan.mk i u)) := by
@@ -661,6 +699,9 @@ def singleObjOpEquiv (M : Type*) [Monoid M] : SingleObj Mᵐᵒᵖ ≌ (SingleOb
   counitIso := Iso.refl _
   functor_unitIso_comp _ := Category.id_comp _
 
+/--
+@isnad1 id=hascolim.0h2v.s5.cb7628a0e675 from=translated src=- shape=906b4af1 vocab=c80ac4eb
+-/
 instance hasQuotientsByFiniteGroupsOp (G : Type u) [Group G] [Finite G] :
     HasColimitsOfShape (SingleObj G) (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ :=
   haveI : HasLimitsOfShape (SingleObj G)ᵒᵖ (CommAlgCat.FiniteEtale.{u} k) :=

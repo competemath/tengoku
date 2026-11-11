@@ -136,7 +136,9 @@ def cechSupportContraction (N : Set ι) (i₀ : ι) (hi₀ : i₀ ∉ N) (n : �
     apply Subtype.ext
     rfl
 
-/-- The prepend contraction satisfies `dh + hd = 1`.-/
+/-- The prepend contraction satisfies `dh + hd = 1`.
+@isnad1 id=eq.1h6v.s14.5e9f11e8fd55 from=translated src=- shape=53a504ac vocab=e7134d0e
+-/
 theorem cechSupportContraction_homotopy (N : Set ι) (i₀ : ι)
     (hi₀ : i₀ ∉ N) (n : ℕ) (s : CechSupportCochain R N (n + 1)) :
     cechSupportDifferential R N n (cechSupportContraction R N i₀ hi₀ n s) +
@@ -158,7 +160,9 @@ theorem cechSupportContraction_homotopy (N : Set ι) (i₀ : ι)
   rw [Finset.sum_neg_distrib]
   abel
 
-/-- Every positive-degree cycle in the support-restricted Cech complex is a boundary.-/
+/-- Every positive-degree cycle in the support-restricted Cech complex is a boundary.
+@isnad1 id=ex.2h6v.s14.fba596070109 from=translated src=- shape=e9c538bd vocab=ecbec7bf
+-/
 theorem exists_preimage_cechSupportDifferential (N : Set ι) (i₀ : ι)
     (hi₀ : i₀ ∉ N) (n : ℕ) (s : CechSupportCochain R N (n + 1))
     (hs : cechSupportDifferential R N (n + 1) s = 0) :

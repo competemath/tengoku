@@ -41,7 +41,9 @@ lattice under multiplication.-/
     exact congrFun (ideal_mul (I := a) (J := b)) U
 
 /-- **Comaximal ⟹ product = intersection for ideal sheaves.** A pairwise-comaximal finite
-family of ideal-sheaf data has product equal to intersection.-/
+family of ideal-sheaf data has product equal to intersection.
+@isnad1 id=eq.1h4v.s7.6e60936b606f from=translated src=- shape=137b54dd vocab=15c27620
+-/
 theorem prod_eq_biInf_of_pairwise_sup_eq_top {ι : Type*} (s : Finset ι)
     (I : ι → X.IdealSheafData)
     (h : (s : Set ι).Pairwise (fun i j => I i ⊔ I j = ⊤)) :
@@ -61,14 +63,18 @@ theorem prod_eq_biInf_of_pairwise_sup_eq_top {ι : Type*} (s : Finset ι)
     simpa using h3
   exact (Ideal.isCoprime_iff_sup_eq).mpr hsup
 
-/-- Ideal sheaves with disjoint supports are comaximal.-/
+/-- Ideal sheaves with disjoint supports are comaximal.
+@isnad1 id=eq.1h3v.s7.2c3b0152720d from=translated src=- shape=802ccbd5 vocab=1b320aa8
+-/
 theorem sup_eq_top_of_disjoint_support {I J : X.IdealSheafData}
     (h : Disjoint I.support J.support) : I ⊔ J = ⊤ := by
   rw [← support_eq_bot_iff, support_sup]
   exact disjoint_iff.mp h
 
 /-- **Disjoint supports ⟹ product = intersection.** A finite family of ideal sheaves with
-pairwise disjoint supports has product equal to intersection.-/
+pairwise disjoint supports has product equal to intersection.
+@isnad1 id=eq.1h4v.s8.dfb717735a68 from=translated src=- shape=343d05bf vocab=a431eb7d
+-/
 theorem prod_eq_biInf_of_pairwise_disjoint_support {ι : Type*} (s : Finset ι)
     (I : ι → X.IdealSheafData)
     (h : (s : Set ι).Pairwise (fun i j => Disjoint (I i).support (I j).support)) :

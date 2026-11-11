@@ -40,6 +40,9 @@ noncomputable def mulQuotHom (rP rQ : A) :
   show c * (rP * rQ) = rP * (c * rQ)
   ring
 
+/--
+@isnad1 id=eq.0h5v.s10.fe80bc23f89e from=translated src=- shape=4b3b31ce vocab=4dd8fc27
+-/
 @[simp]
 theorem mulQuotHom_mk (rP rQ : A) (a : A) :
     mulQuotHom (R := R) rP rQ (Ideal.Quotient.mk _ a) =
@@ -63,6 +66,9 @@ noncomputable def quotProjHom (rP rQ : A) :
   show c * rQ * rP = c * (rP * rQ)
   ring
 
+/--
+@isnad1 id=eq.0h5v.s10.b3011acb8c3f from=translated src=- shape=900fe673 vocab=df5bcff4
+-/
 @[simp]
 theorem quotProjHom_mk (rP rQ : A) (a : A) :
     quotProjHom (R := R) rP rQ (Ideal.Quotient.mk _ a) =
@@ -71,12 +77,18 @@ theorem quotProjHom_mk (rP rQ : A) (a : A) :
   rw [Submodule.mapQ_apply]
   rfl
 
+/--
+@isnad1 id=surjecti.0h4v.s9.76894d8a016c from=translated src=- shape=3ea89fad vocab=1bf60a5a
+-/
 theorem quotProjHom_surjective (rP rQ : A) :
     Function.Surjective (quotProjHom (R := R) rP rQ) := by
   intro y
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective y
   exact ⟨Ideal.Quotient.mk _ a, rfl⟩
 
+/--
+@isnad1 id=injectiv.1h4v.s9.9a5d1d541ca2 from=translated src=- shape=07ddcbaa vocab=eda89a9e
+-/
 theorem mulQuotHom_injective (rP rQ : A)
     (hP : rP ∈ nonZeroDivisors A) :
     Function.Injective (mulQuotHom (R := R) rP rQ) := by
@@ -93,6 +105,9 @@ theorem mulQuotHom_injective (rP rQ : A)
       _ = a * rP := by ring
   exact (mul_cancel_right_mem_nonZeroDivisors hP).mp hmul
 
+/--
+@isnad1 id=eq.0h4v.s9.06e780f4265f from=translated src=- shape=111fcdf2 vocab=9f1c50e3
+-/
 theorem exact_mulQuotHom_quotProjHom (rP rQ : A) :
     LinearMap.ker (quotProjHom (R := R) rP rQ) =
       LinearMap.range (mulQuotHom (R := R) rP rQ) := by
@@ -220,6 +235,9 @@ noncomputable def evaluationQuotEquiv {R A : Type*} [CommRing R] [CommRing A]
     (Ideal.quotientKerAlgEquivOfRightInverse
       (f := σ) (g := algebraMap R A) (fun x => σ.commutes x))).toLinearEquiv
 
+/--
+@isnad1 id=eq.1h5v.s10.c6d12dff972a from=translated src=- shape=830c4108 vocab=c1ab1611
+-/
 @[simp]
 theorem evaluationQuotEquiv_mk {R A : Type*} [CommRing R] [CommRing A]
     [Algebra R A] (σ : A →ₐ[R] R) (r : A)

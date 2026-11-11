@@ -41,7 +41,9 @@ variable {R : Type u} {M : Type v} [CommRing R] [AddCommGroup M] [Module R M]
 
 /-- For a finite projective module, the dual has the same rank at every prime: localization
 commutes with duals of finitely presented modules, and duals of finite free modules preserve
-the rank.-/
+the rank.
+@isnad1 id=eq.0h3v.s7.8d857c02b92a from=translated src=- shape=516ca4e7 vocab=66a02462
+-/
 theorem rankAtStalk_dual (p : PrimeSpectrum R) :
     rankAtStalk (R := R) (Dual R M) p = rankAtStalk (R := R) M p := by
   haveI := Module.finitePresentation_of_projective R M
@@ -62,7 +64,9 @@ theorem rankAtStalk_dual (p : PrimeSpectrum R) :
 /-- If a finite projective module has positive rank at every prime, the contraction
 `Mᵛ ⊗ M → R` is surjective: were its range contained in a maximal ideal `m`, a basis
 coordinate of the free localization `Mₘ` would lift to a functional whose value at a lift of
-the basis vector is a unit times an element of `m`.-/
+the basis vector is a unit times an element of `m`.
+@isnad1 id=surjecti.1h2v.s10.23bdf1292095 from=translated src=- shape=a220c4fe vocab=b24e47bb
+-/
 theorem contractLeft_surjective_of_rankAtStalk_pos
     (h : ∀ p, 0 < rankAtStalk (R := R) M p) :
     Function.Surjective (contractLeft R M) := by

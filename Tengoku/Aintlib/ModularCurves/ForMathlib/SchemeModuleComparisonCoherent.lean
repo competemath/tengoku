@@ -29,7 +29,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 
 variable {X : Scheme.{u}}
 
-/-- Both residuals used by support induction are finite type and quasicoherent.-/
+/-- Both residuals used by support induction are finite type and quasicoherent.
+@isnad1 id=and.0h4v.s10.c7ce4942a687 from=translated src=- shape=7cde46e9 vocab=36e3df65
+-/
 theorem comparisonResidual_isFiniteType_and_isQuasicoherent
     [IsLocallyNoetherian X]
     {M N : X.Modules} (f : M ⟶ N)

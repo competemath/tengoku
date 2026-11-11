@@ -46,7 +46,9 @@ private abbrev restrictFromSpec (F : X.Modules) (U : X.affineOpens) :
   @Scheme.Modules.restrict _ _ F U.2.fromSpec
     (IsAffineOpen.isOpenImmersion_fromSpec U.2)
 
-/-- Global closed support containment implies affine module-support containment.-/
+/-- Global closed support containment implies affine module-support containment.
+@isnad1 id=le.1h4v.s12.453d531cd750 from=translated src=- shape=43a61ccc vocab=5873efde
+-/
 theorem moduleSupport_restrictFromSpec_subset_zeroLocus
     (F : X.Modules) [F.IsFiniteType] [F.IsQuasicoherent]
     (J : X.IdealSheafData)
@@ -83,7 +85,9 @@ theorem moduleSupport_restrictFromSpec_subset_zeroLocus
   rw [← U.2.fromSpec_preimage_zeroLocus]
   exact hpZero
 
-/-- A finite affine family has one ideal power annihilating every restricted module.-/
+/-- A finite affine family has one ideal power annihilating every restricted module.
+@isnad1 id=ex.1h5v.s13.220ffc4d677d from=translated src=- shape=8194cec6 vocab=d0b66933
+-/
 theorem exists_uniform_pow_isTorsionBySet_on_finiteAffineFamily
     [IsNoetherian X]
     (F : X.Modules) [F.IsFiniteType] [F.IsQuasicoherent]
@@ -119,7 +123,9 @@ theorem exists_uniform_pow_isTorsionBySet_on_finiteAffineFamily
   intro i
   exact moduleSupport_restrictFromSpec_subset_zeroLocus F J hSupport (U i)
 
-/-- Positive-exponent form of uniform annihilation on a finite affine family.-/
+/-- Positive-exponent form of uniform annihilation on a finite affine family.
+@isnad1 id=ex.1h5v.s13.80ecb76a93f3 from=translated src=- shape=c484112e vocab=2b50d9f2
+-/
 theorem exists_uniform_succ_pow_isTorsionBySet_on_finiteAffineFamily
     [IsNoetherian X]
     (F : X.Modules) [F.IsFiniteType] [F.IsQuasicoherent]
@@ -155,7 +161,9 @@ theorem exists_uniform_succ_pow_isTorsionBySet_on_finiteAffineFamily
   intro i
   exact moduleSupport_restrictFromSpec_subset_zeroLocus F J hSupport (U i)
 
-/-- Uniform annihilation on the canonical finite affine subcover.-/
+/-- Uniform annihilation on the canonical finite affine subcover.
+@isnad1 id=ex.1h3v.s13.29537a7512ed from=translated src=- shape=9ec66b58 vocab=f51572ef
+-/
 theorem exists_uniform_pow_isTorsionBySet_on_finiteAffineSubcover
     [IsNoetherian X]
     (F : X.Modules) [F.IsFiniteType] [F.IsQuasicoherent]
@@ -174,7 +182,9 @@ theorem exists_uniform_pow_isTorsionBySet_on_finiteAffineSubcover
   exists_uniform_pow_isTorsionBySet_on_finiteAffineFamily
     F J hSupport (fun i ↦ Scheme.finiteAffineSubcoverAffineOpen X i)
 
-/-- Positive uniform annihilation on the canonical finite affine subcover.-/
+/-- Positive uniform annihilation on the canonical finite affine subcover.
+@isnad1 id=ex.1h3v.s13.495427cb5664 from=translated src=- shape=95b73d7c vocab=c9fd07bc
+-/
 theorem exists_uniform_succ_pow_isTorsionBySet_on_finiteAffineSubcover
     [IsNoetherian X]
     (F : X.Modules) [F.IsFiniteType] [F.IsQuasicoherent]

@@ -21,7 +21,9 @@ variable (K : HomologicalComplex₂ AddCommGrpCat.{u} (.up ℕ) (.up ℕ))
 variable [K.HasTotal (.up ℕ)]
 
 /-- If the relevant component of the total differential and the component
-immediately to the left both vanish, the next component is vertically closed.-/
+immediately to the left both vanish, the next component is vertically closed.
+@isnad1 id=eq.3h5v.s12.a5b2955d1fad from=translated src=- shape=f601cfb3 vocab=37dadab9
+-/
 theorem component_vertical_of_left_component_eq_zero
     (n q p : ℕ) (hqp : q + p = n)
     (x : (K.total (.up ℕ)).X n)
@@ -48,7 +50,9 @@ theorem component_vertical_of_left_component_eq_zero
   · simpa [hs] using h.symm
 
 /-- If the component immediately to the left is zero, the next component of a
-total cycle is vertically closed.-/
+total cycle is vertically closed.
+@isnad1 id=eq.3h5v.s12.94674608d1ab from=translated src=- shape=6a0a5fa0 vocab=37dadab9
+-/
 theorem cycle_vertical_of_left_component_eq_zero
     (n q p : ℕ) (hqp : q + p = n)
     (x : (K.total (.up ℕ)).X n)
@@ -59,7 +63,9 @@ theorem cycle_vertical_of_left_component_eq_zero
     n q p hqp x _ hleft
   rw [hx, map_zero]
 
-/-- The vertical projection of the boundary of one bidegree component.-/
+/-- The vertical projection of the boundary of one bidegree component.
+@isnad1 id=eq.1h5v.s12.cf02a1901a24 from=translated src=- shape=92d095c5 vocab=5a1a3d6d
+-/
 theorem total_boundary_π_vertical
     (n q p : ℕ) (hqp : q + p = n)
     (b : (K.X q).X p) :
@@ -81,7 +87,9 @@ theorem total_boundary_π_vertical
       · simp [hs]
 
 /-- Multiplying a correcting component by its Koszul sign makes its vertical
-boundary project without a sign.-/
+boundary project without a sign.
+@isnad1 id=eq.1h5v.s11.d34c106e799b from=translated src=- shape=bbf54a82 vocab=5a1a3d6d
+-/
 theorem total_boundary_π_vertical_negOnePow
     (n q p : ℕ) (hqp : q + p = n)
     (b : (K.X q).X p) :
@@ -95,7 +103,9 @@ theorem total_boundary_π_vertical_negOnePow
   · simp [hs]
   · simp [hs]
 
-/-- The horizontal projection of the boundary of one bidegree component.-/
+/-- The horizontal projection of the boundary of one bidegree component.
+@isnad1 id=eq.1h5v.s11.48e9abaa272a from=translated src=- shape=faa00b74 vocab=ebbb5f2c
+-/
 theorem total_boundary_π_horizontal
     (n q p : ℕ) (hqp : q + p = n)
     (b : (K.X q).X p) :
@@ -111,7 +121,9 @@ theorem total_boundary_π_horizontal
   simpa [ConcreteCategory.comp_apply] using h
 
 /-- A one-bidegree correction boundary has zero projection in every strictly
-earlier horizontal degree.-/
+earlier horizontal degree.
+@isnad1 id=eq.3h7v.s11.b100a76dd3a3 from=translated src=- shape=6541eb45 vocab=8710c902
+-/
 theorem total_boundary_π_eq_zero_of_lt
     (n q p i j : ℕ) (hqp : q + p = n) (hij : i + j = n + 1)
     (hi : i < q) (b : (K.X q).X p) :
@@ -162,7 +174,9 @@ theorem total_boundary_π_eq_zero_of_lt
 
 /-- Exactness in the positive part of every vertical row lets us kill initial
 components of an element whenever the corresponding components of its
-differential vanish.-/
+differential vanish.
+@isnad1 id=ex.3h4v.s12.d7a5bc86383e from=translated src=- shape=c4102ba7 vocab=715b26f2
+-/
 theorem exists_boundary_killing_components_lt_of_differential_components_eq_zero
     (n r : ℕ) (hr : r ≤ n + 1)
     (x : (K.total (.up ℕ)).X (n + 1))
@@ -294,7 +308,9 @@ theorem exists_boundary_killing_components_lt_of_differential_components_eq_zero
 
 /-- Exactness in the positive part of every vertical row lets us alter a total
 cycle by a boundary so that all components before a prescribed horizontal
-cutoff vanish.-/
+cutoff vanish.
+@isnad1 id=ex.3h4v.s12.3632de878408 from=translated src=- shape=769285c8 vocab=715b26f2
+-/
 theorem exists_boundary_killing_components_lt
     (n r : ℕ) (hr : r ≤ n + 1)
     (x : (K.total (.up ℕ)).X (n + 1))
@@ -336,7 +352,9 @@ private theorem totalUpNat_decomposition_apply
   simpa only [ConcreteCategory.comp_apply, CategoryTheory.id_apply] using h
 
 /-- If every component before the horizontal axis vanishes, a total-complex
-element is the inclusion of its horizontal-axis component.-/
+element is the inclusion of its horizontal-axis component.
+@isnad1 id=eq.1h3v.s11.20e1c332f001 from=translated src=- shape=790830bd vocab=9c0deadb
+-/
 theorem ιTotal_horizontalAxis_eq_of_components_lt_eq_zero
     (n : ℕ) (x : (K.total (.up ℕ)).X n)
     (hx : ∀ q, q < n →

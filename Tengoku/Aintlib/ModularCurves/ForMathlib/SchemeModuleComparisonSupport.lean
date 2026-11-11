@@ -30,7 +30,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 
 variable {U X : Scheme.{u}}
 
-/-- The kernel of a morphism vanishes where the morphism restricts to an isomorphism.-/
+/-- The kernel of a morphism vanishes where the morphism restricts to an isomorphism.
+@isnad1 id=iszero.0h6v.s6.685cd605048d from=translated src=- shape=25fbf2fd vocab=84589e26
+-/
 theorem isZero_restrict_kernel_of_isIso_map
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -43,7 +45,9 @@ theorem isZero_restrict_kernel_of_isIso_map
   change IsZero (F.obj (kernel f))
   exact hzero.of_iso (PreservesKernel.iso F f)
 
-/-- The cokernel of a morphism vanishes where the morphism restricts to an isomorphism.-/
+/-- The cokernel of a morphism vanishes where the morphism restricts to an isomorphism.
+@isnad1 id=iszero.0h6v.s6.63a3a434e986 from=translated src=- shape=25fbf2fd vocab=311fe259
+-/
 theorem isZero_restrict_cokernel_of_isIso_map
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -59,7 +63,9 @@ theorem isZero_restrict_cokernel_of_isIso_map
   exact hzero.of_iso (PreservesCokernel.iso F f)
 
 /-- The kernel residual in the kernel-image-cokernel factorization vanishes
-where the original morphism restricts to an isomorphism.-/
+where the original morphism restricts to an isomorphism.
+@isnad1 id=iszero.0h6v.s7.5c1464b9548b from=translated src=- shape=96e947dd vocab=854b1711
+-/
 theorem isZero_restrict_kernel_factorThruImage_of_isIso_map
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -83,7 +89,9 @@ theorem isZero_restrict_kernel_factorThruImage_of_isIso_map
     (PreservesKernel.iso F (Abelian.factorThruImage f))
 
 /-- The cokernel residual in the kernel-image-cokernel factorization vanishes
-where the original morphism restricts to an isomorphism.-/
+where the original morphism restricts to an isomorphism.
+@isnad1 id=iszero.0h6v.s7.91cb5361d12b from=translated src=- shape=eb2d699b vocab=80b2d48a
+-/
 theorem isZero_restrict_cokernel_image_ι_of_isIso_map
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -109,7 +117,9 @@ theorem isZero_restrict_cokernel_image_ι_of_isIso_map
     (PreservesCokernel.iso F (Abelian.image.ι f))
 
 /-- The kernel residual has strictly smaller support when the comparison open
-contains a source support point.-/
+contains a source support point.
+@isnad1 id=lt.1h7v.s9.3e398988a13e from=translated src=- shape=930a17da vocab=6923e665
+-/
 theorem closedStalkSupport_kernel_factorThruImage_lt
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -129,7 +139,9 @@ theorem closedStalkSupport_kernel_factorThruImage_lt
   · exact hxM
 
 /-- The cokernel residual has strictly smaller support when the target support
-is contained in the source support and the comparison open meets that support.-/
+is contained in the source support and the comparison open meets that support.
+@isnad1 id=lt.2h7v.s9.79f194e77880 from=translated src=- shape=4afef8dd vocab=e259d2ed
+-/
 theorem closedStalkSupport_cokernel_image_ι_lt
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)
@@ -151,7 +163,9 @@ theorem closedStalkSupport_cokernel_image_ι_lt
   · exact hxM
 
 /-- Both residual supports decrease under the hypotheses used in modification
-codévissage.-/
+codévissage.
+@isnad1 id=and.2h7v.s10.633787c794c7 from=translated src=- shape=f0f30300 vocab=89a781be
+-/
 theorem comparisonResidual_closedStalkSupport_lt
     (j : U ⟶ X) [IsOpenImmersion j]
     {M N : X.Modules} (f : M ⟶ N)

@@ -46,7 +46,9 @@ variable (R : Type u) (B : Type v) [CommRing R] [CommRing B] [Algebra R B]
 
 /-- **Characteristic polynomial as a norm** (KM 1.8.2): for a finite free `R`-algebra `B` and
 `b : B`, the characteristic polynomial of multiplication by `b` equals the norm, relative to
-`(R[X] ⊗[R] B) / R[X]`, of `X ⊗ 1 − 1 ⊗ b` ("`T − b`").-/
+`(R[X] ⊗[R] B) / R[X]`, of `X ⊗ 1 − 1 ⊗ b` ("`T − b`").
+@isnad1 id=eq.0h3v.s11.37c045c03cd1 from=translated src=- shape=675af7c9 vocab=4685963f
+-/
 theorem charpoly_lmul_eq_norm (b : B) :
     (Algebra.lmul R B b).charpoly =
       Algebra.norm R[X] ((X : R[X]) ⊗ₜ[R] (1 : B) - (1 : R[X]) ⊗ₜ[R] b) := by

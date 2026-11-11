@@ -40,7 +40,9 @@ namespace ModularCurves
 variable {A : Type*} [CommRing A] [IsDomain A] [UniqueFactorizationMonoid A]
 
 /-- **(Stage C heart ★)** The product form `X₁·(3X₀²+3X₀X₁+X₁²)` of (minus) the flex
-relation is squarefree over a UFD with `3` invertible.-/
+relation is squarefree over a UFD with `3` invertible.
+@isnad1 id=squarefr.1h1v.s10.d25b3449c378 from=translated src=- shape=7499a125 vocab=6f6d79b6
+-/
 theorem squarefree_e3RelMul (h3 : IsUnit (3 : A)) :
     Squarefree ((X 1) * (3 * (X 0) ^ 2 + 3 * (X 0) * (X 1) + (X 1) ^ 2) :
       MvPolynomial (Fin 2) A) := by
@@ -163,7 +165,9 @@ theorem squarefree_e3RelMul (h3 : IsUnit (3 : A)) :
     exact pow_ne_zero 3 Polynomial.X_ne_zero hev0
 
 /-- **(Stage C ★)** The `ℰ₃` flex relation `X₀³ − (X₀+X₁)³` is squarefree over a UFD
-with `3` invertible: it is `−1` times the product form.-/
+with `3` invertible: it is `−1` times the product form.
+@isnad1 id=squarefr.1h1v.s9.2f56ff26be98 from=translated src=- shape=e00c9e58 vocab=dcb461ab
+-/
 theorem squarefree_e3Rel (h3 : IsUnit (3 : A)) :
     Squarefree ((X 0) ^ 3 - ((X 0) + (X 1)) ^ 3 : MvPolynomial (Fin 2) A) := by
   have hassoc : Associated
@@ -178,7 +182,9 @@ theorem squarefree_e3Rel (h3 : IsUnit (3 : A)) :
 `A[X₀,X₁]/(X₀³−(X₀+X₁)³)` is **reduced** over a UFD with `3` invertible — this is
 `IsReduced (E3Quotient A)` for `A = ℤ[1/3]`, which `hom_ext_of_forall_specPoint` needs
 (after localization, which preserves reducedness) to lift the fibrewise `3`-torsion
-killing of the universal `ℰ₃` sections to the section level.-/
+killing of the universal `ℰ₃` sections to the section level.
+@isnad1 id=isreduce.1h1v.s11.4e3715045e81 from=translated src=- shape=00b9c30c vocab=6d2e7ade
+-/
 theorem isReduced_e3RelQuotient (h3 : IsUnit (3 : A)) :
     IsReduced (MvPolynomial (Fin 2) A ⧸
       Ideal.span {((X 0) ^ 3 - ((X 0) + (X 1)) ^ 3 : MvPolynomial (Fin 2) A)}) :=

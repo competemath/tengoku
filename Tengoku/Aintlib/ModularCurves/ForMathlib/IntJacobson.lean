@@ -26,7 +26,9 @@ ideal `(p)` — equivalently `x·y + 1` a unit for all `y` — must be `0` (take
 
 open Ideal
 
-/-- **`ℤ` is a Jacobson ring.** The base instance mathlib is missing.-/
+/-- **`ℤ` is a Jacobson ring.** The base instance mathlib is missing.
+@isnad1 id=isjacobs.0h0v.s1.58bf0a8b6eaf from=translated src=- shape=49959d42 vocab=b4fcb4c4
+-/
 instance Int.instIsJacobsonRing : IsJacobsonRing ℤ := by
   rw [isJacobsonRing_iff_prime_eq]
   intro P hP

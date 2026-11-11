@@ -54,13 +54,18 @@ noncomputable def coactionBaseChange :
   ((baseChangeAssoc R A ρ C').symm.toAlgHom.comp
     (Algebra.TensorProduct.map (AlgHom.id C' C') (coactionOverCoinvariants ρ))).restrictScalars R
 
+/--
+@isnad1 id=eq.0h7v.s14.d5eb134bb31e from=translated src=- shape=325b2c19 vocab=82b1b75e
+-/
 @[simp]
 theorem coactionBaseChange_tmul (c' : C') (b : B) :
     coactionBaseChange R A ρ C' (c' ⊗ₜ[coinvariants ρ] b)
       = (baseChangeAssoc R A ρ C').symm (c' ⊗ₜ[coinvariants ρ] ρ b) := rfl
 
 /-- The associator carries the ambient left inclusion to `id ⊗ includeLeftOverCoinvariants`,
-pointwise.-/
+pointwise.
+@isnad1 id=eq.0h6v.s14.b8e311928c45 from=translated src=- shape=38bb6b98 vocab=86982172
+-/
 theorem baseChangeAssoc_tmul_one (x : C' ⊗[coinvariants ρ] B) :
     baseChangeAssoc R A ρ C' (x ⊗ₜ[R] (1 : A))
       = (Algebra.TensorProduct.map (AlgHom.id C' C')
@@ -77,7 +82,9 @@ theorem baseChangeAssoc_tmul_one (x : C' ⊗[coinvariants ρ] B) :
   | add x y ihx ihy =>
     rw [TensorProduct.add_tmul, map_add, ihx, ihy, map_add]
 
-/-- Membership in the equalizer of the base-changed pair, in terms of the original data.-/
+/-- Membership in the equalizer of the base-changed pair, in terms of the original data.
+@isnad1 id=iff.0h6v.s14.bb45dfd76b75 from=translated src=- shape=49cd399e vocab=9356fab9
+-/
 theorem coactionBaseChange_eq_includeLeft_iff (x : C' ⊗[coinvariants ρ] B) :
     coactionBaseChange R A ρ C' x = x ⊗ₜ[R] (1 : A)
       ↔ (Algebra.TensorProduct.map (AlgHom.id C' C') (coactionOverCoinvariants ρ)) x
@@ -127,7 +134,9 @@ private theorem exists_tmul_one_eq_map_equalizer_val
     exact ⟨cy + cz, by rw [map_add, ← hcy, ← hcz, TensorProduct.add_tmul]⟩
 
 /-- **03BK(3), comodule form**: for a *flat* base change `C → C'` of the co-invariants, the
-co-invariants of the base-changed co-action are exactly the scalars `C'`.-/
+co-invariants of the base-changed co-action are exactly the scalars `C'`.
+@isnad1 id=iff.0h6v.s12.523fa985a056 from=translated src=- shape=7472b121 vocab=88ef1b7c
+-/
 theorem mem_coinvariants_coactionBaseChange_iff [Module.Flat (coinvariants ρ) C']
     (x : C' ⊗[coinvariants ρ] B) :
     x ∈ coinvariants (coactionBaseChange R A ρ C')
@@ -187,7 +196,9 @@ private theorem rid_map_counit_baseChangeAssoc_symm (c' : C') (z : B ⊗[R] A) :
     rw [TensorProduct.tmul_add, map_add, map_add, map_add, ihz, ihw, map_add, map_add,
       TensorProduct.tmul_add]
 
-/-- The counit law transports to the base change.-/
+/-- The counit law transports to the base change.
+@isnad1 id=eq.1h5v.s14.9019a09f5aac from=translated src=- shape=626426ec vocab=9b6e5118
+-/
 theorem coactionBaseChange_counit (hρ : IsCoaction ρ) :
     (Algebra.TensorProduct.rid R R (C' ⊗[coinvariants ρ] B)).toAlgHom.comp
       ((Algebra.TensorProduct.map (AlgHom.id R (C' ⊗[coinvariants ρ] B))
@@ -280,7 +291,9 @@ private theorem map_comul_baseChangeAssoc_symm (c' : C') (z : B ⊗[R] A) :
   | add z₁ z₂ ih₁ ih₂ =>
     rw [TensorProduct.tmul_add, map_add, map_add, ih₁, ih₂, map_add, map_add]
 
-/-- The coassociativity law transports to the base change.-/
+/-- The coassociativity law transports to the base change.
+@isnad1 id=eq.1h5v.s15.a90bdb3710d7 from=translated src=- shape=f9b2ea57 vocab=4ba3343c
+-/
 theorem coactionBaseChange_coassoc (hρ : IsCoaction ρ) :
     (Algebra.TensorProduct.assoc R R R (C' ⊗[coinvariants ρ] B) A A).toAlgHom.comp
       ((Algebra.TensorProduct.map (coactionBaseChange R A ρ C') (AlgHom.id R A)).comp
@@ -304,7 +317,9 @@ theorem coactionBaseChange_coassoc (hρ : IsCoaction ρ) :
     simp only [AlgHom.comp_apply] at ihx ihy ⊢
     rw [map_add, map_add, map_add, map_add, ihx, ihy]
 
-/-- **The base-changed co-action is a co-action.**-/
+/-- **The base-changed co-action is a co-action.**
+@isnad1 id=iscoacti.1h5v.s10.2061325ab0b5 from=translated src=- shape=51edf5de vocab=6e2c25e1
+-/
 theorem isCoaction_coactionBaseChange (hρ : IsCoaction ρ) :
     IsCoaction (coactionBaseChange R A ρ C') where
   counit := coactionBaseChange_counit R A ρ C' hρ

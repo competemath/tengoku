@@ -60,7 +60,9 @@ omit [IsLocalRing R] [IsLocalRing S] [IsLocalHom (algebraMap R S)] [IsNoetherian
 
 /-- For an `S`-module `N`, restricting the `S`-submodule `𝔞S·N` (generated over `S` by an ideal
 `𝔞` of `R`) back to `R` recovers the `R`-submodule `𝔞·N`.  Combines `Ideal.smul_restrictScalars`
-with `Submodule.restrictScalars_top`.-/
+with `Submodule.restrictScalars_top`.
+@isnad1 id=eq.0h4v.s8.2b0e30614e28 from=translated src=- shape=8a07d948 vocab=50f489bf
+-/
 theorem restrictScalars_map_smul_top (𝔞 : Ideal R) :
     (𝔞.map (algebraMap R S) • (⊤ : Submodule S N)).restrictScalars R
       = 𝔞 • (⊤ : Submodule R N) := by
@@ -76,6 +78,9 @@ noncomputable def quotTensorEquivQuotMapSMul (𝔞 : Ideal R) :
     Submodule.quotEquivOfEq _ _ (restrictScalars_map_smul_top N 𝔞).symm ≪≫ₗ
     Submodule.Quotient.restrictScalarsEquiv R _
 
+/--
+@isnad1 id=eq.0h6v.s11.6e70eb13ce94 from=translated src=- shape=001b38d1 vocab=e6a2c9c9
+-/
 theorem quotTensorEquivQuotMapSMul_mk_tmul (𝔞 : Ideal R) (a : R) (v : N) :
     quotTensorEquivQuotMapSMul N 𝔞 (Ideal.Quotient.mk 𝔞 a ⊗ₜ[R] v)
       = (Submodule.Quotient.mk (a • v) :
@@ -207,7 +212,9 @@ private theorem exists_fibre_adapted_surjection
 /-- **Stacks 00MH / Matsumura CRT 22.5 (freeness half), Tor-free.**
 Let `R → S` be a local homomorphism of local rings with `S` Noetherian, and `M` a finite
 `S`-module that is flat over `R`.  If the fibre `M ⧸ 𝔪M` is free over the fibre ring `S ⧸ 𝔪S`
-(where `𝔪 = maximalIdeal R`), then `M` is free over `S`.-/
+(where `𝔪 = maximalIdeal R`), then `M` is free over `S`.
+@isnad1 id=free.1h3v.s9.9b3c5b215383 from=translated src=- shape=0da65494 vocab=2b265293
+-/
 theorem Module.free_of_flat_of_fibre_free [Module.Flat R M]
     (hfib : Module.Free (S ⧸ (maximalIdeal R).map (algebraMap R S))
       (M ⧸ ((maximalIdeal R).map (algebraMap R S) • (⊤ : Submodule S M)))) :

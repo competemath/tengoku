@@ -88,7 +88,9 @@ attribute [local instance] Algebra.TensorProduct.rightAlgebra in
 set_option maxHeartbeats 1600000 in
 /-- **The fibrewise criterion for formal unramifiedness**: if all residue fibres of
 `R → T` over `A` are formally unramified and `T` is essentially of finite type over
-`R`, then `T` is formally unramified over `R`.-/
+`R`, then `T` is formally unramified over `R`.
+@isnad1 id=formally.1h3v.s10.e4b53ae55ad5 from=translated src=- shape=57317dd1 vocab=c4b9febc
+-/
 theorem formallyUnramified_of_fibre_formallyUnramified
     [Algebra.EssFiniteType R T]
     (hfib : ∀ (q : Ideal A) [q.IsPrime],

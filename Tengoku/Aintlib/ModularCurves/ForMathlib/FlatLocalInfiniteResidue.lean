@@ -47,12 +47,16 @@ variable (C : Type u) [CommRing C] [IsLocalRing C]
 noncomputable def polynomialMaximalIdeal : Ideal (Polynomial C) :=
   (maximalIdeal C).map (algebraMap C (Polynomial C))
 
-/-- Membership in `m·C[X]` is coefficientwise membership in `m`.-/
+/-- Membership in `m·C[X]` is coefficientwise membership in `m`.
+@isnad1 id=iff.0h2v.s7.55c0ced73c72 from=translated src=- shape=a32729bb vocab=39550b77
+-/
 theorem mem_polynomialMaximalIdeal {f : Polynomial C} :
     f ∈ polynomialMaximalIdeal C ↔ ∀ n, f.coeff n ∈ maximalIdeal C := by
   rw [polynomialMaximalIdeal, algebraMap_eq, Ideal.mem_map_C_iff]
 
-/-- `m·C[X]` is prime: the quotient is the polynomial ring over the residue field.-/
+/-- `m·C[X]` is prime: the quotient is the polynomial ring over the residue field.
+@isnad1 id=isprime.0h1v.s5.800a80bd296d from=translated src=- shape=da9a72aa vocab=7d31c23d
+-/
 instance polynomialMaximalIdeal_isPrime : (polynomialMaximalIdeal C).IsPrime := by
   rw [← Ideal.Quotient.isDomain_iff_prime]
   haveI : IsDomain (Polynomial (C ⧸ maximalIdeal C)) := inferInstance
@@ -63,11 +67,17 @@ instance polynomialMaximalIdeal_isPrime : (polynomialMaximalIdeal C).IsPrime := 
 noncomputable abbrev LocalPolynomialExtension : Type u :=
   Localization.AtPrime (polynomialMaximalIdeal C)
 
+/--
+@isnad1 id=flat.0h1v.s8.0583a2ac42e7 from=translated src=- shape=4c9b52a8 vocab=ae269274
+-/
 instance flat_localPolynomialExtension : Module.Flat C (LocalPolynomialExtension C) :=
   haveI : Module.Flat (Polynomial C) (LocalPolynomialExtension C) :=
     IsLocalization.flat _ (polynomialMaximalIdeal C).primeCompl
   Module.Flat.trans C (Polynomial C) (LocalPolynomialExtension C)
 
+/--
+@isnad1 id=islocalh.0h1v.s9.caa771c203c5 from=translated src=- shape=d4566c21 vocab=1c18cc32
+-/
 instance isLocalHom_localPolynomialExtension :
     IsLocalHom (algebraMap C (LocalPolynomialExtension C)) := by
   refine ⟨fun c hc => ?_⟩
@@ -85,6 +95,9 @@ instance isLocalHom_localPolynomialExtension :
     (polynomialMaximalIdeal C)] at this
   exact this hCc
 
+/--
+@isnad1 id=faithful.0h1v.s8.c237c8e3863a from=translated src=- shape=4c9b52a8 vocab=63f352f0
+-/
 instance faithfullyFlat_localPolynomialExtension :
     Module.FaithfullyFlat C (LocalPolynomialExtension C) :=
   Module.FaithfullyFlat.of_flat_of_isLocalHom

@@ -115,7 +115,9 @@ private theorem pullbackAffineRefinement_over_isQuasicoherent
   exact isQuasicoherent_over_of_restrict_of_isAffineOpen
     ((pullback f).obj M) (pullbackAffineRefinementOpen f j)
 
-/-- Pullback along an arbitrary scheme morphism preserves quasicoherence.-/
+/-- Pullback along an arbitrary scheme morphism preserves quasicoherence.
+@isnad1 id=isquasic.0h4v.s8.f5f7534d58d2 from=translated src=- shape=2fc901a4 vocab=bf4bad3f
+-/
 theorem isQuasicoherent_pullback
     (f : Y ⟶ X) (M : X.Modules) [M.IsQuasicoherent] :
     ((pullback f).obj M).IsQuasicoherent := by
@@ -221,7 +223,9 @@ private theorem pullbackLocalGeneratorsData_isFiniteType
     (pullbackRestrictGeneratingSections f M j)
 
 /-- Pullback along an arbitrary scheme morphism preserves finite type for a
-quasicoherent module.-/
+quasicoherent module.
+@isnad1 id=isfinite.0h4v.s8.be7b13e06e67 from=translated src=- shape=49f68783 vocab=e7703085
+-/
 theorem isFiniteType_pullback
     (f : Y ⟶ X) (M : X.Modules)
     [M.IsQuasicoherent] [M.IsFiniteType] :

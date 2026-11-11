@@ -22,6 +22,9 @@ namespace HomologicalComplex
 variable {C : Type u} [Category.{v} C] [HasZeroMorphisms C]
   {ι : Type w} {c : ComplexShape ι}
 
+/--
+@isnad1 id=exactat.2h8v.s7.06e36703be8a from=translated src=- shape=46b82c61 vocab=416089bf
+-/
 theorem ExactAt.of_retract
     {K L : HomologicalComplex C c} {i : ι}
     [K.HasHomology i] [L.HasHomology i]

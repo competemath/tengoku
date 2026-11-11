@@ -71,7 +71,9 @@ private theorem hom_ext_of_restrictFunctor_map_eq_of_iSup_eq_top
   exact hgerm.symm.trans (happly.trans hhgerm)
 
 /-- A morphism of scheme modules is an epimorphism if its restrictions to an
-open cover are epimorphisms.-/
+open cover are epimorphisms.
+@isnad1 id=epi.2h6v.s8.195bf2aa719a from=translated src=- shape=22aefa10 vocab=11f11f25
+-/
 theorem epi_of_restrictFunctor_map_epi_of_iSup_eq_top
     {X : Scheme.{u}} {ι : Type v} (U : ι → X.Opens)
     (hU : ⨆ i, U i = ⊤) {M N : X.Modules} (f : M ⟶ N)

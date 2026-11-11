@@ -39,7 +39,9 @@ section Height
 /-- **(brick 5a)** At a maximal ideal of a `k`-algebra standard smooth of relative
 dimension one (`k` algebraically closed), the height is at least one: pull back to the
 polynomial ring of a submersive presentation, where the height is the number of variables
-(brick 2), and lose at most the number of relations (brick 3').-/
+(brick 2), and lose at most the number of relations (brick 3').
+@isnad1 id=le.0h3v.s6.b34b1cd9d7a2 from=translated src=- shape=f91896a6 vocab=abbdbc41
+-/
 theorem one_le_height_of_isMaximal (k : Type u) [Field k] [IsAlgClosed k] {A : Type u}
     [CommRing A] [Algebra k A] [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]
     (𝔪 : Ideal A) [h𝔪 : 𝔪.IsMaximal] : 1 ≤ 𝔪.height := by
@@ -108,6 +110,9 @@ noncomputable def pointAlgHom (k : Type u) [Field k] [IsAlgClosed k] {A : Type u
     A →ₐ[k] k :=
   (residueAlgEquiv k 𝔪).toAlgHom.comp (Ideal.Quotient.mkₐ k 𝔪)
 
+/--
+@isnad1 id=eq.0h3v.s7.68a553d12652 from=translated src=- shape=a08de6dc vocab=96cf95fe
+-/
 @[simp] theorem ker_pointAlgHom (k : Type u) [Field k] [IsAlgClosed k] {A : Type u}
     [CommRing A] [Algebra k A] [Algebra.FiniteType k A] (𝔪 : Ideal A) [𝔪.IsMaximal] :
     RingHom.ker (pointAlgHom k 𝔪).toRingHom = 𝔪 := by
@@ -123,7 +128,9 @@ section Regular
 /-- **(T-SMOOTH-REG brick 5 ★★)** The localization of a `k`-algebra standard smooth of
 relative dimension one at a maximal ideal is a **regular local ring** (`k` algebraically
 closed): its maximal ideal is principal (brick 4 + Nakayama) and its dimension is at least
-one (brick 5a).-/
+one (brick 5a).
+@isnad1 id=isregula.0h3v.s6.d76a91fa76be from=translated src=- shape=ad5aabb4 vocab=b95bfba3
+-/
 theorem isRegularLocalRing_localization_atPrime (k : Type u) [Field k] [IsAlgClosed k]
     {A : Type u} [CommRing A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]
@@ -187,7 +194,9 @@ theorem isRegularLocalRing_localization_atPrime (k : Type u) [Field k] [IsAlgClo
   exact_mod_cast Nat.cast_le (α := ℕ∞).mpr hsf
 
 /-- **(T-SMOOTH-REG ★★★)** Hence the local ring at a maximal ideal is a **domain**
-(`ForMathlib/RegularLocalDomain`, Matsumura 14.3).-/
+(`ForMathlib/RegularLocalDomain`, Matsumura 14.3).
+@isnad1 id=isdomain.0h3v.s6.03b7056d67d6 from=translated src=- shape=ad5aabb4 vocab=39b1868a
+-/
 theorem isDomain_localization_atPrime_of_isMaximal (k : Type u) [Field k] [IsAlgClosed k]
     {A : Type u} [CommRing A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]
@@ -207,7 +216,9 @@ Take a maximal ideal `𝔪 ⊇ 𝔭`. Since `A_𝔪` is a domain (brick 5) there
 minimal prime below `𝔪`, namely `𝔮₁ = ker (A → A_𝔪)`; multiplying together, for each of
 the finitely many other minimal primes, an element of it outside `𝔪` produces `f ∉ 𝔪`
 lying in all of them. Then `D(f)` contains `𝔭`, and every prime in `D(f)` contains `𝔮₁`,
-so `D(f)` is a nonempty open subset of the irreducible closed set `V(𝔮₁)`.-/
+so `D(f)` is a nonempty open subset of the irreducible closed set `V(𝔮₁)`.
+@isnad1 id=ex.0h3v.s7.558f1daac464 from=translated src=- shape=a41607cc vocab=edc9f543
+-/
 theorem exists_isIrreducible_basicOpen_nbhd (k : Type u) [Field k] [IsAlgClosed k]
     {A : Type u} [CommRing A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A] (p : PrimeSpectrum A) :

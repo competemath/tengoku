@@ -60,13 +60,17 @@ section Helpers
 
 variable {A : Type v} [CommRing A]
 
-/-- If `x ∣ y`, then `x` becomes a unit in `Localization.Away y`.-/
+/-- If `x ∣ y`, then `x` becomes a unit in `Localization.Away y`.
+@isnad1 id=isunit.1h3v.s7.ec38d38ff6f3 from=translated src=- shape=b5399288 vocab=8e414c92
+-/
 theorem isUnit_algebraMap_away {x y : A} (h : x ∣ y) :
     IsUnit (algebraMap A (Localization.Away y) x) :=
   isUnit_of_dvd_unit (map_dvd _ h) (IsLocalization.map_units _ ⟨y, Submonoid.mem_powers y⟩)
 
 /-- Mapping a fraction `x * d⁻¹` into a localization in which `x ↦ algebraMap b` and
-`d ↦ algebraMap s` yields the fraction `mk' b s`.-/
+`d ↦ algebraMap s` yields the fraction `mk' b s`.
+@isnad1 id=eq.3h9v.s8.3ea3aecfa918 from=translated src=- shape=efa9ff59 vocab=f9c7aeb2
+-/
 theorem map_mul_isUnit_inv_eq_mk' {L T : Type*} [CommRing L] [CommRing T]
     {M : Submonoid A} [Algebra A L] [IsLocalization M L]
     (f : T →+* L) {x d : T} (hd : IsUnit d) {b : A} {s : M}
@@ -76,7 +80,9 @@ theorem map_mul_isUnit_inv_eq_mk' {L T : Type*} [CommRing L] [CommRing T]
     hd.val_inv_mul, map_one, mul_one, hx]
 
 /-- Cancellation transported along a divisor: if `a ∣ b` and `a * x = a * y`, then also
-`b * x = b * y`. (No cancellativity is needed — multiply the hypothesis through by the cofactor.)-/
+`b * x = b * y`. (No cancellativity is needed — multiply the hypothesis through by the cofactor.)
+@isnad1 id=eq.2h5v.s6.725b409d4be3 from=translated src=- shape=f99088da vocab=5608f7e4
+-/
 theorem mul_right_cancel_of_dvd {M : Type*} [CommMonoid M] {a b x y : M}
     (hab : a ∣ b) (h : a * x = a * y) : b * x = b * y := by
   obtain ⟨e, rfl⟩ := hab
@@ -96,6 +102,9 @@ variable {S : Submonoid R}
 
 namespace MulSemiringAction
 
+/--
+@isnad1 id=le.1h4v.s8.f72e480ff7ac from=translated src=- shape=21c621e8 vocab=9d66da25
+-/
 theorem le_comap_toRingHom_of_forall_smul_eq (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (g : G) :
     S ≤ S.comap (MulSemiringAction.toRingHom G R g) := fun s hs =>
   Submonoid.mem_comap.mpr (by
@@ -109,10 +118,16 @@ noncomputable def locHom (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (g : G) :
   IsLocalization.map (Localization S) (MulSemiringAction.toRingHom G R g)
     (le_comap_toRingHom_of_forall_smul_eq hS g)
 
+/--
+@isnad1 id=eq.1h5v.s9.eee7e6cd9fc7 from=translated src=- shape=300a95a9 vocab=3c4f2930
+-/
 theorem locHom_algebraMap (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (g : G) (b : R) :
     locHom hS g (algebraMap R (Localization S) b) = algebraMap R (Localization S) (g • b) :=
   IsLocalization.map_eq _ b
 
+/--
+@isnad1 id=eq.1h4v.s8.ebcddaacbb5b from=translated src=- shape=04e322e5 vocab=6af19e36
+-/
 theorem locHom_one (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (x : Localization S) :
     locHom hS (1 : G) x = x := by
   have h : locHom hS (1 : G) = RingHom.id (Localization S) := by
@@ -121,6 +136,9 @@ theorem locHom_one (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (x : Localizatio
     simp [locHom_algebraMap]
   rw [h, RingHom.id_apply]
 
+/--
+@isnad1 id=eq.1h6v.s9.7079981d48c1 from=translated src=- shape=e1176c4f vocab=fc3f2776
+-/
 theorem locHom_mul (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (g g' : G) (x : Localization S) :
     locHom hS (g * g') x = locHom hS g (locHom hS g' x) := by
   have h : locHom hS (g * g') = (locHom hS g).comp (locHom hS g') := by
@@ -158,6 +176,9 @@ variable {G : Type*} [Group G] {R : Type u} [CommRing R] [MulSemiringAction G R]
 variable {S : Submonoid R} {L : Type u} [CommRing L] [Algebra R L] [IsLocalization S L]
 variable [MulSemiringAction G L]
 
+/--
+@isnad1 id=eq.2h7v.s9.b080c91938ca from=translated src=- shape=fc5d30ae vocab=0b198927
+-/
 theorem smul_mk'_of_compatible
     (hcomp : ∀ (g : G) (r : R), g • (algebraMap R L r) = algebraMap R L (g • r))
     (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (g : G) (b : R) (s : S) :
@@ -171,7 +192,9 @@ theorem smul_mk'_of_compatible
 /-- **Fixed points of an invariant localization are fractions with invariant numerator**:
 for a finite group, every fixed element of `L` is `mk' b s` with `b` invariant and `s ∈ S`.
 No averaging over `G`: the numerator is corrected by an element of `S` instead, so there is
-no invertibility hypothesis on `|G|`.-/
+no invertibility hypothesis on `|G|`.
+@isnad1 id=ex.3h5v.s9.b730bcd14859 from=translated src=- shape=3f69f491 vocab=74f7ec37
+-/
 theorem exists_fixed_smul_mk'_eq [Finite G]
     (hcomp : ∀ (g : G) (r : R), g • (algebraMap R L r) = algebraMap R L (g • r))
     (hS : ∀ (g : G), ∀ s ∈ S, g • s = s) (x : L) (hx : ∀ g : G, g • x = x) :
@@ -210,7 +233,9 @@ theorem exists_fixed_smul_mk'_eq [Finite G]
       ⟨(s₀ : R) * d, Submonoid.mul_mem S s₀.2 hdS⟩
 
 /-- Freeness of the action localizes: if `G` acts freely on `R` (in the Katz–Mazur sense),
-it acts freely on any compatible localization `L` of `R`.-/
+it acts freely on any compatible localization `L` of `R`.
+@isnad1 id=isfreeal.2h3v.s8.7f4def295c91 from=translated src=- shape=93022329 vocab=de87105b
+-/
 theorem isFreeAlgebraAction_of_isLocalization
     (hcomp : ∀ (g : G) (r : R), g • (algebraMap R L r) = algebraMap R L (g • r))
     (hfree : IsFreeAlgebraAction G ℤ R) : IsFreeAlgebraAction G ℤ L := by
@@ -237,13 +262,18 @@ section PrimeSetup
 
 variable {G : Type*} [Group G] {R : Type u} [CommRing R] [MulSemiringAction G R]
 
-/-- Elements of the image of `p.primeCompl` in `R` are pointwise fixed.-/
+/-- Elements of the image of `p.primeCompl` in `R` are pointwise fixed.
+@isnad1 id=eq.1h5v.s10.69266c67f016 from=translated src=- shape=8003eedb vocab=820b8e5b
+-/
 theorem primeComplImage_fixed (p : Ideal (FixedPoints.subring R G)) [p.IsPrime] :
     ∀ (g : G), ∀ s ∈ p.primeCompl.map (algebraMap (FixedPoints.subring R G) R), g • s = s := by
   rintro g s hs
   obtain ⟨k, -, rfl⟩ := Submonoid.mem_map.mp hs
   exact k.2 g
 
+/--
+@isnad1 id=nontrivi.0h3v.s10.a4f4c421abab from=translated src=- shape=d30e07a3 vocab=33e51791
+-/
 theorem nontrivial_localization_primeComplImage (p : Ideal (FixedPoints.subring R G))
     [p.IsPrime] :
     Nontrivial (Localization (p.primeCompl.map (algebraMap (FixedPoints.subring R G) R))) := by
@@ -265,7 +295,9 @@ theorem nontrivial_localization_primeComplImage (p : Ideal (FixedPoints.subring 
 
 /-- The fixed subalgebra of a compatible localization at (the image of) `p.primeCompl` is a
 **local ring**: it is the surjective image of `Localization.AtPrime p` under the localized
-inclusion of the fixed subring.-/
+inclusion of the fixed subring.
+@isnad1 id=islocalr.1h4v.s10.810d606d0df8 from=translated src=- shape=d397bd1c vocab=c89dcb46
+-/
 theorem isLocalRing_fixedPoints_of_isLocalization [Finite G]
     (p : Ideal (FixedPoints.subring R G)) [p.IsPrime]
     {L : Type u} [CommRing L] [Algebra R L]
@@ -318,7 +350,9 @@ base-changes the whole descent problem to the invariant localization. -/
 section BaseChange
 
 /-- Base change of a `VariableChange` cocycle along a `G`-equivariant ring map: if `C` is a cocycle
-on `R` and `f : R →+* L` intertwines the actions, then `g ↦ (C g).map f` is a cocycle on `L`.-/
+on `R` and `f : R →+* L` intertwines the actions, then `g ↦ (C g).map f` is a cocycle on `L`.
+@isnad1 id=isvcocyc.2h5v.s8.59cb4d17e3dc from=translated src=- shape=d6b82ba9 vocab=8665eea8
+-/
 theorem isVCocycle_map {G : Type*} [Group G] {R : Type*} [CommRing R] [MulSemiringAction G R]
     {L : Type*} [CommRing L] [MulSemiringAction G L] (f : R →+* L)
     (hf : ∀ (g : G) (r : R), g • f r = f (g • r)) {C : G → VariableChange R} (hC : IsVCocycle C) :
@@ -332,7 +366,9 @@ theorem isVCocycle_map {G : Type*} [Group G] {R : Type*} [CommRing R] [MulSemiri
   exact map_mul (VariableChange.mapHom _) _ _
 
 /-- Base change of the action-compatibility `C g • (g • W₀) = W₀` along a `G`-equivariant ring map
-`f`: the mapped curve `W₀.map f` is carried back to itself by `(C g).map f` after the `g`-twist.-/
+`f`: the mapped curve `W₀.map f` is carried back to itself by `(C g).map f` after the `g`-twist.
+@isnad1 id=eq.2h7v.s8.7f6c4e506f4a from=translated src=- shape=6eb6fc05 vocab=0cba6d3b
+-/
 theorem map_variableChange_action {G : Type*} [Group G] {R : Type*} [CommRing R]
     [MulSemiringAction G R] {L : Type*} [CommRing L] [MulSemiringAction G L] (f : R →+* L)
     (hf : ∀ (g : G) (r : R), g • f r = f (g • r)) {W₀ : WeierstrassCurve R}
@@ -346,7 +382,9 @@ theorem map_variableChange_action {G : Type*} [Group G] {R : Type*} [CommRing R]
 
 /-- If a constant change of variables `D` turns the twisted cocycle into a coboundary
 (`D * C g = g • D`) and `C` carries `g • W` back to `W`, then `D • W` is `G`-invariant:
-`(D • W).map g = D • W` for every `g`.-/
+`(D • W).map g = D • W` for every `g`.
+@isnad1 id=eq.2h6v.s7.e24c465c5f02 from=translated src=- shape=01a5afb0 vocab=adda1505
+-/
 theorem map_smul_variableChange_eq_of_coboundary {G : Type*} [Group G] {L : Type*} [CommRing L]
     [MulSemiringAction G L] {W : WeierstrassCurve L} {D : VariableChange L}
     {C : G → VariableChange L}
@@ -365,7 +403,9 @@ section Clearing
 /-- Clear denominators in an equality of variable changes.  Given a ring map `φ` for which any
 equality `φ x = φ y` can be cleared against a submonoid `S` by a common multiplier `c : S`
 (`hclear`), an equality `A.map φ = B.map φ` of variable changes is cleared by a **single** `c : S`
-simultaneously in all four coordinates `(u, r, s, t)`.-/
+simultaneously in all four coordinates `(u, r, s, t)`.
+@isnad1 id=ex.2h8v.s10.f582ab0e4c5d from=translated src=- shape=f365b9bf vocab=76396c4d
+-/
 theorem exists_common_clear_variableChange {R T U : Type*} [CommRing R] [CommRing T] [CommRing U]
     {S : Submonoid R} (alg : R →+* T) (φ : T →+* U)
     (hclear : ∀ x y : T, φ x = φ y → ∃ c : S, alg (c : R) * x = alg (c : R) * y)
@@ -404,7 +444,9 @@ variable {G : Type*} [Group G] {R : Type u} [CommRing R] [MulSemiringAction G R]
 
 /-- Bridge: under the localized action `MulSemiringAction.away hfix` on
 `Localization.Away h`, the ring-hom form `E.map (awayHom hfix g)` appearing in
-`exists_away_invariant_descent` is literally the action `g • E` on variable changes.-/
+`exists_away_invariant_descent` is literally the action `g • E` on variable changes.
+@isnad1 id=eq.1h5v.s9.847b65b6179d from=translated src=- shape=a0fed794 vocab=2bd6c2e4
+-/
 theorem variableChange_map_awayHom {B : Type v} [CommRing B] [MulSemiringAction G B]
     {h : B} (hfix : ∀ g : G, g • h = h) (g : G)
     (E : VariableChange (Localization.Away h)) :
@@ -414,6 +456,9 @@ theorem variableChange_map_awayHom {B : Type v} [CommRing B] [MulSemiringAction 
   show E.map (MulSemiringAction.awayHom hfix g) = vcSMul g E
   exact (vcSMul_eq_map g E).symm
 
+/--
+@isnad1 id=le.0h3v.s10.2f6ad4976a44 from=translated src=- shape=f4c5702c vocab=0edafdd7
+-/
 theorem powers_le_comap_fixedAway (a : FixedPoints.subring R G) :
     Submonoid.powers a ≤ (Submonoid.powers ((a : R))).comap
       (algebraMap (FixedPoints.subring R G) R) := by
@@ -429,6 +474,9 @@ noncomputable def fixedAwayMap (a : FixedPoints.subring R G) :
   IsLocalization.map (Localization.Away ((a : R))) (algebraMap (FixedPoints.subring R G) R)
     (powers_le_comap_fixedAway a)
 
+/--
+@isnad1 id=eq.0h4v.s12.f3b64a413ce3 from=translated src=- shape=99f175e9 vocab=f3e58a00
+-/
 theorem fixedAwayMap_algebraMap (a : FixedPoints.subring R G) (v : FixedPoints.subring R G) :
     fixedAwayMap a (algebraMap _ (Localization.Away a) v)
       = algebraMap R (Localization.Away ((a : R))) ((v : R)) :=
@@ -441,7 +489,9 @@ Let a finite group `G` act freely on `R`, let `W₀` be a Weierstrass curve over
 prime of the fixed subring `Rᴳ`.  Then there is an invariant `a ∉ p`, a Weierstrass curve
 `W₁` over `(Rᴳ)_a` and a variable change `E` over `R_a` such that `W₁` base-changes to
 `E⁻¹ • W₀` over `R_a` **and** the localized cocycle is the coboundary of `E`:
-`C g = E * (g • E)⁻¹` over `R_a` (with `g • E = E.map (awayHom … g)` the localized action).-/
+`C g = E * (g • E)⁻¹` over `R_a` (with `g • E = E.map (awayHom … g)` the localized action).
+@isnad1 id=ex.3h5v.s12.7ef259bbc98c from=translated src=- shape=efc65cd7 vocab=0f37ee6c
+-/
 theorem exists_away_invariant_descent [Fintype G] [DecidableEq G]
     (hfree : IsFreeAlgebraAction G ℤ R) (W₀ : WeierstrassCurve R)
     {C : G → VariableChange R} (hC : IsVCocycle C)

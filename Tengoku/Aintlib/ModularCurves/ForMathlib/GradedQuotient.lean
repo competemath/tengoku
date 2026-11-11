@@ -48,6 +48,9 @@ the `n`-th piece is the image of `𝒜 n`.-/
 def quotientGrading (n : ι) : Submodule R (A ⧸ I.toIdeal) :=
   (𝒜 n).map (mkL I)
 
+/--
+@isnad1 id=mem.1h7v.s11.57fe6f831a5f from=translated src=- shape=91823f12 vocab=4a61e53a
+-/
 lemma mk_mem_quotientGrading {n : ι} {a : A} (ha : a ∈ 𝒜 n) :
     Ideal.Quotient.mk I.toIdeal a ∈ quotientGrading I n :=
   Submodule.mem_map.mpr ⟨a, ha, rfl⟩
@@ -146,7 +149,9 @@ instance : DirectSum.Decomposition (quotientGrading I) where
 instance quotientGradingGradedAlgebra : GradedAlgebra (quotientGrading I) := ⟨⟩
 
 /-- The decomposition of the class of a homogeneous element is the evident single
-component.-/
+component.
+@isnad1 id=eq.1h7v.s15.56de618d55b9 from=translated src=- shape=f419df78 vocab=b4ac9a52
+-/
 lemma decompose_quotientGrading_mk {n : ι} {a : A} (ha : a ∈ 𝒜 n) :
     DirectSum.decompose (quotientGrading I) (Ideal.Quotient.mk I.toIdeal a) =
       DirectSum.of _ n ⟨Ideal.Quotient.mk I.toIdeal a, mk_mem_quotientGrading I ha⟩ := by
@@ -166,6 +171,9 @@ def algebraMapGradeZero : R →+* quotientGrading I 0 where
   map_zero' := Subtype.ext (map_zero (algebraMap R (A ⧸ I.toIdeal)))
   map_add' a b := Subtype.ext (map_add (algebraMap R (A ⧸ I.toIdeal)) a b)
 
+/--
+@isnad1 id=eq.0h6v.s13.0822c7b5d83e from=translated src=- shape=05f13cfd vocab=0207ff39
+-/
 @[simp]
 lemma coe_algebraMapGradeZero (r : R) :
     (algebraMapGradeZero I r : A ⧸ I.toIdeal) = algebraMap R (A ⧸ I.toIdeal) r :=
@@ -178,7 +186,9 @@ variable {σ : Type*}
 attribute [local instance] MvPolynomial.gradedAlgebra
 
 /-- Every degree-zero class in a homogeneous quotient of a polynomial ring is represented by a
-base coefficient.-/
+base coefficient.
+@isnad1 id=surjecti.0h3v.s15.b65bd314b765 from=translated src=- shape=11e594c1 vocab=0534007e
+-/
 lemma algebraMapGradeZero_surjective_mvPolynomial
     (J : HomogeneousIdeal (MvPolynomial.homogeneousSubmodule σ R)) :
     Function.Surjective (algebraMapGradeZero J) := by
@@ -212,16 +222,24 @@ def quotientGradingHom : 𝒜 →+*ᵍ quotientGrading I where
   toRingHom := Ideal.Quotient.mk I.toIdeal
   map_mem := mk_mem_quotientGrading I
 
+/--
+@isnad1 id=surjecti.0h5v.s10.d784a16858ce from=translated src=- shape=adf1fa66 vocab=96d80f46
+-/
 lemma quotientGradingHom_surjective :
     Function.Surjective (quotientGradingHom I) :=
   Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.0h6v.s11.a26b22a26d70 from=translated src=- shape=37625c15 vocab=0399b53f
+-/
 @[simp]
 lemma quotientGradingHom_apply (a : A) :
     quotientGradingHom I a = Ideal.Quotient.mk I.toIdeal a :=
   rfl
 
-/-- Componentwise description of the quotient decomposition on classes.-/
+/-- Componentwise description of the quotient decomposition on classes.
+@isnad1 id=eq.0h7v.s14.126fcea0d76d from=translated src=- shape=7d0888ab vocab=af54a55c
+-/
 lemma decompose_quotientGrading_mk_apply (a : A) (n : ι) :
     (DirectSum.decompose (quotientGrading I) (Ideal.Quotient.mk I.toIdeal a) n :
         A ⧸ I.toIdeal) =
@@ -233,7 +251,9 @@ section Irrelevant
 variable [PartialOrder ι] [CanonicallyOrderedAdd ι]
 
 /-- The irrelevant ideal of the quotient grading is contained in the image of the
-irrelevant ideal — the hypothesis of `Proj.map` for the quotient map.-/
+irrelevant ideal — the hypothesis of `Proj.map` for the quotient map.
+@isnad1 id=le.0h5v.s12.883afedc1505 from=translated src=- shape=4f9efe8a vocab=fb6d0712
+-/
 lemma quotientGradingHom_irrelevant_le :
     HomogeneousIdeal.irrelevant (quotientGrading I) ≤
       HomogeneousIdeal.map (quotientGradingHom I) (HomogeneousIdeal.irrelevant 𝒜) := by
@@ -269,6 +289,9 @@ def quotientGradingMap (φ : GradedRingHom 𝒜 ℬ) (I : HomogeneousIdeal 𝒜)
     refine ⟨φ a, φ.map_mem ha, ?_⟩
     exact Ideal.quotientMap_mk.symm
 
+/--
+@isnad1 id=eq.1h11v.s12.3daa19baafdf from=translated src=- shape=9bee36c6 vocab=b7d649de
+-/
 @[simp]
 lemma quotientGradingMap_mk (φ : GradedRingHom 𝒜 ℬ) (I : HomogeneousIdeal 𝒜)
     (J : HomogeneousIdeal ℬ) (h : I.toIdeal ≤ J.toIdeal.comap φ.toRingHom) (a : A) :

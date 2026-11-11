@@ -27,7 +27,9 @@ variable (M : ι → Type*) [∀ i, AddCommGroup (M i)]
 variable [∀ i, Module (R i) (M i)]
 variable (I : ∀ i, Ideal (R i))
 
-/-- A finite family of independently annihilating powers has one common exponent.-/
+/-- A finite family of independently annihilating powers has one common exponent.
+@isnad1 id=ex.1h4v.s9.69dfecd160af from=translated src=- shape=b894c59a vocab=b3cf370a
+-/
 theorem exists_uniform_pow_le_annihilator
     (h : ∀ i, ∃ n : ℕ, I i ^ n ≤ Module.annihilator (R i) (M i)) :
     ∃ N : ℕ, ∀ i, I i ^ N ≤ Module.annihilator (R i) (M i) := by
@@ -38,7 +40,9 @@ theorem exists_uniform_pow_le_annihilator
     (Ideal.pow_le_pow_right (le_ciSup (Finite.bddAbove_range n) i)).trans
       (hn i)
 
-/-- Finite-family Noetherian support containment gives one common annihilating power.-/
+/-- Finite-family Noetherian support containment gives one common annihilating power.
+@isnad1 id=ex.1h4v.s8.140a38b9938e from=translated src=- shape=a0eb0ad7 vocab=28e174dd
+-/
 theorem exists_uniform_pow_le_annihilator_of_support_subset_zeroLocus
     [∀ i, Module.Finite (R i) (M i)]
     [∀ i, IsNoetherianRing (R i)]
@@ -51,7 +55,9 @@ theorem exists_uniform_pow_le_annihilator_of_support_subset_zeroLocus
     Module.exists_pow_le_annihilator_of_support_subset_zeroLocus
       (I i) (hsupport i)
 
-/-- Return the common exponent as torsion-by-set witnesses.-/
+/-- Return the common exponent as torsion-by-set witnesses.
+@isnad1 id=ex.1h4v.s8.ccbadcb94342 from=translated src=- shape=aec44587 vocab=f3769639
+-/
 theorem exists_uniform_pow_isTorsionBySet_of_support_subset_zeroLocus
     [∀ i, Module.Finite (R i) (M i)]
     [∀ i, IsNoetherianRing (R i)]
@@ -68,7 +74,9 @@ theorem exists_uniform_pow_isTorsionBySet_of_support_subset_zeroLocus
       (Module.isTorsionBySet_iff_subset_annihilator
         (R := R i) (M := M i)).mpr (hN i)⟩
 
-/-- Positive common exponent, preserving the support of every ideal.-/
+/-- Positive common exponent, preserving the support of every ideal.
+@isnad1 id=ex.1h4v.s8.3a1fffbcc523 from=translated src=- shape=e8526eb7 vocab=d986bd12
+-/
 theorem exists_uniform_succ_pow_isTorsionBySet_of_support_subset_zeroLocus
     [∀ i, Module.Finite (R i) (M i)]
     [∀ i, IsNoetherianRing (R i)]

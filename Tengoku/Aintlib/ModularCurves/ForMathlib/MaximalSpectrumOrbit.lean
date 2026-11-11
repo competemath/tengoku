@@ -29,7 +29,9 @@ open Pointwise
 /-- **Finiteness of the maximal spectrum of an invariant extension.**  If a finite group `G`
 acts on `B` with `Algebra.IsInvariant A B G` and `A` has finitely many maximal ideals, then so
 does `B`: maximal ideals of `B` lie over maximal ideals of `A` (integrality), and the primes
-over a fixed prime form one `G`-orbit.-/
+over a fixed prime form one `G`-orbit.
+@isnad1 id=finite.0h3v.s7.c2f0cc888a81 from=translated src=- shape=4ea83c9e vocab=838d37bf
+-/
 theorem MaximalSpectrum.finite_of_isInvariant (A B G : Type*) [CommRing A] [CommRing B]
     [Algebra A B] [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B]
     [Algebra.IsInvariant A B G] [Finite (MaximalSpectrum A)] :

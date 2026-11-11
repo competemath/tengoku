@@ -30,6 +30,9 @@ namespace MvPolynomial
 def segreDimension (m n : ℕ) : ℕ :=
   m * n + m + n
 
+/--
+@isnad1 id=eq.0h2v.s5.119253d03144 from=translated src=- shape=e7f9466e vocab=f16e4ca3
+-/
 lemma segreDimension_succ (m n : ℕ) :
     segreDimension m n + 1 = (m + 1) * (n + 1) := by
   simp only [segreDimension]
@@ -48,6 +51,9 @@ def segreStandardCoordinateHom
   (segreCoordinateHom R m n).comp
     (MvPolynomial.renameEquiv R (segreIndexEquiv m n)).toAlgHom
 
+/--
+@isnad1 id=eq.0h4v.s11.b6f166f85a96 from=translated src=- shape=fb669597 vocab=884f671f
+-/
 @[simp]
 lemma segreStandardCoordinateHom_X
     (R : Type u) [CommRing R] (m n : ℕ)
@@ -70,11 +76,17 @@ abbrev segreRangeCoordinateHom
       SegreCoordinateRing R m n :=
   (segreStandardCoordinateHom R m n).rangeRestrict
 
+/--
+@isnad1 id=surjecti.0h3v.s13.45586e812f1a from=translated src=- shape=15f7daba vocab=66abd3a5
+-/
 lemma segreRangeCoordinateHom_surjective
     (R : Type u) [CommRing R] (m n : ℕ) :
     Function.Surjective (segreRangeCoordinateHom R m n) :=
   AlgHom.rangeRestrict_surjective _
 
+/--
+@isnad1 id=eq.0h4v.s13.4c69bcb35888 from=translated src=- shape=83d1a750 vocab=84137032
+-/
 @[simp]
 lemma segreRangeCoordinateHom_val
     (R : Type u) [CommRing R] (m n : ℕ)

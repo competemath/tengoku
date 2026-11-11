@@ -39,7 +39,9 @@ attribute [local instance] CategoryTheory.Over.cartesianMonoidalCategory
   CategoryTheory.Over.braidedCategory CategoryTheory.Over.monObjMkPullbackSnd
 
 /-- The first projection intertwines the pullback monoid multiplication with the original
-one, over the base-change square.-/
+one, over the base-change square.
+@isnad1 id=eq.0h6v.s9.9e75361bae17 from=translated src=- shape=e09d95b0 vocab=d65ddf19
+-/
 lemma monObjMkPullbackSnd_mul_left_fst [MonObj (Over.mk f)] :
     (μ[Over.mk (pullback.snd f g)]).left ≫ pullback.fst f g
       = pullback.lift
@@ -98,7 +100,9 @@ lemma monObjMkPullbackSnd_mul_left_fst [MonObj (Over.mk f)] :
 attribute [local instance] CategoryTheory.Over.grpObjMkPullbackSnd
 
 /-- The group-object form of `monObjMkPullbackSnd_mul_left_fst` (the two structures share
-their underlying multiplication definitionally).-/
+their underlying multiplication definitionally).
+@isnad1 id=eq.0h6v.s9.5ba507c6f9ca from=translated src=- shape=e09d95b0 vocab=920c7e9c
+-/
 lemma grpObjMkPullbackSnd_mul_left_fst [GrpObj (Over.mk f)] :
     (μ[Over.mk (pullback.snd f g)]).left ≫ pullback.fst f g
       = pullback.lift

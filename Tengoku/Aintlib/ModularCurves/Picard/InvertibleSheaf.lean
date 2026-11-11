@@ -90,11 +90,15 @@ noncomputable def pullbackUnitIso (f : Y ⟶ X) :
   let e := asIso (SheafOfModules.pullbackObjUnitToUnit f.toRingCatSheafHom)
   ⟨e.hom, e.inv, e.hom_inv_id, e.inv_hom_id⟩
 
-/-- The structure sheaf is an invertible `𝒪ₓ`-module.-/
+/-- The structure sheaf is an invertible `𝒪ₓ`-module.
+@isnad1 id=isinvert.0h1v.s2.070f166ace51 from=translated src=- shape=9d44d080 vocab=0aa98edc
+-/
 theorem isInvertible_unit : IsInvertible (unitObj X) :=
   ⟨PUnit, fun _ ↦ ⊤, iSup_const, fun _ ↦ ⟨pullbackUnitIso (⊤ : X.Opens).ι⟩⟩
 
-/-- Cover-local invertibility is preserved under isomorphism.-/
+/-- Cover-local invertibility is preserved under isomorphism.
+@isnad1 id=isinvert.1h4v.s4.9d8ccfdf4868 from=translated src=- shape=6a4ef177 vocab=d7070aff
+-/
 theorem IsInvertible.of_iso {M N : X.Modules} (hM : IsInvertible M)
     (e : N ≅ M) : IsInvertible N := by
   obtain ⟨ι, U, hU, htriv⟩ := hM
@@ -118,7 +122,9 @@ noncomputable def sheafifyValIso (M : SheafOfModules X.ringCatSheaf) :
   (asIso (PresheafOfModules.sheafificationAdjunction (𝟙 X.ringCatSheaf.obj)).counit).app M
 
 /-- A presheaf-of-modules morphism that is bijective on every open inside a covering
-family is inverted by sheafification.-/
+family is inverted by sheafification.
+@isnad1 id=sheafifi.2h6v.s16.bf996844592b from=translated src=- shape=57f5f493 vocab=3c7a3a6d
+-/
 theorem sheafificationW_of_bijective_on_cover {A B : X.PresheafOfModules}
     (g : A ⟶ B) {ι : Type u} (U : ι → X.Opens) (hU : iSup U = ⊤)
     (hbij : ∀ (i : ι) (W : X.Opens), W ≤ U i →
@@ -152,7 +158,9 @@ theorem sheafificationW_of_bijective_on_cover {A B : X.PresheafOfModules}
     exact ⟨t, ht⟩
   exact (PresheafOfModules.sheafificationW_iff_isLocallyBijective _ g).mpr ⟨hinj, hsurj⟩
 
-/-- Being an isomorphism of `𝒪ₓ`-modules is Zariski-local.-/
+/-- Being an isomorphism of `𝒪ₓ`-modules is Zariski-local.
+@isnad1 id=isiso.2h6v.s8.616a63426ae9 from=translated src=- shape=b2320919 vocab=e84bd590
+-/
 theorem isIso_of_isIso_restrict {A B : X.Modules} (g : A ⟶ B) {ι : Type u}
     (U : ι → X.Opens) (hU : iSup U = ⊤)
     (h : ∀ i, IsIso ((restrictFunctor (U i).ι).map g)) : IsIso g := by
@@ -198,13 +206,17 @@ noncomputable def tensorObjUnitIso (M : X.Modules) : tensorObj M (unitObj X) ≅
   ((PresheafOfModules.sheafification (𝟙 X.ringCatSheaf.obj)).mapIso (ρ_ M.val)).trans
     (sheafifyValIso M)
 
-/-- The `Nonempty` wrapper of `tensorObjUnitIso`.-/
+/-- The `Nonempty` wrapper of `tensorObjUnitIso`.
+@isnad1 id=nonempty.0h2v.s4.3bf5d8908eac from=translated src=- shape=3ab619b4 vocab=4e05b87f
+-/
 theorem nonempty_tensorObj_unit_iso (M : X.Modules) : Nonempty (tensorObj M (unitObj X) ≅ M) :=
   ⟨tensorObjUnitIso M⟩
 
 /-- Invertibility is stable under pullback: a trivializing cover of `X` pulls back to
 a trivializing cover of `Y` (GME p. 108: "If `g : T' → T` is an `S`-morphism, we have
-`g_E = 1_E ×_S g : E_{T'} → E_T`. This induces `Pic^ν(g)(𝓛) = g_E^*(𝓛)`").-/
+`g_E = 1_E ×_S g : E_{T'} → E_T`. This induces `Pic^ν(g)(𝓛) = g_E^*(𝓛)`").
+@isnad1 id=isinvert.1h4v.s5.28740edaa62c from=translated src=- shape=161d31aa vocab=e0c2b142
+-/
 theorem IsInvertible.pullback {M : X.Modules} (hM : IsInvertible M) (f : Y ⟶ X) :
     IsInvertible ((Modules.pullback f).obj M) := by
   obtain ⟨ι, U, hU, htriv⟩ := hM

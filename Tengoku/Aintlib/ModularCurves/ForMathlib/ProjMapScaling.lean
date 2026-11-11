@@ -48,7 +48,9 @@ variable (ρ : 𝒜 →+*ᵍ 𝒜) (u : Aˣ)
 include hscale
 
 /-- Γ-level step: `Away.map ρ t` composed with `awayToSection` at `ρ t` equals `awayToSection`
-at `t` composed with the restriction to `D₊(ρ t) ⊆ D₊(t)`.-/
+at `t` composed with the restriction to `D₊(ρ t) ⊆ D₊(t)`.
+@isnad1 id=eq.3h7v.s11.229407c5a99f from=translated src=- shape=e4a8c941 vocab=db723b9f
+-/
 lemma map_awayToSection_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d)
     (hle : Proj.basicOpen 𝒜 (ρ t) ≤ Proj.basicOpen 𝒜 t) :
     CommRingCat.ofHom (Away.map ρ t) ≫ awayToSection 𝒜 (ρ t) =
@@ -68,7 +70,9 @@ lemma map_awayToSection_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d)
   rw [hscale d ht, hscale (k • d) ha, mul_pow, smul_eq_mul]
   ring
 
-/-- Spec-level step underlying `SpecMap_map_awayι_rescale`.-/
+/-- Spec-level step underlying `SpecMap_map_awayι_rescale`.
+@isnad1 id=eq.3h7v.s10.68bd85e93ff5 from=translated src=- shape=3492977f vocab=fe12753b
+-/
 @[reassoc]
 lemma basicOpenToSpec_SpecMap_map_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d)
     (hle : Proj.basicOpen 𝒜 (ρ t) ≤ Proj.basicOpen 𝒜 t) :
@@ -80,7 +84,9 @@ lemma basicOpenToSpec_SpecMap_map_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d)
   rfl
 
 /-- On the chart `D₊(t)`, precomposing the inclusion `awayι 𝒜 t` by `Spec.map (Away.map ρ t)`
-lands on the inclusion `awayι 𝒜 (ρ t)` — the rescaled chart is the same chart.-/
+lands on the inclusion `awayι 𝒜 (ρ t)` — the rescaled chart is the same chart.
+@isnad1 id=eq.4h7v.s10.21c45e88b674 from=translated src=- shape=7f89d860 vocab=c62e4ae5
+-/
 lemma SpecMap_map_awayι_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d) (hi : 0 < d)
     (hle : Proj.basicOpen 𝒜 (ρ t) ≤ Proj.basicOpen 𝒜 t) :
     Spec.map (CommRingCat.ofHom (Away.map ρ t)) ≫ awayι 𝒜 t ht hi =
@@ -91,7 +97,9 @@ lemma SpecMap_map_awayι_rescale {d : ℕ} {t : A} (ht : t ∈ 𝒜 d) (hi : 0 <
 
 set_option backward.isDefEq.respectTransparency false in
 /-- **Rescaling by a unit induces the identity on `Proj`.** If a graded endomorphism `ρ` acts
-degreewise as `ρ a = uᵈ · a` for a unit `u`, then `Proj.map ρ = 𝟙`.-/
+degreewise as `ρ a = uᵈ · a` for a unit `u`, then `Proj.map ρ = 𝟙`.
+@isnad1 id=eq.2h5v.s8.c4aca646ddaa from=translated src=- shape=05a4dd2f vocab=7f3e7a63
+-/
 theorem map_degScaling_eq_id
     (hρ : HomogeneousIdeal.irrelevant 𝒜 ≤ (HomogeneousIdeal.irrelevant 𝒜).map ρ) :
     Proj.map ρ hρ = 𝟙 (Proj 𝒜) := by
@@ -106,7 +114,9 @@ end rescale
 
 /-- **The `-1`-rescaling induces the identity on `Proj`.** If `ρ a = (-1)ᵈ · a` for `a ∈ 𝒜 d`,
 then `Proj.map ρ = 𝟙`. This is the "negate all homogeneous coordinates" automorphism, which fixes
-every point projectively.-/
+every point projectively.
+@isnad1 id=eq.2h4v.s8.cbf8c7817676 from=translated src=- shape=f513980a vocab=9d567495
+-/
 theorem map_negScaling_eq_id (ρ : 𝒜 →+*ᵍ 𝒜)
     (hρ : HomogeneousIdeal.irrelevant 𝒜 ≤ (HomogeneousIdeal.irrelevant 𝒜).map ρ)
     (hscale : ∀ (d : ℕ) {a : A}, a ∈ 𝒜 d → ρ a = (-1 : A) ^ d * a) :

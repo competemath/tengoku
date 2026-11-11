@@ -37,7 +37,9 @@ noncomputable def laurentMonomialRingEquiv (m : σ →₀ ℕ) :
     (AddMonoidAlgebra R (laurentExponentSubmonoid m))).toRingEquiv
 
 /-- The Laurent-monomial equivalence sends a polynomial to the same polynomial with its natural
-exponents regarded as allowed integer exponents.-/
+exponents regarded as allowed integer exponents.
+@isnad1 id=eq.0h4v.s13.55373ab3a098 from=translated src=- shape=b025d3c3 vocab=fa5ebb77
+-/
 theorem laurentMonomialRingEquiv_algebraMap (m : σ →₀ ℕ) (p : MvPolynomial σ R) :
     laurentMonomialRingEquiv R m
         (algebraMap (MvPolynomial σ R) (Localization.Away (monomial m (1 : R))) p) =
@@ -54,7 +56,9 @@ theorem laurentMonomialRingEquiv_algebraMap (m : σ →₀ ℕ) (p : MvPolynomia
   exact (Localization.algEquiv (Submonoid.powers (monomial m (1 : R)))
     (AddMonoidAlgebra R (laurentExponentSubmonoid m))).commutes p
 
-/-- The Laurent-monomial equivalence respects the coefficient-ring embeddings.-/
+/-- The Laurent-monomial equivalence respects the coefficient-ring embeddings.
+@isnad1 id=eq.0h4v.s13.66e4abe0d963 from=translated src=- shape=45965d76 vocab=dbce2c79
+-/
 theorem laurentMonomialRingEquiv_algebraMap_coeff (m : σ →₀ ℕ) (r : R) :
     laurentMonomialRingEquiv R m
         (algebraMap R (Localization.Away (monomial m (1 : R))) r) =
@@ -96,6 +100,9 @@ noncomputable def laurentMonomialBasis (m : σ →₀ ℕ) :
   (AddMonoidAlgebra.basis (laurentExponentSubmonoid m) R).map
     (laurentMonomialLinearEquiv R m).symm
 
+/--
+@isnad1 id=eq.0h4v.s13.0cf8d75e0e5c from=translated src=- shape=5369e124 vocab=a1b0b64b
+-/
 @[simp]
 theorem laurentMonomialRingEquiv_basis_apply (m : σ →₀ ℕ)
     (e : laurentExponentSubmonoid m) :

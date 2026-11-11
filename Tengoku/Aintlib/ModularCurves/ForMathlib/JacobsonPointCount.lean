@@ -33,7 +33,9 @@ universe u
 
 namespace ModularCurves
 
-/-- A Jacobson space with finitely many closed points is finite.-/
+/-- A Jacobson space with finitely many closed points is finite.
+@isnad1 id=finite.1h1v.s4.2a7a5dffd086 from=translated src=- shape=00bd20ca vocab=b979646d
+-/
 theorem finite_of_jacobsonSpace_of_finite_closedPoints {X : Type*} [TopologicalSpace X]
     [JacobsonSpace X] (h : (closedPoints X).Finite) : Finite X := by
   have hclosed : IsClosed (closedPoints X) := by
@@ -50,7 +52,9 @@ theorem finite_of_jacobsonSpace_of_finite_closedPoints {X : Type*} [TopologicalS
   exact h
 
 /-- **(Zariski's lemma, scheme-level)** On a scheme locally of finite type over an
-algebraically closed field, every closed point is hit by a section.-/
+algebraically closed field, every closed point is hit by a section.
+@isnad1 id=ex.1h4v.s8.0ca25d24c71a from=translated src=- shape=88734f0e vocab=8c6888ac
+-/
 theorem Scheme.exists_section_through_closedPoint {k : Type u} [Field k] [IsAlgClosed k]
     {F : Scheme.{u}} (f : F ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f]
     {z : F} (hz : IsClosed ({z} : Set F)) :
@@ -93,7 +97,9 @@ theorem Scheme.exists_section_through_closedPoint {k : Type u} [Field k] [IsAlgC
     exact h3
 
 /-- A scheme locally of finite type over an algebraically closed field with finitely many
-sections has finite underlying space.-/
+sections has finite underlying space.
+@isnad1 id=finite.1h3v.s7.fe2ddff3bd91 from=translated src=- shape=f136d6e9 vocab=afb4b154
+-/
 theorem Scheme.finite_of_finite_sections {k : Type u} [Field k] [IsAlgClosed k]
     {F : Scheme.{u}} (f : F ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f]
     (h : Finite {g : Spec (CommRingCat.of k) ⟶ F // g ≫ f = 𝟙 _}) : Finite F := by

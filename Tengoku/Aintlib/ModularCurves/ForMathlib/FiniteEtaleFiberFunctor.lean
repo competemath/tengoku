@@ -63,6 +63,9 @@ noncomputable def isInitialOfSelf : IsInitial (CommAlgCat.FiniteEtale.of k k) :=
     ⟨⟨Nonempty.some inferInstance⟩, fun _ => Subsingleton.elim _ _⟩
   IsInitial.ofUnique _
 
+/--
+@isnad1 id=preserve.0h2v.s6.876560f5b235 from=translated src=- shape=b7b8a317 vocab=d1817210
+-/
 lemma preservesInitial_baseChange :
     PreservesColimit (Functor.empty.{0} (CommAlgCat.FiniteEtale.{u} k))
       (baseChangeU k Ω) := by
@@ -72,6 +75,9 @@ lemma preservesInitial_baseChange :
   exact ((baseChangeU k Ω).mapIso
     (initialIsoIsInitial (isInitialOfSelf k))).symm
 
+/--
+@isnad1 id=preserve.0h2v.s6.ce6aca31d51e from=translated src=- shape=5393bf6a vocab=e382af88
+-/
 lemma preservesColimitsOfShapePEmpty_baseChange :
     PreservesColimitsOfShape (Discrete PEmpty.{1}) (baseChangeU k Ω) :=
   haveI := preservesInitial_baseChange k Ω
@@ -86,7 +92,9 @@ section Products
 
 variable {k Ω}
 
-/-- Evaluating a base-changed product at a coordinate is the `piRight` coordinate.-/
+/-- Evaluating a base-changed product at a coordinate is the `piRight` coordinate.
+@isnad1 id=eq.0h6v.s13.7f38af7dd202 from=translated src=- shape=4b474db1 vocab=7c769cae
+-/
 lemma map_eval_eq_piRight_apply {ι : Type} [Fintype ι] [DecidableEq ι]
     (A : ι → CommAlgCat.FiniteEtale.{u} k) (i : ι) (x : Ω ⊗[k] (Π j, A j)) :
     Algebra.TensorProduct.map (AlgHom.id Ω Ω)
@@ -99,7 +107,9 @@ lemma map_eval_eq_piRight_apply {ι : Type} [Fintype ι] [DecidableEq ι]
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- Two maps into a base-changed product agreeing on all coordinate projections are
-equal.-/
+equal.
+@isnad1 id=eq.1h7v.s11.1d595780f93e from=translated src=- shape=6b92af8a vocab=21ae0f1a
+-/
 lemma baseChangePi_hom_ext {ι : Type} [Fintype ι] [DecidableEq ι]
     (A : ι → CommAlgCat.FiniteEtale.{u} k) {W : CommAlgCat.FiniteEtale.{u} Ω}
     {u v : W ⟶ (baseChangeU k Ω).obj (CommAlgCat.FiniteEtale.of k (Π j, A j))}
@@ -142,6 +152,9 @@ noncomputable def isLimitMapConeProductFan {ι : Type} [Finite ι]
     (fun s => by rintro ⟨i⟩; exact hfac s i)
     (fun s m hm => baseChangePi_hom_ext A fun i => (hm ⟨i⟩).trans (hfac s i).symm)
 
+/--
+@isnad1 id=preserve.0h3v.s6.09c8084a7b39 from=translated src=- shape=51543552 vocab=6ccb170e
+-/
 lemma preservesLimitsOfShapeDiscrete_baseChange (ι : Type) [Finite ι] :
     PreservesLimitsOfShape (Discrete ι) (baseChangeU k Ω) where
   preservesLimit {K} :=
@@ -327,6 +340,9 @@ noncomputable def isColimitMapCoconeSpanPushout :
       exact (map_add m.hom.hom a b).trans
         ((congrArg₂ (· + ·) ha hb).trans (map_add desc a b).symm)
 
+/--
+@isnad1 id=preserve.0h2v.s6.1484a355a535 from=translated src=- shape=066ad97f vocab=13a8df40
+-/
 lemma preservesColimitsOfShapeWalkingSpan_baseChange :
     PreservesColimitsOfShape WalkingSpan (baseChangeU k Ω) where
   preservesColimit {K} :=
@@ -346,7 +362,9 @@ section Monos
 
 variable {k Ω}
 
-/-- Monomorphisms of finite étale algebras over a field are injective.-/
+/-- Monomorphisms of finite étale algebras over a field are injective.
+@isnad1 id=injectiv.0h4v.s9.797de2682d7d from=translated src=- shape=da3986af vocab=6f89a72d
+-/
 theorem injective_of_mono {A B : CommAlgCat.FiniteEtale.{u} k} (j : A ⟶ B) [Mono j] :
     Function.Injective j.hom.hom := by
   intro x y hxy
@@ -371,7 +389,9 @@ theorem injective_of_mono {A B : CommAlgCat.FiniteEtale.{u} k} (j : A ⟶ B) [Mo
     q.hom.hom ⟨![x, y], hmem⟩) hUV'
   exact h
 
-/-- Base change preserves monomorphisms of finite étale algebras.-/
+/-- Base change preserves monomorphisms of finite étale algebras.
+@isnad1 id=preserve.0h2v.s6.a743b96ae794 from=translated src=- shape=2d669789 vocab=66db7b56
+-/
 lemma preservesMonomorphisms_baseChange :
     (baseChangeU k Ω).PreservesMonomorphisms where
   preserves {A B} j hj := by
@@ -396,7 +416,9 @@ section ReflectsIso
 
 variable {k}
 
-/-- Hom-sets into the separable closure are finite.-/
+/-- Hom-sets into the separable closure are finite.
+@isnad1 id=finite.0h2v.s7.37781cea8931 from=translated src=- shape=db0a1b6d vocab=305681e9
+-/
 lemma finite_algHom_sepClosure (W : Type u) [CommRing W] [Algebra k W]
     [Module.Finite k W] [Algebra.Etale k W] :
     Finite (W →ₐ[k] SeparableClosure k) := by
@@ -408,7 +430,9 @@ lemma finite_algHom_sepClosure (W : Type u) [CommRing W] [Algebra k W]
     omega
 
 /-- An algebra map inducing a bijection on separable-closure points has trivial kernel:
-else the points would factor through the strictly smaller quotient by the kernel.-/
+else the points would factor through the strictly smaller quotient by the kernel.
+@isnad1 id=eq.1h4v.s9.e050a8503f20 from=translated src=- shape=5b9bdbca vocab=80e6ba71
+-/
 lemma ker_eq_bot_of_bijective_comp_sepClosure {B C : Type u} [CommRing B] [Algebra k B]
     [Module.Finite k B] [Algebra.Etale k B] [CommRing C] [Algebra k C] (φ : B →ₐ[k] C)
     (hbij : Function.Bijective (fun g : C →ₐ[k] SeparableClosure k => g.comp φ)) :
@@ -451,7 +475,9 @@ lemma ker_eq_bot_of_bijective_comp_sepClosure {B C : Type u} [CommRing B] [Algeb
   rwa [Ideal.mk_ker] at this
 
 /-- An algebra map inducing a bijection on separable-closure points has full range:
-else the points would be determined by the strictly smaller subalgebra `φ.range`.-/
+else the points would be determined by the strictly smaller subalgebra `φ.range`.
+@isnad1 id=eq.1h4v.s10.7f8873f60fe4 from=translated src=- shape=af85a08e vocab=3fdd4428
+-/
 lemma range_eq_top_of_bijective_comp_sepClosure {B C : Type u} [CommRing B] [Algebra k B]
     [CommRing C] [Algebra k C] [Module.Finite k C] [Algebra.Etale k C] (φ : B →ₐ[k] C)
     (hbij : Function.Bijective (fun g : C →ₐ[k] SeparableClosure k => g.comp φ)) :
@@ -479,7 +505,9 @@ lemma range_eq_top_of_bijective_comp_sepClosure {B C : Type u} [CommRing B] [Alg
 variable (k)
 
 /-- The fiber functor of `FiniteEtale k` at the separable closure reflects
-isomorphisms.-/
+isomorphisms.
+@isnad1 id=reflects.0h1v.s7.1d180b50676b from=translated src=- shape=2b735e99 vocab=0a0bb238
+-/
 lemma reflectsIsomorphisms_fiber :
     (CommAlgCat.FiniteEtale.fiber k (SeparableClosure k) :
       (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ ⥤ FintypeCat.{u}).ReflectsIsomorphisms := by
@@ -635,6 +663,9 @@ noncomputable def isLimitMapConeFixedPoints :
   exact (congrArg Subtype.val
     ((fixedPointsCompareEquiv F).apply_symm_apply u)).symm
 
+/--
+@isnad1 id=preserve.0h3v.s6.dba85aaaca62 from=translated src=- shape=a502dcba vocab=d5f210a8
+-/
 lemma preservesLimitsOfShapeSingleObj_baseChange (H : Type u) [Monoid H] [Finite H] :
     PreservesLimitsOfShape (SingleObj H) (baseChangeU k Ω) where
   preservesLimit {K} :=

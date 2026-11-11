@@ -79,12 +79,18 @@ noncomputable def idealMapTensorComparison (q : Ideal A) :
           Subtype.ext (by simp [Algebra.smul_def])]
         rw [← TensorProduct.smul_tmul', algebraMap_smul B c] }
 
+/--
+@isnad1 id=eq.0h6v.s12.57e28a368cf5 from=translated src=- shape=cd8bdf7e vocab=f9cf2c17
+-/
 @[simp]
 lemma idealMapTensorComparison_tmul (q : Ideal A) (a : q) (m : M) :
     idealMapTensorComparison (B := B) (M := M) q (a ⊗ₜ[A] m)
       = (⟨algebraMap A B a, Ideal.mem_map_of_mem _ a.2⟩ :
           q.map (algebraMap A B)) ⊗ₜ[B] m := rfl
 
+/--
+@isnad1 id=surjecti.0h4v.s11.a3acaf6b56eb from=translated src=- shape=3420bd7a vocab=0755e1a8
+-/
 lemma idealMapTensorComparison_surjective (q : Ideal A) :
     Function.Surjective (idealMapTensorComparison (B := B) (M := M) q) := by
   intro z
@@ -132,7 +138,9 @@ lemma idealMapTensorComparison_surjective (q : Ideal A) :
 
 /-- **Step (2) of the élimination des Tor**: if `M` is `A`-flat then
 `(q·B) ⊗[B] M → B ⊗[B] M` is injective — the `A`-side injectivity
-`q ⊗[A] M ↪ A ⊗[A] M` transfers along the surjective comparison map.-/
+`q ⊗[A] M ↪ A ⊗[A] M` transfers along the surjective comparison map.
+@isnad1 id=injectiv.0h4v.s11.3f00347855db from=translated src=- shape=6ca71073 vocab=7a9090d9
+-/
 theorem rTensor_subtype_map_injective_of_flat [Module.Flat A M] (q : Ideal A) :
     Function.Injective
       (LinearMap.rTensor M (q.map (algebraMap A B)).subtype) := by
@@ -178,7 +186,9 @@ open IsLocalRing
 
 /-- **The fibrewise criterion, local engine (élimination des Tor).** Over a local
 ring `B`, if `M` is flat over `A`, `q·B ⊆ 𝔪`, and the fibre `(B/qB) ⊗[B] M` is flat
-over `B/qB`, then `𝔪 ⊗[B] M → B ⊗[B] M` is injective.-/
+over `B/qB`, then `𝔪 ⊗[B] M → B ⊗[B] M` is injective.
+@isnad1 id=injectiv.2h4v.s11.3b0c319797e0 from=translated src=- shape=07867b1c vocab=7adbf003
+-/
 theorem maximalIdeal_rTensor_injective_of_flat_of_fibre_flat
     [IsLocalRing B] [Module.Flat A M] (q : Ideal A)
     (hq : q.map (algebraMap A B) ≤ maximalIdeal B)
@@ -280,7 +290,9 @@ theorem maximalIdeal_rTensor_injective_of_flat_of_fibre_flat
 `A → B` with `B` local, `M` a finitely presented `B`-module which is flat over `A`;
 if the fibre `(B/qB) ⊗[B] M` is flat over `B/qB` for an ideal `q ⊆ A` with
 `q·B ⊆ 𝔪_B`, then `M` is **free** over `B`. (The module-finite case of the critère
-de platitude par fibres, EGA IV 11.3.10; no noetherian hypotheses.)-/
+de platitude par fibres, EGA IV 11.3.10; no noetherian hypotheses.)
+@isnad1 id=free.2h4v.s10.cd149a9256fa from=translated src=- shape=92b5e4ac vocab=bff4ee4e
+-/
 theorem free_of_flat_of_fibre_flat
     [IsLocalRing B] [Module.FinitePresentation B M] [Module.Flat A M] (q : Ideal A)
     (hq : q.map (algebraMap A B) ≤ maximalIdeal B)
@@ -328,6 +340,9 @@ noncomputable def residueFieldToQuotient {B : Type u} [CommRing B]
     | add x y _ _ hx hy => rw [map_add, hx, hy, add_zero]
     | smul b x _ hx => rw [smul_eq_mul, map_mul, hx, mul_zero]
 
+/--
+@isnad1 id=eq.1h4v.s11.f8daa99b8d41 from=translated src=- shape=de6cfaf8 vocab=b9fc4841
+-/
 @[simp]
 lemma residueFieldToQuotient_algebraMap {B : Type u} [CommRing B]
     [Algebra A B] (q : Ideal A) [q.IsPrime] (hq) (a : A) :
@@ -342,7 +357,9 @@ attribute [local instance] Algebra.TensorProduct.rightAlgebra in
 /-- **Fibre-flatness base change.** If the fibre map `κ(q) ⊗[A] R → κ(q) ⊗[A] T` is
 flat and `D` is a `κ(q) ⊗[A] R`-algebra, then `D ⊗[R] T` is flat over `D`. This is the
 transfer of the fibre hypothesis to the quotients of localizations that the local
-engine consumes.-/
+engine consumes.
+@isnad1 id=flat.1h5v.s11.b76b80520942 from=translated src=- shape=2a8fa4b7 vocab=b12b6dad
+-/
 theorem flat_baseChange_of_fiberInclusion_flat (q : Ideal A) [q.IsPrime]
     (hfib : RingHom.Flat (fiberInclusion (R := R) (T := T) q).toRingHom)
     (D : Type u) [CommRing D] [Algebra (q.ResidueField ⊗[A] R) D]
@@ -372,7 +389,9 @@ set_option maxHeartbeats 1000000 in
 finitely presented `R`-module, flat over `A`. If for every prime `q ⊆ A` the fibre map
 `κ(q) ⊗[A] R → κ(q) ⊗[A] T` is flat, then `T` is flat over `R`. (The module-finite
 case of the critère de platitude par fibres, EGA IV 11.3.10; no noetherian
-hypotheses.)-/
+hypotheses.)
+@isnad1 id=flat.1h3v.s10.4efcb55ac5e4 from=translated src=- shape=42900834 vocab=0ef65c8e
+-/
 theorem flat_of_fibre_flat_of_finitePresentation
     [Module.FinitePresentation R T] [Module.Flat A T]
     (hfib : ∀ (q : Ideal A) [q.IsPrime],

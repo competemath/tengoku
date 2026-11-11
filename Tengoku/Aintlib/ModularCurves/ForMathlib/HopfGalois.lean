@@ -57,10 +57,16 @@ noncomputable def includeLeftOverCoinvariants (ρ : B →ₐ[R] B ⊗[R] A) :
     B →ₐ[coinvariants ρ] (B ⊗[R] A) :=
   (Algebra.ofId B (B ⊗[R] A)).restrictScalars (coinvariants ρ)
 
+/--
+@isnad1 id=eq.0h5v.s9.2ba9117135d4 from=translated src=- shape=80cda0d5 vocab=f48a3493
+-/
 @[simp]
 theorem includeLeftOverCoinvariants_apply (ρ : B →ₐ[R] B ⊗[R] A) (b : B) :
     includeLeftOverCoinvariants ρ b = b ⊗ₜ[R] 1 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.bb61150c3e81 from=translated src=- shape=f0b3e831 vocab=3d07112c
+-/
 @[simp]
 theorem coactionOverCoinvariants_apply (ρ : B →ₐ[R] B ⊗[R] A) (b : B) :
     coactionOverCoinvariants ρ b = ρ b := rfl
@@ -73,13 +79,18 @@ noncomputable def canonicalGaloisMap (ρ : B →ₐ[R] B ⊗[R] A) :
   Algebra.TensorProduct.lift (includeLeftOverCoinvariants ρ) (coactionOverCoinvariants ρ)
     (fun _ _ => Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s11.9427b19ab305 from=translated src=- shape=f3d62ef9 vocab=211647c8
+-/
 @[simp]
 theorem canonicalGaloisMap_tmul (ρ : B →ₐ[R] B ⊗[R] A) (b b' : B) :
     canonicalGaloisMap ρ (b ⊗ₜ[coinvariants ρ] b') = (b ⊗ₜ[R] 1) * ρ b' := rfl
 
 /-- `β ∘ (b ↦ b ⊗ 1) = (b ↦ b ⊗ 1)`: the canonical Galois map sends the left inclusion of `B ⊗_S B`
 to the left inclusion of `B ⊗_R A`. On `Spec` this identifies one kernel-pair projection with the
-`SpecEqualizer` cofork's `Spec includeLeft` leg.-/
+`SpecEqualizer` cofork's `Spec includeLeft` leg.
+@isnad1 id=eq.0h4v.s10.42db9332c73b from=translated src=- shape=3bf77513 vocab=7d42bf40
+-/
 theorem canonicalGaloisMap_comp_includeLeft (ρ : B →ₐ[R] B ⊗[R] A) :
     (canonicalGaloisMap ρ).comp Algebra.TensorProduct.includeLeft
       = includeLeftOverCoinvariants ρ := by
@@ -89,7 +100,9 @@ theorem canonicalGaloisMap_comp_includeLeft (ρ : B →ₐ[R] B ⊗[R] A) :
 
 /-- `β ∘ (b ↦ 1 ⊗ b) = ρ`: the canonical Galois map sends the right inclusion of `B ⊗_S B` to the
 co-action `ρ`. On `Spec` this identifies the other kernel-pair projection with the `SpecEqualizer`
-cofork's `Spec ρ` leg.-/
+cofork's `Spec ρ` leg.
+@isnad1 id=eq.0h4v.s10.c2376aa1d153 from=translated src=- shape=5b5105e9 vocab=5f1bf454
+-/
 theorem canonicalGaloisMap_comp_includeRight (ρ : B →ₐ[R] B ⊗[R] A) :
     (canonicalGaloisMap ρ).comp Algebra.TensorProduct.includeRight
       = coactionOverCoinvariants ρ := by
@@ -126,6 +139,9 @@ noncomputable def galoisEquiv (h : IsHopfGalois ρ) :
     (B ⊗[coinvariants ρ] B) ≃ₐ[coinvariants ρ] (B ⊗[R] A) :=
   AlgEquiv.ofBijective (canonicalGaloisMap ρ) h.galois
 
+/--
+@isnad1 id=eq.1h6v.s11.f6d7257912d8 from=translated src=- shape=db773301 vocab=d93ed32a
+-/
 @[simp]
 theorem galoisEquiv_tmul (h : IsHopfGalois ρ) (b b' : B) :
     h.galoisEquiv (b ⊗ₜ[coinvariants ρ] b') = (b ⊗ₜ[R] 1) * ρ b' := rfl

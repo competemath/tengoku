@@ -45,7 +45,9 @@ open CategoryTheory Limits MorphismProperty
 namespace CategoryTheory
 
 /-- A morphism between the apexes of two pullback squares over the same cospan, commuting with
-both projections, is an isomorphism.-/
+both projections, is an isomorphism.
+@isnad1 id=isiso.4h13v.s7.6123d57211a7 from=translated src=- shape=f4e4e7df vocab=3510ff67
+-/
 theorem IsPullback.isIso_of_isPullback {C : Type*} [Category C] {P P' X Y Z : C}
     {fst : P ⟶ X} {snd : P ⟶ Y} {fst' : P' ⟶ X} {snd' : P' ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
     (h : IsPullback fst snd f g) (h' : IsPullback fst' snd' f g)
@@ -65,7 +67,9 @@ its restriction over each member of an open cover `{Uᵢ}` of `B` is cartesian, 
 cartesian.
 
 The restricted square over `Uᵢ` has apex `f ⁻¹ᵁ Uᵢ`, projections `f ∣_ Uᵢ` and
-`(f ⁻¹ᵁ Uᵢ).ι ≫ g`, and cospan `(Uᵢ).ι ≫ h`, `k`.-/
+`(f ⁻¹ᵁ Uᵢ).ι ≫ g`, and cospan `(Uᵢ).ι ≫ h`, `k`.
+@isnad1 id=ispullba.3h10v.s9.2a7c5356d313 from=translated src=- shape=44c814eb vocab=d9392eaf
+-/
 theorem isPullback_of_iSup_eq_top {A B C D : Scheme.{u}} {f : A ⟶ B} {g : A ⟶ C}
     {h : B ⟶ D} {k : C ⟶ D} (w : f ≫ h = g ≫ k)
     {ι : Type v} (U : ι → B.Opens) (hU : iSup U = ⊤)
@@ -114,7 +118,9 @@ theorem isPullback_of_iSup_eq_top {A B C D : Scheme.{u}} {f : A ⟶ B} {g : A �
 square the morphism `f` opposite `g` is surjective + flat + quasi-compact and the base-changed
 morphism `fst` is an isomorphism, then `g` is an isomorphism. This is the workhorse of the
 `[a5-P-fppf]` comparison: an iso after pulling back along the (finite étale, hence fppf) quotient
-cover is an iso downstairs.-/
+cover is an iso downstairs.
+@isnad1 id=isiso.1h8v.s6.4ad73c270e50 from=translated src=- shape=cc4670e4 vocab=9b417ea6
+-/
 theorem isIso_of_isPullback_of_fppf {A X Y Z : Scheme.{u}} {fst : A ⟶ X} {snd : A ⟶ Y}
     {f : X ⟶ Z} {g : Y ⟶ Z} (h : IsPullback fst snd f g)
     [Surjective f] [Flat f] [QuasiCompact f] [IsIso fst] : IsIso g := by

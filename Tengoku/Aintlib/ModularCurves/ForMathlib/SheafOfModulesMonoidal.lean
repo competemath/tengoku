@@ -52,13 +52,18 @@ functor: the localizing class for `SheafOfModules`.-/
 def sheafificationW : MorphismProperty (PresheafOfModules.{v} R₀) :=
   (MorphismProperty.isomorphisms _).inverseImage (sheafification.{v} α)
 
+/--
+@isnad1 id=iff.0h8v.s9.d06cafd3eccf from=translated src=- shape=914f948b vocab=5b6ab72a
+-/
 lemma sheafificationW_iff {M N : PresheafOfModules.{v} R₀} (f : M ⟶ N) :
     sheafificationW.{v} α f ↔ IsIso ((sheafification.{v} α).map f) :=
   Iff.rfl
 
 /-- Membership in the localizing class is local bijectivity of the underlying morphism
 of presheaves of abelian groups: the sheafification of modules inverts exactly the
-locally bijective maps.-/
+locally bijective maps.
+@isnad1 id=iff.0h8v.s9.8a881273660a from=translated src=- shape=ddda28b1 vocab=0a8998a5
+-/
 lemma sheafificationW_iff_isLocallyBijective {M N : PresheafOfModules.{v} R₀}
     (f : M ⟶ N) :
     sheafificationW.{v} α f ↔
@@ -85,7 +90,9 @@ variable (R' : Sheaf J RingCat.{u})
 
 /-- At `α = 𝟙` the sheafification adjunction is reflective (`forget` is fully faithful
 and `restrictScalars (𝟙 _)` is an equivalence), so the sheafification functor is a
-localization at `sheafificationW`.-/
+localization at `sheafificationW`.
+@isnad1 id=islocali.0h3v.s8.ad49c53a3bea from=translated src=- shape=e15ffe14 vocab=44d8cc52
+-/
 instance sheafificationW_isLocalization :
     (sheafification.{v} (𝟙 R'.obj)).IsLocalization (sheafificationW.{v} (𝟙 R'.obj)) := by
   have h : ((SheafOfModules.forget R' ⋙ restrictScalars (𝟙 R'.obj))).Full :=
@@ -105,7 +112,9 @@ omit [J.WEqualsLocallyBijective AddCommGrpCat] [HasWeakSheafify J AddCommGrpCat]
 /-- The locally-surjective half of the [GAP1-W-MONO] tensor-stability leaf: the tensor
 product of locally surjective morphisms of presheaves of modules is locally surjective.
 Sections of the tensor presheaf are finite sums of simple tensors; each factor is
-locally hit, and the finitely many image sieves intersect to a covering sieve.-/
+locally hit, and the finitely many image sieves intersect to a covering sieve.
+@isnad1 id=islocall.0h9v.s12.e50a4733232b from=translated src=- shape=49b1125b vocab=bfefdabf
+-/
 lemma isLocallySurjective_tensorHom (f : M₁ ⟶ M₂) (g : N₁ ⟶ N₂)
     [Presheaf.IsLocallySurjective J ((toPresheaf _).map f)]
     [Presheaf.IsLocallySurjective J ((toPresheaf _).map g)] :
@@ -146,7 +155,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 /-- **([W-MONO-inj])** Precomposition with the tensor of locally surjective morphisms
 is injective on morphisms into a presheaf of modules whose underlying presheaf is a
 sheaf: two maps out of the tensor agreeing after `f ⊗ₘ g` agree on simple tensors
-locally, hence agree by separatedness.-/
+locally, hence agree by separatedness.
+@isnad1 id=injectiv.1h10v.s13.d65c36772911 from=translated src=- shape=430703bd vocab=08503f10
+-/
 theorem tensorHom_precomp_injective (f : M₁ ⟶ M₂) (g : N₁ ⟶ N₂)
     [Presheaf.IsLocallySurjective J ((toPresheaf _).map f)]
     [Presheaf.IsLocallySurjective J ((toPresheaf _).map g)]
@@ -577,7 +588,9 @@ private lemma gluedHom_fac : (f ⊗ₘ g) ≫ gluedHom f g hP χ = χ := by
 include hP in
 /-- **([W-MONO-glue])** Precomposition with the tensor of locally bijective morphisms
 is surjective on morphisms into a presheaf of modules whose underlying presheaf is a
-sheaf: every `χ` factors through the glued bilinear pairing.-/
+sheaf: every `χ` factors through the glued bilinear pairing.
+@isnad1 id=surjecti.1h10v.s13.9bcc35839f51 from=translated src=- shape=e7b3796d vocab=82a7ae62
+-/
 theorem tensorHom_precomp_surjective :
     Function.Surjective (fun (ψ : M₂ ⊗ N₂ ⟶ P) => (f ⊗ₘ g) ≫ ψ) :=
   fun χ => ⟨gluedHom f g hP χ, gluedHom_fac f g hP χ⟩
@@ -606,7 +619,9 @@ bijectivity (the bridge), so `f`, `g` locally bijective make precomposition with
 (`tensorHom_precomp_injective`/`_surjective`); transporting that bijection across the
 sheafification adjunction `homEquiv` (naturality-left) and detecting isomorphisms by
 coyoneda-bijectivity shows `(sheafification α).map (f ⊗ₘ g)` is an isomorphism. No
-flatness and no stalks — the topos-theoretic replacement for the pointwise argument.-/
+flatness and no stalks — the topos-theoretic replacement for the pointwise argument.
+@isnad1 id=sheafifi.0h13v.s11.1ec307db123c from=translated src=- shape=3325d8eb vocab=8c298c40
+-/
 theorem sheafificationW_tensorHom (f : M₁ ⟶ M₂) (g : N₁ ⟶ N₂)
     (hf : sheafificationW.{u} α f) (hg : sheafificationW.{u} α g) :
     sheafificationW.{u} α (f ⊗ₘ g) := by
@@ -644,13 +659,18 @@ rings, with only local-bijectivity instances and no `α`, is not closable — th
 adjunction is the topos-theoretic replacement for a pointwise/stalkwise argument — so this
 carries `α` and the `sheafificationW` hypotheses rather than the byte-identical staged
 signature; obtain those hypotheses from local-bijectivity via
-`sheafificationW_iff_isLocallyBijective`.)-/
+`sheafificationW_iff_isLocallyBijective`.)
+@isnad1 id=islocall.0h13v.s12.a73bbff4ceea from=translated src=- shape=e457f8fa vocab=7020553d
+-/
 lemma isLocallyInjective_tensorHom (f : M₁ ⟶ M₂) (g : N₁ ⟶ N₂)
     (hf : sheafificationW α f) (hg : sheafificationW α g) :
     Presheaf.IsLocallyInjective J ((toPresheaf _).map (f ⊗ₘ g)) :=
   ((sheafificationW_iff_isLocallyBijective α (f ⊗ₘ g)).mp
     (sheafificationW_tensorHom α f g hf hg)).1
 
+/--
+@isnad1 id=ismultip.0h5v.s10.19e7f349bec5 from=translated src=- shape=434f63c9 vocab=6f5b0848
+-/
 instance sheafificationW_isMultiplicative : (sheafificationW.{u} α).IsMultiplicative :=
   inferInstanceAs
     ((MorphismProperty.isomorphisms _).inverseImage (sheafification.{u} α)).IsMultiplicative
@@ -658,7 +678,9 @@ instance sheafificationW_isMultiplicative : (sheafificationW.{u} α).IsMultiplic
 /-- **([GAP1-W-MONO])** The localizing class `sheafificationW` is monoidal: multiplicative
 (registration) and closed under `⊗ₘ` (`sheafificationW_tensorHom`). This is the sole
 hypothesis, beyond the localization registration, that `LocalizedMonoidal` needs to hand
-`SheafOfModules` its monoidal structure.-/
+`SheafOfModules` its monoidal structure.
+@isnad1 id=ismonoid.0h5v.s10.bc79f2d49694 from=translated src=- shape=434f63c9 vocab=05a4b945
+-/
 instance sheafificationW_isMonoidal : (sheafificationW.{u} α).IsMonoidal :=
   MorphismProperty.IsMonoidal.mk' _ fun f g hf hg => sheafificationW_tensorHom α f g hf hg
 
@@ -681,7 +703,9 @@ variable {C : Type u} [Category.{u} C] {J : GrothendieckTopology C}
 /-- The reflective localization registration, specialised to the ring sheaf underlying a
 sheaf of commutative rings (with `R'` spelled literally so type-class resolution matches it
 directly, rather than having to invert the `.obj` projection). Delegates to
-`sheafificationW_isLocalization`.-/
+`sheafificationW_isLocalization`.
+@isnad1 id=islocali.1h3v.s11.61a0882f80c0 from=translated src=- shape=9dce8a6c vocab=6d526c44
+-/
 instance instSheafificationW_isLocalization_commRingSheaf :
     (sheafification.{u}
         (𝟙 (⟨S ⋙ forget₂ CommRingCat RingCat, hS⟩ : Sheaf J RingCat.{u}).obj)).IsLocalization
@@ -691,7 +715,9 @@ instance instSheafificationW_isLocalization_commRingSheaf :
 
 /-- The monoidality of the localizing class, specialised to the same ring sheaf (again with
 `R'` spelled literally for direct resolution). Delegates to `sheafificationW_isMonoidal`
-(this file's leaf).-/
+(this file's leaf).
+@isnad1 id=ismonoid.1h3v.s10.0386551703d4 from=translated src=- shape=1cc5f765 vocab=57b3e4ec
+-/
 instance instSheafificationW_isMonoidal_commRingSheaf :
     (sheafificationW.{u}
       (𝟙 (⟨S ⋙ forget₂ CommRingCat RingCat, hS⟩ : Sheaf J RingCat.{u}).obj)).IsMonoidal :=
@@ -704,7 +730,9 @@ presheaves of modules over a sheaf of commutative rings with a `MonoidalCategory
 That localized category is definitionally `SheafOfModules ⟨S ⋙ forget₂ _ _, hS⟩` — so
 sheaves of modules over a sheaf of commutative rings form a monoidal category,
 monoidally under sheafification. This is the GAP-1 payoff; downstream consumers name the
-localized category and read off the tensor product, unit, and Pic coherences.-/
+localized category and read off the tensor product, unit, and Pic coherences.
+@isnad1 id=nonempty.1h3v.s13.dd9ce7db2e16 from=translated src=- shape=68a64933 vocab=e8630dcb
+-/
 theorem sheafOfModules_monoidalCategory_nonempty : Nonempty (MonoidalCategory
     (LocalizedMonoidal
       (sheafification.{u} (𝟙 (⟨S ⋙ forget₂ CommRingCat RingCat, hS⟩ : Sheaf J RingCat.{u}).obj))

@@ -29,7 +29,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 
 variable {X : Scheme.{u}}
 
-/-- An isomorphism after restriction to `V` remains one on `W ≤ V`.-/
+/-- An isomorphism after restriction to `V` remains one on `W ≤ V`.
+@isnad1 id=isiso.1h6v.s7.ccbc7585f079 from=translated src=- shape=38cf1d95 vocab=6063139b
+-/
 theorem isIso_restrict_map_of_le
     {M N : X.Modules} (α : M ⟶ N)
     {W V : X.Opens} (hWV : W ≤ V)

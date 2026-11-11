@@ -64,7 +64,9 @@ variable {R : Type u} [CommRing R] {K₀ K₁ : Type u}
 
 /-- The range of `A ⊗ (range u ↪ K₁)` is the range of `u.baseChange A`: both are the image of
 `A ⊗ K₀` in `A ⊗ K₁`, because `u` factors through its range by a surjection. This is
-`LinearMap.lTensor_range` transported to the `A`-linear `AlgebraTensorModule` maps.-/
+`LinearMap.lTensor_range` transported to the `A`-linear `AlgebraTensorModule` maps.
+@isnad1 id=eq.0h5v.s13.6592891098da from=translated src=- shape=ccffe336 vocab=bd87886e
+-/
 theorem range_lTensor_subtype_eq_range_baseChange (u : K₀ →ₗ[R] K₁) (A : Type v) [CommRing A]
     [Algebra R A] :
     LinearMap.range (TensorProduct.AlgebraTensorModule.lTensor A A
@@ -88,7 +90,9 @@ noncomputable def baseChangeQuotientRangeEquiv (u : K₀ →ₗ[R] K₁) (A : Ty
 /-- **Rank–nullity for a fibre**, in the `ℕ`-subtraction-free additive form: the cokernel
 dimension is `dim (κ ⊗ K₁) + dim ker - dim (κ ⊗ K₀)`, written as an equality of sums so that no
 `ℕ`-subtraction has to be justified. It is the sum of the two rank–nullity identities for
-`u.baseChange κ`, the one for its range/kernel and the one for its range/cokernel.-/
+`u.baseChange κ`, the one for its range/kernel and the one for its range/cokernel.
+@isnad1 id=eq.0h5v.s11.d0cce052f209 from=translated src=- shape=ab8f95f3 vocab=bd6acfe2
+-/
 theorem finrank_quotient_range_baseChange_add [Module.Finite R K₀] [Module.Finite R K₁]
     (u : K₀ →ₗ[R] K₁) (κ : Type u) [Field κ] [Algebra R κ] :
     finrank κ ((κ ⊗[R] K₁) ⧸ LinearMap.range (u.baseChange κ)) + finrank κ (κ ⊗[R] K₀) =
@@ -107,7 +111,9 @@ variable {R : Type u} [CommRing R] [IsNoetherianRing R] {K₀ K₁ : Type u}
 
 omit [IsNoetherianRing R] in
 /-- `Module.rankAtStalk_eq` with the fibre spelled out as `κ(p) ⊗[R] M`, which is the form in
-which `projective_of_isReduced_of_isLocallyConstant_finrank_fiber` takes its hypothesis.-/
+which `projective_of_isReduced_of_isLocallyConstant_finrank_fiber` takes its hypothesis.
+@isnad1 id=eq.0h3v.s9.a092f0887bb7 from=translated src=- shape=4e413cf1 vocab=f937d4ad
+-/
 theorem rankAtStalk_eq_finrank_residueField_tensor (M : Type u) [AddCommGroup M] [Module R M]
     [Module.Finite R M] [Module.Flat R M] (p : PrimeSpectrum R) :
     rankAtStalk (R := R) M p =
@@ -115,7 +121,9 @@ theorem rankAtStalk_eq_finrank_residueField_tensor (M : Type u) [AddCommGroup M]
   Module.rankAtStalk_eq p
 
 /-- With the fibre kernel dimension constant equal to `n`, the fibre dimension of the cokernel is
-`rk_p K₁ + n - rk_p K₀`, hence locally constant.-/
+`rk_p K₁ + n - rk_p K₀`, hence locally constant.
+@isnad1 id=islocall.1h5v.s14.3e26a751f7bd from=translated src=- shape=0a57b112 vocab=1bf95de5
+-/
 theorem isLocallyConstant_finrank_fiber_quotient_range (u : K₀ →ₗ[R] K₁) (n : ℕ)
     (h : ∀ p : PrimeSpectrum R, finrank p.asIdeal.ResidueField
       (LinearMap.ker (u.baseChange p.asIdeal.ResidueField)) = n) :
@@ -150,7 +158,9 @@ variable {R : Type u} [CommRing R] [IsReduced R] [IsNoetherianRing R] {K₀ K₁
 all have dimension `n` has **projective cokernel**.
 
 Cokernels commute with base change, so the fibre dimension of `K₁ ⧸ range u` is
-`rk_p K₁ + n - rk_p K₀`, which is locally constant; Stacks [0FWG] applies.-/
+`rk_p K₁ + n - rk_p K₀`, which is locally constant; Stacks [0FWG] applies.
+@isnad1 id=projecti.1h5v.s14.792d338f1940 from=translated src=- shape=73648e40 vocab=d780fa3a
+-/
 theorem projective_quotient_range_of_constant_finrank_ker_baseChange (u : K₀ →ₗ[R] K₁) (n : ℕ)
     (h : ∀ p : PrimeSpectrum R, finrank p.asIdeal.ResidueField
       (LinearMap.ker (u.baseChange p.asIdeal.ResidueField)) = n) :
@@ -162,7 +172,9 @@ theorem projective_quotient_range_of_constant_finrank_ker_baseChange (u : K₀ �
 all have dimension `n` has **projective kernel**.
 
 The projective cokernel of (A) splits `K₁` as `range u ⊕ (K₁ ⧸ range u)`, so `range u` is
-projective, which splits `K₀` as `ker u ⊕ range u`.-/
+projective, which splits `K₀` as `ker u ⊕ range u`.
+@isnad1 id=projecti.1h5v.s14.bbb839c9bef7 from=translated src=- shape=7d273adc vocab=f501bf43
+-/
 theorem projective_ker_of_constant_finrank_ker_baseChange (u : K₀ →ₗ[R] K₁) (n : ℕ)
     (h : ∀ p : PrimeSpectrum R, finrank p.asIdeal.ResidueField
       (LinearMap.ker (u.baseChange p.asIdeal.ResidueField)) = n) :
@@ -174,7 +186,9 @@ omit [IsReduced R] [Module.Projective R K₀] [Module.Finite R K₁] [Module.Pro
 /-- **(C)** The kernel is finite. Together with (B) this says `ker u` is finite projective.
 
 The fibre hypothesis is retained so that (B) and (C) share a signature; it is not consumed,
-since a submodule of a finite module over a Noetherian ring is already finite.-/
+since a submodule of a finite module over a Noetherian ring is already finite.
+@isnad1 id=finite.1h5v.s14.09f51d140c9b from=translated src=- shape=6c8b16ea vocab=47c241a3
+-/
 theorem finite_ker_of_constant_finrank_ker_baseChange (u : K₀ →ₗ[R] K₁) (n : ℕ)
     (_h : ∀ p : PrimeSpectrum R, finrank p.asIdeal.ResidueField
       (LinearMap.ker (u.baseChange p.asIdeal.ResidueField)) = n) :

@@ -47,7 +47,9 @@ variable {A : Type u} [CommRing A]
 /-! ## KM 6.3.6 — the unit/maximal dichotomy (factored form) -/
 
 /-- A unit plus a maximal-ideal element is a unit in a local ring (the "unit" branch of
-KM 6.3.6: `a + (elt. in P·A[[P]])` is a unit when `(a, p) = 1`).-/
+KM 6.3.6: `a + (elt. in P·A[[P]])` is a unit when `(a, p) = 1`).
+@isnad1 id=isunit.2h3v.s6.2e0615678b04 from=translated src=- shape=1a7a4a6d vocab=1d23ca64
+-/
 theorem isUnit_add_of_mem_maximalIdeal [IsLocalRing A] {a x : A} (ha : IsUnit a)
     (hx : x ∈ IsLocalRing.maximalIdeal A) : IsUnit (a + x) := by
   by_contra h
@@ -59,7 +61,9 @@ theorem isUnit_add_of_mem_maximalIdeal [IsLocalRing A] {a x : A} (ha : IsUnit a)
 
 /-- **(KM Lemma 6.3.6, factored form)** If `[a](P) = P * (a + P * g)` — the shape of a
 formal-group multiplication `[a](X) = aX + O(X²)` evaluated at `P ∈ max(A)` — then the
-cofactor `a + P * g` is a unit when `a` is one, and lies in `max(A)` when `a` does.-/
+cofactor `a + P * g` is a unit when `a` is one, and lies in `max(A)` when `a` does.
+@isnad1 id=and.1h4v.s7.0a65cfd4126d from=translated src=- shape=446c9031 vocab=f4d9a752
+-/
 theorem factor_unit_or_maximal [IsLocalRing A] {P a g : A}
     (hP : P ∈ IsLocalRing.maximalIdeal A) :
     (IsUnit a → IsUnit (a + P * g)) ∧
@@ -70,7 +74,9 @@ theorem factor_unit_or_maximal [IsLocalRing A] {P a g : A}
 /-! ## KM 6.3.4 — multiplication by the root is injective (determinant-free) -/
 
 /-- The constant coefficient of `∏ᵢ (X - bᵢ)`, over a multiset `s = {bᵢ}`, is
-`(-1) ^ (card s) * ∏ᵢ bᵢ` — evaluate the product of monic linear factors at `0`.-/
+`(-1) ^ (card s) * ∏ᵢ bᵢ` — evaluate the product of monic linear factors at `0`.
+@isnad1 id=eq.0h2v.s7.b945b67449c8 from=translated src=- shape=619889e8 vocab=afc332e7
+-/
 theorem coeff_zero_multiset_prod_X_sub_C (s : Multiset A) :
     ((s.map fun b => X - C b).prod).coeff 0 = (-1) ^ Multiset.card s * s.prod := by
   rw [coeff_zero_eq_eval_zero, eval_multiset_prod, Multiset.map_map]
@@ -89,7 +95,9 @@ by (the image of) `Q` is injective provided `∏ᵢ bᵢ` is a nonzerodivisor of
 determinant computation `det(Q | A₁) = ± ∏ [b](P) ≠ 0` (over the regular local domain `A`)
 is exactly the verification of this hypothesis; the injectivity itself needs only the
 nonzerodivisor property, via the constant-term relation
-`root · h(root) = - (constant coefficient)` on the `A`-free module `AdjoinRoot`.-/
+`root · h(root) = - (constant coefficient)` on the `A`-free module `AdjoinRoot`.
+@isnad1 id=injectiv.1h2v.s11.f07248435b26 from=translated src=- shape=e04c9da6 vocab=c50a781e
+-/
 theorem root_mul_injective (s : Multiset A) (hreg : IsSMulRegular A s.prod) :
     Function.Injective fun z : AdjoinRoot ((s.map fun b => X - C b).prod) =>
       AdjoinRoot.root _ * z := by
@@ -142,13 +150,17 @@ theorem root_mul_injective (s : Multiset A) (hreg : IsSMulRegular A s.prod) :
 
 /-! ## KM 6.3.5 — the elementary-symmetric coefficient is a unit times `P^φ` -/
 
-/-- The elementary symmetric function at full cardinality is the product.-/
+/-- The elementary symmetric function at full cardinality is the product.
+@isnad1 id=eq.0h2v.s4.1a22bb84dcff from=translated src=- shape=605d661b vocab=a6b9f6f6
+-/
 theorem esymm_card_eq_prod (s : Multiset A) : s.esymm (Multiset.card s) = s.prod := by
   rw [Multiset.esymm, Multiset.powersetCard_self, Multiset.map_singleton,
     Multiset.sum_singleton]
 
 /-- Elementary symmetric functions of a multiset of maximal-ideal elements lie in the
-maximal ideal (positive degree).-/
+maximal ideal (positive degree).
+@isnad1 id=mem.3h3v.s7.32a54f2d8164 from=translated src=- shape=46dab39a vocab=7167dac5
+-/
 theorem esymm_mem_maximalIdeal [IsLocalRing A] {v : Multiset A}
     (hv : ∀ x ∈ v, x ∈ IsLocalRing.maximalIdeal A) {k : ℕ} (hk : 0 < k)
     (_hkv : k ≤ Multiset.card v) :
@@ -163,7 +175,9 @@ theorem esymm_mem_maximalIdeal [IsLocalRing A] {v : Multiset A}
   exact Ideal.mul_mem_right _ _ (hv y (Multiset.mem_of_le htv (Multiset.mem_cons_self y t')))
 
 /-- The coefficients of `∏_{r ∈ w} (X + C r)` are the elementary symmetric functions
-(Vieta, coefficient-indexed form).-/
+(Vieta, coefficient-indexed form).
+@isnad1 id=eq.0h3v.s7.391539fb4b30 from=translated src=- shape=3e43d2a5 vocab=e6252d0a
+-/
 theorem coeff_prod_X_add_C (w : Multiset A) (i : ℕ) :
     ((w.map fun r => X + C r).prod).coeff i =
       if i ≤ Multiset.card w then w.esymm (Multiset.card w - i) else 0 := by
@@ -185,7 +199,9 @@ theorem coeff_prod_X_add_C (w : Multiset A) (i : ℕ) :
       have := Finset.mem_range.mp hj
       omega), mul_zero]
 
-/-- A product of units is a unit (multiset form).-/
+/-- A product of units is a unit (multiset form).
+@isnad1 id=isunit.1h2v.s5.b2f854634d4a from=translated src=- shape=812e9dc1 vocab=22afd8b6
+-/
 theorem isUnit_multiset_prod {u : Multiset A} (hu : ∀ x ∈ u, IsUnit x) : IsUnit u.prod := by
   induction u using Multiset.induction_on with
   | empty => simp
@@ -198,7 +214,9 @@ theorem isUnit_multiset_prod {u : Multiset A} (hu : ∀ x ∈ u, IsUnit x) : IsU
 maximal-ideal elements, the `card u`-th elementary symmetric function of `u + v` is a
 unit: it is `∏ u` (a unit) plus terms each containing a maximal-ideal factor. Combined
 with `Multiset.pow_smul_esymm`, this is KM's statement that the coefficient of
-`X^{pⁿ - φ(pⁿ)}` in `∏_{a mod pⁿ} (X - [a](P))` equals `(unit) · P^{φ(pⁿ)}`.-/
+`X^{pⁿ - φ(pⁿ)}` in `∏_{a mod pⁿ} (X - [a](P))` equals `(unit) · P^{φ(pⁿ)}`.
+@isnad1 id=isunit.2h3v.s7.7e7f206bf761 from=translated src=- shape=462cc366 vocab=360f16e6
+-/
 theorem esymm_add_eq_unit_mul_pow [IsLocalRing A] {u v : Multiset A}
     (hu : ∀ x ∈ u, IsUnit x) (hv : ∀ x ∈ v, x ∈ IsLocalRing.maximalIdeal A) :
     IsUnit ((u + v).esymm (Multiset.card u)) := by
@@ -249,7 +267,9 @@ theorem esymm_add_eq_unit_mul_pow [IsLocalRing A] {u v : Multiset A}
 `q·N` lies in `q·M` (KM 6.3.5: `A₂/QA₂ ≅ A₁/QA₁`, in preimage form). Then `f` is
 injective. This is KM's serpent-lemma-plus-Nakayama step, hand-rolled: for `x ∈ ker f`,
 `f x = 0 ∈ q·N` gives `x = q·m`, and `0 = f x = q·(f m)` forces `f m = 0`, so
-`ker f ≤ q·(ker f)` and Nakayama finishes.-/
+`ker f ≤ q·(ker f)` and Nakayama finishes.
+@isnad1 id=eq.4h5v.s9.6f232fabb74d from=translated src=- shape=b9e887df vocab=8ceda0b5
+-/
 theorem ker_eq_bot_of_smul_regular {B : Type u} [CommRing B] {M N : Type v}
     [AddCommGroup M] [Module B M] [AddCommGroup N] [Module B N] (q : B)
     (hq : q ∈ (⊥ : Ideal B).jacobson) (f : M →ₗ[B] N) (hKfg : (LinearMap.ker f).FG)

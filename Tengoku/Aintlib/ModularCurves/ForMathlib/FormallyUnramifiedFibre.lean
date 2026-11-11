@@ -47,7 +47,9 @@ unramified over the residue field `κ(p)`, then `A` is formally unramified over 
 The proof needs no flatness: `Ω[A⁄R]` is a finite `R`-module, and `κ(p) ⊗[R] Ω[A⁄R] ≃ Ω[(κ(p) ⊗
 A)⁄κ(p)]`
 (`KaehlerDifferential.tensorKaehlerEquivBase`) vanishes for every `p`, so `Ω[A⁄R]` has empty support
-and is therefore trivial.-/
+and is therefore trivial.
+@isnad1 id=formally.1h2v.s9.b4e1538f190d from=translated src=- shape=1bf774c4 vocab=4a86afd9
+-/
 lemma Algebra.FormallyUnramified.of_forall_residueField_fiber
     {R A : Type*} [CommRing R] [CommRing A] [Algebra R A] [Module.Finite R A]
     (H : ∀ (p : Ideal R) [p.IsPrime], Algebra.FormallyUnramified p.ResidueField (p.Fiber A)) :
@@ -78,7 +80,9 @@ formally unramified is itself formally unramified.
 
 This is the unramified analogue of `AlgebraicGeometry.Smooth.of_smooth_fiberToSpecResidueField`,
 but requires **neither flatness nor local finite presentation** — only finiteness, used to run the
-Nakayama argument on `Ω`.-/
+Nakayama argument on `Ω`.
+@isnad1 id=formally.1h3v.s5.639402c741cf from=translated src=- shape=e288af42 vocab=1a0c19c5
+-/
 lemma FormallyUnramified.of_finite_fiberToSpecResidueField [IsFinite f]
     (h : ∀ y, FormallyUnramified (f.fiberToSpecResidueField y)) :
     FormallyUnramified f := by

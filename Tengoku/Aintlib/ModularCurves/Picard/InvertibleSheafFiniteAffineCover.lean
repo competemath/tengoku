@@ -20,7 +20,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 noncomputable section
 
 /-- An invertible sheaf on a compact scheme admits a finite affine open cover
-on which it is trivial.-/
+on which it is trivial.
+@isnad1 id=ex.1h2v.s6.4ef25949dac2 from=translated src=- shape=cc5a7227 vocab=85f91c81
+-/
 theorem IsInvertible.exists_finite_affine_trivializingCover
     {X : Scheme.{u}} [CompactSpace X] {M : X.Modules}
     (hM : IsInvertible M) :

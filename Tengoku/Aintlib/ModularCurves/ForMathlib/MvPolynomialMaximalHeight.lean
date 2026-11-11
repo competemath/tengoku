@@ -43,11 +43,16 @@ the indices `i ∈ S` and leaves the other variables alone.-/
 noncomputable def substHom (S : Finset ι) : MvPolynomial ι k →ₐ[k] MvPolynomial ι k :=
   aeval (fun i => if i ∈ S then C (a i) else X i)
 
+/--
+@isnad1 id=eq.0h5v.s8.47681f108f25 from=translated src=- shape=11f97ebb vocab=20a2b383
+-/
 @[simp] theorem substHom_X (S : Finset ι) (i : ι) :
     substHom a S (X i) = if i ∈ S then C (a i) else X i := by
   simp [substHom]
 
-/-- Substituting on `S` and then on a larger `T` is the same as substituting on `T`.-/
+/-- Substituting on `S` and then on a larger `T` is the same as substituting on `T`.
+@isnad1 id=eq.1h5v.s8.adb0f8dea34a from=translated src=- shape=c4d7bfdf vocab=78e922fd
+-/
 theorem substHom_comp {S T : Finset ι} (h : S ⊆ T) :
     (substHom a T).comp (substHom a S) = substHom a T := by
   refine algHom_ext fun i => ?_
@@ -61,9 +66,15 @@ variables indexed by `S` take the values prescribed by `a`.-/
 noncomputable def substKer (S : Finset ι) : Ideal (MvPolynomial ι k) :=
   RingHom.ker (substHom a S).toRingHom
 
+/--
+@isnad1 id=isprime.0h4v.s5.e058a1798e23 from=translated src=- shape=1ff7939c vocab=907b056e
+-/
 instance substKer_isPrime (S : Finset ι) : (substKer a S).IsPrime :=
   RingHom.ker_isPrime _
 
+/--
+@isnad1 id=le.1h5v.s7.be3465659c7d from=translated src=- shape=d8516b05 vocab=31f4a8e5
+-/
 theorem substKer_mono {S T : Finset ι} (h : S ⊆ T) : substKer a S ≤ substKer a T := by
   intro p hp
   have hp0 : substHom a S p = 0 := hp
@@ -71,11 +82,17 @@ theorem substKer_mono {S T : Finset ι} (h : S ⊆ T) : substKer a S ≤ substKe
   rw [← substHom_comp a h]
   simp only [AlgHom.comp_apply, hp0, map_zero]
 
+/--
+@isnad1 id=mem.1h5v.s8.53c2e8fcb5d7 from=translated src=- shape=0419c321 vocab=4ab07d03
+-/
 theorem X_sub_C_mem_substKer {S : Finset ι} {j : ι} (hj : j ∈ S) :
     X j - C (a j) ∈ substKer a S := by
   show substHom a S (X j - C (a j)) = 0
   simp [substHom, hj]
 
+/--
+@isnad1 id=not.1h5v.s8.b0bf12679b65 from=translated src=- shape=0c5c5977 vocab=4ab07d03
+-/
 theorem X_sub_C_notMem_substKer {S : Finset ι} {j : ι} (hj : j ∉ S) :
     X j - C (a j) ∉ substKer a S := by
   intro hmem
@@ -85,11 +102,17 @@ theorem X_sub_C_notMem_substKer {S : Finset ι} {j : ι} (hj : j ∉ S) :
   have hcoeff := congrArg (fun q : MvPolynomial ι k => coeff (Finsupp.single j 1) q) h0
   simp [coeff_X, coeff_C, eq_comm (a := (0 : ι →₀ ℕ)), Finsupp.single_eq_zero] at hcoeff
 
+/--
+@isnad1 id=lt.3h6v.s8.3c3cf151a39c from=translated src=- shape=123b52e0 vocab=01e56e3a
+-/
 theorem substKer_lt {S T : Finset ι} (h : S ⊆ T) {j : ι} (hjT : j ∈ T) (hjS : j ∉ S) :
     substKer a S < substKer a T :=
   lt_of_le_of_ne (substKer_mono a h) fun heq =>
     X_sub_C_notMem_substKer a hjS (heq ▸ X_sub_C_mem_substKer a hjT)
 
+/--
+@isnad1 id=eq.0h3v.s7.62caeb78a9f2 from=translated src=- shape=18dceb30 vocab=848c3e50
+-/
 theorem substKer_empty : substKer a (∅ : Finset ι) = ⊥ := by
   have hid : substHom a (∅ : Finset ι) = AlgHom.id k (MvPolynomial ι k) :=
     algHom_ext fun i => by simp
@@ -100,7 +123,9 @@ theorem substKer_empty : substKer a (∅ : Finset ι) = ⊥ := by
 variable [Fintype ι]
 
 /-- Substituting *all* the variables lands in the constants: the kernel is the kernel of
-evaluation at `a`.-/
+evaluation at `a`.
+@isnad1 id=eq.0h3v.s7.25bd985f3a33 from=translated src=- shape=2722fdba vocab=02fac7ef
+-/
 theorem substKer_univ : substKer a (Finset.univ : Finset ι) = RingHom.ker (eval a) := by
   have hcomp : substHom a (Finset.univ : Finset ι) =
       (Algebra.ofId k (MvPolynomial ι k)).comp (aeval a) :=
@@ -162,7 +187,9 @@ private theorem le_height_substKer_substStage (e : ι ≃ Fin (Fintype.card ι))
           Ideal.height_add_one_le_of_lt_of_isPrime hlt
 
 /-- **(T-SMOOTH-REG brick 2a ★)** The kernel of evaluation at a point of `kⁿ` has height
-at least `n`.-/
+at least `n`.
+@isnad1 id=le.0h3v.s7.17e3f36324d0 from=translated src=- shape=badcfb60 vocab=8557191f
+-/
 theorem card_le_height_ker_eval :
     (Fintype.card ι : ℕ∞) ≤ (RingHom.ker (eval a : MvPolynomial ι k →+* k)).height := by
   classical
@@ -172,7 +199,9 @@ theorem card_le_height_ker_eval :
 
 /-- **(T-SMOOTH-REG brick 2 ★★)** Every maximal ideal of `MvPolynomial ι k`, for `k`
 algebraically closed and `ι` finite, has height at least `#ι`. (With the mathlib bound
-`height ≤ dim = #ι` this is an equality; only `≥` is used downstream.)-/
+`height ≤ dim = #ι` this is an equality; only `≥` is used downstream.)
+@isnad1 id=le.1h3v.s6.1f7a0687915d from=translated src=- shape=34298fab vocab=ff03af95
+-/
 theorem card_le_height_of_isMaximal [IsAlgClosed k] {𝔮 : Ideal (MvPolynomial ι k)}
     (h𝔮 : 𝔮.IsMaximal) : (Fintype.card ι : ℕ∞) ≤ 𝔮.height := by
   classical

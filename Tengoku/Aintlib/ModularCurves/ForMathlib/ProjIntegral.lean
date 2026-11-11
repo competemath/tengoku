@@ -52,14 +52,18 @@ variable {σ A : Type*} [CommRing A] [SetLike σ A] [AddSubgroupClass σ A]
 
 /-- Each homogeneous localization `Away 𝒜 f` of an integral domain is reduced: it embeds into the
 localization `Localization (Submonoid.powers f)` (which is reduced), via the injective ring map
-`HomogeneousLocalization.val`.-/
+`HomogeneousLocalization.val`.
+@isnad1 id=isreduce.0h4v.s6.830ce13b3101 from=translated src=- shape=1e842d10 vocab=5aeebb97
+-/
 instance isReduced_away [IsDomain A] (f : A) : _root_.IsReduced (Away 𝒜 f) :=
   isReduced_of_injective
     (algebraMap (Away 𝒜 f) (Localization (Submonoid.powers f)))
     (HomogeneousLocalization.val_injective _)
 
 /-- **`Proj` of a graded domain is integral.** If the graded ring `A` is an integral domain with a
-nonzero homogeneous element of positive degree, then `Proj 𝒜` is an integral scheme.-/
+nonzero homogeneous element of positive degree, then `Proj 𝒜` is an integral scheme.
+@isnad1 id=isintegr.1h3v.s6.0b15c48116af from=translated src=- shape=1ad953e6 vocab=b4439aa8
+-/
 theorem isIntegral_of_isDomain [IsDomain A] (h : ∃ i, 0 < i ∧ ∃ x ∈ 𝒜 i, x ≠ 0) :
     IsIntegral (Proj 𝒜) := by
   -- The zero ideal is relevant: it does not contain the irrelevant ideal.

@@ -40,7 +40,9 @@ namespace ModularCurves
 
 Local at the maximal ideals: each localization is a DVR
 (`isDiscreteValuationRing_localizationAtPrime_of_isStandardSmooth`), hence a PID, hence
-integrally closed.-/
+integrally closed.
+@isnad1 id=isintegr.0h2v.s5.8ef3fdffe278 from=translated src=- shape=8776e9bf vocab=3d758955
+-/
 theorem isIntegrallyClosed_of_isStandardSmoothOfRelativeDimension_one
     (k A : Type u) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A] :

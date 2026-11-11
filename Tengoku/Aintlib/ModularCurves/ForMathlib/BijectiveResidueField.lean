@@ -49,7 +49,9 @@ variable {R : Type u} {M : Type v} {N : Type w} [CommRing R] [IsLocalRing R]
   [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
 /-- Over a local ring, a linear map into a finite module is surjective as soon as it is
-surjective after tensoring with the residue field (Nakayama).-/
+surjective after tensoring with the residue field (Nakayama).
+@isnad1 id=surjecti.1h4v.s10.bf746fd7d71a from=translated src=- shape=ce20eaca vocab=a7d1e3e5
+-/
 theorem IsLocalRing.surjective_of_surjective_lTensor_residueField [Module.Finite R N]
     (φ : M →ₗ[R] N) (h : Surjective (φ.lTensor (ResidueField R))) :
     Surjective φ := by
@@ -60,7 +62,9 @@ theorem IsLocalRing.surjective_of_surjective_lTensor_residueField [Module.Finite
   exact ⟨φ m, LinearMap.mem_range_self _ m, (φ.lTensor_tmul _ _ _).symm⟩
 
 /-- Over a local ring, a linear map from a finite module to a finite flat module is
-bijective as soon as it is bijective after tensoring with the residue field.-/
+bijective as soon as it is bijective after tensoring with the residue field.
+@isnad1 id=bijectiv.1h4v.s10.363be4ade290 from=translated src=- shape=17e54fa8 vocab=845b33da
+-/
 theorem IsLocalRing.bijective_of_bijective_lTensor_residueField
     [Module.Finite R M] [Module.Finite R N] [Module.Flat R N]
     (φ : M →ₗ[R] N) (h : Bijective (φ.lTensor (ResidueField R))) :
@@ -79,7 +83,9 @@ variable {R : Type u} {M : Type v} {N : Type w} [CommRing R]
   [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
 /-- A linear map from a finite module to a finite flat module is bijective as soon as it
-is bijective after tensoring with the residue field of every maximal ideal.-/
+is bijective after tensoring with the residue field of every maximal ideal.
+@isnad1 id=bijectiv.1h4v.s11.a6a689b4bccc from=translated src=- shape=dc3742a4 vocab=af795caa
+-/
 theorem LinearMap.bijective_of_forall_bijective_lTensor_residueField
     [Module.Finite R M] [Module.Finite R N] [Module.Flat R N] (φ : M →ₗ[R] N)
     (h : ∀ (J : Ideal R) [J.IsMaximal], Bijective (φ.lTensor J.ResidueField)) :

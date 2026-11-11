@@ -28,7 +28,9 @@ variable {X : Type*} [TopologicalSpace X]
 
 /-- If the irreducible components are locally finite and pairwise disjoint, then every
 irreducible component is open (its complement is the union of the others, a locally
-finite union of closed sets).-/
+finite union of closed sets).
+@isnad1 id=isopen.3h2v.s7.e8e2229820b9 from=translated src=- shape=cae40bbd vocab=eca24f6b
+-/
 theorem isOpen_of_mem_irreducibleComponents_of_disjoint
     (hlf : LocallyFinite ((↑) : irreducibleComponents X → Set X))
     (hdisj : ∀ Z ∈ irreducibleComponents X, ∀ W ∈ irreducibleComponents X, Z ≠ W →
@@ -62,7 +64,9 @@ theorem isOpen_of_mem_irreducibleComponents_of_disjoint
   exact isClosed_of_mem_irreducibleComponents W hW
 
 /-- **[T-G4a-SUB3]** A nonempty connected space whose irreducible components are locally
-finite and pairwise disjoint is irreducible.-/
+finite and pairwise disjoint is irreducible.
+@isnad1 id=irreduci.2h1v.s7.d44211f12e29 from=translated src=- shape=90cfe67a vocab=62f2e9e2
+-/
 theorem irreducibleSpace_of_connected_of_disjoint_irreducibleComponents
     [Nonempty X] [ConnectedSpace X]
     (hlf : LocallyFinite ((↑) : irreducibleComponents X → Set X))
@@ -83,7 +87,9 @@ theorem irreducibleSpace_of_connected_of_disjoint_irreducibleComponents
 
 /-- The union of an **open** irreducible set with any irreducible set meeting it is
 irreducible. (Openness is essential: two intersecting irreducible *closed* sets can have a
-reducible union.)-/
+reducible union.)
+@isnad1 id=isirredu.4h3v.s5.ad251efa561c from=translated src=- shape=b9e74474 vocab=a5467d86
+-/
 theorem IsIrreducible.union_of_isOpen_of_inter_nonempty {U Z : Set X}
     (hU : IsIrreducible U) (hUo : IsOpen U) (hZ : IsIrreducible Z)
     (hne : (U ∩ Z).Nonempty) : IsIrreducible (U ∪ Z) := by
@@ -105,7 +111,9 @@ has an irreducible open neighbourhood** is irreducible.
 
 The irreducible component through a point then *contains* every such neighbourhood (by
 maximality, using `IsIrreducible.union_of_isOpen_of_inter_nonempty`), so components are
-open; being also closed and nonempty, connectedness forces a single one.-/
+open; being also closed and nonempty, connectedness forces a single one.
+@isnad1 id=irreduci.1h1v.s5.4227ae3a3ce5 from=translated src=- shape=65ba7ea4 vocab=3ca76d4a
+-/
 theorem irreducibleSpace_of_connected_of_locallyIrreducible [Nonempty X] [ConnectedSpace X]
     (h : ∀ x : X, ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsIrreducible U) : IrreducibleSpace X := by
   obtain ⟨x⟩ := ‹Nonempty X›

@@ -22,7 +22,9 @@ universe u
 namespace AlgebraicGeometry
 
 /-- A morphism from a one-point scheme to a supremum of open subschemes factors through one of
-the members.-/
+the members.
+@isnad1 id=ex.0h5v.s7.97f2c11c384d from=translated src=- shape=3a49417b vocab=e4c48a1f
+-/
 theorem exists_lift_iSup_of_unique {X Y : Scheme.{u}} [Unique Y] {ι : Type*} (U : ι → X.Opens)
     (g : Y ⟶ (⨆ i, U i).toScheme) :
     ∃ (i : ι) (h : Y ⟶ (U i).toScheme), h ≫ X.homOfLE (le_iSup U i) = g := by

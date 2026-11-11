@@ -37,7 +37,9 @@ variable {R P S M : Type u} [CommRing R] [CommRing P] [CommRing S]
   [IsScalarTower P S M] [IsScalarTower R P M] [IsScalarTower R S M]
 
 /-- The image in `S` of the prime-complement of the contraction `q.comap (P → S)` is exactly
-`q.primeCompl`, provided `P → S` is surjective.-/
+`q.primeCompl`, provided `P → S` is surjective.
+@isnad1 id=eq.1h3v.s7.6e61fc5033fd from=translated src=- shape=1c4b5f21 vocab=cbb940f7
+-/
 theorem algebraMapSubmonoid_primeCompl_comap (hf : Function.Surjective (algebraMap P S))
     (q : Ideal S) [q.IsPrime] :
     Algebra.algebraMapSubmonoid S (q.comap (algebraMap P S)).primeCompl = q.primeCompl := by
@@ -75,7 +77,9 @@ noncomputable def localizedModuleComapEquiv (hf : Function.Surjective (algebraMa
 /-- **Flat locus transports across the surjection `P ↠ S`.** `M_𝔮` is `R`-flat iff `M_{𝔮ᴾ}` is
 `R`-flat, where `𝔮ᴾ = q.comap (P → S)`.  This is the module-level half of the `[T-REDUCEP]`
 reduction (`flatLocus R S M` pulls back to `flatLocus R P M` along `Spec S ↪ Spec P`); combine with
-`mem_flatLocus` and `PrimeSpectrum.comap_asIdeal` at the call site to phrase it on `flatLocus`.-/
+`mem_flatLocus` and `PrimeSpectrum.comap_asIdeal` at the call site to phrase it on `flatLocus`.
+@isnad1 id=iff.1h5v.s10.f4f453712844 from=translated src=- shape=e0bd72f7 vocab=f46780a5
+-/
 theorem flat_localizedModule_comap_iff (hf : Function.Surjective (algebraMap P S))
     (q : Ideal S) [q.IsPrime] :
     Module.Flat R (LocalizedModule q.primeCompl M) ↔

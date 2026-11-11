@@ -42,6 +42,9 @@ its algebra is the same as that of `(f, g)` (see `mulDerivativeEquiv`).-/
   g := P.g * derivative P.f
   cond := ⟨P.g, 0, 1, by ring⟩
 
+/--
+@isnad1 id=iff.0h4v.s5.d244aad3aac2 from=translated src=- shape=786d09c3 vocab=e09734a1
+-/
 lemma hasMap_mulDerivative_iff {x : S} :
     P.mulDerivative.HasMap x ↔ P.HasMap x := by
   unfold HasMap
@@ -62,6 +65,9 @@ noncomputable def mulDerivativeEquiv : P.mulDerivative.Ring ≃ₐ[R] P.Ring :=
     (hom_ext (by simp))
     (hom_ext (by simp))
 
+/--
+@isnad1 id=eq.0h2v.s7.1816a7230a2c from=translated src=- shape=07bc1f9b vocab=d7468136
+-/
 @[simp] lemma mulDerivativeEquiv_X :
     P.mulDerivativeEquiv P.mulDerivative.X = P.X := by
   simp [mulDerivativeEquiv]
@@ -106,6 +112,9 @@ the quotient presentation.-/
 
 attribute [local instance] liftedPairRingAlgebra
 
+/--
+@isnad1 id=isscalar.1h5v.s8.2ccbe87f30fe from=translated src=- shape=b240bf65 vocab=5a59752f
+-/
 lemma liftedPairRing_isScalarTower :
     IsScalarTower R P.Ring (liftedPair P F G hFm).Ring :=
   inferInstanceAs (IsScalarTower R P.Ring (Polynomial (Polynomial P.Ring) ⧸
@@ -114,6 +123,9 @@ lemma liftedPairRing_isScalarTower :
 
 attribute [local instance] liftedPairRing_isScalarTower
 
+/--
+@isnad1 id=isscalar.1h5v.s10.8c6e30eae40b from=translated src=- shape=0e7828a7 vocab=f916b862
+-/
 lemma tensor_isScalarTower :
     IsScalarTower R P.Ring (S ⊗[P.Ring] (liftedPair P F G hFm).Ring) :=
   .of_algebraMap_eq fun r => by
@@ -130,16 +142,25 @@ variable (hF : F.map (algebraMap P.Ring S) = pres.P.f)
 
 include hF hG
 
+/--
+@isnad1 id=eq.3h7v.s8.f6ca6370cada from=translated src=- shape=b34e8a72 vocab=0f61d5bd
+-/
 lemma liftedPair_map_f :
     ((liftedPair P F G hFm).map (algebraMap P.Ring S)).f = pres.P.f := by
   simpa [liftedPair] using hF
 
+/--
+@isnad1 id=eq.3h7v.s9.5dcc9ed496ef from=translated src=- shape=29c2894b vocab=803460ad
+-/
 lemma liftedPair_map_g :
     ((liftedPair P F G hFm).map (algebraMap P.Ring S)).g =
       pres.P.g * derivative pres.P.f := by
   show (G * derivative F).map (algebraMap P.Ring S) = _
   rw [Polynomial.map_mul, hG, ← Polynomial.derivative_map, hF]
 
+/--
+@isnad1 id=hasmap.3h7v.s8.8632c8ff73b5 from=translated src=- shape=eb833dd2 vocab=1d24d67b
+-/
 lemma liftedPair_hasMap_x :
     ((liftedPair P F G hFm).map (algebraMap P.Ring S)).HasMap pres.x := by
   refine ⟨?_, ?_⟩
@@ -148,6 +169,9 @@ lemma liftedPair_hasMap_x :
   · rw [liftedPair_map_g P pres F G hFm hF hG, map_mul]
     exact pres.hasMap.2.mul pres.hasMap.isUnit_derivative_f
 
+/--
+@isnad1 id=hasmap.3h7v.s9.ba6316c9a788 from=translated src=- shape=8a7b21cd vocab=e996db68
+-/
 lemma liftedPair_hasMap_X :
     pres.P.HasMap (((liftedPair P F G hFm).map (algebraMap P.Ring S)).X) := by
   have hX := ((liftedPair P F G hFm).map (algebraMap P.Ring S)).hasMap_X
@@ -189,11 +213,17 @@ noncomputable def liftedCoverHom : (liftedPair P F G hFm).Ring →ₐ[R] T :=
     ((Algebra.TensorProduct.includeRight (R := P.Ring) (A := S)
       (B := (liftedPair P F G hFm).Ring)).restrictScalars R)
 
+/--
+@isnad1 id=surjecti.4h7v.s9.4da4dc0c3d44 from=translated src=- shape=f5e7bd55 vocab=2b2eff8b
+-/
 lemma liftedCoverHom_surjective (hπ : Function.Surjective (algebraMap P.Ring S)) :
     Function.Surjective (liftedCoverHom P pres F G hFm hF hG) :=
   (liftedTensorEquivT P pres F G hFm hF hG).surjective.comp
     (Algebra.TensorProduct.includeRight_surjective (liftedPair P F G hFm).Ring hπ)
 
+/--
+@isnad1 id=eq.3h8v.s10.2afb3bf389eb from=translated src=- shape=75fd00ec vocab=74d2a909
+-/
 lemma liftedCoverHom_algebraMap (x : P.Ring) :
     liftedCoverHom P pres F G hFm hF hG
       (algebraMap P.Ring (liftedPair P F G hFm).Ring x) =
@@ -229,6 +259,9 @@ noncomputable def liftedExtensionHom
       (liftedPair P F G hFm).Ring x).symm
   algebraMap_toRingHom x := liftedCoverHom_algebraMap P pres F G hFm hF hG x
 
+/--
+@isnad1 id=bijectiv.4h7v.s13.e83b4c2e654c from=translated src=- shape=b68e9e39 vocab=096cc015
+-/
 lemma liftedExtensionHom_mapKer_bijective
     (hπ : Function.Surjective (algebraMap P.Ring S)) :
     Function.Bijective

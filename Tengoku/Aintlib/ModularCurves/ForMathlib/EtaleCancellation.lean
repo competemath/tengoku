@@ -51,7 +51,9 @@ variable (R B A : Type u) [CommRing R] [CommRing B] [CommRing A]
   [Algebra R B] [Algebra B A] [Algebra R A] [IsScalarTower R B A]
 
 /-- A flat algebra with a linear retraction of its unit is faithfully flat: `N ≅ N ⊗[B] B`
-is a retract of `N ⊗[B] A`, so triviality reflects.-/
+is a retract of `N ⊗[B] A`, so triviality reflects.
+@isnad1 id=faithful.1h3v.s8.6f87cf054ec4 from=translated src=- shape=00845164 vocab=4b15a8e8
+-/
 theorem Module.FaithfullyFlat.of_flat_of_retract [Module.Flat B A]
     (ρ : A →ₗ[B] B) (hρ : ρ.comp (Algebra.linearMap B A) = LinearMap.id) :
     Module.FaithfullyFlat B A := by
@@ -74,7 +76,9 @@ theorem Module.FaithfullyFlat.of_flat_of_retract [Module.Flat B A]
 variable {R B A}
 
 /-- Module-finiteness cancels along a split second factor: if `A` is a finite `R`-module and
-`B → A` has a `B`-linear retraction, then `B` is a finite `R`-module.-/
+`B → A` has a `B`-linear retraction, then `B` is a finite `R`-module.
+@isnad1 id=finite.1h4v.s8.2e5b5c12983d from=translated src=- shape=9ff02e55 vocab=3ebbdccf
+-/
 theorem Module.Finite.of_comp_of_retract [Module.Finite R A]
     (ρ : A →ₗ[B] B) (hρ : ρ.comp (Algebra.linearMap B A) = LinearMap.id) :
     Module.Finite R B :=
@@ -83,7 +87,9 @@ theorem Module.Finite.of_comp_of_retract [Module.Finite R A]
 
 /-- **Finite étale cancellation along a split cover** (the [GHB6-RING] crown; KM 7.1.3(6),
 ring level). In a tower `R → B → A` with `B → A` formally étale, flat and split by a
-`B`-linear retraction, if `R → A` is finite étale then `R → B` is étale.-/
+`B`-linear retraction, if `R → A` is finite étale then `R → B` is étale.
+@isnad1 id=etale.1h4v.s8.de8a554681ab from=translated src=- shape=1a6cfecd vocab=fba68198
+-/
 theorem Algebra.Etale.of_comp_of_retract [Module.Finite R A] [Algebra.Etale R A]
     [Algebra.FormallyEtale B A] [Module.Flat B A]
     (ρ : A →ₗ[B] B) (hρ : ρ.comp (Algebra.linearMap B A) = LinearMap.id) :
@@ -122,7 +128,9 @@ variable (G : Type*) [Group G] [_root_.Finite G] (R₀ : Type v) (A : Type u) [C
   [SMulCommClass R₀ G A]
 
 /-- The trace retraction `a ↦ tr(c·a)` of the invariants inclusion `Aᴳ ↪ A` of a free
-action, where `tr(c) = 1` (`exists_traceInvariants_eq_one`).-/
+action, where `tr(c) = 1` (`exists_traceInvariants_eq_one`).
+@isnad1 id=ex.1h3v.s12.f180f9e31623 from=translated src=- shape=279fa7e5 vocab=4c29d94a
+-/
 theorem exists_retract_invariants (hfree : IsFreeAlgebraAction G R₀ A) :
     ∃ ρ : A →ₗ[FixedPoints.subalgebra R₀ A G] FixedPoints.subalgebra R₀ A G,
       ρ.comp (Algebra.linearMap (FixedPoints.subalgebra R₀ A G) A) = LinearMap.id := by
@@ -147,7 +155,9 @@ def RingHom.invariantsCorestrict {R : Type*} [CommRing R] (φ : R →+* A)
 variable {R : Type u} [CommRing R] (φ : R →+* A) (hφ : ∀ (g : G) (r : R), g • φ r = φ r)
 
 /-- **[GHB6-RING], finiteness of the invariants base** — if `R → A` is module-finite and the
-`G`-action is free, the corestriction `R → Aᴳ` is module-finite.-/
+`G`-action is free, the corestriction `R → Aᴳ` is module-finite.
+@isnad1 id=finite.3h5v.s9.01e67b97e7af from=translated src=- shape=feb103c8 vocab=4328d3eb
+-/
 theorem RingHom.invariantsCorestrict_finite
     (hfree : IsFreeAlgebraAction G R₀ A) (hfin : φ.Finite) :
     (φ.invariantsCorestrict (R₀ := R₀) hφ).Finite := by
@@ -160,7 +170,9 @@ theorem RingHom.invariantsCorestrict_finite
   exact Module.Finite.of_comp_of_retract ρ hρ
 
 /-- **[GHB6-RING], étaleness of the invariants base** — if `R → A` is finite étale and the
-`G`-action is free, the corestriction `R → Aᴳ` is étale.-/
+`G`-action is free, the corestriction `R → Aᴳ` is étale.
+@isnad1 id=etale.4h5v.s9.e54f50aa0417 from=translated src=- shape=83acce89 vocab=310c9b35
+-/
 theorem RingHom.invariantsCorestrict_etale
     (hfree : IsFreeAlgebraAction G R₀ A) (hfin : φ.Finite) (het : φ.Etale) :
     (φ.invariantsCorestrict (R₀ := R₀) hφ).Etale := by

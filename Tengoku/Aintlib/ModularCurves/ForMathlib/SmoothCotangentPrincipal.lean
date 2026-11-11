@@ -37,14 +37,18 @@ variable (k A : Type u) [Field k] [CommRing A] [Algebra k A] [Algebra A k]
   [IsScalarTower k A k]
 
 /-- A `k`-algebra `A` with a `k`-algebra map to `k` has that map surjective — the structure
-map `k → A` is a section.-/
+map `k → A` is a section.
+@isnad1 id=surjecti.0h2v.s7.341c86164340 from=translated src=- shape=c9b29fe5 vocab=bb4e6b1b
+-/
 theorem algebraMap_surjective_of_isScalarTower : Function.Surjective (algebraMap A k) :=
   fun c => ⟨algebraMap k A c, (IsScalarTower.algebraMap_apply k A k c).symm.trans (by simp)⟩
 
 variable [Algebra.FormallySmooth k A]
 
 /-- **(brick 4a)** At a `k`-rational point of a formally smooth `k`-algebra the cotangent
-comparison `𝔪/𝔪² → k ⊗_A Ω[A⁄k]` is injective, because `H¹` of `k` over `k` vanishes.-/
+comparison `𝔪/𝔪² → k ⊗_A Ω[A⁄k]` is injective, because `H¹` of `k` over `k` vanishes.
+@isnad1 id=injectiv.0h2v.s10.f9d68daca2d4 from=translated src=- shape=5f6ba7f4 vocab=1631cded
+-/
 theorem kerCotangentToTensor_injective :
     Function.Injective (KaehlerDifferential.kerCotangentToTensor k A k) :=
   (Algebra.FormallySmooth.kerCotangentToTensor_injective_iff
@@ -52,7 +56,9 @@ theorem kerCotangentToTensor_injective :
 
 variable [Module.Free A (Ω[A⁄k])]
 
-/-- **(brick 4b)** Hence `dim_k 𝔪/𝔪² ≤ rank_A Ω[A⁄k]`.-/
+/-- **(brick 4b)** Hence `dim_k 𝔪/𝔪² ≤ rank_A Ω[A⁄k]`.
+@isnad1 id=le.0h2v.s8.8e79a76d5f91 from=translated src=- shape=aa2a7638 vocab=f89912b8
+-/
 theorem rank_cotangent_le_rank_kaehler :
     Module.rank k (RingHom.ker (algebraMap A k) : Ideal A).Cotangent ≤
       Module.rank A (Ω[A⁄k]) := by
@@ -67,7 +73,9 @@ theorem rank_cotangent_le_rank_kaehler :
 
 /-- **(T-SMOOTH-REG brick 4 ★)** If moreover `Ω[A⁄k]` has rank at most one, the maximal
 ideal of the rational point is *principal modulo its square*: there is a single `x ∈ 𝔪`
-with `𝔪 ≤ (x) + 𝔪²`.-/
+with `𝔪 ≤ (x) + 𝔪²`.
+@isnad1 id=ex.1h2v.s9.882815a813e9 from=translated src=- shape=96def97d vocab=ed4d2631
+-/
 theorem exists_le_span_singleton_sup_sq (hrank : Module.rank A (Ω[A⁄k]) ≤ 1) :
     ∃ x ∈ RingHom.ker (algebraMap A k),
       (RingHom.ker (algebraMap A k) : Ideal A) ≤

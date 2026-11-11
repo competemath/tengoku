@@ -39,7 +39,9 @@ universe u
 variable {R S : CommRingCat.{u}}
 
 /-- The value of the scheme-theoretic kernel of `Spec.map φ` on the top affine open is the
-kernel of `φ`, pulled back along the isomorphism `Γ(Spec R, ⊤) ≅ R`.-/
+kernel of `φ`, pulled back along the isomorphism `Γ(Spec R, ⊤) ≅ R`.
+@isnad1 id=eq.0h3v.s12.064192e784c3 from=translated src=- shape=96a0c5f2 vocab=3303824a
+-/
 lemma ideal_ker_SpecMap_top (φ : R ⟶ S) :
     (Spec.map φ).ker.ideal ⟨⊤, isAffineOpen_top _⟩ =
       (RingHom.ker φ.hom).comap (Scheme.ΓSpecIso R).hom.hom := by
@@ -63,7 +65,9 @@ lemma ideal_ker_SpecMap_top (φ : R ⟶ S) :
   rw [hofid, happ]
 
 /-- If `φ : R ⟶ S` is a square-zero quotient (`RingHom.ker φ ^ 2 = ⊥`), then the
-scheme-theoretic kernel `(Spec.map φ).ker` is nilpotent.-/
+scheme-theoretic kernel `(Spec.map φ).ker` is nilpotent.
+@isnad1 id=isnilpot.1h3v.s8.e6eb3cf8a1db from=translated src=- shape=75e02a3f vocab=66fe54e7
+-/
 lemma isNilpotent_ker_SpecMap (φ : R ⟶ S) (h : RingHom.ker φ.hom ^ 2 = ⊥) :
     IsNilpotent (Spec.map φ).ker := by
   have hle : ((RingHom.ker φ.hom).comap (Scheme.ΓSpecIso R).hom.hom) ^ 2 = ⊥ := by

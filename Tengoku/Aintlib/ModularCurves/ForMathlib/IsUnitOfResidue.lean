@@ -18,7 +18,9 @@ certificates (`a₃`, `3`, the B-locus) are supplied fibrewise through it.
 
 namespace ModularCurves
 
-/-- An element outside every prime ideal is a unit.-/
+/-- An element outside every prime ideal is a unit.
+@isnad1 id=isunit.1h2v.s6.cadc6c2c8c62 from=translated src=- shape=b44d3ae5 vocab=c824f609
+-/
 theorem isUnit_of_forall_notMem_prime {R : Type*} [CommRing R] {f : R}
     (h : ∀ 𝔭 : PrimeSpectrum R, f ∉ 𝔭.asIdeal) : IsUnit f := by
   by_contra hf
@@ -26,7 +28,9 @@ theorem isUnit_of_forall_notMem_prime {R : Type*} [CommRing R] {f : R}
     (by rwa [Ne, Ideal.span_singleton_eq_top])
   exact h ⟨𝔪, h𝔪.isPrime⟩ (hle (Ideal.mem_span_singleton_self f))
 
-/-- An element with nonzero image in every prime residue field is a unit.-/
+/-- An element with nonzero image in every prime residue field is a unit.
+@isnad1 id=isunit.1h2v.s9.c51a154c9db6 from=translated src=- shape=c49b9128 vocab=ad760375
+-/
 theorem isUnit_of_forall_algebraMap_residueField_ne_zero {R : Type*} [CommRing R]
     {f : R} (h : ∀ 𝔭 : PrimeSpectrum R,
       algebraMap R 𝔭.asIdeal.ResidueField f ≠ 0) : IsUnit f :=

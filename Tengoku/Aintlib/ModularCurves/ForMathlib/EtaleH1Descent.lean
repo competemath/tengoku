@@ -31,7 +31,9 @@ namespace Algebra
 variable (k A B : Type*) [CommRing k] [CommRing A] [CommRing B]
   [Algebra k A] [Algebra k B] [Algebra A B] [IsScalarTower k A B]
 
-/-- (Implementation) `H¹` of a localization of `B` vanishes when `H¹` of `B` does.-/
+/-- (Implementation) `H¹` of a localization of `B` vanishes when `H¹` of `B` does.
+@isnad1 id=subsingl.0h4v.s7.b5009660e06f from=translated src=- shape=9c6ceb83 vocab=e1d8cfaa
+-/
 lemma subsingleton_h1Cotangent_localization (C : Type*) [CommRing C] [Algebra B C]
     [Algebra k C] [IsScalarTower k B C] (M : Submonoid B) [IsLocalization M C]
     [Subsingleton (H1Cotangent k B)] : Subsingleton (H1Cotangent k C) := by
@@ -43,7 +45,9 @@ lemma subsingleton_h1Cotangent_localization (C : Type*) [CommRing C] [Algebra B 
     IsLocalizedModule.mk'_zero]
 
 /-- **[T-YR-6 (c1-D)]** Vanishing of `H¹` of the cotangent complex descends along
-étale faithfully flat extensions.-/
+étale faithfully flat extensions.
+@isnad1 id=subsingl.0h3v.s7.403d737277ad from=translated src=- shape=bd0493a1 vocab=55e672fc
+-/
 theorem subsingleton_h1Cotangent_of_etale_faithfullyFlat
     [Algebra.Etale A B] [Module.FaithfullyFlat A B]
     [Subsingleton (H1Cotangent k B)] :

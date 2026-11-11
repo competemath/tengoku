@@ -25,7 +25,9 @@ variable {C D : Type*} [Category* C] [Category* D]
 
 open scoped _root_.CategoryTheory.Obj in
 /-- A monoidal functor's action on morphisms into a group object preserves integer
-powers.-/
+powers.
+@isnad1 id=eq.0h7v.s8.aa605a67023d from=translated src=- shape=14c2bda4 vocab=8254b222
+-/
 @[to_additive]
 lemma map_zpow' (f : X ⟶ G) (n : ℤ) : F.map (f ^ n) = (F.map f) ^ n :=
   map_zpow (Functor.homMonoidHom F) f n

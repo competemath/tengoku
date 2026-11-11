@@ -38,7 +38,9 @@ noncomputable def cechZeroShortComplex : ShortComplex C :=
   ShortComplex.mk (res F.presheaf U) (leftRes F.presheaf U - rightRes F.presheaf U)
     (by rw [Preadditive.comp_sub, w, sub_self])
 
-/-- The Cech complex of a sheaf is exact at degree zero.-/
+/-- The Cech complex of a sheaf is exact at degree zero.
+@isnad1 id=exact.0h5v.s5.3b30df3b9196 from=translated src=- shape=e2848e41 vocab=cb96e5d3
+-/
 theorem cechZeroShortComplex_exact : (cechZeroShortComplex F U).Exact := by
   apply ShortComplex.exact_of_f_is_kernel
   refine IsLimit.ofIsoLimit (isLimitCechResSub F U) ?_

@@ -38,7 +38,9 @@ namespace AlgebraicGeometry
 
 variable {S X Y : Scheme.{u}} {V : S.Opens} {W₁ : X.Opens} {W₂ : Y.Opens}
 
-/-- An affine open is isomorphic to the `Spec` of its sections, via `toSpecΓ`.-/
+/-- An affine open is isomorphic to the `Spec` of its sections, via `toSpecΓ`.
+@isnad1 id=isiso.1h2v.s7.934d6cf85784 from=translated src=- shape=95b6f7bd vocab=72a4526e
+-/
 theorem IsAffineOpen.isIso_toSpecΓ {W : X.Opens} (hW : IsAffineOpen W) :
     IsIso W.toSpecΓ :=
   hW.isoSpec_hom ▸ inferInstanceAs (IsIso hW.isoSpec.hom)
@@ -69,7 +71,9 @@ noncomputable def patchKunneth
     exact (Scheme.Opens.toSpecΓ_SpecMap_appLE g V W₂ e₂).symm
 
 /-- The Künneth identification carries `Spec` of the left inclusion to the first
-projection (composed with the affine identification of the first factor).-/
+projection (composed with the affine identification of the first factor).
+@isnad1 id=eq.7h8v.s14.b0a4e6bf8f8f from=translated src=- shape=f85c6e31 vocab=1f0beb35
+-/
 @[reassoc]
 theorem patchKunneth_hom_comp_includeLeft
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
@@ -88,7 +92,9 @@ theorem patchKunneth_hom_comp_includeLeft
   exact pullback.lift_fst _ _ _
 
 /-- The Künneth identification carries `Spec` of the right inclusion to the second
-projection.-/
+projection.
+@isnad1 id=eq.7h8v.s15.581fb6beeaeb from=translated src=- shape=8c03c8c0 vocab=af02a177
+-/
 @[reassoc]
 theorem patchKunneth_hom_comp_includeRight
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
@@ -114,7 +120,9 @@ theorem patchKunneth_hom_comp_includeRight
 
 /-- The Künneth identification is compatible with the structure maps to the base patch:
 `Spec` of the canonical algebra map of the tensor product is the first projection into
-the base.-/
+the base.
+@isnad1 id=eq.7h8v.s14.26cfa94b4d3f from=translated src=- shape=c6dde59e vocab=7611c3ef
+-/
 @[reassoc]
 theorem patchKunneth_hom_base
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
@@ -152,7 +160,9 @@ noncomputable def patchKunnethΓ
     ≫ (Scheme.ΓSpecIso (.of (Γ(X, W₁) ⊗[Γ(S, V)] Γ(Y, W₂)))).hom
 
 /-- **The `Γ`-dual of the left leg**: the first projection, transported, is the left
-inclusion into the tensor product.-/
+inclusion into the tensor product.
+@isnad1 id=eq.7h8v.s14.4289ba04598e from=translated src=- shape=7a57584d vocab=f9f6d41a
+-/
 theorem topIso_inv_fst_appTop_patchKunnethΓ
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
     (h₁ : CommRingCat.ofHom (algebraMap Γ(S, V) Γ(X, W₁)) = f.appLE V W₁ e₁)
@@ -192,7 +202,9 @@ theorem topIso_inv_fst_appTop_patchKunnethΓ
     Category.comp_id]
 
 /-- **The `Γ`-dual of the right leg**: the second projection, transported, is the right
-inclusion into the tensor product.-/
+inclusion into the tensor product.
+@isnad1 id=eq.7h8v.s15.e5bad72c1026 from=translated src=- shape=90d271fa vocab=b76e34ef
+-/
 theorem topIso_inv_snd_appTop_patchKunnethΓ
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
     (h₁ : CommRingCat.ofHom (algebraMap Γ(S, V) Γ(X, W₁)) = f.appLE V W₁ e₁)
@@ -229,7 +241,9 @@ theorem topIso_inv_snd_appTop_patchKunnethΓ
     AlgebraicGeometry.Scheme.Hom.id_appTop, Category.id_comp, Iso.inv_hom_id,
     Category.comp_id]
 
-/-- The section-level transport is an isomorphism.-/
+/-- The section-level transport is an isomorphism.
+@isnad1 id=isiso.7h8v.s13.6f29c21e53b2 from=translated src=- shape=278c49c9 vocab=901b07b2
+-/
 instance isIso_patchKunnethΓ
     (hV : IsAffineOpen V) (hW₁ : IsAffineOpen W₁) (hW₂ : IsAffineOpen W₂)
     (h₁ : CommRingCat.ofHom (algebraMap Γ(S, V) Γ(X, W₁)) = f.appLE V W₁ e₁)
@@ -245,7 +259,9 @@ instance isIso_patchKunnethΓ
   infer_instance
 
 /-- **Ext principle for maps out of a tensor product** of `CommRingCat` objects: two ring
-maps agreeing on both inclusions agree.-/
+maps agreeing on both inclusions agree.
+@isnad1 id=eq.2h6v.s10.d7fe7b374373 from=translated src=- shape=f8954ba8 vocab=25b7b96a
+-/
 theorem tensor_hom_ext {R A B C : CommRingCat.{u}} [Algebra R A] [Algebra R B]
     {φ ψ : CommRingCat.of (A ⊗[R] B) ⟶ C}
     (hL : CommRingCat.ofHom (Algebra.TensorProduct.includeLeftRingHom
@@ -299,6 +315,9 @@ noncomputable def affineKunneth
     (by rw [h₂]; exact (Scheme.isoSpec_hom_naturality g).symm)))
     ≪≫ pullbackSpecIso Γ(B, ⊤) Γ(X, ⊤) Γ(Y, ⊤)
 
+/--
+@isnad1 id=eq.2h5v.s15.22c1040f7e2b from=translated src=- shape=c929e4fd vocab=95fbc91e
+-/
 @[reassoc]
 theorem affineKunneth_hom_comp_includeLeft
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
@@ -311,6 +330,9 @@ theorem affineKunneth_hom_comp_includeLeft
     pullbackSpecIso_hom_fst]
   exact pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.2h5v.s15.13fc30657fcc from=translated src=- shape=bd768441 vocab=7f0126f0
+-/
 @[reassoc]
 theorem affineKunneth_hom_comp_includeRight
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
@@ -337,6 +359,9 @@ noncomputable def affineKunnethΓ
   (affineKunneth f g h₁ h₂).inv.appTop
     ≫ (Scheme.ΓSpecIso (.of (Γ(X, ⊤) ⊗[Γ(B, ⊤)] Γ(Y, ⊤)))).hom
 
+/--
+@isnad1 id=isiso.2h5v.s14.55f92d830e01 from=translated src=- shape=60f625b2 vocab=f18447f0
+-/
 instance isIso_affineKunnethΓ
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
     (h₂ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(Y, ⊤)) = g.appTop) :
@@ -350,7 +375,9 @@ instance isIso_affineKunnethΓ
         AlgebraicGeometry.Scheme.Hom.id_appTop]
   infer_instance
 
-/-- **The `Γ`-dual of the left leg**, affine version.-/
+/-- **The `Γ`-dual of the left leg**, affine version.
+@isnad1 id=eq.2h5v.s15.56dc9b13fdf2 from=translated src=- shape=2b84d959 vocab=5e69c7fd
+-/
 theorem fst_appTop_affineKunnethΓ
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
     (h₂ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(Y, ⊤)) = g.appTop) :
@@ -380,7 +407,9 @@ theorem fst_appTop_affineKunnethΓ
     AlgebraicGeometry.Scheme.Hom.id_appTop, Category.id_comp, Iso.inv_hom_id,
     Category.comp_id]
 
-/-- **The `Γ`-dual of the right leg**, affine version.-/
+/-- **The `Γ`-dual of the right leg**, affine version.
+@isnad1 id=eq.2h5v.s15.7d07d9f5ecc4 from=translated src=- shape=9a2a9116 vocab=ba4848dc
+-/
 theorem snd_appTop_affineKunnethΓ
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
     (h₂ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(Y, ⊤)) = g.appTop) :
@@ -411,7 +440,9 @@ theorem snd_appTop_affineKunnethΓ
     Category.comp_id]
 
 /-- **The `Γ`-dual of the base**, affine version: the base algebra map dualises to the
-first projection followed by the structure map to `B`.-/
+first projection followed by the structure map to `B`.
+@isnad1 id=eq.2h5v.s15.527f50354ead from=translated src=- shape=5d68f5a2 vocab=0ee3f27d
+-/
 theorem base_appTop_affineKunnethΓ
     (h₁ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(X, ⊤)) = f.appTop)
     (h₂ : CommRingCat.ofHom (algebraMap Γ(B, ⊤) Γ(Y, ⊤)) = g.appTop) :

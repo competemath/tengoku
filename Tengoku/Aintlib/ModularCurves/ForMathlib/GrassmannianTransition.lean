@@ -63,12 +63,18 @@ noncomputable def column (j : Fin n) : Fin k → ChartRing R ι :=
     Pi.single ((Equiv.ofInjective ι ι.injective).symm ⟨j, h⟩) 1
   else fun i => X (⟨j, h⟩, i)
 
+/--
+@isnad1 id=eq.0h5v.s8.ecdbecf6429e from=translated src=- shape=a336fbaf vocab=983fc69d
+-/
 @[simp] lemma column_mem (i₀ : Fin k) :
     column ι (ι i₀) = (Pi.single i₀ 1 : Fin k → ChartRing R ι) := by
   rw [column, dite_eq_left ⟨i₀, rfl⟩]
   congr 1
   exact Equiv.ofInjective_symm_apply ι.injective i₀
 
+/--
+@isnad1 id=eq.1h5v.s7.6a5581c86010 from=translated src=- shape=ddafeb08 vocab=c14a1623
+-/
 lemma column_notMem {j : Fin n} (h : j ∉ Set.range ι) :
     column ι j = fun i => (X (⟨j, h⟩, i) : ChartRing R ι) := by
   rw [column, dite_eq_right h]
@@ -88,7 +94,9 @@ noncomputable def matrixAway :
     Matrix (Fin k) (Fin k) (Localization.Away (det (R := R) ι ι')) :=
   (matrix ι ι').map (algebraMap (ChartRing R ι) (Localization.Away (det (R := R) ι ι')))
 
-/-- The image of the transition determinant is a unit on the overlap.-/
+/-- The image of the transition determinant is a unit on the overlap.
+@isnad1 id=isunit.0h5v.s10.8aabd2c2c07b from=translated src=- shape=bef92c8f vocab=3116fcb9
+-/
 lemma isUnit_det_matrixAway : IsUnit (matrixAway ι ι' (R := R)).det := by
   rw [matrixAway, ← RingHom.mapMatrix_apply, ← RingHom.map_det]
   exact IsLocalization.Away.algebraMap_isUnit (det (R := R) ι ι')
@@ -106,6 +114,9 @@ noncomputable def ringHom :
       fun i₁ => algebraMap (ChartRing R ι) (Localization.Away (det (R := R) ι ι'))
         (column ι p.1.1 i₁)) p.2)
 
+/--
+@isnad1 id=eq.0h7v.s6.6ab17df834d5 from=translated src=- shape=9ae2a733 vocab=4e432bfb
+-/
 @[simp] lemma matrix_apply (i₁ i₂ : Fin k) :
     matrix (R := R) ι ι' i₁ i₂ = column ι (ι' i₂) i₁ := rfl
 
@@ -116,6 +127,9 @@ private lemma mulVec_single_one {S : Type u} [CommRing S]
   rw [Matrix.mulVec_single]
   simp
 
+/--
+@isnad1 id=eq.0h7v.s11.9cf8bb68d0cf from=translated src=- shape=d5a6ec2a vocab=23093f52
+-/
 @[simp] lemma matrixAway_apply (i₁ i₂ : Fin k) :
     matrixAway (R := R) ι ι' i₁ i₂
       = algebraMap (ChartRing R ι) (Localization.Away (det (R := R) ι ι'))
@@ -146,7 +160,9 @@ private lemma nonsing_inv_matrixAway_mulVec_single {i₀ i₂ : Fin k} (hcol : �
 
 /-- **[GR-F1]** The transition ring map carries the *reverse* transition matrix to the
 inverse of the (localized) forward one — the generic content of "the coordinate changes
-are mutually inverse on the overlap".-/
+are mutually inverse on the overlap".
+@isnad1 id=eq.0h5v.s11.4a1914bd8959 from=translated src=- shape=f6e509db vocab=56a00ba8
+-/
 lemma map_ringHom_matrix :
     (matrix ι' ι).map ⇑(ringHom (R := R) ι ι') = (matrixAway (R := R) ι ι')⁻¹ := by
   classical
@@ -167,7 +183,9 @@ lemma map_ringHom_matrix :
       hR]
 
 /-- **[GR-F1]** The transition map sends the reverse transition determinant to a unit —
-so it extends over the reverse overlap localization.-/
+so it extends over the reverse overlap localization.
+@isnad1 id=isunit.0h5v.s11.207f48416f20 from=translated src=- shape=db477618 vocab=2e9c8db9
+-/
 lemma isUnit_ringHom_det :
     IsUnit (ringHom (R := R) ι ι' (det (R := R) ι' ι)) := by
   have hd : det (R := R) ι' ι = (matrix ι' ι).det := rfl
@@ -181,6 +199,9 @@ noncomputable def ringHomAway :
     Localization.Away (det (R := R) ι' ι) →+* Localization.Away (det (R := R) ι ι') :=
   IsLocalization.Away.lift (det (R := R) ι' ι) (isUnit_ringHom_det ι ι')
 
+/--
+@isnad1 id=eq.0h6v.s13.f32158b1e943 from=translated src=- shape=38228e65 vocab=5a1c462e
+-/
 lemma ringHomAway_algebraMap (q : ChartRing R ι') :
     ringHomAway ι ι' (algebraMap (ChartRing R ι')
         (Localization.Away (det (R := R) ι' ι)) q)
@@ -189,7 +210,9 @@ lemma ringHomAway_algebraMap (q : ChartRing R ι') :
 
 /-- The transition image of ANY reverse-chart column, uniformly: `ringHom` sends the
 ι'-column of `j` to `(matrixAway ι ι')⁻¹` applied to the embedded ι-column of `j`. The
-variable case is definitional; the delta case is the inverse-column identity.-/
+variable case is definitional; the delta case is the inverse-column identity.
+@isnad1 id=eq.0h6v.s12.a855d6f7e3e0 from=translated src=- shape=8911c4e3 vocab=4548f9c8
+-/
 lemma ringHom_comp_column (j : Fin n) :
     (fun i₁ => ringHom (R := R) ι ι' (column ι' j i₁))
       = (matrixAway (R := R) ι ι')⁻¹ *ᵥ
@@ -261,7 +284,9 @@ private lemma ringHomAway_solution_column (j : Fin n) :
             (column ι j i₁)) i := congrFun (ringHom_comp_column ι ι' j) i
 
 /-- **[GR-E4]** The two chart transitions are mutually inverse on the overlap rings —
-the `Scheme.GlueData` inverse-pair condition at ring level.-/
+the `Scheme.GlueData` inverse-pair condition at ring level.
+@isnad1 id=eq.0h5v.s12.61c4acf3a6a2 from=translated src=- shape=668e0db0 vocab=569f40c2
+-/
 theorem ringHomAway_comp_ringHomAway :
     (ringHomAway (R := R) ι ι').comp (ringHomAway ι' ι)
       = RingHom.id (Localization.Away (det (R := R) ι ι')) := by
@@ -289,16 +314,23 @@ theorem ringHomAway_comp_ringHomAway :
     rfl
 
 /-- The self-transition matrix is the identity: every ι-column at an ι-index is a delta
-column.-/
+column.
+@isnad1 id=eq.0h4v.s8.91581d8054f5 from=translated src=- shape=1c39c113 vocab=e0d28ecc
+-/
 lemma matrix_self : matrix (R := R) ι ι = 1 := by
   funext i₁ i₂
   rw [matrix_apply, congrFun (column_mem ι i₂) i₁, Matrix.one_apply, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h4v.s7.a5427784b6d7 from=translated src=- shape=b66cbcb6 vocab=7c1f7bde
+-/
 lemma det_self : det (R := R) ι ι = 1 := by
   have hd : det (R := R) ι ι = (matrix (R := R) ι ι).det := rfl
   rw [hd, matrix_self, Matrix.det_one]
 
-/-- **[GR-F-tid]** The self-transition ring map is the localization embedding.-/
+/-- **[GR-F-tid]** The self-transition ring map is the localization embedding.
+@isnad1 id=eq.0h4v.s11.d88dcd47917f from=translated src=- shape=2828f74a vocab=291bbf65
+-/
 lemma ringHom_self :
     ringHom (R := R) ι ι
       = algebraMap (ChartRing R ι) (Localization.Away (det (R := R) ι ι)) := by
@@ -314,7 +346,9 @@ lemma ringHom_self :
   rw [h1, inv_one, Matrix.one_mulVec, congrFun (column_notMem ι hj) i]
 
 /-- **[GR-F-tid]** The self-transition on the overlap ring is the identity — the
-`Scheme.GlueData` `t_id` condition at ring level.-/
+`Scheme.GlueData` `t_id` condition at ring level.
+@isnad1 id=eq.0h4v.s11.091a6d1cbc14 from=translated src=- shape=93cb4f1b vocab=6758c7cb
+-/
 theorem ringHomAway_self :
     ringHomAway (R := R) ι ι
       = RingHom.id (Localization.Away (det (R := R) ι ι)) := by
@@ -324,7 +358,9 @@ theorem ringHomAway_self :
     RingHom.id_apply]
 
 /-- Pure matrix transport: a ring hom pushes through `M⁻¹ *ᵥ ·` when both determinants
-are units — the reusable core of every transition-composite computation.-/
+are units — the reusable core of every transition-composite computation.
+@isnad1 id=eq.2h6v.s8.6dab951d6a79 from=translated src=- shape=4c6f9983 vocab=9accd54d
+-/
 lemma map_inv_mulVec {S S' : Type u} [CommRing S] [CommRing S'] (F : S →+* S')
     (M : Matrix (Fin k) (Fin k) S) (hM : IsUnit M.det) (hM' : IsUnit (M.map ⇑F).det)
     (w : Fin k → S) :
@@ -348,7 +384,9 @@ lemma map_inv_mulVec {S S' : Type u} [CommRing S] [CommRing S'] (F : S →+* S')
 /-- The transition rule: composing any ring hom out of the overlap with the transition
 map sends the reverse-chart columns to the mapped-inverse-matrix solution of the
 forward columns — the uniform engine for transition composites (generalizes
-`ringHomAway_solution_column`).-/
+`ringHomAway_solution_column`).
+@isnad1 id=eq.1h8v.s14.18b7ee3102c8 from=translated src=- shape=cdbcd3f5 vocab=98880e6d
+-/
 lemma comp_ringHom_column {S : Type u} [CommRing S]
     (F : Localization.Away (det (R := R) ι ι') →+* S)
     (hdet : IsUnit ((matrix (R := R) ι ι').map (⇑F ∘ ⇑(algebraMap (ChartRing R ι)
@@ -371,7 +409,9 @@ lemma comp_ringHom_column {S : Type u} [CommRing S]
     rw [congrFun (ringHom_comp_column (R := R) ι ι' j) i]
   rw [hstep, map_inv_mulVec F _ (isUnit_det_matrixAway ι ι') (hmm ▸ hdet), hmm]
 
-/-- Ring homs commute with nonsingular inversion (unit determinant).-/
+/-- Ring homs commute with nonsingular inversion (unit determinant).
+@isnad1 id=eq.1h5v.s7.d9b95fd553d9 from=translated src=- shape=69dfd71c vocab=331e09a6
+-/
 lemma map_nonsing_inv {S S' : Type u} [CommRing S] [CommRing S'] (F : S →+* S')
     (M : Matrix (Fin k) (Fin k) S) (hM : IsUnit M.det) :
     (M.map ⇑F)⁻¹ = M⁻¹.map ⇑F := by
@@ -388,7 +428,9 @@ variable (ι'' : Fin k ↪ Fin n)
 
 /-- **[GR-F3]** The composite-transition matrix identity: the `ringHom ι ι'`-image of
 the ι'→ι'' transition matrix factors as `(matrixAway ι ι')⁻¹ *` (embedded ι→ι''
-matrix) — column-by-column, two applications of the master column identity.-/
+matrix) — column-by-column, two applications of the master column identity.
+@isnad1 id=eq.0h6v.s12.00820c66f236 from=translated src=- shape=270fcfd1 vocab=20e1f93d
+-/
 lemma map_ringHom_matrix_triple :
     (matrix (R := R) ι' ι'').map ⇑(ringHom (R := R) ι ι')
       = (matrixAway (R := R) ι ι')⁻¹ *
@@ -402,7 +444,9 @@ lemma map_ringHom_matrix_triple :
 
 /-- **[GR-F3]** Determinant factorization of the composite transition: the
 `ringHom ι ι'`-image of `det ι' ι''` is (a unit) × (the embedded `det ι ι''`) — so it
-becomes a unit exactly where `det ι ι''` does, i.e. on the triple overlap.-/
+becomes a unit exactly where `det ι ι''` does, i.e. on the triple overlap.
+@isnad1 id=eq.0h6v.s12.f48822a9fafc from=translated src=- shape=f9687964 vocab=e510fe2a
+-/
 lemma ringHom_det_triple :
     ringHom (R := R) ι ι' (det (R := R) ι' ι'')
       = ((matrixAway (R := R) ι ι')⁻¹).det *
@@ -415,7 +459,9 @@ lemma ringHom_det_triple :
 
 /-- **[GR-F3]** The unit form: on any ring where the embedded `det ι ι''` becomes a
 unit, so does the `ringHom ι ι'`-image of `det ι' ι''` — the existence condition for
-the GlueData `t'`-legs on the triple overlap.-/
+the GlueData `t'`-legs on the triple overlap.
+@isnad1 id=isunit.1h8v.s13.ae95f75fe87b from=translated src=- shape=2d8c4556 vocab=3cb9a62a
+-/
 lemma isUnit_map_ringHom_det_triple {S : Type u} [CommRing S]
     (g : Localization.Away (det (R := R) ι ι') →+* S)
     (hg : IsUnit (g (algebraMap (ChartRing R ι)

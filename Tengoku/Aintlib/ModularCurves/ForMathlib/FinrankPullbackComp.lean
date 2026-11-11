@@ -43,7 +43,9 @@ variable {X Y S T : Scheme.{u}}
 def affineFinrank [IsAffine S] (f : X ⟶ S) (s : S) : ℕ :=
   f.appTop.hom.finrank (S.isoSpec.hom s)
 
-/-- Rebuild of mathlib's private `IsAffine.finrank_of_isPullback`.-/
+/-- Rebuild of mathlib's private `IsAffine.finrank_of_isPullback`.
+@isnad1 id=eq.2h10v.s8.fbdb19c3cae2 from=translated src=- shape=42555de2 vocab=f9087c27
+-/
 lemma affineFinrank_of_isPullback [IsAffine S] [IsAffine T] (f : X ⟶ S)
     (f' : Y ⟶ T) (g' : Y ⟶ X) (g : T ⟶ S) (h : IsPullback g' f' f g) [Flat f] [IsFinite f]
     (s : S) (t : T) (hs : g t = s) :
@@ -56,13 +58,17 @@ lemma affineFinrank_of_isPullback [IsAffine S] [IsAffine T] (f : X ⟶ S)
     ← Scheme.Hom.comp_apply, ← Scheme.isoSpec_hom_naturality]
   rfl
 
-/-- Rebuild of mathlib's private `IsAffine.finrank_snd`.-/
+/-- Rebuild of mathlib's private `IsAffine.finrank_snd`.
+@isnad1 id=eq.0h6v.s7.a98c8eae9ebf from=translated src=- shape=09a912af vocab=50e737d4
+-/
 lemma affineFinrank_snd [IsAffine S] [IsAffine T] (f : X ⟶ S)
     (g : T ⟶ S) [Flat f] [IsFinite f] (x : T) :
     affineFinrank (pullback.snd f g) x = affineFinrank f (g x) :=
   affineFinrank_of_isPullback f _ _ _ (.of_hasPullback _ _) _ _ rfl
 
-/-- Rebuild of mathlib's private `Scheme.Hom.finrank_eq_finrank_snd_of_isAffine`.-/
+/-- Rebuild of mathlib's private `Scheme.Hom.finrank_eq_finrank_snd_of_isAffine`.
+@isnad1 id=eq.0h6v.s7.c3d7a7415863 from=translated src=- shape=653ffb18 vocab=9720a75f
+-/
 lemma finrank_eq_affineFinrank_snd (f : X ⟶ S) (g : T ⟶ S) [IsAffine T] (t : T)
     [Flat f] [IsFinite f] :
     f.finrank (g t) = affineFinrank (pullback.snd f g) t := by
@@ -81,7 +87,9 @@ lemma finrank_eq_affineFinrank_snd (f : X ⟶ S) (g : T ⟶ S) [IsAffine T] (t :
     exact affineFinrank_snd (pullback.snd f g) (u ≫ pullback.snd _ _) z
 
 /-- **[F3-prodrank-spec] (affine case)** Over `Spec R`, the rank of the fibre product of
-two finite flat Specs is the product of the ranks — `pullbackSpecIso` + tensor rank.-/
+two finite flat Specs is the product of the ranks — `pullbackSpecIso` + tensor rank.
+@isnad1 id=eq.0h4v.s8.b6c0c0ea30d9 from=translated src=- shape=a7d42c6e vocab=2fa8c25c
+-/
 theorem finrank_pullback_comp_fst_spec (R A B : Type u) [CommRing R] [CommRing A]
     [CommRing B] [Algebra R A] [Algebra R B] [Module.Finite R A] [Module.Flat R A]
     [Module.Finite R B] [Module.Flat R B] (p : PrimeSpectrum R) :
@@ -116,7 +124,9 @@ theorem finrank_pullback_comp_fst_spec (R A B : Type u) [CommRing R] [CommRing A
 
 /-- The Spec-level product formula, transported from the algebraMap form: for
 `φ : R ⟶ A`, `ψ : R ⟶ B` finite flat, the rank of `Spec A ×_Spec R Spec B` over
-`Spec R` multiplies.-/
+`Spec R` multiplies.
+@isnad1 id=eq.4h6v.s7.158e53332762 from=translated src=- shape=891fbe1e vocab=21241760
+-/
 lemma finrank_pullback_comp_fst_specMap {R A B : CommRingCat.{u}} (φ : R ⟶ A) (ψ : R ⟶ B)
     (hφ₁ : φ.hom.Finite) (hφ₂ : φ.hom.Flat) (hψ₁ : ψ.hom.Finite) (hψ₂ : ψ.hom.Flat)
     (p : Spec R) :
@@ -140,7 +150,9 @@ lemma finrank_pullback_comp_fst_specMap {R A B : CommRingCat.{u}} (φ : R ⟶ A)
     RingHom.finrank_algebraMap, RingHom.finrank_algebraMap]
 
 /-- The product formula over an affine base, general affine sources: conjugate both
-legs to literal Spec morphisms through `isoSpec` and apply the Spec-level formula.-/
+legs to literal Spec morphisms through `isoSpec` and apply the Spec-level formula.
+@isnad1 id=eq.0h6v.s7.881c9661640c from=translated src=- shape=e1fa99a9 vocab=62bd126d
+-/
 lemma finrank_pullback_comp_fst_of_spec {R : CommRingCat.{u}} {X Y : Scheme.{u}}
     (f : X ⟶ Spec R) (g : Y ⟶ Spec R) [Flat f] [IsFinite f] [Flat g] [IsFinite g]
     (p : Spec R) :
@@ -192,7 +204,9 @@ lemma finrank_pullback_comp_fst_of_spec {R : CommRingCat.{u}} {X Y : Scheme.{u}}
 
 /-- **The fibre-product rank formula** (mathlib-PR shape — belongs next to
 `Scheme.Hom.finrank_pullback_snd`): for finite flat `f g` over any base,
-`deg (X ×_S Y → S) = deg X · deg Y` pointwise.-/
+`deg (X ×_S Y → S) = deg X · deg Y` pointwise.
+@isnad1 id=eq.0h6v.s6.9d3a10f99dec from=translated src=- shape=e09ada62 vocab=04741f2b
+-/
 theorem finrank_pullback_comp_fst {X Y : Scheme.{u}} (f : X ⟶ S) (g : Y ⟶ S)
     [Flat f] [IsFinite f] [Flat g] [IsFinite g] (s : S) :
     (pullback.fst f g ≫ f).finrank s = f.finrank s * g.finrank s := by

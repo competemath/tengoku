@@ -55,6 +55,9 @@ noncomputable def overSectionEquiv (M : _root_.SheafOfModules R) (U : C) :
     rw [Over.mkIdTerminal_from_left] at h
     exact h
 
+/--
+@isnad1 id=eq.0h7v.s13.64567150710c from=translated src=- shape=72a887a4 vocab=edcf0c05
+-/
 @[simp]
 theorem overSection_apply (M : _root_.SheafOfModules R) (U : C)
     (m : M.val.obj (op U)) (V : (Over U)ᵒᵖ) :
@@ -68,6 +71,9 @@ noncomputable def evalSection (M : _root_.SheafOfModules R) (U : C)
   (overUnitSectionEquiv R U).symm
     (_root_.SheafOfModules.sectionsMap φ (overSection R M U m))
 
+/--
+@isnad1 id=eq.0h7v.s14.10975e3d41bf from=translated src=- shape=5a13b74b vocab=899bf4af
+-/
 @[simp]
 theorem evalSection_eq (M : _root_.SheafOfModules R) (U : C)
     (φ : M.over U ⟶ _root_.SheafOfModules.unit (R.over U))
@@ -77,6 +83,9 @@ theorem evalSection_eq (M : _root_.SheafOfModules R) (U : C)
         (M.val.map (CategoryStruct.id U).op m) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.da270c4cc280 from=translated src=- shape=a5015e5f vocab=dc04f31c
+-/
 theorem evalSection_add_right (M : _root_.SheafOfModules R) (U : C)
     (φ : M.over U ⟶ _root_.SheafOfModules.unit (R.over U))
     (m m' : M.val.obj (op U)) :
@@ -85,6 +94,9 @@ theorem evalSection_add_right (M : _root_.SheafOfModules R) (U : C)
   simp only [evalSection_eq, map_add]
   exact map_add _ _ _
 
+/--
+@isnad1 id=eq.0h8v.s11.abc1e82f84ab from=translated src=- shape=f659912c vocab=363e05c0
+-/
 theorem evalSection_smul_right (M : _root_.SheafOfModules R) (U : C)
     (φ : M.over U ⟶ _root_.SheafOfModules.unit (R.over U))
     (r : R.obj.obj (op U)) (m : M.val.obj (op U)) :
@@ -96,6 +108,9 @@ theorem evalSection_smul_right (M : _root_.SheafOfModules R) (U : C)
   rw [op_id, R.obj.map_id]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.878691a71ea6 from=translated src=- shape=7daf3817 vocab=dc04f31c
+-/
 theorem evalSection_add_left (M : _root_.SheafOfModules R) (U : C)
     (φ ψ : M.over U ⟶ _root_.SheafOfModules.unit (R.over U))
     (m : M.val.obj (op U)) :
@@ -104,6 +119,9 @@ theorem evalSection_add_left (M : _root_.SheafOfModules R) (U : C)
   simp only [evalSection_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.3316f015ceaa from=translated src=- shape=b1f58c9e vocab=b81c01c9
+-/
 theorem evalSection_smul_left (M : _root_.SheafOfModules R) (U : C)
     [∀ V, IsMulCommutative (R.obj.obj V)]
     (φ : M.over U ⟶ _root_.SheafOfModules.unit (R.over U))
@@ -128,7 +146,9 @@ theorem evalSection_smul_left (M : _root_.SheafOfModules R) (U : C)
   rw [hr]
   exact mul_comm' _ r
 
-/-- Evaluation commutes with restriction.-/
+/-- Evaluation commutes with restriction.
+@isnad1 id=eq.0h9v.s12.a0bc32eca9dc from=translated src=- shape=4dbd8de5 vocab=b79c804d
+-/
 theorem evalSection_naturality (M : _root_.SheafOfModules R)
     {U V : Cᵒᵖ} (i : U ⟶ V)
     (φ : M.over U.unop ⟶ _root_.SheafOfModules.unit (R.over U.unop))
@@ -206,7 +226,9 @@ noncomputable def ev (M : X.Modules) : tensorObj M (dualObj M) ⟶ unitObj X :=
       (M.val ⊗ (dualObj M).val) (unitObj X) |>.symm (evPre M)
 
 /-- The sheaf-dual evaluation is obtained by sheafifying the presheaf pairing and
-then applying the sheafification counit.-/
+then applying the sheafification counit.
+@isnad1 id=eq.0h2v.s14.79ae04e9840c from=translated src=- shape=7bbeeed3 vocab=25d14263
+-/
 theorem ev_eq_sheafification_map (M : X.Modules) :
     ev M =
       (PresheafOfModules.sheafification

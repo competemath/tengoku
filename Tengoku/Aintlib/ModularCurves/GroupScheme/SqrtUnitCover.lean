@@ -51,7 +51,9 @@ def sqrtPair (d : Aˣ) : StandardEtalePair A where
     ring
 
 /-- Mapping the coordinate to `x : S` is possible iff `x² = d` — the `2d`-invertibility
-conjunct is automatic when `2` is a unit in `S` (the image of the unit `d` always is).-/
+conjunct is automatic when `2` is a unit in `S` (the image of the unit `d` always is).
+@isnad1 id=iff.1h4v.s7.2317f5ab87c0 from=translated src=- shape=237d3c88 vocab=eb4e9611
+-/
 theorem sqrtPair_hasMap_iff {S : Type*} [CommRing S] [Algebra A S]
     (d : Aˣ) (h2 : IsUnit (2 : S)) (x : S) :
     (sqrtPair d).HasMap x ↔ x ^ 2 = algebraMap A S (d : A) := by
@@ -73,7 +75,9 @@ theorem sqrtPair_hasMap_iff {S : Type*} [CommRing S] [Algebra A S]
 /-! ### Finiteness of the square-root cover -/
 
 /-- The localization element of the `sqrtPair` presentation is a unit of
-`AdjoinRoot (X² − d)` once `2` is a unit of `A`.-/
+`AdjoinRoot (X² − d)` once `2` is a unit of `A`.
+@isnad1 id=isunit.1h2v.s8.a53bbd88828c from=translated src=- shape=2385d5a5 vocab=2c31d76e
+-/
 theorem sqrtPair_mk_g_isUnit (d : Aˣ) (h2 : IsUnit (2 : A)) :
     IsUnit (AdjoinRoot.mk (sqrtPair d).f (sqrtPair d).g) := by
   rw [show (sqrtPair d).g = C ((2 : A) * d) from rfl, AdjoinRoot.mk_C, map_mul]
@@ -96,6 +100,9 @@ noncomputable def sqrtPairAdjoinRootEquiv (d : Aˣ) (h2 : IsUnit (2 : A)) :
       (Localization.Away (AdjoinRoot.mk (sqrtPair d).f (sqrtPair d).g))).restrictScalars
         A).symm
 
+/--
+@isnad1 id=finite.1h2v.s7.729809306f6f from=translated src=- shape=cce40077 vocab=bc66356c
+-/
 theorem sqrtPair_finite (d : Aˣ) (h2 : IsUnit (2 : A)) :
     Module.Finite A (sqrtPair d).Ring := by
   haveI hfin : Module.Finite A (AdjoinRoot (sqrtPair d).f) :=
@@ -104,13 +111,18 @@ theorem sqrtPair_finite (d : Aˣ) (h2 : IsUnit (2 : A)) :
 
 /-! ### The twist: the `d`-cover is the `c²d`-cover -/
 
+/--
+@isnad1 id=eq.0h2v.s8.d28e9fe150da from=translated src=- shape=ddbcfb13 vocab=10cb9477
+-/
 theorem sqrtPair_X_sq (d : Aˣ) :
     (sqrtPair d).X ^ 2 = algebraMap A (sqrtPair d).Ring (d : A) := by
   have h := (StandardEtalePair.hasMap_X (P := sqrtPair d)).1
   rw [show (sqrtPair d).f = X ^ 2 - C (d : A) from rfl] at h
   simpa [sub_eq_zero] using h
 
-/-- Two algebra maps out of a standard étale algebra agreeing on `X` are equal.-/
+/-- Two algebra maps out of a standard étale algebra agreeing on `X` are equal.
+@isnad1 id=eq.1h5v.s8.7b0155eaff0b from=translated src=- shape=4187ffc3 vocab=adf2875c
+-/
 theorem StandardEtalePair.algHom_ext {S : Type*} [CommRing S] [Algebra A S]
     {P : StandardEtalePair A} {φ ψ : P.Ring →ₐ[A] S} (h : φ P.X = ψ P.X) : φ = ψ := by
   have h1 := P.homEquiv.injective (a₁ := φ) (a₂ := ψ)
@@ -161,7 +173,9 @@ noncomputable def sqrtPairCongr (d : Aˣ) (c : Aˣ) (h2 : IsUnit (2 : A)) :
 
 /-! ### Base change of the square-root cover -/
 
-/-- The `sqrtPair` construction commutes with ring maps.-/
+/-- The `sqrtPair` construction commutes with ring maps.
+@isnad1 id=eq.0h4v.s8.70bb77eaa5c3 from=translated src=- shape=14ea4ad5 vocab=2e1437a8
+-/
 theorem sqrtPair_map {B : Type*} [CommRing B] (φ : A →+* B) (d : Aˣ) :
     (sqrtPair d).map φ = sqrtPair (Units.map φ d) := by
   have hf : ((sqrtPair d).map φ).f = (sqrtPair (Units.map φ d)).f := by
@@ -210,6 +224,9 @@ noncomputable def sqrtPairMapRingHom {B : Type*} [CommRing B] [Algebra A B]
     (Algebra.TensorProduct.includeRight (R := A) (A := B) (B := P.Ring)).toRingHom
 
 open scoped TensorProduct in
+/--
+@isnad1 id=eq.0h4v.s10.8d98e1a296e0 from=translated src=- shape=8afb8802 vocab=7478b652
+-/
 @[simp]
 theorem baseChangeEquiv_includeRight {B : Type*} [CommRing B] [Algebra A B]
     (P : StandardEtalePair A) (y : P.Ring) :

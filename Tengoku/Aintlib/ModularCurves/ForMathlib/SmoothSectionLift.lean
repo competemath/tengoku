@@ -24,7 +24,9 @@ universe u
 namespace AlgebraicGeometry
 
 /-- Any `f : X ⟶ Spec B` factors as `X.toSpecΓ` followed by `Spec` of the induced ring map
-`(ΓSpecIso B).inv ≫ f.appTop`.-/
+`(ΓSpecIso B).inv ≫ f.appTop`.
+@isnad1 id=eq.0h3v.s10.4fe0bc539b0d from=translated src=- shape=9a2eb876 vocab=d5a67088
+-/
 theorem toSpecΓ_appTop_triangle {X : Scheme.{u}} {B : CommRingCat.{u}} (f : X ⟶ Spec B) :
     f = X.toSpecΓ ≫ Spec.map ((Scheme.ΓSpecIso B).inv ≫ f.appTop) := by
   have h1 := Scheme.toSpecΓ_naturality f
@@ -38,7 +40,9 @@ theorem toSpecΓ_appTop_triangle {X : Scheme.{u}} {B : CommRingCat.{u}} (f : X �
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- Sections of a smooth morphism from an affine scheme to an affine base lift along
-nilpotent thickenings of the base: the Γ–Spec transport of `Algebra.FormallySmooth.lift`.-/
+nilpotent thickenings of the base: the Γ–Spec transport of `Algebra.FormallySmooth.lift`.
+@isnad1 id=ex.2h5v.s9.385a7f29b8ae from=translated src=- shape=b7659648 vocab=747a6cde
+-/
 theorem exists_section_lift_of_smooth {X : Scheme.{u}} {B : CommRingCat.{u}}
     (f : X ⟶ Spec B) [IsAffine X] [hf : Smooth f] (I : Ideal B) (hI : IsNilpotent I)
     (s₀ : Spec (CommRingCat.of (B ⧸ I)) ⟶ X)

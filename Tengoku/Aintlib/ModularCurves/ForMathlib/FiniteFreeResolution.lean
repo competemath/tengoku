@@ -69,7 +69,9 @@ a finite `S`-module.
 The surjection is `Module.Finite.exists_fin'` (a finite generating set); finiteness of the kernel
 is pure Noetherian bookkeeping — `Fin k → S` is a Noetherian module (`isNoetherian_pi'`), hence so
 is its submodule `ker f` (`isNoetherian_submodule'`), hence `ker f` is finite
-(`IsNoetherian.finite`) — and is discharged here by instance resolution.-/
+(`IsNoetherian.finite`) — and is discharged here by instance resolution.
+@isnad1 id=ex.0h2v.s9.124fa10c3091 from=translated src=- shape=0e3ed426 vocab=9985c778
+-/
 theorem exists_finite_free_surjective_finite_ker
     {S M : Type*} [CommRing S] [IsNoetherianRing S]
     [AddCommGroup M] [Module S M] [Module.Finite S M] :
@@ -108,7 +110,9 @@ noncomputable def augRank : ℕ := (augData S M).1
 /-- The augmentation map `ε : F₀ →ₗ M` of the resolution.-/
 noncomputable def aug : (Fin (augRank S M) → S) →ₗ[S] M := (augData S M).2.1
 
-/-- The augmentation `ε : F₀ ↠ M` of the resolution is surjective.-/
+/-- The augmentation `ε : F₀ ↠ M` of the resolution is surjective.
+@isnad1 id=surjecti.0h2v.s8.ee68d105394b from=translated src=- shape=9e0aae9f vocab=023598e2
+-/
 theorem aug_surjective : Surjective (aug S M) := (augData S M).2.2
 
 variable [IsNoetherianRing S]
@@ -134,30 +138,42 @@ noncomputable def d (n : ℕ) :
   (diffData S M n).2.2
 
 /-- **Exactness at `F₀`** (Stacks 00LP): the image of the first differential is the kernel of the
-augmentation, `range d₀ = ker ε`.  Equivalently, the first syzygy `ker ε` is `range d₀`.-/
+augmentation, `range d₀ = ker ε`.  Equivalently, the first syzygy `ker ε` is `range d₀`.
+@isnad1 id=eq.0h2v.s9.f5d5559565e9 from=translated src=- shape=71ff5a8e vocab=1a3ba4f5
+-/
 theorem range_d_zero : LinearMap.range (d S M 0) = LinearMap.ker (aug S M) :=
   (coverSub S (LinearMap.ker (aug S M))).2.2
 
 /-- **Exactness at `F_{n+1}`** (Stacks 00LP): `range d_{n+1} = ker dₙ`.  Equivalently, the
-`(n+2)`-nd syzygy `ker dₙ` is the image `range d_{n+1}`.-/
+`(n+2)`-nd syzygy `ker dₙ` is the image `range d_{n+1}`.
+@isnad1 id=eq.0h3v.s9.034d5bc13e1c from=translated src=- shape=bed83a12 vocab=816eb633
+-/
 theorem range_d_succ (n : ℕ) :
     LinearMap.range (d S M (n + 1)) = LinearMap.ker (d S M n) :=
   (coverSub S (LinearMap.ker (d S M n))).2.2
 
-/-- The complex identity at the augmentation: `ε ∘ d₀ = 0`.-/
+/-- The complex identity at the augmentation: `ε ∘ d₀ = 0`.
+@isnad1 id=eq.0h2v.s10.a70c92020b30 from=translated src=- shape=b7ef3aa7 vocab=117eecc6
+-/
 theorem aug_comp_d_zero : (aug S M) ∘ₗ (d S M 0) = 0 :=
   LinearMap.range_le_ker_iff.mp (le_of_eq (range_d_zero S M))
 
-/-- The complex identity `dₙ ∘ d_{n+1} = 0`: consecutive differentials compose to zero.-/
+/-- The complex identity `dₙ ∘ d_{n+1} = 0`: consecutive differentials compose to zero.
+@isnad1 id=eq.0h3v.s10.7e55e050c906 from=translated src=- shape=f70d2133 vocab=4fcd155c
+-/
 theorem d_comp_d (n : ℕ) : (d S M n) ∘ₗ (d S M (n + 1)) = 0 :=
   LinearMap.range_le_ker_iff.mp (le_of_eq (range_d_succ S M n))
 
-/-- **The first syzygy `K₁ = ker ε` is finite** (Stacks 00LP).-/
+/-- **The first syzygy `K₁ = ker ε` is finite** (Stacks 00LP).
+@isnad1 id=finite.0h2v.s9.4e15103c590e from=translated src=- shape=00462f69 vocab=bed34f25
+-/
 theorem finite_ker_aug : Module.Finite S (LinearMap.ker (aug S M)) := inferInstance
 
 /-- **The `(n+2)`-nd syzygy `K_{n+2} = ker dₙ` is finite** (Stacks 00LP): every syzygy of the
 resolution is a finitely generated `S`-module, because it is a submodule of a finite free module
-over a Noetherian ring.-/
+over a Noetherian ring.
+@isnad1 id=finite.0h3v.s10.fc851c5e75ef from=translated src=- shape=6d900d97 vocab=7fbebe11
+-/
 theorem finite_ker_d (n : ℕ) : Module.Finite S (LinearMap.ker (d S M n)) := inferInstance
 
 /-- The `(n+1)`-st syzygy `K_{n+1}` of the resolution, as a submodule of the free module `Fₙ`
@@ -169,7 +185,9 @@ noncomputable def syzygy : (n : ℕ) → Σ b : ℕ, Submodule S (Fin b → S)
   | n + 1 => ⟨freeRank S M (n + 1), LinearMap.ker (d S M n)⟩
 
 /-- **Every syzygy of the resolution is finite** (Stacks 00LP), uniform indexed form:
-the `(n+1)`-st syzygy `K_{n+1}` is a finitely generated `S`-module.-/
+the `(n+1)`-st syzygy `K_{n+1}` is a finitely generated `S`-module.
+@isnad1 id=finite.0h3v.s11.759fcc7e5fde from=translated src=- shape=62a2b10c vocab=4e9dabbe
+-/
 theorem finite_syzygy (n : ℕ) : Module.Finite S (syzygy S M n).2 := by
   cases n with
   | zero => exact finite_ker_aug S M

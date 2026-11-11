@@ -32,7 +32,9 @@ Decomposition artifact: `.mathlib-quality/decomposition-a711-fp.md` ([STREAM-FP]
 
 /-- **[A711-FP]** A module-finite, module-projective algebra over an arbitrary commutative
 ring is of finite presentation as an algebra — no noetherian hypothesis (KM A7.1.1's
-"rather delicate" point; EGA IV₁ 1.4.7 + Stacks 00NX).-/
+"rather delicate" point; EGA IV₁ 1.4.7 + Stacks 00NX).
+@isnad1 id=finitepr.0h2v.s6.fe092129fbd3 from=translated src=- shape=5f403a0d vocab=7dfb54a4
+-/
 theorem Algebra.FinitePresentation.of_finite_of_projective
     (R A : Type*) [CommRing R] [CommRing A] [Algebra R A]
     [Module.Finite R A] [Module.Projective R A] :

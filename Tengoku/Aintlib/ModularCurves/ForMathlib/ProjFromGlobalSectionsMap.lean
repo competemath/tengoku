@@ -47,7 +47,9 @@ variable {A B : Type u} {σ τ : Type u} [CommRing A] [SetLike σ A] [AddSubgrou
 
 /-- Hypothesis transport for `fromOfGlobalSections_map`: if `f` sends `ℬ`'s irrelevant ideal
 to a generating set and the graded hom `g` covers (`ℬ₊ ≤ 𝒜₊.map g`), then `f ∘ g` sends
-`𝒜`'s irrelevant ideal to a generating set.-/
+`𝒜`'s irrelevant ideal to a generating set.
+@isnad1 id=eq.2h9v.s9.54289bd357d1 from=translated src=- shape=62a1ed53 vocab=e8d4568f
+-/
 lemma irrelevant_map_comp_toRingHom_eq_top {C : Type u} [CommRing C]
     (g : 𝒜 →+*ᵍ ℬ) (hg : ℬ₊ ≤ 𝒜₊.map g)
     (f : B →+* C) (hf : (HomogeneousIdeal.irrelevant ℬ).toIdeal.map f = ⊤) :
@@ -60,7 +62,9 @@ lemma irrelevant_map_comp_toRingHom_eq_top {C : Type u} [CommRing C]
 
 /-- The per-chart form of `fromOfGlobalSections_map`: on the basic open `D(g t)`, the point
 map `toBasicOpenOfGlobalSections ℬ f` followed by `Proj.map g` agrees with
-`toBasicOpenOfGlobalSections 𝒜 (f ∘ g)`.-/
+`toBasicOpenOfGlobalSections 𝒜 (f ∘ g)`.
+@isnad1 id=eq.3h11v.s14.ddf2b8b15988 from=translated src=- shape=d8a7c1b7 vocab=653a1844
+-/
 lemma toBasicOpenOfGlobalSections_map
     (g : 𝒜 →+*ᵍ ℬ) (hg : ℬ₊ ≤ 𝒜₊.map g)
     (f : B →+* Γ(X, ⊤)) {t : A} {d : ℕ} (hdpos : 0 < d) (ht : t ∈ 𝒜 d) :
@@ -81,7 +85,9 @@ lemma toBasicOpenOfGlobalSections_map
 
 /-- **Naturality of `Proj.fromOfGlobalSections` under `Proj.map`.** For a graded ring hom
 `g : 𝒜 →+*ᵍ ℬ`, composing the point map `fromOfGlobalSections ℬ f` with the (contravariant)
-`Proj.map g` precomposes the coordinate reader `f` by `g`.-/
+`Proj.map g` precomposes the coordinate reader `f` by `g`.
+@isnad1 id=eq.3h9v.s14.22eab90b58fb from=translated src=- shape=c8ef6a17 vocab=313de9f0
+-/
 theorem fromOfGlobalSections_map
     (g : 𝒜 →+*ᵍ ℬ) (hg : ℬ₊ ≤ 𝒜₊.map g)
     (f : B →+* Γ(X, ⊤)) (hf : (HomogeneousIdeal.irrelevant ℬ).toIdeal.map f = ⊤)
@@ -442,7 +448,9 @@ private lemma toBasicOpenOfGlobalSections_comp_source
       hspec
 
 /-- `Proj.fromOfGlobalSections` is natural under precomposition by an
-arbitrary source morphism.-/
+arbitrary source morphism.
+@isnad1 id=eq.2h7v.s14.a863849f94ac from=translated src=- shape=ac439303 vocab=0592efd9
+-/
 theorem fromOfGlobalSections_comp
     (g : Y ⟶ X) (f : A →+* Γ(X, ⊤))
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤)

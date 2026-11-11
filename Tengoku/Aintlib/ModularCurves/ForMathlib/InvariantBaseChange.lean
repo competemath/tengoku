@@ -71,11 +71,16 @@ instance instTensorProduct : MulSemiringAction G (A ⊗[R] R') where
           Algebra.TensorProduct.tmul_mul_tmul, smul_mul']
 
 omit [SMulCommClass G R A] in
-/-- The left-factor action on a pure tensor acts only on its first factor.-/
+/-- The left-factor action on a pure tensor acts only on its first factor.
+@isnad1 id=eq.0h7v.s9.3bfe1fb4096e from=translated src=- shape=f834a3f1 vocab=beb89944
+-/
 theorem smul_tmul_baseChange (g : G) (a : A) (r : R') :
     g • (a ⊗ₜ[R] r) = (g • a) ⊗ₜ[R] r :=
   smul_tmul' g a r
 
+/--
+@isnad1 id=smulcomm.0h4v.s8.53a97ff9dcf3 from=translated src=- shape=ee979a79 vocab=7542bdf2
+-/
 instance instSMulCommClassTensorProduct : SMulCommClass G R (A ⊗[R] R') where
   smul_comm g r x := by
     induction x with
@@ -105,7 +110,9 @@ noncomputable def fixedPointsBaseChange : (FixedPoints.subalgebra R A G) ⊗[R] 
         rw [Algebra.TensorProduct.map_tmul, MulSemiringAction.smul_tmul_baseChange]
         exact congrArg (fun y => y ⊗ₜ[R] ((AlgHom.id R R') r)) (a.2 g))
 
-/-- The fixed-point comparison map sends a pure tensor to its evident image.-/
+/-- The fixed-point comparison map sends a pure tensor to its evident image.
+@isnad1 id=eq.0h6v.s12.d2de2537e525 from=translated src=- shape=836793d3 vocab=3ba30d59
+-/
 @[simp]
 theorem fixedPointsBaseChange_tmul (a : FixedPoints.subalgebra R A G) (r : R') :
     (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R') (a ⊗ₜ[R] r) : A ⊗[R] R') =
@@ -186,7 +193,9 @@ private theorem rTensor_invariantsDelta_eq_zero_of_fixed [Fintype G] [DecidableE
   rw [piLeft_rTensor_invariantsDelta, map_zero, Pi.zero_apply, sub_eq_zero]
   exact hz g
 
-/-- The fixed-point base-change comparison is bijective for flat base change.-/
+/-- The fixed-point base-change comparison is bijective for flat base change.
+@isnad1 id=bijectiv.0h4v.s12.46b5b7ddff8b from=translated src=- shape=87f22e3d vocab=56a06763
+-/
 theorem fixedPointsBaseChange_bijective_of_flat [Finite G] [Module.Flat R R'] : Function.Bijective
     (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R')) := by
   classical
@@ -274,7 +283,9 @@ private theorem fixedPointsBaseChange_bijective_of_dividedTrace [Fintype G] (c :
       hcompleft]
     exact rTensor_dividedTrace_apply_of_forall_smul_eq c hc z hz
 
-/-- The fixed-point base-change comparison is bijective when the order of `G` is a unit in `R`.-/
+/-- The fixed-point base-change comparison is bijective when the order of `G` is a unit in `R`.
+@isnad1 id=bijectiv.1h4v.s12.ab38f9b445f1 from=translated src=- shape=b4ff3793 vocab=0852fb8d
+-/
 theorem fixedPointsBaseChange_bijective_of_isUnit [Finite G] (h : IsUnit ((Nat.card G : ℕ) : R)) :
     Function.Bijective (fixedPointsBaseChange (G := G) (R := R) (A := A) (R' := R')) := by
   classical

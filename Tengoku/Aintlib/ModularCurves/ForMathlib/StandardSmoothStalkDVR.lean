@@ -348,7 +348,9 @@ variable (k A : Type u) [Field k] [CommRing A] [Algebra k A]
 /-- **Stalkwise principality on a standard-smooth curve over a field**: an ideal `I`
 contained in a prime `q`, with `A ⧸ I` finite-dimensional over `k`, generates a
 principal ideal with nonzerodivisor generator in the local ring at `q` (which is a
-discrete valuation ring).-/
+discrete valuation ring).
+@isnad1 id=ex.2h4v.s9.03626de58132 from=translated src=- shape=cbcb5033 vocab=343386b5
+-/
 theorem exists_span_nonZeroDivisor_map_localizationAtPrime (q : Ideal A) [q.IsPrime]
     (I : Ideal A) (hIq : I ≤ q) (hfin : Module.Finite k (A ⧸ I)) :
     ∃ f : Localization.AtPrime q,
@@ -557,7 +559,9 @@ theorem exists_span_nonZeroDivisor_map_localizationAtPrime (q : Ideal A) [q.IsPr
 
 /-- On a standard-smooth curve over a field, an element cutting out a
 finite-dimensional quotient is a nonzerodivisor (its vanishing locus misses every
-generic point; stalkwise the local rings are fields or discrete valuation rings).-/
+generic point; stalkwise the local rings are fields or discrete valuation rings).
+@isnad1 id=mem.1h3v.s7.d6f282094afb from=translated src=- shape=63677352 vocab=c2d98abf
+-/
 theorem mem_nonZeroDivisors_of_finite_quotient (f : A)
     (hfin : Module.Finite k (A ⧸ Ideal.span {f})) : f ∈ nonZeroDivisors A := by
   rw [mem_nonZeroDivisors_iff]

@@ -19,7 +19,9 @@ noncomputable section
 
 /-- A module on `Spec R` is quasicoherent if its sections on every basic open
 are obtained from global sections by extension of scalars, compatibly with
-restriction on pure tensors.-/
+restriction on pure tensors.
+@isnad1 id=isquasic.1h3v.s15.4ad2b9650624 from=translated src=- shape=66617ccc vocab=7be49514
+-/
 theorem isQuasicoherent_of_basicOpen_tensorEquiv
     {R : CommRingCat.{u}} (M : (Spec R).Modules)
     (e : ∀ r : R,

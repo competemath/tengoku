@@ -23,6 +23,9 @@ open LinearMap
 variable {R M N : Type*} [CommRing R]
   [AddCommGroup M] [Module R M] [AddCommGroup N] [Module R N]
 
+/--
+@isnad1 id=ex.1h4v.s12.697ef576af9f from=translated src=- shape=9e1f2267 vocab=8dd7878c
+-/
 theorem LinearMap.split_injective_of_localization_maximal
     (f : M →ₗ[R] N) [Module.FinitePresentation R M]
     [Module.FinitePresentation R N]

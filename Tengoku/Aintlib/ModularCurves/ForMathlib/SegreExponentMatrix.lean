@@ -56,7 +56,9 @@ def segreColumnSum
     {α β : Type*} [DecidableEq β] (e : α × β →₀ ℕ) : β →₀ ℕ :=
   e.mapDomain Prod.snd
 
-/-- Equal-degree exponent vectors are the margins of an exponent matrix.-/
+/-- Equal-degree exponent vectors are the margins of an exponent matrix.
+@isnad1 id=ex.1h4v.s8.b7c06fc4988d from=translated src=- shape=900619eb vocab=b35923f0
+-/
 lemma exists_exponentMatrix
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (a : α →₀ ℕ) (b : β →₀ ℕ) (hdegree : a.degree = b.degree) :

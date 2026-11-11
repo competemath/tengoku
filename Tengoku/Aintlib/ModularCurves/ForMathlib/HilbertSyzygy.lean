@@ -93,7 +93,9 @@ def restrictScalarsSemilinearEquiv {R R' : Type u} [CommRing R] [CommRing R'] (e
 
 /-- Transport a projective-dimension bound across a ring isomorphism: if the `R`-module obtained
 from `M` by restricting scalars along `e : R ≃+* R'` has projective dimension `≤ n`, then so does
-the `R'`-module `M`.-/
+the `R'`-module `M`.
+@isnad1 id=hasproje.0h5v.s8.593670507cc5 from=translated src=- shape=278decd1 vocab=4a237d50
+-/
 lemma hasProjectiveDimensionLE_of_ringEquiv {R R' : Type u} [CommRing R] [CommRing R']
     (e : R ≃+* R') (M : ModuleCat.{u} R') (n : ℕ)
     [HasProjectiveDimensionLE ((ModuleCat.restrictScalars (e : R →+* R')).obj M) n] :
@@ -105,7 +107,9 @@ if the `R`-module `N` has projective dimension `≤ n`, then the `R[X]`-module `
 
 `R[X]` is free, hence flat, over `R`, so `extendScalars` is exact; and it preserves projective
 objects, being a left adjoint whose right adjoint `restrictScalars` preserves epimorphisms.  The
-proof then mirrors `ModuleCat.localizedModule_hasProjectiveDimensionLE`.-/
+proof then mirrors `ModuleCat.localizedModule_hasProjectiveDimensionLE`.
+@isnad1 id=hasproje.0h3v.s7.ff5ca0ed4669 from=translated src=- shape=03dbfe1c vocab=ecf34df1
+-/
 lemma hasProjectiveDimensionLE_extendScalars (R : Type u) [CommRing R] (n : ℕ)
     (N : ModuleCat.{u} R) [HasProjectiveDimensionLE N n] :
     HasProjectiveDimensionLE ((extendScalars (polyAlg R)).obj N) n := by
@@ -169,11 +173,17 @@ def leftBridge : (Polynomial R) ≃ₗ[R] (SL R) where
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.39266e8d6f75 from=translated src=- shape=ac1bfccc vocab=93b964dc
+-/
 @[simp] lemma leftBridge_apply (s : Polynomial R) : leftBridge R s = s := rfl
 
 def bridgeR : (Polynomial R) ⊗[R] (Mr R M) ≃ₗ[R] (X2 R M) :=
   TensorProduct.congr (leftBridge R) (LinearEquiv.refl R (Mr R M))
 
+/--
+@isnad1 id=eq.0h4v.s11.4dd13b15a488 from=translated src=- shape=ac9667e6 vocab=2715d728
+-/
 @[simp] lemma bridgeR_tmul (s : Polynomial R) (m : Mr R M) :
     bridgeR R M (s ⊗ₜ[R] m) = (s ⊗ₜ[R, polyAlg R] m : X2 R M) := rfl
 
@@ -194,6 +204,9 @@ def bridgeS : (Polynomial R) ⊗[R] (Mr R M) ≃ₗ[Polynomial R] (X2 R M) where
 
 def eLin : P R M ≃ₗ[Polynomial R] (X2 R M) := (Lequiv R M).symm.trans (bridgeS R M)
 
+/--
+@isnad1 id=eq.0h4v.s10.b1d0f09e923c from=translated src=- shape=334b0004 vocab=4e12a10b
+-/
 lemma Lequiv_Xpow_tmul (i : ℕ) (m : Mr R M) :
     Lequiv R M (((X:Polynomial R)^i) ⊗ₜ[R] m) = PolynomialModule.single R i m := by
   change LinearMap.liftBaseChange (Polynomial R)
@@ -202,6 +215,9 @@ lemma Lequiv_Xpow_tmul (i : ℕ) (m : Mr R M) :
   show monomial i (1:R) • PolynomialModule.single R 0 m = PolynomialModule.single R i m
   rw [PolynomialModule.monomial_smul_single, one_smul, Nat.add_zero]
 
+/--
+@isnad1 id=eq.0h4v.s10.6b9b7699027e from=translated src=- shape=38a4a0b0 vocab=c6369e61
+-/
 lemma eLin_single (i : ℕ) (m : Mr R M) :
     eLin R M (PolynomialModule.single R i m)
       = (((X:Polynomial R)^i) ⊗ₜ[R, polyAlg R] m : X2 R M) := by
@@ -210,6 +226,9 @@ lemma eLin_single (i : ℕ) (m : Mr R M) :
 
 /-! ### The counit surjection `ε` -/
 
+/--
+@isnad1 id=eq.0h4v.s12.596c6e5f89cb from=translated src=- shape=06c89802 vocab=f69ceeee
+-/
 lemma counit_tmul (s : Polynomial R) (m : Mr R M) :
     (ExtendRestrictScalarsAdj.Counit.map (polyAlg R)).hom
       (s ⊗ₜ[R, polyAlg R] m : X2 R M) = s • m := by
@@ -220,6 +239,9 @@ lemma counit_tmul (s : Polynomial R) (m : Mr R M) :
 def epsP : P R M →ₗ[Polynomial R] (M : Type u) :=
   (ExtendRestrictScalarsAdj.Counit.map (polyAlg R)).hom ∘ₗ (eLin R M).toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.c1c0878335c4 from=translated src=- shape=ccbf07a5 vocab=31f35fb9
+-/
 lemma epsP_single (i : ℕ) (m : Mr R M) :
     epsP R M (PolynomialModule.single R i m) = ((X:Polynomial R)^i) • m := by
   show (ExtendRestrictScalarsAdj.Counit.map (polyAlg R)).hom
@@ -235,6 +257,9 @@ def xAction : (Mr R M) →ₗ[R] (Mr R M) where
     show (X : Polynomial R) • ((polyAlg R r) • x) = (polyAlg R r) • ((X : Polynomial R) • x)
     rw [smul_smul, smul_smul, mul_comm]
 
+/--
+@isnad1 id=eq.0h3v.s9.d7f71575d593 from=translated src=- shape=2ce72b43 vocab=18e98759
+-/
 @[simp] lemma xAction_apply (x : Mr R M) : xAction R M x = (X : Polynomial R) • x := rfl
 
 /-- `mapψ : P → P`, applying the `X`-action degreewise; `R[X]`-linear.-/
@@ -245,12 +270,18 @@ def mapPsi : P R M →ₗ[Polynomial R] P R M where
     simp only [RingHom.id_apply]
     rw [PolynomialModule.map_smul, Algebra.algebraMap_self, Polynomial.map_id]
 
+/--
+@isnad1 id=eq.0h4v.s9.45fe42d2977e from=translated src=- shape=36b12124 vocab=3b247935
+-/
 @[simp] lemma mapPsi_single (i : ℕ) (m : Mr R M) :
     mapPsi R M (PolynomialModule.single R i m)
       = PolynomialModule.single R i ((X:Polynomial R) • m) := by
   show PolynomialModule.map R (xAction R M) (PolynomialModule.single R i m) = _
   rw [PolynomialModule.map_single, xAction_apply]
 
+/--
+@isnad1 id=eq.0h4v.s9.49b87e5ae31d from=translated src=- shape=b5fd4032 vocab=d8fe6e73
+-/
 lemma X_smul_single (i : ℕ) (m : Mr R M) :
     (X : Polynomial R) • PolynomialModule.single R i m = PolynomialModule.single R (i+1) m := by
   rw [← Polynomial.monomial_one_one_eq_X, PolynomialModule.monomial_smul_single, one_smul,
@@ -260,6 +291,9 @@ lemma X_smul_single (i : ℕ) (m : Mr R M) :
 def phiP : P R M →ₗ[Polynomial R] P R M :=
   LinearMap.lsmul (Polynomial R) (P R M) (X : Polynomial R) - mapPsi R M
 
+/--
+@isnad1 id=eq.0h4v.s10.7604fe6a3c59 from=translated src=- shape=f5f858ab vocab=4b04a0b1
+-/
 @[simp] lemma phiP_single (i : ℕ) (m : Mr R M) :
     phiP R M (PolynomialModule.single R i m)
       = PolynomialModule.single R (i+1) m - PolynomialModule.single R i ((X:Polynomial R) • m) := by
@@ -268,7 +302,9 @@ def phiP : P R M →ₗ[Polynomial R] P R M :=
 /-! ### Exactness -/
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `ε ∘ φ = 0`.-/
+/-- `ε ∘ φ = 0`.
+@isnad1 id=eq.0h3v.s9.a01c77889525 from=translated src=- shape=eb5a11f2 vocab=6ea16b96
+-/
 lemma epsP_phiP (q : P R M) : epsP R M (phiP R M q) = 0 := by
   induction q using PolynomialModule.induction_linear with
   | zero => simp
@@ -277,11 +313,15 @@ lemma epsP_phiP (q : P R M) : epsP R M (phiP R M q) = 0 := by
     rw [phiP_single, map_sub, epsP_single, epsP_single, smul_smul, ← pow_succ, sub_self]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- `ε` is surjective.-/
+/-- `ε` is surjective.
+@isnad1 id=surjecti.0h2v.s8.b678b0c6d32f from=translated src=- shape=8e02bc56 vocab=2dad5794
+-/
 lemma epsP_surjective : Function.Surjective (epsP R M) :=
   fun m => ⟨PolynomialModule.single R 0 m, by rw [epsP_single, pow_zero, one_smul]⟩
 
-/-- The `(n+1)`-coefficient of `φ q`.-/
+/-- The `(n+1)`-coefficient of `φ q`.
+@isnad1 id=eq.0h4v.s10.dd01555831f5 from=translated src=- shape=ac50cd90 vocab=6e9b5b14
+-/
 lemma phiP_coeff_succ (q : P R M) (n : ℕ) :
     (phiP R M q).coeff (n+1) = q.coeff n - (X:Polynomial R) • (q.coeff (n+1)) := by
   show ((LinearMap.lsmul (Polynomial R) (P R M) (X:Polynomial R) - mapPsi R M) q).coeff (n+1) = _
@@ -292,14 +332,22 @@ lemma phiP_coeff_succ (q : P R M) (n : ℕ) :
   rw [← Polynomial.monomial_one_one_eq_X, PolynomialModule.monomial_smul_apply]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s9.3866c0df867e from=translated src=- shape=710f2f0f vocab=56b66bda
+-/
 lemma Pcoe_sub (a b : P R M) (i : ℕ) : (a - b).coeff i = a.coeff i - b.coeff i := by
   have : (a - b).coeff = a.coeff - b.coeff := map_sub PolynomialModule.coeffAddEquiv a b
   rw [this, Finsupp.sub_apply]
+/--
+@isnad1 id=eq.0h5v.s8.d0ac06458702 from=translated src=- shape=9172f198 vocab=4ce976a4
+-/
 lemma Pcoe_single (k : ℕ) (a : Mr R M) (i : ℕ) :
     (PolynomialModule.single R k a).coeff i = if k = i then a else 0 := by
   rw [PolynomialModule.coeff_single, Finsupp.single_apply]
 
-/-- `φ` is injective.-/
+/-- `φ` is injective.
+@isnad1 id=injectiv.0h2v.s8.1f1f3dcb2746 from=translated src=- shape=1678a34c vocab=cbd25b08
+-/
 lemma phiP_injective : Function.Injective (phiP R M) := by
   rw [injective_iff_map_eq_zero]
   intro q hq
@@ -319,7 +367,9 @@ lemma phiP_injective : Function.Injective (phiP R M) := by
   rw [hq] at this
   exact hqN this.symm
 
-/-- `ker ε ⊆ range φ`, by downward induction on the degree bound `n`.-/
+/-- `ker ε ⊆ range φ`, by downward induction on the degree bound `n`.
+@isnad1 id=mem.2h4v.s10.c48c8779149d from=translated src=- shape=b99a7af1 vocab=42a1c4c1
+-/
 lemma ker_le_range_aux : ∀ (n : ℕ) (q : P R M),
     (∀ i, n < i → q.coeff i = 0) → epsP R M q = 0 → q ∈ LinearMap.range (phiP R M) := by
   intro n
@@ -358,7 +408,9 @@ lemma ker_le_range_aux : ∀ (n : ℕ) (q : P R M),
     rw [map_add, hp', hq']
     abel
 
-/-- The sequence `P --φ--> P --ε--> M` is exact.-/
+/-- The sequence `P --φ--> P --ε--> M` is exact.
+@isnad1 id=exact.0h2v.s9.bf48ac176113 from=translated src=- shape=b2265923 vocab=b6b98c89
+-/
 lemma phiP_epsP_exact : Function.Exact (phiP R M) (epsP R M) := by
   intro q
   constructor
@@ -373,7 +425,13 @@ lemma phiP_epsP_exact : Function.Exact (phiP R M) (epsP R M) := by
 
 /-! ### Assembly -/
 
+/--
+@isnad1 id=eq.0h2v.s6.268fa9d42bf3 from=translated src=- shape=0015ea85 vocab=a7da64cd
+-/
 lemma of_coe_X2 : ModuleCat.of (Polynomial R) (X2 R M : Type u) = X2 R M := rfl
+/--
+@isnad1 id=eq.0h2v.s6.29ccfd9329cf from=translated src=- shape=df28698b vocab=6a88fb77
+-/
 lemma of_coe_M : ModuleCat.of (Polynomial R) (M : Type u) = M := rfl
 
 /-- The characteristic short complex `P --φ--> P --ε--> M`.-/
@@ -381,6 +439,9 @@ def charSES : ShortComplex (ModuleCat.{u} (Polynomial R)) :=
   ModuleCat.shortComplexOfCompEqZero (phiP R M) (epsP R M)
     (by ext q; exact epsP_phiP R M q)
 
+/--
+@isnad1 id=shortexa.0h2v.s6.bf047333680d from=translated src=- shape=8d03ae60 vocab=ee00cd47
+-/
 lemma charSES_shortExact : (charSES R M).ShortExact :=
   ModuleCat.shortComplex_shortExact _ (phiP_epsP_exact R M)
     (phiP_injective R M) (epsP_surjective R M)
@@ -395,7 +456,9 @@ factors).  The surjection is the counit of `extendScalars ⊣ restrictScalars`; 
 It is proved as a standard `Finsupp` exactness computation, transporting the concrete
 `PolynomialModule R Mᵣ` model to `R[X] ⊗_R Mᵣ` through
 `PolynomialModule.polynomialTensorProductLEquivPolynomialModule`; see the module docstring and the
-`charSES` helpers above.-/
+`charSES` helpers above.
+@isnad1 id=ex.0h2v.s9.4f517760cf3a from=translated src=- shape=f82ce69b vocab=d68b98d7
+-/
 lemma exists_characteristicShortExact (R : Type u) [CommRing R]
     (M : ModuleCat.{u} (Polynomial R)) :
     ∃ S : ShortComplex (ModuleCat.{u} (Polynomial R)), S.ShortExact ∧
@@ -410,7 +473,9 @@ dimension `≤ d`, then every `R[X]`-module has projective dimension `≤ d + 1`
 
 Proved from `hasProjectiveDimensionLE_extendScalars` and `exists_characteristicShortExact`: the
 characteristic sequence `0 → R[X] ⊗_R M → R[X] ⊗_R M → M → 0` has both outer terms of projective
-dimension `≤ d`, so `ShortComplex.ShortExact.hasProjectiveDimensionLT_X₃` bounds `M` by `d + 1`.-/
+dimension `≤ d`, so `ShortComplex.ShortExact.hasProjectiveDimensionLT_X₃` bounds `M` by `d + 1`.
+@isnad1 id=hasproje.1h3v.s6.43141e54aec2 from=translated src=- shape=5ac1def7 vocab=7a5b684e
+-/
 lemma polynomialChangeOfRings (R : Type u) [CommRing R] (d : ℕ)
     (hd : ∀ (N : ModuleCat.{u} R), HasProjectiveDimensionLE N d)
     (M : ModuleCat.{u} (Polynomial R)) :
@@ -434,7 +499,9 @@ lemma polynomialChangeOfRings (R : Type u) [CommRing R] (d : ℕ)
   exact hasProjectiveDimensionLT_of_iso e3 (d + 2)
 
 /-- Base case of Hilbert's syzygy theorem: every module over `MvPolynomial (Fin 0) K` (which is
-isomorphic to the field `K`) has projective dimension `≤ 0`, i.e. is projective.-/
+isomorphic to the field `K`) has projective dimension `≤ 0`, i.e. is projective.
+@isnad1 id=hasproje.0h2v.s7.67710910401b from=translated src=- shape=49c54e7c vocab=962356f6
+-/
 lemma hasProjectiveDimensionLE_of_field_zero (K : Type u) [Field K]
     (M : ModuleCat.{u} (MvPolynomial (Fin 0) K)) :
     HasProjectiveDimensionLE M 0 := by
@@ -449,7 +516,9 @@ lemma hasProjectiveDimensionLE_of_field_zero (K : Type u) [Field K]
 
 /-- **Hilbert's syzygy theorem.**  For a field `K`, every module over the polynomial ring
 `MvPolynomial (Fin n) K` has projective dimension `≤ n`.  (The bound holds for all modules, not
-merely finitely generated ones.)-/
+merely finitely generated ones.)
+@isnad1 id=hasproje.0h3v.s6.380298a6968e from=translated src=- shape=0b003a73 vocab=962356f6
+-/
 theorem hasProjectiveDimensionLE_of_field (K : Type u) [Field K] (n : ℕ)
     (M : ModuleCat.{u} (MvPolynomial (Fin n) K)) :
     HasProjectiveDimensionLE M n := by
@@ -466,14 +535,18 @@ theorem hasProjectiveDimensionLE_of_field (K : Type u) [Field K] (n : ℕ)
     exact hasProjectiveDimensionLE_of_ringEquiv e M (n + 1)
 
 /-- Hilbert's syzygy theorem, in the requested finitely-generated form: a finitely generated module
-over `MvPolynomial (Fin n) K` has projective dimension `≤ n`.-/
+over `MvPolynomial (Fin n) K` has projective dimension `≤ n`.
+@isnad1 id=hasproje.0h3v.s8.59a45fd553c3 from=translated src=- shape=74e15549 vocab=d038d95c
+-/
 theorem hasProjectiveDimensionLE_of_field_of_finite (K : Type u) [Field K] (n : ℕ)
     (M : ModuleCat.{u} (MvPolynomial (Fin n) K)) [Module.Finite (MvPolynomial (Fin n) K) M] :
     HasProjectiveDimensionLE M n :=
   hasProjectiveDimensionLE_of_field K n M
 
 /-- Hilbert's syzygy theorem, phrased with `projectiveDimension`:
-`projectiveDimension M ≤ n` for every module over `MvPolynomial (Fin n) K`.-/
+`projectiveDimension M ≤ n` for every module over `MvPolynomial (Fin n) K`.
+@isnad1 id=le.0h3v.s7.1250a8cbf739 from=translated src=- shape=6affc80b vocab=05465835
+-/
 theorem projectiveDimension_le_of_field (K : Type u) [Field K] (n : ℕ)
     (M : ModuleCat.{u} (MvPolynomial (Fin n) K)) :
     projectiveDimension M ≤ (n : WithBot ℕ∞) :=

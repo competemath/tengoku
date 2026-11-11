@@ -39,7 +39,9 @@ variable {p : ℕ} [Fact p.Prime] {G : Type*} [AddCommGroup G]
 
 set_option maxHeartbeats 800000 in
 /-- **(AX2-e core)** In a `(ℤ/p)`-vector space of cardinality `p²`, a pair spans (as an
-additive subgroup) iff all `p²−1` nontrivial `(ℤ/p)`-combinations avoid zero.-/
+additive subgroup) iff all `p²−1` nontrivial `(ℤ/p)`-combinations avoid zero.
+@isnad1 id=iff.1h4v.s8.5091fe271234 from=translated src=- shape=9a1ab719 vocab=ed8cce1f
+-/
 theorem zmodModule_closure_pair_eq_top_iff [Module (ZMod p) G]
     (hcard : Nat.card G = p ^ 2) (P Q : G) :
     AddSubgroup.closure {P, Q} = ⊤ ↔
@@ -127,7 +129,9 @@ theorem zmodModule_closure_pair_eq_top_iff [Module (ZMod p) G]
 /-- **(AX2-e ★, the `ℕ`-multiples form)** In an abelian group of cardinality `p²`
 killed by the prime `p`, a pair generates iff every combination `a•P + b•Q` with
 `(a, b)` not both divisible by `p` avoids zero. `ZMod`-free interface for the
-geometric-fibre consumers.-/
+geometric-fibre consumers.
+@isnad1 id=iff.2h4v.s7.90e0ec7d198c from=translated src=- shape=44998ef6 vocab=ed77ef78
+-/
 theorem addSubgroup_closure_pair_eq_top_iff (hcard : Nat.card G = p ^ 2)
     (hexp : ∀ g : G, p • g = 0) (P Q : G) :
     AddSubgroup.closure {P, Q} = ⊤ ↔
@@ -158,7 +162,9 @@ end ModularCurves
 
 /-- **(E[2]-generation reduction)** For `2`-torsion sections: the three nonzero
 `ZMod 2`-combinations of an independent pair are nonzero. Feeds
-`pair_generates_iff_combos_ne_zero` at `N = 2`.-/
+`pair_generates_iff_combos_ne_zero` at `N = 2`.
+@isnad1 id=ne.4h4v.s8.a4473f501bca from=translated src=- shape=19c8b2cd vocab=11581301
+-/
 theorem combos2_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
     (hP : P ≠ 0) (hQ : Q ≠ 0) (hPQ : P + Q ≠ 0) :
     ∀ ab : ZMod 2 × ZMod 2, ab ≠ 0 →
@@ -180,7 +186,9 @@ theorem combos2_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
 
 /-- **(the independence → combos reduction at `p = 3`)** For `3`-torsion elements of any
 abelian group, the four independence conditions `P ≠ 0, Q ≠ 0, Q ≠ ±P` force all eight
-nontrivial `(ℤ/3)²`-combinations away from zero (`2•x = −x` collapses every case).-/
+nontrivial `(ℤ/3)²`-combinations away from zero (`2•x = −x` collapses every case).
+@isnad1 id=ne.7h4v.s8.dfba1399cd7f from=translated src=- shape=a4134cae vocab=0abdc5b9
+-/
 theorem combos3_ne_zero {G : Type*} [AddCommGroup G] {P Q : G}
     (hP3 : (3 : ℤ) • P = 0) (hQ3 : (3 : ℤ) • Q = 0)
     (hP : P ≠ 0) (hQ : Q ≠ 0) (hQP : Q ≠ P) (hQnP : Q ≠ -P) :

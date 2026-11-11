@@ -40,7 +40,9 @@ variable [(CategoryTheory.forget C).ReflectsIsomorphisms]
 variable [Limits.PreservesLimitsOfSize.{x, x} (CategoryTheory.forget C)]
 variable {X : TopCat.{x}} (F : Sheaf C X)
 
-/-- Sections of a sheaf over the empty open form a subsingleton.-/
+/-- Sections of a sheaf over the empty open form a subsingleton.
+@isnad1 id=subsingl.0h5v.s8.d1a634bb2c2b from=translated src=- shape=2b4ee95f vocab=62f3f3fd
+-/
 theorem subsingleton_toType_obj_bot : Subsingleton (ToType (F.1.obj (op (⊥ : Opens X)))) := by
   obtain ⟨s, -, hs⟩ := F.existsUnique_gluing' (fun i : PEmpty.{x + 1} ↦ i.elim) ⊥
     (fun i ↦ i.elim) bot_le (fun i ↦ i.elim) (fun i ↦ i.elim)
@@ -48,7 +50,9 @@ theorem subsingleton_toType_obj_bot : Subsingleton (ToType (F.1.obj (op (⊥ : O
 
 open scoped Function in
 /-- For a pairwise disjoint family of opens `U : ι → Opens X` and an open `V` with
-`U i ≤ V ≤ ⨆ i, U i`, restriction of sections is a bijection `F(V) ≃ Π i, F(U i)`.-/
+`U i ≤ V ≤ ⨆ i, U i`, restriction of sections is a bijection `F(V) ≃ Π i, F(U i)`.
+@isnad1 id=bijectiv.3h8v.s11.a3328385f61b from=translated src=- shape=2a2be8c8 vocab=45aec255
+-/
 theorem bijective_restrict_pi_of_pairwise_disjoint {ι : Type*} (U : ι → Opens X)
     (V : Opens X) (hle : ∀ i, U i ≤ V) (hcover : V ≤ ⨆ i, U i)
     (hdisj : Pairwise (Disjoint on U)) :
@@ -73,7 +77,9 @@ theorem bijective_restrict_pi_of_pairwise_disjoint {ι : Type*} (U : ι → Open
     exact ⟨s, funext hs⟩
 
 /-- If two opens cover the space and sections on the second open and the overlap are
-subsingletons, then restriction to the first open is bijective.-/
+subsingletons, then restriction to the first open is bijective.
+@isnad1 id=bijectiv.1h7v.s11.d2a3c606ea48 from=translated src=- shape=cd5645e0 vocab=95999a36
+-/
 theorem bijective_restrict_of_sup_eq_top_of_subsingleton
     {U V : Opens X} (hcover : U ⊔ V = ⊤)
     [Nonempty (ToType (F.1.obj (op V)))]

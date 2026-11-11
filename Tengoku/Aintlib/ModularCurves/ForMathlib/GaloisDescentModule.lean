@@ -58,6 +58,9 @@ def semilinearInvariants : Submodule (FixedPoints.subalgebra R A G) M where
     show g • ((b : A) • m) = (b : A) • m
     rw [hsl, b.2 g, hm g]
 
+/--
+@isnad1 id=iff.1h5v.s10.61cb723a691a from=translated src=- shape=61a352b1 vocab=b5433080
+-/
 @[simp]
 theorem mem_semilinearInvariants {m : M} :
     m ∈ semilinearInvariants G R A M hsl ↔ ∀ g : G, g • m = m := Iff.rfl
@@ -78,6 +81,9 @@ noncomputable def descentMul :
         show a • ((b : A) • (m : M)) = (b : A) • (a • (m : M))
         rw [smul_smul, smul_smul, mul_comm]))
 
+/--
+@isnad1 id=eq.1h6v.s13.8622e19f8a3d from=translated src=- shape=c06781aa vocab=e649b88f
+-/
 @[simp]
 theorem descentMul_tmul (a : A) (m : semilinearInvariants G R A M hsl) :
     descentMul G R A M hsl (a ⊗ₜ[FixedPoints.subalgebra R A G] m) = a • (m : M) := rfl
@@ -93,18 +99,26 @@ def semilinearTrace (b : A) (m : M) : semilinearInvariants G R A M hsl :=
     refine Fintype.sum_equiv (Equiv.mulLeft h) _ _ fun g => ?_
     exact (mul_smul h g (b • m)).symm⟩
 
+/--
+@isnad1 id=eq.1h6v.s10.c368f3185451 from=translated src=- shape=def0d73e vocab=b84bf97c
+-/
 @[simp]
 theorem semilinearTrace_coe (b : A) (m : M) :
     ((semilinearTrace G R A M hsl b m : semilinearInvariants G R A M hsl) : M) =
       ∑ g : G, g • (b • m) := rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.6e5fc46a61ac from=translated src=- shape=a62b4a50 vocab=e69bdcb0
+-/
 theorem semilinearTrace_add (b : A) (m m' : M) :
     semilinearTrace G R A M hsl b (m + m') =
       semilinearTrace G R A M hsl b m + semilinearTrace G R A M hsl b m' := by
   refine Subtype.ext ?_
   simp only [semilinearTrace_coe, Submodule.coe_add, smul_add, Finset.sum_add_distrib]
 
-/-- On an *invariant* `m`, the averaged element is the trace of `A` acting on `m`.-/
+/-- On an *invariant* `m`, the averaged element is the trace of `A` acting on `m`.
+@isnad1 id=eq.2h7v.s11.0f172a785a10 from=translated src=- shape=7b5afba9 vocab=cbd9acfd
+-/
 theorem semilinearTrace_of_mem (b a : A) (m : M) (hm : ∀ g : G, g • m = m) :
     semilinearTrace G R A M hsl b (a • m) =
       (traceInvariants G R A (b * a)) • (⟨m, hm⟩ : semilinearInvariants G R A M hsl) := by
@@ -122,6 +136,9 @@ noncomputable def descentInv (S : Finset (A × A)) (m : M) :
     A ⊗[FixedPoints.subalgebra R A G] (semilinearInvariants G R A M hsl) :=
   ∑ p ∈ S, p.1 ⊗ₜ[FixedPoints.subalgebra R A G] (semilinearTrace G R A M hsl p.2 m)
 
+/--
+@isnad1 id=eq.1h7v.s12.70b7820be18b from=translated src=- shape=0529024d vocab=7862d490
+-/
 theorem descentInv_add (S : Finset (A × A)) (m m' : M) :
     descentInv G R A M hsl S (m + m') =
       descentInv G R A M hsl S m + descentInv G R A M hsl S m' := by
@@ -173,7 +190,9 @@ on `A` and any semilinear `A[G]`-module `M`, multiplication `A ⊗_{Aᴳ} Mᴳ �
 
 The right inverse is `descentInv`; surjectivity is the Galois-coordinate identity
 `∑ᵢ aᵢ · (g • bᵢ) = δ_{g,1}` applied to `∑_g (g • m)`, and injectivity is `descentMul_injective`
-(`galoisCoords_dual` on the generators of the tensor product).-/
+(`galoisCoords_dual` on the generators of the tensor product).
+@isnad1 id=bijectiv.2h4v.s13.d249e20823db from=translated src=- shape=22585d2f vocab=1b94250c
+-/
 theorem descentMul_bijective (hfree : IsFreeAlgebraAction G R A) :
     Function.Bijective (descentMul G R A M hsl) := by
   classical
@@ -207,7 +226,9 @@ theorem descentMul_bijective (hfree : IsFreeAlgebraAction G R A) :
 
 /-- **Galois descent as a base change**: `Mᴳ ↪ M` exhibits `M` as the base change of `Mᴳ` along
 `Aᴳ → A`. This is the form mathlib's `Algebra.IsPushout` / `isPullback_SpecMap_of_isPushout`
-consume, i.e. the form in which `[a3-ii]`'s cartesian square is produced.-/
+consume, i.e. the form in which `[a3-ii]`'s cartesian square is produced.
+@isnad1 id=isbasech.2h4v.s10.7aa943f9e272 from=translated src=- shape=7e7a27b4 vocab=8934f755
+-/
 theorem isBaseChange_semilinearInvariants (hfree : IsFreeAlgebraAction G R A) :
     IsBaseChange A (semilinearInvariants G R A M hsl).subtype := by
   have hmap : (TensorProduct.lift
@@ -240,7 +261,9 @@ is a **pushout** of commutative rings, i.e. `C ≅ A ⊗_{Aᴳ} Cᴳ`.
 Applying `Spec` (mathlib's `isPullback_SpecMap_of_isPushout`) turns this into the cartesian
 square `Spec C ≅ Spec A ×_{Spec Aᴳ} Spec Cᴳ` — with `C = Γ(W)` for a `G`-stable affine open `W`
 of the universal curve and `A = Γ(X)`, that is exactly `W ≅ X ×_{X/G} (W/G)`: **leaf `[a3-ii]`
-at chart level**, with no appeal to SGA I Exp. VIII 7.8.-/
+at chart level**, with no appeal to SGA I Exp. VIII 7.8.
+@isnad1 id=ispushou.2h4v.s11.028e569b6e28 from=translated src=- shape=b18e50da vocab=df2c8067
+-/
 theorem isPushout_fixedPoints
     (hslC : ∀ (g : G) (a : A) (c : C), g • (a • c) = (g • a) • (g • c))
     (hfree : IsFreeAlgebraAction G R A) :
@@ -263,7 +286,9 @@ Immediate from `isPushout_fixedPoints` via `CommRingCat.isPushout_of_isPushout` 
 obtains from SGA I Exp. VIII 7.8.
 
 Provenance (v10.72): fable-P4's `[a3-ii]` work (commit `b4e69b53`); the v10.71 upstream-misconfig
-rebase reset this declaration to the working tree, re-adopted here by the file holder.-/
+rebase reset this declaration to the working tree, re-adopted here by the file holder.
+@isnad1 id=ispullba.2h4v.s12.bc9f2b2a538b from=translated src=- shape=94e7425d vocab=8085592c
+-/
 theorem isPullback_Spec_fixedPoints
     (hslC : ∀ (g : G) (a : A) (c : C), g • (a • c) = (g • a) • (g • c))
     (hfree : IsFreeAlgebraAction G R A) :

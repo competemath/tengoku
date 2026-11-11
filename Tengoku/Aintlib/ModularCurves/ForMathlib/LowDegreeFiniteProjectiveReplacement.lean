@@ -62,6 +62,9 @@ noncomputable def moduleCatExtendScalarsIsoRestrictScalarsOfRingEquiv
   (ModuleCat.extendRestrictScalarsAdj e.toRingHom).leftAdjointUniq
     (ModuleCat.restrictScalarsEquivalenceOfRingEquiv e).symm.toAdjunction
 
+/--
+@isnad1 id=eq.0h5v.s10.bb247b2a729a from=translated src=- shape=94cb60c6 vocab=dad2d281
+-/
 @[simp]
 theorem moduleCatExtendScalarsObjLinearEquiv_tmul
     (A : Type w) [CommRing A] [Algebra R A] (M : ModuleCat.{v} R)
@@ -71,7 +74,9 @@ theorem moduleCatExtendScalarsObjLinearEquiv_tmul
   rfl
 
 /-- The algebraic tensor-product comparison with categorical extension of scalars
-intertwines base change of linear maps with the extension-of-scalars functor.-/
+intertwines base change of linear maps with the extension-of-scalars functor.
+@isnad1 id=eq.0h6v.s12.f34036eb47ac from=translated src=- shape=f34b7753 vocab=62a213b0
+-/
 theorem moduleCatExtendScalarsObjLinearEquiv_baseChange
     (A : Type w) [CommRing A] [Algebra R A]
     {M N : ModuleCat.{v} R} (f : M ⟶ N) (x : A ⊗[R] M) :
@@ -91,7 +96,9 @@ theorem moduleCatExtendScalarsObjLinearEquiv_baseChange
       rw [map_add, map_add, map_add, hx, hy]
       exact (((ModuleCat.extendScalars (algebraMap R A)).map f).hom.map_add _ _).symm
 
-/-- The linear maps underlying a short complex of modules compose to zero.-/
+/-- The linear maps underlying a short complex of modules compose to zero.
+@isnad1 id=eq.0h2v.s10.6359bce52c7b from=translated src=- shape=5754a08a vocab=ffdcb7dc
+-/
 theorem shortComplexModuleCatCompEqZero
     (S : ShortComplex (ModuleCat.{v} R)) :
     S.g.hom ∘ₗ S.f.hom = 0 := by
@@ -173,7 +180,9 @@ noncomputable def HomologicalComplex.baseChangeKernelZeroLinearEquiv
   exact ShortComplex.baseChangeCyclesLinearEquiv (K.sc' 0 0 1) A
 
 /-- The algebraic-to-categorical base-change equivalence on the degree-zero kernel has the
-expected underlying extension-of-scalars element.-/
+expected underlying extension-of-scalars element.
+@isnad1 id=eq.0h4v.s16.f80d2dba6d19 from=translated src=- shape=5093df9c vocab=a0a4086e
+-/
 theorem HomologicalComplex.baseChangeKernelZeroLinearEquiv_coe
     (K : CochainComplex (ModuleCat.{v} R) ℕ)
     (A : Type v) [CommRing A] [Algebra R A]
@@ -210,7 +219,9 @@ theorem HomologicalComplex.baseChangeKernelZeroLinearEquiv_coe
   exact ConcreteCategory.congr_hom hcomp x
 
 /-- The inverse categorical-to-algebraic base-change equivalence on the degree-zero kernel
-has the expected underlying tensor-product element.-/
+has the expected underlying tensor-product element.
+@isnad1 id=eq.0h4v.s17.724b3821770b from=translated src=- shape=d2c84764 vocab=6c708544
+-/
 theorem HomologicalComplex.baseChangeKernelZeroLinearEquiv_symm_coe
     (K : CochainComplex (ModuleCat.{v} R) ℕ)
     (A : Type v) [CommRing A] [Algebra R A]
@@ -226,7 +237,9 @@ theorem HomologicalComplex.baseChangeKernelZeroLinearEquiv_symm_coe
   exact (moduleCatExtendScalarsObjLinearEquiv A (K.X 0)).apply_symm_apply x.1
 
 /-- Exactness at a positive degree after categorical extension of scalars is
-exactness of the corresponding algebraically base-changed linear differentials.-/
+exactness of the corresponding algebraically base-changed linear differentials.
+@isnad1 id=exact.1h4v.s13.3c5c58f25aef from=translated src=- shape=3c01f534 vocab=c81fc326
+-/
 theorem cochainComplex_baseChange_functionExact_of_map_exactAt
     (A : Type v) [CommRing A] [Algebra R A]
     (K : CochainComplex (ModuleCat.{v} R) ℕ) (q : ℕ)
@@ -268,7 +281,9 @@ theorem cochainComplex_baseChange_functionExact_of_map_exactAt
   exact hexact y
 
 /-- Finiteness of the kernel of the first map of a short complex implies finiteness of the
-kernel of its map to cycles.-/
+kernel of its map to cycles.
+@isnad1 id=finite.0h2v.s13.af79110e00f1 from=translated src=- shape=8c44a01d vocab=de68bec3
+-/
 theorem Module.Finite.ker_moduleCatToCycles
     (S : ShortComplex (ModuleCat.{v} R))
     [Module.Finite R (LinearMap.ker S.f.hom)] :
@@ -277,7 +292,9 @@ theorem Module.Finite.ker_moduleCatToCycles
     exact LinearMap.ker_codRestrict _ _ _
   exact Module.Finite.equiv (LinearEquiv.ofEq _ _ hker.symm)
 
-/-- Finiteness of categorical homology implies finiteness of its explicit cycle quotient.-/
+/-- Finiteness of categorical homology implies finiteness of its explicit cycle quotient.
+@isnad1 id=finite.0h2v.s13.88230ebd5f3e from=translated src=- shape=bfe5f513 vocab=92a22324
+-/
 theorem Module.Finite.quotient_range_moduleCatToCycles
     (S : ShortComplex (ModuleCat.{v} R)) [Module.Finite R S.homology] :
     Module.Finite R
@@ -482,7 +499,9 @@ private theorem exact_kZeroEmbed_beta : Function.Exact (kZeroEmbed f) (beta f) :
 
 variable [Module.Flat R C0] [Module.Flat R Z1]
 
-/-- The degree-zero replacement term is projective. It is finite by typeclass inference.-/
+/-- The degree-zero replacement term is projective. It is finite by typeclass inference.
+@isnad1 id=projecti.0h4v.s16.d504b46f50d6 from=translated src=- shape=9b82fe5b vocab=633bb62e
+-/
 theorem kZero_projective : Module.Projective R (KZero f) := by
   letI : Module.Flat R (KOne f × C0) := Module.Flat.prod
   exact Module.Projective.quotient_ker_of_exact_surjective
@@ -497,7 +516,9 @@ noncomputable def kZeroToCZero : KZero f →ₗ[R] C0 :=
   LinearMap.snd R (KOne f) C0 ∘ₗ kZeroEmbed f
 
 omit [Module.Flat R C0] [Module.Flat R Z1] in
-/-- The replacement differential and comparison maps form a map of complexes.-/
+/-- The replacement differential and comparison maps form a map of complexes.
+@isnad1 id=eq.0h4v.s18.7b4a6ff57af0 from=translated src=- shape=6b27c147 vocab=20a1636c
+-/
 theorem comparison_commutes :
     kOneLift f ∘ₗ kZeroToKOne f = f ∘ₗ kZeroToCZero f := by
   have hcomp : beta f ∘ₗ kZeroEmbed f = 0 :=
@@ -785,10 +806,16 @@ variable [Module.Flat R S.X₁]
   [Module.Finite R (LinearMap.ker S.f.hom)]
   [Module.Finite R S.homology]
 
+/--
+@isnad1 id=finite.0h2v.s13.ef3be2b5c644 from=translated src=- shape=0b2dd5e4 vocab=9e9ba789
+-/
 local instance shortComplexHZeroFinite :
     Module.Finite R (HZero S.moduleCatToCycles) :=
   Module.Finite.ker_moduleCatToCycles S
 
+/--
+@isnad1 id=finite.0h2v.s13.50c96c38c342 from=translated src=- shape=0c311f01 vocab=1dc8257a
+-/
 local instance shortComplexHOneFinite :
     Module.Finite R (HOne S.moduleCatToCycles) :=
   Module.Finite.quotient_range_moduleCatToCycles S

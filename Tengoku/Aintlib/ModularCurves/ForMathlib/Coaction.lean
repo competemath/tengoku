@@ -56,14 +56,18 @@ namespace IsCoaction
 variable {ρ : B →ₐ[R] B ⊗[R] A}
 
 /-- Element form of counitality: applying `(id ⊗ ε)` to `ρ b` and contracting `B ⊗ R ≅ B` recovers
-`b`.-/
+`b`.
+@isnad1 id=eq.1h5v.s10.9048aeb70807 from=translated src=- shape=99f53de1 vocab=7b6ee673
+-/
 theorem counit_apply (h : IsCoaction ρ) (b : B) :
     Algebra.TensorProduct.rid R R B
         (Algebra.TensorProduct.map (AlgHom.id R B) (Bialgebra.counitAlgHom R A) (ρ b)) = b := by
   simpa using AlgHom.congr_fun h.counit b
 
 /-- Element form of coassociativity: `(ρ ⊗ id)(ρ b)` moved across the associator equals
-`(id ⊗ Δ)(ρ b)`.-/
+`(id ⊗ Δ)(ρ b)`.
+@isnad1 id=eq.1h5v.s13.061d70776e5c from=translated src=- shape=ebce0bff vocab=20c1b9e7
+-/
 theorem coassoc_apply (h : IsCoaction ρ) (b : B) :
     Algebra.TensorProduct.assoc R R R B A A
         (Algebra.TensorProduct.map ρ (AlgHom.id R A) (ρ b))
@@ -74,14 +78,18 @@ end IsCoaction
 
 /-- The **trivial co-action** `b ↦ b ⊗ 1` (`Algebra.TensorProduct.includeLeft`) is a co-action — the
 structure-sheaf dual of the trivial `G`-action. Validates `IsCoaction`; its co-invariants are all of
-`B`.-/
+`B`.
+@isnad1 id=iscoacti.0h3v.s6.07f6a1aa59f4 from=translated src=- shape=0960a29a vocab=d9c8e5d0
+-/
 theorem isCoaction_includeLeft :
     IsCoaction (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] A) where
   counit := by ext b; simp
   coassoc := by ext b; simp [Algebra.TensorProduct.one_def]
 
 /-- The co-invariants of the trivial co-action `b ↦ b ⊗ 1` are all of `B` — the dual statement that
-the trivial `G`-action has quotient `X` itself.-/
+the trivial `G`-action has quotient `X` itself.
+@isnad1 id=eq.0h3v.s8.c183021b3815 from=translated src=- shape=9af84d6f vocab=2542ad88
+-/
 theorem coinvariants_includeLeft :
     coinvariants (Algebra.TensorProduct.includeLeft : B →ₐ[R] B ⊗[R] A) = ⊤ := by
   ext b

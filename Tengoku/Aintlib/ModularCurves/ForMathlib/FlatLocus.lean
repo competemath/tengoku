@@ -52,7 +52,9 @@ at any submonoid of `S`.  This is the workhorse.
 compatible `S`-action, then for any submonoid `T ≤ S` the localised module `T⁻¹N` is again flat
 over `R`.  For a submodule inclusion `N' ↪ P` of `R`-modules, tensoring with `T⁻¹N` is the
 `T`-localisation of tensoring with `N` (`IsLocalizedModule.map_lTensor`), and the localisation of
-an injective map is injective (`IsLocalizedModule.map_injective`).-/
+an injective map is injective (`IsLocalizedModule.map_injective`).
+@isnad1 id=flat.0h4v.s8.b9dbb057ac02 from=translated src=- shape=3f78d732 vocab=d5a265d3
+-/
 theorem flat_localizedModule_of_flat {R S N : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [AddCommGroup N] [Module R N] [Module S N] [IsScalarTower R S N] (T : Submonoid S)
     [Module.Flat R N] : Module.Flat R (LocalizedModule T N) := by
@@ -66,7 +68,9 @@ theorem flat_localizedModule_of_flat {R S N : Type*} [CommRing R] [CommRing S] [
     (Module.Flat.iff_lTensor_injectiveₛ.mp ‹Module.Flat R N›) N'
 
 /-- **Localisation preserves flatness over a base, `IsLocalizedModule` form.** Any localisation
-`N'` of an `R`-flat `S`-module `N` (at a submonoid `T ≤ S`) is again flat over `R`.-/
+`N'` of an `R`-flat `S`-module `N` (at a submonoid `T ≤ S`) is again flat over `R`.
+@isnad1 id=flat.0h6v.s8.29afb05426e8 from=translated src=- shape=d83b28fd vocab=8eb69502
+-/
 theorem flat_of_isLocalizedModule_flat {R S N N' : Type*} [CommRing R] [CommRing S] [Algebra R S]
     [AddCommGroup N] [Module R N] [Module S N] [IsScalarTower R S N]
     [AddCommGroup N'] [Module R N'] [Module S N'] [IsScalarTower R S N']
@@ -91,12 +95,17 @@ def flatLocus (R S M : Type*) [CommRing R] [CommRing S] [Algebra R S]
     Set (PrimeSpectrum S) :=
   {q : PrimeSpectrum S | Module.Flat R (LocalizedModule q.asIdeal.primeCompl M)}
 
+/--
+@isnad1 id=iff.0h4v.s8.be7caab1f986 from=translated src=- shape=eb156a41 vocab=1208a401
+-/
 theorem mem_flatLocus {q : PrimeSpectrum S} :
     q ∈ flatLocus R S M ↔ Module.Flat R (LocalizedModule q.asIdeal.primeCompl M) := Iff.rfl
 
 /-- **Generisation-stability of the flat locus.** If `M_q` is flat over `R` and `x` generises `q`
 (`x ⤳ q`, i.e. `x ≤ q`), then `M_x` is flat over `R`, because `M_x` is a further localisation of
-`M_q` (`IsLocalizedModule.liftOfLE`).-/
+`M_q` (`IsLocalizedModule.liftOfLE`).
+@isnad1 id=stableun.0h3v.s7.9305ca985acf from=translated src=- shape=eb1c83d7 vocab=f81c987b
+-/
 theorem flatLocus_stableUnderGeneralization :
     StableUnderGeneralization (flatLocus R S M) := by
   intro x y hyx hx
@@ -115,7 +124,9 @@ theorem flatLocus_stableUnderGeneralization :
 /-- **The neighbourhood lemma from generic flatness.** If, after inverting a single `f : R`, the
 localised module `M_f` is *free* over `R_f` (the conclusion of generic flatness), then `M` is flat
 over `R` at every prime `q` of `S` not containing the image `algebraMap R S f`.  Consequently the
-basic open `D(algebraMap R S f)` is contained in the flat locus.-/
+basic open `D(algebraMap R S f)` is contained in the flat locus.
+@isnad1 id=le.1h4v.s8.877369a5ebc7 from=translated src=- shape=6db58a10 vocab=13042def
+-/
 theorem basicOpen_subset_flatLocus_of_free (f : R)
     (hfree : Module.Free (Localization.Away f)
       (LocalizedModule (Submonoid.powers f) M)) :

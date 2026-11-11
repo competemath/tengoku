@@ -43,7 +43,9 @@ section FaithfulSMul
 /-- A **finite flat** algebra `B ≠ 0` over a domain `R` has injective structure map: over a
 domain the rank of a finite flat module is constant (`Ideal.finrank_fiber_eq_finrank`), a rank-`0`
 finite flat module is trivial (`rankAtStalk_eq_zero_iff_subsingleton`), and everywhere-positive
-rank forces injectivity (`rankAtStalk_pos_iff_algebraMap_injective`).-/
+rank forces injectivity (`rankAtStalk_pos_iff_algebraMap_injective`).
+@isnad1 id=faithful.0h2v.s6.f0dbd2e37c94 from=translated src=- shape=cd597ec7 vocab=d0fc959e
+-/
 theorem FaithfulSMul.of_flat_of_nontrivial (R B : Type*) [CommRing R] [IsDomain R] [CommRing B]
     [Nontrivial B] [Algebra R B] [Module.Finite R B] [Module.Flat R B] : FaithfulSMul R B := by
   rw [faithfulSMul_iff_algebraMap_injective,
@@ -75,7 +77,9 @@ variable (R B A : Type u) [CommRing R] [CommRing B] [CommRing A]
 `finrank R A = finrank R B * finrank B A` for a tower of domains `R → B → A` with each step
 finite and flat. Over a domain each rank is the corresponding fraction-field extension degree
 (`Algebra.IsAlgebraic.finrank_of_isFractionRing`), and field degrees multiply in towers
-(`Module.finrank_mul_finrank` on `Frac R ⊆ Frac B ⊆ Frac A`).-/
+(`Module.finrank_mul_finrank` on `Frac R ⊆ Frac B ⊆ Frac A`).
+@isnad1 id=eq.0h3v.s8.1e7b8e2a66a0 from=translated src=- shape=867f61f5 vocab=35079e5b
+-/
 theorem finrank_tower_of_flat : finrank R A = finrank R B * finrank B A := by
   -- injectivity of each structure map (positive constant rank)
   haveI hRB : FaithfulSMul R B := FaithfulSMul.of_flat_of_nontrivial R B

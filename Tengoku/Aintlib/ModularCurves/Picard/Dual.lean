@@ -40,6 +40,9 @@ noncomputable def overUnitSection (U : C) (r : R.obj.obj (op U)) :
         R.obj.map W.unop.hom.op r
       rw [← R.obj.map_comp_apply, ← op_comp, Over.w])
 
+/--
+@isnad1 id=eq.0h6v.s11.4991cc764353 from=translated src=- shape=cfee3df0 vocab=22b14397
+-/
 @[simp]
 theorem overUnitSection_apply (U : C) (r : R.obj.obj (op U))
     (V : (Over U)ᵒᵖ) :
@@ -72,6 +75,9 @@ noncomputable def overUnitScalarEnd (U : C) (r : R.obj.obj (op U)) :
     End (SheafOfModules.unit (R.over U)) :=
   (SheafOfModules.unit (R.over U)).unitHomEquiv.symm (overUnitSection R U r)
 
+/--
+@isnad1 id=eq.0h7v.s13.35be213ecae5 from=translated src=- shape=cf15af46 vocab=2c7d9188
+-/
 @[simp]
 theorem overUnitScalarEnd_app_apply (U : C) (r : R.obj.obj (op U))
     (V : (Over U)ᵒᵖ) (x : (R.over U).obj.obj V) :
@@ -154,11 +160,17 @@ noncomputable def dualToAmbient (M : _root_.SheafOfModules R) (U : C) :
   fun α ↦ (_root_.SheafOfModules.toSheaf (R.over U)).map α
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=injectiv.0h5v.s7.63319c87c67c from=translated src=- shape=6b04ccee vocab=9c5e3724
+-/
 theorem dualToAmbient_injective (M : _root_.SheafOfModules R) (U : C) :
     Function.Injective (dualToAmbient R M U) :=
   fun _ _ h ↦ (_root_.SheafOfModules.toSheaf (R.over U)).map_injective h
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h8v.s9.77b3be36de04 from=translated src=- shape=993cb472 vocab=7f57a708
+-/
 @[simp]
 theorem ambientDual_map_dualToAmbient (M : _root_.SheafOfModules R)
     {U V : Cᵒᵖ} (f : U ⟶ V)
@@ -168,6 +180,9 @@ theorem ambientDual_map_dualToAmbient (M : _root_.SheafOfModules R)
   rfl
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h6v.s8.21e8c6a81a1d from=translated src=- shape=de870693 vocab=042e2cf9
+-/
 @[simp]
 theorem dualRestrict_id (M : _root_.SheafOfModules R) (U : Cᵒᵖ)
     (α : M.over U.unop ⟶ _root_.SheafOfModules.unit (R.over U.unop)) :
@@ -177,6 +192,9 @@ theorem dualRestrict_id (M : _root_.SheafOfModules R) (U : Cᵒᵖ)
   simp
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h10v.s8.1ea746a7d429 from=translated src=- shape=1875b099 vocab=16453054
+-/
 theorem dualRestrict_comp (M : _root_.SheafOfModules R) {U V W : Cᵒᵖ}
     (f : U ⟶ V) (g : V ⟶ W)
     (α : M.over U.unop ⟶ _root_.SheafOfModules.unit (R.over U.unop)) :
@@ -188,6 +206,9 @@ theorem dualRestrict_comp (M : _root_.SheafOfModules R) {U V W : Cᵒᵖ}
   simp
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h7v.s10.873bec3a75d7 from=translated src=- shape=335cd336 vocab=dd656987
+-/
 @[simp]
 theorem dualRestrict_zero (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U ⟶ V) :
     dualRestrict R M f 0 = 0 := by
@@ -196,6 +217,9 @@ theorem dualRestrict_zero (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U �
   rfl
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h9v.s11.f9b872417fcc from=translated src=- shape=a8f3036b vocab=da84e690
+-/
 @[simp]
 theorem dualRestrict_add (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U ⟶ V)
     (α β : M.over U.unop ⟶ _root_.SheafOfModules.unit (R.over U.unop)) :
@@ -204,6 +228,9 @@ theorem dualRestrict_add (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U �
   ext W x
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s13.2bea244f7ec3 from=translated src=- shape=2f0c8737 vocab=116b20fb
+-/
 @[simp]
 theorem dualRestrict_smul (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U ⟶ V)
     (r : R.obj.obj U)
@@ -383,7 +410,9 @@ private theorem dualSubfunctor_hom_app_smul (M : _root_.SheafOfModules R) {U : C
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
 set_option backward.isDefEq.respectTransparency.types false in
-/-- Module-linearity of a local functional descends along covering sieves.-/
+/-- Module-linearity of a local functional descends along covering sieves.
+@isnad1 id=issheaf.0h4v.s6.453fe2ef25f1 from=translated src=- shape=271fcf13 vocab=3c41bd7c
+-/
 theorem dualSubfunctor_isSheaf (M : _root_.SheafOfModules R) :
     Presieve.IsSheaf J (dualSubfunctor R M).toFunctor := by
   apply ((dualSubfunctor R M).isSheaf_iff
@@ -431,6 +460,9 @@ noncomputable def dual (M : _root_.SheafOfModules R) :
     exact Presieve.isSheaf_iso J (dualPresheafToSubfunctorIso R M).symm
       (dualSubfunctor_isSheaf R M)
 
+/--
+@isnad1 id=eq.0h4v.s7.759fa7d5cab0 from=translated src=- shape=6fddb072 vocab=de94b4f9
+-/
 @[simp]
 theorem dual_val (M : _root_.SheafOfModules R) :
     (dual R M).val = dualPresheaf R M :=
@@ -507,6 +539,9 @@ noncomputable def dualUnitSectionsEquiv (U : C) :
     (overUnitSectionEquiv R U).symm
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h5v.s13.24b71ed6cdce from=translated src=- shape=b7a64ebf vocab=3021377c
+-/
 @[simp]
 theorem dualUnitSectionsEquiv_apply (U : C)
     (α : _root_.SheafOfModules.unit (R.over U) ⟶
@@ -517,6 +552,9 @@ theorem dualUnitSectionsEquiv_apply (U : C)
   rfl
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h5v.s10.4072d5c73e07 from=translated src=- shape=6e06628b vocab=82c259d2
+-/
 @[simp]
 theorem dualUnitSectionsEquiv_symm_apply (U : C) (r : R.obj.obj (op U)) :
     (dualUnitSectionsEquiv R U).symm r = overUnitScalarEnd R U r :=
@@ -581,6 +619,9 @@ noncomputable def dualUnitLinearEquiv (U : C) :
     exact mul_comm' _ _
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s13.35603cea4d01 from=translated src=- shape=2a8122e7 vocab=d2c6c985
+-/
 @[simp]
 theorem dualUnitLinearEquiv_dualRestrict {U V : Cᵒᵖ} (f : U ⟶ V)
     (α : (_root_.SheafOfModules.unit R).over U.unop ⟶
@@ -662,6 +703,9 @@ noncomputable def dualPrecomp {M N : _root_.SheafOfModules R} (f : M ⟶ N)
   f.over U ≫ α
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h10v.s8.d71d0d8059fe from=translated src=- shape=9c5d86e9 vocab=062531cd
+-/
 @[simp]
 theorem dualRestrict_dualPrecomp {M N : _root_.SheafOfModules R} (f : M ⟶ N)
     {U V : Cᵒᵖ} (g : U ⟶ V)
@@ -714,6 +758,9 @@ noncomputable def dualMap {M N : _root_.SheafOfModules R} (f : M ⟶ N) :
   ⟨dualMapVal R f⟩
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h4v.s8.f053eec73d81 from=translated src=- shape=4c74088c vocab=13348d3e
+-/
 @[simp]
 theorem dualMap_id (M : _root_.SheafOfModules R) :
     dualMap R (𝟙 M) = 𝟙 (dual R M) := by
@@ -723,6 +770,9 @@ theorem dualMap_id (M : _root_.SheafOfModules R) :
   simp [dualPrecomp]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h8v.s8.11881bed68f7 from=translated src=- shape=531b2095 vocab=6261faa9
+-/
 @[simp]
 theorem dualMap_comp {M N P : _root_.SheafOfModules R} (f : M ⟶ N) (g : N ⟶ P) :
     dualMap R (f ≫ g) = dualMap R g ≫ dualMap R f := by
@@ -799,6 +849,9 @@ noncomputable def restrictOverTrivialization (M : _root_.SheafOfModules R) (U : 
       _root_.SheafOfModules.overMapUnitIso V.hom
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h10v.s15.fd76d4a1180e from=translated src=- shape=f2b241c2 vocab=d6a06684
+-/
 @[simp]
 theorem dualRestrict_app_apply (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f : U ⟶ V)
     (α : M.over U.unop ⟶ _root_.SheafOfModules.unit (R.over U.unop))
@@ -808,6 +861,9 @@ theorem dualRestrict_app_apply (M : _root_.SheafOfModules R) {U V : Cᵒᵖ} (f 
   rfl
 
 omit [∀ U, IsMulCommutative (R.obj.obj U)] in
+/--
+@isnad1 id=eq.0h9v.s15.b80a85859695 from=translated src=- shape=fec7a410 vocab=310e7f00
+-/
 @[simp]
 theorem restrictOverTrivialization_inv_app_apply
     (M : _root_.SheafOfModules R) (U : C)
@@ -819,6 +875,9 @@ theorem restrictOverTrivialization_inv_app_apply
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h10v.s13.23ac2547dd28 from=translated src=- shape=9a0afe2b vocab=e783c8c8
+-/
 @[simp]
 theorem dualTrivializationLinearEquiv_dualRestrict
     (M : _root_.SheafOfModules R) (U : C)
@@ -971,7 +1030,9 @@ noncomputable def dualRestrictIsoOfRestrictIso (M : X.Modules) (U : X.Opens)
         (overTrivializationOfRestrictIso M U e)) ≪≫
     U.sheafOfModulesEquivOverUnit X.ringCatSheaf
 
-/-- The sheaf dual of an invertible module is invertible.-/
+/-- The sheaf dual of an invertible module is invertible.
+@isnad1 id=isinvert.1h2v.s3.485a8f18bc65 from=translated src=- shape=525138f7 vocab=88c882f0
+-/
 theorem IsInvertible.dual {M : X.Modules} (hM : IsInvertible M) :
     IsInvertible (dualObj M) := by
   obtain ⟨ι, U, hU, htriv⟩ := hM

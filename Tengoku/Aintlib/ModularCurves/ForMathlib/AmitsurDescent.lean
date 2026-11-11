@@ -31,6 +31,9 @@ variable (R S : Type) [CommRing R] [CommRing S] [Algebra R S]
 noncomputable def amitsurD : S →ₗ[R] S ⊗[R] S :=
   TensorProduct.mk R S S 1 - (TensorProduct.mk R S S).flip 1
 
+/--
+@isnad1 id=eq.0h3v.s9.73ba9b722824 from=translated src=- shape=f0cb0afd vocab=ce49aa6f
+-/
 @[simp] theorem amitsurD_apply (x : S) :
     amitsurD R S x = (1 : S) ⊗ₜ[R] x - x ⊗ₜ[R] (1 : S) := rfl
 
@@ -46,6 +49,9 @@ noncomputable def amitsurContract : S ⊗[R] (S ⊗[R] S) →ₗ[R] S ⊗[R] S :
         simp [LinearMap.rTensor, Algebra.smul_mul_assoc,
           TensorProduct.smul_tmul'] }
 
+/--
+@isnad1 id=eq.0h5v.s10.bafad9528e87 from=translated src=- shape=8e6f0b9a vocab=d4303123
+-/
 @[simp] theorem amitsurContract_tmul (a x y : S) :
     amitsurContract R S (a ⊗ₜ[R] (x ⊗ₜ[R] y)) = (a * x) ⊗ₜ[R] y := rfl
 
@@ -53,11 +59,16 @@ noncomputable def amitsurContract : S ⊗[R] (S ⊗[R] S) →ₗ[R] S ⊗[R] S :
 noncomputable def amitsurMul : S ⊗[R] S →ₗ[R] S :=
   TensorProduct.lift (LinearMap.mul R S)
 
+/--
+@isnad1 id=eq.0h4v.s9.5782cb0100bc from=translated src=- shape=c0deb73f vocab=5da3d662
+-/
 @[simp] theorem amitsurMul_tmul (x y : S) :
     amitsurMul R S (x ⊗ₜ[R] y) = x * y := rfl
 
 /-- The contracting-homotopy identity: contracting the tensored coboundary of `t`
-recovers `t` minus the retraction `(μ t) ⊗ 1`.-/
+recovers `t` minus the retraction `(μ t) ⊗ 1`.
+@isnad1 id=eq.0h3v.s12.e6790f27468e from=translated src=- shape=c8d7db9b vocab=999f75d2
+-/
 theorem amitsurContract_lTensor_amitsurD (t : S ⊗[R] S) :
     amitsurContract R S (LinearMap.lTensor S (amitsurD R S) t) =
       t - (amitsurMul R S t) ⊗ₜ[R] (1 : S) := by
@@ -71,7 +82,9 @@ theorem amitsurContract_lTensor_amitsurD (t : S ⊗[R] S) :
     rw [map_add, map_add, hx, hy, map_add, TensorProduct.add_tmul]
     abel
 
-/-- The tensored Amitsur sequence is exact (split by the contraction).-/
+/-- The tensored Amitsur sequence is exact (split by the contraction).
+@isnad1 id=exact.0h2v.s11.73ae78b0dbc2 from=translated src=- shape=3b0360ab vocab=252e1bf5
+-/
 theorem amitsur_lTensor_exact :
     Function.Exact (LinearMap.lTensor S (Algebra.linearMap R S))
       (LinearMap.lTensor S (amitsurD R S)) := by
@@ -94,14 +107,18 @@ theorem amitsur_lTensor_exact :
         TensorProduct.smul_tmul, TensorProduct.tmul_smul, sub_self]
     rw [hz, LinearMap.lTensor_zero, LinearMap.zero_apply]
 
-/-- **Amitsur exactness in degree ≤ 1** for a faithfully flat algebra.-/
+/-- **Amitsur exactness in degree ≤ 1** for a faithfully flat algebra.
+@isnad1 id=exact.0h2v.s9.6405187c4d04 from=translated src=- shape=c9b26bd5 vocab=627ead5f
+-/
 theorem amitsur_exact [Module.FaithfullyFlat R S] :
     Function.Exact (Algebra.linearMap R S) (amitsurD R S) :=
   Module.FaithfullyFlat.lTensor_reflects_exact R S _ _
     (amitsur_lTensor_exact R S)
 
 /-- **Faithfully flat descent of elements**: an element of `S` whose two
-tensor-inclusions into `S ⊗[R] S` agree comes from `R`.-/
+tensor-inclusions into `S ⊗[R] S` agree comes from `R`.
+@isnad1 id=ex.1h3v.s8.64502074d78b from=translated src=- shape=73c64f07 vocab=4f5e8bb4
+-/
 theorem exists_algebraMap_eq_of_tmul_eq [Module.FaithfullyFlat R S] (s : S)
     (h : (1 : S) ⊗ₜ[R] s = s ⊗ₜ[R] (1 : S)) :
     ∃ r : R, algebraMap R S r = s := by

@@ -104,7 +104,9 @@ variable [K.HasTotal (.up ℕ)]
 
 /-- Under exactness of the positive vertical rows, every positive-degree total
 cycle is homologous to the horizontal-edge image of a cycle in the augmenting
-complex.-/
+complex.
+@isnad1 id=ex.5h5v.s12.d9692a779408 from=translated src=- shape=7122af69 vocab=82cd820a
+-/
 theorem exists_horizontalEdge_cycle_sub_boundary
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)
@@ -189,7 +191,9 @@ theorem exists_horizontalEdge_cycle_sub_boundary
     (n + 1) y (fun q hq ↦ hb q hq)).symm
 
 /-- The horizontal-edge map is surjective on homology in every positive degree
-when the corresponding positive vertical rows are exact.-/
+when the corresponding positive vertical rows are exact.
+@isnad1 id=surjecti.4h4v.s11.4d39d154cab6 from=translated src=- shape=7fe03d4b vocab=bbf0939e
+-/
 theorem totalUpNatHorizontalEdge_homologyMap_surjective_of_positive
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)
@@ -288,7 +292,9 @@ private theorem horizontalEdge_π_horizontalAxis
   simp
 
 /-- If a positive-degree horizontal-edge element is a total boundary, then the
-original element is already a boundary in the augmenting complex.-/
+original element is already a boundary in the augmenting complex.
+@isnad1 id=ex.5h6v.s12.a80fd906d6cd from=translated src=- shape=5acbd359 vocab=82cd820a
+-/
 theorem exists_boundary_of_horizontalEdge_eq_total_boundary
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)
@@ -432,7 +438,9 @@ private theorem exists_boundary_of_homologyπ_abCyclesMkAt_eq_zero
     h.symm.trans hb'
 
 /-- The horizontal-edge map is injective on homology in every positive degree
-when the corresponding positive vertical rows are exact.-/
+when the corresponding positive vertical rows are exact.
+@isnad1 id=injectiv.4h4v.s11.f4aae1235500 from=translated src=- shape=809c70e6 vocab=5d1c16b7
+-/
 theorem totalUpNatHorizontalEdge_homologyMap_injective_of_positive
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)
@@ -515,7 +523,9 @@ theorem totalUpNatHorizontalEdge_homologyMap_injective_of_positive
     _ = 0 := haClassZero
 
 /-- The horizontal-edge map is a quasi-isomorphism in every positive degree
-when the two adjacent positive vertical rows are exact.-/
+when the two adjacent positive vertical rows are exact.
+@isnad1 id=quasiiso.6h4v.s11.93f32f2c43ed from=translated src=- shape=c73f2210 vocab=e23aaed2
+-/
 theorem totalUpNatHorizontalEdge_quasiIsoAt_succ
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)

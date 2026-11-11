@@ -34,7 +34,9 @@ namespace ModularCurves
 
 /-- **(WP-D3a-FACTOR)** For `A` standard smooth of relative dimension `1` over a field `k`, whose
 localizations at maximal ideals are domains, every minimal-prime quotient `A ⧸ p` is an integrally
-closed domain.-/
+closed domain.
+@isnad1 id=isintegr.2h3v.s7.795a128ffe0c from=translated src=- shape=e6c9e944 vocab=cb787b61
+-/
 theorem isIntegrallyClosed_quotient_minimalPrime (k A : Type u) [Field k] [CommRing A] [Algebra k A]
     [IsNoetherianRing A] [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))

@@ -28,6 +28,9 @@ namespace TopologicalSpace.Opens
 
 variable {X Y : TopCat} (f : X ⟶ Y)
 
+/--
+@isnad1 id=final.0h3v.s5.c05a1fdba452 from=translated src=- shape=c8de7d16 vocab=5b3ebcc1
+-/
 instance map_final : (Opens.map f).Final where
   out U := by
     have hne : Nonempty (StructuredArrow U (Opens.map f)) :=

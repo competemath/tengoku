@@ -22,7 +22,9 @@ variable (K : HomologicalComplex₂ C (.up ℕ) (.up ℕ))
 variable [K.HasTotal (.up ℕ)]
 
 /-- A degree of a first-quadrant total complex is the finite direct sum of the
-bidegrees on the corresponding antidiagonal.-/
+bidegrees on the corresponding antidiagonal.
+@isnad1 id=eq.0h3v.s9.65a0c66b8b76 from=translated src=- shape=be871832 vocab=6deaa300
+-/
 theorem totalUpNat_decomposition (n : ℕ) :
     ∑ qp ∈ Finset.antidiagonal n,
         K.πTotalUpNat qp.1 qp.2 n ≫
@@ -44,7 +46,9 @@ theorem totalUpNat_decomposition (n : ℕ) :
     exact (hnot (Finset.mem_antidiagonal.mpr h)).elim
 
 /-- The signed total differential formula, with inclusions extended by zero away
-from the corresponding total degrees.-/
+from the corresponding total degrees.
+@isnad1 id=eq.0h5v.s11.8e82f7f65ad6 from=translated src=- shape=6285750d vocab=d7dd06c5
+-/
 @[reassoc]
 theorem ιTotalOrZero_d_upNat (q p n : ℕ) :
     K.ιTotalOrZero (.up ℕ) q p n ≫
@@ -69,7 +73,9 @@ theorem ιTotalOrZero_d_upNat (q p n : ℕ) :
     simp
 
 /-- The total differential is the finite antidiagonal sum of its horizontal and
-signed vertical bidegree components.-/
+signed vertical bidegree components.
+@isnad1 id=eq.0h3v.s12.2f364aa1fe63 from=translated src=- shape=bb1c186b vocab=4d83d332
+-/
 theorem total_d_upNat_decomposition (n : ℕ) :
     (K.total (.up ℕ)).d n (n + 1) =
       ∑ qp ∈ Finset.antidiagonal n,
@@ -93,7 +99,9 @@ theorem total_d_upNat_decomposition (n : ℕ) :
       rw [Category.assoc, K.ιTotalOrZero_d_upNat]
 
 /-- Projection of the total differential to one target bidegree is the sum of
-the incoming horizontal and signed vertical differentials.-/
+the incoming horizontal and signed vertical differentials.
+@isnad1 id=eq.1h5v.s12.157c4628a8ce from=translated src=- shape=79c4faa0 vocab=df9ed613
+-/
 theorem total_d_πTotalUpNat (n q p : ℕ) (hqp : q + p = n + 1) :
     (K.total (.up ℕ)).d n (n + 1) ≫ K.πTotalUpNat q p (n + 1) =
       (if _hq : 0 < q then

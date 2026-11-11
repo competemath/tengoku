@@ -48,7 +48,9 @@ def descendFixed (W : WeierstrassCurve A)
   a₆ := ⟨W.a₆, h₆⟩
 
 /-- Base-changing `descendFixed` back up to `A` recovers the original curve: the descended curve
-`W₀` over `Aᴳ` satisfies `W₀.map (Aᴳ ↪ A) = W`.-/
+`W₀` over `Aᴳ` satisfies `W₀.map (Aᴳ ↪ A) = W`.
+@isnad1 id=eq.5h3v.s9.ac0fd0cf93e9 from=translated src=- shape=7d197a92 vocab=a0288c28
+-/
 @[simp]
 theorem descendFixed_map (W : WeierstrassCurve A) (h₁ h₂ h₃ h₄ h₆) :
     (W.descendFixed h₁ h₂ h₃ h₄ h₆).map (algebraMap (FixedPoints.subring A G) A) = W := by
@@ -57,7 +59,9 @@ theorem descendFixed_map (W : WeierstrassCurve A) (h₁ h₂ h₃ h₄ h₆) :
 
 /-- If the base-changed-up curve is elliptic, so is the descended curve — the discriminant of
 `descendFixed` is a unit because its image in `A` is (`Δ` commutes with `map`, and `Aᴳ ↪ A` is
-injective, reflecting units of the subring).-/
+injective, reflecting units of the subring).
+@isnad1 id=isellipt.6h3v.s9.c7ad6a07ebc1 from=translated src=- shape=16f3217e vocab=598ea890
+-/
 theorem descendFixed_isElliptic [Nontrivial A] (W : WeierstrassCurve A) (h₁ h₂ h₃ h₄ h₆)
     (hΔ : IsUnit (W.descendFixed h₁ h₂ h₃ h₄ h₆ (G := G)).Δ) :
     (W.descendFixed h₁ h₂ h₃ h₄ h₆ (G := G)).IsElliptic := by
@@ -79,6 +83,9 @@ foundation of the trivialization ([a5-iii]): the `u`-part is a multiplicative co
 noncomputable def uSMul (g : G) (u : Aˣ) : Aˣ :=
   Units.map (MulSemiringAction.toRingHom G A g).toMonoidHom u
 
+/--
+@isnad1 id=eq.0h4v.s7.15d925f5a4fb from=translated src=- shape=7341f598 vocab=53aff2b2
+-/
 @[simp] theorem uSMul_coe (g : G) (u : Aˣ) : ((uSMul g u : Aˣ) : A) = g • (u : A) := rfl
 
 /-- The coefficientwise `G`-action on `VariableChange A`.-/
@@ -88,12 +95,26 @@ noncomputable def vcSMul (g : G) (C : VariableChange A) : VariableChange A where
   s := g • C.s
   t := g • C.t
 
+/--
+@isnad1 id=eq.0h4v.s5.fe48eb7689b1 from=translated src=- shape=97cf40ba vocab=f08ea779
+-/
 @[simp] theorem vcSMul_u (g : G) (C : VariableChange A) : (vcSMul g C).u = uSMul g C.u := rfl
+/--
+@isnad1 id=eq.0h4v.s6.cca22aadb887 from=translated src=- shape=7341f598 vocab=3b3dcce5
+-/
 @[simp] theorem vcSMul_r (g : G) (C : VariableChange A) : (vcSMul g C).r = g • C.r := rfl
+/--
+@isnad1 id=eq.0h4v.s6.74909e2d514b from=translated src=- shape=7341f598 vocab=00676002
+-/
 @[simp] theorem vcSMul_s (g : G) (C : VariableChange A) : (vcSMul g C).s = g • C.s := rfl
+/--
+@isnad1 id=eq.0h4v.s6.fe7e52dcc8ce from=translated src=- shape=7341f598 vocab=2f890738
+-/
 @[simp] theorem vcSMul_t (g : G) (C : VariableChange A) : (vcSMul g C).t = g • C.t := rfl
 
-/-- The action distributes over the `VariableChange` group law: `G` acts by group homomorphisms.-/
+/-- The action distributes over the `VariableChange` group law: `G` acts by group homomorphisms.
+@isnad1 id=eq.0h5v.s6.a97ab725afe4 from=translated src=- shape=4a30b481 vocab=652d2572
+-/
 theorem vcSMul_mul (g : G) (C C' : VariableChange A) :
     vcSMul g (C * C') = vcSMul g C * vcSMul g C' := by
   have hp : ∀ (u : Aˣ) (n : ℕ), g • ((u : A) ^ n) = ((uSMul g u : Aˣ) : A) ^ n := by
@@ -104,6 +125,9 @@ theorem vcSMul_mul (g : G) (C C' : VariableChange A) :
   · rw [smul_add, smul_mul', uSMul_coe]
   · rw [smul_add, smul_add, smul_mul', smul_mul', smul_mul', hp, hp, uSMul_coe]
 
+/--
+@isnad1 id=eq.0h3v.s5.96a65027f7c3 from=translated src=- shape=358abc8a vocab=50f9ee62
+-/
 @[simp] theorem vcSMul_one (g : G) : vcSMul g (1 : VariableChange A) = 1 := by
   simp only [vcSMul, VariableChange.one_def, smul_zero]
   ext <;> simp [uSMul]
@@ -124,6 +148,9 @@ noncomputable instance : MulDistribMulAction G (VariableChange A) where
   smul_mul g := vcSMul_mul g
   smul_one := vcSMul_one
 
+/--
+@isnad1 id=eq.0h4v.s6.33ada844aa5a from=translated src=- shape=076a3808 vocab=6dbe3f81
+-/
 @[simp] theorem vcSMul_smul_def (g : G) (C : VariableChange A) : g • C = vcSMul g C := rfl
 
 /-! ### The cocycle and its `u`-part trivialization ([a5-iii], step 1) -/
@@ -136,7 +163,9 @@ def IsVCocycle (C : G → VariableChange A) : Prop :=
 
 /-- Base change of a Weierstrass curve along the ring hom of a product `g * h` factors as the two
 single base changes (functoriality of `map` + multiplicativity of `MulSemiringAction.toRingHom`):
-`W.map (toRingHom (g*h)) = (W.map (toRingHom h)).map (toRingHom g)`, i.e. `(gh)•W = g•(h•W)`.-/
+`W.map (toRingHom (g*h)) = (W.map (toRingHom h)).map (toRingHom g)`, i.e. `(gh)•W = g•(h•W)`.
+@isnad1 id=eq.0h5v.s6.6a5be8e7a8c7 from=translated src=- shape=6a1874b8 vocab=d95b72b0
+-/
 theorem map_toRingHom_mul (W : WeierstrassCurve A) (g h : G) :
     W.map (MulSemiringAction.toRingHom G A (g * h))
       = (W.map (MulSemiringAction.toRingHom G A h)).map (MulSemiringAction.toRingHom G A g) := by
@@ -154,7 +183,9 @@ The `u`-part `g ↦ (C g).u` is a multiplicative `1`-cocycle in `Aˣ` (`IsVCocyc
 `(C (gh)).u = (C g).u · g • (C h).u`), so this is exactly `exists_unit_smul_eq_of_isLocalRing`
 ([A711-DESC], PROVEN). Conjugating `C` by `(d, 0, 0, 0)` reduces to the case `u = 1`, where the
 remaining `(r, s, t)`-cocycle is trivialized by the additive Hilbert 90
-`exists_sub_smul_eq_of_isCocycle`.-/
+`exists_sub_smul_eq_of_isCocycle`.
+@isnad1 id=ex.2h3v.s8.c0b19649700b from=translated src=- shape=a2b068d5 vocab=904c69df
+-/
 theorem exists_unit_u_of_isVCocycle [Fintype G] [DecidableEq G] [Nontrivial A]
     [IsLocalRing (FixedPoints.subalgebra ℤ A G)]
     (hfree : IsFreeAlgebraAction G ℤ A) {C : G → VariableChange A} (hC : IsVCocycle C) :
@@ -168,20 +199,26 @@ theorem exists_unit_u_of_isVCocycle [Fintype G] [DecidableEq G] [Nontrivial A]
 /-- Conjugating a `VariableChange` cocycle by a constant `D` yields a cocycle (same cohomology
 class): `[a5-iii] step 2` conjugates by `(d,0,0,0)` — with `d` from `exists_unit_u_of_isVCocycle` —
 to reduce to the `u = 1` case, where the residual `(r,s,t)`-cocycle is trivialized by the additive
-Hilbert 90 `exists_sub_smul_eq_of_isCocycle` (PROVEN).-/
+Hilbert 90 `exists_sub_smul_eq_of_isCocycle` (PROVEN).
+@isnad1 id=isvcocyc.1h4v.s7.0201db52b328 from=translated src=- shape=4e30dd59 vocab=baf78580
+-/
 theorem isVCocycle_conj (D : VariableChange A) {C : G → VariableChange A} (hC : IsVCocycle C) :
     IsVCocycle (fun g => D * C g * (g • D)⁻¹) := by
   intro g h
   simp only [hC g h, mul_smul g h D, smul_mul', smul_inv']
   group
 
-/-- `g • (d, 0, 0, 0) = (g • d, 0, 0, 0)`.-/
+/-- `g • (d, 0, 0, 0) = (g • d, 0, 0, 0)`.
+@isnad1 id=eq.0h4v.s7.ca4345606635 from=translated src=- shape=535f7818 vocab=600c974d
+-/
 theorem vcSMul_mk_zero (g : G) (d : Aˣ) :
     (g • (⟨d, 0, 0, 0⟩ : VariableChange A)) = ⟨uSMul g d, 0, 0, 0⟩ :=
   VariableChange.ext rfl (smul_zero g) (smul_zero g) (smul_zero g)
 
 /-- The `u`-part of the conjugate of `C g` by `(d, 0, 0, 0)` is `1`, when `d` witnesses the
-`u`-coboundary `uSMul g d = (C g).u · d`.-/
+`u`-coboundary `uSMul g d = (C g).u · d`.
+@isnad1 id=eq.1h5v.s8.c9214483477e from=translated src=- shape=fb642ecb vocab=87e30d7e
+-/
 theorem conj_u_one (d : Aˣ) {C : G → VariableChange A}
     (hd : ∀ g : G, uSMul g d = (C g).u * d) (g : G) :
     ((⟨d,0,0,0⟩ : VariableChange A) * C g * (g • (⟨d,0,0,0⟩ : VariableChange A))⁻¹).u = 1 := by
@@ -193,7 +230,9 @@ theorem conj_u_one (d : Aˣ) {C : G → VariableChange A}
 /-- **([a5-iii], step 2 — reduce to `u = 1`)** For a free action with `Aᴳ` local, every
 `VariableChange` cocycle is cohomologous to one with `u`-component identically `1`: conjugate by
 `(d, 0, 0, 0)` where `d` is the unit from `exists_unit_u_of_isVCocycle`. The residual cocycle lives
-in the `(r, s, t)` translation subgroup, to be trivialized by the additive Hilbert 90.-/
+in the `(r, s, t)` translation subgroup, to be trivialized by the additive Hilbert 90.
+@isnad1 id=ex.2h3v.s8.8da804bac80c from=translated src=- shape=cb07e5c4 vocab=d42db006
+-/
 theorem exists_conj_u_one [Fintype G] [DecidableEq G] [Nontrivial A]
     [IsLocalRing (FixedPoints.subalgebra ℤ A G)] (hfree : IsFreeAlgebraAction G ℤ A)
     {C : G → VariableChange A} (hC : IsVCocycle C) :
@@ -209,7 +248,9 @@ theorem exists_conj_u_one [Fintype G] [DecidableEq G] [Nontrivial A]
 `exists_sub_smul_eq_of_isCocycle` (additive Hilbert 90, PROVEN) yields `σ` with `(C g).s = σ − g•σ`,
 and conjugating by `(1, 0, σ, 0)` kills it (preserving `u = 1`). The `r`- and `t`-layers follow the
 same pattern (the `t`-cocycle carries the nilpotent twist `r·(g•s')`, handled after `r`, `s` are
-trivialized), completing the trivialization of the residual `(r,s,t)`-cocycle.-/
+trivialized), completing the trivialization of the residual `(r,s,t)`-cocycle.
+@isnad1 id=eq.2h5v.s7.682a832643c4 from=translated src=- shape=57de3c47 vocab=0cf2f36b
+-/
 theorem s_isCocycle_of_u_one {C : G → VariableChange A} (hC : IsVCocycle C)
     (hu : ∀ g, (C g).u = 1) (g h : G) :
     (C (g * h)).s = (C g).s + g • (C h).s := by
@@ -220,7 +261,9 @@ theorem s_isCocycle_of_u_one {C : G → VariableChange A} (hC : IsVCocycle C)
     rw [uSMul_coe, hu h, Units.val_one, smul_one]
   rw [hu1, one_mul]
 
-/-- `g • (1, 0, σ, 0) = (1, 0, g • σ, 0)`.-/
+/-- `g • (1, 0, σ, 0) = (1, 0, g • σ, 0)`.
+@isnad1 id=eq.0h4v.s8.c46d0182db0f from=translated src=- shape=6e619632 vocab=0fbebac1
+-/
 theorem vcSMul_mk_s (g : G) (σ : A) :
     (g • (⟨1,0,σ,0⟩ : VariableChange A)) = ⟨1, 0, g • σ, 0⟩ := by
   apply VariableChange.ext
@@ -229,7 +272,9 @@ theorem vcSMul_mk_s (g : G) (σ : A) :
   · simp [vcSMul_smul_def, vcSMul]
   · simp [vcSMul_smul_def, vcSMul, smul_zero]
 
-/-- The `s`-component of conjugating a `u = 1` element `C g` by `(1, 0, σ, 0)`.-/
+/-- The `s`-component of conjugating a `u = 1` element `C g` by `(1, 0, σ, 0)`.
+@isnad1 id=eq.1h5v.s8.6b121136e1c2 from=translated src=- shape=4564db60 vocab=9fbe5ead
+-/
 theorem conj_s_component (σ : A) {C : G → VariableChange A} (hu : ∀ g, (C g).u = 1) (g : G) :
     ((⟨1,0,σ,0⟩ : VariableChange A) * C g * (g • (⟨1,0,σ,0⟩ : VariableChange A))⁻¹).s
       = σ + (C g).s - g • σ := by
@@ -241,7 +286,9 @@ theorem conj_s_component (σ : A) {C : G → VariableChange A} (hu : ∀ g, (C g
 /-- **([a5-iii], step 3 — kill `s`)** A `u = 1` `VariableChange` cocycle is cohomologous to one with
 `u = 1` *and* `s = 0`: conjugate by `(1, 0, -d, 0)`, where `d` is the additive Hilbert 90
 witness for the `s`-cocycle (`(C g).s = d - g•d`). The residual cocycle now lives in the
-`(r, t)` subgroup.-/
+`(r, t)` subgroup.
+@isnad1 id=ex.3h3v.s9.7d022393d87e from=translated src=- shape=f688e064 vocab=ad52a2e9
+-/
 theorem exists_conj_s_zero [Fintype G] (hfree : IsFreeAlgebraAction G ℤ A)
     {C : G → VariableChange A} (hC : IsVCocycle C) (hu : ∀ g, (C g).u = 1) :
     ∃ D : VariableChange A, IsVCocycle (fun g => D * C g * (g • D)⁻¹) ∧
@@ -255,7 +302,9 @@ theorem exists_conj_s_zero [Fintype G] (hfree : IsFreeAlgebraAction G ℤ A)
   · rw [conj_s_component (-d) hu g, hd g, smul_neg]
     ring
 
-/-- `g • (1, ρ, 0, 0) = (1, g • ρ, 0, 0)`.-/
+/-- `g • (1, ρ, 0, 0) = (1, g • ρ, 0, 0)`.
+@isnad1 id=eq.0h4v.s8.8e0e169389db from=translated src=- shape=cfd0f310 vocab=0fbebac1
+-/
 theorem vcSMul_mk_r (g : G) (ρ : A) :
     (g • (⟨1,ρ,0,0⟩ : VariableChange A)) = ⟨1, g • ρ, 0, 0⟩ := by
   apply VariableChange.ext
@@ -267,7 +316,9 @@ theorem vcSMul_mk_r (g : G) (ρ : A) :
 /-- **([a5-iii], step 4 — kill `r`)** With `s = 0` the `r`-component of a `u = 1` cocycle is an
 additive cocycle (the nilpotent twist `r·s'` vanishes), so conjugating by `(1, -d, 0, 0)`
 (`d` the Hilbert 90 witness for the `r`-cocycle) kills `r` while preserving `u = 1` and `s = 0`.
-The residual cocycle lives in the central `t`-subgroup.-/
+The residual cocycle lives in the central `t`-subgroup.
+@isnad1 id=ex.4h3v.s9.d984ca0a169a from=translated src=- shape=49d56924 vocab=39645f40
+-/
 theorem exists_conj_r_zero [Fintype G] (hfree : IsFreeAlgebraAction G ℤ A)
     {C : G → VariableChange A} (hC : IsVCocycle C) (hu : ∀ g, (C g).u = 1)
     (hs : ∀ g, (C g).s = 0) :
@@ -293,7 +344,9 @@ theorem exists_conj_r_zero [Fintype G] (hfree : IsFreeAlgebraAction G ℤ A)
       inv_one, mul_one, mul_zero, zero_mul, add_zero, zero_add]
     rw [hd g, smul_neg]; ring
 
-/-- `g • (1, 0, 0, τ) = (1, 0, 0, g • τ)`.-/
+/-- `g • (1, 0, 0, τ) = (1, 0, 0, g • τ)`.
+@isnad1 id=eq.0h4v.s8.5353568db314 from=translated src=- shape=3e2b2593 vocab=0fbebac1
+-/
 theorem vcSMul_mk_t (g : G) (τ : A) :
     (g • (⟨1,0,0,τ⟩ : VariableChange A)) = ⟨1, 0, 0, g • τ⟩ := by
   apply VariableChange.ext
@@ -302,7 +355,9 @@ theorem vcSMul_mk_t (g : G) (τ : A) :
   · simp [vcSMul_smul_def, vcSMul, smul_zero]
   · simp [vcSMul_smul_def, vcSMul]
 
-/-- With `r = s = 0` the `t`-component of a `u = 1` cocycle is a *central* additive cocycle.-/
+/-- With `r = s = 0` the `t`-component of a `u = 1` cocycle is a *central* additive cocycle.
+@isnad1 id=eq.4h5v.s8.4899bfb56469 from=translated src=- shape=3c770796 vocab=99d49844
+-/
 theorem t_isCocycle {C : G → VariableChange A} (hC : IsVCocycle C)
     (hu : ∀ g, (C g).u = 1) (_hs : ∀ g, (C g).s = 0) (hr : ∀ g, (C g).r = 0) (g h : G) :
     (C (g * h)).t = (C g).t + g • (C h).t := by
@@ -314,7 +369,9 @@ theorem t_isCocycle {C : G → VariableChange A} (hC : IsVCocycle C)
     zero_mul, add_zero]
 
 /-- **([a5-iii], step 5 — kill `t`)** With `u = 1, r = s = 0` the `t`-cocycle is killed by
-conjugating with `(1, 0, 0, -d)`, leaving the trivial cocycle `1`.-/
+conjugating with `(1, 0, 0, -d)`, leaving the trivial cocycle `1`.
+@isnad1 id=ex.5h3v.s8.785e9aec00ca from=translated src=- shape=8e0a92b8 vocab=39645f40
+-/
 theorem exists_conj_t_zero [Fintype G] (hfree : IsFreeAlgebraAction G ℤ A)
     {C : G → VariableChange A} (hC : IsVCocycle C) (hu : ∀ g, (C g).u = 1)
     (hs : ∀ g, (C g).s = 0) (hr : ∀ g, (C g).r = 0) :
@@ -342,7 +399,9 @@ with `E = D⁻¹`.
 
 Geometrically: the `VariableChange` cocycle of the `G`-action on the universal curve's Weierstrass
 model `W₀` is trivialized by a single `E`, so `E⁻¹ • W₀` is `G`-invariant and descends to the model
-of `E/G` over `X/G = Spec Aᴳ` (`descendFixed`). This is the heart of `[a5]`.-/
+of `E/G` over `X/G = Spec Aᴳ` (`descendFixed`). This is the heart of `[a5]`.
+@isnad1 id=ex.2h3v.s8.7bd7743b6e72 from=translated src=- shape=4204b70c vocab=f81aa7b3
+-/
 theorem exists_coboundary [Fintype G] [DecidableEq G] [Nontrivial A]
     [IsLocalRing (FixedPoints.subalgebra ℤ A G)] (hfree : IsFreeAlgebraAction G ℤ A)
     {C : G → VariableChange A} (hC : IsVCocycle C) :
@@ -360,7 +419,9 @@ theorem exists_coboundary [Fintype G] [DecidableEq G] [Nontrivial A]
   rw [smul_inv', inv_inv]
   exact eq_inv_mul_iff_mul_eq.mpr h2
 
-/-- `vcSMul g` is `VariableChange.map` along the ring automorphism `g`.-/
+/-- `vcSMul g` is `VariableChange.map` along the ring automorphism `g`.
+@isnad1 id=eq.0h4v.s5.74b0f54b38f4 from=translated src=- shape=5a505879 vocab=61387c52
+-/
 theorem vcSMul_eq_map (g : G) (C : VariableChange A) :
     vcSMul g C = C.map (MulSemiringAction.toRingHom G A g) := by
   apply VariableChange.ext
@@ -372,7 +433,9 @@ theorem vcSMul_eq_map (g : G) (C : VariableChange A) :
 the *cardinality* half of the cocycle identity `C (gh) = C g * g • C h`. Both `C (gh)` and
 `C g * g • C h` carry `(gh)•W₀` to `W₀`; faithfulness of the model action
 (`projModelVCIso_injective`) upgrades this to the identity itself (the geometric half). Chains
-`mul_smul`, `map_toRingHom_mul`, `map_variableChange` and the two action-compatibilities.-/
+`mul_smul`, `map_toRingHom_mul`, `map_variableChange` and the two action-compatibilities.
+@isnad1 id=eq.1h6v.s7.371783257a67 from=translated src=- shape=10db0bbc vocab=adda1505
+-/
 theorem vc_mul_smul_eq (W₀ : WeierstrassCurve A) {C : G → VariableChange A}
     (hact : ∀ g, C g • (W₀.map (MulSemiringAction.toRingHom G A g)) = W₀) (g h : G) :
     (C g * g • C h) • (W₀.map (MulSemiringAction.toRingHom G A (g * h))) = W₀ := by
@@ -393,7 +456,9 @@ Geometrically: `W₀` is the (global) Weierstrass model of the universal curve `
 `G`-action's change-of-variables datum (`a5-ii`), and `W₁` is the Weierstrass model of the quotient
 curve `E/G` over `X/G = Spec Aᴳ`. Together with `isPullback_projModelBaseChange`,
 `projModelVCIso` and `isPullback_quotientπ` this yields the `LocallyWeierstrass` iso — the
-remaining geometric `a5-iv`.-/
+remaining geometric `a5-iv`.
+@isnad1 id=ex.3h4v.s9.07f4a112aa69 from=translated src=- shape=249e8fc6 vocab=a85c77b5
+-/
 theorem exists_invariant_descent [Fintype G] [DecidableEq G] [Nontrivial A]
     [IsLocalRing (FixedPoints.subalgebra ℤ A G)] (hfree : IsFreeAlgebraAction G ℤ A)
     (W₀ : WeierstrassCurve A) {C : G → VariableChange A} (hC : IsVCocycle C)
@@ -417,7 +482,9 @@ theorem exists_invariant_descent [Fintype G] [DecidableEq G] [Nontrivial A]
   · exact congrArg WeierstrassCurve.a₆ (hinv g)
 
 /-- A `G`-fixed element that is a unit in `A` is a unit in the fixed subring: its inverse is
-automatically fixed (`g • x⁻¹ = (g • x)⁻¹`). No integrality or finiteness needed.-/
+automatically fixed (`g • x⁻¹ = (g • x)⁻¹`). No integrality or finiteness needed.
+@isnad1 id=isunit.1h3v.s8.704dcc125b7a from=translated src=- shape=5b36b775 vocab=8cd7feeb
+-/
 theorem isUnit_subring_of_isUnit {x : FixedPoints.subring A G}
     (h : IsUnit (x : A)) : IsUnit x := by
   obtain ⟨u, hu⟩ := h
@@ -438,7 +505,9 @@ theorem isUnit_subring_of_isUnit {x : FixedPoints.subring A G}
 /-- **Ellipticity descends**: the invariant model produced by `exists_invariant_descent` is
 elliptic whenever `W₀` is — its discriminant is a fixed element mapping to the unit
 `Δ(E⁻¹ • W₀) = (E.u⁻¹)¹² • Δ(W₀)` of `A`, hence a unit of the fixed subring
-(`isUnit_subring_of_isUnit`).-/
+(`isUnit_subring_of_isUnit`).
+@isnad1 id=isellipt.2h4v.s8.9157dac6b8fc from=translated src=- shape=e04be224 vocab=1a66b917
+-/
 theorem isElliptic_of_map_isElliptic {W₁ : WeierstrassCurve (FixedPoints.subring A G)}
     {W : WeierstrassCurve A} (hmap : W₁.map (algebraMap (FixedPoints.subring A G) A) = W)
     (hW : W.IsElliptic) : W₁.IsElliptic := by

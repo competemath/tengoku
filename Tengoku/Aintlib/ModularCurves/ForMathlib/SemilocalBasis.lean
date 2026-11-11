@@ -49,7 +49,9 @@ noncomputable def basisOfSpanRangeEqTop [Nontrivial S] [Module.Free S M] [Module
     exact hinj (congrArg b.equivFun haa')
   exact (Pi.basisFun S (Fin r)).map (LinearEquiv.ofBijective φ ⟨hφinj, hφsurj⟩)
 
-/-- The basis constructed by `basisOfSpanRangeEqTop` consists of the original spanning family.-/
+/-- The basis constructed by `basisOfSpanRangeEqTop` consists of the original spanning family.
+@isnad1 id=eq.2h5v.s7.c6c2fd6db923 from=translated src=- shape=fa72b7e4 vocab=8be11586
+-/
 @[simp]
 theorem basisOfSpanRangeEqTop_apply [Nontrivial S] [Module.Free S M] [Module.Finite S M]
     {r : ℕ} (hr : Module.finrank S M = r) {y : Fin r → M}
@@ -91,7 +93,9 @@ open IsLocalRing TensorProduct
 
 variable {R : Type*} [CommRing R] [IsLocalRing R]
 
-/-- Every element after base change to the residue field is a pure tensor with first factor one.-/
+/-- Every element after base change to the residue field is a pure tensor with first factor one.
+@isnad1 id=ex.0h3v.s7.4c53b2e95f6d from=translated src=- shape=c89bec52 vocab=0371937d
+-/
 theorem exists_one_tmul_eq_residueField {N' : Type*} [AddCommGroup N'] [Module R N']
     (x : ResidueField R ⊗[R] N') : ∃ z : N', (1 : ResidueField R) ⊗ₜ[R] z = x := by
   change ∃ z : N', (1 : R ⧸ maximalIdeal R) ⊗ₜ[R] z = x
@@ -102,7 +106,9 @@ theorem exists_one_tmul_eq_residueField {N' : Type*} [AddCommGroup N'] [Module R
   apply (quotTensorEquivQuotSMul N' (maximalIdeal R)).injective
   simpa only [quotTensorEquivQuotSMul_mk_one_tmul] using hz
 
-/-- A nonzero element remains nonzero as a pure tensor when the maximal ideal kills its module.-/
+/-- A nonzero element remains nonzero as a pure tensor when the maximal ideal kills its module.
+@isnad1 id=ne.2h3v.s8.ca8e5aae8f5a from=translated src=- shape=e81a1a8d vocab=132a0de8
+-/
 theorem one_tmul_ne_zero_of_smul_top_eq_bot {T : Type*} [AddCommGroup T] [Module R T]
     (hmT : maximalIdeal R • (⊤ : Submodule R T) = ⊥) {t : T} (ht : t ≠ 0) :
     (1 : ResidueField R) ⊗ₜ[R] t ≠ (0 : ResidueField R ⊗[R] T) := by
@@ -115,7 +121,9 @@ theorem one_tmul_ne_zero_of_smul_top_eq_bot {T : Type*} [AddCommGroup T] [Module
   exact ht h1
 
 /-- A nonzero linear map into a module killed by the maximal ideal remains nonzero after base
-change.-/
+change.
+@isnad1 id=ne.2h5v.s11.d88d53b5e39b from=translated src=- shape=3e1a0adb vocab=888a27c9
+-/
 theorem baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot {N' T : Type*}
     [AddCommGroup N'] [Module R N'] [AddCommGroup T] [Module R T]
     (hmT : maximalIdeal R • (⊤ : Submodule R T) = ⊥) (f : N' →ₗ[R] T) {x : N'}
@@ -126,7 +134,9 @@ theorem baseChange_ne_zero_of_ne_zero_of_smul_top_eq_bot {N' T : Type*}
       = LinearMap.baseChange (ResidueField R) f (1 ⊗ₜ[R] x) from
     (LinearMap.baseChange_tmul _ _ _).symm, hzero, LinearMap.zero_apply]
 
-/-- Over an infinite residue field, one pure tensor simultaneously avoids finitely many kernels.-/
+/-- Over an infinite residue field, one pure tensor simultaneously avoids finitely many kernels.
+@isnad1 id=ex.1h5v.s12.132363bc0d33 from=translated src=- shape=540b6bd3 vocab=f2387493
+-/
 theorem exists_one_tmul_baseChange_ne_zero [Infinite (ResidueField R)]
     {N' : Type*} [AddCommGroup N'] [Module R N'] {s : ℕ}
     {T : Fin s → Type*} [∀ j, AddCommGroup (T j)] [∀ j, Module R (T j)]

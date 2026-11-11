@@ -25,6 +25,9 @@ universe u
 
 namespace MvPolynomial
 
+/--
+@isnad1 id=eq.0h5v.s11.9e9e944f2bb2 from=translated src=- shape=17630449 vocab=d1ce6d8f
+-/
 lemma segreCoordinateHom_monomial
     (R : Type u) [CommRing R] (m n : ℕ)
     (e : Fin (m + 1) × Fin (n + 1) →₀ ℕ) (r : R) :
@@ -64,7 +67,9 @@ lemma segreCoordinateHom_monomial
   rw [hprod, Algebra.TensorProduct.tmul_mul_tmul, monomial_eq, monomial_eq,
     hrow, hcolumn, C_1, one_mul, algebraMap_eq]
 
-/-- Equal-degree pure tensors of monomials lie in the Segre coordinate range.-/
+/-- Equal-degree pure tensors of monomials lie in the Segre coordinate range.
+@isnad1 id=mem.1h7v.s12.156adc89518a from=translated src=- shape=53d83d33 vocab=43351fa2
+-/
 lemma pureTensor_monomial_mem_segreCoordinateRange
     (R : Type u) [CommRing R] (m n : ℕ)
     (a : Fin (m + 1) →₀ ℕ) (b : Fin (n + 1) →₀ ℕ) (r s : R)
@@ -85,7 +90,9 @@ lemma pureTensor_monomial_mem_segreCoordinateRange
       rw [smul_monomial, smul_monomial]
       simp
 
-/-- Equal-degree pure tensors of homogeneous polynomials lie in the coordinate range.-/
+/-- Equal-degree pure tensors of homogeneous polynomials lie in the coordinate range.
+@isnad1 id=mem.2h6v.s12.3d8b4976a1d6 from=translated src=- shape=5b472916 vocab=ef2d08b3
+-/
 lemma pureTensor_homogeneous_mem_segreCoordinateRange
     (R : Type u) [CommRing R] (m n d : ℕ)
     (p : MvPolynomial (Fin (m + 1)) R)

@@ -46,15 +46,27 @@ variable (k : Type u) [Field k]
 
 section InstanceBridges
 
+/--
+@isnad1 id=isgalois.0h1v.s7.75fb181d62a1 from=translated src=- shape=84bfdc15 vocab=fd0a476b
+-/
 instance (priority := high) isGalois_sepClosure :
     IsGalois k (SeparableClosure k) := inferInstance
 
+/--
+@isnad1 id=normal.0h1v.s7.7046f0861aa7 from=translated src=- shape=84bfdc15 vocab=a8416b45
+-/
 instance (priority := high) normal_sepClosure :
     Normal k (SeparableClosure k) := inferInstance
 
+/--
+@isnad1 id=issepara.0h1v.s7.d2e2f01a816d from=translated src=- shape=84bfdc15 vocab=018c5a78
+-/
 instance (priority := high) isSeparable_sepClosure :
     Algebra.IsSeparable k (SeparableClosure k) := inferInstance
 
+/--
+@isnad1 id=compacts.0h1v.s8.e4795cd2112d from=translated src=- shape=2fe283a9 vocab=243250d6
+-/
 instance (priority := high) compactSpace_galSepClosure :
     CompactSpace (SeparableClosure k ≃ₐ[k] SeparableClosure k) := inferInstance
 
@@ -75,7 +87,9 @@ noncomputable instance fiberMulAction (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
   one_smul _x := AlgHom.ext fun _a => rfl
   mul_smul _σ _τ _x := AlgHom.ext fun _a => rfl
 
-/-- The action on a fiber is post-composition by a field automorphism.-/
+/-- The action on a fiber is post-composition by a field automorphism.
+@isnad1 id=eq.0h5v.s9.2af2b61428f9 from=translated src=- shape=ef92c026 vocab=43fb13d1
+-/
 lemma fiber_smul_def (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ) (σ : Ω ≃ₐ[k] Ω)
     (x : (CommAlgCat.FiniteEtale.fiber k Ω).obj X) :
     σ • x = σ.toAlgHom.comp x :=
@@ -105,7 +119,9 @@ private noncomputable def isTerminalOfSubsingleton (T : CommAlgCat.FiniteEtale.{
       uniq := fun f => by ext b; exact Subsingleton.elim _ _ }
   IsTerminal.ofUnique _
 
-/-- The carrier of a connected object of `(FiniteEtale k)ᵒᵖ` is nontrivial.-/
+/-- The carrier of a connected object of `(FiniteEtale k)ᵒᵖ` is nontrivial.
+@isnad1 id=nontrivi.0h2v.s6.0c6cc4a871ee from=translated src=- shape=9c586f2f vocab=b03c0790
+-/
 theorem nontrivial_of_isConnected (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
     [PreGaloisCategory.IsConnected X] : Nontrivial (X.unop : Type u) := by
   rcases subsingleton_or_nontrivial (X.unop : Type u) with hsub | h
@@ -129,7 +145,9 @@ private lemma not_isInitial_op_of_nontrivial (Y : CommAlgCat.FiniteEtale.{u} k)
     (CategoryTheory.ConcreteCategory.bijective_of_isIso hiso2.hom).1.subsingleton
   exact false_of_nontrivial_of_subsingleton (Y : Type u)
 
-/-- Connected finite étale algebras over a field are fields.-/
+/-- Connected finite étale algebras over a field are fields.
+@isnad1 id=isfield.0h2v.s7.dd71cbceb840 from=translated src=- shape=9c586f2f vocab=34dbfdea
+-/
 theorem isField_of_isConnected (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
     [PreGaloisCategory.IsConnected X] : IsField (X.unop : Type u) := by
   haveI hnt : Nontrivial (X.unop : Type u) := nontrivial_of_isConnected X
@@ -174,7 +192,9 @@ private lemma isField_range {A : CommAlgCat.FiniteEtale.{u} k}
   x.range.isField_of_algebraic
 
 /-- The Galois group acts transitively on the points of a connected finite étale
-algebra: any two embeddings into the separable closure are conjugate.-/
+algebra: any two embeddings into the separable closure are conjugate.
+@isnad1 id=ex.0h4v.s12.148481ac0610 from=translated src=- shape=a7d8e9ad vocab=ee95182b
+-/
 theorem exists_smul_eq_of_isConnected (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
     [PreGaloisCategory.IsConnected X]
     (x y : (CommAlgCat.FiniteEtale.fiber k (SeparableClosure k)).obj X) :
@@ -194,7 +214,9 @@ theorem exists_smul_eq_of_isConnected (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
     rfl
 
 /-- The stabiliser of a point is the fixing subgroup of a finite-dimensional
-intermediate field, hence open.-/
+intermediate field, hence open.
+@isnad1 id=isopen.0h3v.s12.584b571bf66d from=translated src=- shape=3076291f vocab=1be51d73
+-/
 theorem stabilizer_isOpen (X : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ)
     (x : (CommAlgCat.FiniteEtale.fiber k (SeparableClosure k)).obj X) :
     IsOpen {σ : SeparableClosure k ≃ₐ[k] SeparableClosure k | σ • x = x} := by
@@ -253,7 +275,9 @@ instance : GaloisCategory (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ where
     ⟨CommAlgCat.FiniteEtale.fiber k (SeparableClosure k), inferInstance⟩
 
 /-- The absolute Galois group of `k` is a fundamental group for the fiber functor of
-`(FiniteEtale k)ᵒᵖ` at the separable closure.-/
+`(FiniteEtale k)ᵒᵖ` at the separable closure.
+@isnad1 id=isfundam.0h1v.s9.83b1aad8af42 from=translated src=- shape=7f2e66de vocab=efac08f0
+-/
 noncomputable instance isFundamentalGroup_galSepClosure :
     PreGaloisCategory.IsFundamentalGroup
     (CommAlgCat.FiniteEtale.fiber k (SeparableClosure k) :
@@ -334,7 +358,9 @@ noncomputable def pointsEquivOfContAction
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- The counit points-equivalence is Galois-equivariant: the fiber action (by
-post-composition) corresponds to the action of the continuous Galois set.-/
+post-composition) corresponds to the action of the continuous Galois set.
+@isnad1 id=eq.0h4v.s18.6a0ced163542 from=translated src=- shape=bd3c1845 vocab=a067c4c4
+-/
 lemma pointsEquivOfContAction_smul
     (X : ContAction FintypeCat.{u} (SeparableClosure k ≃ₐ[k] SeparableClosure k))
     (σ : SeparableClosure k ≃ₐ[k] SeparableClosure k)
@@ -348,7 +374,9 @@ lemma pointsEquivOfContAction_smul
   exact h2
 
 /-- The functor of the Galois correspondence acts on morphisms by the fiber functor
-(the `resEquiv`/`functorToContAction` layers only re-index the group side).-/
+(the `resEquiv`/`functorToContAction` layers only re-index the group side).
+@isnad1 id=eq.0h4v.s16.c444f26f0914 from=translated src=- shape=cfd4b58a vocab=3e56bcaa
+-/
 lemma finiteEtaleEquivContAction_functor_map_hom
     {X Y : (CommAlgCat.FiniteEtale.{u} k)ᵒᵖ} (f : X ⟶ Y) :
     ((finiteEtaleEquivContAction k).functor.map f).hom.hom =

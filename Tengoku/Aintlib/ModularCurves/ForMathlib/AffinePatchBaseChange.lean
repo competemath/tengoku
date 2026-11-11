@@ -36,7 +36,9 @@ noncomputable def pullbackPreimageIsoPullbackRestrict
       pullbackRightPullbackFstIso f t U.ι
 
 /-- The inverse image of an affine source patch by an affine base change is
-affine.-/
+affine.
+@isnad1 id=isaffine.1h6v.s7.3ddffbfce929 from=translated src=- shape=e99695ed vocab=c865916e
+-/
 theorem IsAffineOpen.preimage_pullback_fst
     {X S T : Scheme.{u}} (f : X ⟶ S) (t : T ⟶ S) {U : X.Opens}
     (hU : IsAffineOpen U) [IsAffine S] [IsAffine T] :
@@ -74,7 +76,9 @@ noncomputable def pullbackPreimageΓIsoTensor
 
 /-- The inverse of the affine-patch section isomorphism is the inverse
 Kunneth map, followed by transport across the geometric patch isomorphism
-and the ambient-open comparison.-/
+and the ambient-open comparison.
+@isnad1 id=eq.1h6v.s16.024989c00473 from=translated src=- shape=a955a500 vocab=c4ceb46e
+-/
 theorem pullbackPreimageΓIsoTensor_inv
     {X S T : Scheme.{u}} (f : X ⟶ S) (t : T ⟶ S) (U : X.Opens)
     (hU : IsAffineOpen U) [IsAffine S] [IsAffine T] :

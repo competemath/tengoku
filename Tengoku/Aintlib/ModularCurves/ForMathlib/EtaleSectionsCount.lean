@@ -65,7 +65,9 @@ noncomputable def algHomEquivPrimeSpectrum : (A →ₐ[K] K) ≃ PrimeSpectrum A
     exact hc.trans rfl
 
 /-- A formally étale, essentially-finite-type algebra over a separably closed field has
-exactly `finrank` many homomorphisms to the base field.-/
+exactly `finrank` many homomorphisms to the base field.
+@isnad1 id=eq.0h2v.s6.a2176b0b9fc0 from=translated src=- shape=b92f587c vocab=7a66099b
+-/
 theorem natCard_algHom_eq_finrank : Nat.card (A →ₐ[K] K) = Module.finrank K A := by
   haveI := Algebra.FormallyUnramified.finite_of_free K A
   haveI : IsArtinianRing A := isArtinian_of_tower K inferInstance
@@ -85,7 +87,9 @@ is `finrank k B` (`Subspace.dual_finrank_eq`). This is the inseparable-tolerant 
 `natCard_algHom_eq_finrank` (which upgrades `≤` to `=` under a formal-étale, separably-closed
 hypothesis): it bounds the number of `k`-points of the fibre of a finite morphism by its rank even
 when the fibre is non-reduced — the form needed for the kernel-cardinality bound `|ker δ| ≤ deg δ`
-of a (possibly inseparable) isogeny.-/
+of a (possibly inseparable) isogeny.
+@isnad1 id=le.0h2v.s6.ead1c2ad58df from=translated src=- shape=c3964e0a vocab=cba69892
+-/
 theorem natCard_algHom_le_finrank (k B : Type*) [Field k] [Ring B] [Algebra k B]
     [FiniteDimensional k B] :
     Nat.card (B →ₐ[k] k) ≤ Module.finrank k B := by
@@ -141,7 +145,9 @@ def retractionsEquivAlgHom {A : CommRingCat.{u}} (ψ : CommRingCat.of k ⟶ A)
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- **(T-B6d)** A finite étale scheme over the spectrum of a separably closed field has
-exactly `finrank` many sections.-/
+exactly `finrank` many sections.
+@isnad1 id=eq.0h4v.s7.dc655ceb70db from=translated src=- shape=e4cd7c05 vocab=aa48415a
+-/
 theorem natCard_sections_eq_finrank {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [IsFinite f] [Etale f] (x₀ : ↑(Spec (CommRingCat.of k))) :
     Nat.card { s : Spec (CommRingCat.of k) ⟶ X // s ≫ f = 𝟙 (Spec (CommRingCat.of k)) }
@@ -186,7 +192,9 @@ finite `k`-scheme is bounded by its rank, with **no** étale / separability hypo
 for a possibly non-reduced fibre. The section space is identified with `Γ(X, ⊤) →ₐ[k] k` (as in
 `natCard_sections_eq_finrank`); over a field `Γ(X, ⊤)` is automatically free, so the fibre rank is
 its `finrank`, and `natCard_algHom_le_finrank` supplies the bound. This is the scheme-level form of
-the kernel-cardinality bound `|ker δ| ≤ deg δ` for a (possibly inseparable) isogeny ([KEY-KER]).-/
+the kernel-cardinality bound `|ker δ| ≤ deg δ` for a (possibly inseparable) isogeny ([KEY-KER]).
+@isnad1 id=le.0h4v.s7.9a9191ff49a5 from=translated src=- shape=62a72832 vocab=4e7fee8e
+-/
 theorem natCard_sections_le_finrank {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k))
     [IsFinite f] (x₀ : ↑(Spec (CommRingCat.of k))) :
     Nat.card { s : Spec (CommRingCat.of k) ⟶ X // s ≫ f = 𝟙 (Spec (CommRingCat.of k)) }
@@ -246,7 +254,9 @@ liftings are the sections of the base-changed `pullback.snd f z` (`liftingsEquiv
 count is `≤` its rank (`natCard_sections_le_finrank`, no separability needed), and base change
 preserves the rank (`finrank_pullback_snd`). Applied to an isogeny `δ` and the zero point this is the
 kernel bound `|ker δ| ≤ deg δ` ([KEY-KER] for STREAM-GH): `N` distinct killed points inject into the
-fibre over `0`, forcing `N ≤ δ.finrank 0 = deg δ`, even when `δ` is inseparable.-/
+fibre over `0`, forcing `N ≤ δ.finrank 0 = deg δ`, even when `δ` is inseparable.
+@isnad1 id=le.0h6v.s8.a02bdb149790 from=translated src=- shape=648a4a52 vocab=a6d47ac5
+-/
 theorem natCard_liftings_le_finrank {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [IsFinite f]
     (z : Spec (CommRingCat.of k) ⟶ Y) (x₀ : ↑(Spec (CommRingCat.of k))) :
     Nat.card { a : Spec (CommRingCat.of k) ⟶ X // a ≫ f = z } ≤ f.finrank (z x₀) := by
@@ -257,7 +267,9 @@ theorem natCard_liftings_le_finrank {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [I
 omit [IsSepClosed k] in
 /-- The sections of a **finite** scheme over the spectrum of a field form a finite set: they are
 identified with `Γ(X, ⊤) →ₐ[k] k` (the section ↔ retraction ↔ algebra-hom chain of
-`natCard_sections_eq_finrank`), finite because `Γ(X, ⊤)` is finite-dimensional over `k`.-/
+`natCard_sections_eq_finrank`), finite because `Γ(X, ⊤)` is finite-dimensional over `k`.
+@isnad1 id=finite.0h3v.s6.014f2704cf38 from=translated src=- shape=0bab781e vocab=16b068f0
+-/
 lemma finite_sections {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k)) [IsFinite f] :
     Finite { s : Spec (CommRingCat.of k) ⟶ X // s ≫ f = 𝟙 (Spec (CommRingCat.of k)) } := by
   haveI : IsAffine X := isAffine_of_isAffineHom f
@@ -277,7 +289,9 @@ lemma finite_sections {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of k)) [IsFi
 omit [IsSepClosed k] in
 /-- The liftings of a `k`-point `z` through a **finite** morphism `f` form a finite set (the fibre
 `f⁻¹(z)` has finitely many `k`-points): they are the sections of the finite base change
-`pullback.snd f z` (`liftingsEquivSections`, `finite_sections`).-/
+`pullback.snd f z` (`liftingsEquivSections`, `finite_sections`).
+@isnad1 id=finite.0h5v.s6.04ad326f619f from=translated src=- shape=b281ca3e vocab=305c5fc0
+-/
 lemma finite_liftings {X Y : Scheme.{u}} (f : X ⟶ Y) [IsFinite f]
     (z : Spec (CommRingCat.of k) ⟶ Y) :
     Finite { a : Spec (CommRingCat.of k) ⟶ X // a ≫ f = z } :=
@@ -290,7 +304,9 @@ of a `k`-point `z` through a **finite flat** `f : X ⟶ Y` are pairwise distinct
 (z x₀)`. This is the directly-applicable form of `natCard_liftings_le_finrank`: the caller supplies
 `N` distinct points of the fibre `f⁻¹(z)` (e.g. `N` distinct points killed by an isogeny `δ`, as
 liftings of the zero point through `δ.left`) and reads off the rank bound `N ≤ deg δ`. Works for
-inseparable `f`.-/
+inseparable `f`.
+@isnad1 id=le.1h8v.s8.a078e9cc0996 from=translated src=- shape=f65adc5d vocab=44b2b485
+-/
 theorem card_le_finrank_of_injective_liftings {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f] [IsFinite f]
     (z : Spec (CommRingCat.of k) ⟶ Y) (x₀ : ↑(Spec (CommRingCat.of k))) (N : ℕ)
     (a : Fin N → { a : Spec (CommRingCat.of k) ⟶ X // a ≫ f = z }) (hinj : Function.Injective a) :

@@ -478,7 +478,9 @@ private theorem totalUpNatHorizontalEdge_homologyMap_injective
     _ = 0 := haClassZero
 
 /-- The horizontal edge map is a quasi-isomorphism in degree one when the three
-low horizontal short complexes used by the cycle chase are exact.-/
+low horizontal short complexes used by the cycle chase are exact.
+@isnad1 id=quasiiso.5h3v.s11.bf62d5482073 from=translated src=- shape=b89bbdac vocab=8e426d99
+-/
 theorem totalUpNatHorizontalEdge_quasiIsoAt_one
     (A : CochainComplex AddCommGrpCat.{u} ℕ)
     (e : ∀ q, A.X q ⟶ (K.X q).X 0)

@@ -39,7 +39,9 @@ open IsLocalRing
 
 /-- **[FF-2] Stalks of a standard-smooth curve over a field at closed points are
 discrete valuation rings.** Bundles the `IsDomain` instance (part of the content) with
-the DVR structure; downstream consumers `obtain ⟨_, _⟩` and `haveI` both.-/
+the DVR structure; downstream consumers `obtain ⟨_, _⟩` and `haveI` both.
+@isnad1 id=ex.0h3v.s7.398840312d47 from=translated src=- shape=aebb5501 vocab=23ef552c
+-/
 theorem isDiscreteValuationRing_localizationAtPrime_of_isStandardSmooth
     (k A : Type u) [Field k] [CommRing A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]
@@ -81,7 +83,9 @@ ring, so `flat_iff_torsion_eq_bot_of_valuationRing_localization_isMaximal` reduc
 to torsion-freeness, which is immediate from `B` a domain and `algebraMap A B` injective.
 This is the ring-level heart of the fibre case of BB-FLAT: on each affine chart of the
 projective model over a field, the pushforward coordinate ring is a finite torsion-free
-module, hence flat.-/
+module, hence flat.
+@isnad1 id=flat.1h3v.s7.88a2902b721d from=translated src=- shape=8fbb9e09 vocab=ae9244f4
+-/
 theorem flat_of_isDomain_of_injective_of_isStandardSmooth
     (k A B : Type u) [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     [Algebra.IsStandardSmoothOfRelativeDimension 1 k A]

@@ -31,7 +31,9 @@ namespace ModularCurves
 
 /-- **Ring-level input**: if `φ : R →+* A` is flat and `B` is a ring retract of `A`
 compatibly over `R` (`ψ ∘ ρ = id`, `ρ ∘ ψ ∘ φ = φ`), then `ψ ∘ φ` is flat. Pure
-algebra — the scheme-level statement reduces to this at stalks.-/
+algebra — the scheme-level statement reduces to this at stalks.
+@isnad1 id=flat.3h6v.s7.676b90590fcf from=translated src=- shape=e931a2a3 vocab=b74984fb
+-/
 theorem _root_.RingHom.Flat.of_retract {R A B : Type u} [CommRing R] [CommRing A]
     [CommRing B] (φ : R →+* A) (ψ : A →+* B) (ρ : B →+* A)
     (hψρ : ψ.comp ρ = RingHom.id B) (hρφ : ρ.comp (ψ.comp φ) = φ)
@@ -59,7 +61,9 @@ theorem _root_.RingHom.Flat.of_retract {R A B : Type u} [CommRing R] [CommRing A
 
 /-- **Flatness descends along retracts over a base.** If `i : X ⟶ Y` and `r : Y ⟶ X`
 are morphisms over `S` with `i ≫ r = 𝟙 X`, and `g : Y ⟶ S` is flat, then
-`f : X ⟶ S` is flat.-/
+`f : X ⟶ S` is flat.
+@isnad1 id=flat.3h7v.s6.6befff883f62 from=translated src=- shape=1093aef5 vocab=a93b0fc9
+-/
 theorem Flat.of_retract_over {X Y S : Scheme.{u}} {f : X ⟶ S} {g : Y ⟶ S}
     (i : X ⟶ Y) (r : Y ⟶ X) (hir : i ≫ r = 𝟙 X)
     (hi : i ≫ g = f) (hr : r ≫ f = g) [Flat g] : Flat f := by

@@ -60,11 +60,17 @@ noncomputable def specSMul (g : G) :
     Spec (CommRingCat.of B) ⟶ Spec (CommRingCat.of B) :=
   Spec.map (CommRingCat.ofHom (MulSemiringAction.toRingHom G B g))
 
+/--
+@isnad1 id=eq.0h2v.s6.c018a64c3c76 from=translated src=- shape=ed7c7472 vocab=fa598ea3
+-/
 @[simp]
 theorem specSMul_one : specSMul (1 : G) (B := B) = 𝟙 _ := by
   rw [specSMul, show CommRingCat.ofHom (MulSemiringAction.toRingHom G B 1) =
     𝟙 (CommRingCat.of B) from by ext b; exact one_smul G b, Spec.map_id]
 
+/--
+@isnad1 id=eq.0h4v.s6.d3f10b7838b5 from=translated src=- shape=abe67341 vocab=277f77f9
+-/
 theorem specSMul_mul (g h : G) :
     specSMul (g * h) (B := B) = specSMul g ≫ specSMul h := by
   rw [specSMul, show CommRingCat.ofHom (MulSemiringAction.toRingHom G B (g * h)) =
@@ -73,13 +79,18 @@ theorem specSMul_mul (g h : G) :
     ext b; exact mul_smul g h b, Spec.map_comp]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.5a993b39eb54 from=translated src=- shape=1eca7e87 vocab=9ff21f82
+-/
 theorem specSMul_apply (g : G) (p : Spec (CommRingCat.of B)) :
     specSMul g p = PrimeSpectrum.comap (MulSemiringAction.toRingHom G B g) p :=
   rfl
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- The scheme-theoretic action and the pointwise action on prime ideals: `specSMul g`
-sends a prime `p` to `g⁻¹ • p`.-/
+sends a prime `p` to `g⁻¹ • p`.
+@isnad1 id=eq.0h4v.s9.4b361a9d7fff from=translated src=- shape=5f9a165b vocab=142a360e
+-/
 theorem specSMul_apply_asIdeal (g : G) (p : Spec (CommRingCat.of B)) :
     (specSMul g p).asIdeal = g⁻¹ • p.asIdeal := by
   ext b
@@ -103,7 +114,9 @@ noncomputable def invariantsπ :
     Spec (CommRingCat.of B) ⟶ Spec (CommRingCat.of (FixedPoints.subalgebra R B G)) :=
   Spec.map (CommRingCat.ofHom (algebraMap (FixedPoints.subalgebra R B G) B))
 
-/-- The invariants morphism coequalizes the `G`-action.-/
+/-- The invariants morphism coequalizes the `G`-action.
+@isnad1 id=eq.0h4v.s8.28b00593239d from=translated src=- shape=e72b58f6 vocab=bc2a15dc
+-/
 @[reassoc (attr := simp)]
 theorem specSMul_invariantsπ (g : G) :
     specSMul g ≫ invariantsπ G B R = invariantsπ G B R := by
@@ -113,7 +126,9 @@ theorem specSMul_invariantsπ (g : G) :
   exact a.2 g
 
 /-- For a finite group, the invariants morphism is surjective: every prime of the fixed
-subalgebra lies under a prime of `B`.-/
+subalgebra lies under a prime of `B`.
+@isnad1 id=surjecti.0h3v.s10.95bb22287868 from=translated src=- shape=73092c6d vocab=e9aa7747
+-/
 theorem invariantsπ_surjective [Finite G] :
     Function.Surjective (invariantsπ G B R).base := by
   have hint : (algebraMap (FixedPoints.subalgebra R B G) B).IsIntegral :=
@@ -123,7 +138,9 @@ theorem invariantsπ_surjective [Finite G] :
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- The fibres of the invariants morphism are exactly the `G`-orbits: two primes of `B`
-lie over the same prime of `Bᴳ` iff they differ by the action of some `g : G`.-/
+lie over the same prime of `Bᴳ` iff they differ by the action of some `g : G`.
+@isnad1 id=iff.0h5v.s11.9e974d2b5acc from=translated src=- shape=31215a26 vocab=03127a3e
+-/
 theorem invariantsπ_apply_eq_iff [Finite G] (x y : Spec (CommRingCat.of B)) :
     invariantsπ G B R x = invariantsπ G B R y ↔ ∃ g : G, specSMul g x = y := by
   constructor

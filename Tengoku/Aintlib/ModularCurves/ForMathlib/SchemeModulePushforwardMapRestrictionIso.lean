@@ -18,7 +18,9 @@ namespace AlgebraicGeometry.Scheme.Modules
 noncomputable section
 
 /-- If a morphism of modules is an isomorphism over the inverse image of an open, then its
-pushforward is an isomorphism over that open.-/
+pushforward is an isomorphism over that open.
+@isnad1 id=isiso.0h7v.s11.e24511aec68d from=translated src=- shape=ad06d967 vocab=37e71770
+-/
 theorem isIso_restrict_pushforward_map_of_restrict
     {X Y : Scheme.{u}} (f : X ⟶ Y) (U : Y.Opens)
     {M N : X.Modules} (α : M ⟶ N)

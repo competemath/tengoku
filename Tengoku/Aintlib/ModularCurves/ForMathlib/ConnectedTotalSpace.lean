@@ -33,7 +33,9 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] {f : X → Y}
 
 /-- **Connected total space of an open–closed map with connected fibres.** If `f : X → Y` is
 open and closed, every fibre `f ⁻¹' {y}` is connected, and `Y` is connected, then `X` is
-connected.-/
+connected.
+@isnad1 id=connecte.3h3v.s5.44d74a1efd89 from=translated src=- shape=afa4064a vocab=ddfc7983
+-/
 theorem connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
     (hf₁ : IsOpenMap f) (hf₂ : IsClosedMap f) [ConnectedSpace Y]
     (hfib : ∀ y, IsConnected (f ⁻¹' {y})) : ConnectedSpace X := by
@@ -62,7 +64,9 @@ theorem connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage
     exact hsplit.ne_empty rfl
   exact { toPreconnectedSpace := hpre, toNonempty := hne }
 
-/-- Connectedness transfers up a subtype inclusion.-/
+/-- Connectedness transfers up a subtype inclusion.
+@isnad1 id=isconnec.2h3v.s5.d756277a186c from=translated src=- shape=5a0b7bc6 vocab=7b475e9f
+-/
 lemma isConnected_preimage_val {Z : Type*} [TopologicalSpace Z] {u A : Set Z} (hAu : A ⊆ u)
     (hA : IsConnected A) : IsConnected (Subtype.val ⁻¹' A : Set u) := by
   haveI : ConnectedSpace ↑A := isConnected_iff_connectedSpace.mp hA
@@ -74,7 +78,9 @@ lemma isConnected_preimage_val {Z : Type*} [TopologicalSpace Z] {u A : Set Z} (h
 fibres of the components**: `connectedComponent x = f ⁻¹' (connectedComponent (f x))`.
 The `⊇` direction restricts `f` over a component and applies
 `connectedSpace_of_isOpenMap_of_isClosedMap_of_isConnected_preimage`. Supply for the
-componentwise canonicity glue (AINTLIB T-W7.7·C4glue); upstream candidate.-/
+componentwise canonicity glue (AINTLIB T-W7.7·C4glue); upstream candidate.
+@isnad1 id=eq.4h4v.s6.52de1456b43c from=translated src=- shape=0adb3b83 vocab=f3325de2
+-/
 theorem connectedComponent_eq_preimage_connectedComponent
     (hcont : Continuous f) (hopen : IsOpenMap f) (hclosed : IsClosedMap f)
     (hfib : ∀ y, IsConnected (f ⁻¹' {y})) (x : X) :

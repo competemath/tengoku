@@ -34,21 +34,33 @@ def dehomogenizeOption (R : Type*) [CommSemiring R] :
     | none => 1
     | some i => X i
 
+/--
+@isnad1 id=eq.0h3v.s8.c69c10afe84c from=translated src=- shape=526992e1 vocab=661349b0
+-/
 @[simp]
 lemma dehomogenizeOption_C (r : R) :
     dehomogenizeOption (σ := σ) R (C r) = C r :=
   eval₂Hom_C _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s7.fd50a027fa01 from=translated src=- shape=c458f2ba vocab=f5f931c4
+-/
 @[simp]
 lemma dehomogenizeOption_X_none :
     dehomogenizeOption (σ := σ) R (X none) = 1 := by
   simp [dehomogenizeOption]
 
+/--
+@isnad1 id=eq.0h3v.s7.e851171fe557 from=translated src=- shape=6013145c vocab=38c15efb
+-/
 @[simp]
 lemma dehomogenizeOption_X_some (i : σ) :
     dehomogenizeOption (σ := σ) R (X (some i)) = X i := by
   simp [dehomogenizeOption]
 
+/--
+@isnad1 id=eq.0h3v.s8.298a0accb5b5 from=translated src=- shape=8ea92d58 vocab=49fcc186
+-/
 @[simp]
 lemma dehomogenizeOption_rename_some (p : MvPolynomial σ R) :
     dehomogenizeOption (σ := σ) R (rename some p) = p := by
@@ -65,6 +77,9 @@ def homogenizeOption (p : MvPolynomial σ R) (n : ℕ) : MvPolynomial (Option σ
   ∑ i ∈ range (n + 1),
     rename some (homogeneousComponent i p) * X none ^ (n - i)
 
+/--
+@isnad1 id=ishomoge.0h4v.s4.abc1234d0c9c from=translated src=- shape=0349bba7 vocab=147a19a9
+-/
 lemma homogenizeOption_isHomogeneous (p : MvPolynomial σ R) (n : ℕ) :
     (homogenizeOption p n).IsHomogeneous n := by
   refine IsHomogeneous.sum (range (n + 1)) _ n ?_
@@ -77,6 +92,9 @@ lemma homogenizeOption_isHomogeneous (p : MvPolynomial σ R) (n : ℕ) :
     isHomogeneous_X_pow none (n - i)
   simpa [Nat.add_sub_of_le hi'] using hleft.mul hright
 
+/--
+@isnad1 id=eq.1h4v.s7.0a6b200081fe from=translated src=- shape=396afcf6 vocab=a4eb8d97
+-/
 lemma dehomogenizeOption_homogenizeOption (p : MvPolynomial σ R) (n : ℕ)
     (h : p.totalDegree ≤ n) :
     dehomogenizeOption (σ := σ) R (homogenizeOption p n) = p := by
@@ -99,6 +117,9 @@ private lemma map_homogeneousComponent (g : R →+* S) (p : MvPolynomial σ R) (
   rw [coeff_map, coeff_homogeneousComponent, coeff_homogeneousComponent, coeff_map]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s8.310b2c94411d from=translated src=- shape=52980f38 vocab=06234a87
+-/
 lemma homogenizeOption_map (g : R →+* S) (p : MvPolynomial σ R) (n : ℕ) :
     homogenizeOption (map g p) n = map g (homogenizeOption p n) := by
   simp only [homogenizeOption, map_sum, map_mul, map_pow, map_rename, map_X,
@@ -113,11 +134,17 @@ def homogenizedIdeal {κ : Type*} (g : κ → MvPolynomial σ R) (d : κ → ℕ
       exact ⟨d j, (mem_homogeneousSubmodule _ _).mpr
         (homogenizeOption_isHomogeneous (g j) (d j))⟩⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.f6caaeffdc8d from=translated src=- shape=45279a9a vocab=2f1c7547
+-/
 lemma homogenizedIdeal_toIdeal {κ : Type*} (g : κ → MvPolynomial σ R) (d : κ → ℕ) :
     (homogenizedIdeal g d).toIdeal =
       Ideal.span (Set.range fun j ↦ homogenizeOption (g j) (d j)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.911d3be1adc2 from=translated src=- shape=a96a1dbe vocab=020ba174
+-/
 lemma map_homogenizedIdeal {κ : Type*} (f : R →+* S) (g : κ → MvPolynomial σ R)
     (d : κ → ℕ) :
     Ideal.map (map (σ := Option σ) f) (homogenizedIdeal g d).toIdeal =
@@ -129,6 +156,9 @@ lemma map_homogenizedIdeal {κ : Type*} (f : R →+* S) (g : κ → MvPolynomial
   funext j
   exact (homogenizeOption_map f (g j) (d j)).symm
 
+/--
+@isnad1 id=eq.1h5v.s8.b6c152e59e84 from=translated src=- shape=14b722e5 vocab=0a559b74
+-/
 lemma map_dehomogenizeOption_homogenizedIdeal {κ : Type*}
     (g : κ → MvPolynomial σ R) (d : κ → ℕ)
     (h : ∀ j, (g j).totalDegree ≤ d j) :

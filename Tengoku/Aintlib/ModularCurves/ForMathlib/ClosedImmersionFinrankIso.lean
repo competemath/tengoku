@@ -52,7 +52,9 @@ private lemma Scheme.Hom.finrank_comp_right_of_isIso {X Y Z : Scheme.{u}} (φ : 
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- Over an affine base, the scheme-`finrank` of a finite flat morphism equals the stalkwise
-rank of its global sections as an algebra over the base.-/
+rank of its global sections as an algebra over the base.
+@isnad1 id=eq.0h4v.s12.05c5cf8aca51 from=translated src=- shape=9d5c8b9a vocab=095b5a83
+-/
 lemma Scheme.Hom.finrank_eq_rankAtStalk_isAffineBase {Y S : Scheme.{u}} [IsAffine S]
     [IsAffine Y] (g : Y ⟶ S) [Flat g] [IsFinite g] (p : PrimeSpectrum ↑Γ(S, ⊤)) :
     letI : Algebra ↑Γ(S, ⊤) ↑Γ(Y, ⊤) := (g.appTop).hom.toAlgebra
@@ -91,7 +93,9 @@ namespace ModularCurves
 set_option backward.isDefEq.respectTransparency.types false in
 /-- A closed immersion `j : X ⟶ Y` of schemes finite flat locally-of-finite-presentation over
 an **affine** base `S`, whose `Γ(S)`-modules `Γ(Y)` and `Γ(X)` have equal rank at every prime,
-is an isomorphism.-/
+is an isomorphism.
+@isnad1 id=isiso.1h5v.s13.186f1260f81d from=translated src=- shape=af247d23 vocab=2b80ad66
+-/
 theorem isIso_of_isClosedImmersion_of_rankAtStalk_eq_isAffineBase
     {X Y S : Scheme.{u}} [IsAffine S] (g : Y ⟶ S) (j : X ⟶ Y)
     [IsClosedImmersion j] [IsFinite g] [Flat g] [LocallyOfFinitePresentation g]
@@ -127,7 +131,9 @@ theorem isIso_of_isClosedImmersion_of_rankAtStalk_eq_isAffineBase
 
 /-- **Same-degree closed immersion is an isomorphism (affine base, `finrank` form).** A closed
 immersion `j : X ⟶ Y` of finite flat lfp schemes over an affine base `S`, whose scheme-ranks
-over `S` agree everywhere, is an isomorphism.-/
+over `S` agree everywhere, is an isomorphism.
+@isnad1 id=isiso.1h5v.s7.10afb242690a from=translated src=- shape=141f0933 vocab=5566609a
+-/
 theorem isIso_of_isClosedImmersion_of_finrank_eq_isAffineBase
     {X Y S : Scheme.{u}} [IsAffine S] (g : Y ⟶ S) (j : X ⟶ Y)
     [IsClosedImmersion j] [IsFinite g] [Flat g] [LocallyOfFinitePresentation g]
@@ -145,7 +151,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 /-- **Same-degree closed immersion is an isomorphism (general base).** A closed immersion
 `j : X ⟶ Y` between schemes finite, flat, and locally of finite presentation over `S`, whose
 scheme-ranks over `S` agree everywhere, is an isomorphism. Reduces to the affine-base case on
-the preimages of an affine cover of `S`.-/
+the preimages of an affine cover of `S`.
+@isnad1 id=isiso.1h5v.s6.f5396c92e055 from=translated src=- shape=77226f38 vocab=31756e08
+-/
 theorem isIso_of_isClosedImmersion_of_finrank_eq
     {X Y S : Scheme.{u}} (g : Y ⟶ S) (j : X ⟶ Y)
     [IsClosedImmersion j] [IsFinite g] [Flat g] [LocallyOfFinitePresentation g]

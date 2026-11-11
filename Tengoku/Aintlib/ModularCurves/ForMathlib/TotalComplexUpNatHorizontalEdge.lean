@@ -59,6 +59,9 @@ noncomputable def totalUpNatHorizontalEdge
           (e (q + 1) ≫ K.ιTotal (.up ℕ) (q + 1) 0 (q + 1) rfl) := by
         rw [Category.assoc]
 
+/--
+@isnad1 id=eq.2h5v.s10.aab16bb80227 from=translated src=- shape=acec5a39 vocab=9033d483
+-/
 @[simp]
 theorem totalUpNatHorizontalEdge_f
     (A : CochainComplex C ℕ) (e : ∀ q, A.X q ⟶ (K.X q).X 0)

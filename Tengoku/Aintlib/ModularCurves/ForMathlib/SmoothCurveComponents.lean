@@ -39,7 +39,9 @@ namespace ModularCurves
 variable {A : Type u} [CommRing A]
 
 /-- The contraction of `⊥` along `A ⟶ A_m` sits inside every prime contained in `m`: if
-`s * a = 0` with `s ∉ m`, then `s ∉ r` for `r ≤ m`, so primality gives `a ∈ r`.-/
+`s * a = 0` with `s ∉ m`, then `s ∉ r` for `r ≤ m`, so primality gives `a ∈ r`.
+@isnad1 id=le.1h3v.s9.149918534f80 from=translated src=- shape=916cc4d7 vocab=0a8c7d74
+-/
 theorem comap_bot_localizationAtPrime_le (m : Ideal A) [m.IsPrime] {r : Ideal A} [r.IsPrime]
     (hrm : r ≤ m) :
     Ideal.comap (algebraMap A (Localization.AtPrime m)) ⊥ ≤ r := by
@@ -75,7 +77,9 @@ theorem eq_of_mem_minimalPrimes_of_le (m : Ideal A) [m.IsPrime]
     (eq_comap_bot_of_mem_minimalPrimes m hq hqm).symm
 
 /-- **(WP-D3a-DOM)** …hence distinct minimal primes are **comaximal**, which is the input the
-Chinese-remainder decomposition needs.-/
+Chinese-remainder decomposition needs.
+@isnad1 id=eq.4h3v.s7.e9d3df77f708 from=translated src=- shape=56c79074 vocab=0f344978
+-/
 theorem sup_eq_top_of_ne_of_mem_minimalPrimes
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))
     {p q : Ideal A} (hp : p ∈ minimalPrimes A) (hq : q ∈ minimalPrimes A) (hne : p ≠ q) :
@@ -88,7 +92,9 @@ theorem sup_eq_top_of_ne_of_mem_minimalPrimes
     (le_sup_right.trans hle))
 
 /-- **(WP-D3a-DOM)** The minimal primes, indexed by the subtype, are pairwise coprime — the
-hypothesis of the Chinese remainder theorem and of `Ideal.pi_quotient_surjective`.-/
+hypothesis of the Chinese remainder theorem and of `Ideal.pi_quotient_surjective`.
+@isnad1 id=pairwise.1h1v.s8.a78072dab53d from=translated src=- shape=fb60e03a vocab=7e0da2dc
+-/
 theorem pairwise_isCoprime_minimalPrimes
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m)) :
     Pairwise (Function.onFun IsCoprime
@@ -98,7 +104,9 @@ theorem pairwise_isCoprime_minimalPrimes
     (sup_eq_top_of_ne_of_mem_minimalPrimes hloc p.2 q.2 (Subtype.coe_ne_coe.mpr hpq))
 
 /-- **(WP-D3a-DOM)** A ring whose localizations at maximal ideals are domains is reduced.
-Domains are reduced, and reducedness is a local property at the maximal ideals.-/
+Domains are reduced, and reducedness is a local property at the maximal ideals.
+@isnad1 id=isreduce.1h1v.s6.deb7f08c1888 from=translated src=- shape=429a0de6 vocab=662b9d28
+-/
 theorem isReduced_of_localizationAtPrime_isDomain
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m)) :
     IsReduced A :=
@@ -108,7 +116,9 @@ theorem isReduced_of_localizationAtPrime_isDomain
     infer_instance
 
 /-- **(WP-D3a-DOM)** …and its minimal primes therefore intersect in `⊥`: the intersection of
-the minimal primes over `⊥` is the radical of `⊥`, which is the nilradical.-/
+the minimal primes over `⊥` is the radical of `⊥`, which is the nilradical.
+@isnad1 id=eq.1h1v.s7.4e14a71520e5 from=translated src=- shape=35c36ae5 vocab=7a5acb02
+-/
 theorem sInf_minimalPrimes_eq_bot
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m)) :
     sInf (minimalPrimes A) = ⊥ := by
@@ -120,7 +130,9 @@ theorem sInf_minimalPrimes_eq_bot
 /-- **(WP-D3a-DOM)** The map to the product over the minimal primes is injective. Together
 with `Ideal.pi_quotient_surjective` applied to `pairwise_isCoprime_minimalPrimes`, this is the
 product decomposition `A ≅ ∏ A ⧸ pᵢ` in the two forms downstream needs: a value can be
-prescribed on each component, and a value is determined by its components.-/
+prescribed on each component, and a value is determined by its components.
+@isnad1 id=injectiv.1h1v.s9.0ccc25d388af from=translated src=- shape=671ae964 vocab=7e536656
+-/
 theorem injective_pi_quotient_minimalPrimes
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m)) :
     Function.Injective (fun a : A => fun p : {p : Ideal A // p ∈ minimalPrimes A} =>
@@ -146,7 +158,9 @@ noncomputable def cominimal [IsNoetherianRing A] (p : Ideal A) : Ideal A :=
   ⨅ q ∈ (minimalPrimes.finite_of_isNoetherianRing A).toFinset.erase p, q
 
 /-- **(WP-D3a-FACTOR, step 1)** `p` is coprime to the intersection of the other minimal
-primes.-/
+primes.
+@isnad1 id=iscoprim.2h2v.s7.c62788565cf4 from=translated src=- shape=166facb0 vocab=95d42ca3
+-/
 theorem isCoprime_cominimal [IsNoetherianRing A]
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))
     {p : Ideal A} (hp : p ∈ minimalPrimes A) :
@@ -158,7 +172,9 @@ theorem isCoprime_cominimal [IsNoetherianRing A]
         (Ne.symm (Finset.mem_erase.mp hq).1))
 
 /-- **(WP-D3a-FACTOR, step 1)** …and the two meet in `⊥`: together with the intersection of
-all the minimal primes being `⊥`, this exhibits `A` as the product `A ⧸ p × A ⧸ cominimal`.-/
+all the minimal primes being `⊥`, this exhibits `A` as the product `A ⧸ p × A ⧸ cominimal`.
+@isnad1 id=eq.1h2v.s7.d1b06afca7ae from=translated src=- shape=ee24aa04 vocab=8207686d
+-/
 theorem inf_cominimal_eq_bot [IsNoetherianRing A]
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))
     (p : Ideal A) :
@@ -173,7 +189,9 @@ theorem inf_cominimal_eq_bot [IsNoetherianRing A]
 
 /-- **(WP-D3a-FACTOR, step 2)** A minimal prime of such a ring is generated by `1 - e` for an
 idempotent `e`: write `1 = a + b` with `a ∈ p` and `b ∈ cominimal A p`; then `a·b` lies in
-`p ⊓ cominimal A p = ⊥`, so `b` is idempotent, and `x ∈ p` forces `x = x·a`.-/
+`p ⊓ cominimal A p = ⊥`, so `b` is idempotent, and `x ∈ p` forces `x = x·a`.
+@isnad1 id=ex.2h2v.s7.9199bb9fc42e from=translated src=- shape=6a17cd87 vocab=d6244805
+-/
 theorem exists_isIdempotentElem_span_one_sub_eq [IsNoetherianRing A]
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))
     {p : Ideal A} (hp : p ∈ minimalPrimes A) :
@@ -206,7 +224,9 @@ theorem exists_isIdempotentElem_span_one_sub_eq [IsNoetherianRing A]
 
 /-- **(WP-D3a-FACTOR, step 2)** …so `A ⧸ p` is a **localization of `A` away from an
 element**, which is what transports standard smoothness to the factor
-(`Algebra.IsStandardSmoothOfRelativeDimension.localization_away`).-/
+(`Algebra.IsStandardSmoothOfRelativeDimension.localization_away`).
+@isnad1 id=ex.2h2v.s7.f5bf992a82e3 from=translated src=- shape=f6b665e1 vocab=9f55f539
+-/
 theorem exists_isLocalization_away_quotient_minimalPrime [IsNoetherianRing A]
     (hloc : ∀ (m : Ideal A) [m.IsMaximal], IsDomain (Localization.AtPrime m))
     {p : Ideal A} (hp : p ∈ minimalPrimes A) :

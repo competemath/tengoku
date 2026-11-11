@@ -51,6 +51,9 @@ noncomputable def subschemeAffineChartIso (U : X.affineOpens) :
     inferInstance
     ((J.range_chartMap U).trans (Scheme.Opens.range_ι _).symm)
 
+/--
+@isnad1 id=eq.0h3v.s9.1140a7bbc224 from=translated src=- shape=134749a1 vocab=8a68e0b3
+-/
 @[reassoc (attr := simp)]
 theorem subschemeAffineChartIso_hom_ι (U : X.affineOpens) :
     (J.subschemeAffineChartIso U).hom ≫
@@ -67,6 +70,9 @@ theorem subschemeAffineChartIso_hom_ι (U : X.affineOpens) :
     inferInstance
     ((J.range_chartMap U).trans (Scheme.Opens.range_ι _).symm)
 
+/--
+@isnad1 id=eq.0h3v.s9.50d4f5bbd248 from=translated src=- shape=c34b8011 vocab=8a01ef20
+-/
 @[reassoc (attr := simp)]
 theorem subschemeAffineChartIso_hom_restrict (U : X.affineOpens) :
     (J.subschemeAffineChartIso U).hom ≫

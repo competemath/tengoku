@@ -78,7 +78,9 @@ noncomputable def quotientModuleRestrictionIso (I : Ideal R)
 
 variable {R : CommRingCat.{u}}
 
-/-- The pullback--pushforward unit on an ideal-annihilated tilde sheaf is invertible.-/
+/-- The pullback--pushforward unit on an ideal-annihilated tilde sheaf is invertible.
+@isnad1 id=isiso.1h3v.s9.24d4b726da53 from=translated src=- shape=1ff38c26 vocab=82387b86
+-/
 theorem isIso_pullbackPushforward_unit_tilde_idealQuotient
     (M : ModuleCat R) (I : Ideal R)
     (h : Module.IsTorsionBySet R M (I : Set R)) :
@@ -107,7 +109,9 @@ theorem isIso_pullbackPushforward_unit_tilde_idealQuotient
 namespace Scheme.Modules
 
 /-- The pullback--pushforward unit on an affine quasicoherent module annihilated by
-an ideal is invertible along the quotient-spectrum map.-/
+an ideal is invertible along the quotient-spectrum map.
+@isnad1 id=isiso.1h3v.s10.bb878474b2a5 from=translated src=- shape=a7cc6c89 vocab=2dceb9c9
+-/
 theorem isIso_pullbackPushforward_unit_affine_idealQuotient
     (F : (Spec R).Modules) [F.IsQuasicoherent]
     (I : Ideal R)

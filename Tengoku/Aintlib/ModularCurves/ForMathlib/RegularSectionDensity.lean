@@ -34,7 +34,9 @@ universe u
 open CategoryTheory
 
 /-- **[FMT-0a]** The kernel of localization away from a nonzerodivisor is zero — the
-affine heart of "`D(f)` is schematically dense".-/
+affine heart of "`D(f)` is schematically dense".
+@isnad1 id=eq.1h2v.s8.c56f4001d8aa from=translated src=- shape=5939c4ac vocab=e022e014
+-/
 theorem Localization.Away.ker_algebraMap_eq_bot
     (R : Type*) [CommRing R] {f : R} (hf : f ∈ nonZeroDivisors R) :
     RingHom.ker (algebraMap R (Localization.Away f)) = ⊥ :=
@@ -43,7 +45,9 @@ theorem Localization.Away.ker_algebraMap_eq_bot
       (Submonoid.powers_le.mpr hf)
 
 /-- **[FMT-0c]** Over a ℤ-flat (equivalently torsion-free) ring, every nonzero integer is
-a nonzerodivisor — the ONLY point where KM's "flat over ℤ" hypothesis is consumed.-/
+a nonzerodivisor — the ONLY point where KM's "flat over ℤ" hypothesis is consumed.
+@isnad1 id=mem.1h2v.s6.15b05b790576 from=translated src=- shape=b0d29427 vocab=70ae7dad
+-/
 theorem isSMulRegular_natCast_of_flat
     (R : Type*) [CommRing R] [Module.Flat ℤ R] {N : ℤ} (hN : N ≠ 0) :
     (N : R) ∈ nonZeroDivisors R := by

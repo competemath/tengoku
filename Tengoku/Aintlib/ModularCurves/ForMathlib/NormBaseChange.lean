@@ -32,7 +32,9 @@ variable [Algebra R B] [Algebra R A] [Algebra R A']
 variable [Module.Free R B] [Module.Finite R B]
 
 /-- The norm of a finite free extension commutes with base change along a map of
-coefficient algebras.-/
+coefficient algebras.
+@isnad1 id=eq.0h6v.s11.f1d1bf5e69fe from=translated src=- shape=e2408b3b vocab=997902c8
+-/
 theorem norm_tensor_map (ψ : A →ₐ[R] A') (f : A ⊗[R] B) :
     Algebra.norm A' (Algebra.TensorProduct.map ψ (AlgHom.id R B) f) =
       ψ (Algebra.norm A f) := by

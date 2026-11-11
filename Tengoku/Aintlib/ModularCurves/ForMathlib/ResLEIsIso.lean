@@ -16,7 +16,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- An isomorphic restriction remains an isomorphism after shrinking the
-target and taking its exact preimage inside the original source open.-/
+target and taking its exact preimage inside the original source open.
+@isnad1 id=isiso.3h7v.s8.3e79e8b212f6 from=translated src=- shape=d99c4c6e vocab=f6c1f7b2
+-/
 theorem Scheme.Hom.resLE_isIso_of_le_of_resLE_isIso
     {X Y : Scheme.{u}} (f : X ⟶ Y)
     {U : Y.Opens} {V : X.Opens}
