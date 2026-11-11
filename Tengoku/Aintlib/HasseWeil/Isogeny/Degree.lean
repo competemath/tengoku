@@ -1,0 +1,73 @@
+/-
+Copyright (c) 2026 Chris Birkbeck. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Chris Birkbeck
+-/
+import Tengoku.Aintlib.HasseWeil.Isogeny.FunctionField
+import Tengoku.Seed.FieldTheory.SeparableDegree
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Separable and Inseparable Degree of Isogenies
+
+We define the separable and inseparable degrees of an isogeny using mathlib's
+`Field.finSepDegree`, and prove their basic properties.
+
+## Main Definitions
+
+* `HasseWeil.Isogeny.sepDegree`: The separable degree of an isogeny.
+* `HasseWeil.Isogeny.isSeparable`: Predicate for a separable isogeny.
+
+## Main Results
+
+* `HasseWeil.Isogeny.sepDegree_dvd_degree`: The separable degree divides the degree.
+* `HasseWeil.Isogeny.isSeparable_iff`: An isogeny is separable iff `sepDegree = degree`.
+
+## References
+
+* [Silverman, *The Arithmetic of Elliptic Curves*], III.4
+-/
+
+open WeierstrassCurve Field
+
+namespace HasseWeil
+
+namespace PullbackIsogeny
+
+variable {F : Type*} [Field F]
+variable {W₁ W₂ : Affine F} [W₁.IsElliptic] [W₂.IsElliptic]
+
+/-- The separable degree of an isogeny, defined as the number of `F`-algebra
+    embeddings of `K(E₂)` into the algebraic closure of `K(E₁)`, via the
+    pullback algebra structure.
+
+    In the full theory (Silverman III.4), this equals the cardinality of a
+    generic fiber: `#φ⁻¹(Q) = deg_s(φ)` for all `Q ∈ E₂`.-/
+noncomputable def sepDegree (φ : PullbackIsogeny F W₁ W₂) : ℕ :=
+  @Field.finSepDegree W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra
+
+/-- An isogeny is **separable** if its separable degree equals its degree.-/
+def IsSeparable (φ : PullbackIsogeny F W₁ W₂) : Prop :=
+  φ.sepDegree = φ.degree
+
+/-- The separable degree divides the total degree.
+@isnad1 id=dvd.0h4v.s5.2ac29b979b11 from=translated src=- shape=738c2cb2 vocab=3a82fbfa
+-/
+theorem sepDegree_dvd_degree (φ : PullbackIsogeny F W₁ W₂) :
+    φ.sepDegree ∣ φ.degree := by
+  simp only [sepDegree, degree]
+  exact @Field.finSepDegree_dvd_finrank W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra
+
+/-- For a finite extension, the separable degree is at most the total degree.
+@isnad1 id=le.1h4v.s9.bd9b134a8b71 from=translated src=- shape=b0949314 vocab=f0ca6ba0
+-/
+theorem sepDegree_le_degree (φ : PullbackIsogeny F W₁ W₂)
+    (hfin : @FiniteDimensional W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra.toModule) :
+    φ.sepDegree ≤ φ.degree := by
+  simp only [sepDegree, degree]
+  exact @Field.finSepDegree_le_finrank W₂.FunctionField W₁.FunctionField _ _ φ.toAlgebra hfin
+
+end PullbackIsogeny
+
+end HasseWeil

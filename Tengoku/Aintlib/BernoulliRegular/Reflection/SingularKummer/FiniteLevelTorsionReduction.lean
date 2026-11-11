@@ -1,0 +1,102 @@
+module
+
+public import Tengoku.Aintlib.BernoulliRegular.Reflection.SingularKummer.FiniteLevelAdditiveProjection
+public import Tengoku.Aintlib.BernoulliRegular.Reflection.SingularKummer.TorsionComponent
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Singular Kummer: reducing finite-level components to `p`-torsion components
+
+This file records the passage from an exact finite-level character relation to
+the mod-`p` character component on `A[p]`.  The point is elementary: on an
+element killed by `p`, scalar multiplication by an element of `ZMod m` only
+depends on its image in `ZMod p`.
+-/
+
+@[expose] public section
+
+noncomputable section
+
+namespace BernoulliRegular
+namespace Reflection
+namespace SingularKummer
+
+namespace FiniteLevelTorsionReduction
+
+variable {p m : ℕ} [NeZero p] [NeZero m]
+variable {A : Type*} [AddCommGroup A] [Module (ZMod m) A]
+
+/-- Natural-number scalar multiplication on a `p`-torsion element agrees with
+scalar multiplication by its class in `ZMod p`.
+@isnad1 id=eq.0h4v.s8.cfcbc02a2f3c from=translated src=- shape=280bd767 vocab=aef7095f
+-/
+theorem nsmul_ptorsion_eq_zmod_smul
+    (n : ℕ) (x : TorsionComponent.PTorsion A p) :
+    n • (x : A) = (((n : ZMod p) • x : TorsionComponent.PTorsion A p) : A) := by
+  rw [TorsionComponent.coe_zmod_smul, ZMod.val_natCast]
+  exact nsmul_eq_mod_nsmul n x.2
+
+/-- Scalar multiplication by an element of `ZMod m` on a `p`-torsion element
+depends only on its image in `ZMod p`.
+@isnad1 id=eq.2h6v.s8.893440665d60 from=translated src=- shape=132e8d0c vocab=8dbb0668
+-/
+theorem zmod_smul_ptorsion_eq_of_castHom_eq
+    (hm : p ∣ m) (c : ZMod m) (a : ZMod p)
+    (x : TorsionComponent.PTorsion A p)
+    (hc : ZMod.castHom hm (ZMod p) c = a) :
+    c • (x : A) = ((a • x : TorsionComponent.PTorsion A p) : A) := by
+  have hcval : (c.val : ZMod p) = a := by
+    simpa [ZMod.castHom_apply, ZMod.natCast_zmod_val c] using hc
+  calc
+    c • (x : A) = c.val • (x : A) := by
+      conv_lhs => rw [← ZMod.natCast_zmod_val c]
+      exact Nat.cast_smul_eq_nsmul (ZMod m) c.val (x : A)
+    _ = (((c.val : ZMod p) • x : TorsionComponent.PTorsion A p) : A) :=
+      nsmul_ptorsion_eq_zmod_smul (p := p) c.val x
+    _ = ((a • x : TorsionComponent.PTorsion A p) : A) := by
+      rw [hcval]
+
+/-- If the finite-level character reduces to the mod-`p` character
+`a ↦ a^i`, then every `p`-torsion element in the exact finite-level component
+lies in the existing `A[p]_i` component.
+@isnad1 id=mem.4h7v.s9.ac6b99adc040 from=translated src=- shape=d89d3bba vocab=d0189ce2
+-/
+theorem mem_torsionComponent_of_mem_finiteLevelComponent
+    (hcard : IsUnit (Fintype.card (CharacterProjection.Delta p) : ZMod p))
+    (hm : p ∣ m) (i : ℕ)
+    (rho : CharacterProjection.Delta p →* Multiplicative (A ≃+ A))
+    (chi : CharacterProjection.Delta p →* (ZMod m)ˣ)
+    (hchi : ∀ d : CharacterProjection.Delta p,
+      ZMod.castHom hm (ZMod p) (chi d : ZMod m) = ((d : ZMod p) ^ i))
+    {x : TorsionComponent.PTorsion A p}
+    (hx : (x : A) ∈
+      FiniteLevelAdditiveProjection.componentSubgroup (m := m) rho chi) :
+    x ∈ TorsionComponent.torsionComponent (p := p) i rho := by
+  refine CharacterProjection.mem_characterProjection_range_of_forall_apply_eq_smul
+    (p := p) hcard i (TorsionComponent.torsionAction (p := p) rho) ?_
+  intro d
+  apply Subtype.ext
+  calc
+    ((TorsionComponent.torsionAction (p := p) rho d x :
+        TorsionComponent.PTorsion A p) : A)
+        = Multiplicative.toAdd (rho d) (x : A) := by
+          simp
+    _ = (chi d : ZMod m) • (x : A) :=
+          FiniteLevelAdditiveProjection.apply_eq_character_smul_of_mem_component
+            (m := m) rho chi d hx
+    _ = ((((d : ZMod p) ^ i) • x :
+        TorsionComponent.PTorsion A p) : A) :=
+          zmod_smul_ptorsion_eq_of_castHom_eq
+            (p := p) (m := m) hm (chi d : ZMod m) ((d : ZMod p) ^ i) x
+            (hchi d)
+
+end FiniteLevelTorsionReduction
+
+end SingularKummer
+end Reflection
+end BernoulliRegular
+
+end
+
+end

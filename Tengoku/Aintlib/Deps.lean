@@ -1,0 +1,1 @@
+-- Aintlib: a factory bundle (data/intake/aintlib). This file only marks the library for Tengoku/All.lean.
