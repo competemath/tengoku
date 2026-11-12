@@ -1,0 +1,1 @@
+-- PrimeGaps186: a factory bundle (data/intake/prime-gaps-186). This file only marks the library for Tengoku/All.lean.
