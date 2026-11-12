@@ -49,6 +49,7 @@ import Tengoku.Statsmllib
 import Tengoku.Leancamcombi
 import Tengoku.EvmAsm
 import Tengoku.KuroshProblemAtGkDimensionTwo
+import Tengoku.PrimeGaps186
 import Tengoku.Flt
 import Tengoku.HasseMinkowski
 import Tengoku.Toric

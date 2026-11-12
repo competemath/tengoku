@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e0edf2a5e27c47c8b459d8403fc95b6615dd8c2103a79813bd136ba3d31756ad",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "prime-gaps-186",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 3170
+}

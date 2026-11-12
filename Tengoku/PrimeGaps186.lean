@@ -1,0 +1,1 @@
+import Tengoku.PrimeGaps186.PrimeGaps186
