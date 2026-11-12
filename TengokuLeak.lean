@@ -57,6 +57,8 @@ structure Counts where
   notatScoped : Nat := 0
   /-- declarations of the library whose name has one component: nothing in the name says which library they belong to -/
   roots : Array Name := #[]
+  /-- those of `roots` that are global instances: a name Lean generates for an anonymous `instance` is one, and no text declares it (reported as `root-instance:` lines) -/
+  rootInstances : Array Name := #[]
 
 def stripForall : Expr → Expr
   | .forallE _ _ b _ => stripForall b
@@ -290,10 +292,16 @@ def scan (pfxs : List Name) : CoreM (Array Leak × Counts) := do
           leaks := leaks.push { kind := "notation", name := decl, registeredIn := modName, declaredIn := dm,
                                 line := if dm == some modName then r.map (·.range.pos.line) else none }
       | _ => pure ()
+  let mut instNames : NameSet := {}
+  for i in idxs do
+    for e in instanceExtension.ext.getModuleEntries env i do
+      if let .global ie := e then
+        if let some gn := ie.globalName? then instNames := instNames.insert gn
   for (n, _) in env.constants.map₁.toList do
     if let some m := env.getModuleIdxFor? n then
       if idxs.contains m && n.isAtomic && !n.isInternal && !n.hasMacroScopes then
         counts := { counts with roots := counts.roots.push n }
+        if instNames.contains n then counts := { counts with rootInstances := counts.rootInstances.push n }
   return (leaks, counts)
 
 def report (treePrefix : Name) (leaks : Array Leak) (c : Counts) : List String :=
@@ -309,7 +317,7 @@ def report (treePrefix : Name) (leaks : Array Leak) (c : Counts) : List String :
     s!"{c.simp} global simp lemmas ({(leaks.filter (·.kind == "simp")).size} trigger on nothing of the library), {c.simpScoped} scoped; " ++
     s!"{c.notat} global parsers ({(leaks.filter (·.kind == "notation")).size} reuse a token of another module or reserve a word as one), {c.notatScoped} scoped",
    s!"roots: {c.roots.size} declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)"]
-    ++ rows ++ c.roots.toList.map fun n => s!"root: {n}"
+    ++ rows ++ c.roots.toList.map (fun n => s!"root: {n}") ++ c.rootInstances.toList.map fun n => s!"root-instance: {n}"
 
 unsafe def main (argv : List String) : IO UInt32 := do
   enableInitializersExecution
