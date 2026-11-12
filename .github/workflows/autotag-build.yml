@@ -117,7 +117,15 @@ jobs:
         run: |
           mods=(); args=()
           while read -r m; do mods+=("$m"); args+=(--module "$m"); done < <(python3 -c 'import json; print("\n".join(json.load(open("plan.json"))["modules"]))')
-          lake build "${mods[@]}" 2>&1 | tail -3
+          # the build's whole output to a file; a failure shows its error lines, not only Lake's last three (tengoku#780: two tagged modules failed and the log
+          # named the modules but no error, so the tagger's fault could not be read)
+          if ! lake build "${mods[@]}" > tagged-build.log 2>&1; then
+            # never ends the step before the last lines are shown: no error line (Lake killed, an uncaught exception) or more than 200 lines of them (Gitar, #782)
+            { grep -E -A4 '(^|: )error' tagged-build.log || echo "(no error line: the last 40 lines follow)"; } | head -200 || true
+            tail -40 tagged-build.log
+            exit 1
+          fi
+          tail -3 tagged-build.log
           python3 scripts/isnad.py check-tags "${args[@]}" 2>&1 | tee check.log
       - name: The artifact, and the trusted half's own checks on it (a dry run, nothing is written)
         if: steps.plan.outputs.any == 'true'
