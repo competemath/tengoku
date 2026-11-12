@@ -6,7 +6,8 @@ name (a fixture record in selftest.sh tripped this in the sandbox). Seeded
 modules, data, docs and licences are covered. One exception: deleting the whole data
 file of a source taken off the allowlist (_git.deregistered), whose records must leave
 the tree with their credits. The other: a RAZE PR (scripts/ci/raze_check.py judges it) takes the modules of an intake library out of the tree, and their credit lines go with them:
-the files it deletes, and the manifest lines of the modules whose files it deletes (the corrected bundle that brings the modules back carries its own)."""
+the files it deletes, and the manifest lines of the modules whose files it deletes (the corrected bundle that brings the modules back carries its own).
+A ROOTS PR (scripts/ci/roots_check.py judges it) renames declarations: a manifest record that changes in its name and statement only, with every other field (source_url, authors, …) as it was, has lost no credit."""
 
 from __future__ import annotations
 
@@ -31,9 +32,39 @@ restructure = (
     "--restructure" in sys.argv
 )  # the seed moves into Tengoku/Seed/: a credit line is not removed while it is in the file at its new path
 raze = "--raze" in sys.argv  # a removal of intake modules: the credit lines of what is deleted go with it (and nothing else)
+roots = (
+    "--roots" in sys.argv
+)  # a roots PR renames declarations: a manifest record whose provenance is untouched (everything but name and statement) has lost no credit
 razed_files: set[str] = set()
 if raze:
     razed_files = {p for st, p in changed_files(base, head) if st == "D" and re.fullmatch(r"Tengoku/.+\.lean", p)}
+
+
+def provenance_key(text: str) -> str | None:
+    """A manifest record without its name and statement: what carries the credit (source, authors, toolchain, …); None when the line is not a JSON object."""
+    try:
+        rec = json.loads(text)
+    except Exception:
+        return None
+    if not isinstance(rec, dict):
+        return None
+    rec.pop("name", None)
+    rec.pop("statement", None)
+    return json.dumps(rec, sort_keys=True, ensure_ascii=False)
+
+
+roots_gained: dict[str, Counter[str]] = {}
+
+
+def renamed_record(path: str, text: str) -> bool:
+    """Whether this removed manifest line has a successor in the PR that differs in name and statement only (each gained record covers one removal)."""
+    if path not in roots_gained:
+        roots_gained[path] = Counter(k for _, t in added_lines(base, head, path) if (k := provenance_key(t)) is not None)
+    key = provenance_key(text)
+    if key is None or roots_gained[path][key] <= 0:
+        return False
+    roots_gained[path][key] -= 1
+    return True
 
 
 def razed_record(text: str) -> bool:
@@ -117,6 +148,8 @@ for st, p in changed_files(base, head):
             gained[core] -= 1
             continue
         if raze and re.fullmatch(r"data/intake/[^/]+/manifest\.jsonl", p) and razed_record(text):
+            continue
+        if roots and re.fullmatch(r"data/intake/[^/]+/manifest\.jsonl", p) and renamed_record(p, text):
             continue
         if promotion and match(p, ["data/staging/*.jsonl", "data/staging/*/*.jsonl"]):
             try:
