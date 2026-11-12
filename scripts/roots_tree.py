@@ -137,9 +137,34 @@ ROOT_DECL = re.compile(
 NAMESPACE_NAME = re.compile(rf"^(?P<pre>\s*(?:(?:public|noncomputable)\s+)*namespace\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 END_NAME = re.compile(rf"^(?P<pre>\s*end\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 OPEN_MARK = "namespace {ns} end {ns} open {ns} "
-OPEN_LINE = re.compile(
-    r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+(?:scoped\s+)?)(?P<args>[^()]*?)(?P<post>\s+(?:hiding|renaming)\b.*|\s+in\s*|\s*\(.*)?\s*$"
+OPEN_HEADS = (  # `open scoped …` first; when that leaves no valid ending, `scoped` is an argument (the order a backtracking match would try)
+    re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+scoped\s+)"),
+    re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+)"),
 )
+OPEN_TAIL = (  # where the arguments of an `open` end: before `hiding`/`renaming`, before a trailing `in`, before a `(`, or at the end of the line
+    re.compile(r"\s+(?:hiding|renaming)\b"),
+    re.compile(r"\s+in\s*$"),
+    re.compile(r"\s*\("),
+    re.compile(r"\s*$"),
+)
+
+
+def open_args(code: str) -> tuple[int, str] | None:
+    """(column, text) of the arguments of an `open` line, or None: the shortest arguments (no parenthesis in them) after which the line ends as an `open` line may end. The same as the
+    regular expression with a lazy `[^()]*?` and an alternation of those endings (the factory's, emissary-archangel scope_rewrite.py OPEN_LINE) finds on every well-formed `open` line,
+    without its backtracking (each candidate end is tried once); they differ only on lines that are no Lean (`open scoped  hiding)`), where the old one backtracked into the blanks."""
+    for head_re in OPEN_HEADS:
+        head = head_re.match(code)
+        if not head:
+            continue
+        rest = code[head.end() :]
+        for end in range(len(rest) + 1):
+            if end and rest[end - 1] in "()":
+                break  # the arguments cannot contain a parenthesis
+            tail = rest[end:]
+            if any(t.match(tail) for t in OPEN_TAIL):
+                return head.end(), rest[:end]
+    return None
 
 
 def parse_roots(text: str) -> set[str]:
@@ -158,7 +183,13 @@ def _uses_roots(f: Lines, roots: set[str]) -> bool:
 def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = True) -> dict:
     """The edits of one module: a declaration whose name is a root of the library, a `namespace R` block of a root R (with its `end`), and a dotted `R.x` declaration get `<ns>.`
     in front; the first body line gets `namespace NS end NS open NS` when the module declares or still uses a root. All of it goes INSIDE existing lines (no line moves)."""
-    done: dict = {"declared": [], "namespaces": 0, "dotted": 0, "opened": False, "heads": set()}
+    done: dict = {
+        "declared": [],
+        "namespaces": 0,
+        "dotted": 0,
+        "opened": False,
+        "heads": set(),
+    }
     open_at, end_of = scope_info(f.code)
     for i, code in enumerate(f.code):
         if any(NAMESPACE.match(f.code[o]) for o in open_at[i]):
@@ -187,11 +218,13 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
     for i, code in enumerate(
         f.code
     ):  # `open R` of a root namespace R: the namespace moved, so the `open` follows (right to left: an insertion shifts the columns after it)
-        if (m := OPEN_LINE.match(code)) and "namespace" not in code:
-            for t in reversed(list(re.finditer(rf"(?:{QUOTED}|[^\s«»])+", m.group("args")))):
+        found = open_args(code) if "namespace" not in code else None
+        if found:
+            column, args = found
+            for t in reversed(list(re.finditer(rf"(?:{QUOTED}|[^\s«»])+", args))):
                 tok = t.group(0)
                 if head_of(tok) in roots and not tok.startswith(ns):
-                    f.insert(i, m.start("args") + t.start(), ns + ".")
+                    f.insert(i, column + t.start(), ns + ".")
                     done["opens"] = done.get("opens", 0) + 1
     touched = bool(done["declared"] or done["namespaces"] or done["dotted"] or done.get("opens"))
     first = body_start(f.text)
@@ -202,14 +235,11 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
     return done
 
 
-def qualify_manifest(root: Path, roots: set[str], ns: str) -> int:
-    """The manifest record of a declaration whose name starts with a root that the module pass renamed (`roots` is that set: the declaration itself, a member of its namespace block, a dotted
-    `R.x`) follows: the module now declares `<ns>.<name>`. A root no module pass renamed (an anonymous instance) leaves its record alone. Returns the count."""
-    path = root / "manifest.jsonl"
-    if not path.is_file():
-        return 0
+def qualify_manifest_text(text: str, roots: set[str], ns: str) -> tuple[str, int]:
+    """The manifest lines (text) of a declaration whose name starts with a root that the module pass renamed (`roots` is that set: the declaration itself, a member of its namespace block, a dotted
+    `R.x`) follow: the module now declares `<ns>.<name>`. A root no module pass renamed (an anonymous instance) leaves its record alone. Returns the new text and the count."""
     out, changed = [], 0
-    for line in path.read_text(encoding="utf-8").splitlines(keepends=True):
+    for line in text.splitlines(keepends=True):
         rec = json.loads(line) if line.strip() else None
         if rec and head_of(rec.get("name", "")) in roots:
             f = Lines(rec["statement"])
@@ -219,8 +249,7 @@ def qualify_manifest(root: Path, roots: set[str], ns: str) -> int:
             line = json.dumps(rec, ensure_ascii=False) + "\n"
             changed += 1
         out.append(line)
-    path.write_text("".join(out), encoding="utf-8")
-    return changed
+    return "".join(out), changed
 
 
 def valid_namespace(ns: str) -> str:
@@ -230,66 +259,97 @@ def valid_namespace(ns: str) -> str:
     return ns
 
 
-def qualify_library(lib_dir: Path, roots: set[str], ns: str) -> dict:
-    """qualify_roots_in_file on every module under `Tengoku/<Library>/` (the umbrella `Tengoku/<Library>.lean` only imports)"""
-    report: dict = {"qualified": 0, "namespaces": 0, "dotted": 0, "modules_opened": 0, "unresolved": []}
-    seen: set[str] = set()
-    renamed: set[str] = set()
-    for path in sorted(lib_dir.rglob("*.lean")):
-        f = Lines(path.read_text(encoding="utf-8"))
-        d = qualify_roots_in_file(f, roots, ns)
-        if not f.edited:
-            continue
-        report["qualified"] += len(d["declared"])
-        report["namespaces"] += d["namespaces"]
-        report["dotted"] += d["dotted"]
-        report["modules_opened"] += 1 if d["opened"] else 0
-        seen.update(d["declared"])
-        renamed |= d["heads"]
-        new = "\n".join(f.text)
-        if not new.endswith("\n"):
-            new += "\n"
-        new += f"-- Tengoku: root names of this library moved to {ns} so they do not collide with other libraries (generated)\n"
-        path.write_text(new, encoding="utf-8")
-    report["unresolved"] = sorted(roots - seen)
-    report["renamed"] = sorted(renamed)  # the roots the module pass renamed: what the manifest follows
-    return report
+LIBRARY = re.compile(r"[A-Za-z][A-Za-z0-9]*")  # `Tengoku/<Library>/`: a plain identifier, never a path
+MODULE_PATH = r"Tengoku/{lib}/.+\.lean"
+MANIFEST_PATH = re.compile(r"data/intake/[^/]+/manifest\.jsonl")
+NOTE = "-- Tengoku: root names of this library moved to {ns} so they do not collide with other libraries (generated)\n"
 
 
-def manifest_namespace(manifest: Path) -> str | None:
+def qualify_module_text(text: str, roots: set[str], ns: str) -> tuple[str | None, dict]:
+    """qualify_roots_in_file on the text of one module: the new text (with the generated note) and the edits; None when nothing changed"""
+    f = Lines(text)
+    d = qualify_roots_in_file(f, roots, ns)
+    if not f.edited:
+        return None, d
+    new = "\n".join(f.text)
+    if not new.endswith("\n"):
+        new += "\n"
+    return new + NOTE.format(ns=ns), d
+
+
+def manifest_namespace_text(text: str) -> str | None:
     """`Tengoku.<Library>` of an intake manifest: the first two components of the module of its first record"""
-    for ln in manifest.read_text(encoding="utf-8").splitlines():
+    for ln in text.splitlines():
         if ln.strip():
             parts = (json.loads(ln).get("module") or "").split(".")
             return ".".join(parts[:2]) if len(parts) > 2 and parts[0] == "Tengoku" else None
     return None
 
 
-def apply(tree: Path, roots_dir: Path) -> dict:
-    out: dict = {}
-    for rep in sorted(roots_dir.glob("*.txt")):
-        lib = rep.stem
-        roots = parse_roots(rep.read_text(encoding="utf-8", errors="replace"))
-        lib_dir = tree / "Tengoku" / lib
-        if not roots or not lib_dir.is_dir():
+def qualify_files(files: dict[str, str], reports: dict[str, str]) -> tuple[dict[str, str], dict]:
+    """The whole transformation on text, with no file system: `files` maps a repository path (`Tengoku/<Library>/….lean`, `data/intake/<key>/manifest.jsonl`) to its text, `reports` a library
+    to its root report. Returns the files that change (path -> new text) and, per library, what was done."""
+    changed: dict[str, str] = {}
+    done: dict = {}
+    manifests = sorted(p for p in files if MANIFEST_PATH.fullmatch(p))
+    for lib in sorted(reports):
+        roots = parse_roots(reports[lib]) if LIBRARY.fullmatch(lib) else set()
+        modules = sorted(p for p in files if re.fullmatch(MODULE_PATH.format(lib=lib), p)) if roots else []
+        if not modules:
             continue
         ns = f"Tengoku.{lib}"
         valid_namespace(ns)
-        out[lib] = qualify_library(lib_dir, roots, ns)
-        for manifest in sorted((tree / "data" / "intake").glob("*/manifest.jsonl")):
-            if manifest_namespace(manifest) == ns:
-                out[lib]["manifest_records"] = qualify_manifest(manifest.parent, set(out[lib]["renamed"]), ns)
-    return out
+        rep: dict = {"qualified": 0, "namespaces": 0, "dotted": 0, "modules_opened": 0, "unresolved": []}
+        seen: set[str] = set()
+        renamed: set[str] = set()
+        for path in modules:
+            new, d = qualify_module_text(files[path], roots, ns)
+            if new is None:
+                continue
+            changed[path] = new
+            rep["qualified"] += len(d["declared"])
+            rep["namespaces"] += d["namespaces"]
+            rep["dotted"] += d["dotted"]
+            rep["modules_opened"] += 1 if d["opened"] else 0
+            seen.update(d["declared"])
+            renamed |= d["heads"]
+        rep["unresolved"] = sorted(roots - seen)
+        rep["renamed"] = sorted(renamed)  # the roots the module pass renamed: what the manifest follows
+        for path in manifests:
+            text = changed.get(path, files[path])
+            if manifest_namespace_text(text) == ns:
+                new, count = qualify_manifest_text(text, renamed, ns)
+                rep["manifest_records"] = count
+                if count:
+                    changed[path] = new
+        done[lib] = rep
+    return changed, done
+
+
+def apply(tree: Path, roots_dir: Path) -> dict:
+    """qualify_files on a checkout: reads the reports of `roots_dir` and the files of their libraries under `tree`, writes the files that change"""
+    reports = {rep.stem: rep.read_text(encoding="utf-8", errors="replace") for rep in sorted(roots_dir.glob("*.txt"))}
+    files: dict[str, str] = {}
+    for lib in reports:
+        if LIBRARY.fullmatch(lib):
+            for path in sorted((tree / "Tengoku" / lib).rglob("*.lean")):
+                files[path.relative_to(tree).as_posix()] = path.read_text(encoding="utf-8")
+    for path in sorted((tree / "data" / "intake").glob("*/manifest.jsonl")):
+        files[path.relative_to(tree).as_posix()] = path.read_text(encoding="utf-8")
+    changed, done = qualify_files(files, reports)
+    for rel, text in changed.items():
+        (tree / rel).write_text(text, encoding="utf-8")
+    return done
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    sub = ap.add_subparsers(dest="cmd", required=True)
-    a = sub.add_parser("apply")
-    a.add_argument("--tree", type=Path, required=True)
-    a.add_argument("--roots", type=Path, required=True)
-    args = ap.parse_args(argv)
-    report = apply(args.tree, args.roots)
+    """`roots_tree.py apply`, run in a checkout: every report under `data/roots/<id>/<Library>.txt` of the working directory is applied, the ids in order (a report already applied
+    changes nothing). No path is taken from the command line: the tree is the working directory."""
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("cmd", choices=["apply"])
+    ap.parse_args(argv)
+    tree = Path.cwd()
+    report = {d.name: apply(tree, d) for d in sorted((tree / "data" / "roots").glob("*")) if d.is_dir()}
     print(json.dumps(report, indent=1, ensure_ascii=False))
     return 0
 
