@@ -91,6 +91,32 @@ class RootsTree(unittest.TestCase):
         self.assertEqual(rec["name"], "Tengoku.Foo.X")
         self.assertEqual(rec["statement"], "def Tengoku.Foo.X : Nat := 1")
 
+    def test_a_record_follows_the_module_pass_not_the_exact_name(self):
+        manifest = self.tree / "data" / "intake" / "foo" / "manifest.jsonl"
+        recs = [
+            RECORD,
+            {
+                "name": "Helper.inner",
+                "statement": "def Helper.inner : Nat := 3",
+                "module": "Tengoku.Foo.Bar",
+                "library": "foo",
+            },  # a member of a root's namespace block
+            {
+                "name": "instAddFoo",
+                "statement": "instance : Add Foo := inferInstance",
+                "module": "Tengoku.Foo.Bar",
+                "library": "foo",
+            },  # a root no text declares
+            {"name": "Nat.double", "statement": "def Nat.double (n : Nat) : Nat := 2 * n", "module": "Tengoku.Foo.Bar", "library": "foo"},
+        ]
+        manifest.write_text("".join(json.dumps(r) + "\n" for r in recs), encoding="utf-8")
+        rt.apply(self.tree, self.roots)
+        names = [json.loads(ln)["name"] for ln in manifest.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(names, ["Tengoku.Foo.X", "Tengoku.Foo.Helper.inner", "instAddFoo", "Nat.double"])
+        statements = [json.loads(ln)["statement"] for ln in manifest.read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(statements[1], "def Tengoku.Foo.Helper.inner : Nat := 3")
+        self.assertEqual(statements[2], "instance : Add Foo := inferInstance")
+
     def test_a_name_no_text_declares_is_reported_not_renamed(self):
         report = rt.apply(self.tree, self.roots)
         self.assertIn("instAddFoo", report["Foo"]["unresolved"])
