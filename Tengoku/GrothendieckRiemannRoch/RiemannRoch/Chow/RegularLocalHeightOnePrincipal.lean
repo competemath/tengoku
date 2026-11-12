@@ -60,7 +60,7 @@ The argument, and the reason it is not circular:
 -/
 
 noncomputable section
-
+namespace Tengoku.GrothendieckRiemannRoch end Tengoku.GrothendieckRiemannRoch open Tengoku.GrothendieckRiemannRoch 
 universe u
 
 open IsLocalRing TensorProduct
@@ -342,3 +342,4 @@ theorem isDiscreteValuationRing_localization_height_one (R : Type u) [CommRing R
   exact isDiscreteValuationRing_localizationAtPrime_of_height_one_of_regular p hph
 
 end IsRegularLocalRing
+-- Tengoku: root names of this library moved to Tengoku.GrothendieckRiemannRoch so they do not collide with other libraries (generated)
