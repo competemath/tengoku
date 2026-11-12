@@ -169,7 +169,10 @@
     "https://github.com/jtraverso/asymptotic-triangle-packing",
     "https://github.com/eengad/deletion-codes-lean",
     "https://github.com/NERV-WMY/pi2-lean",
-    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing"
+    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing",
+    "https://github.com/mathlib-initiative/EtingofRepresentationTheory",
+    "https://github.com/archernikov/abel-formalization",
+    "https://github.com/landonfox00/lean-operads"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -351,7 +354,10 @@
     "https://github.com/jtraverso/asymptotic-triangle-packing": "Apache-2.0",
     "https://github.com/eengad/deletion-codes-lean": "Apache-2.0",
     "https://github.com/NERV-WMY/pi2-lean": "Apache-2.0",
-    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing": "MIT"
+    "https://github.com/long-mathematics/duistermaat-van-der-kallen-nonvanishing": "MIT",
+    "https://github.com/mathlib-initiative/EtingofRepresentationTheory": "Apache-2.0",
+    "https://github.com/archernikov/abel-formalization": "Apache-2.0",
+    "https://github.com/landonfox00/lean-operads": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1473,6 +1479,29 @@
       "commit": "20f13044f15fd445845bf33fe74e24c3a7424598",
       "roots": [
         "DuistermaatVanDerKallen"
+      ]
+    },
+    "etingofrepresentationtheory": {
+      "repo": "https://github.com/mathlib-initiative/EtingofRepresentationTheory",
+      "commit": "752fe269b3233f08f0795aa4bcdc5b4c84be7a50",
+      "roots": [
+        "RepresentationTheory"
+      ]
+    },
+    "abel-formalization": {
+      "repo": "https://github.com/archernikov/abel-formalization",
+      "commit": "e5c3d233c4bd4220ec3b8e52a05ff6e42c2ef3a3",
+      "roots": [
+        "AbelFormalization",
+        "Challenge",
+        "Solution"
+      ]
+    },
+    "lean-operads": {
+      "repo": "https://github.com/landonfox00/lean-operads",
+      "commit": "09ccda4a2b0461142f207c75a268f8487c8fddb0",
+      "roots": [
+        "Operad"
       ]
     }
   },
