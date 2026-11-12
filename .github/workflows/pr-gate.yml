@@ -72,9 +72,9 @@ jobs:
       - name: Label the PR with its class
         env: { GH_TOKEN: "${{ github.token }}", CLASS: "${{ needs.classify.outputs.class }}", PR: "${{ github.event.pull_request.number }}" }
         run: |
-          case "$CLASS" in content|tombstone|tooling|docs|promotion|derived|intake|extend|scope-fix|restructure|tag|raze|studied) ;; *) echo "::error::not a class name"; exit 1 ;; esac
+          case "$CLASS" in content|tombstone|tooling|docs|promotion|derived|intake|extend|scope-fix|restructure|tag|raze|roots|studied) ;; *) echo "::error::not a class name"; exit 1 ;; esac
           # one class label at a time: a PR whose class changes (docs, then content) loses the old one
-          old=$(gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -xE 'content|tombstone|tooling|docs|promotion|derived|intake|extend|scope-fix|restructure|tag|raze|studied' | grep -vxF "$CLASS" | paste -sd, - || true)
+          old=$(gh pr view "$PR" -R "$GITHUB_REPOSITORY" --json labels --jq '.labels[].name' | grep -xE 'content|tombstone|tooling|docs|promotion|derived|intake|extend|scope-fix|restructure|tag|raze|roots|studied' | grep -vxF "$CLASS" | paste -sd, - || true)
           args=(--add-label "$CLASS"); [ -n "$old" ] && args+=(--remove-label "$old")
           gh pr edit "$PR" -R "$GITHUB_REPOSITORY" "${args[@]}" || echo "::warning::could not label the PR '$CLASS' (scripts/ci/labels.sh creates the class labels)"
 
@@ -288,6 +288,30 @@ jobs:
         run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
       - name: raze checks
         run: python3 scripts/ci/raze_check.py "$BASE" "$HEAD"
+
+  # A roots PR (the root-namespace names of some libraries given their library's namespace, docs/pr-classes.md, section 11) is recomputed, not read: scripts/roots_tree.py of the base
+  # commit runs on the base's files of the libraries whose reports the PR adds, and the PR must be exactly its output (scripts/ci/roots_check.py). A code owner reviews it: the reports
+  # are under data/roots/, which no unowned line of CODEOWNERS covers. Nothing of the PR runs; the merge queue builds the libraries and the tree.
+  roots:
+    needs: classify
+    if: github.event_name == 'pull_request_target' && needs.classify.outputs.class == 'roots'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions: { contents: read }
+    steps:
+      - uses: step-security/harden-runner@dc2769abcc0fcfbadfc1df54081c1608579ef6b2 # v2
+        with: { egress-policy: audit }
+      # The base commit with plain git (see the scope-fix job): only the base is checked out, the PR is read as git objects.
+      - name: The base commit (the checks are main's)
+        run: |
+          git init -q .
+          git remote add origin "https://github.com/$GITHUB_REPOSITORY"
+          git fetch -q --no-tags --filter=blob:none origin "+$SCRIPTS:refs/remotes/origin/scripts" "$BASE"
+          git checkout -q --detach origin/scripts
+      - name: The PR's commits, as data (the checks are main's)
+        run: git fetch -q --no-tags --filter=blob:none origin "+$PR_REF:refs/remotes/origin/pr-head" && git cat-file -e "$HEAD^{commit}"
+      - name: roots checks
+        run: python3 scripts/ci/roots_check.py "$BASE" "$HEAD"
 
   # A scope-fix PR (a merged intake library's global registrations made local) is judged line by line: only `local ` inserted before
   # instance/simp, the library's own registrations repeated as local attributes, blank lines and one note comment. Nothing of the PR runs.
@@ -562,7 +586,7 @@ jobs:
           [ -n "$pr" ] || { echo "::error::cannot tell which PR this queue entry is: $GROUP"; exit 1; }
           scripts/ci/studied_approval.sh "$pr"
       - name: The records, the move of the seed, or a raze, against everything merged ahead of them
-        if: github.event_name == 'merge_group' && contains(fromJSON('["content","tombstone","promotion","restructure","raze","studied"]'), steps.c.outputs.class)
+        if: github.event_name == 'merge_group' && contains(fromJSON('["content","tombstone","promotion","restructure","raze","roots","studied"]'), steps.c.outputs.class)
         env: { CLASS: "${{ steps.c.outputs.class }}", TENGOKU_INTAKE_LINT: "${{ vars.TENGOKU_INTAKE_LINT || 'strict' }}" }
         run: |
           # The move of the seed (docs/pr-classes.md, section 5) depends on everything merged ahead of it: a library that arrived meanwhile has
@@ -570,6 +594,8 @@ jobs:
           if [ "$CLASS" = restructure ]; then python3 scripts/ci/restructure_check.py "$BASE" "$HEAD"; exit 0; fi
           # A raze (docs/pr-classes.md, section 8) is checked again on the entry's base: a part of the library that merged meanwhile may import a module it razes.
           if [ "$CLASS" = raze ]; then python3 scripts/ci/raze_check.py "$BASE" "$HEAD"; exit 0; fi
+          # A roots PR (section 11) is recomputed on the entry's base: a library part that merged meanwhile has root names the PR's reports do not list.
+          if [ "$CLASS" = roots ]; then python3 scripts/ci/roots_check.py "$BASE" "$HEAD"; exit 0; fi
           # A studied PR (docs/pr-classes.md, section 10) is checked again on the entry's base: another bundle of the same target may have merged ahead of it.
           if [ "$CLASS" = studied ]; then python3 scripts/ci/studied_check.py "$BASE" "$HEAD" && python3 scripts/ci/born_tagged.py "$BASE" "$HEAD"; exit $?; fi
           promotion=(); [ "$CLASS" = promotion ] && promotion=(--promotion)
@@ -578,7 +604,7 @@ jobs:
           python3 scripts/ci/lint_banked.py "$BASE" "$HEAD"
 
   pr-gate:
-    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, studied, studied-approval, scope-fix, tag, raze, restructure, imports, sorry-advisory, queue-recheck]
+    needs: [classify, data-rules, credits, dco, secrets, workflows, depends, vacuity, goals, intake, studied, studied-approval, scope-fix, tag, raze, roots, restructure, imports, sorry-advisory, queue-recheck]
     # `!cancelled()`, not `always()`: a run that a newer run has cancelled (the PR was pushed to or edited again: CodeRabbit rewrites the description after its review, which is an
     # `edited` event) would still run this job, and its failure stays on the commit as the latest `pr-gate` after the newer run has passed: the PR is blocked for nothing
     if: ${{ !cancelled() }}

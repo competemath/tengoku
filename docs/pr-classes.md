@@ -267,3 +267,21 @@ Paths (target `<t>`, its Pascal-case name `<Ns>`, e.g. `erdos-396` and `Erdos396
 **Born tagged.** Every theorem of a studied PR carries its isnad tag (`docs/isnad.md`, "Born tagged"): the `autotag-build` and `autotag-push` workflows add the tags to the PR's branch as one commit a few minutes after the PR is opened, `scripts/ci/born_tagged.py` is the gate step that is red until then and green after, and the merge queue recomputes every tag from the build (`scripts/ci/tag_verify.py`). The provenance check of the bundle's attestation looks at the modules in their canonical form (tags out), so the tags never touch it. The intake and extend classes follow the same way once `TENGOKU_ISNAD_REQUIRED` is `1`.
 
 Label `studied`. Folder `data/studied/`. The theorems land tentative: nothing here makes one trusted.
+
+## 11. The roots class
+
+A declaration in the root namespace is a name nothing ties to its library: after `open Polynomial` a bare `X` or `C` has two readings (`_root_.X` of a library and `Polynomial.X`), and a second library
+declaring the same name fails to import. The factory has qualified them in every bundle since emissary-archangel#179 (`Tengoku.<Library>.<name>`, `scope_rewrite.py --qualify-roots`); the libraries that
+arrived before it (62 of them, about 7,300 names, 2026-11-12) keep theirs until a **roots PR** gives them their library's namespace. The queue's leak report lists the names (`root:`), and
+`scripts/ci/roots_gate.py` ejects a group that has one once the repository variable `TENGOKU_ROOTS_REQUIRED` is `1`.
+
+A roots PR is recognised by its added files, `data/roots/<id>/<Library>.txt`: the `root:` lines of `tengoku-leakscan` for that library (the `root-inventory` workflow's artifact), one id per PR.
+It comes from any author, because nothing of it is trusted: it is **recomputed**, as a restructure PR is (section 5). `scripts/ci/roots_check.py` runs the script of the base commit
+(`scripts/roots_tree.py apply`, the code of `scope_rewrite.py --qualify-roots`) on the base's files of the named libraries and on the intake manifests, and the PR must be exactly its output, every
+byte; it adds the reports and modifies modules of those libraries and manifests, and nothing else. The script edits inside existing lines (no line moves), is idempotent, renames a declaration, a
+`namespace` block of a root (with its `end`), a dotted `r.x` declaration and an `open r`, gives a module that declares or still uses a root `namespace Tengoku.L end Tengoku.L open Tengoku.L` on its first
+body line, appends one generated comment to each module it edits, and follows in the manifest (name and statement). A root that no text declares (the name Lean gave an anonymous instance) is
+reported in `unresolved`, not renamed.
+
+**A code owner reviews it** (`/data/roots/` in CODEOWNERS): the reports are the input to read; the modules are not. The merge queue repeats the check on the entry's base (a part that merged meanwhile
+has root names the reports do not list) and builds the libraries and `Tengoku.All`; nothing is rebuilt by the factory and Gate 2 is not run again (the statements are the verified ones, renamed).

@@ -15,6 +15,7 @@ label extend    1d76db "Bot: the next part of a library that arrived in parts (m
 label scope-fix 1d76db "Bot: a merged library's global instances/simp lemmas made local (checked line by line)"
 label tag 0e8a16 "Bot: isnad tags written into existing modules (nothing else changes; the queue recomputes each tag)"
 label studied 1d76db "Bot: Leak theorems rated 4 stars or more, re-checked by the memory intake (docs/pr-classes.md)"
+label roots 0e8a16 "Root-namespace names of libraries given their library's namespace, recomputed from the base by scripts/roots_tree.py (a code owner reviews it)"
 label raze d93f0b "Takes modules of an intake library out of the tree, with their dependents (a code owner reviews it)"
 label restructure 1d76db "Bot: the seed moved into Tengoku/Seed/, recomputed from the base by scripts/restructure.py"
 label tooling   1d76db "Scripts, workflows, schemas, build files"

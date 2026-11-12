@@ -13,6 +13,7 @@ import sys
 from _git import changed_files, fail, gh_output, pascal, run, tier_of
 from raze_check import is_raze
 from restructure_check import is_restructure
+from roots_check import is_roots
 from studied_check import studied_targets
 from studied_check import tier as studied_tier
 from tag_check import is_tag
@@ -50,6 +51,14 @@ def tier(p: str) -> str:
 if is_raze(base, head):
     print(f"class=raze ({len(files)} files)")
     gh_output("class", "raze")
+    gh_output("files", " ".join(p for _, p in files))
+    sys.exit(0)
+# A ROOTS PR gives the root-namespace names of some libraries the namespace of their library (scripts/ci/roots_check.py recomputes it from the base commit and accepts exactly that),
+# so it modifies modules and manifests of several libraries at once, which no other class allows. It adds the reports it was computed from (data/roots/<id>/<Library>.txt), which no
+# content-lane line of CODEOWNERS covers: a code owner reviews it. It comes from any author, like a raze, because nothing of it is trusted: it is recomputed.
+if is_roots(base, head):
+    print(f"class=roots ({len(files)} files)")
+    gh_output("class", "roots")
     gh_output("files", " ".join(p for _, p in files))
     sys.exit(0)
 # A TAG PR writes isnad tags into modules that are already in the tree and changes nothing else (scripts/ci/tag_check.py judges it: after the tags are taken out, code and

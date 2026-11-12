@@ -119,6 +119,18 @@ class RootsCheck(unittest.TestCase):
         rc, out = r.gate("roots_check.py")
         self.assertEqual(rc, 1)
 
+    def test_the_classifier_names_the_class_whoever_sends_it(self):
+        r = self.good()
+        rc, out = r.gate("classify.py", env={"PR_ACTOR": "someone-else"})
+        self.assertEqual(rc, 0, out)
+        self.assertIn("class=roots", out)
+
+    def test_the_other_gates_that_read_a_diff_accept_it(self):
+        r = self.good()
+        for script in ("append_only.py", "credits.py", "validate_records.py", "lint_banked.py", "dco.py"):
+            rc, out = r.gate(script)
+            self.assertEqual(rc, 0, f"{script}: {out}")
+
 
 if __name__ == "__main__":
     unittest.main()
