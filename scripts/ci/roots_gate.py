@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""roots_gate.py LEAKSCAN.TXT — a group that puts a declaration into the root namespace does not merge, once the tree has none.
+"""roots_gate.py < LEAKSCAN.TXT — a group that puts a declaration into the root namespace does not merge, once the tree has none.
 
 `tengoku-leakscan` (TengokuLeak.lean) lists a `root: NAME` line for every declaration of the scanned modules that sits in the root namespace (one-component name). Such a name is tied
 to no library: after `open Polynomial` a bare `X` or `C` has two readings (`_root_.X` of a library and `Polynomial.X`), and a second library declaring the same root name fails to import
@@ -19,20 +19,34 @@ import os
 import re
 import sys
 
-ROOT_LINE = re.compile(r"^root: (\S+)\s*$")
+ROOT_LINE = re.compile(r"^root: (.+?)\s*$")  # a name Lean prints with guillemets (`«foo bar»`) has a space in it
+SUMMARY = re.compile(r"^roots: (\d+) declarations")  # the scanner's own count, printed first: a report without it is not a report
+
+
+def root_lines(report: str) -> list[str]:
+    """the names of the `root: NAME` lines of a leakscan report, in order (a name twice is two lines)"""
+    return [m.group(1) for ln in report.splitlines() if (m := ROOT_LINE.match(ln))]
 
 
 def roots_of(report: str) -> list[str]:
-    """the names of the `root: NAME` lines of a leakscan report, in order, each once"""
-    seen: list[str] = []
-    for ln in report.splitlines():
-        m = ROOT_LINE.match(ln)
-        if m and m.group(1) not in seen:
-            seen.append(m.group(1))
-    return seen
+    """the same, each name once"""
+    return list(dict.fromkeys(root_lines(report)))
 
 
 def judge(report: str, required: bool, shown: int = 20) -> tuple[int, str]:
+    """(exit status, message). A report that is not the scanner's whole report (no summary line: it crashed; fewer `root:` lines than the summary says: it was cut)
+    cannot show that a group has no root, so it fails a required gate: the gate does not open when the scanner does not run."""
+    summary = next((int(m.group(1)) for ln in report.splitlines() if (m := SUMMARY.match(ln))), None)
+    lines = root_lines(report)
+    if summary is None or summary != len(lines):
+        why = (
+            "the leak report has no `roots:` summary line (the scanner did not finish)"
+            if summary is None
+            else f"the leak report counts {summary} root declaration(s) and lists {len(lines)}"
+        )
+        return (1 if required else 0), f"roots: not checked: {why}" + (
+            "\nerror: roots are required and the group cannot be shown to have none" if required else " (TENGOKU_ROOTS_REQUIRED is not 1)"
+        )
     roots = roots_of(report)
     if not roots:
         return 0, "roots: none of the group's declarations is in the root namespace"
@@ -50,15 +64,12 @@ def judge(report: str, required: bool, shown: int = 20) -> tuple[int, str]:
     )
 
 
-def main(argv: list[str]) -> int:
-    if len(argv) != 2:
-        print("usage: roots_gate.py LEAKSCAN.TXT", file=sys.stderr)
-        return 2
-    with open(argv[1], encoding="utf-8", errors="replace") as f:
-        code, msg = judge(f.read(), os.environ.get("TENGOKU_ROOTS_REQUIRED") == "1")
+def main() -> int:
+    """the leak report on stdin (`roots_gate.py < leakscan.txt`: no path to read, nothing to traverse)"""
+    code, msg = judge(sys.stdin.read(), os.environ.get("TENGOKU_ROOTS_REQUIRED") == "1")
     print(msg)
     return code
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv))
+    sys.exit(main())
