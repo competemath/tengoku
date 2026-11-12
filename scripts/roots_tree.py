@@ -144,6 +144,7 @@ ROOT_DECL = re.compile(
 NAMESPACE_NAME = re.compile(rf"^(?P<pre>\s*(?:(?:public|noncomputable)\s+)*namespace\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 END_NAME = re.compile(rf"^(?P<pre>\s*end\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 OPEN_MARK = "namespace {ns} end {ns} open {ns} "
+TO_ADDITIVE = re.compile(r"to_additive\b[^\]]*")  # from the word to the end of its attribute (on the same line)
 OPEN_HEADS = (  # `open scoped …` first; when that leaves no valid ending, `scoped` is an argument (the order a backtracking match would try)
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+scoped\s+)"),
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+)"),
@@ -222,6 +223,16 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
                 done["dotted"] += 1
             else:
                 done["declared"].append(name)
+    if roots:  # `@[to_additive NAME]`: the additive declaration is created under that name, which is relative to the namespace the command is in (none here: it stays a root unless it moves too)
+        names = re.compile(r"(?<![\w.'«])(?:" + "|".join(re.escape(r) for r in sorted(roots, key=len, reverse=True)) + r")(?![\w'»])")
+        for i, code in enumerate(f.code):
+            if "to_additive" not in code or any(NAMESPACE.match(f.code[o]) for o in open_at[i]):
+                continue
+            for attr in TO_ADDITIVE.finditer(code):
+                for t in reversed(list(names.finditer(attr.group()))):
+                    f.insert(i, attr.start() + t.start(), ns + ".")
+                    done["declared"].append(t.group())
+                    done["heads"].add(head_of(t.group()))
     for i, code in enumerate(
         f.code
     ):  # `open R` of a root namespace R: the namespace moved, so the `open` follows (right to left: an insertion shifts the columns after it)

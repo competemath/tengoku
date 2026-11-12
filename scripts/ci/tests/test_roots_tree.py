@@ -216,5 +216,37 @@ class Mask(unittest.TestCase):
             self.assertEqual([i for i, ch in enumerate(text) if ch == "\n"], [i for i, ch in enumerate(masked) if ch == "\n"], text)
 
 
+class ToAdditive(unittest.TestCase):
+    """`@[to_additive NAME]` creates a declaration called NAME relative to the namespace the command is in: a root NAME follows the declaration it is generated from"""
+
+    def run_text(self, text, roots):
+        files = {"Tengoku/Foo/A.lean": text}
+        changed, report = rt.qualify_files(files, {"Foo": f"roots: {len(roots)} declarations\n" + "".join(f"root: {r}\n" for r in roots)})
+        return changed.get("Tengoku/Foo/A.lean", text), report
+
+    def test_the_explicit_additive_name_is_qualified(self):
+        text = "module\n\npublic section\n\n@[to_additive bdd_add]\nlemma bdd_mul' : True := trivial\n"
+        out, rep = self.run_text(text, ["bdd_add", "bdd_mul'"])
+        self.assertIn("@[to_additive Tengoku.Foo.bdd_add]", out)
+        self.assertIn("lemma Tengoku.Foo.bdd_mul' :", out)
+        self.assertEqual(sorted(rep["Foo"]["unresolved"]), [])
+
+    def test_options_before_the_name_and_a_name_that_is_no_root_are_left_alone(self):
+        text = "module\n\npublic section\n\n@[to_additive (attr := simp) bdd_add other_word]\nlemma bdd_mul : True := trivial\n"
+        out, _ = self.run_text(text, ["bdd_add", "bdd_mul"])
+        self.assertIn("@[to_additive (attr := simp) Tengoku.Foo.bdd_add other_word]", out)
+
+    def test_inside_a_namespace_the_name_is_relative_and_untouched(self):
+        text = "module\n\npublic section\n\nnamespace Bar\n@[to_additive bdd_add]\nlemma bdd_mul : True := trivial\nend Bar\n"
+        out, _ = self.run_text(text, ["bdd_add"])
+        self.assertIn("@[to_additive bdd_add]", out)
+
+    def test_it_is_idempotent(self):
+        text = "module\n\npublic section\n\n@[to_additive bdd_add]\nlemma bdd_mul' : True := trivial\n"
+        once, _ = self.run_text(text, ["bdd_add", "bdd_mul'"])
+        twice, _ = self.run_text(once, ["bdd_add", "bdd_mul'"])
+        self.assertEqual(once, twice)
+
+
 if __name__ == "__main__":
     unittest.main()
