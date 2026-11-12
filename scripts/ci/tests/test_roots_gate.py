@@ -88,6 +88,24 @@ class RootsGate(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("not checked", out)
 
+    def test_an_auto_named_instance_is_exempt_even_when_required(self):
+        report = "roots: 2 declarations of the library x\nroot: instAddFoo\nroot: inst_1\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 0)
+        self.assertIn("none of the group's declarations", msg)
+        self.assertIn("exempt", msg)
+
+    def test_a_real_root_beside_instances_still_fails_and_is_the_one_listed(self):
+        report = "roots: 3 declarations of the library x\nroot: instAddFoo\nroot: X\nroot: instMulFoo\n"
+        code, msg = rg.judge(report, True)
+        self.assertEqual(code, 1)
+        self.assertIn("1 declaration(s)", msg)
+        self.assertIn(": X (2 auto-generated", msg)
+
+    def test_written_names_that_start_with_inst_are_roots(self):
+        self.assertFalse(any(rg.auto_named(n) for n in ["inst", "instance", "instantiate", "install", "Inst", "xinstA"]))
+        self.assertTrue(all(rg.auto_named(n) for n in ["instA", "inst_x", "instFooBar"]))
+
 
 if __name__ == "__main__":
     unittest.main()

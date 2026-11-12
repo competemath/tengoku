@@ -273,7 +273,7 @@ Label `studied`. Folder `data/studied/`. The theorems land tentative: nothing he
 A declaration in the root namespace is a name nothing ties to its library: after `open Polynomial` a bare `X` or `C` has two readings (`_root_.X` of a library and `Polynomial.X`), and a second library
 declaring the same name fails to import. The factory has qualified them in every bundle since emissary-archangel#179 (`Tengoku.<Library>.<name>`, `scope_rewrite.py --qualify-roots`); the libraries that
 arrived before it (62 of them, about 7,300 names, 2026-11-12) keep theirs until a **roots PR** gives them their library's namespace. The queue's leak report lists the names (`root:`), and
-`scripts/ci/roots_gate.py` ejects a group that has one once the repository variable `TENGOKU_ROOTS_REQUIRED` is `1`.
+`scripts/ci/roots_gate.py` ejects a group that has one once the repository variable `TENGOKU_ROOTS_REQUIRED` is `1`. Names Lean generated for anonymous instances (`instFooBar`, `inst_1`) are exempt: nobody writes them, the roots class cannot rename them (no text declares them), and a second library generating the same one fails to import at its first build.
 
 A roots PR is recognised by its added files, `data/roots/<id>/<Library>.txt`: the `root:` lines of `tengoku-leakscan` for that library (the `root-inventory` workflow's artifact), one id per PR.
 It comes from any author, because nothing of it is trusted: it is **recomputed**, as a restructure PR is (section 5). `scripts/ci/roots_check.py` runs the script of the base commit
