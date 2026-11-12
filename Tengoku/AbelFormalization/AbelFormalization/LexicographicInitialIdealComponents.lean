@@ -22,7 +22,9 @@ variable {R ι : Type*} [CommRing R] {h : ℕ}
 attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
 /-- The full all-elements lexicographic initial ideal is homogeneous for its
-vector weight grading.-/
+vector weight grading.
+@isnad1 id=ishomoge.0h5v.s8.fc7bb1246669 from=translated src=- shape=09914f71 vocab=f4f4441b
+-/
 theorem lexicographicInitialIdeal_isHomogeneous
     (ω : ι → Fin h → ℤ) (I : Ideal (MvPolynomial ι R)) :
     (lexicographicInitialIdeal ω I).IsHomogeneous
@@ -36,7 +38,9 @@ theorem lexicographicInitialIdeal_isHomogeneous
       (fun i => toLex (ω i)) f (lexicographicMinimumWeight ω f)⟩
 
 /-- Every vector-weight component of a member of the full lexicographic
-initial ideal belongs to that ideal.-/
+initial ideal belongs to that ideal.
+@isnad1 id=mem.1h7v.s9.a9d352194e78 from=translated src=- shape=b6e413be vocab=f62fb4f9
+-/
 theorem lexicographicInitialIdeal_component_mem
     (ω : ι → Fin h → ℤ) (I : Ideal (MvPolynomial ι R))
     {g : MvPolynomial ι R} (hg : g ∈ lexicographicInitialIdeal ω I)
@@ -49,7 +53,9 @@ theorem lexicographicInitialIdeal_component_mem
     (lexicographicInitialIdeal_isHomogeneous ω I) hg β
 
 /-- A nonzero polynomial homogeneous for the vector weight has that weight
-as its actual lexicographic minimum.-/
+as its actual lexicographic minimum.
+@isnad1 id=eq.2h6v.s7.7a906afa1f91 from=translated src=- shape=dc672c2c vocab=e67ae8cc
+-/
 theorem lexicographicMinimumWeight_of_homogeneous
     (ω : ι → Fin h → ℤ) {β : Lex (Fin h → ℤ)}
     {f : MvPolynomial ι R}
@@ -61,7 +67,9 @@ theorem lexicographicMinimumWeight_of_homogeneous
   exact hweight.symm.trans (hf (MvPolynomial.mem_support_iff.mp hd))
 
 /-- Full lexicographic initial formation fixes ideals already homogeneous for
-the complete vector grading.-/
+the complete vector grading.
+@isnad1 id=eq.1h5v.s8.bf90071e8117 from=translated src=- shape=e57f8585 vocab=f4f4441b
+-/
 theorem lexicographicInitialIdeal_eq_of_homogeneous
     (ω : ι → Fin h → ℤ) (I : Ideal (MvPolynomial ι R))
     (hI : I.IsHomogeneous
@@ -105,7 +113,9 @@ theorem lexicographicInitialIdeal_eq_of_homogeneous
 
 /-- Filtering by a head integer weight and then by the remaining vector
 weight is the same as filtering once by the corresponding `Fin.cons`
-vector weight.-/
+vector weight.
+@isnad1 id=eq.0h8v.s10.e1a34c9dc5ae from=translated src=- shape=cd80be6d vocab=f9897fd0
+-/
 theorem weightedHomogeneousComponent_finCons
     (ω : ι → ℤ) (ν : ι → Fin h → ℤ)
     (a : ℤ) (β : Lex (Fin h → ℤ)) (f : MvPolynomial ι R) :

@@ -25,6 +25,9 @@ variable {E F : Type*}
 def graphTangentCLM (C : E →L[ℝ] ℝ) : E →L[ℝ] E × ℝ :=
   (ContinuousLinearMap.id ℝ E).prod C
 
+/--
+@isnad1 id=eq.0h3v.s8.f2e44a1bbb20 from=translated src=- shape=e2abe782 vocab=e4aa2083
+-/
 @[simp]
 theorem graphTangentCLM_apply (C : E →L[ℝ] ℝ) (u : E) :
     graphTangentCLM C u = (u, C u) :=
@@ -36,6 +39,9 @@ def graphBlockCLM (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
   (ContinuousLinearMap.coprod A B).prod
     (ContinuousLinearMap.coprod (-C) (ContinuousLinearMap.id ℝ ℝ))
 
+/--
+@isnad1 id=eq.0h7v.s9.fa2a13ac4842 from=translated src=- shape=8e81e6ef vocab=893832c7
+-/
 @[simp]
 theorem graphBlockCLM_apply (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
     (C : E →L[ℝ] ℝ) (u : E) (v : ℝ) :
@@ -48,6 +54,9 @@ def graphReducedCLM (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
     (C : E →L[ℝ] ℝ) : E →L[ℝ] F :=
   A + B.comp C
 
+/--
+@isnad1 id=eq.0h6v.s9.1e7503180a01 from=translated src=- shape=d27c1222 vocab=3393bb18
+-/
 @[simp]
 theorem graphReducedCLM_apply (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
     (C : E →L[ℝ] ℝ) (u : E) :
@@ -56,7 +65,9 @@ theorem graphReducedCLM_apply (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
 
 /-- A scalar graph block map is surjective exactly when its derivative
 restricted to the graph tangent is surjective.  This is the graph-lift
-regularity calculation, proved directly rather than through determinants.-/
+regularity calculation, proved directly rather than through determinants.
+@isnad1 id=iff.0h5v.s9.6161b2a943a7 from=translated src=- shape=062998a7 vocab=cca9c83b
+-/
 theorem surjective_graphBlockCLM_iff
     (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F) (C : E →L[ℝ] ℝ) :
     Function.Surjective (graphBlockCLM A B C) ↔
@@ -101,14 +112,18 @@ def graphLiftZBlock (D : (E × ℝ) →L[ℝ] F) : ℝ →L[ℝ] F :=
   D.comp (ContinuousLinearMap.inr ℝ E ℝ)
 
 /-- Decomposing a continuous linear map out of a product into its two
-coordinate blocks.-/
+coordinate blocks.
+@isnad1 id=eq.0h5v.s9.ddac47a00f41 from=translated src=- shape=b56fec95 vocab=ce9b6e85
+-/
 theorem graphLift_blocks_apply (D : (E × ℝ) →L[ℝ] F) (u : E) (v : ℝ) :
     D (u, v) = graphLiftXBlock D u + graphLiftZBlock D v := by
   rw [show (u, v) = (u, 0) + (0, v) by ext <;> simp]
   rw [map_add]
   rfl
 
-/-- The derivative after graph substitution is the reduced block map.-/
+/-- The derivative after graph substitution is the reduced block map.
+@isnad1 id=eq.2h5v.s9.179cc3c1254b from=translated src=- shape=65c895d6 vocab=cb4c614f
+-/
 theorem fderiv_graphSubstitution
     {Ftilde : E × ℝ → F} {zeta : E → ℝ} {x : E}
     (hF : DifferentiableAt ℝ Ftilde (x, zeta x))
@@ -133,7 +148,9 @@ theorem fderiv_graphSubstitution
     (fderiv ℝ zeta x u)
 
 /-- The derivative of the lifted square system at a point on the graph is
-the block map from `surjective_graphBlockCLM_iff`.-/
+the block map from `surjective_graphBlockCLM_iff`.
+@isnad1 id=eq.2h5v.s9.33d1fe607a4d from=translated src=- shape=bc366bf6 vocab=12a0d1c7
+-/
 theorem fderiv_graphLiftSystem
     {Ftilde : E × ℝ → F} {zeta : E → ℝ} {x : E}
     (hF : DifferentiableAt ℝ Ftilde (x, zeta x))
@@ -170,7 +187,9 @@ theorem fderiv_graphLiftSystem
   · change v - fderiv ℝ zeta x u = v - fderiv ℝ zeta x u
     rfl
 
-/-- Local graph lifting preserves regular-zero membership.-/
+/-- Local graph lifting preserves regular-zero membership.
+@isnad1 id=iff.2h6v.s8.7c9b261a6271 from=translated src=- shape=e55522e4 vocab=f3869179
+-/
 theorem mem_regularZeroSet_graphLift_iff
     {Omega : Set E} {Ftilde : E × ℝ → F} {zeta : E → ℝ} {x : E}
     (hF : DifferentiableAt ℝ Ftilde (x, zeta x))

@@ -17,7 +17,9 @@ namespace AbelFormalization
 
 variable {R : Type*} [CommRing R]
 
-/-- Finite generation lifts from the quotient by one member of the ideal.-/
+/-- Finite generation lifts from the quotient by one member of the ideal.
+@isnad1 id=fg.1h3v.s6.4cd85ef2fa28 from=translated src=- shape=e47194ac vocab=51cef5a8
+-/
 theorem ideal_fg_of_principal_quotient_noetherian (I : Ideal R) (f : R) (hf : f ∈ I)
     [IsNoetherianRing (R ⧸ Ideal.span {f})] : I.FG := by
   apply Ideal.fg_of_fg_map_of_fg_inf_ker_of_surjective
@@ -27,7 +29,9 @@ theorem ideal_fg_of_principal_quotient_noetherian (I : Ideal R) (f : R) (hf : f 
     exact Submodule.fg_span_singleton f
   · exact Ideal.Quotient.mk_surjective
 
-/-- One Noetherian principal quotient for each nonzero ideal suffices.-/
+/-- One Noetherian principal quotient for each nonzero ideal suffices.
+@isnad1 id=isnoethe.1h1v.s7.01da0bc799a4 from=translated src=- shape=5c686f2b vocab=7307bcb1
+-/
 theorem isNoetherianRing_of_ideal_principal_quotients
     (h : ∀ I : Ideal R, I ≠ ⊥ → ∃ f ∈ I, IsNoetherianRing (R ⧸ Ideal.span {f})) :
     IsNoetherianRing R := by
@@ -40,7 +44,9 @@ theorem isNoetherianRing_of_ideal_principal_quotients
   exact ideal_fg_of_principal_quotient_noetherian I f hf
 
 /-- In particular it suffices to prove Noetherianity of all quotients by a
-nonzero element. No domain hypothesis is needed for this implication.-/
+nonzero element. No domain hypothesis is needed for this implication.
+@isnad1 id=isnoethe.1h1v.s6.8bab9063f9e5 from=translated src=- shape=6c65e57c vocab=ffb1ac6d
+-/
 theorem isNoetherianRing_of_nonzero_principal_quotients
     (h : ∀ f : R, f ≠ 0 → IsNoetherianRing (R ⧸ Ideal.span {f})) :
     IsNoetherianRing R := by
@@ -54,7 +60,9 @@ section FiniteQuotient
 variable {A : Type*} [CommRing A] [Algebra R A]
 
 /-- A division identity with uniformly bounded remainder degree makes the
-principal quotient a finite module over the coefficient ring.-/
+principal quotient a finite module over the coefficient ring.
+@isnad1 id=finite.1h5v.s8.3fa8df434fd5 from=translated src=- shape=315168d5 vocab=85257b87
+-/
 theorem moduleFinite_principal_quotient_of_division (f t : A) (n : ℕ)
     (hdivision : ∀ g : A, ∃ q : A, ∃ c : Fin n → R,
       g = f * q + ∑ k, c k • t ^ (k : ℕ)) :
@@ -77,7 +85,9 @@ theorem moduleFinite_principal_quotient_of_division (f t : A) (n : ℕ)
     (Submodule.fg_iff_exists_fin_generating_family.mpr ⟨n, b, hspan⟩)
 
 /-- Division over a Noetherian coefficient ring gives a Noetherian principal
-quotient. The convergence and division hypotheses must be proved separately.-/
+quotient. The convergence and division hypotheses must be proved separately.
+@isnad1 id=isnoethe.1h5v.s7.4adedf9ec879 from=translated src=- shape=da9eb866 vocab=07e325c6
+-/
 theorem isNoetherianRing_principal_quotient_of_division [IsNoetherianRing R]
     (f t : A) (n : ℕ)
     (hdivision : ∀ g : A, ∃ q : A, ∃ c : Fin n → R,

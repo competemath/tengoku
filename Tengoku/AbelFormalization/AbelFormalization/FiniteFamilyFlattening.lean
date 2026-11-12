@@ -42,13 +42,18 @@ def prefixOffset {clusterCount : ℕ}
   ∑ c : Fin boundary,
     length (Fin.castLE (Nat.le_of_lt_succ boundary.isLt) c)
 
+/--
+@isnad1 id=eq.0h2v.s5.49367eeba4ff from=translated src=- shape=8f01e93f vocab=39ee1034
+-/
 @[simp]
 theorem prefixOffset_zero {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ) :
     prefixOffset length 0 = 0 := by
   simp [prefixOffset]
 
-/-- Crossing cluster `c` adds exactly its local length.-/
+/-- Crossing cluster `c` adds exactly its local length.
+@isnad1 id=eq.0h3v.s5.639dfb95eaa2 from=translated src=- shape=40a7bf81 vocab=6bde1a1c
+-/
 theorem prefixOffset_succ {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ) (c : Fin clusterCount) :
     prefixOffset length c.succ =
@@ -59,7 +64,9 @@ theorem prefixOffset_succ {clusterCount : ℕ}
   rw [Fin.sum_univ_castSucc]
   congr 1
 
-/-- Prefix offsets strictly increase across positive-length blocks.-/
+/-- Prefix offsets strictly increase across positive-length blocks.
+@isnad1 id=lt.1h3v.s5.0eb65809a24d from=translated src=- shape=54470fe1 vocab=da1e7917
+-/
 theorem prefixOffset_lt_succ {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c) (c : Fin clusterCount) :
@@ -67,7 +74,9 @@ theorem prefixOffset_lt_succ {clusterCount : ℕ}
   rw [prefixOffset_succ]
   exact Nat.lt_add_of_pos_right (hpositive c)
 
-/-- The terminal prefix offset is the full sum of local lengths.-/
+/-- The terminal prefix offset is the full sum of local lengths.
+@isnad1 id=eq.0h2v.s4.4cbabda8fdb0 from=translated src=- shape=f5fe031d vocab=9153f086
+-/
 @[simp]
 theorem prefixOffset_last {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ) :
@@ -91,6 +100,9 @@ def flattenIndex {clusterCount : ℕ}
     Fin (totalCount length) :=
   finSigmaFinEquiv ⟨c, i⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.65a6b78a6ae0 from=translated src=- shape=e9165d12 vocab=12efd9d9
+-/
 @[simp]
 theorem flattenEquiv_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
@@ -117,6 +129,9 @@ def lookupLocal {clusterCount : ℕ}
     Fin (length (lookupCluster length j)) :=
   (lookup length j).2
 
+/--
+@isnad1 id=eq.0h4v.s5.618acb497a7f from=translated src=- shape=15e9e733 vocab=5ec05089
+-/
 @[simp]
 theorem lookup_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
@@ -124,6 +139,9 @@ theorem lookup_flattenIndex {clusterCount : ℕ}
     lookup length (flattenIndex length c i) = ⟨c, i⟩ := by
   exact flattenEquiv_flattenIndex length c i
 
+/--
+@isnad1 id=eq.0h4v.s4.1bdaafa48e1c from=translated src=- shape=84453fa2 vocab=6a9f1a5d
+-/
 @[simp]
 theorem lookupCluster_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
@@ -132,7 +150,9 @@ theorem lookupCluster_flattenIndex {clusterCount : ℕ}
   simp [lookupCluster]
 
 /-- Re-inserting the coordinates obtained by lookup returns the original
-global index.-/
+global index.
+@isnad1 id=eq.0h3v.s4.e914a2ca6244 from=translated src=- shape=17a27f02 vocab=4ba95ad2
+-/
 theorem flattenIndex_lookup {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (j : Fin (totalCount length)) :
@@ -147,6 +167,9 @@ def operationAt? {clusterCount : ℕ}
     Option (Σ c, Fin (length c)) :=
   if h : j < totalCount length then some (lookup length ⟨j, h⟩) else none
 
+/--
+@isnad1 id=eq.0h4v.s5.b0c4c099ac2f from=translated src=- shape=3c08e8f6 vocab=cec5f056
+-/
 @[simp]
 theorem operationAt?_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
@@ -161,6 +184,9 @@ def operationFamily {clusterCount : ℕ}
     (j : Fin (totalCount length)) : A :=
   family (lookupCluster length j) (lookupLocal length j)
 
+/--
+@isnad1 id=eq.0h6v.s5.786712e6841a from=translated src=- shape=96c86f3d vocab=c327adde
+-/
 @[simp]
 theorem operationFamily_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ) {A : Sort u}
@@ -181,6 +207,9 @@ def natOperationFamily {clusterCount : ℕ}
   if h : j < totalCount length then operationFamily length family ⟨j, h⟩
   else fallback
 
+/--
+@isnad1 id=eq.0h7v.s5.54ff08aad652 from=translated src=- shape=2c1a0933 vocab=207eca70
+-/
 @[simp]
 theorem natOperationFamily_flattenIndex {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ) {A : Sort u}
@@ -190,7 +219,9 @@ theorem natOperationFamily_flattenIndex {clusterCount : ℕ}
       family c i := by
   simp [natOperationFamily]
 
-/-- The value of a global index is its cluster offset plus its local index.-/
+/-- The value of a global index is its cluster offset plus its local index.
+@isnad1 id=eq.0h4v.s5.70d040ba023b from=translated src=- shape=ce87d3c2 vocab=8e7893f1
+-/
 theorem flattenIndex_val {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (c : Fin clusterCount) (i : Fin (length c)) :
@@ -201,7 +232,9 @@ theorem flattenIndex_val {clusterCount : ℕ}
   congr 2
 
 /-- A flattened local index lies in the exact half-open interval belonging
-to its cluster.-/
+to its cluster.
+@isnad1 id=and.0h4v.s5.f18564db3a96 from=translated src=- shape=79d70402 vocab=f0199032
+-/
 theorem flattenIndex_mem_block {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (c : Fin clusterCount) (i : Fin (length c)) :
@@ -210,7 +243,9 @@ theorem flattenIndex_mem_block {clusterCount : ℕ}
   rw [flattenIndex_val, prefixOffset_succ]
   omega
 
-/-- The end offset of a positive-length block does not exceed the total.-/
+/-- The end offset of a positive-length block does not exceed the total.
+@isnad1 id=le.1h3v.s5.86288d2f424b from=translated src=- shape=1a5c32c6 vocab=2cd5cf99
+-/
 theorem prefixOffset_succ_le_total {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c) (c : Fin clusterCount) :
@@ -224,7 +259,9 @@ theorem prefixOffset_succ_le_total {clusterCount : ℕ}
   dsimp [i] at hi
   omega
 
-/-- Every boundary offset of positive-length blocks is at most the total.-/
+/-- Every boundary offset of positive-length blocks is at most the total.
+@isnad1 id=le.1h3v.s5.0bc050e8205a from=translated src=- shape=b54eda6a vocab=ab6cc9c3
+-/
 theorem prefixOffset_le_total {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c)
@@ -247,6 +284,9 @@ def boundaryIndex {clusterCount : ℕ}
     rw [prefixOffset_succ] at hfinish
     omega⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.054dc593837e from=translated src=- shape=cbf5da8b vocab=4b828672
+-/
 @[simp]
 theorem boundaryIndex_val {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
@@ -256,7 +296,9 @@ theorem boundaryIndex_val {clusterCount : ℕ}
       prefixOffset length c.castSucc + i := rfl
 
 /-- The boundary after a local operation is the successor of that operation's
-global index.-/
+global index.
+@isnad1 id=eq.1h4v.s6.4eea93d99575 from=translated src=- shape=9ab8591a vocab=6bc47514
+-/
 theorem boundaryIndex_succ {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c)
@@ -270,7 +312,9 @@ theorem boundaryIndex_succ {clusterCount : ℕ}
   omega
 
 /-- Adjacent clusters assign their shared local boundaries the same global
-boundary index.-/
+boundary index.
+@isnad1 id=eq.2h4v.s6.610bb9ca6a78 from=translated src=- shape=7f4e2e41 vocab=24384629
+-/
 theorem boundaryIndex_terminal_eq_initial {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c)
@@ -284,7 +328,9 @@ theorem boundaryIndex_terminal_eq_initial {clusterCount : ℕ}
   apply Fin.ext
   exact hnext.symm
 
-/-- The first local boundary is the first global boundary.-/
+/-- The first local boundary is the first global boundary.
+@isnad1 id=eq.2h2v.s7.e532aa82b8c3 from=translated src=- shape=2d81055f vocab=5bbc5c84
+-/
 theorem boundaryIndex_first {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c) (hcount : 0 < clusterCount) :
@@ -297,11 +343,17 @@ def lastClusterIndex {clusterCount : ℕ}
     (hcount : 0 < clusterCount) : Fin clusterCount :=
   ⟨clusterCount - 1, by omega⟩
 
+/--
+@isnad1 id=eq.1h1v.s5.84c928c3bc02 from=translated src=- shape=3a23b35f vocab=8d044d38
+-/
 @[simp]
 theorem lastClusterIndex_val {clusterCount : ℕ}
     (hcount : 0 < clusterCount) :
     (lastClusterIndex hcount : ℕ) = clusterCount - 1 := rfl
 
+/--
+@isnad1 id=eq.1h1v.s5.50ee2927563f from=translated src=- shape=c0392faf vocab=23f5728e
+-/
 theorem lastClusterIndex_succ {clusterCount : ℕ}
     (hcount : 0 < clusterCount) :
     (lastClusterIndex hcount).succ = Fin.last clusterCount := by
@@ -310,7 +362,9 @@ theorem lastClusterIndex_succ {clusterCount : ℕ}
   omega
 
 /-- The last local boundary of the last cluster is the terminal global
-boundary.-/
+boundary.
+@isnad1 id=eq.2h2v.s6.e6719a22c558 from=translated src=- shape=05b824bc vocab=b8a3e657
+-/
 theorem boundaryIndex_last {clusterCount : ℕ}
     (length : Fin clusterCount → ℕ)
     (hpositive : ∀ c, 0 < length c) (hcount : 0 < clusterCount) :
@@ -327,6 +381,9 @@ boundary family to the all-natural-number indexing used by trace APIs.-/
 def clampBoundary (total j : ℕ) : Fin (total + 1) :=
   ⟨min j total, by omega⟩
 
+/--
+@isnad1 id=eq.1h2v.s5.680695dbbbd7 from=translated src=- shape=0553190f vocab=807e09e6
+-/
 @[simp]
 theorem clampBoundary_of_le {total j : ℕ} (h : j ≤ total) :
     clampBoundary total j = ⟨j, Nat.lt_succ_of_le h⟩ := by
@@ -351,7 +408,9 @@ def natDependentOperationFamily {clusterCount : ℕ}
   else fallback
 
 /-- At every genuine global operation, the Nat-indexed dependent extension
-reduces to the original local family.-/
+reduces to the original local family.
+@isnad1 id=eq.0h6v.s5.359bb97df516 from=translated src=- shape=eada1eb7 vocab=11cdf516
+-/
 @[simp]
 theorem natDependentOperationFamily_flattenIndex
     {clusterCount : ℕ} (length : Fin clusterCount → ℕ)
@@ -392,13 +451,18 @@ def CompatibleBoundaryFamily.concatenate
   Fin.cases family.initial fun j ↦
     family.boundary (lookupCluster length j) (lookupLocal length j).succ
 
+/--
+@isnad1 id=eq.0h4v.s5.4b120f729f8f from=translated src=- shape=88e79d53 vocab=de2ca10c
+-/
 @[simp]
 theorem CompatibleBoundaryFamily.concatenate_zero
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A) :
     family.concatenate 0 = family.initial := rfl
 
-/-- Concatenation preserves every positive local boundary literally.-/
+/-- Concatenation preserves every positive local boundary literally.
+@isnad1 id=eq.1h6v.s6.79f26f23f5bb from=translated src=- shape=fe9483f9 vocab=ba22e35b
+-/
 theorem CompatibleBoundaryFamily.concatenate_boundaryIndex_succ
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -413,7 +477,9 @@ theorem CompatibleBoundaryFamily.concatenate_boundaryIndex_succ
   rw [lookup_flattenIndex]
 
 /-- Concatenation preserves the terminal boundary of every positive-length
-cluster.-/
+cluster.
+@isnad1 id=eq.1h5v.s5.4daf81430ca3 from=translated src=- shape=f641e395 vocab=a945010d
+-/
 theorem CompatibleBoundaryFamily.concatenate_boundaryIndex_terminal
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -432,7 +498,9 @@ theorem CompatibleBoundaryFamily.concatenate_boundaryIndex_terminal
   rw [← hi, family.concatenate_boundaryIndex_succ]
 
 /-- At a cluster seam, the concatenated boundary is the next cluster's
-explicitly identified initial boundary.-/
+explicitly identified initial boundary.
+@isnad1 id=eq.2h6v.s6.2ee0447f1abf from=translated src=- shape=d93b5189 vocab=b32e1175
+-/
 theorem CompatibleBoundaryFamily.concatenate_seam
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -445,7 +513,9 @@ theorem CompatibleBoundaryFamily.concatenate_seam
   exact family.terminal_eq_next hnext
 
 /-- Concatenation preserves the first local boundary through the supplied
-initial identification.-/
+initial identification.
+@isnad1 id=eq.2h4v.s7.3dae3e773f45 from=translated src=- shape=919bdd97 vocab=ea587923
+-/
 theorem CompatibleBoundaryFamily.concatenate_first
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -456,7 +526,9 @@ theorem CompatibleBoundaryFamily.concatenate_first
   rw [boundaryIndex_first, family.concatenate_zero,
     family.initial_eq_first hcount]
 
-/-- Concatenation preserves the last local boundary at the global endpoint.-/
+/-- Concatenation preserves the last local boundary at the global endpoint.
+@isnad1 id=eq.2h4v.s6.1dada7d49a42 from=translated src=- shape=49008456 vocab=86f927a9
+-/
 theorem CompatibleBoundaryFamily.concatenate_last
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -474,6 +546,9 @@ def CompatibleBoundaryFamily.natFamily
     (family : CompatibleBoundaryFamily length A) (j : ℕ) : A :=
   family.concatenate (clampBoundary (totalCount length) j)
 
+/--
+@isnad1 id=eq.0h4v.s4.56995672d5d2 from=translated src=- shape=2f0f425d vocab=f48bd0a4
+-/
 @[simp]
 theorem CompatibleBoundaryFamily.natFamily_zero
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
@@ -481,6 +556,9 @@ theorem CompatibleBoundaryFamily.natFamily_zero
     family.natFamily 0 = family.initial := by
   simp [CompatibleBoundaryFamily.natFamily, clampBoundary]
 
+/--
+@isnad1 id=eq.0h4v.s5.fadc35b9f06f from=translated src=- shape=1f1a2d0c vocab=f138169c
+-/
 @[simp]
 theorem CompatibleBoundaryFamily.natFamily_total
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
@@ -493,7 +571,9 @@ theorem CompatibleBoundaryFamily.natFamily_total
   simp [clampBoundary]
 
 /-- At the successor of a flattened operation, the Nat-indexed family is
-the corresponding local output boundary.-/
+the corresponding local output boundary.
+@isnad1 id=eq.1h6v.s6.f3e304d742d3 from=translated src=- shape=10206bfe vocab=ec0d53b2
+-/
 theorem CompatibleBoundaryFamily.natFamily_succ_flattenIndex
     {clusterCount : ℕ} {length : Fin clusterCount → ℕ} {A : Type*}
     (family : CompatibleBoundaryFamily length A)
@@ -567,6 +647,9 @@ def clusterTransferOperationFinEquiv
       (finSumFinEquiv.trans
         (finCongr (Nat.add_assoc individualCount 1 extraRetainedCount).symm)))
 
+/--
+@isnad1 id=eq.0h3v.s7.c4225ad34ce9 from=translated src=- shape=2b2667ca vocab=d305beb5
+-/
 @[simp]
 theorem clusterTransferOperationFinEquiv_individual
     {individualCount extraRetainedCount : ℕ} (i : Fin individualCount) :
@@ -575,6 +658,9 @@ theorem clusterTransferOperationFinEquiv_individual
   simp [clusterTransferOperationFinEquiv, clusterTransferOperationSumEquiv,
     finSumFinEquiv_apply_left]
 
+/--
+@isnad1 id=eq.0h2v.s7.cd96b7255230 from=translated src=- shape=2bfe40d8 vocab=af51ed92
+-/
 @[simp]
 theorem clusterTransferOperationFinEquiv_firstSimultaneous
     (individualCount extraRetainedCount : ℕ) :
@@ -583,6 +669,9 @@ theorem clusterTransferOperationFinEquiv_firstSimultaneous
   simp [clusterTransferOperationFinEquiv, clusterTransferOperationSumEquiv,
     finSumFinEquiv_apply_left, finSumFinEquiv_apply_right]
 
+/--
+@isnad1 id=eq.0h3v.s7.77a9369b35b6 from=translated src=- shape=270f03ef vocab=a1c8e309
+-/
 @[simp]
 theorem clusterTransferOperationFinEquiv_extraRetained
     {individualCount extraRetainedCount : ℕ} (i : Fin extraRetainedCount) :
@@ -598,6 +687,9 @@ abbrev clusterTransferLength {clusterCount : ℕ}
     (c : Fin clusterCount) : ℕ :=
   individualCount c + 1 + extraRetainedCount c
 
+/--
+@isnad1 id=lt.0h4v.s4.ddb2c86fff98 from=translated src=- shape=3bbf331b vocab=79e6edfb
+-/
 theorem clusterTransferLength_pos {clusterCount : ℕ}
     (individualCount extraRetainedCount : Fin clusterCount → ℕ)
     (c : Fin clusterCount) :
@@ -633,6 +725,9 @@ def clusterTransferIndex {clusterCount : ℕ}
     (clusterTransferOperationFinEquiv
       (individualCount c) (extraRetainedCount c) operation)
 
+/--
+@isnad1 id=eq.0h5v.s7.c03a171ab9a3 from=translated src=- shape=8c94d08f vocab=9c7f1d8b
+-/
 @[simp]
 theorem orderedClusterTransferEquiv_clusterTransferIndex
     {clusterCount : ℕ}
@@ -655,6 +750,9 @@ theorem orderedClusterTransferEquiv_clusterTransferIndex
       (individualCount c) (extraRetainedCount c))
   rw [Equiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h5v.s5.9bb87ee2c3f4 from=translated src=- shape=a918e3de vocab=0bfef494
+-/
 @[simp]
 theorem clusterTransferIndex_individual_val
     {clusterCount : ℕ}
@@ -678,6 +776,9 @@ theorem clusterTransferIndex_individual_val
         (clusterTransferLength individualCount extraRetainedCount) c _
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.0h4v.s5.6db48ceb5b7c from=translated src=- shape=8ebf287d vocab=f9419464
+-/
 @[simp]
 theorem clusterTransferIndex_firstSimultaneous_val
     {clusterCount : ℕ}
@@ -701,6 +802,9 @@ theorem clusterTransferIndex_firstSimultaneous_val
         (clusterTransferLength individualCount extraRetainedCount) c _
     _ = _ := by simp
 
+/--
+@isnad1 id=eq.0h5v.s6.09444fb05c41 from=translated src=- shape=27f6df0c vocab=88517d94
+-/
 @[simp]
 theorem clusterTransferIndex_extraRetained_val
     {clusterCount : ℕ}

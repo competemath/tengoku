@@ -26,6 +26,9 @@ def polynomialAlgEquivModuleEquiv
       artinianFreePolynomialModule B n r :=
   LinearEquiv.piCongrRight (fun _ : Fin r ↦ J.toLinearEquiv)
 
+/--
+@isnad1 id=eq.0h6v.s10.f572c2ac1278 from=translated src=- shape=721f72de vocab=f8dd9caa
+-/
 @[simp]
 theorem polynomialAlgEquivModuleEquiv_apply
     (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
@@ -33,6 +36,9 @@ theorem polynomialAlgEquivModuleEquiv_apply
     polynomialAlgEquivModuleEquiv J P k = J (P k) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.8c93da7fb33c from=translated src=- shape=a1e7f870 vocab=536877c7
+-/
 @[simp]
 theorem polynomialAlgEquivModuleEquiv_symm_apply
     (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
@@ -41,7 +47,9 @@ theorem polynomialAlgEquivModuleEquiv_symm_apply
   rfl
 
 /-- Ideal mapping by an algebra equivalence is exactly coefficient-linear
-mapping of the associated rank-one polynomial submodule.-/
+mapping of the associated rank-one polynomial submodule.
+@isnad1 id=eq.0h4v.s10.80a9ef53b871 from=translated src=- shape=8a763641 vocab=cf9f863e
+-/
 theorem rankOnePolynomialIdealSubmodule_map_algEquiv
     (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
     (I : Ideal (MvPolynomial (Fin n) B)) :
@@ -71,7 +79,9 @@ theorem rankOnePolynomialIdealSubmodule_map_algEquiv
 variable (G : PolynomialGradedLexData n r h)
 
 /-- The inverse of the restricted window equivalence has the expected
-ambient value.-/
+ambient value.
+@isnad1 id=eq.2h8v.s13.b6305928c3af from=translated src=- shape=78421c88 vocab=6ea1ddc8
+-/
 theorem PolynomialGradedLexData.windowRestriction_symm_coe
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (J : artinianFreePolynomialModule B n r ≃ₗ[B]
@@ -93,7 +103,9 @@ theorem PolynomialGradedLexData.windowRestriction_symm_coe
 
 /-- If an ambient coefficient-linear equivalence maps one polynomial
 submodule to another and preserves the window, its restriction maps their
-bounded parts exactly.-/
+bounded parts exactly.
+@isnad1 id=eq.3h9v.s12.8526a5317a34 from=translated src=- shape=9574b031 vocab=1b8490d3
+-/
 theorem PolynomialGradedLexData.polynomialWindowPart_map_equiv
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (J : artinianFreePolynomialModule B n r ≃ₗ[B]
@@ -124,7 +136,9 @@ theorem PolynomialGradedLexData.polynomialWindowPart_map_equiv
   rw [G.windowRestriction_symm_coe]
 
 /-- Transporting both bounded parts to the ordered product turns the
-restricted action into the window conjugate used by finite descent.-/
+restricted action into the window conjugate used by finite descent.
+@isnad1 id=eq.3h9v.s13.d5a0cd2c72ec from=translated src=- shape=780ae43d vocab=420e2da2
+-/
 theorem PolynomialGradedLexData.polynomialWindowOrderedWeightPart_map_equiv
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (J : artinianFreePolynomialModule B n r ≃ₗ[B]

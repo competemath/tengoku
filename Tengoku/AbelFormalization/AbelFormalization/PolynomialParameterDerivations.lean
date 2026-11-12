@@ -33,13 +33,18 @@ variable {R : Type*} [CommRing R] [Algebra ℚ R]
 def polynomialParameterCoeff (H : R →ₐ[ℚ] Polynomial R) (k : ℕ) : R →ₗ[ℚ] R :=
   ((Polynomial.lcoeff R k).restrictScalars ℚ).comp H.toLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s7.5a6a7ead1025 from=translated src=- shape=69a3ad0b vocab=3cd12a5a
+-/
 @[simp]
 theorem polynomialParameterCoeff_apply (H : R →ₐ[ℚ] Polynomial R)
     (k : ℕ) (a : R) :
     polynomialParameterCoeff H k a = (H a).coeff k := rfl
 
 /-- The first coefficient product rule follows from the two terms in the
-degree-one antidiagonal and the identity constant coefficient.-/
+degree-one antidiagonal and the identity constant coefficient.
+@isnad1 id=eq.1h4v.s9.7aaee738aefc from=translated src=- shape=cd83006c vocab=cc19f384
+-/
 theorem polynomialParameterCoeff_one_mul (H : R →ₐ[ℚ] Polynomial R)
     (h0 : ∀ a, (H a).coeff 0 = a) (a b : R) :
     polynomialParameterCoeff H 1 (a * b) =
@@ -54,13 +59,18 @@ def polynomialParameterFirstDerivation (H : R →ₐ[ℚ] Polynomial R)
     intro a b
     simpa only [smul_eq_mul] using polynomialParameterCoeff_one_mul H h0 a b)
 
+/--
+@isnad1 id=eq.1h3v.s8.ec46e8c675d2 from=translated src=- shape=45a52f0c vocab=fce207ac
+-/
 @[simp]
 theorem polynomialParameterFirstDerivation_apply (H : R →ₐ[ℚ] Polynomial R)
     (h0 : ∀ a, (H a).coeff 0 = a) (a : R) :
     polynomialParameterFirstDerivation H h0 a = (H a).coeff 1 := rfl
 
 /-- The three degree-two antidiagonal terms give the second coefficient
-product rule, with exactly one cross term.-/
+product rule, with exactly one cross term.
+@isnad1 id=eq.1h4v.s9.b3156e169f56 from=translated src=- shape=8e68a2b1 vocab=cc19f384
+-/
 theorem polynomialParameterCoeff_two_mul (H : R →ₐ[ℚ] Polynomial R)
     (h0 : ∀ a, (H a).coeff 0 = a) (a b : R) :
     polynomialParameterCoeff H 2 (a * b) =
@@ -73,7 +83,9 @@ theorem polynomialParameterCoeff_two_mul (H : R →ₐ[ℚ] Polynomial R)
   simp [h0]
   ring
 
-/-- Applying Leibniz twice gives a coefficient two on the cross term.-/
+/-- Applying Leibniz twice gives a coefficient two on the cross term.
+@isnad1 id=eq.0h4v.s9.68182624effd from=translated src=- shape=68d4b266 vocab=b9a79ec4
+-/
 theorem derivation_iterate_two_mul (D : Derivation ℚ R R) (a b : R) :
     D (D (a * b)) =
       a * D (D b) + 2 * D a * D b + b * D (D a) := by
@@ -86,6 +98,9 @@ def polynomialParameterSecondLogLinearMap (H : R →ₐ[ℚ] Polynomial R) : R �
   polynomialParameterCoeff H 2 - (1 / 2 : ℚ) •
     (polynomialParameterCoeff H 1).comp (polynomialParameterCoeff H 1)
 
+/--
+@isnad1 id=eq.0h3v.s8.86ac5a8975ea from=translated src=- shape=0a068d55 vocab=9aec3475
+-/
 @[simp]
 theorem polynomialParameterSecondLogLinearMap_apply (H : R →ₐ[ℚ] Polynomial R)
     (a : R) :
@@ -93,7 +108,9 @@ theorem polynomialParameterSecondLogLinearMap_apply (H : R →ₐ[ℚ] Polynomia
       (H a).coeff 2 - (1 / 2 : ℚ) • (H ((H a).coeff 1)).coeff 1 := rfl
 
 /-- The second logarithmic component obeys Leibniz because its correction
-term cancels the unique second-coefficient cross term.-/
+term cancels the unique second-coefficient cross term.
+@isnad1 id=eq.1h4v.s9.3239345605c1 from=translated src=- shape=1ec64f05 vocab=d2fb984a
+-/
 theorem polynomialParameterSecondLogLinearMap_mul (H : R →ₐ[ℚ] Polynomial R)
     (h0 : ∀ a, (H a).coeff 0 = a) (a b : R) :
     polynomialParameterSecondLogLinearMap H (a * b) =
@@ -127,7 +144,9 @@ def polynomialParameterSecondLogDerivation (H : R →ₐ[ℚ] Polynomial R)
     simpa only [smul_eq_mul] using polynomialParameterSecondLogLinearMap_mul H h0 a b)
 
 /-- Its defining coefficient formula uses the square of the actual first
-derivation, not a separately postulated second-order operator.-/
+derivation, not a separately postulated second-order operator.
+@isnad1 id=eq.1h3v.s9.1c15028099ea from=translated src=- shape=840482d4 vocab=e7724794
+-/
 theorem polynomialParameterSecondLogDerivation_apply
     (H : R →ₐ[ℚ] Polynomial R) (h0 : ∀ a, (H a).coeff 0 = a) (a : R) :
     polynomialParameterSecondLogDerivation H h0 a =
@@ -135,7 +154,9 @@ theorem polynomialParameterSecondLogDerivation_apply
         polynomialParameterFirstDerivation H h0
           (polynomialParameterFirstDerivation H h0 a) := rfl
 
-/-- A raw coefficient form is convenient when proving ideal membership.-/
+/-- A raw coefficient form is convenient when proving ideal membership.
+@isnad1 id=eq.1h3v.s9.60002154d33a from=translated src=- shape=cf334745 vocab=e39ac9f6
+-/
 theorem polynomialParameterSecondLogDerivation_apply_coeff
     (H : R →ₐ[ℚ] Polynomial R) (h0 : ∀ a, (H a).coeff 0 = a) (a : R) :
     polynomialParameterSecondLogDerivation H h0 a =
@@ -144,7 +165,9 @@ theorem polynomialParameterSecondLogDerivation_apply_coeff
   simp only [polynomialParameterFirstDerivation_apply, Algebra.smul_def]
 
 /-- Closure under the actual first coefficient implies preservation by
-the first derivation.-/
+the first derivation.
+@isnad1 id=mem.3h4v.s8.31ca3470641c from=translated src=- shape=d3a5e481 vocab=e0deb3a5
+-/
 theorem polynomialParameterFirstDerivation_preserves_ideal
     (H : R →ₐ[ℚ] Polynomial R) (h0 : ∀ a, (H a).coeff 0 = a)
     (I : Ideal R) (hI1 : ∀ a ∈ I, (H a).coeff 1 ∈ I) :
@@ -154,7 +177,9 @@ theorem polynomialParameterFirstDerivation_preserves_ideal
 
 /-- Closure under the actual first two coefficients implies preservation
 by the second logarithmic derivation: the iterated first coefficient lies
-in I, and its rational multiple is multiplication by an element of R.-/
+in I, and its rational multiple is multiplication by an element of R.
+@isnad1 id=mem.4h4v.s9.90d689ed4ad8 from=translated src=- shape=b49ad94a vocab=63b63895
+-/
 theorem polynomialParameterSecondLogDerivation_preserves_ideal
     (H : R →ₐ[ℚ] Polynomial R) (h0 : ∀ a, (H a).coeff 0 = a)
     (I : Ideal R) (hI1 : ∀ a ∈ I, (H a).coeff 1 ∈ I)

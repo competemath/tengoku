@@ -25,6 +25,9 @@ def BoundedComplexExtension (f : ℝ → ℝ) (x ρ M : ℝ) : Prop :=
       (∀ y : ℝ, y ∈ ball x ρ → F (y : ℂ) = (f y : ℂ)) ∧
         ∀ z ∈ ball (x : ℂ) ρ, ‖F z‖ ≤ M
 
+/--
+@isnad1 id=boundedc.3h6v.s5.a3b41eb2c5d4 from=translated src=- shape=256405b5 vocab=b9ded2e6
+-/
 theorem BoundedComplexExtension.mono {f : ℝ → ℝ} {x ρ ρ' M M' : ℝ}
     (h : BoundedComplexExtension f x ρ M) (hρ : ρ' ≤ ρ) (hM : M ≤ M') :
     BoundedComplexExtension f x ρ' M' := by
@@ -35,7 +38,9 @@ theorem BoundedComplexExtension.mono {f : ℝ → ℝ} {x ρ ρ' M M' : ℝ}
   · intro z hz
     exact (hb z (ball_subset_ball hρ hz)).trans hM
 
-/-- Around one analytic point, neighboring real centers share a bounded branch.-/
+/-- Around one analytic point, neighboring real centers share a bounded branch.
+@isnad1 id=ex.1h2v.s6.380569ad6a81 from=translated src=- shape=c2c0a976 vocab=e3f807b6
+-/
 theorem exists_local_bounded_complex_extensions {f : ℝ → ℝ} {x : ℝ}
     (hf : AnalyticAt ℝ f x) :
     ∃ r : ℝ, 0 < r ∧ ∃ M : ℝ, 0 < M ∧
@@ -68,7 +73,9 @@ theorem exists_local_bounded_complex_extensions {f : ℝ → ℝ} {x : ℝ}
   · intro z hz
     exact (hM ⟨z, hshift hz, rfl⟩).trans (le_max_left _ _)
 
-/-- Common radius and bound for local extensions at all points of a compact real set.-/
+/-- Common radius and bound for local extensions at all points of a compact real set.
+@isnad1 id=ex.2h2v.s6.7c792059acac from=translated src=- shape=66666a55 vocab=8a97bfbe
+-/
 theorem exists_uniform_bounded_complex_extensions {f : ℝ → ℝ} {K : Set ℝ}
     (hK : IsCompact K) (hf : ∀ x ∈ K, AnalyticAt ℝ f x) :
     ∃ ρ : ℝ, 0 < ρ ∧ ∃ M : ℝ, 0 < M ∧
@@ -103,7 +110,9 @@ variable {A : ℝ → ℝ} (hA : IsAbel A)
 
 include hA
 
-/-- Uniform bounded local branches on a compact fundamental interval.-/
+/-- Uniform bounded local branches on a compact fundamental interval.
+@isnad1 id=ex.2h2v.s6.cf26d2851f84 from=translated src=- shape=8ea885fd vocab=a409c828
+-/
 theorem uniform_complex_extensions_fundamental {U : ℝ} (hU : 0 < U) :
     ∃ ρ : ℝ, 0 < ρ ∧ ∃ M : ℝ, 0 < M ∧
       ∀ x ∈ Icc U (E U), BoundedComplexExtension A x ρ M := by

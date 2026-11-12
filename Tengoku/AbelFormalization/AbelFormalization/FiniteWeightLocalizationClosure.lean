@@ -41,6 +41,9 @@ def finiteWeightLocalizationContraction
   (L.restrictScalars R).comap
     (finiteWeightLocalizationMap (M := M) S)
 
+/--
+@isnad1 id=iff.0h6v.s10.4f86f27b0e12 from=translated src=- shape=305d3c3b vocab=1201d0e8
+-/
 @[simp]
 theorem mem_finiteWeightLocalizationContraction
     (S : Submonoid R)
@@ -51,7 +54,9 @@ theorem mem_finiteWeightLocalizationContraction
       finiteWeightLocalizationMap (M := M) S x ∈ L :=
   Iff.rfl
 
-/-- The canonical map sends the contraction into the localized submodule.-/
+/-- The canonical map sends the contraction into the localized submodule.
+@isnad1 id=le.0h5v.s10.2878d8ebaeaa from=translated src=- shape=a8aa1695 vocab=b5840f0a
+-/
 theorem map_finiteWeightLocalizationContraction_le
     (S : Submonoid R)
     (L : Submodule (Localization S)
@@ -63,7 +68,9 @@ theorem map_finiteWeightLocalizationContraction_le
   exact le_rfl
 
 /-- Localizing the saturated contraction recovers the original localized
-submodule.-/
+submodule.
+@isnad1 id=eq.0h5v.s9.5169e6516a64 from=translated src=- shape=b1021689 vocab=55f88e75
+-/
 @[simp]
 theorem localized_finiteWeightLocalizationContraction
     (S : Submonoid R)
@@ -77,7 +84,9 @@ theorem localized_finiteWeightLocalizationContraction
       (finiteWeightLocalizationMap (M := M) S)).l_u_eq L
 
 /-- Localized inclusion in `L` is equivalent to inclusion in its saturated
-contraction.-/
+contraction.
+@isnad1 id=iff.0h6v.s10.56b21d640251 from=translated src=- shape=a8cbce13 vocab=2fe6d8da
+-/
 theorem localized_le_iff_le_finiteWeightLocalizationContraction
     (S : Submonoid R)
     (N : Submodule R (∀ i, M i))
@@ -91,7 +100,9 @@ theorem localized_le_iff_le_finiteWeightLocalizationContraction
       (finiteWeightLocalizationMap (M := M) S)).gc N L
 
 /-- The coordinatewise localization map commutes with insertion into one
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h6v.s10.b2b869ca6ad3 from=translated src=- shape=ab121e3f vocab=b25208e7
+-/
 @[simp]
 theorem finiteWeightLocalizationMap_single
     (S : Submonoid R) (i : Fin n) (v : M i) :
@@ -104,7 +115,9 @@ theorem finiteWeightLocalizationMap_single
     simp [finiteWeightLocalizationMap_apply]
   · simp [finiteWeightLocalizationMap_apply, hji]
 
-/-- Contraction preserves coordinatewise homogeneity.-/
+/-- Contraction preserves coordinatewise homogeneity.
+@isnad1 id=mem.2h7v.s11.cbad98620de2 from=translated src=- shape=7c8c6233 vocab=7a29fa93
+-/
 theorem finiteWeightLocalizationContraction_homogeneous
     (S : Submonoid R)
     (L : Submodule (Localization S)
@@ -122,7 +135,9 @@ theorem finiteWeightLocalizationContraction_homogeneous
     hL (finiteWeightLocalizationMap (M := M) S x) hxL i
 
 /-- The induced localized equivalence commutes with the canonical
-localization map.-/
+localization map.
+@isnad1 id=eq.0h6v.s11.0ac3dcadc93b from=translated src=- shape=21ad6f07 vocab=273db7d7
+-/
 @[simp]
 theorem finiteWeightLocalizedEquiv_localizationMap
     (S : Submonoid R)
@@ -135,7 +150,9 @@ theorem finiteWeightLocalizedEquiv_localizationMap
     finiteWeightLocalizedEquiv_mk' (M := M) S J x (1 : S)
 
 /-- The inverse localized equivalence commutes with the canonical
-localization map as well.-/
+localization map as well.
+@isnad1 id=eq.0h6v.s12.d8e0f9ff7841 from=translated src=- shape=564ce3a2 vocab=d52d497d
+-/
 @[simp]
 theorem finiteWeightLocalizedEquiv_symm_localizationMap
     (S : Submonoid R)
@@ -150,7 +167,9 @@ theorem finiteWeightLocalizedEquiv_symm_localizationMap
     LinearEquiv.apply_symm_apply]
 
 /-- Mapping a saturated contraction by `J` is contraction after mapping the
-localized submodule by the induced localized equivalence.-/
+localized submodule by the induced localized equivalence.
+@isnad1 id=eq.0h6v.s10.5fe7c63a2d4b from=translated src=- shape=be8fafbc vocab=b03c90f2
+-/
 theorem map_finiteWeightLocalizationContraction
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -167,7 +186,9 @@ theorem map_finiteWeightLocalizationContraction
     finiteWeightLocalizedEquiv_symm_localizationMap]
 
 /-- Invariance of a localized submodule descends to invariance of its
-saturated contraction.-/
+saturated contraction.
+@isnad1 id=eq.1h6v.s10.f71aa47ae31b from=translated src=- shape=40da0a0b vocab=b03c90f2
+-/
 theorem finiteWeightLocalizationContraction_invariant
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -181,7 +202,9 @@ theorem finiteWeightLocalizationContraction_invariant
   rw [map_finiteWeightLocalizationContraction, hJL]
 
 /-- Over a Noetherian ring, a saturated contraction inside a finite ambient
-module is finitely generated.-/
+module is finitely generated.
+@isnad1 id=fg.0h5v.s8.1f9b19f34686 from=translated src=- shape=9b98fec6 vocab=368e1681
+-/
 theorem finiteWeightLocalizationContraction_fg
     [IsNoetherianRing R]
     [Module.Finite R (∀ i, M i)]
@@ -193,7 +216,9 @@ theorem finiteWeightLocalizationContraction_fg
 
 /-- If `N` and a finitely generated saturated contraction have the same
 localization, one denominator gives the sandwich
-`s • K ≤ N ≤ K`.-/
+`s • K ≤ N ≤ K`.
+@isnad1 id=ex.2h6v.s11.33083b13d25d from=translated src=- shape=eef142f9 vocab=7714b8dc
+-/
 theorem exists_smul_contraction_le_and_le_contraction_of_fg
     (S : Submonoid R)
     (L : Submodule (Localization S)
@@ -215,7 +240,9 @@ theorem exists_smul_contraction_le_and_le_contraction_of_fg
   simpa only [localized_finiteWeightLocalizationContraction] using hloc.le
 
 /-- The denominator-clearing sandwich for the canonical contraction in a
-finite module over a Noetherian ring.-/
+finite module over a Noetherian ring.
+@isnad1 id=ex.1h6v.s11.19a0fea2ad5b from=translated src=- shape=60fcb1f2 vocab=05669e08
+-/
 theorem exists_smul_contraction_le_and_le_contraction
     [IsNoetherianRing R]
     [Module.Finite R (∀ i, M i)]

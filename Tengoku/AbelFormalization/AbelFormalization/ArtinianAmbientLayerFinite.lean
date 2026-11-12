@@ -48,7 +48,9 @@ def submoduleLayerPushforwardSemilinearMap
         rfl }
 
 /-- Finite generation descends through the pushed-forward scalar action.
-This is the module-theoretic reason that no section of `q` is needed.-/
+This is the module-theoretic reason that no section of `q` is needed.
+@isnad1 id=finite.2h6v.s9.75fb162eefb9 from=translated src=- shape=7487babd vocab=6eea86dc
+-/
 theorem submoduleLayerPushforward_moduleFinite
     {A C W : Type*} [CommRing A] [CommRing C] [AddCommGroup W] [Module A W]
     (q : A →+* C) (hq : Function.Surjective q) (F G : Submodule A W)
@@ -67,7 +69,9 @@ variable {B : Type*} [CommRing B] {n r : ℕ}
 
 /-- Every fixed ambient ideal-power layer is a finite module over the residue
 polynomial ring.  The proof first uses Noetherianity over `B[z]` and then
-pushes the finite generating family through coefficientwise reduction.-/
+pushes the finite generating family through coefficientwise reduction.
+@isnad1 id=finite.0h5v.s11.643ad01d78ed from=translated src=- shape=8fa81082 vocab=fa3407a4
+-/
 theorem artinianPolynomialAmbientLayer_moduleFinite_of_isNoetherianRing
     [IsNoetherianRing B] (I : Ideal B) (i : ℕ) :
     letI := artinianPolynomialAmbientLayerModule (n := n) (r := r) I i
@@ -92,7 +96,9 @@ theorem artinianPolynomialAmbientLayer_moduleFinite_of_isNoetherianRing
     (artinianPolynomialAmbientLayer_annihilation (n := n) (r := r) I i)
 
 /-- Artinian rings are Noetherian, so the preceding result applies in the
-intended local-Artinian setting.-/
+intended local-Artinian setting.
+@isnad1 id=finite.0h5v.s11.59f89204d438 from=translated src=- shape=8fa81082 vocab=7a807908
+-/
 theorem artinianPolynomialAmbientLayer_moduleFinite
     [IsArtinianRing B] (I : Ideal B) (i : ℕ) :
     letI := artinianPolynomialAmbientLayerModule (n := n) (r := r) I i
@@ -101,7 +107,9 @@ theorem artinianPolynomialAmbientLayer_moduleFinite
   artinianPolynomialAmbientLayer_moduleFinite_of_isNoetherianRing
     (n := n) (r := r) I i
 
-/-- A finite product of the fixed ambient layers is finite over `(B/I)[z]`.-/
+/-- A finite product of the fixed ambient layers is finite over `(B/I)[z]`.
+@isnad1 id=finite.0h5v.s12.488e7260c517 from=translated src=- shape=8fa81082 vocab=9304adcf
+-/
 theorem artinianPolynomialAmbientLayerSum_moduleFinite
     [IsArtinianRing B] (I : Ideal B) (e : ℕ) :
     letI (j : Fin e) :=
@@ -148,6 +156,9 @@ def artinianPolynomialAmbientLayerSumFiniteFreeCover
     artinianPolynomialAmbientLayerSum_moduleFinite (n := n) (r := r) I e
   exact FiniteFreeCover.ofModuleFinite _ _
 
+/--
+@isnad1 id=surjecti.0h5v.s16.f508226f0c6a from=translated src=- shape=116a8f50 vocab=3ab92fdf
+-/
 theorem artinianPolynomialAmbientLayerSumFiniteFreeCover_surjective
     [IsArtinianRing B] (I : Ideal B) (e : ℕ) :
     letI (j : Fin e) :=

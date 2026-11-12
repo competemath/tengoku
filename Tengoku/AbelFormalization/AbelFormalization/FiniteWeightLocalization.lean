@@ -29,18 +29,26 @@ def finiteWeightLocalizationMap (S : Submonoid R) :
   LinearMap.pi fun i =>
     (LocalizedModule.mkLinearMap S (M i)).comp (LinearMap.proj i)
 
+/--
+@isnad1 id=islocali.0h4v.s8.ac44bd5e387e from=translated src=- shape=199cac47 vocab=8f03f574
+-/
 instance finiteWeightLocalizationMap_isLocalizedModule (S : Submonoid R) :
     IsLocalizedModule S (finiteWeightLocalizationMap (M := M) S) := by
   unfold finiteWeightLocalizationMap
   infer_instance
 
+/--
+@isnad1 id=eq.0h6v.s10.1b75f46b0389 from=translated src=- shape=7151576b vocab=f330d6c8
+-/
 @[simp]
 theorem finiteWeightLocalizationMap_apply (S : Submonoid R)
     (x : ∀ i, M i) (i : Fin n) :
     finiteWeightLocalizationMap (M := M) S x i =
       LocalizedModule.mkLinearMap S (M i) (x i) := rfl
 
-/-- A fraction in the product localization is evaluated coordinatewise.-/
+/-- A fraction in the product localization is evaluated coordinatewise.
+@isnad1 id=eq.0h7v.s9.1c896f15e6c4 from=translated src=- shape=b45ed1b0 vocab=eb4abaf7
+-/
 theorem finiteWeightLocalizationMap_mk'_apply (S : Submonoid R)
     (x : ∀ i, M i) (s : S) (i : Fin n) :
     IsLocalizedModule.mk' (finiteWeightLocalizationMap (M := M) S) x s i =
@@ -57,7 +65,9 @@ theorem finiteWeightLocalizationMap_mk'_apply (S : Submonoid R)
   rfl
 
 /-- Coordinatewise localization commutes with every finite prefix
-projection, including on fractions with a common denominator.-/
+projection, including on fractions with a common denominator.
+@isnad1 id=eq.0h7v.s11.e659464b105c from=translated src=- shape=22da8c57 vocab=bb51c373
+-/
 theorem finiteWeightLocalizationMap_mk'_prefix (S : Submonoid R)
     (k : ℕ) (x : ∀ i, M i) (s : S) :
     IsLocalizedModule.mk' (finiteWeightLocalizationMap (M := M) S)
@@ -75,7 +85,9 @@ theorem finiteWeightLocalizationMap_mk'_prefix (S : Submonoid R)
 
 /-- Full least-weight initial formation commutes with localization of a
 finite product.  The reverse inclusion clears a single denominator from the
-entire lower prefix, rather than clearing its coordinates separately.-/
+entire lower prefix, rather than clearing its coordinates separately.
+@isnad1 id=eq.0h5v.s10.10a785b5e50b from=translated src=- shape=5527c75f vocab=abd571e9
+-/
 theorem localized_finiteWeightInitial (S : Submonoid R)
     (U : Submodule R (∀ i, M i)) :
     (finiteWeightInitial U).localized' (Localization S) S
@@ -173,7 +185,9 @@ def finiteWeightLocalizedEquiv (S : Submonoid R)
     (Localization S) J
 
 /-- The localized equivalence applies the original equivalence to the
-numerator and leaves a common denominator unchanged.-/
+numerator and leaves a common denominator unchanged.
+@isnad1 id=eq.0h7v.s11.ce4e7339c6c0 from=translated src=- shape=641c1fef vocab=969d7f92
+-/
 @[simp]
 theorem finiteWeightLocalizedEquiv_mk'
     (S : Submonoid R)
@@ -196,7 +210,9 @@ theorem finiteWeightLocalizedEquiv_mk'
   rfl
 
 /-- The product localization of a single-coordinate vector is the
-corresponding single-coordinate localized fraction.-/
+corresponding single-coordinate localized fraction.
+@isnad1 id=eq.0h7v.s9.1f57fae884aa from=translated src=- shape=24cb607d vocab=2705d588
+-/
 theorem finiteWeightLocalizationMap_mk'_single
     (S : Submonoid R) (i : Fin n) (v : M i) (s : S) :
     IsLocalizedModule.mk'
@@ -212,7 +228,9 @@ theorem finiteWeightLocalizationMap_mk'_single
     simp
   · simp [hji]
 
-/-- Coordinatewise homogeneity is preserved by localization.-/
+/-- Coordinatewise homogeneity is preserved by localization.
+@isnad1 id=mem.2h7v.s11.8745cc78e566 from=translated src=- shape=2f53b4c9 vocab=52b5b644
+-/
 theorem finiteWeightLocalized_homogeneous
     (S : Submonoid R)
     (U : Submodule R (∀ i, M i))
@@ -231,7 +249,9 @@ theorem finiteWeightLocalized_homogeneous
   exact ⟨Pi.single i (u i), hU u hu i, s, rfl⟩
 
 /-- A convenient specialization of `finiteWeightLocalizedEquiv_mk'` to a
-single-coordinate localized fraction.-/
+single-coordinate localized fraction.
+@isnad1 id=eq.0h8v.s11.e4beef10db87 from=translated src=- shape=b324f660 vocab=cda2ed4e
+-/
 @[simp]
 theorem finiteWeightLocalizedEquiv_single_mk'
     (S : Submonoid R)
@@ -248,7 +268,9 @@ theorem finiteWeightLocalizedEquiv_single_mk'
     finiteWeightLocalizedEquiv_mk']
 
 /-- Localization preserves the lower-triangular hypothesis on a finite
-weight product.-/
+weight product.
+@isnad1 id=eq.1h7v.s12.2c12b0652f74 from=translated src=- shape=d9afe336 vocab=4c0ca232
+-/
 theorem finiteWeightLocalizedEquiv_triangular
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -315,7 +337,9 @@ theorem finiteWeightLocalizedEquiv_triangular
       rw [finiteWeightLocalizedEquiv_single_mk']
 
 /-- Localizing the image of a submodule under `J` is the image of the
-localized submodule under the induced localized equivalence.-/
+localized submodule under the induced localized equivalence.
+@isnad1 id=eq.0h6v.s11.7bfb0a7f6432 from=translated src=- shape=6f0ed081 vocab=97447270
+-/
 theorem localized_map_eq_map_finiteWeightLocalizedEquiv
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -346,7 +370,9 @@ theorem localized_map_eq_map_finiteWeightLocalizedEquiv
     exact ⟨J x, ⟨x, hx, rfl⟩, s, rfl⟩
 
 /-- A finite-weight descent step commutes with coordinatewise
-localization.-/
+localization.
+@isnad1 id=eq.0h6v.s10.236a08dd0a2e from=translated src=- shape=c8c1334d vocab=ea86bc2e
+-/
 theorem localized_finiteWeightDescentStep
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -362,7 +388,9 @@ theorem localized_finiteWeightDescentStep
     localized_map_eq_map_finiteWeightLocalizedEquiv]
 
 /-- Every finite-weight descent iterate commutes with coordinatewise
-localization.-/
+localization.
+@isnad1 id=eq.0h7v.s10.166c1ccb8886 from=translated src=- shape=29d4195a vocab=7bacedbf
+-/
 theorem localized_finiteWeightDescentIterate
     (S : Submonoid R)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))

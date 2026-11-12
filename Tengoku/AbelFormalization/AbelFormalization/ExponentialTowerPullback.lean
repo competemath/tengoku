@@ -21,7 +21,9 @@ set_option autoImplicit false
 variable {X Y : Type*}
 
 /-- Precomposition carries the generator adjoined at a given exponential
-step to the corresponding generator of the pulled-back tower.-/
+step to the corresponding generator of the pulled-back tower.
+@isnad1 id=eq.0h6v.s7.d5ea775e53b3 from=translated src=- shape=40d2c7dc vocab=81e1225b
+-/
 theorem image_exponentialStepGenerators_precomp
     {ell : ℕ} (exponent : Fin ell → X → ℝ) (phi : Y → X) (j : ℕ) :
     functionPrecompAlgHom phi '' exponentialStepGenerators exponent j =
@@ -35,7 +37,9 @@ theorem image_exponentialStepGenerators_precomp
     refine ⟨exponentialGenerator exponent ⟨j, hj⟩, ⟨hj, rfl⟩, ?_⟩
     rfl
 
-/-- Every level commutes with pullback of functions.-/
+/-- Every level commutes with pullback of functions.
+@isnad1 id=eq.0h7v.s8.f5b224d0886a from=translated src=- shape=27b2443a vocab=3a8684a2
+-/
 theorem map_exponentialLevels_precomp
     (base : Subalgebra ℝ (X → ℝ)) {ell : ℕ}
     (exponent : Fin ell → X → ℝ) (phi : Y → X) :
@@ -62,6 +66,9 @@ def FiniteExponentialTower.pullback
     rw [Subalgebra.mem_map]
     exact ⟨T.exponent i, T.exponent_mem i, rfl⟩
 
+/--
+@isnad1 id=eq.0h8v.s6.1c98e1d62555 from=translated src=- shape=c355f458 vocab=47fce425
+-/
 @[simp]
 theorem FiniteExponentialTower.pullback_exponent_apply
     {ell : ℕ} {base : Subalgebra ℝ (X → ℝ)}
@@ -70,6 +77,9 @@ theorem FiniteExponentialTower.pullback_exponent_apply
     (T.pullback phi).exponent i y = T.exponent i (phi y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.780bf2976087 from=translated src=- shape=c355f458 vocab=3666d442
+-/
 @[simp]
 theorem FiniteExponentialTower.pullback_generator_apply
     {ell : ℕ} {base : Subalgebra ℝ (X → ℝ)}
@@ -78,6 +88,9 @@ theorem FiniteExponentialTower.pullback_generator_apply
     (T.pullback phi).generator i y = T.generator i (phi y) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.6cb4fec7f95c from=translated src=- shape=c64b3e87 vocab=eb7bdbe4
+-/
 theorem FiniteExponentialTower.pullback_level
     {ell : ℕ} {base : Subalgebra ℝ (X → ℝ)}
     (T : FiniteExponentialTower base ell) (phi : Y → X) (j : ℕ) :
@@ -86,7 +99,9 @@ theorem FiniteExponentialTower.pullback_level
   exact map_exponentialLevels_precomp base T.exponent phi j
 
 /-- Enlarging the initial algebra enlarges every level of a fixed sequence
-of proposed exponents.-/
+of proposed exponents.
+@isnad1 id=le.1h6v.s8.f0b4368b2bdd from=translated src=- shape=1706cd94 vocab=81a3486c
+-/
 theorem exponentialLevels_mono_base
     {base₁ base₂ : Subalgebra ℝ (X → ℝ)} (hbase : base₁ ≤ base₂)
     {ell : ℕ} (exponent : Fin ell → X → ℝ) :
@@ -107,6 +122,9 @@ def FiniteExponentialTower.changeBase
   exponent_mem_level i :=
     exponentialLevels_mono_base hbase T.exponent i.val (T.exponent_mem i)
 
+/--
+@isnad1 id=eq.1h6v.s7.a3b48dbabe80 from=translated src=- shape=e25687ff vocab=8838ed23
+-/
 @[simp]
 theorem FiniteExponentialTower.changeBase_exponent
     {ell : ℕ} {base₁ base₂ : Subalgebra ℝ (X → ℝ)}
@@ -125,6 +143,9 @@ def FiniteExponentialTower.pullbackChangeBase
     FiniteExponentialTower base' ell :=
   (T.pullback phi).changeBase hbase
 
+/--
+@isnad1 id=eq.1h9v.s7.6ce6e08523a1 from=translated src=- shape=c284f0b2 vocab=af182440
+-/
 @[simp]
 theorem FiniteExponentialTower.pullbackChangeBase_generator_apply
     {ell : ℕ} {base : Subalgebra ℝ (X → ℝ)}
@@ -137,7 +158,9 @@ theorem FiniteExponentialTower.pullbackChangeBase_generator_apply
   rfl
 
 /-- Every function from an old level, pulled back along the source map,
-belongs to the corresponding level after pullback and base enlargement.-/
+belongs to the corresponding level after pullback and base enlargement.
+@isnad1 id=mem.2h9v.s8.c851af04ed60 from=translated src=- shape=5738a5b2 vocab=398abaa1
+-/
 theorem FiniteExponentialTower.precomp_mem_pullbackChangeBase_level
     {ell : ℕ} {base : Subalgebra ℝ (X → ℝ)}
     (T : FiniteExponentialTower base ell) (phi : Y → X)

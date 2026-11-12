@@ -34,12 +34,18 @@ def finiteWeightCoordinateInclusionMap (K : Submodule R (∀ i, M i)) :
   finiteWeightPiMap (σ := RingHom.id R)
     (finiteWeightCoordinateInclusion K)
 
+/--
+@isnad1 id=eq.0h6v.s10.0660029c2a8e from=translated src=- shape=a31f8eae vocab=d89ddece
+-/
 @[simp]
 theorem finiteWeightCoordinateInclusionMap_apply
     (K : Submodule R (∀ i, M i))
     (x : ∀ i, finiteWeightCoordinateSubmodule K i) (i : Fin n) :
     finiteWeightCoordinateInclusionMap K x i = (x i : M i) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s10.267f4dcbc6bb from=translated src=- shape=ef8bde50 vocab=74025c77
+-/
 theorem finiteWeightCoordinateInclusionMap_injective
     (K : Submodule R (∀ i, M i)) :
     Function.Injective (finiteWeightCoordinateInclusionMap K) := by
@@ -48,12 +54,18 @@ theorem finiteWeightCoordinateInclusionMap_injective
   apply Subtype.ext
   exact congrFun hxy i
 
+/--
+@isnad1 id=eq.0h4v.s10.ecc251fb10cb from=translated src=- shape=c097f792 vocab=3a544b70
+-/
 @[simp]
 theorem ker_finiteWeightCoordinateInclusionMap
     (K : Submodule R (∀ i, M i)) :
     LinearMap.ker (finiteWeightCoordinateInclusionMap K) = ⊥ :=
   LinearMap.ker_eq_bot.mpr (finiteWeightCoordinateInclusionMap_injective K)
 
+/--
+@isnad1 id=eq.0h6v.s10.e0984a3bb1fe from=translated src=- shape=f114210f vocab=3fbf5d82
+-/
 @[simp]
 theorem finiteWeightCoordinateInclusionMap_single
     (K : Submodule R (∀ i, M i)) (i : Fin n)
@@ -63,6 +75,9 @@ theorem finiteWeightCoordinateInclusionMap_single
   exact finiteWeightPiMap_single
     (σ := RingHom.id R) (finiteWeightCoordinateInclusion K) i v
 
+/--
+@isnad1 id=eq.0h6v.s12.850c58df513e from=translated src=- shape=ce7be57c vocab=27b28854
+-/
 theorem finiteWeightCoordinateInclusionMap_prefix
     (K : Submodule R (∀ i, M i)) (k : ℕ)
     (x : ∀ i, finiteWeightCoordinateSubmodule K i) :
@@ -75,7 +90,9 @@ theorem finiteWeightCoordinateInclusionMap_prefix
     (σ := RingHom.id R) (finiteWeightCoordinateInclusion K) k x
 
 /-- For a homogeneous `K`, the range of coordinatewise inclusion is exactly
-`K`.-/
+`K`.
+@isnad1 id=eq.1h4v.s9.a1ce7c246e14 from=translated src=- shape=306e0090 vocab=50243f1d
+-/
 theorem range_finiteWeightCoordinateInclusionMap
     (K : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K) :
@@ -105,7 +122,9 @@ def finiteWeightInvariantCoordinateEquiv
       (finiteWeightHomogeneousSubtypeEquiv K hK)
 
 /-- The restricted coordinate equivalence intertwines with ambient
-coordinatewise inclusion.-/
+coordinatewise inclusion.
+@isnad1 id=eq.2h6v.s12.85a0fa12dc1f from=translated src=- shape=18679eab vocab=6f7ee495
+-/
 theorem finiteWeightCoordinateInclusionMap_intertwines
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))
@@ -118,7 +137,9 @@ theorem finiteWeightCoordinateInclusionMap_intertwines
   rfl
 
 /-- Lower triangularity passes to the coordinate product of an invariant
-homogeneous submodule.-/
+homogeneous submodule.
+@isnad1 id=eq.3h7v.s13.24d493f8b776 from=translated src=- shape=3726722b vocab=52bd2244
+-/
 theorem finiteWeightInvariantCoordinateEquiv_triangular
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (htri : ∀ i (v : M i),
@@ -151,7 +172,9 @@ def finiteWeightCoordinatePullback
     Submodule R (∀ i, finiteWeightCoordinateSubmodule K i) :=
   U.comap (finiteWeightCoordinateInclusionMap K)
 
-/-- If `U ≤ K`, assembling its coordinate pullback recovers `U`.-/
+/-- If `U ≤ K`, assembling its coordinate pullback recovers `U`.
+@isnad1 id=eq.2h5v.s10.97ee04438df0 from=translated src=- shape=ceae0735 vocab=22401a3f
+-/
 theorem map_finiteWeightCoordinatePullback_eq
     (K U : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -166,7 +189,9 @@ theorem map_finiteWeightCoordinatePullback_eq
     · exact hx
     · rfl
 
-/-- Ambient homogeneity passes to the coordinate pullback.-/
+/-- Ambient homogeneity passes to the coordinate pullback.
+@isnad1 id=mem.2h7v.s11.2efe73075a7d from=translated src=- shape=5287794d vocab=cd101907
+-/
 theorem finiteWeightCoordinatePullback_homogeneous
     (K U : Submodule R (∀ i, M i))
     (hU : ∀ x ∈ U, ∀ i, Pi.single i (x i) ∈ U) :
@@ -179,7 +204,9 @@ theorem finiteWeightCoordinatePullback_homogeneous
   exact hU _ hx i
 
 /-- Descent inside the coordinate product of `K`, followed by inclusion,
-equals ambient descent from every submodule `U ≤ K`.-/
+equals ambient descent from every submodule `U ≤ K`.
+@isnad1 id=eq.3h7v.s10.825072b826e6 from=translated src=- shape=392b490b vocab=d9330589
+-/
 theorem map_finiteWeightCoordinate_descentIterate_eq
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))

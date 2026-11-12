@@ -24,6 +24,9 @@ def coordinatewiseMulCLM {n : ℕ} (c : Fin n → ℝ) :
   ContinuousLinearMap.pi fun i ↦
     (c i) • ContinuousLinearMap.proj (R := ℝ) i
 
+/--
+@isnad1 id=eq.0h4v.s7.08a74a7ed1a5 from=translated src=- shape=b1ab626d vocab=48c1b9a2
+-/
 @[simp]
 theorem coordinatewiseMulCLM_apply {n : ℕ} (c v : Fin n → ℝ) (i : Fin n) :
     coordinatewiseMulCLM c v i = c i * v i := by
@@ -37,6 +40,9 @@ def coordinatewiseMulEquiv {n : ℕ} (c : Fin n → ℝ)
     ContinuousLinearEquiv.smulLeft
       (Units.mk0 (c i) (hc i))
 
+/--
+@isnad1 id=eq.1h4v.s8.ac4a441b2940 from=translated src=- shape=f92a85b1 vocab=0d11dcdf
+-/
 @[simp]
 theorem coordinatewiseMulEquiv_apply {n : ℕ} (c : Fin n → ℝ)
     (hc : ∀ i, c i ≠ 0) (v : Fin n → ℝ) (i : Fin n) :
@@ -44,6 +50,9 @@ theorem coordinatewiseMulEquiv_apply {n : ℕ} (c : Fin n → ℝ)
   simp [coordinatewiseMulEquiv, ContinuousLinearEquiv.smulLeft, Units.smul_def,
     smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h2v.s7.dd7088be3a25 from=translated src=- shape=a3f6db89 vocab=87b4f92f
+-/
 theorem coordinatewiseMulEquiv_toContinuousLinearMap {n : ℕ}
     (c : Fin n → ℝ) (hc : ∀ i, c i ≠ 0) :
     (coordinatewiseMulEquiv c hc :
@@ -52,7 +61,9 @@ theorem coordinatewiseMulEquiv_toContinuousLinearMap {n : ℕ}
   simp
 
 /-- Derivative identity for coordinatewise equation scaling at a common
-zero.-/
+zero.
+@isnad1 id=eq.3h4v.s10.0dc0d35aefc7 from=translated src=- shape=fab3f19e vocab=3e0dfad0
+-/
 theorem fderiv_coordinatewise_mul_at_zero {n : ℕ}
     {F d : (Fin n → ℝ) → (Fin n → ℝ)} {x : Fin n → ℝ}
     (hF : DifferentiableAt ℝ F x) (hd : DifferentiableAt ℝ d x)
@@ -84,7 +95,9 @@ theorem fderiv_coordinatewise_mul_at_zero {n : ℕ}
   simp [hzero]
 
 /-- Surjectivity is preserved after composing with a coordinatewise
-nonzero diagonal map.-/
+nonzero diagonal map.
+@isnad1 id=iff.1h3v.s9.fd6d85b16d93 from=translated src=- shape=fcc7880a vocab=d400b5a6
+-/
 theorem surjective_coordinatewiseMulCLM_comp_iff {n : ℕ}
     (c : Fin n → ℝ) (hc : ∀ i, c i ≠ 0)
     (D : (Fin n → ℝ) →L[ℝ] (Fin n → ℝ)) :
@@ -103,7 +116,9 @@ theorem surjective_coordinatewiseMulCLM_comp_iff {n : ℕ}
 
 /-- Multiplying each equation by a nonzero differentiable scalar preserves
 membership in the regular-zero set.  Nonvanishing is required only at the
-point under consideration.-/
+point under consideration.
+@isnad1 id=iff.3h5v.s9.41a44eb75e2a from=translated src=- shape=067b6ba1 vocab=e983d875
+-/
 theorem mem_regularZeroSet_coordinatewise_mul_iff {n : ℕ}
     {Omega : Set (Fin n → ℝ)}
     {F d : (Fin n → ℝ) → (Fin n → ℝ)} {x : Fin n → ℝ}

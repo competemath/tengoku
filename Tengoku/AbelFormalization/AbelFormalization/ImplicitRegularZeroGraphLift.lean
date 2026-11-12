@@ -30,6 +30,9 @@ def implicitGraphBlockCLM
   (ContinuousLinearMap.coprod A B).prod
     (ContinuousLinearMap.coprod C D)
 
+/--
+@isnad1 id=eq.0h8v.s9.1509fa57a521 from=translated src=- shape=ea46a5ea vocab=adda72a0
+-/
 @[simp]
 theorem implicitGraphBlockCLM_apply
     (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
@@ -40,7 +43,9 @@ theorem implicitGraphBlockCLM_apply
   simp [implicitGraphBlockCLM]
 
 /-- A block system with a surjective vertical scalar block is surjective
-exactly when its restriction to the tangent graph is surjective.-/
+exactly when its restriction to the tangent graph is surjective.
+@isnad1 id=iff.2h7v.s9.1d4f78d75cf2 from=translated src=- shape=2bf3b623 vocab=b8141442
+-/
 theorem surjective_implicitGraphBlockCLM_iff
     (A : E →L[ℝ] F) (B : ℝ →L[ℝ] F)
     (C : E →L[ℝ] ℝ) (D : ℝ →L[ℝ] ℝ)
@@ -84,7 +89,9 @@ def implicitGraphLiftSystem
     E × ℝ → F × ℝ :=
   fun p ↦ (Ftilde p, h p)
 
-/-- The derivative of the implicit graph lift is the displayed block map.-/
+/-- The derivative of the implicit graph lift is the displayed block map.
+@isnad1 id=eq.2h6v.s10.28f408ecd875 from=translated src=- shape=43a423cb vocab=ec899495
+-/
 theorem fderiv_implicitGraphLiftSystem
     {Ftilde : E × ℝ → F} {h : E × ℝ → ℝ}
     {x : E} {z : ℝ}
@@ -109,7 +116,9 @@ theorem fderiv_implicitGraphLiftSystem
   · exact graphLift_blocks_apply (fderiv ℝ h (x, z)) u v
 
 /-- Differentiating an exact implicit graph identity gives the tangent
-relation between its horizontal and vertical derivative blocks.-/
+relation between its horizontal and vertical derivative blocks.
+@isnad1 id=eq.3h5v.s9.b4d8764dd18b from=translated src=- shape=5d75d133 vocab=babcd6eb
+-/
 theorem implicitGraph_tangent_identity
     {h : E × ℝ → ℝ} {zeta : E → ℝ} {x : E}
     (hh : DifferentiableAt ℝ h (x, zeta x))
@@ -133,7 +142,9 @@ theorem implicitGraph_tangent_identity
   simpa [graphReducedCLM_apply] using hu
 
 /-- Adjoining a smooth implicit graph equation with nonzero vertical
-derivative preserves regular-zero membership.-/
+derivative preserves regular-zero membership.
+@isnad1 id=iff.5h7v.s9.e29101116b52 from=translated src=- shape=e5a0231f vocab=06dab4d4
+-/
 theorem mem_regularZeroSet_implicitGraphLift_iff
     {Omega : Set E} {Ftilde : E × ℝ → F}
     {h : E × ℝ → ℝ} {zeta : E → ℝ} {x : E}

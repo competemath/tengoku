@@ -24,7 +24,9 @@ open Polynomial Set Metric
 
 variable {ι : Type*} [Fintype ι]
 
-/-- Joint continuity of evaluating the node polynomial at the contour point.-/
+/-- Joint continuity of evaluating the node polynomial at the contour point.
+@isnad1 id=continuo.0h2v.s6.b974609b923b from=translated src=- shape=750788f1 vocab=091630e7
+-/
 theorem continuous_nodePolynomial_eval_joint (m : ι → ℕ) :
     Continuous (fun p : (ι → ℂ) × ℂ => (nodePolynomial p.1 m).eval p.2) := by
   simp only [nodePolynomial_eval]
@@ -40,6 +42,9 @@ def hermiteContourParameters (B : ℝ) : Set ((ι → ℂ) × ℂ) :=
   {p | (∀ i, ‖p.1 i‖ ≤ B + 1 / 4) ∧ ‖p.2‖ = B + 1}
 
 omit [Fintype ι] in
+/--
+@isnad1 id=iscompac.0h2v.s5.ff1ebfc9d414 from=translated src=- shape=7b501418 vocab=dba8536d
+-/
 theorem isCompact_hermiteContourParameters (B : ℝ) :
     IsCompact (hermiteContourParameters (ι := ι) B) := by
   have hn : IsCompact {δ : ι → ℂ | ∀ i, δ i ∈ closedBall 0 (B + 1 / 4)} :=

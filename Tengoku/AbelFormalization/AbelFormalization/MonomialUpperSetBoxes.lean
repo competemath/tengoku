@@ -34,15 +34,24 @@ def monomialNatBox (b : Fin n → WithTop ℕ) : Set (Fin n → ℕ) :=
 def monomialNatBoxList (l : List (Fin n → WithTop ℕ)) : Set (Fin n → ℕ) :=
   {x | ∃ b ∈ l, x ∈ monomialNatBox b}
 
+/--
+@isnad1 id=le.1h3v.s5.ca2185ab03a8 from=translated src=- shape=44038332 vocab=3b9e1284
+-/
 theorem monomialNatBox_mono {b c : Fin n → WithTop ℕ} (h : b ≤ c) :
     monomialNatBox b ⊆ monomialNatBox c :=
   fun _ hx i => (hx i).trans_le (h i)
 
+/--
+@isnad1 id=eq.0h1v.s4.d233797492bb from=translated src=- shape=cd5b9e00 vocab=9f3fa945
+-/
 @[simp] theorem monomialNatBox_top :
     monomialNatBox (fun _ : Fin n => (⊤ : WithTop ℕ)) = Set.univ := by
   ext x
   simp [monomialNatBox]
 
+/--
+@isnad1 id=iff.0h4v.s6.b786bf97ec32 from=translated src=- shape=7582a45f vocab=e8b32a8d
+-/
 theorem monomialNatBox_inf (b c : Fin n → WithTop ℕ) (x : Fin n → ℕ) :
     x ∈ monomialNatBox (b ⊓ c) ↔
       x ∈ monomialNatBox b ∧ x ∈ monomialNatBox c := by
@@ -52,6 +61,9 @@ theorem monomialNatBox_inf (b c : Fin n → WithTop ℕ) (x : Fin n → ℕ) :
 def monomialAxisCap (g : Fin n → ℕ) (i : Fin n) : Fin n → WithTop ℕ :=
   fun j => if j = i then (g i : WithTop ℕ) else ⊤
 
+/--
+@isnad1 id=iff.0h4v.s5.e99f314bffff from=translated src=- shape=0fcb853d vocab=ac3ae777
+-/
 theorem monomialNatBox_axisCap (g : Fin n → ℕ) (i : Fin n) (x : Fin n → ℕ) :
     x ∈ monomialNatBox (monomialAxisCap g i) ↔ x i < g i := by
   constructor
@@ -69,6 +81,9 @@ def monomialExcludeGenerator (g : Fin n → ℕ) (l : List (Fin n → WithTop �
     List (Fin n → WithTop ℕ) :=
   l.flatMap (fun b => List.ofFn (fun i : Fin n => b ⊓ monomialAxisCap g i))
 
+/--
+@isnad1 id=iff.0h4v.s6.757adca4d44b from=translated src=- shape=1b053c0b vocab=3911af09
+-/
 theorem monomialNatBoxList_excludeGenerator (g : Fin n → ℕ)
     (l : List (Fin n → WithTop ℕ)) (x : Fin n → ℕ) :
     x ∈ monomialNatBoxList (monomialExcludeGenerator g l) ↔
@@ -93,6 +108,9 @@ def monomialUpperComplementBoxes : List (Fin n → ℕ) → List (Fin n → With
   | [] => [fun _ => ⊤]
   | g :: gs => monomialExcludeGenerator g (monomialUpperComplementBoxes gs)
 
+/--
+@isnad1 id=iff.0h3v.s6.6eb92ba72d8d from=translated src=- shape=a3f668a9 vocab=36d993a3
+-/
 theorem monomialUpperComplementBoxes_spec (gs : List (Fin n → ℕ)) (x : Fin n → ℕ) :
     x ∈ monomialNatBoxList (monomialUpperComplementBoxes gs) ↔
       ∀ g ∈ gs, ¬g ≤ x := by
@@ -102,7 +120,9 @@ theorem monomialUpperComplementBoxes_spec (gs : List (Fin n → ℕ)) (x : Fin n
       rw [monomialUpperComplementBoxes, monomialNatBoxList_excludeGenerator, ih]
       simp [and_comm]
 
-/-- Dickson's lemma gives finite generators for every actual upper set.-/
+/-- Dickson's lemma gives finite generators for every actual upper set.
+@isnad1 id=ex.0h2v.s7.8df83e101e60 from=translated src=- shape=5f03aa40 vocab=31274ae3
+-/
 theorem monomialUpperSet_exists_finset_generators (U : UpperSet (Fin n → ℕ)) :
     ∃ s : Finset (Fin n → ℕ), ∀ x, x ∈ U ↔ ∃ a ∈ s, a ≤ x := by
   classical
@@ -118,7 +138,9 @@ theorem monomialUpperSet_exists_finset_generators (U : UpperSet (Fin n → ℕ))
     have hamin : Minimal (· ∈ U) a := by simpa using ha
     exact U.upper hax hamin.1
 
-/-- Every complement of an upper set in ℕⁿ has a finite-box representation.-/
+/-- Every complement of an upper set in ℕⁿ has a finite-box representation.
+@isnad1 id=ex.0h2v.s6.05951315d567 from=translated src=- shape=e27bc8d5 vocab=5005ed3c
+-/
 theorem monomialUpperSet_exists_boxes (U : UpperSet (Fin n → ℕ)) :
     ∃ l : List (Fin n → WithTop ℕ), ∀ x, x ∉ U ↔ x ∈ monomialNatBoxList l := by
   classical
@@ -132,7 +154,9 @@ theorem monomialUpperSet_exists_boxes (U : UpperSet (Fin n → ℕ)) :
     obtain ⟨a, ha, hax⟩ := (hs x).mp hxU
     exact hx a (by simpa using ha) hax
 
-/-- Adjoining a greatest element preserves the particular WQO of ℕ.-/
+/-- Adjoining a greatest element preserves the particular WQO of ℕ.
+@isnad1 id=wellquas.0h0v.s4.9cf9f15d6e39 from=translated src=- shape=b84e890c vocab=8d02500c
+-/
 theorem withTopNat_wellQuasiOrdered :
     WellQuasiOrdered (fun a b : WithTop ℕ => a ≤ b) := by
   have hn : (Set.univ : Set ℕ).IsPWO := Set.isPWO_of_wellQuasiOrderedLE _
@@ -154,7 +178,9 @@ theorem withTopNat_wellQuasiOrdered :
   rw [he]
   exact hr.union (Set.isPWO_singleton ⊤)
 
-/-- Higman's list embedding relation implies inclusion of finite box unions.-/
+/-- Higman's list embedding relation implies inclusion of finite box unions.
+@isnad1 id=le.1h3v.s6.403759393acb from=translated src=- shape=4f148065 vocab=94099803
+-/
 theorem monomialNatBoxList_mono {l₁ l₂ : List (Fin n → WithTop ℕ)}
     (h : List.SublistForall₂ (· ≤ ·) l₁ l₂) :
     monomialNatBoxList l₁ ⊆ monomialNatBoxList l₂ := by
@@ -174,7 +200,9 @@ theorem monomialNatBoxList_mono {l₁ l₂ : List (Fin n → WithTop ℕ)}
       exact ⟨d, List.mem_cons_of_mem _ hd, hxd⟩
 
 /-- Maclagan's precise combinatorial statement: actual upper sets in ℕⁿ are
-well-quasi-ordered by reverse inclusion.-/
+well-quasi-ordered by reverse inclusion.
+@isnad1 id=wellquas.0h1v.s7.49cd6a61305c from=translated src=- shape=5284c9a0 vocab=619cfef8
+-/
 theorem monomialUpperSet_wellQuasiOrdered (n : ℕ) :
     WellQuasiOrdered (fun U V : UpperSet (Fin n → ℕ) => (V : Set (Fin n → ℕ)) ⊆ U) := by
   have hcaps : WellQuasiOrdered (fun b c : Fin n → WithTop ℕ => b ≤ c) :=
@@ -192,26 +220,34 @@ theorem monomialUpperSet_wellQuasiOrdered (n : ℕ) :
   have hboxj := monomialNatBoxList_mono hlist hboxi
   exact ((hl j x).mpr hboxj) hxj
 
-/-- The bundled UpperSet order is already reverse inclusion.-/
+/-- The bundled UpperSet order is already reverse inclusion.
+@isnad1 id=wellquas.0h1v.s6.4d215659c950 from=translated src=- shape=5ba9477b vocab=5b2a0b4c
+-/
 theorem monomialUpperSet_wellQuasiOrderedLE (n : ℕ) :
     WellQuasiOrderedLE (UpperSet (Fin n → ℕ)) :=
   ⟨monomialUpperSet_wellQuasiOrdered n⟩
 
-/-- In particular, there is no infinite antichain of monomial upper sets.-/
+/-- In particular, there is no infinite antichain of monomial upper sets.
+@isnad1 id=finite.1h2v.s7.cc8ea332de18 from=translated src=- shape=0e75b381 vocab=3b2c3382
+-/
 theorem monomialUpperSet_antichain_finite (n : ℕ)
     {S : Set (UpperSet (Fin n → ℕ))} (hS : IsAntichain (· ≤ ·) S) :
     S.Finite :=
   hS.finite_of_wellQuasiOrdered (monomialUpperSet_wellQuasiOrdered n)
 
 /-- Finite componentwise families of actual exponent upper sets retain
-the reverse-inclusion well-quasi-order.-/
+the reverse-inclusion well-quasi-order.
+@isnad1 id=wellquas.0h2v.s7.cadf8446d16a from=translated src=- shape=907adb7b vocab=eadbf0ac
+-/
 theorem monomialUpperSetFamily_wellQuasiOrdered (n : ℕ)
     (κ : Type*) [Finite κ] :
     WellQuasiOrdered (fun U V : κ → UpperSet (Fin n → ℕ) => U ≤ V) := by
   let := monomialUpperSet_wellQuasiOrderedLE n
   exact wellQuasiOrdered_le
 
-/-- Every antichain of finite componentwise upper-set families is finite.-/
+/-- Every antichain of finite componentwise upper-set families is finite.
+@isnad1 id=finite.1h3v.s7.1205a789bf1d from=translated src=- shape=289941bc vocab=7da1c1eb
+-/
 theorem monomialUpperSetFamily_antichain_finite (n : ℕ)
     (κ : Type*) [Finite κ]
     {S : Set (κ → UpperSet (Fin n → ℕ))} (hS : IsAntichain (· ≤ ·) S) :

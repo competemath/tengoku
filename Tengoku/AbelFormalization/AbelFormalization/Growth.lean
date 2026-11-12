@@ -37,7 +37,9 @@ private theorem self_le_exp_iterate (k : ℕ) (x : ℝ) :
       linarith [Real.add_one_le_exp ((Real.exp^[k]) x)]
 
 /-- At integer times after a value at least two, the inverse Abel function
-increases by at least two per unit of time.-/
+increases by at least two per unit of time.
+@isnad1 id=le.3h3v.s6.0a6d36ba19e8 from=translated src=- shape=ef3db497 vocab=27a7b391
+-/
 theorem linear_lower_bound_nat {T : ℝ → ℝ} (hmono : Monotone T)
     (hstep : ∀ s : ℝ, T (s + 1) = Real.exp (T s) - 1)
     {r : ℝ} (hr : 2 ≤ T r) (n : ℕ) :
@@ -57,7 +59,9 @@ theorem linear_lower_bound_nat {T : ℝ → ℝ} (hmono : Monotone T)
         _ ≤ T ((r + (n : ℝ)) + 1) := hinc
         _ = T (r + ((n : ℝ) + 1)) := by congr 1; ring
 
-/-- Every fixed affine function of slope one is eventually below `T`.-/
+/-- Every fixed affine function of slope one is eventually below `T`.
+@isnad1 id=ex.3h2v.s6.44700a996b70 from=translated src=- shape=f028cfe1 vocab=3499c9dc
+-/
 theorem eventually_affine_lower_bound {T : ℝ → ℝ} (hmono : Monotone T)
     (hstep : ∀ s : ℝ, T (s + 1) = Real.exp (T s) - 1)
     (hlarge : ∃ r : ℝ, 2 ≤ T r) (c : ℝ) :
@@ -75,7 +79,9 @@ theorem eventually_affine_lower_bound {T : ℝ → ℝ} (hmono : Monotone T)
   linarith
 
 /-- Stronger than transexponential growth: any fixed translation of the
-argument can be absorbed, with a positive additive margin.-/
+argument can be absorbed, with a positive additive margin.
+@isnad1 id=ex.3h3v.s6.cd96bd3b054b from=translated src=- shape=f63b94f8 vocab=9849f49b
+-/
 theorem eventually_exp_iterate_lower_bound {T : ℝ → ℝ} (hmono : Monotone T)
     (hstep : ∀ s : ℝ, T (s + 1) = Real.exp (T s) - 1)
     (hlarge : ∃ r : ℝ, 2 ≤ T r) (k : ℕ) (c : ℝ) :
@@ -103,7 +109,9 @@ theorem eventually_exp_iterate_lower_bound {T : ℝ → ℝ} (hmono : Monotone T
       linarith
 
 /-- The precise growth assertion in the manuscript, independent of its
-proposed o-minimality argument.-/
+proposed o-minimality argument.
+@isnad1 id=ex.3h2v.s6.7ba8cae03cf1 from=translated src=- shape=70997c34 vocab=f524046c
+-/
 theorem transexponential_of_recurrence {T : ℝ → ℝ} (hmono : Monotone T)
     (hstep : ∀ s : ℝ, T (s + 1) = Real.exp (T s) - 1)
     (hlarge : ∃ r : ℝ, 2 ≤ T r) :

@@ -18,6 +18,9 @@ namespace AbelFormalization
 open Set Filter
 open scoped Topology
 
+/--
+@isnad1 id=ex.3h1v.s8.9c96b514f1f6 from=translated src=- shape=098e42c4 vocab=14fca60b
+-/
 theorem exists_quadratic_bound_of_analytic_zero {h : ℂ → ℂ}
     (ha : AnalyticAt ℂ h 0) (h0 : h 0 = 0) (hd0 : deriv h 0 = 0) :
     ∃ R > 0, ∃ C ≥ 0,

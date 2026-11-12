@@ -27,6 +27,9 @@ variable {X Y Z : Type*}
   [NormedAddCommGroup Y] [NormedSpace ℝ Y]
   [NormedAddCommGroup Z] [NormedSpace ℝ Z]
 
+/--
+@isnad1 id=eq.2h6v.s11.3c54d0231456 from=translated src=- shape=0e5416f6 vocab=e90d5198
+-/
 theorem chartProjection_fderiv_range_eq
     (Phi : X × Y → Z) (gamma : Y → X × Y) (y : Y)
     (hgamma : DifferentiableAt ℝ gamma y)
@@ -38,6 +41,9 @@ theorem chartProjection_fderiv_range_eq
   exact range_eq_top_comp_of_range_eq_ker
     (fderiv ℝ Phi (gamma y)) (fderiv ℝ gamma y) hdgamma
 
+/--
+@isnad1 id=iff.3h6v.s10.9b2b35f78c23 from=translated src=- shape=aa3e4cc3 vocab=ca7fff7d
+-/
 theorem fixedParameter_regular_iff_chartProjection_regular
     (Phi : X × Y → Z) (gamma : Y → X × Y) (y : Y)
     (hgamma : DifferentiableAt ℝ gamma y)
@@ -50,6 +56,9 @@ theorem fixedParameter_regular_iff_chartProjection_regular
   exact fstPartial_range_eq_top_iff_sndOnKernel_range_eq_top
     (fderiv ℝ Phi (gamma y)) hPhiSurj
 
+/--
+@isnad1 id=eq.1h2v.s8.a6299d8fca83 from=translated src=- shape=c0baf074 vocab=1d136808
+-/
 theorem continuousLinearMap_det_eq_zero_of_range_ne_top
     [FiniteDimensional ℝ Y] (L : Y →L[ℝ] Y)
     (hL : L.range ≠ ⊤) : L.det = 0 := by
@@ -62,6 +71,9 @@ theorem continuousLinearMap_det_eq_zero_of_range_ne_top
     (LinearMap.ker_eq_bot_iff_range_eq_top_of_finrank_eq_finrank rfl).mp hker
   exact hL hrange
 
+/--
+@isnad1 id=eq.4h6v.s10.24ca381fac4e from=translated src=- shape=304c547f vocab=9ee3cba8
+-/
 theorem chartProjection_det_eq_zero_of_fixedParameter_not_regular
     [FiniteDimensional ℝ Y]
     (Phi : X × Y → Z) (gamma : Y → X × Y) (y : Y)

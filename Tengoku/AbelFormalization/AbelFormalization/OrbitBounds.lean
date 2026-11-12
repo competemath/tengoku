@@ -22,6 +22,9 @@ variable {A : ℝ → ℝ} (hA : IsAbel A)
 include hA
 
 omit hA in
+/--
+@isnad1 id=le.4h5v.s6.7102bd6f5de4 from=translated src=- shape=f683cb70 vocab=0514c032
+-/
 theorem orbit_contraction_iterate {g : ℝ → ℝ} {q U u : ℝ}
     (hU : 0 < U) (hq : 0 ≤ q) (hu : U ≤ u)
     (hstep : ∀ x : ℝ, U ≤ x → g (E x) ≤ q * g x) (n : ℕ) :
@@ -38,6 +41,9 @@ theorem orbit_contraction_iterate {g : ℝ → ℝ} {q U u : ℝ}
         _ ≤ q * (q ^ n * g u) := mul_le_mul_of_nonneg_left ih hq
         _ = q ^ (n + 1) * g u := by rw [pow_succ]; ring
 
+/--
+@isnad1 id=ex.5h4v.s7.002579199c26 from=translated src=- shape=d2dd095d vocab=63caebfe
+-/
 theorem orbit_contraction_bound {g : ℝ → ℝ} {q U : ℝ}
     (hU : 0 < U) (hq : 0 ≤ q)
     (hc : ContinuousOn g (Icc U (E U)))
@@ -52,7 +58,9 @@ theorem orbit_contraction_bound {g : ℝ → ℝ} {q U : ℝ}
   rw [hA.iterate_orbitBase (hU.trans_le hx)] at hi
   exact hi.trans (mul_le_mul_of_nonneg_left hb (pow_nonneg hq _))
 
-/-- Decay on the whole tail from geometric contraction on exponential steps.-/
+/-- Decay on the whole tail from geometric contraction on exponential steps.
+@isnad1 id=tendsto.7h4v.s7.daf4d285e547 from=translated src=- shape=2d74547a vocab=ab85c731
+-/
 theorem tendsto_zero_of_orbit_contraction {g : ℝ → ℝ} {q U : ℝ}
     (hU : 0 < U) (hq : 0 ≤ q) (hq1 : q < 1)
     (hc : ContinuousOn g (Icc U (E U)))

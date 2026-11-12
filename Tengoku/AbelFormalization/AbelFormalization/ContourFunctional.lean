@@ -22,12 +22,18 @@ def sphereFunctionExtension (R : ℝ) (g : C(sphere (0 : ℂ) R, ℂ)) (z : ℂ)
   classical
   exact if hz : z ∈ sphere (0 : ℂ) R then g ⟨z, hz⟩ else 0
 
+/--
+@isnad1 id=eq.1h3v.s8.79efc30b3012 from=translated src=- shape=98682304 vocab=5c672255
+-/
 @[simp]
 theorem sphereFunctionExtension_of_mem (R : ℝ) (g : C(sphere (0 : ℂ) R, ℂ))
     (z : ℂ) (hz : z ∈ sphere (0 : ℂ) R) :
     sphereFunctionExtension R g z = g ⟨z, hz⟩ := by
   simp only [sphereFunctionExtension, dite_eq_left hz]
 
+/--
+@isnad1 id=continuo.0h2v.s7.5198146bffcb from=translated src=- shape=6cc012df vocab=d0d2fdd6
+-/
 theorem continuousOn_sphereFunctionExtension (R : ℝ) (g : C(sphere (0 : ℂ) R, ℂ)) :
     ContinuousOn (sphereFunctionExtension R g) (sphere (0 : ℂ) R) := by
   rw [continuousOn_iff_continuous_domRestrict]
@@ -64,12 +70,17 @@ def contourIntegralCLM (R : ℝ) (hR : 0 ≤ R) : C(sphere (0 : ℂ) R, ℂ) →
     rw [sphereFunctionExtension_of_mem R g z hz]
     exact g.norm_coe_le_norm ⟨z, hz⟩
 
+/--
+@isnad1 id=eq.1h2v.s9.8f0c3f3b01d8 from=translated src=- shape=d4913c43 vocab=17f86d72
+-/
 @[simp]
 theorem contourIntegralCLM_apply (R : ℝ) (hR : 0 ≤ R) (g : C(sphere (0 : ℂ) R, ℂ)) :
     contourIntegralCLM R hR g = ∮ z in C(0, R), sphereFunctionExtension R g z := rfl
 
 /-- Any total function agreeing with the continuous circle function has the same
-circle integral.-/
+circle integral.
+@isnad1 id=eq.2h3v.s10.fde512b61156 from=translated src=- shape=0a0e2aa6 vocab=6abf025b
+-/
 theorem contourIntegralCLM_eq_circleIntegral (R : ℝ) (hR : 0 ≤ R)
     (g : C(sphere (0 : ℂ) R, ℂ)) (f : ℂ → ℂ)
     (h : ∀ z : sphere (0 : ℂ) R, g z = f z) :

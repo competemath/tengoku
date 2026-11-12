@@ -22,7 +22,9 @@ section ConstantSpan
 variable {B : Type*} [CommRing B] {n r : ℕ}
 
 /-- The underlying values of the chosen finite cover generators generate the
-coefficient ideal power itself.-/
+coefficient ideal power itself.
+@isnad1 id=eq.0h3v.s9.050cd69550c7 from=translated src=- shape=206a1cea vocab=f7cbcef8
+-/
 theorem artinianIdealPower_eq_span_coverGenerator_values
     [IsNoetherianRing B] (I : Ideal B) (i : ℕ) :
     I ^ i = Ideal.span (Set.range (fun s :
@@ -59,7 +61,9 @@ theorem artinianIdealPower_eq_span_coverGenerator_values
     exact (artinianIdealPowerCoverGenerator I i s).property
 
 /-- Constant coordinate vectors made from the chosen coefficient generators
-span the full polynomial ideal-power numerator.-/
+span the full polynomial ideal-power numerator.
+@isnad1 id=eq.0h5v.s10.e626ec7f1bbb from=translated src=- shape=6b3e0ee7 vocab=effed989
+-/
 theorem artinianPolynomialIdealPowerSubmodule_eq_span_constants
     [IsNoetherianRing B] (I : Ideal B) (i : ℕ) :
     artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i =

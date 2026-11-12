@@ -27,7 +27,9 @@ set_option autoImplicit false
 
 /-- A surjective linear map, together with a tangent vector in its kernel on
 which one more functional takes value one, makes the augmented map
-surjective.-/
+surjective.
+@isnad1 id=surjecti.3h5v.s9.eef5c9df81bc from=translated src=- shape=759631dd vocab=e4e92dfb
+-/
 theorem augmented_surjective_of_kernel_value_one
     {E K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -75,7 +77,9 @@ def SmoothSingularWitnessSelection
 /-- A differentiable section of the equations `F (φ t) = a` and
 `f (φ t) = t` gives a kernel vector with `df`-value one.  Therefore the
 augmented derivative is surjective at every point of that section lying on a
-regular fiber.-/
+regular fiber.
+@isnad1 id=surjecti.8h8v.s9.e4a1c9baca55 from=translated src=- shape=284fbf1c vocab=fdc81232
+-/
 theorem augmented_surjective_along_differentiable_section
     {E K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -114,7 +118,9 @@ theorem augmented_surjective_along_differentiable_section
 /-- The precise final implication of Wilkie 2.8.  Unary tameness is the
 WS5 consequence after derivative closure has placed the exceptional set in
 the weak family.  The selection premise is the combined conclusion of weak
-selection (2.3) and the smooth-selector remark (2.5).-/
+selection (2.3) and the smooth-selector remark (2.5).
+@isnad1 id=finite.5h5v.s8.8551d0fedba8 from=translated src=- shape=957a0d1e vocab=1a376354
+-/
 theorem exceptionalParameterSet_finite_of_tameness_and_smooth_selection
     {E K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]

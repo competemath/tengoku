@@ -22,11 +22,17 @@ namespace AbelFormalization
 def zeroPrefixLinear (p k : ℕ) : (Fin p → ℝ) →L[ℝ] (Fin p → ℝ) :=
   ContinuousLinearMap.pi (fun i => if i.val < k then 0 else ContinuousLinearMap.proj i)
 
+/--
+@isnad1 id=eq.0h4v.s7.1f5818a5ccc2 from=translated src=- shape=611aaa15 vocab=46880d4d
+-/
 @[simp]
 theorem zeroPrefixLinear_apply (p k : ℕ) (x : Fin p → ℝ) (i : Fin p) :
     zeroPrefixLinear p k x i = if i.val < k then 0 else x i := by
   by_cases hi : i.val < k <;> simp [zeroPrefixLinear, hi]
 
+/--
+@isnad1 id=eq.1h4v.s9.5fc8958b9831 from=translated src=- shape=69408ff5 vocab=bff483d5
+-/
 theorem zeroPrefixLinear_comp_of_le (p : ℕ) {k l : ℕ} (hkl : k ≤ l)
     (x : Fin p → ℝ) :
     zeroPrefixLinear p k (zeroPrefixLinear p l x) = zeroPrefixLinear p l x := by
@@ -41,6 +47,9 @@ the result as a germ in the original `p` variables.-/
 def analyticGermKillPrefix (p k : ℕ) : RealAnalyticGerm p →ₐ[ℝ] RealAnalyticGerm p :=
   analyticGermPullback (zeroPrefixLinear p k) ((zeroPrefixLinear p k).analyticAt 0) (map_zero _)
 
+/--
+@isnad1 id=eq.1h3v.s13.37f918dbf74f from=translated src=- shape=89c8865e vocab=5ec983fa
+-/
 theorem analyticGermKillPrefix_comp_of_le (p : ℕ) {k l : ℕ} (hkl : k ≤ l) :
     (analyticGermKillPrefix p l).comp (analyticGermKillPrefix p k) =
       analyticGermKillPrefix p l := by
@@ -56,6 +65,9 @@ theorem analyticGermKillPrefix_comp_of_le (p : ℕ) {k l : ℕ} (hkl : k ≤ l) 
 def analyticGermCoordinatePrime (p k : ℕ) : PrimeSpectrum (RealAnalyticGerm p) :=
   ⟨RingHom.ker (analyticGermKillPrefix p k), RingHom.ker_isPrime _⟩
 
+/--
+@isnad1 id=monotone.0h1v.s11.cab54c6161b6 from=translated src=- shape=ee922936 vocab=84d9f46b
+-/
 theorem analyticGermCoordinatePrime_mono (p : ℕ) :
     Monotone (analyticGermCoordinatePrime p) := by
   intro k l hkl
@@ -67,6 +79,9 @@ theorem analyticGermCoordinatePrime_mono (p : ℕ) :
     (analyticGermKillPrefix_comp_of_le p hkl)
   simpa only [AlgHom.comp_apply, hg, map_zero] using he.symm
 
+/--
+@isnad1 id=eq.0h3v.s13.5989f2dbf366 from=translated src=- shape=771d0970 vocab=fb66388d
+-/
 @[simp]
 theorem analyticGermKillPrefix_coordinate (p k : ℕ) (i : Fin p) :
     analyticGermKillPrefix p k (analyticGermCoordinate p i) =
@@ -83,7 +98,9 @@ theorem analyticGermKillPrefix_coordinate (p k : ℕ) (i : Fin p) :
     change zeroPrefixLinear p k x i = x i
     simp [hi]
 
-/-- A coordinate germ is nonzero, as witnessed by its coordinate derivative.-/
+/-- A coordinate germ is nonzero, as witnessed by its coordinate derivative.
+@isnad1 id=ne.0h2v.s11.618eda485028 from=translated src=- shape=c0eef760 vocab=50b1c7e3
+-/
 theorem analyticGermCoordinate_ne_zero (p : ℕ) (i : Fin p) :
     analyticGermCoordinate p i ≠ 0 := by
   intro h
@@ -91,7 +108,9 @@ theorem analyticGermCoordinate_ne_zero (p : ℕ) (i : Fin p) :
   simp only [analyticGermPartial_coordinate, ite_true, map_one, map_zero] at he
   exact one_ne_zero he
 
-/-- Each newly killed coordinate makes the prime kernel strictly larger.-/
+/-- Each newly killed coordinate makes the prime kernel strictly larger.
+@isnad1 id=lt.0h2v.s12.9073910875ea from=translated src=- shape=1836a80b vocab=6ad3243a
+-/
 theorem analyticGermCoordinatePrime_lt_succ (p : ℕ) (i : Fin p) :
     analyticGermCoordinatePrime p i.val < analyticGermCoordinatePrime p (i.val + 1) := by
   refine lt_of_le_of_ne (analyticGermCoordinatePrime_mono p (Nat.le_succ _)) ?_
@@ -111,7 +130,9 @@ def analyticGermCoordinatePrimeChain (p : ℕ) : LTSeries (PrimeSpectrum (RealAn
   step i := analyticGermCoordinatePrime_lt_succ p i
 
 /-- The actual ring of analytic germs in `p` real variables has Krull dimension
-at least `p`; no finiteness or Noetherian assumption is used.-/
+at least `p`; no finiteness or Noetherian assumption is used.
+@isnad1 id=le.0h1v.s10.ca56586c6e8e from=translated src=- shape=a20bf565 vocab=9fbe12b7
+-/
 theorem realAnalyticGerm_dimension_lower (p : ℕ) :
     (p : WithBot ℕ∞) ≤ ringKrullDim (RealAnalyticGerm p) :=
   Order.LTSeries.length_le_krullDim (analyticGermCoordinatePrimeChain p)

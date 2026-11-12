@@ -21,7 +21,9 @@ namespace AbelFormalization
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- A product of two analytic functions vanishing near the base point forces
-one of its factors to vanish near that point.-/
+one of its factors to vanish near that point.
+@isnad1 id=or.3h4v.s7.2155034f46d6 from=translated src=- shape=10c9c347 vocab=9f56774f
+-/
 theorem analyticAt_eventuallyEq_zero_or_of_mul {x : E} {f g : E → ℝ}
     (hf : AnalyticAt ℝ f x) (hg : AnalyticAt ℝ g x)
     (hfg : (f * g) =ᶠ[𝓝 x] 0) :
@@ -46,12 +48,17 @@ theorem analyticAt_eventuallyEq_zero_or_of_mul {x : E} {f g : E → ℝ}
     filter_upwards [ball_mem_nhds x hr] with z hz
     exact hgzero hz
 
-/-- Equality with the zero germ is exactly neighborhood vanishing.-/
+/-- Equality with the zero germ is exactly neighborhood vanishing.
+@isnad1 id=iff.1h3v.s9.654800ca6155 from=translated src=- shape=8181f1ad vocab=2bff848a
+-/
 @[simp]
 theorem analyticGermOf_eq_zero_iff {x : E} {f : E → ℝ} (hf : AnalyticAt ℝ f x) :
     analyticGermOf f hf = 0 ↔ f =ᶠ[𝓝 x] 0 :=
   analyticGermOf_eq_iff hf analyticAt_const
 
+/--
+@isnad1 id=nozerodi.0h2v.s9.c3acc51c813c from=translated src=- shape=a6050881 vocab=21b31cc7
+-/
 instance analyticGermNoZeroDivisors (x : E) : NoZeroDivisors (AnalyticGermAt x) where
   eq_zero_or_eq_zero_of_mul_eq_zero := by
     intro a b hab
@@ -63,7 +70,9 @@ instance analyticGermNoZeroDivisors (x : E) : NoZeroDivisors (AnalyticGermAt x) 
     · exact Or.inr ((analyticGermOf_eq_zero_iff hg).mpr hgzero)
 
 /-- The analytic identity principle proves the domain property without
-replacing the germ ring by a formal power-series ring.-/
+replacing the germ ring by a formal power-series ring.
+@isnad1 id=isdomain.0h2v.s8.f25aaaec1269 from=translated src=- shape=a6050881 vocab=4c569450
+-/
 instance analyticGermIsDomain (x : E) : IsDomain (AnalyticGermAt x) :=
   NoZeroDivisors.to_isDomain _
 

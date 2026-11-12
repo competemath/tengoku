@@ -27,6 +27,9 @@ variable {E F G : Type*}
 def finiteGraphTangentCLM (Z : E →L[ℝ] G) : E →L[ℝ] E × G :=
   (ContinuousLinearMap.id ℝ E).prod Z
 
+/--
+@isnad1 id=eq.0h4v.s8.57cef749902b from=translated src=- shape=d71c2429 vocab=6ee8375d
+-/
 @[simp]
 theorem finiteGraphTangentCLM_apply (Z : E →L[ℝ] G) (u : E) :
     finiteGraphTangentCLM Z u = (u, Z u) :=
@@ -40,6 +43,9 @@ def finiteImplicitGraphBlockCLM
   (ContinuousLinearMap.coprod A B).prod
     (ContinuousLinearMap.coprod C D)
 
+/--
+@isnad1 id=eq.0h9v.s10.f13bec1ba576 from=translated src=- shape=90657c1b vocab=6d6f3b44
+-/
 @[simp]
 theorem finiteImplicitGraphBlockCLM_apply
     (A : E →L[ℝ] F) (B : G →L[ℝ] F)
@@ -55,6 +61,9 @@ def finiteGraphReducedCLM
     (Z : E →L[ℝ] G) : E →L[ℝ] F :=
   A + B.comp Z
 
+/--
+@isnad1 id=eq.0h7v.s9.9975b64abd5f from=translated src=- shape=373e097e vocab=cec8236e
+-/
 @[simp]
 theorem finiteGraphReducedCLM_apply
     (A : E →L[ℝ] F) (B : G →L[ℝ] F)
@@ -63,7 +72,9 @@ theorem finiteGraphReducedCLM_apply
   rfl
 
 /-- With a surjective vertical endomorphism, the full block derivative is
-surjective exactly when its restriction to the implicit graph tangent is.-/
+surjective exactly when its restriction to the implicit graph tangent is.
+@isnad1 id=iff.2h8v.s10.38c13780e9e6 from=translated src=- shape=6ae619af vocab=10e7cdf2
+-/
 theorem surjective_finiteImplicitGraphBlockCLM_iff
     [FiniteDimensional ℝ G]
     (A : E →L[ℝ] F) (B : G →L[ℝ] F)
@@ -111,7 +122,9 @@ def finiteGraphLiftXBlock (T : (E × G) →L[ℝ] F) : E →L[ℝ] F :=
 def finiteGraphLiftZBlock (T : (E × G) →L[ℝ] F) : G →L[ℝ] F :=
   T.comp (ContinuousLinearMap.inr ℝ E G)
 
-/-- Product-domain continuous linear maps split into their two blocks.-/
+/-- Product-domain continuous linear maps split into their two blocks.
+@isnad1 id=eq.0h6v.s9.651266182ff8 from=translated src=- shape=62b54604 vocab=d1f9b6a4
+-/
 theorem finiteGraphLift_blocks_apply
     (T : (E × G) →L[ℝ] F) (u : E) (v : G) :
     T (u, v) = finiteGraphLiftXBlock T u + finiteGraphLiftZBlock T v := by
@@ -130,7 +143,9 @@ def finiteImplicitGraphLiftSystem
     E × G → F × G :=
   fun p ↦ (Ftilde p, h p)
 
-/-- The derivative after vector graph substitution.-/
+/-- The derivative after vector graph substitution.
+@isnad1 id=eq.2h6v.s9.3e87cd4ca075 from=translated src=- shape=99b9a0ca vocab=35805e4b
+-/
 theorem fderiv_finiteGraphSubstitution
     {Ftilde : E × G → F} {zeta : E → G} {x : E}
     (hF : DifferentiableAt ℝ Ftilde (x, zeta x))
@@ -154,7 +169,9 @@ theorem fderiv_finiteGraphSubstitution
   exact finiteGraphLift_blocks_apply (fderiv ℝ Ftilde (x, zeta x)) u
     (fderiv ℝ zeta x u)
 
-/-- The derivative of the simultaneous implicit graph lift.-/
+/-- The derivative of the simultaneous implicit graph lift.
+@isnad1 id=eq.2h7v.s10.266387332ccb from=translated src=- shape=c0443c75 vocab=16b41d4e
+-/
 theorem fderiv_finiteImplicitGraphLiftSystem
     {Ftilde : E × G → F} {h : E × G → G} {x : E} {z : G}
     (hF : DifferentiableAt ℝ Ftilde (x, z))
@@ -177,7 +194,9 @@ theorem fderiv_finiteImplicitGraphLiftSystem
   · exact finiteGraphLift_blocks_apply (fderiv ℝ Ftilde (x, z)) u v
   · exact finiteGraphLift_blocks_apply (fderiv ℝ h (x, z)) u v
 
-/-- A local exact graph identity supplies the vector tangent relation.-/
+/-- A local exact graph identity supplies the vector tangent relation.
+@isnad1 id=eq.3h6v.s9.ee7d2c7339d6 from=translated src=- shape=60ab6e63 vocab=5c2ad1ba
+-/
 theorem finiteImplicitGraph_tangent_identity
     {h : E × G → G} {zeta : E → G} {x : E}
     (hh : DifferentiableAt ℝ h (x, zeta x))
@@ -201,7 +220,9 @@ theorem finiteImplicitGraph_tangent_identity
   simpa [finiteGraphReducedCLM_apply] using hu
 
 /-- Simultaneously adjoining finitely many implicit graph equations with a
-surjective vertical Jacobian preserves regular-zero membership.-/
+surjective vertical Jacobian preserves regular-zero membership.
+@isnad1 id=iff.5h8v.s9.949afcfd7f57 from=translated src=- shape=76f89f4d vocab=873aca5f
+-/
 theorem mem_regularZeroSet_finiteImplicitGraphLift_iff
     [FiniteDimensional ℝ G]
     {Omega : Set E} {Ftilde : E × G → F}

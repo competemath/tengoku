@@ -32,6 +32,9 @@ def snoc {p : ℕ} (D : RestrictedBox p) (l u : ℝ) (hlu : l < u) :
     · simpa using hlu
     · simpa using D.lower_lt_upper j
 
+/--
+@isnad1 id=iff.1h5v.s7.9f99c73b7b09 from=translated src=- shape=e6d6cdb5 vocab=38cb4b63
+-/
 @[simp]
 theorem mem_openBox_snoc {p : ℕ} (D : RestrictedBox p)
     {l u : ℝ} (hlu : l < u) {w : RestrictedBoxSpace (p + 1)} :
@@ -54,6 +57,9 @@ theorem mem_openBox_snoc {p : ℕ} (D : RestrictedBox p)
     · simpa [snoc] using hlast
     · simpa [snoc] using hw k
 
+/--
+@isnad1 id=iff.1h5v.s7.ec68d7257481 from=translated src=- shape=690c68df vocab=06fe7a2f
+-/
 @[simp]
 theorem mem_closedBox_snoc {p : ℕ} (D : RestrictedBox p)
     {l u : ℝ} (hlu : l < u) {w : RestrictedBoxSpace (p + 1)} :
@@ -133,6 +139,9 @@ def restrictedSourceReclassifyAt {m p a : ℕ} (i : Fin (m + 1)) :
     RestrictedSource m (p + 1) a ≃L[ℝ] RestrictedSource (m + 1) p a :=
   (restrictedSourceReclassifyAtLinearEquiv i).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.0h5v.s11.25850a0dbf64 from=translated src=- shape=20a95b99 vocab=5fd5eba2
+-/
 @[simp]
 theorem restrictedSourceReclassifyAt_apply_pivot {m p a : ℕ}
     (i : Fin (m + 1)) (x : RestrictedSource m (p + 1) a) :
@@ -141,6 +150,9 @@ theorem restrictedSourceReclassifyAt_apply_pivot {m p a : ℕ}
   simp [restrictedSourceReclassifyAt,
     restrictedSourceReclassifyAtLinearEquiv]
 
+/--
+@isnad1 id=eq.0h6v.s11.8fa65dcac432 from=translated src=- shape=aa3545b1 vocab=96ace960
+-/
 @[simp]
 theorem restrictedSourceReclassifyAt_apply_succAbove {m p a : ℕ}
     (i : Fin (m + 1)) (x : RestrictedSource m (p + 1) a) (j : Fin m) :
@@ -148,12 +160,18 @@ theorem restrictedSourceReclassifyAt_apply_succAbove {m p a : ℕ}
   simp [restrictedSourceReclassifyAt,
     restrictedSourceReclassifyAtLinearEquiv]
 
+/--
+@isnad1 id=eq.0h6v.s11.e9979eefdd78 from=translated src=- shape=01dc0e0c vocab=d2acf350
+-/
 @[simp]
 theorem restrictedSourceReclassifyAt_apply_w {m p a : ℕ}
     (i : Fin (m + 1)) (x : RestrictedSource m (p + 1) a) (j : Fin p) :
     (restrictedSourceReclassifyAt i x).1.2 j = x.1.2 j.castSucc := by
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.c572b3d76273 from=translated src=- shape=dfe13345 vocab=f95d9d64
+-/
 @[simp]
 theorem restrictedSourceReclassifyAt_apply_aux {m p a : ℕ}
     (i : Fin (m + 1)) (x : RestrictedSource m (p + 1) a) (k : Fin a) :

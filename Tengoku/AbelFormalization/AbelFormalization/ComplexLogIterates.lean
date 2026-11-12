@@ -16,9 +16,15 @@ namespace AbelFormalization
 
 open Set Function
 
+/--
+@isnad1 id=eq.0h1v.s3.13bbe648c2a8 from=translated src=- shape=47dcad53 vocab=40e0ab8b
+-/
 theorem L_E (x : ℝ) : L (E x) = x := by
   simp [L, E]
 
+/--
+@isnad1 id=eq.1h2v.s4.854c1ffb73ee from=translated src=- shape=3a279db4 vocab=6ab6f74b
+-/
 theorem complexL_iterate_ofReal {x : ℝ} (hx : 0 < x) (n : ℕ) :
     complexL^[n] (x : ℂ) = (L^[n] x : ℂ) := by
   induction n with
@@ -28,9 +34,15 @@ theorem complexL_iterate_ofReal {x : ℝ} (hx : 0 < x) (n : ℕ) :
         have := L_iterate_pos hx n
         linarith), iterate_succ_apply']
 
+/--
+@isnad1 id=eq.0h1v.s3.b7aac615ac22 from=translated src=- shape=e0f744a2 vocab=51342cbc
+-/
 theorem complexL_E (x : ℝ) : complexL (E x : ℂ) = (x : ℂ) := by
   rw [complexL_ofReal (by simp [E]; positivity), L_E]
 
+/--
+@isnad1 id=mapsto.2h2v.s5.32ab4e1608cd from=translated src=- shape=2337b1d3 vocab=1df8572e
+-/
 theorem complexL_mapsTo_ball_of_radius_le {c r : ℝ}
     (hr : 0 < r) (hc : r ≤ c) :
     MapsTo complexL (Metric.ball (c : ℂ) r) (Metric.ball (L c : ℂ) r) := by
@@ -43,7 +55,9 @@ theorem complexL_mapsTo_ball_of_radius_le {c r : ℝ}
   nlinarith
 
 /-- The full return to the fundamental disk is analytic and stays in that
-disk, regardless of the number of iterates.-/
+disk, regardless of the number of iterates.
+@isnad1 id=and.2h3v.s6.8e766a681ae7 from=translated src=- shape=bce4149d vocab=824f2a87
+-/
 theorem complexL_iterate_disk {u ρ : ℝ} (hρ : 0 < ρ) (hu : ρ ≤ u) (n : ℕ) :
     AnalyticOnNhd ℂ (complexL^[n]) (Metric.ball (E^[n] u : ℂ) ρ) ∧
       MapsTo (complexL^[n]) (Metric.ball (E^[n] u : ℂ) ρ) (Metric.ball (u : ℂ) ρ) := by
@@ -65,7 +79,9 @@ theorem complexL_iterate_disk {u ρ : ℝ} (hρ : 0 < ρ) (hu : ρ ≤ u) (n : �
       · simpa only [iterate_succ, iterate_succ_apply'] using ih.2.comp hm
 
 /-- The first logarithm can start from a disk of any fixed radius, provided
-its image radius is at most the small radius used for the remaining steps.-/
+its image radius is at most the small radius used for the remaining steps.
+@isnad1 id=and.5h4v.s8.7130fb5f62b6 from=translated src=- shape=3616cf2d vocab=0e40efeb
+-/
 theorem complexL_iterate_large_disk {u ρ M : ℝ}
     (hρ : 0 < ρ) (hu : ρ ≤ u) (hM : 0 < M) (n : ℕ)
     (hx : M < 1 + E^[n + 1] u)

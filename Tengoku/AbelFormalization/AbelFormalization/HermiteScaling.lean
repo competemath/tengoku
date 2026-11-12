@@ -21,7 +21,9 @@ open scoped Topology
 namespace AbelFormalization
 
 /-- Complex scalar substitution commutes with iterated derivatives, including
-zero scale, without a differentiability hypothesis.-/
+zero scale, without a differentiability hypothesis.
+@isnad1 id=eq.0h3v.s6.89df5cf9fcd1 from=translated src=- shape=6dd1e735 vocab=0e49d76f
+-/
 theorem iteratedDeriv_comp_mul_complex (f : ℂ → ℂ) (q : ℂ) (r : ℕ) :
     iteratedDeriv r (fun z => f (q * z)) =
       fun z => q ^ r * iteratedDeriv r f (q * z) := by
@@ -33,13 +35,18 @@ theorem iteratedDeriv_comp_mul_complex (f : ℂ → ℂ) (q : ℂ) (r : ℕ) :
     simp only [smul_eq_mul, ← iteratedDeriv_succ, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s6.4680d640451f from=translated src=- shape=671c7356 vocab=45c84cb6
+-/
 theorem degree_comp_scale (P : ℂ[X]) {q : ℂ} (hq : q ≠ 0) :
     (P.comp (C q * X)).degree = P.degree := by
   rw [Polynomial.degree_comp (by simp [degree_C_mul_X hq]), degree_C_mul_X hq, mul_one]
 
 variable {ι : Type*} [Fintype ι]
 
-/-- Nonzero scaling preserves collisions and their summed multiplicities.-/
+/-- Nonzero scaling preserves collisions and their summed multiplicities.
+@isnad1 id=eq.1h5v.s5.ec1d408399c3 from=translated src=- shape=074f5b67 vocab=337280c4
+-/
 theorem nodeMultiplicity_scale (δ : ι → ℂ) (m : ι → ℕ) {q : ℂ} (hq : q ≠ 0)
     (ξ : ℂ) :
     nodeMultiplicity (fun i => q * δ i) m (q * ξ) = nodeMultiplicity δ m ξ := by
@@ -47,7 +54,9 @@ theorem nodeMultiplicity_scale (δ : ι → ℂ) (m : ι → ℕ) {q : ℂ} (hq 
   simp only [nodeMultiplicity, mul_right_inj' hq]
 
 /-- A local scaling identity at every supplied node identifies any pair of
-Hermite interpolants. No distinctness of the nodes is required.-/
+Hermite interpolants. No distinctness of the nodes is required.
+@isnad1 id=eq.6h8v.s8.741d717a6cce from=translated src=- shape=16453f5b vocab=af937f76
+-/
 theorem polynomial_eq_comp_scale_of_grouped_jets
     (δ : ι → ℂ) (m : ι → ℕ) {q : ℂ} (hq : q ≠ 0)
     {f g : ℂ → ℂ} {P Q : ℂ[X]}

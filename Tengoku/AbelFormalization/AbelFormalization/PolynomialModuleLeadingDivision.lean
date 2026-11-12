@@ -24,7 +24,9 @@ variable {K : Type*} [Field K] {n r : ℕ}
 
 /-- A submodule containing a reducer at each actual leading index contains
 the entire original submodule. Cancellation is performed on actual vectors
-and induction uses the proved well-founded leading-term order.-/
+and induction uses the proved well-founded leading-term order.
+@isnad1 id=le.2h6v.s11.748ddc5b0421 from=translated src=- shape=a50a06d3 vocab=35c5643d
+-/
 theorem polynomialModule_le_of_matching_leading_reducers
     (m : MonomialOrder (Fin n))
     (N T : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -63,7 +65,9 @@ theorem polynomialModule_le_of_matching_leading_reducers
   · exact hall ⟨P, hP⟩ hPN
 
 /-- Actual leading-term divisibility suffices for a selected set of module
-vectors to generate the original polynomial submodule.-/
+vectors to generate the original polynomial submodule.
+@isnad1 id=eq.2h6v.s10.8c1a1fd96a33 from=translated src=- shape=4fb8aedd vocab=2e04153b
+-/
 theorem polynomialModule_span_eq_of_leading_divisibility
     (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -85,7 +89,9 @@ theorem polynomialModule_span_eq_of_leading_divisibility
 
 /-- Lifting a specified finite leading cover preserves a property indexed by
 its actual leading terms. This version retains the degree of every chosen
-term, which is needed for subsequent uniform degree bounds.-/
+term, which is needed for subsequent uniform degree bounds.
+@isnad1 id=ex.2h7v.s11.c519001c2495 from=translated src=- shape=2f210d45 vocab=63162c01
+-/
 theorem exists_polynomialModule_generators_from_leadingCover
     (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -110,7 +116,9 @@ theorem exists_polynomialModule_generators_from_leadingCover
 /-- Select finitely many actual leading witnesses from the finite Dickson
 generators of each leading exponent upper set. The optional property is
 preserved by selecting witnesses with that property, not by assuming that
-they already generate the module.-/
+they already generate the module.
+@isnad1 id=ex.1h6v.s11.9d40c2e448e8 from=translated src=- shape=de3542a5 vocab=2bf4e73e
+-/
 theorem exists_finite_polynomialModule_leading_representatives
     (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -147,7 +155,9 @@ theorem exists_finite_polynomialModule_leading_representatives
     exact hxt
 
 /-- The selected finite leading witnesses generate by actual cancellation,
-while retaining any property supplied by the witness selection theorem.-/
+while retaining any property supplied by the witness selection theorem.
+@isnad1 id=ex.1h6v.s11.0d75a6d6bddb from=translated src=- shape=64f9ab2b vocab=946a0c8c
+-/
 theorem exists_finite_polynomialModule_generators_of_leading_witnesses
     (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -163,7 +173,9 @@ theorem exists_finite_polynomialModule_generators_of_leading_witnesses
 
 /-- Every actual finite free polynomial submodule over a field has a finite
 family of original vectors generating it, proved here by leading-term
-cancellation and Dickson's lemma.-/
+cancellation and Dickson's lemma.
+@isnad1 id=ex.0h5v.s10.b9905f238913 from=translated src=- shape=add6539a vocab=55a615b2
+-/
 theorem exists_finite_polynomialModule_generators (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K)) :
     ∃ S : Finset (Fin r → MvPolynomial (Fin n) K),

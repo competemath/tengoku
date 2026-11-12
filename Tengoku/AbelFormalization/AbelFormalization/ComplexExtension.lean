@@ -21,7 +21,9 @@ namespace AbelFormalization
 open Filter Set FormalMultilinearSeries
 open scoped Topology
 
-/-- A real analytic function has a local complex analytic extension.-/
+/-- A real analytic function has a local complex analytic extension.
+@isnad1 id=ex.1h2v.s6.a50c97974599 from=translated src=- shape=91b73989 vocab=e79b5fbf
+-/
 theorem exists_complex_extension_of_analyticAt {f : ℝ → ℝ} {x : ℝ}
     (hf : AnalyticAt ℝ f x) :
     ∃ F : ℂ → ℂ, AnalyticAt ℂ F (x : ℂ) ∧
@@ -48,7 +50,9 @@ theorem exists_complex_extension_of_analyticAt {f : ℝ → ℝ} {x : ℝ}
       Complex.ofReal_sub, Complex.ofReal_mul, Complex.ofReal_pow, mul_comm]
 
 /-- A disk version, with analyticity at every point and agreement on its real
-diameter. The disk radius and the extension are both constructed from `hf`.-/
+diameter. The disk radius and the extension are both constructed from `hf`.
+@isnad1 id=ex.1h2v.s6.22d194458056 from=translated src=- shape=63a146dc vocab=afb15a04
+-/
 theorem exists_complex_extension_on_ball_of_analyticAt {f : ℝ → ℝ} {x : ℝ}
     (hf : AnalyticAt ℝ f x) :
     ∃ r : ℝ, 0 < r ∧ ∃ F : ℂ → ℂ,
@@ -69,6 +73,9 @@ variable {A : ℝ → ℝ} (hA : IsAbel A)
 
 include hA
 
+/--
+@isnad1 id=ex.2h2v.s6.cec216cde010 from=translated src=- shape=7ab0bfb9 vocab=827203bb
+-/
 theorem exists_complex_extension {x : ℝ} (hx : 0 < x) :
     ∃ r : ℝ, 0 < r ∧ ∃ F : ℂ → ℂ,
       AnalyticOnNhd ℂ F (Metric.ball (x : ℂ) r) ∧

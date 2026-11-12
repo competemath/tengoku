@@ -40,7 +40,9 @@ theorem PolynomialGradedLexData.eq_of_polynomialWindowOrderedWeightPart_eq
 the transported window parts into stabilization of the actual polynomial
 submodules.  `JN j` records the polynomial submodule obtained by applying the
 semilinear polynomial automorphism to `N j`; the two displayed compatibility
-hypotheses are exactly what the concrete initial operation must supply.-/
+hypotheses are exactly what the concrete initial operation must supply.
+@isnad1 id=ex.7h10v.s15.236badf34d8d from=translated src=- shape=a53901f8 vocab=43fc6197
+-/
 theorem PolynomialGradedLexData.exists_polynomialSubmodule_stabilizes_of_window_recurrence
     (d : ℕ) [IsNoetherianRing B] [Ring.KrullDimLE d B]
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)

@@ -25,7 +25,9 @@ open scoped Pointwise
 /-! ## Coordinatewise ideal action on a finite free module -/
 
 /-- Multiplying the full finite function module by an ideal is exactly the
-submodule of functions whose coordinates lie in that ideal.-/
+submodule of functions whose coordinates lie in that ideal.
+@isnad1 id=eq.0h3v.s8.60312c2df0f6 from=translated src=- shape=0b21a8e9 vocab=2bdde5b6
+-/
 theorem ideal_smul_top_eq_pi
     {A κ : Type*} [CommRing A] [Fintype κ] (J : Ideal A) :
     J • (⊤ : Submodule A (κ → A)) =
@@ -53,7 +55,9 @@ section PolynomialCoordinates
 variable {B : Type*} [CommRing B] {n r : ℕ}
 
 /-- The ideal-power filtration of the free polynomial module is the
-coordinatewise ideal-power filtration.-/
+coordinatewise ideal-power filtration.
+@isnad1 id=eq.0h5v.s8.8e5db92348e6 from=translated src=- shape=dec6b37f vocab=907508f7
+-/
 theorem artinianPolynomialIdealPowerSubmodule_eq_pi (I : Ideal B) (i : ℕ) :
     artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i =
       Submodule.pi Set.univ (fun _ : Fin r =>
@@ -63,7 +67,9 @@ theorem artinianPolynomialIdealPowerSubmodule_eq_pi (I : Ideal B) (i : ℕ) :
     (artinianPolynomialCoefficientIdeal (n := n) I ^ i)
 
 /-- Membership in the polynomial ideal-power filtration is coefficientwise
-membership in the corresponding coefficient ideal power.-/
+membership in the corresponding coefficient ideal power.
+@isnad1 id=iff.0h6v.s9.b04066003e94 from=translated src=- shape=8a5d1cc6 vocab=3d3ec495
+-/
 theorem mem_artinianPolynomialIdealPowerSubmodule_iff_coeff
     (I : Ideal B) (i : ℕ)
     (P : artinianFreePolynomialModule B n r) :
@@ -103,6 +109,9 @@ def artinianPolynomialModuleComponent
         intro c P
         simp only [map_smul, Finsupp.filter_smul, RingHom.id_apply] }
 
+/--
+@isnad1 id=eq.0h9v.s9.bf06681af5f3 from=translated src=- shape=7fe37189 vocab=60c5b465
+-/
 @[simp]
 theorem artinianPolynomialModuleComponent_coeff
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
@@ -122,7 +131,9 @@ theorem artinianPolynomialModuleComponent_coeff
   rw [LinearEquiv.apply_symm_apply, Finsupp.filter_apply]
   rfl
 
-/-- A weighted component has support only in its selected shifted degree.-/
+/-- A weighted component has support only in its selected shifted degree.
+@isnad1 id=mem.0h7v.s9.08f7015e1fd0 from=translated src=- shape=2ccb6f3b vocab=3f869524
+-/
 theorem artinianPolynomialModuleComponent_mem_piece
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
     (P : artinianFreePolynomialModule B n r) :
@@ -136,7 +147,9 @@ theorem artinianPolynomialModuleComponent_mem_piece
   exact hcoeff (by
     rw [artinianPolynomialModuleComponent_coeff, ite_eq_right hdegree])
 
-/-- Projecting a vector already supported in one shifted degree fixes it.-/
+/-- Projecting a vector already supported in one shifted degree fixes it.
+@isnad1 id=eq.1h7v.s9.2a5c36cee34e from=translated src=- shape=0892dbac vocab=3f869524
+-/
 theorem artinianPolynomialModuleComponent_eq_self
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
     {P : artinianFreePolynomialModule B n r}
@@ -155,7 +168,9 @@ theorem artinianPolynomialModuleComponent_eq_self
       (Ne.symm hcoeff))
 
 /-- Coefficient-ideal powers are stable under every weighted component
-projection.  No positivity hypothesis on the weights is needed.-/
+projection.  No positivity hypothesis on the weights is needed.
+@isnad1 id=mem.1h9v.s10.bce4ac80a47b from=translated src=- shape=a2b7f0e2 vocab=9a9b7ec0
+-/
 theorem artinianPolynomialModuleComponent_mem_idealPower
     (I : Ideal B) (i : ℕ)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
@@ -171,7 +186,9 @@ theorem artinianPolynomialModuleComponent_mem_idealPower
   · exact (I ^ i).zero_mem
 
 /-- Coefficientwise residue reduction commutes with the shifted weighted
-component projection.-/
+component projection.
+@isnad1 id=eq.0h8v.s11.07251cdd293e from=translated src=- shape=23f4b562 vocab=1f002a0f
+-/
 theorem artinianPolynomialModuleComponent_residue
     (I : Ideal B)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
@@ -212,7 +229,9 @@ def artinianIdealPowerCoverGenerator [IsNoetherianRing B]
   (artinianIdealPowerFiniteFreeCover I i).map (Pi.single s 1)
 
 /-- The distinguished coefficient generators span the entire ideal-power
-subtype over B.-/
+subtype over B.
+@isnad1 id=eq.0h3v.s10.55d710cd4bcb from=translated src=- shape=c08f4134 vocab=668d7e89
+-/
 theorem artinianIdealPowerCoverGenerator_span_eq_top [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ) :
     Submodule.span B
@@ -241,7 +260,9 @@ def artinianPolynomialIdealPowerConstantGenerator [IsNoetherianRing B]
     ((artinianIdealPowerCoverGenerator I i s : {x : B // x ∈ I ^ i}) : B))
 
 /-- Every distinguished constant vector lies in the required polynomial
-ideal-power numerator.-/
+ideal-power numerator.
+@isnad1 id=mem.0h7v.s9.5a79e61353c9 from=translated src=- shape=701094b6 vocab=505a8e83
+-/
 theorem artinianPolynomialIdealPowerConstantGenerator_mem
     [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ) (k : Fin r)
@@ -264,7 +285,9 @@ theorem artinianPolynomialIdealPowerConstantGenerator_mem
 
 /-- Every distinguished constant vector is homogeneous of the original
 component shift.  The ideal-layer index and coefficient-generator index add
-no degree shift.-/
+no degree shift.
+@isnad1 id=mem.0h9v.s9.ee56de53cb9d from=translated src=- shape=9878123a vocab=5b1713a7
+-/
 theorem artinianPolynomialIdealPowerConstantGenerator_mem_piece
     [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
@@ -309,7 +332,9 @@ def IsArtinianPolynomialAmbientLayerHomogeneous
     Submodule.Quotient.mk P = x
 
 /-- The constant quotient generators are homogeneous of precisely the
-original free-coordinate shift.-/
+original free-coordinate shift.
+@isnad1 id=isartini.0h9v.s8.23c4de97f0d1 from=translated src=- shape=b171d1fa vocab=cf75a5b3
+-/
 theorem artinianPolynomialAmbientLayerConstantGenerator_homogeneous
     [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
@@ -326,7 +351,9 @@ theorem artinianPolynomialAmbientLayerConstantGenerator_homogeneous
     (n := n) (r := r) I i weight shift k s
 
 /-- Projection to the generator's shifted degree fixes its chosen numerator
-representative.-/
+representative.
+@isnad1 id=eq.0h9v.s9.ad4b566b7e00 from=translated src=- shape=1f423669 vocab=f9cd4201
+-/
 theorem artinianPolynomialModuleComponent_constantGenerator
     [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ) (weight : Fin n → ℕ) (shift : Fin r → ℤ)

@@ -29,7 +29,9 @@ def monomialUpperFamilyGradedSlice (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (U : κ → UpperSet (Fin n → ℕ)) (degree : ℤ) : Set (κ × (Fin n →₀ ℕ)) :=
   {t | (t.2 : Fin n → ℕ) ∈ U t.1 ∧ grade t = degree}
 
-/-- The selected slice is finite whenever the entire grading fiber is.-/
+/-- The selected slice is finite whenever the entire grading fiber is.
+@isnad1 id=finite.1h5v.s6.98ad4ef96033 from=translated src=- shape=1b935188 vocab=fdfae384
+-/
 theorem monomialUpperFamilyGradedSlice_finite
     (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (hfinite : ∀ degree, {t | grade t = degree}.Finite)
@@ -43,7 +45,9 @@ def monomialUpperFamilyGradedCount (grade : κ × (Fin n →₀ ℕ) → ℤ)
   (monomialUpperFamilyGradedSlice grade U degree).ncard
 
 /-- Comparable actual exponent families with the same finite counts are
-equal, degree by degree. The grading need not be additive or nonnegative.-/
+equal, degree by degree. The grading need not be additive or nonnegative.
+@isnad1 id=eq.3h5v.s7.ea73d318885b from=translated src=- shape=b93ae7a0 vocab=57145263
+-/
 theorem monomialUpperFamily_eq_of_le_of_gradedCount_eq
     (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (hfinite : ∀ degree, {t | grade t = degree}.Finite)
@@ -72,7 +76,9 @@ theorem monomialUpperFamily_eq_of_le_of_gradedCount_eq
     exact hUV k hx
 
 /-- A fixed full integer count function determines an antichain of actual
-upper-set families, using the bundled reverse-inclusion order.-/
+upper-set families, using the bundled reverse-inclusion order.
+@isnad1 id=isantich.1h4v.s8.daf601e91bcf from=translated src=- shape=04b39830 vocab=2a0dd289
+-/
 theorem monomialUpperFamily_fixed_gradedCounts_antichain
     (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (hfinite : ∀ degree, {t | grade t = degree}.Finite) (h : ℤ → ℕ) :
@@ -83,7 +89,9 @@ theorem monomialUpperFamily_fixed_gradedCounts_antichain
     (fun degree => (hU degree).trans (hV degree).symm))
 
 /-- The actual Higman/Maclagan theorem implies finiteness of the entire
-fixed-count family when the component set is finite.-/
+fixed-count family when the component set is finite.
+@isnad1 id=finite.1h4v.s7.9b0abf190bd2 from=translated src=- shape=01ef11bb vocab=b1eda2dd
+-/
 theorem monomialUpperFamily_fixed_gradedCounts_finite [Finite κ]
     (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (hfinite : ∀ degree, {t | grade t = degree}.Finite) (h : ℤ → ℕ) :
@@ -98,7 +106,9 @@ def monomialUpperFamilyWeightedDegreeCount (weight : Fin n → ℕ) (shift : κ 
   monomialUpperFamilyGradedCount (shiftedModuleMonomialDegree weight shift) U degree
 
 /-- The relevant generic slice is exactly the selected weighted
-homogeneous-piece monomial set, not a different grading.-/
+homogeneous-piece monomial set, not a different grading.
+@isnad1 id=eq.0h6v.s6.8f50518a4ba1 from=translated src=- shape=f44f91ce vocab=bac32f10
+-/
 theorem monomialUpperFamilyGradedSlice_weighted
     (weight : Fin n → ℕ) (shift : κ → ℤ)
     (U : κ → UpperSet (Fin n → ℕ)) (degree : ℤ) :
@@ -106,7 +116,9 @@ theorem monomialUpperFamilyGradedSlice_weighted
       monomialUpperFamilyTerms U ∩ shiftedModuleDegreeTerms weight shift degree := rfl
 
 /-- Equal shifted weighted degree counts force equality of comparable
-actual upper-set families.-/
+actual upper-set families.
+@isnad1 id=eq.3h6v.s7.7fca5a76f326 from=translated src=- shape=c84436d6 vocab=e882d036
+-/
 theorem monomialUpperFamily_eq_of_le_of_weightedDegreeCount_eq [Finite κ]
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i) (shift : κ → ℤ)
     (U V : κ → UpperSet (Fin n → ℕ)) (hUV : U ≤ V)
@@ -117,7 +129,9 @@ theorem monomialUpperFamily_eq_of_le_of_weightedDegreeCount_eq [Finite κ]
     (shiftedModuleDegreeTerms_finite weight hweight shift) U V hUV hcount
 
 /-- Every fixed weighted count family is finite; all integer degrees and
-all integer component shifts are retained.-/
+all integer component shifts are retained.
+@isnad1 id=finite.1h5v.s6.938147ffd3e7 from=translated src=- shape=ac4608fa vocab=6fed46f2
+-/
 theorem monomialUpperFamily_fixed_weightedDegreeCounts_finite [Finite κ]
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i) (shift : κ → ℤ) (h : ℤ → ℕ) :
     {U : κ → UpperSet (Fin n → ℕ) |
@@ -132,7 +146,9 @@ section ActualPolynomialSubmodules
 variable {K : Type*} [Field K] [Finite κ]
 
 /-- The weighted counts are the dimensions of the corresponding pieces
-of the actual monomial polynomial submodule.-/
+of the actual monomial polynomial submodule.
+@isnad1 id=eq.1h7v.s11.06bd6488063f from=translated src=- shape=5ceb844e vocab=7f3e63dd
+-/
 theorem finrank_monomialUpperFamily_weightedPiece_eq_count
     (U : κ → UpperSet (Fin n → ℕ))
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
@@ -147,7 +163,9 @@ theorem finrank_monomialUpperFamily_weightedPiece_eq_count
 
 /-- Among the actual monomial polynomial submodules, fixing all weighted
 piece dimensions leaves only finitely many submodules. This assertion
-uses their actual componentwise monomial encoding.-/
+uses their actual componentwise monomial encoding.
+@isnad1 id=finite.1h6v.s11.1119471b62a8 from=translated src=- shape=7895e6eb vocab=0b42ce6c
+-/
 theorem monomialUpperFamily_fixed_weightedPieceDimensions_finite
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : κ → ℤ) (h : ℤ → ℕ) :

@@ -149,7 +149,9 @@ private theorem densityPrimitive_analyticOnNhd
   fun _ hx => densityPrimitive_analyticAt hb hx
 
 /-- A positive analytic density satisfying the Jacobian invariance equation
-produces a normalized Abel function by integration.-/
+produces a normalized Abel function by integration.
+@isnad1 id=ex.3h1v.s6.701a234b595e from=translated src=- shape=27c9afe8 vocab=ee018b57
+-/
 theorem exists_isAbel_of_analytic_density
     {b : ℝ → ℝ}
     (hb : AnalyticOnNhd ℝ b (Set.Ioi 0))

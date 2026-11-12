@@ -29,7 +29,9 @@ attribute [local instance] MvPolynomial.algebraMvPolynomial
 /-! ## Two denominator-clearing lemmas -/
 
 /-- Finitely many elements, each annihilated by some member of a commutative
-submonoid, have a common annihilator in that submonoid.-/
+submonoid, have a common annihilator in that submonoid.
+@isnad1 id=ex.1h5v.s8.bdfcd38ffc46 from=translated src=- shape=3f6cbae3 vocab=fe45da19
+-/
 theorem exists_submonoid_common_annihilator
     {R κ : Type*} [CommRing R]
     (S : Submonoid R) (indices : Finset κ) (a : κ → R)
@@ -56,7 +58,9 @@ theorem exists_submonoid_common_annihilator
 
 /-- Membership in the extension of an ideal to a coefficient localization
 can be expressed with a numerator in the source ideal and one constant
-denominator.-/
+denominator.
+@isnad1 id=ex.1h5v.s10.cd08659839a3 from=translated src=- shape=780d6140 vocab=796675fe
+-/
 theorem exists_mul_C_eq_map_of_mem_localizedIdeal
     {R ι : Type*} [CommRing R]
     (S : Submonoid R) (I : Ideal (MvPolynomial ι R))

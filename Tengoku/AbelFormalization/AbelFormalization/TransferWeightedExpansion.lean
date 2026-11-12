@@ -38,17 +38,26 @@ variable [CommRing R] [CommRing A] [AddCommGroup G]
 def additiveCharacterValue (chi : Multiplicative G →* A) (gamma : G) : A :=
   chi (Multiplicative.ofAdd gamma)
 
+/--
+@isnad1 id=eq.0h3v.s6.ca92d92d2166 from=translated src=- shape=db89d7ca vocab=21a0ee7c
+-/
 @[simp]
 theorem additiveCharacterValue_zero (chi : Multiplicative G →* A) :
     additiveCharacterValue chi (0 : G) = 1 := by
   exact chi.map_one
 
+/--
+@isnad1 id=eq.0h5v.s6.10d4989aa28a from=translated src=- shape=8a58850a vocab=95ec38ff
+-/
 theorem additiveCharacterValue_add (chi : Multiplicative G →* A)
     (gamma delta : G) :
     additiveCharacterValue chi (gamma + delta) =
       additiveCharacterValue chi gamma * additiveCharacterValue chi delta := by
   exact chi.map_mul (Multiplicative.ofAdd gamma) (Multiplicative.ofAdd delta)
 
+/--
+@isnad1 id=eq.0h4v.s6.5fcf473a3c08 from=translated src=- shape=f8acfe5f vocab=81ab5e7f
+-/
 @[simp]
 theorem additiveCharacterValue_neg_mul_self (chi : Multiplicative G →* A)
     (gamma : G) :
@@ -56,6 +65,9 @@ theorem additiveCharacterValue_neg_mul_self (chi : Multiplicative G →* A)
   rw [← additiveCharacterValue_add]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.2ad740305be3 from=translated src=- shape=2cc96c54 vocab=81ab5e7f
+-/
 @[simp]
 theorem additiveCharacterValue_mul_neg_self (chi : Multiplicative G →* A)
     (gamma : G) :
@@ -63,6 +75,9 @@ theorem additiveCharacterValue_mul_neg_self (chi : Multiplicative G →* A)
   rw [← additiveCharacterValue_add]
   simp
 
+/--
+@isnad1 id=eq.0h5v.s6.f0af6034be1f from=translated src=- shape=677b9c12 vocab=fc2ab26d
+-/
 theorem additiveCharacterValue_nsmul (chi : Multiplicative G →* A)
     (n : Nat) (gamma : G) :
     additiveCharacterValue chi (n • gamma) =
@@ -72,6 +87,9 @@ theorem additiveCharacterValue_nsmul (chi : Multiplicative G →* A)
   | succ n ih =>
       rw [succ_nsmul, additiveCharacterValue_add, ih, pow_succ]
 
+/--
+@isnad1 id=eq.0h6v.s6.322919890755 from=translated src=- shape=e76e1441 vocab=1d242e0a
+-/
 theorem additiveCharacterValue_finset_sum {kappa : Type*}
     (chi : Multiplicative G →* A) (s : Finset kappa) (gamma : kappa → G) :
     additiveCharacterValue chi (∑ i ∈ s, gamma i) =
@@ -83,7 +101,9 @@ theorem additiveCharacterValue_finset_sum {kappa : Type*}
       simp [hi, additiveCharacterValue_add, ih]
 
 /-- A character sends an additive monomial weight to the corresponding
-finite product of character powers.-/
+finite product of character powers.
+@isnad1 id=eq.0h6v.s7.71f21e6ed7b4 from=translated src=- shape=315364f8 vocab=1a0cc24b
+-/
 theorem additiveCharacterValue_finsupp_weight
     (chi : Multiplicative G →* A) (omega : sigma → G)
     (d : sigma →₀ Nat) :
@@ -97,7 +117,9 @@ theorem additiveCharacterValue_finsupp_weight
   exact additiveCharacterValue_nsmul chi (d i) (omega i)
 
 /-- Scaling each variable by the character of its weight extracts the
-character of the whole monomial weight.-/
+character of the whole monomial weight.
+@isnad1 id=eq.0h7v.s8.600caff434ab from=translated src=- shape=195fefcf vocab=fb319c0f
+-/
 theorem finsupp_prod_character_scaled
     (chi : Multiplicative G →* A) (omega : sigma → G)
     (y : sigma → A) (d : sigma →₀ Nat) :
@@ -128,6 +150,9 @@ def lexicographicTailSupport (omega : sigma → Fin h → Int)
     Finsupp.weight (fun i => toLex (omega i)) d ≠
       lexicographicMinimumWeight omega f)
 
+/--
+@isnad1 id=iff.0h6v.s8.cf5b30c0a814 from=translated src=- shape=3f2035d8 vocab=9a9821e1
+-/
 theorem mem_lexicographicTailSupport_iff (omega : sigma → Fin h → Int)
     (f : MvPolynomial sigma R) (d : sigma →₀ Nat) :
     d ∈ lexicographicTailSupport omega f ↔
@@ -138,7 +163,9 @@ theorem mem_lexicographicTailSupport_iff (omega : sigma → Fin h → Int)
   simp [lexicographicTailSupport]
 
 /-- Converting the vector difference back to the lexicographically ordered
-group gives literal subtraction of the two lexicographic weights.-/
+group gives literal subtraction of the two lexicographic weights.
+@isnad1 id=eq.0h6v.s8.22f77eb32f74 from=translated src=- shape=9e3297ec vocab=e80518b7
+-/
 theorem toLex_lexicographicWeightDifference (omega : sigma → Fin h → Int)
     (f : MvPolynomial sigma R) (d : sigma →₀ Nat) :
     toLex (lexicographicWeightDifference omega f d) =
@@ -152,7 +179,9 @@ theorem toLex_lexicographicWeightDifference (omega : sigma → Fin h → Int)
   rw [lexicographicWeight_ofLex]
 
 /-- Every tail index has a positive lexicographic weight difference.  This is
-the exact order fact consumed by the separated-scale exponential estimate.-/
+the exact order fact consumed by the separated-scale exponential estimate.
+@isnad1 id=lt.1h6v.s7.fab98706c5ed from=translated src=- shape=12f3a729 vocab=87b46304
+-/
 theorem lexicographicWeightDifference_pos_of_mem_tail
     (omega : sigma → Fin h → Int) (f : MvPolynomial sigma R)
     {d : sigma →₀ Nat} (hd : d ∈ lexicographicTailSupport omega f) :
@@ -168,7 +197,9 @@ theorem lexicographicWeightDifference_pos_of_mem_tail
   exact hlt
 
 /-- Direct compatibility with the separated-scale estimate: every
-exponential attached to a tail monomial has superpolynomial decay.-/
+exponential attached to a tail monomial has superpolynomial decay.
+@isnad1 id=superpol.6h8v.s8.659b7ab8eaf3 from=translated src=- shape=ca2a1886 vocab=7cccd62e
+-/
 theorem lexicographicTailExponential_superpolynomialDecay
     (omega : sigma → Fin (h + 1) → Int) (f : MvPolynomial sigma R)
     {d : sigma →₀ Nat} (hd : d ∈ lexicographicTailSupport omega f)
@@ -197,7 +228,9 @@ def lexicographicTailPolynomial (omega : sigma → Fin h → Int)
     MvPolynomial.monomial d (f.coeff d)
 
 /-- A polynomial is the sum of its actual least lexicographic form and its
-finite tail.-/
+finite tail.
+@isnad1 id=eq.0h5v.s6.422729295e03 from=translated src=- shape=1ab64f13 vocab=063918b2
+-/
 theorem lexicographicInitialForm_add_tail (omega : sigma → Fin h → Int)
     (f : MvPolynomial sigma R) :
     f = lexicographicInitialForm omega f +
@@ -244,7 +277,9 @@ def finiteSupportInitialEvaluation (omega : sigma → Fin h → Int)
     a d * d.prod (fun i n => y i ^ n)
 
 /-- Coefficientwise finite-support evaluation agrees with `eval₂Hom` when
-the coefficient values come from a ring homomorphism.-/
+the coefficient values come from a ring homomorphism.
+@isnad1 id=eq.0h6v.s7.8573b255743d from=translated src=- shape=d3a02bd6 vocab=90dff78d
+-/
 theorem finiteSupportPolynomialEvaluation_eq_eval₂Hom
     (c : R →+* A) (f : MvPolynomial sigma R) (y : sigma → A) :
     finiteSupportPolynomialEvaluation f (fun d => c (f.coeff d)) y =
@@ -255,7 +290,9 @@ theorem finiteSupportPolynomialEvaluation_eq_eval₂Hom
     MvPolynomial.eval₂Hom_monomial] using h
 
 /-- The analogous coefficientwise description of the least-weight initial
-form.-/
+form.
+@isnad1 id=eq.0h8v.s7.4ed0b93a3e84 from=translated src=- shape=086a9008 vocab=9829d34a
+-/
 theorem finiteSupportInitialEvaluation_eq_eval₂Hom_initial
     (c : R →+* A) (omega : sigma → Fin h → Int)
     (f : MvPolynomial sigma R) (y : sigma → A) :
@@ -268,7 +305,9 @@ theorem finiteSupportInitialEvaluation_eq_eval₂Hom_initial
   simpa only [finiteSupportInitialEvaluation, lexicographicInitialForm,
     map_sum, MvPolynomial.eval₂Hom_monomial] using h.symm
 
-/-- Exact normalized monomial identity with arbitrary coefficient values.-/
+/-- Exact normalized monomial identity with arbitrary coefficient values.
+@isnad1 id=eq.0h9v.s8.eec12b61932c from=translated src=- shape=492922b0 vocab=10bcdb74
+-/
 theorem normalized_character_scaled_monomial
     (chi : Multiplicative G →* A) (omega : sigma → G)
     (lambda : G) (a : A) (y : sigma → A) (d : sigma →₀ Nat) :
@@ -296,7 +335,9 @@ theorem normalized_character_scaled_monomial
 
 /-- Fully coefficientwise normalized expansion.  This is the most general
 exact statement in the file: the coefficient evaluator is an arbitrary map,
-so pointwise analytic representatives can be substituted directly.-/
+so pointwise analytic representatives can be substituted directly.
+@isnad1 id=eq.0h9v.s8.1ec2adf1d88f from=translated src=- shape=c8d9f9e8 vocab=e32ef933
+-/
 theorem normalized_character_finiteSupportEvaluation_eq_initial_add_tail
     (chi : Multiplicative (Fin h → Int) →* A)
     (omega : sigma → Fin h → Int) (f : MvPolynomial sigma R)
@@ -354,6 +395,9 @@ def weightedCharacterEvaluation (c : R →+* A)
   (AddMonoidAlgebra.lift A A G chi).toRingHom.comp
     (weightedGroupEvaluation c y omega)
 
+/--
+@isnad1 id=eq.0h10v.s9.883dbe51e517 from=translated src=- shape=c922e91c vocab=ba24fbe6
+-/
 @[simp]
 theorem weightedCharacterEvaluation_monomial (c : R →+* A)
     (chi : Multiplicative G →* A) (y : sigma → A) (omega : sigma → G)
@@ -365,7 +409,9 @@ theorem weightedCharacterEvaluation_monomial (c : R →+* A)
     Algebra.smul_def]
 
 /-- The group-algebra definition is ordinary multivariate evaluation at the
-character-scaled variable values.-/
+character-scaled variable values.
+@isnad1 id=eq.0h8v.s7.1cb23727b7e9 from=translated src=- shape=1bc2c2d9 vocab=8053f8f8
+-/
 theorem weightedCharacterEvaluation_eq_eval₂Hom (c : R →+* A)
     (chi : Multiplicative G →* A) (y : sigma → A) (omega : sigma → G) :
     weightedCharacterEvaluation c chi y omega =
@@ -379,7 +425,9 @@ theorem weightedCharacterEvaluation_eq_eval₂Hom (c : R →+* A)
       Algebra.smul_def]
 
 /-- Normalizing one monomial by an arbitrary weight `lambda` replaces its
-character factor by the character of `weight - lambda`.-/
+character factor by the character of `weight - lambda`.
+@isnad1 id=eq.0h11v.s9.a7e1156607f3 from=translated src=- shape=414129ac vocab=254bdd4d
+-/
 theorem normalized_weightedCharacterEvaluation_monomial
     (c : R →+* A) (chi : Multiplicative G →* A)
     (y : sigma → A) (omega : sigma → G) (lambda : G)
@@ -406,7 +454,9 @@ theorem normalized_weightedCharacterEvaluation_monomial
         MvPolynomial.eval₂Hom c y (MvPolynomial.monomial d r) := by
       rw [sub_eq_add_neg, add_comm]
 
-/-- Normalization cancels the character on a homogeneous polynomial.-/
+/-- Normalization cancels the character on a homogeneous polynomial.
+@isnad1 id=eq.1h10v.s8.340beb8e287e from=translated src=- shape=e6b039df vocab=804d5fb7
+-/
 theorem normalized_weightedCharacterEvaluation_of_homogeneous
     (c : R →+* A) (chi : Multiplicative G →* A)
     (y : sigma → A) (omega : sigma → G) (lambda : G)
@@ -431,7 +481,9 @@ theorem normalized_weightedCharacterEvaluation_of_homogeneous
       ac_rfl
     _ = MvPolynomial.eval₂Hom c y f := by simp
 
-/-- Exact normalized evaluation of the finite tail.-/
+/-- Exact normalized evaluation of the finite tail.
+@isnad1 id=eq.0h9v.s9.2c48a4e2b549 from=translated src=- shape=7a03ebea vocab=50719d86
+-/
 theorem normalized_weightedCharacterEvaluation_tail
     (c : R →+* A) (chi : Multiplicative (Fin h → Int) →* A)
     (y : sigma → A) (omega : sigma → Fin h → Int)
@@ -453,7 +505,9 @@ theorem normalized_weightedCharacterEvaluation_tail
 
 /-- The generic exact expansion.  Its tail is finite and each tail term is
 tagged by `lexicographicWeightDifference`; the preceding positivity theorem
-shows that every such tag is lexicographically positive.-/
+shows that every such tag is lexicographically positive.
+@isnad1 id=eq.0h9v.s9.e1e75e9214c4 from=translated src=- shape=505a59b2 vocab=8d4ecd3b
+-/
 theorem normalized_weightedCharacterEvaluation_eq_initial_add_tail
     (c : R →+* A) (chi : Multiplicative (Fin h → Int) →* A)
     (y : sigma → A) (omega : sigma → Fin h → Int)
@@ -497,11 +551,17 @@ theorem normalized_weightedCharacterEvaluation_eq_initial_add_tail
 
 /-! ## The exponential character -/
 
+/--
+@isnad1 id=eq.0h4v.s6.66ac7d67669c from=translated src=- shape=569bb33c vocab=7616f22c
+-/
 theorem lexicographicDot_add (gamma delta : Fin h → Int) (u : Fin h → Real) :
     lexicographicDot (gamma + delta) u =
       lexicographicDot gamma u + lexicographicDot delta u := by
   simp [lexicographicDot, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h3v.s5.522078770b75 from=translated src=- shape=7fcc5e03 vocab=20da8d4a
+-/
 @[simp]
 theorem lexicographicDot_neg (gamma : Fin h → Int) (u : Fin h → Real) :
     lexicographicDot (-gamma) u = -lexicographicDot gamma u := by
@@ -518,6 +578,9 @@ def realLexicographicExponentialCharacter (u : Fin h → Real) :
         Real.exp (-lexicographicDot delta.toAdd u)
     rw [lexicographicDot_add, neg_add, Real.exp_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.0865afa44595 from=translated src=- shape=3fdbd515 vocab=87f44d5e
+-/
 @[simp]
 theorem realLexicographicExponentialCharacter_apply
     (u : Fin h → Real) (gamma : Fin h → Int) :
@@ -533,6 +596,9 @@ def lexicographicExponentialCharacter
   (algebraMap Real A).toMonoidHom.comp
     (realLexicographicExponentialCharacter u)
 
+/--
+@isnad1 id=eq.0h4v.s6.ac5eefadf376 from=translated src=- shape=38119f0f vocab=b40f24ab
+-/
 @[simp]
 theorem additiveCharacterValue_lexicographicExponentialCharacter
     (A : Type*) [CommRing A] [Algebra Real A]
@@ -542,7 +608,9 @@ theorem additiveCharacterValue_lexicographicExponentialCharacter
 
 /-- Exponential specialization of the fully coefficientwise expansion.  The
 map `a` can be the pointwise values of independently chosen coefficient-germ
-representatives.-/
+representatives.
+@isnad1 id=eq.0h9v.s8.a7720a107e6d from=translated src=- shape=f19a363e vocab=ffd8f019
+-/
 theorem normalized_exponential_finiteSupportEvaluation_eq_initial_add_tail
     [Algebra Real A]
     (omega : sigma → Fin h → Int) (f : MvPolynomial sigma R)
@@ -566,7 +634,9 @@ theorem normalized_exponential_finiteSupportEvaluation_eq_initial_add_tail
 
 /-- Concrete exponential version of the generic expansion.  This is the
 finite-support identity used before applying lexicographic superpolynomial
-decay to each tail summand.-/
+decay to each tail summand.
+@isnad1 id=eq.0h9v.s9.830b404c8568 from=translated src=- shape=e793b002 vocab=7d6e1648
+-/
 theorem normalized_exponential_eval₂_eq_initial_add_tail
     [Algebra Real A]
     (c : R →+* A) (y : sigma → A) (omega : sigma → Fin h → Int)
@@ -593,7 +663,9 @@ theorem normalized_exponential_eval₂_eq_initial_add_tail
 /-- A second exact form exposes the error caused by replacing the normalized
 values `y` by target central values `z`.  The first error is now a plain
 polynomial-evaluation perturbation, while every term in the remaining finite
-sum still has a positive lexicographic exponential factor.-/
+sum still has a positive lexicographic exponential factor.
+@isnad1 id=eq.0h10v.s10.7cafd85b17d7 from=translated src=- shape=e0964ef7 vocab=983040bd
+-/
 theorem normalized_exponential_eval₂_eq_base_add_errors
     [Algebra Real A]
     (c : R →+* A) (y z : sigma → A)

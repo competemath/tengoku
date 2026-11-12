@@ -48,6 +48,9 @@ def polynomialModuleCoefficientCoordinates {S : Set (Fin r × (Fin n →₀ ℕ)
   LinearMap.pi (fun i => (MvPolynomial.lcoeff K (e i).val.2).comp
     (LinearMap.proj (e i).val.1))
 
+/--
+@isnad1 id=eq.0h8v.s9.c3915d6d8a4b from=translated src=- shape=a5879d9b vocab=85174879
+-/
 @[simp]
 theorem polynomialModuleCoefficientCoordinates_apply
     {S : Set (Fin r × (Fin n →₀ ℕ))} (e : Fin q ≃ S)
@@ -55,7 +58,9 @@ theorem polynomialModuleCoefficientCoordinates_apply
     polynomialModuleCoefficientCoordinates e P i = (P (e i).val.1).coeff (e i).val.2 := rfl
 
 /-- If the subspace is supported on S, its actual S-coordinate map loses
-no vector. The proof checks coefficients both inside and outside S.-/
+no vector. The proof checks coefficients both inside and outside S.
+@isnad1 id=injectiv.1h7v.s11.5420c3cb9f79 from=translated src=- shape=18da2c2b vocab=1b6a11ea
+-/
 theorem polynomialModuleCoefficientCoordinates_injective
     {S : Set (Fin r × (Fin n →₀ ℕ))} (e : Fin q ≃ S)
     (U : Submodule K (Fin r → MvPolynomial (Fin n) K))
@@ -80,7 +85,9 @@ theorem polynomialModuleCoefficientCoordinates_injective
     exact hp.trans hq.symm
 
 /-- Increasing enumeration makes greatest nonzero coordinate witnesses
-exactly the original polynomial-module leading-term witnesses.-/
+exactly the original polynomial-module leading-term witnesses.
+@isnad1 id=iff.2h9v.s10.aba651775184 from=translated src=- shape=2c366b3b vocab=811944fa
+-/
 theorem finiteGreatestCoordinates_polynomialModuleCoordinates_iff
     (m : MonomialOrder (Fin n)) {S : Set (Fin r × (Fin n →₀ ℕ))} (e : Fin q ≃ S)
     (hsort : ∀ i j : Fin q, i < j ↔
@@ -107,7 +114,9 @@ theorem finiteGreatestCoordinates_polynomialModuleCoordinates_iff
     exact hP.coeff_eq_zero_of_lt ((hsort i j).mp hij)
 
 /-- The enumerated coefficient-coordinate theorem gives an actual
-leading-term count for any subspace supported on the enumerated finite set.-/
+leading-term count for any subspace supported on the enumerated finite set.
+@isnad1 id=eq.2h8v.s10.af7c3b61e8f9 from=translated src=- shape=718de25f vocab=72787884
+-/
 theorem finrank_polynomialModule_eq_leadingTerms_of_enumeration
     (m : MonomialOrder (Fin n)) {S : Set (Fin r × (Fin n →₀ ℕ))} (e : Fin q ≃ S)
     (hsort : ∀ i j : Fin q, i < j ↔
@@ -148,7 +157,9 @@ theorem finrank_polynomialModule_eq_leadingTerms_of_enumeration
     _ = (polynomialModuleLeadingTerms m U).ncard := congrArg Set.ncard himage
 
 /-- Sorting the actual finite term set supplies the required enumeration;
-the dimension identity has no ordering or echelon-form hypothesis.-/
+the dimension identity has no ordering or echelon-form hypothesis.
+@isnad1 id=eq.2h6v.s10.391170775c65 from=translated src=- shape=523411dc vocab=6fe5f9bf
+-/
 theorem finrank_polynomialModule_eq_leadingTerms
     (m : MonomialOrder (Fin n)) {S : Set (Fin r × (Fin n →₀ ℕ))} (hS : S.Finite)
     (U : Submodule K (Fin r → MvPolynomial (Fin n) K))
@@ -174,7 +185,9 @@ theorem finrank_polynomialModule_eq_leadingTerms
   exact eo.lt_iff_lt.symm
 
 /-- In a homogeneous polynomial submodule, every leading term of the
-specified degree has an actual witness in that degree piece.-/
+specified degree has an actual witness in that degree piece.
+@isnad1 id=eq.1h8v.s9.6c38fc728ff1 from=translated src=- shape=2f0c468c vocab=ab069124
+-/
 theorem polynomialModuleLeadingTerms_weightedPiece
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -199,7 +212,9 @@ theorem polynomialModuleLeadingTerms_weightedPiece
     exact ⟨Q, ⟨hQN, hQdegree⟩, hQ⟩
 
 /-- The Hilbert function of an actual homogeneous submodule equals the
-actual shifted weighted monomial counts of its full leading upper-family.-/
+actual shifted weighted monomial counts of its full leading upper-family.
+@isnad1 id=eq.2h8v.s11.3351b33e85a5 from=translated src=- shape=e85ce334 vocab=6e9cf28c
+-/
 theorem finrank_polynomialModule_weightedPiece_eq_leadingCount
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : Fin r → ℤ)
@@ -224,7 +239,9 @@ theorem finrank_polynomialModule_weightedPiece_eq_leadingCount
   rfl
 
 /-- Taking the full actual monomial leading submodule preserves every
-shifted weighted homogeneous-piece dimension.-/
+shifted weighted homogeneous-piece dimension.
+@isnad1 id=eq.2h8v.s12.3f9aa679d715 from=translated src=- shape=0bd22b67 vocab=7f6950fe
+-/
 theorem finrank_polynomialModule_weightedPiece_eq_initial
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : Fin r → ℤ)

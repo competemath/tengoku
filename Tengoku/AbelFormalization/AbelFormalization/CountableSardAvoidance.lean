@@ -20,6 +20,9 @@ namespace AbelFormalization
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h4v.s8.7d6d9b9410ad from=translated src=- shape=c7953351 vocab=d1b1dfae
+-/
 theorem addHaar_image_criticalSet_eq_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
@@ -34,6 +37,9 @@ theorem addHaar_image_criticalSet_eq_zero
     exact (hf x hx).hasFDerivAt.hasFDerivWithinAt
   · exact hdet
 
+/--
+@isnad1 id=ex.2h4v.s7.a3cde431983f from=translated src=- shape=657ec95f vocab=07308e54
+-/
 theorem exists_avoiding_countable_critical_images
     {ι E : Type*} [Countable ι]
     [NormedAddCommGroup E] [NormedSpace ℝ E]

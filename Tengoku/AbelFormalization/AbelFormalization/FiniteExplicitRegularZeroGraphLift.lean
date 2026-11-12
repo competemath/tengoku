@@ -31,7 +31,9 @@ def finiteExplicitGraphLiftSystem (Ftilde : E × G → F) (zeta : E → G) :
   finiteImplicitGraphLiftSystem Ftilde (finiteExplicitGraphEquation zeta)
 
 /-- The vertical derivative block of an explicit graph equation is the
-identity and hence surjective.-/
+identity and hence surjective.
+@isnad1 id=surjecti.1h4v.s8.48e6ed5a1482 from=translated src=- shape=b169ba95 vocab=37d01327
+-/
 theorem surjective_finiteGraphLiftZBlock_fderiv_finiteExplicitGraphEquation
     {zeta : E → G} {x : E} (hzeta : DifferentiableAt ℝ zeta x) :
     Function.Surjective
@@ -56,7 +58,9 @@ theorem surjective_finiteGraphLiftZBlock_fderiv_finiteExplicitGraphEquation
   simp [fstL, sndL]
 
 /-- Simultaneously adjoining explicit finite graph equations preserves
-regular-zero membership.-/
+regular-zero membership.
+@isnad1 id=iff.2h7v.s8.14fb610813d8 from=translated src=- shape=057727f7 vocab=782d0fd7
+-/
 theorem mem_regularZeroSet_finiteExplicitGraphLift_iff
     [FiniteDimensional ℝ G]
     {Omega : Set E} {Ftilde : E × G → F}

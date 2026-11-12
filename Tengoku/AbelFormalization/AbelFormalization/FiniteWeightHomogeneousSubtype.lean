@@ -59,7 +59,9 @@ def finiteWeightHomogeneousSubtypeEquiv
     rfl
 
 /-- The forward equivalence is literal coordinate evaluation after forgetting
-the coordinate-submodule subtype.-/
+the coordinate-submodule subtype.
+@isnad1 id=eq.1h6v.s11.89fff2d1c2fa from=translated src=- shape=6cc6b793 vocab=36d23a1d
+-/
 @[simp]
 theorem finiteWeightHomogeneousSubtypeEquiv_apply
     (K : Submodule R (∀ i, M i))
@@ -68,7 +70,9 @@ theorem finiteWeightHomogeneousSubtypeEquiv_apply
     ((finiteWeightHomogeneousSubtypeEquiv K hK x) i : M i) = x.1 i := rfl
 
 /-- The inverse equivalence is literal assembly of the underlying coordinate
-values.-/
+values.
+@isnad1 id=eq.1h6v.s12.0e8c3931aff3 from=translated src=- shape=f16d609d vocab=a0e53917
+-/
 @[simp]
 theorem finiteWeightHomogeneousSubtypeEquiv_symm_apply
     (K : Submodule R (∀ i, M i))
@@ -77,7 +81,9 @@ theorem finiteWeightHomogeneousSubtypeEquiv_symm_apply
     ((finiteWeightHomogeneousSubtypeEquiv K hK).symm y).1 i = (y i : M i) := rfl
 
 /-- The ambient vector underlying the inverse equivalence is the function of
-the underlying coordinate values.-/
+the underlying coordinate values.
+@isnad1 id=eq.1h5v.s12.1fb6b8309d37 from=translated src=- shape=1fab5ce4 vocab=a0e53917
+-/
 @[simp]
 theorem finiteWeightHomogeneousSubtypeEquiv_symm_apply_val
     (K : Submodule R (∀ i, M i))
@@ -87,7 +93,9 @@ theorem finiteWeightHomogeneousSubtypeEquiv_symm_apply_val
       fun i => (y i : M i) := rfl
 
 /-- A single coordinate in the product corresponds to the same single
-coordinate in the ambient homogeneous submodule.-/
+coordinate in the ambient homogeneous submodule.
+@isnad1 id=eq.1h6v.s12.a3edd4782f38 from=translated src=- shape=d41ae61c vocab=a0e53917
+-/
 @[simp]
 theorem finiteWeightHomogeneousSubtypeEquiv_symm_single_val
     (K : Submodule R (∀ i, M i))

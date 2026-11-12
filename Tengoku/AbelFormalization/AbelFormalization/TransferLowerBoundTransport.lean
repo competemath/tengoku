@@ -29,7 +29,9 @@ variable {X ι J : Type*}
 /-- A finite sum of rapidly decaying terms remains rapidly decaying when each
 term is multiplied by its own polynomially bounded factor.  No uniform choice
 of coefficient exponent is needed: the finite-sum closure is applied after
-the pointwise multiplication closure.-/
+the pointwise multiplication closure.
+@isnad1 id=superpol.4h9v.s7.f74da7a895eb from=translated src=- shape=61f49843 vocab=10d4af06
+-/
 theorem superpolynomialDecay_finset_sum_mul_of_polynomialBound
     {l : Filter X} {R : X → ℝ}
     (s : Finset J) (e p : J → X → ℝ)
@@ -45,7 +47,9 @@ theorem superpolynomialDecay_finset_sum_mul_of_polynomialBound
   exact Asymptotics.SuperpolynomialDecay.mul_of_polynomialBound
     (he j hj) hR (hC j hj) (hp j hj)
 
-/-- Real-valued superpolynomial decay is closed under negation.-/
+/-- Real-valued superpolynomial decay is closed under negation.
+@isnad1 id=superpol.1h4v.s5.906b69c94831 from=translated src=- shape=8dd0088c vocab=6317135e
+-/
 theorem Asymptotics.SuperpolynomialDecay.neg_real
     {l : Filter X} {R e : X → ℝ}
     (he : Asymptotics.SuperpolynomialDecay l R e) :
@@ -54,7 +58,9 @@ theorem Asymptotics.SuperpolynomialDecay.neg_real
 
 /-- Adding a superpolynomially decaying error preserves an inverse-power
 lower bound.  This is the orientation used immediately after the identity
-`normalizedSource = central + error`.-/
+`normalizedSource = central + error`.
+@isnad1 id=hasinver.3h6v.s6.00dcb42ad0a4 from=translated src=- shape=ec890c44 vocab=425bb150
+-/
 theorem hasInversePowerLowerBound_add_superpolynomialPerturbation
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R : X → ℝ}
@@ -71,7 +77,9 @@ theorem hasInversePowerLowerBound_add_superpolynomialPerturbation
     exact Asymptotics.SuperpolynomialDecay.neg_real (he i)
 
 /-- Inverse-power lower bounds are invariant under a superpolynomially
-decaying perturbation.-/
+decaying perturbation.
+@isnad1 id=iff.2h6v.s6.dc3799d4f342 from=translated src=- shape=73901888 vocab=425bb150
+-/
 theorem hasInversePowerLowerBound_add_superpolynomialPerturbation_iff
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R : X → ℝ}
@@ -89,7 +97,9 @@ theorem hasInversePowerLowerBound_add_superpolynomialPerturbation_iff
 
 /-- An inverse-power lower bound at a smaller scale is also one at a larger
 scale.  Eventual `1 ≤ R` makes all denominators positive and is exactly the
-hypothesis already used by the generator-list estimates.-/
+hypothesis already used by the generator-list estimates.
+@isnad1 id=hasinver.3h6v.s6.3a0ae14de034 from=translated src=- shape=120db1e2 vocab=2f492797
+-/
 theorem hasInversePowerLowerBound_mono_scale
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R S : X → ℝ} {f : ι → X → ℝ}
@@ -108,7 +118,9 @@ theorem hasInversePowerLowerBound_mono_scale
 /-- If `E u = exp u - 1` is bounded by a scale at least two, then `u` is
 bounded by twice the logarithm of that scale.  The factor two is deliberately
 loose; it avoids carrying an additive constant through the normalization
-bound.-/
+bound.
+@isnad1 id=le.2h2v.s5.d5ee63c81d41 from=translated src=- shape=f9312abc vocab=02bdacab
+-/
 theorem le_two_mul_log_of_E_le {u S : ℝ}
     (hS : 2 ≤ S) (huS : E u ≤ S) :
     u ≤ 2 * Real.log S := by
@@ -125,7 +137,9 @@ theorem le_two_mul_log_of_E_le {u S : ℝ}
 /-- A fixed integer normalization exponent is polynomially bounded once all
 coordinates are bounded by a fixed natural multiple of `log S`.  Passing an
 explicit natural `P` for the `ℓ1` norm avoids fragile coercion normalization
-of `Int.natAbs` in downstream calls.-/
+of `Int.natAbs` in downstream calls.
+@isnad1 id=le.4h6v.s7.dfe3287fbab1 from=translated src=- shape=0ea142a8 vocab=3400f799
+-/
 theorem abs_exp_lexicographicDot_le_pow_of_coord_le_nat_mul_log
     {h : ℕ} (lambda : Fin h → ℤ) (u : Fin h → ℝ)
     (S : ℝ) (U P : ℕ)
@@ -158,7 +172,9 @@ theorem abs_exp_lexicographicDot_le_pow_of_coord_le_nat_mul_log
 
 /-- The concrete polynomial upper bound for the manuscript's normalization
 factor.  Here `E (u_i) ≤ S` follows directly from the definition of the
-source maximum `S = X`; eventual positivity of the `u_i` supplies `hu0`.-/
+source maximum `S = X`; eventual positivity of the `u_i` supplies `hu0`.
+@isnad1 id=le.4h5v.s6.b6fd88a464f4 from=translated src=- shape=73560776 vocab=9080d9d3
+-/
 theorem abs_exp_lexicographicDot_le_sourceScale
     {h : ℕ} (lambda : Fin h → ℤ) (u : Fin h → ℝ)
     (S : ℝ) (P : ℕ)
@@ -173,7 +189,9 @@ theorem abs_exp_lexicographicDot_le_sourceScale
   · exact hlambda
 
 /-- Uniform eventual form of the preceding normalization estimate for a
-family of fixed integer weights.-/
+family of fixed integer weights.
+@isnad1 id=eventual.4h8v.s7.13779c6b3789 from=translated src=- shape=89530e22 vocab=44670755
+-/
 theorem eventually_abs_exp_lexicographicDot_le_sourceScale
     {h : ℕ} {l : Filter X}
     (lambda : ι → Fin h → ℤ) (u : Fin h → X → ℝ)
@@ -192,7 +210,9 @@ theorem eventually_abs_exp_lexicographicDot_le_sourceScale
 
 /-- Removing a coordinatewise polynomially bounded diagonal factor preserves
 an inverse-power lower bound.  This is a specialization of the matrix lemma;
-keeping it separate avoids rebuilding a Kronecker-delta matrix at each call.-/
+keeping it separate avoids rebuilding a Kronecker-delta matrix at each call.
+@isnad1 id=hasinver.4h8v.s7.eca06a1e0db0 from=translated src=- shape=e3e287a6 vocab=22d273e5
+-/
 theorem hasInversePowerLowerBound_of_bounded_diagonal
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {S : X → ℝ}
@@ -223,7 +243,9 @@ theorem hasInversePowerLowerBound_of_bounded_diagonal
 /-- The complete abstract normalization/scale passage used in quantitative
 transfer.  A lower bound for `c_i * f_i` at scale `R` is first weakened to
 the larger scale `S`, then the polynomially bounded diagonal factors are
-removed.-/
+removed.
+@isnad1 id=hasinver.5h9v.s7.8369ba3131b1 from=translated src=- shape=10918542 vocab=22d273e5
+-/
 theorem hasInversePowerLowerBound_of_normalization_and_scale
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R S : X → ℝ}
@@ -246,7 +268,9 @@ theorem hasInversePowerLowerBound_of_normalization_and_scale
 
 /-- Direct specialization of normalization-and-scale transfer to the factors
 `exp (lambda_i · u)`.  This is the endpoint matching manuscript equation
-`exp (lambda_a · u) f_a = g_a + epsilon_a`.-/
+`exp (lambda_a · u) f_a = g_a + epsilon_a`.
+@isnad1 id=hasinver.7h10v.s7.035c544e3ffd from=translated src=- shape=8a1beb95 vocab=61159005
+-/
 theorem hasInversePowerLowerBound_of_exp_normalization_and_scale
     [Fintype ι] [Nonempty ι]
     {h : ℕ} {l : Filter X} {R S : X → ℝ}

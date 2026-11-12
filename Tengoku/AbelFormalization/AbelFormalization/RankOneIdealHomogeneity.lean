@@ -25,7 +25,9 @@ variable {B : Type*} [CommRing B] {n h : ℕ}
 
 attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
-/-- Natural-weight sums cast to integers coordinatewise.-/
+/-- Natural-weight sums cast to integers coordinatewise.
+@isnad1 id=eq.0h3v.s8.9aaafccb87d6 from=translated src=- shape=c7980f24 vocab=1a50c3f9
+-/
 theorem finsupp_weight_natCast
     (weight : Fin n → ℕ) (d : Fin n →₀ ℕ) :
     Finsupp.weight (fun i => (weight i : ℤ)) d =
@@ -37,7 +39,9 @@ theorem finsupp_weight_natCast
       simp [map_add, Finsupp.weight_single, ih, Nat.cast_add, Nat.cast_mul]
 
 /-- The unique coordinate of the rank-one ordinary projection is the
-ordinary weighted-homogeneous projection of the polynomial.-/
+ordinary weighted-homogeneous projection of the polynomial.
+@isnad1 id=eq.0h5v.s10.efa571309db8 from=translated src=- shape=5a1c11a5 vocab=cd90c771
+-/
 theorem rankOnePolynomial_ordinaryComponent_zero
     (ordinaryDegree : Fin n → ℕ) (degree : ℤ)
     (P : MvPolynomial (Fin n) B) :
@@ -53,7 +57,9 @@ theorem rankOnePolynomial_ordinaryComponent_zero
     artinianPolynomialTermDegree, add_zero, finsupp_weight_natCast]
 
 /-- At a nonnegative integral degree, the same component is the polynomial
-component indexed by the corresponding natural number.-/
+component indexed by the corresponding natural number.
+@isnad1 id=eq.0h5v.s10.b4411c2e0e2d from=translated src=- shape=dfe8c106 vocab=cd90c771
+-/
 theorem rankOnePolynomial_ordinaryComponent_zero_nat
     (ordinaryDegree : Fin n → ℕ) (degree : ℕ)
     (P : MvPolynomial (Fin n) B) :
@@ -72,7 +78,9 @@ theorem rankOnePolynomial_ordinaryComponent_zero_nat
       exact fun h => hd (Int.ofNat_inj.mp h)
     simp [hd, hd']
 
-/-- A rank-one ordinary component in a negative degree vanishes.-/
+/-- A rank-one ordinary component in a negative degree vanishes.
+@isnad1 id=eq.1h5v.s10.3b45f8800ec9 from=translated src=- shape=7adc3eba vocab=d5c1b9ab
+-/
 theorem rankOnePolynomial_ordinaryComponent_eq_zero_of_neg
     (ordinaryDegree : Fin n → ℕ) {degree : ℤ} (hdegree : degree < 0)
     (P : MvPolynomial (Fin n) B) :
@@ -93,7 +101,9 @@ theorem rankOnePolynomial_ordinaryComponent_eq_zero_of_neg
   simp [artinianPolynomialTermDegree, hne]
 
 /-- Ordinary ideal homogeneity becomes the shifted ordinary homogeneity of
-the transported rank-one polynomial submodule.-/
+the transported rank-one polynomial submodule.
+@isnad1 id=isartini.1h4v.s7.d80415268584 from=translated src=- shape=060fe629 vocab=16e3b009
+-/
 theorem rankOnePolynomialIdealSubmodule_ordinaryHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (I : Ideal (MvPolynomial (Fin n) B))
@@ -121,7 +131,9 @@ theorem rankOnePolynomialIdealSubmodule_ordinaryHomogeneous
 
 /-- Natural-valued ordinary homogeneity, as used by mathlib's standard
 weighted polynomial grading, also gives the shifted module homogeneity used
-by the bounded-generator API.-/
+by the bounded-generator API.
+@isnad1 id=isartini.1h4v.s7.83016fe1fe50 from=translated src=- shape=8e8dab4e vocab=07b5ff62
+-/
 theorem rankOnePolynomialIdealSubmodule_ordinaryHomogeneous_of_nat
     (ordinaryDegree : Fin n → ℕ)
     (I : Ideal (MvPolynomial (Fin n) B))
@@ -150,7 +162,9 @@ theorem rankOnePolynomialIdealSubmodule_ordinaryHomogeneous_of_nat
       ordinaryDegree hI hP degree.toNat
 
 /-- Lexicographic ideal homogeneity becomes grouped weight homogeneity of
-the transported rank-one polynomial submodule.-/
+the transported rank-one polynomial submodule.
+@isnad1 id=ispolyno.1h6v.s8.949744e440ee from=translated src=- shape=781c5e3d vocab=f7651d12
+-/
 theorem rankOnePolynomialIdealSubmodule_weightHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -180,7 +194,9 @@ theorem rankOnePolynomialIdealSubmodule_weightHomogeneous
     (fun i => toLex (multiDegree i)) hI hP weight
 
 /-- Every lexicographic initial ideal gives a weight-homogeneous rank-one
-polynomial submodule.-/
+polynomial submodule.
+@isnad1 id=ispolyno.0h6v.s6.5620a64f1ed1 from=translated src=- shape=78638b14 vocab=644b5e44
+-/
 theorem rankOnePolynomialIdealSubmodule_lexicographicInitial_weightHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -194,7 +210,9 @@ theorem rankOnePolynomialIdealSubmodule_lexicographicInitial_weightHomogeneous
     (lexicographicInitialIdeal_isHomogeneous multiDegree I)
 
 /-- Lexicographic initial formation preserves the ordinary homogeneity
-needed by the bounded-generator theorem.-/
+needed by the bounded-generator theorem.
+@isnad1 id=isartini.1h6v.s8.e4e9337fd91a from=translated src=- shape=9f3443d5 vocab=27144caf
+-/
 theorem rankOnePolynomialIdealSubmodule_lexicographicInitial_ordinaryHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)

@@ -36,7 +36,9 @@ private def lineCLM (v : E) : ℝ →L[ℝ] E :=
 
 /-- Iterated differentiation after restricting a smooth map to an affine
 line amounts to evaluating its iterated Fréchet derivative repeatedly on the
-line's direction vector.-/
+line's direction vector.
+@isnad1 id=eq.1h7v.s8.6c568d57dfee from=translated src=- shape=1e9d5bf1 vocab=2e0cbddb
+-/
 theorem iteratedDeriv_line_eq {g : E → F} {r : ℕ}
     (hg : ContDiff ℝ r g) (x v : E) (t : ℝ) :
     iteratedDeriv r (fun u : ℝ ↦ g (x + u • v)) t =
@@ -54,7 +56,9 @@ theorem iteratedDeriv_line_eq {g : E → F} {r : ℕ}
     iteratedFDeriv_comp_add_left] using happ
 
 /-- At a flat point, the Taylor polynomial of degree `r - 1` along any line
-is just the constant term.-/
+is just the constant term.
+@isnad1 id=eq.2h6v.s7.1d2a4b1c3eac from=translated src=- shape=07a5107c vocab=5f58053c
+-/
 theorem taylorWithinEval_line_eq_of_mem_iteratedFDerivFlatSet
     {g : E → F} {r : ℕ} (hg : ContDiff ℝ r g)
     {x y : E} (hx : x ∈ iteratedFDerivFlatSet r g) :
@@ -86,7 +90,9 @@ theorem taylorWithinEval_line_eq_of_mem_iteratedFDerivFlatSet
     simp at h0
 
 /-- On every closed ball, the restriction of a `C^r` map to its flat
-`(r - 1)`-jet set is `r`-Hölder.-/
+`(r - 1)`-jet set is `r`-Hölder.
+@isnad1 id=ex.2h5v.s7.590e00191650 from=translated src=- shape=62bbfeb3 vocab=16798fba
+-/
 theorem exists_holderOnWith_iteratedFDerivFlatSet_inter_closedBall
     [FiniteDimensional ℝ E] {g : E → F} {r : ℕ}
     (hg : ContDiff ℝ r g) (hr : 0 < r) (R : ℝ) :
@@ -146,7 +152,9 @@ theorem exists_holderOnWith_iteratedFDerivFlatSet_inter_closedBall
     ENNReal.rpow_natCast, ← ENNReal.coe_pow, ← ENNReal.coe_mul, ENNReal.coe_le_coe]
   exact_mod_cast hdist
 
-/-- Hausdorff-dimension bound for the image of the complete flat-jet set.-/
+/-- Hausdorff-dimension bound for the image of the complete flat-jet set.
+@isnad1 id=le.2h4v.s7.41499de87ef7 from=translated src=- shape=244c2c8e vocab=c859b46e
+-/
 theorem dimH_image_iteratedFDerivFlatSet_le
     [FiniteDimensional ℝ E] {g : E → F} {r : ℕ}
     (hg : ContDiff ℝ r g) (hr : 0 < r) :
@@ -167,7 +175,9 @@ theorem dimH_image_iteratedFDerivFlatSet_le
       ENNReal.div_le_div_right (dimH_mono (subset_univ _)) _
 
 /-- If the Taylor exponent beats the source/target dimension ratio, the
-flat-jet image has Hausdorff dimension strictly below the target dimension.-/
+flat-jet image has Hausdorff dimension strictly below the target dimension.
+@isnad1 id=lt.3h4v.s8.9431e299c099 from=translated src=- shape=ffb3a93c vocab=ad530d70
+-/
 theorem dimH_image_iteratedFDerivFlatSet_lt_target
     {a b r : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ r g) (hr : 0 < r) (hdim : a < r * b) :
@@ -182,7 +192,9 @@ theorem dimH_image_iteratedFDerivFlatSet_lt_target
   · exact Or.inl ENNReal.coe_ne_top
 
 /-- In Euclidean spaces, the dimension inequality turns the flat-jet image
-bound into target-dimensional Lebesgue nullity.-/
+bound into target-dimensional Lebesgue nullity.
+@isnad1 id=eq.3h4v.s8.549cbd087cfe from=translated src=- shape=09736926 vocab=39af674e
+-/
 theorem volume_image_iteratedFDerivFlatSet_eq_zero
     {a b r : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ r g) (hr : 0 < r) (hdim : a < r * b) :
@@ -202,7 +214,9 @@ theorem volume_image_iteratedFDerivFlatSet_eq_zero
 For a genuinely rectangular map with target dimension at least two, the
 identity
 `(a - b + 1) * b - a = (b - 1) * (a - b)`
-provides the strict dimension inequality required above.-/
+provides the strict dimension inequality required above.
+@isnad1 id=eq.3h3v.s8.704c10b5d8b8 from=translated src=- shape=9cdb8b33 vocab=b30c682e
+-/
 theorem volume_image_iteratedFDerivFlatSet_eq_zero_of_morseSardOrder
     {a b : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hba : b < a) (hb : 1 < b)
@@ -233,7 +247,9 @@ grid argument below turns this little-o estimate into zero target volume.
 /-- Taylor's estimate with an explicit bound for the top derivative along
 the segment.  The extra flat derivative in `iteratedFDerivFlatSet (s + 1) g`
 is not used in the Taylor polynomial; it will make the bound arbitrarily
-small in the compact-uniform version below.-/
+small in the compact-uniform version below.
+@isnad1 id=le.4h7v.s8.92e6b5f319dc from=translated src=- shape=ea76061e vocab=161c82f9
+-/
 theorem flatSucc_dist_le_of_iteratedFDeriv_le {g : E → F} {s : ℕ}
     (hg : ContDiff ℝ s g) (hs : 0 < s) {x y : E}
     (hx : x ∈ iteratedFDerivFlatSet (s + 1) g) {C : ℝ}
@@ -281,7 +297,9 @@ theorem flatSucc_dist_le_of_iteratedFDeriv_le {g : E → F} {s : ℕ}
 
 /-- On a bounded piece of the set where derivatives through order `s`
 vanish, the `s`-th order Taylor coefficient is uniformly as small as desired
-at sufficiently small scales.-/
+at sufficiently small scales.
+@isnad1 id=ex.3h6v.s9.9b38489d5bdd from=translated src=- shape=9e137a4d vocab=2db4d3fb
+-/
 theorem exists_uniform_flatSucc_taylor_bound {a b s : ℕ}
     {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ s g) (hs : 0 < s) (R : ℕ)
@@ -410,7 +428,9 @@ private lemma ennreal_morseSardGrid_cancel {a b s Q N : ℕ}
 
 /-- Quantitative bounded-piece estimate at the critical dimension
 `a = s * b`.  The right side is independent of the grid scale and tends to
-zero with the top-derivative modulus `ε`.-/
+zero with the top-derivative modulus `ε`.
+@isnad1 id=le.4h6v.s9.2652ad292dfa from=translated src=- shape=52f24a8d vocab=8b016568
+-/
 theorem volume_image_iteratedFDerivFlatSet_succ_inter_closedBall_le
     {a b s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ s g) (hs : 0 < s) (hdim : a = s * b) (R : ℕ)
@@ -503,7 +523,9 @@ theorem volume_image_iteratedFDerivFlatSet_succ_inter_closedBall_le
 
 /-- The critical-dimensional bounded-piece endpoint: a `C^s` map from
 dimension `s * b` to dimension `b`, restricted to the set where derivatives
-through order `s` vanish, has null image.-/
+through order `s` vanish, has null image.
+@isnad1 id=eq.4h5v.s8.ccf2cd59c733 from=translated src=- shape=78836f99 vocab=7e9e6fd2
+-/
 theorem volume_image_iteratedFDerivFlatSet_succ_inter_closedBall_eq_zero
     {a b s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ s g) (hs : 0 < s) (hb : 0 < b)
@@ -546,7 +568,9 @@ theorem volume_image_iteratedFDerivFlatSet_succ_inter_closedBall_eq_zero
     (ε := 1 / ((n + 1 : ℕ) : ℝ)) hg hs hdim R (by positivity)
 
 /-- The critical-dimensional little-o endpoint, without a boundedness
-restriction.-/
+restriction.
+@isnad1 id=eq.4h4v.s8.6472e528060f from=translated src=- shape=a4fa2f91 vocab=ab58007a
+-/
 theorem volume_image_iteratedFDerivFlatSet_succ_eq_zero_of_eq
     {a b s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ s g) (hs : 0 < s) (hb : 0 < b)
@@ -561,7 +585,9 @@ theorem volume_image_iteratedFDerivFlatSet_succ_eq_zero_of_eq
 /-- A `C^s` map whose derivatives through order `s` vanish has null image as
 soon as the source dimension is at most `s` times the positive target
 dimension.  The strict case is the earlier Hölder argument; equality is the
-little-o grid endpoint.-/
+little-o grid endpoint.
+@isnad1 id=eq.4h4v.s8.5cb3f3535700 from=translated src=- shape=5e7eee66 vocab=5e9ba021
+-/
 theorem volume_image_iteratedFDerivFlatSet_succ_eq_zero
     {a b s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ s g) (hs : 0 < s) (hb : 0 < b)

@@ -21,7 +21,9 @@ namespace AbelFormalization
 
 variable {R ι G : Type*} [CommRing R] [AddCommGroup G]
 
-/-- The inverse shear has the corresponding explicit coefficient formula.-/
+/-- The inverse shear has the corresponding explicit coefficient formula.
+@isnad1 id=eq.0h7v.s10.ff4c5616d6ce from=translated src=- shape=83b5ce91 vocab=71f429d8
+-/
 theorem groupLaurentWeightRescaling_symm_coeff (ω : ι → G)
     (f : AddMonoidAlgebra (MvPolynomial ι R) G) (g : G) (d : ι →₀ ℕ) :
     (((groupLaurentWeightRescaling ω).symm f).coeff g).coeff d =
@@ -36,6 +38,9 @@ def groupLaurentWeightComponent (ω : ι → G) (α : G)
   (groupLaurentWeightRescaling ω).symm
     (AddMonoidAlgebra.single α ((groupLaurentWeightRescaling ω f).coeff α))
 
+/--
+@isnad1 id=eq.0h6v.s10.d6af75377ef5 from=translated src=- shape=f7daaf21 vocab=9d127918
+-/
 @[simp]
 theorem groupLaurentWeightComponent_rescaling (ω : ι → G) (α : G)
     (f : AddMonoidAlgebra (MvPolynomial ι R) G) :
@@ -45,7 +50,9 @@ theorem groupLaurentWeightComponent_rescaling (ω : ι → G) (α : G)
 
 open scoped Classical in
 /-- The projection retains precisely the original coefficients of total
-weight `α`, including coefficient rings with zero divisors.-/
+weight `α`, including coefficient rings with zero divisors.
+@isnad1 id=eq.0h8v.s9.b0367940dddb from=translated src=- shape=1f92a59e vocab=b0c7c43b
+-/
 theorem groupLaurentWeightComponent_coeff (ω : ι → G) (α : G)
     (f : AddMonoidAlgebra (MvPolynomial ι R) G) (g : G) (d : ι →₀ ℕ) :
     ((groupLaurentWeightComponent ω α f).coeff g).coeff d =
@@ -64,6 +71,9 @@ def groupLaurentRescaledCoefficientHom (ω : ι → G) :
   (groupLaurentWeightRescaling ω).symm.toRingHom.comp
     (groupAlgebraC (MvPolynomial ι R) G)
 
+/--
+@isnad1 id=eq.0h5v.s8.6398e5cb4ff4 from=translated src=- shape=0632e7d9 vocab=a95d74ff
+-/
 @[simp]
 theorem groupLaurentRescaledCoefficientHom_X (ω : ι → G) (i : ι) :
     groupLaurentRescaledCoefficientHom (R := R) ω (MvPolynomial.X i) =
@@ -85,6 +95,9 @@ private theorem rescaling_algEquiv_map_eq_comap_symm {A B : Type*}
     K.map e.toRingHom = K.comap e.symm.toRingHom :=
   Ideal.map_comap_of_equiv e.toRingEquiv
 
+/--
+@isnad1 id=eq.0h5v.s10.8b035d083fe0 from=translated src=- shape=b869f5f2 vocab=9c66a52a
+-/
 theorem groupLaurentRescaledContraction_eq (ω : ι → G)
     (K : Ideal (AddMonoidAlgebra (MvPolynomial ι R) G)) :
     groupLaurentRescaledContraction ω K =
@@ -98,7 +111,9 @@ theorem groupLaurentRescaledContraction_eq (ω : ι → G)
   rfl
 
 /-- An ideal closed under its actual weighted components becomes extended
-from precisely its weight-zero contraction after the explicit rescaling.-/
+from precisely its weight-zero contraction after the explicit rescaling.
+@isnad1 id=eq.1h5v.s10.0077ebbc5fe0 from=translated src=- shape=cb9b9053 vocab=e1a3da6b
+-/
 theorem groupLaurentWeightedIdeal_rescaled_eq_map (ω : ι → G)
     (K : Ideal (AddMonoidAlgebra (MvPolynomial ι R) G))
     (hK : ∀ f ∈ K, ∀ α, groupLaurentWeightComponent ω α f ∈ K) :

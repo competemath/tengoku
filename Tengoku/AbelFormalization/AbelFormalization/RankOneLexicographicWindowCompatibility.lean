@@ -27,7 +27,9 @@ attribute [local instance] MvPolynomial.weightedGradedAlgebra
 /-! ## Ordinary-degree truncation -/
 
 /-- A natural ordinary-degree component is the corresponding component for
-the integral casts of the variable degrees.-/
+the integral casts of the variable degrees.
+@isnad1 id=eq.0h5v.s9.e1526d1484e3 from=translated src=- shape=f8afe0d7 vocab=6d9b490b
+-/
 theorem weightedHomogeneousComponent_nat_eq_intCast
     (ordinaryDegree : Fin n → ℕ) (degree : ℕ)
     (f : MvPolynomial (Fin n) B) :
@@ -50,7 +52,9 @@ local notation "G₁" =>
 /-! ## Rank-one coordinates and prefix vanishing -/
 
 /-- The unique coordinate of a rank-one module weight component is the
-corresponding polynomial weight component.-/
+corresponding polynomial weight component.
+@isnad1 id=eq.0h7v.s9.7f6c909d9ec9 from=translated src=- shape=b6022842 vocab=29d19fda
+-/
 theorem rankOnePolynomial_weightFiberComponent_zero_module
     (weight : PolynomialLexWeight h)
     (P : artinianFreePolynomialModule B n 1) :
@@ -64,7 +68,9 @@ theorem rankOnePolynomial_weightFiberComponent_zero_module
   simp only [rankOnePolynomialGradedLexData_termWeight]
 
 /-- A grouped rank-one weight piece is homogeneous of that polynomial
-weight.-/
+weight.
+@isnad1 id=isweight.1h8v.s9.242a24054d71 from=translated src=- shape=0811920b vocab=18350a6a
+-/
 theorem rankOne_windowWeightPiece_isWeightedHomogeneous
     (hpositive : ∀ i, 0 < ordinaryDegree i) (D : ℤ)
     (weight : PolynomialLexWeight h)
@@ -77,7 +83,9 @@ theorem rankOne_windowWeightPiece_isWeightedHomogeneous
   simpa only [rankOnePolynomialGradedLexData_termWeight] using ht.2
 
 /-- The polynomial in a grouped rank-one weight piece belongs to the
-pulled-back ordinary-degree window.-/
+pulled-back ordinary-degree window.
+@isnad1 id=mem.1h8v.s10.f9ed591d94cb from=translated src=- shape=1a3eb8c1 vocab=19cc38db
+-/
 theorem rankOne_windowWeightPiece_mem_window
     (hpositive : ∀ i, 0 < ordinaryDegree i) (D : ℤ)
     (weight : PolynomialLexWeight h)
@@ -109,7 +117,9 @@ def PolynomialGradedLexData.ordinaryDegreeOrderedWeightEmbedding
     (Submodule.inclusion
       (G.ordinaryPiece_le_windowModule hpositive D degree hdegree))
 
-/-- The fixed-degree embedding loses no information.-/
+/-- The fixed-degree embedding loses no information.
+@isnad1 id=injectiv.2h6v.s12.45dbbe2a1b6c from=translated src=- shape=cb607c2c vocab=6931a145
+-/
 theorem PolynomialGradedLexData.ordinaryDegreeOrderedWeightEmbedding_injective
     (G : PolynomialGradedLexData n 1 h)
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D degree : ℤ)
@@ -122,6 +132,9 @@ theorem PolynomialGradedLexData.ordinaryDegreeOrderedWeightEmbedding_injective
       (Submodule.inclusion_injective
         (G.ordinaryPiece_le_windowModule hpositive D degree hdegree))
 
+/--
+@isnad1 id=eq.2h7v.s14.6e8a8968a398 from=translated src=- shape=aa522757 vocab=6b5e5554
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowEquiv_symm_ordinaryDegreeEmbedding
     (G : PolynomialGradedLexData n 1 h)
@@ -154,7 +167,9 @@ def PolynomialGradedLexData.rankOnePolynomialDegreeOrderedWeightPart
       hpositive D degree hdegree)
 
 /-- For the canonical rank-one grading, membership in a module ordinary
-piece is exactly polynomial weighted homogeneity in the unique coordinate.-/
+piece is exactly polynomial weighted homogeneity in the unique coordinate.
+@isnad1 id=iff.0h7v.s8.12726f8d8d7d from=translated src=- shape=9df8da00 vocab=c4a1f4cb
+-/
 theorem rankOne_mem_ordinaryPiece_iff_isWeightedHomogeneous
     (degree : ℕ) (P : artinianFreePolynomialModule B n 1) :
     P ∈ artinianPolynomialModulePiece (B := B)
@@ -184,7 +199,9 @@ theorem rankOne_mem_ordinaryPiece_iff_isWeightedHomogeneous
     rw [← finsupp_weight_natCast]
     exact hdegree
 
-/-- A concrete membership test for the ordered image of one degree slice.-/
+/-- A concrete membership test for the ordered image of one degree slice.
+@isnad1 id=iff.2h9v.s14.c0956e970ca8 from=translated src=- shape=df197e62 vocab=5aa7e97e
+-/
 theorem mem_rankOnePolynomialDegreeOrderedWeightPart_iff
     (hpositive : ∀ i, 0 < ordinaryDegree i) (D : ℤ)
     (degree : ℕ) (hdegree : (degree : ℤ) ≤ D)

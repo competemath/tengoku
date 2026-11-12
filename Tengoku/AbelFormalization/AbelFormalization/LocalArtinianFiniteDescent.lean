@@ -74,6 +74,9 @@ def projectionPullbackSliceMap
     apply Subtype.ext
     exact q.map_smul c x
 
+/--
+@isnad1 id=eq.1h8v.s9.e66940fe28ea from=translated src=- shape=f83d5acf vocab=3a13b828
+-/
 @[simp]
 theorem projectionPullbackSliceMap_coe
     (q : F →ₗ[K] E) (W : Submodule K E)
@@ -84,7 +87,9 @@ theorem projectionPullbackSliceMap_coe
         projectionTargetSlice W targetComponent) : E) = q x := rfl
 
 /-- Surjectivity of the original cover descends to every target degree
-slice.  The proof projects an arbitrary lift in the source.-/
+slice.  The proof projects an arbitrary lift in the source.
+@isnad1 id=surjecti.3h7v.s9.5a9ac50f60e9 from=translated src=- shape=f62b1332 vocab=76f613ba
+-/
 theorem projectionPullbackSliceMap_surjective
     (q : F →ₗ[K] E) (hq : Function.Surjective q) (W : Submodule K E)
     (sourceComponent : F →ₗ[K] F) (targetComponent : E →ₗ[K] E)
@@ -140,7 +145,9 @@ variable {K F E : Type*} [Field K]
 variable [AddCommGroup F] [Module K F] [AddCommGroup E] [Module K E]
 
 /-- Rank-nullity for an actual projected degree slice.  The target summand
-and the fixed-kernel summand add to the pullback degree dimension.-/
+and the fixed-kernel summand add to the pullback degree dimension.
+@isnad1 id=eq.3h7v.s10.27e8d9b0e539 from=translated src=- shape=4f330953 vocab=a0587614
+-/
 theorem finrank_projectionPullbackSlice_eq_add
     (q : F →ₗ[K] E) (hq : Function.Surjective q) (W : Submodule K E)
     (sourceComponent : F →ₗ[K] F) (targetComponent : E →ₗ[K] E)
@@ -190,6 +197,9 @@ def componentRangeToTargetSlice
     apply Subtype.ext
     exact j.map_smul c x
 
+/--
+@isnad1 id=eq.1h7v.s10.e08a2491939c from=translated src=- shape=234c0138 vocab=807f2434
+-/
 @[simp]
 theorem componentRangeToTargetSlice_coe
     {G H : Type*} [AddCommGroup G] [Module K G]
@@ -240,7 +250,9 @@ noncomputable def componentRangeEquivTargetSlice
     exact hx
 
 /-- The target degree slice has the same dimension as the range of the
-intertwined source component.-/
+intertwined source component.
+@isnad1 id=eq.3h6v.s9.625003bbe8e6 from=translated src=- shape=e254512c vocab=5bcf85e6
+-/
 theorem finrank_projectionTargetSlice_eq_componentRange
     {G H : Type*} [AddCommGroup G] [Module K G]
     [AddCommGroup H] [Module K H]
@@ -263,7 +275,9 @@ section PolynomialProjection
 variable {K : Type*} [Field K] {n r : ℕ}
 
 /-- The range of the actual weighted polynomial component is exactly the
-corresponding shifted homogeneous piece.-/
+corresponding shifted homogeneous piece.
+@isnad1 id=eq.0h6v.s8.435a30f76ff9 from=translated src=- shape=4f71a977 vocab=e9640a52
+-/
 theorem range_weightedPolynomialModuleComponent_eq_piece
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) :
     LinearMap.range (weightedPolynomialModuleComponent
@@ -277,7 +291,9 @@ theorem range_weightedPolynomialModuleComponent_eq_piece
     exact ⟨P, weightedPolynomialModuleComponent_eq_self
       weight shift degree hP⟩
 
-/-- The actual weighted polynomial component is idempotent.-/
+/-- The actual weighted polynomial component is idempotent.
+@isnad1 id=eq.0h7v.s10.7af66cac37ef from=translated src=- shape=aecfeac5 vocab=cbdca3ba
+-/
 theorem weightedPolynomialModuleComponent_idempotent
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
     (P : Fin r → MvPolynomial (Fin n) K) :
@@ -289,7 +305,9 @@ theorem weightedPolynomialModuleComponent_idempotent
 
 /-- Positive weights make an actual weighted polynomial-module piece finite
 dimensional.  This instance-producing form complements the numerical
-`finrank_weightedPolynomialModulePiece` theorem.-/
+`finrank_weightedPolynomialModulePiece` theorem.
+@isnad1 id=finite.1h6v.s9.449ba0dcd800 from=translated src=- shape=95e50212 vocab=507aff97
+-/
 theorem weightedPolynomialModulePiece_moduleFinite
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : Fin r → ℤ) (degree : ℤ) :
@@ -357,7 +375,9 @@ abbrev artinianPolynomialInducedDegreeLayerSum
 
 /-- Each actual degree quotient is finite dimensional over the residue
 field.  Finiteness comes from the finite ambient degree piece; it does not
-use finiteness of the whole polynomial module over `B`.-/
+use finiteness of the whole polynomial module over `B`.
+@isnad1 id=finite.1h9v.s13.17519c1d1399 from=translated src=- shape=bfd3626a vocab=e53e76df
+-/
 theorem artinianPolynomialInducedDegreeLayer_moduleFinite
     [IsArtinianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -398,7 +418,9 @@ theorem artinianPolynomialInducedDegreeLayer_moduleFinite
   infer_instance
 
 /-- The dimension of the finite product of actual degree quotients is the
-sum of their canonical residue dimensions.-/
+sum of their canonical residue dimensions.
+@isnad1 id=eq.1h9v.s14.34948dd34a3d from=translated src=- shape=6682daf2 vocab=a9bd4d67
+-/
 theorem finrank_artinianPolynomialInducedDegreeLayerSum
     [IsArtinianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -445,7 +467,9 @@ theorem finrank_artinianPolynomialInducedDegreeLayerSum
   rfl
 
 /-- The dimension of the product of actual degree quotients is the natural
-number represented by the Artinian length of the original degree piece.-/
+number represented by the Artinian length of the original degree piece.
+@isnad1 id=eq.2h9v.s14.f436a822b9d2 from=translated src=- shape=2b38f092 vocab=0031b249
+-/
 theorem finrank_artinianPolynomialInducedDegreeLayerSum_eq_length_toNat
     [IsArtinianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -519,7 +543,9 @@ def ArtinianInducedLayerDegreeIdentification
             I N hN e degree))
 
 /-- The exact grading identification converts the induced component range
-dimension to the length of the original Artinian degree piece.-/
+dimension to the length of the original Artinian degree piece.
+@isnad1 id=eq.4h9v.s15.e22ba07fcbad from=translated src=- shape=5b5e969f vocab=081fe1cd
+-/
 theorem finrank_artinianPolynomialInducedLayerSumComponentRange_eq_length_toNat
     [IsArtinianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -617,6 +643,9 @@ def artinianPolynomialAmbientLayerSumGradedCoverResidueLinear
             q.map_smul _ _
           _ = c • q x := rfl }
 
+/--
+@isnad1 id=eq.0h6v.s13.8a6601bb8f14 from=translated src=- shape=5776f796 vocab=7e9b3546
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerSumGradedCoverResidueLinear_apply
     [IsNoetherianRing B]
@@ -672,6 +701,9 @@ def artinianPolynomialInducedLayerSumMapResidueLinear
           (MvPolynomial.C c : MvPolynomial (Fin n) (B ⧸ I)) • f x
         exact f.map_smul _ _ }
 
+/--
+@isnad1 id=eq.0h7v.s15.bb84c53af54c from=translated src=- shape=df03adb8 vocab=437e2c45
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumMapResidueLinear_apply
     [IsNoetherianRing B]
@@ -693,7 +725,9 @@ theorem artinianPolynomialInducedLayerSumMapResidueLinear_apply
       artinianPolynomialInducedLayerSumMap
         (n := n) (r := r) I N e x := rfl
 
-/-- The residue-linear graded cover is surjective.-/
+/-- The residue-linear graded cover is surjective.
+@isnad1 id=surjecti.0h5v.s12.c89eca3896dc from=translated src=- shape=3563b576 vocab=71be7105
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCoverResidueLinear_surjective
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal] (e : ℕ) :
@@ -713,7 +747,9 @@ theorem artinianPolynomialAmbientLayerSumGradedCoverResidueLinear_surjective
   exact artinianPolynomialAmbientLayerSumGradedCover_surjective
     (n := n) (r := r) I e
 
-/-- The residue-linear induced-layer embedding is injective.-/
+/-- The residue-linear induced-layer embedding is injective.
+@isnad1 id=injectiv.0h6v.s13.5ee13a07a2aa from=translated src=- shape=43e2992c vocab=1765b23b
+-/
 theorem artinianPolynomialInducedLayerSumMapResidueLinear_injective
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -745,7 +781,9 @@ theorem artinianPolynomialInducedLayerSumMapResidueLinear_injective
     (n := n) (r := r) I N e
 
 /-- The residue-linear cover intertwines the field source component and the
-ambient layer-sum component.-/
+ambient layer-sum component.
+@isnad1 id=eq.0h9v.s14.b9bbc69b6e47 from=translated src=- shape=cb64a5b5 vocab=d76a8bca
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCoverResidueLinear_component
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal] (e : ℕ)
@@ -782,7 +820,9 @@ theorem artinianPolynomialAmbientLayerSumGradedCoverResidueLinear_component
     (n := n) (r := r) I e weight shift degree x).symm
 
 /-- The residue-linear induced-layer embedding intertwines the induced and
-ambient components.-/
+ambient components.
+@isnad1 id=eq.1h10v.s15.df790664b843 from=translated src=- shape=5f1c54e5 vocab=d84fc05d
+-/
 theorem artinianPolynomialInducedLayerSumMapResidueLinear_component
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -878,7 +918,9 @@ def artinianPolynomialAmbientLayerSumGradedCoverKernelDegreeSlice
         degree
 
 /-- The concrete pullback degree slice is the abstract projected pullback
-slice for the two residue-linear maps.-/
+slice for the two residue-linear maps.
+@isnad1 id=eq.0h9v.s13.1d6270413096 from=translated src=- shape=337560ec vocab=403955ad
+-/
 theorem artinianPolynomialInducedLayerSumGradedPullbackDegreeSlice_eq_projection
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -935,7 +977,9 @@ theorem artinianPolynomialInducedLayerSumGradedPullbackDegreeSlice_eq_projection
   rfl
 
 /-- The concrete fixed-kernel degree slice is the kernel component slice of
-the residue-linear cover.-/
+the residue-linear cover.
+@isnad1 id=eq.0h8v.s12.9c61dee9b3a6 from=translated src=- shape=5d7b8925 vocab=5435de7d
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCoverKernelDegreeSlice_eq_projection
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -991,7 +1035,9 @@ def kernelCorrectedHilbertFunction
 
 /-- Uniform field-case generators with a Hilbert function presented in
 kernel-plus-quotient form.  This is the exact quantifier order needed for a
-fixed graded cover: the bound is selected before the pullback submodule.-/
+fixed graded cover: the bound is selected before the pullback submodule.
+@isnad1 id=ex.1h8v.s11.1f6f4f86e189 from=translated src=- shape=528b8e73 vocab=b257c8bf
+-/
 theorem exists_uniform_finite_homogeneous_generators_of_kernelCorrectedHilbert
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ)
     (hweight : ∀ i, 0 < weight i) (shift : Fin r → ℤ)
@@ -1019,7 +1065,9 @@ variable {B : Type*} [CommRing B]
 
 /-- Rank-nullity for the fixed graded cover: the pullback degree consists of
 the fixed cover-kernel degree plus the degree component in the induced layer
-sum.-/
+sum.
+@isnad1 id=eq.2h9v.s15.c0ecb856444b from=translated src=- shape=9259d8d2 vocab=b7cd1ab9
+-/
 theorem finrank_artinianPolynomialInducedLayerSumGradedPullbackDegreeSlice_eq_add
     [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -1139,7 +1187,9 @@ def artinianPolynomialAmbientLayerSumGradedCoverKernelHilbert
 
 /-- Once the exact degree-layer identification is supplied, the pullback has
 the fixed kernel-corrected Hilbert function determined by the Artinian
-lengths of the original degree pieces.-/
+lengths of the original degree pieces.
+@isnad1 id=eq.5h10v.s12.18da17090f4f from=translated src=- shape=ffb8a445 vocab=71c85632
+-/
 theorem finrank_artinianPolynomialInducedLayerSumGradedPullbackDegreeSlice_eq_kernelCorrected
     [IsArtinianRing B]
     (I : Ideal B) [I.IsMaximal]
@@ -1192,7 +1242,9 @@ theorem finrank_artinianPolynomialInducedLayerSumGradedPullbackDegreeSlice_eq_ke
 fixed Artinian length function.  The bound is selected before `N`; the only
 remaining input is the exact grading identification between the actual
 degree filtration quotients and the component range in the induced layer
-sum.-/
+sum.
+@isnad1 id=ex.2h9v.s13.d0561a335adc from=translated src=- shape=a38f14e3 vocab=dfebec9b
+-/
 theorem exists_uniform_finite_homogeneous_artinianLayerPullback_generators
     [IsArtinianRing B]
     (m : MonomialOrder (Fin n))
@@ -1283,7 +1335,9 @@ def inducedFiltrationTerm (N : Submodule R V) (F : ℕ → Submodule R V)
   N ⊓ F i
 
 /-- If a candidate submodule surjects onto every successive induced quotient
-of a finite filtration, then it contains the filtered submodule.-/
+of a finite filtration, then it contains the filtered submodule.
+@isnad1 id=le.2h7v.s11.f989e4a57134 from=translated src=- shape=5bd8cdc7 vocab=bf5c98e7
+-/
 theorem le_of_surjects_on_induced_filtration
     (N L : Submodule R V) (F : ℕ → Submodule R V) (e : ℕ)
     (hFzero : F 0 = ⊤) (hFend : F e = ⊥)
@@ -1344,7 +1398,9 @@ theorem eq_of_surjects_on_induced_filtration
   exact le_of_surjects_on_induced_filtration N L F e hFzero hFend hsurj
 
 /-- A finite set whose span surjects onto every induced quotient layer is a
-finite generating set upstairs.-/
+finite generating set upstairs.
+@isnad1 id=eq.3h7v.s11.7e02c5720506 from=translated src=- shape=76f1a15d vocab=24b18f15
+-/
 theorem span_eq_of_surjects_on_induced_filtration
     (N : Submodule R V) (F : ℕ → Submodule R V) (e : ℕ)
     (G : Finset V) (hG : ∀ x ∈ G, x ∈ N)
@@ -1367,7 +1423,9 @@ theorem span_eq_of_surjects_on_induced_filtration
 /-- Specialization of the filtration lift to the coefficient-ideal power
 filtration of a finite free polynomial module.  Thus representatives that
 span every induced quotient layer generate the original polynomial
-submodule.-/
+submodule.
+@isnad1 id=eq.2h8v.s15.fc207734b6d4 from=translated src=- shape=b95ee42a vocab=81c86fb8
+-/
 theorem span_eq_of_surjects_on_artinianPolynomialIdealPowerFiltration
     {B : Type*} [CommRing B] {n r : ℕ}
     (I : Ideal B)

@@ -26,17 +26,26 @@ def logDensitySum (h : ℂ → ℂ) (z : ℂ) : ℂ :=
 def densityFromLogDefect (h : ℂ → ℂ) (x : ℝ) : ℝ :=
   Real.exp (logDensitySum h (x : ℂ)).re / x ^ 2
 
+/--
+@isnad1 id=summable.0h1v.s5.64ff2e3e606b from=translated src=- shape=4b6b1d1b vocab=72262d31
+-/
 theorem summable_square_reciprocal_majorant (K : ℝ) :
     Summable (fun n : ℕ => K / ((n : ℝ) + 1) ^ 2) := by
   have h := (summable_nat_add_iff 1).mpr
     (Real.summable_one_div_nat_pow.mpr (by norm_num : 1 < (2 : ℕ)))
   simpa only [Nat.cast_add, Nat.cast_one, mul_one_div] using h.mul_left K
 
+/--
+@isnad1 id=summable.1h3v.s6.c0f4fe156ad2 from=translated src=- shape=1b43c4e1 vocab=d87c3c23
+-/
 theorem summable_logDensityTerms_of_bound {h : ℂ → ℂ} {z : ℂ} {K : ℝ}
     (hbound : ∀ n : ℕ, ‖h (complexL^[n] z)‖ ≤ K / ((n : ℝ) + 1) ^ 2) :
     Summable (fun n : ℕ => h (complexL^[n] z)) :=
   (summable_square_reciprocal_majorant K).of_norm_bounded hbound
 
+/--
+@isnad1 id=analytic.3h3v.s7.b4c75621b659 from=translated src=- shape=5abd1410 vocab=f5643506
+-/
 theorem analyticOnNhd_logDensitySum_of_bound {h : ℂ → ℂ} {s : Set ℂ} {K : ℝ}
     (hs : IsOpen s)
     (ha : ∀ n : ℕ, AnalyticOnNhd ℂ (fun z => h (complexL^[n] z)) s)
@@ -48,15 +57,24 @@ theorem analyticOnNhd_logDensitySum_of_bound {h : ℂ → ℂ} {s : Set ℂ} {K 
   exact (hu.hasSumUniformlyOn.hasSumLocallyUniformlyOn.summableLocallyUniformlyOn
     |>.differentiableOn hs (fun n z hz => (ha n z hz).differentiableAt)).analyticOnNhd hs
 
+/--
+@isnad1 id=lt.1h2v.s4.716d4884f666 from=translated src=- shape=271d35e4 vocab=b432efad
+-/
 theorem densityFromLogDefect_pos (h : ℂ → ℂ) {x : ℝ} (hx : 0 < x) :
     0 < densityFromLogDefect h x :=
   div_pos (Real.exp_pos _) (sq_pos_of_pos hx)
 
+/--
+@isnad1 id=analytic.2h2v.s6.20e6f20b357a from=translated src=- shape=01248565 vocab=6f3147d7
+-/
 theorem analyticAt_densityFromLogDefect {h : ℂ → ℂ} {x : ℝ} (hx : 0 < x)
     (ha : AnalyticAt ℂ (logDensitySum h) (x : ℂ)) :
     AnalyticAt ℝ (densityFromLogDefect h) x := by
   exact ha.re_ofReal.rexp.div (analyticAt_id.pow 2) (pow_ne_zero _ (ne_of_gt hx))
 
+/--
+@isnad1 id=eq.3h2v.s7.ef931301b498 from=translated src=- shape=43a615a8 vocab=24dc4e61
+-/
 theorem densityFromLogDefect_invariant {h : ℂ → ℂ} {x : ℝ} (hx : 0 < x)
     (hs : Summable (fun n : ℕ => h (complexL^[n] (x : ℂ))))
     (he : (h (x : ℂ)).re = Real.log (x ^ 2 / ((1 + x) * (L x) ^ 2))) :

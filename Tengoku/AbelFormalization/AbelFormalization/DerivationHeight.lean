@@ -21,7 +21,9 @@ namespace AbelFormalization
 variable {K S : Type*} [Field K] [CharZero K] [CommRing S] [Algebra K S]
 
 /-- A tuple with derivations diagonalized up to a common factor outside a
-prime forces that prime to have at least the length of the tuple as height.-/
+prime forces that prime to have at least the length of the tuple as height.
+@isnad1 id=le.3h7v.s8.87a435fd8d2d from=translated src=- shape=ae58416d vocab=cdb43896
+-/
 theorem height_ge_of_diagonal_derivations :
     ∀ {n : ℕ} (f : Fin n → S) (D : Fin n → Derivation K S S) (Δ : S)
       (p : Ideal S) [p.IsPrime],
@@ -71,7 +73,9 @@ theorem height_ge_of_diagonal_derivations :
         _ ≤ p.height := Ideal.height_add_one_le_of_lt_of_isPrime hlt
 
 omit [CharZero K] in
-/-- Evaluation commutes with a finite sum of derivations.-/
+/-- Evaluation commutes with a finite sum of derivations.
+@isnad1 id=eq.0h6v.s8.3f08b2b3006c from=translated src=- shape=25df583c vocab=8db685d5
+-/
 theorem derivation_finset_sum_apply {ι : Type*} (s : Finset ι)
     (D : ι → Derivation K S S) (x : S) : (∑ i ∈ s, D i) x = ∑ i ∈ s, D i x := by
   classical
@@ -82,7 +86,9 @@ theorem derivation_finset_sum_apply {ι : Type*} (s : Finset ι)
 
 /-- A nonvanishing square derivation minor gives the same height bound.
 The adjugate supplies actual source-ring derivations, so no localization or
-extension of derivations is needed in this theorem.-/
+extension of derivations is needed in this theorem.
+@isnad1 id=le.2h6v.s8.e5f364016079 from=translated src=- shape=c83a2866 vocab=407470ae
+-/
 theorem height_ge_of_derivation_determinant {n : ℕ}
     (f : Fin n → S) (D : Fin n → Derivation K S S)
     (p : Ideal S) [p.IsPrime] (hf : ∀ i, f i ∈ p)

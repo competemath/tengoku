@@ -19,7 +19,9 @@ noncomputable section
 namespace AbelFormalization
 
 /-- The Artinian layer pullback has uniformly bounded homogeneous generators;
-the degree-slice identification is now constructed internally.-/
+the degree-slice identification is now constructed internally.
+@isnad1 id=ex.2h9v.s13.e53ffc19a8f2 from=translated src=- shape=2a170869 vocab=d264a028
+-/
 theorem exists_uniform_finite_homogeneous_artinianLayerPullback_generators'
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     [IsArtinianRing B]

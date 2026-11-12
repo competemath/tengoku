@@ -49,6 +49,9 @@ def artinianPolynomialInducedDegreeNumeratorInclusion
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h10v.s15.b922136f3c89 from=translated src=- shape=24e80b68 vocab=3e12116b
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeNumeratorInclusion_coe
     (I : Ideal B)
@@ -68,7 +71,9 @@ theorem artinianPolynomialInducedDegreeNumeratorInclusion_coe
     ((x : artinianPolynomialModulePiece (B := B) weight shift degree) :
       artinianFreePolynomialModule B n r) := rfl
 
-/-- Inclusion respects the two quotient relations.-/
+/-- Inclusion respects the two quotient relations.
+@isnad1 id=r.1h11v.s16.1336fc5ab25d from=translated src=- shape=e625407b vocab=2a57255d
+-/
 theorem artinianPolynomialInducedDegreeNumeratorInclusion_quotientRel
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -152,6 +157,9 @@ def artinianPolynomialInducedDegreeLayerToInducedLayerAdd
             I N weight shift degree i Q)
     rw [map_add, Submodule.Quotient.mk_add]
 
+/--
+@isnad1 id=eq.0h10v.s16.88f489451f01 from=translated src=- shape=7beef9bd vocab=cc22abb8
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeLayerToInducedLayerAdd_mk
     (I : Ideal B)
@@ -207,6 +215,9 @@ def artinianPolynomialInducedNumeratorDegreeProjection
     exact (artinianPolynomialModuleComponent
       (B := B) weight shift degree).map_add P Q
 
+/--
+@isnad1 id=eq.1h10v.s15.1d03efc36976 from=translated src=- shape=6868ec05 vocab=901f8099
+-/
 @[simp]
 theorem artinianPolynomialInducedNumeratorDegreeProjection_coe
     (I : Ideal B)
@@ -227,7 +238,9 @@ theorem artinianPolynomialInducedNumeratorDegreeProjection_coe
       artinianFreePolynomialModule B n r) =
     artinianPolynomialModuleComponent weight shift degree P := rfl
 
-/-- Degree projection respects the successive induced quotient relations.-/
+/-- Degree projection respects the successive induced quotient relations.
+@isnad1 id=r.2h11v.s16.19360dbf3e51 from=translated src=- shape=2f43c2d7 vocab=71b33bd5
+-/
 theorem artinianPolynomialInducedNumeratorDegreeProjection_quotientRel
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -310,6 +323,9 @@ def artinianPolynomialInducedLayerToDegreeLayerAdd
             I N hN degree i Q)
     rw [map_add, Submodule.Quotient.mk_add]
 
+/--
+@isnad1 id=eq.1h10v.s16.9f70d283a340 from=translated src=- shape=dd0ba775 vocab=5cc51c3a
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerToDegreeLayerAdd_mk
     (I : Ideal B)
@@ -330,7 +346,9 @@ theorem artinianPolynomialInducedLayerToDegreeLayerAdd_mk
 
 /-! ## The two quotient maps are inverse on the component range -/
 
-/-- Projecting after including an actual degree quotient is the identity.-/
+/-- Projecting after including an actual degree quotient is the identity.
+@isnad1 id=eq.1h10v.s16.b9aaa2ddfc21 from=translated src=- shape=88a0273b vocab=26dfe906
+-/
 theorem artinianPolynomialInducedLayerToDegreeLayerAdd_comp_inclusion
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -358,7 +376,9 @@ theorem artinianPolynomialInducedLayerToDegreeLayerAdd_comp_inclusion
     weight shift degree P.val.property
 
 /-- Including after projecting a full quotient is its induced weighted
-component.-/
+component.
+@isnad1 id=eq.1h10v.s16.ba6573cf0a22 from=translated src=- shape=9a473f13 vocab=8c031927
+-/
 theorem artinianPolynomialInducedDegreeLayerToInducedLayerAdd_comp_projection
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -395,7 +415,9 @@ section ResidueLinearity
 variable {B : Type*} [CommRing B] {n r : ℕ}
 
 /-- On one induced layer, a residue polynomial represented by an original
-polynomial acts as that original polynomial.-/
+polynomial acts as that original polynomial.
+@isnad1 id=eq.0h8v.s14.84b2fc976ef4 from=translated src=- shape=62328b82 vocab=49ccd33e
+-/
 theorem artinianPolynomialInducedLayer_residue_smul_eq_original
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -437,7 +459,9 @@ def artinianPolynomialInducedLayerResidueModule
       MvPolynomial (Fin n) (B ⧸ I))
 
 /-- Inclusion of a degree numerator commutes with original coefficient
-scalars, viewed as constant-polynomial scalars on the full numerator.-/
+scalars, viewed as constant-polynomial scalars on the full numerator.
+@isnad1 id=eq.0h11v.s16.b80042be670f from=translated src=- shape=fc4cff8e vocab=4402cd4c
+-/
 theorem artinianPolynomialInducedDegreeNumeratorInclusion_smul_original
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -462,7 +486,9 @@ theorem artinianPolynomialInducedDegreeNumeratorInclusion_smul_original
           artinianFreePolynomialModule B n r))
   simpa only [MvPolynomial.C_eq_algebraMap, algebraMap_smul]
 
-/-- The descended inclusion commutes with original coefficient scalars.-/
+/-- The descended inclusion commutes with original coefficient scalars.
+@isnad1 id=eq.0h11v.s16.6c33e8b95b6e from=translated src=- shape=6d6c50e8 vocab=333e0337
+-/
 theorem artinianPolynomialInducedDegreeLayerToInducedLayerAdd_smul_original
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -488,7 +514,9 @@ theorem artinianPolynomialInducedDegreeLayerToInducedLayerAdd_smul_original
     Submodule.Quotient.mk_smul]
 
 /-- The descended degree inclusion is linear over the residue coefficient
-ring.-/
+ring.
+@isnad1 id=eq.0h11v.s17.dd3cb4c4390f from=translated src=- shape=461355fd vocab=0ed0c638
+-/
 theorem artinianPolynomialInducedDegreeLayerToInducedLayerAdd_smul_residue
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -592,6 +620,9 @@ def artinianPolynomialInducedDegreeLayerToInducedLayerLinear
         artinianPolynomialInducedDegreeLayerToInducedLayerAdd_smul_residue
           I N weight shift degree i }
 
+/--
+@isnad1 id=eq.0h10v.s16.34e75638acce from=translated src=- shape=ddce674d vocab=31344e7d
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeLayerToInducedLayerLinear_apply
     (I : Ideal B)
@@ -669,6 +700,9 @@ def artinianPolynomialInducedDegreeLayerSumToInducedLayerSumLinear
         exact artinianPolynomialInducedDegreeLayerToInducedLayerAdd_smul_residue
           I N weight shift degree i.1 c (x i) }
 
+/--
+@isnad1 id=eq.0h11v.s16.78aeced4737f from=translated src=- shape=95e37a69 vocab=730c7102
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeLayerSumToInducedLayerSumLinear_apply
     (I : Ideal B)
@@ -708,6 +742,9 @@ def artinianPolynomialInducedLayerSumToDegreeLayerSum
   fun x i => artinianPolynomialInducedLayerToDegreeLayerAdd
     I N hN degree i.1 (x i)
 
+/--
+@isnad1 id=eq.1h11v.s15.32681cfb0d9c from=translated src=- shape=aa76aae9 vocab=e6ce0581
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumToDegreeLayerSum_apply
     (I : Ideal B)
@@ -723,7 +760,9 @@ theorem artinianPolynomialInducedLayerSumToDegreeLayerSum_apply
       artinianPolynomialInducedLayerToDegreeLayerAdd
         I N hN degree i.1 (x i) := rfl
 
-/-- Extraction is a left inverse to simultaneous inclusion.-/
+/-- Extraction is a left inverse to simultaneous inclusion.
+@isnad1 id=eq.1h10v.s15.28852eae920f from=translated src=- shape=70555568 vocab=d89a6265
+-/
 theorem artinianPolynomialInducedLayerSumToDegreeLayerSum_comp_inclusion
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -763,7 +802,9 @@ theorem artinianPolynomialInducedLayerSumToDegreeLayerSum_comp_inclusion
     I N hN degree i.1 (x i)
 
 /-- Including the extracted tuple is exactly the pointwise component of the
-original tuple.-/
+original tuple.
+@isnad1 id=eq.1h10v.s16.a54c42e0c59f from=translated src=- shape=2dc25434 vocab=3ead6b1a
+-/
 theorem artinianPolynomialInducedDegreeLayerSumToInducedLayerSumLinear_comp_projection
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -808,7 +849,9 @@ section ComponentRange
 variable [IsNoetherianRing B]
 
 /-- Simultaneous degree inclusion lands in the range of the pointwise
-component projection.-/
+component projection.
+@isnad1 id=mem.1h10v.s16.9648adb78fb8 from=translated src=- shape=685ba687 vocab=e015d26e
+-/
 theorem artinianPolynomialInducedDegreeLayerSumToInducedLayerSumLinear_mem_componentRange
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -907,6 +950,9 @@ def artinianPolynomialInducedDegreeLayerSumToComponentRangeLinear
     (artinianPolynomialInducedDegreeLayerSumToInducedLayerSumLinear_mem_componentRange
       I N hN degree e)
 
+/--
+@isnad1 id=eq.1h10v.s18.9d9924001cfe from=translated src=- shape=b0afb9df vocab=bd01d3b3
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeLayerSumToComponentRangeLinear_coe
     (I : Ideal B)
@@ -1037,7 +1083,9 @@ section Identification
 variable {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
 
 /-- Every degree slice of the finite induced-layer sum is canonically the
-range of the corresponding component projection.-/
+range of the corresponding component projection.
+@isnad1 id=artinian.1h8v.s7.aa8a752719ae from=translated src=- shape=b2c97e04 vocab=87effc69
+-/
 theorem artinianPolynomialInducedLayerDegreeIdentification
     (I : Ideal B) [I.IsMaximal]
     (N : Submodule (MvPolynomial (Fin n) B)

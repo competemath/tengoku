@@ -24,18 +24,27 @@ def restrictedSourceAppendAuxOne {m p a : ℕ}
     RestrictedSource m p (a + 1) :=
   (x.1, Fin.append x.2 (fun _ : Fin 1 ↦ y))
 
+/--
+@isnad1 id=eq.0h5v.s6.ac8d0f736c9e from=translated src=- shape=76ed29ee vocab=dbaa442d
+-/
 @[simp]
 theorem restrictedSourceAppendAuxOne_fst {m p a : ℕ}
     (x : RestrictedSource m p a) (y : ℝ) :
     (restrictedSourceAppendAuxOne x y).1 = x.1 :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.989a1fb1c52d from=translated src=- shape=689eb0f9 vocab=2ea4817a
+-/
 @[simp]
 theorem restrictedSourceAppendAuxOne_oldAux {m p a : ℕ}
     (x : RestrictedSource m p a) (y : ℝ) (i : Fin a) :
     (restrictedSourceAppendAuxOne x y).2 (Fin.castAdd 1 i) = x.2 i := by
   exact Fin.append_left x.2 (fun _ : Fin 1 ↦ y) i
 
+/--
+@isnad1 id=eq.0h5v.s5.d0d1e13a69de from=translated src=- shape=66185e64 vocab=7b03f431
+-/
 @[simp]
 theorem restrictedSourceAppendAuxOne_last {m p a : ℕ}
     (x : RestrictedSource m p a) (y : ℝ) :
@@ -46,6 +55,9 @@ theorem restrictedSourceAppendAuxOne_last {m p a : ℕ}
   rw [hlast]
   exact Fin.append_right x.2 (fun _ : Fin 1 ↦ y) 0
 
+/--
+@isnad1 id=eq.0h5v.s5.88a43bb22a6f from=translated src=- shape=c317bd48 vocab=14cb8640
+-/
 @[simp]
 theorem restrictedSourceDropAux_appendAuxOne {m p a : ℕ}
     (x : RestrictedSource m p a) (y : ℝ) :
@@ -68,7 +80,9 @@ def restrictedLastAuxPolynomialLift
 
 /-- The polynomial lift belongs to the old tower level on the enlarged
 source.  Its coefficients are pulled back from level `i`, while its variable
-is the new unrestricted auxiliary coordinate.-/
+is the new unrestricted auxiliary coordinate.
+@isnad1 id=mem.0h9v.s9.8c3617f4f7d6 from=translated src=- shape=15614530 vocab=95069265
+-/
 theorem RestrictedExpressionTower.restrictedLastAuxPolynomialLift_mem
     {m p a ell : ℕ} {D : RestrictedBox p}
     {S : Set (RestrictedSource m p a → ℝ)}
@@ -111,7 +125,9 @@ theorem RestrictedExpressionTower.restrictedLastAuxPolynomialLift_mem
       exact hmul
 
 /-- Appending a scalar and then evaluating the restricted lift agrees with
-the abstract product-space polynomial lift.-/
+the abstract product-space polynomial lift.
+@isnad1 id=eq.0h11v.s8.4286ef0b75f0 from=translated src=- shape=b3bb7d3c vocab=a913907d
+-/
 theorem restrictedLastAuxPolynomialLift_appendAuxOne
     {m p a ell : ℕ} {D : RestrictedBox p}
     {S : Set (RestrictedSource m p a → ℝ)}
@@ -124,7 +140,9 @@ theorem restrictedLastAuxPolynomialLift_appendAuxOne
   simp [restrictedLastAuxPolynomialLift]
 
 /-- Exact substitution of the original exponential generator into the fresh
-coordinate recovers polynomial evaluation in the original function ring.-/
+coordinate recovers polynomial evaluation in the original function ring.
+@isnad1 id=eq.0h10v.s12.2658e4830221 from=translated src=- shape=f60a0353 vocab=2e395000
+-/
 theorem restrictedLastAuxPolynomialLift_on_generator
     {m p a ell : ℕ} {D : RestrictedBox p}
     {S : Set (RestrictedSource m p a → ℝ)}
@@ -138,7 +156,9 @@ theorem restrictedLastAuxPolynomialLift_on_generator
 
 /-- Every expression in successor level `i+1` has a lift in level `i` after
 adding one unrestricted coordinate, and substitution of the `i`th generator
-into that coordinate recovers the original expression pointwise.-/
+into that coordinate recovers the original expression pointwise.
+@isnad1 id=ex.1h9v.s9.95c26221ea69 from=translated src=- shape=655360db vocab=8a3594be
+-/
 theorem RestrictedExpressionTower.exists_restrictedLastGeneratorLift_of_mem_level_succ
     {m p a ell : ℕ} {D : RestrictedBox p}
     {S : Set (RestrictedSource m p a → ℝ)}

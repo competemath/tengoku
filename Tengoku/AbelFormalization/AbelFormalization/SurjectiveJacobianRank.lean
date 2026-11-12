@@ -22,7 +22,9 @@ section MatrixRank
 
 variable {K E ι : Type*} [Field K] [Fintype ι] {n : ℕ}
 
-/-- A surjective matrix linear map has full row rank.-/
+/-- A surjective matrix linear map has full row rank.
+@isnad1 id=eq.1h4v.s8.acd85c94bbf6 from=translated src=- shape=fed54b12 vocab=acb5a25c
+-/
 theorem matrix_rank_eq_of_mulVecLin_surjective
     (A : Matrix (Fin n) ι K) (hA : Function.Surjective A.mulVecLin) :
     A.rank = n := by
@@ -30,7 +32,9 @@ theorem matrix_rank_eq_of_mulVecLin_surjective
     Module.finrank_pi, Fintype.card_fin]
 
 /-- A surjective function factoring through a matrix makes the matrix
-linear map surjective. The intermediary map need not be linear.-/
+linear map surjective. The intermediary map need not be linear.
+@isnad1 id=surjecti.2h7v.s8.0c30ebed164e from=translated src=- shape=89530c21 vocab=1ad5e05e
+-/
 theorem matrix_mulVecLin_surjective_of_factorization
     (A : Matrix (Fin n) ι K) (L : E → (Fin n → K))
     (H : E → (ι → K)) (hL : Function.Surjective L)
@@ -42,7 +46,9 @@ theorem matrix_mulVecLin_surjective_of_factorization
   rw [Matrix.mulVecLin_apply, ← hfactor h, hy]
 
 /-- A surjective factorization gives full row rank, without any vector
-space structure or dimension assumption on its source.-/
+space structure or dimension assumption on its source.
+@isnad1 id=eq.2h7v.s6.494eab06059c from=translated src=- shape=4590cb3f vocab=30802c5f
+-/
 theorem matrix_rank_eq_of_surjective_factorization
     (A : Matrix (Fin n) ι K) (L : E → (Fin n → K))
     (H : E → (ι → K)) (hL : Function.Surjective L)
@@ -58,7 +64,9 @@ section RealMinorPositivity
 variable {E ι : Type*} [Fintype ι] {n : ℕ}
 
 /-- Over the reals, the squared-minor denominator is positive whenever
-the matrix factors a surjection, for an arbitrary source set.-/
+the matrix factors a surjection, for an arbitrary source set.
+@isnad1 id=lt.2h6v.s6.45c650d28d9d from=translated src=- shape=2cfe2c05 vocab=59355d7d
+-/
 theorem sumSquaresColumnMinors_pos_of_surjective_factorization
     (A : Matrix (Fin n) ι ℝ) (L : E → (Fin n → ℝ))
     (H : E → (ι → ℝ)) (hL : Function.Surjective L)
@@ -68,7 +76,9 @@ theorem sumSquaresColumnMinors_pos_of_surjective_factorization
     (matrix_rank_eq_of_surjective_factorization A L H hL hfactor)
 
 /-- The chain-rule application for a surjective continuous linear map.
-The source can be infinite-dimensional, and no source basis is required.-/
+The source can be infinite-dimensional, and no source basis is required.
+@isnad1 id=lt.2h6v.s8.58875f5136da from=translated src=- shape=715a1f4a vocab=914c1f19
+-/
 theorem sumSquaresColumnMinors_pos_of_surjective_continuousLinearMap_factorization
     [NormedAddCommGroup E] [NormedSpace ℝ E]
     (A : Matrix (Fin n) ι ℝ) (L : E →L[ℝ] (Fin n → ℝ))

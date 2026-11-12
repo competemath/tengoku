@@ -27,7 +27,9 @@ namespace AbelFormalization
 
 /-- A weighted component of a single free coordinate is still supported in
 that coordinate.  Recording the surviving coefficient by evaluation avoids
-introducing a second scalar-polynomial component operator.-/
+introducing a second scalar-polynomial component operator.
+@isnad1 id=eq.0h8v.s10.19b0ebf48f0f from=translated src=- shape=c57ae59a vocab=ef5b1671
+-/
 theorem artinianPolynomialModuleComponent_single
     {C : Type*} [CommRing C] {n m : ℕ}
     (weight : Fin n → ℕ) (coordinateShift : Fin m → ℤ)
@@ -50,7 +52,9 @@ theorem artinianPolynomialModuleComponent_single
 translates scalar degree into module degree by the shift of its coordinate.
 The scalar component is expressed as the corresponding coordinate of a
 single-coordinate module component, which works over every commutative
-coefficient ring.-/
+coefficient ring.
+@isnad1 id=eq.1h14v.s10.61be87a92d2c from=translated src=- shape=7fcfd39a vocab=64595f97
+-/
 theorem artinianPolynomialModuleComponent_smul_constantGenerator
     {B : Type*} [CommRing B] {n r m : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ)
@@ -97,7 +101,9 @@ theorem artinianPolynomialModuleComponent_smul_constantGenerator
       artinianPolynomialIdealPowerConstantGenerator, Pi.single_apply, hlk]
 
 /-- Coefficientwise residue reduction commutes with the selected coordinate
-of the component of a single-coordinate vector.-/
+of the component of a single-coordinate vector.
+@isnad1 id=eq.0h9v.s11.409af2e910a0 from=translated src=- shape=a4979360 vocab=93164583
+-/
 theorem artinianPolynomialModuleComponent_residue_single_apply
     {B : Type*} [CommRing B] {n m : ℕ}
     (I : Ideal B) (weight : Fin n → ℕ)
@@ -131,7 +137,9 @@ theorem artinianPolynomialModuleComponent_residue_single_apply
 /-- Over a field, the arbitrary-coefficient component used for Artinian
 layers is the earlier field polynomial-module component.  Both are defined
 from the actual coefficient array; this theorem supplies the explicit bridge
-needed by the field uniform-generator theorem.-/
+needed by the field uniform-generator theorem.
+@isnad1 id=eq.0h6v.s8.c3fc9853779a from=translated src=- shape=f340c321 vocab=ec8a5f7e
+-/
 theorem artinianPolynomialModuleComponent_eq_weightedPolynomialModuleComponent
     {K : Type*} [Field K] {n m : ℕ}
     (weight : Fin n → ℕ) (coordinateShift : Fin m → ℤ) (degree : ℤ) :
@@ -148,7 +156,9 @@ theorem artinianPolynomialModuleComponent_eq_weightedPolynomialModuleComponent
     weightedPolynomialModuleComponent_coeff]
   rfl
 
-/-- Thus the two closure predicates agree over a field.-/
+/-- Thus the two closure predicates agree over a field.
+@isnad1 id=iff.0h6v.s7.164f16be1c4e from=translated src=- shape=8a60f1ea vocab=93031c55
+-/
 theorem isArtinianPolynomialSubmoduleHomogeneous_iff_isWeightedPolynomialModuleHomogeneous
     {K : Type*} [Field K] {n m : ℕ}
     (weight : Fin n → ℕ) (coordinateShift : Fin m → ℤ)
@@ -161,7 +171,9 @@ theorem isArtinianPolynomialSubmoduleHomogeneous_iff_isWeightedPolynomialModuleH
   simp only
     [artinianPolynomialModuleComponent_eq_weightedPolynomialModuleComponent]
 
-/-- Every coefficient-filter component is idempotent.-/
+/-- Every coefficient-filter component is idempotent.
+@isnad1 id=eq.0h7v.s10.574e7a51003c from=translated src=- shape=1721a791 vocab=836c78c3
+-/
 theorem artinianPolynomialModuleComponent_idempotent
     {C : Type*} [CommRing C] {n m : ℕ}
     (weight : Fin n → ℕ) (coordinateShift : Fin m → ℤ)
@@ -175,7 +187,9 @@ theorem artinianPolynomialModuleComponent_idempotent
         (B := C) weight coordinateShift degree P)
 
 /-- Coefficient scalar multiplication on a free polynomial module is the
-same as multiplication by the corresponding constant polynomial.-/
+same as multiplication by the corresponding constant polynomial.
+@isnad1 id=eq.0h5v.s8.ffee5766456e from=translated src=- shape=9da97170 vocab=71d9dbbc
+-/
 theorem mvPolynomialPi_C_smul_eq
     {C : Type*} [CommRing C] {n m : ℕ}
     (c : C) (P : Fin m → MvPolynomial (Fin n) C) :
@@ -189,7 +203,9 @@ theorem mvPolynomialPi_C_smul_eq
 /-- The component of a scalar multiple of one constant quotient generator is
 the scalar component dictated by that generator's shift, times the same
 generator.  Surjectivity of the residue map is used locally in the proof; no
-section is retained in the construction.-/
+section is retained in the construction.
+@isnad1 id=eq.1h14v.s14.2b26dc0982ea from=translated src=- shape=45a5f520 vocab=9de7751c
+-/
 theorem artinianPolynomialAmbientLayerComponent_smul_constantGenerator
     {B : Type*} [CommRing B] {n r m : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (i : ℕ)
@@ -290,7 +306,9 @@ theorem artinianPolynomialAmbientLayerComponent_smul_constantGenerator
 /-! ## Intertwining the graded finite free cover -/
 
 /-- Pointwise projection of a scalar multiple of one distinguished graded
-generator retains precisely the matching scalar component.-/
+generator retains precisely the matching scalar component.
+@isnad1 id=eq.0h10v.s14.8943cba067e1 from=translated src=- shape=4b379c6b vocab=e7c49ba7
+-/
 theorem artinianPolynomialAmbientLayerSumComponent_smul_gradedGenerator
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (e : ℕ)
@@ -329,7 +347,9 @@ theorem artinianPolynomialAmbientLayerSumComponent_smul_gradedGenerator
       Pi.single_apply, hi]
 
 /-- The graded cover intertwines source and target components on a single
-free coordinate.-/
+free coordinate.
+@isnad1 id=eq.0h10v.s14.bb4d053cc4f1 from=translated src=- shape=e0f78826 vocab=152c3d10
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCover_component_single
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (e : ℕ)
@@ -382,7 +402,9 @@ theorem artinianPolynomialAmbientLayerSumGradedCover_component_single
 
 /-- The explicit finite free cover commutes with every shifted weighted
 component.  This is the component identity needed to pull stable target
-submodules back to ordinary homogeneous submodules of a fixed free module.-/
+submodules back to ordinary homogeneous submodules of a fixed free module.
+@isnad1 id=eq.0h9v.s14.fa7ec4172823 from=translated src=- shape=73b1657a vocab=3413fee3
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCover_component
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (e : ℕ)
@@ -458,7 +480,9 @@ def artinianPolynomialAmbientLayerSumResidueModule
       MvPolynomial (Fin n) (B ⧸ I))
 
 /-- The pointwise ambient layer-sum component commutes with residue-field
-scalar multiplication.-/
+scalar multiplication.
+@isnad1 id=eq.0h10v.s15.1f5a97e16150 from=translated src=- shape=dc422c2a vocab=23c22043
+-/
 theorem artinianPolynomialAmbientLayerSumComponent_smul_residue
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (e : ℕ)
@@ -569,6 +593,9 @@ def artinianPolynomialAmbientLayerSumComponentLinear
       map_smul' := artinianPolynomialAmbientLayerSumComponent_smul_residue
         (n := n) (r := r) I e weight shift degree }
 
+/--
+@isnad1 id=eq.0h9v.s14.186f69aceaca from=translated src=- shape=29103099 vocab=ff00927a
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerSumComponentLinear_apply
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -584,7 +611,9 @@ theorem artinianPolynomialAmbientLayerSumComponentLinear_apply
       artinianPolynomialAmbientLayerSumComponent
         I e weight shift degree x := rfl
 
-/-- Pointwise ambient projection is idempotent.-/
+/-- Pointwise ambient projection is idempotent.
+@isnad1 id=eq.0h9v.s14.f215be4260ac from=translated src=- shape=19e14f07 vocab=8726256b
+-/
 theorem artinianPolynomialAmbientLayerSumComponent_idempotent
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) (e : ℕ)
@@ -635,6 +664,9 @@ theorem artinianPolynomialAmbientLayerSumComponent_idempotent
           (n := n) (r := r) I e v) := by
       rw [artinianPolynomialAmbientLayerSumGradedCover_component]
 
+/--
+@isnad1 id=eq.0h9v.s14.a70ded3f1ca3 from=translated src=- shape=304d6093 vocab=b9fb5ba8
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerSumComponentLinear_idempotent
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -678,7 +710,9 @@ def artinianPolynomialInducedLayerSumResidueModule
     (MvPolynomial.C : (B ⧸ I) →+*
       MvPolynomial (Fin n) (B ⧸ I))
 
-/-- The pointwise induced component is residue-coefficient-linear.-/
+/-- The pointwise induced component is residue-coefficient-linear.
+@isnad1 id=eq.1h11v.s16.162be63a7e7d from=translated src=- shape=e454ba0e vocab=e374eb79
+-/
 theorem artinianPolynomialInducedLayerSumComponent_smul_residue
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -770,6 +804,9 @@ def artinianPolynomialInducedLayerSumComponentLinear
       map_smul' := artinianPolynomialInducedLayerSumComponent_smul_residue
         (n := n) (r := r) I N hN e degree }
 
+/--
+@isnad1 id=eq.1h10v.s15.aae9117457e0 from=translated src=- shape=19411523 vocab=dc7399c2
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumComponentLinear_apply
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -790,7 +827,9 @@ theorem artinianPolynomialInducedLayerSumComponentLinear_apply
       artinianPolynomialInducedLayerSumComponent
         I N hN e degree x := rfl
 
-/-- Pointwise induced projection is idempotent.-/
+/-- Pointwise induced projection is idempotent.
+@isnad1 id=eq.1h10v.s15.17e81d59b819 from=translated src=- shape=4986473c vocab=d59032c3
+-/
 theorem artinianPolynomialInducedLayerSumComponent_idempotent
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -840,6 +879,9 @@ theorem artinianPolynomialInducedLayerSumComponent_idempotent
       rw [artinianPolynomialInducedLayerSumMap_component
         (n := n) (r := r) I N hN e degree x]
 
+/--
+@isnad1 id=eq.1h10v.s15.6d654cbd47c8 from=translated src=- shape=53e8f6b6 vocab=cdf9cb75
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumComponentLinear_idempotent
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -871,7 +913,9 @@ theorem artinianPolynomialInducedLayerSumComponentLinear_idempotent
     (n := n) (r := r) I N hN e degree x
 
 /-- The range of the induced component projection is its fixed-point
-subspace.-/
+subspace.
+@isnad1 id=iff.1h10v.s15.3caa81f68dcc from=translated src=- shape=99bebe6d vocab=daa5a80e
+-/
 theorem mem_range_artinianPolynomialInducedLayerSumComponentLinear_iff
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -922,6 +966,9 @@ def artinianPolynomialAmbientLayerSumGradedCoverKernel
     (artinianPolynomialAmbientLayerSumGradedCover
       (n := n) (r := r) I e)
 
+/--
+@isnad1 id=iff.0h6v.s13.fc91ba7ea19e from=translated src=- shape=6a4e1a7a vocab=9d75d728
+-/
 @[simp]
 theorem mem_artinianPolynomialAmbientLayerSumGradedCoverKernel_iff
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -965,6 +1012,9 @@ def artinianPolynomialInducedLayerSumGradedPullback
       (artinianPolynomialAmbientLayerSumGradedCover
         (n := n) (r := r) I e)
 
+/--
+@isnad1 id=iff.0h7v.s15.53758da03664 from=translated src=- shape=12eeb27f vocab=c29765ae
+-/
 @[simp]
 theorem mem_artinianPolynomialInducedLayerSumGradedPullback_iff
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -992,7 +1042,9 @@ theorem mem_artinianPolynomialInducedLayerSumGradedPullback_iff
   rfl
 
 /-- The pullback of the induced-layer range is homogeneous whenever the
-original polynomial submodule is homogeneous.-/
+original polynomial submodule is homogeneous.
+@isnad1 id=isartini.1h8v.s7.288589d0fa20 from=translated src=- shape=d75f6c4d vocab=93d10dc7
+-/
 theorem artinianPolynomialInducedLayerSumGradedPullback_homogeneous
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -1021,7 +1073,9 @@ theorem artinianPolynomialInducedLayerSumGradedPullback_homogeneous
     (n := n) (r := r) I N hN e degree hx
 
 /-- In the maximal-ideal case, pullback homogeneity is stated in the field
-polynomial-module API.-/
+polynomial-module API.
+@isnad1 id=isweight.1h8v.s7.adfd21151d57 from=translated src=- shape=474606b2 vocab=b40da429
+-/
 theorem artinianPolynomialInducedLayerSumGradedPullback_weightedHomogeneous
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B) [I.IsMaximal]

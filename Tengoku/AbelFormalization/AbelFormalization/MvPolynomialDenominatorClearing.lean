@@ -29,7 +29,9 @@ def denominatorClearedMvPolynomialEval
 
 /-- Literal denominator clearing: if `delta * old i = num i` for every
 variable and `D` bounds the total degree, multiplying the old evaluation by
-`delta^D` gives the denominator-cleared monomial sum.-/
+`delta^D` gives the denominator-cleared monomial sum.
+@isnad1 id=eq.2h9v.s7.cff0e2e94430 from=translated src=- shape=3e8c1121 vocab=6b3263c8
+-/
 theorem pow_mul_eval₂_eq_denominatorClearedMvPolynomialEval
     {R S σ : Type*} [CommSemiring R] [CommSemiring S]
     (D : ℕ) (c : R →+* S) (delta : S) (old num : σ → S)
@@ -74,7 +76,9 @@ theorem pow_mul_eval₂_eq_denominatorClearedMvPolynomialEval
   ring
 
 /-- The cleared value belongs to a function subalgebra whenever its finitely
-many coefficients, the common denominator, and its used cleared variables do.-/
+many coefficients, the common denominator, and its used cleared variables do.
+@isnad1 id=mem.3h9v.s9.71293f2b6293 from=translated src=- shape=21edc891 vocab=63a33b5b
+-/
 theorem denominatorClearedMvPolynomialEval_mem_subalgebra
     {X R σ : Type*} [CommSemiring R]
     (B : Subalgebra ℝ (X → ℝ))
@@ -98,6 +102,9 @@ noncomputable def mvPolynomialFamilyTotalDegree
     (Q : Fin n → MvPolynomial σ R) : ℕ :=
   (Finset.univ : Finset (Fin n)).sup fun i ↦ (Q i).totalDegree
 
+/--
+@isnad1 id=le.0h5v.s5.e11a7f5c053e from=translated src=- shape=ef8695e9 vocab=27bcf1b5
+-/
 theorem mvPolynomial_totalDegree_le_familyTotalDegree
     {R σ : Type*} [CommSemiring R] {n : ℕ}
     (Q : Fin n → MvPolynomial σ R) (i : Fin n) :

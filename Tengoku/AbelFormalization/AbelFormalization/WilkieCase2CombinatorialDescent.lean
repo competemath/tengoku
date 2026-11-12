@@ -36,7 +36,9 @@ universe u
 
 /-- An infinite set of finite real tuples has an infinite image in at least
 one coordinate.  This also covers `n = 0`: an infinite set of empty tuples
-cannot exist.-/
+cannot exist.
+@isnad1 id=ex.1h2v.s5.18114b6a92aa from=translated src=- shape=5e9bb211 vocab=feb49fd3
+-/
 theorem exists_infinite_coordinate_image
     {n : ℕ} {S : Set (Fin n → ℝ)} (hS : S.Infinite) :
     ∃ i : Fin n, ((fun v : Fin n → ℝ ↦ v i) '' S).Infinite := by
@@ -57,7 +59,9 @@ theorem exists_infinite_coordinate_image
 
 /-- An infinite visible image contains a fiber point whose chosen visible
 coordinate avoids the corresponding finite exceptional set.  The point
-witness makes the later fixed-coordinate slice nonempty.-/
+witness makes the later fixed-coordinate slice nonempty.
+@isnad1 id=ex.2h5v.s6.8607a1803956 from=translated src=- shape=0d645a84 vocab=0af6d498
+-/
 theorem exists_fiber_point_with_good_visible_coordinate
     {E : Type u} {n : ℕ} {X : Set E}
     (π : E → Fin n → ℝ)
@@ -80,7 +84,9 @@ either a Case 1 fixed-minor interval or the zero-arity hidden-minor seed.
 
 The infinite branch always chooses `b` from the actual visible image, then
 avoids the finite Theorem 2.8 exceptional set.  Thus `hslice` can require a
-nonempty regular slice without adding an unsupported choice premise.-/
+nonempty regular slice without adding an unsupported choice premise.
+@isnad1 id=var.2h10v.s8.e5eb44dc46ba from=translated src=- shape=947779c9 vocab=406b926c
+-/
 theorem case2_induction
     {State : ℕ → Type u}
     (visible : ∀ m, State m → Set (Fin m → ℝ))

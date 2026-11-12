@@ -23,7 +23,9 @@ namespace AbelFormalization
 open scoped Pointwise
 
 /-- If an ideal is contained in no minimal prime of a Noetherian ring, then it
-contains one element which simultaneously avoids every minimal prime.-/
+contains one element which simultaneously avoids every minimal prime.
+@isnad1 id=ex.1h2v.s7.9f6daebe202d from=translated src=- shape=61a8394d vocab=ab33ea54
+-/
 theorem exists_mem_ideal_avoids_minimalPrimes
     {B : Type*} [CommRing B] [IsNoetherianRing B]
     (C : Ideal B)
@@ -52,7 +54,9 @@ theorem exists_mem_ideal_avoids_minimalPrimes
   exact hC p hp hCp
 
 /-- In a ring of Krull dimension at most zero, an element outside every
-minimal prime is a unit.-/
+minimal prime is a unit.
+@isnad1 id=isunit.1h2v.s6.bb96e4979944 from=translated src=- shape=60cdcf09 vocab=dfa6b32b
+-/
 theorem isUnit_of_avoids_minimalPrimes_of_krullDimLE_zero
     {B : Type*} [CommRing B] [Ring.KrullDimLE 0 B] {b : B}
     (hb : ∀ p ∈ minimalPrimes B, b ∉ p) : IsUnit b := by
@@ -65,7 +69,9 @@ theorem isUnit_of_avoids_minimalPrimes_of_krullDimLE_zero
 /-- Quotienting by an element which avoids every minimal prime lowers a
 positive finite upper bound on Krull dimension by one.  The proof uses the
 support-dimension inequality for `B / bB`; it does not require `b` to be a
-non-zero-divisor.-/
+non-zero-divisor.
+@isnad1 id=krulldim.1h3v.s7.64e35251aacb from=translated src=- shape=1f245b8e vocab=6aa4f03c
+-/
 theorem Ring.KrullDimLE.quotient_span_singleton_of_avoids_minimalPrimes
     {B : Type*} [CommRing B] [IsNoetherianRing B]
     (d : ℕ) [Ring.KrullDimLE (d + 1) B] {b : B}

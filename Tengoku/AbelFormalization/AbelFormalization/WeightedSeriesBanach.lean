@@ -79,6 +79,9 @@ def weightedSeriesLpEquiv (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i) :
     change MvPowerSeries.coeff d (c • f.val) * multiRadiusWeight ρ d = _
     simp [mul_assoc]
 
+/--
+@isnad1 id=eq.1h4v.s12.e7e73acfd2ef from=translated src=- shape=41a4ac0a vocab=bbb8fcf0
+-/
 @[simp]
 theorem weightedSeriesLpEquiv_apply (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i)
     (f : WeightedSeries ρ hρ) (d : σ →₀ ℕ) :
@@ -94,7 +97,9 @@ instance weightedSeriesNormedSpace (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i) :
     NormedSpace ℝ (WeightedSeries ρ hρ) :=
   NormedSpace.induced ℝ _ _ (weightedSeriesLpEquiv ρ hρ)
 
-/-- The transported norm is the actual sum of weighted absolute coefficients.-/
+/-- The transported norm is the actual sum of weighted absolute coefficients.
+@isnad1 id=eq.1h3v.s8.0e440ca3a8ed from=translated src=- shape=212ca725 vocab=3508a635
+-/
 theorem weightedSeries_norm_eq (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i)
     (f : WeightedSeries ρ hρ) : ‖f‖ = weightedCoeffNorm ρ f.val := by
   change ‖weightedSeriesLpEquiv ρ hρ f‖ = _
@@ -125,7 +130,9 @@ def weightedSeriesLpIsometryEquiv (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i) :
     WeightedSeries ρ hρ ≃ₗᵢ[ℝ] lp (fun _ : σ →₀ ℕ => ℝ) 1 :=
   { weightedSeriesLpEquiv ρ hρ with norm_map' _ := rfl }
 
-/-- Each weighted coefficient is bounded by the coefficient-sum norm.-/
+/-- Each weighted coefficient is bounded by the coefficient-sum norm.
+@isnad1 id=le.1h4v.s9.847d1cbae6b3 from=translated src=- shape=ea863af9 vocab=e658c77d
+-/
 theorem weightedSeries_coeff_weight_le_norm (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i)
     (f : WeightedSeries ρ hρ) (d : σ →₀ ℕ) :
     ‖MvPowerSeries.coeff d f.val‖ * multiRadiusWeight ρ d ≤ ‖f‖ := by
@@ -148,6 +155,9 @@ def weightedSeriesCoeffCLM (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i) (d : σ →
             (weightedSeries_coeff_weight_le_norm ρ hρ f d)
         _ = _ := by ring
 
+/--
+@isnad1 id=eq.1h4v.s10.3682ffc524e9 from=translated src=- shape=104a27c9 vocab=30812fe3
+-/
 @[simp]
 theorem weightedSeriesCoeffCLM_apply (ρ : σ → ℝ) (hρ : ∀ i, 0 < ρ i)
     (d : σ →₀ ℕ) (f : WeightedSeries ρ hρ) :

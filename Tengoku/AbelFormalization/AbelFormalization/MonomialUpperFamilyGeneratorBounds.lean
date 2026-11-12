@@ -22,7 +22,9 @@ variable {κ : Type*} [Finite κ] {n : ℕ}
 
 /-- Every actual componentwise exponent upper family has a finite cover by
 its own module terms. Every term of the family is divisible componentwise
-by one of these selected terms.-/
+by one of these selected terms.
+@isnad1 id=ex.0h3v.s8.9bc70b5eda94 from=translated src=- shape=445f2642 vocab=d5eca6ea
+-/
 theorem exists_finset_monomialUpperFamily_cover
     (U : κ → UpperSet (Fin n → ℕ)) :
     ∃ s : Finset (κ × (Fin n →₀ ℕ)),
@@ -49,7 +51,9 @@ theorem exists_finset_monomialUpperFamily_cover
 /-- A finite family of actual monomial upper families has finite covers
 whose degrees are bounded by one natural number. Integer degrees may be
 negative. No additivity or finite-fiber assumption on the grading is used
-in this finite-family step.-/
+in this finite-family step.
+@isnad1 id=ex.1h4v.s9.3b3be063ce15 from=translated src=- shape=90a0dee9 vocab=f7225070
+-/
 theorem finite_monomialUpperFamily_cover_degree_bound
     (grade : κ × (Fin n →₀ ℕ) → ℤ)
     (F : Set (κ → UpperSet (Fin n → ℕ))) (hF : F.Finite) :
@@ -75,7 +79,9 @@ theorem finite_monomialUpperFamily_cover_degree_bound
   exact (Int.self_le_toNat (grade t)).trans (Int.ofNat_le.mpr (hfirst.trans hsecond))
 
 /-- Fixed positive weighted count data give one bound on finite covers
-for every actual upper family realizing those data.-/
+for every actual upper family realizing those data.
+@isnad1 id=ex.1h5v.s9.a1368820258f from=translated src=- shape=99182516 vocab=4173f3b5
+-/
 theorem monomialUpperFamily_fixed_weightedCounts_cover_degree_bound
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : κ → ℤ) (h : ℤ → ℕ) :

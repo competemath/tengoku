@@ -20,7 +20,9 @@ open Ideal
 
 variable {R : Type*} [CommRing R]
 
-/-- Localization preserves the height of any contracted ideal.-/
+/-- Localization preserves the height of any contracted ideal.
+@isnad1 id=eq.0h4v.s6.23c3ee180dae from=translated src=- shape=4f093fcc vocab=c542dd05
+-/
 theorem idealHeight_localization_under (M : Submonoid R) {S : Type*} [CommRing S]
     [Algebra R S] [IsLocalization M S] (J : Ideal S) :
     (J.comap (algebraMap R S)).height = J.height :=
@@ -28,7 +30,9 @@ theorem idealHeight_localization_under (M : Submonoid R) {S : Type*} [CommRing S
 
 variable [IsNoetherianRing R] {ι : Type*} [Finite ι]
 
-/-- Under going down, contraction cannot increase ideal height.-/
+/-- Under going down, contraction cannot increase ideal height.
+@isnad1 id=le.0h3v.s6.452612197e50 from=translated src=- shape=ec1f6333 vocab=750e65d0
+-/
 theorem idealHeight_comap_le_of_hasGoingDown {S : Type*} [CommRing S]
     [Algebra R S] [IsNoetherianRing S] [Algebra.HasGoingDown R S] (I : Ideal S) :
     (I.comap (algebraMap R S)).height ≤ I.height := by
@@ -52,7 +56,9 @@ private theorem mvPolynomial_comap_map_C (I : Ideal R) :
   · intro h d
     by_cases hd : 0 = d <;> simp [MvPolynomial.coeff_C, hd, h]
 
-/-- Extending a prime ideal to a polynomial ring preserves its height.-/
+/-- Extending a prime ideal to a polynomial ring preserves its height.
+@isnad1 id=eq.0h3v.s7.29b01ed7414e from=translated src=- shape=ef3aba1b vocab=f071d69a
+-/
 theorem mvPolynomial_prime_height_map_C (p : Ideal R) [p.IsPrime] :
     (p.map (MvPolynomial.C (σ := ι))).height = p.height := by
   have hker : p.map (MvPolynomial.C (σ := ι)) =
@@ -69,7 +75,9 @@ theorem mvPolynomial_prime_height_map_C (p : Ideal R) [p.IsPrime] :
   rw [Ideal.map_quotient_self, Ideal.height_bot, add_zero]
 
 /-- Extending any ideal to a finite polynomial ring preserves its height.
-This is the polynomial-extension step in Lemma `lem:height`(2).-/
+This is the polynomial-extension step in Lemma `lem:height`(2).
+@isnad1 id=eq.0h3v.s7.fde053a23871 from=translated src=- shape=112cabe0 vocab=0d767ce8
+-/
 theorem mvPolynomial_height_map_C (I : Ideal R) :
     (I.map (MvPolynomial.C (σ := ι))).height = I.height := by
   apply le_antisymm

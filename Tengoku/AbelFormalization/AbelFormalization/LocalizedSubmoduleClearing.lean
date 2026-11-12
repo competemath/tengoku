@@ -22,7 +22,9 @@ variable [Module R M] [Module R Mloc]
 variable [Algebra R T] [Module T Mloc] [IsScalarTower R T Mloc]
 
 /-- A localized inclusion out of a finitely generated submodule can be cleared
-by one denominator.-/
+by one denominator.
+@isnad1 id=ex.2h8v.s9.e8c8aa2b398e from=translated src=- shape=ffc8726e vocab=2c70edee
+-/
 theorem exists_smul_le_of_localized'_le
     (S : Submonoid R) [IsLocalization S T]
     (q : M →ₗ[R] Mloc) [IsLocalizedModule S q]
@@ -58,7 +60,9 @@ theorem exists_smul_le_of_localized'_le
       LinearMap.congr_fun hs ⟨x, hx⟩
 
 /-- For a finitely generated submodule, localized inclusion is equivalent to
-inclusion after multiplication by one element of the localizing submonoid.-/
+inclusion after multiplication by one element of the localizing submonoid.
+@isnad1 id=iff.1h8v.s9.58d9f0f2635e from=translated src=- shape=0b55cd4e vocab=2c70edee
+-/
 theorem localized'_le_iff_exists_smul_le
     (S : Submonoid R) [IsLocalization S T]
     (q : M →ₗ[R] Mloc) [IsLocalizedModule S q]

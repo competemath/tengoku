@@ -32,14 +32,18 @@ variable [AddCommGroup X] [Module R X]
 variable [AddCommGroup Y] [Module R Y]
 
 /-- Membership in a pointwise scalar multiple, with the witness equation in
-the direction used by submodule-map proofs.-/
+the direction used by submodule-map proofs.
+@isnad1 id=iff.0h5v.s8.5a53e15935f1 from=translated src=- shape=2e7de241 vocab=669a0545
+-/
 theorem mem_pointwise_smul_submodule_iff
     (b : R) (K : Submodule R X) (x : X) :
     x ∈ b • K ↔ ∃ y ∈ K, b • y = x :=
   Submodule.mem_smul_pointwise_iff_exists x b K
 
 /-- A linear map commutes with pointwise scalar multiplication of
-submodules.-/
+submodules.
+@isnad1 id=eq.0h6v.s9.ed34d75e42f0 from=translated src=- shape=cc9e9010 vocab=b9221433
+-/
 theorem map_pointwise_smul_submodule
     (f : X →ₗ[R] Y) (b : R) (K : Submodule R X) :
     (b • K).map f = b • K.map f := by
@@ -67,7 +71,9 @@ variable {R : Type*} [CommRing R] {n : ℕ}
 variable {M : Fin n → Type*}
 variable [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
-/-- Pointwise scalar multiplication preserves coordinatewise homogeneity.-/
+/-- Pointwise scalar multiplication preserves coordinatewise homogeneity.
+@isnad1 id=mem.2h7v.s11.0601010ae5d5 from=translated src=- shape=a1739fa7 vocab=d80346aa
+-/
 theorem finiteWeight_pointwise_smul_homogeneous
     (K : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -82,7 +88,9 @@ theorem finiteWeight_pointwise_smul_homogeneous
     (hK y hy i)
 
 /-- Pointwise scalar multiplication preserves invariance under a linear
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h6v.s11.008cab0a5530 from=translated src=- shape=bfdce19a vocab=f4d6cca7
+-/
 theorem finiteWeight_pointwise_smul_invariant
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))
@@ -91,7 +99,9 @@ theorem finiteWeight_pointwise_smul_invariant
     (b • K).map J.toLinearMap = b • K := by
   rw [map_pointwise_smul_submodule, hJK]
 
-/-- Multiplication by a unit does not change a submodule.-/
+/-- Multiplication by a unit does not change a submodule.
+@isnad1 id=eq.1h5v.s10.614bf0ede824 from=translated src=- shape=4731b0cb vocab=620301cc
+-/
 theorem finiteWeight_pointwise_smul_eq_self_of_isUnit
     (K : Submodule R (∀ i, M i))
     {b : R} (hb : IsUnit b) :
@@ -99,7 +109,9 @@ theorem finiteWeight_pointwise_smul_eq_self_of_isUnit
   Submodule.smul_eq_self_of_isUnit hb
 
 /-- Membership in a coordinate pullback is membership of the assembled
-ambient vector.-/
+ambient vector.
+@isnad1 id=iff.0h6v.s11.4c2f692eaf78 from=translated src=- shape=a0fabf35 vocab=0e1051eb
+-/
 @[simp]
 theorem mem_finiteWeightCoordinatePullback_iff
     (K U : Submodule R (∀ i, M i))
@@ -110,7 +122,9 @@ theorem mem_finiteWeightCoordinatePullback_iff
 
 /-- In the coordinate product belonging to a homogeneous `K`, the pullback
 of the scalar multiple `b • K` is the scalar multiple of the whole coordinate
-product.-/
+product.
+@isnad1 id=eq.1h5v.s13.c85f298f88dd from=translated src=- shape=de8cf1c2 vocab=023970f3
+-/
 theorem finiteWeightCoordinatePullback_pointwise_smul
     (K : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)

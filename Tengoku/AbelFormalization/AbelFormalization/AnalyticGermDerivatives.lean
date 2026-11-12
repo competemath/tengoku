@@ -19,6 +19,9 @@ open scoped Topology
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
+/--
+@isnad1 id=analytic.1h4v.s8.b9b02175bcdf from=translated src=- shape=d8b40ffe vocab=55f750e4
+-/
 theorem analyticAt_directionalDerivative {f : E → ℝ} {x : E}
     (hf : AnalyticAt ℝ f x) (v : E) :
     AnalyticAt ℝ (fun y => fderiv ℝ f y v) x := by
@@ -38,12 +41,18 @@ def analyticGermDirectionalDerivative (x v : E) (g : AnalyticGermAt x) : Analyti
     obtain ⟨f, hf, rfl⟩ := exists_analyticGerm_representative g
     exact ⟨fun y => fderiv ℝ f y v, analyticAt_directionalDerivative hf v, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.7d18c34adcc8 from=translated src=- shape=e35d5fed vocab=17929dce
+-/
 @[simp]
 theorem analyticGermDirectionalDerivative_of {x : E} (v : E) (f : E → ℝ)
     (hf : AnalyticAt ℝ f x) :
     analyticGermDirectionalDerivative x v (analyticGermOf f hf) =
       analyticGermOf (fun y => fderiv ℝ f y v) (analyticAt_directionalDerivative hf v) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.d779e1138c6a from=translated src=- shape=b5d16ae9 vocab=f3aa0dbb
+-/
 theorem analyticGermDirectionalDerivative_add (x v : E) (f g : AnalyticGermAt x) :
     analyticGermDirectionalDerivative x v (f + g) =
       analyticGermDirectionalDerivative x v f + analyticGermDirectionalDerivative x v g := by
@@ -57,6 +66,9 @@ theorem analyticGermDirectionalDerivative_add (x v : E) (f g : AnalyticGermAt x)
   rw [fderiv_add hyf.differentiableAt hyg.differentiableAt]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.01f040fccf98 from=translated src=- shape=2cfd8f58 vocab=aa2eeaa8
+-/
 theorem analyticGermDirectionalDerivative_mul (x v : E) (f g : AnalyticGermAt x) :
     analyticGermDirectionalDerivative x v (f * g) =
       analyticGermDirectionalDerivative x v f * g + f * analyticGermDirectionalDerivative x v g := by
@@ -72,6 +84,9 @@ theorem analyticGermDirectionalDerivative_mul (x v : E) (f g : AnalyticGermAt x)
   change f y * fderiv ℝ g y v + g y * fderiv ℝ f y v = _
   ring
 
+/--
+@isnad1 id=eq.0h4v.s9.f65f5d88d4f7 from=translated src=- shape=98ca7a8f vocab=712b6881
+-/
 @[simp]
 theorem analyticGermDirectionalDerivative_const (x v : E) (c : ℝ) :
     analyticGermDirectionalDerivative x v

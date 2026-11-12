@@ -19,6 +19,9 @@ namespace AbelFormalization
 open Set Filter Function
 open scoped Topology
 
+/--
+@isnad1 id=eq.1h2v.s4.59acaf16de69 from=translated src=- shape=c2555257 vocab=1be51c72
+-/
 theorem E_iterate_L_iterate {x : ℝ} (hx : 0 < x) (n : ℕ) :
     E^[n] (L^[n] x) = x := by
   induction n with
@@ -27,6 +30,9 @@ theorem E_iterate_L_iterate {x : ℝ} (hx : 0 < x) (n : ℕ) :
       rw [Function.iterate_succ_apply' L, Function.iterate_succ_apply E,
         E_L (L_iterate_pos hx n), ih]
 
+/--
+@isnad1 id=tendsto.1h1v.s5.7bc1c6364be2 from=translated src=- shape=cfb7874d vocab=515c7eb4
+-/
 theorem L_iterate_tendsto_zero {x : ℝ} (hx : 0 < x) :
     Tendsto (fun n : ℕ => L^[n] x) atTop (𝓝 0) := by
   apply tendsto_order.2
@@ -41,25 +47,40 @@ theorem L_iterate_tendsto_zero {x : ℝ} (hx : 0 < x) :
     rw [E_iterate_L_iterate hx] at hm
     exact (not_le_of_gt hn) hm
 
+/--
+@isnad1 id=ex.2h2v.s5.ba26bedcb8fb from=translated src=- shape=586cb55b vocab=6b460cf8
+-/
 theorem exists_L_iterate_lt {x ε : ℝ} (hx : 0 < x) (hε : 0 < ε) :
     ∃ n : ℕ, L^[n] x < ε :=
   ((L_iterate_tendsto_zero hx).eventually (gt_mem_nhds hε)).exists
 
+/--
+@isnad1 id=lt.1h1v.s4.9254dd8b861b from=translated src=- shape=71fa8a4a vocab=4ba4ebe5
+-/
 theorem L_lt_self {x : ℝ} (hx : 0 < x) : L x < x := by
   have h := Real.log_lt_sub_one_of_pos (by linarith : 0 < 1 + x)
     (by linarith : 1 + x ≠ 1)
   simpa [L] using h
 
+/--
+@isnad1 id=antitone.1h1v.s4.3c4511d6c4b7 from=translated src=- shape=0b5729fc vocab=8bcb3a6f
+-/
 theorem L_iterate_antitone {x : ℝ} (hx : 0 < x) :
     Antitone (fun n : ℕ => L^[n] x) := by
   apply antitone_nat_of_succ_le
   intro n
   simpa only [Function.iterate_succ_apply'] using (L_lt_self (L_iterate_pos hx n)).le
 
+/--
+@isnad1 id=analytic.1h1v.s5.0c276f53ff3c from=translated src=- shape=a5280215 vocab=356d6a73
+-/
 theorem analyticAt_L {x : ℝ} (hx : 0 < x) : AnalyticAt ℝ L x := by
   exact (analyticAt_log (by linarith : 0 < 1 + x)).comp
     (analyticAt_const.add analyticAt_id)
 
+/--
+@isnad1 id=analytic.1h2v.s5.d298d0979069 from=translated src=- shape=6e07c495 vocab=0c400474
+-/
 theorem analyticAt_L_iterate {x : ℝ} (hx : 0 < x) (n : ℕ) :
     AnalyticAt ℝ L^[n] x := by
   induction n with
@@ -72,21 +93,33 @@ theorem analyticAt_L_iterate {x : ℝ} (hx : 0 < x) (n : ℕ) :
 def logIterateWeight (n : ℕ) (x : ℝ) : ℝ :=
   ∏ k ∈ Finset.range n, (1 + L^[k] x)⁻¹
 
+/--
+@isnad1 id=lt.1h2v.s4.e2a34e6808e7 from=translated src=- shape=5df0cd53 vocab=09265663
+-/
 theorem logIterateWeight_pos {x : ℝ} (hx : 0 < x) (n : ℕ) :
     0 < logIterateWeight n x := by
   apply Finset.prod_pos
   intro k _
   exact inv_pos.mpr (by have := L_iterate_pos hx k; linarith)
 
+/--
+@isnad1 id=eq.0h2v.s5.5489f6f85873 from=translated src=- shape=ba724df6 vocab=ce352544
+-/
 theorem logIterateWeight_succ (n : ℕ) (x : ℝ) :
     logIterateWeight (n + 1) x = logIterateWeight n x * (1 + L^[n] x)⁻¹ := by
   exact Finset.prod_range_succ _ _
 
+/--
+@isnad1 id=eq.0h2v.s5.8d7f2537003b from=translated src=- shape=c26742ef vocab=08b51d91
+-/
 theorem logIterateWeight_succ' (n : ℕ) (x : ℝ) :
     logIterateWeight (n + 1) x = logIterateWeight n (L x) * (1 + x)⁻¹ := by
   simp only [logIterateWeight, Finset.prod_range_succ',
     Function.iterate_succ_apply, Function.iterate_zero, id_eq]
 
+/--
+@isnad1 id=analytic.1h2v.s5.7896013a70ea from=translated src=- shape=221a5edd vocab=8f8e4fe7
+-/
 theorem analyticAt_logIterateWeight {x : ℝ} (hx : 0 < x) (n : ℕ) :
     AnalyticAt ℝ (logIterateWeight n) x := by
   apply Finset.analyticAt_fun_prod
@@ -98,11 +131,17 @@ theorem analyticAt_logIterateWeight {x : ℝ} (hx : 0 < x) (n : ℕ) :
 def pullbackLogDensity (b : ℝ → ℝ) (n : ℕ) (x : ℝ) : ℝ :=
   b (L^[n] x) * logIterateWeight n x
 
+/--
+@isnad1 id=eq.0h3v.s5.843da48d74bd from=translated src=- shape=aa15409b vocab=a14ae365
+-/
 theorem pullbackLogDensity_succ' (b : ℝ → ℝ) (n : ℕ) (x : ℝ) :
     pullbackLogDensity b (n + 1) x = pullbackLogDensity b n (L x) / (1 + x) := by
   simp only [pullbackLogDensity, Function.iterate_succ_apply, logIterateWeight_succ',
     div_eq_mul_inv, mul_assoc]
 
+/--
+@isnad1 id=eq.4h5v.s6.75a46a485d6c from=translated src=- shape=36e81f9c vocab=b5050a72
+-/
 theorem pullbackLogDensity_stable {b : ℝ → ℝ} {ε x : ℝ} (hx : 0 < x)
     (hinv : ∀ y ∈ Ioo 0 ε, b (L y) / (1 + y) = b y)
     {n m : ℕ} (hn : L^[n] x < ε) (hnm : n ≤ m) :
@@ -119,7 +158,9 @@ theorem pullbackLogDensity_stable {b : ℝ → ℝ} {ε x : ℝ} (hx : 0 < x)
         _ = pullbackLogDensity b m x := by rw [hinv _ hm]; rfl
         _ = _ := ih
 
-/-- A density germ invariant under `log (1+x)` extends analytically to all positive reals.-/
+/-- A density germ invariant under `log (1+x)` extends analytically to all positive reals.
+@isnad1 id=ex.4h2v.s7.e01cbabeaf8e from=translated src=- shape=ff1c8b15 vocab=b5bbc471
+-/
 theorem exists_global_density_of_local {ε : ℝ} (hε : 0 < ε) {b : ℝ → ℝ}
     (hb : AnalyticOnNhd ℝ b (Ioo 0 ε))
     (hbpos : ∀ x ∈ Ioo 0 ε, 0 < b x)

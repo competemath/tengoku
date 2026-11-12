@@ -22,7 +22,9 @@ namespace AbelFormalization
 variable {ι : Type*} [Fintype ι] {p n : ℕ}
 
 /-- A scalar continuous linear map on finitely many real coordinates is
-the dot product with its values on the coordinate directions.-/
+the dot product with its values on the coordinate directions.
+@isnad1 id=eq.0h3v.s8.24db549d7763 from=translated src=- shape=e2c042e7 vocab=61ca0dea
+-/
 theorem continuousLinearMap_fin_apply
     (L : (Fin p → ℝ) →L[ℝ] ℝ) (v : Fin p → ℝ) :
     L v = ∑ j, L (Pi.single j 1) * v j := by
@@ -36,7 +38,9 @@ theorem continuousLinearMap_fin_apply
 
 omit [Fintype ι] in
 /-- Evaluated coefficient differentials split into the formal coordinate
-partials, even when the finite sum has redundant or zero monomials.-/
+partials, even when the finite sum has redundant or zero monomials.
+@isnad1 id=eq.0h6v.s9.cc5cb5e4102f from=translated src=- shape=1699c01a vocab=881d15f4
+-/
 theorem eval_linearCoefficientFamily_fin_coordinates
     (s : Finset (ι →₀ ℕ)) (L : (ι →₀ ℕ) → (Fin p → ℝ) →L[ℝ] ℝ)
     (z : ι → ℝ) (v : Fin p → ℝ) :
@@ -88,7 +92,9 @@ section Source
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Supported differentiable coefficients and differentiable argument
-maps give a differentiable actual equation system.-/
+maps give a differentiable actual equation system.
+@isnad1 id=differen.3h9v.s8.8f596eb04aaa from=translated src=- shape=06bc8362 vocab=744c273c
+-/
 theorem differentiableAt_polynomialFamilyEvaluation
     (s : Fin n → Finset (ι →₀ ℕ))
     (a : Fin n → (ι →₀ ℕ) → (Fin p → ℝ) → ℝ)
@@ -106,7 +112,9 @@ theorem differentiableAt_polynomialFamilyEvaluation
     (hasFDerivAt_pi'.mp hz.hasFDerivAt)).differentiableAt
 
 /-- The genuine Fréchet derivative of the equation system factors through
-the formal Jacobian. No finite-dimensionality assumption on `E` is used.-/
+the formal Jacobian. No finite-dimensionality assumption on `E` is used.
+@isnad1 id=eq.3h10v.s10.44a6b741faae from=translated src=- shape=38b41f13 vocab=b30dff82
+-/
 theorem fderiv_polynomialFamilyEvaluation_factorization
     (s : Fin n → Finset (ι →₀ ℕ))
     (a : Fin n → (ι →₀ ℕ) → (Fin p → ℝ) → ℝ)
@@ -141,7 +149,9 @@ theorem fderiv_polynomialFamilyEvaluation_factorization
     Fintype.sum_sum_type, Sum.elim_inl, Sum.elim_inr]
 
 /-- A surjective actual differential forces positivity of the sum of the
-squares of all full-row-size formal Jacobian minors.-/
+squares of all full-row-size formal Jacobian minors.
+@isnad1 id=lt.4h9v.s9.3fd54e98bb05 from=translated src=- shape=68e0adb0 vocab=4f96cd32
+-/
 theorem polynomialFamilyFormalJacobian_sumSquares_pos
     (s : Fin n → Finset (ι →₀ ℕ))
     (a : Fin n → (ι →₀ ℕ) → (Fin p → ℝ) → ℝ)

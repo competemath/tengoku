@@ -20,7 +20,9 @@ namespace AbelFormalization
 variable {S : Type*} [CommRing S]
 
 /-- Membership in a minimal prime gives a power relation with a multiplier
-outside that same prime.-/
+outside that same prime.
+@isnad1 id=ex.2h4v.s7.0433820ad136 from=translated src=- shape=fefdc661 vocab=298138dd
+-/
 theorem exists_notMem_mul_pow_mem_of_mem_minimalPrime
     (I : Ideal S) {q : Ideal S} (hq : q ∈ I.minimalPrimes)
     {x : S} (hx : x ∈ q) : ∃ n : ℕ, ∃ y ∉ q, y * x ^ n ∈ I := by
@@ -37,7 +39,9 @@ theorem exists_notMem_mul_pow_mem_of_mem_minimalPrime
 
 variable {K : Type*} [Field K] [Algebra K S]
 
-/-- Preservation of the generators implies preservation of their ideal.-/
+/-- Preservation of the generators implies preservation of their ideal.
+@isnad1 id=mem.2h5v.s8.fa53786b7773 from=translated src=- shape=daa95eb5 vocab=93729443
+-/
 theorem derivation_mem_ideal_span (D : Derivation K S S) (s : Set S)
     (hs : ∀ x ∈ s, D x ∈ Ideal.span s) :
     ∀ x ∈ Ideal.span s, D x ∈ Ideal.span s := by
@@ -59,7 +63,9 @@ theorem derivation_mem_ideal_span (D : Derivation K S S) (s : Set S)
   exact (hIJ hx).2
 
 /-- A derivation over a characteristic-zero field preserves every minimal
-prime over any ideal it preserves. No Noetherianity is required.-/
+prime over any ideal it preserves. No Noetherianity is required.
+@isnad1 id=mem.3h6v.s8.a182af569e43 from=translated src=- shape=50d3e2a7 vocab=f0a36ba9
+-/
 theorem derivation_mem_of_mem_minimalPrimes [CharZero K]
     (D : Derivation K S S) (I : Ideal S)
     (hDI : ∀ x ∈ I, D x ∈ I)

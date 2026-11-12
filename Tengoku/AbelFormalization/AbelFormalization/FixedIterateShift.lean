@@ -21,7 +21,9 @@ open scoped BigOperators ContDiff
 namespace AbelFormalization
 
 /-- The derivative of `E^[d]` is the product of the derivatives of `E`
-along the first `d` points of the orbit.-/
+along the first `d` points of the orbit.
+@isnad1 id=hasderiv.0h2v.s5.67de9adebcb1 from=translated src=- shape=0c85afcc vocab=ee06b1b4
+-/
 theorem hasDerivAt_E_iterate (d : ℕ) (x : ℝ) :
     HasDerivAt (E^[d])
       (Finset.prod (Finset.range d) fun k => Real.exp (E^[k] x)) x := by
@@ -36,7 +38,9 @@ theorem hasDerivAt_E_iterate (d : ℕ) (x : ℝ) :
       simpa only [Function.iterate_succ', Finset.prod_range_succ, mul_comm] using
         hE.comp x ih
 
-/-- Formula for the derivative of a fixed iterate of `E`.-/
+/-- Formula for the derivative of a fixed iterate of `E`.
+@isnad1 id=eq.0h2v.s5.0880eb812ed2 from=translated src=- shape=7e66da5f vocab=3b532758
+-/
 theorem deriv_E_iterate (d : ℕ) (x : ℝ) :
     deriv (E^[d]) x =
       Finset.prod (Finset.range d) fun k => Real.exp (E^[k] x) :=
@@ -45,7 +49,9 @@ theorem deriv_E_iterate (d : ℕ) (x : ℝ) :
 /-! ## The bounded shift -/
 
 /-- Iterating the one-sided inverse identity `E (L x) = x` is valid as
-long as the initial argument is positive.-/
+long as the initial argument is positive.
+@isnad1 id=eq.1h2v.s4.59acaf16de69 from=translated src=- shape=c2555257 vocab=1be51c72
+-/
 theorem E_iterate_L_iterate {x : ℝ} (hx : 0 < x) (d : ℕ) :
     E^[d] (L^[d] x) = x := by
   induction d with
@@ -65,7 +71,9 @@ private theorem contDiff_E : ContDiff ℝ ∞ E := by
   change ContDiff ℝ ∞ (fun x : ℝ => Real.exp x - 1)
   exact Real.contDiff_exp.sub contDiff_const
 
-/-- Every fixed iterate of `E` is smooth on the real line.-/
+/-- Every fixed iterate of `E` is smooth on the real line.
+@isnad1 id=contdiff.0h1v.s5.c96cdbbce09b from=translated src=- shape=7ee8d25a vocab=2afc776a
+-/
 theorem contDiff_E_iterate (d : ℕ) : ContDiff ℝ ∞ (E^[d]) := by
   induction d with
   | zero =>
@@ -83,7 +91,9 @@ private theorem contDiffAt_L {x : ℝ} (hx : 0 < x) :
   change ContDiffAt ℝ ∞ (Real.log ∘ fun y : ℝ => 1 + y) x
   exact (Real.contDiffAt_log.2 (by linarith : 1 + x ≠ 0)).comp x hadd
 
-/-- A fixed logarithmic iterate is smooth at every positive argument.-/
+/-- A fixed logarithmic iterate is smooth at every positive argument.
+@isnad1 id=contdiff.1h2v.s5.4a88b6c0e637 from=translated src=- shape=390e06c4 vocab=e974fe1b
+-/
 theorem contDiffAt_L_iterate {x : ℝ} (hx : 0 < x) (d : ℕ) :
     ContDiffAt ℝ ∞ (L^[d]) x := by
   induction d with
@@ -95,7 +105,9 @@ theorem contDiffAt_L_iterate {x : ℝ} (hx : 0 < x) (d : ℕ) :
       exact (contDiffAt_L (L_iterate_pos hx d)).comp x ih
 
 /-- The fixed-iterate shift is smooth in its unbounded coordinate and its
-scalar displacement whenever the input to the inverse iterate is positive.-/
+scalar displacement whenever the input to the inverse iterate is positive.
+@isnad1 id=contdiff.1h3v.s6.c6608bed3a42 from=translated src=- shape=a23451f6 vocab=c2b20c8f
+-/
 theorem contDiffAt_fixedIterateShift (d : ℕ) {v c : ℝ}
     (harg : 0 < E^[d] v + c) :
     ContDiffAt ℝ ∞

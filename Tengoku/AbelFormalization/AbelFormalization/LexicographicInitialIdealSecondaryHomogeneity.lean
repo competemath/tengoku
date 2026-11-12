@@ -27,7 +27,9 @@ attribute [local instance] MvPolynomial.weightedGradedAlgebra
 /-- Taking a component for an arbitrary second grading commutes with taking
 the least lexicographic form.  The nonzero hypothesis identifies that
 component with the least lexicographic form of the corresponding component
-of the original polynomial.-/
+of the original polynomial.
+@isnad1 id=eq.1h8v.s9.bd12e0c9bc03 from=translated src=- shape=c29e17b7 vocab=2fc37b2a
+-/
 theorem lexicographicInitialForm_of_weightedComponent
     (secondaryWeight : ι → M) (multiWeight : ι → Fin h → ℤ)
     (degree : M) (f : MvPolynomial ι R)
@@ -69,7 +71,9 @@ theorem lexicographicInitialForm_of_weightedComponent
 /-- Lexicographic initial formation preserves homogeneity for any independent
 secondary weighted grading.  In particular, `secondaryWeight` may be the
 positive ordinary-degree function while `multiWeight` is the signed vector
-weight used for the initial ideal.-/
+weight used for the initial ideal.
+@isnad1 id=ishomoge.1h7v.s8.b56dd5335fbc from=translated src=- shape=72804371 vocab=72b0c61d
+-/
 theorem lexicographicInitialIdeal_isHomogeneous_of_isHomogeneous
     [DecidableEq M]
     (secondaryWeight : ι → M) (multiWeight : ι → Fin h → ℤ)
@@ -104,7 +108,9 @@ theorem lexicographicInitialIdeal_isHomogeneous_of_isHomogeneous
             secondaryWeight hI hf degree)
 
 /-- Ordinary-degree specialization of preservation of secondary
-homogeneity.-/
+homogeneity.
+@isnad1 id=ishomoge.1h6v.s8.67717794c232 from=translated src=- shape=30fbc06e vocab=39dd15db
+-/
 theorem lexicographicInitialIdeal_isOrdinaryHomogeneous
     (ordinaryDegree : ι → ℕ) (multiWeight : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial ι R))

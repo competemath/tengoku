@@ -23,7 +23,9 @@ namespace AbelFormalization
 
 /-- A local analytic power factor forces all lower derivatives to vanish.
 Analyticity of `f` follows from the local factorization and is not an added
-hypothesis.-/
+hypothesis.
+@isnad1 id=eq.3h5v.s7.e3f43418c384 from=translated src=- shape=d438ae3e vocab=9a85eaba
+-/
 theorem iteratedDeriv_eq_zero_of_analytic_factor {f h : ℂ → ℂ} {ξ : ℂ} {m r : ℕ}
     (hh : AnalyticAt ℂ h ξ)
     (he : f =ᶠ[𝓝 ξ] fun z => (z - ξ) ^ m * h z) (hr : r < m) :
@@ -38,7 +40,9 @@ theorem iteratedDeriv_eq_zero_of_analytic_factor {f h : ℂ → ℂ} {ξ : ℂ} 
   exact (natCast_le_analyticOrderAt_iff_iteratedDeriv_eq_zero hf).mp ho r hr
 
 /-- Two analytic functions have the same lower jets if their local difference
-contains the specified power factor.-/
+contains the specified power factor.
+@isnad1 id=eq.5h6v.s7.8a3ff11f690a from=translated src=- shape=bc57db34 vocab=9a85eaba
+-/
 theorem iteratedDeriv_eq_of_analytic_factor {f g h : ℂ → ℂ} {ξ : ℂ} {m r : ℕ}
     (hf : AnalyticAt ℂ f ξ) (hg : AnalyticAt ℂ g ξ) (hh : AnalyticAt ℂ h ξ)
     (he : (fun z => f z - g z) =ᶠ[𝓝 ξ] fun z => (z - ξ) ^ m * h z)
@@ -47,12 +51,17 @@ theorem iteratedDeriv_eq_of_analytic_factor {f g h : ℂ → ℂ} {ξ : ℂ} {m 
   rw [iteratedDeriv_fun_sub hf.contDiffAt hg.contDiffAt] at hz
   exact sub_eq_zero.mp hz
 
+/--
+@isnad1 id=analytic.0h2v.s5.34cc29ff9a05 from=translated src=- shape=846cab93 vocab=84d1cbdb
+-/
 theorem polynomial_eval_analyticAt (P : ℂ[X]) (ξ : ℂ) :
     AnalyticAt ℂ (fun z => P.eval z) ξ :=
   AnalyticOnNhd.eval_polynomial P ξ (Set.mem_univ ξ)
 
 /-- A polynomial-divisible analytic remainder gives the interpolation jet
-equalities at each divisor root.-/
+equalities at each divisor root.
+@isnad1 id=eq.5h7v.s8.e02e7dbc1829 from=translated src=- shape=eb644a3b vocab=f214fb41
+-/
 theorem iteratedDeriv_eq_of_divisible_analytic_remainder
     {f h : ℂ → ℂ} {P Q : ℂ[X]} {ξ : ℂ} {m r : ℕ}
     (hf : AnalyticAt ℂ f ξ) (hh : AnalyticAt ℂ h ξ)
@@ -68,7 +77,9 @@ theorem iteratedDeriv_eq_of_divisible_analytic_remainder
   ring
 
 /-- The full multiplicity at a repeated node is the sum of all its supplied
-multiplicities. A node-polynomial remainder matches that entire jet.-/
+multiplicities. A node-polynomial remainder matches that entire jet.
+@isnad1 id=eq.4h8v.s7.423ad5fc80d7 from=translated src=- shape=fc52d4bb vocab=3a1044e0
+-/
 theorem iteratedDeriv_eq_of_nodePolynomial_remainder {ι : Type*} [Fintype ι]
     {f h : ℂ → ℂ} {P : ℂ[X]} (δ : ι → ℂ) (m : ι → ℕ) {ξ : ℂ} {r : ℕ}
     (hf : AnalyticAt ℂ f ξ) (hh : AnalyticAt ℂ h ξ)
@@ -80,7 +91,9 @@ theorem iteratedDeriv_eq_of_nodePolynomial_remainder {ι : Type*} [Fintype ι]
     (grouped_node_factor_dvd δ m ξ) he hr
 
 /-- Analytic derivatives of polynomial evaluation agree with iterates of the
-formal polynomial derivative.-/
+formal polynomial derivative.
+@isnad1 id=eq.0h2v.s7.922da02cfa75 from=translated src=- shape=34f0c3fa vocab=2b5bfa82
+-/
 theorem iteratedDeriv_polynomial_eval (P : ℂ[X]) (r : ℕ) :
     iteratedDeriv r (fun z => P.eval z) =
       fun z => (Polynomial.derivative^[r] P).eval z := by
@@ -93,7 +106,9 @@ theorem iteratedDeriv_polynomial_eval (P : ℂ[X]) (r : ℕ) :
     rfl
 
 /-- Vanishing polynomial jets imply divisibility by the corresponding power
-of a linear factor.-/
+of a linear factor.
+@isnad1 id=dvd.1h3v.s7.b11cb93e6dee from=translated src=- shape=1900695d vocab=fafd8733
+-/
 theorem polynomial_factor_dvd_of_iteratedDeriv_zero {P : ℂ[X]} {ξ : ℂ} {m : ℕ}
     (hjets : ∀ r < m, iteratedDeriv r (fun z => P.eval z) ξ = 0) :
     (X - C ξ) ^ m ∣ P := by
@@ -110,7 +125,9 @@ theorem polynomial_factor_dvd_of_iteratedDeriv_zero {P : ℂ[X]} {ξ : ℂ} {m :
     rwa [iteratedDeriv_polynomial_eval] at hz
 
 open scoped Classical in
-/-- The node polynomial can be grouped over its distinct node values.-/
+/-- The node polynomial can be grouped over its distinct node values.
+@isnad1 id=eq.0h3v.s7.06a8da2540df from=translated src=- shape=33b101bc vocab=c50bcda5
+-/
 theorem nodePolynomial_eq_prod_grouped {ι : Type*} [Fintype ι]
     (δ : ι → ℂ) (m : ι → ℕ) :
     nodePolynomial δ m =
@@ -131,7 +148,9 @@ theorem nodePolynomial_eq_prod_grouped {ι : Type*} [Fintype ι]
     _ = _ := Finset.prod_pow_eq_pow_sum _ _ _
 
 /-- Jets at the distinct node values, with multiplicities added at collisions,
-force divisibility by the full node polynomial.-/
+force divisibility by the full node polynomial.
+@isnad1 id=dvd.1h4v.s6.f38e67ade2f2 from=translated src=- shape=81513392 vocab=5a02dd58
+-/
 theorem nodePolynomial_dvd_of_iteratedDeriv_zero {ι : Type*} [Fintype ι]
     (δ : ι → ℂ) (m : ι → ℕ) {P : ℂ[X]}
     (hjets : ∀ ξ r, r < nodeMultiplicity δ m ξ →
@@ -148,7 +167,9 @@ theorem nodePolynomial_dvd_of_iteratedDeriv_zero {ι : Type*} [Fintype ι]
 /-- Polynomial interpolation is unique below the total multiplicity. At
 colliding nodes the derivative conditions use the sum of the multiplicities.
 The `degree` formulation includes the zero polynomial and total multiplicity
-zero.-/
+zero.
+@isnad1 id=eq.3h5v.s7.a466d19311e5 from=translated src=- shape=a889966d vocab=10de2267
+-/
 theorem polynomial_eq_of_grouped_jets {ι : Type*} [Fintype ι]
     (δ : ι → ℂ) (m : ι → ℕ) {P₁ P₂ : ℂ[X]}
     (hdegree₁ : P₁.degree < (totalMultiplicity m : WithBot ℕ))

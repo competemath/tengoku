@@ -44,7 +44,9 @@ variable {R V : Type*} [CommRing R] [AddCommGroup V] [Module R V]
 /-- The actual quotient F/(F∩G), viewed as a quotient of the submodule F.-/
 abbrev submoduleLayer (F G : Submodule R V) := F ⧸ G.comap F.subtype
 
-/-- I kills the quotient layer whenever I⋅F is contained in G.-/
+/-- I kills the quotient layer whenever I⋅F is contained in G.
+@isnad1 id=istorsio.1h5v.s9.471dd7103361 from=translated src=- shape=f0a146b9 vocab=f30842ed
+-/
 theorem submoduleLayer_isTorsionBySet (I : Ideal R) (F G : Submodule R V)
     (hIF : I • F ≤ G) : Module.IsTorsionBySet R (submoduleLayer F G) I := by
   apply (Module.isTorsionBySet_quotient_iff (G.comap F.subtype) I).mpr
@@ -65,7 +67,9 @@ def submoduleLayerResidueFinrank (I : Ideal R) [I.IsMaximal]
   Module.finrank (R ⧸ I) (submoduleLayer F G)
 
 /-- For a Noetherian ambient module, an annihilated layer is finite over
-the actual residue field, and its residue dimension equals its R-length.-/
+the actual residue field, and its residue dimension equals its R-length.
+@isnad1 id=eq.1h5v.s9.dce621ea868b from=translated src=- shape=eb5dd5ae vocab=ef5c442e
+-/
 theorem submoduleLayer_length_eq_residue_finrank [IsNoetherian R V]
     (I : Ideal R) [I.IsMaximal] (F G : Submodule R V) (hIF : I • F ≤ G) :
     Module.length R (submoduleLayer F G) =
@@ -84,7 +88,9 @@ theorem submoduleLayer_length_eq_residue_finrank [IsNoetherian R V]
 /-- The same length comparison only needs the numerator of the layer to be
 Noetherian.  This form is needed for a finite homogeneous piece inside an
 ambient polynomial module, which is usually not finite over its coefficient
-ring.-/
+ring.
+@isnad1 id=eq.1h5v.s9.631fb006eb61 from=translated src=- shape=f0bed615 vocab=ef5c442e
+-/
 theorem submoduleLayer_length_eq_residue_finrank_of_noetherian
     (I : Ideal R) [I.IsMaximal] (F G : Submodule R V) [IsNoetherian R F]
     (hIF : I • F ≤ G) :
@@ -112,7 +118,9 @@ def inducedSubmoduleLayerMap (N F G : Submodule R V) :
           exact hx.2)
 
 /-- The induced layer is a genuine submodule of the ambient layer; its
-kernel is precisely the next induced filtration term.-/
+kernel is precisely the next induced filtration term.
+@isnad1 id=injectiv.0h5v.s11.683d66e3ea6e from=translated src=- shape=012ed9db vocab=caf4d43e
+-/
 theorem inducedSubmoduleLayerMap_injective (N F G : Submodule R V) :
     Function.Injective (inducedSubmoduleLayerMap N F G) := by
   have hden : (G.comap F.subtype).comap (Submodule.inclusion
@@ -128,7 +136,9 @@ theorem inducedSubmoduleLayerMap_injective (N F G : Submodule R V) :
         (Submodule.inclusion inf_le_right) _) = ⊥
   rw [Submodule.ker_mapQ, hden, Submodule.mkQ_map_self]
 
-/-- A quotient layer is part of an actual short exact sequence.-/
+/-- A quotient layer is part of an actual short exact sequence.
+@isnad1 id=eq.1h4v.s9.91f11c015f3b from=translated src=- shape=8f0db071 vocab=305c9464
+-/
 theorem submodule_length_eq_add_layer (F G : Submodule R V) (hGF : G ≤ F) :
     Module.length R F = Module.length R G + Module.length R (submoduleLayer F G) := by
   have h := Module.length_eq_add_of_exact (G.comap F.subtype).subtype
@@ -138,7 +148,9 @@ theorem submodule_length_eq_add_layer (F G : Submodule R V) (hGF : G ≤ F) :
   exact h
 
 /-- Length telescopes along an actual finite descending filtration.
-The identity remains valid for infinite extended-natural lengths.-/
+The identity remains valid for infinite extended-natural lengths.
+@isnad1 id=eq.1h4v.s9.193f69f2f32d from=translated src=- shape=40b99e62 vocab=57b15632
+-/
 theorem submodule_length_eq_sum_layers_add (F : ℕ → Submodule R V)
     (hF : ∀ i, F (i + 1) ≤ F i) (e : ℕ) :
     Module.length R (F 0) =
@@ -161,7 +173,9 @@ theorem submodule_length_eq_sum_layers_add (F : ℕ → Submodule R V)
 /-- A finite descending filtration killed one step at a time by a maximal
 ideal has total length equal to the sum of the canonical residue-field
 dimensions of its layers.  No assertion is made about the individual layer
-dimensions in a family.-/
+dimensions in a family.
+@isnad1 id=eq.3h5v.s8.17d454580c28 from=translated src=- shape=ede8af4f vocab=5597f9f0
+-/
 theorem submodule_length_eq_sum_residue_finrank_of_filtration [IsNoetherian R V]
     (I : Ideal R) [I.IsMaximal] (F : ℕ → Submodule R V)
     (hF : ∀ i, F (i + 1) ≤ F i) (hIF : ∀ i, I • F i ≤ F (i + 1))
@@ -179,26 +193,40 @@ theorem submodule_length_eq_sum_residue_finrank_of_filtration [IsNoetherian R V]
 def idealPowerSubmodule (I : Ideal R) (i : ℕ) : Submodule R V :=
   I ^ i • (⊤ : Submodule R V)
 
+/--
+@isnad1 id=eq.0h3v.s6.bc10b7a009ca from=translated src=- shape=3f28e551 vocab=0e687862
+-/
 @[simp]
 theorem idealPowerSubmodule_zero (I : Ideal R) : idealPowerSubmodule (V := V) I 0 = ⊤ := by
   simp [idealPowerSubmodule]
 
+/--
+@isnad1 id=eq.0h4v.s7.a7e90ad1d112 from=translated src=- shape=3df21ab6 vocab=373976b8
+-/
 theorem idealPowerSubmodule_succ (I : Ideal R) (i : ℕ) :
     idealPowerSubmodule (V := V) I (i + 1) = I • idealPowerSubmodule I i := by
   rw [idealPowerSubmodule, pow_succ', Submodule.mul_smul]
   rfl
 
+/--
+@isnad1 id=le.0h4v.s6.a181be3d917f from=translated src=- shape=2539b1f6 vocab=3d4b649c
+-/
 theorem idealPowerSubmodule_succ_le (I : Ideal R) (i : ℕ) :
     idealPowerSubmodule (V := V) I (i + 1) ≤ idealPowerSubmodule I i := by
   rw [idealPowerSubmodule_succ]
   exact Submodule.smul_le_right
 
+/--
+@isnad1 id=eq.1h4v.s7.fdbcdd87cb3f from=translated src=- shape=a9bbcc55 vocab=bf1c5859
+-/
 theorem idealPowerSubmodule_eq_bot (I : Ideal R) {e : ℕ} (he : I ^ e = ⊥) :
     idealPowerSubmodule (V := V) I e = ⊥ := by
   simp [idealPowerSubmodule, he]
 
 /-- Multiplication by I advances the induced ambient filtration, even
-though it need not generate the whole next induced term.-/
+though it need not generate the whole next induced term.
+@isnad1 id=le.0h5v.s8.b2b92875f597 from=translated src=- shape=6809c16d vocab=a2279d92
+-/
 theorem idealPower_induced_smul_le (I : Ideal R) (N : Submodule R V) (i : ℕ) :
     I • (N ⊓ idealPowerSubmodule I i) ≤ N ⊓ idealPowerSubmodule I (i + 1) := by
   apply Submodule.smul_le.mpr
@@ -208,7 +236,9 @@ theorem idealPower_induced_smul_le (I : Ideal R) (N : Submodule R V) (i : ℕ) :
   exact Submodule.smul_mem_smul ha hx.2
 
 /-- Actual induced layers, rather than the generally different intrinsic
-filtration I^iN, recover the full length of N.-/
+filtration I^iN, recover the full length of N.
+@isnad1 id=eq.1h5v.s10.c595ba793ad0 from=translated src=- shape=3528de37 vocab=650b0536
+-/
 theorem idealPower_induced_length_eq_sum_layers (I : Ideal R) (N : Submodule R V)
     {e : ℕ} (he : I ^ e = ⊥) :
     Module.length R N =
@@ -222,7 +252,9 @@ theorem idealPower_induced_length_eq_sum_layers (I : Ideal R) (N : Submodule R V
   exact h
 
 /-- The sum of all induced-layer residue dimensions equals length.
-Individual layer dimensions are not asserted to be invariant in a family.-/
+Individual layer dimensions are not asserted to be invariant in a family.
+@isnad1 id=eq.1h5v.s8.fd809d89e2b2 from=translated src=- shape=c314589f vocab=e1fce454
+-/
 theorem idealPower_induced_length_eq_sum_residue_finrank [IsNoetherian R V]
     (I : Ideal R) [I.IsMaximal] (N : Submodule R V) {e : ℕ} (he : I ^ e = ⊥) :
     Module.length R N =
@@ -235,7 +267,9 @@ theorem idealPower_induced_length_eq_sum_residue_finrank [IsNoetherian R V]
   exact submoduleLayer_length_eq_residue_finrank I _ _ (idealPower_induced_smul_le I N i)
 
 /-- The finite filtration length is derived for an actual Artinian local
-coefficient ring, not imposed as a nilpotence assumption.-/
+coefficient ring, not imposed as a nilpotence assumption.
+@isnad1 id=ex.0h1v.s6.bb7274e4058f from=translated src=- shape=b294a018 vocab=bf9be6f2
+-/
 theorem exists_maximalIdeal_pow_eq_bot_for_layers [IsLocalRing R] [IsArtinianRing R] :
     ∃ e : ℕ, IsLocalRing.maximalIdeal R ^ e = ⊥ := by
   obtain ⟨e, he⟩ :=
@@ -243,7 +277,9 @@ theorem exists_maximalIdeal_pow_eq_bot_for_layers [IsLocalRing R] [IsArtinianRin
   exact ⟨e, le_bot_iff.mp he⟩
 
 /-- Every finite module over an actual Artinian local ring has the
-claimed induced-layer length identity, with a common ambient cutoff.-/
+claimed induced-layer length identity, with a common ambient cutoff.
+@isnad1 id=ex.0h2v.s8.3822e222af20 from=translated src=- shape=04fd0d5b vocab=e57e2300
+-/
 theorem exists_artinian_induced_layer_length [IsLocalRing R] [IsArtinianRing R]
     [Module.Finite R V] :
     ∃ e : ℕ, IsLocalRing.maximalIdeal R ^ e = ⊥ ∧
@@ -276,6 +312,9 @@ def artinianPolynomialModuleCoeffEquiv :
     (Finsupp.linearEquivFunOnFinite B ((Fin n →₀ ℕ) →₀ B) (Fin r)).symm).trans
     (Finsupp.curryLinearEquiv B).symm
 
+/--
+@isnad1 id=eq.0h6v.s9.9c46116d848d from=translated src=- shape=624b3f54 vocab=072bd773
+-/
 @[simp]
 theorem artinianPolynomialModuleCoeffEquiv_apply
     (P : artinianFreePolynomialModule B n r) (k : Fin r) (d : Fin n →₀ ℕ) :
@@ -287,6 +326,9 @@ def artinianPolynomialModuleSupported (T : Set (Fin r × (Fin n →₀ ℕ))) :
     Submodule B (artinianFreePolynomialModule B n r) :=
   (Finsupp.supported B B T).comap artinianPolynomialModuleCoeffEquiv.toLinearMap
 
+/--
+@isnad1 id=iff.0h5v.s8.64f2e7c2967c from=translated src=- shape=678d2cde vocab=5cbc4953
+-/
 theorem mem_artinianPolynomialModuleSupported
     (T : Set (Fin r × (Fin n →₀ ℕ)))
     (P : artinianFreePolynomialModule B n r) :
@@ -313,6 +355,9 @@ def artinianPolynomialDegreeTerms (weight : Fin n → ℕ) (shift : Fin r → �
     (degree : ℤ) : Set (Fin r × (Fin n →₀ ℕ)) :=
   {t | artinianPolynomialTermDegree weight shift t = degree}
 
+/--
+@isnad1 id=finite.1h5v.s5.1596ddb42729 from=translated src=- shape=66a0028d vocab=4408aad0
+-/
 theorem artinianPolynomialDegreeTerms_finite (weight : Fin n → ℕ)
     (hweight : ∀ i, 0 < weight i) (shift : Fin r → ℤ) (degree : ℤ) :
     (artinianPolynomialDegreeTerms weight shift degree).Finite := by
@@ -334,7 +379,9 @@ def artinianPolynomialModulePiece (weight : Fin n → ℕ) (shift : Fin r → �
   artinianPolynomialModuleSupported (artinianPolynomialDegreeTerms weight shift degree)
 
 /-- Positivity makes each homogeneous piece a finite module over the
-coefficient ring, even though the whole polynomial module is not.-/
+coefficient ring, even though the whole polynomial module is not.
+@isnad1 id=finite.1h6v.s9.f94a8c445942 from=translated src=- shape=e708c656 vocab=f75d52e9
+-/
 theorem artinianPolynomialModulePiece_moduleFinite (weight : Fin n → ℕ)
     (hweight : ∀ i, 0 < weight i) (shift : Fin r → ℤ) (degree : ℤ) :
     Module.Finite B (artinianPolynomialModulePiece (B := B) weight shift degree) := by
@@ -386,6 +433,9 @@ def inducedSubmoduleLayerPushforwardMap
         change f (a • x) = a • f x
         exact f.map_smul a x }
 
+/--
+@isnad1 id=injectiv.3h7v.s11.402dcbedbb1f from=translated src=- shape=9dde11dd vocab=9f323ca2
+-/
 theorem inducedSubmoduleLayerPushforwardMap_injective
     {A C W : Type*} [CommRing A] [CommRing C] [AddCommGroup W] [Module A W]
     (q : A →+* C) (hq : Function.Surjective q) (N F G : Submodule A W)
@@ -414,12 +464,18 @@ def artinianPolynomialResidueMap (I : Ideal B) :
     MvPolynomial (Fin n) B →+* MvPolynomial (Fin n) (B ⧸ I) :=
   MvPolynomial.map (Ideal.Quotient.mk I)
 
+/--
+@isnad1 id=surjecti.0h3v.s8.b40c1567fc80 from=translated src=- shape=748e3740 vocab=ab3fa586
+-/
 theorem artinianPolynomialResidueMap_surjective (I : Ideal B) :
     Function.Surjective (artinianPolynomialResidueMap (n := n) I) := by
   simpa [artinianPolynomialResidueMap] using
     (MvPolynomial.map_surjective (σ := Fin n) (Ideal.Quotient.mk I)
       Ideal.Quotient.mk_surjective)
 
+/--
+@isnad1 id=eq.0h3v.s8.a3d1198901a0 from=translated src=- shape=f25ee9b6 vocab=6349e605
+-/
 theorem artinianPolynomialResidueMap_ker (I : Ideal B) :
     RingHom.ker (artinianPolynomialResidueMap (n := n) I) =
       artinianPolynomialCoefficientIdeal (n := n) I := by
@@ -432,17 +488,26 @@ def artinianPolynomialIdealPowerSubmodule (I : Ideal B) (i : ℕ) :
   idealPowerSubmodule (V := artinianFreePolynomialModule B n r)
     (artinianPolynomialCoefficientIdeal (n := n) I) i
 
+/--
+@isnad1 id=eq.0h5v.s9.7ce6938eb246 from=translated src=- shape=62100039 vocab=01627b68
+-/
 theorem artinianPolynomialIdealPowerSubmodule_succ (I : Ideal B) (i : ℕ) :
     artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I (i + 1) =
       artinianPolynomialCoefficientIdeal (n := n) I •
         artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i :=
   idealPowerSubmodule_succ _ _
 
+/--
+@isnad1 id=le.0h5v.s9.5327f1099992 from=translated src=- shape=6c685c16 vocab=427ea84a
+-/
 theorem artinianPolynomialIdealPowerSubmodule_succ_le (I : Ideal B) (i : ℕ) :
     artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I (i + 1) ≤
       artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i :=
   idealPowerSubmodule_succ_le _ _
 
+/--
+@isnad1 id=eq.1h5v.s9.cfd3f20f57b8 from=translated src=- shape=6c9b7e4f vocab=1015da83
+-/
 theorem artinianPolynomialIdealPowerSubmodule_eq_bot (I : Ideal B) {e : ℕ}
     (he : I ^ e = ⊥) :
     artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I e = ⊥ := by
@@ -466,6 +531,9 @@ abbrev artinianPolynomialAmbientLayer (I : Ideal B) (i : ℕ) :=
   submoduleLayer (artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i)
     (artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I (i + 1))
 
+/--
+@isnad1 id=le.0h6v.s11.99548192525c from=translated src=- shape=f1c53aa7 vocab=8d541295
+-/
 theorem artinianPolynomialInducedLayer_annihilation (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (i : ℕ) :
@@ -476,6 +544,9 @@ theorem artinianPolynomialInducedLayer_annihilation (I : Ideal B)
   exact idealPower_induced_smul_le
     (artinianPolynomialCoefficientIdeal (n := n) I) N i
 
+/--
+@isnad1 id=le.0h5v.s10.694e5699d6bd from=translated src=- shape=24a4613c vocab=790a6a6e
+-/
 theorem artinianPolynomialAmbientLayer_annihilation (I : Ideal B) (i : ℕ) :
     RingHom.ker (artinianPolynomialResidueMap (n := n) I) •
         artinianPolynomialIdealPowerSubmodule (n := n) (r := r) I i ≤
@@ -528,6 +599,9 @@ def artinianPolynomialInducedLayerMap (I : Ideal B)
     (artinianPolynomialInducedLayer_annihilation (n := n) (r := r) I N i)
     (artinianPolynomialAmbientLayer_annihilation (n := n) (r := r) I i)
 
+/--
+@isnad1 id=injectiv.0h6v.s13.ba2d0072446c from=translated src=- shape=50d116b6 vocab=72651787
+-/
 theorem artinianPolynomialInducedLayerMap_injective (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (i : ℕ) :
@@ -573,6 +647,9 @@ def artinianPolynomialInducedLayerSumMap (I : Ideal B)
   exact LinearMap.piMap (fun i : Fin e =>
     artinianPolynomialInducedLayerMap (n := n) (r := r) I N i.1)
 
+/--
+@isnad1 id=injectiv.0h6v.s14.75dfe981ecfc from=translated src=- shape=50d116b6 vocab=b0fb0efe
+-/
 theorem artinianPolynomialInducedLayerSumMap_injective (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (e : ℕ) :
@@ -618,7 +695,9 @@ def artinianPolynomialInducedDegreeFiltration (I : Ideal B)
     artinianPolynomialIdealPowerDegreeSubmodule I weight shift degree i
 
 /-- This is literally the degree restriction of `N ∩ (mB[z])^i F`; it is
-not the generally different intrinsic filtration `m^i N`.-/
+not the generally different intrinsic filtration `m^i N`.
+@isnad1 id=eq.0h9v.s11.d7544af901e8 from=translated src=- shape=085baab5 vocab=efeb4d98
+-/
 theorem artinianPolynomialInducedDegreeFiltration_eq_comap (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) (i : ℕ) :
@@ -628,6 +707,9 @@ theorem artinianPolynomialInducedDegreeFiltration_eq_comap (I : Ideal B)
   ext x
   rfl
 
+/--
+@isnad1 id=le.0h8v.s11.767ba93586fa from=translated src=- shape=ee51161e vocab=2dce5e5f
+-/
 theorem artinianPolynomialIdealPowerDegreeSubmodule_succ_le (I : Ideal B)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) (i : ℕ) :
     artinianPolynomialIdealPowerDegreeSubmodule I weight shift degree (i + 1) ≤
@@ -641,6 +723,9 @@ theorem artinianPolynomialIdealPowerDegreeSubmodule_succ_le (I : Ideal B)
     artinianPolynomialIdealPowerSubmodule I i
   exact artinianPolynomialIdealPowerSubmodule_succ_le I i hx
 
+/--
+@isnad1 id=eq.0h7v.s10.5c6cac7adae3 from=translated src=- shape=85e05834 vocab=7a85206a
+-/
 @[simp]
 theorem artinianPolynomialIdealPowerDegreeSubmodule_zero (I : Ideal B)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) :
@@ -650,6 +735,9 @@ theorem artinianPolynomialIdealPowerDegreeSubmodule_zero (I : Ideal B)
     idealPowerSubmodule_zero, Submodule.restrictScalars_top]
   simp only [Submodule.comap_top]
 
+/--
+@isnad1 id=eq.1h8v.s10.1eaefc82aefd from=translated src=- shape=df1cbe40 vocab=6fa5259e
+-/
 theorem artinianPolynomialIdealPowerDegreeSubmodule_eq_bot (I : Ideal B)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) {e : ℕ}
     (he : I ^ e = ⊥) :
@@ -658,6 +746,9 @@ theorem artinianPolynomialIdealPowerDegreeSubmodule_eq_bot (I : Ideal B)
     artinianPolynomialIdealPowerSubmodule_eq_bot I he]
   simp
 
+/--
+@isnad1 id=eq.0h8v.s9.801c81d77a91 from=translated src=- shape=938a8987 vocab=ae9a3df8
+-/
 @[simp]
 theorem artinianPolynomialInducedDegreeFiltration_zero (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
@@ -666,6 +757,9 @@ theorem artinianPolynomialInducedDegreeFiltration_zero (I : Ideal B)
       artinianPolynomialSubmoduleDegree N weight shift degree := by
   simp [artinianPolynomialInducedDegreeFiltration]
 
+/--
+@isnad1 id=eq.1h9v.s10.52524d9b9cfe from=translated src=- shape=fe1e1cf4 vocab=2612f5ee
+-/
 theorem artinianPolynomialInducedDegreeFiltration_eq_bot (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) {e : ℕ}
@@ -675,6 +769,9 @@ theorem artinianPolynomialInducedDegreeFiltration_eq_bot (I : Ideal B)
     artinianPolynomialIdealPowerDegreeSubmodule_eq_bot I weight shift degree he]
   exact inf_bot_eq _
 
+/--
+@isnad1 id=le.0h9v.s11.33cf23585f49 from=translated src=- shape=8ad6a9b3 vocab=3cea8e07
+-/
 theorem artinianPolynomialInducedDegreeFiltration_succ_le (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) (i : ℕ) :
@@ -684,7 +781,9 @@ theorem artinianPolynomialInducedDegreeFiltration_succ_le (I : Ideal B)
     (artinianPolynomialIdealPowerDegreeSubmodule_succ_le I weight shift degree i)
 
 /-- Multiplication by the coefficient ideal advances the inherited
-polynomial filtration on each fixed ordinary degree.-/
+polynomial filtration on each fixed ordinary degree.
+@isnad1 id=le.0h9v.s12.0f3aaac2455b from=translated src=- shape=2ad341d1 vocab=9badcf88
+-/
 theorem artinianPolynomialInducedDegreeFiltration_smul_le (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ) (i : ℕ) :
@@ -711,7 +810,9 @@ theorem artinianPolynomialInducedDegreeFiltration_smul_le (I : Ideal B)
 
 /-- For every original homogeneous degree, the sum of the dimensions of all
 induced layers over the actual residue field equals the length of that degree
-piece.  Only the sum is controlled; individual summands may vary with `N`.-/
+piece.  Only the sum is controlled; individual summands may vary with `N`.
+@isnad1 id=eq.2h9v.s12.d6f611fca5fa from=translated src=- shape=c17f4d9b vocab=d6b85191
+-/
 theorem artinianPolynomialSubmoduleDegree_length_eq_sum_layer_finranks
     [IsArtinianRing B] (I : Ideal B) [I.IsMaximal]
     (N : Submodule (MvPolynomial (Fin n) B) (artinianFreePolynomialModule B n r))
@@ -740,7 +841,9 @@ theorem artinianPolynomialSubmoduleDegree_length_eq_sum_layer_finranks
   exact h
 
 /-- A single nilpotence exponent works for all polynomial submodules and all
-ordinary degrees over an Artinian local coefficient ring.-/
+ordinary degrees over an Artinian local coefficient ring.
+@isnad1 id=ex.1h5v.s12.0346cb459f9f from=translated src=- shape=23dcb35c vocab=06b6b2fa
+-/
 theorem exists_artinianPolynomialSubmoduleDegree_length_eq_sum_layer_finranks
     [IsLocalRing B] [IsArtinianRing B]
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i) (shift : Fin r → ℤ) :

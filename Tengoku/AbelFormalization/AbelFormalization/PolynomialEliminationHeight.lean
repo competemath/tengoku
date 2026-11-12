@@ -23,6 +23,9 @@ def polynomialEliminationContraction (a : ℕ)
   (Q.comap Polynomial.C).comap MvPolynomial.C
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=iff.0h4v.s9.5d44557c119c from=translated src=- shape=104fde3d vocab=26e8fa0b
+-/
 @[simp]
 theorem polynomialEliminationContraction_mem_iff (a : ℕ)
     (Q : Ideal (Polynomial (MvPolynomial (Fin a) R))) (r : R) :

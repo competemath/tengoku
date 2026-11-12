@@ -31,7 +31,9 @@ def finiteCommonDenominatorMvPolynomialEval
     (finiteCommonClearedNumerator denominator numerator) P
 
 /-- A product common denominator clears a polynomial whenever each variable
-has its stated individual denominator identity.-/
+has its stated individual denominator identity.
+@isnad1 id=eq.2h9v.s7.826c5bee7073 from=translated src=- shape=04623314 vocab=988357f8
+-/
 theorem finiteCommonDenominator_pow_mul_eval₂_eq
     {R S σ : Type*} [CommSemiring R] [CommSemiring S]
     [Fintype σ] [DecidableEq σ]
@@ -48,7 +50,9 @@ theorem finiteCommonDenominator_pow_mul_eval₂_eq
       denominator numerator old hcoordinate)
 
 /-- The cleared polynomial is in a function subalgebra when its supported
-coefficients and all individual denominator/numerator data are in it.-/
+coefficients and all individual denominator/numerator data are in it.
+@isnad1 id=mem.3h9v.s9.5ba7c1e4d139 from=translated src=- shape=19af282a vocab=6a59fd24
+-/
 theorem finiteCommonDenominatorMvPolynomialEval_mem_subalgebra
     {X R σ : Type*} [CommSemiring R]
     [Fintype σ] [DecidableEq σ]
@@ -78,6 +82,9 @@ def finiteCommonDenominatorMvPolynomialFamilyEval
   finiteCommonDenominatorMvPolynomialEval
     (mvPolynomialFamilyTotalDegree Q) c denominator numerator (Q i)
 
+/--
+@isnad1 id=eq.1h10v.s7.f9b180a914ca from=translated src=- shape=cc2b2d4d vocab=6ec6294f
+-/
 theorem finiteCommonDenominator_family_pow_mul_eval₂_eq
     {R S σ : Type*} [CommSemiring R] [CommSemiring S]
     [Fintype σ] [DecidableEq σ] {n : ℕ}
@@ -93,6 +100,9 @@ theorem finiteCommonDenominator_family_pow_mul_eval₂_eq
     (mvPolynomialFamilyTotalDegree Q) c denominator numerator old (Q row)
     (mvPolynomial_totalDegree_le_familyTotalDegree Q row) hcoordinate
 
+/--
+@isnad1 id=mem.3h10v.s9.8ad1dbc5c15a from=translated src=- shape=d2f8a72b vocab=89c3deff
+-/
 theorem finiteCommonDenominatorMvPolynomialFamilyEval_mem_subalgebra
     {X R σ : Type*} [CommSemiring R]
     [Fintype σ] [DecidableEq σ] {n : ℕ}

@@ -33,7 +33,9 @@ local instance centralLaurentPolynomialAlgebra
   (centralLaurentPolynomialMap R ι h).toAlgebra
 
 /-- The central polynomial-to-Laurent inclusion is the localization which
-inverts the independent variables.-/
+inverts the independent variables.
+@isnad1 id=islocali.0h3v.s6.aaf9abf4cf5b from=translated src=- shape=a7086646 vocab=a356ff0c
+-/
 theorem centralLaurentPolynomial_isLocalization
     (R : Type*) [CommRing R] (ι : Type*) (h : ℕ) :
     IsLocalization (centralLaurentVariableSubmonoid R ι h)

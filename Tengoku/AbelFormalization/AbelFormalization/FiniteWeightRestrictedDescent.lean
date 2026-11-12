@@ -22,7 +22,9 @@ variable {M : Fin n → Type*}
 variable [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
 /-- The coordinate restriction and its principal coordinate quotient
-intertwine in the orientation used by semilinear iteration transport.-/
+intertwine in the orientation used by semilinear iteration transport.
+@isnad1 id=eq.2h7v.s13.847387041f2f from=translated src=- shape=ad99a74e vocab=029e701b
+-/
 theorem finiteWeightRestrictedPiQuotientMap_intertwines'
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))
@@ -37,7 +39,9 @@ theorem finiteWeightRestrictedPiQuotientMap_intertwines'
     J K hK hJK b x).symm
 
 /-- Every descent iterate commutes with the principal coordinate quotient,
-provided its kernel `(b)` is contained in the initial submodule.-/
+provided its kernel `(b)` is contained in the initial submodule.
+@isnad1 id=eq.3h8v.s13.024e749d507d from=translated src=- shape=45107890 vocab=7fe59c4d
+-/
 theorem map_finiteWeightInvariantCoordinate_descentIterate_eq
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))
@@ -74,7 +78,9 @@ theorem map_finiteWeightInvariantCoordinate_descentIterate_eq
   exact h
 
 /-- If the quotient iteration is invariant, then the corresponding iterate
-in the coordinate product of `K` is invariant as well.-/
+in the coordinate product of `K` is invariant as well.
+@isnad1 id=eq.4h8v.s13.aa120de4d7d8 from=translated src=- shape=1c3e498f vocab=7fe59c4d
+-/
 theorem finiteWeightInvariantCoordinate_iterate_invariant_of_quotient
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K : Submodule R (∀ i, M i))

@@ -28,7 +28,9 @@ namespace AbelFormalization
 set_option autoImplicit false
 
 /-- Avoiding the exceptional value makes the augmented derivative surjective
-at every attained point of the corresponding fiber slice.-/
+at every attained point of the corresponding fiber slice.
+@isnad1 id=surjecti.3h7v.s9.69e89940e8d2 from=translated src=- shape=23a29daa vocab=647b4734
+-/
 theorem wilkie28_augmented_surjective_of_not_exceptional
     {E K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -53,7 +55,9 @@ def wilkieCase2BallSliceFiber
 `hkernel` premise is the derivative-level coordinate-insertion identity:
 every zero-pivot direction is in the range of `direction`.  The `hcover`
 premise is its value-level counterpart, while `drop` gives a boundedness
-transport without requiring an inverse on the entire ambient space.-/
+transport without requiring an inverse on the entire ambient space.
+@isnad1 id=and.11h13v.s10.3cfe3ba00ebb from=translated src=- shape=a9467c38 vocab=364381de
+-/
 theorem wilkie_case2_ball_slice_regular_nonempty_bounded
     {E E' K : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -124,7 +128,9 @@ theorem wilkie_case2_ball_slice_regular_nonempty_bounded
   exact hrestricted
 
 /-- At a fixed pivot, deleting the pivot coordinates recovers the inserted
-tuple.-/
+tuple.
+@isnad1 id=eq.0h4v.s6.6b40abbf6fd2 from=translated src=- shape=3bd21fa9 vocab=0d383877
+-/
 theorem fin_removeNth_insertNth_fixed
     {m : ℕ} (i : Fin (m + 1)) (b : ℝ) (u : Fin m → ℝ) :
     i.removeNth (Fin.insertNth (α := fun _ ↦ ℝ) i b u) = u := by
@@ -132,7 +138,9 @@ theorem fin_removeNth_insertNth_fixed
   exact Fin.insertNth_apply_succAbove (α := fun _ ↦ ℝ) i b u j
 
 /-- A tuple with fixed pivot value is in the range of insertion.  This is
-the exact value-level premise `hcover` for a visible-coordinate slice.-/
+the exact value-level premise `hcover` for a visible-coordinate slice.
+@isnad1 id=ex.1h4v.s6.f9bed239023a from=translated src=- shape=94ab2026 vocab=4899871f
+-/
 theorem fin_insertNth_covers_fixed_pivot
     {m : ℕ} (i : Fin (m + 1)) (b : ℝ)
     (v : Fin (m + 1) → ℝ) (hv : v i = b) :
@@ -141,7 +149,9 @@ theorem fin_insertNth_covers_fixed_pivot
   exact ((Fin.eq_insertNth_iff).mpr ⟨hv, rfl⟩).symm
 
 /-- Every zero-pivot direction is in the range of zero insertion.  This is
-the tuple algebra behind the derivative-level premise `hkernel`.-/
+the tuple algebra behind the derivative-level premise `hkernel`.
+@isnad1 id=ex.1h3v.s6.43c8566f1d83 from=translated src=- shape=a8476c21 vocab=4899871f
+-/
 theorem fin_insertNth_zero_covers_zero_pivot
     {m : ℕ} (i : Fin (m + 1))
     (v : Fin (m + 1) → ℝ) (hv : v i = 0) :
@@ -207,6 +217,9 @@ def wilkieCase2VisibleDrop {m q : ℕ}
       ((Fin m → ℝ) × (Fin q → ℝ)) :=
   (wilkieCase2VisibleDropLinear (q := q) i).toContinuousLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s9.ec6143007d17 from=translated src=- shape=830403fc vocab=35d3fd00
+-/
 @[simp]
 theorem wilkieCase2VisibleDrop_insert {m q : ℕ}
     (i : Fin (m + 1)) (b : ℝ)
@@ -216,6 +229,9 @@ theorem wilkieCase2VisibleDrop_insert {m q : ℕ}
   · exact fin_removeNth_insertNth_fixed i b y.1
   · rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.6150c7bc31c7 from=translated src=- shape=511ca342 vocab=2bddccc2
+-/
 @[simp]
 theorem wilkieCase2VisibleInsert_pivot {m q : ℕ}
     (i : Fin (m + 1)) (b : ℝ)
@@ -224,7 +240,9 @@ theorem wilkieCase2VisibleInsert_pivot {m q : ℕ}
   simp [wilkieCase2VisibleInsert]
 
 /-- The fixed-coordinate insertion is affine with the stated Fréchet
-derivative at every point.-/
+derivative at every point.
+@isnad1 id=hasfderi.0h5v.s8.9a686d952f89 from=translated src=- shape=787b14b2 vocab=f92e7f9e
+-/
 theorem wilkieCase2VisibleInsert_hasFDerivAt {m q : ℕ}
     (i : Fin (m + 1)) (b : ℝ)
     (y : (Fin m → ℝ) × (Fin q → ℝ)) :
@@ -261,6 +279,9 @@ def wilkieCase2VisiblePivot {m q : ℕ}
     ((Fin (m + 1) → ℝ) × (Fin q → ℝ)) →L[ℝ] ℝ :=
   (wilkieCase2VisiblePivotLinear (q := q) i).toContinuousLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s9.17f6dcb8ec67 from=translated src=- shape=93a7ca55 vocab=5bea55b2
+-/
 theorem wilkieCase2VisiblePivot_fderiv {m q : ℕ}
     (i : Fin (m + 1))
     (x : (Fin (m + 1) → ℝ) × (Fin q → ℝ)) :
@@ -269,7 +290,9 @@ theorem wilkieCase2VisiblePivot_fderiv {m q : ℕ}
   (wilkieCase2VisiblePivot i).hasFDerivAt.fderiv
 
 /-- The derivative-level coordinate-insertion range identity required by
-the regular-slice bridge.-/
+the regular-slice bridge.
+@isnad1 id=ex.1h4v.s10.af41e03fa645 from=translated src=- shape=2efc56ae vocab=aec28551
+-/
 theorem wilkieCase2VisibleDirection_covers_pivot_kernel {m q : ℕ}
     (i : Fin (m + 1))
     (v : (Fin (m + 1) → ℝ) × (Fin q → ℝ))
@@ -285,7 +308,9 @@ theorem wilkieCase2VisibleDirection_covers_pivot_kernel {m q : ℕ}
   · rfl
 
 /-- The value-level insertion range identity required to transfer an
-attained good coordinate value to a nonempty slice.-/
+attained good coordinate value to a nonempty slice.
+@isnad1 id=ex.1h5v.s6.34b7427dc462 from=translated src=- shape=c2842a3b vocab=2bddccc2
+-/
 theorem wilkieCase2VisibleInsert_covers_pivot {m q : ℕ}
     (i : Fin (m + 1)) (b : ℝ)
     (x : (Fin (m + 1) → ℝ) × (Fin q → ℝ))
@@ -301,7 +326,9 @@ theorem wilkieCase2VisibleInsert_covers_pivot {m q : ℕ}
 /-- Concrete visible-coordinate specialization: a regular fiber point in an
 ambient ball with an attained good pivot value produces a nonempty bounded
 regular slice, and the inserted part of the ball is open in the lower-arity
-source.  The coordinate algebra and affine derivative are discharged above.-/
+source.  The coordinate algebra and affine derivative are discharged above.
+@isnad1 id=and.6h10v.s11.11fa21511a34 from=translated src=- shape=fbb6a7da vocab=e7926e37
+-/
 theorem wilkie_case2_visible_ball_slice_regular_nonempty_bounded
     {m q : ℕ} {K : Type*}
     [NormedAddCommGroup K] [NormedSpace ℝ K]

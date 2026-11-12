@@ -39,7 +39,9 @@ variable [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
 /-- The lower half of the sandwich `b • K ≤ N` contains the kernel of the
 coordinatewise quotient map after pulling `N` back to the coordinate product
-belonging to `K`.-/
+belonging to `K`.
+@isnad1 id=le.2h6v.s12.4259e823502e from=translated src=- shape=ad831fd7 vocab=e272a90a
+-/
 theorem ker_finiteWeightRestrictedPiQuotientMap_le_coordinatePullback
     (K N : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -55,7 +57,9 @@ theorem ker_finiteWeightRestrictedPiQuotientMap_le_coordinatePullback
 
 It says that the image of the possible least nonzero `i`th components of
 `N`, viewed inside the homogeneous ambient module `K`, is precisely the set
-of possible least nonzero `i`th components after passage to `K / bK`.-/
+of possible least nonzero `i`th components after passage to `K / bK`.
+@isnad1 id=eq.2h7v.s12.fc2def044f99 from=translated src=- shape=2c56442b vocab=e90dd6c2
+-/
 theorem map_finiteWeightInitialPiece_coordinatePullback_restrictedQuotient
     (K N : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -78,7 +82,9 @@ restricted principal quotient `K / bK`.
 
 Only the lower inclusion `b • K ≤ N` is required for this equality.  The
 upper inclusion `N ≤ K` is used separately to identify the coordinate
-pullback with the original ambient submodule.-/
+pullback with the original ambient submodule.
+@isnad1 id=eq.2h6v.s12.4385fbf4a800 from=translated src=- shape=acd4a6e7 vocab=6645a692
+-/
 theorem map_finiteWeightInitial_coordinatePullback_restrictedQuotient
     (K N : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -99,7 +105,9 @@ theorem map_finiteWeightInitial_coordinatePullback_restrictedQuotient
 /-- If a triangular action preserves `K`, the whole descent recursion on
 `N` commutes with the restricted quotient.  The case `j = 1` is the
 manuscript's successor calculation; the iterated statement is the form used
-by dimension induction.-/
+by dimension induction.
+@isnad1 id=eq.3h8v.s12.e8bfad4f3930 from=translated src=- shape=4e99b29b vocab=7d8af2ee
+-/
 theorem map_finiteWeightInvariantCoordinatePullback_descentIterate_restrictedQuotient
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (K N : Submodule R (∀ i, M i))
@@ -122,7 +130,9 @@ theorem map_finiteWeightInvariantCoordinatePullback_descentIterate_restrictedQuo
 
 /-- If `N ≤ K`, the internal initial submodule formed in the coordinate
 product of `K` maps back to the ordinary finite-weight initial submodule of
-`N` in the ambient product.-/
+`N` in the ambient product.
+@isnad1 id=eq.2h5v.s10.81fbc3818e61 from=translated src=- shape=fa5c5cad vocab=0511c6c5
+-/
 theorem map_finiteWeightInitial_coordinatePullback_inclusion
     (K N : Submodule R (∀ i, M i))
     (hK : ∀ x ∈ K, ∀ i, Pi.single i (x i) ∈ K)
@@ -169,7 +179,9 @@ abbrev rankOneIdealOrderedWindow
       (rankOnePolynomialIdealSubmodule I)
 
 /-- Inclusion of polynomial ideals restricts to inclusion of their ordered
-bounded-window parts.-/
+bounded-window parts.
+@isnad1 id=le.2h8v.s12.37ad3bd5efdc from=translated src=- shape=42287e7b vocab=5ea35165
+-/
 theorem rankOneIdealOrderedWindow_mono
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -188,7 +200,9 @@ theorem rankOneIdealOrderedWindow_mono
 multiplication by `b` on its ordered bounded-window part.
 
 The hypothesis is the literal ideal-theoretic lower sandwich
-`span {C b} * K ≤ N` from the manuscript.-/
+`span {C b} * K ≤ N` from the manuscript.
+@isnad1 id=le.2h9v.s15.165ee0072969 from=translated src=- shape=9105096a vocab=bc4faeaf
+-/
 theorem pointwise_smul_rankOneIdealOrderedWindow_le
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -227,7 +241,9 @@ theorem pointwise_smul_rankOneIdealOrderedWindow_le
     MvPolynomial.smul_eq_C_mul] using hmul
 
 /-- Multiweight homogeneity of a rank-one ideal makes its ordered window
-literally coordinatewise homogeneous.-/
+literally coordinatewise homogeneous.
+@isnad1 id=mem.3h9v.s13.9b28e53b78ec from=translated src=- shape=71a01bed vocab=99de623c
+-/
 theorem rankOneIdealOrderedWindow_homogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)

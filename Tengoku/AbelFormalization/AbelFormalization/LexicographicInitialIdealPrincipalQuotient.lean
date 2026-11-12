@@ -40,7 +40,9 @@ section LowerComponents
 variable {R ι : Type*} [CommRing R] {h : ℕ}
 
 /-- Every component strictly below the actual lexicographic minimum is
-zero.-/
+zero.
+@isnad1 id=eq.1h6v.s8.4fe8b81bd937 from=translated src=- shape=6a3c4277 vocab=9e325ee0
+-/
 theorem weightedHomogeneousComponent_eq_zero_of_lt_lexicographicMinimum
     (weight : ι → Fin h → ℤ) (p : MvPolynomial ι R)
     {degree : Lex (Fin h → ℤ)}
@@ -72,7 +74,9 @@ section PrincipalKernel
 variable {R S ι : Type*} [CommRing R] [CommRing S] {h : ℕ}
 
 /-- A contraction along a map which sends `c` to a unit is saturated by
-`c`.-/
+`c`.
+@isnad1 id=mem.2h6v.s8.a647d43ce101 from=translated src=- shape=f4b41739 vocab=c3f7375d
+-/
 theorem ideal_comap_saturatedBy_of_isUnit_map
     (psi : R →+* S) (L : Ideal S) (c : R)
     (hc : IsUnit (psi c)) {x : R}
@@ -84,7 +88,9 @@ theorem ideal_comap_saturatedBy_of_isUnit_map
 
 /-- A polynomial ideal contracted from a coefficient localization is
 saturated by every constant whose coefficient lies in the localization
-submonoid.-/
+submonoid.
+@isnad1 id=mem.1h6v.s10.e0c709419bf3 from=translated src=- shape=a9117893 vocab=a5c2fdfe
+-/
 theorem mvPolynomial_localization_comap_saturatedBy_C
     {A : Type*} [CommRing A] (T : Submonoid A)
     (L : Ideal (MvPolynomial ι (Localization T))) (b : T)
@@ -104,7 +110,9 @@ theorem mvPolynomial_localization_comap_saturatedBy_C
   · exact hp
 
 /-- A principal coefficient kernel remains principal after applying the
-multivariate-polynomial functor.-/
+multivariate-polynomial functor.
+@isnad1 id=eq.1h5v.s8.9956454a2994 from=translated src=- shape=0bdce3a6 vocab=776a6d4a
+-/
 theorem ker_mvPolynomial_map_eq_span_C_of_ker_eq_span
     (f : R →+* S) (b : R)
     (hfker : RingHom.ker f = Ideal.span {b}) :
@@ -114,7 +122,9 @@ theorem ker_mvPolynomial_map_eq_span_C_of_ker_eq_span
     Set.image_singleton]
 
 /-- Saturation identifies the part of the polynomial-map kernel lying in
-`K` with the ideal product `C(b)K`.-/
+`K` with the ideal product `C(b)K`.
+@isnad1 id=eq.2h6v.s10.cfe0f6afb162 from=translated src=- shape=eafd56e8 vocab=19e809a7
+-/
 theorem inf_ker_mvPolynomial_map_eq_principal_mul_of_saturated
     (f : R →+* S) (b : R)
     (hfker : RingHom.ker f = Ideal.span {b})

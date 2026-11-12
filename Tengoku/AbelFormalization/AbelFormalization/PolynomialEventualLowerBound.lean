@@ -25,7 +25,9 @@ variable {X : Type*}
 
 /-- A nonzero real polynomial evaluated along a function tending to `+∞` is
 eventually bounded away from zero.  The constant-polynomial case is handled
-separately from `Polynomial.abs_tendsto_atTop`.-/
+separately from `Polynomial.abs_tendsto_atTop`.
+@isnad1 id=ex.2h4v.s6.658570e3229f from=translated src=- shape=227bedf9 vocab=4a1aad32
+-/
 theorem nonzeroPolynomial_exists_pos_eventually_le_abs_eval_comp
     (P : ℝ[X]) (hP : P ≠ 0) {l : Filter X} {u : X → ℝ}
     (hu : Tendsto u l atTop) :
@@ -45,7 +47,9 @@ theorem nonzeroPolynomial_exists_pos_eventually_le_abs_eval_comp
     exact (tendsto_atTop.1 ((P.abs_tendsto_atTop hdegreePos).comp hu)) 1
 
 /-- Singleton-family form of the polynomial lower bound.  The scale is
-arbitrary because the inverse-power exponent can be chosen to be zero.-/
+arbitrary because the inverse-power exponent can be chosen to be zero.
+@isnad1 id=hasinver.2h5v.s6.cfa4f4a8b182 from=translated src=- shape=92668051 vocab=45fd94aa
+-/
 theorem nonzeroPolynomial_hasInversePowerLowerBound
     (P : ℝ[X]) (hP : P ≠ 0) {l : Filter X} {u : X → ℝ}
     (hu : Tendsto u l atTop) (S : X → ℝ) :

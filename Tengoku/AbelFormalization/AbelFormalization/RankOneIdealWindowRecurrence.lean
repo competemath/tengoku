@@ -42,6 +42,9 @@ def lexicographicInitialIdealIteration
         ((lexicographicInitialIdealIteration multiDegree J Q j).map
           J.toRingHom)
 
+/--
+@isnad1 id=eq.0h6v.s7.2f7951b7f62b from=translated src=- shape=84429255 vocab=3a047e36
+-/
 @[simp]
 theorem lexicographicInitialIdealIteration_zero
     (multiDegree : Fin n → Fin h → ℤ)
@@ -51,6 +54,9 @@ theorem lexicographicInitialIdealIteration_zero
       lexicographicInitialIdeal multiDegree Q :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.ee2781abdc3f from=translated src=- shape=20787ecd vocab=d2710446
+-/
 @[simp]
 theorem lexicographicInitialIdealIteration_succ
     (multiDegree : Fin n → Fin h → ℤ)
@@ -86,7 +92,9 @@ def rankOneMappedLexicographicInitialSubmoduleIteration
 /-! ## Homogeneity of the iteration -/
 
 /-- Every rank-one term of the ideal iteration is homogeneous for the
-ordered lexicographic weight projections.-/
+ordered lexicographic weight projections.
+@isnad1 id=ispolyno.0h8v.s7.cf2543bb27eb from=translated src=- shape=f1cb457d vocab=407dead3
+-/
 theorem rankOneLexicographicInitialSubmoduleIteration_weightHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -108,7 +116,9 @@ theorem rankOneLexicographicInitialSubmoduleIteration_weightHomogeneous
             J.toRingHom)
 
 /-- If `Q` is ordinary homogeneous and `J` preserves ordinary homogeneous
-ideals, then every `I_j` remains ordinary homogeneous.-/
+ideals, then every `I_j` remains ordinary homogeneous.
+@isnad1 id=ishomoge.2h8v.s10.bcf2a7f80cb1 from=translated src=- shape=a52df68b vocab=d0838600
+-/
 theorem lexicographicInitialIdealIteration_ordinaryHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)
@@ -139,7 +149,9 @@ theorem lexicographicInitialIdealIteration_ordinaryHomogeneous
           J.toRingHom)
         (hJordinary _ ih)
 
-/-- The intermediate mapped ideal `J(I_j)` is ordinary homogeneous.-/
+/-- The intermediate mapped ideal `J(I_j)` is ordinary homogeneous.
+@isnad1 id=ishomoge.2h8v.s10.5d058fead1f3 from=translated src=- shape=5369a44e vocab=d0838600
+-/
 theorem lexicographicInitialIdealIteration_map_ordinaryHomogeneous
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)

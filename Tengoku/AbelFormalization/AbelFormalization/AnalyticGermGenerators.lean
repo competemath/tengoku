@@ -23,7 +23,9 @@ namespace AbelFormalization
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Formation of analytic germs commutes with finite sums of analytic
-representatives.-/
+representatives.
+@isnad1 id=eq.1h5v.s9.2d4b25415529 from=translated src=- shape=440ef721 vocab=8944df0d
+-/
 theorem analyticGermOf_finset_sum {ι : Type*} (s : Finset ι) {x : E}
     (f : ι → E → ℝ) (hf : ∀ i, AnalyticAt ℝ (f i) x) :
     analyticGermOf (∑ i ∈ s, f i) (s.analyticAt_sum fun i _ => hf i) =
@@ -35,7 +37,9 @@ theorem analyticGermOf_finset_sum {ι : Type*} (s : Finset ι) {x : E}
   rfl
 
 /-- Every analytic germ vanishing at the origin is a linear combination of
-the coordinate germs, with coefficients in the actual analytic germ ring.-/
+the coordinate germs, with coefficients in the actual analytic germ ring.
+@isnad1 id=ex.1h2v.s14.9497b0f8ae67 from=translated src=- shape=81bd74ea vocab=a215f3ea
+-/
 theorem analyticGerm_exists_eq_sum_coordinates (p : ℕ) (f : RealAnalyticGerm p)
     (hf : analyticGermValue (0 : Fin p → ℝ) f = 0) :
     ∃ g : Fin p → RealAnalyticGerm p,
@@ -59,7 +63,9 @@ theorem analyticGerm_exists_eq_sum_coordinates (p : ℕ) (f : RealAnalyticGerm p
   intro i hi
   rfl
 
-/-- The maximal ideal is exactly the ideal spanned by all coordinate germs.-/
+/-- The maximal ideal is exactly the ideal spanned by all coordinate germs.
+@isnad1 id=eq.0h1v.s12.e3158ceb39d0 from=translated src=- shape=f1aa9397 vocab=c5c36c0e
+-/
 theorem analyticGerm_maximalIdeal_eq_span_coordinates (p : ℕ) :
     IsLocalRing.maximalIdeal (RealAnalyticGerm p) =
       Ideal.span (Set.range (analyticGermCoordinate p)) := by
@@ -75,7 +81,9 @@ theorem analyticGerm_maximalIdeal_eq_span_coordinates (p : ℕ) :
     exact (analyticGerm_mem_maximalIdeal_iff (analyticGermCoordinate p i)).mpr rfl
 
 /-- Finite generation of the analytic maximal ideal in every finite dimension
-follows from analytic convergence, without a Noetherian hypothesis.-/
+follows from analytic convergence, without a Noetherian hypothesis.
+@isnad1 id=fg.0h1v.s11.47b02d5e1f82 from=translated src=- shape=e9688328 vocab=a5da9d81
+-/
 theorem analyticGerm_maximalIdeal_fg (p : ℕ) :
     (IsLocalRing.maximalIdeal (RealAnalyticGerm p)).FG := by
   rw [analyticGerm_maximalIdeal_eq_span_coordinates]

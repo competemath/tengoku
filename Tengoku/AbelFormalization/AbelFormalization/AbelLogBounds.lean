@@ -17,13 +17,17 @@ namespace AbelFormalization
 
 open Set Function
 
-/-- A convenient global lower bound for `log (1 + x)`.-/
+/-- A convenient global lower bound for `log (1 + x)`.
+@isnad1 id=le.1h1v.s5.77a49ec40795 from=translated src=- shape=3cf0526d vocab=36f60f24
+-/
 theorem two_mul_div_le_L {x : ℝ} (hx : 0 ≤ x) :
     2 * x / (2 + x) ≤ L x := by
   simpa only [L, add_comm] using Real.le_log_one_add_of_nonneg hx
 
 /-- On `[0, 1]`, `log (1 + x)` lies below a rational function whose
-reciprocal increases by exactly `1 / 4`.-/
+reciprocal increases by exactly `1 / 4`.
+@isnad1 id=le.2h1v.s6.f7fa347190a1 from=translated src=- shape=9ee6ee49 vocab=46c67157
+-/
 theorem L_le_div_one_add_quarter {x : ℝ} (hx : 0 ≤ x) (hx1 : x ≤ 1) :
     L x ≤ x / (1 + x / 4) := by
   have hden : 0 < 1 + x / 4 := by positivity
@@ -39,10 +43,16 @@ theorem L_le_div_one_add_quarter {x : ℝ} (hx : 0 ≤ x) (hx1 : x ≤ 1) :
       nlinarith [sq_nonneg x, mul_nonneg (sq_nonneg x) (by linarith : 0 ≤ 4 - x)]
     _ ≤ Real.exp (x / (1 + x / 4)) := Real.sum_le_exp_of_nonneg ht 3
 
+/--
+@isnad1 id=le.1h1v.s4.95be9933aa9f from=translated src=- shape=71fa8a4a vocab=b45732d1
+-/
 theorem L_le_self_of_nonneg {x : ℝ} (hx : 0 ≤ x) : L x ≤ x := by
   simpa only [L, add_sub_cancel_left] using
     Real.log_le_sub_one_of_pos (by linarith : 0 < 1 + x)
 
+/--
+@isnad1 id=le.1h2v.s4.c41fd2689652 from=translated src=- shape=2c6d7db0 vocab=e6ab0261
+-/
 theorem L_iterate_le_self {x : ℝ} (hx : 0 < x) (n : ℕ) :
     L^[n] x ≤ x := by
   induction n with
@@ -60,7 +70,9 @@ private theorem div_one_add_quarter_mono {a b : ℝ}
   nlinarith
 
 /-- A reciprocal upper bound for every logarithmic iterate starting in
-`(0, 1]`.-/
+`(0, 1]`.
+@isnad1 id=le.2h2v.s6.f3f825ec62a8 from=translated src=- shape=b743be72 vocab=fe4944af
+-/
 theorem L_iterate_le_inv_add_quarter {x : ℝ} (hx : 0 < x) (hx1 : x ≤ 1)
     (n : ℕ) :
     L^[n] x ≤ (1 / x + (n : ℝ) / 4)⁻¹ := by
@@ -91,7 +103,9 @@ theorem L_iterate_le_inv_add_quarter {x : ℝ} (hx : 0 < x) (hx1 : x ≤ 1)
           ring
 
 /-- A simpler consequence of `L_iterate_le_inv_add_quarter`, convenient for
-summability estimates.-/
+summability estimates.
+@isnad1 id=le.2h2v.s6.2e23ff673907 from=translated src=- shape=aa3eb7ae vocab=754e14dc
+-/
 theorem L_iterate_le_four_div {x : ℝ} (hx : 0 < x) (hx1 : x ≤ 1)
     (n : ℕ) :
     L^[n] x ≤ 4 / ((n : ℝ) + 1) := by
@@ -110,7 +124,9 @@ theorem L_iterate_le_four_div {x : ℝ} (hx : 0 < x) (hx1 : x ≤ 1)
       field_simp
 
 /-- One logarithm maps the disk of radius half its positive center into
-the corresponding half-radius disk at the next real center.-/
+the corresponding half-radius disk at the next real center.
+@isnad1 id=mapsto.1h1v.s6.2d2cc3197682 from=translated src=- shape=11a4ea5d vocab=77677c01
+-/
 theorem complexL_mapsTo_half_ball {x : ℝ} (hx : 0 < x) :
     MapsTo complexL (Metric.ball (x : ℂ) (x / 2))
       (Metric.ball (L x : ℂ) (L x / 2)) := by
@@ -130,7 +146,9 @@ theorem complexL_mapsTo_half_ball {x : ℝ} (hx : 0 < x) :
     _ ≤ L x / 2 := div_le_div_of_nonneg_right hl (by norm_num)
 
 /-- Every complex logarithmic iterate preserves the relative half-radius
-disk along a positive real logarithmic orbit.-/
+disk along a positive real logarithmic orbit.
+@isnad1 id=mapsto.1h2v.s6.51bd0a74b1df from=translated src=- shape=38c70ebe vocab=399da019
+-/
 theorem complexL_iterate_mapsTo_half_ball {x : ℝ} (hx : 0 < x) (n : ℕ) :
     MapsTo (complexL^[n]) (Metric.ball (x : ℂ) (x / 2))
       (Metric.ball (L^[n] x : ℂ) (L^[n] x / 2)) := by
@@ -142,7 +160,9 @@ theorem complexL_iterate_mapsTo_half_ball {x : ℝ} (hx : 0 < x) (n : ℕ) :
       simpa only [iterate_succ, Function.comp_apply] using hi.comp hm
 
 /-- The complex logarithmic iterate is analytic on every relative
-half-radius disk along a positive real orbit.-/
+half-radius disk along a positive real orbit.
+@isnad1 id=analytic.1h2v.s6.940894e8342c from=translated src=- shape=9ad54421 vocab=171c0580
+-/
 theorem complexL_iterate_analyticOnNhd_half_ball {x : ℝ} (hx : 0 < x)
     (n : ℕ) :
     AnalyticOnNhd ℂ (complexL^[n]) (Metric.ball (x : ℂ) (x / 2)) := by
@@ -155,7 +175,9 @@ theorem complexL_iterate_analyticOnNhd_half_ball {x : ℝ} (hx : 0 < x)
       simpa only [iterate_succ] using hi.comp ha hm
 
 /-- Combined analytic and mapping form used by the local density
-construction.-/
+construction.
+@isnad1 id=and.1h2v.s7.243d1ecaade1 from=translated src=- shape=0a6e3656 vocab=32a907d6
+-/
 theorem complexL_iterate_half_disk {x : ℝ} (hx : 0 < x) (n : ℕ) :
     AnalyticOnNhd ℂ (complexL^[n]) (Metric.ball (x : ℂ) (x / 2)) ∧
       MapsTo (complexL^[n]) (Metric.ball (x : ℂ) (x / 2))

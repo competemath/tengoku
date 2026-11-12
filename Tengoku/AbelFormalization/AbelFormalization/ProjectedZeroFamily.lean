@@ -24,18 +24,27 @@ def realEuclideanAppend {n q : ℕ}
     RealEuclidean (n + q) :=
   Fin.addCases x z
 
+/--
+@isnad1 id=eq.0h5v.s4.b2828bd6ded2 from=translated src=- shape=a06839d9 vocab=05dd27dc
+-/
 @[simp]
 theorem realEuclideanAppend_castAdd {n q : ℕ}
     (x : RealEuclidean n) (z : RealEuclidean q) (i : Fin n) :
     realEuclideanAppend x z (Fin.castAdd q i) = x i := by
   simp [realEuclideanAppend]
 
+/--
+@isnad1 id=eq.0h5v.s4.eb32bd7d7436 from=translated src=- shape=d3b1c9f2 vocab=1f4544ab
+-/
 @[simp]
 theorem realEuclideanAppend_natAdd {n q : ℕ}
     (x : RealEuclidean n) (z : RealEuclidean q) (j : Fin q) :
     realEuclideanAppend x z (Fin.natAdd n j) = z j := by
   simp [realEuclideanAppend]
 
+/--
+@isnad1 id=eq.0h3v.s5.d708e968a9cd from=translated src=- shape=d2bd93ac vocab=090771a4
+-/
 @[simp]
 theorem realEuclideanAppend_zero {n : ℕ}
     (x : RealEuclidean n) (z : RealEuclidean 0) :
@@ -77,6 +86,9 @@ def realEuclideanVisibleRightWitnessLinearMap (n q r : ℕ) :
     funext k
     refine Fin.addCases (fun i ↦ ?_) (fun j ↦ ?_) k <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s8.a7f22ac521ac from=translated src=- shape=7d3d7221 vocab=aeebb7ed
+-/
 @[simp]
 theorem realEuclideanVisibleLeftWitnessLinearMap_append
     {n q r : ℕ} (x : RealEuclidean n) (z : RealEuclidean q)
@@ -88,6 +100,9 @@ theorem realEuclideanVisibleLeftWitnessLinearMap_append
   refine Fin.addCases (fun i ↦ ?_) (fun j ↦ ?_) k <;>
     simp [realEuclideanVisibleLeftWitnessLinearMap]
 
+/--
+@isnad1 id=eq.0h6v.s8.49cd903642be from=translated src=- shape=b31f8bab vocab=13841e76
+-/
 @[simp]
 theorem realEuclideanVisibleRightWitnessLinearMap_append
     {n q r : ℕ} (x : RealEuclidean n) (z : RealEuclidean q)
@@ -106,6 +121,9 @@ def IsProjectedZeroSet
   ∃ (q : ℕ) (f : RealEuclideanFunction (n + q)), f ∈ G (n + q) ∧
     s = {x | ∃ z : RealEuclidean q, f (realEuclideanAppend x z) = 0}
 
+/--
+@isnad1 id=isprojec.1h2v.s4.71cd5ed46dd0 from=translated src=- shape=9bb03291 vocab=7671af17
+-/
 theorem isProjectedZeroSet_empty
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ} :
@@ -114,6 +132,9 @@ theorem isProjectedZeroSet_empty
   ext x
   simp
 
+/--
+@isnad1 id=isprojec.1h2v.s4.d89893e83eca from=translated src=- shape=6e3a9759 vocab=b6bea052
+-/
 theorem isProjectedZeroSet_univ
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ} :
@@ -122,6 +143,9 @@ theorem isProjectedZeroSet_univ
   ext x
   simp
 
+/--
+@isnad1 id=isprojec.3h4v.s5.66eb752ce54d from=translated src=- shape=2bea49a4 vocab=0c60d7f0
+-/
 theorem IsProjectedZeroSet.union
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -170,6 +194,9 @@ def realEuclideanTakeRight {n m : ℕ}
     (v : RealEuclidean (n + m)) : RealEuclidean m :=
   fun j ↦ v (Fin.natAdd n j)
 
+/--
+@isnad1 id=eq.0h4v.s4.b908ee3f84cb from=translated src=- shape=42de6708 vocab=33069f73
+-/
 @[simp]
 theorem realEuclideanTakeLeft_append {n m : ℕ}
     (x : RealEuclidean n) (y : RealEuclidean m) :
@@ -177,6 +204,9 @@ theorem realEuclideanTakeLeft_append {n m : ℕ}
   funext i
   simp [realEuclideanTakeLeft]
 
+/--
+@isnad1 id=eq.0h4v.s4.aadadfef9316 from=translated src=- shape=986c830e vocab=4d69988c
+-/
 @[simp]
 theorem realEuclideanTakeRight_append {n m : ℕ}
     (x : RealEuclidean n) (y : RealEuclidean m) :
@@ -222,6 +252,9 @@ def realEuclideanProductRightWitnessLinearMap (n m q r : ℕ) :
     funext k
     refine Fin.addCases (fun i ↦ ?_) (fun j ↦ ?_) k <;> simp
 
+/--
+@isnad1 id=eq.0h7v.s9.63401663dbdf from=translated src=- shape=53f8f8c8 vocab=9ab26acc
+-/
 @[simp]
 theorem realEuclideanProductLeftWitnessLinearMap_append
     {n m q r : ℕ} (v : RealEuclidean (n + m))
@@ -233,6 +266,9 @@ theorem realEuclideanProductLeftWitnessLinearMap_append
   refine Fin.addCases (fun i ↦ ?_) (fun j ↦ ?_) k <;>
     simp [realEuclideanProductLeftWitnessLinearMap, realEuclideanTakeLeft]
 
+/--
+@isnad1 id=eq.0h7v.s9.cc39fdb0b51e from=translated src=- shape=136a9b9a vocab=ee408a73
+-/
 @[simp]
 theorem realEuclideanProductRightWitnessLinearMap_append
     {n m q r : ℕ} (v : RealEuclidean (n + m))
@@ -281,6 +317,9 @@ def realEuclideanVisibleBlockLinearMap {n : ℕ}
     refine Fin.addCases (fun i ↦ ?_) (fun j ↦ ?_) k <;>
       simp [realEuclideanAppend]
 
+/--
+@isnad1 id=eq.0h5v.s9.9a7592465fe4 from=translated src=- shape=befd94c5 vocab=13ae6a84
+-/
 @[simp]
 theorem realEuclideanVisibleBlockLinearMap_append
     {n q : ℕ} (e : RealEuclidean n →ₗ[ℝ] RealEuclidean n)
@@ -290,7 +329,9 @@ theorem realEuclideanVisibleBlockLinearMap_append
   simp [realEuclideanVisibleBlockLinearMap]
 
 /-- Projected zero sets are preserved by every invertible linear change of
-visible coordinates; coordinate permutations are a special case.-/
+visible coordinates; coordinate permutations are a special case.
+@isnad1 id=isprojec.2h4v.s8.ad4e216d9629 from=translated src=- shape=1e21f7c0 vocab=3c7dc573
+-/
 theorem IsProjectedZeroSet.linearEquiv_image
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -315,7 +356,9 @@ theorem IsProjectedZeroSet.linearEquiv_image
 /-! ## Closed lifts and graphs -/
 
 /-- A zero set of one family member is a projected zero set (with no added
-witness coordinates).-/
+witness coordinates).
+@isnad1 id=isprojec.1h3v.s5.04848b0c9c33 from=translated src=- shape=dbfc3212 vocab=73f48770
+-/
 theorem isProjectedZeroSet_zeroSet
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     {n : ℕ} {f : RealEuclideanFunction n} (hf : f ∈ G n) :
@@ -334,7 +377,9 @@ def HasClosedProjectedZeroLift
       s = {x | ∃ z : RealEuclidean q, realEuclideanAppend x z ∈ B}
 
 /-- Global smoothness makes the defining zero set into the required closed
-lift of every projected zero set.-/
+lift of every projected zero set.
+@isnad1 id=hasclose.2h3v.s4.549f97eb0701 from=translated src=- shape=2e118192 vocab=db53a213
+-/
 theorem IsProjectedZeroSet.hasClosedLift
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hsmooth : IsEverywhereSmoothFunctionFamily G)
@@ -366,7 +411,9 @@ def realEuclideanGraph {n : ℕ} (f : RealEuclideanFunction n) :
   {v | f (realEuclideanDropLastLinearMap n v) = v (Fin.last n)}
 
 /-- The graph of every family member is itself a projected zero set.  This is
-the graph clause used in the all-orders differentiable-closure condition.-/
+the graph clause used in the all-orders differentiable-closure condition.
+@isnad1 id=isprojec.2h3v.s5.5f4e67c8d7a1 from=translated src=- shape=99ebf899 vocab=ee039b98
+-/
 theorem IsGeometricFunctionFamily.isProjectedZeroSet_graph
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G)

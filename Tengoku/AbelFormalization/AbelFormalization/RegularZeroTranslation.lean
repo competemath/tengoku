@@ -10,6 +10,9 @@ namespace AbelFormalization
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h5v.s6.1e56487e2310 from=translated src=- shape=a8a0f3fb vocab=155bcdd5
+-/
 theorem regularZeroSet_preimage_add_right
     {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -22,6 +25,9 @@ theorem regularZeroSet_preimage_add_right
   simp only [regularZeroSet, Set.mem_ofPred_eq, Set.mem_preimage]
   rw [fderiv_comp_add_right]
 
+/--
+@isnad1 id=iff.0h5v.s6.aef936c67507 from=translated src=- shape=e6adf176 vocab=0090c7e9
+-/
 theorem finite_regularZeroSet_add_right_iff
     {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]

@@ -24,12 +24,17 @@ def analyticGermPolynomialMap (p : ℕ) :
     MvPolynomial (Fin p) ℝ →ₐ[ℝ] RealAnalyticGerm p :=
   MvPolynomial.aeval (analyticGermCoordinate p)
 
+/--
+@isnad1 id=eq.0h2v.s12.c6ae2ee195ed from=translated src=- shape=9705d6fd vocab=7dbaefb8
+-/
 @[simp]
 theorem analyticGermPolynomialMap_X (p : ℕ) (i : Fin p) :
     analyticGermPolynomialMap p (MvPolynomial.X i) = analyticGermCoordinate p i :=
   MvPolynomial.aeval_X _ _
 
-/-- This algebra map is represented by ordinary polynomial evaluation.-/
+/-- This algebra map is represented by ordinary polynomial evaluation.
+@isnad1 id=eq.0h2v.s12.81c1d08c6690 from=translated src=- shape=1b59da3b vocab=9af9bdfd
+-/
 theorem analyticGermPolynomialMap_eq_of (p : ℕ) (P : MvPolynomial (Fin p) ℝ) :
     analyticGermPolynomialMap p P =
       analyticGermOf (fun x => MvPolynomial.eval x P)
@@ -54,13 +59,18 @@ theorem analyticGermPolynomialMap_eq_of (p : ℕ) (P : MvPolynomial (Fin p) ℝ)
     apply Germ.coe_eq.mpr
     exact Eventually.of_forall fun x => by simp
 
+/--
+@isnad1 id=eq.0h2v.s13.671b05d9fbc8 from=translated src=- shape=0f6e10d1 vocab=627fb242
+-/
 @[simp]
 theorem analyticGermValue_polynomial (p : ℕ) (P : MvPolynomial (Fin p) ℝ) :
     analyticGermValue (0 : Fin p → ℝ) (analyticGermPolynomialMap p P) =
       MvPolynomial.eval 0 P := by
   rw [analyticGermPolynomialMap_eq_of, analyticGermValue_of]
 
-/-- No nonzero real polynomial becomes the zero analytic germ.-/
+/-- No nonzero real polynomial becomes the zero analytic germ.
+@isnad1 id=injectiv.0h1v.s12.61cd661560fb from=translated src=- shape=fbb01949 vocab=2baeb0ec
+-/
 theorem analyticGermPolynomialMap_injective (p : ℕ) :
     Function.Injective (analyticGermPolynomialMap p) := by
   intro P Q h

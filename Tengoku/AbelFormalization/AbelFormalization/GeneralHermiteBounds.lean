@@ -23,6 +23,9 @@ def generalHermiteContourParameters (b R : ℝ) : Set ((ι → ℂ) × ℂ) :=
   {p | (∀ i, ‖p.1 i‖ ≤ b) ∧ ‖p.2‖ = R}
 
 omit [Fintype ι] in
+/--
+@isnad1 id=iscompac.0h3v.s5.26ff6dce1273 from=translated src=- shape=84884db5 vocab=bb07e2a3
+-/
 theorem isCompact_generalHermiteContourParameters (b R : ℝ) :
     IsCompact (generalHermiteContourParameters (ι := ι) b R) := by
   have hn : IsCompact {δ : ι → ℂ | ∀ i, δ i ∈ closedBall 0 b} :=

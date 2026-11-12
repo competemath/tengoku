@@ -27,11 +27,17 @@ def lexicographicMinimumWeight (ω : ι → Fin h → ℤ) (f : MvPolynomial ι 
   exact if hs : f.support.Nonempty then
     f.support.inf' hs (Finsupp.weight (fun i => toLex (ω i))) else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.7eb0a6dbb4c8 from=translated src=- shape=c516e4ac vocab=8a939c1f
+-/
 @[simp]
 theorem lexicographicMinimumWeight_zero (ω : ι → Fin h → ℤ) :
     lexicographicMinimumWeight ω (0 : MvPolynomial ι R) = 0 := by
   simp [lexicographicMinimumWeight]
 
+/--
+@isnad1 id=le.1h6v.s8.88695303e71e from=translated src=- shape=37cd8bb7 vocab=9234eeaa
+-/
 theorem lexicographicMinimumWeight_le (ω : ι → Fin h → ℤ)
     (f : MvPolynomial ι R) {d : ι →₀ ℕ} (hd : d ∈ f.support) :
     lexicographicMinimumWeight ω f ≤ Finsupp.weight (fun i => toLex (ω i)) d := by
@@ -40,6 +46,9 @@ theorem lexicographicMinimumWeight_le (ω : ι → Fin h → ℤ)
   simp only [lexicographicMinimumWeight, dite_eq_left hs]
   exact Finset.inf'_le _ hd
 
+/--
+@isnad1 id=ex.1h5v.s8.a794e9dff165 from=translated src=- shape=ba814759 vocab=0067af92
+-/
 theorem exists_support_lexicographicWeight_eq_minimum (ω : ι → Fin h → ℤ)
     {f : MvPolynomial ι R} (hf : f ≠ 0) :
     ∃ d ∈ f.support,
@@ -58,6 +67,9 @@ def lexicographicInitialForm (ω : ι → Fin h → ℤ) (f : MvPolynomial ι R)
   MvPolynomial.weightedHomogeneousComponent (fun i => toLex (ω i))
     (lexicographicMinimumWeight ω f) f
 
+/--
+@isnad1 id=eq.0h6v.s9.c938dd1da814 from=translated src=- shape=d0cb19a9 vocab=ce44915b
+-/
 theorem lexicographicInitialForm_coeff (ω : ι → Fin h → ℤ)
     (f : MvPolynomial ι R) (d : ι →₀ ℕ) :
     (lexicographicInitialForm ω f).coeff d =
@@ -66,6 +78,9 @@ theorem lexicographicInitialForm_coeff (ω : ι → Fin h → ℤ)
   classical
   exact MvPolynomial.coeff_weightedHomogeneousComponent _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s9.fe1aafa6c5c8 from=translated src=- shape=d7659b11 vocab=8e4d7409
+-/
 theorem lexicographicInitialForm_support (ω : ι → Fin h → ℤ)
     (f : MvPolynomial ι R) :
     (lexicographicInitialForm ω f).support =
@@ -74,13 +89,18 @@ theorem lexicographicInitialForm_support (ω : ι → Fin h → ℤ)
   classical
   exact MvPolynomial.support_weightedHomogeneousComponent _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.193ff3957279 from=translated src=- shape=bc1340e3 vocab=99ceb11c
+-/
 @[simp]
 theorem lexicographicInitialForm_zero (ω : ι → Fin h → ℤ) :
     lexicographicInitialForm ω (0 : MvPolynomial ι R) = 0 := by
   simp [lexicographicInitialForm]
 
 /-- With no weight coordinates, all monomials have the same weight and the
-initial form leaves the polynomial unchanged.-/
+initial form leaves the polynomial unchanged.
+@isnad1 id=eq.0h4v.s5.c32e8818b147 from=translated src=- shape=280b4ba7 vocab=8f1d7f51
+-/
 @[simp]
 theorem lexicographicInitialForm_zero_dim (ω : ι → Fin 0 → ℤ)
     (f : MvPolynomial ι R) : lexicographicInitialForm ω f = f := by
@@ -91,7 +111,9 @@ theorem lexicographicInitialForm_zero_dim (ω : ι → Fin 0 → ℤ)
   exact ite_eq_left (Subsingleton.elim _ _)
 
 /-- The actual `Fin`-indexed lexicographic order first compares the new head
-coordinate, and compares the tails precisely when the heads agree.-/
+coordinate, and compares the tails precisely when the heads agree.
+@isnad1 id=iff.0h5v.s9.bcdfe1ef48ae from=translated src=- shape=a925b3a2 vocab=2fbc6c2d
+-/
 theorem finLex_cons_lt_iff (a b : ℤ) (u v : Fin h → ℤ) :
     toLex (Fin.cons a u : Fin (h + 1) → ℤ) <
       toLex (Fin.cons b v : Fin (h + 1) → ℤ) ↔
@@ -129,6 +151,9 @@ def lexicographicCoordinate (j : Fin h) : Lex (Fin h → ℤ) →+ ℤ where
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.835e3a4a1801 from=translated src=- shape=a2f93a64 vocab=3bcac22d
+-/
 theorem lexicographicWeight_apply (ω : ι → Fin h → ℤ)
     (d : ι →₀ ℕ) (j : Fin h) :
     ofLex (Finsupp.weight (fun i => toLex (ω i)) d) j =
@@ -138,7 +163,9 @@ theorem lexicographicWeight_apply (ω : ι → Fin h → ℤ)
   rfl
 
 /-- Computing a vector monomial weight commutes with splitting its head and
-tail coordinates.-/
+tail coordinates.
+@isnad1 id=eq.0h5v.s10.2ec7dc49c8fc from=translated src=- shape=14b757b1 vocab=1ace09ec
+-/
 theorem lexicographicWeight_cons (ω : ι → ℤ) (ν : ι → Fin h → ℤ)
     (d : ι →₀ ℕ) :
     Finsupp.weight (fun i => toLex (Fin.cons (ω i) (ν i))) d =

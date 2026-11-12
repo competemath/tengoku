@@ -60,7 +60,9 @@ private theorem analyticAt_polynomial_coeff_prod {E ι : Type*}
 
 variable {ι : Type*} [Fintype ι]
 
-/-- Every coefficient of the node polynomial is entire in its nodes.-/
+/-- Every coefficient of the node polynomial is entire in its nodes.
+@isnad1 id=analytic.0h4v.s6.c29e44e464c2 from=translated src=- shape=db4f9bea vocab=ae435a6e
+-/
 theorem analyticAt_nodePolynomial_coeff (m : ι → ℕ) (j : ℕ) (δ : ι → ℂ) :
     AnalyticAt ℂ (fun ε : ι → ℂ => (nodePolynomial ε m).coeff j) δ := by
   have hfactor : ∀ i j,
@@ -78,7 +80,9 @@ theorem analyticAt_nodePolynomial_coeff (m : ι → ℕ) (j : ℕ) (δ : ι → 
   intro i k
   exact analyticAt_polynomial_coeff_pow (hfactor i) (m i) k
 
-/-- Evaluation of the node polynomial is jointly entire in nodes and argument.-/
+/-- Evaluation of the node polynomial is jointly entire in nodes and argument.
+@isnad1 id=analytic.0h3v.s7.20318cc56f30 from=translated src=- shape=605b1691 vocab=299d0331
+-/
 theorem analyticAt_nodePolynomial_eval_joint (m : ι → ℕ) (p : (ι → ℂ) × ℂ) :
     AnalyticAt ℂ (fun q : (ι → ℂ) × ℂ => (nodePolynomial q.1 m).eval q.2) p := by
   simp only [nodePolynomial_eval]

@@ -30,6 +30,9 @@ abbrev rankOnePolynomialGradedLexData
   ordinaryShift := fun _ => 0
   multiShift := fun _ _ => 0
 
+/--
+@isnad1 id=eq.0h4v.s5.7f531c66196e from=translated src=- shape=1e70b0fd vocab=97eb0f40
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_ordinaryDegree
     (ordinaryDegree : Fin n → ℕ)
@@ -37,6 +40,9 @@ theorem rankOnePolynomialGradedLexData_ordinaryDegree
     (rankOnePolynomialGradedLexData ordinaryDegree multiDegree).ordinaryDegree =
       ordinaryDegree := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.325186bdc869 from=translated src=- shape=713bd7cd vocab=c2648ae6
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_multiDegree
     (ordinaryDegree : Fin n → ℕ)
@@ -44,12 +50,18 @@ theorem rankOnePolynomialGradedLexData_multiDegree
     (rankOnePolynomialGradedLexData ordinaryDegree multiDegree).multiDegree =
       multiDegree := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.c95da87559bb from=translated src=- shape=70e59bee vocab=3e7b1982
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_ordinaryShift
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ) (k : Fin 1) :
     (rankOnePolynomialGradedLexData ordinaryDegree multiDegree).ordinaryShift k = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.63da38d5a6c6 from=translated src=- shape=187e4c9b vocab=c66f24bc
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_multiShift
     (ordinaryDegree : Fin n → ℕ)
@@ -58,7 +70,9 @@ theorem rankOnePolynomialGradedLexData_multiShift
   funext j
   rfl
 
-/-- Taking `toLex` commutes with an actual finitely supported weight sum.-/
+/-- Taking `toLex` commutes with an actual finitely supported weight sum.
+@isnad1 id=eq.0h4v.s9.d743e7bc2ed6 from=translated src=- shape=16b14926 vocab=caf9b93c
+-/
 theorem toLex_finsupp_weight
     (multiDegree : Fin n → Fin h → ℤ) (d : Fin n →₀ ℕ) :
     Finsupp.weight (fun i => toLex (multiDegree i)) d =
@@ -66,6 +80,9 @@ theorem toLex_finsupp_weight
   apply ofLex.injective
   exact lexicographicWeight_ofLex multiDegree d
 
+/--
+@isnad1 id=eq.0h5v.s7.725a25189907 from=translated src=- shape=45aefa4c vocab=c7653549
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_termOrdinaryDegree
     (ordinaryDegree : Fin n → ℕ)
@@ -77,6 +94,9 @@ theorem rankOnePolynomialGradedLexData_termOrdinaryDegree
   simp [PolynomialGradedLexData.termOrdinaryDegree,
     artinianPolynomialTermDegree]
 
+/--
+@isnad1 id=eq.0h5v.s8.37c8854ebd8c from=translated src=- shape=3002e245 vocab=3ef33fef
+-/
 @[simp]
 theorem rankOnePolynomialGradedLexData_termWeight
     (ordinaryDegree : Fin n → ℕ)
@@ -90,7 +110,9 @@ theorem rankOnePolynomialGradedLexData_termWeight
   exact (toLex_finsupp_weight multiDegree d).symm
 
 /-- The unique coordinate of the module weight projection is the ordinary
-multivariate-polynomial weight projection.-/
+multivariate-polynomial weight projection.
+@isnad1 id=eq.0h7v.s10.3154dee09d6b from=translated src=- shape=f88ac1f1 vocab=bb59c579
+-/
 theorem rankOnePolynomial_weightFiberComponent_zero
     (ordinaryDegree : Fin n → ℕ)
     (multiDegree : Fin n → Fin h → ℤ)

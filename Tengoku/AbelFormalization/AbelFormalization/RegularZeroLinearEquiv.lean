@@ -18,7 +18,9 @@ namespace AbelFormalization
 set_option autoImplicit false
 
 /-- Regular zeros are invariant under continuous linear equivalences in the
-source and target.-/
+source and target.
+@isnad1 id=eq.0h8v.s9.6ce6be482dfe from=translated src=- shape=f3ac21ee vocab=47beeb7d
+-/
 theorem regularZeroSet_preimage_continuousLinearEquiv
     {E E' F F' : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -60,7 +62,9 @@ theorem regularZeroSet_preimage_continuousLinearEquiv
         ContinuousLinearMap.comp_apply, hez, hz, hqy]
 
 /-- Source and target continuous linear equivalences preserve finiteness of
-the regular-zero set.-/
+the regular-zero set.
+@isnad1 id=iff.0h8v.s9.ae3a38915938 from=translated src=- shape=da2b6bf9 vocab=d56886cb
+-/
 theorem finite_regularZeroSet_comp_continuousLinearEquiv_iff
     {E E' F F' : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]

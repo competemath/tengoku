@@ -26,7 +26,9 @@ def laurentVariableSubmonoid (ι R : Type*) [CommRing R] :
   Submonoid.closure (Set.range MvPolynomial.X)
 
 /-- Multiplication by a product of variables can be cancelled from membership
-in a coefficient-extended ideal.-/
+in a coefficient-extended ideal.
+@isnad1 id=mem.2h5v.s9.78fbe3409695 from=translated src=- shape=1e899a25 vocab=79fb5f6f
+-/
 theorem mvPolynomial_extension_cancel_monomial (I : Ideal R) {s : MvPolynomial ι R}
     (hs : s ∈ laurentVariableSubmonoid ι R) :
     ∀ f : MvPolynomial ι R, s * f ∈ I.map MvPolynomial.C → f ∈ I.map MvPolynomial.C := by
@@ -48,7 +50,9 @@ theorem mvPolynomial_extension_cancel_monomial (I : Ideal R) {s : MvPolynomial �
       simpa only [mul_assoc] using hf
 
 /-- Extending a coefficient ideal to a Laurent localization and contracting
-back recovers its polynomial extension. No Noetherian hypothesis is needed.-/
+back recovers its polynomial extension. No Noetherian hypothesis is needed.
+@isnad1 id=eq.0h4v.s9.00dd258fb35a from=translated src=- shape=d7c58ffe vocab=a819f528
+-/
 theorem mvPolynomial_extension_under_laurent_localization (I : Ideal R)
     {S : Type*} [CommRing S] [Algebra (MvPolynomial ι R) S]
     [IsLocalization (laurentVariableSubmonoid ι R) S] :
@@ -67,7 +71,9 @@ variable [IsNoetherianRing R] [Finite ι]
 
 /-- Adjoining finitely many invertible variables preserves the height of
 every ideal of the coefficient ring. The target may be any realization of
-the relevant Laurent localization.-/
+the relevant Laurent localization.
+@isnad1 id=eq.0h4v.s7.348fc3ec1207 from=translated src=- shape=2f78b402 vocab=4d8ce018
+-/
 theorem laurentIdealHeight_map (I : Ideal R)
     {S : Type*} [CommRing S] [Algebra (MvPolynomial ι R) S]
     [IsLocalization (laurentVariableSubmonoid ι R) S] :
@@ -82,7 +88,9 @@ theorem laurentIdealHeight_map (I : Ideal R)
       rw [mvPolynomial_extension_under_laurent_localization]
     _ = I.height := mvPolynomial_height_map_C I
 
-/-- The same height equality using a compatible coefficient-algebra map.-/
+/-- The same height equality using a compatible coefficient-algebra map.
+@isnad1 id=eq.0h4v.s8.474fbe67a2e6 from=translated src=- shape=e8292a00 vocab=1f879e67
+-/
 theorem laurentIdealHeight_map_algebraMap (I : Ideal R)
     {S : Type*} [CommRing S] [Algebra (MvPolynomial ι R) S] [Algebra R S]
     [IsScalarTower R (MvPolynomial ι R) S]
@@ -96,7 +104,9 @@ ring, represented by a localization.-/
 abbrev LaurentExtension (ι R : Type*) [CommRing R] :=
   Localization (laurentVariableSubmonoid ι R)
 
-/-- Height preservation for the canonical Laurent extension.-/
+/-- Height preservation for the canonical Laurent extension.
+@isnad1 id=eq.0h3v.s9.e37cac4330ab from=translated src=- shape=fef9290f vocab=9604e41c
+-/
 theorem laurentExtension_height_map (I : Ideal R) :
     (I.map ((algebraMap (MvPolynomial ι R) (LaurentExtension ι R)).comp
       MvPolynomial.C)).height = I.height :=

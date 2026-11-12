@@ -43,6 +43,9 @@ def artinianPolynomialIdealPowerComponent
     exact (artinianPolynomialModuleComponent
       (B := B) weight shift degree).map_add P Q
 
+/--
+@isnad1 id=eq.0h9v.s13.f4e451170a40 from=translated src=- shape=5704f22f vocab=f92853b3
+-/
 @[simp]
 theorem artinianPolynomialIdealPowerComponent_coe
     (I : Ideal B) (i : ℕ)
@@ -55,7 +58,9 @@ theorem artinianPolynomialIdealPowerComponent_coe
   rfl
 
 /-- Compatibility of weighted projection with the quotient relation between
-two consecutive coefficient-ideal powers.-/
+two consecutive coefficient-ideal powers.
+@isnad1 id=r.1h10v.s14.c7bc1e462062 from=translated src=- shape=a18332be vocab=60785e03
+-/
 theorem artinianPolynomialIdealPowerComponent_quotientRel
     (I : Ideal B) (i : ℕ)
     (weight : Fin n → ℕ) (shift : Fin r → ℤ) (degree : ℤ)
@@ -110,6 +115,9 @@ def artinianPolynomialAmbientLayerComponent
           (artinianPolynomialIdealPowerComponent I i weight shift degree Q)
     rw [map_add, Submodule.Quotient.mk_add]
 
+/--
+@isnad1 id=eq.0h9v.s14.f557aca5d75f from=translated src=- shape=8d5632d8 vocab=8170e2cf
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerComponent_mk
     (I : Ideal B) (i : ℕ)
@@ -121,6 +129,9 @@ theorem artinianPolynomialAmbientLayerComponent_mk
         (artinianPolynomialIdealPowerComponent I i weight shift degree P) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.2913d9e0673a from=translated src=- shape=2597e8be vocab=5b31ea5c
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerComponent_zero
     (I : Ideal B) (i : ℕ)
@@ -128,6 +139,9 @@ theorem artinianPolynomialAmbientLayerComponent_zero
     artinianPolynomialAmbientLayerComponent I i weight shift degree 0 = 0 :=
   map_zero _
 
+/--
+@isnad1 id=eq.0h10v.s14.e5845fa6d45e from=translated src=- shape=c1c47fde vocab=5b31ea5c
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerComponent_add
     (I : Ideal B) (i : ℕ)
@@ -173,6 +187,9 @@ def artinianPolynomialInducedNumeratorComponent
     exact (artinianPolynomialModuleComponent
       (B := B) weight shift degree).map_add P Q
 
+/--
+@isnad1 id=eq.1h10v.s14.8f10a24e24ea from=translated src=- shape=139a8bb0 vocab=11282598
+-/
 @[simp]
 theorem artinianPolynomialInducedNumeratorComponent_coe
     (I : Ideal B)
@@ -189,7 +206,9 @@ theorem artinianPolynomialInducedNumeratorComponent_coe
   rfl
 
 /-- Compatibility of the numerator component with the quotient relation of
-an induced layer.-/
+an induced layer.
+@isnad1 id=r.2h11v.s15.a3841ad8f7a4 from=translated src=- shape=c039cce3 vocab=1f80bd94
+-/
 theorem artinianPolynomialInducedNumeratorComponent_quotientRel
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -256,6 +275,9 @@ def artinianPolynomialInducedLayerComponent
           (artinianPolynomialInducedNumeratorComponent I N hN i degree Q)
     rw [map_add, Submodule.Quotient.mk_add]
 
+/--
+@isnad1 id=eq.1h10v.s15.31b891e87b64 from=translated src=- shape=68d8bbbd vocab=5646cb95
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerComponent_mk
     (I : Ideal B)
@@ -271,7 +293,9 @@ theorem artinianPolynomialInducedLayerComponent_mk
         (artinianPolynomialInducedNumeratorComponent I N hN i degree P) :=
   rfl
 
-/-- The induced-layer embedding commutes with weighted components.-/
+/-- The induced-layer embedding commutes with weighted components.
+@isnad1 id=eq.1h10v.s15.09371a3cfd65 from=translated src=- shape=d5daeeda vocab=79c21a46
+-/
 theorem artinianPolynomialInducedLayerMap_component
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -314,6 +338,9 @@ def artinianPolynomialAmbientLayerSumComponent
     funext i
     exact map_add _ _ _
 
+/--
+@isnad1 id=eq.0h10v.s14.0ff4c80b9955 from=translated src=- shape=18440d45 vocab=2e0017d9
+-/
 @[simp]
 theorem artinianPolynomialAmbientLayerSumComponent_apply
     (I : Ideal B) (e : ℕ)
@@ -344,6 +371,9 @@ def artinianPolynomialInducedLayerSumComponent
     funext i
     exact map_add _ _ _
 
+/--
+@isnad1 id=eq.1h11v.s15.b578079e88a7 from=translated src=- shape=fc3c6555 vocab=55a03e41
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumComponent_apply
     (I : Ideal B)
@@ -359,7 +389,9 @@ theorem artinianPolynomialInducedLayerSumComponent_apply
   rfl
 
 /-- The simultaneous induced-layer embedding commutes with pointwise
-weighted components.-/
+weighted components.
+@isnad1 id=eq.1h10v.s16.22d2b52ac3b6 from=translated src=- shape=d5daeeda vocab=9b9ea375
+-/
 theorem artinianPolynomialInducedLayerSumMap_component
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -385,7 +417,9 @@ theorem artinianPolynomialInducedLayerSumMap_component
     (n := n) (r := r) I N hN i.1 degree (x i)
 
 /-- The image of a homogeneous polynomial submodule in the fixed product of
-ambient layers is stable under every pointwise weighted component.-/
+ambient layers is stable under every pointwise weighted component.
+@isnad1 id=mem.2h10v.s15.408a2fc13232 from=translated src=- shape=abc9b909 vocab=4c11d7c2
+-/
 theorem artinianPolynomialAmbientLayerSumComponent_mem_range
     (I : Ideal B)
     (N : Submodule (MvPolynomial (Fin n) B)

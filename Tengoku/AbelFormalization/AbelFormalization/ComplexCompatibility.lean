@@ -18,7 +18,9 @@ open Set Metric
 namespace AbelFormalization
 
 /-- Real agreement on an open preconnected complex domain containing a real
-point determines a complex analytic function uniquely.-/
+point determines a complex analytic function uniquely.
+@isnad1 id=eqon.6h4v.s7.2b704ece268f from=translated src=- shape=7cbcee56 vocab=85d11a75
+-/
 theorem analytic_eqOn_of_real_agreement {F G : ℂ → ℂ} {U : Set ℂ}
     (hF : AnalyticOnNhd ℂ F U) (hG : AnalyticOnNhd ℂ G U)
     (hU : IsOpen U) (hc : IsPreconnected U) {a : ℝ} (ha : (a : ℂ) ∈ U)
@@ -53,7 +55,9 @@ theorem analytic_eqOn_of_real_agreement {F G : ℂ → ℂ} {U : Set ℂ}
   · simpa only [Set.mem_singleton_iff] using hne
   · simpa only [hdist] using hdε
 
-/-- Projection onto the real axis stays in a disk whose center is real.-/
+/-- Projection onto the real axis stays in a disk whose center is real.
+@isnad1 id=mem.1h3v.s5.c1ed068cced0 from=translated src=- shape=cfe6c12a vocab=359bdecf
+-/
 theorem realPart_mem_ball {z : ℂ} {x r : ℝ} (hz : z ∈ ball (x : ℂ) r) :
     (z.re : ℂ) ∈ ball (x : ℂ) r := by
   change dist (z.re : ℂ) (x : ℂ) < r
@@ -66,7 +70,9 @@ theorem realPart_mem_ball {z : ℂ} {x r : ℝ} (hz : z ∈ ball (x : ℂ) r) :
     _ < r := by simpa only [Metric.mem_ball, dist_eq_norm] using hz
 
 /-- Two complex analytic extensions of one real function on disks centered on
-the real axis agree on their entire overlap. Empty overlaps are included.-/
+the real axis agree on their entire overlap. Empty overlaps are included.
+@isnad1 id=eqon.4h7v.s7.c2c2881c2197 from=translated src=- shape=71a2b362 vocab=98772f36
+-/
 theorem analytic_extensions_eqOn_inter {f : ℝ → ℝ} {F G : ℂ → ℂ}
     {x y r s : ℝ}
     (hF : AnalyticOnNhd ℂ F (ball (x : ℂ) r))

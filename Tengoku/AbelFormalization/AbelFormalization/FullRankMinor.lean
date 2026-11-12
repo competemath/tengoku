@@ -21,7 +21,9 @@ namespace AbelFormalization
 variable {K ι : Type*} [Field K] [Fintype ι] {n : ℕ}
 
 /-- Full row rank gives an injectively selected square minor with nonzero
-determinant.-/
+determinant.
+@isnad1 id=ex.1h4v.s6.06bc2f0b5d71 from=translated src=- shape=30cd28f0 vocab=ae062b5a
+-/
 theorem exists_column_minor_of_rank_eq
     (A : Matrix (Fin n) ι K) (hA : A.rank = n) :
     ∃ c : Fin n ↪ ι, (A.submatrix id c).det ≠ 0 := by
@@ -42,7 +44,9 @@ theorem exists_column_minor_of_rank_eq
     (Matrix.Nonsingular.of_linearIndependent_col hminor)
 
 /-- Full row rank of a product gives a nonzero full-row-size column minor
-of the first factor. This is the matrix implication used by the chain rule.-/
+of the first factor. This is the matrix implication used by the chain rule.
+@isnad1 id=ex.1h6v.s7.32d43b790982 from=translated src=- shape=38bdc85a vocab=d14f210e
+-/
 theorem exists_column_minor_of_rank_mul_eq
     {κ : Type*} [Fintype κ]
     (A : Matrix (Fin n) ι K) (B : Matrix ι κ K)
@@ -65,13 +69,18 @@ def sumSquaresColumnMinors (A : Matrix (Fin n) ι S) : S := by
 
 end SumSquares
 
+/--
+@isnad1 id=le.0h3v.s4.ba9e2abb9a2d from=translated src=- shape=09699097 vocab=798c35cd
+-/
 theorem sumSquaresColumnMinors_nonneg (A : Matrix (Fin n) ι ℝ) :
     0 ≤ sumSquaresColumnMinors A := by
   classical
   unfold sumSquaresColumnMinors
   exact Finset.sum_nonneg fun _ _ => sq_nonneg _
 
-/-- At full row rank, the squared-minor sum is strictly positive.-/
+/-- At full row rank, the squared-minor sum is strictly positive.
+@isnad1 id=lt.1h3v.s5.750b73767060 from=translated src=- shape=1abfe4ba vocab=76aa3335
+-/
 theorem sumSquaresColumnMinors_pos_of_rank_eq
     (A : Matrix (Fin n) ι ℝ) (hA : A.rank = n) :
     0 < sumSquaresColumnMinors A := by
@@ -83,7 +92,9 @@ theorem sumSquaresColumnMinors_pos_of_rank_eq
       (Finset.mem_univ c))
 
 /-- The squared formal-minor sum is positive when a chain-rule product has
-full row rank.-/
+full row rank.
+@isnad1 id=lt.1h5v.s6.eb99f53bc302 from=translated src=- shape=9d7715f2 vocab=f36e8346
+-/
 theorem sumSquaresColumnMinors_pos_of_rank_mul_eq
     {κ : Type*} [Fintype κ]
     (A : Matrix (Fin n) ι ℝ) (B : Matrix ι κ ℝ)

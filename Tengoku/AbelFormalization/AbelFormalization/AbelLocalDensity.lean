@@ -29,6 +29,9 @@ filled-in function without making a choice of value at the origin.-/
 def logQuadraticTail : ℂ → ℂ :=
   (Function.swap dslope (0 : ℂ))^[2] complexL
 
+/--
+@isnad1 id=eq.0h0v.s5.61557e25477b from=translated src=- shape=18b54dcc vocab=a2012354
+-/
 theorem logQuadraticTail_zero : logQuadraticTail 0 = -(1 : ℂ) / 2 := by
   let p : FormalMultilinearSeries ℂ ℂ ℂ :=
     .ofScalars ℂ (fun n => -(-1 : ℂ) ^ n / n)
@@ -40,6 +43,9 @@ theorem logQuadraticTail_zero : logQuadraticTail 0 = -(1 : ℂ) / 2 := by
     ← FormalMultilinearSeries.coeff]
   simp [p]
 
+/--
+@isnad1 id=eq.0h1v.s5.e2f00c3b5ee5 from=translated src=- shape=d068889a vocab=dc9e0b4b
+-/
 theorem complexL_eq_add_sq_mul_logQuadraticTail (z : ℂ) :
     complexL z = z + z ^ 2 * logQuadraticTail z := by
   by_cases hz : z = 0
@@ -52,6 +58,9 @@ theorem complexL_eq_add_sq_mul_logQuadraticTail (z : ℂ) :
     field_simp
     simp
 
+/--
+@isnad1 id=analytic.1h1v.s5.795cf696443b from=translated src=- shape=a859375d vocab=53f462f9
+-/
 theorem logQuadraticTail_analyticAt {z : ℂ} (hz : ‖z‖ < 1) :
     AnalyticAt ℂ logQuadraticTail z := by
   have hL : DifferentiableOn ℂ complexL (Metric.ball (0 : ℂ) 1) := by
@@ -76,10 +85,16 @@ singularity at zero.-/
 def densityRatio (z : ℂ) : ℂ :=
   ((1 + z) * (1 + z * logQuadraticTail z) ^ 2)⁻¹
 
+/--
+@isnad1 id=eq.0h0v.s3.0657dac8ed3e from=translated src=- shape=3c26ae4f vocab=605cc2b8
+-/
 @[simp]
 theorem densityRatio_zero : densityRatio 0 = 1 := by
   simp [densityRatio]
 
+/--
+@isnad1 id=analytic.0h0v.s5.dd21fe03533b from=translated src=- shape=7489677a vocab=91af1919
+-/
 theorem densityRatio_analyticAt_zero : AnalyticAt ℂ densityRatio 0 := by
   have hg : AnalyticAt ℂ logQuadraticTail 0 :=
     logQuadraticTail_analyticAt (by norm_num)
@@ -88,6 +103,9 @@ theorem densityRatio_analyticAt_zero : AnalyticAt ℂ densityRatio 0 := by
   exact ((analyticAt_const.add analyticAt_id).mul
     ((analyticAt_const.add (analyticAt_id.mul hg)).pow 2)).inv (by norm_num)
 
+/--
+@isnad1 id=eq.0h0v.s5.e4f6fdb05dc3 from=translated src=- shape=874afe33 vocab=af15f5d4
+-/
 theorem densityRatio_deriv_zero : deriv densityRatio 0 = 0 := by
   have hg : DifferentiableAt ℂ logQuadraticTail 0 :=
     (logQuadraticTail_analyticAt (by norm_num)).differentiableAt
@@ -122,14 +140,23 @@ theorem densityRatio_deriv_zero : deriv densityRatio 0 = 0 := by
 invariant density.-/
 def logDensityDefect (z : ℂ) : ℂ := Complex.log (densityRatio z)
 
+/--
+@isnad1 id=eq.0h0v.s3.cbac185c44f7 from=translated src=- shape=3c26ae4f vocab=81ee5775
+-/
 @[simp]
 theorem logDensityDefect_zero : logDensityDefect 0 = 0 := by
   simp [logDensityDefect]
 
+/--
+@isnad1 id=analytic.0h0v.s5.db9b2e084a11 from=translated src=- shape=7489677a vocab=01cf0004
+-/
 theorem logDensityDefect_analyticAt_zero : AnalyticAt ℂ logDensityDefect 0 := by
   change AnalyticAt ℂ (fun z => Complex.log (densityRatio z)) 0
   exact densityRatio_analyticAt_zero.clog (by simpa using one_mem_slitPlane)
 
+/--
+@isnad1 id=eq.0h0v.s5.a0ae63c0ca2b from=translated src=- shape=874afe33 vocab=0e95a59c
+-/
 theorem logDensityDefect_deriv_zero : deriv logDensityDefect 0 = 0 := by
   have hq : DifferentiableAt ℂ densityRatio 0 :=
     densityRatio_analyticAt_zero.differentiableAt
@@ -139,6 +166,9 @@ theorem logDensityDefect_deriv_zero : deriv logDensityDefect 0 = 0 := by
     logDeriv, Pi.div_apply, densityRatio_deriv_zero] at h
   simpa using h
 
+/--
+@isnad1 id=eq.1h1v.s6.dc5f12a70885 from=translated src=- shape=a1b20987 vocab=97e175c4
+-/
 theorem densityRatio_ofReal {x : ℝ} (hx : 0 < x) :
     densityRatio (x : ℂ) =
       (x ^ 2 / ((1 + x) * (L x) ^ 2) : ℝ) := by
@@ -162,7 +192,9 @@ theorem densityRatio_ofReal {x : ℝ} (hx : 0 < x) :
   <;> ring
 
 /-- On the positive real axis the complex logarithmic defect is the real
-logarithm of the density correction ratio.-/
+logarithm of the density correction ratio.
+@isnad1 id=eq.1h1v.s6.2499971c1ee2 from=translated src=- shape=a9e59870 vocab=a8db5fbc
+-/
 theorem logDensityDefect_ofReal_re {x : ℝ} (hx : 0 < x) :
     (logDensityDefect (x : ℂ)).re =
       Real.log (x ^ 2 / ((1 + x) * (L x) ^ 2)) := by

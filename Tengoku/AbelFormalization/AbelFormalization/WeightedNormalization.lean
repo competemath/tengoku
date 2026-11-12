@@ -28,12 +28,17 @@ def minimumSupportWeight (ω : ι → ℤ) (f : MvPolynomial ι R) : ℤ := by
   classical
   exact if h : f.support.Nonempty then f.support.inf' h (Finsupp.weight ω) else 0
 
+/--
+@isnad1 id=eq.0h3v.s5.7a2c59944770 from=translated src=- shape=1a793d8c vocab=1857c266
+-/
 @[simp]
 theorem minimumSupportWeight_zero (ω : ι → ℤ) :
     minimumSupportWeight ω (0 : MvPolynomial ι R) = 0 := by
   simp [minimumSupportWeight]
 
-/-- Every monomial in the support has weight at least the chosen minimum.-/
+/-- Every monomial in the support has weight at least the chosen minimum.
+@isnad1 id=le.1h5v.s7.186ec50e04e1 from=translated src=- shape=c1c1eca5 vocab=30684d66
+-/
 theorem minimumSupportWeight_le (ω : ι → ℤ) (f : MvPolynomial ι R)
     {d : ι →₀ ℕ} (hd : d ∈ f.support) :
     minimumSupportWeight ω f ≤ Finsupp.weight ω d := by
@@ -43,7 +48,9 @@ theorem minimumSupportWeight_le (ω : ι → ℤ) (f : MvPolynomial ι R)
   exact Finset.inf'_le (Finsupp.weight ω) hd
 
 /-- For a nonzero polynomial the minimum is attained by an actual nonzero
-coefficient, rather than by an artificial default value.-/
+coefficient, rather than by an artificial default value.
+@isnad1 id=ex.1h4v.s7.a6f1ffa1bf09 from=translated src=- shape=66349b60 vocab=c41d5c27
+-/
 theorem exists_support_weight_eq_minimum (ω : ι → ℤ)
     {f : MvPolynomial ι R} (hf : f ≠ 0) :
     ∃ d ∈ f.support, Finsupp.weight ω d = minimumSupportWeight ω f := by
@@ -63,13 +70,18 @@ def weightedNormalize (ω : ι → ℤ) (f : MvPolynomial ι R) :
     Polynomial.monomial ((Finsupp.weight ω d - minimumSupportWeight ω f).toNat)
       (MvPolynomial.monomial d (f.coeff d))
 
+/--
+@isnad1 id=eq.0h3v.s7.14a9e71622e8 from=translated src=- shape=a451aff9 vocab=edd9555f
+-/
 @[simp]
 theorem weightedNormalize_zero (ω : ι → ℤ) :
     weightedNormalize ω (0 : MvPolynomial ι R) = 0 := by
   simp [weightedNormalize]
 
 /-- The natural exponent in the normalization is exactly the integer weight
-difference on every supported monomial; no truncation occurs there.-/
+difference on every supported monomial; no truncation occurs there.
+@isnad1 id=eq.1h5v.s8.6aeaabfed3fc from=translated src=- shape=d7ee1750 vocab=f70c5ae2
+-/
 theorem weightedNormalize_exponent_cast (ω : ι → ℤ) (f : MvPolynomial ι R)
     {d : ι →₀ ℕ} (hd : d ∈ f.support) :
     (((Finsupp.weight ω d - minimumSupportWeight ω f).toNat : ℕ) : ℤ) =
@@ -77,7 +89,9 @@ theorem weightedNormalize_exponent_cast (ω : ι → ℤ) (f : MvPolynomial ι R
   Int.toNat_of_nonneg (sub_nonneg.mpr (minimumSupportWeight_le ω f hd))
 
 /-- The explicit finite normalization is the literal Laurent rescaling,
-multiplied by the unit that moves its minimum exponent to zero.-/
+multiplied by the unit that moves its minimum exponent to zero.
+@isnad1 id=eq.0h4v.s10.a03bee850df8 from=translated src=- shape=c9f88bbf vocab=5b1a2d42
+-/
 theorem weightedNormalize_toLaurent (ω : ι → ℤ) (f : MvPolynomial ι R) :
     Polynomial.toLaurent (weightedNormalize ω f) =
       LaurentPolynomial.T (-minimumSupportWeight ω f) *
@@ -105,7 +119,9 @@ theorem weightedNormalize_toLaurent (ω : ι → ℤ) (f : MvPolynomial ι R) :
   ac_rfl
 
 /-- The special fiber of the normalization is exactly the minimum-weight
-component of the original polynomial.-/
+component of the original polynomial.
+@isnad1 id=eq.0h4v.s8.a49cf9a13d76 from=translated src=- shape=96acef06 vocab=99ab9306
+-/
 theorem weightedNormalize_eval_zero (ω : ι → ℤ) (f : MvPolynomial ι R) :
     (weightedNormalize ω f).eval 0 =
       MvPolynomial.weightedHomogeneousComponent ω (minimumSupportWeight ω f) f := by

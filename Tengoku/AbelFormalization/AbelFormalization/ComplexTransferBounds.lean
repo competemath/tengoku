@@ -33,12 +33,18 @@ def finiteFamilyMaxNorm [Fintype ι] [Nonempty ι]
     (f : ι → X → Complex) (x : X) : Real :=
   (Finset.univ.image fun i => ‖f i x‖).max' (by simp)
 
+/--
+@isnad1 id=le.0h5v.s5.85a8ffc58072 from=translated src=- shape=adaa8486 vocab=2b13e840
+-/
 theorem norm_le_finiteFamilyMaxNorm [Fintype ι] [Nonempty ι]
     (f : ι → X → Complex) (x : X) (i : ι) :
     ‖f i x‖ ≤ finiteFamilyMaxNorm f x := by
   apply Finset.le_max'
   exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩
 
+/--
+@isnad1 id=ex.0h4v.s5.3e0fa87e7664 from=translated src=- shape=b2fb1747 vocab=2c99ee8d
+-/
 theorem exists_norm_eq_finiteFamilyMaxNorm [Fintype ι] [Nonempty ι]
     (f : ι → X → Complex) (x : X) :
     ∃ i, ‖f i x‖ = finiteFamilyMaxNorm f x := by
@@ -46,6 +52,9 @@ theorem exists_norm_eq_finiteFamilyMaxNorm [Fintype ι] [Nonempty ι]
   obtain ⟨i, _hi, himax⟩ := Finset.mem_image.mp hm
   exact ⟨i, himax⟩
 
+/--
+@isnad1 id=le.0h4v.s5.9a2d3a2d8bb6 from=translated src=- shape=edfb62f0 vocab=7a64b0d3
+-/
 theorem finiteFamilyMaxNorm_nonneg [Fintype ι] [Nonempty ι]
     (f : ι → X → Complex) (x : X) : 0 ≤ finiteFamilyMaxNorm f x := by
   obtain ⟨i, hi⟩ := exists_norm_eq_finiteFamilyMaxNorm f x
@@ -73,6 +82,9 @@ def ComplexSuperpolynomialDecay (l : Filter X) (R : X → Real)
 
 /-! ## Finite complex linear combinations -/
 
+/--
+@isnad1 id=le.2h4v.s6.f1dca40c8294 from=translated src=- shape=ebc186cb vocab=8839885f
+-/
 theorem norm_complexLinearCombination_le [Fintype ι] [Nonempty ι]
     (f : ι → Complex) (a : ι → Complex) (H : Real)
     (hH : 0 ≤ H) (ha : ∀ i, ‖a i‖ ≤ H) :
@@ -94,6 +106,9 @@ theorem norm_complexLinearCombination_le [Fintype ι] [Nonempty ι]
       rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
       ring
 
+/--
+@isnad1 id=le.3h6v.s7.df1b62b84c1f from=translated src=- shape=98095e06 vocab=8839885f
+-/
 theorem finiteFamilyMaxNorm_linearCombination_le
     [Fintype ι] [Nonempty ι] [Fintype κ] [Nonempty κ]
     (f : ι → Complex) (g : κ → Complex)
@@ -108,7 +123,9 @@ theorem finiteFamilyMaxNorm_linearCombination_le
   rw [← hb, hg b]
   exact norm_complexLinearCombination_le f (a b) H hH (ha b)
 
-/-- The pointwise arithmetic for changing a finite complex generating list.-/
+/-- The pointwise arithmetic for changing a finite complex generating list.
+@isnad1 id=le.6h10v.s7.31eaa519d4b2 from=translated src=- shape=a80e5816 vocab=12fca9ed
+-/
 theorem complexInversePowerLowerBound_pointwise
     [Fintype ι] [Nonempty ι] [Fintype κ] [Nonempty κ]
     (R c C : Real) (M P : Nat)
@@ -143,6 +160,9 @@ theorem complexInversePowerLowerBound_pointwise
     _ = finiteFamilyMaxNorm (fun i (_ : Unit) => f i) () * R ^ (M + P) *
         ((Fintype.card ι : Real) * C) := by rw [pow_add]; ring
 
+/--
+@isnad1 id=hascompl.4h8v.s6.12a58983e18f from=translated src=- shape=a2199887 vocab=be6abe98
+-/
 theorem hasComplexInversePowerLowerBound_of_linearCombinations
     [Fintype ι] [Nonempty ι] [Fintype κ] [Nonempty κ]
     {l : Filter X} {R : X → Real}
@@ -166,6 +186,9 @@ theorem hasComplexInversePowerLowerBound_of_linearCombinations
 
 /-! ## Norm-superpolynomial closure properties -/
 
+/--
+@isnad1 id=complexs.2h5v.s5.95b0f4718123 from=translated src=- shape=4ab17ecd vocab=435e6f94
+-/
 theorem ComplexSuperpolynomialDecay.congr
     {l : Filter X} {R : X → Real} {e f : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e)
@@ -174,6 +197,9 @@ theorem ComplexSuperpolynomialDecay.congr
   unfold ComplexSuperpolynomialDecay at he ⊢
   exact he.congr (fun x => congrArg norm (hef x))
 
+/--
+@isnad1 id=complexs.2h5v.s5.735d9d42da37 from=translated src=- shape=3c53b5e8 vocab=bd535c7b
+-/
 theorem ComplexSuperpolynomialDecay.congr'
     {l : Filter X} {R : X → Real} {e f : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e)
@@ -182,12 +208,18 @@ theorem ComplexSuperpolynomialDecay.congr'
   unfold ComplexSuperpolynomialDecay at he ⊢
   exact he.congr' (hef.mono (fun _ hx => congrArg norm hx))
 
+/--
+@isnad1 id=complexs.0h3v.s4.3ca173b921be from=translated src=- shape=b9db75e6 vocab=435e6f94
+-/
 theorem complexSuperpolynomialDecay_zero
     (l : Filter X) (R : X → Real) :
     ComplexSuperpolynomialDecay l R (fun _ => (0 : Complex)) := by
   unfold ComplexSuperpolynomialDecay
   exact (Asymptotics.superpolynomialDecay_zero l R).congr (fun x => by simp)
 
+/--
+@isnad1 id=complexs.1h4v.s4.285406967af3 from=translated src=- shape=c02e5f6e vocab=4c85047d
+-/
 theorem ComplexSuperpolynomialDecay.neg
     {l : Filter X} {R : X → Real} {e : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e) :
@@ -195,6 +227,9 @@ theorem ComplexSuperpolynomialDecay.neg
   unfold ComplexSuperpolynomialDecay at he ⊢
   exact he.congr (fun x => (norm_neg (e x)).symm)
 
+/--
+@isnad1 id=complexs.2h5v.s5.21fa4bf98e73 from=translated src=- shape=520a264c vocab=ee1a8717
+-/
 theorem ComplexSuperpolynomialDecay.add
     {l : Filter X} {R : X → Real} {e f : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e)
@@ -212,6 +247,9 @@ theorem ComplexSuperpolynomialDecay.add
       abs_of_nonneg (add_nonneg (norm_nonneg _) (norm_nonneg _))] using
     norm_add_le (e x) (f x)
 
+/--
+@isnad1 id=complexs.2h5v.s5.4e5237b270ca from=translated src=- shape=520a264c vocab=084506db
+-/
 theorem ComplexSuperpolynomialDecay.sub
     {l : Filter X} {R : X → Real} {e f : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e)
@@ -221,7 +259,9 @@ theorem ComplexSuperpolynomialDecay.sub
     (ComplexSuperpolynomialDecay.add he (ComplexSuperpolynomialDecay.neg hf))
     (fun x => by simp [sub_eq_add_neg])
 
-/-- Embed a nonnegative real rapidly decaying factor into `Complex`.-/
+/-- Embed a nonnegative real rapidly decaying factor into `Complex`.
+@isnad1 id=complexs.2h4v.s5.886874732c9d from=translated src=- shape=76ee7297 vocab=ddb0661d
+-/
 theorem ComplexSuperpolynomialDecay.of_real_nonneg
     {l : Filter X} {R r : X → Real}
     (hr : Asymptotics.SuperpolynomialDecay l R r)
@@ -233,7 +273,9 @@ theorem ComplexSuperpolynomialDecay.of_real_nonneg
   rw [Complex.norm_real, Real.norm_eq_abs, abs_of_nonneg hx]
 
 /-- Multiplication by a complex function with a polynomial norm bound
-preserves norm-superpolynomial decay.-/
+preserves norm-superpolynomial decay.
+@isnad1 id=complexs.4h7v.s6.07149971c4b4 from=translated src=- shape=e8fde61c vocab=d64b7e86
+-/
 theorem ComplexSuperpolynomialDecay.mul_of_polynomialBound
     {l : Filter X} {R : X → Real} {e p : X → Complex}
     {C : Real} {P : Nat}
@@ -248,6 +290,9 @@ theorem ComplexSuperpolynomialDecay.mul_of_polynomialBound
     Asymptotics.SuperpolynomialDecay.mul_of_polynomialBound he hR hC hp'
   exact hproduct.congr (fun x => (norm_mul (e x) (p x)).symm)
 
+/--
+@isnad1 id=complexs.1h6v.s5.da61383df98a from=translated src=- shape=bbc775b4 vocab=623b91fd
+-/
 theorem complexSuperpolynomialDecay_finset_sum
     {l : Filter X} {R : X → Real}
     (s : Finset J) (e : J → X → Complex)
@@ -262,6 +307,9 @@ theorem complexSuperpolynomialDecay_finset_sum
       have hs := ih (fun k hk => he k (Finset.mem_insert_of_mem hk))
       exact (hj.add hs).congr (fun x => by simp [Finset.sum_insert hjs])
 
+/--
+@isnad1 id=complexs.4h9v.s7.1aa7d74bb6ac from=translated src=- shape=2622f975 vocab=f9c2d6cc
+-/
 theorem complexSuperpolynomialDecay_finset_sum_mul_of_polynomialBound
     {l : Filter X} {R : X → Real}
     (s : Finset J) (e p : J → X → Complex)
@@ -278,7 +326,9 @@ theorem complexSuperpolynomialDecay_finset_sum_mul_of_polynomialBound
   exact (he j hj).mul_of_polynomialBound hR (hC j hj) (hp j hj)
 
 /-- A convenient inverse-power estimate extracted from norm-superpolynomial
-decay.-/
+decay.
+@isnad1 id=eventual.3h6v.s6.a0c72bd4c8b3 from=translated src=- shape=d2dc2aa4 vocab=769fc37e
+-/
 theorem ComplexSuperpolynomialDecay.eventually_norm_le_div
     {l : Filter X} {R : X → Real} {e : X → Complex}
     (he : ComplexSuperpolynomialDecay l R e)
@@ -295,6 +345,9 @@ theorem ComplexSuperpolynomialDecay.eventually_norm_le_div
 
 /-! ## Perturbation and scale transport -/
 
+/--
+@isnad1 id=hascompl.2h6v.s6.5a87e75e9c6c from=translated src=- shape=2784947c vocab=ee56570a
+-/
 theorem hasComplexInversePowerLowerBound_of_eventuallyEq
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R : X → Real} {f g : ι → X → Complex}
@@ -314,6 +367,9 @@ theorem hasComplexInversePowerLowerBound_of_eventuallyEq
       exact norm_le_finiteFamilyMaxNorm f x i
   exact hx.trans_eq hmax
 
+/--
+@isnad1 id=hascompl.4h7v.s6.59f2af87702b from=translated src=- shape=b1338194 vocab=620c1f16
+-/
 theorem hasComplexInversePowerLowerBound_of_superpolynomialPerturbation
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R : X → Real}
@@ -343,6 +399,9 @@ theorem hasComplexInversePowerLowerBound_of_superpolynomialPerturbation
   rw [hsplit] at hgj
   linarith [hxerr j]
 
+/--
+@isnad1 id=hascompl.3h6v.s6.b855e0c3852a from=translated src=- shape=cbc9dd7b vocab=620c1f16
+-/
 theorem hasComplexInversePowerLowerBound_add_superpolynomialPerturbation
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R : X → Real}
@@ -358,6 +417,9 @@ theorem hasComplexInversePowerLowerBound_add_superpolynomialPerturbation
   · intro i
     exact (he i).neg
 
+/--
+@isnad1 id=hascompl.3h6v.s6.77fdb124bc0b from=translated src=- shape=415cfea7 vocab=79dda49f
+-/
 theorem hasComplexInversePowerLowerBound_mono_scale
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R S : X → Real} {f : ι → X → Complex}
@@ -373,6 +435,9 @@ theorem hasComplexInversePowerLowerBound_mono_scale
     pow_le_pow_left₀ (zero_le_one.trans hxR) hxRS M
   exact (div_le_div_of_nonneg_left hc.le hRpow hpows).trans hxf
 
+/--
+@isnad1 id=hascompl.4h8v.s7.87c9301c6493 from=translated src=- shape=98fac9f2 vocab=eda13f80
+-/
 theorem hasComplexInversePowerLowerBound_of_bounded_diagonal
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {S : X → Real}
@@ -400,6 +465,9 @@ theorem hasComplexInversePowerLowerBound_of_bounded_diagonal
       simpa [a, hib] using hnonneg
   · exact hcf
 
+/--
+@isnad1 id=hascompl.5h9v.s7.abc858d35081 from=translated src=- shape=d53f8cb8 vocab=eda13f80
+-/
 theorem hasComplexInversePowerLowerBound_of_normalization_and_scale
     [Fintype ι] [Nonempty ι]
     {l : Filter X} {R S : X → Real}
@@ -420,7 +488,9 @@ theorem hasComplexInversePowerLowerBound_of_normalization_and_scale
   exact hasComplexInversePowerLowerBound_of_bounded_diagonal
     f c hS hC hc hnormalizedS
 
-/-- Complex-valued version of the exponential normalization endpoint.-/
+/-- Complex-valued version of the exponential normalization endpoint.
+@isnad1 id=hascompl.7h10v.s7.0811fcafe2da from=translated src=- shape=c9234d95 vocab=ef3639fb
+-/
 theorem hasComplexInversePowerLowerBound_of_exp_normalization_and_scale
     [Fintype ι] [Nonempty ι]
     {h : Nat} {l : Filter X} {R S : X → Real}
@@ -460,7 +530,9 @@ theorem hasComplexInversePowerLowerBound_of_exp_normalization_and_scale
 variable {Canonical Central Original : Type*}
 
 /-- The complete numerical core of quantitative transfer for complex
-evaluations and real scales.-/
+evaluations and real scales.
+@isnad1 id=hascompl.11h17v.s8.9f07a70843dc from=translated src=- shape=1a064e5d vocab=30b0ab79
+-/
 theorem complexQuantitativeTransfer_of_normalizedExpansion
     [Fintype Canonical] [Nonempty Canonical]
     [Fintype Central] [Nonempty Central]

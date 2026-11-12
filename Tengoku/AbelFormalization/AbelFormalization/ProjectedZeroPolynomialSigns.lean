@@ -17,6 +17,9 @@ namespace AbelFormalization
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.0h3v.s8.e10fa0c2294d from=translated src=- shape=b53213d2 vocab=3ad2f4be
+-/
 @[simp]
 theorem realEuclideanDropLastLinearMap_append_one
     {n : ℕ} (x : RealEuclidean n) (z : RealEuclidean 1) :
@@ -25,6 +28,9 @@ theorem realEuclideanDropLastLinearMap_append_one
   change realEuclideanAppend x z (Fin.castAdd 1 i) = x i
   exact realEuclideanAppend_castAdd x z i
 
+/--
+@isnad1 id=eq.0h3v.s5.dca70e14eab1 from=translated src=- shape=c1a6d3be vocab=95c9b9ab
+-/
 @[simp]
 theorem realEuclideanAppend_last_one
     {n : ℕ} (x : RealEuclidean n) (z : RealEuclidean 1) :
@@ -40,6 +46,9 @@ def polynomialPositiveWitnessEquation {n : ℕ}
     MvPolynomial.eval (realEuclideanDropLastLinearMap n v) P *
       v (Fin.last n) ^ 2 - 1
 
+/--
+@isnad1 id=eq.0h4v.s7.c4c0659bb704 from=translated src=- shape=24b011e0 vocab=a6b43052
+-/
 @[simp]
 theorem polynomialPositiveWitnessEquation_append
     {n : ℕ} (P : MvPolynomial (Fin n) ℝ)
@@ -48,6 +57,9 @@ theorem polynomialPositiveWitnessEquation_append
       MvPolynomial.eval x P * (z 0) ^ 2 - 1 := by
   simp [polynomialPositiveWitnessEquation]
 
+/--
+@isnad1 id=mem.1h3v.s6.02af0b3a1b4a from=translated src=- shape=4f80f973 vocab=52e59400
+-/
 theorem IsGeometricFunctionFamily.polynomialPositiveWitnessEquation_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -69,6 +81,9 @@ theorem IsGeometricFunctionFamily.polynomialPositiveWitnessEquation_mem
     rfl]
   exact hmem
 
+/--
+@isnad1 id=isprojec.1h3v.s6.832b7616ecfe from=translated src=- shape=d3f33f22 vocab=f82a8748
+-/
 theorem isProjectedZeroSet_polynomial_zero
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -76,6 +91,9 @@ theorem isProjectedZeroSet_polynomial_zero
     IsProjectedZeroSet G {x | MvPolynomial.eval x P = 0} :=
   isProjectedZeroSet_zeroSet (hG.polynomial P)
 
+/--
+@isnad1 id=isprojec.1h3v.s6.5255de7cd84e from=translated src=- shape=0d49a96c vocab=51dafa23
+-/
 theorem isProjectedZeroSet_polynomial_pos
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -107,6 +125,9 @@ theorem isProjectedZeroSet_polynomial_pos
     · exact hpos.1
     · exact (not_lt_of_ge hu2.le hneg.2).elim
 
+/--
+@isnad1 id=isprojec.1h3v.s6.d69bfb5f07d7 from=translated src=- shape=d3f33f22 vocab=51dafa23
+-/
 theorem isProjectedZeroSet_polynomial_neg
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -133,12 +154,18 @@ inductive PolynomialSignConstructible (n : ℕ) :
       PolynomialSignConstructible n t →
         PolynomialSignConstructible n (s ∪ t)
 
+/--
+@isnad1 id=polynomi.0h1v.s3.be2b42fe7a90 from=translated src=- shape=1725868c vocab=9c57e95f
+-/
 theorem polynomialSignConstructible_empty (n : ℕ) :
     PolynomialSignConstructible n (∅ : Set (RealEuclidean n)) := by
   have h := PolynomialSignConstructible.zero
     (n := n) (1 : MvPolynomial (Fin n) ℝ)
   simpa using h
 
+/--
+@isnad1 id=polynomi.0h1v.s2.9a2f7628e49c from=translated src=- shape=6a6a934a vocab=7dbc7e45
+-/
 theorem polynomialSignConstructible_univ (n : ℕ) :
     PolynomialSignConstructible n (Set.univ : Set (RealEuclidean n)) := by
   have h := PolynomialSignConstructible.zero
@@ -146,7 +173,9 @@ theorem polynomialSignConstructible_univ (n : ℕ) :
   simpa using h
 
 /-- Polynomial sign normal forms are closed under complement by trichotomy of
-real polynomial values and De Morgan's laws.-/
+real polynomial values and De Morgan's laws.
+@isnad1 id=polynomi.1h2v.s4.138d5bbae39e from=translated src=- shape=d9d161f7 vocab=209c9eae
+-/
 theorem PolynomialSignConstructible.compl
     {n : ℕ} {s : Set (RealEuclidean n)}
     (hs : PolynomialSignConstructible n s) :

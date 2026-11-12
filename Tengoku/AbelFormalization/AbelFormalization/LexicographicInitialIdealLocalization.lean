@@ -19,7 +19,9 @@ namespace AbelFormalization
 
 variable {R T ι : Type*} [CommRing R] [CommRing T] {h : ℕ}
 
-/-- Coefficient maps commute with a fixed weighted homogeneous component.-/
+/-- Coefficient maps commute with a fixed weighted homogeneous component.
+@isnad1 id=eq.0h8v.s9.fb3ac7310da1 from=translated src=- shape=dd50039f vocab=f993ff91
+-/
 theorem mvPolynomial_map_weightedHomogeneousComponent
     (f : R →+* T) (weight : ι → Lex (Fin h → ℤ))
     (degree : Lex (Fin h → ℤ)) (p : MvPolynomial ι R) :
@@ -35,7 +37,9 @@ theorem mvPolynomial_map_weightedHomogeneousComponent
   split <;> simp_all
 
 /-- Under an arbitrary coefficient map, the source initial form either dies
-or maps to the actual initial form of the image.-/
+or maps to the actual initial form of the image.
+@isnad1 id=or.0h7v.s9.79e3ace56c20 from=translated src=- shape=59702c25 vocab=e0d20ed7
+-/
 theorem lexicographicInitialForm_map_eq_zero_or_eq
     (f : R →+* T) (weight : ι → Fin h → ℤ)
     (p : MvPolynomial ι R) :
@@ -87,7 +91,9 @@ theorem lexicographicInitialForm_map_eq_zero_or_eq
     _ = lexicographicInitialForm weight (MvPolynomial.map f p) := rfl
 
 /-- Consequently every mapped source initial form belongs to the initial
-ideal after coefficient base change.-/
+ideal after coefficient base change.
+@isnad1 id=mem.1h8v.s9.4ea2bd2a377f from=translated src=- shape=8677401d vocab=a2d06576
+-/
 theorem map_lexicographicInitialForm_mem_lexicographicInitialIdeal_map
     (f : R →+* T) (weight : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial ι R)) {p : MvPolynomial ι R}
@@ -102,7 +108,9 @@ theorem map_lexicographicInitialForm_mem_lexicographicInitialIdeal_map
       (Ideal.mem_map_of_mem (MvPolynomial.map f) hp)
 
 /-- The easy inclusion: coefficient base change of an initial ideal is
-contained in the initial ideal of the base-changed ideal.-/
+contained in the initial ideal of the base-changed ideal.
+@isnad1 id=le.0h7v.s9.71ef93447bdb from=translated src=- shape=91345b73 vocab=bb956d47
+-/
 theorem lexicographicInitialIdeal_map_le
     (f : R →+* T) (weight : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial ι R)) :

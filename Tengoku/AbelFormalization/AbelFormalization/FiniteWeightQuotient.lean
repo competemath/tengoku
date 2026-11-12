@@ -31,13 +31,17 @@ variable {R : Type*} [Ring R] {n : ℕ}
 variable {M : Fin n → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
 /-- Increasing the input submodule increases every possible least-weight
-coordinate piece.-/
+coordinate piece.
+@isnad1 id=le.1h6v.s8.08bf4f895108 from=translated src=- shape=ec7c7555 vocab=37f36bc8
+-/
 theorem finiteWeightInitialPiece_mono {U V : Submodule R (∀ i, M i)}
     (hUV : U ≤ V) (i : Fin n) :
     finiteWeightInitialPiece U i ≤ finiteWeightInitialPiece V i := by
   exact Submodule.map_mono (inf_le_inf hUV le_rfl)
 
-/-- Full finite-weight initial formation is monotone.-/
+/-- Full finite-weight initial formation is monotone.
+@isnad1 id=le.1h5v.s8.25e43e775cda from=translated src=- shape=c34334c5 vocab=7fe1225b
+-/
 theorem finiteWeightInitial_mono {U V : Submodule R (∀ i, M i)}
     (hUV : U ≤ V) : finiteWeightInitial U ≤ finiteWeightInitial V := by
   intro x hx
@@ -67,10 +71,16 @@ def finiteWeightPiMap (f : ∀ i, M i →ₛₗ[σ] N i) :
     funext i
     exact (f i).map_smulₛₗ c (x i)
 
+/--
+@isnad1 id=eq.0h9v.s8.9ba80644aa4e from=translated src=- shape=a7937b51 vocab=6c29ef78
+-/
 @[simp]
 theorem finiteWeightPiMap_apply (f : ∀ i, M i →ₛₗ[σ] N i)
     (x : ∀ i, M i) (i : Fin n) : finiteWeightPiMap f x i = f i (x i) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.6da249eac3a2 from=translated src=- shape=09a5d197 vocab=39daa44d
+-/
 @[simp]
 theorem finiteWeightPiMap_single (f : ∀ i, M i →ₛₗ[σ] N i)
     (i : Fin n) (v : M i) :
@@ -82,7 +92,9 @@ theorem finiteWeightPiMap_single (f : ∀ i, M i →ₛₗ[σ] N i)
     simp
   · simp [hji]
 
-/-- Coordinatewise maps commute with every strict-prefix projection.-/
+/-- Coordinatewise maps commute with every strict-prefix projection.
+@isnad1 id=eq.0h9v.s9.be308d970df9 from=translated src=- shape=493d334a vocab=acda951f
+-/
 theorem finiteWeightPiMap_prefixProjection
     (f : ∀ i, M i →ₛₗ[σ] N i) (k : ℕ) (x : ∀ i, M i) :
     finiteWeightPiMap f (finiteWeightPrefixProjection R M k x) =
@@ -92,7 +104,9 @@ theorem finiteWeightPiMap_prefixProjection
     simp [finiteWeightPrefixProjection_apply, hi]
 
 /-- Membership in the kernel of a coordinatewise map is detected in every
-coordinate.-/
+coordinate.
+@isnad1 id=iff.0h8v.s8.f45f9af892db from=translated src=- shape=30eb757b vocab=4ce9e6ff
+-/
 theorem mem_ker_finiteWeightPiMap_iff
     (f : ∀ i, M i →ₛₗ[σ] N i) (x : ∀ i, M i) :
     x ∈ LinearMap.ker (finiteWeightPiMap f) ↔
@@ -108,7 +122,9 @@ theorem mem_ker_finiteWeightPiMap_iff
     exact LinearMap.mem_ker.mp (hx i)
 
 /-- Coordinatewise surjectivity gives surjectivity of the product map.  The
-initial-quotient theorem below does not require this stronger hypothesis.-/
+initial-quotient theorem below does not require this stronger hypothesis.
+@isnad1 id=surjecti.1h7v.s8.acaf0a805d66 from=translated src=- shape=3831d4ff vocab=9fd19df2
+-/
 theorem finiteWeightPiMap_surjective
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (hf : ∀ i, Function.Surjective (f i)) :
@@ -124,7 +140,9 @@ map once every vector killed by the full map already belongs to `U`.
 For the reverse inclusion, lift an element producing a target initial
 coordinate and subtract its full strict prefix.  That prefix is killed by the
 map, hence belongs to `U`; the corrected lift is still in `U` and has its
-strict prefix equal to zero.-/
+strict prefix equal to zero.
+@isnad1 id=eq.1h9v.s9.861cb73f56ba from=translated src=- shape=3966b610 vocab=9c52eefa
+-/
 theorem map_finiteWeightInitialPiece_eq_finiteWeightInitialPiece_map
     (f : ∀ i, M i →ₛₗ[σ] N i) (U : Submodule R (∀ i, M i))
     (hker : LinearMap.ker (finiteWeightPiMap f) ≤ U) (i : Fin n) :
@@ -167,7 +185,9 @@ theorem map_finiteWeightInitialPiece_eq_finiteWeightInitialPiece_map
 
 /-- Full finite-weight initial formation commutes with a coordinatewise
 semilinear map whenever its kernel is contained in the source submodule.
-Neither the full map nor its coordinate maps need be surjective.-/
+Neither the full map nor its coordinate maps need be surjective.
+@isnad1 id=eq.1h8v.s9.628799179f3c from=translated src=- shape=e8a6bb71 vocab=9dde77f2
+-/
 theorem map_finiteWeightInitial_eq_finiteWeightInitial_map
     (f : ∀ i, M i →ₛₗ[σ] N i) (U : Submodule R (∀ i, M i))
     (hker : LinearMap.ker (finiteWeightPiMap f) ≤ U) :
@@ -204,13 +224,18 @@ when its single-coordinate embedding belongs to the global denominator.-/
 def finiteWeightCoordinateSubmodule (D : Submodule R (∀ i, M i)) (i : Fin n) :
     Submodule R (M i) := D.comap (LinearMap.single R M i)
 
+/--
+@isnad1 id=iff.0h6v.s8.2c3c1d41e990 from=translated src=- shape=58e506c5 vocab=cf377c26
+-/
 @[simp]
 theorem mem_finiteWeightCoordinateSubmodule_iff
     (D : Submodule R (∀ i, M i)) (i : Fin n) (v : M i) :
     v ∈ finiteWeightCoordinateSubmodule D i ↔ Pi.single i v ∈ D := Iff.rfl
 
 /-- A coordinatewise homogeneous denominator is exactly the product of its
-coordinate denominators.-/
+coordinate denominators.
+@isnad1 id=eq.1h4v.s9.a12e75a908a0 from=translated src=- shape=25c91771 vocab=3b6e8619
+-/
 theorem finiteWeightHomogeneous_eq_pi_coordinateSubmodule
     (D : Submodule R (∀ i, M i))
     (hD : ∀ x ∈ D, ∀ i, Pi.single i (x i) ∈ D) :
@@ -230,7 +255,9 @@ theorem finiteWeightHomogeneous_eq_pi_coordinateSubmodule
       ((Submodule.mem_pi.mp hx) i (Set.mem_univ i))
 
 /-- For a homogeneous denominator, the coordinate denominator is also its
-actual least-weight piece at that coordinate.-/
+actual least-weight piece at that coordinate.
+@isnad1 id=eq.1h5v.s8.a2a2f5583464 from=translated src=- shape=13c58d52 vocab=4781a032
+-/
 theorem finiteWeightInitialPiece_eq_coordinateSubmodule_of_homogeneous
     (D : Submodule R (∀ i, M i))
     (hD : ∀ x ∈ D, ∀ i, Pi.single i (x i) ∈ D) (i : Fin n) :
@@ -255,6 +282,9 @@ def finiteWeightCoordinateQuotientMap (D : Submodule R (∀ i, M i)) :
     (∀ i, M i) →ₗ[R] (∀ i, M i ⧸ finiteWeightCoordinateSubmodule D i) :=
   finiteWeightPiMap (fun i => (finiteWeightCoordinateSubmodule D i).mkQ)
 
+/--
+@isnad1 id=eq.0h6v.s9.1bbd570b4697 from=translated src=- shape=81ae922c vocab=eb77669d
+-/
 @[simp]
 theorem finiteWeightCoordinateQuotientMap_apply
     (D : Submodule R (∀ i, M i)) (x : ∀ i, M i) (i : Fin n) :
@@ -262,7 +292,9 @@ theorem finiteWeightCoordinateQuotientMap_apply
       Submodule.Quotient.mk (x i) := rfl
 
 /-- Homogeneity identifies the kernel of the coordinatewise quotient map
-with the original global denominator.-/
+with the original global denominator.
+@isnad1 id=eq.1h4v.s9.727284ff4a20 from=translated src=- shape=30bc63cd vocab=fd10a973
+-/
 theorem ker_finiteWeightCoordinateQuotientMap
     (D : Submodule R (∀ i, M i))
     (hD : ∀ x ∈ D, ∀ i, Pi.single i (x i) ∈ D) :
@@ -296,6 +328,9 @@ def finiteWeightHomogeneousQuotientEquiv
       (finiteWeightHomogeneous_eq_pi_coordinateSubmodule D hD)).trans
     (Submodule.quotientPi (finiteWeightCoordinateSubmodule D))
 
+/--
+@isnad1 id=eq.1h5v.s11.fc317dfd6235 from=translated src=- shape=ddfc9d5f vocab=c8f133df
+-/
 @[simp]
 theorem finiteWeightHomogeneousQuotientEquiv_mk
     (D : Submodule R (∀ i, M i))
@@ -309,7 +344,9 @@ theorem finiteWeightHomogeneousQuotientEquiv_mk
   rfl
 
 /-- Composing the ordinary quotient map with the homogeneous quotient
-equivalence gives the literal coordinatewise quotient map.-/
+equivalence gives the literal coordinatewise quotient map.
+@isnad1 id=eq.1h4v.s10.d87a80613698 from=translated src=- shape=3824ecac vocab=1f79a05a
+-/
 theorem finiteWeightHomogeneousQuotientEquiv_comp_mkQ
     (D : Submodule R (∀ i, M i))
     (hD : ∀ x ∈ D, ∀ i, Pi.single i (x i) ∈ D) :
@@ -321,7 +358,9 @@ theorem finiteWeightHomogeneousQuotientEquiv_comp_mkQ
   exact congrFun (finiteWeightHomogeneousQuotientEquiv_mk D hD x) i
 
 /-- The concrete homogeneous quotient commutes with full finite-weight
-initial formation as soon as its denominator lies in `U`.-/
+initial formation as soon as its denominator lies in `U`.
+@isnad1 id=eq.2h5v.s10.537aeea7a03a from=translated src=- shape=52540a38 vocab=d40a0622
+-/
 theorem map_finiteWeightInitial_eq_finiteWeightInitial_map_coordinateQuotient
     (D U : Submodule R (∀ i, M i))
     (hD : ∀ x ∈ D, ∀ i, Pi.single i (x i) ∈ D) (hDU : D ≤ U) :
@@ -348,7 +387,9 @@ theorem eq_of_map_mkQ_eq_map_mkQ (D U V' : Submodule R V)
     sup_eq_right.mpr hDV] using hcomap
 
 /-- The quotient map is injective on the interval of submodules containing
-its denominator.-/
+its denominator.
+@isnad1 id=iff.2h5v.s8.dc99b3f3fe0b from=translated src=- shape=053b4996 vocab=22400655
+-/
 theorem map_mkQ_eq_map_mkQ_iff (D U V' : Submodule R V)
     (hDU : D ≤ U) (hDV : D ≤ V') :
     U.map D.mkQ = V'.map D.mkQ ↔ U = V' := by

@@ -23,7 +23,9 @@ namespace AbelFormalization
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [ProperSpace E]
 
 /-- Differentiation under a finite interval integral using joint continuity of
-the integrand and its parameter derivative.-/
+the integrand and its parameter derivative.
+@isnad1 id=hasfderi.5h7v.s9.e61350c32145 from=translated src=- shape=62867073 vocab=39255f32
+-/
 theorem hasFDerivAt_intervalIntegral_of_continuousOn
     {U : Set E} {a b : ℝ} {F : E × ℝ → ℂ} {D : E × ℝ → E →L[ℂ] ℂ}
     (hU : IsOpen U) (hF : ContinuousOn F (U ×ˢ uIcc a b))
@@ -66,7 +68,9 @@ def circleParameterDerivative (F : E × ℂ → ℂ) (p : E) (ζ : ℂ) : E →L
   (fderiv ℂ F (p, ζ)).comp (ContinuousLinearMap.inl ℂ E ℂ)
 
 /-- A contour integral of a jointly analytic family has a complex Fréchet
-derivative, obtained by integrating the parameter derivative.-/
+derivative, obtained by integrating the parameter derivative.
+@isnad1 id=hasfderi.4h5v.s8.de24e5a50d03 from=translated src=- shape=f54617fb vocab=79146695
+-/
 theorem hasFDerivAt_circleIntegral_of_analyticOnNhd
     {U : Set E} {F : E × ℂ → ℂ} {R : ℝ}
     (hU : IsOpen U) (hR : 0 ≤ R)
@@ -97,7 +101,9 @@ theorem hasFDerivAt_circleIntegral_of_analyticOnNhd
           (deriv (circleMap 0 R) t)
   · exact hp
 
-/-- Contour integrals are holomorphic in any proper complex parameter space.-/
+/-- Contour integrals are holomorphic in any proper complex parameter space.
+@isnad1 id=differen.3h4v.s7.a0db8c33b86a from=translated src=- shape=d576b861 vocab=8ba4ffe6
+-/
 theorem differentiableOn_circleIntegral_of_analyticOnNhd
     {U : Set E} {F : E × ℂ → ℂ} {R : ℝ}
     (hU : IsOpen U) (hR : 0 ≤ R)
@@ -107,7 +113,9 @@ theorem differentiableOn_circleIntegral_of_analyticOnNhd
     (hasFDerivAt_circleIntegral_of_analyticOnNhd hU hR hF hp).differentiableAt.differentiableWithinAt
 
 /-- In one complex parameter, contour-integral holomorphy yields an analytic
-power series at each point of the open parameter domain.-/
+power series at each point of the open parameter domain.
+@isnad1 id=analytic.3h3v.s7.ff748a54ca8e from=translated src=- shape=9f2c1aaf vocab=c79b4ca2
+-/
 theorem analyticOnNhd_circleIntegral_of_analyticOnNhd
     {U : Set ℂ} {F : ℂ × ℂ → ℂ} {R : ℝ}
     (hU : IsOpen U) (hR : 0 ≤ R)

@@ -23,7 +23,9 @@ namespace AbelFormalization
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- An analytic germ is a unit exactly when its base-point value is nonzero.
-The inverse is represented by the analytic reciprocal of any representative.-/
+The inverse is represented by the analytic reciprocal of any representative.
+@isnad1 id=iff.0h3v.s11.38b868038c7c from=translated src=- shape=9a352176 vocab=825b73e8
+-/
 theorem isUnit_analyticGerm_iff {x : E} (g : AnalyticGermAt x) :
     IsUnit g ↔ analyticGermValue x g ≠ 0 := by
   constructor
@@ -43,7 +45,9 @@ theorem isUnit_analyticGerm_iff {x : E} (g : AnalyticGermAt x) :
     exact mul_inv_cancel₀ hy
 
 /-- Locality is a theorem of the analytic representatives, not an assumption
-about an abstract coefficient ring.-/
+about an abstract coefficient ring.
+@isnad1 id=islocalr.0h2v.s8.8fb26750858e from=translated src=- shape=a6050881 vocab=01d4b7f5
+-/
 instance analyticGermIsLocalRing (x : E) : IsLocalRing (AnalyticGermAt x) := by
   apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
   intro g
@@ -53,19 +57,26 @@ instance analyticGermIsLocalRing (x : E) : IsLocalRing (AnalyticGermAt x) := by
     simp [hg]
   · exact Or.inl ((isUnit_analyticGerm_iff g).mpr hg)
 
-/-- The base-point evaluation kernel is a maximal ideal.-/
+/-- The base-point evaluation kernel is a maximal ideal.
+@isnad1 id=ismaxima.0h2v.s11.037525e11de5 from=translated src=- shape=a0e694f7 vocab=1700dd4a
+-/
 theorem analyticGermValue_ker_isMaximal (x : E) :
     (RingHom.ker (analyticGermValue x)).IsMaximal :=
   RingHom.ker_isMaximal_of_surjective (analyticGermValue x) (analyticGermValue_surjective x)
 
 /-- The unique maximal ideal consists exactly of the germs vanishing at the
-base point.-/
+base point.
+@isnad1 id=eq.0h2v.s11.688bee0fdb11 from=translated src=- shape=9bfeb7dd vocab=c9322286
+-/
 theorem analyticGerm_maximalIdeal_eq_ker (x : E) :
     IsLocalRing.maximalIdeal (AnalyticGermAt x) = RingHom.ker (analyticGermValue x) := by
   ext g
   simp only [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
     isUnit_analyticGerm_iff, not_ne_iff, RingHom.mem_ker]
 
+/--
+@isnad1 id=iff.0h3v.s12.9b8661740a7d from=translated src=- shape=75e4e50a vocab=d93a9273
+-/
 @[simp]
 theorem analyticGerm_mem_maximalIdeal_iff {x : E} (g : AnalyticGermAt x) :
     g ∈ IsLocalRing.maximalIdeal (AnalyticGermAt x) ↔ analyticGermValue x g = 0 := by
@@ -83,10 +94,16 @@ def analyticGermConst (x : E) : ℝ →+* AnalyticGermAt x where
 instance analyticGermAlgebra (x : E) : Algebra ℝ (AnalyticGermAt x) :=
   (analyticGermConst x).toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s11.8956eb078246 from=translated src=- shape=290756c0 vocab=9b1d4880
+-/
 @[simp]
 theorem analyticGerm_algebraMap (x : E) (c : ℝ) :
     algebraMap ℝ (AnalyticGermAt x) c = analyticGermOf (fun _ => c) analyticAt_const := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.02ce2675a0c0 from=translated src=- shape=2724d845 vocab=3793c96f
+-/
 @[simp]
 theorem analyticGermValue_algebraMap (x : E) (c : ℝ) :
     analyticGermValue x (algebraMap ℝ (AnalyticGermAt x) c) = c := rfl
@@ -97,6 +114,9 @@ def analyticGermResidueEquiv (x : E) :
   (Ideal.quotEquivOfEq (analyticGerm_maximalIdeal_eq_ker x)).trans
     ((analyticGermValue x).quotientKerEquivOfSurjective (analyticGermValue_surjective x))
 
+/--
+@isnad1 id=eq.0h3v.s13.38a6bb62ec63 from=translated src=- shape=5c17b570 vocab=4f0f02e8
+-/
 @[simp]
 theorem analyticGermResidueEquiv_residue (x : E) (g : AnalyticGermAt x) :
     analyticGermResidueEquiv x (IsLocalRing.residue (AnalyticGermAt x) g) =

@@ -46,12 +46,18 @@ structure IsGeometricFunctionFamily
     f ∈ G n → ∀ ℓ : RealEuclidean m →ᵃ[ℝ] RealEuclidean n,
       f ∘ ℓ ∈ G m
 
+/--
+@isnad1 id=mem.1h3v.s4.7b765c3a7743 from=translated src=- shape=f8e7101f vocab=cf87381d
+-/
 theorem IsGeometricFunctionFamily.const_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ} (c : ℝ) :
     (fun _ : RealEuclidean n ↦ c) ∈ G n := by
   simpa using hG.polynomial (n := n) (MvPolynomial.C c)
 
+/--
+@isnad1 id=mem.1h2v.s5.c3c9c74a7c62 from=translated src=- shape=843aeecd vocab=cf87381d
+-/
 theorem IsGeometricFunctionFamily.zero_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ} :
@@ -59,6 +65,9 @@ theorem IsGeometricFunctionFamily.zero_mem
   change (fun _ : RealEuclidean n ↦ 0) ∈ G n
   exact hG.const_mem (n := n) 0
 
+/--
+@isnad1 id=mem.1h2v.s5.a4e1e8697178 from=translated src=- shape=843aeecd vocab=cf87381d
+-/
 theorem IsGeometricFunctionFamily.one_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ} :
@@ -66,6 +75,9 @@ theorem IsGeometricFunctionFamily.one_mem
   change (fun _ : RealEuclidean n ↦ 1) ∈ G n
   exact hG.const_mem (n := n) 1
 
+/--
+@isnad1 id=mem.2h3v.s5.4c8cd83c7eba from=translated src=- shape=a9aa2786 vocab=6f94087b
+-/
 theorem IsGeometricFunctionFamily.neg_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -76,6 +88,9 @@ theorem IsGeometricFunctionFamily.neg_mem
   change (fun x ↦ -f x) ∈ G n
   simpa using hm
 
+/--
+@isnad1 id=mem.3h4v.s6.5c40f5af03d5 from=translated src=- shape=b513ef8d vocab=14ecfdb7
+-/
 theorem IsGeometricFunctionFamily.sub_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -83,6 +98,9 @@ theorem IsGeometricFunctionFamily.sub_mem
     f - g ∈ G n := by
   simpa [sub_eq_add_neg] using hG.add hf (hG.neg_mem hg)
 
+/--
+@isnad1 id=mem.2h3v.s6.67100e7ec2ac from=translated src=- shape=5e03affe vocab=86d4e496
+-/
 theorem IsGeometricFunctionFamily.sq_mem
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hG : IsGeometricFunctionFamily G) {n : ℕ}
@@ -131,6 +149,9 @@ def HasUniformFiberFiniteness
     FunctionTupleInFamily G g → ∃ N : ℕ, ∀ t,
       ENat.card (ConnectedComponents (g ⁻¹' {t})) ≤ N
 
+/--
+@isnad1 id=le.0h4v.s5.ff861a7b5f00 from=translated src=- shape=5dadbce2 vocab=8105d28a
+-/
 theorem smoothRegularFiber_subset_fiber {a b : ℕ}
     (g : RealEuclidean a → RealEuclidean b) (t : RealEuclidean b) :
     smoothRegularFiber g t ⊆ g ⁻¹' {t} := by
@@ -139,7 +160,9 @@ theorem smoothRegularFiber_subset_fiber {a b : ℕ}
 
 /-- For a globally `C¹` square map, pointwise surjectivity of the derivative
 persists on a neighborhood.  Hence the local-submersion definition of the
-regular fiber is exactly the usual pointwise one.-/
+regular fiber is exactly the usual pointwise one.
+@isnad1 id=iff.1h4v.s9.944d436bc92f from=translated src=- shape=ab13ccea vocab=68fdd3e4
+-/
 theorem mem_smoothRegularFiber_iff_of_contDiff_square
     {n : ℕ} (g : RealEuclidean n → RealEuclidean n)
     (hg : ContDiff ℝ 1 g) (t : RealEuclidean n) (x : RealEuclidean n) :

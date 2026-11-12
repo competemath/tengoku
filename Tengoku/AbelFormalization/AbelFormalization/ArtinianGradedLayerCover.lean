@@ -30,7 +30,9 @@ open Function
 /-- On a pushed-forward quotient layer, a scalar in the image of the
 surjective ring map acts exactly as its chosen source scalar did before the
 pushforward.  This is the `map_smul` identity of the identity semilinear map,
-not a choice of a section of `q`.-/
+not a choice of a section of `q`.
+@isnad1 id=eq.2h8v.s10.51a45e52408f from=translated src=- shape=9ec2d5f9 vocab=2377e1c5
+-/
 theorem submoduleLayerPushforward_smul_eq_original
     {A C W : Type*} [CommRing A] [CommRing C] [AddCommGroup W] [Module A W]
     (q : A →+* C) (hq : Function.Surjective q) (F G : Submodule A W)
@@ -46,7 +48,9 @@ section PolynomialLayers
 variable {B : Type*} [CommRing B] {n r : ℕ}
 
 /-- The scalar compatibility identity specialized to an ambient polynomial
-ideal-power layer.-/
+ideal-power layer.
+@isnad1 id=eq.0h7v.s13.3a6c2fa2049c from=translated src=- shape=7a35e5f0 vocab=3dc8246e
+-/
 theorem artinianPolynomialAmbientLayer_residue_smul_eq_original
     (I : Ideal B) (i : ℕ) (a : MvPolynomial (Fin n) B)
     (x : artinianPolynomialAmbientLayer (n := n) (r := r) I i) :
@@ -64,7 +68,9 @@ theorem artinianPolynomialAmbientLayer_residue_smul_eq_original
 /-! ## One ambient layer -/
 
 /-- The constant quotient generators span one ambient layer over the actual
-residue polynomial ring.-/
+residue polynomial ring.
+@isnad1 id=eq.0h5v.s13.e51ca791ffe7 from=translated src=- shape=12b43b4f vocab=2d8a851e
+-/
 theorem artinianPolynomialAmbientLayerConstantGenerator_span_eq_top
     [IsNoetherianRing B] (I : Ideal B) (i : ℕ) :
     letI := artinianPolynomialAmbientLayerModule (n := n) (r := r) I i
@@ -150,7 +156,9 @@ def artinianPolynomialAmbientLayerConstantCover
         (n := n) (r := r) I i ks.1 ks.2)
 
 /-- The constant linear-combination map onto one ambient layer is
-surjective.-/
+surjective.
+@isnad1 id=surjecti.0h5v.s13.79e95e74a1f3 from=translated src=- shape=1f3dbead vocab=775099b6
+-/
 theorem artinianPolynomialAmbientLayerConstantCover_surjective
     [IsNoetherianRing B] (I : Ideal B) (i : ℕ) :
     letI := artinianPolynomialAmbientLayerModule (n := n) (r := r) I i
@@ -235,7 +243,9 @@ def artinianPolynomialAmbientLayerSumGradedGeneratorShift
 /-! ## Spanning the finite ambient layer sum -/
 
 /-- The dependent raw family spans the whole finite product of ambient
-layers.-/
+layers.
+@isnad1 id=eq.0h5v.s14.2f3c18b6d81f from=translated src=- shape=cbf6caf5 vocab=3c9cda32
+-/
 theorem artinianPolynomialAmbientLayerSumRawGenerator_span_eq_top
     [IsNoetherianRing B] (I : Ideal B) (e : ℕ) :
     letI (i : Fin e) :=
@@ -305,7 +315,9 @@ theorem artinianPolynomialAmbientLayerSumRawGenerator_span_eq_top
     rw [hsingle]
     exact S.smul_mem a hy'
 
-/-- Reindexing by `Fin` does not change the range of the generator family.-/
+/-- Reindexing by `Fin` does not change the range of the generator family.
+@isnad1 id=eq.0h5v.s6.aefa31eac920 from=translated src=- shape=9a295c4a vocab=ff9c2c66
+-/
 theorem artinianPolynomialAmbientLayerSumGradedGenerator_range
     [IsNoetherianRing B] (I : Ideal B) (e : ℕ) :
     Set.range
@@ -323,7 +335,9 @@ theorem artinianPolynomialAmbientLayerSumGradedGenerator_range
     simp [artinianPolynomialAmbientLayerSumGradedGenerator]
 
 /-- The `Fin`-reindexed distinguished family spans the entire fixed ambient
-layer sum.-/
+layer sum.
+@isnad1 id=eq.0h5v.s14.52f4006a935f from=translated src=- shape=97a3ef78 vocab=b436f0cb
+-/
 theorem artinianPolynomialAmbientLayerSumGradedGenerator_span_eq_top
     [IsNoetherianRing B] (I : Ideal B) (e : ℕ) :
     letI (i : Fin e) :=
@@ -356,7 +370,9 @@ def artinianPolynomialAmbientLayerSumGradedCover
     (artinianPolynomialAmbientLayerSumGradedGenerator
       (n := n) (r := r) I e)
 
-/-- The explicit constant homogeneous cover is onto.-/
+/-- The explicit constant homogeneous cover is onto.
+@isnad1 id=surjecti.0h5v.s13.41ca19f197f6 from=translated src=- shape=8fcc201c vocab=238bfc55
+-/
 theorem artinianPolynomialAmbientLayerSumGradedCover_surjective
     [IsNoetherianRing B] (I : Ideal B) (e : ℕ) :
     letI (i : Fin e) :=

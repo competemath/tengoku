@@ -29,6 +29,9 @@ def parametricChartParameterSet
       (fderiv ℝ (parametricImplicitChart Phi p hPhi hSurj)
         (parametricLevelChart Phi p hPhi hdim hSurj y)).IsInvertible}
 
+/--
+@isnad1 id=differen.4h6v.s9.429a7cf362ac from=translated src=- shape=7ecb263e vocab=741b3c54
+-/
 theorem differentiableAt_parametricLevelChart_of_mem
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -40,6 +43,9 @@ theorem differentiableAt_parametricLevelChart_of_mem
   (contDiffAt_parametricLevelChart_of_mem
     Phi p hPhi hdim hSurj y hy.1 hy.2.1 hy.2.2).differentiableAt one_ne_zero
 
+/--
+@isnad1 id=eq.5h6v.s10.514ba6b07e2c from=translated src=- shape=58b085fa vocab=7327b396
+-/
 theorem fderiv_parametricLevelChart_range_eq_ker_of_mem
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -55,6 +61,9 @@ theorem fderiv_parametricLevelChart_range_eq_ker_of_mem
   fderiv_parametricLevelChart_range_eq_ker
     Phi p hPhi hdim hSurj y hy.1 hy.2.1 hy.2.2 hPointSurj
 
+/--
+@isnad1 id=eq.4h6v.s9.d8a66345bf6e from=translated src=- shape=65882c1e vocab=116014ab
+-/
 theorem parametricLevelChart_value_of_mem
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -67,6 +76,9 @@ theorem parametricLevelChart_value_of_mem
   have hrfst := congrArg Prod.fst hr
   simpa [parametricLevelChart, parametricLevelCoordinates] using hrfst
 
+/--
+@isnad1 id=ex.5h6v.s9.92dca03fa3de from=translated src=- shape=b367b05a vocab=5b01a9c1
+-/
 theorem exists_parametricLevelChart_parameter
     (Phi : X × Y → Z) (p q : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -100,6 +112,9 @@ theorem exists_parametricLevelChart_parameter
   · rw [hgamma]
     exact hq.2.2
 
+/--
+@isnad1 id=eq.6h6v.s10.c6a1a7c53100 from=translated src=- shape=431f805c vocab=66d215dd
+-/
 theorem parametricLevelProjection_det_eq_zero_of_mem
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)

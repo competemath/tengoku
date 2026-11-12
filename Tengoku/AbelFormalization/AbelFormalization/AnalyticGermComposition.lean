@@ -43,7 +43,9 @@ def analyticGermPullback {x : E} {y : F} (φ : E → F)
     rfl
   commutes' c := by apply Subtype.ext; rfl
 
-/-- The pullback is represented by ordinary composition.-/
+/-- The pullback is represented by ordinary composition.
+@isnad1 id=eq.3h6v.s11.561e374dd298 from=translated src=- shape=dc935687 vocab=2b44ecac
+-/
 @[simp]
 theorem analyticGermPullback_of {x : E} {y : F} (φ : E → F)
     (hφ : AnalyticAt ℝ φ x) (hxy : φ x = y) (f : F → ℝ)
@@ -51,6 +53,9 @@ theorem analyticGermPullback_of {x : E} {y : F} (φ : E → F)
     analyticGermPullback φ hφ hxy (analyticGermOf f hf) =
       analyticGermOf (f ∘ φ) (hf.comp_of_eq hφ hxy) := rfl
 
+/--
+@isnad1 id=eq.2h6v.s12.f10a3dadf2fc from=translated src=- shape=8132d848 vocab=5324951a
+-/
 @[simp]
 theorem analyticGermValue_pullback {x : E} {y : F} (φ : E → F)
     (hφ : AnalyticAt ℝ φ x) (hxy : φ x = y) (g : AnalyticGermAt y) :
@@ -58,6 +63,9 @@ theorem analyticGermValue_pullback {x : E} {y : F} (φ : E → F)
   obtain ⟨f, hf, rfl⟩ := exists_analyticGerm_representative g
   simp [hxy]
 
+/--
+@isnad1 id=eq.0h2v.s10.eb5cf2cebf69 from=translated src=- shape=b1171119 vocab=b3568ac8
+-/
 @[simp]
 theorem analyticGermPullback_id (x : E) :
     analyticGermPullback id analyticAt_id (show id x = x from rfl) =
@@ -68,7 +76,9 @@ theorem analyticGermPullback_id (x : E) :
   apply Subtype.ext
   rfl
 
-/-- The contravariant composition rule for analytic pullbacks.-/
+/-- The contravariant composition rule for analytic pullbacks.
+@isnad1 id=eq.4h8v.s11.8d217bab15ea from=translated src=- shape=68bdf0b0 vocab=f2f478a5
+-/
 theorem analyticGermPullback_comp {x : E} {y : F} {z : G}
     (φ : E → F) (ψ : F → G) (hφ : AnalyticAt ℝ φ x)
     (hψ : AnalyticAt ℝ ψ y) (hxy : φ x = y) (hyz : ψ y = z) :
@@ -81,7 +91,9 @@ theorem analyticGermPullback_comp {x : E} {y : F} {z : G}
   apply Subtype.ext
   rfl
 
-/-- Only the germ of the analytic coordinate map matters.-/
+/-- Only the germ of the analytic coordinate map matters.
+@isnad1 id=eq.5h6v.s10.b97656ed5e89 from=translated src=- shape=31cc8422 vocab=10798aa8
+-/
 theorem analyticGermPullback_congr {x : E} {y : F} {φ ψ : E → F}
     (hφ : AnalyticAt ℝ φ x) (hψ : AnalyticAt ℝ ψ x)
     (hφx : φ x = y) (hψx : ψ x = y) (he : φ =ᶠ[𝓝 x] ψ) :
@@ -127,6 +139,9 @@ def analyticGermOneEquiv : AnalyticGermAt (0 : ℝ) ≃ₐ[ℝ] RealAnalyticGerm
   analyticGermEquivOfContinuousLinearEquiv
     (ContinuousLinearEquiv.piUnique ℝ (fun _ : Fin 1 => ℝ)) (0 : Fin 1 → ℝ)
 
+/--
+@isnad1 id=eq.0h1v.s14.9208b4f75af6 from=translated src=- shape=2e3bbb54 vocab=23653340
+-/
 @[simp]
 theorem analyticGermOneEquiv_value (g : AnalyticGermAt (0 : ℝ)) :
     analyticGermValue (0 : Fin 1 → ℝ) (analyticGermOneEquiv g) =
@@ -134,7 +149,9 @@ theorem analyticGermOneEquiv_value (g : AnalyticGermAt (0 : ℝ)) :
   obtain ⟨f, hf, rfl⟩ := exists_analyticGerm_representative g
   rfl
 
-/-- The ordinary scalar coordinate becomes the unique finite-tuple coordinate.-/
+/-- The ordinary scalar coordinate becomes the unique finite-tuple coordinate.
+@isnad1 id=eq.0h0v.s13.ea6fbc9d0551 from=translated src=- shape=54d1dac4 vocab=fa59547c
+-/
 @[simp]
 theorem analyticGermOneEquiv_coordinate :
     analyticGermOneEquiv (analyticGermOf id (analyticAt_id (𝕜 := ℝ) (z := (0 : ℝ)))) =
@@ -150,10 +167,16 @@ def analyticGermDropCoordinate (p : ℕ) : (Fin (p + 1) → ℝ) →L[ℝ] (Fin 
 def analyticGermInsertCoordinate (p : ℕ) : (Fin p → ℝ) →L[ℝ] (Fin (p + 1) → ℝ) :=
   ContinuousLinearMap.finCons 0 (ContinuousLinearMap.id ℝ (Fin p → ℝ))
 
+/--
+@isnad1 id=eq.0h3v.s8.ee2b97bddaf4 from=translated src=- shape=b447bf2f vocab=1546115e
+-/
 @[simp]
 theorem analyticGermDropCoordinate_apply (p : ℕ) (x : Fin (p + 1) → ℝ) (i : Fin p) :
     analyticGermDropCoordinate p x i = x i.succ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.402a3dd2cd5f from=translated src=- shape=01e0c323 vocab=20dc7fe7
+-/
 @[simp]
 theorem analyticGermInsertCoordinate_apply (p : ℕ) (x : Fin p → ℝ) :
     analyticGermInsertCoordinate p x = Fin.cons 0 x := rfl
@@ -168,6 +191,9 @@ def analyticGermRestrictVariable (p : ℕ) : RealAnalyticGerm (p + 1) →ₐ[ℝ
   analyticGermPullback (analyticGermInsertCoordinate p)
     ((analyticGermInsertCoordinate p).analyticAt 0) (map_zero _)
 
+/--
+@isnad1 id=eq.0h2v.s15.2559ac264423 from=translated src=- shape=cc8c4c35 vocab=8a5c8e19
+-/
 @[simp]
 theorem analyticGermRestrict_addVariable (p : ℕ) (g : RealAnalyticGerm p) :
     analyticGermRestrictVariable p (analyticGermAddVariable p g) = g := by
@@ -177,14 +203,23 @@ theorem analyticGermRestrict_addVariable (p : ℕ) (g : RealAnalyticGerm p) :
   filter_upwards with x
   rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s14.d9ae83cb9455 from=translated src=- shape=94791063 vocab=bee29461
+-/
 theorem analyticGermAddVariable_injective (p : ℕ) :
     Function.Injective (analyticGermAddVariable p) :=
   Function.LeftInverse.injective (analyticGermRestrict_addVariable p)
 
+/--
+@isnad1 id=surjecti.0h1v.s14.b1bcba7aaa7e from=translated src=- shape=274fddc2 vocab=a8c7879f
+-/
 theorem analyticGermRestrictVariable_surjective (p : ℕ) :
     Function.Surjective (analyticGermRestrictVariable p) :=
   Function.RightInverse.surjective (analyticGermRestrict_addVariable p)
 
+/--
+@isnad1 id=eq.0h2v.s14.b7840950909d from=translated src=- shape=e4293ba3 vocab=19a4582a
+-/
 @[simp]
 theorem analyticGermAddVariable_coordinate (p : ℕ) (i : Fin p) :
     analyticGermAddVariable p (analyticGermCoordinate p i) =
@@ -192,12 +227,18 @@ theorem analyticGermAddVariable_coordinate (p : ℕ) (i : Fin p) :
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s14.a5e374b9a9b5 from=translated src=- shape=c9bc3438 vocab=0c49f9f2
+-/
 @[simp]
 theorem analyticGermRestrictVariable_coordinate_zero (p : ℕ) :
     analyticGermRestrictVariable p (analyticGermCoordinate (p + 1) 0) = 0 := by
   apply Subtype.ext
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s14.9a63753e9fa0 from=translated src=- shape=cd954b0b vocab=6c972925
+-/
 @[simp]
 theorem analyticGermRestrictVariable_coordinate_succ (p : ℕ) (i : Fin p) :
     analyticGermRestrictVariable p (analyticGermCoordinate (p + 1) i.succ) =

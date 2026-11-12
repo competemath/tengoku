@@ -36,6 +36,9 @@ variable {E F : Type*}
 def iteratedFDerivFirstNonflatStratum (r : ℕ) (g : E → F) : Set E :=
   iteratedFDerivFlatSet r g \ iteratedFDerivFlatSet (r + 1) g
 
+/--
+@isnad1 id=iff.1h5v.s8.73a24516b673 from=translated src=- shape=397db64e vocab=ed5b15a1
+-/
 theorem mem_iteratedFDerivFirstNonflatStratum_iff
     {r : ℕ} {g : E → F} {x : E} (hr : 0 < r) :
     x ∈ iteratedFDerivFirstNonflatStratum r g ↔
@@ -60,7 +63,9 @@ theorem mem_iteratedFDerivFirstNonflatStratum_iff
 /-- If all positive derivatives of the outer map through order `i` vanish,
 then the `i`-th derivative of a composition vanishes.  In the
 Faà di Bruno formula every ordered partition has a positive number of
-parts, so every summand contains one of the vanishing outer derivatives.-/
+parts, so every summand contains one of the vanishing outer derivatives.
+@isnad1 id=eq.4h7v.s9.438cc63bfeab from=translated src=- shape=bfee2fc6 vocab=d12a9f26
+-/
 theorem iteratedFDeriv_comp_eq_zero_of_outer_flat
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {g : F → G} {f : E → F} {x : E} {i : ℕ}
@@ -83,7 +88,9 @@ theorem iteratedFDeriv_comp_eq_zero_of_outer_flat
 /-- Flatness of an outer jet survives composition as far as the inner map is
 differentiable.  A `C^q` parameterization transports every vanishing
 derivative below any order `r ≤ q + 1`; this `+1` is exact because membership
-in `iteratedFDerivFlatSet r` only asks for derivatives of order `< r`.-/
+in `iteratedFDerivFlatSet r` only asks for derivatives of order `< r`.
+@isnad1 id=mem.4h8v.s7.7fbf0e84270c from=translated src=- shape=06dc59d2 vocab=3477cd87
+-/
 theorem mem_iteratedFDerivFlatSet_comp_of_contDiffAt
     {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G]
     {g : F → G} {f : E → F} {x : E} {r q : ℕ}
@@ -101,7 +108,9 @@ theorem mem_iteratedFDerivFlatSet_comp_of_contDiffAt
     exact hx j hj (hji.trans_lt hir)
 
 /-- A nonzero multilinear map to a Euclidean space is nonzero on some tuple
-and in some output coordinate.-/
+and in some output coordinate.
+@isnad1 id=ex.1h4v.s9.3e9e6322ae06 from=translated src=- shape=544f1995 vocab=b8d22f06
+-/
 theorem exists_tuple_coordinate_ne_zero_of_continuousMultilinearMap_ne_zero
     {r b : ℕ} {A : E[×r]→L[ℝ] (Fin b → ℝ)} (hA : A ≠ 0) :
     ∃ v : Fin r → E, ∃ j : Fin b, A v j ≠ 0 := by
@@ -119,7 +128,9 @@ def nonflatJetCuttingFunction {a b n : ℕ}
   fun y ↦ iteratedFDeriv ℝ n g y (Fin.tail v) j
 
 /-- The cutting function has the expected derivative in the distinguished
-first direction.-/
+first direction.
+@isnad1 id=eq.1h7v.s10.5e341b4d2983 from=translated src=- shape=dd0b1a04 vocab=252145d0
+-/
 theorem fderiv_nonflatJetCuttingFunction_apply_first
     {a b n : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (n + 1 : ℕ) g)
@@ -146,7 +157,9 @@ theorem fderiv_nonflatJetCuttingFunction_apply_first
     (iteratedFDeriv_succ_apply_left (f := g) (x := x) v).symm
 
 /-- A nonzero value of the next derivative makes the scalar cutting function
-a submersion to `ℝ`.-/
+a submersion to `ℝ`.
+@isnad1 id=surjecti.2h7v.s10.58335591292c from=translated src=- shape=e6f5a860 vocab=4880c273
+-/
 theorem surjective_fderiv_nonflatJetCuttingFunction
     {a b n : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (n + 1 : ℕ) g)
@@ -164,7 +177,9 @@ theorem surjective_fderiv_nonflatJetCuttingFunction
 
 /-- Every nonflat layer above the first derivative is locally contained in a
 regular scalar zero set.  This is the precise hypersurface step used by the
-source-dimension induction in Morse--Sard.-/
+source-dimension induction in Morse--Sard.
+@isnad1 id=ex.3h5v.s9.fb84df49d670 from=translated src=- shape=252b83b2 vocab=4fa1d557
+-/
 theorem exists_regular_hypersurface_of_mem_firstNonflatStratum
     {a b n : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (n + 1 : ℕ) g) (hn : 0 < n)
@@ -213,7 +228,9 @@ theorem exists_regular_hypersurface_of_mem_firstNonflatStratum
 /-- A version of the nonflat cutting lemma which records all differentiability
 left after taking the `n`-th derivative.  This is the regularity bookkeeping
 needed in the iterated hypersurface argument: a `C^(s+n)` map gives a `C^s`
-chart for its first nonflat layer of order `n+1`.-/
+chart for its first nonflat layer of order `n+1`.
+@isnad1 id=ex.4h6v.s9.a32bf4ce6ba4 from=translated src=- shape=6c7e541b vocab=4fa1d557
+-/
 theorem exists_contDiff_regular_hypersurface_of_mem_firstNonflatStratum
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -265,7 +282,9 @@ theorem exists_contDiff_regular_hypersurface_of_mem_firstNonflatStratum
 /-! ## Local parameterization of a regular scalar level -/
 
 /-- The kernel used to parameterize a regular scalar level has exactly one
-less dimension than the Euclidean source.-/
+less dimension than the Euclidean source.
+@isnad1 id=eq.1h3v.s10.a3197340e7e5 from=translated src=- shape=e1da2193 vocab=14eb8f83
+-/
 theorem finrank_ker_fderiv_eq_sub_one_of_surjective
     {a : ℕ} {phi : (Fin a → ℝ) → ℝ} {x : Fin a → ℝ}
     (hsurj : Function.Surjective (fderiv ℝ phi x)) :
@@ -287,7 +306,9 @@ the neighborhood on which the original map is `C^r`.
 
 This elementary localization lets the global flat-jet estimate from
 `MorseSardFlatJet` be used on the open domains produced by implicit-function
-charts.-/
+charts.
+@isnad1 id=ex.1h5v.s6.0681b2460d60 from=translated src=- shape=7381f3e7 vocab=1dd10349
+-/
 theorem exists_contDiff_eventuallyEq_of_contDiffAt
     [FiniteDimensional ℝ E] {f : E → F} {x : E} {r : ℕ}
     (hf : ContDiffAt ℝ r f x) :
@@ -331,7 +352,9 @@ smooth representative above, apply the global estimate, and assemble the
 local null images through second countability.
 
 This is the measure-theoretic bridge needed for implicit-function charts,
-whose parameterizations are smooth only on their open chart domains.-/
+whose parameterizations are smooth only on their open chart domains.
+@isnad1 id=eq.4h5v.s8.5b2ed742734d from=translated src=- shape=3b448de8 vocab=481bda3e
+-/
 theorem volume_image_iteratedFDerivFlatSet_inter_open_eq_zero
     {a b r : ℕ} {f : (Fin a → ℝ) → (Fin b → ℝ)}
     {W : Set (Fin a → ℝ)} (hWopen : IsOpen W)
@@ -407,7 +430,9 @@ theorem volume_image_iteratedFDerivFlatSet_inter_open_eq_zero
 well.  Here the map is only `C^s` on an open set, while the selected locus
 asks that derivatives through order `s` vanish.  Smooth representatives of
 the germs preserve all of these derivatives and reduce the statement to
-`volume_image_iteratedFDerivFlatSet_succ_eq_zero`.-/
+`volume_image_iteratedFDerivFlatSet_succ_eq_zero`.
+@isnad1 id=eq.5h5v.s8.df0c6ebb9467 from=translated src=- shape=2aad67e2 vocab=cea77050
+-/
 theorem volume_image_iteratedFDerivFlatSet_succ_inter_open_eq_zero
     {a b s : ℕ} {f : (Fin a → ℝ) → (Fin b → ℝ)}
     {W : Set (Fin a → ℝ)} (hWopen : IsOpen W)
@@ -483,7 +508,9 @@ theorem volume_image_iteratedFDerivFlatSet_succ_inter_open_eq_zero
 /-- A regular scalar level in Euclidean space is locally the image of a
 `C^s` map on the kernel of its derivative.  The domain has codimension one;
 keeping it as the actual kernel avoids an arbitrary choice of Euclidean
-coordinates and is the natural input to the source-dimension induction.-/
+coordinates and is the natural input to the source-dimension induction.
+@isnad1 id=ex.3h4v.s12.ccbc8c388bee from=translated src=- shape=12e83dde vocab=368d4fe2
+-/
 theorem exists_local_contDiffOn_level_parameterization
     {a s : ℕ} {phi : (Fin a → ℝ) → ℝ} (hs : 0 < s)
     (hphi : ContDiff ℝ s phi) {x : Fin a → ℝ}
@@ -585,7 +612,9 @@ theorem exists_local_contDiffOn_level_parameterization
 /-- Every point of a nonflat jet layer has a local `C^s`
 codimension-one parameterization of that layer.  This packages the cutting
 function and the implicit-function chart into the exact local object used by
-the source-dimension step of Morse--Sard.-/
+the source-dimension step of Morse--Sard.
+@isnad1 id=ex.4h6v.s12.b2d45c17b4a3 from=translated src=- shape=fea85b5d vocab=329776d9
+-/
 theorem exists_local_contDiffOn_parameterization_of_mem_firstNonflatStratum
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -624,7 +653,9 @@ through the parameterization with its precise differentiability loss:
 
 The image inclusion in the conclusion is the exact input for the
 lower-source-dimension induction: locally, the order-`n+1` layer in dimension
-`a` is an image of that transported flat locus in dimension `a-1`.-/
+`a` is an image of that transported flat locus in dimension `a-1`.
+@isnad1 id=ex.4h6v.s10.686a5193bd59 from=translated src=- shape=0edbb42e vocab=45e3952c
+-/
 theorem exists_local_contDiffOn_flat_parameterization_of_mem_firstNonflatStratum
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -703,7 +734,9 @@ source/target dimension ratio, the whole local nonflat layer has null image.
 The dimension hypothesis records the genuine limit of the direct flat-jet
 estimate.  The remaining classical cases require the further
 source-dimension/flat-order induction rather than any stronger conclusion
-from a single hypersurface chart.-/
+from a single hypersurface chart.
+@isnad1 id=ex.5h6v.s9.307a88ec2516 from=translated src=- shape=f1b2f6eb vocab=e40a662a
+-/
 theorem exists_open_image_volume_eq_zero_of_mem_firstNonflatStratum_of_dim
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -746,7 +779,9 @@ allows the non-strict inequality `a - 1 ≤ s * b`.
 
 This is the late-layer branch needed by the two-parameter Morse--Sard
 induction; `s ≤ n` is exactly the statement that the old order-`n+1` flat
-jet supplies the extra vanishing derivative at the new smoothness order.-/
+jet supplies the extra vanishing derivative at the new smoothness order.
+@isnad1 id=ex.7h6v.s9.858e9cd136cb from=translated src=- shape=c9e62999 vocab=ff538399
+-/
 theorem exists_open_image_volume_eq_zero_of_mem_firstNonflatStratum_of_late
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -770,7 +805,9 @@ theorem exists_open_image_volume_eq_zero_of_mem_firstNonflatStratum_of_late
   exact ⟨U, hUopen, hxU, measure_mono_null himage hflatNull⟩
 
 /-- The local null-image estimates for one nonflat layer assemble globally
-by second countability of its source subtype.-/
+by second countability of its source subtype.
+@isnad1 id=eq.4h5v.s8.5baddb800e21 from=translated src=- shape=5af90447 vocab=9b0a3cea
+-/
 theorem volume_image_iteratedFDerivFirstNonflatStratum_eq_zero_of_dim
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -808,7 +845,9 @@ theorem volume_image_iteratedFDerivFirstNonflatStratum_eq_zero_of_dim
   exact (measure_biUnion_null_iff hTcount).mpr
     (fun p _hpT => hUzero p)
 
-/-- Global form of the late-layer critical-dimensional endpoint.-/
+/-- Global form of the late-layer critical-dimensional endpoint.
+@isnad1 id=eq.6h5v.s8.7682ee9f867b from=translated src=- shape=3888b244 vocab=7124815b
+-/
 theorem volume_image_iteratedFDerivFirstNonflatStratum_eq_zero_of_late
     {a b n s : ℕ} {g : (Fin a → ℝ) → (Fin b → ℝ)}
     (hg : ContDiff ℝ (s + n : ℕ) g) (hs : 0 < s) (hn : 0 < n)
@@ -856,7 +895,9 @@ def fderivRankZeroSource {a b : ℕ}
   {x | fderiv ℝ g x = 0}
 
 /-- Vanishing of the first derivative is exactly membership in the order-two
-flat-jet locus.-/
+flat-jet locus.
+@isnad1 id=eq.0h3v.s7.ccfa4c05335d from=translated src=- shape=019a5b43 vocab=7aec21cb
+-/
 theorem fderivRankZeroSource_eq_iteratedFDerivFlatSet_two
     {a b : ℕ} (g : (Fin a → ℝ) → (Fin b → ℝ)) :
     fderivRankZeroSource g = iteratedFDerivFlatSet 2 g := by
@@ -877,7 +918,9 @@ theorem fderivRankZeroSource_eq_iteratedFDerivFlatSet_two
 /-- Up to any fixed depth `R`, the rank-zero critical source is the union of
 the deepest flat locus and finitely many consecutive nonflat layers.  The
 deepest locus is handled by the Taylor estimate; every other layer is handled
-by `exists_regular_hypersurface_of_mem_firstNonflatStratum`.-/
+by `exists_regular_hypersurface_of_mem_firstNonflatStratum`.
+@isnad1 id=le.1h4v.s8.9502af2bb3c1 from=translated src=- shape=c728cff7 vocab=ba663412
+-/
 theorem fderivRankZeroSource_subset_flat_union_nonflatLayers
     {a b R : ℕ} (_hR : 2 ≤ R)
     (g : (Fin a → ℝ) → (Fin b → ℝ)) :
@@ -930,7 +973,9 @@ source has null image at the exact classical order `C^(a-b+1)`.
 
 For larger dimension gaps the end layers only retain Taylor exponent two,
 which no longer beats the source dimension.  That is precisely where the
-remaining two-parameter source-dimension/flat-order induction is needed.-/
+remaining two-parameter source-dimension/flat-order induction is needed.
+@isnad1 id=eq.4h3v.s8.b85f2e3b988b from=translated src=- shape=2e6a2595 vocab=c702561f
+-/
 theorem volume_image_fderivRankZeroSource_eq_zero_of_morseSardOrder_of_le_two_mul
     {a b : ℕ} (hba : b < a) (hb : 1 < b) (hab : a ≤ 2 * b)
     {g : (Fin a → ℝ) → (Fin b → ℝ)}
@@ -985,7 +1030,9 @@ theorem volume_image_fderivRankZeroSource_eq_zero_of_morseSardOrder_of_le_two_mu
 /-- The first-range rank-zero theorem is local on the source.  If the map is
 only `C^(a-b+1)` on an open chart domain, smooth cutoff representatives of
 its germs reduce the claim to the global theorem, and second countability
-assembles the resulting local null images.-/
+assembles the resulting local null images.
+@isnad1 id=eq.5h4v.s8.24e3c55b68c2 from=translated src=- shape=7b170315 vocab=f097e7d6
+-/
 theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_morseSardOrder_of_le_two_mul
     {a b : ℕ} (hba : b < a) (hb : 1 < b) (hab : a ≤ 2 * b)
     {f : (Fin a → ℝ) → (Fin b → ℝ)}
@@ -1058,7 +1105,9 @@ theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_morseSardOrder_o
 lower-source rank-zero problem.  Its hypersurface parameterization has source
 dimension `a - 1`, retains exactly `C^(a-b)`, and transports first-derivative
 vanishing.  Hence the already-established `a - 1 ≤ 2b` rank-zero theorem
-supplies the local null-image estimate.-/
+supplies the local null-image estimate.
+@isnad1 id=ex.5h4v.s9.9d211b68c363 from=translated src=- shape=2906dc60 vocab=ff538399
+-/
 theorem exists_open_image_volume_eq_zero_of_mem_firstNonflatStratum_two_of_lower_rankzero
     {a b : ℕ} (hba : b < a - 1) (hb : 1 < b)
     (hab : a - 1 ≤ 2 * b)
@@ -1087,7 +1136,9 @@ theorem exists_open_image_volume_eq_zero_of_mem_firstNonflatStratum_two_of_lower
   rw [fderivRankZeroSource_eq_iteratedFDerivFlatSet_two] at hflatNull
   exact ⟨U, hUopen, hxU, measure_mono_null himage hflatNull⟩
 
-/-- Global form of the lower-source induction for the first nonflat layer.-/
+/-- Global form of the lower-source induction for the first nonflat layer.
+@isnad1 id=eq.4h3v.s8.81bae8944742 from=translated src=- shape=104fe20e vocab=7124815b
+-/
 theorem volume_image_iteratedFDerivFirstNonflatStratum_two_eq_zero_of_lower_rankzero
     {a b : ℕ} (hba : b < a - 1) (hb : 1 < b)
     (hab : a - 1 ≤ 2 * b)
@@ -1130,7 +1181,9 @@ theorem volume_image_iteratedFDerivFirstNonflatStratum_two_eq_zero_of_lower_rank
 At the boundary `a = 2b + 1`, the order-two layer is the already-proved
 rank-zero theorem in source dimension `a - 1`; late layers use the critical
 little-o endpoint, and the remaining layers satisfy the strict Taylor
-dimension inequality.-/
+dimension inequality.
+@isnad1 id=eq.4h3v.s8.9c4e6d4459aa from=translated src=- shape=b7c64c7e vocab=c702561f
+-/
 theorem volume_image_fderivRankZeroSource_eq_zero_of_morseSardOrder_of_le_two_mul_add_one
     {a b : ℕ} (hba : b < a) (hb : 1 < b)
     (hab : a ≤ 2 * b + 1)
@@ -1206,7 +1259,9 @@ theorem volume_image_fderivRankZeroSource_eq_zero_of_morseSardOrder_of_le_two_mu
         volume_image_iteratedFDerivFirstNonflatStratum_eq_zero_of_dim
           hg' hs hn hdim
 
-/-- The `a ≤ 2b + 1` rank-zero theorem localized to an open source chart.-/
+/-- The `a ≤ 2b + 1` rank-zero theorem localized to an open source chart.
+@isnad1 id=eq.5h4v.s8.35285a819d96 from=translated src=- shape=e3e3d184 vocab=f097e7d6
+-/
 theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_morseSardOrder_of_le_two_mul_add_one
     {a b : ℕ} (hba : b < a) (hb : 1 < b)
     (hab : a ≤ 2 * b + 1)
@@ -1285,11 +1340,17 @@ def morseSardElementaryOrder : ℕ → ℕ
   | 0 => 2
   | a + 1 => morseSardElementaryOrder a + a + 1
 
+/--
+@isnad1 id=monotone.0h0v.s2.f991b7fc75f0 from=translated src=- shape=e3d48bcb vocab=a12fafeb
+-/
 theorem morseSardElementaryOrder_mono : Monotone morseSardElementaryOrder :=
   monotone_nat_of_le_succ fun a => by
     simp only [morseSardElementaryOrder]
     omega
 
+/--
+@isnad1 id=lt.0h1v.s3.2d055f1ae3eb from=translated src=- shape=8a62b088 vocab=e7d01c5a
+-/
 theorem morseSardElementaryOrder_pos (a : ℕ) : 0 < morseSardElementaryOrder a := by
   induction a with
   | zero => simp [morseSardElementaryOrder]
@@ -1300,6 +1361,9 @@ private theorem morseSardElementaryOrder_two_le (a : ℕ) : 2 ≤ morseSardEleme
   | zero => simp [morseSardElementaryOrder]
   | succ a ih => simp [morseSardElementaryOrder]; omega
 
+/--
+@isnad1 id=le.0h1v.s4.52a6a660e4b5 from=translated src=- shape=9a470a5e vocab=1cdfd53b
+-/
 theorem morseSardElementaryOrder_source_le (a : ℕ) : a + 1 ≤ morseSardElementaryOrder a := by
   induction a with
   | zero => simp [morseSardElementaryOrder]
@@ -1502,7 +1566,9 @@ private theorem morseSardRankZero_global_local (a : ℕ) : MorseSardRankZeroGlob
 an explicit finite regularity order.  The proof is a genuine induction on
 source dimension: the deepest flat locus uses Taylor--Hausdorff nullity, and
 each nonflat layer is parameterized by a hypersurface and passed to the
-localized lower-dimensional induction hypothesis.-/
+localized lower-dimensional induction hypothesis.
+@isnad1 id=eq.2h3v.s8.ea4a4b0fb41f from=translated src=- shape=354974ef vocab=a90f03ea
+-/
 theorem volume_image_fderivRankZeroSource_eq_zero_of_elementaryOrder
     {a b : ℕ} (hb : 0 < b)
     {g : (Fin a → ℝ) → (Fin b → ℝ)}
@@ -1510,7 +1576,9 @@ theorem volume_image_fderivRankZeroSource_eq_zero_of_elementaryOrder
     volume (g '' fderivRankZeroSource g) = 0 :=
   (morseSardRankZero_global_local a).1 hb hg
 
-/-- Local open-chart form of the all-dimensional elementary-order theorem.-/
+/-- Local open-chart form of the all-dimensional elementary-order theorem.
+@isnad1 id=eq.3h4v.s8.439330362119 from=translated src=- shape=725421d5 vocab=4b23721b
+-/
 theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_elementaryOrder
     {a b : ℕ} (hb : 0 < b)
     {f : (Fin a → ℝ) → (Fin b → ℝ)} {W : Set (Fin a → ℝ)}
@@ -1519,7 +1587,9 @@ theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_elementaryOrder
     volume (f '' (fderivRankZeroSource f ∩ W)) = 0 :=
   (morseSardRankZero_global_local a).2 hb hWopen hf
 
-/-- Every smooth Euclidean map has a null image of its rank-zero source.-/
+/-- Every smooth Euclidean map has a null image of its rank-zero source.
+@isnad1 id=eq.2h3v.s8.e6364c253b4a from=translated src=- shape=8122aa5b vocab=0f736764
+-/
 theorem volume_image_fderivRankZeroSource_eq_zero_of_contDiff_top
     {a b : ℕ} (hb : 0 < b)
     {g : (Fin a → ℝ) → (Fin b → ℝ)}
@@ -1528,7 +1598,9 @@ theorem volume_image_fderivRankZeroSource_eq_zero_of_contDiff_top
   apply volume_image_fderivRankZeroSource_eq_zero_of_elementaryOrder hb
   exact hg.of_le (by simp)
 
-/-- Local open-chart form of smooth rank-zero Morse--Sard.-/
+/-- Local open-chart form of smooth rank-zero Morse--Sard.
+@isnad1 id=eq.3h4v.s8.6ae381141211 from=translated src=- shape=74d7cc4e vocab=93a15206
+-/
 theorem volume_image_fderivRankZeroSource_inter_open_eq_zero_of_contDiffOn_top
     {a b : ℕ} (hb : 0 < b)
     {f : (Fin a → ℝ) → (Fin b → ℝ)} {W : Set (Fin a → ℝ)}

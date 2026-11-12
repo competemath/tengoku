@@ -24,7 +24,9 @@ def contourFamily (F : ℂ × ℂ → ℂ) (R : ℝ) (u : ℂ) : C(sphere (0 : �
   ContinuousMap.mkD (fun ζ => F (u, ζ)) 0
 
 /-- On its continuous parameter domain, the bundled family has the original
-pointwise values.-/
+pointwise values.
+@isnad1 id=eq.2h5v.s8.049e4b8e621c from=translated src=- shape=4f7c4575 vocab=ad5e88f6
+-/
 theorem contourFamily_apply {F : ℂ × ℂ → ℂ} {U : Set ℂ} {R : ℝ}
     (hF : ContinuousOn F (U ×ˢ sphere (0 : ℂ) R)) {u : ℂ} (hu : u ∈ U)
     (ζ : sphere (0 : ℂ) R) : contourFamily F R u ζ = F (u, ζ) := by
@@ -33,7 +35,9 @@ theorem contourFamily_apply {F : ℂ × ℂ → ℂ} {U : Set ℂ} {R : ℝ}
     (fun ζ => ⟨hu, ζ.property⟩)
 
 /-- Joint continuity gives continuity in the uniform norm on the compact
-circle.-/
+circle.
+@isnad1 id=continuo.1h3v.s8.c1389d1a3ce5 from=translated src=- shape=52f65d0d vocab=7d5a3fc5
+-/
 theorem continuousOn_contourFamily {F : ℂ × ℂ → ℂ} {U : Set ℂ} {R : ℝ}
     (hF : ContinuousOn F (U ×ˢ sphere (0 : ℂ) R)) :
     ContinuousOn (contourFamily F R) U := by
@@ -47,7 +51,9 @@ theorem continuousOn_contourFamily {F : ℂ × ℂ → ℂ} {U : Set ℂ} {R : �
   intro v hv
   exact contourFamily_apply hF hv.1 v.2
 
-/-- Continuous evaluation commutes with a Banach-valued circle integral.-/
+/-- Continuous evaluation commutes with a Banach-valued circle integral.
+@isnad1 id=eq.1h5v.s9.72422947cda4 from=translated src=- shape=e500acb1 vocab=2859914e
+-/
 theorem circleIntegral_continuousMap_apply {R : ℝ}
     {f : ℂ → C(sphere (0 : ℂ) R, ℂ)} {c : ℂ} {r : ℝ}
     (hf : CircleIntegrable f c r) (ζ : sphere (0 : ℂ) R) :

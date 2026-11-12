@@ -31,7 +31,9 @@ def restrictedFixedIterateShiftGraphEquation {p : ℕ} (d : ℕ)
     (b : RestrictedBoxSpace p → ℝ) q.1.2
 
 /-- The allowed graph equation is differentiable wherever the bounded
-coefficient is analytic.-/
+coefficient is analytic.
+@isnad1 id=differen.1h7v.s8.b939abb2f547 from=translated src=- shape=ead009e6 vocab=f2af7d98
+-/
 theorem differentiableAt_restrictedFixedIterateShiftGraphEquation
     {p d : ℕ} (D : RestrictedBox p)
     (b : RestrictedBox.analyticNearClosedBoxSubalgebra D)
@@ -50,7 +52,9 @@ theorem differentiableAt_restrictedFixedIterateShiftGraphEquation
   fun_prop
 
 /-- The vertical derivative of the graph equation, evaluated at `1`, is the
-positive derivative of the fixed iterate.-/
+positive derivative of the fixed iterate.
+@isnad1 id=eq.1h7v.s9.e26a33b88a20 from=translated src=- shape=77840a5d vocab=2c7cfceb
+-/
 theorem restrictedFixedIterateShiftGraphEquation_vertical_one
     {p d : ℕ} (D : RestrictedBox p)
     (b : RestrictedBox.analyticNearClosedBoxSubalgebra D)
@@ -87,7 +91,9 @@ theorem restrictedFixedIterateShiftGraphEquation_vertical_one
   exact hfrom.unique hcurve
 
 /-- The vertical derivative block of the fixed-iterate graph equation is
-surjective.-/
+surjective.
+@isnad1 id=surjecti.1h7v.s9.2982e3fe5002 from=translated src=- shape=fa7da0ff vocab=8dad2544
+-/
 theorem surjective_graphLiftZBlock_restrictedFixedIterateShiftGraphEquation
     {p d : ℕ} (D : RestrictedBox p)
     (b : RestrictedBox.analyticNearClosedBoxSubalgebra D)

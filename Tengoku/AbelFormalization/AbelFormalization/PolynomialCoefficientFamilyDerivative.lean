@@ -20,7 +20,9 @@ namespace AbelFormalization
 variable {ι : Type*}
 
 /-- The scalar coefficient of a monomial factors out of an evaluated formal
-partial derivative.-/
+partial derivative.
+@isnad1 id=eq.0h5v.s9.18a57d0ac315 from=translated src=- shape=c2bc6b21 vocab=e5657dc0
+-/
 theorem eval_pderiv_monomial_scalar (d : ι →₀ ℕ) (c : ℝ)
     (z : ι → ℝ) (i : ι) :
     MvPolynomial.eval z (MvPolynomial.pderiv i (MvPolynomial.monomial d c)) =
@@ -31,7 +33,9 @@ theorem eval_pderiv_monomial_scalar (d : ι →₀ ℕ) (c : ℝ)
   rw [hm, MvPolynomial.pderiv_C_mul, map_mul, MvPolynomial.eval_C]
 
 /-- Formal differentiation and evaluation of a finite coefficient family
-are the corresponding finite sum of monomial derivatives.-/
+are the corresponding finite sum of monomial derivatives.
+@isnad1 id=eq.0h5v.s9.e8cd8cc35660 from=translated src=- shape=b7a4ab1f vocab=801c5159
+-/
 theorem eval_pderiv_coefficientFamily (s : Finset (ι →₀ ℕ))
     (c : (ι →₀ ℕ) → ℝ) (z : ι → ℝ) (i : ι) :
     MvPolynomial.eval z (MvPolynomial.pderiv i (∑ d ∈ s, MvPolynomial.monomial d (c d))) =
@@ -48,7 +52,9 @@ variable [Fintype ι]
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Regroup the literal product-rule sum as an equality of continuous linear
-maps, keeping the coefficient and symbol contributions separate.-/
+maps, keeping the coefficient and symbol contributions separate.
+@isnad1 id=eq.0h7v.s11.20ac39eab3cd from=translated src=- shape=65367e9d vocab=f03bfe0b
+-/
 theorem coefficientFamily_derivative_regroup (s : Finset (ι →₀ ℕ))
     (c : (ι →₀ ℕ) → ℝ) (a' : (ι →₀ ℕ) → E →L[ℝ] ℝ)
     (z : ι → ℝ) (z' : ι → E →L[ℝ] ℝ) :
@@ -69,7 +75,9 @@ theorem coefficientFamily_derivative_regroup (s : Finset (ι →₀ ℕ))
   rw [← Finset.sum_smul, eval_pderiv_coefficientFamily]
 
 /-- The actual derivative with a coefficient term and an evaluated formal
-symbol-gradient term. Only the supported coefficient functions need derivatives.-/
+symbol-gradient term. Only the supported coefficient functions need derivatives.
+@isnad1 id=hasfderi.2h8v.s11.3cfb05b65423 from=translated src=- shape=f625aaeb vocab=846d4b24
+-/
 theorem hasFDerivAt_eval_coefficientFamily_grouped (s : Finset (ι →₀ ℕ))
     (a : (ι →₀ ℕ) → E → ℝ) (a' : (ι →₀ ℕ) → E →L[ℝ] ℝ)
     (z : E → ι → ℝ) (z' : ι → E →L[ℝ] ℝ) (x : E)
@@ -84,7 +92,9 @@ theorem hasFDerivAt_eval_coefficientFamily_grouped (s : Finset (ι →₀ ℕ))
   rw [coefficientFamily_derivative_regroup] at h
   exact h
 
-/-- Continuous-linear-map form of the grouped Fréchet derivative.-/
+/-- Continuous-linear-map form of the grouped Fréchet derivative.
+@isnad1 id=eq.2h8v.s11.371dc3261e6c from=translated src=- shape=464e43ef vocab=8b9006f6
+-/
 theorem fderiv_eval_coefficientFamily (s : Finset (ι →₀ ℕ))
     (a : (ι →₀ ℕ) → E → ℝ) (a' : (ι →₀ ℕ) → E →L[ℝ] ℝ)
     (z : E → ι → ℝ) (z' : ι → E →L[ℝ] ℝ) (x : E)
@@ -98,7 +108,9 @@ theorem fderiv_eval_coefficientFamily (s : Finset (ι →₀ ℕ))
   (hasFDerivAt_eval_coefficientFamily_grouped s a a' z z' x ha hz).fderiv
 
 /-- Directional form: coefficient derivatives assemble into an actual
-polynomial, and the remaining term is the dot product with the formal gradient.-/
+polynomial, and the remaining term is the dot product with the formal gradient.
+@isnad1 id=eq.2h9v.s10.a05799093523 from=translated src=- shape=d592d1d5 vocab=431b40c3
+-/
 theorem fderiv_eval_coefficientFamily_apply (s : Finset (ι →₀ ℕ))
     (a : (ι →₀ ℕ) → E → ℝ) (a' : (ι →₀ ℕ) → E →L[ℝ] ℝ)
     (z : E → ι → ℝ) (z' : ι → E →L[ℝ] ℝ) (x h : E)

@@ -32,7 +32,9 @@ private theorem norm_bounds_half_ball {x : ℝ} (hx : 0 < x) {z : ℂ}
       _ < x / 2 + x := by rw [hnorm]; linarith
       _ = 3 * x / 2 := by ring
 
-/-- The local analytic estimate needed to construct the Abel density.-/
+/-- The local analytic estimate needed to construct the Abel density.
+@isnad1 id=ex.5h3v.s8.62edc09d5165 from=translated src=- shape=c5fd572d vocab=7693fbcc
+-/
 theorem exists_local_density_of_log_defect {h : ℂ → ℂ} {R C : ℝ}
     (hR : 0 < R) (hC : 0 ≤ C)
     (ha : AnalyticOnNhd ℂ h {z | 0 < ‖z‖ ∧ ‖z‖ < R})

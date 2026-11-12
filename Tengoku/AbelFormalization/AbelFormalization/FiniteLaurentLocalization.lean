@@ -26,10 +26,16 @@ def finiteLaurentExponentHom (h : ℕ) : (Fin h →₀ ℕ) →+ (Fin h → ℤ)
   map_zero' := rfl
   map_add' d e := by funext i; simp
 
+/--
+@isnad1 id=eq.0h3v.s7.eab3128077d4 from=translated src=- shape=42ea2c17 vocab=23b67f82
+-/
 @[simp]
 theorem finiteLaurentExponentHom_apply (h : ℕ) (d : Fin h →₀ ℕ) (i : Fin h) :
     finiteLaurentExponentHom h d i = (d i : ℤ) := rfl
 
+/--
+@isnad1 id=injectiv.0h1v.s6.b1c75171c1a1 from=translated src=- shape=82ed8014 vocab=23330ae0
+-/
 theorem finiteLaurentExponentHom_injective (h : ℕ) :
     Function.Injective (finiteLaurentExponentHom h) := by
   intro d e hde
@@ -43,10 +49,16 @@ is the original vector whenever that vector is coordinatewise nonnegative.-/
 def finiteLaurentNatExponent {h : ℕ} (g : Fin h → ℤ) : Fin h →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (fun i => (g i).toNat)
 
+/--
+@isnad1 id=eq.0h3v.s5.e6cd502fa40a from=translated src=- shape=338ee58f vocab=50bac33e
+-/
 @[simp]
 theorem finiteLaurentNatExponent_apply {h : ℕ} (g : Fin h → ℤ) (i : Fin h) :
     finiteLaurentNatExponent g i = (g i).toNat := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.73341edc2b44 from=translated src=- shape=3daeb7ef vocab=ed6425bf
+-/
 theorem finiteLaurentExponentHom_natExponent {h : ℕ} (g : Fin h → ℤ)
     (hg : ∀ i, 0 ≤ g i) :
     finiteLaurentExponentHom h (finiteLaurentNatExponent g) = g := by
@@ -60,10 +72,16 @@ def finiteLaurentPolynomialHom (h : ℕ) :
     MvPolynomial (Fin h) R →+* AddMonoidAlgebra R (Fin h → ℤ) :=
   AddMonoidAlgebra.mapDomainRingHom R (finiteLaurentExponentHom h)
 
+/--
+@isnad1 id=injectiv.0h2v.s7.4895f7e152e8 from=translated src=- shape=7155e5d4 vocab=c1923c4a
+-/
 theorem finiteLaurentPolynomialHom_injective (h : ℕ) :
     Function.Injective (finiteLaurentPolynomialHom R h) :=
   AddMonoidAlgebra.mapDomain_injective (finiteLaurentExponentHom_injective h)
 
+/--
+@isnad1 id=eq.0h4v.s8.3260514c2d5a from=translated src=- shape=ffd9771c vocab=725f9da7
+-/
 @[simp]
 theorem finiteLaurentPolynomialHom_monomial (h : ℕ) (d : Fin h →₀ ℕ) (c : R) :
     finiteLaurentPolynomialHom R h (MvPolynomial.monomial d c) =
@@ -72,6 +90,9 @@ theorem finiteLaurentPolynomialHom_monomial (h : ℕ) (d : Fin h →₀ ℕ) (c 
     (AddMonoidAlgebra.single d c) = _
   exact AddMonoidAlgebra.mapDomain_single
 
+/--
+@isnad1 id=eq.0h3v.s8.90eb35a394f2 from=translated src=- shape=b85d1505 vocab=8d1f6b1c
+-/
 @[simp]
 theorem finiteLaurentPolynomialHom_X (h : ℕ) (i : Fin h) :
     finiteLaurentPolynomialHom R h (MvPolynomial.X i) =
@@ -86,6 +107,9 @@ def finiteLaurentDenominatorExponent {h : ℕ}
   Finsupp.equivFunOnFinite.symm
     (fun i => f.coeff.support.sup (fun g => (-g i).toNat))
 
+/--
+@isnad1 id=le.1h5v.s7.d4b35a462399 from=translated src=- shape=1b00ea91 vocab=ab55c6fb
+-/
 theorem finiteLaurentDenominatorExponent_nonneg {h : ℕ}
     (f : AddMonoidAlgebra R (Fin h → ℤ)) {g : Fin h → ℤ}
     (hg : g ∈ f.coeff.support) (i : Fin h) :
@@ -98,7 +122,9 @@ theorem finiteLaurentDenominatorExponent_nonneg {h : ℕ}
   omega
 
 /-- Clearing all negative exponents produces a genuine polynomial with
-the same finite coefficient list.-/
+the same finite coefficient list.
+@isnad1 id=ex.0h3v.s9.b52804d37034 from=translated src=- shape=dfe68f92 vocab=8bd7bf32
+-/
 theorem finiteLaurentPolynomialHom_clear_denominators (h : ℕ)
     (f : AddMonoidAlgebra R (Fin h → ℤ)) :
     ∃ p : MvPolynomial (Fin h) R, ∃ d : Fin h →₀ ℕ,
@@ -132,7 +158,9 @@ theorem finiteLaurentPolynomialHom_clear_denominators (h : ℕ)
       simp only [Finsupp.sum, Finset.sum_mul,
         AddMonoidAlgebra.single_mul_single, mul_one]
 
-/-- Every coefficient-one monomial is a product of the inverted variables.-/
+/-- Every coefficient-one monomial is a product of the inverted variables.
+@isnad1 id=mem.0h3v.s8.78ae2d6abffe from=translated src=- shape=dae0d3e7 vocab=e7651950
+-/
 theorem finiteLaurent_monomial_mem_variableSubmonoid (h : ℕ) (d : Fin h →₀ ℕ) :
     MvPolynomial.monomial d (1 : R) ∈ laurentVariableSubmonoid (Fin h) R := by
   classical
@@ -142,7 +170,9 @@ theorem finiteLaurent_monomial_mem_variableSubmonoid (h : ℕ) (d : Fin h →₀
   apply Submonoid.pow_mem
   exact Submonoid.subset_closure ⟨i, rfl⟩
 
-/-- Every Laurent group monomial has its literal opposite-exponent inverse.-/
+/-- Every Laurent group monomial has its literal opposite-exponent inverse.
+@isnad1 id=isunit.0h3v.s6.ef4e679b8b1e from=translated src=- shape=bbf61512 vocab=adcc8e1c
+-/
 theorem finiteLaurent_single_isUnit (h : ℕ) (g : Fin h → ℤ) :
     IsUnit (AddMonoidAlgebra.single g (1 : R)) := by
   apply isUnit_iff_exists_inv.mpr
@@ -153,13 +183,18 @@ instance finiteLaurentPolynomialAlgebra (h : ℕ) :
     Algebra (MvPolynomial (Fin h) R) (AddMonoidAlgebra R (Fin h → ℤ)) :=
   (finiteLaurentPolynomialHom R h).toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s8.0cbd27ab8897 from=translated src=- shape=d6cf4682 vocab=45dc3953
+-/
 @[simp]
 theorem finiteLaurentPolynomial_algebraMap (h : ℕ) (p : MvPolynomial (Fin h) R) :
     algebraMap (MvPolynomial (Fin h) R) (AddMonoidAlgebra R (Fin h → ℤ)) p =
       finiteLaurentPolynomialHom R h p := rfl
 
 /-- The genuine finite group algebra is the localization of the polynomial
-ring at exactly the multiplicative set generated by its variables.-/
+ring at exactly the multiplicative set generated by its variables.
+@isnad1 id=islocali.0h2v.s6.c6886f50a177 from=translated src=- shape=b095e535 vocab=0064774f
+-/
 instance finiteLaurent_isLocalization (h : ℕ) :
     IsLocalization (laurentVariableSubmonoid (Fin h) R)
       (AddMonoidAlgebra R (Fin h → ℤ)) where

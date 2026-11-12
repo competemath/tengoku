@@ -19,6 +19,9 @@ namespace AbelFormalization
 variable {R : Type*} [Ring R] {n : ℕ}
 variable {M : Fin n → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
+/--
+@isnad1 id=eq.1h6v.s9.831cf6adf6eb from=translated src=- shape=075da313 vocab=c7143d4b
+-/
 theorem finiteWeightPrefixProjection_comp_eq_left_of_le {k l : ℕ} (hkl : k ≤ l)
     (x : ∀ i, M i) :
     finiteWeightPrefixProjection R M k (finiteWeightPrefixProjection R M l x) =
@@ -28,6 +31,9 @@ theorem finiteWeightPrefixProjection_comp_eq_left_of_le {k l : ℕ} (hkl : k ≤
   · simp [finiteWeightPrefixProjection_apply, hi, lt_of_lt_of_le hi hkl]
   · simp [finiteWeightPrefixProjection_apply, hi]
 
+/--
+@isnad1 id=eq.0h5v.s9.321b7be2c5be from=translated src=- shape=17dd81a1 vocab=ebfb601b
+-/
 theorem finiteWeightPrefixProjection_succ (i : Fin n) (x : ∀ j, M j) :
     finiteWeightPrefixProjection R M (i.val + 1) x =
       finiteWeightPrefixProjection R M i.val x + Pi.single i (x i) := by
@@ -46,11 +52,17 @@ theorem finiteWeightPrefixProjection_succ (i : Fin n) (x : ∀ j, M j) :
       simp [finiteWeightPrefixProjection_apply, hj, hjsucc,
         hji]
 
+/--
+@isnad1 id=eq.0h3v.s8.7e96f3b8821f from=translated src=- shape=52d828ed vocab=1ee6e696
+-/
 @[simp]
 theorem finiteWeightPrefixProjection_zero : finiteWeightPrefixProjection R M 0 = 0 := by
   ext x i
   simp [finiteWeightPrefixProjection_apply]
 
+/--
+@isnad1 id=eq.1h4v.s7.dedd722e5bad from=translated src=- shape=59f134ca vocab=f96fcdcc
+-/
 theorem finiteWeightPrefixProjection_eq_id_of_le {k : ℕ} (hnk : n ≤ k) :
     finiteWeightPrefixProjection R M k = LinearMap.id := by
   apply LinearMap.ext
@@ -68,6 +80,9 @@ def finiteWeightInitialPiece (U : Submodule R (∀ i, M i)) (i : Fin n) :
     Submodule R (M i) :=
   (U ⊓ (finiteWeightPrefixProjection R M i.val).ker).map (LinearMap.proj i)
 
+/--
+@isnad1 id=mem.1h6v.s8.c219053491a1 from=translated src=- shape=729af6e5 vocab=93f02167
+-/
 theorem single_mem_finiteWeightPrefixImage_succ
     (U : Submodule R (∀ i, M i)) (i : Fin n) {v : M i}
     (hv : v ∈ finiteWeightInitialPiece U i) :
@@ -79,6 +94,9 @@ theorem single_mem_finiteWeightPrefixImage_succ
   rw [finiteWeightPrefixProjection_succ, hxzero, zero_add]
   exact congrArg (Pi.single i) hxi
 
+/--
+@isnad1 id=mem.1h6v.s9.06cad5803ecc from=translated src=- shape=779587e2 vocab=a08ff863
+-/
 theorem prefix_mem_finiteWeightPrefixImage
     (U : Submodule R (∀ i, M i)) (i : Fin n) {x : ∀ j, M j}
     (hx : x ∈ finiteWeightPrefixImage U (i.val + 1)) :
@@ -102,17 +120,26 @@ def finiteWeightPrefixToPrefix (U : Submodule R (∀ i, M i)) (i : Fin n) :
       (finiteWeightPrefixImage U (i.val + 1)))
     (fun x => prefix_mem_finiteWeightPrefixImage U i x.property)
 
+/--
+@isnad1 id=eq.0h6v.s10.70855d8c50f3 from=translated src=- shape=5426860f vocab=400b557c
+-/
 @[simp]
 theorem finiteWeightPieceToPrefix_coe (U : Submodule R (∀ i, M i))
     (i : Fin n) (v : finiteWeightInitialPiece U i) :
     ((finiteWeightPieceToPrefix U i v) : ∀ j, M j) = Pi.single i (v : M i) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.f28b269d9c12 from=translated src=- shape=9795038a vocab=4c360652
+-/
 @[simp]
 theorem finiteWeightPrefixToPrefix_coe (U : Submodule R (∀ i, M i))
     (i : Fin n) (x : finiteWeightPrefixImage U (i.val + 1)) :
     ((finiteWeightPrefixToPrefix U i x) : ∀ j, M j) =
       finiteWeightPrefixProjection R M i.val (x : ∀ j, M j) := rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s10.1bd2d8f1b5bd from=translated src=- shape=8458c61f vocab=1a8148cf
+-/
 theorem finiteWeightPieceToPrefix_injective (U : Submodule R (∀ i, M i))
     (i : Fin n) : Function.Injective (finiteWeightPieceToPrefix U i) := by
   intro v w h
@@ -120,6 +147,9 @@ theorem finiteWeightPieceToPrefix_injective (U : Submodule R (∀ i, M i))
   have hi := congrFun (congrArg Subtype.val h) i
   simpa using hi
 
+/--
+@isnad1 id=surjecti.0h5v.s11.dbbf5e041223 from=translated src=- shape=2f2b935b vocab=23cc97f9
+-/
 theorem finiteWeightPrefixToPrefix_surjective (U : Submodule R (∀ i, M i))
     (i : Fin n) : Function.Surjective (finiteWeightPrefixToPrefix U i) := by
   intro x
@@ -132,7 +162,9 @@ theorem finiteWeightPrefixToPrefix_surjective (U : Submodule R (∀ i, M i))
   exact hvx
 
 /-- The first image is exactly the kernel of forgetting the last
-coordinate. Both maps are explicit maps of the actual prefix modules.-/
+coordinate. Both maps are explicit maps of the actual prefix modules.
+@isnad1 id=exact.0h5v.s11.6642b5adf610 from=translated src=- shape=00da26be vocab=5907ef05
+-/
 theorem finiteWeightPrefix_exact (U : Submodule R (∀ i, M i)) (i : Fin n) :
     Function.Exact (finiteWeightPieceToPrefix U i) (finiteWeightPrefixToPrefix U i) := by
   intro x
@@ -161,7 +193,9 @@ theorem finiteWeightPrefix_exact (U : Submodule R (∀ i, M i)) (i : Fin n) :
     simp [finiteWeightPrefixProjection_single]
 
 /-- Length additivity for the actual prefix images, derived from the
-explicit short exact sequence. No finite-length hypothesis is needed.-/
+explicit short exact sequence. No finite-length hypothesis is needed.
+@isnad1 id=eq.0h5v.s9.7b81e49493e7 from=translated src=- shape=fb3b7938 vocab=3a1353dd
+-/
 theorem finiteWeightPrefixImage_length_succ (U : Submodule R (∀ i, M i)) (i : Fin n) :
     Module.length R (finiteWeightPrefixImage U (i.val + 1)) =
       Module.length R (finiteWeightInitialPiece U i) +
@@ -175,11 +209,17 @@ least-weight component, not the initial forms of a selected generating list.-/
 def finiteWeightInitial (U : Submodule R (∀ i, M i)) : Submodule R (∀ i, M i) :=
   Submodule.pi Set.univ (finiteWeightInitialPiece U)
 
+/--
+@isnad1 id=iff.0h5v.s8.e0c4b3eda459 from=translated src=- shape=71868f9c vocab=8dea25ff
+-/
 @[simp]
 theorem mem_finiteWeightInitial_iff (U : Submodule R (∀ i, M i)) (x : ∀ i, M i) :
     x ∈ finiteWeightInitial U ↔ ∀ i, x i ∈ finiteWeightInitialPiece U i := by
   simp [finiteWeightInitial, Submodule.mem_pi]
 
+/--
+@isnad1 id=mem.1h6v.s8.a5d9d53672c7 from=translated src=- shape=c47abb0e vocab=7a0c6544
+-/
 theorem single_mem_finiteWeightInitial (U : Submodule R (∀ i, M i)) (i : Fin n)
     {v : M i} (hv : v ∈ finiteWeightInitialPiece U i) :
     Pi.single i v ∈ finiteWeightInitial U := by
@@ -191,6 +231,9 @@ theorem single_mem_finiteWeightInitial (U : Submodule R (∀ i, M i)) (i : Fin n
     simpa using hv
   · simp [hji]
 
+/--
+@isnad1 id=mem.1h6v.s8.302ec7fb7083 from=translated src=- shape=7d257587 vocab=96530273
+-/
 theorem finiteWeightInitial_homogeneous (U : Submodule R (∀ i, M i)) :
     ∀ x ∈ finiteWeightInitial U, ∀ i, Pi.single i (x i) ∈ finiteWeightInitial U := by
   intro x hx i
@@ -203,7 +246,9 @@ def finiteWeightInitialGenerators (U : Submodule R (∀ i, M i)) : Set (∀ i, M
     v = Pi.single i (x i)}
 
 /-- The product-of-pieces construction is exactly the full span of the
-least-weight components of all U-elements.-/
+least-weight components of all U-elements.
+@isnad1 id=eq.0h4v.s7.f7126a580ace from=translated src=- shape=3d19a8d6 vocab=1561ef4f
+-/
 theorem finiteWeightInitial_eq_span (U : Submodule R (∀ i, M i)) :
     finiteWeightInitial U = Submodule.span R (finiteWeightInitialGenerators U) := by
   classical
@@ -219,7 +264,9 @@ theorem finiteWeightInitial_eq_span (U : Submodule R (∀ i, M i)) :
     rintro _ ⟨x, hx, i, hlow, rfl⟩
     exact single_mem_finiteWeightInitial U i ⟨x, ⟨hx, hlow⟩, rfl⟩
 
-/-- Initial formation fixes every coordinatewise homogeneous submodule.-/
+/-- Initial formation fixes every coordinatewise homogeneous submodule.
+@isnad1 id=eq.1h4v.s8.a98dedcc8a85 from=translated src=- shape=7b9ac5cb vocab=96530273
+-/
 theorem finiteWeightInitial_eq_of_homogeneous (U : Submodule R (∀ i, M i))
     (hU : ∀ x ∈ U, ∀ i, Pi.single i (x i) ∈ U) : finiteWeightInitial U = U := by
   classical
@@ -240,7 +287,9 @@ theorem finiteWeightInitial_eq_of_homogeneous (U : Submodule R (∀ i, M i))
       simp [finiteWeightPrefixProjection_single]
     · simp
 
-/-- Initial formation leaves every projected kernel piece unchanged.-/
+/-- Initial formation leaves every projected kernel piece unchanged.
+@isnad1 id=eq.0h5v.s7.726f3f9f21f8 from=translated src=- shape=a63f0039 vocab=78b527d4
+-/
 theorem finiteWeightInitialPiece_initial (U : Submodule R (∀ i, M i)) (i : Fin n) :
     finiteWeightInitialPiece (finiteWeightInitial U) i = finiteWeightInitialPiece U i := by
   classical
@@ -253,18 +302,26 @@ theorem finiteWeightInitialPiece_initial (U : Submodule R (∀ i, M i)) (i : Fin
       simp [finiteWeightPrefixProjection_single]
     · simp
 
+/--
+@isnad1 id=eq.0h4v.s7.58ac93ad0645 from=translated src=- shape=e18bf8fa vocab=69f425b0
+-/
 @[simp]
 theorem finiteWeightPrefixImage_zero (U : Submodule R (∀ i, M i)) :
     finiteWeightPrefixImage U 0 = ⊥ := by
   simp [finiteWeightPrefixImage]
 
+/--
+@isnad1 id=eq.1h5v.s7.8ccef53b124c from=translated src=- shape=26804a41 vocab=06566076
+-/
 theorem finiteWeightPrefixImage_eq_self_of_le (U : Submodule R (∀ i, M i))
     {k : ℕ} (hnk : n ≤ k) : finiteWeightPrefixImage U k = U := by
   rw [finiteWeightPrefixImage, finiteWeightPrefixProjection_eq_id_of_le hnk,
     Submodule.map_id]
 
 /-- Initial formation preserves every prefix length. The proof uses the
-explicit exact sequence repeatedly, and never cancels infinite lengths.-/
+explicit exact sequence repeatedly, and never cancels infinite lengths.
+@isnad1 id=eq.0h5v.s9.d4d0f251f537 from=translated src=- shape=e0300ecb vocab=65524d0e
+-/
 theorem finiteWeightInitial_prefix_length (U : Submodule R (∀ i, M i)) (k : ℕ) :
     Module.length R (finiteWeightPrefixImage (finiteWeightInitial U) k) =
       Module.length R (finiteWeightPrefixImage U k) := by
@@ -293,7 +350,9 @@ theorem finiteWeightInitial_prefix_length (U : Submodule R (∀ i, M i)) (k : �
     exact h
 
 /-- In particular, the full initial submodule has the same actual module
-length as the original submodule.-/
+length as the original submodule.
+@isnad1 id=eq.0h4v.s9.6a4e5771f1a6 from=translated src=- shape=84bdd9a7 vocab=d18a878c
+-/
 theorem finiteWeightInitial_length (U : Submodule R (∀ i, M i)) :
     Module.length R (finiteWeightInitial U) = Module.length R U := by
   have h := finiteWeightInitial_prefix_length U n

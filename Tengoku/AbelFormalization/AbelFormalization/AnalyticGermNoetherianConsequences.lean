@@ -16,7 +16,9 @@ noncomputable section
 
 namespace AbelFormalization
 
-/-- The analytic maximal ideal needs at most one generator per coordinate.-/
+/-- The analytic maximal ideal needs at most one generator per coordinate.
+@isnad1 id=le.0h1v.s12.b75604c22cc9 from=translated src=- shape=a69030fb vocab=adf88038
+-/
 theorem analyticGerm_maximalIdeal_spanFinrank_le (p : ℕ) :
     (IsLocalRing.maximalIdeal (RealAnalyticGerm p)).spanFinrank ≤ p := by
   rw [analyticGerm_maximalIdeal_eq_span_coordinates]
@@ -26,7 +28,9 @@ theorem analyticGerm_maximalIdeal_spanFinrank_le (p : ℕ) :
   simpa using h
 
 /-- Given the analytic Noetherian theorem, the coordinate prime chain and
-Krull's height theorem determine the dimension exactly.-/
+Krull's height theorem determine the dimension exactly.
+@isnad1 id=eq.0h1v.s11.7cce62b7d456 from=translated src=- shape=71fb9427 vocab=d4f5003a
+-/
 theorem realAnalyticGerm_dimension_of_isNoetherian (p : ℕ)
     [IsNoetherianRing (RealAnalyticGerm p)] :
     ringKrullDim (RealAnalyticGerm p) = p := by
@@ -35,7 +39,9 @@ theorem realAnalyticGerm_dimension_of_isNoetherian (p : ℕ)
   exact_mod_cast analyticGerm_maximalIdeal_spanFinrank_le p
 
 /-- Noetherianity is the remaining input for regularity in general dimension;
-neither this theorem nor the dimension theorem assumes regularity itself.-/
+neither this theorem nor the dimension theorem assumes regularity itself.
+@isnad1 id=isregula.0h1v.s11.d3e64d38a163 from=translated src=- shape=724879ab vocab=075953cf
+-/
 theorem realAnalyticGerm_regular_of_isNoetherian (p : ℕ)
     [IsNoetherianRing (RealAnalyticGerm p)] : IsRegularLocalRing (RealAnalyticGerm p) := by
   apply IsRegularLocalRing.of_spanFinrank_maximalIdeal_le

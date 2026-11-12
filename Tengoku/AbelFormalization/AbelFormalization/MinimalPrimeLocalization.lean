@@ -31,6 +31,9 @@ def minimalPrimeAvoidanceSubmonoid (B : Type*) [CommRing B] : Submonoid B where
     · exact ha p hp hap
     · exact hb p hp hbp
 
+/--
+@isnad1 id=iff.0h2v.s7.0f15df3ac11d from=translated src=- shape=e945d023 vocab=0a588c29
+-/
 @[simp]
 theorem mem_minimalPrimeAvoidanceSubmonoid
     {B : Type*} [CommRing B] (b : B) :
@@ -39,7 +42,9 @@ theorem mem_minimalPrimeAvoidanceSubmonoid
   Iff.rfl
 
 /-- A prime ideal disjoint from the elements avoiding all minimal primes is
-itself a minimal prime.-/
+itself a minimal prime.
+@isnad1 id=mem.2h2v.s7.eb69cb37d87f from=translated src=- shape=f09da741 vocab=d522c625
+-/
 theorem mem_minimalPrimes_of_isPrime_disjoint_minimalPrimeAvoidanceSubmonoid
     {B : Type*} [CommRing B] [IsNoetherianRing B]
     {p : Ideal B} (hp : p.IsPrime)
@@ -71,7 +76,9 @@ theorem mem_minimalPrimes_of_isPrime_disjoint_minimalPrimeAvoidanceSubmonoid
   exact hpq'.symm ▸ hq
 
 /-- Localizing a Noetherian ring at the elements avoiding all minimal primes
-produces a ring of Krull dimension at most zero.-/
+produces a ring of Krull dimension at most zero.
+@isnad1 id=krulldim.0h2v.s5.cccf8c829ec3 from=translated src=- shape=a1e23f0a vocab=6a1a7966
+-/
 theorem minimalPrimeAvoidanceLocalization_krullDimLE_zero
     {B T : Type*} [CommRing B] [IsNoetherianRing B]
     [CommRing T] [Algebra B T]
@@ -105,7 +112,9 @@ theorem minimalPrimeAvoidanceLocalization_krullDimLE_zero
   exact hPQ'.symm ▸ hQ
 
 /-- The localization of a Noetherian ring away from all of its minimal primes
-is Artinian.-/
+is Artinian.
+@isnad1 id=isartini.0h2v.s5.adf5b3ee6e9b from=translated src=- shape=1bb7a20c vocab=65a3848a
+-/
 theorem minimalPrimeAvoidanceLocalization_isArtinianRing
     {B T : Type*} [CommRing B] [IsNoetherianRing B]
     [CommRing T] [Algebra B T]

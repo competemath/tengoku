@@ -11,6 +11,9 @@ namespace AbelFormalization
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.1h3v.s8.50cd5f104b6f from=translated src=- shape=2116a205 vocab=bfb77e21
+-/
 theorem smoothRegularFiber_eq_regularZeroSet_univ_sub
     {n : ℕ} (g : RealEuclidean n → RealEuclidean n)
     (hg : ContDiff ℝ 1 g) (t : RealEuclidean n) :
@@ -21,6 +24,9 @@ theorem smoothRegularFiber_eq_regularZeroSet_univ_sub
   simp only [regularZeroSet, Set.mem_ofPred_eq, Set.mem_univ, true_and,
     sub_eq_zero, fderiv_sub_const]
 
+/--
+@isnad1 id=iszerore.2h1v.s7.22c5998d396d from=translated src=- shape=f5095026 vocab=90996c13
+-/
 theorem IsZeroRegularFunctionFamily.of_regularZeroSet_finite
     {G : (n : ℕ) → Set (RealEuclideanFunction n)}
     (hsmooth : IsEverywhereSmoothFunctionFamily G)

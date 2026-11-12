@@ -28,7 +28,9 @@ def regularZeroSet
   {x | x ∈ Omega ∧ f x = 0 ∧ Function.Surjective (fderiv ℝ f x)}
 
 /-- In equal finite dimensions, surjectivity of a continuous linear map also
-gives injectivity.-/
+gives injectivity.
+@isnad1 id=injectiv.2h3v.s8.78181a5fac24 from=translated src=- shape=5becd225 vocab=56f9765c
+-/
 theorem continuousLinearMap_injective_of_surjective_of_finrank_eq
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -38,7 +40,9 @@ theorem continuousLinearMap_injective_of_surjective_of_finrank_eq
   (LinearMap.injective_iff_surjective_of_finrank_eq_finrank hdim).mpr hD
 
 /-- Every regular zero of a `C¹` square map has an open neighborhood in
-which it is the only regular zero (indeed, the only zero).-/
+which it is the only regular zero (indeed, the only zero).
+@isnad1 id=ex.3h4v.s7.f778b2164b7b from=translated src=- shape=a5d1accf vocab=56823121
+-/
 theorem exists_isOpen_inter_regularZeroSet_eq_singleton
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]
@@ -77,7 +81,9 @@ theorem exists_isOpen_inter_regularZeroSet_eq_singleton
     subst y
     exact ⟨hxsource, hx⟩
 
-/-- The regular-zero set of a `C¹` square map on an open set is discrete.-/
+/-- The regular-zero set of a `C¹` square map on an open set is discrete.
+@isnad1 id=isdiscre.2h3v.s6.ce5489460af4 from=translated src=- shape=3eba4b0e vocab=59e99473
+-/
 theorem isDiscrete_regularZeroSet
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E]

@@ -36,6 +36,9 @@ def parametricImplicitChart
       (Z × (fderiv ℝ Phi p).ker) :=
   (parametricImplicitData Phi p hPhi hSurj).toOpenPartialHomeomorph
 
+/--
+@isnad1 id=eq.2h6v.s11.004b38650311 from=translated src=- shape=37eaaaa1 vocab=e9c92fe9
+-/
 @[simp]
 theorem parametricImplicitChart_fst
     (Phi : X × Y → Z) (p q : X × Y)
@@ -44,6 +47,9 @@ theorem parametricImplicitChart_fst
     (parametricImplicitChart Phi p hPhi hSurj q).1 = Phi q := by
   rfl
 
+/--
+@isnad1 id=mem.2h5v.s12.d748f47a78ea from=translated src=- shape=04a0d5f5 vocab=ffedd593
+-/
 theorem parametricImplicitChart_base_mem_source
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -51,6 +57,9 @@ theorem parametricImplicitChart_base_mem_source
     p ∈ (parametricImplicitChart Phi p hPhi hSurj).source := by
   exact (parametricImplicitData Phi p hPhi hSurj).pt_mem_toOpenPartialHomeomorph_source
 
+/--
+@isnad1 id=eq.2h5v.s12.63ffbac9882a from=translated src=- shape=313d9436 vocab=1ce7eac2
+-/
 theorem parametricImplicitChart_base_image
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -76,6 +85,9 @@ def parametricLevelChart
   (parametricImplicitChart Phi p hPhi hSurj).symm
     (parametricLevelCoordinates Phi p hdim hSurj y)
 
+/--
+@isnad1 id=eq.3h5v.s9.511d39d6de2a from=translated src=- shape=d6a7d0fd vocab=be3b2f91
+-/
 @[simp]
 theorem parametricLevelChart_baseParameter
     (Phi : X × Y → Z) (p : X × Y)
@@ -89,6 +101,9 @@ theorem parametricLevelChart_baseParameter
   exact (parametricImplicitChart Phi p hPhi hSurj).left_inv
     (parametricImplicitChart_base_mem_source Phi p hPhi hSurj)
 
+/--
+@isnad1 id=contdiff.3h6v.s12.8fcae2de17a5 from=translated src=- shape=79d4ad4f vocab=b2267904
+-/
 theorem contDiffAt_parametricImplicitChart
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -109,6 +124,9 @@ def parametricImplicitRegularSource
     {q | ContDiffAt ℝ 1 Phi q ∧
       (fderiv ℝ (parametricImplicitChart Phi p hPhi hSurj) q).IsInvertible}
 
+/--
+@isnad1 id=contdiff.2h5v.s12.c84155bfd559 from=translated src=- shape=b1b449ef vocab=aff60e47
+-/
 theorem contDiff_parametricLevelCoordinates
     (Phi : X × Y → Z) (p : X × Y)
     (hdim : Module.finrank ℝ X = Module.finrank ℝ Z)
@@ -117,6 +135,9 @@ theorem contDiff_parametricLevelCoordinates
   unfold parametricLevelCoordinates
   fun_prop
 
+/--
+@isnad1 id=contdiff.6h6v.s14.dfcfc801b16b from=translated src=- shape=52c90af0 vocab=150d5c94
+-/
 theorem contDiffAt_parametricLevelChart_of_mem
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)
@@ -147,6 +168,9 @@ theorem contDiffAt_parametricLevelChart_of_mem
   exact hsymm.comp y
     (contDiff_parametricLevelCoordinates Phi p hdim hSurj).contDiffAt
 
+/--
+@isnad1 id=eq.7h6v.s14.d1a1d787b962 from=translated src=- shape=b7ebdda9 vocab=150d5c94
+-/
 theorem fderiv_parametricLevelChart_range_eq_ker
     (Phi : X × Y → Z) (p : X × Y)
     (hPhi : ContDiffAt ℝ 1 Phi p)

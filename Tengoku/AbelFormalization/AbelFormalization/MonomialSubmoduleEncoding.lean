@@ -33,7 +33,9 @@ def monomialUpperSetIdeal (U : UpperSet (Fin n → ℕ)) : Ideal (MvPolynomial (
     {d | (d : Fin n → ℕ) ∈ U})
 
 /-- Mathlib's actual monomial-ideal membership theorem simplifies to
-membership of every supported exponent in the given upper set.-/
+membership of every supported exponent in the given upper set.
+@isnad1 id=iff.0h4v.s8.6e832510f2dd from=translated src=- shape=6fde78c4 vocab=0f341916
+-/
 theorem mem_monomialUpperSetIdeal (U : UpperSet (Fin n → ℕ))
     (P : MvPolynomial (Fin n) R) :
     P ∈ monomialUpperSetIdeal U ↔ ∀ d ∈ P.support, (d : Fin n → ℕ) ∈ U := by
@@ -45,7 +47,9 @@ theorem mem_monomialUpperSetIdeal (U : UpperSet (Fin n → ℕ))
   · intro h d hd
     exact ⟨d, h d hd, le_rfl⟩
 
-/-- Each coefficient-one monomial tests exactly one exponent in the upper set.-/
+/-- Each coefficient-one monomial tests exactly one exponent in the upper set.
+@isnad1 id=iff.0h4v.s8.934faef25753 from=translated src=- shape=12b454d8 vocab=614c3ff4
+-/
 theorem monomial_one_mem_monomialUpperSetIdeal [Nontrivial R]
     (U : UpperSet (Fin n → ℕ)) (d : Fin n →₀ ℕ) :
     MvPolynomial.monomial d (1 : R) ∈ monomialUpperSetIdeal U ↔
@@ -55,7 +59,9 @@ theorem monomial_one_mem_monomialUpperSetIdeal [Nontrivial R]
   simp [MvPolynomial.support_monomial]
 
 /-- Ideal containment is literal exponent-set containment. The nontrivial
-coefficient semiring prevents coefficient-one monomials from vanishing.-/
+coefficient semiring prevents coefficient-one monomials from vanishing.
+@isnad1 id=iff.0h4v.s8.a2e255b0fb11 from=translated src=- shape=9fa00147 vocab=018a794c
+-/
 theorem monomialUpperSetIdeal_le_iff [Nontrivial R]
     (U V : UpperSet (Fin n → ℕ)) :
     monomialUpperSetIdeal (R := R) U ≤ monomialUpperSetIdeal V ↔
@@ -79,6 +85,9 @@ def monomialUpperFamilySubmodule (U : κ → UpperSet (Fin n → ℕ)) :
     Submodule (MvPolynomial (Fin n) R) (κ → MvPolynomial (Fin n) R) :=
   Submodule.pi Set.univ (fun k => monomialUpperSetIdeal (R := R) (U k))
 
+/--
+@isnad1 id=iff.0h5v.s9.70995f601582 from=translated src=- shape=3912c2a9 vocab=8fd0394d
+-/
 theorem mem_monomialUpperFamilySubmodule (U : κ → UpperSet (Fin n → ℕ))
     (P : κ → MvPolynomial (Fin n) R) :
     P ∈ monomialUpperFamilySubmodule U ↔
@@ -86,7 +95,9 @@ theorem mem_monomialUpperFamilySubmodule (U : κ → UpperSet (Fin n → ℕ))
   simp only [monomialUpperFamilySubmodule, Submodule.mem_pi, Set.mem_univ,
     forall_true_left, mem_monomialUpperSetIdeal]
 
-/-- Exact componentwise containment of the encoded polynomial submodules.-/
+/-- Exact componentwise containment of the encoded polynomial submodules.
+@isnad1 id=iff.0h5v.s9.0c3b552643d9 from=translated src=- shape=809d397e vocab=7b9f57a3
+-/
 theorem monomialUpperFamilySubmodule_le_iff [Nontrivial R]
     (U V : κ → UpperSet (Fin n → ℕ)) :
     monomialUpperFamilySubmodule (R := R) U ≤ monomialUpperFamilySubmodule V ↔
@@ -114,7 +125,9 @@ theorem monomialUpperFamilySubmodule_le_iff [Nontrivial R]
     exact h k ((mem_monomialUpperFamilySubmodule U P).mp hP k d hd)
 
 /-- The encoding is injective, with order reversal only coming from the
-bundled reverse-inclusion convention for UpperSet.-/
+bundled reverse-inclusion convention for UpperSet.
+@isnad1 id=injectiv.0h3v.s7.66818e5345ff from=translated src=- shape=fe9c2a56 vocab=db0d5feb
+-/
 theorem monomialUpperFamilySubmodule_injective [Nontrivial R] :
     Function.Injective
       (monomialUpperFamilySubmodule (R := R) :
@@ -135,6 +148,9 @@ def monomialUpperFamilyDegreeSlice (U : κ → UpperSet (Fin n → ℕ)) (d : �
     Set (κ × (Fin n →₀ ℕ)) :=
   {t | (t.2 : Fin n → ℕ) ∈ U t.1 ∧ t.2.degree = d}
 
+/--
+@isnad1 id=finite.0h4v.s5.83cb5ad81bbb from=translated src=- shape=88a298ca vocab=dafc074b
+-/
 theorem monomialUpperFamilyDegreeSlice_finite
     (U : κ → UpperSet (Fin n → ℕ)) (d : ℕ) :
     (monomialUpperFamilyDegreeSlice U d).Finite := by
@@ -148,7 +164,9 @@ def monomialUpperFamilyDegreeCount (U : κ → UpperSet (Fin n → ℕ)) (d : �
   (monomialUpperFamilyDegreeSlice U d).ncard
 
 /-- Comparable exponent families with identical finite degree counts
-are equal: inclusion and equal finite cardinality agree degree by degree.-/
+are equal: inclusion and equal finite cardinality agree degree by degree.
+@isnad1 id=eq.2h4v.s7.620f823d2d9d from=translated src=- shape=9c49c5e4 vocab=f61d1d19
+-/
 theorem monomialUpperFamily_eq_of_le_of_degreeCount_eq
     (U V : κ → UpperSet (Fin n → ℕ)) (hUV : U ≤ V)
     (hcount : ∀ d, monomialUpperFamilyDegreeCount U d = monomialUpperFamilyDegreeCount V d) :
@@ -174,7 +192,9 @@ theorem monomialUpperFamily_eq_of_le_of_degreeCount_eq
     exact hUV k hx
 
 /-- Equal degree-count data define an antichain in the actual reverse
-componentwise inclusion order.-/
+componentwise inclusion order.
+@isnad1 id=isantich.0h3v.s7.f05d62f61456 from=translated src=- shape=9677dcec vocab=46490a51
+-/
 theorem monomialUpperFamily_fixed_degreeCounts_antichain (h : ℕ → ℕ) :
     IsAntichain (· ≤ ·)
       {U : κ → UpperSet (Fin n → ℕ) | ∀ d, monomialUpperFamilyDegreeCount U d = h d} := by
@@ -183,7 +203,9 @@ theorem monomialUpperFamily_fixed_degreeCounts_antichain (h : ℕ → ℕ) :
     (fun d => (hU d).trans (hV d).symm))
 
 /-- The actual Higman/Maclagan consequence makes every fixed degree-count
-fiber finite; no separate finiteness hypothesis is introduced.-/
+fiber finite; no separate finiteness hypothesis is introduced.
+@isnad1 id=finite.0h3v.s6.1e4b83253fd5 from=translated src=- shape=b988bd0f vocab=bb3a87ae
+-/
 theorem monomialUpperFamily_fixed_degreeCounts_finite (h : ℕ → ℕ) :
     {U : κ → UpperSet (Fin n → ℕ) | ∀ d, monomialUpperFamilyDegreeCount U d = h d}.Finite :=
   monomialUpperSetFamily_antichain_finite n κ

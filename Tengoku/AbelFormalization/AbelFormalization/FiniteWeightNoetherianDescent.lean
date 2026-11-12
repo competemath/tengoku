@@ -32,7 +32,9 @@ variable {M : Fin n → Type*}
 variable [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
 
 /-- The dimension-zero case follows from Hopkins--Levitzki and the actual
-finite-length finite-product descent theorem.-/
+finite-length finite-product descent theorem.
+@isnad1 id=ex.2h5v.s11.2a284b23b098 from=translated src=- shape=0ad41905 vocab=cf451cf2
+-/
 theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE_zero
     [IsNoetherianRing R] [Ring.KrullDimLE 0 R]
     [∀ i, Module.Finite R (M i)]
@@ -65,7 +67,9 @@ sandwich
 
 The last two clauses retain the localization information used to construct
 `K`: the shifted iterate has the same localization as `K`, and all later
-iterates have that same localization.-/
+iterates have that same localization.
+@isnad1 id=ex.2h6v.s12.2acdbf72beb8 from=translated src=- shape=1298d5fc vocab=dd14568a
+-/
 theorem exists_finiteWeightDescent_minimalLocalization_sandwich
     (d : ℕ)
     [IsNoetherianRing R] [Ring.KrullDimLE (d + 1) R]
@@ -240,7 +244,9 @@ def FiniteWeightRestrictedDescentHasInvariantIterate
 /-- An invariant iterate in the coordinate quotient lifts to an invariant
 ambient iterate.  Kernel containment is exactly the lower sandwich
 `b • K ≤ N_{j₁}`; the upper sandwich lets us identify coordinate iteration
-inside `K` with ambient iteration.-/
+inside `K` with ambient iteration.
+@isnad1 id=ex.6h8v.s11.756ccf3c7241 from=translated src=- shape=a694e0ce vocab=7242728e
+-/
 theorem exists_finiteWeightDescent_stabilizes_of_restrictedQuotient_invariant
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
     (N₀ : Submodule R (∀ i, M i))
@@ -335,7 +341,9 @@ def FiniteWeightSuccessorQuotientRemainder
 
 /-- Positive-dimensional stabilization follows from the completed
 localization/contraction/sandwich stage and precisely the remaining quotient
-recursion implication.-/
+recursion implication.
+@isnad1 id=ex.3h6v.s11.688843083233 from=translated src=- shape=9c3922cb vocab=425bdeea
+-/
 theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE_succ
     (d : ℕ)
     [IsNoetherianRing R] [Ring.KrullDimLE (d + 1) R]
@@ -364,7 +372,9 @@ theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE_succ
 
 For dimension zero this is unconditional.  In positive dimension the only
 extra input is `FiniteWeightSuccessorQuotientRemainder`, the explicitly
-isolated quotient-recursion bridge described above.-/
+isolated quotient-recursion bridge described above.
+@isnad1 id=ex.2h7v.s11.e685c45636bf from=translated src=- shape=f776d3c6 vocab=80592f22
+-/
 theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE_of_remainder
     (d : ℕ)
     [IsNoetherianRing R] [Ring.KrullDimLE d R]
@@ -393,7 +403,9 @@ theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE_of_remainder
 /-- Finite-weight descent stabilizes over every Noetherian coefficient ring
 of bounded Krull dimension.  The successor step constructs the exact
 coordinate quotient required above and invokes the induction hypothesis over
-`R/(b)`.-/
+`R/(b)`.
+@isnad1 id=ex.2h6v.s11.6ab29511064f from=translated src=- shape=5e244280 vocab=cf451cf2
+-/
 theorem exists_finiteWeightDescent_stabilizes_of_krullDimLE
     (d : ℕ)
     [IsNoetherianRing R] [Ring.KrullDimLE d R]

@@ -25,7 +25,9 @@ variable {M : Fin n → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i
 variable {N : Fin n → Type*} [∀ i, AddCommGroup (N i)] [∀ i, Module S (N i)]
 
 /-- The kernel of a coordinatewise map is homogeneous for the finite weight
-decomposition.-/
+decomposition.
+@isnad1 id=mem.1h9v.s9.101344799661 from=translated src=- shape=a07dbd5a vocab=d0b8f223
+-/
 theorem ker_finiteWeightPiMap_homogeneous
     (f : ∀ i, M i →ₛₗ[σ] N i) :
     ∀ x ∈ LinearMap.ker (finiteWeightPiMap f), ∀ i,
@@ -40,7 +42,9 @@ theorem ker_finiteWeightPiMap_homogeneous
   · simp [hji]
 
 omit [RingHomSurjective σ] in
-/-- Intertwining equivalences preserve the kernel of the coordinatewise map.-/
+/-- Intertwining equivalences preserve the kernel of the coordinatewise map.
+@isnad1 id=eq.1h9v.s10.3b5de446ca4b from=translated src=- shape=856ffdb5 vocab=8f6dcc1c
+-/
 theorem map_ker_finiteWeightPiMap_eq
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -62,7 +66,9 @@ theorem map_ker_finiteWeightPiMap_eq
 
 /-- Intertwining maps identify the image of a submodule after applying the
 source equivalence with the image obtained by applying the target
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h10v.s11.e9030ee6ae47 from=translated src=- shape=91a3a6dc vocab=1c421036
+-/
 theorem map_map_finiteWeightPiMap_eq
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -81,7 +87,9 @@ theorem map_map_finiteWeightPiMap_eq
     simpa using hcomm x
 
 /-- Coordinatewise semilinear images of homogeneous submodules are
-homogeneous.-/
+homogeneous.
+@isnad1 id=mem.2h10v.s10.284f7c2ef098 from=translated src=- shape=adb914db vocab=76bfdaa3
+-/
 theorem map_finiteWeightPiMap_homogeneous
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (U : Submodule R (∀ i, M i))
@@ -95,7 +103,9 @@ theorem map_finiteWeightPiMap_homogeneous
   rfl
 
 /-- An intertwining coordinatewise map sends an invariant source submodule
-to an invariant target submodule.-/
+to an invariant target submodule.
+@isnad1 id=eq.2h10v.s11.c13912ebe631 from=translated src=- shape=9bc98827 vocab=1c421036
+-/
 theorem map_finiteWeightPiMap_invariant
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -137,7 +147,9 @@ theorem eq_of_map_eq_map_of_ker_le
     simpa only [sub_add_cancel] using U.add_mem (hkerU hdiff) hx
 
 /-- Invariance of the image under an intertwining target equivalence lifts
-to invariance upstairs when the source submodule contains the kernel.-/
+to invariance upstairs when the source submodule contains the kernel.
+@isnad1 id=eq.3h10v.s11.9a9dc1a76c8d from=translated src=- shape=5c49888c vocab=abb108c8
+-/
 theorem invariant_of_map_finiteWeightPiMap_invariant
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -156,7 +168,9 @@ theorem invariant_of_map_finiteWeightPiMap_invariant
   · rw [map_map_finiteWeightPiMap_eq f J J' hcomm, hinv]
 
 /-- If the coordinatewise kernel is contained in a submodule, it remains
-contained after one finite-weight descent step.-/
+contained after one finite-weight descent step.
+@isnad1 id=le.2h10v.s11.3e83028d58ad from=translated src=- shape=3d19c8c7 vocab=29786269
+-/
 theorem ker_finiteWeightPiMap_le_descentStep
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -175,7 +189,9 @@ theorem ker_finiteWeightPiMap_le_descentStep
   rw [← map_ker_finiteWeightPiMap_eq f J J' hcomm]
   exact Submodule.map_mono hker
 
-/-- The coordinatewise kernel is contained in every source iterate.-/
+/-- The coordinatewise kernel is contained in every source iterate.
+@isnad1 id=le.2h11v.s11.d96fc6e094f1 from=translated src=- shape=9230ab30 vocab=6f23e286
+-/
 theorem ker_finiteWeightPiMap_le_descentIterate
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -193,7 +209,9 @@ theorem ker_finiteWeightPiMap_le_descentIterate
       exact ker_finiteWeightPiMap_le_descentStep f J J' hcomm _ ih
 
 /-- A coordinatewise semilinear quotient intertwining the equivalences
-commutes with one finite-weight descent step.-/
+commutes with one finite-weight descent step.
+@isnad1 id=eq.2h10v.s11.9e5cedb54227 from=translated src=- shape=59560c42 vocab=c5a48045
+-/
 theorem map_finiteWeightDescentStep_eq
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))
@@ -210,7 +228,9 @@ theorem map_finiteWeightDescentStep_eq
   · rw [← map_ker_finiteWeightPiMap_eq f J J' hcomm]
     exact Submodule.map_mono hker
 
-/-- The image of every source iterate is the corresponding target iterate.-/
+/-- The image of every source iterate is the corresponding target iterate.
+@isnad1 id=eq.2h11v.s11.8598e3f15245 from=translated src=- shape=666e8feb vocab=1cef2688
+-/
 theorem map_finiteWeightDescentIterate_eq
     (f : ∀ i, M i →ₛₗ[σ] N i)
     (J : (∀ i, M i) ≃ₗ[R] (∀ i, M i))

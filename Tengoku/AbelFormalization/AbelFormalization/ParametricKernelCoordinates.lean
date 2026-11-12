@@ -25,6 +25,9 @@ variable {X Y Z : Type*}
   [NormedAddCommGroup Z] [NormedSpace ℝ Z]
   [FiniteDimensional ℝ X] [FiniteDimensional ℝ Y]
 
+/--
+@isnad1 id=eq.2h4v.s10.52b5396f4d5b from=translated src=- shape=a5b06d9b vocab=40c72c53
+-/
 theorem finrank_ker_eq_parameter_of_surjective
     (L : (X × Y) →L[ℝ] Z)
     (hdim : Module.finrank ℝ X = Module.finrank ℝ Z)
@@ -41,6 +44,9 @@ def parameterKernelEquiv
   ContinuousLinearEquiv.ofFinrankEq
     (finrank_ker_eq_parameter_of_surjective L hdim hL).symm
 
+/--
+@isnad1 id=eq.4h8v.s11.bdd9361d2c04 from=translated src=- shape=8001d200 vocab=1b107227
+-/
 theorem range_eq_ker_of_chart_derivative
     {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
     (L : (X × Y) →L[ℝ] Z)

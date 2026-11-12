@@ -23,7 +23,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F] [CompleteSpace F]
 
 /-- Analytic Hadamard factorization in a normed space: the factor itself is
-analytic with values in continuous linear maps.-/
+analytic with values in continuous linear maps.
+@isnad1 id=ex.1h4v.s9.517554f472fb from=translated src=- shape=6aa9a7ba vocab=e5f51e5b
+-/
 theorem analyticAt_exists_sub_eq_linear {f : E → F} (hf : AnalyticAt 𝕜 f 0) :
     ∃ G : E → E →L[𝕜] F, AnalyticAt 𝕜 G 0 ∧
       ∀ᶠ x in 𝓝 (0 : E), f x - f 0 = G x x := by
@@ -51,7 +53,9 @@ theorem analyticAt_exists_sub_eq_linear {f : E → F} (hf : AnalyticAt 𝕜 f 0)
   exact hsum.unique hev
 
 /-- In finitely many coordinates, the analytic factors of Hadamard's lemma
-are scalar-valued analytic functions on one common neighborhood.-/
+are scalar-valued analytic functions on one common neighborhood.
+@isnad1 id=ex.1h3v.s8.b0f81657c0ad from=translated src=- shape=0942e52b vocab=55782dc3
+-/
 theorem analyticAt_exists_sub_eq_sum_coordinates [CompleteSpace 𝕜] {ι : Type*} [Fintype ι]
     {f : (ι → 𝕜) → 𝕜} (hf : AnalyticAt 𝕜 f 0) :
     ∃ g : ι → (ι → 𝕜) → 𝕜, (∀ i, AnalyticAt 𝕜 (g i) 0) ∧

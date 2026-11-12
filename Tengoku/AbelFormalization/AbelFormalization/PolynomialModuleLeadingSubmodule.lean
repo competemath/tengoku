@@ -41,7 +41,9 @@ def polynomialModuleLeadingUpperFamily (m : MonomialOrder (Fin n))
       rwa [tsub_add_cancel_of_le hde] at h }
 
 /-- Membership of an actual exponent is exactly an original-vector
-leading witness; no closure or generation hypothesis is needed.-/
+leading witness; no closure or generation hypothesis is needed.
+@isnad1 id=iff.0h7v.s9.fd0536349afe from=translated src=- shape=477785d0 vocab=7cdfe207
+-/
 theorem mem_polynomialModuleLeadingUpperFamily (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
     (k : Fin r) (d : Fin n →₀ ℕ) :
@@ -52,7 +54,9 @@ theorem mem_polynomialModuleLeadingUpperFamily (m : MonomialOrder (Fin n))
   rw [Finsupp.equivFunOnFinite_symm_coe]
 
 /-- The leading family grows by literal exponent inclusion when the
-original polynomial submodule grows.-/
+original polynomial submodule grows.
+@isnad1 id=le.1h7v.s10.d77bd8eee127 from=translated src=- shape=060fb8ec vocab=149ddae3
+-/
 theorem polynomialModuleLeadingUpperFamily_mono (m : MonomialOrder (Fin n))
     {N N' : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K)}
     (hNN' : N ≤ N') :
@@ -75,7 +79,9 @@ def polynomialModuleMonomial (t : Fin r × (Fin n →₀ ℕ)) (c : K) :
   Pi.single t.1 (MvPolynomial.monomial t.2 c)
 
 /-- A coefficient-one module monomial belongs to the actual leading
-submodule exactly when its exponent has an original leading witness.-/
+submodule exactly when its exponent has an original leading witness.
+@isnad1 id=iff.0h6v.s10.cbbc57361e11 from=translated src=- shape=98c0c674 vocab=7e6f1a61
+-/
 theorem polynomialModuleMonomial_one_mem_leadingSubmodule
     (m : MonomialOrder (Fin n))
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))

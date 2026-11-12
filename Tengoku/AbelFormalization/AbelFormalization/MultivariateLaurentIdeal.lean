@@ -26,18 +26,25 @@ variable (R G : Type*) [CommRing R] [AddCommGroup G]
 def groupAlgebraC : R →+* AddMonoidAlgebra R G :=
   AddMonoidAlgebra.singleZeroRingHom
 
+/--
+@isnad1 id=eq.0h3v.s7.13aadfee2189 from=translated src=- shape=960feec9 vocab=95bdd519
+-/
 @[simp] theorem groupAlgebraC_apply (a : R) :
     groupAlgebraC R G a = AddMonoidAlgebra.single 0 a := rfl
 
 variable {R G}
 
-/-- Multiplication by an inverse group monomial produces weight zero.-/
+/-- Multiplication by an inverse group monomial produces weight zero.
+@isnad1 id=eq.0h4v.s7.a5390545278e from=translated src=- shape=167a0e52 vocab=c2923141
+-/
 theorem groupAlgebra_inverse_single_mul (g : G) (a : R) :
     AddMonoidAlgebra.single (-g) (1 : R) * AddMonoidAlgebra.single g a =
       groupAlgebraC R G a := by simp
 
 omit [AddCommGroup G] in
-/-- For the identity grading, homogeneous elements have single-point support.-/
+/-- For the identity grading, homogeneous elements have single-point support.
+@isnad1 id=iff.0h3v.s7.b1dab47d4e42 from=translated src=- shape=d767e65e vocab=e0375309
+-/
 theorem groupAlgebra_homogeneous_iff_single (f : AddMonoidAlgebra R G) :
     SetLike.IsHomogeneousElem (AddMonoidAlgebra.grade R) f ↔
       ∃ g : G, ∃ a : R, AddMonoidAlgebra.single g a = f := by
@@ -48,14 +55,18 @@ theorem groupAlgebra_homogeneous_iff_single (f : AddMonoidAlgebra R G) :
   · rintro ⟨g, a, rfl⟩
     exact ⟨g, AddMonoidAlgebra.single_mem_grade g a⟩
 
-/-- The coefficient subring is exactly the full weight-zero component.-/
+/-- The coefficient subring is exactly the full weight-zero component.
+@isnad1 id=iff.0h3v.s8.614bd5e78899 from=translated src=- shape=2e278a63 vocab=19ddab0a
+-/
 theorem groupAlgebra_mem_grade_zero_iff (f : AddMonoidAlgebra R G) :
     f ∈ AddMonoidAlgebra.grade R (0 : G) ↔
       ∃ a : R, groupAlgebraC R G a = f := by
   exact AddMonoidAlgebra.mem_grade_iff' R 0 f
 
 /-- Every homogeneous ideal element belongs to the extension of the actual
-weight-zero contraction.-/
+weight-zero contraction.
+@isnad1 id=mem.2h4v.s9.2dbe9e2e6cf6 from=translated src=- shape=586746d3 vocab=aac87cf1
+-/
 theorem groupAlgebra_homogeneous_mem_map_comap
     (K : Ideal (AddMonoidAlgebra R G)) {f : AddMonoidAlgebra R G}
     (hhom : SetLike.IsHomogeneousElem (AddMonoidAlgebra.grade R) f)
@@ -70,7 +81,9 @@ theorem groupAlgebra_homogeneous_mem_map_comap
   simpa using hm
 
 /-- Identity-homogeneous group-algebra ideals are extended from their
-coefficient contractions, without Noetherianity or domain hypotheses.-/
+coefficient contractions, without Noetherianity or domain hypotheses.
+@isnad1 id=eq.1h3v.s8.ad8c07ecd50a from=translated src=- shape=89986b05 vocab=4805094c
+-/
 theorem groupAlgebra_homogeneousIdeal_eq_map_comap [DecidableEq G]
     (K : Ideal (AddMonoidAlgebra R G))
     (hK : K.IsHomogeneous (AddMonoidAlgebra.grade R)) :
@@ -87,7 +100,9 @@ theorem groupAlgebra_homogeneousIdeal_eq_map_comap [DecidableEq G]
         exact Ideal.subset_span ⟨g, hg, rfl⟩
   · exact Ideal.map_comap_le
 
-/-- Coefficient membership characterizes any coefficient-extended ideal.-/
+/-- Coefficient membership characterizes any coefficient-extended ideal.
+@isnad1 id=iff.0h4v.s8.65d272ee12f5 from=translated src=- shape=66392c73 vocab=cdab0ac7
+-/
 theorem groupAlgebra_mem_map_C_iff (I : Ideal R) (f : AddMonoidAlgebra R G) :
     f ∈ I.map (groupAlgebraC R G) ↔ ∀ g : G, f.coeff g ∈ I := by
   classical
@@ -116,6 +131,9 @@ theorem groupAlgebra_mem_map_C_iff (I : Ideal R) (f : AddMonoidAlgebra R G) :
       (AddMonoidAlgebra.single g 1) (Ideal.mem_map_of_mem (groupAlgebraC R G) (hf g))
     simpa using hm
 
+/--
+@isnad1 id=mem.2h5v.s9.d12689cf63b7 from=translated src=- shape=70d5e470 vocab=424dd8f4
+-/
 theorem groupAlgebra_homogeneousIdeal_coeff_mem [DecidableEq G]
     (K : Ideal (AddMonoidAlgebra R G))
     (hK : K.IsHomogeneous (AddMonoidAlgebra.grade R))
@@ -147,12 +165,18 @@ def multivariateLaurentSuccEquiv (h : ℕ) :
   (AddMonoidAlgebra.domCongr R R (finLaurentExponentSucc h)).trans
     (AddMonoidAlgebra.curryAlgEquiv R)
 
+/--
+@isnad1 id=eq.0h4v.s9.4ae0488f1c52 from=translated src=- shape=e2c3343e vocab=8aa5c42b
+-/
 @[simp] theorem multivariateLaurentSuccEquiv_single (h : ℕ)
     (d : Fin (h + 1) → ℤ) (a : R) :
     multivariateLaurentSuccEquiv R h (AddMonoidAlgebra.single d a) =
       AddMonoidAlgebra.single (d 0) (AddMonoidAlgebra.single (fun i => d i.succ) a) := by
   simp [multivariateLaurentSuccEquiv, finLaurentExponentSucc]
 
+/--
+@isnad1 id=eq.0h2v.s9.f3bac3c763d0 from=translated src=- shape=fca888f9 vocab=435abcdd
+-/
 theorem multivariateLaurentSuccEquiv_comp_C (h : ℕ) :
     (multivariateLaurentSuccEquiv R h).toRingHom.comp
       (groupAlgebraC R (Fin (h + 1) → ℤ)) =
@@ -167,7 +191,9 @@ theorem multivariateLaurentSuccEquiv_comp_C (h : ℕ) :
 variable [IsNoetherianRing R]
 
 /-- The actual finite-rank group algebra is Noetherian, proved by the
-explicit Laurent decomposition.-/
+explicit Laurent decomposition.
+@isnad1 id=isnoethe.0h2v.s5.a52886ce4bce from=translated src=- shape=15a00607 vocab=c518f564
+-/
 theorem multivariateLaurent_isNoetherian (h : ℕ) :
     IsNoetherianRing (AddMonoidAlgebra R (Fin h → ℤ)) := by
   induction h with

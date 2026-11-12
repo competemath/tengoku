@@ -22,7 +22,9 @@ variable {B : Type*} [CommRing B] {n r h : ℕ}
 variable (G : PolynomialGradedLexData n r h)
 
 /-- Direct specialization of Noetherian finite-weight stabilization to the
-ordered grouped pieces of one bounded polynomial window.-/
+ordered grouped pieces of one bounded polynomial window.
+@isnad1 id=ex.3h9v.s15.f9642be0e628 from=translated src=- shape=57edeb39 vocab=166612c2
+-/
 theorem PolynomialGradedLexData.exists_windowOrderedWeightDescent_stabilizes_of_krullDimLE
     (d : ℕ) [IsNoetherianRing B] [Ring.KrullDimLE d B]
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)

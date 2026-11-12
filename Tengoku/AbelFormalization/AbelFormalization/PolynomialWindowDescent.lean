@@ -42,6 +42,9 @@ def PolynomialGradedLexData.windowWeightComponent
             (by simpa [hweight] using hcoeff)
         · exact (hcoeff (by simp [hweight])).elim)
 
+/--
+@isnad1 id=eq.1h8v.s12.11a0f858dc9b from=translated src=- shape=8509155a vocab=000d67a8
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowWeightComponent_coe
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -60,6 +63,9 @@ def PolynomialGradedLexData.windowOrderedWeightDecompose
   LinearMap.pi (fun i =>
     G.windowWeightComponent hpositive D (G.weightAt hpositive D i))
 
+/--
+@isnad1 id=eq.1h8v.s13.84d165977467 from=translated src=- shape=177b076e vocab=b24d3788
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowOrderedWeightDecompose_apply
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -89,6 +95,9 @@ def PolynomialGradedLexData.windowOrderedWeightCompose
     simp only [RingHom.id_apply, Pi.smul_apply]
     exact Finset.smul_sum.symm
 
+/--
+@isnad1 id=eq.1h7v.s12.e8e54abf7ecf from=translated src=- shape=d878d4d5 vocab=de10629c
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowOrderedWeightCompose_coe
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -105,6 +114,9 @@ private theorem PolynomialGradedLexData.weightAt_injective
   apply (G.weightOrderIso hpositive D).injective
   exact Subtype.ext hij
 
+/--
+@isnad1 id=le.1h7v.s8.9bd4c8c8a266 from=translated src=- shape=ab8fc007 vocab=1a6ccb2d
+-/
 theorem PolynomialGradedLexData.windowWeightPiece_le_fiberPiece
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (weight : PolynomialLexWeight h) :
@@ -116,7 +128,9 @@ theorem PolynomialGradedLexData.windowWeightPiece_le_fiberPiece
   exact ((mem_artinianPolynomialModuleSupported _ _).mp hP k d hcoeff).2
 
 /-- Every shifted ordinary-degree piece at degree at most `D` lies in the
-bounded window.-/
+bounded window.
+@isnad1 id=le.2h7v.s8.4091efb151c6 from=translated src=- shape=39f432de vocab=aafb2dcc
+-/
 theorem PolynomialGradedLexData.ordinaryPiece_le_windowModule
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D degree : ℤ)
     (hdegree : degree ≤ D) :
@@ -141,6 +155,9 @@ def PolynomialGradedLexData.windowStrictLowerPiece
   artinianPolynomialModuleSupported
     {t | t ∈ G.windowTermSet hpositive D ∧ G.termWeight t < weight}
 
+/--
+@isnad1 id=le.1h7v.s8.d37d56f45595 from=translated src=- shape=be6eaa26 vocab=9441e8b0
+-/
 theorem PolynomialGradedLexData.windowStrictLowerPiece_le_windowModule
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (weight : PolynomialLexWeight h) :
@@ -151,6 +168,9 @@ theorem PolynomialGradedLexData.windowStrictLowerPiece_le_windowModule
   intro k d hcoeff
   exact ((mem_artinianPolynomialModuleSupported _ _).mp hP k d hcoeff).1
 
+/--
+@isnad1 id=eq.1h7v.s13.dad0ccf0d6a9 from=translated src=- shape=e8297117 vocab=1346f725
+-/
 theorem PolynomialGradedLexData.windowOrderedWeightCompose_decompose
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (P : G.windowModule B hpositive D) :
@@ -191,6 +211,9 @@ theorem PolynomialGradedLexData.windowOrderedWeightCompose_decompose
     · intro hi₀
       exact (hi₀ (Finset.mem_univ i₀)).elim
 
+/--
+@isnad1 id=eq.1h7v.s13.06d630005f2e from=translated src=- shape=bea4bebd vocab=1346f725
+-/
 theorem PolynomialGradedLexData.windowOrderedWeightDecompose_compose
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (x : (i : Fin (G.weightCount hpositive D)) →
@@ -233,6 +256,9 @@ def PolynomialGradedLexData.windowOrderedWeightLinearEquiv
   left_inv := G.windowOrderedWeightCompose_decompose hpositive D
   right_inv := G.windowOrderedWeightDecompose_compose hpositive D
 
+/--
+@isnad1 id=eq.1h7v.s13.f52880ec28b3 from=translated src=- shape=5c6f7d97 vocab=d58c73e8
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowOrderedWeightLinearEquiv_apply
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -240,6 +266,9 @@ theorem PolynomialGradedLexData.windowOrderedWeightLinearEquiv_apply
     G.windowOrderedWeightLinearEquiv hpositive D P =
       G.windowOrderedWeightDecompose hpositive D P := rfl
 
+/--
+@isnad1 id=eq.1h7v.s13.782e0d788a7d from=translated src=- shape=1368de4e vocab=e671baf7
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowOrderedWeightLinearEquiv_symm_apply
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -248,6 +277,9 @@ theorem PolynomialGradedLexData.windowOrderedWeightLinearEquiv_symm_apply
     (G.windowOrderedWeightLinearEquiv hpositive D).symm x =
       G.windowOrderedWeightCompose hpositive D x := rfl
 
+/--
+@isnad1 id=eq.1h8v.s13.48454afa0ca3 from=translated src=- shape=6458b230 vocab=3b4ebcd5
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowOrderedWeightLinearEquiv_symm_single_coe
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -304,6 +336,9 @@ def PolynomialGradedLexData.windowRestriction
   J.ofSubmodules (G.windowModule B hpositive D)
     (G.windowModule B hpositive D) hJ
 
+/--
+@isnad1 id=eq.2h8v.s12.0e699c4e77cd from=translated src=- shape=22dbaecf vocab=f491d7be
+-/
 @[simp]
 theorem PolynomialGradedLexData.windowRestriction_coe
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
@@ -360,7 +395,9 @@ def PolynomialGradedLexData.ordinaryDegreeSupport
   (artinianPolynomialModuleCoeffEquiv P).support.image G.termOrdinaryDegree
 
 /-- Summing the joint components over the ordinary degrees occurring in
-`P` gives its full component at one lexicographic weight.-/
+`P` gives its full component at one lexicographic weight.
+@isnad1 id=eq.0h7v.s9.2e032b7755f6 from=translated src=- shape=583aa54c vocab=a1e1026e
+-/
 theorem PolynomialGradedLexData.sum_jointComponent_eq_weightComponent
     (P : artinianFreePolynomialModule B n r)
     (weight : PolynomialLexWeight h) :
@@ -411,7 +448,9 @@ def PolynomialGradedLexData.IsPolynomialModuleJointHomogeneous
       G.jointComponent B degree weight P ∈ N
 
 /-- Joint homogeneity implies the ordinary homogeneity used by the uniform
-Artinian generator theorem.-/
+Artinian generator theorem.
+@isnad1 id=isartini.2h6v.s7.22a4c962d71f from=translated src=- shape=cb9854e4 vocab=a1a0db97
+-/
 theorem PolynomialGradedLexData.IsPolynomialModuleJointHomogeneous.ordinary
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     {N : Submodule (MvPolynomial (Fin n) B)
@@ -426,7 +465,9 @@ theorem PolynomialGradedLexData.IsPolynomialModuleJointHomogeneous.ordinary
   exact hN P hP degree weight
 
 /-- Joint homogeneity also implies homogeneity for the grouped
-lexicographic-weight projections used in the bounded window.-/
+lexicographic-weight projections used in the bounded window.
+@isnad1 id=ispolyno.1h6v.s7.0dfc5c1fdbeb from=translated src=- shape=d756df94 vocab=a1b3564b
+-/
 theorem PolynomialGradedLexData.IsPolynomialModuleJointHomogeneous.weight
     {N : Submodule (MvPolynomial (Fin n) B)
       (artinianFreePolynomialModule B n r)}
@@ -460,7 +501,9 @@ def PolynomialGradedLexData.polynomialWindowOrderedWeightPart
     (G.windowOrderedWeightLinearEquiv hpositive D).toLinearMap
 
 /-- Weight homogeneity of the polynomial submodule becomes literal
-coordinate homogeneity of its transported bounded part.-/
+coordinate homogeneity of its transported bounded part.
+@isnad1 id=mem.3h9v.s13.dad362346ee3 from=translated src=- shape=2c92bce5 vocab=baa6f3fb
+-/
 theorem PolynomialGradedLexData.polynomialWindowOrderedWeightPart_homogeneous
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -501,6 +544,9 @@ def PolynomialGradedLexData.IsGeneratedInPolynomialWindow
   Submodule.span (MvPolynomial (Fin n) B)
     (G.polynomialWindowCarrier hpositive D N) = N
 
+/--
+@isnad1 id=isgenera.3h8v.s10.101edb8fe12c from=translated src=- shape=9c7188de vocab=baebf893
+-/
 theorem PolynomialGradedLexData.isGeneratedInPolynomialWindow_of_generators
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (N : Submodule (MvPolynomial (Fin n) B)
@@ -555,7 +601,9 @@ theorem PolynomialGradedLexData.eq_of_polynomialWindowPart_eq
   rw [← hN, ← hN', hcarrier]
 
 /-- Module 186's Artinian-local uniform generator bound, repackaged as
-determination by one finite ordinary-degree window.-/
+determination by one finite ordinary-degree window.
+@isnad1 id=ex.2h9v.s12.d0359941438f from=translated src=- shape=fa8ea3ba vocab=cd7a8a89
+-/
 theorem PolynomialGradedLexData.exists_uniform_generatedInPolynomialWindow
     [IsNoetherianRing B] [IsArtinianRing B]
     (m : MonomialOrder (Fin n))

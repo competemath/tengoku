@@ -28,16 +28,25 @@ def polynomialEvaluationDifferential (P : MvPolynomial ι ℝ) (z : ι → ℝ) 
     (ι → ℝ) →L[ℝ] ℝ :=
   ∑ i, MvPolynomial.eval z (MvPolynomial.pderiv i P) • ContinuousLinearMap.proj i
 
+/--
+@isnad1 id=eq.0h3v.s8.d0373c97639e from=translated src=- shape=7306af49 vocab=c6a36c27
+-/
 @[simp]
 theorem polynomialEvaluationDifferential_C (c : ℝ) (z : ι → ℝ) :
     polynomialEvaluationDifferential (MvPolynomial.C c) z = 0 := by
   simp [polynomialEvaluationDifferential]
 
+/--
+@isnad1 id=eq.0h4v.s8.2e0be5fc4062 from=translated src=- shape=46bd294e vocab=53bd04d7
+-/
 theorem polynomialEvaluationDifferential_add (P Q : MvPolynomial ι ℝ) (z : ι → ℝ) :
     polynomialEvaluationDifferential (P + Q) z =
       polynomialEvaluationDifferential P z + polynomialEvaluationDifferential Q z := by
   simp only [polynomialEvaluationDifferential, map_add, add_smul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s9.5b517b919d52 from=translated src=- shape=26bfc6df vocab=379ca895
+-/
 theorem polynomialEvaluationDifferential_mul_X (P : MvPolynomial ι ℝ)
     (i : ι) (z : ι → ℝ) :
     polynomialEvaluationDifferential (P * MvPolynomial.X i) z =
@@ -68,7 +77,9 @@ theorem polynomialEvaluationDifferential_mul_X (P : MvPolynomial ι ℝ)
     _ = _ := add_comm _ _
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The actual Fréchet derivative of real polynomial evaluation.-/
+/-- The actual Fréchet derivative of real polynomial evaluation.
+@isnad1 id=hasfderi.0h3v.s7.4824321a2bc7 from=translated src=- shape=1b9b7246 vocab=315403c0
+-/
 theorem hasFDerivAt_polynomial_eval (P : MvPolynomial ι ℝ) (z : ι → ℝ) :
     HasFDerivAt (fun w => MvPolynomial.eval w P) (polynomialEvaluationDifferential P z) z := by
   induction P using MvPolynomial.induction_on with
@@ -81,12 +92,17 @@ theorem hasFDerivAt_polynomial_eval (P : MvPolynomial ι ℝ) (z : ι → ℝ) :
       simpa only [map_mul, MvPolynomial.eval_X, polynomialEvaluationDifferential_mul_X] using!
         hP.fun_mul (hasFDerivAt_apply i z)
 
+/--
+@isnad1 id=eq.0h3v.s8.69d01b8acab3 from=translated src=- shape=c84c42ea vocab=7064ef0a
+-/
 theorem fderiv_polynomial_eval (P : MvPolynomial ι ℝ) (z : ι → ℝ) :
     fderiv ℝ (fun w => MvPolynomial.eval w P) z = polynomialEvaluationDifferential P z :=
   (hasFDerivAt_polynomial_eval P z).fderiv
 
 /-- Evaluating the differential in any direction gives the usual dot product
-with the evaluated formal gradient.-/
+with the evaluated formal gradient.
+@isnad1 id=eq.0h4v.s9.7dc99469c04f from=translated src=- shape=6ba6eb8e vocab=90b98689
+-/
 theorem fderiv_polynomial_eval_apply (P : MvPolynomial ι ℝ) (z v : ι → ℝ) :
     fderiv ℝ (fun w => MvPolynomial.eval w P) z v =
       ∑ i, MvPolynomial.eval z (MvPolynomial.pderiv i P) * v i := by
@@ -98,7 +114,9 @@ section Composition
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Polynomial evaluation along a differentiable symbol assignment, with
-the chain rule written as a finite sum of scalar differentials.-/
+the chain rule written as a finite sum of scalar differentials.
+@isnad1 id=hasfderi.1h6v.s9.4aea050259b0 from=translated src=- shape=df8e029a vocab=b68b7002
+-/
 theorem hasFDerivAt_polynomial_eval_comp (P : MvPolynomial ι ℝ)
     (z : E → ι → ℝ) (z' : ι → E →L[ℝ] ℝ) (x : E)
     (hz : ∀ i, HasFDerivAt (fun w => z w i) (z' i) x) :
@@ -114,7 +132,9 @@ theorem hasFDerivAt_polynomial_eval_comp (P : MvPolynomial ι ℝ)
 
 omit [NormedAddCommGroup E] [NormedSpace ℝ E] in
 /-- Evaluation of a literal finite coefficient family is a finite sum of
-coefficient functions times fixed monomial evaluations.-/
+coefficient functions times fixed monomial evaluations.
+@isnad1 id=eq.0h6v.s9.a5336876546f from=translated src=- shape=2215cc42 vocab=85a90114
+-/
 theorem eval_coefficientFamily (s : Finset (ι →₀ ℕ))
     (a : (ι →₀ ℕ) → E → ℝ) (z : E → ι → ℝ) (w : E) :
     MvPolynomial.eval (z w) (∑ d ∈ s, MvPolynomial.monomial d (a d w)) =
@@ -123,7 +143,9 @@ theorem eval_coefficientFamily (s : Finset (ι →₀ ℕ))
 
 /-- A genuine chain/product rule for varying coefficient functions and
 varying symbols. The finite sum is kept explicit, so it remains usable
-without putting a norm on the polynomial ring.-/
+without putting a norm on the polynomial ring.
+@isnad1 id=hasfderi.2h8v.s11.d77bf876ac02 from=translated src=- shape=cc6207e0 vocab=846d4b24
+-/
 theorem hasFDerivAt_eval_coefficientFamily (s : Finset (ι →₀ ℕ))
     (a : (ι →₀ ℕ) → E → ℝ) (a' : (ι →₀ ℕ) → E →L[ℝ] ℝ)
     (z : E → ι → ℝ) (z' : ι → E →L[ℝ] ℝ) (x : E)

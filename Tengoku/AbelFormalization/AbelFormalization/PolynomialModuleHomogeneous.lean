@@ -34,6 +34,9 @@ def weightedPolynomialModuleComponent (weight : Fin n → ℕ) (shift : Fin r �
         intro c P
         simp only [map_smul, Finsupp.filter_smul, RingHom.id_apply] }
 
+/--
+@isnad1 id=eq.0h9v.s9.068e99ce5a3e from=translated src=- shape=eee41504 vocab=d40d4916
+-/
 theorem weightedPolynomialModuleComponent_coeff (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (degree : ℤ) (P : Fin r → MvPolynomial (Fin n) K)
     (k : Fin r) (d : Fin n →₀ ℕ) :
@@ -48,6 +51,9 @@ theorem weightedPolynomialModuleComponent_coeff (weight : Fin n → ℕ) (shift 
   rw [LinearEquiv.apply_symm_apply, Finsupp.filter_apply]
   rfl
 
+/--
+@isnad1 id=iff.0h7v.s8.7d4ad34c8ba5 from=translated src=- shape=94cd39ea vocab=aa670748
+-/
 theorem mem_weightedPolynomialModulePiece_iff (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (degree : ℤ) (P : Fin r → MvPolynomial (Fin n) K) :
     P ∈ weightedPolynomialModulePiece weight shift degree ↔
@@ -55,6 +61,9 @@ theorem mem_weightedPolynomialModulePiece_iff (weight : Fin n → ℕ) (shift : 
         shiftedModuleMonomialDegree weight shift (k, d) = degree :=
   mem_polynomialModuleSupported _ P
 
+/--
+@isnad1 id=mem.0h7v.s9.84fd1cb7988a from=translated src=- shape=0d8eb122 vocab=6b5c17d7
+-/
 theorem weightedPolynomialModuleComponent_mem (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (degree : ℤ) (P : Fin r → MvPolynomial (Fin n) K) :
     weightedPolynomialModuleComponent weight shift degree P ∈
@@ -65,6 +74,9 @@ theorem weightedPolynomialModuleComponent_mem (weight : Fin n → ℕ) (shift : 
   by_contra hdegree
   exact hcoeff (by rw [weightedPolynomialModuleComponent_coeff, ite_eq_right hdegree])
 
+/--
+@isnad1 id=eq.1h7v.s9.590831f810bb from=translated src=- shape=b0cbafe4 vocab=6b5c17d7
+-/
 theorem weightedPolynomialModuleComponent_eq_self (weight : Fin n → ℕ)
     (shift : Fin r → ℤ) (degree : ℤ)
     {P : Fin r → MvPolynomial (Fin n) K}
@@ -89,7 +101,9 @@ def IsWeightedPolynomialModuleHomogeneous (weight : Fin n → ℕ) (shift : Fin 
   ∀ P ∈ N, ∀ degree : ℤ, weightedPolynomialModuleComponent weight shift degree P ∈ N
 
 /-- Projecting to the degree of a leading term preserves its coefficient
-and discards only other terms, so it preserves the actual leading term.-/
+and discards only other terms, so it preserves the actual leading term.
+@isnad1 id=ispolyno.1h8v.s9.58dd43268c58 from=translated src=- shape=1428d084 vocab=82e971d1
+-/
 theorem IsPolynomialModuleLeadingTerm.weightedComponent
     {m : MonomialOrder (Fin n)} {P : Fin r → MvPolynomial (Fin n) K}
     {t : Fin r × (Fin n →₀ ℕ)} (hP : IsPolynomialModuleLeadingTerm m P t)
@@ -108,7 +122,9 @@ theorem IsPolynomialModuleLeadingTerm.weightedComponent
     simp [weightedPolynomialModuleComponent_coeff, hzero]
 
 /-- Every leading term of a homogeneous submodule has an actual homogeneous
-witness of exactly its own shifted weighted degree.-/
+witness of exactly its own shifted weighted degree.
+@isnad1 id=ex.3h9v.s10.4e4a8552c58b from=translated src=- shape=8d0a17cd vocab=5f2e5c52
+-/
 theorem exists_homogeneous_polynomialModuleLeadingTerm
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))

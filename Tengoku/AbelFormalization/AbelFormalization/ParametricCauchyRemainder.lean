@@ -16,7 +16,9 @@ namespace AbelFormalization
 
 open Set Metric Polynomial
 
-/-- The Cauchy quotient for the polynomial `X` is a first-order remainder.-/
+/-- The Cauchy quotient for the polynomial `X` is a first-order remainder.
+@isnad1 id=eq.3h3v.s7.a25c4d31049b from=translated src=- shape=1ec9265a vocab=ff20cd90
+-/
 theorem hermiteContourQuotient_X_identity {f : ℂ → ℂ} {ρ : ℝ} (hρ : 0 < ρ)
     (hf : AnalyticOnNhd ℂ f (closedBall (0 : ℂ) ρ))
     {q : ℂ} (hq : q ∈ ball (0 : ℂ) ρ) :
@@ -48,6 +50,9 @@ def parameterCauchyRemainder (f : E × ℂ → ℂ) (ρ : ℝ) (p : E) (q : ℂ)
   hermiteContourQuotient (fun ζ => f (p, ζ)) X ρ q
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] [ProperSpace E] in
+/--
+@isnad1 id=eq.3h5v.s7.7e82bd43e4aa from=translated src=- shape=f53e7474 vocab=0912a09c
+-/
 theorem parameterCauchyRemainder_identity {f : E × ℂ → ℂ} {ρ : ℝ}
     (hρ : 0 < ρ) {p : E}
     (hf : AnalyticOnNhd ℂ (fun ζ => f (p, ζ)) (closedBall (0 : ℂ) ρ))
@@ -55,7 +60,9 @@ theorem parameterCauchyRemainder_identity {f : E × ℂ → ℂ} {ρ : ℝ}
     f (p, q) = f (p, 0) + q * parameterCauchyRemainder f ρ p q :=
   hermiteContourQuotient_X_identity hρ hf hq
 
-/-- Joint holomorphy in all independent parameters and in the scale variable.-/
+/-- Joint holomorphy in all independent parameters and in the scale variable.
+@isnad1 id=differen.3h4v.s8.a651e5025f89 from=translated src=- shape=2073ff3c vocab=3947ff73
+-/
 theorem differentiableOn_parameterCauchyRemainder {f : E × ℂ → ℂ} {U : Set E}
     {ρ : ℝ} (hU : IsOpen U) (hρ : 0 < ρ)
     (hf : AnalyticOnNhd ℂ f (U ×ˢ closedBall (0 : ℂ) ρ)) :
@@ -87,7 +94,9 @@ theorem differentiableOn_parameterCauchyRemainder {f : E × ℂ → ℂ} {U : Se
       (U ×ˢ ball (0 : ℂ) ρ))
 
 omit [NormedAddCommGroup E] [NormedSpace ℂ E] [ProperSpace E] in
-/-- A fixed contour gives a uniform remainder bound on its inner half disk.-/
+/-- A fixed contour gives a uniform remainder bound on its inner half disk.
+@isnad1 id=le.4h6v.s7.618d42026af7 from=translated src=- shape=f60d1186 vocab=bfe6a364
+-/
 theorem norm_parameterCauchyRemainder_le {f : E × ℂ → ℂ} {ρ S : ℝ}
     (hρ : 0 < ρ) (hS : 0 ≤ S) {p : E}
     (hf : ∀ ζ ∈ sphere (0 : ℂ) ρ, ‖f (p, ζ)‖ ≤ S)

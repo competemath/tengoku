@@ -22,12 +22,17 @@ open Polynomial
 /-- The polynomial divided difference with one fixed argument.-/
 def hermiteKernel (Q : ℂ[X]) (ζ : ℂ) : ℂ[X] := Q /ₘ (X - C ζ)
 
-/-- An explicit finite formula for every coefficient, polynomial in `ζ`.-/
+/-- An explicit finite formula for every coefficient, polynomial in `ζ`.
+@isnad1 id=eq.0h3v.s6.8738b506847f from=translated src=- shape=6006354f vocab=7b56af95
+-/
 theorem hermiteKernel_coeff (Q : ℂ[X]) (ζ : ℂ) (j : ℕ) :
     (hermiteKernel Q ζ).coeff j =
       ∑ i ∈ Finset.Icc (j + 1) Q.natDegree, ζ ^ (i - (j + 1)) * Q.coeff i :=
   Polynomial.coeff_divByMonic_X_sub_C Q ζ j
 
+/--
+@isnad1 id=eq.0h2v.s7.7a58e555dd19 from=translated src=- shape=9ee39b52 vocab=0dccc1a1
+-/
 theorem hermiteKernel_mul (Q : ℂ[X]) (ζ : ℂ) :
     (X - C ζ) * hermiteKernel Q ζ = Q - C (Q.eval ζ) := by
   have h := Q.modByMonic_add_div (X - C ζ)
@@ -35,7 +40,9 @@ theorem hermiteKernel_mul (Q : ℂ[X]) (ζ : ℂ) :
   change C (Q.eval ζ) + (X - C ζ) * hermiteKernel Q ζ = Q at h
   linear_combination h
 
-/-- The numerator identity has no off-diagonal hypothesis.-/
+/-- The numerator identity has no off-diagonal hypothesis.
+@isnad1 id=eq.0h3v.s5.34536ae640a5 from=translated src=- shape=f46f60ed vocab=164dbf1a
+-/
 theorem hermiteKernel_identity (Q : ℂ[X]) (ζ z : ℂ) :
     (ζ - z) * (hermiteKernel Q ζ).eval z = Q.eval ζ - Q.eval z := by
   have h := congrArg (Polynomial.eval z) (hermiteKernel_mul Q ζ)
@@ -43,29 +50,41 @@ theorem hermiteKernel_identity (Q : ℂ[X]) (ζ z : ℂ) :
     Polynomial.eval_C] at h
   linear_combination -h
 
-/-- Away from the diagonal, the kernel is the usual divided difference.-/
+/-- Away from the diagonal, the kernel is the usual divided difference.
+@isnad1 id=eq.1h3v.s5.acffb30335c2 from=translated src=- shape=cdb1a70f vocab=89fabc42
+-/
 theorem hermiteKernel_eval_of_ne (Q : ℂ[X]) {ζ z : ℂ} (h : z ≠ ζ) :
     (hermiteKernel Q ζ).eval z = (Q.eval ζ - Q.eval z) / (ζ - z) := by
   apply (eq_div_iff (sub_ne_zero.mpr h.symm)).mpr
   simpa only [mul_comm] using hermiteKernel_identity Q ζ z
 
-/-- The diagonal value gives the removable extension of the quotient.-/
+/-- The diagonal value gives the removable extension of the quotient.
+@isnad1 id=eq.0h2v.s6.b9a2574e52d8 from=translated src=- shape=6152a1ff vocab=51bbe624
+-/
 theorem hermiteKernel_eval_self (Q : ℂ[X]) (ζ : ℂ) :
     (hermiteKernel Q ζ).eval ζ = Q.derivative.eval ζ := by
   have h := congrArg (fun p : ℂ[X] => p.derivative.eval ζ) (hermiteKernel_mul Q ζ)
   simpa using h
 
+/--
+@isnad1 id=eq.0h2v.s4.c89950dbc759 from=translated src=- shape=e764176e vocab=c9c95e77
+-/
 theorem hermiteKernel_natDegree (Q : ℂ[X]) (ζ : ℂ) :
     (hermiteKernel Q ζ).natDegree = Q.natDegree - 1 := by
   rw [hermiteKernel, Polynomial.natDegree_divByMonic Q (monic_X_sub_C ζ), natDegree_X_sub_C]
 
 /-- A degree bound suitable for a kernel of an interpolation polynomial with
-`d` nodes counted with multiplicity.-/
+`d` nodes counted with multiplicity.
+@isnad1 id=lt.2h3v.s5.e684c3f6a4a2 from=translated src=- shape=eb3bcb31 vocab=734adf25
+-/
 theorem hermiteKernel_natDegree_lt (Q : ℂ[X]) (ζ : ℂ) {d : ℕ}
     (hd : 0 < d) (hQ : Q.natDegree ≤ d) : (hermiteKernel Q ζ).natDegree < d := by
   rw [hermiteKernel_natDegree]
   omega
 
+/--
+@isnad1 id=lt.1h2v.s5.03f2e0323f0e from=translated src=- shape=f1de7b2e vocab=c284b359
+-/
 theorem hermiteKernel_degree_lt (Q : ℂ[X]) (ζ : ℂ) (hQ : Q ≠ 0) :
     (hermiteKernel Q ζ).degree < Q.degree := by
   apply Polynomial.degree_divByMonic_lt Q (X - C ζ) hQ

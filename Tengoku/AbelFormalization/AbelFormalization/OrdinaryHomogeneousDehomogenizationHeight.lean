@@ -38,18 +38,27 @@ def ordinaryDehomogenizationHom :
   MvPolynomial.eval₂Hom MvPolynomial.C
     (Sum.elim (fun _ : Fin 1 ↦ 1) MvPolynomial.X)
 
+/--
+@isnad1 id=eq.0h3v.s8.860c5a189e48 from=translated src=- shape=6a82e479 vocab=8471d6f7
+-/
 @[simp]
 theorem ordinaryDehomogenizationHom_C (b : B) :
     ordinaryDehomogenizationHom (ι := ι) (MvPolynomial.C b) =
       MvPolynomial.C b := by
   simp [ordinaryDehomogenizationHom]
 
+/--
+@isnad1 id=eq.0h3v.s8.6c153daea8d1 from=translated src=- shape=2f0e7034 vocab=4bc5a3f0
+-/
 @[simp]
 theorem ordinaryDehomogenizationHom_X_left (j : Fin 1) :
     ordinaryDehomogenizationHom (B := B) (ι := ι)
       (MvPolynomial.X (Sum.inl j)) = 1 := by
   simp [ordinaryDehomogenizationHom]
 
+/--
+@isnad1 id=eq.0h3v.s7.2c5ed6e19163 from=translated src=- shape=a5312a68 vocab=683c0c6e
+-/
 @[simp]
 theorem ordinaryDehomogenizationHom_X_right (i : ι) :
     ordinaryDehomogenizationHom (B := B) (ι := ι)
@@ -64,6 +73,9 @@ def ordinaryLaurentRescalingWeight : ι → Fin 1 → ℤ :=
 def ordinaryLaurentTotalWeight : (Fin 1 ⊕ ι) → Fin 1 → ℤ :=
   fun _ _ ↦ 1
 
+/--
+@isnad1 id=eq.0h1v.s6.85590732ba97 from=translated src=- shape=0fb04980 vocab=32fe931d
+-/
 theorem centralLaurentWeight_one_neg :
     (fun i ↦ -centralLaurentWeight
       (ordinaryLaurentRescalingWeight (ι := ι)) i) =
@@ -83,12 +95,18 @@ def finiteLaurentEvalOne (A : Type*) [CommRing A] (h : ℕ) :
   (AddMonoidAlgebra.lift A A (Fin h → ℤ)
     (1 : Multiplicative (Fin h → ℤ) →* A)).toRingHom
 
+/--
+@isnad1 id=eq.0h4v.s7.33d54eac068e from=translated src=- shape=1e9baf5f vocab=fd9f43b0
+-/
 @[simp]
 theorem finiteLaurentEvalOne_single
     (A : Type*) [CommRing A] (h : ℕ) (g : Fin h → ℤ) (a : A) :
     finiteLaurentEvalOne A h (AddMonoidAlgebra.single g a) = a := by
   simp [finiteLaurentEvalOne]
 
+/--
+@isnad1 id=eq.0h2v.s6.6bc48c021cda from=translated src=- shape=fff2f512 vocab=4f299b5a
+-/
 theorem finiteLaurentEvalOne_comp_C
     (A : Type*) [CommRing A] (h : ℕ) :
     (finiteLaurentEvalOne A h).comp (groupAlgebraC A (Fin h → ℤ)) =
@@ -97,7 +115,9 @@ theorem finiteLaurentEvalOne_comp_C
   simp [groupAlgebraC_apply]
 
 /-- Evaluation of the rescaled localization at Laurent degree one is
-exactly ordinary dehomogenization.-/
+exactly ordinary dehomogenization.
+@isnad1 id=eq.0h2v.s8.1fa5a7253dc8 from=translated src=- shape=d2bd898c vocab=f10cd650
+-/
 theorem finiteLaurentEvalOne_comp_ordinaryRescaledMap :
     (finiteLaurentEvalOne (MvPolynomial ι B) 1).comp
       (centralLaurentRescaledMap
@@ -113,7 +133,9 @@ theorem finiteLaurentEvalOne_comp_ordinaryRescaledMap :
     · simp
 
 /-- Scalar total-degree homogeneity implies homogeneity for the equivalent
-one-coordinate vector grading.-/
+one-coordinate vector grading.
+@isnad1 id=isweight.1h4v.s6.8b7613ee91bf from=translated src=- shape=3f6829c5 vocab=a81ae5a5
+-/
 theorem isWeightedHomogeneous_ordinaryLaurentTotalWeight
     {f : MvPolynomial (Fin 1 ⊕ ι) B} {n : ℕ}
     (hf : f.IsWeightedHomogeneous (fun _ ↦ (1 : ℕ)) n) :
@@ -127,7 +149,9 @@ theorem isWeightedHomogeneous_ordinaryLaurentTotalWeight
 
 /-- Localizing the distinguished variable and rescaling the retained
 variables turns an ordinary homogeneous ideal into a homogeneous Laurent
-ideal.-/
+ideal.
+@isnad1 id=ishomoge.1h3v.s10.bd4dc5b32e33 from=translated src=- shape=ecbaca8f vocab=cf161d8e
+-/
 theorem ordinaryRescaledMap_isHomogeneous
     (C : Ideal (MvPolynomial (Fin 1 ⊕ ι) B))
     (hC : C.IsHomogeneous
@@ -150,7 +174,9 @@ theorem ordinaryRescaledMap_isHomogeneous
     isWeightedHomogeneous_ordinaryLaurentTotalWeight hn⟩
 
 /-- The degree-zero coefficient contraction of the rescaled Laurent ideal is
-literally the ideal obtained by setting `H = 1`.-/
+literally the ideal obtained by setting `H = 1`.
+@isnad1 id=eq.1h3v.s10.a9d9769d65ae from=translated src=- shape=c70a852b vocab=e1cc0d19
+-/
 theorem ordinaryRescaledMap_comap_C_eq_dehomogenization
     (C : Ideal (MvPolynomial (Fin 1 ⊕ ι) B))
     (hC : C.IsHomogeneous

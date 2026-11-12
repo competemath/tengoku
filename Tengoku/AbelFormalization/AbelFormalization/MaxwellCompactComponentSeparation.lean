@@ -40,6 +40,9 @@ def maxwellLimitFiber {X : Type*} [TopologicalSpace X]
     (B : Set X) (defect : X → ℝ) : Set X :=
   closure B ∩ {x | defect x = 0}
 
+/--
+@isnad1 id=iff.0h7v.s6.0dc063b89692 from=translated src=- shape=76767d9e vocab=a4bac8b3
+-/
 @[simp]
 theorem mem_maxwellStrictTube {X : Type*} [TopologicalSpace X]
     {B : Set X} {radius defect : X → ℝ} {R ε : ℝ} {x : X} :
@@ -47,6 +50,9 @@ theorem mem_maxwellStrictTube {X : Type*} [TopologicalSpace X]
       x ∈ B ∧ radius x < R ∧ |defect x| < ε := by
   simp [maxwellStrictTube, and_assoc]
 
+/--
+@isnad1 id=iff.0h4v.s5.ec64296a6d57 from=translated src=- shape=58c42503 vocab=f3de4a71
+-/
 @[simp]
 theorem mem_maxwellLimitFiber {X : Type*} [TopologicalSpace X]
     {B : Set X} {defect : X → ℝ} {x : X} :
@@ -58,13 +64,18 @@ noncomputable def maxwellComponentRepresentative {X : Type*} [TopologicalSpace X
     (c : ConnectedComponents X) : X :=
   Classical.choose (ConnectedComponents.surjective_coe c)
 
+/--
+@isnad1 id=eq.0h2v.s4.7f2107db5a41 from=translated src=- shape=2896fe98 vocab=59fcb4eb
+-/
 @[simp]
 theorem maxwellComponentRepresentative_mk {X : Type*} [TopologicalSpace X]
     (c : ConnectedComponents X) :
     ConnectedComponents.mk (maxwellComponentRepresentative c) = c :=
   Classical.choose_spec (ConnectedComponents.surjective_coe c)
 
-/-- A finite real-valued family admits one strict common upper bound.-/
+/-- A finite real-valued family admits one strict common upper bound.
+@isnad1 id=ex.0h2v.s4.fceba1d28b85 from=translated src=- shape=e438970e vocab=96d20849
+-/
 theorem exists_strict_upperBound_fin {k : ℕ} (f : Fin k → ℝ) :
     ∃ R : ℝ, ∀ i, f i < R := by
   refine ⟨∑ i, |f i| + 1, fun i ↦ ?_⟩
@@ -76,7 +87,9 @@ theorem exists_strict_upperBound_fin {k : ℕ} (f : Fin k → ℝ) :
 
 /--
 On a compact space, an open neighborhood of the zero fiber of a continuous real-valued function
-contains one uniform strict sublevel of its absolute value.-/
+contains one uniform strict sublevel of its absolute value.
+@isnad1 id=ex.3h3v.s6.5b79ffe48668 from=translated src=- shape=1fa5eaf0 vocab=e6a0bdd1
+-/
 theorem exists_pos_defect_threshold_of_compact
     {X : Type*} [TopologicalSpace X] [CompactSpace X]
     (defect : X → ℝ) (hdefect : Continuous defect) {O : Set X}
@@ -105,10 +118,16 @@ def maxwellPartitionLabelValue {k : ℕ} (i : Fin k) : ℝ :=
 def maxwellPartitionLabelInterval {k : ℕ} (i : Fin k) : Set ℝ :=
   Ioo (maxwellPartitionLabelValue i - 1) (maxwellPartitionLabelValue i + 1)
 
+/--
+@isnad1 id=mem.0h2v.s4.12a828260c8e from=translated src=- shape=1ee12189 vocab=7d0c800a
+-/
 theorem maxwellPartitionLabelValue_mem_interval {k : ℕ} (i : Fin k) :
     maxwellPartitionLabelValue i ∈ maxwellPartitionLabelInterval i := by
   simp [maxwellPartitionLabelInterval]
 
+/--
+@isnad1 id=pairwise.0h1v.s5.abbda1845a3e from=translated src=- shape=4c8c6db2 vocab=38ab4441
+-/
 theorem maxwellPartitionLabelIntervals_pairwiseDisjoint {k : ℕ} :
     (Set.univ : Set (Fin k)).PairwiseDisjoint maxwellPartitionLabelInterval := by
   intro i _ j _ hij
@@ -132,7 +151,9 @@ theorem maxwellPartitionLabelIntervals_pairwiseDisjoint {k : ℕ} :
 
 /--
 A finite pairwise-disjoint open cover consists of clopen sets.  This elementary helper is what
-turns the label intervals, after restriction to a tube, into component separators.-/
+turns the label intervals, after restriction to a tube, into component separators.
+@isnad1 id=isclopen.3h4v.s6.e4e37583ef0b from=translated src=- shape=ca705271 vocab=6bf2317a
+-/
 theorem isClopen_of_finite_pairwiseDisjoint_open_cover
     {X I : Type*} [TopologicalSpace X] [Finite I]
     (U : I → Set X) (hUopen : ∀ i, IsOpen (U i))
@@ -155,7 +176,9 @@ theorem isClopen_of_finite_pairwiseDisjoint_open_cover
       (hUdisj (Set.mem_univ i) (Set.mem_univ j.1) (Ne.symm j.2))) hxi hxj
 
 /--
-Failure of the extended-natural cardinal bound by `N` supplies `N + 1` distinct elements.-/
+Failure of the extended-natural cardinal bound by `N` supplies `N + 1` distinct elements.
+@isnad1 id=ex.1h2v.s6.c7eece67146d from=translated src=- shape=37fe3cbc vocab=db27f963
+-/
 theorem exists_fin_succ_injection_of_enatCard_not_le
     {α : Type*} {N : ℕ} (h : ¬ ENat.card α ≤ (N : ℕ∞)) :
     ∃ f : Fin (N + 1) → α, Function.Injective f := by
@@ -172,7 +195,9 @@ theorem exists_fin_succ_injection_of_enatCard_not_le
 
 /--
 The finite-selected-components form of compact Maxwell separation.  Every injected family of
-`N + 1` limit components forces at least `N + 1` components in one strict tube.-/
+`N + 1` limit components forces at least `N + 1` components in one strict tube.
+@isnad1 id=ex.4h6v.s7.593e04d6b825 from=translated src=- shape=f21685bf vocab=c6245b98
+-/
 theorem enatCard_fin_succ_le_some_maxwellStrictTube_components
     {X : Type*} [TopologicalSpace X] [T2Space X] [NormalSpace X]
     (B : Set X) (radius defect : X → ℝ)
@@ -341,7 +366,9 @@ theorem enatCard_fin_succ_le_some_maxwellStrictTube_components
 
 /--
 The compact topological core of Maxwell's closure comparison: a uniform component bound for all
-strict tubes also bounds the zero-defect locus in `closure B`.-/
+strict tubes also bounds the zero-defect locus in `closure B`.
+@isnad1 id=le.4h5v.s7.ca9704120dcb from=translated src=- shape=dc1826e5 vocab=1f56df43
+-/
 theorem enatCard_connectedComponents_maxwellLimitFiber_le
     {X : Type*} [TopologicalSpace X] [T2Space X] [NormalSpace X]
     (B : Set X) (radius defect : X → ℝ)

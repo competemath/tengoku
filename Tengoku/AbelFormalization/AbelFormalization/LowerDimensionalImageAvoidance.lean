@@ -20,6 +20,9 @@ namespace AbelFormalization
 
 set_option autoImplicit false
 
+/--
+@isnad1 id=eq.2h4v.s7.544bc3574a95 from=translated src=- shape=42c744d7 vocab=1a0c7ab2
+-/
 theorem hausdorffMeasure_image_eq_zero_of_finrank_lt
     {E F : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
@@ -38,6 +41,9 @@ theorem hausdorffMeasure_image_eq_zero_of_finrank_lt
     _ = (Module.finrank ℝ E : ENNReal) := Real.dimH_univ_eq_finrank E
     _ < (Module.finrank ℝ F : ENNReal) := by exact_mod_cast hdim
 
+/--
+@isnad1 id=ex.2h5v.s7.c9053a7b642b from=translated src=- shape=f8c5cd51 vocab=268170a0
+-/
 theorem exists_avoiding_countable_differentiable_images
     {ι E F : Type*} [Countable ι]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]

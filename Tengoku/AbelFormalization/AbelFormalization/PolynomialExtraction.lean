@@ -25,7 +25,9 @@ section FieldPolynomial
 variable {k : Type*} [Field k] {m : ℕ}
 
 /-- A maximal ideal in a polynomial algebra over a field contains a monic
-univariate polynomial in every chosen coordinate.-/
+univariate polynomial in every chosen coordinate.
+@isnad1 id=ex.0h4v.s9.ad766d135f38 from=translated src=- shape=fc17629e vocab=b054c386
+-/
 theorem maximal_mvPolynomial_contains_monic_univariate
     (P : Ideal (MvPolynomial (Fin m) k)) [P.IsMaximal] (i : Fin m) :
     ∃ f : k[X], f.Monic ∧ f.toMvPolynomial i ∈ P := by
@@ -50,12 +52,17 @@ def scalarUnivariateEmbedding (i : Fin m) : k[X] →+* MvPolynomial (Fin m) B :=
 
 variable {k B}
 
+/--
+@isnad1 id=surjecti.0h3v.s6.191f552e5c35 from=translated src=- shape=9c304c75 vocab=8d1871c9
+-/
 theorem augmentation_surjective (ε : B →ₐ[k] k) : Function.Surjective ε := by
   intro c
   refine ⟨algebraMap k B c, ?_⟩
   simp
 
-/-- Coefficient specialization retracts the embedded scalar polynomial.-/
+/-- Coefficient specialization retracts the embedded scalar polynomial.
+@isnad1 id=eq.0h6v.s9.61b9bfe4c39e from=translated src=- shape=165b988d vocab=f8bf5063
+-/
 theorem map_scalarUnivariateEmbedding (ε : B →ₐ[k] k) (i : Fin m) (f : k[X]) :
     MvPolynomial.map ε.toRingHom (scalarUnivariateEmbedding k B i f) =
       f.toMvPolynomial i := by
@@ -67,6 +74,9 @@ theorem map_scalarUnivariateEmbedding (ε : B →ₐ[k] k) (i : Fin m) (f : k[X]
     he, MvPolynomial.map_id]
   rfl
 
+/--
+@isnad1 id=injectiv.0h5v.s7.686f8449343c from=translated src=- shape=48fe1486 vocab=ac797004
+-/
 theorem scalarUnivariateEmbedding_injective (ε : B →ₐ[k] k) (i : Fin m) :
     Function.Injective (scalarUnivariateEmbedding k B i) := by
   intro f g h
@@ -82,7 +92,9 @@ variable {k B : Type*} [Field k] [CommRing B] [Algebra k B]
   [IsNoetherianRing B] [IsLocalRing B]
 
 omit [IsNoetherianRing B] in
-/-- An actual field augmentation identifies the unique maximal ideal.-/
+/-- An actual field augmentation identifies the unique maximal ideal.
+@isnad1 id=eq.0h3v.s7.9f47901d2517 from=translated src=- shape=3f70a6c3 vocab=727c8a73
+-/
 theorem augmentation_ker_eq_maximalIdeal (ε : B →ₐ[k] k) :
     RingHom.ker ε.toRingHom = IsLocalRing.maximalIdeal B :=
   IsLocalRing.ker_eq_maximalIdeal ε.toRingHom (augmentation_surjective ε)
@@ -96,7 +108,9 @@ variable {k B : Type*} [Field k] [CommRing B] [Algebra k B]
 
 /-- Monic coordinate relations in every minimal prime combine into a monic
 coordinate relation in the ideal itself. This includes the empty-prime-family
-case of the unit ideal.-/
+case of the unit ideal.
+@isnad1 id=ex.1h5v.s9.f064728a92f8 from=translated src=- shape=03d82370 vocab=015ab48d
+-/
 theorem mvPolynomial_contains_monic_univariate_of_minimalPrimes
     (I : Ideal (MvPolynomial (Fin m) B)) (i : Fin m)
     (h : ∀ P ∈ I.minimalPrimes,

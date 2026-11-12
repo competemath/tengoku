@@ -51,6 +51,9 @@ def artinianPolynomialModuleTermVector
     artinianFreePolynomialModule B n r :=
   artinianPolynomialModuleCoeffEquiv.symm (Finsupp.single t 1)
 
+/--
+@isnad1 id=eq.0h6v.s7.c9d658a0882b from=translated src=- shape=6b3903a0 vocab=32597bbd
+-/
 @[simp]
 theorem artinianPolynomialModuleTermVector_coeff
     (t : PolynomialModuleTerm n r) (k : Fin r) (d : Fin n →₀ ℕ) :
@@ -61,6 +64,9 @@ theorem artinianPolynomialModuleTermVector_coeff
   rw [artinianPolynomialModuleTermVector,
     LinearEquiv.apply_symm_apply, Finsupp.single_apply]
 
+/--
+@isnad1 id=ne.0h4v.s6.6a35a39a456b from=translated src=- shape=01d4bb8a vocab=ebca3b1b
+-/
 theorem artinianPolynomialModuleTermVector_ne_zero [Nontrivial B]
     (t : PolynomialModuleTerm n r) :
     artinianPolynomialModuleTermVector (B := B) t ≠ 0 := by
@@ -83,7 +89,9 @@ def artinianPolynomialModuleFiberPiece
     Submodule B (artinianFreePolynomialModule B n r) :=
   artinianPolynomialModuleSupported (artinianPolynomialModuleFiberTerms key i)
 
-/-- The coordinate term vector belongs to the fibre selected by its key.-/
+/-- The coordinate term vector belongs to the fibre selected by its key.
+@isnad1 id=mem.1h7v.s8.a62fb984743e from=translated src=- shape=08c3e004 vocab=4988a1ef
+-/
 theorem artinianPolynomialModuleTermVector_mem_fiber
     (key : PolynomialModuleTerm n r → ι)
     (t : PolynomialModuleTerm n r) (i : ι) (hi : key t = i) :
@@ -113,6 +121,9 @@ def artinianPolynomialModuleFiberComponent [DecidableEq ι]
       intro c P
       simp only [map_smul, Finsupp.filter_smul, RingHom.id_apply] }
 
+/--
+@isnad1 id=eq.0h9v.s9.6a59247e66da from=translated src=- shape=916752d5 vocab=9bf5a643
+-/
 @[simp]
 theorem artinianPolynomialModuleFiberComponent_coeff [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι) (i : ι)
@@ -129,7 +140,9 @@ theorem artinianPolynomialModuleFiberComponent_coeff [DecidableEq ι]
   rw [LinearEquiv.apply_symm_apply, Finsupp.filter_apply]
   rfl
 
-/-- A fibre projection lands in the corresponding coefficient fibre.-/
+/-- A fibre projection lands in the corresponding coefficient fibre.
+@isnad1 id=mem.0h7v.s9.86c0965f892c from=translated src=- shape=3545e496 vocab=977690a4
+-/
 theorem artinianPolynomialModuleFiberComponent_mem [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι) (i : ι)
     (P : artinianFreePolynomialModule B n r) :
@@ -143,7 +156,9 @@ theorem artinianPolynomialModuleFiberComponent_mem [DecidableEq ι]
   exact hcoeff (by
     rw [artinianPolynomialModuleFiberComponent_coeff, ite_eq_right hkey])
 
-/-- Projection fixes a vector already supported in its fibre.-/
+/-- Projection fixes a vector already supported in its fibre.
+@isnad1 id=eq.1h7v.s9.706ff3c442e6 from=translated src=- shape=50c3ddc1 vocab=977690a4
+-/
 theorem artinianPolynomialModuleFiberComponent_eq_self [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι) (i : ι)
     {P : artinianFreePolynomialModule B n r}
@@ -161,7 +176,9 @@ theorem artinianPolynomialModuleFiberComponent_eq_self [DecidableEq ι]
     exact hkey ((mem_artinianPolynomialModuleSupported _ _).mp hP k d
       (Ne.symm hcoeff))
 
-/-- Projection to one fibre kills a vector supported in another fibre.-/
+/-- Projection to one fibre kills a vector supported in another fibre.
+@isnad1 id=eq.2h8v.s9.545c620fd186 from=translated src=- shape=552c91cc vocab=977690a4
+-/
 theorem artinianPolynomialModuleFiberComponent_eq_zero_of_mem
     [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι) {i j : ι}
@@ -182,7 +199,9 @@ theorem artinianPolynomialModuleFiberComponent_eq_zero_of_mem
   · exact ite_eq_right hkey
 
 /-- If a fibre index is absent from the image of the coefficient support,
-its projection is zero.-/
+its projection is zero.
+@isnad1 id=eq.1h7v.s10.b7402b8db407 from=translated src=- shape=cab490a7 vocab=9d1a1b76
+-/
 theorem artinianPolynomialModuleFiberComponent_eq_zero_of_notMem
     [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι) (i : ι)
@@ -208,7 +227,9 @@ theorem artinianPolynomialModuleFiberComponent_eq_zero_of_notMem
   · exact ite_eq_right hkey
 
 /-- Only finitely many coefficient-fibre projections of a fixed vector are
-nonzero.-/
+nonzero.
+@isnad1 id=hasfinit.0h6v.s9.f12dbad780c5 from=translated src=- shape=22493823 vocab=2a663602
+-/
 theorem artinianPolynomialModuleFiberComponent_finiteSupport
     [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι)
@@ -226,7 +247,9 @@ theorem artinianPolynomialModuleFiberComponent_finiteSupport
   exact ⟨t, by simpa using ht, hkey⟩
 
 /-- A vector is the finite sum of all of its coefficient-fibre
-projections.-/
+projections.
+@isnad1 id=eq.0h6v.s8.7b5605e32afe from=translated src=- shape=3a17e495 vocab=95e9f8d1
+-/
 theorem sum_artinianPolynomialModuleFiberComponent
     [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι)
@@ -274,6 +297,9 @@ def artinianPolynomialModuleFiberDecompose' [DecidableEq ι]
     (fun i => ⟨artinianPolynomialModuleFiberComponent key i P,
       artinianPolynomialModuleFiberComponent_mem key i P⟩)
 
+/--
+@isnad1 id=eq.0h7v.s12.9c413eeb2aba from=translated src=- shape=7d19c1ae vocab=b3d1e5e4
+-/
 @[simp]
 theorem artinianPolynomialModuleFiberDecompose'_apply [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι)
@@ -288,7 +314,9 @@ theorem artinianPolynomialModuleFiberDecompose'_apply [DecidableEq ι]
       artinianPolynomialModuleFiberComponent_eq_zero_of_notMem key i P hi]
 
 /-- Fibre projection recovers a coordinate of an arbitrary direct sum of
-fibre pieces.-/
+fibre pieces.
+@isnad1 id=eq.0h7v.s13.ee85fac05558 from=translated src=- shape=f5183dff vocab=62f03e5d
+-/
 theorem artinianPolynomialModuleFiberComponent_directSum [DecidableEq ι]
     (key : PolynomialModuleTerm n r → ι)
     (x : DirectSum ι (fun i =>
@@ -378,15 +406,23 @@ def termJointDegree (t : PolynomialModuleTerm n r) :
     PolynomialGradedLexDegree h :=
   (G.termOrdinaryDegree t, G.termWeight t)
 
+/--
+@isnad1 id=eq.0h5v.s5.e1628465a36c from=translated src=- shape=3dbdf845 vocab=1e5ff191
+-/
 @[simp]
 theorem termJointDegree_fst (t : PolynomialModuleTerm n r) :
     (G.termJointDegree t).1 = G.termOrdinaryDegree t := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.a1f377e494cc from=translated src=- shape=f100c35c vocab=2df2f581
+-/
 @[simp]
 theorem termJointDegree_snd (t : PolynomialModuleTerm n r) :
     (G.termJointDegree t).2 = G.termWeight t := rfl
 
-/-- Adding one variable exponent adds its ordinary degree.-/
+/-- Adding one variable exponent adds its ordinary degree.
+@isnad1 id=eq.0h7v.s6.e705851c75f3 from=translated src=- shape=808776f8 vocab=6b1113f6
+-/
 theorem termOrdinaryDegree_add_single (i : Fin n) (k : Fin r)
     (d : Fin n →₀ ℕ) :
     G.termOrdinaryDegree (k, Finsupp.single i 1 + d) =
@@ -394,7 +430,9 @@ theorem termOrdinaryDegree_add_single (i : Fin n) (k : Fin r)
   simp [termOrdinaryDegree, artinianPolynomialTermDegree, map_add,
     Finsupp.weight_single, add_assoc]
 
-/-- Adding one variable exponent adds its lexicographic multidegree.-/
+/-- Adding one variable exponent adds its lexicographic multidegree.
+@isnad1 id=eq.0h7v.s7.ce64df2d8739 from=translated src=- shape=405690c2 vocab=234afa3e
+-/
 theorem termWeight_add_single (i : Fin n) (k : Fin r)
     (d : Fin n →₀ ℕ) :
     G.termWeight (k, Finsupp.single i 1 + d) =
@@ -419,6 +457,9 @@ abbrev jointComponent (B : Type*) [CommRing B]
       artinianFreePolynomialModule B n r :=
   artinianPolynomialModuleFiberComponent G.termJointDegree (degree, weight)
 
+/--
+@isnad1 id=eq.0h10v.s9.bccad5eba855 from=translated src=- shape=a6caee71 vocab=3e17b49c
+-/
 @[simp]
 theorem jointComponent_coeff
     (degree : ℤ) (weight : PolynomialLexWeight h)
@@ -448,6 +489,9 @@ noncomputable def jointDecomposeLinearEquiv (B : Type*) [CommRing B] :
   exact DirectSum.decomposeLinearEquiv
     (fun q : PolynomialGradedLexDegree h => G.jointPiece B q.1 q.2)
 
+/--
+@isnad1 id=eq.0h7v.s13.6d709ee0bb9c from=translated src=- shape=77f29c3b vocab=2ab417c4
+-/
 @[simp]
 theorem jointDecomposeLinearEquiv_apply
     (P : artinianFreePolynomialModule B n r)
@@ -459,7 +503,9 @@ theorem jointDecomposeLinearEquiv_apply
   exact artinianPolynomialModuleFiberDecompose'_apply
     G.termJointDegree P q
 
-/-- A joint piece lies in its ordinary-degree piece.-/
+/-- A joint piece lies in its ordinary-degree piece.
+@isnad1 id=le.0h7v.s8.fa20d1bb4b08 from=translated src=- shape=f28a3005 vocab=569ab8d4
+-/
 theorem jointPiece_le_ordinaryPiece
     (degree : ℤ) (weight : PolynomialLexWeight h) :
     G.jointPiece B degree weight ≤
@@ -489,7 +535,9 @@ def XLinear (B : Type*) [CommRing B] (i : Fin n) :
     ac_rfl
 
 /-- Multiplication by a variable sends a joint piece to the joint piece
-obtained by adding that variable's two degrees.-/
+obtained by adding that variable's two degrees.
+@isnad1 id=le.0h8v.s9.5a1c2951654e from=translated src=- shape=f6541682 vocab=e87a834a
+-/
 theorem X_smul_jointPiece_le (i : Fin n)
     (degree : ℤ) (weight : PolynomialLexWeight h) :
     (G.jointPiece B degree weight).map
@@ -531,6 +579,9 @@ def ordinaryTermFinset (hpositive : ∀ i, 0 < G.ordinaryDegree i)
   (artinianPolynomialDegreeTerms_finite G.ordinaryDegree hpositive
     G.ordinaryShift degree).toFinset
 
+/--
+@isnad1 id=iff.1h6v.s6.35c24cddcad5 from=translated src=- shape=4e0fbe15 vocab=7fd57885
+-/
 @[simp]
 theorem mem_ordinaryTermFinset (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (t : PolynomialModuleTerm n r) :
@@ -545,6 +596,9 @@ def ordinaryWeightSupport (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) : Finset (PolynomialLexWeight h) :=
   (G.ordinaryTermFinset hpositive degree).image G.termWeight
 
+/--
+@isnad1 id=iff.1h6v.s6.a4f0b0c10758 from=translated src=- shape=1b3ba501 vocab=2d22be05
+-/
 theorem mem_ordinaryWeightSupport
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (weight : PolynomialLexWeight h) :
@@ -555,7 +609,9 @@ theorem mem_ordinaryWeightSupport
     G.mem_ordinaryTermFinset]
 
 /-- In each ordinary slice, the existing ordinary coefficient projection is
-the finite sum of the joint lexicographic projections.-/
+the finite sum of the joint lexicographic projections.
+@isnad1 id=eq.1h7v.s9.79e7bda7d8d8 from=translated src=- shape=c788983c vocab=6bd6eb54
+-/
 theorem sum_jointComponent_eq_ordinaryComponent
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (P : artinianFreePolynomialModule B n r) :
@@ -604,7 +660,9 @@ theorem sum_jointComponent_eq_ordinaryComponent
     exact hdegree (congrArg Prod.fst hjoint)
 
 /-- A nonzero joint piece must occur in the finite combinatorial support of
-its ordinary slice.  This direction is valid even for the zero ring.-/
+its ordinary slice.  This direction is valid even for the zero ring.
+@isnad1 id=mem.2h7v.s8.a66f254767ae from=translated src=- shape=f5936583 vocab=d0ee407c
+-/
 theorem jointPiece_ne_bot_imp_mem_ordinaryWeightSupport
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (weight : PolynomialLexWeight h)
@@ -628,7 +686,9 @@ theorem jointPiece_ne_bot_imp_mem_ordinaryWeightSupport
 
 /-- Over a nonzero coefficient ring, every combinatorially possible weight
 gives a nonzero joint piece.  The `Nontrivial` assumption is necessary for
-this converse.-/
+this converse.
+@isnad1 id=ne.2h7v.s8.781d93322c3e from=translated src=- shape=bc8df0fb vocab=3b061792
+-/
 theorem mem_ordinaryWeightSupport_imp_jointPiece_ne_bot [Nontrivial B]
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (weight : PolynomialLexWeight h)
@@ -643,6 +703,9 @@ theorem mem_ordinaryWeightSupport_imp_jointPiece_ne_bot [Nontrivial B]
     t (degree, weight)
   exact Prod.ext htdegree htweight
 
+/--
+@isnad1 id=iff.1h7v.s8.4de29f2aabb1 from=translated src=- shape=db7873a4 vocab=3b061792
+-/
 theorem jointPiece_ne_bot_iff_mem_ordinaryWeightSupport [Nontrivial B]
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (degree : ℤ) (weight : PolynomialLexWeight h) :
@@ -654,7 +717,9 @@ theorem jointPiece_ne_bot_iff_mem_ordinaryWeightSupport [Nontrivial B]
       hpositive degree weight⟩
 
 /-- The set of nonzero joint weight spaces in a fixed ordinary degree is
-finite over every commutative coefficient ring.-/
+finite over every commutative coefficient ring.
+@isnad1 id=finite.1h6v.s8.266b9ad1f6ae from=translated src=- shape=01f6467a vocab=cdfa7c17
+-/
 theorem finite_jointPiece_weights
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (degree : ℤ) :
     {weight : PolynomialLexWeight h |
@@ -671,6 +736,9 @@ works when the free rank is zero.-/
 def ordinaryLowerBound : ℤ :=
   -∑ k : Fin r, |G.ordinaryShift k|
 
+/--
+@isnad1 id=le.0h5v.s4.7ebe20a6717a from=translated src=- shape=e38defff vocab=e17a7593
+-/
 theorem ordinaryLowerBound_le_shift (k : Fin r) :
     G.ordinaryLowerBound ≤ G.ordinaryShift k := by
   have habs : |G.ordinaryShift k| ≤ ∑ j : Fin r, |G.ordinaryShift j| :=
@@ -678,6 +746,9 @@ theorem ordinaryLowerBound_le_shift (k : Fin r) :
       (Finset.mem_univ k)
   exact (neg_le_neg habs).trans (neg_abs_le (G.ordinaryShift k))
 
+/--
+@isnad1 id=le.0h5v.s4.687436c743c4 from=translated src=- shape=565f1f28 vocab=6a3025c6
+-/
 theorem ordinaryLowerBound_le_term (t : PolynomialModuleTerm n r) :
     G.ordinaryLowerBound ≤ G.termOrdinaryDegree t := by
   change G.ordinaryLowerBound ≤
@@ -691,6 +762,9 @@ can occur in the shifted free module.-/
 def degreeWindow (D : ℤ) : Finset ℤ :=
   Finset.Icc G.ordinaryLowerBound D
 
+/--
+@isnad1 id=iff.0h6v.s5.4652d2f66616 from=translated src=- shape=777892ed vocab=dd070c3c
+-/
 @[simp]
 theorem mem_degreeWindow (D degree : ℤ) :
     degree ∈ G.degreeWindow D ↔
@@ -703,6 +777,9 @@ def windowTermFinset (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) : Finset (PolynomialModuleTerm n r) :=
   (G.degreeWindow D).biUnion (G.ordinaryTermFinset hpositive)
 
+/--
+@isnad1 id=iff.1h6v.s6.c696a94cd910 from=translated src=- shape=198b7d20 vocab=c29e23c6
+-/
 theorem mem_windowTermFinset_iff_mem_degreeWindow
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (t : PolynomialModuleTerm n r) :
@@ -717,7 +794,9 @@ theorem mem_windowTermFinset_iff_mem_degreeWindow
     exact ⟨G.termOrdinaryDegree t, ht, rfl⟩
 
 /-- Because `ordinaryLowerBound` bounds every term, membership in the
-window is equivalent simply to having ordinary degree at most `D`.-/
+window is equivalent simply to having ordinary degree at most `D`.
+@isnad1 id=iff.1h6v.s6.bce65dd07f88 from=translated src=- shape=4e0fbe15 vocab=204192fa
+-/
 theorem mem_windowTermFinset_iff_le
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (t : PolynomialModuleTerm n r) :
@@ -733,6 +812,9 @@ def weightWindow (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) : Finset (PolynomialLexWeight h) :=
   (G.windowTermFinset hpositive D).image G.termWeight
 
+/--
+@isnad1 id=iff.1h6v.s6.d6cc2508ac7d from=translated src=- shape=d747a177 vocab=facdb64a
+-/
 theorem mem_weightWindow
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (weight : PolynomialLexWeight h) :
@@ -760,6 +842,9 @@ def weightAt (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     PolynomialLexWeight h :=
   (G.weightOrderIso hpositive D i).1
 
+/--
+@isnad1 id=mem.1h6v.s6.3ab4ff0a2b03 from=translated src=- shape=e4fffdaf vocab=447f62cc
+-/
 @[simp]
 theorem weightAt_mem (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (i : Fin (G.weightCount hpositive D)) :
@@ -795,6 +880,9 @@ def windowWeightPiece (B : Type*) [CommRing B]
   artinianPolynomialModuleSupported
     (G.windowWeightTerms hpositive D weight)
 
+/--
+@isnad1 id=le.1h7v.s8.37c3966413cb from=translated src=- shape=b430f715 vocab=b02dbe7e
+-/
 theorem windowWeightPiece_le_windowModule
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (weight : PolynomialLexWeight h) :
@@ -805,7 +893,9 @@ theorem windowWeightPiece_le_windowModule
   intro k d hcoeff
   exact ((mem_artinianPolynomialModuleSupported _ _).mp hP k d hcoeff).1
 
-/-- The whole ordinary-degree window is a finite coefficient module.-/
+/-- The whole ordinary-degree window is a finite coefficient module.
+@isnad1 id=finite.1h6v.s9.828901e2b564 from=translated src=- shape=6935f28d vocab=fe677684
+-/
 theorem windowModule_moduleFinite
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ) :
     Module.Finite B (G.windowModule B hpositive D) := by
@@ -816,7 +906,9 @@ theorem windowModule_moduleFinite
       (B := B) (G.windowTermSet hpositive D)).symm
 
 /-- Every aggregate weight piece in the window is a finite coefficient
-module.-/
+module.
+@isnad1 id=finite.1h7v.s9.3e9207b828d2 from=translated src=- shape=a38bab8b vocab=252cb453
+-/
 theorem windowWeightPiece_moduleFinite
     (hpositive : ∀ i, 0 < G.ordinaryDegree i)
     (D : ℤ) (weight : PolynomialLexWeight h) :
@@ -911,7 +1003,9 @@ def windowOrderedWeightProductEquiv
       (G.weightOrderIso hpositive D).toEquiv).symm
 
 /-- Every coordinate in the ordered finite product is a finite coefficient
-module.-/
+module.
+@isnad1 id=finite.1h7v.s9.a6c926387eb5 from=translated src=- shape=a9f157af vocab=4541147d
+-/
 theorem orderedWeightPiece_moduleFinite
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     (i : Fin (G.weightCount hpositive D)) :
@@ -919,7 +1013,9 @@ theorem orderedWeightPiece_moduleFinite
   G.windowWeightPiece_moduleFinite hpositive D
     (G.weightAt hpositive D i)
 
-/-- The ordered product itself is a finite coefficient module.-/
+/-- The ordered product itself is a finite coefficient module.
+@isnad1 id=finite.1h6v.s10.cf4932de0936 from=translated src=- shape=2e1a9fcd vocab=4541147d
+-/
 theorem windowOrderedWeightProduct_moduleFinite
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ) :
     Module.Finite B
@@ -933,7 +1029,9 @@ theorem windowOrderedWeightProduct_moduleFinite
 /-- Direct specialization of the verified finite-weight stabilization
 theorem to the ordered grouped pieces of this polynomial window.  Later
 modules only have to construct the transported triangular equivalence and
-the transported homogeneous submodule.-/
+the transported homogeneous submodule.
+@isnad1 id=ex.3h8v.s15.8626b3d5acb0 from=translated src=- shape=eb8db27d vocab=a32c5bf3
+-/
 theorem exists_windowOrderedWeightDescent_stabilizes
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
     [IsArtinian B
@@ -968,7 +1066,9 @@ theorem exists_windowOrderedWeightDescent_stabilizes
 
 /-- Over an Artinian coefficient ring, finiteness of the concrete weight
 pieces supplies all finite-length hypotheses needed by the stabilization
-theorem.-/
+theorem.
+@isnad1 id=ex.3h8v.s15.029cb7441909 from=translated src=- shape=56877fe0 vocab=7d53997f
+-/
 theorem exists_windowOrderedWeightDescent_stabilizes_of_isArtinianRing
     [IsArtinianRing B]
     (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)

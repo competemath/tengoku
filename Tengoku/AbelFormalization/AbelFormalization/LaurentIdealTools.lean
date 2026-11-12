@@ -21,7 +21,9 @@ open scoped Polynomial
 variable {R : Type*} [CommRing R]
 
 /-- Extending a coefficient ideal to Laurent polynomials is exactly requiring
-every Laurent coefficient to belong to the original ideal.-/
+every Laurent coefficient to belong to the original ideal.
+@isnad1 id=iff.0h3v.s8.bdfac64b6fa9 from=translated src=- shape=000521e9 vocab=dd0b4916
+-/
 theorem laurentPolynomial_mem_map_C_iff (I : Ideal R) (f : LaurentPolynomial R) :
     f ∈ I.map LaurentPolynomial.C ↔ ∀ n : ℤ, f.coeff n ∈ I := by
   classical
@@ -51,7 +53,9 @@ theorem laurentPolynomial_mem_map_C_iff (I : Ideal R) (f : LaurentPolynomial R) 
     rw [LaurentPolynomial.single_eq_C_mul_T]
     exact (I.map LaurentPolynomial.C).mul_mem_right _ (Ideal.mem_map_of_mem _ (hf n))
 
-/-- An ordinary polynomial has no negative Laurent coefficient.-/
+/-- An ordinary polynomial has no negative Laurent coefficient.
+@isnad1 id=eq.1h3v.s7.3af35c5d153b from=translated src=- shape=ca82f215 vocab=eabcb8f5
+-/
 theorem polynomial_toLaurent_coeff_neg (f : R[X]) (n : ℤ) (hn : n < 0) :
     (Polynomial.toLaurent f).coeff n = 0 := by
   rw [LaurentPolynomial.coeff_toLaurent]
@@ -60,7 +64,9 @@ theorem polynomial_toLaurent_coeff_neg (f : R[X]) (n : ℤ) (hn : n < 0) :
   exact (not_le_of_gt hn) (Int.natCast_nonneg k)
 
 /-- Every Laurent contraction is saturated with respect to the ordinary
-polynomial variable.-/
+polynomial variable.
+@isnad1 id=mem.1h3v.s9.99376983a592 from=translated src=- shape=362ae523 vocab=ae04e277
+-/
 theorem laurentPolynomial_comap_cancel_X (J : Ideal (LaurentPolynomial R))
     (f : R[X]) (hf : Polynomial.X * f ∈ J.comap Polynomial.toLaurent) :
     f ∈ J.comap Polynomial.toLaurent := by
@@ -73,7 +79,9 @@ section Height
 variable [IsNoetherianRing R]
 
 /-- The arbitrary-ideal polynomial extension height theorem in the literal
-univariate polynomial convention.-/
+univariate polynomial convention.
+@isnad1 id=eq.0h2v.s7.458357ab3972 from=translated src=- shape=6e64bc19 vocab=b62e51e7
+-/
 theorem polynomialIdeal_height_map_C (I : Ideal R) :
     (I.map Polynomial.C).height = I.height := by
   let e := MvPolynomial.uniqueAlgEquiv R Unit

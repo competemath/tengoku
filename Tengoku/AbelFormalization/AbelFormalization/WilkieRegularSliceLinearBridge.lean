@@ -21,7 +21,9 @@ set_option autoImplicit false
 /-- If the augmented map `(D, q)` is surjective and the image of a slice
 insertion contains the `q = q₀` directions, then `D` restricted to that
 slice is surjective.  For a coordinate slice, `q₀` is zero and `D` is the
-derivative of `F` at the inserted point.-/
+derivative of `F` at the inserted point.
+@isnad1 id=surjecti.2h8v.s6.23555be22c45 from=translated src=- shape=7f0f208e vocab=1a6d6611
+-/
 theorem surjective_restricted_map_of_surjective_augmented
     {E E' K Q : Type*} (D : E → K) (q : E → Q) (insert : E' → E)
     (q₀ : Q)

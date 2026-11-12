@@ -22,7 +22,9 @@ namespace AbelFormalization
 /-- If a set spans an annihilated quotient layer after its scalar action is
 pushed through a surjective ring map, then the same set already spans the
 layer over the original scalar ring.  Surjectivity is used one scalar at a
-time; no section of the ring map is retained.-/
+time; no section of the ring map is retained.
+@isnad1 id=eq.3h7v.s11.1d2269d1d926 from=translated src=- shape=f37ecd95 vocab=d85beff3
+-/
 theorem submoduleLayer_span_eq_top_of_pushforward_span_eq_top
     {A C W : Type*} [CommRing A] [CommRing C]
     [AddCommGroup W] [Module A W]
@@ -84,6 +86,9 @@ def artinianPolynomialGradedPullbackToInducedLayerSum
         (n := n) (r := r) I N e)).codRestrict
       (LinearMap.range f) (fun x => x.property))
 
+/--
+@isnad1 id=eq.0h7v.s15.b6ad748b1c3a from=translated src=- shape=36c73131 vocab=a6e82580
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerSumMap_gradedPullbackToInducedLayerSum
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
@@ -119,6 +124,9 @@ theorem artinianPolynomialInducedLayerSumMap_gradedPullbackToInducedLayerSum
     ⟨artinianPolynomialAmbientLayerSumGradedCover
       (n := n) (r := r) I e x, x.property⟩
 
+/--
+@isnad1 id=surjecti.0h6v.s14.f98245e49621 from=translated src=- shape=a59f0d64 vocab=11f20f49
+-/
 theorem artinianPolynomialGradedPullbackToInducedLayerSum_surjective
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -154,7 +162,9 @@ theorem artinianPolynomialGradedPullbackToInducedLayerSum_surjective
   exact hx
 
 /-- The canonical pullback-to-layer map intertwines the component on the
-free graded cover with the pointwise component on the induced layers.-/
+free graded cover with the pointwise component on the induced layers.
+@isnad1 id=eq.1h10v.s16.c069abc53437 from=translated src=- shape=c2059fa7 vocab=ce54796b
+-/
 theorem artinianPolynomialGradedPullbackToInducedLayerSum_component
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -200,7 +210,9 @@ theorem artinianPolynomialGradedPullbackToInducedLayerSum_component
     artinianPolynomialInducedLayerSumMap_gradedPullbackToInducedLayerSum]
 
 /-- A homogeneous pullback vector maps to a tuple fixed by the component of
-the same shifted degree.-/
+the same shifted degree.
+@isnad1 id=eq.2h10v.s16.cdaaf04b8ec5 from=translated src=- shape=feddfd35 vocab=ed64a95a
+-/
 theorem artinianPolynomialGradedPullbackToInducedLayerSum_component_eq_self
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -266,6 +278,9 @@ def artinianPolynomialInducedLayerRepresentative
         (N ⊓ artinianPolynomialIdealPowerSubmodule
           (n := n) (r := r) I i).subtype) x)
 
+/--
+@isnad1 id=eq.0h7v.s13.d24b530f5650 from=translated src=- shape=772300af vocab=3ec64b32
+-/
 @[simp]
 theorem artinianPolynomialInducedLayerRepresentative_mk
     {B : Type*} [CommRing B] {n r : ℕ}
@@ -299,6 +314,9 @@ def artinianPolynomialHomogeneousInducedLayerRepresentative
   artinianPolynomialInducedNumeratorComponent I N hN i degree
     (artinianPolynomialInducedLayerRepresentative I N i x)
 
+/--
+@isnad1 id=eq.1h10v.s14.395316a51ce2 from=translated src=- shape=bf8fa0a7 vocab=31669632
+-/
 theorem artinianPolynomialHomogeneousInducedLayerRepresentative_mk
     {B : Type*} [CommRing B] {n r : ℕ}
     (I : Ideal B)
@@ -316,6 +334,9 @@ theorem artinianPolynomialHomogeneousInducedLayerRepresentative_mk
     ← artinianPolynomialInducedLayerComponent_mk,
     artinianPolynomialInducedLayerRepresentative_mk]
 
+/--
+@isnad1 id=mem.1h10v.s10.46e317c0f866 from=translated src=- shape=8f11d37f vocab=00eb7a90
+-/
 theorem artinianPolynomialHomogeneousInducedLayerRepresentative_mem_piece
     {B : Type*} [CommRing B] {n r : ℕ}
     (I : Ideal B)
@@ -334,7 +355,9 @@ theorem artinianPolynomialHomogeneousInducedLayerRepresentative_mem_piece
 
 /-- A finite set spanning the pullback in the ambient free module spans the
 top submodule after its elements are regarded as elements of the pullback
-subtype.-/
+subtype.
+@isnad1 id=eq.2h7v.s13.2035c863b0c3 from=translated src=- shape=7abc103f vocab=65c71e7b
+-/
 theorem artinianPolynomialGradedPullback_generator_span_eq_top
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -382,7 +405,9 @@ theorem artinianPolynomialGradedPullback_generator_span_eq_top
   exact hspan
 
 /-- The images of a finite spanning set of the pullback span the complete
-simultaneous induced-layer sum.-/
+simultaneous induced-layer sum.
+@isnad1 id=eq.2h7v.s16.607cf5653ee9 from=translated src=- shape=47342a99 vocab=98483d11
+-/
 theorem artinianPolynomialGradedPullback_generator_image_span_eq_top
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -428,7 +453,9 @@ theorem artinianPolynomialGradedPullback_generator_image_span_eq_top
         (n := n) (r := r) I N e)]
 
 /-- In each filtration degree, the corresponding coordinates of the images
-of the pullback generators span that complete induced layer.-/
+of the pullback generators span that complete induced layer.
+@isnad1 id=eq.2h8v.s15.74c1ea053644 from=translated src=- shape=35d84b29 vocab=98483d11
+-/
 theorem artinianPolynomialGradedPullback_generator_coordinate_span_eq_top
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -504,7 +531,9 @@ def artinianPolynomialHomogeneousPullbackGeneratorRepresentative
         ⟨P.1, hG P.1 P.2⟩ i)
 
 /-- Every compatible representative lies in the original polynomial
-submodule.-/
+submodule.
+@isnad1 id=mem.2h12v.s11.d5cd80a0063e from=translated src=- shape=2a1ef3a3 vocab=22ef1a82
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentative_mem
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -527,7 +556,9 @@ theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentative_mem
     I N hN e G hG degree P i).property.1
 
 /-- Every compatible representative is supported in its selected shifted
-degree over the original coefficient ring.-/
+degree over the original coefficient ring.
+@isnad1 id=mem.2h12v.s11.cbb365d0bae9 from=translated src=- shape=57e716a3 vocab=23ab01f3
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentative_mem_piece
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -558,7 +589,9 @@ theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentative_mem_piece
 
 /-- If every selected pullback generator is fixed by its chosen component,
 then the chosen representative of each coordinate represents exactly that
-coordinate in the induced quotient layer.-/
+coordinate in the induced quotient layer.
+@isnad1 id=eq.3h12v.s15.4f1338c2a280 from=translated src=- shape=3f2b7c38 vocab=686656c7
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentative_mk
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -625,7 +658,9 @@ def artinianPolynomialHomogeneousPullbackGeneratorRepresentatives
         artinianFreePolynomialModule B n r)
 
 /-- All representatives lie in the original submodule and inherit the
-selected degree bounds.-/
+selected degree bounds.
+@isnad1 id=and.4h12v.s11.e4b01260e54e from=translated src=- shape=01b2cc69 vocab=be58b896
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_mem
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -658,7 +693,9 @@ theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_mem
     I N hN e G hG degree P i
 
 /-- The finite representative family surjects onto every successive induced
-coefficient-ideal quotient.-/
+coefficient-ideal quotient.
+@isnad1 id=other.4h11v.s15.ef7c4e5e49e6 from=translated src=- shape=0b634237 vocab=c6150ce7
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_surject
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -756,7 +793,9 @@ theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_surject
   simpa only [Submodule.span_eq] using hspanOriginal
 
 /-- Compatible representatives of a spanning pullback family generate the
-original polynomial submodule through the finite ideal-power filtration.-/
+original polynomial submodule through the finite ideal-power filtration.
+@isnad1 id=eq.5h10v.s12.413d01111958 from=translated src=- shape=d0b9181b vocab=507b510f
+-/
 theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_span
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     (I : Ideal B)
@@ -803,7 +842,9 @@ theorem artinianPolynomialHomogeneousPullbackGeneratorRepresentatives_span
 
 /-- Homogeneous polynomial submodules with one fixed degree-length function
 have a common bound on the shifted degrees of finite homogeneous generating
-sets over the original Artinian coefficient ring.-/
+sets over the original Artinian coefficient ring.
+@isnad1 id=ex.2h9v.s12.c2bd085def93 from=translated src=- shape=ca7f4fa9 vocab=df8bcca4
+-/
 theorem exists_uniform_finite_homogeneous_artinianPolynomialSubmodule_generators
     {B : Type*} [CommRing B] {n r : ℕ} [IsNoetherianRing B]
     [IsArtinianRing B]

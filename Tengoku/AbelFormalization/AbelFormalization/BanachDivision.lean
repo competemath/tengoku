@@ -26,10 +26,16 @@ variable {B : Type*} [NormedRing B] [NormedAlgebra ℝ B]
 def divisionPerturbation (Q : B →L[ℝ] B) (s f : B) : B →L[ℝ] B :=
   Q.comp (ContinuousLinearMap.mul ℝ B (s - f))
 
+/--
+@isnad1 id=eq.0h5v.s8.c040deb08990 from=translated src=- shape=1267371b vocab=129c0c2f
+-/
 @[simp]
 theorem divisionPerturbation_apply (Q : B →L[ℝ] B) (s f a : B) :
     divisionPerturbation Q s f a = Q ((s - f) * a) := rfl
 
+/--
+@isnad1 id=le.0h4v.s8.087e2280478b from=translated src=- shape=a54466df vocab=5b1e31ab
+-/
 theorem norm_divisionPerturbation_le (Q : B →L[ℝ] B) (s f : B) :
     ‖divisionPerturbation Q s f‖ ≤ ‖Q‖ * ‖s - f‖ := by
   exact (Q.opNorm_comp_le _).trans
@@ -37,7 +43,9 @@ theorem norm_divisionPerturbation_le (Q : B →L[ℝ] B) (s f : B) :
       (norm_nonneg Q))
 
 /-- The invertible operator in the Neumann construction is exactly division
-followed by multiplication by the perturbed element.-/
+followed by multiplication by the perturbed element.
+@isnad1 id=eq.1h5v.s10.6034fbe2f20f from=translated src=- shape=0a68b466 vocab=129c0c2f
+-/
 theorem one_sub_divisionPerturbation_apply (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (a : B) :
     (1 - divisionPerturbation Q s f : B →L[ℝ] B) a = Q (f * a) := by
@@ -53,7 +61,9 @@ def banachDivisionQuotient (Q : B →L[ℝ] B) (s f : B)
   (↑(Units.oneSub (divisionPerturbation Q s f) hT)⁻¹ : B →L[ℝ] B).comp Q
 
 /-- Multiplication by the perturbed element followed by `Q` inverts the
-quotient operator on the right-hand side of the division equation.-/
+quotient operator on the right-hand side of the division equation.
+@isnad1 id=eq.2h5v.s9.a39270af0ada from=translated src=- shape=6a53ca9f vocab=c5be14ea
+-/
 theorem banachDivisionQuotient_equation (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     Q (f * banachDivisionQuotient Q s f hT g) = Q g := by
@@ -62,7 +72,9 @@ theorem banachDivisionQuotient_equation (Q : B →L[ℝ] B) (s f : B)
     (Units.oneSub (divisionPerturbation Q s f) hT).val_inv
   exact he
 
-/-- The quotient of `f*a` is exactly `a`.-/
+/-- The quotient of `f*a` is exactly `a`.
+@isnad1 id=eq.2h5v.s9.3155d27e977a from=translated src=- shape=e284329c vocab=c5be14ea
+-/
 theorem banachDivisionQuotient_mul (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (a : B) :
     banachDivisionQuotient Q s f hT (f * a) = a := by
@@ -72,13 +84,17 @@ theorem banachDivisionQuotient_mul (Q : B →L[ℝ] B) (s f : B)
     (Units.oneSub (divisionPerturbation Q s f) hT).inv_val
   exact he
 
-/-- The constructed quotient makes the actual remainder belong to `ker Q`.-/
+/-- The constructed quotient makes the actual remainder belong to `ker Q`.
+@isnad1 id=eq.2h5v.s9.bcf437cab23b from=translated src=- shape=546485bc vocab=6abee89c
+-/
 theorem banachDivisionQuotient_spec (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     Q (g - f * banachDivisionQuotient Q s f hT g) = 0 := by
   rw [map_sub, banachDivisionQuotient_equation Q s f hs hT, sub_self]
 
-/-- The vanishing of `Q` on the remainder determines the quotient uniquely.-/
+/-- The vanishing of `Q` on the remainder determines the quotient uniquely.
+@isnad1 id=eq.3h6v.s9.58a13f05e278 from=translated src=- shape=085903a1 vocab=6abee89c
+-/
 theorem banachDivisionQuotient_unique (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1)
     (g q : B) (hq : Q (g - f * q) = 0) :
@@ -92,6 +108,9 @@ theorem banachDivisionQuotient_unique (Q : B →L[ℝ] B) (s f : B)
         (↑(Units.oneSub (divisionPerturbation Q s f) hT)⁻¹ : B →L[ℝ] B) (Q g)
       rw [hq]
 
+/--
+@isnad1 id=existsun.2h5v.s9.0985eac8b079 from=translated src=- shape=30c4edcb vocab=8259d1de
+-/
 theorem banachDivision_existsUnique (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     ∃! q : B, Q (g - f * q) = 0 :=
@@ -103,23 +122,34 @@ def banachDivisionRemainder (Q : B →L[ℝ] B) (s f : B)
     (hT : ‖divisionPerturbation Q s f‖ < 1) : B →L[ℝ] B :=
   1 - (ContinuousLinearMap.mul ℝ B f).comp (banachDivisionQuotient Q s f hT)
 
+/--
+@isnad1 id=eq.1h5v.s9.5fd9c5325b45 from=translated src=- shape=b9951a11 vocab=a389fd9d
+-/
 @[simp]
 theorem banachDivisionRemainder_apply (Q : B →L[ℝ] B) (s f : B)
     (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     banachDivisionRemainder Q s f hT g = g - f * banachDivisionQuotient Q s f hT g := rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.acda3fa5982d from=translated src=- shape=eccd2901 vocab=cad946fd
+-/
 theorem banachDivision_identity (Q : B →L[ℝ] B) (s f : B)
     (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     g = f * banachDivisionQuotient Q s f hT g + banachDivisionRemainder Q s f hT g := by
   rw [banachDivisionRemainder_apply]
   abel
 
+/--
+@isnad1 id=mem.2h5v.s9.c79574d2367c from=translated src=- shape=7b17d53b vocab=ed8c9f2a
+-/
 theorem banachDivisionRemainder_mem_ker (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     banachDivisionRemainder Q s f hT g ∈ LinearMap.ker Q.toLinearMap :=
   banachDivisionQuotient_spec Q s f hs hT g
 
-/-- Fixed-point form of the quotient, used to bound its norm.-/
+/-- Fixed-point form of the quotient, used to bound its norm.
+@isnad1 id=eq.2h5v.s10.475f82548c46 from=translated src=- shape=754cb3d2 vocab=ae817424
+-/
 theorem banachDivisionQuotient_fixed_point (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     banachDivisionQuotient Q s f hT g =
@@ -128,7 +158,9 @@ theorem banachDivisionQuotient_fixed_point (Q : B →L[ℝ] B) (s f : B)
   exact (one_sub_divisionPerturbation_apply Q s f hs _).trans
     (banachDivisionQuotient_equation Q s f hs hT g)
 
-/-- The sharper quotient bound in terms of the norm of `Q g`.-/
+/-- The sharper quotient bound in terms of the norm of `Q g`.
+@isnad1 id=le.2h5v.s9.e6b72fd508e8 from=translated src=- shape=ddc00037 vocab=7ce140d4
+-/
 theorem norm_banachDivisionQuotient_le (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     ‖banachDivisionQuotient Q s f hT g‖ ≤ ‖Q g‖ / (1 - ‖divisionPerturbation Q s f‖) := by
@@ -145,7 +177,9 @@ theorem norm_banachDivisionQuotient_le (Q : B →L[ℝ] B) (s f : B)
   apply (le_div_iff₀ (sub_pos.mpr hT)).mpr
   nlinarith
 
-/-- A bound uniform in the right-hand side of the division problem.-/
+/-- A bound uniform in the right-hand side of the division problem.
+@isnad1 id=le.2h5v.s9.5f1472c4db15 from=translated src=- shape=23b9ce80 vocab=7ce140d4
+-/
 theorem norm_banachDivisionQuotient_le_opNorm (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     ‖banachDivisionQuotient Q s f hT g‖ ≤
@@ -153,7 +187,9 @@ theorem norm_banachDivisionQuotient_le_opNorm (Q : B →L[ℝ] B) (s f : B)
   (norm_banachDivisionQuotient_le Q s f hs hT g).trans
     (div_le_div_of_nonneg_right (Q.le_opNorm g) (sub_pos.mpr hT).le)
 
-/-- The norm of the bounded quotient operator itself.-/
+/-- The norm of the bounded quotient operator itself.
+@isnad1 id=le.2h4v.s9.972bc66e12c2 from=translated src=- shape=dae16064 vocab=7ce140d4
+-/
 theorem opNorm_banachDivisionQuotient_le (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) :
     ‖banachDivisionQuotient Q s f hT‖ ≤ ‖Q‖ / (1 - ‖divisionPerturbation Q s f‖) := by
@@ -162,7 +198,9 @@ theorem opNorm_banachDivisionQuotient_le (Q : B →L[ℝ] B) (s f : B)
   convert norm_banachDivisionQuotient_le_opNorm Q s f hs hT g using 1
   ring
 
-/-- A corresponding bound for the actual remainder.-/
+/-- A corresponding bound for the actual remainder.
+@isnad1 id=le.2h5v.s9.ce20079a3f53 from=translated src=- shape=eabf4194 vocab=4de0059e
+-/
 theorem norm_banachDivisionRemainder_le (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hT : ‖divisionPerturbation Q s f‖ < 1) (g : B) :
     ‖banachDivisionRemainder Q s f hT g‖ ≤
@@ -172,7 +210,9 @@ theorem norm_banachDivisionRemainder_le (Q : B →L[ℝ] B) (s f : B)
     ((norm_mul_le _ _).trans (mul_le_mul_of_nonneg_left
       (norm_banachDivisionQuotient_le_opNorm Q s f hs hT g) (norm_nonneg f))))
 
-/-- A sufficient smallness condition expressed directly in `s-f` and `Q`.-/
+/-- A sufficient smallness condition expressed directly in `s-f` and `Q`.
+@isnad1 id=existsun.2h5v.s9.04125823f615 from=translated src=- shape=567d2ba9 vocab=68ec1dc1
+-/
 theorem banachDivision_existsUnique_of_norm_mul_lt_one (Q : B →L[ℝ] B) (s f : B)
     (hs : ∀ a : B, Q (s * a) = a) (hsmall : ‖Q‖ * ‖s - f‖ < 1) (g : B) :
     ∃! q : B, Q (g - f * q) = 0 :=

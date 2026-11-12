@@ -21,7 +21,9 @@ variable {R S : Type*} [CommRing R] [CommRing S]
 variable {n h : ℕ}
 
 /-- Every lexicographic initial-ideal iterate commutes with a coefficient-ring
-map, provided the two operations defining one step commute with that map.-/
+map, provided the two operations defining one step commute with that map.
+@isnad1 id=eq.2h10v.s10.ee24c82497eb from=translated src=- shape=22213a8e vocab=26df054f
+-/
 theorem lexicographicInitialIdealIteration_map
     (multiDegree : Fin n → Fin h → ℤ)
     (J : MvPolynomial (Fin n) R ≃+* MvPolynomial (Fin n) R)
@@ -60,7 +62,9 @@ theorem lexicographicInitialIdealIteration_map
               (Q.map f) j).map J'.toRingHom) := by rw [ih]
 
 /-- Pointwise coefficient-map naturality is enough to instantiate the
-ring-homomorphism hypothesis above.-/
+ring-homomorphism hypothesis above.
+@isnad1 id=eq.2h10v.s11.0a0f69663a2b from=translated src=- shape=67be6890 vocab=8cea1114
+-/
 theorem lexicographicInitialIdealIteration_map_of_apply
     (multiDegree : Fin n → Fin h → ℤ)
     (J : MvPolynomial (Fin n) R ≃+* MvPolynomial (Fin n) R)

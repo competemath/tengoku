@@ -25,7 +25,9 @@ variable {K : Type*} [Field K] {n r : ℕ}
 /-- One degree bound works for every actual homogeneous polynomial
 submodule having the specified weighted-piece dimensions. The generators
 have actual leading indices in a finite cover, and their precise shifted
-weighted degrees are retained.-/
+weighted degrees are retained.
+@isnad1 id=ex.1h7v.s12.7f9d8144efc0 from=translated src=- shape=a0d5b702 vocab=8a511b7c
+-/
 theorem exists_uniform_homogeneous_polynomialModule_generator_degree
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : Fin r → ℤ) (h : ℤ → ℕ) :
@@ -68,7 +70,9 @@ theorem exists_uniform_homogeneous_polynomialModule_generator_degree
     hsdegree t.val t.property⟩, hspan⟩
 
 /-- The same uniform bound stated directly as a finite set of actual
-homogeneous generators, without retaining their term indices.-/
+homogeneous generators, without retaining their term indices.
+@isnad1 id=ex.1h7v.s11.9f0188818254 from=translated src=- shape=f4fd458c vocab=d10aa7dd
+-/
 theorem exists_uniform_finite_homogeneous_polynomialModule_generators
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)
     (shift : Fin r → ℤ) (h : ℤ → ℕ) :

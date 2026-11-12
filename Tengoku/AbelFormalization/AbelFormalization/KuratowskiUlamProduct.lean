@@ -27,11 +27,17 @@ factor.-/
 def productFiber {X Y : Type*} (D : Set (X × Y)) (x : X) : Set Y :=
   {y | (x, y) ∈ D}
 
+/--
+@isnad1 id=iff.0h5v.s5.ff923c65f24e from=translated src=- shape=9b575362 vocab=fcb6890a
+-/
 @[simp]
 theorem mem_productFiber {X Y : Type*} {D : Set (X × Y)} {x : X} {y : Y} :
     y ∈ productFiber D x ↔ (x, y) ∈ D :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.7d3032f13da7 from=translated src=- shape=e6d809b7 vocab=f549b104
+-/
 @[simp]
 theorem productFiber_compl {X Y : Type*} (D : Set (X × Y)) (x : X) :
     productFiber Dᶜ x = (productFiber D x)ᶜ :=
@@ -39,7 +45,9 @@ theorem productFiber_compl {X Y : Type*} (D : Set (X × Y)) (x : X) :
 
 /-- For an open dense subset of a product, the set of base points whose
 vertical section is dense is residual.  Second countability of the fiber is
-the countability input in the usual basis proof.-/
+the countability input in the usual basis proof.
+@isnad1 id=eventual.2h3v.s5.b7c092f544ad from=translated src=- shape=58d01adf vocab=e9848e97
+-/
 theorem eventually_residual_dense_productFiber_of_open_dense
     {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [SecondCountableTopology Y]
@@ -78,7 +86,9 @@ theorem eventually_residual_dense_productFiber_of_open_dense
     simpa only [Prod.eta] using hz.1
 
 /-- A residual subset of a product has residual vertical sections at
-residually many base points.-/
+residually many base points.
+@isnad1 id=eventual.1h3v.s6.4b49c398f432 from=translated src=- shape=eca0e32b vocab=d2192e61
+-/
 theorem eventually_residual_productFiber_of_mem_residual
     {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [SecondCountableTopology Y]
@@ -110,7 +120,9 @@ theorem eventually_residual_productFiber_of_mem_residual
   exact hy U hU
 
 /-- Forward Kuratowski--Ulam: a meagre subset of a product has meagre
-vertical sections at residually many base points.-/
+vertical sections at residually many base points.
+@isnad1 id=eventual.1h3v.s5.c24b7f8079c5 from=translated src=- shape=4e3d72ed vocab=6db5a740
+-/
 theorem IsMeagre.eventually_isMeagre_productFiber
     {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [SecondCountableTopology Y]
@@ -122,7 +134,9 @@ theorem IsMeagre.eventually_isMeagre_productFiber
   change (productFiber D x)ᶜ ∈ residual Y
   simpa using hx
 
-/-- In a Baire space, a meagre set has empty interior.-/
+/-- In a Baire space, a meagre set has empty interior.
+@isnad1 id=eq.1h2v.s4.35771da9a536 from=translated src=- shape=4c7b0db4 vocab=a92f791a
+-/
 theorem IsMeagre.interior_eq_empty
     {X : Type*} [TopologicalSpace X] [BaireSpace X]
     {A : Set X} (hA : IsMeagre A) : interior A = ∅ := by

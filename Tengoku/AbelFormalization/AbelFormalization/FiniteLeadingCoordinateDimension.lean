@@ -27,7 +27,9 @@ namespace AbelFormalization
 
 variable {K : Type*} [Field K] {n : ℕ}
 
-/-- The actual vanishing condition for the scalar coordinate prefix.-/
+/-- The actual vanishing condition for the scalar coordinate prefix.
+@isnad1 id=iff.0h4v.s8.dde97cf6d1a6 from=translated src=- shape=30d76b1a vocab=5cf7feee
+-/
 theorem finiteWeightPrefixProjection_eq_zero_iff_scalar
     (x : Fin n → K) (k : ℕ) :
     finiteWeightPrefixProjection K (fun _ : Fin n => K) k x = 0 ↔
@@ -47,7 +49,9 @@ of the actual subspace.-/
 def finiteLeadingCoordinates (U : Submodule K (Fin n → K)) : Set (Fin n) :=
   {i | ∃ x ∈ U, x i ≠ 0 ∧ ∀ j : Fin n, j < i → x j = 0}
 
-/-- Every nonzero finite vector has an actual least nonzero coordinate.-/
+/-- Every nonzero finite vector has an actual least nonzero coordinate.
+@isnad1 id=ex.1h3v.s6.b69b59e38387 from=translated src=- shape=eddb8335 vocab=a71dd666
+-/
 theorem exists_least_nonzero_coordinate {x : Fin n → K} (hx : x ≠ 0) :
     ∃ i : Fin n, x i ≠ 0 ∧ ∀ j : Fin n, j < i → x j = 0 := by
   classical
@@ -67,7 +71,9 @@ theorem exists_least_nonzero_coordinate {x : Fin n → K} (hx : x ≠ 0) :
   exact (not_le_of_gt hj) (Finset.min'_le s j hjs)
 
 /-- Membership of an actual initial piece is witnessed by an original
-vector with vanishing lower coordinates and the prescribed i-th value.-/
+vector with vanishing lower coordinates and the prescribed i-th value.
+@isnad1 id=iff.0h5v.s8.f05801be0c5d from=translated src=- shape=c3225c8c vocab=44e1274d
+-/
 theorem mem_finiteWeightInitialPiece_scalar
     (U : Submodule K (Fin n → K)) (i : Fin n) (v : K) :
     v ∈ finiteWeightInitialPiece U i ↔
@@ -81,7 +87,9 @@ theorem mem_finiteWeightInitialPiece_scalar
       (finiteWeightPrefixProjection_eq_zero_iff_scalar x i.val).mpr hlow⟩, hxi⟩
 
 /-- A nonzero initial piece over the field contains every scalar: scale
-an actual nonzero coordinate witness to the prescribed scalar.-/
+an actual nonzero coordinate witness to the prescribed scalar.
+@isnad1 id=eq.1h4v.s7.5e184d44d222 from=translated src=- shape=db602c8f vocab=d72e5693
+-/
 theorem finiteWeightInitialPiece_eq_top_of_leading
     (U : Submodule K (Fin n → K)) {i : Fin n}
     (hi : i ∈ finiteLeadingCoordinates U) :
@@ -98,7 +106,9 @@ theorem finiteWeightInitialPiece_eq_top_of_leading
     (finiteWeightInitialPiece U i).smul_mem v hone
 
 /-- Initial-piece membership is exactly the support condition on actual
-leading coordinates. This also covers the zero scalar.-/
+leading coordinates. This also covers the zero scalar.
+@isnad1 id=iff.0h5v.s7.7477fe51195f from=translated src=- shape=11528f88 vocab=2eb4ea77
+-/
 theorem mem_finiteWeightInitialPiece_iff_leading
     (U : Submodule K (Fin n → K)) (i : Fin n) (v : K) :
     v ∈ finiteWeightInitialPiece U i ↔ v ≠ 0 → i ∈ finiteLeadingCoordinates U := by
@@ -127,7 +137,9 @@ def finiteCoordinateSupportSubmodule (K : Type*) [Field K] {n : ℕ}
     simp only [Pi.smul_apply, hx i hi, smul_zero]
 
 /-- The full actual initial submodule is precisely the coordinate support
-subspace indexed by actual least nonzero coordinates.-/
+subspace indexed by actual least nonzero coordinates.
+@isnad1 id=eq.0h3v.s7.40f0c5ba3b0e from=translated src=- shape=211bdc16 vocab=e12c1fde
+-/
 theorem finiteWeightInitial_eq_support_leading
     (U : Submodule K (Fin n → K)) :
     finiteWeightInitial U = finiteCoordinateSupportSubmodule K (finiteLeadingCoordinates U) := by
@@ -169,7 +181,9 @@ def finiteCoordinateSupportEquiv (K : Type*) [Field K] {n : ℕ}
       map_smul' := by intros; rfl }
 
 /-- The support subspace has one scalar degree of freedom per permitted
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h3v.s8.816bdedf7c50 from=translated src=- shape=5b3c88ac vocab=6aae660a
+-/
 theorem finrank_finiteCoordinateSupportSubmodule (S : Set (Fin n)) :
     Module.finrank K (finiteCoordinateSupportSubmodule K S) = S.ncard := by
   classical
@@ -180,7 +194,9 @@ theorem finrank_finiteCoordinateSupportSubmodule (S : Set (Fin n)) :
     _ = S.ncard := Set.fintypeCard_eq_ncard S
 
 /-- The proved exact-sequence length identity yields finrank preservation
-for the actual finite-dimensional initial subspace.-/
+for the actual finite-dimensional initial subspace.
+@isnad1 id=eq.0h3v.s9.b9a63f9f5916 from=translated src=- shape=f390ca8c vocab=c752af90
+-/
 theorem finiteWeightInitial_finrank (U : Submodule K (Fin n → K)) :
     Module.finrank K (finiteWeightInitial U) = Module.finrank K U := by
   have h := finiteWeightInitial_length U
@@ -188,7 +204,9 @@ theorem finiteWeightInitial_finrank (U : Submodule K (Fin n → K)) :
   exact_mod_cast h
 
 /-- The dimension of an arbitrary finite-coordinate subspace is exactly
-the number of coordinates that actually occur as least nonzero coordinates.-/
+the number of coordinates that actually occur as least nonzero coordinates.
+@isnad1 id=eq.0h3v.s8.0b80338ef1f3 from=translated src=- shape=688a98e8 vocab=b55fbd1b
+-/
 theorem finrank_eq_ncard_finiteLeadingCoordinates (U : Submodule K (Fin n → K)) :
     Module.finrank K U = (finiteLeadingCoordinates U).ncard := by
   rw [← finiteWeightInitial_finrank U, finiteWeightInitial_eq_support_leading]
@@ -205,7 +223,9 @@ def enumeratedLeadingCoordinates (e : Fin n ≃ ι)
   {i | ∃ x ∈ U, x (e i) ≠ 0 ∧ ∀ j : Fin n, j < i → x (e j) = 0}
 
 /-- Reindexing only changes the names of coordinates; the leading
-witnesses are still vectors of the original subspace.-/
+witnesses are still vectors of the original subspace.
+@isnad1 id=eq.0h5v.s8.920a9e51faaa from=translated src=- shape=c93522f9 vocab=79751591
+-/
 theorem finiteLeadingCoordinates_map_enumeration (e : Fin n ≃ ι)
     (U : Submodule K (ι → K)) :
     finiteLeadingCoordinates (U.map (LinearEquiv.funCongrLeft K K e).toLinearMap) =
@@ -218,7 +238,9 @@ theorem finiteLeadingCoordinates_map_enumeration (e : Fin n ≃ ι)
     exact ⟨LinearEquiv.funCongrLeft K K e x, ⟨x, hx, rfl⟩, hxi, hlow⟩
 
 /-- Any chosen enumeration yields the same dimension count. In
-particular it may list actual monomials in decreasing order.-/
+particular it may list actual monomials in decreasing order.
+@isnad1 id=eq.0h5v.s8.5957db508883 from=translated src=- shape=88f14eb6 vocab=4abdfdd1
+-/
 theorem finrank_eq_ncard_enumeratedLeadingCoordinates (e : Fin n ≃ ι)
     (U : Submodule K (ι → K)) :
     Module.finrank K U = (enumeratedLeadingCoordinates e U).ncard := by
@@ -233,7 +255,9 @@ def finiteGreatestCoordinates (U : Submodule K (Fin n → K)) : Set (Fin n) :=
   {i | ∃ x ∈ U, x i ≠ 0 ∧ ∀ j : Fin n, i < j → x j = 0}
 
 /-- Reversing the actual finite order interchanges least and greatest
-coordinate witnesses, including the empty coordinate set.-/
+coordinate witnesses, including the empty coordinate set.
+@isnad1 id=eq.0h3v.s6.b566d3a1a339 from=translated src=- shape=a6790a93 vocab=78e905de
+-/
 theorem enumeratedLeadingCoordinates_rev (U : Submodule K (Fin n → K)) :
     enumeratedLeadingCoordinates Fin.revPerm U = Fin.rev '' finiteGreatestCoordinates U := by
   ext i
@@ -250,7 +274,9 @@ theorem enumeratedLeadingCoordinates_rev (U : Submodule K (Fin n → K)) :
       exact hhigh j.rev (Fin.lt_rev_iff.mp hj)
 
 /-- The greatest-coordinate version needed for leading terms in a finite
-homogeneous polynomial-module piece.-/
+homogeneous polynomial-module piece.
+@isnad1 id=eq.0h3v.s8.494e0e8123f4 from=translated src=- shape=688a98e8 vocab=1365be51
+-/
 theorem finrank_eq_ncard_finiteGreatestCoordinates (U : Submodule K (Fin n → K)) :
     Module.finrank K U = (finiteGreatestCoordinates U).ncard := by
   rw [← Set.ncard_image_of_injective _ Fin.rev_injective,

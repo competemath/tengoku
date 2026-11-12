@@ -34,6 +34,9 @@ def restrictedBoxProjectionCLM {m p a : ℕ} :
     (ContinuousLinearMap.fst ℝ
       ((Fin m → ℝ) × RestrictedBoxSpace p) (Fin a → ℝ))
 
+/--
+@isnad1 id=eq.0h4v.s9.578180fd9cd5 from=translated src=- shape=3b55abd4 vocab=f53a25c7
+-/
 @[simp]
 theorem restrictedBoxProjectionCLM_apply {m p a : ℕ}
     (x : RestrictedSource m p a) :
@@ -49,6 +52,9 @@ def restrictedSCoordinateCLM {m p a : ℕ} (i : Fin m) :
       (ContinuousLinearMap.fst ℝ
         ((Fin m → ℝ) × RestrictedBoxSpace p) (Fin a → ℝ)))
 
+/--
+@isnad1 id=eq.0h5v.s9.efff30f43957 from=translated src=- shape=0110ed3f vocab=72e4d35c
+-/
 @[simp]
 theorem restrictedSCoordinateCLM_apply {m p a : ℕ} (i : Fin m)
     (x : RestrictedSource m p a) : restrictedSCoordinateCLM i x = x.1.1 i :=
@@ -62,6 +68,9 @@ def restrictedAuxCoordinateCLM {m p a : ℕ} (i : Fin a) :
     (ContinuousLinearMap.snd ℝ
       ((Fin m → ℝ) × RestrictedBoxSpace p) (Fin a → ℝ))
 
+/--
+@isnad1 id=eq.0h5v.s9.72da1cc08f2b from=translated src=- shape=2cc327c3 vocab=c6a51fd9
+-/
 @[simp]
 theorem restrictedAuxCoordinateCLM_apply {m p a : ℕ} (i : Fin a)
     (x : RestrictedSource m p a) : restrictedAuxCoordinateCLM i x = x.2 i :=
@@ -80,7 +89,9 @@ def RestrictedBox.directionalDerivative {p : ℕ} (D : RestrictedBox p)
       (D.analyticNearClosedBox_iff.mp f.property).fderiv⟩
 
 /-- An analytic box coefficient pulled back to the full source has the
-expected derivative along any fixed source direction.-/
+expected derivative along any fixed source direction.
+@isnad1 id=hasdirec.0h6v.s9.3ebff897cae4 from=translated src=- shape=354161db vocab=9655f90f
+-/
 theorem hasDirectionalDerivOn_restrictedBoxCoefficientPullback
     {m p a : ℕ} (D : RestrictedBox p)
     (v : RestrictedSource m p a)
@@ -111,7 +122,9 @@ theorem hasDirectionalDerivOn_restrictedBoxCoefficientPullback
       restrictedBoxCoefficientPullback] using happ
 
 /-- The `s_i` coordinate derivative is the corresponding component of the
-direction vector.-/
+direction vector.
+@isnad1 id=hasdirec.0h6v.s8.31418de21a03 from=translated src=- shape=bac647a5 vocab=88747c37
+-/
 theorem hasDirectionalDerivOn_restrictedSCoordinate
     {m p a : ℕ} (D : RestrictedBox p)
     (v : RestrictedSource m p a) (i : Fin m) :
@@ -129,7 +142,9 @@ theorem hasDirectionalDerivOn_restrictedSCoordinate
     rfl
 
 /-- The unrestricted auxiliary-coordinate derivative is the corresponding
-component of the direction vector.-/
+component of the direction vector.
+@isnad1 id=hasdirec.0h6v.s8.68ffe7702499 from=translated src=- shape=1b49a67a vocab=d116262d
+-/
 theorem hasDirectionalDerivOn_restrictedAuxCoordinate
     {m p a : ℕ} (D : RestrictedBox p)
     (v : RestrictedSource m p a) (i : Fin a) :
@@ -159,7 +174,9 @@ def SpecialGeneratorsDirectionallyClosed
       HasDirectionalDerivOn Omega v f df
 
 /-- The base restricted-expression algebra is closed under differentiation
-once the explicitly supplied special generators are.-/
+once the explicitly supplied special generators are.
+@isnad1 id=directio.2h7v.s8.c073dea332b3 from=translated src=- shape=fdfe1c3d vocab=2b63d33c
+-/
 theorem directionallyClosedOn_restrictedExpressionBase
     {m p a : ℕ} (D : RestrictedBox p)
     (S : Set (RestrictedSource m p a → ℝ))
@@ -196,7 +213,9 @@ theorem directionallyClosedOn_restrictedExpressionBase
   · exact hS f hf
 
 /-- Every level of a restricted exponential tower is closed under the chosen
-directional derivative.-/
+directional derivative.
+@isnad1 id=directio.2h10v.s8.b7a9a44102bf from=translated src=- shape=1a709a62 vocab=003a17bd
+-/
 theorem RestrictedExpressionTower.directionallyClosedOn_level
     {m p a ell : ℕ} {D : RestrictedBox p}
     {S : Set (RestrictedSource m p a → ℝ)}

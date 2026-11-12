@@ -40,6 +40,9 @@ def polynomialModuleCoeffEquiv :
     (Finsupp.linearEquivFunOnFinite K ((Fin n →₀ ℕ) →₀ K) κ).symm).trans
     (Finsupp.curryLinearEquiv K).symm
 
+/--
+@isnad1 id=eq.0h6v.s9.29543a6d77b7 from=translated src=- shape=23f3ab47 vocab=9274e089
+-/
 @[simp]
 theorem polynomialModuleCoeffEquiv_apply
     (P : κ → MvPolynomial (Fin n) K) (k : κ) (d : Fin n →₀ ℕ) :
@@ -52,6 +55,9 @@ def polynomialModuleSupported (S : Set (κ × (Fin n →₀ ℕ))) :
     Submodule K (κ → MvPolynomial (Fin n) K) :=
   (Finsupp.supported K K S).comap polynomialModuleCoeffEquiv.toLinearMap
 
+/--
+@isnad1 id=iff.0h5v.s8.848119622e9e from=translated src=- shape=cc3a7584 vocab=7e98dbff
+-/
 theorem mem_polynomialModuleSupported (S : Set (κ × (Fin n →₀ ℕ)))
     (P : κ → MvPolynomial (Fin n) K) :
     P ∈ polynomialModuleSupported S ↔
@@ -68,7 +74,9 @@ def polynomialModuleSupportedEquiv (S : Set (κ × (Fin n →₀ ℕ))) :
     (Finsupp.supportedEquivFinsupp (R := K) S)
 
 /-- A finite set of allowed component monomials gives precisely that
-dimension in the actual polynomial module.-/
+dimension in the actual polynomial module.
+@isnad1 id=eq.1h4v.s9.3cb77c8f7ae5 from=translated src=- shape=fee1e4b8 vocab=9dd9385b
+-/
 theorem finrank_polynomialModuleSupported
     (S : Set (κ × (Fin n →₀ ℕ))) (hS : S.Finite) :
     Module.finrank K (polynomialModuleSupported (K := K) S) = S.ncard := by
@@ -91,7 +99,9 @@ def shiftedModuleDegreeTerms (weight : Fin n → ℕ) (shift : κ → ℤ) (degr
   {t | shiftedModuleMonomialDegree weight shift t = degree}
 
 /-- Strictly positive variable degrees make every shifted degree slice
-finite, including negative degrees and arbitrary integer shifts.-/
+finite, including negative degrees and arbitrary integer shifts.
+@isnad1 id=finite.1h5v.s5.5e4b37ad5a18 from=translated src=- shape=d76c7c3f vocab=1f9043a5
+-/
 theorem shiftedModuleDegreeTerms_finite (weight : Fin n → ℕ)
     (hweight : ∀ i, 0 < weight i) (shift : κ → ℤ) (degree : ℤ) :
     (shiftedModuleDegreeTerms weight shift degree).Finite := by
@@ -113,6 +123,9 @@ def weightedPolynomialModulePiece (weight : Fin n → ℕ) (shift : κ → ℤ) 
     Submodule K (κ → MvPolynomial (Fin n) K) :=
   polynomialModuleSupported (shiftedModuleDegreeTerms weight shift degree)
 
+/--
+@isnad1 id=eq.1h6v.s9.b4b964ac41fd from=translated src=- shape=8bb6e9a4 vocab=104a5418
+-/
 theorem finrank_weightedPolynomialModulePiece (weight : Fin n → ℕ)
     (hweight : ∀ i, 0 < weight i) (shift : κ → ℤ) (degree : ℤ) :
     Module.finrank K (weightedPolynomialModulePiece (K := K) weight shift degree) =
@@ -124,7 +137,9 @@ def monomialUpperFamilyTerms (U : κ → UpperSet (Fin n → ℕ)) : Set (κ × 
   {t | (t.2 : Fin n → ℕ) ∈ U t.1}
 
 /-- Intersecting an actual monomial polynomial submodule with a weighted
-homogeneous piece selects exactly the corresponding component monomials.-/
+homogeneous piece selects exactly the corresponding component monomials.
+@isnad1 id=eq.0h7v.s9.e681c0b3d2eb from=translated src=- shape=4c848e07 vocab=b24d9b26
+-/
 theorem monomialUpperFamily_weightedPiece_eq_supported
     (U : κ → UpperSet (Fin n → ℕ))
     (weight : Fin n → ℕ) (shift : κ → ℤ) (degree : ℤ) :
@@ -152,7 +167,9 @@ theorem monomialUpperFamily_weightedPiece_eq_supported
       exact (hterm k d hd).2
 
 /-- The precise weighted-and-shifted degree-count dimension identity for
-the actual monomial submodule.-/
+the actual monomial submodule.
+@isnad1 id=eq.1h7v.s11.fb04cc4f2c12 from=translated src=- shape=e6834652 vocab=dc0f62e4
+-/
 theorem finrank_monomialUpperFamily_weightedPiece
     (U : κ → UpperSet (Fin n → ℕ))
     (weight : Fin n → ℕ) (hweight : ∀ i, 0 < weight i)

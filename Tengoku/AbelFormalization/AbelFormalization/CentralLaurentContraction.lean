@@ -32,12 +32,18 @@ def polynomialCoordinateTranslation {σ : Type*} (c : σ → R) :
     (by ext i; simp)
     (by ext i; simp)
 
+/--
+@isnad1 id=eq.0h4v.s8.f0f905b9c6bc from=translated src=- shape=34478692 vocab=8b456e28
+-/
 @[simp]
 theorem polynomialCoordinateTranslation_X {σ : Type*} (c : σ → R) (i : σ) :
     polynomialCoordinateTranslation c (MvPolynomial.X i) =
       MvPolynomial.X i + MvPolynomial.C (c i) := by
   exact MvPolynomial.aeval_X _ i
 
+/--
+@isnad1 id=eq.0h4v.s8.b22097fd581c from=translated src=- shape=fcd5842f vocab=8f649168
+-/
 @[simp]
 theorem polynomialCoordinateTranslation_C {σ : Type*} (c : σ → R) (a : R) :
     polynomialCoordinateTranslation c (MvPolynomial.C a) = MvPolynomial.C a := by
@@ -63,6 +69,9 @@ def centralLaurentRescaledMap (ω : ι → Fin h → ℤ) :
   (groupLaurentWeightRescaling ω).toRingHom.comp
     (centralLaurentPolynomialMap R ι h)
 
+/--
+@isnad1 id=eq.0h3v.s8.e80701036d88 from=translated src=- shape=d5625e1f vocab=4995f025
+-/
 @[simp]
 theorem finiteLaurentPolynomialHom_C (A : Type*) [CommRing A] (h : ℕ) (a : A) :
     finiteLaurentPolynomialHom A h (MvPolynomial.C a) =
@@ -71,7 +80,9 @@ theorem finiteLaurentPolynomialHom_C (A : Type*) [CommRing A] (h : ℕ) (a : A) 
     finiteLaurentPolynomialHom_monomial A h 0 a
 
 /-- On each symbol this composite is precisely evaluation at a group
-monomial with degree opposite to the original paper weight.-/
+monomial with degree opposite to the original paper weight.
+@isnad1 id=eq.0h4v.s7.a3582f819672 from=translated src=- shape=829a75cf vocab=40765719
+-/
 theorem centralLaurentRescaledMap_eq_evaluation (ω : ι → Fin h → ℤ) :
     centralLaurentRescaledMap (R := R) ω =
       weightedGroupEvaluation MvPolynomial.C
@@ -103,7 +114,9 @@ theorem centralLaurentRescaledMap_eq_evaluation (ω : ι → Fin h → ℤ) :
         simp [centralLaurentWeight]
 
 /-- This homogeneity follows from the actual initial generators; it is
-not an input assumption on the original ideal or its Laurent extension.-/
+not an input assumption on the original ideal or its Laurent extension.
+@isnad1 id=ishomoge.0h5v.s9.d6754dd41339 from=translated src=- shape=2206b16e vocab=709f8a83
+-/
 theorem centralLaurent_rescaled_initial_isHomogeneous (ω : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial (Fin h ⊕ ι) R)) :
     ((lexicographicInitialIdeal (centralLaurentWeight ω) I).map
@@ -120,6 +133,9 @@ def centralLaurentContraction (ω : ι → Fin h → ℤ)
     ((lexicographicInitialIdeal (centralLaurentWeight ω) I).map
       (centralLaurentPolynomialMap R ι h))
 
+/--
+@isnad1 id=eq.0h5v.s9.f8f807cc6b34 from=translated src=- shape=916c0e39 vocab=57173cb3
+-/
 theorem centralLaurentContraction_eq (ω : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial (Fin h ⊕ ι) R)) :
     centralLaurentContraction ω I =
@@ -129,7 +145,9 @@ theorem centralLaurentContraction_eq (ω : ι → Fin h → ℤ)
   rw [centralLaurentContraction, groupLaurentRescaledContraction_eq, Ideal.map_map]
   rfl
 
-/-- The actual rescaled ideal is extended from that exact contraction.-/
+/-- The actual rescaled ideal is extended from that exact contraction.
+@isnad1 id=eq.0h5v.s9.9ae17ccde9df from=translated src=- shape=4caf0dc9 vocab=df6e364b
+-/
 theorem centralLaurent_initial_eq_map_contraction (ω : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial (Fin h ⊕ ι) R)) :
     (lexicographicInitialIdeal (centralLaurentWeight ω) I).map
@@ -147,7 +165,9 @@ private theorem central_algEquiv_height_map {A B : Type*}
     (I.map e.toRingHom).height = I.height := e.toRingEquiv.height_map I
 
 /-- The actual polynomial-to-Laurent inclusion cannot lower ideal height.
-The localization instance is the proved explicit finite exponent embedding.-/
+The localization instance is the proved explicit finite exponent embedding.
+@isnad1 id=le.0h4v.s8.8cc5cd2ad30a from=translated src=- shape=fa33efd5 vocab=8a407b10
+-/
 theorem centralLaurentPolynomialMap_height_le
     (I : Ideal (MvPolynomial (Fin h ⊕ ι) R)) :
     I.height ≤ (I.map (centralLaurentPolynomialMap R ι h)).height := by

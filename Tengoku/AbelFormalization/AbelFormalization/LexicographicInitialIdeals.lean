@@ -24,13 +24,18 @@ def lexicographicInitialIdeal (ω : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial ι R)) : Ideal (MvPolynomial ι R) :=
   Ideal.span (lexicographicInitialForm ω '' (I : Set (MvPolynomial ι R)))
 
+/--
+@isnad1 id=mem.1h6v.s8.325a02f003ec from=translated src=- shape=597fa459 vocab=1b52b3e8
+-/
 theorem lexicographicInitialForm_mem_initialIdeal (ω : ι → Fin h → ℤ)
     (I : Ideal (MvPolynomial ι R)) {f : MvPolynomial ι R} (hf : f ∈ I) :
     lexicographicInitialForm ω f ∈ lexicographicInitialIdeal ω I :=
   Ideal.subset_span ⟨f, hf, rfl⟩
 
 /-- A nonzero specified component at a support lower bound identifies the
-actual lexicographic minimum.-/
+actual lexicographic minimum.
+@isnad1 id=eq.2h6v.s9.2e84eb13d51e from=translated src=- shape=7e87c1cc vocab=47791e15
+-/
 theorem lexicographicMinimumWeight_eq_of_component_ne_zero
     (ω : ι → Fin h → ℤ) (f : MvPolynomial ι R) (β : Lex (Fin h → ℤ))
     (hbound : ∀ d ∈ f.support, β ≤ Finsupp.weight (fun i => toLex (ω i)) d)
@@ -53,7 +58,9 @@ theorem lexicographicMinimumWeight_eq_of_component_ne_zero
     exact (hbound d hd).trans_eq hweight
 
 /-- A nonzero head component of a tail initial is the tail initial of the
-corresponding head component of the original polynomial.-/
+corresponding head component of the original polynomial.
+@isnad1 id=eq.1h7v.s9.d4f7eca9d34d from=translated src=- shape=4b5ba6c2 vocab=03378572
+-/
 theorem lexicographicInitialForm_of_component
     (ω : ι → ℤ) (ν : ι → Fin h → ℤ) (α : ℤ) (g : MvPolynomial ι R)
     (hne : MvPolynomial.weightedHomogeneousComponent ω α
@@ -81,6 +88,9 @@ theorem lexicographicInitialForm_of_component
   rw [hmin]
   exact hcomm
 
+/--
+@isnad1 id=eq.0h4v.s6.40f468cf6309 from=translated src=- shape=c5454b85 vocab=2c7a91a4
+-/
 @[simp]
 theorem lexicographicInitialIdeal_zero_dim (ω : ι → Fin 0 → ℤ)
     (I : Ideal (MvPolynomial ι R)) : lexicographicInitialIdeal ω I = I := by

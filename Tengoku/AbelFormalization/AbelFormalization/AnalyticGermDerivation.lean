@@ -20,7 +20,9 @@ namespace AbelFormalization
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
-/-- Directional differentiation is linear over the constant real germs.-/
+/-- Directional differentiation is linear over the constant real germs.
+@isnad1 id=eq.0h5v.s11.529fb9ec751a from=translated src=- shape=f7581c3c vocab=a7d1ed4b
+-/
 theorem analyticGermDirectionalDerivative_smul (x v : E) (c : ℝ) (g : AnalyticGermAt x) :
     analyticGermDirectionalDerivative x v (c • g) =
       c • analyticGermDirectionalDerivative x v g := by
@@ -44,16 +46,24 @@ def analyticGermDerivation (x v : E) :
     simpa only [mul_comm, add_comm] using
       analyticGermDirectionalDerivative_mul x v f g
 
+/--
+@isnad1 id=eq.0h4v.s12.29f3295cfd97 from=translated src=- shape=daa13dde vocab=e6a6bcaf
+-/
 @[simp]
 theorem analyticGermDerivation_apply (x v : E) (g : AnalyticGermAt x) :
     analyticGermDerivation x v g = analyticGermDirectionalDerivative x v g := rfl
 
-/-- The bundled derivation has the expected representative.-/
+/-- The bundled derivation has the expected representative.
+@isnad1 id=eq.1h4v.s12.df759bcdbeeb from=translated src=- shape=a43e0501 vocab=c4e6e3c4
+-/
 theorem analyticGermDerivation_of {x : E} (v : E) (f : E → ℝ)
     (hf : AnalyticAt ℝ f x) :
     analyticGermDerivation x v (analyticGermOf f hf) =
       analyticGermOf (fun y => fderiv ℝ f y v) (analyticAt_directionalDerivative hf v) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s12.0294d562c5d7 from=translated src=- shape=61e781f3 vocab=a84b767b
+-/
 @[simp]
 theorem analyticGermDerivation_value_of {x : E} (v : E) (f : E → ℝ)
     (hf : AnalyticAt ℝ f x) :
@@ -71,7 +81,9 @@ def analyticGermPartial (p : ℕ) (i : Fin p) :
   analyticGermDerivation 0 (Pi.single i (1 : ℝ))
 
 /-- A coordinate partial derivative of a coordinate germ is the corresponding
-Kronecker delta, viewed as a constant germ.-/
+Kronecker delta, viewed as a constant germ.
+@isnad1 id=eq.0h3v.s14.1a5617e9f207 from=translated src=- shape=756dc662 vocab=eefcb844
+-/
 theorem analyticGermPartial_coordinate (p : ℕ) (i j : Fin p) :
     analyticGermPartial p i (analyticGermCoordinate p j) =
       algebraMap ℝ (RealAnalyticGerm p) (if i = j then 1 else 0) := by

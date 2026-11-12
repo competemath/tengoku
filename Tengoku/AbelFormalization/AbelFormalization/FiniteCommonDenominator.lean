@@ -34,7 +34,9 @@ def finiteCommonClearedNumerator
   numerator i * ∏ j ∈ (Finset.univ.erase i), denominator j
 
 /-- The full product factors as one chosen denominator times the product of
-all the remaining denominators.-/
+all the remaining denominators.
+@isnad1 id=eq.0h4v.s5.0aec15cdd5bf from=translated src=- shape=a8514fdb vocab=067a95be
+-/
 theorem finiteCommonDenominator_eq_mul_prod_erase
     {S κ : Type*} [CommMonoid S] [Fintype κ] [DecidableEq κ]
     (denominator : κ → S) (i : κ) :
@@ -45,7 +47,9 @@ theorem finiteCommonDenominator_eq_mul_prod_erase
     (Finset.mem_univ i)).symm
 
 /-- Individual identities `denᵢ * oldᵢ = numᵢ` yield simultaneous identities
-for the common product denominator.-/
+for the common product denominator.
+@isnad1 id=eq.1h6v.s6.c80ddbceaec3 from=translated src=- shape=5cf8a2e6 vocab=60adce4a
+-/
 theorem finiteCommonDenominator_mul_eq_clearedNumerator
     {S κ : Type*} [CommMonoid S] [Fintype κ] [DecidableEq κ]
     (denominator numerator old : κ → S)
@@ -65,7 +69,9 @@ theorem finiteCommonDenominator_mul_eq_clearedNumerator
           ∏ j ∈ Finset.univ.erase i, denominator j := by
             rw [hcoordinate i]
 
-/-- A finite product of functions in a function subalgebra remains in it.-/
+/-- A finite product of functions in a function subalgebra remains in it.
+@isnad1 id=mem.1h4v.s7.c81fe457cea8 from=translated src=- shape=ccea0b08 vocab=6b18d177
+-/
 theorem finiteCommonDenominator_mem_subalgebra
     {X κ : Type*} [Fintype κ]
     (B : Subalgebra ℝ (X → ℝ)) (denominator : κ → X → ℝ)
@@ -74,7 +80,9 @@ theorem finiteCommonDenominator_mem_subalgebra
   classical
   exact B.prod_mem fun i _ ↦ hdenominator i
 
-/-- Every common cleared numerator remains in the same function subalgebra.-/
+/-- Every common cleared numerator remains in the same function subalgebra.
+@isnad1 id=mem.2h6v.s8.3eb8552a5ad9 from=translated src=- shape=01f81a64 vocab=10daf40a
+-/
 theorem finiteCommonClearedNumerator_mem_subalgebra
     {X κ : Type*} [Fintype κ] [DecidableEq κ]
     (B : Subalgebra ℝ (X → ℝ))
@@ -87,7 +95,9 @@ theorem finiteCommonClearedNumerator_mem_subalgebra
     (B.prod_mem fun j _ ↦ hdenominator j)
 
 /-- Positivity of every individual denominator implies positivity of their
-common product.-/
+common product.
+@isnad1 id=lt.1h2v.s5.aace0b0c28a8 from=translated src=- shape=85338bc4 vocab=7a67c107
+-/
 theorem finiteCommonDenominator_pos
     {κ : Type*} [Fintype κ]
     (denominator : κ → ℝ) (hdenominator : ∀ i, 0 < denominator i) :

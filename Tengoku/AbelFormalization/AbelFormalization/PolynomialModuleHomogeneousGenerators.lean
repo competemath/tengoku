@@ -23,7 +23,9 @@ variable {K : Type*} [Field K] {n r : ℕ}
 
 /-- A homogeneous actual polynomial submodule over a field has finitely
 many actual homogeneous generators. This holds for every natural variable
-grade and integer component shift; positivity is unnecessary here.-/
+grade and integer component shift; positivity is unnecessary here.
+@isnad1 id=ex.1h7v.s10.502fecba5c18 from=translated src=- shape=91da10ad vocab=2eca0e3d
+-/
 theorem exists_finite_homogeneous_polynomialModule_generators
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))
@@ -42,7 +44,9 @@ theorem exists_finite_homogeneous_polynomialModule_generators
 
 /-- A specified finite cover of the actual leading upper family lifts to
 actual generators with exactly the corresponding weighted degrees. The
-term-degree data are retained for the later uniform bound argument.-/
+term-degree data are retained for the later uniform bound argument.
+@isnad1 id=ex.3h8v.s11.c5670dc98669 from=translated src=- shape=54115f70 vocab=7ec15b67
+-/
 theorem exists_homogeneous_polynomialModule_generators_from_leadingCover
     (m : MonomialOrder (Fin n)) (weight : Fin n → ℕ) (shift : Fin r → ℤ)
     (N : Submodule (MvPolynomial (Fin n) K) (Fin r → MvPolynomial (Fin n) K))

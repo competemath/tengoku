@@ -19,7 +19,9 @@ section Components
 
 variable {R ι M N : Type*} [CommSemiring R] [AddCommMonoid M] [AddCommMonoid N]
 
-/-- Two weight projections are commuting filters on the coefficient support.-/
+/-- Two weight projections are commuting filters on the coefficient support.
+@isnad1 id=eq.0h9v.s9.c8ec58fc3edb from=translated src=- shape=d1a9c6bf vocab=a567b01f
+-/
 theorem weightedHomogeneousComponents_commute (ω : ι → M) (ν : ι → N)
     (α : M) (β : N) (f : MvPolynomial ι R) :
     MvPolynomial.weightedHomogeneousComponent ω α
@@ -31,7 +33,9 @@ theorem weightedHomogeneousComponents_commute (ω : ι → M) (ν : ι → N)
   simp only [MvPolynomial.coeff_weightedHomogeneousComponent]
   split_ifs <;> rfl
 
-/-- Projecting for one grading preserves homogeneity for another grading.-/
+/-- Projecting for one grading preserves homogeneity for another grading.
+@isnad1 id=isweight.1h9v.s7.bf71bddd6dcb from=translated src=- shape=46fef16f vocab=8e4695d3
+-/
 theorem weightedHomogeneousComponent_preserves_homogeneity
     (ω : ι → M) (ν : ι → N) (α : M) {β : N} {f : MvPolynomial ι R}
     (hf : f.IsWeightedHomogeneous ν β) :
@@ -43,7 +47,9 @@ theorem weightedHomogeneousComponent_preserves_homogeneity
   · exact hf hd
   · exact (hd rfl).elim
 
-/-- A finite sum indexed by the weights actually occurring in the support.-/
+/-- A finite sum indexed by the weights actually occurring in the support.
+@isnad1 id=eq.0h5v.s8.f5db6681b7f6 from=translated src=- shape=1a6994b0 vocab=0c0eee0c
+-/
 theorem sum_weightedHomogeneousComponent_support [DecidableEq M] (ω : ι → M)
     (f : MvPolynomial ι R) :
     (∑ α ∈ f.support.image (Finsupp.weight ω),
@@ -68,7 +74,9 @@ variable {R ι : Type*} [CommRing R]
 
 attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
-/-- The full initial ideal is homogeneous for the weight used to form it.-/
+/-- The full initial ideal is homogeneous for the weight used to form it.
+@isnad1 id=ishomoge.0h4v.s7.a092a9470304 from=translated src=- shape=61683f1d vocab=6605fa44
+-/
 theorem weightedInitialIdeal_isHomogeneous (ω : ι → ℤ)
     (I : Ideal (MvPolynomial ι R)) :
     (weightedInitialIdeal ω I).IsHomogeneous
@@ -79,7 +87,9 @@ theorem weightedInitialIdeal_isHomogeneous (ω : ι → ℤ)
   exact ⟨minimumSupportWeight ω f,
     MvPolynomial.weightedHomogeneousComponent_mem ω f (minimumSupportWeight ω f)⟩
 
-/-- Every weight component of every member belongs to the full initial ideal.-/
+/-- Every weight component of every member belongs to the full initial ideal.
+@isnad1 id=mem.1h6v.s9.0f6cc53af647 from=translated src=- shape=45096a23 vocab=e9d03784
+-/
 theorem weightedInitialIdeal_component_mem (ω : ι → ℤ)
     (I : Ideal (MvPolynomial ι R)) {g : MvPolynomial ι R}
     (hg : g ∈ weightedInitialIdeal ω I) (α : ℤ) :
@@ -88,14 +98,18 @@ theorem weightedInitialIdeal_component_mem (ω : ι → ℤ)
     (weightedInitialIdeal_isHomogeneous ω I) hg α
 
 /-- A nonzero homogeneous polynomial has exactly its homogeneous weight
-as its minimum support weight.-/
+as its minimum support weight.
+@isnad1 id=eq.2h5v.s6.a601ef9d5dad from=translated src=- shape=85f0198c vocab=148b5850
+-/
 theorem minimumSupportWeight_of_homogeneous (ω : ι → ℤ)
     {α : ℤ} {f : MvPolynomial ι R} (hf : f.IsWeightedHomogeneous ω α)
     (hne : f ≠ 0) : minimumSupportWeight ω f = α := by
   obtain ⟨d, hd, hmin⟩ := exists_support_weight_eq_minimum ω hne
   exact hmin.symm.trans (hf (MvPolynomial.mem_support_iff.mp hd))
 
-/-- Initial formation fixes ideals already homogeneous for that weight.-/
+/-- Initial formation fixes ideals already homogeneous for that weight.
+@isnad1 id=eq.1h4v.s7.a6c19e62db1e from=translated src=- shape=f34c9ddd vocab=6605fa44
+-/
 theorem weightedInitialIdeal_eq_of_homogeneous (ω : ι → ℤ)
     (I : Ideal (MvPolynomial ι R))
     (hI : I.IsHomogeneous (MvPolynomial.weightedHomogeneousSubmodule R ω)) :

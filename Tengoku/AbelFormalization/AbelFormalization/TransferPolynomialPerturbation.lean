@@ -33,6 +33,9 @@ def HasPolynomialUpperBound (l : Filter X) (S : X → ℝ)
 
 namespace HasPolynomialUpperBound
 
+/--
+@isnad1 id=haspolyn.2h5v.s5.9e2927a06306 from=translated src=- shape=115c9b91 vocab=a59bc858
+-/
 theorem congr {l : Filter X} {S f g : X → ℝ}
     (hf : HasPolynomialUpperBound l S f) (hfg : ∀ x, g x = f x) :
     HasPolynomialUpperBound l S g := by
@@ -42,26 +45,41 @@ theorem congr {l : Filter X} {S f g : X → ℝ}
   rw [hfg x]
   exact hx
 
+/--
+@isnad1 id=haspolyn.0h4v.s4.00478fbd2660 from=translated src=- shape=dae4d1aa vocab=a59bc858
+-/
 theorem const (l : Filter X) (S : X → ℝ) (c : ℝ) :
     HasPolynomialUpperBound l S (fun _ => c) := by
   refine ⟨|c| + 1, by positivity, 0, ?_⟩
   filter_upwards with x
   simp
 
+/--
+@isnad1 id=haspolyn.0h3v.s4.1295cf8bdc46 from=translated src=- shape=7fe5948b vocab=a59bc858
+-/
 theorem zero (l : Filter X) (S : X → ℝ) :
     HasPolynomialUpperBound l S (fun _ => 0) := by
   simpa using const l S 0
 
+/--
+@isnad1 id=haspolyn.0h3v.s4.6d642fd81880 from=translated src=- shape=7fe5948b vocab=a59bc858
+-/
 theorem one (l : Filter X) (S : X → ℝ) :
     HasPolynomialUpperBound l S (fun _ => 1) := by
   simpa using const l S 1
 
+/--
+@isnad1 id=haspolyn.1h4v.s4.e40f65cdc2fe from=translated src=- shape=acd8765f vocab=d0efd78d
+-/
 theorem neg {l : Filter X} {S f : X → ℝ}
     (hf : HasPolynomialUpperBound l S f) :
     HasPolynomialUpperBound l S (fun x => -f x) := by
   obtain ⟨C, hC, P, hf⟩ := hf
   exact ⟨C, hC, P, hf.mono (fun x hx => by simpa)⟩
 
+/--
+@isnad1 id=haspolyn.3h5v.s6.05d038833cc0 from=translated src=- shape=a36862f1 vocab=06206be3
+-/
 theorem add {l : Filter X} {S f g : X → ℝ}
     (hS : ∀ᶠ x in l, 1 ≤ S x)
     (hf : HasPolynomialUpperBound l S f)
@@ -83,6 +101,9 @@ theorem add {l : Filter X} {S f g : X → ℝ}
         (mul_le_mul_of_nonneg_left hgPow hCg.le)
     _ = (Cf + Cg) * (S x) ^ (Pf + Pg) := by ring
 
+/--
+@isnad1 id=haspolyn.3h5v.s6.1460aaf02730 from=translated src=- shape=a36862f1 vocab=e8b6a221
+-/
 theorem sub {l : Filter X} {S f g : X → ℝ}
     (hS : ∀ᶠ x in l, 1 ≤ S x)
     (hf : HasPolynomialUpperBound l S f)
@@ -90,6 +111,9 @@ theorem sub {l : Filter X} {S f g : X → ℝ}
     HasPolynomialUpperBound l S (fun x => f x - g x) := by
   simpa only [sub_eq_add_neg] using hf.add hS hg.neg
 
+/--
+@isnad1 id=haspolyn.2h5v.s5.1b77d893f8bd from=translated src=- shape=130b7d40 vocab=9abc73ff
+-/
 theorem mul {l : Filter X} {S f g : X → ℝ}
     (hf : HasPolynomialUpperBound l S f)
     (hg : HasPolynomialUpperBound l S g) :
@@ -104,6 +128,9 @@ theorem mul {l : Filter X} {S f g : X → ℝ}
       mul_le_mul hxf hxg (abs_nonneg _) ((abs_nonneg _).trans hxf)
     _ = (Cf * Cg) * (S x) ^ (Pf + Pg) := by rw [pow_add]; ring
 
+/--
+@isnad1 id=haspolyn.1h5v.s5.1cd54c4e4fa6 from=translated src=- shape=04241e24 vocab=005c4cb0
+-/
 theorem pow {l : Filter X} {S f : X → ℝ}
     (hf : HasPolynomialUpperBound l S f) (n : ℕ) :
     HasPolynomialUpperBound l S (fun x => (f x) ^ n) := by
@@ -115,7 +142,9 @@ theorem pow {l : Filter X} {S f : X → ℝ}
 end HasPolynomialUpperBound
 
 /-- Multiplying a rapidly decaying function by a polynomially bounded one
-preserves rapid decay.-/
+preserves rapid decay.
+@isnad1 id=superpol.3h5v.s6.3fea83756db7 from=translated src=- shape=05b150c9 vocab=16848f5b
+-/
 theorem Asymptotics.SuperpolynomialDecay.mul_of_hasPolynomialUpperBound
     {l : Filter X} {S e f : X → ℝ}
     (he : Asymptotics.SuperpolynomialDecay l S e)
@@ -127,7 +156,9 @@ theorem Asymptotics.SuperpolynomialDecay.mul_of_hasPolynomialUpperBound
     he hS hC.le hf
 
 /-- Evaluation of a fixed polynomial at polynomially bounded coefficient and
-coordinate functions is polynomially bounded.-/
+coordinate functions is polynomially bounded.
+@isnad1 id=haspolyn.3h8v.s8.11277978367f from=translated src=- shape=801f4662 vocab=6c1056b6
+-/
 theorem mvPolynomial_eval₂Hom_hasPolynomialUpperBound
     [CommRing R]
     {l : Filter X} {S : X → ℝ}
@@ -151,7 +182,9 @@ theorem mvPolynomial_eval₂Hom_hasPolynomialUpperBound
 /-- Substituting coordinatewise rapidly decaying perturbations into a fixed
 multivariate polynomial changes its value by a rapidly decaying function.
 The coefficient functions may vary along the filter, provided each fixed
-coefficient is polynomially bounded.-/
+coefficient is polynomially bounded.
+@isnad1 id=superpol.5h9v.s8.a30cf7d6f666 from=translated src=- shape=c18a5e4f vocab=e3ff0c73
+-/
 theorem mvPolynomial_eval₂Hom_sub_superpolynomialDecay
     [CommRing R]
     {l : Filter X} {S : X → ℝ}

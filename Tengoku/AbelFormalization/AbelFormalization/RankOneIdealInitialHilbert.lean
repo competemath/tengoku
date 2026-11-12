@@ -26,7 +26,9 @@ attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
 /-- If an injective realization identifies one submodule with the
 finite-weight initial of another, the original two submodules have equal
-length.-/
+length.
+@isnad1 id=eq.2h7v.s9.ea12dc7f5363 from=translated src=- shape=40c480c9 vocab=a2024b03
+-/
 theorem submodule_length_eq_of_map_eq_finiteWeightInitial
     {R V : Type*} [Ring R] [AddCommGroup V] [Module R V]
     {m : ℕ} {M : Fin m → Type*}
@@ -50,7 +52,9 @@ theorem submodule_length_eq_of_map_eq_finiteWeightInitial
         source).length_eq.symm
 
 /-- A negative ordinary degree has no rank-one monomials when the module
-shift is zero.-/
+shift is zero.
+@isnad1 id=eq.1h4v.s8.11faca82cea3 from=translated src=- shape=5c05d17a vocab=7f4def92
+-/
 theorem rankOne_ordinaryPolynomialModulePiece_eq_bot_of_neg
     (ordinaryDegree : Fin n → ℕ) {degree : ℤ} (hdegree : degree < 0) :
     artinianPolynomialModulePiece (B := B)
@@ -74,7 +78,9 @@ theorem rankOne_ordinaryPolynomialModulePiece_eq_bot_of_neg
   · exact bot_le
 
 /-- Consequently every submodule cut out inside a negative rank-one degree
-piece is zero.-/
+piece is zero.
+@isnad1 id=eq.1h5v.s11.a0af9fc38965 from=translated src=- shape=0343f1a9 vocab=18a2fcd4
+-/
 theorem rankOne_artinianPolynomialSubmoduleDegree_eq_bot_of_neg
     (ordinaryDegree : Fin n → ℕ)
     (I : Ideal (MvPolynomial (Fin n) B))

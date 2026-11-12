@@ -32,16 +32,25 @@ def fstPartial (L : (X × Y) →L[ℝ] Z) : X →L[ℝ] Z :=
 def sndOnKernel (L : (X × Y) →L[ℝ] Z) : L.ker →L[ℝ] Y :=
   (ContinuousLinearMap.snd ℝ X Y).comp L.ker.subtypeL
 
+/--
+@isnad1 id=eq.0h5v.s8.68b6061400ab from=translated src=- shape=a6d9e083 vocab=8aba0126
+-/
 @[simp]
 theorem fstPartial_apply (L : (X × Y) →L[ℝ] Z) (x : X) :
     fstPartial L x = L (x, 0) := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.f161517400e9 from=translated src=- shape=8c1e6859 vocab=04eb5472
+-/
 @[simp]
 theorem sndOnKernel_apply (L : (X × Y) →L[ℝ] Z) (p : L.ker) :
     sndOnKernel L p = (p : X × Y).2 := by
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.e2541d601461 from=translated src=- shape=e02737ab vocab=72ff93cb
+-/
 theorem sndOnKernel_range_eq_top_of_fstPartial_range_eq_top
     (L : (X × Y) →L[ℝ] Z)
     (hfst : (fstPartial L).range = ⊤) :
@@ -57,6 +66,9 @@ theorem sndOnKernel_range_eq_top_of_fstPartial_range_eq_top
     simp⟩
   exact ⟨p, rfl⟩
 
+/--
+@isnad1 id=eq.2h4v.s11.ce8c9e7524aa from=translated src=- shape=2344d0aa vocab=72ff93cb
+-/
 theorem fstPartial_range_eq_top_of_sndOnKernel_range_eq_top
     (L : (X × Y) →L[ℝ] Z) (hL : L.range = ⊤)
     (hsnd : (sndOnKernel L).range = ⊤) :
@@ -77,6 +89,9 @@ theorem fstPartial_range_eq_top_of_sndOnKernel_range_eq_top
   rw [hkzero, sub_zero]
   exact hp
 
+/--
+@isnad1 id=iff.1h4v.s11.cbd99f769cad from=translated src=- shape=3c9ee1bf vocab=72ff93cb
+-/
 theorem fstPartial_range_eq_top_iff_sndOnKernel_range_eq_top
     (L : (X × Y) →L[ℝ] Z) (hL : L.range = ⊤) :
     (fstPartial L).range = ⊤ ↔
@@ -84,6 +99,9 @@ theorem fstPartial_range_eq_top_iff_sndOnKernel_range_eq_top
   ⟨sndOnKernel_range_eq_top_of_fstPartial_range_eq_top L,
     fstPartial_range_eq_top_of_sndOnKernel_range_eq_top L hL⟩
 
+/--
+@isnad1 id=eq.1h6v.s11.4124131a91de from=translated src=- shape=2f45a9a1 vocab=f87367de
+-/
 theorem range_eq_top_comp_of_range_eq_ker
     (L : (X × Y) →L[ℝ] Z) (d : V →L[ℝ] (X × Y))
     (hd : d.range = L.ker) :

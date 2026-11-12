@@ -34,6 +34,9 @@ def hermiteContourPolynomial (f : ℂ → ℂ) (Q : ℂ[X]) (R : ℝ) : ℂ[X] :
 def hermiteContourQuotient (f : ℂ → ℂ) (Q : ℂ[X]) (R : ℝ) (z : ℂ) : ℂ :=
   cauchyNormalization * ∮ ζ in C(0, R), f ζ / (Q.eval ζ * (ζ - z))
 
+/--
+@isnad1 id=lt.0h3v.s5.55ca229f4509 from=translated src=- shape=887050f0 vocab=96498d32
+-/
 theorem hermiteContourPolynomial_degree_lt (f : ℂ → ℂ) (Q : ℂ[X]) (R : ℝ) :
     (hermiteContourPolynomial f Q R).degree < (Q.natDegree : WithBot ℕ) := by
   apply (degree_sum_le _ _).trans_lt
@@ -42,6 +45,9 @@ theorem hermiteContourPolynomial_degree_lt (f : ℂ → ℂ) (Q : ℂ[X]) (R : �
   exact (degree_monomial_le _ _).trans_lt
     (WithBot.coe_lt_coe.mpr (Finset.mem_range.mp hj))
 
+/--
+@isnad1 id=lt.1h3v.s5.c34172c030b6 from=translated src=- shape=da2d9ff1 vocab=82d322aa
+-/
 theorem hermiteContourPolynomial_natDegree_lt (f : ℂ → ℂ) (Q : ℂ[X]) (R : ℝ)
     (hd : 0 < Q.natDegree) : (hermiteContourPolynomial f Q R).natDegree < Q.natDegree := by
   by_cases hP : hermiteContourPolynomial f Q R = 0
@@ -49,11 +55,17 @@ theorem hermiteContourPolynomial_natDegree_lt (f : ℂ → ℂ) (Q : ℂ[X]) (R 
   · exact (natDegree_lt_iff_degree_lt hP).mpr
       (hermiteContourPolynomial_degree_lt f Q R)
 
+/--
+@isnad1 id=continuo.0h2v.s5.a732e8c6a9b1 from=translated src=- shape=0e204345 vocab=92bd28eb
+-/
 theorem continuous_hermiteKernel_coeff (Q : ℂ[X]) (j : ℕ) :
     Continuous (fun ζ => (hermiteKernel Q ζ).coeff j) := by
   simp only [hermiteKernel_coeff]
   fun_prop
 
+/--
+@isnad1 id=continuo.1h2v.s5.93ac4fbd3c54 from=translated src=- shape=5008f93f vocab=9afb4eec
+-/
 theorem continuous_hermiteKernel_eval (Q : ℂ[X]) (z : ℂ)
     (hd : 0 < Q.natDegree) : Continuous (fun ζ => (hermiteKernel Q ζ).eval z) := by
   have he : (fun ζ => (hermiteKernel Q ζ).eval z) =
@@ -64,7 +76,9 @@ theorem continuous_hermiteKernel_eval (Q : ℂ[X]) (z : ℂ)
   exact continuous_finsetSum _ fun j _ => (continuous_hermiteKernel_coeff Q j).mul
     continuous_const
 
-/-- Evaluation commutes with the finite family of coefficient integrals.-/
+/-- Evaluation commutes with the finite family of coefficient integrals.
+@isnad1 id=eq.4h4v.s7.9f267e69796c from=translated src=- shape=7885e947 vocab=fc73e826
+-/
 theorem hermiteContourPolynomial_eval {f : ℂ → ℂ} {Q : ℂ[X]} {R : ℝ}
     (hR : 0 ≤ R) (hf : ContinuousOn f (sphere (0 : ℂ) R))
     (hQ : ∀ ζ ∈ sphere (0 : ℂ) R, Q.eval ζ ≠ 0) (hd : 0 < Q.natDegree)
@@ -95,7 +109,9 @@ theorem hermiteContourPolynomial_eval {f : ℂ → ℂ} {Q : ℂ[X]} {R : ℝ}
   ring
 
 /-- The contour construction gives the exact Hermite remainder, including at
-zeros of `Q`.  The analytic quotient removes the apparent singularities there.-/
+zeros of `Q`.  The analytic quotient removes the apparent singularities there.
+@isnad1 id=eq.5h4v.s7.18e5f0c67e6b from=translated src=- shape=a5d3db68 vocab=1558b70b
+-/
 theorem hermiteContour_remainder {f : ℂ → ℂ} {Q : ℂ[X]} {R : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall (0 : ℂ) R))
     (hQ : ∀ ζ ∈ sphere (0 : ℂ) R, Q.eval ζ ≠ 0) (hd : 0 < Q.natDegree)

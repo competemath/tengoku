@@ -29,12 +29,18 @@ def HasDirectionalDerivOn (Omega : Set X) (v : X)
   ∀ x ∈ Omega,
     DifferentiableAt ℝ f x ∧ fderiv ℝ f x v = df x
 
+/--
+@isnad1 id=hasdirec.2h6v.s5.94a1b215596b from=translated src=- shape=4cc5057a vocab=fbda0099
+-/
 theorem HasDirectionalDerivOn.mono
     {Omega Omega' : Set X} {v : X} {f df : X → ℝ}
     (h : HasDirectionalDerivOn Omega v f df) (hsub : Omega' ⊆ Omega) :
     HasDirectionalDerivOn Omega' v f df :=
   fun x hx ↦ h x (hsub hx)
 
+/--
+@isnad1 id=hasdirec.0h4v.s5.b1fc472d04dd from=translated src=- shape=0ee35710 vocab=406a3d22
+-/
 theorem hasDirectionalDerivOn_const (Omega : Set X) (v : X) (c : ℝ) :
     HasDirectionalDerivOn Omega v (fun _ ↦ c) 0 := by
   intro x hx
@@ -42,6 +48,9 @@ theorem hasDirectionalDerivOn_const (Omega : Set X) (v : X) (c : ℝ) :
   · exact differentiableAt_const c
   · simp
 
+/--
+@isnad1 id=hasdirec.2h7v.s6.68405b5917d5 from=translated src=- shape=73743518 vocab=54284b7e
+-/
 theorem HasDirectionalDerivOn.add
     {Omega : Set X} {v : X} {f df g dg : X → ℝ}
     (hf : HasDirectionalDerivOn Omega v f df)
@@ -55,6 +64,9 @@ theorem HasDirectionalDerivOn.add
   · rw [fderiv_add hfx.1 hgx.1]
     simp [hfx.2, hgx.2]
 
+/--
+@isnad1 id=hasdirec.2h7v.s7.5f9425f90694 from=translated src=- shape=fa68ed50 vocab=8b774233
+-/
 theorem HasDirectionalDerivOn.mul
     {Omega : Set X} {v : X} {f df g dg : X → ℝ}
     (hf : HasDirectionalDerivOn Omega v f df)
@@ -69,6 +81,9 @@ theorem HasDirectionalDerivOn.mul
   · have h := congrArg (fun L : X →L[ℝ] ℝ ↦ L v) hmul.fderiv
     simpa [hfx.2, hgx.2, add_comm, mul_comm] using h
 
+/--
+@isnad1 id=hasdirec.1h5v.s6.4c14c3fc7464 from=translated src=- shape=56461497 vocab=3c409823
+-/
 theorem HasDirectionalDerivOn.exp
     {Omega : Set X} {v : X} {g dg : X → ℝ}
     (hg : HasDirectionalDerivOn Omega v g dg) :
@@ -89,7 +104,9 @@ def DirectionallyClosedOn (B : Subalgebra ℝ (X → ℝ))
   ∀ f : X → ℝ, f ∈ B →
     ∃ df : X → ℝ, df ∈ B ∧ HasDirectionalDerivOn Omega v f df
 
-/-- Closure on a generating set propagates through algebra adjunction.-/
+/-- Closure on a generating set propagates through algebra adjunction.
+@isnad1 id=directio.1h4v.s7.d9811a5b51e2 from=translated src=- shape=79688e43 vocab=8f6dfc1c
+-/
 theorem directionallyClosedOn_adjoin
     {Omega : Set X} {v : X} (s : Set (X → ℝ))
     (hgen : ∀ f ∈ s, ∃ df : X → ℝ,
@@ -122,7 +139,9 @@ theorem directionallyClosedOn_adjoin
     hf
 
 /-- Adjoining generators whose derivatives lie in the enlarged algebra
-preserves directional closure of the old algebra.-/
+preserves directional closure of the old algebra.
+@isnad1 id=directio.2h5v.s9.30af72b69245 from=translated src=- shape=413a73dc vocab=d0272db5
+-/
 theorem directionallyClosedOn_sup_adjoin
     {Omega : Set X} {v : X} (B : Subalgebra ℝ (X → ℝ))
     (s : Set (X → ℝ)) (hB : DirectionallyClosedOn B Omega v)
@@ -157,7 +176,9 @@ theorem directionallyClosedOn_sup_adjoin
     rwa [← hsup]
 
 /-- Directional derivative closure propagates through every level of a
-finite exponential tower.-/
+finite exponential tower.
+@isnad1 id=directio.1h7v.s6.c415caa95011 from=translated src=- shape=becb7c1f vocab=c3195a3c
+-/
 theorem FiniteExponentialTower.directionallyClosedOn_level
     {base : Subalgebra ℝ (X → ℝ)} {ell : ℕ}
     (T : FiniteExponentialTower base ell)

@@ -17,7 +17,9 @@ namespace AbelFormalization
 
 variable {R : Type*} [CommRing R]
 
-/-- An element cancellable modulo an ideal avoids each minimal prime over it.-/
+/-- An element cancellable modulo an ideal avoids each minimal prime over it.
+@isnad1 id=not.2h4v.s7.76443c584ffc from=translated src=- shape=b0e94dc1 vocab=c813df22
+-/
 theorem ideal_notMem_minimalPrimes_of_cancel (J : Ideal R) (x : R)
     (hcancel : ∀ f, x * f ∈ J → f ∈ J) {q : Ideal R}
     (hq : q ∈ J.minimalPrimes) : x ∉ q := by

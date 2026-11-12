@@ -14,6 +14,9 @@ set_option autoImplicit false
 
 variable {X : Type*} [TopologicalSpace X]
 
+/--
+@isnad1 id=mem.6h5v.s7.e062fe65c5f8 from=translated src=- shape=132aaa6b vocab=097d4580
+-/
 theorem mem_connectedComponent_of_mem_preconnected_subset
     {M S : Set X} {x y : X}
     (hxM : x ∈ M) (hyM : y ∈ M)
@@ -33,7 +36,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E
 /-- A surjective strict derivative gives a preconnected local piece of its
 level set.  If that local level set lies in `M`, all sufficiently nearby
 points of the same level lie in the connected component of the base point
-inside `M`.-/
+inside `M`.
+@isnad1 id=ex.4h6v.s9.0c29dd09e2b9 from=translated src=- shape=dca9d83c vocab=ffd86784
+-/
 theorem HasStrictFDerivAt.exists_local_level_connectedComponent
     {f : E → F} {f' : E →L[ℝ] F} {a : E} {M : Set E}
     (hf : HasStrictFDerivAt f f' a) (hsurj : f'.range = ⊤)

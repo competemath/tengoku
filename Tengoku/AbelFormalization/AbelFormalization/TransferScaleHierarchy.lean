@@ -26,11 +26,17 @@ vector.-/
 def lexicographicDot {h : ℕ} (ν : Fin h → ℤ) (u : Fin h → ℝ) : ℝ :=
   ∑ i, (ν i : ℝ) * u i
 
+/--
+@isnad1 id=eq.0h2v.s5.d3e2555d8fad from=translated src=- shape=69973c9e vocab=6ee0fb8d
+-/
 @[simp]
 theorem lexicographicDot_zero_dim (ν : Fin 0 → ℤ) (u : Fin 0 → ℝ) :
     lexicographicDot ν u = 0 := by
   simp [lexicographicDot]
 
+/--
+@isnad1 id=eq.0h5v.s6.3f91dd28e5fb from=translated src=- shape=658b5676 vocab=61d28fbc
+-/
 @[simp]
 theorem lexicographicDot_cons {h : ℕ} (a : ℤ) (ν : Fin h → ℤ)
     (x : ℝ) (u : Fin h → ℝ) :
@@ -39,7 +45,9 @@ theorem lexicographicDot_cons {h : ℕ} (a : ℤ) (ν : Fin h → ℤ)
   simp [lexicographicDot, Fin.sum_univ_succ]
 
 /-- A coordinatewise nonnegative vector bounded by `U` gives the elementary
-finite `ℓ1` bound for its integer-weighted scalar product.-/
+finite `ℓ1` bound for its integer-weighted scalar product.
+@isnad1 id=le.2h4v.s6.b6d54ddc8019 from=translated src=- shape=641b0f7c vocab=d303aff0
+-/
 theorem abs_lexicographicDot_le {h : ℕ} (ν : Fin h → ℤ) (u : Fin h → ℝ)
     (U : ℝ) (hu0 : ∀ i, 0 ≤ u i) (huU : ∀ i, u i ≤ U) :
     |lexicographicDot ν u| ≤ (∑ i, |(ν i : ℝ)|) * U := by
@@ -58,7 +66,9 @@ theorem abs_lexicographicDot_le {h : ℕ} (ν : Fin h → ℤ) (u : Fin h → �
 /-- Under the scale assumptions of the quantitative-reduction lemma, every
 positive lexicographic integer weight has scalar product much larger than
 `log R`.  The index order is the paper's decreasing order: coordinate zero is
-the largest scale.-/
+the largest scale.
+@isnad1 id=tendsto.6h4v.s9.502e3e92acea from=translated src=- shape=2971e24e vocab=20fa577d
+-/
 theorem tendsto_lexicographicDot_div_log_atTop :
     ∀ {h : ℕ} (ν : Fin (h + 1) → ℤ) (u : Fin (h + 1) → ℕ → ℝ)
       (R : ℕ → ℝ),
@@ -195,7 +205,9 @@ private theorem tendsto_sub_const_atTop {f : ℕ → ℝ}
   linarith
 
 /-- If `d / log R` tends to infinity and `R` stays at least two, then
-`d - M log R` tends to infinity for every fixed real exponent `M`.-/
+`d - M log R` tends to infinity for every fixed real exponent `M`.
+@isnad1 id=tendsto.2h3v.s6.550ecf31d308 from=translated src=- shape=08e28710 vocab=d1a35b98
+-/
 theorem tendsto_sub_mul_log_atTop {d R : ℕ → ℝ}
     (hd : Tendsto (fun n => d n / Real.log (R n)) atTop atTop)
     (hR : ∀ᶠ n in atTop, 2 ≤ R n) (M : ℝ) :
@@ -219,7 +231,9 @@ theorem tendsto_sub_mul_log_atTop {d R : ℕ → ℝ}
       field_simp
 
 /-- The discarded exponential attached to a positive lexicographic weight
-is little-o of every fixed inverse real power of `R`.-/
+is little-o of every fixed inverse real power of `R`.
+@isnad1 id=islittle.6h5v.s9.20485f49e2e7 from=translated src=- shape=9a217883 vocab=e43e1f3b
+-/
 theorem lexicographicExponential_isLittleO_rpow {h : ℕ}
     (ν : Fin (h + 1) → ℤ) (u : Fin (h + 1) → ℕ → ℝ)
     (R : ℕ → ℝ)
@@ -251,7 +265,9 @@ theorem lexicographicExponential_isLittleO_rpow {h : ℕ}
   ring
 
 /-- Standard mathlib formulation of the same conclusion: the discarded
-exponential has superpolynomial decay in the scale `R`.-/
+exponential has superpolynomial decay in the scale `R`.
+@isnad1 id=superpol.6h4v.s9.b070da6a00d3 from=translated src=- shape=c4efa558 vocab=65d49e46
+-/
 theorem lexicographicExponential_superpolynomialDecay {h : ℕ}
     (ν : Fin (h + 1) → ℤ) (u : Fin (h + 1) → ℕ → ℝ)
     (R : ℕ → ℝ)
