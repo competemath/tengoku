@@ -23,38 +23,45 @@ import sys
 from pathlib import Path
 
 
+def _blank(segment: str) -> str:
+    return "".join("\n" if ch == "\n" else " " for ch in segment)
+
+
+def _block_end(text: str, start: int) -> int:
+    """the index just past the `-/` that closes the (nested) block comment opened at `start`; the end of the text if it never closes"""
+    depth = 1
+    for m in re.compile(r"/-|-/").finditer(text, start + 2):
+        depth += 1 if m.group() == "/-" else -1
+        if not depth:
+            return m.end()
+    return len(text)
+
+
+def _string_end(text: str, start: int) -> int:
+    """the index just past the closing quote of the string literal opened at `start` (a backslash escapes the next character); the end of the text if it never closes"""
+    m = re.compile(r'(?:[^"\\]|\\.)*"', re.DOTALL).match(text, start + 1)
+    return m.end() if m else len(text)
+
+
 def mask(text: str) -> str:
     """the text with every comment (line, nested block, doc) and string literal blanked to spaces: same length and same columns, so a word
     found in the mask is code, and its position is the position in the text"""
     out, i, n = [], 0, len(text)
     while i < n:
-        c = text[i]
         if text.startswith("--", i):
-            j = text.find("\n", i)
-            j = n if j < 0 else j
-            out.append(" " * (j - i))
-            i = j
+            end = text.find("\n", i)
+            end = n if end < 0 else end
+            out.append(" " * (end - i))
         elif text.startswith("/-", i):
-            depth, j = 1, i + 2
-            while j < n and depth:
-                if text.startswith("/-", j):
-                    depth, j = depth + 1, j + 2
-                elif text.startswith("-/", j):
-                    depth, j = depth - 1, j + 2
-                else:
-                    j += 1
-            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
-            i = j
-        elif c == '"':
-            j = i + 1
-            while j < n and text[j] != '"':
-                j += 2 if text[j] == "\\" else 1
-            j = min(j + 1, n)
-            out.append("".join("\n" if ch == "\n" else " " for ch in text[i:j]))
-            i = j
+            end = _block_end(text, i)
+            out.append(_blank(text[i:end]))
+        elif text[i] == '"':
+            end = _string_end(text, i)
+            out.append(_blank(text[i:end]))
         else:
-            out.append(c)
-            i += 1
+            out.append(text[i])
+            end = i + 1
+        i = end
     return "".join(out)
 
 

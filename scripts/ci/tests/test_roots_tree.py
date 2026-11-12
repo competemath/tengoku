@@ -195,5 +195,26 @@ class OpenLines(unittest.TestCase):
             self.assertIn("open scoped Tengoku.Foo.Helper Nat", (tree / "Tengoku" / "Foo" / "A.lean").read_text(encoding="utf-8"))
 
 
+class Mask(unittest.TestCase):
+    """mask blanks comments and string literals to spaces (same length, newlines kept), so a word found in it is code: (text, how many `X` are code)"""
+
+    CASES = [
+        ("def X := 1 -- X again\ndef Y", 1),
+        ('def s := "X \\" X" X', 1),
+        ("a /- X /- X -/ X -/ X", 1),
+        ("a /- never closed X", 0),
+        ('a "never closed X', 0),
+        ("/-- doc X\nmore -/ X", 1),
+        ("X /- X -/ X -- X\nX", 3),
+    ]
+
+    def test_table(self):
+        for text, code_x in self.CASES:
+            masked = rt.mask(text)
+            self.assertEqual(masked.count("X"), code_x, text)
+            self.assertEqual(len(masked), len(text), text)
+            self.assertEqual([i for i, ch in enumerate(text) if ch == "\n"], [i for i, ch in enumerate(masked) if ch == "\n"], text)
+
+
 if __name__ == "__main__":
     unittest.main()
