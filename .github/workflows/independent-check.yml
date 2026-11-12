@@ -67,6 +67,8 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}" }   # gh attestation verify
         run: |
           scripts/cache.sh get 2>&1 | tail -20
+          # swap after the cache is unpacked and before the build: a module at the edge of the runner's memory (tengoku#779). scripts/ci/add_swap.sh
+          scripts/ci/add_swap.sh 48 40
           # the cache may predate this commit (an older top-up is an ancestor too): build it, so the export below is
           # the tree at exactly this commit, not the cache's
           lake build Tengoku.All 2>&1 | tail -3

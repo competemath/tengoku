@@ -111,6 +111,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: scripts/cache.sh get || echo "no published cache yet — building from source"
 
+      # Swap, after the cache is unpacked (the size is what the disk can spare) and before the first build: a module at the edge of the runner's 16 GB
+      # (tengoku#779, Tengoku.PrimeGaps186: the queue's runner shut down 16 minutes into it) builds on swap instead of losing the runner. scripts/ci/add_swap.sh.
+      - name: Swap for the modules near the runner's memory (sized from the free space, 40 GB kept for the build)
+        run: scripts/ci/add_swap.sh 48 40
       - name: The toolchain, while there is network (the build below has none)
         run: |
           lake --version

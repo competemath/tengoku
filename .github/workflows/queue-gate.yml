@@ -139,6 +139,11 @@ jobs:
       # stay there (promotion builds every file again, checks vacuity, and trusts only what builds). Everything else —
       # a contributor's PR, any `sorry`, the axioms of what did build — is as strict as before.
       # decided before any Lean runs: the build step compiles the group's code and must never see a token
+      # Swap, after the cache is unpacked (the size is what the disk can spare) and before the first build: a module at the edge of the runner's 16 GB
+      # (tengoku#779, Tengoku.PrimeGaps186: the queue's runner shut down 16 minutes into it) builds on swap instead of losing the runner. scripts/ci/add_swap.sh.
+      - name: Swap for the modules near the runner's memory (sized from the free space, 40 GB kept for the build)
+        if: github.event_name == 'merge_group'
+        run: scripts/ci/add_swap.sh 48 40
       - name: Is this group only the pipeline's staging PRs?
         if: github.event_name == 'merge_group'
         id: soft
