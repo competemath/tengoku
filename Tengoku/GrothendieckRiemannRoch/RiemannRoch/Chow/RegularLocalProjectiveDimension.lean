@@ -42,7 +42,7 @@ No Tor or Koszul complex is needed.
 -/
 
 noncomputable section
-
+namespace Tengoku.GrothendieckRiemannRoch end Tengoku.GrothendieckRiemannRoch open Tengoku.GrothendieckRiemannRoch 
 universe u
 
 open CategoryTheory IsLocalRing
@@ -252,3 +252,4 @@ theorem hasProjectiveDimensionLE (d : ℕ) (hd : ringKrullDim R ≤ d)
   exact (Ideal.height_le_ringKrullDim_of_ne_top p.2.ne_top).trans hd
 
 end IsRegularRing
+-- Tengoku: root names of this library moved to Tengoku.GrothendieckRiemannRoch so they do not collide with other libraries (generated)

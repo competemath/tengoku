@@ -27,7 +27,7 @@ No claim about the geometric assembly is made here; this file is pure commutativ
 -/
 
 noncomputable section
-
+namespace Tengoku.GrothendieckRiemannRoch end Tengoku.GrothendieckRiemannRoch open Tengoku.GrothendieckRiemannRoch 
 universe u
 
 namespace IsRegularLocalRing
@@ -46,3 +46,4 @@ theorem uniqueFactorizationMonoid_of_ringKrullDim_eq_two (R : Type u) [CommRing 
     fun p _ hph ↦ isPrincipal_of_height_one hdim p hph
 
 end IsRegularLocalRing
+-- Tengoku: root names of this library moved to Tengoku.GrothendieckRiemannRoch so they do not collide with other libraries (generated)

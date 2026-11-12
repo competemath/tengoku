@@ -1,0 +1,5 @@
+leakscan: 52 global instances (2 can fire outside the library), 0 scoped; 170 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 1 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance SchemeKTheory.F14.isRegularRing_polynomial registered in Tengoku.GrothendieckRiemannRoch.RiemannRoch.RelativeRiemannRoch.PolynomialRegularF14 (declared at line 193)
+leak: instance SchemeKTheory.F14.isRegularRing_of_field registered in Tengoku.GrothendieckRiemannRoch.RiemannRoch.RelativeRiemannRoch.PolynomialRegularF14 (declared at line 200)
+root: isDomain_of_isRegularLocalRing

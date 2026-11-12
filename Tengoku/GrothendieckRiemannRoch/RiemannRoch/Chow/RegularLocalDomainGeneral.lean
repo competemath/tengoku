@@ -43,7 +43,7 @@ The only place `m²` enters is the choice of parameter; no graded ring is constr
 -/
 
 noncomputable section
-
+namespace Tengoku.GrothendieckRiemannRoch end Tengoku.GrothendieckRiemannRoch open Tengoku.GrothendieckRiemannRoch 
 universe u
 
 open IsLocalRing
@@ -130,7 +130,7 @@ satisfies `q = x · q` (each `y = r * x ∈ q` has `r ∈ q` because `x ∉ q`),
 `q = ⊥`; a prime `⊥` is exactly the domain property.
 @isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
 -/
-theorem isDomain_of_isRegularLocalRing (A : Type u) [CommRing A] [IsRegularLocalRing A] :
+theorem Tengoku.GrothendieckRiemannRoch.isDomain_of_isRegularLocalRing (A : Type u) [CommRing A] [IsRegularLocalRing A] :
     IsDomain A := by
   classical
   generalize hn : embeddingDimension A = n
@@ -200,3 +200,4 @@ namespace ModuleCat
 end ModuleCat
 
 end
+-- Tengoku: root names of this library moved to Tengoku.GrothendieckRiemannRoch so they do not collide with other libraries (generated)
