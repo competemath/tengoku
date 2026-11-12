@@ -112,6 +112,7 @@ import Tengoku.MeanFourier
 import Tengoku.LanaOka
 import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
+import Tengoku.AbelFormalization
 import Tengoku.EquationalTheories
 import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix

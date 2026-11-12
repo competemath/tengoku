@@ -1,0 +1,163 @@
+import Tengoku.AbelFormalization.AbelFormalization.RankOneIdealArtinianDescent
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Rank-one transport under polynomial algebra equivalences
+
+This file identifies the coefficient-linear action of a polynomial algebra
+equivalence on the rank-one free polynomial module with ideal mapping.  It
+also packages restriction of that action to a bounded polynomial window.
+-/
+
+noncomputable section
+
+namespace AbelFormalization
+
+variable {B : Type*} [CommRing B] {n r h : ℕ}
+
+/-- Apply a polynomial algebra equivalence in each coordinate of a finite
+free polynomial module.-/
+def polynomialAlgEquivModuleEquiv
+    (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B) :
+    artinianFreePolynomialModule B n r ≃ₗ[B]
+      artinianFreePolynomialModule B n r :=
+  LinearEquiv.piCongrRight (fun _ : Fin r ↦ J.toLinearEquiv)
+
+/--
+@isnad1 id=eq.0h6v.s10.f572c2ac1278 from=translated src=- shape=721f72de vocab=f8dd9caa
+-/
+@[simp]
+theorem polynomialAlgEquivModuleEquiv_apply
+    (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
+    (P : artinianFreePolynomialModule B n r) (k : Fin r) :
+    polynomialAlgEquivModuleEquiv J P k = J (P k) :=
+  rfl
+
+/--
+@isnad1 id=eq.0h6v.s10.8c93da7fb33c from=translated src=- shape=a1e7f870 vocab=536877c7
+-/
+@[simp]
+theorem polynomialAlgEquivModuleEquiv_symm_apply
+    (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
+    (P : artinianFreePolynomialModule B n r) (k : Fin r) :
+    (polynomialAlgEquivModuleEquiv J).symm P k = J.symm (P k) :=
+  rfl
+
+/-- Ideal mapping by an algebra equivalence is exactly coefficient-linear
+mapping of the associated rank-one polynomial submodule.
+@isnad1 id=eq.0h4v.s10.80a9ef53b871 from=translated src=- shape=8a763641 vocab=cf9f863e
+-/
+theorem rankOnePolynomialIdealSubmodule_map_algEquiv
+    (J : MvPolynomial (Fin n) B ≃ₐ[B] MvPolynomial (Fin n) B)
+    (I : Ideal (MvPolynomial (Fin n) B)) :
+    (rankOnePolynomialIdealSubmodule
+        (I.map J.toRingHom)).restrictScalars B =
+      ((rankOnePolynomialIdealSubmodule I).restrictScalars B).map
+        (polynomialAlgEquivModuleEquiv (r := 1) J).toLinearMap := by
+  ext P
+  rw [Submodule.mem_map_equiv]
+  change P ∈ rankOnePolynomialIdealSubmodule (I.map J.toRingHom) ↔
+    (polynomialAlgEquivModuleEquiv (r := 1) J).symm P ∈
+      rankOnePolynomialIdealSubmodule I
+  rw [mem_rankOnePolynomialIdealSubmodule_iff,
+    mem_rankOnePolynomialIdealSubmodule_iff]
+  change P 0 ∈ I.map J.toRingHom ↔ J.symm (P 0) ∈ I
+  rw [Ideal.mem_map_iff_of_surjective J.toRingHom J.surjective]
+  constructor
+  · rintro ⟨Q, hQ, hQP⟩
+    change J Q = P 0 at hQP
+    have hEq : J.symm (P 0) = Q := by
+      rw [← hQP, J.symm_apply_apply]
+    rw [hEq]
+    exact hQ
+  · intro hP
+    exact ⟨J.symm (P 0), hP, J.apply_symm_apply (P 0)⟩
+
+variable (G : PolynomialGradedLexData n r h)
+
+/-- The inverse of the restricted window equivalence has the expected
+ambient value.
+@isnad1 id=eq.2h8v.s13.b6305928c3af from=translated src=- shape=78421c88 vocab=6ea1ddc8
+-/
+theorem PolynomialGradedLexData.windowRestriction_symm_coe
+    (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
+    (J : artinianFreePolynomialModule B n r ≃ₗ[B]
+      artinianFreePolynomialModule B n r)
+    (hJ : (G.windowModule B hpositive D).map J.toLinearMap =
+      G.windowModule B hpositive D)
+    (P : G.windowModule B hpositive D) :
+    (G.windowRestriction hpositive D J hJ).symm P =
+      ⟨J.symm P, by
+        have himage : (P : artinianFreePolynomialModule B n r) ∈
+            (G.windowModule B hpositive D).map J.toLinearMap := by
+          rw [hJ]
+          exact P.property
+        rw [Submodule.mem_map_equiv] at himage
+        exact himage⟩ := by
+  apply (G.windowRestriction hpositive D J hJ).injective
+  apply Subtype.ext
+  simp [G.windowRestriction_coe]
+
+/-- If an ambient coefficient-linear equivalence maps one polynomial
+submodule to another and preserves the window, its restriction maps their
+bounded parts exactly.
+@isnad1 id=eq.3h9v.s12.8526a5317a34 from=translated src=- shape=9574b031 vocab=1b8490d3
+-/
+theorem PolynomialGradedLexData.polynomialWindowPart_map_equiv
+    (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
+    (J : artinianFreePolynomialModule B n r ≃ₗ[B]
+      artinianFreePolynomialModule B n r)
+    (hJ : (G.windowModule B hpositive D).map J.toLinearMap =
+      G.windowModule B hpositive D)
+    (N N' : Submodule (MvPolynomial (Fin n) B)
+      (artinianFreePolynomialModule B n r))
+    (hmap : N'.restrictScalars B =
+      (N.restrictScalars B).map J.toLinearMap) :
+    G.polynomialWindowPart hpositive D N' =
+      (G.polynomialWindowPart hpositive D N).map
+        (G.windowRestriction hpositive D J hJ).toLinearMap := by
+  ext P
+  rw [Submodule.mem_map_equiv]
+  change (P : artinianFreePolynomialModule B n r) ∈ N' ↔
+    (((G.windowRestriction hpositive D J hJ).symm P :
+      G.windowModule B hpositive D) :
+        artinianFreePolynomialModule B n r) ∈ N
+  change (P : artinianFreePolynomialModule B n r) ∈
+      N'.restrictScalars B ↔
+    (((G.windowRestriction hpositive D J hJ).symm P :
+      G.windowModule B hpositive D) :
+        artinianFreePolynomialModule B n r) ∈ N.restrictScalars B
+  rw [hmap, Submodule.mem_map_equiv]
+  change J.symm (P : artinianFreePolynomialModule B n r) ∈
+      N.restrictScalars B ↔ _
+  rw [G.windowRestriction_symm_coe]
+
+/-- Transporting both bounded parts to the ordered product turns the
+restricted action into the window conjugate used by finite descent.
+@isnad1 id=eq.3h9v.s13.d5a0cd2c72ec from=translated src=- shape=780ae43d vocab=420e2da2
+-/
+theorem PolynomialGradedLexData.polynomialWindowOrderedWeightPart_map_equiv
+    (hpositive : ∀ i, 0 < G.ordinaryDegree i) (D : ℤ)
+    (J : artinianFreePolynomialModule B n r ≃ₗ[B]
+      artinianFreePolynomialModule B n r)
+    (hJ : (G.windowModule B hpositive D).map J.toLinearMap =
+      G.windowModule B hpositive D)
+    (N N' : Submodule (MvPolynomial (Fin n) B)
+      (artinianFreePolynomialModule B n r))
+    (hmap : N'.restrictScalars B =
+      (N.restrictScalars B).map J.toLinearMap) :
+    G.polynomialWindowOrderedWeightPart hpositive D N' =
+      (G.polynomialWindowOrderedWeightPart hpositive D N).map
+        (G.windowOrderedWeightConjugate hpositive D J hJ).toLinearMap := by
+  unfold PolynomialGradedLexData.polynomialWindowOrderedWeightPart
+  rw [G.polynomialWindowPart_map_equiv hpositive D J hJ N N' hmap]
+  ext x
+  simp only [Submodule.mem_map_equiv]
+  simp only [PolynomialGradedLexData.windowOrderedWeightConjugate,
+    LinearEquiv.trans_symm, LinearEquiv.trans_apply]
+  simp only [LinearEquiv.symm_symm, LinearEquiv.symm_apply_apply]
+
+end AbelFormalization
