@@ -96,13 +96,53 @@ class AutotagBuildErrors(unittest.TestCase):
         self.assertIn("Killed", out)
         self.assertIn("Built Tengoku.Module8759", out)
 
-    def test_more_than_two_hundred_error_lines_still_end_with_the_last_lines(self):
-        flood = "".join(f"error: ./Tengoku/LeanOperads/Operad/ShuffleTree.lean:{i}:0: unknown identifier 'y{i}'\n" for i in range(400))
-        code, out = run(self.TEXT, flood + REAL_TAIL, 1)
+    # 3,000 error lines (about 250 KB, more than a pipe holds): `head` closes the pipe while grep still writes, so grep ends with SIGPIPE (exit 141) and,
+    # under `-o pipefail`, the step would stop there without the `|| true`
+    FLOOD = (
+        "".join(f"error: ./Tengoku/LeanOperads/Operad/ShuffleTree.lean:{i}:0: unknown identifier 'y{i}'\n" for i in range(3000)) + REAL_TAIL
+    )
+
+    @staticmethod
+    def flood_problems(code: int, out: str) -> list[str]:
+        shown = out.count("unknown identifier 'y")
+        problems = []
+        if code == 0:
+            problems.append("the step passed")
+        if not 200 <= shown <= 240:  # the capped error lines, then the last 40 lines (39 of them errors, plus the tail of the build)
+            problems.append(f"{shown} error lines shown, not 200 to 240")
+        if not out.rstrip().endswith("error: build failed"):
+            problems.append("the last lines of the build were not shown")
+        return problems
+
+    def test_more_than_two_hundred_error_lines_are_capped_and_the_last_lines_still_come(self):
+        self.assertEqual(self.flood_problems(*run(self.TEXT, self.FLOOD, 1)), [])
+
+    def test_mutants_of_the_cap_are_caught(self):
+        # Gitar on #783: the first version of this test passed with the cap or the `|| true` removed
+        no_cap = self.TEXT.replace(" | head -200 || true", " || true")
+        no_true = self.TEXT.replace(" | head -200 || true", " | head -200")
+        for label, text in (("no cap", no_cap), ("no || true", no_true)):
+            self.assertNotEqual(text, self.TEXT, label)
+            self.assertNotEqual(self.flood_problems(*run(text, self.FLOOD, 1)), [], label)
+
+    def test_mutant_the_first_version_shows_nothing_for_a_killed_build(self):
+        # the version Gitar flagged on #782: grep finding nothing ends the step under -e before anything is printed
+        lines = self.TEXT.splitlines(keepends=True)
+        a = next(i for i, ln in enumerate(lines) if ln.lstrip().startswith("{ grep"))
+        b = next(i for i, ln in enumerate(lines) if ln.strip() == "tail -40 tagged-build.log")
+        pad = lines[a][: len(lines[a]) - len(lines[a].lstrip())]
+        first = "".join(
+            lines[:a]
+            + [f"{pad}grep -E -A4 '(^|: )error' tagged-build.log | head -200\n", f"{pad}tail -3 tagged-build.log\n"]
+            + lines[b + 1 :]
+        )
+        self.assertNotEqual(first, self.TEXT)
+        killed = "".join(f"\u2714 [{i}/8773] Built Tengoku.Module{i}\n" for i in range(8700, 8760)) + "Killed\n"
+        code, out = run(first, killed, 137)
         self.assertNotEqual(code, 0)
-        self.assertIn("unknown identifier 'y0'", out)
-        self.assertNotIn("unknown identifier 'y399'\n- Tengoku", out.split("error: build failed")[0][-10:])  # capped
-        self.assertTrue(out.rstrip().endswith("error: build failed"))  # the tail still came
+        self.assertNotIn("Killed", out)  # nothing of the build reached the log
+        code, out = run(self.TEXT, killed, 137)  # and the step as it is now shows it
+        self.assertIn("Killed", out)
 
     def test_mutant_the_step_as_it_was_hides_the_error(self):
         old = self.TEXT
