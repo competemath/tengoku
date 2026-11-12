@@ -1,0 +1,1 @@
+-- AbelFormalization: a factory bundle (data/intake/abel-formalization). This file only marks the library for Tengoku/All.lean.

@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "047a68fa61957169a52ecf553480d80f038c00585aac91b01d7ce26c9f22e8f1",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "abel-formalization",
+ "lint_mode": "proposed",
+ "modules": 202,
+ "part": 1,
+ "theorems": 1567
+}
