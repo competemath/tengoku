@@ -105,6 +105,7 @@ import Tengoku.LerayHopf
 import Tengoku.UniformSheafyTateDomains
 import Tengoku.Imoshortlist
 import Tengoku.NavierStokesEuler
+import Tengoku.PalomarQseriesRowFactorization
 import Tengoku.Formalbook
 import Tengoku.MiyaokaMoriCharzero
 import Tengoku.GrothendieckRiemannRoch

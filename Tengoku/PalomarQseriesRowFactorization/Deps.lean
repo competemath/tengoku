@@ -1,0 +1,1 @@
+-- PalomarQseriesRowFactorization: a factory bundle (data/intake/palomar-qseries-row-factorization). This file only marks the library for Tengoku/All.lean.

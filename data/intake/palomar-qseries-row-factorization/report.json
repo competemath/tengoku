@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "331b505255375e3c8b573a7fa988d3e53fe1126b1ff52595667bb487dbe294af",
+ "factory_changes": {
+  "inert lines removed": 11,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "palomar-qseries-row-factorization",
+ "lint_mode": "proposed",
+ "modules": 31,
+ "part": 1,
+ "theorems": 977
+}
