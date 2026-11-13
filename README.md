@@ -69,7 +69,7 @@ If you are unsure if an issue is a security problem, assume it is.
 
 - [Why Tengoku does not trust the toolchain](docs/why-cynical.md): case studies of Lean 4 failures
 - [How Tengoku stays reliable](docs/reliability.md)
-- [Training on Tengoku](docs/for-labs.md): what labs must do, and what we ask
+- [Training on Tengoku](docs/for-labs.md): licence terms, how to cite, and what to re-sync
 - [What Tengoku checks](docs/why-tengoku.md)
 - [The full manual](https://competemath.com/about/tengoku)
 - [Security and licence compliance](docs/openchain/README.md) (OpenChain ISO/IEC 18974 and 5230)

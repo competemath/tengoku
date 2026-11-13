@@ -1,33 +1,23 @@
-# Training on Tengoku
+# Using Tengoku as training data
 
-For labs, and anyone building a model or dataset from Tengoku.
+Tengoku is Apache-2.0, and each source library stays under its own licence (listed in [the allowlist](../schemas/sources.json)). All of them permit training. You do not need to ask us first. This page is the short version of what to do.
 
-Tengoku is Apache-2.0, and every registered source stays under its own licence; all of them permit training. This page says what those licences require, what we ask on top, and how commitments are recorded.
-
-## Required
-
-These are conditions of the licences and of using CompeteMath's names.
+## What the licences require
 
 1. **Keep the notices.** Keep the copyright and attribution notices of everything you reproduce, and ship [NOTICE](../NOTICE) and the licence texts alongside (Apache-2.0 section 4).
 2. **Say what you changed.** A modified copy states its changes (section 4(b)).
-3. **Do not imply endorsement.** The name "CompeteMath", and the names of its sub-services, are not to be used in any way to suggest they back or endorse whatever you use data from this repository for.
+3. **Do not imply endorsement.** Do not use the name "CompeteMath", or the names of its services, to suggest they back your model or dataset.
 
-For the hosted services (the search API, the MCP tools, Leak): they are for interactive use. Bulk data comes from the repository and its releases, not from crawling the services, which may be blocked.
+## What we ask
 
-## Asked of every lab that trains on Tengoku
-
-1. **Name it.** Cite Tengoku ([10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)) and give the release or commit you used in your training-data summary and model card. Providers of general-purpose AI models on the EU market must publish such a summary (AI Act, Article 53(1)(d)): from 2 August 2025, and by 2 August 2027 for models already on the market before then.
+1. **Cite it, and say which commit.** Cite Tengoku ([10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)) in your dataset or model documentation, with the commit you used. Versioned releases are rare, so a commit hash is the reliable version (see [releases](releases.md)).
 2. **Keep provenance with each example.** A record's `library` and `source_url` (where its notices live) and its `Author:` line travel with it into any dataset you build or publish.
-3. **Honour retractions.** A retracted record (a tombstone line in `data/trusted/`) or a library removed from [the allowlist](../schemas/sources.json) is dropped from your next training run and from any data you publish. Re-sync at each release.
-4. **Keep evaluations clean.** Tengoku includes public formalisations of competition problems (Compfiles, IMO shortlist) and other solutions. Decontaminate before reporting results on miniF2F, PutnamBench or similar, and publish your method and hit counts.
-5. **Describe our labels accurately.** `trusted` means the relevant library checks have passed. It does not mean a mathematician has read the statement.
-6. **Report errors.** A wrong or misleading statement goes to [Issues](https://github.com/competemath/tengoku/issues/new).
+3. **Re-sync before each new training run.** Sometimes a record is retracted or a library or module is removed. Pull the latest and drop what has gone: tombstone lines in `data/trusted/`, libraries no longer in the allowlist, and modules with a marker in `data/raze/` ([PR classes](pr-classes.md), section 8). A removed library can come back rebuilt, so do not mix in old copies. Drop them from any data you publish as well. This applies to future runs; we do not ask you to change a model you have already trained.
+4. **Decontaminate.** Tengoku includes public formalisations of competition problems (Compfiles, IMO shortlist). Check for overlap before you report results on miniF2F, PutnamBench or similar.
+5. **Describe `trusted` accurately.** It means the automated checks passed (builds, no `sorry`, standard axioms only, assumptions not contradictory). It does not mean a mathematician has read the statement.
+6. **Report problems.** A wrong statement, a credit that should change, or a removal request: [open an issue](https://github.com/competemath/tengoku/issues/new).
 7. **Give back.** Proofs your models find for open statements, once verified, come in through [the usual route](how-a-pr-flows.md) with an `Author:` line.
 
-## Commitments
+## Bulk data and the hosted services
 
-A lab that publicly commits to the section above is listed here, with the date and a link to its statement. To be listed, open a pull request adding a row.
-
-| Lab | Date | Statement |
-| --- | --- | --- |
-| None yet | | |
+Take bulk data from this repository and its releases. The search API, the MCP tools and Leak are for interactive use, and crawling them may be blocked.
