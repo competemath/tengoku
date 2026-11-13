@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "dddc836cb7d6e3ecb193709ef2bef009312edb48b8c2cc0a092273f99f767d46",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "lean-eval-pi-succ-sphere-n-mulequiv-zmod-two",
+ "lint_mode": "proposed",
+ "modules": 69,
+ "part": 1,
+ "theorems": 660
+}

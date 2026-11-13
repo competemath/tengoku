@@ -1,0 +1,293 @@
+import Tengoku
+import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo.Submission.AmbientIsotopyCobordism
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Relative composition of ambient normalization moves
+
+Normalizing a finite framed fiber component-by-component requires two facts
+which are not contained in the one-isotopy sweep construction:
+
+* ambient isotopies can be composed while remaining a smooth ambient isotopy;
+* an isotopy which fixes an already-normalized set sweeps a literal product
+  over that set.
+
+The final construction in this file is the normalization primitive used by a
+per-orbit induction.  It composes, as actual signed cobordisms, an ambient
+isotopy of the embedded fiber, a common-fiber homotopy of its defining map
+(the frame-normalization step), and interpolation to any target label with the
+same sign pattern.  No cobordism-existence field or additional geometric
+axiom is introduced.
+-/
+
+noncomputable section
+
+open Set Function Metric
+open scoped Topology ContDiff RealInnerProductSpace
+
+namespace Submission
+
+variable {n : ℕ}
+
+local notation "E" => EuclideanSpace ℝ (Fin (n + 1))
+
+namespace SmoothAmbientIsotopy
+
+/-! ## Identity and pointwise composition -/
+
+/-- The constant identity ambient isotopy.-/
+def refl (n : ℕ) : SmoothAmbientIsotopy n where
+  forward _ x := x
+  inverse _ x := x
+  forward_smooth := contDiff_snd
+  inverse_smooth := contDiff_snd
+  forward_zero := rfl
+  left_inv := by
+    intro _ _ x
+    rfl
+  right_inv := by
+    intro _ _ x
+    rfl
+  inverse_fderiv_surjective := by
+    intro _ _ x
+    have hfd : fderiv ℝ (fun y : EuclideanSpace ℝ (Fin (n + 1)) => y) x =
+        ContinuousLinearMap.id ℝ (EuclideanSpace ℝ (Fin (n + 1))) :=
+      (hasFDerivAt_id x).fderiv
+    rw [hfd]
+    intro y
+    exact ⟨y, rfl⟩
+
+/--
+@isnad1 id=eq.0h3v.s5.5ac5ea31db1e from=translated src=- shape=82f00a25 vocab=0b757b7b
+-/
+@[simp] theorem refl_forward (s : ℝ) (x : E) :
+    (refl n).forward s x = x :=
+  rfl
+
+/--
+@isnad1 id=eq.0h3v.s5.8fcff2557037 from=translated src=- shape=82f00a25 vocab=dff6b5b1
+-/
+@[simp] theorem refl_inverse (s : ℝ) (x : E) :
+    (refl n).inverse s x = x :=
+  rfl
+
+/-- Pointwise composition of ambient isotopies.
+
+At each time, `A.followedBy B` first applies `A` and then `B`.  Its inverse therefore
+applies the inverses in the opposite order.  This operation is particularly
+useful for combining finitely many relative, component-supported moves: their
+endpoint diffeomorphism is the desired composition without inserting any new
+regularity hypothesis.-/
+def followedBy (A B : SmoothAmbientIsotopy n) : SmoothAmbientIsotopy n where
+  forward s x := B.forward s (A.forward s x)
+  inverse s x := A.inverse s (B.inverse s x)
+  forward_smooth := B.forward_smooth.comp
+    (contDiff_fst.prodMk A.forward_smooth)
+  inverse_smooth := A.inverse_smooth.comp
+    (contDiff_fst.prodMk B.inverse_smooth)
+  forward_zero := by
+    funext x
+    rw [A.forward_zero, B.forward_zero]
+    rfl
+  left_inv := by
+    intro s hs x
+    change A.inverse s (B.inverse s (B.forward s (A.forward s x))) = x
+    rw [B.left_inv s hs, A.left_inv s hs]
+  right_inv := by
+    intro s hs x
+    change B.forward s (A.forward s (A.inverse s (B.inverse s x))) = x
+    rw [A.right_inv s hs, B.right_inv s hs]
+  inverse_fderiv_surjective := by
+    intro s hs x
+    have hchain :
+        fderiv ℝ (fun y : E => A.inverse s (B.inverse s y)) x =
+          (fderiv ℝ (A.inverse s) (B.inverse s x)).comp
+            (fderiv ℝ (B.inverse s) x) := by
+      exact (((A.contDiff_inverse_slice s).differentiable (by simp) _).hasFDerivAt.comp x
+        ((B.contDiff_inverse_slice s).differentiable (by simp) x).hasFDerivAt).fderiv
+    rw [hchain]
+    exact (A.inverse_fderiv_surjective s hs (B.inverse s x)).comp
+      (B.inverse_fderiv_surjective s hs x)
+
+/--
+@isnad1 id=eq.0h5v.s5.0a3a59aa9360 from=translated src=- shape=608a59a2 vocab=cb341e79
+-/
+@[simp] theorem followedBy_forward (A B : SmoothAmbientIsotopy n) (s : ℝ) (x : E) :
+    (A.followedBy B).forward s x = B.forward s (A.forward s x) :=
+  rfl
+
+/--
+@isnad1 id=eq.0h5v.s5.101f4ce1c5ae from=translated src=- shape=feb796de vocab=c7bb024f
+-/
+@[simp] theorem followedBy_inverse (A B : SmoothAmbientIsotopy n) (s : ℝ) (x : E) :
+    (A.followedBy B).inverse s x = A.inverse s (B.inverse s x) :=
+  rfl
+
+/-- Finite pointwise composition, in list order.  Thus `[A, B]` has endpoint
+map `B₁ ∘ A₁`.-/
+def composeList : List (SmoothAmbientIsotopy n) → SmoothAmbientIsotopy n
+  | [] => refl n
+  | A :: tail => A.followedBy (composeList tail)
+
+/--
+@isnad1 id=eq.0h1v.s3.3d38ce233f6b from=translated src=- shape=8db5b4ae vocab=276e1a67
+-/
+@[simp] theorem composeList_nil :
+    composeList ([] : List (SmoothAmbientIsotopy n)) = refl n :=
+  rfl
+
+/--
+@isnad1 id=eq.0h3v.s4.0972f492e3cb from=translated src=- shape=27b68323 vocab=f4e0e507
+-/
+@[simp] theorem composeList_cons (A : SmoothAmbientIsotopy n)
+    (tail : List (SmoothAmbientIsotopy n)) :
+    composeList (A :: tail) = A.followedBy (composeList tail) :=
+  rfl
+
+/-! ## Relative fixed sets -/
+
+/-- An ambient isotopy is stationary on `K` throughout the geometric time
+interval.-/
+def FixedOn (A : SmoothAmbientIsotopy n) (K : Set E) : Prop :=
+  ∀ s ∈ Icc (0 : ℝ) 1, ∀ x ∈ K, A.forward s x = x
+
+/--
+@isnad1 id=fixedon.0h2v.s4.ed8aedb32b19 from=translated src=- shape=f95f1558 vocab=42294a94
+-/
+theorem fixedOn_refl (K : Set E) : (refl n).FixedOn K := by
+  intro s hs x hx
+  rfl
+
+/-- Pointwise composition preserves every common relative fixed set.
+@isnad1 id=fixedon.2h4v.s5.3199425e7b99 from=translated src=- shape=5f94ef3b vocab=b2dd1533
+-/
+theorem FixedOn.followedBy {A B : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) (hB : B.FixedOn K) : (A.followedBy B).FixedOn K := by
+  intro s hs x hx
+  rw [followedBy_forward, hA s hs x hx, hB s hs x hx]
+
+/-- Restricting the set of stationary points preserves relative fixedness.
+@isnad1 id=fixedon.2h4v.s6.d3fbcce9c3e0 from=translated src=- shape=e2768f49 vocab=af1af559
+-/
+theorem FixedOn.mono {A : SmoothAmbientIsotopy n} {K L : Set E}
+    (hA : A.FixedOn K) (hLK : L ⊆ K) : A.FixedOn L := by
+  intro s hs x hx
+  exact hA s hs x (hLK hx)
+
+/-- A finite family of moves fixing the same set can be composed into one
+ambient isotopy which still fixes that set.
+@isnad1 id=fixedon.1h3v.s5.129e24130ce6 from=translated src=- shape=964b685a vocab=0d4a7c60
+-/
+theorem fixedOn_composeList {K : Set E} :
+    ∀ (moves : List (SmoothAmbientIsotopy n)),
+      (∀ A ∈ moves, A.FixedOn K) → (composeList moves).FixedOn K
+  | [], _ => fixedOn_refl K
+  | A :: tail, h => by
+      apply FixedOn.followedBy
+      · exact h A (by simp)
+      · apply fixedOn_composeList tail
+        intro B hB
+        exact h B (by simp [hB])
+
+/-- The inverse of a relative ambient isotopy fixes the same set.
+@isnad1 id=eq.3h5v.s7.f5943dfcfcb1 from=translated src=- shape=06d35a16 vocab=ac6009df
+-/
+theorem FixedOn.inverse_eq {A : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) {s : ℝ} (hs : s ∈ Icc (0 : ℝ) 1)
+    {x : E} (hx : x ∈ K) : A.inverse s x = x := by
+  have hleft := A.left_inv s hs x
+  rw [hA s hs x hx] at hleft
+  exact hleft
+
+/-- Along a relative fixed set the inverse track used by the swept
+cobordism is literally the spatial projection.
+@isnad1 id=eq.2h4v.s11.e7132447cd60 from=translated src=- shape=870a407b vocab=f110e837
+-/
+theorem FixedOn.inverseTrack_eq {A : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
+    (hv : initCLM (n + 1) v ∈ K) :
+    A.inverseTrack v = initCLM (n + 1) v := by
+  exact hA.inverse_eq
+    ⟨normRamp_nonneg (vertC v), normRamp_le_one (vertC v)⟩ hv
+
+/-- The transported endpoint defining map is unchanged on a relative fixed
+set.
+@isnad1 id=eq.2h5v.s6.9fda4cfbbc7d from=translated src=- shape=ec357dbb vocab=84fdc979
+-/
+theorem FixedOn.pullback_g_eq {A : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) (X : FramedLevelSet n) {x : E} (hx : x ∈ K) :
+    (A.pullback X).g x = X.g x := by
+  rw [A.pullback_g, hA.inverse_eq ⟨zero_le_one, le_rfl⟩ hx]
+
+/-- The transported endpoint label is unchanged on a relative fixed set.
+@isnad1 id=eq.2h6v.s6.e140a0b29476 from=translated src=- shape=7e6ec6d7 vocab=480c5b8f
+-/
+theorem FixedOn.pullbackSign_eq {A : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) {X : FramedLevelSet n} (S : FiberSign X)
+    {x : E} (hx : x ∈ K) :
+    A.pullbackSign S x = S x := by
+  rw [A.pullbackSign_apply, hA.inverse_eq ⟨zero_le_one, le_rfl⟩ hx]
+
+/-- The swept defining map is a literal product over every relative fixed
+point, at every (not necessarily collar) time.
+@isnad1 id=eq.2h6v.s6.632c065f7b13 from=translated src=- shape=b390c5a9 vocab=3014c567
+-/
+theorem FixedOn.cobordism_product {A : SmoothAmbientIsotopy n} {K : Set E}
+    (hA : A.FixedOn K) (X : FramedLevelSet n) {x : E} (hx : x ∈ K)
+    (t : ℝ) :
+    (A.cobordism X).G (spaceTime x t) = X.g x := by
+  change X.g (A.inverseTrack (spaceTime x t)) = X.g x
+  rw [hA.inverseTrack_eq (by rwa [initCLM_spaceTime])]
+  rw [initCLM_spaceTime]
+
+/-- The swept sign is likewise a literal product over every relative fixed
+point.
+@isnad1 id=eq.2h7v.s7.d5f3af19f46a from=translated src=- shape=355808af vocab=1bdea70f
+-/
+theorem FixedOn.signedCobordism_product {A : SmoothAmbientIsotopy n}
+    {K : Set E} (hA : A.FixedOn K) {X : FramedLevelSet n} (S : FiberSign X)
+    {x : E} (hx : x ∈ K) (t : ℝ) :
+    A.signedCobordism S (spaceTime x t) = S x := by
+  change S (A.inverseTrack (spaceTime x t)) = S x
+  rw [hA.inverseTrack_eq (by rwa [initCLM_spaceTime])]
+  rw [initCLM_spaceTime]
+
+/-! ## Ambient move, frame normalization, and label normalization -/
+
+/-- The concrete three-stage primitive for one orbit-normalization step.
+
+First the ambient isotopy moves the embedded fiber.  Next `D` changes only
+the defining equations on that moved fiber, which is exactly the normal-frame
+homotopy.  Finally the sign label is interpolated to the chosen target label.
+The sole sign hypothesis is the necessary pointwise equality of sign patterns
+on the target fiber.-/
+def signedNormalizationCobordism
+    (A : SmoothAmbientIsotopy n) {X Y : FramedLevelSet n}
+    (D : DefiningMapHomotopy (A.pullback X) Y)
+    (S : FiberSign X) (T : FiberSign Y)
+    (hpos : ∀ x ∈ Y.fiber,
+      (0 < (A.pullbackSign S).restrict D.fiber_subset x ↔ 0 < T x)) :
+    SignedFramedLevelCobordism S T :=
+  SignedFramedLevelCobordism.trans (A.signedCobordism S)
+    (SignedFramedLevelCobordism.trans
+      (D.signedCobordism (A.pullbackSign S))
+      (signInterpolationCobordism
+        ((A.pullbackSign S).restrict D.fiber_subset) T hpos))
+
+/-- Existence form of `signedNormalizationCobordism`, ready to compose in the
+`ConfigurationReductionKit.configure` induction.
+@isnad1 id=nonempty.1h7v.s7.f82249c7142a from=translated src=- shape=197483d0 vocab=0d9f8419
+-/
+theorem nonempty_signedNormalizationCobordism
+    (A : SmoothAmbientIsotopy n) {X Y : FramedLevelSet n}
+    (D : DefiningMapHomotopy (A.pullback X) Y)
+    (S : FiberSign X) (T : FiberSign Y)
+    (hpos : ∀ x ∈ Y.fiber,
+      (0 < (A.pullbackSign S).restrict D.fiber_subset x ↔ 0 < T x)) :
+    Nonempty (SignedFramedLevelCobordism S T) :=
+  ⟨signedNormalizationCobordism A D S T hpos⟩
+
+end SmoothAmbientIsotopy
+
+end Submission
