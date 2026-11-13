@@ -26,7 +26,9 @@ open Polynomial Finset
 open CommutatorTheorem.BTRealStabilityClosure
 open CommutatorTheorem.BTDeterminantStability
 
-/-- A genuinely stable polynomial belongs to the stable-or-zero class.-/
+/-- A genuinely stable polynomial belongs to the stable-or-zero class.
+@isnad1 id=mvstable.1h2v.s3.05c5ac351a07 from=translated src=- shape=fb9347d1 vocab=ddf3d39a
+-/
 theorem mvStableOrZero_of_complexStable {σ : Type*}
     {p : MvPolynomial σ ℂ} (hp : ComplexStable p) :
     MvStableOrZero p :=
@@ -39,16 +41,24 @@ noncomputable def iteratedPDeriv {σ R : Type*} [CommSemiring R] :
   | [], p => p
   | i :: is, p => iteratedPDeriv is (MvPolynomial.pderiv i p)
 
+/--
+@isnad1 id=eq.0h3v.s4.baacf1f54cf8 from=translated src=- shape=df717da6 vocab=2da1feff
+-/
 @[simp] theorem iteratedPDeriv_nil {σ R : Type*} [CommSemiring R]
     (p : MvPolynomial σ R) :
     iteratedPDeriv [] p = p := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.260e87f5195e from=translated src=- shape=a2a886e4 vocab=1fdc9219
+-/
 @[simp] theorem iteratedPDeriv_cons {σ R : Type*} [CommSemiring R]
     (i : σ) (is : List σ) (p : MvPolynomial σ R) :
     iteratedPDeriv (i :: is) p =
       iteratedPDeriv is (MvPolynomial.pderiv i p) := rfl
 
-/-- Repeated partial differentiation commutes with coefficient maps.-/
+/-- Repeated partial differentiation commutes with coefficient maps.
+@isnad1 id=eq.0h6v.s8.3563fee65978 from=translated src=- shape=226f36e2 vocab=384e2af2
+-/
 theorem iteratedPDeriv_map {σ R S : Type*}
     [CommSemiring R] [CommSemiring S] (φ : R →+* S)
     (is : List σ) (p : MvPolynomial σ R) :
@@ -65,7 +75,9 @@ theorem iteratedPDeriv_map {σ R S : Type*}
 
 -- Preserve the existing parameter list for downstream callers.
 /-- The multivariate Gauss--Lucas/Hurwitz statement propagates stability
-through any finite sequence of coordinate derivatives.-/
+through any finite sequence of coordinate derivatives.
+@isnad1 id=mvstable.2h3v.s4.8a96edb4e057 from=translated src=- shape=c4f6b855 vocab=361a9dcf
+-/
 theorem mvStableOrZero_iteratedPDeriv
     (H : MultivariateGaussLucasHurwitz)
     {σ : Type} [Fintype σ] [DecidableEq σ]
@@ -82,7 +94,9 @@ noncomputable def diagonalizeReal {σ : Type*}
     (p : MvPolynomial σ ℝ) : ℝ[X] :=
   MvPolynomial.eval₂ Polynomial.C (fun _ : σ ↦ Polynomial.X) p
 
-/-- Complexification commutes with diagonal specialization.-/
+/-- Complexification commutes with diagonal specialization.
+@isnad1 id=eq.0h2v.s7.a5257007b873 from=translated src=- shape=94a258b8 vocab=4cf7292d
+-/
 theorem map_diagonalizeReal {σ : Type*} (p : MvPolynomial σ ℝ) :
     (diagonalizeReal p).map Complex.ofRealHom =
       diagonalize (MvPolynomial.map Complex.ofRealHom p) := by
@@ -99,7 +113,9 @@ theorem map_diagonalizeReal {σ : Type*} (p : MvPolynomial σ ℝ) :
     simp
 
 /-- A nonzero stable-or-zero complexification has a real-rooted real
-diagonal specialization.-/
+diagonal specialization.
+@isnad1 id=realroot.2h2v.s7.7ba6982cf098 from=translated src=- shape=613824b5 vocab=32419098
+-/
 theorem realRooted_diagonalizeReal_of_stable
     {σ : Type*} {p : MvPolynomial σ ℝ}
     (hp : MvStableOrZero (MvPolynomial.map Complex.ofRealHom p))

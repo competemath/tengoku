@@ -37,13 +37,17 @@ limits and derivatives of stable polynomials.-/
 def UnivariateStableOrZero (p : ℂ[X]) : Prop :=
   p = 0 ∨ UnivariateUpperStable p
 
-/-- The closed lower half-plane is convex over `ℝ`.-/
+/-- The closed lower half-plane is convex over `ℝ`.
+@isnad1 id=convex.0h0v.s5.a3c6d76905c7 from=translated src=- shape=82a3f6fd vocab=6dfa8021
+-/
 theorem convex_closedLowerHalfPlane :
     Convex ℝ {z : ℂ | z.im ≤ 0} :=
   convex_halfSpace_le Complex.imCLM.isLinear 0
 
 /-- Gauss--Lucas gives the one-variable derivative closure without any extra
-analytic input.-/
+analytic input.
+@isnad1 id=univaria.1h1v.s6.012e58d01ce0 from=translated src=- shape=0aa3bd50 vocab=adbfb1ed
+-/
 theorem UnivariateStableOrZero.derivative {p : ℂ[X]}
     (hp : UnivariateStableOrZero p) :
     UnivariateStableOrZero p.derivative := by
@@ -79,15 +83,23 @@ def MvStableOrZero {σ : Type*} (p : MvPolynomial σ ℂ) : Prop :=
   p = 0 ∨ ∀ z : σ → ℂ, (∀ i, InUpperHalfPlane (z i)) →
     MvPolynomial.eval z p ≠ 0
 
+/--
+@isnad1 id=mvstable.0h1v.s5.b61886285f6f from=translated src=- shape=eb105b30 vocab=ccec2937
+-/
 theorem mvStableOrZero_zero {σ : Type*} :
     MvStableOrZero (0 : MvPolynomial σ ℂ) := Or.inl rfl
 
+/--
+@isnad1 id=mvstable.0h1v.s5.744f054ae8c9 from=translated src=- shape=eb105b30 vocab=ccec2937
+-/
 theorem mvStableOrZero_one {σ : Type*} :
     MvStableOrZero (1 : MvPolynomial σ ℂ) := by
   right
   simp
 
-/-- Stability is closed under products.-/
+/-- Stability is closed under products.
+@isnad1 id=mvstable.2h3v.s5.f59a2d5c7a95 from=translated src=- shape=42c9f699 vocab=f124d0d9
+-/
 theorem MvStableOrZero.mul {σ : Type*} {p q : MvPolynomial σ ℂ}
     (hp : MvStableOrZero p) (hq : MvStableOrZero q) :
     MvStableOrZero (p * q) := by
@@ -101,7 +113,9 @@ theorem MvStableOrZero.mul {σ : Type*} {p q : MvPolynomial σ ℂ}
   exact mul_ne_zero (hp z hz) (hq z hz)
 
 -- Preserve the existing parameter list for downstream callers.
-/-- A finite product of stable-or-zero polynomials is stable-or-zero.-/
+/-- A finite product of stable-or-zero polynomials is stable-or-zero.
+@isnad1 id=mvstable.1h4v.s6.c5fb346865f9 from=translated src=- shape=44cde793 vocab=7219cbbc
+-/
 theorem mvStableOrZero_prod {ι σ : Type*} [DecidableEq ι]
     {s : Finset ι} {p : ι → MvPolynomial σ ℂ}
     (hp : ∀ i ∈ s, MvStableOrZero (p i)) :
@@ -113,7 +127,9 @@ theorem mvStableOrZero_prod {ι σ : Type*} [DecidableEq ι]
       exact (hp i (by simp)).mul (ih fun j hj ↦ hp j (by simp [hj]))
 
 /-- Identifying variables preserves stability; if the identification makes
-the polynomial identically zero, the zero alternative applies.-/
+the polynomial identically zero, the zero alternative applies.
+@isnad1 id=mvstable.1h4v.s7.92006337ac42 from=translated src=- shape=cc88a77d vocab=2a087de0
+-/
 theorem MvStableOrZero.rename {σ τ : Type*}
     {p : MvPolynomial σ ℂ} (hp : MvStableOrZero p) (f : σ → τ) :
     MvStableOrZero (MvPolynomial.rename f p) := by
@@ -130,6 +146,9 @@ theorem MvStableOrZero.rename {σ τ : Type*}
 noncomputable def diagonalize {σ : Type*} (p : MvPolynomial σ ℂ) : ℂ[X] :=
   MvPolynomial.eval₂ Polynomial.C (fun _ : σ ↦ Polynomial.X) p
 
+/--
+@isnad1 id=eq.0h3v.s6.f8c349e57ae1 from=translated src=- shape=d5b918ab vocab=fddedff2
+-/
 theorem eval_diagonalize {σ : Type*} (p : MvPolynomial σ ℂ) (z : ℂ) :
     (diagonalize p).eval z = MvPolynomial.eval (fun _ ↦ z) p := by
   change Polynomial.evalRingHom z
@@ -145,7 +164,9 @@ theorem eval_diagonalize {σ : Type*} (p : MvPolynomial σ ℂ) (z : ℂ) :
     simp
   rw [hc, hx, MvPolynomial.eval₂_id]
 
-/-- Multivariate stability descends to the diagonal univariate polynomial.-/
+/-- Multivariate stability descends to the diagonal univariate polynomial.
+@isnad1 id=univaria.1h2v.s3.33c5860667c4 from=translated src=- shape=a7e87d82 vocab=855a353e
+-/
 theorem MvStableOrZero.diagonalize {σ : Type*}
     {p : MvPolynomial σ ℂ} (hp : MvStableOrZero p) :
     UnivariateStableOrZero (diagonalize p) := by
@@ -173,7 +194,9 @@ def MultivariateGaussLucasHurwitz : Prop :=
 
 -- Preserve the existing parameter list for downstream callers.
 /-- The Hurwitz closure implies ordinary coordinate partial-derivative
-closure.-/
+closure.
+@isnad1 id=mvstable.2h3v.s7.056f12525eae from=translated src=- shape=d9a76c27 vocab=e703b1af
+-/
 theorem mvStableOrZero_pderiv_of_gaussLucasHurwitz
     (H : MultivariateGaussLucasHurwitz)
     {σ : Type} [Fintype σ] [DecidableEq σ]
@@ -198,7 +221,9 @@ theorem mvStableOrZero_pderiv_of_gaussLucasHurwitz
 
 /-- If the complexification of a real polynomial is upper-half-plane
 nonvanishing, then all of its complex roots are real, hence it splits over
-`ℝ`.-/
+`ℝ`.
+@isnad1 id=realroot.1h1v.s3.d4bb7c125605 from=translated src=- shape=79b43a03 vocab=272116f0
+-/
 theorem realRooted_of_map_upperStable {p : ℝ[X]}
     (hp : UnivariateUpperStable (p.map Complex.ofRealHom)) :
     CommutatorTheorem.RealRooted p := by

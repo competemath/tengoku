@@ -37,7 +37,9 @@ structure IsLargestRoot (p : ℝ[X]) (x : ℝ) : Prop where
   isRoot : p.IsRoot x
   upperBound : IsRootUpperBound p x
 
-/-- A monic real-rooted polynomial is nonnegative to the right of all its roots.-/
+/-- A monic real-rooted polynomial is nonnegative to the right of all its roots.
+@isnad1 id=le.3h2v.s5.8e213df72799 from=translated src=- shape=6f95fb8f vocab=6ed6790a
+-/
 lemma RealRooted.eval_nonneg_of_rootUpperBound {p : ℝ[X]} (hp : RealRooted p)
     (hmonic : p.Monic) {x : ℝ} (hx : IsRootUpperBound p x) :
     0 ≤ p.eval x := by
@@ -46,7 +48,9 @@ lemma RealRooted.eval_nonneg_of_rootUpperBound {p : ℝ[X]} (hp : RealRooted p)
   intro r hr
   exact sub_nonneg.mpr (hx r ((mem_roots hmonic.ne_zero).mp hr))
 
-/-- A monic real-rooted polynomial is positive strictly to the right of all its roots.-/
+/-- A monic real-rooted polynomial is positive strictly to the right of all its roots.
+@isnad1 id=lt.3h2v.s5.2c30af1f8cbe from=translated src=- shape=6f95fb8f vocab=238a1bc3
+-/
 lemma RealRooted.eval_pos_of_strictRootUpperBound {p : ℝ[X]} (hp : RealRooted p)
     (hmonic : p.Monic) {x : ℝ} (hx : IsStrictRootUpperBound p x) :
     0 < p.eval x := by
@@ -56,7 +60,9 @@ lemma RealRooted.eval_pos_of_strictRootUpperBound {p : ℝ[X]} (hp : RealRooted 
   obtain ⟨r, hr, rfl⟩ := Multiset.mem_map.mp hy
   exact sub_pos.mpr (hx r ((mem_roots hmonic.ne_zero).mp hr))
 
-/-- Every nonconstant real-rooted polynomial has a largest real root.-/
+/-- Every nonconstant real-rooted polynomial has a largest real root.
+@isnad1 id=ex.2h1v.s4.3cd7db543b03 from=translated src=- shape=cf93cd80 vocab=5d54459e
+-/
 lemma RealRooted.exists_largestRoot {p : ℝ[X]} (hp : RealRooted p)
     (hdeg : 0 < p.natDegree) : ∃ x, IsLargestRoot p x := by
   have hp0 : p ≠ 0 := by
@@ -78,7 +84,9 @@ lemma RealRooted.exists_largestRoot {p : ℝ[X]} (hp : RealRooted p)
     simpa [rootsFinset, mem_roots hp0] using hy
   exact Finset.le_max' rootsFinset y hymem
 
-/-- The final entry of the ascending sorted root list is a largest root.-/
+/-- The final entry of the ascending sorted root list is a largest root.
+@isnad1 id=islarges.2h1v.s6.f980d95bede8 from=translated src=- shape=c6e8269e vocab=61a22bbe
+-/
 lemma sortedRoots_getLast_isLargest {p : ℝ[X]} (hp0 : p ≠ 0)
     (hne : p.roots.sort (· ≤ ·) ≠ []) :
     IsLargestRoot p ((p.roots.sort (· ≤ ·)).getLast hne) := by
@@ -109,7 +117,9 @@ def ListsInterlace (lower upper : List ℝ) : Prop :=
         lower.get ⟨k, hk⟩ ≤ upper.get ⟨k + 1, by omega⟩
 
 /-- In an interlacing pair, the penultimate entry of the longer list is at most the final entry of
-the shorter list.-/
+the shorter list.
+@isnad1 id=ex.2h2v.s5.5e93ab755b99 from=translated src=- shape=9809b23f vocab=5e18010b
+-/
 lemma ListsInterlace.penultimate_le_last {lower upper : List ℝ}
     (h : ListsInterlace lower upper) (hlower : lower ≠ []) :
     ∃ k : Fin upper.length,
@@ -126,7 +136,9 @@ lemma ListsInterlace.penultimate_le_last {lower upper : List ℝ}
     omega
 
 /-- Every entry of the longer list except its final one is bounded by the final entry of the
-shorter list.-/
+shorter list.
+@isnad1 id=le.4h3v.s5.1b9f6e229ad9 from=translated src=- shape=5ab91749 vocab=c9664e0f
+-/
 lemma ListsInterlace.dropLast_le_last {lower upper : List ℝ}
     (h : ListsInterlace lower upper) (hlower : lower ≠ [])
     (hsorted : lower.Pairwise (· ≤ ·)) :
@@ -151,7 +163,9 @@ def PolynomialInterlaces (q p : ℝ[X]) : Prop :=
     ListsInterlace (q.roots.sort (· ≤ ·)) (p.roots.sort (· ≤ ·))
 
 /-- Interlacing fixes the degree difference: the longer polynomial has degree exactly one more
-than its interlacer.-/
+than its interlacer.
+@isnad1 id=eq.1h2v.s5.746debc6a1f3 from=translated src=- shape=81826311 vocab=73d1129b
+-/
 lemma PolynomialInterlaces.natDegree_eq_succ {q p : ℝ[X]}
     (h : PolynomialInterlaces q p) : p.natDegree = q.natDegree + 1 := by
   rcases h with ⟨_hq0, _hp0, _hqmonic, _hpmonic, hqsplit, hpsplit, hinterlace⟩
@@ -169,7 +183,9 @@ lemma PolynomialInterlaces.natDegree_eq_succ {q p : ℝ[X]}
 of `q`.  Multiplication by the displayed power of `-1` makes that sign nonnegative.
 
 This is the root-interval sign input to the usual IVT proof that convex combinations preserve a
-common interlacer.  It is stated with multiplicities, so it remains valid at repeated roots.-/
+common interlacer.  It is stated with multiplicities, so it remains valid at repeated roots.
+@isnad1 id=le.2h3v.s7.50afd2fd882e from=translated src=- shape=d8606b86 vocab=e3957329
+-/
 lemma PolynomialInterlaces.eval_at_interlacerRoot_sign
     {q p : ℝ[X]} (h : PolynomialInterlaces q p)
     (k : ℕ) (hk : k < (q.roots.sort (· ≤ ·)).length) :
@@ -422,7 +438,9 @@ private lemma card_fin_get_eq_countP (l : List ℝ) (P : ℝ → Prop) [Decidabl
 
 /-- Inserting the same value into two sorted interlacing lists preserves
 weak interlacing.  This is the list-level form of multiplying both
-polynomials by the same linear factor.-/
+polynomials by the same linear factor.
+@isnad1 id=listsint.3h3v.s6.3144577619b7 from=translated src=- shape=c031e785 vocab=c8f975b4
+-/
 lemma ListsInterlace.orderedInsert_same {lower upper : List ℝ}
     (h : ListsInterlace lower upper)
     (hlower : lower.Pairwise (· ≤ ·)) (hupper : upper.Pairwise (· ≤ ·))
@@ -460,7 +478,9 @@ lemma ListsInterlace.orderedInsert_same {lower upper : List ℝ}
 
 /-- Removing one occurrence of a repeated lower entry and one forced matching upper entry
 preserves weak interlacing.  Distribution functions make the proof independent of where the
-equal entries occur in the two sorted lists.-/
+equal entries occur in the two sorted lists.
+@isnad1 id=listsint.4h3v.s6.65ca086028e3 from=translated src=- shape=42795d71 vocab=a0edc7e1
+-/
 lemma ListsInterlace.erase_of_count_ge_two {lower upper : List ℝ}
     (h : ListsInterlace lower upper)
     (hlower : lower.Pairwise (· ≤ ·)) (hupper : upper.Pairwise (· ≤ ·))
@@ -520,7 +540,9 @@ lemma ListsInterlace.erase_of_count_ge_two {lower upper : List ℝ}
       exact hold
 
 /-- A weakly interlacing longer list contains every repeated value of the shorter list with
-all but possibly one copy.  This is the multiplicity statement lost by intervalwise IVT.-/
+all but possibly one copy.  This is the multiplicity statement lost by intervalwise IVT.
+@isnad1 id=le.1h3v.s5.98d49fa15a0c from=translated src=- shape=90b67fe0 vocab=3eeb8b67
+-/
 lemma ListsInterlace.count_sub_one_le_count {lower upper : List ℝ}
     (h : ListsInterlace lower upper) (a : ℝ) :
     lower.count a - 1 ≤ upper.count a := by
@@ -538,7 +560,9 @@ lemma ListsInterlace.count_sub_one_le_count {lower upper : List ℝ}
   omega
 
 /-- Consequently, every polynomial interlaced by `q` has each root of `q` with multiplicity
-at least `q`'s multiplicity minus one.-/
+at least `q`'s multiplicity minus one.
+@isnad1 id=le.1h3v.s5.09e2b6a678f7 from=translated src=- shape=90b67fe0 vocab=82358299
+-/
 lemma PolynomialInterlaces.rootMultiplicity_sub_one_le
     {q p : ℝ[X]} (h : PolynomialInterlaces q p) (a : ℝ) :
     q.rootMultiplicity a - 1 ≤ p.rootMultiplicity a := by
@@ -550,7 +574,9 @@ lemma PolynomialInterlaces.rootMultiplicity_sub_one_le
   exact hc
 
 /-- If `a` is a repeated root of an interlacer, then `a` is a forced common root.  Dividing one
-copy from both polynomials preserves interlacing.-/
+copy from both polynomials preserves interlacing.
+@isnad1 id=polynomi.2h3v.s7.030b3cbe004c from=translated src=- shape=9681fe86 vocab=196801cf
+-/
 lemma PolynomialInterlaces.divByMonic_X_sub_C_of_two_le_rootMultiplicity
     {q p : ℝ[X]} (h : PolynomialInterlaces q p) (a : ℝ)
     (ha : 2 ≤ q.rootMultiplicity a) :
@@ -630,7 +656,9 @@ if its values have the weak alternating signs dictated by interlacing.
 The proof removes the last test point.  If it is already a root, use it; otherwise the final
 sign is negative and monicity supplies a root to its right.  Dividing by that linear factor
 flips all earlier signs and gives the induction hypothesis.  This argument deliberately permits
-zero endpoint values.-/
+zero endpoint values.
+@isnad1 id=splits.4h2v.s6.648627f73361 from=translated src=- shape=afa7b42e vocab=555a4f53
+-/
 lemma splits_of_monic_of_pairwise_lt_of_alternating_sign
     (p : ℝ[X]) (l : List ℝ) (hp : p.Monic)
     (hdeg : p.natDegree = l.length + 1)
@@ -706,7 +734,9 @@ lemma splits_of_monic_of_pairwise_lt_of_alternating_sign
         ⟨Splits.X_sub_C r, hRsplit⟩
 
 /-- If `q` interlaces `p` and `q` is nonconstant, the penultimate sorted root of `p` is bounded by
-the largest root of `q`.-/
+the largest root of `q`.
+@isnad1 id=ex.2h2v.s5.0c93cead1057 from=translated src=- shape=cc5e37ca vocab=1c31f7e2
+-/
 lemma PolynomialInterlaces.penultimate_root_le_interlacer_largest
     {q p : ℝ[X]} (h : PolynomialInterlaces q p) (hqdeg : 0 < q.natDegree) :
     ∃ (a r : ℝ), IsLargestRoot q a ∧ p.IsRoot r ∧ r ≤ a := by
@@ -733,7 +763,9 @@ lemma PolynomialInterlaces.penultimate_root_le_interlacer_largest
 /-- Strict upper-tail sign control supplied by a genuine common interlacer.
 
 The strict inequality is essential for weak interlacing: if `p` and its interlacer share a root
-at `x`, then `p.eval x = 0` need not imply that `x` bounds the final root of `p`.-/
+at `x`, then `p.eval x = 0` need not imply that `x` bounds the final root of `p`.
+@isnad1 id=isrootup.3h3v.s5.07d5bd199838 from=translated src=- shape=0c19cf10 vocab=795249f3
+-/
 lemma PolynomialInterlaces.rootUpperBound_of_eval_pos
     {q p : ℝ[X]} (h : PolynomialInterlaces q p) {x : ℝ}
     (hqx : IsRootUpperBound q x) (hpx : 0 < p.eval x) :
@@ -790,7 +822,9 @@ lemma PolynomialInterlaces.rootUpperBound_of_eval_pos
   intro r hr
   exact (hlargest.upperBound r hr).trans hlastlt.le
 
-/-- If `q` interlaces `p`, every root of `q` is bounded by every largest-root bound for `p`.-/
+/-- If `q` interlaces `p`, every root of `q` is bounded by every largest-root bound for `p`.
+@isnad1 id=isrootup.2h3v.s4.0f7878738e3c from=translated src=- shape=6eae4c7e vocab=6b5a89f3
+-/
 lemma PolynomialInterlaces.interlacer_rootUpperBound
     {q p : ℝ[X]} (h : PolynomialInterlaces q p) {x : ℝ}
     (hpx : IsRootUpperBound p x) : IsRootUpperBound q x := by
@@ -819,21 +853,27 @@ def HasCommonInterlacer {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (p : ι → ℝ[X]) : Prop :=
   ∃ q : ℝ[X], ∀ i ∈ s, PolynomialInterlaces q (p i)
 
-/-- All members of a common-interlacing family have the same degree.-/
+/-- All members of a common-interlacing family have the same degree.
+@isnad1 id=eq.3h5v.s6.93197265663a from=translated src=- shape=8cd528fb vocab=5a284b3a
+-/
 lemma HasCommonInterlacer.same_natDegree {ι : Type*} [DecidableEq ι]
     {s : Finset ι} {p : ι → ℝ[X]} (h : HasCommonInterlacer s p)
     {i j : ι} (hi : i ∈ s) (hj : j ∈ s) : (p i).natDegree = (p j).natDegree := by
   obtain ⟨q, hq⟩ := h
   rw [(hq i hi).natDegree_eq_succ, (hq j hj).natDegree_eq_succ]
 
-/-- Restricting the index set preserves a common interlacer.-/
+/-- Restricting the index set preserves a common interlacer.
+@isnad1 id=hascommo.2h4v.s5.7f2662f51e35 from=translated src=- shape=3cdc11a2 vocab=302ada3d
+-/
 lemma HasCommonInterlacer.mono {ι : Type*} [DecidableEq ι]
     {s t : Finset ι} {p : ι → ℝ[X]} (h : HasCommonInterlacer t p) (hst : s ⊆ t) :
     HasCommonInterlacer s p := by
   obtain ⟨q, hq⟩ := h
   exact ⟨q, fun i hi => hq i (hst hi)⟩
 
-/-- Deleting one polynomial from a family preserves its common interlacer.-/
+/-- Deleting one polynomial from a family preserves its common interlacer.
+@isnad1 id=hascommo.1h4v.s4.4abf5ad70562 from=translated src=- shape=fd18a7b6 vocab=9fdfb956
+-/
 lemma HasCommonInterlacer.erase {ι : Type*} [DecidableEq ι]
     {s : Finset ι} {p : ι → ℝ[X]} (h : HasCommonInterlacer s p) (i : ι) :
     HasCommonInterlacer (s.erase i) p :=
@@ -846,13 +886,18 @@ noncomputable def polynomialWeightedSum {ι : Type*}
     (s : Finset ι) (w : ι → ℝ) (p : ι → ℝ[X]) : ℝ[X] :=
   ∑ i ∈ s, w i • p i
 
+/--
+@isnad1 id=eq.0h5v.s5.c13fa60c9931 from=translated src=- shape=f5dc364c vocab=98588bce
+-/
 @[simp] lemma eval_polynomialWeightedSum {ι : Type*}
     (s : Finset ι) (w : ι → ℝ) (p : ι → ℝ[X]) (x : ℝ) :
     (polynomialWeightedSum s w p).eval x = ∑ i ∈ s, w i * (p i).eval x := by
   simp [polynomialWeightedSum, eval_finsetSum, eval_smul, smul_eq_mul]
 
 /-- Nonnegative weights preserve the weak alternating endpoint signs supplied by a common
-interlacer.-/
+interlacer.
+@isnad1 id=le.3h6v.s7.d0c2eed8925a from=translated src=- shape=8c990c54 vocab=15471634
+-/
 lemma eval_polynomialWeightedSum_at_commonInterlacerRoot_sign
     {ι : Type*} {s : Finset ι} (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
     (hw : ∀ i ∈ s, 0 ≤ w i)
@@ -872,7 +917,9 @@ between every two consecutive (multiplicity-indexed) roots of the common interla
 
 When the two endpoints coincide this still gives the forced common root.  The remaining issue in
 the full weak-interlacing closure theorem is to recover the required *multiplicity count* when
-several such intervals collapse to the same repeated endpoint.-/
+several such intervals collapse to the same repeated endpoint.
+@isnad1 id=ex.3h6v.s7.fdf21571e1cf from=translated src=- shape=e063e7d4 vocab=86d7b0a9
+-/
 lemma exists_weightedSum_root_between_interlacerRoots
     {ι : Type*} {s : Finset ι} (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
     (hw : ∀ i ∈ s, 0 ≤ w i)
@@ -932,7 +979,9 @@ lemma exists_weightedSum_root_between_interlacerRoots
 
 /-- The algebraic half of convex closure.  A normalized weighted sum of polynomials sharing an
 interlacer is monic and retains their common degree.  Positivity of the weights is not needed for
-this coefficient calculation.-/
+this coefficient calculation.
+@isnad1 id=and.2h5v.s6.f5d82b4e616f from=translated src=- shape=3d14a54e vocab=dfde8934
+-/
 lemma monic_polynomialWeightedSum_of_commonInterlacer
     {ι : Type*} {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
@@ -966,7 +1015,9 @@ lemma monic_polynomialWeightedSum_of_commonInterlacer
   exact natDegree_eq_of_le_of_coeff_ne_zero hdegree_le (hcoeff.trans_ne one_ne_zero)
 
 /-- Repeated roots of the common interlacer survive a normalized weighted sum with all but
-possibly one copy.  Unlike the IVT interval argument, this statement counts multiplicity.-/
+possibly one copy.  Unlike the IVT interval argument, this statement counts multiplicity.
+@isnad1 id=le.2h6v.s6.4cab5288bec6 from=translated src=- shape=39b69802 vocab=f46abc61
+-/
 lemma rootMultiplicity_sub_one_le_polynomialWeightedSum
     {ι : Type*} {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
@@ -986,7 +1037,9 @@ lemma rootMultiplicity_sub_one_le_polynomialWeightedSum
       ((hq i hi).rootMultiplicity_sub_one_le a)) _
 
 /-- Convex closure when the common interlacer has no repeated roots.  The weighted endpoint
-signs and the preceding distinct-point sign criterion give real-rootedness directly.-/
+signs and the preceding distinct-point sign criterion give real-rootedness directly.
+@isnad1 id=realroot.4h5v.s6.4867c511d5ab from=translated src=- shape=f8a10029 vocab=bd25c324
+-/
 lemma realRooted_polynomialWeightedSum_of_commonInterlacer_of_roots_nodup
     {ι : Type*} {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
@@ -1025,7 +1078,9 @@ lemma realRooted_polynomialWeightedSum_of_commonInterlacer_of_roots_nodup
 
 Repeated roots are removed recursively.  Such a root is forced in every family member, and the
 preceding division lemma preserves common interlacing.  The recursion terminates at a squarefree
-interlacer, where the alternating-sign criterion applies.-/
+interlacer, where the alternating-sign criterion applies.
+@isnad1 id=realroot.3h5v.s6.3a69406879be from=translated src=- shape=4fa94688 vocab=90fe380c
+-/
 lemma realRooted_polynomialWeightedSum_of_commonInterlacer
     {ι : Type*} {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X]) (q : ℝ[X])
@@ -1091,7 +1146,9 @@ lemma realRooted_polynomialWeightedSum_of_commonInterlacer
         rw [hfactor]
         exact (Splits.X_sub_C a).mul hrec
 
-/-- In particular, convex combinations of a common-interlacing family are automatically monic.-/
+/-- In particular, convex combinations of a common-interlacing family are automatically monic.
+@isnad1 id=monic.2h4v.s5.53af23e0eb85 from=translated src=- shape=f627b821 vocab=bc8fb614
+-/
 lemma HasCommonInterlacer.monic_polynomialWeightedSum
     {ι : Type*} [DecidableEq ι] {s : Finset ι} {p : ι → ℝ[X]}
     (h : HasCommonInterlacer s p) (w : ι → ℝ)
@@ -1102,7 +1159,9 @@ lemma HasCommonInterlacer.monic_polynomialWeightedSum
 /-- At a root of a convex combination, at least one positively weighted member is nonnegative.
 
 This is the order-theoretic selection step in the common-interlacer argument; it requires no
-polynomial root theory.-/
+polynomial root theory.
+@isnad1 id=ex.3h5v.s6.9b6ff188093a from=translated src=- shape=aec19ffd vocab=0efbfc99
+-/
 lemma exists_nonnegative_eval_of_convex_root {ι : Type*}
     {s : Finset ι} (w : ι → ℝ) (p : ι → ℝ[X])
     (hw : ∀ i ∈ s, 0 ≤ w i) (hwsum : ∑ i ∈ s, w i = 1) (x : ℝ)
@@ -1129,7 +1188,9 @@ lemma exists_nonnegative_eval_of_convex_root {ι : Type*}
   simp [hsum_eval] at this
 
 /-- If a nonnegatively weighted sum has positive value, one positively weighted member has
-positive value.-/
+positive value.
+@isnad1 id=ex.2h5v.s6.a5d647500d55 from=translated src=- shape=1ef28f38 vocab=e9e0fa3d
+-/
 lemma exists_positive_eval_of_weightedSum_pos {ι : Type*}
     {s : Finset ι} (w : ι → ℝ) (p : ι → ℝ[X])
     (hw : ∀ i ∈ s, 0 ≤ w i) (x : ℝ)
@@ -1149,7 +1210,9 @@ lemma exists_positive_eval_of_weightedSum_pos {ι : Type*}
 
 /-- A finite-family closedness principle for largest-root bounds.  If arbitrarily close points to
 the right of `x` bound all roots of some family member, then one fixed member is already bounded by
-`x`.-/
+`x`.
+@isnad1 id=ex.2h4v.s6.d200e2bf4c21 from=translated src=- shape=5f8f1668 vocab=462d7f0a
+-/
 lemma exists_rootUpperBound_at_of_forall_gt
     {ι : Type*} {s : Finset ι} (hs : s.Nonempty)
     (p : ι → ℝ[X]) (x : ℝ)
@@ -1203,7 +1266,9 @@ noncomputable def HasCommonInterlacer.toUpperCertificate
         (hq i hi).rootUpperBound_of_eval_pos hqx hpx }
 
 /-- At a largest root of a monic real-rooted convex combination, a finite perturbation to the
-right and compactness of the finite index set select one member with no larger root.-/
+right and compactness of the finite index set select one member with no larger root.
+@isnad1 id=ex.6h6v.s7.69a35d8b96d7 from=translated src=- shape=badc425d vocab=c0a72642
+-/
 lemma exists_member_below_convexLargestRoot
     {ι : Type*} [DecidableEq ι] {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X])
@@ -1235,7 +1300,9 @@ lemma exists_member_below_convexLargestRoot
 /-- The largest root of a real-rooted normalized weighted sum automatically bounds its common
 interlacer.  Full interlacing of the sum is not needed: at the largest root of the interlacer,
 the alternating endpoint sign says that the sum is nonpositive, whereas a monic real-rooted
-polynomial is positive strictly beyond its largest root.-/
+polynomial is positive strictly beyond its largest root.
+@isnad1 id=isrootup.4h6v.s6.fbbe60f0ab18 from=translated src=- shape=5afeeb03 vocab=a412e52f
+-/
 lemma commonInterlacer_rootUpperBound_of_weightedSum_largest
     {ι : Type*} [DecidableEq ι] {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X])
@@ -1304,7 +1371,9 @@ lemma commonInterlacer_rootUpperBound_of_weightedSum_largest
 
 /-- Selection with no explicit interlacing proof for the convex combination.  Once its
 real-rootedness is known, normalization and the genuine common interlacer supply all remaining
-hypotheses automatically.-/
+hypotheses automatically.
+@isnad1 id=ex.3h5v.s6.1329878356e7 from=translated src=- shape=9980b36c vocab=145a021d
+-/
 lemma exists_largestRoot_and_member_below_of_realRooted
     {ι : Type*} [DecidableEq ι] {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X])
@@ -1329,7 +1398,9 @@ lemma exists_largestRoot_and_member_below_of_realRooted
     exists_member_below_convexLargestRoot w p hw hwsum cert hreal hmonic x hx hqx⟩
 
 /-- `HasCommonInterlacer` convenience wrapper for the real-rooted weighted-sum selection
-theorem.-/
+theorem.
+@isnad1 id=ex.4h4v.s6.98fd9f6697b5 from=translated src=- shape=7161bc08 vocab=11a7d8a9
+-/
 lemma HasCommonInterlacer.exists_largestRoot_and_member_below_of_realRooted
     {ι : Type*} [DecidableEq ι] {s : Finset ι} {p : ι → ℝ[X]}
     (h : HasCommonInterlacer s p) (w : ι → ℝ)
@@ -1341,7 +1412,9 @@ lemma HasCommonInterlacer.exists_largestRoot_and_member_below_of_realRooted
     w p hw hwsum h.toUpperCertificate hreal
 
 /-- Fully automatic common-interlacer selection: convex real-rootedness is supplied by the
-common-interlacer closure theorem, so a prefix-tree caller only provides weights.-/
+common-interlacer closure theorem, so a prefix-tree caller only provides weights.
+@isnad1 id=ex.2h5v.s6.30b89499e55a from=translated src=- shape=1174c8a3 vocab=149d96c9
+-/
 lemma exists_largestRoot_and_member_below_of_commonInterlacer
     {ι : Type*} [DecidableEq ι] {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X])
@@ -1356,7 +1429,9 @@ lemma exists_largestRoot_and_member_below_of_commonInterlacer
     w p hw hwsum cert hreal
 
 /-- `HasCommonInterlacer` form of the automatic selection theorem, intended for direct use at
-each node of an interlacing-family prefix tree.-/
+each node of an interlacing-family prefix tree.
+@isnad1 id=ex.3h4v.s6.99a2801a2d96 from=translated src=- shape=fa12ede6 vocab=8a89d0ae
+-/
 lemma HasCommonInterlacer.exists_largestRoot_and_member_below_automatic
     {ι : Type*} [DecidableEq ι] {s : Finset ι} {p : ι → ℝ[X]}
     (h : HasCommonInterlacer s p) (w : ι → ℝ)
@@ -1370,7 +1445,9 @@ lemma HasCommonInterlacer.exists_largestRoot_and_member_below_automatic
 largest root automatically bounds the interlacer, so the member-selection theorem applies.
 
 Real-rootedness, monicity, and nonconstancy of the weighted sum are all consequences of
-`hcombo`; they therefore do not appear as redundant hypotheses.-/
+`hcombo`; they therefore do not appear as redundant hypotheses.
+@isnad1 id=ex.3h5v.s6.5448249ea1ab from=translated src=- shape=25853bb3 vocab=adc8a038
+-/
 lemma exists_largestRoot_and_member_below
     {ι : Type*} [DecidableEq ι] {s : Finset ι}
     (w : ι → ℝ) (p : ι → ℝ[X])
@@ -1388,7 +1465,9 @@ lemma exists_largestRoot_and_member_below
 /-- The derivative of a real-rooted real polynomial is real-rooted.
 
 This is not currently available as a direct Mathlib lemma.  It follows by combining Mathlib's
-Rolle root-count estimate with its splitting criterion.-/
+Rolle root-count estimate with its splitting criterion.
+@isnad1 id=realroot.1h1v.s6.cd3730756844 from=translated src=- shape=0aa3bd50 vocab=75a27eed
+-/
 lemma RealRooted.derivative {p : ℝ[X]} (hp : RealRooted p) : RealRooted p.derivative := by
   by_cases hdeg0 : p.natDegree = 0
   · rw [derivative_of_natDegree_zero hdeg0]
@@ -1405,7 +1484,9 @@ lemma RealRooted.derivative {p : ℝ[X]} (hp : RealRooted p) : RealRooted p.deri
     omega
   exact splits_iff_card_roots.mpr hcard_eq
 
-/-- Every iterated derivative of a real-rooted real polynomial is real-rooted.-/
+/-- Every iterated derivative of a real-rooted real polynomial is real-rooted.
+@isnad1 id=realroot.1h2v.s6.6f6a2446465f from=translated src=- shape=61945b6f vocab=69963656
+-/
 lemma RealRooted.iterate_derivative {p : ℝ[X]} (hp : RealRooted p) (k : ℕ) :
     RealRooted (Polynomial.derivative^[k] p) := by
   induction k with

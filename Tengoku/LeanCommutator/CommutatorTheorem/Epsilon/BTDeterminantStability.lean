@@ -36,6 +36,9 @@ noncomputable def hermitianDetPoly
   (Matrix.diagonal (fun i => MvPolynomial.X i) -
     A.map MvPolynomial.C).det
 
+/--
+@isnad1 id=eq.0h3v.s7.d60c7334576e from=translated src=- shape=1bd91f4a vocab=b283d568
+-/
 theorem eval_hermitianDetPoly
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (z : ι → ℂ) :
@@ -51,7 +54,9 @@ theorem eval_hermitianDetPoly
   · simp [h]
 
 /-- The imaginary part of the diagonal quadratic form is the weighted sum of
-the coordinate imaginary parts.-/
+the coordinate imaginary parts.
+@isnad1 id=eq.0h3v.s7.8d9cbe19273d from=translated src=- shape=2f9f390d vocab=6fbe426e
+-/
 theorem im_star_dotProduct_diagonal_mulVec
     {n : Type*} [Fintype n] [DecidableEq n]
     (z v : n → ℂ) :
@@ -68,7 +73,9 @@ theorem im_star_dotProduct_diagonal_mulVec
   ring
 
 /-- A nonzero vector gives a strictly positive imaginary diagonal quadratic
-form when all diagonal entries lie in the open upper half-plane.-/
+form when all diagonal entries lie in the open upper half-plane.
+@isnad1 id=lt.2h3v.s6.fc5f9d6f73c3 from=translated src=- shape=11904974 vocab=bb6ac422
+-/
 theorem im_star_dotProduct_diagonal_mulVec_pos
     {n : Type*} [Fintype n] [DecidableEq n]
     (z v : n → ℂ) (hz : ∀ i, 0 < (z i).im) (hv : v ≠ 0) :
@@ -86,7 +93,9 @@ theorem im_star_dotProduct_diagonal_mulVec_pos
     exact mul_pos (Complex.normSq_pos.mpr hi) (hz i)
 
 /-- If `A` is Hermitian and every `z i` is in the open upper half-plane,
-then `diag z - A` is nonsingular.-/
+then `diag z - A` is nonsingular.
+@isnad1 id=ne.2h3v.s6.227d3b22f3ff from=translated src=- shape=04eae98c vocab=e9d32f0b
+-/
 theorem det_diagonal_sub_hermitian_ne_zero
     {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
@@ -110,7 +119,9 @@ theorem det_diagonal_sub_hermitian_ne_zero
   exact (ne_of_gt (im_star_dotProduct_diagonal_mulVec_pos z v hz hv)) himDiag
 
 /-- Definite determinantal polynomials of Hermitian matrices are complex
-stable.-/
+stable.
+@isnad1 id=complexs.1h2v.s5.f7d782965d9e from=translated src=- shape=9daa187a vocab=6b7384fb
+-/
 theorem hermitianDetPoly_complexStable
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) :
@@ -120,7 +131,9 @@ theorem hermitianDetPoly_complexStable
   exact det_diagonal_sub_hermitian_ne_zero A hA z hz
 
 /-- Hermitian symmetry makes every coefficient of the determinantal
-polynomial fixed by complex conjugation.-/
+polynomial fixed by complex conjugation.
+@isnad1 id=eq.1h2v.s7.f26b8d647962 from=translated src=- shape=39261b5e vocab=ce205cae
+-/
 theorem map_star_hermitianDetPoly
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) :

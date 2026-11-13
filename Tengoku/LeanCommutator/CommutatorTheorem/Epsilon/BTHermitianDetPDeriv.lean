@@ -18,7 +18,9 @@ open scoped BigOperators
 open Finset
 open CommutatorTheorem.BTDeterminantStability
 
-/-- Product rule for a finite product, written in deletion form.-/
+/-- Product rule for a finite product, written in deletion form.
+@isnad1 id=eq.0h6v.s9.376feff1d82b from=translated src=- shape=dcf0ac4e vocab=65b417be
+-/
 theorem pderiv_prod_finset {σ ι R : Type*} [CommSemiring R]
     [DecidableEq ι] (x : σ) (s : Finset ι)
     (f : ι → MvPolynomial σ R) :
@@ -59,7 +61,9 @@ theorem pderiv_prod_finset {σ ι R : Type*} [CommSemiring R]
         · exact fun hmem => ha (Finset.mem_of_mem_erase hmem)
 
 /-- Formal differentiation of a multivariate determinant is the sum of the
-determinants obtained by differentiating one column.-/
+determinants obtained by differentiating one column.
+@isnad1 id=eq.0h5v.s9.68a4911c3a10 from=translated src=- shape=f5fc42c4 vocab=4677f31f
+-/
 theorem pderiv_det_eq_sum_updateCol
     {ι σ R : Type*} [Fintype ι] [DecidableEq ι] [CommRing R]
     (x : σ) (M : Matrix ι ι (MvPolynomial σ R)) :
@@ -108,7 +112,9 @@ private theorem det_updateCol_single_self
       simpa using h.symm
 
 /-- A coordinate partial derivative of `det (diag X - A)` is its corresponding
-diagonal cofactor.-/
+diagonal cofactor.
+@isnad1 id=eq.0h3v.s8.2937fdbfde1b from=translated src=- shape=9a08b474 vocab=5df8a838
+-/
 theorem pderiv_hermitianDetPoly_eq_adjugate
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (A : Matrix ι ι ℂ) (i : ι) :
@@ -146,7 +152,9 @@ theorem pderiv_hermitianDetPoly_eq_adjugate
   · simp
 
 /-- Coordinate deletion formula for the multivariate Hermitian determinant.
-The variables of the principal submatrix are embedded by `i.succAbove`.-/
+The variables of the principal submatrix are embedded by `i.succAbove`.
+@isnad1 id=eq.0h3v.s10.b64cfe21af56 from=translated src=- shape=76396dc1 vocab=8738cd3f
+-/
 theorem pderiv_hermitianDetPoly_fin_succ
     {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ)
     (i : Fin (n + 1)) :
@@ -176,7 +184,9 @@ theorem pderiv_hermitianDetPoly_fin_succ
       fun h => hrc (Fin.succAbove_right_injective h)
     simp [hrc, hsucc]
 
-/-- Coordinate partial derivatives commute over every commutative semiring.-/
+/-- Coordinate partial derivatives commute over every commutative semiring.
+@isnad1 id=eq.0h5v.s9.5c5fdbeaa5b1 from=translated src=- shape=700357c7 vocab=b42aae88
+-/
 theorem pderiv_comm {σ R : Type*} [CommSemiring R]
     (i j : σ) (p : MvPolynomial σ R) :
     MvPolynomial.pderiv i (MvPolynomial.pderiv j p) =
@@ -204,7 +214,9 @@ theorem pderiv_comm {σ R : Type*} [CommSemiring R]
       simpa using congrArg₂ (· + ·) hp hq
 
 /-- The Hermitian determinant polynomial is multiaffine: differentiating
-twice in one coordinate gives zero.-/
+twice in one coordinate gives zero.
+@isnad1 id=eq.0h3v.s10.b870c645b7d8 from=translated src=- shape=58d722ad vocab=c9546598
+-/
 theorem pderiv_self_hermitianDetPoly_fin_succ
     {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℂ)
     (i : Fin (n + 1)) :

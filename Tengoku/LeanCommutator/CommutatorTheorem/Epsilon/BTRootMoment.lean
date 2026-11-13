@@ -35,20 +35,26 @@ noncomputable def rootMeanSquare (p : ℝ[X]) : ℝ :=
   (p.roots.map fun r ↦ r ^ 2).sum / (p.natDegree : ℝ)
 
 /-- For a monic split polynomial, the sum of the roots is the negative of the
-next coefficient.-/
+next coefficient.
+@isnad1 id=eq.2h1v.s4.fe3748e13869 from=translated src=- shape=2d1f163f vocab=686cfa79
+-/
 theorem sum_roots_eq_neg_nextCoeff {p : ℝ[X]} (hp : RealRooted p)
     (hmonic : p.Monic) :
     p.roots.sum = -p.nextCoeff := by
   rw [hp.nextCoeff_eq_neg_sum_roots_of_monic hmonic]
   simp
 
-/-- Coefficient form of the normalized root mean.-/
+/-- Coefficient form of the normalized root mean.
+@isnad1 id=eq.2h1v.s5.0e04f9eab141 from=translated src=- shape=db15cc68 vocab=f5590a07
+-/
 theorem rootMean_eq_neg_nextCoeff_div_natDegree
     {p : ℝ[X]} (hp : RealRooted p) (hmonic : p.Monic) :
     rootMean p = -p.nextCoeff / (p.natDegree : ℝ) := by
   rw [rootMean, sum_roots_eq_neg_nextCoeff hp hmonic]
 
-/-- In positive degree, mean zero is exactly vanishing next coefficient.-/
+/-- In positive degree, mean zero is exactly vanishing next coefficient.
+@isnad1 id=iff.3h1v.s5.21b02b2d5a3f from=translated src=- shape=3ebc5d8d vocab=9d90eff9
+-/
 theorem rootMean_eq_zero_iff_nextCoeff_eq_zero
     {p : ℝ[X]} (hp : RealRooted p) (hmonic : p.Monic)
     (hdeg : 0 < p.natDegree) :
@@ -73,7 +79,9 @@ noncomputable def rootMomentMajorant (b α r : ℝ) : ℝ :=
 /-! ## The monotone-potential bridge for fixed-`φ` iteration -/
 
 /-- To the right of every root, the barrier potential of a real-rooted
-polynomial is antitone.-/
+polynomial is antitone.
+@isnad1 id=le.3h3v.s4.0c248b3c3805 from=translated src=- shape=cdd0547d vocab=76e24b39
+-/
 theorem rootBarrierPotential_anti_of_strictRootUpperBound
     {p : ℝ[X]} (hp : RealRooted p) {x y : ℝ}
     (hx : IsStrictRootUpperBound p x) (hxy : x ≤ y) :
@@ -110,7 +118,9 @@ iterated barrier displacement.-/
 noncomputable def rootShrinkMomentObjective (b c α : ℝ) : ℝ :=
   b - (1 - c) * (b - 1) * (b + α) / (b + α - 1)
 
-/-- Reparameterizing by `v = b + α - 1` exposes the AM--GM optimization.-/
+/-- Reparameterizing by `v = b + α - 1` exposes the AM--GM optimization.
+@isnad1 id=eq.1h3v.s7.e74a860abb73 from=translated src=- shape=5af75cd6 vocab=fcfffc7a
+-/
 theorem rootShrinkMomentObjective_eq {b c α : ℝ}
     (hv : b + α - 1 ≠ 0) :
     rootShrinkMomentObjective b c α =
@@ -121,7 +131,9 @@ theorem rootShrinkMomentObjective_eq {b c α : ℝ}
   ring
 
 /-- At the optimizing barrier, the objective is exactly the refined
-root-shrinking expression.-/
+root-shrinking expression.
+@isnad1 id=other.3h2v.s7.7f4891a9276d from=translated src=- shape=c7374437 vocab=11bf0cf1
+-/
 theorem rootShrinkMomentObjective_at_optimum
     {c α : ℝ} (hc : 0 < c) (hc1 : c < 1) (hα : 0 < α) :
     let v := Real.sqrt ((1 - c) * α / c)
@@ -158,7 +170,9 @@ theorem rootShrinkMomentObjective_at_optimum
   ring
 
 /-- The admissibility condition `c ≤ (1+α)⁻¹` puts the optimizing barrier at
-or to the right of `1`, exactly as required by the root interval hypothesis.-/
+or to the right of `1`, exactly as required by the root interval hypothesis.
+@isnad1 id=le.3h2v.s6.1f2bf5367496 from=translated src=- shape=ac0a9d48 vocab=91163b26
+-/
 theorem one_le_optimal_rootMoment_barrier
     {c α : ℝ} (hc : 0 < c) (hα : 0 < α)
     (hcα : c ≤ (1 + α)⁻¹) :

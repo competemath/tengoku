@@ -26,7 +26,9 @@ noncomputable def reflectPolynomial (p : ℝ[X]) : ℝ[X] :=
   C ((-1 : ℝ) ^ p.natDegree) * p.comp (-X)
 
 /-- The positive and negative root counts exhaust the degree when zero is
-not a root.-/
+not a root.
+@isnad1 id=eq.3h1v.s6.5367c6ffed8c from=translated src=- shape=5a6fa1af vocab=595f2491
+-/
 theorem positive_add_negativeRootsCount_eq_natDegree
     {p : ℝ[X]} (hp : p.Monic) (hreal : RealRooted p)
     (hzero : ¬p.IsRoot 0) :

@@ -19,19 +19,25 @@ section Ring
 
 variable {R : Type*} [Ring R]
 
-/-- The expanded conjugation formula, valid even without square-zero hypotheses.-/
+/-- The expanded conjugation formula, valid even without square-zero hypotheses.
+@isnad1 id=eq.0h3v.s7.6c7c937e164d from=translated src=- shape=c44b0f39 vocab=6f4456c2
+-/
 theorem conjugate_expand (A N : R) :
     (1 - N) * A * (1 + N) = A + A * N - N * A - N * A * N := by
   noncomm_ring
 
-/-- A square-zero perturbation of the identity has this explicit right inverse.-/
+/-- A square-zero perturbation of the identity has this explicit right inverse.
+@isnad1 id=eq.1h2v.s6.b389c355c519 from=translated src=- shape=9e0ed214 vocab=6f4456c2
+-/
 theorem one_add_mul_one_sub (N : R) (hN : N * N = 0) :
     (1 + N) * (1 - N) = 1 := by
   calc
     (1 + N) * (1 - N) = 1 - N * N := by noncomm_ring
     _ = 1 := by rw [hN, sub_zero]
 
-/-- The same explicit inverse is also a left inverse.-/
+/-- The same explicit inverse is also a left inverse.
+@isnad1 id=eq.1h2v.s6.6416ebcf4bee from=translated src=- shape=9e0ed214 vocab=6f4456c2
+-/
 theorem one_sub_mul_one_add (N : R) (hN : N * N = 0) :
     (1 - N) * (1 + N) = 1 := by
   calc
@@ -92,6 +98,9 @@ def block₃₃ (A : Matrix (Index ι κ) (Index ι κ) R) : Matrix κ κ R :=
   fun i j ↦ A (.inr (.inr i)) (.inr (.inr j))
 
 omit [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ] [Ring R] in
+/--
+@isnad1 id=eq.0h4v.s6.7607c9036304 from=translated src=- shape=c8b43e1f vocab=1462ce2d
+-/
 theorem blocks_reconstruct (A : Matrix (Index ι κ) (Index ι κ) R) :
     blocks (block₁₁ A) (block₁₂ A) (block₁₃ A)
       (block₂₁ A) (block₂₂ A) (block₂₃ A)
@@ -100,12 +109,18 @@ theorem blocks_reconstruct (A : Matrix (Index ι κ) (Index ι κ) R) :
   rcases i with i | i | i <;> rcases j with j | j | j <;> rfl
 
 omit [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h3v.s7.886c3e8b72cd from=translated src=- shape=9514baf5 vocab=02122bc2
+-/
 @[simp] theorem blocks_zero :
     blocks (0 : Matrix ι ι R) 0 (0 : Matrix ι κ R) 0 0 0 0 0 0 = 0 := by
   ext i j
   rcases i with i | i | i <;> rcases j with j | j | j <;> rfl
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h21v.s10.73430dde05d0 from=translated src=- shape=b873b4ab vocab=84f82da7
+-/
 theorem blocks_mul
     (A₁₁ A₁₂ : Matrix ι ι R) (A₁₃ : Matrix ι κ R)
     (A₂₁ A₂₂ : Matrix ι ι R) (A₂₃ : Matrix ι κ R)
@@ -138,10 +153,16 @@ def insert₃₁ (Y : Matrix κ ι R) : Matrix (Index ι κ) (Index ι κ) R :=
   blocks 0 0 0 0 0 0 Y 0 0
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h4v.s7.0f3fbc21c4aa from=translated src=- shape=fd098412 vocab=61098495
+-/
 @[simp] theorem insert₂₃_square (X : Matrix ι κ R) : insert₂₃ X * insert₂₃ X = 0 := by
   simp [insert₂₃, blocks_mul]
 
 omit [DecidableEq ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h4v.s7.67f41f35ae45 from=translated src=- shape=f0ee65c7 vocab=707f0c83
+-/
 @[simp] theorem insert₃₁_square (Y : Matrix κ ι R) : insert₃₁ Y * insert₃₁ Y = 0 := by
   simp [insert₃₁, blocks_mul]
 
@@ -178,7 +199,9 @@ private theorem one_sub_insert₃₁ (Y : Matrix κ ι R) :
   rcases i with i | i | i <;> rcases j with j | j | j <;>
     simp [insert₃₁, blocks, Matrix.one_apply]
 
-/-- Every block after the first rectangular shear.-/
+/-- Every block after the first rectangular shear.
+@isnad1 id=eq.0h13v.s9.e34adc714b9a from=translated src=- shape=1bdaf129 vocab=39e118dd
+-/
 theorem conjugate_insert₂₃_blocks
     (A₁₁ A₁₂ : Matrix ι ι R) (A₁₃ : Matrix ι κ R)
     (A₂₁ A₂₂ : Matrix ι ι R) (A₂₃ : Matrix ι κ R)
@@ -192,7 +215,9 @@ theorem conjugate_insert₂₃_blocks
   congr 1 <;>
     simp [Matrix.add_mul, Matrix.neg_mul, Matrix.mul_assoc] <;> abel
 
-/-- Every block after the second rectangular shear.-/
+/-- Every block after the second rectangular shear.
+@isnad1 id=eq.0h13v.s9.99c01a0293c9 from=translated src=- shape=74ff5333 vocab=ac3b3355
+-/
 theorem conjugate_insert₃₁_blocks
     (A₁₁ A₁₂ : Matrix ι ι R) (A₁₃ : Matrix ι κ R)
     (A₂₁ A₂₂ : Matrix ι ι R) (A₂₃ : Matrix ι κ R)
@@ -206,35 +231,52 @@ theorem conjugate_insert₃₁_blocks
   congr 1 <;>
     simp [Matrix.add_mul, Matrix.neg_mul, Matrix.mul_assoc] <;> abel
 
+/--
+@isnad1 id=eq.0h5v.s6.0fade83998a3 from=translated src=- shape=fa306ecf vocab=2f976410
+-/
 theorem conjugate_insert₂₃_block₁₂ (A : Matrix (Index ι κ) (Index ι κ) R)
     (X : Matrix ι κ R) : block₁₂ (conjugate A (insert₂₃ X)) = block₁₂ A := by
   rw [← blocks_reconstruct A, conjugate_insert₂₃_blocks]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f4f4b33aabb3 from=translated src=- shape=32b9716c vocab=48e9b33d
+-/
 theorem conjugate_insert₂₃_block₁₃ (A : Matrix (Index ι κ) (Index ι κ) R)
     (X : Matrix ι κ R) :
     block₁₃ (conjugate A (insert₂₃ X)) = block₁₃ A + block₁₂ A * X := by
   rw [← blocks_reconstruct A, conjugate_insert₂₃_blocks]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.9b89f7cff022 from=translated src=- shape=735e9ae4 vocab=9cd82331
+-/
 theorem conjugate_insert₂₃_block₃₃ (A : Matrix (Index ι κ) (Index ι κ) R)
     (X : Matrix ι κ R) :
     block₃₃ (conjugate A (insert₂₃ X)) = block₃₃ A + block₃₂ A * X := by
   rw [← blocks_reconstruct A, conjugate_insert₂₃_blocks]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.c46528af16d5 from=translated src=- shape=5710d442 vocab=1d8603f1
+-/
 theorem conjugate_insert₃₁_block₁₂ (A : Matrix (Index ι κ) (Index ι κ) R)
     (Y : Matrix κ ι R) : block₁₂ (conjugate A (insert₃₁ Y)) = block₁₂ A := by
   rw [← blocks_reconstruct A, conjugate_insert₃₁_blocks]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f6db6d6cddd7 from=translated src=- shape=9e7b2022 vocab=963617a4
+-/
 theorem conjugate_insert₃₁_block₃₃ (A : Matrix (Index ι κ) (Index ι κ) R)
     (Y : Matrix κ ι R) :
     block₃₃ (conjugate A (insert₃₁ Y)) = block₃₃ A - Y * block₁₃ A := by
   rw [← blocks_reconstruct A, conjugate_insert₃₁_blocks]
   rfl
 
-/-- Two explicit rectangular shears preserve the identity bridge and kill the external block.-/
+/-- Two explicit rectangular shears preserve the identity bridge and kill the external block.
+@isnad1 id=other.2h6v.s8.886a7cd467cf from=translated src=- shape=54c4d096 vocab=c93c1e61
+-/
 theorem two_step_elimination (A : Matrix (Index ι κ) (Index ι κ) R)
     (hA : block₁₂ A = 1) (J : Matrix ι κ R) (L : Matrix κ ι R) (hJ : L * J = 1) :
     let X := J - block₁₃ A
@@ -263,6 +305,9 @@ def liftShear (N : Matrix μ μ R) : Matrix (μ ⊕ ν) (μ ⊕ ν) R :=
   Matrix.fromBlocks N 0 0 0
 
 omit [DecidableEq μ] [DecidableEq ν] in
+/--
+@isnad1 id=eq.1h4v.s7.f21cd15b9b1e from=translated src=- shape=8a925e7e vocab=b0a4d6cd
+-/
 theorem liftShear_square (N : Matrix μ μ R) (hN : N * N = 0) :
     (liftShear N : Matrix (μ ⊕ ν) (μ ⊕ ν) R) * liftShear N = 0 := by
   simp [liftShear, Matrix.fromBlocks_multiply, hN]
@@ -286,13 +331,18 @@ def liftConjugate (A : Matrix (μ ⊕ ν) (μ ⊕ ν) R) (N : Matrix μ μ R) :
     Matrix (μ ⊕ ν) (μ ⊕ ν) R :=
   (1 - liftShear N) * A * (1 + liftShear N)
 
+/--
+@isnad1 id=eq.0h5v.s7.0bc0eee5af2c from=translated src=- shape=60abb4df vocab=57a37042
+-/
 theorem liftConjugate_block₁₁ (A : Matrix (μ ⊕ ν) (μ ⊕ ν) R) (N : Matrix μ μ R) :
     (liftConjugate A N).toBlocks₁₁ = (1 - N) * A.toBlocks₁₁ * (1 + N) := by
   rw [← Matrix.fromBlocks_toBlocks A]
   simp [liftConjugate, one_sub_liftShear, one_add_liftShear,
     Matrix.fromBlocks_multiply]
 
-/-- The whole remaining diagonal compression is unchanged, including all earlier zero blocks.-/
+/-- The whole remaining diagonal compression is unchanged, including all earlier zero blocks.
+@isnad1 id=eq.0h5v.s6.86aefa561094 from=translated src=- shape=ac55a60e vocab=47c56293
+-/
 theorem liftConjugate_block₂₂ (A : Matrix (μ ⊕ ν) (μ ⊕ ν) R) (N : Matrix μ μ R) :
     (liftConjugate A N).toBlocks₂₂ = A.toBlocks₂₂ := by
   rw [← Matrix.fromBlocks_toBlocks A]
@@ -306,7 +356,9 @@ section FullElimination
 variable {ι κ ν R : Type*} [Fintype ι] [Fintype κ] [Fintype ν]
 variable [DecidableEq ι] [DecidableEq κ] [DecidableEq ν] [Ring R]
 
-/-- Full-matrix elimination with an arbitrary remaining space and arbitrary cross couplings.-/
+/-- Full-matrix elimination with an arbitrary remaining space and arbitrary cross couplings.
+@isnad1 id=other.2h7v.s9.fe54f1c07300 from=translated src=- shape=edf4c0d0 vocab=f4c593e8
+-/
 theorem two_step_elimination_with_remainder
     (A : Matrix (Index ι κ ⊕ ν) (Index ι κ ⊕ ν) R)
     (hA : block₁₂ A.toBlocks₁₁ = 1)
@@ -329,7 +381,9 @@ section EntryPreservation
 
 variable {ν R : Type*} [Fintype ν] [DecidableEq ν] [Ring R]
 
-/-- Entries away from both the supported row and supported column survive the shear unchanged.-/
+/-- Entries away from both the supported row and supported column survive the shear unchanged.
+@isnad1 id=eq.2h6v.s8.1662a12ce273 from=translated src=- shape=4a9fb64b vocab=b7591444
+-/
 theorem conjugate_entry_of_zero_row_column (A N : Matrix ν ν R) (i j : ν)
     (hrow : ∀ k, N i k = 0) (hcol : ∀ k, N k j = 0) :
     ((1 - N) * A * (1 + N)) i j = A i j := by

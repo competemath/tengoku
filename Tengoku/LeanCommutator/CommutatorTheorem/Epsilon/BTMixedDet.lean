@@ -27,17 +27,26 @@ def principalCompression {n r : ℕ} (A : Matrix (Fin n) (Fin n) ℂ)
     Matrix (ColorFiber c a) (ColorFiber c a) ℂ :=
   A.submatrix Subtype.val Subtype.val
 
+/--
+@isnad1 id=eq.0h7v.s6.85820a51b5b5 from=translated src=- shape=fbaba31e vocab=40922d35
+-/
 @[simp] lemma principalCompression_apply {n r : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) (c : Coloring n r) (a : Fin r)
     (i j : ColorFiber c a) :
     principalCompression A c a i j = A i.1 j.1 := rfl
 
+/--
+@isnad1 id=ishermit.1h5v.s6.1985ea1cb78d from=translated src=- shape=6505f8f5 vocab=78f5fd9f
+-/
 lemma principalCompression_isHermitian {n r : ℕ}
     {A : Matrix (Fin n) (Fin n) ℂ} (hA : A.IsHermitian)
     (c : Coloring n r) (a : Fin r) :
     (principalCompression A c a).IsHermitian :=
   hA.submatrix Subtype.val
 
+/--
+@isnad1 id=eq.0h5v.s7.4dd7feb19437 from=translated src=- shape=e9afebbb vocab=2081ed73
+-/
 lemma trace_principalCompression {n r : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) (c : Coloring n r) (a : Fin r) :
     (principalCompression A c a).trace =
@@ -51,6 +60,9 @@ def compressedFamily {n r k : ℕ}
     Matrix (ColorFiber c a) (ColorFiber c a) ℂ :=
   principalCompression (A j) c a
 
+/--
+@isnad1 id=ishermit.1h7v.s6.e866b2dd4ad4 from=translated src=- shape=27b8268d vocab=0b62fd97
+-/
 lemma compressedFamily_isHermitian {n r k : ℕ}
     {A : Fin k → Matrix (Fin n) (Fin n) ℂ}
     (hA : ∀ j, (A j).IsHermitian) (c : Coloring n r) (a : Fin r) (j : Fin k) :
@@ -64,11 +76,17 @@ def maskedCompression {n r : ℕ} (A : Matrix (Fin n) (Fin n) ℂ)
     (c : Coloring n r) (a : Fin r) : Matrix (Fin n) (Fin n) ℂ :=
   fun i j => if c i = a ∧ c j = a then A i j else 0
 
+/--
+@isnad1 id=eq.0h7v.s6.054bbed26e59 from=translated src=- shape=58659972 vocab=23f66eb0
+-/
 @[simp] lemma maskedCompression_apply {n r : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) (c : Coloring n r) (a : Fin r)
     (i j : Fin n) :
     maskedCompression A c a i j = if c i = a ∧ c j = a then A i j else 0 := rfl
 
+/--
+@isnad1 id=ishermit.1h5v.s6.6fecc3410cfb from=translated src=- shape=e1ec5b5f vocab=1f0e2a8d
+-/
 lemma maskedCompression_isHermitian {n r : ℕ}
     {A : Matrix (Fin n) (Fin n) ℂ} (hA : A.IsHermitian)
     (c : Coloring n r) (a : Fin r) :
@@ -78,6 +96,9 @@ lemma maskedCompression_isHermitian {n r : ℕ}
   by_cases hi : c i = a <;> by_cases hj : c j = a <;>
     simp [maskedCompression, hi, hj, hA.apply]
 
+/--
+@isnad1 id=eq.0h5v.s6.7d32658dd3f7 from=translated src=- shape=d4f8d2f5 vocab=49c586f3
+-/
 lemma trace_maskedCompression {n r : ℕ}
     (A : Matrix (Fin n) (Fin n) ℂ) (c : Coloring n r) (a : Fin r) :
     (maskedCompression A c a).trace =
@@ -90,6 +111,9 @@ noncomputable def jointMaskedCompression {n r k : ℕ}
     (c : Coloring n r) (a : Fin r) : Matrix (Fin n) (Fin n) ℂ :=
   ∑ j, maskedCompression (A j) c a
 
+/--
+@isnad1 id=ishermit.1h6v.s6.8e8938e64c9c from=translated src=- shape=36175f06 vocab=1fbb85b9
+-/
 lemma jointMaskedCompression_isHermitian {n r k : ℕ}
     {A : Fin k → Matrix (Fin n) (Fin n) ℂ}
     (hA : ∀ j, (A j).IsHermitian) (c : Coloring n r) (a : Fin r) :
@@ -102,6 +126,9 @@ lemma jointMaskedCompression_isHermitian {n r k : ℕ}
   intro t _
   exact (maskedCompression_isHermitian (hA t) c a).apply i j
 
+/--
+@isnad1 id=eq.0h6v.s6.a7fec3e4a1f9 from=translated src=- shape=ceb275be vocab=3d2bfa3b
+-/
 lemma trace_jointMaskedCompression {n r k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ)
     (c : Coloring n r) (a : Fin r) :
@@ -130,6 +157,9 @@ private lemma charpoly_coeff_dim {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) :
     M.charpoly.coeff n = 1 := by
   simpa using M.charpoly_monic.coeff_natDegree
 
+/--
+@isnad1 id=le.0h5v.s5.db39d1eabb2b from=translated src=- shape=376c9503 vocab=3ec06a43
+-/
 lemma averageCharpoly_natDegree_le {n r k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).natDegree ≤ n := by
@@ -139,9 +169,15 @@ lemma averageCharpoly_natDegree_le {n r k : ℕ}
   intro c _
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.dc21853c5023 from=translated src=- shape=8fcd210a vocab=589e8fb2
+-/
 lemma coloring_card (n r : ℕ) : Fintype.card (Coloring n r) = r ^ n := by
   simp [Coloring]
 
+/--
+@isnad1 id=eq.1h5v.s5.8e1558766151 from=translated src=- shape=a5c42189 vocab=36753558
+-/
 lemma averageCharpoly_coeff_dim {n r k : ℕ} (hr : 0 < r)
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).coeff n = 1 := by
@@ -164,6 +200,9 @@ lemma averageCharpoly_coeff_dim {n r k : ℕ} (hr : 0 < r)
   have hrpowC : ((r ^ n : ℕ) : ℂ) ≠ 0 := by exact_mod_cast hrpow
   exact inv_mul_cancel₀ hrpowC
 
+/--
+@isnad1 id=monic.1h5v.s5.fe9c29477ce4 from=translated src=- shape=c7c69578 vocab=06406935
+-/
 theorem averageCharpoly_monic {n r k : ℕ} (hr : 0 < r)
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).Monic :=
@@ -175,7 +214,9 @@ theorem averageCharpoly_monic {n r k : ℕ} (hr : 0 < r)
 /-- The coefficient immediately below the leading coefficient of a matrix
 characteristic polynomial is minus its trace.  In dimension zero the exponent
 `n - 1` is still zero, so it selects the constant coefficient of the polynomial
-`1`; the conditional records this unavoidable boundary case.-/
+`1`; the conditional records this unavoidable boundary case.
+@isnad1 id=eq.0h2v.s6.9eed594b8a6a from=translated src=- shape=c038a654 vocab=63a3c81d
+-/
 lemma charpoly_coeff_pred_dim {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ) :
     M.charpoly.coeff (n - 1) = if n = 0 then 1 else -M.trace := by
   cases n with
@@ -209,11 +250,17 @@ noncomputable def familySum {n k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) : Matrix (Fin n) (Fin n) ℂ :=
   ∑ j, A j
 
+/--
+@isnad1 id=eq.0h5v.s5.06ae6d981ac7 from=translated src=- shape=09f89182 vocab=bcd3f111
+-/
 @[simp] lemma familySum_apply {n k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (i l : Fin n) :
     familySum A i l = ∑ j : Fin k, A j i l := by
   simp only [familySum, Matrix.sum_apply]
 
+/--
+@isnad1 id=eq.0h8v.s6.5a7d89600abc from=translated src=- shape=55451772 vocab=278e48f2
+-/
 lemma jointMaskedCompression_apply {n r k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ)
     (c : Coloring n r) (a : Fin r) (i l : Fin n) :
@@ -233,6 +280,9 @@ def secondNewtonKernel {n : ℕ} (M : Matrix (Fin n) (Fin n) ℂ)
     (i l : Fin n) : ℂ :=
   M i i * M l l - M i l * M l i
 
+/--
+@isnad1 id=eq.0h3v.s4.328098d9ab3a from=translated src=- shape=91c7390c vocab=e1b5cdd7
+-/
 @[simp] lemma secondNewtonKernel_diag {n : ℕ}
     (M : Matrix (Fin n) (Fin n) ℂ) (i : Fin n) :
     secondNewtonKernel M i i = 0 := by
@@ -245,7 +295,9 @@ noncomputable def averageSecondNewtonNumerator {n r k : ℕ}
     ∑ c : Coloring n r, secondNewtonNumerator (jointMaskedCompression A c a)
 
 /-- Closed form for the uniform coloring average of the trace.  Each diagonal
-coordinate survives with probability `1 / r`.-/
+coordinate survives with probability `1 / r`.
+@isnad1 id=eq.0h5v.s6.565573690036 from=translated src=- shape=4dd43b1d vocab=f06fe776
+-/
 theorem averageTrace_eq_inv_mul_sum_trace {n r k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     averageTrace A a = (r : ℂ)⁻¹ * ∑ j : Fin k, (A j).trace := by
@@ -273,7 +325,9 @@ theorem averageTrace_eq_inv_mul_sum_trace {n r k : ℕ}
     rfl
 
 /-- In positive dimension the next coefficient of the averaged characteristic
-polynomial is minus the averaged trace.-/
+polynomial is minus the averaged trace.
+@isnad1 id=eq.1h5v.s5.6e05cf72e611 from=translated src=- shape=345c0b0f vocab=e89af370
+-/
 lemma averageCharpoly_coeff_pred_dim {n r k : ℕ} (hn : 0 < n)
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).coeff (n - 1) = -averageTrace A a := by
@@ -281,7 +335,9 @@ lemma averageCharpoly_coeff_pred_dim {n r k : ℕ} (hn : 0 < n)
   simp [averageCharpoly, averageTrace, charpoly_coeff_pred_dim, hn.ne']
 
 /-- Boundary-aware form of the preceding coefficient identity.  At `n = 0`,
-`n - 1 = 0` and the averaged characteristic polynomial is the constant `1`.-/
+`n - 1 = 0` and the averaged characteristic polynomial is the constant `1`.
+@isnad1 id=eq.0h5v.s6.74fd38864e23 from=translated src=- shape=54a4e899 vocab=7fef0103
+-/
 theorem averageCharpoly_coeff_pred_dim_boundary {n r k : ℕ}
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).coeff (n - 1) =
@@ -292,7 +348,9 @@ theorem averageCharpoly_coeff_pred_dim_boundary {n r k : ℕ}
   · simpa [hn] using averageCharpoly_coeff_pred_dim (Nat.pos_of_ne_zero hn) A a
 
 /-- Combining the coefficient identity with the closed trace count gives an
-explicit first lower coefficient for the averaged characteristic polynomial.-/
+explicit first lower coefficient for the averaged characteristic polynomial.
+@isnad1 id=eq.1h5v.s6.b9a63a8c4ae3 from=translated src=- shape=1f3af818 vocab=ba1991ef
+-/
 theorem averageCharpoly_coeff_pred_dim_eq {n r k : ℕ} (hn : 0 < n)
     (A : Fin k → Matrix (Fin n) (Fin n) ℂ) (a : Fin r) :
     (averageCharpoly A a).coeff (n - 1) =
@@ -301,6 +359,9 @@ theorem averageCharpoly_coeff_pred_dim_eq {n r k : ℕ} (hn : 0 < n)
 
 /-! ## The degree-two characteristic-polynomial coefficient -/
 
+/--
+@isnad1 id=ishermit.1h3v.s6.443ba9e1f517 from=translated src=- shape=e303977b vocab=8a1a2433
+-/
 lemma familySum_isHermitian {n k : ℕ}
     {A : Fin k → Matrix (Fin n) (Fin n) ℂ} (hA : ∀ j, (A j).IsHermitian) :
     (familySum A).IsHermitian := by

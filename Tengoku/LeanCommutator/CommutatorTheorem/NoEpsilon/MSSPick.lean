@@ -16,7 +16,9 @@ namespace NoEpsilon.MSSPick
 open Filter Polynomial
 open scoped Topology
 
-/-- The upper half-plane contains an `n`th root of `I` for every positive `n`.-/
+/-- The upper half-plane contains an `n`th root of `I` for every positive `n`.
+@isnad1 id=ex.1h1v.s5.12787392bbee from=translated src=- shape=6a3d3944 vocab=a737b1fd
+-/
 theorem exists_upper_pow_I {n : ℕ} (hn : 0 < n) :
     ∃ w : ℂ, 0 < w.im ∧ w ^ n = Complex.I := by
   have hnR : 0 < (n : ℝ) := by exact_mod_cast hn
@@ -36,7 +38,9 @@ theorem exists_upper_pow_I {n : ℕ} (hn : 0 < n) :
     push_cast
     field_simp [hnC]
 
-/-- For order at least two, there is also an upper-half-plane root of `-I`.-/
+/-- For order at least two, there is also an upper-half-plane root of `-I`.
+@isnad1 id=ex.1h1v.s5.05610b8054dc from=translated src=- shape=572ca201 vocab=5a7a2e68
+-/
 theorem exists_upper_pow_neg_I {n : ℕ} (hn : 2 ≤ n) :
     ∃ w : ℂ, 0 < w.im ∧ w ^ n = -Complex.I := by
   have hnR : 0 < (n : ℝ) := by exact_mod_cast (lt_of_lt_of_le (by decide : 0 < 2) hn)
@@ -60,7 +64,9 @@ theorem exists_upper_pow_neg_I {n : ℕ} (hn : 2 ≤ n) :
     rw [he, Complex.exp_add_pi_mul_I, Complex.exp_pi_div_two_mul_I]
 
 /-- A nonzero real leading Laurent coefficient with the Pick sign on every
-upper ray must be a positive simple-pole coefficient.-/
+upper ray must be a positive simple-pole coefficient.
+@isnad1 id=and.3h2v.s6.b39c1be3640b from=translated src=- shape=2169179f vocab=a563e47d
+-/
 theorem pole_order_eq_one_of_power_sign {n : ℕ} (hn : 0 < n)
     {a : ℝ} (ha : a ≠ 0)
     (hsign : ∀ w : ℂ, 0 < w.im → ((a : ℂ) / w ^ n).im ≤ 0) :
@@ -79,7 +85,9 @@ theorem pole_order_eq_one_of_power_sign {n : ℕ} (hn : 0 < n)
   have ha1 : a ≤ 0 := by simpa [Complex.div_im] using haneg
   exact (not_lt_of_ge ha1) hapos'
 
-/-- Reading a Laurent leading coefficient along an arbitrary nonzero ray.-/
+/-- Reading a Laurent leading coefficient along an arbitrary nonzero ray.
+@isnad1 id=tendsto.2h5v.s7.b933029215dc from=translated src=- shape=ba1e0efb vocab=f5f18d9d
+-/
 theorem laurent_ray_limit {f : ℂ → ℂ} {c a : ℂ} {n : ℕ}
     (hlim : Tendsto (fun z : ℂ ↦ (z - c) ^ n * f z) (𝓝[≠] c) (𝓝 a))
     {w : ℂ} (hw : w ≠ 0) :
@@ -106,7 +114,9 @@ theorem laurent_ray_limit {f : ℂ → ℂ} {c a : ℂ} {n : ℕ}
 
 /-- A nonzero real Laurent leading term of a function with the Pick sign on
 upper rays has pole order exactly one and positive residue. The proof takes
-limits along two explicit upper rays; it does not assume a residue theorem.-/
+limits along two explicit upper rays; it does not assume a residue theorem.
+@isnad1 id=and.4h4v.s7.7717e8883c3a from=translated src=- shape=a4faff41 vocab=0e6171e6
+-/
 theorem simple_pole_of_laurent_limit {f : ℂ → ℂ} (r : ℝ) {n : ℕ} (hn : 0 < n)
     {a : ℝ} (ha : a ≠ 0)
     (hlim : Tendsto (fun z : ℂ ↦ (z - (r : ℂ)) ^ n * f z)
@@ -149,7 +159,9 @@ theorem simple_pole_of_laurent_limit {f : ℂ → ℂ} (r : ℝ) {n : ℕ} (hn :
 
 /-- A factored rational function with the Pick sign cannot have a real pole of
 order greater than one. This specializes the preceding analytic limit lemma to
-actual polynomials, deriving the Laurent limit by cancellation.-/
+actual polynomials, deriving the Laurent limit by cancellation.
+@isnad1 id=and.6h6v.s8.1f503b68b7d9 from=translated src=- shape=31f6687f vocab=cb0694ce
+-/
 theorem simple_real_pole_of_factorization (g h h₀ : ℂ[X]) (r : ℝ)
     {n : ℕ} (hn : 0 < n) (hfactor : h = (X - C (r : ℂ)) ^ n * h₀)
     (hh₀ : h₀.eval (r : ℂ) ≠ 0) {a : ℝ} (ha : a ≠ 0)
@@ -189,7 +201,9 @@ theorem simple_real_pole_of_factorization (g h h₀ : ℂ[X]) (r : ℝ)
       exact mul_ne_zero (pow_ne_zero n (mul_ne_zero ht0 hw0)) ht
 
 /-- The logarithmic derivative of a polynomial factorization, with an explicit
-multiplicity. All denominator conditions are stated at the evaluation point.-/
+multiplicity. All denominator conditions are stated at the evaluation point.
+@isnad1 id=eq.3h5v.s8.3ee9dc557274 from=translated src=- shape=1fbbcfbf vocab=be9a24df
+-/
 theorem logDerivative_of_factorization (h h₀ : ℂ[X]) (c z : ℂ) (n : ℕ)
     (hfactor : h = (X - C c) ^ (n + 1) * h₀) (hz : z ≠ c) (hh₀ : h₀.eval z ≠ 0) :
     h.derivative.eval z / h.eval z = (n+1 : ℂ) / (z-c) + h₀.derivative.eval z / h₀.eval z := by
@@ -202,7 +216,9 @@ theorem logDerivative_of_factorization (h h₀ : ℂ[X]) (c z : ℂ) (n : ℕ)
   field_simp
 
 /-- Every root of a polynomial is a simple pole of its logarithmic derivative;
-the residue is exactly the root multiplicity.-/
+the residue is exactly the root multiplicity.
+@isnad1 id=tendsto.2h4v.s8.73c5712cf12b from=translated src=- shape=8e5da5d9 vocab=12941408
+-/
 theorem logDerivative_laurent_limit (h h₀ : ℂ[X]) (c : ℂ) (n : ℕ)
     (hfactor : h = (X - C c) ^ (n + 1) * h₀) (hh₀ : h₀.eval c ≠ 0) :
     Tendsto (fun z : ℂ ↦ (z-c) * (h.derivative.eval z / h.eval z))
@@ -225,7 +241,9 @@ theorem logDerivative_laurent_limit (h h₀ : ℂ[X]) (c : ℂ) (n : ℕ)
 
 /-- A polynomial is upper-half-plane nonvanishing if its logarithmic derivative
 has the Pick sign wherever defined there. A hypothetical upper root is approached
-from below; its positive multiplicity then gives the opposite sign.-/
+from below; its positive multiplicity then gives the opposite sign.
+@isnad1 id=ne.3h2v.s7.679201055d51 from=translated src=- shape=2296a15d vocab=cd8b1e7c
+-/
 theorem upperStable_of_logDerivative_sign (h : ℂ[X]) (hzero : h ≠ 0)
     (hsign : ∀ z : ℂ, 0 < z.im → h.eval z ≠ 0 →
       (h.derivative.eval z / h.eval z).im ≤ 0) :

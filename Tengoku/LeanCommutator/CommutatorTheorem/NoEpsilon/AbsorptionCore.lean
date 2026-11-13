@@ -41,16 +41,25 @@ def secondIndex (j : Fin r) : Ambient r d := ⟨none, Sum.inr j⟩
 def outsideIndex (i : ι) (j : d i) : Ambient r d := ⟨some i, j⟩
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=injectiv.0h3v.s5.f38be1da609f from=translated src=- shape=72d55083 vocab=7fd3fd18
+-/
 theorem firstIndex_injective : Function.Injective (firstIndex r d) := by
   intro x y h
   exact Sum.inl_injective (eq_of_heq (Sigma.mk.inj_iff.mp h).2)
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=injectiv.0h3v.s5.badd199884a1 from=translated src=- shape=72d55083 vocab=f6ad4320
+-/
 theorem secondIndex_injective : Function.Injective (secondIndex r d) := by
   intro x y h
   exact Sum.inr_injective (eq_of_heq (Sigma.mk.inj_iff.mp h).2)
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=injectiv.0h4v.s5.2689998ade2b from=translated src=- shape=9abc2c5f vocab=72d52d68
+-/
 theorem outsideIndex_injective (i : ι) : Function.Injective (outsideIndex r d i) := by
   intro x y h
   exact eq_of_heq (Sigma.mk.inj_iff.mp h).2
@@ -58,6 +67,9 @@ theorem outsideIndex_injective (i : ι) : Function.Injective (outsideIndex r d i
 variable {r d}
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.1h5v.s6.3c2e79fdfad8 from=translated src=- shape=f0fc6bd0 vocab=db3c356d
+-/
 theorem coordinateInclusion_orthogonal {α β γ : Type*}
     [Fintype γ] [DecidableEq α] [DecidableEq β] [DecidableEq γ]
     (f : α → γ) (g : β → γ) (h : ∀ a b, f a ≠ g b) :
@@ -67,7 +79,9 @@ theorem coordinateInclusion_orthogonal {α β γ : Type*}
     using (h a b).symm
 
 -- Preserve the existing parameter list for downstream callers.
-/-- The trace of the full matrix is the sum of the traces of its diagonal blocks.-/
+/-- The trace of the full matrix is the sum of the traces of its diagonal blocks.
+@isnad1 id=eq.0h4v.s7.8398939a5532 from=translated src=- shape=663bcb16 vocab=6ce1f52f
+-/
 theorem trace_eq_sum_blocks (A : Matrix (Ambient r d) (Ambient r d) ℂ) :
     trace A = trace (BlockAssembly.block A none none) +
       ∑ i, trace (BlockAssembly.block A (some i) (some i)) := by

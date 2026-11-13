@@ -33,12 +33,17 @@ coefficient signs.-/
 def CoeffSignRefines (p q : ℝ[X]) : Prop :=
   List.Sublist (nonzeroCoeffSigns p) (nonzeroCoeffSigns q)
 
+/--
+@isnad1 id=eq.0h1v.s5.21ef99103b59 from=translated src=- shape=1f2456a9 vocab=41b09e71
+-/
 theorem signVariations_eq_destutter_length_sub_one (p : ℝ[X]) :
     p.signVariations =
       ((nonzeroCoeffSigns p).destutter (· ≠ ·)).length - 1 := by
   rfl
 
-/-- Inserting nonzero signs cannot decrease the number of sign changes.-/
+/-- Inserting nonzero signs cannot decrease the number of sign changes.
+@isnad1 id=le.1h2v.s4.a9e65405af14 from=translated src=- shape=0edace7b vocab=4caaedbc
+-/
 theorem signVariations_le_of_coeffSignRefines {p q : ℝ[X]}
     (h : CoeffSignRefines p q) :
     p.signVariations ≤ q.signVariations := by
@@ -51,7 +56,9 @@ theorem signVariations_le_of_coeffSignRefines {p q : ℝ[X]}
 
 /-- The number of coefficient sign changes never exceeds the polynomial's
 natural degree.  This is the elementary upper bound complementary to
-Descartes' lower bound by the number of positive roots.-/
+Descartes' lower bound by the number of positive roots.
+@isnad1 id=le.0h1v.s4.9bd70ccb41d6 from=translated src=- shape=ed44ac7a vocab=847611fe
+-/
 theorem signVariations_le_natDegree (p : ℝ[X]) :
     p.signVariations ≤ p.natDegree := by
   by_cases hp : p = 0
@@ -69,7 +76,9 @@ theorem signVariations_le_natDegree (p : ℝ[X]) :
     _ = p.natDegree := by
       simp [Polynomial.length_coeffList_eq_ite, hp]
 
-/-- Entrywise description of the descending coefficient list.-/
+/-- Entrywise description of the descending coefficient list.
+@isnad1 id=eq.2h2v.s6.f5e08e2e472b from=translated src=- shape=7f49b325 vocab=16c49361
+-/
 theorem coeffList_getElem_eq_coeff_natDegree_sub
     {p : ℝ[X]} (hp : p ≠ 0) (i : ℕ) (hi : i < p.coeffList.length) :
     p.coeffList[i] = p.coeff (p.natDegree - i) := by
@@ -77,7 +86,9 @@ theorem coeffList_getElem_eq_coeff_natDegree_sub
     withBotSucc_degree_eq_natDegree_add_one hp] at hi ⊢
 
 /-- Multiplication by `X` appends a zero constant coefficient to the
-descending coefficient list.-/
+descending coefficient list.
+@isnad1 id=eq.1h1v.s6.826f41a79008 from=translated src=- shape=ae9917aa vocab=8f5f2297
+-/
 theorem coeffList_mul_X_eq_append_zero
     {p : ℝ[X]} (hp : p ≠ 0) :
     (p * X).coeffList = p.coeffList ++ [0] := by
@@ -104,7 +115,9 @@ theorem coeffList_mul_X_eq_append_zero
         Polynomial.length_coeffList_eq_ite, hp]
 
 /-- Appending the zero introduced by multiplication with `X` does not alter
-the nonzero coefficient sign word.-/
+the nonzero coefficient sign word.
+@isnad1 id=eq.1h1v.s5.b354238e4748 from=translated src=- shape=813bda51 vocab=5fffbda2
+-/
 theorem nonzeroCoeffSigns_mul_X {p : ℝ[X]} (hp : p ≠ 0) :
     nonzeroCoeffSigns (p * X) = nonzeroCoeffSigns p := by
   unfold nonzeroCoeffSigns
@@ -112,7 +125,9 @@ theorem nonzeroCoeffSigns_mul_X {p : ℝ[X]} (hp : p ≠ 0) :
     List.filter_append]
   simp
 
-/-- Multiplication by `X` preserves coefficient sign variations.-/
+/-- Multiplication by `X` preserves coefficient sign variations.
+@isnad1 id=eq.1h1v.s5.b1ad31dfb22a from=translated src=- shape=917d4e1e vocab=a6270eb5
+-/
 theorem signVariations_mul_X {p : ℝ[X]} (hp : p ≠ 0) :
     (p * X).signVariations = p.signVariations := by
   simp only [signVariations_eq_destutter_length_sub_one,
@@ -123,7 +138,9 @@ def SignWordRefines (u v : List SignType) : Prop :=
   List.Forall₂ (fun a b ↦ a = 0 ∨ a = b) u v
 
 /-- Removing zero entries from a sign word that is pointwise refined gives
-a sublist of the refined nonzero word.-/
+a sublist of the refined nonzero word.
+@isnad1 id=sublist.1h2v.s6.da7a9e570ffc from=translated src=- shape=9446a66b vocab=81d0924b
+-/
 theorem filter_ne_zero_sublist_of_signWordRefines
     {u v : List SignType} (h : SignWordRefines u v) :
     List.Sublist (u.filter (· ≠ 0)) (v.filter (· ≠ 0)) := by

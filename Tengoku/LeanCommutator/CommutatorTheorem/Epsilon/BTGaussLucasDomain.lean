@@ -18,10 +18,16 @@ open CommutatorTheorem.BTRealStabilityClosure
 def upperHalfPlaneProduct (sigma : Type*) : Set (sigma → ℂ) :=
   {z | ∀ i, InUpperHalfPlane (z i)}
 
+/--
+@isnad1 id=iff.0h2v.s4.4608f433ad6a from=translated src=- shape=73ef1642 vocab=26de4e35
+-/
 @[simp] theorem mem_upperHalfPlaneProduct {sigma : Type*} {z : sigma → ℂ} :
     z ∈ upperHalfPlaneProduct sigma ↔ ∀ i, InUpperHalfPlane (z i) :=
   Iff.rfl
 
+/--
+@isnad1 id=isopen.0h1v.s4.1e27c14b7cd3 from=translated src=- shape=fea4225f vocab=e729a7f0
+-/
 theorem isOpen_upperHalfPlaneProduct (sigma : Type*) [Finite sigma] :
     IsOpen (upperHalfPlaneProduct sigma) := by
   have hset : upperHalfPlaneProduct sigma =
@@ -33,6 +39,9 @@ theorem isOpen_upperHalfPlaneProduct (sigma : Type*) [Finite sigma] :
     isOpen_lt continuous_const Complex.continuous_im
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=convex.0h1v.s5.dcfd7bb78d55 from=translated src=- shape=629f2229 vocab=5b9841d9
+-/
 theorem convex_upperHalfPlaneProduct (sigma : Type*) [Fintype sigma] :
     Convex ℝ (upperHalfPlaneProduct sigma) := by
   have hset : upperHalfPlaneProduct sigma =
@@ -45,17 +54,25 @@ theorem convex_upperHalfPlaneProduct (sigma : Type*) [Fintype sigma] :
   exact convex_halfSpace_gt Complex.imCLM.isLinear 0
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=isprecon.0h1v.s4.b60049cc2f37 from=translated src=- shape=fea4225f vocab=8dccdb75
+-/
 theorem isPreconnected_upperHalfPlaneProduct (sigma : Type*) [Fintype sigma] :
     IsPreconnected (upperHalfPlaneProduct sigma) :=
   (convex_upperHalfPlaneProduct sigma).isPreconnected
 
+/--
+@isnad1 id=nonempty.0h1v.s3.0806bb9eb073 from=translated src=- shape=01e60de4 vocab=ce34d0e0
+-/
 theorem nonempty_upperHalfPlaneProduct (sigma : Type*) :
     (upperHalfPlaneProduct sigma).Nonempty := by
   refine ⟨fun _ ↦ Complex.I, ?_⟩
   simp [upperHalfPlaneProduct, InUpperHalfPlane]
 
 /-- The open upper half-plane is infinite; the horizontal line `x + I`
-already gives an injective infinite subset.-/
+already gives an injective infinite subset.
+@isnad1 id=infinite.0h0v.s3.f220b194d2e2 from=translated src=- shape=66b19da4 vocab=af8117f4
+-/
 theorem infinite_upperHalfPlane :
     ({z : ℂ | InUpperHalfPlane z} : Set ℂ).Infinite := by
   let f : ℝ → ℂ := fun x ↦ (x : ℂ) + Complex.I
@@ -68,7 +85,9 @@ theorem infinite_upperHalfPlane :
   simp [f, InUpperHalfPlane]
 
 /-- An open subset of `ℂ` containing zero cannot stay inside the closed
-lower half-plane.-/
+lower half-plane.
+@isnad1 id=not.2h1v.s5.694f76edb186 from=translated src=- shape=74ef6416 vocab=98deb23a
+-/
 theorem not_isOpen_of_zero_mem_of_im_nonpos {s : Set ℂ}
     (hzero : 0 ∈ s) (him : ∀ z ∈ s, z.im ≤ 0) : ¬ IsOpen s := by
   intro hs
@@ -86,7 +105,9 @@ theorem not_isOpen_of_zero_mem_of_im_nonpos {s : Set ℂ}
   linarith
 
 /-- A multivariate complex polynomial vanishing throughout the product upper
-half-plane is the zero polynomial.-/
+half-plane is the zero polynomial.
+@isnad1 id=eq.1h2v.s7.baf977e459bc from=translated src=- shape=9d61d4d3 vocab=5fa2946f
+-/
 theorem mvPolynomial_eq_zero_of_eval_zero_upper
     {sigma : Type*} {q : MvPolynomial sigma ℂ}
     (hq : ∀ z ∈ upperHalfPlaneProduct sigma,

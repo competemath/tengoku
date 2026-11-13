@@ -15,7 +15,9 @@ namespace CommutatorTheorem.NoEpsilon
 
 /-- A local finite splitting into strictly smaller dimensions, together with a common-budget
 assembly rule, propagates a uniform bound to every dimension. The shrinking estimate is used
-to put every child solution under the same budget before assembly.-/
+to put every child solution under the same budget before assembly.
+@isnad1 id=var.6h11v.s8.96dd9285f243 from=translated src=- shape=b7c2794e vocab=853fcf01
+-/
 theorem uniform_bound_of_shrinking_split
     {X : ℕ → Type*} (size : {n : ℕ} → X n → ℝ)
     (Solution : {n : ℕ} → X n → ℝ → Prop)

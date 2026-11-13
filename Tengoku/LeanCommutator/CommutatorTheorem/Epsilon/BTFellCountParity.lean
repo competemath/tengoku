@@ -19,14 +19,18 @@ open CommutatorTheorem.BTFellPair
 open CommutatorTheorem.BTFellThreshold
 open CommutatorTheorem.BTFellCrossGap
 
-/-- Taylor translation commutes with the convex affine pencil.-/
+/-- Taylor translation commutes with the convex affine pencil.
+@isnad1 id=eq.0h4v.s9.87e9abe8542f from=translated src=- shape=1eb90e21 vocab=34cb2042
+-/
 theorem taylor_convex (p q : ℝ[X]) (t x : ℝ) :
     (t • p + (1 - t) • q).taylor x =
       t • p.taylor x + (1 - t) • q.taylor x := by
   simp only [map_add, map_smul]
 
 /-- Equal nonzero evaluation signs force equal parity of the exact
-right-half-line root counts.-/
+right-half-line root counts.
+@isnad1 id=iff.7h3v.s6.5299ac6264de from=translated src=- shape=8622a456 vocab=ee45fa55
+-/
 theorem even_rootsGTCount_iff_of_eval_mul_pos
     {p q : ℝ[X]} (hpmonic : p.Monic) (hqmonic : q.Monic)
     (hpreal : RealRooted p) (hqreal : RealRooted q) {x : ℝ}
@@ -62,7 +66,9 @@ theorem even_rootsGTCount_iff_of_eval_mul_pos
     rw [hpows, heven.neg_one_pow]
 
 /-- In a root-disjoint pencil, absence of a threshold crossing between two
-parameters preserves the parity of the right-half-line root count.-/
+parameters preserves the parity of the right-half-line root count.
+@isnad1 id=iff.9h5v.s9.2699278079c2 from=translated src=- shape=0f679468 vocab=216bcc66
+-/
 theorem even_rootsGTCount_iff_of_no_crossing
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))

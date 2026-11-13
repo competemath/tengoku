@@ -32,7 +32,9 @@ def boxFiber {E : Type*} [AddCommGroup E] [Module ℝ E]
   Icc 0 1 ∩ L ⁻¹' {b}
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Directions supported on fractional coordinates admit a two-sided perturbation in the box.-/
+/-- Directions supported on fractional coordinates admit a two-sided perturbation in the box.
+@isnad1 id=ex.2h3v.s8.5cfd5e845409 from=translated src=- shape=515c4ade vocab=8e65c2aa
+-/
 theorem exists_box_perturbation (a u : ι → ℝ) (ha : a ∈ Icc (0 : ι → ℝ) 1)
     (hu : ∀ i, ¬ (0 < a i ∧ a i < 1) → u i = 0) :
     ∃ ε : ℝ, 0 < ε ∧ a - ε • u ∈ Icc (0 : ι → ℝ) 1 ∧
@@ -61,7 +63,9 @@ theorem exists_box_perturbation (a u : ι → ℝ) (ha : a ∈ Icc (0 : ι → �
       linarith)
 
 -- Preserve the existing parameter list for downstream callers.
-/-- An extreme point has no nonzero feasible direction supported in its fractional coordinates.-/
+/-- An extreme point has no nonzero feasible direction supported in its fractional coordinates.
+@isnad1 id=eq.3h6v.s8.de2f8f1861d5 from=translated src=- shape=635e6e88 vocab=25ea2920
+-/
 theorem extreme_box_fiber_no_direction {E : Type*} [AddCommGroup E] [Module ℝ E]
     (L : (ι → ℝ) →ₗ[ℝ] E) (b : E) (a : ι → ℝ)
     (ha : a ∈ (boxFiber L b).extremePoints ℝ) (u : ι → ℝ)
@@ -82,7 +86,9 @@ theorem extreme_box_fiber_no_direction {E : Type*} [AddCommGroup E] [Module ℝ 
   exact (smul_eq_zero.mp hzero).resolve_left (ne_of_gt hε)
 
 -- Preserve the existing parameter list for downstream callers.
-/-- The constraint images of the fractional coordinates of an extreme point are independent.-/
+/-- The constraint images of the fractional coordinates of an extreme point are independent.
+@isnad1 id=linearin.1h5v.s8.4124eaabfdcd from=translated src=- shape=b8cff624 vocab=479c14e5
+-/
 theorem extreme_fractional_linearIndependent {E : Type*} [AddCommGroup E] [Module ℝ E]
     (L : (ι → ℝ) →ₗ[ℝ] E) (b : E) (a : ι → ℝ)
     (ha : a ∈ (boxFiber L b).extremePoints ℝ) :
@@ -117,7 +123,9 @@ theorem extreme_fractional_linearIndependent {E : Type*} [AddCommGroup E] [Modul
   simpa only [hui, Pi.zero_apply] using h
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Extreme box fibers have at most `finrank` many fractional coordinates.-/
+/-- Extreme box fibers have at most `finrank` many fractional coordinates.
+@isnad1 id=le.1h5v.s7.abb4c4d82386 from=translated src=- shape=29b6f386 vocab=07ea58fa
+-/
 theorem extreme_fractional_card_le {E : Type*} [AddCommGroup E] [Module ℝ E]
     [FiniteDimensional ℝ E] (L : (ι → ℝ) →ₗ[ℝ] E) (b : E) (a : ι → ℝ)
     (ha : a ∈ (boxFiber L b).extremePoints ℝ) :
@@ -126,7 +134,9 @@ theorem extreme_fractional_card_le {E : Type*} [AddCommGroup E] [Module ℝ E]
   exact (extreme_fractional_linearIndependent L b a ha).fintype_card_le_finrank
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Every nonempty box fiber admits a feasible point with at most `finrank` fractional entries.-/
+/-- Every nonempty box fiber admits a feasible point with at most `finrank` fractional entries.
+@isnad1 id=ex.1h4v.s8.b492dc5cb092 from=translated src=- shape=4e902c35 vocab=def17e72
+-/
 theorem exists_few_fractional {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] (L : (ι → ℝ) →ₗ[ℝ] E) (b : E)
     (hfeasible : (boxFiber L b).Nonempty) :
@@ -147,7 +157,9 @@ def constraintMap (x : ι → Fin 2 → ℝ) :
     ext j <;> simp [Finset.mul_sum, mul_assoc]
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Three affine constraints admit a box solution with at most three fractional entries.-/
+/-- Three affine constraints admit a box solution with at most three fractional entries.
+@isnad1 id=ex.1h3v.s8.c4fe4a7f655e from=translated src=- shape=f8539934 vocab=02177b81
+-/
 theorem exists_weights_three_fractional (x : ι → Fin 2 → ℝ) (mass : ℝ)
     (hfeasible : (boxFiber (constraintMap x) (mass, 0)).Nonempty) :
     ∃ a ∈ boxFiber (constraintMap x) (mass, 0),
@@ -157,7 +169,9 @@ theorem exists_weights_three_fractional (x : ι → Fin 2 → ℝ) (mass : ℝ)
   simpa [Module.finrank_prod] using hfrac
 
 -- Preserve the existing parameter list for downstream callers.
-/-- A box solution of mass `card - 3` with at most three fractional entries has a zero entry.-/
+/-- A box solution of mass `card - 3` with at most three fractional entries has a zero entry.
+@isnad1 id=ex.3h2v.s7.3aeb2e1203f8 from=translated src=- shape=8ac94957 vocab=5ae3ffe3
+-/
 theorem exists_zero_of_three_fractional (a : ι → ℝ) (ha : a ∈ Icc (0 : ι → ℝ) 1)
     (hmass : ∑ i, a i = (Fintype.card ι : ℝ) - 3)
     (hfrac : Fintype.card {i : ι // 0 < a i ∧ a i < 1} ≤ 3) :
@@ -191,7 +205,9 @@ theorem exists_zero_of_three_fractional (a : ι → ℝ) (ha : a ∈ Icc (0 : ι
   linarith
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Reduce the weight mass by one while creating a zero coordinate, preserving the vector sum.-/
+/-- Reduce the weight mass by one while creating a zero coordinate, preserving the vector sum.
+@isnad1 id=ex.2h3v.s8.6b22a9573557 from=translated src=- shape=58a36253 vocab=b8c074dd
+-/
 theorem exists_deletable_weights (x : ι → Fin 2 → ℝ) (hn : 2 < Fintype.card ι)
     (a : ι → ℝ) (ha : a ∈ boxFiber (constraintMap x) ((Fintype.card ι : ℝ) - 2, 0)) :
     ∃ a' ∈ boxFiber (constraintMap x) ((Fintype.card ι : ℝ) - 3, 0),
@@ -224,7 +240,9 @@ def FeasibleOn (x : ι → Fin 2 → ℝ) (s : Finset ι) : Prop :=
     (∑ i ∈ s, a i) = (s.card : ℝ) - 2 ∧ ∑ i ∈ s, a i • x i = 0
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Feasible weights bound the sum of the unweighted vectors by two.-/
+/-- Feasible weights bound the sum of the unweighted vectors by two.
+@isnad1 id=le.2h3v.s7.f72c5dc880de from=translated src=- shape=534b76c6 vocab=130b2a3d
+-/
 theorem norm_sum_le_two_of_feasible (x : ι → Fin 2 → ℝ) (s : Finset ι)
     (hx : ∀ i ∈ s, ‖x i‖ ≤ 1) (hs : FeasibleOn x s) : ‖∑ i ∈ s, x i‖ ≤ 2 := by
   obtain ⟨a, habox, hamass, havec⟩ := hs
@@ -244,7 +262,9 @@ theorem norm_sum_le_two_of_feasible (x : ι → Fin 2 → ℝ) (s : Finset ι)
       ring
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Unit vectors in a finite set have sum norm at most its cardinality.-/
+/-- Unit vectors in a finite set have sum norm at most its cardinality.
+@isnad1 id=le.1h3v.s7.938a36bd6b22 from=translated src=- shape=90fd5b1f vocab=1ddc66c1
+-/
 theorem norm_sum_le_card (x : ι → Fin 2 → ℝ) (s : Finset ι)
     (hx : ∀ i ∈ s, ‖x i‖ ≤ 1) : ‖∑ i ∈ s, x i‖ ≤ s.card := by
   calc
@@ -253,7 +273,9 @@ theorem norm_sum_le_card (x : ι → Fin 2 → ℝ) (s : Finset ι)
     _ = s.card := by simp
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Constant weights initialize the deletion argument for a zero-sum family.-/
+/-- Constant weights initialize the deletion argument for a zero-sum family.
+@isnad1 id=feasible.2h3v.s7.1e6967d9550a from=translated src=- shape=06bb844d vocab=114b26eb
+-/
 theorem feasibleOn_of_sum_zero (x : ι → Fin 2 → ℝ) (s : Finset ι)
     (hn : 2 < s.card) (hsum : ∑ i ∈ s, x i = 0) : FeasibleOn x s := by
   have hn' : (2 : ℝ) < s.card := by exact_mod_cast hn

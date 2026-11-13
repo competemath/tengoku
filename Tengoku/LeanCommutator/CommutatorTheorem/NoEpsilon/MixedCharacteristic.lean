@@ -21,7 +21,9 @@ open scoped BigOperators
 variable {R ι : Type*} [CommRing R] [Fintype ι] [DecidableEq ι]
 
 /-- Adding a rank-one matrix is affine in its row coefficients. The proof removes the
-coefficients one by one; all terms with two proportional replacement rows vanish.-/
+coefficients one by one; all terms with two proportional replacement rows vanish.
+@isnad1 id=eq.1h6v.s7.2352b082af98 from=translated src=- shape=f656bbc5 vocab=04a63c53
+-/
 theorem det_add_vecMulVec_of_support (s : Finset ι) (A : Matrix ι ι R)
     (u v : ι → R) (hu : ∀ i, i ∉ s → u i = 0) :
     (A + Matrix.vecMulVec u v).det = A.det + ∑ i ∈ s, u i * (A.updateRow i v).det := by
@@ -68,7 +70,9 @@ theorem det_add_vecMulVec_of_support (s : Finset ι) (A : Matrix ι ι R)
     rw [hsum]
     ring
 
-/-- The rank-one determinant formula, valid even for singular base matrices.-/
+/-- The rank-one determinant formula, valid even for singular base matrices.
+@isnad1 id=eq.0h5v.s7.2e5444b5ba09 from=translated src=- shape=0af18e91 vocab=346d9084
+-/
 theorem det_add_vecMulVec (A : Matrix ι ι R) (u v : ι → R) :
     (A + Matrix.vecMulVec u v).det = A.det + ∑ i, u i * (A.updateRow i v).det :=
   det_add_vecMulVec_of_support Finset.univ A u v (by simp)
@@ -84,7 +88,9 @@ noncomputable def firstVariation (A : Matrix ι ι R) : Matrix ι ι R →ₗ[R]
     change (∑ i, (A.updateRow i (c • B i)).det) = c * _
     simp only [Matrix.det_updateRow_smul, Finset.mul_sum]
 
-/-- A rank-one determinant update has no terms beyond its first variation.-/
+/-- A rank-one determinant update has no terms beyond its first variation.
+@isnad1 id=eq.0h5v.s8.914a95b62441 from=translated src=- shape=55c2646b vocab=8b60ab35
+-/
 theorem det_add_vecMulVec_firstVariation (A : Matrix ι ι R) (u v : ι → R) :
     (A + Matrix.vecMulVec u v).det = A.det + firstVariation A (Matrix.vecMulVec u v) := by
   rw [det_add_vecMulVec]
@@ -95,7 +101,9 @@ theorem det_add_vecMulVec_firstVariation (A : Matrix ι ι R) (u v : ι → R) :
 
 /-- Exact one-step expected determinant identity for arbitrary finite rank-one choices.
 The normalized weights may be arbitrary ring elements; positivity is needed only later
-for real-rooted selection, not for this algebraic identity.-/
+for real-rooted selection, not for this algebraic identity.
+@isnad1 id=eq.1h7v.s8.99385a8d12c0 from=translated src=- shape=6587680b vocab=9bcf9948
+-/
 theorem weighted_rank_one_expected_determinant {Ω : Type*} [Fintype Ω]
     (A : Matrix ι ι R) (u v : Ω → ι → R) (p : Ω → R) (hp : ∑ ω, p ω = 1) :
     (∑ ω, p ω * (A + Matrix.vecMulVec (u ω) (v ω)).det) =
@@ -105,7 +113,9 @@ theorem weighted_rank_one_expected_determinant {Ω : Type*} [Fintype Ω]
   congr 1
   simp only [map_sum, map_smul, smul_eq_mul]
 
-/-- The subtraction form used for covariance matrices in the MSS characteristic polynomial.-/
+/-- The subtraction form used for covariance matrices in the MSS characteristic polynomial.
+@isnad1 id=eq.0h5v.s8.2197c031db9c from=translated src=- shape=55c2646b vocab=44b09550
+-/
 theorem det_sub_vecMulVec_firstVariation (A : Matrix ι ι R) (u v : ι → R) :
     (A - Matrix.vecMulVec u v).det = A.det - firstVariation A (Matrix.vecMulVec u v) := by
   have hneg : Matrix.vecMulVec (-u) v = -Matrix.vecMulVec u v := by
@@ -115,7 +125,9 @@ theorem det_sub_vecMulVec_firstVariation (A : Matrix ι ι R) (u v : ι → R) :
   simpa only [hneg, map_neg, sub_eq_add_neg] using h
 
 /-- Finite expected determinant after subtracting an independently chosen rank-one matrix.
-This is the essential expectation-linearization identity, including singular base matrices.-/
+This is the essential expectation-linearization identity, including singular base matrices.
+@isnad1 id=eq.1h7v.s8.c3d7d9bef6f1 from=translated src=- shape=6587680b vocab=b0d13106
+-/
 theorem weighted_rank_one_expected_determinant_sub {Ω : Type*} [Fintype Ω]
     (A : Matrix ι ι R) (u v : Ω → ι → R) (p : Ω → R) (hp : ∑ ω, p ω = 1) :
     (∑ ω, p ω * (A - Matrix.vecMulVec (u ω) (v ω)).det) =
@@ -128,7 +140,9 @@ theorem weighted_rank_one_expected_determinant_sub {Ω : Type*} [Fintype Ω]
 /- The following general Jacobi calculation is ported from the already proved
 `CommutatorTheorem.Epsilon.BTHermitianDetPDeriv` source, keeping its proof explicit. -/
 
-/-- Product rule for a finite product, written in deletion form.-/
+/-- Product rule for a finite product, written in deletion form.
+@isnad1 id=eq.0h6v.s9.376feff1d82b from=translated src=- shape=dcf0ac4e vocab=65b417be
+-/
 theorem pderiv_prod_finset {σ ι R : Type*} [CommSemiring R]
     [DecidableEq ι] (x : σ) (s : Finset ι)
     (f : ι → MvPolynomial σ R) :
@@ -169,7 +183,9 @@ theorem pderiv_prod_finset {σ ι R : Type*} [CommSemiring R]
         · exact fun hmem => ha (Finset.mem_of_mem_erase hmem)
 
 /-- Formal differentiation of a multivariate determinant is the sum of the
-determinants obtained by differentiating one column.-/
+determinants obtained by differentiating one column.
+@isnad1 id=eq.0h5v.s9.68a4911c3a10 from=translated src=- shape=f5fc42c4 vocab=4677f31f
+-/
 theorem pderiv_det_eq_sum_updateCol
     {ι σ R : Type*} [Fintype ι] [DecidableEq ι] [CommRing R]
     (x : σ) (M : Matrix ι ι (MvPolynomial σ R)) :
@@ -201,7 +217,9 @@ theorem pderiv_det_eq_sum_updateCol
     simp [hi.1]
   · simp
 
-/-- First variation commutes with every coefficient-ring homomorphism.-/
+/-- First variation commutes with every coefficient-ring homomorphism.
+@isnad1 id=eq.0h6v.s9.01834231956c from=translated src=- shape=bf72e6e0 vocab=0796b192
+-/
 theorem map_firstVariation {S : Type*} [CommRing S] (f : R →+* S)
     (A B : Matrix ι ι R) :
     f (firstVariation A B) = firstVariation (A.map f) (B.map f) := by
@@ -216,7 +234,9 @@ theorem map_firstVariation {S : Type*} [CommRing S] (f : R →+* S)
   by_cases h : j = i <;> simp [Matrix.map_apply, Matrix.updateRow_apply, h]
 
 /-- The multivariate Jacobi formula in row form, identifying the derivative with the
-linear first variation proved above.-/
+linear first variation proved above.
+@isnad1 id=eq.0h5v.s10.5bd6059ddca0 from=translated src=- shape=eb7e73a5 vocab=c4f1838c
+-/
 theorem pderiv_det_eq_firstVariation {σ : Type*} (x : σ)
     (M : Matrix ι ι (MvPolynomial σ R)) :
     MvPolynomial.pderiv x M.det = firstVariation M (M.map (MvPolynomial.pderiv x)) := by
@@ -230,7 +250,9 @@ theorem pderiv_det_eq_firstVariation {σ : Type*} (x : σ)
   ext i k
   simp [Matrix.updateCol_apply, Matrix.updateRow_apply, Matrix.transpose_apply]
 
-/-- Differentiating a matrix pencil in its scalar variable gives the first variation.-/
+/-- Differentiating a matrix pencil in its scalar variable gives the first variation.
+@isnad1 id=eq.0h6v.s10.adb1d2b2ad2a from=translated src=- shape=5fa383c4 vocab=2ace68bf
+-/
 theorem pderiv_pencil_det {σ : Type*} (x : σ)
     (A B : Matrix ι ι R) :
     MvPolynomial.pderiv x
@@ -245,7 +267,9 @@ theorem pderiv_pencil_det {σ : Type*} (x : σ)
   simp [Matrix.map_apply, Matrix.add_apply, Matrix.smul_apply]
 
 /-- Evaluating the differentiated determinant pencil at zero gives exactly the linear
-first variation, without assuming the base matrix invertible.-/
+first variation, without assuming the base matrix invertible.
+@isnad1 id=eq.0h6v.s9.6f13a15e4fcc from=translated src=- shape=13b6e40d vocab=85c942f0
+-/
 theorem eval_zero_pderiv_pencil_det {σ : Type*} (x : σ)
     (A B : Matrix ι ι R) :
     MvPolynomial.eval (fun _ : σ ↦ (0 : R))
@@ -264,7 +288,9 @@ theorem eval_zero_pderiv_pencil_det {σ : Type*} (x : σ)
     simp
   rw [hA, hB]
 
-/-- The constant term of a determinant pencil is the determinant of its base matrix.-/
+/-- The constant term of a determinant pencil is the determinant of its base matrix.
+@isnad1 id=eq.0h6v.s9.6272aaa4e11e from=translated src=- shape=427fc2ce vocab=301527e8
+-/
 theorem eval_zero_pencil_det {σ : Type*} (x : σ) (A B : Matrix ι ι R) :
     MvPolynomial.eval (fun _ : σ ↦ (0 : R))
       (A.map MvPolynomial.C + (MvPolynomial.X x : MvPolynomial σ R) •
@@ -277,7 +303,9 @@ theorem eval_zero_pencil_det {σ : Type*} (x : σ) (A B : Matrix ι ι R) :
 /-- The full one-step mixed-characteristic identity: averaging a rank-one subtraction
 is precisely applying `1 - ∂ₓ` to the mean-covariance determinant pencil and then
 specializing its variable to zero. No invertibility, positivity, or outcome selection
-hypothesis is used. The ring can itself be a polynomial ring in all remaining variables.-/
+hypothesis is used. The ring can itself be a polynomial ring in all remaining variables.
+@isnad1 id=other.1h9v.s10.125fd5f9d336 from=translated src=- shape=644e6de7 vocab=c65ae5cc
+-/
 theorem weighted_rank_one_mixed_characteristic_step
     {Ω σ : Type*} [Fintype Ω] (x : σ)
     (A : Matrix ι ι R) (u v : Ω → ι → R) (p : Ω → R) (hp : ∑ ω, p ω = 1) :
@@ -290,7 +318,9 @@ theorem weighted_rank_one_mixed_characteristic_step
   rw [map_sub, eval_zero_pencil_det, eval_zero_pderiv_pencil_det]
   exact weighted_rank_one_expected_determinant_sub A u v p hp
 
-/-- Replacing one row of the identity has determinant equal to its diagonal coordinate.-/
+/-- Replacing one row of the identity has determinant equal to its diagonal coordinate.
+@isnad1 id=eq.0h4v.s6.bc11b303b440 from=translated src=- shape=3790929c vocab=67412b81
+-/
 theorem det_updateRow_one (i : ι) (v : ι → R) :
     ((1 : Matrix ι ι R).updateRow i v).det = v i := by
   have h := Matrix.det_updateRow_sum (1 : Matrix ι ι R) i v
@@ -300,13 +330,17 @@ theorem det_updateRow_one (i : ι) (v : ι → R) :
   rw [hv] at h
   simpa using h
 
-/-- The first variation of determinant at the identity is the trace.-/
+/-- The first variation of determinant at the identity is the trace.
+@isnad1 id=eq.0h3v.s7.2e2f50a7fa4d from=translated src=- shape=c36045ff vocab=45c5a515
+-/
 theorem firstVariation_one (B : Matrix ι ι R) :
     firstVariation (1 : Matrix ι ι R) B = Matrix.trace B := by
   change (∑ i, ((1 : Matrix ι ι R).updateRow i (B i)).det) = ∑ i, B i i
   simp only [det_updateRow_one]
 
-/-- Exact first variation at a scalar matrix, including the empty dimension.-/
+/-- Exact first variation at a scalar matrix, including the empty dimension.
+@isnad1 id=eq.0h4v.s8.22b67f584f60 from=translated src=- shape=0a142d95 vocab=dac1350d
+-/
 theorem firstVariation_smul_one (t : R) (B : Matrix ι ι R) :
     firstVariation (t • (1 : Matrix ι ι R)) B =
       t ^ (Fintype.card ι - 1) * Matrix.trace B := by
@@ -315,7 +349,9 @@ theorem firstVariation_smul_one (t : R) (B : Matrix ι ι R) :
     ← Finset.mul_sum, Matrix.trace, Matrix.diag]
 
 /-- The initial logarithmic derivative of a scalar matrix is `trace B / t`.
-This is the exact normalization used at the start of the MSS barrier argument.-/
+This is the exact normalization used at the start of the MSS barrier argument.
+@isnad1 id=eq.1h4v.s8.32ef0a8f0668 from=translated src=- shape=b4154d71 vocab=471ed882
+-/
 theorem firstVariation_scalar_ratio {K : Type*} [Field K] [Nonempty ι]
     (t : K) (ht : t ≠ 0) (B : Matrix ι ι K) :
     firstVariation (t • (1 : Matrix ι ι K)) B /

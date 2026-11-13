@@ -14,12 +14,17 @@ namespace NoEpsilon.MSSResidues
 
 open Polynomial NoEpsilon.MSSPick
 
+/--
+@isnad1 id=eq.0h2v.s4.abfdc2a145bb from=translated src=- shape=e5b4470a vocab=d60dd825
+-/
 @[simp] theorem eval_map_ofReal (p : ℝ[X]) (r : ℝ) :
     (p.map Complex.ofRealHom).eval (r : ℂ) = ((p.eval r : ℝ) : ℂ) := by
   change (p.map Complex.ofRealHom).eval (Complex.ofRealHom r) = Complex.ofRealHom (p.eval r)
   rw [Polynomial.eval_map_apply]
 
-/-- Two coprime polynomials cannot vanish at the same point.-/
+/-- Two coprime polynomials cannot vanish at the same point.
+@isnad1 id=ne.2h3v.s5.ab662104b129 from=translated src=- shape=438c6b13 vocab=1cb2efa8
+-/
 theorem eval_ne_zero_of_coprime_of_root {g h : ℝ[X]} (hcop : IsCoprime g h)
     {r : ℝ} (hr : h.eval r = 0) : g.eval r ≠ 0 := by
   intro hg
@@ -28,7 +33,9 @@ theorem eval_ne_zero_of_coprime_of_root {g h : ℝ[X]} (hcop : IsCoprime g h)
   simp [hg, hr] at he
 
 /-- Every real pole of a reduced rational Pick function is simple, with positive
-residue. No partial-fraction expansion is assumed in this result.-/
+residue. No partial-fraction expansion is assumed in this result.
+@isnad1 id=and.4h3v.s8.d46021993802 from=translated src=- shape=cf9579eb vocab=976119e7
+-/
 theorem real_root_simple_and_residue_pos (g h : ℝ[X]) (hzero : h ≠ 0)
     (hcop : IsCoprime g h)
     (hsign : ∀ z : ℂ, 0 < z.im → (h.map Complex.ofRealHom).eval z ≠ 0 →
@@ -59,7 +66,9 @@ theorem real_root_simple_and_residue_pos (g h : ℝ[X]) (hzero : h ≠ 0)
     simp
   rwa [hd]
 
-/-- A split denominator of a coprime rational Pick function is separable.-/
+/-- A split denominator of a coprime rational Pick function is separable.
+@isnad1 id=separabl.4h2v.s6.c861be64ea94 from=translated src=- shape=d8447eb9 vocab=3e2bdfb6
+-/
 theorem denominator_separable (g h : ℝ[X]) (hzero : h ≠ 0) (hsplit : h.Splits)
     (hcop : IsCoprime g h)
     (hsign : ∀ z : ℂ, 0 < z.im → (h.map Complex.ofRealHom).eval z ≠ 0 →

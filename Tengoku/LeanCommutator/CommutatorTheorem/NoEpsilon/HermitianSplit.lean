@@ -51,13 +51,17 @@ def AdaptiveTwoCommutatorBound : Prop :=
         A = ringCommutator U V + ringCommutator K T ∧
           ‖U‖ ≤ 1 ∧ ‖K‖ ≤ 1 ∧ ‖V‖ ≤ ‖A‖ ∧ ‖T‖ ≤ ‖A‖
 
-/-- Multiplying the second factor by a complex scalar multiplies the commutator by it.-/
+/-- Multiplying the second factor by a complex scalar multiplies the commutator by it.
+@isnad1 id=eq.0h4v.s6.0de32f90af43 from=translated src=- shape=482f8eec vocab=d3de4b61
+-/
 theorem ringCommutator_smul_right (z : ℂ) (U V : Matrix ι ι ℂ) :
     ringCommutator U (z • V) = z • ringCommutator U V := by
   simp only [ringCommutator, mul_smul_comm, smul_mul_assoc, smul_sub]
 
 /-- The sign-greedy step for a real zero-sum ordering: one can choose a remaining term
-without leaving the same interval that bounds the individual terms and current sum.-/
+without leaving the same interval that bounds the individual terms and current sum.
+@isnad1 id=ex.4h3v.s6.85380e162a0b from=translated src=- shape=e5c017f8 vocab=eb54b4c6
+-/
 theorem exists_bounded_next_term (l : List ℝ) (s M : ℝ) (hl : l ≠ [])
     (hs : |s| ≤ M) (hbound : ∀ x ∈ l, |x| ≤ M) (htotal : s + l.sum = 0) :
     ∃ x ∈ l, |s + x| ≤ M := by
@@ -77,7 +81,9 @@ theorem exists_bounded_next_term (l : List ℝ) (s M : ℝ) (hl : l ≠ [])
     constructor <;> linarith
 
 /-- A real finite list whose sum cancels a bounded starting value can be reordered so
-that every partial sum, including the starting value, stays within the same bound.-/
+that every partial sum, including the starting value, stays within the same bound.
+@isnad1 id=ex.3h3v.s6.836566abfa2d from=translated src=- shape=805ed8d2 vocab=14355a0b
+-/
 theorem exists_perm_bounded_partial_sums (l : List ℝ) (s M : ℝ)
     (hs : |s| ≤ M) (hbound : ∀ x ∈ l, |x| ≤ M) (htotal : s + l.sum = 0) :
     ∃ k : List ℝ, l.Perm k ∧ ∀ j : ℕ, |s + (k.take j).sum| ≤ M := by
@@ -108,7 +114,9 @@ decreasing_by
   omega
 
 /-- In particular, real zero-sum eigenvalue lists admit a permutation with all partial
-sums bounded by the maximum absolute eigenvalue.-/
+sums bounded by the maximum absolute eigenvalue.
+@isnad1 id=ex.3h2v.s6.a3055459955f from=translated src=- shape=5aeae47b vocab=993fd93b
+-/
 theorem exists_zero_sum_real_ordering (l : List ℝ) (M : ℝ) (hM : 0 ≤ M)
     (hbound : ∀ x ∈ l, |x| ≤ M) (htotal : l.sum = 0) :
     ∃ k : List ℝ, l.Perm k ∧ ∀ j : ℕ, |(k.take j).sum| ≤ M := by
@@ -116,7 +124,9 @@ theorem exists_zero_sum_real_ordering (l : List ℝ) (M : ℝ) (hM : 0 ≤ M)
     (by simpa using htotal)
 
 /-- The sign-greedy ordering also preserves labels; repeated equal values do not lose
-which spectral coordinate they came from.-/
+which spectral coordinate they came from.
+@isnad1 id=ex.3h5v.s6.bf67469f00b0 from=translated src=- shape=a452e1c3 vocab=4b5c3dfe
+-/
 theorem exists_perm_bounded_weighted_partial_sums {α : Type*} (l : List α)
     (a : α → ℝ) (s M : ℝ) (hs : |s| ≤ M)
     (hbound : ∀ x ∈ l, |a x| ≤ M) (htotal : s + (l.map a).sum = 0) :

@@ -21,6 +21,9 @@ open MSSSelection
 noncomputable def splitBound (δ L : ℝ) : ℝ :=
   (Real.sqrt L + 2 * Real.sqrt δ) ^ 2 / 2
 
+/--
+@isnad1 id=le.0h2v.s4.4491d0d17b2e from=translated src=- shape=a120b2a8 vocab=435812e7
+-/
 theorem splitBound_nonneg (δ L : ℝ) : 0 ≤ splitBound δ L := by
   unfold splitBound
   positivity
@@ -73,6 +76,9 @@ def flipPermutation {α : Type*} (s : α → Bool) : Equiv.Perm (Bool × α) whe
 noncomputable def treeBound (δ : ℝ) (h : ℕ) (L : ℝ) : ℝ :=
   (splitBound δ)^[h] L
 
+/--
+@isnad1 id=le.1h3v.s4.86e3ea901779 from=translated src=- shape=b86a77a8 vocab=35b1a65b
+-/
 theorem treeBound_nonneg (δ : ℝ) (h : ℕ) {L : ℝ} (hL : 0 ≤ L) :
     0 ≤ treeBound δ h L := by
   induction h with
@@ -82,6 +88,9 @@ theorem treeBound_nonneg (δ : ℝ) (h : ℕ) {L : ℝ} (hL : 0 ≤ L) :
       splitBound_nonneg δ (treeBound δ h L)
 
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h4v.s7.469bba79eefb from=translated src=- shape=3eca7193 vocab=4d2e6011
+-/
 theorem binary_sum_split {ι : Type*} [Fintype ι] {k h : ℕ}
     (f : Fin k → BinaryIndex (h + 1) → ι → ℂ) :
     (∑ j, ∑ x, outer (f j x)) =
@@ -95,6 +104,9 @@ theorem binary_sum_split {ι : Type*} [Fintype ι] {k h : ℕ}
   intro x _
   exact add_comm _ _
 
+/--
+@isnad1 id=eq.0h5v.s7.0dcd45d3973d from=translated src=- shape=9fb5dc80 vocab=a0bf1331
+-/
 theorem sum_permuted_vectors {ι κ : Type*} [Fintype ι] [Fintype κ]
     {k : ℕ} (f : Fin k → κ → ι → ℂ) (σ : Fin k → Equiv.Perm κ) :
     (∑ x, ∑ j, outer (f j (σ j x))) = ∑ j, ∑ x, outer (f j x) := by

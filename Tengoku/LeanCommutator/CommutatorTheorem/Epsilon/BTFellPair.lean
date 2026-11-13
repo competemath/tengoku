@@ -33,13 +33,18 @@ noncomputable def rootQuadratic (a b : ℝ) : ℝ[X] :=
 noncomputable def coefficientQuadratic (B C₀ : ℝ) : ℝ[X] :=
   X ^ 2 + C B * X + C C₀
 
+/--
+@isnad1 id=eq.0h2v.s5.ddba29d872d6 from=translated src=- shape=6965d6db vocab=21bf74c2
+-/
 theorem rootQuadratic_eq_coefficientQuadratic (a b : ℝ) :
     rootQuadratic a b = coefficientQuadratic (-(a + b)) (a * b) := by
   simp [rootQuadratic, coefficientQuadratic]
   ring
 
 /-- Discriminant of a convex combination of two root-specified monic
-quadratics.-/
+quadratics.
+@isnad1 id=eq.0h5v.s8.536bd916c87c from=translated src=- shape=6db1cef5 vocab=b4c1150e
+-/
 theorem convex_rootQuadratic_discrim
     (a b c d t : ℝ) :
     discrim 1
@@ -51,7 +56,9 @@ theorem convex_rootQuadratic_discrim
   ring
 
 /-- If `[a,b]` lies strictly to the left of `[c,d]`, an explicit convex
-parameter gives negative discriminant.-/
+parameter gives negative discriminant.
+@isnad1 id=ex.3h4v.s7.ae214ab9aa9d from=translated src=- shape=68094bea vocab=82570916
+-/
 theorem exists_convex_discrim_neg_of_separated
     {a b c d : ℝ} (hab : a ≤ b) (hcd : c ≤ d) (hbc : b < c) :
     ∃ t : ℝ, 0 < t ∧ t < 1 ∧
@@ -100,7 +107,9 @@ theorem exists_convex_discrim_neg_of_separated
     positivity
   exact div_neg_of_neg_of_pos (mul_neg_of_neg_of_pos (neg_neg_of_pos hg) hinner) hD
 
-/-- A monic quadratic with negative discriminant cannot split over `ℝ`.-/
+/-- A monic quadratic with negative discriminant cannot split over `ℝ`.
+@isnad1 id=not.1h2v.s4.41ec3dda0f2a from=translated src=- shape=cc5874c7 vocab=fea978df
+-/
 theorem not_realRooted_coefficientQuadratic_of_discrim_neg
     {B C₀ : ℝ} (hdisc : discrim 1 B C₀ < 0) :
     ¬ RealRooted (coefficientQuadratic B C₀) := by
@@ -117,7 +126,9 @@ theorem not_realRooted_coefficientQuadratic_of_discrim_neg
   have hsq := discrim_eq_sq_of_quadratic_eq_zero heval
   nlinarith [sq_nonneg (2 * 1 * x + B)]
 
-/-- The convex combination of two root quadratics in coefficient form.-/
+/-- The convex combination of two root quadratics in coefficient form.
+@isnad1 id=eq.0h5v.s7.dfb9e7ed4993 from=translated src=- shape=ca7d88f1 vocab=61a36b55
+-/
 theorem convex_rootQuadratic_eq_coefficientQuadratic
     (a b c d t : ℝ) :
     t • rootQuadratic a b + (1 - t) • rootQuadratic c d =
@@ -132,7 +143,9 @@ theorem convex_rootQuadratic_eq_coefficientQuadratic
 /-! ## Removing and restoring a common linear factor -/
 
 /-- Dividing a monic polynomial by one of its linear root factors preserves
-monicity.-/
+monicity.
+@isnad1 id=monic.2h2v.s6.037bc2580017 from=translated src=- shape=90626853 vocab=eaef4e7a
+-/
 theorem monic_divByMonic_X_sub_C_of_isRoot
     {p : ℝ[X]} {a : ℝ} (hmonic : p.Monic) (hroot : p.IsRoot a) :
     (p /ₘ (X - C a)).Monic := by
@@ -142,7 +155,9 @@ theorem monic_divByMonic_X_sub_C_of_isRoot
   simpa [hmul] using hmonic
 
 /-- Removing one real root from a real-rooted polynomial leaves a
-real-rooted quotient.-/
+real-rooted quotient.
+@isnad1 id=realroot.3h2v.s6.081a5b565997 from=translated src=- shape=6498f00d vocab=86b69bbf
+-/
 theorem realRooted_divByMonic_X_sub_C_of_isRoot
     {p : ℝ[X]} {a : ℝ} (hsplits : RealRooted p)
     (hmonic : p.Monic) (hroot : p.IsRoot a) :
@@ -155,14 +170,18 @@ theorem realRooted_divByMonic_X_sub_C_of_isRoot
   have hprod : ((X - C a) * p').Splits := by simpa [hmul] using hsplits
   exact (splits_mul (X_sub_C_ne_zero a) hp'monic.ne_zero).mp hprod |>.2
 
-/-- Removing a linear factor lowers the natural degree by exactly one.-/
+/-- Removing a linear factor lowers the natural degree by exactly one.
+@isnad1 id=eq.0h2v.s6.e3bf418fdf4e from=translated src=- shape=b711317f vocab=ca1d17bc
+-/
 theorem natDegree_divByMonic_X_sub_C
     (p : ℝ[X]) (a : ℝ) :
     (p /ₘ (X - C a)).natDegree = p.natDegree - 1 := by
   rw [natDegree_divByMonic p (monic_X_sub_C a), natDegree_X_sub_C]
 
 /-- Division by a common linear root factor commutes with taking a convex
-combination.-/
+combination.
+@isnad1 id=eq.2h4v.s8.584d0c4d64d3 from=translated src=- shape=6b4255a5 vocab=9d349b53
+-/
 theorem convex_divByMonic_X_sub_C
     {p q : ℝ[X]} {a t : ℝ}
     (hproot : p.IsRoot a) (hqroot : q.IsRoot a) :
@@ -180,7 +199,9 @@ theorem convex_divByMonic_X_sub_C
   rw [← hfactor, mul_divByMonic_cancel_left _ (monic_X_sub_C a)]
 
 /-- Sorting the roots after adjoining one linear factor is ordered
-insertion into the old sorted root list.-/
+insertion into the old sorted root list.
+@isnad1 id=eq.1h2v.s7.d38b6ac31905 from=translated src=- shape=2703dd8f vocab=6de453aa
+-/
 theorem sortedRoots_X_sub_C_mul
     (p : ℝ[X]) (a : ℝ) (hp0 : p ≠ 0) :
     ((X - C a) * p).roots.sort (· ≤ ·) =
@@ -211,7 +232,9 @@ theorem sortedRoots_X_sub_C_mul
     hrightSorted hperm
 
 /-- Multiplying both members of an interlacing pair by the same real linear
-factor preserves interlacing.-/
+factor preserves interlacing.
+@isnad1 id=polynomi.1h3v.s7.6380219b4a28 from=translated src=- shape=2b335979 vocab=b0550b94
+-/
 theorem polynomialInterlaces_X_sub_C_mul
     {r p : ℝ[X]} (h : PolynomialInterlaces r p) (a : ℝ) :
     PolynomialInterlaces ((X - C a) * r) ((X - C a) * p) := by
@@ -226,7 +249,9 @@ theorem polynomialInterlaces_X_sub_C_mul
     (Multiset.pairwise_sort (s := p.roots) (r := (· ≤ ·))) a
 
 /-- A convex combination of two monic polynomials of the same natural
-degree is again monic of that degree.-/
+degree is again monic of that degree.
+@isnad1 id=monic.4h4v.s7.62d68baf2eb8 from=translated src=- shape=589bbeb3 vocab=e0f853fb
+-/
 theorem monic_convex_combination_of_same_natDegree
     {p q : ℝ[X]} {d : ℕ} (hpmonic : p.Monic) (hqmonic : q.Monic)
     (hpdegree : p.natDegree = d) (hqdegree : q.natDegree = d) (t : ℝ) :
@@ -248,7 +273,9 @@ theorem monic_convex_combination_of_same_natDegree
 
 /-- If every convex combination of two same-degree monic polynomials is
 real-rooted and they share `a`, the corresponding convex combinations of
-their quotients by `X - C a` are real-rooted as well.-/
+their quotients by `X - C a` are real-rooted as well.
+@isnad1 id=realroot.9h5v.s8.15ffaf03998c from=translated src=- shape=399b3748 vocab=1a6a6ea4
+-/
 theorem convex_quotients_realRooted_of_common_root
     {p q : ℝ[X]} {a : ℝ} {d : ℕ}
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -296,7 +323,9 @@ def RootDisjointPairFellConverseAtDegree (d : ℕ) : Prop :=
 /-! ## Algebraic and sign lemmas for the root-disjoint core -/
 
 /-- A root shared by two distinct affine combinations is necessarily a
-common root of both endpoints.-/
+common root of both endpoints.
+@isnad1 id=and.3h5v.s7.34369e356fa2 from=translated src=- shape=c05f02e0 vocab=911aecd9
+-/
 theorem endpoints_isRoot_of_two_convex_isRoot
     {p q : ℝ[X]} {s t x : ℝ} (hst : s ≠ t)
     (hs : (s • p + (1 - s) • q).IsRoot x)
@@ -321,7 +350,9 @@ theorem endpoints_isRoot_of_two_convex_isRoot
   exact ⟨by simpa [P] using hP, by simpa [P, Q, hPQ] using hP⟩
 
 /-- Hence a root-disjoint pair has root-disjoint convex combinations at
-any two distinct parameters.-/
+any two distinct parameters.
+@isnad1 id=not.2h5v.s7.3a4d2dedd358 from=translated src=- shape=25af3c4c vocab=911aecd9
+-/
 theorem convex_combinations_root_disjoint
     {p q : ℝ[X]}
     (hdisjoint : ∀ a : ℝ, ¬ (p.IsRoot a ∧ q.IsRoot a))
@@ -334,7 +365,9 @@ theorem convex_combinations_root_disjoint
     (endpoints_isRoot_of_two_convex_isRoot hst hx.1 hx.2)
 
 /-- If a monic real-rooted polynomial has no root in `[a,b]`, then its
-endpoint evaluations have strictly positive product.-/
+endpoint evaluations have strictly positive product.
+@isnad1 id=lt.4h3v.s6.974cf63ee7fd from=translated src=- shape=b1a9cf10 vocab=e9d73a62
+-/
 theorem eval_mul_eval_pos_of_no_root_Icc
     {p : ℝ[X]} (hmonic : p.Monic) (hsplits : RealRooted p)
     {a b : ℝ} (hab : a < b)
@@ -352,7 +385,9 @@ theorem eval_mul_eval_pos_of_no_root_Icc
   · exact mul_pos_of_neg_of_neg
       (sub_neg.mpr (hab.trans hrb)) (sub_neg.mpr hrb)
 
-/-- The preceding sign statement in interval language.-/
+/-- The preceding sign statement in interval language.
+@isnad1 id=lt.4h3v.s6.e6459d1b3513 from=translated src=- shape=8cfb893d vocab=24b9966b
+-/
 theorem eval_mul_eval_pos_of_no_root_mem_Icc
     {p : ℝ[X]} (hmonic : p.Monic) (hsplits : RealRooted p)
     {a b : ℝ} (hab : a < b)
@@ -365,7 +400,9 @@ theorem eval_mul_eval_pos_of_no_root_mem_Icc
   exact hout.imp lt_of_not_ge lt_of_not_ge
 
 /-- A product of linear factors has sign `(-1)` to the number of factors
-strictly to the right of the evaluation point.-/
+strictly to the right of the evaluation point.
+@isnad1 id=lt.1h2v.s6.8f0499f857df from=translated src=- shape=c48779ce vocab=beda793d
+-/
 theorem signed_prod_sub_pos_by_gt_count
     (s : Multiset ℝ) {x : ℝ} (hne : ∀ r ∈ s, r ≠ x) :
     0 < (-1 : ℝ) ^ (s.filter fun r ↦ x < r).card *
@@ -399,7 +436,9 @@ theorem signed_prod_sub_pos_by_gt_count
             simp [hxr]
             ring
 
-/-- Exact sign of a monic real-rooted polynomial away from its roots.-/
+/-- Exact sign of a monic real-rooted polynomial away from its roots.
+@isnad1 id=lt.3h2v.s6.c3174919e2ab from=translated src=- shape=77e15119 vocab=1a498bf8
+-/
 theorem signed_eval_pos_by_roots_gt_count
     {p : ℝ[X]} (hmonic : p.Monic) (hsplits : RealRooted p)
     {x : ℝ} (hx : ¬ p.IsRoot x) :
@@ -412,7 +451,9 @@ theorem signed_eval_pos_by_roots_gt_count
   exact (mem_roots hmonic.ne_zero).mp hr
 
 /-- At a root of `p`, the sign of `q` is the root-count sign of every
-nontrivial convex combination.-/
+nontrivial convex combination.
+@isnad1 id=lt.9h5v.s8.9e8664eaba3c from=translated src=- shape=fd240d96 vocab=f06514d3
+-/
 theorem signed_q_eval_at_p_root_by_convex_roots
     {p q : ℝ[X]} {d : ℕ}
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -449,7 +490,9 @@ theorem signed_q_eval_at_p_root_by_convex_roots
   simpa [f] using hdesired
 
 /-- Symmetrically, at a root of `q`, the sign of `p` is read from every
-convex combination with positive `p`-weight.-/
+convex combination with positive `p`-weight.
+@isnad1 id=lt.9h5v.s8.2a3fc1e9dc15 from=translated src=- shape=f2dab0f3 vocab=f06514d3
+-/
 theorem signed_p_eval_at_q_root_by_convex_roots
     {p q : ℝ[X]} {d : ℕ}
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -486,7 +529,9 @@ theorem signed_p_eval_at_q_root_by_convex_roots
   simpa [f] using hdesired
 
 /-- Two powers of `-1` multiplying the same nonzero real number positively
-must have the same parity.-/
+must have the same parity.
+@isnad1 id=iff.2h3v.s6.eb2579825812 from=translated src=- shape=c60497b1 vocab=fe5ebf89
+-/
 theorem even_iff_of_neg_one_pow_mul_pos
     {m n : ℕ} {x : ℝ}
     (hm : 0 < (-1 : ℝ) ^ m * x)
@@ -516,7 +561,9 @@ theorem even_iff_of_neg_one_pow_mul_pos
     rw [hpows, hneven.neg_one_pow]
 
 /-- Along the open part of the pencil ending at `p`, the parity of the
-number of roots to the right of any fixed root of `p` is constant.-/
+number of roots to the right of any fixed root of `p` is constant.
+@isnad1 id=iff.11h6v.s8.6f25009a01ae from=translated src=- shape=d874218f vocab=8c461f2b
+-/
 theorem even_roots_gt_p_root_iff
     {p q : ℝ[X]} {d : ℕ}
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -535,7 +582,9 @@ theorem even_roots_gt_p_root_iff
       hpdegree hqdegree hdisjoint hall hpa ht0 ht1)
 
 /-- The analogous root-count parity conservation along the open part of
-the pencil starting at `q`.-/
+the pencil starting at `q`.
+@isnad1 id=iff.11h6v.s8.9b1b1f73d5c8 from=translated src=- shape=a52bf116 vocab=8c461f2b
+-/
 theorem even_roots_gt_q_root_iff
     {p q : ℝ[X]} {d : ℕ}
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -560,7 +609,9 @@ noncomputable def normalizedDerivative (d : ℕ) (p : ℝ[X]) : ℝ[X] :=
   (d : ℝ)⁻¹ • p.derivative
 
 /-- The normalized derivative of a degree-`d` monic polynomial is monic of
-degree `d - 1`.-/
+degree `d - 1`.
+@isnad1 id=ismonico.3h2v.s5.bfcb5935d4e6 from=translated src=- shape=85dfb758 vocab=d19ff729
+-/
 theorem normalizedDerivative_isMonicOfDegree
     {p : ℝ[X]} {d : ℕ} (hd : 0 < d)
     (hmonic : p.Monic) (hdegree : p.natDegree = d) :
@@ -581,7 +632,9 @@ theorem normalizedDerivative_isMonicOfDegree
     simp [hdcast]
 
 /-- Rolle's theorem, including multiplicities, implies that the derivative
-of a nonconstant real-rooted polynomial is real-rooted.-/
+of a nonconstant real-rooted polynomial is real-rooted.
+@isnad1 id=realroot.2h1v.s7.aa71f90f813e from=translated src=- shape=f3784474 vocab=8279bd11
+-/
 theorem realRooted_derivative
     {p : ℝ[X]} (hsplits : RealRooted p) (hdegree : 0 < p.natDegree) :
     RealRooted p.derivative := by
@@ -599,7 +652,9 @@ theorem realRooted_derivative
   apply splits_iff_card_roots.mpr
   exact le_antisymm hupper (hdegreeUpper.trans hlower)
 
-/-- Consequently the normalized derivative is real-rooted.-/
+/-- Consequently the normalized derivative is real-rooted.
+@isnad1 id=realroot.3h2v.s4.b848f9a50a1d from=translated src=- shape=7d4007c8 vocab=cd643900
+-/
 theorem realRooted_normalizedDerivative
     {p : ℝ[X]} {d : ℕ} (hd : 0 < d)
     (hsplits : RealRooted p) (hdegree : p.natDegree = d) :
@@ -610,7 +665,9 @@ theorem realRooted_normalizedDerivative
     hderiv.C_mul ((d : ℝ)⁻¹)
 
 /-- Normalized differentiation commutes with the affine combination used
-in Pair Fell.-/
+in Pair Fell.
+@isnad1 id=eq.0h4v.s7.d534ec10bf91 from=translated src=- shape=11737e7f vocab=74d2ca90
+-/
 theorem normalizedDerivative_convex
     (d : ℕ) (p q : ℝ[X]) (t : ℝ) :
     normalizedDerivative d (t • p + (1 - t) • q) =
@@ -619,7 +676,9 @@ theorem normalizedDerivative_convex
   simp [normalizedDerivative, derivative_add]
   module
 
-/-- The Pair Fell hypotheses descend to the normalized derivatives.-/
+/-- The Pair Fell hypotheses descend to the normalized derivatives.
+@isnad1 id=hascommo.9h3v.s7.2e697b3155ad from=translated src=- shape=e44368a0 vocab=527731e3
+-/
 theorem normalizedDerivatives_haveCommonInterlacer
     {d : ℕ} (hd : 2 ≤ d)
     (hprev : PairFellConverseAtDegree (d - 1))
@@ -660,7 +719,9 @@ theorem normalizedDerivatives_haveCommonInterlacer
 /-- The common-root induction step for the analytic Pair Fell converse.
 Once degree `d - 1` is known, a common real root closes degree `d`: remove
 the common factor, apply the lower-degree theorem, and restore it on the
-common interlacer and both polynomials.-/
+common interlacer and both polynomials.
+@isnad1 id=hascommo.11h4v.s7.b8620a81b621 from=translated src=- shape=0f564f4a vocab=e84c90d2
+-/
 theorem pair_fell_of_common_root
     {d : ℕ} (_hd : 2 ≤ d)
     (hprev : PairFellConverseAtDegree (d - 1))
@@ -712,7 +773,9 @@ theorem pair_fell_of_common_root
     exact hinterlace
 
 /-- At degree at least two, the full analytic Pair Fell converse follows
-from the preceding degree and the root-disjoint core at the current degree.-/
+from the preceding degree and the root-disjoint core at the current degree.
+@isnad1 id=pairfell.3h1v.s5.c86f2bf1cb43 from=translated src=- shape=2a5aeffe vocab=63d029b6
+-/
 theorem pairFellConverseAtDegree_of_rootDisjoint
     {d : ℕ} (hd : 2 ≤ d)
     (hprev : PairFellConverseAtDegree (d - 1))
@@ -732,7 +795,9 @@ theorem pairFellConverseAtDegree_of_rootDisjoint
 
 /-- A monic real-rooted quadratic is its product over two ordered real
 roots.  We retain the sorted-root-list equation because it is the convenient
-interface for `PolynomialInterlaces`.-/
+interface for `PolynomialInterlaces`.
+@isnad1 id=ex.3h1v.s6.c690e627ecfd from=translated src=- shape=236870d4 vocab=5fbb77e0
+-/
 theorem exists_ordered_roots_eq_rootQuadratic
     (p : ℝ[X]) (hmonic : p.Monic) (hsplits : RealRooted p)
     (hdegree : p.natDegree = 2) :
@@ -757,7 +822,9 @@ theorem exists_ordered_roots_eq_rootQuadratic
   simp [rootQuadratic]
 
 /-- A point in the closed interval between the two sorted roots defines a
-linear interlacer.-/
+linear interlacer.
+@isnad1 id=polynomi.5h4v.s6.2f05f32015a0 from=translated src=- shape=7ff5c932 vocab=c27244cb
+-/
 theorem linear_interlaces_of_sortedRoots_eq_pair
     (p : ℝ[X]) (hmonic : p.Monic) (hsplits : RealRooted p)
     {a b x : ℝ} (hroots : p.roots.sort (· ≤ ·) = [a, b])
@@ -777,7 +844,9 @@ theorem linear_interlaces_of_sortedRoots_eq_pair
 /-! ## The degree-two analytic Fell converse -/
 
 /-- For two monic real-rooted quadratics, real-rootedness of every convex
-combination forces a common linear interlacer.-/
+combination forces a common linear interlacer.
+@isnad1 id=hascommo.7h2v.s7.71ec63e3e373 from=translated src=- shape=aa5663ee vocab=48eeb297
+-/
 theorem pair_fell_natDegree_two
     (p q : ℝ[X])
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -825,14 +894,18 @@ theorem pair_fell_natDegree_two
   · simpa using hpx
 
 /-- The fixed-degree predicate is available in degree one from the constant
-interlacer base case.-/
+interlacer base case.
+@isnad1 id=pairfell.0h0v.s2.0aae6111d8a2 from=translated src=- shape=e590c3e1 vocab=99b7344c
+-/
 theorem pairFellConverseAtDegree_one : PairFellConverseAtDegree 1 := by
   intro p q hpmonic hqmonic hpsplits hqsplits hpdegree hqdegree hall
   exact CommutatorTheorem.BTInterlacingConverse.pair_fell_natDegree_one
     p q hpmonic hqmonic hpsplits hqsplits hpdegree hqdegree hall
 
 /-- The discriminant argument above establishes the fixed-degree predicate
-in degree two.-/
+in degree two.
+@isnad1 id=pairfell.0h0v.s2.5d591848c724 from=translated src=- shape=e590c3e1 vocab=99b7344c
+-/
 theorem pairFellConverseAtDegree_two : PairFellConverseAtDegree 2 := by
   intro p q hpmonic hqmonic hpsplits hqsplits hpdegree hqdegree hall
   exact pair_fell_natDegree_two p q hpmonic hqmonic hpsplits hqsplits
@@ -840,7 +913,9 @@ theorem pairFellConverseAtDegree_two : PairFellConverseAtDegree 2 := by
 
 /-- Thus, for every positive degree, it is enough to prove only the
 root-disjoint analytic core.  Strong induction automatically removes every
-common linear factor, including repeated common factors.-/
+common linear factor, including repeated common factors.
+@isnad1 id=pairfell.2h1v.s4.21c6f8d538c5 from=translated src=- shape=d5aac835 vocab=e63beb8b
+-/
 theorem pairFellConverseAtDegree_of_rootDisjoint_all
     (hcore : ∀ d : ℕ, 2 ≤ d → RootDisjointPairFellConverseAtDegree d) :
     ∀ d : ℕ, 1 ≤ d → PairFellConverseAtDegree d := by
@@ -856,7 +931,9 @@ theorem pairFellConverseAtDegree_of_rootDisjoint_all
         · exact hcore d hd2
 
 /-- Consequently, the degree-three Pair Fell converse is already closed
-whenever the two cubics have a common real root.-/
+whenever the two cubics have a common real root.
+@isnad1 id=hascommo.9h3v.s7.a95aba0153a3 from=translated src=- shape=fa00649e vocab=34f99bc1
+-/
 theorem pair_fell_natDegree_three_of_common_root
     (p q : ℝ[X])
     (hpmonic : p.Monic) (hqmonic : q.Monic)

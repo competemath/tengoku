@@ -18,6 +18,9 @@ namespace NoEpsilon.MSSReducedFraction
 
 variable {F : Type*} [Field F]
 
+/--
+@isnad1 id=ex.3h3v.s8.6cd05d3e0293 from=translated src=- shape=b9be65fa vocab=261e8e23
+-/
 theorem exists_reduced_fraction (g h : F[X]) (h0 : h ≠ 0) (hsplit : h.Splits)
     (hdeg : g.natDegree ≤ h.natDegree) :
     ∃ D G H : F[X], D ≠ 0 ∧ H ≠ 0 ∧
@@ -43,7 +46,9 @@ theorem exists_reduced_fraction (g h : F[X]) (h0 : h ≠ 0) (hsplit : h.Splits)
     omega
 
 /-- Cancellation preserves the rational function at every point where its original
-denominator is nonzero, even after extending the coefficient field.-/
+denominator is nonzero, even after extending the coefficient field.
+@isnad1 id=and.3h9v.s8.04e712680336 from=translated src=- shape=5af18aba vocab=6f57f305
+-/
 theorem eval₂_reduced_fraction {K : Type*} [Field K] (f : F →+* K)
     (g h D G H : F[X]) (hg : g = D * G) (hh : h = D * H) (x : K)
     (hx : h.eval₂ f x ≠ 0) :
@@ -56,6 +61,9 @@ theorem eval₂_reduced_fraction {K : Type*} [Field K] (f : F →+* K)
   rw [hg, hh, eval₂_mul, eval₂_mul]
   field_simp
 
+/--
+@isnad1 id=and.3h7v.s8.a0ebd8b24d9d from=translated src=- shape=ed6b8b07 vocab=291470b4
+-/
 theorem eval_reduced_fraction (g h D G H : F[X]) (hg : g = D * G) (hh : h = D * H)
     (x : F) (hx : h.eval x ≠ 0) :
     H.eval x ≠ 0 ∧ G.eval x / H.eval x = g.eval x / h.eval x := by

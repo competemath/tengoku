@@ -15,6 +15,9 @@ open scoped BigOperators
 
 namespace NoEpsilon.SteinitzGrouping
 
+/--
+@isnad1 id=eq.1h4v.s7.7d97e20ae8a0 from=translated src=- shape=f92fdf96 vocab=a38c3e39
+-/
 theorem interval_sum_eq_sub_prefix {n : ℕ} (z : Fin n → ℂ) (a b : ℕ) (hab : a ≤ b) :
     (∑ i ∈ Finset.univ.filter (fun i : Fin n ↦ a ≤ i.val ∧ i.val < b), z i) =
       (∑ i ∈ Finset.univ.filter (fun i : Fin n ↦ i.val < b), z i) -
@@ -31,6 +34,9 @@ theorem interval_sum_eq_sub_prefix {n : ℕ} (z : Fin n → ℂ) (a b : ℕ) (ha
     simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hi hi'
     omega
 
+/--
+@isnad1 id=eq.0h4v.s8.5eae0d9a04ea from=translated src=- shape=0850c6ed vocab=57f88c4b
+-/
 theorem group_sum_eq_interval {k R : ℕ} (z : Fin (k * R) → ℂ) (j : Fin k) :
     (∑ b : Fin R, z (finProdFinEquiv (j, b))) =
       ∑ i ∈ Finset.univ.filter
@@ -56,7 +62,9 @@ theorem group_sum_eq_interval {k R : ℕ} (z : Fin (k * R) → ℂ) (j : Fin k) 
   · intro b _
     rfl
 
-/-- Consecutive length-R groups inherit coordinate bounds four from prefix bounds two.-/
+/-- Consecutive length-R groups inherit coordinate bounds four from prefix bounds two.
+@isnad1 id=and.1h4v.s9.83db10d7386e from=translated src=- shape=142091cb vocab=e78c2bbb
+-/
 theorem group_coordinates_le_four {k R : ℕ} (z : Fin (k * R) → ℂ)
     (hprefix : ∀ m : ℕ,
       |(∑ i ∈ Finset.univ.filter (fun i : Fin (k * R) ↦ i.val < m), z i).re| ≤ 2 ∧

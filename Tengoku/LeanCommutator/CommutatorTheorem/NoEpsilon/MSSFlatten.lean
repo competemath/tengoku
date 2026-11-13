@@ -27,31 +27,51 @@ noncomputable def headRestriction (n : ℕ) :
   MvPolynomial.eval₂Hom MvPolynomial.C
     (Fin.cases (MvPolynomial.X ()) (fun _ ↦ 0))
 
+/--
+@isnad1 id=eq.0h3v.s9.89180307ff8d from=translated src=- shape=739d07fe vocab=c38b498c
+-/
 @[simp] theorem headRestriction_C (n : ℕ) (a : R) :
     headRestriction n (MvPolynomial.C a) = MvPolynomial.C a := by
   simp [headRestriction]
 
+/--
+@isnad1 id=eq.0h2v.s8.3f75fcf7b303 from=translated src=- shape=5811c851 vocab=41eee3ab
+-/
 @[simp] theorem headRestriction_X_zero (n : ℕ) :
     headRestriction n (MvPolynomial.X 0 : MvPolynomial (Fin (n + 1)) R) =
       MvPolynomial.X () := by simp [headRestriction]
 
+/--
+@isnad1 id=eq.0h3v.s8.1d6bab676537 from=translated src=- shape=54f4b136 vocab=e23a5603
+-/
 @[simp] theorem headRestriction_X_succ (n : ℕ) (i : Fin n) :
     headRestriction n (MvPolynomial.X i.succ : MvPolynomial (Fin (n + 1)) R) = 0 := by
   simp [headRestriction]
 
+/--
+@isnad1 id=eq.0h3v.s9.287567e6a4ea from=translated src=- shape=c9682530 vocab=75f2c064
+-/
 @[simp] theorem splitHead_C (n : ℕ) (a : R) :
     splitHead n (MvPolynomial.C a) = MvPolynomial.C (MvPolynomial.C a) := by
   simp [splitHead]
 
+/--
+@isnad1 id=eq.0h2v.s9.78327811cb8d from=translated src=- shape=db200ea4 vocab=48298af5
+-/
 @[simp] theorem splitHead_X_zero (n : ℕ) :
     splitHead n (MvPolynomial.X 0 : MvPolynomial (Fin (n + 1)) R) =
       MvPolynomial.C (MvPolynomial.X ()) := by simp [splitHead]
 
+/--
+@isnad1 id=eq.0h3v.s8.22cc2a4ec351 from=translated src=- shape=53f0f983 vocab=e36dca9a
+-/
 @[simp] theorem splitHead_X_succ (n : ℕ) (i : Fin n) :
     splitHead n (MvPolynomial.X i.succ : MvPolynomial (Fin (n + 1)) R) =
       MvPolynomial.X i := by simp [splitHead]
 
-/-- Evaluating the remaining variables at zero gives restriction to the first axis.-/
+/-- Evaluating the remaining variables at zero gives restriction to the first axis.
+@isnad1 id=eq.0h3v.s9.c5e2ba4ddefa from=translated src=- shape=1f44412f vocab=eb6561c6
+-/
 theorem eval_zero_splitHead (n : ℕ) (p : MvPolynomial (Fin (n + 1)) R) :
     MvPolynomial.eval (fun _ ↦ (0 : MvPolynomial Unit R)) (splitHead n p) =
       headRestriction n p := by
@@ -63,7 +83,9 @@ theorem eval_zero_splitHead (n : ℕ) (p : MvPolynomial (Fin (n + 1)) R) :
       induction i using Fin.cases <;> simp [headRestriction]
   exact RingHom.congr_fun h p
 
-/-- Evaluating the retained first coordinate too is simultaneous evaluation at zero.-/
+/-- Evaluating the retained first coordinate too is simultaneous evaluation at zero.
+@isnad1 id=eq.0h3v.s9.5e91dca8d5e8 from=translated src=- shape=6b44212a vocab=dfe3e95a
+-/
 theorem eval_zero_headRestriction (n : ℕ) (p : MvPolynomial (Fin (n + 1)) R) :
     MvPolynomial.eval (fun _ ↦ (0 : R)) (headRestriction n p) =
       MvPolynomial.eval (fun _ ↦ (0 : R)) p := by

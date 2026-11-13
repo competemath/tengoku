@@ -25,7 +25,9 @@ open CommutatorTheorem.BTFellCrossGap
 open CommutatorTheorem.BTFellRolleCount
 
 /-- Taylor translation subtracts the center from every root of a monic
-real-rooted polynomial, preserving multiplicities.-/
+real-rooted polynomial, preserving multiplicities.
+@isnad1 id=eq.2h2v.s7.7e7b8d74b141 from=translated src=- shape=3f5c1eed vocab=7653cd6c
+-/
 theorem roots_taylor_eq_map_sub
     {p : ℝ[X]} (hmonic : p.Monic) (hreal : RealRooted p) (x : ℝ) :
     (p.taylor x).roots = p.roots.map (fun r ↦ r - x) := by
@@ -56,7 +58,9 @@ theorem roots_taylor_eq_map_sub
     (roots_multiset_prod_X_sub_C translated)
 
 /-- The number of roots strictly to the right of `x` is exactly the number
-of positive roots of the Taylor translate at `x`.-/
+of positive roots of the Taylor translate at `x`.
+@isnad1 id=eq.2h2v.s7.bdde1de5b5a1 from=translated src=- shape=96c8802d vocab=f7dda8b8
+-/
 theorem rootsGTCount_eq_taylor_roots_countP_pos
     {p : ℝ[X]} (hmonic : p.Monic) (hreal : RealRooted p) (x : ℝ) :
     rootsGTCount p x = (p.taylor x).roots.countP (0 < ·) := by
@@ -68,7 +72,9 @@ theorem rootsGTCount_eq_taylor_roots_countP_pos
   simp only [sub_pos]
 
 /-- Descartes' rule now gives a coefficient-side upper bound for the exact
-half-line root count.-/
+half-line root count.
+@isnad1 id=le.2h2v.s7.128ea6594142 from=translated src=- shape=6f978e57 vocab=f36e5a87
+-/
 theorem rootsGTCount_le_signVariations_taylor
     {p : ℝ[X]} (hmonic : p.Monic) (hreal : RealRooted p) (x : ℝ) :
     rootsGTCount p x ≤ (p.taylor x).signVariations := by
@@ -77,7 +83,9 @@ theorem rootsGTCount_le_signVariations_taylor
 
 /-- Descartes' bound is exact when every root is positive.  This extreme
 threshold case combines real-rootedness (all degree-many roots are present)
-with the general degree upper bound for sign variations.-/
+with the general degree upper bound for sign variations.
+@isnad1 id=eq.3h1v.s5.b32de027804f from=translated src=- shape=86b51985 vocab=aeb2bc8f
+-/
 theorem signVariations_eq_natDegree_of_all_roots_pos
     {p : ℝ[X]} (hmonic : p.Monic) (hreal : RealRooted p)
     (hpos : ∀ r ∈ p.roots, 0 < r) :
@@ -92,7 +100,9 @@ theorem signVariations_eq_natDegree_of_all_roots_pos
     exact roots_countP_pos_le_signVariations p
 
 /-- Consequently the Taylor/Descartes count is exact for a threshold lying
-strictly below every root.-/
+strictly below every root.
+@isnad1 id=eq.3h2v.s7.bb07741e97f2 from=translated src=- shape=a4ab79f5 vocab=5748515a
+-/
 theorem rootsGTCount_eq_signVariations_taylor_of_lt_all_roots
     {p : ℝ[X]} (hmonic : p.Monic) (hreal : RealRooted p) {x : ℝ}
     (hx : ∀ r ∈ p.roots, x < r) :

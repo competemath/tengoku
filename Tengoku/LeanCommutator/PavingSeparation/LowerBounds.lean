@@ -13,7 +13,9 @@ namespace PavingSeparation
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 omit [DecidableEq ι] in
-/-- Some color class is at least as large as the real-valued average.-/
+/-- Some color class is at least as large as the real-valued average.
+@isnad1 id=ex.0h3v.s5.6efdd0c81181 from=translated src=- shape=15c4128f vocab=54dd3e43
+-/
 theorem exists_colorClass_card_ge_average (r : ℕ) [NeZero r] (c : ι → Fin r) :
     ∃ a : Fin r, (Fintype.card ι : ℝ) / r ≤ ((colorClass c a).card : ℝ) := by
   have hr : (r : ℝ) ≠ 0 := by exact_mod_cast NeZero.ne r

@@ -10,7 +10,9 @@ namespace NoEpsilon.MSSSelection
 
 variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ]
 
-/-- Duplicating a diagonal block preserves any common Euclidean operator norm bound.-/
+/-- Duplicating a diagonal block preserves any common Euclidean operator norm bound.
+@isnad1 id=le.2h3v.s7.bbd247924e2f from=translated src=- shape=67954f1b vocab=fdaaaa62
+-/
 theorem norm_duplicate_diagonal_le (A : Matrix ι ι ℂ) (L : ℝ)
     (hL : 0 ≤ L) (hA : ‖A‖ ≤ L) : ‖Matrix.fromBlocks A 0 0 A‖ ≤ L := by
   rw [Matrix.l2_opNorm_def]
@@ -41,7 +43,9 @@ theorem norm_duplicate_diagonal_le (A : Matrix ι ι ℂ) (L : ℝ)
     _ = _ := by ring
 
 /-- The four-outcome mean consists of two copies of the parent frame, so it has the same
-operator norm budget, with no factor two loss.-/
+operator norm budget, with no factor two loss.
+@isnad1 id=le.2h5v.s8.15d15355b34c from=translated src=- shape=2996fa62 vocab=076d1b55
+-/
 theorem paired_covariance_norm_le (a b : κ → ι → ℂ) (L : ℝ) (hL : 0 ≤ L)
     (hframe : ‖∑ i, (outer (a i) + outer (b i))‖ ≤ L) :
     ‖∑ i, ∑ q : Bool × Bool, (1 / 4 : ℂ) • outer (pairedVector (a i) (b i) q)‖ ≤ L := by

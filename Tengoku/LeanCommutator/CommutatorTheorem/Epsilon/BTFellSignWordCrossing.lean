@@ -22,6 +22,9 @@ def signChanges : List SignType → ℕ
   | [] => 0
   | a :: l => changesFrom a l
 
+/--
+@isnad1 id=eq.0h2v.s5.8254202fc984 from=translated src=- shape=806dee38 vocab=8edd1863
+-/
 theorem changesFrom_eq_destutter_length_sub_one
     (a : SignType) (l : List SignType) :
     changesFrom a l = (l.destutter' Ne a).length - 1 := by
@@ -45,6 +48,9 @@ theorem changesFrom_eq_destutter_length_sub_one
           List.destutter'_cons_neg (l := l) (by simp)]
         exact ih a
 
+/--
+@isnad1 id=eq.0h1v.s5.f54ce6049825 from=translated src=- shape=92a6fe99 vocab=2412aae5
+-/
 theorem signChanges_eq_destutter_length_sub_one (l : List SignType) :
     signChanges l = (l.destutter Ne).length - 1 := by
   cases l with
@@ -53,6 +59,9 @@ theorem signChanges_eq_destutter_length_sub_one (l : List SignType) :
       change changesFrom a l = _
       simpa [List.destutter] using changesFrom_eq_destutter_length_sub_one a l
 
+/--
+@isnad1 id=eq.0h2v.s4.a00249fc1284 from=translated src=- shape=d2f637b3 vocab=8e704ac5
+-/
 theorem changesFrom_neg (a : SignType) (l : List SignType) :
     changesFrom (-a) (l.map (- ·)) = changesFrom a l := by
   induction l generalizing a with
@@ -62,6 +71,9 @@ theorem changesFrom_neg (a : SignType) (l : List SignType) :
       rw [ih b]
       by_cases hab : a = b <;> simp [hab]
 
+/--
+@isnad1 id=eq.0h1v.s4.98c1197a8359 from=translated src=- shape=8a064dcc vocab=ded267ad
+-/
 theorem signChanges_neg (l : List SignType) :
     signChanges (l.map (- ·)) = signChanges l := by
   cases l with
@@ -69,6 +81,9 @@ theorem signChanges_neg (l : List SignType) :
   | cons a l =>
       simp [signChanges, changesFrom_neg]
 
+/--
+@isnad1 id=and.0h3v.s6.322939930d83 from=translated src=- shape=d2d240eb vocab=a5df37b5
+-/
 theorem changesFrom_append_neg_suffix_balanced
     (a : SignType) (u v : List SignType) :
     changesFrom a (u ++ v) ≤
@@ -89,7 +104,9 @@ theorem changesFrom_append_neg_suffix_balanced
       omega
 
 /-- Negating an arbitrary suffix changes the adjacent-variation count by at
-most one.-/
+most one.
+@isnad1 id=and.0h2v.s6.ba9550cfd4b9 from=translated src=- shape=69a2c58c vocab=3a6c761e
+-/
 theorem signChanges_append_neg_suffix_balanced (u v : List SignType) :
     signChanges (u ++ v) ≤ signChanges (u ++ v.map (- ·)) + 1 ∧
       signChanges (u ++ v.map (- ·)) ≤ signChanges (u ++ v) + 1 := by

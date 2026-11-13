@@ -25,6 +25,9 @@ private theorem grid_coordinate_abs_le (q : ℕ) (x : Fin q) :
   apply abs_le.mpr
   constructor <;> linarith
 
+/--
+@isnad1 id=le.0h2v.s5.dd301f14b426 from=translated src=- shape=e8494e1c vocab=08728fd1
+-/
 theorem gridCenter_norm_le (q : ℕ) (x : Fin q × Fin q) :
     ‖gridCenter q x‖ ≤ (q : ℝ) - 1 := by
   apply (Complex.norm_le_abs_re_add_abs_im _).trans
@@ -42,6 +45,9 @@ private theorem nat_cast_separated {a b : ℕ} (h : a ≠ b) :
     have h := le_abs_self ((a : ℝ) - b)
     linarith
 
+/--
+@isnad1 id=le.1h3v.s5.066596c799b7 from=translated src=- shape=2f5d5f8d vocab=60f60657
+-/
 theorem gridCenter_separated (q : ℕ) (x y : Fin q × Fin q) (hxy : x ≠ y) :
     (1 : ℝ) ≤ ‖gridCenter q x - gridCenter q y‖ := by
   by_cases hfst : x.1 = y.1
@@ -62,7 +68,9 @@ theorem gridCenter_separated (q : ℕ) (x y : Fin q × Fin q) (hxy : x ≠ y) :
     rw [hid] at h
     exact (nat_cast_separated hfst').trans h
 
-/-- Scalar centers for any finite number of blocks, with a linear radius bound.-/
+/-- Scalar centers for any finite number of blocks, with a linear radius bound.
+@isnad1 id=ex.0h1v.s6.2fcd8e0b4e22 from=translated src=- shape=d83b9967 vocab=8e4fb0fd
+-/
 theorem exists_assembly_centers_any {ι : Type*} [Fintype ι] :
     ∃ z : ι → ℂ, (∀ i, ‖z i‖ + (1 / 4 : ℝ) ≤ Fintype.card ι) ∧
       ∀ i j, i ≠ j → (1 : ℝ) ≤ ‖z i - z j‖ := by

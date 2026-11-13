@@ -14,7 +14,9 @@ namespace NoEpsilon.MSSBarrierAlgebra
 open MvPolynomial MSSBarrier
 
 /-- The final scalar inequality in the quantitative MSS shift, without dividing by
-the potentially zero mixed derivative d.-/
+the potentially zero mixed derivative d.
+@isnad1 id=le.5h6v.s7.ffc366b47a6b from=translated src=- shape=c63a92e7 vocab=7172fdac
+-/
 theorem scalar_shift (δ bnew bold d fnew fold : ℝ)
     (hδ : 0 < δ) (hb : bnew ≤ bold) (hbold : bold ≤ 1 - 1 / δ)
     (hd : d ≤ 0) (htangent : fnew - δ * d ≤ fold) :

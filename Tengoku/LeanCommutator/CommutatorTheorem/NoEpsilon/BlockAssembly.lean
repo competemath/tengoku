@@ -36,6 +36,9 @@ def vectorBlock (x : EuclideanSpace ℂ (Sigma d)) (i : ι) : EuclideanSpace ℂ
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h3v.s7.8aff008e5547 from=translated src=- shape=dc3449f2 vocab=0c44d251
+-/
 theorem norm_sq_eq_sum_vectorBlock (x : EuclideanSpace ℂ (Sigma d)) :
     ‖x‖ ^ 2 = ∑ i, ‖vectorBlock x i‖ ^ 2 := by
   simp only [EuclideanSpace.norm_sq_eq, vectorBlock]
@@ -43,6 +46,9 @@ theorem norm_sq_eq_sum_vectorBlock (x : EuclideanSpace ℂ (Sigma d)) :
 
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
+/--
+@isnad1 id=eq.0h5v.s13.0cea1e595487 from=translated src=- shape=d9c1a331 vocab=c6b29478
+-/
 theorem block_mulVec (A : Matrix (Sigma d) (Sigma d) ℂ)
     (x : EuclideanSpace ℂ (Sigma d)) (i : ι) :
     vectorBlock (Matrix.toEuclideanLin A x) i =
@@ -54,6 +60,9 @@ theorem block_mulVec (A : Matrix (Sigma d) (Sigma d) ℂ)
 
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
+/--
+@isnad1 id=eq.0h5v.s13.fdfa8c6d5195 from=translated src=- shape=9f7d27c8 vocab=540a730c
+-/
 theorem diagonal_mulVec (D : ∀ i, Matrix (d i) (d i) ℂ)
     (x : EuclideanSpace ℂ (Sigma d)) (i : ι) :
     vectorBlock (Matrix.toEuclideanLin (Matrix.blockDiagonal' D) x) i =
@@ -71,7 +80,9 @@ theorem diagonal_mulVec (D : ∀ i, Matrix (d i) (d i) ℂ)
 
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
-/-- A block diagonal matrix is bounded by a common bound for its diagonal blocks.-/
+/-- A block diagonal matrix is bounded by a common bound for its diagonal blocks.
+@isnad1 id=le.2h4v.s7.c32cd655fcc3 from=translated src=- shape=e76b6e06 vocab=7fad9581
+-/
 theorem norm_blockDiagonal_le (D : ∀ i, Matrix (d i) (d i) ℂ)
     (q : ℝ) (hq : 0 ≤ q) (hD : ∀ i, ‖D i‖ ≤ q) :
     ‖Matrix.blockDiagonal' D‖ ≤ q := by
@@ -96,7 +107,9 @@ theorem norm_blockDiagonal_le (D : ∀ i, Matrix (d i) (d i) ℂ)
 
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
-/-- A common bound for all rectangular blocks gives a bound linear in the block count.-/
+/-- A common bound for all rectangular blocks gives a bound linear in the block count.
+@isnad1 id=le.2h4v.s7.ce93af2f1908 from=translated src=- shape=fccdc15e vocab=f2b2a67c
+-/
 theorem norm_le_card_mul_block_bound (A : Matrix (Sigma d) (Sigma d) ℂ)
     (q : ℝ) (hq : 0 ≤ q) (hA : ∀ i j, ‖block A i j‖ ≤ q) :
     ‖A‖ ≤ Fintype.card ι * q := by
@@ -139,6 +152,9 @@ theorem norm_le_card_mul_block_bound (A : Matrix (Sigma d) (Sigma d) ℂ)
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h6v.s7.7b84f2718e1f from=translated src=- shape=d0f07335 vocab=ee47d798
+-/
 theorem block_diagonal_mul (D : ∀ i, Matrix (d i) (d i) ℂ)
     (A : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
     block (Matrix.blockDiagonal' D * A) i j = D i * block A i j := by
@@ -154,6 +170,9 @@ theorem block_diagonal_mul (D : ∀ i, Matrix (d i) (d i) ℂ)
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h6v.s7.908f42c9b2a2 from=translated src=- shape=5252cd2f vocab=ee47d798
+-/
 theorem block_mul_diagonal (D : ∀ i, Matrix (d i) (d i) ℂ)
     (A : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
     block (A * Matrix.blockDiagonal' D) i j = block A i j * D j := by
@@ -169,6 +188,9 @@ theorem block_mul_diagonal (D : ∀ i, Matrix (d i) (d i) ℂ)
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h6v.s7.fe4c88a4f66c from=translated src=- shape=63227223 vocab=f313445f
+-/
 @[simp]
 theorem block_add (A B : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
     block (A + B) i j = block A i j + block B i j := rfl
@@ -176,6 +198,9 @@ theorem block_add (A B : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h6v.s7.54d43ab25eb3 from=translated src=- shape=63227223 vocab=6a696b0c
+-/
 @[simp]
 theorem block_sub (A B : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
     block (A - B) i j = block A i j - block B i j := rfl
@@ -183,6 +208,9 @@ theorem block_sub (A B : Matrix (Sigma d) (Sigma d) ℂ) (i j : ι) :
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.0h4v.s6.8aa956175286 from=translated src=- shape=888392f8 vocab=8995e48b
+-/
 @[simp]
 theorem block_diagonal_same (D : ∀ i, Matrix (d i) (d i) ℂ) (i : ι) :
     block (Matrix.blockDiagonal' D) i i = D i := by
@@ -192,6 +220,9 @@ theorem block_diagonal_same (D : ∀ i, Matrix (d i) (d i) ℂ) (i : ι) :
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
 -- Preserve the existing parameter list for downstream callers.
+/--
+@isnad1 id=eq.1h5v.s6.8b69afc7586c from=translated src=- shape=b14a30d3 vocab=8995e48b
+-/
 theorem block_diagonal_ne (D : ∀ i, Matrix (d i) (d i) ℂ) (i j : ι) (h : i ≠ j) :
     block (Matrix.blockDiagonal' D) i j = 0 := by
   ext a b
@@ -199,7 +230,9 @@ theorem block_diagonal_ne (D : ∀ i, Matrix (d i) (d i) ℂ) (i j : ι) (h : i 
 
 set_option maxHeartbeats 2000000 in
 -- Retain the original elaboration budget locally for this declaration.
-/-- Inverse rescaling makes the first commutator factor small at no product cost.-/
+/-- Inverse rescaling makes the first commutator factor small at no product cost.
+@isnad1 id=ex.2h4v.s8.a2c10de4d92b from=translated src=- shape=9d331a71 vocab=7d4bcba3
+-/
 theorem normalize_factors {n : Type*} [Fintype n] [DecidableEq n]
     (U V : Matrix n n ℂ) (p : ℝ) (hp : 0 ≤ p) (hcost : ‖U‖ * ‖V‖ ≤ p) :
     ∃ U' V' : Matrix n n ℂ,

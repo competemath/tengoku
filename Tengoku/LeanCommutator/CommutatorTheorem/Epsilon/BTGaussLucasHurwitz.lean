@@ -24,7 +24,9 @@ open CommutatorTheorem.BTStableLine
 open CommutatorTheorem.BTGaussLucasDomain
 
 /-- Nonnegative directional derivatives preserve multivariate upper-half-plane
-stability, with the zero polynomial included as the degenerate case.-/
+stability, with the zero polynomial included as the degenerate case.
+@isnad1 id=multivar.0h0v.s0.93c89c5497b1 from=translated src=- shape=45709ebd vocab=93c89c54
+-/
 theorem multivariateGaussLucasHurwitz : MultivariateGaussLucasHurwitz := by
   intro σ inst p w hp hw
   letI : Fintype σ := inst

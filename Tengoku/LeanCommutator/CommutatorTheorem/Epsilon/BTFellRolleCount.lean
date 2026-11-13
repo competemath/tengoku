@@ -19,7 +19,9 @@ open Polynomial
 open CommutatorTheorem.BTFellCrossGap
 
 /-- Strict left- and right-half-line counts never exceed the total multiset
-cardinality.-/
+cardinality.
+@isnad1 id=le.0h2v.s5.50f5eaa5ac24 from=translated src=- shape=30b5d66d vocab=a35e792d
+-/
 theorem countP_lt_add_countP_gt_le_card (s : Multiset ℝ) (b : ℝ) :
     s.countP (· < b) + s.countP (b < ·) ≤ s.card := by
   induction s using Multiset.induction_on with
@@ -36,7 +38,9 @@ theorem countP_lt_add_countP_gt_le_card (s : Multiset ℝ) (b : ℝ) :
         omega
 
 /-- If the threshold is absent, the two strict half-lines partition the
-whole multiset.-/
+whole multiset.
+@isnad1 id=eq.1h2v.s5.d0a099558567 from=translated src=- shape=674e90b5 vocab=cce5aea9
+-/
 theorem countP_lt_add_countP_gt_eq_card_of_not_mem
     (s : Multiset ℝ) (b : ℝ) (hb : b ∉ s) :
     s.countP (· < b) + s.countP (b < ·) = s.card := by
@@ -59,7 +63,9 @@ theorem countP_lt_add_countP_gt_eq_card_of_not_mem
         omega
 
 /-- The two strict half-lines together with the multiplicity at the
-threshold partition a multiset.-/
+threshold partition a multiset.
+@isnad1 id=eq.0h2v.s5.53429d5ff911 from=translated src=- shape=d1daf0c0 vocab=0f86dc35
+-/
 theorem countP_lt_add_count_add_countP_gt_eq_card
     (s : Multiset ℝ) (b : ℝ) :
     s.countP (· < b) + s.count b + s.countP (b < ·) = s.card := by
@@ -77,6 +83,9 @@ theorem countP_lt_add_count_add_countP_gt_eq_card
       · simp [hab, hab.ne, not_lt_of_ge hab.le]
         omega
 
+/--
+@isnad1 id=eq.0h2v.s5.7678b603382d from=translated src=- shape=409c144f vocab=c0c6a93b
+-/
 theorem countP_le_eq_countP_lt_add_count (s : Multiset ℝ) (b : ℝ) :
     s.countP (· ≤ b) = s.countP (· < b) + s.count b := by
   induction s using Multiset.induction_on with
@@ -94,7 +103,9 @@ theorem countP_le_eq_countP_lt_add_count (s : Multiset ℝ) (b : ℝ) :
 
 /-- Between consecutive distinct roots strictly to the right of `x`, Rolle's
 theorem supplies a derivative root which is still strictly to the right of
-`x`.-/
+`x`.
+@isnad1 id=le.0h3v.s7.83472ca18e55 from=translated src=- shape=b3f79cea vocab=f72d3917
+-/
 theorem card_roots_filter_toFinset_le_derivative_diff_succ
     (p : ℝ[X]) (P : ℝ → Prop) [DecidablePred P]
     (hconv : ∀ a b z : ℝ, P a → P b → a < z → z < b → P z) :
@@ -118,7 +129,9 @@ theorem card_roots_filter_toFinset_le_derivative_diff_succ
 
 /-- Multiplicity-sensitive localized Rolle bound: the number of positive
 roots of `p` is at most the number of positive roots of `p.derivative` plus
-one.-/
+one.
+@isnad1 id=le.0h3v.s7.f37d734cbb6a from=translated src=- shape=93de6042 vocab=62ca2c40
+-/
 theorem roots_countP_le_derivative_succ_of_intervalConvex
     (p : ℝ[X]) (P : ℝ → Prop) [DecidablePred P]
     (hconv : ∀ a b z : ℝ, P a → P b → a < z → z < b → P z) :
@@ -183,7 +196,9 @@ theorem roots_countP_le_derivative_succ_of_intervalConvex
           (fun hxS ↦ (Finset.mem_filter.mp hxS).2)
           (fun hxD' ↦ (Finset.mem_filter.mp hxD').2)⟩
 
-/-- Right-half-line specialization of localized Rolle.-/
+/-- Right-half-line specialization of localized Rolle.
+@isnad1 id=le.0h2v.s7.15948991f37a from=translated src=- shape=28b5085b vocab=825c0e6c
+-/
 theorem roots_countP_gt_le_derivative_succ (p : ℝ[X]) (b : ℝ) :
     p.roots.countP (b < ·) ≤
       p.derivative.roots.countP (b < ·) + 1 := by
@@ -191,7 +206,9 @@ theorem roots_countP_gt_le_derivative_succ (p : ℝ[X]) (b : ℝ) :
   intro a c z ha hc haz hzc
   exact ha.trans haz
 
-/-- Left-half-line specialization of localized Rolle.-/
+/-- Left-half-line specialization of localized Rolle.
+@isnad1 id=le.0h2v.s7.f01fcce6ce5b from=translated src=- shape=8f8034b9 vocab=825c0e6c
+-/
 theorem roots_countP_lt_le_derivative_succ (p : ℝ[X]) (b : ℝ) :
     p.roots.countP (· < b) ≤
       p.derivative.roots.countP (· < b) + 1 := by
@@ -199,14 +216,18 @@ theorem roots_countP_lt_le_derivative_succ (p : ℝ[X]) (b : ℝ) :
   intro a c z ha hc haz hzc
   exact hzc.trans hc
 
-/-- The positive-root specialization.-/
+/-- The positive-root specialization.
+@isnad1 id=le.0h1v.s7.120ec3b5f510 from=translated src=- shape=84e2b721 vocab=825c0e6c
+-/
 theorem roots_countP_pos_le_derivative_succ (p : ℝ[X]) :
     p.roots.countP (0 < ·) ≤
       p.derivative.roots.countP (0 < ·) + 1 :=
   roots_countP_gt_le_derivative_succ p 0
 
 /-- In the notation used by the Fell reduction, differentiation can remove
-at most one root from any open right half-line.-/
+at most one root from any open right half-line.
+@isnad1 id=le.0h2v.s7.218f6aebf71b from=translated src=- shape=a89b5f3f vocab=d36c0d2b
+-/
 theorem rootsGTCount_le_derivative_succ (p : ℝ[X]) (b : ℝ) :
     rootsGTCount p b ≤ rootsGTCount p.derivative b + 1 := by
   simpa [rootsGTCount, Multiset.countP_eq_card_filter] using

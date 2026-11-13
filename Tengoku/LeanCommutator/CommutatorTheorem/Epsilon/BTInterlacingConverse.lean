@@ -32,11 +32,17 @@ noncomputable def maximizingIndex {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ) : ι :=
   Classical.choose (Finset.exists_max_image s f hs)
 
+/--
+@isnad1 id=mem.1h3v.s5.54678c6dd61e from=translated src=- shape=b01e0454 vocab=5fb628c7
+-/
 theorem maximizingIndex_mem {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ) :
     maximizingIndex s hs f ∈ s :=
   (Classical.choose_spec (Finset.exists_max_image s f hs)).1
 
+/--
+@isnad1 id=le.2h4v.s5.8ffa043ab1b1 from=translated src=- shape=f61583e6 vocab=0f8e630a
+-/
 theorem le_maximizingIndex {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (hs : s.Nonempty) (f : ι → ℝ)
     {i : ι} (hi : i ∈ s) :
@@ -51,6 +57,9 @@ noncomputable def listEntry {ι : Type*} (upper : ι → List ℝ)
     (i : ι) (k : Fin d) : ℝ :=
   (upper i).get ⟨k, by simp [hlen i]⟩
 
+/--
+@isnad1 id=eq.1h5v.s5.4eed9ac3bffe from=translated src=- shape=db7826be vocab=e77fe594
+-/
 @[simp] theorem listEntry_eq_get {ι : Type*} (upper : ι → List ℝ)
     (d : ℕ) (hlen : ∀ i, (upper i).length = d)
     (i : ι) (k : Fin d) :
@@ -74,6 +83,9 @@ noncomputable def commonGapList {ι : Type*} [DecidableEq ι]
     listEntry upper d hlen (gapMaximizer s hs upper d hlen k)
       ⟨k, by omega⟩)
 
+/--
+@isnad1 id=eq.2h4v.s5.9431dcc2168a from=translated src=- shape=21a01a57 vocab=0f49c512
+-/
 @[simp] theorem commonGapList_length {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (hs : s.Nonempty) (upper : ι → List ℝ)
     (d : ℕ) (hlen : ∀ i, (upper i).length = d) :
@@ -81,7 +93,9 @@ noncomputable def commonGapList {ι : Type*} [DecidableEq ι]
   simp [commonGapList]
 
 /-- Pairwise interlacing supplies the cross-gap inequality: the lower
-endpoint from any member is below the upper endpoint from any other member.-/
+endpoint from any member is below the upper endpoint from any other member.
+@isnad1 id=le.5h7v.s7.881edcb5f4d9 from=translated src=- shape=7fa5e9f6 vocab=d1b3b873
+-/
 theorem cross_gap_le_of_pairwise_listsInterlace
     {ι : Type*}
     {s : Finset ι} {upper : ι → List ℝ} {d : ℕ}
@@ -107,7 +121,9 @@ theorem cross_gap_le_of_pairwise_listsInterlace
 /-! ## The degree-one Fell base case -/
 
 /-- Every finite family of monic real-rooted linear polynomials has the
-constant polynomial `1` as a common interlacer.-/
+constant polynomial `1` as a common interlacer.
+@isnad1 id=hascommo.3h3v.s6.080f7eb78528 from=translated src=- shape=d6d9b91c vocab=591e390c
+-/
 theorem hasCommonInterlacer_of_natDegree_one
     {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (p : ι → ℝ[X])
@@ -132,7 +148,9 @@ theorem hasCommonInterlacer_of_natDegree_one
   simp at hk
 
 /-- In particular, the analytic pair Fell converse is completely settled in
-degree one.-/
+degree one.
+@isnad1 id=hascommo.7h2v.s7.9d68c210c913 from=translated src=- shape=aa5663ee vocab=48eeb297
+-/
 theorem pair_fell_natDegree_one
     (p q : ℝ[X])
     (hpmonic : p.Monic) (hqmonic : q.Monic)

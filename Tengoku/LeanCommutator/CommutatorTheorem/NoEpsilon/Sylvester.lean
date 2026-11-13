@@ -16,7 +16,9 @@ open scoped NNReal Matrix.Norms.L2Operator
 
 namespace NoEpsilon
 
-/-- A Lipschitz perturbation of a nonzero scalar has a quantitatively bounded inverse.-/
+/-- A Lipschitz perturbation of a nonzero scalar has a quantitatively bounded inverse.
+@isnad1 id=ex.3h5v.s7.553d4998c7a5 from=translated src=- shape=325f178d vocab=597e44e6
+-/
 theorem exists_scalar_add_lipschitz_solution
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [CompleteSpace E]
     (f : E → E) (δ : ℝ≥0) (hf : LipschitzWith δ f) (hf0 : f 0 = 0)
@@ -64,7 +66,9 @@ section Matrix
 
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
-/-- The rectangular commutator map is Lipschitz for Euclidean operator norms.-/
+/-- The rectangular commutator map is Lipschitz for Euclidean operator norms.
+@isnad1 id=lipschit.0h4v.s7.34c2d8c315a0 from=translated src=- shape=c8358afe vocab=94223fbe
+-/
 theorem rectangular_commutator_lipschitz
     (U : Matrix m m ℂ) (V : Matrix n n ℂ) :
     LipschitzWith (‖U‖₊ + ‖V‖₊) (fun X : Matrix m n ℂ ↦ U * X - X * V) := by
@@ -86,7 +90,9 @@ theorem rectangular_commutator_lipschitz
       ring
 
 /-- The Sylvester equation with separated scalar centers has a solution with the sharp
-Neumann-series denominator. Both coefficient matrices may be nonnormal.-/
+Neumann-series denominator. Both coefficient matrices may be nonnormal.
+@isnad1 id=ex.1h7v.s8.d5ff67313812 from=translated src=- shape=df5216d7 vocab=920cc24a
+-/
 theorem exists_sylvester_solution
     (U : Matrix m m ℂ) (V : Matrix n n ℂ) (z w : ℂ)
     (hsep : ‖U‖ + ‖V‖ < ‖z - w‖) (Y : Matrix m n ℂ) :
@@ -101,7 +107,9 @@ theorem exists_sylvester_solution
   · simpa only [add_sub_assoc] using hX
   · simpa only [NNReal.coe_add, coe_nnnorm, sub_sub] using hbound
 
-/-- The same estimate in the usual two-coefficient notation for the Sylvester equation.-/
+/-- The same estimate in the usual two-coefficient notation for the Sylvester equation.
+@isnad1 id=ex.1h7v.s8.bfd34cac082d from=translated src=- shape=a007bb6c vocab=920cc24a
+-/
 theorem exists_sylvester_solution_scalar_centers
     (U : Matrix m m ℂ) (V : Matrix n n ℂ) (z w : ℂ)
     (hsep : ‖U‖ + ‖V‖ < ‖z - w‖) (Y : Matrix m n ℂ) :

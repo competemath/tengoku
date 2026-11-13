@@ -19,7 +19,9 @@ namespace PavingSeparation.DiagonalCost
 
 open scoped BigOperators Matrix Matrix.Norms.L2Operator
 
-/-- The explicit bound is at least the simpler lower bound √k / 4.-/
+/-- The explicit bound is at least the simpler lower bound √k / 4.
+@isnad1 id=le.2h2v.s7.69acbd5fba6b from=translated src=- shape=f0758d48 vocab=ea4a17c7
+-/
 theorem sqrt_k_lower_bound (k : ℕ) (hk : 1 ≤ k) (n : ℕ) (hn : 1 < n) :
     Real.sqrt (k : ℝ) / 4 ≤
       Real.sqrt ((((3 : ℝ) * k - 1) * n + 1) / (32 * ((n : ℝ) - 1))) := by

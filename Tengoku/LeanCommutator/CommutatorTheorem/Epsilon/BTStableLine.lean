@@ -24,7 +24,9 @@ noncomputable def stableLinePolynomial {sigma : Type*}
     (fun i ↦ Polynomial.C (z i) + Polynomial.C (w i : ℂ) * Polynomial.X) p
 
 /-- Evaluation of the affine-line restriction is literal substitution along
-that line.-/
+that line.
+@isnad1 id=eq.0h5v.s6.273846455a92 from=translated src=- shape=be08ece4 vocab=ad8399c9
+-/
 theorem eval_stableLinePolynomial {sigma : Type*}
     (z : sigma → ℂ) (w : sigma → ℝ) (p : MvPolynomial sigma ℂ)
     (t : ℂ) :
@@ -47,7 +49,9 @@ theorem eval_stableLinePolynomial {sigma : Type*}
   rw [hc, hx, MvPolynomial.eval₂_id]
 
 /-- The derivative at the base point of the affine-line restriction is the
-evaluation of the corresponding nonnegative directional derivative.-/
+evaluation of the corresponding nonnegative directional derivative.
+@isnad1 id=eq.0h4v.s7.59fbb2095fa2 from=translated src=- shape=0d9ffe7f vocab=5d09dcb7
+-/
 theorem derivative_stableLinePolynomial_eval_zero
     {sigma : Type*} [Fintype sigma]
     (z : sigma → ℂ) (w : sigma → ℝ) (p : MvPolynomial sigma ℂ) :
@@ -111,7 +115,9 @@ theorem derivative_stableLinePolynomial_eval_zero
                 rw [hfirst, hsecond]
 
 /-- Starting in the open upper half-plane and moving in a nonnegative real
-direction stays there for every parameter in the closed upper half-plane.-/
+direction stays there for every parameter in the closed upper half-plane.
+@isnad1 id=inupperh.3h5v.s6.7742b857f159 from=translated src=- shape=7105c359 vocab=ce1cd9b8
+-/
 theorem affineLine_inUpperHalfPlane {sigma : Type*}
     (z : sigma → ℂ) (w : sigma → ℝ)
     (hz : ∀ i, InUpperHalfPlane (z i)) (hw : ∀ i, 0 ≤ w i)
@@ -124,7 +130,9 @@ theorem affineLine_inUpperHalfPlane {sigma : Type*}
   exact add_pos_of_pos_of_nonneg (hz i) (mul_nonneg (hw i) ht)
 
 /-- A nonzero stable polynomial restricts to a nonzero univariate
-polynomial on every such line.-/
+polynomial on every such line.
+@isnad1 id=ne.2h4v.s7.a205842a7814 from=translated src=- shape=cbed43ba vocab=dbc64f70
+-/
 theorem stableLinePolynomial_ne_zero {sigma : Type*}
     {p : MvPolynomial sigma ℂ}
     (hp : ∀ z : sigma → ℂ, (∀ i, InUpperHalfPlane (z i)) →
@@ -141,7 +149,9 @@ theorem stableLinePolynomial_ne_zero {sigma : Type*}
 
 /-- Every root of a stable affine-line restriction lies strictly in the
 lower half-plane.  The strictness comes from the positive imaginary part of
-the base point, so it also holds for real line parameters.-/
+the base point, so it also holds for real line parameters.
+@isnad1 id=lt.4h5v.s7.29ccde2fc8a8 from=translated src=- shape=b83cea5f vocab=db17c82d
+-/
 theorem root_im_neg_of_stableLinePolynomial {sigma : Type*}
     {p : MvPolynomial sigma ℂ}
     (hp : ∀ z : sigma → ℂ, (∀ i, InUpperHalfPlane (z i)) →
@@ -158,7 +168,9 @@ theorem root_im_neg_of_stableLinePolynomial {sigma : Type*}
   exact ha
 
 /-- The reciprocal displacement from `0` to a strict lower-half-plane point
-also has strictly negative imaginary part.-/
+also has strictly negative imaginary part.
+@isnad1 id=lt.1h1v.s5.6f7c8ee82243 from=translated src=- shape=04fa9530 vocab=fe6c4ee6
+-/
 theorem one_div_neg_im_neg {a : ℂ} (ha : a.im < 0) :
     (1 / (0 - a)).im < 0 := by
   have ha0 : a ≠ 0 := by
@@ -178,7 +190,9 @@ private theorem im_multiset_sum (s : Multiset ℂ) :
 
 /-- The logarithmic derivative of a stable affine-line restriction at the
 real parameter `0` lies in the closed lower half-plane.  This is the sign
-input for the open-mapping proof of directional-derivative stability.-/
+input for the open-mapping proof of directional-derivative stability.
+@isnad1 id=le.3h4v.s8.a964f9435a0c from=translated src=- shape=765d628d vocab=10d220ac
+-/
 theorem stableLine_logDerivative_im_nonpos {sigma : Type*}
     {p : MvPolynomial sigma ℂ}
     (hp : ∀ z : sigma → ℂ, (∀ i, InUpperHalfPlane (z i)) →
@@ -205,7 +219,9 @@ theorem stableLine_logDerivative_im_nonpos {sigma : Type*}
 
 /-- Multivariate form of the preceding sign: at every point of the upper
 half-plane product, the directional logarithmic derivative has nonpositive
-imaginary part.-/
+imaginary part.
+@isnad1 id=le.3h4v.s8.c970810235ff from=translated src=- shape=75762375 vocab=92ac37f4
+-/
 theorem directional_logDerivative_im_nonpos
     {sigma : Type*} [Fintype sigma]
     {p : MvPolynomial sigma ℂ}

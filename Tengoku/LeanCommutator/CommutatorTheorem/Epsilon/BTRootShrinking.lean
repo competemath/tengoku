@@ -26,7 +26,9 @@ noncomputable def rootBarrierCurvature (p : ℝ[X]) (b : ℝ) : ℝ :=
   (p.roots.map fun r ↦ (1 / (b - r)) ^ 2).sum
 
 /-- For a split polynomial away from its roots, the logarithmic derivative is the sum of the
-reciprocal root gaps.-/
+reciprocal root gaps.
+@isnad1 id=eq.2h2v.s6.a6c1a232a35c from=translated src=- shape=6e5b7cdf vocab=c27fecd4
+-/
 lemma rootBarrierPotential_eq_sum_roots {p : ℝ[X]} (hp : RealRooted p) {b : ℝ}
     (hb : p.eval b ≠ 0) :
     rootBarrierPotential p b = (p.roots.map fun r ↦ 1 / (b - r)).sum := by
@@ -37,7 +39,9 @@ lemma rootBarrierPotential_eq_sum_roots {p : ℝ[X]} (hp : RealRooted p) {b : �
 -- Preserve the existing parameter list for downstream callers.
 
 /-- The reciprocal-gap transform is ordered strongly enough for the weighted rearrangement
-inequality.-/
+inequality.
+@isnad1 id=other.5h3v.s7.d6e273a7749d from=translated src=- shape=3597b960 vocab=7172fdac
+-/
 lemma reciprocal_gap_pair_nonneg {A ai aj : ℝ}
     (hA : 0 < A) (hai : 0 < ai) (haj : 0 < aj)
     (haiA : ai < A) (hajA : aj < A) :
@@ -71,12 +75,16 @@ lemma reciprocal_gap_pair_nonneg {A ai aj : ℝ}
 
 /-! ## Moving between root multisets and finite sums -/
 
-/-- A list sum can be written as a sum over its position type.-/
+/-- A list sum can be written as a sum over its position type.
+@isnad1 id=eq.0h1v.s5.3db744dd531a from=translated src=- shape=d9a422f2 vocab=cd3b253e
+-/
 lemma list_sum_eq_fin_sum {l : List ℝ} : l.sum = ∑ i : Fin l.length, l.get i := by
   simpa only [List.ofFn_get] using (List.sum_ofFn (f := l.get))
 
 /-- Sorting a multiset exposes its multiplicities as an honest finite index type without changing
-any mapped sum.-/
+any mapped sum.
+@isnad1 id=eq.0h2v.s6.3c60c96401f6 from=translated src=- shape=f5ca86d8 vocab=affb652a
+-/
 lemma multiset_map_sum_eq_fin_sum_sort (s : Multiset ℝ) (f : ℝ → ℝ) :
     (s.map f).sum = ∑ i : Fin (s.sort (· ≤ ·)).length, f ((s.sort (· ≤ ·)).get i) := by
   let l := s.sort (· ≤ ·)
@@ -98,7 +106,9 @@ def DerivativeBarrierStep (p : ℝ[X]) (b φ : ℝ) : Prop :=
     rootBarrierPotential p.derivative (b - 1 / φ) ≤ φ
 
 /-- Iterating a supplied one-step barrier certificate gives the linear barrier displacement used
-in root shrinking.  The conclusion is an upper bound for every root of the iterated derivative.-/
+in root shrinking.  The conclusion is an upper bound for every root of the iterated derivative.
+@isnad1 id=isrootup.3h4v.s8.597def15d694 from=translated src=- shape=d945bd0f vocab=d8486d1a
+-/
 theorem iterate_derivative_rootUpperBound_of_barrier_steps
     {p : ℝ[X]} {b φ : ℝ} (hφ : 0 < φ) (hbase : IsRootUpperBound p b) (d : ℕ)
     (hsteps : ∀ j < d,

@@ -20,6 +20,9 @@ section RingBounds
 
 variable {E : Type*} [NormedRing E]
 
+/--
+@isnad1 id=le.0h3v.s5.61f7e3ac6dbf from=translated src=- shape=c7d696db vocab=4244dc11
+-/
 theorem norm_ringCommutator_le (X Y : E) :
     ‖ringCommutator X Y‖ ≤ 2 * ‖X‖ * ‖Y‖ := by
   calc
@@ -27,7 +30,9 @@ theorem norm_ringCommutator_le (X Y : E) :
     _ ≤ ‖X‖ * ‖Y‖ + ‖Y‖ * ‖X‖ := add_le_add (norm_mul_le _ _) (norm_mul_le _ _)
     _ = 2 * ‖X‖ * ‖Y‖ := by ring
 
-/-- A similarity costs at most the product of the norms of its two explicit factors.-/
+/-- A similarity costs at most the product of the norms of its two explicit factors.
+@isnad1 id=le.0h4v.s6.9e1970419781 from=translated src=- shape=3bda670b vocab=986bbf18
+-/
 theorem norm_conjugation_le (S X S' : E) :
     ‖S * X * S'‖ ≤ (‖S‖ * ‖S'‖) * ‖X‖ := by
   calc
@@ -36,6 +41,9 @@ theorem norm_conjugation_le (S X S' : E) :
       mul_le_mul_of_nonneg_right (norm_mul_le _ _) (norm_nonneg _)
     _ = (‖S‖ * ‖S'‖) * ‖X‖ := by ring
 
+/--
+@isnad1 id=le.3h6v.s6.ddc1d1de604d from=translated src=- shape=59096fd6 vocab=91c9f7e1
+-/
 theorem norm_firstDefect_le (A U V : E) (a p : ℝ)
     (hA : ‖A‖ ≤ a) (hU : ‖U‖ ≤ 1) (hV : ‖V‖ ≤ p) :
     ‖ringCommutator U V - A‖ ≤ 2 * p + a := by
@@ -45,6 +53,9 @@ theorem norm_firstDefect_le (A U V : E) (a p : ℝ)
     _ ≤ 2 * 1 * p + a := by gcongr
     _ = 2 * p + a := by ring
 
+/--
+@isnad1 id=le.6h9v.s8.14cf5fe3671a from=translated src=- shape=873d8e32 vocab=91c9f7e1
+-/
 theorem norm_secondDefect_le (A F U K V T : E) (a p : ℝ)
     (hA : ‖A‖ ≤ a) (hF : ‖F‖ ≤ a) (hU : ‖U‖ ≤ 1) (hK : ‖K‖ ≤ 1)
     (hV : ‖V‖ ≤ p) (hT : ‖T‖ ≤ p) :
@@ -89,6 +100,9 @@ theorem norm_secondDefect_le (A F U K V T : E) (a p : ℝ)
         _ ≤ _ := by gcongr; apply norm_add_le
     _ ≤ 6 * p + 2 * a + 1 := by linarith
 
+/--
+@isnad1 id=le.3h8v.s7.df745dcd4c60 from=translated src=- shape=7ce9c417 vocab=b1b4991d
+-/
 theorem norm_companion_lowerLeft_le (A U K V T Q : E) (p : ℝ)
     (hK : ‖K‖ ≤ 1) (hT : ‖T‖ ≤ p) (hQ : ‖Q - (ringCommutator U V - A)‖ ≤ 1) :
     ‖A + Q - ringCommutator U V + T * K‖ ≤ 1 + p := by
@@ -120,11 +134,16 @@ open scoped Matrix Matrix.Norms.L2Operator
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Valid also for an empty index type, where the identity matrix has norm zero.-/
+/-- Valid also for an empty index type, where the identity matrix has norm zero.
+@isnad1 id=le.0h1v.s5.49a270afe5bb from=translated src=- shape=a3de974d vocab=ddcde8d6
+-/
 theorem matrix_norm_one_le : ‖(1 : Matrix ι ι ℂ)‖ ≤ 1 := by
   rw [← Matrix.diagonal_one, Matrix.l2_opNorm_diagonal]
   exact (pi_norm_le_iff_of_nonneg zero_le_one).mpr (fun _ ↦ by simp)
 
+/--
+@isnad1 id=le.0h1v.s6.c39cfcba61d2 from=translated src=- shape=c1d243c3 vocab=d992d383
+-/
 theorem norm_rowEmbedding_left_le :
     ‖Matrix.fromRows (1 : Matrix ι ι ℂ) (0 : Matrix ι ι ℂ)‖ ≤ 1 := by
   let J := Matrix.fromRows (1 : Matrix ι ι ℂ) (0 : Matrix ι ι ℂ)
@@ -137,6 +156,9 @@ theorem norm_rowEmbedding_left_le :
   change ‖J‖ ≤ 1
   nlinarith [norm_nonneg J]
 
+/--
+@isnad1 id=le.0h1v.s6.ac74425e8ed4 from=translated src=- shape=c1d243c3 vocab=d992d383
+-/
 theorem norm_rowEmbedding_right_le :
     ‖Matrix.fromRows (0 : Matrix ι ι ℂ) (1 : Matrix ι ι ℂ)‖ ≤ 1 := by
   let J := Matrix.fromRows (0 : Matrix ι ι ℂ) (1 : Matrix ι ι ℂ)
@@ -149,6 +171,9 @@ theorem norm_rowEmbedding_right_le :
   change ‖J‖ ≤ 1
   nlinarith [norm_nonneg J]
 
+/--
+@isnad1 id=le.2h3v.s7.c4741db1b67a from=translated src=- shape=413c6a04 vocab=24d6c485
+-/
 theorem norm_scalar_shift_le (lam : ℝ) (hLam : 0 ≤ lam) (U : Matrix ι ι ℂ)
     (hU : ‖U‖ ≤ 1) : ‖lam • 1 + U‖ ≤ lam + 1 := by
   letI : NormedSpace ℝ (Matrix ι ι ℂ) := NormedSpace.restrictScalars ℝ ℂ _
@@ -161,12 +186,18 @@ theorem norm_scalar_shift_le (lam : ℝ) (hLam : 0 ≤ lam) (U : Matrix ι ι �
     _ ≤ lam * 1 + 1 := by gcongr; exact matrix_norm_one_le
     _ = lam + 1 := by ring
 
+/--
+@isnad1 id=le.6h9v.s8.e51d00208687 from=translated src=- shape=12c5ebcc vocab=e371119f
+-/
 theorem norm_riccatiConstant_le (A F U K V T : Matrix ι ι ℂ) (a p : ℝ)
     (hA : ‖A‖ ≤ a) (hF : ‖F‖ ≤ a) (hU : ‖U‖ ≤ 1) (hK : ‖K‖ ≤ 1)
     (hV : ‖V‖ ≤ p) (hT : ‖T‖ ≤ p) :
     ‖riccatiConstant A F U K V T‖ ≤ 6 * p + 2 * a + 1 := by
   exact norm_secondDefect_le A F U K V T a p hA hF hU hK hV hT
 
+/--
+@isnad1 id=le.4h7v.s7.002ffc48c57e from=translated src=- shape=c803cce4 vocab=58966c97
+-/
 theorem norm_riccati_point_le (A U V Q : Matrix ι ι ℂ) (a p : ℝ)
     (hA : ‖A‖ ≤ a) (hU : ‖U‖ ≤ 1) (hV : ‖V‖ ≤ p)
     (hQ : ‖Q - (ringCommutator U V - A)‖ ≤ 1) :

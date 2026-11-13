@@ -19,16 +19,25 @@ def coordinateInclusion (f : α → β) : Matrix β α ℂ :=
   fun b a ↦ if b = f a then 1 else 0
 
 omit [Fintype α] in
+/--
+@isnad1 id=eq.1h3v.s6.dac5b86073f4 from=translated src=- shape=558625e4 vocab=e7c7c096
+-/
 theorem coordinateInclusion_isometry (f : α → β) (hf : Function.Injective f) :
     (coordinateInclusion f).conjTranspose * coordinateInclusion f = 1 := by
   ext a a'
   simp [Matrix.mul_apply, coordinateInclusion, Matrix.conjTranspose_apply,
     Matrix.one_apply, hf.eq_iff, eq_comm]
 
+/--
+@isnad1 id=le.0h1v.s5.49a270afe5bb from=translated src=- shape=a3de974d vocab=ddcde8d6
+-/
 theorem coordinate_identity_norm_le : ‖(1 : Matrix α α ℂ)‖ ≤ 1 := by
   rw [Matrix.cstar_norm_def, map_one]
   exact ContinuousLinearMap.norm_id_le
 
+/--
+@isnad1 id=le.1h3v.s5.5a6125c211b4 from=translated src=- shape=6dbb467b vocab=6629920a
+-/
 theorem coordinateInclusion_norm_le (f : α → β) (hf : Function.Injective f) :
     ‖coordinateInclusion f‖ ≤ 1 := by
   have h := Matrix.l2_opNorm_conjTranspose_mul_self (coordinateInclusion f)
@@ -38,6 +47,9 @@ theorem coordinateInclusion_norm_le (f : α → β) (hf : Function.Injective f) 
   nlinarith [norm_nonneg (coordinateInclusion f)]
 
 omit [Fintype α] [Fintype γ] [DecidableEq α] [DecidableEq γ] in
+/--
+@isnad1 id=eq.0h6v.s6.a19815b7b14e from=translated src=- shape=67881e52 vocab=8e3b3f0d
+-/
 theorem submatrix_eq_coordinate_compression (A : Matrix β β ℂ)
     (f : α → β) (g : γ → β) :
     A.submatrix f g = (coordinateInclusion f).conjTranspose * A * coordinateInclusion g := by
@@ -46,7 +58,9 @@ theorem submatrix_eq_coordinate_compression (A : Matrix β β ℂ)
     mul_ite, ite_mul, Finset.sum_ite_eq']
 
 -- Preserve the existing parameter list for downstream callers.
-/-- Rectangular coordinate compression is contractive in the Euclidean operator norm.-/
+/-- Rectangular coordinate compression is contractive in the Euclidean operator norm.
+@isnad1 id=le.2h6v.s6.fd907617330b from=translated src=- shape=bd1ec023 vocab=164e5860
+-/
 theorem submatrix_operator_norm_le (A : Matrix β β ℂ)
     (f : α → β) (g : γ → β) (hf : Function.Injective f) (hg : Function.Injective g) :
     ‖A.submatrix f g‖ ≤ ‖A‖ := by
@@ -64,7 +78,9 @@ theorem submatrix_operator_norm_le (A : Matrix β β ℂ)
         (coordinateInclusion_norm_le g hg) (norm_nonneg _) (by positivity)
     _ = ‖A‖ := by ring
 
-/-- Reindexing both coordinates by an equivalence preserves the Euclidean operator norm.-/
+/-- Reindexing both coordinates by an equivalence preserves the Euclidean operator norm.
+@isnad1 id=eq.0h4v.s6.b9b6fb9798fb from=translated src=- shape=f2afb3c8 vocab=1fa21306
+-/
 theorem submatrix_operator_norm_equiv (A : Matrix β β ℂ) (e : α ≃ β) :
     ‖A.submatrix e e‖ = ‖A‖ := by
   apply le_antisymm (submatrix_operator_norm_le A e e e.injective e.injective)

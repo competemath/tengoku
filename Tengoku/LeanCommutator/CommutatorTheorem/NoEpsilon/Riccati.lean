@@ -23,7 +23,9 @@ variable {E : Type*} [NormedRing E]
 /-- The quadratic expression appearing in the fixed-point equation.-/
 def quadratic (c d e x : E) : E := x * x + c * x + x * d + e
 
-/-- Difference estimate retaining the order of noncommuting factors.-/
+/-- Difference estimate retaining the order of noncommuting factors.
+@isnad1 id=le.0h6v.s7.a131a331ab4c from=translated src=- shape=e70caa78 vocab=ab91e87f
+-/
 theorem norm_quadratic_sub_le (c d e x y : E) :
     ‖quadratic c d e x - quadratic c d e y‖ ≤
       (‖x‖ + ‖y‖ + ‖c‖ + ‖d‖) * ‖x - y‖ := by

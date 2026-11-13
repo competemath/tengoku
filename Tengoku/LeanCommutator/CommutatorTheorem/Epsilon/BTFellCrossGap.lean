@@ -32,6 +32,9 @@ def CrossGapCompatible (u v : List ℝ) : Prop :=
 noncomputable def rootsGTCount (p : ℝ[X]) (x : ℝ) : ℕ :=
   (p.roots.filter fun r ↦ x < r).card
 
+/--
+@isnad1 id=eq.0h2v.s5.09ed309ae530 from=translated src=- shape=909f7941 vocab=f8f6d35e
+-/
 theorem rootsGTCount_eq_sorted_filter_length (p : ℝ[X]) (x : ℝ) :
     rootsGTCount p x =
       ((p.roots.sort (· ≤ ·)).filter fun r ↦ x < r).length := by
@@ -46,7 +49,9 @@ theorem rootsGTCount_eq_sorted_filter_length (p : ℝ[X]) (x : ℝ) :
       rfl
 
 /-- If the `k`-th entry of a sorted list is strictly to the right of `x`,
-then at least the suffix beginning at `k` is to the right of `x`.-/
+then at least the suffix beginning at `k` is to the right of `x`.
+@isnad1 id=le.3h3v.s6.0dc8f20d7cae from=translated src=- shape=2f96c22f vocab=a86f750d
+-/
 theorem length_sub_le_filter_length_of_lt_get
     {l : List ℝ} (hsorted : l.Pairwise (· ≤ ·))
     {x : ℝ} {k : ℕ} (hk : k < l.length)
@@ -87,12 +92,17 @@ noncomputable def crossGapList (u v : List ℝ) (d : ℕ)
     max (u.get ⟨k, by rw [hu]; omega⟩)
       (v.get ⟨k, by rw [hv]; omega⟩))
 
+/--
+@isnad1 id=eq.2h3v.s5.af3df687cb37 from=translated src=- shape=174d131e vocab=d278d818
+-/
 @[simp] theorem crossGapList_length (u v : List ℝ) (d : ℕ)
     (hu : u.length = d) (hv : v.length = d) :
     (crossGapList u v d hu hv).length = d - 1 := by
   simp [crossGapList]
 
-/-- Any common interlacing list forces the cross-gap inequalities.-/
+/-- Any common interlacing list forces the cross-gap inequalities.
+@isnad1 id=crossgap.2h3v.s4.f6504ce72e6e from=translated src=- shape=c8598daa vocab=e60315bf
+-/
 theorem crossGapCompatible_of_common_listsInterlace
     {lower u v : List ℝ}
     (hu : ListsInterlace lower u) (hv : ListsInterlace lower v) :
@@ -107,7 +117,9 @@ theorem crossGapCompatible_of_common_listsInterlace
       (hvEntries k hkLower).1.trans (huEntries k hkLower).2⟩
 
 /-- Cross-gap compatibility constructs a single sorted list interlacing
-both input lists.-/
+both input lists.
+@isnad1 id=ex.6h3v.s6.94b59a3b1ca3 from=translated src=- shape=094d9528 vocab=484c49c5
+-/
 theorem exists_common_listsInterlace_of_crossGapCompatible
     (u v : List ℝ) (d : ℕ) (hd : 0 < d)
     (hu : u.length = d) (hv : v.length = d)
@@ -169,7 +181,9 @@ theorem exists_common_listsInterlace_of_crossGapCompatible
       exact max_le huCross hvMono
 
 /-- For sorted equal-length positive lists, cross-gap compatibility is
-equivalent to existence of a single common interlacing list.-/
+equivalent to existence of a single common interlacing list.
+@isnad1 id=iff.5h3v.s6.0a6d83f0e20a from=translated src=- shape=d757c6e4 vocab=484c49c5
+-/
 theorem crossGapCompatible_iff_exists_common_listsInterlace
     (u v : List ℝ) (d : ℕ) (hd : 0 < d)
     (hu : u.length = d) (hv : v.length = d)
@@ -188,7 +202,9 @@ theorem crossGapCompatible_iff_exists_common_listsInterlace
     exact crossGapCompatible_of_common_listsInterlace hlu hlv
 
 /-- For same-degree monic real-rooted polynomials, the two finite cross-gap
-inequalities are sufficient for a common polynomial interlacer.-/
+inequalities are sufficient for a common polynomial interlacer.
+@isnad1 id=hascommo.8h3v.s6.79c103b3daea from=translated src=- shape=139537b1 vocab=a36b5ae2
+-/
 theorem hasCommonInterlacer_of_crossGapCompatible
     {p q : ℝ[X]} {d : ℕ} (hd : 0 < d)
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -251,7 +267,9 @@ theorem hasCommonInterlacer_of_crossGapCompatible
     simpa [up] using hlowerp
 
 /-- Under the usual same-degree monic real-rooted hypotheses, common
-interlacing is exactly the finite cross-gap condition on sorted roots.-/
+interlacing is exactly the finite cross-gap condition on sorted roots.
+@isnad1 id=iff.7h3v.s6.13519d80a3ae from=translated src=- shape=d7b4a19a vocab=a36b5ae2
+-/
 theorem hasCommonInterlacer_iff_crossGapCompatible
     {p q : ℝ[X]} {d : ℕ} (hd : 0 < d)
     (hpmonic : p.Monic) (hqmonic : q.Monic)
@@ -273,7 +291,9 @@ theorem hasCommonInterlacer_iff_crossGapCompatible
       hpsplits hqsplits hpdegree hqdegree
 
 /-- The full root-disjoint Pair Fell gap is reduced to explicit inequalities
-between consecutive sorted endpoint roots.-/
+between consecutive sorted endpoint roots.
+@isnad1 id=rootdisj.2h1v.s7.a03a6fd562d1 from=translated src=- shape=45825985 vocab=9544c95c
+-/
 theorem rootDisjointPairFellConverseAtDegree_of_crossGap
     (d : ℕ) (hd : 2 ≤ d)
     (hgap : ∀ (p q : ℝ[X]),

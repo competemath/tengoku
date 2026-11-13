@@ -22,6 +22,9 @@ noncomputable def coordinatePolynomial {R : Type*} [CommRing R]
   MvPolynomial.eval₂ Polynomial.C
     (fun k ↦ Polynomial.C (z k) + if k = j then Polynomial.X else 0) p
 
+/--
+@isnad1 id=eq.0h6v.s7.e11c6d8a72fb from=translated src=- shape=49eefd2b vocab=b8b51e37
+-/
 @[simp] theorem eval_coordinatePolynomial {R : Type*} [CommRing R]
     (p : MvPolynomial σ R) (z : σ → R) (j : σ) (t : R) :
     (coordinatePolynomial p z j).eval t =
@@ -36,6 +39,9 @@ noncomputable def coordinatePolynomial {R : Type*} [CommRing R]
     congr 1
     by_cases hk : k = j <;> simp [coordinateShift, hk]
 
+/--
+@isnad1 id=eq.0h7v.s8.9466da60abdd from=translated src=- shape=d26e5a31 vocab=ac626fea
+-/
 @[simp] theorem map_coordinatePolynomial {R S : Type*} [CommRing R] [CommRing S]
     (f : R →+* S) (p : MvPolynomial σ R) (z : σ → R) (j : σ) :
     (coordinatePolynomial p z j).map f =
@@ -55,7 +61,9 @@ variable [Fintype σ]
 -- Preserve the existing parameter list for downstream callers.
 
 /-- Real polynomials whose complexifications are upper stable split over `ℝ`.
-The proof is adapted from the source repository's `BTRealStabilityClosure`.-/
+The proof is adapted from the source repository's `BTRealStabilityClosure`.
+@isnad1 id=splits.1h1v.s5.dffa67798aa6 from=translated src=- shape=629fbaac vocab=5c060fc9
+-/
 theorem splits_of_complexification_upperStable {p : ℝ[X]}
     (hp : ∀ z : ℂ, 0 < z.im → (p.map Complex.ofRealHom).eval z ≠ 0) : p.Splits := by
   have hp0 : p ≠ 0 := by
@@ -88,7 +96,9 @@ theorem splits_of_complexification_upperStable {p : ℝ[X]}
 -- Preserve the existing parameter list for downstream callers.
 
 omit [Fintype σ] in
-/-- Every root of an above-roots coordinate restriction is strictly negative.-/
+/-- Every root of an above-roots coordinate restriction is strictly negative.
+@isnad1 id=lt.2h5v.s5.1e3403d32ebf from=translated src=- shape=1789db97 vocab=e9c771e5
+-/
 theorem coordinatePolynomial_roots_neg {p : MvPolynomial σ ℝ} {z : σ → ℝ}
     (hz : AboveRoots p z) (j : σ) {r : ℝ}
     (hr : r ∈ (coordinatePolynomial p z j).roots) : r < 0 := by
@@ -107,7 +117,9 @@ theorem coordinatePolynomial_roots_neg {p : MvPolynomial σ ℝ} {z : σ → ℝ
 -- Preserve the existing parameter list for downstream callers.
 
 /-- A polynomial quotient bounded on the positive ray cannot have numerator
-degree larger than denominator degree.-/
+degree larger than denominator degree.
+@isnad1 id=le.2h3v.s6.19b1893dc415 from=translated src=- shape=bf38822d vocab=7a2e8ab4
+-/
 theorem natDegree_le_of_bounded_quotient (g h : ℝ[X]) (hzero : h ≠ 0) (C : ℝ)
     (hbound : ∀ x : ℝ, 0 ≤ x → |g.eval x / h.eval x| ≤ C) :
     g.natDegree ≤ h.natDegree := by

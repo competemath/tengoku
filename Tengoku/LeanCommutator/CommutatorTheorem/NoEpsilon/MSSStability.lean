@@ -35,7 +35,9 @@ noncomputable def stableLinePolynomial {sigma : Type*}
     (fun i ↦ Polynomial.C (z i) + Polynomial.C (w i : ℂ) * Polynomial.X) p
 
 /-- Evaluation of the affine-line restriction is literal substitution along
-that line.-/
+that line.
+@isnad1 id=eq.0h5v.s6.9e9b37170730 from=translated src=- shape=be08ece4 vocab=f331c123
+-/
 theorem eval_stableLinePolynomial {sigma : Type*}
     (z : sigma → ℂ) (w : sigma → ℝ) (p : MvPolynomial sigma ℂ)
     (t : ℂ) :
@@ -58,7 +60,9 @@ theorem eval_stableLinePolynomial {sigma : Type*}
   rw [hc, hx, MvPolynomial.eval₂_id]
 
 /-- Starting in the open upper half-plane and moving in a nonnegative real
-direction stays there for every parameter in the closed upper half-plane.-/
+direction stays there for every parameter in the closed upper half-plane.
+@isnad1 id=inupperh.3h5v.s6.e97755ab8761 from=translated src=- shape=7105c359 vocab=b07eb166
+-/
 theorem affineLine_inUpperHalfPlane {sigma : Type*}
     (z : sigma → ℂ) (w : sigma → ℝ)
     (hz : ∀ i, InUpperHalfPlane (z i)) (hw : ∀ i, 0 ≤ w i)
@@ -71,7 +75,9 @@ theorem affineLine_inUpperHalfPlane {sigma : Type*}
   exact add_pos_of_pos_of_nonneg (hz i) (mul_nonneg (hw i) ht)
 
 /-- A nonzero stable polynomial restricts to a nonzero univariate
-polynomial on every such line.-/
+polynomial on every such line.
+@isnad1 id=ne.2h4v.s7.3085bb60ff6d from=translated src=- shape=cbed43ba vocab=ab0e2a11
+-/
 theorem stableLinePolynomial_ne_zero {sigma : Type*}
     {p : MvPolynomial sigma ℂ}
     (hp : ∀ z : sigma → ℂ, (∀ i, InUpperHalfPlane (z i)) →
@@ -88,7 +94,9 @@ theorem stableLinePolynomial_ne_zero {sigma : Type*}
 
 /-- Every root of a stable affine-line restriction lies strictly in the
 lower half-plane.  The strictness comes from the positive imaginary part of
-the base point, so it also holds for real line parameters.-/
+the base point, so it also holds for real line parameters.
+@isnad1 id=lt.4h5v.s7.3b0c099530e3 from=translated src=- shape=b83cea5f vocab=145d55bf
+-/
 theorem root_im_neg_of_stableLinePolynomial {sigma : Type*}
     {p : MvPolynomial sigma ℂ}
     (hp : ∀ z : sigma → ℂ, (∀ i, InUpperHalfPlane (z i)) →
@@ -105,7 +113,9 @@ theorem root_im_neg_of_stableLinePolynomial {sigma : Type*}
   exact ha
 
 /-- The reciprocal displacement from `0` to a strict lower-half-plane point
-also has strictly negative imaginary part.-/
+also has strictly negative imaginary part.
+@isnad1 id=lt.1h1v.s5.6f7c8ee82243 from=translated src=- shape=04fa9530 vocab=fe6c4ee6
+-/
 theorem one_div_neg_im_neg {a : ℂ} (ha : a.im < 0) :
     (1 / (0 - a)).im < 0 := by
   have ha0 : a ≠ 0 := by
@@ -125,7 +135,9 @@ private theorem im_multiset_sum (s : Multiset ℂ) :
 
 /-- A logarithmic derivative on a strict lower-root line cannot equal the positive real
 number one. This strengthens the nonpositive-imaginary-part estimate by treating the
-constant polynomial separately and using a strict sign for every root otherwise.-/
+constant polynomial separately and using a strict sign for every root otherwise.
+@isnad1 id=ne.3h4v.s7.8ce99af12c0b from=translated src=- shape=7bf71f0e vocab=4beb3f4b
+-/
 theorem stableLine_logDerivative_ne_one {σ : Type*}
     {p : MvPolynomial σ ℂ} (hp : UpperStable p)
     (z : σ → ℂ) (w : σ → ℝ)
@@ -168,7 +180,9 @@ open scoped ComplexOrder
 variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ]
 
 /-- A positive semidefinite matrix pencil with positive definite total coefficient is
-nonsingular whenever all its coefficients have positive imaginary part.-/
+nonsingular whenever all its coefficients have positive imaginary part.
+@isnad1 id=ne.3h4v.s7.003aea29fd86 from=translated src=- shape=68f9fa05 vocab=fa0fd261
+-/
 theorem det_psd_pencil_ne_zero (A : κ → Matrix ι ι ℂ)
     (hA : ∀ i, (A i).PosSemidef) (hTotal : (∑ i, A i).PosDef)
     (z : κ → ℂ) (hz : ∀ i, 0 < (z i).im) :

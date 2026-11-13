@@ -27,7 +27,9 @@ noncomputable def differenceAtZero (R : Type u) [CommRing R] :
     simp only [MvPolynomial.smul_eq_C_mul, MvPolynomial.pderiv_C_mul,
       ← mul_sub, map_mul, MvPolynomial.eval_C, smul_eq_mul, RingHom.id_apply]
 
-/-- A rank-one expectation equals the one-variable difference operator.-/
+/-- A rank-one expectation equals the one-variable difference operator.
+@isnad1 id=eq.1h7v.s9.6346c625ee73 from=translated src=- shape=2c21aefc vocab=6363964b
+-/
 theorem differenceAtZero_pencil {R ι Ω : Type*} [CommRing R]
     [Fintype ι] [DecidableEq ι] [Fintype Ω]
     (B : Matrix ι ι R) (u v : Ω → ι → R) (p : Ω → R) (hp : ∑ ω, p ω = 1) :
@@ -49,7 +51,9 @@ noncomputable def nestedMixedDet {ι : Type*} [Fintype ι] [DecidableEq ι] :
           (A 0).map MvPolynomial.C)
         (fun i ↦ (A i.succ).map MvPolynomial.C))
 
-/-- Split the first coordinate of a finite independent expectation.-/
+/-- Split the first coordinate of a finite independent expectation.
+@isnad1 id=eq.0h5v.s8.9ac6598eaef9 from=translated src=- shape=46d4035d vocab=c80edd56
+-/
 theorem sum_independent_succ {R Ω : Type*} [CommSemiring R] [Fintype Ω]
     (n : ℕ) (p : Fin (n + 1) → Ω → R) (f : (Fin (n + 1) → Ω) → R) :
     (∑ q, (∏ i, p i (q i)) * f q) =
@@ -62,7 +66,9 @@ theorem sum_independent_succ {R Ω : Type*} [CommSemiring R] [Fintype Ω]
     Fin.cons_zero, Fin.cons_succ, Finset.mul_sum, mul_assoc]
 
 /-- Mapping a mean rank-one covariance into any coefficient ring commutes with
-the finite weighted average.-/
+the finite weighted average.
+@isnad1 id=eq.0h8v.s8.808cdefcc60c from=translated src=- shape=29b1ec80 vocab=59f6016f
+-/
 theorem map_covariance {R S ι Ω : Type*} [CommRing R] [CommRing S]
     [Fintype Ω] (f : R →+* S) (u v : Ω → ι → R) (p : Ω → R) :
     (∑ ω, p ω • Matrix.vecMulVec (u ω) (v ω)).map f =
@@ -71,7 +77,9 @@ theorem map_covariance {R S ι Ω : Type*} [CommRing R] [CommRing S]
   simp [Matrix.map_apply, Matrix.sum_apply, Matrix.vecMulVec]
 
 /-- All finite independent rank-one expectations equal the iterated mixed determinant.
-No positivity or stability premise is used; the equality holds in every commutative ring.-/
+No positivity or stability premise is used; the equality holds in every commutative ring.
+@isnad1 id=eq.1h8v.s8.1b6abefe039d from=translated src=- shape=0e97bde2 vocab=46bd4eda
+-/
 theorem expected_determinant_eq_nestedMixedDet {ι Ω : Type*}
     [Fintype ι] [DecidableEq ι] [Fintype Ω]
     (n : ℕ) (R : Type u) [CommRing R] (B : Matrix ι ι R)

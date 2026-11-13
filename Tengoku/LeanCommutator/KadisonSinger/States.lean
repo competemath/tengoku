@@ -35,8 +35,14 @@ def IsPure (φ : State A) : Prop :=
     (∀ a, φ.val a = t • ψ.val a + (1 - t) • χ.val a) → ψ = φ
 
 omit [StarOrderedRing A] in
+/--
+@isnad1 id=eq.0h2v.s8.2e5b9244f82a from=translated src=- shape=859b3868 vocab=31feaa06
+-/
 lemma apply_one (φ : State A) : φ.val 1 = 1 := φ.property
 
+/--
+@isnad1 id=eq.2h4v.s9.e47748f439ae from=translated src=- shape=a9df7738 vocab=bd716d36
+-/
 lemma apply_mul_eq_zero_of_projection (φ : State A) {p : A} (hp : IsStarProjection p)
     (hφp : φ.val p = 0) (a : A) : φ.val (p * a) = 0 := by
   have hn : ‖φ.val.toPreGNS p‖ = 0 := by
@@ -47,6 +53,9 @@ lemma apply_mul_eq_zero_of_projection (φ : State A) {p : A} (hp : IsStarProject
   have hz := norm_eq_zero.mp (le_antisymm h (norm_nonneg _))
   simpa [PositiveLinearMap.preGNS_inner_def, hp.isSelfAdjoint.star_eq] using hz
 
+/--
+@isnad1 id=eq.2h4v.s9.0b51ab94c9b6 from=translated src=- shape=24e23dff vocab=bd716d36
+-/
 lemma apply_mul_eq_zero_of_projection_right (φ : State A) {p : A}
     (hp : IsStarProjection p) (hφp : φ.val p = 0) (a : A) : φ.val (a * p) = 0 := by
   have hn : ‖φ.val.toPreGNS p‖ = 0 := by
@@ -57,6 +66,9 @@ lemma apply_mul_eq_zero_of_projection_right (φ : State A) {p : A}
   have hz := norm_eq_zero.mp (le_antisymm h (norm_nonneg _))
   simpa [PositiveLinearMap.preGNS_inner_def] using hz
 
+/--
+@isnad1 id=eq.2h4v.s9.bd732bf7b237 from=translated src=- shape=9c3562ce vocab=bd716d36
+-/
 lemma apply_eq_compression (φ : State A) {p : A} (hp : IsStarProjection p)
     (hφp : φ.val p = 1) (a : A) : φ.val a = φ.val (p * a * p) := by
   have hq : φ.val (1 - p) = 0 := by simp [map_sub, φ.apply_one, hφp]
@@ -82,11 +94,16 @@ def corner (φ : State A) {p : A} (hp : IsStarProjection p)
     have hi := (Complex.nonneg_iff.mp (φ.val.map_nonneg hp.nonneg)).2
     apply Complex.ext <;> simp [hi.symm, ht.ne']⟩
 
+/--
+@isnad1 id=eq.2h4v.s10.cbedfe963aa5 from=translated src=- shape=f8dc0f3a vocab=6f29f944
+-/
 lemma corner_apply (φ : State A) {p : A} (hp : IsStarProjection p)
     (ht : 0 < (φ.val p).re) (a : A) :
     (φ.corner hp ht).val a = ((φ.val p).re)⁻¹ • φ.val (p * a * p) := rfl
 
-/-- A pure state takes every central projection to either zero or one.-/
+/-- A pure state takes every central projection to either zero or one.
+@isnad1 id=or.3h3v.s9.33e45fcd59b1 from=translated src=- shape=e11a9679 vocab=f6289dfb
+-/
 theorem apply_central_projection_eq_zero_or_one (φ : State A) (hφ : φ.IsPure)
     {p : A} (hp : IsStarProjection p) (hcentral : ∀ a, Commute p a) :
     φ.val p = 0 ∨ φ.val p = 1 := by
@@ -164,6 +181,9 @@ def throughExpectation (φ : State D) (E : A →ₚ[ℂ] D) (hE : E 1 = 1) : Sta
     rw [hE, φ.apply_one]⟩
 
 omit [StarOrderedRing A] [StarOrderedRing D] in
+/--
+@isnad1 id=eq.1h5v.s9.7bb8fe85209b from=translated src=- shape=6cc422e0 vocab=cfa39de8
+-/
 lemma throughExpectation_apply (φ : State D) (E : A →ₚ[ℂ] D) (hE : E 1 = 1) (a : A) :
     (φ.throughExpectation E hE).val a = φ.val (E a) := rfl
 

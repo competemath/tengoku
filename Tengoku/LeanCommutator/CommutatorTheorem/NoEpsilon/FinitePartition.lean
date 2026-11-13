@@ -13,7 +13,9 @@ original index set, so this construction does not add matrix coordinates.
 
 namespace NoEpsilon
 
-/-- Partition a finite type into L fibers, each of cardinality at most r.-/
+/-- Partition a finite type into L fibers, each of cardinality at most r.
+@isnad1 id=ex.1h3v.s6.ee662bf65b11 from=translated src=- shape=2a278938 vocab=c9dc6884
+-/
 theorem exists_bounded_fibers {ν : Type*} [Fintype ν] (L r : ℕ)
     (hcard : Fintype.card ν ≤ L * r) :
     ∃ f : ν → Fin L, ∀ i, Fintype.card {x : ν // f x = i} ≤ r := by

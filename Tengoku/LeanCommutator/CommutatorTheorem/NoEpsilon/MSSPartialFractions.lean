@@ -20,6 +20,9 @@ open Polynomial
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.2h2v.s7.7a9f1ff9645f from=translated src=- shape=045c40d8 vocab=47996435
+-/
 theorem splits_eq_leadingCoeff_mul_nodal (h : F[X]) (hsplit : h.Splits)
     (hsep : h.Separable) :
     h = C h.leadingCoeff * Lagrange.nodal h.roots.toFinset id := by
@@ -31,7 +34,9 @@ theorem splits_eq_leadingCoeff_mul_nodal (h : F[X]) (hsplit : h.Splits)
         (h.roots.toFinset.val.map (fun x ↦ X - C x)).prod
       rw [Multiset.toFinset_val, Multiset.dedup_eq_self.mpr (nodup_roots hsep)]
 
-/-- A proper rational function with split simple denominator has the usual residue expansion.-/
+/-- A proper rational function with split simple denominator has the usual residue expansion.
+@isnad1 id=eq.5h4v.s9.5f964aa81972 from=translated src=- shape=bffb9626 vocab=4c410538
+-/
 theorem partial_fractions_of_degree_lt (g h : F[X]) (h0 : h ≠ 0)
     (hsplit : h.Splits) (hsep : h.Separable) (hdeg : g.degree < h.degree)
     (x : F) (hx : h.eval x ≠ 0) :
@@ -80,7 +85,9 @@ theorem partial_fractions_of_degree_lt (g h : F[X]) (h0 : h ≠ 0)
     _ = _ := rfl
 
 /-- A rational function of degree at most its split simple denominator differs from
-its residue sum by a constant. This includes equal degree and constant denominators.-/
+its residue sum by a constant. This includes equal degree and constant denominators.
+@isnad1 id=ex.4h3v.s9.3e30098fa8f1 from=translated src=- shape=a3ee6354 vocab=d26973f0
+-/
 theorem partial_fractions_of_natDegree_le (g h : F[X]) (h0 : h ≠ 0)
     (hsplit : h.Splits) (hsep : h.Separable) (hdeg : g.natDegree ≤ h.natDegree) :
     ∃ c : F, ∀ x : F, h.eval x ≠ 0 →

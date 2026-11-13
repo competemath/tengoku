@@ -20,7 +20,9 @@ open Polynomial
 open CommutatorTheorem.BTFellPair
 
 /-- Evaluation of the affine pencil, written so that its slope in the
-parameter is explicit.-/
+parameter is explicit.
+@isnad1 id=eq.0h4v.s7.102a894042bf from=translated src=- shape=99d79368 vocab=64ac4f2d
+-/
 theorem eval_convex_eq
     (p q : ℝ[X]) (t x : ℝ) :
     (t • p + (1 - t) • q).eval x =
@@ -29,7 +31,9 @@ theorem eval_convex_eq
   ring
 
 /-- For a root-disjoint pair, the parameter at which a fixed threshold is a
-root of the affine pencil is unique.-/
+root of the affine pencil is unique.
+@isnad1 id=eq.3h5v.s7.faf185dac3e6 from=translated src=- shape=9f7819f6 vocab=911aecd9
+-/
 theorem convex_isRoot_parameter_injective
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))
@@ -41,7 +45,9 @@ theorem convex_isRoot_parameter_injective
   exact hdisjoint x (endpoints_isRoot_of_two_convex_isRoot hst hs ht)
 
 /-- Equivalently, the set of pencil parameters having a prescribed real root
-is a subsingleton.-/
+is a subsingleton.
+@isnad1 id=subsingl.1h3v.s7.aeea9db09bd0 from=translated src=- shape=757e8659 vocab=7ab531cb
+-/
 theorem subsingleton_setOf_convex_isRoot
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))
@@ -52,7 +58,9 @@ theorem subsingleton_setOf_convex_isRoot
   exact convex_isRoot_parameter_injective hdisjoint hs ht
 
 /-- At a crossing of a root-disjoint pencil, the scalar affine evaluation
-has nonzero slope.-/
+has nonzero slope.
+@isnad1 id=ne.2h4v.s7.d7413a52c618 from=translated src=- shape=8cc03be4 vocab=73bd6e00
+-/
 theorem eval_sub_ne_zero_of_convex_isRoot
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))
@@ -69,7 +77,9 @@ theorem eval_sub_ne_zero_of_convex_isRoot
   rw [IsRoot, IsRoot, heq]
   exact ⟨hzero, hzero⟩
 
-/-- The unique crossing parameter has the expected quotient formula.-/
+/-- The unique crossing parameter has the expected quotient formula.
+@isnad1 id=eq.2h4v.s7.efbaa003e56d from=translated src=- shape=f08df825 vocab=80a5dc45
+-/
 theorem parameter_eq_of_convex_isRoot
     {p q : ℝ[X]} {t x : ℝ}
     (hslope : p.eval x - q.eval x ≠ 0)
@@ -80,7 +90,9 @@ theorem parameter_eq_of_convex_isRoot
   linarith
 
 /-- Once `x` is a root at parameter `t₀`, evaluation at every other
-parameter is the parameter displacement times the nonzero pencil slope.-/
+parameter is the parameter displacement times the nonzero pencil slope.
+@isnad1 id=eq.1h5v.s7.a4458a892415 from=translated src=- shape=f10eb356 vocab=b56d73c1
+-/
 theorem eval_convex_eq_sub_mul_of_isRoot
     {p q : ℝ[X]} {t₀ x : ℝ}
     (hroot : (t₀ • p + (1 - t₀) • q).IsRoot x)
@@ -92,7 +104,9 @@ theorem eval_convex_eq_sub_mul_of_isRoot
   linarith
 
 /-- Evaluation at a fixed threshold changes sign when the parameter passes
-through its unique crossing.-/
+through its unique crossing.
+@isnad1 id=lt.4h6v.s8.4e7bbf0df65c from=translated src=- shape=e65ddc5b vocab=d352197d
+-/
 theorem eval_convex_mul_eval_convex_neg_of_crossing
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))
@@ -115,7 +129,9 @@ theorem eval_convex_mul_eval_convex_neg_of_crossing
 
 /-- Conversely, opposite endpoint signs force a threshold crossing at a
 strictly intermediate parameter.  This is the scalar intermediate-value
-step; no real-rootedness hypothesis is needed.-/
+step; no real-rootedness hypothesis is needed.
+@isnad1 id=ex.2h5v.s8.c28473b188d1 from=translated src=- shape=8b66581e vocab=d352197d
+-/
 theorem exists_convex_isRoot_between_of_eval_mul_eval_neg
     {p q : ℝ[X]} {s t x : ℝ} (hst : s < t)
     (hneg :
@@ -162,7 +178,9 @@ theorem exists_convex_isRoot_between_of_eval_mul_eval_neg
       simpa [f] using huzero
 
 /-- For a root-disjoint pencil, opposite signs at two parameters are exactly
-the assertion that the fixed threshold is crossed strictly between them.-/
+the assertion that the fixed threshold is crossed strictly between them.
+@isnad1 id=iff.2h5v.s8.ab30391190dd from=translated src=- shape=bdeabf57 vocab=d352197d
+-/
 theorem eval_mul_eval_neg_iff_exists_convex_isRoot_between
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))
@@ -178,7 +196,9 @@ theorem eval_mul_eval_neg_iff_exists_convex_isRoot_between
       hdisjoint hsu hut hroot
 
 /-- Thus equal endpoint signs are equivalent to absence of a crossing in the
-open parameter interval.-/
+open parameter interval.
+@isnad1 id=iff.4h5v.s9.bc9b33c56e2f from=translated src=- shape=2e2ac869 vocab=d352197d
+-/
 theorem eval_mul_eval_pos_iff_no_convex_isRoot_between
     {p q : ℝ[X]}
     (hdisjoint : ∀ x : ℝ, ¬ (p.IsRoot x ∧ q.IsRoot x))

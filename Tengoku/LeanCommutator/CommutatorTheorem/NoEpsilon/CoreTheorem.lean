@@ -31,7 +31,9 @@ private theorem norm_compression_sandwich_le (E F : Matrix (ι ⊕ ι) ι ℂ)
     _ ≤ (1 * ‖M‖) * 1 := by gcongr
     _ = ‖M‖ := by ring
 
-/-- The three target blocks are genuine contractive compressions in operator norm.-/
+/-- The three target blocks are genuine contractive compressions in operator norm.
+@isnad1 id=and.0h4v.s7.de6cd08500c7 from=translated src=- shape=356b750d vocab=510a54a6
+-/
 theorem identityCorner_block_norms_le (A F D : Matrix ι ι ℂ) :
     ‖A‖ ≤ ‖identityCorner A F D‖ ∧ ‖F‖ ≤ ‖identityCorner A F D‖ ∧
       ‖D‖ ≤ ‖identityCorner A F D‖ := by
@@ -53,6 +55,9 @@ theorem identityCorner_block_norms_le (A F D : Matrix ι ι ℂ) :
   · simpa only [hF] using norm_compression_sandwich_le J E (identityCorner A F D) hJ hE
   · simpa only [hD] using norm_compression_sandwich_le J J (identityCorner A F D) hJ hJ
 
+/--
+@isnad1 id=eq.0h4v.s6.e9e4727f91de from=translated src=- shape=8275a006 vocab=d18a4402
+-/
 theorem trace_identityCorner (A F D : Matrix ι ι ℂ) :
     Matrix.trace (identityCorner A F D) = Matrix.trace (A + D) := by
   simp [identityCorner, Matrix.trace, Matrix.diag, Fintype.sum_sum_type, Matrix.fromBlocks,

@@ -25,6 +25,9 @@ variable {n r k l : Type*}
 noncomputable def shear (A N : Matrix n n ℂ) : Matrix n n ℂ := (1 - N) * A * (1 + N)
 
 omit [Fintype k] [Fintype l] [DecidableEq k] [DecidableEq l] in
+/--
+@isnad1 id=eq.2h7v.s7.99a9050418c6 from=translated src=- shape=ab72a7fd vocab=e2f721f7
+-/
 theorem compression_shear_eq (A N : Matrix n n ℂ)
     (L : Matrix k n ℂ) (R : Matrix n l ℂ) (hL : L * N = 0) (hR : N * R = 0) :
     L * shear A N * R = L * A * R := by
@@ -36,6 +39,9 @@ theorem compression_shear_eq (A N : Matrix n n ℂ)
     _ = L * A * R := by rw [hleft, hright]
 
 omit [DecidableEq n] [DecidableEq r] [DecidableEq k] in
+/--
+@isnad1 id=eq.1h6v.s8.79a713b10d33 from=translated src=- shape=b5f8c207 vocab=c36fd414
+-/
 theorem square_zero_insertion (Q : Matrix n r ℂ) (X : Matrix r k ℂ)
     (V : Matrix n k ℂ) (hVQ : Vᴴ * Q = 0) :
     (Q * X * Vᴴ) * (Q * X * Vᴴ) = 0 := by
@@ -43,11 +49,17 @@ theorem square_zero_insertion (Q : Matrix n r ℂ) (X : Matrix r k ℂ)
     _ = Q * X * (Vᴴ * Q) * X * Vᴴ := by simp only [Matrix.mul_assoc]
     _ = 0 := by rw [hVQ]; simp
 
+/--
+@isnad1 id=eq.1h3v.s6.616817197774 from=translated src=- shape=c96e2ae1 vocab=04059f83
+-/
 theorem shear_trace (A N : Matrix n n ℂ) (hN : N * N = 0) :
     trace (shear A N) = trace A := by
   rw [shear, trace_mul_cycle, NoEpsilon.Shear.one_add_mul_one_sub N hN, Matrix.one_mul]
 
 omit [DecidableEq r] [DecidableEq k] in
+/--
+@isnad1 id=eq.2h8v.s8.98fb56a20d99 from=translated src=- shape=2a35e8e8 vocab=7eaf108e
+-/
 theorem first_shear_bridge (A : Matrix n n ℂ)
     (P Q : Matrix n r ℂ) (V : Matrix n k ℂ) (X : Matrix r k ℂ)
     (hPQ : Pᴴ * Q = 0) (hVQ : Vᴴ * Q = 0) :
@@ -56,6 +68,9 @@ theorem first_shear_bridge (A : Matrix n n ℂ)
   · rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hPQ]; simp
   · rw [Matrix.mul_assoc, hVQ]; simp
 
+/--
+@isnad1 id=eq.3h8v.s9.943c24ccf42f from=translated src=- shape=dc9870b5 vocab=9755d986
+-/
 theorem first_shear_new_bridge (A : Matrix n n ℂ)
     (P Q : Matrix n r ℂ) (V : Matrix n k ℂ) (J : Matrix r k ℂ)
     (hPQ : Pᴴ * Q = 0) (hVV : Vᴴ * V = 1) (hA : Pᴴ * A * Q = 1) :
@@ -74,6 +89,9 @@ theorem first_shear_new_bridge (A : Matrix n n ℂ)
     _ = J := by rw [hA, Matrix.one_mul]; dsimp [X]; abel
 
 omit [DecidableEq r] [DecidableEq k] in
+/--
+@isnad1 id=eq.2h8v.s8.906808191d2b from=translated src=- shape=d680d650 vocab=7eaf108e
+-/
 theorem second_shear_bridge (A : Matrix n n ℂ)
     (P Q : Matrix n r ℂ) (V : Matrix n k ℂ) (Y : Matrix k r ℂ)
     (hPV : Pᴴ * V = 0) (hPQ : Pᴴ * Q = 0) :
@@ -83,6 +101,9 @@ theorem second_shear_bridge (A : Matrix n n ℂ)
   · rw [Matrix.mul_assoc, hPQ]; simp
 
 omit [DecidableEq r] in
+/--
+@isnad1 id=eq.4h7v.s9.6fca35a6d35d from=translated src=- shape=a2b3bba7 vocab=7eaf108e
+-/
 theorem second_shear_zero (A : Matrix n n ℂ)
     (P : Matrix n r ℂ) (V : Matrix n k ℂ) (J : Matrix r k ℂ)
     (hPV : Pᴴ * V = 0) (hVV : Vᴴ * V = 1) (hJ : Jᴴ * J = 1)
@@ -105,6 +126,9 @@ theorem second_shear_zero (A : Matrix n n ℂ)
       rw [Matrix.mul_assoc (Vᴴ * A * V) Jᴴ J, hJ, Matrix.mul_one, sub_self]
 
 omit [DecidableEq r] [DecidableEq k] [Fintype l] [DecidableEq l] in
+/--
+@isnad1 id=eq.2h9v.s8.6ce75c5facc4 from=translated src=- shape=dd55f36f vocab=7eaf108e
+-/
 theorem outside_shear_unchanged (A : Matrix n n ℂ)
     (Q : Matrix n r ℂ) (V : Matrix n k ℂ) (W : Matrix n l ℂ)
     (X : Matrix r k ℂ) (hWQ : Wᴴ * Q = 0) (hVW : Vᴴ * W = 0) :
@@ -113,7 +137,9 @@ theorem outside_shear_unchanged (A : Matrix n n ℂ)
   · rw [← Matrix.mul_assoc, ← Matrix.mul_assoc, hWQ]; simp
   · rw [Matrix.mul_assoc, hVW]; simp
 
-/-- The two shears preserve the identity corner and clear the selected outside block.-/
+/-- The two shears preserve the identity corner and clear the selected outside block.
+@isnad1 id=other.6h8v.s10.be8a7f4f6512 from=translated src=- shape=6c813b7d vocab=480852d8
+-/
 theorem two_shear_elimination (A : Matrix n n ℂ)
     (P Q : Matrix n r ℂ) (V : Matrix n k ℂ) (J : Matrix r k ℂ)
     (hPQ : Pᴴ * Q = 0) (hPV : Pᴴ * V = 0) (hVQ : Vᴴ * Q = 0)
@@ -133,7 +159,9 @@ theorem two_shear_elimination (A : Matrix n n ℂ)
       shear_trace _ _ (square_zero_insertion Q _ V hVQ)]
 
 omit [DecidableEq n] in
-/-- Any rectangular isometry has operator norm at most one, including an empty domain.-/
+/-- Any rectangular isometry has operator norm at most one, including an empty domain.
+@isnad1 id=le.1h3v.s6.c805e48d0009 from=translated src=- shape=d0d178c1 vocab=0a2d07c7
+-/
 theorem isometry_norm_le (V : Matrix n k ℂ) (hV : Vᴴ * V = 1) : ‖V‖ ≤ 1 := by
   have hs := Matrix.l2_opNorm_conjTranspose_mul_self V
   rw [hV] at hs
@@ -141,6 +169,9 @@ theorem isometry_norm_le (V : Matrix n k ℂ) (hV : Vᴴ * V = 1) : ‖V‖ ≤ 
   rw [hs] at hn
   nlinarith [norm_nonneg V]
 
+/--
+@isnad1 id=le.2h6v.s7.0e6feba87957 from=translated src=- shape=592ed40c vocab=c84693a9
+-/
 theorem compression_norm_le (A : Matrix n n ℂ)
     (P : Matrix n r ℂ) (V : Matrix n k ℂ) (hP : ‖P‖ ≤ 1) (hV : ‖V‖ ≤ 1) :
     ‖Pᴴ * A * V‖ ≤ ‖A‖ := by
@@ -151,6 +182,9 @@ theorem compression_norm_le (A : Matrix n n ℂ)
     _ ≤ (1 * ‖A‖) * 1 := by rw [Matrix.l2_opNorm_conjTranspose]; gcongr
     _ = ‖A‖ := by ring
 
+/--
+@isnad1 id=le.2h6v.s7.c9ebe8b9c261 from=translated src=- shape=eee561a8 vocab=c84693a9
+-/
 theorem insertion_norm_le (Q : Matrix n r ℂ) (V : Matrix n k ℂ)
     (X : Matrix r k ℂ) (hQ : ‖Q‖ ≤ 1) (hV : ‖V‖ ≤ 1) :
     ‖Q * X * Vᴴ‖ ≤ ‖X‖ := by
@@ -163,6 +197,9 @@ theorem insertion_norm_le (Q : Matrix n r ℂ) (V : Matrix n k ℂ)
 
 set_option maxHeartbeats 2000000 in
 -- Matrix and finite-sum calculations require additional elaboration steps.
+/--
+@isnad1 id=and.0h2v.s7.5f61fea59142 from=translated src=- shape=f64c7fdb vocab=17ff3725
+-/
 theorem shear_factor_norm_le (N : Matrix n n ℂ) :
     ‖1 - N‖ ≤ 1 + ‖N‖ ∧ ‖1 + N‖ ≤ 1 + ‖N‖ := by
   have hOne : ‖(1 : Matrix n n ℂ)‖ ≤ 1 := NoEpsilon.matrix_norm_one_le

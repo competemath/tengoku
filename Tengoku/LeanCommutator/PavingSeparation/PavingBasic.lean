@@ -21,17 +21,26 @@ def coordProjection (s : Finset ι) : Matrix ι ι ℂ :=
 def compression (s : Finset ι) (A : Matrix ι ι ℂ) : Matrix ι ι ℂ :=
   coordProjection s * A * coordProjection s
 
+/--
+@isnad1 id=eq.0h5v.s6.90d9abb0c488 from=translated src=- shape=4e0ee1b5 vocab=30c3317e
+-/
 @[simp] theorem compression_apply (s : Finset ι) (A : Matrix ι ι ℂ) (i j : ι) :
     compression s A i j = if i ∈ s ∧ j ∈ s then A i j else 0 := by
   simp [compression, coordProjection, Matrix.diagonal_mul, Matrix.mul_diagonal]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=le.0h2v.s5.829b922bb6f5 from=translated src=- shape=fdc9b6d0 vocab=2be961d1
+-/
 theorem coordProjection_norm_le (s : Finset ι) : ‖coordProjection s‖ ≤ 1 := by
   rw [coordProjection, Matrix.l2_opNorm_diagonal]
   apply (pi_norm_le_iff_of_nonneg zero_le_one).mpr
   intro i
   split_ifs <;> simp
 
+/--
+@isnad1 id=le.0h3v.s5.657858afa1a5 from=translated src=- shape=66495029 vocab=d46c499b
+-/
 theorem compression_norm_le (s : Finset ι) (A : Matrix ι ι ℂ) :
     ‖compression s A‖ ≤ ‖A‖ := by
   calc
@@ -42,22 +51,34 @@ theorem compression_norm_le (s : Finset ι) (A : Matrix ι ι ℂ) :
       gcongr <;> exact coordProjection_norm_le s
     _ = ‖A‖ := by ring
 
+/--
+@isnad1 id=eq.0h2v.s4.149ac6cb8376 from=translated src=- shape=24727b3f vocab=7f692bc4
+-/
 @[simp] theorem compression_univ (A : Matrix ι ι ℂ) :
     compression Finset.univ A = A := by
   ext i j
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.6505cadf3a18 from=translated src=- shape=aea215f2 vocab=683e7109
+-/
 @[simp] theorem compression_empty (A : Matrix ι ι ℂ) :
     compression ∅ A = 0 := by
   ext i j
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.f0e1d314e835 from=translated src=- shape=40741e57 vocab=d0c211e6
+-/
 @[simp] theorem compression_smul (s : Finset ι) (z : ℂ) (A : Matrix ι ι ℂ) :
     compression s (z • A) = z • compression s A := by
   ext i j
   simp only [compression_apply, Matrix.smul_apply, smul_eq_mul]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s5.7457e8865312 from=translated src=- shape=54a413e2 vocab=08f56ca2
+-/
 @[simp] theorem compression_neg (s : Finset ι) (A : Matrix ι ι ℂ) :
     compression s (-A) = -compression s A := by
   ext i j
@@ -73,6 +94,9 @@ def colorClass (c : ι → κ) (a : κ) : Finset ι :=
   Finset.univ.filter (fun i ↦ c i = a)
 
 omit [DecidableEq ι] [Fintype κ] [Nonempty κ] in
+/--
+@isnad1 id=iff.0h5v.s5.d03b181828f0 from=translated src=- shape=34f8eaba vocab=eed98a66
+-/
 @[simp] theorem mem_colorClass (c : ι → κ) (a : κ) (i : ι) :
     i ∈ colorClass c a ↔ c i = a := by simp [colorClass]
 
@@ -80,21 +104,36 @@ omit [DecidableEq ι] [Fintype κ] [Nonempty κ] in
 def pavingNorm (A : Matrix ι ι ℂ) (c : ι → κ) : ℝ :=
   Finset.univ.sup' Finset.univ_nonempty (fun a ↦ ‖compression (colorClass c a) A‖)
 
+/--
+@isnad1 id=le.0h5v.s6.d553fd8c4986 from=translated src=- shape=bb825ed1 vocab=9d1d8dec
+-/
 theorem compression_norm_le_pavingNorm (A : Matrix ι ι ℂ) (c : ι → κ) (a : κ) :
     ‖compression (colorClass c a) A‖ ≤ pavingNorm A c := by
   exact Finset.le_sup' (fun a ↦ ‖compression (colorClass c a) A‖) (Finset.mem_univ a)
 
+/--
+@isnad1 id=le.1h5v.s6.671da238f1cb from=translated src=- shape=e2d70dc3 vocab=9d1d8dec
+-/
 theorem pavingNorm_le (A : Matrix ι ι ℂ) (c : ι → κ) (b : ℝ)
     (h : ∀ a, ‖compression (colorClass c a) A‖ ≤ b) : pavingNorm A c ≤ b := by
   exact Finset.sup'_le _ _ (fun a _ ↦ h a)
 
+/--
+@isnad1 id=le.0h4v.s5.4024fdf9a14e from=translated src=- shape=f5a54b33 vocab=d768d09a
+-/
 theorem pavingNorm_nonneg (A : Matrix ι ι ℂ) (c : ι → κ) : 0 ≤ pavingNorm A c := by
   obtain ⟨a⟩ := ‹Nonempty κ›
   exact (norm_nonneg _).trans (compression_norm_le_pavingNorm A c a)
 
+/--
+@isnad1 id=le.0h4v.s5.322d2e122ae2 from=translated src=- shape=f33ecbdc vocab=974a9506
+-/
 theorem pavingNorm_le_norm (A : Matrix ι ι ℂ) (c : ι → κ) : pavingNorm A c ≤ ‖A‖ := by
   exact pavingNorm_le A c _ (fun a ↦ compression_norm_le _ A)
 
+/--
+@isnad1 id=eq.2h4v.s6.32e2f3f199c7 from=translated src=- shape=4a73d0dc vocab=6c45a90e
+-/
 theorem pavingNorm_eq_zero_of_injective (A : Matrix ι ι ℂ) (hdiag : ∀ i, A i i = 0)
     (c : ι → κ) (hc : Function.Injective c) : pavingNorm A c = 0 := by
   apply le_antisymm
@@ -117,18 +156,30 @@ end Coloring
 def pavingMinimum (A : Matrix ι ι ℂ) (r : ℕ) [NeZero r] : ℝ :=
   Finset.univ.inf' Finset.univ_nonempty (fun c : ι → Fin r ↦ pavingNorm A c)
 
+/--
+@isnad1 id=le.0h4v.s5.a3cf0c11a62b from=translated src=- shape=698688f9 vocab=3c6ecf80
+-/
 theorem pavingMinimum_le (A : Matrix ι ι ℂ) (r : ℕ) [NeZero r] (c : ι → Fin r) :
     pavingMinimum A r ≤ pavingNorm A c := by
   exact Finset.inf'_le (fun c : ι → Fin r ↦ pavingNorm A c) (Finset.mem_univ c)
 
+/--
+@isnad1 id=le.1h4v.s5.3df09c62b105 from=translated src=- shape=4b54aa5a vocab=3c6ecf80
+-/
 theorem le_pavingMinimum (A : Matrix ι ι ℂ) (r : ℕ) [NeZero r] (b : ℝ)
     (h : ∀ c : ι → Fin r, b ≤ pavingNorm A c) : b ≤ pavingMinimum A r := by
   exact Finset.le_inf' _ _ (fun c _ ↦ h c)
 
+/--
+@isnad1 id=le.0h3v.s5.7e0eeaf9b9d2 from=translated src=- shape=9cc3c796 vocab=c1b6bf38
+-/
 theorem pavingMinimum_nonneg (A : Matrix ι ι ℂ) (r : ℕ) [NeZero r] :
     0 ≤ pavingMinimum A r :=
   le_pavingMinimum A r 0 (fun c ↦ pavingNorm_nonneg A c)
 
+/--
+@isnad1 id=ex.0h3v.s5.47be28d27d2b from=translated src=- shape=d4abd56f vocab=168083cf
+-/
 theorem exists_pavingMinimum (A : Matrix ι ι ℂ) (r : ℕ) [NeZero r] :
     ∃ c : ι → Fin r, pavingNorm A c = pavingMinimum A r := by
   obtain ⟨c, _, hc⟩ := Finset.exists_mem_eq_inf'
@@ -147,6 +198,9 @@ section Relabel
 variable {γ : Type*} [Fintype κ] [DecidableEq κ] [Nonempty κ]
   [Fintype γ] [DecidableEq γ] [Nonempty γ]
 
+/--
+@isnad1 id=eq.0h6v.s6.dce5133b44c9 from=translated src=- shape=8bef5a05 vocab=f59e187e
+-/
 theorem pavingNorm_relabel (A : Matrix ι ι ℂ) (c : ι → κ) (e : κ ≃ γ) :
     pavingNorm A (e ∘ c) = pavingNorm A c := by
   have hc (b : γ) : colorClass (e ∘ c) b = colorClass c (e.symm b) := by

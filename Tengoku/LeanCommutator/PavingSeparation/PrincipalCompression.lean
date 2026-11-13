@@ -16,6 +16,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 def principalSubmatrix (s : Finset ι) (A : Matrix ι ι ℂ) : Matrix s s ℂ :=
   A.submatrix Subtype.val Subtype.val
 
+/--
+@isnad1 id=eq.0h3v.s8.4f1c98719c13 from=translated src=- shape=eb109215 vocab=cc91ef4e
+-/
 theorem compression_eq_inclusion (s : Finset ι) (A : Matrix ι ι ℂ) :
     compression s A = coordinateInclusion (Subtype.val : s → ι) * principalSubmatrix s A *
       (coordinateInclusion (Subtype.val : s → ι)).conjTranspose := by
@@ -35,7 +38,9 @@ theorem compression_eq_inclusion (s : Finset ι) (A : Matrix ι ι ℂ) :
   simp only [compression_apply]
   split_ifs <;> simp_all
 
-/-- Paving was defined using ambient masks; this proves agreement with the PDF convention.-/
+/-- Paving was defined using ambient masks; this proves agreement with the PDF convention.
+@isnad1 id=eq.0h3v.s7.c52d46db9d16 from=translated src=- shape=53f0fdce vocab=f2c04ff9
+-/
 theorem compression_norm_eq_principal (s : Finset ι) (A : Matrix ι ι ℂ) :
     ‖compression s A‖ = ‖principalSubmatrix s A‖ := by
   let J := coordinateInclusion (Subtype.val : s → ι)

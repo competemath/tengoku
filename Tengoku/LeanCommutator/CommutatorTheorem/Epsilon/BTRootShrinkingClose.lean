@@ -16,7 +16,9 @@ open scoped Polynomial BigOperators
 open Polynomial Finset
 
 /-- If a point is strictly to the right of every root of a split polynomial, its barrier
-potential is positive.-/
+potential is positive.
+@isnad1 id=lt.3h2v.s5.54b5118ffe80 from=translated src=- shape=6e27ba1b vocab=a5420981
+-/
 lemma rootBarrierPotential_pos_of_strictRootUpperBound
     {p : ℝ[X]} (hp : RealRooted p) (hdeg : 0 < p.natDegree) {x : ℝ}
     (hx : IsStrictRootUpperBound p x) : 0 < rootBarrierPotential p x := by
@@ -41,7 +43,9 @@ lemma rootBarrierPotential_pos_of_strictRootUpperBound
 
 /-- A strict upper bound for the roots of `p` is also a strict upper bound for the roots of
 `p'`, provided `p` is split and has positive degree.  The proof uses positivity of the
-logarithmic derivative to the right of all roots.-/
+logarithmic derivative to the right of all roots.
+@isnad1 id=isstrict.3h2v.s7.ccf02e499442 from=translated src=- shape=ea639de6 vocab=9ba4b4d4
+-/
 lemma RealRooted.derivative_strictRootUpperBound
     {p : ℝ[X]} (hp : RealRooted p) (hdeg : 0 < p.natDegree) {x : ℝ}
     (hx : IsStrictRootUpperBound p x) : IsStrictRootUpperBound p.derivative x := by
@@ -65,7 +69,9 @@ lemma RealRooted.derivative_strictRootUpperBound
   exact hderiv_ne hr
 
 /-- Elementary reciprocal-gap algebra, kept separate so that root-list accessors do not obscure
-the field normalization.-/
+the field normalization.
+@isnad1 id=eq.2h3v.s7.3c3fdbc13f8a from=translated src=- shape=a13bad4c vocab=a37a6b07
+-/
 lemma reciprocal_gap_at_shift {b r A : ℝ} (hA : A ≠ 0) (hgap : b - r ≠ 0) :
     1 / (b - 1 / A - r) =
       (1 / (b - r)) * A / (A - 1 / (b - r)) := by
@@ -73,7 +79,9 @@ lemma reciprocal_gap_at_shift {b r A : ℝ} (hA : A ≠ 0) (hgap : b - r ≠ 0) 
   ring
 
 /-- The barrier potential is antitone as its argument moves right while staying beyond all
-roots.-/
+roots.
+@isnad1 id=le.4h3v.s5.c4c0392698ea from=translated src=- shape=f8c6c701 vocab=78e2d8c1
+-/
 lemma rootBarrierPotential_antitone
     {p : ℝ[X]} (hp : RealRooted p) (hdeg : 0 < p.natDegree) {x y : ℝ}
     (hx : IsStrictRootUpperBound p x) (hxy : x ≤ y) :
@@ -104,7 +112,9 @@ lemma rootBarrierPotential_antitone
 
 /-- Strict admissibility puts the optimized moment barrier strictly to the right of `1`.
 The non-strict endpoint is available as `one_le_optimal_rootMoment_barrier`; the strict form is
-what lets the barrier proof avoid evaluating at a possible root equal to `1`.-/
+what lets the barrier proof avoid evaluating at a possible root equal to `1`.
+@isnad1 id=lt.3h2v.s6.5d2daabde165 from=translated src=- shape=941d564b vocab=9fc5099a
+-/
 lemma one_lt_optimal_rootMoment_barrier
     {c α : ℝ} (hc : 0 < c) (hα : 0 < α)
     (hcα : c < (1 + α)⁻¹) :

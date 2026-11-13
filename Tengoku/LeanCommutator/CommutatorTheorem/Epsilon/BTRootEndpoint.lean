@@ -20,7 +20,9 @@ open scoped Polynomial BigOperators
 open Polynomial Finset
 
 /-- A non-strict upper root bound is preserved by one derivative as long as
-the original polynomial has degree at least two.-/
+the original polynomial has degree at least two.
+@isnad1 id=isrootup.3h2v.s7.1a91896ef41b from=translated src=- shape=ea639de6 vocab=d90d99e6
+-/
 theorem derivative_rootUpperBound_of_realRooted
     {p : ℝ[X]} (hp : RealRooted p) (hdeg : 2 ≤ p.natDegree)
     {b : ℝ} (hb : IsRootUpperBound p b) :

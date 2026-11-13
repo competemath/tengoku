@@ -22,13 +22,18 @@ namespace NoEpsilon
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
+/--
+@isnad1 id=mem.0h2v.s6.5b544cd1644f from=translated src=- shape=5ea862ca vocab=3445821a
+-/
 theorem permutationMatrix_isUnitary (σ : Equiv.Perm ι) :
     σ.permMatrix ℂ ∈ Matrix.unitaryGroup ι ℂ := by
   rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
     Matrix.conjTranspose_permMatrix, ← Matrix.permMatrix_mul]
   simp
 
-/-- Conjugating a diagonal matrix by a permutation matrix permutes its diagonal entries.-/
+/-- Conjugating a diagonal matrix by a permutation matrix permutes its diagonal entries.
+@isnad1 id=eq.0h3v.s7.b49682cb2b23 from=translated src=- shape=76df86e9 vocab=b7af8fdc
+-/
 theorem permutation_conjugates_diagonal (σ : Equiv.Perm ι) (w : ι → ℂ) :
     σ.permMatrix ℂ * Matrix.diagonal w * star (σ.permMatrix ℂ) =
       Matrix.diagonal (fun i ↦ w (σ i)) := by
@@ -39,7 +44,9 @@ theorem permutation_conjugates_diagonal (σ : Equiv.Perm ι) (w : ι → ℂ) :
   simp [Matrix.submatrix_apply, Matrix.diagonal_apply, Equiv.Perm.inv_def]
 
 /-- Any bounded cyclic difference of weights is a bounded unitary commutator. This exact
-matrix construction is independent of the greedy ordering of a real spectrum.-/
+matrix construction is independent of the greedy ordering of a real spectrum.
+@isnad1 id=ex.2h4v.s8.7a1b82c4a918 from=translated src=- shape=b7471f5e vocab=958466e9
+-/
 theorem diagonal_difference_is_bounded_commutator (σ : Equiv.Perm ι) (w : ι → ℂ)
     (M : ℝ) (hM : 0 ≤ M) (hw : ∀ i, ‖w i‖ ≤ M) :
     ∃ U V : Matrix ι ι ℂ,
@@ -70,7 +77,9 @@ theorem diagonal_difference_is_bounded_commutator (σ : Equiv.Perm ι) (w : ι �
       _ ≤ M * 1 := mul_le_mul hDnorm hUnorm (norm_nonneg _) hM
       _ = M := mul_one M
 
-/-- A labelled version of real spectral ordering, expressed as a permutation of `Fin n`.-/
+/-- A labelled version of real spectral ordering, expressed as a permutation of `Fin n`.
+@isnad1 id=ex.3h3v.s6.5b7b52c64f2e from=translated src=- shape=0a7af1e0 vocab=e3a502e3
+-/
 theorem exists_bounded_real_permutation (n : ℕ) (a : Fin n → ℝ) (M : ℝ)
     (hM : 0 ≤ M) (ha : ∀ i, |a i| ≤ M) (hsum : ∑ i, a i = 0) :
     ∃ σ : Equiv.Perm (Fin n),
@@ -97,7 +106,9 @@ theorem exists_bounded_real_permutation (n : ℕ) (a : Fin n → ℝ) (M : ℝ)
   simpa using hkb j
 
 /-- A bounded ordered zero-sum real tuple is exactly the cyclic difference of bounded
-prefix sums, including the final wrap-around equality.-/
+prefix sums, including the final wrap-around equality.
+@isnad1 id=eq.1h3v.s6.1588bd5228d9 from=translated src=- shape=46ed8eec vocab=0f6dc5b8
+-/
 theorem real_cyclic_difference (n : ℕ) (a : Fin n → ℝ) (hsum : ∑ i, a i = 0) :
     ∀ i : Fin n,
       ((List.ofFn a).take (finRotate n i).val).sum -
@@ -123,7 +134,9 @@ theorem real_cyclic_difference (n : ℕ) (a : Fin n → ℝ) (hsum : ∑ i, a i 
     · rw [coe_finRotate_of_ne_last hi, hstep]
       simp
 
-/-- Unitary conjugation preserves the commutator equation and both operator-norm bounds.-/
+/-- Unitary conjugation preserves the commutator equation and both operator-norm bounds.
+@isnad1 id=ex.1h4v.s12.e3b9591f5ceb from=translated src=- shape=0836fa29 vocab=ef9ba3cb
+-/
 theorem unitary_conjugation_bounded_commutator
     (W : Matrix.unitaryGroup ι ℂ) (D : Matrix ι ι ℂ) (M : ℝ)
     (hD : ∃ U V : Matrix ι ι ℂ, U ∈ Matrix.unitaryGroup ι ℂ ∧
@@ -144,7 +157,9 @@ theorem unitary_conjugation_bounded_commutator
   simpa only [ringCommutator, map_sub, map_mul] using congrArg φ hUV
 
 /-- Every real zero-sum diagonal is a unitary commutator with second-factor norm bounded
-by the maximum absolute diagonal entry. The ordering and wrap-around are proved above.-/
+by the maximum absolute diagonal entry. The ordering and wrap-around are proved above.
+@isnad1 id=ex.3h3v.s8.4423f4140d4d from=translated src=- shape=76a2341d vocab=dcabde19
+-/
 theorem real_diagonal_bounded_commutator (n : ℕ) (a : Fin n → ℝ) (M : ℝ)
     (hM : 0 ≤ M) (ha : ∀ i, |a i| ≤ M) (hsum : ∑ i, a i = 0) :
     ∃ U V : Matrix (Fin n) (Fin n) ℂ,
@@ -177,7 +192,9 @@ theorem real_diagonal_bounded_commutator (n : ℕ) (a : Fin n → ℝ) (M : ℝ)
   rwa [heq] at hconj
 
 /-- The entire Hermitian input is discharged using the spectral theorem, the proved greedy
-ordering, and the proved cyclic shift construction. This has no additional hypothesis.-/
+ordering, and the proved cyclic shift construction. This has no additional hypothesis.
+@isnad1 id=hermitia.0h0v.s0.4d7bf439deec from=translated src=- shape=45709ebd vocab=4d7bf439
+-/
 theorem hermitianUnitaryCommutatorBound : HermitianUnitaryCommutatorBound := by
   intro n G hG htrace
   let a := hG.eigenvalues

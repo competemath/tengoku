@@ -19,6 +19,9 @@ variable {ι n r : Type*} [Fintype ι] [DecidableEq ι]
 variable (d : ι → Type*) [∀ i, Fintype (d i)] [∀ i, DecidableEq (d i)]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.2h4v.s8.06d52ddce548 from=translated src=- shape=a93db8b0 vocab=1981744f
+-/
 theorem outside_projection_norm_le (V : ∀ i, Matrix n (d i) ℂ)
     (hVV : ∀ i, (V i)ᴴ * V i = 1)
     (hOrth : ∀ i j, i ≠ j → (V i)ᴴ * V j = 0) :
