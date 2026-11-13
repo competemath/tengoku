@@ -28,7 +28,9 @@ def charpolyRootCountIn (A : Matrix n n ℂ) (K : Set ℂ) : ℕ := by
 
 /-- A complete characteristic factorization computes root counts by the
 number of list entries in the set. Source: Horn–Johnson (2013), Theorem 6.1.1;
-this explicitly connects index counts to algebraic multiplicities.-/
+this explicitly connects index counts to algebraic multiplicities.
+@isnad1 id=eq.1h4v.s7.0dcc8445f6e3 from=translated src=- shape=2e64a8b9 vocab=ede753f6
+-/
 theorem charpolyRootCountIn_eq_card_filter (A : Matrix n n ℂ) (K : Set ℂ)
     (d : n → ℂ) (hd : A.charpoly = ∏ i, (X - C (d i))) :
     charpolyRootCountIn A K = (Finset.univ.filter (fun i => d i ∈ K)).card := by
@@ -42,7 +44,9 @@ theorem charpolyRootCountIn_eq_card_filter (A : Matrix n n ℂ) (K : Set ℂ)
   rfl
 
 /-- A characteristic-root count is at most the matrix dimension, including
-empty shapes. Source: Horn–Johnson (2013), Theorem 6.1.1.-/
+empty shapes. Source: Horn–Johnson (2013), Theorem 6.1.1.
+@isnad1 id=le.0h3v.s4.1d0b88d289b6 from=translated src=- shape=5c782ef6 vocab=0ed4f0c9
+-/
 theorem charpolyRootCountIn_le_card (A : Matrix n n ℂ) (K : Set ℂ) :
     charpolyRootCountIn A K ≤ Fintype.card n := by
   classical
@@ -52,7 +56,9 @@ theorem charpolyRootCountIn_le_card (A : Matrix n n ℂ) (K : Set ℂ) :
 
 /-- Values at `n+1` fixed distinct complex scalars determine a characteristic
 polynomial among monic products of `n` root factors. Polynomial interpolation;
-helper for exact isolated-spectrum counts.-/
+helper for exact isolated-spectrum counts.
+@isnad1 id=eq.1h3v.s7.cf6f0f865728 from=translated src=- shape=13ec4c8d vocab=3640c66c
+-/
 theorem charpoly_eq_prod_of_eval_eq (A : Matrix n n ℂ) (d : n → ℂ)
     (h : ∀ j : Fin (Fintype.card n + 1),
       A.charpoly.eval (j.val : ℂ) = ∏ i, ((j.val : ℂ) - d i)) :

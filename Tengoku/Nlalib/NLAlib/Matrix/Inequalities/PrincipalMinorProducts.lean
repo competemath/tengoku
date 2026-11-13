@@ -24,23 +24,31 @@ def principalMinor (A : Matrix n n ℝ) (S : Finset n) : ℝ :=
   (A.toBlock (· ∈ S) (· ∈ S)).det
 
 /-- A principal minor is exactly its Mathlib block determinant.
-Horn--Johnson (2013), Section 7.8; definition bridge.-/
+Horn--Johnson (2013), Section 7.8; definition bridge.
+@isnad1 id=eq.0h3v.s6.feafc82845ae from=translated src=- shape=0b2aa071 vocab=83e9669e
+-/
 theorem principalMinor_eq_det_toBlock (A : Matrix n n ℝ) (S : Finset n) :
     principalMinor A S = (A.toBlock (· ∈ S) (· ∈ S)).det := rfl
 
 /-- Every principal minor of a positive definite matrix is positive,
-including the empty minor one. Horn--Johnson (2013), Section 7.8.-/
+including the empty minor one. Horn--Johnson (2013), Section 7.8.
+@isnad1 id=lt.1h3v.s5.a3df76f60e88 from=translated src=- shape=99e66a93 vocab=0ee0f4b7
+-/
 theorem principalMinor_pos {A : Matrix n n ℝ} (hA : A.PosDef) (S : Finset n) :
     0 < principalMinor A S :=
   (hA.submatrix (Subtype.val_injective : Function.Injective (Subtype.val : S → n))).det_pos
 
 /-- Every principal minor of a PSD matrix is nonnegative.
-Horn--Johnson (2013), Section 7.8.-/
+Horn--Johnson (2013), Section 7.8.
+@isnad1 id=le.1h3v.s5.81250b40953f from=translated src=- shape=99e66a93 vocab=8d4bd167
+-/
 theorem principalMinor_nonneg {A : Matrix n n ℝ} (hA : A.PosSemidef) (S : Finset n) :
     0 ≤ principalMinor A S := (hA.submatrix (Subtype.val : S → n)).det_nonneg
 
 /-- A fixed principal minor is continuous in its ambient matrix.
-Horn--Johnson (2013), Section 7.8; immediate determinant continuity.-/
+Horn--Johnson (2013), Section 7.8; immediate determinant continuity.
+@isnad1 id=continuo.0h2v.s5.77edf32e5186 from=translated src=- shape=818c69d8 vocab=97864e33
+-/
 @[fun_prop] theorem continuous_principalMinor (S : Finset n) :
     Continuous (fun A : Matrix n n ℝ => principalMinor A S) := by
   unfold principalMinor Matrix.toBlock
@@ -51,7 +59,9 @@ variable [Fintype n]
 /-- Adding the identity to a PSD matrix gives determinant at least one, including
 singular matrices and dimension zero. The principal-minor expansion supplies
 nonnegative terms and the empty minor one. Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-law (partial)-/
+atlas: l-ensemble-law (partial)
+@isnad1 id=le.1h2v.s6.83978c50b06c from=translated src=- shape=44767b68 vocab=fb211e35
+-/
 theorem _root_.Matrix.PosSemidef.one_le_det_one_add {L : Matrix n n ℝ}
     (hL : L.PosSemidef) : 1 ≤ (1 + L).det := by
   classical
@@ -67,22 +77,30 @@ def principalMinorProduct (A : Matrix n n ℝ) (k : ℕ) : ℝ :=
   ∏ S ∈ (Finset.univ : Finset n).powersetCard k, principalMinor A S
 
 /-- The fixed-cardinality principal-minor product is its defining finite
-product of determinants. Horn--Johnson (2013), Theorem 7.8.11.-/
+product of determinants. Horn--Johnson (2013), Theorem 7.8.11.
+@isnad1 id=eq.0h3v.s5.7e987f7985a1 from=translated src=- shape=91feedb1 vocab=484fe328
+-/
 theorem principalMinorProduct_eq_prod (A : Matrix n n ℝ) (k : ℕ) :
     principalMinorProduct A k = ∏ S ∈ (Finset.univ : Finset n).powersetCard k, principalMinor A S := rfl
 
 /-- Principal-minor products of a positive definite matrix are positive.
-Horn--Johnson (2013), Section 7.8.-/
+Horn--Johnson (2013), Section 7.8.
+@isnad1 id=lt.1h3v.s5.f489901bfe71 from=translated src=- shape=06f22004 vocab=c82d08c7
+-/
 theorem principalMinorProduct_pos {A : Matrix n n ℝ} (hA : A.PosDef) (k : ℕ) :
     0 < principalMinorProduct A k := Finset.prod_pos (fun S _ => principalMinor_pos hA S)
 
 /-- Principal-minor products of a PSD matrix are nonnegative.
-Horn--Johnson (2013), Section 7.8.-/
+Horn--Johnson (2013), Section 7.8.
+@isnad1 id=le.1h3v.s5.d13338795667 from=translated src=- shape=06f22004 vocab=b9264e89
+-/
 theorem principalMinorProduct_nonneg {A : Matrix n n ℝ} (hA : A.PosSemidef) (k : ℕ) :
     0 ≤ principalMinorProduct A k := Finset.prod_nonneg (fun S _ => principalMinor_nonneg hA S)
 
 /-- Each fixed-cardinality principal-minor product is continuous.
-Horn--Johnson (2013), Section 7.8; immediate finite-product continuity.-/
+Horn--Johnson (2013), Section 7.8; immediate finite-product continuity.
+@isnad1 id=continuo.0h2v.s5.40c2d9f64c55 from=translated src=- shape=eac86745 vocab=17ca60b5
+-/
 @[fun_prop] theorem continuous_principalMinorProduct (k : ℕ) :
     Continuous (fun A : Matrix n n ℝ => principalMinorProduct A k) := by
   unfold principalMinorProduct
@@ -91,7 +109,9 @@ Horn--Johnson (2013), Section 7.8; immediate finite-product continuity.-/
 omit [Fintype n] in
 /-- Deleting a coordinate inside a principal block gives the corresponding
 erased principal minor of the ambient matrix, with an explicit subtype
-equivalence. Horn--Johnson (2013), Lemma 7.8.8.-/
+equivalence. Horn--Johnson (2013), Lemma 7.8.8.
+@isnad1 id=eq.0h4v.s9.a9028e087388 from=translated src=- shape=4241e134 vocab=6313af7b
+-/
 theorem det_toBlock_complement_eq_principalMinor_erase
     (A : Matrix n n ℝ) (T : Finset n) (i : T) :
     ((A.toBlock (· ∈ T) (· ∈ T)).toBlock (fun j => j ≠ i) (fun j => j ≠ i)).det =

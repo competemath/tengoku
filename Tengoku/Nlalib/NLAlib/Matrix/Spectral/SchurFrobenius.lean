@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 omit [DecidableEq n] in
 /-- Two complete lists of the same characteristic roots have the same sum of squared moduli.
-Horn–Johnson (2013), §2.3; root multiplicities are retained by the polynomial factorization.-/
+Horn–Johnson (2013), §2.3; root multiplicities are retained by the polynomial factorization.
+@isnad1 id=eq.1h3v.s7.87d1f895dc7b from=translated src=- shape=5790faed vocab=b061c93c
+-/
 theorem sum_norm_sq_eq_of_prod_X_sub_C_eq (a b : n → ℂ)
     (hab : (∏ i, (Polynomial.X - Polynomial.C (a i))) =
       ∏ i, (Polynomial.X - Polynomial.C (b i))) :
@@ -38,7 +40,9 @@ theorem sum_norm_sq_eq_of_prod_X_sub_C_eq (a b : n → ℂ)
   simpa only [hroots, Multiset.map_map, Function.comp_def, Finset.sum_map_val] using h
 
 /-- A unitary similarity preserves the squared Frobenius norm: `‖U T Uᴴ‖_F² = ‖T‖_F²`.
-Horn–Johnson (2013), §2.3; applies to arbitrary square matrices and empty index types.-/
+Horn–Johnson (2013), §2.3; applies to arbitrary square matrices and empty index types.
+@isnad1 id=eq.0h3v.s8.10d7974d047b from=translated src=- shape=765b836d vocab=839ac0c6
+-/
 theorem frobSq_unitary_similarity (U : Matrix.unitaryGroup n ℂ) (T : Matrix n n ℂ) :
     frobSq ((U : Matrix n n ℂ) * T * (U : Matrix n n ℂ)ᴴ) = frobSq T := by
   have hUt : (U : Matrix n n ℂ)ᴴ * (U : Matrix n n ℂ) = 1 := Unitary.coe_star_mul_self U
@@ -46,7 +50,9 @@ theorem frobSq_unitary_similarity (U : Matrix.unitaryGroup n ℂ) (T : Matrix n 
 
 /-- A normal matrix's squared Frobenius norm is the sum of the squared moduli of a complete
 characteristic eigenvalue list (in any order). Horn–Johnson (2013), Theorem 2.5.3.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=eq.2h3v.s8.f1e98e7fc4ec from=translated src=- shape=141cce05 vocab=416598f1
+-/
 theorem frobSq_eq_sum_norm_sq_of_normal {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (d : n → ℂ)
     (hd : A.charpoly = ∏ i, (Polynomial.X - Polynomial.C (d i))) :
@@ -62,7 +68,9 @@ theorem frobSq_eq_sum_norm_sq_of_normal {A : Matrix n n ℂ}
 /-- The squared Frobenius norm splits into the diagonal mass and the off-diagonal mass:
 `‖T‖_F² = ∑ᵢ |Tᵢᵢ|² + ‖T − diag T‖_F²`. Horn–Johnson (2013), proof of Theorem 2.3.4; this
 algebraic identity holds for any matrix (for a Schur factor the off-diagonal part is strictly
-upper). Helper for `schur-triangularization`.-/
+upper). Helper for `schur-triangularization`.
+@isnad1 id=eq.0h2v.s6.c2ddfdc3b5dc from=translated src=- shape=d3b8e1f8 vocab=106e3b5b
+-/
 theorem frobSq_eq_sum_diag_add_frobSq_sub_diagonal (T : Matrix n n ℂ) :
     frobSq T = (∑ i, ‖T i i‖ ^ 2) + frobSq (T - Matrix.diagonal T.diag) := by
   have hsplit : frobSq T = frobSq (Matrix.diagonal T.diag) + frobSq (T - Matrix.diagonal T.diag) := by
@@ -85,7 +93,9 @@ theorem frobSq_eq_sum_diag_add_frobSq_sub_diagonal (T : Matrix n n ℂ) :
 /-- **Schur's inequality.** The diagonal of a Schur factor `T` of `A = U T Uᴴ` satisfies
 `∑ᵢ |Tᵢᵢ|² ≤ ‖A‖_F²`. Horn–Johnson (2013), Theorem 2.3.4; for a Schur factor the diagonal is the
 complete eigenvalue list.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=le.1h4v.s8.e3f112b4c86f from=translated src=- shape=ce21cac0 vocab=db8bed2b
+-/
 theorem sum_norm_sq_schur_diagonal_le_frobSq
     (U : Matrix.unitaryGroup n ℂ) (T : Matrix n n ℂ) {A : Matrix n n ℂ}
     (hA : A = (U : Matrix n n ℂ) * T * (U : Matrix n n ℂ)ᴴ) :
@@ -96,7 +106,9 @@ theorem sum_norm_sq_schur_diagonal_le_frobSq
 /-- Equality in Schur's inequality is equivalent to normality. Horn–Johnson (2013), Theorems
 2.3.4 and 2.5.3; the characteristic factorization certifies that the Schur diagonal contains
 every eigenvalue with its multiplicity.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=iff.2h4v.s9.f81238f4d36f from=translated src=- shape=5c8bafd5 vocab=fbe5e07a
+-/
 theorem sum_norm_sq_schur_diagonal_eq_frobSq_iff_normal
     (U : Matrix.unitaryGroup n ℂ) (T : Matrix n n ℂ) {A : Matrix n n ℂ}
     (hA : A = (U : Matrix n n ℂ) * T * (U : Matrix n n ℂ)ᴴ)

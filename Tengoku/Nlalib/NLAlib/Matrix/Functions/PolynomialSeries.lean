@@ -32,13 +32,17 @@ def reTraceCLM : Matrix ι ι ℂ →L[ℝ] ℝ :=
   Complex.reCLM.comp (Matrix.traceLinearMap ι ℝ ℂ).toContinuousLinearMap
 
 omit [DecidableEq ι] in
-/-- `reTraceCLM M = Re tr M`.-/
+/-- `reTraceCLM M = Re tr M`.
+@isnad1 id=eq.0h2v.s7.5ab85b6e9297 from=translated src=- shape=190751ca vocab=b952e869
+-/
 @[simp] theorem reTraceCLM_apply (M : Matrix ι ι ℂ) :
     reTraceCLM M = M.trace.re := rfl
 
 omit [Fintype ι] [DecidableEq ι] [DecidableEq κ] in
 /-- A finite real-coefficient series of Hermitian matrices is Hermitian.
-Supports `noncommutative-khintchine`.-/
+Supports `noncommutative-khintchine`.
+@isnad1 id=ishermit.1h4v.s7.db89f59d2192 from=translated src=- shape=778218d1 vocab=6499889a
+-/
 theorem isHermitian_sum_smul_real (A : κ → Matrix ι ι ℂ)
     (hA : ∀ i, (A i).IsHermitian) (x : κ → ℝ) :
     (∑ i, x i • A i).IsHermitian := by
@@ -48,7 +52,9 @@ theorem isHermitian_sum_smul_real (A : κ → Matrix ι ι ℂ)
 
 omit [DecidableEq κ] in
 /-- The matrix variance `∑ Aᵢ²` of Hermitian coefficients is positive semidefinite.
-Supports `noncommutative-khintchine`.-/
+Supports `noncommutative-khintchine`.
+@isnad1 id=possemid.1h3v.s6.6909366ce9bc from=translated src=- shape=ce5bb30e vocab=c5de7503
+-/
 theorem posSemidef_sum_sq_of_isHermitian (A : κ → Matrix ι ι ℂ)
     (hA : ∀ i, (A i).IsHermitian) : (∑ i, A i ^ 2).PosSemidef := by
   apply Matrix.posSemidef_sum
@@ -57,7 +63,9 @@ theorem posSemidef_sum_sq_of_isHermitian (A : κ → Matrix ι ι ℂ)
 
 omit [DecidableEq κ] in
 /-- `‖∑ᵢ xᵢ Aᵢ‖ ≤ (∑ᵢ ‖Aᵢ‖)(1 + ‖x‖)` (triangle inequality).
-Supports `noncommutative-khintchine`.-/
+Supports `noncommutative-khintchine`.
+@isnad1 id=le.0h4v.s7.cfba12f454e7 from=translated src=- shape=bcd206e3 vocab=fcc39c6c
+-/
 theorem norm_sum_smul_le_sum_norm_mul_one_add_norm
     (A : κ → Matrix ι ι ℂ) (x : κ → ℝ) :
     ‖∑ i, x i • A i‖ ≤ (∑ i, ‖A i‖) * (1 + ‖x‖) := by
@@ -72,7 +80,9 @@ theorem norm_sum_smul_le_sum_norm_mul_one_add_norm
     _ = _ := by rw [Finset.sum_mul]
 
 omit [DecidableEq κ] in
-/-- `x ↦ Re tr (B Y(x)^r C Y(x)^s)` is continuous. Supports `noncommutative-khintchine`.-/
+/-- `x ↦ Re tr (B Y(x)^r C Y(x)^s)` is continuous. Supports `noncommutative-khintchine`.
+@isnad1 id=continuo.0h7v.s8.61d94c67b375 from=translated src=- shape=cf1fea95 vocab=b879d7ae
+-/
 theorem continuous_re_trace_series_product
     (A : κ → Matrix ι ι ℂ) (B C : Matrix ι ι ℂ) (r s : ℕ) :
     Continuous (fun x : κ → ℝ =>
@@ -84,7 +94,9 @@ theorem continuous_re_trace_series_product
 
 omit [DecidableEq κ] in
 /-- `|Re tr (B Y(x)^r C Y(x)^s)| ≤ ‖reTraceCLM‖ ‖B‖ ‖C‖ (∑ᵢ ‖Aᵢ‖)^{r+s} (1 + ‖x‖)^{r+s}`
-(polynomial growth; gives Gaussian integrability). Supports `noncommutative-khintchine`.-/
+(polynomial growth; gives Gaussian integrability). Supports `noncommutative-khintchine`.
+@isnad1 id=le.0h8v.s9.be908f8a5e8c from=translated src=- shape=12ed75e1 vocab=514d1743
+-/
 theorem abs_re_trace_series_product_le
     (A : κ → Matrix ι ι ℂ) (B C : Matrix ι ι ℂ) (r s : ℕ) (x : κ → ℝ) :
     |(B * (∑ i, x i • A i) ^ r * C * (∑ i, x i • A i) ^ s).trace.re| ≤
@@ -115,7 +127,9 @@ theorem abs_re_trace_series_product_le
           ((∑ i, ‖A i‖) * (1 + ‖x‖)) ^ s) := by gcongr
     _ = _ := by rw [mul_pow, mul_pow, pow_add, pow_add]; ring
 
-/-- `y ↦ ∑ⱼ (x with xᵢ := y)ⱼ Aⱼ` has derivative `Aᵢ`. Supports `noncommutative-khintchine`.-/
+/-- `y ↦ ∑ⱼ (x with xᵢ := y)ⱼ Aⱼ` has derivative `Aᵢ`. Supports `noncommutative-khintchine`.
+@isnad1 id=hasderiv.0h6v.s7.46ad8c6cfd78 from=translated src=- shape=0e38b3c5 vocab=46fbbe08
+-/
 theorem hasDerivAt_sum_smul_update
     (A : κ → Matrix ι ι ℂ) (x : κ → ℝ) (i : κ) (t : ℝ) :
     HasDerivAt (fun y => ∑ j, Function.update x i y j • A j) (A i) t := by
@@ -129,7 +143,9 @@ theorem hasDerivAt_sum_smul_update
   · simp [L, Pi.single_apply]
 
 /-- Coordinate derivative of `y ↦ Re tr (B Y(x, xᵢ := y)^q)`: the noncommutative product rule
-`∑ₗ Re tr (B Y^{q−1−l} Aᵢ Y^l)`. Supports `noncommutative-khintchine`.-/
+`∑ₗ Re tr (B Y^{q−1−l} Aᵢ Y^l)`. Supports `noncommutative-khintchine`.
+@isnad1 id=hasderiv.0h8v.s9.efd40d18f4a7 from=translated src=- shape=c7725f0d vocab=024ad58a
+-/
 theorem hasDerivAt_re_trace_mul_series_pow_update
     (A : κ → Matrix ι ι ℂ) (B : Matrix ι ι ℂ) (x : κ → ℝ)
     (i : κ) (t : ℝ) (q : ℕ) :
@@ -147,7 +163,9 @@ theorem hasDerivAt_re_trace_mul_series_pow_update
       Matrix.trace_sum, Complex.re_sum, Matrix.mul_assoc]
 
 omit [Fintype ι] [DecidableEq ι] in
-/-- Flipping one sign changes the series by `2 xᵢ Aᵢ`. Supports `noncommutative-khintchine`.-/
+/-- Flipping one sign changes the series by `2 xᵢ Aᵢ`. Supports `noncommutative-khintchine`.
+@isnad1 id=eq.0h5v.s8.3e406899fdf2 from=translated src=- shape=00fbe90f vocab=e7d4593c
+-/
 theorem sum_smul_sub_sum_smul_update_neg
     (A : κ → Matrix ι ι ℂ) (x : κ → ℝ) (i : κ) :
     (∑ j, x j • A j) - (∑ j, Function.update x i (-x i) j • A j) =

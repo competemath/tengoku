@@ -87,7 +87,9 @@ def geomKernel (n : ℕ) (x y : ℝ) : ℝ :=
 This includes the coincident-point case, where it is a sum of even powers.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s4.a39002105158 from=translated src=- shape=40a184bd vocab=032fd624
+-/
 theorem geomKernel_nonneg_of_odd {n : ℕ} (hn : Odd n) (x y : ℝ) :
     0 ≤ geomKernel n x y := by
   unfold geomKernel
@@ -120,7 +122,9 @@ def tracePowerAlong {d : ℕ} (p : ℕ)
 /-- Exact first derivative of a trace power along an arbitrary matrix line.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=hasderiv.0h5v.s7.e974094a1faf from=translated src=- shape=2b7e98c4 vocab=b33a8bec
+-/
 theorem hasDerivAt_tracePowerAlong {d p : ℕ}
     (A B : Matrix (Fin d) (Fin d) ℝ) (t : ℝ) :
     HasDerivAt (tracePowerAlong p A B)
@@ -156,7 +160,9 @@ def tracePowerSecondAlong {d : ℕ} (p : ℕ)
 /-- Exact second derivative of the trace-power polynomial along a line.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=hasderiv.0h5v.s7.3216f99bf628 from=translated src=- shape=c1332731 vocab=d023bc0b
+-/
 theorem hasDerivAt_tracePowerFirst {d p : ℕ}
     (A B : Matrix (Fin d) (Fin d) ℝ) (t : ℝ) :
     HasDerivAt
@@ -204,7 +210,9 @@ def traceHessianKernel {d : ℕ} (p : ℕ)
 /-- Spectral-coordinate expansion of the trace Hessian.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=other.2h4v.s12.07ecc60190a1 from=translated src=- shape=d0bdb342 vocab=48a23c96
+-/
 theorem traceHessianKernel_eq_spectral {d p : ℕ}
     (C B : Matrix (Fin d) (Fin d) ℝ)
     (hC : C.transpose = C) (hB : B.transpose = B) :
@@ -248,7 +256,9 @@ theorem traceHessianKernel_eq_spectral {d p : ℕ}
 /-- The spectral Hessian sum is nonnegative for a positive even exponent.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s7.3f5e85d40ca8 from=translated src=- shape=e3cb7018 vocab=b4c6ee28
+-/
 theorem spectral_traceHessian_nonneg {d p : ℕ} (hp : Even p) (hp0 : p ≠ 0)
     (B : Matrix (Fin d) (Fin d) ℝ) (lambda : Fin d → ℝ) :
     0 ≤ ∑ k ∈ Finset.range (p - 1), ∑ i, ∑ j,
@@ -287,7 +297,9 @@ theorem spectral_traceHessian_nonneg {d p : ℕ} (hp : Even p) (hp0 : p ≠ 0)
 /-- Nonnegativity of the trace Hessian at symmetric matrices.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h4v.s6.ead84bbc3c98 from=translated src=- shape=abef6988 vocab=01a52487
+-/
 theorem traceHessianKernel_nonneg {d p : ℕ} (hp : Even p)
     (C B : Matrix (Fin d) (Fin d) ℝ)
     (hC : C.transpose = C) (hB : B.transpose = B) :
@@ -302,7 +314,9 @@ theorem traceHessianKernel_nonneg {d p : ℕ} (hp : Even p)
 even exponent.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h5v.s6.24b51bd882bd from=translated src=- shape=1d3c913b vocab=1a11bf43
+-/
 theorem tracePowerSecondAlong_nonneg {d p : ℕ} (hp : Even p)
     (A B : Matrix (Fin d) (Fin d) ℝ)
     (hA : A.transpose = A) (hB : B.transpose = B) (t : ℝ) :
@@ -321,7 +335,9 @@ theorem tracePowerSecondAlong_nonneg {d p : ℕ} (hp : Even p)
 matrix subspace.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=convexon.3h4v.s6.895c254dcc2e from=translated src=- shape=c81907df vocab=6de0a098
+-/
 theorem convexOn_tracePowerAlong {d p : ℕ} (hp : Even p)
     (A B : Matrix (Fin d) (Fin d) ℝ)
     (hA : A.transpose = A) (hB : B.transpose = B) :
@@ -352,7 +368,9 @@ def traceEvenPower {d : ℕ} (q : ℕ) (A : symmetricMatrices d) : ℝ :=
 convex on the full real vector space of symmetric finite matrices.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=convexon.0h2v.s8.fce863386a0b from=translated src=- shape=0933f3af vocab=a9075ddd
+-/
 theorem convexOn_traceEvenPower (d q : ℕ) :
     ConvexOn ℝ Set.univ (traceEvenPower (d := d) q) := by
   refine ⟨convex_univ, ?_⟩

@@ -19,7 +19,9 @@ namespace NLAlib
 if and only if it is simultaneously triangularizable by a unitary matrix.
 Source: Horn–Johnson (2013), Theorem 2.3.3; arbitrary families are allowed
 and no commutation assumption is imposed.
-atlas: simultaneous-diagonalization (partial)-/
+atlas: simultaneous-diagonalization (partial)
+@isnad1 id=iff.0h3v.s9.b1c270caa9c3 from=translated src=- shape=f65cf8af vocab=3b94f63d
+-/
 theorem exists_simultaneous_triangular_similarity_iff_unitary
     {n ι : Type*} [Fintype n] [DecidableEq n] [LinearOrder n]
     [LocallyFiniteOrderBot n] [WellFoundedLT n] (A : ι → Matrix n n ℂ) :
@@ -72,7 +74,9 @@ theorem exists_simultaneous_triangular_similarity_iff_unitary
 /-- The equivalence of similarity and unitary simultaneous triangularization
 over arbitrary finite labels, with their order supplied by an enumeration.
 Source: Horn–Johnson (2013), Theorem 2.3.3; no commutation assumption is used.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=iff.0h4v.s9.74bf570df907 from=translated src=- shape=0d221fc1 vocab=8639fa89
+-/
 theorem exists_simultaneous_triangular_similarity_iff_unitary_of_equiv
     {n ι : Type*} [Fintype n] [DecidableEq n] (A : ι → Matrix n n ℂ)
     (e : Fin (Fintype.card n) ≃ n) :

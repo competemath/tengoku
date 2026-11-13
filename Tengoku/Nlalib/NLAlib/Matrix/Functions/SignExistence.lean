@@ -83,7 +83,9 @@ private theorem exists_isMatrixSign_nonempty {A : Matrix n n ℂ}
       linarith
 
 omit [Nonempty n] in
-/-- The spectral sign exists in every finite dimension, including zero.-/
+/-- The spectral sign exists in every finite dimension, including zero.
+@isnad1 id=ex.1h2v.s6.43f067564421 from=translated src=- shape=9f046cfc vocab=19c2a56f
+-/
 theorem exists_isMatrixSign {A : Matrix n n ℂ}
     (hA : ∀ z ∈ spectrum ℂ A, z.re ≠ 0) : ∃ S, IsMatrixSign A S := by
   classical
@@ -106,7 +108,9 @@ def matrixSign (A : Matrix n n ℂ) : Matrix n n ℂ := Classical.epsilon (IsMat
 
 omit [Nonempty n] in
 /-- The matrix sign satisfies its defining characterization whenever no
-eigenvalue lies on the imaginary axis.-/
+eigenvalue lies on the imaginary axis.
+@isnad1 id=ismatrix.1h2v.s6.bced5fde02e4 from=translated src=- shape=10a1bd61 vocab=6137adc7
+-/
 theorem isMatrixSign_matrixSign {A : Matrix n n ℂ}
     (hA : ∀ z ∈ spectrum ℂ A, z.re ≠ 0) : IsMatrixSign A (matrixSign A) :=
   Classical.epsilon_spec (exists_isMatrixSign hA)

@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 
 omit [Fintype n] in
 /-- Splitting an isolated coordinate from its complement gives a scalar/direct-sum block matrix. Source: Horn–Johnson (2013), Lemma 6.3.10;
-the two subtype blocks are the distinguished coordinate and all others.-/
+the two subtype blocks are the distinguished coordinate and all others.
+@isnad1 id=eq.2h5v.s9.30163fd77d13 from=translated src=- shape=8f769384 vocab=8fe47d25
+-/
 theorem submatrix_eq_fromBlocks_of_isolated_coordinate (M : Matrix n n K) (i : n) (μ : K)
     (hcol : ∀ j, M j i = if j = i then μ else 0)
     (hrow : ∀ j, M i j = if j = i then μ else 0) :
@@ -52,7 +54,9 @@ theorem submatrix_eq_fromBlocks_of_isolated_coordinate (M : Matrix n n K) (i : n
 omit [Fintype n] in
 /-- Any perturbation matrix decomposes into its leading scalar, row,
 column and trailing block in the isolated-coordinate split.
-Horn–Johnson (2013), proof of Theorem 6.3.12.-/
+Horn–Johnson (2013), proof of Theorem 6.3.12.
+@isnad1 id=eq.0h4v.s9.98bfb392e0b3 from=translated src=- shape=fac5b0f2 vocab=d2accc68
+-/
 theorem submatrix_eq_fromBlocks_scalar_row_col (F : Matrix n n K) (i : n) :
     F.submatrix (Equiv.sumCompl (fun j => j = i)) (Equiv.sumCompl (fun j => j = i)) =
       Matrix.fromBlocks (Matrix.diagonal (fun _ : {j : n // j = i} => F i i))
@@ -80,14 +84,18 @@ theorem submatrix_eq_fromBlocks_scalar_row_col (F : Matrix n n K) (i : n) :
     | inr b => rfl
 
 /-- Nonsingular similarity preserves the characteristic polynomial.
-Source: Horn–Johnson (2013), §1.3; this is the cyclic characteristic identity.-/
+Source: Horn–Johnson (2013), §1.3; this is the cyclic characteristic identity.
+@isnad1 id=eq.1h4v.s7.376b40895659 from=translated src=- shape=cf81cba0 vocab=20a20c49
+-/
 theorem charpoly_nonsing_inv_mul_mul_eq (A S : Matrix n n K) (hS : IsUnit S) :
     (S⁻¹ * A * S).charpoly = A.charpoly := by
   rw [Matrix.charpoly_mul_comm, ← Matrix.mul_assoc,
     Matrix.mul_nonsing_inv S (S.isUnit_iff_isUnit_det.mp hS), Matrix.one_mul]
 
 /-- Nonsingular similarity preserves spectral membership.
-Source: Horn–Johnson (2013), §1.3; root multiplicities are preserved as well.-/
+Source: Horn–Johnson (2013), §1.3; root multiplicities are preserved as well.
+@isnad1 id=iff.1h5v.s7.79df51b7513a from=translated src=- shape=ae50427b vocab=ff7d8dba
+-/
 theorem mem_spectrum_nonsing_inv_mul_mul_iff (A S : Matrix n n K) (hS : IsUnit S) (μ : K) :
     μ ∈ spectrum K (S⁻¹ * A * S) ↔ μ ∈ spectrum K A := by
   rw [Matrix.mem_spectrum_iff_isRoot_charpoly, Matrix.mem_spectrum_iff_isRoot_charpoly,
@@ -95,7 +103,9 @@ theorem mem_spectrum_nonsing_inv_mul_mul_iff (A S : Matrix n n K) (hS : IsUnit S
 
 /-- The leading conjugated perturbation entry is exactly the normalized
 left–right perturbation pairing. Source: Horn–Johnson (2013), Theorem 6.3.12;
-for complex left columns use their conjugate row in the hypotheses.-/
+for complex left columns use their conjugate row in the hypotheses.
+@isnad1 id=eq.2h7v.s8.e80617d623b6 from=translated src=- shape=c732164b vocab=e1515d1f
+-/
 theorem nonsing_inv_mul_mul_apply_eq_dotProduct_mulVec_div
     (S E : Matrix n n K) (i : n) (x y : n → K)
     (hcol : Matrix.col S i = x) (hrow : ∀ j, S⁻¹ i j = y j / (y ⬝ᵥ x)) :

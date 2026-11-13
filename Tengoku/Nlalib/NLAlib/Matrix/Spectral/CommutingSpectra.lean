@@ -22,7 +22,9 @@ paired orders for which the sum and product spectra are the corresponding
 scalar sums and products. Source: Horn–Johnson (2013), Corollaries
 2.4.8.5–2.4.8.6; multiplicities, repeated eigenvalues and empty shapes are
 retained by the four characteristic-polynomial factorizations.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.1h3v.s9.e3d0115daf29 from=translated src=- shape=2ce64fe7 vocab=ea403a08
+-/
 theorem exists_paired_charpoly_factors_add_mul_of_commute
     {n : Type*} [Fintype n] [DecidableEq n] {A B : Matrix n n ℂ} (hAB : Commute A B) :
     ∃ a b : n → ℂ,

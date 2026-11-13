@@ -17,7 +17,9 @@ open scoped Matrix MatrixOrder ComplexOrder
 namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {p : ℕ}
 
-/-- The finite occupation interior projector is Hermitian.-/
+/-- The finite occupation interior projector is Hermitian.
+@isnad1 id=ishermit.0h2v.s5.74d412ae5342 from=translated src=- shape=7858f812 vocab=50e8699e
+-/
 theorem isHermitian_hermiteInterior : (hermiteInterior (ι := ι) p).IsHermitian := by
   ext a b
   by_cases hab : a = b
@@ -25,7 +27,9 @@ theorem isHermitian_hermiteInterior : (hermiteInterior (ι := ι) p).IsHermitian
     simp [hermiteInterior, Matrix.diagonal_apply, apply_ite]
   · simp [hermiteInterior, Matrix.diagonal_apply, hab, Ne.symm hab]
 
-/-- The finite occupation interior projector is idempotent.-/
+/-- The finite occupation interior projector is idempotent.
+@isnad1 id=eq.0h2v.s6.0caa77ef5477 from=translated src=- shape=f2d28b11 vocab=0751e0f3
+-/
 theorem hermiteInterior_mul_self :
     hermiteInterior (ι := ι) p * hermiteInterior p = hermiteInterior p := by
   rw [hermiteInterior, Matrix.diagonal_mul_diagonal]
@@ -33,14 +37,18 @@ theorem hermiteInterior_mul_self :
   funext a
   by_cases ha : a.degree < p <;> simp [ha]
 
-/-- The finite occupation interior projector is PSD.-/
+/-- The finite occupation interior projector is PSD.
+@isnad1 id=possemid.0h2v.s4.bfc6beca026a from=translated src=- shape=68fe0bea vocab=e85f95de
+-/
 theorem posSemidef_hermiteInterior : (hermiteInterior (ι := ι) p).PosSemidef := by
   apply Matrix.PosSemidef.diagonal
   intro a
   dsimp
   split_ifs <;> positivity
 
-/-- The finite occupation interior projector lies below the identity.-/
+/-- The finite occupation interior projector lies below the identity.
+@isnad1 id=le.0h2v.s6.076458eabfcf from=translated src=- shape=6c9c04aa vocab=1bdfd112
+-/
 theorem hermiteInterior_le_one :
     hermiteInterior (ι := ι) p ≤ (1 : Matrix (HermiteIndex ι p) (HermiteIndex ι p) ℂ) := by
   apply Matrix.le_iff.mpr
@@ -55,7 +63,9 @@ theorem hermiteInterior_le_one :
   exact Matrix.PosSemidef.diagonal (fun a => by dsimp; split_ifs <;> positivity)
 
 /-- The occupation number is at most `p - 1` on the interior cutoff. This
-holds also at cutoff zero, where the interior projection vanishes.-/
+holds also at cutoff zero, where the interior projection vanishes.
+@isnad1 id=le.0h2v.s8.4395d19a8603 from=translated src=- shape=5b01e589 vocab=0d3c3d03
+-/
 theorem hermiteInterior_number_le :
     hermiteInterior (ι := ι) p * hermiteNumber p * hermiteInterior p ≤
       ((p - 1 : ℕ) : ℝ) • hermiteInterior p := by

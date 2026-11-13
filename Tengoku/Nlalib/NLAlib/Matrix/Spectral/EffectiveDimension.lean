@@ -38,7 +38,9 @@ private theorem le_mul_ridgeFraction_of_le {x t μ : ℝ}
   nlinarith
 
 /-- A set of eigenvalues above a threshold pays at least its cardinality times the
-threshold in the rescaled effective dimension.-/
+threshold in the rescaled effective dimension.
+@isnad1 id=le.4h5v.s6.8c5313676022 from=translated src=- shape=9c08d7dc vocab=ffd7d7aa
+-/
 theorem card_mul_le_mul_effectiveDimensionOfSpectrum {ι : Type*} [Fintype ι]
     (lam : ι → ℝ) (hlam : ∀ i, 0 ≤ lam i) {μ t : ℝ} (hμ : 0 < μ) (ht : 0 ≤ t)
     (S : Finset ι) (hS : ∀ i ∈ S, t ≤ lam i) :
@@ -56,7 +58,9 @@ theorem card_mul_le_mul_effectiveDimensionOfSpectrum {ι : Type*} [Fintype ι]
 
 /-- **Effective-dimension tail bound.** If a head set has at least the effective dimension
 many eigenvalues and separates a nonnegative spectrum at a threshold, the remaining sum
-is at most `μ` times the effective dimension.-/
+is at most `μ` times the effective dimension.
+@isnad1 id=le.6h5v.s7.2fd7e185602d from=translated src=- shape=6ca53e88 vocab=5f9313ea
+-/
 theorem sum_compl_le_mul_effectiveDimensionOfSpectrum {ι : Type*} [Fintype ι]
     [DecidableEq ι] (lam : ι → ℝ) (hlam : ∀ i, 0 ≤ lam i) {μ t : ℝ}
     (hμ : 0 < μ) (ht : 0 ≤ t) (S : Finset ι)
@@ -83,7 +87,9 @@ theorem sum_compl_le_mul_effectiveDimensionOfSpectrum {ι : Type*} [Fintype ι]
   nlinarith only [hh, hr, hc]
 
 /-- For decreasing eigenvalues, an index past `(1+1/γ)d_eff` has eigenvalue at most `γμ`.
-The index is one-based in the cardinality hypothesis.-/
+The index is one-based in the cardinality hypothesis.
+@isnad1 id=le.5h5v.s7.d9a60a59a07b from=translated src=- shape=f7597851 vocab=bfec4054
+-/
 theorem apply_le_mul_of_effectiveDimensionOfSpectrum_le {n : ℕ}
     (lam : Fin n → ℝ) (hlam : ∀ i, 0 ≤ lam i) (hmono : Antitone lam)
     {μ γ : ℝ} (hμ : 0 < μ) (hγ : 0 < γ) (j : Fin n)
@@ -108,7 +114,9 @@ theorem apply_le_mul_of_effectiveDimensionOfSpectrum_le {n : ℕ}
   nlinarith only [h1, h2, h3]
 
 /-- The spectral tail after an integer `k≥d_eff` is at most `μd_eff`, including an empty
-tail. This is the effective-dimension estimate needed for the FTU sketch budget.-/
+tail. This is the effective-dimension estimate needed for the FTU sketch budget.
+@isnad1 id=le.4h4v.s6.be85a5a1ef1b from=translated src=- shape=100d7e25 vocab=54321b5f
+-/
 theorem sum_filter_ge_le_mul_effectiveDimensionOfSpectrum {n : ℕ}
     (lam : Fin n → ℝ) (hlam : ∀ i, 0 ≤ lam i) (hmono : Antitone lam)
     {μ : ℝ} (hμ : 0 < μ) (k : ℕ) (hk : effectiveDimensionOfSpectrum lam μ ≤ k) :

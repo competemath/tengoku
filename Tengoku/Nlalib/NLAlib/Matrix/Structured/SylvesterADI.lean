@@ -34,13 +34,17 @@ def sylvesterADIStep (A : Matrix m m K) (B : Matrix n n K)
 def sylvesterResidual (A : Matrix m m K) (B : Matrix n n K)
     (C Y : Matrix m n K) : Matrix m n K := C - A * Y + Y * B
 
-/-- The first computed intermediate matrix solves its stated shifted system.-/
+/-- The first computed intermediate matrix solves its stated shifted system.
+@isnad1 id=eq.1h8v.s9.c5f3a10d6fb0 from=translated src=- shape=5296065f vocab=64559e33
+-/
 theorem shifted_mul_sylvesterADIHalf (A : Matrix m m K) (B : Matrix n n K)
     (C Y : Matrix m n K) (β : K) (hβ : IsUnit (A - β • 1).det) :
     (A - β • 1) * sylvesterADIHalf A B C Y β = Y * (B - β • 1) + C := by
   simp [sylvesterADIHalf, ← Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hβ]
 
-/-- The completed ADI step solves its stated right shifted system.-/
+/-- The completed ADI step solves its stated right shifted system.
+@isnad1 id=eq.1h9v.s9.39c351201b8f from=translated src=- shape=07f56c4f vocab=2d989ba9
+-/
 theorem sylvesterADIStep_mul_shifted (A : Matrix m m K) (B : Matrix n n K)
     (C Y : Matrix m n K) (α β : K) (hα : IsUnit (B - α • 1).det) :
     sylvesterADIStep A B C Y α β * (B - α • 1) =
@@ -64,7 +68,9 @@ private theorem inv_mul_shifted_decomposition (A : Matrix m m K) (α β : K)
 /-- The exact ADI correction is the old residual multiplied by the two solved
 inverses. Equal shifts therefore give an unchanged iterate.
 Source: user derivations, equation (G3).
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=eq.2h9v.s9.508dd6a76cee from=translated src=- shape=7b31b78e vocab=9dc17811
+-/
 theorem sylvesterADIStep_sub (A : Matrix m m K) (B : Matrix n n K)
     (C Y : Matrix m n K) (α β : K)
     (hβ : IsUnit (A - β • 1).det) (hα : IsUnit (B - α • 1).det) :
@@ -102,7 +108,9 @@ private theorem mul_right_cancel_shifted (B : Matrix n n K) (α : K)
   have := congrArg (fun T => T * (B - α • 1)⁻¹) h
   simpa [Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hα] using this
 
-/-- Exact error after the first solve.-/
+/-- Exact error after the first solve.
+@isnad1 id=eq.2h9v.s9.10d06a863496 from=translated src=- shape=6d3b837f vocab=15b61d7f
+-/
 theorem sub_sylvesterADIHalf (A : Matrix m m K) (B : Matrix n n K)
     (C X Y : Matrix m n K) (β : K) (hX : A * X - X * B = C)
     (hβ : IsUnit (A - β • 1).det) :
@@ -118,7 +126,9 @@ theorem sub_sylvesterADIHalf (A : Matrix m m K) (B : Matrix n n K)
 /-- One actual two-solve ADI step transports the exact error by the two
 rational factors. No numerator invertibility is assumed.
 Source: user derivations, Sylvester ADI error identity.
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=eq.3h10v.s10.2f6e0420f9a2 from=translated src=- shape=c22774bd vocab=5373774a
+-/
 theorem sub_sylvesterADIStep (A : Matrix m m K) (B : Matrix n n K)
     (C X Y : Matrix m n K) (α β : K) (hX : A * X - X * B = C)
     (hβ : IsUnit (A - β • 1).det) (hα : IsUnit (B - α • 1).det) :
@@ -153,7 +163,9 @@ def sylvesterADIRight (B : Matrix n n K) (α β : ℕ → K) : ℕ → Matrix n 
 
 /-- The finite-step rational error identity for the actual ADI process.
 Source: user derivations, Sylvester ADI.
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=eq.3h11v.s9.1e7a008c28aa from=translated src=- shape=beda7bd2 vocab=5b07e87c
+-/
 theorem sub_sylvesterADI (A : Matrix m m K) (B : Matrix n n K)
     (C X X₀ : Matrix m n K) (α β : ℕ → K) (hX : A * X - X * B = C)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det)
@@ -166,7 +178,9 @@ theorem sub_sylvesterADI (A : Matrix m m K) (B : Matrix n n K)
     simp [sylvesterADILeft, sylvesterADIRight, Matrix.mul_assoc]
 
 /-- Spectral-norm ADI error bound, with no claim of arbitrary-shift convergence.
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=le.3h11v.s9.88372dd3fb35 from=translated src=- shape=f0ee41f4 vocab=d2729c3b
+-/
 theorem specNorm_sub_sylvesterADI_le (A : Matrix m m K) (B : Matrix n n K)
     (C X X₀ : Matrix m n K) (α β : ℕ → K) (hX : A * X - X * B = C)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det)
@@ -183,7 +197,9 @@ theorem specNorm_sub_sylvesterADI_le (A : Matrix m m K) (B : Matrix n n K)
     _ = _ := by ring
 
 /-- Frobenius-norm ADI error bound under the same solved-factor hypotheses.
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=le.3h11v.s9.5a94f61e6108 from=translated src=- shape=9a689950 vocab=584c30f9
+-/
 theorem frobNorm_sub_sylvesterADI_le (A : Matrix m m K) (B : Matrix n n K)
     (C X X₀ : Matrix m n K) (α β : ℕ → K) (hX : A * X - X * B = C)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det)
@@ -200,7 +216,9 @@ theorem frobNorm_sub_sylvesterADI_le (A : Matrix m m K) (B : Matrix n n K)
     _ = _ := by ring
 
 /-- The residual of an actual ADI step has the same rational transport as
-the error, even when the Sylvester equation has no solution.-/
+the error, even when the Sylvester equation has no solution.
+@isnad1 id=eq.2h9v.s10.7a91aa33660e from=translated src=- shape=a7582bd9 vocab=9dc17811
+-/
 theorem sylvesterResidual_sylvesterADIStep (A : Matrix m m K) (B : Matrix n n K)
     (C Y : Matrix m n K) (α β : K)
     (hβ : IsUnit (A - β • 1).det) (hα : IsUnit (B - α • 1).det) :
@@ -237,7 +255,9 @@ theorem sylvesterResidual_sylvesterADIStep (A : Matrix m m K) (B : Matrix n n K)
     Matrix.one_mul, Matrix.mul_one, smul_add, smul_smul]
   module
 
-/-- All finite residuals are rational images of the initial residual.-/
+/-- All finite residuals are rational images of the initial residual.
+@isnad1 id=eq.2h10v.s9.9e25428822b9 from=translated src=- shape=b6a1d701 vocab=59467791
+-/
 theorem sylvesterResidual_sylvesterADI (A : Matrix m m K) (B : Matrix n n K)
     (C X₀ : Matrix m n K) (α β : ℕ → K)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det) (j : ℕ) :
@@ -249,7 +269,9 @@ theorem sylvesterResidual_sylvesterADI (A : Matrix m m K) (B : Matrix n n K)
     rw [sylvesterADI, sylvesterResidual_sylvesterADIStep _ _ _ _ _ _ (hβ j) (hα j), hj]
     simp [sylvesterADILeft, sylvesterADIRight, Matrix.mul_assoc]
 
-/-- ADI never increases the rank of the initial residual.-/
+/-- ADI never increases the rank of the initial residual.
+@isnad1 id=le.2h10v.s8.3544fe710672 from=translated src=- shape=315a115d vocab=c07de66d
+-/
 theorem rank_sylvesterResidual_sylvesterADI_le (A : Matrix m m K) (B : Matrix n n K)
     (C X₀ : Matrix m n K) (α β : ℕ → K)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det) (j : ℕ) :
@@ -261,7 +283,9 @@ theorem rank_sylvesterResidual_sylvesterADI_le (A : Matrix m m K) (B : Matrix n 
 /-- Starting from zero, `j` ADI steps have rank at most `j*r` when the
 right-hand side has rank at most `r`. Equal shifts and singular numerator
 factors are included. Source: user derivations, ADI rank bound.
-atlas: adi-sylvester-rational-error (partial)-/
+atlas: adi-sylvester-rational-error (partial)
+@isnad1 id=le.3h10v.s8.67f3b2422416 from=translated src=- shape=a260c15e vocab=b6c6ad72
+-/
 theorem rank_sylvesterADI_zero_le (A : Matrix m m K) (B : Matrix n n K)
     (C : Matrix m n K) (α β : ℕ → K)
     (hβ : ∀ j, IsUnit (A - β j • 1).det) (hα : ∀ j, IsUnit (B - α j • 1).det)

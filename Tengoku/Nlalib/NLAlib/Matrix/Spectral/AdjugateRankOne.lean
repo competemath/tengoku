@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 
 omit [DecidableEq n] in
 /-- Transposition preserves the nullity of a square matrix over any field.
-Source: Horn–Johnson (2013), §0.4; row rank equals column rank.-/
+Source: Horn–Johnson (2013), §0.4; row rank equals column rank.
+@isnad1 id=eq.0h3v.s10.f9c4b9667e38 from=translated src=- shape=0ffc6207 vocab=cbe238b3
+-/
 theorem finrank_ker_mulVecLin_transpose_eq (M : Matrix n n K) :
     finrank K (LinearMap.ker Mᵀ.mulVecLin) = finrank K (LinearMap.ker M.mulVecLin) := by
   have hM := LinearMap.finrank_range_add_finrank_ker M.mulVecLin
@@ -33,7 +35,9 @@ theorem finrank_ker_mulVecLin_transpose_eq (M : Matrix n n K) :
 
 /-- A square matrix of nullity one has a nonzero adjugate, including size
 one where the cofactor is the empty determinant. Source: Horn–Johnson
-(2013), Theorem 1.4.12; rank normal form gives a nonzero cofactor.-/
+(2013), Theorem 1.4.12; rank normal form gives a nonzero cofactor.
+@isnad1 id=ne.1h3v.s9.d2b987009c2b from=translated src=- shape=208b2267 vocab=1c92803d
+-/
 theorem adjugate_ne_zero_of_finrank_ker_eq_one (M : Matrix n n K)
     (hdim : finrank K (LinearMap.ker M.mulVecLin) = 1) : M.adjugate ≠ 0 := by
   classical

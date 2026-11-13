@@ -29,22 +29,33 @@ Source: reciprocal exponential certificate (RC5).-/
 def exponentialPolynomialMoment (s : ℝ) : ℝ[X] →ₗ[ℝ] ℝ :=
   Polynomial.lsum fun r => ((r ! : ℝ) / s ^ (r + 1)) • LinearMap.id
 
+/--
+@isnad1 id=eq.0h3v.s7.8fd8786bbe44 from=translated src=- shape=a4b2c7aa vocab=3cf98bfd
+-/
 @[simp] theorem exponentialPolynomialMoment_monomial (s a : ℝ) (r : ℕ) :
     exponentialPolynomialMoment s (monomial r a) = a * (r ! : ℝ) / s ^ (r + 1) := by
   simp [exponentialPolynomialMoment, Polynomial.lsum_apply,
     Polynomial.sum_monomial_index, mul_comm, mul_div_assoc]
 
+/--
+@isnad1 id=eq.0h2v.s7.ae389280845e from=translated src=- shape=b4a8c0c7 vocab=a5daaee7
+-/
 @[simp] theorem exponentialPolynomialMoment_X_pow (s : ℝ) (r : ℕ) :
     exponentialPolynomialMoment s (X ^ r) = (r ! : ℝ) / s ^ (r + 1) := by
   simpa only [monomial_one_right_eq_X_pow, one_mul] using
     exponentialPolynomialMoment_monomial s 1 r
 
+/--
+@isnad1 id=eq.0h2v.s7.1b79112386fa from=translated src=- shape=bbba56fe vocab=3c34032c
+-/
 @[simp] theorem exponentialPolynomialMoment_C (s a : ℝ) :
     exponentialPolynomialMoment s (C a) = a / s := by
   simpa using exponentialPolynomialMoment_monomial s a 0
 
 /-- Finite integration by parts for the exponential moment functional.
-Source: reciprocal exponential certificate (RC4)--(RC5).-/
+Source: reciprocal exponential certificate (RC4)--(RC5).
+@isnad1 id=eq.1h2v.s8.b241bd638355 from=translated src=- shape=30e5eed8 vocab=ac8b7cf1
+-/
 theorem exponentialPolynomialMoment_derivative {s : ℝ} (hs : s ≠ 0) (p : ℝ[X]) :
     exponentialPolynomialMoment s p.derivative =
       s * exponentialPolynomialMoment s p - p.coeff 0 := by
@@ -66,6 +77,9 @@ theorem exponentialPolynomialMoment_derivative {s : ℝ} (hs : s ≠ 0) (p : ℝ
 Source: reciprocal exponential certificate (RC2).-/
 def laguerreRodriguesOperator : ℝ[X] →ₗ[ℝ] ℝ[X] := derivative - LinearMap.id
 
+/--
+@isnad1 id=eq.0h1v.s7.7e9668df435a from=translated src=- shape=f8f44d67 vocab=699f245b
+-/
 @[simp] theorem laguerreRodriguesOperator_apply (p : ℝ[X]) :
     laguerreRodriguesOperator p = p.derivative - p := rfl
 
@@ -112,7 +126,9 @@ private theorem iterate_laguerreRodriguesOperator_C (n : ℕ) (a : ℝ) :
     ring
 
 /-- Applying `n` derivatives to `L_n` gives the constant `(-1)^n`.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=eq.0h1v.s7.cd35a05c6aa9 from=translated src=- shape=387ea055 vocab=b6d7b2ef
+-/
 theorem iterate_derivative_laguerrePolynomial_self (n : ℕ) :
     (derivative : ℝ[X] → ℝ[X])^[n] (laguerrePolynomial n) = C ((-1 : ℝ)^n) := by
   rw [laguerrePolynomial, iterate_derivative_smul]
@@ -126,7 +142,9 @@ theorem iterate_derivative_laguerrePolynomial_self (n : ℕ) :
   field_simp
 
 /-- More than `n` derivatives annihilate the Laguerre polynomial of order `n`.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=eq.1h2v.s7.b1aa2e3f0419 from=translated src=- shape=bd835bd1 vocab=bfe190fb
+-/
 theorem iterate_derivative_laguerrePolynomial_eq_zero {n k : ℕ} (hnk : n < k) :
     (derivative : ℝ[X] → ℝ[X])^[k] (laguerrePolynomial n) = 0 := by
   rw [laguerrePolynomial, iterate_derivative_smul,
@@ -159,7 +177,9 @@ private theorem exponentialPolynomialMoment_iterate_laguerreRodriguesOperator_mu
     ring
 
 /-- Finite integration by parts for a classical Laguerre polynomial.
-Source: reciprocal exponential certificate (RC4).-/
+Source: reciprocal exponential certificate (RC4).
+@isnad1 id=eq.0h2v.s8.ce2d314dc770 from=translated src=- shape=ea3cb0ac vocab=e471028c
+-/
 theorem exponentialPolynomialMoment_laguerrePolynomial_mul (n : ℕ) (p : ℝ[X]) :
     exponentialPolynomialMoment 1 (laguerrePolynomial n * p) =
       ((-1 : ℝ)^n / (n ! : ℝ)) * exponentialPolynomialMoment 1
@@ -172,7 +192,9 @@ theorem exponentialPolynomialMoment_laguerrePolynomial_mul (n : ℕ) (p : ℝ[X]
 /-- Classical Laguerre polynomials have unit diagonal and zero off-diagonal
 exponential moments. This is the finite Gram identity, with no infinite expansion.
 Source: reciprocal exponential certificate (RC6).
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.0h2v.s7.260164160b3e from=translated src=- shape=a4425096 vocab=bbd55eb6
+-/
 theorem exponentialPolynomialMoment_laguerrePolynomial_mul_laguerrePolynomial
     (i j : ℕ) :
     exponentialPolynomialMoment 1 (laguerrePolynomial i * laguerrePolynomial j) =
@@ -198,7 +220,9 @@ theorem exponentialPolynomialMoment_laguerrePolynomial_mul_laguerrePolynomial
       mul_zero, ite_eq_right (by omega)]
 
 /-- The Laplace moment of a Laguerre polynomial is a finite geometric expression.
-Source: reciprocal exponential certificate (RC3)--(RC6).-/
+Source: reciprocal exponential certificate (RC3)--(RC6).
+@isnad1 id=eq.1h2v.s7.d17a28558dd2 from=translated src=- shape=2f9fe050 vocab=e4184e2a
+-/
 theorem exponentialPolynomialMoment_laguerrePolynomial {s : ℝ} (hs : s ≠ 0) (n : ℕ) :
     exponentialPolynomialMoment s (laguerrePolynomial n) =
       (s - 1)^n / s^(n + 1) := by
@@ -220,7 +244,9 @@ theorem exponentialPolynomialMoment_laguerrePolynomial {s : ℝ} (hs : s ≠ 0) 
   field_simp
 
 /-- The top coefficient of a classical Laguerre polynomial is `(-1)^n/n!`.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=eq.0h1v.s5.1d195e1703dd from=translated src=- shape=898020b2 vocab=1c489bcd
+-/
 theorem coeff_laguerrePolynomial_self (n : ℕ) :
     (laguerrePolynomial n).coeff n = (-1 : ℝ)^n / (n ! : ℝ) := by
   have h := congrArg (fun p : ℝ[X] => p.coeff 0)
@@ -231,7 +257,9 @@ theorem coeff_laguerrePolynomial_self (n : ℕ) :
     simpa only [mul_comm] using h)
 
 /-- Classical Laguerre polynomials have their prescribed degree, including order zero.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=eq.0h1v.s3.3b68fa9e91f6 from=translated src=- shape=c3f7ecf6 vocab=ff385427
+-/
 @[simp] theorem natDegree_laguerrePolynomial (n : ℕ) :
     (laguerrePolynomial n).natDegree = n := by
   have h (k : ℕ) :
@@ -250,7 +278,9 @@ Source: reciprocal exponential certificate (RC1).-/
       (by exact_mod_cast Nat.factorial_ne_zero n)
 
 /-- No classical Laguerre polynomial vanishes identically.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=ne.0h1v.s4.6c67d7307e78 from=translated src=- shape=1c4b48a7 vocab=9cff783c
+-/
 theorem laguerrePolynomial_ne_zero (n : ℕ) : laguerrePolynomial n ≠ 0 := by
   intro h
   have hh := coeff_laguerrePolynomial_self n
@@ -259,7 +289,9 @@ theorem laguerrePolynomial_ne_zero (n : ℕ) : laguerrePolynomial n ≠ 0 := by
     (by exact_mod_cast Nat.factorial_ne_zero n)) hh.symm
 
 /-- The degree of a classical Laguerre polynomial equals its order.
-Source: reciprocal exponential certificate (RC1).-/
+Source: reciprocal exponential certificate (RC1).
+@isnad1 id=eq.0h1v.s4.ba1ae1ca3575 from=translated src=- shape=95ba4981 vocab=61df7f6b
+-/
 @[simp] theorem degree_laguerrePolynomial (n : ℕ) :
     (laguerrePolynomial n).degree = n := by
   rw [degree_eq_natDegree (laguerrePolynomial_ne_zero n), natDegree_laguerrePolynomial]
@@ -271,7 +303,9 @@ def laguerrePolynomialSequence : Polynomial.Sequence ℝ where
   degree_eq' := degree_laguerrePolynomial
 
 /-- The first `n+1` classical Laguerre polynomials span the full degree-`n` space.
-Source: reciprocal exponential certificate (RC1)--(RC6).-/
+Source: reciprocal exponential certificate (RC1)--(RC6).
+@isnad1 id=eq.0h1v.s6.fe067b1d03dd from=translated src=- shape=ef7931d2 vocab=62b6520b
+-/
 theorem span_laguerrePolynomial_eq_degreeLE (n : ℕ) :
     Submodule.span ℝ (Set.range (fun i : Fin (n + 1) => laguerrePolynomial i.val)) =
       degreeLE ℝ n := by
@@ -290,7 +324,9 @@ theorem span_laguerrePolynomial_eq_degreeLE (n : ℕ) :
   exact leadingCoeff_ne_zero.mpr (laguerrePolynomial_ne_zero i)
 
 /-- Every degree-bounded polynomial is a finite Laguerre linear combination.
-Source: reciprocal exponential certificate (RC6).-/
+Source: reciprocal exponential certificate (RC6).
+@isnad1 id=ex.1h2v.s7.5d9dfce95c96 from=translated src=- shape=c8aef2f0 vocab=ff7f6b21
+-/
 theorem exists_sum_smul_laguerrePolynomial {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) :
     ∃ a : Fin (n + 1) → ℝ, p = ∑ i, a i • laguerrePolynomial i.val := by
   have hmem : p ∈ Submodule.span ℝ

@@ -28,7 +28,9 @@ the diagonal of `A` in the coefficient's orthonormal eigenbasis. One fixed
 circle gives the transform at every real parameter, without a commutation
 assumption. No positivity of the complex-valued density is asserted.
 Source: Stahl 2013, Theorem 2, unitary reduction and transform verification.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=other.2h3v.s12.bef804114079 from=translated src=- shape=640f9861 vocab=53a75735
+-/
 theorem exists_exterior_branches_integral_circleDensity_eq_trace_matrixExp_sub_atoms_of_isHermitian
     (A B : Matrix n n ℂ) (hB : B.IsHermitian)
     (hsimple : Function.Injective hB.eigenvalues) :

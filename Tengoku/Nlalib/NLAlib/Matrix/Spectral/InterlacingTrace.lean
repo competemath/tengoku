@@ -19,7 +19,9 @@ variable {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
 
 /-- Any complete real characteristic-root list sums to the matrix trace.
 Source: the next coefficient of the characteristic polynomial; this form
-allows a separately indexed complete list and includes empty matrices.-/
+allows a separately indexed complete list and includes empty matrices.
+@isnad1 id=eq.1h4v.s7.feef2d13bf6d from=translated src=- shape=01235ff3 vocab=ec79827c
+-/
 theorem trace_eq_sum_of_charpoly_eq_prod (A : Matrix n n ℝ) (b : m → ℝ)
     (hb : A.charpoly = ∏ i, (X - C (b i))) : A.trace = ∑ i, b i := by
   rw [Matrix.trace_eq_neg_charpoly_nextCoeff, hb, ← Matrix.charpoly_diagonal,
@@ -28,7 +30,9 @@ theorem trace_eq_sum_of_charpoly_eq_prod (A : Matrix n n ℝ) (b : m → ℝ)
 /-- A prescribed bordered spectrum fixes the last diagonal scalar as its
 sum minus the trace of the leading matrix. Source: Horn–Johnson (2013),
 converse interlacing; no symmetry assumption is needed for this trace identity.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=eq.1h6v.s8.23afb7827ae1 from=translated src=- shape=318f0bc6 vocab=000b3989
+-/
 theorem border_eq_sum_sub_trace_of_charpoly_eq_prod
     (A : Matrix n n ℝ) (v : n → ℝ) (a : ℝ) (b : m → ℝ)
     (hb : (Matrix.fromBlocks A (Matrix.replicateCol (Fin 1) v)
@@ -44,7 +48,9 @@ theorem border_eq_sum_sub_trace_of_charpoly_eq_prod
 Euclidean coupling norm as the target sum minus the original trace.
 Source: Horn–Johnson (2013), converse interlacing; the sum of coordinate
 squares is explicit and includes the empty vector.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=eq.1h5v.s7.851712d72a49 from=translated src=- shape=307a47f2 vocab=cabb6cb8
+-/
 theorem sum_sq_eq_sum_sub_trace_of_charpoly_add_vecMulVec
     (A : Matrix n n ℝ) (v : n → ℝ) (b : m → ℝ)
     (hb : (A + Matrix.vecMulVec v v).charpoly = ∏ i, (X - C (b i))) :
@@ -57,7 +63,9 @@ theorem sum_sq_eq_sum_sub_trace_of_charpoly_add_vecMulVec
 /-- A prescribed negative rank-one-update spectrum fixes the squared
 Euclidean coupling norm as the original trace minus the target sum.
 Source: Horn–Johnson (2013), converse interlacing; includes empty dimension.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=eq.1h5v.s7.797fc423613d from=translated src=- shape=583fbf20 vocab=1be0bbf8
+-/
 theorem sum_sq_eq_trace_sub_sum_of_charpoly_sub_vecMulVec
     (A : Matrix n n ℝ) (v : n → ℝ) (b : m → ℝ)
     (hb : (A - Matrix.vecMulVec v v).charpoly = ∏ i, (X - C (b i))) :

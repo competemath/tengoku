@@ -45,12 +45,16 @@ def incidence : Matrix E V ℝ := fun e v =>
 def weightedIncidence (w : E → ℝ) : Matrix E V ℝ :=
   fun e v => Real.sqrt (w e) * o.incidence e v
 
-/-- Incidence multiplication computes oriented endpoint differences.-/
+/-- Incidence multiplication computes oriented endpoint differences.
+@isnad1 id=eq.0h6v.s6.730f13927334 from=translated src=- shape=7510341a vocab=0bf637ee
+-/
 theorem incidence_mulVec (x : V → ℝ) (e : E) :
     (o.incidence *ᵥ x) e = x (o.source e) - x (o.target e) := by
   simp [incidence, Matrix.mulVec, dotProduct, sub_mul, Finset.sum_sub_distrib]
 
-/-- Weighted incidence multiplication computes weighted endpoint differences.-/
+/-- Weighted incidence multiplication computes weighted endpoint differences.
+@isnad1 id=eq.0h7v.s6.6d4d324cea83 from=translated src=- shape=c00636b7 vocab=b2cfd5b6
+-/
 theorem weightedIncidence_mulVec (w : E → ℝ) (x : V → ℝ) (e : E) :
     (o.weightedIncidence w *ᵥ x) e =
       Real.sqrt (w e) * (x (o.source e) - x (o.target e)) := by
@@ -59,7 +63,9 @@ theorem weightedIncidence_mulVec (w : E → ℝ) (x : V → ℝ) (e : E) :
   exact congrArg (Real.sqrt (w e) * ·) (o.incidence_mulVec x e)
 
 /-- With strictly positive weights, the weighted incidence kernel imposes
-equality at exactly the pairs of adjacent vertices.-/
+equality at exactly the pairs of adjacent vertices.
+@isnad1 id=iff.1h6v.s6.555f4b23d3dd from=translated src=- shape=f4178fee vocab=0ed47c5a
+-/
 theorem weightedIncidence_mulVec_eq_zero_iff (w : E → ℝ) (hw : ∀ e, 0 < w e)
     (x : V → ℝ) : o.weightedIncidence w *ᵥ x = 0 ↔
       ∀ u v, G.Adj u v → x u = x v := by
@@ -112,7 +118,9 @@ def componentKernelEquiv (w : E → ℝ) (hw : ∀ e, 0 < w e) :
 /-- Rank of a weighted incidence matrix: number of vertices minus number of
 connected components. Positive weights and any orientation give the same rank.
 Source: Chung, Chapter 1.
-atlas: laplacian-resistance-leverage (partial)-/
+atlas: laplacian-resistance-leverage (partial)
+@isnad1 id=eq.1h5v.s6.41ade909445b from=translated src=- shape=3d5c2825 vocab=201558b5
+-/
 theorem rank_weightedIncidence [Fintype E] (w : E → ℝ) (hw : ∀ e, 0 < w e) :
     (o.weightedIncidence w).rank = Fintype.card V - Nat.card G.ConnectedComponent := by
   let : Fintype G.ConnectedComponent := Fintype.ofFinite _

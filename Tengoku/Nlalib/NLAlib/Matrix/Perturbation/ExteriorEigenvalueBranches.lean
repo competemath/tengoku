@@ -25,7 +25,9 @@ open scoped Matrix.Norms.L2Operator in
 analytic eigenvalue branches outside one common disk. Their affine offsets
 converge to the corresponding diagonal entries of the perturbation, as in
 Stahl (2013), Theorem 2.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h3v.s8.4917f241b2a6 from=translated src=- shape=ea2773d8 vocab=2625ead8
+-/
 theorem exists_exterior_eigenvalue_branches_of_diagonal
     (d : n → ℂ) (hd : Function.Injective d) (A : Matrix n n ℂ) :
     ∃ R : ℝ, 0 < R ∧ ∃ branch : n → ℂ → ℂ,
@@ -102,7 +104,9 @@ open scoped Matrix.Norms.L2Operator in
 domain of distinct holomorphic eigenvalues of `A - z B`, with
 `branchᵢ(z) + bᵢ z → Aᵢᵢ`. Hermitian symmetry is unnecessary for this local
 construction at infinity. Source: Stahl (2013), Theorem 2.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h3v.s8.d5dd413d9430 from=translated src=- shape=2def5421 vocab=d2823971
+-/
 theorem exists_exterior_eigenvalue_branches_sub_real_diagonal
     (b : n → ℝ) (hb : Function.Injective b) (A : Matrix n n ℂ) :
     ∃ R : ℝ, 0 < R ∧ ∃ branch : n → ℂ → ℂ,

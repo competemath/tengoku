@@ -59,7 +59,9 @@ private theorem rank_one_coeff_same {m n : Type*} [Fintype m] [Fintype n] (u : E
 
 /-- The Frobenius distance between two real unit-vector outer products is
 bounded by the sum of the two squared Euclidean distances. This is the
-coefficient comparison in Gordon's Gaussian minimax argument.-/
+coefficient comparison in Gordon's Gaussian minimax argument.
+@isnad1 id=le.4h6v.s8.4e7eae2a2440 from=translated src=- shape=9d4814bb vocab=11b2a677
+-/
 theorem frobSq_vecMulVec_sub_le_norm_sq_add {m n : Type*} [Fintype m] [Fintype n]
     (u u' : EuclideanSpace ℝ n) (v v' : EuclideanSpace ℝ m)
     (hu : ‖u‖ = 1) (hu' : ‖u'‖ = 1) (hv : ‖v‖ = 1) (hv' : ‖v'‖ = 1) :
@@ -70,7 +72,9 @@ theorem frobSq_vecMulVec_sub_le_norm_sq_add {m n : Type*} [Fintype m] [Fintype n
     rank_one_coeff_ineq u u' v v' hu hu' hv hv'
 
 /-- With one unit-vector factor fixed, the Frobenius distance between the
-outer products is exactly the Euclidean distance between the other factors.-/
+outer products is exactly the Euclidean distance between the other factors.
+@isnad1 id=eq.1h5v.s8.56d2c32bca7f from=translated src=- shape=623cace5 vocab=2c642799
+-/
 theorem frobSq_vecMulVec_sub_same_eq_norm_sq {m n : Type*} [Fintype m] [Fintype n]
     (u : EuclideanSpace ℝ n) (v v' : EuclideanSpace ℝ m) (hu : ‖u‖ = 1) :
     frobSq (Matrix.vecMulVec v.ofLp u.ofLp - Matrix.vecMulVec v'.ofLp u.ofLp)

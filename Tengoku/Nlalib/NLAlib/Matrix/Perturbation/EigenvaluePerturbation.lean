@@ -18,7 +18,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Every signed eigenvalue of a real symmetric matrix is bounded in absolute
-value by its spectral norm. Horn–Johnson 2013, Section 5.6.-/
+value by its spectral norm. Horn–Johnson 2013, Section 5.6.
+@isnad1 id=le.1h3v.s6.c746bf4a915c from=translated src=- shape=86b65610 vocab=ae10774a
+-/
 theorem abs_eigenvalues_le_specNorm {A : Matrix n n ℝ} (hA : A.IsHermitian) (i : n) :
     |hA.eigenvalues i| ≤ specNorm A := by
   have h := Matrix.l2_opNorm_mulVec A (hA.eigenvectorBasis i)
@@ -31,7 +33,9 @@ theorem abs_eigenvalues_le_specNorm {A : Matrix n n ℝ} (hA : A.IsHermitian) (i
 
 open scoped Matrix.Norms.L2Operator in
 /-- Sorted signed eigenvalues have absolute value at most the spectral norm.
-Horn–Johnson 2013, Section 5.6; supports `eigenvalue-perturbation-symmetric`.-/
+Horn–Johnson 2013, Section 5.6; supports `eigenvalue-perturbation-symmetric`.
+@isnad1 id=le.1h3v.s6.e61e950bd4e4 from=translated src=- shape=1ec8ed31 vocab=436cba3a
+-/
 theorem abs_eigenvalues₀_le_specNorm {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (i : Fin (Fintype.card n)) : |hA.eigenvalues₀ i| ≤ specNorm A := by
   have h := abs_eigenvalues_le_specNorm hA
@@ -39,7 +43,9 @@ theorem abs_eigenvalues₀_le_specNorm {A : Matrix n n ℝ} (hA : A.IsHermitian)
   simpa only [Matrix.IsHermitian.eigenvalues, Equiv.symm_apply_apply] using h
 
 /-- A symmetric quadratic form is bounded above by its largest eigenvalue.
-Horn–Johnson 2013, Theorem 4.2.2; supports signed eigenvalue perturbation.-/
+Horn–Johnson 2013, Theorem 4.2.2; supports signed eigenvalue perturbation.
+@isnad1 id=le.2h3v.s6.2b5841a870b4 from=translated src=- shape=3a6bbf21 vocab=b1a631be
+-/
 theorem dotProduct_mulVec_le_eigenvalues₀_zero_mul {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (hcard : 0 < Fintype.card n) (x : n → ℝ) :
     x ⬝ᵥ (A *ᵥ x) ≤ hA.eigenvalues₀ ⟨0, hcard⟩ * (x ⬝ᵥ x) := by
@@ -51,7 +57,9 @@ theorem dotProduct_mulVec_le_eigenvalues₀_zero_mul {A : Matrix n n ℝ}
     (Fintype.equivOfCardEq (Fintype.card_fin _)).symm i from Nat.zero_le _)
 
 /-- A symmetric quadratic form is bounded below by its smallest eigenvalue.
-Horn–Johnson 2013, Theorem 4.2.2; no sign condition on the matrix.-/
+Horn–Johnson 2013, Theorem 4.2.2; no sign condition on the matrix.
+@isnad1 id=le.2h3v.s7.f0592ed40c94 from=translated src=- shape=8a62f7d0 vocab=e8bdd453
+-/
 theorem eigenvalues₀_last_mul_le_dotProduct_mulVec {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (hcard : 0 < Fintype.card n) (x : n → ℝ) :
     hA.eigenvalues₀ ⟨Fintype.card n - 1, by omega⟩ * (x ⬝ᵥ x) ≤ x ⬝ᵥ (A *ᵥ x) := by
@@ -65,7 +73,9 @@ theorem eigenvalues₀_last_mul_le_dotProduct_mulVec {A : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- Weyl's signed eigenvalue perturbation bound, upper side.
 Horn–Johnson 2013, Theorem 4.3.1. Indices are decreasing and zero-indexed.
-atlas: eigenvalue-perturbation-symmetric-/
+atlas: eigenvalue-perturbation-symmetric
+@isnad1 id=le.2h4v.s7.58a1d57b5801 from=translated src=- shape=9602980e vocab=6bdf845e
+-/
 theorem eigenvalues₀_add_le_add_eigenvalues₀_zero {A E : Matrix n n ℝ}
     (hA : A.IsHermitian) (hE : E.IsHermitian) (i : Fin (Fintype.card n)) :
     (hA.add hE).eigenvalues₀ i ≤ hA.eigenvalues₀ i +
@@ -77,7 +87,9 @@ theorem eigenvalues₀_add_le_add_eigenvalues₀_zero {A E : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- Weyl's signed eigenvalue perturbation bound, lower side.
 Horn–Johnson 2013, Theorem 4.3.1. No positivity or simple-spectrum assumption.
-atlas: eigenvalue-perturbation-symmetric-/
+atlas: eigenvalue-perturbation-symmetric
+@isnad1 id=le.2h4v.s7.42d4bce40dbb from=translated src=- shape=8aef4d90 vocab=42081b15
+-/
 theorem add_eigenvalues₀_last_le_eigenvalues₀_add {A E : Matrix n n ℝ}
     (hA : A.IsHermitian) (hE : E.IsHermitian) (i : Fin (Fintype.card n)) :
     hA.eigenvalues₀ i + hE.eigenvalues₀ ⟨Fintype.card n - 1, by have := i.isLt; omega⟩ ≤
@@ -93,7 +105,9 @@ theorem add_eigenvalues₀_last_le_eigenvalues₀_add {A E : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- Signed sorted eigenvalues are 1-Lipschitz for the spectral norm.
 Horn–Johnson 2013, Corollary 4.3.15; arbitrary finite real symmetric matrices.
-atlas: eigenvalue-perturbation-symmetric-/
+atlas: eigenvalue-perturbation-symmetric
+@isnad1 id=le.2h4v.s7.b52756956ebf from=translated src=- shape=cc3cbd22 vocab=cc4f8a64
+-/
 theorem abs_eigenvalues₀_add_sub_le_specNorm {A E : Matrix n n ℝ}
     (hA : A.IsHermitian) (hE : E.IsHermitian) (i : Fin (Fintype.card n)) :
     |(hA.add hE).eigenvalues₀ i - hA.eigenvalues₀ i| ≤ specNorm E := by
@@ -108,7 +122,9 @@ theorem abs_eigenvalues₀_add_sub_le_specNorm {A E : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- Eigenvalues at the same decreasing index differ by at most the spectral norm
 of the matrix difference. Horn–Johnson 2013, Corollary 4.3.15.
-atlas: eigenvalue-perturbation-symmetric (partial)-/
+atlas: eigenvalue-perturbation-symmetric (partial)
+@isnad1 id=le.2h4v.s7.37cfcba2e4df from=translated src=- shape=0acd852d vocab=a7600bca
+-/
 theorem abs_eigenvalues₀_sub_le_specNorm_sub {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n)) :
     |hB.eigenvalues₀ i - hA.eigenvalues₀ i| ≤ specNorm (B - A) := by

@@ -21,7 +21,9 @@ namespace NLAlib
 of a real symmetric border of a strictly ordered diagonal matrix. The
 border's corner is the trace difference. Empty original lists, target
 repetitions, and zero couplings are included. Source: Horn--Johnson (2013),
-Section 4.3; atlas: interlacing-converse (partial).-/
+Section 4.3; atlas: interlacing-converse (partial).
+@isnad1 id=ex.3h3v.s9.a92e2f6a1bc4 from=translated src=- shape=0e9b9499 vocab=d7977057
+-/
 theorem exists_bordered_diagonal_charpoly_of_strictMono
     {n : ℕ} (d : Fin n → ℝ) (b : Fin (n + 1) → ℝ)
     (hd : StrictMono d) (hb : Monotone b)
@@ -69,7 +71,9 @@ theorem exists_bordered_diagonal_charpoly_of_strictMono
 list is the exact characteristic spectrum of a positive rank-one update.
 Target repetitions and zero updates are allowed, including dimension zero.
 Source: Horn--Johnson (2013), Section 4.3;
-atlas: interlacing-converse (partial).-/
+atlas: interlacing-converse (partial).
+@isnad1 id=ex.4h3v.s8.7753184b0086 from=translated src=- shape=bac988d5 vocab=07e4ca77
+-/
 theorem exists_diagonal_add_vecMulVec_charpoly_of_strictMono
     {n : ℕ} (d b : Fin n → ℝ) (hd : StrictMono d) (hb : Monotone b)
     (hlo : ∀ i, d i ≤ b i)

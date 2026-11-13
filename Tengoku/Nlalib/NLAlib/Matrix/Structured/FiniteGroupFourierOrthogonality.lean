@@ -25,7 +25,9 @@ variable {G : Type u} [Group G] [Fintype G]
 
 /-- The normalized coefficient transform has orthonormal rows, derived from
 native irreducibility and pairwise inequivalence by finite Schur averaging.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=eq.2h4v.s11.8b60949f4bdf from=translated src=- shape=d18f3c84 vocab=cec0681f
+-/
 theorem finiteGroupCoefficientTransform_mul_conjTranspose
     (hu : ∀ p g, LinearMap.toMatrix' (ρ p g) ∈ Matrix.unitaryGroup (D p) ℂ)
     (hne : ∀ p q, p ≠ q → IsEmpty (Representation.Equiv (ρ p) (ρ q))) :
@@ -87,7 +89,9 @@ theorem finiteGroupCoefficientTransform_mul_conjTranspose
 
 /-- The inverse-element Fourier matrix has orthonormal columns, including the
 correct order of its multiplicity and representation indices.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=hasortho.2h4v.s11.020811a6393b from=translated src=- shape=51438a23 vocab=f9939db5
+-/
 theorem finiteGroupFourierMatrix_hasOrthonormalCols
     (hu : ∀ p g, LinearMap.toMatrix' (ρ p g) ∈ Matrix.unitaryGroup (D p) ℂ)
     (hne : ∀ p q, p ≠ q → IsEmpty (Representation.Equiv (ρ p) (ρ q))) :

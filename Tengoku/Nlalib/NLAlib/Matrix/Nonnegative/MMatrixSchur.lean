@@ -18,7 +18,9 @@ namespace Matrix
 variable {ι κ η : Type*} [Fintype ι] [Fintype κ] [Fintype η]
 
 omit [Fintype ι] [Fintype η] in
-/-- Entrywise nonnegativity is preserved by rectangular matrix multiplication.-/
+/-- Entrywise nonnegativity is preserved by rectangular matrix multiplication.
+@isnad1 id=le.2h7v.s6.b13c3366982e from=translated src=- shape=35e80eea vocab=6791fbbe
+-/
 theorem mul_apply_nonneg_of_nonneg {A : Matrix ι κ ℝ} {B : Matrix κ η ℝ}
     (hA : ∀ i j, 0 ≤ A i j) (hB : ∀ i j, 0 ≤ B i j) (i : ι) (j : η) :
     0 ≤ (A * B) i j :=
@@ -27,7 +29,9 @@ theorem mul_apply_nonneg_of_nonneg {A : Matrix ι κ ℝ} {B : Matrix κ η ℝ}
 variable [DecidableEq ι] [DecidableEq κ]
 
 /-- The bottom-right inverse block is the inverse of the Schur complement.
-Both inverses are nonsingular; empty blocks are allowed.-/
+Both inverses are nonsingular; empty blocks are allowed.
+@isnad1 id=eq.2h6v.s8.4cded0c16018 from=translated src=- shape=5789c76d vocab=c2daaa40
+-/
 theorem inverse_fromBlocks_bottomRight_of_isUnit
     (E : Matrix ι ι ℝ) (F : Matrix ι κ ℝ) (G : Matrix κ ι ℝ) (H : Matrix κ κ ℝ)
     (hE : IsUnit E) (hA : IsUnit (Matrix.fromBlocks E F G H)) :
@@ -47,7 +51,9 @@ theorem inverse_fromBlocks_bottomRight_of_isUnit
 
 omit [Fintype κ] [DecidableEq κ] in
 /-- The Schur complement of a Z-matrix with an inverse-positive leading block
-is again a Z-matrix.-/
+is again a Z-matrix.
+@isnad1 id=iszmatri.2h6v.s7.48995f826e17 from=translated src=- shape=8f7de61c vocab=56af87b3
+-/
 theorem IsZMatrix.schurComplement {E : Matrix ι ι ℝ} {F : Matrix ι κ ℝ}
     {G : Matrix κ ι ℝ} {H : Matrix κ κ ℝ}
     (hA : (Matrix.fromBlocks E F G H).IsZMatrix) (hE : E.IsNonsingularMMatrix) :
@@ -67,7 +73,9 @@ theorem IsZMatrix.schurComplement {E : Matrix ι ι ℝ} {F : Matrix ι κ ℝ}
 principal block and its Schur complement are nonsingular M-matrices.
 The statement includes arbitrary finite index sets and empty blocks.
 Source: Berman–Plemmons, Chapter 6.
-atlas: m-matrix-schur-complement (partial)-/
+atlas: m-matrix-schur-complement (partial)
+@isnad1 id=iff.2h6v.s7.b66536e76a76 from=translated src=- shape=453fcba7 vocab=feedf176
+-/
 theorem isNonsingularMMatrix_fromBlocks_iff
     (E : Matrix ι ι ℝ) (F : Matrix ι κ ℝ) (G : Matrix κ ι ℝ) (H : Matrix κ κ ℝ)
     (hA : (Matrix.fromBlocks E F G H).IsZMatrix) (hEunit : IsUnit E) :

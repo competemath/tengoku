@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Actual upper characteristic roots glue to a Schwarz-symmetric exterior
 inverse family on an open slit-plane domain. The global bound includes the
-real points and therefore controls every thin contour uniformly.-/
+real points and therefore controls every thin contour uniformly.
+@isnad1 id=ex.6h6v.s9.6ec4945ee043 from=translated src=- shape=fc804a4f vocab=efb3fce2
+-/
 theorem exists_inversePencilUpperRootSum_extension
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ) (s : ℝ)
     (hs : ∀ i, s ≠ b i) {R : ℝ} (branch : n → ℂ → ℂ)

@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- Every real two by two matrix has an orthogonal conjugate with equal
 diagonal entries. Diagonalize its symmetric part and then rotate by 45 degrees.
-Horn–Johnson 2013, Theorem 2.3.1; corrected real Schur block helper.-/
+Horn–Johnson 2013, Theorem 2.3.1; corrected real Schur block helper.
+@isnad1 id=ex.0h1v.s8.d1712275a8cf from=translated src=- shape=03e4b7ca vocab=832e1237
+-/
 theorem exists_orthogonal_two_eq_diagonal (A : Matrix (Fin 2) (Fin 2) ℝ) :
     ∃ U : Matrix (Fin 2) (Fin 2) ℝ, HasOrthonormalCols U ∧
       (Uᵀ * A * U) 0 0 = (Uᵀ * A * U) 1 1 := by

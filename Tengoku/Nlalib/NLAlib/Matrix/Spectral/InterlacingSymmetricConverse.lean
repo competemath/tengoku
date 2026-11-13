@@ -22,7 +22,9 @@ border of a prescribed real symmetric matrix, with the last diagonal entry
 fixed by the difference of spectral sums. The supplied complete original
 root list records its spectrum. Source: Horn–Johnson (2013),
 Theorem 4.3.21; repeated roots and empty leading matrices are included.
-atlas: interlacing-converse-/
+atlas: interlacing-converse
+@isnad1 id=ex.5h4v.s9.7ce282a52591 from=translated src=- shape=9e476ccf vocab=a3e4c4df
+-/
 theorem exists_bordered_charpoly_of_interlacing
     (A : Matrix n n ℝ) (hA : A.IsHermitian)
     (d : Fin (Fintype.card n) → ℝ) (b : Fin (Fintype.card n + 1) → ℝ)
@@ -48,7 +50,9 @@ theorem exists_bordered_charpoly_of_interlacing
 `A+vvᵀ` for a prescribed real symmetric matrix, with squared coupling norm
 the difference of target and original spectral sums. Source: Horn–Johnson
 (2013), Theorem 4.3.26; all repeated roots, equalities and empty shapes remain.
-atlas: interlacing-converse-/
+atlas: interlacing-converse
+@isnad1 id=ex.6h4v.s9.3d01c11accdb from=translated src=- shape=24745a67 vocab=cf62d54a
+-/
 theorem exists_add_vecMulVec_charpoly_of_interlacing
     (A : Matrix n n ℝ) (hA : A.IsHermitian)
     (d b : Fin (Fintype.card n) → ℝ) (hd : Monotone d) (hb : Monotone b)
@@ -73,7 +77,9 @@ theorem exists_add_vecMulVec_charpoly_of_interlacing
 the original spectral sum minus the target sum. Source: Horn–Johnson
 (2013), Theorem 4.3.26; reversal and negation reduce to the positive case,
 without strictness assumptions or loss of multiplicities or empty cases.
-atlas: interlacing-converse-/
+atlas: interlacing-converse
+@isnad1 id=ex.6h4v.s9.f49cfbb022ec from=translated src=- shape=16c75525 vocab=cf62d54a
+-/
 theorem exists_sub_vecMulVec_charpoly_of_interlacing
     (A : Matrix n n ℝ) (hA : A.IsHermitian)
     (d b : Fin (Fintype.card n) → ℝ) (hd : Monotone d) (hb : Monotone b)

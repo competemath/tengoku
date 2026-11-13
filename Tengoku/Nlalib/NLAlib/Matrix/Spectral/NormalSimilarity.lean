@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [DecidableEq n] in
 /-- Equal complete characteristic factorizations differ by an index
 permutation. Source: Horn–Johnson (2013), §2.5; root multiplicities are
-retained, so repeated eigenvalues require no special case.-/
+retained, so repeated eigenvalues require no special case.
+@isnad1 id=ex.1h3v.s7.f361d3a3be4b from=translated src=- shape=9ca5c540 vocab=068a4b2d
+-/
 theorem exists_perm_eq_of_prod_X_sub_C_eq (a b : n → ℂ)
     (hab : (∏ i, (X - C (a i))) = ∏ i, (X - C (b i))) :
     ∃ σ : Equiv.Perm n, ∀ i, b (σ i) = a i := by
@@ -37,7 +39,9 @@ theorem exists_perm_eq_of_prod_X_sub_C_eq (a b : n → ℂ)
 /-- A normal matrix can be unitarily diagonalized in any prescribed complete
 characteristic eigenvalue order. Source: Horn–Johnson (2013), Theorem 2.5.3;
 the order may contain repeated eigenvalues and an empty index type.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=ex.2h3v.s9.065b3887479a from=translated src=- shape=b457ad30 vocab=ac7f45d3
+-/
 theorem exists_unitary_diagonalization_of_normal_with_charpoly {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (d : n → ℂ)
     (hd : A.charpoly = ∏ i, (X - C (d i))) :
@@ -78,7 +82,9 @@ theorem exists_unitary_diagonalization_of_normal_with_charpoly {A : Matrix n n �
 have the same characteristic eigenvalues with multiplicity.
 Horn–Johnson (2013), Theorem 2.5.8; equality of characteristic polynomials
 is the precise multiplicity-sensitive equality of eigenvalue lists.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=iff.2h3v.s9.e7910cba418b from=translated src=- shape=53875b60 vocab=e95915cb
+-/
 theorem exists_unitary_similarity_iff_charpoly_eq_of_normal {A B : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (hB : B * Bᴴ = Bᴴ * B) :
     (∃ U : Matrix.unitaryGroup n ℂ,

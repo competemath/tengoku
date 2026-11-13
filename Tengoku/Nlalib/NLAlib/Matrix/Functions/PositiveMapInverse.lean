@@ -18,7 +18,9 @@ namespace NLAlib
 
 variable {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
 
-/-- Positive scalar reciprocal blocks are positive after tensoring by a PSD matrix.-/
+/-- Positive scalar reciprocal blocks are positive after tensoring by a PSD matrix.
+@isnad1 id=possemid.2h3v.s6.959291e518ed from=translated src=- shape=0742b61f vocab=0ff864ac
+-/
 theorem posSemidef_reciprocal_fromBlocks {B : Matrix m m ℂ}
     (hB : B.PosSemidef) {t : ℝ} (ht : 0 < t) :
     (fromBlocks ((t : ℂ) • B) B B ((t : ℂ)⁻¹ • B)).PosSemidef := by
@@ -33,7 +35,9 @@ theorem posSemidef_reciprocal_fromBlocks {B : Matrix m m ℂ}
   simpa only [hstar, hstari, haa, hi, mul_inv_cancel₀ ha,
     inv_mul_cancel₀ ha, one_smul] using posSemidef_scalar_gram_fromBlocks hB a a⁻¹
 
-/-- A Hermitian invertible matrix has the reciprocal spectral expansion.-/
+/-- A Hermitian invertible matrix has the reciprocal spectral expansion.
+@isnad1 id=eq.2h2v.s7.cc52aceaa078 from=translated src=- shape=a7a2657a vocab=1bf0d6d7
+-/
 theorem inv_eq_sum_inv_eigenvalue_smul_unitarySpectralProjector
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (hu : IsUnit A) :
     A⁻¹ = ∑ i, (hA.eigenvalues i : ℂ)⁻¹ •

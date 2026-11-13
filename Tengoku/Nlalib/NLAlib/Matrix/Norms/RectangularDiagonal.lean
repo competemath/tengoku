@@ -21,7 +21,9 @@ using the existing zero-padded `rectDiag` vocabulary.-/
 def rectangularDiagonal {m n : ℕ} (x : Fin (min m n) → ℝ) : Matrix (Fin m) (Fin n) ℝ :=
   rectDiag (fun i => if hi : i < min m n then x ⟨i, hi⟩ else 0)
 
-/-- Thin diagonal coordinates recover the embedded vector exactly.-/
+/-- Thin diagonal coordinates recover the embedded vector exactly.
+@isnad1 id=eq.0h5v.s6.6deb8118a293 from=translated src=- shape=cf52ade7 vocab=843f428a
+-/
 @[simp] theorem rectangularDiagonal_apply_castLE {m n : ℕ} (x : Fin (min m n) → ℝ)
     (i j : Fin (min m n)) :
     rectangularDiagonal x (Fin.castLE (min_le_left m n) i) (Fin.castLE (min_le_right m n) j) =
@@ -29,7 +31,9 @@ def rectangularDiagonal {m n : ℕ} (x : Fin (min m n) → ℝ) : Matrix (Fin m)
   have hi : i.val < m ∧ i.val < n := lt_min_iff.mp i.isLt
   simp [rectangularDiagonal, rectDiag_apply, Fin.val_inj, hi.1, hi.2]
 
-/-- The rectangular diagonal embedding is injective, also for empty shapes.-/
+/-- The rectangular diagonal embedding is injective, also for empty shapes.
+@isnad1 id=injectiv.0h2v.s4.d5c413f1acf4 from=translated src=- shape=f9d3a1f7 vocab=af9bcc69
+-/
 theorem rectangularDiagonal_injective {m n : ℕ} :
     Function.Injective (rectangularDiagonal (m := m) (n := n)) := by
   intro x y hxy
@@ -50,11 +54,15 @@ def rectangularDiagonalLinear (m n : ℕ) : (Fin (min m n) → ℝ) →ₗ[ℝ] 
     simp only [rectangularDiagonal, rectDiag_apply, Matrix.smul_apply, Pi.smul_apply, smul_eq_mul]
     split_ifs <;> simp
 
-/-- The linear embedding evaluates to the specified rectangular diagonal.-/
+/-- The linear embedding evaluates to the specified rectangular diagonal.
+@isnad1 id=eq.0h3v.s7.57de6b08dc20 from=translated src=- shape=6c0fd46b vocab=55914bb8
+-/
 @[simp] theorem rectangularDiagonalLinear_apply {m n : ℕ} (x : Fin (min m n) → ℝ) :
     rectangularDiagonalLinear m n x = rectangularDiagonal x := rfl
 
-/-- A unit-sign diagonal matrix is orthogonal.-/
+/-- A unit-sign diagonal matrix is orthogonal.
+@isnad1 id=hasortho.1h2v.s5.ee0f37de9f88 from=translated src=- shape=810826ff vocab=19e4ffe6
+-/
 theorem hasOrthonormalCols_diagonal_of_abs_eq_one {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ε : ι → ℝ) (hε : ∀ i, |ε i| = 1) : HasOrthonormalCols (Matrix.diagonal ε) := by
   change (Matrix.diagonal ε)ᵀ * Matrix.diagonal ε = 1
@@ -69,7 +77,9 @@ theorem hasOrthonormalCols_diagonal_of_abs_eq_one {ι : Type*} [Fintype ι] [Dec
   · simp [hij]
 
 /-- Independent signs on a thin vector are implemented by a left
-orthogonal diagonal matrix, extended by ones on unused row coordinates.-/
+orthogonal diagonal matrix, extended by ones on unused row coordinates.
+@isnad1 id=ex.1h4v.s7.f5a4e4ca31a5 from=translated src=- shape=5caa29eb vocab=b037db3f
+-/
 theorem exists_orthogonal_rectangularDiagonal_sign {m n : ℕ}
     (x ε : Fin (min m n) → ℝ) (hε : ∀ i, |ε i| = 1) :
     ∃ U : Matrix (Fin m) (Fin m) ℝ, HasOrthonormalCols U ∧
@@ -85,7 +95,9 @@ theorem exists_orthogonal_rectangularDiagonal_sign {m n : ℕ}
     simp only [rectangularDiagonal, rectDiag_apply, s]
     split_ifs <;> simp_all
 
-/-- A real permutation matrix is orthogonal.-/
+/-- A real permutation matrix is orthogonal.
+@isnad1 id=hasortho.0h2v.s4.6be4436caeed from=translated src=- shape=675c6b5e vocab=427c6d0b
+-/
 theorem hasOrthonormalCols_permMatrix {ι : Type*} [Fintype ι] [DecidableEq ι]
     (σ : Equiv.Perm ι) : HasOrthonormalCols (σ.permMatrix ℝ) := by
   change (σ.permMatrix ℝ)ᵀ * σ.permMatrix ℝ = 1
@@ -95,7 +107,9 @@ theorem hasOrthonormalCols_permMatrix {ι : Type*} [Fintype ι] [DecidableEq ι]
 def prefixPermutation {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk : k ≤ m) : Equiv.Perm (Fin m) :=
   σ.viaFintypeEmbedding (Fin.castLEEmb hk)
 
-/-- A prefix permutation acts on each embedded prefix coordinate as specified.-/
+/-- A prefix permutation acts on each embedded prefix coordinate as specified.
+@isnad1 id=eq.2h4v.s6.97fbdb9efd9f from=translated src=- shape=fbeb247f vocab=0fdc5dc6
+-/
 theorem prefixPermutation_apply_of_lt {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk : k ≤ m)
     (i : Fin m) (hi : i.val < k) :
     prefixPermutation σ hk i = Fin.castLE hk (σ ⟨i.val, hi⟩) := by
@@ -103,7 +117,9 @@ theorem prefixPermutation_apply_of_lt {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk 
   conv_lhs => rw [prefixPermutation, ← he, Equiv.Perm.viaFintypeEmbedding_apply_image]
   rfl
 
-/-- A prefix permutation fixes every coordinate outside its prefix.-/
+/-- A prefix permutation fixes every coordinate outside its prefix.
+@isnad1 id=eq.2h4v.s5.550d9c8814bd from=translated src=- shape=95101176 vocab=ebc1c55c
+-/
 theorem prefixPermutation_apply_of_not_lt {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk : k ≤ m)
     (i : Fin m) (hi : ¬ i.val < k) : prefixPermutation σ hk i = i := by
   apply Equiv.Perm.viaFintypeEmbedding_apply_notMem_range

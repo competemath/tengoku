@@ -28,7 +28,9 @@ variable {ι : Type*} [Fintype ι]
 
 /-- A positive spectral value above the old barrier contributes a nonnegative
 reciprocal gap and dominates the new squared reciprocal after multiplication
-by the barrier decrement.-/
+by the barrier decrement.
+@isnad1 id=and.2h3v.s7.98d8c822cdca from=translated src=- shape=fa91d4ae vocab=d92d0ea6
+-/
 theorem reciprocal_gap_nonneg_and_sq_le {a b δ : ℝ}
     (ha : b < a) (hδ : 0 < δ) :
     0 ≤ 1 / (a - b) - 1 / (a - (b - δ)) ∧
@@ -46,7 +48,9 @@ theorem reciprocal_gap_nonneg_and_sq_le {a b δ : ℝ}
   · apply (div_le_div_iff₀ (sq_pos_of_pos hy) (mul_pos hx hy)).mpr
     nlinarith [mul_nonneg hδ.le (mul_nonneg hy.le hδ.le)]
 
-/-- The kernel reciprocal gap has the exact value `δ / (b * (b - δ))`.-/
+/-- The kernel reciprocal gap has the exact value `δ / (b * (b - δ))`.
+@isnad1 id=eq.2h2v.s6.010ee491e299 from=translated src=- shape=8afe0f8a vocab=2d787729
+-/
 theorem zero_reciprocal_gap {b δ : ℝ} (hδ : 0 < δ) (hb : δ < b) :
     1 / (0 - b) - 1 / (0 - (b - δ)) = δ / (b * (b - δ)) := by
   have hb0 : b ≠ 0 := ne_of_gt (lt_trans hδ hb)
@@ -58,7 +62,9 @@ theorem zero_reciprocal_gap {b δ : ℝ} (hδ : 0 < δ) (hb : δ < b) :
 If each spectral value is zero or above `b`, the kernel mass is `q`, and
 `b * Λ ≤ δ * q`, then the squared new resolvent is bounded by the actual
 weighted reciprocal gap. This is the quantitative averaging inequality in
-Spielman--Srivastava (2009), Theorem 2.-/
+Spielman--Srivastava (2009), Theorem 2.
+@isnad1 id=other.6h6v.s8.c4630aefc017 from=translated src=- shape=7bcbd3ed vocab=4863646d
+-/
 theorem weighted_reciprocal_sq_le
     (a w : ι → ℝ) {b δ Λ : ℝ} (hδ : 0 < δ) (hb : δ < b)
     (hΛ : 0 < Λ) (hw : ∀ i, 0 ≤ w i)

@@ -31,7 +31,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 slopes. The proof constructs the inverse branches and actual upper-root sum;
 neither a positive-density assumption nor a representing measure is used.
 Source: Stahl (2013), Theorem 2, planar root-sum proof.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=le.7h7v.s8.6d8cb0c2a39e from=translated src=- shape=047e683b vocab=3ba222ee
+-/
 theorem traceExponentialCircleDensity_re_nonneg_of_exterior_branches
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ) (hb : Function.Injective b)
     {R ρ : ℝ} {forward : n → ℂ → ℂ}
@@ -80,7 +82,9 @@ exponential representing measure on every closed interval containing those
 slopes. Density positivity is proved by the planar root-sum argument, and the
 atoms and density give the actual measure.
 Source: Stahl (2013), Theorem 2, simple diagonal case.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.4h5v.s7.fa183ff93d1e from=translated src=- shape=030ad857 vocab=f916e8cf
+-/
 theorem exists_isCompactExpRepresentation_traceExp_diagonal_of_injective
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ) (hb : Function.Injective b)
     {l u : ℝ} (hlu : l ≤ u) (hbu : ∀ i, b i ∈ Icc l u) :

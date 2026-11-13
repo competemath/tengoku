@@ -41,7 +41,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 /-- The scalar Schur equation has the expected strict derivative at the
 origin whenever the remaining block excludes the original eigenvalue.
 Source: Horn–Johnson (2013), Theorem 6.3.12; the quadratic coupling has zero
-first derivative at zero, and Banach-algebra inversion is smooth there.-/
+first derivative at zero, and Banach-algebra inversion is smooth there.
+@isnad1 id=hasstric.1h7v.s9.1434c52594fc from=translated src=- shape=1a942457 vocab=8bdb4724
+-/
 theorem hasStrictFDerivAt_simpleEigenvalueSchurFunction (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
     HasStrictFDerivAt (simpleEigenvalueSchurFunction μ a B F b c)

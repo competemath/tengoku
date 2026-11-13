@@ -16,7 +16,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The squared diagonal error changes by an exact quadratic expression when
 two orthonormal eigenvectors have disjoint supports. Schur–Horn variational
-rederivation, equation (6).-/
+rederivation, equation (6).
+@isnad1 id=eq.8h9v.s9.d8f3d72c224d from=translated src=- shape=fc43a83e vocab=6002a470
+-/
 theorem sum_sq_diagonal_error_planeRotation_eq
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (d u v : n → ℝ)
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1) (hv : ‖(WithLp.toLp 2 v : EuclideanSpace ℝ n)‖ = 1) (huv : u ⬝ᵥ v = 0)
@@ -55,7 +57,9 @@ private theorem exists_pos_quadratic_neg {δ η K : ℝ}
 /-- If residual-weighted unit eigenvectors have positive separation, their
 eigenvalues cannot be strictly inverted at a global squared-diagonal-error
 minimum. The contradiction uses an explicit finite decreasing rotation.
-Schur–Horn variational rederivation, equation (6).-/
+Schur–Horn variational rederivation, equation (6).
+@isnad1 id=le.9h7v.s9.9b892b877e27 from=translated src=- shape=3d6178a4 vocab=b98de7ed
+-/
 theorem eigenvalue_le_of_diagonal_error_min
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (d u v : n → ℝ)
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1) (hv : ‖(WithLp.toLp 2 v : EuclideanSpace ℝ n)‖ = 1) (huv : u ⬝ᵥ v = 0)

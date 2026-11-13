@@ -14,7 +14,9 @@ variable {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
 
 /-- Relabeling every leading coordinate of a diagonal arrowhead leaves its
 characteristic polynomial unchanged. Source: permutation similarity;
-helper for the arbitrary-finite-shape converse-interlacing constructions.-/
+helper for the arbitrary-finite-shape converse-interlacing constructions.
+@isnad1 id=eq.0h6v.s9.596b8a5cad11 from=translated src=- shape=c3ed07e8 vocab=7d23f455
+-/
 theorem charpoly_diagonal_arrowhead_reindex (e : n ≃ m) (d v : n → ℝ) (a : ℝ) :
     (Matrix.fromBlocks (Matrix.diagonal (d ∘ e.symm)) (Matrix.replicateCol (Fin 1) (v ∘ e.symm))
       (Matrix.replicateRow (Fin 1) (v ∘ e.symm)) (Matrix.of fun _ _ : Fin 1 => a)).charpoly =
@@ -31,7 +33,9 @@ theorem charpoly_diagonal_arrowhead_reindex (e : n ≃ m) (d v : n → ℝ) (a :
 
 /-- Relabeling a diagonal rank-one update leaves its characteristic
 polynomial unchanged. Source: permutation similarity; helper for converse
-interlacing on arbitrary finite matrix labels.-/
+interlacing on arbitrary finite matrix labels.
+@isnad1 id=eq.0h5v.s7.3a8fb2d06794 from=translated src=- shape=8bb4215d vocab=9f75947e
+-/
 theorem charpoly_diagonal_add_vecMulVec_reindex (e : n ≃ m) (d v : n → ℝ) :
     (Matrix.diagonal (d ∘ e.symm) + Matrix.vecMulVec (v ∘ e.symm) (v ∘ e.symm)).charpoly =
       (Matrix.diagonal d + Matrix.vecMulVec v v).charpoly := by

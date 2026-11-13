@@ -23,7 +23,9 @@ namespace NLAlib
 variable {𝕜 : Type*} [RCLike 𝕜]
 
 /-- Real functional calculus of a real diagonal over either scalar field is entrywise.
-Arbitrary functions are permitted since the spectrum is finite.-/
+Arbitrary functions are permitted since the spectrum is finite.
+@isnad1 id=eq.0h4v.s7.06ea037cb90b from=translated src=- shape=8476e235 vocab=2411e1f3
+-/
 theorem cfc_diagonal_ofReal {n : Type*} [Fintype n] [DecidableEq n]
     (f : ℝ → ℝ) (x : n → ℝ) :
     cfc f (Matrix.diagonal fun i => (x i : 𝕜)) =
@@ -58,7 +60,9 @@ theorem cfc_diagonal_ofReal {n : Type*} [Fintype n] [DecidableEq n]
   rw [Polynomial.aeval_algebraMap_apply_eq_algebraMap_eval, hp (x i) ⟨i, rfl⟩]
 
 /-- Functional calculus respects a unitary change between finite coordinate spaces.
-Both inverse identities are explicit, so the statement includes empty spaces.-/
+Both inverse identities are explicit, so the statement includes empty spaces.
+@isnad1 id=eq.3h6v.s9.91ebf3d6534e from=translated src=- shape=269bb4ad vocab=68bbf206
+-/
 theorem cfc_isometric_conj {m n : Type*} [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n] (U : Matrix m n 𝕜)
     (hU : HasOrthonormalCols U) (hU' : U * Uᴴ = 1) (f : ℝ → ℝ)

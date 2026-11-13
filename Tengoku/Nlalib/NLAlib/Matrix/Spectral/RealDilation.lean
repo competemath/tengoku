@@ -16,7 +16,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Mixed rectangular diagonal multiplication gives the coordinate products,
-with zeros beyond the intermediate dimension. Horn–Johnson 2013, Section 2.6.-/
+with zeros beyond the intermediate dimension. Horn–Johnson 2013, Section 2.6.
+@isnad1 id=eq.0h5v.s6.9ebf7d29ed9f from=translated src=- shape=5c420b53 vocab=58b49541
+-/
 theorem rectDiag_mul_rectDiag {m n p : ℕ} (s t : ℕ → ℝ) :
     (rectDiag s : Matrix (Fin m) (Fin n) ℝ) *
       (rectDiag t : Matrix (Fin n) (Fin p) ℝ) =

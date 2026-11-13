@@ -40,7 +40,9 @@ private theorem convex_numericalRange_fin_le_two {d : ℕ} (hd : d ≤ 2)
 (Toeplitz–Hausdorff), including empty matrices. The proof compresses any two
 unit-vector witnesses to their span and invokes the two-dimensional theorem.
 Source: Horn–Johnson (1991), Chapter 1; operator derivations, Section 8.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=convex.0h2v.s5.ccf41ccdfb38 from=translated src=- shape=d145cef2 vocab=43c4b4f8
+-/
 theorem convex_numericalRange {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℂ) : Convex ℝ (numericalRange A) := by
   classical

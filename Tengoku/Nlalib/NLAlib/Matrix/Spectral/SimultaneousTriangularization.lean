@@ -20,7 +20,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n]
 /-- An arbitrary commuting family of nonempty complex square matrices has
 a common nonzero eigenvector. Source: Horn–Johnson (2013), Lemma 1.3.19;
 infinite and empty families are allowed.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.1h3v.s7.0b476e746c5c from=translated src=- shape=fa7d33bc vocab=19729a9f
+-/
 theorem exists_common_mulVec_eigenvector_of_commute [Nonempty n]
     (A : ι → Matrix n n ℂ) (hcomm : Pairwise fun i j => Commute (A i) (A j)) :
     ∃ (x : n → ℂ) (d : ι → ℂ), x ≠ 0 ∧ ∀ i, A i *ᵥ x = d i • x := by
@@ -34,7 +36,9 @@ theorem exists_common_mulVec_eigenvector_of_commute [Nonempty n]
 diagonal giving that member's characteristic roots with multiplicity.
 Source: Horn–Johnson (2013), Theorem 2.3.3; one explicit enumeration handles
 arbitrary finite and empty matrix shapes, and the family may be infinite.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.1h4v.s9.e13ac77b1e5c from=translated src=- shape=c223d62d vocab=024bbf7f
+-/
 theorem exists_simultaneous_unitary_schur_triangularization
     (A : ι → Matrix n n ℂ) (hcomm : Pairwise fun i j => Commute (A i) (A j))
     (e : Fin (Fintype.card n) ≃ n) :

@@ -26,7 +26,9 @@ namespace NLAlib
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- The ridge kernel is the finite functional calculus filter `x / (x + ρ)` of the row Gram
-matrix. This identifies its spectral values without selecting individual singular vectors.-/
+matrix. This identifies its spectral values without selecting individual singular vectors.
+@isnad1 id=eq.1h4v.s7.fdcdcf49fc36 from=translated src=- shape=18f5868a vocab=a8e0f98a
+-/
 theorem ridgeKernel_eq_cfc (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     ridgeKernel A ρ = cfc (fun x : ℝ => x / (x + ρ)) (A * Aᵀ) := by
   let G := A * Aᵀ

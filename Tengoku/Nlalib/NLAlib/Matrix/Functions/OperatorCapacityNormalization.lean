@@ -27,7 +27,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι]
 
 /-- A positive-capacity Kraus map sends every normalized positive definite
 test matrix to a positive definite matrix. Its determinant is bounded below
-by the positive capacity.-/
+by the positive capacity.
+@isnad1 id=posdef.3h4v.s8.ae60c68b76bf from=translated src=- shape=a98f8c43 vocab=ef989e3b
+-/
 theorem posDef_krausMap_of_operatorCapacity_pos
     (A : ι → Matrix n n ℂ) (hcap : 0 < operatorCapacity (krausMap A))
     {X : Matrix n n ℂ} (hX : X.PosDef) (hdet : X.det = 1) :
@@ -41,7 +43,9 @@ theorem posDef_krausMap_of_operatorCapacity_pos
 /-- Normalizing a positive-capacity Kraus family at an actual determinant-one
 positive definite test matrix gives an invertible unital scaling. The product
 of its squared determinant factors is exactly the reciprocal objective value.
-Source: GGOW, arXiv:1511.03730v4, Lemma 3.9, normalization formula.-/
+Source: GGOW, arXiv:1511.03730v4, Lemma 3.9, normalization formula.
+@isnad1 id=ex.3h4v.s9.2c2addfaa86d from=translated src=- shape=2638372f vocab=528bf44c
+-/
 theorem exists_isUnit_unital_scaling_of_operatorCapacity_pos
     (A : ι → Matrix n n ℂ) (hcap : 0 < operatorCapacity (krausMap A))
     {X : Matrix n n ℂ} (hX : X.PosDef) (hdet : X.det = 1) :

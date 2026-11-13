@@ -18,7 +18,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- A Z-matrix has positive image of a positive vector exactly when its
 right diagonal scaling has positive diagonal and strict absolute row dominance.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=iff.2h3v.s7.b47d828d1fc3 from=translated src=- shape=81afcff2 vocab=e509497a
+-/
 theorem IsZMatrix.mulVec_pos_iff_right_diagonal_strict_dominance
     {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) {x : ι → ℝ} (hx : ∀ i, 0 < x i) :
     (∀ i, 0 < (A *ᵥ x) i) ↔

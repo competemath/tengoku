@@ -25,7 +25,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Native differentiability gives the genuine rescaled ordered-product
-limit along reciprocal integer times.-/
+limit along reciprocal integer times.
+@isnad1 id=tendsto.0h2v.s7.71464fa8d49f from=translated src=- shape=8d2b7a91 vocab=5e524908
+-/
 theorem tendsto_natCast_smul_orderedMatrixExp_sub_one (H : List (Matrix n n ℂ)) :
     Tendsto (fun k : ℕ => (k : ℝ) • (orderedMatrixExp H (k : ℂ)⁻¹ - 1)) atTop (𝓝 H.sum) := by
   have hzero : Tendsto (fun k : ℕ => (k : ℂ)⁻¹) atTop (𝓝 0) :=
@@ -41,7 +43,9 @@ theorem tendsto_natCast_smul_orderedMatrixExp_sub_one (H : List (Matrix n n ℂ)
 
 /-- The actual CFC absolute values, with the same rescaling, converge to
 the Hermitian sum. This discharges the matrix-specific hypothesis in the
-subsequent generic Euler-power theorem.-/
+subsequent generic Euler-power theorem.
+@isnad1 id=tendsto.1h2v.s8.c3873effd738 from=translated src=- shape=e4af1720 vocab=155579da
+-/
 theorem tendsto_nsmul_abs_orderedMatrixExp_sub_one (H : List (Matrix n n ℂ))
     (hH : ∀ A ∈ H, A.IsHermitian) :
     Tendsto (fun k : ℕ => k • (CFC.abs (orderedMatrixExp H (k : ℂ)⁻¹) - 1)) atTop (𝓝 H.sum) := by
@@ -62,7 +66,9 @@ theorem tendsto_nsmul_abs_orderedMatrixExp_sub_one (H : List (Matrix n n ℂ))
 /-- The genuine ordered-product modulus powers converge to the exponential
 of the Hermitian sum. This is the actual matrix limit used in the
 multivariate Golden--Thompson deduction, not an assumed product formula.
-atlas: multivariate-golden-thompson (partial)-/
+atlas: multivariate-golden-thompson (partial)
+@isnad1 id=tendsto.1h2v.s8.48de04fb8ebd from=translated src=- shape=1bc04cb7 vocab=a515362b
+-/
 theorem tendsto_abs_orderedMatrixExp_pow
     (H : List (Matrix n n ℂ)) (hH : ∀ A ∈ H, A.IsHermitian) :
     Tendsto (fun k : ℕ => (CFC.abs (orderedMatrixExp H (k : ℂ)⁻¹)) ^ k) atTop

@@ -36,7 +36,9 @@ private theorem moment_laguerrePolynomial_three_quarters (j : ℕ) :
   ring
 
 /-- The finite Laguerre projection is degree bounded.
-Source: reciprocal exponential certificate (RC8).-/
+Source: reciprocal exponential certificate (RC8).
+@isnad1 id=le.0h1v.s4.d15cbea6a656 from=translated src=- shape=95ba4981 vocab=9f8c3dcd
+-/
 theorem degree_laguerreExponentialProjection_le (n : ℕ) :
     (laguerreExponentialProjection n).degree ≤ n := by
   apply mem_degreeLE.mp
@@ -48,7 +50,9 @@ theorem degree_laguerreExponentialProjection_le (n : ℕ) :
   exact_mod_cast Nat.le_of_lt_succ j.isLt
 
 /-- The finite Laguerre projection has a positive explicit top coefficient.
-Source: the explicit reciprocal denominator reroute.-/
+Source: the explicit reciprocal denominator reroute.
+@isnad1 id=eq.0h1v.s6.124bced394d3 from=translated src=- shape=8efca3c8 vocab=9e6e88d1
+-/
 theorem coeff_laguerreExponentialProjection_self (n : ℕ) :
     (laguerreExponentialProjection n).coeff n = 4 / (3^(n+1) * (n ! : ℝ)) := by
   rw [laguerreExponentialProjection, finsetSum_coeff, Finset.sum_eq_single (Fin.last n)]
@@ -65,7 +69,9 @@ theorem coeff_laguerreExponentialProjection_self (n : ℕ) :
   · simp
 
 /-- The Laguerre moment of the finite projection equals its exact coefficient.
-Source: reciprocal exponential certificate (RC6)--(RC8).-/
+Source: reciprocal exponential certificate (RC6)--(RC8).
+@isnad1 id=eq.0h2v.s7.0970952391ce from=translated src=- shape=07893b29 vocab=88538132
+-/
 theorem exponentialPolynomialMoment_laguerreExponentialProjection_mul
     (n : ℕ) (i : Fin (n+1)) :
     exponentialPolynomialMoment 1
@@ -78,7 +84,9 @@ theorem exponentialPolynomialMoment_laguerreExponentialProjection_mul
 
 /-- On all degree-`n` polynomials, the finite projection represents the
 Laplace functional with weight `exp (-3*x/4)`.
-Source: reciprocal exponential certificate (RC8), finite orthogonal projection.-/
+Source: reciprocal exponential certificate (RC8), finite orthogonal projection.
+@isnad1 id=eq.1h2v.s7.7528d97ff3ed from=translated src=- shape=8bceca77 vocab=5db976ef
+-/
 theorem exponentialPolynomialMoment_laguerreExponentialProjection_mul_eq
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) :
     exponentialPolynomialMoment 1 (laguerreExponentialProjection n * p) =
@@ -112,7 +120,9 @@ private theorem sum_sq_laguerreExponentialCoefficient (n : ℕ) :
     ring
 
 /-- The squared exponential norm of the finite projection is the exact finite
-geometric sum. Source: reciprocal exponential certificate (RC8).-/
+geometric sum. Source: reciprocal exponential certificate (RC8).
+@isnad1 id=eq.0h1v.s7.2f72697bb733 from=translated src=- shape=11999cd0 vocab=7130a503
+-/
 theorem exponentialPolynomialMoment_laguerreExponentialProjection_sq (n : ℕ) :
     exponentialPolynomialMoment 1 ((laguerreExponentialProjection n)^2) =
       2 - 2 / 3^(2*n+2) := by
@@ -148,7 +158,9 @@ private theorem exp_quarter_sub_eval_sq_mul_exp_neg (p : ℝ[X]) (x : ℝ) :
     _ = _ := by rw [h1, h2]
 
 /-- The finite growing-exponential residual has finite exponential square norm.
-Source: reciprocal exponential certificate (RC8).-/
+Source: reciprocal exponential certificate (RC8).
+@isnad1 id=integrab.0h1v.s6.744fa8253eb5 from=translated src=- shape=225dbf40 vocab=a91fc84c
+-/
 theorem integrableOn_exp_quarter_sub_eval_sq_mul_exp_neg (p : ℝ[X]) :
     IntegrableOn (fun x : ℝ => (Real.exp (x/4) - p.eval x)^2 * Real.exp (-x))
       (Ioi 0) := by
@@ -162,7 +174,9 @@ theorem integrableOn_exp_quarter_sub_eval_sq_mul_exp_neg (p : ℝ[X]) :
     (fun x _ => (exp_quarter_sub_eval_sq_mul_exp_neg p x).symm) measurableSet_Ioi
 
 /-- The growing-exponential squared residual has a finite moment expansion.
-Source: reciprocal exponential certificate (RC8), square expansion.-/
+Source: reciprocal exponential certificate (RC8), square expansion.
+@isnad1 id=eq.0h1v.s8.05dab055f16c from=translated src=- shape=ea6564c3 vocab=5c87a53a
+-/
 theorem integral_exp_quarter_sub_eval_sq_mul_exp_neg (p : ℝ[X]) :
     (∫ x : ℝ in Ioi 0, (Real.exp (x/4) - p.eval x)^2 * Real.exp (-x)) =
       2 - 2 * exponentialPolynomialMoment (3/4) p +
@@ -189,7 +203,9 @@ theorem integral_exp_quarter_sub_eval_sq_mul_exp_neg (p : ℝ[X]) :
 /-- The exact finite Laguerre residual identity: the degree-`n` projection has
 squared residual `2/3^(2n+2)`, and every competitor adds its nonnegative squared
 distance from that projection. Source: reciprocal exponential certificate (RC8).
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.1h2v.s8.2a0c51d365d3 from=translated src=- shape=b74f7974 vocab=73c76411
+-/
 theorem integral_exp_quarter_sub_eval_sq_eq_laguerreResidual_add
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) :
     (∫ x : ℝ in Ioi 0, (Real.exp (x/4) - p.eval x)^2 * Real.exp (-x)) =
@@ -217,7 +233,9 @@ theorem integral_exp_quarter_sub_eval_sq_eq_laguerreResidual_add
 
 /-- Every degree-`n` polynomial has growing-exponential squared residual at least
 `2/3^(2n+2)`. Source: reciprocal exponential certificate (RC8).
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s7.577061f9137d from=translated src=- shape=3c14367e vocab=f8cc6dbe
+-/
 theorem laguerreResidual_le_integral_exp_quarter_sub_eval_sq
     {n : ℕ} {p : ℝ[X]} (hp : p.degree ≤ n) :
     2 / 3^(2*n+2) ≤

@@ -38,7 +38,9 @@ def inverseReductionRemainder (D : Matrix n n K) (U V : Matrix n k K) : Matrix n
   D⁻¹ - D⁻¹ * U * (inverseReductionCore D U V)⁻¹ * Vᴴ * D⁻¹
 
 /-- The determinant identity behind the reduction, requiring invertibility of
-`D` and of the compressed inverse interaction, but never of `C`.-/
+`D` and of the compressed inverse interaction, but never of `C`.
+@isnad1 id=eq.2h7v.s8.a64e9890b2c1 from=translated src=- shape=3874d5b1 vocab=3b729d65
+-/
 theorem det_add_mul_mul_conjTranspose (D : Matrix n n K) (U V : Matrix n k K)
     (C : Matrix k k K) (hD : IsUnit D.det) (hM : IsUnit (inverseReductionCore D U V).det) :
     (D + U * C * Vᴴ).det = D.det * (inverseReductionCore D U V).det *
@@ -54,7 +56,9 @@ theorem det_add_mul_mul_conjTranspose (D : Matrix n n K) (U V : Matrix n k K)
 /-- Invertibility of a block-separable matrix is equivalent to invertibility
 of the reduced core; the coupling itself need not be invertible.
 Source: user derivations, block-separable inverse reduction.
-atlas: block-separable-inverse-reduction (partial)-/
+atlas: block-separable-inverse-reduction (partial)
+@isnad1 id=iff.2h7v.s8.67bfc776588d from=translated src=- shape=d71dd9ae vocab=3b729d65
+-/
 theorem isUnit_add_mul_mul_conjTranspose_iff (D : Matrix n n K) (U V : Matrix n k K)
     (C : Matrix k k K) (hD : IsUnit D.det) (hM : IsUnit (inverseReductionCore D U V).det) :
     IsUnit (D + U * C * Vᴴ) ↔ IsUnit (C + (inverseReductionCore D U V)⁻¹) := by
@@ -81,7 +85,9 @@ private theorem mul_inverseReductionLeft (D : Matrix n n K) (U V : Matrix n k K)
 
 /-- The reduced inverse formula, proved by multiplying the actual matrix by
 the proposed inverse. Source: user derivations, block-separable inverse.
-atlas: block-separable-inverse-reduction (partial)-/
+atlas: block-separable-inverse-reduction (partial)
+@isnad1 id=eq.3h7v.s9.fa8aa3904b84 from=translated src=- shape=b645be82 vocab=9eefed0a
+-/
 theorem inverse_add_mul_mul_conjTranspose (D : Matrix n n K) (U V : Matrix n k K)
     (C : Matrix k k K) (hD : IsUnit D.det) (hM : IsUnit (inverseReductionCore D U V).det)
     (hS : IsUnit (C + (inverseReductionCore D U V)⁻¹).det) :
@@ -102,7 +108,9 @@ theorem inverse_add_mul_mul_conjTranspose (D : Matrix n n K) (U V : Matrix n k K
   rw [← Matrix.mul_assoc U C Vᴴ, hG]
   abel
 
-/-- The complementary projection underlying the fine-scale remainder.-/
+/-- The complementary projection underlying the fine-scale remainder.
+@isnad1 id=isidempo.1h6v.s8.45340aba7822 from=translated src=- shape=e8fd152d vocab=814fe2d3
+-/
 theorem inverseReduction_projection_idempotent (D : Matrix n n K) (U V : Matrix n k K)
     (hM : IsUnit (inverseReductionCore D U V).det) :
     IsIdempotentElem (D⁻¹ * U * (inverseReductionCore D U V)⁻¹ * Vᴴ) := by
@@ -117,7 +125,9 @@ theorem inverseReduction_projection_idempotent (D : Matrix n n K) (U V : Matrix 
 /-- The fine-scale remainder has precisely the complementary dimension,
 including an empty coarse space and a coarse space of full size.
 Source: user derivations, complementary projection in block-separable inverse.
-atlas: block-separable-inverse-reduction (partial)-/
+atlas: block-separable-inverse-reduction (partial)
+@isnad1 id=eq.2h6v.s7.c8dea6bbc1ca from=translated src=- shape=fd3b5263 vocab=775b7eb2
+-/
 theorem rank_inverseReductionRemainder (D : Matrix n n K) (U V : Matrix n k K)
     (hD : IsUnit D.det) (hM : IsUnit (inverseReductionCore D U V).det) :
     (inverseReductionRemainder D U V).rank = Fintype.card n - Fintype.card k := by
@@ -148,7 +158,9 @@ theorem rank_inverseReductionRemainder (D : Matrix n n K) (U V : Matrix n k K)
 factors. Thus all off-diagonal inverse blocks come from the reduced inverse
 term in `inverse_add_mul_mul_conjTranspose`.
 Source: user derivations, block-separable inverse reduction.
-atlas: block-separable-inverse-reduction-/
+atlas: block-separable-inverse-reduction
+@isnad1 id=and.5h9v.s8.f1023b56aeaa from=translated src=- shape=17752396 vocab=ba08647b
+-/
 theorem inverseReduction_conformalBlockDiagonal {ι : Type*} [LinearOrder ι]
     (row : n → ι) (coarse : k → ι) (D : Matrix n n K) (U V : Matrix n k K)
     (hD : IsUnit D.det) (hM : IsUnit (inverseReductionCore D U V).det)

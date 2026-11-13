@@ -43,7 +43,9 @@ upper triangular primary blocks. The block index is the scalar itself;
 zero-size blocks are permitted, and the equivalence with the original index
 type certifies that only finitely many nonempty blocks occur.
 Horn–Johnson (2013), §2.4; empty matrices are included.
-atlas: sylvester-equation-/
+atlas: sylvester-equation
+@isnad1 id=ex.0h2v.s8.ac825bfae88b from=translated src=- shape=d6f3129c vocab=5fa89cb5
+-/
 theorem exists_similarity_primary_upperTriangular
     {n : Type*} [Fintype n] [DecidableEq n] (A : Matrix n n ℂ) :
     ∃ (d : ℂ → ℕ) (e : (Σ μ : ℂ, Fin (d μ)) ≃ n)

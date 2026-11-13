@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Complex matrices admitting a complete list of pairwise distinct
 characteristic eigenvalues are dense. Source: Horn–Johnson (2013), §2.3;
 the characteristic factorization explicitly certifies multiplicities.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=dense.0h1v.s7.308af0dca6d6 from=translated src=- shape=8d7b96a4 vocab=0b320c64
+-/
 theorem dense_exists_injective_charpoly_factors_complex :
     Dense {A : Matrix n n ℂ | ∃ d : n → ℂ, Function.Injective d ∧
       A.charpoly = ∏ i, (X - C (d i))} := by
@@ -38,7 +40,9 @@ theorem dense_exists_injective_charpoly_factors_complex :
 characteristic eigenvalues are dense among real matrices.
 Horn–Johnson (2013), §2.3; complexification records possible nonreal conjugate
 pairs and imposes no real-spectrum restriction.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=dense.0h1v.s7.7284e9788b9f from=translated src=- shape=e1a6b20c vocab=60395e5d
+-/
 theorem dense_exists_injective_charpoly_factors_real :
     Dense {A : Matrix n n ℝ | ∃ d : n → ℂ, Function.Injective d ∧
       (A.map Complex.ofReal).charpoly = ∏ i, (X - C (d i))} := by

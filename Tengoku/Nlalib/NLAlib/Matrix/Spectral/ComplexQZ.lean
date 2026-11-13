@@ -19,7 +19,9 @@ namespace NLAlib
 upper triangular form. The common row and column order may be any enumeration
 of the finite labels. Singular and identically singular pencils, common zero
 images and the empty pencil are included. Horn–Johnson 2013, Theorem 2.6.1, Theorem.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=ex.0h4v.s10.9397a42848d7 from=translated src=- shape=80c5de9f vocab=6691f1e5
+-/
 theorem exists_unitary_qz_triangularization {n : Type*} [Fintype n] [DecidableEq n]
     (A B : Matrix n n ℂ) (order : Fin (Fintype.card n) ≃ n) :
     ∃ V W : Matrix.unitaryGroup n ℂ, ∃ T₁ T₂ : Matrix n n ℂ,
@@ -70,7 +72,9 @@ theorem exists_unitary_qz_triangularization {n : Type*} [Fintype n] [DecidableEq
 
 /-- Complex QZ in the usual finite-coordinate upper triangular notation,
 including empty and singular pencils. Horn–Johnson 2013, Theorem 2.6.1.
-atlas: schur-triangularization (partial)-/
+atlas: schur-triangularization (partial)
+@isnad1 id=ex.0h3v.s10.bde105f3f1ab from=translated src=- shape=3d7546c5 vocab=ab1295ed
+-/
 theorem exists_unitary_qz_upperTriangular {k : ℕ} (A B : Matrix (Fin k) (Fin k) ℂ) :
     ∃ V W : Matrix.unitaryGroup (Fin k) ℂ, ∃ T₁ T₂ : Matrix (Fin k) (Fin k) ℂ,
       A = (V : Matrix (Fin k) (Fin k) ℂ) * T₁ * (W : Matrix (Fin k) (Fin k) ℂ)ᴴ ∧

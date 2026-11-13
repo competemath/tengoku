@@ -22,7 +22,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The diagonal slope matrix `diag (bᵢ - s)` is invertible when `s` avoids its
-finitely many diagonal values.-/
+finitely many diagonal values.
+@isnad1 id=isunit.1h3v.s5.a1365088c2af from=translated src=- shape=d6a4a97e vocab=2163a8c6
+-/
 theorem isUnit_diagonal_sub_of_ne (b : n → ℝ) (s : ℝ) (hs : ∀ i, s ≠ b i) :
     IsUnit (Matrix.diagonal (fun i => ((b i - s : ℝ) : ℂ))) := by
   apply (Matrix.isUnit_iff_isUnit_det _).mpr
@@ -33,7 +35,9 @@ theorem isUnit_diagonal_sub_of_ne (b : n → ℝ) (s : ℝ) (hs : ∀ i, s ≠ b
   exact_mod_cast sub_ne_zero.mpr (hs i).symm
 
 /-- The inverse matrix of a diagonal Hermitian pencil is exactly the affine
-pencil used to construct its exterior inverse branches.-/
+pencil used to construct its exterior inverse branches.
+@isnad1 id=eq.1h5v.s8.06a106763bf6 from=translated src=- shape=bbe8eedd vocab=049799aa
+-/
 theorem inv_mul_sub_smul_one_diagonal_eq (A : Matrix n n ℂ) (b : n → ℝ)
     (s : ℝ) (hs : ∀ i, s ≠ b i) (u : ℂ) :
     (Matrix.diagonal (fun i => ((b i - s : ℝ) : ℂ)))⁻¹ *
@@ -63,7 +67,9 @@ theorem inv_mul_sub_smul_one_diagonal_eq (A : Matrix n n ℂ) (b : n → ℝ)
   abel
 
 /-- A complete exterior inverse branch family with the proved upper labels
-computes the actual upper-root sum of the inverse characteristic polynomial.-/
+computes the actual upper-root sum of the inverse characteristic polynomial.
+@isnad1 id=eq.4h6v.s7.ca2bcec6740f from=translated src=- shape=7d7a50ac vocab=21ba6012
+-/
 theorem inversePencilUpperRootSum_eq_sum_ite_of_inverse_branches
     (A : Matrix n n ℂ) (b : n → ℝ) (s : ℝ) (hs : ∀ i, s ≠ b i)
     (branch : n → ℂ → ℂ) (u : ℂ)
@@ -92,7 +98,9 @@ open scoped Matrix.Norms.L2Operator in
 the complete spectral list, the strict-sublevel labels, Schwarz reflection, and
 the identity with the actual upper-root sum throughout the exterior upper half-plane.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h4v.s9.8042936908d5 from=translated src=- shape=04e6531d vocab=64ce837e
+-/
 theorem exists_exterior_inverse_eigenvalue_branches_root_sum
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
     (hb : Function.Injective b) (s : ℝ) (hs : ∀ i, s ≠ b i) :

@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The signed characteristic coefficient is exactly the sum of the
 corresponding principal minors. Mathlib's characteristic coefficient formula;
-helper for `sylvester-criterion`.-/
+helper for `sylvester-criterion`.
+@isnad1 id=eq.1h3v.s7.1e4d18d13948 from=translated src=- shape=45efd013 vocab=b92b43bd
+-/
 theorem signed_charpoly_coeff_eq_sum_principal_minors (A : Matrix n n ℝ)
     (k : ℕ) (hk : k ≤ Fintype.card n) :
     (-1 : ℝ) ^ k * A.charpoly.coeff (Fintype.card n - k) =
@@ -36,7 +38,9 @@ theorem signed_charpoly_coeff_eq_sum_principal_minors (A : Matrix n n ℝ)
 /-- Every degree-dependent signed characteristic coefficient of a PSD
 matrix is nonnegative. Horn--Johnson (2013), Theorem 7.2.5;
 corrected frontier equation `herm:coefficient-correct`.
-atlas: sylvester-criterion (partial)-/
+atlas: sylvester-criterion (partial)
+@isnad1 id=le.2h3v.s6.5a6c220bd41b from=translated src=- shape=be273243 vocab=38812e14
+-/
 theorem signed_charpoly_coeff_nonneg_of_posSemidef {A : Matrix n n ℝ}
     (hA : A.PosSemidef) (k : ℕ) (hk : k ≤ Fintype.card n) :
     0 ≤ (-1 : ℝ) ^ k * A.charpoly.coeff (Fintype.card n - k) := by
@@ -47,7 +51,9 @@ theorem signed_charpoly_coeff_nonneg_of_posSemidef {A : Matrix n n ℝ}
 force every real symmetric eigenvalue to be nonnegative.
 Horn--Johnson (2013), Theorem 7.2.5; corrected frontier equation
 `herm:coefficient-correct`. The argument excludes negative roots directly.
-atlas: sylvester-criterion (partial)-/
+atlas: sylvester-criterion (partial)
+@isnad1 id=possemid.2h2v.s7.96655539183a from=translated src=- shape=03277cca vocab=8d7657a7
+-/
 theorem posSemidef_of_signed_charpoly_coeff_nonneg {A : Matrix n n ℝ}
     (hA : A.IsHermitian)
     (hcoeff : ∀ k, k ≤ Fintype.card n →
@@ -73,7 +79,9 @@ theorem posSemidef_of_signed_charpoly_coeff_nonneg {A : Matrix n n ℝ}
 degree, with zero coefficients allowed. Horn--Johnson (2013), Theorem 7.2.5;
 frontier equation `herm:coefficient-correct` repairs the catalogue's
 nonzero-coefficient wording.
-atlas: sylvester-criterion-/
+atlas: sylvester-criterion
+@isnad1 id=iff.1h2v.s7.c152e3508fee from=translated src=- shape=c8529f05 vocab=8d7657a7
+-/
 theorem posSemidef_iff_signed_charpoly_coeff_nonneg {A : Matrix n n ℝ}
     (hA : A.IsHermitian) :
     A.PosSemidef ↔ ∀ k, k ≤ Fintype.card n →
@@ -84,7 +92,9 @@ theorem posSemidef_iff_signed_charpoly_coeff_nonneg {A : Matrix n n ℝ}
 /-- PSD membership is equivalent to nonnegativity of every principal
 minor, including the empty principal minor. Horn--Johnson (2013),
 Theorem 7.2.5 and Corollary 7.2.4.
-atlas: sylvester-criterion-/
+atlas: sylvester-criterion
+@isnad1 id=iff.1h2v.s7.c13176e447cc from=translated src=- shape=e1fa045f vocab=6cc02810
+-/
 theorem posSemidef_iff_principal_minors_nonneg {A : Matrix n n ℝ} (hA : A.IsHermitian) :
     A.PosSemidef ↔ ∀ S : Finset n,
       0 ≤ (A.submatrix (Subtype.val : S → n) (Subtype.val : S → n)).det := by
@@ -98,7 +108,9 @@ theorem posSemidef_iff_principal_minors_nonneg {A : Matrix n n ℝ} (hA : A.IsHe
 
 /-- The diagonal matrix with entries one and minus one has characteristic
 polynomial `X²-1`. This is the gap-coefficient counterexample in frontier
-equation `herm:coefficient-correct`, correcting `sylvester-criterion`.-/
+equation `herm:coefficient-correct`, correcting `sylvester-criterion`.
+@isnad1 id=eq.0h0v.s7.0d53c391a83e from=translated src=- shape=b70bcd2e vocab=e20cea6f
+-/
 theorem charpoly_diagonal_one_neg_one_eq :
     (Matrix.diagonal ![(1 : ℝ), -1]).charpoly = (X : ℝ[X]) ^ 2 - 1 := by
   simp [Matrix.charpoly_diagonal, Fin.prod_univ_two]
@@ -106,7 +118,9 @@ theorem charpoly_diagonal_one_neg_one_eq :
 
 /-- The diagonal matrix with entries one and minus one is not PSD,
 although the two nonzero characteristic coefficients alternate in sign.
-Frontier equation `herm:coefficient-correct`, correcting `sylvester-criterion`.-/
+Frontier equation `herm:coefficient-correct`, correcting `sylvester-criterion`.
+@isnad1 id=not.0h0v.s6.f0c26fefdc24 from=translated src=- shape=1a6bf694 vocab=58f83695
+-/
 theorem not_posSemidef_diagonal_one_neg_one :
     ¬ (Matrix.diagonal ![(1 : ℝ), -1]).PosSemidef := by
   intro h

@@ -33,7 +33,9 @@ open scoped Matrix.Norms.L2Operator in
 block excludes the leading eigenvalue. The matrix inverse in the definition
 is the Banach-algebra inverse on a neighborhood of the base point.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=analytic.1h7v.s7.617d3a4527a4 from=translated src=- shape=627b062e vocab=e13e02d8
+-/
 theorem analyticAt_simpleEigenvalueSchurFunction (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
     AnalyticAt ℂ (simpleEigenvalueSchurFunction μ a B F b c) 0 := by
@@ -61,7 +63,9 @@ branch with derivative equal to the leading perturbation entry. This proves
 holomorphy on a neighborhood, as needed for exterior spectral branches in
 Stahl (2013), Theorem 2.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.1h7v.s8.d392ad0b652c from=translated src=- shape=f5a8450a vocab=9ac780ed
+-/
 theorem exists_analytic_simpleEigenvalueSchurFunction_branch (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
     ∃ ψ : ℂ → ℂ, ψ 0 = 0 ∧ AnalyticAt ℂ ψ 0 ∧ HasDerivAt ψ a 0 ∧
@@ -109,7 +113,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- A separated scalar block has an analytic eigenvalue branch. The
 derivative at the base point is its leading perturbation entry.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.1h8v.s8.c3084dd99601 from=translated src=- shape=5cb3620a vocab=29c1bd4f
+-/
 theorem exists_analytic_eigenvalue_branch_of_scalar_block
     {l : Type*} [Unique l] (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
@@ -136,7 +142,9 @@ open scoped Matrix.Norms.L2Operator in
 entry of the perturbation. This supplies the reciprocal-coordinate branches
 near infinity in Stahl (2013), Theorem 2.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.1h4v.s7.334a8ed44913 from=translated src=- shape=2034093c vocab=199d6245
+-/
 theorem exists_analytic_eigenvalue_branch_of_diagonal
     (d : n → ℂ) (hd : Function.Injective d) (A : Matrix n n ℂ) (i : n) :
     ∃ φ : ℂ → ℂ, φ 0 = d i ∧ AnalyticAt ℂ φ 0 ∧ HasDerivAt φ (A i i) 0 ∧
@@ -188,7 +196,9 @@ open scoped Matrix.Norms.L2Operator in
 an analytic quadratic remainder. Unlike a derivative statement alone, this
 gives the `O(z⁻¹)` remainder after reciprocal substitution at infinity.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.1h4v.s8.fda0c7741495 from=translated src=- shape=72b4ffe9 vocab=b1d876ae
+-/
 theorem exists_analytic_eigenvalue_branch_diagonal_expansion
     (d : n → ℂ) (hd : Function.Injective d) (A : Matrix n n ℂ) (i : n) :
     ∃ φ g : ℂ → ℂ, φ 0 = d i ∧ AnalyticAt ℂ φ 0 ∧ AnalyticAt ℂ g 0 ∧
@@ -207,7 +217,9 @@ branches with expansion `z * dᵢ + Aᵢᵢ + O(z⁻¹)`. Equivalently, the bran
 has an analytic reciprocal-coordinate remainder. This is the local branch
 construction at infinity used by Stahl (2013), Theorem 2, without any
 global continuation or spectral-surface positivity hypothesis.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h4v.s8.e3f9716cd336 from=translated src=- shape=2b14e5e0 vocab=010f3b5c
+-/
 theorem exists_exterior_eigenvalue_branch_of_diagonal
     (d : n → ℂ) (hd : Function.Injective d) (A : Matrix n n ℂ) (i : n) :
     ∃ lam g : ℂ → ℂ, AnalyticAt ℂ g 0 ∧

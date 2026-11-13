@@ -25,7 +25,9 @@ def symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ) (d : ℝ) :
     Matrix (n ⊕ Fin 1) (n ⊕ Fin 1) ℝ :=
   fromBlocks J (of fun i _ => v i) (of fun _ j => v j) (of fun _ _ => d)
 
-/-- The scalar Schur complement of an actual symmetric border.-/
+/-- The scalar Schur complement of an actual symmetric border.
+@isnad1 id=eq.0h4v.s9.ea14cab00323 from=translated src=- shape=d16a89c2 vocab=0a5e915b
+-/
 theorem schur_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ) (d : ℝ) :
     (of (fun _ _ => d) : Matrix (Fin 1) (Fin 1) ℝ) -
       (of (fun _ j => v j) : Matrix (Fin 1) n ℝ) * J⁻¹ *
@@ -36,7 +38,9 @@ theorem schur_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ) (d : ℝ) :
     dotProduct, mulVec, Pi.star_apply, star_trivial]
 
 omit [Fintype n] [DecidableEq n] in
-/-- The actual scalar border is Hermitian when its leading block is Hermitian.-/
+/-- The actual scalar border is Hermitian when its leading block is Hermitian.
+@isnad1 id=ishermit.1h4v.s6.c803a91ccc5c from=translated src=- shape=e4aa333a vocab=6ebb3d8a
+-/
 theorem isHermitian_symmetricBorder {J : Matrix n n ℝ} (hJ : J.IsHermitian)
     (v : n → ℝ) (d : ℝ) : (symmetricBorder J v d).IsHermitian := by
   apply hJ.fromBlocks
@@ -46,7 +50,9 @@ theorem isHermitian_symmetricBorder {J : Matrix n n ℝ} (hJ : J.IsHermitian)
     simp only [conjTranspose_apply, of_apply, star_trivial]
 
 omit [Fintype n] in
-/-- Scalar identity shifts of the actual border keep the cross-block vector fixed.-/
+/-- Scalar identity shifts of the actual border keep the cross-block vector fixed.
+@isnad1 id=eq.0h5v.s8.4de0400dd9d7 from=translated src=- shape=2113f135 vocab=a4e409ff
+-/
 theorem symmetricBorder_sub_smul_one (J : Matrix n n ℝ) (v : n → ℝ) (d z : ℝ) :
     symmetricBorder J v d - z • 1 = symmetricBorder (J - z • 1) v (d - z) := by
   ext (i | i) (j | j)
@@ -56,7 +62,9 @@ theorem symmetricBorder_sub_smul_one (J : Matrix n n ℝ) (v : n → ℝ) (d z :
   · simp [symmetricBorder, Subsingleton.elim i j]
 
 omit [Fintype n] in
-/-- Negating a shifted border changes the cross vector sign.-/
+/-- Negating a shifted border changes the cross vector sign.
+@isnad1 id=eq.0h5v.s8.333404ce42ce from=translated src=- shape=80568029 vocab=675982cc
+-/
 theorem smul_one_sub_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ) (d z : ℝ) :
     z • 1 - symmetricBorder J v d = symmetricBorder (z • 1 - J) (-v) (z - d) := by
   ext (i | i) (j | j)
@@ -67,7 +75,9 @@ theorem smul_one_sub_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ) (d z :
 
 /-- For a positive definite leading block, actual border positivity is exactly
 the scalar Schur-complement inequality. Source: focused reroutes, Section 3 (BL4), (BL9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=iff.1h4v.s6.f089d77a263d from=translated src=- shape=c54934cf vocab=4a7f67a8
+-/
 theorem posSemidef_symmetricBorder_iff {J : Matrix n n ℝ} (hJ : J.PosDef)
     (v : n → ℝ) (d : ℝ) :
     (symmetricBorder J v d).PosSemidef ↔ quadForm J⁻¹ v ≤ d := by
@@ -90,7 +100,9 @@ theorem posSemidef_symmetricBorder_iff {J : Matrix n n ℝ} (hJ : J.PosDef)
 
 /-- A zero scalar Schur complement gives an actual PSD singular border.
 Source: focused mathematical reroutes, Section 3 (BL4), (BL9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.1h3v.s7.1c29f73627fc from=translated src=- shape=95bf756e vocab=06ae2efc
+-/
 theorem posSemidef_and_det_eq_zero_symmetricBorder_of_schur_zero
     {J : Matrix n n ℝ} (hJ : J.PosDef) (v : n → ℝ) :
     (symmetricBorder J v (quadForm J⁻¹ v)).PosSemidef ∧

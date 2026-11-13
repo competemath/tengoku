@@ -20,7 +20,9 @@ omit [DecidableEq ι] in
 /-- Every peripheral eigenvector of a strictly positive matrix lies on its
 positive Perron line. The proof uses the exact finite complex variance identity.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=ex.6h6v.s7.ec03cdf6208a from=translated src=- shape=7edd9b3e vocab=96bb1886
+-/
 theorem peripheral_eigenvector_eq_smul_of_pos {B : Matrix ι ι ℝ}
     (hB : ∀ i j, 0 < B i j) {p : ι → ℝ} {r : ℝ}
     (hp : ∀ i, 0 < p i) (hr : 0 < r) (hBp : B *ᵥ p = r • p)
@@ -67,7 +69,9 @@ theorem peripheral_eigenvector_eq_smul_of_pos {B : Matrix ι ι ℝ}
 
 /-- A positive power forces the Perron root to be the only peripheral eigenvalue.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=eq.4h3v.s7.dd8221c202f7 from=translated src=- shape=5ae6db0d vocab=1f609d86
+-/
 theorem IsPrimitive.peripheral_eigenvalue_eq_perron {A : Matrix ι ι ℝ}
     (hA : A.IsPrimitive) (hAne : A ≠ 0) {μ : ℂ}
     (hμ : μ ∈ spectrum ℂ (A.map Complex.ofReal))

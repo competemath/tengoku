@@ -35,13 +35,17 @@ def hermiteInterior (p : ℕ) : Matrix (HermiteIndex ι p) (HermiteIndex ι p) �
 def hermiteNumber (p : ℕ) : Matrix (HermiteIndex ι p) (HermiteIndex ι p) ℂ :=
   diagonal fun a => (a.degree : ℂ)
 
-/-- Creation vanishes on the top occupation degree.-/
+/-- Creation vanishes on the top occupation degree.
+@isnad1 id=eq.1h5v.s5.94a69b58046a from=translated src=- shape=5e8a77b9 vocab=40a20726
+-/
 theorem hermiteCreation_top (i : ι) (a b : HermiteIndex ι p) (hb : ¬ b.degree < p) :
     hermiteCreation p i a b = 0 := by
   simp [hermiteCreation, hb]
 
 /-- Creation has exactly one possible nonzero output from an interior basis
-vector, with the usual square-root occupation coefficient.-/
+vector, with the usual square-root occupation coefficient.
+@isnad1 id=eq.1h5v.s6.ebd97764146f from=translated src=- shape=fcacec87 vocab=b994b309
+-/
 theorem hermiteCreation_apply_of_lt (i : ι) (a b : HermiteIndex ι p)
     (hb : b.degree < p) :
     hermiteCreation p i a b =
@@ -56,7 +60,9 @@ private theorem lower_degree_lt (a : HermiteIndex ι p) (i : ι) (hi : 0 < a.val
   omega
 
 /-- An entry of creation is equivalently read by lowering its output index.
-This form includes the vacuum and automatically enforces the cutoff.-/
+This form includes the vacuum and automatically enforces the cutoff.
+@isnad1 id=eq.0h5v.s7.5ee974205fbd from=translated src=- shape=f41f5612 vocab=7ba8568f
+-/
 theorem hermiteCreation_apply (i : ι) (a b : HermiteIndex ι p) :
     hermiteCreation p i a b =
       if 0 < a.val i ∧ a.lower i = b then (Real.sqrt (a.val i) : ℂ) else 0 := by
@@ -80,7 +86,9 @@ theorem hermiteCreation_apply (i : ι) (a b : HermiteIndex ι p) :
       exact lower_degree_lt a i ha
     simp [hn]
 
-/-- Creation acts by the explicit lower-index formula on arbitrary vectors.-/
+/-- Creation acts by the explicit lower-index formula on arbitrary vectors.
+@isnad1 id=eq.0h5v.s7.fd074e871ae5 from=translated src=- shape=fb14ff6d vocab=e0136b86
+-/
 theorem hermiteCreation_mulVec (i : ι) (z : HermiteIndex ι p → ℂ)
     (a : HermiteIndex ι p) :
     (hermiteCreation p i *ᵥ z) a =
@@ -90,7 +98,9 @@ theorem hermiteCreation_mulVec (i : ι) (z : HermiteIndex ι p → ℂ)
   · simp [ha, eq_comm]
   · simp [ha]
 
-/-- The adjoint creation matrix acts by a single permitted raising step.-/
+/-- The adjoint creation matrix acts by a single permitted raising step.
+@isnad1 id=eq.0h5v.s7.29358ac9b99a from=translated src=- shape=154f9b32 vocab=c19ca980
+-/
 theorem hermiteCreation_conjTranspose_mulVec (i : ι) (z : HermiteIndex ι p → ℂ)
     (a : HermiteIndex ι p) :
     ((hermiteCreation p i)ᴴ *ᵥ z) a =
@@ -101,7 +111,9 @@ theorem hermiteCreation_conjTranspose_mulVec (i : ι) (z : HermiteIndex ι p →
   · simp [ha, eq_comm, apply_ite]
   · simp [ha]
 
-/-- Truncated creation factors through the interior projection on its input.-/
+/-- Truncated creation factors through the interior projection on its input.
+@isnad1 id=eq.0h3v.s6.3b774500c4f8 from=translated src=- shape=83e0a575 vocab=79dc2e97
+-/
 theorem hermiteCreation_mul_interior (i : ι) :
     hermiteCreation p i * hermiteInterior p = hermiteCreation p i := by
   ext a b
@@ -110,7 +122,9 @@ theorem hermiteCreation_mul_interior (i : ι) :
   · simp [hermiteInterior, Matrix.mul_diagonal, hermiteCreation, hb]
 
 /-- An occupied coordinate of a bounded multiindex is strictly positive, so
-its lowering coefficient squared is its occupation number.-/
+its lowering coefficient squared is its occupation number.
+@isnad1 id=eq.0h3v.s7.8a704655492d from=translated src=- shape=81158024 vocab=142ccb27
+-/
 theorem hermiteCreation_mul_conjTranspose_self (i : ι) :
     hermiteCreation p i * (hermiteCreation p i)ᴴ =
       diagonal (fun a : HermiteIndex ι p => (a.val i : ℂ)) := by
@@ -146,7 +160,9 @@ theorem hermiteCreation_mul_conjTranspose_self (i : ι) :
   · have haz : a.val i = 0 := by omega
     simp [ha, Matrix.diagonal_apply, haz]
 
-/-- Summed creation-annihilation energy is exactly the number matrix.-/
+/-- Summed creation-annihilation energy is exactly the number matrix.
+@isnad1 id=eq.0h2v.s7.d36917a8d237 from=translated src=- shape=881e97ab vocab=6b61de40
+-/
 theorem sum_hermiteCreation_mul_conjTranspose :
     (∑ i : ι, hermiteCreation p i * (hermiteCreation p i)ᴴ) = hermiteNumber p := by
   simp only [hermiteCreation_mul_conjTranspose_self, hermiteNumber]
@@ -187,7 +203,9 @@ private theorem sqrt_nat_add_one_mul_self (n : ℕ) :
 
 /-- The finite canonical commutation relation, at interior input degree.
 Restricting the input is essential: the unrestricted relation fails at the
-top cutoff.-/
+top cutoff.
+@isnad1 id=eq.1h6v.s8.cd459c4889e1 from=translated src=- shape=be6e94dc vocab=de8c6311
+-/
 theorem hermiteCreation_commutator_apply (i j : ι) (a b : HermiteIndex ι p)
     (hb : b.degree < p) :
     ((hermiteCreation p i)ᴴ * hermiteCreation p j) a b =
@@ -231,7 +249,9 @@ theorem hermiteCreation_commutator_apply (i j : ι) (a b : HermiteIndex ι p)
     · simp [hbi]
 
 /-- The finite canonical commutation identity as a matrix equation, with the
-interior projector explicitly on the input.-/
+interior projector explicitly on the input.
+@isnad1 id=eq.0h4v.s8.e835b98aaed8 from=translated src=- shape=ec9500f3 vocab=d8121c55
+-/
 theorem hermiteCreation_commutator (i j : ι) :
     ((hermiteCreation p i)ᴴ * hermiteCreation p j) * hermiteInterior p =
       ((if i = j then 1 else 0) + hermiteCreation p j * (hermiteCreation p i)ᴴ) *

@@ -19,7 +19,9 @@ set_option backward.isDefEq.respectTransparency false
 spectra extends to arbitrary weakly increasing spectra. Repeated target
 roots and empty lists are retained. Horn–Johnson 2013, Theorem 4.3.26;
 the supplied strict-case construction is used only after all forced
-repeated original roots have been removed.-/
+repeated original roots have been removed.
+@isnad1 id=ex.5h3v.s8.b07edd3485d6 from=translated src=- shape=9e586431 vocab=096ea4aa
+-/
 theorem rank_one_interlacing_converse_of_strict_cases
     (hstrict : ∀ (n : ℕ) (d b : Fin n → ℝ), StrictMono d → Monotone b →
       (∀ i, d i ≤ b i) → (∀ i j, i.val + 1 = j.val → b i ≤ d j) →
@@ -55,7 +57,9 @@ theorem rank_one_interlacing_converse_of_strict_cases
 spectra extends to arbitrary weak interlacing with repeated roots.
 The deleted target root is exactly the repeated original root, and its
 coordinate is restored with zero coupling. Horn–Johnson 2013,
-Theorem 4.3.21; empty and singleton cases are included.-/
+Theorem 4.3.21; empty and singleton cases are included.
+@isnad1 id=ex.4h3v.s10.1bee5cdf5566 from=translated src=- shape=b18bfc05 vocab=352cd131
+-/
 theorem bordered_interlacing_converse_of_strict_cases
     (hstrict : ∀ (n : ℕ) (d : Fin n → ℝ) (b : Fin (n + 1) → ℝ),
       StrictMono d → Monotone b → (∀ i, b i.castSucc ≤ d i ∧ d i ≤ b i.succ) →

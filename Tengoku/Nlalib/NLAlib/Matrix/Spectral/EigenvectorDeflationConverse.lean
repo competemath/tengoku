@@ -22,7 +22,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 /-- An isolated row and column under an invertible similarity supply nonzero
 right and left eigenvectors with pairing one. Source: Horn–Johnson (2013),
 Theorem 1.4.7, converse; the left vector is the corresponding inverse row.
-atlas: left-right-eigenvectors-/
+atlas: left-right-eigenvectors
+@isnad1 id=and.3h6v.s9.3ac362c64ec1 from=translated src=- shape=a52d7eba vocab=3d704f5f
+-/
 theorem eigenpair_of_isolated_similarity
     (A S : Matrix n n K) (i : n) (μ : K) (hS : IsUnit S)
     (hcol : ∀ j, (S⁻¹ * A * S) j i = if j = i then μ else 0)

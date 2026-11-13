@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 row discs, contains exactly `|I|` eigenvalues with algebraic multiplicity.
 Source: Horn–Johnson (2013), Theorem 6.1.1; internal overlaps, repeated roots,
 zero-radius discs, empty selections and empty matrices are included.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=eq.1h3v.s6.7312f4110710 from=translated src=- shape=6c60cc1f vocab=9e88ae15
+-/
 theorem charpolyRootCountIn_gershgorinRowUnion_eq_card
     (A : Matrix n n ℂ) (I : Finset n)
     (hdisj : Disjoint (gershgorinRowUnion A I) (gershgorinRowUnion A Iᶜ)) :
@@ -84,7 +86,9 @@ theorem charpolyRootCountIn_gershgorinRowUnion_eq_card
 closed column discs, contains exactly as many algebraic eigenvalues as
 selected columns. Source: Horn–Johnson (2013), Corollary 6.1.3; all degenerate
 and repeated-root cases are retained by transpose and the root multiset.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=eq.1h3v.s6.2b5164acf4e0 from=translated src=- shape=6c60cc1f vocab=d8c44182
+-/
 theorem charpolyRootCountIn_gershgorinColumnUnion_eq_card
     (A : Matrix n n ℂ) (I : Finset n)
     (hdisj : Disjoint (gershgorinColumnUnion A I) (gershgorinColumnUnion A Iᶜ)) :

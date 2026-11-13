@@ -50,7 +50,9 @@ theorem eq_zero_of_mul_eq_mul_of_isCoprime_charpoly {A : Matrix m m K}
 /-- The Sylvester operator is bijective for coprime characteristic polynomials.
 Source: Horn–Johnson (2013), Theorem 2.4.4.1; finite dimensionality converts
 the Bézout kernel computation into surjectivity.
-atlas: sylvester-equation (partial)-/
+atlas: sylvester-equation (partial)
+@isnad1 id=bijectiv.1h5v.s8.1b5e4c2514f8 from=translated src=- shape=fbaca4ed vocab=c8dc5307
+-/
 theorem sylvesterLinearMap_bijective_of_isCoprime_charpoly (A : Matrix m m K)
     (B : Matrix n n K) (hcop : IsCoprime A.charpoly B.charpoly) :
     Function.Bijective (sylvesterLinearMap A B) := by
@@ -64,7 +66,9 @@ theorem sylvesterLinearMap_bijective_of_isCoprime_charpoly (A : Matrix m m K)
 /-- Every right-hand side has exactly one solution to the Sylvester equation
 when the characteristic polynomials are coprime. Source: Horn–Johnson (2013),
 Theorem 2.4.4.1; real fields and empty shapes are included directly.
-atlas: sylvester-equation (partial)-/
+atlas: sylvester-equation (partial)
+@isnad1 id=existsun.1h6v.s7.598e15c5f201 from=translated src=- shape=fc79c262 vocab=d31fe82b
+-/
 theorem existsUnique_sylvester_of_isCoprime_charpoly (A : Matrix m m K)
     (B : Matrix n n K) (hcop : IsCoprime A.charpoly B.charpoly) (C : Matrix m n K) :
     ∃! X : Matrix m n K, A * X - X * B = C := by
@@ -74,7 +78,9 @@ theorem existsUnique_sylvester_of_isCoprime_charpoly (A : Matrix m m K)
 
 /-- Over an algebraically closed field, spectral disjointness is exactly
 coprimality of characteristic polynomials. Source: Horn–Johnson (2013),
-Theorem 2.4.4.1; empty spectra cause no exception.-/
+Theorem 2.4.4.1; empty spectra cause no exception.
+@isnad1 id=iff.0h5v.s7.bf30dc9a91a5 from=translated src=- shape=071157c0 vocab=2baa81aa
+-/
 theorem isCoprime_charpoly_iff_disjoint_spectrum [IsAlgClosed K]
     (A : Matrix m m K) (B : Matrix n n K) :
     IsCoprime A.charpoly B.charpoly ↔ Disjoint (spectrum K A) (spectrum K B) := by
@@ -94,7 +100,9 @@ theorem isCoprime_charpoly_iff_disjoint_spectrum [IsAlgClosed K]
 /-- The Sylvester operator is injective exactly when the spectra are disjoint.
 Source: Horn–Johnson (2013), Theorem 2.4.4.1; a common eigenvalue supplies a
 nonzero outer-product kernel element, while Bézout proves the converse.
-atlas: sylvester-equation (partial)-/
+atlas: sylvester-equation (partial)
+@isnad1 id=iff.0h5v.s8.40e26c5484e5 from=translated src=- shape=d9a285cb vocab=c5bf04ff
+-/
 theorem sylvesterLinearMap_injective_iff_disjoint_spectrum [IsAlgClosed K]
     (A : Matrix m m K) (B : Matrix n n K) :
     Function.Injective (sylvesterLinearMap A B) ↔
@@ -119,7 +127,9 @@ theorem sylvesterLinearMap_injective_iff_disjoint_spectrum [IsAlgClosed K]
 /-- The Sylvester operator is invertible exactly for disjoint spectra.
 Source: Horn–Johnson (2013), Theorem 2.4.4.1; formulated as bijectivity to
 avoid choosing an inverse and valid in dimension zero.
-atlas: sylvester-equation-/
+atlas: sylvester-equation
+@isnad1 id=iff.0h5v.s8.b59f9e375735 from=translated src=- shape=d9a285cb vocab=147add4a
+-/
 theorem sylvesterLinearMap_bijective_iff_disjoint_spectrum [IsAlgClosed K]
     (A : Matrix m m K) (B : Matrix n n K) :
     Function.Bijective (sylvesterLinearMap A B) ↔
@@ -129,7 +139,9 @@ theorem sylvesterLinearMap_bijective_iff_disjoint_spectrum [IsAlgClosed K]
 
 /-- Disjoint spectra give exactly one solution for each Sylvester right-hand
 side. Source: Horn–Johnson (2013), Theorem 2.4.4.1; indices may be empty.
-atlas: sylvester-equation-/
+atlas: sylvester-equation
+@isnad1 id=existsun.1h6v.s8.f713166dfc5c from=translated src=- shape=4942d9d7 vocab=d872e82d
+-/
 theorem existsUnique_sylvester_of_disjoint_spectrum [IsAlgClosed K]
     (A : Matrix m m K) (B : Matrix n n K)
     (hdisj : Disjoint (spectrum K A) (spectrum K B)) (C : Matrix m n K) :

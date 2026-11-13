@@ -25,7 +25,9 @@ def trailingMinor {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (k : ℕ) : ℝ :=
 
 /-- A first-pivot Schur step factors every larger leading minor by the
 first pivot. Horn--Johnson (2013), Theorem 7.2.5;
-helper for `sylvester-criterion`.-/
+helper for `sylvester-criterion`.
+@isnad1 id=eq.2h3v.s8.8cd374d8782e from=translated src=- shape=9fbe8680 vocab=fe9a80a3
+-/
 theorem leadingMinor_eq_pivot_mul_leadingMinor_pivotSchur {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (ha : A 0 0 ≠ 0)
     (k : ℕ) (hk : k ≤ n) :
@@ -41,7 +43,9 @@ theorem leadingMinor_eq_pivot_mul_leadingMinor_pivotSchur {n : ℕ}
 
 /-- Positive definite matrices have positive leading principal minors.
 Horn--Johnson (2013), Theorem 7.2.5.
-atlas: sylvester-criterion (partial)-/
+atlas: sylvester-criterion (partial)
+@isnad1 id=lt.2h3v.s5.364187d033f3 from=translated src=- shape=c28b5ad1 vocab=d4d616ee
+-/
 theorem leadingMinor_pos_of_posDef {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosDef) (k : ℕ) (hk : k ≤ n) : 0 < leadingMinor A k := by
   rw [leadingMinor, leadingSubmatrix_fin _ hk]
@@ -50,7 +54,9 @@ theorem leadingMinor_pos_of_posDef {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
 /-- A real symmetric matrix with positive leading principal minors is
 positive definite, including the empty-dimensional case.
 Horn--Johnson (2013), Theorem 7.2.5.
-atlas: sylvester-criterion (partial)-/
+atlas: sylvester-criterion (partial)
+@isnad1 id=posdef.2h2v.s6.d089d37d107b from=translated src=- shape=7dd0aeb1 vocab=7cd6baa0
+-/
 theorem posDef_of_leadingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.IsHermitian)
     (hminor : ∀ k, 1 ≤ k → k ≤ n → 0 < leadingMinor A k) : A.PosDef := by
@@ -73,7 +79,9 @@ theorem posDef_of_leadingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
 
 /-- Sylvester's leading-principal-minor criterion for a real symmetric
 matrix. Horn--Johnson (2013), Theorem 7.2.5.
-atlas: sylvester-criterion-/
+atlas: sylvester-criterion
+@isnad1 id=iff.1h2v.s6.42cfdd850d8a from=translated src=- shape=b664d692 vocab=7cd6baa0
+-/
 theorem posDef_iff_leadingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.IsHermitian) :
     A.PosDef ↔ ∀ k, 1 ≤ k → k ≤ n → 0 < leadingMinor A k :=
@@ -81,7 +89,9 @@ theorem posDef_iff_leadingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
 
 /-- Sylvester's equivalent trailing-principal-minor criterion.
 Horn--Johnson (2013), Theorem 7.2.5 and Corollary 7.2.4.
-atlas: sylvester-criterion-/
+atlas: sylvester-criterion
+@isnad1 id=iff.1h2v.s6.e3a8bdea3337 from=translated src=- shape=5cee53be vocab=601c8316
+-/
 theorem posDef_iff_trailingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.IsHermitian) :
     A.PosDef ↔ ∀ k, 1 ≤ k → k ≤ n → 0 < trailingMinor A k := by
@@ -99,7 +109,9 @@ theorem posDef_iff_trailingMinor_pos {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     exact hA'
 
 /-- The full leading principal minor is the determinant of the matrix.
-The finite-prefix definition; helper for `sylvester-criterion`.-/
+The finite-prefix definition; helper for `sylvester-criterion`.
+@isnad1 id=eq.0h2v.s5.22ab256b8933 from=translated src=- shape=d6c73571 vocab=27a4496a
+-/
 theorem leadingMinor_eq_det {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     leadingMinor A n = A.det := by
   rw [leadingMinor, leadingSubmatrix_fin _ le_rfl]
@@ -107,7 +119,9 @@ theorem leadingMinor_eq_det {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
 
 /-- With a positive first pivot, a PSD pivot Schur complement makes the
 whole symmetric matrix PSD. Completion of squares;
-helper for `sylvester-criterion`.-/
+helper for `sylvester-criterion`.
+@isnad1 id=possemid.3h2v.s7.b20f168d8667 from=translated src=- shape=2f226b3c vocab=a6c7946b
+-/
 theorem posSemidef_of_pivotSchur_posSemidef {n : ℕ}
     {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ} (hAh : A.IsHermitian)
     (ha : 0 < A 0 0) (hP : (pivotSchur A).PosSemidef) : A.PosSemidef := by
@@ -134,7 +148,9 @@ theorem posSemidef_of_pivotSchur_posSemidef {n : ℕ}
 /-- If the first `n-1` leading minors are positive and the determinant is
 nonnegative, a real symmetric matrix is PSD. This includes dimensions zero
 and one. Horn--Johnson (2013), Corollary 7.2.4.
-atlas: sylvester-criterion-/
+atlas: sylvester-criterion
+@isnad1 id=possemid.3h2v.s6.69dea2ba7bfd from=translated src=- shape=eae175a7 vocab=f139b9ce
+-/
 theorem posSemidef_of_leadingMinor_pos_and_det_nonneg {n : ℕ}
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.IsHermitian)
     (hminor : ∀ k, 1 ≤ k → k < n → 0 < leadingMinor A k) (hdet : 0 ≤ A.det) :

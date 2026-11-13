@@ -27,7 +27,9 @@ def finiteGroupNormalizedBlock (ρ : ∀ p, Representation ℂ G (D p → ℂ))
     finiteGroupRepresentationBlock ρ z p
 
 /-- Concatenating the normalized actual block entries is exactly multiplication
-by the concrete normalized coefficient transform.-/
+by the concrete normalized coefficient transform.
+@isnad1 id=eq.0h8v.s7.dd53dc135b38 from=translated src=- shape=fe8b6065 vocab=8f80a888
+-/
 theorem finiteGroupNormalizedBlock_apply
     (ρ : ∀ p, Representation ℂ G (D p → ℂ)) (z : G → ℂ)
     (p : P) (a b : D p) :
@@ -43,7 +45,9 @@ theorem finiteGroupNormalizedBlock_apply
   rfl
 
 /-- Removing the normalization gives the exact `sqrt(N/d)` source factor,
-including arbitrary singular or zero actual blocks.-/
+including arbitrary singular or zero actual blocks.
+@isnad1 id=eq.0h6v.s7.30a68095a577 from=translated src=- shape=12842492 vocab=50968530
+-/
 theorem sqrt_card_div_smul_finiteGroupNormalizedBlock
     [∀ p, Nonempty (D p)] (ρ : ∀ p, Representation ℂ G (D p → ℂ))
     (z : G → ℂ) (p : P) :

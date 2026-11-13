@@ -16,7 +16,9 @@ def ConformalBlockDiagonal {K m n ι : Type*} [Zero K] (A : Matrix m n K)
 namespace ConformalBlockDiagonal
 variable {K m n p ι : Type*} [RCLike K] {row : m → ι} {mid : n → ι} {col : p → ι}
 
-/-- Products retain conformal block diagonality.-/
+/-- Products retain conformal block diagonality.
+@isnad1 id=conforma.2h10v.s7.9b2178a1e092 from=translated src=- shape=081aad6b vocab=750f171b
+-/
 theorem mul [Fintype n] {A : Matrix m n K} {B : Matrix n p K}
     (hA : ConformalBlockDiagonal A row mid) (hB : ConformalBlockDiagonal B mid col) :
     ConformalBlockDiagonal (A * B) row col := by
@@ -29,20 +31,26 @@ theorem mul [Fintype n] {A : Matrix m n K} {B : Matrix n p K}
   · rw [hB t j (by simpa [← hit] using hij), mul_zero]
   · rw [hA i t hit, zero_mul]
 
-/-- Adjointing exchanges the row and column block labels.-/
+/-- Adjointing exchanges the row and column block labels.
+@isnad1 id=conforma.1h7v.s6.05088263738d from=translated src=- shape=3510f7b2 vocab=8ff7861d
+-/
 theorem conjTranspose {A : Matrix m n K} (hA : ConformalBlockDiagonal A row mid) :
     ConformalBlockDiagonal Aᴴ mid row := by
   intro i j hij
   simp [Matrix.conjTranspose_apply, hA j i hij.symm]
 
-/-- Differences retain conformal block diagonality.-/
+/-- Differences retain conformal block diagonality.
+@isnad1 id=conforma.2h8v.s7.4fe859871779 from=translated src=- shape=a0e9d14e vocab=042d5a89
+-/
 theorem sub {A B : Matrix m n K} (hA : ConformalBlockDiagonal A row mid)
     (hB : ConformalBlockDiagonal B row mid) : ConformalBlockDiagonal (A - B) row mid := by
   intro i j hij
   simp [hA i j hij, hB i j hij]
 
 /-- An invertible block-diagonal matrix has a block-diagonal inverse; no
-principal-block invertibility assumptions are added to the statement.-/
+principal-block invertibility assumptions are added to the statement.
+@isnad1 id=conforma.2h5v.s7.e7d6829ce2af from=translated src=- shape=60bc4d06 vocab=402d4b6b
+-/
 theorem inv [Fintype m] [DecidableEq m] [LinearOrder ι] {A : Matrix m m K}
     (hA : ConformalBlockDiagonal A row row) (hunit : IsUnit A.det) :
     ConformalBlockDiagonal A⁻¹ row row := by

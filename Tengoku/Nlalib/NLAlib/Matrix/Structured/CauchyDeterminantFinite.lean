@@ -16,7 +16,9 @@ namespace NLAlib
 Vandermonde factors in the same finite coordinate ordering. The denominator
 product is intrinsic. Empty labels and repeated parameters are included.
 Horn–Johnson 2013, §0.9.12.
-atlas: structured-matrices-def (partial)-/
+atlas: structured-matrices-def (partial)
+@isnad1 id=eq.1h3v.s7.bd76ad40bc6a from=translated src=- shape=fa8c460e vocab=4c028556
+-/
 theorem det_cauchyMatrix_eq_vandermonde_fintype {n : Type*} [Fintype n] [DecidableEq n]
     (x y : n → ℝ) (hDen : ∀ i j, x i + y j ≠ 0) :
     (cauchyMatrix x y).det =

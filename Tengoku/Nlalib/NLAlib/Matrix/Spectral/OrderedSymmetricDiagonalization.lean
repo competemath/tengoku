@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- A real symmetric matrix admits orthogonal diagonalization with any
 prescribed complete characteristic-root list. Source: the ordered Schur
 and real spectral theorems; helper for the prescribed-matrix clauses of
-`interlacing-converse`, with arbitrary finite and empty shapes.-/
+`interlacing-converse`, with arbitrary finite and empty shapes.
+@isnad1 id=ex.2h3v.s7.102c33e4358a from=translated src=- shape=aeb40a4b vocab=7ba798cd
+-/
 theorem exists_orthogonal_diagonalization_of_isHermitian_with_charpoly
     (A : Matrix n n ℝ) (hA : A.IsHermitian) (d : n → ℝ)
     (hd : A.charpoly = ∏ i, (X - C (d i))) :

@@ -26,7 +26,9 @@ def pencilPolynomial (A B : Matrix (Fin n) (Fin n) ℂ) : Polynomial ℂ :=
 
 /-- The homogeneous determinant factors through the two QZ diagonals.
 The product includes multiplicities and is `1` in dimension zero.
-atlas: generalized-schur-qz (partial)-/
+atlas: generalized-schur-qz (partial)
+@isnad1 id=eq.4h9v.s10.e16656d099f9 from=translated src=- shape=d0896f40 vocab=924cc3f2
+-/
 theorem det_smul_sub_smul_of_unitary_qz
     (hA : A = (Q : Matrix (Fin n) (Fin n) ℂ) * S * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
     (hB : B = (Q : Matrix (Fin n) (Fin n) ℂ) * T * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
@@ -46,7 +48,9 @@ theorem det_smul_sub_smul_of_unitary_qz
 
 /-- The affine determinant polynomial has the complete factor list given
 by the QZ diagonal pairs, with characteristic multiplicities.
-atlas: generalized-schur-qz (partial)-/
+atlas: generalized-schur-qz (partial)
+@isnad1 id=eq.4h7v.s10.f0aa5f1069a4 from=translated src=- shape=05ce9ddf vocab=513d8481
+-/
 theorem pencilPolynomial_eq_prod_of_unitary_qz
     (hA : A = (Q : Matrix (Fin n) (Fin n) ℂ) * S * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
     (hB : B = (Q : Matrix (Fin n) (Fin n) ℂ) * T * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
@@ -73,7 +77,9 @@ theorem pencilPolynomial_eq_prod_of_unitary_qz
 
 /-- A pencil is regular exactly when none of its QZ diagonal pairs is
 simultaneously zero. Singular and empty pencils are covered by the equivalence.
-atlas: generalized-schur-qz (partial)-/
+atlas: generalized-schur-qz (partial)
+@isnad1 id=iff.4h7v.s10.85faba8cb45f from=translated src=- shape=3d46bc55 vocab=a42523ed
+-/
 theorem pencilPolynomial_ne_zero_iff_of_unitary_qz
     (hA : A = (Q : Matrix (Fin n) (Fin n) ℂ) * S * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
     (hB : B = (Q : Matrix (Fin n) (Fin n) ℂ) * T * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
@@ -104,7 +110,9 @@ theorem pencilPolynomial_ne_zero_iff_of_unitary_qz
 /-- The homogeneous roots are precisely the QZ diagonal pairs. Under
 regularity these pairs define the complete projective eigenvalue list,
 including infinity (`β = 0`), without any division by a diagonal entry.
-atlas: generalized-schur-qz (partial)-/
+atlas: generalized-schur-qz (partial)
+@isnad1 id=iff.4h9v.s10.092aa8df2160 from=translated src=- shape=287cd1e1 vocab=8ab37b71
+-/
 theorem det_smul_sub_smul_eq_zero_iff_of_unitary_qz
     (hA : A = (Q : Matrix (Fin n) (Fin n) ℂ) * S * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)
     (hB : B = (Q : Matrix (Fin n) (Fin n) ℂ) * T * (Z : Matrix (Fin n) (Fin n) ℂ)ᴴ)

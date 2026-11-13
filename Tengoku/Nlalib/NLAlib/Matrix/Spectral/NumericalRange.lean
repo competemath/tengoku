@@ -30,7 +30,9 @@ def numericalRange (A : Matrix n n ℂ) : Set ℂ :=
   {z | ∃ x : n → ℂ, ‖WithLp.toLp 2 x‖ = 1 ∧ quadForm A x = z}
 
 omit [DecidableEq n] in
-/-- Membership in the numerical range is witnessed by a complex unit vector.-/
+/-- Membership in the numerical range is witnessed by a complex unit vector.
+@isnad1 id=iff.0h3v.s6.cf62966b63db from=translated src=- shape=e72670a8 vocab=699159be
+-/
 theorem mem_numericalRange_iff (A : Matrix n n ℂ) (z : ℂ) :
     z ∈ numericalRange A ↔ ∃ x : n → ℂ,
       ‖WithLp.toLp 2 x‖ = 1 ∧ quadForm A x = z := Iff.rfl
@@ -38,7 +40,9 @@ theorem mem_numericalRange_iff (A : Matrix n n ℂ) (z : ℂ) :
 omit [DecidableEq n] in
 /-- The numerical range is a compact image of the finite-dimensional unit sphere.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=iscompac.0h2v.s4.3c9966f0f98b from=translated src=- shape=e8cf55cb vocab=7c0ae6fb
+-/
 theorem isCompact_numericalRange (A : Matrix n n ℂ) : IsCompact (numericalRange A) := by
   have hc : Continuous (fun x : EuclideanSpace ℂ n => quadForm A x.ofLp) := by
     unfold quadForm
@@ -58,7 +62,9 @@ theorem isCompact_numericalRange (A : Matrix n n ℂ) : IsCompact (numericalRang
 
 /-- The modulus of the quadratic form is bounded by the spectral norm times
 the vector's squared Euclidean norm. Cauchy–Schwarz gives the full complex
-modulus, rather than only its real part.-/
+modulus, rather than only its real part.
+@isnad1 id=le.0h4v.s7.aa0fef159177 from=translated src=- shape=de122909 vocab=27936c21
+-/
 theorem norm_quadForm_le_specNorm {𝕜 : Type*} [RCLike 𝕜] (A : Matrix n n 𝕜) (x : n → 𝕜) :
     ‖quadForm A x‖ ≤ specNorm A * ‖WithLp.toLp 2 x‖ ^ 2 := by
   have hi : inner 𝕜 (WithLp.toLp 2 x : EuclideanSpace 𝕜 n)
@@ -78,14 +84,18 @@ theorem norm_quadForm_le_specNorm {𝕜 : Type*} [RCLike 𝕜] (A : Matrix n n �
 
 /-- Every numerical-range point lies in the closed disk of radius the spectral norm.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=le.1h3v.s5.ce216f6dc523 from=translated src=- shape=3fe870d7 vocab=8493572e
+-/
 theorem norm_le_specNorm_of_mem_numericalRange {A : Matrix n n ℂ} {z : ℂ}
     (hz : z ∈ numericalRange A) : ‖z‖ ≤ specNorm A := by
   obtain ⟨x, hx, rfl⟩ := hz
   simpa only [hx, one_pow, mul_one] using norm_quadForm_le_specNorm A x
 
 omit [DecidableEq n] in
-/-- The Hermitian self-pairing of a complex unit vector is one.-/
+/-- The Hermitian self-pairing of a complex unit vector is one.
+@isnad1 id=eq.1h2v.s6.5b704f1c90b7 from=translated src=- shape=d9c1e7f2 vocab=df497657
+-/
 theorem star_dotProduct_self_eq_one_of_norm_toLp_eq_one {x : n → ℂ}
     (hx : ‖WithLp.toLp 2 x‖ = 1) : star x ⬝ᵥ x = 1 := by
   calc
@@ -96,7 +106,9 @@ theorem star_dotProduct_self_eq_one_of_norm_toLp_eq_one {x : n → ℂ}
 
 /-- Every spectral point belongs to the numerical range: normalize a nonzero
 eigenvector. Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=le.0h2v.s5.0c3c3d427e81 from=translated src=- shape=e16066bf vocab=2ca44c9a
+-/
 theorem spectrum_subset_numericalRange (A : Matrix n n ℂ) :
     spectrum ℂ A ⊆ numericalRange A := by
   intro z hz
@@ -120,7 +132,9 @@ theorem spectrum_subset_numericalRange (A : Matrix n n ℂ) :
 /-- Affine transformations of matrices induce the same affine transformation
 of the numerical range. No nonzero coefficient assumption is needed.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=eq.0h4v.s7.aafe9a86342e from=translated src=- shape=1101083e vocab=1cd95f98
+-/
 theorem numericalRange_smul_add_smul_one (A : Matrix n n ℂ) (α β : ℂ) :
     numericalRange (α • A + β • (1 : Matrix n n ℂ)) =
       (fun z => α * z + β) '' numericalRange A := by
@@ -137,7 +151,9 @@ theorem numericalRange_smul_add_smul_one (A : Matrix n n ℂ) (α β : ℂ) :
     exact ⟨x, hx, hform x hx⟩
 
 omit [DecidableEq m] in
-/-- Multiplication by a matrix with orthonormal columns preserves vector norms.-/
+/-- Multiplication by a matrix with orthonormal columns preserves vector norms.
+@isnad1 id=eq.1h4v.s7.b8c718bd98ce from=translated src=- shape=dde378ca vocab=f6aa2fe4
+-/
 theorem norm_toLp_mulVec_of_hasOrthonormalCols {Q : Matrix m n ℂ}
     (hQ : HasOrthonormalCols Q) (x : n → ℂ) :
     ‖WithLp.toLp 2 (Q *ᵥ x)‖ = ‖WithLp.toLp 2 x‖ := by
@@ -149,7 +165,9 @@ theorem norm_toLp_mulVec_of_hasOrthonormalCols {Q : Matrix m n ℂ}
 omit [DecidableEq m] in
 /-- Orthogonal compression can only shrink the numerical range.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=le.1h4v.s6.b482ec983aea from=translated src=- shape=660c9db4 vocab=c0a3f261
+-/
 theorem numericalRange_conjTranspose_mul_mul_subset {Q : Matrix m n ℂ}
     (hQ : HasOrthonormalCols Q) (A : Matrix m m ℂ) :
     numericalRange (Qᴴ * A * Q) ⊆ numericalRange A := by
@@ -161,7 +179,9 @@ theorem numericalRange_conjTranspose_mul_mul_subset {Q : Matrix m n ℂ}
 
 /-- Unitary similarity preserves the numerical range, including empty matrices.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=eq.0h3v.s8.415d7843300b from=translated src=- shape=a80f6ab8 vocab=408d4abb
+-/
 theorem numericalRange_unitary_conjTranspose_mul_mul
     (U : Matrix.unitaryGroup n ℂ) (A : Matrix n n ℂ) :
     numericalRange ((U : Matrix n n ℂ)ᴴ * A * (U : Matrix n n ℂ)) = numericalRange A := by

@@ -22,7 +22,9 @@ spectral values, formed from maximal generalized eigenspaces.-/
 def matrixSpectralSubspace (A : Matrix n n ℂ) (Ω : Set ℂ) : Submodule ℂ (n → ℂ) :=
   ⨆ z : Ω, Module.End.maxGenEigenspace A.toLin' z.val
 
-/-- The range of an algebraic half-involution is its signed eigenspace.-/
+/-- The range of an algebraic half-involution is its signed eigenspace.
+@isnad1 id=eq.2h3v.s11.5655a67a7033 from=translated src=- shape=1c8c1dd2 vocab=10c92f26
+-/
 theorem range_half_involution_eq_eigenspace {S : Matrix n n ℂ} (hS : S^2=1)
     (a : ℂ) (ha : a^2=1) :
     LinearMap.range ((2 : ℂ)⁻¹ • (1+a • S)).toLin' = Module.End.eigenspace S.toLin' a := by
@@ -51,7 +53,9 @@ theorem range_half_involution_eq_eigenspace {S : Matrix n n ℂ} (hS : S^2=1)
     norm_num
 
 /-- The signed eigenspace of a matrix sign is the matching primary
-spectral half-plane.-/
+spectral half-plane.
+@isnad1 id=eq.2h4v.s10.13d490e0a223 from=translated src=- shape=04f9f257 vocab=e5be522d
+-/
 theorem IsMatrixSign.eigenspace_eq_spectralSubspace {A S : Matrix n n ℂ}
     (hS : IsMatrixSign A S) (a : ℂ) (ha : a^2=1) :
     Module.End.eigenspace S.toLin' a = matrixSpectralSubspace A {z | 0 < (a*z).re} := by
@@ -76,7 +80,9 @@ theorem IsMatrixSign.eigenspace_eq_spectralSubspace {A S : Matrix n n ℂ}
 /-- The canonical matrix sign has complementary idempotent half-sign
 projectors onto exactly the positive and negative primary spectral
 subspaces. This includes nonnormal matrices and all Jordan blocks.
-atlas: matrix-sign-spectral-projectors-/
+atlas: matrix-sign-spectral-projectors
+@isnad1 id=other.1h2v.s11.d3c30798d84f from=translated src=- shape=437b89cb vocab=c0a748ee
+-/
 theorem matrixSign_spectral_projectors {A : Matrix n n ℂ}
     (hA : ∀ z ∈ spectrum ℂ A, z.re ≠ 0) :
     let S := matrixSign A

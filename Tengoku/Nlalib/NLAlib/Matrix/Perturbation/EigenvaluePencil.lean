@@ -21,14 +21,18 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 omit [Fintype n] [DecidableEq n] in
 /-- The symmetric affine pencil `A + t B` is Hermitian at every real parameter.
-This proof-valued interface fixes the sorted eigenvalue witnesses used by Lidskii.-/
+This proof-valued interface fixes the sorted eigenvalue witnesses used by Lidskii.
+@isnad1 id=ishermit.2h4v.s7.2825a7c3368a from=translated src=- shape=c1c0ad69 vocab=2842bc4d
+-/
 theorem isHermitian_add_smul {A B : Matrix n n ℝ} (hA : A.IsHermitian) (hB : B.IsHermitian)
     (t : ℝ) : (A + t • B).IsHermitian :=
   hA.add (hB.smul (by simp [IsSelfAdjoint]))
 
 open scoped Matrix.Norms.L2Operator in
 /-- Sorted signed eigenvalues of a symmetric affine pencil vary by at most
-`|s-t| ‖B‖`. Weyl's bound, Horn–Johnson 2013, Corollary 4.3.15; no simple spectrum.-/
+`|s-t| ‖B‖`. Weyl's bound, Horn–Johnson 2013, Corollary 4.3.15; no simple spectrum.
+@isnad1 id=le.2h6v.s7.4022589cf089 from=translated src=- shape=30f4b4fc vocab=26472c1e
+-/
 theorem abs_eigenvalues₀_pencil_sub_le {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n)) (s t : ℝ) :
     |(isHermitian_add_smul hA hB s).eigenvalues₀ i -
@@ -42,7 +46,9 @@ theorem abs_eigenvalues₀_pencil_sub_le {A B : Matrix n n ℝ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Each decreasing signed eigenvalue of a real symmetric affine pencil is
-Lipschitz with constant `‖B‖`. Weyl's perturbation theorem; Lidskii continuity step.-/
+Lipschitz with constant `‖B‖`. Weyl's perturbation theorem; Lidskii continuity step.
+@isnad1 id=lipschit.2h4v.s7.291aa0fa035d from=translated src=- shape=e1a0ff00 vocab=fce641e1
+-/
 theorem lipschitzWith_eigenvalues₀_pencil {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n)) :
     LipschitzWith ⟨specNorm B, specNorm_nonneg B⟩
@@ -55,14 +61,18 @@ theorem lipschitzWith_eigenvalues₀_pencil {A B : Matrix n n ℝ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Sorted signed eigenvalues of a symmetric affine pencil are continuous,
-including at eigenvalue crossings. Bhatia 1997, Section III.4, Lidskii proof.-/
+including at eigenvalue crossings. Bhatia 1997, Section III.4, Lidskii proof.
+@isnad1 id=continuo.2h4v.s7.a7d3d2cf4390 from=translated src=- shape=6f62a8bb vocab=4293fc99
+-/
 theorem continuous_eigenvalues₀_pencil {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n)) :
     Continuous (fun t : ℝ => (isHermitian_add_smul hA hB t).eigenvalues₀ i) :=
   (lipschitzWith_eigenvalues₀_pencil hA hB i).continuous
 
 /-- Successive increments of a symmetric affine pencil agree with their summed
-parameter. The exact matrix identity; supports the shifted Lidskii variation.-/
+parameter. The exact matrix identity; supports the shifted Lidskii variation.
+@isnad1 id=eq.2h6v.s8.aa257ef1de9a from=translated src=- shape=96a0c4f4 vocab=27ac0469
+-/
 theorem eigenvalues₀_pencil_add {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (t h : ℝ) (i : Fin (Fintype.card n)) :
     (isHermitian_add_smul (isHermitian_add_smul hA hB t) hB h).eigenvalues₀ i =

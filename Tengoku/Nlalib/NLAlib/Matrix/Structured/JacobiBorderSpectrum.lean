@@ -17,7 +17,9 @@ open scoped Matrix MatrixOrder
 
 namespace NLAlib
 
-/-- Matrix interval order bounds contain every eigenvalue of a real Hermitian matrix.-/
+/-- Matrix interval order bounds contain every eigenvalue of a real Hermitian matrix.
+@isnad1 id=mem.3h5v.s7.bbb5e6b2fa06 from=translated src=- shape=ec9f4974 vocab=7ddcb2d3
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues_mem_Icc_of_order
     {ι : Type*} [Fintype ι] [DecidableEq ι] {J : Matrix ι ι ℝ} (hJ : J.IsHermitian)
     {a c : ℝ} (ha : a • 1 ≤ J) (hc : J ≤ c • 1) (i : ι) : hJ.eigenvalues i ∈ Icc a c := by
@@ -34,7 +36,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues_mem_Icc_of_order
 
 /-- The actual finite indexed Lobatto Schur border lies in the endpoint interval and
 has both designated endpoint eigenvalues. Source: focused reroutes, Section 3 (BL9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.4h5v.s10.1096d97cc490 from=translated src=- shape=3e12b57a vocab=7d667f07
+-/
 theorem finLobattoSchurBorder_bounds_and_endpoints {q : ℕ}
     {J : Matrix (Fin q) (Fin q) ℝ} {e : Fin q → ℝ} {a c : ℝ}
     (hac : a < c) (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) (he : e ≠ 0) :
@@ -51,7 +55,9 @@ theorem finLobattoSchurBorder_bounds_and_endpoints {q : ℕ}
 
 /-- The actual finite indexed Radau matrices retain the endpoint spectrum and
 bracket the original finite border in matrix order. Source: focused reroutes (BL4).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.4h6v.s10.fff238837536 from=translated src=- shape=3d2d6948 vocab=d308d6f1
+-/
 theorem finRadauSchurBorders_bounds_and_endpoints {q : ℕ}
     (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d a c : ℝ)
     (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef)

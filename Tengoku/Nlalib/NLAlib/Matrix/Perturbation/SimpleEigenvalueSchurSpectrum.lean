@@ -19,7 +19,9 @@ set_option backward.isDefEq.respectTransparency false
 /-- The scalar Schur function is the determinant factor in the separated
 scalar/block eigenvalue pencil. Arbitrary finite trailing indices, including
 empty blocks, are allowed. Horn–Johnson 2013, Theorem 6.3.12; supports
-`simple-eigenvalue-perturbation`.-/
+`simple-eigenvalue-perturbation`.
+@isnad1 id=eq.1h10v.s9.0dd5b9cfac28 from=translated src=- shape=e7df4413 vocab=66a82f44
+-/
 theorem det_scalar_block_eigenvalue_pencil_eq_schur
     {l n : Type*} [Unique l] [Fintype n] [DecidableEq n]
     (μ a t s : ℂ) (B F : Matrix n n ℂ) (b c : n → ℂ)
@@ -62,7 +64,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Under invertibility of the trailing pencil block, a spectral point of
 the perturbed scalar/block matrix is exactly a zero of the scalar
 Schur function. One common arbitrary finite trailing type is used throughout.
-Horn–Johnson 2013, Theorem 6.3.12; supports `simple-eigenvalue-perturbation`.-/
+Horn–Johnson 2013, Theorem 6.3.12; supports `simple-eigenvalue-perturbation`.
+@isnad1 id=iff.1h10v.s8.7ecaf775db4a from=translated src=- shape=602803ad vocab=a11d1309
+-/
 theorem mem_spectrum_scalar_block_iff_schur_eq_zero
     {l n : Type*} [Unique l] [Fintype n] [DecidableEq n]
     (μ a t s : ℂ) (B F : Matrix n n ℂ) (b c : n → ℂ)

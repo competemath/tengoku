@@ -20,7 +20,9 @@ variable {E n : Type*} [TopologicalSpace E] [Fintype n] [DecidableEq n]
   {A : E → Matrix n n ℝ} {x : E}
 
 /-- Every ordered eigenvalue of an entrywise continuous Hermitian family is
-continuous; repeated eigenvalues and dimension zero require no extra cases.-/
+continuous; repeated eigenvalues and dimension zero require no extra cases.
+@isnad1 id=continuo.2h5v.s6.0909c6215586 from=translated src=- shape=80e07b67 vocab=c36785c7
+-/
 theorem _root_.Matrix.IsHermitian.continuousAt_eigenvalues₀
     (hA : ∀ y, (A y).IsHermitian)
     (hc : ∀ i j, ContinuousAt (fun y => A y i j) x)

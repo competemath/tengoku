@@ -22,7 +22,9 @@ private theorem re_trace_block_diag (A B : Matrix ι ι ℂ) :
 
 /-- The sharp two-point estimate for every positive even Hermitian trace
 moment, with no positivity or invertibility hypothesis on either matrix.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=le.4h4v.s8.a95739f045dd from=translated src=- shape=909edf4d vocab=4bfaecd6
+-/
 theorem re_trace_even_moment_smoothness (A H : Matrix ι ι ℂ)
     (hA : A.IsHermitian) (hH : H.IsHermitian) {p : ℕ}
     (hp : Even p) (hp2 : 2 ≤ p) :

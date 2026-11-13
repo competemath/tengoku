@@ -20,7 +20,9 @@ namespace NLAlib
 /-- Disjoint complex spectra give exactly one real solution of every real
 Sylvester equation. Source: Horn–Johnson (2013), Theorem 2.4.4.1;
 arbitrary finite rectangular shapes, including empty ones, are allowed.
-atlas: sylvester-equation-/
+atlas: sylvester-equation
+@isnad1 id=existsun.1h5v.s7.11650f012990 from=translated src=- shape=fc7bc5ff vocab=5a9f079a
+-/
 theorem existsUnique_real_sylvester_of_disjoint_complex_spectrum
     {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
     (A : Matrix m m ℝ) (B : Matrix n n ℝ)
@@ -44,7 +46,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 omit [∀ i, DecidableEq (m i)] [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)] in
 /-- Left multiplication by a block diagonal matrix acts separately on
-each block row. Source: Horn–Johnson (2013), §0.7; block multiplication.-/
+each block row. Source: Horn–Johnson (2013), §0.7; block multiplication.
+@isnad1 id=eq.0h8v.s8.c11764701547 from=translated src=- shape=5d35447d vocab=750139e0
+-/
 theorem submatrix_blockDiagonal'_mul (A : ∀ i, Matrix (m i) (m i) K)
     (X : Matrix (Σ i, m i) (Σ i, n i) K) (i j : ι) :
     (Matrix.blockDiagonal' A * X).submatrix (Sigma.mk i) (Sigma.mk j) =
@@ -59,7 +63,9 @@ theorem submatrix_blockDiagonal'_mul (A : ∀ i, Matrix (m i) (m i) K)
 
 omit [∀ i, Fintype (m i)] [∀ i, DecidableEq (m i)] [∀ i, DecidableEq (n i)] in
 /-- Right multiplication by a block diagonal matrix acts separately on
-each block column. Source: Horn–Johnson (2013), §0.7; block multiplication.-/
+each block column. Source: Horn–Johnson (2013), §0.7; block multiplication.
+@isnad1 id=eq.0h8v.s8.da7037561658 from=translated src=- shape=978f174d vocab=750139e0
+-/
 theorem submatrix_mul_blockDiagonal' (B : ∀ i, Matrix (n i) (n i) K)
     (X : Matrix (Σ i, m i) (Σ i, n i) K) (i j : ι) :
     (X * Matrix.blockDiagonal' B).submatrix (Sigma.mk i) (Sigma.mk j) =
@@ -104,7 +110,9 @@ theorem eq_blockDiagonal'_of_intertwines_of_disjoint_spectrum [IsAlgClosed K]
 spectra consists exactly of block diagonal matrices whose diagonal blocks
 commute with the corresponding primary blocks. Source: Horn–Johnson (2013),
 Corollary 2.4.4.2; the diagonal commutation conditions are essential.
-atlas: sylvester-equation (partial)-/
+atlas: sylvester-equation (partial)
+@isnad1 id=iff.1h5v.s8.ef04f7a04e66 from=translated src=- shape=0a9dba5e vocab=1c9c7a9f
+-/
 theorem commute_blockDiagonal'_iff [IsAlgClosed K]
     (A : ∀ i, Matrix (m i) (m i) K)
     (hdisj : Pairwise fun i j => Disjoint (spectrum K (A i)) (spectrum K (A j)))

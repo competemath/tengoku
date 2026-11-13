@@ -18,7 +18,9 @@ namespace Matrix
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
 omit [DecidableEq ι] in
-/-- Normalizing a paired Perron eigenvalue makes its projector fixed on both sides.-/
+/-- Normalizing a paired Perron eigenvalue makes its projector fixed on both sides.
+@isnad1 id=other.5h5v.s8.527767a9b4fb from=translated src=- shape=d00e7cad vocab=a4646654
+-/
 theorem perron_normalization_projector_identities {A : Matrix ι ι ℝ}
     {p q : ι → ℝ} {r : ℝ} (hr : 0 < r) (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
     (hAp : A *ᵥ p = r • p) (hqA : q ᵥ* A = r • q) :
@@ -34,7 +36,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Irreducible Perron deflation has subunit spectral radius exactly under
 the unique-peripheral hypothesis. This direction constructs the gap.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=lt.7h4v.s9.e41981749e32 from=translated src=- shape=fe54f1fc vocab=adff1c17
+-/
 theorem IsIrreducible.deflated_perron_spectralRadius_lt_one
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) (hAne : A ≠ 0)
     {p q : ι → ℝ} (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
@@ -92,7 +96,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Unique peripheral spectrum gives the normalized Perron projector limit,
 and every strictly larger geometric rate bounds all errors including exponent zero.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=other.7h4v.s9.ed8a4f5cb2c9 from=translated src=- shape=1e099e83 vocab=90bf0ca1
+-/
 theorem IsIrreducible.perron_power_limit_and_rate
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) (hAne : A ≠ 0)
     {p q : ι → ℝ} (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)

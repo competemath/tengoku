@@ -15,7 +15,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A complex number with zero imaginary part and positive real part has
 norm equal to its real part; this translates the positive diagonal in the
-Gershgorin dominance corollaries.-/
+Gershgorin dominance corollaries.
+@isnad1 id=eq.2h1v.s5.a0c0f7c7c48b from=translated src=- shape=f62680de vocab=64322e26
+-/
 theorem norm_eq_re_of_im_eq_zero_of_re_pos {z : ℂ} (hi : z.im = 0) (hr : 0 < z.re) :
     ‖z‖ = z.re := by
   have hz : z = (z.re : ℂ) := by apply Complex.ext <;> simp [hi]
@@ -26,7 +28,9 @@ theorem norm_eq_re_of_im_eq_zero_of_re_pos {z : ℂ} (hi : z.im = 0) (hr : 0 < z
 /-- Strict absolute row dominance and positive real diagonal place every
 complex eigenvalue in the open right half-plane. Source: Horn–Johnson
 (2013), Corollary 6.1.8; arbitrary nonsymmetric matrices are allowed.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=lt.4h3v.s6.051ca1901738 from=translated src=- shape=8fffdbc1 vocab=939dc4fc
+-/
 theorem re_pos_of_mem_spectrum_of_strict_diagonal_dominance
     {A : Matrix n n ℂ} (hdiag : ∀ i, (A i i).im = 0)
     (hpos : ∀ i, 0 < (A i i).re)
@@ -39,7 +43,9 @@ theorem re_pos_of_mem_spectrum_of_strict_diagonal_dominance
 /-- Strict absolute row dominance with positive diagonal makes a real
 symmetric matrix positive definite. Source: Horn–Johnson (2013),
 Corollary 7.2.3; no nonempty-dimension assumption is needed.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=posdef.3h2v.s6.4ea9f1c0c33d from=translated src=- shape=3bb72b27 vocab=1593d5cc
+-/
 theorem posDef_of_isHermitian_of_strict_diagonal_dominance
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (hpos : ∀ i, 0 < A i i)
     (hstrict : ∀ i, gershgorinRowRadius A i < ‖A i i‖) : A.PosDef := by
@@ -50,7 +56,9 @@ theorem posDef_of_isHermitian_of_strict_diagonal_dominance
 /-- Strict absolute row dominance and positive real diagonal also make a
 complex Hermitian matrix positive definite. Source: Horn–Johnson (2013),
 Corollary 7.2.3; the real-symmetric conclusion extends verbatim.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=posdef.4h2v.s6.43788831af5d from=translated src=- shape=abecabc6 vocab=1c7fc664
+-/
 theorem posDef_of_isHermitian_of_strict_diagonal_dominance_complex
     {A : Matrix n n ℂ} (hA : A.IsHermitian)
     (hdiag : ∀ i, (A i i).im = 0) (hpos : ∀ i, 0 < (A i i).re)
@@ -65,7 +73,9 @@ theorem posDef_of_isHermitian_of_strict_diagonal_dominance_complex
 and a strict row makes a complex Hermitian matrix positive definite.
 Source: Horn–Johnson (2013), Corollary 6.2.27; the strict-row hypothesis
 is necessary and is explicit.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=posdef.6h2v.s7.d33aee3fd75b from=translated src=- shape=e3e55cbc vocab=18baa2a7
+-/
 theorem posDef_of_isHermitian_of_irreducible_weak_diagonal_dominance_complex
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (hIrred : (A.map norm).IsIrreducible)
     (hdiag : ∀ i, (A i i).im = 0) (hpos : ∀ i, 0 < (A i i).re)

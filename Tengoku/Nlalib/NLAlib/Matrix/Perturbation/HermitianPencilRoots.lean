@@ -26,7 +26,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The pencil equation is precisely spectral membership in the forward pencil.
-This formulation does not require invertibility of the slope matrix.-/
+This formulation does not require invertibility of the slope matrix.
+@isnad1 id=iff.0h5v.s7.9a0bb0a7b3ea from=translated src=- shape=8568a2a5 vocab=2073df8c
+-/
 theorem det_smul_one_sub_add_smul_eq_zero_iff_mem_spectrum
     (A D : Matrix n n ℂ) (u z : ℂ) :
     (u • (1 : Matrix n n ℂ) - A + z • D).det = 0 ↔
@@ -40,7 +42,9 @@ theorem det_smul_one_sub_add_smul_eq_zero_iff_mem_spectrum
 open scoped Matrix.Norms.L2Operator in
 /-- A Hermitian pencil cannot have a real root in its slope variable at a
 nonreal spectral parameter. In particular this applies throughout the open
-upper half-plane, without any simplicity assumption on either matrix.-/
+upper half-plane, without any simplicity assumption on either matrix.
+@isnad1 id=ne.4h5v.s7.e1010145c8bf from=translated src=- shape=e6ee8dc5 vocab=aee8754f
+-/
 theorem im_ne_zero_of_det_hermitian_pencil_eq_zero
     {A D : Matrix n n ℂ} (hA : A.IsHermitian) (hD : D.IsHermitian)
     {u z : ℂ} (hu : u.im ≠ 0)
@@ -56,7 +60,9 @@ theorem im_ne_zero_of_det_hermitian_pencil_eq_zero
 
 /-- For an invertible slope matrix, a root of the pencil is an eigenvalue of
 the inverse pencil. This retains algebraic multiplicities when used through
-the characteristic polynomial.-/
+the characteristic polynomial.
+@isnad1 id=iff.1h5v.s8.0807b2310ed0 from=translated src=- shape=569d5f09 vocab=de953430
+-/
 theorem det_smul_one_sub_add_smul_eq_zero_iff_mem_spectrum_inv_mul
     (A D : Matrix n n ℂ) (hD : IsUnit D) (u z : ℂ) :
     (u • (1 : Matrix n n ℂ) - A + z • D).det = 0 ↔
@@ -73,7 +79,9 @@ theorem det_smul_one_sub_add_smul_eq_zero_iff_mem_spectrum_inv_mul
 
 open scoped Matrix.Norms.L2Operator in
 /-- Every root of an invertible matrix pencil is bounded by
-`‖D⁻¹‖₂ (‖A‖₂ + |u|)`. The bound is uniform even when roots collide.-/
+`‖D⁻¹‖₂ (‖A‖₂ + |u|)`. The bound is uniform even when roots collide.
+@isnad1 id=le.2h5v.s7.a3fcb1dc23dc from=translated src=- shape=a070ec10 vocab=b756b650
+-/
 theorem norm_le_specNorm_inv_mul_of_det_pencil_eq_zero
     (A D : Matrix n n ℂ) (hD : IsUnit D) {u z : ℂ}
     (hz : (u • (1 : Matrix n n ℂ) - A + z • D).det = 0) :
@@ -98,7 +106,9 @@ theorem norm_le_specNorm_inv_mul_of_det_pencil_eq_zero
 
 /-- The actual roots of the inverse characteristic polynomial avoid the real
 axis at every nonreal parameter of a Hermitian pencil. Algebraic
-multiplicities are retained in `Polynomial.roots`.-/
+multiplicities are retained in `Polynomial.roots`.
+@isnad1 id=ne.5h5v.s7.c95ed04edf7c from=translated src=- shape=c5816694 vocab=88cf9e4d
+-/
 theorem im_ne_zero_of_mem_roots_charpoly_inv_mul
     {A D : Matrix n n ℂ} (hA : A.IsHermitian) (hD : D.IsHermitian)
     (hDu : IsUnit D) {u z : ℂ} (hu : u.im ≠ 0)
@@ -110,7 +120,9 @@ theorem im_ne_zero_of_mem_roots_charpoly_inv_mul
     ((det_smul_one_sub_add_smul_eq_zero_iff_mem_spectrum_inv_mul A D hDu u z).mpr hs)
 
 /-- The inverse characteristic roots have a common bound, independently of
-their multiplicities and without requiring a Hermitian pencil.-/
+their multiplicities and without requiring a Hermitian pencil.
+@isnad1 id=le.2h5v.s7.2a9441c013b3 from=translated src=- shape=7c77ad73 vocab=6846eb37
+-/
 theorem norm_le_specNorm_inv_mul_of_mem_roots_charpoly
     (A D : Matrix n n ℂ) (hD : IsUnit D) {u z : ℂ}
     (hz : z ∈ (D⁻¹ * (A - u • (1 : Matrix n n ℂ))).charpoly.roots) :
@@ -122,7 +134,9 @@ theorem norm_le_specNorm_inv_mul_of_mem_roots_charpoly
 
 /-- Any submultiset of inverse characteristic roots has a dimension-times-root
 bound. In particular this supplies the uniform bound for the sum of all upper
-half-plane roots, including collisions.-/
+half-plane roots, including collisions.
+@isnad1 id=le.2h5v.s7.3d199fe617bf from=translated src=- shape=16ff0a57 vocab=511f2b24
+-/
 theorem norm_sum_le_card_mul_specNorm_inv_of_le_roots_charpoly
     (A D : Matrix n n ℂ) (hD : IsUnit D) (u : ℂ) (roots : Multiset ℂ)
     (hroots : roots ≤ (D⁻¹ * (A - u • (1 : Matrix n n ℂ))).charpoly.roots) :
@@ -148,7 +162,9 @@ theorem norm_sum_le_card_mul_specNorm_inv_of_le_roots_charpoly
 
 /-- A selected finite list of pencil roots has the same uniform bound.
 This form applies to exterior branches at real parameter values as well as
-to the upper-root multiset at nonreal parameters.-/
+to the upper-root multiset at nonreal parameters.
+@isnad1 id=le.2h6v.s8.14b6d68c828d from=translated src=- shape=742dee81 vocab=6504d3d0
+-/
 theorem norm_sum_ite_le_card_mul_specNorm_inv_of_det_pencil_eq_zero
     (A D : Matrix n n ℂ) (hD : IsUnit D) (u : ℂ) (ev : n → ℂ)
     (hev : ∀ i, (u • (1 : Matrix n n ℂ) - A + ev i • D).det = 0)

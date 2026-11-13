@@ -20,7 +20,9 @@ namespace NLAlib
 
 variable {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
 
-/-- Scalar rank-one block coefficients preserve positivity of a matrix.-/
+/-- Scalar rank-one block coefficients preserve positivity of a matrix.
+@isnad1 id=possemid.1h4v.s8.6e4d1298f953 from=translated src=- shape=29fa1933 vocab=7d8d6461
+-/
 theorem posSemidef_scalar_gram_fromBlocks {B : Matrix m m ℂ}
     (hB : B.PosSemidef) (a b : ℂ) :
     (fromBlocks ((a * star a) • B) ((a * star b) • B)
@@ -34,7 +36,9 @@ theorem posSemidef_scalar_gram_fromBlocks {B : Matrix m m ℂ}
     mul_comm] using h
 
 omit [Fintype m] [DecidableEq m] in
-/-- The image of each spectral projector under a positive map is positive.-/
+/-- The image of each spectral projector under a positive map is positive.
+@isnad1 id=possemid.0h5v.s8.d3e7cde21b4b from=translated src=- shape=91f19b69 vocab=58d97e4d
+-/
 theorem posSemidef_map_unitarySpectralProjector
     (Φ : Matrix n n ℂ →ₚ[ℂ] Matrix m m ℂ)
     (U : unitary (Matrix n n ℂ)) (i : n) :
@@ -42,7 +46,9 @@ theorem posSemidef_map_unitarySpectralProjector
   (Φ.map_nonneg (posSemidef_unitarySpectralProjector U i).nonneg).posSemidef
 
 omit [Fintype m] [DecidableEq m] in
-/-- Positive complex-linear maps preserve Hermitian matrices.-/
+/-- Positive complex-linear maps preserve Hermitian matrices.
+@isnad1 id=ishermit.1h4v.s7.5f47cb636408 from=translated src=- shape=14c7212b vocab=c864f788
+-/
 theorem isHermitian_map_of_positive (Φ : Matrix n n ℂ →ₚ[ℂ] Matrix m m ℂ)
     {A : Matrix n n ℂ} (hA : A.IsHermitian) : (Φ A).IsHermitian := by
   rw [sum_eigenvalue_smul_unitarySpectralProjector hA, map_sum]
@@ -55,7 +61,9 @@ theorem isHermitian_map_of_positive (Φ : Matrix n n ℂ →ₚ[ℂ] Matrix m m 
 /-- Kadison's inequality for positive unital complex-linear maps, on
 Hermitian inputs. Tropp (2022), Theorem 12.17. Positivity is sufficient;
 the theorem does not assume complete positivity.
-atlas: positive-map-kadison-/
+atlas: positive-map-kadison
+@isnad1 id=le.2h4v.s9.6f399ae73f7e from=translated src=- shape=fd32a90e vocab=559ca4fa
+-/
 theorem map_sq_le_of_positive_unital
     (Φ : Matrix n n ℂ →ₚ[ℂ] Matrix m m ℂ) (hΦ : Φ 1 = 1)
     {A : Matrix n n ℂ} (hA : A.IsHermitian) : (Φ A) ^ 2 ≤ Φ (A ^ 2) := by

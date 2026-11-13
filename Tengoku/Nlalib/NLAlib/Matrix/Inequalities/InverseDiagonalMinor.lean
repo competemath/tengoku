@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- For an invertible matrix, diagonal structure is preserved and reflected
 by inversion. Horn--Johnson (2013), Section 0.8;
-helper for the equality case in inverse Hadamard.-/
+helper for the equality case in inverse Hadamard.
+@isnad1 id=iff.1h2v.s5.5466938cc42b from=translated src=- shape=c7914c66 vocab=e3b05093
+-/
 theorem isDiag_inv_iff_of_isUnit {A : Matrix n n ℝ} (hA : IsUnit A) :
     A⁻¹.IsDiag ↔ A.IsDiag := by
   let : Invertible A := hA.invertible

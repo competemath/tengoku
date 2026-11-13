@@ -34,7 +34,9 @@ def traceExponentialCircleDensity {ι : Type*} [Fintype ι]
 its positive radius inside an exterior holomorphy domain. This allows one fixed
 candidate density to be used for every real Laplace parameter.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.5h5v.s7.806c4951124a from=translated src=- shape=48ec5e29 vocab=2cbf8aee
+-/
 theorem circleIntegral_exp_add_mul_eq_of_differentiableOn_exterior
     {branch : ℂ → ℂ} {R r u : ℝ} (s : ℝ)
     (hbranch : DifferentiableOn ℂ branch {z | R < ‖z‖})
@@ -48,7 +50,9 @@ theorem circleIntegral_exp_add_mul_eq_of_differentiableOn_exterior
 /-- The finite candidate density is independent of the exterior circle radius.
 Its complex value and support cutoffs are preserved pointwise.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.5h7v.s7.8013b77504b8 from=translated src=- shape=3d2f14c5 vocab=4525e1d0
+-/
 theorem traceExponentialCircleDensity_eq_of_differentiableOn_exterior
     {ι : Type*} [Fintype ι] {branch : ι → ℂ → ℂ} {a : ι → ℝ} {R r u : ℝ}
     (hbranch : ∀ i, DifferentiableOn ℂ (branch i) {z | R < ‖z‖})
@@ -66,7 +70,9 @@ atomic Cauchy term `exp a` in Stahl's trace-exponential formula. The branch is
 only required outside a disk, and the evaluation point lies inside the circle.
 Source: Stahl 2013, Theorem 2, exterior Cauchy step.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.5h6v.s8.d501bcfefb8e from=translated src=- shape=8e7544f2 vocab=6f3ec4e8
+-/
 theorem two_pi_i_inv_mul_circleIntegral_exp_add_mul_div_sub_eq
     {branch : ℂ → ℂ} {a b t : ℂ} {R r : ℝ}
     (hbranch : DifferentiableOn ℂ branch {z | R < ‖z‖}) (hr : 0 < r) (hRr : R < r)
@@ -80,7 +86,9 @@ theorem two_pi_i_inv_mul_circleIntegral_exp_add_mul_div_sub_eq
 
 /-- A continuous exterior branch gives an integrable exponentially weighted
 circle-density contribution on every compact real interval. This verifies the
-integrability needed by the transform step toward `trace-exponential-stahl`.-/
+integrability needed by the transform step toward `trace-exponential-stahl`.
+@isnad1 id=interval.3h5v.s7.b04a14972437 from=translated src=- shape=7b6a8ab5 vocab=5489f999
+-/
 theorem intervalIntegrable_exp_mul_circleIntegral_exp_add_mul
     {branch : ℂ → ℂ} {a b t r : ℝ} (hab : a ≤ b) (hr : 0 ≤ r)
     (hbranch : ContinuousOn branch (sphere 0 r)) :
@@ -109,7 +117,9 @@ theorem intervalIntegrable_exp_mul_circleIntegral_exp_add_mul
 is integrable on any compact real interval. The finite slope cutoffs are
 measurable, so their possible jumps create no integrability gap.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=interval.3h7v.s7.a321c9a2bfe8 from=translated src=- shape=662354e2 vocab=576bb8c4
+-/
 theorem intervalIntegrable_exp_mul_traceExponentialCircleDensity
     {ι : Type*} [Fintype ι] {branch : ι → ℂ → ℂ} {a : ι → ℝ}
     {l u t r : ℝ} (hlu : l ≤ u) (hr : 0 ≤ r)
@@ -154,7 +164,9 @@ private theorem integral_ite_lt_eq_integral_lower
 equals the sum of its branch integrals from each slope to the upper endpoint.
 This turns the branchwise transform identity into one density integral.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.5h7v.s8.06b57f03a279 from=translated src=- shape=3e86ca87 vocab=6f5c5033
+-/
 theorem integral_exp_mul_traceExponentialCircleDensity_eq_sum_integral
     {ι : Type*} [Fintype ι] {branch : ι → ℂ → ℂ} {a : ι → ℝ}
     {l u t r : ℝ} (hlu : l ≤ u) (hla : ∀ i, l ≤ a i) (hau : ∀ i, a i ≤ u)
@@ -189,7 +201,9 @@ circle integral of its explicit exponential antiderivative. Joint integrability
 and the contour/interval interchange follow from continuity on a compact product.
 Source: Stahl 2013, Theorem 2, transform-verification calculation.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.4h5v.s8.72ba01437d9a from=translated src=- shape=2629455e vocab=754c4ca8
+-/
 theorem integral_exp_mul_circleIntegral_exp_add_mul
     {branch : ℂ → ℂ} {a b t r : ℝ} (hab : a ≤ b) (hr : 0 ≤ r) (htr : |t| < r)
     (hbranch : ContinuousOn branch (sphere 0 r)) :
@@ -243,7 +257,9 @@ its explicit atom to the Laplace transform. This combines the contour
 interchange with exterior Cauchy, without any surface positivity hypothesis.
 Source: Stahl 2013, Theorem 2, branchwise transform calculation.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.6h7v.s8.1ed7c419c916 from=translated src=- shape=7e0497aa vocab=ad21533f
+-/
 theorem integral_exp_mul_circleIntegral_exp_add_mul_eq_sub_atom
     {branch : ℂ → ℂ} {q : ℂ} {a b t R r : ℝ} (hab : a ≤ b)
     (hr : 0 < r) (hRr : R < r) (htr : |t| < r)
@@ -302,7 +318,9 @@ theorem integral_exp_mul_circleIntegral_exp_add_mul_eq_sub_atom
 minus the explicit finite atomic transform. This is the atom-plus-density
 identity before the interior trace Cauchy formula is applied.
 Source: Stahl 2013, Theorem 2, transform verification; helper for
-`trace-exponential-stahl`, with exterior branches still explicit hypotheses.-/
+`trace-exponential-stahl`, with exterior branches still explicit hypotheses.
+@isnad1 id=eq.6h8v.s8.c65fdc416804 from=translated src=- shape=5670682b vocab=6e8ffd0f
+-/
 theorem sum_integral_exp_mul_circleIntegral_exp_add_mul_eq_sub_atoms
     {ι : Type*} [Fintype ι] {branch : ι → ℂ → ℂ} {q : ι → ℂ} {a : ι → ℝ}
     {b t R r : ℝ} (hab : ∀ i, a i ≤ b) (hr : 0 < r) (hRr : R < r) (htr : |t| < r)
@@ -353,7 +371,9 @@ the stated asymptotics and an interior holomorphic trace function agreeing with
 their exponential sum on the contour. Branch existence, trace agreement, and
 nonnegativity of the candidate density remain separate mathematical tasks.
 Source: Stahl 2013, Theorem 2, transform verification; helper for
-`trace-exponential-stahl`.-/
+`trace-exponential-stahl`.
+@isnad1 id=eq.8h9v.s9.feac72629ddf from=translated src=- shape=24d29be4 vocab=ef080093
+-/
 theorem sum_integral_exp_mul_circleIntegral_exp_add_mul_eq_of_trace
     {ι : Type*} [Fintype ι] {branch : ι → ℂ → ℂ} {q : ι → ℂ} {a : ι → ℝ}
     {T : ℂ → ℂ} {b t R r : ℝ} (hab : ∀ i, a i ≤ b)
@@ -390,7 +410,9 @@ theorem sum_integral_exp_mul_circleIntegral_exp_add_mul_eq_of_trace
 /-- The complex trace of `exp (A - zB)` is entire for arbitrary fixed matrices.
 No Hermitian or commutation condition is needed for this analytic statement.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=differen.0h3v.s7.f7f95c7db01f from=translated src=- shape=9503792a vocab=9e5d73a5
+-/
 theorem differentiable_trace_matrixExp_sub_smul
     {n : Type*} [Fintype n] [DecidableEq n] (A B : Matrix n n ℂ) :
     Differentiable ℂ (fun z : ℂ => Matrix.trace (matrixExp (A - z • B))) := by
@@ -407,7 +429,9 @@ their boundary trace identity, and density positivity are not assumed proved.
 The right side uses the complex trace; taking real parts gives `traceExp`.
 Source: Stahl 2013, Theorem 2, transform verification; helper toward
 `trace-exponential-stahl`.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=eq.7h11v.s9.2b4cc9c35380 from=translated src=- shape=357b6ede vocab=267757a3
+-/
 theorem sum_integral_exp_mul_circleIntegral_exp_add_mul_eq_trace_matrixExp_sub_atoms
     {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι]
     (A B : Matrix n n ℂ) {branch : ι → ℂ → ℂ} {q : ι → ℂ} {a : ι → ℝ}
@@ -428,7 +452,9 @@ Laplace identity when the exterior branches, their asymptotics, and their trace
 identity are supplied. This proves the transform calculation and integrability,
 while branch construction and density positivity remain independent obligations.
 Source: Stahl 2013, Theorem 2.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=eq.9h12v.s8.14884c25d5db from=translated src=- shape=fb8b06b8 vocab=e0f9fd42
+-/
 theorem integral_exp_mul_traceExponentialCircleDensity_eq_trace_matrixExp_sub_atoms
     {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι]
     (A B : Matrix n n ℂ) {branch : ι → ℂ → ℂ} {q : ι → ℂ} {a : ι → ℝ}

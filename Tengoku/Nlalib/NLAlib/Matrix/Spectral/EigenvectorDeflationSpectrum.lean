@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 
 /-- Algebraic simplicity excludes the isolated eigenvalue from the remaining
 principal block. Source: Horn–Johnson (2013), Lemma 6.3.10.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=not.3h5v.s8.8e1eb640d451 from=translated src=- shape=b5220b38 vocab=c7bde7b2
+-/
 theorem not_mem_spectrum_submatrix_of_isolated_coordinate_of_simple
     (M : Matrix n n K) (i : n) (μ : K)
     (hcol : ∀ j, M j i = if j = i then μ else 0)
@@ -49,7 +51,9 @@ theorem not_mem_spectrum_submatrix_of_isolated_coordinate_of_simple
 and the remaining principal block excludes that eigenvalue.
 Horn–Johnson (2013), Lemmas 1.4.11 and 6.3.10; the distinguished coordinate
 can be relabeled as the first coordinate of the scalar/direct-sum split.
-atlas: left-right-eigenvectors (partial), simple-eigenvalue-perturbation (partial)-/
+atlas: left-right-eigenvectors (partial), simple-eigenvalue-perturbation (partial)
+@isnad1 id=ex.5h6v.s9.424bffadaf49 from=translated src=- shape=d8d79ae2 vocab=f5c53b33
+-/
 theorem exists_simple_eigenvalue_isolated_similarity [IsAlgClosed K]
     {A : Matrix n n K} {x y : n → K} {μ : K} (hx : x ≠ 0) (hy : y ≠ 0)
     (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)

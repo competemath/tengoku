@@ -22,7 +22,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 
 /-- Pairing with a left eigenvector turns shifted matrix powers into scalar
-powers. Source: Horn–Johnson (2013), proof of Lemma 1.4.11.-/
+powers. Source: Horn–Johnson (2013), proof of Lemma 1.4.11.
+@isnad1 id=eq.1h8v.s8.fa81c09fe45c from=translated src=- shape=39fee4c6 vocab=08b98377
+-/
 theorem dotProduct_shift_pow_mulVec_of_left_eigenvector {A : Matrix n n K}
     {y : n → K} {α : K} (hy : y ᵥ* A = α • y) (μ : K) (k : ℕ) (z : n → K) :
     y ⬝ᵥ ((A - μ • 1) ^ k *ᵥ z) = (α - μ) ^ k * (y ⬝ᵥ z) := by
@@ -37,7 +39,9 @@ theorem dotProduct_shift_pow_mulVec_of_left_eigenvector {A : Matrix n n K}
 /-- A left eigenvector annihilates every generalized eigenspace at a
 different eigenvalue. Source: Horn–Johnson (2013), proof of Lemma 1.4.11;
 the proof works over any field.
-atlas: left-right-eigenvectors (partial)-/
+atlas: left-right-eigenvectors (partial)
+@isnad1 id=eq.3h7v.s11.edeaca1f4443 from=translated src=- shape=7b0efeae vocab=fd720ba2
+-/
 theorem dotProduct_eq_zero_of_mem_maxGenEigenspace_of_left_eigenvalue_ne
     {A : Matrix n n K} {y z : n → K} {α μ : K}
     (hy : y ᵥ* A = α • y) (hαμ : α ≠ μ)
@@ -54,7 +58,9 @@ theorem dotProduct_eq_zero_of_mem_maxGenEigenspace_of_left_eigenvalue_ne
 /-- Algebraic simplicity forces nonzero left–right eigenvector pairing.
 Source: Horn–Johnson (2013), Lemma 1.4.11; algebraic multiplicity one is
 expressed by the characteristic polynomial's root multiplicity.
-atlas: left-right-eigenvectors, simple-eigenvalue-perturbation (partial)-/
+atlas: left-right-eigenvectors, simple-eigenvalue-perturbation (partial)
+@isnad1 id=ne.5h6v.s8.445476646d5a from=translated src=- shape=483f63f8 vocab=b187e793
+-/
 theorem dotProduct_ne_zero_of_simple_eigenvalue [IsAlgClosed K] {A : Matrix n n K}
     {x y : n → K} {μ : K} (hx : x ≠ 0) (hy : y ≠ 0)
     (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)

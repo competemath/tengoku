@@ -33,7 +33,9 @@ open NLAlib
 `H`, on any finite index type (including the empty one). Here `≤` is the Loewner order under
 `MatrixOrder` (`Matrix.le_iff`).
 
-Tropp 2015, Example 8.3.4. Atlas: `operator-monotone-convex`.-/
+Tropp 2015, Example 8.3.4. Atlas: `operator-monotone-convex`.
+@isnad1 id=le.3h3v.s6.b0bc341c47ec from=translated src=- shape=1d17216b vocab=7eab4897
+-/
 theorem NLAlib.traceExp_le_traceExp {d : Type*} [Fintype d] [DecidableEq d]
     (A H : Matrix d d ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     (hAH : A ≤ H) :

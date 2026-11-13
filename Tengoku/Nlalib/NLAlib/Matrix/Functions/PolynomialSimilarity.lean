@@ -44,7 +44,9 @@ source eigenvector condition-factor bound, including empty matrices.
 Polynomials may have real coefficients while the diagonalization is
 complex. Source: Saad (2003), Proposition 6.32. Proof adapted from
 NLA-lib/NLAlib commit 6a845a2, `specNorm_aeval_le_pseudoConditionNumber_mul`.
-atlas: gmres-diagonalizable (partial)-/
+atlas: gmres-diagonalizable (partial)
+@isnad1 id=le.3h9v.s9.00194048dfd7 from=translated src=- shape=9fac4b9d vocab=3d11e340
+-/
 theorem specNorm_aeval_le_of_eq_mul_diagonal_mul {R 𝕜 : Type*}
     [CommSemiring R] [RCLike 𝕜] [Algebra R 𝕜]
     {A V W : Matrix n n 𝕜} {d : n → 𝕜}
@@ -82,7 +84,9 @@ theorem specNorm_aeval_le_of_eq_mul_diagonal_mul {R 𝕜 : Type*}
 values on the actual complex spectrum. Unitary diagonalization removes
 the eigenvector condition factor. Source: Saad (2003), Proposition 6.32;
 the normal specialization of the source polynomial-similarity bound.
-atlas: gmres-diagonalizable (partial)-/
+atlas: gmres-diagonalizable (partial)
+@isnad1 id=le.3h4v.s8.e391f1df2ea3 from=translated src=- shape=b8528cc6 vocab=60cabdee
+-/
 theorem specNorm_aeval_le_of_normal {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (p : ℝ[X]) {M : ℝ} (hM0 : 0 ≤ M)
     (hM : ∀ z ∈ spectrum ℂ A, ‖p.eval₂ (algebraMap ℝ ℂ) z‖ ≤ M) :
@@ -104,7 +108,9 @@ theorem specNorm_aeval_le_of_normal {A : Matrix n n ℂ}
     specNorm_mul_left_of_hasOrthonormalCols hU, specNorm_eq_norm, Matrix.l2_opNorm_diagonal]
   exact (pi_norm_le_iff_of_nonneg hM0).mpr (fun i => hM (d i) (by rw [hs]; exact ⟨i, rfl⟩))
 
-/-- Real matrix polynomial evaluation commutes with entrywise complexification.-/
+/-- Real matrix polynomial evaluation commutes with entrywise complexification.
+@isnad1 id=eq.0h3v.s9.ad16357f3aaa from=translated src=- shape=7a034075 vocab=3496b105
+-/
 theorem map_ofReal_aeval (A : Matrix n n ℝ) (p : ℝ[X]) :
     (aeval A p).map (algebraMap ℝ ℂ) = aeval (A.map (algebraMap ℝ ℂ)) p := by
   let φ : Matrix n n ℝ →ₐ[ℝ] Matrix n n ℂ :=

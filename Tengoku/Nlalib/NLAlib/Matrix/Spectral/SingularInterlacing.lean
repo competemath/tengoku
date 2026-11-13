@@ -25,7 +25,9 @@ variable {m n p : Type*} [Fintype m] [Fintype n] [Fintype p]
 omit [Fintype n] [DecidableEq n] [DecidableEq p] in
 /-- A row selection and its omitted rows split the column Gram matrix.
 Horn--Johnson (2013), Corollary 7.3.6;
-helper for `singular-value-interlacing`.-/
+helper for `singular-value-interlacing`.
+@isnad1 id=eq.1h5v.s8.99480ac7a3bc from=translated src=- shape=c6d9134c vocab=5f9c5507
+-/
 theorem transpose_mul_eq_selected_omitted_grams (A : Matrix m n ℝ)
     (f : p → m) (hf : Function.Injective f) :
     Aᵀ * A = (A.submatrix f id)ᵀ * A.submatrix f id +

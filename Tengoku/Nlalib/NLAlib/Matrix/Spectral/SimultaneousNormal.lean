@@ -25,7 +25,9 @@ open scoped Matrix.Norms.Frobenius in
 /-- Every commuting family of complex normal matrices has one common
 unitary diagonalization. Source: Horn–Johnson (2013), Theorem 2.4.8.1;
 the family may be infinite or empty, and zero-dimensional shapes are included.
-atlas: simultaneous-diagonalization (partial)-/
+atlas: simultaneous-diagonalization (partial)
+@isnad1 id=ex.2h3v.s9.2ba07f408e1e from=translated src=- shape=2d0edcf3 vocab=71200aca
+-/
 theorem exists_simultaneous_unitary_diagonalization_of_normal_of_commute
     (A : ι → Matrix n n ℂ) (hA : ∀ a, A a * (A a)ᴴ = (A a)ᴴ * A a)
     (hcomm : Pairwise fun a b => Commute (A a) (A b)) :
@@ -50,7 +52,9 @@ open scoped Matrix.Norms.Frobenius in
 /-- A family of normal matrices commutes exactly when it shares a unitary
 diagonalization. Source: Horn–Johnson (2013), Theorem 2.4.8.1; arbitrary
 families and finite matrix shapes are allowed.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=iff.1h3v.s9.6be52197b859 from=translated src=- shape=19417f6a vocab=71200aca
+-/
 theorem pairwise_commute_iff_exists_simultaneous_unitary_diagonalization
     (A : ι → Matrix n n ℂ) (hA : ∀ a, A a * (A a)ᴴ = (A a)ᴴ * A a) :
     (Pairwise fun a b => Commute (A a) (A b)) ↔
@@ -70,7 +74,9 @@ open scoped Matrix.Norms.Frobenius in
 /-- A common invertible eigenvector basis can put one selected member's
 eigenvalues in any prescribed complete characteristic order.
 Horn–Johnson (2013), Theorem 1.3.21; repeated eigenvalues are retained.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.3h5v.s8.e7de11d6be53 from=translated src=- shape=88aa3c0c vocab=4f18125f
+-/
 theorem exists_simultaneous_diagonalization_with_charpoly
     (A : ι → Matrix n n ℂ) (hdiag : ∀ a, IsDiagonalizable (A a))
     (hcomm : Pairwise fun a b => Commute (A a) (A b)) (a₀ : ι) (d₀ : n → ℂ)
@@ -101,7 +107,9 @@ open scoped Matrix.Norms.Frobenius in
 selected member's eigenvalues in any prescribed characteristic order.
 Source: Horn–Johnson (2013), Theorem 2.4.8.1; repeated values, arbitrary
 families, and empty matrix shapes are included.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.3h5v.s9.4d5e852b0eeb from=translated src=- shape=f6156115 vocab=e9b83b54
+-/
 theorem exists_simultaneous_unitary_diagonalization_with_charpoly
     (A : ι → Matrix n n ℂ) (hA : ∀ a, A a * (A a)ᴴ = (A a)ᴴ * A a)
     (hcomm : Pairwise fun a b => Commute (A a) (A b)) (a₀ : ι) (d₀ : n → ℂ)

@@ -33,7 +33,9 @@ def reciprocalExponentialDenominator (n : ℕ) : ℝ[X] :=
   if n=0 then 1 else (doubleResolventExponentialDenominator n).comp (C 4 * X)
 
 /-- The two resolvents give the advertised finite derivative formula.
-Source: the focused reciprocal reroute, explicit denominator formula.-/
+Source: the focused reciprocal reroute, explicit denominator formula.
+@isnad1 id=eq.0h1v.s8.5caf2a3f5182 from=translated src=- shape=adf0c3dc vocab=7f4ff680
+-/
 theorem doubleResolventExponentialDenominator_eq_sum (n : ℕ) :
     doubleResolventExponentialDenominator n = (15/26 : ℝ) •
       ∑ r ∈ Finset.range (n+1),
@@ -47,7 +49,9 @@ theorem doubleResolventExponentialDenominator_eq_sum (n : ℕ) :
   simp_rw [← sub_smul]
 
 /-- The two-resolvent denominator preserves the allowed degree.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=le.0h1v.s4.829228bd933e from=translated src=- shape=95ba4981 vocab=e49487e4
+-/
 theorem degree_doubleResolventExponentialDenominator_le (n : ℕ) :
     (doubleResolventExponentialDenominator n).degree ≤ n := by
   apply degree_le_of_natDegree_le
@@ -58,7 +62,9 @@ theorem degree_doubleResolventExponentialDenominator_le (n : ℕ) :
     ((natDegree_derivativeResolvent_le _ _).trans hn)
 
 /-- The top coefficient is positive and explicit, so the denominator has its
-full advertised degree. Source: the focused reciprocal reroute.-/
+full advertised degree. Source: the focused reciprocal reroute.
+@isnad1 id=eq.0h1v.s6.54a139a72d33 from=translated src=- shape=7bfcc82b vocab=f0d8772f
+-/
 theorem coeff_doubleResolventExponentialDenominator_self (n : ℕ) :
     (doubleResolventExponentialDenominator n).coeff n =
       (5/8 : ℝ) * (4 / (3^(n+1) * (n ! : ℝ))) := by
@@ -70,7 +76,9 @@ theorem coeff_doubleResolventExponentialDenominator_self (n : ℕ) :
   ring
 
 /-- The explicit two-resolvent polynomial has degree exactly `n`.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=eq.0h1v.s3.278245ef360f from=translated src=- shape=c3f7ecf6 vocab=bd76cd8c
+-/
 theorem natDegree_doubleResolventExponentialDenominator (n : ℕ) :
     (doubleResolventExponentialDenominator n).natDegree = n := by
   apply le_antisymm (natDegree_le_of_degree_le (degree_doubleResolventExponentialDenominator_le n))
@@ -206,7 +214,9 @@ private theorem abs_integral_kernel_laguerreResidual_le (n : ℕ) {x c : ℝ} (h
   exact (sq_le_sq₀ (abs_nonneg _) (by positivity)).mp (by simpa only [sq_abs] using hsq)
 
 /-- The exact value error of the explicit denominator is its smoothing-kernel
-integral of the finite Laguerre residual. Source: the focused reciprocal reroute.-/
+integral of the finite Laguerre residual. Source: the focused reciprocal reroute.
+@isnad1 id=eq.1h2v.s7.792eaf26b5fe from=translated src=- shape=ae62cedd vocab=2d9e7aac
+-/
 theorem exp_quarter_sub_doubleResolventExponentialDenominator_eq_integral
     (n : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     Real.exp (x/4) - (doubleResolventExponentialDenominator n).eval x =
@@ -226,7 +236,9 @@ theorem exp_quarter_sub_doubleResolventExponentialDenominator_eq_integral
 
 /-- The exact derivative error is the second smoothing-kernel integral of the
 finite residual, obtained from the polynomial ODE without differentiating an
-improper integral. Source: the focused reciprocal reroute.-/
+improper integral. Source: the focused reciprocal reroute.
+@isnad1 id=eq.1h2v.s7.faad87c8caaf from=translated src=- shape=aa3e2d40 vocab=6063c521
+-/
 theorem exp_quarter_div_four_sub_derivative_doubleResolventExponentialDenominator_eq_integral
     (n : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     Real.exp (x/4)/4 - (doubleResolventExponentialDenominator n).derivative.eval x =
@@ -249,7 +261,9 @@ theorem exp_quarter_div_four_sub_derivative_doubleResolventExponentialDenominato
 
 /-- The explicit two-resolvent denominator has the claimed value error bound.
 Source: focused reciprocal reroute, the exact kernel square norm.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s7.f5af43a93adc from=translated src=- shape=9bd61584 vocab=eb149bac
+-/
 theorem abs_exp_quarter_sub_doubleResolventExponentialDenominator_le (n : ℕ)
     {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (x/4) - (doubleResolventExponentialDenominator n).eval x| ≤
@@ -268,7 +282,9 @@ theorem abs_exp_quarter_sub_doubleResolventExponentialDenominator_le (n : ℕ)
 
 /-- The explicit denominator has the simultaneous derivative error bound.
 Source: focused reciprocal reroute, the exact derivative-kernel square norm.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s8.5ab07ccdae3c from=translated src=- shape=3a0d8c40 vocab=4d989b88
+-/
 theorem abs_exp_quarter_div_four_sub_derivative_doubleResolventExponentialDenominator_le
     (n : ℕ) {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (x/4)/4 - (doubleResolventExponentialDenominator n).derivative.eval x| ≤

@@ -39,7 +39,9 @@ private theorem card_eigenvalues_gt_eq_rank {A : Matrix n n ℝ} (hA : A.IsHermi
 /-- A negative rank-one interaction increases the selected rank by one and
 preserves a strict positive spectral gap. The proof compares the positive
 inertia above the new barrier with the elementary rank upper bound; no
-continuity of spectral paths is used.-/
+continuity of spectral paths is used.
+@isnad1 id=and.5h5v.s8.6956def10609 from=translated src=- shape=9cbb6e70 vocab=237dfb5b
+-/
 theorem rank_add_vecMulVec_eq_and_eigenvalues_gap
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {b b' : ℝ}
     (hb' : 0 < b') (hbb' : b' ≤ b)
@@ -94,7 +96,9 @@ theorem rank_add_vecMulVec_eq_and_eigenvalues_gap
 /-- One complete weighted lower-barrier step selects an original column.
 It increases rank by exactly one, preserves the strict nonzero spectral gap,
 and does not increase the weighted potential. Source:
-Spielman--Srivastava (2009), proof of Theorem 2.-/
+Spielman--Srivastava (2009), proof of Theorem 2.
+@isnad1 id=ex.10h8v.s9.72ad88d57c9d from=translated src=- shape=d8a668e2 vocab=697add29
+-/
 theorem exists_column_rank_eq_add_one_and_lowerPotential_le
     {I : Type*} [Fintype I] [Nonempty I] (v : I → n → ℝ)
     {A H : Matrix n n ℝ} (hA : A.IsHermitian) (hH : H.PosSemidef)

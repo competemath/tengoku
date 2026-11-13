@@ -24,7 +24,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 /-- A nonsingular M-matrix has strictly positive determinant. The proof
 includes dimension zero, where the determinant is one.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=lt.1h2v.s5.2f9cae8691e3 from=translated src=- shape=519e4baa vocab=a892e14f
+-/
 theorem IsNonsingularMMatrix.det_pos {A : Matrix ι ι ℝ} (hA : A.IsNonsingularMMatrix) :
     0 < A.det := by
   obtain ⟨x, hx, hAx⟩ := hA.exists_positive_certificate
@@ -59,7 +61,9 @@ theorem IsNonsingularMMatrix.det_pos {A : Matrix ι ι ℝ} (hA : A.IsNonsingula
 /-- Every principal minor of a nonsingular M-matrix is strictly positive,
 including the empty principal minor, whose value is one.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=lt.1h3v.s7.2a47b5d29ee9 from=translated src=- shape=9dcd9331 vocab=edd23dc9
+-/
 theorem IsNonsingularMMatrix.principal_minor_pos {A : Matrix ι ι ℝ}
     (hA : A.IsNonsingularMMatrix) (S : Finset ι) :
     0 < (A.submatrix (Subtype.val : S → ι) (Subtype.val : S → ι)).det :=
@@ -70,7 +74,9 @@ variable [Nonempty ι]
 /-- Strict positivity of all principal minors characterizes a nonsingular
 M-matrix among Z-matrices. Quantifying the empty minor is harmless: it equals one.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=iff.1h2v.s7.01b530e844f4 from=translated src=- shape=78568d66 vocab=6b0f7afb
+-/
 theorem isNonsingularMMatrix_iff_principal_minors_pos {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) :
     A.IsNonsingularMMatrix ↔ ∀ S : Finset ι,
       0 < (A.submatrix (Subtype.val : S → ι) (Subtype.val : S → ι)).det := by

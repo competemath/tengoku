@@ -170,7 +170,9 @@ including scalar matrices and degenerate ellipses. The Bloch sphere is an
 affine image of a three-dimensional real unit sphere, whose linear image
 equals a convex ball image because its kernel is nontrivial.
 Source: Horn–Johnson (1991), Chapter 1; operator derivations, (S10).
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=convex.0h1v.s6.68c8d74960a9 from=translated src=- shape=cd8f3527 vocab=655acc71
+-/
 theorem convex_numericalRange_two (B : Matrix (Fin 2) (Fin 2) ℂ) :
     Convex ℝ (numericalRange B) := by
   have hker : LinearMap.ker (blochMap B) ≠ ⊥ := by

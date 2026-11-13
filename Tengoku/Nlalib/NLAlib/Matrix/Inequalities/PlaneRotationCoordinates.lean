@@ -34,7 +34,9 @@ private theorem planeRotation_single_row (i j k : n) (hij : i ≠ j) (c s : ℝ)
 
 /-- A coordinate plane rotation changes the two selected diagonal entries by
 opposite increments and fixes every other diagonal entry. Schur–Horn variational
-rederivation, equation (1).-/
+rederivation, equation (1).
+@isnad1 id=other.3h7v.s8.c16c943b98d0 from=translated src=- shape=3e9fccd5 vocab=a5334d64
+-/
 theorem planeRotation_single_conjugation_diag
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (i j : n) (hij : i ≠ j)
     (c s : ℝ) (hcs : c ^ 2 + s ^ 2 = 1) (k : n) :
@@ -61,7 +63,9 @@ theorem planeRotation_single_conjugation_diag
     · simp [hki, hkj, single_dotProduct]
 
 /-- The exact squared-diagonal-error change of a coordinate rotation is
-`2(rᵢ-rⱼ)Δ+2Δ²`. Schur–Horn variational rederivation, equation (1).-/
+`2(rᵢ-rⱼ)Δ+2Δ²`. Schur–Horn variational rederivation, equation (1).
+@isnad1 id=other.3h7v.s8.f6be62f47656 from=translated src=- shape=5afd6b5f vocab=71a10e86
+-/
 theorem sum_sq_diagonal_error_planeRotation_single_eq
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (d : n → ℝ) (i j : n) (hij : i ≠ j)
     (c s : ℝ) (hcs : c ^ 2 + s ^ 2 = 1) :

@@ -21,7 +21,9 @@ variable {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
 
 /-- A surjective intertwiner sends a diagonalizable endomorphism to a
 diagonalizable endomorphism. Source: Horn–Johnson (2013), Lemma 1.3.10;
-the proof maps the spanning eigenspaces.-/
+the proof maps the spanning eigenspaces.
+@isnad1 id=isdiagon.3h6v.s9.d3bc23d6aee6 from=translated src=- shape=8352ee48 vocab=30c65d6f
+-/
 theorem IsDiagonalizable.of_surjective_intertwiner {A : Matrix m m K}
     {B : Matrix n n K} (hB : IsDiagonalizable B)
     (T : (n → K) →ₗ[K] (m → K)) (hT : Function.Surjective T)
@@ -46,7 +48,9 @@ theorem IsDiagonalizable.of_surjective_intertwiner {A : Matrix m m K}
 /-- A direct sum is diagonalizable exactly when both summands are.
 Source: Horn–Johnson (2013), Lemma 1.3.10; arbitrary finite and empty shapes
 are allowed, and the theorem holds over every field.
-atlas: diagonalizable-def-/
+atlas: diagonalizable-def
+@isnad1 id=iff.0h5v.s7.dfcf0b6186e6 from=translated src=- shape=8a596153 vocab=309d8c89
+-/
 theorem isDiagonalizable_fromBlocks_zero_zero_iff (A : Matrix m m K) (B : Matrix n n K) :
     IsDiagonalizable (Matrix.fromBlocks A 0 0 B) ↔ IsDiagonalizable A ∧ IsDiagonalizable B := by
   classical
@@ -81,7 +85,9 @@ theorem isDiagonalizable_fromBlocks_zero_zero_iff (A : Matrix m m K) (B : Matrix
 /-- The change of two diagonalizing eigenvector bases with an aligned
 eigenvalue list commutes with that diagonal matrix.
 Horn–Johnson (2013), Theorem 1.3.27.
-atlas: diagonalizable-def (partial)-/
+atlas: diagonalizable-def (partial)
+@isnad1 id=eq.3h6v.s8.733dbb341062 from=translated src=- shape=4cefe66d vocab=7c05acc6
+-/
 theorem diagonal_mul_change_eigenbasis_eq_change_eigenbasis_mul_diagonal
     {A V W : Matrix n n K} {d : n → K} (hV : IsUnit V)
     (hAV : A * V = V * Matrix.diagonal d) (hAW : A * W = W * Matrix.diagonal d) :
@@ -99,7 +105,9 @@ theorem diagonal_mul_change_eigenbasis_eq_change_eigenbasis_mul_diagonal
 eigenvalues, so it is block diagonal on the repeated eigenspaces.
 Horn–Johnson (2013), Theorem 1.3.27; the vanishing itself needs only the first
 eigenvector matrix to be invertible.
-atlas: diagonalizable-def (partial)-/
+atlas: diagonalizable-def (partial)
+@isnad1 id=eq.4h8v.s8.f2289495dc7c from=translated src=- shape=618c00e7 vocab=7c05acc6
+-/
 theorem change_eigenbasis_apply_eq_zero_of_eigenvalues_ne
     {A V W : Matrix n n K} {d : n → K} (hV : IsUnit V)
     (hAV : A * V = V * Matrix.diagonal d) (hAW : A * W = W * Matrix.diagonal d)
@@ -113,7 +121,9 @@ theorem change_eigenbasis_apply_eq_zero_of_eigenvalues_ne
 /-- The invertible change of two aligned diagonalizations is block diagonal
 on equal-eigenvalue coordinate classes. Source: Horn–Johnson (2013),
 Theorem 1.3.27.
-atlas: diagonalizable-def-/
+atlas: diagonalizable-def
+@isnad1 id=and.4h6v.s8.40e34da27099 from=translated src=- shape=83cca358 vocab=7c05acc6
+-/
 theorem isUnit_change_eigenbasis_and_apply_eq_zero
     {A V W : Matrix n n K} {d : n → K} (hV : IsUnit V) (hW : IsUnit W)
     (hAV : A * V = V * Matrix.diagonal d) (hAW : A * W = W * Matrix.diagonal d) :

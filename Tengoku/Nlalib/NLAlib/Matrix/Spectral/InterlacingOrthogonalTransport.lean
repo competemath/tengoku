@@ -15,7 +15,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Orthogonal conjugation preserves the characteristic polynomial.
-Source: similarity invariance, used by the converse-interlacing transports.-/
+Source: similarity invariance, used by the converse-interlacing transports.
+@isnad1 id=eq.1h3v.s6.be5144672218 from=translated src=- shape=0c424e67 vocab=4c84cd39
+-/
 theorem charpoly_mul_mul_transpose_of_hasOrthonormalCols
     (Q A : Matrix n n ℝ) (hQ : HasOrthonormalCols Q) :
     (Q * A * Qᵀ).charpoly = A.charpoly := by
@@ -24,7 +26,9 @@ theorem charpoly_mul_mul_transpose_of_hasOrthonormalCols
 omit [DecidableEq n] in
 /-- Orthogonal conjugation transports a symmetric rank-one update by
 applying the orthogonal factor to the coupling vector.
-Horn–Johnson (2013), converse-interlacing transport.-/
+Horn–Johnson (2013), converse-interlacing transport.
+@isnad1 id=eq.0h4v.s7.79c16d3f8f03 from=translated src=- shape=fe220289 vocab=4a846e39
+-/
 theorem mul_add_vecMulVec_mul_transpose (Q A : Matrix n n ℝ) (v : n → ℝ) :
     Q * (A + Matrix.vecMulVec v v) * Qᵀ =
       Q * A * Qᵀ + Matrix.vecMulVec (Q *ᵥ v) (Q *ᵥ v) := by
@@ -35,7 +39,9 @@ omit [DecidableEq n] in
 /-- Applying the block orthogonal factor `diag(Q,1)` to an arrowhead
 preserves its border scalar and carries its coupling vector to `Qv`.
 Source: Horn–Johnson (2013), converse interlacing; this algebraic identity
-does not require orthogonality.-/
+does not require orthogonality.
+@isnad1 id=other.0h5v.s9.b041d4d3ecaf from=translated src=- shape=94bb8d8a vocab=a71552d5
+-/
 theorem fromBlocks_mul_arrowhead_mul_transpose
     (Q A : Matrix n n ℝ) (v : n → ℝ) (a : ℝ) :
     let P : Matrix (n ⊕ Fin 1) (n ⊕ Fin 1) ℝ := Matrix.fromBlocks Q 0 0 1
@@ -55,7 +61,9 @@ theorem fromBlocks_mul_arrowhead_mul_transpose
 /-- An arrowhead constructed over a diagonal list transports to any real
 symmetric matrix with that full characteristic-root list.
 Horn–Johnson (2013), converse interlacing; the border scalar is unchanged
-and the equality is of complete characteristic polynomials.-/
+and the equality is of complete characteristic polynomials.
+@isnad1 id=ex.2h5v.s9.df3de68a02fd from=translated src=- shape=10daba96 vocab=96dd75dd
+-/
 theorem exists_bordered_charpoly_of_diagonal_construction
     (A : Matrix n n ℝ) (hA : A.IsHermitian) (d v : n → ℝ) (a : ℝ)
     (hd : A.charpoly = ∏ i, (X - C (d i))) :
@@ -81,7 +89,9 @@ theorem exists_bordered_charpoly_of_diagonal_construction
 /-- A positive rank-one update over a diagonal list transports to any
 real symmetric matrix with that full characteristic-root list.
 Source: Horn–Johnson (2013), converse interlacing; the entire characteristic
-polynomial, including multiplicities, is preserved.-/
+polynomial, including multiplicities, is preserved.
+@isnad1 id=ex.2h4v.s8.c1be8145b687 from=translated src=- shape=3f396ae5 vocab=1f8899c2
+-/
 theorem exists_add_vecMulVec_charpoly_of_diagonal_construction
     (A : Matrix n n ℝ) (hA : A.IsHermitian) (d v : n → ℝ)
     (hd : A.charpoly = ∏ i, (X - C (d i))) :
@@ -94,7 +104,9 @@ theorem exists_add_vecMulVec_charpoly_of_diagonal_construction
 
 /-- Negating a real symmetric matrix negates every entry of any complete
 characteristic-root list, including multiplicities. Source: the spectral
-theorem; helper for the negative rank-one converse-interlacing construction.-/
+theorem; helper for the negative rank-one converse-interlacing construction.
+@isnad1 id=eq.2h3v.s8.7d0b081844c4 from=translated src=- shape=2c633405 vocab=2d69e5b0
+-/
 theorem charpoly_neg_eq_prod_of_isHermitian
     (A : Matrix n n ℝ) (hA : A.IsHermitian) (d : n → ℝ)
     (hd : A.charpoly = ∏ i, (X - C (d i))) :

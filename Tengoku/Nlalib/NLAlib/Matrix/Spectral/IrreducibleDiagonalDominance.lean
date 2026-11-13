@@ -18,7 +18,9 @@ variable {K n : Type*} [NormedField K] [Fintype n] [DecidableEq n]
 
 /-- At a nullvector coordinate, the diagonal contribution is bounded by the
 weighted off-diagonal sum. This is the row estimate in the Taussky proof
-for `gershgorin-diagonal-dominance`.-/
+for `gershgorin-diagonal-dominance`.
+@isnad1 id=le.1h5v.s7.83fba8832c3b from=translated src=- shape=544d7676 vocab=4d8ee4d2
+-/
 theorem norm_diagonal_mul_le_of_mulVec_eq_zero {A : Matrix n n K} {v : n → K}
     (hv : A *ᵥ v = 0) (i : n) :
     ‖A i i‖ * ‖v i‖ ≤ ∑ j ∈ Finset.univ.erase i, ‖A i j‖ * ‖v j‖ := by
@@ -35,7 +37,9 @@ theorem norm_diagonal_mul_le_of_mulVec_eq_zero {A : Matrix n n K} {v : n → K}
 
 /-- A maximal nullvector coordinate propagates along every nonzero matrix
 entry under weak row diagonal dominance. This is the equality-propagation
-step in Horn–Johnson (2013), Theorem 6.2.27.-/
+step in Horn–Johnson (2013), Theorem 6.2.27.
+@isnad1 id=eq.5h7v.s7.88c9a283b36d from=translated src=- shape=fcd8ec33 vocab=e9ea3c84
+-/
 theorem norm_eq_max_of_mulVec_eq_zero_of_entry_ne_zero
     {A : Matrix n n K} {v : n → K} {M : ℝ} (hv : A *ᵥ v = 0)
     (hweak : ∀ i, gershgorinRowRadius A i ≤ ‖A i i‖)
@@ -65,7 +69,9 @@ theorem norm_eq_max_of_mulVec_eq_zero_of_entry_ne_zero
 strict row is nonsingular. Source: Horn–Johnson (2013), Theorem 6.2.27
 (Taussky); irreducibility uses Mathlib's strongly connected graph of the
 entrywise norms, so no sign condition is imposed on the original matrix.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=ne.3h3v.s6.aa3f308c2036 from=translated src=- shape=66b779f1 vocab=0547c342
+-/
 theorem det_ne_zero_of_irreducible_weak_diagonal_dominance
     (A : Matrix n n K) (hIrred : (A.map norm).IsIrreducible)
     (hweak : ∀ i, gershgorinRowRadius A i ≤ ‖A i i‖)

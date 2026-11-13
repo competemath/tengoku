@@ -26,28 +26,42 @@ def finSymmetricBorder (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d :
     Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ :=
   reindex finSumFinEquiv finSumFinEquiv (symmetricBorder J v d)
 
+/--
+@isnad1 id=eq.0h6v.s5.76e28196962e from=translated src=- shape=e5aacf34 vocab=c51bca6a
+-/
 @[simp] theorem finSymmetricBorder_castSucc_castSucc
     (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d : ℝ) (i j : Fin q) :
     finSymmetricBorder J v d i.castSucc j.castSucc = J i j := by
   simp [finSymmetricBorder, symmetricBorder, Matrix.reindex]
 
+/--
+@isnad1 id=eq.0h5v.s5.e549d7c0827a from=translated src=- shape=3458327b vocab=26991441
+-/
 @[simp] theorem finSymmetricBorder_castSucc_last
     (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d : ℝ) (i : Fin q) :
     finSymmetricBorder J v d i.castSucc (Fin.last q) = v i := by
   simp [finSymmetricBorder, symmetricBorder, Matrix.reindex]
 
+/--
+@isnad1 id=eq.0h5v.s5.f81fbac4531c from=translated src=- shape=7dc3d63e vocab=26991441
+-/
 @[simp] theorem finSymmetricBorder_last_castSucc
     (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d : ℝ) (i : Fin q) :
     finSymmetricBorder J v d (Fin.last q) i.castSucc = v i := by
   simp [finSymmetricBorder, symmetricBorder, Matrix.reindex]
 
+/--
+@isnad1 id=eq.0h4v.s4.dac741309709 from=translated src=- shape=5c332878 vocab=7128a1a6
+-/
 @[simp] theorem finSymmetricBorder_last_last
     (J : Matrix (Fin q) (Fin q) ℝ) (v : Fin q → ℝ) (d : ℝ) :
     finSymmetricBorder J v d (Fin.last q) (Fin.last q) = d := by
   simp [finSymmetricBorder, symmetricBorder, Matrix.reindex]
 
 /-- A border whose cross vector is supported at the last leading coordinate is
-tridiagonal whenever its leading matrix is tridiagonal.-/
+tridiagonal whenever its leading matrix is tridiagonal.
+@isnad1 id=istridia.2h4v.s6.5dadccdfa363 from=translated src=- shape=cefc4067 vocab=fd449f32
+-/
 theorem isTridiagonal_finSymmetricBorder {J : Matrix (Fin q) (Fin q) ℝ}
     (hJ : IsTridiagonal J) {v : Fin q → ℝ} (hv : ∀ i, i.val + 1 < q → v i = 0)
     (d : ℝ) : IsTridiagonal (finSymmetricBorder J v d) := by
@@ -78,7 +92,9 @@ theorem isTridiagonal_finSymmetricBorder {J : Matrix (Fin q) (Fin q) ℝ}
 /-- Changing only the last corner of an actual `(q+1)`-dimensional tridiagonal border
 preserves its rooted moments through degree `2q`.
 Source: focused mathematical reroutes, Section 3, equations (BL1), (BL5).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h6v.s9.98757b6a7a3f from=translated src=- shape=b72c545f vocab=f517f221
+-/
 theorem pow_finSymmetricBorder_apply_zero_eq_of_corner
     {J : Matrix (Fin q) (Fin q) ℝ} (hJ : IsTridiagonal J)
     {v : Fin q → ℝ} (hv : ∀ i, i.val + 1 < q → v i = 0)
@@ -97,7 +113,9 @@ theorem pow_finSymmetricBorder_apply_zero_eq_of_corner
 /-- Adding the last neighboring coupling to a `(q+1)`-dimensional block preserves
 its rooted moments through degree `2q+1`, independently of the new corner.
 Source: focused mathematical reroutes, Section 3, equations (BL1), (BL10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h5v.s10.faeb94a8a7ef from=translated src=- shape=0df8d79d vocab=f517f221
+-/
 theorem pow_finSymmetricBorder_apply_zero_eq_of_coupling
     {J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ} (hJ : IsTridiagonal J)
     {v : Fin (q + 1) → ℝ} (hv : ∀ i, i.val < q → v i = 0)
@@ -118,7 +136,9 @@ theorem pow_finSymmetricBorder_apply_zero_eq_of_coupling
   · intro _; simp
 
 /-- With no cross coupling, the rooted moments of the actual scalar border are those
-of its leading block.-/
+of its leading block.
+@isnad1 id=eq.0h4v.s9.22b8f98a4842 from=translated src=- shape=32c34721 vocab=6f233474
+-/
 theorem pow_finSymmetricBorder_zero_apply_zero
     (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) (d : ℝ) (k : ℕ) :
     (finSymmetricBorder J 0 d ^ k) 0 0 = (J ^ k) 0 0 := by
@@ -135,14 +155,18 @@ theorem pow_finSymmetricBorder_zero_apply_zero
   rfl
 
 /-- The finite indexed actual border inherits Hermitian symmetry from its leading
-block, by the explicit reindexing.-/
+block, by the explicit reindexing.
+@isnad1 id=ishermit.1h4v.s6.6f83e9cad928 from=translated src=- shape=cb7e5189 vocab=f809dcb5
+-/
 theorem isHermitian_finSymmetricBorder {J : Matrix (Fin q) (Fin q) ℝ}
     (hJ : J.IsHermitian) (v : Fin q → ℝ) (d : ℝ) :
     (finSymmetricBorder J v d).IsHermitian :=
   (isHermitian_symmetricBorder hJ v d).submatrix finSumFinEquiv.symm
 
 /-- A last-coordinate border with a nonzero last coupling keeps every superdiagonal
-nonzero when the leading superdiagonal is nonzero. The empty leading block is allowed.-/
+nonzero when the leading superdiagonal is nonzero. The empty leading block is allowed.
+@isnad1 id=ne.3h6v.s7.9ee943b98e1a from=translated src=- shape=ba579247 vocab=bdb9d963
+-/
 theorem finSymmetricBorder_superdiagonal_ne_zero
     {J : Matrix (Fin q) (Fin q) ℝ} {v : Fin q → ℝ} (d : ℝ)
     (hJ : ∀ i j : Fin q, i.val + 1 = j.val → J i j ≠ 0)
@@ -160,7 +184,9 @@ theorem finSymmetricBorder_superdiagonal_ne_zero
   · intro hij
     simpa using hJ i j (by simpa using hij)
 
-/-- Relabelling finite coordinates preserves the positive-semidefinite matrix order.-/
+/-- Relabelling finite coordinates preserves the positive-semidefinite matrix order.
+@isnad1 id=le.1h5v.s7.5d0bdcdf7360 from=translated src=- shape=3f8f776b vocab=1ccb7b9b
+-/
 theorem reindex_le_reindex {ι κ : Type*} [Fintype ι] [DecidableEq ι]
     [Fintype κ] [DecidableEq κ] (e : ι ≃ κ) {A B : Matrix ι ι ℝ} (h : A ≤ B) :
     reindex e e A ≤ reindex e e B := by
@@ -168,7 +194,9 @@ theorem reindex_le_reindex {ι κ : Type*} [Fintype ι] [DecidableEq ι]
   change ((B - A).submatrix e.symm e.symm).PosSemidef
   exact h.submatrix e.symm
 
-/-- Scalar identity shifts commute with finite coordinate relabelling.-/
+/-- Scalar identity shifts commute with finite coordinate relabelling.
+@isnad1 id=eq.0h4v.s7.ec468250e0e4 from=translated src=- shape=056933eb vocab=7a16c616
+-/
 theorem reindex_smul_one {ι κ : Type*} [Fintype ι] [DecidableEq ι]
     [Fintype κ] [DecidableEq κ] (e : ι ≃ κ) (a : ℝ) :
     reindex e e (a • (1 : Matrix ι ι ℝ)) = a • (1 : Matrix κ κ ℝ) := by

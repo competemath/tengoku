@@ -24,7 +24,9 @@ namespace NLAlib
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Sharp imaginary height implies the genuine Neumann contraction.-/
+/-- Sharp imaginary height implies the genuine Neumann contraction.
+@isnad1 id=lt.3h4v.s7.f3c8548e7b22 from=translated src=- shape=b575ce0c vocab=9d09fb5e
+-/
 theorem _root_.Matrix.IsHermitian.norm_resolvent_mul_lt_one
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {z : ℂ} (hz : z.im ≠ 0)
     {H : Matrix n n ℂ} (hH : specNorm H < |z.im|) :
@@ -38,7 +40,9 @@ theorem _root_.Matrix.IsHermitian.norm_resolvent_mul_lt_one
     _ = 1 := inv_mul_cancel₀ hpos.ne'
 
 /-- The perturbed native resolvent is the actual convergent ordered Neumann
-series whenever the perturbation is smaller than the imaginary height.-/
+series whenever the perturbation is smaller than the imaginary height.
+@isnad1 id=hassum.3h4v.s8.2d1bbddd40b5 from=translated src=- shape=0e41fdbc vocab=5aa30bc6
+-/
 theorem _root_.Matrix.IsHermitian.hasSum_resolvent_add
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {z : ℂ} (hz : z.im ≠ 0)
     {H : Matrix n n ℂ} (hH : specNorm H < |z.im|) :
@@ -50,7 +54,9 @@ theorem _root_.Matrix.IsHermitian.hasSum_resolvent_add
   exact spectrum.hasSum_resolvent_add_of_norm_mul_lt_one hu
     (hA.norm_resolvent_mul_lt_one hz hH)
 
-/-- The sharp-height native matrix series is absolutely summable.-/
+/-- The sharp-height native matrix series is absolutely summable.
+@isnad1 id=summable.3h4v.s7.a05c3dc58646 from=translated src=- shape=9bb8bbb3 vocab=fc5f49c3
+-/
 theorem _root_.Matrix.IsHermitian.summable_norm_resolvent_add_series
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {z : ℂ} (hz : z.im ≠ 0)
     {H : Matrix n n ℂ} (hH : specNorm H < |z.im|) :
@@ -66,7 +72,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The actual profile expansion is jointly absolutely summable and sums to
-the literal shifted word, in its original matrix multiplication order.-/
+the literal shifted word, in its original matrix multiplication order.
+@isnad1 id=and.3h5v.s9.ee605c39e470 from=translated src=- shape=1fbfb3e0 vocab=279286c7
+-/
 theorem _root_.Matrix.IsHermitian.summable_norm_and_hasSum_resolventWord_add
     {m : ℕ} {A : Matrix n n ℂ} (hA : A.IsHermitian)
     (w : Fin m → ℂ × Matrix n n ℂ) (hw : ∀ j, (w j).1.im ≠ 0)

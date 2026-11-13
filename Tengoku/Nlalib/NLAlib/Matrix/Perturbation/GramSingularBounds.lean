@@ -18,7 +18,9 @@ variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 open scoped Matrix.Norms.L2Operator in
 /-- A Gram error `‖AᵀA − N I‖₂ ≤ N max(α, α²)` gives `‖A‖₂ ≤ √N(1 + α)`, including `N = 0`.
-Vershynin 2012, Lemma 5.36 (upper half); supports `subgaussian-matrix-norm`.-/
+Vershynin 2012, Lemma 5.36 (upper half); supports `subgaussian-matrix-norm`.
+@isnad1 id=le.3h5v.s7.dd9817511a6e from=translated src=- shape=80e4f291 vocab=9b7468a6
+-/
 theorem specNorm_le_sqrt_mul_one_add_of_gram_error (A : Matrix m n ℝ) {N α : ℝ} (hN : 0 ≤ N)
     (hα : 0 ≤ α) (h : specNorm (Aᵀ * A - N • 1) ≤ N * max α (α ^ 2)) :
     specNorm A ≤ Real.sqrt N * (1 + α) := by

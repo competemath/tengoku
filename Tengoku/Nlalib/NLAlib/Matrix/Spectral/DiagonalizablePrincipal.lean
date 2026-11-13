@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 multiplicity exceeds the number of removed coordinates.
 Horn–Johnson (2013), Theorem 1.4.10; the field and finite index type are
 arbitrary and no diagonalizability hypothesis is needed.
-atlas: diagonalizable-def (partial)-/
+atlas: diagonalizable-def (partial)
+@isnad1 id=mem.1h5v.s12.bdffe47ebbcb from=translated src=- shape=fd031156 vocab=f66b5299
+-/
 theorem mem_spectrum_principal_submatrix_of_finrank_eigenspace_gt
     (A : Matrix n n K) (μ : K) (s : Finset n)
     (hdim : Fintype.card n - s.card < Module.finrank K (Module.End.eigenspace A.toLin' μ)) :
@@ -75,7 +77,9 @@ theorem mem_spectrum_principal_submatrix_of_finrank_eigenspace_gt
 principal submatrix of order at least `n-k+1`. Source: Horn–Johnson (2013),
 Theorem 1.4.10; the equivalent natural-number condition `n < |s| + k`
 avoids truncated subtraction and includes all edge cases.
-atlas: diagonalizable-def-/
+atlas: diagonalizable-def
+@isnad1 id=mem.2h6v.s12.b5edf4aa8f09 from=translated src=- shape=e3c48d39 vocab=c88aee37
+-/
 theorem mem_spectrum_principal_submatrix_of_le_finrank_eigenspace
     (A : Matrix n n K) (μ : K) (s : Finset n) (k : ℕ)
     (hk : k ≤ Module.finrank K (Module.End.eigenspace A.toLin' μ))

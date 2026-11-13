@@ -17,7 +17,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Raising the positive-dimensional determinant root back to the dimension
 recovers the determinant. Horn--Johnson (2013), Section 7.6;
-helper for Minkowski's determinant inequality.-/
+helper for Minkowski's determinant inequality.
+@isnad1 id=eq.2h2v.s6.7cd9ab6d64a2 from=translated src=- shape=4317e357 vocab=4a419209
+-/
 theorem det_rpow_inv_card_pow_card {A : Matrix n n ℝ} (hA : A.PosDef)
     (hN : 0 < Fintype.card n) :
     (A.det ^ (1 / (Fintype.card n : ℝ))) ^ Fintype.card n = A.det := by
@@ -26,7 +28,9 @@ theorem det_rpow_inv_card_pow_card {A : Matrix n n ℝ} (hA : A.PosDef)
 
 /-- The positive-dimensional determinant root is homogeneous of degree one
 under every nonnegative scalar, including scalar zero.
-Horn--Johnson (2013), Section 7.6; helper for determinant-root concavity.-/
+Horn--Johnson (2013), Section 7.6; helper for determinant-root concavity.
+@isnad1 id=eq.3h3v.s7.59e2ba1aead7 from=translated src=- shape=7a570352 vocab=0e5ec402
+-/
 theorem det_smul_rpow_inv_card {A : Matrix n n ℝ} (hA : A.PosDef)
     (hN : 0 < Fintype.card n) {c : ℝ} (hc : 0 ≤ c) :
     (c • A).det ^ (1 / (Fintype.card n : ℝ)) =
@@ -37,7 +41,9 @@ theorem det_smul_rpow_inv_card {A : Matrix n n ℝ} (hA : A.PosDef)
 
 /-- Scaling by the reciprocal determinant root normalizes a positive
 definite matrix to determinant one. Positive dimension is essential.
-Horn--Johnson (2013), Section 7.6; helper for determinant-root concavity.-/
+Horn--Johnson (2013), Section 7.6; helper for determinant-root concavity.
+@isnad1 id=eq.2h2v.s6.39d4c455a707 from=translated src=- shape=908daa1c vocab=9cb5fb0e
+-/
 theorem det_inv_rpow_smul_eq_one {A : Matrix n n ℝ} (hA : A.PosDef)
     (hN : 0 < Fintype.card n) :
     ((A.det ^ (1 / (Fintype.card n : ℝ)))⁻¹ • A).det = 1 := by

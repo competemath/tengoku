@@ -29,7 +29,9 @@ whose contour densities give the atom-plus-density identity for the trace expone
 assumption; the resulting densities and atoms can be complex-valued.
 Source: Stahl 2013, Theorem 2, representation verification. Positivity of the
 density, which uses global spectral geometry, is not asserted here.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h3v.s8.d68c9b403e20 from=translated src=- shape=a1eae92b vocab=ab303e51
+-/
 theorem exists_exterior_branches_sum_integral_eq_trace_matrixExp_sub_atoms
     (a : n → ℝ) (ha : Function.Injective a) (A : Matrix n n ℂ) :
     ∃ R : ℝ, 0 < R ∧ ∃ branch : n → ℂ → ℂ,
@@ -60,7 +62,9 @@ theorem exists_exterior_branches_sum_integral_eq_trace_matrixExp_sub_atoms
 matrix atom-plus-density formula. Radius independence removes the
 temporary requirement that the evaluation point lie inside that fixed
 circle. Source: Stahl 2013, Theorem 2, transform verification.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h3v.s8.546b4da49c7c from=translated src=- shape=92c993ff vocab=bb084a1b
+-/
 theorem exists_exterior_branches_sum_integral_eq_trace_matrixExp_sub_atoms_fixed_circle
     (a : n → ℝ) (ha : Function.Injective a) (A : Matrix n n ℂ) :
     ∃ R : ℝ, 0 < R ∧ ∃ branch : n → ℂ → ℂ,
@@ -105,7 +109,9 @@ slopes give an integrable circle density on any compact interval containing
 the slopes. One fixed circle gives its transform at every real parameter.
 The density is complex-valued here, and no nonnegativity claim is made.
 Source: Stahl 2013, Theorem 2, representation verification.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.1h3v.s8.1a70e97a79f0 from=translated src=- shape=6ec0a654 vocab=5fa96417
+-/
 theorem exists_exterior_branches_integral_circleDensity_eq_trace_matrixExp_sub_atoms
     (a : n → ℝ) (ha : Function.Injective a) (A : Matrix n n ℂ) :
     ∃ R : ℝ, 0 < R ∧ ∃ branch : n → ℂ → ℂ,

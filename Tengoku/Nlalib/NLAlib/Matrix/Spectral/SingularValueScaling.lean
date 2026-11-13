@@ -15,7 +15,9 @@ open scoped Matrix
 
 namespace NLAlib
 
-/-- Scaling a rectangular diagonal scales the represented sequence.-/
+/-- Scaling a rectangular diagonal scales the represented sequence.
+@isnad1 id=eq.0h4v.s6.a9b87bd2990d from=translated src=- shape=584ef765 vocab=e61a355e
+-/
 theorem rectDiag_smul {m n : ℕ} (c : ℝ) (a : ℕ → ℝ) :
     (rectDiag (c • a) : Matrix (Fin m) (Fin n) ℝ) = c • rectDiag a := by
   ext i j

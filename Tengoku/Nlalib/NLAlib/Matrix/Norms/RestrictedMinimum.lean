@@ -22,7 +22,9 @@ compact set it is attained; on other sets this uses the total real infimum.-/
 def restrictedMinimum (A : Matrix m n 𝕜) (T : Set (EuclideanSpace 𝕜 n)) : ℝ :=
   sInf ((fun x => ‖Matrix.toEuclideanLin A x‖) '' T)
 
-/-- A matrix attains its restricted minimum on every nonempty compact set.-/
+/-- A matrix attains its restricted minimum on every nonempty compact set.
+@isnad1 id=ex.2h5v.s12.0e4296d3612f from=translated src=- shape=a01012bb vocab=f74ab055
+-/
 theorem exists_norm_eq_restrictedMinimum (A : Matrix m n 𝕜)
     {T : Set (EuclideanSpace 𝕜 n)} (hT : IsCompact T) (hne : T.Nonempty) :
     ∃ x ∈ T, ‖Matrix.toEuclideanLin A x‖ = restrictedMinimum A T := by
@@ -35,20 +37,26 @@ theorem exists_norm_eq_restrictedMinimum (A : Matrix m n 𝕜)
     ‖Matrix.toEuclideanLin A x‖ from
     ⟨⟨x,hx,rfl⟩, by rintro _ ⟨y,hy,rfl⟩; exact hmin hy⟩).csInf_eq
 
-/-- The restricted minimum is bounded by the length at every admissible point.-/
+/-- The restricted minimum is bounded by the length at every admissible point.
+@isnad1 id=le.1h6v.s12.285c64a0264d from=translated src=- shape=9c1729d5 vocab=0a4dc169
+-/
 theorem restrictedMinimum_le_norm (A : Matrix m n 𝕜)
     {T : Set (EuclideanSpace 𝕜 n)} {x : EuclideanSpace 𝕜 n} (hx : x ∈ T) :
     restrictedMinimum A T ≤ ‖Matrix.toEuclideanLin A x‖ := by
   exact csInf_le ⟨0, by rintro _ ⟨y,hy,rfl⟩; exact norm_nonneg _⟩ ⟨x,hx,rfl⟩
 
-/-- On a nonempty set the restricted minimum is nonnegative.-/
+/-- On a nonempty set the restricted minimum is nonnegative.
+@isnad1 id=le.1h5v.s5.91176ca41b27 from=translated src=- shape=a5613b0e vocab=9c1f0d09
+-/
 theorem restrictedMinimum_nonneg (A : Matrix m n 𝕜)
     {T : Set (EuclideanSpace 𝕜 n)} (hne : T.Nonempty) :
     0 ≤ restrictedMinimum A T :=
   le_csInf (hne.image _) (by rintro _ ⟨x,hx,rfl⟩; exact norm_nonneg _)
 
 /-- Restricting to a compact part of the unit ball makes the minimum
-1-Lipschitz in the spectral norm of a perturbation.-/
+1-Lipschitz in the spectral norm of a perturbation.
+@isnad1 id=le.3h6v.s7.1cadde59d0ea from=translated src=- shape=7fcdfcb4 vocab=825e3f93
+-/
 theorem abs_restrictedMinimum_sub_le_specNorm (A B : Matrix m n 𝕜)
     {T : Set (EuclideanSpace 𝕜 n)} (hT : IsCompact T) (hne : T.Nonempty)
     (hunit : ∀ x ∈ T, ‖x‖ ≤ 1) :
@@ -74,7 +82,9 @@ theorem abs_restrictedMinimum_sub_le_specNorm (A B : Matrix m n 𝕜)
       rw [show B-A = -(A-B) by abel, specNorm_neg]
     simpa only [heq] using hstep B A⟩
 
-/-- The Frobenius distance also bounds perturbations of a restricted minimum.-/
+/-- The Frobenius distance also bounds perturbations of a restricted minimum.
+@isnad1 id=le.3h6v.s7.11d798aff815 from=translated src=- shape=7fcdfcb4 vocab=f35d371a
+-/
 theorem abs_restrictedMinimum_sub_le_frobNorm (A B : Matrix m n 𝕜)
     {T : Set (EuclideanSpace 𝕜 n)} (hT : IsCompact T) (hne : T.Nonempty)
     (hunit : ∀ x ∈ T, ‖x‖ ≤ 1) :

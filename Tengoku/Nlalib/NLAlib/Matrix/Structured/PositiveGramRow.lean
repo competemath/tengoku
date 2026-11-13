@@ -26,7 +26,9 @@ def rowPair (X Q : CStarMatrix n n A) : Matrix n (n ⊕ n) A :=
 
 omit [DecidableEq n] [PartialOrder A] [StarOrderedRing A] in
 /-- The actual Gram matrix of the concatenated row is the sum of the two
-native Gram matrices; no scalar-entry commutativity is used.-/
+native Gram matrices; no scalar-entry commutativity is used.
+@isnad1 id=eq.0h4v.s8.c6ff6982b639 from=translated src=- shape=7c9f7ef6 vocab=ada7da2b
+-/
 theorem rowPair_gram (X Q : CStarMatrix n n A) :
     ofMatrix (rowPair X Q * (rowPair X Q)ᴴ) = X * star X + Q * star Q := by
   ext i j
@@ -39,7 +41,9 @@ def positiveGramRow (X B : CStarMatrix n n A) (b δ : ℝ) : Matrix n (n ⊕ n) 
   rowPair X (CFC.sqrt (B + algebraMap ℝ (CStarMatrix n n A) (b + 4 * δ ^ 2)))
 
 /-- A self-adjoint native matrix becomes positive after a real scalar
-shift dominating its actual norm. Empty shapes are included.-/
+shift dominating its actual norm. Empty shapes are included.
+@isnad1 id=le.2h4v.s8.112a1b651e2d from=translated src=- shape=4cefae4c vocab=20470b59
+-/
 theorem nonneg_add_algebraMap_of_norm_le (B : CStarMatrix n n A)
     (hB : IsSelfAdjoint B) {b : ℝ} (hb : ‖B‖ ≤ b) :
     0 ≤ B + algebraMap ℝ (CStarMatrix n n A) b := by
@@ -59,7 +63,9 @@ theorem nonneg_add_algebraMap_of_norm_le (B : CStarMatrix n n A)
   simpa only [map_neg, sub_neg_eq_add] using this
 
 /-- The actual square-root row has exactly the intended scalar-shifted
-Gram matrix.-/
+Gram matrix.
+@isnad1 id=eq.2h6v.s9.b30a2f139ea7 from=translated src=- shape=74a2fa5d vocab=cec04aa1
+-/
 theorem positiveGramRow_gram (X B : CStarMatrix n n A) (hB : IsSelfAdjoint B)
     {b : ℝ} (hb : ‖B‖ ≤ b) (δ : ℝ) :
     ofMatrix (positiveGramRow X B b δ * (positiveGramRow X B b δ)ᴴ) =
@@ -77,7 +83,9 @@ theorem positiveGramRow_gram (X B : CStarMatrix n n A) (hB : IsSelfAdjoint B)
 
 /-- The constructed row has the genuine positive spectral gap `4δ²`.
 The gap is derived from its actual Gram identity and the norm bound on
-`B`, rather than assumed as a linearization certificate.-/
+`B`, rather than assumed as a linearization certificate.
+@isnad1 id=le.3h7v.s8.4a0229e435b2 from=translated src=- shape=790b8a5e vocab=d5dbf8de
+-/
 theorem le_spectrum_positiveGramRow_gram (X B : CStarMatrix n n A)
     (hB : IsSelfAdjoint B) {b : ℝ} (hb : ‖B‖ ≤ b) (δ : ℝ)
     {r : ℝ} (hr : r ∈ spectrum ℝ
@@ -98,7 +106,9 @@ theorem le_spectrum_positiveGramRow_gram (X B : CStarMatrix n n A)
 variable [Nonempty n] [Nontrivial A]
 
 /-- The reference row-Gram radius is controlled by the actual reference
-matrix norm, the deterministic shift budget, and the chosen gap.-/
+matrix norm, the deterministic shift budget, and the chosen gap.
+@isnad1 id=le.3h6v.s8.de3a051305b2 from=translated src=- shape=37cba2e6 vocab=7a7e19d8
+-/
 theorem sqrt_norm_positiveGramRow_gram_le
     (X B : CStarMatrix n n A) (hB : IsSelfAdjoint B)
     {b δ : ℝ} (hb : ‖B‖ ≤ b) (hδ : 0 ≤ δ) :

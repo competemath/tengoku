@@ -29,7 +29,9 @@ def IsMatrixSign (A S : Matrix n n ℂ) : Prop :=
   S ^ 2 = 1 ∧ Commute A S ∧ IsPositiveStable (S * A)
 
 /-- Positive-stable matrices have spectra disjoint from the negative of
-every positive-stable matrix.-/
+every positive-stable matrix.
+@isnad1 id=disjoint.2h4v.s7.9135e28f9d71 from=translated src=- shape=5a294767 vocab=54aab045
+-/
 theorem IsPositiveStable.disjoint_neg {m : Type*} [Fintype m] [DecidableEq m]
     {A : Matrix n n ℂ} {B : Matrix m m ℂ}
     (hA : IsPositiveStable A) (hB : IsPositiveStable B) :
@@ -46,7 +48,9 @@ theorem IsPositiveStable.disjoint_neg {m : Type*} [Fintype m] [DecidableEq m]
 
 /-- The matrix sign characterization has at most one solution. It does
 not assume that the two proposed solutions commute with one another.
-atlas: matrix-sign-spectral-projectors (partial)-/
+atlas: matrix-sign-spectral-projectors (partial)
+@isnad1 id=eq.2h4v.s5.d685735aaa3c from=translated src=- shape=bef4a725 vocab=2006b888
+-/
 theorem IsMatrixSign.eq {A S T : Matrix n n ℂ}
     (hS : IsMatrixSign A S) (hT : IsMatrixSign A T) : S = T := by
   have hs : S * S = 1 := by simpa only [pow_two] using hS.1
@@ -65,7 +69,9 @@ theorem IsMatrixSign.eq {A S T : Matrix n n ℂ}
           _ = _ := by noncomm_ring
   exact sub_eq_zero.mp (eq_zero_of_mul_eq_mul_of_disjoint_spectrum hsep heq)
 
-/-- The two half-sign matrices are complementary commuting idempotents.-/
+/-- The two half-sign matrices are complementary commuting idempotents.
+@isnad1 id=other.1h3v.s8.faf4e5e60a10 from=translated src=- shape=8ee058ae vocab=3641579c
+-/
 theorem IsMatrixSign.projectors {A S : Matrix n n ℂ} (hS : IsMatrixSign A S) :
     let P := (2 : ℂ)⁻¹ • (1 + S)
     let Q := (2 : ℂ)⁻¹ • (1 - S)

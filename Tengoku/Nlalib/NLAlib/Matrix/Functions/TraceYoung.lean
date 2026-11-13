@@ -21,7 +21,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Every row of a complex unitary matrix has squared norm one.
-Unitary identity `U U* = I`; supports the overlap proof of `noncommutative-khintchine`.-/
+Unitary identity `U U* = I`; supports the overlap proof of `noncommutative-khintchine`.
+@isnad1 id=eq.0h3v.s8.3b69022716a7 from=translated src=- shape=72b85cd8 vocab=209ef9db
+-/
 theorem sum_norm_sq_unitary_row (U : Matrix.unitaryGroup ι ℂ) (i : ι) :
     ∑ j, ‖(U : Matrix ι ι ℂ) i j‖ ^ 2 = 1 := by
   have h := congrFun (congrFun (Unitary.coe_mul_star_self U) i) i
@@ -33,7 +35,9 @@ theorem sum_norm_sq_unitary_row (U : Matrix.unitaryGroup ι ℂ) (i : ι) :
     hs, Matrix.one_apply_eq, Complex.re_sum, Complex.ofReal_re, Complex.one_re] using congrArg Complex.re h
 
 /-- Every column of a complex unitary matrix has squared norm one.
-Unitary identity `U* U = I`; supports the overlap proof of `noncommutative-khintchine`.-/
+Unitary identity `U* U = I`; supports the overlap proof of `noncommutative-khintchine`.
+@isnad1 id=eq.0h3v.s8.870be06f90cc from=translated src=- shape=ad040daa vocab=209ef9db
+-/
 theorem sum_norm_sq_unitary_col (U : Matrix.unitaryGroup ι ℂ) (j : ι) :
     ∑ i, ‖(U : Matrix ι ι ℂ) i j‖ ^ 2 = 1 := by
   simpa only [Unitary.coe_star, Matrix.star_apply, Matrix.conjTranspose_apply, norm_star]
@@ -41,7 +45,9 @@ theorem sum_norm_sq_unitary_col (U : Matrix.unitaryGroup ι ℂ) (j : ι) :
 
 /-- A diagonal matrix times a conjugated diagonal matrix has trace given by
 the squared unitary overlap weights (two separate eigenbases); supports
-`noncommutative-khintchine`.-/
+`noncommutative-khintchine`.
+@isnad1 id=eq.0h4v.s9.8b701a41afba from=translated src=- shape=23376acc vocab=158db990
+-/
 theorem re_trace_diagonal_mul_conj_diagonal
     (U : Matrix.unitaryGroup ι ℂ) (a b : ι → ℝ) :
     (diagonal (fun i => (a i : ℂ)) *
@@ -69,7 +75,9 @@ theorem re_trace_diagonal_mul_conj_diagonal
 
 /-- Products of natural Hermitian powers have real trace given by the
 overlap weights of their two eigenbases (two spectral decompositions); supports
-`noncommutative-khintchine`.-/
+`noncommutative-khintchine`.
+@isnad1 id=eq.2h5v.s10.d06ea75970e1 from=translated src=- shape=7fb4caf2 vocab=1c49718e
+-/
 theorem re_trace_pow_mul_pow_eq_sum_overlap
     (A B : Matrix ι ι ℂ) (hA : A.IsHermitian) (hB : B.IsHermitian)
     (r s : ℕ) :
@@ -108,14 +116,18 @@ theorem re_trace_pow_mul_pow_eq_sum_overlap
   rw [ht, re_trace_diagonal_mul_conj_diagonal]
 
 /-- Every even natural Hermitian trace moment is nonnegative. Source:
-the real eigenvalue power sum; supports `noncommutative-khintchine`.-/
+the real eigenvalue power sum; supports `noncommutative-khintchine`.
+@isnad1 id=le.2h3v.s6.e6b9672ed7eb from=translated src=- shape=52f7dcf8 vocab=ce7075f9
+-/
 theorem re_trace_pow_nonneg_of_even (A : Matrix ι ι ℂ) (hA : A.IsHermitian)
     {r : ℕ} (hr : Even r) : 0 ≤ (A ^ r).trace.re := by
   rw [re_trace_pow_eq_sum_eigenvalues_pow A hA]
   exact Finset.sum_nonneg fun i _ => hr.pow_nonneg (hA.eigenvalues i)
 
 /-- Every natural PSD trace power is nonnegative. Source: its nonnegative
-eigenvalues; supports `noncommutative-khintchine`.-/
+eigenvalues; supports `noncommutative-khintchine`.
+@isnad1 id=le.1h3v.s6.a7bc6c3020d7 from=translated src=- shape=e746759d vocab=1ab81ec4
+-/
 theorem re_trace_pow_nonneg_of_posSemidef (A : Matrix ι ι ℂ) (hA : A.PosSemidef)
     (r : ℕ) : 0 ≤ (A ^ r).trace.re := by
   rw [re_trace_pow_eq_sum_eigenvalues_pow A hA.isHermitian]
@@ -124,7 +136,9 @@ theorem re_trace_pow_nonneg_of_posSemidef (A : Matrix ι ι ℂ) (hA : A.PosSemi
 /-- **Polynomial trace Young inequality.** For PSD `V`, Hermitian `H` and
 integer `p≥1`, the factor `q=2p-1` can be absorbed into the two endpoint
 trace moments. No commutativity hypothesis is used. Tropp 2015, §4.8;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=le.3h4v.s8.89e2690ee2f1 from=translated src=- shape=0721292e vocab=5daba322
+-/
 theorem nat_mul_mul_re_trace_mul_pow_le
     (V H : Matrix ι ι ℂ) (hV : V.PosSemidef) (hH : H.IsHermitian)
     {p : ℕ} (hp : 1 ≤ p) :

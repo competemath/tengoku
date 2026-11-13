@@ -16,7 +16,9 @@ noncomputable section
 namespace NLAlib.RestrictedInvertibility
 
 /-- The initial weighted potential is exactly its lower-barrier budget for
-the stable-rank parameters.-/
+the stable-rank parameters.
+@isnad1 id=eq.5h4v.s7.abfad7f878b7 from=translated src=- shape=0df859a1 vocab=66ea13ac
+-/
 theorem neg_div_initial_barrier_eq {F Λ M ε : ℝ}
     (hF : 0 < F) (hΛ : 0 < Λ) (hM : 0 < M) (_hε : 0 < ε) (hε1 : ε < 1) :
     -F / ((1 - ε) * F / M) = -M - Λ / ((1 - ε) * Λ / (ε * M)) := by
@@ -25,7 +27,9 @@ theorem neg_div_initial_barrier_eq {F Λ M ε : ℝ}
   ring
 
 /-- The exact floor of the stable-rank budget fits strictly below the initial
-barrier and leaves the asserted strict endpoint available.-/
+barrier and leaves the asserted strict endpoint available.
+@isnad1 id=other.5h4v.s8.fee9473dd7f4 from=translated src=- shape=a586b4a2 vocab=4abbdb2f
+-/
 theorem floor_mul_decrement_lt_and_terminal_barrier_le {F Λ M ε : ℝ}
     (hF : 0 < F) (hΛ : 0 < Λ) (hM : 0 < M) (hε : 0 < ε) (hε1 : ε < 1) :
     let b₀ := (1 - ε) * F / M

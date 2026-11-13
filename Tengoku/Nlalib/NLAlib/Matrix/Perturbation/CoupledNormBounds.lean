@@ -13,7 +13,9 @@ noncomputable section
 namespace NLAlib
 
 /-- Two coupled nonnegative scalar inequalities give the maximum-norm
-separation bound. Wedin (1972), direct two-residual proof.-/
+separation bound. Wedin (1972), direct two-residual proof.
+@isnad1 id=le.3h6v.s6.ca6e87ea93d6 from=translated src=- shape=4d2e314e vocab=a5c9b83f
+-/
 theorem sub_mul_max_le_max_of_coupled {α β x y f g : ℝ}
     (hβ : 0 ≤ β) (hx : α*x ≤ β*y+f) (hy : α*y ≤ β*x+g) :
     (α-β)*max x y ≤ max f g := by
@@ -26,7 +28,9 @@ theorem sub_mul_max_le_max_of_coupled {α β x y f g : ℝ}
     exact (show (α-β)*x ≤ f by nlinarith).trans (le_max_left _ _)
 
 /-- The paired squared-norm separation estimate from two coupled
-nonnegative inequalities. Wedin (1972), with no loss in the constant.-/
+nonnegative inequalities. Wedin (1972), with no loss in the constant.
+@isnad1 id=le.8h6v.s8.c3ce6dc0a030 from=translated src=- shape=e05237fb vocab=c0564ed8
+-/
 theorem sub_sq_mul_add_sq_le_add_sq_of_coupled {α β x y f g : ℝ}
     (hδ : 0 ≤ α-β) (hβ : 0 ≤ β) (hx0 : 0 ≤ x) (hy0 : 0 ≤ y)
     (_hf0 : 0 ≤ f) (_hg0 : 0 ≤ g)

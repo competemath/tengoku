@@ -28,7 +28,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- A unit eigenvector `v` of `A` with eigenvalue `a`, together with the Loewner bound
 `a • 1 ≤ A`, identifies the smallest sorted eigenvalue: `λ_min(A) = a`. Horn–Johnson 2013,
-Thm 4.2.2; helper for `wishart-lambda-min-tail`.-/
+Thm 4.2.2; helper for `wishart-lambda-min-tail`.
+@isnad1 id=eq.4h4v.s7.536785ca78e1 from=translated src=- shape=469abb42 vocab=525df257
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_last_eq_of_unit_eigenvector_of_le [Nonempty ι]
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) {a : ℝ} (hle : a • (1 : Matrix ι ι ℝ) ≤ A)
     {v : ι → ℝ} (hv : ‖WithLp.toLp 2 v‖ = 1) (heig : A *ᵥ v = a • v) :
@@ -54,7 +56,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_last_eq_of_unit_eigenvector_of_
 
 /-- The smallest sorted eigenvalue of an orthogonally diagonalized real matrix `Uᵀ A U = diag l`
 is the smallest diagonal entry. Horn–Johnson 2013, Thm 4.2.2; helper for
-`wishart-lambda-min-tail`.-/
+`wishart-lambda-min-tail`.
+@isnad1 id=eq.4h5v.s7.a65b119aaeb3 from=translated src=- shape=f997520a vocab=395638cd
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_last_eq_of_conjTranspose_mul_mul_eq_diagonal
     [Nonempty ι] {A U : Matrix ι ι ℝ} (hA : A.IsHermitian) (hU : HasOrthonormalCols U)
     (l : ι → ℝ) (hdiag : Uᵀ * A * U = Matrix.diagonal l) (i₀ : ι) (hmin : ∀ i, l i₀ ≤ l i) :

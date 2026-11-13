@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- An intertwiner fixing the first coordinate between two upper Hessenberg matrices is
 upper triangular when the matrix on its right is unreduced.
-Source: matrix toolkit rederivations, `lem:intertwine`.-/
+Source: matrix toolkit rederivations, `lem:intertwine`.
+@isnad1 id=isuppert.4h4v.s9.2809d39a2459 from=translated src=- shape=975586ad vocab=fb1a4a03
+-/
 theorem isUpperTriangular_of_hessenberg_intertwines {n : ℕ}
     {G H W : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ}
     (hG : IsUpperHessenberg G) (hH : IsUnreducedHessenberg H)
@@ -61,7 +63,9 @@ theorem isUpperTriangular_of_hessenberg_intertwines {n : ℕ}
   exact hcolumns j.val j rfl i hij
 
 /-- An orthogonal upper triangular real matrix is diagonal with entries in `{−1,1}`.
-Source: the triangular inverse identity and orthogonality.-/
+Source: the triangular inverse identity and orthogonality.
+@isnad1 id=ex.2h2v.s6.c4b68c650b6b from=translated src=- shape=ddbcde2b vocab=3ee8d9e5
+-/
 theorem exists_diagonal_sign_of_isUpperTriangular {n : Type*} [Fintype n] [LinearOrder n]
     {W : Matrix n n ℝ} (hU : W.IsUpperTriangular) (hOrth : HasOrthonormalCols W) :
     ∃ d : n → ℝ, (∀ i, d i = 1 ∨ d i = -1) ∧ W = Matrix.diagonal d := by

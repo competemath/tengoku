@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Once the index is at least the number of positive eigenvalues, the
 sorted eigenvalue is nonpositive. Horn--Johnson (2013), Corollary 4.3.3;
-helper for `low-rank-update-interlacing`.-/
+helper for `low-rank-update-interlacing`.
+@isnad1 id=le.2h3v.s7.36463b594099 from=translated src=- shape=a00935c6 vocab=1d4f7d2d
+-/
 theorem eigenvalues₀_le_zero_of_card_pos_le {B : Matrix n n ℝ} (hB : B.IsHermitian)
     (j : Fin (Fintype.card n))
     (hj : (Finset.univ.filter fun i => 0 < hB.eigenvalues₀ i).card ≤ j) :
@@ -42,7 +44,9 @@ theorem eigenvalues₀_le_zero_of_card_pos_le {B : Matrix n n ℝ} (hB : B.IsHer
 
 /-- Positive eigenvalues of a negated symmetric matrix are counted by
 negative eigenvalues of the original matrix. Horn--Johnson (2013),
-Observation 4.2.5; helper for `low-rank-update-interlacing`.-/
+Observation 4.2.5; helper for `low-rank-update-interlacing`.
+@isnad1 id=eq.1h2v.s7.68833867ab36 from=translated src=- shape=48e7dafd vocab=5999e0dc
+-/
 theorem card_eigenvalues₀_pos_neg {B : Matrix n n ℝ} (hB : B.IsHermitian) :
     (Finset.univ.filter fun i => 0 < hB.neg.eigenvalues₀ i).card =
       (Finset.univ.filter fun i => hB.eigenvalues₀ i < 0).card := by
@@ -59,7 +63,9 @@ theorem card_eigenvalues₀_pos_neg {B : Matrix n n ℝ} (hB : B.IsHermitian) :
 
 /-- An update with `π` positive eigenvalues shifts the upper bound by
 exactly `π` places in decreasing order. Horn--Johnson (2013), Corollary 4.3.3.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=le.3h4v.s8.bb37a7b62824 from=translated src=- shape=e6732851 vocab=04b0bb61
+-/
 theorem eigenvalues₀_add_le_of_card_pos {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n))
     (hi : i.val + (Finset.univ.filter fun j => 0 < hB.eigenvalues₀ j).card < Fintype.card n) :
@@ -75,7 +81,9 @@ theorem eigenvalues₀_add_le_of_card_pos {A B : Matrix n n ℝ}
 /-- An update with `ν` negative eigenvalues gives the matching lower
 bound, shifted by `ν` places in decreasing order.
 Horn--Johnson (2013), Corollary 4.3.3.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=le.3h4v.s8.3f0b4ff1a382 from=translated src=- shape=c6048f52 vocab=04b0bb61
+-/
 theorem eigenvalues₀_le_add_of_card_neg {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i : Fin (Fintype.card n))
     (hi : i.val + (Finset.univ.filter fun j => hB.eigenvalues₀ j < 0).card < Fintype.card n) :
@@ -89,7 +97,9 @@ theorem eigenvalues₀_le_add_of_card_neg {A B : Matrix n n ℝ}
 
 /-- A symmetric update of rank at most `r` shifts the upper eigenvalue
 bound by at most `r` indices. Horn--Johnson (2013), Corollary 4.3.5.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=le.4h5v.s7.ba3aad3746b8 from=translated src=- shape=874e6412 vocab=fa073336
+-/
 theorem eigenvalues₀_add_le_of_rank_le {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) {r : ℕ} (hBr : B.rank ≤ r)
     (i : Fin (Fintype.card n)) (hi : i.val + r < Fintype.card n) :
@@ -108,7 +118,9 @@ theorem eigenvalues₀_add_le_of_rank_le {A B : Matrix n n ℝ}
 
 /-- A rank-`r` symmetric update has the matching lower eigenvalue bound.
 Horn--Johnson (2013), Corollary 4.3.5.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=le.4h5v.s7.19b832aae621 from=translated src=- shape=4a849160 vocab=fa073336
+-/
 theorem eigenvalues₀_le_add_of_rank_le {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) {r : ℕ} (hBr : B.rank ≤ r)
     (i : Fin (Fintype.card n)) (hi : i.val + r < Fintype.card n) :
@@ -124,7 +136,9 @@ theorem eigenvalues₀_le_add_of_rank_le {A B : Matrix n n ℝ}
 
 /-- A PSD rank-one update has one-step decreasing-order interlacing.
 Horn--Johnson (2013), Corollary 4.3.7.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=and.1h4v.s8.1b7c431dc190 from=translated src=- shape=57fb6acf vocab=b3e7567c
+-/
 theorem eigenvalues₀_rank_one_add_interlacing {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (z : n → ℝ) (i : Fin (Fintype.card n)) :
     hA.eigenvalues₀ i ≤
@@ -142,7 +156,9 @@ theorem eigenvalues₀_rank_one_add_interlacing {A : Matrix n n ℝ} (hA : A.IsH
 
 /-- A PSD rank-one downdate has the corresponding reversed one-step
 interlacing. Horn--Johnson (2013), Corollary 4.3.9.
-atlas: low-rank-update-interlacing (partial)-/
+atlas: low-rank-update-interlacing (partial)
+@isnad1 id=and.1h4v.s8.7d46a357f4c0 from=translated src=- shape=456ac583 vocab=50639b9d
+-/
 theorem eigenvalues₀_rank_one_sub_interlacing {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (z : n → ℝ) (i : Fin (Fintype.card n)) :
     (hA.sub (posSemidef_vecMulVec_self_star z).isHermitian).eigenvalues₀ i ≤ hA.eigenvalues₀ i ∧
@@ -156,7 +172,9 @@ theorem eigenvalues₀_rank_one_sub_interlacing {A : Matrix n n ℝ} (hA : A.IsH
 /-- Symmetric updates obey both inertia-count shifts, both rank shifts,
 and both PSD rank-one interlacing forms, with decreasing zero-based indices.
 Horn--Johnson (2013), Corollaries 4.3.3, 4.3.5, 4.3.7, 4.3.9.
-atlas: low-rank-update-interlacing-/
+atlas: low-rank-update-interlacing
+@isnad1 id=and.2h3v.s10.2a7b4cc6120c from=translated src=- shape=ef092a63 vocab=e720332c
+-/
 theorem eigenvalue_low_rank_interlacing {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∀ (i : Fin (Fintype.card n))

@@ -19,7 +19,9 @@ namespace NLAlib
 false: the nilpotent matrix with upper-right entry two is dominated by
 identity, but its Hadamard square has upper-right entry four and violates
 dominance at the all-ones vector. Explicit repair of the overbroad wording
-of Horn--Johnson (2013), Theorem 7.8.16; `schur-product-inequalities`.-/
+of Horn--Johnson (2013), Theorem 7.8.16; `schur-product-inequalities`.
+@isnad1 id=ex.0h0v.s8.52fee0d335d2 from=translated src=- shape=b38c859a vocab=4f5aae63
+-/
 theorem exists_nonsymmetric_quadratic_dominance_not_hadamard_preserved :
     ∃ B : Matrix (Fin 2) (Fin 2) ℝ, ¬B.IsHermitian ∧
       (∀ x : Fin 2 → ℝ, |quadForm B x| ≤ quadForm (1 : Matrix (Fin 2) (Fin 2) ℝ) x) ∧

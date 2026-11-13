@@ -18,7 +18,9 @@ namespace NLAlib
 /-- The actual Lobatto coupling and common corner have the classical monic
 characteristic-ratio formulas, with `r(z)=χ_leading(z)/χ(z)`.
 Source: operator derivations (AQ8); focused reroutes, Section 3 (BL8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=other.2h4v.s10.cb6c59ddf241 from=translated src=- shape=2fd71f5c vocab=ae40167e
+-/
 theorem lobattoCouplingSq_and_corner_single_last_eq_charpoly_ratio {q : ℕ}
     (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) (a c : ℝ)
     (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) :

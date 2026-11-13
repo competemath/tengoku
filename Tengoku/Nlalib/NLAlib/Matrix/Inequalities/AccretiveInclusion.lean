@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [DecidableEq n] in
 /-- If an accretive matrix and its Hermitian part have equal rank, their
 kernels coincide. Source: Horn–Johnson (2013), Observation 7.1.12.
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=eq.2h2v.s11.60e3131d71e9 from=translated src=- shape=1776bd7e vocab=ca19f101
+-/
 theorem ker_mulVecLin_eq_selfAdjointPart_of_rank_eq {A : Matrix n n ℂ}
     (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     (hrank : (selfAdjointPart ℝ A : Matrix n n ℂ).rank = A.rank) :
@@ -40,7 +42,9 @@ theorem ker_mulVecLin_eq_selfAdjointPart_of_rank_eq {A : Matrix n n ℂ}
   omega
 
 omit [Fintype n] [DecidableEq n] in
-/-- Taking the Hermitian part commutes with forming a principal submatrix.-/
+/-- Taking the Hermitian part commutes with forming a principal submatrix.
+@isnad1 id=eq.0h4v.s11.f9410c91b9a0 from=translated src=- shape=8af7b2fc vocab=95bb7c1a
+-/
 theorem selfAdjointPart_submatrix (A : Matrix n n ℂ) {m : Type*} (e : m → n) :
     (selfAdjointPart ℝ (A.submatrix e e) : Matrix m m ℂ) =
       (selfAdjointPart ℝ A : Matrix n n ℂ).submatrix e e := by
@@ -49,7 +53,9 @@ theorem selfAdjointPart_submatrix (A : Matrix n n ℂ) {m : Type*} (e : m → n)
 
 /-- A matrix with positive definite Hermitian part is invertible, including
 the empty square matrix. Source: Horn–Johnson (2013), Corollary 7.1.13.
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=isunit.1h2v.s10.974ab5fa90df from=translated src=- shape=95a02df5 vocab=5cac39bf
+-/
 theorem isUnit_of_posDef_selfAdjointPart {A : Matrix n n ℂ}
     (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosDef) : IsUnit A := by
   have hzero : ∀ x : n → ℂ, A *ᵥ x = 0 → x = 0 := by
@@ -66,7 +72,9 @@ omit [Fintype n] [DecidableEq n] in
 /-- Every principal submatrix of a matrix with positive definite Hermitian
 part is invertible. Index embeddings cover every principal cut.
 Source: Horn–Johnson (2013), Corollary 7.1.13.
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=isunit.2h4v.s10.0f3e6bac47fc from=translated src=- shape=add5261b vocab=feea72d7
+-/
 theorem isUnit_submatrix_of_posDef_selfAdjointPart {A : Matrix n n ℂ}
     (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosDef)
     {m : Type*} [Fintype m] [DecidableEq m] (e : m → n) (he : Function.Injective e) :
@@ -82,7 +90,9 @@ omit [DecidableEq n] in
 /-- An accretive matrix has leading row inclusion when its Hermitian part
 has the same rank. This statement is complex and permits singular matrices.
 Source: Horn–Johnson (2013), Observation 7.1.12; operator derivations, (S12).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=hasrowin.2h2v.s11.c927de2528d4 from=translated src=- shape=2dab0763 vocab=0d3eafc5
+-/
 theorem hasRowInclusion_of_posSemidef_selfAdjointPart_of_rank_eq
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     (hrank : (selfAdjointPart ℝ A : Matrix n n ℂ).rank = A.rank) :
@@ -112,7 +122,9 @@ omit [DecidableEq n] in
 part has the same rank. Adjoint row inclusion supplies the conjugated
 coefficients in the existing transpose-based column predicate.
 Source: Horn–Johnson (2013), Observation 7.1.12; operator derivations, (S12).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=hascolum.2h2v.s11.69aa7d60ae98 from=translated src=- shape=2dab0763 vocab=73cb6305
+-/
 theorem hasColumnInclusion_of_posSemidef_selfAdjointPart_of_rank_eq
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     (hrank : (selfAdjointPart ℝ A : Matrix n n ℂ).rank = A.rank) :
@@ -133,7 +145,9 @@ omit [DecidableEq n] in
 /-- Positive definite Hermitian part ensures both row and column inclusion.
 All principal blocks are invertible; no rank-equality premise is needed.
 Source: Horn–Johnson (2013), Corollary 7.1.13; operator derivations, (S12).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=and.1h2v.s10.78c953660d14 from=translated src=- shape=2677e09b vocab=49195ae7
+-/
 theorem hasRowInclusion_and_hasColumnInclusion_of_posDef_selfAdjointPart
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosDef) :
     HasRowInclusion A ∧ HasColumnInclusion A := by

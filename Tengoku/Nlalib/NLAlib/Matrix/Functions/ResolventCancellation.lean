@@ -127,7 +127,9 @@ Hermitian matrix, and the real interpolation coefficient is arbitrary.
 Source: Tatiana Brailovskaya and Ramon van Handel, *Universality and sharp
 matrix concentration inequalities*, arXiv:2201.05142v3 (2024), §6.4, proof
 of Lemma 6.11, with the exact ordered remainder made explicit.
-atlas: matrix-resolvent-gaussian-universality (partial)-/
+atlas: matrix-resolvent-gaussian-universality (partial)
+@isnad1 id=other.4h6v.s9.9a0790303cc5 from=translated src=- shape=b4076657 vocab=55c5a0d0
+-/
 theorem resolvent_mul_resolvent_sub_eq_smul_add_smul_sq
     (A₀ D F : M) (a : ℝ) (ζ : ℂ) (hA₀ : A₀.IsHermitian)
     (hD : D.IsHermitian) (hF : F.IsHermitian) (hζ : ζ.im ≠ 0) :

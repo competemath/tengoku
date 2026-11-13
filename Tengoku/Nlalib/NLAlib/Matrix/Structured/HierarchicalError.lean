@@ -47,7 +47,9 @@ def ErrorsLE (εD : ℝ) (ε : ℕ → ℝ) :
 
 /-- Exact Frobenius Pythagoras over the complete hierarchical partition.
 Source: user derivations, HODLR levelwise error.
-atlas: hodlr-levelwise-compression-error (partial)-/
+atlas: hodlr-levelwise-compression-error (partial)
+@isnad1 id=eq.0h3v.s5.4e1391a6e498 from=translated src=- shape=0e75a860 vocab=0141c7a5
+-/
 theorem frobSq_matrix_eq {t : ClusterTree} (E : ClusterMatrix K t) :
     frobSq E.matrix = E.blockFrobSq := by
   induction E with
@@ -61,7 +63,9 @@ theorem frobSq_matrix_eq {t : ClusterTree} (E : ClusterMatrix K t) :
 /-- The depthwise spectral errors add once per level, with no factor from
 the number of sibling blocks at that level. Includes unbalanced trees and
 root leaves. Source: user derivations, HODLR levelwise compression error.
-atlas: hodlr-levelwise-compression-error-/
+atlas: hodlr-levelwise-compression-error
+@isnad1 id=le.4h7v.s6.185be6afa69a from=translated src=- shape=82696c4e vocab=8b4190f7
+-/
 theorem specNorm_matrix_le {t : ClusterTree} (E : ClusterMatrix K t)
     (εD : ℝ) (ε : ℕ → ℝ) (_hD : 0 ≤ εD) (hε : ∀ j, 0 ≤ ε j)
     (depth L : ℕ) (hL : t.height ≤ L) (hE : E.ErrorsLE εD ε depth) :
@@ -107,7 +111,9 @@ def HODLR.error {K : Type*} [RCLike K] : {t : ClusterTree} →
   | _, .node dl dr _ _ U V W Z, .node dl' dr' _ _ U' V' W' Z' =>
       .node (dl.error dl') (dr.error dr') (U * Vᴴ - U' * V'ᴴ) (W * Zᴴ - W' * Z'ᴴ)
 
-/-- Reconstruction of the blockwise errors equals the actual matrix difference.-/
+/-- Reconstruction of the blockwise errors equals the actual matrix difference.
+@isnad1 id=eq.0h4v.s6.f5fd6f0ee43b from=translated src=- shape=06728b9e vocab=9f0f17aa
+-/
 theorem HODLR.matrix_error {K : Type*} [RCLike K] {t : ClusterTree}
     (H H' : HODLR K t) : (H.error H').matrix = H.matrix - H'.matrix := by
   induction H with

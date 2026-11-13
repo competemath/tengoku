@@ -21,7 +21,9 @@ namespace NLAlib
 /-- A supplied quasitriangular basis for `B⁻¹A` gives a two-sided orthonormal
 pencil form whose second factor is upper triangular and first factor is
 upper quasitriangular. Source: Horn–Johnson (2013), Theorem 2.6.2;
-Gram–Schmidt is applied to the `B`-images of the given basis.-/
+Gram–Schmidt is applied to the `B`-images of the given basis.
+@isnad1 id=ex.2h7v.s12.d5483dc746d0 from=translated src=- shape=7940b0f1 vocab=172336b2
+-/
 theorem exists_orthonormalBasis_pencil_of_quasi_basis
     {𝕜 E F : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
@@ -54,7 +56,9 @@ theorem exists_orthonormalBasis_pencil_of_quasi_basis
 
 /-- A singular second pencil map gives unit domain and image vectors with
 its image zero and the first map's image on the chosen image line.
-Horn–Johnson (2013), Theorem 2.6.2; a common zero image is allowed.-/
+Horn–Johnson (2013), Theorem 2.6.2; a common zero image is allowed.
+@isnad1 id=ex.1h5v.s9.1e0f72109cc1 from=translated src=- shape=7d9980a6 vocab=52d1790b
+-/
 theorem exists_unit_pencil_image_line_of_not_injective
     {𝕜 E F : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [Nontrivial E]

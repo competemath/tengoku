@@ -15,7 +15,9 @@ variable {m n k : Type*} [Fintype m] [Fintype n] [Fintype k]
   [DecidableEq m] [DecidableEq n] [DecidableEq k]
 
 /-- A nonnegative lower diagonal bound expands Euclidean lengths.
-Wedin (1972), diagonal singular coefficient in the coupled residual proof.-/
+Wedin (1972), diagonal singular coefficient in the coupled residual proof.
+@isnad1 id=le.2h4v.s6.caae82d3b379 from=translated src=- shape=a56d91fa vocab=83e644dd
+-/
 theorem mulVec_diagonal_sq_ge {t : k → ℝ} {α : ℝ} (hα : 0 ≤ α)
     (ht : ∀ j, α ≤ t j) (x : k → ℝ) :
     α ^ 2 * (x ⬝ᵥ x) ≤ ((Matrix.diagonal t) *ᵥ x) ⬝ᵥ ((Matrix.diagonal t) *ᵥ x) := by
@@ -27,7 +29,9 @@ theorem mulVec_diagonal_sq_ge {t : k → ℝ} {α : ℝ} (hα : 0 ≤ α)
   nlinarith
 
 /-- Right multiplication by a diagonal bounded below expands the spectral norm.
-Wedin (1972), Section 3; arbitrary finite indices and empty spaces.-/
+Wedin (1972), Section 3; arbitrary finite indices and empty spaces.
+@isnad1 id=le.2h5v.s6.163d16d4baf7 from=translated src=- shape=6686a2d2 vocab=93b3f34b
+-/
 theorem mul_specNorm_le_specNorm_mul_diagonal {t : k → ℝ} {α : ℝ} (hα : 0 ≤ α)
     (ht : ∀ j, α ≤ t j) (X : Matrix m k ℝ) :
     α * specNorm X ≤ specNorm (X * Matrix.diagonal t) := by
@@ -40,7 +44,9 @@ theorem mul_specNorm_le_specNorm_mul_diagonal {t : k → ℝ} {α : ℝ} (hα : 
 
 omit [DecidableEq m] in
 /-- The same right diagonal expansion holds in Frobenius norm.
-Wedin (1972), Section 3; no nonempty or invertibility premise is added.-/
+Wedin (1972), Section 3; no nonempty or invertibility premise is added.
+@isnad1 id=le.2h5v.s6.75d51d2b576b from=translated src=- shape=c455f281 vocab=88d1b57a
+-/
 theorem mul_frobNorm_le_frobNorm_mul_diagonal {t : k → ℝ} {α : ℝ} (hα : 0 ≤ α)
     (ht : ∀ j, α ≤ t j) (X : Matrix m k ℝ) :
     α * frobNorm X ≤ frobNorm (X * Matrix.diagonal t) := by
@@ -78,7 +84,9 @@ private theorem coupled_frobNorm_component {D : Matrix m n ℝ} {t : k → ℝ}
 
 /-- Wedin's two coupled residual equations imply the exact maximum-operator
 separation bound. Wedin (1972), Section 3; all rectangular ambient spaces and
-empty selected frames are allowed.-/
+empty selected frames are allowed.
+@isnad1 id=le.3h9v.s8.6b2908dbb487 from=translated src=- shape=fe1175cd vocab=e7b59871
+-/
 theorem sub_mul_max_specNorm_le_max_coupled_residual {D : Matrix m n ℝ} {t : k → ℝ}
     {α β : ℝ} (hα : 0 ≤ α) (ht : ∀ j, α ≤ t j) (hD : specNorm D ≤ β)
     (X : Matrix m k ℝ) (Y : Matrix n k ℝ) :
@@ -91,7 +99,9 @@ theorem sub_mul_max_specNorm_le_max_coupled_residual {D : Matrix m n ℝ} {t : k
   simpa only [specNorm_transpose] using hD
 
 /-- Wedin's coupled residual equations retain constant one for the paired
-Frobenius square. Wedin (1972), Section 3; no rank assumptions occur.-/
+Frobenius square. Wedin (1972), Section 3; no rank assumptions occur.
+@isnad1 id=le.4h9v.s8.0e1f3db9157e from=translated src=- shape=63d4d905 vocab=ef47f10e
+-/
 theorem sub_sq_mul_add_sq_frobNorm_le_add_sq_coupled_residual
     {D : Matrix m n ℝ} {t : k → ℝ} {α β : ℝ}
     (hα : 0 ≤ α) (ht : ∀ j, α ≤ t j) (hD : specNorm D ≤ β) (hδ : 0 ≤ α - β)

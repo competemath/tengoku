@@ -17,7 +17,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Even moment trace Hölder in the precise form needed for the Hessian of
 an even matrix power. The quadratic endpoint includes zero matrices.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=le.4h4v.s8.d2490f5ea3c8 from=translated src=- shape=21104b00 vocab=ec524fb2
+-/
 theorem re_trace_sq_mul_pow_le_even_moments
     (H A : Matrix ι ι ℂ) (hH : H.IsHermitian) (hA : A.IsHermitian)
     {p : ℕ} (hp : Even p) (hp2 : 2 ≤ p) :

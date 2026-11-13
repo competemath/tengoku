@@ -25,7 +25,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- In a simultaneous unitary diagonalization the trace pencil is an finite sum of scalar exponentials, for every real parameter.
-Source: Stahl, §1.3.1; atlas `trace-exponential-stahl` (helper).-/
+Source: Stahl, §1.3.1; atlas `trace-exponential-stahl` (helper).
+@isnad1 id=eq.3h7v.s8.6aafbf99d54c from=translated src=- shape=99dff858 vocab=e7b4df0c
+-/
 theorem traceExp_add_smul_eq_sum_of_diagonalization
     (A H U : Matrix ι ι ℂ) (a b : ι → ℝ) (hU : HasOrthonormalCols U)
     (hA : Uᴴ * A * U = diagonal (fun i => (a i : ℂ)))
@@ -49,7 +51,9 @@ direction's spectral interval representing its trace exponential at every real
 parameter. Includes repeated eigenvalues and the empty matrix, whose measure is
 zero. This theorem does not cover noncommuting matrices.
 Source: Stahl, §1.3.1, formula (1.3); atlas `trace-exponential-stahl` (partial).
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h3v.s7.3ba51d02fec9 from=translated src=- shape=dbbe47ff vocab=c3808c3a
+-/
 theorem exists_isCompactExpRepresentation_traceExp_of_commute
     (A H : Matrix ι ι ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     (hAH : Commute A H) :
@@ -74,7 +78,9 @@ both matrices in a pencil. The positivity of approximating measures is retained
 by compactness; no positivity or representation hypothesis is imposed on the
 limiting pencil. Source: Stahl's approximation reduction; atlas
 `trace-exponential-stahl` (partial).
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h9v.s8.1d2612f255ce from=translated src=- shape=db60d11e vocab=9f7042ed
+-/
 theorem exists_isCompactExpRepresentation_traceExp_of_tendsto
     {I : Type*} {l : Filter I} [l.NeBot]
     (Aₙ Hₙ : I → Matrix ι ι ℂ) (A H : Matrix ι ι ℂ) (a b : ℝ)

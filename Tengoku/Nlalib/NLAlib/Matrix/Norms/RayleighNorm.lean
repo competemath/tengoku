@@ -22,7 +22,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- A real symmetric matrix has spectral norm at most a nonnegative `ε`
 exactly when its quadratic form is bounded by `ε ‖x‖²` for every vector.
-Atlas: `ose-def`, `norms-frob-spec`.MatrixTail.-/
+Atlas: `ose-def`, `norms-frob-spec`.MatrixTail.
+@isnad1 id=iff.2h3v.s6.30fed35dce4d from=translated src=- shape=f90ebc76 vocab=4ed579da
+-/
 theorem specNorm_le_iff_abs_dotProduct_mulVec_le (A : Matrix n n ℝ)
     (hA : A.IsHermitian) (ε : ℝ) (hε : 0 ≤ ε) :
     specNorm A ≤ ε ↔ ∀ x : n → ℝ, |x ⬝ᵥ (A *ᵥ x)| ≤ ε * (x ⬝ᵥ x) := by

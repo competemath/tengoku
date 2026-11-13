@@ -61,7 +61,9 @@ private theorem tendsto_cobounded_of_affine_branch {f : ℂ → ℂ} {a d : ℂ}
 
 /-- The inverse spectral pencil exchanges `z` with `λ + s z`. Multiplication
 by the invertible diagonal matrix preserves singularity, so this equivalence
-does not require a choice of eigenvectors or eigenvalue branches.-/
+does not require a choice of eigenvectors or eigenvalue branches.
+@isnad1 id=iff.1h6v.s8.c23a5abb6949 from=translated src=- shape=23458c81 vocab=02266532
+-/
 theorem mem_spectrum_inverse_diagonal_pencil_iff
     (A : Matrix n n ℂ) (b : n → ℝ) (s : ℝ)
     (hs : ∀ i, s ≠ b i) (u z : ℂ) :
@@ -107,7 +109,9 @@ theorem mem_spectrum_inverse_diagonal_pencil_iff
 The affine asymptote is `(u - Aᵢᵢ) / (s - bᵢ)`, with the diagonal entry of
 `A` interpreted as a complex number. These branches are constructed from the
 actual matrix pencil, rather than postulated as local inverses.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.2h4v.s8.8702f2c899c2 from=translated src=- shape=f61362d2 vocab=906e7f98
+-/
 theorem exists_exterior_inverse_eigenvalue_branches
     (A : Matrix n n ℂ) (b : n → ℝ) (hb : Function.Injective b)
     (s : ℝ) (hs : ∀ i, s ≠ b i) :
@@ -140,7 +144,9 @@ theorem exists_exterior_inverse_eigenvalue_branches
 
 /-- The affine asymptotes match an inverse branch to its original exterior
 eigenvalue branch. In particular, the index is determined by the distinct
-slopes, not by making an arbitrary spectral choice at each parameter.-/
+slopes, not by making an arbitrary spectral choice at each parameter.
+@isnad1 id=eventual.6h8v.s8.2c4c9e41fcf7 from=translated src=- shape=69dd1a2c vocab=232a6503
+-/
 theorem eventually_exterior_inverse_eigenvalue_branches_eq
     (A : Matrix n n ℂ) (b : n → ℝ) (hb : Function.Injective b)
     (s : ℝ) (hs : ∀ i, s ≠ b i)

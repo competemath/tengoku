@@ -15,7 +15,9 @@ open Matrix
 namespace NLAlib
 variable {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
 
-/-- A block upper triangular matrix has the union of its diagonal spectra.-/
+/-- A block upper triangular matrix has the union of its diagonal spectra.
+@isnad1 id=eq.0h5v.s7.cf7c523b0cd8 from=translated src=- shape=f8cc9b5c vocab=07fba19a
+-/
 theorem spectrum_fromBlocks_zero₂₁ (A : Matrix m m ℂ) (C : Matrix m n ℂ)
     (B : Matrix n n ℂ) :
     spectrum ℂ (fromBlocks A C 0 B) = spectrum ℂ A ∪ spectrum ℂ B := by
@@ -23,7 +25,9 @@ theorem spectrum_fromBlocks_zero₂₁ (A : Matrix m m ℂ) (C : Matrix m n ℂ)
   simp only [Matrix.mem_spectrum_iff_isRoot_charpoly, Matrix.charpoly_fromBlocks_zero₂₁,
     Polynomial.IsRoot, Polynomial.eval_mul, mul_eq_zero, Set.mem_union]
 
-/-- Positive stability is preserved by block upper triangular assembly.-/
+/-- Positive stability is preserved by block upper triangular assembly.
+@isnad1 id=ispositi.2h5v.s6.3326c6578216 from=translated src=- shape=91c7df83 vocab=c735654d
+-/
 theorem IsPositiveStable.fromBlocks {A : Matrix m m ℂ} {B : Matrix n n ℂ}
     (hA : IsPositiveStable A) (hB : IsPositiveStable B) (C : Matrix m n ℂ) :
     IsPositiveStable (fromBlocks A C 0 B) := by
@@ -33,7 +37,9 @@ theorem IsPositiveStable.fromBlocks {A : Matrix m m ℂ} {B : Matrix n n ℂ}
 
 /-- The off-diagonal block of the sign of `[A C;0 -B]` is twice the
 Sylvester solution. Defective and nonnormal diagonal blocks are allowed.
-atlas: matrix-sign-sylvester-block (partial)-/
+atlas: matrix-sign-sylvester-block (partial)
+@isnad1 id=eq.3h6v.s8.f702170a5f5c from=translated src=- shape=ed1d8573 vocab=23be225d
+-/
 theorem matrixSign_fromBlocks_sylvester
     {A : Matrix m m ℂ} {B : Matrix n n ℂ} (hA : IsPositiveStable A)
     (hB : IsPositiveStable B) {C X : Matrix m n ℂ} (hX : A * X + X * B = C) :
@@ -73,7 +79,9 @@ theorem matrixSign_fromBlocks_sylvester
 /-- Positive-stable diagonal blocks give exactly one Sylvester solution.
 Together with `matrixSign_fromBlocks_sylvester`, this is the complete
 Sylvester block-sign formula.
-atlas: matrix-sign-sylvester-block (partial)-/
+atlas: matrix-sign-sylvester-block (partial)
+@isnad1 id=existsun.2h5v.s7.53c8f234f756 from=translated src=- shape=7c7bd4c3 vocab=5a7c9ac7
+-/
 theorem existsUnique_sylvester_of_positiveStable
     {A : Matrix m m ℂ} {B : Matrix n n ℂ} (hA : IsPositiveStable A)
     (hB : IsPositiveStable B) (C : Matrix m n ℂ) :

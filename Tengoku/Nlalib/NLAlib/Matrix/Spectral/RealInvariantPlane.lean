@@ -20,7 +20,9 @@ set_option backward.isDefEq.respectTransparency false
 /-- Real and imaginary parts of a nonreal eigenvector are real linearly
 independent. The two displayed real equations are exactly the real and
 imaginary parts of its eigenvalue equation. Horn–Johnson 2013,
-Theorems 2.3.1 and 2.5.4; real invariant-plane helper.-/
+Theorems 2.3.1 and 2.5.4; real invariant-plane helper.
+@isnad1 id=linearin.4h6v.s8.0d739ed30964 from=translated src=- shape=3a61c8d0 vocab=ed9fac7e
+-/
 theorem linearIndependent_real_imag_of_nonreal_eigen_equations {n : Type*}
     [Fintype n] (A : Matrix n n ℝ) (a b : ℝ) (hb : b ≠ 0)
     (u v : n → ℝ) (huv : u ≠ 0 ∨ v ≠ 0)
@@ -51,7 +53,9 @@ theorem linearIndependent_real_imag_of_nonreal_eigen_equations {n : Type*}
 /-- Every nonempty real square matrix has a real eigenline or an independent
 real invariant two-plane carrying a nonreal conjugate pair. The two-plane
 coordinates here need not be orthonormal; later orthonormalization produces
-the general real Schur block. Horn–Johnson 2013, Theorem 2.3.1.-/
+the general real Schur block. Horn–Johnson 2013, Theorem 2.3.1.
+@isnad1 id=or.0h2v.s9.dda267863370 from=translated src=- shape=a680c372 vocab=f3f438ab
+-/
 theorem exists_real_eigenvector_or_invariant_plane {n : Type*}
     [Fintype n] [DecidableEq n] [Nonempty n] (A : Matrix n n ℝ) :
     (∃ a : ℝ, ∃ u : n → ℝ, u ≠ 0 ∧ A *ᵥ u = a • u) ∨

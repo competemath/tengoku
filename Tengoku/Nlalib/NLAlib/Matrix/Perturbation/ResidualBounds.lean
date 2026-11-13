@@ -19,7 +19,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The shifted residual squared length is the weighted squared spectral
-distance. Parlett §4.5; weights are squared eigenbasis coordinates.-/
+distance. Parlett §4.5; weights are squared eigenbasis coordinates.
+@isnad1 id=eq.1h4v.s8.3fbd0244b10b from=translated src=- shape=3517d724 vocab=8975a9b1
+-/
 theorem dotProduct_shifted_residual_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (x : n → ℝ) (μ : ℝ) :
     (A *ᵥ x - μ • x) ⬝ᵥ (A *ᵥ x - μ • x) =
@@ -30,7 +32,9 @@ theorem dotProduct_shifted_residual_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermit
 
 /-- Every real shift is within its residual norm of an eigenvalue.
 Parlett §4.5. The unit-vector assumption excludes an empty spectrum.
-atlas: eigenvalue-residual-bounds-/
+atlas: eigenvalue-residual-bounds
+@isnad1 id=ex.2h4v.s7.8f159fa76e68 from=translated src=- shape=df5127de vocab=fdf2dd60
+-/
 theorem exists_eigenvalue_abs_sub_le_residual {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {x : n → ℝ} (hx : x ⬝ᵥ x = 1) (μ : ℝ) :
     ∃ i, |hA.eigenvalues i - μ| ≤
@@ -67,7 +71,9 @@ theorem exists_eigenvalue_abs_sub_le_residual {A : Matrix n n ℝ}
 
 omit [DecidableEq n] in
 /-- The residual about the Rayleigh quotient is orthogonal to a unit vector.
-Parlett §4.5; the quotient is `quadForm A x` on the unit sphere.-/
+Parlett §4.5; the quotient is `quadForm A x` on the unit sphere.
+@isnad1 id=eq.1h3v.s6.5991b4ae630d from=translated src=- shape=e0fe72c3 vocab=42e05448
+-/
 theorem dotProduct_rayleigh_residual_eq_zero (A : Matrix n n ℝ)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) :
     x ⬝ᵥ (A *ᵥ x - quadForm A x • x) = 0 := by
@@ -76,7 +82,9 @@ theorem dotProduct_rayleigh_residual_eq_zero (A : Matrix n n ℝ)
 omit [DecidableEq n] in
 /-- Pythagoras separates the optimal Rayleigh residual and the shift error.
 Parlett §4.5. This exact identity proves both minimality and uniqueness.
-atlas: eigenvalue-residual-bounds (partial)-/
+atlas: eigenvalue-residual-bounds (partial)
+@isnad1 id=eq.1h4v.s8.4949b14d1ea5 from=translated src=- shape=45824d81 vocab=a548cbef
+-/
 theorem dotProduct_shifted_residual_eq_rayleigh_add_sq (A : Matrix n n ℝ)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) (μ : ℝ) :
     (A *ᵥ x - μ • x) ⬝ᵥ (A *ᵥ x - μ • x) =
@@ -89,7 +97,9 @@ theorem dotProduct_shifted_residual_eq_rayleigh_add_sq (A : Matrix n n ℝ)
 omit [DecidableEq n] in
 /-- The Rayleigh quotient uniquely minimizes the squared residual over real
 shifts. Parlett §4.5; no nonzero-eigenvalue hypothesis is needed.
-atlas: eigenvalue-residual-bounds-/
+atlas: eigenvalue-residual-bounds
+@isnad1 id=le.1h4v.s8.9c283a834594 from=translated src=- shape=f445ff07 vocab=eb50c0be
+-/
 theorem rayleigh_residual_le_shifted_residual (A : Matrix n n ℝ)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) (μ : ℝ) :
     Real.sqrt ((A *ᵥ x - quadForm A x • x) ⬝ᵥ (A *ᵥ x - quadForm A x • x)) ≤
@@ -100,7 +110,9 @@ theorem rayleigh_residual_le_shifted_residual (A : Matrix n n ℝ)
 
 omit [DecidableEq n] in
 /-- Equality in residual minimality occurs exactly at the Rayleigh quotient.
-Parlett §4.5, with a unit vector and real shifts.-/
+Parlett §4.5, with a unit vector and real shifts.
+@isnad1 id=iff.1h4v.s8.88d455b4186f from=translated src=- shape=0b824b72 vocab=42e05448
+-/
 theorem shifted_residual_eq_rayleigh_residual_iff (A : Matrix n n ℝ)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) (μ : ℝ) :
     (A *ᵥ x - μ • x) ⬝ᵥ (A *ᵥ x - μ • x) =
@@ -115,7 +127,9 @@ theorem shifted_residual_eq_rayleigh_residual_iff (A : Matrix n n ℝ)
     simp [h]
 
 /-- A nonnegative quadratic polynomial on the spectrum bounds the Rayleigh
-residual variance. Kato–Temple finite spectral proof, Parlett §10.6.-/
+residual variance. Kato–Temple finite spectral proof, Parlett §10.6.
+@isnad1 id=le.3h5v.s8.42c680a4ae63 from=translated src=- shape=f66d20a0 vocab=01f33e2d
+-/
 theorem rayleigh_variance_add_mul_nonneg {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) (ℓ a : ℝ)
     (hp : ∀ i, 0 ≤ (hA.eigenvalues i - ℓ) * (hA.eigenvalues i - a)) :
@@ -142,7 +156,9 @@ theorem rayleigh_variance_add_mul_nonneg {A : Matrix n n ℝ} (hA : A.IsHermitia
 
 /-- Kato–Temple upper bound for an isolated eigenvalue; multiplicities are
 unrestricted. Parlett §10.6, with explicit interval isolation.
-atlas: eigenvalue-residual-bounds (partial)-/
+atlas: eigenvalue-residual-bounds (partial)
+@isnad1 id=le.7h6v.s8.b3c67b4e0569 from=translated src=- shape=b7a60d66 vocab=511bff29
+-/
 theorem kato_temple_eigenvalue_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) {α β ℓ : ℝ}
     (hαρ : α < quadForm A x) (_hρβ : quadForm A x < β)
@@ -170,7 +186,9 @@ theorem kato_temple_eigenvalue_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
 
 /-- Kato–Temple lower bound for the same isolated spectral point.
 Parlett §10.6; only the positive Rayleigh-to-endpoint distance is divided by.
-atlas: eigenvalue-residual-bounds (partial)-/
+atlas: eigenvalue-residual-bounds (partial)
+@isnad1 id=le.7h6v.s8.93656eda4d02 from=translated src=- shape=50cc5df2 vocab=80a004e4
+-/
 theorem kato_temple_le_eigenvalue {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {x : n → ℝ} (hx : x ⬝ᵥ x = 1) {α β ℓ : ℝ}
     (hαρ : α < quadForm A x) (hρβ : quadForm A x < β)
@@ -199,7 +217,9 @@ theorem kato_temple_le_eigenvalue {A : Matrix n n ℝ} (hA : A.IsHermitian)
 /-- Symmetric-interval Kato–Temple bound with the exact variance-over-gap
 constant. Parlett §10.6; existence and isolation are explicit and no residual
 smallness assumption is required.
-atlas: eigenvalue-residual-bounds-/
+atlas: eigenvalue-residual-bounds
+@isnad1 id=le.5h5v.s8.7781ce70428c from=translated src=- shape=56c18aa6 vocab=5015d93c
+-/
 theorem abs_eigenvalue_sub_rayleigh_le_residual_sq_div {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {x : n → ℝ} (hx : x ⬝ᵥ x = 1) {ℓ δ : ℝ} (hδ : 0 < δ)
     (hℓ : |ℓ-quadForm A x| < δ)

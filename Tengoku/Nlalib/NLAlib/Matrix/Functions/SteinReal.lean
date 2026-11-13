@@ -10,7 +10,9 @@ open scoped Matrix MatrixOrder ComplexOrder Topology
 namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Complexification commutes with the actual convergent real Stein series.-/
+/-- Complexification commutes with the actual convergent real Stein series.
+@isnad1 id=eq.1h3v.s10.7fd68914a1ec from=translated src=- shape=f8934fd2 vocab=e6e5cee7
+-/
 theorem realMatrixComplexification_steinGramian (A Q : Matrix n n ℝ)
     (hs : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j)) :
     (realMatrixComplexification (steinGramian A Q) : Matrix n n ℂ) =
@@ -30,7 +32,9 @@ theorem realMatrixComplexification_steinGramian (A Q : Matrix n n ℝ)
 /-- Discrete stability of a real matrix is equivalent to a strict real
 positive definite Stein certificate, using its genuine complexified spectrum.
 Source: user derivations, Stein stability equivalence.
-atlas: stein-gramian-smith-doubling-/
+atlas: stein-gramian-smith-doubling
+@isnad1 id=iff.0h2v.s7.21c863ee5ce6 from=translated src=- shape=e383a871 vocab=50adec37
+-/
 theorem complex_spectralRadius_lt_one_iff_exists_real_posDef_stein (A : Matrix n n ℝ) :
     spectralRadius ℂ (A.map Complex.ofReal) < 1 ↔
       ∃ X : Matrix n n ℝ, X.PosDef ∧ (X - A * X * Aᴴ).PosDef := by

@@ -20,7 +20,9 @@ namespace NLAlib
 open scoped Matrix.Norms.L2Operator in
 /-- A generalized eigenvector with eigenvalue of modulus below one has a
 power orbit tending to zero. Source: Horn–Johnson (2013), Theorem 5.6.12;
-the proof transfers matrix power decay to the restricted primary space.-/
+the proof transfers matrix power decay to the restricted primary space.
+@isnad1 id=tendsto.2h4v.s8.038ff8320f8b from=translated src=- shape=de312298 vocab=17964e58
+-/
 theorem tendsto_pow_apply_zero_of_mem_maxGenEigenspace
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimensional ℂ E]
     (f : Module.End ℂ E) {μ : ℂ} (hμ : ‖μ‖ < 1) {x : E}

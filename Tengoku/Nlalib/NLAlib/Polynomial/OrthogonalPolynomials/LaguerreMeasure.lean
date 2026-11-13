@@ -17,7 +17,9 @@ open scoped Nat
 namespace NLAlib
 
 /-- Every monomial is integrable against a positive exponential weight on the
-positive half-line. Source: reciprocal exponential certificate (RC5).-/
+positive half-line. Source: reciprocal exponential certificate (RC5).
+@isnad1 id=integrab.1h2v.s6.b633006e6301 from=translated src=- shape=5601fb92 vocab=14bb0c8b
+-/
 theorem integrableOn_pow_mul_exp_neg_mul_Ioi (n : ℕ) {s : ℝ} (hs : 0 < s) :
     IntegrableOn (fun x : ℝ => x^n * Real.exp (-(s*x))) (Ioi 0) := by
   have hb : IntegrableOn (fun x : ℝ => x^n * Real.exp (-x)) (Ioi 0) := by
@@ -33,7 +35,9 @@ theorem integrableOn_pow_mul_exp_neg_mul_Ioi (n : ℕ) {s : ℝ} (hs : 0 < s) :
   rw [← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ hs.ne'), one_mul]
 
 /-- The finite Laplace monomial moment is `n!/s^(n+1)`.
-Source: reciprocal exponential certificate (RC5).-/
+Source: reciprocal exponential certificate (RC5).
+@isnad1 id=eq.1h2v.s6.c99c8e8c9e97 from=translated src=- shape=57e41269 vocab=6f4e8373
+-/
 theorem integral_pow_mul_exp_neg_mul_Ioi (n : ℕ) {s : ℝ} (hs : 0 < s) :
     (∫ x : ℝ in Ioi 0, x^n * Real.exp (-(s*x))) = (n ! : ℝ) / s^(n+1) := by
   have h := Real.integral_rpow_mul_exp_neg_mul_Ioi
@@ -45,7 +49,9 @@ theorem integral_pow_mul_exp_neg_mul_Ioi (n : ℕ) {s : ℝ} (hs : 0 < s) :
   simp [div_eq_mul_inv, mul_comm]
 
 /-- A polynomial is integrable against every positive exponential weight.
-Source: reciprocal exponential certificate (RC5).-/
+Source: reciprocal exponential certificate (RC5).
+@isnad1 id=integrab.1h2v.s6.8a370157896b from=translated src=- shape=9d445bba vocab=136718b7
+-/
 theorem integrableOn_eval_mul_exp_neg_mul_Ioi (p : ℝ[X]) {s : ℝ} (hs : 0 < s) :
     IntegrableOn (fun x : ℝ => p.eval x * Real.exp (-(s*x))) (Ioi 0) := by
   induction p using Polynomial.induction_on' with
@@ -56,7 +62,9 @@ theorem integrableOn_eval_mul_exp_neg_mul_Ioi (p : ℝ[X]) {s : ℝ} (hs : 0 < s
       (by intro x _; simp [mul_assoc]) measurableSet_Ioi
 
 /-- The finite polynomial moment functional equals integration against its
-positive exponential density. Source: reciprocal exponential certificate (RC5).-/
+positive exponential density. Source: reciprocal exponential certificate (RC5).
+@isnad1 id=eq.1h2v.s7.1842f3ec19e5 from=translated src=- shape=44d6865b vocab=480ed147
+-/
 theorem integral_eval_mul_exp_neg_mul_Ioi (p : ℝ[X]) {s : ℝ} (hs : 0 < s) :
     (∫ x : ℝ in Ioi 0, p.eval x * Real.exp (-(s*x))) =
       exponentialPolynomialMoment s p := by
@@ -73,7 +81,9 @@ theorem integral_eval_mul_exp_neg_mul_Ioi (p : ℝ[X]) {s : ℝ} (hs : 0 < s) :
 
 /-- The finite classical Laguerre Gram matrix for the exponential density is
 the identity. Source: reciprocal exponential certificate (RC6).
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.0h2v.s6.cd952fcb1d68 from=translated src=- shape=ebb4a824 vocab=e5626157
+-/
 theorem integral_laguerrePolynomial_mul_laguerrePolynomial (i j : ℕ) :
     (∫ x : ℝ in Ioi 0, (laguerrePolynomial i).eval x *
       (laguerrePolynomial j).eval x * Real.exp (-x)) = if i = j then 1 else 0 := by
@@ -83,7 +93,9 @@ theorem integral_laguerrePolynomial_mul_laguerrePolynomial (i j : ℕ) :
       (exponentialPolynomialMoment_laguerrePolynomial_mul_laguerrePolynomial i j)
 
 /-- The finite Fourier--Laguerre coefficient of `exp (x/4)` is a geometric term.
-Source: reciprocal exponential certificate (RC6).-/
+Source: reciprocal exponential certificate (RC6).
+@isnad1 id=eq.0h1v.s7.3a77daed751b from=translated src=- shape=cf4b551f vocab=abe7b0ad
+-/
 theorem integral_exp_quarter_mul_laguerrePolynomial (n : ℕ) :
     (∫ x : ℝ in Ioi 0, Real.exp (x / 4) *
       (laguerrePolynomial n).eval x * Real.exp (-x)) =

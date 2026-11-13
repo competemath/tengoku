@@ -18,7 +18,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Rectangular intertwining of complex normal matrices is equivalent to
 intertwining their adjoints. Source: Horn–Johnson (2013), Theorem 2.5.15;
 the two normal matrices may have different sizes, including empty shapes.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=iff.2h5v.s8.334848e3e7b5 from=translated src=- shape=1768d809 vocab=75a1ba1c
+-/
 theorem mul_eq_mul_iff_conjTranspose_mul_eq_mul_conjTranspose_of_normal_rectangular
     {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
     {A : Matrix m m ℂ} {B : Matrix n n ℂ} {X : Matrix m n ℂ}

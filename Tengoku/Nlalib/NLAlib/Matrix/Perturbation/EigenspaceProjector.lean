@@ -27,7 +27,9 @@ def eigenvalueProjector {A : Matrix n n ℝ} (hA : A.IsHermitian) (ℓ : ℝ) : 
   hA.cfc (fun t => if t=ℓ then 1 else 0)
 
 /-- Squared length after finite matrix functional calculus, in eigenbasis
-coordinates. Parlett §4.5; bare functions are continuous on the finite spectrum.-/
+coordinates. Parlett §4.5; bare functions are continuous on the finite spectrum.
+@isnad1 id=eq.1h4v.s8.0d8c1cf0a2c0 from=translated src=- shape=602ca2b2 vocab=fe52c3fc
+-/
 theorem dotProduct_cfc_mulVec_self_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (f : ℝ → ℝ) (x : n → ℝ) :
     (hA.cfc f *ᵥ x) ⬝ᵥ (hA.cfc f *ᵥ x) =
@@ -46,7 +48,9 @@ theorem dotProduct_cfc_mulVec_self_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermiti
   unfold dotProduct
   ring
 
-/-- The eigenvalue projector is symmetric. Parlett §11.7, spectral calculus.-/
+/-- The eigenvalue projector is symmetric. Parlett §11.7, spectral calculus.
+@isnad1 id=issymm.1h3v.s5.a2e0125ce787 from=translated src=- shape=0c936963 vocab=de453de6
+-/
 theorem eigenvalueProjector_isSymm {A : Matrix n n ℝ} (hA : A.IsHermitian) (ℓ : ℝ) :
     (eigenvalueProjector hA ℓ).IsSymm := by
   change (eigenvalueProjector hA ℓ)ᵀ=eigenvalueProjector hA ℓ
@@ -54,7 +58,9 @@ theorem eigenvalueProjector_isSymm {A : Matrix n n ℝ} (hA : A.IsHermitian) (�
   simp [Matrix.conjTranspose_eq_transpose_of_trivial, Matrix.transpose_mul, Matrix.mul_assoc]
 
 /-- The spectral singleton indicator is idempotent, so its functional
-calculus is a projector. Parlett §11.7.-/
+calculus is a projector. Parlett §11.7.
+@isnad1 id=isidempo.1h3v.s6.041336320963 from=translated src=- shape=2a330a0e vocab=eeed520b
+-/
 theorem eigenvalueProjector_isIdempotentElem {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (ℓ : ℝ) : IsIdempotentElem (eigenvalueProjector hA ℓ) := by
   change eigenvalueProjector hA ℓ*eigenvalueProjector hA ℓ=eigenvalueProjector hA ℓ
@@ -66,7 +72,9 @@ theorem eigenvalueProjector_isIdempotentElem {A : Matrix n n ℝ}
   split_ifs <;> simp
 
 /-- The complementary eigenspace projector retains precisely the squared
-coordinates outside the target eigenvalue. Parlett §11.7.-/
+coordinates outside the target eigenvalue. Parlett §11.7.
+@isnad1 id=eq.1h4v.s8.fe5ecaec6546 from=translated src=- shape=2e33c2e6 vocab=30c86012
+-/
 theorem dotProduct_complement_eigenvalueProjector_eq_sum {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (ℓ : ℝ) (x : n → ℝ) :
     ((1-eigenvalueProjector hA ℓ)*ᵥx) ⬝ᵥ ((1-eigenvalueProjector hA ℓ)*ᵥx) =
@@ -91,7 +99,9 @@ theorem dotProduct_complement_eigenvalueProjector_eq_sum {A : Matrix n n ℝ}
 /-- The separated-eigenspace one-vector sine estimate. Parlett §11.7;
 the positive lower bound on the complementary spectral distances includes
 the empty-complement case without introducing an undefined minimum.
-atlas: eigenvalue-residual-bounds-/
+atlas: eigenvalue-residual-bounds
+@isnad1 id=le.3h5v.s8.56f13e9456ff from=translated src=- shape=8cd9be9d vocab=f4406df3
+-/
 theorem sqrt_complement_eigenvalueProjector_le_residual_div {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (x : n → ℝ) {ℓ δ : ℝ} (hδ : 0 < δ)
     (hsep : ∀ i, hA.eigenvalues i ≠ ℓ → δ ≤ |hA.eigenvalues i-quadForm A x|) :
@@ -119,7 +129,9 @@ theorem sqrt_complement_eigenvalueProjector_le_residual_div {A : Matrix n n ℝ}
     ((A*ᵥx-quadForm A x•x) ⬝ᵥ (A*ᵥx-quadForm A x•x))]
 
 /-- Multiplication by the original matrix acts as the eigenvalue on the
-whole eigenvalue projector. Parlett §11.7; all multiplicities are included.-/
+whole eigenvalue projector. Parlett §11.7; all multiplicities are included.
+@isnad1 id=eq.1h3v.s6.6bdc6a0f569c from=translated src=- shape=0782aaaa vocab=dec3e21f
+-/
 theorem mul_eigenvalueProjector_eq_smul {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (ℓ : ℝ) : A*eigenvalueProjector hA ℓ = ℓ•eigenvalueProjector hA ℓ := by
   have hid : hA.cfc id=A := by rw [← hA.cfc_eq]; exact cfc_id ℝ A
@@ -138,7 +150,9 @@ theorem mul_eigenvalueProjector_eq_smul {A : Matrix n n ℝ}
       split_ifs <;> simp_all
 
 /-- An eigenvector is fixed by its complete eigenspace projector. Parlett
-§11.7, proved from zero shifted variance rather than a simple-eigenvalue assumption.-/
+§11.7, proved from zero shifted variance rather than a simple-eigenvalue assumption.
+@isnad1 id=eq.2h4v.s6.b58696d04800 from=translated src=- shape=4f5db91d vocab=b13a0c49
+-/
 theorem eigenvalueProjector_mulVec_eq_self {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (ℓ : ℝ) {x : n → ℝ} (hx : A*ᵥx=ℓ•x) :
     eigenvalueProjector hA ℓ*ᵥx=x := by
@@ -164,7 +178,9 @@ theorem eigenvalueProjector_mulVec_eq_self {A : Matrix n n ℝ}
 
 /-- The projector range is exactly the entire eigenspace of the matrix.
 Parlett §11.7; this is the bridge from the functional-calculus definition to
-Mathlib's eigenspace, with all multiplicities and empty cases.-/
+Mathlib's eigenspace, with all multiplicities and empty cases.
+@isnad1 id=eq.1h3v.s7.a05049408139 from=translated src=- shape=d571234c vocab=8409c73a
+-/
 theorem range_eigenvalueProjector_eq_eigenspace {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (ℓ : ℝ) :
     LinearMap.range (eigenvalueProjector hA ℓ).mulVecLin =

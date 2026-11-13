@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 open scoped Matrix.Norms.L2Operator in
 /-- The trailing resolvent remains invertible near a separated scalar
-eigenvalue. Source: Horn–Johnson (2013), proof of Theorem 6.3.12.-/
+eigenvalue. Source: Horn–Johnson (2013), proof of Theorem 6.3.12.
+@isnad1 id=eventual.1h4v.s8.b1d29cbbdf1e from=translated src=- shape=45d7e526 vocab=9833deeb
+-/
 theorem eventually_isUnit_shifted_pencil (μ : ℂ) (B F : Matrix n n ℂ)
     (hμ : μ ∉ spectrum ℂ B) :
     ∀ᶠ p : ℂ × ℂ in 𝓝 0, IsUnit ((μ + p.2) • (1 : Matrix n n ℂ) - B - p.1 • F) := by
@@ -38,7 +40,9 @@ theorem eventually_isUnit_shifted_pencil (μ : ℂ) (B F : Matrix n n ℂ)
 open scoped Matrix.Norms.L2Operator in
 /-- A separated scalar block has a locally unique eigenvalue branch,
 with derivative equal to the leading perturbation entry.
-Horn–Johnson (2013), Theorem 6.3.12; the parameter is complex.-/
+Horn–Johnson (2013), Theorem 6.3.12; the parameter is complex.
+@isnad1 id=ex.1h8v.s9.a602cfc8e0f6 from=translated src=- shape=5bf1405b vocab=7a1f25cc
+-/
 theorem exists_eigenvalue_branch_of_scalar_block
     {l : Type*} [Unique l] (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
@@ -81,7 +85,9 @@ open scoped Matrix.Norms.L2Operator in
 differentiable at zero with derivative the normalized left–right pairing.
 The left eigenvector is supplied as its row (use the conjugate of a left
 column). Source: Horn–Johnson (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation-/
+atlas: simple-eigenvalue-perturbation
+@isnad1 id=ex.5h6v.s9.b2470011ffe1 from=translated src=- shape=053362e8 vocab=ef5fb16c
+-/
 theorem exists_eigenvalue_branch_of_simple
     {A : Matrix n n ℂ} (E : Matrix n n ℂ) {x y : n → ℂ} {μ : ℂ}
     (hx : x ≠ 0) (hy : y ≠ 0) (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)

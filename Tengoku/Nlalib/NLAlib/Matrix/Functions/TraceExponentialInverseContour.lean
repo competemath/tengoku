@@ -29,7 +29,9 @@ inverse branch family with the actual pencil spectrum and affine asymptotes.
 The same-label inverse relation, contour changes, and orientation are derived
 from these spectral data. This form permits the same inverse branches to be
 used in the upper-root holomorphy and positivity arguments.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=eventual.8h9v.s9.2d7371ecf103 from=translated src=- shape=1bf7ed26 vocab=493b0ff4
+-/
 theorem eventually_circleDensity_eq_neg_circleIntegral_of_exterior_inverse_branches
     (A : Matrix n n ℂ) (b : n → ℝ) (hb : Function.Injective b)
     (s : ℝ) (hs : ∀ i, s ≠ b i)
@@ -104,7 +106,9 @@ theorem eventually_circleDensity_eq_neg_circleIntegral_of_exterior_inverse_branc
 /-- Constructing the inverse pencil branches gives the common-circle
 inverse-moment formula for any established exterior family of the original
 pencil. No inverse spectral family or contour identity is assumed.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.6h7v.s9.13dacf48a971 from=translated src=- shape=12f35f16 vocab=493b0ff4
+-/
 theorem exists_exterior_inverse_branches_circleDensity_eq_neg_circleIntegral
     (A : Matrix n n ℂ) (b : n → ℝ) (hb : Function.Injective b)
     (s : ℝ) (hs : ∀ i, s ≠ b i)

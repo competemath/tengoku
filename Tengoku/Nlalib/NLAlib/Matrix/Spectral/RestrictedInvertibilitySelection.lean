@@ -73,7 +73,9 @@ private theorem interaction_sq_le_weighted_quadForm
 /-- Finite averaging yields a genuine column whose interaction with the new
 resolvent is strictly below `-1`. The strictness follows from the actual
 decomposition `H = ∑ vᵢvᵢᵀ`, rather than a non-strict scalar certificate.
-Source: Spielman--Srivastava (2009), Theorem 2.-/
+Source: Spielman--Srivastava (2009), Theorem 2.
+@isnad1 id=ex.10h9v.s8.a6e8bdc9fa5b from=translated src=- shape=58e77ade vocab=b28d434f
+-/
 theorem exists_column_interaction_lt_neg_one
     [Nonempty I] (v : I → n → ℝ) {H R : Matrix n n ℝ}
     (hH : ∑ i, vecMulVec (v i) (v i) = H)
@@ -124,7 +126,9 @@ theorem exists_column_interaction_lt_neg_one
 /-- The selected column preserves the weighted potential at the decreased
 barrier. Invertibility and the strict interaction are explicit, so the total
 matrix inverse is used only on its valid branch. Source:
-Spielman--Srivastava (2009), Theorem 2, Sherman--Morrison step.-/
+Spielman--Srivastava (2009), Theorem 2, Sherman--Morrison step.
+@isnad1 id=le.5h7v.s9.0e366e12d3b0 from=translated src=- shape=82076a4e vocab=1a1927d9
+-/
 theorem lowerPotential_add_vecMulVec_le
     {A H : Matrix n n ℝ} {b Δ φ : ℝ} (v : n → ℝ)
     (hunit : IsUnit (A - b • (1 : Matrix n n ℝ)))

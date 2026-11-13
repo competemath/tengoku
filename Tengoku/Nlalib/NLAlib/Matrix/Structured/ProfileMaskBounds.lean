@@ -17,7 +17,9 @@ noncomputable section
 namespace NLAlib
 
 /-- A residual entry in the interval between two neighbor cutoffs either
-crosses an early main cutoff or crosses one of the next two neighbor cutoffs.-/
+crosses an early main cutoff or crosses one of the next two neighbor cutoffs.
+@isnad1 id=or.3h3v.s6.a407e0671a16 from=translated src=- shape=c4ec68ca vocab=0ee846b2
+-/
 theorem remainder_entry_cases {i j k : ℕ} (hij : ProfileRemainderMask i j)
     (hi : profileNeighborCutoff k ≤ i) (hi' : i < profileNeighborCutoff (k + 1)) :
     j < profileCutoff k ∨
@@ -45,7 +47,9 @@ theorem remainder_entry_cases {i j k : ℕ} (hij : ProfileRemainderMask i j)
     omega⟩)
 
 /-- The residual mask has the source's inverse-square-root neighbor decay on
-each interval between consecutive neighbor cutoffs.-/
+each interval between consecutive neighbor cutoffs.
+@isnad1 id=le.5h6v.s7.e1b0c725b177 from=translated src=- shape=047e162f vocab=5569bfc1
+-/
 theorem profileRemainderPart_le_div_sqrt_previous
     {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.IsSymm) {a : ℝ} (ha : 0 ≤ a)
     (hcross : ∀ k i j, profileNeighborCutoff k ≤ i.val → j.val < profileCutoff k →
@@ -75,7 +79,9 @@ theorem profileRemainderPart_le_div_sqrt_previous
   · exact div_nonneg ha (Real.sqrt_nonneg _)
 
 /-- A nonempty diagonal block beyond the initial block inherits the row
-threshold at the preceding main cutoff.-/
+threshold at the preceding main cutoff.
+@isnad1 id=le.2h6v.s6.e12b5eaeba12 from=translated src=- shape=2bcded62 vocab=86c55bd9
+-/
 theorem entry_le_div_sqrt_log_of_inProfileBlock
     {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) {b : ℝ}
     (hrow : ∀ k i j, profileCutoff k ≤ i.val →
@@ -84,7 +90,9 @@ theorem entry_le_div_sqrt_log_of_inProfileBlock
     A i j ≤ b / Real.sqrt (Real.log (profilePreviousCutoff k)) :=
   hrow k i j hi.1
 
-/-- The square-root neighbor scale dominates an ordinary exponential.-/
+/-- The square-root neighbor scale dominates an ordinary exponential.
+@isnad1 id=le.0h1v.s5.becc78fc7d04 from=translated src=- shape=9ff80d93 vocab=49b2e8aa
+-/
 theorem two_pow_le_sqrt_profilePreviousCutoff (k : ℕ) :
     (2 : ℝ) ^ k ≤ Real.sqrt (profilePreviousCutoff k : ℝ) := by
   apply Real.le_sqrt_of_sq_le
@@ -95,7 +103,9 @@ theorem two_pow_le_sqrt_profilePreviousCutoff (k : ℕ) :
   simpa [pow_mul, mul_comm] using h'
 
 /-- Up to the next neighbor cutoff, the logarithmic position weight is at
-most eight times the square root of the present previous cutoff.-/
+most eight times the square root of the present previous cutoff.
+@isnad1 id=le.1h2v.s6.a597f3fd8d23 from=translated src=- shape=fcac7579 vocab=0e617781
+-/
 theorem log_le_eight_mul_sqrt_previous {i k : ℕ}
     (hi : i < profileNeighborCutoff (k + 1)) :
     Real.log (i + 1 : ℝ) ≤ 8 * Real.sqrt (profilePreviousCutoff k : ℝ) := by
@@ -132,7 +142,9 @@ private theorem exists_neighbor_interval {i : ℕ} (hi : profileNeighborCutoff 0
 
 /-- The residual mask has a dimension-free logarithmic entry envelope bounded
 by eight times the original row-energy bound. This is the deterministic
-input to the weak Gaussian-process estimate for the residual matrix.-/
+input to the weak Gaussian-process estimate for the residual matrix.
+@isnad1 id=le.5h5v.s7.b4a7155b679e from=translated src=- shape=1c1a2561 vocab=b6abad04
+-/
 theorem profileRemainderPart_mul_log_le_eight_mul
     {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (hA : A.IsSymm) {a : ℝ} (ha : 0 ≤ a)
     (hA0 : ∀ i j, 0 ≤ A i j) (hentry : ∀ i j, A i j ≤ a)

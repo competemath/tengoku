@@ -31,7 +31,9 @@ def lobattoSchurBorder (J : Matrix n n ℝ) (e : n → ℝ) (a c : ℝ) :
     Matrix (n ⊕ Fin 1) (n ⊕ Fin 1) ℝ :=
   symmetricBorder J (Real.sqrt (lobattoCouplingSq J e a c) • e) (lobattoCorner J e a c)
 
-/-- Both endpoint inverse forms are strictly positive for a nonzero border vector.-/
+/-- Both endpoint inverse forms are strictly positive for a nonzero border vector.
+@isnad1 id=and.3h5v.s8.46a254af2d7a from=translated src=- shape=7238f7cf vocab=e1833d5c
+-/
 theorem endpoint_inverse_quadForm_pos {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
     (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) (he : e ≠ 0) :
     0 < quadForm (J - a • 1)⁻¹ e ∧ 0 < quadForm (c • 1 - J)⁻¹ e :=
@@ -39,7 +41,9 @@ theorem endpoint_inverse_quadForm_pos {J : Matrix n n ℝ} {e : n → ℝ} {a c 
 
 /-- The actual Lobatto coupling square is positive under the exact strict endpoint
 hypotheses. Source: focused mathematical reroutes, Section 3 (BL7)–(BL8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=lt.4h5v.s7.6cc4651ef2da from=translated src=- shape=1fff5137 vocab=04e68cc8
+-/
 theorem lobattoCouplingSq_pos {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
     (hac : a < c) (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) (he : e ≠ 0) :
     0 < lobattoCouplingSq J e a c := by
@@ -48,7 +52,9 @@ theorem lobattoCouplingSq_pos {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
 
 /-- The computed Lobatto corner also satisfies the right endpoint equation.
 Source: focused mathematical reroutes, Section 3 (BL8).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.3h5v.s8.b478cfd1c853 from=translated src=- shape=5cf590c1 vocab=cc12dfa3
+-/
 theorem lobattoCorner_eq_right {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
     (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) (he : e ≠ 0) :
     lobattoCorner J e a c = c - lobattoCouplingSq J e a c * quadForm (c • 1 - J)⁻¹ e := by
@@ -61,7 +67,9 @@ theorem lobattoCorner_eq_right {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
 /-- The actual Lobatto border has both endpoint eigenvalues and its whole spectrum
 lies between the endpoints, expressed by the matrix order inequalities.
 Source: focused mathematical reroutes, Section 3 (BL9).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.4h5v.s9.c896d6b214da from=translated src=- shape=38f6ac6a vocab=a8f253dd
+-/
 theorem lobattoSchurBorder_bounds_and_endpoints {J : Matrix n n ℝ} {e : n → ℝ} {a c : ℝ}
     (hac : a < c) (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef) (he : e ≠ 0) :
     a • 1 ≤ lobattoSchurBorder J e a c ∧ lobattoSchurBorder J e a c ≤ c • 1 ∧

@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The Fréchet derivative of the Rayleigh quotient is the inner product
 with its residual gradient. Parlett §4.5; the vector must be nonzero.
-atlas: eigenvalue-residual-bounds-/
+atlas: eigenvalue-residual-bounds
+@isnad1 id=hasfderi.2h3v.s14.502f2ca9b1f2 from=translated src=- shape=f3d57e07 vocab=137a9768
+-/
 theorem hasFDerivAt_rayleighQuotient (A : Matrix n n ℝ) (hA : A.IsHermitian)
     (x : EuclideanSpace ℝ n) (hx : x ≠ 0) :
     HasFDerivAt (Matrix.toEuclideanCLM (𝕜 := ℝ) A).rayleighQuotient

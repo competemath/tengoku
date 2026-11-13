@@ -22,7 +22,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [DecidableEq n] in
 /-- The diagonal square of a square Gram factor is bounded by its row
 energy, the corresponding diagonal entry of the Gram matrix.
-Horn--Johnson (2013), proof of Theorem 7.8.1; helper for Hadamard's bound.-/
+Horn--Johnson (2013), proof of Theorem 7.8.1; helper for Hadamard's bound.
+@isnad1 id=le.0h3v.s6.966293cefd6f from=translated src=- shape=a04e38f2 vocab=75695911
+-/
 theorem sq_diag_le_gram_diag (L : Matrix n n ℝ) (i : n) :
     L i i ^ 2 ≤ (L * Lᵀ) i i := by
   simp only [Matrix.mul_apply, Matrix.transpose_apply, ← sq]
@@ -31,7 +33,9 @@ theorem sq_diag_le_gram_diag (L : Matrix n n ℝ) (i : n) :
 /-- Hadamard's inequality on the full PSD cone, with arbitrary finite
 coordinate types and the empty determinant convention.
 Horn--Johnson (2013), Theorem 7.8.1 and its semidefinite extension.
-atlas: hadamard-fischer-inequalities (partial)-/
+atlas: hadamard-fischer-inequalities (partial)
+@isnad1 id=le.1h2v.s5.a5b948e167bc from=translated src=- shape=d45d4f43 vocab=54c7ce2a
+-/
 theorem det_le_prod_diag_of_posSemidef {A : Matrix n n ℝ} (hA : A.PosSemidef) :
     A.det ≤ ∏ i, A i i := by
   classical
@@ -54,7 +58,9 @@ theorem det_le_prod_diag_of_posSemidef {A : Matrix n n ℝ} (hA : A.PosSemidef) 
 
 /-- Equality in positive definite Hadamard holds exactly for a diagonal
 matrix. Horn--Johnson (2013), Theorem 7.8.1.
-atlas: hadamard-fischer-inequalities (partial)-/
+atlas: hadamard-fischer-inequalities (partial)
+@isnad1 id=iff.1h2v.s5.d48c8bf28d3d from=translated src=- shape=b8ee1407 vocab=cae942b3
+-/
 theorem det_eq_prod_diag_iff_isDiag_of_posDef {A : Matrix n n ℝ} (hA : A.PosDef) :
     A.det = (∏ i, A i i) ↔ A.IsDiag := by
   classical
@@ -102,7 +108,9 @@ theorem det_eq_prod_diag_iff_isDiag_of_posDef {A : Matrix n n ℝ} (hA : A.PosDe
 diagonal entry. The latter forces a zero row and column and both products
 to vanish. Horn--Johnson (2013), Theorem 7.8.1; explicit singular equality
 extension supporting the column-determinant bound.
-atlas: hadamard-fischer-inequalities (partial)-/
+atlas: hadamard-fischer-inequalities (partial)
+@isnad1 id=iff.1h2v.s6.4fc6ec3f0fcb from=translated src=- shape=ef8cb499 vocab=065bc8f6
+-/
 theorem det_eq_prod_diag_iff_of_posSemidef {A : Matrix n n ℝ} (hA : A.PosSemidef) :
     A.det = (∏ i, A i i) ↔ A.IsDiag ∨ ∃ i, A i i = 0 := by
   constructor

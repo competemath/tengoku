@@ -18,7 +18,9 @@ set_option backward.isDefEq.respectTransparency false
 
 /-- Inserting a zero coupling in a diagonal rank-one update restores an
 uncoupled scalar characteristic factor. Horn–Johnson 2013, Theorem 4.3.26;
-repeated-root converse-interlacing restoration helper.-/
+repeated-root converse-interlacing restoration helper.
+@isnad1 id=eq.0h4v.s9.847cb0702d2f from=translated src=- shape=02605a5b vocab=eccb4b3c
+-/
 theorem charpoly_diagonal_add_vecMulVec_insertNth {n : ℕ}
     (d : Fin (n + 1) → ℝ) (p : Fin (n + 1)) (v : Fin n → ℝ) :
     (Matrix.diagonal d + Matrix.vecMulVec (p.insertNth 0 v) (p.insertNth 0 v)).charpoly =
@@ -43,7 +45,9 @@ theorem charpoly_diagonal_add_vecMulVec_insertNth {n : ℕ}
 
 /-- Inserting a zero coupling in a bordered diagonal matrix restores an
 uncoupled scalar characteristic factor. The border scalar is preserved.
-Horn–Johnson 2013, Theorem 4.3.21; repeated-root restoration helper.-/
+Horn–Johnson 2013, Theorem 4.3.21; repeated-root restoration helper.
+@isnad1 id=eq.0h5v.s9.0682f899cee5 from=translated src=- shape=63b68be7 vocab=4f289eae
+-/
 theorem charpoly_bordered_diagonal_insertNth {n : ℕ}
     (d : Fin (n + 1) → ℝ) (p : Fin (n + 1)) (v : Fin n → ℝ) (a : ℝ) :
     (Matrix.fromBlocks (Matrix.diagonal d)

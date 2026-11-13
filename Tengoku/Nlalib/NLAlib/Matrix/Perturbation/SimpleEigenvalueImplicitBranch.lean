@@ -23,7 +23,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The separated scalar Schur equation has a locally unique continuous
 differentiable shift branch with derivative equal to its leading perturbation
 entry. Source: Horn–Johnson (2013), Theorem 6.3.12; the parameter may be complex,
-which is stronger than the real-parameter conclusion of the source.-/
+which is stronger than the real-parameter conclusion of the source.
+@isnad1 id=ex.1h7v.s8.ba024f66c9c2 from=translated src=- shape=74fed7ef vocab=c97616ee
+-/
 theorem exists_simpleEigenvalueSchurFunction_branch (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
     ∃ ψ : ℂ → ℂ, ψ 0 = 0 ∧ ContinuousAt ψ 0 ∧ HasDerivAt ψ a 0 ∧

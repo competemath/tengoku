@@ -24,7 +24,9 @@ namespace NLAlib
 circle integrals for every real density parameter. Source: Stahl (2013),
 Theorem 2, realness of the candidate density.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.3h4v.s7.17a73200e814 from=translated src=- shape=2b86bde6 vocab=db2818f9
+-/
 theorem normalized_circleIntegral_exp_add_mul_im_eq_zero
     {branch : ℂ → ℂ} {R r : ℝ} (hr : 0 ≤ r) (hRr : R < r)
     (href : ∀ z, R < ‖z‖ → branch (conj z) = conj (branch z)) (s : ℝ) :
@@ -41,7 +43,9 @@ theorem normalized_circleIntegral_exp_add_mul_im_eq_zero
 This is precisely the realness assertion for Stahl's candidate density;
 nonnegativity requires the separate spectral-surface boundary argument.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.3h6v.s7.a0bedb5a3868 from=translated src=- shape=ab9fd98d vocab=ed22788c
+-/
 theorem sum_ite_normalized_circleIntegral_exp_add_mul_im_eq_zero
     {n : Type*} [Fintype n] {branch : n → ℂ → ℂ} {R r : ℝ}
     (hr : 0 ≤ r) (hRr : R < r)
@@ -62,7 +66,9 @@ open scoped Matrix.Norms.L2Operator in
 real slopes yield a real contour candidate density on every sufficiently large
 circle, for every real density parameter. No branch-existence, trace-identity,
 or realness assumptions are used. Source: Stahl (2013), Theorem 2.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.2h3v.s8.57faf6959bc0 from=translated src=- shape=2e52ec81 vocab=9c25dc76
+-/
 theorem exists_exterior_eigenvalue_branches_real_circle_density
     {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ) (hb : Function.Injective b) :
@@ -87,7 +93,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every actual complete exterior branch family gives the real atom-plus-density
 transform identity on one fixed circle for every real parameter. This reusable
 form keeps the branch family available for the separate positivity argument.
-Source: Stahl (2013), Theorem 2, transform verification.-/
+Source: Stahl (2013), Theorem 2, transform verification.
+@isnad1 id=and.7h9v.s9.c0966cd4efc5 from=translated src=- shape=f3522cf7 vocab=df549fb9
+-/
 theorem integral_exp_mul_re_traceExponentialCircleDensity_eq_traceExp_sub_atoms
     {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
@@ -172,7 +180,9 @@ density, integrable against every real Laplace weight on each compact interval
 containing the slopes. One fixed exterior circle works for every real parameter.
 The missing positivity of the density is not assumed.
 Source: Stahl (2013), Theorem 2.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.2h3v.s8.0eb9ae104063 from=translated src=- shape=959f86ee vocab=fd0cb161
+-/
 theorem exists_exterior_branches_integral_real_circleDensity_eq_traceExp_sub_atoms
     {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ) (hb : Function.Injective b) :

@@ -15,7 +15,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Simultaneous nonsingular conjugation preserves commutation.
-Source: Horn–Johnson (2013), §1.3; matrix similarity algebra.-/
+Source: Horn–Johnson (2013), §1.3; matrix similarity algebra.
+@isnad1 id=iff.1h5v.s8.fb617f5d4b81 from=translated src=- shape=55fe2e08 vocab=6a3c0bb7
+-/
 theorem commute_nonsing_inv_mul_mul_iff
     {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
     (A X S : Matrix n n K) (hS : IsUnit S) :
@@ -37,7 +39,9 @@ theorem commute_nonsing_inv_mul_mul_iff
 has exactly the conjugates of block diagonal commuting matrices as its
 commutant. Source: Horn–Johnson (2013), Corollary 2.4.4.2; diagonal blocks
 are constrained to commute, correcting the unrestricted-block formulation.
-atlas: sylvester-equation-/
+atlas: sylvester-equation
+@isnad1 id=iff.2h6v.s10.b86f6eda6432 from=translated src=- shape=d7fc9cb7 vocab=69cdf7f8
+-/
 theorem commute_similarity_blockDiagonal'_iff
     {ι : Type*} [Fintype ι] [DecidableEq ι] {m : ι → Type*}
     [∀ i, Fintype (m i)] [∀ i, DecidableEq (m i)]

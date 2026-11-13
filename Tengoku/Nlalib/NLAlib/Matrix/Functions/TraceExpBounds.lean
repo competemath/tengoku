@@ -25,7 +25,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A real scalar identity exponentiates exactly as a scalar identity for any finite labels.
-Source: scalar continuous functional calculus; helper for `matrix-freedman` (partial).-/
+Source: scalar continuous functional calculus; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h2v.s7.807ca9cfddbf from=translated src=- shape=45a5c700 vocab=e974ef5b
+-/
 theorem matrixExp_smul_one_eq_exp_smul_one (t : ℝ) :
     matrixExp (t • (1 : Matrix n n ℂ)) = Real.exp t • (1 : Matrix n n ℂ) := by
   have ht : (t • (1 : Matrix n n ℂ)).IsHermitian :=
@@ -38,7 +40,9 @@ theorem matrixExp_smul_one_eq_exp_smul_one (t : ℝ) :
 
 /-- Adding a real scalar identity multiplies the trace exponential by its scalar
 exponential. No Hermitian premise is needed.
-Source: the commuting exponential identity; helper for `matrix-freedman` (partial).-/
+Source: the commuting exponential identity; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h3v.s7.9f3ff166b767 from=translated src=- shape=d8ca806b vocab=a10a63f5
+-/
 theorem traceExp_add_smul_one_eq_exp_mul (A : Matrix n n ℂ) (t : ℝ) :
     traceExp (A + t • (1 : Matrix n n ℂ)) = Real.exp t * traceExp A := by
   let : NormedAlgebra ℚ (Matrix n n ℂ) := NormedAlgebra.restrictScalars ℚ ℂ _
@@ -51,7 +55,9 @@ theorem traceExp_add_smul_one_eq_exp_mul (A : Matrix n n ℂ) (t : ℝ) :
 /-- The trace exponential changes by at most the multiplicative factor `exp δ` when
 Hermitian inputs differ in operator norm by at most `δ`.
 Source: Loewner norm comparison and the exact scalar shift; helper for the predictable
-offset passage in operator rederivations `eq:condlieb`. Atlas `matrix-freedman` (partial).-/
+offset passage in operator rederivations `eq:condlieb`. Atlas `matrix-freedman` (partial).
+@isnad1 id=le.3h4v.s7.d29d7c6c5260 from=translated src=- shape=539a015c vocab=ba121f41
+-/
 theorem traceExp_le_exp_mul_traceExp_of_norm_sub_le [Nonempty n]
     (A B : Matrix n n ℂ) (hA : A.IsHermitian) (hB : B.IsHermitian) {δ : ℝ}
     (hδ : ‖A - B‖ ≤ δ) : traceExp A ≤ Real.exp δ * traceExp B := by
@@ -70,14 +76,18 @@ theorem traceExp_le_exp_mul_traceExp_of_norm_sub_le [Nonempty n]
 
 /-- Hermitian trace exponentials are nonnegative, including the empty finite matrix.
 Source: positivity of the actual matrix exponential and its trace;
-helper for `matrix-freedman` (partial).-/
+helper for `matrix-freedman` (partial).
+@isnad1 id=le.1h2v.s5.1b8512ecc6c3 from=translated src=- shape=5bcf6c05 vocab=e64338d7
+-/
 theorem traceExp_nonneg_of_isHermitian (A : Matrix n n ℂ) (hA : A.IsHermitian) :
     0 ≤ traceExp A := by
   have h := (posDef_matrixExp_and_matrixLog_matrixExp A hA).1.posSemidef.trace_nonneg
   exact (RCLike.nonneg_iff.mp h).1
 
 /-- A scalar identity has trace exponential `card(n) exp(t)` for any finite labels.
-Source: the exact scalar exponential identity; helper for `matrix-freedman` (partial).-/
+Source: the exact scalar exponential identity; helper for `matrix-freedman` (partial).
+@isnad1 id=eq.0h2v.s6.8f210c00dcd4 from=translated src=- shape=b12e7016 vocab=d0ef9f65
+-/
 theorem traceExp_smul_one_eq_card_mul_exp (t : ℝ) :
     traceExp (t • (1 : Matrix n n ℂ)) = Fintype.card n * Real.exp t := by
   rw [traceExp_complex, matrixExp_smul_one_eq_exp_smul_one, Matrix.trace_smul]
@@ -87,7 +97,9 @@ theorem traceExp_smul_one_eq_card_mul_exp (t : ℝ) :
 for `θ < 0`.
 
 Tropp 2015, §3.2, eq. (3.2.3). Atlas: `matrix-laplace`. Ported from the Prove2me mission *An
-Introduction to Matrix Concentration Inequalities, Ch 3*.-/
+Introduction to Matrix Concentration Inequalities, Ch 3*.
+@isnad1 id=and.1h3v.s8.76081d83b11e from=translated src=- shape=6a36e92b vocab=b29e9b87
+-/
 theorem exp_mul_lambdaMax_lambdaMin_le_traceExp_smul {d : Type*} [Fintype d] [DecidableEq d]
     [Nonempty d] (A : Matrix d d ℂ) (hA : A.IsHermitian) (θ : ℝ) :
     0 ≤ traceExp (θ • A) ∧
@@ -114,7 +126,9 @@ theorem exp_mul_lambdaMax_lambdaMin_le_traceExp_smul {d : Type*} [Fintype d] [De
 
 /-- The trace exponential is bounded by the matrix dimension times the
 exponential of the largest eigenvalue. Empty dimension gives zero on both
-sides; no matrix norm or positivity of the largest eigenvalue is needed.-/
+sides; no matrix norm or positivity of the largest eigenvalue is needed.
+@isnad1 id=le.1h2v.s6.1aa7eef04282 from=translated src=- shape=16b6ca15 vocab=186cfc9a
+-/
 theorem traceExp_le_card_mul_exp_lambdaMax (A : Matrix n n ℂ) (hA : A.IsHermitian) :
     traceExp A ≤ (Fintype.card n : ℝ) * Real.exp (lambdaMax A) := by
   have he := traceExp_smul_eq_sum A hA 1
@@ -131,7 +145,9 @@ theorem traceExp_le_card_mul_exp_lambdaMax (A : Matrix n n ℂ) (hA : A.IsHermit
     _ = _ := by simp
 
 /-- The trace exponential of a Hermitian matrix on a nonempty index type is positive.
-Tropp 2015, §3.1. Atlas: `matrix-laplace` (helper).-/
+Tropp 2015, §3.1. Atlas: `matrix-laplace` (helper).
+@isnad1 id=lt.1h2v.s5.0ce8a86b0b67 from=translated src=- shape=5add6196 vocab=e56ff869
+-/
 theorem traceExp_pos_of_isHermitian {d : Type*} [Fintype d] [DecidableEq d] [Nonempty d]
     (H : Matrix d d ℂ) (hH : H.IsHermitian) : 0 < traceExp H := by
   have h := traceExp_smul_eq_sum H hH 1
@@ -141,7 +157,9 @@ theorem traceExp_pos_of_isHermitian {d : Type*} [Fintype d] [DecidableEq d] [Non
 
 /-- `traceExp (c • B) ≤ d · exp (c ‖B‖)` for Hermitian `B` of size `d` and `c ≥ 0`.
 Tropp 2015, §4.6 and §6.6 (dimensional factor). Atlas: `matrix-gaussian-series`,
-`matrix-bernstein` (helper).-/
+`matrix-bernstein` (helper).
+@isnad1 id=le.2h3v.s7.04f69a4ef034 from=translated src=- shape=8c5471cc vocab=c72144e2
+-/
 theorem traceExp_smul_le_mul_exp_mul_norm {d : ℕ} [NeZero d] (B : Matrix (Fin d) (Fin d) ℂ)
     (hB : B.IsHermitian) {c : ℝ} (hc : 0 ≤ c) : traceExp (c • B) ≤ d * Real.exp (c * ‖B‖) := by
   rw [traceExp_smul_eq_sum B hB c]
@@ -155,7 +173,9 @@ theorem traceExp_smul_le_mul_exp_mul_norm {d : ℕ} [NeZero d] (B : Matrix (Fin 
     _ = d * Real.exp (c * ‖B‖) := by simp
 
 /-- `‖exp (∑ₖ Aₖ)‖ ≤ ∏ₖ (1 + ‖exp Aₖ‖)` for Hermitian summands. Tropp 2015, §3.5 (integrability
-of the master bound). Atlas: `matrix-laplace` (helper).-/
+of the master bound). Atlas: `matrix-laplace` (helper).
+@isnad1 id=le.1h3v.s7.91cb8614ec74 from=translated src=- shape=a8165f49 vocab=42f2bf1e
+-/
 theorem norm_matrixExp_sum_le_prod {d N : ℕ}
     (A : Fin N → Matrix (Fin d) (Fin d) ℂ)
     (hA : ∀ k, (A k).IsHermitian) :
@@ -190,7 +210,9 @@ theorem norm_matrixExp_sum_le_prod {d N : ℕ}
 section Continuity
 
 /-- The trace exponential is continuous on all finite complex matrices.
-Source: continuous matrix exponential and linear trace; helper for `matrix-freedman` (partial).-/
+Source: continuous matrix exponential and linear trace; helper for `matrix-freedman` (partial).
+@isnad1 id=continuo.0h1v.s5.9e0c486dd10a from=translated src=- shape=f7bb6500 vocab=62049bb3
+-/
 theorem continuous_traceExp : Continuous (traceExp : Matrix n n ℂ → ℝ) := by
   let : NormedAlgebra ℚ (Matrix n n ℂ) := NormedAlgebra.restrictScalars ℚ ℂ _
   exact Complex.continuous_re.comp
@@ -206,7 +228,9 @@ variable [Nonempty n]
 trace potential is at least `exp(θt-gv)`. No deterministic substitute for the random
 variation is assumed outside this event.
 Source: operator rederivations Section 3.4, crossing bound;
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=le.6h7v.s8.837afeb37fcb from=translated src=- shape=99959aa6 vocab=97fe4fde
+-/
 theorem exp_sub_le_traceExp_compensated_of_crossing (Y W : Matrix n n ℂ)
     (hY : Y.IsHermitian) (hW : W.IsHermitian) {θ g t v : ℝ}
     (hθ : 0 < θ) (hg : 0 ≤ g) (ht : t ≤ lambdaMax Y) (hv : ‖W‖ ≤ v) :
@@ -245,7 +269,9 @@ end Crossing
 section Convexity
 
 /-- Convexity of the actual trace exponential on bundled Hermitian matrices,
-at either sign of the Laplace parameter. Source: `sh:convex-sampling`.-/
+at either sign of the Laplace parameter. Source: `sh:convex-sampling`.
+@isnad1 id=convexon.0h2v.s9.7217f7ddff1c from=translated src=- shape=52c61500 vocab=2c1ccfee
+-/
 theorem convexOn_traceExp_smul_selfAdjoint {d : ℕ} [NeZero d] (θ : ℝ) :
     ConvexOn ℝ Set.univ
       (fun A : selfAdjoint (Matrix (Fin d) (Fin d) ℂ) => traceExp (θ • A.val)) := by

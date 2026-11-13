@@ -25,7 +25,9 @@ the normalized left--right derivative. The left vector is represented by
 its conjugate row. Empty dimension is excluded by the eigenvector
 and multiplicity hypotheses, without an extra shape restriction.
 Source: Horn--Johnson (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=ex.5h6v.s9.ec892949e5dd from=translated src=- shape=32e87b40 vocab=ef5fb16c
+-/
 theorem exists_eigenvalue_branch_of_simple_with_multiplicity
     {A : Matrix n n ℂ} (E : Matrix n n ℂ) {x y : n → ℂ} {μ : ℂ}
     (hx : x ≠ 0) (hy : y ≠ 0) (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)
@@ -47,7 +49,9 @@ open scoped Matrix.Norms.L2Operator in
 parameters and complex matrix data, with the original continuous branch,
 spectral uniqueness and derivative intact. Source: Horn--Johnson (2013),
 Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=ex.5h6v.s9.6e642f8ada88 from=translated src=- shape=ea9792c8 vocab=202dcfa7
+-/
 theorem exists_real_parameter_eigenvalue_branch_of_simple_with_multiplicity
     {A : Matrix n n ℂ} (E : Matrix n n ℂ) {x y : n → ℂ} {μ : ℂ}
     (hx : x ≠ 0) (hy : y ≠ 0) (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)
@@ -72,7 +76,9 @@ under every small real perturbation, while its branch has derivative
 `xᵀ E x` for a unit eigenvector. Spectra and multiplicities are taken in the
 complexification, so arbitrary real perturbations are allowed.
 Source: Horn--Johnson (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=ex.4h5v.s9.3e040b0edf71 from=translated src=- shape=2ce7cc7c vocab=b6c37376
+-/
 theorem exists_eigenvalue_branch_of_simple_of_isHermitian_with_multiplicity
     {A : Matrix n n ℝ} (E : Matrix n n ℝ) (hA : A.IsHermitian)
     {x : n → ℝ} {μ : ℝ} (hx : ‖WithLp.toLp 2 x‖ = 1) (hAx : A *ᵥ x = μ • x)

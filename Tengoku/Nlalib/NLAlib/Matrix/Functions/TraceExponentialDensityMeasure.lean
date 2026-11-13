@@ -30,7 +30,9 @@ of its exact circle density construct a finite positive representing measure.
 The underlying measure is displayed explicitly, so no measure-existence or
 Laplace-transform conclusion is assumed. Positive exponential parameters here
 are equivalent to the Laplace convention by substituting `-t`.
-Source: Stahl (2013), Theorem 2 (measure assembly).-/
+Source: Stahl (2013), Theorem 2 (measure assembly).
+@isnad1 id=ex.4h7v.s8.fb55186d55c9 from=translated src=- shape=d923b63b vocab=a52b3a7c
+-/
 theorem exists_isCompactExpRepresentation_traceExp_of_circleDensity_nonneg
     {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℂ) (b : n → ℝ) (branch : n → ℂ → ℂ) (r l u : ℝ)
@@ -72,7 +74,9 @@ theorem exists_isCompactExpRepresentation_traceExp_of_circleDensity_nonneg
 for assembling the positive measure; values at those exceptional points do not
 change the density measure. The transform premise is the previously proved
 real atom-plus-density formula for these exact branches.
-Source: Stahl (2013), Theorem 2 (finite exceptional set).-/
+Source: Stahl (2013), Theorem 2 (finite exceptional set).
+@isnad1 id=ex.4h7v.s8.998f66daa67e from=translated src=- shape=e50a3d67 vocab=ea038d4b
+-/
 theorem exists_isCompactExpRepresentation_traceExp_of_circleDensity_nonneg_off_slopes
     {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℂ) (b : n → ℝ) (branch : n → ℂ → ℂ) (r l u : ℝ)

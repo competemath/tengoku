@@ -28,7 +28,9 @@ identity valid for every real parameter. No commutation, simple-spectrum, or
 positive-definiteness hypothesis is required. Empty dimension gives the zero
 measure through the commuting specialization.
 Source: Stahl (2013), Theorems 1 and 2, via the planar root-sum proof.
-atlas: trace-exponential-stahl-/
+atlas: trace-exponential-stahl
+@isnad1 id=ex.2h3v.s7.5937e09afd3e from=translated src=- shape=06a56244 vocab=5731a4d7
+-/
 theorem exists_isCompactExpRepresentation_traceExp
     {n : Type*} [Fintype n] [DecidableEq n]
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian) :
@@ -46,7 +48,9 @@ theorem exists_isCompactExpRepresentation_traceExp
 derivative identity, and both spectral-endpoint bounds on even derivatives.
 This is the full statement of the library card, with no representation premise.
 Source: Stahl (2013), Theorems 1 and 2; Tropp (2026), Proposition 4.4.
-atlas: trace-exponential-stahl-/
+atlas: trace-exponential-stahl
+@isnad1 id=ex.2h3v.s10.218fcdc89c06 from=translated src=- shape=83cf5760 vocab=b2bab017
+-/
 theorem exists_isCompactExpRepresentation_traceExp_with_derivatives
     {n : Type*} [Fintype n] [DecidableEq n]
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian) :

@@ -13,7 +13,9 @@ open scoped Matrix
 
 namespace NLAlib
 
-/-- A rectangular diagonal vanishes in any row outside the thin diagonal range.-/
+/-- A rectangular diagonal vanishes in any row outside the thin diagonal range.
+@isnad1 id=eq.1h5v.s5.5db1b536eea4 from=translated src=- shape=c2f21a6f vocab=18a8d046
+-/
 theorem rectangularDiagonal_apply_eq_zero_of_not_lt_left {m n : ℕ}
     (x : Fin (min m n) → ℝ) (i : Fin m) (j : Fin n) (hi : ¬ i.val < min m n) :
     rectangularDiagonal x i j = 0 := by
@@ -21,7 +23,9 @@ theorem rectangularDiagonal_apply_eq_zero_of_not_lt_left {m n : ℕ}
   rw [dite_eq_right hi]
   split_ifs <;> rfl
 
-/-- A rectangular diagonal vanishes in any column outside the thin diagonal range.-/
+/-- A rectangular diagonal vanishes in any column outside the thin diagonal range.
+@isnad1 id=eq.1h5v.s5.787b9ff79f57 from=translated src=- shape=1a45ac24 vocab=18a8d046
+-/
 theorem rectangularDiagonal_apply_eq_zero_of_not_lt_right {m n : ℕ}
     (x : Fin (min m n) → ℝ) (i : Fin m) (j : Fin n) (hj : ¬ j.val < min m n) :
     rectangularDiagonal x i j = 0 := by
@@ -29,7 +33,9 @@ theorem rectangularDiagonal_apply_eq_zero_of_not_lt_right {m n : ℕ}
   · exact rectangularDiagonal_apply_eq_zero_of_not_lt_left x i j (by omega)
   · simp [rectangularDiagonal, rectDiag_apply, hij]
 
-/-- Extending a thin permutation preserves membership in the prefix.-/
+/-- Extending a thin permutation preserves membership in the prefix.
+@isnad1 id=iff.1h4v.s5.cf296ac999b1 from=translated src=- shape=27258211 vocab=ebc1c55c
+-/
 theorem prefixPermutation_apply_lt_iff {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk : k ≤ m)
     (i : Fin m) : (prefixPermutation σ hk i).val < k ↔ i.val < k := by
   by_cases hi : i.val < k
@@ -38,7 +44,9 @@ theorem prefixPermutation_apply_lt_iff {k m : ℕ} (σ : Equiv.Perm (Fin k)) (hk
   · rw [prefixPermutation_apply_of_not_lt σ hk i hi]
 
 /-- Applying the same thin permutation to rectangular row and column coordinates
-permutes exactly the represented vector and leaves all padding zero.-/
+permutes exactly the represented vector and leaves all padding zero.
+@isnad1 id=eq.0h4v.s7.b630f0e5f24c from=translated src=- shape=6b78231b vocab=54818417
+-/
 theorem rectangularDiagonal_submatrix_prefixPermutation {m n : ℕ}
     (x : Fin (min m n) → ℝ) (σ : Equiv.Perm (Fin (min m n))) :
     (rectangularDiagonal x).submatrix (prefixPermutation σ (min_le_left m n))
@@ -64,7 +72,9 @@ theorem rectangularDiagonal_submatrix_prefixPermutation {m n : ℕ}
       rectangularDiagonal_apply_eq_zero_of_not_lt_left (x ∘ σ) i j hi]
 
 /-- Thin coordinate permutations are implemented by left and right
-orthogonal matrices on the original rectangular shape.-/
+orthogonal matrices on the original rectangular shape.
+@isnad1 id=ex.0h4v.s7.24c9c07d5fc7 from=translated src=- shape=3daba966 vocab=4043454c
+-/
 theorem exists_orthogonal_rectangularDiagonal_perm {m n : ℕ}
     (x : Fin (min m n) → ℝ) (σ : Equiv.Perm (Fin (min m n))) :
     ∃ (U : Matrix (Fin m) (Fin m) ℝ) (V : Matrix (Fin n) (Fin n) ℝ),

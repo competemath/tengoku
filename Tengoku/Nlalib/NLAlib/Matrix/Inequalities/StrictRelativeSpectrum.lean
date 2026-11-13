@@ -17,7 +17,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A finite real spectral list has spectral radius equal to its supremum
 absolute norm, including the empty list. Horn--Johnson (2013), Section 1.1;
-helper for strict relative-spectrum bounds.-/
+helper for strict relative-spectrum bounds.
+@isnad1 id=eq.1h3v.s6.639dd85ad3c8 from=translated src=- shape=bc9c5ff0 vocab=593a6e89
+-/
 theorem spectralRadius_eq_nnnorm_of_spectrum_eq_range {A : Matrix n n ℝ}
     {d : n → ℝ} (h : spectrum ℝ A = Set.range d) :
     spectralRadius ℝ A = (‖d‖₊ : ENNReal) := by
@@ -30,7 +32,9 @@ theorem spectralRadius_eq_nnnorm_of_spectrum_eq_range {A : Matrix n n ℝ}
 /-- For a positive definite `A` and PSD `B`, positive definiteness of `A-B`
 is equivalent to relative spectral radius strictly below one. Empty spaces
 satisfy both sides. Horn--Johnson (2013), Theorem 7.7.7;
-helper for PSD-block strict tests.-/
+helper for PSD-block strict tests.
+@isnad1 id=iff.2h3v.s7.12338ea44e7c from=translated src=- shape=577c4482 vocab=1327f9cf
+-/
 theorem posDef_sub_iff_relative_spectralRadius_lt_one {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     (A - B).PosDef ↔ spectralRadius ℝ (A⁻¹ * B) < 1 := by
@@ -56,7 +60,9 @@ theorem posDef_sub_iff_relative_spectralRadius_lt_one {A B : Matrix n n ℝ}
   simp only [Real.norm_eq_abs, abs_of_nonneg (hd hB _)]
 
 /-- The spectral radius of a real PSD matrix is its spectral norm.
-Horn--Johnson (2013), Section 5.6; helper for PSD-block strict tests.-/
+Horn--Johnson (2013), Section 5.6; helper for PSD-block strict tests.
+@isnad1 id=eq.1h2v.s6.d066f8ff59ce from=translated src=- shape=03a21531 vocab=61e06268
+-/
 theorem spectralRadius_eq_specNorm_of_posSemidef {A : Matrix n n ℝ} (hA : A.PosSemidef) :
     spectralRadius ℝ A = ENNReal.ofReal (specNorm A) := by
   rw [spectralRadius_eq_nnnorm_of_spectrum_eq_range hA.isHermitian.spectrum_real_eq_range_eigenvalues]
@@ -80,7 +86,9 @@ theorem spectralRadius_eq_specNorm_of_posSemidef {A : Matrix n n ℝ} (hA : A.Po
 
 /-- The complement of a PSD real matrix is positive definite exactly when
 its spectral norm is strictly below one. Horn--Johnson (2013), Lemma 7.7.6;
-helper for strict block contractions.-/
+helper for strict block contractions.
+@isnad1 id=iff.1h2v.s6.6d0f19ba79a0 from=translated src=- shape=cdb33d07 vocab=0ad09ced
+-/
 theorem posDef_one_sub_iff_specNorm_lt_one_of_posSemidef {A : Matrix n n ℝ}
     (hA : A.PosSemidef) : (1 - A).PosDef ↔ specNorm A < 1 := by
   rw [posDef_sub_iff_relative_spectralRadius_lt_one Matrix.PosDef.one hA, inv_one,

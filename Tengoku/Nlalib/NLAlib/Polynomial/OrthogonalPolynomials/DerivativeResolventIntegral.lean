@@ -33,7 +33,9 @@ private theorem tendsto_eval_mul_exp_neg_mul (p : ℝ[X]) {a : ℝ} (ha : 0 < a)
 
 /-- A finite derivative resolvent equals the exponentially weighted polynomial
 tail integral for every positive decay rate and nonnegative starting point.
-Source: explicit reciprocal denominator, finite polynomial integration by parts.-/
+Source: explicit reciprocal denominator, finite polynomial integration by parts.
+@isnad1 id=eq.2h3v.s8.984576ca3bb1 from=translated src=- shape=7b65314c vocab=cf9cc94d
+-/
 theorem derivativeResolvent_eval_mul_exp_neg_eq_integral_Ioi {a : ℝ} (ha : 0 < a)
     (p : ℝ[X]) {x : ℝ} (hx : 0 ≤ x) :
     (derivativeResolvent a p).eval x * Real.exp (-(a*x)) =
@@ -58,7 +60,9 @@ theorem derivativeResolvent_eval_mul_exp_neg_eq_integral_Ioi {a : ℝ} (ha : 0 <
   linarith
 
 /-- The growing exponential's weighted tail integral for rates above one quarter.
-Source: explicit reciprocal denominator, the fixed exponential mode.-/
+Source: explicit reciprocal denominator, the fixed exponential mode.
+@isnad1 id=eq.1h2v.s7.c43ed4afeaa2 from=translated src=- shape=e4203afd vocab=0da79e98
+-/
 theorem integral_exp_quarter_mul_exp_neg_mul_Ioi {a : ℝ} (ha : 1/4 < a) (x : ℝ) :
     (∫ t : ℝ in Ioi x, Real.exp (t/4) * Real.exp (-(a*t))) =
       Real.exp ((1/4-a)*x) / (a-1/4) := by
@@ -72,7 +76,9 @@ theorem integral_exp_quarter_mul_exp_neg_mul_Ioi {a : ℝ} (ha : 1/4 < a) (x : �
   rw [show (a-1/4 : ℝ) = -(1/4-a) by ring, div_neg, neg_div]
 
 /-- The exponential resolvent tail integrand is integrable at every starting point.
-Source: explicit reciprocal denominator, the fixed exponential mode.-/
+Source: explicit reciprocal denominator, the fixed exponential mode.
+@isnad1 id=integrab.1h2v.s6.32b0dbd949ab from=translated src=- shape=00051365 vocab=33d4b145
+-/
 theorem integrableOn_exp_quarter_mul_exp_neg_mul_Ioi {a : ℝ} (ha : 1/4 < a) (x : ℝ) :
     IntegrableOn (fun t : ℝ => Real.exp (t/4) * Real.exp (-(a*t))) (Ioi x) := by
   refine IntegrableOn.congr_fun (integrableOn_exp_mul_Ioi (by linarith : 1/4-a < 0) x)
@@ -84,7 +90,9 @@ theorem integrableOn_exp_quarter_mul_exp_neg_mul_Ioi {a : ℝ} (ha : 1/4 < a) (x
   ring
 
 /-- The exact error of a finite polynomial resolvent against the exponential
-mode is a weighted residual tail integral. Source: the two-resolvent reroute.-/
+mode is a weighted residual tail integral. Source: the two-resolvent reroute.
+@isnad1 id=eq.2h3v.s9.d4877a5e2368 from=translated src=- shape=fce87fc1 vocab=1d81d9b2
+-/
 theorem derivativeResolvent_error_eq_exp_tail_integral {a : ℝ} (ha : 1/4 < a)
     (p : ℝ[X]) {x : ℝ} (hx : 0 ≤ x) :
     Real.exp (x/4) / (a-1/4) - (derivativeResolvent a p).eval x =

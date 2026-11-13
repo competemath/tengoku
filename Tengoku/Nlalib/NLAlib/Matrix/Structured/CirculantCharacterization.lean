@@ -73,7 +73,9 @@ theorem eq_circulant_of_commute_cyclicShift {n : ℕ} [NeZero n]
 
 /-- A matrix commutes with the cyclic shift exactly when it is a circulant.
 Horn–Johnson 2013, §0.9.7.
-atlas: structured-matrices-def (partial)-/
+atlas: structured-matrices-def (partial)
+@isnad1 id=iff.0h2v.s6.a8627a113001 from=translated src=- shape=cdf37b6c vocab=4afb917f
+-/
 theorem commute_cyclicShift_iff_exists_circulant {n : ℕ} [NeZero n]
     (A : Matrix (Fin n) (Fin n) ℝ) :
     A * cyclicShiftMatrix n = cyclicShiftMatrix n * A ↔
@@ -86,7 +88,9 @@ theorem commute_cyclicShift_iff_exists_circulant {n : ℕ} [NeZero n]
 /-- Every positive-dimensional circulant is an ordinary Toeplitz matrix;
 the diagonal parameters implement only the necessary wrap-around
 identifications. Horn–Johnson 2013, §0.9.7.
-atlas: structured-matrices-def (partial)-/
+atlas: structured-matrices-def (partial)
+@isnad1 id=ex.0h2v.s5.774d11f510aa from=translated src=- shape=98d17199 vocab=b88fc768
+-/
 theorem exists_toeplitzMatrix_eq_circulant {n : ℕ} [NeZero n] (v : Fin n → ℝ) :
     ∃ t : ℤ → ℝ, toeplitzMatrix t = Matrix.circulant v := by
   classical
@@ -109,7 +113,9 @@ theorem exists_toeplitzMatrix_eq_circulant {n : ℕ} [NeZero n] (v : Fin n → �
 /-- In dimension zero the unique matrix is both Toeplitz and circulant.
 This endpoint needs no named coordinate zero or cyclic group instance.
 Horn–Johnson 2013, §0.9.7.
-atlas: structured-matrices-def-/
+atlas: structured-matrices-def
+@isnad1 id=and.0h1v.s6.f92163f7bc46 from=translated src=- shape=e765294e vocab=98bf212e
+-/
 theorem exists_toeplitz_circulant_of_empty (A : Matrix (Fin 0) (Fin 0) ℝ) :
     (∃ t : ℤ → ℝ, A = toeplitzMatrix t) ∧
       (∃ v : Fin 0 → ℝ, A = Matrix.circulant v) := by
@@ -118,7 +124,9 @@ theorem exists_toeplitz_circulant_of_empty (A : Matrix (Fin 0) (Fin 0) ℝ) :
 /-- Circulants are exactly the ordinary Toeplitz matrices commuting with the
 cyclic shift. Commutation alone already forces the circulant formula.
 Horn–Johnson 2013, §0.9.7.
-atlas: structured-matrices-def-/
+atlas: structured-matrices-def
+@isnad1 id=iff.0h2v.s7.67888e2e03da from=translated src=- shape=e86893df vocab=88bd3c53
+-/
 theorem exists_circulant_iff_toeplitz_and_commute {n : ℕ} [NeZero n]
     (A : Matrix (Fin n) (Fin n) ℝ) :
     (∃ v : Fin n → ℝ, A = Matrix.circulant v) ↔

@@ -26,7 +26,9 @@ private theorem sum_normalize_smul_eq (x : ι → ℝ) {a : ℝ} (ha : a ≠ 0) 
 
 open scoped Matrix.Norms.L2Operator in
 /-- A positive rank-one matrix-power limit gives normalized vector convergence
-for every nonzero nonnegative starting vector.-/
+for every nonzero nonnegative starting vector.
+@isnad1 id=tendsto.6h5v.s8.cdadbba1c2e8 from=translated src=- shape=195d6897 vocab=1974c59e
+-/
 theorem tendsto_sum_normalized_power_mulVec_of_perron_limit
     {T : Matrix ι ι ℝ} {p q : ι → ℝ} (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)
     (hps : ∑ i, p i = 1)
@@ -60,7 +62,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Normalized powers of a primitive matrix converge to one common positive
 unit-sum Perron vector for every nonzero nonnegative initial vector.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=ex.2h2v.s8.2c2d2e575382 from=translated src=- shape=2630df85 vocab=44592856
+-/
 theorem IsPrimitive.exists_tendsto_normalized_power_mulVec {A : Matrix ι ι ℝ}
     (hA : A.IsPrimitive) (hAne : A ≠ 0) :
     ∃ p : ι → ℝ, (∀ i, 0 < p i) ∧ (∑ i, p i = 1) ∧

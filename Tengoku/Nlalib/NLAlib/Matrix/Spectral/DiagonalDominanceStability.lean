@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- A complex spectral point has positive real part when every row radius
 is smaller than the real part of the diagonal. Source: Horn–Johnson (2013),
 Corollary 6.1.8; this form also allows nonreal diagonal entries.
-atlas: gershgorin-diagonal-dominance (partial)-/
+atlas: gershgorin-diagonal-dominance (partial)
+@isnad1 id=lt.2h3v.s6.ee862010335d from=translated src=- shape=b8c09288 vocab=b41bdbc0
+-/
 theorem re_pos_of_mem_spectrum_of_row_radius_lt_re_diag
     {A : Matrix n n ℂ} (hA : ∀ i, gershgorinRowRadius A i < (A i i).re)
     {μ : ℂ} (hμ : μ ∈ spectrum ℂ A) : 0 < μ.re := by
@@ -49,7 +51,9 @@ theorem eq_zero_of_norm_sub_real_le_of_re_nonpos {z : ℂ} {d : ℝ}
 /-- Weak row dominance about nonnegative real diagonal entries gives
 positive real parts whenever the matrix is nonsingular.
 Horn–Johnson (2013), Corollary 6.2.27; the only boundary point of a disc
-on the imaginary axis is zero.-/
+on the imaginary axis is zero.
+@isnad1 id=lt.4h3v.s6.914c6364deb7 from=translated src=- shape=d65bb707 vocab=2daffa92
+-/
 theorem re_pos_of_mem_spectrum_of_isUnit_of_weak_diagonal_dominance
     {A : Matrix n n ℂ} (hunit : IsUnit A)
     (hdiag : ∀ i, (A i i).im = 0)
@@ -72,7 +76,9 @@ theorem re_pos_of_mem_spectrum_of_isUnit_of_weak_diagonal_dominance
 strict row, imply that every complex eigenvalue has positive real part.
 Source: Horn–Johnson (2013), Corollary 6.2.27; the strict-row assumption is
 necessary and is retained explicitly.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=lt.6h3v.s7.73c145c0329c from=translated src=- shape=c376406d vocab=33401f5f
+-/
 theorem re_pos_of_mem_spectrum_of_irreducible_weak_diagonal_dominance
     {A : Matrix n n ℂ} (hIrred : (A.map norm).IsIrreducible)
     (hdiag : ∀ i, (A i i).im = 0) (hpos : ∀ i, 0 < (A i i).re)
@@ -94,7 +100,9 @@ theorem re_pos_of_mem_spectrum_of_irreducible_weak_diagonal_dominance
 positive definite. Source: Horn–Johnson (2013), Corollary 7.2.3; the radius
 inequality already implies positivity of the diagonal, including the
 vacuous zero-dimensional case.
-atlas: gershgorin-diagonal-dominance (partial)-/
+atlas: gershgorin-diagonal-dominance (partial)
+@isnad1 id=posdef.2h2v.s6.0900e70ca81b from=translated src=- shape=7a8998fc vocab=a64798ed
+-/
 theorem posDef_of_isHermitian_of_row_radius_lt_diag {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (hstrict : ∀ i, gershgorinRowRadius A i < A i i) : A.PosDef := by
   apply hA.posDef_iff_eigenvalues_pos.mpr
@@ -109,7 +117,9 @@ theorem posDef_of_isHermitian_of_row_radius_lt_diag {A : Matrix n n ℝ}
 positive diagonal and at least one strict row is positive definite.
 Source: Horn–Johnson (2013), Corollary 6.2.27; the graph is that of the
 entrywise absolute values and the strict-row repair is explicit.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=posdef.5h2v.s7.b04dddccc28e from=translated src=- shape=4ac30bfb vocab=4c4efe83
+-/
 theorem posDef_of_isHermitian_of_irreducible_weak_diagonal_dominance
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (hIrred : (A.map norm).IsIrreducible)
     (hpos : ∀ i, 0 < A i i)

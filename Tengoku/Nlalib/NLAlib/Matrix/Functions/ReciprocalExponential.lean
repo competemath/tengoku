@@ -29,7 +29,9 @@ private theorem nonneg_of_mem_real_spectrum_of_posSemidef {A : Matrix ι ι 𝕜
 /-- The actual explicit denominator is positive definite when evaluated at any
 finite PSD real symmetric or complex Hermitian matrix, including the empty size.
 Source: focused reciprocal reroute, operator form.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=posdef.1h4v.s8.81209cb6da12 from=translated src=- shape=14166cae vocab=6b1d55c2
+-/
 theorem posDef_aeval_reciprocalExponentialDenominator (n : ℕ) {A : Matrix ι ι 𝕜}
     (hA : A.PosSemidef) : (aeval A (reciprocalExponentialDenominator n)).PosDef := by
   rw [← cfc_polynomial (reciprocalExponentialDenominator n) A hA.isHermitian]
@@ -54,7 +56,9 @@ private theorem inv_aeval_reciprocalExponentialDenominator_eq_cfc (n : ℕ)
 /-- The explicit reciprocal polynomial gives the advertised dimension-independent
 spectral error for the actual matrix exponential and inverse polynomial.
 Source: focused reciprocal reroute, operator form.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h4v.s8.7805ebf2d34a from=translated src=- shape=e375146a vocab=faf565a5
+-/
 theorem specNorm_matrixExp_neg_sub_inv_aeval_reciprocalExponentialDenominator_le
     (n : ℕ) {A : Matrix ι ι 𝕜} (hA : A.PosSemidef) :
     specNorm (matrixExp (-A) - (aeval A (reciprocalExponentialDenominator n))⁻¹) ≤

@@ -18,7 +18,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The extreme sorted eigenvalues of a positive definite matrix are positive
 spectral endpoints for a Loewner sandwich. Positive dimension is explicit.
-Horn--Johnson (2013), Section 7.4.12; helper for sharp constants.-/
+Horn--Johnson (2013), Section 7.4.12; helper for sharp constants.
+@isnad1 id=other.2h2v.s7.a7f638dc6a13 from=translated src=- shape=238956c0 vocab=e17e61b8
+-/
 theorem posDef_extreme_eigenvalues_sandwich {A : Matrix n n ℝ} (hA : A.PosDef)
     (hN : 0 < Fintype.card n) :
     let a := hA.isHermitian.eigenvalues₀ ⟨Fintype.card n - 1, Nat.sub_lt hN (by decide)⟩
@@ -38,7 +40,9 @@ theorem posDef_extreme_eigenvalues_sandwich {A : Matrix n n ℝ} (hA : A.PosDef)
 
 /-- The symmetric endpoint ratio equals the condition-ratio expression
 involving the square root and its reciprocal. Horn--Johnson (2013),
-Section 7.4.12; helper for the equivalent sharp constants.-/
+Section 7.4.12; helper for the equivalent sharp constants.
+@isnad1 id=eq.2h2v.s7.913859ae685d from=translated src=- shape=658dbba8 vocab=ae032b3d
+-/
 theorem sq_add_div_four_mul_eq_sq_sqrt_ratio {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     (a + b) ^ 2 / (4 * a * b) =
       (1 / 4 : ℝ) * (Real.sqrt (b / a) + (Real.sqrt (b / a))⁻¹) ^ 2 := by

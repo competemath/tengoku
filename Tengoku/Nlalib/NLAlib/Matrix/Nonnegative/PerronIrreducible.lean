@@ -24,7 +24,9 @@ omit [Nonempty ι] in
 /-- Irreducibility makes every nonzero nonnegative eigenvector strictly positive.
 The eigenvalue need not be assumed positive in advance.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=lt.4h5v.s6.d1e7f6efe611 from=translated src=- shape=7f358827 vocab=92177068
+-/
 theorem IsIrreducible.pos_of_nonnegative_eigenvector {A : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) {p : ι → ℝ} {r : ℝ}
     (hp : ∀ i, 0 ≤ p i) (hpne : p ≠ 0) (heig : A *ᵥ p = r • p) :
@@ -42,7 +44,9 @@ theorem IsIrreducible.pos_of_nonnegative_eigenvector {A : Matrix ι ι ℝ}
   exact (lt_irrefl _ hpos)
 
 /-- The real Perron eigenspace is exactly the line through any positive
-Perron eigenvector. Reducibility is excluded by the zero-coordinate argument.-/
+Perron eigenvector. Reducibility is excluded by the zero-coordinate argument.
+@isnad1 id=eq.3h4v.s10.217ff7d7b8d5 from=translated src=- shape=2c749717 vocab=32abc05f
+-/
 theorem IsIrreducible.eigenspace_eq_span_of_positive_eigenvector
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) {p : ι → ℝ} {r : ℝ}
     (hp : ∀ i, 0 < p i) (heig : A *ᵥ p = r • p) :
@@ -75,7 +79,9 @@ theorem IsIrreducible.eigenspace_eq_span_of_positive_eigenvector
 /-- Left and right nonnegative unit-sum Perron vectors are strictly positive
 for a nonzero irreducible matrix, and its spectral radius is strictly positive.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=ex.2h2v.s8.0cd999ce22c0 from=translated src=- shape=cb9e8c22 vocab=39bd82a7
+-/
 theorem IsIrreducible.exists_positive_perron_pair {A : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     ∃ p q : ι → ℝ,
@@ -112,7 +118,9 @@ theorem IsIrreducible.exists_positive_perron_pair {A : Matrix ι ι ℝ}
 /-- The Perron root of a nonzero irreducible matrix has algebraic multiplicity
 one; positivity of the left–right pairing rules out generalized eigenvectors.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=eq.2h2v.s6.0d1128f7f913 from=translated src=- shape=ec64e206 vocab=28ffca41
+-/
 theorem IsIrreducible.rootMultiplicity_perron_eq_one {A : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     A.charpoly.rootMultiplicity (spectralRadius ℂ (A.map Complex.ofReal)).toReal = 1 := by
@@ -131,7 +139,9 @@ theorem IsIrreducible.rootMultiplicity_perron_eq_one {A : Matrix ι ι ℝ}
 
 /-- Algebraic simplicity is also stated directly for the complexification.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=eq.2h2v.s6.4f880b482dfa from=translated src=- shape=69c0d119 vocab=28ffca41
+-/
 theorem IsIrreducible.rootMultiplicity_perron_complexification_eq_one
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     (A.map Complex.ofReal).charpoly.rootMultiplicity
@@ -147,7 +157,9 @@ theorem IsIrreducible.rootMultiplicity_perron_complexification_eq_one
 positive multiple of a specified positive Perron vector. Its eigenvalue is
 necessarily the Perron root.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=and.7h5v.s8.d6e4a94ad083 from=translated src=- shape=d6dd5d28 vocab=bb1e82ed
+-/
 theorem IsIrreducible.nonnegative_eigenvector_eq_pos_smul
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) (hAne : A ≠ 0)
     {p : ι → ℝ} (hp : ∀ i, 0 < p i)
@@ -184,7 +196,9 @@ omit [DecidableEq ι] in
 idempotent, and commutes with the matrix at the Perron root. The formula is
 oblique in general; no symmetry is asserted.
 Source: Horn–Johnson, Chapter 8.
-atlas: irreducible-perron-frobenius (partial)-/
+atlas: irreducible-perron-frobenius (partial)
+@isnad1 id=other.4h5v.s8.10bd57b3114b from=translated src=- shape=6737db74 vocab=a4646654
+-/
 theorem perron_projector_pos_idempotent_and_commutes
     {A : Matrix ι ι ℝ} {p q : ι → ℝ} {r : ℝ}
     (hp : ∀ i, 0 < p i) (hq : ∀ i, 0 < q i)

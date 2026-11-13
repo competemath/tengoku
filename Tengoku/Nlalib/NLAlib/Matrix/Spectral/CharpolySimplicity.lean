@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- A nonzero polynomial has a simple root exactly when its value vanishes
 and its derivative does not. Horn--Johnson (2013), Theorem 6.3.12;
-scalar helper for persistence of simple eigenvalues.-/
+scalar helper for persistence of simple eigenvalues.
+@isnad1 id=iff.1h3v.s8.15285eebfbc8 from=translated src=- shape=a2e1e3d7 vocab=411035d1
+-/
 theorem rootMultiplicity_eq_one_iff_isRoot_and_derivative_ne_zero
     {K : Type*} [Field K] (p : K[X]) (hp : p ≠ 0) (z : K) :
     p.rootMultiplicity z = 1 ↔ p.IsRoot z ∧ p.derivative.eval z ≠ 0 := by
@@ -41,7 +43,9 @@ theorem rootMultiplicity_eq_one_iff_isRoot_and_derivative_ne_zero
 complex pencil is jointly continuous in the parameter and root coordinate.
 This uses the fixed bivariate characteristic polynomial, including the
 constant characteristic polynomial in dimension zero.
-Horn--Johnson (2013), Theorem 6.3.12; simple-root persistence helper.-/
+Horn--Johnson (2013), Theorem 6.3.12; simple-root persistence helper.
+@isnad1 id=continuo.0h3v.s8.2d1eb6f23c20 from=translated src=- shape=71d732d5 vocab=e43b540b
+-/
 theorem continuous_eval_derivative_charpoly_affine
     {n : Type*} [Fintype n] [DecidableEq n] (A E : Matrix n n ℂ) :
     Continuous (fun p : ℂ × ℂ => ((A + p.1 • E).charpoly.derivative).eval p.2) := by
@@ -70,7 +74,9 @@ point. The parameter space is arbitrary, so both complex and real branches
 are covered. There is no nonempty-dimension assumption; the simplicity
 hypothesis is impossible for the empty matrix. Source: Horn--Johnson
 (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=eventual.5h7v.s8.109742807c47 from=translated src=- shape=4943197c vocab=c619f016
+-/
 theorem eventually_rootMultiplicity_eq_one_of_continuous_eigenvalue
     {n T : Type*} [Fintype n] [DecidableEq n] [TopologicalSpace T]
     (A E : Matrix n n ℂ) {t₀ : T} (τ φ : T → ℂ)

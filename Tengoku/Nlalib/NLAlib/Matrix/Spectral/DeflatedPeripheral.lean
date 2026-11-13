@@ -21,7 +21,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Removing a simple, uniquely peripheral positive eigenline gives a strict
 spectral gap, also for nonsymmetric and nonnormal matrices.
 Source: Horn–Johnson, Chapters 5 and 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=lt.8h5v.s8.e0919ef3d628 from=translated src=- shape=27a810b0 vocab=7c2b3b81
+-/
 theorem deflated_spectralRadius_lt_one_of_simple_unique_peripheral
     (A : Matrix ι ι ℂ) {p q : ι → ℂ} {r : ℝ} (hr : 0 < r)
     (hp : p ≠ 0) (hpair : q ⬝ᵥ p ≠ 0)

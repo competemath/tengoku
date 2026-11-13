@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 finite matrix index type. Source: Horn–Johnson (2013), Theorem 2.3.1; the
 triangular factor's diagonal is certified by its characteristic polynomial,
 including repeated eigenvalues and the empty matrix.
-atlas: schur-triangularization (partial)-/
+atlas: schur-triangularization (partial)
+@isnad1 id=ex.0h3v.s9.5c80295e2344 from=translated src=- shape=d68353e2 vocab=cf735faa
+-/
 theorem exists_unitary_schur_triangularization (A : Matrix n n ℂ)
     (e : Fin (Fintype.card n) ≃ n) :
     ∃ (U : Matrix.unitaryGroup n ℂ) (T : Matrix n n ℂ),
@@ -82,7 +84,9 @@ theorem exists_unitary_schur_triangularization (A : Matrix n n ℂ)
 /-- Complex Schur triangularization over `Fin n`, in the usual upper
 triangular matrix notation, with multiplicities certified by the diagonal
 characteristic factorization. Source: Horn–Johnson (2013), Theorem 2.3.1.
-atlas: schur-triangularization (partial)-/
+atlas: schur-triangularization (partial)
+@isnad1 id=ex.0h2v.s9.0d6212ae5452 from=translated src=- shape=d8f77215 vocab=66180c15
+-/
 theorem exists_unitary_upperTriangular_diagonal_charpoly (k : ℕ) (A : Matrix (Fin k) (Fin k) ℂ) :
     ∃ (U : Matrix.unitaryGroup (Fin k) ℂ) (T : Matrix (Fin k) (Fin k) ℂ),
       A = (U : Matrix (Fin k) (Fin k) ℂ) * T * (U : Matrix (Fin k) (Fin k) ℂ)ᴴ ∧

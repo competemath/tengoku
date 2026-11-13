@@ -20,7 +20,9 @@ namespace NLAlib
 variable {R ι : Type*} [CommRing R] [Fintype ι] [DecidableEq ι]
 
 /-- Similarity preserves the determinant polynomial `det(I+tG)` over any
-commutative ring. Source: the determinant coefficient proof of; no reality assumption is needed.-/
+commutative ring. Source: the determinant coefficient proof of; no reality assumption is needed.
+@isnad1 id=eq.2h6v.s9.d6293fefb3ee from=translated src=- shape=e1ffb95c vocab=046a57fe
+-/
 theorem det_one_add_X_smul_eq_of_diagonalization {G U V : Matrix ι ι R} {d : ι → R}
     (hVU : V * U = 1) (hG : G = U * Matrix.diagonal d * V) :
     Matrix.det (1 + (X : R[X]) • G.map C) =
@@ -48,7 +50,9 @@ theorem det_one_add_X_smul_eq_of_diagonalization {G U V : Matrix ι ι R} {d : �
 /-- The sum of order-`k` principal minors of a diagonalizable matrix `G = U diag(d) V`
 (`VU = 1`, any commutative ring) equals the elementary symmetric sum of the diagonal spectrum.
 Orthogonal (`V = Uᵀ`) and unitary (`V = Uᴴ`) diagonalizations are instances.
-Deshpande--Rademacher--Vempala--Wang (2006), volume-sampling proof.-/
+Deshpande--Rademacher--Vempala--Wang (2006), volume-sampling proof.
+@isnad1 id=eq.2h7v.s8.99763c526625 from=translated src=- shape=a336ca7a vocab=316bb9ea
+-/
 theorem sum_det_principal_minors_eq_sum_prod_of_diagonalization
     {G U V : Matrix ι ι R} {d : ι → R} (hVU : V * U = 1)
     (hG : G = U * Matrix.diagonal d * V) (k : ℕ) :
@@ -76,7 +80,9 @@ open scoped Matrix
 /-- The sum of fixed-order Hermitian principal determinants is the elementary
 sum of the actual eigenvalues, over either scalar field. The spectral theorem
 and the generic determinant-coefficient identity prove the assertion without
-a positivity or invertibility assumption.-/
+a positivity or invertibility assumption.
+@isnad1 id=eq.1h4v.s8.dc5648b5e26e from=translated src=- shape=ad6a580c vocab=dabe0cc1
+-/
 theorem _root_.Matrix.IsHermitian.sum_det_principal_minors_eq_sum_prod
     {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
     {G : Matrix n n 𝕜} (hG : G.IsHermitian) (k : ℕ) :
@@ -92,7 +98,9 @@ theorem _root_.Matrix.IsHermitian.sum_det_principal_minors_eq_sum_prod
 
 /-- The sum of real principal determinants along all ordered length-`k`
 histories is `k!` times the elementary sum of the sorted Hermitian spectrum.
-Zero, repeated, and oversized histories are all included.-/
+Zero, repeated, and oversized histories are all included.
+@isnad1 id=eq.1h4v.s8.c156a13f8a6f from=translated src=- shape=0358f26b vocab=3f93f14e
+-/
 theorem _root_.Matrix.IsHermitian.sum_re_det_submatrix_eq_factorial_mul_sum_prod_eigenvalues₀
     {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
     {A : Matrix n n 𝕜} (hA : A.IsHermitian) (k : ℕ) :

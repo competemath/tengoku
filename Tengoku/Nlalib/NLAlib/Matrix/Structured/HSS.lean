@@ -96,7 +96,9 @@ def downwardPass : {t : ClusterTree} → {r : ℕ} → (H : HSS K t r) → H.Cac
         (dr.downwardPass c.2.2 (x ∘ Sum.inr)
           (HODLR.denseAccumulate C (dl.cacheValue c.2.1) (ez ∘ Sum.inr)))
 
-/-- The stored root projection agrees with the mathematical upward recursion.-/
+/-- The stored root projection agrees with the mathematical upward recursion.
+@isnad1 id=eq.0h5v.s5.3fc0819804a0 from=translated src=- shape=df7812db vocab=2e208309
+-/
 theorem cacheValue_upwardPass {t : ClusterTree} {r : ℕ} (H : HSS K t r) (x : t.Index → K) :
     H.cacheValue (H.upwardPass x) = H.upward x := by
   induction H with
@@ -109,7 +111,9 @@ theorem cacheValue_upwardPass {t : ClusterTree} {r : ℕ} (H : HSS K t r) (x : t
         (Sum.elim (dl.upward (x ∘ Sum.inl)) (dr.upward (x ∘ Sum.inr))) 0
     rw [hl, hr]
 
-/-- Cached execution realizes the downward recursion.-/
+/-- Cached execution realizes the downward recursion.
+@isnad1 id=eq.0h6v.s5.96cf540b2c70 from=translated src=- shape=e7bbbb01 vocab=522abc65
+-/
 theorem downwardPass_upwardPass {t : ClusterTree} {r : ℕ} (H : HSS K t r)
     (x : t.Index → K) (z : Fin r → K) :
     H.downwardPass (H.upwardPass x) x z = H.downward x z := by
@@ -136,14 +140,18 @@ def RanksLE (k : ℕ) : {t : ClusterTree} → {r : ℕ} → HSS K t r → Prop
   | _, r, .leaf _ _ _ => r ≤ k
   | _, s, .node dl dr _ _ _ _ => s ≤ k ∧ dl.RanksLE k ∧ dr.RanksLE k
 
-/-- The rank bound applies in particular to the current node.-/
+/-- The rank bound applies in particular to the current node.
+@isnad1 id=le.1h5v.s4.90e0d1f74ed3 from=translated src=- shape=cd30ae79 vocab=f91d6b3a
+-/
 theorem rank_le_of_ranksLE {t : ClusterTree} {r k : ℕ} (H : HSS K t r)
     (h : H.RanksLE k) : r ≤ k := by cases H with
   | leaf D U V => exact h
   | node dl dr E F B C => exact h.1
 
 /-- The upward pass exactly equals projection onto the reconstructed nested
-column basis.-/
+column basis.
+@isnad1 id=eq.0h5v.s6.fc4bf81f563d from=translated src=- shape=3b19289a vocab=d15dd204
+-/
 theorem upward_eq {t : ClusterTree} {r : ℕ} (H : HSS K t r) (x : t.Index → K) :
     H.upward x = H.colBasisᴴ *ᵥ x := by
   induction H with
@@ -159,7 +167,9 @@ theorem upward_eq {t : ClusterTree} {r : ℕ} (H : HSS K t r) (x : t.Index → K
 
 /-- The downward pass returns `A x + U z`, including all nested transfers and
 sibling interactions. Source: user derivations, HSS two-pass matvec.
-atlas: hss-nested-bases-matvec (partial)-/
+atlas: hss-nested-bases-matvec (partial)
+@isnad1 id=eq.0h6v.s7.e63e605b7fca from=translated src=- shape=0c895cee vocab=da02d4e3
+-/
 theorem downward_eq {t : ClusterTree} {r : ℕ} (H : HSS K t r)
     (x : t.Index → K) (z : Fin r → K) :
     H.downward x z = H.matrix *ᵥ x + H.rowBasis *ᵥ z := by
@@ -178,16 +188,22 @@ theorem downward_eq {t : ClusterTree} {r : ℕ} (H : HSS K t r)
         add_left_comm, add_comm]
 
 /-- A zero-rank root eliminates the external contribution and the two-pass
-algorithm returns the actual matrix-vector product.-/
+algorithm returns the actual matrix-vector product.
+@isnad1 id=eq.0h4v.s7.12a25c23fbcd from=translated src=- shape=7800ddc6 vocab=c18afb2c
+-/
 theorem downward_zero_eq_mulVec {t : ClusterTree} (H : HSS K t 0) (x : t.Index → K) :
     H.downward x 0 = H.matrix *ᵥ x := by rw [downward_eq]; simp
 
-/-- The actual cached two-pass algorithm returns the represented matrix product.-/
+/-- The actual cached two-pass algorithm returns the represented matrix product.
+@isnad1 id=eq.0h4v.s7.4dc88e734c12 from=translated src=- shape=f6269748 vocab=8ca8d255
+-/
 theorem downwardPass_upwardPass_zero_eq_mulVec {t : ClusterTree} (H : HSS K t 0)
     (x : t.Index → K) : H.downwardPass (H.upwardPass x) x 0 = H.matrix *ᵥ x := by
   rw [downwardPass_upwardPass, downward_zero_eq_mulVec]
 
-/-- The scalar-action count of the two passes is twice the stored entry count.-/
+/-- The scalar-action count of the two passes is twice the stored entry count.
+@isnad1 id=eq.0h4v.s5.7644bd913f97 from=translated src=- shape=bb662491 vocab=643c8d62
+-/
 theorem actions_eq_two_mul_storage {t : ClusterTree} {r : ℕ} (H : HSS K t r) :
     H.actions = 2 * H.storage := by
   induction H with
@@ -196,7 +212,9 @@ theorem actions_eq_two_mul_storage {t : ClusterTree} {r : ℕ} (H : HSS K t r) :
 
 /-- General HSS storage bound in terms of leaf count and size.
 Source: user derivations, HSS storage formula.
-atlas: hss-nested-bases-matvec (partial)-/
+atlas: hss-nested-bases-matvec (partial)
+@isnad1 id=le.2h6v.s7.185b1a9e17d8 from=translated src=- shape=3c4e1aae vocab=0548a824
+-/
 theorem storage_le {t : ClusterTree} {r : ℕ} (H : HSS K t r) (b k : ℕ)
     (hb : t.LeafSizeLE b) (hk : H.RanksLE k) :
     H.storage ≤ t.size * b + 2 * t.size * k + 6 * k ^ 2 * (t.leafCount - 1) := by
@@ -226,7 +244,9 @@ theorem storage_le {t : ClusterTree} {r : ℕ} (H : HSS K t r) (b k : ℕ)
 uses at most `10 N k` scalars, and its cached two-pass matvec uses twice its
 storage in scalar multiplication/addition actions.
 Source: user derivations, HSS matvec and storage.
-atlas: hss-nested-bases-matvec-/
+atlas: hss-nested-bases-matvec
+@isnad1 id=le.4h4v.s6.8d4c217389d0 from=translated src=- shape=6d2927b0 vocab=d55570de
+-/
 theorem storage_le_ten_mul_size_mul_rank {t : ClusterTree} (H : HSS K t 0) (k : ℕ)
     (_hkpos : 1 ≤ k) (hlower : t.LeafSizeGE k) (hupper : t.LeafSizeLE (2 * k))
     (hk : H.RanksLE k) : H.storage ≤ 10 * t.size * k := by

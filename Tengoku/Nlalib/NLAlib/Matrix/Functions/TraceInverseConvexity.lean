@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Trace of the inverse is strictly convex on the real positive definite
 cone. The empty-dimensional cone is included. Horn--Johnson (2013),
 Theorem 7.8.21.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=strictco.0h1v.s6.922b2825d8e7 from=translated src=- shape=d1bdd091 vocab=4a555e8d
+-/
 theorem strictConvexOn_trace_inv :
     StrictConvexOn ℝ {A : Matrix n n ℝ | A.PosDef} (fun A => A⁻¹.trace) := by
   refine ⟨convex_setOf_posDef, ?_⟩
@@ -71,7 +73,9 @@ theorem strictConvexOn_trace_inv :
 
 /-- Inverse-trace Jensen includes both endpoint weights.
 Horn--Johnson (2013), Theorem 7.8.21.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=le.5h5v.s7.dd89eb7e51b0 from=translated src=- shape=9e04b88d vocab=f5e8f72e
+-/
 theorem trace_inv_smul_add_le {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.PosDef)
     {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b = 1) :
     (a • A + b • B)⁻¹.trace ≤ a * A⁻¹.trace + b * B⁻¹.trace :=
@@ -79,7 +83,9 @@ theorem trace_inv_smul_add_le {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.Pos
 
 /-- Interior equality in inverse-trace Jensen holds exactly for equal
 positive definite matrices. Horn--Johnson (2013), Theorem 7.8.21.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=iff.5h5v.s7.481374e85380 from=translated src=- shape=60226d40 vocab=d92d210d
+-/
 theorem trace_inv_smul_add_eq_iff {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.PosDef)
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a + b = 1) :
     (a • A + b • B)⁻¹.trace = a * A⁻¹.trace + b * B⁻¹.trace ↔ A = B := by

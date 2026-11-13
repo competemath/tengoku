@@ -19,7 +19,9 @@ variable {m n A : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
   [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 omit [PartialOrder A] [StarOrderedRing A] in
-/-- Negating the native rectangular dilation leaves its actual spectrum unchanged.-/
+/-- Negating the native rectangular dilation leaves its actual spectrum unchanged.
+@isnad1 id=eq.0h4v.s8.95b6bfb47c3a from=translated src=- shape=69f0457f vocab=67b11c64
+-/
 theorem spectrum_real_neg_rectangularDilation (Y : Matrix m n A) :
     spectrum ℝ (-rectangularDilation Y) = spectrum ℝ (rectangularDilation Y) := by
   let S : CStarMatrix (m ⊕ n) (m ⊕ n) A := blockDiagonalStarAlgHom (1, -1)
@@ -42,7 +44,9 @@ theorem spectrum_real_neg_rectangularDilation (Y : Matrix m n A) :
 
 omit [PartialOrder A] [StarOrderedRing A] in
 /-- The actual dilation spectrum has the genuine sign symmetry, without
-assuming discrete eigenvalues.-/
+assuming discrete eigenvalues.
+@isnad1 id=iff.0h5v.s7.9a737f7fefc7 from=translated src=- shape=12424499 vocab=41097849
+-/
 theorem mem_spectrum_real_rectangularDilation_neg_iff (Y : Matrix m n A) (r : ℝ) :
     -r ∈ spectrum ℝ (rectangularDilation Y) ↔ r ∈ spectrum ℝ (rectangularDilation Y) := by
   have h := congrArg (fun K : Set ℝ => -r ∈ K) (spectrum_real_neg_rectangularDilation Y)

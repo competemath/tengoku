@@ -16,7 +16,9 @@ open scoped Matrix Kronecker
 namespace NLAlib
 
 /-- An orthogonal diagonalization identifies the eigenvalue multiset, including
-multiplicities and signed entries. The real spectral theorem; Kronecker helper.-/
+multiplicities and signed entries. The real spectral theorem; Kronecker helper.
+@isnad1 id=eq.3h4v.s7.dee6daee70a2 from=translated src=- shape=aab1837e vocab=b6e4be6f
+-/
 theorem multiset_eigenvalues_eq_of_orthogonal_diagonalization {n : Type*}
     [Fintype n] [DecidableEq n] {T P : Matrix n n ℝ} (hT : T.IsHermitian)
     (d : n → ℝ) (hPo : HasOrthonormalCols P) (hTd : T = P * Matrix.diagonal d * Pᵀ) :
@@ -31,7 +33,9 @@ theorem multiset_eigenvalues_eq_of_orthogonal_diagonalization {n : Type*}
   · exact Finset.prod_ne_zero_iff.mpr fun _ _ => Polynomial.X_sub_C_ne_zero _
 
 /-- Tensor products of rectangular column isometries are column isometries.
-Horn–Johnson 1991, Theorem 4.2.15; all finite index types, including empty ones.-/
+Horn–Johnson 1991, Theorem 4.2.15; all finite index types, including empty ones.
+@isnad1 id=hasortho.2h7v.s6.ecead7946c4b from=translated src=- shape=b99f4f00 vocab=d7534c6c
+-/
 theorem hasOrthonormalCols_kronecker {𝕜 m n p q : Type*} [RCLike 𝕜]
     [Fintype m] [Fintype n] [Fintype p] [Fintype q]
     [DecidableEq n] [DecidableEq q] {U : Matrix m n 𝕜} {V : Matrix p q 𝕜}
@@ -43,7 +47,9 @@ theorem hasOrthonormalCols_kronecker {𝕜 m n p q : Type*} [RCLike 𝕜]
     Matrix.one_kronecker_one]
 
 /-- Kronecker products of real symmetric matrices are symmetric.
-Horn–Johnson 1991, Section 4.2, adjoint mixed-product identity.-/
+Horn–Johnson 1991, Section 4.2, adjoint mixed-product identity.
+@isnad1 id=ishermit.2h4v.s7.93ba4bcba126 from=translated src=- shape=bbde5d44 vocab=1a7d8259
+-/
 theorem isHermitian_kronecker {m n : Type*} [Fintype m] [Fintype n]
     {A : Matrix m m ℝ} {B : Matrix n n ℝ} (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (A ⊗ₖ B).IsHermitian := by
@@ -67,7 +73,9 @@ theorem eq_eigenvectorUnitary_kronecker_mul_diagonal_mul_transpose
 /-- The Kronecker product's eigenvalues are exactly all pairwise products, as a
 multiset with algebraic multiplicities. Horn–Johnson 1991, Theorem 4.2.12.
 Empty dimensions give empty multisets; pairwise products need sorting for an ordered list.
-atlas: kronecker-spectral-/
+atlas: kronecker-spectral
+@isnad1 id=eq.2h4v.s7.8de724c2ad2c from=translated src=- shape=37daaf09 vocab=a371a7fa
+-/
 theorem multiset_eigenvalues_kronecker {m n : Type*} [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n] {A : Matrix m m ℝ} {B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
@@ -80,7 +88,9 @@ theorem multiset_eigenvalues_kronecker {m n : Type*} [Fintype m] [Fintype n]
 
 /-- The Kronecker sum's eigenvalues are exactly all pairwise sums, as a multiset.
 Horn–Johnson 1991, Theorem 4.2.12; signed symmetric spectra and empty types are included.
-atlas: kronecker-spectral-/
+atlas: kronecker-spectral
+@isnad1 id=eq.2h4v.s8.21352fa1de1e from=translated src=- shape=9fff4d29 vocab=3666ff5c
+-/
 theorem multiset_eigenvalues_kronecker_sum {m n : Type*} [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n] {A : Matrix m m ℝ} {B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :

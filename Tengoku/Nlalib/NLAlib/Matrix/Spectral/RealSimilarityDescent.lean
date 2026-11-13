@@ -24,7 +24,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n]
 
 /-- A nonsingular complex pencil `C+iD` has a nonsingular real member
 `C+tD`. Source: Horn–Johnson (2013), Lemma 1.3.28; a nonzero determinant
-polynomial has only finitely many real roots.-/
+polynomial has only finitely many real roots.
+@isnad1 id=ex.1h3v.s7.ccc60d8d3cda from=translated src=- shape=3178ccc8 vocab=26b6b6bd
+-/
 theorem exists_isUnit_add_smul_of_isUnit_complex_pencil (C D : Matrix n n ℝ)
     (hS : IsUnit (C.map Complex.ofReal + Complex.I • D.map Complex.ofReal)) :
     ∃ t : ℝ, IsUnit (C + t • D) := by
@@ -70,7 +72,9 @@ theorem exists_isUnit_add_smul_of_isUnit_complex_pencil (C D : Matrix n n ℝ)
 
 omit [DecidableEq n] in
 /-- The real and imaginary parts of a complex intertwiner each intertwine
-real matrices. Source: Horn–Johnson (2013), proof of Theorem 1.3.29.-/
+real matrices. Source: Horn–Johnson (2013), proof of Theorem 1.3.29.
+@isnad1 id=and.1h4v.s7.d40435b10282 from=translated src=- shape=96710873 vocab=cdd2c989
+-/
 theorem real_imaginary_parts_intertwine {A B : Matrix n n ℝ} {S : Matrix n n ℂ}
     (hS : A.map Complex.ofReal * S = S * B.map Complex.ofReal) :
     A * S.map Complex.re = S.map Complex.re * B ∧
@@ -88,7 +92,9 @@ theorem real_imaginary_parts_intertwine {A B : Matrix n n ℝ} {S : Matrix n n �
 /-- One nonsingular complex intertwiner for arbitrary real matrix families
 descends to one nonsingular real intertwiner. Source: Horn–Johnson (2013),
 Theorem 1.3.29; neither normality nor finiteness of the family is required.
-atlas: real-similarity-descent (partial)-/
+atlas: real-similarity-descent (partial)
+@isnad1 id=ex.2h5v.s7.e91594bce751 from=translated src=- shape=522f0435 vocab=3f721550
+-/
 theorem exists_real_isUnit_intertwiner_of_complex {A B : ι → Matrix n n ℝ}
     {S : Matrix n n ℂ} (hS : IsUnit S)
     (hAB : ∀ i, (A i).map Complex.ofReal * S = S * (B i).map Complex.ofReal) :
@@ -109,7 +115,9 @@ theorem exists_real_isUnit_intertwiner_of_complex {A B : ι → Matrix n n ℝ}
 /-- One common complex similarity between real matrix families descends
 to one common real similarity. Source: Horn–Johnson (2013), Theorem 1.3.29;
 the invertibility and family quantifiers are retained explicitly.
-atlas: real-similarity-descent (partial)-/
+atlas: real-similarity-descent (partial)
+@isnad1 id=ex.2h5v.s7.ed0ce6ad3290 from=translated src=- shape=dd26bb0f vocab=eb8a8a24
+-/
 theorem exists_real_similarity_of_complex_similarity {A B : ι → Matrix n n ℝ}
     {S : Matrix n n ℂ} (hS : IsUnit S)
     (hAB : ∀ i, (A i).map Complex.ofReal = S * (B i).map Complex.ofReal * S⁻¹) :

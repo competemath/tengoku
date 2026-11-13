@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The actual scalar border determinant is its leading determinant times the
-scalar Schur complement whenever the leading block is invertible.-/
+scalar Schur complement whenever the leading block is invertible.
+@isnad1 id=eq.1h4v.s7.4e593f68b2dd from=translated src=- shape=e5bc8b6d vocab=670003f4
+-/
 theorem det_symmetricBorder_eq_det_mul_schur (J : Matrix n n ℝ) (v : n → ℝ) (d : ℝ)
     (hJ : IsUnit J) : (symmetricBorder J v d).det = J.det * (d - quadForm J⁻¹ v) := by
   let : Invertible J := hJ.invertible
@@ -29,7 +31,9 @@ theorem det_symmetricBorder_eq_det_mul_schur (J : Matrix n n ℝ) (v : n → ℝ
   rfl
 
 /-- A single-coordinate quadratic form equals its squared amplitude times the
-corresponding diagonal matrix entry.-/
+corresponding diagonal matrix entry.
+@isnad1 id=eq.0h4v.s6.0fed0ab53619 from=translated src=- shape=397cfd4c vocab=8bdc9592
+-/
 theorem quadForm_single (A : Matrix n n ℝ) (i : n) (c : ℝ) :
     quadForm A (Pi.single i c) = c ^ 2 * A i i := by
   simp [quadForm, dotProduct, Matrix.mulVec, Pi.single_apply]
@@ -41,7 +45,9 @@ variable {q : ℕ}
 characteristic-polynomial recurrence. No tridiagonal shape is needed; the off-spectrum
 Schur calculation is extended to a polynomial identity at every point.
 Source: focused mathematical reroutes, Section 3 (BL6), after (BL10).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.0h4v.s9.e9de455b6713 from=translated src=- shape=35e43a3e vocab=6dd00f95
+-/
 theorem charpoly_symmetricBorder_single_last
     (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) (b d : ℝ) :
     (symmetricBorder J (Pi.single (Fin.last q) b) d).charpoly =

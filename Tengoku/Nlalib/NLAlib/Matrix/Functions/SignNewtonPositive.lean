@@ -26,7 +26,9 @@ def signNewtonIterate (A : Matrix n n ℂ) : ℕ → Matrix n n ℂ
   | k+1 => (2 : ℂ)⁻¹ • (signNewtonIterate A k+(signNewtonIterate A k)⁻¹)
 
 /-- A convergent-power Cayley coordinate gives the exact actual Newton
-iterate, with a doubly exponential power.-/
+iterate, with a doubly exponential power.
+@isnad1 id=eq.1h3v.s7.9ed76bc781dd from=translated src=- shape=b3dd74a1 vocab=dedcdaa9
+-/
 theorem signNewtonIterate_inverseCayley {G : Matrix n n ℂ}
     (hG : Tendsto (fun k : ℕ => G^k) atTop (𝓝 0)) (k : ℕ) :
     signNewtonIterate (inverseCayley G) k = inverseCayley (G^(2^k)) := by
@@ -38,7 +40,9 @@ theorem signNewtonIterate_inverseCayley {G : Matrix n n ℂ}
       ← pow_mul, pow_succ]
 
 /-- Inverse Cayley values converge to the identity as their coordinates
-converge to zero.-/
+converge to zero.
+@isnad1 id=tendsto.1h4v.s6.4d8b79198c62 from=translated src=- shape=7cce2053 vocab=015c72e9
+-/
 theorem tendsto_inverseCayley_one {ι : Type*} {l : Filter ι} {G : ι → Matrix n n ℂ}
     (hG : Tendsto G l (𝓝 0)) : Tendsto (fun k => inverseCayley (G k)) l (𝓝 1) := by
   have hc : ContinuousAt (Ring.inverse : Matrix n n ℂ → Matrix n n ℂ) 1 :=
@@ -57,7 +61,9 @@ theorem tendsto_inverseCayley_one {ι : Type*} {l : Filter ι} {G : ι → Matri
   simpa only [inverseCayley, mul_one] using hd.mul hadd
 
 /-- A convergent-power Cayley coordinate yields convergence of the actual
-Newton recursion to the identity.-/
+Newton recursion to the identity.
+@isnad1 id=tendsto.1h2v.s7.e1eba7a4b08f from=translated src=- shape=335eba7a vocab=dedcdaa9
+-/
 theorem tendsto_signNewtonIterate_inverseCayley {G : Matrix n n ℂ}
     (hG : Tendsto (fun k : ℕ => G^k) atTop (𝓝 0)) :
     Tendsto (signNewtonIterate (inverseCayley G)) atTop (𝓝 1) := by
@@ -69,7 +75,9 @@ theorem tendsto_signNewtonIterate_inverseCayley {G : Matrix n n ℂ}
 /-- The positive-half-plane Cayley transform.-/
 def positiveCayley (A : Matrix n n ℂ) : Matrix n n ℂ := (A-1)*(A+1)⁻¹
 
-/-- Negating a positive-stable matrix is Hurwitz.-/
+/-- Negating a positive-stable matrix is Hurwitz.
+@isnad1 id=ishurwit.1h2v.s5.fd156c2f7258 from=translated src=- shape=37861a17 vocab=2b732744
+-/
 theorem IsPositiveStable.isHurwitz_neg {A : Matrix n n ℂ} (hA : IsPositiveStable A) :
     IsHurwitz (-A) := by
   intro z hz
@@ -79,14 +87,18 @@ theorem IsPositiveStable.isHurwitz_neg {A : Matrix n n ℂ} (hA : IsPositiveStab
   have h := hA (-z) hz'
   simpa only [Complex.neg_re, neg_pos] using h
 
-/-- The positive Cayley denominator is nonsingular.-/
+/-- The positive Cayley denominator is nonsingular.
+@isnad1 id=isunit.1h2v.s6.a4afbd04e6d8 from=translated src=- shape=a3c8e386 vocab=4894bca0
+-/
 theorem IsPositiveStable.isUnit_add_one {A : Matrix n n ℂ} (hA : IsPositiveStable A) :
     IsUnit (A+1) := by
   have h := (hA.isHurwitz_neg.isUnit_sub_pos_smul_one 1 zero_lt_one).neg
   simpa [sub_neg_eq_add, add_comm] using h
 
 /-- The positive Cayley coordinate has spectral radius below one,
-without a normality hypothesis.-/
+without a normality hypothesis.
+@isnad1 id=lt.1h2v.s6.b6c2c57963db from=translated src=- shape=9da1834b vocab=d163295f
+-/
 theorem IsPositiveStable.spectralRadius_positiveCayley_lt_one {A : Matrix n n ℂ}
     (hA : IsPositiveStable A) : spectralRadius ℂ (positiveCayley A)<1 := by
   have hd := (Matrix.isUnit_iff_isUnit_det _).mp hA.isUnit_add_one
@@ -100,7 +112,9 @@ theorem IsPositiveStable.spectralRadius_positiveCayley_lt_one {A : Matrix n n �
   rw [← he]
   exact hA.isHurwitz_neg.spectralRadius_cayleyTransform_lt_one 1 zero_lt_one
 
-/-- The inverse Cayley formula reconstructs every positive-stable matrix.-/
+/-- The inverse Cayley formula reconstructs every positive-stable matrix.
+@isnad1 id=eq.1h2v.s5.ba8caa559ecb from=translated src=- shape=7fe57c60 vocab=10151355
+-/
 theorem IsPositiveStable.inverseCayley_positiveCayley {A : Matrix n n ℂ}
     (hA : IsPositiveStable A) : inverseCayley (positiveCayley A)=A := by
   let R := bicommutantAlgebra A
@@ -115,7 +129,9 @@ theorem IsPositiveStable.inverseCayley_positiveCayley {A : Matrix n n ℂ}
     Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).mp hu), Matrix.one_mul]
 
 /-- Positive-stable Newton iterates have the exact Cayley formula and
-are nonsingular at every step.-/
+are nonsingular at every step.
+@isnad1 id=and.1h3v.s6.525225cd4cf7 from=translated src=- shape=91c8c85f vocab=16d68e6b
+-/
 theorem IsPositiveStable.signNewtonIterate_eq_and_isUnit {A : Matrix n n ℂ}
     (hA : IsPositiveStable A) (k : ℕ) :
     signNewtonIterate A k=inverseCayley ((positiveCayley A)^(2^k)) ∧
@@ -129,7 +145,9 @@ theorem IsPositiveStable.signNewtonIterate_eq_and_isUnit {A : Matrix n n ℂ}
   exact isUnit_inverseCayley hm hp
 
 /-- Newton iteration converges to the identity for every positive-stable
-matrix, including defective and nonnormal matrices.-/
+matrix, including defective and nonnormal matrices.
+@isnad1 id=tendsto.1h2v.s6.bc092372b804 from=translated src=- shape=9f4d3345 vocab=61bdbd46
+-/
 theorem IsPositiveStable.tendsto_signNewtonIterate {A : Matrix n n ℂ}
     (hA : IsPositiveStable A) : Tendsto (signNewtonIterate A) atTop (𝓝 1) := by
   have h := tendsto_signNewtonIterate_inverseCayley

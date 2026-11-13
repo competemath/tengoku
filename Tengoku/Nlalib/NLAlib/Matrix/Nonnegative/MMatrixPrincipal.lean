@@ -16,7 +16,9 @@ namespace Matrix
 variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
 
 omit [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ] in
-/-- Principal reindexing preserves the Z-matrix sign pattern.-/
+/-- Principal reindexing preserves the Z-matrix sign pattern.
+@isnad1 id=iszmatri.2h4v.s5.e7e3cfc7e674 from=translated src=- shape=08d91e31 vocab=d505ca73
+-/
 theorem IsZMatrix.submatrix {A : Matrix ι ι ℝ} (hA : A.IsZMatrix)
     (e : κ → ι) (he : Function.Injective e) : (A.submatrix e e).IsZMatrix := by
   intro i j hij
@@ -24,7 +26,9 @@ theorem IsZMatrix.submatrix {A : Matrix ι ι ℝ} (hA : A.IsZMatrix)
 
 omit [DecidableEq κ] in
 /-- A positive-vector certificate restricts to every principal submatrix.
-The omitted nonpositive off-diagonal entries can only increase its image.-/
+The omitted nonpositive off-diagonal entries can only increase its image.
+@isnad1 id=lt.4h6v.s6.378da15c5a12 from=translated src=- shape=8bca152e vocab=d6f75daf
+-/
 theorem IsZMatrix.positive_certificate_submatrix {A : Matrix ι ι ℝ} (hA : A.IsZMatrix)
     {x : ι → ℝ} (hx : ∀ i, 0 < x i) (hAx : ∀ i, 0 < (A *ᵥ x) i)
     (e : κ → ι) (he : Function.Injective e) :
@@ -53,7 +57,9 @@ theorem IsZMatrix.positive_certificate_submatrix {A : Matrix ι ι ℝ} (hA : A.
 /-- Every principal submatrix of a nonsingular M-matrix is a nonsingular M-matrix.
 The result includes arbitrary injective coordinate selections and empty selections.
 Source: Berman–Plemmons, Chapter 6.
-atlas: m-matrix-schur-complement (partial)-/
+atlas: m-matrix-schur-complement (partial)
+@isnad1 id=isnonsin.2h4v.s5.853914977517 from=translated src=- shape=f7fc9f87 vocab=44e3cd47
+-/
 theorem IsNonsingularMMatrix.submatrix {A : Matrix ι ι ℝ} (hA : A.IsNonsingularMMatrix)
     (e : κ → ι) (he : Function.Injective e) :
     (A.submatrix e e).IsNonsingularMMatrix := by

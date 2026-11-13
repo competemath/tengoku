@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- Failure of the lower Loewner bound is detected by a strict largest
 eigenvalue deviation of the identity defect. No positivity assumption or
-restriction on the real threshold is necessary.-/
+restriction on the real threshold is necessary.
+@isnad1 id=lt.2h3v.s7.afa3a7a6e7b7 from=translated src=- shape=c3fb6f42 vocab=22ca5b0b
+-/
 theorem lt_lambdaMax_one_sub_of_not_smul_one_le
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {ε : ℝ}
     (hfail : ¬ (1 - ε) • (1 : Matrix n n ℂ) ≤ A) :
@@ -40,7 +42,9 @@ theorem lt_lambdaMax_one_sub_of_not_smul_one_le
 open scoped Matrix.Norms.L2Operator in
 /-- Failure of a real symmetric lower Loewner bound is detected by the
 largest eigenvalue of its complexified identity defect. This is the event
-bridge used for relative sample-covariance lower bounds.-/
+bridge used for relative sample-covariance lower bounds.
+@isnad1 id=lt.2h3v.s9.050577d529f8 from=translated src=- shape=a19bc161 vocab=133b28d2
+-/
 theorem lt_lambdaMax_complexification_one_sub_of_not_smul_one_le
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {ε : ℝ}
     (hfail : ¬ (1 - ε) • (1 : Matrix n n ℝ) ≤ A) :
@@ -58,7 +62,9 @@ theorem lt_lambdaMax_complexification_one_sub_of_not_smul_one_le
 open scoped Matrix.Norms.L2Operator in
 /-- A fixed lower Loewner bound defines a closed set of real matrices.
 The order reflection by complexification gives this fact without requiring
-a separate real-matrix closed-order instance.-/
+a separate real-matrix closed-order instance.
+@isnad1 id=isclosed.0h2v.s5.af1a247da6c0 from=translated src=- shape=dc0b5e3f vocab=6f3147fb
+-/
 theorem isClosed_setOf_le_realMatrix (A : Matrix n n ℝ) :
     IsClosed {B : Matrix n n ℝ | A ≤ B} := by
   have hc : IsClosed {B : Matrix n n ℂ |

@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A real matrix whose complex spectrum is real has a complete real
 characteristic-root list with multiplicity. Source: Horn–Johnson (2013),
-Theorem 2.3.1; repeated roots and empty shapes are allowed.-/
+Theorem 2.3.1; repeated roots and empty shapes are allowed.
+@isnad1 id=ex.1h2v.s7.f1f4d90f582b from=translated src=- shape=f15a0630 vocab=2cef4e74
+-/
 theorem exists_real_charpoly_factors_of_complex_spectrum_real
     (A : Matrix n n ℝ)
     (hreal : ∀ μ ∈ spectrum ℂ (A.map Complex.ofReal), μ.im = 0) :
@@ -53,7 +55,9 @@ theorem exists_real_charpoly_factors_of_complex_spectrum_real
 /-- A real matrix with real complex spectrum has a real orthogonal upper
 triangular Schur form. Source: Horn–Johnson (2013), Theorem 2.3.1;
 the diagonal factorization records every characteristic root with multiplicity.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=ex.1h3v.s8.ca07caa68618 from=translated src=- shape=dd17d1a5 vocab=96444ce3
+-/
 theorem exists_orthogonal_triangularization_of_complex_spectrum_real
     (A : Matrix n n ℝ) (e : Fin (Fintype.card n) ≃ n)
     (hreal : ∀ μ ∈ spectrum ℂ (A.map Complex.ofReal), μ.im = 0) :
@@ -72,7 +76,9 @@ theorem exists_orthogonal_triangularization_of_complex_spectrum_real
 /-- When a real matrix has real complex spectrum, a real similarity can
 make all strict upper entries smaller than any positive epsilon.
 Horn–Johnson (2013), §2.3; this retains the real scalar field of the similarity.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=ex.2h4v.s8.604d62c5f252 from=translated src=- shape=ab948c7b vocab=19dc116f
+-/
 theorem exists_real_similarity_upper_triangular_small_entries
     (A : Matrix n n ℝ) (e : Fin (Fintype.card n) ≃ n)
     (hreal : ∀ μ ∈ spectrum ℂ (A.map Complex.ofReal), μ.im = 0)

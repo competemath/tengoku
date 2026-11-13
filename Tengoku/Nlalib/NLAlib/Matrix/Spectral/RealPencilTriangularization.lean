@@ -21,7 +21,9 @@ namespace NLAlib
 /-- Every real square pencil has two orthonormal bases in which the first
 factor is upper quasitriangular and the second is upper triangular.
 Horn–Johnson (2013), Theorem 2.6.2; singular and identically singular pencils,
-common zero images and dimension zero are included.-/
+common zero images and dimension zero are included.
+@isnad1 id=ex.2h5v.s11.2b157fd7c730 from=translated src=- shape=8bffeb98 vocab=f3a89ef7
+-/
 theorem exists_orthonormalBases_real_pencil_upper_quasi_triangular
     {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]

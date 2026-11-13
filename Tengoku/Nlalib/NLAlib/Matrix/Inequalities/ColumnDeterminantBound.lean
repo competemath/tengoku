@@ -56,13 +56,17 @@ private theorem abs_det_le_prod_column_norm_and_eq_iff_aux (B : Matrix n n ℝ) 
       simp
 
 /-- **Hadamard's inequality.** `|det B| ≤ ∏ᵢ ‖bᵢ‖` (Euclidean column lengths). Horn–Johnson 2013, Corollary 7.8.3.
-atlas: hadamard-fischer-inequalities (partial)-/
+atlas: hadamard-fischer-inequalities (partial)
+@isnad1 id=le.0h2v.s6.ac20ff299be6 from=translated src=- shape=8e3d930c vocab=0de11386
+-/
 theorem abs_det_le_prod_column_norm (B : Matrix n n ℝ) :
     |B.det| ≤ ∏ i, ‖(WithLp.toLp 2 (B.col i) : EuclideanSpace ℝ n)‖ :=
   (abs_det_le_prod_column_norm_and_eq_iff_aux B).1
 
 /-- Equality in Hadamard's inequality holds exactly for mutually orthogonal columns or a zero column. Horn–Johnson 2013, Corollary 7.8.3.
-atlas: hadamard-fischer-inequalities (partial)-/
+atlas: hadamard-fischer-inequalities (partial)
+@isnad1 id=iff.0h2v.s7.6310311bdd2a from=translated src=- shape=c1df720d vocab=e23ed950
+-/
 theorem abs_det_eq_prod_column_norm_iff (B : Matrix n n ℝ) :
     |B.det| = (∏ i, ‖(WithLp.toLp 2 (B.col i) : EuclideanSpace ℝ n)‖) ↔
       B.HasOrthogonalCols ∨ ∃ i, B.col i = 0 :=

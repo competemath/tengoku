@@ -54,7 +54,9 @@ private theorem exists_embedding_posDef_shift_trace_le_aux
 
 /-- An inverse-trace budget supplies a principal submatrix with a quantitative
 strict lower barrier. The lower bound gains one decrement for each deleted
-coordinate and one final decrement from the retained inverse-trace budget.-/
+coordinate and one final decrement from the retained inverse-trace budget.
+@isnad1 id=ex.4h4v.s8.4da7089e2e18 from=translated src=- shape=04cc1442 vocab=dc2ade13
+-/
 theorem exists_embedding_posDef_sub_smul_one_of_trace_inv_le
     {r k : ℕ} (G : Matrix (Fin r) (Fin r) ℝ) (hG : G.PosDef)
     (hk : k ≤ r) {T : ℝ} (hT : 0 < T) (htrace : G⁻¹.trace ≤ T) :

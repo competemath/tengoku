@@ -22,7 +22,9 @@ namespace NLAlib
 variable {m n : Type*} [Fintype m] [Fintype n]
 
 /-- The entry power sum is bounded by the geometric interpolation of the
-row-variance and row-maximum power sums, for every real exponent at least two.-/
+row-variance and row-maximum power sums, for every real exponent at least two.
+@isnad1 id=le.2h4v.s8.1425aab784ee from=translated src=- shape=562b439c vocab=64eef355
+-/
 theorem sum_entry_rpow_le_row_profiles
     (b : Matrix m n ℝ) (hb : ∀ i j, 0 ≤ b i j) {p : ℝ} (hp : 2 ≤ p) :
     (∑ i, ∑ j, b i j ^ p) ≤
@@ -69,7 +71,9 @@ theorem sum_entry_rpow_le_row_profiles
   exact hfirst.trans hholder
 
 /-- The rooted entry profile is bounded by the geometric interpolation of
-the rooted row-variance and row-maximum profiles.-/
+the rooted row-variance and row-maximum profiles.
+@isnad1 id=le.2h4v.s8.bfc4d48b8034 from=translated src=- shape=cbfb5998 vocab=131332fb
+-/
 theorem sum_entry_rpow_root_le_row_profiles
     (b : Matrix m n ℝ) (hb : ∀ i j, 0 ≤ b i j) {p : ℝ} (hp : 2 ≤ p) :
     (∑ i, ∑ j, b i j ^ p) ^ p⁻¹ ≤
@@ -88,7 +92,9 @@ theorem sum_entry_rpow_root_le_row_profiles
 
 /-- Uniform conversion of the entry profile into the exact two profiles in
 the Gaussian Schatten theorem. The constant is independent of the exponent
-and of both matrix dimensions.-/
+and of both matrix dimensions.
+@isnad1 id=le.2h4v.s8.be26827111e3 from=translated src=- shape=cb73a6d0 vocab=f0153f4f
+-/
 theorem sqrt_mul_sum_entry_rpow_root_le_two_row_profiles
     (b : Matrix m n ℝ) (hb : ∀ i j, 0 ≤ b i j) {p : ℝ} (hp : 2 ≤ p) :
     Real.sqrt p * (∑ i, ∑ j, b i j ^ p) ^ p⁻¹ ≤

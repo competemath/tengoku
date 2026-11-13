@@ -30,7 +30,9 @@ Horn–Johnson (2013) [`hj13`], §4.5. Nonzero leading minors give `LU` of `A �
 (`luSucceeds_iff_forall_leadingMinor_ne_zero`), symmetric so
 `A − xI = L D Lᵀ` with `d_{k+1} = p_{k+1}/p_k` (`IsLU.leadingMinor_eq_prod`); then
 `card_eigenvalues_lt_eq_card_neg_of_eq_mul_diagonal_mul` and `p_{k+1}/p_k < 0 ↔ p_k p_{k+1} < 0`.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.2h3v.s9.4a023e593571 from=translated src=- shape=37e65906 vocab=b36c1091
+-/
 theorem card_eigenvalues_lt_eq_card_sign_changes {m : ℕ} {A : Matrix (Fin m) (Fin m) ℝ}
     (hA : A.IsHermitian) {x : ℝ}
     (hp : ∀ k, 1 ≤ k → k ≤ m → leadingMinor (A - x • (1 : Matrix (Fin m) (Fin m) ℝ)) k ≠ 0) :

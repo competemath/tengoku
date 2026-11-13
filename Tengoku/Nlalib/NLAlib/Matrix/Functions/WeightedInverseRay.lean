@@ -43,7 +43,9 @@ private theorem invSquare_scalarShift_le (Q : Matrix n n ℂ) (hQ : Q.PosDef)
 /-- Along a positive definite direction, the actual weighted inverse square
 decreases in Loewner order. The direction need not commute with the base.
 Source: Montanari--Saeed (2026), Lemma 9, equations (149)--(151).
-atlas: block-wishart-variational-edges (partial)-/
+atlas: block-wishart-variational-edges (partial)
+@isnad1 id=le.3h4v.s8.d91d850db4d0 from=translated src=- shape=0d89f307 vocab=684536f2
+-/
 theorem inv_mul_weight_inv_add_smul_le (A B : Matrix n n ℂ)
     (hA : A.PosDef) (hB : B.PosDef) {t : ℝ} (ht : 0 ≤ t) :
     (A+t•B)⁻¹*B*(A+t•B)⁻¹ ≤ A⁻¹*B*A⁻¹ := by

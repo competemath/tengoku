@@ -19,7 +19,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 open scoped Matrix.Norms.L2Operator in
 omit [Nonempty ι] in
 /-- Convergence of normalized powers to a strictly positive matrix forces a
-strictly positive finite power.-/
+strictly positive finite power.
+@isnad1 id=isprimit.4h4v.s7.c70c3d9024ad from=translated src=- shape=16e12f0d vocab=b47b4486
+-/
 theorem isPrimitive_of_tendsto_normalized_pow_pos {A P : Matrix ι ι ℝ} {r : ℝ}
     (hA : ∀ i j, 0 ≤ A i j) (hr : 0 < r) (hP : ∀ i j, 0 < P i j)
     (hlim : Tendsto (fun k : ℕ => (r⁻¹ • A) ^ k) atTop (𝓝 P)) : A.IsPrimitive := by
@@ -37,7 +39,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- For a nonzero irreducible nonnegative matrix, primitivity is equivalent to
 the Perron root being the only peripheral spectral point.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=iff.2h2v.s7.5789c91bf128 from=translated src=- shape=31384cd8 vocab=1ed12999
+-/
 theorem IsIrreducible.isPrimitive_iff_unique_peripheral {A : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     A.IsPrimitive ↔ ∀ μ ∈ spectrum ℂ (A.map Complex.ofReal),
@@ -54,7 +58,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- For an irreducible nonzero nonnegative matrix, normalized matrix powers
 converge to some matrix precisely when the matrix is primitive.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=iff.2h2v.s7.f65dd2291c8f from=translated src=- shape=e4007754 vocab=e51c0458
+-/
 theorem IsIrreducible.isPrimitive_iff_exists_tendsto_normalized_pow
     {A : Matrix ι ι ℝ} (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     A.IsPrimitive ↔ ∃ L : Matrix ι ι ℝ,
@@ -98,7 +104,9 @@ open scoped Matrix.Norms.L2Operator in
 rank-one normalized power limit, and every admissible geometric convergence rate.
 All input hypotheses concern the matrix itself.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=ex.2h2v.s9.fc1f0528519d from=translated src=- shape=e50010e0 vocab=7544d0c0
+-/
 theorem IsPrimitive.exists_perron_power_limit_and_rate {A : Matrix ι ι ℝ}
     (hA : A.IsPrimitive) (hAne : A ≠ 0) :
     ∃ p q : ι → ℝ, (∀ i, 0 < p i) ∧ (∀ i, 0 < q i) ∧

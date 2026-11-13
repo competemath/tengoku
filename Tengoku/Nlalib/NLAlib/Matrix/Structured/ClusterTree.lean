@@ -62,7 +62,9 @@ def LeafSizeGE (b : ℕ) : ClusterTree → Prop
   | .leaf n => b ≤ n
   | .node l r => l.LeafSizeGE b ∧ r.LeafSizeGE b
 
-/-- A leaf-size lower bound controls the number of leaves.-/
+/-- A leaf-size lower bound controls the number of leaves.
+@isnad1 id=le.1h2v.s4.a7b6aa4af25f from=translated src=- shape=baa8ab7b vocab=a5bdc968
+-/
 theorem mul_leafCount_le_size (t : ClusterTree) (b : ℕ) (h : t.LeafSizeGE b) :
     b * t.leafCount ≤ t.size := by
   induction t with
@@ -70,12 +72,17 @@ theorem mul_leafCount_le_size (t : ClusterTree) (b : ℕ) (h : t.LeafSizeGE b) :
   | node l r hl hr =>
     simpa only [leafCount, size, Nat.mul_add] using Nat.add_le_add (hl h.1) (hr h.2)
 
-/-- A finite full binary tree always has a leaf, even when its index type is empty.-/
+/-- A finite full binary tree always has a leaf, even when its index type is empty.
+@isnad1 id=lt.0h1v.s3.ff4164ed979b from=translated src=- shape=b9369acb vocab=912be7d5
+-/
 theorem leafCount_pos (t : ClusterTree) : 0 < t.leafCount := by
   induction t with
   | leaf n => exact Nat.zero_lt_one
   | node l r hl hr => exact Nat.add_pos_left hl _
 
+/--
+@isnad1 id=eq.0h1v.s3.1ea5137bf23b from=translated src=- shape=7718e021 vocab=829f2623
+-/
 @[simp] theorem card_index (t : ClusterTree) : Fintype.card t.Index = t.size := by
   induction t with
   | leaf n => exact Fintype.card_fin n

@@ -37,7 +37,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Every unit-modulus spectral value of a matrix with convergent powers is one.
 Source: Horn–Johnson, §5.6.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=eq.3h4v.s7.8c1b752704f9 from=translated src=- shape=0789d252 vocab=5177e6ef
+-/
 theorem eigenvalue_eq_one_of_tendsto_pow {T L : Matrix ι ι ℂ}
     (hlim : Tendsto (fun k : ℕ => T ^ k) atTop (𝓝 L))
     {μ : ℂ} (hμ : μ ∈ spectrum ℂ T) (hμnorm : ‖μ‖ = 1) : μ = 1 := by

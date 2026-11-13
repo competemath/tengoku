@@ -21,7 +21,9 @@ namespace NLAlib
 
 variable {q : ℕ}
 
-/-- The last diagonal cofactor is the determinant of the leading block.-/
+/-- The last diagonal cofactor is the determinant of the leading block.
+@isnad1 id=eq.0h2v.s7.3ef4b84e414e from=translated src=- shape=e2c2c5b5 vocab=efeccebe
+-/
 theorem adjugate_last_last_eq_det_leading (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) :
     J.adjugate (Fin.last q) (Fin.last q) = (J.submatrix Fin.castSucc Fin.castSucc).det := by
   rw [Matrix.adjugate_apply, Matrix.det_succ_row _ (Fin.last q), sum_eq_single (Fin.last q)]
@@ -38,7 +40,9 @@ theorem adjugate_last_last_eq_det_leading (J : Matrix (Fin (q + 1)) (Fin (q + 1)
   · simp
 
 /-- The last inverse entry is the scalar cofactor ratio. The equality remains total
-at a singular matrix, where both the nonsingular inverse and division use zero.-/
+at a singular matrix, where both the nonsingular inverse and division use zero.
+@isnad1 id=eq.0h2v.s7.1154b6eeb3f5 from=translated src=- shape=aa041d94 vocab=a4bdf1de
+-/
 theorem inv_last_last_eq_det_leading_div_det (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) :
     J⁻¹ (Fin.last q) (Fin.last q) = (J.submatrix Fin.castSucc Fin.castSucc).det / J.det := by
   rw [Matrix.inv_def, Matrix.smul_apply, smul_eq_mul, Ring.inverse_eq_inv,
@@ -47,7 +51,9 @@ theorem inv_last_last_eq_det_leading_div_det (J : Matrix (Fin (q + 1)) (Fin (q +
 
 /-- The actual last-coordinate resolvent entry is the leading/full monic
 characteristic-polynomial ratio. Source: focused reroutes, Section 3 (BL6).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.0h3v.s9.8d3b241ca103 from=translated src=- shape=cb8b42f7 vocab=ac2bcda5
+-/
 theorem resolvent_last_last_eq_charpoly_leading_div_charpoly
     (J : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) (z : ℝ) :
     (z • 1 - J)⁻¹ (Fin.last q) (Fin.last q) =

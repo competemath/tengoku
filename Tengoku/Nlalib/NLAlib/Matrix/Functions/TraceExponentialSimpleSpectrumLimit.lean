@@ -29,7 +29,9 @@ stays in the limiting direction's exact spectral interval; repeated eigenvalues,
 scalar directions, and empty dimension are all included. The simple diagonal
 case is the explicit remaining premise of this reduction theorem.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h3v.s8.0fb7d333d707 from=translated src=- shape=f03d43be vocab=7838d1a8
+-/
 theorem exists_isCompactExpRepresentation_traceExp_of_diagonal_simple
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     (hsimple : ∀ (C : Matrix n n ℂ), C.IsHermitian →

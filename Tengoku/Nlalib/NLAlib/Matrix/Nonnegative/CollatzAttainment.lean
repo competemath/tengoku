@@ -18,7 +18,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 /-- In the irreducible nonzero case, one positive unit-sum vector attains both
 Collatz extrema, and every ratio equals the complex spectral radius.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=ex.2h2v.s8.1dc2ea180d48 from=translated src=- shape=7114b46a vocab=db089729
+-/
 theorem IsIrreducible.exists_attaining_collatz_ratios {A : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAne : A ≠ 0) :
     ∃ p : ι → ℝ, (∀ i, 0 < p i) ∧ (∑ i, p i = 1) ∧

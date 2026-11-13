@@ -18,7 +18,9 @@ namespace NLAlib
 variable {E m n : Type*} [TopologicalSpace E] [Fintype m] [Fintype n]
   {A : E → Matrix m n ℝ} {x : E}
 
-/-- Entrywise continuous real matrix families have continuous Frobenius norm.-/
+/-- Entrywise continuous real matrix families have continuous Frobenius norm.
+@isnad1 id=continuo.1h5v.s6.31fe4393b6e5 from=translated src=- shape=b1e7c451 vocab=6a469341
+-/
 theorem continuousAt_frobNorm_of_entrywise
     (hA : ∀ i j, ContinuousAt (fun y => A y i j) x) :
     ContinuousAt (fun y => frobNorm (A y)) x := by
@@ -31,13 +33,17 @@ theorem continuousAt_frobNorm_of_entrywise
   exact (hA i j).norm.pow 2
 
 /-- Entrywise continuity gives continuity of the Frobenius distance to the
-matrix at the base point.-/
+matrix at the base point.
+@isnad1 id=continuo.1h5v.s6.b7e926620903 from=translated src=- shape=2d60026e vocab=b42f7b17
+-/
 theorem continuousAt_frobNorm_sub_of_entrywise
     (hA : ∀ i j, ContinuousAt (fun y => A y i j) x) :
     ContinuousAt (fun y => frobNorm (A y - A x)) x :=
   continuousAt_frobNorm_of_entrywise (fun i j => (hA i j).sub continuousAt_const)
 
-/-- Entrywise continuous real matrix families have continuous spectral norm.-/
+/-- Entrywise continuous real matrix families have continuous spectral norm.
+@isnad1 id=continuo.1h5v.s6.c330a11fb2b1 from=translated src=- shape=c1303ae7 vocab=c259b738
+-/
 theorem continuousAt_specNorm_of_entrywise [DecidableEq n]
     (hA : ∀ i j, ContinuousAt (fun y => A y i j) x) :
     ContinuousAt (fun y => specNorm (A y)) x := by

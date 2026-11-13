@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- The locally unique scalar Schur branch is continuous throughout a
 neighborhood and has the expected derivative at zero.
-Horn–Johnson (2013), Theorem 6.3.12.-/
+Horn–Johnson (2013), Theorem 6.3.12.
+@isnad1 id=ex.1h7v.s8.85362a4db364 from=translated src=- shape=fb92756f vocab=c97616ee
+-/
 theorem exists_continuous_simpleEigenvalueSchurFunction_branch (μ a : ℂ)
     (B F : Matrix n n ℂ) (b c : n → ℂ) (hμ : μ ∉ spectrum ℂ B) :
     ∃ ψ : ℂ → ℂ, ψ 0 = 0 ∧ ContinuousAt ψ 0 ∧ HasDerivAt ψ a 0 ∧

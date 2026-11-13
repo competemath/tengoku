@@ -17,7 +17,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Products over the matrix-labelled and sorted eigenvalue lists agree.
-Mathlib's spectral ordering convention; supports Horn's product inequality.-/
+Mathlib's spectral ordering convention; supports Horn's product inequality.
+@isnad1 id=eq.1h3v.s6.a5cc86f963e4 from=translated src=- shape=9d348712 vocab=363332fe
+-/
 theorem prod_eigenvalues_eq_prod_sorted {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (f : ℝ → ℝ) :
     (∏ i : n, f (hA.eigenvalues i)) = ∏ i : Fin (Fintype.card n), f (hA.eigenvalues₀ i) := by
@@ -27,7 +29,9 @@ theorem prod_eigenvalues_eq_prod_sorted {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The determinant of a positive semidefinite orthogonal compression is at most
 the product of the corresponding top eigenvalues. Poincaré separation,
-Horn–Johnson 2013, Corollary 4.3.37. The empty compression has determinant `1`.-/
+Horn–Johnson 2013, Corollary 4.3.37. The empty compression has determinant `1`.
+@isnad1 id=le.2h4v.s7.871e1149020a from=translated src=- shape=51afb780 vocab=775541dc
+-/
 theorem det_transpose_mul_mul_le_prod_eigenvalues₀ {n r : Type*}
     [Fintype n] [Fintype r] [DecidableEq n] [DecidableEq r]
     {G : Matrix n n ℝ} (hG : G.PosSemidef) {Q : Matrix n r ℝ}

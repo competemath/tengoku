@@ -21,7 +21,9 @@ namespace NLAlib.RestrictedInvertibility
 
 /-- Exact inverse-trace identity after deleting one principal coordinate.
 The sole extra denominator is the corresponding diagonal entry of the full
-inverse. The result also includes deletion from a one-by-one matrix.-/
+inverse. The result also includes deletion from a one-by-one matrix.
+@isnad1 id=eq.2h3v.s9.443c31fe1959 from=translated src=- shape=18f5aa72 vocab=b7d4474a
+-/
 theorem trace_inv_submatrix_succAbove_eq {q : ℕ}
     (M : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ) (hM : IsUnit M)
     (j : Fin (q + 1)) (hjj : M⁻¹ j j ≠ 0) :
@@ -81,7 +83,9 @@ theorem trace_inv_submatrix_succAbove_eq {q : ℕ}
 
 /-- Moving a positive definite lower barrier by `δ`, then deleting a suitable
 coordinate, preserves a fixed inverse-trace budget `T` whenever `2δT ≤ 1`.
-All principal submatrices of the shifted matrix are positive definite.-/
+All principal submatrices of the shifted matrix are positive definite.
+@isnad1 id=ex.5h4v.s10.79aa01e6d159 from=translated src=- shape=52d59f6c vocab=d17fd6a3
+-/
 theorem exists_principal_deletion_posDef_and_trace_inv_le {q : ℕ}
     {M : Matrix (Fin (q + 1)) (Fin (q + 1)) ℝ} (hM : M.PosDef)
     {δ T : ℝ} (hδ : 0 < δ) (_hT : 0 < T) (htrace : M⁻¹.trace ≤ T)

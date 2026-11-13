@@ -19,7 +19,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The quadratic trace of a Hermitian difference expands into three
-polynomial traces, by cyclicity of the trace; supports `noncommutative-khintchine`.-/
+polynomial traces, by cyclicity of the trace; supports `noncommutative-khintchine`.
+@isnad1 id=eq.0h4v.s8.01e7aada1642 from=translated src=- shape=2ebb34e3 vocab=8df86d83
+-/
 theorem re_trace_sub_sq_mul_pow (H K : Matrix ι ι ℂ) (m : ℕ) :
     ((H - K) ^ 2 * H ^ m).trace.re =
       (H ^ (m + 2)).trace.re + (H ^ m * K ^ 2).trace.re -
@@ -42,7 +44,9 @@ theorem re_trace_sub_sq_mul_pow (H K : Matrix ι ι ℂ) (m : ℕ) :
 /-- **Polynomial trace mean-value inequality.** At every odd power `m+1`,
 where `m` is even, the Hermitian difference is bounded by the average of
 the two endpoint quadratic traces; the matrices need not commute. Tropp 2015, §4.8;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=le.3h4v.s8.9889d86e96b7 from=translated src=- shape=bf11eaa3 vocab=4bfaecd6
+-/
 theorem re_trace_sub_mul_sub_pow_le
     (H K : Matrix ι ι ℂ) (hH : H.IsHermitian) (hK : K.IsHermitian)
     {m : ℕ} (hm : Even m) :

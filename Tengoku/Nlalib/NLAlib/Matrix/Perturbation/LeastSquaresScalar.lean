@@ -18,7 +18,9 @@ noncomputable section
 namespace NLAlib
 
 /-- The residual estimate implies Higham's advertised relative
-least-squares forward coefficient; Higham, Theorem 20.1.-/
+least-squares forward coefficient; Higham, Theorem 20.1.
+@isnad1 id=le.9h7v.s8.6a9683fffd9d from=translated src=- shape=831160b8 vocab=8b7124b8
+-/
 theorem least_squares_forward_ratio_le {Q M a X b R ε : ℝ}
     (hM : 0 < M) (hX : 0 < X) (ha : 0 ≤ a) (_hR : 0 ≤ R)
     (_hb : 0 ≤ b) (hε : 0 ≤ ε) (hsmall : M * a * ε < 1)
@@ -41,7 +43,9 @@ theorem least_squares_forward_ratio_le {Q M a X b R ε : ℝ}
     _ = _ := by field_simp [hM.ne', hX.ne', hd.ne']; ring
 
 /-- The same residual estimate yields the angle coefficient with the
-fitted-vector length; Golub--Van Loan, Theorem 5.3.1.-/
+fitted-vector length; Golub--Van Loan, Theorem 5.3.1.
+@isnad1 id=le.11h8v.s8.54ddbc1c2725 from=translated src=- shape=341c76ad vocab=762a6581
+-/
 theorem least_squares_forward_angle_coefficient_le {Q M a X b R ε L : ℝ}
     (hM : 0 < M) (hX : 0 < X) (ha : 0 ≤ a) (hR : 0 ≤ R)
     (hb : 0 < b) (hε : 0 ≤ ε) (hsmall : M * a * ε < 1)
@@ -78,7 +82,9 @@ theorem least_squares_forward_angle_coefficient_le {Q M a X b R ε L : ℝ}
     _ = _ := by field_simp [hL.ne', hb.ne', hd.ne']; ring
 
 /-- A half-size perturbation gives the explicit quadratic remainder
-in the first-order least-squares coefficient; Golub--Van Loan, Theorem 5.3.1.-/
+in the first-order least-squares coefficient; Golub--Van Loan, Theorem 5.3.1.
+@isnad1 id=le.4h3v.s7.ef7588f6b9cb from=translated src=- shape=2446e44a vocab=5df71cf7
+-/
 theorem first_order_reciprocal_bound_le {κ C ε : ℝ}
     (hκ : 0 ≤ κ) (hC : 0 ≤ C) (_hε : 0 ≤ ε) (hsmall : κ * ε ≤ 1 / 2) :
     ε * C / (1 - κ * ε) ≤ ε * C + 2 * κ * C * ε ^ 2 := by

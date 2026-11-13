@@ -97,7 +97,9 @@ private theorem integral_two_rate_sq_density (A B x : ℝ) :
   ring
 
 /-- The value kernel square density is integrable at every shifted starting point.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=integrab.0h1v.s6.f18514eb38c0 from=translated src=- shape=0cdca640 vocab=1bf71984
+-/
 theorem integrableOn_exponentialSmoothingKernel_sq (x : ℝ) :
     IntegrableOn (fun t : ℝ => (exponentialSmoothingKernel (t-x))^2 * Real.exp t) (Ioi x) := by
   refine IntegrableOn.congr_fun
@@ -108,7 +110,9 @@ theorem integrableOn_exponentialSmoothingKernel_sq (x : ℝ) :
   ring
 
 /-- The derivative kernel square density is integrable at every shifted starting point.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=integrab.0h1v.s6.cd661f6d8d95 from=translated src=- shape=0cdca640 vocab=2f9ac3ce
+-/
 theorem integrableOn_exponentialSmoothingDerivativeKernel_sq (x : ℝ) :
     IntegrableOn (fun t : ℝ => (exponentialSmoothingDerivativeKernel (t-x))^2 * Real.exp t) (Ioi x) := by
   refine IntegrableOn.congr_fun
@@ -119,7 +123,9 @@ theorem integrableOn_exponentialSmoothingDerivativeKernel_sq (x : ℝ) :
   ring
 
 /-- The exact value-kernel square integral is `(15/28) exp x`.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=eq.0h1v.s6.575f2c9d3a25 from=translated src=- shape=7ed7b554 vocab=9f0d19bf
+-/
 theorem integral_exponentialSmoothingKernel_sq (x : ℝ) :
     (∫ t : ℝ in Ioi x, (exponentialSmoothingKernel (t-x))^2 * Real.exp t) =
       (15/28)*Real.exp x := by
@@ -133,7 +139,9 @@ theorem integral_exponentialSmoothingKernel_sq (x : ℝ) :
   ring
 
 /-- The exact derivative-kernel square integral is `(135/224) exp x`.
-Source: the focused reciprocal reroute.-/
+Source: the focused reciprocal reroute.
+@isnad1 id=eq.0h1v.s6.42f1978ba167 from=translated src=- shape=7ed7b554 vocab=4f8c8f15
+-/
 theorem integral_exponentialSmoothingDerivativeKernel_sq (x : ℝ) :
     (∫ t : ℝ in Ioi x, (exponentialSmoothingDerivativeKernel (t-x))^2 * Real.exp t) =
       (135/224)*Real.exp x := by

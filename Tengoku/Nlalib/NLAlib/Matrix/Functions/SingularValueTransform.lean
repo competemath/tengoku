@@ -35,7 +35,9 @@ def singularValueTransform (φ : ℝ → ℝ) (A : Matrix m n 𝕜) : Matrix m n
 /-- Singular-value transforms commute with left and right unitary multiplication.
 The Gram definition proves this independently of singular-vector choices.
 Cai–Candès–Shen (2010), §2.1.
-atlas: singular-value-shrinkage-def (partial)-/
+atlas: singular-value-shrinkage-def (partial)
+@isnad1 id=eq.2h7v.s8.14549cac0ec3 from=translated src=- shape=86a7af10 vocab=2fc13660
+-/
 theorem singularValueTransform_unitary_mul (φ : ℝ → ℝ) (A : Matrix m n 𝕜)
     (U : Matrix m m 𝕜) (V : Matrix n n 𝕜)
     (hU : HasOrthonormalCols U) (hV : HasOrthonormalCols V) :

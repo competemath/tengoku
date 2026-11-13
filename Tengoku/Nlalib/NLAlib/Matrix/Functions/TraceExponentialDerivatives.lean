@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The trace exponential is smooth as a function of every real matrix entry,
-including at matrices which are not Hermitian.-/
+including at matrices which are not Hermitian.
+@isnad1 id=contdiff.0h2v.s6.ede863a39700 from=translated src=- shape=5ea8fca7 vocab=48053ea5
+-/
 theorem contDiff_traceExp {k : WithTop ℕ∞} :
     ContDiff ℝ k (traceExp : Matrix n n ℂ → ℝ) := by
   have he : ContDiff ℝ k (NormedSpace.exp : Matrix n n ℂ → Matrix n n ℂ) :=
@@ -31,7 +33,9 @@ theorem contDiff_traceExp {k : WithTop ℕ∞} :
 
 /-- Every ordinary directional derivative of the trace exponential is its
 multilinear Fréchet derivative evaluated on the same direction in each slot.
-No self-adjointness hypothesis is required for this differential identity.-/
+No self-adjointness hypothesis is required for this differential identity.
+@isnad1 id=eq.0h5v.s9.721804501e69 from=translated src=- shape=7dab0d35 vocab=0156baa3
+-/
 theorem iteratedDeriv_traceExp_add_smul_eq_iteratedFDeriv
     (A H : Matrix n n ℂ) (k : ℕ) (t : ℝ) :
     iteratedDeriv k (fun x : ℝ => traceExp (A + x • H)) t =
@@ -48,7 +52,9 @@ theorem iteratedDeriv_traceExp_add_smul_eq_iteratedFDeriv
     iteratedFDeriv_comp_add_left] using he
 
 /-- The ordinary first directional derivative is evaluation of the actual
-real Fréchet derivative.-/
+real Fréchet derivative.
+@isnad1 id=eq.0h3v.s9.0be9b3712280 from=translated src=- shape=56405f13 vocab=ba20727f
+-/
 theorem deriv_traceExp_add_smul_zero_eq_fderiv
     (A H : Matrix n n ℂ) :
     deriv (fun x : ℝ => traceExp (A + x • H)) 0 = fderiv ℝ traceExp A H := by
@@ -63,7 +69,9 @@ def traceExpHessian (A : Matrix n n ℂ) :
     (iteratedFDeriv ℝ 2 traceExp A).curryLeft
 
 /-- The second directional derivative at zero is the diagonal of the actual
-real bilinear Hessian, hence depends quadratically on the entire direction.-/
+real bilinear Hessian, hence depends quadratically on the entire direction.
+@isnad1 id=eq.0h3v.s10.a4476bfc71aa from=translated src=- shape=130a2316 vocab=94565bf9
+-/
 theorem iteratedDeriv_two_traceExp_add_smul_zero_eq_hessian
     (A H : Matrix n n ℂ) :
     iteratedDeriv 2 (fun x : ℝ => traceExp (A + x • H)) 0 =
@@ -78,7 +86,9 @@ theorem iteratedDeriv_two_traceExp_add_smul_zero_eq_hessian
   fin_cases i <;> simp
 
 /-- Rescaling the direction multiplies the second trace-exponential
-directional derivative by exactly the squared scale.-/
+directional derivative by exactly the squared scale.
+@isnad1 id=eq.0h4v.s8.db32f36baee4 from=translated src=- shape=5da5412a vocab=8f2ee1e7
+-/
 theorem iteratedDeriv_two_traceExp_add_smul_smul_zero
     (A H : Matrix n n ℂ) (c : ℝ) :
     iteratedDeriv 2 (fun t : ℝ => traceExp (A + t • (c • H))) 0 =

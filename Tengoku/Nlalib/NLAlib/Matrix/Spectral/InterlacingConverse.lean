@@ -21,7 +21,9 @@ interlacing is realized by a real diagonal matrix plus `vvᵀ`. The target
 characteristic polynomial records every multiplicity, including repeated
 original and target roots and the empty list. Horn–Johnson 2013,
 Theorem 4.3.26; derivations Section herm:converse.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=ex.4h3v.s8.2cbadef13997 from=translated src=- shape=7200415b vocab=18965a97
+-/
 theorem exists_diagonal_add_vecMulVec_charpoly {n : ℕ} (d b : Fin n → ℝ)
     (hd : Monotone d) (hb : Monotone b) (hlo : ∀ i, d i ≤ b i)
     (hhi : ∀ i j, i.val + 1 = j.val → b i ≤ d j) :
@@ -37,7 +39,9 @@ symmetric border of the prescribed diagonal matrix. The exact target
 characteristic polynomial retains repeated roots and all weak equalities;
 the empty leading matrix gives the one-dimensional target. Horn–Johnson
 2013, Theorem 4.3.21; derivations Section herm:converse.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=ex.3h3v.s9.ce2f396db348 from=translated src=- shape=227b843d vocab=b395b256
+-/
 theorem exists_bordered_diagonal_charpoly {n : ℕ}
     (d : Fin n → ℝ) (b : Fin (n + 1) → ℝ) (hd : Monotone d) (hb : Monotone b)
     (h : ∀ i, b i.castSucc ≤ d i ∧ d i ≤ b i.succ) :
@@ -54,7 +58,9 @@ theorem exists_bordered_diagonal_charpoly {n : ℕ}
 with the exact squared Euclidean coupling norm equal to the target sum
 minus the original sum. Horn–Johnson 2013, Theorem 4.3.26;
 includes zero coupling, repeated roots and empty dimension.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=ex.4h3v.s8.b932fb5998a9 from=translated src=- shape=274c1d17 vocab=1f3f0c0a
+-/
 theorem exists_diagonal_add_vecMulVec_charpoly_with_sum_sq {n : ℕ}
     (d b : Fin n → ℝ) (hd : Monotone d) (hb : Monotone b) (hlo : ∀ i, d i ≤ b i)
     (hhi : ∀ i j, i.val + 1 = j.val → b i ≤ d j) :
@@ -67,7 +73,9 @@ theorem exists_diagonal_add_vecMulVec_charpoly_with_sum_sq {n : ℕ}
 /-- The bordered converse realizes the entire weak target spectrum with
 the border scalar exactly the difference of the target and original sums.
 Horn–Johnson 2013, Theorem 4.3.21; all repetitions and empty cases remain.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=ex.3h3v.s9.539e4cd10177 from=translated src=- shape=b9461e6c vocab=53098916
+-/
 theorem exists_bordered_diagonal_charpoly_with_trace {n : ℕ}
     (d : Fin n → ℝ) (b : Fin (n + 1) → ℝ) (hd : Monotone d) (hb : Monotone b)
     (h : ∀ i, b i.castSucc ≤ d i ∧ d i ≤ b i.succ) :

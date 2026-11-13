@@ -15,7 +15,9 @@ variable {Ω d : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 open scoped Matrix.Norms.L2Operator in
 /-- A genuine continuous linear covariance map applied to a random matrix
 has its Bochner product bounded by the actual finite entrywise second
-moments. No positivity or independence is assumed.-/
+moments. No positivity or independence is assumed.
+@isnad1 id=le.3h6v.s9.f33b5077d9c5 from=translated src=- shape=9ea186df vocab=16fc39ec
+-/
 theorem specNorm_integral_linearMap_mul_le_card_sq_mul_entry_second_moment
     (S : Matrix d d ℂ →L[ℂ] Matrix d d ℂ)
     (D : Ω → Matrix d d ℂ) (hD : AEStronglyMeasurable D μ)

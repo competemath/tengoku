@@ -26,7 +26,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Restricting the complex simple-eigenvalue branch to real parameters
 preserves its local spectral uniqueness and its left–right derivative.
 Source: Horn–Johnson (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation (partial)-/
+atlas: simple-eigenvalue-perturbation (partial)
+@isnad1 id=ex.5h6v.s9.d28970c91d6d from=translated src=- shape=fb5d66b1 vocab=202dcfa7
+-/
 theorem exists_real_parameter_eigenvalue_branch_of_simple
     {A : Matrix n n ℂ} (E : Matrix n n ℂ) {x y : n → ℂ} {μ : ℂ}
     (hx : x ≠ 0) (hy : y ≠ 0) (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)
@@ -61,7 +63,9 @@ along every real perturbation when its eigenvector has unit Euclidean norm.
 The real parameter branch is locally unique in the complex spectrum, which
 also includes all possible nearby real eigenvalues. Source: Horn–Johnson
 (2013), Theorem 6.3.12.
-atlas: simple-eigenvalue-perturbation-/
+atlas: simple-eigenvalue-perturbation
+@isnad1 id=ex.4h5v.s9.b46cfd252407 from=translated src=- shape=532778eb vocab=b6c37376
+-/
 theorem exists_eigenvalue_branch_of_simple_of_isHermitian
     {A : Matrix n n ℝ} (E : Matrix n n ℝ) (hAh : A.IsHermitian)
     {x : n → ℝ} {μ : ℝ} (hxn : ‖WithLp.toLp 2 x‖ = 1) (hAx : A *ᵥ x = μ • x)

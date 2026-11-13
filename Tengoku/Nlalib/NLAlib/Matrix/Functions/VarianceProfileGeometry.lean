@@ -42,18 +42,24 @@ variance, because diagonal coefficients are counted twice.-/
 def varianceProfileQuadraticDistanceSq (B : Matrix n n ℝ) (v w : n → ℝ) : ℝ :=
   2 * ∑ i, ∑ j, B i j * (v i * v j - w i * w j) ^ 2
 
-/-- A variance-profile radius is nonnegative.-/
+/-- A variance-profile radius is nonnegative.
+@isnad1 id=le.0h4v.s4.1844c1a66af3 from=translated src=- shape=ee95555a vocab=d115d0a3
+-/
 theorem varianceProfileRadius_nonneg (B : Matrix n n ℝ) (v : n → ℝ) (i : n) :
     0 ≤ varianceProfileRadius B v i := Real.sqrt_nonneg _
 
-/-- The square of a row radius is its exact weighted quadratic energy.-/
+/-- The square of a row radius is its exact weighted quadratic energy.
+@isnad1 id=eq.1h4v.s6.cc0d7e356f93 from=translated src=- shape=47ab479d vocab=a1740593
+-/
 theorem varianceProfileRadius_sq (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j)
     (v : n → ℝ) (i : n) :
     varianceProfileRadius B v i ^ 2 = ∑ j, B i j * v j ^ 2 :=
   Real.sq_sqrt (Finset.sum_nonneg fun j _ => mul_nonneg (hB i j) (sq_nonneg _))
 
 /-- A row radius is the Euclidean norm of the corresponding weighted
-vector, including rows with vanishing variances.-/
+vector, including rows with vanishing variances.
+@isnad1 id=eq.1h4v.s6.32a2acf56099 from=translated src=- shape=0e4917fe vocab=85028712
+-/
 theorem varianceProfileRadius_eq_norm (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j)
     (v : n → ℝ) (i : n) :
     varianceProfileRadius B v i =
@@ -67,7 +73,9 @@ theorem varianceProfileRadius_eq_norm (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ 
 
 /-- Every row radius obeys the triangle inequality, including degenerate
 rows. It is the Euclidean norm after multiplication by the square roots of
-the row variances.-/
+the row variances.
+@isnad1 id=le.1h5v.s6.1ec0d3decda6 from=translated src=- shape=fec9fea4 vocab=15f96bec
+-/
 theorem varianceProfileRadius_add_le (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j)
     (v w : n → ℝ) (i : n) :
     varianceProfileRadius B (v + w) i ≤ varianceProfileRadius B v i + varianceProfileRadius B w i := by
@@ -83,7 +91,9 @@ theorem varianceProfileRadius_add_le (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B
   exact norm_add_le _ _
 
 /-- A row radius has Euclidean Lipschitz constant at most `L` when every
-variance in that row is at most `L²`.-/
+variance in that row is at most `L²`.
+@isnad1 id=le.3h6v.s7.a1c28f6e1c7d from=translated src=- shape=4ba96e8c vocab=d67d1807
+-/
 theorem abs_varianceProfileRadius_sub_le
     (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j) (v w : n → ℝ) (i : n)
     (L : ℝ) (hL : 0 ≤ L) (hrow : ∀ j, B i j ≤ L ^ 2) :
@@ -128,7 +138,9 @@ private theorem squareDifferenceForm_eq_radius_sum
 
 /-- The nonlinear deformation controls the row-radius metric proxy with its
 exact quadratic correction. This inequality requires only nonnegative
-variance entries and holds for all vectors, with no unit-ball restriction.-/
+variance entries and holds for all vectors, with no unit-ball restriction.
+@isnad1 id=le.1h4v.s7.058501e86510 from=translated src=- shape=8eefe454 vocab=677cd686
+-/
 theorem sum_sq_mul_varianceProfileRadius_add_sq_add_form_le
     (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j) (v w : n → ℝ) :
     (∑ i, (v i - w i) ^ 2 * varianceProfileRadius B (v + w) i ^ 2) +
@@ -155,7 +167,9 @@ theorem sum_sq_mul_varianceProfileRadius_add_sq_add_form_le
   linarith
 
 /-- Symmetry identifies the full quadratic coordinate metric with the
-row-radius metric and its exact squared-coordinate correction.-/
+row-radius metric and its exact squared-coordinate correction.
+@isnad1 id=eq.2h4v.s7.b44bab6008b5 from=translated src=- shape=3cc1cb9b vocab=00352eea
+-/
 theorem varianceProfileQuadraticDistanceSq_eq_radius_add_form
     (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j) (hsymm : B.IsSymm) (v w : n → ℝ) :
     varianceProfileQuadraticDistanceSq B v w =
@@ -196,7 +210,9 @@ theorem varianceProfileQuadraticDistanceSq_eq_radius_add_form
 
 /-- The variance-profile quadratic metric is controlled by the nonlinear
 Euclidean deformation, with the exact negative quadratic correction. This
-is the gamma-one case of van Handel's Gaussian increment inequality.-/
+is the gamma-one case of van Handel's Gaussian increment inequality.
+@isnad1 id=le.2h4v.s6.e221d5f62ffa from=translated src=- shape=eb74f984 vocab=46e54a61
+-/
 theorem varianceProfileQuadraticDistanceSq_le_deformation
     (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j) (hsymm : B.IsSymm) (v w : n → ℝ) :
     varianceProfileQuadraticDistanceSq B v w ≤
@@ -207,7 +223,9 @@ theorem varianceProfileQuadraticDistanceSq_le_deformation
 
 /-- A linear Gaussian probe of the nonlinear deformation is controlled by
 the largest weighted row radius. This is the deterministic Cauchy--Schwarz
-step used after Gaussian comparison on the Euclidean unit ball.-/
+step used after Gaussian comparison on the Euclidean unit ball.
+@isnad1 id=le.4h5v.s7.38cd3720a069 from=translated src=- shape=f2aa81fd vocab=0e1c7a33
+-/
 theorem sum_mul_varianceProfileDeformation_le
     (B : Matrix n n ℝ) (hB : ∀ i j, 0 ≤ B i j) (v g : n → ℝ)
     (hv : ∑ i, v i ^ 2 ≤ 1) (R : ℝ) (hR : 0 ≤ R)

@@ -21,7 +21,9 @@ variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- Diagonalizing each block independently gives a congruence of their
 direct sum to the sum-indexed diagonal. Spectral theorem;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.2h4v.s9.3f984e820b75 from=translated src=- shape=770da8b9 vocab=df62f830
+-/
 theorem fromBlocks_eq_congruence_diagonal {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hC : C.IsHermitian) :
     fromBlocks A 0 0 C =
@@ -37,7 +39,9 @@ theorem fromBlocks_eq_congruence_diagonal {A : Matrix m m ℝ} {C : Matrix n n �
     ← eq_eigenvectorUnitary_mul_diagonal_mul_transpose hC]
 
 /-- Positive inertia adds over a block direct sum. Horn--Johnson (2013),
-Exercise 4.5.P21; helper for `haynsworth-inertia-additivity`.-/
+Exercise 4.5.P21; helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.2h4v.s7.f60278dd08c2 from=translated src=- shape=cc43a453 vocab=07912fca
+-/
 theorem inertiaPos_fromBlocks_zero {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hC : C.IsHermitian) :
     inertiaPos (fromBlocks A 0 0 C) = inertiaPos A + inertiaPos C := by
@@ -52,7 +56,9 @@ theorem inertiaPos_fromBlocks_zero {A : Matrix m m ℝ} {C : Matrix n n ℝ}
   congr 1
 
 /-- Negative inertia adds over a block direct sum. Horn--Johnson (2013),
-Exercise 4.5.P21; helper for `haynsworth-inertia-additivity`.-/
+Exercise 4.5.P21; helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.2h4v.s7.c9c699de2f81 from=translated src=- shape=cc43a453 vocab=d9226b4c
+-/
 theorem inertiaNeg_fromBlocks_zero {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hC : C.IsHermitian) :
     inertiaNeg (fromBlocks A 0 0 C) = inertiaNeg A + inertiaNeg C := by
@@ -68,7 +74,9 @@ theorem inertiaNeg_fromBlocks_zero {A : Matrix m m ℝ} {C : Matrix n n ℝ}
 
 /-- Positive and negative inertia together equal the rank of a symmetric
 matrix. Sylvester's law and the spectral rank count;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.1h2v.s6.7253f68a1a3d from=translated src=- shape=68599437 vocab=518c59cc
+-/
 theorem inertiaPos_add_inertiaNeg_eq_rank {k : Type*} [Fintype k] [DecidableEq k]
     {A : Matrix k k ℝ} (hA : A.IsHermitian) : inertiaPos A + inertiaNeg A = A.rank := by
   classical
@@ -92,7 +100,9 @@ theorem inertiaPos_add_inertiaNeg_eq_rank {k : Type*} [Fintype k] [DecidableEq k
 
 /-- Nullity of a real symmetric matrix counts exactly its zero
 eigenvalues. Spectral rank count and rank--nullity;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.1h2v.s9.ee1ed2229c76 from=translated src=- shape=4a1fea79 vocab=0c12af12
+-/
 theorem finrank_ker_eq_card_eigenvalues_zero {k : Type*} [Fintype k] [DecidableEq k]
     {A : Matrix k k ℝ} (hA : A.IsHermitian) :
     finrank ℝ (LinearMap.ker A.mulVecLin) =
@@ -115,7 +125,9 @@ theorem finrank_ker_eq_card_eigenvalues_zero {k : Type*} [Fintype k] [DecidableE
 
 /-- Symmetric block elimination is an exact triangular congruence to the
 leading block and its Schur complement. Horn--Johnson (2013), Exercise 4.5.P21;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=eq.2h5v.s8.c63adb3ac75b from=translated src=- shape=4581f980 vocab=e10e254f
+-/
 theorem fromBlocks_eq_transpose_mul_schur_mul {A : Matrix m m ℝ}
     (hA : A.IsHermitian) (hAu : IsUnit A) (B : Matrix m n ℝ) (C : Matrix n n ℝ) :
     fromBlocks A B Bᵀ C =
@@ -132,7 +144,9 @@ theorem fromBlocks_eq_transpose_mul_schur_mul {A : Matrix m m ℝ}
 omit [Fintype n] [DecidableEq n] in
 /-- The Schur complement of a symmetric matrix at an invertible symmetric
 leading block is symmetric. Horn--Johnson (2013), Exercise 4.5.P21;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=ishermit.2h5v.s7.87bd4e3c6a09 from=translated src=- shape=c50b8ea8 vocab=2bdeed3a
+-/
 theorem isHermitian_schur_complement {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hC : C.IsHermitian) (B : Matrix m n ℝ) :
     (C - Bᵀ * A⁻¹ * B).IsHermitian := by
@@ -142,7 +156,9 @@ theorem isHermitian_schur_complement {A : Matrix m m ℝ} {C : Matrix n n ℝ}
 
 /-- Haynsworth's positive inertia additivity at an invertible leading
 block. Horn--Johnson (2013), Exercise 4.5.P21.
-atlas: haynsworth-inertia-additivity (partial)-/
+atlas: haynsworth-inertia-additivity (partial)
+@isnad1 id=eq.3h5v.s8.72e285c7312b from=translated src=- shape=917ab1cf vocab=f7d2e361
+-/
 theorem inertiaPos_fromBlocks_eq_add_schur {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hAu : IsUnit A) (hC : C.IsHermitian) (B : Matrix m n ℝ) :
     inertiaPos (fromBlocks A B Bᵀ C) = inertiaPos A + inertiaPos (C - Bᵀ * A⁻¹ * B) := by
@@ -152,7 +168,9 @@ theorem inertiaPos_fromBlocks_eq_add_schur {A : Matrix m m ℝ} {C : Matrix n n 
 
 /-- Haynsworth's negative inertia additivity at an invertible leading
 block. Horn--Johnson (2013), Exercise 4.5.P21.
-atlas: haynsworth-inertia-additivity (partial)-/
+atlas: haynsworth-inertia-additivity (partial)
+@isnad1 id=eq.3h5v.s8.fc7e954b330b from=translated src=- shape=917ab1cf vocab=a496d7ac
+-/
 theorem inertiaNeg_fromBlocks_eq_add_schur {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hAu : IsUnit A) (hC : C.IsHermitian) (B : Matrix m n ℝ) :
     inertiaNeg (fromBlocks A B Bᵀ C) = inertiaNeg A + inertiaNeg (C - Bᵀ * A⁻¹ * B) := by
@@ -162,7 +180,9 @@ theorem inertiaNeg_fromBlocks_eq_add_schur {A : Matrix m m ℝ} {C : Matrix n n 
 
 /-- A block direct sum is positive definite exactly when both blocks are
 positive definite. Horn--Johnson (2013), Exercise 4.5.P21;
-helper for `haynsworth-inertia-additivity`.-/
+helper for `haynsworth-inertia-additivity`.
+@isnad1 id=iff.0h4v.s6.cabd0513d36a from=translated src=- shape=3e4bc725 vocab=42021454
+-/
 theorem posDef_fromBlocks_zero_iff (A : Matrix m m ℝ) (C : Matrix n n ℝ) :
     (fromBlocks A 0 0 C).PosDef ↔ A.PosDef ∧ C.PosDef := by
   constructor
@@ -191,7 +211,9 @@ private theorem posDef_fromBlocks_iff_posDef_schur {A : Matrix m m ℝ}
 `A` and its Schur complement `C − BᵀA⁻¹B` are both positive definite; no invertibility
 hypothesis is needed (the forward implication derives it). Horn--Johnson (2013),
 Exercise 4.5.P21 and Theorem 7.7.7.
-atlas: haynsworth-inertia-additivity (partial), psd-block-contraction (partial)-/
+atlas: haynsworth-inertia-additivity (partial), psd-block-contraction (partial)
+@isnad1 id=iff.0h5v.s7.a00404eb669c from=translated src=- shape=e95dc0db vocab=b64c468b
+-/
 theorem posDef_fromBlocks_iff_posDef_and_schur
     (A : Matrix m m ℝ) (B : Matrix m n ℝ) (C : Matrix n n ℝ) :
     (fromBlocks A B Bᵀ C).PosDef ↔ A.PosDef ∧ (C - Bᵀ * A⁻¹ * B).PosDef := by
@@ -205,7 +227,9 @@ theorem posDef_fromBlocks_iff_posDef_and_schur
 
 /-- An invertible leading block leaves all nullity in its Schur complement.
 Horn--Johnson (2013), Exercise 4.5.P21.
-atlas: haynsworth-inertia-additivity (partial)-/
+atlas: haynsworth-inertia-additivity (partial)
+@isnad1 id=eq.3h5v.s10.9516ca1f4c51 from=translated src=- shape=2986952a vocab=09cb7bb9
+-/
 theorem finrank_ker_fromBlocks_eq_schur {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hAu : IsUnit A) (hC : C.IsHermitian) (B : Matrix m n ℝ) :
     finrank ℝ (LinearMap.ker (fromBlocks A B Bᵀ C).mulVecLin) =
@@ -234,7 +258,9 @@ theorem finrank_ker_fromBlocks_eq_schur {A : Matrix m m ℝ} {C : Matrix n n ℝ
 the nullity identity, and the positive-definite Schur criterion.
 Horn--Johnson (2013), Exercise 4.5.P21. Nullity is stated as kernel dimension,
 which counts zero eigenvalues for a real symmetric matrix.
-atlas: haynsworth-inertia-additivity-/
+atlas: haynsworth-inertia-additivity
+@isnad1 id=and.3h5v.s10.46c47e43792b from=translated src=- shape=781ee206 vocab=354e0b61
+-/
 theorem haynsworth_inertia_additivity {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (hAu : IsUnit A) (hC : C.IsHermitian) (B : Matrix m n ℝ) :
     inertiaPos (fromBlocks A B Bᵀ C) = inertiaPos A + inertiaPos (C - Bᵀ * A⁻¹ * B) ∧

@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 def inverseCayley (T : Matrix n n ℂ) : Matrix n n ℂ := (1-T)⁻¹*(1+T)
 
 /-- Newton averaging of an inverse Cayley value squares its coordinate,
-provided both original denominators are invertible.-/
+provided both original denominators are invertible.
+@isnad1 id=eq.2h2v.s8.e82cd2c71d42 from=translated src=- shape=38d19e51 vocab=6416b84b
+-/
 theorem half_smul_inverseCayley_add_inv (T : Matrix n n ℂ)
     (hm : IsUnit (1-T)) (hp : IsUnit (1+T)) :
     (2 : ℂ)⁻¹ • (inverseCayley T + (inverseCayley T)⁻¹) = inverseCayley (T^2) := by
@@ -51,7 +53,9 @@ theorem half_smul_inverseCayley_add_inv (T : Matrix n n ℂ)
   simpa [c, d, e, t, bicommutantInverse, Algebra.algebraMap_eq_smul_one,
     Matrix.smul_mul] using hh
 
-/-- Power convergence also holds for the negative matrix.-/
+/-- Power convergence also holds for the negative matrix.
+@isnad1 id=tendsto.1h2v.s7.e0e5d18042a9 from=translated src=- shape=422705c8 vocab=27a78aac
+-/
 theorem tendsto_neg_matrix_pow_zero {T : Matrix n n ℂ}
     (h : Tendsto (fun k : ℕ => T^k) atTop (𝓝 0)) :
     Tendsto (fun k : ℕ => (-T)^k) atTop (𝓝 0) := by
@@ -63,7 +67,9 @@ theorem tendsto_neg_matrix_pow_zero {T : Matrix n n ℂ}
   simpa only [he] using h
 
 /-- Every positive power of a matrix with convergent powers has both
-unit Cayley denominators.-/
+unit Cayley denominators.
+@isnad1 id=and.2h3v.s8.b3b1967651a1 from=translated src=- shape=c2d44a7f vocab=e5c8ec1c
+-/
 theorem isUnit_one_sub_and_add_matrix_pow {T : Matrix n n ℂ}
     (h : Tendsto (fun k : ℕ => T^k) atTop (𝓝 0)) {m : ℕ} (hm : 0 < m) :
     IsUnit (1-T^m) ∧ IsUnit (1+T^m) := by
@@ -77,7 +83,9 @@ theorem isUnit_one_sub_and_add_matrix_pow {T : Matrix n n ℂ}
   · simpa only [sub_neg_eq_add] using isUnit_one_sub_of_matrix_spectralRadius_lt_one
       (spectralRadius_lt_one_of_tendsto_matrix_pow_zero (tendsto_neg_matrix_pow_zero hp))
 
-/-- Inverse Cayley values are nonsingular if both denominators are units.-/
+/-- Inverse Cayley values are nonsingular if both denominators are units.
+@isnad1 id=isunit.2h2v.s7.e2756d233bd1 from=translated src=- shape=12dd372a vocab=c5b58bc6
+-/
 theorem isUnit_inverseCayley {T : Matrix n n ℂ}
     (hm : IsUnit (1-T)) (hp : IsUnit (1+T)) : IsUnit (inverseCayley T) := by
   exact (Matrix.isUnit_nonsing_inv_iff.mpr hm).mul hp

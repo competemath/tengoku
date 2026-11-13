@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 /-- A one-dimensional eigenspace with nonzero left–right pairing is
 algebraically simple. Source: Horn–Johnson (2013), Theorem 1.4.12; the
 reverse implication needs no algebraic closure of the scalar field.
-atlas: left-right-eigenvectors (partial)-/
+atlas: left-right-eigenvectors (partial)
+@isnad1 id=eq.4h6v.s12.e5eb982cbbde from=translated src=- shape=d0c6be34 vocab=2adbea67
+-/
 theorem rootMultiplicity_eq_one_of_finrank_eigenspace_eq_one_of_pairing_ne_zero
     {A : Matrix n n K} {x y : n → K} {μ : K}
     (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)
@@ -79,7 +81,9 @@ theorem rootMultiplicity_eq_one_of_finrank_eigenspace_eq_one_of_pairing_ne_zero
 /-- When geometric multiplicity is one, algebraic simplicity is equivalent
 to nonzero pairing of nonzero left and right eigenvectors.
 Horn–Johnson (2013), Theorem 1.4.12.
-atlas: left-right-eigenvectors-/
+atlas: left-right-eigenvectors
+@isnad1 id=iff.5h6v.s12.500cdd8e27fa from=translated src=- shape=986be35a vocab=30dbecde
+-/
 theorem rootMultiplicity_eq_one_iff_pairing_ne_zero_of_finrank_eigenspace_eq_one
     [IsAlgClosed K] {A : Matrix n n K} {x y : n → K} {μ : K}
     (hx : x ≠ 0) (hy : y ≠ 0) (hAx : A *ᵥ x = μ • x) (hyA : y ᵥ* A = μ • y)

@@ -50,7 +50,9 @@ private theorem frobNorm_steinTerm_le {A Q : Matrix n n K} {q : ℝ} (hA : specN
         (mul_nonneg (pow_nonneg hq _) (frobNorm_nonneg Q))
     _ = _ := by rw [← pow_mul, mul_comm 2 j, pow_mul]; ring
 
-/-- The full Gramian's spectral norm has the usual geometric-series bound.-/
+/-- The full Gramian's spectral norm has the usual geometric-series bound.
+@isnad1 id=le.2h5v.s6.ad866cffb181 from=translated src=- shape=62c21854 vocab=d3d40161
+-/
 theorem specNorm_steinGramian_le {A Q : Matrix n n K} {q : ℝ}
     (hA : specNorm A ≤ q) (hq : q < 1) : specNorm (steinGramian A Q) ≤ specNorm Q / (1 - q ^ 2) := by
   have hq0 := (specNorm_nonneg A).trans hA
@@ -67,7 +69,9 @@ theorem specNorm_steinGramian_le {A Q : Matrix n n K} {q : ℝ}
     _ = _ := by rw [tsum_mul_right, tsum_geometric_of_abs_lt_one hq2]; ring
 
 open scoped Matrix.Norms.Frobenius in
-/-- The same geometric-series bound in Frobenius norm.-/
+/-- The same geometric-series bound in Frobenius norm.
+@isnad1 id=le.2h5v.s6.d443dffe389d from=translated src=- shape=5301b83b vocab=61bcd5b5
+-/
 theorem frobNorm_steinGramian_le {A Q : Matrix n n K} {q : ℝ}
     (hA : specNorm A ≤ q) (hq : q < 1) : frobNorm (steinGramian A Q) ≤ frobNorm Q / (1 - q ^ 2) := by
   have hq0 := (specNorm_nonneg A).trans hA
@@ -85,7 +89,9 @@ theorem frobNorm_steinGramian_le {A Q : Matrix n n K} {q : ℝ}
 
 /-- Spectral-norm error for the actual finite Gramian prefix.
 Source: user derivations, equation (G5) and geometric bound.
-atlas: stein-gramian-smith-doubling (partial)-/
+atlas: stein-gramian-smith-doubling (partial)
+@isnad1 id=le.2h6v.s7.a326b8bab957 from=translated src=- shape=3a9c6803 vocab=e84467e5
+-/
 theorem specNorm_steinGramian_sub_partialSum_le {A Q : Matrix n n K} {q : ℝ}
     (hA : specNorm A ≤ q) (hq : q < 1) (N : ℕ) :
     specNorm (steinGramian A Q - steinPartialSum A Q N) ≤
@@ -102,7 +108,9 @@ theorem specNorm_steinGramian_sub_partialSum_le {A Q : Matrix n n K} {q : ℝ}
 
 /-- Frobenius-norm error for the same actual finite Gramian prefix.
 Source: user derivations, Stein Gramian geometric bound.
-atlas: stein-gramian-smith-doubling (partial)-/
+atlas: stein-gramian-smith-doubling (partial)
+@isnad1 id=le.2h6v.s7.eb135366e9d3 from=translated src=- shape=3d89395f vocab=53464922
+-/
 theorem frobNorm_steinGramian_sub_partialSum_le {A Q : Matrix n n K} {q : ℝ}
     (hA : specNorm A ≤ q) (hq : q < 1) (N : ℕ) :
     frobNorm (steinGramian A Q - steinPartialSum A Q N) ≤

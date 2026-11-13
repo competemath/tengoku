@@ -51,7 +51,9 @@ most `k` supporting indices such that
 `1 ≤ ∑ i, s i • v_i v_iᵀ ≤ b • 1`.
 
 This is the finite-dimensional closure of sparse nonnegative reweightings
-under limits of the sandwich constant.-/
+under limits of the sandwich constant.
+@isnad1 id=ex.2h6v.s8.9c68cb6013b8 from=translated src=- shape=37c89c03 vocab=f9d29052
+-/
 theorem exists_nonneg_weights_spectral_sandwich_of_tendsto
     (v : I → n → ℝ) (k : ℕ) (beta : ℕ → ℝ) (b : ℝ)
     (hbeta : Tendsto beta atTop (nhds b))
@@ -238,7 +240,9 @@ omit [Fintype n] [DecidableEq n] in
 /-- The matrix identity underlying block extraction: for every real coefficient
 family `w` on `I × Fin r`, the weighted Gram sum of the lifted vectors is
 exactly the block diagonal whose block `a` is the weighted Gram sum of the
-original atoms restricted to fiber `a`.-/
+original atoms restricted to fiber `a`.
+@isnad1 id=eq.0h5v.s7.4975e941bbea from=translated src=- shape=d230c065 vocab=100df240
+-/
 lemma sum_smul_vecMulVec_frameBlockVector_eq_blockDiagonal (v : I → n → ℝ) (r : ℕ)
     (w : I × Fin r → ℝ) :
     (∑ p : I × Fin r, w p • Matrix.vecMulVec (frameBlockVector v r p) (frameBlockVector v r p))
@@ -304,7 +308,9 @@ lemma sum_smul_vecMulVec_frameBlockVector_eq_blockDiagonal (v : I → n → ℝ)
 omit [Fintype n] in
 /-- The unweighted lifted frame of an isotropic frame is again isotropic: if
 `∑ i, v_i v_iᵀ = 1`, then `∑ p, V_p V_pᵀ = 1` for the unscaled block lift
-`V = frameBlockVector v r`.-/
+`V = frameBlockVector v r`.
+@isnad1 id=eq.1h4v.s7.ae0db625e245 from=translated src=- shape=0bce63b0 vocab=ceb2d81d
+-/
 lemma sum_vecMulVec_frameBlockVector_eq_one (v : I → n → ℝ) (r : ℕ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1) :
     ∑ p : I × Fin r, Matrix.vecMulVec (frameBlockVector v r p) (frameBlockVector v r p) = 1 := by
@@ -342,7 +348,9 @@ Let `w : I × Fin r → ℝ` be nonnegative with total support strictly below
 `r*(k+1)`, and assume the weighted Gram sum of the unscaled lifted frame lies
 between `1` and `B • 1`.  Then some principal block `a₀` gives an
 original-dimensional weight family `s i = w (i, a₀)` with support at most `k`
-whose Gram sum lies between `1` and `B • 1`.-/
+whose Gram sum lies between `1` and `B • 1`.
+@isnad1 id=ex.5h7v.s9.62941ce20a75 from=translated src=- shape=baecc8d7 vocab=185bb5b6
+-/
 theorem exists_nonneg_weights_spectral_sandwich_of_block_sum
     (v : I → n → ℝ) (r : ℕ) (_hr : 0 < r) (k : ℕ) (B : ℝ)
     (w : I × Fin r → ℝ)

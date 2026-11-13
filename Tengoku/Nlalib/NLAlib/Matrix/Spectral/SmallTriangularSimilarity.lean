@@ -18,7 +18,9 @@ namespace NLAlib
 /-- Positive diagonal scaling makes all entries above a prescribed coordinate
 ranking smaller than any positive epsilon, preserving diagonal entries and
 all existing zeros. Source: Horn–Johnson (2013), §2.3; the chosen parameter
-is `ε / (1 + ∑ i j, ‖T i j‖ + ε)`, and both real and complex fields are allowed.-/
+is `ε / (1 + ∑ i j, ‖T i j‖ + ε)`, and both real and complex fields are allowed.
+@isnad1 id=ex.1h5v.s9.ed60d02c90c3 from=translated src=- shape=e82c70bf vocab=68e5ee15
+-/
 theorem exists_diagonal_similarity_small_upper_entries
     {n K : Type*} [Fintype n] [DecidableEq n] [RCLike K]
     (T : Matrix n n K) (r : n → ℕ) {ε : ℝ} (hε : 0 < ε) :
@@ -75,7 +77,9 @@ theorem exists_diagonal_similarity_small_upper_entries
 /-- Any real or complex triangularizing similarity can be refined to make
 its strict upper entries arbitrarily small over the same field.
 Horn–Johnson (2013), §2.3; this supplies the real small-entry clause whenever
-a real triangular form exists.-/
+a real triangular form exists.
+@isnad1 id=ex.3h6v.s9.0e9102e94404 from=translated src=- shape=cea6a6c6 vocab=a1b9dd46
+-/
 theorem exists_similarity_small_entries_of_triangular_similarity
     {n K : Type*} [Fintype n] [DecidableEq n] [RCLike K]
     (A S : Matrix n n K) (hS : IsUnit S) (e : Fin (Fintype.card n) ≃ n)
@@ -101,7 +105,9 @@ theorem exists_similarity_small_entries_of_triangular_similarity
 strictly upper entries are smaller than any prescribed positive epsilon.
 Source: Horn–Johnson (2013), §2.3; arbitrary finite labels are ordered by
 the supplied enumeration, and zero-dimensional matrices are included.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=ex.1h4v.s8.77231b4b8e6e from=translated src=- shape=5dd1ba72 vocab=03c3fa95
+-/
 theorem exists_similarity_upper_triangular_small_entries
     {n : Type*} [Fintype n] [DecidableEq n] (A : Matrix n n ℂ)
     (e : Fin (Fintype.card n) ≃ n) {ε : ℝ} (hε : 0 < ε) :

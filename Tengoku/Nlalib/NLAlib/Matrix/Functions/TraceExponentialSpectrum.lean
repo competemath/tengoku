@@ -26,7 +26,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A full family of distinct spectral points supplies a basis of eigenvectors, including when the finite index type is empty.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.2h3v.s8.909f2a4658c0 from=translated src=- shape=3154cad2 vocab=1159d915
+-/
 theorem exists_eigenbasis_of_injective_mem_spectrum
     (M : Matrix n n ℂ) (ev : n → ℂ) (hev : Function.Injective ev)
     (hmem : ∀ i, ev i ∈ spectrum ℂ M) :
@@ -49,7 +51,9 @@ theorem exists_eigenbasis_of_injective_mem_spectrum
 /-- A full family of distinct spectral points exhausts the matrix spectrum.
 This lets conjugate spectral points be matched to exterior branch labels.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.2h3v.s6.f993b0b2d366 from=translated src=- shape=10677982 vocab=ac59d298
+-/
 theorem spectrum_eq_range_of_injective_mem_spectrum
     (M : Matrix n n ℂ) (ev : n → ℂ) (hev : Function.Injective ev)
     (hmem : ∀ i, ev i ∈ spectrum ℂ M) : spectrum ℂ M = Set.range ev := by
@@ -67,7 +71,9 @@ theorem spectrum_eq_range_of_injective_mem_spectrum
 /-- A complete eigenvector basis computes the trace of the matrix exponential
 as the sum of the scalar exponentials of its eigenvalues.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.1h4v.s7.17a9c07fc981 from=translated src=- shape=b38cc6a2 vocab=85f19ffd
+-/
 theorem trace_matrixExp_eq_sum_exp_of_eigenbasis
     (M : Matrix n n ℂ) (ev : n → ℂ) (b : Module.Basis n ℂ (n → ℂ))
     (hb : ∀ i, M *ᵥ b i = ev i • b i) :
@@ -97,7 +103,9 @@ is its full spectrum and computes its exponential trace. In particular, this
 discharges Stahl's boundary trace identity from exterior eigenvalue
 branches rather than taking that identity as a separate assumption.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.2h3v.s6.fdc27badae99 from=translated src=- shape=75cdeeb5 vocab=24669af9
+-/
 theorem trace_matrixExp_eq_sum_exp_of_injective_mem_spectrum
     (M : Matrix n n ℂ) (ev : n → ℂ) (hev : Function.Injective ev)
     (hmem : ∀ i, ev i ∈ spectrum ℂ M) :

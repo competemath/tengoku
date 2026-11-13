@@ -38,7 +38,9 @@ private theorem gram_spectralAbsoluteFactor {B : Matrix n n ℝ} (hB : B.IsHermi
   simp only [Real.mul_self_sqrt (abs_nonneg _)]
 
 /-- The Gram matrix of the absolute spectral factor dominates the negative
-of the original symmetric matrix in positive semidefinite order.-/
+of the original symmetric matrix in positive semidefinite order.
+@isnad1 id=possemid.1h2v.s6.093612faf8d2 from=translated src=- shape=4d27842b vocab=ec9e6a7c
+-/
 theorem posSemidef_gram_spectralAbsoluteFactor_add {B : Matrix n n ℝ}
     (hB : B.IsHermitian) :
     (spectralAbsoluteFactor hB * (spectralAbsoluteFactor hB)ᵀ + B).PosSemidef := by
@@ -54,7 +56,9 @@ theorem posSemidef_gram_spectralAbsoluteFactor_add {B : Matrix n n ℝ}
     using hdiag.conjTranspose_mul_mul_same (hB.eigenvectorUnitary : Matrix n n ℝ)ᵀ
 
 /-- Squared linear combinations of the absolute spectral factor dominate
-the negative quadratic form, with no nondegeneracy assumption.-/
+the negative quadratic form, with no nondegeneracy assumption.
+@isnad1 id=le.1h3v.s6.9b8a77d9cb80 from=translated src=- shape=0d7058fa vocab=83d4e714
+-/
 theorem neg_quadForm_le_sum_sq_spectralAbsoluteFactor {B : Matrix n n ℝ}
     (hB : B.IsHermitian) (x : n → ℝ) :
     -quadForm B x ≤ ∑ k, (∑ i, spectralAbsoluteFactor hB i k * x i) ^ 2 := by
@@ -72,7 +76,9 @@ theorem neg_quadForm_le_sum_sq_spectralAbsoluteFactor {B : Matrix n n ℝ}
 
 /-- Each row energy of the spectral absolute factor is bounded by the
 Euclidean norm of that row of the original symmetric matrix. Thus the
-Gaussian correction has the precise fourth-moment variance scale.-/
+Gaussian correction has the precise fourth-moment variance scale.
+@isnad1 id=le.1h3v.s6.cbb27010bf19 from=translated src=- shape=a96c2cae vocab=c6e01a31
+-/
 theorem sum_sq_spectralAbsoluteFactor_row_le {B : Matrix n n ℝ}
     (hB : B.IsHermitian) (i : n) :
     ∑ k, spectralAbsoluteFactor hB i k ^ 2 ≤ Real.sqrt (∑ j, B i j ^ 2) := by

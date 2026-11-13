@@ -90,7 +90,9 @@ private theorem det_add_rpow_inv_card_ge_and_eq_iff_aux {A B : Matrix n n ℝ}
     ring
 
 /-- **Minkowski's determinant inequality.** `det(A)^{1/n} + det(B)^{1/n} ≤ det(A + B)^{1/n}` for positive definite `A`, `B` (`n = card n > 0`). Horn–Johnson 2013, Corollary 7.6.8.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=le.3h3v.s7.330a79480942 from=translated src=- shape=13afb3fd vocab=48f25468
+-/
 theorem det_rpow_inv_card_add_le {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) (hN : 0 < Fintype.card n) :
     A.det ^ (1 / (Fintype.card n : ℝ)) + B.det ^ (1 / (Fintype.card n : ℝ)) ≤
@@ -99,7 +101,9 @@ theorem det_rpow_inv_card_add_le {A B : Matrix n n ℝ}
 
 /-- Minkowski's determinant-root inequality extends continuously to positive
 semidefinite real matrices in positive dimension, including singular inputs.
-Source: Horn–Johnson (2013), Corollary 7.6.8; supports Fan's accretive determinant bound.-/
+Source: Horn–Johnson (2013), Corollary 7.6.8; supports Fan's accretive determinant bound.
+@isnad1 id=le.3h3v.s7.feafd35e3a70 from=translated src=- shape=13afb3fd vocab=377a11e9
+-/
 theorem det_rpow_inv_card_add_le_of_posSemidef {A B : Matrix n n ℝ}
     (hA : A.PosSemidef) (hB : B.PosSemidef) (hN : 0 < Fintype.card n) :
     A.det ^ (1 / (Fintype.card n : ℝ)) + B.det ^ (1 / (Fintype.card n : ℝ)) ≤
@@ -116,7 +120,9 @@ theorem det_rpow_inv_card_add_le_of_posSemidef {A B : Matrix n n ℝ}
     (fun X hX => det_rpow_inv_card_add_le hX hY hN) hA
 
 /-- Equality in Minkowski's determinant inequality holds exactly at positive proportionality `A = c • B`. Horn–Johnson 2013, Theorem 7.6.10.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=iff.3h3v.s7.abcc6e976d00 from=translated src=- shape=42af58bd vocab=b8f672a5
+-/
 theorem det_add_rpow_inv_card_eq_iff {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) (hN : 0 < Fintype.card n) :
     (A + B).det ^ (1 / (Fintype.card n : ℝ)) =
@@ -127,7 +133,9 @@ theorem det_add_rpow_inv_card_eq_iff {A B : Matrix n n ℝ}
 /-- The positive determinant root is concave on the positive definite cone
 in every positive dimension. Both endpoint weights are included.
 Horn--Johnson (2013), Theorem 7.6.10.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=concaveo.1h1v.s6.c1460400ad25 from=translated src=- shape=2fd645c6 vocab=05c9d61c
+-/
 theorem concaveOn_det_rpow_inv_card (hN : 0 < Fintype.card n) :
     ConcaveOn ℝ {A : Matrix n n ℝ | A.PosDef}
       (fun A => A.det ^ (1 / (Fintype.card n : ℝ))) := by
@@ -146,7 +154,9 @@ theorem concaveOn_det_rpow_inv_card (hN : 0 < Fintype.card n) :
 /-- Interior equality in determinant-root concavity is exactly positive
 proportionality. The homogeneous statement allows arbitrary positive weights.
 Horn--Johnson (2013), Theorem 7.6.10.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=iff.5h5v.s8.ec19c26aae0e from=translated src=- shape=62fe1731 vocab=37a04b42
+-/
 theorem det_smul_add_rpow_inv_card_eq_iff {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) (hN : 0 < Fintype.card n)
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
@@ -169,7 +179,9 @@ theorem det_smul_add_rpow_inv_card_eq_iff {A B : Matrix n n ℝ}
 is necessary: in zero dimensions both positive definite identity matrices
 have determinant root one, as does their sum, so the inequality is false.
 Horn--Johnson (2013), Section 7.6; explicit repair for the dimension-free
-wording of `log-det-concavity`.-/
+wording of `log-det-concavity`.
+@isnad1 id=ex.0h0v.s8.613dc84663e0 from=translated src=- shape=489ee0eb vocab=7c697cf5
+-/
 theorem exists_posDef_zero_dim_not_det_root_add_ge :
     ∃ A B : Matrix (Fin 0) (Fin 0) ℝ, A.PosDef ∧ B.PosDef ∧
       ¬(A.det ^ (1 / (Fintype.card (Fin 0) : ℝ)) + B.det ^ (1 / (Fintype.card (Fin 0) : ℝ)) ≤

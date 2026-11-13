@@ -18,7 +18,9 @@ variable {n K : Type*} [Fintype n] [DecidableEq n] [Field K]
 
 /-- For a diagonal matrix with nonzero entries, its inverse is the diagonal
 of the scalar inverses. This explicit field form is used in the Schur
-complement proof of the converse-interlacing determinant identities.-/
+complement proof of the converse-interlacing determinant identities.
+@isnad1 id=eq.1h3v.s6.0ffd7d72b6c4 from=translated src=- shape=58cb1a58 vocab=0c29fac3
+-/
 theorem inv_diagonal_of_forall_ne_zero (d : n → K) (hd : ∀ i, d i ≠ 0) :
     (Matrix.diagonal d)⁻¹ = Matrix.diagonal (fun i => (d i)⁻¹) := by
   apply Matrix.inv_eq_left_inv
@@ -27,7 +29,9 @@ theorem inv_diagonal_of_forall_ne_zero (d : n → K) (hd : ∀ i, d i ≠ 0) :
 
 /-- Multiplying the diagonal resolvent sum by the full product cancels
 one factor in each summand. Source: the finite-product identity underlying
-both converse-interlacing characteristic-polynomial formulas.-/
+both converse-interlacing characteristic-polynomial formulas.
+@isnad1 id=eq.1h4v.s7.aa9741ff21e3 from=translated src=- shape=47cd0643 vocab=99d379cc
+-/
 theorem prod_mul_sum_div_eq_sum_prod_erase (d w : n → K) (hd : ∀ i, d i ≠ 0) :
     (∏ i, d i) * (∑ i, w i / d i) =
       ∑ i, w i * ∏ j ∈ Finset.univ.erase i, d j := by
@@ -39,7 +43,9 @@ theorem prod_mul_sum_div_eq_sum_prod_erase (d w : n → K) (hd : ∀ i, d i ≠ 
 
 /-- The Schur complement determinant of a diagonal arrowhead away from
 zero diagonal entries. Source: Horn–Johnson (2013), converse interlacing;
-the final characteristic-polynomial theorem removes this restriction.-/
+the final characteristic-polynomial theorem removes this restriction.
+@isnad1 id=eq.1h6v.s8.aba1da57d106 from=translated src=- shape=5677922e vocab=7433e5ed
+-/
 theorem det_fromBlocks_diagonal_of_forall_ne_zero
     {l : Type*} [Unique l] [Fintype l] [DecidableEq l]
     (d v : n → K) (a : K) (hd : ∀ i, d i ≠ 0) :
@@ -64,7 +70,9 @@ theorem det_fromBlocks_diagonal_of_forall_ne_zero
 
 /-- A diagonal matrix plus an arbitrary rank-one term has this determinant
 when the diagonal entries are nonzero. Source: the determinant lemma;
-converse interlacing uses the unrestricted polynomial extension below.-/
+converse interlacing uses the unrestricted polynomial extension below.
+@isnad1 id=eq.1h5v.s7.745edaf4b123 from=translated src=- shape=cfa20bb8 vocab=41ae1cc9
+-/
 theorem det_diagonal_add_vecMulVec_of_forall_ne_zero
     (d u v : n → K) (hd : ∀ i, d i ≠ 0) :
     (Matrix.diagonal d + Matrix.vecMulVec u v).det =
@@ -85,7 +93,9 @@ arrowhead is the diagonal product times its last linear factor, minus the
 sum of squared couplings times the products with one factor erased.
 Source: Horn–Johnson (2013), converse interlacing; the formula is
 unconditional, including repeated diagonal entries and empty leading blocks.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=eq.0h6v.s9.bd984d649faf from=translated src=- shape=3319f3cc vocab=fc83b4a6
+-/
 theorem charpoly_fromBlocks_diagonal_replicate
     [Infinite K] {l : Type*} [Unique l] [Fintype l] [DecidableEq l]
     (d v : n → K) (a : K) :
@@ -126,7 +136,9 @@ diagonal product minus the sum of squared couplings times products with
 one factor erased. Source: Horn–Johnson (2013), converse interlacing;
 no distinctness, nonzero-entry or invertibility assumption is required,
 and the empty matrix has characteristic polynomial one.
-atlas: interlacing-converse (partial)-/
+atlas: interlacing-converse (partial)
+@isnad1 id=eq.0h4v.s9.56d465b81608 from=translated src=- shape=9e884b62 vocab=ec9f49d5
+-/
 theorem charpoly_diagonal_add_vecMulVec
     [Infinite K] (d v : n → K) :
     (Matrix.diagonal d + Matrix.vecMulVec v v).charpoly =

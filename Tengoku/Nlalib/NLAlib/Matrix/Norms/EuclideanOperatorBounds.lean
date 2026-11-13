@@ -20,7 +20,9 @@ variable {m n p : Type*} [Fintype m] [Fintype n] [Fintype p]
 open scoped Matrix.Norms.L2Operator in
 omit [DecidableEq m] [DecidableEq n] in
 /-- A lower Euclidean length bound for a matrix passes to left multiplication
-in the spectral norm. Source: centered Sylvester proof, toolkit derivations §5.3.-/
+in the spectral norm. Source: centered Sylvester proof, toolkit derivations §5.3.
+@isnad1 id=le.2h6v.s7.7160a81a04fa from=translated src=- shape=e829b836 vocab=f717d5fc
+-/
 theorem mul_specNorm_le_specNorm_mul_of_mulVec_sq_le {T : Matrix m n ℝ} {c : ℝ}
     (hc : 0 ≤ c)
     (h : ∀ x : n → ℝ, c ^ 2 * (x ⬝ᵥ x) ≤ (T *ᵥ x) ⬝ᵥ (T *ᵥ x))
@@ -46,7 +48,9 @@ theorem mul_specNorm_le_specNorm_mul_of_mulVec_sq_le {T : Matrix m n ℝ} {c : �
 
 omit [DecidableEq m] [DecidableEq n] [DecidableEq p] in
 /-- The same pointwise expansion passes to the squared Frobenius norm by
-summing columns. Source: centered Sylvester proof, toolkit derivations §5.3.-/
+summing columns. Source: centered Sylvester proof, toolkit derivations §5.3.
+@isnad1 id=le.1h6v.s7.95db8affa64c from=translated src=- shape=aa128a85 vocab=1772a2d2
+-/
 theorem mul_frobSq_le_frobSq_mul_of_mulVec_sq_le {T : Matrix m n ℝ} {c : ℝ}
     (h : ∀ x : n → ℝ, c ^ 2 * (x ⬝ᵥ x) ≤ (T *ᵥ x) ⬝ᵥ (T *ᵥ x))
     (X : Matrix n p ℝ) : c ^ 2 * frobSq X ≤ frobSq (T * X) := by

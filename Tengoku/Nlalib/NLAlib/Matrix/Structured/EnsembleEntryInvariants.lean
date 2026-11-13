@@ -20,7 +20,9 @@ namespace NLAlib
 
 /-- The actual signed-permutation entry invariants are exactly a tensor
 matrix with identity on the ensemble coordinate. The hypotheses are literal
-entry symmetries; no trace, scalar-block, or spectral conclusion is assumed.-/
+entry symmetries; no trace, scalar-block, or spectral conclusion is assumed.
+@isnad1 id=ex.2h4v.s8.0e13c87e45ca from=translated src=- shape=a0277e71 vocab=9592c523
+-/
 theorem exists_eq_kronecker_one_of_ensemble_entry_invariant
     {𝕜 d n : Type*} [Field 𝕜] [CharZero 𝕜] [DecidableEq n]
     (M : Matrix (d × n) (d × n) 𝕜)

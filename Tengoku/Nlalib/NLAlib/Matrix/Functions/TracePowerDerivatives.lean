@@ -46,7 +46,9 @@ private theorem re_trace_derivative_sum (C H : Matrix ι ι ℂ) (p : ℕ) :
     _ = _ := by simp
 
 /-- Exact first derivative, for arbitrary complex matrices.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=hasderiv.0h5v.s6.a99bacf317bd from=translated src=- shape=fd7c207f vocab=e18601e1
+-/
 theorem hasDerivAt_reTracePowerAlong (p : ℕ) (A H : Matrix ι ι ℂ) (t : ℝ) :
     HasDerivAt (reTracePowerAlong p A H) (reTracePowerFirst p A H t) t := by
   have haff : HasDerivAt (fun r : ℝ => A + r • H) H t := by
@@ -58,7 +60,9 @@ theorem hasDerivAt_reTracePowerAlong (p : ℕ) (A H : Matrix ι ι ℂ) (t : ℝ
       re_trace_derivative_sum, reTracePowerFirst]
 
 /-- Exact second derivative, for arbitrary complex matrices.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=hasderiv.0h5v.s6.ecda4bacef00 from=translated src=- shape=fd7c207f vocab=d54176d0
+-/
 theorem hasDerivAt_reTracePowerFirst (p : ℕ) (A H : Matrix ι ι ℂ) (t : ℝ) :
     HasDerivAt (reTracePowerFirst p A H) (reTracePowerSecond p A H t) t := by
   have haff : HasDerivAt (fun r : ℝ => A + r • H) H t := by
@@ -73,7 +77,9 @@ theorem hasDerivAt_reTracePowerFirst (p : ℕ) (A H : Matrix ι ι ℂ) (t : ℝ
       reTracePowerSecond]
 
 /-- The trace Hessian is bounded by the even endpoint trace moment.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=le.4h5v.s8.2ca10eceda28 from=translated src=- shape=8912d7b3 vocab=121219fc
+-/
 theorem reTracePowerSecond_le_trace_sq_mul (p : ℕ) (hp : Even p) (hp2 : 2 ≤ p)
     (A H : Matrix ι ι ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian) (t : ℝ) :
     reTracePowerSecond p A H t ≤
@@ -95,7 +101,9 @@ theorem reTracePowerSecond_le_trace_sq_mul (p : ℕ) (hp : Even p) (hp2 : 2 ≤ 
     Nat.cast_sub (show 1 ≤ p by omega), Nat.cast_one, mul_assoc] using h
 
 /-- The source even-moment Hessian estimate with sharp coefficient `p(p−1)`.
-atlas: schatten-even-moment-smoothness (partial)-/
+atlas: schatten-even-moment-smoothness (partial)
+@isnad1 id=le.4h5v.s8.64129b1a620b from=translated src=- shape=9544c126 vocab=0d05ce12
+-/
 theorem reTracePowerSecond_le_even_moments (p : ℕ) (hp : Even p) (hp2 : 2 ≤ p)
     (A H : Matrix ι ι ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian) (t : ℝ) :
     reTracePowerSecond p A H t ≤

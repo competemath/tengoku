@@ -26,7 +26,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Every even directional derivative of a Hermitian trace-exponential pencil
 is nonnegative at every real parameter. Source: Stahl's theorem; Tropp (2026),
-Proposition 4.4.-/
+Proposition 4.4.
+@isnad1 id=le.2h5v.s7.72a3cb20b898 from=translated src=- shape=faf44689 vocab=f800fbdc
+-/
 theorem iteratedDeriv_even_traceExp_add_smul_nonneg
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     (r : ℕ) (t : ℝ) :
@@ -35,7 +37,9 @@ theorem iteratedDeriv_even_traceExp_add_smul_nonneg
   exact hν.iteratedDeriv_even_nonneg r t
 
 /-- At nonnegative time an upper support endpoint controls every even
-directional derivative. Source: Stahl's theorem; Tropp (2026), Proposition 4.4.-/
+directional derivative. Source: Stahl's theorem; Tropp (2026), Proposition 4.4.
+@isnad1 id=le.3h5v.s8.624bea3f1b45 from=translated src=- shape=a8db2249 vocab=5a352208
+-/
 theorem iteratedDeriv_even_traceExp_add_smul_le_exp_mul_zero
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     (r : ℕ) {t : ℝ} (ht : 0 ≤ t) :
@@ -46,7 +50,9 @@ theorem iteratedDeriv_even_traceExp_add_smul_le_exp_mul_zero
   exact hν.iteratedDeriv_even_le_exp_mul_zero r ht
 
 /-- The exact second-order integral Taylor formula for an affine matrix
-trace exponential. It holds even without self-adjointness.-/
+trace exponential. It holds even without self-adjointness.
+@isnad1 id=eq.0h3v.s8.46522eb115c7 from=translated src=- shape=b60869fe vocab=e5fcc231
+-/
 theorem traceExp_add_eq_add_deriv_add_integral_iteratedDeriv_two
     (A H : Matrix n n ℂ) :
     traceExp (A + H) = traceExp A +
@@ -61,7 +67,9 @@ theorem traceExp_add_eq_add_deriv_add_integral_iteratedDeriv_two
 
 /-- A one-sided upper bound on the direction's largest eigenvalue yields the
 exact exponential-integral coefficient in the second-order Taylor upper
-bound. Source: Tropp (2026), BMV one-summand replacement argument.-/
+bound. Source: Tropp (2026), BMV one-summand replacement argument.
+@isnad1 id=le.3h4v.s8.22fc26640f8c from=translated src=- shape=e8b0d9ea vocab=223765b0
+-/
 theorem traceExp_add_le_add_deriv_add_iteratedDeriv_two_mul_coefficient
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     {R : ℝ} (hR : lambdaMax H ≤ R) :
@@ -76,7 +84,9 @@ theorem traceExp_add_le_add_deriv_add_iteratedDeriv_two_mul_coefficient
 /-- The Taylor upper estimate under the original one-sided Loewner bound on
 the perturbation. No lower bound on the perturbation and no sign condition
 on the scalar upper bound is needed, including in empty dimension.
-Source: Tropp (2026), Section 4.6.-/
+Source: Tropp (2026), Section 4.6.
+@isnad1 id=le.3h4v.s8.26e2ee19d2c0 from=translated src=- shape=49a070f1 vocab=230018a7
+-/
 theorem traceExp_add_le_add_deriv_add_iteratedDeriv_two_mul_coefficient_of_le
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
     {R : ℝ} (hR : H ≤ R • (1 : Matrix n n ℂ)) :
@@ -105,7 +115,9 @@ theorem traceExp_add_le_add_deriv_add_iteratedDeriv_two_mul_coefficient_of_le
 /-- Opposite Hermitian perturbations dominate the quadratic Taylor term.
 This form permits a symmetric Gaussian law to remove odd terms before
 expectation, without third-derivative integrability assumptions.
-Source: Tropp (2026), Gaussian lower comparison.-/
+Source: Tropp (2026), Gaussian lower comparison.
+@isnad1 id=le.2h3v.s8.54ccea54e43d from=translated src=- shape=77715c8c vocab=51c8eef4
+-/
 theorem two_mul_traceExp_add_iteratedDeriv_two_le_add_traceExp
     (A H : Matrix n n ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian) :
     2 * traceExp A + iteratedDeriv 2 (fun x : ℝ => traceExp (A + x • H)) 0 ≤

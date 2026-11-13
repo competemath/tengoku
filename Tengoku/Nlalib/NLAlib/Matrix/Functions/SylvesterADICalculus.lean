@@ -42,7 +42,9 @@ private theorem cfc_shifted_ratio {n : Type*} [Fintype n] [DecidableEq n]
   exact hcalc
 
 /-- The left ADI matrix product is the functional calculus of its actual
-scalar product, for a normal matrix.-/
+scalar product, for a normal matrix.
+@isnad1 id=eq.2h5v.s8.acfdbf2edcae from=translated src=- shape=2ba6db3d vocab=ae456458
+-/
 theorem sylvesterADILeft_eq_cfc {n : Type*} [Fintype n] [DecidableEq n]
     (A : Matrix n n ℂ) (hA : A * Aᴴ = Aᴴ * A) (α β : ℕ → ℂ)
     (hβ : ∀ i z, z ∈ spectrum ℂ A → z ≠ β i) (j : ℕ) :
@@ -67,7 +69,9 @@ theorem sylvesterADILeft_eq_cfc {n : Type*} [Fintype n] [DecidableEq n]
       (continuousOn_adiScalarProduct A α β hβ j), cfc_shifted_ratio A hA _ _ (hβ j)]
 
 /-- The right product has the reciprocal shifted scalar factors in the same
-normal functional calculus.-/
+normal functional calculus.
+@isnad1 id=eq.2h5v.s8.f09d562ece52 from=translated src=- shape=37f2872b vocab=080f6853
+-/
 theorem sylvesterADIRight_eq_cfc {n : Type*} [Fintype n] [DecidableEq n]
     (B : Matrix n n ℂ) (hB : B * Bᴴ = Bᴴ * B) (α β : ℕ → ℂ)
     (hα : ∀ i z, z ∈ spectrum ℂ B → z ≠ α i) (j : ℕ) :
@@ -92,7 +96,9 @@ theorem sylvesterADIRight_eq_cfc {n : Type*} [Fintype n] [DecidableEq n]
 /-- For a normal matrix, the spectral norm of the left ADI product is exactly
 the maximum scalar rational product over its spectrum. Source: user
 derivations, normal spectral ADI specialization.
-atlas: adi-sylvester-rational-error-/
+atlas: adi-sylvester-rational-error
+@isnad1 id=isgreate.2h5v.s7.29dcf3a9f3cc from=translated src=- shape=7d14d8f4 vocab=b8a081b3
+-/
 theorem isGreatest_norm_adiScalarProduct_left {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     (A : Matrix n n ℂ) (hA : A * Aᴴ = Aᴴ * A) (α β : ℕ → ℂ)
     (hβ : ∀ i z, z ∈ spectrum ℂ A → z ≠ β i) (j : ℕ) :
@@ -102,7 +108,9 @@ theorem isGreatest_norm_adiScalarProduct_left {n : Type*} [Fintype n] [Decidable
   rw [sylvesterADILeft_eq_cfc A hA α β hβ, specNorm_eq_norm]
   exact IsGreatest.norm_cfc _ _ (continuousOn_adiScalarProduct A α β hβ j)
 
-/-- The corresponding exact maximum for the right ADI product.-/
+/-- The corresponding exact maximum for the right ADI product.
+@isnad1 id=isgreate.2h5v.s7.7b63679bae84 from=translated src=- shape=86a799ee vocab=09cd4ed8
+-/
 theorem isGreatest_norm_adiScalarProduct_right {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
     (B : Matrix n n ℂ) (hB : B * Bᴴ = Bᴴ * B) (α β : ℕ → ℂ)
     (hα : ∀ i z, z ∈ spectrum ℂ B → z ≠ α i) (j : ℕ) :

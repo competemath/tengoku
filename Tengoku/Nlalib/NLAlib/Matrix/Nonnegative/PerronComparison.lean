@@ -19,7 +19,9 @@ namespace Matrix
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
 omit [Nonempty ι] in
-/-- Entrywise monotonicity of powers for nonnegative real matrices.-/
+/-- Entrywise monotonicity of powers for nonnegative real matrices.
+@isnad1 id=le.2h6v.s7.4a9a90b33390 from=translated src=- shape=54909da4 vocab=470bcae1
+-/
 theorem pow_apply_le_of_nonneg_of_le {A B : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) (hAB : ∀ i j, A i j ≤ B i j)
     (k : ℕ) (i j : ι) : (A ^ k) i j ≤ (B ^ k) i j := by
@@ -32,7 +34,9 @@ theorem pow_apply_le_of_nonneg_of_le {A B : Matrix ι ι ℝ}
       (hA l j) (Matrix.pow_apply_nonneg hB k i l)
 
 omit [Nonempty ι] in
-/-- Increasing an irreducible nonnegative matrix entrywise preserves irreducibility.-/
+/-- Increasing an irreducible nonnegative matrix entrywise preserves irreducibility.
+@isnad1 id=isirredu.2h3v.s5.b24acce44af6 from=translated src=- shape=15736732 vocab=816d992c
+-/
 theorem IsIrreducible.mono_of_le {A B : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAB : ∀ i j, A i j ≤ B i j) : B.IsIrreducible := by
   have hB : ∀ i j, 0 ≤ B i j := fun i j => (hA.nonneg i j).trans (hAB i j)
@@ -44,7 +48,9 @@ theorem IsIrreducible.mono_of_le {A B : Matrix ι ι ℝ}
 /-- Ordinary entrywise comparison of nonnegative matrices implies comparison
 of their complex spectral radii, with no irreducibility assumption.
 Source: Horn–Johnson, Chapter 8.
-atlas: nonnegative-spectral-radius-comparison (partial)-/
+atlas: nonnegative-spectral-radius-comparison (partial)
+@isnad1 id=le.2h3v.s7.a20a5ab70be0 from=translated src=- shape=2b0974ac vocab=ebba9f46
+-/
 theorem spectralRadius_complexification_mono {A B : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) (hAB : ∀ i j, A i j ≤ B i j) :
     spectralRadius ℂ (A.map Complex.ofReal) ≤ spectralRadius ℂ (B.map Complex.ofReal) := by
@@ -56,7 +62,9 @@ theorem spectralRadius_complexification_mono {A B : Matrix ι ι ℝ}
 /-- Every nonzero nonnegative entrywise perturbation strictly increases the
 spectral radius of a nonzero irreducible nonnegative matrix.
 Source: Horn–Johnson, Chapter 8.
-atlas: nonnegative-spectral-radius-comparison (partial)-/
+atlas: nonnegative-spectral-radius-comparison (partial)
+@isnad1 id=lt.4h3v.s7.1f3c2bcc90e5 from=translated src=- shape=c1cd9139 vocab=0debdbce
+-/
 theorem IsIrreducible.spectralRadius_add_lt {A E : Matrix ι ι ℝ}
     (hA : A.IsIrreducible) (hAne : A ≠ 0) (hE : ∀ i j, 0 ≤ E i j) (hEne : E ≠ 0) :
     spectralRadius ℂ (A.map Complex.ofReal) < spectralRadius ℂ ((A + E).map Complex.ofReal) := by

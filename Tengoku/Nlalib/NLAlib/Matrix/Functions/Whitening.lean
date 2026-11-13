@@ -16,7 +16,9 @@ open scoped Matrix Matrix.Norms.L2Operator MatrixOrder ComplexOrder
 namespace Matrix.PosDef
 
 /-- The inverse square root provides an actual invertible whitening map
-for every positive-definite real or complex matrix.-/
+for every positive-definite real or complex matrix.
+@isnad1 id=ex.1h3v.s8.fec41a726af6 from=translated src=- shape=849de9d0 vocab=295e4c3b
+-/
 theorem exists_isUnit_whitening
     {𝕜 : Type*} [RCLike 𝕜] {d : Type*} [Fintype d] [DecidableEq d]
     {K : Matrix d d 𝕜} (hK : K.PosDef) :

@@ -16,7 +16,9 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder
 namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The identity-diagonal block criterion holds over complex matrices too.-/
+/-- The identity-diagonal block criterion holds over complex matrices too.
+@isnad1 id=le.1h2v.s6.b48e38a65e3f from=translated src=- shape=caa20d31 vocab=4bc546ce
+-/
 theorem norm_le_one_of_posSemidef_identity_fromBlocks {D : Matrix n n ℂ}
     (h : (fromBlocks 1 D D.conjTranspose 1).PosSemidef) : ‖D‖ ≤ 1 := by
   let : Invertible (1 : Matrix n n ℂ) := invertibleOne
@@ -30,7 +32,9 @@ theorem norm_le_one_of_posSemidef_identity_fromBlocks {D : Matrix n n ℂ}
   nlinarith [norm_nonneg D]
 
 /-- A positive block with equal diagonal blocks has off-diagonal norm
-bounded by their norm, with no strict-positivity hypothesis.-/
+bounded by their norm, with no strict-positivity hypothesis.
+@isnad1 id=le.2h3v.s6.b9396992cf88 from=translated src=- shape=1ddae1a6 vocab=4bc546ce
+-/
 theorem norm_le_of_posSemidef_equal_fromBlocks {S D : Matrix n n ℂ}
     (hS : S.PosSemidef) (h : (fromBlocks S D D.conjTranspose S).PosSemidef) :
     ‖D‖ ≤ ‖S‖ := by
@@ -64,7 +68,9 @@ theorem norm_le_of_posSemidef_equal_fromBlocks {S D : Matrix n n ℂ}
 
 /-- A complex matrix contraction gives a positive identity-diagonal block,
 including empty dimensions. This is the converse of
-`norm_le_one_of_posSemidef_identity_fromBlocks`.-/
+`norm_le_one_of_posSemidef_identity_fromBlocks`.
+@isnad1 id=possemid.1h2v.s6.5cb86fbaa333 from=translated src=- shape=6b21cc33 vocab=397d59ad
+-/
 theorem posSemidef_identity_fromBlocks_of_specNorm_le_one {C : Matrix n n ℂ}
     (hC : specNorm C ≤ 1) : (fromBlocks 1 C Cᴴ 1).PosSemidef := by
   let : Invertible (1 : Matrix n n ℂ) := invertibleOne

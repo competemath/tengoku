@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [DecidableEq n] in
 /-- A nonnegative matrix with a supported permutation cannot reduce the
 number of nonzero coordinates of a nonnegative vector. Each positive
-coordinate is sent through its matched positive matrix entry.-/
+coordinate is sent through its matched positive matrix entry.
+@isnad1 id=le.3h4v.s7.6edd4c63d861 from=translated src=- shape=432d8558 vocab=7da5d18e
+-/
 theorem card_nonzero_le_card_nonzero_mulVec_of_perm_pos (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (σ : Equiv.Perm n) (hσ : ∀ i, 0 < C i (σ i))
     (x : n → ℝ) (hx : ∀ j, 0 ≤ x j) :
@@ -71,7 +73,9 @@ private theorem card_mul_lt_one_of_le_div_card_add_one {ε : ℝ}
 semidefinite input. The proof counts positive eigenvalues through a
 supported permutation of the actual spectral transition matrix.
 Source: GGOW, arXiv:1511.03730v4, Theorem 2.12.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.4h5v.s9.7761a3bdc008 from=translated src=- shape=9d628f12 vocab=49d30e87
+-/
 theorem rank_le_rank_krausMap_of_adjoint_normalized
     (A : ι → Matrix n n ℂ) (hA : krausMap (fun a => (A a)ᴴ) 1 = 1)
     {ε : ℝ} (hε : frobSq (krausMap A 1 - 1) ≤ ε)
@@ -95,7 +99,9 @@ theorem rank_le_rank_krausMap_of_adjoint_normalized
 /-- A unital Kraus map whose adjoint Frobenius defect is at most
 `ε ≤ 1/(card n + 1)` does not decrease the rank of any positive
 semidefinite input. Source: GGOW, arXiv:1511.03730v4, Theorem 2.12.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.4h5v.s9.f9aa675f06fd from=translated src=- shape=d0d72317 vocab=49d30e87
+-/
 theorem rank_le_rank_krausMap_of_unital
     (A : ι → Matrix n n ℂ) (hA : krausMap A 1 = 1)
     {ε : ℝ} (hε : frobSq (krausMap (fun a => (A a)ᴴ) 1 - 1) ≤ ε)

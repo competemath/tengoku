@@ -22,7 +22,9 @@ its characteristic roots with multiplicity. Repetitions and empty matrix
 dimension are allowed, without normality or diagonalizability assumptions.
 Horn–Johnson 2013, Theorem 2.3.3; prescribed-order strengthening in
 derivations Section.
-atlas: simultaneous-diagonalization (partial)-/
+atlas: simultaneous-diagonalization (partial)
+@isnad1 id=ex.2h6v.s9.3066fc9f24c0 from=translated src=- shape=493cb5bc vocab=024bbf7f
+-/
 theorem exists_simultaneous_unitary_schur_triangularization_with_charpoly
     {n ι : Type*} [Fintype n] [DecidableEq n]
     (A : ι → Matrix n n ℂ) (hcomm : Pairwise fun a b => Commute (A a) (A b))

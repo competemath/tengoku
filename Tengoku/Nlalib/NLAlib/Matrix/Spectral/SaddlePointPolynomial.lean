@@ -25,7 +25,9 @@ private theorem scalar_eq_smul_one {τ : Type*} [Fintype τ] [DecidableEq τ]
   ext i j
   by_cases h : i = j <;> simp [Matrix.scalar_apply, h]
 
-/-- Schur-complement determinant formula at each scalar other than `1`.-/
+/-- Schur-complement determinant formula at each scalar other than `1`.
+@isnad1 id=eq.2h5v.s8.c35d5392d37d from=translated src=- shape=29f1724d vocab=64c4ea3c
+-/
 theorem eval_charpoly_kktMatrix_one (C : Matrix m n 𝕜)
     (hmn : Fintype.card m ≤ Fintype.card n) {t : 𝕜} (ht : t ≠ 1) :
     (kktMatrix 1 C).charpoly.eval t =
@@ -60,7 +62,9 @@ theorem eval_charpoly_kktMatrix_one (C : Matrix m n 𝕜)
     Nat.sub_add_cancel hmn]
 
 /-- The exact characteristic polynomial, including the rectangular unit-eigenvalue
-multiplicity and all multiplicities of the Gram eigenvalues.-/
+multiplicity and all multiplicities of the Gram eigenvalues.
+@isnad1 id=eq.1h4v.s9.af1813fd5057 from=translated src=- shape=1bbd1868 vocab=7192bb62
+-/
 theorem charpoly_kktMatrix_one (C : Matrix m n 𝕜)
     (hmn : Fintype.card m ≤ Fintype.card n) :
     (kktMatrix 1 C).charpoly =
@@ -73,7 +77,9 @@ theorem charpoly_kktMatrix_one (C : Matrix m n 𝕜)
   simpa only [Set.mem_ofPred_eq, eval_mul, eval_pow, eval_sub, eval_X, eval_one, eval_comp] using
     eval_charpoly_kktMatrix_one C hmn ht1
 
-/-- Every Gram eigenvalue contributes its quadratic factor, with multiplicity.-/
+/-- Every Gram eigenvalue contributes its quadratic factor, with multiplicity.
+@isnad1 id=eq.1h4v.s10.79e2e91d6dfd from=translated src=- shape=fff7a046 vocab=145b62f7
+-/
 theorem charpoly_kktMatrix_one_eq_prod (C : Matrix m n 𝕜)
     (hmn : Fintype.card m ≤ Fintype.card n) :
     (kktMatrix 1 C).charpoly =

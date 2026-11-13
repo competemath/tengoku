@@ -14,7 +14,9 @@ open scoped Matrix
 namespace NLAlib
 variable {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
 
-/-- Frobenius perturbation bound for two orthonormal coordinate frames.-/
+/-- Frobenius perturbation bound for two orthonormal coordinate frames.
+@isnad1 id=le.2h5v.s8.d2b4dfc0151a from=translated src=- shape=384ec6ab vocab=cadb56fb
+-/
 theorem frobNorm_conjTranspose_mul_mul_sub_le (A : Matrix n n 𝕜)
     {U V : Matrix n n 𝕜} (hU : HasOrthonormalCols U) (hV : HasOrthonormalCols V) :
     frobNorm (Uᴴ * A * U - Vᴴ * A * V) ≤ 2 * specNorm A * frobNorm (U - V) := by

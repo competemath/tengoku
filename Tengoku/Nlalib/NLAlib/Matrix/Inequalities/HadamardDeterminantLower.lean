@@ -63,7 +63,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Oppenheim's determinant lower bound for two PSD real matrices, including
 singular and empty matrices and zero diagonal entries.
 Horn--Johnson (2013), Theorem 7.5.9.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=le.2h3v.s6.c08e71c99092 from=translated src=- shape=08caf6ac vocab=7422e665
+-/
 theorem det_mul_prod_diag_le_det_hadamard {A B : Matrix n n ℝ}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     A.det * (∏ i, B i i) ≤ (A ⊙ B).det := by
@@ -89,7 +91,9 @@ theorem det_mul_prod_diag_le_det_hadamard {A B : Matrix n n ℝ}
 /-- Both Oppenheim lower bounds hold simultaneously, hence their maximum
 is bounded by the determinant of the Hadamard product.
 Horn--Johnson (2013), Theorem 7.5.9.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=le.2h3v.s6.561ad84b91e1 from=translated src=- shape=40da7b30 vocab=6407d5aa
+-/
 theorem max_det_mul_prod_diag_le_det_hadamard {A B : Matrix n n ℝ}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     max (A.det * ∏ i, B i i) (B.det * ∏ i, A i i) ≤ (A ⊙ B).det := by

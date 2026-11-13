@@ -38,7 +38,9 @@ private theorem convexHull_real_finite_eq_Icc {s : Set ℝ}
 
 omit [DecidableEq n] in
 /-- The real projection of a matrix's numerical range agrees with that of its
-Hermitian part; the statement also includes the empty numerical range.-/
+Hermitian part; the statement also includes the empty numerical range.
+@isnad1 id=eq.0h2v.s10.504e6b7ffc52 from=translated src=- shape=07825a96 vocab=7cbe1964
+-/
 theorem re_image_numericalRange_eq_selfAdjointPart (A : Matrix n n ℂ) :
     Complex.re '' numericalRange A =
       Complex.re '' numericalRange (selfAdjointPart ℝ A : Matrix n n ℂ) := by
@@ -54,7 +56,9 @@ theorem re_image_numericalRange_eq_selfAdjointPart (A : Matrix n n ℂ) :
 /-- In positive dimension the real projection of the numerical range is the
 closed interval between the extreme eigenvalues of the Hermitian part.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=eq.0h2v.s11.4b2789f912de from=translated src=- shape=c14bd52b vocab=4ed76a52
+-/
 theorem re_image_numericalRange_eq_Icc [Nonempty n] (A : Matrix n n ℂ) :
     Complex.re '' numericalRange A =
       Set.Icc (lambdaMin (selfAdjointPart ℝ A : Matrix n n ℂ))

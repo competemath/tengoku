@@ -16,7 +16,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Conjugating a symmetric matrix by a rotation of two of its eigenvectors changes only their
 two-dimensional spectral block; no restriction on signed or repeated eigenvalues.
-Horn–Johnson 2013, proof of Theorem 4.3.48.-/
+Horn–Johnson 2013, proof of Theorem 4.3.48.
+@isnad1 id=eq.7h8v.s9.84bd2413f31c from=translated src=- shape=f99a1d7d vocab=461b86f2
+-/
 theorem planeRotation_mul_mul_transpose_of_eigenvectors
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (u v : n → ℝ)
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1) (hv : ‖(WithLp.toLp 2 v : EuclideanSpace ℝ n)‖ = 1) (huv : u ⬝ᵥ v = 0)
@@ -47,7 +49,9 @@ theorem planeRotation_mul_mul_transpose_of_eigenvectors
 
 /-- The diagonal increment from rotating eigenvectors with disjoint coordinate supports is
 exactly `s²(β-α)(uᵢ²-vᵢ²)`, including repeated and negative eigenvalues. Horn–Johnson 2013,
-proof of Theorem 4.3.48.-/
+proof of Theorem 4.3.48.
+@isnad1 id=eq.8h9v.s9.60f6776f05c8 from=translated src=- shape=6d1a7dee vocab=9a675360
+-/
 theorem planeRotation_mul_mul_transpose_apply_diag_of_disjoint_eigenvectors
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (u v : n → ℝ)
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1) (hv : ‖(WithLp.toLp 2 v : EuclideanSpace ℝ n)‖ = 1) (huv : u ⬝ᵥ v = 0)

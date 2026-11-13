@@ -26,7 +26,9 @@ open MeasureTheory
 namespace Matrix
 
 /-- Evaluating the entry polynomial Gram determinant gives the actual row Gram
-determinant. HMT 2011, Proposition A.5, algebraic identity.-/
+determinant. HMT 2011, Proposition A.5, algebraic identity.
+@isnad1 id=eq.0h3v.s8.cd8839f389e8 from=translated src=- shape=4820abd4 vocab=902ada15
+-/
 theorem eval_det_mvPolynomialX_mul_transpose (p m : ℕ) (G : Matrix (Fin p) (Fin m) ℝ) :
     MvPolynomial.eval (fun ab : Fin p × Fin m => G ab.1 ab.2)
       (mvPolynomialX (Fin p) (Fin m) ℝ * (mvPolynomialX (Fin p) (Fin m) ℝ)ᵀ).det
@@ -39,7 +41,9 @@ theorem eval_det_mvPolynomialX_mul_transpose (p m : ℕ) (G : Matrix (Fin p) (Fi
   rw [hX]
 
 /-- Evaluating the entry polynomial column Gram determinant gives the actual
-column Gram determinant. HMT 2011, Proposition A.5.-/
+column Gram determinant. HMT 2011, Proposition A.5.
+@isnad1 id=eq.0h3v.s8.53ead3c78616 from=translated src=- shape=4d0544c9 vocab=902ada15
+-/
 theorem eval_det_transpose_mvPolynomialX_mul (p m : ℕ) (G : Matrix (Fin p) (Fin m) ℝ) :
     MvPolynomial.eval (fun ab : Fin p × Fin m => G ab.1 ab.2)
       ((mvPolynomialX (Fin p) (Fin m) ℝ)ᵀ * mvPolynomialX (Fin p) (Fin m) ℝ).det
@@ -52,7 +56,9 @@ theorem eval_det_transpose_mvPolynomialX_mul (p m : ℕ) (G : Matrix (Fin p) (Fi
   rw [hX]
 
 /-- In the wide case, the row Gram determinant is a nonzero polynomial in the
-entries, witnessed by the embedded identity matrix. HMT 2011, Proposition A.5.-/
+entries, witnessed by the embedded identity matrix. HMT 2011, Proposition A.5.
+@isnad1 id=ne.1h2v.s7.7563986a31db from=translated src=- shape=a3127514 vocab=6853893a
+-/
 theorem det_mvPolynomialX_mul_transpose_ne_zero {k t : ℕ} (h : k ≤ t) :
     (mvPolynomialX (Fin k) (Fin t) ℝ * (mvPolynomialX (Fin k) (Fin t) ℝ)ᵀ).det ≠ 0 := by
   intro h0
@@ -65,7 +71,9 @@ theorem det_mvPolynomialX_mul_transpose_ne_zero {k t : ℕ} (h : k ≤ t) :
   exact zero_ne_one he
 
 /-- In the tall case, the column Gram determinant is a nonzero polynomial in
-the entries, witnessed by the embedded identity. HMT 2011, Proposition A.5.-/
+the entries, witnessed by the embedded identity. HMT 2011, Proposition A.5.
+@isnad1 id=ne.1h2v.s7.1e17e7acf012 from=translated src=- shape=d633eccf vocab=6853893a
+-/
 theorem det_transpose_mvPolynomialX_mul_ne_zero {k t : ℕ} (h : t ≤ k) :
     ((mvPolynomialX (Fin k) (Fin t) ℝ)ᵀ * mvPolynomialX (Fin k) (Fin t) ℝ).det ≠ 0 := by
   intro h0
@@ -79,7 +87,9 @@ theorem det_transpose_mvPolynomialX_mul_ne_zero {k t : ℕ} (h : t ≤ k) :
 
 /-- The singular row-Gram locus is Lebesgue-null in standard flat entry
 coordinates for a wide matrix, including zero rows. HMT 2011, Proposition A.5.
-atlas: gaussian-full-rank-ae (partial)-/
+atlas: gaussian-full-rank-ae (partial)
+@isnad1 id=eq.1h2v.s8.3fda4f9f1187 from=translated src=- shape=3506de53 vocab=cf3e6f10
+-/
 theorem volume_det_mul_transpose_eq_zero {k t : ℕ} (h : k ≤ t) :
     volume {x : Fin k × Fin t → ℝ |
       ((of fun i j => x (i, j)) * (of fun i j => x (i, j))ᵀ).det = 0} = 0 := by
@@ -93,7 +103,9 @@ theorem volume_det_mul_transpose_eq_zero {k t : ℕ} (h : k ≤ t) :
 
 /-- The singular column-Gram locus is Lebesgue-null in standard flat entry
 coordinates for a tall matrix, including zero columns. HMT 2011, Proposition A.5.
-atlas: gaussian-full-rank-ae (partial)-/
+atlas: gaussian-full-rank-ae (partial)
+@isnad1 id=eq.1h2v.s8.3ded6b119516 from=translated src=- shape=f1d8772b vocab=cf3e6f10
+-/
 theorem volume_det_transpose_mul_eq_zero {k t : ℕ} (h : t ≤ k) :
     volume {x : Fin k × Fin t → ℝ |
       ((of fun i j => x (i, j))ᵀ * (of fun i j => x (i, j))).det = 0} = 0 := by

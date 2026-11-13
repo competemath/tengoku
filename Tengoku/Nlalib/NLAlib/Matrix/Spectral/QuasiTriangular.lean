@@ -26,7 +26,9 @@ def IsUpperQuasiTriangular {k : ℕ} {K : Type*} [Zero K]
   (∀ i j l, j.val + 1 = i.val → l.val + 1 = j.val → T i j = 0 ∨ T j l = 0)
 
 /-- Every upper triangular matrix is upper quasitriangular.
-Horn–Johnson (2013), §2.3; all diagonal blocks may be taken scalar.-/
+Horn–Johnson (2013), §2.3; all diagonal blocks may be taken scalar.
+@isnad1 id=isupperq.1h3v.s4.74eda4547209 from=translated src=- shape=d5e02397 vocab=69260a1a
+-/
 theorem isUpperQuasiTriangular_of_isUpperTriangular
     {k : ℕ} {K : Type*} [Zero K] {T : Matrix (Fin k) (Fin k) K}
     (hT : T.IsUpperTriangular) : IsUpperQuasiTriangular T := by
@@ -38,7 +40,9 @@ theorem isUpperQuasiTriangular_of_isUpperTriangular
 
 /-- In a product of an upper triangular and upper quasitriangular matrix,
 each first-subdiagonal entry is scaled only by the corresponding diagonal
-entry of the left factor. Source: block multiplication; real QZ helper.-/
+entry of the left factor. Source: block multiplication; real QZ helper.
+@isnad1 id=eq.3h6v.s7.28e207c4ee5a from=translated src=- shape=2849537d vocab=0611ce32
+-/
 theorem mul_apply_subdiagonal_of_upperTriangular
     {k : ℕ} {K : Type*} [Semiring K] {R T : Matrix (Fin k) (Fin k) K}
     (hR : R.IsUpperTriangular) (hT : IsUpperQuasiTriangular T)
@@ -53,7 +57,9 @@ theorem mul_apply_subdiagonal_of_upperTriangular
 
 /-- Left multiplication by an upper triangular matrix preserves upper
 quasitriangularity and its block boundaries. Source: Horn–Johnson (2013),
-Theorem 2.6.2; this is the final real QR step for the second pencil factor.-/
+Theorem 2.6.2; this is the final real QR step for the second pencil factor.
+@isnad1 id=isupperq.2h4v.s6.d149816cdb23 from=translated src=- shape=b6ce8c92 vocab=a0f66110
+-/
 theorem IsUpperQuasiTriangular.upperTriangular_mul
     {k : ℕ} {K : Type*} [Semiring K] {R T : Matrix (Fin k) (Fin k) K}
     (hT : IsUpperQuasiTriangular T) (hR : R.IsUpperTriangular) :
@@ -75,7 +81,9 @@ theorem IsUpperQuasiTriangular.upperTriangular_mul
 
 /-- Prefixing one scalar block to an upper quasitriangular trailing matrix
 preserves quasitriangularity. Source: Horn–Johnson (2013), Theorem 2.6.2;
-the first row is unrestricted and the lower first column is zero.-/
+the first row is unrestricted and the lower first column is zero.
+@isnad1 id=isupperq.2h3v.s7.95a5d969b10b from=translated src=- shape=46bb9fa0 vocab=7371c6d0
+-/
 theorem isUpperQuasiTriangular_of_first_column_and_tail
     {k : ℕ} {K : Type*} [Zero K] {T : Matrix (Fin (k + 1)) (Fin (k + 1)) K}
     (hcol : ∀ i : Fin k, T i.succ 0 = 0)

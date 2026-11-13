@@ -14,7 +14,9 @@ noncomputable section
 open scoped Matrix
 namespace NLAlib
 
-/-- The Hermitian dilation commutes with arbitrary row and column reindexing.-/
+/-- The Hermitian dilation commutes with arbitrary row and column reindexing.
+@isnad1 id=eq.0h7v.s8.b5b00b9ac98e from=translated src=- shape=728e9a4e vocab=e4e2b301
+-/
 theorem dilation_reindex {m n p q : Type*} (A : Matrix m n ℂ)
     (em : m ≃ p) (en : n ≃ q) :
     dilation (A.reindex em en) =

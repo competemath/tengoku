@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- A complete inverse branch family of a Hermitian diagonal pencil eventually
 satisfies Schwarz reflection label by label. Its inverse matrix itself need not
-be Hermitian: the proof uses the equivalent forward spectral equation.-/
+be Hermitian: the proof uses the equivalent forward spectral equation.
+@isnad1 id=eventual.5h6v.s8.578fcf4608af from=translated src=- shape=29b8bb8b vocab=72b770be
+-/
 theorem eventually_exterior_inverse_eigenvalue_branches_conj_eq
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
     (hb : Function.Injective b) (s : ℝ) (hs : ∀ i, s ≠ b i)
@@ -75,7 +77,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Constructed inverse branches of a Hermitian pencil have both the correct
 upper-half-plane labels and Schwarz reflection on one common exterior domain.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h4v.s9.49321cd53224 from=translated src=- shape=0f8535df vocab=9040d2b2
+-/
 theorem exists_exterior_inverse_eigenvalue_branches_im_pos_iff_conj_eq
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
     (hb : Function.Injective b) (s : ℝ) (hs : ∀ i, s ≠ b i) :

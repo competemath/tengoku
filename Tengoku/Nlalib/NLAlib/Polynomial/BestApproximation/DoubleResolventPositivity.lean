@@ -47,7 +47,9 @@ private theorem exp_quarter_le_exp_one_pow {n : ℕ} {x : ℝ} (hx : x ≤ 4*n) 
 /-- The explicit denominator is strictly positive before the algebraic tail
 cutoff for every degree. The proof uses its actual value error.
 Source: focused reciprocal reroute, positivity on `[0,4n]`.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.2h2v.s5.13dbf3207d1a from=translated src=- shape=5bc17c84 vocab=39556c84
+-/
 theorem eval_doubleResolventExponentialDenominator_pos_of_le_four_mul
     {n : ℕ} {x : ℝ} (hx : 0 ≤ x) (hxn : x ≤ 4*n) :
     0 < (doubleResolventExponentialDenominator n).eval x := by
@@ -69,7 +71,9 @@ theorem eval_doubleResolventExponentialDenominator_pos_of_le_four_mul
   nlinarith
 
 /-- The four small positive degrees have the exact rational coefficients
-displayed in the focused reciprocal reroute.-/
+displayed in the focused reciprocal reroute.
+@isnad1 id=and.0h0v.s10.abec20037302 from=translated src=- shape=0cc465d8 vocab=6e1bc227
+-/
 theorem doubleResolventExponentialDenominator_small_degrees :
     doubleResolventExponentialDenominator 1 = C (215/216) + C (60/216)*X ∧
     doubleResolventExponentialDenominator 2 =
@@ -97,7 +101,9 @@ theorem doubleResolventExponentialDenominator_small_degrees :
 tail cutoff, for every degree at least five. The value and derivative estimates
 are simultaneous, so this proves the claimed monotonicity locally.
 Source: focused reciprocal reroute, positivity on `[0,4n]`.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.3h2v.s7.7b8af46adfc2 from=translated src=- shape=93e019fa vocab=8578f00a
+-/
 theorem derivative_doubleResolventExponentialDenominator_pos_of_le_four_mul
     {n : ℕ} (hn : 5 ≤ n) {x : ℝ} (hx : 0 ≤ x) (hxn : x ≤ 4*n) :
     0 < (doubleResolventExponentialDenominator n).derivative.eval x := by
@@ -123,7 +129,9 @@ theorem derivative_doubleResolventExponentialDenominator_pos_of_le_four_mul
 /-- Both the denominator and its derivative are positive on the entire half-line
 for the four exceptional small degrees, by their exact rational coefficients.
 Source: focused reciprocal reroute, small-degree table.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=and.3h2v.s7.5c1b6fca1237 from=translated src=- shape=751e9af9 vocab=1e9d7f92
+-/
 theorem doubleResolventExponentialDenominator_pos_small_degrees
     {n : ℕ} (hn : 1 ≤ n) (hn4 : n ≤ 4) {x : ℝ} (hx : 0 ≤ x) :
     0 < (doubleResolventExponentialDenominator n).eval x ∧

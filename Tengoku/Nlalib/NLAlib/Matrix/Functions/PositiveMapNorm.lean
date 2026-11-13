@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n m : Type*} [Fintype n] [DecidableEq n] [Fintype m] [DecidableEq m]
 
 /-- A positive map sends every unitary to a matrix of norm at most its
-value at the identity. This includes singular and zero images of one.-/
+value at the identity. This includes singular and zero images of one.
+@isnad1 id=le.0h4v.s9.8ffe88c7a4b3 from=translated src=- shape=cd27683a vocab=d515ed98
+-/
 theorem norm_map_unitary_le_norm_map_one
     (Φ : Matrix n n ℂ →ₚ[ℂ] Matrix m m ℂ) (U : unitary (Matrix n n ℂ)) :
     ‖Φ U‖ ≤ ‖Φ 1‖ := by

@@ -26,7 +26,9 @@ namespace NLAlib
 /-- The trace of an idempotent matrix over a field is its rank. Empty index types
 are included. This is Mathlib's projection trace theorem in matrix coordinates; over `ℂ`, take
 `Complex.re` of both sides for the real-trace form. Atlas `eckart-young` (foundation);
-`sa:volume-theorem`.-/
+`sa:volume-theorem`.
+@isnad1 id=eq.1h3v.s6.3a61f4448f0b from=translated src=- shape=9f38a79f vocab=937baeef
+-/
 theorem trace_eq_rank_of_isIdempotentElem {ι K : Type*} [Fintype ι] [DecidableEq ι] [Field K]
     (P : Matrix ι ι K) (hP : IsIdempotentElem P) : P.trace = (P.rank : K) := by
   have hf : IsIdempotentElem P.mulVecLin := by
@@ -41,7 +43,9 @@ theorem trace_eq_rank_of_isIdempotentElem {ι K : Type*} [Fintype ι] [Decidable
 /-- Every diagonal capture weight of an orthogonal projector (Hermitian idempotent) over `ℝ` or
 `ℂ` has real part in `[0,1]`, including zero dimensions. The proof uses the squared column
 length. For a real symmetric projector this reads `P j j ∈ [0, 1]`. Atlas `eckart-young`
-(foundation); `sa:volume-theorem`.-/
+(foundation); `sa:volume-theorem`.
+@isnad1 id=mem.2h4v.s7.79d90d5c976a from=translated src=- shape=b2ca3112 vocab=8db5f5fc
+-/
 theorem re_diag_mem_Icc_of_isHermitian_of_isIdempotentElem {ι 𝕜 : Type*} [Fintype ι]
     [RCLike 𝕜] (P : Matrix ι ι 𝕜) (hs : P.IsHermitian) (hp : IsIdempotentElem P) (j : ι) :
     RCLike.re (P j j) ∈ Set.Icc (0 : ℝ) 1 := by

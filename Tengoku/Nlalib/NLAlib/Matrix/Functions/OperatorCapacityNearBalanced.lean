@@ -31,7 +31,9 @@ private theorem re_det_eq_prod_eigenvalues {M : Matrix n n ℂ} (hM : M.IsHermit
 most `ε ≤ 1/(card n + 1)` has capacity at least
 `(1 - sqrt (card n * ε)) ^ card n`. The infimum need not be attained.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Lemma 3.4.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.3h4v.s9.5185d8900c76 from=translated src=- shape=77ac9ab0 vocab=139a1f72
+-/
 theorem pow_one_sub_sqrt_le_operatorCapacity_krausMap_of_adjoint_normalized
     (A : ι → Matrix n n ℂ)
     (hA : krausMap (fun a => (A a)ᴴ) 1 = 1)
@@ -56,7 +58,9 @@ theorem pow_one_sub_sqrt_le_operatorCapacity_krausMap_of_adjoint_normalized
 bound, with the adjoint Frobenius defect. The proof uses exact equality of
 the capacities of a Kraus family and its adjoint.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Lemma 3.4.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.3h4v.s9.2aaaaa0a5251 from=translated src=- shape=0330d6b4 vocab=139a1f72
+-/
 theorem pow_one_sub_sqrt_le_operatorCapacity_krausMap_of_unital
     (A : ι → Matrix n n ℂ) (hA : krausMap A 1 = 1)
     {ε : ℝ} (hε : frobSq (krausMap (fun a => (A a)ᴴ) 1 - 1) ≤ ε)

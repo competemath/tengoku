@@ -102,11 +102,15 @@ private theorem iterate_laguerreRodriguesOperator_X_pow_succ (n : ℕ) :
     smul_eq_C_mul]
   ring
 
-/-- The order-zero monic classical Laguerre polynomial is one.-/
+/-- The order-zero monic classical Laguerre polynomial is one.
+@isnad1 id=eq.0h0v.s4.573efd133f93 from=translated src=- shape=249d2cad vocab=283a38a2
+-/
 @[simp] theorem monicLaguerrePolynomial_zero : monicLaguerrePolynomial 0 = 1 := by
   simp [monicLaguerrePolynomial_eq_rodrigues]
 
-/-- The coefficient of degree `n` in the monic classical Laguerre polynomial is one.-/
+/-- The coefficient of degree `n` in the monic classical Laguerre polynomial is one.
+@isnad1 id=eq.0h1v.s4.d7c28d72c275 from=translated src=- shape=43f7af97 vocab=e138e91c
+-/
 @[simp] theorem coeff_monicLaguerrePolynomial_self (n : ℕ) :
     (monicLaguerrePolynomial n).coeff n = 1 := by
   rw [monicLaguerrePolynomial, coeff_smul, coeff_laguerrePolynomial_self,
@@ -118,20 +122,26 @@ private theorem iterate_laguerreRodriguesOperator_X_pow_succ (n : ℕ) :
   field_simp
   simpa only [pow_two] using hsign
 
-/-- The degree of the monic classical Laguerre polynomial is its order.-/
+/-- The degree of the monic classical Laguerre polynomial is its order.
+@isnad1 id=eq.0h1v.s3.4fd2576e1eb1 from=translated src=- shape=c3f7ecf6 vocab=69a89602
+-/
 @[simp] theorem natDegree_monicLaguerrePolynomial (n : ℕ) :
     (monicLaguerrePolynomial n).natDegree = n := by
   apply le_antisymm
   · exact (natDegree_smul_le _ _).trans (by rw [natDegree_laguerrePolynomial])
   · exact le_natDegree_of_ne_zero (by rw [coeff_monicLaguerrePolynomial_self]; norm_num)
 
-/-- The normalized classical Laguerre polynomial is monic.-/
+/-- The normalized classical Laguerre polynomial is monic.
+@isnad1 id=monic.0h1v.s2.457427114f9d from=translated src=- shape=1a6c1393 vocab=e13744e4
+-/
 theorem monic_monicLaguerrePolynomial (n : ℕ) : (monicLaguerrePolynomial n).Monic := by
   apply monic_of_degree_le n
   · exact (degree_smul_le _ _).trans (by rw [degree_laguerrePolynomial])
   · exact coeff_monicLaguerrePolynomial_self n
 
-/-- The full polynomial degree of the monic classical Laguerre polynomial is its order.-/
+/-- The full polynomial degree of the monic classical Laguerre polynomial is its order.
+@isnad1 id=eq.0h1v.s4.83157f70bea9 from=translated src=- shape=95ba4981 vocab=8bd82693
+-/
 @[simp] theorem degree_monicLaguerrePolynomial (n : ℕ) :
     (monicLaguerrePolynomial n).degree = n := by
   rw [degree_eq_natDegree (monic_monicLaguerrePolynomial n).ne_zero,
@@ -139,7 +149,9 @@ theorem monic_monicLaguerrePolynomial (n : ℕ) : (monicLaguerrePolynomial n).Mo
 
 /-- The actual monic classical Laguerre polynomials satisfy the recurrence with
 diagonal coefficient `2n+1` and lower coefficient `n^2`, including order zero.
-Source: the focused reciprocal exponential reroute, Section 1.-/
+Source: the focused reciprocal exponential reroute, Section 1.
+@isnad1 id=eq.0h1v.s7.89cc499c859c from=translated src=- shape=277474d9 vocab=850bf722
+-/
 theorem monicLaguerrePolynomial_succ_eq (n : ℕ) :
     monicLaguerrePolynomial (n + 1) =
       (X - C (2 * (n : ℝ) + 1)) * monicLaguerrePolynomial n -

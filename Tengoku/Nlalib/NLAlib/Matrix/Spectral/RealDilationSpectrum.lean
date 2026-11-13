@@ -19,7 +19,9 @@ def realDilationSpectrum {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) : Fin (m +
   fun k => if (k : ℕ) < m then singularValues A k else -singularValues A (m + n - 1 - k)
 
 /-- The explicit paired list decreases, including all the rectangular zeros.
-Bhatia 1997, Section III.4; no positive-rank hypothesis is needed.-/
+Bhatia 1997, Section III.4; no positive-rank hypothesis is needed.
+@isnad1 id=antitone.0h3v.s5.65a8194e021b from=translated src=- shape=4fe3cbee vocab=7df566a2
+-/
 theorem realDilationSpectrum_antitone {m n : ℕ} (A : Matrix (Fin m) (Fin n) ℝ) :
     Antitone (realDilationSpectrum A) := by
   intro i j hij

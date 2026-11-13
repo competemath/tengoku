@@ -57,7 +57,9 @@ private theorem isHermitian_schur_complement_bottom {A : Matrix m m ℝ} {C : Ma
     Matrix.isHermitian_mul_mul_conjTranspose B hC.inv
 
 /-- Haynsworth's positive inertia additivity at an invertible bottom-right block.
-Horn--Johnson (2013), Exercise 4.5.P21.-/
+Horn--Johnson (2013), Exercise 4.5.P21.
+@isnad1 id=eq.3h5v.s8.1b045a6e88fb from=translated src=- shape=b1c1b9db vocab=42dd2b49
+-/
 theorem inertiaPos_fromBlocks_eq_add_schur_bottom {A : Matrix m m ℝ} {C : Matrix n n ℝ}
     (hA : A.IsHermitian) (B : Matrix m n ℝ) (hC : C.IsHermitian) (hCu : IsUnit C) :
     inertiaPos (fromBlocks A B Bᴴ C) = inertiaPos C + inertiaPos (A - B * C⁻¹ * Bᴴ) := by
@@ -112,7 +114,9 @@ private lemma inertiaPos_diagonal_one_neg (c : ℝ) (hc : c < 0) :
 real symmetric invertible `M` updated by the rank-one matrix `vecMulVec v v` gains
 exactly one positive eigenvalue as soon as `v ⬝ᵥ (M⁻¹ *ᵥ v) < -1`.  No
 positive-definiteness of `M` is assumed; the certificate is Haynsworth additivity
-applied twice to the bordered matrix `[[M, v], [vᵀ, -1]]`.-/
+applied twice to the bordered matrix `[[M, v], [vᵀ, -1]]`.
+@isnad1 id=eq.3h3v.s7.b56a5e90580f from=translated src=- shape=37ec7a68 vocab=b3fef220
+-/
 theorem inertiaPos_add_vecMulVec_eq_add_one
     {M : Matrix n n ℝ} (hM : M.IsHermitian) (hMu : IsUnit M) (v : n → ℝ)
     (hlt : v ⬝ᵥ (M⁻¹ *ᵥ v) < -1) :
@@ -208,7 +212,9 @@ theorem inertiaPos_add_vecMulVec_eq_add_one
   exact hmain_bottom.symm.trans hmain_top
 
 /-- Shifted-barrier form: with `M = A - bI`, the positive inertia of the rank-one
-update counts the eigenvalues of `A` strictly above `b` plus the one gained.-/
+update counts the eigenvalues of `A` strictly above `b` plus the one gained.
+@isnad1 id=eq.3h4v.s8.442d52b22f57 from=translated src=- shape=0c8e3cff vocab=0ed82527
+-/
 theorem inertiaPos_add_vecMulVec_eq_add_one_of_shift
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (b : ℝ) (v : n → ℝ)
     (hMu : IsUnit (A - b • (1 : Matrix n n ℝ)))

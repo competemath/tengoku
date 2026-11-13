@@ -22,7 +22,9 @@ set_option backward.isDefEq.respectTransparency false
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A complex positive-semidefinite determinant is real and its modulus is
-its nonnegative real part.-/
+its nonnegative real part.
+@isnad1 id=eq.1h2v.s5.b8e7d00e29a7 from=translated src=- shape=1cf107cd vocab=a34ace03
+-/
 theorem norm_det_eq_re_of_posSemidef {H : Matrix n n ℂ} (hH : H.PosSemidef) :
     ‖H.det‖ = H.det.re := by
   have hn := RCLike.norm_of_nonneg' hH.det_nonneg
@@ -40,7 +42,9 @@ private theorem norm_one_add_I_mul (t : ℝ) :
 product formulas after simultaneous congruence. The diagonal parameters also
 detect whether the imaginary Hermitian part vanishes. Empty dimension is included.
 Source: operator derivations, (S13).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=ex.2h3v.s8.2bbd42e263ec from=translated src=- shape=2462ffe9 vocab=22f99073
+-/
 theorem exists_det_add_I_smul_factors {H K : Matrix n n ℂ}
     (hH : H.PosDef) (hK : K.IsHermitian) :
     ∃ t : n → ℝ,
@@ -93,7 +97,9 @@ private theorem one_le_sqrt_one_add_sq (t : ℝ) : 1 ≤ Real.sqrt (1 + t ^ 2) :
 /-- Ostrowski–Taussky's determinant lower bound for a matrix with positive
 definite Hermitian part, including dimension zero.
 Source: Horn–Johnson (2013), Theorem 7.8.19; operator derivations, (S15).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=le.2h3v.s6.bd8936347636 from=translated src=- shape=14f8e92e vocab=611f976b
+-/
 theorem re_det_le_norm_det_add_I_smul {H K : Matrix n n ℂ}
     (hH : H.PosDef) (hK : K.IsHermitian) :
     H.det.re ≤ ‖(H + Complex.I • K).det‖ := by
@@ -107,7 +113,9 @@ theorem re_det_le_norm_det_add_I_smul {H K : Matrix n n ℂ}
 /-- Equality in Ostrowski–Taussky holds exactly when the imaginary Hermitian
 part vanishes; empty dimension is included.
 Source: Horn–Johnson (2013), Theorem 7.8.19; operator derivations, (S15).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=iff.2h3v.s7.6ab1554e8cf4 from=translated src=- shape=0d123dd3 vocab=7d6e2918
+-/
 theorem re_det_eq_norm_det_add_I_smul_iff {H K : Matrix n n ℂ}
     (hH : H.PosDef) (hK : K.IsHermitian) :
     H.det.re = ‖(H + Complex.I • K).det‖ ↔ K = 0 := by
@@ -171,7 +179,9 @@ private theorem one_add_prod_abs_le_prod_sqrt (t : n → ℝ)
 /-- The determinant-sum bound for positive Hermitian part requires dimension
 at least two. Source: Horn–Johnson (2013), Theorem 7.8.24;
 operator derivations, (S17).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=le.3h3v.s7.7a9b9edf890d from=translated src=- shape=660e0460 vocab=c839ecaa
+-/
 theorem re_det_add_norm_det_le_norm_det_add_I_smul {H K : Matrix n n ℂ}
     (hH : H.PosDef) (hK : K.IsHermitian) (hN : 2 ≤ Fintype.card n) :
     H.det.re + ‖K.det‖ ≤ ‖(H + Complex.I • K).det‖ := by
@@ -214,7 +224,9 @@ private theorem one_add_prod_abs_rpow_le_prod_sqrt_rpow (t : n → ℝ)
 part in positive dimension. Singular imaginary part and repeated relative
 eigenvalues are included. Source: Horn–Johnson (2013), Theorem 7.8.27;
 operator derivations, (S16).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=le.3h3v.s7.e772bb091e8a from=translated src=- shape=19030a51 vocab=d6f95112
+-/
 theorem re_det_rpow_add_norm_det_rpow_le_norm_det_add_I_smul_rpow
     {H K : Matrix n n ℂ} (hH : H.PosDef) (hK : K.IsHermitian)
     (hN : 0 < Fintype.card n) :

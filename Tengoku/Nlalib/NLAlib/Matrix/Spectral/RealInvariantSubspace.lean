@@ -17,7 +17,9 @@ set_option backward.isDefEq.respectTransparency false
 
 /-- A real endomorphism in positive finite dimension has an eigenline or
 an independent pair on which it acts as a nonreal conjugate pair.
-Horn–Johnson 2013, Theorem 2.3.1; real Schur deflation helper.-/
+Horn–Johnson 2013, Theorem 2.3.1; real Schur deflation helper.
+@isnad1 id=or.0h2v.s9.783dbff6eaaa from=translated src=- shape=99857dfc vocab=e624d8b4
+-/
 theorem exists_real_eigenline_or_plane {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     [Nontrivial E] (T : Module.End ℝ E) :
@@ -62,7 +64,9 @@ theorem exists_real_eigenline_or_plane {E : Type*}
 /-- A nonzero real endomorphism space contains an invariant subspace of
 dimension one or two. The statement concerns the ambient dimension and
 allows the zero endomorphism. Horn–Johnson 2013, Theorem 2.3.1;
-real Schur deflation helper.-/
+real Schur deflation helper.
+@isnad1 id=ex.0h2v.s9.d6c490c77ed1 from=translated src=- shape=3fa3dc62 vocab=085720bf
+-/
 theorem exists_invariant_subspace_finrank_one_or_two {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     [Nontrivial E] (T : Module.End ℝ E) :

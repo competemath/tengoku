@@ -36,7 +36,9 @@ private theorem diagonal_sqrt_gram {ev : n → ℝ} (hev : ∀ i, 0 ≤ ev i) :
     funext i
     rw [← RCLike.ofReal_mul, Real.mul_self_sqrt (hev i)]
 
-/-- The column Gram of the spectral row factor is the original matrix.-/
+/-- The column Gram of the spectral row factor is the original matrix.
+@isnad1 id=eq.1h3v.s7.ba5a4f8d87db from=translated src=- shape=06fb6be0 vocab=bf1f1dac
+-/
 theorem spectralGramRows_adjoint_mul {A : Matrix n n 𝕜} (hA : A.PosSemidef) :
     (spectralGramRows hA).conjTranspose*spectralGramRows hA=A := by
   obtain ⟨hD, hDD⟩ := diagonal_sqrt_gram (𝕜 := 𝕜) hA.eigenvalues_nonneg
@@ -45,7 +47,9 @@ theorem spectralGramRows_adjoint_mul {A : Matrix n n 𝕜} (hA : A.PosSemidef) :
   simpa only [Unitary.conjStarAlgAut_apply, Matrix.star_eq_conjTranspose,
     Function.comp_def, Matrix.mul_assoc] using hA.isHermitian.spectral_theorem.symm
 
-/-- The row Gram of the spectral row factor is the diagonal eigenvalue list.-/
+/-- The row Gram of the spectral row factor is the diagonal eigenvalue list.
+@isnad1 id=eq.1h3v.s7.005bdfaf3164 from=translated src=- shape=6c9a03f2 vocab=3e1e70a2
+-/
 theorem spectralGramRows_mul_adjoint {A : Matrix n n 𝕜} (hA : A.PosSemidef) :
     spectralGramRows hA*(spectralGramRows hA).conjTranspose=
       diagonal (fun i => (hA.isHermitian.eigenvalues i : 𝕜)) := by

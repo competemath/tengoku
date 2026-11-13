@@ -17,7 +17,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- The finite matrix-power telescope, valid without commuting the two ring elements.
-Source: focused mathematical reroutes, Section 3, equation (BL1).-/
+Source: focused mathematical reroutes, Section 3, equation (BL1).
+@isnad1 id=eq.0h4v.s7.f90fe5d19729 from=translated src=- shape=4cd29a8b vocab=9f2cbe03
+-/
 theorem pow_sub_pow_eq_sum_mul_sub_mul {R : Type*} [Ring R] (A B : R) (k : ℕ) :
     A ^ k - B ^ k = ∑ r ∈ range k, A ^ r * (A - B) * B ^ (k - 1 - r) := by
   induction k with
@@ -38,7 +40,9 @@ theorem pow_sub_pow_eq_sum_mul_sub_mul {R : Type*} [Ring R] (A B : R) (k : ℕ) 
 variable {n : ℕ}
 
 /-- An upper-Hessenberg transpose propagates its first row by at most one index at
-each power. The dimension-one and zeroth-power cases are included.-/
+each power. The dimension-one and zeroth-power cases are included.
+@isnad1 id=eq.3h4v.s6.f073f39e0ddb from=translated src=- shape=14e65697 vocab=a7e2bcf0
+-/
 theorem IsUpperHessenberg.pow_apply_zero_left_eq_zero
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : IsUpperHessenberg Aᵀ) (hn : 0 < n)
     (r : ℕ) (i : Fin n) (hi : r < i.val) : (A ^ r) ⟨0, hn⟩ i = 0 := by
@@ -55,7 +59,9 @@ theorem IsUpperHessenberg.pow_apply_zero_left_eq_zero
     · rw [show A j i = 0 from hA i j (by omega), mul_zero]
 
 /-- An upper Hessenberg matrix propagates its first column by at most one index at
-each power.-/
+each power.
+@isnad1 id=eq.3h4v.s6.520fed8a549a from=translated src=- shape=11e7f2fd vocab=16ef8ed2
+-/
 theorem IsUpperHessenberg.pow_apply_zero_right_eq_zero
     {A : Matrix (Fin n) (Fin n) ℝ} (hA : IsUpperHessenberg A) (hn : 0 < n)
     (r : ℕ) (i : Fin n) (hi : r < i.val) : (A ^ r) i ⟨0, hn⟩ = 0 := by
@@ -67,7 +73,9 @@ theorem IsUpperHessenberg.pow_apply_zero_right_eq_zero
 /-- Two tridiagonal matrices agreeing below the anti-diagonal `i+j=s` have equal
 first-coordinate moments through degree `s`. No symmetry or irreducibility is used.
 Source: focused mathematical reroutes, Section 3, equation (BL1).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=eq.5h5v.s7.cd8419bd2883 from=translated src=- shape=5e24f05f vocab=8ebdc824
+-/
 theorem pow_apply_zero_eq_of_isTridiagonal_of_eq_below_add
     {A B : Matrix (Fin n) (Fin n) ℝ} (hA : IsTridiagonal A) (hB : IsTridiagonal B)
     (hn : 0 < n) (s : ℕ) (hAB : ∀ i j : Fin n, i.val + j.val < s → A i j = B i j)

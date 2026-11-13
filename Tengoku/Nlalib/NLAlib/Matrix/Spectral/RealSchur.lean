@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Prefixing a block of size at most two to a quasitriangular tail
 preserves the real Schur zero pattern, provided the lower left block vanishes.
-Horn–Johnson 2013, Theorem 2.3.1; block induction helper.-/
+Horn–Johnson 2013, Theorem 2.3.1; block induction helper.
+@isnad1 id=isupperq.3h4v.s6.390affe80dac from=translated src=- shape=5e1fd9f4 vocab=cd906adf
+-/
 theorem isUpperQuasiTriangular_of_small_leading_block {p q : ℕ} {K : Type*} [Zero K]
     {T : Matrix (Fin (p + q)) (Fin (p + q)) K} (hp : p ≤ 2)
     (hzero : ∀ i : Fin q, ∀ j : Fin p, T (Fin.natAdd p i) (Fin.castAdd q j) = 0)
@@ -49,7 +51,9 @@ theorem isUpperQuasiTriangular_of_small_leading_block {p q : ℕ} {K : Type*} [Z
 /-- Every finite-dimensional real endomorphism has an orthonormal basis
 in which its matrix is upper quasitriangular, with one- and two-dimensional
 diagonal blocks. Dimension zero is included. Horn–Johnson 2013,
-Theorem 2.3.1; this statement records the block zero pattern.-/
+Theorem 2.3.1; this statement records the block zero pattern.
+@isnad1 id=ex.1h3v.s10.20f23840777f from=translated src=- shape=5baf44f3 vocab=3ead3653
+-/
 theorem exists_orthonormalBasis_upper_quasi_triangular {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
     (k : ℕ) (T : Module.End ℝ E) (hk : finrank ℝ E = k) :

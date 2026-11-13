@@ -91,7 +91,9 @@ private theorem trace_sq_inv_shift_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermiti
   simp only [div_eq_mul_inv, inv_pow, U]
 
 /-- The shifted lower barrier is invertible whenever every eigenvalue is zero
-or strictly above a positive barrier.-/
+or strictly above a positive barrier.
+@isnad1 id=isunit.3h3v.s7.537c6817777f from=translated src=- shape=ca6f9038 vocab=53a104f1
+-/
 theorem isUnit_shift_of_eigenvalues_gap {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {b : ℝ} (hb : 0 < b) (hgap : ∀ i, hA.eigenvalues i = 0 ∨ b < hA.eigenvalues i) :
     IsUnit (A - b • (1 : Matrix n n ℝ)) := by
@@ -118,7 +120,9 @@ theorem isUnit_shift_of_eigenvalues_gap {A : Matrix n n ℝ} (hA : A.IsHermitian
 
 /-- A rank bound gives enough kernel mass for the weighted lower-barrier
 inequality. No commutation of `A` with `H` is assumed.
-Source: Spielman--Srivastava (2009), Theorem 2, weighted resolvent step.-/
+Source: Spielman--Srivastava (2009), Theorem 2, weighted resolvent step.
+@isnad1 id=other.8h6v.s8.d60872e4b6a5 from=translated src=- shape=a9bb1867 vocab=d9bde5de
+-/
 theorem lowerPotential_gap_pos_and_trace_sq_le
     {A H : Matrix n n ℝ} (hA : A.IsHermitian) (hH : H.PosSemidef)
     {b δ Λ : ℝ} (hδ : 0 < δ) (hb : δ < b) (hΛ : 0 < Λ)

@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 omit [Fintype n] in
 /-- The rational rotation curve has entrywise derivative twice its skew
-generator at zero. Schur–Horn variational rederivation, step (2).-/
+generator at zero. Schur–Horn variational rederivation, step (2).
+@isnad1 id=hasderiv.0h5v.s7.ba55b8337edb from=translated src=- shape=a8ce4fc1 vocab=8d30a123
+-/
 theorem hasDerivAt_planeRotation_rational_apply (u v : n → ℝ) (i j : n) :
     HasDerivAt (fun t : ℝ =>
       planeRotation u v ((1 - t ^ 2) / (1 + t ^ 2)) (2 * t / (1 + t ^ 2)) i j)
@@ -39,7 +41,9 @@ theorem hasDerivAt_planeRotation_rational_apply (u v : n → ℝ) (i j : n) :
 
 /-- The diagonal first variation of orthogonal conjugation by a rational plane
 rotation is four times the associated row contraction. Schur–Horn variational
-rederivation, equation (2).-/
+rederivation, equation (2).
+@isnad1 id=hasderiv.1h5v.s8.297c3ceaed9e from=translated src=- shape=4017fdce vocab=9238abae
+-/
 theorem hasDerivAt_planeRotation_rational_conjugation_diag
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (u v : n → ℝ) (i : n) :
     HasDerivAt (fun t : ℝ =>
@@ -80,7 +84,9 @@ theorem hasDerivAt_planeRotation_rational_conjugation_diag
 
 /-- A minimum of squared diagonal error on an orthogonal orbit satisfies the
 coordinate stationarity equation `(rᵢ-rⱼ)Aᵢⱼ=0`. Schur–Horn variational
-rederivation, equation (2); only ordinary real scalar differentiation is used.-/
+rederivation, equation (2); only ordinary real scalar differentiation is used.
+@isnad1 id=eq.2h5v.s7.87d3d121fec0 from=translated src=- shape=6f42d8fb vocab=07ed57d7
+-/
 theorem diagonal_error_stationarity_of_min
     (A : Matrix n n ℝ) (hA : Aᵀ = A) (d : n → ℝ)
     (hmin : ∀ R : Matrix n n ℝ, HasOrthonormalCols R →

@@ -32,7 +32,9 @@ private theorem abs_inv_sub_inv_le_of_relative_error {f h δ : ℝ}
 /-- A globally positive increasing polynomial with the smoothing value bound
 has uniform reciprocal error at most four times its smoothing coefficient.
 The cutoff is proved to exist and the two interval estimates are explicit.
-Source: focused reciprocal reroute, compact interval and tail comparison.-/
+Source: focused reciprocal reroute, compact interval and tail comparison.
+@isnad1 id=le.6h3v.s7.3f891a4b1bd3 from=translated src=- shape=a802d626 vocab=bbe4bc9e
+-/
 theorem abs_exp_neg_quarter_sub_inv_eval_le_of_value_bound
     (p : ℝ[X]) {δ : ℝ} (hδ : 0 < δ) (hδsmall : δ < 1/2)
     (hp : ∀ x : ℝ, 0 ≤ x → 0 < p.eval x)
@@ -93,7 +95,9 @@ theorem abs_exp_neg_quarter_sub_inv_eval_le_of_value_bound
 /-- The explicit reciprocal denominator has degree exactly the advertised order,
 including the constant denominator in order zero.
 Source: focused reciprocal reroute, explicit denominator.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=eq.0h1v.s3.f2759a79e796 from=translated src=- shape=c3f7ecf6 vocab=8e22d361
+-/
 @[simp] theorem natDegree_reciprocalExponentialDenominator (n : ℕ) :
     (reciprocalExponentialDenominator n).natDegree = n := by
   by_cases hn : n=0
@@ -105,7 +109,9 @@ atlas: exp-rational-halfline (partial)-/
 /-- The actual explicit denominator is positive on the entire half-line.
 Its reciprocal therefore has no pole there in every degree.
 Source: focused reciprocal reroute, global positivity.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.1h2v.s4.3f63ecaf6c81 from=translated src=- shape=1f9c49fb vocab=b8c1d12e
+-/
 theorem reciprocalExponentialDenominator_eval_pos (n : ℕ)
     {x : ℝ} (hx : 0 ≤ x) : 0 < (reciprocalExponentialDenominator n).eval x := by
   by_cases hn : n=0
@@ -117,7 +123,9 @@ theorem reciprocalExponentialDenominator_eval_pos (n : ℕ)
 
 /-- In every positive degree the explicit reciprocal denominator has positive
 derivative on the entire half-line. Source: focused reciprocal reroute.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.2h2v.s7.e59eff623348 from=translated src=- shape=14a35aab vocab=27a3d647
+-/
 theorem reciprocalExponentialDenominator_derivative_eval_pos {n : ℕ} (hn : 0 < n)
     {x : ℝ} (hx : 0 ≤ x) : 0 < (reciprocalExponentialDenominator n).derivative.eval x := by
   simp only [reciprocalExponentialDenominator, ite_eq_right (by omega : n≠0),
@@ -129,7 +137,9 @@ theorem reciprocalExponentialDenominator_derivative_eval_pos {n : ℕ} (hn : 0 <
 /-- The actual explicit denominator is strictly increasing throughout the whole
 positive half-line in every positive degree.
 Source: focused reciprocal reroute, positive denominator and derivative.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=strictmo.1h1v.s5.9765ff12dafa from=translated src=- shape=598a5343 vocab=a80108bf
+-/
 theorem reciprocalExponentialDenominator_strictMonoOn_halfLine {n : ℕ} (hn : 0<n) :
     StrictMonoOn (reciprocalExponentialDenominator n).eval (Ici 0) := by
   apply strictMonoOn_of_hasDerivWithinAt_pos (convex_Ici _)
@@ -147,7 +157,9 @@ private theorem four_smoothingValueConstant_eq :
 /-- The finite two-resolvent polynomial gives the stated uniform reciprocal
 error bound in every degree. This is the actual pole-free denominator, not a
 certificate supplied as a hypothesis. Source: focused reciprocal reroute.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s6.9752a6949a3a from=translated src=- shape=83b5d0e0 vocab=c8a241ef
+-/
 theorem abs_exp_neg_sub_inv_reciprocalExponentialDenominator_le (n : ℕ)
     {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (-x)-((reciprocalExponentialDenominator n).eval x)⁻¹| ≤
@@ -188,7 +200,9 @@ theorem abs_exp_neg_sub_inv_reciprocalExponentialDenominator_le (n : ℕ)
 
 /-- The simpler `√2 · 3⁻ⁿ` bound follows from the sharper explicit constant.
 Source: focused reciprocal reroute, uniform reciprocal error.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h2v.s6.f1f0c008f281 from=translated src=- shape=63496f2b vocab=c8a241ef
+-/
 theorem abs_exp_neg_sub_inv_reciprocalExponentialDenominator_le_sqrt_two (n : ℕ)
     {x : ℝ} (hx : 0 ≤ x) :
     |Real.exp (-x)-((reciprocalExponentialDenominator n).eval x)⁻¹| ≤

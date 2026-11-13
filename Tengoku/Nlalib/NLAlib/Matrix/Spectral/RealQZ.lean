@@ -23,7 +23,9 @@ second factor. Source: Horn–Johnson (2013), Theorem 2.6.2; the quasitriangular
 zero pattern has consecutive blocks of size one or two. Singular and
 identically singular pencils, common zero images and empty shapes are
 included, with no regularity or invertibility assumption on either matrix.
-atlas: schur-triangularization-/
+atlas: schur-triangularization
+@isnad1 id=ex.0h4v.s8.a7b8eb9ce448 from=translated src=- shape=4a4f9b89 vocab=f4826706
+-/
 theorem exists_orthogonal_qz_triangularization
     {n : Type*} [Fintype n] [DecidableEq n] (A B : Matrix n n ℝ)
     (order : Fin (Fintype.card n) ≃ n) :

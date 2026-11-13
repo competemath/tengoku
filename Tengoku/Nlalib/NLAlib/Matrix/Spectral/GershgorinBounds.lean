@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A spectral point's modulus is bounded by one complete absolute row sum.
 Source: Horn–Johnson (2013), Corollary 6.1.5; the diagonal contribution is
-added to the closed-disc radius.-/
+added to the closed-disc radius.
+@isnad1 id=ex.1h3v.s6.46dec00d7041 from=translated src=- shape=27bf39ea vocab=813e2aa2
+-/
 theorem exists_norm_le_row_sum_of_mem_spectrum {A : Matrix n n ℂ} {μ : ℂ}
     (hμ : μ ∈ spectrum ℂ A) : ∃ i, ‖μ‖ ≤ ∑ j, ‖A i j‖ := by
   obtain ⟨i, hi⟩ := exists_mem_gershgorinRowDisc_of_mem_spectrum hμ
@@ -37,7 +39,9 @@ theorem exists_norm_le_row_sum_of_mem_spectrum {A : Matrix n n ℂ} {μ : ℂ}
 /-- The complex spectral radius is bounded by the maximum absolute row sum.
 Source: Horn–Johnson (2013), Corollary 6.1.5; `toNNReal` preserves the
 nonnegative sums, and the finite supremum is zero for an empty shape.
-atlas: gershgorin-diagonal-dominance (partial)-/
+atlas: gershgorin-diagonal-dominance (partial)
+@isnad1 id=le.0h2v.s6.befa8fa663c2 from=translated src=- shape=c2cc8604 vocab=ce109b6d
+-/
 theorem spectralRadius_le_max_row_sum (A : Matrix n n ℂ) :
     spectralRadius ℂ A ≤
       (Finset.univ.sup (fun i => Real.toNNReal (∑ j, ‖A i j‖)) : ENNReal) := by
@@ -52,7 +56,9 @@ theorem spectralRadius_le_max_row_sum (A : Matrix n n ℂ) :
 /-- The complex spectral radius is bounded by the maximum absolute column
 sum. Source: Horn–Johnson (2013), Corollary 6.1.5; transpose preserves the
 characteristic polynomial, and the empty maximum is zero.
-atlas: gershgorin-diagonal-dominance (partial)-/
+atlas: gershgorin-diagonal-dominance (partial)
+@isnad1 id=le.0h2v.s6.37f9bdd882df from=translated src=- shape=22a89b32 vocab=ce109b6d
+-/
 theorem spectralRadius_le_max_column_sum (A : Matrix n n ℂ) :
     spectralRadius ℂ A ≤
       (Finset.univ.sup (fun j => Real.toNNReal (∑ i, ‖A i j‖)) : ENNReal) := by
@@ -65,7 +71,9 @@ theorem spectralRadius_le_max_column_sum (A : Matrix n n ℂ) :
 /-- The spectral radius is bounded by the smaller of the maximum absolute
 row and column sums. Source: Horn–Johnson (2013), Corollary 6.1.5;
 the finite nonnegative suprema include dimension zero.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=le.0h2v.s6.d31e1c7a2988 from=translated src=- shape=c85f42e7 vocab=1fb88c98
+-/
 theorem spectralRadius_le_min_max_row_column_sum (A : Matrix n n ℂ) :
     spectralRadius ℂ A ≤ min
       (Finset.univ.sup (fun i => Real.toNNReal (∑ j, ‖A i j‖)) : ENNReal)
@@ -75,7 +83,9 @@ theorem spectralRadius_le_min_max_row_column_sum (A : Matrix n n ℂ) :
 /-- Positive real diagonal weights give the maximum weighted absolute row
 sum bound on spectral radius. Source: Horn–Johnson (2013), Corollary 6.1.5;
 the right side is `max_i p_i⁻¹ ∑_j p_j |a_ij|`, with empty maximum zero.
-atlas: gershgorin-diagonal-dominance-/
+atlas: gershgorin-diagonal-dominance
+@isnad1 id=le.1h3v.s6.057fd7bb2639 from=translated src=- shape=3dd9f6c0 vocab=61044d14
+-/
 theorem spectralRadius_le_max_weighted_row_sum
     (A : Matrix n n ℂ) (p : n → ℝ) (hp : ∀ i, 0 < p i) :
     spectralRadius ℂ A ≤

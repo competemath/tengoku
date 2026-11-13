@@ -30,7 +30,9 @@ variable {n m ι κ : Type*} [Fintype n] [DecidableEq n]
   [Fintype m] [DecidableEq m] [Fintype ι] [Fintype κ]
 
 /-- Every positive map has a sequence of normalized positive definite test
-matrices whose determinant objectives tend to its capacity.-/
+matrices whose determinant objectives tend to its capacity.
+@isnad1 id=ex.1h2v.s9.0ee112eec461 from=translated src=- shape=7894d488 vocab=40e8d267
+-/
 theorem exists_seq_det_tendsto_operatorCapacity
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef) :
@@ -46,7 +48,9 @@ theorem exists_seq_det_tendsto_operatorCapacity
   exact hlim
 
 omit [DecidableEq n] [DecidableEq m] in
-/-- The tensor Kraus family acts componentwise on a pure tensor matrix.-/
+/-- The tensor Kraus family acts componentwise on a pure tensor matrix.
+@isnad1 id=eq.0h8v.s9.e0f5adc6f7b4 from=translated src=- shape=10cb54ab vocab=b6d00d78
+-/
 theorem krausMap_kronecker_apply (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ)
     (X : Matrix n n ℂ) (Y : Matrix m m ℂ) :
     krausMap (fun p : ι × κ => A p.1 ⊗ₖ B p.2) (X ⊗ₖ Y) =
@@ -71,7 +75,9 @@ private theorem re_det_kronecker {X : Matrix n n ℂ} {Y : Matrix m m ℂ}
 powers. Normalized pure tensor test matrices and independent approximating
 sequences prove the bound even when either capacity is zero.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Lemma 3.12.
-atlas: operator-capacity-scaling-identities (partial)-/
+atlas: operator-capacity-scaling-identities (partial)
+@isnad1 id=le.0h6v.s7.f91b385e2c9f from=translated src=- shape=cb56a9f9 vocab=3057c622
+-/
 theorem operatorCapacity_krausMap_kronecker_le
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ) :
     operatorCapacity (krausMap (fun p : ι × κ => A p.1 ⊗ₖ B p.2)) ≤
@@ -121,13 +127,17 @@ private theorem frobSq_sub_one_eq_sub_card {X : Matrix n n ℂ}
   ring
 
 /-- The image of the identity under a tensor Kraus family is the tensor
-product of the two individual images of the identity.-/
+product of the two individual images of the identity.
+@isnad1 id=eq.0h6v.s9.b56ccaee6424 from=translated src=- shape=e3d65bbe vocab=e736b5d9
+-/
 theorem krausMap_kronecker_one (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ) :
     krausMap (fun p : ι × κ => A p.1 ⊗ₖ B p.2) 1 =
       krausMap A 1 ⊗ₖ krausMap B 1 := by
   simpa only [Matrix.one_kronecker_one] using krausMap_kronecker_apply A B 1 1
 
-/-- Unitality is preserved by tensoring finite Kraus families.-/
+/-- Unitality is preserved by tensoring finite Kraus families.
+@isnad1 id=eq.2h6v.s9.53ed89eb9f5b from=translated src=- shape=093f6971 vocab=e736b5d9
+-/
 theorem krausMap_kronecker_one_eq_one
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ)
     (hA : krausMap A 1 = 1) (hB : krausMap B 1 = 1) :
@@ -137,7 +147,9 @@ theorem krausMap_kronecker_one_eq_one
 set_option maxHeartbeats 1000000 in
 /-- The exact adjoint normalization defect of a tensor of two unital Kraus
 families. The mixed terms vanish because both individual errors have trace
-zero. This quantitative identity is used in the tensor-capacity lower bound.-/
+zero. This quantitative identity is used in the tensor-capacity lower bound.
+@isnad1 id=eq.2h6v.s11.a6b2d3c0d4a9 from=translated src=- shape=ff3e3315 vocab=66c7be6c
+-/
 theorem frobSq_adjoint_krausMap_kronecker_sub_one
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ)
     (hA : krausMap A 1 = 1) (hB : krausMap B 1 = 1) :
@@ -174,7 +186,9 @@ theorem frobSq_adjoint_krausMap_kronecker_sub_one
 
 /-- Invertible scaling of each Kraus factor gives the corresponding tensor
 scaling of capacity, with each scalar factor raised to the opposite matrix
-dimension. This identity includes zero capacities.-/
+dimension. This identity includes zero capacities.
+@isnad1 id=eq.6h10v.s9.6824cfb23a5c from=translated src=- shape=2571841e vocab=afb75995
+-/
 theorem operatorCapacity_scaled_krausMap_kronecker
     (hN : 0 < Fintype.card n) (hM : 0 < Fintype.card m)
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ)
@@ -206,7 +220,9 @@ theorem operatorCapacity_scaled_krausMap_kronecker
 scalings with adjoint Frobenius defect tending to zero. The determinant
 scaling factors tend to the reciprocal original capacity. The construction
 normalizes actual near-minimizing test matrices; it assumes no attaining
-minimizer and uses no convergence theorem for an operator-scaling algorithm.-/
+minimizer and uses no convergence theorem for an operator-scaling algorithm.
+@isnad1 id=ex.2h3v.s9.8052d4c285be from=translated src=- shape=5cda8241 vocab=cf44081a
+-/
 theorem exists_seq_unital_krausMap_scaling
     (hN : 0 < Fintype.card n) (A : ι → Matrix n n ℂ)
     (hcap : 0 < operatorCapacity (krausMap A)) :
@@ -261,7 +277,9 @@ theorem exists_seq_unital_krausMap_scaling
 
 /-- The lower tensor-capacity bound when both factor capacities are positive.
 Actual near-minimizers give unital scalings with defects tending to zero;
-the quantitative lower certificate then tends to one.-/
+the quantitative lower certificate then tends to one.
+@isnad1 id=le.4h6v.s7.d6dc97ac34a2 from=translated src=- shape=c46bc663 vocab=168611dd
+-/
 theorem le_operatorCapacity_krausMap_kronecker_of_pos
     (hN : 0 < Fintype.card n) (hM : 0 < Fintype.card m)
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ)
@@ -331,7 +349,9 @@ opposite matrix dimensions as exponents. The theorem covers zero capacity:
 the upper bound forces tensor capacity to vanish if either factor vanishes.
 No optimizer or exact doubly stochastic scaling is assumed.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Theorem 3.11.
-atlas: operator-capacity-scaling-identities (partial)-/
+atlas: operator-capacity-scaling-identities (partial)
+@isnad1 id=eq.2h6v.s7.f38adbd4b949 from=translated src=- shape=1115a671 vocab=6af56ab5
+-/
 theorem operatorCapacity_krausMap_kronecker
     (hN : 0 < Fintype.card n) (hM : 0 < Fintype.card m)
     (A : ι → Matrix n n ℂ) (B : κ → Matrix m m ℂ) :

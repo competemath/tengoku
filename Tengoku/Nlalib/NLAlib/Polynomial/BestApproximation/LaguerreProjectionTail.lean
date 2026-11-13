@@ -18,7 +18,9 @@ open scoped Nat
 namespace NLAlib
 
 /-- Each weighted Laguerre term is a positive multiple of the monic polynomial.
-Source: focused reciprocal reroute, positive tail factors.-/
+Source: focused reciprocal reroute, positive tail factors.
+@isnad1 id=eq.0h1v.s7.500c9d921c4c from=translated src=- shape=4603b7b6 vocab=ab8d96dd
+-/
 theorem laguerreExponentialCoefficient_smul_eq_monic (j : ℕ) :
     laguerreExponentialCoefficient j • laguerrePolynomial j =
       (4 / ((3:ℝ)^(j+1) * (j ! :ℝ))) • monicLaguerrePolynomial j := by
@@ -31,7 +33,9 @@ theorem laguerreExponentialCoefficient_smul_eq_monic (j : ℕ) :
 constant coefficient and, in positive degree, positive linear coefficient.
 This is an exact finite certificate for the actual Laguerre projection.
 Source: focused reciprocal reroute, the tail positivity step.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=and.0h1v.s8.a8ba7091509a from=translated src=- shape=97d46651 vocab=17903903
+-/
 theorem shifted_laguerreExponentialProjection_coeff_certificate (n : ℕ) :
     (∀ k, 0 ≤ ((laguerreExponentialProjection n).comp (X+C (4*(n:ℝ)))).coeff k) ∧
     0 < ((laguerreExponentialProjection n).comp (X+C (4*(n:ℝ)))).coeff 0 ∧
@@ -78,7 +82,9 @@ theorem shifted_laguerreExponentialProjection_coeff_certificate (n : ℕ) :
 /-- Every derivative of the actual finite Laguerre projection is nonnegative
 throughout its tail. No splitting-field or eigenvalue premise is needed.
 Source: focused reciprocal reroute, positive tail.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=le.1h3v.s7.7d6b695622ce from=translated src=- shape=e27eefae vocab=088fed54
+-/
 theorem iterate_derivative_laguerreExponentialProjection_eval_nonneg
     (n r : ℕ) {x : ℝ} (hx : 4*(n:ℝ) ≤ x) :
     0 ≤ ((derivative : ℝ[X] → ℝ[X])^[r] (laguerreExponentialProjection n)).eval x :=
@@ -87,7 +93,9 @@ theorem iterate_derivative_laguerreExponentialProjection_eval_nonneg
 
 /-- The finite Laguerre projection itself is strictly positive on the tail.
 Source: focused reciprocal reroute, positive tail.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.1h2v.s5.089c16c29ba0 from=translated src=- shape=1e5ec29e vocab=07c72480
+-/
 theorem laguerreExponentialProjection_eval_pos (n : ℕ)
     {x : ℝ} (hx : 4*(n:ℝ) ≤ x) :
     0 < (laguerreExponentialProjection n).eval x :=
@@ -97,7 +105,9 @@ theorem laguerreExponentialProjection_eval_pos (n : ℕ)
 
 /-- Its first derivative is strictly positive in every positive degree.
 Source: focused reciprocal reroute, positive tail.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=lt.2h2v.s7.6dc627123a5c from=translated src=- shape=e275fe5d vocab=4103ae4f
+-/
 theorem laguerreExponentialProjection_derivative_eval_pos {n : ℕ} (hn : 0 < n)
     {x : ℝ} (hx : 4*(n:ℝ) ≤ x) :
     0 < (laguerreExponentialProjection n).derivative.eval x :=

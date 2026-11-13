@@ -29,7 +29,9 @@ def smithDoublingFactor (A : Matrix n n K) (B : Matrix n s K) :
 
 /-- The uncompressed concatenated factor represents exactly the actual Smith
 iterate at every step. Source: user derivations, factored Smith doubling.
-atlas: stein-gramian-smith-doubling-/
+atlas: stein-gramian-smith-doubling
+@isnad1 id=eq.0h6v.s8.3248e916fb40 from=translated src=- shape=fa2658e7 vocab=6abe54ca
+-/
 theorem smithDoublingFactor_mul_conjTranspose (A : Matrix n n K) (B : Matrix n s K) (j : ℕ) :
     smithDoublingFactor A B j * (smithDoublingFactor A B j)ᴴ =
       (smithDoubling A (B * Bᴴ) j).2 := by
@@ -39,7 +41,9 @@ theorem smithDoublingFactor_mul_conjTranspose (A : Matrix n n K) (B : Matrix n s
     rw [smithDoublingFactor, ← smithDoubling_factor_step, hj]
     rfl
 
-/-- Without compression, the actual factor has exactly `2^j * s` columns.-/
+/-- Without compression, the actual factor has exactly `2^j * s` columns.
+@isnad1 id=eq.0h2v.s5.0e9f5a664213 from=translated src=- shape=97a338cf vocab=8e646ef0
+-/
 theorem card_smithFactorIndex (j : ℕ) : Fintype.card (SmithFactorIndex s j) = 2 ^ j * Fintype.card s := by
   induction j with
   | zero => change Fintype.card s = 2 ^ 0 * Fintype.card s; simp

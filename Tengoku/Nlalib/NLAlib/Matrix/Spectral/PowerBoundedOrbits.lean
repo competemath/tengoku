@@ -21,7 +21,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] [FiniteDimension
 
 /-- Spectral containment in the closed unit disk and semisimplicity on its
 boundary make every power orbit bounded. Source: Horn–Johnson (2013), §5.6;
-generalized eigenspaces span the finite-dimensional complex space.-/
+generalized eigenspaces span the finite-dimensional complex space.
+@isnad1 id=ex.2h3v.s8.a5d154839ea0 from=translated src=- shape=5c6c2d6f vocab=69ffad57
+-/
 theorem exists_bound_pow_orbit_of_eigenvalues_le_one_of_peripheral_semisimple
     (f : Module.End ℂ E)
     (hvalues : ∀ μ : ℂ, f.HasEigenvalue μ → ‖μ‖ ≤ 1)
@@ -61,7 +63,9 @@ theorem exists_bound_pow_orbit_of_eigenvalues_le_one_of_peripheral_semisimple
 
 /-- In finite dimension, bounded power orbits give a single bound on the
 norms of all powers. Source: Horn–Johnson (2013), §5.6; the proof takes a
-finite maximum over a basis and uses its explicit coordinate norm bound.-/
+finite maximum over a basis and uses its explicit coordinate norm bound.
+@isnad1 id=ex.1h2v.s11.c18e7c901f70 from=translated src=- shape=5b51e881 vocab=e2a90a95
+-/
 theorem exists_bound_norm_pow_of_bounded_pow_orbits (f : Module.End ℂ E)
     (hb : ∀ x : E, ∃ C : ℝ, ∀ k : ℕ, ‖(f ^ k) x‖ ≤ C) :
     ∃ C : ℝ, ∀ k : ℕ, ‖(LinearMap.toContinuousLinearMap (f ^ k))‖ ≤ C := by
@@ -79,7 +83,9 @@ theorem exists_bound_norm_pow_of_bounded_pow_orbits (f : Module.End ℂ E)
 /-- The finite-dimensional complex operator power-boundedness criterion:
 all eigenvalues lie in the closed unit disk and every boundary generalized
 eigenspace is already its ordinary eigenspace. Source: Horn–Johnson (2013),
-§5.6; includes the zero-dimensional space.-/
+§5.6; includes the zero-dimensional space.
+@isnad1 id=iff.0h2v.s11.89fd766c93d3 from=translated src=- shape=47a8f9c3 vocab=ec327210
+-/
 theorem exists_bound_norm_pow_iff_eigenvalues_le_one_and_peripheral_semisimple
     (f : Module.End ℂ E) :
     (∃ C : ℝ, ∀ k : ℕ, ‖(LinearMap.toContinuousLinearMap (f ^ k))‖ ≤ C) ↔

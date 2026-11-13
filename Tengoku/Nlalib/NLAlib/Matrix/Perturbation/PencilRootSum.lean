@@ -31,7 +31,9 @@ def inversePencilUpperRootSum (A D : Matrix n n ℂ) (u : ℂ) : ℂ := by
     (fun z => 0 < z.im)).sum
 
 /-- Selecting upper roots gives a nonnegative imaginary part, including at
-collisions and without a choice of individual roots.-/
+collisions and without a choice of individual roots.
+@isnad1 id=le.0h4v.s5.67ae21819a53 from=translated src=- shape=16cd735b vocab=8de1c332
+-/
 theorem inversePencilUpperRootSum_im_nonneg (A D : Matrix n n ℂ) (u : ℂ) :
     0 ≤ (inversePencilUpperRootSum A D u).im := by
   exact Polynomial.im_sum_filter_roots_upper_nonneg _
@@ -40,7 +42,9 @@ theorem inversePencilUpperRootSum_im_nonneg (A D : Matrix n n ℂ) (u : ℂ) :
 both nonreal half-planes. The proof localizes the upper cluster by a fixed
 circle and permits arbitrary collisions within the selected cluster.
 Source: planar root-sum reorganization of Stahl's contour argument.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=analytic.4h4v.s7.89595dc7f067 from=translated src=- shape=19d3f7ea vocab=22c9431c
+-/
 theorem analyticAt_inversePencilUpperRootSum
     {A D : Matrix n n ℂ} (hA : A.IsHermitian) (hD : D.IsHermitian)
     (hDu : IsUnit D) {u : ℂ} (hu : u.im ≠ 0) :
@@ -59,7 +63,9 @@ theorem analyticAt_inversePencilUpperRootSum
   simpa only [heq] using h
 
 /-- The inverse-pencil upper-root sum is bounded uniformly on bounded
-parameter sets, with the dimension recording all algebraic multiplicities.-/
+parameter sets, with the dimension recording all algebraic multiplicities.
+@isnad1 id=le.1h4v.s6.4b5d9da44bfa from=translated src=- shape=48df9205 vocab=2cd953a1
+-/
 theorem norm_inversePencilUpperRootSum_le (A D : Matrix n n ℂ)
     (hD : IsUnit D) (u : ℂ) :
     ‖inversePencilUpperRootSum A D u‖ ≤
@@ -69,7 +75,9 @@ theorem norm_inversePencilUpperRootSum_le (A D : Matrix n n ℂ)
     (Multiset.filter_le _ _)
 
 /-- On each closed parameter ball the upper-root sum has one bound,
-independently of proximity to the real axis.-/
+independently of proximity to the real axis.
+@isnad1 id=le.2h5v.s6.11ae23782ccc from=translated src=- shape=5b6e5617 vocab=2cd953a1
+-/
 theorem norm_inversePencilUpperRootSum_le_of_norm_le (A D : Matrix n n ℂ)
     (hD : IsUnit D) {u : ℂ} {M : ℝ} (hu : ‖u‖ ≤ M) :
     ‖inversePencilUpperRootSum A D u‖ ≤

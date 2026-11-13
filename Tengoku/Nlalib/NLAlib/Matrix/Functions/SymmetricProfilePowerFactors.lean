@@ -22,7 +22,9 @@ namespace NLAlib
 factors with left Euclidean norm at most two, right row-profile norm at
 most one, and weighted right entry norm at most one. The two input bounds
 are exactly the target row power sum and the interpolated weighted entry
-power sum. No abstract lattice-intersection theorem is assumed.-/
+power sum. No abstract lattice-intersection theorem is assumed.
+@isnad1 id=ex.9h6v.s9.bdb520147341 from=translated src=- shape=3dd64b52 vocab=1c8ed90c
+-/
 theorem exists_symmetric_profile_power_factors
     {n : Type*} [Fintype n] [DecidableEq n]
     {p q θ c : ℝ} (hp : 2 ≤ p) (hq : 0 < q) (hθ : θ ∈ Set.Ioo (0 : ℝ) 1)

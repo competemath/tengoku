@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Conjugating a spectral point gives a spectral point of the adjoint matrix.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=mem.1h3v.s7.5687119f37be from=translated src=- shape=5e49a336 vocab=e3d5471c
+-/
 theorem conj_mem_spectrum_conjTranspose {M : Matrix n n ℂ} {w : ℂ}
     (hw : w ∈ spectrum ℂ M) : conj w ∈ spectrum ℂ Mᴴ := by
   rw [spectrum.mem_iff] at hw ⊢
@@ -59,7 +61,9 @@ Schwarz-symmetric outside a possibly larger disk. Distinct real asymptotic
 slopes determine the branch label, so no branch symmetry is assumed.
 Source: Stahl (2013), §§3–4.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eventual.4h5v.s8.261fdcc438d1 from=translated src=- shape=14aee7e4 vocab=43b90761
+-/
 theorem eventually_exterior_eigenvalue_branches_conj_eq
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
     (hb : Function.Injective b) {R : ℝ} {branch : n → ℂ → ℂ}
@@ -111,7 +115,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Hermitian pencils with distinct real diagonal slopes admit exterior branches satisfying Schwarz reflection on one common exterior
 domain. The branches and their symmetry are both constructed, not assumed.
 Source: Stahl (2013), §§3–4; realness step toward the contour representation.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.2h3v.s8.82bea35b173d from=translated src=- shape=f50adde0 vocab=691959b5
+-/
 theorem exists_exterior_eigenvalue_branches_sub_real_diagonal_conj_eq
     {A : Matrix n n ℂ} (hA : A.IsHermitian)
     (b : n → ℝ) (hb : Function.Injective b) :

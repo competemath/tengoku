@@ -21,7 +21,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Intertwining complex normal matrices is unchanged by taking adjoints.
 Source: Horn–Johnson (2013), Theorem 2.5.15; Mathlib's
 Fuglede–Putnam–Rosenblum theorem supplies the C⋆-algebra proof.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=iff.2h4v.s8.64022769b58f from=translated src=- shape=ba6482f1 vocab=75a1ba1c
+-/
 theorem mul_eq_mul_iff_conjTranspose_mul_eq_mul_conjTranspose_of_normal
     {A B X : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A)
     (hB : B * Bᴴ = Bᴴ * B) : A * X = X * B ↔ Aᴴ * X = X * Bᴴ := by

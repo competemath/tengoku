@@ -24,7 +24,9 @@ private theorem resolvent_smoothing_coefficient_pos (r : ℕ) :
 /-- The explicit denominator and its derivative are strictly positive beyond
 the algebraic cutoff, by the finite positive derivative expression.
 Source: focused reciprocal reroute, tail positivity.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=and.2h2v.s7.d047433456df from=translated src=- shape=a959013d vocab=8578f00a
+-/
 theorem doubleResolventExponentialDenominator_pos_on_tail {n : ℕ} (hn : 0 < n)
     {x : ℝ} (hx : 4*(n:ℝ) ≤ x) :
     0 < (doubleResolventExponentialDenominator n).eval x ∧
@@ -67,7 +69,9 @@ theorem doubleResolventExponentialDenominator_pos_on_tail {n : ℕ} (hn : 0 < n)
 /-- The explicit denominator is strictly positive and has strictly positive
 derivative everywhere on the half-line in every positive degree.
 Source: focused reciprocal reroute, global positivity.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=and.2h2v.s7.af10ea32d7c8 from=translated src=- shape=74997096 vocab=1e9d7f92
+-/
 theorem doubleResolventExponentialDenominator_pos_halfLine {n : ℕ} (hn : 0 < n)
     {x : ℝ} (hx : 0 ≤ x) :
     0 < (doubleResolventExponentialDenominator n).eval x ∧
@@ -81,7 +85,9 @@ theorem doubleResolventExponentialDenominator_pos_halfLine {n : ℕ} (hn : 0 < n
 
 /-- The explicit denominator is increasing throughout the entire half-line.
 Source: focused reciprocal reroute, global monotonicity.
-atlas: exp-rational-halfline (partial)-/
+atlas: exp-rational-halfline (partial)
+@isnad1 id=monotone.1h1v.s5.89ecfefcd210 from=translated src=- shape=598a5343 vocab=e05b00a2
+-/
 theorem doubleResolventExponentialDenominator_monotoneOn_halfLine {n : ℕ} (hn : 0 < n) :
     MonotoneOn (doubleResolventExponentialDenominator n).eval (Ici 0) := by
   apply monotoneOn_of_hasDerivWithinAt_nonneg (convex_Ici _)

@@ -24,7 +24,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 /-- A commuting family of diagonalizable matrices has a common eigenbasis.
 Source: Horn–Johnson (2013), Theorem 1.3.21; the family index may be infinite
 or empty, and any field is allowed when each matrix is diagonalizable there.
-atlas: simultaneous-diagonalization (partial)-/
+atlas: simultaneous-diagonalization (partial)
+@isnad1 id=ex.2h4v.s9.f0590af6f2f6 from=translated src=- shape=2c329e57 vocab=9214d183
+-/
 theorem exists_common_eigenbasis_of_commute (A : ι → Matrix n n K)
     (hdiag : ∀ i, IsDiagonalizable (A i))
     (hcomm : Pairwise fun i j => Commute (A i) (A j)) :
@@ -74,7 +76,9 @@ theorem exists_common_eigenbasis_of_commute (A : ι → Matrix n n K)
 /-- A commuting diagonalizable family shares one invertible eigenvector
 matrix. Source: Horn–Johnson (2013), Theorem 1.3.21; real diagonalizable
 families are handled over the real field directly.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=ex.2h4v.s7.6dbfc3e0b9f3 from=translated src=- shape=2405ce15 vocab=26aedcd2
+-/
 theorem exists_simultaneous_diagonalization_of_commute (A : ι → Matrix n n K)
     (hdiag : ∀ i, IsDiagonalizable (A i))
     (hcomm : Pairwise fun i j => Commute (A i) (A j)) :
@@ -92,7 +96,9 @@ theorem exists_simultaneous_diagonalization_of_commute (A : ι → Matrix n n K)
 
 /-- Simultaneously diagonalized matrices commute. Source: Horn–Johnson
 (2013), Theorem 1.3.12; repeated diagonal values require no exception.
-atlas: simultaneous-diagonalization (partial)-/
+atlas: simultaneous-diagonalization (partial)
+@isnad1 id=commute.3h7v.s8.2e54e80951d9 from=translated src=- shape=c8fd825e vocab=3b2c9ecf
+-/
 theorem commute_of_simultaneous_diagonalization {A B V : Matrix n n K}
     {a b : n → K} (hV : IsUnit V) (hA : A * V = V * Matrix.diagonal a)
     (hB : B * V = V * Matrix.diagonal b) : Commute A B := by
@@ -107,7 +113,9 @@ theorem commute_of_simultaneous_diagonalization {A B V : Matrix n n K}
 /-- A diagonalizable family commutes exactly when it has one common
 diagonalizing similarity. Source: Horn–Johnson (2013), Theorems 1.3.12
 and 1.3.21; no finiteness assumption on the family is imposed.
-atlas: simultaneous-diagonalization-/
+atlas: simultaneous-diagonalization
+@isnad1 id=iff.1h4v.s7.4f4a0c97fa97 from=translated src=- shape=577afae0 vocab=26aedcd2
+-/
 theorem pairwise_commute_iff_exists_simultaneous_diagonalization
     (A : ι → Matrix n n K) (hdiag : ∀ i, IsDiagonalizable (A i)) :
     (Pairwise fun i j => Commute (A i) (A j)) ↔

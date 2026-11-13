@@ -39,7 +39,9 @@ theorem eq_zero_of_normal_upper_fromBlocks {A : Matrix m m ℂ} {B : Matrix n n 
 
 /-- An upper block triangular normal matrix equals its block diagonal part.
 Source: Horn–Johnson (2013), Lemma 2.5.2.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=eq.1h5v.s8.d0d08cc8ff4e from=translated src=- shape=75fb4878 vocab=c71edd86
+-/
 theorem upper_fromBlocks_eq_diagonal_of_normal {A : Matrix m m ℂ} {B : Matrix n n ℂ}
     {C : Matrix m n ℂ}
     (hM : Matrix.fromBlocks A C 0 B * (Matrix.fromBlocks A C 0 B)ᴴ =

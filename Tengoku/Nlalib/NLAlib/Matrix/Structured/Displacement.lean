@@ -22,7 +22,9 @@ def displacementRank {K m n : Type*} [Field K] [Fintype m] [Fintype n]
 /-- Sylvester displacement rank at most `r` is equivalent to a generator pair
 with `r` columns. This includes zero rank and empty row or column types.
 Source: user derivations, displacement generators.
-atlas: displacement-rank-def-/
+atlas: displacement-rank-def
+@isnad1 id=iff.0h7v.s8.6770ff21f401 from=translated src=- shape=a0e6afd5 vocab=181e4092
+-/
 theorem displacementRank_le_iff_exists_generators {K m n : Type*} [RCLike K]
     [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (A : Matrix m m K) (B : Matrix n n K) (X : Matrix m n K) (r : ℕ) :

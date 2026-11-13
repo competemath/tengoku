@@ -18,7 +18,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Invertible congruence preserves and reflects real matrix Loewner order.
-Horn--Johnson (2013), Section 7.7; helper for relative-spectrum bounds.-/
+Horn--Johnson (2013), Section 7.7; helper for relative-spectrum bounds.
+@isnad1 id=iff.1h4v.s7.0d1d646878f8 from=translated src=- shape=4e3e01ca vocab=d4c2aca4
+-/
 theorem congruence_le_congruence_iff {A B S : Matrix n n ℝ} (hS : IsUnit S) :
     S * A * Sᵀ ≤ S * B * Sᵀ ↔ A ≤ B := by
   rw [Matrix.le_iff, ← Matrix.sub_mul, ← Matrix.mul_sub, Matrix.le_iff]
@@ -27,7 +29,9 @@ theorem congruence_le_congruence_iff {A B S : Matrix n n ℝ} (hS : IsUnit S) :
 
 /-- The lower relative Loewner bound is exactly a lower bound on each
 relative eigenvalue. Horn--Johnson (2013), Theorem 7.7.3.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h4v.s7.caa57779704a from=translated src=- shape=2531b840 vocab=4be85668
+-/
 theorem smul_le_iff_relative_spectrum_lower {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) (a : ℝ) :
     a • A ≤ B ↔ ∀ z ∈ spectrum ℝ (A⁻¹ * B), a ≤ z := by
@@ -43,7 +47,9 @@ theorem smul_le_iff_relative_spectrum_lower {A B : Matrix n n ℝ}
 
 /-- The upper relative Loewner bound is exactly an upper bound on each
 relative eigenvalue. Horn--Johnson (2013), Theorem 7.7.3.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h4v.s7.7255048adb17 from=translated src=- shape=e5e8d3b8 vocab=4be85668
+-/
 theorem le_smul_iff_relative_spectrum_upper {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) (b : ℝ) :
     B ≤ b • A ↔ ∀ z ∈ spectrum ℝ (A⁻¹ * B), z ≤ b := by
@@ -60,7 +66,9 @@ theorem le_smul_iff_relative_spectrum_upper {A B : Matrix n n ℝ}
 /-- A Loewner sandwich is equivalent to containment of the relative spectrum
 in the same real interval. Endpoints are arbitrary and empty dimensions are
 included. Horn--Johnson (2013), Theorem 7.7.3.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h5v.s7.728c3f51dcf4 from=translated src=- shape=2eacd08f vocab=31bc9037
+-/
 theorem loewner_sandwich_iff_relative_spectrum_subset {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) (a b : ℝ) :
     (a • A ≤ B ∧ B ≤ b • A) ↔ spectrum ℝ (A⁻¹ * B) ⊆ Set.Icc a b := by
@@ -73,7 +81,9 @@ spectral radius is at most one exactly when the smaller matrix is below the
 first matrix in Loewner order. The radius is Mathlib's supremum of
 the absolute real spectrum, including empty dimensions.
 Horn--Johnson (2013), Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h3v.s7.ca9182ecc3ba from=translated src=- shape=671dc392 vocab=cbcac64e
+-/
 theorem le_iff_relative_spectralRadius_le_one {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     B ≤ A ↔ spectralRadius ℝ (A⁻¹ * B) ≤ 1 := by
@@ -92,7 +102,9 @@ theorem le_iff_relative_spectralRadius_le_one {A B : Matrix n n ℝ}
 
 /-- A positive definite matrix dominates `B` exactly when `B` is its square
 root congruence of a PSD contraction. Horn--Johnson (2013), Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h3v.s8.ddd972a42d40 from=translated src=- shape=954cf547 vocab=e3cd0e2b
+-/
 theorem le_iff_exists_sqrt_congruence_contraction {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     B ≤ A ↔ ∃ X : Matrix n n ℝ, 0 ≤ X ∧ X ≤ 1 ∧
@@ -133,20 +145,26 @@ private theorem trace_le_and_eq_iff_of_le_aux {A B : Matrix n n ℝ} (hAB : A �
     simpa only [Matrix.trace_sub, sub_eq_zero, eq_comm] using hz
 
 /-- The trace is monotone in the Loewner order. Horn–Johnson 2013, Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=le.1h3v.s5.23665b45d600 from=translated src=- shape=ad50d31f vocab=86ca85e1
+-/
 theorem trace_le_of_le {A B : Matrix n n ℝ} (hAB : A ≤ B) :
     A.trace ≤ B.trace :=
   (trace_le_and_eq_iff_of_le_aux hAB).1
 
 /-- For `A ≤ B`, the traces agree only for `A = B`. Horn–Johnson 2013, Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.1h3v.s5.18fdefd8c785 from=translated src=- shape=15cea180 vocab=86ca85e1
+-/
 theorem trace_eq_iff_of_le {A B : Matrix n n ℝ} (hAB : A ≤ B) :
     A.trace = B.trace ↔ A = B :=
   (trace_le_and_eq_iff_of_le_aux hAB).2
 
 /-- Determinant is monotone on the PSD cone. Horn--Johnson (2013),
 Corollary 7.7.4; arbitrary finite indices and singular matrices are included.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=le.2h3v.s5.ea7071855b25 from=translated src=- shape=57f3f66e vocab=88597e79
+-/
 theorem det_le_det_of_posSemidef_le {A B : Matrix n n ℝ}
     (hA : A.PosSemidef) (hAB : A ≤ B) : A.det ≤ B.det := by
   have hB := (hA.nonneg.trans hAB).posSemidef
@@ -159,7 +177,9 @@ theorem det_le_det_of_posSemidef_le {A B : Matrix n n ℝ}
 
 /-- For a real PSD matrix, being bounded above by identity is equivalent to
 operator norm at most one. Empty dimensions are included. Horn--Johnson
-(2013), Section 7.7; helper for relative spectra and PSD blocks.-/
+(2013), Section 7.7; helper for relative spectra and PSD blocks.
+@isnad1 id=iff.1h2v.s6.b9b624f94108 from=translated src=- shape=d638d440 vocab=86a17f68
+-/
 theorem le_one_iff_specNorm_le_one_of_posSemidef {A : Matrix n n ℝ}
     (hA : A.PosSemidef) : A ≤ 1 ↔ specNorm A ≤ 1 := by
   let U : Matrix n n ℝ := hA.isHermitian.eigenvectorUnitary
@@ -187,7 +207,9 @@ theorem le_one_iff_specNorm_le_one_of_posSemidef {A : Matrix n n ℝ}
 
 /-- A real row Gram matrix is bounded by identity exactly when its matrix
 is a contraction in spectral norm. Horn--Johnson (2013), Lemma 7.7.6;
-helper for relative spectra and PSD blocks.-/
+helper for relative spectra and PSD blocks.
+@isnad1 id=iff.0h3v.s6.d7efe6cadd33 from=translated src=- shape=bfb8c31e vocab=a22ed912
+-/
 theorem mul_transpose_le_one_iff_specNorm_le_one {m : Type*} [Fintype m]
     [DecidableEq m] (M : Matrix n m ℝ) :
     M * Mᵀ ≤ 1 ↔ specNorm M ≤ 1 := by
@@ -201,7 +223,9 @@ theorem mul_transpose_le_one_iff_specNorm_le_one {m : Type*} [Fintype m]
 /-- A square comparison of symmetric matrices is equivalent to a relative
 operator norm bound. The second matrix need not be PSD.
 Horn--Johnson (2013), Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.2h3v.s7.26fe095a046e from=translated src=- shape=f7816b44 vocab=43af6c93
+-/
 theorem sq_le_sq_iff_relative_specNorm_le_one {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) :
     B ^ 2 ≤ A ^ 2 ↔ specNorm (A⁻¹ * B) ≤ 1 := by
@@ -226,7 +250,9 @@ theorem sq_le_sq_iff_relative_specNorm_le_one {A B : Matrix n n ℝ}
 
 /-- Real matrix complexification preserves the positive square root.
 Uniqueness proves the bridge without a complex norm assumption.
-Horn--Johnson (2013), Section 7.2; helper for relative-spectrum monotonicity.-/
+Horn--Johnson (2013), Section 7.2; helper for relative-spectrum monotonicity.
+@isnad1 id=eq.1h2v.s9.38453c53543c from=translated src=- shape=c32328ad vocab=580c719d
+-/
 theorem realMatrixComplexification_sqrt {A : Matrix n n ℝ} (hA : A.PosSemidef) :
     (realMatrixComplexification (𝕜 := ℂ)) (CFC.sqrt A) = CFC.sqrt ((realMatrixComplexification (𝕜 := ℂ)) A) := by
   symm
@@ -237,7 +263,9 @@ theorem realMatrixComplexification_sqrt {A : Matrix n n ℝ} (hA : A.PosSemidef)
 open scoped Matrix.Norms.L2Operator in
 /-- Square roots preserve Loewner order for real PSD matrices, including
 singular matrices. Horn--Johnson (2013), Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=le.2h3v.s7.3da8a63f8514 from=translated src=- shape=e778a036 vocab=1d7845ce
+-/
 theorem sqrt_le_sqrt_of_posSemidef_le {A B : Matrix n n ℝ}
     (hA : A.PosSemidef) (hAB : A ≤ B) : CFC.sqrt A ≤ CFC.sqrt B := by
   have hB := (hA.nonneg.trans hAB).posSemidef
@@ -248,7 +276,9 @@ theorem sqrt_le_sqrt_of_posSemidef_le {A B : Matrix n n ℝ}
 /-- Under PSD comparison with a positive definite larger matrix, determinant
 equality forces equality of the matrices. The positive-definite requirement
 on the larger matrix is essential. Horn--Johnson (2013), Corollary 7.7.4.
-atlas: loewner-relative-spectrum (partial)-/
+atlas: loewner-relative-spectrum (partial)
+@isnad1 id=iff.3h3v.s6.0fae29b4404a from=translated src=- shape=edf18725 vocab=c64bbed7
+-/
 theorem det_eq_iff_eq_of_posSemidef_le_posDef {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) (hBA : B ≤ A) :
     B.det = A.det ↔ B = A := by
@@ -290,7 +320,9 @@ all sorted eigenvalues, square roots, and inverse order when the smaller
 matrix is positive definite. Horn--Johnson (2013), Theorem 7.7.3 and
 Corollary 7.7.4; the indefinite sandwich variant is the separate theorem
 `loewner_sandwich_iff_relative_spectrum_subset`.
-atlas: loewner-relative-spectrum-/
+atlas: loewner-relative-spectrum
+@isnad1 id=and.2h5v.s9.0e9dc78a6035 from=translated src=- shape=83831bff vocab=ad1e9c26
+-/
 theorem relative_spectrum_characterizations {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) (a b : ℝ) :
     ((a • A ≤ B ∧ B ≤ b • A) ↔ spectrum ℝ (A⁻¹ * B) ⊆ Set.Icc a b) ∧

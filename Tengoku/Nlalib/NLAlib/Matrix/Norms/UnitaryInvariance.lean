@@ -9,7 +9,9 @@ namespace NLAlib
 variable {K m n p : Type*} [RCLike K] [Fintype m] [Fintype n] [Fintype p]
   [DecidableEq n]
 
-/-- Left multiplication by an orthonormal frame preserves the Frobenius norm.-/
+/-- Left multiplication by an orthonormal frame preserves the Frobenius norm.
+@isnad1 id=eq.1h6v.s6.275f0776b0c6 from=translated src=- shape=49c77539 vocab=475263cf
+-/
 theorem frobNorm_mul_left_of_hasOrthonormalCols (U : Matrix m n K) (X : Matrix n p K)
     (hU : HasOrthonormalCols U) : frobNorm (U * X) = frobNorm X := by
   have hs : frobNorm (U * X) ^ 2 = frobNorm X ^ 2 := by
@@ -19,7 +21,9 @@ theorem frobNorm_mul_left_of_hasOrthonormalCols (U : Matrix m n K) (X : Matrix n
     rw [← Matrix.mul_assoc Uᴴ U X, hU, Matrix.one_mul]
   nlinarith [frobNorm_nonneg (U * X), frobNorm_nonneg X]
 
-/-- Right multiplication by a unitary matrix preserves the Frobenius norm.-/
+/-- Right multiplication by a unitary matrix preserves the Frobenius norm.
+@isnad1 id=eq.0h5v.s8.5ebd15de6658 from=translated src=- shape=631fcb5c vocab=d117ef7d
+-/
 theorem frobNorm_mul_right_unitary (X : Matrix m n K) (U : Matrix.unitaryGroup n K) :
     frobNorm (X * (U : Matrix n n K)) = frobNorm X := by
   rw [← frobNorm_conjTranspose (X * (U : Matrix n n K)), Matrix.conjTranspose_mul,
@@ -28,7 +32,9 @@ theorem frobNorm_mul_right_unitary (X : Matrix m n K) (U : Matrix.unitaryGroup n
   rw [Matrix.conjTranspose_conjTranspose]
   exact Unitary.coe_mul_star_self U
 
-/-- Left multiplication by a unitary matrix preserves the Frobenius norm.-/
+/-- Left multiplication by a unitary matrix preserves the Frobenius norm.
+@isnad1 id=eq.0h5v.s8.603b8621f1f3 from=translated src=- shape=c7808d02 vocab=d117ef7d
+-/
 theorem frobNorm_mul_left_unitary (U : Matrix.unitaryGroup n K) (X : Matrix n p K) :
     frobNorm ((U : Matrix n n K) * X) = frobNorm X :=
   frobNorm_mul_left_of_hasOrthonormalCols _ _ (Unitary.coe_star_mul_self U)

@@ -19,7 +19,9 @@ open scoped Matrix.Norms.L2Operator Topology
 namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Every Newton iterate commutes with any matrix commuting with its input.-/
+/-- Every Newton iterate commutes with any matrix commuting with its input.
+@isnad1 id=commute.1h4v.s5.cf65de250a15 from=translated src=- shape=0762e5b7 vocab=f8a88278
+-/
 theorem commute_signNewtonIterate {A S : Matrix n n ℂ} (h : Commute S A) (k : ℕ) :
     Commute S (signNewtonIterate A k) := by
   induction k with
@@ -30,7 +32,9 @@ theorem commute_signNewtonIterate {A S : Matrix n n ℂ} (h : Commute S A) (k : 
       ih.eq, ih.matrix_inv_right.eq]
 
 /-- Multiplication by a commuting involution intertwines the exact
-Newton recursions, including their total inverse conventions.-/
+Newton recursions, including their total inverse conventions.
+@isnad1 id=eq.2h4v.s7.23c4e4f11bea from=translated src=- shape=9c7e7f63 vocab=8b92dada
+-/
 theorem involution_mul_signNewtonIterate {A S : Matrix n n ℂ}
     (h : Commute S A) (hS : S^2=1) (k : ℕ) :
     S*signNewtonIterate A k=signNewtonIterate (S*A) k := by
@@ -42,7 +46,9 @@ theorem involution_mul_signNewtonIterate {A S : Matrix n n ℂ}
     simp only [Matrix.mul_smul, Matrix.mul_add, (commute_signNewtonIterate h k).matrix_inv_right.eq]
 
 /-- The source's sign Cayley matrix equals the positive Cayley transform
-of the positive-stable product `SA`.-/
+of the positive-stable product `SA`.
+@isnad1 id=eq.1h3v.s7.2a3de2406315 from=translated src=- shape=93be14b4 vocab=49bc23d6
+-/
 theorem IsMatrixSign.cayley_eq_positiveCayley {A S : Matrix n n ℂ} (hS : IsMatrixSign A S) :
     (A-S)*(A+S)⁻¹=positiveCayley (S*A) := by
   have hs : S*S=1 := by simpa only [pow_two] using hS.1
@@ -62,14 +68,18 @@ theorem IsMatrixSign.cayley_eq_positiveCayley {A S : Matrix n n ℂ} (hS : IsMat
     _ = ((S*A-1)*(S*A+1)⁻¹)*(S*S) := by rw [ht.eq]; noncomm_ring
     _ = _ := by rw [hs, Matrix.mul_one]
 
-/-- The source's Cayley coordinate is spectrally contractive.-/
+/-- The source's Cayley coordinate is spectrally contractive.
+@isnad1 id=lt.1h3v.s7.8026bb57ca9e from=translated src=- shape=cb79a15f vocab=d4cb7ff1
+-/
 theorem IsMatrixSign.spectralRadius_cayley_lt_one {A S : Matrix n n ℂ} (hS : IsMatrixSign A S) :
     spectralRadius ℂ ((A-S)*(A+S)⁻¹)<1 := by
   rw [hS.cayley_eq_positiveCayley]
   exact hS.2.2.spectralRadius_positiveCayley_lt_one
 
 /-- The actual sign Newton recursion has the source's exact right-sign
-Cayley formula at every iteration.-/
+Cayley formula at every iteration.
+@isnad1 id=eq.1h4v.s7.4a58c606b6ea from=translated src=- shape=5a25dce7 vocab=f1a20656
+-/
 theorem IsMatrixSign.signNewtonIterate_eq {A S : Matrix n n ℂ}
     (hS : IsMatrixSign A S) (k : ℕ) :
     signNewtonIterate A k=inverseCayley (((A-S)*(A+S)⁻¹)^(2^k))*S := by
@@ -83,7 +93,9 @@ theorem IsMatrixSign.signNewtonIterate_eq {A S : Matrix n n ℂ}
   have hv : S*signNewtonIterate A k=inverseCayley ((positiveCayley (S*A))^(2^k)) := hi.trans he
   rw [hS.cayley_eq_positiveCayley, ← hv, hc.eq, Matrix.mul_assoc, hs, Matrix.mul_one]
 
-/-- Every actual sign Newton iterate is nonsingular.-/
+/-- Every actual sign Newton iterate is nonsingular.
+@isnad1 id=isunit.1h4v.s5.46a3a88025bb from=translated src=- shape=7d68d3d3 vocab=09ac8036
+-/
 theorem IsMatrixSign.isUnit_signNewtonIterate {A S : Matrix n n ℂ}
     (hS : IsMatrixSign A S) (k : ℕ) : IsUnit (signNewtonIterate A k) := by
   rw [hS.signNewtonIterate_eq]
@@ -94,7 +106,9 @@ theorem IsMatrixSign.isUnit_signNewtonIterate {A S : Matrix n n ℂ}
   exact (isUnit_inverseCayley hm hp).mul hSu
 
 /-- Sign Newton iteration converges for arbitrary spectrally separated
-matrices; spectral contraction does not require norm contraction.-/
+matrices; spectral contraction does not require norm contraction.
+@isnad1 id=tendsto.1h3v.s5.48414ccda753 from=translated src=- shape=4832d46d vocab=e27b3ea9
+-/
 theorem IsMatrixSign.tendsto_signNewtonIterate {A S : Matrix n n ℂ}
     (hS : IsMatrixSign A S) : Tendsto (signNewtonIterate A) atTop (𝓝 S) := by
   have hp := tendsto_matrix_pow_zero_of_spectralRadius_lt_one hS.spectralRadius_cayley_lt_one
@@ -104,7 +118,9 @@ theorem IsMatrixSign.tendsto_signNewtonIterate {A S : Matrix n n ℂ}
   · funext k; exact hS.signNewtonIterate_eq k
   · simp
 
-/-- The exact Newton error identity for a commuting involution.-/
+/-- The exact Newton error identity for a commuting involution.
+@isnad1 id=eq.3h3v.s8.9b46d9db031c from=translated src=- shape=595fa359 vocab=7cab6119
+-/
 theorem half_smul_add_inv_sub_involution {X S : Matrix n n ℂ}
     (hX : IsUnit X) (hS : S^2=1) (hc : Commute X S) :
     (2 : ℂ)⁻¹ • (X+X⁻¹)-S=(2 : ℂ)⁻¹ • (X⁻¹*(X-S)^2) := by
@@ -124,7 +140,9 @@ theorem half_smul_add_inv_sub_involution {X S : Matrix n n ℂ}
 /-- All advertised sign Newton guarantees for the canonical matrix sign:
 nonsingularity, exact Cayley formula, convergence, exact quadratic error,
 and its spectral-norm bound.
-atlas: matrix-sign-newton-/
+atlas: matrix-sign-newton
+@isnad1 id=other.1h2v.s9.e80e85e3ea29 from=translated src=- shape=04fe2173 vocab=54bd4d7d
+-/
 theorem matrix_sign_newton [Nonempty n] {A : Matrix n n ℂ}
     (hA : ∀ z ∈ spectrum ℂ A, z.re ≠ 0) :
     let S := matrixSign A

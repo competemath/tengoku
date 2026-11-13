@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Negation reverses and negates sorted eigenvalues, including repeated
 eigenvalues. Horn--Johnson (2013), Observation 4.2.5.
-atlas: eigenvalue-order-and-counting (partial)-/
+atlas: eigenvalue-order-and-counting (partial)
+@isnad1 id=eq.1h3v.s6.a5ff60d49328 from=translated src=- shape=19c292b6 vocab=90b538ed
+-/
 theorem eigenvalues₀_neg {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (k : Fin (Fintype.card n)) : hA.neg.eigenvalues₀ k = -hA.eigenvalues₀ k.rev := by
   apply le_antisymm
@@ -47,7 +49,9 @@ theorem eigenvalues₀_neg {A : Matrix n n ℝ} (hA : A.IsHermitian)
 omit [DecidableEq n] in
 /-- Subspaces whose dimensions sum to more than the ambient dimension
 have a common nonzero vector. Dimension formula; helper for the strict
-subspace tests in `eigenvalue-order-and-counting`.-/
+subspace tests in `eigenvalue-order-and-counting`.
+@isnad1 id=ex.1h3v.s9.0767bf17a7f2 from=translated src=- shape=4bfd993b vocab=2b3b2396
+-/
 theorem exists_ne_zero_mem_inf_of_card_lt_finrank_add
     (S W : Submodule ℝ (n → ℝ))
     (h : Fintype.card n < finrank ℝ S + finrank ℝ W) :
@@ -62,7 +66,9 @@ theorem exists_ne_zero_mem_inf_of_card_lt_finrank_add
 /-- A strict lower Rayleigh bound on a subspace of dimension at least
 `k+1` implies a strict bound for the `k`-th largest eigenvalue.
 Horn--Johnson (2013), Theorem 4.2.10.
-atlas: eigenvalue-order-and-counting (partial)-/
+atlas: eigenvalue-order-and-counting (partial)
+@isnad1 id=lt.3h5v.s8.020ee3e936e5 from=translated src=- shape=86c21dab vocab=2d7e4aa6
+-/
 theorem lt_eigenvalues₀_of_forall_mem {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (k : Fin (Fintype.card n)) (S : Submodule ℝ (n → ℝ))
     (hS : (k : ℕ) + 1 ≤ finrank ℝ S) {c : ℝ}
@@ -82,7 +88,9 @@ theorem lt_eigenvalues₀_of_forall_mem {A : Matrix n n ℝ} (hA : A.IsHermitian
 /-- A strict upper Rayleigh bound on a subspace of codimension at most
 `k` implies a strict bound for the `k`-th largest eigenvalue.
 Horn--Johnson (2013), Theorem 4.2.10.
-atlas: eigenvalue-order-and-counting (partial)-/
+atlas: eigenvalue-order-and-counting (partial)
+@isnad1 id=lt.3h5v.s8.04e5177afcb9 from=translated src=- shape=1022e271 vocab=2d7e4aa6
+-/
 theorem eigenvalues₀_lt_of_forall_mem {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (k : Fin (Fintype.card n)) (W : Submodule ℝ (n → ℝ))
     (hW : Fintype.card n ≤ finrank ℝ W + k) {c : ℝ}
@@ -101,7 +109,9 @@ theorem eigenvalues₀_lt_of_forall_mem {A : Matrix n n ℝ} (hA : A.IsHermitian
 
 /-- A nonnegative subspace forces at least its dimension many nonnegative
 eigenvalues. Horn--Johnson (2013), Corollary 4.2.12.
-atlas: eigenvalue-order-and-counting (partial)-/
+atlas: eigenvalue-order-and-counting (partial)
+@isnad1 id=le.2h3v.s8.21827117096a from=translated src=- shape=e90361e8 vocab=095091b4
+-/
 theorem finrank_le_card_eigenvalues₀_nonneg {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (S : Submodule ℝ (n → ℝ)) (hAS : ∀ x ∈ S, 0 ≤ quadForm A x) :
     finrank ℝ S ≤ (Finset.univ.filter fun i => 0 ≤ hA.eigenvalues₀ i).card := by
@@ -120,7 +130,9 @@ theorem finrank_le_card_eigenvalues₀_nonneg {A : Matrix n n ℝ} (hA : A.IsHer
 
 /-- A positive subspace forces at least its dimension many positive
 eigenvalues. Horn--Johnson (2013), Corollary 4.2.12.
-atlas: eigenvalue-order-and-counting (partial)-/
+atlas: eigenvalue-order-and-counting (partial)
+@isnad1 id=le.2h3v.s8.f4ba25fa1df1 from=translated src=- shape=47e2279d vocab=1a6bb3a6
+-/
 theorem finrank_le_card_eigenvalues₀_pos {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (S : Submodule ℝ (n → ℝ)) (hAS : ∀ x ∈ S, x ≠ 0 → 0 < quadForm A x) :
     finrank ℝ S ≤ (Finset.univ.filter fun i => 0 < hA.eigenvalues₀ i).card := by
@@ -140,7 +152,9 @@ theorem finrank_le_card_eigenvalues₀_pos {A : Matrix n n ℝ} (hA : A.IsHermit
 /-- Negation, strict subspace testing, and nonnegative/positive eigenvalue
 counts hold for the sorted spectral list. Horn--Johnson (2013),
 Observation 4.2.5, Theorem 4.2.10, Corollary 4.2.12.
-atlas: eigenvalue-order-and-counting-/
+atlas: eigenvalue-order-and-counting
+@isnad1 id=and.1h2v.s10.bd4ff2888924 from=translated src=- shape=da64d9df vocab=488b5259
+-/
 theorem eigenvalue_order_and_counting {A : Matrix n n ℝ} (hA : A.IsHermitian) :
     (∀ k, hA.neg.eigenvalues₀ k = -hA.eigenvalues₀ k.rev) ∧
     (∀ (k : Fin (Fintype.card n)) (S : Submodule ℝ (n → ℝ)) (c : ℝ),

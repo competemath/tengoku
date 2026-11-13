@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 omit [Fintype n] [DecidableEq n] in
 /-- Hadamard multiplication by a PSD real matrix preserves Loewner order.
-Horn--Johnson (2013), Section 7.5; helper for Schur inequalities.-/
+Horn--Johnson (2013), Section 7.5; helper for Schur inequalities.
+@isnad1 id=le.2h4v.s6.50dac20e1949 from=translated src=- shape=82d9970a vocab=9425c946
+-/
 theorem hadamard_le_hadamard_of_posSemidef_left {A B C : Matrix n n ℝ}
     (hA : A.PosSemidef) (hBC : B ≤ C) : A ⊙ B ≤ A ⊙ C := by
   have h := hA.hadamard (Matrix.le_iff.mp hBC)
@@ -30,7 +32,9 @@ theorem hadamard_le_hadamard_of_posSemidef_left {A B C : Matrix n n ℝ}
 /-- The Hadamard product is positive definite when the first factor is
 positive definite and the PSD second factor has strictly positive diagonal.
 Empty dimensions are included. Horn--Johnson (2013), Theorem 7.5.3.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=posdef.3h3v.s5.b1475e6eb3e2 from=translated src=- shape=8fb0c654 vocab=f6de436c
+-/
 theorem posDef_hadamard_of_posDef_of_diag_pos {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) (hdiag : ∀ i, 0 < B i i) : (A ⊙ B).PosDef := by
   rcases isEmpty_or_nonempty n with hEmpty | hNonempty
@@ -46,7 +50,9 @@ theorem posDef_hadamard_of_posDef_of_diag_pos {A B : Matrix n n ℝ}
 
 omit [DecidableEq n] in
 /-- For Hermitian `A`, `B`: `|xᵀ B x| ≤ xᵀ A x` for every `x` iff `-A ≤ B ≤ A` in the Loewner
-order. Horn–Johnson 2013, Lemma 7.8.15.-/
+order. Horn–Johnson 2013, Lemma 7.8.15.
+@isnad1 id=iff.2h3v.s7.6f04a9d4a2b2 from=translated src=- shape=a32979a9 vocab=24e77c7c
+-/
 theorem abs_quadForm_le_iff_neg_le_and_le {A B : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) :
     (∀ x, |quadForm B x| ≤ quadForm A x) ↔ -A ≤ B ∧ B ≤ A := by
@@ -74,7 +80,9 @@ theorem abs_quadForm_le_iff_neg_le_and_le {A B : Matrix n n ℝ}
 omit [Fintype n] [DecidableEq n] in
 /-- **Hadamard products preserve Loewner sandwiches, lower bound.** If `-A ≤ B ≤ A` and
 `-C ≤ D ≤ C` then `-(A ⊙ C) ≤ B ⊙ D`. Horn–Johnson 2013, Theorem 7.8.16.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=le.4h5v.s7.4ddeb9b0d62e from=translated src=- shape=02821a5b vocab=3a0e5c43
+-/
 theorem neg_hadamard_le_hadamard_of_neg_le_of_le {A B C D : Matrix n n ℝ}
     (hAB : -A ≤ B) (hBA : B ≤ A) (hCD : -C ≤ D) (hDC : D ≤ C) : -(A ⊙ C) ≤ B ⊙ D := by
   have hABp : (A + B).PosSemidef := by
@@ -95,7 +103,9 @@ theorem neg_hadamard_le_hadamard_of_neg_le_of_le {A B C D : Matrix n n ℝ}
 omit [Fintype n] [DecidableEq n] in
 /-- **Hadamard products preserve Loewner sandwiches, upper bound.** If `-A ≤ B ≤ A` and
 `-C ≤ D ≤ C` then `B ⊙ D ≤ A ⊙ C`. Horn–Johnson 2013, Theorem 7.8.16.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=le.4h5v.s7.58e823cbe817 from=translated src=- shape=d9480a3f vocab=3a0e5c43
+-/
 theorem hadamard_le_hadamard_of_neg_le_of_le {A B C D : Matrix n n ℝ}
     (hAB : -A ≤ B) (hBA : B ≤ A) (hCD : -C ≤ D) (hDC : D ≤ C) : B ⊙ D ≤ A ⊙ C := by
   have hABp : (A + B).PosSemidef := by
@@ -116,7 +126,9 @@ theorem hadamard_le_hadamard_of_neg_le_of_le {A B C D : Matrix n n ℝ}
 omit [DecidableEq n] in
 /-- Absolute quadratic dominance `|xᵀ B x| ≤ xᵀ A x` is preserved by the Hadamard product of
 two Hermitian pairs. Horn–Johnson 2013, Theorem 7.8.16.
-atlas: schur-product-inequalities (partial)-/
+atlas: schur-product-inequalities (partial)
+@isnad1 id=le.6h6v.s7.8face322c2e5 from=translated src=- shape=a6ea814f vocab=62bf720c
+-/
 theorem abs_quadForm_hadamard_le_of_abs_quadForm_le {A B C D : Matrix n n ℝ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hC : C.IsHermitian) (hD : D.IsHermitian)
     (hAB : ∀ x, |quadForm B x| ≤ quadForm A x) (hCD : ∀ x, |quadForm D x| ≤ quadForm C x) :

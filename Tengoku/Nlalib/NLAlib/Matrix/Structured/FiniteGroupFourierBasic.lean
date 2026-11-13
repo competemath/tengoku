@@ -34,7 +34,9 @@ def finiteGroupLeftRegularRepresentation : Representation ℂ G (G → ℂ) wher
   map_one' := by ext f g; simp
   map_mul' h k := by ext f g; simp [_root_.mul_inv_rev, mul_assoc]
 
-/-- The regular action evaluated at one group element.-/
+/-- The regular action evaluated at one group element.
+@isnad1 id=eq.0h4v.s8.b94e46fa3e19 from=translated src=- shape=4c45a2ca vocab=97ba9749
+-/
 @[simp] theorem finiteGroupLeftRegularRepresentation_apply (h : G) (f : G → ℂ) (g : G) :
     finiteGroupLeftRegularRepresentation h f g = f (h⁻¹ * g) := rfl
 
@@ -44,7 +46,9 @@ def finiteGroupLeftRegularL2Representation [Fintype G] :
   (((WithLp.linearEquiv 2 ℂ (G → ℂ)).symm.conjAlgEquiv ℂ).toMonoidHom).comp
     finiteGroupLeftRegularRepresentation
 
-/-- Evaluation formula for the counting-inner-product regular action.-/
+/-- Evaluation formula for the counting-inner-product regular action.
+@isnad1 id=eq.0h4v.s10.5ca3ff717474 from=translated src=- shape=8e27b54d vocab=5d56a4d2
+-/
 @[simp] theorem finiteGroupLeftRegularL2Representation_apply [Fintype G]
     (h : G) (f : EuclideanSpace ℂ G) (g : G) :
     finiteGroupLeftRegularL2Representation h f g = f (h⁻¹ * g) := rfl

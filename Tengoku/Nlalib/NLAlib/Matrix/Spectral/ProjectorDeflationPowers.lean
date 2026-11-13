@@ -16,14 +16,18 @@ open scoped Matrix Topology
 namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
-/-- Powers of a matrix act as the identity on a fixed right projector.-/
+/-- Powers of a matrix act as the identity on a fixed right projector.
+@isnad1 id=eq.1h5v.s7.050fcf54d56a from=translated src=- shape=97e2c703 vocab=888d83cf
+-/
 theorem matrix_pow_mul_eq_of_mul_eq {K : Type*} [Semiring K]
     (T P : Matrix ι ι K) (hTP : T * P = P) (k : ℕ) : T ^ k * P = P := by
   induction k with
   | zero => simp
   | succ k ih => rw [pow_succ, Matrix.mul_assoc, hTP, ih]
 
-/-- Removing a commuting fixed idempotent removes it from every positive power.-/
+/-- Removing a commuting fixed idempotent removes it from every positive power.
+@isnad1 id=eq.3h5v.s8.0f04fee93b44 from=translated src=- shape=58919fa2 vocab=be077050
+-/
 theorem matrix_sub_projector_pow_succ {K : Type*} [Ring K]
     (T P : Matrix ι ι K) (hPP : P * P = P) (hTP : T * P = P) (hPT : P * T = P)
     (k : ℕ) : (T - P) ^ (k + 1) = T ^ (k + 1) - P := by
@@ -37,7 +41,9 @@ theorem matrix_sub_projector_pow_succ {K : Type*} [Ring K]
 open scoped Matrix.Norms.L2Operator in
 /-- Subunit spectrum after deflation gives convergence to the projector.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=tendsto.4h3v.s8.47cfe6c39a90 from=translated src=- shape=7ba8e604 vocab=626bed5f
+-/
 theorem tendsto_matrix_pow_projector_of_deflated_spectralRadius_lt_one
     (T P : Matrix ι ι ℝ) (hPP : P * P = P) (hTP : T * P = P) (hPT : P * T = P)
     (hρ : spectralRadius ℂ ((T - P).map Complex.ofReal) < 1) :
@@ -55,7 +61,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every rate above the deflated spectral radius controls every power error,
 including exponent zero, with a finite constant. No diagonalizability is needed.
 Source: Horn–Johnson, Chapter 8.
-atlas: primitive-perron-power-limit (partial)-/
+atlas: primitive-perron-power-limit (partial)
+@isnad1 id=ex.4h4v.s8.ebb668167c30 from=translated src=- shape=8eb753db vocab=022545e0
+-/
 theorem exists_specNorm_matrix_pow_sub_projector_le_geometric
     (T P : Matrix ι ι ℝ) (hPP : P * P = P) (hTP : T * P = P) (hPT : P * T = P)
     {θ : ℝ} (hθ : (spectralRadius ℂ ((T - P).map Complex.ofReal)).toReal < θ) :

@@ -29,7 +29,9 @@ namespace NLAlib
 interpolation family with exact center and controlled endpoint profile
 power sums. The left squared norm bound is four, and both right profile
 bounds are one. Boundedness on the whole closed strip is constructed,
-including vanishing coefficients and empty matrix spaces.-/
+including vanishing coefficients and empty matrix spaces.
+@isnad1 id=ex.8h6v.s9.b155b2e6dc4c from=translated src=- shape=06384eff vocab=3fa533cc
+-/
 theorem exists_entire_symmetric_profile_family
     {n : Type*} [Fintype n] [DecidableEq n]
     {p q θ c : ℝ} (hp : 2 ≤ p) (hq : 0 < q) (hθ : θ ∈ Ioo (0 : ℝ) 1)

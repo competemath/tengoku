@@ -26,7 +26,9 @@ def saddleSchurComplement (A : Matrix n n 𝕜) (B : Matrix m n 𝕜) : Matrix m
 
 /-- Full row rank and a positive-definite leading block make the native Schur
 complement positive definite.
-atlas: saddle-point-schur-preconditioner-spectrum (partial)-/
+atlas: saddle-point-schur-preconditioner-spectrum (partial)
+@isnad1 id=posdef.2h5v.s6.b6d1b0ba5618 from=translated src=- shape=4c5b8492 vocab=f38babd0
+-/
 theorem posDef_saddleSchurComplement {A : Matrix n n 𝕜} (hA : A.PosDef)
     {B : Matrix m n 𝕜} (hB : B.rank = Fintype.card m) :
     (saddleSchurComplement A B).PosDef := by
@@ -42,7 +44,9 @@ theorem posDef_saddleSchurComplement {A : Matrix n n 𝕜} (hA : A.PosDef)
 open scoped Matrix.Norms.L2Operator in
 /-- Symmetric preconditioning by `diag(A,Ŝ)` gives exactly `[I Cᴴ; C 0]`,
 where `C=Ŝ⁻¹ᐟ² B A⁻¹ᐟ²`.
-atlas: saddle-point-schur-preconditioner-spectrum (partial)-/
+atlas: saddle-point-schur-preconditioner-spectrum (partial)
+@isnad1 id=other.2h6v.s10.9ebe88fac4ac from=translated src=- shape=fe990942 vocab=fdf1661c
+-/
 theorem symmetric_saddle_preconditioning_eq [Nonempty n] [Nonempty m]
     {A : Matrix n n 𝕜} {Shat : Matrix m m 𝕜} (hA : A.PosDef) (hS : Shat.PosDef)
     (B : Matrix m n 𝕜) :
@@ -59,7 +63,9 @@ theorem symmetric_saddle_preconditioning_eq [Nonempty n] [Nonempty m]
 
 open scoped Matrix.Norms.L2Operator in
 /-- The whitened coupling's row Gram matrix is the whitened Schur complement.
-atlas: saddle-point-schur-preconditioner-spectrum (partial)-/
+atlas: saddle-point-schur-preconditioner-spectrum (partial)
+@isnad1 id=other.1h6v.s10.17eba41bc252 from=translated src=- shape=310b69fd vocab=175f6b79
+-/
 theorem saddle_coupling_mul_conjTranspose {A : Matrix n n 𝕜} (hA : A.PosDef)
     (B : Matrix m n 𝕜) (Shat : Matrix m m 𝕜) :
     let C := cfc (fun x => (Real.sqrt x)⁻¹) Shat * B * cfc (fun x => (Real.sqrt x)⁻¹) A
@@ -73,7 +79,9 @@ theorem saddle_coupling_mul_conjTranspose {A : Matrix n n 𝕜} (hA : A.PosDef)
   simp only [Matrix.mul_assoc]
 
 /-- The exact lower triangular Schur preconditioner gives a unit upper triangular
-preconditioned matrix.-/
+preconditioned matrix.
+@isnad1 id=eq.2h5v.s9.2d841615f41b from=translated src=- shape=c88a8ceb vocab=c69826e2
+-/
 theorem triangular_saddle_preconditioning_eq {A : Matrix n n 𝕜} (hA : A.PosDef)
     {B : Matrix m n 𝕜} (hB : B.rank = Fintype.card m) :
     (Matrix.fromBlocks A 0 B (-saddleSchurComplement A B))⁻¹ * kktMatrix A B =
@@ -91,7 +99,9 @@ theorem triangular_saddle_preconditioning_eq {A : Matrix n n 𝕜} (hA : A.PosDe
     ((Matrix.isUnit_iff_isUnit_det _).mp ht), Matrix.one_mul]
 
 /-- The ideal triangular preconditioner leaves a nilpotent perturbation of order two.
-atlas: saddle-point-schur-preconditioner-spectrum (partial)-/
+atlas: saddle-point-schur-preconditioner-spectrum (partial)
+@isnad1 id=eq.2h5v.s9.58b1d666cecd from=translated src=- shape=96ce098b vocab=7b362720
+-/
 theorem triangular_saddle_preconditioning_sub_one_sq {A : Matrix n n 𝕜} (hA : A.PosDef)
     {B : Matrix m n 𝕜} (hB : B.rank = Fintype.card m) :
     ((Matrix.fromBlocks A 0 B (-saddleSchurComplement A B))⁻¹ * kktMatrix A B - 1) ^ 2 = 0 := by
@@ -101,7 +111,9 @@ theorem triangular_saddle_preconditioning_sub_one_sq {A : Matrix n n 𝕜} (hA :
   simp only [sub_self, Matrix.zero_mul, Matrix.mul_zero, add_zero, Matrix.fromBlocks_zero]
 
 /-- A normalized saddle matrix with orthonormal rows is annihilated by
-`(t-1)(t²-t-1)`, without diagonalizing it.-/
+`(t-1)(t²-t-1)`, without diagonalizing it.
+@isnad1 id=eq.1h4v.s9.7a79b62aee63 from=translated src=- shape=b7db4f4f vocab=d9242452
+-/
 theorem kktMatrix_one_annihilator {C : Matrix m n 𝕜} (hC : C * Cᴴ = 1) :
     (kktMatrix 1 C - 1) * ((kktMatrix 1 C) ^ 2 - kktMatrix 1 C - 1) = 0 := by
   have hs : (kktMatrix 1 C) ^ 2 - kktMatrix 1 C - 1 =

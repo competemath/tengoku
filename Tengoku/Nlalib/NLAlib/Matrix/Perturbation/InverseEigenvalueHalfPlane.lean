@@ -45,7 +45,9 @@ private theorem inverse_branch_im_ne_zero {A : Matrix n n ℂ} (hA : A.IsHermiti
 half-plane precisely for indices with `bᵢ < s`. This proves the label selection at
 every exterior parameter above the real axis, without assuming global simple roots.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=ex.3h4v.s8.16f2ca24de1d from=translated src=- shape=4053abc1 vocab=e6e99ba6
+-/
 theorem exists_exterior_inverse_eigenvalue_branches_im_pos_iff
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (b : n → ℝ)
     (hb : Function.Injective b) (s : ℝ) (hs : ∀ i, s ≠ b i) :

@@ -26,7 +26,9 @@ namespace HermiteIndex
 
 variable {ι : Type*} [Fintype ι] [DecidableEq ι] {p : ℕ}
 
-/-- The occupation number at one coordinate is at most the total cutoff.-/
+/-- The occupation number at one coordinate is at most the total cutoff.
+@isnad1 id=le.0h4v.s5.83324209d625 from=translated src=- shape=fe47d9ac vocab=e7ac3051
+-/
 theorem coordinate_le (a : HermiteIndex ι p) (i : ι) : a.val i ≤ p :=
   (Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ i)).trans a.property
 
@@ -51,10 +53,14 @@ def degree (a : HermiteIndex ι p) : ℕ := ∑ i, a.val i
 /-- The vacuum is the zero occupation multiindex.-/
 def vacuum : HermiteIndex ι p := ⟨0, by simp⟩
 
-/-- Every coordinate of the vacuum occupation is zero.-/
+/-- Every coordinate of the vacuum occupation is zero.
+@isnad1 id=eq.0h3v.s5.6ed61a09704c from=translated src=- shape=28b59d7a vocab=85b84147
+-/
 @[simp] theorem vacuum_val (i : ι) : (vacuum : HermiteIndex ι p).val i = 0 := rfl
 
-/-- The vacuum has degree zero.-/
+/-- The vacuum has degree zero.
+@isnad1 id=eq.0h2v.s4.b45245c380ee from=translated src=- shape=ab578c89 vocab=58d71452
+-/
 @[simp] theorem degree_vacuum : (vacuum : HermiteIndex ι p).degree = 0 := by
   simp [degree, vacuum]
 
@@ -66,12 +72,16 @@ def lower (a : HermiteIndex ι p) (i : ι) : HermiteIndex ι p :=
     · subst j; simp
     · simp [Function.update_of_ne h]⟩
 
-/-- Lowering changes only the selected coordinate.-/
+/-- Lowering changes only the selected coordinate.
+@isnad1 id=eq.0h5v.s6.c9f9e2d0b634 from=translated src=- shape=7a39c3f7 vocab=ffb62f6a
+-/
 @[simp] theorem lower_val (a : HermiteIndex ι p) (i j : ι) :
     (lower a i).val j = if j = i then a.val i - 1 else a.val j := by
   simp [lower, Function.update_apply]
 
-/-- The lowering degree identity is valid when the coordinate is occupied.-/
+/-- The lowering degree identity is valid when the coordinate is occupied.
+@isnad1 id=eq.1h4v.s6.ae20c1b79079 from=translated src=- shape=fd6ad1d5 vocab=3219a7cc
+-/
 theorem degree_lower (a : HermiteIndex ι p) (i : ι) (hi : 0 < a.val i) :
     (lower a i).degree + 1 = a.degree := by
   have hsum := Finset.sum_update_of_mem (Finset.mem_univ i) a.val (a.val i - 1)
@@ -89,12 +99,16 @@ def raise (a : HermiteIndex ι p) (i : ι) (h : a.degree < p) : HermiteIndex ι 
     rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem (Finset.mem_univ i)] at h
     omega⟩
 
-/-- Raising changes only the selected coordinate.-/
+/-- Raising changes only the selected coordinate.
+@isnad1 id=eq.1h5v.s7.b2a54e0c3236 from=translated src=- shape=e91a40c3 vocab=fc9490b7
+-/
 @[simp] theorem raise_val (a : HermiteIndex ι p) (i j : ι) (h : a.degree < p) :
     (raise a i h).val j = if j = i then a.val i + 1 else a.val j := by
   simp [raise, Function.update_apply]
 
-/-- Raising increases total degree by exactly one.-/
+/-- Raising increases total degree by exactly one.
+@isnad1 id=eq.1h4v.s5.4220143bed1b from=translated src=- shape=cabe8a93 vocab=19cf8569
+-/
 @[simp] theorem degree_raise (a : HermiteIndex ι p) (i : ι) (h : a.degree < p) :
     (raise a i h).degree = a.degree + 1 := by
   change (∑ j, Function.update a.val i (a.val i + 1) j) = (∑ j, a.val j) + 1
@@ -103,7 +117,9 @@ def raise (a : HermiteIndex ι p) (i : ι) (h : a.degree < p) : HermiteIndex ι 
   have hi := Finset.single_le_sum (fun j _ => Nat.zero_le (a.val j)) (Finset.mem_univ i)
   omega
 
-/-- Lowering reverses a permitted raising step.-/
+/-- Lowering reverses a permitted raising step.
+@isnad1 id=eq.1h4v.s5.025a25b28585 from=translated src=- shape=dbc90a10 vocab=3e7dce11
+-/
 @[simp] theorem lower_raise (a : HermiteIndex ι p) (i : ι) (h : a.degree < p) :
     lower (raise a i h) i = a := by
   apply Subtype.ext
@@ -111,7 +127,9 @@ def raise (a : HermiteIndex ι p) (i : ι) (h : a.degree < p) : HermiteIndex ι 
   by_cases hij : j = i <;> simp [hij]
 
 /-- Raising reverses an occupied lowering step, with its cutoff condition
-deduced from the original degree bound.-/
+deduced from the original degree bound.
+@isnad1 id=eq.2h4v.s6.a36ef861629d from=translated src=- shape=14a712cc vocab=bcc806b5
+-/
 theorem raise_lower (a : HermiteIndex ι p) (i : ι) (hi : 0 < a.val i)
     (h : (lower a i).degree < p) : raise (lower a i) i h = a := by
   apply Subtype.ext
@@ -123,7 +141,9 @@ theorem raise_lower (a : HermiteIndex ι p) (i : ι) (hi : 0 < a.val i)
   · simp [hij]
 
 /-- Lowering weakly decreases degree, whether or not the coordinate is
-occupied.-/
+occupied.
+@isnad1 id=le.0h4v.s5.39a249b5e7bd from=translated src=- shape=9bea8481 vocab=1f13ba3a
+-/
 theorem degree_lower_le (a : HermiteIndex ι p) (i : ι) : (a.lower i).degree ≤ a.degree := by
   apply Finset.sum_le_sum
   intro j _
@@ -135,15 +155,21 @@ theorem degree_lower_le (a : HermiteIndex ι p) (i : ι) : (a.lower i).degree �
 def embed {q : ℕ} (a : HermiteIndex ι p) (h : p ≤ q) : HermiteIndex ι q :=
   ⟨a.val, a.property.trans h⟩
 
-/-- Cutoff inclusion preserves coordinate values.-/
+/-- Cutoff inclusion preserves coordinate values.
+@isnad1 id=eq.1h5v.s6.ad7071402d1c from=translated src=- shape=30a1cde3 vocab=7aecff4e
+-/
 @[simp] theorem embed_val {q : ℕ} (a : HermiteIndex ι p) (h : p ≤ q) (i : ι) :
     (a.embed h).val i = a.val i := rfl
 
-/-- Cutoff inclusion preserves total degree.-/
+/-- Cutoff inclusion preserves total degree.
+@isnad1 id=eq.1h4v.s5.1549eeaa5208 from=translated src=- shape=84c2d6d9 vocab=71d46675
+-/
 @[simp] theorem degree_embed {q : ℕ} (a : HermiteIndex ι p) (h : p ≤ q) :
     (a.embed h).degree = a.degree := rfl
 
-/-- Cutoff inclusion is injective.-/
+/-- Cutoff inclusion is injective.
+@isnad1 id=injectiv.1h3v.s5.f3e0ebd583eb from=translated src=- shape=3f92d83c vocab=44e98f15
+-/
 theorem embed_injective {q : ℕ} (h : p ≤ q) :
     Function.Injective (fun a : HermiteIndex ι p => a.embed h) := by
   intro a b he
@@ -156,18 +182,24 @@ def raiseNext (a : HermiteIndex ι p) (i : ι) : HermiteIndex ι (p + 1) :=
     change (∑ i, a.val i) < p + 1
     exact Nat.lt_succ_of_le a.property)
 
-/-- The next-cutoff raising step has the literal coordinate update.-/
+/-- The next-cutoff raising step has the literal coordinate update.
+@isnad1 id=eq.0h5v.s7.a52694a4531a from=translated src=- shape=1abb9e30 vocab=5ff747c8
+-/
 @[simp] theorem raiseNext_val (a : HermiteIndex ι p) (i j : ι) :
     (a.raiseNext i).val j = if j = i then a.val i + 1 else a.val j := by
   simp [raiseNext]
 
-/-- Raising into the next cutoff increases degree by one.-/
+/-- Raising into the next cutoff increases degree by one.
+@isnad1 id=eq.0h4v.s5.6837a842c615 from=translated src=- shape=bcc651fd vocab=ceeb1e35
+-/
 @[simp] theorem degree_raiseNext (a : HermiteIndex ι p) (i : ι) :
     (a.raiseNext i).degree = a.degree + 1 := by
   simp [raiseNext]
 
 /-- Lowering at a distinct coordinate commutes with an interior raising
-step, including a zero occupation at the lowered coordinate.-/
+step, including a zero occupation at the lowered coordinate.
+@isnad1 id=eq.3h5v.s6.c0537d621786 from=translated src=- shape=e090c7b8 vocab=3e7dce11
+-/
 theorem lower_raise_of_ne (a : HermiteIndex ι p) {i j : ι} (hij : i ≠ j)
     (h : a.degree < p) (h' : (a.lower i).degree < p) :
     (a.raise j h).lower i = (a.lower i).raise j h' := by

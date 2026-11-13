@@ -25,7 +25,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι]
 
 omit [DecidableEq n] in
 /-- Simultaneous left and right multiplication of a Kraus family realizes
-the corresponding congruence scaling of its Kraus map.-/
+the corresponding congruence scaling of its Kraus map.
+@isnad1 id=eq.0h6v.s9.c5e0253d2ec1 from=translated src=- shape=c7b7b4d9 vocab=be4f1e78
+-/
 theorem krausMap_mul_mul_apply (A : ι → Matrix n n ℂ) (B C X : Matrix n n ℂ) :
     krausMap (fun a => B * A a * C) X =
       B * krausMap A (C * X * Cᴴ) * Bᴴ := by
@@ -41,13 +43,17 @@ def krausTransition (A : ι → Matrix n n ℂ) : Matrix n n ℝ :=
   fun i j => ∑ a, Complex.normSq (A a i j)
 
 omit [Fintype n] [DecidableEq n] in
-/-- Every entry of a Kraus transition matrix is nonnegative.-/
+/-- Every entry of a Kraus transition matrix is nonnegative.
+@isnad1 id=le.0h5v.s5.5d2e260addd0 from=translated src=- shape=56f6e2cb vocab=a8f1112a
+-/
 theorem krausTransition_nonneg (A : ι → Matrix n n ℂ) (i j : n) :
     0 ≤ krausTransition A i j :=
   Finset.sum_nonneg fun _ _ => Complex.normSq_nonneg _
 
 /-- On a real diagonal input, the real diagonal of a Kraus image is the
-transition matrix applied to that input diagonal.-/
+transition matrix applied to that input diagonal.
+@isnad1 id=eq.0h5v.s8.c873f9991ca0 from=translated src=- shape=cae66686 vocab=540e327a
+-/
 theorem re_diag_krausMap_diagonal (A : ι → Matrix n n ℂ) (x : n → ℝ) (i : n) :
     (krausMap A (Matrix.diagonal fun j => (x j : ℂ)) i i).re =
       (krausTransition A *ᵥ x) i := by
@@ -65,14 +71,18 @@ theorem re_diag_krausMap_diagonal (A : ι → Matrix n n ℂ) (x : n → ℝ) (i
   simp
 
 /-- Row sums of the Kraus transition matrix are the real diagonal of the
-image of the identity.-/
+image of the identity.
+@isnad1 id=eq.0h4v.s8.0195338c6516 from=translated src=- shape=c57bb757 vocab=578be72b
+-/
 theorem sum_row_krausTransition (A : ι → Matrix n n ℂ) (i : n) :
     (∑ j, krausTransition A i j) = (krausMap A 1 i i).re := by
   simpa only [Complex.ofReal_one, Matrix.diagonal_one, Matrix.mulVec, dotProduct, mul_one]
     using (re_diag_krausMap_diagonal A (fun _ => 1) i).symm
 
 /-- Column sums of the Kraus transition matrix are the real diagonal of the
-adjoint image of the identity.-/
+adjoint image of the identity.
+@isnad1 id=eq.0h4v.s8.8b8f6f67c1fc from=translated src=- shape=22ed65a1 vocab=906594bd
+-/
 theorem sum_col_krausTransition (A : ι → Matrix n n ℂ) (j : n) :
     (∑ i, krausTransition A i j) =
       (krausMap (fun a => (A a)ᴴ) 1 j j).re := by
@@ -93,7 +103,9 @@ private theorem sum_sq_re_diag_le_frobSq (M : Matrix n n ℂ) :
       Finset.single_le_sum (fun j _ => sq_nonneg ‖M i j‖) (Finset.mem_univ i)
 
 /-- Discarding off-diagonal entries bounds the squared row-sum error of a
-Kraus transition matrix by the Frobenius defect of the map at the identity.-/
+Kraus transition matrix by the Frobenius defect of the map at the identity.
+@isnad1 id=le.0h3v.s8.2dfbbcfec742 from=translated src=- shape=c12b14b2 vocab=3a9c2e76
+-/
 theorem sum_sq_sum_row_krausTransition_sub_one_le (A : ι → Matrix n n ℂ) :
     (∑ i, (∑ j, krausTransition A i j - 1) ^ 2) ≤ frobSq (krausMap A 1 - 1) := by
   convert sum_sq_re_diag_le_frobSq (krausMap A 1 - 1) using 1
@@ -108,7 +120,9 @@ nonnegative matrix taking input eigenvalues to output eigenvalues. Both
 marginal errors are bounded by the corresponding Frobenius normalization
 defects. Exact normalization gives the corresponding exact marginal sums.
 This is the spectral reduction in Garg--Gurvits--Oliveira--Wigderson (2015),
-Lemma 3.4.-/
+Lemma 3.4.
+@isnad1 id=ex.1h4v.s10.edbe6efbd93d from=translated src=- shape=1089adee vocab=2c6c2184
+-/
 theorem exists_krausTransition_eigenvalues_with_marginals
     (A : ι → Matrix n n ℂ)
     {X : Matrix n n ℂ} (hX : X.PosSemidef) :
@@ -205,7 +219,9 @@ theorem exists_krausTransition_eigenvalues_with_marginals
     simp
 
 /-- A trace-preserving Kraus family has a nonnegative column-stochastic
-spectral transition, with squared row error bounded by its Frobenius defect.-/
+spectral transition, with squared row error bounded by its Frobenius defect.
+@isnad1 id=ex.2h4v.s9.47eb4a7a50f1 from=translated src=- shape=51b9cc1a vocab=2c6c2184
+-/
 theorem exists_krausTransition_eigenvalues
     (A : ι → Matrix n n ℂ) (hA : krausMap (fun a => (A a)ᴴ) 1 = 1)
     {X : Matrix n n ℂ} (hX : X.PosSemidef) :
@@ -219,7 +235,9 @@ theorem exists_krausTransition_eigenvalues
   exact ⟨W, hW, hc hA, hr, heig⟩
 
 /-- A unital Kraus family has a nonnegative row-stochastic spectral
-transition, with squared column error bounded by its adjoint Frobenius defect.-/
+transition, with squared column error bounded by its adjoint Frobenius defect.
+@isnad1 id=ex.2h4v.s9.39acb1ab284b from=translated src=- shape=51f453a4 vocab=2c6c2184
+-/
 theorem exists_krausTransition_eigenvalues_of_unital
     (A : ι → Matrix n n ℂ) (hA : krausMap A 1 = 1)
     {X : Matrix n n ℂ} (hX : X.PosSemidef) :

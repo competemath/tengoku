@@ -18,7 +18,9 @@ variable {n : Type*} [Fintype n]
 
 /-- Every natural entrywise power preserves Loewner order between PSD
 matrices. Exponent zero is the identical all-ones matrix on both sides.
-Horn--Johnson (2013), Section 7.5; helper for exponential strictness.-/
+Horn--Johnson (2013), Section 7.5; helper for exponential strictness.
+@isnad1 id=le.2h4v.s6.df24150bacb2 from=translated src=- shape=de6cda5d vocab=e17a5ce2
+-/
 theorem map_pow_le_map_pow_of_posSemidef_le {A B : Matrix n n ℝ}
     (hB : B.PosSemidef) (hBA : B ≤ A) (k : ℕ) :
     B.map (fun t => t ^ k) ≤ A.map (fun t => t ^ k) := by
@@ -38,7 +40,9 @@ theorem map_pow_le_map_pow_of_posSemidef_le {A B : Matrix n n ℝ}
       _ ≤ _ := hadamard_le_hadamard_of_posSemidef_left (posSemidef_map_pow hA k) hBA
 
 /-- Finite exponential truncations preserve PSD order.
-Horn--Johnson (2013), Section 7.5; helper for finite positivity certificates.-/
+Horn--Johnson (2013), Section 7.5; helper for finite positivity certificates.
+@isnad1 id=le.2h4v.s7.f91bb168dbf4 from=translated src=- shape=dee0a287 vocab=e4f920bf
+-/
 theorem sum_inv_factorial_smul_map_pow_le_of_posSemidef_le {A B : Matrix n n ℝ}
     (hB : B.PosSemidef) (hBA : B ≤ A) (N : ℕ) :
     (∑ k ∈ Finset.range N, (k.factorial : ℝ)⁻¹ • B.map (fun t => t ^ k)) ≤
@@ -49,7 +53,9 @@ theorem sum_inv_factorial_smul_map_pow_le_of_posSemidef_le {A B : Matrix n n ℝ
 
 /-- Entrywise exponential preserves Loewner order between PSD matrices.
 This is order on quadratic forms, even when scalar entries are negative.
-Horn--Johnson (2013), Section 7.5; helper for exponential strictness.-/
+Horn--Johnson (2013), Section 7.5; helper for exponential strictness.
+@isnad1 id=le.2h3v.s6.b25631ef7c04 from=translated src=- shape=c63c12c5 vocab=6aebf8ad
+-/
 theorem map_exp_le_map_exp_of_posSemidef_le {A B : Matrix n n ℝ}
     (hB : B.PosSemidef) (hBA : B ≤ A) : B.map Real.exp ≤ A.map Real.exp := by
   have hsum := (hasSum_inv_factorial_smul_map_pow A).sub (hasSum_inv_factorial_smul_map_pow B)

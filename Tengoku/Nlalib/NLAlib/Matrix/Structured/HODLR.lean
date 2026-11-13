@@ -53,6 +53,9 @@ vector. The finite sum is the usual loop with one multiply and one add per entry
 def denseAccumulate {m n : Type*} [Fintype n] (A : Matrix m n K)
     (x : n → K) (y : m → K) : m → K := fun i => y i + ∑ j, A i j * x j
 
+/--
+@isnad1 id=eq.0h6v.s6.56ca0d4fcb1d from=translated src=- shape=cd0b3758 vocab=f088c0ee
+-/
 theorem denseAccumulate_eq {m n : Type*} [Fintype n] (A : Matrix m n K)
     (x : n → K) (y : m → K) : denseAccumulate A x y = y + A *ᵥ x := rfl
 
@@ -77,7 +80,9 @@ def actions : {t : ClusterTree} → HODLR K t → ℕ
 
 /-- The stored-factor matvec returns the reconstructed matrix-vector product.
 Source: user derivations, HODLR storage and matvec.
-atlas: hodlr-storage-matvec (partial)-/
+atlas: hodlr-storage-matvec (partial)
+@isnad1 id=eq.0h4v.s5.6050d870f78e from=translated src=- shape=b0f633a2 vocab=075b8696
+-/
 theorem apply_eq_mulVec {t : ClusterTree} (H : HODLR K t) (x : t.Index → K) :
     H.apply x = H.matrix *ᵥ x := by
   induction H with
@@ -92,7 +97,9 @@ theorem apply_eq_mulVec {t : ClusterTree} (H : HODLR K t) (x : t.Index → K) :
       simp only [denseAccumulate_eq, zero_add, ← Matrix.mulVec_mulVec]
       rw [add_comm (dr.matrix *ᵥ (x ∘ Sum.inr))]
 
-/-- The explicit scalar-action count is twice the stored scalar count.-/
+/-- The explicit scalar-action count is twice the stored scalar count.
+@isnad1 id=eq.0h3v.s5.4740acebc41f from=translated src=- shape=3f20d9f0 vocab=f26ec7d7
+-/
 theorem actions_eq_two_mul_storage {t : ClusterTree} (H : HODLR K t) :
     H.actions = 2 * H.storage := by
   induction H with
@@ -102,7 +109,9 @@ theorem actions_eq_two_mul_storage {t : ClusterTree} (H : HODLR K t) :
 /-- The storage bound includes zero ranks, empty clusters, and a root leaf.
 `height ≤ L` is exactly the condition that internal depths are below `L`.
 Source: user derivations, HODLR storage bound.
-atlas: hodlr-storage-matvec-/
+atlas: hodlr-storage-matvec
+@isnad1 id=le.3h6v.s6.016a7a064bb7 from=translated src=- shape=8367aca2 vocab=f72fdb04
+-/
 theorem storage_le {t : ClusterTree} (H : HODLR K t) (b k L : ℕ)
     (hb : t.LeafSizeLE b) (hk : H.RanksLE k) (hL : t.height ≤ L) :
     H.storage ≤ t.size * b + 2 * t.size * k * L := by

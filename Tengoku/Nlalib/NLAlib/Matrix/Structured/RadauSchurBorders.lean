@@ -28,7 +28,9 @@ def rightRadauCorner (J : Matrix n n ℝ) (v : n → ℝ) (c : ℝ) : ℝ :=
   c - quadForm (c • 1 - J)⁻¹ v
 
 /-- Finite real matrices with a singular endpoint shift have that endpoint in their
-real algebraic spectrum, including arbitrary finite index types.-/
+real algebraic spectrum, including arbitrary finite index types.
+@isnad1 id=mem.1h3v.s7.948041b4d0a8 from=translated src=- shape=4b3b3d7a vocab=f555fe58
+-/
 theorem mem_spectrum_of_det_sub_smul_one_eq_zero {A : Matrix n n ℝ} {a : ℝ}
     (h : (A - a • 1).det = 0) : a ∈ spectrum ℝ A := by
   rw [spectrum.mem_iff, Matrix.isUnit_iff_isUnit_det, isUnit_iff_ne_zero]
@@ -39,7 +41,9 @@ theorem mem_spectrum_of_det_sub_smul_one_eq_zero {A : Matrix n n ℝ} {a : ℝ}
   simp
 
 omit [DecidableEq n] in
-/-- Increasing only the actual scalar border corner increases its matrix order.-/
+/-- Increasing only the actual scalar border corner increases its matrix order.
+@isnad1 id=le.1h5v.s6.ea4338a80f6b from=translated src=- shape=f2d8cea6 vocab=8b2ff0de
+-/
 theorem symmetricBorder_le_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ)
     {d e : ℝ} (hde : d ≤ e) : symmetricBorder J v d ≤ symmetricBorder J v e := by
   rw [Matrix.le_iff]
@@ -57,7 +61,9 @@ theorem symmetricBorder_le_symmetricBorder (J : Matrix n n ℝ) (v : n → ℝ)
 
 /-- The actual left Radau border has the left endpoint eigenvalue and a PSD left
 endpoint shift. Source: focused mathematical reroutes, Section 3 (BL4).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.1h4v.s9.878252752190 from=translated src=- shape=39b59ea1 vocab=14c143d6
+-/
 theorem leftRadauBorder_posSemidef_shift_and_mem_spectrum
     (J : Matrix n n ℝ) (v : n → ℝ) (a : ℝ) (hJ : (J - a • 1).PosDef) :
     (symmetricBorder J v (leftRadauCorner J v a) - a • 1).PosSemidef ∧
@@ -71,7 +77,9 @@ theorem leftRadauBorder_posSemidef_shift_and_mem_spectrum
 
 /-- The actual right Radau border has the right endpoint eigenvalue and a PSD right
 endpoint shift. Source: focused mathematical reroutes, Section 3 (BL4).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.1h4v.s9.3a98f5883b4f from=translated src=- shape=85dea8b2 vocab=880de625
+-/
 theorem rightRadauBorder_posSemidef_shift_and_mem_spectrum
     (J : Matrix n n ℝ) (v : n → ℝ) (c : ℝ) (hJ : (c • 1 - J).PosDef) :
     (c • 1 - symmetricBorder J v (rightRadauCorner J v c)).PosSemidef ∧
@@ -89,7 +97,9 @@ theorem rightRadauBorder_posSemidef_shift_and_mem_spectrum
 /-- The actual left/right Radau borders bracket the original border in matrix order.
 The leading endpoint shifts are positive definite; the original border endpoint
 shifts need only be PSD. Source: focused reroutes, Section 3 (BL4).
-atlas: gauss-radau-lobatto (partial)-/
+atlas: gauss-radau-lobatto (partial)
+@isnad1 id=and.4h6v.s10.3c9e96fba57f from=translated src=- shape=47a170ac vocab=371b9c3b
+-/
 theorem leftRadauBorder_le_original_le_rightRadauBorder
     (J : Matrix n n ℝ) (v : n → ℝ) (d a c : ℝ)
     (hJa : (J - a • 1).PosDef) (hJc : (c • 1 - J).PosDef)

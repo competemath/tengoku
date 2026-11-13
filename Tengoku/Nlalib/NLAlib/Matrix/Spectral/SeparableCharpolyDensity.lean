@@ -23,7 +23,9 @@ namespace NLAlib
 /-- An affine matrix pencil ending at a separable characteristic polynomial
 has only finitely many nonseparable parameters. Source: Horn–Johnson (2013),
 §2.3; the resultant of the characteristic polynomial and its derivative
-is a nonzero scalar-parameter polynomial.-/
+is a nonzero scalar-parameter polynomial.
+@isnad1 id=finite.1h4v.s7.3e20c8620b51 from=translated src=- shape=ca8f28c7 vocab=d4395176
+-/
 theorem finite_not_separable_charpoly_affine
     {n K : Type*} [Fintype n] [DecidableEq n] [Field K] [CharZero K]
     (A D : Matrix n n K) (hD : D.charpoly.Separable) :
@@ -58,7 +60,9 @@ theorem finite_not_separable_charpoly_affine
 polynomial are dense. For real matrices separability means distinct complex
 roots after complexification. Source: Horn–Johnson (2013), §2.3; every finite
 shape, including the empty shape, is included.
-atlas: schur-triangularization (partial)-/
+atlas: schur-triangularization (partial)
+@isnad1 id=dense.0h2v.s6.37dd4dfcb1bf from=translated src=- shape=d6476646 vocab=e0a3436d
+-/
 theorem dense_separable_charpoly
     {n K : Type*} [Fintype n] [DecidableEq n] [RCLike K] :
     Dense {A : Matrix n n K | A.charpoly.Separable} := by

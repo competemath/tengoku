@@ -35,7 +35,9 @@ capacity of the original family `A` is at least `exp (-eps)` with
 `eps ≤ 1 / 6`, then the squared Frobenius defect `frobSq (krausMap A 1 - 1)`
 plus the adjoint defect is at most `6 * eps`.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Lemma 3.6.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.3h4v.s9.f026915f0753 from=translated src=- shape=6feb3c4a vocab=7449649d
+-/
 theorem frobSq_krausMap_unital_defect_le_of_exp_neg_le_operatorCapacity
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (hA : krausMap A 1 = 1)

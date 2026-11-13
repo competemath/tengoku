@@ -50,7 +50,9 @@ private lemma norm_toLp_mulVec_le (A : Matrix m n ℝ) (x : n → ℝ) :
 
 open scoped Matrix.Norms.L2Operator in
 omit [DecidableEq m] in
-/-- `|uᵀ A x| ≤ ‖u‖₂ ‖A‖₂ ‖x‖₂`. Atlas `norms-frob-spec`.-/
+/-- `|uᵀ A x| ≤ ‖u‖₂ ‖A‖₂ ‖x‖₂`. Atlas `norms-frob-spec`.
+@isnad1 id=le.0h5v.s6.3ca379390f7e from=translated src=- shape=a209ed3b vocab=75918f5b
+-/
 theorem abs_dotProduct_mulVec_le (A : Matrix m n ℝ) (u : m → ℝ) (x : n → ℝ) :
     |u ⬝ᵥ (A *ᵥ x)| ≤ √(u ⬝ᵥ u) * (specNorm A * √(x ⬝ᵥ x)) := by
   have hcs := abs_real_inner_le_norm (WithLp.toLp 2 u : EuclideanSpace ℝ m)
@@ -69,7 +71,9 @@ theorem abs_dotProduct_mulVec_le (A : Matrix m n ℝ) (u : m → ℝ) (x : n →
 open scoped Matrix.Norms.L2Operator in
 omit [DecidableEq m] in
 /-- The spectral norm is at most `K ≥ 0` as soon as `‖A y‖₂ ≤ K` for every unit vector `y`.
-Atlas `epsilon-net-norm` (helper).-/
+Atlas `epsilon-net-norm` (helper).
+@isnad1 id=le.2h4v.s6.d6198a4012c5 from=translated src=- shape=e2e2504d vocab=9d044af6
+-/
 theorem specNorm_le_of_forall_sqrt_le (A : Matrix m n ℝ) {K : ℝ} (hK : 0 ≤ K)
     (h : ∀ y : n → ℝ, y ⬝ᵥ y = 1 → √((A *ᵥ y) ⬝ᵥ (A *ᵥ y)) ≤ K) : specNorm A ≤ K := by
   rw [specNorm_eq_norm, Matrix.l2_opNorm_def]
@@ -97,7 +101,9 @@ theorem specNorm_le_of_forall_sqrt_le (A : Matrix m n ℝ) {K : ℝ} (hK : 0 ≤
 open scoped Matrix.Norms.L2Operator in
 /-- A symmetric matrix on a nonempty index type has a unit vector `v` (an eigenvector of the
 eigenvalue of largest modulus) with `|vᵀ B v| = ‖B‖₂`. Horn–Johnson Thm 4.2.2 (Rayleigh);
-atlas `epsilon-net-norm` (helper).-/
+atlas `epsilon-net-norm` (helper).
+@isnad1 id=ex.1h2v.s7.9b6616d33442 from=translated src=- shape=7e9c30d5 vocab=a20ce2b6
+-/
 theorem exists_unit_abs_quadForm_eq_specNorm [Nonempty n] {B : Matrix n n ℝ}
     (hB : B.IsHermitian) :
     ∃ v : n → ℝ, ‖WithLp.toLp 2 v‖ = 1 ∧ |quadForm B v| = specNorm B := by
@@ -125,7 +131,9 @@ omit [DecidableEq m] in
 for an empty index type `N` may be empty and `M` negative.
 Vershynin 2012, Lem 5.3 (i); Vershynin 2018, Ex 4.4.3. Atlas `epsilon-net-norm`
 (deterministic half).
-atlas: epsilon-net-norm-/
+atlas: epsilon-net-norm
+@isnad1 id=le.5h6v.s8.54a1882f9f69 from=translated src=- shape=bb9cbce9 vocab=c804b45f
+-/
 theorem specNorm_le_div_of_net (A : Matrix m n ℝ) (N : Finset (n → ℝ)) {ε M : ℝ}
     (hε0 : 0 ≤ ε) (hε1 : ε < 1) (hM0 : 0 ≤ M)
     (hN : ∀ y : n → ℝ, y ⬝ᵥ y = 1 → ∃ x ∈ N, (x - y) ⬝ᵥ (x - y) ≤ ε ^ 2)
@@ -160,7 +168,9 @@ spheres of `ℝⁿ` and `ℝᵐ`, the points of `N'` being unit vectors, `0 ≤ 
 `x ∈ N`, `y ∈ N'` (`M ≥ 0`), then `‖A‖₂ ≤ M/(1-2ε)`.
 Vershynin 2012, Lem 5.4 (bilinear form); Vershynin 2018, Ex 4.4.3 (b).
 Atlas `epsilon-net-norm` (deterministic half).
-atlas: epsilon-net-norm-/
+atlas: epsilon-net-norm
+@isnad1 id=le.7h7v.s9.b50c0b92546d from=translated src=- shape=60c498fe vocab=3172894b
+-/
 theorem specNorm_le_div_of_net_bilinear (A : Matrix m n ℝ) (N : Finset (n → ℝ))
     (N' : Finset (m → ℝ)) {ε M : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε < 1 / 2) (hM0 : 0 ≤ M)
     (hN'unit : ∀ y ∈ N', y ⬝ᵥ y = 1)
@@ -216,7 +226,9 @@ open scoped Matrix.Norms.L2Operator in
 `|xᵀ B x| ≤ M` for every `x ∈ N`, then `‖B‖₂ ≤ M/(1-2ε)`.
 Vershynin 2012, Lem 5.4; Vershynin 2018, Ex 4.4.3 (c). Atlas `epsilon-net-norm`
 (deterministic half).
-atlas: epsilon-net-norm-/
+atlas: epsilon-net-norm
+@isnad1 id=le.7h5v.s8.021326f1e676 from=translated src=- shape=4d860529 vocab=2e68624c
+-/
 theorem specNorm_le_div_of_net_quadForm {B : Matrix n n ℝ} (hB : B.IsHermitian)
     (N : Finset (n → ℝ)) {ε M : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε < 1 / 2) (hM0 : 0 ≤ M)
     (hNunit : ∀ x ∈ N, ‖WithLp.toLp 2 x‖ = 1)
@@ -306,7 +318,9 @@ empty and `N = ∅`. Proof: a maximal `ε`-separated subset of the sphere is an 
 volumetric packing bound caps the size of every separated subset.
 Vershynin 2012, Lem 5.2; Vershynin 2018, Cor 4.2.13. Atlas `epsilon-net-norm`
 (covering half). Deviation: index type any `[Fintype ι]` (audit: `Fin n`).
-atlas: epsilon-net-norm-/
+atlas: epsilon-net-norm
+@isnad1 id=ex.1h2v.s8.8473cf96a7cf from=translated src=- shape=8078475f vocab=93093c21
+-/
 theorem exists_finset_sphere_net (ι : Type*) [Fintype ι] {ε : ℝ} (hε : 0 < ε) :
     ∃ N : Finset (ι → ℝ), (∀ x ∈ N, x ⬝ᵥ x = 1) ∧
       (N.card : ℝ) ≤ (1 + 2 / ε) ^ Fintype.card ι ∧
@@ -380,7 +394,9 @@ Vershynin 2012, Lem 5.2–5.3; Vershynin 2018, Cor 4.2.13 and Ex 4.4.3.
 Atlas `epsilon-net-norm`. Deviation: the atlas states `(1-2ε)⁻¹`; the standard (and stronger)
 operator form `(1-ε)⁻¹` is used here, the `(1-2ε)⁻¹` forms being
 `specNorm_le_div_of_net_bilinear` and `specNorm_le_div_of_net_quadForm`.
-atlas: epsilon-net-norm-/
+atlas: epsilon-net-norm
+@isnad1 id=ex.2h2v.s8.6a6f255e5534 from=translated src=- shape=fe76a7d8 vocab=c98fc613
+-/
 theorem exists_finset_net_specNorm_le (n : Type*) [Fintype n] [DecidableEq n] {ε : ℝ}
     (hε0 : 0 < ε) (hε1 : ε < 1) :
     ∃ N : Finset (n → ℝ), (∀ x ∈ N, x ⬝ᵥ x = 1) ∧

@@ -23,7 +23,9 @@ variable {n Ω : Type*} [Fintype n] [DecidableEq n] [TopologicalSpace Ω]
 /-- A continuous matrix family confined spectrally to two disjoint compact
 sets has closed algebraic root-count fibers in either set.
 Horn–Johnson (2013), Theorem 6.1.1; compact images of finite root boxes prove
-this without contour integration or a continuous eigenvalue labeling.-/
+this without contour integration or a continuous eigenvalue labeling.
+@isnad1 id=isclosed.5h6v.s7.829b44340565 from=translated src=- shape=5d4b021f vocab=6414db4a
+-/
 theorem isClosed_setOf_charpolyRootCountIn_eq
     (A : Ω → Matrix n n ℂ) (hA : Continuous A) (K L : Set ℂ)
     (hK : IsCompact K) (hL : IsCompact L) (hdisj : Disjoint K L)
@@ -99,7 +101,9 @@ theorem isClosed_setOf_charpolyRootCountIn_eq
 number of characteristic roots in either of two disjoint compact spectral
 sets is constant, including algebraic multiplicities.
 Horn–Johnson (2013), Theorem 6.1.1; the finite closed root-count fibers are
-clopen, so no root tracking or analytic projector is required.-/
+clopen, so no root tracking or analytic projector is required.
+@isnad1 id=eq.5h7v.s7.cab376ca3e0a from=translated src=- shape=2749b6ef vocab=bfbff6c4
+-/
 theorem charpolyRootCountIn_eq_of_preconnected [PreconnectedSpace Ω]
     (A : Ω → Matrix n n ℂ) (hA : Continuous A) (K L : Set ℂ)
     (hK : IsCompact K) (hL : IsCompact L) (hdisj : Disjoint K L)

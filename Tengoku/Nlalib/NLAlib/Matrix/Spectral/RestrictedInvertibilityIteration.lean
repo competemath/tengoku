@@ -28,7 +28,9 @@ def selectedFrameOperator {k : ℕ} (v : I → n → ℝ) (s : Fin k → I) : Ma
   ∑ j, vecMulVec (v (s j)) (v (s j))
 
 omit [Fintype I] [DecidableEq n] in
-/-- A selected frame operator is positive semidefinite.-/
+/-- A selected frame operator is positive semidefinite.
+@isnad1 id=possemid.0h5v.s5.a3fe6de9f737 from=translated src=- shape=c51b660b vocab=800e760e
+-/
 theorem selectedFrameOperator_posSemidef {k : ℕ} (v : I → n → ℝ) (s : Fin k → I) :
     (selectedFrameOperator v s).PosSemidef := by
   exact Matrix.posSemidef_sum _ fun j _ => by
@@ -62,7 +64,9 @@ private theorem eigenvalues_gap_of_eq {A B : Matrix n n ℝ}
 /-- Finite weighted lower-barrier iteration selects exactly `k` vectors, has
 rank `k`, and keeps every nonzero eigenvalue strictly above `b₀-kδ`.
 All one-step certificates are derived from the decomposition of `H` and the
-initial potential budget. Source: Spielman--Srivastava (2009), Theorem 2.-/
+initial potential budget. Source: Spielman--Srivastava (2009), Theorem 2.
+@isnad1 id=ex.8h8v.s8.73559569353c from=translated src=- shape=1ff0e569 vocab=0ea57045
+-/
 theorem exists_selectedFrameOperator_rank_eq_and_eigenvalues_gap
     [Nonempty I] (v : I → n → ℝ) {H : Matrix n n ℝ}
     (hH : H.PosSemidef) (hframe : ∑ i, vecMulVec (v i) (v i) = H)

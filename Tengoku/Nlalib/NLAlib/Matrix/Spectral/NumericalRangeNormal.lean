@@ -21,7 +21,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The quadratic form of a diagonal complex matrix is the convex-weight sum
-with weights the squared coordinate moduli.-/
+with weights the squared coordinate moduli.
+@isnad1 id=eq.0h3v.s6.9d7095057619 from=translated src=- shape=66696333 vocab=c9953994
+-/
 theorem quadForm_diagonal_eq_sum_norm_sq_smul (d x : n → ℂ) :
     quadForm (Matrix.diagonal d) x = ∑ i, ‖x i‖ ^ 2 • d i := by
   simp only [quadForm, Matrix.mulVec_diagonal, dotProduct, Pi.star_apply,
@@ -35,7 +37,9 @@ theorem quadForm_diagonal_eq_sum_norm_sq_smul (d x : n → ℂ) :
 /-- The numerical range of a diagonal matrix is the convex hull of its diagonal.
 No nonempty index hypothesis is needed: both sets are empty in dimension zero.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=eq.0h2v.s6.2ee08ef33f6c from=translated src=- shape=d96b2c71 vocab=e76596d3
+-/
 theorem numericalRange_diagonal_eq_convexHull (d : n → ℂ) :
     numericalRange (Matrix.diagonal d) = convexHull ℝ (Set.range d) := by
   classical
@@ -74,7 +78,9 @@ theorem numericalRange_diagonal_eq_convexHull (d : n → ℂ) :
 /-- The numerical range of every normal complex matrix is the convex hull of
 its spectrum. This is the full normal-matrix clause, including empty dimensions.
 Source: Horn–Johnson (1991), Chapter 1.
-atlas: field-of-values-def (partial)-/
+atlas: field-of-values-def (partial)
+@isnad1 id=eq.1h2v.s7.f8c8428d886a from=translated src=- shape=91fc00e5 vocab=e0a9f699
+-/
 theorem numericalRange_eq_convexHull_spectrum_of_normal (A : Matrix n n ℂ)
     (hA : A * Aᴴ = Aᴴ * A) : numericalRange A = convexHull ℝ (spectrum ℂ A) := by
   obtain ⟨U, d, rfl⟩ := (normal_iff_exists_unitary_diagonalization A).mp hA

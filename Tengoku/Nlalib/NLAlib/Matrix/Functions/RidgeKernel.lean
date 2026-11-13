@@ -51,7 +51,9 @@ def ridgeEffectiveDimension (A : Matrix m n ℝ) (ρ : ℝ) : ℝ :=
   ∑ i, ridgeLeverageScore A ρ i
 
 /-- Positive regularization makes the column Gram matrix positive definite, at every rank
-and including empty dimensions.-/
+and including empty dimensions.
+@isnad1 id=posdef.1h4v.s5.7960b967d86b from=translated src=- shape=e0929765 vocab=04e711a6
+-/
 theorem posDef_ridgeGram (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     (ridgeGram A ρ).PosDef := by
   have hi : (ρ • (1 : Matrix n n ℝ)).PosDef := Matrix.PosDef.one.smul hρ
@@ -62,7 +64,9 @@ theorem posDef_ridgeGram (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
 
 /-- The quadratic-form ridge score is exactly the corresponding diagonal entry of the
 ridge kernel. No regularization hypothesis is needed for this algebraic identity.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=eq.0h5v.s5.19f114b4367e from=translated src=- shape=769033f4 vocab=f9aec735
+-/
 theorem ridgeLeverageScore_eq_ridgeKernel_apply (A : Matrix m n ℝ) (ρ : ℝ) (i : m) :
     ridgeLeverageScore A ρ i = ridgeKernel A ρ i i := by
   simp only [ridgeLeverageScore, ridgeKernel, quadForm, star_trivial, dotProduct,
@@ -75,26 +79,34 @@ theorem ridgeLeverageScore_eq_ridgeKernel_apply (A : Matrix m n ℝ) (ρ : ℝ) 
   ring
 
 /-- The effective dimension is the trace of the ridge kernel.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=eq.0h4v.s5.40a320ed6c1f from=translated src=- shape=64b1434b vocab=a85efd2f
+-/
 theorem ridgeEffectiveDimension_eq_trace (A : Matrix m n ℝ) (ρ : ℝ) :
     ridgeEffectiveDimension A ρ = (ridgeKernel A ρ).trace := by
   simp only [ridgeEffectiveDimension, ridgeLeverageScore_eq_ridgeKernel_apply,
     Matrix.trace, Matrix.diag]
 
-/-- The ridge kernel is positive semidefinite for positive regularization.-/
+/-- The ridge kernel is positive semidefinite for positive regularization.
+@isnad1 id=possemid.1h4v.s5.40017021cd5a from=translated src=- shape=fe892485 vocab=bf5c0f66
+-/
 theorem posSemidef_ridgeKernel (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     (ridgeKernel A ρ).PosSemidef := by
   simpa only [ridgeKernel, Matrix.conjTranspose_eq_transpose_of_trivial] using
     (posDef_ridgeGram A hρ).inv.posSemidef.mul_mul_conjTranspose_same A
 
 /-- Every ridge leverage score is nonnegative.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=le.1h5v.s5.653c75320704 from=translated src=- shape=9967bf83 vocab=3eb6a57d
+-/
 theorem ridgeLeverageScore_nonneg (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) (i : m) :
     0 ≤ ridgeLeverageScore A ρ i :=
   (posDef_ridgeGram A hρ).inv.posSemidef.quadForm_nonneg _
 
 /-- At positive regularization a row has zero ridge score exactly when that row is zero.
-In particular, a zero-probability row in ridge-score-dominated sampling contributes nothing.-/
+In particular, a zero-probability row in ridge-score-dominated sampling contributes nothing.
+@isnad1 id=iff.1h5v.s6.2d35afcbdfe5 from=translated src=- shape=0184dd96 vocab=ba5d770e
+-/
 theorem ridgeLeverageScore_eq_zero_iff (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) (i : m) :
     ridgeLeverageScore A ρ i = 0 ↔ A i = 0 := by
   constructor
@@ -107,13 +119,17 @@ theorem ridgeLeverageScore_eq_zero_iff (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 
   · intro hrow
     simp only [ridgeLeverageScore, hrow, quadForm_zero_right]
 
-/-- The ridge effective dimension is nonnegative.-/
+/-- The ridge effective dimension is nonnegative.
+@isnad1 id=le.1h4v.s5.3a5a8c4e9203 from=translated src=- shape=543558d3 vocab=c9628d14
+-/
 theorem ridgeEffectiveDimension_nonneg (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     0 ≤ ridgeEffectiveDimension A ρ :=
   Finset.sum_nonneg fun i _ => ridgeLeverageScore_nonneg A hρ i
 
 omit [Fintype n] in
-/-- Increasing regularization increases the regularized column Gram matrix.-/
+/-- Increasing regularization increases the regularized column Gram matrix.
+@isnad1 id=le.1h5v.s5.ccf9b7b5a994 from=translated src=- shape=8a67b583 vocab=395187a1
+-/
 theorem ridgeGram_mono (A : Matrix m n ℝ) {ρ μ : ℝ} (hρμ : ρ ≤ μ) :
     ridgeGram A ρ ≤ ridgeGram A μ := by
   rw [Matrix.le_iff]
@@ -123,7 +139,9 @@ theorem ridgeGram_mono (A : Matrix m n ℝ) {ρ μ : ℝ} (hρμ : ρ ≤ μ) :
   rw [heq]
   exact Matrix.PosSemidef.one.smul (sub_nonneg.mpr hρμ)
 
-/-- Increasing positive regularization decreases the ridge kernel in Loewner order.-/
+/-- Increasing positive regularization decreases the ridge kernel in Loewner order.
+@isnad1 id=le.2h5v.s6.2322c843b5f0 from=translated src=- shape=4cd7d2e7 vocab=d4cf7ec7
+-/
 theorem ridgeKernel_antitone (A : Matrix m n ℝ) {ρ μ : ℝ}
     (hρ : 0 < ρ) (hρμ : ρ ≤ μ) : ridgeKernel A μ ≤ ridgeKernel A ρ := by
   have hi := inv_le_inv_of_posDef (posDef_ridgeGram A hρ) (ridgeGram_mono A hρμ)
@@ -133,7 +151,9 @@ theorem ridgeKernel_antitone (A : Matrix m n ℝ) {ρ μ : ℝ}
     Matrix.mul_sub, Matrix.sub_mul] using hp
 
 /-- Each ridge leverage score decreases as the positive regularization parameter grows.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=le.2h6v.s5.fd476be6c73d from=translated src=- shape=3e8e5e9d vocab=3eb6a57d
+-/
 theorem ridgeLeverageScore_antitone (A : Matrix m n ℝ) {ρ μ : ℝ}
     (hρ : 0 < ρ) (hρμ : ρ ≤ μ) (i : m) :
     ridgeLeverageScore A μ i ≤ ridgeLeverageScore A ρ i := by
@@ -143,14 +163,18 @@ theorem ridgeLeverageScore_antitone (A : Matrix m n ℝ) {ρ μ : ℝ}
   simpa only [Matrix.sub_apply, sub_nonneg] using hd
 
 /-- The effective dimension decreases as the positive regularization parameter grows.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=le.2h5v.s5.beaed032fc5d from=translated src=- shape=d0cf61d8 vocab=c9628d14
+-/
 theorem ridgeEffectiveDimension_antitone (A : Matrix m n ℝ) {ρ μ : ℝ}
     (hρ : 0 < ρ) (hρμ : ρ ≤ μ) :
     ridgeEffectiveDimension A μ ≤ ridgeEffectiveDimension A ρ :=
   Finset.sum_le_sum fun i _ => ridgeLeverageScore_antitone A hρ hρμ i
 
 /-- The ridge kernel is the identity minus the scaled inverse regularized row Gram matrix.
-This push-through identity includes rank-deficient and empty matrices.-/
+This push-through identity includes rank-deficient and empty matrices.
+@isnad1 id=eq.1h4v.s7.0997d28670da from=translated src=- shape=c532c715 vocab=76c5b8a4
+-/
 theorem ridgeKernel_eq_one_sub_smul_inv [DecidableEq m]
     (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     ridgeKernel A ρ = 1 - ρ • (ridgeGram Aᵀ ρ)⁻¹ := by
@@ -176,7 +200,9 @@ theorem ridgeKernel_eq_one_sub_smul_inv [DecidableEq m]
   rw [hK, hrow, Matrix.mul_sub, Matrix.nonsing_inv_mul _ hr,
     Matrix.mul_smul, Matrix.mul_one]
 
-/-- The ridge kernel is below the identity for positive regularization.-/
+/-- The ridge kernel is below the identity for positive regularization.
+@isnad1 id=le.1h4v.s6.81e884706c49 from=translated src=- shape=25c47853 vocab=d4cf7ec7
+-/
 theorem ridgeKernel_le_one [DecidableEq m] (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     ridgeKernel A ρ ≤ 1 := by
   rw [Matrix.le_iff, ridgeKernel_eq_one_sub_smul_inv A hρ]
@@ -186,7 +212,9 @@ theorem ridgeKernel_le_one [DecidableEq m] (A : Matrix m n ℝ) {ρ : ℝ} (hρ 
   exact (posDef_ridgeGram Aᵀ hρ).inv.posSemidef.smul hρ.le
 
 /-- Every ridge leverage score is at most one.
-atlas: ridge-leverage-effective-dimension (partial)-/
+atlas: ridge-leverage-effective-dimension (partial)
+@isnad1 id=le.1h5v.s5.a34c11de809f from=translated src=- shape=9ae355ef vocab=3eb6a57d
+-/
 theorem ridgeLeverageScore_le_one (A : Matrix m n ℝ) {ρ : ℝ}
     (hρ : 0 < ρ) (i : m) : ridgeLeverageScore A ρ i ≤ 1 := by
   classical

@@ -24,7 +24,9 @@ open scoped Matrix.Norms.L2Operator in
 at most one and every peripheral eigenvalue is semisimple, expressed as
 equality of maximal generalized and ordinary eigenspaces.
 Horn–Johnson (2013), §5.6; empty shapes are included.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=iff.0h2v.s13.3e2fbb2efef4 from=translated src=- shape=f6409026 vocab=e1ea9911
+-/
 theorem exists_bound_norm_matrix_pow_iff (A : Matrix n n ℂ) :
     (∃ C : ℝ, ∀ k : ℕ, specNorm (A ^ k) ≤ C) ↔
       spectralRadius ℂ A ≤ 1 ∧
@@ -62,7 +64,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Real matrix powers are bounded exactly when their complexifications'
 powers are bounded. Source: Horn–Johnson (2013), §5.6; finite-dimensional
 complexification is bounded, and real spectral norm is bounded by the
-complexified operator norm.-/
+complexified operator norm.
+@isnad1 id=iff.0h2v.s7.0140dbb60405 from=translated src=- shape=82c7e765 vocab=1d063f5c
+-/
 theorem exists_bound_norm_real_matrix_pow_iff_complexification (A : Matrix n n ℝ) :
     (∃ C : ℝ, ∀ k : ℕ, specNorm (A ^ k) ≤ C) ↔
       ∃ C : ℝ, ∀ k : ℕ, specNorm ((A.map Complex.ofReal) ^ k) ≤ C := by
@@ -90,7 +94,9 @@ open scoped Matrix.Norms.L2Operator in
 is at most one and its peripheral complex eigenspaces are semisimple.
 Source: Horn–Johnson (2013), §5.6; repeated eigenvalues and empty shapes
 are included without extra hypotheses.
-atlas: matrix-power-convergence-/
+atlas: matrix-power-convergence
+@isnad1 id=iff.0h2v.s13.db6419fc291b from=translated src=- shape=83dd0b41 vocab=5f435692
+-/
 theorem exists_bound_norm_real_matrix_pow_iff (A : Matrix n n ℝ) :
     (∃ C : ℝ, ∀ k : ℕ, specNorm (A ^ k) ≤ C) ↔
       spectralRadius ℂ (A.map Complex.ofReal) ≤ 1 ∧
