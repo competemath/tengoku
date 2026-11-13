@@ -135,7 +135,8 @@ def _find_statement_end(text: str, search_from: int) -> int | None:
     doesn't end the statement early. A top-level `let`/`letI`/`have`/`haveI`
     in the type owns the next `:=` (13 Nov 2026: 510 harvested records were cut at
     one, `... : letI` with the claim's end in `proof`). A declaration defined by match arms has no
-    `:=` of its own: its statement ends at the first arm. Returns None if unterminated."""
+    `:=` of its own: its statement ends at the first arm, and the next top-level command ends the scan
+    (Gitar on tengoku#811). Returns None if unterminated."""
     depth = 0
     pending = 0  # binders of the type whose `:=` has not been seen
     arm = None  # the first match arm at depth 0: where the statement ends when there is no `:=` of the declaration's own
@@ -158,8 +159,10 @@ def _find_statement_end(text: str, search_from: int) -> int | None:
             continue
         elif depth == 0 and ch == "\n" and text[i:].lstrip().startswith(("theorem ", "lemma ")):
             # Next declaration started before `:=` was found — bail out
-            # rather than swallow it into this one.
-            return i
+            # rather than swallow it into this one. After a match arm: the statement ends at the arm.
+            return arm if arm is not None else i
+        elif depth == 0 and ch == "\n" and arm is not None and _TOP_LEVEL_LINE_RE.match(text, i + 1):
+            return arm  # a new top-level command: the arm theorem had no `:=` of its own, and must not take the next declaration's
         elif depth == 0 and ch == "\n" and arm is None and _MATCH_ARM_RE.match(text, i):
             arm = i
         i += 1

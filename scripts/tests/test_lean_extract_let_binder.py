@@ -12,8 +12,8 @@ Invariants:
   1. Nothing is lost: for every real record the new statement plus the new proof is the old statement plus the old proof, up to whitespace.
   2. Every real record that ended in a let/have binder (615 of the 758) now ends its statement after the claim. The new and the old statement are one a prefix of the other: the new one is longer when the old
      one stopped inside the type, and shorter when the old one had swallowed the arms of a theorem defined by match arms.
-  3. A real record the old code split right is split the same way (3,908 of the 3,944 sampled; 5 cannot be split from the 200 characters of proof the fixture keeps; the 31 others were wrong before:
-     11 cut at a binder, 20 that had swallowed their match arms).
+  3. A real record the old code split right is split the same way (3,905 of the 3,944 sampled; 5 cannot be split from the 200 characters of proof the fixture keeps; the 34 others were wrong before:
+     11 cut at a binder, 23 that had swallowed their match arms).
      Known limit, unchanged: a theorem defined by match arms whose arms hold a `:=` of a keyword that is not a binder (`obtain`, `set`) is still cut inside an arm (about 90 of the 758).
   4. 5,000 generated declarations with 0 to 4 binders of the four kinds, nested brackets, default arguments, comments and identifiers that contain the keywords: the statement is exactly the text before the
      declaration's own `:=`.
@@ -109,7 +109,7 @@ class RealRecords(unittest.TestCase):
             self.assertTrue(a.startswith(b) or b.startswith(a), r["name"])
             last = r["statement"].rstrip().splitlines()[-1]
             self.assertTrue(BINDER_LINE.match(last) or MATCH_ARM.search(r["statement"]), r["name"])  # it was a truncation too
-        self.assertEqual((same, changed), (3908, 31))
+        self.assertEqual((same, changed), (3905, 34))
 
     def test_gitars_example(self):
         (d,) = le.extract_declarations(
@@ -178,6 +178,45 @@ class Cases(unittest.TestCase):
         self.assertEqual(squash(d.statement), squash("theorem t : ∀ p : Nat, let a := p a = p"))
         self.assertIn("let q := p", d.proof)
 
+    NEXT = (
+        "theorem u : True := trivial",
+        "lemma u : True := trivial",
+        "noncomputable def pathTab0 (x : Nat) : List Nat := []",
+        "private def f : Nat := 1",
+        "instance : Inhabited Foo := ⟨x⟩",
+        "/-- A docstring. -/\ntheorem u : True := trivial",
+        "@[simp] theorem u : True := trivial",
+        "end Foo",
+        "namespace Bar",
+        "open Nat in\ntheorem u : True := trivial",
+        "#check t",
+        "variable (x : Nat)",
+    )
+
+    def test_an_arm_theorem_followed_by_another_command_does_not_take_it_in(self):
+        """Gitar on #811: in a real file an arm theorem is followed by something; before, it swallowed the next declaration's `:=`, or ended at an empty proof"""
+        arms = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n"
+        for nxt in self.NEXT:
+            for gap in ("", "\n", "\n\n"):
+                ds = le.extract_declarations(arms + gap + nxt + "\n")
+                t = next(d for d in ds if d.name == "t")
+                self.assertEqual(t.statement, "theorem t : ∀ n : Nat, n + 0 = n", nxt)
+                self.assertTrue(t.proof.startswith("| 0 => rfl"), nxt)
+                self.assertNotIn("def", t.statement + t.proof, nxt)
+                self.assertNotIn("True", t.statement + t.proof, nxt)
+
+    def test_the_declaration_after_an_arm_theorem_is_extracted_whole(self):
+        arms = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n\n"
+        ds = le.extract_declarations(arms + "theorem u : True := trivial\n")
+        self.assertEqual([(d.name, d.statement, d.proof) for d in ds if d.name == "u"], [("u", "theorem u : True", ":= trivial")])
+
+    def test_arms_at_column_zero_followed_by_another_command(self):
+        for nxt in self.NEXT:
+            ds = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => by\n    let q := p\n    rfl\n" + nxt + "\n")
+            t = next(d for d in ds if d.name == "t")
+            self.assertEqual(t.statement, "theorem t : ∀ p : Nat, p = p", nxt)
+            self.assertIn("let q := p", t.proof, nxt)
+
     def test_a_declaration_with_a_proof_of_its_own_never_takes_an_arm_for_its_end(self):
         d = self.one("theorem t : f = fun x => x := by\n  intro x\n  match x with\n  | 0 => rfl\n  | _ => rfl\n")
         self.assertEqual(d.statement, "theorem t : f = fun x => x")
@@ -238,6 +277,19 @@ class Mutants(unittest.TestCase):
             le._TOP_LEVEL_LINE_RE = original
         (d,) = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => rfl\n")
         self.assertIn("p + 1", d.proof)
+
+    def test_without_the_stop_at_the_next_command_an_arm_theorem_swallows_it(self):
+        src = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n\ndef f : Nat := 1\n"
+        (t,) = [d for d in le.extract_declarations(src) if d.name == "t"]
+        self.assertEqual(t.statement, "theorem t : ∀ n : Nat, n + 0 = n")
+        original = le._TOP_LEVEL_LINE_RE
+        # the stop reads this pattern; a pattern that never matches is the code before the fix
+        le._TOP_LEVEL_LINE_RE = re.compile(r"(?!)")
+        try:
+            (t2,) = [d for d in le.extract_declarations(src) if d.name == "t"]
+            self.assertIn("def f", t2.statement)
+        finally:
+            le._TOP_LEVEL_LINE_RE = original
 
     def test_without_the_arm_fallback_an_arm_theorem_with_a_let_is_skipped(self):
         src = "theorem t : ∀ p : Nat,\n    let a := p\n    a = p\n  | 0 => rfl\n  | p + 1 => rfl\n"
