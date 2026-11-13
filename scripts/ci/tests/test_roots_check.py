@@ -160,5 +160,49 @@ class RootsCheck(unittest.TestCase):
         self.assertIn("its mode changed", out)
 
 
+class RootsDependents(unittest.TestCase):
+    """A module of another library that imports the renamed library and uses one of its names opens it: the PR carries that edit, and is refused without it or with any other (merge queue, wave 3:
+    LeanPool's FltRegular/NumberTheory/Cyclotomic/UnitLemmas.lean)."""
+
+    DEPENDENT = "module\n\nimport Tengoku.Foo.Bar\n\npublic section\n\ntheorem use : 1 = 1 := by simpa using one_eq_alias X\n"
+
+    def repo(self):
+        r = RootsPR()
+        r.git("checkout", "-q", "main")
+        r.write("Tengoku/Other/User.lean", self.DEPENDENT)
+        r.write("Tengoku/Other.lean", "import Tengoku.Other.User\n")
+        r.commit("a module of another library that uses the root name")
+        r.git("checkout", "-q", "pr")
+        r.git("reset", "-q", "--hard", "main")
+        r.add_report()
+        return r
+
+    def test_the_script_s_output_with_the_dependent_passes(self):
+        r = self.repo()
+        r.apply()
+        r.commit("roots")
+        self.assertIn("open Tengoku.Foo", (r.dir / "Tengoku/Other/User.lean").read_text())
+        rc, out = r.gate("roots_check.py")
+        self.assertEqual(rc, 0, out)
+
+    def test_a_pr_that_leaves_the_dependent_out_is_refused(self):
+        r = self.repo()
+        r.apply()
+        r.git("checkout", "-q", "main", "--", "Tengoku/Other/User.lean")  # the dependent as it was
+        r.commit("roots without the dependent")
+        rc, out = r.gate("roots_check.py")
+        self.assertEqual(rc, 1)
+        self.assertIn("Tengoku/Other/User.lean", out)
+
+    def test_a_hand_edit_of_a_module_of_another_library_is_refused(self):
+        r = self.repo()
+        r.apply()
+        r.append("Tengoku/Other/User.lean", "theorem sneaky : 1 = 1 := rfl\n")
+        r.commit("roots and a sneak")
+        rc, out = r.gate("roots_check.py")
+        self.assertEqual(rc, 1)
+        self.assertIn("differs from the script's output", out)
+
+
 if __name__ == "__main__":
     unittest.main()
