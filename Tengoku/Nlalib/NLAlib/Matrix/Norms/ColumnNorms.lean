@@ -1,0 +1,18 @@
+import Tengoku.Nlalib.NLAlib.Matrix.Norms.Core
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+/-! # Squared Frobenius norms as sums of column errors -/
+noncomputable section
+namespace NLAlib
+
+/-- The squared Frobenius norm is the sum of the squared norms of its individual
+columns, represented as one-column matrices. Source: HMT (2011), §2.1, projection-error sum.
+@isnad1 id=eq.0h3v.s6.6d5fdfb31c82 from=translated src=- shape=518785e1 vocab=0930f972
+-/
+theorem frobSq_eq_sum_frobSq_single_columns {m n : Type*} [Fintype m] [Fintype n]
+    (A : Matrix m n ℝ) :
+    frobSq A = ∑ j, frobSq (A.submatrix id (fun _ : Fin 1 => j)) := by
+  simp only [frobSq, frobInner_eq_sum_mul, Matrix.submatrix_apply, id_eq, Fin.sum_univ_one]
+  rw [Finset.sum_comm]
+
+end NLAlib
