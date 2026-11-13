@@ -10,16 +10,14 @@ Tengoku is Apache-2.0, and each source library stays under its own licence (list
 
 ## What we ask
 
-- **Cite it, and say which commit.** Cite Tengoku ([10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)) in your dataset or model documentation, with the commit you used. Versioned releases are rare, so a commit hash is the reliable version (see [releases](releases.md)).
-- **Keep the credit with each example.** A record's `library`, `source_url` and `Author:` line should travel with it into any dataset you publish.
-- **Re-sync before each new training run.** Sometimes a record is retracted or a library or module is removed. Pull the latest and drop what has gone: tombstone lines in `data/trusted/`, libraries no longer in the allowlist, and modules with a marker in `data/raze/` ([PR classes](pr-classes.md), section 8). A removed library can come back rebuilt, so do not mix in old copies. Drop them from any data you publish as well. This applies to future runs; we do not ask you to change a model you have already trained.
-- **Decontaminate.** Tengoku includes public formalisations of competition problems (Compfiles, IMO shortlist). Check for overlap before you report results on miniF2F, PutnamBench or similar.
-- **Describe `trusted` accurately.** It means the automated checks passed (builds, no `sorry`, standard axioms only, assumptions not contradictory). It does not mean a mathematician has read the statement.
+1. **Cite it, and say which commit.** Cite Tengoku ([10.5281/zenodo.23050400](https://doi.org/10.5281/zenodo.23050400)) in your dataset or model documentation, with the commit you used. Versioned releases are rare, so a commit hash is the reliable version (see [releases](releases.md)).
+2. **Keep provenance with each example.** A record's `library` and `source_url` (where its notices live) and its `Author:` line travel with it into any dataset you build or publish.
+3. **Re-sync before each new training run.** Sometimes a record is retracted or a library or module is removed. Pull the latest and drop what has gone: tombstone lines in `data/trusted/`, libraries no longer in the allowlist, and modules with a marker in `data/raze/` ([PR classes](pr-classes.md), section 8). A removed library can come back rebuilt, so do not mix in old copies. Drop them from any data you publish as well. This applies to future runs; we do not ask you to change a model you have already trained.
+4. **Decontaminate.** Tengoku includes public formalisations of competition problems (Compfiles, IMO shortlist). Check for overlap before you report results on miniF2F, PutnamBench or similar.
+5. **Describe `trusted` accurately.** It means the automated checks passed (builds, no `sorry`, standard axioms only, assumptions not contradictory). It does not mean a mathematician has read the statement.
+6. **Report problems.** A wrong statement, a credit that should change, or a removal request: [open an issue](https://github.com/competemath/tengoku/issues/new).
+7. **Give back.** Proofs your models find for open statements, once verified, come in through [the usual route](how-a-pr-flows.md) with an `Author:` line.
 
 ## Bulk data and the hosted services
 
 Take bulk data from this repository and its releases. The search API, the MCP tools and Leak are for interactive use, and crawling them may be blocked.
-
-## Problems
-
-A wrong statement, a credit that should change, or a removal request: [open an issue](https://github.com/competemath/tengoku/issues/new).
