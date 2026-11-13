@@ -1,0 +1,339 @@
+/-
+Copyright (c) 2026 Yuanhe Zhang. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Yuanhe Zhang, Jason D. Lee, Fanghui Liu
+
+Ported from HighDimProb (Y. Zhang, J. D. Lee, F. Liu; Apache-2.0),
+HighDimProb/Concentration/HansonWright.lean, to Lean 4.33.1.
+The original Apache-2.0 copyright notice is retained. The proof is stated in NLAlib's matrix
+vocabulary (`quadForm`, `frobSq`, `frobNorm`, `specNorm`); there is no HighDimProb dependency.
+-/
+import Tengoku.Nlalib.NLAlib.Probability.Concentration.QuadraticForms.Geometry
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+/-!
+# Hanson–Wright proof: CutAverages
+
+A focused leaf of the transported independent-coordinate proof.
+Its declarations live in namespace `NLAlib` (generic scalar sub-Gaussian facts are in
+`NLAlib.Probability.SubGaussian.*`); the public bounds are in
+`NLAlib.Probability.Concentration.QuadraticForms.HansonWright`.
+Atlas: `hanson-wright`. Source: HighDimProb (Zhang–Lee–Liu, Apache-2.0).
+-/
+
+open MeasureTheory ProbabilityTheory Real
+open scoped NNReal
+
+noncomputable section
+set_option maxRecDepth 5000
+
+namespace NLAlib
+
+variable {Ω : Type*} [MeasurableSpace Ω]
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `four_mul_card_powerset_filter_mem_notMem` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma four_mul_card_powerset_filter_mem_notMem {n : ℕ} {i j : Fin n} (hij : i ≠ j) :
+    4 * (((Finset.univ : Finset (Fin n)).powerset.filter
+      (fun s => i ∈ s ∧ j ∉ s)).card) =
+      ((Finset.univ : Finset (Fin n)).powerset).card := by
+  classical
+  let T : Finset (Fin n) := ((Finset.univ : Finset (Fin n)).erase i).erase j
+  have hcard_filter :
+      (((Finset.univ : Finset (Fin n)).powerset.filter
+        (fun s => i ∈ s ∧ j ∉ s)).card) = T.powerset.card := by
+    simpa [T] using card_powerset_filter_mem_notMem_eq (n := n) hij
+  have hj_mem : j ∈ (Finset.univ : Finset (Fin n)).erase i := by
+    rw [Finset.mem_erase]
+    exact ⟨hij.symm, Finset.mem_univ j⟩
+  have hT_card_add :
+      T.card + 2 = (Finset.univ : Finset (Fin n)).card := by
+    have h1 :
+        ((Finset.univ : Finset (Fin n)).erase i).card + 1 =
+          (Finset.univ : Finset (Fin n)).card :=
+      Finset.card_erase_add_one (Finset.mem_univ i)
+    have h2 :
+        T.card + 1 = ((Finset.univ : Finset (Fin n)).erase i).card := by
+      dsimp [T]
+      exact Finset.card_erase_add_one hj_mem
+    omega
+  rw [hcard_filter, Finset.card_powerset, Finset.card_powerset]
+  rw [← hT_card_add]
+  rw [Nat.pow_add]
+  norm_num
+  rw [Nat.mul_comm]
+
+/-- Source-transport helper `sum_powerset_cut_indicator` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma sum_powerset_cut_indicator {n : ℕ} (i j : Fin n) (a : ℝ) :
+    (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
+      (if i ∈ s ∧ j ∉ s then a else 0)) =
+      (((Finset.univ : Finset (Fin n)).powerset.filter
+        (fun s => i ∈ s ∧ j ∉ s)).card : ℝ) * a := by
+  classical
+  rw [← Finset.sum_filter]
+  simp
+
+/-- Source-transport helper `four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
+    4 * (∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
+      quadForm (cutMatrix A s) x) =
+      (((Finset.univ : Finset (Fin n)).powerset).card : ℝ) *
+        quadForm (offDiagonalMatrix A) x := by
+  classical
+  let P : Finset (Finset (Fin n)) := (Finset.univ : Finset (Fin n)).powerset
+  have hpair : ∀ i j : Fin n,
+      4 * (∑ s ∈ P, (if i ∈ s ∧ j ∉ s then A i j * x i * x j else 0)) =
+        (P.card : ℝ) * ((if i = j then 0 else A i j) * x i * x j) := by
+    intro i j
+    by_cases hij : i = j
+    · subst j
+      simp [P]
+    · have hsum :=
+        sum_powerset_cut_indicator (n := n) i j (A i j * x i * x j)
+      have hcount_nat :
+          4 * ((P.filter (fun s => i ∈ s ∧ j ∉ s)).card) = P.card := by
+        simpa [P] using four_mul_card_powerset_filter_mem_notMem (n := n) hij
+      have hcount_real :
+          (4 : ℝ) * ((P.filter (fun s => i ∈ s ∧ j ∉ s)).card : ℝ) =
+            (P.card : ℝ) := by
+        exact_mod_cast hcount_nat
+      calc
+        4 * (∑ s ∈ P, (if i ∈ s ∧ j ∉ s then A i j * x i * x j else 0))
+            = 4 * (((P.filter (fun s => i ∈ s ∧ j ∉ s)).card : ℝ) *
+                (A i j * x i * x j)) := by
+                rw [hsum]
+        _ = ((4 : ℝ) * ((P.filter (fun s => i ∈ s ∧ j ∉ s)).card : ℝ)) *
+              (A i j * x i * x j) := by ring
+        _ = (P.card : ℝ) * (A i j * x i * x j) := by rw [hcount_real]
+        _ = (P.card : ℝ) * ((if i = j then 0 else A i j) * x i * x j) := by
+              simp [hij]
+  calc
+    4 * (∑ s ∈ P, quadForm (cutMatrix A s) x)
+        = 4 * (∑ i, ∑ j, ∑ s ∈ P,
+            (if i ∈ s ∧ j ∉ s then A i j * x i * x j else 0)) := by
+            congr 1
+            simp only [quadForm_eq_sum_mul_mul, star_trivial]
+            unfold cutMatrix
+            rw [Finset.sum_comm]
+            apply Finset.sum_congr rfl
+            intro i _
+            rw [Finset.sum_comm]
+            apply Finset.sum_congr rfl
+            intro j _
+            apply Finset.sum_congr rfl
+            intro s _
+            by_cases hs : i ∈ s ∧ j ∉ s
+            · rw [ite_eq_left hs, ite_eq_left hs]
+              ring
+            · rw [ite_eq_right hs, ite_eq_right hs]
+              ring
+    _ = ∑ i, ∑ j,
+          4 * (∑ s ∈ P, (if i ∈ s ∧ j ∉ s then A i j * x i * x j else 0)) := by
+            rw [Finset.mul_sum]
+            apply Finset.sum_congr rfl
+            intro i _
+            rw [Finset.mul_sum]
+    _ = ∑ i, ∑ j,
+          (P.card : ℝ) * ((if i = j then 0 else A i j) * x i * x j) := by
+            apply Finset.sum_congr rfl
+            intro i _
+            apply Finset.sum_congr rfl
+            intro j _
+            exact hpair i j
+    _ = (P.card : ℝ) * quadForm (offDiagonalMatrix A) x := by
+            simp only [quadForm_eq_sum_mul_mul, star_trivial]
+            unfold offDiagonalMatrix
+            rw [Finset.mul_sum]
+            apply Finset.sum_congr rfl
+            intro i _
+            rw [Finset.mul_sum]
+            apply Finset.sum_congr rfl
+            intro j _
+            ring
+
+/-- Source-transport helper `quadraticForm_offDiagonal_eq_average_cut` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma quadraticForm_offDiagonal_eq_average_cut {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
+    quadForm (offDiagonalMatrix A) x =
+      (4 / (((Finset.univ : Finset (Fin n)).powerset).card : ℝ)) *
+        ∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
+          quadForm (cutMatrix A s) x := by
+  classical
+  let P : Finset (Finset (Fin n)) := (Finset.univ : Finset (Fin n)).powerset
+  have hP_pos : 0 < (P.card : ℝ) := by
+    exact_mod_cast Finset.card_pos.mpr ⟨∅, Finset.empty_mem_powerset _⟩
+  have hmul := four_mul_sum_cut_quadraticForm_eq_card_mul_offDiagonal A x
+  change quadForm (offDiagonalMatrix A) x =
+    (4 / (P.card : ℝ)) * ∑ s ∈ P, quadForm (cutMatrix A s) x
+  calc
+    quadForm (offDiagonalMatrix A) x
+        = (P.card : ℝ)⁻¹ * ((P.card : ℝ) *
+            quadForm (offDiagonalMatrix A) x) := by
+            field_simp [ne_of_gt hP_pos]
+    _ = (P.card : ℝ)⁻¹ *
+          (4 * ∑ s ∈ P, quadForm (cutMatrix A s) x) := by
+            rw [← hmul]
+    _ = (4 / (P.card : ℝ)) * ∑ s ∈ P, quadForm (cutMatrix A s) x := by
+            field_simp [ne_of_gt hP_pos]
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `exp_mul_quadraticForm_offDiagonal_le_average_cut` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma exp_mul_quadraticForm_offDiagonal_le_average_cut {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) (l : ℝ) :
+    exp (l * quadForm (offDiagonalMatrix A) x) ≤
+      (((Finset.univ : Finset (Fin n)).powerset).card : ℝ)⁻¹ *
+        ∑ s ∈ (Finset.univ : Finset (Fin n)).powerset,
+          exp (4 * l * quadForm (cutMatrix A s) x) := by
+  classical
+  let P : Finset (Finset (Fin n)) := (Finset.univ : Finset (Fin n)).powerset
+  let w : Finset (Fin n) → ℝ := fun _ => (P.card : ℝ)⁻¹
+  let p : Finset (Fin n) → ℝ := fun s => 4 * l * quadForm (cutMatrix A s) x
+  have hP_pos : 0 < (P.card : ℝ) := by
+    exact_mod_cast Finset.card_pos.mpr ⟨∅, Finset.empty_mem_powerset _⟩
+  have hw_nonneg : ∀ s ∈ P, 0 ≤ w s := by
+    intro s hs
+    dsimp [w]
+    exact inv_nonneg.mpr hP_pos.le
+  have hw_sum : ∑ s ∈ P, w s = 1 := by
+    simp [w]
+    field_simp [ne_of_gt hP_pos]
+  have hp_mem : ∀ s ∈ P, p s ∈ (Set.univ : Set ℝ) := by
+    simp
+  have hconv := convexOn_exp.map_sum_le (s := Set.univ) (t := P)
+    (w := w) (p := p) hw_nonneg hw_sum hp_mem
+  have harg :
+      (∑ s ∈ P, w s • p s) =
+        l * quadForm (offDiagonalMatrix A) x := by
+    rw [quadraticForm_offDiagonal_eq_average_cut A x]
+    dsimp only [w, p]
+    simp only [smul_eq_mul]
+    rw [← Finset.mul_sum]
+    rw [← Finset.mul_sum]
+    field_simp [ne_of_gt hP_pos]
+    ring
+  have hrhs :
+      (∑ s ∈ P, w s • exp (p s)) =
+        (P.card : ℝ)⁻¹ * ∑ s ∈ P,
+          exp (4 * l * quadForm (cutMatrix A s) x) := by
+    simp [w, p, smul_eq_mul, Finset.mul_sum]
+  rw [harg, hrhs] at hconv
+  simpa [P] using hconv
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `quadraticForm_eq_inner_toEuclideanCLM` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma quadraticForm_eq_inner_toEuclideanCLM {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (x : Fin n → ℝ) :
+    quadForm A x =
+      inner ℝ (Matrix.toEuclideanCLM (𝕜 := ℝ) A (WithLp.toLp 2 x)) (WithLp.toLp 2 x) := by
+  simp only [quadForm_eq_sum_mul_mul, star_trivial]
+  rw [Matrix.toEuclideanCLM_toLp, PiLp.inner_apply]
+  simp only [Matrix.mulVec, dotProduct]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [show inner ℝ (∑ j : Fin n, A i j * x j) (x i) =
+      (∑ j : Fin n, A i j * x j) * x i by
+        exact Real.inner_apply _ _]
+  rw [Finset.sum_mul]
+  apply Finset.sum_congr rfl
+  intro j _
+  ring
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `abs_quadraticForm_le` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma abs_quadraticForm_le {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    {x : Fin n → ℝ} {K : ℝ} (hK : 0 ≤ K) (hx : ∀ i, |x i| ≤ K) :
+    |quadForm A x| ≤ K ^ 2 * entrywiseL1Norm A := by
+  simp only [quadForm_eq_sum_mul_mul, star_trivial]
+  unfold entrywiseL1Norm
+  calc |∑ i, ∑ j, x i * A i j * x j|
+      ≤ ∑ i, |∑ j, x i * A i j * x j| := Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ i, ∑ j, |x i * A i j * x j| := by
+        exact Finset.sum_le_sum fun i _ => Finset.abs_sum_le_sum_abs _ _
+    _ ≤ ∑ i, ∑ j, |A i j| * K ^ 2 := by
+        refine Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ => ?_
+        calc |x i * A i j * x j|
+            = |x i| * |A i j| * |x j| := by rw [abs_mul, abs_mul]
+          _ ≤ |A i j| * K * K := by
+              have hprod : |x i| * |x j| ≤ K * K :=
+                mul_le_mul (hx i) (hx j) (abs_nonneg _) hK
+              calc |x i| * |A i j| * |x j|
+                  = |A i j| * (|x i| * |x j|) := by ring
+                _ ≤ |A i j| * (K * K) :=
+                    mul_le_mul_of_nonneg_left hprod (abs_nonneg _)
+                _ = |A i j| * K * K := by ring
+          _ = |A i j| * K ^ 2 := by ring
+    _ = K ^ 2 * ∑ i, ∑ j, |A i j| := by
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro j _
+        ring
+
+/-- Source-transport helper `randomQuadraticForm_aemeasurable` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma randomQuadraticForm_aemeasurable {μ : Measure Ω} {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ}
+    (hX_meas : ∀ i, AEMeasurable (X i) μ) :
+    AEMeasurable (randomQuadraticForm A X) μ := by
+  unfold randomQuadraticForm
+  simp only [quadForm_eq_sum_mul_mul, star_trivial]
+  exact Finset.aemeasurable_fun_sum _ fun i _ =>
+    Finset.aemeasurable_fun_sum _ fun j _ =>
+      (((hX_meas i).mul (hX_meas j)).const_mul (A i j)).congr
+        (ae_of_all _ fun ω => by
+          change A i j * (X i ω * X j ω) = X i ω * A i j * X j ω
+          ring)
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `randomQuadraticForm_mem_Icc_of_ae_coord_bound` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma randomQuadraticForm_mem_Icc_of_ae_coord_bound {μ : Measure Ω} {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) {X : Fin n → Ω → ℝ} {K : ℝ}
+    (hK : 0 ≤ K) (hX_bound : ∀ i, ∀ᵐ ω ∂μ, |X i ω| ≤ K) :
+    ∀ᵐ ω ∂μ, randomQuadraticForm A X ω ∈
+      Set.Icc (-(K ^ 2 * entrywiseL1Norm A)) (K ^ 2 * entrywiseL1Norm A) := by
+  rw [← ae_all_iff] at hX_bound
+  filter_upwards [hX_bound] with ω hω
+  have h_abs := abs_quadraticForm_le A hK (fun i => hω i)
+  exact abs_le.mp h_abs
+
+open scoped Matrix.Norms.L2Operator in
+/-- Source-transport helper `bounded_hansonWright_cgf_constant_le` for Hanson–Wright.
+Atlas `hanson-wright` (helper).-/
+lemma bounded_hansonWright_cgf_constant_le {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) {K C : ℝ}
+    (hC_bound : 2 * entrywiseL1Norm A ^ 2 ≤ C * frobNorm A ^ 2) (l : ℝ) :
+    2 * (K ^ 2 * entrywiseL1Norm A) ^ 2 * l ^ 2 ≤
+      C * l ^ 2 * K ^ 4 * frobNorm A ^ 2 := by
+  have hmul : 0 ≤ K ^ 4 * l ^ 2 := by positivity
+  calc 2 * (K ^ 2 * entrywiseL1Norm A) ^ 2 * l ^ 2
+      = (2 * entrywiseL1Norm A ^ 2) * (K ^ 4 * l ^ 2) := by ring
+    _ ≤ (C * frobNorm A ^ 2) * (K ^ 4 * l ^ 2) := by
+        exact mul_le_mul_of_nonneg_right hC_bound hmul
+    _ = C * l ^ 2 * K ^ 4 * frobNorm A ^ 2 := by ring
+
+open scoped Matrix.Norms.L2Operator in
+/-- The local quadratic CGF estimate used in the Hanson-Wright proof.
+
+For `Y = Xᵀ A X - E Xᵀ A X`, this records
+`cgf Y λ ≤ C λ² K⁴ ‖A‖_F²` for
+`|λ| ≤ (2 C K² ‖A‖)⁻¹`, together with local exponential integrability.-/
+def HasHansonWrightMGF {n : ℕ} (μ : Measure Ω) (A : Matrix (Fin n) (Fin n) ℝ)
+    (X : Fin n → Ω → ℝ) (K C : ℝ) : Prop :=
+  (∀ l : ℝ, |l| ≤ (2 * C * K ^ 2 * specNorm A)⁻¹ →
+    cgf (centeredQuadraticForm μ A X) μ l ≤
+      C * l ^ 2 * K ^ 4 * frobNorm A ^ 2) ∧
+  ∀ l : ℝ, |l| ≤ (2 * C * K ^ 2 * specNorm A)⁻¹ →
+    Integrable (fun ω => exp (l * centeredQuadraticForm μ A X ω)) μ
+
+end NLAlib
