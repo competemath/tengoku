@@ -1,0 +1,189 @@
+import Tengoku.Nlalib.NLAlib.Polynomial.BestApproximation.JacksonPeriodic
+import Tengoku.Nlalib.NLAlib.Polynomial.Chebyshev.CosineBasis
+import Tengoku.Nlalib.NLAlib.ForMathlib.Analysis.FourierConvolution
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Algebraic polynomials from the sharp Jackson convolution
+
+The even circle pullback has real Fourier coefficients. Its convolution with
+the proved finite cosine kernel is therefore an algebraic Chebyshev polynomial.
+-/
+
+noncomputable section
+
+open Polynomial Polynomial.Chebyshev MeasureTheory Set Finset Real
+open scoped ComplexConjugate
+
+namespace NLAlib
+
+open scoped NLAlib.TwoPi
+
+/-- The real cosine pullback to the circle of period `2π`.
+Construction for `jackson-lipschitz`.-/
+def realChebyshevCircleFunction (f : ℝ → ℝ) (t : AddCircle (2 * Real.pi)) : ℝ :=
+  f ((fourier 1 t).re)
+
+/-- Every cosine-circle argument lies in the closed unit interval.
+Source: unit norm of Fourier characters; helper for `jackson-lipschitz`.
+@isnad1 id=mem.0h1v.s7.fc1a69def809 from=translated src=- shape=aef31c38 vocab=5f2907f9
+-/
+theorem re_fourier_one_mem_Icc (t : AddCircle (2 * Real.pi)) :
+    (fourier 1 t).re ∈ Icc (-1 : ℝ) 1 := by
+  have h : |(fourier 1 t).re| ≤ 1 := by
+    simpa only [show ‖fourier 1 t‖ = (1 : ℝ) from Circle.norm_coe _] using
+      Complex.abs_re_le_norm (fourier 1 t)
+  exact abs_le.mp h
+
+/-- The cosine pullback of a continuous interval function is continuous.
+Helper for `jackson-lipschitz` (cosine substitution).
+@isnad1 id=continuo.1h1v.s6.5762fdff345c from=translated src=- shape=50a0f874 vocab=65796519
+-/
+theorem continuous_realChebyshevCircleFunction {f : ℝ → ℝ}
+    (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) : Continuous (realChebyshevCircleFunction f) :=
+  hf.comp_continuous (Complex.continuous_re.comp (fourier 1).continuous)
+    re_fourier_one_mem_Icc
+
+/-- The cosine pullback is even.
+Source: conjugation of Fourier characters; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s7.08397a7edfe0 from=translated src=- shape=8b19009b vocab=17cd6605
+-/
+theorem even_realChebyshevCircleFunction (f : ℝ → ℝ) (t : AddCircle (2 * Real.pi)) :
+    realChebyshevCircleFunction f (-t) = realChebyshevCircleFunction f t := by
+  have h : fourier 1 (-t) = conj (fourier 1 t) := by
+    have hs := fourier_apply_sub 1 0 t
+    simpa only [zero_sub, fourier_eval_zero, one_mul, fourier_neg] using hs
+  unfold realChebyshevCircleFunction
+  rw [h, Complex.conj_re]
+
+/-- Evaluating the circle pullback at a real angle gives the usual cosine substitution.
+Source: the Fourier character definition; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s5.63188535081f from=translated src=- shape=aa4985d6 vocab=693a296f
+-/
+theorem realChebyshevCircleFunction_coe (f : ℝ → ℝ) (t : ℝ) :
+    realChebyshevCircleFunction f (t : AddCircle (2 * Real.pi)) = f (cos t) := by
+  unfold realChebyshevCircleFunction
+  rw [show (fourier 1 (t : AddCircle (2 * Real.pi))).re = cos t by
+    simpa only [Nat.cast_one, one_mul] using re_fourier_nat_coe_eq_cos 1 t]
+
+/-- Evaluating `T_k` on the real part of a unit character gives the real `k`th character.
+Source: the Chebyshev cosine identity; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s8.52902c27a69e from=translated src=- shape=cf939c3e vocab=3d5fcb07
+-/
+theorem eval_T_re_fourier_one (k : ℕ) (t : AddCircle (2 * Real.pi)) :
+    (T ℝ (k : ℤ)).eval ((fourier 1 t).re) = (fourier (k : ℤ) t).re := by
+  induction t using QuotientAddGroup.induction_on with | H t =>
+    rw [show (fourier 1 (t : AddCircle (2 * Real.pi))).re = cos t by
+      simpa only [Nat.cast_one, one_mul] using re_fourier_nat_coe_eq_cos 1 t,
+      re_fourier_nat_coe_eq_cos k t]
+    simpa only [Nat.cast_one, one_mul, Int.cast_natCast] using T_real_cos t (k : ℤ)
+
+/-- A polynomial cosine kernel convolved with an even continuous circle function
+is an algebraic polynomial of the same degree. The coefficients are its
+Fourier coefficients rather than an assumed polynomial representation.
+Finite cosine expansion and Fourier convolution;
+construction for atlas `jackson-lipschitz`.
+@isnad1 id=ex.3h3v.s9.6e831be38793 from=translated src=- shape=6c18eb90 vocab=1a688665
+-/
+theorem exists_polynomial_circle_convolution {K : ℝ[X]} {n : ℕ} (hK : K.degree ≤ n)
+    {g : AddCircle (2 * Real.pi) → ℝ} (hg : Continuous g) (heven : ∀ t, g (-t) = g t) :
+    ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ a : AddCircle (2 * Real.pi),
+      (∫ t : AddCircle (2 * Real.pi), K.eval ((fourier 1 t).re) * g (a - t)
+        ∂AddCircle.haarAddCircle) = p.eval ((fourier 1 a).re) := by
+  obtain ⟨c, hc⟩ := exists_sum_smul_T_eq_of_degree_le hK
+  let p : ℝ[X] := ∑ k ∈ range (n + 1),
+    (c k * (fourierCoeff (fun t => (g t : ℂ)) (k : ℤ)).re) • T ℝ (k : ℤ)
+  refine ⟨p, ?_, fun a => ?_⟩
+  · refine (degree_sum_le _ _).trans (Finset.sup_le fun k hk => ?_)
+    refine (degree_smul_le _ _).trans ?_
+    rw [degree_T, Int.natAbs_natCast]
+    exact_mod_cast Nat.le_of_lt_succ (mem_range.mp hk)
+  · have hI : ∀ k ∈ range (n + 1), Integrable
+        (fun t : AddCircle (2 * Real.pi) => c k * (fourier (k : ℤ) t).re * g (a - t))
+        AddCircle.haarAddCircle := by
+      intro k hk
+      apply Continuous.integrable_of_hasCompactSupport _ (HasCompactSupport.of_compactSpace _)
+      exact (continuous_const.mul (Complex.continuous_re.comp (fourier (k : ℤ)).continuous)).mul
+        (hg.comp (continuous_const.sub continuous_id))
+    have hterm : ∀ t : AddCircle (2 * Real.pi),
+        K.eval ((fourier 1 t).re) * g (a - t) =
+          ∑ k ∈ range (n + 1), c k * (fourier (k : ℤ) t).re * g (a - t) := by
+      intro t
+      rw [← hc, eval_finsetSum, Finset.sum_mul]
+      simp only [eval_smul, smul_eq_mul, eval_T_re_fourier_one]
+    simp_rw [hterm]
+    rw [MeasureTheory.integral_finsetSum _ hI]
+    unfold p
+    rw [eval_finsetSum]
+    apply Finset.sum_congr rfl
+    intro k hk
+    rw [show (fun t : AddCircle (2 * Real.pi) => c k * (fourier (k : ℤ) t).re * g (a - t)) =
+        (fun t => c k * ((fourier (k : ℤ) t).re * g (a - t))) by funext t; ring]
+    rw [MeasureTheory.integral_const_mul,
+      integral_re_fourier_mul_comp_sub_eq_re_fourier_mul_coeff hg heven,
+      eval_smul, smul_eq_mul, eval_T_re_fourier_one]
+    ring
+
+/-- Cosine substitution preserves the Lipschitz constant of a unit-interval function.
+Source: the one-Lipschitz cosine function; helper for sharp `jackson-lipschitz`.
+@isnad1 id=lipschit.1h2v.s5.5d0cb6af6433 from=translated src=- shape=1efbc17b vocab=73b30d62
+-/
+theorem lipschitzWith_comp_cos {f : ℝ → ℝ} {L : NNReal}
+    (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) : LipschitzWith L (fun t : ℝ => f (cos t)) := by
+  apply LipschitzWith.of_dist_le_mul
+  intro x y
+  exact (hf.dist_le_mul (cos x) ⟨neg_one_le_cos x, cos_le_one x⟩
+    (cos y) ⟨neg_one_le_cos y, cos_le_one y⟩).trans
+      (mul_le_mul_of_nonneg_left (by simpa only [NNReal.coe_one, one_mul] using
+        Real.lipschitzWith_cos.dist_le_mul x y) L.coe_nonneg)
+
+/-- The fixed sharp periodic convolution for a cosine pullback is represented by an
+algebraic polynomial with degree at most `n`.
+Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem);
+construction for atlas `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s6.338fad554838 from=translated src=- shape=802e4b6c vocab=c3489aa5
+-/
+theorem exists_polynomial_jacksonPeriodicApprox {f : ℝ → ℝ}
+    (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (n : ℕ) :
+    ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x : ℝ,
+      jacksonPeriodicApprox n (fun t => f (cos t)) x = p.eval (cos x) := by
+  obtain ⟨p, hp, heq⟩ := exists_polynomial_circle_convolution
+    (degree_sawtoothErrorDerivativePolynomial_le n)
+    (continuous_realChebyshevCircleFunction hf) (even_realChebyshevCircleFunction f)
+  refine ⟨p, hp, fun x => ?_⟩
+  have h := heq (x : AddCircle (2 * Real.pi))
+  rw [integral_haarAddCircle_eq_inv_mul_intervalIntegral] at h
+  have hterm : ∀ t : ℝ,
+      (sawtoothErrorDerivativePolynomial n).eval ((fourier 1 (t : AddCircle (2 * Real.pi))).re) *
+        realChebyshevCircleFunction f ((x : AddCircle (2 * Real.pi)) - (t : AddCircle (2 * Real.pi))) =
+      (sawtoothErrorDerivativePolynomial n).eval (cos t) * f (cos (x - t)) := by
+    intro t
+    rw [← AddCircle.coe_sub, realChebyshevCircleFunction_coe]
+    rw [show (fourier 1 (t : AddCircle (2 * Real.pi))).re = cos t by
+      simpa only [Nat.cast_one, one_mul] using re_fourier_nat_coe_eq_cos 1 t]
+  simp_rw [hterm] at h
+  rw [show (fourier 1 (x : AddCircle (2 * Real.pi))).re = cos x by
+    simpa only [Nat.cast_one, one_mul] using re_fourier_nat_coe_eq_cos 1 x] at h
+  exact h
+
+/-- The required sharp Jackson theorem on the unit interval: a degree-`n` algebraic
+polynomial approximates every `L`-Lipschitz function with error at most `πL/(2(n+1))`.
+Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
+Atlas `jackson-lipschitz` (unit-interval form).
+@isnad1 id=ex.1h3v.s7.b86ebd291f69 from=translated src=- shape=18fc9c50 vocab=0c3fcdf8
+-/
+theorem exists_degree_le_abs_sub_eval_le_jackson_unit {f : ℝ → ℝ} {L : NNReal}
+    (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) (n : ℕ) :
+    ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x ∈ Icc (-1 : ℝ) 1,
+      |f x - p.eval x| ≤ Real.pi * (L : ℝ) / (2 * (n + 1)) := by
+  obtain ⟨p, hp, heq⟩ := exists_polynomial_jacksonPeriodicApprox hf.continuousOn n
+  refine ⟨p, hp, fun x hx => ?_⟩
+  have hper : Function.Periodic (fun t : ℝ => f (cos t)) (2 * Real.pi) := by
+    intro t
+    simp only [cos_add_two_pi]
+  have h := abs_sub_jacksonPeriodicApprox_le (lipschitzWith_comp_cos hf) hper n (arccos x)
+  rw [heq, cos_arccos hx.1 hx.2] at h
+  exact h
+
+end NLAlib

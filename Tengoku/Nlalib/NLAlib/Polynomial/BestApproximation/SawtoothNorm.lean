@@ -1,0 +1,213 @@
+import Tengoku.Nlalib.NLAlib.Polynomial.BestApproximation.SawtoothSquareWave
+import Tengoku.Nlalib.NLAlib.ForMathlib.Algebra.Intervals
+import Tengoku.Seed.Analysis.SpecialFunctions.Integrals.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Exact L1 norm of the sharp Jackson sawtooth error
+
+The sign identity is proved on every uniform grid cell, the interpolant is
+annihilated by sine orthogonality, and affine interval integrals give `π²/(n+1)` exactly.
+-/
+
+noncomputable section
+
+open Polynomial Polynomial.Chebyshev Finset Real MeasureTheory Set
+open scoped Topology Interval
+
+namespace NLAlib
+
+/-- The full-period endpoint of the uniform sawtooth grid is exactly `2π`.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h1v.s5.a445259567a7 from=translated src=- shape=18550899 vocab=fb25ecef
+-/
+theorem sawtoothGridAngle_two_mul (n : ℕ) :
+    sawtoothGridAngle n (2 * (n + 1)) = 2 * Real.pi := by
+  unfold sawtoothGridAngle
+  push_cast
+  field_simp
+
+/-- Full-period reflection reverses the uniform grid index.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.1h2v.s6.3ba8312b4d79 from=translated src=- shape=d70ae2aa vocab=0dca33b3
+-/
+theorem sawtoothGridAngle_reflection (n j : ℕ) (hj : j ≤ 2 * (n + 1)) :
+    sawtoothGridAngle n (2 * (n + 1) - j) = 2 * Real.pi - sawtoothGridAngle n j := by
+  unfold sawtoothGridAngle
+  rw [Nat.cast_sub hj]
+  push_cast
+  field_simp
+
+/-- All full-period grid points lie in `[0,2π]`.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=mem.1h2v.s6.9d689dc08786 from=translated src=- shape=14a9013e vocab=97f0379e
+-/
+theorem sawtoothGridAngle_mem_Icc_full {n j : ℕ} (hj : j ≤ 2 * (n + 1)) :
+    sawtoothGridAngle n j ∈ Icc (0 : ℝ) (2 * Real.pi) := by
+  constructor
+  · unfold sawtoothGridAngle; positivity
+  · have h := (strictMono_sawtoothGridAngle n).monotone hj
+    rwa [sawtoothGridAngle_two_mul] at h
+
+/-- The proved sine-square-wave sign identity holds on every full-period grid cell.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.2h3v.s6.4d69915dff2b from=translated src=- shape=c3fd518c vocab=9caace1e
+-/
+theorem abs_sawtoothError_eq_sign_sin_mul_on_full_grid_cell (n j : ℕ)
+    (hj : j < 2 * (n + 1)) {t : ℝ}
+    (ht : t ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
+    |sawtoothError n t| = Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothError n t := by
+  rcases le_or_gt j n with hjn | hjn
+  · exact abs_sawtoothError_eq_sign_sin_mul_on_grid_cell n j hjn ht
+  · let k := 2 * (n + 1) - 1 - j
+    have hk : k ≤ n := by dsimp [k]; omega
+    have hk0 : k = 2 * (n + 1) - (j + 1) := by dsimp [k]; omega
+    have hk1 : k + 1 = 2 * (n + 1) - j := by dsimp [k]; omega
+    have hleft : sawtoothGridAngle n k = 2 * Real.pi - sawtoothGridAngle n (j + 1) := by
+      rw [hk0]
+      exact sawtoothGridAngle_reflection n (j + 1) (by omega)
+    have hright : sawtoothGridAngle n (k + 1) = 2 * Real.pi - sawtoothGridAngle n j := by
+      rw [hk1]
+      exact sawtoothGridAngle_reflection n j hj.le
+    have hmirror : 2 * Real.pi - t ∈ Ioo (sawtoothGridAngle n k) (sawtoothGridAngle n (k + 1)) := by
+      rw [hleft, hright]
+      constructor <;> linarith [ht.1, ht.2]
+    have h := abs_sawtoothError_eq_sign_sin_mul_on_grid_cell n k hk hmirror
+    rw [sawtoothError_two_pi_sub, sign_sin_nat_two_pi_sub, abs_neg, neg_mul_neg] at h
+    exact h
+
+/-- Restricting an integrable full-period function to a uniform grid cell preserves
+integrability.
+Source: interval-integral monotonicity; helper for sharp `jackson-lipschitz`.
+@isnad1 id=interval.2h3v.s6.7f0544a77ae0 from=translated src=- shape=b951906f vocab=004648d5
+-/
+theorem intervalIntegrable_sawtooth_grid_cell {f : ℝ → ℝ} {n j : ℕ}
+    (hf : IntervalIntegrable f volume 0 (2 * Real.pi)) (hj : j < 2 * (n + 1)) :
+    IntervalIntegrable f volume (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1)) := by
+  apply hf.mono_set'
+  rw [uIoc_of_le (strictMono_sawtoothGridAngle n (show j < j + 1 by omega)).le,
+    uIoc_of_le Real.two_pi_pos.le]
+  exact Ioc_subset_Ioc (sawtoothGridAngle_mem_Icc_full hj.le).1
+    (sawtoothGridAngle_mem_Icc_full (by omega)).2
+
+/-- Splitting a full-period integral along the uniform grid.
+Source: interval-integral additivity; helper for sharp `jackson-lipschitz`.
+@isnad1 id=eq.1h2v.s7.3908fcde7ad5 from=translated src=- shape=8803765f vocab=eb7b8eac
+-/
+theorem sum_integral_sawtooth_grid_eq {f : ℝ → ℝ} (n : ℕ)
+    (hf : IntervalIntegrable f volume 0 (2 * Real.pi)) :
+    (∑ j ∈ range (2 * (n + 1)), ∫ t in sawtoothGridAngle n j..sawtoothGridAngle n (j + 1), f t) =
+      ∫ t in 0..2 * Real.pi, f t := by
+  have h := intervalIntegral.sum_integral_adjacent_intervals
+    (a := sawtoothGridAngle n) (n := 2 * (n + 1))
+    (fun j hj => intervalIntegrable_sawtooth_grid_cell hf hj)
+  rw [sawtoothGridAngle_two_mul] at h
+  simpa only [sawtoothGridAngle, Nat.cast_zero, zero_mul, zero_div] using h
+
+/-- The full L1 error equals the square-wave signed error integral.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h1v.s6.163c6eb57696 from=translated src=- shape=af534225 vocab=b296cfe7
+-/
+theorem integral_abs_sawtoothError_eq_signed (n : ℕ) :
+    (∫ t : ℝ in 0..2 * Real.pi, |sawtoothError n t|) =
+      ∫ t : ℝ in 0..2 * Real.pi,
+        Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothError n t := by
+  have hAbs : IntervalIntegrable (fun t : ℝ => |sawtoothError n t|) volume 0 (2 * Real.pi) :=
+    ((continuous_sawtoothError n).abs).intervalIntegrable _ _
+  have hSigned := (intervalIntegrable_sign_sin (n + 1)).mul_continuousOn
+    (continuous_sawtoothError n).continuousOn
+  rw [← sum_integral_sawtooth_grid_eq n hAbs, ← sum_integral_sawtooth_grid_eq n hSigned]
+  apply sum_congr rfl
+  intro j hj
+  apply intervalIntegral.integral_congr_Ioo_of_le
+    (strictMono_sawtoothGridAngle n (show j < j + 1 by omega)).le
+  intro t ht
+  exact abs_sawtoothError_eq_sign_sin_mul_on_full_grid_cell n j (mem_range.mp hj) ht
+
+/-- The signed sawtooth error integral reduces to the affine sawtooth integral, because
+the sine interpolant is orthogonal to the square wave.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h1v.s7.37bd437e627c from=translated src=- shape=f0ee56aa vocab=348dd389
+-/
+theorem integral_signed_sawtoothError_eq_affine (n : ℕ) :
+    (∫ t : ℝ in 0..2 * Real.pi, Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothError n t) =
+      ∫ t : ℝ in 0..2 * Real.pi, Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * (Real.pi - t) := by
+  have hσ := intervalIntegrable_sign_sin (n + 1)
+  have hcB : Continuous (fun t : ℝ => Real.pi - t) := continuous_const.sub continuous_id
+  have hB := hσ.mul_continuousOn hcB.continuousOn
+  have hcτ : Continuous (sawtoothApprox n) :=
+    continuous_iff_continuousAt.mpr (fun t => (hasDerivAt_sawtoothApprox n t).continuousAt)
+  have hστ := hσ.mul_continuousOn hcτ.continuousOn
+  have hterm : ∀ t : ℝ,
+      Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothError n t =
+        Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * (Real.pi - t) -
+          Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothApprox n t := by
+    intro t
+    unfold sawtoothError
+    ring
+  simp_rw [hterm]
+  rw [intervalIntegral.integral_sub hB hστ, integral_sign_sin_mul_sawtoothApprox_eq_zero, sub_zero]
+
+/-- The square-wave affine integral has the exact value `π²/(n+1)`.
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h1v.s7.e287770b2af5 from=translated src=- shape=aed0eece vocab=cb5e4409
+-/
+theorem integral_sign_sin_mul_pi_sub_eq (n : ℕ) :
+    (∫ t : ℝ in 0..2 * Real.pi, Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * (Real.pi - t)) =
+      Real.pi ^ 2 / (n + 1) := by
+  have hcB : Continuous (fun t : ℝ => Real.pi - t) := continuous_const.sub continuous_id
+  have hf := (intervalIntegrable_sign_sin (n + 1)).mul_continuousOn hcB.continuousOn
+  rw [← sum_integral_sawtooth_grid_eq n hf]
+  let h := Real.pi / (n + 1)
+  have hangle : ∀ j : ℕ, sawtoothGridAngle n j = (j : ℝ) * h := by
+    intro j
+    unfold sawtoothGridAngle
+    dsimp [h]
+    ring
+  have hcell : ∀ j ∈ range (2 * (n + 1)),
+      (∫ t : ℝ in sawtoothGridAngle n j..sawtoothGridAngle n (j + 1),
+        Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * (Real.pi - t)) =
+      (-1 : ℝ) ^ j * (Real.pi * h - ((j : ℝ) + 1 / 2) * h ^ 2) := by
+    intro j hj
+    have heq := intervalIntegral.integral_congr_Ioo_of_le (μ := volume)
+      (strictMono_sawtoothGridAngle n (show j < j + 1 by omega)).le
+      (fun t ht => congrArg (fun s : ℝ => s * (Real.pi - t))
+        (sign_sin_mul_eq_neg_one_pow_of_between_grid n j ht))
+    rw [heq, intervalIntegral.integral_const_mul,
+      intervalIntegral.integral_sub (f := fun _ : ℝ => Real.pi) (g := fun t : ℝ => t)
+        (continuous_const.intervalIntegrable _ _)
+        (continuous_id.intervalIntegrable _ _), intervalIntegral.integral_const, integral_id]
+    simp only [smul_eq_mul]
+    rw [hangle, hangle]
+    push_cast
+    ring
+  rw [Finset.sum_congr rfl hcell]
+  rw [sum_alternating_affine_two_mul]
+  dsimp [h]
+  push_cast
+  field_simp
+
+/-- The sharp Jackson sawtooth interpolant has the exact L1 error `π²/(n+1)`.
+Every construction, sign and orthogonality prerequisite has been proved.
+Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
+Atlas `jackson-lipschitz` (kernel-norm helper).
+@isnad1 id=eq.0h1v.s6.bd7bc2dc45a5 from=translated src=- shape=73b984e4 vocab=621da385
+-/
+theorem integral_abs_sawtoothError_eq (n : ℕ) :
+    (∫ t : ℝ in 0..2 * Real.pi, |sawtoothError n t|) = Real.pi ^ 2 / (n + 1) := by
+  rw [integral_abs_sawtoothError_eq_signed, integral_signed_sawtoothError_eq_affine,
+    integral_sign_sin_mul_pi_sub_eq]
+
+/-- The normalized sharp Jackson kernel error is exactly `π/(2(n+1))`.
+Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
+Atlas `jackson-lipschitz` (kernel-norm helper).
+@isnad1 id=eq.0h1v.s6.91c956a66fcc from=translated src=- shape=84cf37d1 vocab=0a333791
+-/
+theorem inv_two_pi_mul_integral_abs_sawtoothError_eq (n : ℕ) :
+    (2 * Real.pi)⁻¹ * (∫ t : ℝ in 0..2 * Real.pi, |sawtoothError n t|) =
+      Real.pi / (2 * (n + 1)) := by
+  rw [integral_abs_sawtoothError_eq]
+  field_simp
+
+end NLAlib

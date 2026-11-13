@@ -1,0 +1,139 @@
+import Tengoku.Nlalib.NLAlib.Matrix.Functions.OperatorJensen
+import Tengoku.Nlalib.NLAlib.Matrix.Functions.PerspectiveSqrtNormalization
+import Tengoku.Seed.Tactic.NoncommRing
+import Tengoku.Seed.Tactic.Linarith
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Theorem 8.6.2 — Matrix perspective is jointly operator convex
+
+Main declaration: `NLAlib.matrixPerspective_jointly_operatorConvex`.
+
+Atlas: `operator-monotone-convex`.
+
+Source: Joel A. Tropp, An Introduction to Matrix Concentration Inequalities, arXiv:1501.01571v1 (7 January 2015); https://arxiv.org/abs/1501.01571v1; Theorem 8.6.2, printed pp. 134–135.
+-/
+open scoped Matrix.Norms.L2Operator ComplexOrder MatrixOrder
+
+open NLAlib
+
+/-- The matrix perspective of an operator convex function on `(0, ∞)` is jointly operator convex on
+pairs of positive definite matrices.
+
+Tropp 2015, Thm 8.6.2. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
+Introduction to Matrix Concentration Inequalities, Ch 8*.
+atlas: operator-monotone-convex
+@isnad1 id=le.7h7v.s9.f987a61bdc98 from=translated src=- shape=b6618805 vocab=4876b9db
+-/
+theorem NLAlib.matrixPerspective_jointly_operatorConvex {d : ℕ} [NeZero d]
+    (f : ℝ → ℝ) (hf : OperatorConvexOn (Set.Ioi 0) f)
+    (A₁ A₂ H₁ H₂ : Matrix (Fin d) (Fin d) ℂ)
+    (hA₁ : A₁.PosDef) (hA₂ : A₂.PosDef) (hH₁ : H₁.PosDef) (hH₂ : H₂.PosDef)
+    (t : ℝ) (ht₀ : 0 ≤ t) (ht₁ : t ≤ 1) :
+    (matrixPerspective f (t • A₁ + (1 - t) • A₂) (t • H₁ + (1 - t) • H₂)) ≤
+      (t • matrixPerspective f A₁ H₁ + (1 - t) • matrixPerspective f A₂ H₂) := by
+  have htbar : 0 ≤ 1 - t := sub_nonneg.mpr ht₁
+  let A := t • A₁ + (1 - t) • A₂
+  have hA : A.PosDef := by
+    by_cases ht : t = 0
+    · simpa [A, ht] using hA₂
+    · exact (hA₁.smul (lt_of_le_of_ne ht₀ (Ne.symm ht))).add_posSemidef
+        (hA₂.posSemidef.smul htbar)
+  let S := cfc Real.sqrt A
+  let R := cfc (fun x => (Real.sqrt x)⁻¹) A
+  let S₁ := cfc Real.sqrt A₁
+  let R₁ := cfc (fun x => (Real.sqrt x)⁻¹) A₁
+  let S₂ := cfc Real.sqrt A₂
+  let R₂ := cfc (fun x => (Real.sqrt x)⁻¹) A₂
+  have hS : S.IsHermitian := cfc_predicate _ A
+  have hR : R.IsHermitian := cfc_predicate _ A
+  have hSS := cfc_sqrt_mul_self hA
+  have hRS := cfc_inv_sqrt_mul_sqrt hA
+  have hSR := cfc_sqrt_mul_inv_sqrt hA
+  have hS₁ : S₁.IsHermitian := cfc_predicate _ A₁
+  have hR₁ : R₁.IsHermitian := cfc_predicate _ A₁
+  have hSS₁ := cfc_sqrt_mul_self hA₁
+  have hRS₁ := cfc_inv_sqrt_mul_sqrt hA₁
+  have hSR₁ := cfc_sqrt_mul_inv_sqrt hA₁
+  have hS₂ : S₂.IsHermitian := cfc_predicate _ A₂
+  have hR₂ : R₂.IsHermitian := cfc_predicate _ A₂
+  have hSS₂ := cfc_sqrt_mul_self hA₂
+  have hRS₂ := cfc_inv_sqrt_mul_sqrt hA₂
+  have hSR₂ := cfc_sqrt_mul_inv_sqrt hA₂
+  change S.IsHermitian at hS
+  change R.IsHermitian at hR
+  change S * S = A at hSS
+  change R * S = 1 at hRS
+  change S * R = 1 at hSR
+  change S₁.IsHermitian at hS₁
+  change R₁.IsHermitian at hR₁
+  change S₁ * S₁ = A₁ at hSS₁
+  change R₁ * S₁ = 1 at hRS₁
+  change S₁ * R₁ = 1 at hSR₁
+  change S₂.IsHermitian at hS₂
+  change R₂.IsHermitian at hR₂
+  change S₂ * S₂ = A₂ at hSS₂
+  change R₂ * S₂ = 1 at hRS₂
+  change S₂ * R₂ = 1 at hSR₂
+  let B₁ := R₁ * H₁ * R₁
+  let B₂ := R₂ * H₂ * R₂
+  have hB₁ : B₁.PosDef := by
+    have hu : IsUnit R₁ := ⟨⟨R₁, S₁, hRS₁, hSR₁⟩, rfl⟩
+    simpa only [B₁, hR₁.eq] using hH₁.conjTranspose_mul_mul_same
+      (B := R₁) (Matrix.mulVec_injective_of_isUnit hu)
+  have hB₂ : B₂.PosDef := by
+    have hu : IsUnit R₂ := ⟨⟨R₂, S₂, hRS₂, hSR₂⟩, rfl⟩
+    simpa only [B₂, hR₂.eq] using hH₂.conjTranspose_mul_mul_same
+      (B := R₂) (Matrix.mulVec_injective_of_isUnit hu)
+  let K₁ := Real.sqrt t • (S₁ * R)
+  let K₂ := Real.sqrt (1 - t) • (S₂ * R)
+  have hK₁ : K₁.conjTranspose = Real.sqrt t • (R * S₁) := by
+    simp [K₁, Matrix.conjTranspose_smul, Matrix.conjTranspose_mul, hR.eq, hS₁.eq]
+  have hK₂ : K₂.conjTranspose = Real.sqrt (1 - t) • (R * S₂) := by
+    simp [K₂, Matrix.conjTranspose_smul, Matrix.conjTranspose_mul, hR.eq, hS₂.eq]
+  have hK : K₁.conjTranspose * K₁ + K₂.conjTranspose * K₂ = 1 := by
+    rw [hK₁, hK₂]
+    dsimp only [K₁, K₂]
+    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+      Real.mul_self_sqrt ht₀, Real.mul_self_sqrt htbar]
+    calc
+      t • (R * S₁ * (S₁ * R)) + (1 - t) • (R * S₂ * (S₂ * R)) =
+          R * (t • (S₁ * S₁) + (1 - t) • (S₂ * S₂)) * R := by
+        simp only [Matrix.mul_add, Matrix.add_mul, Matrix.smul_mul, Matrix.mul_smul,
+          Matrix.mul_assoc]
+      _ = R * A * R := by rw [hSS₁, hSS₂]
+      _ = 1 := by rw [← hSS]; simp only [← Matrix.mul_assoc, hRS, Matrix.one_mul, hSR]
+  have hn (Sj Rj Hj : Matrix (Fin d) (Fin d) ℂ)
+      (hij : Sj * Rj = 1) (hji : Rj * Sj = 1) :
+      R * Sj * (Rj * Hj * Rj) * (Sj * R) = R * Hj * R := by
+    calc
+      _ = R * (Sj * Rj) * Hj * (Rj * Sj) * R := by noncomm_ring
+      _ = _ := by rw [hij, hji]; simp
+  have hnorm : K₁.conjTranspose * B₁ * K₁ + K₂.conjTranspose * B₂ * K₂ =
+      R * (t • H₁ + (1 - t) • H₂) * R := by
+    rw [hK₁, hK₂]
+    dsimp only [K₁, K₂, B₁, B₂]
+    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_smul,
+      Real.mul_self_sqrt ht₀, Real.mul_self_sqrt htbar, hn S₁ R₁ H₁ hSR₁ hRS₁,
+      hn S₂ R₂ H₂ hSR₂ hRS₂, Matrix.mul_add, Matrix.add_mul]
+  have hj := operator_jensen (Set.Ioi 0) f hf B₁ B₂ hB₁.isHermitian hB₂.isHermitian
+    (fun x hx => hB₁.isStrictlyPositive.spectrum_pos hx)
+    (fun x hx => hB₂.isStrictlyPositive.spectrum_pos hx) K₁ K₂ hK
+  have hc := hj.mul_mul_conjTranspose_same S
+  change (S * (_ - _) * S.conjTranspose).PosSemidef at hc
+  rw [hS.eq, Matrix.mul_sub, Matrix.sub_mul, hnorm] at hc
+  have hsand (r : ℝ) (hr : 0 ≤ r) (Sj F : Matrix (Fin d) (Fin d) ℂ) :
+      S * ((Real.sqrt r • (R * Sj)) * F * (Real.sqrt r • (Sj * R))) * S =
+        r • (Sj * F * Sj) := by
+    simp only [Matrix.smul_mul, Matrix.mul_smul, smul_smul, Real.mul_self_sqrt hr]
+    congr 1
+    calc
+      _ = (S * R) * Sj * F * Sj * (R * S) := by noncomm_ring
+      _ = _ := by rw [hSR, hRS]; simp
+  change (S * cfc f (R * (t • H₁ + (1 - t) • H₂) * R) * S) ≤
+    (t • (S₁ * cfc f B₁ * S₁) +
+      (1 - t) • (S₂ * cfc f B₂ * S₂))
+  simpa only [Matrix.le_iff, Matrix.mul_add, Matrix.add_mul, hK₁, hK₂, K₁, K₂,
+    hsand t ht₀ S₁ (cfc f B₁),
+    hsand (1 - t) htbar S₂ (cfc f B₂)] using hc

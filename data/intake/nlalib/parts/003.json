@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "22e894a45ae4f7d2751cf09f701e44dfe9495c31d4c28cc39734552d71e7a5c4",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "nlalib",
+ "lint_mode": "proposed",
+ "modules": 297,
+ "part": 3,
+ "theorems": 1580
+}

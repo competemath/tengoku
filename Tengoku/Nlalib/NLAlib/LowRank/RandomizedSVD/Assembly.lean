@@ -1,0 +1,138 @@
+import Tengoku.Seed.Probability.Moments.Variance
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Expectation-level assembly of the randomized SVD and generalized Nyström bounds
+
+This file checks the *probabilistic assembly* of Chen–Persson, *One- and two-pass algorithms
+for low-rank approximation*, Theorems `thm:RSVD` and `thm:GN` (the Frobenius-norm expected
+error bounds of HMT 2011, Thm 10.5, and Tropp–Webber 2023, Thm 5.1).
+
+Everything is phrased for real random variables on an abstract probability space `(Ω, μ)`;
+expectations are Bochner integrals `∫ ω, X ω ∂μ`. No matrices appear; the matrix statements
+are in `NLAlib/LowRank/RSVD.lean` and `NLAlib/LowRank/GeneralizedNystrom.lean`.
+
+* The deterministic, pointwise inequalities (Chen–Persson `prop:hmt-struct`, i.e. HMT 2011,
+  Thm 9.1) enter as *pointwise hypotheses* `∀ ω, …`.
+* The Gaussian facts (Chen–Persson `lem:moments`, `lem:invmom`, `lem:completion`) enter ONLY
+  as *explicit hypotheses on expectations*, exactly in the form the paper uses them after
+  conditioning.
+* Integrability of every random variable whose integral is manipulated is an explicit
+  hypothesis.
+
+What is proved here is the paper's own reasoning: linearity and monotonicity of expectation
+and the arithmetic with explicit constants (Jensen `E Y ≤ √(E Y²)` is
+`NLAlib.integral_le_sqrt_integral_sq`).
+
+Ported from the LRA project (Chen–Persson formalization, same Mathlib pin),
+`LRA/Probability/Assembly.lean` (`expectation_jensen_sqrt`, now
+`NLAlib.integral_le_sqrt_integral_sq` in `ForMathlib/MeasureTheory/IntegralSqrt`; `rsvd_assembly`,
+`rsvd_explicit`, `gn_assembly`, `gn_explicit`)
+and `LRA/Arithmetic/Constants.lean` (`completion_factor_mono`).
+
+Atlas: `rsvd-expected-error`, `gn-expected-error`.
+-/
+
+noncomputable section
+
+open MeasureTheory ProbabilityTheory
+
+namespace NLAlib.Assembly
+
+variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
+
+/-! ### A. The completion factor -/
+
+/-- Monotonicity of the completion factor (Chen–Persson, proof of `thm:GN`): `q ↦ q/(s−q−1)`
+is increasing for `q < s − 1`, so the factor of `lem:completion` for dimension `q ≤ k` is at
+most that for `k`. Helper for atlas `gn-expected-error`.
+@isnad1 id=le.3h3v.s6.0e6d8125e852 from=translated src=- shape=7270f779 vocab=8f0440a5
+-/
+theorem completion_factor_mono {q k s : ℝ} (hq : 0 ≤ q) (hqk : q ≤ k) (hks : k < s - 1) :
+    q / (s - q - 1) ≤ k / (s - k - 1) := by
+  rw [div_le_div_iff₀ (by linarith) (by linarith)]
+  nlinarith
+
+/-! ### B. Randomized SVD (`thm:RSVD`) -/
+
+/-- Assembly of Chen–Persson, Theorem `thm:RSVD` (HMT 2011, Thm 10.5, Frobenius case).
+* `X = ‖A − Â‖_F²`, `Zsq = ‖Σ₂ Ω₂ Ω₁†‖_F²`, `OPTsq = ‖Σ₂‖_F² = ‖A − ⟦A⟧ₖ‖_F²`.
+* `hX` is `prop:hmt-struct` (deterministic; `NLAlib.frobSq_residual_le_of_range_subset`).
+* `hZ` encodes `lem:moments` + `lem:invmom` after the tower property:
+  `E ‖Σ₂ Ω₂ Ω₁†‖_F² = ‖Σ₂‖_F² · k/(t−k−1)`; here with a general constant `c`.
+Atlas `rsvd-expected-error`.
+@isnad1 id=le.4h6v.s7.6b340ee1481a from=translated src=- shape=493f4799 vocab=49f2b99d
+-/
+theorem rsvd_assembly [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq c : ℝ}
+    (hX : ∀ ω, X ω ≤ OPTsq + Zsq ω) (hZ : ∫ ω, Zsq ω ∂μ = c * OPTsq)
+    (hXi : Integrable X μ) (hZi : Integrable Zsq μ) :
+    ∫ ω, X ω ∂μ ≤ (1 + c) * OPTsq := by
+  calc ∫ ω, X ω ∂μ ≤ ∫ ω, (OPTsq + Zsq ω) ∂μ :=
+        integral_mono hXi ((integrable_const _).add hZi) hX
+    _ = OPTsq + c * OPTsq := by
+        rw [integral_add (integrable_const _) hZi, integral_const, probReal_univ, one_smul, hZ]
+    _ = (1 + c) * OPTsq := by ring
+
+/-- Chen–Persson, Theorem `thm:RSVD` (HMT 2011, Thm 10.5, Frobenius case), expectation level,
+with the paper's constant `c = k/(t−k−1)`. Atlas `rsvd-expected-error`.
+atlas: rsvd-expected-error
+@isnad1 id=le.4h7v.s7.69a892e8d195 from=translated src=- shape=044b51f6 vocab=d7dfa6fe
+-/
+theorem rsvd_explicit [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq k t : ℝ}
+    (hX : ∀ ω, X ω ≤ OPTsq + Zsq ω) (hZ : ∫ ω, Zsq ω ∂μ = k / (t - k - 1) * OPTsq)
+    (hXi : Integrable X μ) (hZi : Integrable Zsq μ) :
+    ∫ ω, X ω ∂μ ≤ (1 + k / (t - k - 1)) * OPTsq :=
+  rsvd_assembly hX hZ hXi hZi
+
+/-! ### C. Generalized Nyström (`thm:GN`) -/
+
+/-- Abstract assembly of Chen–Persson, Theorem `thm:GN` (Tropp–Webber 2023, Thm 5.1).
+* `X = ‖A − Â‖_F²`, `Y = ‖(I − QQᵀ)A‖_F²` (the range-finder error),
+  `cfac ω = 1 + q(ω)/(s − q(ω) − 1)` with `q = rank(AΩ)` the (random) number of columns of `Q`.
+* `hcond` encodes `lem:completion` after the tower property (conditioning on `Ω`, using
+  independence of `Ψ` and `Ω`): `E X = E[(1 + q/(s−q−1)) Y]`.
+* `hc` is the deterministic bound `q ≤ t` and monotonicity of `q ↦ q/(s−q−1)`
+  (`completion_factor_mono`).
+* `hYbound` is the range-finder theorem (`thm:RSVD`).
+Atlas `gn-expected-error`.
+@isnad1 id=le.7h7v.s7.34a2c56632a5 from=translated src=- shape=527f2201 vocab=87c5e1ad
+-/
+theorem gn_assembly {X Y cfac : Ω → ℝ} {cmax B : ℝ} (hY : 0 ≤ Y) (hcmax : 0 ≤ cmax)
+    (hc : ∀ ω, cfac ω ≤ cmax) (hcond : ∫ ω, X ω ∂μ = ∫ ω, cfac ω * Y ω ∂μ)
+    (hYbound : ∫ ω, Y ω ∂μ ≤ B)
+    (hcYi : Integrable (fun ω => cfac ω * Y ω) μ) (hYi : Integrable Y μ) :
+    ∫ ω, X ω ∂μ ≤ cmax * B := by
+  rw [hcond]
+  calc ∫ ω, cfac ω * Y ω ∂μ ≤ ∫ ω, cmax * Y ω ∂μ :=
+        integral_mono hcYi (hYi.const_mul _) fun ω => mul_le_mul_of_nonneg_right (hc ω) (hY ω)
+    _ = cmax * ∫ ω, Y ω ∂μ := integral_const_mul _ _
+    _ ≤ cmax * B := mul_le_mul_of_nonneg_left hYbound hcmax
+
+/-- Chen–Persson, Theorem `thm:GN` (Tropp–Webber 2023, Thm 5.1), expectation level:
+`t ≥ k+2`, `s ≥ t+2`,
+`E‖A − Â‖_F² ≤ (1 + t/(s−t−1)) (1 + k/(t−k−1)) ‖A − ⟦A⟧ₖ‖_F²`.
+Hypotheses: `hc` (`lem:completion`'s factor with `q = rank(AΩ) ≤ t`), `hcond`
+(`lem:completion` + tower property), `hstruct` (`prop:hmt-struct` for
+`Y = ‖(I−QQᵀ)A‖_F²`), `hZ` (`lem:moments` + `lem:invmom`, as in the proof of `thm:RSVD`).
+The hypothesis `hk` is not used by the arithmetic; it is kept for fidelity.
+Atlas `gn-expected-error` (uses `rsvd-expected-error`).
+atlas: gn-expected-error
+@isnad1 id=le.11h10v.s9.dc77cf617cef from=translated src=- shape=35729662 vocab=93cf992b
+-/
+theorem gn_explicit [IsProbabilityMeasure μ] {X Y cfac Zsq : Ω → ℝ} {k t s OPTsq : ℝ}
+    (hk : 0 ≤ k) (hkt : k + 2 ≤ t) (hts : t + 2 ≤ s)
+    (hY : 0 ≤ Y) (hc : ∀ ω, cfac ω ≤ 1 + t / (s - t - 1))
+    (hcond : ∫ ω, X ω ∂μ = ∫ ω, cfac ω * Y ω ∂μ)
+    (hstruct : ∀ ω, Y ω ≤ OPTsq + Zsq ω) (hZ : ∫ ω, Zsq ω ∂μ = k / (t - k - 1) * OPTsq)
+    (hcYi : Integrable (fun ω => cfac ω * Y ω) μ) (hYi : Integrable Y μ)
+    (hZi : Integrable Zsq μ) :
+    ∫ ω, X ω ∂μ ≤ (1 + t / (s - t - 1)) * ((1 + k / (t - k - 1)) * OPTsq) := by
+  have hcmax : 0 ≤ 1 + t / (s - t - 1) := by
+    have : 0 ≤ t / (s - t - 1) := div_nonneg (by linarith) (by linarith)
+    linarith
+  exact gn_assembly hY hcmax hc hcond (rsvd_explicit hstruct hZ hYi hZi) hcYi hYi
+
+end NLAlib.Assembly
+
+end

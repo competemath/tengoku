@@ -1,0 +1,107 @@
+import Tengoku.Nlalib.NLAlib.Matrix.Basic.CauchyBinet
+import Tengoku.Seed.Analysis.Complex.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Identity and adjoint compounds, and Gram minors
+
+These are direct corollaries of the existing arbitrary-ring Cauchy--Binet
+identity. The fixed subset enumerations are reused under the adjoint.
+Source: Horn--Johnson (2013), Sections 0.8.1 and 0.8.7;
+derivations Section alg:cauchy-binet.
+-/
+
+noncomputable section
+open scoped Matrix
+namespace NLAlib
+
+/-- The chosen enumeration of a sized subset is injective.
+Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.
+@isnad1 id=injectiv.0h3v.s4.caced40d8cb1 from=translated src=- shape=faf8977c vocab=e59be7a7
+-/
+theorem sizedSubsetIndex_injective {n r : Type*} [Fintype r]
+    (S : SizedSubset n r) : Function.Injective (sizedSubsetIndex S) := by
+  exact Subtype.val_injective.comp (Equiv.injective _)
+
+/-- The chosen enumeration ranges over exactly its sized subset.
+Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.
+@isnad1 id=eq.0h3v.s5.cca67b32854b from=translated src=- shape=ff6c17c0 vocab=694730a4
+-/
+theorem range_sizedSubsetIndex {n r : Type*} [Fintype r]
+    (S : SizedSubset n r) : Set.range (sizedSubsetIndex S) = (S.val : Set n) := by
+  ext x
+  constructor
+  · rintro ⟨i, rfl⟩
+    exact (Fintype.equivOfCardEq
+      ((Fintype.card_coe S.val).trans S.property)).symm i |>.property
+  · intro hx
+    let e : S.val ≃ r := Fintype.equivOfCardEq ((Fintype.card_coe S.val).trans S.property)
+    refine ⟨e ⟨x, hx⟩, ?_⟩
+    simp only [sizedSubsetIndex, e, Equiv.symm_apply_apply]
+
+/-- The compound of the identity is the identity at every minor size,
+including the unique empty minor and impossible-size empty compounds.
+Source: Horn--Johnson (2013), Section 0.8.7.
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h3v.s7.8e467b6eb6f3 from=translated src=- shape=7559d450 vocab=3c357fef
+-/
+theorem compoundMatrix_one {n r R : Type*} [Fintype n] [Fintype r]
+    [DecidableEq n] [DecidableEq r] [CommRing R] :
+    compoundMatrix r (1 : Matrix n n R) = 1 := by
+  classical
+  ext S T
+  by_cases hST : S = T
+  · subst T
+    simp only [compoundMatrix, Matrix.submatrix_one _ (sizedSubsetIndex_injective S),
+      Matrix.det_one, Matrix.one_apply_eq]
+  · rw [Matrix.one_apply_ne hST]
+    have hnsub : ¬ S.val ⊆ T.val := by
+      intro hsub
+      exact hST (Subtype.ext (Finset.eq_of_subset_of_card_le hsub (by rw [S.property, T.property])))
+    obtain ⟨x, hxS, hxT⟩ := Finset.not_subset.mp hnsub
+    obtain ⟨i, hi⟩ := (range_sizedSubsetIndex S ▸ hxS : x ∈ Set.range (sizedSubsetIndex S))
+    apply Matrix.det_eq_zero_of_row_eq_zero i
+    intro j
+    change (1 : Matrix n n R) (sizedSubsetIndex S i) (sizedSubsetIndex T j) = 0
+    apply Matrix.one_apply_ne
+    intro h
+    apply hxT
+    rw [← hi, h]
+    exact (range_sizedSubsetIndex T ▸ Set.mem_range_self j : sizedSubsetIndex T j ∈ (T.val : Set n))
+
+/-- Compounds commute with conjugate transpose over every commutative star
+ring, using exactly the same fixed row and column enumerations.
+Source: Horn--Johnson (2013), Section 0.8.7.
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h5v.s7.6ed48f83e29d from=translated src=- shape=04a4c7c3 vocab=92d14d7d
+-/
+theorem compoundMatrix_conjTranspose {m n r R : Type*}
+    [Fintype r] [DecidableEq r] [CommRing R] [StarRing R]
+    (A : Matrix m n R) :
+    compoundMatrix r Aᴴ = (compoundMatrix r A)ᴴ := by
+  ext S T
+  change (Aᴴ.submatrix (sizedSubsetIndex S) (sizedSubsetIndex T)).det =
+    star ((A.submatrix (sizedSubsetIndex T) (sizedSubsetIndex S)).det)
+  rw [← Matrix.conjTranspose_submatrix, Matrix.det_conjTranspose]
+
+/-- The column-Gram determinant over either scalar field is the sum of squared absolute
+values of all full-column minors. Too few rows, singular matrices and
+empty rows or columns need no separate hypotheses.
+Source: Horn--Johnson (2013), Section 0.8.1.
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h4v.s7.527554b3f270 from=translated src=- shape=2f76d603 vocab=36ad91c1
+-/
+theorem det_conjTranspose_mul_self_eq_sum_norm_sq {𝕜 m r : Type*} [RCLike 𝕜]
+    [Fintype m] [Fintype r] [DecidableEq m] [DecidableEq r]
+    (A : Matrix m r 𝕜) :
+    (Aᴴ * A).det = ∑ S : SizedSubset m r,
+      (‖(A.submatrix (sizedSubsetIndex S) id).det‖ ^ 2 : ℝ) := by
+  rw [det_mul_eq_sum_det_submatrix_mul_det_submatrix, RCLike.ofReal_sum]
+  apply Finset.sum_congr rfl
+  intro S _
+  rw [← Matrix.conjTranspose_submatrix, Matrix.det_conjTranspose]
+  simpa only [RCLike.ofReal_pow, RCLike.star_def] using
+    (RCLike.conj_mul ((A.submatrix (sizedSubsetIndex S) id).det))
+
+end NLAlib

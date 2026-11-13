@@ -1,0 +1,146 @@
+import Tengoku.Nlalib.NLAlib.Matrix.Functions.JensenBlockCalculus
+import Tengoku.Nlalib.NLAlib.Matrix.Functions.UnitaryCalculus
+import Tengoku.Seed.Tactic.NoncommRing
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Operator convexity under isometric compression
+
+Main declaration: `NLAlib.OperatorConvexOn.cfc_conjTranspose_mul_mul_le`.
+
+Atlas: `operator-monotone-convex` (operator Jensen inequality for an isometry).
+
+Source: Tropp, An Introduction to Matrix Concentration Inequalities, arXiv:1501.01571v1, Theorem 8.5.2 and its unitary dilation proof, printed pp. 132–133.
+-/
+open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder
+open NLAlib
+
+private lemma operatorConvexOn_finite {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
+    (I : Set ℝ) (f : ℝ → ℝ) (hf : OperatorConvexOn I f)
+    (A H : Matrix ι ι ℂ) (hA : A.IsHermitian) (hH : H.IsHermitian)
+    (hAsp : spectrum ℝ A ⊆ I) (hHsp : spectrum ℝ H ⊆ I)
+    (t : ℝ) (ht₀ : 0 ≤ t) (ht₁ : t ≤ 1) :
+    (cfc f (t • A + (1-t) • H)) ≤
+      (t • cfc f A + (1-t) • cfc f H) := by
+  let e := Fintype.equivFin ι
+  let R : Matrix ι ι ℂ → Matrix (Fin (Fintype.card ι)) (Fin (Fintype.card ι)) ℂ :=
+    Matrix.reindex e e
+  have h := hf.2 (Fintype.card ι) (R A) (R H)
+    (hA.reindex e) (hH.reindex e) (by rwa [spectrum_reindex]) (by rwa [spectrum_reindex])
+    t ht₀ ht₁
+  have hmix : (t • A + (1-t) • H).IsHermitian :=
+    (hA.smul (IsSelfAdjoint.all t)).add (hH.smul (IsSelfAdjoint.all (1-t)))
+  change (t • cfc f (R A) + (1-t) • cfc f (R H) - cfc f (t • R A + (1-t) • R H)).PosSemidef at h
+  have hm : t • R A + (1-t) • R H = R (t • A + (1-t) • H) := by
+    simp [R, Matrix.reindex_apply, Matrix.submatrix_add, Matrix.submatrix_smul]
+  rw [hm, cfc_reindex_of_isHermitian e f A hA, cfc_reindex_of_isHermitian e f H hH,
+    cfc_reindex_of_isHermitian e f _ hmix] at h
+  have hh := h.submatrix e
+  simpa [R, Matrix.reindex_apply, Matrix.le_iff, Matrix.submatrix_submatrix,
+    Matrix.submatrix_add, Matrix.submatrix_sub, Matrix.submatrix_smul] using hh
+
+private lemma pinching {ι κ : Type*} [Fintype ι] [Fintype κ]
+    [DecidableEq ι] [DecidableEq κ] [Nonempty ι] [Nonempty κ]
+    (I : Set ℝ) (f : ℝ → ℝ) (hf : OperatorConvexOn I f)
+    (X : Matrix (ι ⊕ κ) (ι ⊕ κ) ℂ) (hX : X.IsHermitian)
+    (hXI : spectrum ℝ X ⊆ I) :
+    (cfc f (X.submatrix Sum.inr Sum.inr)) ≤
+      ((cfc f X).submatrix Sum.inr Sum.inr) := by
+  let V : Matrix (ι ⊕ κ) (ι ⊕ κ) ℂ := Matrix.fromBlocks 1 0 0 (-1)
+  have hV : V.conjTranspose = V := by simp [V, Matrix.fromBlocks_conjTranspose]
+  have hV2 : V * V = 1 := by
+    simp [V, Matrix.fromBlocks_multiply, ← Matrix.fromBlocks_one]
+  have hh := operatorConvexOn_finite I f hf X (V * X * V) hX
+    (isHermitian_reflection_conj V X hV hX) hXI (by rwa [spectrum_reflection_conj V X hV hV2])
+    (1/2) (by norm_num) (by norm_num)
+  have hmid : (1/2 : ℝ) • X + (1 - (1/2 : ℝ)) • (V * X * V) =
+      Matrix.fromBlocks (X.submatrix Sum.inl Sum.inl) 0 0 (X.submatrix Sum.inr Sum.inr) := by
+    rw [← Matrix.fromBlocks_toBlocks X]
+    simp only [V, Matrix.fromBlocks_multiply, one_mul, mul_one, neg_mul, mul_neg]
+    ext i j
+    cases i <;> cases j <;> simp <;> ring
+  rw [Matrix.le_iff] at hh
+  rw [hmid, (cfc_fromBlocks _ _ (hX.submatrix _) (hX.submatrix _) f).2.2] at hh
+  have hr := hh.submatrix Sum.inr
+  rw [Matrix.le_iff]
+  convert hr using 1
+  rw [cfc_reflection_conj V X hV hV2 hX f]
+  ext i j
+  simp [V, Matrix.mul_apply, Fintype.sum_sum_type, Matrix.one_apply]
+  ring
+
+private theorem isometry_reflection_identities
+    {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
+    (K : Matrix ι κ ℂ) (hK : K.conjTranspose * K = 1)
+    (A : Matrix ι ι ℂ) (B : Matrix κ κ ℂ) :
+    let U := Matrix.fromBlocks (1 - K * K.conjTranspose) K K.conjTranspose 0
+    U.IsHermitian ∧ U * U = 1 ∧
+      (U * Matrix.fromBlocks A 0 0 B * U).toBlocks₂₂ = K.conjTranspose * A * K := by
+  let P := 1 - K * K.conjTranspose
+  have hP : P.IsHermitian := by
+    simp only [P, Matrix.IsHermitian, Matrix.conjTranspose_sub,
+      Matrix.conjTranspose_one, Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
+  have hPK : P * K = 0 := by
+    simp only [P, Matrix.sub_mul, Matrix.one_mul, Matrix.mul_assoc, hK, Matrix.mul_one, sub_self]
+  have hKP : K.conjTranspose * P = 0 := by
+    simp only [P, Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc, hK, Matrix.one_mul, sub_self]
+  have hPP : P * P + K * K.conjTranspose = 1 := by
+    calc
+      P * P + K * K.conjTranspose = P - (P * K) * K.conjTranspose + K * K.conjTranspose := by
+        rw [show P * P = P * (1 - K * K.conjTranspose) from rfl,
+          Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc]
+      _ = 1 := by rw [hPK]; simp [P]
+  dsimp only
+  refine ⟨hP.fromBlocks rfl (Matrix.isHermitian_zero), ?_, ?_⟩
+  · rw [Matrix.fromBlocks_multiply]
+    change Matrix.fromBlocks (P * P + K * K.conjTranspose) (P * K + K * 0)
+      (K.conjTranspose * P + 0 * K.conjTranspose) (K.conjTranspose * K + 0 * 0) = 1
+    simp only [hPP, hPK, hKP, hK, Matrix.mul_zero, Matrix.zero_mul, add_zero]
+    exact Matrix.fromBlocks_one
+  · simp only [Matrix.fromBlocks_multiply, Matrix.toBlocks_fromBlocks₂₂,
+      Matrix.mul_zero, Matrix.zero_mul, zero_add, add_zero]
+
+/-- Operator Jensen inequality for an isometry: if `f` is operator convex on `I` and `Kᴴ K = 1`, then
+`f (Kᴴ A K) ≼ Kᴴ f(A) K`.
+
+Tropp 2015, Thm 8.5.2 (single-isometry form). Atlas: `operator-monotone-convex`. Ported from the
+Prove2me mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
+@isnad1 id=le.4h6v.s9.096919699a29 from=translated src=- shape=256b6e6e vocab=bf3bf598
+-/
+theorem NLAlib.OperatorConvexOn.cfc_conjTranspose_mul_mul_le
+    {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
+    [Fintype κ] [DecidableEq κ] [Nonempty κ]
+    (I : Set ℝ) (f : ℝ → ℝ) (hf : OperatorConvexOn I f)
+    (A : Matrix ι ι ℂ) (hA : A.IsHermitian) (hAI : spectrum ℝ A ⊆ I)
+    (K : Matrix ι κ ℂ) (hK : K.conjTranspose * K = 1) :
+    (cfc f (K.conjTranspose * A * K)) ≤
+      (K.conjTranspose * cfc f A * K) := by
+  obtain ⟨c, hc⟩ := ContinuousFunctionalCalculus.spectrum_nonempty (R := ℝ) A hA
+  let B : Matrix κ κ ℂ := algebraMap ℝ _ c
+  have hB : B.IsHermitian := by
+    change (algebraMap ℝ (Matrix κ κ ℂ) c).IsHermitian
+    rw [Algebra.algebraMap_eq_smul_one]
+    exact Matrix.isHermitian_one.smul (IsSelfAdjoint.all c)
+  let D := Matrix.fromBlocks A 0 0 B
+  have hD := cfc_fromBlocks A B hA hB f
+  have hDI : spectrum ℝ D ⊆ I := by
+    rw [hD.2.1]
+    apply Set.union_subset hAI
+    change spectrum ℝ (algebraMap ℝ (Matrix κ κ ℂ) c) ⊆ I
+    rw [spectrum.scalar_eq]
+    exact Set.singleton_subset_iff.mpr (hAI hc)
+  let U := Matrix.fromBlocks (1 - K * K.conjTranspose) K K.conjTranspose 0
+  have hr := isometry_reflection_identities K hK A B
+  have hu : U.conjTranspose = U := hr.1
+  have hu2 : U * U = 1 := hr.2.1
+  have hp := pinching I f hf (U * D * U) (isHermitian_reflection_conj U D hu hD.1)
+    (by rwa [spectrum_reflection_conj U D hu hu2])
+  have hcorner : (U * D * U).submatrix Sum.inr Sum.inr = K.conjTranspose * A * K := hr.2.2
+  rw [hcorner, cfc_reflection_conj U D hu hu2 hD.1 f] at hp
+  have hcfc : (U * cfc f D * U).submatrix Sum.inr Sum.inr =
+      K.conjTranspose * cfc f A * K := by
+    rw [show cfc f D = Matrix.fromBlocks (cfc f A) 0 0 (cfc f B) from hD.2.2]
+    exact (isometry_reflection_identities K hK (cfc f A) (cfc f B)).2.2
+  rw [hcfc] at hp
+  exact hp

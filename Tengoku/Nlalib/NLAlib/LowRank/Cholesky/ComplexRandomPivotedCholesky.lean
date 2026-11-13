@@ -1,0 +1,283 @@
+import Tengoku.Nlalib.NLAlib.LowRank.Cholesky.ComplexCholeskyHistories
+import Tengoku.Nlalib.NLAlib.LowRank.Cholesky.TracePotential
+import Tengoku.Nlalib.NLAlib.Matrix.Inequalities.TraceTail
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+/-!
+# Expected relative trace error of complex randomly pivoted Cholesky
+
+`complexCholeskyHistoryLaw` models adaptive sampling; the `integral_trace_`
+theorems below give the spectral-tail guarantees and their `HasLaw` transports.
+The finite adaptive pivot process supplies the PSD invariant, one-step
+trace mean, sorted-tail energy bound, finite Jensen recursion, and scalar potential.
+The source's relative optimal tail and additive tolerance are kept distinct.
+Source: CETW (2025); manuscript `sa:rp-theorem`.
+-/
+
+noncomputable section
+open MeasureTheory ProbabilityTheory
+open scoped Matrix ComplexOrder
+namespace NLAlib
+
+variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
+
+/-- The exact Cholesky approximation after a finite adaptive pivot history.
+Source: manuscript `sa:rp-update`, `Ahat_t = A - R_t`.-/
+def complexRandomizedCholeskyApproximation (A : Matrix n n ℂ) (t : ℕ) (h : Fin t → n) :
+    Matrix n n ℂ := A - complexCholeskyResidualHistory A t h
+
+/-- The relative optimal trace tail is the spectral tail divided by the full trace.
+Source: manuscript `sa:rp-theorem`, its relative parameter `eta`.-/
+def complexRelativeSpectralTraceTail (A : Matrix n n ℂ) (hA : A.IsHermitian) (r : ℕ) : ℝ :=
+  spectralTraceTail A hA r / A.trace.re
+
+/-- The actual adaptive expected trace obeys the source's nonlinear relative-tail
+recursion. Source: manuscript `sa:rp-recursion`; CETW (2025).
+All matrix and probability inequalities are derived from the input PSD matrix.
+atlas: rpcholesky (partial)
+@isnad1 id=le.2h4v.s6.33ff94064dee from=translated src=- shape=f4a75612 vocab=f219d018
+-/
+theorem complexCholeskyExpectedTrace_succ_le_traceExcessDrift
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r : ℕ} (hr : 1 ≤ r) (t : ℕ) :
+    complexCholeskyExpectedTrace A (t + 1) ≤ complexCholeskyExpectedTrace A t -
+      traceExcessDrift (spectralTraceTail A hA.isHermitian r) (complexCholeskyExpectedTrace A t) / r := by
+  let τ := spectralTraceTail A hA.isHermitian r
+  have hr0 : (0 : ℝ) < r := by exact_mod_cast (by omega : 0 < r)
+  have hstep : ∀ h : Fin t → n,
+      (complexCholeskyResidualHistory A t h).trace.re -
+        (complexCholeskyResidualHistory A t h * complexCholeskyResidualHistory A t h).trace.re /
+          (complexCholeskyResidualHistory A t h).trace.re ≤
+      (complexCholeskyResidualHistory A t h).trace.re -
+        traceExcessDrift τ (complexCholeskyResidualHistory A t h).trace.re / r := by
+    intro h
+    let R := complexCholeskyResidualHistory A t h
+    have hR := posSemidef_complexCholeskyResidualHistory hA t h
+    have hAR := posSemidef_sub_complexCholeskyResidualHistory hA t h
+    have he := sq_max_re_trace_sub_spectralTraceTail_le_of_eigenvalues₀_le hA hR
+      (Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_of_le hR.isHermitian hA.isHermitian hAR) r
+    have hd : (max (R.trace.re - τ) 0) ^ 2 / r ≤ (R * R).trace.re :=
+      (div_le_iff₀ hr0).mpr (by simpa only [mul_comm, RCLike.re_to_complex] using he)
+    have htr : 0 ≤ R.trace.re := re_trace_nonneg_of_posSemidef hR
+    have hdiv : traceExcessDrift τ R.trace.re / r ≤ (R * R).trace.re / R.trace.re := by
+      rw [traceExcessDrift, div_right_comm]
+      exact div_le_div_of_nonneg_right hd htr
+    exact sub_le_sub_left hdiv R.trace.re
+  have he : complexCholeskyExpectedTrace A (t + 1) ≤
+      ∑ h : Fin t → n, complexCholeskyHistoryWeight A t h *
+        ((complexCholeskyResidualHistory A t h).trace.re -
+          traceExcessDrift τ (complexCholeskyResidualHistory A t h).trace.re / r) := by
+    rw [complexCholeskyExpectedTrace_succ_eq hA t]
+    exact Finset.sum_le_sum fun h _ => mul_le_mul_of_nonneg_left (hstep h)
+      (complexCholeskyHistoryWeight_nonneg hA t h)
+  simp only [mul_sub, Finset.sum_sub_distrib, ← mul_div_assoc, ← Finset.sum_div] at he
+  have hj := traceExcessDrift_sum_le_sum (complexCholeskyHistoryWeight A t)
+    (fun h => (complexCholeskyResidualHistory A t h).trace.re)
+    (complexCholeskyHistoryWeight_nonneg hA t)
+    (fun h => re_trace_nonneg_of_posSemidef (posSemidef_complexCholeskyResidualHistory hA t h))
+    (sum_complexCholeskyHistoryWeight A t) (spectralTraceTail_nonneg hA r)
+  have hJ := div_le_div_of_nonneg_right hj hr0.le
+  change complexCholeskyExpectedTrace A (t + 1) ≤ complexCholeskyExpectedTrace A t -
+    (∑ h : Fin t → n, complexCholeskyHistoryWeight A t h * traceExcessDrift τ
+      (complexCholeskyResidualHistory A t h).trace.re) / r at he
+  change traceExcessDrift τ (complexCholeskyExpectedTrace A t) / r ≤ _ at hJ
+  exact he.trans (sub_le_sub_left hJ _)
+
+/-- The actual RPCholesky expected trace reaches the precise relative-error target
+under the manuscript's logarithmic pivot budget. Source: manuscript `sa:rp-theorem`;
+CETW (2025). This is the positive-tail complex-matrix branch, with all positive tolerances.
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.4c21ee463849 from=translated src=- shape=4e177929 vocab=a1352cc9
+-/
+theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (r : ℝ) / ε + r * Real.log (A.trace.re / (ε * spectralTraceTail A hA.isHermitian r)) ≤ k) :
+    complexCholeskyExpectedTrace A k ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  apply le_mul_tail_of_traceExcessDrift_recursion (complexCholeskyExpectedTrace A)
+    (complexCholeskyExpectedTrace_antitone hA) hτ (by exact_mod_cast (by omega : 0 < r)) hε
+    (fun t => complexCholeskyExpectedTrace_succ_le_traceExcessDrift hA hr t) k
+  simpa only [complexCholeskyExpectedTrace_zero] using hbudget
+
+/-- The relative parameter is exactly `eta = tau_*/tr A`, with the source's budget
+`r/epsilon + r log(1/(epsilon eta))`. Source: manuscript `sa:rp-theorem`; CETW (2025).
+It is not interpreted as an additive error tolerance.
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.372c3a37ce61 from=translated src=- shape=911f6bd0 vocab=cde23db9
+-/
+theorem complexCholeskyExpectedTrace_le_of_complexRelativeSpectralTraceTail
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (r : ℝ) / ε + r * Real.log (1 / (ε * complexRelativeSpectralTraceTail A hA.isHermitian r)) ≤ k) :
+    complexCholeskyExpectedTrace A k ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  have htr : 0 < A.trace.re := hτ.trans_le (spectralTraceTail_le_trace hA r)
+  have he : 1 / (ε * complexRelativeSpectralTraceTail A hA.isHermitian r) =
+      A.trace.re / (ε * spectralTraceTail A hA.isHermitian r) := by
+    unfold complexRelativeSpectralTraceTail
+    field_simp
+  apply complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail hA hr hτ hε
+  simpa only [he] using hbudget
+
+/-- An additive tolerance has its own scale-correct pivot budget, distinct from the
+relative optimal tail parameter. Source: manuscript `sa:rp-theorem`, additive corollary.
+atlas: rpcholesky (partial)
+@isnad1 id=le.6h6v.s7.c15253c90828 from=translated src=- shape=53be3560 vocab=a1352cc9
+-/
+theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail_add
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε h : ℝ} (hε : 0 < ε) (hh : 0 < h)
+    (hbudget : (r : ℝ) * spectralTraceTail A hA.isHermitian r /
+        (ε * spectralTraceTail A hA.isHermitian r + h) +
+      r * Real.log (A.trace.re / (ε * spectralTraceTail A hA.isHermitian r + h)) ≤ k) :
+    complexCholeskyExpectedTrace A k ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r + h := by
+  let τ := spectralTraceTail A hA.isHermitian r
+  have heps : 0 < ε + h / τ := add_pos hε (div_pos hh hτ)
+  have hmul : (ε + h / τ) * τ = ε * τ + h := by
+    rw [add_mul, div_mul_cancel₀ _ hτ.ne']
+  have hdiv : (r : ℝ) / (ε + h / τ) = r * τ / (ε * τ + h) := by
+    have hsum : 0 < ε * τ + h := add_pos (mul_pos hε hτ) hh
+    apply (div_eq_div_iff heps.ne' hsum.ne').mpr
+    rw [← hmul]
+    ring
+  have hB : (r : ℝ) / (ε + h / τ) + r * Real.log (A.trace.re / ((ε + h / τ) * τ)) ≤ k := by
+    rw [hdiv, hmul]
+    exact hbudget
+  have hC := complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail hA hr hτ heps hB
+  have hR : (1 + (ε + h / τ)) * τ = (1 + ε) * τ + h := by
+    calc (1 + (ε + h / τ)) * τ = τ + (ε + h / τ) * τ := by ring
+      _ = _ := by rw [hmul]; ring
+  exact hC.trans_eq hR
+
+omit [Nonempty n] in
+/-- A zero optimal trace tail yields exact RPCholesky expected trace after at most
+the target rank pivots, including a rank-zero input. Source: manuscript `sa:rp-theorem`.
+atlas: rpcholesky (partial)
+@isnad1 id=eq.3h4v.s5.7e631c9e91d7 from=translated src=- shape=d1b22c73 vocab=205ff3dd
+-/
+theorem complexCholeskyExpectedTrace_eq_zero_of_complexSpectralTraceTail_eq_zero
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ}
+    (ht : spectralTraceTail A hA.isHermitian r = 0) (hk : r ≤ k) :
+    complexCholeskyExpectedTrace A k = 0 :=
+  complexCholeskyExpectedTrace_eq_zero_of_rank_le hA ((rank_le_of_spectralTraceTail_eq_zero hA ht).trans hk)
+
+omit [Nonempty n] [DecidableEq n] in
+/-- The expected trace of the actual approximation error equals the expected residual
+trace used in the bounds. Source: manuscript `sa:rp-update`, definition of `Ahat_t`.
+@isnad1 id=eq.0h3v.s6.3d2aaae50984 from=translated src=- shape=fc02cf91 vocab=819a44a3
+-/
+theorem sum_complexCholeskyHistoryWeight_mul_trace_sub_approximation_eq
+    (A : Matrix n n ℂ) (t : ℕ) :
+    (∑ h : Fin t → n, complexCholeskyHistoryWeight A t h *
+      (A - complexRandomizedCholeskyApproximation A t h).trace.re) = complexCholeskyExpectedTrace A t := by
+  apply Finset.sum_congr rfl
+  intro h _
+  have he : A - complexRandomizedCholeskyApproximation A t h = complexCholeskyResidualHistory A t h := by
+    unfold complexRandomizedCholeskyApproximation
+    abel
+  rw [he]
+
+/-- The actual complex RPCholesky expectation obeys the retained relative-tail
+budget and the exact zero-tail endpoint. The relative parameter is exactly
+`eta = tail/re(tr A)`, and every positive tolerance is allowed. Source: manuscript
+`sa:rp-theorem`; audit Part VII; CETW (2025), the eta-dependent branch of Theorem 5.1.
+No eta-independent alternative from the full paper is asserted here.
+Atlas: `rpcholesky` (finite weighted formula).
+@isnad1 id=le.4h5v.s7.060261879688 from=translated src=- shape=c21d7f0c vocab=cde23db9
+-/
+theorem complexCholeskyExpectedTrace_le_of_relative_budget_or_zero_tail
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (0 < spectralTraceTail A hA.isHermitian r ∧
+      (r : ℝ) / ε + r * Real.log
+        (1 / (ε * complexRelativeSpectralTraceTail A hA.isHermitian r)) ≤ k) ∨
+      (spectralTraceTail A hA.isHermitian r = 0 ∧ r ≤ k)) :
+    complexCholeskyExpectedTrace A k ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  rcases hbudget with ⟨hτ, hb⟩ | ⟨hτ, hk⟩
+  · exact complexCholeskyExpectedTrace_le_of_complexRelativeSpectralTraceTail hA hr hτ hε hb
+  · rw [complexCholeskyExpectedTrace_eq_zero_of_complexSpectralTraceTail_eq_zero hA hτ hk,
+      hτ, mul_zero]
+
+/-- RPCholesky's residual-trace integral reaches the relative spectral-tail target.
+Source: CETW (2025), Theorem 5.1, relative-tail budget.
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.257416b29b42 from=translated src=- shape=772bc9c7 vocab=e7f6ce4b
+-/
+theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail
+    [MeasurableSpace n] [MeasurableSingletonClass n]
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (r : ℝ) / ε + r * Real.log
+      (A.trace.re / (ε * spectralTraceTail A hA.isHermitian r)) ≤ k) :
+    (∫ h, (complexCholeskyResidualHistory A k h).trace.re ∂complexCholeskyHistoryLaw A hA k) ≤
+      (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  rw [integral_trace_complexCholeskyHistoryLaw]
+  exact complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail hA hr hτ hε hbudget
+
+/-- The relative-tail guarantee applies to a random adaptive pivot history on any space.
+Source: CETW (2025), Theorem 5.1, relative-tail budget.
+@isnad1 id=le.6h8v.s8.190df3dd0de4 from=translated src=- shape=63cc6c3d vocab=db861471
+-/
+theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail_of_hasLaw
+    [MeasurableSpace n] [MeasurableSingletonClass n]
+    {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (r : ℝ) / ε + r * Real.log
+      (A.trace.re / (ε * spectralTraceTail A hA.isHermitian r)) ≤ k)
+    {H : Ω → Fin k → n} (hH : HasLaw H (complexCholeskyHistoryLaw A hA k) μ) :
+    (∫ ω, (complexCholeskyResidualHistory A k (H ω)).trace.re ∂μ) ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  rw [integral_trace_complexCholeskyHistoryLaw_of_hasLaw A hA k hH]
+  exact complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail hA hr hτ hε hbudget
+
+/-- Zero spectral tail gives zero expected residual trace after the target rank.
+Source: CETW (2025), rank termination endpoint.
+atlas: rpcholesky (partial)
+@isnad1 id=eq.3h4v.s6.186837abdc48 from=translated src=- shape=159c08c3 vocab=87b78afe
+-/
+theorem integral_trace_complexCholeskyHistoryLaw_eq_zero_of_spectralTraceTail_eq_zero
+    [MeasurableSpace n] [MeasurableSingletonClass n]
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ}
+    (ht : spectralTraceTail A hA.isHermitian r = 0) (hk : r ≤ k) :
+    (∫ h, (complexCholeskyResidualHistory A k h).trace.re ∂complexCholeskyHistoryLaw A hA k) = 0 := by
+  rw [integral_trace_complexCholeskyHistoryLaw]
+  exact complexCholeskyExpectedTrace_eq_zero_of_complexSpectralTraceTail_eq_zero hA ht hk
+
+/-- The adaptive complex RPCholesky law satisfies the relative-tail guarantee,
+including the exact zero-tail endpoint.
+Source: CETW (2025), Theorem 5.1, relative-tail branch and rank termination.
+atlas: rpcholesky
+@isnad1 id=le.4h5v.s8.ab8780e7e0c9 from=translated src=- shape=49517280 vocab=a68724d8
+-/
+theorem integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_tail
+    [MeasurableSpace n] [MeasurableSingletonClass n]
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (0 < spectralTraceTail A hA.isHermitian r ∧
+      (r : ℝ) / ε + r * Real.log
+        (1 / (ε * complexRelativeSpectralTraceTail A hA.isHermitian r)) ≤ k) ∨
+      (spectralTraceTail A hA.isHermitian r = 0 ∧ r ≤ k)) :
+    (∫ h, (complexCholeskyResidualHistory A k h).trace.re
+      ∂complexCholeskyHistoryLaw A hA k) ≤
+      (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  rw [integral_trace_complexCholeskyHistoryLaw]
+  exact complexCholeskyExpectedTrace_le_of_relative_budget_or_zero_tail hA hr hε hbudget
+
+/-- The relative-tail and zero-tail guarantees transport to a random adaptive history.
+Source: CETW (2025), Theorem 5.1, relative-tail branch and rank termination.
+@isnad1 id=le.5h8v.s8.c1f713b8fcd7 from=translated src=- shape=3149b076 vocab=750fe7cc
+-/
+theorem integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_tail_of_hasLaw
+    [MeasurableSpace n] [MeasurableSingletonClass n]
+    {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
+    {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
+    {ε : ℝ} (hε : 0 < ε)
+    (hbudget : (0 < spectralTraceTail A hA.isHermitian r ∧
+      (r : ℝ) / ε + r * Real.log
+        (1 / (ε * complexRelativeSpectralTraceTail A hA.isHermitian r)) ≤ k) ∨
+      (spectralTraceTail A hA.isHermitian r = 0 ∧ r ≤ k))
+    {H : Ω → Fin k → n} (hH : HasLaw H (complexCholeskyHistoryLaw A hA k) μ) :
+    (∫ ω, (complexCholeskyResidualHistory A k (H ω)).trace.re ∂μ) ≤ (1 + ε) * spectralTraceTail A hA.isHermitian r := by
+  rw [integral_trace_complexCholeskyHistoryLaw_of_hasLaw A hA k hH,
+    ← integral_trace_complexCholeskyHistoryLaw A hA k]
+  exact integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_tail hA hr hε hbudget
+
+end NLAlib
