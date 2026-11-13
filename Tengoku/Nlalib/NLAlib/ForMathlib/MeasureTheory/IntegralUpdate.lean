@@ -1,0 +1,30 @@
+import Tengoku.Seed.MeasureTheory.Integral.Prod
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Measurability of one-coordinate conditional means
+
+`measurable_integral_update_pi`: `x ↦ ∫ f (update x i t) dμᵢ(t)` is measurable. Next to
+`integrable_integral_update_pi` (`NLAlib.ForMathlib.MeasureTheory.Integral`). Moved from
+`NLAlib.Probability.Concentration.Entropy.EntropyTensorizationNonneg` (dedup round, 2026-10-12).
+-/
+
+open MeasureTheory
+
+namespace MeasureTheory
+
+/-- A one-coordinate conditional mean is measurable. Source: Mathlib's
+`StronglyMeasurable.integral_prod_right'` applied to coordinate resampling.
+Atlas: `entropy-tensorization`.
+@isnad1 id=measurab.1h5v.s6.c6a29ede00be from=translated src=- shape=35f8da6d vocab=6ab7286c
+-/
+theorem measurable_integral_update_pi {ι : Type*} [DecidableEq ι] {Ω : Type*}
+    [MeasurableSpace Ω] (μ : ι → Measure Ω) [∀ i, IsProbabilityMeasure (μ i)] (i : ι) {f : (ι → Ω) → ℝ}
+    (hfm : Measurable f) :
+    Measurable (fun x => ∫ t, f (Function.update x i t) ∂(μ i)) := by
+  exact (StronglyMeasurable.integral_prod_right'
+    (f := fun p : (ι → Ω) × Ω => f (Function.update p.1 i p.2))
+    (hfm.comp measurable_update').stronglyMeasurable).measurable
+
+end MeasureTheory

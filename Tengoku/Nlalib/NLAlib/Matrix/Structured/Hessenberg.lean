@@ -1,0 +1,113 @@
+import Tengoku.Seed.LinearAlgebra.Matrix.Hermitian
+import Tengoku.Seed.LinearAlgebra.Matrix.Block
+import Tengoku.Seed.LinearAlgebra.Matrix.Symmetric
+import Tengoku.Seed.Data.Real.Basic
+import Tengoku.Seed.Data.Real.Star
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Hessenberg and tridiagonal shapes
+
+Shape predicates on square matrices indexed by `Fin n`:
+
+* `IsUpperHessenberg H` (`H i j = 0` for `j + 1 < i`), `IsTridiagonal T` (`T` and `Tᵀ` upper
+ Hessenberg) and `IsUnreducedHessenberg H` (upper Hessenberg with no zero subdiagonal entry);
+* closure lemmas: upper triangular ⇒ Hessenberg, Hessenberg × upper triangular and
+ upper triangular × Hessenberg are Hessenberg, shifts `H ∓ μI` are Hessenberg
+ (`IsUpperHessenberg.sub_smul_one`, `.add_smul_one`), symmetric Hessenberg ⇒ tridiagonal.
+
+They are used by Givens QR (`NLAlib.Matrix.Factorizations.Givens`), Hessenberg reduction
+(`NLAlib.Matrix.Factorizations.Hessenberg`) and the QR algorithm.
+Sources: Golub–Van Loan 2013 [`gvl13`], §7.4, §8.3; Trefethen–Bau 1997 [`tb97`], Lect. 26.
+Atlas: `givens-rotation-def`, `hessenberg-reduction`.
+-/
+
+noncomputable section
+
+open scoped Matrix
+open Matrix
+
+namespace NLAlib
+
+variable {n : ℕ}
+
+/-- `H` is **upper Hessenberg**: `H i j = 0` whenever `j + 1 < i` (zero below the first
+subdiagonal). Golub–Van Loan 2013, §7.4; Trefethen–Bau 1997, Lect. 26.
+atlas: givens-rotation-def-/
+def IsUpperHessenberg (H : Matrix (Fin n) (Fin n) ℝ) : Prop :=
+  ∀ i j : Fin n, (j : ℕ) + 1 < i → H i j = 0
+
+/-- `T` is **tridiagonal**: `T` and `Tᵀ` are upper Hessenberg (`T i j = 0` for `|i − j| > 1`).
+Golub–Van Loan 2013, §8.3; Trefethen–Bau 1997, Lect. 26.
+atlas: givens-rotation-def-/
+def IsTridiagonal (T : Matrix (Fin n) (Fin n) ℝ) : Prop :=
+  IsUpperHessenberg T ∧ IsUpperHessenberg Tᵀ
+
+/-- An upper triangular matrix is upper Hessenberg.
+@isnad1 id=isupperh.1h2v.s4.1b26e46f1016 from=translated src=- shape=1a12a1e0 vocab=cca1574f
+-/
+theorem isUpperHessenberg_of_isUpperTriangular {U : Matrix (Fin n) (Fin n) ℝ}
+    (hU : U.IsUpperTriangular) : IsUpperHessenberg U :=
+  fun i j hij => hU (show j < i by rw [Fin.lt_def]; omega)
+
+/-- **Hessenberg × upper triangular is Hessenberg.** Golub–Van Loan 2013, §7.4.2 (proof of
+Hessenberg preservation).
+@isnad1 id=isupperh.2h3v.s6.a3b3d5175896 from=translated src=- shape=60ea0dc2 vocab=1f039ca6
+-/
+theorem IsUpperHessenberg.mul_isUpperTriangular {H U : Matrix (Fin n) (Fin n) ℝ}
+    (hH : IsUpperHessenberg H) (hU : U.IsUpperTriangular) : IsUpperHessenberg (H * U) := by
+  intro i j hij
+  rw [Matrix.mul_apply]
+  refine Finset.sum_eq_zero fun k _ => ?_
+  by_cases hk : (k : ℕ) + 1 < i
+  · rw [hH i k hk, zero_mul]
+  · rw [hU (show j < k by rw [Fin.lt_def]; omega), mul_zero]
+
+/-- **Upper triangular × Hessenberg is Hessenberg.** Golub–Van Loan 2013, §7.4.2.
+@isnad1 id=isupperh.2h3v.s6.86b754d3ab5e from=translated src=- shape=d7acfc43 vocab=1f039ca6
+-/
+theorem IsUpperHessenberg.isUpperTriangular_mul {H U : Matrix (Fin n) (Fin n) ℝ}
+    (hH : IsUpperHessenberg H) (hU : U.IsUpperTriangular) : IsUpperHessenberg (U * H) := by
+  intro i j hij
+  rw [Matrix.mul_apply]
+  refine Finset.sum_eq_zero fun k _ => ?_
+  by_cases hk : (k : ℕ) < i
+  · rw [hU (Fin.lt_def.2 hk), zero_mul]
+  · rw [hH k j (by omega), mul_zero]
+
+/-- **A symmetric upper Hessenberg matrix is tridiagonal.** Golub–Van Loan 2013, §8.3.1;
+Trefethen–Bau 1997, Lect. 26.
+@isnad1 id=istridia.2h2v.s5.3e61287d3269 from=translated src=- shape=746e60df vocab=de73db2c
+-/
+theorem IsUpperHessenberg.isTridiagonal_of_isHermitian {H : Matrix (Fin n) (Fin n) ℝ}
+    (hH : IsUpperHessenberg H) (hS : H.IsHermitian) : IsTridiagonal H :=
+  ⟨hH, by rw [(Matrix.isHermitian_iff_isSymm.mp hS).eq]; exact hH⟩
+
+/-- Subtracting a multiple of the identity keeps upper Hessenberg form. Helper for
+`qr-algorithm-simultaneous-iteration`.
+@isnad1 id=isupperh.1h3v.s6.b39d12eca686 from=translated src=- shape=84750a64 vocab=7f758a86
+-/
+theorem IsUpperHessenberg.sub_smul_one {H : Matrix (Fin n) (Fin n) ℝ} (hH : IsUpperHessenberg H)
+    (μ : ℝ) : IsUpperHessenberg (H - μ • (1 : Matrix (Fin n) (Fin n) ℝ)) := by
+  intro i j hij
+  have hne : i ≠ j := fun h => by subst h; omega
+  simp [hH i j hij, Matrix.one_apply_ne hne]
+
+/-- Adding a multiple of the identity keeps upper Hessenberg form. Helper for
+`qr-algorithm-simultaneous-iteration`.
+@isnad1 id=isupperh.1h3v.s6.48835e64f19c from=translated src=- shape=84750a64 vocab=715ca66b
+-/
+theorem IsUpperHessenberg.add_smul_one {H : Matrix (Fin n) (Fin n) ℝ} (hH : IsUpperHessenberg H)
+    (μ : ℝ) : IsUpperHessenberg (H + μ • (1 : Matrix (Fin n) (Fin n) ℝ)) := by
+  intro i j hij
+  have hne : i ≠ j := fun h => by subst h; omega
+  simp [hH i j hij, Matrix.one_apply_ne hne]
+
+/-- `H` has **no zero subdiagonal entry** (`H (j+1) j ≠ 0`) and is upper Hessenberg.
+Golub–Van Loan 2013, §7.4.3 ("unreduced"); Trefethen–Bau 1997, Lect. 26.
+atlas: hessenberg-reduction (partial)-/
+def IsUnreducedHessenberg (H : Matrix (Fin n) (Fin n) ℝ) : Prop :=
+  IsUpperHessenberg H ∧ ∀ i j : Fin n, (i : ℕ) = j + 1 → H i j ≠ 0
+
+end NLAlib
