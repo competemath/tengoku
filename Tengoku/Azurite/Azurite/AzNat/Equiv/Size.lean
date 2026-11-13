@@ -15,7 +15,7 @@ import Tengoku.Seed.Data.Nat.Bits
 import Tengoku.Seed.Data.Nat.Size
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.AzNat
 
 /--
@@ -171,3 +171,4 @@ lemma size_ofNat (n : Nat) : (ofNat n).size = n.size := by
   exact h.symm
 
 end Azurite.AzNat
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

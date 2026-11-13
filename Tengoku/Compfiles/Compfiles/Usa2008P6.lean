@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2008, Problem 6
 
@@ -300,3 +300,4 @@ lemma card_solutions (x0 : Fin n → ZMod 2) (hx0 : lap G x0 = degVec G) :
     Module.natCard_eq_pow_finrank (K := ZMod 2), Nat.card_eq_fintype_card, ZMod.card]
 
 end Usa2008P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

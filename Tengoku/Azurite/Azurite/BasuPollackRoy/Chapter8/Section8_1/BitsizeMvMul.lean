@@ -31,7 +31,7 @@ Proved by induction on `k` using `MvPolynomial.finSuccEquiv` to view a
 `(k+1)`-variable polynomial as a univariate polynomial over the
 `k`-variable coefficient ring.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 /-- `bitsize(a * b) ≤ τ + σ` when `bitsize a ≤ τ` and `bitsize b ≤ σ`.
@@ -198,3 +198,4 @@ theorem MvPolynomial.bitsize_coeff_mul_le :
       _ = τ + σ + (k + 1) * Nat.size (q + 1) := by ring
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

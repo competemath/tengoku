@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2007, Problem 6
 
@@ -387,3 +387,4 @@ lemma solution_lowerBounds (n : ℕ+) :
   exact min_total_degree hB_origin hB_zero
 
 end Imo2007P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

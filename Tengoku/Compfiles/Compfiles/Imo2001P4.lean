@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2001, Problem 4
 
@@ -102,3 +102,4 @@ lemma sum_modEq_zero_of_odd (hn : Odd n) : ∑ a, S c a ≡ 0 [ZMOD n !] := by
   exact (Int.dvd_mul_left ..).modEq_zero_int
 
 end Imo2001Q4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

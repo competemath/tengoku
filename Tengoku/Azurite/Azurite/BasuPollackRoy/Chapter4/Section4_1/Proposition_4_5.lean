@@ -57,7 +57,7 @@ This file is structured as:
 3. Sign theorem via factorization.
 4. BPR Proposition 4.5.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial Azurite.BPR Azurite.BPR.Theorem2_11
@@ -1825,3 +1825,4 @@ theorem proposition_4_5 (P : R[X]) (hP : P.Monic)
 end Proposition45
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

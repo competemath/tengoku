@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2008, Problem 4
 
@@ -54,3 +54,4 @@ lemma PosReal.two_mul (x : PosReal) : ⟨2, two_pos⟩ * x = x + x := by
 abbrev solution_set : Set (PosReal → PosReal) := { f | f = id ∨ f = fun x ↦ 1 / x }
 
 end Imo2008P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

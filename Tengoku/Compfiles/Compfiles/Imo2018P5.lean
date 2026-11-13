@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2018, Problem 5
 
@@ -426,3 +426,4 @@ lemma walk_const (a : ℕ → ℤ) (apos : ∀ n, 0 < a n) (N : ℕ) (hN : 0 < N
   rwa [Nat.add_sub_of_le hj1] at this
 
 end Imo2018P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

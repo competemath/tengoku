@@ -26,7 +26,7 @@ The representation maintains the invariant that the last element of the
 list (the leading coefficient) is always non-zero, unless the polynomial is the
 zero polynomial (represented by the empty list).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 /-- A univariate polynomial represented as a dense array of coefficients
@@ -316,3 +316,4 @@ def mapAlgebraMap {R S : Type _} [CommSemiring R] [Semiring S] [Algebra R S]
   mapInjective (algebraMap R S) hf p
 
 end Azurite.AzPolynomial
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

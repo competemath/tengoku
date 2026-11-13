@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2025, Problem 4
 
@@ -843,3 +843,4 @@ lemma answer_necessary : a₁ ∈ {a₁ | ∃ a : ℕ → ℕ, a 0 = a₁ ∧ Va
   exact ⟨j, l, by simpa [ha0] using hl⟩
 
 end Imo2025P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

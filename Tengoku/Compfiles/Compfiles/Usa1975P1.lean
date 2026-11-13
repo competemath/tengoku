@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1975, Problem 1
 a) Prove that
@@ -47,24 +47,24 @@ lemma Int.div_eq_floor {a b : ℕ} : (a / b: ℕ) = ⌊(a : ℝ) / b⌋ := by
   norm_cast
 
 @[reducible]
-noncomputable def trunCeil (x : ℝ) := ⌈x⌉ - 1
+noncomputable def _root_.Tengoku.Compfiles.trunCeil (x : ℝ) := ⌈x⌉ - 1
 
 /--
 @isnad1 id=le.1h2v.s4.4f58f2e20cb4 from=translated src=- shape=ee170020 vocab=f1220b1f
 -/
-lemma floor_le_trunCeil {a b : ℝ} (h : a < b) : ⌊a⌋ ≤ trunCeil b := by
+lemma _root_.Tengoku.Compfiles.floor_le_trunCeil {a b : ℝ} (h : a < b) : ⌊a⌋ ≤ trunCeil b := by
   simpa using Int.floor_lt_ceil_of_lt h
 
 /--
 @isnad1 id=le.0h2v.s7.6b41ecb9808f from=translated src=- shape=2c96a915 vocab=45e3c539
 -/
-lemma cases (a b : Fin 5) : trunCeil ((3 * ↑↑a + ↑↑b + 4) / 5) + trunCeil ((3 * ↑↑b + ↑↑a + 4) / 5) ≤ ↑↑a + ↑↑b := by
+lemma _root_.Tengoku.Compfiles.cases (a b : Fin 5) : trunCeil ((3 * ↑↑a + ↑↑b + 4) / 5) + trunCeil ((3 * ↑↑b + ↑↑a + 4) / 5) ≤ ↑↑a + ↑↑b := by
   fin_cases a <;> fin_cases b <;> simp [trunCeil] <;> ring_nf <;> linarith
 
 /--
 @isnad1 id=le.0h2v.s7.f3af6058a4cd from=translated src=- shape=a2640afc vocab=6a27006e
 -/
-lemma h (x y : ℝ) : ⌊x⌋ + ⌊y⌋ + ⌊3*x + y⌋ + ⌊3*y + x⌋ ≤ ⌊5*x⌋ + ⌊5*y⌋ := by
+lemma _root_.Tengoku.Compfiles.h (x y : ℝ) : ⌊x⌋ + ⌊y⌋ + ⌊3*x + y⌋ + ⌊3*y + x⌋ ≤ ⌊5*x⌋ + ⌊5*y⌋ := by
   wlog h : ⌊x⌋ = 0 ∧ ⌊y⌋ = 0
   · have := this (Int.fract x) (Int.fract y) ⟨Int.floor_fract _, Int.floor_fract _⟩
     rw [← Int.floor_add_fract x, ← Int.floor_add_fract y]
@@ -109,3 +109,4 @@ namespace Usa1975P1
 open scoped Nat
 
 end Usa1975P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

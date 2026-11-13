@@ -28,7 +28,7 @@ inside the sigma ring, the Jacobian *entries* are encoded directly as multihomog
 `entryPoly` whose block-0 partials of `P` and `D` are renamed in, and the singular condition is the
 simultaneous vanishing of the homotopy polynomials and of all maximal minors of the entry matrix.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -319,3 +319,4 @@ theorem singularLocus_eq_projZerOfFinset (P : Fin k → MvPolynomial (Fin (k + 1
     rwa [ProjVanishes, evalCoords_minorPoly] at this
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

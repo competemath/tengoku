@@ -20,7 +20,7 @@ Defines periodic sphere packings and relates their density to that of the underl
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 -- import Mathlib
 
 /- In this file, we establish results about density of periodic packings. This roughly corresponds
@@ -34,13 +34,13 @@ density within a fundamental domain w.r.t. any basis.
 -/
 
 open scoped ENNReal
-open SpherePacking EuclideanSpace MeasureTheory Metric ZSpan Bornology Module
+open Tengoku.SpherePackingOrig.SpherePacking EuclideanSpace MeasureTheory Metric ZSpan Bornology Module
 
 section aux_lemmas
 
 variable {d : ℕ} (S : PeriodicSpherePacking d) (D : Set (EuclideanSpace ℝ (Fin d)))
 
-lemma aux1 (hD_isBounded : IsBounded D) :
+lemma _root_.Tengoku.SpherePackingOrig.aux1 (hD_isBounded : IsBounded D) :
     IsBounded (⋃ x ∈ S.centers ∩ D, ball x (S.separation / 2)) := by
   apply isBounded_iff_forall_norm_le.mpr
   obtain ⟨L, hL⟩ := isBounded_iff_forall_norm_le.mp <| hD_isBounded
@@ -53,14 +53,14 @@ lemma aux1 (hD_isBounded : IsBounded D) :
   specialize hL y hy.right
   exact (norm_le_norm_add_norm_sub' x y).trans (by gcongr)
 
-lemma aux2 (D : Set (EuclideanSpace ℝ (Fin d))) :
+lemma _root_.Tengoku.SpherePackingOrig.aux2 (D : Set (EuclideanSpace ℝ (Fin d))) :
     Set.PairwiseDisjoint (S.centers ∩ D) (fun x ↦ ball x (S.separation / 2)) := by
   intro x hx y hy hxy
   apply ball_disjoint_ball
   rw [add_halves]
   exact S.centers_dist' _ _ hx.left hy.left hxy
 
-theorem aux3 {ι τ : Type*} {s : Set ι} {f : ι → Set (EuclideanSpace ℝ τ)} {c : ℝ≥0∞} (hc : 0 < c)
+theorem _root_.Tengoku.SpherePackingOrig.aux3 {ι τ : Type*} {s : Set ι} {f : ι → Set (EuclideanSpace ℝ τ)} {c : ℝ≥0∞} (hc : 0 < c)
     [Fintype τ] [NullSingletonClass (volume : Measure (EuclideanSpace ℝ τ))]
     (h_measurable : ∀ x ∈ s, MeasurableSet (f x))
     (h_bounded : IsBounded (⋃ x ∈ s, f x))
@@ -103,7 +103,7 @@ theorem aux3 {ι τ : Type*} {s : Set ι} {f : ι → Set (EuclideanSpace ℝ τ
       exact h_disjoint hx hy (by simpa using hxy)
     · exact fun ⟨x, hx⟩ ↦ h_measurable x hx
 
-lemma aux4 (hD_isBounded : IsBounded D) (hd : 0 < d) : Finite ↑(S.centers ∩ D) := by
+lemma _root_.Tengoku.SpherePackingOrig.aux4 (hD_isBounded : IsBounded D) (hd : 0 < d) : Finite ↑(S.centers ∩ D) := by
   haveI : Nonempty (Fin d) := Fin.pos_iff_nonempty.mp hd
   apply aux3 (c := volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2))) ?_ ?_
       (aux1 S D hD_isBounded)
@@ -117,12 +117,12 @@ lemma aux4 (hD_isBounded : IsBounded D) (hd : 0 < d) : Finite ↑(S.centers ∩ 
   · intros
     exact measurableSet_ball
 
-lemma aux4' {ι : Type*} [Finite ι] (b : Basis ι ℤ S.lattice) (hd : 0 < d) :
+lemma _root_.Tengoku.SpherePackingOrig.aux4' {ι : Type*} [Finite ι] (b : Basis ι ℤ S.lattice) (hd : 0 < d) :
     Finite ↑(S.centers ∩ fundamentalDomain (b.ofZLatticeBasis ℝ _)) :=
   aux4 S _ (ZSpan.fundamentalDomain_isBounded _) hd
 
 open scoped Pointwise in
-lemma aux4''
+lemma _root_.Tengoku.SpherePackingOrig.aux4''
     {ι : Type*} [Finite ι] (b : Basis ι ℤ S.lattice) (hd : 0 < d) (v : EuclideanSpace ℝ (Fin d)) :
     Finite ↑(S.centers ∩ (v +ᵥ fundamentalDomain (b.ofZLatticeBasis ℝ _))) :=
   aux4 S _ (IsBounded.vadd (ZSpan.fundamentalDomain_isBounded _) _) hd
@@ -134,7 +134,7 @@ variable {d : ℕ} (S : PeriodicSpherePacking d)
 open scoped Pointwise
 
 -- TODO: rename + move
-theorem PeriodicSpherePacking.fract_centers
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.fract_centers
     {ι : Type*} [Fintype ι] (b : Basis ι ℤ S.lattice) (s : S.centers) :
     fract (b.ofZLatticeBasis ℝ _) s.val ∈ S.centers := by
   have := (floor (b.ofZLatticeBasis ℝ _) s).prop
@@ -143,7 +143,7 @@ theorem PeriodicSpherePacking.fract_centers
   apply S.lattice_action (neg_mem this) s.prop
 
 -- TODO: rename + move
-theorem PeriodicSpherePacking.orbitRel_fract
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.orbitRel_fract
     {ι : Type*} [Fintype ι] (b : Basis ι ℤ S.lattice) (a : S.centers) :
     (S.addAction.orbitRel).r ⟨fract (b.ofZLatticeBasis ℝ _) a, S.fract_centers _ _⟩ a := by
   rw [AddAction.orbitRel_apply, AddAction.orbit, Set.mem_range]
@@ -165,7 +165,7 @@ open scoped Pointwise
 
 variable {d : ℕ} (S : PeriodicSpherePacking d) (D : Set (EuclideanSpace ℝ (Fin d)))
 
-noncomputable instance PeriodicSpherePacking.instCentersSetoid : Setoid S.centers :=
+noncomputable instance Tengoku.SpherePackingOrig.PeriodicSpherePacking.instCentersSetoid : Setoid S.centers :=
   S.addAction.orbitRel
 
 -- TODO: rename
@@ -181,17 +181,17 @@ section numReps_aux
 variable {d : ℕ}
 
 @[reducible]
-noncomputable def PeriodicSpherePacking.instFintypeNumReps'
+noncomputable def Tengoku.SpherePackingOrig.PeriodicSpherePacking.instFintypeNumReps'
   (S : PeriodicSpherePacking d) (hd : 0 < d)
   {D : Set (EuclideanSpace ℝ (Fin d))} (hD_isBounded : IsBounded D) :
   Fintype ↑(S.centers ∩ D) := @Fintype.ofFinite _ <| aux4 S D hD_isBounded hd
 
-noncomputable def PeriodicSpherePacking.numReps' (S : PeriodicSpherePacking d) (hd : 0 < d)
+noncomputable def Tengoku.SpherePackingOrig.PeriodicSpherePacking.numReps' (S : PeriodicSpherePacking d) (hd : 0 < d)
   {D : Set (EuclideanSpace ℝ (Fin d))} (hD_isBounded : IsBounded D) : ℕ :=
   letI := S.instFintypeNumReps' hd hD_isBounded
   Fintype.card ↑(S.centers ∩ D)
 
-theorem PeriodicSpherePacking.numReps'_nonneg (S : PeriodicSpherePacking d) (hd : 0 < d)
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.numReps'_nonneg (S : PeriodicSpherePacking d) (hd : 0 < d)
   {D : Set (EuclideanSpace ℝ (Fin d))} (hD_isBounded : IsBounded D) :
   0 ≤ S.numReps' hd hD_isBounded := by
   letI := S.instFintypeNumReps' hd hD_isBounded
@@ -255,7 +255,7 @@ private theorem hD_isAddFundamentalDomain
       norm_num at hg
     · exact fun _ ↦ quasiMeasurePreserving_add_left _ _
 
-theorem aux7 (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hL : ∀ x ∈ D, ‖x‖ ≤ L) :
+theorem _root_.Tengoku.SpherePackingOrig.aux7 (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hL : ∀ x ∈ D, ‖x‖ ≤ L) :
     ball 0 (R - L) ⊆ ⋃ x ∈ ↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R, (x +ᵥ D) := by
   intro x hx
   rw [mem_ball_zero_iff] at hx
@@ -280,7 +280,7 @@ instance (E : Type*) [AddCommGroup E] [MeasurableSpace E] [MeasurableAdd E] [Mod
   inferInstanceAs <| VAddInvariantMeasure s.toAddSubgroup E μ
 
 -- Theorem 2.2, lower bound
-theorem PeriodicSpherePacking.aux2_ge
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.aux2_ge
     (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hD_measurable : MeasurableSet D)
     (hL : ∀ x ∈ D, ‖x‖ ≤ L) (hd : 0 < d) :
     (↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R).encard
@@ -317,7 +317,7 @@ theorem PeriodicSpherePacking.aux2_ge
     rw [← lt_top_iff_ne_top]
     exact Bornology.IsBounded.measure_lt_top (isBounded_iff_forall_norm_le.mpr ⟨L, hL⟩)
 
-theorem aux8 (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hL : ∀ x ∈ D, ‖x‖ ≤ L) :
+theorem _root_.Tengoku.SpherePackingOrig.aux8 (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hL : ∀ x ∈ D, ‖x‖ ≤ L) :
     ⋃ x ∈ ↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R, (x +ᵥ D) ⊆ ball 0 (R + L) := by
   intro x hx
   rw [mem_ball_zero_iff]
@@ -332,7 +332,7 @@ theorem aux8 (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hL 
     _ < R + L := add_lt_add_of_lt_of_le hi_ball this
 
 -- Theorem 2.2, upper bound
-theorem PeriodicSpherePacking.aux2_le
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.aux2_le
     (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) (hD_measurable : MeasurableSet D)
     (hL : ∀ x ∈ D, ‖x‖ ≤ L) (hd : 0 < d) :
     (↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R).encard
@@ -375,7 +375,7 @@ open ZSpan
 variable (b : Basis ι ℤ S.lattice)
 
 -- Theorem 2.2 lower bound, in terms of fundamental domain of Z-lattice
-theorem PeriodicSpherePacking.aux2_ge'
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.aux2_ge'
     (hL : ∀ x ∈ fundamentalDomain (b.ofZLatticeBasis ℝ _), ‖x‖ ≤ L) (hd : 0 < d) :
     (↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R).encard
       ≥ volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R - L))
@@ -392,7 +392,7 @@ theorem PeriodicSpherePacking.aux2_ge'
     exact hy
 
 -- Theorem 2.2 upper bound, in terms of fundamental domain of Z-lattice
-theorem PeriodicSpherePacking.aux2_le'
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.aux2_le'
     (hL : ∀ x ∈ fundamentalDomain (b.ofZLatticeBasis ℝ _), ‖x‖ ≤ L) (hd : 0 < d) :
     (↑S.lattice ∩ ball (0 : EuclideanSpace ℝ (Fin d)) R).encard
       ≤ volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + L))
@@ -449,7 +449,7 @@ private lemma aux_bhavik' {ε : ℝ≥0∞} (hε : 0 < ε) :
     ∃ k : ℝ, k ≥ 0 ∧ ∀ k' ≥ k, ENNReal.ofReal ((k' / (k' + 1)) ^ d) ∈ Set.Icc (1 - ε) (1 + ε) := by
   simpa using aux_bhavik (d := d) (Nat.cast_nonneg _) hε
 
-theorem volume_ball_ratio_tendsto_nhds_one {C : ℝ} (hd : 0 < d) (hC : 0 ≤ C) :
+theorem _root_.Tengoku.SpherePackingOrig.volume_ball_ratio_tendsto_nhds_one {C : ℝ} (hd : 0 < d) (hC : 0 ≤ C) :
     Tendsto (fun R ↦ volume (ball (0 : EuclideanSpace ℝ (Fin d)) R)
       / volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + C))) atTop (𝓝 1) := by
   haveI : Nonempty (Fin d) := Fin.pos_iff_nonempty.mp hd
@@ -479,7 +479,7 @@ theorem volume_ball_ratio_tendsto_nhds_one {C : ℝ} (hd : 0 < d) (hC : 0 ≤ C)
     · positivity
     · positivity
 
-theorem volume_ball_ratio_tendsto_nhds_one'
+theorem _root_.Tengoku.SpherePackingOrig.volume_ball_ratio_tendsto_nhds_one'
     {d : ℕ} {C C' : ℝ} (hd : 0 < d) (hC : 0 ≤ C) (hC' : 0 ≤ C') :
       Tendsto (fun R ↦ volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + C))
         / volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + C'))) atTop (𝓝 1) := by
@@ -516,7 +516,7 @@ theorem Filter.map_add_atTop_eq' {β : Type*} {f : ℝ → β} (C : ℝ) (α : F
     · simp [le_sub_iff_add_le]
     · simp [sub_add_cancel]
 
-theorem volume_ball_ratio_tendsto_nhds_one'' {d : ℕ} {C C' : ℝ} (hd : 0 < d) :
+theorem _root_.Tengoku.SpherePackingOrig.volume_ball_ratio_tendsto_nhds_one'' {d : ℕ} {C C' : ℝ} (hd : 0 < d) :
     Tendsto (fun R ↦ volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + C))
       / volume (ball (0 : EuclideanSpace ℝ (Fin d)) (R + C'))) atTop (𝓝 1) := by
   apply (Filter.map_add_atTop_eq' (max (-C) (-C')) _).mpr
@@ -541,7 +541,7 @@ end DensityEqFdDensity
 
 section ConstantEqNormalizedConstant
 
-theorem periodic_constant_eq_periodic_constant_normalized (hd : 0 < d) :
+theorem _root_.Tengoku.SpherePackingOrig.periodic_constant_eq_periodic_constant_normalized (hd : 0 < d) :
     PeriodicSpherePackingConstant d = ⨆ (S : PeriodicSpherePacking d) (_ : S.separation = 1),
     S.density := by
   -- Argument almost identical to `constant_eq_constant_normalized`, courtesy Gareth
@@ -565,7 +565,7 @@ end ConstantEqNormalizedConstant
 
 section Disjoint_Covering_of_Centers
 
-theorem PeriodicSpherePacking.unique_covers_of_centers (S : PeriodicSpherePacking d) -- (hd : 0 < d)
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.unique_covers_of_centers (S : PeriodicSpherePacking d) -- (hd : 0 < d)
   {D : Set (EuclideanSpace ℝ (Fin d))} -- (hD_isBounded : IsBounded D)
   (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) -- (hD_measurable : MeasurableSet D)
   :
@@ -579,7 +579,7 @@ theorem PeriodicSpherePacking.unique_covers_of_centers (S : PeriodicSpherePackin
   · intro a ha hmem
     exact hg₂ a ha hmem
 
-theorem PeriodicSpherePacking.centers_union_over_lattice (S : PeriodicSpherePacking d)
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.centers_union_over_lattice (S : PeriodicSpherePacking d)
     {D : Set (EuclideanSpace ℝ (Fin d))}
     (hD_unique_covers : ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ D) :
     S.centers = ⋃ (g : S.lattice), (g +ᵥ S.centers ∩ D) := by
@@ -649,13 +649,13 @@ variable (S : PeriodicSpherePacking d) (b : Basis (Fin d) ℤ S.lattice)
 
 -- Note that we have `ZSpan.fundamentalDomain_isBounded`. We can use this to prove the following,
 -- which is necessary for `PeriodicSpherePacking.density_eq`.
-theorem PeriodicSpherePacking.exists_bound_on_fundamental_domain :
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.exists_bound_on_fundamental_domain :
   ∃ L : ℝ, ∀ x ∈ fundamentalDomain (b.ofZLatticeBasis ℝ _), ‖x‖ ≤ L :=
   isBounded_iff_forall_norm_le.1 (fundamentalDomain_isBounded (Basis.ofZLatticeBasis ℝ S.lattice b))
 
 -- Note that we have `ZSpan.exist_unique_vadd_mem_fundamentalDomain`. We can use this to prove the
 -- following.
-theorem PeriodicSpherePacking.fundamental_domain_unique_covers :
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.fundamental_domain_unique_covers :
    ∀ x, ∃! g : S.lattice, g +ᵥ x ∈ fundamentalDomain (b.ofZLatticeBasis ℝ _) := by
   have : S.lattice = span ℤ (Set.range (b.ofZLatticeBasis ℝ _)) :=
     Eq.symm (Basis.ofZLatticeBasis_span ℝ S.lattice b)
@@ -685,9 +685,9 @@ end Fundamental_Domains_in_terms_of_Basis
 
 section Periodic_Density_Formula
 
-noncomputable instance HDivENNReal : HDiv NNReal ENNReal ENNReal where
+noncomputable instance _root_.Tengoku.SpherePackingOrig.HDivENNReal : HDiv NNReal ENNReal ENNReal where
   hDiv := fun x y => x / y
-noncomputable instance HMulENNReal : HMul NNReal ENNReal ENNReal where
+noncomputable instance _root_.Tengoku.SpherePackingOrig.HMulENNReal : HMul NNReal ENNReal ENNReal where
   hMul := fun x y => x * y
 
 noncomputable def ZLattice.basis_index_equiv (Λ : Submodule ℤ (EuclideanSpace ℝ (Fin d)))
@@ -698,7 +698,7 @@ noncomputable def ZLattice.basis_index_equiv (Λ : Submodule ℤ (EuclideanSpace
       ZLattice.rank ℝ Λ,
       finrank_euclideanSpace, Fintype.card_fin]
 
-noncomputable def PeriodicSpherePacking.basis_index_equiv (P : PeriodicSpherePacking d) :
+noncomputable def Tengoku.SpherePackingOrig.PeriodicSpherePacking.basis_index_equiv (P : PeriodicSpherePacking d) :
   (Module.Free.ChooseBasisIndex ℤ ↥P.lattice) ≃ (Fin d) := ZLattice.basis_index_equiv P.lattice
 
 /- Here's a version of `PeriodicSpherePacking.density_eq` that
@@ -718,3 +718,4 @@ end Periodic_Constant_Eq_Constant
 end finiteDensity_limit
 
 end theorem_2_2
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

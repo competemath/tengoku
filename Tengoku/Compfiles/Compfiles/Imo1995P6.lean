@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1995, Problem 6
 
@@ -476,3 +476,4 @@ theorem card_U_filter_eq {p : ℕ} (hp : p.Prime) (i : ℕ) (hi : i ∈ Finset.r
 abbrev solution (p : ℕ) : ℕ := 2 + (Nat.choose (2 * p) p - 2) / p
 
 end Imo1995P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

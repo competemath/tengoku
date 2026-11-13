@@ -21,7 +21,7 @@ tagged `@[simp]` — use it explicitly, typically right-to-left to expose a lemm
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 universe u v w
 
 /-- Lifting a computation and post-composing `h` in the continuation is the same as lifting the
@@ -29,7 +29,7 @@ universe u v w
 projected computation apply.
 @isnad1 id=eq.0h8v.s6.ae6a855aa84d from=translated src=- shape=bf06bb37 vocab=be041b30
 -/
-theorem monadLift_bind_map {m : Type u → Type v} {n : Type u → Type w}
+theorem _root_.Tengoku.Arklib.monadLift_bind_map {m : Type u → Type v} {n : Type u → Type w}
     [Monad m] [LawfulMonad m] [Monad n] [LawfulMonad n]
     [MonadLiftT m n] [LawfulMonadLiftT m n] {α α' γ : Type u}
     (h : α → α') (x : m α) (f : α' → n γ) :
@@ -40,9 +40,10 @@ theorem monadLift_bind_map {m : Type u → Type v} {n : Type u → Type w}
 pair-valued computation.
 @isnad1 id=eq.0h7v.s6.69ca5287d660 from=translated src=- shape=3440f850 vocab=000a6a99
 -/
-theorem monadLift_bind_fst {m : Type u → Type v} {n : Type u → Type w}
+theorem _root_.Tengoku.Arklib.monadLift_bind_fst {m : Type u → Type v} {n : Type u → Type w}
     [Monad m] [LawfulMonad m] [Monad n] [LawfulMonad n]
     [MonadLiftT m n] [LawfulMonadLiftT m n] {α β γ : Type u}
     (x : m (α × β)) (f : α → n γ) :
     ((monadLift x : n (α × β)) >>= fun p => f p.1) = (monadLift (Prod.fst <$> x) : n α) >>= f :=
   monadLift_bind_map Prod.fst x f
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

@@ -23,7 +23,7 @@ moreover a *proper* algebraic subset of `ℙ₁(C)`: the parameter `(0 : 1)` is 
 (`diagSystem_common_zero_isNonsingular`, Lemma B). By Lemma 4.102, a proper algebraic subset of
 `ℙ₁(C)` is finite. Hence `Δ` is finite.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -69,3 +69,4 @@ theorem not_singular_at_diag (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (
   exact lt_irrefl k hrank
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # Bulgarian Mathematical Olympiad 1998, Problem 1
 
@@ -90,3 +90,4 @@ private def toFin9 (color : Set.Icc 1 9 → Fin 2) : Fin 9 → Fin 2 :=
   fun i => color ⟨i.val + 1, Set.mem_Icc.mpr (by lia)⟩
 
 end Bulgaria1998P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

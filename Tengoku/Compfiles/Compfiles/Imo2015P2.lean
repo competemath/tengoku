@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2015, Problem 2
 
@@ -157,3 +157,4 @@ lemma swap_bc_solution (a b c : ℤ) : (a,b,c) ∈ SolutionSet ↔ (a,c,b) ∈ S
     <;> rcases h with ⟨ha, hb, hc⟩ <;> rw [ha, hb, hc] <;> norm_num
 
 end Imo2015P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

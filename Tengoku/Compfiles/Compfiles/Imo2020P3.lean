@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2020, Problem 3
 
@@ -1161,3 +1161,4 @@ lemma compl_filter_pairOf (red : Fin (2 * n) → Bool) :
 end Assembly
 
 end Imo2020P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

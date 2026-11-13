@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 open Set Metric Function ENNReal
 open scoped NNReal
 
@@ -23,12 +23,12 @@ section Def
 variable {𝕜 X : Type*} [PseudoMetricSpace X] [NormedField 𝕜]
 
 /-- the L^∞-normalized t-Hölder norm. Defined in ℝ≥0∞ to avoid sup-related issues. -/
-def iHolENorm (φ : X → 𝕜) (x₀ : X) (R : ℝ) (t : ℝ) : ℝ≥0∞ :=
+def _root_.Tengoku.Carleson.iHolENorm (φ : X → 𝕜) (x₀ : X) (R : ℝ) (t : ℝ) : ℝ≥0∞ :=
   (⨆ (x ∈ ball x₀ R), ‖φ x‖ₑ) + (ENNReal.ofReal R) ^ t *
     ⨆ (x ∈ ball x₀ R) (y ∈ ball x₀ R) (_ : x ≠ y), (‖φ x - φ y‖ₑ / (edist x y) ^ t)
 
 /-- The `NNReal` version of the L^∞-normalized t-Hölder norm, `iHolENorm`. -/
-def iHolNNNorm (φ : X → 𝕜) (x₀ : X) (R : ℝ) (t : ℝ) : ℝ≥0 :=
+def _root_.Tengoku.Carleson.iHolNNNorm (φ : X → 𝕜) (x₀ : X) (R : ℝ) (t : ℝ) : ℝ≥0 :=
   (iHolENorm φ x₀ R t).toNNReal
 
 end Def
@@ -41,7 +41,7 @@ variable [MetricSpace X] [NormedField 𝕜]
 /--
 @isnad1 id=le.1h7v.s6.6de505b0a695 from=translated src=- shape=85a6ac11 vocab=abadfbca
 -/
-lemma enorm_le_iHolENorm_of_mem (hx : x ∈ ball z R) : ‖φ x‖ₑ ≤ iHolENorm φ z R t := by
+lemma _root_.Tengoku.Carleson.enorm_le_iHolENorm_of_mem (hx : x ∈ ball z R) : ‖φ x‖ₑ ≤ iHolENorm φ z R t := by
   apply le_trans _ le_self_add
   simp only [le_iSup_iff, iSup_le_iff]
   tauto
@@ -73,7 +73,7 @@ lemma HolderOnWith.of_iHolENorm_ne_top (ht : 0 ≤ t) (hφ : iHolENorm φ z R t 
 /--
 @isnad1 id=continuo.3h6v.s6.ab5aad55c4aa from=translated src=- shape=b658c68c vocab=0a438c1b
 -/
-lemma continuous_of_iHolENorm_ne_top (ht : 0 < t) (hφ : tsupport φ ⊆ ball z R)
+lemma _root_.Tengoku.Carleson.continuous_of_iHolENorm_ne_top (ht : 0 < t) (hφ : tsupport φ ⊆ ball z R)
     (h'φ : iHolENorm φ z R t ≠ ∞) :
     Continuous φ :=
   HolderOnWith.of_iHolENorm_ne_top ht.le h'φ |>.continuousOn (by simp [ht])
@@ -82,7 +82,7 @@ lemma continuous_of_iHolENorm_ne_top (ht : 0 < t) (hφ : tsupport φ ⊆ ball z 
 /--
 @isnad1 id=continuo.3h6v.s6.7988efde0b5f from=translated src=- shape=f7efe0e2 vocab=8ad81721
 -/
-lemma continuous_of_iHolENorm_ne_top' (ht : 0 < t) (hφ : support φ ⊆ ball z R)
+lemma _root_.Tengoku.Carleson.continuous_of_iHolENorm_ne_top' (ht : 0 < t) (hφ : support φ ⊆ ball z R)
     (h'φ : iHolENorm φ z (2 * R) t ≠ ∞) :
     Continuous φ := by
   rcases le_or_gt R 0 with hR | hR
@@ -100,14 +100,14 @@ section iHolNNNorm
 /--
 @isnad1 id=le.2h7v.s6.1281d241c29c from=translated src=- shape=ac6d79e8 vocab=27ea6a3d
 -/
-lemma norm_le_iHolNNNorm_of_mem (hφ : iHolENorm φ z R t ≠ ⊤) (hx : x ∈ ball z R) :
+lemma _root_.Tengoku.Carleson.norm_le_iHolNNNorm_of_mem (hφ : iHolENorm φ z R t ≠ ⊤) (hx : x ∈ ball z R) :
     ‖φ x‖ ≤ iHolNNNorm φ z R t :=
   (ENNReal.toReal_le_toReal (by simp) hφ).2 (enorm_le_iHolENorm_of_mem hx)
 
 /--
 @isnad1 id=le.2h7v.s6.0d505ed03f0c from=translated src=- shape=5cea966a vocab=1ac377b0
 -/
-lemma norm_le_iHolNNNorm_of_subset (hφ : iHolENorm φ z R t ≠ ⊤) (h : support φ ⊆ ball z R) :
+lemma _root_.Tengoku.Carleson.norm_le_iHolNNNorm_of_subset (hφ : iHolENorm φ z R t ≠ ⊤) (h : support φ ⊆ ball z R) :
     ‖φ x‖ ≤ iHolNNNorm φ z R t := by
   by_cases hx : x ∈ ball z R
   · apply norm_le_iHolNNNorm_of_mem hφ hx
@@ -117,3 +117,4 @@ lemma norm_le_iHolNNNorm_of_subset (hφ : iHolENorm φ z R t ≠ ⊤) (h : suppo
 end iHolNNNorm
 
 end iHolENorm
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

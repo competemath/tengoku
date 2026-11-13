@@ -45,7 +45,7 @@ for #314; everything geometric is discharged here.
 
 * [J. H. Silverman, *The Arithmetic of Elliptic Curves*][silverman2009], IV.1, Theorem 1.1.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open MvPowerSeries
 open scoped LaurentSeries
 
@@ -55,7 +55,7 @@ open scoped LaurentSeries
 `F` (presented through its divided difference) has roots `x`, `y`, and a further root `w`, with
 `x - y`, `w - x`, `w - y` all regular (left-cancellable) and unit leading coefficient `A`
 (`A · a = 1`), then `w` is forced to equal the Vieta third root `-(B·a) - x - y`. -/
-theorem vieta_third_root_unique {T : Type*} [CommRing T] (F : T → T) (A B Cc x y w a : T)
+theorem _root_.Tengoku.LanaEllipticCurves.vieta_third_root_unique {T : Type*} [CommRing T] (F : T → T) (A B Cc x y w a : T)
     (hdiff : ∀ u v : T, F u - F v = (u - v) * (A * (u ^ 2 + u * v + v ^ 2) + B * (u + v) + Cc))
     (hFx : F x = 0) (hFy : F y = 0) (hFw : F w = 0) (hA : A * a = 1)
     (hregxy : ∀ c : T, (x - y) * c = 0 → c = 0)
@@ -374,3 +374,4 @@ theorem embedDoubleLaurent_formalGroupZW_of_regular
     - (HahnSeries.embedDoubleLaurent W.formalThirdRoot) * hint
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

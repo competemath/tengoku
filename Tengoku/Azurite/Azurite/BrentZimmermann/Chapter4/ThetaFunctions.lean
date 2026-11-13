@@ -60,7 +60,7 @@ inverse nome formula (4.78) (a modular transformation; Mathlib has `jacobiTheta_
 to be connected later), Sasaki–Kanada (4.79), and the remark that AGM-based theta computation
 would be circular.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -661,3 +661,4 @@ theorem ellipticK_nome (hq0 : 0 ≤ q) (hq1 : q < 1) :
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

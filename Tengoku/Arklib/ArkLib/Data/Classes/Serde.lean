@@ -19,23 +19,23 @@ public import Tengoku.Seed.Probability.Distributions.Uniform
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 universe u v
 
 /-- Type class for types that can be serialized to another type (most often `ByteArray` or
   `String`).-/
-class Serialize (α : Type u) (β : Type v) where
+class _root_.Tengoku.Arklib.Serialize (α : Type u) (β : Type v) where
   serialize : α → β
 
 export Serialize (serialize)
 
 /-- Type class for injective serialization.-/
-class Serialize.IsInjective (α : Type u) (β : Type v) [inst : Serialize α β] : Prop where
+class Tengoku.Arklib.Serialize.IsInjective (α : Type u) (β : Type v) [inst : Serialize α β] : Prop where
   serialize_inj : Function.Injective inst.serialize
 
 /-- Type class for types that can be deserialized from another type (most often `ByteArray` or
   `String`), which _never_ fails.-/
-class Deserialize (α : Type u) (β : Type v) where
+class _root_.Tengoku.Arklib.Deserialize (α : Type u) (β : Type v) where
   deserialize : β → α
 
 -- Local instance for now, will need to develop statistical distance a lot more
@@ -45,19 +45,19 @@ instance {α : Type*} [Fintype α] : Dist (PMF α) where
 open NNReal in
 /-- Type class for deserialization on two non-empty finite types `α`, `β`, which pushes forward the
   uniform distribution of `β` to the uniform distribution of `α`, up to some error-/
-class Deserialize.CloseToUniform (α : Type u) (β : Type u)
+class Tengoku.Arklib.Deserialize.CloseToUniform (α : Type u) (β : Type u)
     [Fintype α] [Fintype β] [Nonempty α] [Nonempty β] [Deserialize α β] where
   ε : ℝ≥0
   ε_close : dist (PMF.uniformOfFintype α) (deserialize <$> PMF.uniformOfFintype β) ≤ ε
 
 /-- Type class for types that can be deserialized from another type (most often `ByteArray` or
   `String`), returning an `Option` if the deserialization fails.-/
-class DeserializeOption (α : Type u) (β : Type v) where
+class _root_.Tengoku.Arklib.DeserializeOption (α : Type u) (β : Type v) where
   deserialize : β → Option α
 
 /-- Type class for types that can be serialized and deserialized (with potential failure) to/from
   another type (most often `ByteArray` or `String`).-/
-class Serde (α : Type u) (β : Type v) extends Serialize α β, DeserializeOption α β
+class _root_.Tengoku.Arklib.Serde (α : Type u) (β : Type v) extends Serialize α β, DeserializeOption α β
 
 -- Note: for codecs into an alphabet `σ`, we basically want the following:
 -- variable {α σ : Type*} {n : ℕ} [inst : Serialize α (Vector σ n)] [inst.IsInjective]
@@ -65,3 +65,4 @@ class Serde (α : Type u) (β : Type v) extends Serialize α β, DeserializeOpti
 -- Note: for codecs out of an alphabet `σ`, we basically want the following:
 -- variable {α σ : Type u} [Fintype α] [Nonempty α] [Fintype σ] [Nonempty σ] {n : ℕ} [NeZero n]
 --   [inst : Deserialize α (Vector σ n)] [inst.CloseToUniform]
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

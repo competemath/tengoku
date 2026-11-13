@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1989, Problem 3
 
@@ -77,3 +77,4 @@ lemma collinear_of_dist_eq {A B : Pt} (hAB : A ≠ B) {p₁ p₂ p₃ : Pt} (h�
     rw [vsub_eq_sub, vadd_eq_add, hr, sub_add_cancel]
 
 end Imo1989P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

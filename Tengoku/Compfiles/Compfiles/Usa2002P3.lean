@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2002, Problem 3
 
@@ -200,3 +200,4 @@ theorem exists_eval_neg_one_pow_pos {p : ℝ[X]} (hm : p.Monic) (hd : 1 ≤ p.na
   exact ⟨a, haB, by linarith⟩
 
 end Usa2002P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

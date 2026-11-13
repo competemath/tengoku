@@ -17,16 +17,16 @@ bounds in `FG.lean`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 open UpperHalfPlane TopologicalSpace Set
   Metric Filter Function Complex
 
 open scoped Interval Real NNReal ENNReal Topology BigOperators Nat
 
-noncomputable def cts_exp_two_pi_n (K : Set ℂ) : ContinuousMap K ℂ where
+noncomputable def _root_.Tengoku.SpherePackingOrig.cts_exp_two_pi_n (K : Set ℂ) : ContinuousMap K ℂ where
   toFun := fun r : K => Complex.exp (2 * ↑π * Complex.I * r)
 
-theorem hasDerivAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
+theorem _root_.Tengoku.SpherePackingOrig.hasDerivAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
     {s : Set ℂ} (hs : IsOpen s) (x : ℂ) (hx : x ∈ s)
     (hf : ∀ y : ℂ, y ∈ s → Summable fun n : α => f n y)
     (hu :∀ K ⊆ s, IsCompact K →
@@ -62,7 +62,7 @@ theorem hasDerivAt_tsum_fun {α : Type _} (f : α → ℂ → ℂ)
     apply (hf2 q ⟨r, hr⟩).differentiableWithinAt
   exact IsOpen.mem_nhds hs hr
 
-theorem iter_deriv_comp_bound3 (K : Set ℂ) (hK1 : K ⊆ {z : ℂ | 0 < z.im}) (hK2 : IsCompact K)
+theorem _root_.Tengoku.SpherePackingOrig.iter_deriv_comp_bound3 (K : Set ℂ) (hK1 : K ⊆ {z : ℂ | 0 < z.im}) (hK2 : IsCompact K)
     (k : ℕ) :
     ∃ u : ℕ → ℝ,
       Summable u ∧
@@ -134,3 +134,4 @@ theorem iter_deriv_comp_bound3 (K : Set ℂ) (hK1 : K ⊆ {z : ℂ | 0 < z.im}) 
     convert ineqe
   · positivity
   positivity
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

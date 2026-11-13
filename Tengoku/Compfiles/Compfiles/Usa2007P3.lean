@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2007, Problem 3
 
@@ -213,3 +213,4 @@ lemma main (col : Finset α → Bool) {n : ℕ} (hn : 1 ≤ n) :
     exact color_eq col claim _ A A₀ (hFsub A hA).1 hA₀S (hFsub A hA).2 hA₀card le_rfl
 
 end Usa2007P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

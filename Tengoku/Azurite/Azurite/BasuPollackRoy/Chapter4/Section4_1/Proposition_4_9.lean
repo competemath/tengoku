@@ -32,7 +32,7 @@ defining formula of `sDisc_{p-k}(P)`.
 
 See `Proposition_4_9_PLAN.md` for the proof decomposition.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Matrix Polynomial
@@ -303,3 +303,4 @@ theorem proposition_4_9 (P : K[X]) (k : ℕ)
                     (fun ab : C × C => ab.1 - ab.2)).prod)]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

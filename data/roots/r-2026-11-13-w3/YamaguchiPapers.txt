@@ -1,0 +1,71 @@
+leakscan: 240 global instances (38 can fire outside the library), 1 scoped; 740 global simp lemmas (12 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 19 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance ValuationTheory.ValuationSubring.charP registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Basic (declared at line 29)
+leak: instance ValuationTheory.DiscreteValuationField.Valuation.isRankOneDiscrete_comap_ringEquiv registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.ValuationTransport (declared at line 87)
+leak: instance CategoryTheory.ContAction.isClosedUnderLimitsOfShape_isContinuous registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 119)
+leak: instance CategoryTheory.ContAction.isClosedUnderColimitsOfShape_isContinuous registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 132)
+leak: instance CategoryTheory.ContAction.hasFiniteLimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 145)
+leak: instance CategoryTheory.ContAction.hasFiniteColimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 152)
+leak: instance CategoryTheory.ContAction.forgetPreservesFiniteLimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 159)
+leak: instance CategoryTheory.ContAction.forgetPreservesFiniteColimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 173)
+leak: instance CategoryTheory.ContAction.resPreservesFiniteLimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.ContinuousActions.FiniteLimitsAndColimits (declared at line 187)
+leak: simp ProCGroups.ContinuousMonoidHom.rangeRestrict_apply registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.Topologies.ContinuousMonoidHom (declared at line 112)
+leak: simp ProCGroups.ContinuousMonoidHom.coe_rangeRestrict_apply registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.Topologies.ContinuousMonoidHom (declared at line 121)
+leak: instance ProCGroups.ProC.OpenNormalSubgroup.instTopOpenNormalSubgroup registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.ProC.OpenNormalSubgroups.Basic (declared at line 31)
+leak: instance ProCGroups.ProC.OpenNormalSubgroup.quotientFinite registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.ProC.OpenNormalSubgroups.Basic (declared at line 152)
+leak: instance ProCGroups.ProC.OpenNormalSubgroup.quotientDiscrete registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.ProC.OpenNormalSubgroups.Basic (declared at line 159)
+leak: instance DiscreteValuationField.FieldCompositum.supRightAlgebra registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Compositum (declared at line 39)
+leak: instance DiscreteValuationField.FieldCompositum.supLeftAlgebra registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.DiscreteValuationField.Compositum (declared at line 43)
+leak: instance CategoryTheory.PreGaloisCategory.FiberFunctor.preservesFiniteColimits registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.GaloisCategories.FiberFunctorExactness (declared at line 36)
+leak: instance _private.Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.GaloisCategories.FiberFunctorUniqueness.0.CategoryTheory.FiniteContinuousAction.carrierMulAction registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.GaloisCategories.FiberFunctorUniqueness (declared at line 211)
+leak: simp CategoryTheory.Aut.one_hom registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.Pi1.GaloisCategories.FundamentalGroup (declared at line 31)
+leak: instance EtaleFundamentalGroups.Kummer.mvPowerSeries_isNoetherianRing_of_finite registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.Kummer.Completions.MaximalAdic.MvPowerSeriesNoetherian (declared at line 209)
+leak: instance EtaleFundamentalGroups.Kummer.maximalAdicCompletion_isNoetherianRing_instance registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.Kummer.Completions.MaximalAdic.MvPowerSeriesNoetherian (declared at line 257)
+leak: instance _private.Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.Purity.CechLocalizationComplex.0.EtaleFundamentalGroups.Purity.cochainNatTensorSigns registered in Tengoku.YamaguchiPapers.Nyll.EtaleFundamentalGroups.Purity.CechLocalizationComplex (declared at line 35)
+leak: instance EtaleFundamentalGroups.productCoordinateAlgebra registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Normalization.Products.LocalRingFactor (declared at line 58)
+leak: instance ValuationTheory.Completion.algebraicClosureAut_compactSpace registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.Completion.SeparableClosureAutTopology (declared at line 99)
+leak: simp KummerTheory.RadicalDatum.smul_algebraMap_unit registered in Tengoku.YamaguchiPapers.Nyll.GaloisCohomology.Kummer.Concrete.RootCharacters (declared at line 211)
+leak: simp LocalFieldTheory.powMonoidHom_range_one_mem registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.LocalField.GroupTheory.PowerIndex (declared at line 37)
+leak: instance ProCGroups.Subgroup.normal_iInf registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.Categorical.QuotientPullbackEquivalences (declared at line 25)
+leak: instance ProCGroups.FiniteGeneration.instTopologicalSpaceFinitePerm registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.FiniteGeneration.CharacteristicChainsAndIndices (declared at line 182)
+leak: instance ProCGroups.WreathProducts.instMulActionRightCosetStandardEmbedding registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 537)
+leak: instance ProCGroups.WreathProducts.instMulActionRightCosetStandardEmbeddingTopological registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 655)
+leak: instance ProCGroups.WreathProducts.instMulActionRightCosetCoordinateRecovery registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 702)
+leak: simp ProCGroups.WreathProducts.mulAutArrow_apply_eq_functionPrecomp registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 209)
+leak: simp ProCGroups.WreathProducts.permutationalWreathProduct_inl_left_apply registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 424)
+leak: simp ProCGroups.WreathProducts.permutationalWreathProduct_inr_left_apply registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 432)
+leak: simp ProCGroups.WreathProducts.permutationalWreathProduct_rightHom_comp_inr registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.WreathProducts (declared at line 440)
+leak: instance ProCGroups.Order.ClosedSubgroup.instTopClosedSubgroup registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.Order.Basic (declared at line 36)
+leak: instance ProCGroups.Order.ClosedSubgroup.instBotClosedSubgroup registered in Tengoku.YamaguchiPapers.Nyll.ProCGroups.Order.Basic (declared at line 40)
+leak: simp TameAbhyankar.SGA1.algebraMap_normalization_smul registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.AbhyankarLemma.Geometry.Inertia.IdealLocalization (declared at line 145)
+leak: instance MorphismProperty.top_isStableUnderBaseChange registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 87)
+leak: instance instHasOfPostcompPropertyTopMorphismProperty registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 94)
+leak: instance AlgebraicGeometry.Affine.instPreservesFiniteLimitsUnderCommRingCatObjOppositeOpensCarrierCarrierPresheafOpOpensTopMapBasePushoutAppOfFlat registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 591)
+leak: instance AlgebraicGeometry.Affine.instIsAffineXSchemeDirectedAffineCover registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 616)
+leak: simp AlgebraicGeometry.Scheme.Cover.ColimitGluingData.pullbackGluedIso_hom registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 115)
+leak: simp AlgebraicGeometry.Scheme.Cover.ColimitGluingData.pullbackGluedIso_hom_assoc registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Over (declared at line 118)
+leak: instance AlgebraicGeometry.AffineAnd.instIsAffineHomHomSchemeDiscretePUnit registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Affine.Property (declared at line 240)
+leak: instance AlgebraicGeometry.IsFinite.instHasOfPostcompPropertyScheme registered in Tengoku.YamaguchiPapers.Nyll.SchemeTheory.Pi1.Morphisms.Finite (declared at line 42)
+leak: instance _private.Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Ostrowski.0.AbsoluteValue.ostrowski_withAbsCharZero registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Ostrowski (declared at line 61)
+leak: instance _private.Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.SpectralExtension.0.AbsoluteValue.withAbsAlgebra_isAlgebraic registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.SpectralExtension (declared at line 36)
+leak: instance _private.Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.FiniteNormExtension.0.AlgebraicNumberTheory.Valuations.finiteWithAbsAlgebraIsAlgebraic registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.AlgebraicExtension.FiniteNormExtension (declared at line 336)
+leak: instance WithVal.uniformContinuousConstSMul registered in Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.Completion.WithValScalars (declared at line 23)
+root: kmf2_fiber_input_of_standardSmooth_case
+root: kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isReduced_of_mem_minimalPrimes
+root: instHasOfPostcompPropertyTopMorphismProperty
+root: kmf2_fiber_sat_smooth_polynomial
+root: kmf2_fiber_isRegularLocalRing_localization_atPrime_polynomial
+root: kmf2_fiber_isLocalization_primeCompl_congr
+root: instFiniteEtaleOfIsFiniteSplit
+root: kmf2_fiber_gate_input_clause_polynomial
+root: kmf2_fiber_input_iff_standardSmooth_case
+root: kmf2_fiber_standardSmooth_case_of_input
+root: isRegularLocalRing_localization_atPrime_of_isStandardSmooth
+root: kmf2_fiber_not_isStandardSmooth_dualNumber_of_standardSmooth_case
+root: kmf2_fiber_isRegularRing_polynomial
+root: isRegularLocalRing_localization_atPrime_of_etale_of_comap
+root: SmoothFieldFiberRegularStalksInput
+root: kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isPrincipalIdealRing
+root: kmf2_fiber_falsif_not_standardSmooth_case_dropping_standardSmooth
+root: isRegularLocalRing_localization_atPrime_mvPolynomial
+root: ProCGrp

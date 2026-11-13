@@ -20,21 +20,21 @@ dependent function type.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 /-- Type class to express that a given type `F` has an equivalence to a dependent function type.
 
 This is stronger than `DFunLike` since we get an equivalence and not just an injection into the
 dependent function type.-/
-class DFunEquiv (F : Sort*) (α : outParam (Sort*)) (β : outParam <| α → Sort*) where
+class _root_.Tengoku.Arklib.DFunEquiv (F : Sort*) (α : outParam (Sort*)) (β : outParam <| α → Sort*) where
   equiv : F ≃ ∀ a : α, β a
 
 /-- Type class to express that a given type `F` has an equivalence to a function type.
 
 This is stronger than `FunLike` since we get an equivalence and not just an injection into the
 function type.-/
-abbrev FunEquiv F α β := DFunEquiv F α fun _ => β
+abbrev _root_.Tengoku.Arklib.FunEquiv F α β := DFunEquiv F α fun _ => β
 
-namespace DFunEquiv
+namespace Tengoku.Arklib.DFunEquiv
 
 variable {F : Sort*} {α : Sort*} {β : α → Sort*} [inst : DFunEquiv F α β]
 
@@ -87,4 +87,5 @@ lemma coe_fn_of_coe (f : ∀ a, β a) : (f : F) = inst.equiv.invFun f := rfl
 @[simp]
 lemma coe_of_coe_fn (f : F) : (f : ∀ a, β a) = inst.equiv.toFun f := rfl
 
-end DFunEquiv
+end Tengoku.Arklib.DFunEquiv
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

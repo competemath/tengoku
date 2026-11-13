@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2023, Problem 4
 
@@ -520,3 +520,4 @@ lemma alice_prevents_end (a : ℕ+) (N : ℕ) (hN : 1 < N)
       simp_rw [hboard]; exact hi_gt
 
 end Usa2023P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1975, Problem 3
 
@@ -76,3 +76,4 @@ lemma eval_prod_X_sub_C_self (m : ℕ) :
     rw [e, prod_range_add_one_cast]
 
 end Usa1975P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

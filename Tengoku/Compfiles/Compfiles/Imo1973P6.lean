@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1973, Problem 6
 
@@ -101,3 +101,4 @@ theorem imo1973_p6_of_n_eq_one (hn : n = 1) (hq : q ∈ Set.Ioo 0 1) (apos : ∀
     refine (Real.sqrt_lt' ?_).mpr ?_ <;> nlinarith
 
 end Imo1973P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

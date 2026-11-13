@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # British Mathematical Olympiad 2024, Round 1, Problem 4
 
@@ -104,3 +104,4 @@ lemma not_square_ge_five (n : ℕ) (hn : 5 ≤ n) : ¬ IsSquare (n * 2 ^ n + 1) 
   lia
 
 end UK2024R1P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

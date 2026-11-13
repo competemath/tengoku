@@ -35,7 +35,7 @@ import Tengoku.Azurite.Azurite.CrandallPomerance.Chapter4.CycPQDomain
 import Tengoku.Azurite.Azurite.CrandallPomerance.Chapter4.Theorem_4_4_6_CycM
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace CP
@@ -361,3 +361,4 @@ theorem theorem_4_4_6_composite_tower
 end CP
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

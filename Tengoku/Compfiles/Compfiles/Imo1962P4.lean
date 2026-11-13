@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematics Olympiad 1962, Problem 4
 
@@ -94,3 +94,4 @@ The final theorem is now just gluing together our lemmas.
 -/
 
 end Imo1962P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
   `AzVector R n` wraps Lean's `Vector R n` (array-backed).
   Equivalence with Mathlib's `Fin n → R` via `toFn`/`ofFn`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 /-- A computable fixed-length vector backed by `Vector`.-/
@@ -106,3 +106,4 @@ instance : GetElem (AzVector R n) (Fin n) R (fun _ _ => True) where
   getElem v i _ := v.get i
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

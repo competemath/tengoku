@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1976, Problem 3
 
@@ -121,3 +121,4 @@ lemma eq_zero_of_solution_aux (a : ℤ) :
     exact ih a' b' c' (k + 1) h_new
 
 end Usa1976P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

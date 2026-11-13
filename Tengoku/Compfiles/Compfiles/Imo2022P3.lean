@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2022, Problem 3
 
@@ -1142,3 +1142,4 @@ lemma perm_unique {k : ℕ} (n : ℕ) :
 -- snip end
 
 end Imo2022P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

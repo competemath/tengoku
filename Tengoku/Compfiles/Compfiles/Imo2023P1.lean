@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2023, Problem 1
 
@@ -465,3 +465,4 @@ lemma dividable_is_PrimePow {n : ℕ} (h : 1 < n ∧ Dividable n)
 abbrev solution_set : Set ℕ := { n | ¬n.Prime ∧ IsPrimePow n }
 
 end Imo2023P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

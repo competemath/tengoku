@@ -23,7 +23,7 @@ The construction `pdet` and its multilinearity / alternation are in
 **uniqueness** of a multilinear alternating map with those values, completing
 Proposition 8.27.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -228,3 +228,4 @@ theorem proposition_8_27_existence (hmn : m ≤ n) :
     fun e he hAnti hne => normalization_pdet_zero e hmn he hAnti hne⟩
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

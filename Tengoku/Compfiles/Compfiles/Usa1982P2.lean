@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1982, Problem 2
 
@@ -208,3 +208,4 @@ lemma final_odd (m n : ℕ) (hm : 0 < m) (hn : n = 2) (hmo : Odd m)
     linarith [key]
 
 end Usa1982P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

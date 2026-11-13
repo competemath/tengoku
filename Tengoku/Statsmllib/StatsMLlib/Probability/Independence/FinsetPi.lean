@@ -20,10 +20,10 @@ This module introduces no new definitions.
 * `pi_eval_iIndepFun`: independence of coordinate projections.
 * `pi_comp_eval_iIndepFun`: independence after applying a measurable map coordinatewise.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open MeasureTheory ProbabilityTheory
 
-theorem pi_map_eval {ι: Type*} {Ω : ι → Type*} [Fintype ι] [DecidableEq ι]
+theorem _root_.Tengoku.Statsmllib.pi_map_eval {ι: Type*} {Ω : ι → Type*} [Fintype ι] [DecidableEq ι]
   [∀ i, MeasurableSpace (Ω i)] {μ : (i : ι) → Measure (Ω i)}
   [∀ i, IsProbabilityMeasure (μ i)] (k : ι): (Measure.pi μ).map (Function.eval k) = (μ k) := by
   apply Measure.ext_iff.mpr
@@ -43,7 +43,7 @@ theorem pi_map_eval {ι: Type*} {Ω : ι → Type*} [Fintype ι] [DecidableEq ι
 
 variable {Ω ι: Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ] [Fintype ι] [DecidableEq ι]
 
-theorem pi_eval_iIndepFun :
+theorem _root_.Tengoku.Statsmllib.pi_eval_iIndepFun :
   iIndepFun Function.eval (Measure.pi fun _ ↦ μ : Measure (ι → Ω)) := by
   simp only [iIndepFun, Kernel.iIndepFun, Kernel.iIndep, Kernel.iIndepSets, Set.mem_ofPred_eq,
     Kernel.const_apply, ae_dirac_eq, Filter.eventually_pure]
@@ -96,6 +96,7 @@ theorem pi_eval_iIndepFun :
         exact isProbabilityMeasure_iff.mp inferInstance
     _ = _ := Fintype.prod_ite_mem s fun i ↦ (Measure.pi fun x ↦ μ) (f i)
 
-theorem pi_comp_eval_iIndepFun {𝓧 : Type*} [MeasurableSpace 𝓧] {X : Ω → 𝓧} (hX : Measurable X):
+theorem _root_.Tengoku.Statsmllib.pi_comp_eval_iIndepFun {𝓧 : Type*} [MeasurableSpace 𝓧] {X : Ω → 𝓧} (hX : Measurable X):
   iIndepFun (fun (i : ι) ↦ X ∘ (Function.eval i)) (Measure.pi fun _ ↦ μ) := by
   apply iIndepFun.comp pi_eval_iIndepFun _ (fun _ ↦ hX)
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

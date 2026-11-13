@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1976, Problem 5
 
@@ -110,3 +110,4 @@ theorem mapsTo (n : ℕ) (a : Fin n → Fin (2 * n) → ℤ)
         ring
 
 end Imo1976P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

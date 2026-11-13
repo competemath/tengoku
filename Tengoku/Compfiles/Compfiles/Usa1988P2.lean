@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1988, Problem 2
 
@@ -43,3 +43,4 @@ lemma vieta (a b c r s t : ℝ)
     linarith
 
 end Usa1988P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

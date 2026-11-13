@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1983, Problem 5
 
@@ -218,3 +218,4 @@ theorem generalized (n : ℕ+) :
     rw [eq_iff_of_zero_or_one_in_base hy'y hy'y]
 
 end Imo1983P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

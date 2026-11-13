@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2006, Problem 4
 
@@ -101,3 +101,4 @@ lemma prod_le_sum_div_pow {k : ℕ} (hk : 0 < k) (z : Fin k → ℚ) (hz : ∀ i
   rwa [hL, hR] at h1
 
 end Usa2006P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

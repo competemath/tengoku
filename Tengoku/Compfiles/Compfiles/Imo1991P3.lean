@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1991, Problem 3
 
@@ -141,3 +141,4 @@ lemma smallPrimeFactor_dvd {x : ℕ} (hx : x ∈ badSet) : smallPrimeFactor x �
     · exact h
 
 end Imo1991P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2005, Problem 6
 
@@ -432,3 +432,4 @@ lemma f_lower (n e : ℕ) (he : 1 ≤ e) (hn : 10 ^ e ≤ n + 1) : 9 * e ≤ f n
 -/
 lemma f_upper (n : ℕ) : f n ≤ 9 * (Nat.log 10 (n * (n + 1) / 2) + 1) :=
   Nat.sInf_le (s := {k | ∃ S : Finset ℕ, IsStable k S ∧ S.card = n}) (stable_exists n)
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

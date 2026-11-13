@@ -14,23 +14,24 @@ The `fst <$> (Prod.map f g <$> x)` family for a lawful functor.
 -/
 
 public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u v w x
 
 @[grind =]
-lemma fst_map_prod_map {m : Type u → Type v} [Functor m] [LawfulFunctor m] {α β γ δ : Type u}
+lemma _root_.Tengoku.Vcvio.fst_map_prod_map {m : Type u → Type v} [Functor m] [LawfulFunctor m] {α β γ δ : Type u}
     (mx : m (α × β)) (f : α → γ) (g : β → δ) :
     Prod.fst <$> Prod.map f g <$> mx = (f ∘ Prod.fst) <$> mx := by
   simp [Functor.map_map]; rfl
 
 @[grind =]
-lemma snd_map_prod_map {m : Type u → Type v} [Functor m] [LawfulFunctor m] {α β γ δ : Type u}
+lemma _root_.Tengoku.Vcvio.snd_map_prod_map {m : Type u → Type v} [Functor m] [LawfulFunctor m] {α β γ δ : Type u}
     (mx : m (α × β)) (f : α → γ) (g : β → δ) :
     Prod.snd <$> Prod.map f g <$> mx = (g ∘ Prod.snd) <$> mx := by
   simp [Functor.map_map]; rfl
 
 /-- Split form: the second projection after `Prod.map` equals the mapped projection. -/
-lemma snd_map_prod_map_eq_map {m : Type u → Type v} [Functor m] [LawfulFunctor m]
+lemma _root_.Tengoku.Vcvio.snd_map_prod_map_eq_map {m : Type u → Type v} [Functor m] [LawfulFunctor m]
     {α β γ δ : Type u} (mx : m (α × β)) (f : α → γ) (g : β → δ) :
     Prod.snd <$> Prod.map f g <$> mx = g <$> (Prod.snd <$> mx) :=
   (snd_map_prod_map mx f g).trans (Functor.map_map Prod.snd g mx).symm
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2015, Problem 6
 
@@ -170,3 +170,4 @@ lemma recurrent_averages_absurd
   linarith [h7, hbound, hMnonneg]
 
 end Usa2015P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

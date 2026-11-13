@@ -138,7 +138,7 @@ below uses either of them. It changes no statement here.
 * [J. Silverman, *The arithmetic of elliptic curves*][silverman2009], III.4 (Exercise 3.7).
 * M. Ward, *Memoir on elliptic divisibility sequences*, Amer. J. Math. 70 (1948).
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open Polynomial
 open scoped Polynomial.Bivariate
 
@@ -355,3 +355,4 @@ theorem ψ_isEllipticSequence_evalEval_of_gapCore (hgap : WardGapCore) :
 end Affine
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

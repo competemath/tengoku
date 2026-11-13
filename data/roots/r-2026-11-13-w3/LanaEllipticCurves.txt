@@ -1,0 +1,47 @@
+leakscan: 28 global instances (11 can fire outside the library), 0 scoped; 119 global simp lemmas (3 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 31 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance EllipticCurves.Fixture.instIsEllipticBaseChange registered in Tengoku.LanaEllipticCurves.EllipticCurves.Fixtures (declared at line 317)
+leak: instance FormalGroup.instNegPoint registered in Tengoku.LanaEllipticCurves.EllipticCurves.FormalGroup.PointGroup (declared at line 270)
+leak: instance FormalGroup.instAddGroupPoint registered in Tengoku.LanaEllipticCurves.EllipticCurves.FormalGroup.PointGroup (declared at line 287)
+leak: instance FormalGroup.instAddCommGroupPointOfIsComm registered in Tengoku.LanaEllipticCurves.EllipticCurves.FormalGroup.PointGroup (declared at line 301)
+leak: instance WeierstrassCurve.Affine.CoordinateRing.instModuleFinite registered in Tengoku.LanaEllipticCurves.EllipticCurves.Torsion.CoordinateRingDedekind (declared at line 76)
+leak: instance WeierstrassCurve.Affine.CoordinateRing.instIsNoetherianRing registered in Tengoku.LanaEllipticCurves.EllipticCurves.Torsion.CoordinateRingDedekind (declared at line 81)
+leak: instance WeierstrassCurve.Affine.CoordinateRing.instDimensionLEOne registered in Tengoku.LanaEllipticCurves.EllipticCurves.Torsion.CoordinateRingDedekind (declared at line 86)
+leak: instance WeierstrassCurve.Affine.CoordinateRing.instFiniteType registered in Tengoku.LanaEllipticCurves.EllipticCurves.FunctionField.TranslationEndomorphism (declared at line 187)
+leak: simp AddSubgroup.torsionBy_zero registered in Tengoku.LanaEllipticCurves.EllipticCurves.Torsion.Defs (declared at line 64)
+leak: simp AddSubgroup.torsionBy_one registered in Tengoku.LanaEllipticCurves.EllipticCurves.Torsion.Defs (declared at line 70)
+leak: instance WeierstrassCurve.Affine.CoordinateRing.instAlgebraRatFunc registered in Tengoku.LanaEllipticCurves.EllipticCurves.FunctionField.RatFuncExtension (declared at line 102)
+leak: simp IsDedekindDomain.HeightOneSpectrum.valuationSubringAtPrime_inj registered in Tengoku.LanaEllipticCurves.EllipticCurves.FunctionField.ValuationSubringDedekind (declared at line 138)
+leak: instance WeierstrassCurve.isElliptic_integralModel_of_hasGoodReduction registered in Tengoku.LanaEllipticCurves.EllipticCurves.Reduction.JInvariantReductionCommutes (declared at line 60)
+leak: instance WeierstrassCurve.isElliptic_reduction_of_hasGoodReduction registered in Tengoku.LanaEllipticCurves.EllipticCurves.Reduction.JInvariantReductionCommutes (declared at line 66)
+root: galoisModularCyclotomicChar_hypothesis_of_isSepClosed
+root: zsmul_eq_val_nsmul
+root: galoisModularCyclotomicChar
+root: isUnramified_of_subsingleton
+root: isAlgebraic_of_ker_maximal
+root: pow_val_one_of_mem_rootsOfUnity
+root: normEDS_rel_even
+root: IsUnramified
+root: galoisCyclotomicChar_continuous
+root: zmodPairHom_surjOn
+root: nsmul_congr_of_natCast_eq
+root: zmodPairHom
+root: galoisCyclotomicChar_spec
+root: galoisModularCyclotomicChar_eq_one_iff
+root: galoisModularCyclotomicChar_unique
+root: galoisRingAut
+root: algebraicClosure_eq_bot_of_isDomain_tensor
+root: vieta_root_of_regular
+root: galoisCyclotomicChar_toZModPow
+root: isUnramified_bot
+root: zmodPairHom_apply
+root: normEDS_rel_odd
+root: vieta_third_root_unique
+root: restrictRootsOfUnity_eq_pow_galoisModularCyclotomicChar
+root: isGalois_normalClosure_of_isSeparable
+root: closure_pair_zmod_prod
+root: galoisModularCyclotomicChar_spec
+root: neg_add_cancel_of_add_neg_cancel
+root: galoisCyclotomicChar
+root: hasEnoughRootsOfUnity_pow_of_isSepClosed
+root: galoisRingAut_apply

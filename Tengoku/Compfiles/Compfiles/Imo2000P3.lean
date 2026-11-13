@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2000, Problem 3
 
@@ -484,3 +484,4 @@ end
 abbrev solution_set (n : ℕ) : Set ℝ := Set.Ici (1 / ((n : ℝ) - 1))
 
 end Imo2000P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -48,7 +48,7 @@ via `Matrix.polyCoeff_list_prod`, applies the IH to each summand, and finally
 bounds the cardinality of the relevant filtered `antidiagonalTuple` to absorb
 the extra `k → k+1` summand.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open _root_.Azurite.BPR.Matrix _root_.Azurite.BPR.MvPolynomial Polynomial Finset.Nat
@@ -828,3 +828,4 @@ theorem MvPolynomial.bitsize_coeff_list_prod_le_bpr_8_2 :
       (Nat.add_le_add_left h_step _)
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

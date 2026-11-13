@@ -13,7 +13,7 @@ The purpose of this file is to include some results on Fourier series.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 open Complex Real
 
 variable {U : Set ℂ} (f : U → ℂ) (c : ℕ → ℂ)
@@ -23,21 +23,21 @@ Predicate for a function `f : U → ℂ` to have `c : ℕ → ℂ` as its fourie
 `∑' n, c n * exp (π * I * n * x) = f x`.
 Note we write this using `HasSum` to assert that the sum exists and is equal to `f x`.
 -/
-def HasFourierSeries : Prop := ∀ (x : U), HasSum (fun n ↦ c n * exp (π * I * n * x)) (f x)
+def _root_.Tengoku.SpherePackingOrig.HasFourierSeries : Prop := ∀ (x : U), HasSum (fun n ↦ c n * exp (π * I * n * x)) (f x)
 
 /--
 Predicate for a function `f : U → ℂ` to have `c : ℕ → ℂ` as its `2π`-fourier series, ie for all
 `x ∈ U`, `∑' n, c n * exp (2 * π * I * n * x) = f x`.
 Note we write this using `HasSum` to assert that the sum exists and is equal to `f x`.
 -/
-def Has2PiFourierSeries : Prop := ∀ (x : U),
+def _root_.Tengoku.SpherePackingOrig.Has2PiFourierSeries : Prop := ∀ (x : U),
   HasSum (fun n ↦ c n * exp (2 * π * I * n * x)) (f x)
 
 section Odd_Even_Trick
 
 open Function
 
-theorem hasFourierSeries_iff_has2PiFourierSeries :
+theorem _root_.Tengoku.SpherePackingOrig.hasFourierSeries_iff_has2PiFourierSeries :
     Has2PiFourierSeries f c ↔ HasFourierSeries f (extend (fun n ↦ 2 * n) c 0) := by
   simp only [HasFourierSeries, Subtype.forall, Has2PiFourierSeries]
   apply forall₂_congr
@@ -56,3 +56,4 @@ theorem hasFourierSeries_iff_has2PiFourierSeries :
   · simp [h]
 
 end Odd_Even_Trick
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

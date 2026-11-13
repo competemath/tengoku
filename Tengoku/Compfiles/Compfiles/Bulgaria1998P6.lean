@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # Bulgarian Mathematical Olympiad 1998, Problem 6
 
@@ -430,3 +430,4 @@ lemma lemma_1
   exact lemma_1' s t u hs ht hy h'
 
 end Bulgaria1998P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

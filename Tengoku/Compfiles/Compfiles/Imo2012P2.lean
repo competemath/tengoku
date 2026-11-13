@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2012, Problem 2
 
@@ -166,3 +166,4 @@ lemma aux₆ {n : ℕ} (hn : 2 ≤ n) : ∏ x ∈ Finset.Icc 2 n, ((x : ℝ) - 1
     rw [Nat.mul_factorial_pred (by lia: _)]
 
 end Imo2012P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

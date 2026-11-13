@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1972, Problem 3
 
@@ -169,3 +169,4 @@ noncomputable abbrev solution (n : ℕ) : ENNReal :=
   1 + (4 / 9) ^ n - (8 / 9) ^ n - (5 / 9) ^ n
 
 end Usa1972P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ import Tengoku.Automatatheory.AutomataTheory.Sequences.Basic
 This file contains some definitions and theorems about
 infinite occurrences in an infinite sequence.
 -/
-
+namespace Tengoku.Automatatheory end Tengoku.Automatatheory open Tengoku.Automatatheory
 open Function Set Prod Option Filter Stream'
 open Classical
 
@@ -18,13 +18,13 @@ section InfOcc
 
 /-- `InfOcc xs` is the set of elements that appears infinitely many times in `xs`.
 -/
-def InfOcc {X : Type*} (xs : Stream' X) : Set X :=
+def _root_.Tengoku.Automatatheory.InfOcc {X : Type*} (xs : Stream' X) : Set X :=
   { x | ∃ᶠ k in atTop, xs k = x }
 
 /-- Removing any finite prefix of `xs` does not change `InfOcc xs`.
 @isnad1 id=eq.0h3v.s4.9f991b60b5e3 from=translated src=- shape=babeb470 vocab=efe96597
 -/
-theorem inf_occ_suffix {X : Type*} (xs : Stream' X) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.inf_occ_suffix {X : Type*} (xs : Stream' X) (k : ℕ) :
     InfOcc (xs.drop k) = InfOcc xs := by
   ext x ; simp [InfOcc, frequently_atTop] ; constructor
   · intro h_inf n ; obtain ⟨m, h_m, rfl⟩ := h_inf n
@@ -35,7 +35,7 @@ theorem inf_occ_suffix {X : Type*} (xs : Stream' X) (k : ℕ) :
 /-- Over a finite type, `xs k` is in `InfOcc xs` for all sufficiently large `k`.
 @isnad1 id=eventual.0h2v.s4.afad989e7174 from=translated src=- shape=a112abc8 vocab=76337401
 -/
-theorem inf_occ_eventually {X : Type*} [Finite X] (xs : Stream' X) :
+theorem _root_.Tengoku.Automatatheory.inf_occ_eventually {X : Type*} [Finite X] (xs : Stream' X) :
     ∀ᶠ k in atTop, xs k ∈ InfOcc xs := by
   have h_compl : ∀ x ∈ (InfOcc xs)ᶜ, ∃ n, ∀ k ≥ n, xs k ≠ x := by simp [InfOcc]
   choose lb h_lb using h_compl
@@ -55,3 +55,4 @@ The ⊆ direction of the first proof doesn't need injectivity assumption.
 -- The following proof is due to Kyle Miller
 
 end InfOcc
+-- Tengoku: root names of this library moved to Tengoku.Automatatheory so they do not collide with other libraries (generated)

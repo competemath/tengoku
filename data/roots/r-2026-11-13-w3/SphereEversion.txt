@@ -1,0 +1,62 @@
+leakscan: 5 global instances (4 can fire outside the library), 0 scoped; 25 global simp lemmas (5 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 51 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp norm_coe_ball_lt registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Analysis.Calculus.AddTorsor.AffineMap (declared at line 28)
+leak: instance instAddCommGroupPullback registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.VectorBundle.Misc (declared at line 119)
+leak: instance instZeroPullback registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.VectorBundle.Misc (declared at line 123)
+leak: simp Bundle.Trivial.trivializationAt registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.VectorBundle.Misc (declared at line 73)
+leak: simp Bundle.Trivial.trivialization_continuousLinearMapAt registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.VectorBundle.Misc (declared at line 78)
+leak: simp continuousLinearMap_trivializationAt registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.VectorBundle.Misc (declared at line 109)
+leak: instance Matrix.normedAddCommGroup registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.SmoothBarycentric (declared in Tengoku.Seed.Analysis.Matrix.Normed: an `attribute` command of the library turns it on)
+leak: instance Matrix.normedSpace registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.SmoothBarycentric (declared in Tengoku.Seed.Analysis.Matrix.Normed: an `attribute` command of the library turns it on)
+leak: simp Path.extend_div_self registered in Tengoku.SphereEversion.SphereEversion.ToMathlib.Topology.Path (declared at line 16)
+root: reallyConvex_univ
+root: evalBarycentricCoords_eq_det
+root: reallyConvexHull_mono
+root: evalBarycentricCoords
+root: target_diffeomorphToNhd_subset_ball
+root: one_lt_rank_of_rank_lt_rank
+root: mem_affineBases_iff
+root: mapsTo_homothety_ball
+root: exists_by_induction'
+root: instZeroPullback
+root: reallyConvex_contMDiffAtProd
+root: support_finite_of_finsum_eq_of_neZero
+root: exists_contMDiff_of_convex₂
+root: exists_contDiff_of_convex₂
+root: exists_countable_locallyFinite_cover
+root: pullback_trivializationAt
+root: diffeomorphToNhd
+root: exists_smooth_and_eqOn
+root: reallyConvex_iff_convex
+root: sum_mem_reallyConvexHull
+root: instCoeContMDiffMapRealModelWithCornersSelfSomeENatTopSubtypeGermNhdsMemSubringSmoothGerm
+root: ReallyConvex
+root: InjImmersion
+root: evalBarycentricCoords_apply_of_mem_bases
+root: contDiffOn_diffeomorphToNhd_inv
+root: instAddCommGroupPullback
+root: Immersion
+root: exists_by_induction
+root: range_diffeomorphToNhd_subset_ball
+root: exists_contMDiff_of_convex
+root: exists_of_convex
+root: exists_contDiff_of_convex
+root: finite_of_finsum_ne_zero
+root: diffeomorphToNhd_apply_zero
+root: reallyConvex_empty
+root: continuousLinearMap_trivializationAt
+root: diffeomorphToNhd_source
+root: exists_contDiff_one_nhds_of_interior
+root: reallyConvexHull
+root: affineBases
+root: evalBarycentricCoords_apply_of_not_mem_bases
+root: finite_of_finprod_ne_one
+root: reallyConvex_iff_hull
+root: convex_setOf_imp_eq
+root: affineBases_findim
+root: contDiff_diffeomorphToNhd
+root: norm_coe_ball_lt
+root: smoothGerm
+root: contDiff_homothety
+root: reallyConvex_contMDiffAt
+root: smooth_barycentric

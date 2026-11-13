@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2017, Problem 5
 
@@ -623,3 +623,4 @@ theorem main_aux (N : ℕ) (hN : 1 ≤ N) (a : Fin (N * (N + 1)) → ℕ)
   · exact Or.inr h
 
 end Imo2017P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

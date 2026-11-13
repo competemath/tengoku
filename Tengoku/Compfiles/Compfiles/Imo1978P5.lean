@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1978, Problem 5
 
@@ -118,3 +118,4 @@ lemma abel_compare (n : ℕ) (w g h : ℕ → ℝ)
     · exact fun m h1 hm => hps m h1 (by lia)
 
 end Imo1978P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

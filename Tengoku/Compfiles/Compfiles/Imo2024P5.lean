@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2024, Problem 5
 
@@ -771,3 +771,4 @@ lemma path2OfEdge0_firstMonster_eq_none_of_path1OfEdge0_firstMonster_eq_some (hN
 abbrev answer : ℕ := 3
 
 end Imo2024P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

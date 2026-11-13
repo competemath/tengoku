@@ -12,11 +12,11 @@ is a principal ideal ring.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 /--
 @isnad1 id=coprime.2h2v.s4.47005f1a9085 from=translated src=- shape=74babeef vocab=cbd0eef3
 -/
-lemma uff {n p : ℕ} [hp : Fact p.Prime] (hn : n.Prime) (hpn : p ≠ n) : p.Coprime n :=
+lemma _root_.Tengoku.FltRegular.uff {n p : ℕ} [hp : Fact p.Prime] (hn : n.Prime) (hpn : p ≠ n) : p.Coprime n :=
   (Nat.coprime_primes hp.1 hn).mpr hpn
 
 open NumberField Module NumberField.InfinitePlace Nat Real RingOfIntegers Finset Multiset
@@ -234,3 +234,4 @@ theorem pid6 (h : ∀ p ∈ Finset.Icc 1 ⌊(M K)⌋₊, (hp : p.Prime) → (hpn
     exact H
 
 end IsCyclotomicExtension.Rat
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

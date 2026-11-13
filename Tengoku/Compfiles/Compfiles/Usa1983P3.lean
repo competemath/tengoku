@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1983, Problem 3
 
@@ -74,3 +74,4 @@ lemma mem_leftMax_or_rightMin {n : ℕ} {S : Fin n → Set ℝ}
   · exact absurd (hck.trans_le (Set.mem_Icc.mp hx).1) (not_lt_of_ge hxd)
 
 end Usa1983P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # United States of America Mathematical Olympiad 2018, Problem 2
 
@@ -620,3 +620,4 @@ abbrev solution_set : Set (ℝ → ℝ) :=
   { f | ∃ k : ℝ, k ∈ Set.Icc (-1 / 2) 1 ∧ ∀ t : ℝ, 0 < t → f t = k / (t + 1) + (1 - k) / 3 }
 
 end Usa2018P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

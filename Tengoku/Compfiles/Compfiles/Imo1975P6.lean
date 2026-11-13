@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1975, Problem 6
 
@@ -112,3 +112,4 @@ lemma linear_rat {f : ℝ → ℝ} (h : ∀ (n : ℤ) {x : ℝ}, f (n * x) = n *
   rwa [h3, ← h2, linear_inv h x.den, ← mul_assoc, h2, h3, mul_comm] at h1
 
 end Imo1975P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2026, Problem 4
 
@@ -479,3 +479,4 @@ lemma solitary_count (k : ℕ) : Finset.card { x ∈ Finset.Ico 1 (10^k) | is_so
     grind
 
 end Usa2026P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

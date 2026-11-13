@@ -21,7 +21,7 @@ minors `m_i` are determinants over `D` and the sum is in `D[X]` — so it is a
 straightforward re-parameterization. Over a field it agrees with the
 `𝓕`-valued `pdet` (`coe_pdet_eq_pdetRing`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -85,3 +85,4 @@ variable {K : Type*} [Field K]
 end FieldCompat
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

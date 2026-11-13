@@ -14,7 +14,7 @@ import Tengoku.Seed.Algebra.Polynomial.Degree.Operations
 import Tengoku.Seed.Algebra.Polynomial.Degree.Lemmas
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 open Polynomial
 
 variable {R : Type _} [Semiring R]
@@ -35,7 +35,7 @@ noncomputable def Polynomial.toDenseList [DecidableEq R] (p : Polynomial R) : Li
 /--
 @isnad1 id=eq.1h2v.s5.f0722b5860bc from=translated src=- shape=ed34adaf vocab=62325053
 -/
-lemma length_toDenseList [DecidableEq R] (p : Polynomial R) (hp : p ≠ 0) :
+lemma _root_.Tengoku.Azurite.length_toDenseList [DecidableEq R] (p : Polynomial R) (hp : p ≠ 0) :
   p.toDenseList.length = p.natDegree + 1 := by
   dsimp [Polynomial.toDenseList]
   split
@@ -46,7 +46,7 @@ lemma length_toDenseList [DecidableEq R] (p : Polynomial R) (hp : p ≠ 0) :
 /--
 @isnad1 id=eq.1h2v.s6.67e8a0763c7e from=translated src=- shape=817ac992 vocab=867cf2ee
 -/
-@[simp] lemma last_toDenseList_ne_zero [DecidableEq R] (p : Polynomial R) (hp : p ≠ 0) :
+@[simp] lemma _root_.Tengoku.Azurite.last_toDenseList_ne_zero [DecidableEq R] (p : Polynomial R) (hp : p ≠ 0) :
     (p.toDenseList.getLast (by
       intro h
       have h1 : p.toDenseList.length = 0 := List.length_eq_zero_iff.mpr h
@@ -91,7 +91,7 @@ noncomputable def AzPolynomial.ofPoly [DecidableEq R] (p : Polynomial R) : Azuri
 /--
 @isnad1 id=eq.0h2v.s4.fee39384ef2a from=translated src=- shape=9aae1eb9 vocab=cb8742ad
 -/
-lemma toPoly_dropTrailingZeros [DecidableEq R] (l : List R) :
+lemma _root_.Tengoku.Azurite.toPoly_dropTrailingZeros [DecidableEq R] (l : List R) :
   (Azurite.AzPolynomial.dropTrailingZeros l).toPoly = l.toPoly := by
   have hw := Azurite.AzPolynomial.eq_dropTrailingZeros_append_takeWhile l
   have h_toPoly (a b : List R) : (a ++ b).toPoly = a.toPoly + X ^ a.length * b.toPoly := by
@@ -137,7 +137,7 @@ lemma toPoly_dropTrailingZeros [DecidableEq R] (l : List R) :
 /--
 @isnad1 id=eq.0h2v.s4.0778bf455ce8 from=translated src=- shape=230ca600 vocab=fb6b7040
 -/
-lemma toPoly_normalize [DecidableEq R] (a : Array R) :
+lemma _root_.Tengoku.Azurite.toPoly_normalize [DecidableEq R] (a : Array R) :
   AzPolynomial.toPoly (Azurite.AzPolynomial.normalize a) = a.toList.toPoly := by
   have h1 : (a.popWhile (· == 0)).toList = Azurite.AzPolynomial.dropTrailingZeros a.toList := Azurite.AzPolynomial.toList_popWhile_eq_dropTrailingZeros a
   -- We establish `(normalize a).toPoly` converts to `(a.popWhile ...).toList.toPoly`
@@ -148,7 +148,7 @@ lemma toPoly_normalize [DecidableEq R] (a : Array R) :
 /--
 @isnad1 id=eq.0h3v.s4.06f30de8dfa5 from=translated src=- shape=04a2bb94 vocab=3034d1f0
 -/
-lemma coeff_toPoly (l : List R) (i : ℕ) :
+lemma _root_.Tengoku.Azurite.coeff_toPoly (l : List R) (i : ℕ) :
   (List.toPoly l).coeff i = l.getCoeff i := by
   induction l generalizing i with
   | nil => simp [List.toPoly, List.getCoeff]
@@ -160,7 +160,7 @@ lemma coeff_toPoly (l : List R) (i : ℕ) :
 /--
 @isnad1 id=eq.0h3v.s4.161d80949944 from=translated src=- shape=04a2bb94 vocab=b858766d
 -/
-@[simp] lemma coeff_toPoly_eq (p : Azurite.AzPolynomial R) (i : ℕ) :
+@[simp] lemma _root_.Tengoku.Azurite.coeff_toPoly_eq (p : Azurite.AzPolynomial R) (i : ℕ) :
   (AzPolynomial.toPoly p).coeff i = p.coeff i := by
   dsimp [AzPolynomial.toPoly, Azurite.AzPolynomial.coeff]
   rw [coeff_toPoly]
@@ -171,7 +171,7 @@ lemma coeff_toPoly (l : List R) (i : ℕ) :
 /--
 @isnad1 id=eq.0h3v.s6.0e6f0ac62572 from=translated src=- shape=52ac6c06 vocab=6fdc5cca
 -/
-lemma getCoeff_map_range_coeff [DecidableEq R] (p : Polynomial R) (i : ℕ) :
+lemma _root_.Tengoku.Azurite.getCoeff_map_range_coeff [DecidableEq R] (p : Polynomial R) (i : ℕ) :
   ((List.range (p.natDegree + 1)).map p.coeff).getCoeff i = if i ≤ p.natDegree then p.coeff i else 0 := by
   dsimp [List.getCoeff]
   rw [List.getElem?_map]
@@ -193,7 +193,7 @@ lemma getCoeff_map_range_coeff [DecidableEq R] (p : Polynomial R) (i : ℕ) :
 /--
 @isnad1 id=eq.0h2v.s4.1fcd7b7ad12d from=translated src=- shape=e17ccb0b vocab=0e95c535
 -/
-lemma toPoly_ofPoly [DecidableEq R] (p : Polynomial R) : AzPolynomial.toPoly (AzPolynomial.ofPoly p) = p := by
+lemma _root_.Tengoku.Azurite.toPoly_ofPoly [DecidableEq R] (p : Polynomial R) : AzPolynomial.toPoly (AzPolynomial.ofPoly p) = p := by
   dsimp [AzPolynomial.ofPoly]
   split
   · next hp => simp [hp, AzPolynomial.toPoly, List.toPoly]
@@ -211,7 +211,7 @@ lemma toPoly_ofPoly [DecidableEq R] (p : Polynomial R) : AzPolynomial.toPoly (Az
 /--
 @isnad1 id=eq.2h2v.s5.0e7f4c76e8d6 from=translated src=- shape=5b55180e vocab=cdafbc09
 -/
-lemma natDegree_toPoly (l : List R) (h_nonempty : l ≠ []) (h_last : l.getLast? ≠ some 0) :
+lemma _root_.Tengoku.Azurite.natDegree_toPoly (l : List R) (h_nonempty : l ≠ []) (h_last : l.getLast? ≠ some 0) :
   (List.toPoly l).natDegree = l.length - 1 := by
   have h_len_pos : 0 < l.length := List.length_pos_iff_ne_nil.mpr h_nonempty
   apply le_antisymm
@@ -245,7 +245,7 @@ lemma natDegree_toPoly (l : List R) (h_nonempty : l ≠ []) (h_last : l.getLast?
 /--
 @isnad1 id=eq.0h2v.s4.778d0722b3ad from=translated src=- shape=a9793e98 vocab=bac786a8
 -/
-lemma map_getCoeff_range (l : List R) :
+lemma _root_.Tengoku.Azurite.map_getCoeff_range (l : List R) :
   (List.range l.length).map l.getCoeff = l := by
   apply List.ext_get
   · simp
@@ -259,33 +259,33 @@ lemma map_getCoeff_range (l : List R) :
 /--
 @isnad1 id=eq.1h3v.s4.55fe90252be6 from=translated src=- shape=62c2b3f2 vocab=08f61b01
 -/
-lemma array_eq_of_toList_eq {R : Type _} {a b : Array R} (h : a.toList = b.toList) : a = b := by
+lemma _root_.Tengoku.Azurite.array_eq_of_toList_eq {R : Type _} {a b : Array R} (h : a.toList = b.toList) : a = b := by
   cases a
   cases b
   simp at h
   congr
 
-lemma eq_empty_of_toList_empty {R : Type _} [Semiring R] (a : Array R) (h : a.toList = []) : a = #[] := by
+lemma _root_.Tengoku.Azurite.eq_empty_of_toList_empty {R : Type _} [Semiring R] (a : Array R) (h : a.toList = []) : a = #[] := by
   apply array_eq_of_toList_eq
   exact h
 
 /--
 @isnad1 id=eq.1h2v.s4.d6ef12f28be2 from=translated src=- shape=29192198 vocab=86d14194
 -/
-lemma toList_empty_of_eq_empty {R : Type _} [Semiring R] (a : Array R) (h : a = #[]) : a.toList = [] := by
+lemma _root_.Tengoku.Azurite.toList_empty_of_eq_empty {R : Type _} [Semiring R] (a : Array R) (h : a = #[]) : a.toList = [] := by
   rw [h]
 
 /--
 @isnad1 id=iff.0h2v.s4.f77e2eb8be13 from=translated src=- shape=b7d72951 vocab=ca30d1c4
 -/
-lemma isEmpty_iff_toList_empty {R : Type _} [Semiring R] (a : Array R) : a.isEmpty ↔ a.toList = [] := by
+lemma _root_.Tengoku.Azurite.isEmpty_iff_toList_empty {R : Type _} [Semiring R] (a : Array R) : a.isEmpty ↔ a.toList = [] := by
   cases a
   simp
 
 /--
 @isnad1 id=eq.0h2v.s4.5cc578897c1d from=translated src=- shape=e17ccb0b vocab=62c65115
 -/
-lemma ofPoly_toPoly [DecidableEq R] (p : Azurite.AzPolynomial R) : AzPolynomial.ofPoly (AzPolynomial.toPoly p) = p := by
+lemma _root_.Tengoku.Azurite.ofPoly_toPoly [DecidableEq R] (p : Azurite.AzPolynomial R) : AzPolynomial.ofPoly (AzPolynomial.toPoly p) = p := by
   apply Azurite.AzPolynomial.ext
   dsimp [AzPolynomial.ofPoly, AzPolynomial.toPoly]
   by_cases h : p.coeffs.toList = []
@@ -346,7 +346,7 @@ lemma ofPoly_toPoly [DecidableEq R] (p : Azurite.AzPolynomial R) : AzPolynomial.
     rw [ht, hw3]
 
 /-- The equivalence between `AzPolynomial R` and `Polynomial R`.-/
-noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ Polynomial R where
+noncomputable def _root_.Tengoku.Azurite.equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ Polynomial R where
   toFun := AzPolynomial.toPoly
   invFun := AzPolynomial.ofPoly
   left_inv := ofPoly_toPoly
@@ -355,7 +355,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=iff.0h3v.s5.0d5e770f54b4 from=translated src=- shape=a17b5190 vocab=c92c4ef9
 -/
-@[simp] lemma toPoly_inj [DecidableEq R] {p q : Azurite.AzPolynomial R} : AzPolynomial.toPoly p = AzPolynomial.toPoly q ↔ p = q := by
+@[simp] lemma _root_.Tengoku.Azurite.toPoly_inj [DecidableEq R] {p q : Azurite.AzPolynomial R} : AzPolynomial.toPoly p = AzPolynomial.toPoly q ↔ p = q := by
   constructor
   · intro h
     have h2 : AzPolynomial.ofPoly (AzPolynomial.toPoly p) = AzPolynomial.ofPoly (AzPolynomial.toPoly q) := by rw [h]
@@ -367,7 +367,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=iff.0h3v.s5.3c1e3297c9de from=translated src=- shape=a17b5190 vocab=577121cb
 -/
-@[simp] lemma ofPoly_inj [DecidableEq R] {p q : Polynomial R} : AzPolynomial.ofPoly p = AzPolynomial.ofPoly q ↔ p = q := by
+@[simp] lemma _root_.Tengoku.Azurite.ofPoly_inj [DecidableEq R] {p q : Polynomial R} : AzPolynomial.ofPoly p = AzPolynomial.ofPoly q ↔ p = q := by
   constructor
   · intro h
     have h2 : AzPolynomial.toPoly (AzPolynomial.ofPoly p) = AzPolynomial.toPoly (AzPolynomial.ofPoly q) := by rw [h]
@@ -395,7 +395,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
       have hh : p.coeffs.toList.getLast? = p.coeffs.back? := by simp
       rw [hh]
       exact p.last_ne_zero
-    exact _root_.natDegree_toPoly p.coeffs.toList h ht2
+    exact _root_.Tengoku.Azurite.natDegree_toPoly p.coeffs.toList h ht2
 
 /--
 @isnad1 id=eq.0h2v.s4.74107bf25166 from=translated src=- shape=a438dda0 vocab=8261f801
@@ -466,7 +466,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h1v.s5.7fae1cc22216 from=translated src=- shape=9168166a vocab=c92c4ef9
 -/
-@[simp] lemma toPoly_zero [DecidableEq R] : AzPolynomial.toPoly (0 : Azurite.AzPolynomial R) = 0 := by
+@[simp] lemma _root_.Tengoku.Azurite.toPoly_zero [DecidableEq R] : AzPolynomial.toPoly (0 : Azurite.AzPolynomial R) = 0 := by
   have h := ofPoly_toPoly (0 : Azurite.AzPolynomial R)
   have hz : AzPolynomial.toPoly (0 : Azurite.AzPolynomial R) = 0 := rfl
   exact hz
@@ -474,13 +474,13 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h1v.s5.236108c62434 from=translated src=- shape=9168166a vocab=577121cb
 -/
-@[simp] lemma ofPoly_zero [DecidableEq R] : AzPolynomial.ofPoly (0 : Polynomial R) = 0 := by
+@[simp] lemma _root_.Tengoku.Azurite.ofPoly_zero [DecidableEq R] : AzPolynomial.ofPoly (0 : Polynomial R) = 0 := by
   dsimp [AzPolynomial.ofPoly]
 
 /--
 @isnad1 id=eq.0h1v.s5.076b669bfd42 from=translated src=- shape=9168166a vocab=577121cb
 -/
-@[simp] lemma ofPoly_one [DecidableEq R] : AzPolynomial.ofPoly (1 : Polynomial R) = 1 := by
+@[simp] lemma _root_.Tengoku.Azurite.ofPoly_one [DecidableEq R] : AzPolynomial.ofPoly (1 : Polynomial R) = 1 := by
   have h := toPoly_ofPoly (1 : Polynomial R)
   -- The simple proof handles the 1=1 native evaluation
   change AzPolynomial.ofPoly (1 : Polynomial R) = Azurite.AzPolynomial.one
@@ -519,7 +519,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h1v.s5.815a4f6a6655 from=translated src=- shape=9168166a vocab=c92c4ef9
 -/
-@[simp] lemma toPoly_one [DecidableEq R] : AzPolynomial.toPoly (1 : Azurite.AzPolynomial R) = 1 := by
+@[simp] lemma _root_.Tengoku.Azurite.toPoly_one [DecidableEq R] : AzPolynomial.toPoly (1 : Azurite.AzPolynomial R) = 1 := by
   have h := ofPoly_toPoly (1 : Azurite.AzPolynomial R)
   have h2 : AzPolynomial.toPoly (AzPolynomial.ofPoly (1 : Polynomial R)) = 1 := toPoly_ofPoly 1
   rw [ofPoly_one] at h2
@@ -528,7 +528,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.1h3v.s5.7dde4be4d7db from=translated src=- shape=749cb079 vocab=1cc8b32e
 -/
-@[ext] lemma ext [DecidableEq R] {p q : Azurite.AzPolynomial R} (h : ∀ i, p.coeff i = q.coeff i) : p = q := by
+@[ext] lemma _root_.Tengoku.Azurite.ext [DecidableEq R] {p q : Azurite.AzPolynomial R} (h : ∀ i, p.coeff i = q.coeff i) : p = q := by
   have hp : AzPolynomial.toPoly p = AzPolynomial.toPoly q := by
     ext i
     rw [coeff_toPoly_eq, coeff_toPoly_eq, h i]
@@ -539,14 +539,14 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h2v.s4.f57cc9920b50 from=translated src=- shape=0800dc30 vocab=d6e5cb9f
 -/
-@[simp] lemma leadingCoeff_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).leadingCoeff = p.leadingCoeff := by
+@[simp] lemma _root_.Tengoku.Azurite.leadingCoeff_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).leadingCoeff = p.leadingCoeff := by
   change (AzPolynomial.toPoly p).coeff (AzPolynomial.toPoly p).natDegree = p.coeff p.natDegree
   rw [AzPolynomial.natDegree_toPoly, coeff_toPoly_eq]
 
 /--
 @isnad1 id=eq.0h2v.s4.ee7bdc43a432 from=translated src=- shape=5a39ce4c vocab=1bf6db46
 -/
-@[simp] lemma leadingCoeff_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).leadingCoeff = p.leadingCoeff := by
+@[simp] lemma _root_.Tengoku.Azurite.leadingCoeff_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).leadingCoeff = p.leadingCoeff := by
   have h := leadingCoeff_toPoly (AzPolynomial.ofPoly p)
   rw [toPoly_ofPoly] at h
   exact h.symm
@@ -554,7 +554,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h2v.s4.8d188c50c9be from=translated src=- shape=0800dc30 vocab=d9dce8ee
 -/
-@[simp] lemma nextCoeff_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).nextCoeff = p.nextCoeff := by
+@[simp] lemma _root_.Tengoku.Azurite.nextCoeff_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).nextCoeff = p.nextCoeff := by
   dsimp [Azurite.AzPolynomial.nextCoeff, Polynomial.nextCoeff]
   rw [AzPolynomial.natDegree_toPoly]
   split_ifs with h
@@ -564,7 +564,7 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=eq.0h2v.s4.a74bd27fd667 from=translated src=- shape=5a39ce4c vocab=4fa5a511
 -/
-@[simp] lemma nextCoeff_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).nextCoeff = p.nextCoeff := by
+@[simp] lemma _root_.Tengoku.Azurite.nextCoeff_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).nextCoeff = p.nextCoeff := by
   have h := nextCoeff_toPoly (AzPolynomial.ofPoly p)
   rw [toPoly_ofPoly] at h
   exact h.symm
@@ -572,14 +572,15 @@ noncomputable def equivPolynomial [DecidableEq R] : Azurite.AzPolynomial R ≃ P
 /--
 @isnad1 id=iff.0h2v.s4.60c666c4b99f from=translated src=- shape=5f48389b vocab=33fd12ed
 -/
-@[simp] lemma Monic_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).Monic ↔ p.Monic := by
+@[simp] lemma _root_.Tengoku.Azurite.Monic_toPoly (p : Azurite.AzPolynomial R) : (AzPolynomial.toPoly p).Monic ↔ p.Monic := by
   dsimp [Polynomial.Monic, Azurite.AzPolynomial.Monic]
   rw [leadingCoeff_toPoly]
 
 /--
 @isnad1 id=iff.0h2v.s4.656c7b1be82c from=translated src=- shape=69fc15e4 vocab=9ce3fafe
 -/
-@[simp] lemma Monic_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).Monic ↔ p.Monic := by
+@[simp] lemma _root_.Tengoku.Azurite.Monic_ofPoly [DecidableEq R] (p : Polynomial R) : (AzPolynomial.ofPoly p).Monic ↔ p.Monic := by
   have h := Monic_toPoly (AzPolynomial.ofPoly p)
   rw [toPoly_ofPoly] at h
   exact h.symm
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

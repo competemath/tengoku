@@ -37,7 +37,7 @@ ring-theoretic lemma `vieta_root_of_regular`.
 
 * [J. H. Silverman, *The Arithmetic of Elliptic Curves*][silverman2009], IV.1, Theorem 1.1.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open MvPowerSeries
 
 /-! ### An abstract Vieta step over a commutative ring
@@ -49,7 +49,7 @@ third root `z = -(B·a) - x - y` is again a root. -/
 /-- **Abstract Vieta third root.** Let `F : T → T` be a cubic through its divided difference:
 `F u - F v = (u - v) · (A·(u² + u·v + v²) + B·(u + v) + Cc)`.  If `x, y` are roots, `A · a = 1`,
 `z = -(B·a) - x - y`, and multiplication by `x - y` is injective, then `F z = 0`. -/
-theorem vieta_root_of_regular {T : Type*} [CommRing T] (F : T → T) (A B Cc x y z a : T)
+theorem _root_.Tengoku.LanaEllipticCurves.vieta_root_of_regular {T : Type*} [CommRing T] (F : T → T) (A B Cc x y z a : T)
     (hdiff : ∀ u v : T, F u - F v = (u - v) * (A * (u ^ 2 + u * v + v ^ 2) + B * (u + v) + Cc))
     (hFx : F x = 0) (hFy : F y = 0) (hA : A * a = 1) (hz : z = -(B * a) - x - y)
     (hreg : ∀ c : T, (x - y) * c = 0 → c = 0) : F z = 0 := by
@@ -192,3 +192,4 @@ theorem formalCubicResidual_root_thirdRoot :
     linear_combination -hc
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

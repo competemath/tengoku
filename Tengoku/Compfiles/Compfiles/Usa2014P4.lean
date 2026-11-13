@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2014, Problem 4
 
@@ -1363,3 +1363,4 @@ lemma AForce_mono {k l : ℕ} (hkl : k ≤ l) {s : Finset Cell} (h : AForce l s)
 abbrev solution : ℕ := 6
 
 end Usa2014P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

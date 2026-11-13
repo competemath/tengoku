@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2019, Problem 5
 
@@ -221,3 +221,4 @@ theorem writable_combo {m n : ℕ} (k : ℕ) :
 abbrev solution_set : Set (ℕ × ℕ) := { (m, n) | ∃ k : ℕ, m + n = 2 ^ k }
 
 end Usa2019P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

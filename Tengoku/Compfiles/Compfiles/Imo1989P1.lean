@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1989, Problem 1
 
@@ -128,3 +128,4 @@ def P : Finpartition S where
     rintro ⟨i, hi⟩; exact absurd (hi ▸ A_card i) (by norm_num)
 
 end Imo1989P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

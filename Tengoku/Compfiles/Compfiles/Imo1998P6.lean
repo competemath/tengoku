@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1998, Problem 6
 
@@ -333,3 +333,4 @@ theorem imo1998_p6_lb :
 abbrev answer : ℕ+ := 120
 
 end Imo1998P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

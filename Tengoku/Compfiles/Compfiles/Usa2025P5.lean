@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2025, Problem 5
 
@@ -366,3 +366,4 @@ lemma even_of_dvd {k : ℕ}
   exact absurd h3 (by decide)
 
 end Usa2025P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

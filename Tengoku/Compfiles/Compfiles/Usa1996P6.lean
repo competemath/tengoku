@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1996, Problem 6
 
@@ -193,3 +193,4 @@ lemma binary_pair_unique (as bs cs ds : List (Fin 2))
 abbrev does_exist : Bool := true
 
 end Usa1996P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

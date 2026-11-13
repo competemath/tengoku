@@ -21,7 +21,7 @@ of a unit by its conjugate is a square of a root of unity.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 variable {p : ℕ} [NeZero p] {K : Type*} [Field K]
 
 variable {ζ : K} (hζ : IsPrimitiveRoot ζ p)
@@ -127,3 +127,4 @@ theorem unit_inv_conj_is_root_of_unity (u : (𝓞 K)ˣ) [H : Fact (p.Prime)] (hp
     · exact NumberField.RingOfIntegers.isIntegral_coe _
     · exact NumberField.RingOfIntegers.isIntegral_coe _
   · simp
+-- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)

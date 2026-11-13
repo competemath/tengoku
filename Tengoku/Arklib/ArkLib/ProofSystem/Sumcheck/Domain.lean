@@ -48,19 +48,19 @@ The summation-domain abstraction is intentionally **degree-free**: the per-round
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 universe u
 
 /-- A per-coordinate evaluation-domain family for a `k`-round sum-check. Each coordinate `i : Fin k`
 has `size i` evaluation points, given as an injection `Fin (size i) ↪ R`; the points need not be the
 same across coordinates (so this captures Boolean hypercubes, hyperprisms, and mixtures).-/
-structure SumcheckDomain (R : Type u) (k : ℕ) where
+structure _root_.Tengoku.Arklib.SumcheckDomain (R : Type u) (k : ℕ) where
   /-- The number of evaluation points in coordinate `i`.-/
   size : Fin k → ℕ
   /-- The evaluation domain of coordinate `i`, as an injection `Fin (size i) ↪ R`.-/
   embed : (i : Fin k) → (Fin (size i) ↪ R)
 
-namespace SumcheckDomain
+namespace Tengoku.Arklib.SumcheckDomain
 
 variable {R : Type u} {k m : ℕ}
 
@@ -201,11 +201,11 @@ theorem sum_cube_succ {M : Type*} [AddCommMonoid M] (D : SumcheckDomain R (k + 1
   rw [hcube, Finset.sum_map]
   rfl
 
-end SumcheckDomain
+end Tengoku.Arklib.SumcheckDomain
 
 /-- The canonical Boolean embedding `Fin 2 ↪ R`, `0 ↦ (0 : R)`, `1 ↦ (1 : R)`. Injective because
 `R` is nontrivial.-/
-def boolEmbedding (R : Type u) [CommSemiring R] [Nontrivial R] : Fin 2 ↪ R where
+def _root_.Tengoku.Arklib.boolEmbedding (R : Type u) [CommSemiring R] [Nontrivial R] : Fin 2 ↪ R where
   toFun := ![0, 1]
   inj' a b hab := by
     have h01 : (0 : R) ≠ 1 := zero_ne_one
@@ -215,24 +215,24 @@ def boolEmbedding (R : Type u) [CommSemiring R] [Nontrivial R] : Fin 2 ↪ R whe
 /--
 @isnad1 id=eq.0h1v.s6.0d1a70dbe6f5 from=translated src=- shape=dabe8cfc vocab=9ecb35a4
 -/
-@[simp] lemma boolEmbedding_zero (R : Type u) [CommSemiring R] [Nontrivial R] :
+@[simp] lemma _root_.Tengoku.Arklib.boolEmbedding_zero (R : Type u) [CommSemiring R] [Nontrivial R] :
     boolEmbedding R 0 = (0 : R) := rfl
 
 /--
 @isnad1 id=eq.0h1v.s6.d8784630f6ba from=translated src=- shape=dabe8cfc vocab=9ecb35a4
 -/
-@[simp] lemma boolEmbedding_one (R : Type u) [CommSemiring R] [Nontrivial R] :
+@[simp] lemma _root_.Tengoku.Arklib.boolEmbedding_one (R : Type u) [CommSemiring R] [Nontrivial R] :
     boolEmbedding R 1 = (1 : R) := rfl
 
 /-- The Boolean hypercube `{0,1}^k` as a `SumcheckDomain`: the canonical `0 ↦ 0, 1 ↦ 1` embedding in
 every coordinate. This is the plain multilinear sum-check domain (Binius, Hachi, …).-/
-def boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] (k : ℕ) : SumcheckDomain R k :=
+def _root_.Tengoku.Arklib.boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] (k : ℕ) : SumcheckDomain R k :=
   SumcheckDomain.uniform (boolEmbedding R) k
 
 /--
 @isnad1 id=eq.0h3v.s5.b8d2a0baa2bb from=translated src=- shape=e4d37c98 vocab=69b620b7
 -/
-@[simp] lemma points_boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] {k : ℕ}
+@[simp] lemma _root_.Tengoku.Arklib.points_boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] {k : ℕ}
     (i : Fin k) : (boolDomain R k).points i = Finset.univ.map (boolEmbedding R) := rfl
 
 /-- A *hyperprism* domain `𝔻 = D × {0,1}^k` (SWIRL): coordinate `0` ranges over a given `2^ℓ`-point
@@ -240,6 +240,7 @@ univariate "skip" domain `Dskip`, and the remaining `k` coordinates are Boolean.
 
 `Dskip` is taken as a parameter here; constructing the concrete smooth multiplicative coset of order
 `2^ℓ` (which needs the `2^ℓ ∣ |R×|` smoothness assumption and a chosen generator) is deferred.-/
-def hyperprismDomain (R : Type u) [CommSemiring R] [Nontrivial R] {ℓ : ℕ}
+def _root_.Tengoku.Arklib.hyperprismDomain (R : Type u) [CommSemiring R] [Nontrivial R] {ℓ : ℕ}
     (Dskip : Fin (2 ^ ℓ) ↪ R) (k : ℕ) : SumcheckDomain R (k + 1) :=
   SumcheckDomain.prepend Dskip (boolDomain R k)
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

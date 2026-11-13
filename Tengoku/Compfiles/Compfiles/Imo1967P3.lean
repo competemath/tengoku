@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1967, Problem 3
 
@@ -101,3 +101,4 @@ lemma aux_4
     ∏ i ∈ Finset.Icc 1 n, (k - (m + i)) = (k - (m + 1)).descFactorial n := by
   rw [Nat.descFactorial_eq_prod_range, ← Finset.Ico_succ_right_eq_Icc, Finset.prod_Ico_eq_prod_range]
   apply Finset.prod_congr rfl; intro i _; lia
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

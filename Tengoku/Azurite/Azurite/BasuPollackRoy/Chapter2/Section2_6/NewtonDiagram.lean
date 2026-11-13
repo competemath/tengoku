@@ -22,7 +22,7 @@ is the coefficient of `ε^r` in the Puiseux series `ā_i = P.coeff i`. The **New
 (`X`-degrees are natural numbers since `P` is an ordinary polynomial; the `ε`-exponents are
 rational, ranging over the supports of the Puiseux-series coefficients.)
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open HahnSeries Polynomial
@@ -183,3 +183,4 @@ theorem onOrAbove_horizontal {A B C : ℕ × ℚ} (h : A.2 = B.2) :
   rw [hslope, zero_mul, sub_nonneg]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

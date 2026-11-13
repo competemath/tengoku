@@ -37,7 +37,7 @@ This is the crux enabler for generalizing Yun's algorithm correctness from
 which runs the univariate algorithm over the *non-field* tower ring
 `AzMvPolynomial n AzInt ord`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 open Polynomial
 
 /-- An irreducible factor of a **primitive squarefree** polynomial over a char-0
@@ -45,7 +45,7 @@ UFD does not divide its derivative — the elementary degree/content replacement
 for the field-only `Squarefree → Separable`.
 @isnad1 id=not.4h3v.s8.8753d0ba4e39 from=translated src=- shape=cce497b8 vocab=14438ee8
 -/
-theorem primitive_squarefree_irreducible_not_dvd_derivative
+theorem _root_.Tengoku.Azurite.primitive_squarefree_irreducible_not_dvd_derivative
     {R : Type _} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] [CharZero R]
     {p : Polynomial R} (hprim : p.IsPrimitive) (hsq : Squarefree p)
     {q : Polynomial R} (hq : Irreducible q) (hqp : q ∣ p) :
@@ -82,7 +82,7 @@ is a unit, since any non-unit common divisor would have an irreducible factor
 dividing both, contradicting the previous lemma.
 @isnad1 id=isrelpri.2h2v.s8.4908ba6bb71c from=translated src=- shape=ce9c4422 vocab=607bb83b
 -/
-theorem primitive_squarefree_isRelPrime_derivative
+theorem _root_.Tengoku.Azurite.primitive_squarefree_isRelPrime_derivative
     {R : Type _} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R] [CharZero R]
     {p : Polynomial R} (hprim : p.IsPrimitive) (hsq : Squarefree p) :
     IsRelPrime p (derivative p) := by
@@ -93,3 +93,4 @@ theorem primitive_squarefree_isRelPrime_derivative
   obtain ⟨q, hq, hqd⟩ := WfDvdMonoid.exists_irreducible_factor hu hd0
   exact primitive_squarefree_irreducible_not_dvd_derivative hprim hsq hq
     (hqd.trans hdp) (hqd.trans hdp')
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

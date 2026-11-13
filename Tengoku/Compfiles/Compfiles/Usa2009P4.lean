@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2009, Problem 4
 
@@ -154,3 +154,4 @@ lemma entry_le_four_mul_entry {n : ℕ} {a : Fin n → ℝ} (ha : ∀ i, 0 < a i
       _ ≤ 4 * a q := mul_le_mul_of_nonneg_right hfinal (ha q).le
 
 end Usa2009P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

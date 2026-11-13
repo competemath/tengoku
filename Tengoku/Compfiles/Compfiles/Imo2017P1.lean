@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2017, Problem 1
 
@@ -246,3 +246,4 @@ lemma cycle (ha₁ : Rule a) (hx : 1 < x) {i : ℕ} (h : a x i = 3) :
         show (9 : ℕ) = 3 * 3 by norm_num, Nat.sqrt_eq]
 
 end Imo2017P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

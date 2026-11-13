@@ -53,10 +53,10 @@ Mathlib's canonical `finProdFinEquiv` at every coordinate.
 
 finite tuples, equivalence, product coordinates
 -/
-
+namespace Tengoku.Tnlean end Tengoku.Tnlean open Tengoku.Tnlean
 /-- Split a finite tuple of canonically encoded product indices into its two
 component tuples.-/
-def finTupleProdEquiv (N d e : ℕ) :
+def _root_.Tengoku.Tnlean.finTupleProdEquiv (N d e : ℕ) :
     (Fin N → Fin (d * e)) ≃ (Fin N → Fin d) × (Fin N → Fin e) :=
   (Equiv.arrowCongr (Equiv.refl (Fin N)) finProdFinEquiv.symm).trans
     (Equiv.arrowProdEquivProdArrow (Fin N) (fun _ ↦ Fin d) (fun _ ↦ Fin e))
@@ -65,7 +65,7 @@ def finTupleProdEquiv (N d e : ℕ) :
 at every coordinate.
 @isnad1 id=eq.0h4v.s7.eda498efc5d9 from=translated src=- shape=fe3cc03d vocab=4d37b9ca
 -/
-@[simp] theorem finTupleProdEquiv_apply (N d e : ℕ)
+@[simp] theorem _root_.Tengoku.Tnlean.finTupleProdEquiv_apply (N d e : ℕ)
     (σ : Fin N → Fin (d * e)) :
     finTupleProdEquiv N d e σ =
       (fun n ↦ (σ n).divNat, fun n ↦ (σ n).modNat) := by
@@ -75,7 +75,7 @@ at every coordinate.
 `((i, k), (j, l)) ↦ ((i, j), (k, l))`.
 
 All four pairs use the standard finite-product encoding `finProdFinEquiv`.-/
-def finDoubledProdEquiv (d e : ℕ) :
+def _root_.Tengoku.Tnlean.finDoubledProdEquiv (d e : ℕ) :
     Fin ((d * e) * (d * e)) ≃ Fin ((d * d) * (e * e)) :=
   finProdFinEquiv.symm |>.trans <|
     (Equiv.prodCongr finProdFinEquiv.symm finProdFinEquiv.symm).trans <|
@@ -85,7 +85,7 @@ def finDoubledProdEquiv (d e : ℕ) :
 /-- Forward coordinate formula for `finDoubledProdEquiv`.
 @isnad1 id=eq.0h6v.s10.5c63dd0c42c4 from=translated src=- shape=4b774220 vocab=1e6cd014
 -/
-@[simp] theorem finDoubledProdEquiv_apply {d e : ℕ}
+@[simp] theorem _root_.Tengoku.Tnlean.finDoubledProdEquiv_apply {d e : ℕ}
     (i j : Fin d) (k l : Fin e) :
     finDoubledProdEquiv d e
         (finProdFinEquiv (finProdFinEquiv (i, k), finProdFinEquiv (j, l))) =
@@ -95,7 +95,7 @@ def finDoubledProdEquiv (d e : ℕ) :
 /-- Inverse coordinate formula for `finDoubledProdEquiv`.
 @isnad1 id=eq.0h6v.s10.15028a562fb3 from=translated src=- shape=0504b0dc vocab=9cc702bd
 -/
-@[simp] theorem finDoubledProdEquiv_symm_apply {d e : ℕ}
+@[simp] theorem _root_.Tengoku.Tnlean.finDoubledProdEquiv_symm_apply {d e : ℕ}
     (i j : Fin d) (k l : Fin e) :
     (finDoubledProdEquiv d e).symm
         (finProdFinEquiv (finProdFinEquiv (i, j), finProdFinEquiv (k, l))) =
@@ -104,13 +104,13 @@ def finDoubledProdEquiv (d e : ℕ) :
 
 /-- The canonical right-associated identification of a three-coordinate
 function with a triple.-/
-def finThreeArrowEquiv (α : Type*) : (Fin 3 → α) ≃ α × (α × α) :=
+def _root_.Tengoku.Tnlean.finThreeArrowEquiv (α : Type*) : (Fin 3 → α) ≃ α × (α × α) :=
   (Fin.consEquiv fun _ : Fin 3 ↦ α).symm.trans
     (Equiv.prodCongr (Equiv.refl α) (finTwoArrowEquiv α))
 
 /-- The canonical right-associated identification of a four-coordinate
 function with a quadruple.-/
-def finFourArrowEquiv (α : Type*) : (Fin 4 → α) ≃ α × (α × (α × α)) :=
+def _root_.Tengoku.Tnlean.finFourArrowEquiv (α : Type*) : (Fin 4 → α) ≃ α × (α × (α × α)) :=
   (Fin.consEquiv fun _ : Fin 4 ↦ α).symm.trans
     (Equiv.prodCongr (Equiv.refl α) (finThreeArrowEquiv α))
 
@@ -118,7 +118,7 @@ def finFourArrowEquiv (α : Type*) : (Fin 4 → α) ≃ α × (α × (α × α))
 in order.
 @isnad1 id=eq.0h2v.s7.16af36a8cb6d from=translated src=- shape=70b16eb6 vocab=a06befe2
 -/
-@[simp] theorem finThreeArrowEquiv_apply
+@[simp] theorem _root_.Tengoku.Tnlean.finThreeArrowEquiv_apply
     {α : Type*} (x : Fin 3 → α) :
     finThreeArrowEquiv α x = (x 0, x 1, x 2) := by
   rfl
@@ -127,7 +127,7 @@ in order.
 coordinates in order.
 @isnad1 id=eq.0h2v.s7.9297db2337ec from=translated src=- shape=7c36dab3 vocab=f04011e7
 -/
-@[simp] theorem finThreeArrowEquiv_symm_apply
+@[simp] theorem _root_.Tengoku.Tnlean.finThreeArrowEquiv_symm_apply
     {α : Type*} (x : α × (α × α)) :
     (finThreeArrowEquiv α).symm x = ![x.1, x.2.1, x.2.2] := by
   funext i
@@ -137,7 +137,7 @@ coordinates in order.
 in order.
 @isnad1 id=eq.0h2v.s7.c4f401416f45 from=translated src=- shape=51bb65ac vocab=d4d3a91b
 -/
-@[simp] theorem finFourArrowEquiv_apply
+@[simp] theorem _root_.Tengoku.Tnlean.finFourArrowEquiv_apply
     {α : Type*} (x : Fin 4 → α) :
     finFourArrowEquiv α x = (x 0, x 1, x 2, x 3) := by
   rfl
@@ -146,7 +146,7 @@ in order.
 coordinates in order.
 @isnad1 id=eq.0h2v.s7.299d6a44bf22 from=translated src=- shape=a3e2e381 vocab=f91df5f8
 -/
-@[simp] theorem finFourArrowEquiv_symm_apply
+@[simp] theorem _root_.Tengoku.Tnlean.finFourArrowEquiv_symm_apply
     {α : Type*} (x : α × (α × (α × α))) :
     (finFourArrowEquiv α).symm x = ![x.1, x.2.1, x.2.2.1, x.2.2.2] := by
   funext i
@@ -155,14 +155,14 @@ coordinates in order.
 /-! ### A fixed initial segment and a variable remaining tuple -/
 
 /-- Separate the first coordinate from the remaining `N` coordinates.-/
-def finSuccArrowEquiv (α : Type*) (N : ℕ) :
+def _root_.Tengoku.Tnlean.finSuccArrowEquiv (α : Type*) (N : ℕ) :
     (Fin (N + 1) → α) ≃ α × (Fin N → α) :=
   (Fin.consEquiv fun _ : Fin (N + 1) ↦ α).symm
 
 /-- The forward identification extracts the first coordinate and the remaining tuple.
 @isnad1 id=eq.0h3v.s7.67a3f984742b from=translated src=- shape=ccf52a28 vocab=f2b4308c
 -/
-@[simp] theorem finSuccArrowEquiv_apply {α : Type*} (N : ℕ)
+@[simp] theorem _root_.Tengoku.Tnlean.finSuccArrowEquiv_apply {α : Type*} (N : ℕ)
     (σ : Fin (N + 1) → α) :
     finSuccArrowEquiv α N σ = (σ 0, Fin.tail σ) :=
   rfl
@@ -170,13 +170,13 @@ def finSuccArrowEquiv (α : Type*) (N : ℕ) :
 /-- The inverse identification reconstructs a tuple from its first coordinate and tail.
 @isnad1 id=eq.0h3v.s7.8b92aab83dab from=translated src=- shape=9d85a478 vocab=0dbd8fdb
 -/
-@[simp] theorem finSuccArrowEquiv_symm_apply {α : Type*} (N : ℕ)
+@[simp] theorem _root_.Tengoku.Tnlean.finSuccArrowEquiv_symm_apply {α : Type*} (N : ℕ)
     (p : α × (Fin N → α)) :
     (finSuccArrowEquiv α N).symm p = Fin.cons p.1 p.2 :=
   rfl
 
 /-- Separate the first two coordinates from the remaining `N` coordinates.-/
-def finAddTwoArrowEquiv (α : Type*) (N : ℕ) :
+def _root_.Tengoku.Tnlean.finAddTwoArrowEquiv (α : Type*) (N : ℕ) :
     (Fin (N + 2) → α) ≃ (α × α) × (Fin N → α) :=
   (finSuccArrowEquiv α (N + 1)).trans
     ((Equiv.prodCongr (Equiv.refl α) (finSuccArrowEquiv α N)).trans
@@ -185,7 +185,7 @@ def finAddTwoArrowEquiv (α : Type*) (N : ℕ) :
 /-- The forward identification extracts the first two coordinates and the remaining tuple.
 @isnad1 id=eq.0h3v.s8.f07777aaf4e8 from=translated src=- shape=3dbf54c7 vocab=0ae7ad7b
 -/
-@[simp] theorem finAddTwoArrowEquiv_apply {α : Type*} (N : ℕ)
+@[simp] theorem _root_.Tengoku.Tnlean.finAddTwoArrowEquiv_apply {α : Type*} (N : ℕ)
     (σ : Fin (N + 2) → α) :
     finAddTwoArrowEquiv α N σ = ((σ 0, σ 1), Fin.tail (Fin.tail σ)) :=
   rfl
@@ -193,7 +193,8 @@ def finAddTwoArrowEquiv (α : Type*) (N : ℕ) :
 /-- The inverse identification reconstructs a tuple from its first two coordinates and tail.
 @isnad1 id=eq.0h3v.s8.ed0a4d6ac2b9 from=translated src=- shape=b6477376 vocab=307588d6
 -/
-@[simp] theorem finAddTwoArrowEquiv_symm_apply {α : Type*} (N : ℕ)
+@[simp] theorem _root_.Tengoku.Tnlean.finAddTwoArrowEquiv_symm_apply {α : Type*} (N : ℕ)
     (p : (α × α) × (Fin N → α)) :
     (finAddTwoArrowEquiv α N).symm p = Fin.cons p.1.1 (Fin.cons p.1.2 p.2) :=
   rfl
+-- Tengoku: root names of this library moved to Tengoku.Tnlean so they do not collide with other libraries (generated)

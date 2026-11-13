@@ -21,7 +21,7 @@ exponents `ηₙ = Σ_{k≤n} ξₖ ∈ (1/M)ℤ`. This file builds the root `x�
 * The limit at integer-exponent level: `lfam : SummableFamily ℤ R ℕ`, `zlim := lfam.hsum`, and
   `xbar := puiseuxEmb R M zlim` — automatically a Puiseux series (`xbarP`), with its
   coefficients/order read off through `embDomain` (`xbar_coeff_eta`, `xbar_coeff_notMem`). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial HahnSeries
@@ -188,3 +188,4 @@ noncomputable def xbarP (s0 : RecState R) (hnb : ∀ n, (stateSeq s0 n).poly.coe
     ((xbarP s0 hnb : PuiseuxSeries R) : HahnSeries ℚ R) = xbar s0 hnb := rfl
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

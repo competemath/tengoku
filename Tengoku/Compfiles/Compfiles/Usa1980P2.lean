@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1980, Problem 2
 
@@ -179,3 +179,4 @@ theorem apCount_le (n : ℕ) (a : ℕ → ℝ) (ha : StrictMonoOn a (Set.Iio n))
 abbrev answer (n : ℕ) : ℕ := (n - 1)^2 / 4
 
 end Usa1980P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

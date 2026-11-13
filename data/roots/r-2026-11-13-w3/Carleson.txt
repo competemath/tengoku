@@ -1,0 +1,53 @@
+leakscan: 11 global instances (3 can fire outside the library), 0 scoped; 7 global simp lemmas (3 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 45 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance NNReal.MeasureSpace registered in Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Measure.NNReal (declared at line 9)
+leak: instance instMeasureSpaceENNReal registered in Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Measure.NNReal (declared at line 29)
+leak: simp ENNReal.range_toReal registered in Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Measure.NNReal (declared at line 582)
+leak: simp ENNReal.ofReal_of_nonpos registered in Tengoku.Carleson.Carleson.ToMathlib.Data.ENNReal (declared in Tengoku.Seed.Data.ENNReal.Real: an `attribute` command of the library turns it on)
+leak: instance AddCircle.noAtoms_volume registered in Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Integral.Periodic (declared at line 22)
+leak: simp WithTop.iSup_coe_eq_top' registered in Tengoku.Carleson.Carleson.ToMathlib.Order.ConditionallyCompleteLattice.Basic (declared at line 67)
+root: measurableEmbedding_ofNNReal
+root: lintegral_nnreal_eq_lintegral_Ioi_ofReal
+root: instSigmaFiniteENNRealVolume
+root: eLpNormEssSup_nnreal_eq_iSup_nnreal
+root: lintegral_nnreal_eq_lintegral_toNNReal_Ioi
+root: instIsOpenPosMeasureENNRealVolume
+root: lintegral_nnreal_toReal_eq_lintegral_Ioi
+root: not_integrableOn_Ioi_rpow'
+root: Ioo_zero_top_ae_eq_univ
+root: lintegral_nnreal_Ici_eq_lintegral_Ici_ofReal
+root: instIsOpenPosMeasureNNRealVolume
+root: instMeasureSpaceENNReal
+root: iHolENorm
+root: setLIntegral_ennreal_eq_setLintegral_of_nnreal
+root: continuous_of_iHolENorm_ne_top
+root: enorm_integral_starRingEnd_mul_eq_lintegral_enorm
+root: fourier_comp_equivAddCircle
+root: starRingEnd_div_mul_eq_norm
+root: enorm_le_iHolENorm_of_mem
+root: ciSup_le_ciSup
+root: instNullSingletonClassENNRealVolume
+root: fourierCoeff_comp_equivAddCircle
+root: ciSup_eq_ciSup
+root: instSigmaFiniteNNRealVolume
+root: lintegral_nnreal_eq_lintegral_Ici_ofReal
+root: iHolNNNorm
+root: instNullSingletonClassNNRealVolume
+root: lintegral_ennreal_eq_lintegral_Ioi_ofReal
+root: eLpNormEssSup_eq_iSup'
+root: intervalIntegrable_continuous_mul_lipschitzOnWith
+root: continuous_of_iHolENorm_ne_top'
+root: lintegral_ennreal_eq_lintegral_of_nnreal
+root: enorm_algebraMap'
+root: lintegral_nnreal_toReal_eq_lintegral_Ici
+root: norm_le_iHolNNNorm_of_subset
+root: setLIntegral_nnreal_Ici
+root: lintegral_nnreal_scale_constant'
+root: iSup_eq_iSup
+root: map_restrict_Ioi_eq_restrict_Ioi
+root: map_restrict_Ioi_eq_volume
+root: enorm_integral_norm_eq_integral_enorm
+root: norm_le_iHolNNNorm_of_mem
+root: enorm_integral_mul_starRingEnd_comm
+root: van_der_Corput
+root: ae_in_Ioo_zero_top

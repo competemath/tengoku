@@ -14,7 +14,7 @@ public import Tengoku.Seed.Init
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 universe u v
 
 /-- Type class for types that can be initialized from a value of type `β`.
@@ -22,6 +22,7 @@ universe u v
 This abstraction allows different types to be initialized from the same input type,
 providing a uniform interface for construction. In the context of cryptographic sponges,
 this is typically used to initialize states from a seed or initialization vector.-/
-class Initialize (α : Type u) (β : Type v) where
+class _root_.Tengoku.Arklib.Initialize (α : Type u) (β : Type v) where
   /-- Initialize a value of type `α` from a value of type `β`.-/
   new : β → α
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

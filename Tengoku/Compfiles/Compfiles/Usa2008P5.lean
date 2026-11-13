@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2008, Problem 5
 
@@ -512,3 +512,4 @@ lemma key : ∀ n : ℕ, ∀ (r : Fin 3 → ℝ) (a : Fin 3 → ℤ),
               exact finish 0 1 2 (by decide) (by decide) (by decide) h01 h12
 
 end Usa2008P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

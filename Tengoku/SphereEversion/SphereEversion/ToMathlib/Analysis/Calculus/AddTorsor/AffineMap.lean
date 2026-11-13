@@ -7,7 +7,7 @@ import Tengoku
 TODO Generalise these lemmas appropriately.
 
 -/
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion
 open Set Function Metric AffineMap
 
 variable {F : Type*} [NormedAddCommGroup F]
@@ -26,13 +26,13 @@ variable {F : Type*} [NormedAddCommGroup F]
 --   · simp [← smul_assoc, hr.ne.symm.is_unit.mul_inv_cancel]; abel
 
 @[simp]
-theorem norm_coe_ball_lt (r : ℝ) (x : ball (0 : F) r) : ‖(x : F)‖ < r := by
+theorem _root_.Tengoku.SphereEversion.norm_coe_ball_lt (r : ℝ) (x : ball (0 : F) r) : ‖(x : F)‖ < r := by
   obtain ⟨x, hx⟩ := x
   simpa using hx
 
 variable [NormedSpace ℝ F]
 
-theorem mapsTo_homothety_ball (c : F) {r : ℝ} (hr : 0 < r) :
+theorem _root_.Tengoku.SphereEversion.mapsTo_homothety_ball (c : F) {r : ℝ} (hr : 0 < r) :
     MapsTo (fun y ↦ homothety c r⁻¹ y -ᵥ c) (ball c r) (ball 0 1) := fun y hy ↦ by
   replace hy : r⁻¹ * ‖y - c‖ < 1 := by
     rw [← mul_lt_mul_iff_right₀ hr, ← mul_assoc, mul_inv_cancel₀ hr.ne.symm, mul_one, one_mul]
@@ -40,5 +40,6 @@ theorem mapsTo_homothety_ball (c : F) {r : ℝ} (hr : 0 < r) :
   simp only [homothety_apply, vsub_eq_sub, vadd_eq_add, add_sub_cancel_right, mem_ball_zero_iff,
     norm_smul, Real.norm_eq_abs, abs_eq_self.2 (inv_pos.mpr hr).le, hy]
 
-theorem contDiff_homothety {n : ℕ∞} (c : F) (r : ℝ) : ContDiff ℝ n (homothety c r) :=
+theorem _root_.Tengoku.SphereEversion.contDiff_homothety {n : ℕ∞} (c : F) (r : ℝ) : ContDiff ℝ n (homothety c r) :=
   (⟨homothety c r, homothety_continuous c r⟩ : F →ᴬ[ℝ] F).contDiff
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

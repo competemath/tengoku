@@ -42,7 +42,7 @@ type `M` (the Galois module).
 
 * [J. H. Silverman, *The Arithmetic of Elliptic Curves*][silverman2009], VII.7.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open scoped Pointwise
 
 variable {G : Type*} [Group G] (I : Subgroup G)
@@ -53,12 +53,12 @@ variable {G : Type*} [Group G] (I : Subgroup G)
 
 This is the module-theoretic input to the Néron–Ogg–Shafarevich criterion: an elliptic
 curve has good reduction exactly when its Tate module is unramified in this sense. -/
-def IsUnramified (M : Type*) [SMul G M] : Prop :=
+def _root_.Tengoku.LanaEllipticCurves.IsUnramified (M : Type*) [SMul G M] : Prop :=
   ∀ σ ∈ I, ∀ m : M, σ • m = m
 
 variable {I}
 
-theorem IsUnramified.smul_eq {M : Type*} [SMul G M] (h : IsUnramified I M)
+theorem Tengoku.LanaEllipticCurves.IsUnramified.smul_eq {M : Type*} [SMul G M] (h : IsUnramified I M)
     {σ : G} (hσ : σ ∈ I) (m : M) : σ • m = m :=
   h σ hσ m
 
@@ -73,7 +73,7 @@ section Hom
 variable {M N : Type*} [SMul G M] [SMul G N]
 
 /-- `IsUnramified` passes to a `G`-equivariant quotient (a surjective equivariant map). -/
-theorem IsUnramified.of_surjective (hM : IsUnramified I M) {f : M → N}
+theorem Tengoku.LanaEllipticCurves.IsUnramified.of_surjective (hM : IsUnramified I M) {f : M → N}
     (hf : Function.Surjective f) (hf_smul : ∀ (σ : G) (m : M), f (σ • m) = σ • f m) :
     IsUnramified I N := by
   intro σ hσ n
@@ -81,7 +81,7 @@ theorem IsUnramified.of_surjective (hM : IsUnramified I M) {f : M → N}
   rw [← hf_smul, hM σ hσ m]
 
 /-- `IsUnramified` passes to a `G`-equivariant sub-object (an injective equivariant map). -/
-theorem IsUnramified.of_injective (hM : IsUnramified I M) {f : N → M}
+theorem Tengoku.LanaEllipticCurves.IsUnramified.of_injective (hM : IsUnramified I M) {f : N → M}
     (hf : Function.Injective f) (hf_smul : ∀ (σ : G) (n : N), f (σ • n) = σ • f n) :
     IsUnramified I N := by
   intro σ hσ n
@@ -95,7 +95,7 @@ section Prod
 variable {M N : Type*} [SMul G M] [SMul G N]
 
 /-- A product of two unramified modules is unramified. -/
-theorem IsUnramified.prod (hM : IsUnramified I M) (hN : IsUnramified I N) :
+theorem Tengoku.LanaEllipticCurves.IsUnramified.prod (hM : IsUnramified I M) (hN : IsUnramified I N) :
     IsUnramified I (M × N) := by
   intro σ hσ mn
   refine Prod.ext ?_ ?_
@@ -109,7 +109,7 @@ section Pi
 variable {ι : Type*} {M : ι → Type*} [∀ i, SMul G (M i)]
 
 /-- A product of a family of unramified modules is unramified. -/
-theorem IsUnramified.pi (h : ∀ i, IsUnramified I (M i)) :
+theorem Tengoku.LanaEllipticCurves.IsUnramified.pi (h : ∀ i, IsUnramified I (M i)) :
     IsUnramified I (∀ i, M i) := by
   intro σ hσ f
   funext i
@@ -122,17 +122,17 @@ section Lattice
 variable {M : Type*}
 
 /-- If the inertia subgroup gets smaller, unramifiedness is preserved. -/
-theorem IsUnramified.mono [SMul G M] {I J : Subgroup G} (h : I ≤ J)
+theorem Tengoku.LanaEllipticCurves.IsUnramified.mono [SMul G M] {I J : Subgroup G} (h : I ≤ J)
     (hJ : IsUnramified J M) : IsUnramified I M :=
   fun σ hσ m => hJ σ (h hσ) m
 
 /-- With the trivial inertia subgroup, every module is unramified. -/
-theorem isUnramified_bot [MulAction G M] : IsUnramified (⊥ : Subgroup G) M := by
+theorem _root_.Tengoku.LanaEllipticCurves.isUnramified_bot [MulAction G M] : IsUnramified (⊥ : Subgroup G) M := by
   intro σ hσ m
   rw [Subgroup.mem_bot.mp hσ, one_smul]
 
 /-- A subsingleton (e.g. the zero module) is unramified for any inertia subgroup. -/
-theorem isUnramified_of_subsingleton [SMul G M] [Subsingleton M] :
+theorem _root_.Tengoku.LanaEllipticCurves.isUnramified_of_subsingleton [SMul G M] [Subsingleton M] :
     IsUnramified I M :=
   fun _ _ _ => Subsingleton.elim _ _
 
@@ -153,3 +153,4 @@ noncomputable abbrev IsUnramifiedAt (A : ValuationSubring L)
   IsUnramified (A.inertiaSubgroup K) M
 
 end ValuationSubring
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

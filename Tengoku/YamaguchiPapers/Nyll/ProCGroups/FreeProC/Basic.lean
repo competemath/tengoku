@@ -22,7 +22,7 @@ This module defines the free and pointed free pro-\(C\) universal properties,
 their converging-set form, and the bundled canonical source data used by later
 constructions.
 -/
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers
 open Set
 open scoped Topology
 
@@ -1444,3 +1444,4 @@ structure EpimorphicallyFreeProCGroupOnConvergingSetData
 end
 
 end ProCGroups.FreeProC
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

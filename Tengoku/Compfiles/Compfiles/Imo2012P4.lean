@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2012, Problem 4
 
@@ -74,3 +74,4 @@ theorem myInduction
 abbrev solution_set : Set (ℤ → ℤ) := odd_const ∪ mod4_cycle ∪ square_set
 
 end Imo2012P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

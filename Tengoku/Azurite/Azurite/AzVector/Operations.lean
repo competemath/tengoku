@@ -15,7 +15,7 @@ import Tengoku.Azurite.Azurite.AzVector.Basic
 import Tengoku.Seed.Algebra.Group.Pi.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} {n : Nat}
 
@@ -103,3 +103,4 @@ theorem AzVector.toFn_smul [SMul α R] (c : α) (v : AzVector R n) :
   simp
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

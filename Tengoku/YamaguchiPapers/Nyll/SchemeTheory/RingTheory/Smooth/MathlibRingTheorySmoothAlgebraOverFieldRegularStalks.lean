@@ -22,13 +22,13 @@ import Tengoku.Seed.RingTheory.Unramified.Field
 
 The dual-number counterexample records why a smoothness hypothesis is needed.
 -/
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers
 universe u
 
 open IsLocalRing
 
 /-- Smooth algebras over fields have regular localizations at prime ideals.-/
-def SmoothFieldFiberRegularStalksInput : Prop :=
+def _root_.Tengoku.YamaguchiPapers.SmoothFieldFiberRegularStalksInput : Prop :=
   ∀ (k A : Type u) [Field k] [CommRing A] [Algebra k A],
     Algebra.Smooth k A → ∀ (p : Ideal A) [p.IsPrime],
       IsRegularLocalRing (Localization.AtPrime p)
@@ -238,3 +238,4 @@ theorem not_forall_regular_stalks_without_smooth :
     (hclaim ℚ (DualNumber ℚ) (maximalIdeal (DualNumber ℚ)))
 
 end SmoothFieldFiberRegularStalks
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

@@ -12,11 +12,11 @@ public import Tengoku
 -/
 
 public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u
 
 open Classical in
-lemma tsum_option {α β : Type*} [AddCommMonoid α] [TopologicalSpace α]
+lemma _root_.Tengoku.Vcvio.tsum_option {α β : Type*} [AddCommMonoid α] [TopologicalSpace α]
     [ContinuousAdd α] [T2Space α]
     (f : Option β → α) (hf : Summable (Function.update f none 0)) :
     ∑' x : Option β, f x = f none + ∑' x : β, f (some x) := by
@@ -28,3 +28,4 @@ lemma tsum_option {α β : Type*} [AddCommMonoid α] [TopologicalSpace α]
   · intro x
     cases x <;> simp
   · simp
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

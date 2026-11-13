@@ -9,11 +9,11 @@ Axiomatic betweenness
 -/
 
 @[expose] public section
-
+namespace Tengoku.MiscYd end Tengoku.MiscYd open Tengoku.MiscYd 
 variable {V : Type*} [MetricSpace V] {u v w : V}
 
 @[implicit_reducible]
-def MetricSBtw : SBtw V where
+def _root_.Tengoku.MiscYd.MetricSBtw : SBtw V where
   sbtw u v w := u ≠ v ∧ u ≠ w ∧ v ≠ w ∧ dist u v + dist v w = dist u w
 
 scoped[MetricBetweenness] attribute [instance] MetricSBtw
@@ -57,14 +57,14 @@ lemma SBtw.comm : sbtw u v w ↔ sbtw w v u :=
 /--
 @isnad1 id=iff.3h4v.s6.2ce23fae8111 from=translated src=- shape=346f0ddd vocab=ff725788
 -/
-lemma sbtw_iff_of_ne (h12 : u ≠ v) (h13 : u ≠ w) (h23 : v ≠ w) :
+lemma _root_.Tengoku.MiscYd.sbtw_iff_of_ne (h12 : u ≠ v) (h13 : u ≠ w) (h23 : v ≠ w) :
     sbtw u v w ↔ dist u v + dist v w = dist u w :=
   by simp [MetricSpace.sbtw_iff, h12, h13, h23]
 
 /--
 @isnad1 id=sbtw.3h4v.s6.fc78bdd81e92 from=translated src=- shape=3950ad51 vocab=1c68fc1e
 -/
-lemma sbtw_mk (h12 : u ≠ v) (h23 : v ≠ w) (h : dist u v + dist v w ≤ dist u w) : sbtw u v w := by
+lemma _root_.Tengoku.MiscYd.sbtw_mk (h12 : u ≠ v) (h23 : v ≠ w) (h : dist u v + dist v w ≤ dist u w) : sbtw u v w := by
   refine ⟨h12, ?_, h23, h.antisymm (dist_triangle _ _ _)⟩
   rintro rfl
   rw [dist_self] at h
@@ -93,3 +93,4 @@ lemma SBtw.sbtw.asymm_right {u v x : V} (h : sbtw u v x) (h' : sbtw v u x) : Fal
 lemma SBtw.sbtw.trans_right' {u v w x : V} (h : sbtw u v x) (h' : sbtw v w x) : sbtw u w x :=
   have : u ≠ w := by rintro rfl; exact h.asymm_right h'
   sbtw_mk this h'.ne23 <| by linarith [h.dist, h'.dist, dist_triangle u v w]
+-- Tengoku: root names of this library moved to Tengoku.MiscYd so they do not collide with other libraries (generated)

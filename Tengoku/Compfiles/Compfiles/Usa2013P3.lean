@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2013, Problem 3
 
@@ -1287,3 +1287,4 @@ lemma answer_le_f {n : ℕ} (hn : 0 < n) :
   exact key w hw1
 
 end Usa2013P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

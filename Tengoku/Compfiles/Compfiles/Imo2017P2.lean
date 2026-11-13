@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2017, Problem 2
 
@@ -273,3 +273,4 @@ abbrev solution_set : Set (ℝ → ℝ) :=
   { fun _ ↦ 0, fun x ↦ x - 1, fun x ↦ 1 - x }
 
 end Imo2017P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

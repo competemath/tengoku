@@ -20,7 +20,7 @@ This module supplies the definition used by the downstream measurability and con
 -/
 
 noncomputable section
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib 
 universe u v w
 
 open MeasureTheory ProbabilityTheory Real
@@ -30,8 +30,9 @@ variable {Ω : Type u} [MeasurableSpace Ω] {ι : Type v} {𝒳 : Type w}
 
 /-- The largest absolute difference between empirical and population expectations over a function
 class. -/
-def uniformDeviation (n : ℕ) (f : ι → 𝒳 → ℝ) (μ : Measure Ω) (X : Ω → 𝒳)
+def _root_.Tengoku.Statsmllib.uniformDeviation (n : ℕ) (f : ι → 𝒳 → ℝ) (μ : Measure Ω) (X : Ω → 𝒳)
     (S : Fin n → 𝒳) : ℝ :=
   ⨆ i, |(n : ℝ)⁻¹ * ∑ k : Fin n, f i (S k) - μ[fun ω' ↦ f i (X ω')]|
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

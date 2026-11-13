@@ -25,7 +25,7 @@ Theorem 4.61 implies that every such set is the zero set of a *finite* set of po
 `exists_finset_zerOfIdeal`). So this notion of algebraic set agrees with the one in Chapter 1
 (`K = ℂ`) and Chapter 2 (`K = ℝ`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -72,3 +72,4 @@ theorem exists_finset_zerOfIdeal (I : Ideal (MvPolynomial (Fin k) K)) :
   exact ⟨P, by rw [hP, zerOfIdeal_idealOfPolys]⟩
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

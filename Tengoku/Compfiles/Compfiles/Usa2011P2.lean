@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2011, Problem 2
 
@@ -171,3 +171,4 @@ lemma win_at_zero (a : Config) (hsum : ∑ i, a i = 2011) (hinv : invariant a = 
     lia
 
 end Usa2011P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

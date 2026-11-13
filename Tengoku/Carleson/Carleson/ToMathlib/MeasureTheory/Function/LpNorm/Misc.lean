@@ -6,7 +6,7 @@ public import Tengoku
 --Upstreaming status: ready
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 noncomputable section
 
 open scoped NNReal ENNReal
@@ -83,3 +83,4 @@ lemma eLpNorm_withDensity_scale_constant' {f : ℝ≥0 → ℝ≥0∞} (hf : AES
     simp_rw [← mul_assoc, ← this]
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

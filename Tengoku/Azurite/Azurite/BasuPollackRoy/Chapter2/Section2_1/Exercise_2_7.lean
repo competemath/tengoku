@@ -40,7 +40,7 @@ distinct monomial counted once), which is Mathlib's
 positive characteristic, this proof should be refactored to use
 `msymm`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open MvPolynomial Equiv
@@ -97,3 +97,4 @@ theorem exercise_2_7 [CharZero K] {k : ℕ} {Q : MvPolynomial (Fin k) K}
   simp only [smul_comm (↑k.factorial : K)⁻¹, div_eq_mul_inv, mul_smul]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

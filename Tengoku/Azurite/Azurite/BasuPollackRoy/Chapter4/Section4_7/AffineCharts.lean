@@ -23,7 +23,7 @@ charts cover projective space: `⋃ᵢ 𝒰ᵢ = ℙ_k(C)`.
 (The semialgebraic structure of the overlaps `φᵢ⁻¹(𝒰ᵢ ∩ 𝒰ⱼ)` and the transition maps
 `φⱼ⁻¹ ∘ φᵢ`, which requires the real identification `C ≅ R²`, is treated separately.)
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] {k : ℕ}
@@ -133,3 +133,4 @@ theorem iUnion_chartSet :
   exact ⟨i, by rw [chartSet_eq]; exact hi⟩
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

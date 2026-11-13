@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1988, Problem 3
 
@@ -298,3 +298,4 @@ lemma fixedPoint_count_from_recurrence (f : ℕ+ → ℕ+) (hf : SatisfiesRecurr
       ((pnatBinaryReverse_fixed_iff_palindrome ⟨b, hbpos⟩).mpr hpal)
 
 end Imo1988P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

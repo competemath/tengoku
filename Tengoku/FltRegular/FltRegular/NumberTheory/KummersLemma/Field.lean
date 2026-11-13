@@ -12,7 +12,7 @@ unramified.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open scoped NumberField
 
 attribute [local implicit_reducible] integralClosure NumberField.RingOfIntegers
@@ -32,7 +32,7 @@ include hcong hp in
 @isnad1 id=dvd.3h4v.s10.628fc0a628dc from=translated src=- shape=375222bf vocab=ba61cb77
 -/
 @[nolint unusedArguments]
-lemma zeta_sub_one_pow_dvd_poly [IsCyclotomicExtension {p} ℚ K] :
+lemma _root_.Tengoku.FltRegular.zeta_sub_one_pow_dvd_poly [IsCyclotomicExtension {p} ℚ K] :
     C ((hζ.toInteger - 1 : 𝓞 K) ^ p) ∣
       (C (hζ.toInteger - 1 : 𝓞 K) * X - 1) ^ p + C (u : 𝓞 K) := by
   rw [← dvd_sub_left (_root_.map_dvd C hcong), add_sub_assoc, C.map_sub (u : 𝓞 K), ← sub_add,
@@ -372,3 +372,4 @@ lemma isUnramified (L) [Field L] [Algebra K L] [IsSplittingField K L (X ^ p - C 
   exact separable_poly hp hζ u hcong hu (P.under (𝓞 K))
 
 end KummersLemma
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

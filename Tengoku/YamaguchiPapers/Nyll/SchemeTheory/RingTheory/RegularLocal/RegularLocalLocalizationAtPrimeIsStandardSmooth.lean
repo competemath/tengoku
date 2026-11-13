@@ -25,14 +25,14 @@ import Tengoku.YamaguchiPapers.Nyll.SchemeTheory.RingTheory.Smooth.StandardSmoot
 -/
 
 section ProofImplementation
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers 
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace isRegularLocalRing_localization_atPrime_of_isStandardSmooth
 
 /--
 @isnad1 id=isregula.0h3v.s6.85c287a6e98d from=translated src=- shape=aff9a903 vocab=e34cf456
 -/
-theorem _root_.isRegularLocalRing_localization_atPrime_of_isStandardSmooth
+theorem _root_.Tengoku.YamaguchiPapers.isRegularLocalRing_localization_atPrime_of_isStandardSmooth
     (k B : Type*) [Field k] [CommRing B] [Algebra k B]
     [Algebra.IsStandardSmooth k B] (q : Ideal B) [q.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime q) := by
@@ -52,3 +52,4 @@ theorem _root_.isRegularLocalRing_localization_atPrime_of_isStandardSmooth
 end isRegularLocalRing_localization_atPrime_of_isStandardSmooth
 end AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 end ProofImplementation
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

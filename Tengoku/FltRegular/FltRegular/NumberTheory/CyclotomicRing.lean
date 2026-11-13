@@ -11,7 +11,7 @@ integers of the corresponding rational cyclotomic field.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 noncomputable section
 
 open Polynomial NumberField
@@ -19,7 +19,7 @@ open Polynomial NumberField
 variable (p : ℕ) [hpri : Fact p.Prime]
 
 /-- The cyclotomic integers of conductor `p`, defined as an `AdjoinRoot`. -/
-def CyclotomicIntegers : Type := AdjoinRoot (cyclotomic p ℤ)
+def _root_.Tengoku.FltRegular.CyclotomicIntegers : Type := AdjoinRoot (cyclotomic p ℤ)
 
 instance : CommRing (CyclotomicIntegers p) := by
   delta CyclotomicIntegers
@@ -39,7 +39,7 @@ lemma IsPrimitiveRoot.cyclotomic_eq_minpoly
     ← cyclotomic_eq_minpoly_rat (n := p) (hpos := hpri.out.pos), map_cyclotomic]
   exact hx
 
-namespace CyclotomicIntegers
+namespace Tengoku.FltRegular.CyclotomicIntegers
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The canonical equivalence between `CyclotomicIntegers p` and the ring of integers of the
@@ -162,5 +162,6 @@ lemma charZero {p} (hp : p ≠ 0) : CharZero (CyclotomicIntegers p) :=
 
 instance : CharZero (CyclotomicIntegers p) := charZero hpri.out.ne_zero
 
-end CyclotomicIntegers
+end Tengoku.FltRegular.CyclotomicIntegers
 end
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

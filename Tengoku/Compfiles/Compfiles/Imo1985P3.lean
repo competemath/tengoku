@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1985, Problem 3
 
@@ -297,3 +297,4 @@ lemma key : ∀ N : ℕ, ∀ (S : Finset ℕ) (hS : S.Nonempty), S.max' hS = N �
         lia
 
 end Imo1985P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

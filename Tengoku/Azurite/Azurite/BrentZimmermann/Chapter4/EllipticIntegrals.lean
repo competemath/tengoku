@@ -51,7 +51,7 @@ What is formalized:
 Not formalized: the `t`-forms of (4.67) (improper at `t = 1`), the hypergeometric identification,
 and the expansion (4.70) of `K'` near `k = 0` (that is the asymptotics of `K` near `k = 1`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -581,3 +581,4 @@ theorem one_div_AGM_one {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

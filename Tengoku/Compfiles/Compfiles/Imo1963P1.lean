@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1963, Problem 1
 
@@ -34,3 +34,4 @@ abbrev f (p : ℝ) : Set ℝ :=
   else ∅
 
 end Imo1963P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

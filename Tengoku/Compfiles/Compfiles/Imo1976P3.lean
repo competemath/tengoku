@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1976, Problem 3
 
@@ -686,3 +686,4 @@ theorem main_nat {a b c a' b' c' : ℕ} (ha : 0 < a) (hb : 0 < b) (hc : 0 < c)
 abbrev solution_set : Set (ℕ × ℕ × ℕ) := {⟨2, 3, 5⟩, ⟨2, 5, 6⟩}
 
 end Imo1976P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

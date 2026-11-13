@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1993, Problem 3
 
@@ -583,3 +583,4 @@ lemma solvable_of_pos_not_three_dvd (n : ℕ) (_h0 : 0 < n) (h3 : ¬ 3 ∣ n) : 
 -- snip end
 
 end Imo1993P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

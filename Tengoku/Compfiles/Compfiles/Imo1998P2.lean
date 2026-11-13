@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1998, Problem 2
 
@@ -250,3 +250,4 @@ theorem clear_denominators {a b k : ℕ} (ha : 0 < a) (hb : 0 < b) :
 end
 
 end Imo1998P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

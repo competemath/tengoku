@@ -41,7 +41,7 @@ The `Qs` are the maximal minors of the *Macaulay/elimination matrix* `𝓜` of t
 `(H_i) ↦ ∑ H_i P_i` on a single large degree `N`, with `N` chosen uniformly via the quantitative
 Nullstellensatz (Corollary 4.84). This is BPR's `M_N(𝒫)` and its maximal minors `M_i(Y)`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -453,3 +453,4 @@ theorem forall_mem_minors_iff (y : Fin (k₂ + 1) → C) :
 end Elimination
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 noncomputable section
 
 open Nat Polynomial NumberField
@@ -23,11 +23,11 @@ open scoped NumberField
 variable (n p : ℕ)
 
 /-- A natural number `n` is regular if `n` is coprime with the cardinal of the class group. -/
-def IsRegularNumber : Prop :=
+def _root_.Tengoku.FltRegular.IsRegularNumber : Prop :=
   n.Coprime <| Fintype.card <| ClassGroup (𝓞 <| CyclotomicField n ℚ)
 
 /-- The definition of regular primes. -/
-def IsRegularPrime : Prop :=
+def _root_.Tengoku.FltRegular.IsRegularPrime : Prop :=
   IsRegularNumber p
 
 section TwoRegular
@@ -37,7 +37,7 @@ variable (K : Type*) [Field K]
 variable (L : Type*) [Field L] [Algebra K L]
 
 /-- The second cyclotomic field is equivalent to the base field. -/
-def cyclotomicFieldTwoEquiv [IsCyclotomicExtension {2} K L] : L ≃ₐ[K] K := by
+def _root_.Tengoku.FltRegular.cyclotomicFieldTwoEquiv [IsCyclotomicExtension {2} K L] : L ≃ₐ[K] K := by
   suffices IsSplittingField K K (cyclotomic 2 K) by
     have : IsSplittingField K L (cyclotomic 2 K) :=
       IsCyclotomicExtension.splitting_field_cyclotomic 2 K L
@@ -49,7 +49,7 @@ def cyclotomicFieldTwoEquiv [IsCyclotomicExtension {2} K L] : L ≃ₐ[K] K := b
 /--
 @isnad1 id=isprinci.0h1v.s5.b78408edb33a from=translated src=- shape=7f41e255 vocab=7ed6d57f
 -/
-instance IsPrincipalIdealRing_of_IsCyclotomicExtension_two
+instance _root_.Tengoku.FltRegular.IsPrincipalIdealRing_of_IsCyclotomicExtension_two
     (L : Type*) [Field L] [CharZero L] [IsCyclotomicExtension {2} ℚ L] :
     IsPrincipalIdealRing (𝓞 L) :=
   let F : 𝓞 L ≃+* ℤ := (RingOfIntegers.mapRingEquiv
@@ -65,7 +65,7 @@ local instance : IsPrincipalIdealRing (𝓞 (CyclotomicField 2 ℚ)) :=
 /--
 @isnad1 id=isregula.0h0v.s2.1cb536cd45ce from=translated src=- shape=e590c3e1 vocab=be53b2a2
 -/
-theorem isRegularPrime_two : IsRegularPrime 2 := by
+theorem _root_.Tengoku.FltRegular.isRegularPrime_two : IsRegularPrime 2 := by
   rw [IsRegularPrime, IsRegularNumber]
   convert coprime_one_right _
   exact (card_classGroup_eq_one_iff (R := 𝓞 (CyclotomicField 2 ℚ))).2 inferInstance
@@ -74,7 +74,7 @@ set_option backward.isDefEq.respectTransparency false in
 /--
 @isnad1 id=isregula.0h0v.s2.d29d37a3e851 from=translated src=- shape=e590c3e1 vocab=be53b2a2
 -/
-theorem isRegularPrime_three :
+theorem _root_.Tengoku.FltRegular.isRegularPrime_three :
     haveI : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
     IsRegularPrime 3 := by
   rw [IsRegularPrime, IsRegularNumber]
@@ -84,3 +84,4 @@ theorem isRegularPrime_three :
 
 end TwoRegular
 -- Tengoku: 2 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

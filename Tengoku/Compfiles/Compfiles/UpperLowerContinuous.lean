@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 Suppose f : ℝ -> ℝ is continuous in both the upper topology (where
 the basic open sets are half-open intervals (a, b]) and lower topology
@@ -428,3 +428,4 @@ theorem monotone_of_upper_lower_continuous
   exact h0 hz
 
 end UpperLowerContinuous
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

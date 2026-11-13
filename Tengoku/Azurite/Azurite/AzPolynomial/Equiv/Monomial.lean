@@ -11,7 +11,7 @@ import Tengoku.Azurite.Azurite.AzPolynomial.Monomial
 import Tengoku.Azurite.Azurite.AzPolynomial.Equiv.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.AzPolynomial
 
 variable {R : Type _} [Semiring R] [DecidableEq R]
@@ -177,3 +177,4 @@ variable {R : Type _} [Semiring R] [DecidableEq R]
   rw [← h]; simp [eq_comm]
 
 end Azurite.AzPolynomial
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

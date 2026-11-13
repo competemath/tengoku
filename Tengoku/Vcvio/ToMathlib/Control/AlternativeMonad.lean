@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 -- These have now made it into batteries, except for a few lemmas
 
 universe u v w
@@ -23,30 +23,30 @@ section liftM
 
 variable {α β}
 
-theorem liftM_failure [Alternative m] [Alternative n] [MonadLift m n]
+theorem _root_.Tengoku.Vcvio.liftM_failure [Alternative m] [Alternative n] [MonadLift m n]
     [LawfulAlternativeLift m n] : liftM (failure : m α) = (failure : n α) := monadLift_failure
 
-theorem liftM_orElse [Alternative m] [Alternative n] [MonadLift m n]
+theorem _root_.Tengoku.Vcvio.liftM_orElse [Alternative m] [Alternative n] [MonadLift m n]
     [LawfulAlternativeLift m n] (x y : m α) : liftM (x <|> y) = (liftM x <|> liftM y : n α) :=
   monadLift_orElse x y
 
-theorem monadLift_guard [AlternativeMonad m] [AlternativeMonad n] [MonadLift m n]
+theorem _root_.Tengoku.Vcvio.monadLift_guard [AlternativeMonad m] [AlternativeMonad n] [MonadLift m n]
     [LawfulAlternativeLift m n] [LawfulMonadLift m n] (p : Prop) [Decidable p] :
     monadLift (guard p : m Unit) = (guard p : n Unit) := by
   simp only [guard, apply_ite (f := monadLift), liftM_pure, liftM_failure]
 
-@[simp] theorem liftM_guard [AlternativeMonad m] [AlternativeMonad n] [MonadLift m n]
+@[simp] theorem _root_.Tengoku.Vcvio.liftM_guard [AlternativeMonad m] [AlternativeMonad n] [MonadLift m n]
     [LawfulAlternativeLift m n] [LawfulMonadLift m n] (p : Prop) [Decidable p] :
     liftM (guard p : m Unit) = (guard p : n Unit) :=
   monadLift_guard p
 
-theorem monadLift_optional [AlternativeMonad m] [AlternativeMonad n]
+theorem _root_.Tengoku.Vcvio.monadLift_optional [AlternativeMonad m] [AlternativeMonad n]
     [LawfulMonad m] [LawfulMonad n] [MonadLift m n] [LawfulAlternativeLift m n]
     [LawfulMonadLift m n]
     (x : m α) : monadLift (optional x) = optional (monadLift x : n α) := by
   simp only [optional, liftM_orElse, liftM_map, liftM_pure]
 
-@[simp] theorem liftM_optional [AlternativeMonad m] [AlternativeMonad n]
+@[simp] theorem _root_.Tengoku.Vcvio.liftM_optional [AlternativeMonad m] [AlternativeMonad n]
     [LawfulMonad m] [LawfulMonad n] [MonadLift m n] [LawfulAlternativeLift m n]
     [LawfulMonadLift m n]
     (x : m α) : liftM (optional x) = optional (liftM x : n α) :=
@@ -71,3 +71,4 @@ theorem liftM_elimM [Monad m] [Monad n] [LawfulMonad m] [LawfulMonad n]
   monadLift_elimM x y z
 
 end Option
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

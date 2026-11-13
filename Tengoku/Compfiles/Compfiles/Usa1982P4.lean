@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1982, Problem 4
 
@@ -105,3 +105,4 @@ lemma usa1982_mod_lemma {n r r' q : ℕ}
   rw [Nat.ModEq, ← hm, ← hpq, Nat.mod_mul_left_mod]
 
 end Usa1982P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

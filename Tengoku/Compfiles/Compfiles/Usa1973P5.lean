@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1973, Problem 5
 
@@ -101,3 +101,4 @@ lemma key_algebra {x y z : ℝ} {m n : ℤ}
 -- suffices to show that this is impossible for distinct primes `p, q, r`.
 
 end Usa1973P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

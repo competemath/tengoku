@@ -55,7 +55,7 @@ import Tengoku.Seed.Tactic.Push
 import Tengoku.Seed.Tactic.NormNum.GCD
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace CP
@@ -313,3 +313,4 @@ end Examples
 end CP
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

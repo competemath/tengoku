@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2020, Problem 4
 
@@ -811,3 +811,4 @@ lemma Company.linked_of_subCompany_linked {n k : ℕ} (c : Company n k) {k' : �
 abbrev answer : (Set.Ioi 1) → ℕ := fun n ↦ n * n - n + 1
 
 end Imo2020P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

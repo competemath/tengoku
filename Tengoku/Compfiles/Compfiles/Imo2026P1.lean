@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2026, Problem 1
 
@@ -356,3 +356,4 @@ lemma large_mem_eq_Mval {B₀ B' : Board} (hB₀ : IsInitial B₀) (hreach : Rea
   exact h1.symm
 
 end Imo2026P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

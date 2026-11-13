@@ -12,7 +12,7 @@ import Tengoku
 -/
 
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open Bundle Set
 
 namespace FiberBundle
@@ -107,7 +107,7 @@ variable [∀ x : B, TopologicalSpace (E₂ x)] [FiberBundle F₂ E₂] [VectorB
 variable [∀ x, IsTopologicalAddGroup (E₂ x)] [∀ x, ContinuousSMul 𝕜₂ (E₂ x)]
 
 @[simp, mfld_simps]
-theorem continuousLinearMap_trivializationAt (x : B) :
+theorem _root_.Tengoku.SphereEversion.continuousLinearMap_trivializationAt (x : B) :
     trivializationAt (F₁ →SL[σ] F₂) (fun x ↦ E₁ x →SL[σ] E₂ x) x =
       (trivializationAt F₁ E₁ x).continuousLinearMap σ (trivializationAt F₂ E₂ x) :=
   rfl
@@ -144,7 +144,7 @@ end Trivialization
 
 variable [∀ x, TopologicalSpace (E x)] [FiberBundle F E]
 
-theorem pullback_trivializationAt {x : B'} :
+theorem _root_.Tengoku.SphereEversion.pullback_trivializationAt {x : B'} :
     trivializationAt F (f *ᵖ E) x = (trivializationAt F E (f x)).pullback f :=
   rfl
 
@@ -176,3 +176,4 @@ theorem pullback_symmL (e : Trivialization F (π F E)) [e.IsLinear 𝕜] (x : B'
 end Trivialization
 
 end PullbackVb
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

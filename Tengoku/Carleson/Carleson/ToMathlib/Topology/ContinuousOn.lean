@@ -6,7 +6,7 @@ public import Tengoku
 -- Upstreaming status: some results should probably be generalized, see TODOs
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 open NNReal ENNReal
 
 /--
@@ -55,7 +55,7 @@ lemma ContinuousWithinAt.measure_lt_ne_zero {α : Type*} {m : MeasurableSpace α
 /--
 @isnad1 id=eq.2h1v.s6.def2ef419088 from=translated src=- shape=832f2bb1 vocab=ac99c6de
 -/
-lemma eLpNormEssSup_eq_iSup' {f : ℝ≥0∞ → ℝ≥0∞}
+lemma _root_.Tengoku.Carleson.eLpNormEssSup_eq_iSup' {f : ℝ≥0∞ → ℝ≥0∞}
   (hf : ∀ (a : ℝ≥0∞) (x : ℝ≥0∞), a < f x → ContinuousWithinAt f (Set.Ioi x) x) (f_top : f ⊤ = ⊥) :
     eLpNormEssSup f volume = ⨆ x, f x := by
   symm
@@ -71,7 +71,7 @@ lemma eLpNormEssSup_eq_iSup' {f : ℝ≥0∞ → ℝ≥0∞}
 /--
 @isnad1 id=eq.1h1v.s6.618ad093cb80 from=translated src=- shape=d3b58f63 vocab=55b3f930
 -/
-lemma eLpNormEssSup_nnreal_eq_iSup_nnreal {f : ℝ≥0∞ → ℝ≥0∞}
+lemma _root_.Tengoku.Carleson.eLpNormEssSup_nnreal_eq_iSup_nnreal {f : ℝ≥0∞ → ℝ≥0∞}
   (hf : ∀ (a : ℝ≥0∞) (x : ℝ≥0), a < f x → ContinuousWithinAt f (Set.Ioi ↑x) ↑x) :
     eLpNormEssSup (fun t : ℝ≥0 ↦ f t) volume = ⨆ (x : ℝ≥0), f x := by
   symm
@@ -84,3 +84,4 @@ lemma eLpNormEssSup_nnreal_eq_iSup_nnreal {f : ℝ≥0∞ → ℝ≥0∞}
   simp only [Set.univ_inter]
   ext y
   simp
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

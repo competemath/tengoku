@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2014, Problem 6
 
@@ -731,3 +731,4 @@ lemma row_bound (a b n : ℕ) (ha : 0 < a) (hb : 0 < b) (hn : 2 ^ 15 ≤ n)
     _ ≤ (a : ℝ) + n := by linarith
 
 end Usa2014P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

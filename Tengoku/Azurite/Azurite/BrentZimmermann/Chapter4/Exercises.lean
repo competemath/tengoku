@@ -541,7 +541,7 @@ coefficients `a_{2j+lk}` with `l` odd have odd index and vanish, so `S_{2j,k} = 
 (`bernoulli_aliasSum_odd`) and the error (4.87) improves from `O((2π)^(−k))` to `O((2π)^(−2k))`
 (`norm_bernoulli_aliasSum_sub_le_odd`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -5399,3 +5399,4 @@ end Exercise451
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

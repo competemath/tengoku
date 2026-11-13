@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 
 Puzzle referenced from this tweet: https://twitter.com/sigfpe/status/1474173467016589323
@@ -136,3 +136,4 @@ def all_same_class
   b.All is_decent ∨ b.All (fun w ↦ ¬is_decent w)
 
 end KolmogorovStreams
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1994, Problem 3
 
@@ -502,3 +502,4 @@ lemma f_two_pow_add_two (n : ℕ) (hn : 2 ≤ n) : f (2 ^ n + 2) = n.choose 2 + 
     h1, Finset.card_union_of_disjoint hdisj, Finset.card_singleton, card_three]
 
 end Imo1994P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

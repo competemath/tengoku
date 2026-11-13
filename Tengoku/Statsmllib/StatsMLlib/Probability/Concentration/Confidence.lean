@@ -11,7 +11,7 @@ import Tengoku
 The lemmas in this file package the elementary real calculation used to turn
 sub-Gaussian tail estimates into bounds parametrized by a failure probability.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open Real
 
 /--
@@ -19,14 +19,14 @@ The sub-Gaussian confidence radius with tail prefactor `κ`:
 
 `confidenceRadius κ b δ n = b * √(2 * log (κ / δ) / n)`.
 -/
-noncomputable def confidenceRadius (κ b δ : ℝ) (n : ℕ) : ℝ :=
+noncomputable def _root_.Tengoku.Statsmllib.confidenceRadius (κ b δ : ℝ) (n : ℕ) : ℝ :=
   b * Real.sqrt (2 * Real.log (κ / δ) / n)
 
 /--
 Substituting `confidenceRadius κ b δ n` into a sub-Gaussian tail with
 prefactor `κ` gives exactly `δ`.
 -/
-theorem mul_exp_neg_confidenceRadius_sq
+theorem _root_.Tengoku.Statsmllib.mul_exp_neg_confidenceRadius_sq
     {n : ℕ} (hn : 0 < n) {κ b δ : ℝ}
     (hκ : 0 < κ) (hb : 0 < b) (hδ : 0 < δ) (hδκ : δ ≤ κ) :
     κ * (-confidenceRadius κ b δ n ^ 2 * n / (2 * b ^ 2)).exp = δ := by
@@ -49,3 +49,4 @@ theorem mul_exp_neg_confidenceRadius_sq
     field_simp [hb.ne', hnR.ne']
   rw [hexponent, Real.exp_neg, Real.exp_log hquot]
   field_simp [hκ.ne', hδ.ne']
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

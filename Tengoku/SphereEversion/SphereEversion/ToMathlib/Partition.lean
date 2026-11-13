@@ -3,7 +3,7 @@ import Tengoku.SphereEversion.SphereEversion.ToMathlib.Analysis.Convex.Basic
 import Tengoku.SphereEversion.SphereEversion.ToMathlib.Geometry.Manifold.Algebra.SmoothGerm
 
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open scoped Topology
 open Set Function Filter
 
@@ -58,3 +58,4 @@ theorem germ_combine_mem (φ : ι → M → F) (hx : x ∈ interior s := by simp
 end SmoothPartitionOfUnity
 
 end
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

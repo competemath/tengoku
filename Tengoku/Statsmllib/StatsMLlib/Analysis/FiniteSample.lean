@@ -11,11 +11,11 @@ import Tengoku
 Elementary estimates for normalized sums over `Fin n`.  The summand may
 depend on the coordinate, so the update lemma also applies to signed sums.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open scoped BigOperators
 
 /-- A normalized finite sum of uniformly bounded summands is uniformly bounded. -/
-theorem abs_normalized_fin_sum_le
+theorem _root_.Tengoku.Statsmllib.abs_normalized_fin_sum_le
     {n : ℕ} {α : Type*} (hn : 0 < n)
     (a : Fin n → α → ℝ) (S : Fin n → α)
     {b : ℝ} (ha : ∀ k x, |a k x| ≤ b) :
@@ -40,7 +40,7 @@ theorem abs_normalized_fin_sum_le
 Replacing one coordinate changes a normalized sum by at most `2 * b / n`
 when every coordinate summand is bounded in absolute value by `b`.
 -/
-theorem abs_normalized_fin_sum_update_sub_le
+theorem _root_.Tengoku.Statsmllib.abs_normalized_fin_sum_update_sub_le
     {n : ℕ} {α : Type*} (hn : 0 < n)
     (a : Fin n → α → ℝ) {b : ℝ} (ha : ∀ k x, |a k x| ≤ b)
     (j : Fin n) (S : Fin n → α) (x' : α) :
@@ -72,3 +72,4 @@ theorem abs_normalized_fin_sum_update_sub_le
           · exact ha j (S j)
           · exact ha j x'
     _ = (n : ℝ)⁻¹ * 2 * b := by ring
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

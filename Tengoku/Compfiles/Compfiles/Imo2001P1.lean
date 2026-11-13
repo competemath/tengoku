@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2001, Problem 1
 
@@ -637,3 +637,4 @@ theorem result : ∠ cfg.C cfg.A cfg.B + ∠ cfg.C cfg.ABC.circumcenter cfg.P < 
 end Imo2001q1Cfg
 
 end Imo2001P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # British Mathematical Olympiad 2024, Round 1, Problem 1
 
@@ -307,3 +307,4 @@ subset of the permutations of 9 elements.
 -/
 
 end UK2024R1P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

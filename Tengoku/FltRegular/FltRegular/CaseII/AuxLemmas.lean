@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 variable {K : Type*} {p : ℕ} [Field K] [CharZero K] {ζ : K}
 
 open scoped nonZeroDivisors
@@ -13,7 +13,7 @@ open FractionalIdeal in
 /--
 @isnad1 id=ex.4h5v.s9.2e696ded4906 from=translated src=- shape=0db1e094 vocab=81997feb
 -/
-lemma exists_not_dvd_spanSingleton_eq {R : Type*} [CommRing R] [IsDedekindDomain R]
+lemma _root_.Tengoku.FltRegular.exists_not_dvd_spanSingleton_eq {R : Type*} [CommRing R] [IsDedekindDomain R]
     {K : Type*} [Field K] [Algebra R K] [IsFractionRing R K]
     {x : R} (hx : Prime x) (I J : Ideal R)
     (hI : ¬ (Ideal.span <| singleton x) ∣ I) (hJ : ¬ (Ideal.span <| singleton x) ∣ J)
@@ -75,3 +75,4 @@ lemma exists_not_dvd_spanSingleton_eq {R : Type*} [CommRing R] [IsDedekindDomain
     rw [he']
     exact dvd_mul_of_dvd_right (by rwa [Ideal.dvd_span_singleton, Ideal.mem_span_singleton]) I
   exact ((Ideal.prime_span_singleton_iff.mpr hx).dvd_or_dvd hd).resolve_right hJ
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

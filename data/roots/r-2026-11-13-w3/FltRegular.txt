@@ -1,0 +1,32 @@
+leakscan: 7 global instances (2 can fire outside the library), 0 scoped; 2 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 28 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance IsPrincipalIdealRing_of_IsCyclotomicExtension_two registered in Tengoku.FltRegular.FltRegular.NumberTheory.RegularPrimes (declared at line 49)
+leak: instance Nat.fact_prime_seven registered in Tengoku.FltRegular.FltRegular.SmallNumbers.Seven.Seven (declared at line 25)
+root: zeta_sub_one_pow_dvd_norm_sub_pow
+root: zeta_sub_one_dvd_trace_sub_smul
+root: instIsCyclotomicExtensionSingletonNatSetOfNatRatCyclotomicField
+root: cyclotomicFieldTwoEquiv
+root: systemOfUnits
+root: IsRegularNumber
+root: isUnramifiedAt_of_Separable_minpoly
+root: CyclotomicIntegers
+root: isRegularPrime_three
+root: IsPrincipalIdealRing_of_IsCyclotomicExtension_two
+root: exists_zeta_sub_one_dvd_sub_Int
+root: zeta_sub_one_pow_dvd_poly
+root: exists_not_dvd_spanSingleton_eq
+root: crazy7
+root: norm_add_one_smul_of_isUnit
+root: orderOf_lt_of
+root: isUnramifiedAt_of_Separable_minpoly'
+root: algebraMap_injective_of_isIntegralClosure
+root: cyclotomic_7
+root: instCommRingCyclotomicIntegers
+root: instIsPrincipalIdealRingRingOfIntegersCyclotomicFieldOfNatNatRat
+root: isRegularPrime_two
+root: uff
+root: IsRegularPrime
+root: comap_map_eq_of_unramified
+root: exists_dvd_pow_sub_Int_pow
+root: M7
+root: quotient_zero_sub_one_comp_aut

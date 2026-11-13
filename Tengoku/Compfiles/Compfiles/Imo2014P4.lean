@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2014, Problem 4
 
@@ -633,3 +633,4 @@ theorem result₂ : cfg.D_set ⊆ Affine.Simplex.circumsphere cfg.ABC := by
 end Imo2014q4Cfg
 
 end Imo2014P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

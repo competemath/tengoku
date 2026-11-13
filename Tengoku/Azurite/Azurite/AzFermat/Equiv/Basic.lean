@@ -24,7 +24,7 @@ turns every operation of `AzFermat/Basic.lean` into the corresponding ring opera
 (`toZMod (divPow2 t a) * 2^t = toZMod a`).  The two facts about the modulus are `two_pow_eq_neg_one`
 (`2^N = −1`) and `two_pow_two_mul_eq_one` (`2^{2N} = 1`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.AzFermat
 
 variable {N : Nat}
@@ -304,3 +304,4 @@ theorem toZMod_divPow2_mul_two_pow [NeZero N] (t : Nat) (a : AzFermat N) :
     two_pow_two_mul_eq_one, one_mul, pow_mul, two_pow_two_mul_eq_one, one_pow, mul_one]
 
 end Azurite.AzFermat
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

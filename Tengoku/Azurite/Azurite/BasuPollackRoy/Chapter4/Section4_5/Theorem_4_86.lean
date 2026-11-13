@@ -30,7 +30,7 @@ and `𝒫` a finite subset of `K[X₁, …, X_k]`. Then `A = K[X]/Ideal(𝒫, K)
 `K`-vector space of positive dimension if and only if the system `𝒫` is zero-dimensional (i.e.
 `Zer(𝒫, Cᵏ)` is a non-empty finite set). Moreover the number of solutions is at most `dim_K A`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -187,3 +187,4 @@ theorem isIntegral_iff_finite [CharZero K] (Ps : Finset (MvPolynomial (Fin k) K)
 end IntegralFinite
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

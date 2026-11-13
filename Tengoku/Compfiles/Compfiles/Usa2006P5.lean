@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2006, Problem 5
 
@@ -612,3 +612,4 @@ lemma reachable_all_ones {m : ℤ} (hm : 1 ≤ m) : Reachable m (m - 1).toNat :=
 -/
 lemma minJumps_mem {m : ℤ} (hm : 1 ≤ m) : minJumps m ∈ { j | Reachable m j } :=
   Nat.sInf_mem ⟨(m - 1).toNat, reachable_all_ones hm⟩
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

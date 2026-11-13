@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2009, Problem 3
 
@@ -50,3 +50,4 @@ lemma strictMono_add_right_le {s : ℕ → ℕ} (hs: StrictMono s) {a b : ℕ} :
     exact ih.trans_lt <| hs <| lt_add_one _
 
 end Imo2009P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

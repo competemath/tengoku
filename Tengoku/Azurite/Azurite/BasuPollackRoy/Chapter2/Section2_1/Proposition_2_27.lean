@@ -23,7 +23,7 @@ open interval.
 
 The proof is by induction on the depth `n` of the derivative list.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Proposition2_27
 
 open Polynomial Azurite.BPR Azurite.BPR.Proposition2_21
@@ -369,3 +369,4 @@ theorem proposition_2_27_of_isRealClosed
   exact proposition_2_27 Theorem2_11.theorem_2_11_b_c P n σ hn
 
 end Azurite.BPR.Proposition2_27
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

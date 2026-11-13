@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2000, Problem 5
 
@@ -241,3 +241,4 @@ theorem exists_dvd_two_pow_add_one (k : ℕ) :
 abbrev solution : Bool := true
 
 end Imo2000P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

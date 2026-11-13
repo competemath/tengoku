@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1988, Problem 1
 
@@ -62,3 +62,4 @@ lemma not_ten_dvd_num {a b s : ℕ} (hs : 1 ≤ s) (hab : a % 10 ≠ b % 10) :
   exact hab (h4.symm.trans h3)
 
 end Usa1988P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

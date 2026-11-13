@@ -54,7 +54,7 @@ base cases of a statement with no content beyond `∀ p q, rel W p q 1 0 = 0`.
 * [J. Silverman, *The arithmetic of elliptic curves*][silverman2009], III.4.
 * M. Ward, *Memoir on elliptic divisibility sequences*, Amer. J. Math. 70 (1948).
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open Polynomial
 open scoped Polynomial.Bivariate
 
@@ -67,7 +67,7 @@ variable {R : Type*} [CommRing R] (b c d : R)
 /-- The base *even* elliptic-net relator of the canonical normalised elliptic divisibility sequence
 vanishes: `rel (normEDS b c d) (m + 1) (m - 1) 1 0 = 0`. This is the two-term recurrence
 `normEDS_even` rephrased through `IsEllipticNet.rel_even`. -/
-lemma normEDS_rel_even (m : ℤ) :
+lemma _root_.Tengoku.LanaEllipticCurves.normEDS_rel_even (m : ℤ) :
     IsEllipticNet.rel (normEDS b c d) (m + 1) (m - 1) 1 0 = 0 := by
   rw [IsEllipticNet.rel_even, normEDS_one, normEDS_two]
   linear_combination normEDS_even b c d m
@@ -75,7 +75,7 @@ lemma normEDS_rel_even (m : ℤ) :
 /-- The base *odd* elliptic-net relator of the canonical normalised elliptic divisibility sequence
 vanishes: `rel (normEDS b c d) (m + 1) m 1 0 = 0`. This is the two-term recurrence `normEDS_odd`
 rephrased through `IsEllipticNet.rel_odd`. -/
-lemma normEDS_rel_odd (m : ℤ) :
+lemma _root_.Tengoku.LanaEllipticCurves.normEDS_rel_odd (m : ℤ) :
     IsEllipticNet.rel (normEDS b c d) (m + 1) m 1 0 = 0 := by
   rw [IsEllipticNet.rel_odd, normEDS_one]
   linear_combination normEDS_odd b c d m
@@ -119,3 +119,4 @@ lemma ψ_rel_odd_evalEval (m : ℤ) :
   exact h.symm
 
 end WeierstrassCurve.Affine
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

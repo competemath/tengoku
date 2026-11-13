@@ -31,7 +31,7 @@ manifold, immersion
 
 -/
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open Set Function
 
 open scoped Manifold ContDiff
@@ -49,12 +49,13 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 section Definition
 
 /-- A `C^n` immersion `f : M → M` is a `C^n` map whose differential is injective at every point. -/
-structure Immersion (f : M → M') (n : WithTop ℕ∞) : Prop where
+structure _root_.Tengoku.SphereEversion.Immersion (f : M → M') (n : WithTop ℕ∞) : Prop where
   contMDiff : CMDiff n f
   diff_injective : ∀ p, Injective (mfderiv% f p)
 
 /-- An injective `C^n` immersion -/
-structure InjImmersion (f : M → M') (n : WithTop ℕ∞) : Prop extends Immersion I I' f n where
+structure _root_.Tengoku.SphereEversion.InjImmersion (f : M → M') (n : WithTop ℕ∞) : Prop extends Immersion I I' f n where
   injective : Injective f
 
 end Definition
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

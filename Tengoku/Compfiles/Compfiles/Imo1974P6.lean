@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1974, Problem 6
 
@@ -121,3 +121,4 @@ theorem ncard_le_of_exists_min {P : Polynomial ℤ} (hP : 0 < P.natDegree) {r : 
     _ ≤ P.natDegree + 2 := Nat.add_le_add hA hB
 
 end Imo1974P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

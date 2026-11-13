@@ -15,7 +15,7 @@ public import Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open ENNReal
 
 universe u
@@ -35,7 +35,7 @@ def Coupling (p : PMF α) (q : PMF β) :=
 
 end PMF
 
-namespace SPMF
+namespace Tengoku.Vcvio.SPMF
 
 variable {α β : Type u}
 
@@ -358,6 +358,7 @@ theorem IsCoupling.tsum_pure_right {α β : Type u} {p : SPMF α} {b : β}
     rw [hc.apply_eq_zero_of_pure_right a hy, zero_mul]
   · rw [hc.apply_pure_right_eq]
 
-end SPMF
+end Tengoku.Vcvio.SPMF
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

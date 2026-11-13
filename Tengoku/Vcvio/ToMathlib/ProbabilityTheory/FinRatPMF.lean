@@ -31,10 +31,10 @@ Both connect to Mathlib's `PMF` via `toPMF`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u
 
-namespace FinRatPMF
+namespace Tengoku.Vcvio.FinRatPMF
 
 /-! ## Raw representation -/
 
@@ -870,15 +870,15 @@ lemma sameDist_normalize_normalize [DecidableEq α] [BEq α] [Hashable α] [Lawf
 
 end Raw
 
-end FinRatPMF
+end Tengoku.Vcvio.FinRatPMF
 
 /-- Probability mass function with finite support and rational weights, with canonical equality.
 
 Defined as the quotient of `FinRatPMF.Raw` by distributional equality. Two values are equal iff
 they assign the same probability to every outcome. -/
-def FinRatPMF (α : Type u) : Type u := Quotient (α := FinRatPMF.Raw α) inferInstance
+def _root_.Tengoku.Vcvio.FinRatPMF (α : Type u) : Type u := Quotient (α := FinRatPMF.Raw α) inferInstance
 
-namespace FinRatPMF
+namespace Tengoku.Vcvio.FinRatPMF
 
 variable {α β γ : Type u}
 
@@ -1033,4 +1033,5 @@ instance [DecidableEq α] : BEq (Raw α) where
     (p == q) = true ↔ SameDist p q := by
   change decide (SameDist p q) = true ↔ SameDist p q; simp
 
-end FinRatPMF
+end Tengoku.Vcvio.FinRatPMF
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

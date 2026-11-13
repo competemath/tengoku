@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2025, Problem 3
 
@@ -25,7 +25,7 @@ open Int
 /--
 @isnad1 id=modeq.1h2v.s4.de87d9e15efe from=translated src=- shape=f779ce8c vocab=f3ab6d96
 -/
-lemma fermat_little_theorem: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, (a^(p:ℕ)≡a [MOD p])) := by
+lemma _root_.Tengoku.Compfiles.fermat_little_theorem: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, (a^(p:ℕ)≡a [MOD p])) := by
   intro p hp a
   by_cases h1:(p:ℕ)∣a
   · rw [← Nat.modEq_zero_iff_dvd] at h1
@@ -46,7 +46,7 @@ lemma fermat_little_theorem: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, (a^(p
 /--
 @isnad1 id=modeq.1h3v.s5.5443c42a6d06 from=translated src=- shape=3e746c9c vocab=f3ab6d96
 -/
-lemma fermat_little_theorem2: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, ∀k:ℕ, (a^((p:ℕ)^k)≡a [MOD p])) := by
+lemma _root_.Tengoku.Compfiles.fermat_little_theorem2: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, ∀k:ℕ, (a^((p:ℕ)^k)≡a [MOD p])) := by
   intro p hp a k
   induction k with
   | zero =>
@@ -62,15 +62,16 @@ lemma fermat_little_theorem2: ∀p:ℕ+, (Nat.Prime (p:ℕ)) → (∀a:ℕ, ∀k
 /--
 @isnad1 id=dvd.1h2v.s4.37d526e6de8f from=translated src=- shape=50a06dfb vocab=978e1ada
 -/
-lemma int_dvd_to_nat_dvd : ∀a:ℕ+, ∀ b:ℕ , (a:ℤ)∣(b:ℤ) → (a:ℕ)∣b := by
+lemma _root_.Tengoku.Compfiles.int_dvd_to_nat_dvd : ∀a:ℕ+, ∀ b:ℕ , (a:ℤ)∣(b:ℤ) → (a:ℕ)∣b := by
   intro a b h1
   exact ofNat_dvd.mp h1
 
-def Bonza (f : ℕ+ → ℕ+) : Prop :=
+def _root_.Tengoku.Compfiles.Bonza (f : ℕ+ → ℕ+) : Prop :=
   ∀ a b : ℕ+,
     (f a : Int) ∣ ((b : Int) ^ (a: ℕ) - (f b : Int) ^ ((f a): ℕ))
 
-def is_valid_c (c : ℝ) : Prop :=
+def _root_.Tengoku.Compfiles.is_valid_c (c : ℝ) : Prop :=
   ∀ (f : ℕ+ → ℕ+), Bonza f → ∀ n, (f n : ℝ) ≤ c * (n : ℝ)
 
-abbrev answer : ℝ := 4
+abbrev _root_.Tengoku.Compfiles.answer : ℝ := 4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

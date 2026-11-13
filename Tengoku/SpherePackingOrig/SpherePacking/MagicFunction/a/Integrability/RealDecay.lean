@@ -34,7 +34,7 @@ specifically for vertical ray integrands in ContourEndpoints.lean.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 open MeasureTheory Set Filter Real
 
 noncomputable section
@@ -44,15 +44,16 @@ noncomputable section
 section Integrability
 
 /-- exp(c*t) is integrable on [1,∞) for c < 0. -/
-lemma integrableOn_exp_mul_Ici (c : ℝ) (hc : c < 0) :
+lemma _root_.Tengoku.SpherePackingOrig.integrableOn_exp_mul_Ici (c : ℝ) (hc : c < 0) :
     IntegrableOn (fun t ↦ exp (c * t)) (Ici 1) volume :=
   (integrableOn_Ici_iff_integrableOn_Ioi).mpr (integrableOn_exp_mul_Ioi hc 1)
 
 /-- `C · t^n · exp(-a·t) → 0` as `t → ∞` for `a > 0` and any real power `n`. -/
-lemma tendsto_const_mul_rpow_mul_exp_neg_atTop (C a n : ℝ) (ha : 0 < a) :
+lemma _root_.Tengoku.SpherePackingOrig.tendsto_const_mul_rpow_mul_exp_neg_atTop (C a n : ℝ) (ha : 0 < a) :
     Tendsto (fun t ↦ C * t ^ n * exp (-a * t)) atTop (nhds 0) := by
   simpa [mul_assoc] using (tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero n a ha).const_mul C
 
 end Integrability
 
 end
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

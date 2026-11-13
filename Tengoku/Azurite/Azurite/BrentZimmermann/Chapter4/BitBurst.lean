@@ -58,7 +58,7 @@ Not formalized: the `O(M(n) log³ n)` (and `O(M(n) log² n)` per term) costs, th
 estimate `O(ℓ(2^i + log ℓ))`, the general passage from a translated ODE to its coefficient
 recurrence (§4.12; done here for the example), Exercise 4.49, and the algorithm itself.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -425,3 +425,4 @@ theorem vec_eq_matProd_mulVec (M : ℕ → Matrix (Fin m) (Fin m) ℝ) (S : ℕ 
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

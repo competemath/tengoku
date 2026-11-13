@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2026, Problem 4
 
@@ -331,3 +331,4 @@ many steps, no matter how Shan-Yu plays, if and only if `θ = 180 / n` for some
 integer `n ≥ 2`. -/
 
 end Imo2026P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

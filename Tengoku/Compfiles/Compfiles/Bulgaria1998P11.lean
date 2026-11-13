@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 Bulgarian Mathematical Olympiad 1998, Problem 11
 
@@ -102,3 +102,4 @@ lemma n_odd_and_m_mod_three {m n A : ℕ} (h : 3 * m * A = (m + 3) ^ n + 1) :
     rw [Nat.not_odd_iff_even] at hodd
     rw [h2, show (2 : ZMod 3) = -1 by decide, hodd.neg_one_pow] at hcast
     exact absurd hcast (by decide)
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

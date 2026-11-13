@@ -6,7 +6,7 @@ This file is part of Azurite.
 Azurite is free software: you can redistribute it and/or modify it under the terms of the Apache
 License, Version 2.0. See <https://www.apache.org/licenses/LICENSE-2.0>.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 /-
   AzMatrix: Computable fixed-size matrix type.
 
@@ -148,3 +148,4 @@ theorem AzMatrix.ofLists_toLists (M : AzMatrix R m n) :
   rfl
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

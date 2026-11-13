@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # Romanian Mathematical Olympiad 1998, Problem 12
 
@@ -508,3 +508,4 @@ abbrev solution_set : Set (ℝ → ℝ) :=
   { u | ∃ k : ℝ, ∀ x : ℝ, u x = Real.exp (k * x) }
 
 end Romania1998P12
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

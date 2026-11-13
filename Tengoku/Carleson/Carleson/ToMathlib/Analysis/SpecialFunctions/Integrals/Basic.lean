@@ -4,7 +4,7 @@ public import Tengoku.Carleson.Carleson.ToMathlib.Analysis.SpecialFunctions.Impr
 public import Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Measure.NNReal
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 --Upstreaming status: ready
 
 namespace MeasureTheory
@@ -90,3 +90,4 @@ theorem setLIntegral_Iio_rpow {p : ℝ} {b : ℝ≥0∞} (hp : -1 < p) :
   exact Ioo_ae_eq_Ico.symm
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

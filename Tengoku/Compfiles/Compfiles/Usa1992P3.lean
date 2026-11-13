@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1992, Problem 3
 
@@ -113,3 +113,4 @@ def Good (a : ℕ → ℕ) : Prop :=
 abbrev answer : ℕ := 248
 
 end Usa1992P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

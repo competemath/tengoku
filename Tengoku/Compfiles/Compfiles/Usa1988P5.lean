@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1988, Problem 5
 
@@ -507,3 +507,4 @@ lemma extract {b : ℕ → ℕ} (h1 : (prodForm b).coeff 1 = -65536)
 abbrev answer : ℕ := 2 ^ 27 - 2 ^ 11
 
 end Usa1988P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

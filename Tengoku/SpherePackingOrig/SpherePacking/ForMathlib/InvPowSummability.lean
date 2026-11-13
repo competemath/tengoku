@@ -15,7 +15,7 @@ inverse powers of the norm function on subsets of Euclidean space.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 variable {d : ℕ}
 
 open BigOperators Complex Real Module
@@ -24,15 +24,15 @@ section Definitions
 
 -- Consider putting this in `EuclideanSpace` namespace
 @[simp]
-def Inv_Pow_Norm_Summable_Over_Set_Euclidean (X : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
+def _root_.Tengoku.SpherePackingOrig.Inv_Pow_Norm_Summable_Over_Set_Euclidean (X : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
   Summable (fun x : X => 1 / ‖(x : EuclideanSpace ℝ (Fin d))‖ ^ (d + 1))
 
 -- TODO: Remove after proving that d + 1 does, indeed, work.
 -- Else, use as hack for `Summable_of_Inv_Pow_Summable'`.
-def Exists_Inv_Pow_Norm_Summable_Over_Set_Euclidean (X : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
+def _root_.Tengoku.SpherePackingOrig.Exists_Inv_Pow_Norm_Summable_Over_Set_Euclidean (X : Set (EuclideanSpace ℝ (Fin d))) : Prop :=
   ∃ k > 0, Summable (fun x : X => 1 / ‖(x : EuclideanSpace ℝ (Fin d))‖^k)
 
-def IsDecayingMap (X : Set (EuclideanSpace ℝ (Fin d)))
+def _root_.Tengoku.SpherePackingOrig.IsDecayingMap (X : Set (EuclideanSpace ℝ (Fin d)))
     (f : EuclideanSpace ℝ (Fin d) → ℝ) : Prop :=
   ∀ k : ℕ, ∃ C : ℝ, ∀ x ∈ X, ‖(x : EuclideanSpace ℝ (Fin d))‖ ^ k * ‖f x‖ ≤ C
 
@@ -246,3 +246,4 @@ What's wild is that this is CHRIS's file! **ASK ABOUT IT**
 -/
 
 end Sets_Acted_Upon_By_Lattice
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

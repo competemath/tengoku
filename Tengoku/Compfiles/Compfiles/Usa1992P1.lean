@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1992, Problem 1
 
@@ -393,3 +393,4 @@ lemma lemma4 {m n : ℕ} (hm : m < 10^n) :
 abbrev solution : ℕ → ℕ := fun n ↦ 9 * 2 ^ n
 
 end Usa1992P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

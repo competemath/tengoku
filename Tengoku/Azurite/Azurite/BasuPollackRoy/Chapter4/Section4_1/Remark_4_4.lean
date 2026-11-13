@@ -37,7 +37,7 @@ that are not currently in Mathlib (notably, `(s.map f) ×ˢ (t.map f) =
 injective `f`). Once we land that bridge, Remark 4.4 lifts to the
 C-valued statement `disc P = (algebraMap R C) (positive R-element)`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial
@@ -301,3 +301,4 @@ theorem disc_pos_of_real_distinct_roots (P : R[X]) (hP : P.Monic)
 end Bridge
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

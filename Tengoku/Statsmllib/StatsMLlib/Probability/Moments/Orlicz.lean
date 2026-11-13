@@ -42,7 +42,7 @@ should, and monotonicity in `K` is immediate.
 
 Each of these has a `ψ₁` counterpart with `log 2` in place of `√(log 2)`.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open MeasureTheory Real
 open scoped ENNReal NNReal Pointwise
 
@@ -55,27 +55,27 @@ variable {Ω : Type u} [MeasurableSpace Ω]
 /-! ## The `ψ₂` norm -/
 
 /-- `K` is an admissible sub-Gaussian scale for `X`: `E[exp (X² / K²)] ≤ 2`. -/
-def HasOrliczPsi2Bound (X : Ω → ℝ) (μ : Measure Ω) (K : ℝ) : Prop :=
+def _root_.Tengoku.Statsmllib.HasOrliczPsi2Bound (X : Ω → ℝ) (μ : Measure Ω) (K : ℝ) : Prop :=
   0 < K ∧ ∫⁻ ω, ENNReal.ofReal (exp (X ω ^ 2 / K ^ 2)) ∂μ ≤ 2
 
 /-- The sub-Gaussian norm `‖X‖_{ψ₂}`, the infimum of the admissible scales. -/
-def orliczPsi2Norm (X : Ω → ℝ) (μ : Measure Ω) : ℝ :=
+def _root_.Tengoku.Statsmllib.orliczPsi2Norm (X : Ω → ℝ) (μ : Measure Ω) : ℝ :=
   sInf {K : ℝ | HasOrliczPsi2Bound X μ K}
 
 /-- `X` is sub-Gaussian: some sub-Gaussian scale is admissible. -/
-def HasFiniteOrliczPsi2Norm (X : Ω → ℝ) (μ : Measure Ω) : Prop :=
+def _root_.Tengoku.Statsmllib.HasFiniteOrliczPsi2Norm (X : Ω → ℝ) (μ : Measure Ω) : Prop :=
   ∃ K : ℝ, HasOrliczPsi2Bound X μ K
 
-lemma HasOrliczPsi2Bound.pos {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
+lemma Tengoku.Statsmllib.HasOrliczPsi2Bound.pos {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h : HasOrliczPsi2Bound X μ K) : 0 < K := h.1
 
 /-- The set of admissible sub-Gaussian scales is bounded below by `0`. -/
-lemma bddBelow_orliczPsi2Bound (X : Ω → ℝ) (μ : Measure Ω) :
+lemma _root_.Tengoku.Statsmllib.bddBelow_orliczPsi2Bound (X : Ω → ℝ) (μ : Measure Ω) :
     BddBelow {K : ℝ | HasOrliczPsi2Bound X μ K} :=
   ⟨0, fun _ hK => hK.pos.le⟩
 
 /-- The admissible sub-Gaussian scales are upward closed. -/
-lemma HasOrliczPsi2Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
+lemma Tengoku.Statsmllib.HasOrliczPsi2Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
     (h : HasOrliczPsi2Bound X μ K) (hKK' : K ≤ K') :
     HasOrliczPsi2Bound X μ K' := by
   refine ⟨h.pos.trans_le hKK', le_trans (lintegral_mono fun ω => ?_) h.2⟩
@@ -86,16 +86,16 @@ lemma HasOrliczPsi2Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
     (by nlinarith [h.pos, sq_nonneg (K' - K)])
 
 /-- An admissible sub-Gaussian scale bounds the `ψ₂` norm. -/
-lemma orliczPsi2Norm_le {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_le {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h : HasOrliczPsi2Bound X μ K) : orliczPsi2Norm X μ ≤ K :=
   csInf_le (bddBelow_orliczPsi2Bound X μ) h
 
-lemma orliczPsi2Norm_nonneg {X : Ω → ℝ} {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_nonneg {X : Ω → ℝ} {μ : Measure Ω}
     (hfin : HasFiniteOrliczPsi2Norm X μ) : 0 ≤ orliczPsi2Norm X μ :=
   le_csInf hfin fun _ hK => hK.pos.le
 
 /-- Monotonicity of the `ψ₂` norm in the size of the variable. -/
-lemma orliczPsi2Norm_mono {X Y : Ω → ℝ} {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_mono {X Y : Ω → ℝ} {μ : Measure Ω}
     (hfin : HasFiniteOrliczPsi2Norm Y μ)
     (hXY : ∀ᵐ ω ∂μ, |X ω| ≤ |Y ω|) :
     orliczPsi2Norm X μ ≤ orliczPsi2Norm Y μ := by
@@ -114,7 +114,7 @@ private lemma log_two_pos : (0 : ℝ) < Real.log 2 := Real.log_pos (by norm_num)
 
 /-- A scale is admissible for a constant exactly when it dominates
 `|c| / √(log 2)`. -/
-lemma hasOrliczPsi2Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.hasOrliczPsi2Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
     (c : ℝ) {K : ℝ} (hK : 0 < K) :
     HasOrliczPsi2Bound (fun _ : Ω => c) μ K ↔ |c| / √(Real.log 2) ≤ K := by
   have hlog := log_two_pos
@@ -148,7 +148,7 @@ lemma hasOrliczPsi2Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
     exact ⟨hK, by rw [hint]; exact hstep.mpr (hstep2.mpr hle)⟩
 
 /-- The `ψ₂` norm of an almost surely constant variable. -/
-lemma orliczPsi2Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ) :
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ) :
     orliczPsi2Norm (fun _ : Ω => c) μ = |c| / √(Real.log 2) := by
   have hsqrt : (0 : ℝ) < √(Real.log 2) := Real.sqrt_pos.mpr log_two_pos
   have ha : (0 : ℝ) ≤ |c| / √(Real.log 2) := by positivity
@@ -165,7 +165,7 @@ lemma orliczPsi2Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ)
   exact csInf_le hbdd ⟨by linarith, by linarith⟩
 
 /-- An almost surely bounded variable is sub-Gaussian. -/
-lemma orliczPsi2Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {b : ℝ} (hb : 0 ≤ b) (hX : ∀ᵐ ω ∂μ, |X ω| ≤ b) :
     orliczPsi2Norm X μ ≤ b / √(Real.log 2) := by
   have hfin : HasFiniteOrliczPsi2Norm (fun _ : Ω => b) μ :=
@@ -178,7 +178,7 @@ lemma orliczPsi2Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   rwa [orliczPsi2Norm_const b, abs_of_nonneg hb] at hmono
 
 /-- The `ψ₂` scale is absolutely homogeneous. -/
-lemma orliczPsi2Norm_const_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_const_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
     (c : ℝ) (X : Ω → ℝ) :
     orliczPsi2Norm (fun ω => c * X ω) μ = |c| * orliczPsi2Norm X μ := by
   rcases eq_or_ne c 0 with rfl | hc
@@ -222,7 +222,7 @@ private lemma exp_sq_convex_comb {u v lam : ℝ} (hlam : 0 ≤ lam) (hlam' : lam
 
 /-- Admissible sub-Gaussian scales add: this is the Luxemburg subadditivity for
 the Young function `t ↦ exp (t ^ 2)`. -/
-lemma HasOrliczPsi2Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma Tengoku.Statsmllib.HasOrliczPsi2Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} {a b : ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (ha : HasOrliczPsi2Bound X μ a) (hb : HasOrliczPsi2Bound Y μ b) :
     HasOrliczPsi2Bound (fun ω => X ω + Y ω) μ (a + b) := by
@@ -281,7 +281,7 @@ lemma HasOrliczPsi2Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
       norm_num
 
 /-- The `ψ₂` scale is subadditive. -/
-lemma orliczPsi2Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (hXfin : HasFiniteOrliczPsi2Norm X μ) (hYfin : HasFiniteOrliczPsi2Norm Y μ) :
     orliczPsi2Norm (fun ω => X ω + Y ω) μ
@@ -297,7 +297,7 @@ lemma orliczPsi2Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   linarith
 
 /-- The infimum defining the `ψ₂` norm is attained. -/
-lemma hasOrliczPsi2Bound_orliczPsi2Norm {μ : Measure Ω} {X : Ω → ℝ}
+lemma _root_.Tengoku.Statsmllib.hasOrliczPsi2Bound_orliczPsi2Norm {μ : Measure Ω} {X : Ω → ℝ}
     (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi2Norm X μ)
     (hpos : 0 < orliczPsi2Norm X μ) :
     HasOrliczPsi2Bound X μ (orliczPsi2Norm X μ) := by
@@ -341,27 +341,27 @@ lemma hasOrliczPsi2Bound_orliczPsi2Norm {μ : Measure Ω} {X : Ω → ℝ}
 /-! ## The `ψ₁` norm -/
 
 /-- `K` is an admissible sub-exponential scale for `X`: `E[exp (|X| / K)] ≤ 2`. -/
-def HasOrliczPsi1Bound (X : Ω → ℝ) (μ : Measure Ω) (K : ℝ) : Prop :=
+def _root_.Tengoku.Statsmllib.HasOrliczPsi1Bound (X : Ω → ℝ) (μ : Measure Ω) (K : ℝ) : Prop :=
   0 < K ∧ ∫⁻ ω, ENNReal.ofReal (exp (|X ω| / K)) ∂μ ≤ 2
 
 /-- The sub-exponential norm `‖X‖_{ψ₁}`, the infimum of the admissible scales. -/
-def orliczPsi1Norm (X : Ω → ℝ) (μ : Measure Ω) : ℝ :=
+def _root_.Tengoku.Statsmllib.orliczPsi1Norm (X : Ω → ℝ) (μ : Measure Ω) : ℝ :=
   sInf {K : ℝ | HasOrliczPsi1Bound X μ K}
 
 /-- `X` is sub-exponential: some sub-exponential scale is admissible. -/
-def HasFiniteOrliczPsi1Norm (X : Ω → ℝ) (μ : Measure Ω) : Prop :=
+def _root_.Tengoku.Statsmllib.HasFiniteOrliczPsi1Norm (X : Ω → ℝ) (μ : Measure Ω) : Prop :=
   ∃ K : ℝ, HasOrliczPsi1Bound X μ K
 
-lemma HasOrliczPsi1Bound.pos {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
+lemma Tengoku.Statsmllib.HasOrliczPsi1Bound.pos {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h : HasOrliczPsi1Bound X μ K) : 0 < K := h.1
 
 /-- The set of admissible sub-exponential scales is bounded below by `0`. -/
-lemma bddBelow_orliczPsi1Bound (X : Ω → ℝ) (μ : Measure Ω) :
+lemma _root_.Tengoku.Statsmllib.bddBelow_orliczPsi1Bound (X : Ω → ℝ) (μ : Measure Ω) :
     BddBelow {K : ℝ | HasOrliczPsi1Bound X μ K} :=
   ⟨0, fun _ hK => hK.pos.le⟩
 
 /-- The admissible sub-exponential scales are upward closed. -/
-lemma HasOrliczPsi1Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
+lemma Tengoku.Statsmllib.HasOrliczPsi1Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
     (h : HasOrliczPsi1Bound X μ K) (hKK' : K ≤ K') :
     HasOrliczPsi1Bound X μ K' := by
   refine ⟨h.pos.trans_le hKK', le_trans (lintegral_mono fun ω => ?_) h.2⟩
@@ -369,16 +369,16 @@ lemma HasOrliczPsi1Bound.mono {X : Ω → ℝ} {μ : Measure Ω} {K K' : ℝ}
     (div_le_div_of_nonneg_left (abs_nonneg _) h.pos hKK'))
 
 /-- An admissible sub-exponential scale bounds the `ψ₁` norm. -/
-lemma orliczPsi1Norm_le {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_le {X : Ω → ℝ} {μ : Measure Ω} {K : ℝ}
     (h : HasOrliczPsi1Bound X μ K) : orliczPsi1Norm X μ ≤ K :=
   csInf_le (bddBelow_orliczPsi1Bound X μ) h
 
-lemma orliczPsi1Norm_nonneg {X : Ω → ℝ} {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_nonneg {X : Ω → ℝ} {μ : Measure Ω}
     (hfin : HasFiniteOrliczPsi1Norm X μ) : 0 ≤ orliczPsi1Norm X μ :=
   le_csInf hfin fun _ hK => hK.pos.le
 
 /-- Monotonicity of the `ψ₁` norm in the size of the variable. -/
-lemma orliczPsi1Norm_mono {X Y : Ω → ℝ} {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_mono {X Y : Ω → ℝ} {μ : Measure Ω}
     (hfin : HasFiniteOrliczPsi1Norm Y μ)
     (hXY : ∀ᵐ ω ∂μ, |X ω| ≤ |Y ω|) :
     orliczPsi1Norm X μ ≤ orliczPsi1Norm Y μ := by
@@ -389,7 +389,7 @@ lemma orliczPsi1Norm_mono {X Y : Ω → ℝ} {μ : Measure Ω}
   exact ENNReal.ofReal_le_ofReal (exp_le_exp.mpr (by gcongr))
 
 /-- A scale is admissible for a constant exactly when it dominates `|c| / log 2`. -/
-lemma hasOrliczPsi1Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.hasOrliczPsi1Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
     (c : ℝ) {K : ℝ} (hK : 0 < K) :
     HasOrliczPsi1Bound (fun _ : Ω => c) μ K ↔ |c| / Real.log 2 ≤ K := by
   have hlog := log_two_pos
@@ -410,7 +410,7 @@ lemma hasOrliczPsi1Bound_const_iff {μ : Measure Ω} [IsProbabilityMeasure μ]
     exact ⟨hK, by rw [hint]; exact hstep.mpr (hstep2.mpr hle)⟩
 
 /-- The `ψ₁` norm of an almost surely constant variable. -/
-lemma orliczPsi1Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ) :
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ) :
     orliczPsi1Norm (fun _ : Ω => c) μ = |c| / Real.log 2 := by
   have ha : (0 : ℝ) ≤ |c| / Real.log 2 := by
     exact div_nonneg (abs_nonneg c) log_two_pos.le
@@ -427,7 +427,7 @@ lemma orliczPsi1Norm_const {μ : Measure Ω} [IsProbabilityMeasure μ] (c : ℝ)
   exact csInf_le hbdd ⟨by linarith, by linarith⟩
 
 /-- An almost surely bounded variable is sub-exponential. -/
-lemma orliczPsi1Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {b : ℝ} (hb : 0 ≤ b) (hX : ∀ᵐ ω ∂μ, |X ω| ≤ b) :
     orliczPsi1Norm X μ ≤ b / Real.log 2 := by
   have hfin : HasFiniteOrliczPsi1Norm (fun _ : Ω => b) μ :=
@@ -440,7 +440,7 @@ lemma orliczPsi1Norm_le_of_abs_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   rwa [orliczPsi1Norm_const b, abs_of_nonneg hb] at hmono
 
 /-- The `ψ₁` scale is absolutely homogeneous. -/
-lemma orliczPsi1Norm_const_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_const_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
     (c : ℝ) (X : Ω → ℝ) :
     orliczPsi1Norm (fun ω => c * X ω) μ = |c| * orliczPsi1Norm X μ := by
   rcases eq_or_ne c 0 with rfl | hc
@@ -469,7 +469,7 @@ lemma orliczPsi1Norm_const_mul {μ : Measure Ω} [IsProbabilityMeasure μ]
     smul_eq_mul]
 
 /-- Admissible sub-exponential scales add. -/
-lemma HasOrliczPsi1Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma Tengoku.Statsmllib.HasOrliczPsi1Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} {a b : ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (ha : HasOrliczPsi1Bound X μ a) (hb : HasOrliczPsi1Bound Y μ b) :
     HasOrliczPsi1Bound (fun ω => X ω + Y ω) μ (a + b) := by
@@ -527,7 +527,7 @@ lemma HasOrliczPsi1Bound.add {μ : Measure Ω} [IsProbabilityMeasure μ]
       norm_num
 
 /-- The `ψ₁` scale is subadditive. -/
-lemma orliczPsi1Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (hXfin : HasFiniteOrliczPsi1Norm X μ) (hYfin : HasFiniteOrliczPsi1Norm Y μ) :
     orliczPsi1Norm (fun ω => X ω + Y ω) μ
@@ -543,7 +543,7 @@ lemma orliczPsi1Norm_add_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   linarith
 
 /-- The infimum defining the `ψ₁` norm is attained. -/
-lemma hasOrliczPsi1Bound_orliczPsi1Norm {μ : Measure Ω} {X : Ω → ℝ}
+lemma _root_.Tengoku.Statsmllib.hasOrliczPsi1Bound_orliczPsi1Norm {μ : Measure Ω} {X : Ω → ℝ}
     (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi1Norm X μ)
     (hpos : 0 < orliczPsi1Norm X μ) :
     HasOrliczPsi1Bound X μ (orliczPsi1Norm X μ) := by
@@ -584,3 +584,4 @@ lemma hasOrliczPsi1Bound_orliczPsi1Norm {μ : Measure Ω} {X : Ω → ℝ}
         (Filter.Eventually.frequently (Filter.Eventually.of_forall fun n => (hKadm n).2))
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2015, Problem 3
 
@@ -701,3 +701,4 @@ lemma card_validColorings (n : ℕ) : Fintype.card (ValidColorings n) = 3 ^ n + 
 abbrev NumberOfColorings (n : ℕ) : ℕ := 3 ^ n + 1
 
 end Usa2015P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

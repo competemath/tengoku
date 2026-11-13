@@ -16,7 +16,7 @@ public import Tengoku.Seed.RingTheory.Henselian
 /-! # Coding-Theory Preliminaries -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 section TensorCombination
 variable {F : Type*} [CommRing F] [Fintype F] [DecidableEq F]
          {A : Type*} [AddCommMonoid A] [Module F A]
@@ -24,7 +24,7 @@ variable {F : Type*} [CommRing F] [Fintype F] [DecidableEq F]
 /--
 The tensor product weight `⊗_{i=0}^{ϑ-1}(1 - rᵢ, rᵢ)` for a specific index `i` given randomness `r`.
 Corresponds to `eq(i, r)` in multilinear polynomial literature.-/
-def multilinearWeight {ϑ : ℕ} (r : Fin ϑ → F) (i : Fin (2 ^ ϑ)) : F :=
+def _root_.Tengoku.Arklib.multilinearWeight {ϑ : ℕ} (r : Fin ϑ → F) (i : Fin (2 ^ ϑ)) : F :=
   ∏ j : Fin ϑ,
     if i.val.testBit j.val then (r j) else (1 - r j)
 
@@ -34,7 +34,7 @@ def multilinearWeight {ϑ : ℕ} (r : Fin ϑ → F) (i : Fin (2 ^ ϑ)) : F :=
                       `|⋮|`
                       `|u_{2^ϑ-1}|`
 = `∑_{i=0}^{2^ϑ-1} (multilinearWeight r i) • u_i`-/
-def multilinearCombine {ϑ : ℕ} {ι : Type*}
+def _root_.Tengoku.Arklib.multilinearCombine {ϑ : ℕ} {ι : Type*}
     (u : (Fin (2 ^ ϑ)) → ι → A) (r : Fin ϑ → F) : (ι → A) :=
   fun colIdx => ∑ rowIdx : Fin (2^ϑ), ((multilinearWeight r rowIdx) : F) • ((u rowIdx colIdx) : A)
 local notation:20 r " |⨂| " u => multilinearCombine (u := u) (r := r)
@@ -497,3 +497,4 @@ end
 
 end Finset
 -- Tengoku: 1 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

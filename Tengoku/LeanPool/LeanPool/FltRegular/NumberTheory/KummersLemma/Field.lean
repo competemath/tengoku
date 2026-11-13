@@ -11,7 +11,7 @@ public import Tengoku.Seed.NumberTheory.NumberField.Cyclotomic.Basic
 import Tengoku.Seed.NumberTheory.NumberField.Cyclotomic.Ideal
 
 import Tengoku.FltRegular.FltRegular.NumberTheory.Unramified
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular
 namespace LeanPoolFork
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
@@ -341,3 +341,4 @@ lemma isUnramified (L) [Field L] [Algebra K L] [IsSplittingField K L (X ^ p - C 
   exact separable_poly hp hζ u hcong hu (P.under (𝓞 K))
 
 end KummersLemma
+-- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)

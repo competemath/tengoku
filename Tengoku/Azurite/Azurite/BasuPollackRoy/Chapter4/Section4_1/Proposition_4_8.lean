@@ -32,7 +32,7 @@ which keeps all Nat-sub non-negative.
 
 See `Proposition_4_8_PLAN.md` for the proof decomposition.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial
@@ -657,3 +657,4 @@ theorem proposition_4_8_series (P : K[X]) (hP : 0 < P.natDegree) (N : ℕ) :
     exact newtonSum_orthogonality P q
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

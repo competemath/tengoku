@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2016 P4
 Find all functions f : ℝ → ℝ such that for all x, y ∈ ℝ:
@@ -380,3 +380,4 @@ theorem f_eq_zero_if_not_sq (f: ℝ→ℝ) (hf : f_good f) :
 abbrev solution_set : Set (ℝ → ℝ) := {fun t ↦ 0, fun t ↦ t^2}
 
 end Usa2016P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

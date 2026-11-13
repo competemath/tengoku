@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1984, Problem 4
 
@@ -177,3 +177,4 @@ lemma card_attempters {Pupil : Type} [Fintype Pupil] (attempt : Pupil → Finset
   lia
 
 end Usa1984P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

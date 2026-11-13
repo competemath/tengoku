@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2006, Problem 3
 
@@ -144,3 +144,4 @@ theorem proof₂ (M : ℝ)
 noncomputable abbrev solution : ℝ := 9 * sqrt 2 / 32
 
 end Imo2006P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

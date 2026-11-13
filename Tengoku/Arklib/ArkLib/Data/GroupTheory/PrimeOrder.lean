@@ -17,14 +17,14 @@ We also define the unbundled version, `PrimeOrderWith`, which has the prime orde
 output parameter. -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 /-- Type class for a group with an (implicit) prime order `p`.-/
-class PrimeOrder (G : Type*) [Group G] where
+class _root_.Tengoku.Arklib.PrimeOrder (G : Type*) [Group G] where
   p : ℕ
   [hPrime : Fact (Nat.Prime p)]
   hCard : Nat.card G = p
 
-namespace PrimeOrder
+namespace Tengoku.Arklib.PrimeOrder
 
 variable {G : Type*} [Group G] [PrimeOrder G]
 
@@ -36,13 +36,13 @@ instance : IsCyclic G :=
 
 instance : CommGroup G := IsCyclic.commGroup
 
-end PrimeOrder
+end Tengoku.Arklib.PrimeOrder
 
 /-- Type class for a group with a prime order `p` as an explicit output parameter.-/
-class PrimeOrderWith (G : Type*) [Group G] (p : outParam ℕ) [Fact (Nat.Prime p)] where
+class _root_.Tengoku.Arklib.PrimeOrderWith (G : Type*) [Group G] (p : outParam ℕ) [Fact (Nat.Prime p)] where
   hCard : Nat.card G = p
 
-namespace PrimeOrderWith
+namespace Tengoku.Arklib.PrimeOrderWith
 
 variable {G : Type*} [Group G] {p : outParam ℕ} [Fact (Nat.Prime p)] [PrimeOrderWith G p]
 
@@ -50,4 +50,5 @@ instance : PrimeOrder G where
   p := p
   hCard := PrimeOrderWith.hCard
 
-end PrimeOrderWith
+end Tengoku.Arklib.PrimeOrderWith
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

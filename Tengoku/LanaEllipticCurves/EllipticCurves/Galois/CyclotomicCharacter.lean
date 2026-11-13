@@ -104,7 +104,7 @@ it and a consumer discharges nothing by hand.
 -/
 
 /-! ### The tautological action of `Gal(F/S)` on `F` -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 /-- **The tautological homomorphism `Gal(F/S) →* RingAut F`.** An `S`-algebra automorphism of `F`
 is in particular a ring automorphism, multiplicatively in `σ`.
 
@@ -116,11 +116,11 @@ bridging rewrite.
 
 Marked `noncomputable`: the definition is computable, but compiling it costs about seventy seconds
 of build time for code no one runs. -/
-noncomputable def galoisRingAut (S F : Type*) [Field S] [Field F] [Algebra S F] :
+noncomputable def _root_.Tengoku.LanaEllipticCurves.galoisRingAut (S F : Type*) [Field S] [Field F] [Algebra S F] :
     (F ≃ₐ[S] F) →* RingAut F :=
   MulSemiringAction.toRingAut (F ≃ₐ[S] F) F
 
-@[simp] lemma galoisRingAut_apply {S F : Type*} [Field S] [Field F] [Algebra S F]
+@[simp] lemma _root_.Tengoku.LanaEllipticCurves.galoisRingAut_apply {S F : Type*} [Field S] [Field F] [Algebra S F]
     (σ : F ≃ₐ[S] F) (x : F) : galoisRingAut S F σ x = σ x := rfl
 
 variable {S F : Type*} [Field S] [Field F] [Algebra S F]
@@ -132,21 +132,21 @@ variable {S F : Type*} [Field S] [Field F] [Algebra S F]
 
 The hypothesis `hn` says that `F` contains exactly `n` `n`-th roots of unity, so that the exponent
 is well defined modulo `n` rather than modulo the size of `μ_n(F)`. -/
-noncomputable def galoisModularCyclotomicChar (S F : Type*) [Field S] [Field F] [Algebra S F]
+noncomputable def _root_.Tengoku.LanaEllipticCurves.galoisModularCyclotomicChar (S F : Type*) [Field S] [Field F] [Algebra S F]
     {n : ℕ} [NeZero n] (hn : Nat.card { x // x ∈ rootsOfUnity n F } = n) :
     (F ≃ₐ[S] F) →* (ZMod n)ˣ :=
   (modularCyclotomicCharacter F hn).comp (galoisRingAut S F)
 
 /-- **The defining property of `χ_n`:** `σ` raises every `n`-th root of unity to the power
 `χ_n(σ)`. -/
-theorem galoisModularCyclotomicChar_spec {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.LanaEllipticCurves.galoisModularCyclotomicChar_spec {n : ℕ} [NeZero n]
     (hn : Nat.card { x // x ∈ rootsOfUnity n F } = n) (σ : F ≃ₐ[S] F) {t : Fˣ}
     (ht : t ∈ rootsOfUnity n F) :
     σ (t : F) = (t : F) ^ ((galoisModularCyclotomicChar S F hn σ : ZMod n)).val :=
   modularCyclotomicCharacter.spec F hn (galoisRingAut S F σ) ht
 
 /-- **`χ_n(σ)` is the only exponent with that property.** -/
-theorem galoisModularCyclotomicChar_unique {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.LanaEllipticCurves.galoisModularCyclotomicChar_unique {n : ℕ} [NeZero n]
     (hn : Nat.card { x // x ∈ rootsOfUnity n F } = n) (σ : F ≃ₐ[S] F) {c : ZMod n}
     (hc : ∀ t ∈ rootsOfUnity n F, σ ((t : Fˣ) : F) = ((t : Fˣ) : F) ^ c.val) :
     c = galoisModularCyclotomicChar S F hn σ :=
@@ -160,7 +160,7 @@ theorem galoisModularCyclotomicChar_unique {n : ℕ} [NeZero n]
 It is the step that turns "`e_n` is Galois-equivariant" into the classical
 `e_n(σS, σT) = e_n(S, T) ^ χ_n(σ)` (Silverman AEC III.8.1(d)), carried out in
 `EllipticCurves.FunctionField.WeilPairingCyclotomic`. -/
-theorem restrictRootsOfUnity_eq_pow_galoisModularCyclotomicChar {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.LanaEllipticCurves.restrictRootsOfUnity_eq_pow_galoisModularCyclotomicChar {n : ℕ} [NeZero n]
     (hn : Nat.card { x // x ∈ rootsOfUnity n F } = n) (σ : F ≃ₐ[S] F) (ζ : rootsOfUnity n F) :
     restrictRootsOfUnity (σ.toRingEquiv.toRingHom) n ζ
       = ζ ^ ((galoisModularCyclotomicChar S F hn σ : ZMod n)).val := by
@@ -175,7 +175,7 @@ theorem restrictRootsOfUnity_eq_pow_galoisModularCyclotomicChar {n : ℕ} [NeZer
 
 Not a `simp` triviality: `(1 : ZMod n).val` is `1` only when `1 < n`, and is `0` at `n = 1`. The
 degenerate case works because `μ_1(F)` is trivial, so `t = 1` there. -/
-lemma pow_val_one_of_mem_rootsOfUnity {n : ℕ} [NeZero n] {t : Fˣ} (ht : t ∈ rootsOfUnity n F) :
+lemma _root_.Tengoku.LanaEllipticCurves.pow_val_one_of_mem_rootsOfUnity {n : ℕ} [NeZero n] {t : Fˣ} (ht : t ∈ rootsOfUnity n F) :
     ((t : F)) ^ ((1 : ZMod n)).val = (t : F) := by
   rcases eq_or_lt_of_le (Nat.one_le_iff_ne_zero.mpr (NeZero.ne n)) with h1 | h1
   · have htone : t = 1 := by
@@ -190,7 +190,7 @@ lemma pow_val_one_of_mem_rootsOfUnity {n : ℕ} [NeZero n] {t : Fˣ} (ht : t ∈
 The character is therefore a genuine invariant of `σ`, and not bookkeeping that could be trivial for
 every `σ` — it detects exactly the elements of `Gal(F/S)` acting trivially on `μ_n(F)`. This holds
 for every extension `F / S` and every `n`, so no concrete field is needed to see it. -/
-theorem galoisModularCyclotomicChar_eq_one_iff {n : ℕ} [NeZero n]
+theorem _root_.Tengoku.LanaEllipticCurves.galoisModularCyclotomicChar_eq_one_iff {n : ℕ} [NeZero n]
     (hn : Nat.card { x // x ∈ rootsOfUnity n F } = n) (σ : F ≃ₐ[S] F) :
     galoisModularCyclotomicChar S F hn σ = 1
       ↔ ∀ t ∈ rootsOfUnity n F, σ ((t : Fˣ) : F) = ((t : Fˣ) : F) := by
@@ -214,13 +214,13 @@ This is the character `det ρ_{E,p}` is expected to equal: `galoisDetTwo` of
 `galoisCyclotomicChar S F 2`. As Mathlib defines it, `χ_p` is the trivial character when `F` fails
 to contain enough roots of unity, so the statements below carry
 `[∀ i, HasEnoughRootsOfUnity F (p ^ i)]`. -/
-noncomputable def galoisCyclotomicChar (S F : Type*) [Field S] [Field F] [Algebra S F]
+noncomputable def _root_.Tengoku.LanaEllipticCurves.galoisCyclotomicChar (S F : Type*) [Field S] [Field F] [Algebra S F]
     (p : ℕ) [Fact p.Prime] : (F ≃ₐ[S] F) →* ℤ_[p]ˣ :=
   (cyclotomicCharacter F p).comp (galoisRingAut S F)
 
 /-- **The defining property of `χ_p`:** modulo `p ^ k`, it raises `p ^ k`-th roots of unity to their
 `σ`-images. -/
-theorem galoisCyclotomicChar_spec (p : ℕ) [Fact p.Prime] [∀ i, HasEnoughRootsOfUnity F (p ^ i)]
+theorem _root_.Tengoku.LanaEllipticCurves.galoisCyclotomicChar_spec (p : ℕ) [Fact p.Prime] [∀ i, HasEnoughRootsOfUnity F (p ^ i)]
     (σ : F ≃ₐ[S] F) {k : ℕ} (t : F) (ht : t ^ p ^ k = 1) :
     σ t = t ^ ((galoisCyclotomicChar S F p σ).val.toZModPow k).val :=
   cyclotomicCharacter.spec p (galoisRingAut S F σ) t ht
@@ -228,7 +228,7 @@ theorem galoisCyclotomicChar_spec (p : ℕ) [Fact p.Prime] [∀ i, HasEnoughRoot
 /-- **`χ_p` refines to `χ_{p ^ k}` at every level.** This is the compatibility that makes `χ_p` a
 character of the inverse system `μ_{p ^ k}(F)`, hence the right object to compare with the
 determinant of the `p`-adic representation, which is built from the same system. -/
-theorem galoisCyclotomicChar_toZModPow (p : ℕ) [Fact p.Prime]
+theorem _root_.Tengoku.LanaEllipticCurves.galoisCyclotomicChar_toZModPow (p : ℕ) [Fact p.Prime]
     [∀ i, HasEnoughRootsOfUnity F (p ^ i)] (σ : F ≃ₐ[S] F) (k : ℕ) :
     (galoisCyclotomicChar S F p σ).val.toZModPow k
       = (galoisModularCyclotomicChar S F
@@ -243,7 +243,7 @@ characters: the continuity of `ρ_{E,2}` is itself a theorem of this development
 (`EllipticCurves.TateModule.Continuity`, `EllipticCurves.TateModule.MatrixContinuity`), and it would
 be odd to compare it with a character not known to be continuous. Unlike the statements above this
 needs no roots-of-unity hypothesis — in the degenerate case `χ_p` is constant. -/
-theorem galoisCyclotomicChar_continuous (p : ℕ) [Fact p.Prime] :
+theorem _root_.Tengoku.LanaEllipticCurves.galoisCyclotomicChar_continuous (p : ℕ) [Fact p.Prime] :
     Continuous (galoisCyclotomicChar S F p) :=
   cyclotomicCharacter.continuous p S F
 
@@ -256,13 +256,14 @@ complement of roots of unity. This is the standing setting of `EllipticCurves.Ta
 Recorded as a theorem rather than an instance: `IsSepClosed.hasEnoughRootsOfUnity_pow` already
 supplies it to typeclass search, and a second copy would only add a redundant node. The point of
 stating it is that the fact be greppable from this file. -/
-theorem hasEnoughRootsOfUnity_pow_of_isSepClosed [IsSepClosed F] (p i : ℕ)
+theorem _root_.Tengoku.LanaEllipticCurves.hasEnoughRootsOfUnity_pow_of_isSepClosed [IsSepClosed F] (p i : ℕ)
     [NeZero ((p : ℕ) : F)] : HasEnoughRootsOfUnity F (p ^ i) :=
   inferInstance
 
 /-- Likewise the counting hypothesis `hn` of `galoisModularCyclotomicChar` is available over a
 separably closed field of characteristic not dividing `n`. -/
-theorem galoisModularCyclotomicChar_hypothesis_of_isSepClosed [IsSepClosed F] (n : ℕ)
+theorem _root_.Tengoku.LanaEllipticCurves.galoisModularCyclotomicChar_hypothesis_of_isSepClosed [IsSepClosed F] (n : ℕ)
     [NeZero ((n : ℕ) : F)] : Nat.card { x // x ∈ rootsOfUnity n F } = n :=
   haveI : NeZero n := .of_neZero_natCast F
   HasEnoughRootsOfUnity.natCard_rootsOfUnity F n
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

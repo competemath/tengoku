@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1977, Problem 5
 
@@ -123,3 +123,4 @@ lemma le_cornerMax (h k : ℝ) (hh : 0 < h) (hk : 0 < k) {n : ℕ} :
       exact ih (fun i => f i.succ) (fun i => hf i.succ) (r + k) (s + 1 / k) (add_nonneg hr hk.le)
 
 end Usa1977P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

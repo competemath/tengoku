@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2009, Problem 5
 
@@ -130,3 +130,4 @@ theorem final_solution_pnat (f : ℕ+ → ℕ+) :
 abbrev solution_set : Set (ℕ+ → ℕ+) := { id }
 
 end Imo2009P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

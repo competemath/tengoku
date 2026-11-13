@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1967, Problem 5
 
@@ -229,3 +229,4 @@ lemma aux_recursive (I : Finset (Fin 8)) (a : Fin 8 → ℝ)
     exact Finset.card_lt_card hTSubset
 
 end Imo1967P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

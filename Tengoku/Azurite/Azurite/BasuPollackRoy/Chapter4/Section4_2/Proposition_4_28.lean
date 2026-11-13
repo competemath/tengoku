@@ -41,7 +41,7 @@ in Lean as `Fin (p + q - 2j)` with `q = p - 1` and `j = p - k`, which
 is propositionally (but not definitionally) `Fin (2k-1)`. We reindex
 via `finCongr` to align the types.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial Matrix
@@ -591,3 +591,4 @@ theorem proposition_4_28 (P : K[X]) (hP : 0 < P.natDegree) (k : ℕ)
   ring
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

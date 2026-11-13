@@ -37,7 +37,7 @@ This module introduces no new definitions.
   `orliczPsi2Norm_le_of_measure_abs_ge_le`: the converse direction, recovering a
   `ψ₂` bound from a Gaussian tail bound.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open MeasureTheory Real
 open scoped ENNReal NNReal
 
@@ -50,7 +50,7 @@ variable {Ω : Type u} [MeasurableSpace Ω]
 /-! ## Tails -/
 
 /-- A sub-Gaussian variable has Gaussian tails, at an admissible scale. -/
-lemma measure_abs_ge_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsFiniteMeasure μ]
+lemma _root_.Tengoku.Statsmllib.measure_abs_ge_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} {K : ℝ} (hXm : AEMeasurable X μ) (hK : HasOrliczPsi2Bound X μ K)
     {t : ℝ} (ht : 0 ≤ t) :
     (μ {ω | t ≤ |X ω|}).toReal ≤ 2 * exp (-t ^ 2 / K ^ 2) := by
@@ -84,7 +84,7 @@ lemma measure_abs_ge_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsFiniteMeasure
 
 /-- A sub-Gaussian variable has Gaussian tails with the `ψ₂` norm as the
 scale. -/
-lemma measure_abs_ge_le_orliczPsi2Norm {μ : Measure Ω} [IsFiniteMeasure μ]
+lemma _root_.Tengoku.Statsmllib.measure_abs_ge_le_orliczPsi2Norm {μ : Measure Ω} [IsFiniteMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi2Norm X μ)
     (hpos : 0 < orliczPsi2Norm X μ) {t : ℝ} (ht : 0 ≤ t) :
     (μ {ω | t ≤ |X ω|}).toReal ≤ 2 * exp (-t ^ 2 / orliczPsi2Norm X μ ^ 2) :=
@@ -95,7 +95,7 @@ lemma measure_abs_ge_le_orliczPsi2Norm {μ : Measure Ω} [IsFiniteMeasure μ]
 
 /-- The product of two admissible `ψ₂` scales is an admissible `ψ₁` scale for
 the product of the variables. -/
-lemma HasOrliczPsi2Bound.mul {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma Tengoku.Statsmllib.HasOrliczPsi2Bound.mul {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} {a b : ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (ha : HasOrliczPsi2Bound X μ a) (hb : HasOrliczPsi2Bound Y μ b) :
     HasOrliczPsi1Bound (fun ω => X ω * Y ω) μ (a * b) := by
@@ -159,7 +159,7 @@ lemma HasOrliczPsi2Bound.mul {μ : Measure Ω} [IsProbabilityMeasure μ]
       norm_num
 
 /-- `‖X Y‖_{ψ₁} ≤ ‖X‖_{ψ₂} ‖Y‖_{ψ₂}`. -/
-lemma orliczPsi1Norm_mul_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_mul_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X Y : Ω → ℝ} (hXm : AEMeasurable X μ) (hYm : AEMeasurable Y μ)
     (hXfin : HasFiniteOrliczPsi2Norm X μ) (hYfin : HasFiniteOrliczPsi2Norm Y μ) :
     orliczPsi1Norm (fun ω => X ω * Y ω) μ
@@ -190,7 +190,7 @@ lemma orliczPsi1Norm_mul_le {μ : Measure Ω} [IsProbabilityMeasure μ]
   linarith
 
 /-- The diagonal case of the product bound: `‖X²‖_{ψ₁} ≤ ‖X‖_{ψ₂}²`. -/
-lemma orliczPsi1Norm_sq_le {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ}
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_sq_le {μ : Measure Ω} [IsProbabilityMeasure μ] {X : Ω → ℝ}
     (hXm : AEMeasurable X μ) (hXfin : HasFiniteOrliczPsi2Norm X μ) :
     orliczPsi1Norm (fun ω => X ω ^ 2) μ ≤ orliczPsi2Norm X μ ^ 2 := by
   simpa [pow_two] using orliczPsi1Norm_mul_le hXm hXm hXfin hXfin
@@ -221,7 +221,7 @@ private lemma le_exp_self (u : ℝ) : u ≤ exp u := by
 
 /-- The first absolute moment of a sub-Gaussian variable, for an admissible
 scale. -/
-lemma integral_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ} (hXm : AEMeasurable X μ) (hK : HasOrliczPsi2Bound X μ K) :
     ∫ ω, |X ω| ∂μ ≤ 2 * K := by
   have hKpos := hK.pos
@@ -248,7 +248,7 @@ lemma integral_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeas
       norm_num
 
 /-- The first absolute moment is controlled by the `ψ₂` norm. -/
-lemma integral_abs_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_abs_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi2Norm X μ) :
     ∫ ω, |X ω| ∂μ ≤ 2 * orliczPsi2Norm X μ := by
   refine le_of_forall_pos_le_add fun ε hε => ?_
@@ -260,7 +260,7 @@ lemma integral_abs_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 /-- The second moment of a sub-Gaussian variable, for an admissible scale.
 -/
-lemma integral_sq_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_sq_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ} (hXm : AEMeasurable X μ) (hK : HasOrliczPsi2Bound X μ K) :
     ∫ ω, X ω ^ 2 ∂μ ≤ 2 * K ^ 2 := by
   have hKpos := hK.pos
@@ -288,7 +288,7 @@ lemma integral_sq_le_of_hasOrliczPsi2Bound {μ : Measure Ω} [IsProbabilityMeasu
       norm_num
 
 /-- The second moment is controlled by the square of the `ψ₂` norm. -/
-lemma integral_sq_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_sq_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi2Norm X μ) :
     ∫ ω, X ω ^ 2 ∂μ ≤ 2 * orliczPsi2Norm X μ ^ 2 := by
   have hA : 0 ≤ orliczPsi2Norm X μ := orliczPsi2Norm_nonneg hfin
@@ -312,7 +312,7 @@ lemma integral_sq_le_orliczPsi2Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
 /-! ## Centering -/
 
 /-- Centering changes the `ψ₂` norm by at most an absolute factor. -/
-lemma orliczPsi2Norm_sub_integral_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_sub_integral_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi2Norm X μ) :
     orliczPsi2Norm (fun ω => X ω - ∫ ω, X ω ∂μ) μ
       ≤ (1 + 2 / √(Real.log 2)) * orliczPsi2Norm X μ := by
@@ -346,7 +346,7 @@ lemma orliczPsi2Norm_sub_integral_le {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 /-- The first absolute moment of a sub-exponential variable, for an admissible
 scale. -/
-lemma integral_abs_le_of_hasOrliczPsi1Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_abs_le_of_hasOrliczPsi1Bound {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {K : ℝ} (hXm : AEMeasurable X μ) (hK : HasOrliczPsi1Bound X μ K) :
     ∫ ω, |X ω| ∂μ ≤ 2 * K := by
   have hKpos := hK.pos
@@ -373,7 +373,7 @@ lemma integral_abs_le_of_hasOrliczPsi1Bound {μ : Measure Ω} [IsProbabilityMeas
       norm_num
 
 /-- The first absolute moment is controlled by the `ψ₁` norm. -/
-lemma integral_abs_le_orliczPsi1Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.integral_abs_le_orliczPsi1Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi1Norm X μ) :
     ∫ ω, |X ω| ∂μ ≤ 2 * orliczPsi1Norm X μ := by
   refine le_of_forall_pos_le_add fun ε hε => ?_
@@ -384,7 +384,7 @@ lemma integral_abs_le_orliczPsi1Norm {μ : Measure Ω} [IsProbabilityMeasure μ]
   linarith
 
 /-- Centering changes the `ψ₁` norm by at most an absolute factor. -/
-lemma orliczPsi1Norm_sub_integral_le {μ : Measure Ω} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.Statsmllib.orliczPsi1Norm_sub_integral_le {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hXm : AEMeasurable X μ) (hfin : HasFiniteOrliczPsi1Norm X μ) :
     orliczPsi1Norm (fun ω => X ω - ∫ ω, X ω ∂μ) μ
       ≤ (1 + 2 / Real.log 2) * orliczPsi1Norm X μ := by
@@ -435,7 +435,7 @@ private lemma rpow_le_const_mul_exp {u s : ℝ} (hu : 0 ≤ u) (hs : 0 < s) :
 
 /-- The `p`-th absolute moment of a sub-Gaussian variable, for an admissible
 scale. -/
-lemma integral_rpow_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.integral_rpow_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {K p : ℝ} (hXm : AEMeasurable X μ)
     (hK : HasOrliczPsi2Bound X μ K) (hp : 0 < p) :
     ∫ ω, |X ω| ^ p ∂μ ≤ 2 * K ^ p * (p / (2 * exp 1)) ^ (p / 2) := by
@@ -490,7 +490,7 @@ lemma integral_rpow_abs_le_of_hasOrliczPsi2Bound {μ : Measure Ω}
       norm_num
 
 /-- The `L^p` norm of a sub-Gaussian variable grows at most like `√p`. -/
-lemma integral_rpow_abs_rpow_inv_le_orliczPsi2Norm {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.integral_rpow_abs_rpow_inv_le_orliczPsi2Norm {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {K p : ℝ} (hXm : AEMeasurable X μ)
     (hK : HasOrliczPsi2Bound X μ K) (hp : 1 ≤ p) :
     (∫ ω, |X ω| ^ p ∂μ) ^ p⁻¹ ≤ 2 * K * √p := by
@@ -592,7 +592,7 @@ private lemma intervalIntegral_layercake_kernel {K : ℝ} (hK : 0 < K) (a : ℝ)
 
 /-- A Gaussian tail bound with scale `L` makes `2 * L` an admissible `ψ₂`
 scale: the converse of the tail estimate. -/
-lemma hasOrliczPsi2Bound_of_measure_abs_ge_le {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.hasOrliczPsi2Bound_of_measure_abs_ge_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {L : ℝ} (hXm : AEMeasurable X μ)
     (hL : 0 < L)
     (htail : ∀ t : ℝ, 0 ≤ t →
@@ -710,7 +710,7 @@ lemma hasOrliczPsi2Bound_of_measure_abs_ge_le {μ : Measure Ω}
 
 /-- A Gaussian tail bound with scale `L` makes `X` sub-Gaussian with
 `‖X‖_{ψ₂} ≤ 2 * L`. -/
-lemma orliczPsi2Norm_le_of_measure_abs_ge_le {μ : Measure Ω}
+lemma _root_.Tengoku.Statsmllib.orliczPsi2Norm_le_of_measure_abs_ge_le {μ : Measure Ω}
     [IsProbabilityMeasure μ] {X : Ω → ℝ} {L : ℝ} (hXm : AEMeasurable X μ)
     (hL : 0 < L)
     (htail : ∀ t : ℝ, 0 ≤ t →
@@ -720,3 +720,4 @@ lemma orliczPsi2Norm_le_of_measure_abs_ge_le {μ : Measure Ω}
     orliczPsi2Norm_le (hasOrliczPsi2Bound_of_measure_abs_ge_le hXm hL htail)⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

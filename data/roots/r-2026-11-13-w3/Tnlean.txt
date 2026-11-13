@@ -1,0 +1,28 @@
+leakscan: 65 global instances (0 can fire outside the library), 1 scoped; 218 global simp lemmas (4 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 22 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp _private.Tengoku.Tnlean.TNLean.Algebra.EventuallyConstantCycleWeights.0.FiniteWeightedDigraph.repeat_finProdFinEquiv registered in Tengoku.Tnlean.TNLean.Algebra.EventuallyConstantCycleWeights (declared at line 84)
+leak: simp SpinChain.siteTranslation_apply_val registered in Tengoku.Tnlean.TNLean.QCA.Translation (declared at line 111)
+leak: simp SpinChain.siteTranslation_symm_apply_val registered in Tengoku.Tnlean.TNLean.QCA.Translation (declared at line 121)
+leak: simp SpinChain.siteTranslation_zero registered in Tengoku.Tnlean.TNLean.QCA.Translation (declared at line 135)
+root: finTupleProdEquiv_apply
+root: finTupleProdEquiv
+root: commonBufferLength_pos
+root: commonBufferLength
+root: finDoubledProdEquiv_apply
+root: finThreeArrowEquiv_symm_apply
+root: finDoubledProdEquiv_symm_apply
+root: finAddTwoArrowEquiv_symm_apply
+root: finDoubledProdEquiv
+root: finFourArrowEquiv
+root: finAddTwoArrowEquiv
+root: eq_of_forall_succ_eq_of_mem_Icc
+root: finSuccArrowEquiv_apply
+root: finThreeArrowEquiv_apply
+root: le_commonBufferLength_add_one
+root: finFourArrowEquiv_symm_apply
+root: finAddTwoArrowEquiv_apply
+root: finThreeArrowEquiv
+root: finFourArrowEquiv_apply
+root: finSuccArrowEquiv
+root: finSuccArrowEquiv_symm_apply
+root: commonBufferLength_le

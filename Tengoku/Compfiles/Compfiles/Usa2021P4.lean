@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2021, Problem 4
 
@@ -447,3 +447,4 @@ theorem exists_isValid (k : ℕ) : ∃ S : Finset ℕ, IsValid S ∧ S.Nonempty 
       Fintype.card_fun, Fintype.card_bool, Fintype.card_fin]
 
 end Usa2021P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -35,7 +35,7 @@ for arbitrary field extensions `R/K` and `C/K`, upon the existing `TensorProduct
 * [Diamond, B.E. and Posen, J., *Succinct arguments over towers of binary fields*][DP23]
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.Compply end Tengoku.Compply open Tengoku.Compply
 open TensorProduct
 
 section DualView
@@ -57,7 +57,7 @@ local notation "e" => Algebra.TensorProduct.comm K Right Left
 /--
 @isnad1 id=eq.0h6v.s10.dcc153363e8b from=translated src=- shape=8901f3a2 vocab=31275975
 -/
-lemma comm_map_smul_tmul (s s' : Right) (m : Left) :
+lemma _root_.Tengoku.Compply.comm_map_smul_tmul (s s' : Right) (m : Left) :
     e (s • (s' ⊗ₜ[K] m)) = s • (e (s' ⊗ₜ[K] m)) := by
   -- Unfold the scalar multiplication on both sides using its fundamental definition.
   -- `r • x` is defined as `algebraMap K A r * x`.
@@ -82,7 +82,7 @@ lemma comm_map_smul_tmul (s s' : Right) (m : Left) :
 /--
 @isnad1 id=eq.2h6v.s12.ba92385edf8b from=translated src=- shape=7433d490 vocab=1b087e3c
 -/
-lemma comm_map_smul_add (s : Right) (x y : Right ⊗[K] Left)
+lemma _root_.Tengoku.Compply.comm_map_smul_add (s : Right) (x y : Right ⊗[K] Left)
     (hx : e (s • x) = s • (e x)) (hy : e (s • y) = s • (e y)) :
     e (s • x) + e (s • y) = s • e x + s • e y := by
   -- This follows from the fact that `smul` and `e` are both additive homomorphisms.
@@ -92,7 +92,7 @@ lemma comm_map_smul_add (s : Right) (x y : Right ⊗[K] Left)
 A helper definition to package `Algebra.TensorProduct.comm` as an `Right`-linear equivalence.
 It takes the existing K-algebra equivalence and adds a proof that it is also Right-linear.
 We make the types explicit arguments to avoid type inference issues.-/
-noncomputable def commSEquiv : Right ⊗[K] Left ≃ₗ[Right] Left ⊗[K] Right :=
+noncomputable def _root_.Tengoku.Compply.commSEquiv : Right ⊗[K] Left ≃ₗ[Right] Left ⊗[K] Right :=
   { Algebra.TensorProduct.comm K Right Left with
     map_smul' := fun s x => by
       -- The proof that the commutativity map respects the Right-scalar action.
@@ -144,3 +144,4 @@ lemma Basis.baseChangeRight_apply (b : Basis ι K Left) (i : ι) :
     Basis.tensorProduct_apply, Basis.singleton_apply, LinearEquiv.coe_mk, LinearMap.coe_mk,
     AddHom.coe_mk, Algebra.TensorProduct.comm_tmul]
 end DualView
+-- Tengoku: root names of this library moved to Tengoku.Compply so they do not collide with other libraries (generated)

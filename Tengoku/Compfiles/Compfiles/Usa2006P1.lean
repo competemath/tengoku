@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2006, Problem 1
 
@@ -302,3 +302,4 @@ lemma mod_iff_not_dvd {p s : ℕ} (hp : p.Prime) (hs0 : 0 < s) (hs1 : s < p) :
       exact hndvd ⟨t, by lia⟩
 
 end Usa2006P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

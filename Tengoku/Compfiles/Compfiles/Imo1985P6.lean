@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1985, Problem 6
 
@@ -1247,3 +1247,4 @@ lemma imo_1985_p6_nnreal
     exact aux_unique f h₁ hmo₀ h₇ x y hx₀ hy₀
 
 end Imo1985P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

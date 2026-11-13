@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1980, Problem 1
 
@@ -69,3 +69,4 @@ lemma offset_eq {A a h k x₁ : ℝ}
   linear_combination -h2
 
 end Usa1980P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

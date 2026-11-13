@@ -27,7 +27,7 @@ combination `R = P₂ + U P₃ + ⋯ + U^{s-2} P_s`, expanded in powers of `U`.
 
 As elsewhere in §4.4 we single out `X₀` (Mathlib's `finSuccEquiv`), so `π = Fin.tail`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -604,3 +604,4 @@ theorem proposition_4_76 {C : Type*} [Field C] [IsAlgClosed C] [Algebra K C]
       exact Set.empty_subset _
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

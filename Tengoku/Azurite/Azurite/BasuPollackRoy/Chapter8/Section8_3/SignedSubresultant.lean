@@ -31,7 +31,7 @@ Note this is the signed subresultant *polynomial* `sResP` of Chapter 8, distinct
 from the signed subresultant *coefficient* `Azurite.BPR.Chapter4.sRes` of
 Chapter 4 (which is the leading entry of the corresponding determinant).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -307,3 +307,4 @@ theorem sRes_natDegree (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) (hQ0 : Q â
     show P.natDegree - Q.natDegree - 1 + 1 = P.natDegree - Q.natDegree from by omega]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2011, Problem 1
 
@@ -63,3 +63,4 @@ lemma AMGM {x y z : ℝ} (hx : 0 < x) (hy : 0 < y) (hz : 0 < z) :
   linarith
 
 end Usa2011P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

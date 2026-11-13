@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1988, Problem 2
 
@@ -359,3 +359,4 @@ lemma edgeSets_cov {N : ℕ} (e : Edges N) :
   rw [h, e.prop]
 
 end Imo1988P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

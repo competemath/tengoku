@@ -41,7 +41,7 @@ topology — impossible here, since the coefficient ring and the evaluation targ
 
 Silverman, *The Arithmetic of Elliptic Curves*, IV.3, VII.2.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open scoped Topology
 open MvPowerSeries MvPowerSeries.WithPiTopology
 
@@ -357,3 +357,4 @@ end OnIdeal
 end FormalGroup
 
 end
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

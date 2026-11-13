@@ -12,7 +12,7 @@ Given a strictly monotonic function `φ : ℕ → ℕ` with `φ 0 = 0` and `k : 
 This file proves various properties aboout segments, which are used to
 reason about the omega iteration of a language (L^ω).
 -/
-
+namespace Tengoku.Automatatheory end Tengoku.Automatatheory open Tengoku.Automatatheory
 open Function Set
 
 section Segments
@@ -22,7 +22,7 @@ open Classical
 /- Given a strictly monotonic function `φ : ℕ → ℕ` with `φ 0 = 0` and `k : ℕ`,
 `Segment φ k` is the unique `m : ℕ` such that `φ m ≤ k < φ (k + 1)`.
 -/
-noncomputable def Segment (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
+noncomputable def _root_.Tengoku.Automatatheory.Segment (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
   if k ∈ range φ then Nat.count (· ∈ range φ) k else Nat.count (· ∈ range φ) k - 1
 
 variable {φ : ℕ → ℕ}
@@ -30,14 +30,14 @@ variable {φ : ℕ → ℕ}
 /--
 @isnad1 id=infinite.1h1v.s4.25330ed6d07d from=translated src=- shape=0d5647d7 vocab=f4c4f5ef
 -/
-theorem strict_mono_infinite (hm : StrictMono φ) :
+theorem _root_.Tengoku.Automatatheory.strict_mono_infinite (hm : StrictMono φ) :
     (range φ).Infinite := by
   exact infinite_range_of_injective hm.injective
 
 /--
 @isnad1 id=ex.1h1v.s4.fe6d6b9000e8 from=translated src=- shape=549aa96e vocab=20d89dbf
 -/
-theorem infinite_strict_mono {ns : Set ℕ} (h : ns.Infinite) :
+theorem _root_.Tengoku.Automatatheory.infinite_strict_mono {ns : Set ℕ} (h : ns.Infinite) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ range φ = ns := by
   use Nat.nth (· ∈ ns) ; constructor
   · exact Nat.nth_strictMono h
@@ -46,7 +46,7 @@ theorem infinite_strict_mono {ns : Set ℕ} (h : ns.Infinite) :
 /--
 @isnad1 id=not.3h3v.s6.4d453f4c3e6c from=translated src=- shape=a7b9b9c7 vocab=bd1ee236
 -/
-lemma nth_succ_gap {p : ℕ → Prop} (hf : (Set.ofPred p).Infinite) (n : ℕ) :
+lemma _root_.Tengoku.Automatatheory.nth_succ_gap {p : ℕ → Prop} (hf : (Set.ofPred p).Infinite) (n : ℕ) :
     ∀ k < Nat.nth p (n + 1) - Nat.nth p n, k > 0 → ¬ p (k + Nat.nth p n) := by
   intro k h_k1 h_k0 h_p_k
   let m := Nat.count p (k + Nat.nth p n)
@@ -59,7 +59,7 @@ lemma nth_succ_gap {p : ℕ → Prop} (hf : (Set.ofPred p).Infinite) (n : ℕ) :
 /--
 @isnad1 id=eq.1h2v.s5.f5701a05ed56 from=translated src=- shape=afcac592 vocab=7dfd1696
 -/
-theorem nth_of_strict_mono (hm : StrictMono φ) (n : ℕ) :
+theorem _root_.Tengoku.Automatatheory.nth_of_strict_mono (hm : StrictMono φ) (n : ℕ) :
     φ n = Nat.nth (· ∈ range φ) n := by
   rw [← Nat.nth_comp_of_strictMono hm (by simp)]
   · simp
@@ -70,7 +70,7 @@ theorem nth_of_strict_mono (hm : StrictMono φ) (n : ℕ) :
 /--
 @isnad1 id=lt.2h2v.s6.da1d1b9dca41 from=translated src=- shape=59af2975 vocab=ac9ba211
 -/
-theorem count_out_range_pos (h0 : φ 0 = 0) (n : ℕ) (hn : n ∉ range φ) :
+theorem _root_.Tengoku.Automatatheory.count_out_range_pos (h0 : φ 0 = 0) (n : ℕ) (hn : n ∉ range φ) :
     Nat.count (· ∈ range φ) n > 0 := by
   have h0' : 0 ∈ range φ := by use 0
   have h1 : n ≠ 0 := by rintro ⟨rfl⟩ ; contradiction
@@ -82,7 +82,7 @@ theorem count_out_range_pos (h0 : φ 0 = 0) (n : ℕ) (hn : n ∉ range φ) :
 /--
 @isnad1 id=eq.1h2v.s6.f8fcc4017dfa from=translated src=- shape=e96c5796 vocab=9fa87745
 -/
-theorem segment_plus_one (h0 : φ 0 = 0) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.segment_plus_one (h0 : φ 0 = 0) (k : ℕ) :
     Segment φ k + 1 = Nat.count (· ∈ range φ) (k + 1) := by
   rcases Classical.em (k ∈ range φ) with h_k | h_k <;> simp [Segment, Nat.count_succ, h_k, -mem_range]
   suffices _ : Nat.count (· ∈ range φ) k > 0 by omega
@@ -91,7 +91,7 @@ theorem segment_plus_one (h0 : φ 0 = 0) (k : ℕ) :
 /--
 @isnad1 id=lt.2h2v.s5.ad9368fd2f34 from=translated src=- shape=9732d9b2 vocab=f689cd38
 -/
-theorem segment_upper_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.segment_upper_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
     k < φ (Segment φ k + 1) := by
   rw [nth_of_strict_mono hm (Segment φ k + 1), segment_plus_one h0 k]
   suffices _ : k + 1 ≤ Nat.nth (· ∈ range φ) (Nat.count (· ∈ range φ) (k + 1)) by omega
@@ -101,7 +101,7 @@ theorem segment_upper_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
 /--
 @isnad1 id=le.2h2v.s5.34722dcf219f from=translated src=- shape=1e32a80f vocab=bcf1f9d9
 -/
-theorem segment_lower_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.segment_lower_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
     φ (Segment φ k) ≤ k := by
   rw [nth_of_strict_mono hm (Segment φ k)]
   rcases Classical.em (k ∈ range φ) with h_k | h_k <;> simp [Segment, h_k, -mem_range]
@@ -113,7 +113,7 @@ theorem segment_lower_bound (hm : StrictMono φ) (h0 : φ 0 = 0) (k : ℕ) :
 /--
 @isnad1 id=eq.1h2v.s4.7f8b62f56254 from=translated src=- shape=d6642784 vocab=dacf31ad
 -/
-theorem segment_idem (hm : StrictMono φ) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.segment_idem (hm : StrictMono φ) (k : ℕ) :
     Segment φ (φ k) = k := by
   have h_rng : φ k ∈ range φ := by simp
   rw [Segment] ; simp [h_rng, -mem_range]
@@ -124,7 +124,7 @@ theorem segment_idem (hm : StrictMono φ) (k : ℕ) :
 /--
 @isnad1 id=eq.2h1v.s5.4a039bff7258 from=translated src=- shape=5ad3f251 vocab=dacf31ad
 -/
-theorem segment_zero (hm : StrictMono φ) (h0 : φ 0 = 0) :
+theorem _root_.Tengoku.Automatatheory.segment_zero (hm : StrictMono φ) (h0 : φ 0 = 0) :
     Segment φ 0 = 0 := by
   calc _ = Segment φ (φ 0) := by simp [h0]
        _ = _ := by simp [segment_idem hm]
@@ -132,7 +132,7 @@ theorem segment_zero (hm : StrictMono φ) (h0 : φ 0 = 0) :
 /--
 @isnad1 id=not.3h3v.s5.bbcd22587e20 from=translated src=- shape=b5c1d3bc vocab=1c841fd0
 -/
-theorem segment_range_gap (hm : StrictMono φ) {m k : ℕ}
+theorem _root_.Tengoku.Automatatheory.segment_range_gap (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m < k) (hu : k < φ (m + 1)) : k ∉ range φ := by
   rw [nth_of_strict_mono hm m] at hl
   rw [nth_of_strict_mono hm (m + 1)] at hu
@@ -144,7 +144,7 @@ theorem segment_range_gap (hm : StrictMono φ) {m k : ℕ}
 /--
 @isnad1 id=eq.3h3v.s5.428658f55f8f from=translated src=- shape=8bf9f755 vocab=c7160af6
 -/
-theorem segment_range_val (hm : StrictMono φ) {m k : ℕ}
+theorem _root_.Tengoku.Automatatheory.segment_range_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) (hu : k < φ (m + 1)) : Segment φ k = m := by
   obtain (rfl | hu') := show φ m = k ∨ φ m < k by omega
   · exact segment_idem hm m
@@ -167,7 +167,7 @@ theorem segment_range_val (hm : StrictMono φ) {m k : ℕ}
 /--
 @isnad1 id=galoisco.2h1v.s5.72a304693101 from=translated src=- shape=0876c3a2 vocab=828d1340
 -/
-theorem segment_galois_connection (hm : StrictMono φ) (h0 : φ 0 = 0) :
+theorem _root_.Tengoku.Automatatheory.segment_galois_connection (hm : StrictMono φ) (h0 : φ 0 = 0) :
     GaloisConnection φ (Segment φ) := by
   intro m k ; constructor
   · intro h
@@ -189,20 +189,20 @@ section Segments'
 /- Segment' φ k does not assume φ 0 = 0, but returns a meaningful value
 only when k ≥ φ 0 and returns 0 for all k < φ 0.
 -/
-noncomputable def Segment' (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
+noncomputable def _root_.Tengoku.Automatatheory.Segment' (φ : ℕ → ℕ) (k : ℕ) : ℕ :=
   Segment (φ · - φ 0) (k - φ 0)
 
 /--
 @isnad1 id=eq.0h1v.s5.cfb0e9e66d8f from=translated src=- shape=66a1f7ee vocab=63ce1de5
 -/
-lemma base_zero_shift (φ : ℕ → ℕ) :
+lemma _root_.Tengoku.Automatatheory.base_zero_shift (φ : ℕ → ℕ) :
     (φ · - φ 0) 0 = 0 := by
   simp
 
 /--
 @isnad1 id=strictmo.1h1v.s5.137a00bddb81 from=translated src=- shape=4155b5ba vocab=7d3f0c93
 -/
-lemma base_zero_strict_mono {φ : ℕ → ℕ} (hm : StrictMono φ) :
+lemma _root_.Tengoku.Automatatheory.base_zero_strict_mono {φ : ℕ → ℕ} (hm : StrictMono φ) :
     StrictMono (φ · - φ 0) := by
   intro m n h_m_n ; simp
   have := hm h_m_n
@@ -215,7 +215,7 @@ variable {φ : ℕ → ℕ}
 /--
 @isnad1 id=eq.2h2v.s5.9c96f25fa845 from=translated src=- shape=c0f1333b vocab=119bec2a
 -/
-theorem segment'_zero (hm : StrictMono φ) {k : ℕ} (h : k ≤ φ 0) :
+theorem _root_.Tengoku.Automatatheory.segment'_zero (hm : StrictMono φ) {k : ℕ} (h : k ≤ φ 0) :
     Segment' φ k = 0 := by
   simp [Segment', (show k - φ 0 = 0 by omega)]
   exact segment_zero (base_zero_strict_mono hm) (base_zero_shift φ)
@@ -223,7 +223,7 @@ theorem segment'_zero (hm : StrictMono φ) {k : ℕ} (h : k ≤ φ 0) :
 /--
 @isnad1 id=lt.2h2v.s5.7bff98929ada from=translated src=- shape=bc606d98 vocab=c696b203
 -/
-theorem segment'_upper_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
+theorem _root_.Tengoku.Automatatheory.segment'_upper_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
     k < φ (Segment' φ k + 1) := by
   simp [Segment']
   have := segment_upper_bound (base_zero_strict_mono hm) (base_zero_shift φ) (k - φ 0)
@@ -232,7 +232,7 @@ theorem segment'_upper_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
 /--
 @isnad1 id=le.2h2v.s5.f4fd8b9dff8b from=translated src=- shape=ae4efad0 vocab=119bec2a
 -/
-theorem segment'_lower_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
+theorem _root_.Tengoku.Automatatheory.segment'_lower_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
     φ (Segment' φ k) ≤ k := by
   simp [Segment']
   have := segment_lower_bound (base_zero_strict_mono hm) (base_zero_shift φ) (k - φ 0)
@@ -241,7 +241,7 @@ theorem segment'_lower_bound (hm : StrictMono φ) {k : ℕ} (h : φ 0 ≤ k) :
 /--
 @isnad1 id=eq.1h2v.s4.c3d52e130182 from=translated src=- shape=d6642784 vocab=0c166357
 -/
-theorem segment'_idem (hm : StrictMono φ) (k : ℕ) :
+theorem _root_.Tengoku.Automatatheory.segment'_idem (hm : StrictMono φ) (k : ℕ) :
     Segment' φ (φ k) = k := by
   simp [Segment']
   exact segment_idem (base_zero_strict_mono hm) k
@@ -249,7 +249,7 @@ theorem segment'_idem (hm : StrictMono φ) (k : ℕ) :
 /--
 @isnad1 id=eq.3h3v.s5.0e97a1daa6d6 from=translated src=- shape=8bf9f755 vocab=c696b203
 -/
-theorem segment'_range_val (hm : StrictMono φ) {m k : ℕ}
+theorem _root_.Tengoku.Automatatheory.segment'_range_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) (hu : k < φ (m + 1)) : Segment' φ k = m := by
   simp [Segment']
   have h : φ 0 ≤ k := by
@@ -262,10 +262,11 @@ theorem segment'_range_val (hm : StrictMono φ) {m k : ℕ}
 /--
 @isnad1 id=le.2h3v.s4.d903d7a3b59c from=translated src=- shape=659ee7fe vocab=119bec2a
 -/
-theorem segment'_lower_val (hm : StrictMono φ) {m k : ℕ}
+theorem _root_.Tengoku.Automatatheory.segment'_lower_val (hm : StrictMono φ) {m k : ℕ}
     (hl : φ m ≤ k) : m ≤ Segment' φ k := by
   simp [Segment']
   have : φ 0 ≤ φ m := by simp [StrictMono.le_iff_le hm]
   exact (segment_galois_connection (base_zero_strict_mono hm) (base_zero_shift φ) m (k - φ 0)).mp (by omega)
 
 end Segments'
+-- Tengoku: root names of this library moved to Tengoku.Automatatheory so they do not collide with other libraries (generated)

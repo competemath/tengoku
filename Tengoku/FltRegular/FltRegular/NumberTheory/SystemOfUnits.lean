@@ -3,7 +3,7 @@ module
 public import Tengoku.FltRegular.FltRegular.NumberTheory.CyclotomicRing
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open FiniteDimensional
 open NumberField
 
@@ -19,13 +19,13 @@ section
 variable [Module (CyclotomicIntegers p) G]
 
 /-- A system of `s` units represented by a linearly independent family over cyclotomic integers. -/
-structure systemOfUnits (s : ℕ) where
+structure _root_.Tengoku.FltRegular.systemOfUnits (s : ℕ) where
   /-- The family of units in the system. -/
   units : Fin s → G
   /-- The linear independence of the family over cyclotomic integers. -/
   linearIndependent : LinearIndependent A units
 
-namespace systemOfUnits
+namespace Tengoku.FltRegular.systemOfUnits
 
 /--
 @isnad1 id=nonempty.0h2v.s5.2c40106f2af6 from=translated src=- shape=84af3d0a vocab=a4143fc5
@@ -63,11 +63,11 @@ lemma ex_not_mem [Module.Free ℤ G] {R : ℕ} (S : systemOfUnits p G R) (hR : R
   rw [finrank_spanA p hp G S.units S.linearIndependent, hf, mul_comm]
   exact Nat.mul_lt_mul_of_lt_of_le hR rfl.le hp.pred_pos
 
-end systemOfUnits
+end Tengoku.FltRegular.systemOfUnits
 
 end
 
-namespace systemOfUnits
+namespace Tengoku.FltRegular.systemOfUnits
 
 include hp hf
 
@@ -106,4 +106,5 @@ lemma existence'' [Module A G] {R : ℕ} (hR : R ≤ s) : Nonempty (systemOfUnit
 -/
 lemma existence [Module A G] : Nonempty (systemOfUnits p G s) := existence'' p hp G s hf rfl.le
 
-end systemOfUnits
+end Tengoku.FltRegular.systemOfUnits
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

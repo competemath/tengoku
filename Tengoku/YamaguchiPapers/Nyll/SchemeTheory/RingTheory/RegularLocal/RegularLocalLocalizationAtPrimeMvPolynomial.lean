@@ -19,17 +19,18 @@ import Tengoku.Seed.RingTheory.RegularLocalRing.Polynomial
 -/
 
 section ProofImplementation
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers 
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace isRegularLocalRing_localization_atPrime_mvPolynomial
 
 /--
 @isnad1 id=isregula.0h3v.s7.49bf1e90e0b4 from=translated src=- shape=0acd5df9 vocab=e95e7179
 -/
-theorem _root_.isRegularLocalRing_localization_atPrime_mvPolynomial (k : Type*) [Field k] (n : ℕ)
+theorem _root_.Tengoku.YamaguchiPapers.isRegularLocalRing_localization_atPrime_mvPolynomial (k : Type*) [Field k] (n : ℕ)
   (q : Ideal (MvPolynomial (Fin n) k)) [q.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime q) :=
   IsRegularRing.isRegularLocalRing_localization q
 end isRegularLocalRing_localization_atPrime_mvPolynomial
 end AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 end ProofImplementation
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

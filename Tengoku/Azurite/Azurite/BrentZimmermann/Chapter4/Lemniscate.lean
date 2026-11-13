@@ -20,7 +20,7 @@ lemniscate.  The substitution `t = cos φ` turns the (improper) integral into
 (`lemniscate_eq_sqrt_two_mul_ellipticK`), and Gauss's AGM evaluation of `K` gives
 `ϖ = π/AGM(1, √2) = π · G` with `G` Gauss's constant (`lemniscate_eq_pi_div_AGM`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BZ
 
 open Real MeasureTheory intervalIntegral Set
@@ -234,3 +234,4 @@ theorem lemniscate_pos : 0 < lemniscate := by
   exact div_pos Real.pi_pos (AGM_one_pos (by positivity))
 
 end Azurite.BZ
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

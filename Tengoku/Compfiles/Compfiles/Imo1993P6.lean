@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1993, Problem 6
 
@@ -1349,3 +1349,4 @@ theorem lamp1_only_of_two_pow_add_one (n k : ℕ) [NeZero n] (hk : 0 < k) (hn : 
     simp [hi]
 
 end Imo1993P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

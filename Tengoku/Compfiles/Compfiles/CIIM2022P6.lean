@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # Iberoamerican Interuniversity Mathematics Competition 2022, Problem 6
 
@@ -352,3 +352,4 @@ lemma prod_factorization_le (n : ℕ) (hn : 0 < n) :
   exact_mod_cast key
 
 end CIIM2022P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2020, Problem 5
 
@@ -207,3 +207,4 @@ lemma all_equal {n : ℕ} (hn : 1 < n) (f : Fin n → ℕ+)
     exact absurd hfin hm0mem.2
 
 end Imo2020P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

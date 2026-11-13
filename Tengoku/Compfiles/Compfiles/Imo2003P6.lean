@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2003, Problem 6
 
@@ -40,3 +40,4 @@ lemma exists_prime_mod_m_ne_1_and_dvd
   contradiction
 
 end Imo2003P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

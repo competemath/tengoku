@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2014, Problem 2
 
@@ -47,3 +47,4 @@ lemma exists_prime_and_not_dvd {n : ℤ} (hn : n ≠ 0) : ∃ p, Prime p ∧ ¬ 
   lia
 
 end Usa2014P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -52,7 +52,7 @@ import Tengoku.Seed.Algebra.Polynomial.BigOperators
 import Tengoku.Seed.Data.Nat.Factorization.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace CP
@@ -275,3 +275,4 @@ section Examples
 open Polynomial Azurite.CP
 
 end Examples
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

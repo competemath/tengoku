@@ -19,7 +19,7 @@ import Tengoku.Azurite.Azurite.AzVector.Parse
 import Tengoku.Azurite.Azurite.AzMatrix.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace AzMatrix
@@ -279,3 +279,4 @@ instance {R : Type _} [ParsableElement R] {m n : ℕ} : ToString (AzMatrix R m n
   toString M := String.ofList (AzMatrix.toChars M)
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

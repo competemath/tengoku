@@ -11,17 +11,18 @@ public import Tengoku
  into Basic or into another file. -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 variable {β : Type*} {f g : β → ℝ}
 
 /-- `HasProd` is monotone for nonnegative real-valued functions. This does not follow from
 `hasProd_le` since multiplication on `ℝ` is not covariant. -/
-theorem hasProd_le_nonneg {a₁ a₂ : ℝ} (h : ∀ i, f i ≤ g i) (h0 : ∀ i, 0 ≤ f i)
+theorem _root_.Tengoku.SpherePackingOrig.hasProd_le_nonneg {a₁ a₂ : ℝ} (h : ∀ i, f i ≤ g i) (h0 : ∀ i, 0 ≤ f i)
     (hf : HasProd f a₁) (hg : HasProd g a₂) : a₁ ≤ a₂ := by
   apply le_of_tendsto_of_tendsto' hf hg
   intro s
   exact Finset.prod_le_prod (fun i _ => h0 i) (fun i _ => h i)
 
-lemma tprod_le_of_nonneg_of_multipliable (hfnn : 0 ≤ f) (hfg : f ≤ g) (hf : Multipliable f)
+lemma _root_.Tengoku.SpherePackingOrig.tprod_le_of_nonneg_of_multipliable (hfnn : 0 ≤ f) (hfg : f ≤ g) (hf : Multipliable f)
     (hg : Multipliable g) : ∏' b, f b ≤ ∏' b, g b :=
   hasProd_le_nonneg hfg hfnn hf.hasProd hg.hasProd
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

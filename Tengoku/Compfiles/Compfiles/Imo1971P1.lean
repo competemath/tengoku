@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1971, Problem 1
 
@@ -74,3 +74,4 @@ lemma exists_antitone_perm {n : ℕ} (a : Fin n → ℝ) :
     exact antitone_of_monotone_comp_rev a _ (Tuple.monotone_sort a)
 
 end Imo1971P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

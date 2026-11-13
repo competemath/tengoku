@@ -34,7 +34,7 @@ Simultaneously, one proves three properties:
 This file lays the foundation: predicates capturing (a)–(c) and the base
 case `p = 0`. The inductive step is developed in subsequent sections.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.VirtualRoots.Internal
 
 open Polynomial Azurite.BPR Azurite.BPR.Proposition2_21 Azurite.BPR.Proposition2_22 Azurite.BPR.Corollary2_23 Azurite.BPR.Corollary2_24 Azurite.BPR.Proposition2_27
@@ -4820,3 +4820,4 @@ theorem IsVirtualRootsList.unique
   IsVirtualRootsListAux.unique hIVP P.natDegree rfl hxs hys
 
 end Azurite.BPR.VirtualRoots.Internal
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

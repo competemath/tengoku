@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2013, Problem 2
 
@@ -258,3 +258,4 @@ theorem key (n : ℕ) : a (n + 1) + a n = 2 ^ (n + 1) := by
   lia
 
 end Usa2013P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

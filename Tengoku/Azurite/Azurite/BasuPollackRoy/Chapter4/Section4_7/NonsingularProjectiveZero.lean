@@ -31,7 +31,7 @@ Both conditions are independent of the choice of homogeneous coordinates: scalin
 vector by `λ ≠ 0` scales each `Pᵢ` by `λ^{dᵢ}` (vanishing preserved) and each row `i` of the Jacobian
 by `λ^{dᵢ - 1}` (rank preserved). We evaluate at the canonical representative `x.rep`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -242,3 +242,4 @@ theorem isNonsingularZero_dehom_iff_isNonsingularProjectiveZero
   rw [rank_eq_iff_det_submatrix_succ_ne_zero M (hcol (hvz.mp hcz))]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

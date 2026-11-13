@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1990, Problem 2
 
@@ -328,3 +328,4 @@ theorem exists_bad {n : ℕ} (hn : 3 ≤ n) :
       · exact key b a hb ha hxy
 
 end Imo1990P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

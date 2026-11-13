@@ -4,7 +4,7 @@ public import Tengoku
 public import Tengoku.MiscYd.MiscYD.Book.MetricBetween
 
 @[expose] public section
-
+namespace Tengoku.MiscYd end Tengoku.MiscYd open Tengoku.MiscYd 
 variable {V : Type*} [MetricSpace V]
 
 section
@@ -16,7 +16,7 @@ inductive Set.collinearTriple : Set V → Prop
 | mk {u v w : V} (h : sbtw u v w) : collinearTriple {u, v, w}
 
 -- lemma Finset.collinearTriple_iff {}
-inductive GenerateLine (s : Set V) : Set V
+inductive _root_.Tengoku.MiscYd.GenerateLine (s : Set V) : Set V
 | basic {x : V} : x ∈ s → GenerateLine s x
 | extend_out (u v w : V) : GenerateLine s u → GenerateLine s v → sbtw u v w → GenerateLine s w
 | extend_in (u v w : V) : GenerateLine s u → GenerateLine s v → sbtw u w v → GenerateLine s w
@@ -24,33 +24,33 @@ inductive GenerateLine (s : Set V) : Set V
 /--
 @isnad1 id=le.0h2v.s4.54140f6050e3 from=translated src=- shape=1b31f6ab vocab=044ca4b4
 -/
-lemma subset_generateLine (s : Set V) : s ⊆ GenerateLine s := fun _ => GenerateLine.basic
+lemma _root_.Tengoku.MiscYd.subset_generateLine (s : Set V) : s ⊆ GenerateLine s := fun _ => GenerateLine.basic
 
 /--
 @isnad1 id=mem.3h5v.s5.c67c47152b91 from=translated src=- shape=d846bef2 vocab=80739b86
 -/
-lemma generateLine_close_right {s : Set V} {x y z : V}
+lemma _root_.Tengoku.MiscYd.generateLine_close_right {s : Set V} {x y z : V}
   (hx : x ∈ GenerateLine s) (hy : y ∈ GenerateLine s)
   (h : sbtw x y z) : z ∈ GenerateLine s := GenerateLine.extend_out x y _ hx hy h
 
 /--
 @isnad1 id=mem.3h5v.s5.df89504b2fa0 from=translated src=- shape=4e727079 vocab=80739b86
 -/
-lemma generateLine_close_left {s : Set V} {x y z : V}
+lemma _root_.Tengoku.MiscYd.generateLine_close_left {s : Set V} {x y z : V}
   (hx : x ∈ GenerateLine s) (hy : y ∈ GenerateLine s)
   (h : sbtw z x y) : z ∈ GenerateLine s := GenerateLine.extend_out y x _ hy hx h.symm
 
 /--
 @isnad1 id=mem.3h5v.s5.f3f6d089042d from=translated src=- shape=ab42058b vocab=80739b86
 -/
-lemma generateLine_close_middle {s : Set V} {x y z : V}
+lemma _root_.Tengoku.MiscYd.generateLine_close_middle {s : Set V} {x y z : V}
   (hx : x ∈ GenerateLine s) (hy : y ∈ GenerateLine s)
   (h : sbtw x z y) : z ∈ GenerateLine s := GenerateLine.extend_in _ _ _ hx hy h
 
 /--
 @isnad1 id=le.3h3v.s6.a2d8e7df8220 from=translated src=- shape=459b68f1 vocab=f8ad6560
 -/
-lemma generateLine_minimal {S L : Set V} (hL₀ : S ⊆ L)
+lemma _root_.Tengoku.MiscYd.generateLine_minimal {S L : Set V} (hL₀ : S ⊆ L)
     (out_closed : ∀ {x y z}, x ∈ L → y ∈ L → sbtw x y z → z ∈ L)
     (in_closed : ∀ {x y z}, x ∈ L → y ∈ L → sbtw x z y → z ∈ L) :
     GenerateLine S ⊆ L := by
@@ -60,43 +60,43 @@ lemma generateLine_minimal {S L : Set V} (hL₀ : S ⊆ L)
   | extend_out u v w _ _ hw hu hv => exact out_closed hu hv hw
   | extend_in u v w _ _ hw hu hv => exact in_closed hu hv hw
 
-def Line (a b : V) : Set V := GenerateLine ({a, b} : Set V)
+def _root_.Tengoku.MiscYd.Line (a b : V) : Set V := GenerateLine ({a, b} : Set V)
 
 /--
 @isnad1 id=mem.0h3v.s4.52da76fd39c0 from=translated src=- shape=cbe68e08 vocab=1ceec474
 -/
-@[simp] lemma left_mem_Line {a b : V} : a ∈ Line a b := subset_generateLine _ (by simp)
+@[simp] lemma _root_.Tengoku.MiscYd.left_mem_Line {a b : V} : a ∈ Line a b := subset_generateLine _ (by simp)
 /--
 @isnad1 id=mem.0h3v.s4.326dd8d07e0f from=translated src=- shape=8b53955d vocab=1ceec474
 -/
-@[simp] lemma right_mem_Line {a b : V} : b ∈ Line a b := subset_generateLine _ (by simp)
+@[simp] lemma _root_.Tengoku.MiscYd.right_mem_Line {a b : V} : b ∈ Line a b := subset_generateLine _ (by simp)
 /--
 @isnad1 id=mem.1h4v.s5.8b80978fa34a from=translated src=- shape=9e7dbad8 vocab=ca202e04
 -/
-lemma left_extend_mem_Line {a b c : V} (h : sbtw c a b) : c ∈ Line a b :=
+lemma _root_.Tengoku.MiscYd.left_extend_mem_Line {a b c : V} (h : sbtw c a b) : c ∈ Line a b :=
   generateLine_close_left left_mem_Line right_mem_Line h
 /--
 @isnad1 id=mem.1h4v.s5.99617dce79fd from=translated src=- shape=0829f3f7 vocab=ca202e04
 -/
-lemma middle_extend_mem_Line {a b c : V} (h : sbtw a c b) : c ∈ Line a b :=
+lemma _root_.Tengoku.MiscYd.middle_extend_mem_Line {a b c : V} (h : sbtw a c b) : c ∈ Line a b :=
   generateLine_close_middle left_mem_Line right_mem_Line h
 /--
 @isnad1 id=mem.1h4v.s5.504990177369 from=translated src=- shape=a7d877c8 vocab=ca202e04
 -/
-lemma right_extend_mem_Line {a b c : V} (h : sbtw a b c) : c ∈ Line a b :=
+lemma _root_.Tengoku.MiscYd.right_extend_mem_Line {a b c : V} (h : sbtw a b c) : c ∈ Line a b :=
   generateLine_close_right left_mem_Line right_mem_Line h
 
 /--
 @isnad1 id=eq.0h3v.s4.2d7657de3c97 from=translated src=- shape=7004b98d vocab=bad75c92
 -/
-lemma Line_comm : Line u v = Line v u := by rw [Line, Line, Set.pair_comm]
+lemma _root_.Tengoku.MiscYd.Line_comm : Line u v = Line v u := by rw [Line, Line, Set.pair_comm]
 
 def Set.IsLine (l : Set V) : Prop := ∃ a b, a ≠ b ∧ Line a b = l
 
 /--
 @isnad1 id=isline.1h3v.s4.7cf50b46cdcb from=translated src=- shape=e4fcf642 vocab=746a1e2e
 -/
-lemma Line_isLine {a b : V} (h : a ≠ b) : (Line a b).IsLine := ⟨a, b, h, rfl⟩
+lemma _root_.Tengoku.MiscYd.Line_isLine {a b : V} (h : a ≠ b) : (Line a b).IsLine := ⟨a, b, h, rfl⟩
 
 /--
 @isnad1 id=mem.4h5v.s5.88254378be5b from=translated src=- shape=5c4e187e vocab=d629bf39
@@ -135,26 +135,26 @@ variable {x y z : V}
 
 section NotCollinear
 
-def NotCollinear (x y z : V) : Prop :=
+def _root_.Tengoku.MiscYd.NotCollinear (x y z : V) : Prop :=
   x ≠ y ∧ x ≠ z ∧ y ≠ z ∧ ∀ l : Set V, l.IsLine → ¬ {x, y, z} ⊆ l
 
 /--
 @isnad1 id=iff.0h4v.s6.c1de47be5df4 from=translated src=- shape=9e362b41 vocab=81524ef9
 -/
-lemma notCollinear_iff :
+lemma _root_.Tengoku.MiscYd.notCollinear_iff :
     NotCollinear x y z ↔ x ≠ y ∧ x ≠ z ∧ y ≠ z ∧ ∀ l : Set V, l.IsLine → ¬ {x, y, z} ⊆ l := Iff.rfl
 
 /--
 @isnad1 id=notcolli.1h4v.s4.bec041a97864 from=translated src=- shape=56a72084 vocab=81dd3308
 -/
-lemma NotCollinear.rotate (h : NotCollinear u v w) : NotCollinear v w u :=
+lemma Tengoku.MiscYd.NotCollinear.rotate (h : NotCollinear u v w) : NotCollinear v w u :=
   ⟨h.2.2.1, h.1.symm, h.2.1.symm,
    fun l h₁ h₂ => h.2.2.2 l h₁ (h₂.trans' (by simp))⟩
 
 /--
 @isnad1 id=notcolli.1h4v.s4.c75418afff5f from=translated src=- shape=dc490b2b vocab=81dd3308
 -/
-lemma NotCollinear.swap (h : NotCollinear u v w) : NotCollinear w v u :=
+lemma Tengoku.MiscYd.NotCollinear.swap (h : NotCollinear u v w) : NotCollinear w v u :=
   ⟨h.2.2.1.symm, h.2.1.symm, h.1.symm,
    fun l h₁ h₂ => h.2.2.2 l h₁ (h₂.trans' (by simp))⟩
 
@@ -163,7 +163,7 @@ variable [Nontrivial V]
 /--
 @isnad1 id=ex.0h3v.s5.52c65bacd029 from=translated src=- shape=820bbfea vocab=94759fc0
 -/
-lemma exists_isLine (a b : V) : ∃ L : Set V, L.IsLine ∧ {a, b} ⊆ L := by
+lemma _root_.Tengoku.MiscYd.exists_isLine (a b : V) : ∃ L : Set V, L.IsLine ∧ {a, b} ⊆ L := by
   rcases ne_or_eq a b with h | rfl
   · exact ⟨Line a b, Line_isLine h, by simp⟩
   have ⟨b, h⟩ := exists_ne a
@@ -172,7 +172,7 @@ lemma exists_isLine (a b : V) : ∃ L : Set V, L.IsLine ∧ {a, b} ⊆ L := by
 /--
 @isnad1 id=notcolli.1h4v.s5.d190ca06f077 from=translated src=- shape=6bb8ac5a vocab=49705a84
 -/
-lemma NotCollinear.mk (hl : ∀ l : Set V, l.IsLine → ¬ {x, y, z} ⊆ l) : NotCollinear x y z := by
+lemma Tengoku.MiscYd.NotCollinear.mk (hl : ∀ l : Set V, l.IsLine → ¬ {x, y, z} ⊆ l) : NotCollinear x y z := by
   refine ⟨?_, ?_, ?_, hl⟩
   · rintro rfl
     obtain ⟨L, hL, hL'⟩ := exists_isLine x z
@@ -189,7 +189,7 @@ variable [Finite V]
 /--
 @isnad1 id=isline.1h1v.s4.03955e56f8b4 from=translated src=- shape=9ade5286 vocab=fb28212e
 -/
-theorem thm_two (h : ∀ x y z : V, ¬ NotCollinear x y z) :
+theorem _root_.Tengoku.MiscYd.thm_two (h : ∀ x y z : V, ¬ NotCollinear x y z) :
     (Set.univ : Set V).IsLine := by
   let S : Set (Set V) := Set.ofPred Set.IsLine
   have : S.Nonempty := let ⟨x, y, hxy⟩ := exists_pair_ne V; ⟨_, Line_isLine hxy⟩
@@ -210,7 +210,7 @@ theorem thm_two (h : ∀ x y z : V, ¬ NotCollinear x y z) :
 /--
 @isnad1 id=ex.1h1v.s5.7a8eae4bec9f from=translated src=- shape=669c93fd vocab=04960bfe
 -/
-theorem thm_two' (h : ∀ x y z : V, ¬ NotCollinear x y z) :
+theorem _root_.Tengoku.MiscYd.thm_two' (h : ∀ x y z : V, ¬ NotCollinear x y z) :
     ∃ l : Set V, l = Set.univ ∧ l.IsLine :=
   ⟨Set.univ, rfl, thm_two h⟩
 
@@ -219,17 +219,17 @@ end NotCollinear
 section IsSimpleTriangle
 
 @[simps]
-def simpleEdges : SimpleGraph V where
+def _root_.Tengoku.MiscYd.simpleEdges : SimpleGraph V where
   Adj a b := a ≠ b ∧ ∀ x, ¬ sbtw a x b
   symm.symm | a, b, ⟨hab, h⟩ => ⟨hab.symm, fun x hx ↦ h x hx.symm⟩
 
-def IsSimpleTriangle (x y z : V) : Prop :=
+def _root_.Tengoku.MiscYd.IsSimpleTriangle (x y z : V) : Prop :=
   simpleEdges.Adj x y ∧ simpleEdges.Adj y z ∧ simpleEdges.Adj z x ∧ NotCollinear x y z
 
 /--
 @isnad1 id=issimple.1h4v.s4.123ef050fe53 from=translated src=- shape=dc490b2b vocab=66831daa
 -/
-lemma IsSimpleTriangle.swap (h : IsSimpleTriangle u v w) : IsSimpleTriangle w v u :=
+lemma Tengoku.MiscYd.IsSimpleTriangle.swap (h : IsSimpleTriangle u v w) : IsSimpleTriangle w v u :=
   ⟨h.2.1.symm, h.1.symm, h.2.2.1.symm, h.2.2.2.swap⟩
 
 variable [Finite V]
@@ -237,7 +237,7 @@ variable [Finite V]
 /--
 @isnad1 id=ex.1h1v.s5.5cafd59134bd from=translated src=- shape=a88c06e3 vocab=e44be654
 -/
-lemma one_implies_two (h : ∃ x y z : V, NotCollinear x y z) :
+lemma _root_.Tengoku.MiscYd.one_implies_two (h : ∃ x y z : V, NotCollinear x y z) :
     ∃ x y z : V, IsSimpleTriangle x y z := by
   let S : Set (V × V × V) := Set.ofPred (fun ⟨a, b, c⟩ => NotCollinear a b c)
   have : S.Nonempty := let ⟨x, y, z, hxyz⟩ := h; ⟨(x, y, z), hxyz⟩
@@ -282,18 +282,18 @@ lemma one_implies_two (h : ∃ x y z : V, NotCollinear x y z) :
 
 end IsSimpleTriangle
 
-def Delta (u v w : V) : ℝ := dist u v + dist v w - dist u w
+def _root_.Tengoku.MiscYd.Delta (u v w : V) : ℝ := dist u v + dist v w - dist u w
 
 /--
 @isnad1 id=eq.0h4v.s4.4c4647edae16 from=translated src=- shape=a98a19ea vocab=40dbaae9
 -/
-lemma Delta_comm {u v w : V} : Delta u v w = Delta w v u := by
+lemma _root_.Tengoku.MiscYd.Delta_comm {u v w : V} : Delta u v w = Delta w v u := by
   simp only [Delta, add_comm, dist_comm]
 
 /--
 @isnad1 id=lt.1h4v.s5.4de9b680426b from=translated src=- shape=c1f4bcc2 vocab=772ea1a7
 -/
-lemma Delta_pos_of {u v w : V} (h : NotCollinear u v w) : 0 < Delta u v w := by
+lemma _root_.Tengoku.MiscYd.Delta_pos_of {u v w : V} (h : NotCollinear u v w) : 0 < Delta u v w := by
   rw [Delta]
   by_contra!
   have : sbtw u v w := sbtw_mk h.1 h.2.2.1 (by linarith only [this])
@@ -302,7 +302,7 @@ lemma Delta_pos_of {u v w : V} (h : NotCollinear u v w) : 0 < Delta u v w := by
 /--
 @isnad1 id=ex.2h3v.s6.330828818dec from=translated src=- shape=86a38c34 vocab=b52524d6
 -/
-lemma exists_third {a b : V} (hab : a ≠ b) (h : Line a b ≠ {a, b}) :
+lemma _root_.Tengoku.MiscYd.exists_third {a b : V} (hab : a ≠ b) (h : Line a b ≠ {a, b}) :
     ∃ c, c ∈ Line a b ∧ (sbtw c a b ∨ sbtw a c b ∨ sbtw a b c) := by
   by_contra! h'
   have : Line a b = {a, b} := by
@@ -324,7 +324,7 @@ lemma exists_third {a b : V} (hab : a ≠ b) (h : Line a b ≠ {a, b}) :
 /--
 @isnad1 id=not.4h5v.s6.977b77221667 from=translated src=- shape=965aa191 vocab=3dd5eee6
 -/
-lemma eqn_7 {a b c d : V} (habc : IsSimpleTriangle a b c)
+lemma _root_.Tengoku.MiscYd.eqn_7 {a b c d : V} (habc : IsSimpleTriangle a b c)
     (habc_min : ∀ a' b' c' : V, IsSimpleTriangle a' b' c' → Delta a b c ≤ Delta a' b' c')
     (hacd : sbtw a c d) (hcd : simpleEdges.Adj c d) :
     ¬ simpleEdges.Adj b d := by
@@ -346,7 +346,7 @@ lemma eqn_7 {a b c d : V} (habc : IsSimpleTriangle a b c)
 /--
 @isnad1 id=lt.2h5v.s6.ee5e01c0ca02 from=translated src=- shape=5c142851 vocab=815927ea
 -/
-lemma eqn_8 {a b c d : V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d) :
+lemma _root_.Tengoku.MiscYd.eqn_8 {a b c d : V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d) :
     dist a b + dist b d < dist a d + Delta a b c := by
   by_contra!
   have hbcd : sbtw b c d := by
@@ -419,7 +419,7 @@ lemma List.Special.chain_ne {a b d : V} :
 /--
 @isnad1 id=ex.0h1v.s5.8bf5f4b3ab55 from=translated src=- shape=8388ae75 vocab=6cef25b7
 -/
-lemma exists_min_dist (V : Type*) [MetricSpace V] [Finite V] :
+lemma _root_.Tengoku.MiscYd.exists_min_dist (V : Type*) [MetricSpace V] [Finite V] :
     ∃ r : ℝ, 0 < r ∧ ∀ x y : V, x ≠ y → r ≤ dist x y := by
   cases subsingleton_or_nontrivial V
   · exact ⟨1, zero_lt_one, fun x y ↦ by simp [Subsingleton.elim x y]⟩
@@ -432,7 +432,7 @@ lemma exists_min_dist (V : Type*) [MetricSpace V] [Finite V] :
 /--
 @isnad1 id=le.3h3v.s6.059535e4805d from=translated src=- shape=d1bb47db vocab=6c080453
 -/
-lemma length_mul_le_pathLength_add {r : ℝ} (hr : 0 ≤ r)
+lemma _root_.Tengoku.MiscYd.length_mul_le_pathLength_add {r : ℝ} (hr : 0 ≤ r)
     (h : ∀ x y : V, x ≠ y → r ≤ dist x y) :
     {l : List V} → l.IsChain (· ≠ ·) → l.length * r ≤ l.pathLength + r
   | [], _ => by simp [List.pathLength, hr]
@@ -446,7 +446,7 @@ lemma length_mul_le_pathLength_add {r : ℝ} (hr : 0 ≤ r)
 /--
 @isnad1 id=ex.0h2v.s5.93c80c4e3bf4 from=translated src=- shape=861f2e5b vocab=2b6dffea
 -/
-lemma uniformly_bounded_of_chain_ne_of_pathLength_le (V : Type*) [MetricSpace V] [Finite V]
+lemma _root_.Tengoku.MiscYd.uniformly_bounded_of_chain_ne_of_pathLength_le (V : Type*) [MetricSpace V] [Finite V]
     (R : ℝ) :
     ∃ n : ℕ, ∀ l : List V, l.IsChain (· ≠ ·) → l.pathLength ≤ R → l.length ≤ n := by
   have ⟨r, hr, hr'⟩ := exists_min_dist V
@@ -461,7 +461,7 @@ lemma uniformly_bounded_of_chain_ne_of_pathLength_le (V : Type*) [MetricSpace V]
 /--
 @isnad1 id=special.4h5v.s5.b793be461bd0 from=translated src=- shape=a2eaf935 vocab=50b1e7ab
 -/
-lemma abd_special {a b c d : V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d) (hbd' : b ≠ d)
+lemma _root_.Tengoku.MiscYd.abd_special {a b c d : V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d) (hbd' : b ≠ d)
     (hbd : ¬ simpleEdges.Adj b d) :
     [a, b, d].Special a b d := by
   simp only [List.Special, ne_eq, List.getLast_cons, List.getLast_singleton', and_true, hbd,
@@ -474,7 +474,7 @@ lemma abd_special {a b c d : V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c
 /--
 @isnad1 id=lt.5h6v.s6.c7f3ffd1e4ee from=translated src=- shape=2483e8b0 vocab=0e2add6e
 -/
-lemma eqn_9 {a b c d : V} {P : List V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d)
+lemma _root_.Tengoku.MiscYd.eqn_9 {a b c d : V} {P : List V} (habc : IsSimpleTriangle a b c) (hacd : sbtw a c d)
     (hbd' : b ≠ d) (hbd : ¬ simpleEdges.Adj b d)
     (hP' : ∀ P' : List V, P'.Special a b d → P.pathLength ≤ P'.pathLength) :
     P.pathLength < dist a d + Delta a b c := by
@@ -487,7 +487,7 @@ variable [Finite V]
 /--
 @isnad1 id=ex.2h3v.s5.8a3b5e10c776 from=translated src=- shape=a1096c79 vocab=01cf5229
 -/
-lemma exists_simple_split_right {a b : V} (hab : a ≠ b) (hab' : ¬ simpleEdges.Adj a b) :
+lemma _root_.Tengoku.MiscYd.exists_simple_split_right {a b : V} (hab : a ≠ b) (hab' : ¬ simpleEdges.Adj a b) :
     ∃ c, sbtw a c b ∧ simpleEdges.Adj c b := by
   simp only [simpleEdges_adj, hab, not_false_eq_true, true_and, ne_eq, not_forall, not_not] at hab'
   obtain ⟨c', hc'⟩ := hab'
@@ -503,7 +503,7 @@ lemma exists_simple_split_right {a b : V} (hab : a ≠ b) (hab' : ¬ simpleEdges
 /--
 @isnad1 id=ex.2h3v.s5.25e1e7b5e2a6 from=translated src=- shape=26293575 vocab=01cf5229
 -/
-lemma exists_simple_split_left {a b : V} (hab : a ≠ b) (hab' : ¬ simpleEdges.Adj a b) :
+lemma _root_.Tengoku.MiscYd.exists_simple_split_left {a b : V} (hab : a ≠ b) (hab' : ¬ simpleEdges.Adj a b) :
     ∃ c, sbtw a c b ∧ simpleEdges.Adj a c :=
   have ⟨c, hc, hc'⟩ := exists_simple_split_right hab.symm (hab' ·.symm); ⟨c, hc.symm, hc'.symm⟩
 
@@ -512,7 +512,7 @@ variable [Nontrivial V]
 /--
 @isnad1 id=false.12h9v.s7.ae56ad647fc0 from=translated src=- shape=31d44bc7 vocab=8dddcfec
 -/
-lemma case1 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
+lemma _root_.Tengoku.MiscYd.case1 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
     (habc_min : ∀ a' b' c' : V, IsSimpleTriangle a' b' c' → Delta a b c ≤ Delta a' b' c')
     (hacd : sbtw a c d) (hbd' : b ≠ d) (hbd : ¬ simpleEdges.Adj b d)
     (hPmin : ∀ P' : List V, P'.Special a b d → (a₁ :: a₂ :: a₃ :: l).pathLength ≤ P'.pathLength)
@@ -573,7 +573,7 @@ lemma case1 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a
 /--
 @isnad1 id=false.12h9v.s7.06528abed90b from=translated src=- shape=e0045720 vocab=8dddcfec
 -/
-lemma case2 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
+lemma _root_.Tengoku.MiscYd.case2 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
     (habc_min : ∀ a' b' c' : V, IsSimpleTriangle a' b' c' → Delta a b c ≤ Delta a' b' c')
     (hacd : sbtw a c d) (hbd' : b ≠ d) (hbd : ¬ simpleEdges.Adj b d)
     (hPmin : ∀ P' : List V, P'.Special a b d → (a₁ :: a₂ :: a₃ :: l).pathLength ≤ P'.pathLength)
@@ -627,7 +627,7 @@ lemma case2 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a
 /--
 @isnad1 id=false.12h9v.s7.bcb29743a30a from=translated src=- shape=a7c0bf59 vocab=8dddcfec
 -/
-lemma case3 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
+lemma _root_.Tengoku.MiscYd.case3 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a b c)
     (habc_min : ∀ a' b' c' : V, IsSimpleTriangle a' b' c' → Delta a b c ≤ Delta a' b' c')
     (hacd : sbtw a c d) (hbd' : b ≠ d) (hbd : ¬ simpleEdges.Adj b d)
     (hPmin : ∀ P' : List V, P'.Special a b d → (a₁ :: a₂ :: a₃ :: l).pathLength ≤ P'.pathLength)
@@ -684,7 +684,7 @@ lemma case3 {a b c d a₁ a₂ a₃ : V} {l : List V} (habc : IsSimpleTriangle a
 /--
 @isnad1 id=ex.1h1v.s6.7a0f187e1b3e from=translated src=- shape=9d44a0c3 vocab=e67d23f1
 -/
-lemma two_implies_three (h : ∃ x y z : V, IsSimpleTriangle x y z) :
+lemma _root_.Tengoku.MiscYd.two_implies_three (h : ∃ x y z : V, IsSimpleTriangle x y z) :
     ∃ a b : V, a ≠ b ∧ Line a b = {a, b} := by
   let S : Set (V × V × V) := Set.ofPred (fun ⟨x, y, z⟩ => IsSimpleTriangle x y z)
   have : S.Nonempty := let ⟨x, y, z, hxyz⟩ := h; ⟨(x, y, z), hxyz⟩
@@ -750,7 +750,7 @@ lemma two_implies_three (h : ∃ x y z : V, IsSimpleTriangle x y z) :
 /--
 @isnad1 id=ex.0h1v.s5.164a4dbe0d09 from=translated src=- shape=e25dd6ba vocab=bdd8fd57
 -/
-theorem sylvester_chvatal (V : Type*) [MetricSpace V] [Nontrivial V] [Finite V] :
+theorem _root_.Tengoku.MiscYd.sylvester_chvatal (V : Type*) [MetricSpace V] [Nontrivial V] [Finite V] :
     ∃ a b : V, a ≠ b ∧ (Line a b = {a, b} ∨ Line a b = Set.univ) := by
   by_cases h : ∀ x y z : V, ¬ NotCollinear x y z
   · obtain ⟨L, hL, a, b, hab, rfl⟩ := thm_two' h
@@ -776,3 +776,4 @@ end
 
 -- theorem sylvester_gallai {S : Finset (Fin 2 → ℝ)} :
 --   ∃ a ∈ S, ∃ b ∈ S, a ≠ b ∧
+-- Tengoku: root names of this library moved to Tengoku.MiscYd so they do not collide with other libraries (generated)

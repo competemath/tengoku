@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2012, Problem 3
 
@@ -1396,3 +1396,4 @@ lemma bob_guaranteesWin (n : ℕ) (hk : 1 ≤ k) (hn : 2 ^ k ≤ n) :
 end PartA
 
 end Imo2012P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -10,7 +10,7 @@ the surrounding FLT development.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 variable {K : Type*} {p : ℕ} [hpri : Fact p.Prime] [Field K] [CharZero K]
   [IsCyclotomicExtension {p} ℚ K]
 
@@ -24,7 +24,7 @@ variable (hp : p ≠ 2)
 /--
 @isnad1 id=ex.1h4v.s7.931139b51197 from=translated src=- shape=d825bc53 vocab=5afef56d
 -/
-lemma exists_zeta_sub_one_dvd_sub_Int (a : 𝓞 K) :
+lemma _root_.Tengoku.FltRegular.exists_zeta_sub_one_dvd_sub_Int (a : 𝓞 K) :
     ∃ b : ℤ, (hζ.toInteger - 1 : 𝓞 K) ∣ a - b := by
   have hdiv := hζ.subOneIntegralPowerBasis.exists_gen_dvd_sub a
   rwa [hζ.subOneIntegralPowerBasis_gen] at hdiv
@@ -33,7 +33,7 @@ include hp in
 /--
 @isnad1 id=ex.1h3v.s7.0827a5c2743d from=translated src=- shape=30a12ee4 vocab=4d716322
 -/
-lemma exists_dvd_pow_sub_Int_pow (a : 𝓞 K) : ∃ b : ℤ, ↑p ∣ a ^ p - (b : 𝓞 K) ^ p := by
+lemma _root_.Tengoku.FltRegular.exists_dvd_pow_sub_Int_pow (a : 𝓞 K) : ∃ b : ℤ, ↑p ∣ a ^ p - (b : 𝓞 K) ^ p := by
   obtain ⟨ζ, hζ⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ K (Set.mem_singleton p)
     hpri.1.ne_zero
   obtain ⟨b, k, e⟩ := exists_zeta_sub_one_dvd_sub_Int hζ a
@@ -49,7 +49,7 @@ lemma exists_dvd_pow_sub_Int_pow (a : 𝓞 K) : ∃ b : ℤ, ↑p ∣ a ^ p - (b
 /--
 @isnad1 id=eq.1h4v.s10.2ab37e3d55b2 from=translated src=- shape=d887f7f0 vocab=c8179d3a
 -/
-lemma quotient_zero_sub_one_comp_aut (σ : 𝓞 K →+* 𝓞 K) :
+lemma _root_.Tengoku.FltRegular.quotient_zero_sub_one_comp_aut (σ : 𝓞 K →+* 𝓞 K) :
     (Ideal.Quotient.mk (Ideal.span {(hζ.toInteger : 𝓞 K) - 1})).comp σ =
       Ideal.Quotient.mk _ := by
   let _ := IsCyclotomicExtension.numberField {p} ℚ K
@@ -74,7 +74,7 @@ open NumberField.RingOfIntegers in
 /--
 @isnad1 id=dvd.1h4v.s8.24832f28c7ee from=translated src=- shape=10da5eb7 vocab=2d82320c
 -/
-lemma zeta_sub_one_dvd_trace_sub_smul (x : 𝓞 K) :
+lemma _root_.Tengoku.FltRegular.zeta_sub_one_dvd_trace_sub_smul (x : 𝓞 K) :
     (hζ.toInteger - 1 : 𝓞 K) ∣ Algebra.trace ℤ _ x - (p - 1) • x := by
   let _ := IsCyclotomicExtension.numberField {p} ℚ K
   let _ := IsCyclotomicExtension.isGalois {p} ℚ K
@@ -96,7 +96,7 @@ lemma zeta_sub_one_dvd_trace_sub_smul (x : 𝓞 K) :
 /--
 @isnad1 id=dvd.1h4v.s9.aadd5059a148 from=translated src=- shape=a36bc0e6 vocab=371ab073
 -/
-lemma zeta_sub_one_pow_dvd_norm_sub_pow (x : 𝓞 K) :
+lemma _root_.Tengoku.FltRegular.zeta_sub_one_pow_dvd_norm_sub_pow (x : 𝓞 K) :
     (hζ.toInteger - 1 : 𝓞 K) ^ p ∣
       (Algebra.norm ℤ (1 + p • x) : 𝓞 K) - 1 + p • x := by
   let _ := IsCyclotomicExtension.numberField {p} ℚ K
@@ -124,7 +124,7 @@ lemma zeta_sub_one_pow_dvd_norm_sub_pow (x : 𝓞 K) :
 /--
 @isnad1 id=eq.3h3v.s8.3d67c983d0f5 from=translated src=- shape=bdfbe482 vocab=ed707b1c
 -/
-lemma norm_add_one_smul_of_isUnit {K} [Field K] [NumberField K] {p : ℕ} (hpri : p.Prime)
+lemma _root_.Tengoku.FltRegular.norm_add_one_smul_of_isUnit {K} [Field K] [NumberField K] {p : ℕ} (hpri : p.Prime)
     (hp : p ≠ 2) (x : 𝓞 K)
     (hx : IsUnit (1 + p • x)) : Algebra.norm ℤ (1 + p • x) = 1 := by
   have hnorm : Algebra.norm ℤ (1 + p • x) = 1 ∨ Algebra.norm ℤ (1 + p • x) = -1 :=
@@ -140,3 +140,4 @@ lemma norm_add_one_smul_of_isUnit {K} [Field K] [NumberField K] {p : ℕ} (hpri 
     exact (Nat.prime_two.eq_one_or_self_of_dvd _
       (Int.natCast_dvd_natCast.mp ⟨_, heq.symm⟩)).resolve_left hpri.ne_one
   exact hnorm.resolve_right hne
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

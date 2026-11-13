@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2017, Problem 5
 
@@ -473,3 +473,4 @@ lemma label_dist_max {p₁ p₂ : ℤ × ℤ} (h : p₁ ≠ p₂) {limit : ℕ}
       lia
 
 end Usa2017P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

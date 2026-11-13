@@ -13,7 +13,7 @@ seventh-cyclotomic number field is a principal ideal domain.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open NumberField Module NumberField.InfinitePlace Nat Real RingOfIntegers Finset Multiset
   IsCyclotomicExtension.Rat Polynomial cyclotomic UniqueFactorizationMonoid
 
@@ -31,7 +31,7 @@ instance Nat.fact_prime_seven : Fact (Nat.Prime 7) :=
 /-- The explicit floor computation used in the Minkowski bound for the seventh cyclotomic field.
 @isnad1 id=eq.0h0v.s6.26539f3a2817 from=translated src=- shape=86fc15d4 vocab=60e1ded4
 -/
-lemma crazy7 : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
+lemma _root_.Tengoku.FltRegular.crazy7 : ⌊(4 / π) ^ 3 * (6! / 6 ^ 6 * √16807)⌋₊ = 4 := by
   refine (floor_eq_iff (by positivity)).mpr ⟨?_, ?_⟩
   · calc
       (4 : ℝ) ≤ (4 / 3.15) ^ 3 * (6! / 6 ^ 6 * 129) := by norm_num
@@ -51,7 +51,7 @@ variable [IsCyclotomicExtension {7} ℚ K]
 /-- The Minkowski bound for a seventh-cyclotomic number field is `4`.
 @isnad1 id=eq.0h1v.s7.5717f05be827 from=translated src=- shape=5ba4c64f vocab=8cee5292
 -/
-theorem M7 : ⌊(M K)⌋₊ = 4 := by
+theorem _root_.Tengoku.FltRegular.M7 : ⌊(M K)⌋₊ = 4 := by
   rw [discr_prime 7 K, IsCyclotomicExtension.finrank (n := 7) K
     (irreducible_rat (by norm_num)), nrComplexPlaces_eq_totient_div_two 7, totient_prime
       Nat.prime_seven]
@@ -62,7 +62,7 @@ theorem M7 : ⌊(M K)⌋₊ = 4 := by
 /-- The explicit seventh cyclotomic polynomial over `ℤ`.
 @isnad1 id=eq.0h0v.s8.9037d0867441 from=translated src=- shape=ad520b15 vocab=542087c8
 -/
-theorem cyclotomic_7 : cyclotomic 7 ℤ =
+theorem _root_.Tengoku.FltRegular.cyclotomic_7 : cyclotomic 7 ℤ =
     X ^ 6 + X ^ 5 + X ^ 4 + X ^ 3 + X ^ 2 + X + 1 := by
   simp [cyclotomic_prime, sum_range_succ]
   ring
@@ -83,3 +83,4 @@ theorem Rat.seven_pid : IsPrincipalIdealRing (𝓞 K) := by
     refine orderOf_lt_of (by norm_num) (fun i hi hipos ↦ ?_)
     have hmem := Finset.mem_Icc.mpr ⟨hipos, hi⟩
     fin_cases hmem <;> norm_num
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

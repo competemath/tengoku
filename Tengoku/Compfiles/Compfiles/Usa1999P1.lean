@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 USA Mathematical Olympiad 1999, Problem 1
 
@@ -247,3 +247,4 @@ lemma emptySquares_card_add_checker_card {n : ℕ} (c : Finset (checkerboard n))
   rw [Fintype.card_prod, Fintype.card_fin, pow_two]
 
 end Usa1999P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

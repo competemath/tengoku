@@ -26,7 +26,7 @@ So far: the degree bound on the quotient `C`, and the key identity expressing ea
 of the `Q`-shifts `X^{e+i}·Q` — the algebraic content of the `P`-rows → `R`-rows
 replacement (the first step of the proof, via Lemma 8.28 / `pdetRing_update_add_combination'`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -468,3 +468,4 @@ theorem proposition_8_39 (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
       sResP_eq_zero Q (-(P % Q)) (by rw [natDegree_neg]; exact hjr) (by omega) (by omega), smul_zero]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

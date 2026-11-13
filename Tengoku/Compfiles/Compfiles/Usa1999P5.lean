@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1999, Problem 5
 
@@ -990,3 +990,4 @@ lemma exists_second_setup {q p r : ℕ} {lq lr : Piece}
   · exact ⟨p + 3, Finset.mem_range.mpr (by lia), core (p + 3) (by lia) (by lia)⟩
 
 end Usa1999P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ automorphism `σ` with each `σ(Xᵢ)` homogeneous of degree `1` (`IsLinearAlgAu
 `v(Zer(𝒫))` is `Zer(𝒫.image σ)`, and "finite mapping onto `C^{k'}`" is `IsFiniteMappingChain`
 down to the empty target set (`Zer(∅) = C^{k'}`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -181,3 +181,4 @@ end PointMap
 /-! ### Helpers for the main induction -/
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

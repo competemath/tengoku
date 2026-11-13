@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2003, Problem 1
 
@@ -124,3 +124,4 @@ theorem induction_lemma (A : Finset ℕ) (_AS : A ⊆ S) (Acard : A.card = 101)
     use r
 
 end Imo2003P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

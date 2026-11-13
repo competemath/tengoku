@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1991, Problem 2
 
@@ -109,3 +109,4 @@ lemma main_sum_succ (n : ℕ) :
   rw [icc_one_succ, sum_powerset_insert (not_mem_icc_one n), key]
 
 end Usa1991P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

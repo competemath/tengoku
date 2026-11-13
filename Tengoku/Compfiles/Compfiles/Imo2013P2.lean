@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2013, Problem 2
 
@@ -1329,3 +1329,4 @@ theorem lower_bound {k : ℕ} (lines : Fin k → AffineSubspace ℝ Pt)
 abbrev solution_value : ℕ := 2013
 
 end Imo2013P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

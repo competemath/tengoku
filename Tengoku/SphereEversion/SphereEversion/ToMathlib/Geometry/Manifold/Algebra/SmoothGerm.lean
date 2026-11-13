@@ -14,7 +14,7 @@ under construction: might need further refactoring to be usable!
 -- TODO: please confirm authorship and copyright are appropriate
 
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open Filter Set
 
 open scoped Manifold Topology ContDiff
@@ -56,24 +56,24 @@ def RingHom.germOfContMDiffMap (x : N) : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯ →+* G
   RingHom.comp (Germ.coeRingHom _) ContMDiffMap.coeFnRingHom
 
 /-- All germs of smooth functions `N → ℝ` at `x : N`, as a subring of `Germ (𝓝 x) ℝ`. -/
-def smoothGerm (x : N) : Subring (Germ (𝓝 x) ℝ) :=
+def _root_.Tengoku.SphereEversion.smoothGerm (x : N) : Subring (Germ (𝓝 x) ℝ) :=
   (RingHom.germOfContMDiffMap I x).range
 
 instance (x : N) : Coe C^∞⟮I, N; 𝓘(ℝ), ℝ⟯ (smoothGerm I x) :=
   ⟨fun f ↦ ⟨(f : N → ℝ), ⟨f, rfl⟩⟩⟩
 
 @[simp]
-theorem smoothGerm.coe_coe (f : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) (x : N) :
+theorem Tengoku.SphereEversion.smoothGerm.coe_coe (f : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) (x : N) :
     ((f : smoothGerm I x) : (𝓝 x).Germ ℝ) = (f : (𝓝 x).Germ ℝ) :=
   rfl
 
 @[simp]
-theorem smoothGerm.coe_sum {ι} (f : ι → C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) (s : Finset ι) (x : N) :
+theorem Tengoku.SphereEversion.smoothGerm.coe_sum {ι} (f : ι → C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) (s : Finset ι) (x : N) :
     ((∑ i ∈ s, f i : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) : smoothGerm I x) = ∑ i ∈ s, (f i : smoothGerm I x) :=
   map_sum (RingHom.rangeRestrict (RingHom.germOfContMDiffMap I x)) f s
 
 @[simp]
-theorem smoothGerm.coe_eq_coe (f g : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) {x : N} (h : ∀ᶠ y in 𝓝 x, f y = g y) :
+theorem Tengoku.SphereEversion.smoothGerm.coe_eq_coe (f g : C^∞⟮I, N; 𝓘(ℝ), ℝ⟯) {x : N} (h : ∀ᶠ y in 𝓝 x, f y = g y) :
     (f : smoothGerm I x) = (g : smoothGerm I x) := by
   ext
   apply Quotient.sound
@@ -147,14 +147,14 @@ variable {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G] {HG : Type*} [To
   (IG : ModelWithCorners ℝ G HG) {N : Type*} [TopologicalSpace N] [ChartedSpace HG N]
   [IsManifold IG ∞ N]
 
-def smoothGerm.valueOrderRingHom (x : N) : smoothGerm IG x →+*o ℝ :=
+def Tengoku.SphereEversion.smoothGerm.valueOrderRingHom (x : N) : smoothGerm IG x →+*o ℝ :=
   Filter.Germ.valueOrderRingHom.comp <| Subring.orderedSubtype _
 
-def smoothGerm.valueRingHom (x : N) : smoothGerm IG x →+* ℝ :=
+def Tengoku.SphereEversion.smoothGerm.valueRingHom (x : N) : smoothGerm IG x →+* ℝ :=
   Filter.Germ.valueRingHom.comp <| Subring.subtype _
 
 omit [IsManifold IG ∞ N] in
-theorem smoothGerm.valueOrderRingHom_toRingHom (x : N) :
+theorem Tengoku.SphereEversion.smoothGerm.valueOrderRingHom_toRingHom (x : N) :
     (smoothGerm.valueOrderRingHom IG x).toRingHom = smoothGerm.valueRingHom IG x :=
   rfl
 
@@ -191,7 +191,7 @@ variable {I}
 
 omit [FiniteDimensional ℝ E] [IsManifold I ∞ M] [SigmaCompactSpace M] [T2Space M]
 
-theorem _root_.smoothGerm.contMDiffAt {x : M} (φ : smoothGerm I x) {n : ℕ∞} :
+theorem _root_.Tengoku.SphereEversion.smoothGerm.contMDiffAt {x : M} (φ : smoothGerm I x) {n : ℕ∞} :
     (φ : Germ (𝓝 x) ℝ).ContMDiffAt I n := by
   rcases φ with ⟨_, g, rfl⟩
   apply g.contMDiff.of_le (mod_cast le_top)
@@ -307,3 +307,4 @@ theorem ContMDiffAtProd.sum {x : M₁} {ι} {s : Finset ι} {n : ℕ∞}
 end Filter.Germ
 
 end
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

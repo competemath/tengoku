@@ -44,7 +44,7 @@ import Tengoku.Seed.Data.Nat.Factorization.Basic
 import Tengoku.Seed.FieldTheory.Finite.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace CL
@@ -450,3 +450,4 @@ theorem proposition_7_18 {p n r : ℕ} (hp : p.Prime) (hp3 : 2 < p)
 end CL
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2022, Problem 1
 
@@ -2269,3 +2269,4 @@ lemma Row.exists_length_blocks_operationOneBased_iterate_eq_two
 abbrev answer : Set (ℕ × ℕ) := {(n, k) : ℕ × ℕ | 0 < n ∧ n ≤ k ∧ k ≤ 3 * n ⌈/⌉ 2}
 
 end Imo2022P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

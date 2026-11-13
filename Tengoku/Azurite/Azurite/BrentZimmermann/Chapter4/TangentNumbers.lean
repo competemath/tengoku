@@ -68,7 +68,7 @@ Not formalized: the analytic identity (4.61) itself (convergence for `|x| < π/2
 no Taylor series for `tan`) — the Taylor coefficients are identified instead via
 `iteratedDeriv_tan_zero`; von Staudt–Clausen is Mathlib's `Bernoulli.vonStaudt_clausen`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -482,3 +482,4 @@ end Series
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

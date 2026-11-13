@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2019, Problem 6
 
@@ -483,3 +483,4 @@ lemma natDegree_le_two (P : Polynomial ℝ) (hP0 : P ≠ 0) (hPhi : PhiPoly P = 
   exact (mul_ne_zero (mul_ne_zero (mul_ne_zero hcn hn0) hn1) hh0) hcoeff0
 
 end Usa2019P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

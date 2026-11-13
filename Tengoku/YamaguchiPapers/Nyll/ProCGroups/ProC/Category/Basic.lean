@@ -17,7 +17,7 @@ import Tengoku.YamaguchiPapers.Nyll.ProCGroups.ProC.Subgroups.Closed
 compact, Hausdorff, and totally disconnected structures; the class-restricted open-normal basis is
 the only additional property.
 -/
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers
 open CategoryTheory Topology
 
 universe u
@@ -28,10 +28,10 @@ def ProCGroups.proCObjectProperty (C : ProCGroups.FiniteGroupClass.{u}) :
   fun G => ProCGroups.ProC.HasOpenNormalBasisInClass C G
 
 /-- Pro-\(C\) groups: profinite groups with an open-normal quotient basis in \(C\).-/
-abbrev ProCGrp (C : ProCGroups.FiniteGroupClass.{u}) :=
+abbrev _root_.Tengoku.YamaguchiPapers.ProCGrp (C : ProCGroups.FiniteGroupClass.{u}) :=
   (ProCGroups.proCObjectProperty C).FullSubcategory
 
-namespace ProCGrp
+namespace Tengoku.YamaguchiPapers.ProCGrp
 
 variable {C : ProCGroups.FiniteGroupClass.{u}}
 
@@ -71,4 +71,5 @@ abbrev continuousHom {A B : ProCGrp C} (f : A ⟶ B) : A →ₜ* B :=
       (G := G) hW h1W with ⟨U, hUW⟩
   exact ⟨U, hUW, ProCGroups.openNormalSubgroup_finiteQuotient (G := G) U⟩
 
-end ProCGrp
+end Tengoku.YamaguchiPapers.ProCGrp
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

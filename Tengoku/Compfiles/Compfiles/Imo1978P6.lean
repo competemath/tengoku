@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1978, Problem 6
 
@@ -264,3 +264,4 @@ theorem compute_finite_induction [NeZero N] (hC : ∀ (j i k), C i = C j → C j
       apply induction_step C hC _ _ (hcom' n _) _ (ih _) <;> lia
 
 end Imo1978P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

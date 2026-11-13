@@ -17,7 +17,7 @@ submodule. It proves `FourierTransform`, `FourierPair`, `ContinuousFourier`, `Fo
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 namespace Function
 
 variable {D E F : Type*}
@@ -78,7 +78,7 @@ open Function SchwartzMap
 
 /-- The submodule of radial Schwartz functions inside the Schwartz space `𝓢(E, F)`. -/
 @[simps]
-def RadialSchwartzMap (𝕜 E F : Type*) [NormedField 𝕜] [NormedAddCommGroup E] [NormedSpace ℝ E]
+def _root_.Tengoku.SpherePackingOrig.RadialSchwartzMap (𝕜 E F : Type*) [NormedField 𝕜] [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [NormedSpace 𝕜 F] [SMulCommClass ℝ 𝕜 F] :
     Submodule 𝕜 𝓢(E, F) where
   carrier := {f | IsRadial f}
@@ -86,7 +86,7 @@ def RadialSchwartzMap (𝕜 E F : Type*) [NormedField 𝕜] [NormedAddCommGroup 
   zero_mem' := by simp [isRadial_def]
   smul_mem' := by grind [isRadial_def]
 
-namespace RadialSchwartzMap
+namespace Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 variable {𝕜 E F : Type*} [NormedField 𝕜] [NormedAddCommGroup E] [NormedAddCommGroup F]
   [NormedSpace ℝ F] [NormedSpace 𝕜 F] [SMulCommClass ℝ 𝕜 F]
@@ -109,7 +109,7 @@ lemma _root_.SchwartzMap.mem_radialSchwartzMap_iff_isRadial (f : 𝓢(E, F)) :
 
 end NormedSpace
 
-end RadialSchwartzMap
+end Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 noncomputable section Fourier
 
@@ -133,7 +133,7 @@ lemma SchwartzMap.fourier_mem_radialSchwartzMap_of_mem_radialSchwartzMap {f : �
   rw [SchwartzMap.mem_radialSchwartzMap_iff_isRadial] at hf ⊢
   exact SchwartzMap.fourier_coe f ▸ hf.fourier
 
-namespace RadialSchwartzMap
+namespace Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 variable (𝕜 E F)
 
@@ -220,7 +220,7 @@ instance instFourierAdd : FourierAdd (RadialSchwartzMap 𝕜 E F) (RadialSchwart
 
 end MoreFourierInstances
 
-end RadialSchwartzMap
+end Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 end Fourier
 
@@ -228,7 +228,7 @@ noncomputable section Star
 
 open FourierTransform
 
-namespace RadialSchwartzMap
+namespace Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 variable {𝕜 E F : Type*} [RCLike 𝕜]
   [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
@@ -259,8 +259,9 @@ lemma selfAdjointPart_eq : selfAdjointPart ℝ f = (1 / 2 : ℝ) • (f + 𝓕 f
 
 lemma skewAdjointPart_eq : skewAdjointPart ℝ f = (1 / 2 : ℝ) • (f - 𝓕 f) := by aesop
 
-end RadialSchwartzMap
+end Tengoku.SpherePackingOrig.RadialSchwartzMap
 
 end Star
 
 end RadialSchwartz
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

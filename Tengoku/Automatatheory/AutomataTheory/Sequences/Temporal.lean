@@ -11,19 +11,19 @@ This file contains some definitions and theorems for doing
 "temporal reasoning" over infinite sequences.  They are used to
 prove that omega-regular languages are closed under intersection.
 -/
-
+namespace Tengoku.Automatatheory end Tengoku.Automatatheory open Tengoku.Automatatheory
 open Function Set Filter Stream'
 
 section Temporal
 
 /-- Whenever `p` holds at an element in `xs`, `q` holds at the next element in `xs`.
 -/
-def Step {X : Type*} (xs : Stream' X) (p q : Set X) : Prop :=
+def _root_.Tengoku.Automatatheory.Step {X : Type*} (xs : Stream' X) (p q : Set X) : Prop :=
   ∀ k, xs k ∈ p → xs (k + 1) ∈ q
 
 /-- Whenever `p` holds at an element in `xs`, `q` holds eventually at a later element in `xs`.
 -/
-def LeadsTo {X : Type*} (xs : Stream' X) (p q : Set X) : Prop :=
+def _root_.Tengoku.Automatatheory.LeadsTo {X : Type*} (xs : Stream' X) (p q : Set X) : Prop :=
   ∀ k, xs k ∈ p → ∃ k' ≥ k, xs k' ∈ q
 
 variable {X : Type*} {xs : Stream' X}
@@ -31,7 +31,7 @@ variable {X : Type*} {xs : Stream' X}
 /--
 @isnad1 id=leadsto.1h4v.s4.6670893a7475 from=translated src=- shape=176112c9 vocab=6c1376b4
 -/
-theorem leads_to_step {p q : Set X}
+theorem _root_.Tengoku.Automatatheory.leads_to_step {p q : Set X}
     (h : Step xs p q) : LeadsTo xs p q := by
   intro k h_p
   use (k + 1) ; constructor
@@ -41,7 +41,7 @@ theorem leads_to_step {p q : Set X}
 /--
 @isnad1 id=leadsto.2h5v.s4.b058c9aaf898 from=translated src=- shape=306dd523 vocab=540ee736
 -/
-theorem leads_to_trans {p q r : Set X}
+theorem _root_.Tengoku.Automatatheory.leads_to_trans {p q r : Set X}
     (h1 : LeadsTo xs p q) (h2 : LeadsTo xs q r) : LeadsTo xs p r := by
   intro k h_p
   obtain ⟨k', h_k', h_q⟩ := h1 k h_p
@@ -53,7 +53,7 @@ theorem leads_to_trans {p q r : Set X}
 /--
 @isnad1 id=frequent.2h4v.s5.7de42194d248 from=translated src=- shape=061f503c vocab=61748018
 -/
-theorem frequently_leads_to_frequently {p q : Set X}
+theorem _root_.Tengoku.Automatatheory.frequently_leads_to_frequently {p q : Set X}
     (h1 : ∃ᶠ k in atTop, xs k ∈ p) (h2 : LeadsTo xs p q) : ∃ᶠ k in atTop, xs k ∈ q := by
   rw [frequently_atTop] at h1 ⊢
   intro k0
@@ -64,3 +64,4 @@ theorem frequently_leads_to_frequently {p q : Set X}
   · assumption
 
 end Temporal
+-- Tengoku: root names of this library moved to Tengoku.Automatatheory so they do not collide with other libraries (generated)

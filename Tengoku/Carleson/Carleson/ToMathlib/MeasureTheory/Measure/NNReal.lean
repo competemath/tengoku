@@ -3,7 +3,7 @@ module
 public import Tengoku.Carleson.Carleson.ToMathlib.MeasureTheory.Integral.Lebesgue
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 open MeasureTheory NNReal ENNReal Set
 
 noncomputable
@@ -159,7 +159,7 @@ instance : SigmaFinite (@volume ℝ≥0 _) := Measure.Subtype.sigmaFinite measur
 /--
 @isnad1 id=measurab.0h0v.s2.0c9622e3beca from=translated src=- shape=54c8eceb vocab=1d0743b4
 -/
-lemma measurableEmbedding_ofNNReal : MeasurableEmbedding ENNReal.ofNNReal := by
+lemma _root_.Tengoku.Carleson.measurableEmbedding_ofNNReal : MeasurableEmbedding ENNReal.ofNNReal := by
   apply MeasurableEmbedding.of_measurable_inverse (g := ENNReal.toNNReal)
     measurable_coe_nnreal_ennreal _ measurable_toNNReal
   · exact Function.RightInverse.leftInverse (congrFun rfl)
@@ -232,7 +232,7 @@ lemma ENNReal.volume_eq_volume_preimage {s : Set ℝ≥0∞} (hs : MeasurableSet
 /--
 @isnad1 id=eventual.0h0v.s5.1cae4c5a9e7c from=translated src=- shape=a48f1926 vocab=2e9c9287
 -/
-lemma Ioo_zero_top_ae_eq_univ : Ioo 0 ∞ =ᶠ[ae volume] Set.univ := by
+lemma _root_.Tengoku.Carleson.Ioo_zero_top_ae_eq_univ : Ioo 0 ∞ =ᶠ[ae volume] Set.univ := by
     simp only [ae_eq_univ]
     rw [ENNReal.volume_val]
     · have : (Ioo 0 ⊤)ᶜ = {0, ∞} := by rw [@compl_def]; ext x; simp [pos_iff_ne_zero]; tauto
@@ -244,14 +244,14 @@ lemma Ioo_zero_top_ae_eq_univ : Ioo 0 ∞ =ᶠ[ae volume] Set.univ := by
 /--
 @isnad1 id=eventual.0h0v.s5.eabe88fee762 from=translated src=- shape=55e5dd91 vocab=dff08b35
 -/
-lemma ae_in_Ioo_zero_top : ∀ᵐ x : ℝ≥0∞, x ∈ Ioo 0 ∞ := by
+lemma _root_.Tengoku.Carleson.ae_in_Ioo_zero_top : ∀ᵐ x : ℝ≥0∞, x ∈ Ioo 0 ∞ := by
   filter_upwards [Ioo_zero_top_ae_eq_univ] with a ha
   simp only [eq_iff_iff] at ha; exact ha.mpr trivial
 
 /--
 @isnad1 id=eq.0h0v.s5.b8142b58d432 from=translated src=- shape=da3a405c vocab=e84f2d8c
 -/
-lemma map_restrict_Ioi_eq_restrict_Ioi :
+lemma _root_.Tengoku.Carleson.map_restrict_Ioi_eq_restrict_Ioi :
     (volume.restrict (Ioi 0)).map ENNReal.ofReal = volume.restrict (Ioi 0) := by
   ext s hs
   rw [Measure.map_apply measurable_ofReal hs]
@@ -264,7 +264,7 @@ lemma map_restrict_Ioi_eq_restrict_Ioi :
 /--
 @isnad1 id=eq.0h0v.s5.fd961572cb19 from=translated src=- shape=8c769b4c vocab=e84f2d8c
 -/
-lemma map_restrict_Ioi_eq_volume :
+lemma _root_.Tengoku.Carleson.map_restrict_Ioi_eq_volume :
     (volume.restrict (Ioi 0)).map ENNReal.ofReal = volume := by
   refine Eq.trans map_restrict_Ioi_eq_restrict_Ioi ?_
   refine Measure.restrict_eq_self_of_ae_mem ?_
@@ -719,7 +719,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 @isnad1 id=eq.0h1v.s5.fe82174aa144 from=translated src=- shape=da1fa517 vocab=402685b3
 -/
-lemma lintegral_nnreal_eq_lintegral_Ici_ofReal {f : ℝ≥0 → ℝ≥0∞} : ∫⁻ x : ℝ≥0, f x = ∫⁻ x in Ici (0 : ℝ), f x.toNNReal := by
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_eq_lintegral_Ici_ofReal {f : ℝ≥0 → ℝ≥0∞} : ∫⁻ x : ℝ≥0, f x = ∫⁻ x in Ici (0 : ℝ), f x.toNNReal := by
   change ∫⁻ (x : ℝ≥0), f x = ∫⁻ (x : ℝ) in Ici 0, (f ∘ Real.toNNReal) x
   rw [← lintegral_subtype_comap measurableSet_Ici]
   simp
@@ -729,7 +729,7 @@ set_option backward.isDefEq.respectTransparency.types false in
 /--
 @isnad1 id=eq.0h2v.s5.a53df63f5403 from=translated src=- shape=0d488e76 vocab=0c7bb57d
 -/
-lemma lintegral_nnreal_Ici_eq_lintegral_Ici_ofReal {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} :
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_Ici_eq_lintegral_Ici_ofReal {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} :
     ∫⁻ x in Ici a, f x = ∫⁻ x in Ici (a : ℝ), f x.toNNReal := by
   rw [← lintegral_indicator measurableSet_Ici, lintegral_nnreal_eq_lintegral_Ici_ofReal]
   simp_rw [← indicator_comp_right]
@@ -741,14 +741,14 @@ lemma lintegral_nnreal_Ici_eq_lintegral_Ici_ofReal {f : ℝ≥0 → ℝ≥0∞} 
 /--
 @isnad1 id=eq.0h1v.s5.58e8137a7713 from=translated src=- shape=e7282ebc vocab=9d6223f6
 -/
-lemma lintegral_nnreal_eq_lintegral_Ioi_ofReal {f : ℝ≥0∞ → ℝ≥0∞} : ∫⁻ x : ℝ≥0, f x = ∫⁻ x in Ioi (0 : ℝ), f (.ofReal x) := by
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_eq_lintegral_Ioi_ofReal {f : ℝ≥0∞ → ℝ≥0∞} : ∫⁻ x : ℝ≥0, f x = ∫⁻ x in Ioi (0 : ℝ), f (.ofReal x) := by
   rw [lintegral_nnreal_eq_lintegral_Ici_ofReal]
   exact setLIntegral_congr Ioi_ae_eq_Ici.symm
 
 /--
 @isnad1 id=eq.0h1v.s5.36ca5db48d26 from=translated src=- shape=453cd520 vocab=47c225c1
 -/
-lemma lintegral_ennreal_eq_lintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0∞} :
+lemma _root_.Tengoku.Carleson.lintegral_ennreal_eq_lintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0∞} :
     ∫⁻ x : ℝ≥0∞, f x = ∫⁻ x : ℝ≥0, f x := by
   refine (MeasurePreserving.lintegral_comp_emb ⟨by fun_prop, rfl⟩ ?_ f).symm
   refine isEmbedding_coe.measurableEmbedding ?_
@@ -757,7 +757,7 @@ lemma lintegral_ennreal_eq_lintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0∞} :
 /--
 @isnad1 id=eq.1h2v.s5.879dfea6d6fd from=translated src=- shape=b951030a vocab=fa61d3f2
 -/
-lemma setLIntegral_ennreal_eq_setLintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0∞} {s : Set ℝ≥0∞} (hs : MeasurableSet s) :
+lemma _root_.Tengoku.Carleson.setLIntegral_ennreal_eq_setLintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0∞} {s : Set ℝ≥0∞} (hs : MeasurableSet s) :
     ∫⁻ x in s, f x = ∫⁻ x in (ofNNReal⁻¹' s), f x := by
   rw [← lintegral_indicator hs, lintegral_ennreal_eq_lintegral_of_nnreal]
   simp_rw [← Set.indicator_comp_right]
@@ -767,7 +767,7 @@ lemma setLIntegral_ennreal_eq_setLintegral_of_nnreal {f : ℝ≥0∞ → ℝ≥0
 /--
 @isnad1 id=eq.0h1v.s5.62fdfb761a15 from=translated src=- shape=2f1456b9 vocab=f2f86d4a
 -/
-lemma lintegral_ennreal_eq_lintegral_Ioi_ofReal {f : ℝ≥0∞ → ℝ≥0∞} :
+lemma _root_.Tengoku.Carleson.lintegral_ennreal_eq_lintegral_Ioi_ofReal {f : ℝ≥0∞ → ℝ≥0∞} :
     ∫⁻ x : ℝ≥0∞, f x = ∫⁻ x in Ioi (0 : ℝ), f (.ofReal x) :=
   lintegral_ennreal_eq_lintegral_of_nnreal.trans lintegral_nnreal_eq_lintegral_Ioi_ofReal
 
@@ -775,7 +775,7 @@ lemma lintegral_ennreal_eq_lintegral_Ioi_ofReal {f : ℝ≥0∞ → ℝ≥0∞} 
 /--
 @isnad1 id=eq.0h1v.s5.a2a5431f3ea2 from=translated src=- shape=da1fa517 vocab=e176f448
 -/
-lemma lintegral_nnreal_eq_lintegral_toNNReal_Ioi (f : ℝ≥0 → ℝ≥0∞) :
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_eq_lintegral_toNNReal_Ioi (f : ℝ≥0 → ℝ≥0∞) :
     ∫⁻ x : ℝ≥0, f x = ∫⁻ x in Ioi (0 : ℝ), f x.toNNReal := by
   rw [lintegral_nnreal_eq_lintegral_Ici_ofReal]
   exact setLIntegral_congr Ioi_ae_eq_Ici.symm
@@ -784,7 +784,7 @@ lemma lintegral_nnreal_eq_lintegral_toNNReal_Ioi (f : ℝ≥0 → ℝ≥0∞) :
 /--
 @isnad1 id=eq.0h1v.s5.b40209cbc741 from=translated src=- shape=f06535bf vocab=ba26f510
 -/
-lemma lintegral_nnreal_toReal_eq_lintegral_Ioi (f : ℝ → ℝ≥0∞) :
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_toReal_eq_lintegral_Ioi (f : ℝ → ℝ≥0∞) :
     ∫⁻ x : ℝ≥0, f (x.toReal) = ∫⁻ x in Ioi (0 : ℝ), f x := by
   rw [lintegral_nnreal_eq_lintegral_toNNReal_Ioi]
   refine setLIntegral_congr_fun_ae measurableSet_Ioi ?_
@@ -795,7 +795,7 @@ lemma lintegral_nnreal_toReal_eq_lintegral_Ioi (f : ℝ → ℝ≥0∞) :
 /--
 @isnad1 id=eq.0h1v.s5.58c8faf2fedc from=translated src=- shape=f06535bf vocab=e291c0bf
 -/
-lemma lintegral_nnreal_toReal_eq_lintegral_Ici (f : ℝ → ℝ≥0∞) :
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_toReal_eq_lintegral_Ici (f : ℝ → ℝ≥0∞) :
     ∫⁻ x : ℝ≥0, f (x.toReal) = ∫⁻ x in Ici (0 : ℝ), f x := by
   rw [lintegral_nnreal_toReal_eq_lintegral_Ioi]
   exact setLIntegral_congr Ioi_ae_eq_Ici
@@ -803,7 +803,7 @@ lemma lintegral_nnreal_toReal_eq_lintegral_Ici (f : ℝ → ℝ≥0∞) :
 /--
 @isnad1 id=eq.0h2v.s5.297fcf0936f6 from=translated src=- shape=52023c42 vocab=cd370e5e
 -/
-lemma setLIntegral_nnreal_Ici {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} :
+lemma _root_.Tengoku.Carleson.setLIntegral_nnreal_Ici {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} :
     ∫⁻ (t : ℝ≥0) in Set.Ici a, f t = ∫⁻ (t : ℝ≥0), f (t + a) := by
   rw [lintegral_nnreal_eq_lintegral_Ici_ofReal, ← lintegral_shift' (a := -a)]
   simp only [preimage_add_const_Ici, sub_neg_eq_add, zero_add]
@@ -822,7 +822,7 @@ lemma setLIntegral_nnreal_Ici {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} :
 /--
 @isnad1 id=eq.1h2v.s6.80f8a0be199b from=translated src=- shape=5ff795a3 vocab=796c57f7
 -/
-lemma lintegral_nnreal_scale_constant' {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} (h : a ≠ 0) :
+lemma _root_.Tengoku.Carleson.lintegral_nnreal_scale_constant' {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0} (h : a ≠ 0) :
     a * ∫⁻ x : ℝ≥0, f (a*x) = ∫⁻ x, f x := by
   rw [lintegral_nnreal_eq_lintegral_toNNReal_Ioi, lintegral_nnreal_eq_lintegral_toNNReal_Ioi]
   symm
@@ -837,3 +837,4 @@ lemma lintegral_nnreal_scale_constant' {f : ℝ≥0 → ℝ≥0∞} {a : ℝ≥0
   simp
 
 -- TODO: lemmas about interaction with the Bochner integral
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

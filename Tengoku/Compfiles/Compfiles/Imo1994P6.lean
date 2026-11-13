@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1994, Problem 6
 
@@ -101,3 +101,4 @@ lemma primeFactors_card  {S : Set ℕ} (k i : ℕ) (f : ℕ ≃o S) (h : ∀ s �
   · exact fun _ _ h => Nat.add_right_cancel (f.injective h)
 
 end Imo1994P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

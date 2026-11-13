@@ -27,7 +27,7 @@ This file contains general algebraic support lemmas and does not cite an externa
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 namespace Groups
 
 section PrimeOrder
@@ -129,3 +129,4 @@ lemma exists_zmod_power_of_generator {g : G} (hpG : Nat.card G = p) (hg : g ≠ 
 end PrimeOrder
 
 end Groups
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

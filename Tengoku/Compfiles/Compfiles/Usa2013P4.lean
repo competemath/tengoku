@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2013, Problem 4
 
@@ -231,3 +231,4 @@ abbrev solution_set : Set (ℝ × ℝ × ℝ) :=
         Distinguished p.2.2 p.1 p.2.1 }
 
 end Usa2013P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

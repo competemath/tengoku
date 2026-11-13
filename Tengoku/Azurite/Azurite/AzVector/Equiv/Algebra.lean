@@ -19,7 +19,7 @@ import Tengoku.Seed.Algebra.Module.Pi
 import Tengoku.Seed.Algebra.Module.Equiv.Defs
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} {n : Nat}
 
@@ -102,3 +102,4 @@ theorem AzVector.linearEquivPi_symm_apply [CommSemiring R] (f : Fin n → R) :
     AzVector.linearEquivPi.symm f = AzVector.ofFn f := rfl
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

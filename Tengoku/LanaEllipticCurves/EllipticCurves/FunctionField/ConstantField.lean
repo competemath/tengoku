@@ -49,7 +49,7 @@ The conditional forms are kept here deliberately: they are the general field-the
 (`algebraicClosure_eq_bot_of_isDomain_tensor` is about an arbitrary extension `E / F`) and this file
 must stay upstream of the tensor/localisation machinery that discharges the datum.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open scoped TensorProduct IntermediateField
 
 /-- **The keystone bridge.**  If the base change of `E / F` to `AlgebraicClosure F` is a domain,
@@ -60,7 +60,7 @@ to `F̄ := AlgebraicClosure F`.  The inclusion `L ↪ E` tensors (over the flat/
 injection `F̄ ⊗ L ↪ F̄ ⊗ E`, so `F̄ ⊗ L` is a domain.  Being finite over the algebraically closed
 `F̄`, it is integral, hence `algebraMap F̄ (F̄ ⊗ L)` is bijective and `finrank F̄ (F̄ ⊗ L) = 1`.
 Base change preserves finrank, so `finrank F L = 1`, forcing `L = ⊥` and `z ∈ F`. -/
-theorem algebraicClosure_eq_bot_of_isDomain_tensor
+theorem _root_.Tengoku.LanaEllipticCurves.algebraicClosure_eq_bot_of_isDomain_tensor
     {F E : Type*} [Field F] [Field E] [Algebra F E]
     (hdom : IsDomain (AlgebraicClosure F ⊗[F] E)) :
     algebraicClosure F E = ⊥ := by
@@ -108,3 +108,4 @@ theorem algebraicClosure_functionField_eq_bot_of_isDomain_tensor
   algebraicClosure_eq_bot_of_isDomain_tensor hdom
 
 end WeierstrassCurve.Affine
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

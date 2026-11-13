@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1994, Problem 1
 
@@ -60,3 +60,4 @@ lemma key {a : ℕ → ℕ} (h : ∀ i, a i + 1 < a (i + 1)) (n : ℕ) :
   nlinarith [sq_nonneg ((a n : ℤ) + 1 - 2 * ((n : ℤ) + 1))]
 
 end Usa1994P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

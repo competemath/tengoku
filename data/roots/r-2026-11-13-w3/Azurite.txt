@@ -1,0 +1,49 @@
+leakscan: 292 global instances (15 can fire outside the library), 0 scoped; 387 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 4 scoped
+roots: 32 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Azurite.BPR.gcdMonoidPolynomial registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter1.Section1_2.Gcd (declared at line 34)
+leak: instance Azurite.BPR.IsRealClosed.toLinearOrder registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.IsRealClosedOrder (declared at line 61)
+leak: instance Azurite.BPR.instFactIrred_X_sq_add_one registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.Notation_2_18 (declared at line 108)
+leak: instance Azurite.BPR.Theorem2_11.instFactIrredOrdered registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.Theorem_2_11_b_c (declared at line 55)
+leak: instance Azurite.BPR.instIsRealClosedReal registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.Example_2_10 (declared at line 88)
+leak: instance Azurite.BPR.ZeroPlus.instLEPoly registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 167)
+leak: instance Azurite.BPR.ZeroPlus.instLTPoly registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 171)
+leak: instance Azurite.BPR.ZeroPlus.instLinearOrderPoly registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 190)
+leak: instance Azurite.BPR.ZeroPlus.instNontrivialPolynomial registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 235)
+leak: instance Azurite.BPR.ZeroPlus.instLERatFunc registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 447)
+leak: instance Azurite.BPR.ZeroPlus.instLTRatFunc registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 450)
+leak: instance Azurite.BPR.ZeroPlus.instLinearOrderRatFunc registered in Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.OrderZeroPlus (declared at line 464)
+leak: instance Azurite.CP.instNeZeroNatHMul_tengoku registered in Tengoku.Azurite.Azurite.CrandallPomerance.Chapter4.CycPQDomain (declared at line 55)
+leak: instance Azurite.CP.instIsCyclotomicExtensionSingletonNatSetHMulRatCyclotomicField registered in Tengoku.Azurite.Azurite.CrandallPomerance.Chapter4.CycPQDomain (declared at line 58)
+leak: instance Azurite.RoundingTarget.instFactLtOfNat registered in Tengoku.Azurite.Azurite.Rounding.IntPrecision (declared at line 39)
+root: toPoly_dropTrailingZeros
+root: coeff_toPoly
+root: ext
+root: ofPoly_zero
+root: ofPoly_one
+root: natDegree_toPoly
+root: toPoly_ofPoly
+root: getCoeff_map_range_coeff
+root: leadingCoeff_ofPoly
+root: map_getCoeff_range
+root: ext_iff
+root: toPoly_normalize
+root: isEmpty_iff_toList_empty
+root: length_toDenseList
+root: Monic_ofPoly
+root: nextCoeff_toPoly
+root: leadingCoeff_toPoly
+root: array_eq_of_toList_eq
+root: last_toDenseList_ne_zero
+root: primitive_squarefree_isRelPrime_derivative
+root: ofPoly_inj
+root: toPoly_one
+root: primitive_squarefree_irreducible_not_dvd_derivative
+root: toPoly_zero
+root: eq_empty_of_toList_empty
+root: coeff_toPoly_eq
+root: toPoly_inj
+root: ofPoly_toPoly
+root: equivPolynomial
+root: nextCoeff_ofPoly
+root: Monic_toPoly
+root: toList_empty_of_eq_empty

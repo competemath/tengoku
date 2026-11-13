@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2001, Problem 5
 
@@ -179,3 +179,4 @@ lemma bezout_three {A B C : ℤ} (h : Int.gcd (↑(Int.gcd A B)) C = 1) :
     rw [← hu, ← hv, h] at hbez
     norm_cast at hbez
   exact ⟨s * u, t * u, v, by rw [e2, e1]; ring⟩
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

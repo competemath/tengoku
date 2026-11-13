@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1989, Problem 3
 
@@ -73,3 +73,4 @@ theorem prod_normSq_add_roots {P : ℂ[X]} (hsplit : P.Splits) (hmonic : P.Monic
   rw [h1, prod_normSq_sub_roots hsplit hmonic (-z)]
 
 end Usa1989P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

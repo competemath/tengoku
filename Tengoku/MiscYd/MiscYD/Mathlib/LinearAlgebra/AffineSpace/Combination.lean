@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.MiscYd end Tengoku.MiscYd open Tengoku.MiscYd 
 variable {ι k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P]
     {p₀ : P} {p : ι → P} {w : ι → k} {s : Finset ι} {t : Set P}
 
@@ -11,7 +11,7 @@ variable {ι k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V 
 /--
 @isnad1 id=mem.2h8v.s8.971d5df3f29e from=translated src=- shape=d39ee573 vocab=bb98636d
 -/
-lemma weightedVSub_mem_vectorSpan' (h : ∑ i ∈ s, w i = 0) (hp : ∀ i ∈ s, p i ∈ t) :
+lemma _root_.Tengoku.MiscYd.weightedVSub_mem_vectorSpan' (h : ∑ i ∈ s, w i = 0) (hp : ∀ i ∈ s, p i ∈ t) :
     s.weightedVSub p w ∈ vectorSpan k t := by
   obtain rfl | ⟨i, hi⟩ := s.eq_empty_or_nonempty
   · simp
@@ -22,7 +22,7 @@ lemma weightedVSub_mem_vectorSpan' (h : ∑ i ∈ s, w i = 0) (hp : ∀ i ∈ s,
 /--
 @isnad1 id=mem.2h8v.s7.129610b60114 from=translated src=- shape=2ff27d25 vocab=b50a142d
 -/
-lemma affineCombination_mem_affineSpan' [Nontrivial k] (h : ∑ i ∈ s, w i = 1)
+lemma _root_.Tengoku.MiscYd.affineCombination_mem_affineSpan' [Nontrivial k] (h : ∑ i ∈ s, w i = 1)
     (hp : ∀ i ∈ s, p i ∈ t) : s.affineCombination k p w ∈ affineSpan k t := by
   classical
   have hnz : ∑ i ∈ s, w i ≠ 0 := h.symm ▸ one_ne_zero
@@ -40,3 +40,4 @@ lemma affineCombination_mem_affineSpan' [Nontrivial k] (h : ∑ i ∈ s, w i = 1
     simp [Pi.sub_apply, h, hw1]
   rw [← vsub_vadd (s.affineCombination k p w) (p i₀)]
   exact AffineSubspace.vadd_mem_of_mem_direction hv (mem_affineSpan k <| hp _ hi₀)
+-- Tengoku: root names of this library moved to Tengoku.MiscYd so they do not collide with other libraries (generated)
