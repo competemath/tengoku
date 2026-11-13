@@ -125,6 +125,26 @@ def body_start(lines: list[str]) -> int:
     return len(lines)
 
 
+def _blank_before(lines: list[str], first: int) -> int | None:
+    """The blank line nearest in front of the first body line that is outside a block comment and after the last import (or the `section` that opens the body) (`module`/`import` lines come first; a blank line in a
+    `/- … -/` block is comment text). A line comment or a block comment between it and the declaration does not matter: it is the declaration's column that must stay where it is."""
+    depth, last_import, blanks = 0, -1, []
+    for i in range(min(first, len(lines))):
+        s = lines[i].strip()
+        if depth:
+            depth = max(depth + s.count("/-") - s.count("-/"), 0)
+        elif not s:
+            blanks.append(i)
+        elif s.startswith("/-"):
+            depth = max(s.count("/-") - s.count("-/"), 0)
+        elif HEADER_LINE.match(lines[i]) or SECTION.match(
+            lines[i]
+        ):  # the prelude goes inside a `section` that opens the body (see body_start)
+            last_import = i
+    after = [i for i in blanks if i > last_import]
+    return after[-1] if after else None
+
+
 QUOTED = r"«[^»]*»"
 NAME_TOKEN = rf"(?:{QUOTED}|[^\s:({{\[⦃«»])+"
 PLAIN = r"[^\W\d][\w'!?]*"  # a plain identifier component: a letter or `_`, then letters, digits, `_`, `'`, `!`, `?` (Unicode letters and subscripts included)
@@ -279,8 +299,15 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
     touched = bool(done["declared"] or done["namespaces"] or done["dotted"] or done.get("opens"))
     first = body_start(f.text)
     mark = OPEN_MARK.format(ns=ns)
-    if mark_open and (touched or _uses_roots(f, roots)) and first < len(f.text) and mark not in f.text[first]:
-        f.insert(first, 0, mark)
+    if mark_open and (touched or _uses_roots(f, roots)) and first < len(f.text) and mark.strip() not in "\n".join(f.text):
+        # On the blank line in front of the first body line when there is one: Lean keeps the column where a declaration starts (a doc comment, or `def`) and an application on a
+        # LATER line must stand to the right of it, so `namespace … open … def x` / `… /-- doc -/` on one line breaks `(-1) ^ k * bernoulli (k + 1)` in a term body (merge queue,
+        # PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: same line fails, own line passes). Tactic blocks restart the column, which is why most modules never noticed.
+        spot = _blank_before(f.text, first)
+        if spot is not None:
+            f.insert(spot, 0, mark.rstrip())
+        else:
+            f.insert(first, 0, mark)
         done["opened"] = True
     return done
 

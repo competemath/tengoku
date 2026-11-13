@@ -287,11 +287,16 @@ class DocComment(unittest.TestCase):
 
     def test_the_prelude_goes_in_front_of_the_doc_comment(self):
         out = self.run_text(self.TEXT)
-        self.assertIn("namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo /-- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta", out)
+        self.assertIn(
+            "\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo\n/-- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta", out
+        )  # on the blank line before it
 
     def test_a_module_doc_and_a_plain_comment_stay_header(self):
         out = self.run_text(self.TEXT.replace("/-- the zeta", "/- the zeta"))
-        self.assertIn("/- the zeta value. -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta", out)
+        self.assertIn(
+            "/-! module doc -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo\n/- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta",
+            out,
+        )  # on the blank line before the comment
 
     def test_no_line_moves_and_it_is_idempotent(self):
         once = self.run_text(self.TEXT)
@@ -338,6 +343,73 @@ class BodyNamespace(unittest.TestCase):
     def test_it_is_idempotent(self):
         once = self.run_text(self.TEXT)
         self.assertEqual(once, self.run_text(once))
+
+
+class OwnLine(unittest.TestCase):
+    """The prelude goes on the blank line in front of the first body line, not on that line: Lean keeps the column where a declaration starts, and an application on a later line has to stand to the right of it (`(-1) ^ k * bernoulli (k + 1)` in a term body failed on PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: the same line fails, its own line passes)."""
+
+    BODY = "def zeta (k : Nat) : Nat :=\n  (-1 : Int).natAbs * zeta (k + 1)\n"
+
+    def run_text(self, text, roots=("zeta",)):
+        report = f"roots: {len(roots)} declarations\n" + "".join(f"root: {r}\n" for r in roots)
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": report})
+        return changed.get("Tengoku/Foo/A.lean", text)
+
+    def test_the_prelude_takes_the_blank_line_and_leaves_the_declaration_at_its_column(self):
+        text = "module\n\nimport Tengoku\n\n" + self.BODY
+        out = self.run_text(text).split("\n")
+        self.assertEqual(out[3].rstrip(), "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo")
+        self.assertTrue(out[4].startswith("def _root_.Tengoku.Foo.zeta"))  # `def` still at column 0
+
+    def test_without_a_blank_line_it_stays_on_the_first_body_line(self):
+        text = "module\n\nimport Tengoku\n" + self.BODY
+        out = self.run_text(text)
+        self.assertIn("\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta", out)
+
+    def test_no_line_is_added(self):
+        text = "module\n\nimport Tengoku\n\n" + self.BODY
+        out = self.run_text(text)
+        self.assertEqual(len(out.split("\n")), len(text.split("\n")) + 1)  # the one footer line; none of the module's own lines moves
+
+    def test_a_module_that_already_has_the_prelude_on_the_declaration_line_is_left_alone(self):
+        old = "module\n\nimport Tengoku\n\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta (k : Nat) : Nat := k\n"
+        self.assertEqual(self.run_text(old), old)
+
+    def test_it_is_idempotent(self):
+        once = self.run_text("module\n\nimport Tengoku\n\n" + self.BODY)
+        self.assertEqual(once, self.run_text(once))
+
+
+class WhereThePreludeGoes(unittest.TestCase):
+    """The blank line it takes is the nearest one in front of the first body line that is after the imports and outside a block comment (Gitar on #814: a `--` comment line above the first declaration)."""
+
+    DEF = "def zeta (k : Nat) : Nat :=\n  (-1 : Int).natAbs * zeta (k + 1)\n"
+    MARK = "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo"
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": "roots: 1 declarations\nroot: zeta\n"})
+        return changed.get("Tengoku/Foo/A.lean", text).split("\n")
+
+    def test_a_line_comment_above_the_declaration_does_not_pull_the_prelude_onto_it(self):
+        out = self.run_text("module\n\nimport Tengoku\n\n-- note\n" + self.DEF)
+        self.assertEqual(out[3].rstrip(), self.MARK)
+        self.assertEqual(out[4], "-- note")
+        self.assertTrue(out[5].startswith("def _root_.Tengoku.Foo.zeta"))
+
+    def test_a_blank_line_inside_a_block_comment_is_not_used(self):
+        out = self.run_text("module\n\nimport Tengoku\n\n/- one\n\ntwo -/\n" + self.DEF)
+        self.assertEqual(out[3].rstrip(), self.MARK)  # not the blank line inside the comment (line 5)
+        self.assertEqual(out[5], "")
+
+    def test_the_prelude_never_goes_in_front_of_an_import(self):
+        out = self.run_text("module\n\nimport Tengoku\nimport Mathlib\n\n" + self.DEF)
+        self.assertEqual(out[4].rstrip(), self.MARK)
+        self.assertEqual(out[2:4], ["import Tengoku", "import Mathlib"])
+
+    def test_it_stays_inside_the_section_that_opens_the_body(self):
+        out = self.run_text("module\n\nimport Tengoku\n\npublic section\n\n" + self.DEF)
+        self.assertEqual(out[4], "public section")
+        self.assertEqual(out[5].rstrip(), self.MARK)
 
 
 if __name__ == "__main__":
