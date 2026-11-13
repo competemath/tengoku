@@ -22,7 +22,9 @@ def polarizationHermitianFamily : ((n × n) ⊕ (n × n)) → Matrix n n ℂ :=
   Sum.elim (fun p => hermitianUnitRe p.1 p.2) (fun p => hermitianUnitIm p.1 p.2)
 
 omit [Fintype n] in
-/-- Each polarization coordinate is Hermitian.-/
+/-- Each polarization coordinate is Hermitian.
+@isnad1 id=ishermit.0h2v.s5.2703f56dd535 from=translated src=- shape=fbec2597 vocab=3c640eb5
+-/
 theorem isHermitian_polarizationHermitianFamily (k : (n × n) ⊕ (n × n)) :
     (polarizationHermitianFamily k).IsHermitian := by
   cases k with
@@ -42,7 +44,9 @@ def polarizationSignedCoordinates (μ : (n → ℂ) → FiniteMeasure ℝ) :
       ((μ (Pi.single p.1 1 + Complex.I • Pi.single p.2 1) : Measure ℝ).toSignedMeasure -
         (μ (Pi.single p.1 1 - Complex.I • Pi.single p.2 1) : Measure ℝ).toSignedMeasure))
 
-/-- Polarized signed coordinates reproduce each matrix transform entry.-/
+/-- Polarized signed coordinates reproduce each matrix transform entry.
+@isnad1 id=eq.2h4v.s8.70ed4b2a0906 from=translated src=- shape=18f404ce vocab=dcc5290b
+-/
 theorem sum_stieltjesTransform_polarizationSignedCoordinates
     (M : ℂ → Matrix n n ℂ) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0 < z.im →
@@ -71,7 +75,9 @@ theorem sum_stieltjesTransform_polarizationSignedCoordinates
 
 /-- Actual positive scalar measures for every quadratic probe assemble
 to one native positive matrix-valued measure. Each quadratic signed
-projection is exactly its original positive scalar measure.-/
+projection is exactly its original positive scalar measure.
+@isnad1 id=ex.1h3v.s8.3b8bc8d0163b from=translated src=- shape=f0ef3b57 vocab=237b51d4
+-/
 theorem exists_positiveMatrixMeasure_of_quadratic_stieltjes
     (M : ℂ → Matrix n n ℂ) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0 < z.im →

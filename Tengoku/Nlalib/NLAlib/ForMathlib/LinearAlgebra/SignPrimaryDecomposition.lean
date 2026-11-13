@@ -19,7 +19,9 @@ namespace Module.End
 variable {V : Type*} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
 
 /-- A common eigenspace/primary-space intersection vanishes when its
-product eigenvalue is excluded by positive stability.-/
+product eigenvalue is excluded by positive stability.
+@isnad1 id=eq.3h5v.s7.5cb8081b2979 from=translated src=- shape=8d472a8b vocab=78e593da
+-/
 theorem eigenspace_inf_maxGenEigenspace_eq_bot_of_stable_product
     (f s : End ℂ V) (hfs : Commute f s)
     (hpos : ∀ z, (s*f).HasEigenvalue z → 0 < z.re)
@@ -54,7 +56,9 @@ theorem eigenspace_inf_maxGenEigenspace_eq_bot_of_stable_product
 
 /-- A commuting sign involution selects exactly the generalized
 eigenspaces for which the signed eigenvalue lies in the right half-plane.
-The scalar `a` may be `1` or `-1`; the equation `a²=1` includes both.-/
+The scalar `a` may be `1` or `-1`; the equation `a²=1` includes both.
+@isnad1 id=eq.4h4v.s8.55086cc1088b from=translated src=- shape=1651ada3 vocab=14471460
+-/
 theorem eigenspace_eq_iSup_maxGenEigenspace_of_stable_involution
     (f s : End ℂ V) (hfs : Commute f s) (hss : s^2=1)
     (hpos : ∀ z, (s*f).HasEigenvalue z → 0 < z.re)

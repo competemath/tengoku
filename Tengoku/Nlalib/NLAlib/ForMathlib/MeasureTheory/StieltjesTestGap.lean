@@ -16,7 +16,9 @@ open scoped Topology BoundedContinuousFunction
 namespace MeasureTheory
 
 /-- Actual separation of a finite real measure from the real part of the
-evaluation point gives the native reciprocal-distance Stieltjes bound.-/
+evaluation point gives the native reciprocal-distance Stieltjes bound.
+@isnad1 id=le.3h4v.s6.d3080dc401d7 from=translated src=- shape=69025032 vocab=e61ab04e
+-/
 theorem norm_integral_real_cauchyKernel_le_of_ae_dist_ge
     (μ : Measure ℝ) [IsFiniteMeasure μ] (x a : ℝ) (ha : 0<a) (z : ℂ)
     (hzre : z.re=x) (hsep : ∀ᵐ ξ : ℝ ∂μ, a≤|ξ-x|) :
@@ -32,7 +34,9 @@ theorem norm_integral_real_cauchyKernel_le_of_ae_dist_ge
   exact (inv_le_inv₀ (ha.trans_le hnorm) ha).mpr hnorm
 
 /-- A genuine real measure gap gives the exact O(height) bound for the
-imaginary Stieltjes transform. Every inverse and integral is native.-/
+imaginary Stieltjes transform. Every inverse and integral is native.
+@isnad1 id=le.3h4v.s7.2418cb4790a0 from=translated src=- shape=39540dac vocab=7060d37b
+-/
 theorem im_integral_real_cauchyKernel_le_of_ae_dist_ge
     (μ : Measure ℝ) [IsFiniteMeasure μ] (x a : ℝ) (ha : 0<a)
     (γ : NNReal) (hγ : γ≠0) (hsep : ∀ᵐ ξ : ℝ ∂μ, a≤|ξ-x|) :
@@ -63,7 +67,9 @@ theorem im_integral_real_cauchyKernel_le_of_ae_dist_ge
 /-- A zero integral of a nonnegative test which is at least one on a
 ball gives a genuine measure gap and the reciprocal-distance bound for
 its Stieltjes transform. This includes zero measures and arbitrary
-imaginary heights.-/
+imaginary heights.
+@isnad1 id=le.5h5v.s7.c452359ca251 from=translated src=- shape=7d2edc2d vocab=3fe4f445
+-/
 theorem norm_stieltjes_le_of_zero_positive_test
     (ρ : FiniteMeasure ℝ) (f : ℝ →ᵇ ℝ) (hfnonneg : ∀ ξ, 0≤f ξ)
     (hzero : ∫ ξ : ℝ, f ξ ∂(ρ : Measure ℝ)=0)
@@ -88,7 +94,9 @@ theorem norm_stieltjes_le_of_zero_positive_test
 /-- Continuous actual Stieltjes transforms and a uniform native mass
 bound extend an almost-everywhere positive-test gap estimate to every
 parameter in the true support of its law. No weakly continuous
-measure-valued kernel or pointwise gap premise is assumed.-/
+measure-valued kernel or pointwise gap premise is assumed.
+@isnad1 id=le.10h10v.s8.864e841cc043 from=translated src=- shape=91457d90 vocab=878c59a3
+-/
 theorem norm_stieltjes_family_le_on_support_of_ae_zero_positive_test
     {T : Type*} [MeasurableSpace T] [TopologicalSpace T]
     (ν : Measure T) (ρ : T → FiniteMeasure ℝ) (r : T → ℂ → ℂ)

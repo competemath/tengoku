@@ -43,7 +43,9 @@ variable {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
 /-! ### Krylov spaces of `AAᵀ` and `AᵀA` -/
 
 /-- `A K_q(AᵀA, Aᵀb) ⊆ K_{q+1}(AAᵀ, b)`. Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1.
-Helper for `golub-kahan-bidiagonalization`.-/
+Helper for `golub-kahan-bidiagonalization`.
+@isnad1 id=mem.1h6v.s8.31f9ec0ec803 from=translated src=- shape=2013a736 vocab=f9555655
+-/
 theorem mulVec_mem_krylovSpace_mul_transpose (A : Matrix m n ℝ) (b : m → ℝ) {q : ℕ}
     {x : n → ℝ} (hx : x ∈ krylovSpace (Aᵀ * A) (Aᵀ *ᵥ b) q) :
     A *ᵥ x ∈ krylovSpace (A * Aᵀ) b (q + 1) := by
@@ -53,7 +55,9 @@ theorem mulVec_mem_krylovSpace_mul_transpose (A : Matrix m n ℝ) (b : m → ℝ
   exact krylovSpace_mulVec_le_succ _ _ _ h
 
 /-- `Aᵀ K_q(AAᵀ, b) ⊆ K_q(AᵀA, Aᵀb)`. Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1.
-Helper for `golub-kahan-bidiagonalization`.-/
+Helper for `golub-kahan-bidiagonalization`.
+@isnad1 id=mem.1h6v.s8.07dd08897a6b from=translated src=- shape=df3dc2b7 vocab=024452be
+-/
 theorem transpose_mulVec_mem_krylovSpace (A : Matrix m n ℝ) (b : m → ℝ) {q : ℕ} {x : m → ℝ}
     (hx : x ∈ krylovSpace (A * Aᵀ) b q) : Aᵀ *ᵥ x ∈ krylovSpace (Aᵀ * A) (Aᵀ *ᵥ b) q :=
   mulVec_mem_krylovSpace_of_mul_eq (by simp only [Matrix.mul_assoc]) hx
@@ -93,7 +97,9 @@ def lanczosV (D : GolubKahanDecomp A b k) : LanczosDecomp (Aᵀ * A) (Aᵀ *ᵥ 
   ⟨D.V, D.gradedV⟩
 
 /-- `range (A V_k) ⊆ range U_{k+1} = K_{k+1}(AAᵀ, b)`. Helper for
-`golub-kahan-bidiagonalization`.-/
+`golub-kahan-bidiagonalization`.
+@isnad1 id=le.0h6v.s8.c641d9700fad from=translated src=- shape=6d90be67 vocab=ae779caf
+-/
 theorem range_mul_V_le (D : GolubKahanDecomp A b k) :
     LinearMap.range (A * D.V).mulVecLin ≤ LinearMap.range D.U.mulVecLin := by
   rw [D.gradedU.range_mulVecLin, Matrix.range_mulVecLin, Submodule.span_le]
@@ -105,14 +111,18 @@ theorem range_mul_V_le (D : GolubKahanDecomp A b k) :
 
 /-- **The Golub–Kahan relation** `A V_k = U_{k+1} B_k`. Source: Golub–Van Loan (2013)
 [`gvl13`], §10.4.1 (eq. 10.4.4); Trefethen–Bau (1997) [`tb97`], Lect. 31.
-atlas: golub-kahan-bidiagonalization-/
+atlas: golub-kahan-bidiagonalization
+@isnad1 id=eq.0h6v.s7.5548a33d3173 from=translated src=- shape=0b1147f6 vocab=edc65106
+-/
 theorem mul_V_eq_U_mul_B (D : GolubKahanDecomp A b k) : A * D.V = D.U * D.B := by
   rw [B, Matrix.mul_assoc, ← Matrix.conjTranspose_eq_transpose_of_trivial D.U,
     mul_conjTranspose_mul_eq_of_range_le D.gradedU.orth D.range_mul_V_le]
 
 /-- `B` is **lower bidiagonal**, upper part: `B_{ij} = 0` for `i < j` (`vⱼ ⟂ K_j(AᵀA, Aᵀb)`,
 which contains `Aᵀuᵢ`). Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1.
-atlas: golub-kahan-bidiagonalization-/
+atlas: golub-kahan-bidiagonalization
+@isnad1 id=eq.1h8v.s6.9e70323dc409 from=translated src=- shape=d85cb7a2 vocab=11e90f0a
+-/
 theorem B_apply_eq_zero_of_lt (D : GolubKahanDecomp A b k) {i : Fin (k + 1)} {j : Fin k}
     (h : (i : ℕ) < j) : D.B i j = 0 := by
   rw [B, transpose_mul_mul_apply_eq_dotProduct, Matrix.dotProduct_mulVec, ← Matrix.mulVec_transpose,
@@ -123,7 +133,9 @@ theorem B_apply_eq_zero_of_lt (D : GolubKahanDecomp A b k) {i : Fin (k + 1)} {j 
 
 /-- `B` is **lower bidiagonal**, lower part: `B_{ij} = 0` for `j + 1 < i` (`uᵢ ⟂ K_i(AAᵀ, b)`,
 which contains `Avⱼ ∈ K_{j+2}`). Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1.
-atlas: golub-kahan-bidiagonalization-/
+atlas: golub-kahan-bidiagonalization
+@isnad1 id=eq.1h8v.s6.d1b6f3a09f64 from=translated src=- shape=a6fee4cf vocab=11e90f0a
+-/
 theorem B_apply_eq_zero_of_add_one_lt (D : GolubKahanDecomp A b k) {i : Fin (k + 1)}
     {j : Fin k} (h : (j : ℕ) + 1 < i) : D.B i j = 0 := by
   rw [B, transpose_mul_mul_apply_eq_dotProduct]
@@ -134,7 +146,9 @@ theorem B_apply_eq_zero_of_add_one_lt (D : GolubKahanDecomp A b k) {i : Fin (k +
 /-- **`BᵀB` is the Lanczos matrix of `AᵀA`**: `B_kᵀ B_k = V_kᵀ (AᵀA) V_k = T_k`, the Jacobi
 matrix of the Lanczos process on `(AᵀA, Aᵀb)`. Source: Golub–Van Loan (2013) [`gvl13`],
 §10.4.1; Trefethen–Bau (1997) [`tb97`], Lect. 31.
-atlas: golub-kahan-bidiagonalization-/
+atlas: golub-kahan-bidiagonalization
+@isnad1 id=eq.0h6v.s7.dc64c2fbf2fc from=translated src=- shape=9256d5e7 vocab=7e89222d
+-/
 theorem transpose_B_mul_B_eq_T (D : GolubKahanDecomp A b k) : D.Bᵀ * D.B = D.lanczosV.T := by
   have hU : D.Uᵀ * D.U = 1 := D.gradedU.orth
   change D.Bᵀ * D.B = D.Vᵀ * (Aᵀ * A) * D.V
@@ -148,7 +162,9 @@ theorem transpose_B_mul_B_eq_T (D : GolubKahanDecomp A b k) : D.Bᵀ * D.B = D.l
 columns `j < k` of `(I − VVᵀ) AᵀU_{k+1}` vanish and `AᵀU_{k+1} = V_k B_kᵀ + r e_{k+1}ᵀ` with
 `r = (I − VVᵀ) Aᵀ u_{k+1}` (`= α_{k+1} v_{k+1}`). Source: Golub–Van Loan (2013) [`gvl13`],
 §10.4.1 (eq. 10.4.5).
-atlas: golub-kahan-bidiagonalization-/
+atlas: golub-kahan-bidiagonalization
+@isnad1 id=mem.1h7v.s8.bb35e1516d80 from=translated src=- shape=617f7ede vocab=f60b416c
+-/
 theorem transpose_mulVec_U_col_mem_range_V (D : GolubKahanDecomp A b k) {j : Fin (k + 1)}
     (hj : (j : ℕ) < k) : Aᵀ *ᵥ D.U.col j ∈ LinearMap.range D.V.mulVecLin := by
   rw [D.gradedV.range_mulVecLin]

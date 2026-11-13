@@ -24,7 +24,9 @@ variable {𝕜 ι : Type*} [Field 𝕜] [DecidableEq ι]
 /-- A rule exact through degree `2n−1` is precisely the interpolatory rule whose
 monic nodal polynomial is degree-`n` orthogonal for the same functional.
 Source: Gautschi (2004), quadrature characterization; operator derivations AQ1.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=iff.2h6v.s9.d5752b087a6f from=translated src=- shape=3608728a vocab=5651f5db
+-/
 theorem polynomial_gauss_exactness_iff (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     {s : Finset ι} (hs : s.Nonempty) {v : ι → 𝕜} (hv : InjOn v s) (w : ι → 𝕜) :
     (∀ p : 𝕜[X], p.degree < (2 * s.card : ℕ) →
@@ -49,7 +51,9 @@ omit [DecidableEq ι] in
 /-- A rule cannot integrate the square of its nodal polynomial when the
 functional is strictly positive on that square. This is the exact degree-`2n`
 obstruction, with no positivity assertion at a terminal zero norm.
-Source: Gautschi (2004), maximal degree of Gauss quadrature; AQ2.-/
+Source: Gautschi (2004), maximal degree of Gauss quadrature; AQ2.
+@isnad1 id=not.1h5v.s8.9f6dafc9e52e from=translated src=- shape=ec668cbb vocab=24aafd70
+-/
 theorem not_linearMap_eq_sum_weighted_eval_of_nodal_sq_pos
     (L : ℝ[X] →ₗ[ℝ] ℝ) (s : Finset ι) (v w : ι → ℝ)
     (hpos : 0 < L (nodal s v ^ 2)) :
@@ -71,7 +75,9 @@ theorem not_linearMap_eq_sum_weighted_eval_of_nodal_sq_pos
 
 /-- Exactness on degrees below twice the node count identifies every weight
 with the functional of the squared cardinal polynomial.
-Source: Gautschi (2004), positivity of Gauss weights; operator derivations AQ2.-/
+Source: Gautschi (2004), positivity of Gauss weights; operator derivations AQ2.
+@isnad1 id=eq.3h6v.s8.2a44ec6c2041 from=translated src=- shape=b0e2bb22 vocab=ef768eab
+-/
 theorem weight_eq_linearMap_basis_sq_of_exact
     (L : ℝ[X] →ₗ[ℝ] ℝ) {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s) (w : ι → ℝ)
     (h : ∀ p : ℝ[X], p.degree < (2 * s.card : ℕ) →
@@ -99,7 +105,9 @@ namespace NLAlib
 up to a permutation of their distinct nodes and weights. Positivity is needed
 only through the nonzero square condition below the node count.
 Source: Gautschi (2004), uniqueness of Gauss quadrature; operator derivations AQ1–AQ2.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=ex.6h6v.s9.dc8d088ebe3d from=translated src=- shape=94f3ca56 vocab=681e7b1e
+-/
 theorem polynomial_gauss_rule_eq_up_to_permutation {n : ℕ} (hn : 0 < n)
     (L : ℝ[X] →ₗ[ℝ] ℝ) (v u w a : Fin n → ℝ)
     (hv : Function.Injective v) (hu : Function.Injective u)

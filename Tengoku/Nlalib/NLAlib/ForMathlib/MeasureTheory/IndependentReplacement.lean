@@ -19,7 +19,9 @@ open MeasureTheory Finset
 
 namespace MeasureTheory
 
-/-- Tonelli's head/tail decomposition for a finite independent product law.-/
+/-- Tonelli's head/tail decomposition for a finite independent product law.
+@isnad1 id=eq.1h4v.s8.7fad3b94752e from=translated src=- shape=6dd1934e vocab=759ff8fa
+-/
 theorem lintegral_pi_fin_succ {E : Type*} [MeasurableSpace E] {n : ℕ}
     (μ : Fin (n + 1) → Measure E) [∀ i, SigmaFinite (μ i)]
     (f : (Fin (n + 1) → E) → ENNReal) (hf : Measurable f) :
@@ -43,7 +45,9 @@ variable {E : Type*} [AddCommGroup E] [MeasurableSpace E] [MeasurableAdd₂ E]
 
 /-- One-summand comparison at every offset in an additive subgroup extends to
 finite independent sums supported on that subgroup. The test is nonnegative
-and may have infinite expectation, so no integrability of hybrid sums is assumed.-/
+and may have infinite expectation, so no integrability of hybrid sums is assumed.
+@isnad1 id=le.7h9v.s8.dee0a0e4e88e from=translated src=- shape=3fbc254a vocab=fc2cf441
+-/
 theorem lintegral_add_sum_apply_pi_le_of_lintegral_add_apply_le {n : ℕ}
     (ν γ : Fin n → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     [∀ i, IsProbabilityMeasure (γ i)] (S : AddSubgroup E)

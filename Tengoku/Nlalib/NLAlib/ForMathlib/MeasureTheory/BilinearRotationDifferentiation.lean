@@ -23,7 +23,9 @@ variable {Ω E F G : Type*} [MeasurableSpace Ω]
 /-- A bounded continuous first factor and a bounded C¹ second factor admit
 actual differentiation of their bilinear expectation along a rotation of
 integrable random vectors. A genuine integrable norm bound supplies all
-domination; no Gaussian identity is assumed.-/
+domination; no Gaussian identity is assumed.
+@isnad1 id=hasderiv.8h15v.s11.5969c09462a4 from=translated src=- shape=6e9d2b45 vocab=8d4af1fd
+-/
 theorem hasDerivAt_integral_bilin_rotation
     (Y Z : Ω → E) (hY : Integrable Y μ) (hZ : Integrable Z μ)
     (f : E → F) (hfc : Continuous f)

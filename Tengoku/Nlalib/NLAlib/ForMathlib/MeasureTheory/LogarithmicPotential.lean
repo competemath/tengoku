@@ -31,7 +31,9 @@ def logarithmicPotential (μ : Measure ℝ) (u : ℝ) : ℝ :=
   ∫ x, Real.log (x - u) ∂μ
 
 /-- A finite measure with compact support has an integrable logarithmic
-kernel at every point strictly below every support point.-/
+kernel at every point strictly below every support point.
+@isnad1 id=integrab.2h2v.s6.f73eabbc6c53 from=translated src=- shape=292c187b vocab=1ac9689a
+-/
 theorem integrable_log_sub_of_lt_support (μ : Measure ℝ) [IsFiniteMeasure μ]
     (hμ : IsCompact μ.support) {u : ℝ} (hu : ∀ x ∈ μ.support, u < x) :
     Integrable (fun x => Real.log (x - u)) μ := by
@@ -44,7 +46,9 @@ theorem integrable_log_sub_of_lt_support (μ : Measure ℝ) [IsFiniteMeasure μ]
   rwa [IntegrableOn, hre] at hi
 
 /-- A finite measure with compact support has an integrable real Stieltjes
-kernel at every point strictly below every support point.-/
+kernel at every point strictly below every support point.
+@isnad1 id=integrab.2h2v.s6.da9c2f89ee23 from=translated src=- shape=1d0d9980 vocab=c3153c63
+-/
 theorem integrable_inv_sub_of_lt_support (μ : Measure ℝ) [IsFiniteMeasure μ]
     (hμ : IsCompact μ.support) {u : ℝ} (hu : ∀ x ∈ μ.support, u < x) :
     Integrable (fun x => (x - u)⁻¹) μ := by
@@ -59,7 +63,9 @@ theorem integrable_inv_sub_of_lt_support (μ : Measure ℝ) [IsFiniteMeasure μ]
 /-- Below a compact support, the derivative of the actual logarithmic
 potential is minus the actual real Stieltjes transform. No derivative or
 integrability of the integral is assumed. This is the differentiation step
-in Montanari--Saeed 2026, proof of Theorem 2, equation (45).-/
+in Montanari--Saeed 2026, proof of Theorem 2, equation (45).
+@isnad1 id=hasderiv.2h2v.s6.b27dd77cae41 from=translated src=- shape=c98e255d vocab=ef4aefa6
+-/
 theorem hasDerivAt_logarithmicPotential_of_lt_support
     (μ : Measure ℝ) [IsFiniteMeasure μ] (hμ : IsCompact μ.support)
     {u : ℝ} (hu : ∀ x ∈ μ.support, u < x) :
@@ -123,7 +129,9 @@ private theorem continuousAt_integral_log_one_add_mul_zero
 
 /-- The logarithmic potential of an actual compactly supported probability
 measure has its exact normalization at negative infinity. No moment,
-integrability, or asymptotic normalization hypothesis is supplied.-/
+integrability, or asymptotic normalization hypothesis is supplied.
+@isnad1 id=tendsto.1h1v.s5.4447cd660be3 from=translated src=- shape=27160d20 vocab=b7767e81
+-/
 theorem tendsto_logarithmicPotential_sub_log_neg_atBot
     (μ : Measure ℝ) [IsProbabilityMeasure μ] (hμ : IsCompact μ.support) :
     Tendsto (fun u => logarithmicPotential μ u - Real.log (-u)) atBot (𝓝 0) := by
@@ -161,7 +169,9 @@ theorem tendsto_logarithmicPotential_sub_log_neg_atBot
 /-- On an interval below a compact support, the actual Stieltjes derivative
 and the normalization at negative infinity uniquely determine the actual
 logarithmic potential. This is the derivative-and-constant argument needed
-in the proof of the block-Wishart variational potential identity.-/
+in the proof of the block-Wishart variational potential identity.
+@isnad1 id=eqon.4h3v.s7.7d6e80d0dd5b from=translated src=- shape=2f81b82d vocab=19c9ce23
+-/
 theorem eqOn_logarithmicPotential_of_hasDerivAt_of_tendsto
     (μ : Measure ℝ) [IsProbabilityMeasure μ] (hμ : IsCompact μ.support)
     (a : ℝ) (ha : ∀ x ∈ μ.support, a ≤ x) (F : ℝ → ℝ)

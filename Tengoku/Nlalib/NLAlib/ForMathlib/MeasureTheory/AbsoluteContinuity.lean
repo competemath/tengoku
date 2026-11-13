@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Equality on an interval transports absolute continuity, in any metric codomain.
 Source: the finite disjoint-interval definition; helper for the AC primitive in
-`chebyshev-coeff-bv-decay`.-/
+`chebyshev-coeff-bv-decay`.
+@isnad1 id=absolute.2h5v.s5.6c35e3fba0b9 from=translated src=- shape=5122d8e7 vocab=e58ca59a
+-/
 theorem absolutelyContinuousOnInterval_congr {X : Type*} [PseudoMetricSpace X]
     {f g : ℝ → X} {a b : ℝ} (heq : EqOn f g (uIcc a b))
     (hf : AbsolutelyContinuousOnInterval f a b) : AbsolutelyContinuousOnInterval g a b := by

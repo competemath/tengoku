@@ -21,7 +21,9 @@ namespace NLAlib
 upper triangularizing basis with any prescribed complete characteristic-root
 order for a designated member. Repeated roots and empty dimension are allowed;
 the family may be infinite and no member is assumed normal or diagonalizable.
-Horn–Johnson 2013, Theorem 2.3.3; derivations gen:simultaneous.-/
+Horn–Johnson 2013, Theorem 2.3.3; derivations gen:simultaneous.
+@isnad1 id=ex.3h6v.s9.eda09181f7e5 from=translated src=- shape=b48eb6a1 vocab=204b74ca
+-/
 theorem exists_orthonormalBasis_simultaneous_upper_triangular_with_charpoly
     {E ι : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [FiniteDimensional ℂ E] (k : ℕ) (T : ι → Module.End ℂ E)

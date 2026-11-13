@@ -32,7 +32,9 @@ private theorem stieltjes_integral_pos_of_ae_pos
 /-- The actual Stieltjes kernel and its actual derivative have strictly
 positive real integrals at a point below the support of a nonzero finite
 compactly supported measure. This includes atomic measures and does
-not assume existence of a density or boundary limit.-/
+not assume existence of a density or boundary limit.
+@isnad1 id=and.3h2v.s7.8e28c5760022 from=translated src=- shape=6ace26a3 vocab=8374e786
+-/
 theorem integral_inv_sub_pos_and_sq_pos_of_support_gt
     (μ : Measure ℝ) [IsFiniteMeasure μ] (hμ : IsCompact μ.support)
     (hμne : μ≠0) (u : ℝ) (hu : ∀ ξ ∈ μ.support, u<ξ) :

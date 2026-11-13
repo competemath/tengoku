@@ -42,7 +42,9 @@ private theorem T_superdiagonal_ne_zero (D : LanczosDecomp A b q) (hA : A.IsHerm
 
 /-- Every Gauss eigenvector has a nonzero first coordinate, including a terminal
 Lanczos decomposition. Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)
+@isnad1 id=ne.2h6v.s8.65835137c71b from=translated src=- shape=611ad045 vocab=dcddce8b
+-/
 theorem eigenvectorBasis_T_apply_zero_ne_zero (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (i : Fin q) :
     (D.isHermitian_T hA).eigenvectorBasis i ⟨0, hq⟩ ≠ 0 :=
@@ -51,7 +53,9 @@ theorem eigenvectorBasis_T_apply_zero_ne_zero (D : LanczosDecomp A b q)
 
 /-- Every normalized Gauss weight is strictly positive. Source: Gautschi (2004),
 Theorem 1.46.
-atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)
+@isnad1 id=lt.2h6v.s8.6f397d86a9b2 from=translated src=- shape=c8137a23 vocab=8b9b5f7e
+-/
 theorem sq_eigenvectorBasis_T_apply_zero_pos (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (i : Fin q) :
     0 < ((D.isHermitian_T hA).eigenvectorBasis i ⟨0, hq⟩) ^ 2 :=
@@ -59,7 +63,9 @@ theorem sq_eigenvectorBasis_T_apply_zero_pos (D : LanczosDecomp A b q)
 
 /-- The eigenvalues of every Lanczos Jacobi matrix are distinct. Source: Gautschi
 (2004), Theorem 1.19. No positivity convention on the basis signs is required.
-atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)
+@isnad1 id=injectiv.1h5v.s6.8735d3495429 from=translated src=- shape=a9dd1ce9 vocab=7e2e67e7
+-/
 theorem eigenvalues_T_injective (D : LanczosDecomp A b q) (hA : A.IsHermitian) :
     Function.Injective (D.isHermitian_T hA).eigenvalues :=
   (D.isHermitian_T hA).eigenvalues_injective_of_unreduced

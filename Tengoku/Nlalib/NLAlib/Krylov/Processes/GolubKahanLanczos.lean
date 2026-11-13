@@ -108,14 +108,18 @@ private theorem lanczosState_odd_pairedState (A : Matrix m n ℝ) (b : m → ℝ
     simp only [golubKahanRecurrence, Function.iterate_succ_apply']
 
 /-- The odd Lanczos vectors of the dilation are exactly the embedded right
-Golub--Kahan vectors, including zeros after breakdown.-/
+Golub--Kahan vectors, including zeros after breakdown.
+@isnad1 id=eq.0h5v.s7.b72b50d02bc5 from=translated src=- shape=af187272 vocab=da4cc4f5
+-/
 theorem lanczosRecurrence_dilation_odd (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     lanczosRecurrence (dilation A) (Sum.elim b (0 : n → ℝ)) (2 * j + 1) =
       Sum.elim (0 : m → ℝ) (golubKahanRecurrence A b j).v := by
   exact congrArg LanczosState.cur (lanczosState_odd_pairedState A b j)
 
 /-- The even Lanczos vectors of the dilation are exactly the embedded left
-Golub--Kahan vectors.-/
+Golub--Kahan vectors.
+@isnad1 id=eq.0h5v.s7.0665e15f6704 from=translated src=- shape=efe91bab vocab=99eab1bd
+-/
 theorem lanczosRecurrence_dilation_even (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     lanczosRecurrence (dilation A) (Sum.elim b (0 : n → ℝ)) (2 * j) =
       Sum.elim (golubKahanRecurrence A b j).u (0 : n → ℝ) := by
@@ -123,14 +127,18 @@ theorem lanczosRecurrence_dilation_even (A : Matrix m n ℝ) (b : m → ℝ) (j 
   simpa only [lanczosState_succ_prev, lanczosRecurrence, pairedState, left] using h
 
 /-- Each Golub--Kahan diagonal coefficient is the corresponding odd Lanczos link
-coefficient of the symmetric dilation.-/
+coefficient of the symmetric dilation.
+@isnad1 id=eq.0h5v.s6.0ca8b821825e from=translated src=- shape=3cd8d225 vocab=e742c98c
+-/
 theorem lanczosBeta_dilation_odd (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     lanczosBeta (dilation A) (Sum.elim b (0 : n → ℝ)) (2 * j + 1) =
       (golubKahanRecurrence A b j).alpha := by
   exact congrArg LanczosState.beta (lanczosState_odd_pairedState A b j)
 
 /-- After initialization, the even Lanczos link coefficients are the Golub--Kahan
-subdiagonal coefficients. The initial Golub--Kahan `beta` is instead the norm of `b`.-/
+subdiagonal coefficients. The initial Golub--Kahan `beta` is instead the norm of `b`.
+@isnad1 id=eq.0h5v.s7.e3578295f83f from=translated src=- shape=62d923c2 vocab=d19dd3af
+-/
 theorem lanczosBeta_dilation_even_succ (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     lanczosBeta (dilation A) (Sum.elim b (0 : n → ℝ)) (2 * (j + 1)) =
       (golubKahanRecurrence A b (j + 1)).beta := by
@@ -142,7 +150,9 @@ theorem lanczosBeta_dilation_even_succ (A : Matrix m n ℝ) (b : m → ℝ) (j :
     norm_toLp_eq_sqrt_dotProduct_self]
 
 /-- The diagonal entry of the Golub--Kahan compression is the recurrence's `alpha`,
-even for the total recurrence after breakdown.-/
+even for the total recurrence after breakdown.
+@isnad1 id=eq.0h5v.s6.6bc3f5d1da8c from=translated src=- shape=5e0ffbbf vocab=fecf63b5
+-/
 theorem dotProduct_golubKahan_eq_alpha (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     (golubKahanRecurrence A b j).u ⬝ᵥ (A *ᵥ (golubKahanRecurrence A b j).v) =
       (golubKahanRecurrence A b j).alpha := by
@@ -164,7 +174,9 @@ theorem dotProduct_golubKahan_eq_alpha (A : Matrix m n ℝ) (b : m → ℝ) (j :
   exact h.symm
 
 /-- The subdiagonal entry of the Golub--Kahan compression is the next `beta`,
-even for the total recurrence after breakdown.-/
+even for the total recurrence after breakdown.
+@isnad1 id=eq.0h5v.s6.49e1711494a6 from=translated src=- shape=a840c361 vocab=d944c0e4
+-/
 theorem dotProduct_golubKahan_eq_beta (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     (golubKahanRecurrence A b (j + 1)).u ⬝ᵥ (A *ᵥ (golubKahanRecurrence A b j).v) =
       (golubKahanRecurrence A b (j + 1)).beta := by

@@ -34,7 +34,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 `x − J` is positive definite (so every trailing block is nonsingular), then
 `((x − J)⁻¹)₀₀ = 1/(x − a₀ − β₁²/(x − a₁ − ⋯ − β_m²/(x − a_m)))`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 3 (continued fractions);
-Wall (1948), Ch. XI.-/
+Wall (1948), Ch. XI.
+@isnad1 id=eq.1h4v.s9.4696391ae96d from=translated src=- shape=dcc5c0de vocab=d0b9f1d5
+-/
 theorem inv_smul_one_sub_jacobiMatrix_apply_zero_zero (a β : ℕ → ℝ) (m : ℕ) {x : ℝ}
     (hx : (x • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ) - jacobiMatrix a β (m + 1)).PosDef) :
     (x • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ) - jacobiMatrix a β (m + 1))⁻¹ 0 0 =
@@ -61,7 +63,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 /-- For symmetric `A`, `T_q` is the Jacobi matrix of its recurrence coefficients:
 `T_q = jacobiMatrix α β q`. Source: Golub–Meurant (2010) [`gm10`], Thm 4.2.
 Atlas: `jacobi-matrix-identities`.
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.1h5v.s6.588482d27179 from=translated src=- shape=7ffa50d2 vocab=857a49d2
+-/
 theorem T_eq_jacobiMatrix (D : LanczosDecomp A b q) (hA : A.IsHermitian) :
     D.T = jacobiMatrix D.alpha D.beta q := by
   have hS : D.T.IsSymm := D.isSymm_T hA
@@ -80,7 +84,9 @@ theorem T_eq_jacobiMatrix (D : LanczosDecomp A b q) (hA : A.IsHermitian) :
     rw [lt_abs]
     omega
 
-/-- For `x` above the spectrum of `A`, `x I − T_q` is positive definite.-/
+/-- For `x` above the spectrum of `A`, `x I − T_q` is positive definite.
+@isnad1 id=posdef.2h6v.s7.014978bdce5d from=translated src=- shape=d67c72d3 vocab=b4201ac7
+-/
 theorem posDef_smul_one_sub_T (D : LanczosDecomp A b q) (hA : A.IsHermitian) {x : ℝ}
     (hx : ∀ i, hA.eigenvalues i < x) :
     (x • (1 : Matrix (Fin q) (Fin q) ℝ) - D.T).PosDef := by
@@ -126,7 +132,9 @@ theorem posDef_smul_one_sub_T (D : LanczosDecomp A b q) (hA : A.IsHermitian) {x 
 transform `∫ dμ_b(t)/(x − t)` (for `‖b‖ = 1`). Source: Golub–Meurant (2010) [`gm10`], Ch. 3
 (continued fractions) and Thm 4.2. Deviation: real `x` above the spectrum
 (so every trailing block is nonsingular); complex `x` off the real axis is not covered.
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.3h6v.s7.e037b1208176 from=translated src=- shape=4bf411b2 vocab=18a9dffc
+-/
 theorem inv_smul_one_sub_T_apply_zero_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     (hq : 0 < q) {x : ℝ} (hx : ∀ i, hA.eigenvalues i < x) :
     (x • (1 : Matrix (Fin q) (Fin q) ℝ) - D.T)⁻¹ ⟨0, hq⟩ ⟨0, hq⟩ =

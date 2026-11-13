@@ -18,7 +18,9 @@ noncomputable section
 namespace NLAlib
 
 /-- Perturbations smaller in absolute value preserve the opposite signs of two real values.
-Source: the elementary sign step in the polynomial and rational de la Vallée Poussin proofs.-/
+Source: the elementary sign step in the polynomial and rational de la Vallée Poussin proofs.
+@isnad1 id=lt.3h4v.s6.ed5b52e698ef from=translated src=- shape=c071fa81 vocab=b2cb3f76
+-/
 theorem mul_sub_mul_sub_neg_of_abs_lt {a b c d : ℝ} (hab : a * b < 0)
     (hc : |c| < |a|) (hd : |d| < |b|) : (a - c) * (b - d) < 0 := by
   rcases mul_neg_iff.mp hab with h | h
@@ -34,7 +36,9 @@ theorem mul_sub_mul_sub_neg_of_abs_lt {a b c d : ℝ} (hab : a * b < 0)
     exact mul_neg_of_neg_of_pos (by linarith) (by linarith)
 
 /-- Every nondegenerate real interval contains any prescribed finite number of strictly
-ordered interior points. The equally spaced construction includes the empty index type.-/
+ordered interior points. The equally spaced construction includes the empty index type.
+@isnad1 id=ex.1h3v.s6.937494f767b1 from=translated src=- shape=96b5b130 vocab=e26547df
+-/
 theorem exists_strictMono_mem_Ioo {a b : ℝ} (hab : a < b) (k : ℕ) :
     ∃ v : Fin k → Set.Ioo a b, StrictMono (fun i => (v i : ℝ)) := by
   have hden : (0 : ℝ) < k + 1 := by positivity
@@ -54,7 +58,9 @@ theorem exists_strictMono_mem_Ioo {a b : ℝ} (hab : a < b) (k : ℕ) :
   dsimp [v]; linarith
 
 /-- Equal nonzero magnitudes and opposite adjacent signs determine a signed alternating
-power sequence. Source: the scalar sign normalization in the alternation theorem.-/
+power sequence. Source: the scalar sign normalization in the alternation theorem.
+@isnad1 id=ex.3h3v.s7.bdcdf3127e04 from=translated src=- shape=a06efe41 vocab=8a248758
+-/
 theorem exists_sign_of_alternating_abs_eq {k : ℕ} {E : ℝ} (hE : 0 < E)
     (u : Fin (k + 2) → ℝ) (habs : ∀ i, |u i| = E)
     (hsign : ∀ i : Fin (k + 1), u i.castSucc * u i.succ < 0) :
@@ -77,7 +83,9 @@ theorem exists_sign_of_alternating_abs_eq {k : ℕ} {E : ℝ} (hE : 0 < E)
       ring
 
 /-- A nonvanishing continuous real function has the same strict sign at any two points
-of a real interval. Source: the intermediate value theorem.-/
+of a real interval. Source: the intermediate value theorem.
+@isnad1 id=lt.4h5v.s6.a191223a184a from=translated src=- shape=5653f6af vocab=766eefb4
+-/
 theorem mul_pos_of_continuousOn_ne_zero {a b : ℝ} {f : ℝ → ℝ}
     (hf : ContinuousOn f (Set.Icc a b)) (hzero : ∀ x ∈ Set.Icc a b, f x ≠ 0)
     {x y : ℝ} (hx : x ∈ Set.Icc a b) (hy : y ∈ Set.Icc a b) : 0 < f x * f y := by
@@ -94,7 +102,9 @@ theorem mul_pos_of_continuousOn_ne_zero {a b : ℝ} {f : ℝ → ℝ}
 
 /-- A continuous real function has ordered interior zeros between ordered samples whose
 successive products are negative. Source: the intermediate value argument in Cheney (1966),
-Chapter 3, the de la Vallée Poussin and alternation theorems.-/
+Chapter 3, the de la Vallée Poussin and alternation theorems.
+@isnad1 id=ex.3h3v.s8.aa510ce9733f from=translated src=- shape=2b8259d5 vocab=1ddcc643
+-/
 theorem exists_strictMono_eq_zero_of_mul_neg {n : ℕ} {f : ℝ → ℝ}
     {v : Fin (n + 2) → ℝ} (hv : StrictMono v)
     (hf : ContinuousOn f (Set.Icc (v 0) (v (Fin.last _))))

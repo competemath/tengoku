@@ -18,7 +18,9 @@ open scoped InnerProductSpace Matrix
 namespace NLAlib
 
 /-- A first-column eigenvalue factors out of the characteristic polynomial.
-Source: Horn–Johnson (2013), §1.4; first-column Laplace expansion.-/
+Source: Horn–Johnson (2013), §1.4; first-column Laplace expansion.
+@isnad1 id=eq.1h4v.s8.9efcf03c7080 from=translated src=- shape=92f1454d vocab=988d695c
+-/
 theorem charpoly_eq_X_sub_C_mul_succ_submatrix
     {R : Type*} [CommRing R] {k : ℕ} (M : Matrix (Fin (k + 1)) (Fin (k + 1)) R)
     (μ : R) (hcol : ∀ i, M i 0 = if i = 0 then μ else 0) :
@@ -38,7 +40,9 @@ theorem charpoly_eq_X_sub_C_mul_succ_submatrix
 
 /-- Compressing away a unit eigenvector removes exactly its characteristic
 linear factor. Source: Horn–Johnson (2013), proof of Theorem 2.3.1; no
-normality or simplicity assumption is needed.-/
+normality or simplicity assumption is needed.
+@isnad1 id=eq.3h6v.s11.2e944813ff0d from=translated src=- shape=ebb420da vocab=eb4c237a
+-/
 theorem charpoly_eq_X_sub_C_mul_orthogonal_compression
     {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     {k : ℕ} (f : Module.End 𝕜 E) {u : E} (hu : ‖u‖ = 1) {μ : 𝕜}

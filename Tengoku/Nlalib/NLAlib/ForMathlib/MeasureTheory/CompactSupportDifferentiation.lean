@@ -21,7 +21,9 @@ variable {X E Ω : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X] [LocallyCom
 
 /-- Jointly continuous first derivatives near a compact support fibre suffice
 for an actual Fréchet derivative under the integral. In particular no
-regularity assumptions outside the measure's support are imposed.-/
+regularity assumptions outside the measure's support are imposed.
+@isnad1 id=hasfderi.6h8v.s9.c59d5dc2164f from=translated src=- shape=e59c1be0 vocab=3ebd7bdb
+-/
 theorem hasFDerivAt_integral_of_compact_support (μ : Measure Ω) [IsFiniteMeasure μ]
     (hμ : IsCompact μ.support) (F : X → Ω → E) (D : X → Ω → X →L[ℝ] E)
     (U : Set (X × Ω)) (hU : IsOpen U) (hF : ContinuousOn (fun p => F p.1 p.2) U)

@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {A : Matrix n n ℝ} {b : n →
 
 /-- The monic spectral-measure recurrence alpha is the actual Lanczos diagonal.
 All stored indices are allowed, including the last diagonal. Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h6v.s6.10b33f408e9b from=translated src=- shape=edf8b85b vocab=b52b9cee
+-/
 theorem orthogonalRecurrenceAlpha_spectralMeasure_eq_alpha (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) {j : ℕ} (hj : j < q) :
     orthogonalRecurrenceAlpha
@@ -48,7 +50,9 @@ theorem orthogonalRecurrenceAlpha_spectralMeasure_eq_alpha (D : LanczosDecomp A 
 /-- The monic spectral-measure beta equals the square of the stored signed
 Lanczos off-diagonal. Order zero is the shared zero boundary coefficient; no
 coupling beyond the decomposition is inferred. Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h6v.s6.6b22250038d5 from=translated src=- shape=096c76a3 vocab=96d360c5
+-/
 theorem orthogonalRecurrenceBeta_spectralMeasure_eq_beta_sq (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) {j : ℕ} (hj : j < q) :
     orthogonalRecurrenceBeta
@@ -76,7 +80,9 @@ theorem orthogonalRecurrenceBeta_spectralMeasure_eq_beta_sq (D : LanczosDecomp A
 /-- Every actual leading monic characteristic polynomial satisfies the three-term
 recurrence with the actual diagonal and squared signed off-diagonal. The final
 displayed characteristic polynomial is included. Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h6v.s8.24e82ff6914c from=translated src=- shape=b71cb38a vocab=b697a71f
+-/
 theorem charpoly_restrict_T_succ_eq (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {j : ℕ} (hj : j + 1 ≤ q) :
     (LanczosDecomp.T (D.restrict hj)).charpoly =

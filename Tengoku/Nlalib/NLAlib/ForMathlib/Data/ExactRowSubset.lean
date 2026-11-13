@@ -20,7 +20,9 @@ Source: operator re-derivation `sh:convex-sampling`.-/
 abbrev ExactRowSubset (α : Type*) (k : ℕ) := {T : Finset α // T.card = k}
 
 /-- Exact-size subsets exist when the requested size is at most the population.
-Source: operator re-derivation `sh:convex-sampling`.-/
+Source: operator re-derivation `sh:convex-sampling`.
+@isnad1 id=nonempty.1h2v.s4.3c753e1001ad from=translated src=- shape=7e4cc14d vocab=26e8611c
+-/
 theorem exactRowSubset_nonempty {α : Type*} [Fintype α] {k : ℕ}
     (hk : k ≤ Fintype.card α) : Nonempty (ExactRowSubset α k) := by
   obtain ⟨T, _, hT⟩ := Finset.exists_subset_card_eq (s := (Finset.univ : Finset α))

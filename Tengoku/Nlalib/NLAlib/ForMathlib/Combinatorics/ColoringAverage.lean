@@ -26,7 +26,9 @@ def coloringSplit {τ ι κ : Type*} (z : τ → ι) (hz : Function.Injective z)
     ((Equiv.arrowCongr (Equiv.ofInjective z hz).symm (Equiv.refl κ)).prodCongr
       (Equiv.refl _))
 
-/-- The first part of the coloring decomposition is ordinary restriction.-/
+/-- The first part of the coloring decomposition is ordinary restriction.
+@isnad1 id=eq.1h6v.s7.fda438befaec from=translated src=- shape=034823fa vocab=87ce8a96
+-/
 @[simp] theorem coloringSplit_fst {τ ι κ : Type*} (z : τ → ι)
     (hz : Function.Injective z) (c : ι → κ) (t : τ) :
     (coloringSplit z hz c).1 t = c (z t) := by
@@ -38,7 +40,9 @@ end Equiv
 namespace Finset
 
 /-- Exactly one coloring of the selected coordinates retains the ordered tuple;
-the other coordinates can be colored freely.-/
+the other coordinates can be colored freely.
+@isnad1 id=eq.1h3v.s8.2f0d66c40921 from=translated src=- shape=b34c2db8 vocab=375cbef4
+-/
 theorem sum_coloring_indicator {τ ι : Type*} [Fintype τ] [Fintype ι]
     [DecidableEq τ] [DecidableEq ι]
     (z : τ → ι) (hz : Function.Injective z) :
@@ -64,7 +68,9 @@ theorem sum_coloring_indicator {τ ι : Type*} [Fintype τ] [Fintype ι]
   · simp
 
 /-- The retained-color count multiplied by `q^q` is the total number of
-colorings. This form avoids division and includes the empty tuple.-/
+colorings. This form avoids division and includes the empty tuple.
+@isnad1 id=eq.1h3v.s7.3deb2c231b4a from=translated src=- shape=21f367df vocab=6ec4eb92
+-/
 theorem sum_coloring_indicator_mul_card_pow {τ ι : Type*} [Fintype τ] [Fintype ι]
     [DecidableEq τ] [DecidableEq ι]
     (z : τ → ι) (hz : Function.Injective z) :

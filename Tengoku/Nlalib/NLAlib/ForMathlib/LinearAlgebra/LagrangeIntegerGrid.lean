@@ -20,7 +20,9 @@ open scoped Nat
 namespace NLAlib
 
 /-- The magnitude of each cardinal at the first half-grid point is an exact binomial term.
-Source: operator reroutes, the equispaced finite cardinal formula.-/
+Source: operator reroutes, the equispaced finite cardinal formula.
+@isnad1 id=eq.1h2v.s7.590b6cf9e54b from=translated src=- shape=7fcf72c8 vocab=63c87460
+-/
 theorem abs_eval_lagrange_basis_nat_half {n j : ℕ} (hj : j ≤ n) :
     |(Lagrange.basis (range (n + 1)) (fun k : ℕ => (k : ℝ)) j).eval (1 / 2)| =
       (|∏ k ∈ range (n + 1), ((1 : ℝ) / 2 - k)| / (n ! : ℝ)) *
@@ -50,7 +52,9 @@ theorem abs_eval_lagrange_basis_nat_half {n j : ℕ} (hj : j ≤ n) :
   ring
 
 /-- The sum of cardinal magnitudes on the integer grid has the strict exponential bound.
-Source: operator reroutes, the binomial sum and half-grid product comparison.-/
+Source: operator reroutes, the binomial sum and half-grid product comparison.
+@isnad1 id=lt.1h1v.s7.4f5631ecf3c6 from=translated src=- shape=630c2351 vocab=7e8aaa8d
+-/
 theorem pow_two_div_four_mul_sq_lt_sum_abs_lagrange_basis {n : ℕ} (hn : 0 < n) :
     (2 : ℝ) ^ n / (4 * (n : ℝ) ^ 2) <
       ∑ j ∈ range (n + 1),

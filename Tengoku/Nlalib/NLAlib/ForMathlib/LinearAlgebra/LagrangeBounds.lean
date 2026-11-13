@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- A small adjacent gap bounds every cardinal by its value at a point far from the grid.
 Source: focused reroutes, the quantitative boundary estimate. The assertion is a finite
-product inequality and does not require a global interpolation comparison theorem.-/
+product inequality and does not require a global interpolation comparison theorem.
+@isnad1 id=le.11h11v.s8.2a8b957578c3 from=translated src=- shape=dd87128c vocab=833be5d1
+-/
 theorem abs_eval_lagrange_basis_le_gap_mul {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (v : ι → ℝ) {a b j : ι} {x y δ B r : ℝ}
     (ha : a ∈ s) (hb : b ∈ s) (hab : a ≠ b) (hj : j ∈ s)

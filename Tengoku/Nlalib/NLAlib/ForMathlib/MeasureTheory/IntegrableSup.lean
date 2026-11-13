@@ -18,7 +18,9 @@ namespace MeasureTheory
 
 /-- The pointwise maximum of finitely many (nonempty index) measurable integrable functions is
 integrable.gordon_upper` (helper
-`gu_integrable_iSup`). Atlas: helper of `gordon`.-/
+`gu_integrable_iSup`). Atlas: helper of `gordon`.
+@isnad1 id=integrab.2h4v.s6.4d4aa030660a from=translated src=- shape=f2e9e892 vocab=9f212a5d
+-/
 theorem integrable_iSup_of_fintype {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
     [Nonempty ι] (f : ι → Ω → ℝ) (hf : ∀ t, Integrable (f t) μ) (hm : ∀ t, Measurable (f t)) :
     Integrable (fun ω => ⨆ t, f t ω) μ := by
@@ -38,7 +40,9 @@ theorem integrable_iSup_of_fintype {Ω ι : Type*} [MeasurableSpace Ω] {μ : Me
 
 /-- The pointwise minimum of finitely many (nonempty index) measurable integrable functions is
 integrable.gordon_lower` (helper
-`gl_integrable_iInf`). Atlas: helper of `gordon`.-/
+`gl_integrable_iInf`). Atlas: helper of `gordon`.
+@isnad1 id=integrab.2h4v.s6.3a90c03d1e75 from=translated src=- shape=f2e9e892 vocab=c3058022
+-/
 theorem integrable_iInf_of_fintype {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [Fintype ι]
     [Nonempty ι] (f : ι → Ω → ℝ) (hf : ∀ t, Integrable (f t) μ) (hm : ∀ t, Measurable (f t)) :
     Integrable (fun ω => ⨅ t, f t ω) μ := by

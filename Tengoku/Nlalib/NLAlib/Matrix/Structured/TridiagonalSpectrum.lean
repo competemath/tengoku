@@ -54,7 +54,9 @@ theorem eq_zero_of_mulVec_eq_smul_of_apply_zero_eq_zero
   exact hall i.val i.isLt
 
 /-- Every nonzero eigenvector of an unreduced Hessenberg transpose has nonzero
-first coordinate. Source: Gautschi (2004), Theorem 1.19.-/
+first coordinate. Source: Gautschi (2004), Theorem 1.19.
+@isnad1 id=ne.5h4v.s7.f029623fd771 from=translated src=- shape=91264624 vocab=ef022ce1
+-/
 theorem apply_zero_ne_zero_of_mulVec_eq_smul
     {H : Matrix (Fin n) (Fin n) ℝ} (hH : IsUpperHessenberg Hᵀ)
     (hsub : ∀ i j : Fin n, i.val + 1 = j.val → H i j ≠ 0)
@@ -76,7 +78,9 @@ theorem eq_of_mulVec_eq_smul_of_apply_zero_eq
   · exact sub_eq_zero.mpr h0
 
 /-- Every first eigenvector coordinate of a Hermitian unreduced tridiagonal
-matrix is nonzero. Source: Gautschi (2004), Theorem 1.19.-/
+matrix is nonzero. Source: Gautschi (2004), Theorem 1.19.
+@isnad1 id=ne.4h3v.s8.6298055e8dcd from=translated src=- shape=0486b0c3 vocab=8a52949d
+-/
 theorem _root_.Matrix.IsHermitian.eigenvectorBasis_apply_zero_ne_zero
     {H : Matrix (Fin n) (Fin n) ℝ} (hH : H.IsHermitian)
     (htri : IsUpperHessenberg Hᵀ)
@@ -89,7 +93,9 @@ theorem _root_.Matrix.IsHermitian.eigenvectorBasis_apply_zero_ne_zero
   simp at hnorm
 
 /-- A Hermitian unreduced tridiagonal matrix has distinct eigenvalues.
-Source: Gautschi (2004), Theorem 1.19.-/
+Source: Gautschi (2004), Theorem 1.19.
+@isnad1 id=injectiv.3h2v.s6.e78601542c7b from=translated src=- shape=6a2cbbef vocab=f9689d6b
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues_injective_of_unreduced
     {H : Matrix (Fin n) (Fin n) ℝ} (hH : H.IsHermitian)
     (htri : IsUpperHessenberg Hᵀ)

@@ -45,14 +45,18 @@ def edgeList : {n : ℕ} → LeafTree n → List (Fin (n + 2) × Fin (n + 2))
   | _, attach t p =>
       (p.succ, 0) :: t.edgeList.map (fun e => (e.1.succ, e.2.succ))
 
-/-- A tree with `n + 2` vertices has `n + 1` edges.-/
+/-- A tree with `n + 2` vertices has `n + 1` edges.
+@isnad1 id=eq.0h2v.s5.515175e263e8 from=translated src=- shape=1a61700a vocab=292cec44
+-/
 theorem edgeList_length {n : ℕ} (t : LeafTree n) : t.edgeList.length = n + 1 := by
   induction t with
   | edge => rfl
   | attach t p ih => simp [edgeList, ih]
 
 /-- Reindexing a sum of finite tuples separates the first coordinate from
-the remaining coordinates.-/
+the remaining coordinates.
+@isnad1 id=eq.0h3v.s7.2df3837267fc from=translated src=- shape=04191023 vocab=48a675e2
+-/
 theorem sum_labelings_succ {n : ℕ} (F : (Fin (n + 1) → α) → ℝ) :
     (∑ x, F x) = ∑ y : Fin n → α, ∑ a : α, F (Fin.cons a y) := by
   classical
@@ -71,7 +75,9 @@ def markovWeight (π : α → ℝ) (K : α → α → ℝ) :
       markovWeight π K t (fun i => x i.succ) * K (x p.succ) (x 0)
 
 omit [Fintype α] in
-/-- Nonnegative initial and transition weights give nonnegative tree weights.-/
+/-- Nonnegative initial and transition weights give nonnegative tree weights.
+@isnad1 id=le.2h6v.s6.33b3714ba7c3 from=translated src=- shape=89c296a9 vocab=ba4f4f37
+-/
 theorem markovWeight_nonneg (π : α → ℝ) (K : α → α → ℝ)
     (hπ : ∀ i, 0 ≤ π i) (hK : ∀ i j, 0 ≤ K i j)
     {n : ℕ} (t : LeafTree n) (x : Fin (n + 2) → α) :
@@ -81,7 +87,9 @@ theorem markovWeight_nonneg (π : α → ℝ) (K : α → α → ℝ)
   | attach t p ih => exact mul_nonneg (ih _) (hK _ _)
 
 /-- Every vertex of a tree-indexed Markov chain has the stationary marginal,
-expressed by integration of an arbitrary scalar test function.-/
+expressed by integration of an arbitrary scalar test function.
+@isnad1 id=eq.2h7v.s8.ce9be5229cef from=translated src=- shape=800929e5 vocab=d8bfe522
+-/
 theorem sum_markovWeight_mul_vertex (π : α → ℝ) (K : α → α → ℝ)
     (hK : ∀ i, ∑ j, K i j = 1)
     (hstationary : ∀ j, ∑ i, π i * K i j = π j)
@@ -121,7 +129,9 @@ theorem sum_markovWeight_mul_vertex (π : α → ℝ) (K : α → α → ℝ)
         simp_rw [mul_right_comm _ _ (f _), ← Finset.mul_sum, hK, mul_one]
         exact ih v f
 
-/-- The stationary Markov weights of all tree labelings sum to one.-/
+/-- The stationary Markov weights of all tree labelings sum to one.
+@isnad1 id=eq.3h5v.s7.a4581d310465 from=translated src=- shape=3e584df8 vocab=d8bfe522
+-/
 theorem sum_markovWeight (π : α → ℝ) (K : α → α → ℝ)
     (hπ : ∑ i, π i = 1) (hK : ∀ i, ∑ j, K i j = 1)
     (hstationary : ∀ j, ∑ i, π i * K i j = π j)
@@ -137,7 +147,9 @@ def degreeExcess : {n : ℕ} → LeafTree n → Fin (n + 2) → ℕ
       Fin.cons (α := fun _ => ℕ) 0
         (fun i => degreeExcess t i + if i = p then 1 else 0) v
 
-/-- The sum of degree excesses in a tree with `n + 2` vertices is `n`.-/
+/-- The sum of degree excesses in a tree with `n + 2` vertices is `n`.
+@isnad1 id=eq.0h2v.s6.99edeee01aef from=translated src=- shape=21d0f415 vocab=0142fb1d
+-/
 theorem sum_degreeExcess {n : ℕ} (t : LeafTree n) :
     (∑ v, t.degreeExcess v) = n := by
   classical
@@ -154,7 +166,9 @@ def edgeWeight (w : α → α → ℝ) :
       edgeWeight w t (fun i => x i.succ) * w (x p.succ) (x 0)
 
 omit [Fintype α] in
-/-- The recursive edge weight is the product over the actual tree edge list.-/
+/-- The recursive edge weight is the product over the actual tree edge list.
+@isnad1 id=eq.0h5v.s7.f5e751937d17 from=translated src=- shape=7374d57c vocab=7819bd1c
+-/
 theorem edgeWeight_eq_prod_edgeList (w : α → α → ℝ)
     {n : ℕ} (t : LeafTree n) (x : Fin (n + 2) → α) :
     t.edgeWeight w x = (t.edgeList.map (fun e => w (x e.1) (x e.2))).prod := by
@@ -166,14 +180,18 @@ theorem edgeWeight_eq_prod_edgeList (w : α → α → ℝ)
       exact mul_comm _ _
 
 omit [Fintype α] in
-/-- A nonnegative edge kernel gives nonnegative tree edge-product weights.-/
+/-- A nonnegative edge kernel gives nonnegative tree edge-product weights.
+@isnad1 id=le.1h5v.s5.03ec22c2d7c1 from=translated src=- shape=a5d7fd7e vocab=8b0c25f3
+-/
 theorem edgeWeight_nonneg (w : α → α → ℝ) (hw : ∀ i j, 0 ≤ w i j)
     {n : ℕ} (t : LeafTree n) (x : Fin (n + 2) → α) : 0 ≤ t.edgeWeight w x := by
   induction t with
   | edge => exact hw _ _
   | attach t p ih => exact mul_nonneg (ih _) (hw _ _)
 
-/-- The partition function of the initial edge is the total edge-kernel mass.-/
+/-- The partition function of the initial edge is the total edge-kernel mass.
+@isnad1 id=eq.0h2v.s6.7efad00bbd02 from=translated src=- shape=1649db1e vocab=f50e56f1
+-/
 theorem sum_edgeWeight_edge (w : α → α → ℝ) :
     (∑ x : Fin 2 → α, edge.edgeWeight w x) = ∑ i, ∑ j, w i j := by
   classical
@@ -190,7 +208,9 @@ def excessWeight (d : α → ℝ) {n : ℕ} (t : LeafTree n)
     (x : Fin (n + 2) → α) : ℝ := ∏ v, d (x v) ^ t.degreeExcess v
 
 omit [Fintype α] in
-/-- Adding a leaf multiplies the degree-excess factor by the degree at the parent.-/
+/-- Adding a leaf multiplies the degree-excess factor by the degree at the parent.
+@isnad1 id=eq.0h6v.s7.fd44156e4db2 from=translated src=- shape=1decdeb3 vocab=586a8981
+-/
 theorem excessWeight_attach (d : α → ℝ) {n : ℕ} (t : LeafTree n)
     (p : Fin (n + 2)) (x : Fin (n + 1 + 2) → α) :
     (attach t p).excessWeight d x =
@@ -207,7 +227,9 @@ theorem excessWeight_attach (d : α → ℝ) {n : ℕ} (t : LeafTree n)
 omit [Fintype α] in
 /-- The stationary tree probability weight has the exact edge-product density.
 This algebraic identity also includes zero degrees whenever `d i * K i j = w i j`.
-It requires neither division nor strict positivity of individual degrees.-/
+It requires neither division nor strict positivity of individual degrees.
+@isnad1 id=eq.2h9v.s6.eb21251b0968 from=translated src=- shape=09c0a5c5 vocab=836d433c
+-/
 theorem edgeWeight_eq_mul_markovWeight_excessWeight
     (π d : α → ℝ) (K w : α → α → ℝ) (D : ℝ)
     (hπ : ∀ i, D * π i = d i) (hK : ∀ i j, d i * K i j = w i j)
@@ -227,7 +249,9 @@ theorem edgeWeight_eq_mul_markovWeight_excessWeight
 stationary probability law on all labelings of every leaf-grown tree. Its
 vertex marginal is the degree distribution, and its exact density factors the
 edge product into a probability weight and the vertex degree-excess factors.
-Zero-degree labels are included through a stochastic fallback transition.-/
+Zero-degree labels are included through a stochastic fallback transition.
+@isnad1 id=ex.3h4v.s9.038174f2c95c from=translated src=- shape=4b6a03c6 vocab=db676f46
+-/
 theorem exists_stationary_edgeWeight_factorization
     (w : α → α → ℝ) (hw : ∀ i j, 0 ≤ w i j)
     (hsymm : ∀ i j, w i j = w j i)

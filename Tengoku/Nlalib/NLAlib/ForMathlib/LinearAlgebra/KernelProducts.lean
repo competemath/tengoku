@@ -18,7 +18,9 @@ variable [AddCommGroup V] [Module K V] [FiniteDimensional K V]
 variable [AddCommGroup W] [Module K W] [FiniteDimensional K W]
 variable [AddCommGroup U] [Module K U]
 
-/-- The kernel dimension of a composition is at most the sum of the two kernel dimensions.-/
+/-- The kernel dimension of a composition is at most the sum of the two kernel dimensions.
+@isnad1 id=le.0h6v.s9.3bcf48268887 from=translated src=- shape=f7f426cf vocab=f405c0ea
+-/
 theorem finrank_ker_comp_le (f : W →ₗ[K] U) (g : V →ₗ[K] W) :
     Module.finrank K (LinearMap.ker (f.comp g)) ≤
       Module.finrank K (LinearMap.ker f) + Module.finrank K (LinearMap.ker g) := by

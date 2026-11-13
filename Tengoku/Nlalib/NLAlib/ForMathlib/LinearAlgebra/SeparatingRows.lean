@@ -22,7 +22,9 @@ variable {m n : Type*} [Fintype m] [Fintype n]
 whose image coordinates are pairwise distinct. The proof uses finite
 hyperplane avoidance over the infinite real field, with no measure theory.
 Horn--Johnson (2013), proof of Theorem 7.5.9;
-supports the finite exponential Gram certificate.-/
+supports the finite exponential Gram certificate.
+@isnad1 id=ex.1h3v.s5.75168f8a11ec from=translated src=- shape=23f412d2 vocab=30cd97f8
+-/
 theorem exists_mulVec_injective_of_rows_injective (A : Matrix m n ℝ)
     (hA : Function.Injective A.row) : ∃ z : n → ℝ, Function.Injective (A *ᵥ z) := by
   classical

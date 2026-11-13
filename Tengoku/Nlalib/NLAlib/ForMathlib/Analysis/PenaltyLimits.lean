@@ -14,7 +14,9 @@ namespace NLAlib
 variable {E : Type*} [TopologicalSpace E]
 
 /-- A convergent positive vanishing-penalty family minimizes the primary
-objective and, among all its minimizers, the secondary objective.-/
+objective and, among all its minimizers, the secondary objective.
+@isnad1 id=and.4h5v.s7.b911d0d59d62 from=translated src=- shape=7a5263a3 vocab=fb0749cf
+-/
 theorem vanishing_penalty_limit_minimizes {f g : E → ℝ}
     (hf : Continuous f) (hg : Continuous g) (x : ℝ → E) (x₀ : E)
     (hx : Tendsto x (𝓝[>] (0 : ℝ)) (𝓝 x₀))
@@ -44,7 +46,9 @@ theorem vanishing_penalty_limit_minimizes {f g : E → ℝ}
   exact (mul_le_mul_iff_right₀ hβ).mp hm
 
 /-- A convergent family with diverging nonnegative penalty lies in the
-penalty's zero set and minimizes the primary objective on that set.-/
+penalty's zero set and minimizes the primary objective on that set.
+@isnad1 id=and.7h6v.s7.f2a2491e8906 from=translated src=- shape=112b0a3a vocab=f39437e0
+-/
 theorem diverging_penalty_limit_minimizes {f g : E → ℝ}
     (hf : Continuous f) (hg : Continuous g) (hfn : ∀ z, 0 ≤ f z) (hgn : ∀ z, 0 ≤ g z)
     (x : ℝ → E) (xInf : E) (hx : Tendsto x atTop (𝓝 xInf))

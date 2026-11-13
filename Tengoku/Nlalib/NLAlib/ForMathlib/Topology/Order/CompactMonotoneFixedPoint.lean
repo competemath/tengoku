@@ -20,7 +20,9 @@ variable {X : Type*} [MetricSpace X] [PartialOrder X] [OrderClosedTopology X]
 
 /-- A continuous order-preserving self-map of a compact set has a fixed
 point above every increasing initial iterate. The fixed point and all
-iterate bounds are constructed from compactness and closed order.-/
+iterate bounds are constructed from compactness and closed order.
+@isnad1 id=ex.6h4v.s7.cb4dfe8a63ee from=translated src=- shape=53f62fb3 vocab=45450f3c
+-/
 theorem IsCompact.exists_fixedPoint_of_monotoneOn
     {K : Set X} (hK : IsCompact K) {F : X → X}
     (hF : ContinuousOn F K) (hmap : MapsTo F K K) (hmono : MonotoneOn F K)

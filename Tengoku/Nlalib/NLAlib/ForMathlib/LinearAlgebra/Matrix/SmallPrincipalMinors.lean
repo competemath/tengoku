@@ -17,7 +17,9 @@ namespace Matrix
 
 variable {R n : Type*} [CommRing R] [DecidableEq n]
 
-/-- A singleton principal determinant is the matching diagonal entry.-/
+/-- A singleton principal determinant is the matching diagonal entry.
+@isnad1 id=eq.0h4v.s7.eca3826926e9 from=translated src=- shape=74fd88de vocab=74a5163c
+-/
 theorem det_submatrix_singleton (M : Matrix n n R) (i : n) :
     (M.submatrix (Subtype.val : ↥({i} : Finset n) → n)
       (Subtype.val : ↥({i} : Finset n) → n)).det = M i i := by
@@ -32,7 +34,9 @@ theorem det_submatrix_singleton (M : Matrix n n R) (i : n) :
       (Subtype.val : ↥({i} : Finset n) → n))
 
 /-- A pair principal determinant is the ordinary two-by-two determinant,
-with distinct ambient indices in either order.-/
+with distinct ambient indices in either order.
+@isnad1 id=eq.1h5v.s8.087f4485039d from=translated src=- shape=579a4c47 vocab=cb97a548
+-/
 theorem det_submatrix_pair (M : Matrix n n R) {i j : n} (hij : i ≠ j) :
     (M.submatrix (Subtype.val : ↥({i, j} : Finset n) → n)
       (Subtype.val : ↥({i, j} : Finset n) → n)).det =

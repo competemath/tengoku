@@ -16,7 +16,9 @@ namespace Finset
 open scoped BigOperators
 
 /-- Summing the weights of the `d`-subsets inside every `s`-subset counts
-each weight `choose (|T| - d) (s - d)` times.-/
+each weight `choose (|T| - d) (s - d)` times.
+@isnad1 id=eq.1h6v.s7.d6bc2c6799b0 from=translated src=- shape=2832fb03 vocab=4229a122
+-/
 theorem sum_powersetCard_sum_subset {α M : Type*} [DecidableEq α]
     [AddCommMonoid M] (T : Finset α) (d s : ℕ) (hds : d ≤ s)
     (w : Finset α → M) :
@@ -35,7 +37,9 @@ theorem sum_powersetCard_sum_subset {α M : Type*} [DecidableEq α]
     exact hds
 
 /-- A fixed size-`s` subset occurs in exactly `choose (|T|-s) (t-s)`
-size-`t` supersets inside `T`. A malformed fixed subset contributes zero.-/
+size-`t` supersets inside `T`. A malformed fixed subset contributes zero.
+@isnad1 id=eq.1h7v.s7.8c4b36fb69a2 from=translated src=- shape=048f6b80 vocab=3b8feda0
+-/
 theorem sum_powersetCard_ite_mem {α M : Type*} [DecidableEq α] [AddCommMonoid M]
     (T S : Finset α) (s t : ℕ) (hst : s ≤ t) (v : M) :
     (∑ R ∈ T.powersetCard t, if S ∈ R.powersetCard s then v else 0) =

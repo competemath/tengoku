@@ -19,7 +19,9 @@ namespace MeasureTheory
 on a nonempty connected set times a nonnegative integrable weight, its integral is one
 such value times the integral of the weight. No measurable selection of the pointwise
 intermediate arguments is required, and a zero total weight is included.
-Source: integral mean-value argument in operator derivations, (AQ5)–(AQ6).-/
+Source: integral mean-value argument in operator derivations, (AQ5)–(AQ6).
+@isnad1 id=ex.7h6v.s7.9949b0560d6a from=translated src=- shape=40b15cb9 vocab=09cbe0a0
+-/
 theorem exists_integral_eq_mul_integral_of_pointwise
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {F W : Ω → ℝ}
     (hF : Integrable F μ) (hW : Integrable W μ) (hWnonneg : ∀ᵐ x ∂μ, 0 ≤ W x)
@@ -76,7 +78,9 @@ theorem exists_integral_eq_mul_integral_of_pointwise
 
 /-- The weighted integral mean-value theorem also permits a nonpositive weight, by
 negating the integrand and weight together. This gives the right-Radau and Lobatto
-derivative remainders with their original negative nodal factors.-/
+derivative remainders with their original negative nodal factors.
+@isnad1 id=ex.7h6v.s8.0b55b72d4688 from=translated src=- shape=5cf0cee2 vocab=09cbe0a0
+-/
 theorem exists_integral_eq_mul_integral_of_pointwise_of_weight_constant_sign
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {F W : Ω → ℝ}
     (hF : Integrable F μ) (hW : Integrable W μ)

@@ -17,7 +17,9 @@ open MeasureTheory Polynomial Finset
 namespace MeasureTheory
 
 /-- Two finite real measures concentrated on a finite set are equal if all polynomial
-integrals agree. The finite carrier need not be minimal or have positive-mass atoms.-/
+integrals agree. The finite carrier need not be minimal or have positive-mass atoms.
+@isnad1 id=eq.3h3v.s6.f7196d778462 from=translated src=- shape=554fffd1 vocab=7d90ddad
+-/
 theorem measure_eq_of_integral_eval_eq_of_finite_carrier {μ ν : Measure ℝ}
     [IsFiniteMeasure μ] [IsFiniteMeasure ν] (s : Finset ℝ)
     (hμ : ∀ᵐ x ∂μ, x ∈ s) (hν : ∀ᵐ x ∂ν, x ∈ s)

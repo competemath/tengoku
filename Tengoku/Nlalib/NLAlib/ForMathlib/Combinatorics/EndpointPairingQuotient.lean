@@ -32,18 +32,24 @@ def endpointSetoid (a b c d : E → V) : Setoid V :=
 /-- The quotient vertices after all paired endpoint identifications.-/
 abbrev VertexQuotient (a b c d : E → V) := Quotient (endpointSetoid a b c d)
 
-/-- The two first endpoints of a paired edge have the same quotient class.-/
+/-- The two first endpoints of a paired edge have the same quotient class.
+@isnad1 id=eq.0h7v.s5.59ab8e9e3687 from=translated src=- shape=bc3d4ec0 vocab=ecdb6c5e
+-/
 theorem mk_a_eq_mk_b (a b c d : E → V) (e : E) :
     (Quotient.mk'' (a e) : VertexQuotient a b c d) = Quotient.mk'' (b e) := by
   exact Quotient.sound' (Relation.EqvGen.rel _ _ ⟨e, Or.inl ⟨rfl, rfl⟩⟩)
 
-/-- The two second endpoints of a paired edge have the same quotient class.-/
+/-- The two second endpoints of a paired edge have the same quotient class.
+@isnad1 id=eq.0h7v.s5.0536a3333c6a from=translated src=- shape=4a8d4427 vocab=ecdb6c5e
+-/
 theorem mk_c_eq_mk_d (a b c d : E → V) (e : E) :
     (Quotient.mk'' (c e) : VertexQuotient a b c d) = Quotient.mk'' (d e) := by
   exact Quotient.sound' (Relation.EqvGen.rel _ _ ⟨e, Or.inr ⟨rfl, rfl⟩⟩)
 
 /-- A labeling descends to the endpoint quotient exactly when every local
-pair of endpoint equalities holds.-/
+pair of endpoint equalities holds.
+@isnad1 id=iff.0h8v.s6.aa030bd9531b from=translated src=- shape=8541afc0 vocab=4c724b86
+-/
 theorem endpointSetoid_le_ker_iff (a b c d : E → V) (x : V → α) :
     endpointSetoid a b c d ≤ Setoid.ker x ↔
       ∀ e, x (a e) = x (b e) ∧ x (c e) = x (d e) := by
@@ -61,7 +67,9 @@ theorem endpointSetoid_le_ker_iff (a b c d : E → V) (x : V → α) :
 
 /-- Summing local equality indicators over original labels is exactly the
 partition sum over unrestricted quotient labels. No distinctness conditions
-are introduced on the quotient labels.-/
+are introduced on the quotient labels.
+@isnad1 id=eq.0h8v.s8.304d6b37c737 from=translated src=- shape=2915382c vocab=750ccebd
+-/
 theorem sum_prod_indicator_eq_sum_quotient
     [Fintype V] [Fintype E] [Fintype α] [DecidableEq V] [DecidableEq α]
     (a b c d : E → V)
@@ -98,7 +106,9 @@ theorem sum_prod_indicator_eq_sum_quotient
 
 /-- Connectedness of the original paired-occurrence graph survives endpoint
 identification. Edges whose endpoints become equal are treated as length-zero
-walks, so quotient loops cause no loss of connectedness.-/
+walks, so quotient loops cause no loss of connectedness.
+@isnad1 id=connecte.1h6v.s6.d9f54b9a55e5 from=translated src=- shape=b0db2d9e vocab=fe8567f3
+-/
 theorem connected_quotient_of_connected (a b c d : E → V)
     (hG : (SimpleGraph.indexedOccurrenceGraph (Sum.elim a b) (Sum.elim c d)).Connected) :
     (SimpleGraph.indexedOccurrenceGraph
@@ -137,7 +147,9 @@ theorem connected_quotient_of_connected (a b c d : E → V)
 
 /-- A connected paired-endpoint diagram satisfies the profile-sensitive
 partition bound. This includes quotient diagrams with a single vertex and
-loops, as well as zero profiles and every positive moment order.-/
+loops, as well as zero profiles and every positive moment order.
+@isnad1 id=le.9h11v.s8.b49a9f739268 from=translated src=- shape=7ae17866 vocab=906a2dcf
+-/
 theorem sum_prod_indicator_le_of_power_sums
     [Fintype V] [Fintype E] [Fintype α] [DecidableEq V] [DecidableEq α]
     (a b c d : E → V)
@@ -195,7 +207,9 @@ def orientedCycleTarget {k : ℕ} (r : Fin k) (flip : Bool) : Fin k :=
 
 /-- Pairing and independently reversing occurrences of a nonempty cyclic
 edge family preserves connectedness. Only coverage of the cycle positions is
-used; the two endpoint families need not be injective.-/
+used; the two endpoint families need not be injective.
+@isnad1 id=connecte.1h5v.s8.8f7d4c5c6227 from=translated src=- shape=c9de0944 vocab=5d2311ed
+-/
 theorem paired_oriented_cycle_connected {k : ℕ} (a b : E → Fin (k + 1))
     (hcover : Function.Surjective (Sum.elim a b)) (flip : E → Bool) :
     (SimpleGraph.indexedOccurrenceGraph

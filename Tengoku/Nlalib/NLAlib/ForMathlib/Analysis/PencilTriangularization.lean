@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A square complex pencil admits unit domain and image vectors whose two
 images are scalar multiples of the image vector. Zero images are allowed.
-Horn–Johnson 2013, Theorem 2.6.1; QZ deflation helper.-/
+Horn–Johnson 2013, Theorem 2.6.1; QZ deflation helper.
+@isnad1 id=ex.1h4v.s9.84b6cb4bfc24 from=translated src=- shape=9e844ff0 vocab=f75c98b4
+-/
 theorem exists_unit_pencil_image_line {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E] [Nontrivial E]
     [NormedAddCommGroup F] [InnerProductSpace ℂ F] [FiniteDimensional ℂ F] [Nontrivial F]
@@ -44,7 +46,9 @@ theorem exists_unit_pencil_image_line {E F : Type*}
 /-- Every pair of complex maps between finite-dimensional spaces of equal
 dimension is upper triangular in a pair of orthonormal bases. The maps may
 be singular, the pencil may be identically singular, and dimension zero is
-included. Horn–Johnson 2013, Theorem 2.6.1; derivations §gen:schur.-/
+included. Horn–Johnson 2013, Theorem 2.6.1; derivations §gen:schur.
+@isnad1 id=ex.2h5v.s9.1db325b04d61 from=translated src=- shape=ef2c475a vocab=9e7f9b74
+-/
 theorem exists_orthonormalBases_pencil_upper_triangular {E F : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     [NormedAddCommGroup F] [InnerProductSpace ℂ F] [FiniteDimensional ℂ F]

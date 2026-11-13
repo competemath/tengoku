@@ -20,7 +20,9 @@ namespace Real
 variable {ι T : Type*} [Fintype ι]
 
 /-- Uniformly bounded coefficients give a finite upper bound for every
-finite real linear test over an arbitrary parameter class.-/
+finite real linear test over an arbitrary parameter class.
+@isnad1 id=bddabove.1h5v.s6.b32c033e6b4c from=translated src=- shape=909d9fee vocab=33277ae4
+-/
 theorem bddAbove_range_sum_mul_of_abs_le
     (X : ι → T → ℝ) {R : ℝ} (hX : ∀ i t, |X i t| ≤ R) (r : ι → ℝ) :
     BddAbove (Set.range fun t => ∑ i, r i * X i t) := by
@@ -37,7 +39,9 @@ namespace MeasureTheory
 variable {ι T : Type*} [Fintype ι]
 
 /-- The supremum of a uniformly bounded finite family of real linear
-coefficient tests is measurable, even for an uncountable parameter class.-/
+coefficient tests is measurable, even for an uncountable parameter class.
+@isnad1 id=measurab.1h4v.s6.6d987b8d8e0b from=translated src=- shape=3ab5122e vocab=01a0ed76
+-/
 theorem measurable_ciSup_sum_mul_of_bounded
     (X : ι → T → ℝ) {R : ℝ} (hX : ∀ i t, |X i t| ≤ R) :
     Measurable (fun r : ι → ℝ => ⨆ t, ∑ i, r i * X i t) := by

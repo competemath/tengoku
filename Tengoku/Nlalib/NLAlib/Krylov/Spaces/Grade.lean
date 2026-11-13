@@ -123,7 +123,9 @@ private lemma krylovGrade_eq_find [DecidablePred fun q => (A ^ q) *ᵥ b ∈ kry
     krylovSpace, finrank_span_eq_card hli, Fintype.card_fin]
 
 /-- At the grade, `A^ν b` falls into `K_ν(A,b)`.
-Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.-/
+Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.
+@isnad1 id=mem.0h4v.s8.d80c8bde1a78 from=translated src=- shape=85fa1af6 vocab=91aef515
+-/
 theorem pow_krylovGrade_mulVec_mem_krylovSpace :
     (A ^ krylovGrade A b) *ᵥ b ∈ krylovSpace A b (krylovGrade A b) := by
   classical
@@ -131,7 +133,9 @@ theorem pow_krylovGrade_mulVec_mem_krylovSpace :
   exact Nat.find_spec (exists_pow_mulVec_mem A b)
 
 /-- Below the grade, `Aⁱ b` is not in `K_i(A,b)`.
-Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.-/
+Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.
+@isnad1 id=not.1h5v.s8.5e50a025d8b2 from=translated src=- shape=f89cea9b vocab=784d367a
+-/
 theorem pow_mulVec_notMem_krylovSpace_of_lt_krylovGrade {i : ℕ} (hi : i < krylovGrade A b) :
     (A ^ i) *ᵥ b ∉ krylovSpace A b i := by
   classical
@@ -139,7 +143,9 @@ theorem pow_mulVec_notMem_krylovSpace_of_lt_krylovGrade {i : ℕ} (hi : i < kryl
   exact Nat.find_min (exists_pow_mulVec_mem A b) hi
 
 /-- The grade is at most any `q` with `A^q b ∈ K_q(A,b)`.
-Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.-/
+Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade`.
+@isnad1 id=le.1h5v.s8.2eaff0cf1b2b from=translated src=- shape=2435616b vocab=f77b5532
+-/
 theorem krylovGrade_le_of_pow_mulVec_mem {q : ℕ} (hq : (A ^ q) *ᵥ b ∈ krylovSpace A b q) :
     krylovGrade A b ≤ q := by
   classical
@@ -147,20 +153,26 @@ theorem krylovGrade_le_of_pow_mulVec_mem {q : ℕ} (hq : (A ^ q) *ᵥ b ∈ kryl
   exact Nat.find_min' _ hq
 
 /-- The span of all `Aⁱ b` is `K_ν(A,b)`. Source: Saad (2003) [`saad03`], Prop 6.2.
-Atlas: `krylov-grade`.-/
+Atlas: `krylov-grade`.
+@isnad1 id=eq.0h4v.s7.afe1b346d524 from=translated src=- shape=d9f75033 vocab=be3de5c1
+-/
 theorem span_range_pow_mulVec_eq_krylovSpace_krylovGrade :
     Submodule.span K (Set.range fun i : ℕ => (A ^ i) *ᵥ b) =
       krylovSpace A b (krylovGrade A b) :=
   span_range_eq_of_pow_mulVec_mem A b (pow_krylovGrade_mulVec_mem_krylovSpace A b)
 
 /-- Every power `Aⁱ b` lies in `K_ν(A,b)`. Source: Saad (2003) [`saad03`], Prop 6.2.
-Atlas: `krylov-grade`.-/
+Atlas: `krylov-grade`.
+@isnad1 id=mem.0h5v.s8.940faae79b51 from=translated src=- shape=dd57bfcc vocab=91aef515
+-/
 theorem pow_mulVec_mem_krylovSpace_krylovGrade (i : ℕ) :
     (A ^ i) *ᵥ b ∈ krylovSpace A b (krylovGrade A b) :=
   pow_mulVec_mem_of_pow_mulVec_mem A b (pow_krylovGrade_mulVec_mem_krylovSpace A b) i
 
 /-- Every Krylov space lies in `K_ν(A,b)`. Source: Saad (2003) [`saad03`], Prop 6.2.
-Atlas: `krylov-grade`.-/
+Atlas: `krylov-grade`.
+@isnad1 id=le.0h5v.s8.38eb8ce1a9b7 from=translated src=- shape=732aba2f vocab=c3ae9721
+-/
 theorem krylovSpace_le_krylovSpace_krylovGrade (q : ℕ) :
     krylovSpace A b q ≤ krylovSpace A b (krylovGrade A b) :=
   (krylovSpace_le_span_range A b q).trans
@@ -168,7 +180,9 @@ theorem krylovSpace_le_krylovSpace_krylovGrade (q : ℕ) :
 
 /-- **Invariance.** `K_ν(A,b)` is `A`-invariant: `x ∈ K_ν → A x ∈ K_ν`.
 Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade` (partial: invariance).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=mem.1h5v.s8.92d44bc00dbe from=translated src=- shape=28da2473 vocab=65c859ea
+-/
 theorem mulVec_mem_krylovSpace_krylovGrade {x : n → K}
     (hx : x ∈ krylovSpace A b (krylovGrade A b)) :
     A *ᵥ x ∈ krylovSpace A b (krylovGrade A b) :=
@@ -176,14 +190,18 @@ theorem mulVec_mem_krylovSpace_krylovGrade {x : n → K}
 
 /-- **Stabilisation.** Past the grade the Krylov spaces stop growing: `ν ≤ q → K_q = K_ν`.
 Source: Saad (2003) [`saad03`], Prop 6.2. Atlas: `krylov-grade` (partial: stabilisation).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=eq.1h5v.s6.3a5739466360 from=translated src=- shape=390795c2 vocab=c3ae9721
+-/
 theorem krylovSpace_eq_of_krylovGrade_le {q : ℕ} (h : krylovGrade A b ≤ q) :
     krylovSpace A b q = krylovSpace A b (krylovGrade A b) :=
   le_antisymm (krylovSpace_le_krylovSpace_krylovGrade A b q) (krylovSpace_mono A b h)
 
 /-- **Breakdown criterion.** `b, Ab, …, A^(q−1) b` are linearly independent iff `q ≤ ν(A,b)`.
 Source: Saad (2003) [`saad03`], Prop 6.1–6.2. Atlas: `krylov-grade` (partial: independence).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=iff.0h5v.s7.438066c6902f from=translated src=- shape=29e30431 vocab=31976ad8
+-/
 theorem linearIndependent_pow_mulVec_iff_le_krylovGrade {q : ℕ} :
     LinearIndependent K (fun i : Fin q => (A ^ (i : ℕ)) *ᵥ b) ↔ q ≤ krylovGrade A b := by
   constructor
@@ -198,7 +216,9 @@ theorem linearIndependent_pow_mulVec_iff_le_krylovGrade {q : ℕ} :
 
 /-- **Dimension of a Krylov space.** `dim K_q(A,b) = min q ν(A,b)`.
 Source: Saad (2003) [`saad03`], Prop 6.3. Atlas: `krylov-grade` (partial: dimension).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=eq.0h5v.s8.e979d6757d1c from=translated src=- shape=3bf198ea vocab=a958e062
+-/
 theorem finrank_krylovSpace (q : ℕ) :
     Module.finrank K (krylovSpace A b q) = min q (krylovGrade A b) := by
   have hle : ∀ q ≤ krylovGrade A b, Module.finrank K (krylovSpace A b q) = q := fun q hq => by
@@ -210,7 +230,9 @@ theorem finrank_krylovSpace (q : ℕ) :
 
 /-- The grade is at most the degree of the minimal polynomial of `A`.
 Source: Saad (2003) [`saad03`], Prop 6.1 (`μ_{A,b} ∣ μ_A`). Atlas: `krylov-grade` (partial).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=le.0h4v.s6.64b0c864ae5a from=translated src=- shape=bef9b9c0 vocab=bc5436f3
+-/
 theorem krylovGrade_le_natDegree_minpoly :
     krylovGrade A b ≤ (minpoly K A).natDegree := by
   set p := minpoly K A
@@ -234,13 +256,17 @@ theorem krylovGrade_le_natDegree_minpoly :
 
 /-- The grade is at most the dimension: `ν(A,b) ≤ n`.
 Source: Saad (2003) [`saad03`], Prop 6.1. Atlas: `krylov-grade` (partial).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=le.0h4v.s5.ccf09427c306 from=translated src=- shape=142ea9a8 vocab=47cfa26e
+-/
 theorem krylovGrade_le_card : krylovGrade A b ≤ Fintype.card n :=
   (Submodule.finrank_le _).trans (Module.finrank_fintype_fun_eq_card K).le
 
 /-- The grade vanishes exactly for the zero vector: `ν(A,b) = 0 ↔ b = 0`.
 Source: Liesen–Strakoš (2013) [`ls13`], §2.2. Atlas: `krylov-grade` (partial).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=iff.0h4v.s6.185ae8f4d17c from=translated src=- shape=8d2378c3 vocab=9e973b2e
+-/
 theorem krylovGrade_eq_zero_iff : krylovGrade A b = 0 ↔ b = 0 := by
   constructor
   · intro h
@@ -256,7 +282,9 @@ minimises over `x₀ + K_q` is exact at `q = ν`. The proof: `A` maps the invari
 injectively, hence onto, itself, and `r₀ = A (x⋆ − x₀)` lies in it.
 Source: Saad (2003) [`saad03`], Prop 6.3 and §6.1 (`A⁻¹ b ∈ K_ν(A, b)`).
 Atlas: `krylov-grade` (partial: finite termination).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=mem.2h6v.s8.097bbc79bbfd from=translated src=- shape=4bb2f7b2 vocab=7e472517
+-/
 theorem sub_mem_krylovSpace_krylovGrade {A : Matrix n n K} (hA : IsUnit A) {c xs : n → K}
     (hxs : A *ᵥ xs = c) (x₀ : n → K) :
     xs - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) (krylovGrade A (c - A *ᵥ x₀)) := by
@@ -280,7 +308,9 @@ theorem sub_mem_krylovSpace_krylovGrade {A : Matrix n n K} (hA : IsUnit A) {c xs
 /-- For an invertible matrix, the inverse image of the starting vector belongs
 to the grade-sized Krylov space, including zero vectors and empty matrices.
 Source: Saad (2003), Proposition 6.3; operator derivations, Section 5.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=mem.1h4v.s8.f1887844289e from=translated src=- shape=3f041a6f vocab=8e73e3b7
+-/
 theorem inv_mulVec_mem_krylovSpace_krylovGrade {A : Matrix n n K}
     (hA : IsUnit A) (b : n → K) :
     A⁻¹ *ᵥ b ∈ krylovSpace A b (krylovGrade A b) := by

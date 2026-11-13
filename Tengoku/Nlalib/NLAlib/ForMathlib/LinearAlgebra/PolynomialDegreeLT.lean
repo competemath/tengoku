@@ -22,7 +22,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 def degreeTruncation (d : ℕ) : 𝕜[X] →ₗ[𝕜] 𝕜[X] :=
   ∑ i : Fin d, (lcoeff 𝕜 i.val).smulRight (X^i.val)
 
-/-- Degree truncation is its actual finite monomial coefficient sum.-/
+/-- Degree truncation is its actual finite monomial coefficient sum.
+@isnad1 id=eq.0h3v.s9.7ef054b937cc from=translated src=- shape=87fe1778 vocab=4f9d2f3a
+-/
 @[simp] theorem degreeTruncation_apply (d : ℕ) (p : 𝕜[X]) :
     degreeTruncation d p = ∑ i : Fin d, C (p.coeff i.val)*X^i.val := by
   simp only [degreeTruncation, LinearMap.sum_apply, LinearMap.smulRight_apply,
@@ -36,7 +38,9 @@ def degreeLTProjection (d : ℕ) : 𝕜[X] →ₗ[𝕜] degreeLT 𝕜 d :=
     rw [mem_degreeLT, degreeTruncation_apply]
     exact degree_sum_fin_lt _)
 
-/-- On a polynomial already below the degree bound, projection is the identity.-/
+/-- On a polynomial already below the degree bound, projection is the identity.
+@isnad1 id=eq.0h3v.s10.e0269b380df9 from=translated src=- shape=042793be vocab=edb3dec5
+-/
 @[simp] theorem degreeLTProjection_coe {d : ℕ} (p : degreeLT 𝕜 d) :
     degreeLTProjection d (p : 𝕜[X]) = p := by
   apply Subtype.ext

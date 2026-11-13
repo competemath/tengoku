@@ -14,7 +14,9 @@ open Polynomial Set
 namespace Polynomial
 
 /-- Every continuous complex function on a compact real interval is uniformly
-approximated by a complex polynomial on the real argument.-/
+approximated by a complex polynomial on the real argument.
+@isnad1 id=ex.2h4v.s6.a89dd17d481e from=translated src=- shape=358d48c6 vocab=6069acb7
+-/
 theorem exists_complex_polynomial_near_of_continuousOn {a b : ℝ} {f : ℝ → ℂ}
     (hf : ContinuousOn f (Icc a b)) {ε : ℝ} (hε : 0 < ε) :
     ∃ p : ℂ[X], ∀ x ∈ Icc a b, ‖f x - p.eval (x : ℂ)‖ < ε := by

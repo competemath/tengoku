@@ -15,7 +15,9 @@ set_option autoImplicit false
 namespace List
 
 /-- Finite insertion has exactly the same ordered list as inserting between
-the corresponding prefix and suffix.-/
+the corresponding prefix and suffix.
+@isnad1 id=eq.0h5v.s6.c268cdf42da3 from=translated src=- shape=06241896 vocab=c3452659
+-/
 theorem ofFn_insertNth_eq_take_cons_drop {α : Type*} {m : ℕ}
     (v : Fin m → α) (i : Fin (m + 1)) (a : α) :
     List.ofFn (Fin.insertNth i a v) =

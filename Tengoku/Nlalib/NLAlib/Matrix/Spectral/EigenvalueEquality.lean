@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- Equal Hermitian matrices have equal sorted eigenvalue lists.
 Mathlib's spectral definition and proof irrelevance; helper for
-`singular-value-interlacing` and congruence spectrum comparisons.-/
+`singular-value-interlacing` and congruence spectrum comparisons.
+@isnad1 id=eq.3h4v.s7.b5cb825e09cd from=translated src=- shape=c2eba149 vocab=a7a31ecd
+-/
 theorem eigenvalues₀_eq_of_matrix_eq {n 𝕜 : Type*} [Fintype n] [DecidableEq n]
     [RCLike 𝕜] {A B : Matrix n n 𝕜} (hA : A.IsHermitian) (hB : B.IsHermitian)
     (h : A = B) : hA.eigenvalues₀ = hB.eigenvalues₀ := by
@@ -29,7 +31,9 @@ theorem eigenvalues₀_eq_of_matrix_eq {n 𝕜 : Type*} [Fintype n] [DecidableEq
   rfl
 
 /-- Hermitian matrices (over `ℝ` or `ℂ`) with equal characteristic polynomials have the same
-sorted eigenvalue list. Horn–Johnson 2013, Section 4.1.-/
+sorted eigenvalue list. Horn–Johnson 2013, Section 4.1.
+@isnad1 id=eq.3h4v.s7.9e7e0c94ccf4 from=translated src=- shape=363537bd vocab=fdd88843
+-/
 theorem eigenvalues₀_eq_of_charpoly_eq {n 𝕜 : Type*} [Fintype n] [DecidableEq n] [RCLike 𝕜]
     {A B : Matrix n n 𝕜} (hA : A.IsHermitian) (hB : B.IsHermitian)
     (h : A.charpoly = B.charpoly) : hA.eigenvalues₀ = hB.eigenvalues₀ := by
@@ -39,7 +43,9 @@ theorem eigenvalues₀_eq_of_charpoly_eq {n 𝕜 : Type*} [Fintype n] [Decidable
 
 /-- Sorted eigenvalues of a Hermitian matrix (over `ℝ` or `ℂ`) are invariant under equivalent
 labels, with the canonical dimension cast. Horn–Johnson 2013, permutation similarity;
-multiplicities included.-/
+multiplicities included.
+@isnad1 id=eq.1h6v.s7.fe6f25ad1191 from=translated src=- shape=3cf5c2de vocab=ac4d9531
+-/
 theorem eigenvalues₀_reindex {n p 𝕜 : Type*} [Fintype n] [Fintype p]
     [DecidableEq n] [DecidableEq p] [RCLike 𝕜] {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     (e : n ≃ p) (i : Fin (Fintype.card n)) :
@@ -53,7 +59,9 @@ theorem eigenvalues₀_reindex {n p 𝕜 : Type*} [Fintype n] [Fintype p]
 
 /-- Complexification preserves the full ordered spectrum of a real
 symmetric matrix. Horn–Johnson 2013, Section 4.1; eigenvalues have exactly
-their original multiplicities.-/
+their original multiplicities.
+@isnad1 id=eq.2h2v.s6.fd00f4ee4d5a from=translated src=- shape=1ec011d7 vocab=544f8467
+-/
 theorem eigenvalues₀_map_ofReal {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (hC : (A.map Complex.ofReal).IsHermitian) :
     hC.eigenvalues₀ = hA.eigenvalues₀ := by

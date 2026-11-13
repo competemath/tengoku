@@ -29,10 +29,16 @@ private theorem bddBelow_metricInfTransform (g : C(X, ℝ)) (x : X) :
   rintro _ ⟨y, rfl⟩
   linarith [g.apply_le_norm y, dist_nonneg (x := x) (y := y)]
 
+/--
+@isnad1 id=le.0h4v.s6.0a9acc5c57d8 from=translated src=- shape=db7fd7b7 vocab=d5714d51
+-/
 theorem metricInfTransform_le (g : C(X, ℝ)) (x y : X) :
     metricInfTransform g x ≤ dist x y - g y :=
   ciInf_le (bddBelow_metricInfTransform g x) y
 
+/--
+@isnad1 id=lipschit.0h2v.s5.e80aef2a43b1 from=translated src=- shape=0416acd2 vocab=f049e453
+-/
 theorem metricInfTransform_lipschitz [Nonempty X] (g : C(X, ℝ)) :
     LipschitzWith 1 (metricInfTransform g) := by
   apply LipschitzWith.of_le_add_mul 1
@@ -46,7 +52,9 @@ theorem metricInfTransform_lipschitz [Nonempty X] (g : C(X, ℝ)) :
   linarith
 
 /-- A pair below the metric cost is dominated by a single one-Lipschitz
-potential and its negative.-/
+potential and its negative.
+@isnad1 id=ex.1h3v.s8.670d146c8597 from=translated src=- shape=195b38b8 vocab=cbe4337f
+-/
 theorem exists_lipschitz_dominate_of_add_le_dist [Nonempty X]
     (f g : C(X, ℝ)) (hfg : ∀ x y, f x + g y ≤ dist x y) :
     ∃ u : C(X, ℝ), LipschitzWith 1 u ∧ (∀ x, f x ≤ u x) ∧ ∀ y, g y ≤ -u y := by

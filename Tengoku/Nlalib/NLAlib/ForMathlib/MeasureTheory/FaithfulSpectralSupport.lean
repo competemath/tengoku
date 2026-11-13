@@ -26,7 +26,9 @@ private theorem spectralSupportRealCFC : ContinuousFunctionalCalculus ℝ A IsSe
   (IsSelfAdjoint.instIsometricContinuousFunctionalCalculus (A := A)).toContinuousFunctionalCalculus
 attribute [local instance] spectralSupportRealCFC
 
-/-- The actual spectrum measure has full support if its positive functional is faithful on a closed generated algebra containing the self-adjoint element.-/
+/-- The actual spectrum measure has full support if its positive functional is faithful on a closed generated algebra containing the self-adjoint element.
+@isnad1 id=eq.4h4v.s9.87be72aa8ce5 from=translated src=- shape=20fc8a1d vocab=5b8ee9b3
+-/
 theorem support_positiveSpectrumMeasure_eq_univ_of_faithful
     (φ : A →ₚ[ℂ] ℂ) (S : StarSubalgebra ℂ A) (hS : IsClosed (S : Set A))
     (hfaithful : ∀ b : A, b∈S → φ (star b*b)=0 → b=0)

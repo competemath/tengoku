@@ -21,7 +21,9 @@ namespace circleIntegral
 contour integral purely imaginary. No differentiability assumption is needed:
 the identity follows from the circle parametrization and orientation reversal.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.1h2v.s7.f4a9cb1cc2da from=translated src=- shape=a8a179f4 vocab=a3b47457
+-/
 theorem conj_eq_neg_of_conj_eq {f : ℂ → ℂ} {r : ℝ}
     (hf : ∀ z ∈ sphere (0 : ℂ) |r|, f (conj z) = conj (f z)) :
     conj (∮ z in C(0, r), f z) = -(∮ z in C(0, r), f z) := by
@@ -47,7 +49,9 @@ theorem conj_eq_neg_of_conj_eq {f : ℂ → ℂ} {r : ℝ}
 /-- A Schwarz-symmetric integrand has real normalized circle integral.
 This is the orientation-pairing identity used for real contour densities.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.1h2v.s7.ff3aaa423940 from=translated src=- shape=ecf2a591 vocab=c44debe6
+-/
 theorem normalized_im_eq_zero_of_conj_eq {f : ℂ → ℂ} {r : ℝ}
     (hf : ∀ z ∈ sphere (0 : ℂ) |r|, f (conj z) = conj (f z)) :
     ((2 * Real.pi * I : ℂ)⁻¹ * (∮ z in C(0, r), f z)).im = 0 := by

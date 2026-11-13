@@ -18,7 +18,9 @@ open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
 /-- A real rule's polynomial exactness is equivalent to the corresponding
-finite list of monomial moment identities.-/
+finite list of monomial moment identities.
+@isnad1 id=iff.0h6v.s8.9c8952f6824b from=translated src=- shape=e86031a3 vocab=2d476d1e
+-/
 theorem polynomial_rule_exact_iff_moments (L : ℝ[X] →ₗ[ℝ] ℝ)
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (v w : ι → ℝ) (d : ℕ) :
     (∀ p : ℝ[X], p.degree < d → L p = ∑ i ∈ s, w i * p.eval (v i)) ↔
@@ -39,7 +41,9 @@ theorem polynomial_rule_exact_iff_moments (L : ℝ[X] →ₗ[ℝ] ℝ)
 /-- Exactness through degree `#s−1+k` is exactly the integrated-cardinal weight
 condition together with nodal orthogonality through degree `k−1`.
 Source: Gautschi (2004), characterization; operator derivations AQ1.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=iff.3h6v.s7.a276b7ca2d0e from=translated src=- shape=7e1bf57a vocab=6e7234fc
+-/
 theorem integral_eq_quadrature_iff {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {ι : Type*} [DecidableEq ι] {s : Finset ι} (hs : s.Nonempty)
     {v : ι → ℝ} (hv : InjOn v s) (w : ι → ℝ) (k : ℕ) :
@@ -54,7 +58,9 @@ theorem integral_eq_quadrature_iff {μ : Measure ℝ} (hμ : HasPolynomialMoment
 /-- A positive measure with more than `n` support points admits no `n`-node
 rule exact through degree `2n`. The terminal `n`-atom case is excluded precisely
 by the support premise. Source: Gautschi (2004), maximal Gauss degree; AQ2.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=not.2h4v.s7.b48304861c19 from=translated src=- shape=a5f935c2 vocab=7fde03f8
+-/
 theorem not_integral_eq_quadrature_degree_two_mul {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : (n + 1 : ℕ∞) ≤ μ.support.encard) (v w : Fin n → ℝ) :
@@ -74,7 +80,9 @@ theorem not_integral_eq_quadrature_degree_two_mul {μ : Measure ℝ}
 /-- Gauss-degree exactness against a measure with at least as many support
 points gives strictly positive weights, including a terminal atomic rule.
 Source: Gautschi (2004), positivity of Gauss weights; operator derivations AQ2.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=lt.4h5v.s7.8cfeee0ba564 from=translated src=- shape=de766efa vocab=15bd54f8
+-/
 theorem quadrature_weight_pos_of_gauss_exact {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard)
     {v : Fin n → ℝ} (hv : Function.Injective v) (w : Fin n → ℝ)
@@ -94,7 +102,9 @@ theorem quadrature_weight_pos_of_gauss_exact {μ : Measure ℝ}
 measure to agree up to permutation. Positivity of the competing weights need
 not be assumed: it follows from their moment exactness.
 Source: Gautschi (2004), uniqueness of Gauss measure; operator derivations AQ2.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=ex.7h6v.s8.ca4841fb2ff1 from=translated src=- shape=acdd4fa0 vocab=e9fc3a5d
+-/
 theorem quadrature_rule_eq_up_to_permutation_of_moments {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) (v u w a : Fin n → ℝ)

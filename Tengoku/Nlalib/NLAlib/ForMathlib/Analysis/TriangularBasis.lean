@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- Any common triangularizing basis can be replaced by an orthonormal
 basis with the same triangularity property, without a commutation assumption.
-Source: Horn–Johnson (2013), Theorem 2.3.3; Gram–Schmidt preserves the flag.-/
+Source: Horn–Johnson (2013), Theorem 2.3.3; Gram–Schmidt preserves the flag.
+@isnad1 id=ex.1h6v.s11.f8b5df5607ad from=translated src=- shape=9bf150d4 vocab=4c4e66d6
+-/
 theorem exists_orthonormalBasis_of_upper_triangular_basis
     {𝕜 E n ι : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [FiniteDimensional 𝕜 E] [Fintype n] [DecidableEq n] [LinearOrder n]

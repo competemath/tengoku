@@ -19,7 +19,9 @@ variable {n M : Type*} [Fintype n] [DecidableEq n] [CommMonoid M]
 /-- Multiplying a function over every one-element deletion of every
 size-`k+1` subset counts each size-`k` subset exactly `card n-k` times.
 The identity holds for every `k`, including the empty and out-of-range cases.
-Horn--Johnson (2013), proof of Theorem 7.8.11; supports Szász's inequality.-/
+Horn--Johnson (2013), proof of Theorem 7.8.11; supports Szász's inequality.
+@isnad1 id=eq.0h4v.s6.906d42a95a00 from=translated src=- shape=f0da45a6 vocab=88207d62
+-/
 theorem prod_powersetCard_prod_erase_eq_pow (f : Finset n → M) (k : ℕ) :
     (∏ T ∈ (Finset.univ : Finset n).powersetCard (k + 1), ∏ i ∈ T, f (T.erase i)) =
       (∏ S ∈ (Finset.univ : Finset n).powersetCard k, f S) ^ (Fintype.card n - k) := by

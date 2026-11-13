@@ -16,7 +16,9 @@ namespace Commute
 variable {K n : Type*} [Field K] [Fintype n] [DecidableEq n]
 
 /-- Commutation with a square matrix implies commutation with its total
-nonsingular inverse, including the singular zero-inverse case.-/
+nonsingular inverse, including the singular zero-inverse case.
+@isnad1 id=commute.1h4v.s6.ca15cea87b79 from=translated src=- shape=c749c2c8 vocab=82fdb72d
+-/
 theorem matrix_inv_right {A B : Matrix n n K} (h : Commute A B) : Commute A B⁻¹ := by
   rw [Matrix.nonsing_inv_eq_ringInverse]
   by_cases hu : IsUnit B
@@ -35,12 +37,16 @@ variable {K n : Type*} [Field K] [Fintype n] [DecidableEq n]
 def bicommutantAlgebra (A : Matrix n n K) : Subalgebra K (Matrix n n K) :=
   Subalgebra.centralizer K (Subalgebra.centralizer K ({A} : Set (Matrix n n K)))
 
-/-- The generator belongs to its bicommutant.-/
+/-- The generator belongs to its bicommutant.
+@isnad1 id=mem.0h3v.s7.60fa62149da5 from=translated src=- shape=90ae6b0b vocab=8f73ca1f
+-/
 theorem self_mem_bicommutantAlgebra (A : Matrix n n K) : A ∈ bicommutantAlgebra A := by
   intro B hB
   exact (hB A (Set.mem_singleton A)).symm
 
-/-- A singleton bicommutant is commutative.-/
+/-- A singleton bicommutant is commutative.
+@isnad1 id=ismulcom.0h3v.s9.d1be3032894d from=translated src=- shape=728f19a9 vocab=002ae6a8
+-/
 instance bicommutantAlgebraIsMulCommutative (A : Matrix n n K) :
     IsMulCommutative (bicommutantAlgebra A) := by
   apply IsMulCommutative.of_comm
@@ -58,7 +64,9 @@ instance bicommutantAlgebraCommRing (A : Matrix n n K) : CommRing (bicommutantAl
   inferInstance
 
 /-- The ordinary inverse stays in the bicommutant, without any unit
-assumption on the matrix being inverted.-/
+assumption on the matrix being inverted.
+@isnad1 id=mem.1h4v.s8.a5cc7745703b from=translated src=- shape=d3e35be8 vocab=fdc28cf1
+-/
 theorem inv_mem_bicommutantAlgebra {A X : Matrix n n K}
     (hX : X ∈ bicommutantAlgebra A) : X⁻¹ ∈ bicommutantAlgebra A := by
   intro B hB
@@ -69,7 +77,9 @@ def bicommutantInverse {A : Matrix n n K} (X : bicommutantAlgebra A) : bicommuta
   ⟨X.val⁻¹, inv_mem_bicommutantAlgebra X.property⟩
 
 /-- Units in the bicommutant are exactly the matrices that are units in
-the ambient full matrix algebra.-/
+the ambient full matrix algebra.
+@isnad1 id=iff.0h4v.s9.d19bcbe7f9f5 from=translated src=- shape=f129d7a8 vocab=7ecf7350
+-/
 theorem isUnit_bicommutant_iff {A : Matrix n n K} (X : bicommutantAlgebra A) :
     IsUnit X ↔ IsUnit X.val := by
   constructor

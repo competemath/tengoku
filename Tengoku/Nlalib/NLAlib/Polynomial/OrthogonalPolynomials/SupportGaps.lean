@@ -90,7 +90,9 @@ theorem eq_of_eval_monicOrthogonalPolynomial_eq_zero_of_mem_support_gap
 
 /-- At the terminal order, the zeros are exactly the finite measure support.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=iff.2h3v.s6.7c5fa90bde31 from=translated src=- shape=196bd04f vocab=6204bed1
+-/
 theorem eval_monicOrthogonalPolynomial_eq_zero_iff_mem_support_of_encard_eq
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : μ.support.encard = n) (x : ℝ) :

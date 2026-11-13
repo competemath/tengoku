@@ -17,7 +17,9 @@ namespace MeasureTheory
 variable {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι]
   {μ : Measure Ω}
 
-/-- A finite supremum of integrable real functions is integrable.-/
+/-- A finite supremum of integrable real functions is integrable.
+@isnad1 id=integrab.1h4v.s6.a2a346a2663f from=translated src=- shape=5f185351 vocab=702ff207
+-/
 theorem integrable_iSup_of_integrable_finite (f : ι → Ω → ℝ)
     (hf : ∀ i, Integrable (f i) μ) : Integrable (fun ω => ⨆ i, f i ω) μ := by
   classical
@@ -30,7 +32,9 @@ theorem integrable_iSup_of_integrable_finite (f : ι → Ω → ℝ)
   exact Finset.single_le_sum (fun j _ => abs_nonneg (f j ω)) (Finset.mem_univ i)
 
 /-- A finite maximum has mean at most a common mean bound plus the sum of
-the mean absolute deviations. The variables may be arbitrarily dependent.-/
+the mean absolute deviations. The variables may be arbitrarily dependent.
+@isnad1 id=le.2h5v.s7.1260cd540d46 from=translated src=- shape=f96a25dd vocab=13727484
+-/
 theorem integral_iSup_le_mean_add_sum_integral_abs_sub
     [IsProbabilityMeasure μ] (f : ι → Ω → ℝ) (hf : ∀ i, Integrable (f i) μ)
     {M : ℝ} (hM : ∀ i, ∫ ω, f i ω ∂μ ≤ M) :

@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- A unit vector followed by an orthonormal basis of its orthogonal
 complement is an orthonormal basis of the whole finite-dimensional space.
-This exact-coordinate version supports Schur and QZ induction.-/
+This exact-coordinate version supports Schur and QZ induction.
+@isnad1 id=ex.2h5v.s10.425b9bc66eeb from=translated src=- shape=b67700e5 vocab=b235794f
+-/
 theorem exists_orthonormalBasis_cons {𝕜 E : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     {k : ℕ} (hk : finrank 𝕜 E = k + 1) (u : E) (hu : ‖u‖ = 1)

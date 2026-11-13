@@ -91,7 +91,9 @@ def edgeList {r q : ℕ} : RowRootedBipartiteTree r q → List (Fin (r+1) × Fin
   | addColumn t u => (u, 0) :: (edgeList t).map (fun e => (e.1, Fin.succ e.2))
 
 /-- The edge list of a tree with a new row leaf starts with the new edge `(0, v)`
-and then contains the old edges with row indices shifted by `Fin.succ`.-/
+and then contains the old edges with row indices shifted by `Fin.succ`.
+@isnad1 id=eq.0h4v.s8.8ea07b17d5ca from=translated src=- shape=f480865e vocab=1493cca2
+-/
 lemma edgeList_addRow {r q : ℕ} (t : RowRootedBipartiteTree r q) (v : Fin q) :
     edgeList (addRow t v) =
       (0, v) :: (edgeList t).map (fun e => (Fin.succ e.1, e.2)) := by
@@ -99,7 +101,9 @@ lemma edgeList_addRow {r q : ℕ} (t : RowRootedBipartiteTree r q) (v : Fin q) :
 
 /-- The edge list of a tree with a new column leaf starts with the new edge
 `(u, 0)` and then contains the old edges with column indices shifted by
-`Fin.succ`.-/
+`Fin.succ`.
+@isnad1 id=eq.0h4v.s8.0f86c9663d26 from=translated src=- shape=30ded162 vocab=38518d3a
+-/
 lemma edgeList_addColumn {r q : ℕ} (t : RowRootedBipartiteTree r q) (u : Fin (r+1)) :
     edgeList (addColumn t u) =
       (u, 0) :: (edgeList t).map (fun e => (e.1, Fin.succ e.2)) := by
@@ -113,7 +117,9 @@ def weight (w : I → J → ℝ) {r q : ℕ} (t : RowRootedBipartiteTree r q)
     (x : Fin (r+1) → I) (y : Fin q → J) : ℝ :=
   ((edgeList t).map (fun e => w (x e.1) (y e.2))).prod
 
-/-- Nonnegativity of the tree weight when `w` is nonnegative.-/
+/-- Nonnegativity of the tree weight when `w` is nonnegative.
+@isnad1 id=le.1h8v.s6.cfe03b1dac14 from=translated src=- shape=d201aff1 vocab=5179fb4f
+-/
 theorem weight_nonneg (w : I → J → ℝ) {r q : ℕ} (t : RowRootedBipartiteTree r q)
     (hwnn : ∀ i j, 0 ≤ w i j) (x : Fin (r+1) → I) (y : Fin q → J) :
     0 ≤ weight w t x y := by
@@ -127,7 +133,9 @@ theorem weight_nonneg (w : I → J → ℝ) {r q : ℕ} (t : RowRootedBipartiteT
 
 /-- The recursive weight identity for a new row leaf: the weight of `addRow t v`
 factorizes as the weight of the new edge `(0, v)` times the weight of the original
-tree with row indices shifted by `Fin.succ`.-/
+tree with row indices shifted by `Fin.succ`.
+@isnad1 id=eq.0h9v.s7.01d8e4c8f25c from=translated src=- shape=bf3a6b47 vocab=4fa2ffeb
+-/
 theorem weight_addRow_eq (t : RowRootedBipartiteTree r q) (v : Fin q)
     (w : I → J → ℝ) (x : Fin ((r+1)+1) → I) (y : Fin q → J) :
     weight w (addRow t v) x y =
@@ -141,7 +149,9 @@ theorem weight_addRow_eq (t : RowRootedBipartiteTree r q) (v : Fin q)
 
 /-- The recursive weight identity for a new column leaf: the weight of
 `addColumn t u` factorizes as the weight of the new edge `(u, 0)` times the weight
-of the original tree with column indices shifted by `Fin.succ`.-/
+of the original tree with column indices shifted by `Fin.succ`.
+@isnad1 id=eq.0h9v.s7.a1027be9db74 from=translated src=- shape=0941ad9e vocab=efdc3b90
+-/
 theorem weight_addColumn_eq (t : RowRootedBipartiteTree r q) (u : Fin (r+1))
     (w : I → J → ℝ) (x : Fin (r+1) → I) (y : Fin (q+1) → J) :
     weight w (addColumn t u) x y =
@@ -198,7 +208,9 @@ private lemma sum_optionPiEquiv {I J : Type*} [Fintype I] [Fintype J]
     (g := fun x' => ∑ y : Fin q → J, F x' y)
 
 /-- The size of the edge list is `r + q`: each of the `r` non-root rows and `q`
-columns is attached exactly once.-/
+columns is attached exactly once.
+@isnad1 id=eq.0h3v.s5.996206dbd790 from=translated src=- shape=5dec2248 vocab=a58fe98a
+-/
 theorem edgeList_length (t : RowRootedBipartiteTree r q) :
     (edgeList t).length = r + q := by
   induction t with
@@ -210,7 +222,9 @@ theorem edgeList_length (t : RowRootedBipartiteTree r q) :
       simp [edgeList, List.length_map, ih]
       ac_rfl
 
-/-- The edge list contains no repeated edge.-/
+/-- The edge list contains no repeated edge.
+@isnad1 id=nodup.0h3v.s4.6ccdcc0c6182 from=translated src=- shape=09fff70b vocab=84390aee
+-/
 theorem edgeList_nodup (t : RowRootedBipartiteTree r q) :
     (edgeList t).Nodup := by
   induction t with
@@ -241,7 +255,9 @@ theorem edgeList_nodup (t : RowRootedBipartiteTree r q) :
 /-- Row-leaf elimination identity: summing the weight of `addRow t v` over the label
 of the new row equals summing the column sum `∑ i, w i (y v)` of the original tree
 weight. This is the semantic bridge between the concrete partition sum of a grown
-tree and the partition sum of the original tree.-/
+tree and the partition sum of the original tree.
+@isnad1 id=eq.0h7v.s7.a3d0a488b142 from=translated src=- shape=020952cf vocab=da71fa07
+-/
 theorem partitionSum_addRow_eq (t : RowRootedBipartiteTree r q) (v : Fin q)
     (w : I → J → ℝ) :
     partitionSum (addRow t v) w =
@@ -276,7 +292,9 @@ theorem partitionSum_addRow_eq (t : RowRootedBipartiteTree r q) (v : Fin q)
 
 /-- Column-leaf elimination identity: summing the weight of `addColumn t u` over
 the label of the new column equals summing the row sum `∑ j, w (x u) j` of the
-original tree weight.-/
+original tree weight.
+@isnad1 id=eq.0h7v.s8.3184b41a9cb8 from=translated src=- shape=bf1dc59d vocab=448a780c
+-/
 theorem partitionSum_addColumn_eq (t : RowRootedBipartiteTree r q) (u : Fin (r+1))
     (w : I → J → ℝ) :
     partitionSum (addColumn t u) w =
@@ -308,7 +326,9 @@ theorem partitionSum_addColumn_eq (t : RowRootedBipartiteTree r q) (u : Fin (r+1
             (I := I) (J := J) (u := u) (w := w)
             (F := fun x y => weight w t x y)
 
-/-- Adding a row leaf costs at most the column-sum factor `a`.-/
+/-- Adding a row leaf costs at most the column-sum factor `a`.
+@isnad1 id=le.2h8v.s6.d05429aaae22 from=translated src=- shape=28171e8c vocab=39bfd7b5
+-/
 theorem partitionSum_addRow_le (t : RowRootedBipartiteTree r q) (v : Fin q)
     (w : I → J → ℝ) (a : ℝ)
     (hwnn : ∀ i j, 0 ≤ w i j)
@@ -328,7 +348,9 @@ theorem partitionSum_addRow_le (t : RowRootedBipartiteTree r q) (v : Fin q)
     _ = a * partitionSum t w := by
           simp [partitionSum, Finset.mul_sum]
 
-/-- Adding a column leaf costs at most the row-sum factor `c`.-/
+/-- Adding a column leaf costs at most the row-sum factor `c`.
+@isnad1 id=le.2h8v.s6.e815de774cf8 from=translated src=- shape=d5fe5e72 vocab=b5b176ab
+-/
 theorem partitionSum_addColumn_le (t : RowRootedBipartiteTree r q) (u : Fin (r+1))
     (w : I → J → ℝ) (c : ℝ)
     (hwnn : ∀ i j, 0 ≤ w i j)

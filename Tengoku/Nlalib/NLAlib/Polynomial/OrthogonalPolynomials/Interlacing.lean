@@ -21,7 +21,9 @@ namespace NLAlib
 /-- Consecutive monic orthogonal polynomials have no common zero whenever the
 moment systems through the larger order are nonsingular. This holds over any field.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=not.1h4v.s7.fd050347c9ff from=translated src=- shape=01aa06b5 vocab=6238e806
+-/
 theorem not_eval_monicOrthogonalPolynomial_eq_zero_and_succ
     {𝕜 : Type*} [Field 𝕜] (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) (x : 𝕜) :
@@ -63,7 +65,9 @@ private theorem eval_monicOrthogonalPolynomial_eigenvalues₀_eq_zero
 
 /-- Eigenvalues of consecutive moment Jacobi matrices strictly interlace.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=and.2h3v.s8.8d38576e8979 from=translated src=- shape=3da8e5ea vocab=98673dc3
+-/
 theorem eigenvalues₀_orthogonalPolynomialJacobiMatrix_strict_interlacing
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n + 1, 0 < orthogonalPolynomialNorm L k) (i : Fin n) :

@@ -95,7 +95,9 @@ private theorem ae_eval_ne_zero_fin (μ : Measure ℝ) [SigmaFinite μ]
 finitely many variables is null for a product of copies of an atomless sigma-finite measure on
 `ℝ`.
 
-Helper for HMT 2011 Prop A.5; atlas `gaussian-full-rank-ae`.-/
+Helper for HMT 2011 Prop A.5; atlas `gaussian-full-rank-ae`.
+@isnad1 id=eventual.1h3v.s7.1b821eeed4d0 from=translated src=- shape=6741a02d vocab=53c42070
+-/
 theorem ae_eval_ne_zero {ι : Type*} [Fintype ι] (μ : Measure ℝ)
     [SigmaFinite μ] [NullSingletonClass μ] (f : MvPolynomial ι ℝ) (hf : f ≠ 0) :
     ∀ᵐ x ∂(Measure.pi fun _ : ι => μ), MvPolynomial.eval x f ≠ 0 := by
@@ -127,7 +129,9 @@ theorem ae_eval_ne_zero {ι : Type*} [Fintype ι] (μ : Measure ℝ)
   exact hy
 
 /-- The zero set of a nonzero real multivariate polynomial is Lebesgue-null.
-HMT 2011, Proposition A.5, polynomial-null-set step.-/
+HMT 2011, Proposition A.5, polynomial-null-set step.
+@isnad1 id=eq.1h2v.s7.9b3926f84c6c from=translated src=- shape=d80bd77d vocab=709fe201
+-/
 theorem volume_eval_eq_zero {ι : Type*} [Fintype ι] (f : MvPolynomial ι ℝ)
     (hf : f ≠ 0) : volume {x : ι → ℝ | eval x f = 0} = 0 := by
   have h := ae_eval_ne_zero volume f hf

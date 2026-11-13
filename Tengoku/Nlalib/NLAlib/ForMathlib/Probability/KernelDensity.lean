@@ -21,7 +21,9 @@ namespace ProbabilityTheory.Kernel
 variable {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
 
 /-- Jointly measurable real densities which are nonnegative almost everywhere
-and have integral one define a Markov kernel against the reference measure.-/
+and have integral one define a Markov kernel against the reference measure.
+@isnad1 id=ismarkov.4h4v.s7.2244f7ae74dc from=translated src=- shape=706ce1e7 vocab=44cb0cc6
+-/
 theorem isMarkovKernel_const_withDensity_of_integral_eq_one
     (ν : Measure β) [SFinite ν] {f : α → β → ℝ}
     (hf : Measurable (Function.uncurry f))
@@ -36,7 +38,9 @@ theorem isMarkovKernel_const_withDensity_of_integral_eq_one
     exact ENNReal.ofReal_one
 
 /-- Mixing densities against an input measure averages those densities. The
-identity is for actual measures and permits infinite-valued densities.-/
+identity is for actual measures and permits infinite-valued densities.
+@isnad1 id=eq.1h5v.s6.7a082444a7bb from=translated src=- shape=8140e9ab vocab=64af2e66
+-/
 theorem comp_const_withDensity (μ : Measure α) (ν : Measure β)
     [SFinite μ] [SFinite ν] {f : α → β → ℝ≥0∞}
     (hf : Measurable (Function.uncurry f)) :

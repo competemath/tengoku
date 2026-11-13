@@ -35,18 +35,24 @@ def finOneSumSuccAboveEquiv {n : ℕ} (p : Fin (n + 1)) :
       exact Fin.succAboveCases p ⟨Sum.inl 0, rfl⟩ (fun j => ⟨Sum.inr j, rfl⟩) i)
 
 /-- The singled-out coordinate of `finOneSumSuccAboveEquiv` is the chosen
-index. Supports repeated-root restoration in converse interlacing.-/
+index. Supports repeated-root restoration in converse interlacing.
+@isnad1 id=eq.0h3v.s7.c4666b0905b4 from=translated src=- shape=da7845e3 vocab=a162ac97
+-/
 @[simp] theorem finOneSumSuccAboveEquiv_inl {n : ℕ} (p : Fin (n + 1)) (i : Fin 1) :
     finOneSumSuccAboveEquiv p (Sum.inl i) = p := rfl
 
 /-- The remaining coordinates of `finOneSumSuccAboveEquiv` are exactly
-`Fin.succAbove`. Supports repeated-root restoration in converse interlacing.-/
+`Fin.succAbove`. Supports repeated-root restoration in converse interlacing.
+@isnad1 id=eq.0h3v.s7.03a177e90bb2 from=translated src=- shape=06f8c831 vocab=8d70adca
+-/
 @[simp] theorem finOneSumSuccAboveEquiv_inr {n : ℕ} (p : Fin (n + 1)) (i : Fin n) :
     finOneSumSuccAboveEquiv p (Sum.inr i) = p.succAbove i := rfl
 
 /-- An uncoupled scalar coordinate contributes one linear characteristic
 factor, with the other coordinates in any specified order. Horn–Johnson
-2013, Section 1.2; converse-interlacing restoration helper.-/
+2013, Section 1.2; converse-interlacing restoration helper.
+@isnad1 id=eq.1h5v.s9.907e249453b3 from=translated src=- shape=17f2c91a vocab=871df861
+-/
 theorem charpoly_eq_mul_of_isolated_equiv {m n K : Type*}
     [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] [CommRing K]
     (A : Matrix m m K) (e : Fin 1 ⊕ n ≃ m)
@@ -77,7 +83,9 @@ theorem charpoly_eq_mul_of_isolated_equiv {m n K : Type*}
 factor. Source: Horn–Johnson (2013), Theorem 1.4.7; the remaining block is
 the principal submatrix on all other coordinates, including an empty block.
 The special case of `charpoly_eq_mul_of_isolated_equiv` for the equivalence
-`Fin 1 ⊕ {j // j ≠ i} ≃ n` (over any commutative ring).-/
+`Fin 1 ⊕ {j // j ≠ i} ≃ n` (over any commutative ring).
+@isnad1 id=eq.2h5v.s8.b49c8eeeeaa0 from=translated src=- shape=26b69d61 vocab=a0ae84e7
+-/
 theorem charpoly_eq_X_sub_C_mul_submatrix_of_isolated_coordinate {n K : Type*}
     [Fintype n] [DecidableEq n] [CommRing K]
     (M : Matrix n n K) (i : n) (μ : K)

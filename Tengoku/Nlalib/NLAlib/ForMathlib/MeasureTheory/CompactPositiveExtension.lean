@@ -21,7 +21,9 @@ namespace NLAlib
 /-- On a compact space, prescribing integrals on a subspace containing all
 constants admits a finite positive measure which minimizes a chosen continuous
 cost. The minimum is exactly the supremum of the integrals of the minorants
-from that subspace. The original finite measure supplies consistent data.-/
+from that subspace. The original finite measure supplies consistent data.
+@isnad1 id=ex.1h4v.s9.981c1e895b87 from=translated src=- shape=a309ad59 vocab=855d1ad7
+-/
 theorem exists_finiteMeasure_integral_eq_sSup_of_submodule
     {X : Type*} [MeasurableSpace X] [TopologicalSpace X] [T2Space X]
     [BorelSpace X] [CompactSpace X] (μ : Measure X) [IsFiniteMeasure μ]

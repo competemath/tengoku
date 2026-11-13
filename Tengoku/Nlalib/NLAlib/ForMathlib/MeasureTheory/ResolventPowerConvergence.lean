@@ -23,7 +23,9 @@ variable {ι A₀ E : Type*} [CStarAlgebra A₀]
   {Ω B : ι → Type*} [∀ i, MeasurableSpace (Ω i)] [∀ i, CStarAlgebra (B i)]
 
 /-- Actual observable resolvent power means converge locally uniformly
-whenever their actual first-resolvent means do.-/
+whenever their actual first-resolvent means do.
+@isnad1 id=tendstol.2h12v.s10.e0ccdf394ecf from=translated src=- shape=ba5fa10b vocab=ca954b72
+-/
 theorem tendstoLocallyUniformlyOn_resolventPowerMean_of_first
     (μ : (i : ι) → Measure (Ω i)) [∀ i, IsFiniteMeasure (μ i)]
     (X : (i : ι) → Ω i → selfAdjoint (B i))

@@ -21,7 +21,9 @@ namespace NLAlib
 /-- An open-domain map with invertible strict derivative and proper restriction
 has a global inverse with inverse derivative.
 Source: the inverse function theorem and proper covering-map uniqueness;
-helper for `lebesgue-constant-lower-bound`.-/
+helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=ex.3h4v.s9.fb5b1ad9784a from=translated src=- shape=dd04c3d4 vocab=046449ed
+-/
 theorem exists_inverse_of_isProperMap_of_hasStrictFDerivAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {U : Set E} [Nonempty U] [PreconnectedSpace U] (hU : IsOpen U)

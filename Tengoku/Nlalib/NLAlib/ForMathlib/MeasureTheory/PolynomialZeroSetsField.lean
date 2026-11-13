@@ -87,7 +87,9 @@ private theorem ae_eval_ne_zero_normedField_fin (μ : Measure 𝕜) [SigmaFinite
 finitely many variables is null for a product of copies of an atomless sigma-finite measure on
 `𝕜`.
 
-Helper for HMT 2011 Prop A.5; atlas `gaussian-full-rank-ae`.-/
+Helper for HMT 2011 Prop A.5; atlas `gaussian-full-rank-ae`.
+@isnad1 id=eventual.1h4v.s8.e6b2e8152c6a from=translated src=- shape=6f7cb2a1 vocab=5da52c54
+-/
 theorem ae_eval_ne_zero_normedField {ι : Type*} [Fintype ι] (μ : Measure 𝕜)
     [SigmaFinite μ] [NullSingletonClass μ] (f : MvPolynomial ι 𝕜) (hf : f ≠ 0) :
     ∀ᵐ x ∂(Measure.pi fun _ : ι => μ), MvPolynomial.eval x f ≠ 0 := by

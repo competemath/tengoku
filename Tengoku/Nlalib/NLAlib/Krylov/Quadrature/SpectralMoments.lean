@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A finite spectral measure has every polynomial moment, including zero
-starting vectors and empty matrices.-/
+starting vectors and empty matrices.
+@isnad1 id=haspolyn.1h3v.s5.3eb4a40df4a6 from=translated src=- shape=a8ebecb8 vocab=8783b39d
+-/
 theorem hasPolynomialMoments_spectralMeasure {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (b : n → ℝ) : HasPolynomialMoments (spectralMeasure hA b) := by
   intro p
@@ -31,7 +33,9 @@ theorem hasPolynomialMoments_spectralMeasure {A : Matrix n n ℝ}
 /-- The number of distinct positive-mass spectral support points is exactly
 the vector's Krylov grade. Zero vectors and empty matrices give zero support.
 Source: Gautschi (2004), Sections 1.1 and 2.2; operator derivations OP2.
-atlas: hankel-moment-positivity (partial), orthogonal-polynomials-measure-def (partial)-/
+atlas: hankel-moment-positivity (partial), orthogonal-polynomials-measure-def (partial)
+@isnad1 id=eq.1h3v.s6.1e3ac98e5e9f from=translated src=- shape=498d9717 vocab=6aaec181
+-/
 theorem support_encard_spectralMeasure_eq_krylovGrade {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (b : n → ℝ) :
     (spectralMeasure hA b).support.encard = (krylovGrade A b : ℕ∞) := by
@@ -60,7 +64,9 @@ theorem support_encard_spectralMeasure_eq_krylovGrade {A : Matrix n n ℝ}
 /-- A spectral-measure Hankel matrix is positive definite exactly through the
 Krylov grade, including its empty order-zero case.
 Source: Gautschi (2004), Section 1.1; operator derivations OP2.
-atlas: hankel-moment-positivity (partial)-/
+atlas: hankel-moment-positivity (partial)
+@isnad1 id=iff.1h4v.s6.78c6f8331fdc from=translated src=- shape=b808fc49 vocab=671ab527
+-/
 theorem posDef_hankelMomentMatrix_spectralMeasure_iff {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (b : n → ℝ) (q : ℕ) :
     (hankelMomentMatrix

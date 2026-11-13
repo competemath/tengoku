@@ -21,7 +21,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- An interval of radius L has an ε-net of size at most ceil(2L/ε)+1.
-The grid may extend past its right endpoint, and a zero radius is allowed.-/
+The grid may extend past its right endpoint, and a zero radius is allowed.
+@isnad1 id=ex.2h3v.s7.f59efbb2b401 from=translated src=- shape=5edd68f4 vocab=c32a25b2
+-/
 theorem exists_finset_interval_net (a : ℝ) {L ε : ℝ} (_hL : 0 ≤ L) (hε : 0 < ε) :
     ∃ N : Finset ℝ, N.card ≤ ⌈2*L/ε⌉₊+1 ∧
       ∀ x : ℝ, |x-a| ≤ L → ∃ u ∈ N, |x-u| ≤ ε := by
@@ -48,7 +50,9 @@ theorem exists_finset_interval_net (a : ℝ) {L ε : ℝ} (_hL : 0 ≤ L) (hε :
   linarith
 
 /-- A finite union of intervals has a net with the sum of their grid-size
-bounds. The set of centers may be empty.-/
+bounds. The set of centers may be empty.
+@isnad1 id=ex.2h4v.s7.a4e62d211cf2 from=translated src=- shape=69a41243 vocab=00910c69
+-/
 theorem exists_finset_union_intervals_net {ι : Type*} [Fintype ι]
     (a : ι → ℝ) {L ε : ℝ} (hL : 0 ≤ L) (hε : 0 < ε) :
     ∃ N : Finset ℝ, N.card ≤ Fintype.card ι*(⌈2*L/ε⌉₊+1) ∧

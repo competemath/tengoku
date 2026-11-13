@@ -69,7 +69,9 @@ def krylovFunApprox (A : Matrix n n ℝ) (f : ℝ → ℝ) (b : n → ℝ) (Q : 
 columns and `K_q(A,b) ⊆ range Q`, then `Q p(QᵀAQ) Qᵀ b = p(A) b` for every `p` with
 `deg p < q`, for any square `A`. Source: Saad (1992) [`saad92`], Lemma 3.1; Trefethen–Bau
 (1997) [`tb97`], Thm 34.1 (Arnoldi form).
-atlas: krylov-polynomial-exactness (partial)-/
+atlas: krylov-polynomial-exactness (partial)
+@isnad1 id=eq.3h7v.s9.cc638502c841 from=translated src=- shape=665b69b6 vocab=8db6b1c0
+-/
 theorem mulVec_aeval_transpose_mul_mul_mulVec_eq {A : Matrix n n ℝ} {Q : Matrix n k ℝ}
     (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {p : ℝ[X]} (hp : p.degree < q) :
@@ -90,7 +92,9 @@ Source: Saad (1992) [`saad92`], Lemma 3.1.
 Deviation: the matrix-function form needs `A` symmetric (so that `QᵀAQ` is self-adjoint and
 `cfc` is the polynomial calculus); `mulVec_aeval_transpose_mul_mul_mulVec_eq` is the form for
 any `A`.
-atlas: krylov-polynomial-exactness (partial)-/
+atlas: krylov-polynomial-exactness (partial)
+@isnad1 id=eq.4h7v.s9.a4f98c4471b9 from=translated src=- shape=e98232e6 vocab=30cec4a0
+-/
 theorem krylovFunApprox_eval_eq_aeval {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {p : ℝ[X]} (hp : p.degree < q) :
@@ -106,7 +110,9 @@ agrees with `f` at the eigenvalues of `T = QᵀAQ` (the Ritz values), then
 Deviation: any orthonormal `Q` with `K_q(A,b) ⊆ range Q`; Lagrange (not Hermite)
 interpolation, the agreement being only required at the Ritz values.
 Atlas: proposed id `lanczos-fa-interpolation`; uses `krylov-polynomial-exactness`.
-atlas: lanczos-fa-interpolation-/
+atlas: lanczos-fa-interpolation
+@isnad1 id=eq.5h8v.s9.f4d9ccbcb7ef from=translated src=- shape=3ca23ad5 vocab=5bcdfe06
+-/
 theorem krylovFunApprox_eq_aeval_of_forall_eval_eq {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {f : ℝ → ℝ} {p : ℝ[X]}
@@ -125,7 +131,9 @@ Deviation: `Q` is any orthonormal matrix with at most `q` columns and `K_q(A,b) 
 source takes the Lanczos basis, `range Q = K_q`); the Ritz values are interpolated without
 multiplicity (Lagrange, not Hermite), which suffices because `f(T)` only sees `f` on `spec T`.
 Atlas: proposed id `lanczos-fa-interpolation`; uses `krylov-polynomial-exactness`.
-atlas: lanczos-fa-interpolation-/
+atlas: lanczos-fa-interpolation
+@isnad1 id=eq.4h7v.s9.2753d167a3c2 from=translated src=- shape=34e22c89 vocab=bd59a10f
+-/
 theorem krylovFunApprox_eq_aeval_interpolate {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) (hk : Fintype.card k ≤ q)
@@ -161,7 +169,9 @@ and the same range, then `Q f(QᵀAQ) Qᵀ b = Q' f(Q'ᵀAQ') Q'ᵀ b` (for `Q' 
 orthogonal, `f(UᵀTU) = Uᵀ f(T) U`). Source: `docs/KRYLOV_DEFINITIONS.md` §3.9; Saad (1992)
 [`saad92`], §3 (basis-independence of the Krylov projection).
 Deviation: `A` symmetric (for nonsymmetric `A` the real `cfc` is not the matrix function).
-Atlas: `lanczos-fa-error` (helper: basis independence of the approximant).-/
+Atlas: `lanczos-fa-error` (helper: basis independence of the approximant).
+@isnad1 id=eq.4h8v.s8.6b83746c3649 from=translated src=- shape=66f34e76 vocab=d793796c
+-/
 theorem krylovFunApprox_congr {A : Matrix n n ℝ} (hA : A.IsHermitian) {k' : Type*} [Fintype k']
     [DecidableEq k'] {Q : Matrix n k ℝ} {Q' : Matrix n k' ℝ} (hQ : HasOrthonormalCols Q)
     (hQ' : HasOrthonormalCols Q')
@@ -200,7 +210,9 @@ orthonormal columns and `K_q(A,b) ⊆ range Q`, and `p` a polynomial with `deg p
 Druskin–Knizhnerman (1989) [`dk89`]; Higham (2008) [`higham08`], §13.2.
 Deviation: an arbitrary approximant `p` in place of the best one (minimise over `p` to get the
 printed form); squared norms; no `q ≥ 1` (at `q = 0`, `p = 0`).
-atlas: lanczos-fa-error-/
+atlas: lanczos-fa-error
+@isnad1 id=le.6h11v.s9.e5459c5c3527 from=translated src=- shape=8d597e93 vocab=ff18318c
+-/
 theorem dotProduct_cfc_mulVec_sub_krylovFunApprox_self_le {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {f : ℝ → ℝ} {p : ℝ[X]}
@@ -240,7 +252,9 @@ every eigenvalue in `[a, c]`, `0 < a < c`, then
 `A⁻¹ = cfc (1/x) A`). Corollary of `dotProduct_cfc_mulVec_sub_krylovFunApprox_self_le` and
 `exists_degree_lt_abs_eval_sub_inv_le` (atlas `inverse-polynomial-approx`).
 Source: Saad (1992) [`saad92`], Thm 3.4; Golub–Meurant (2010) [`gm10`], Ch. 8 (the rate).
-atlas: lanczos-fa-error (partial)-/
+atlas: lanczos-fa-error (partial)
+@isnad1 id=le.6h8v.s9.a63e6edac18a from=translated src=- shape=1881b935 vocab=573d029b
+-/
 theorem dotProduct_cfc_inv_mulVec_sub_krylovFunApprox_self_le {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {a c : ℝ} (ha : 0 < a) (hac : a < c)
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a c) {Q : Matrix n k ℝ}

@@ -57,7 +57,9 @@ private theorem hasFPowerSeriesOnBall_inverse_sub [HasSummableGeomSeries A]
 perturbation is the sum over all ordered insertion permutations. The base
 shift is an actual unit, and no global smoothness premise is imposed.
 Source: the Banach-algebra geometric series; used in Brailovskaya–van Handel,
-arXiv:2201.05142v3, Lemma 6.9.-/
+arXiv:2201.05142v3, Lemma 6.9.
+@isnad1 id=eq.1h5v.s9.8c29f00ae714 from=translated src=- shape=2878adfe vocab=adc0f09a
+-/
 theorem iteratedFDeriv_ringInverse_sub_apply [CompleteSpace A]
     {b : A} (hb : IsUnit b) {k : ℕ} (H : Fin k → A) :
     iteratedFDeriv 𝕜 k (fun x : A => (b - x)⁻¹ʳ) 0 H =
@@ -70,7 +72,9 @@ theorem iteratedFDeriv_ringInverse_sub_apply [CompleteSpace A]
 Only membership of the base scalar in the actual resolvent set is required.
 The formula also includes derivative order zero and trivial algebras.
 Source: geometric-series differentiation, as in Brailovskaya–van Handel,
-arXiv:2201.05142v3, Lemma 6.9.-/
+arXiv:2201.05142v3, Lemma 6.9.
+@isnad1 id=eq.1h6v.s9.0fdb584d04ab from=translated src=- shape=17f15bcb vocab=5757e10e
+-/
 theorem iteratedFDeriv_resolvent_apply [CompleteSpace A]
     {a : A} {ζ : 𝕜} (hζ : ζ ∈ resolventSet 𝕜 a) {k : ℕ} (H : Fin k → A) :
     iteratedFDeriv 𝕜 k (fun x : A => resolvent x ζ) a H =

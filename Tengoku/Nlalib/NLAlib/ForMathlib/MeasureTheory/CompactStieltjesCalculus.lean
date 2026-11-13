@@ -24,7 +24,9 @@ namespace MeasureTheory
 /-- A finite compactly supported real measure has the actual complex
 Stieltjes derivative at every point separated from its true support.
 All integrability and differentiation hypotheses are derived from the
-native support, including real evaluation points in spectral gaps.-/
+native support, including real evaluation points in spectral gaps.
+@isnad1 id=hasderiv.2h2v.s7.1319cca107ef from=translated src=- shape=3cf8a1d5 vocab=63828b4c
+-/
 theorem hasDerivAt_integral_real_cauchyKernel_of_support
     (μ : Measure ℝ) [IsFiniteMeasure μ] (hμ : IsCompact μ.support)
     (z : ℂ) (hz : ∀ ξ ∈ μ.support, (ξ : ℂ)≠z) :
@@ -77,7 +79,9 @@ theorem hasDerivAt_integral_real_cauchyKernel_of_support
 
 /-- The actual scalar Stieltjes integral is analytic on the open
 complement of the embedded compact real support. In particular its
-continuation across a true real gap is constructed directly.-/
+continuation across a true real gap is constructed directly.
+@isnad1 id=analytic.2h2v.s6.9613db628622 from=translated src=- shape=0de4bd9e vocab=9187aebf
+-/
 theorem analyticAt_integral_real_cauchyKernel_of_support
     (μ : Measure ℝ) [IsFiniteMeasure μ] (hμ : IsCompact μ.support)
     (z : ℂ) (hz : ∀ ξ ∈ μ.support, (ξ : ℂ)≠z) :

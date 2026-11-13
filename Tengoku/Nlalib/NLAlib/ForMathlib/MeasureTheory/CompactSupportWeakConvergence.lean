@@ -22,7 +22,9 @@ namespace MeasureTheory.ProbabilityMeasure
 
 /-- Weak convergence of real probability laws on a common compact interval
 implies convergence of every real or complex test integral continuous on that
-interval. The approximating support condition is only eventual.-/
+interval. The approximating support condition is only eventual.
+@isnad1 id=tendsto.5h8v.s8.3cd956b58dbd from=translated src=- shape=9ec7f391 vocab=c76f8022
+-/
 theorem tendsto_integral_of_support_subset_Icc {I 𝕜 : Type*} [RCLike 𝕜]
     {l : Filter I} {μs : I → ProbabilityMeasure ℝ} {μ : ProbabilityMeasure ℝ}
     (hweak : Tendsto μs l (𝓝 μ)) {a b : ℝ} (hab : a ≤ b)

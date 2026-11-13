@@ -33,7 +33,9 @@ private theorem cstar_norm_pow_le (a : A) (n : ℕ) : ‖a^n‖≤‖a‖^n := b
 
 namespace selfAdjoint
 
-/-- The genuine nonreal resolvent is continuous on the self-adjoint subtype.-/
+/-- The genuine nonreal resolvent is continuous on the self-adjoint subtype.
+@isnad1 id=continuo.1h2v.s8.7f0cb5610953 from=translated src=- shape=60f4488e vocab=65214990
+-/
 theorem continuous_resolvent {z : ℂ} (hz : z.im≠0) :
     Continuous (fun a : selfAdjoint A => resolvent (a : A) z) := by
   apply continuous_iff_continuousAt.mpr
@@ -50,7 +52,9 @@ end selfAdjoint
 
 namespace MeasureTheory
 
-/-- Every actual self-adjoint resolvent power is Bochner integrable at nonreal height.-/
+/-- Every actual self-adjoint resolvent power is Bochner integrable at nonreal height.
+@isnad1 id=integrab.2h6v.s8.04fa4687a34d from=translated src=- shape=5c87c492 vocab=5581e631
+-/
 theorem integrable_resolvent_selfAdjoint_pow
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     {z : ℂ} (hz : z.im≠0) (n : ℕ) :
@@ -62,7 +66,9 @@ theorem integrable_resolvent_selfAdjoint_pow
       ((X ω).property.norm_resolvent_le hz) n)
 
 /-- Differentiating the actual Bochner mean of a self-adjoint resolvent power
-gives the negative exponent times the mean of its next power.-/
+gives the negative exponent times the mean of its next power.
+@isnad1 id=hasderiv.2h6v.s9.ebe36509856d from=translated src=- shape=94a6e249 vocab=ea1ada6c
+-/
 theorem hasDerivAt_integral_resolvent_selfAdjoint_pow
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     {z : ℂ} (hz : z.im≠0) (n : ℕ) :

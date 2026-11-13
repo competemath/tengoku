@@ -33,14 +33,18 @@ namespace IsCompactExpRepresentation
 variable {ν : FiniteMeasure ℝ} {F : ℝ → ℝ} {a b : ℝ}
 
 /-- Positive compact exponential transforms are smooth, in every finite or
-infinite differentiability order.-/
+infinite differentiability order.
+@isnad1 id=contdiff.1h5v.s5.c6da49b60ef6 from=translated src=- shape=4f15da3a vocab=906c9e35
+-/
 theorem contDiff (h : IsCompactExpRepresentation ν F a b) (k : WithTop ℕ∞) :
     ContDiff ℝ k F :=
   (show AnalyticOnNhd ℝ F univ from fun t _ => h.analyticAt t).contDiff
 
 /-- An upper support bound controls the exact second-order Taylor remainder.
 The coefficient remains defined at a zero upper support endpoint.
-Source: Tropp (2026), BMV one-summand replacement argument.-/
+Source: Tropp (2026), BMV one-summand replacement argument.
+@isnad1 id=le.1h4v.s6.fa2cfb1b733d from=translated src=- shape=cebda2ed vocab=ce7c884b
+-/
 theorem le_add_deriv_add_iteratedDeriv_two_mul_coefficient
     (h : IsCompactExpRepresentation ν F a b) :
     F 1 ≤ F 0 + deriv F 0 +
@@ -51,7 +55,9 @@ theorem le_add_deriv_add_iteratedDeriv_two_mul_coefficient
 
 /-- Symmetrizing a positive exponential transform gives its exact quadratic
 Taylor lower bound, with all odd terms removed before any expectation.
-Source: Tropp (2026), Gaussian one-summand lower comparison.-/
+Source: Tropp (2026), Gaussian one-summand lower comparison.
+@isnad1 id=le.1h4v.s6.b411f4380348 from=translated src=- shape=ebbe918b vocab=16ed6f4b
+-/
 theorem two_mul_zero_add_iteratedDeriv_two_le_add
     (h : IsCompactExpRepresentation ν F a b) :
     2 * F 0 + iteratedDeriv 2 F 0 ≤ F 1 + F (-1) := by

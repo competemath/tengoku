@@ -31,7 +31,9 @@ def golubKahanRecurrenceDecomp (A : Matrix m n ℝ) (b : m → ℝ) (k : ℕ)
 
 /-- The recurrence's bidiagonal compression has its actual diagonal coefficients.
 atlas: golub-kahan-recurrence (partial)
-atlas: golub-kahan-bidiagonalization (partial)-/
+atlas: golub-kahan-bidiagonalization (partial)
+@isnad1 id=eq.1h6v.s6.df6c473b9dab from=translated src=- shape=0bfa5035 vocab=7c5cff67
+-/
 theorem golubKahanRecurrenceDecomp_B_diag (A : Matrix m n ℝ) (b : m → ℝ) (k : ℕ)
     (h : GolubKahanSucceeds A b k) (j : Fin k) :
     (golubKahanRecurrenceDecomp A b k h).B j.castSucc j =
@@ -41,7 +43,9 @@ theorem golubKahanRecurrenceDecomp_B_diag (A : Matrix m n ℝ) (b : m → ℝ) (
 
 /-- The recurrence's bidiagonal compression has its actual subdiagonal coefficients.
 atlas: golub-kahan-recurrence (partial)
-atlas: golub-kahan-bidiagonalization (partial)-/
+atlas: golub-kahan-bidiagonalization (partial)
+@isnad1 id=eq.1h6v.s6.03d491ceff88 from=translated src=- shape=8f1b2347 vocab=23f600fa
+-/
 theorem golubKahanRecurrenceDecomp_B_subdiag (A : Matrix m n ℝ) (b : m → ℝ) (k : ℕ)
     (h : GolubKahanSucceeds A b k) (j : Fin k) :
     (golubKahanRecurrenceDecomp A b k h).B j.succ j =
@@ -51,7 +55,9 @@ theorem golubKahanRecurrenceDecomp_B_subdiag (A : Matrix m n ℝ) (b : m → ℝ
 
 /-- The transpose relation in column form has exactly the next right-vector
 residual in the last column. This includes `k = 0`, where the prefix is empty.
-atlas: golub-kahan-bidiagonalization (partial)-/
+atlas: golub-kahan-bidiagonalization (partial)
+@isnad1 id=eq.1h6v.s8.be513e96e89b from=translated src=- shape=299083da vocab=1c199157
+-/
 theorem golubKahanRecurrenceDecomp_transpose_mulVec (A : Matrix m n ℝ) (b : m → ℝ)
     (k : ℕ) (h : GolubKahanSucceeds A b k) (j : Fin (k + 1)) :
     Aᵀ *ᵥ (golubKahanRecurrenceDecomp A b k h).U.col j =

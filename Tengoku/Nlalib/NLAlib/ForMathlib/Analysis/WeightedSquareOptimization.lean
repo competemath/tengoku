@@ -13,7 +13,9 @@ set_option autoImplicit false
 
 /-- A family of genuine weighted-square estimates gives the sharp additive
 perturbation bound. All zero cases are retained, without division by a
-possibly vanishing rooted moment.-/
+possibly vanishing rooted moment.
+@isnad1 id=le.4h3v.s7.7456148614b1 from=translated src=- shape=d8dbb412 vocab=217ff380
+-/
 theorem le_add_of_forall_sq_le_weighted_sq {a b d : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hd : 0 ≤ d)
     (h : ∀ ε : ℝ, 0 < ε → a ^ 2 ≤ (1+ε)*b^2 + (1+ε⁻¹)*d^2) :

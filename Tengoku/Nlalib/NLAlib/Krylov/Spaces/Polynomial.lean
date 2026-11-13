@@ -31,7 +31,9 @@ namespace NLAlib
 
 variable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The generators `A^i b` (`i < q`) lie in `K_q(A,b)`. Atlas: `krylov-subspace`.-/
+/-- The generators `A^i b` (`i < q`) lie in `K_q(A,b)`. Atlas: `krylov-subspace`.
+@isnad1 id=mem.1h6v.s8.1fbf5c5fa312 from=translated src=- shape=ecede787 vocab=384b0e13
+-/
 theorem pow_mulVec_mem_krylovSpace (A : Matrix n n K) (b : n → K) {q i : ℕ} (hi : i < q) :
     (A ^ i) *ᵥ b ∈ krylovSpace A b q :=
   Submodule.subset_span ⟨⟨i, hi⟩, rfl⟩
@@ -46,7 +48,9 @@ private lemma aeval_sum_fin_mulVec (A : Matrix n n K) (b : n → K) {q : ℕ} (c
 where both sides are `{0}`): `x ∈ K_q(A,b) ↔ x = p(A) b` for some `p` with `deg p < q`, i.e.
 `K_q` is spanned by `q − 1` matvecs.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 4; Martinsson–Tropp (2020) [`mt20`], §11.7.
-atlas: krylov-subspace-/
+atlas: krylov-subspace
+@isnad1 id=iff.0h6v.s9.dabfa099b21d from=translated src=- shape=a9b21451 vocab=8fff56e9
+-/
 theorem mem_krylovSpace_iff (A : Matrix n n K) (b : n → K) (q : ℕ) (x : n → K) :
     x ∈ krylovSpace A b q ↔
       ∃ p : K[X], p.degree < q ∧ x = Polynomial.aeval A p *ᵥ b := by
@@ -65,11 +69,15 @@ theorem mem_krylovSpace_iff (A : Matrix n n K) (b : n → K) (q : ℕ) (x : n �
     exact Submodule.sum_mem _ fun i _ =>
       Submodule.smul_mem _ _ (pow_mulVec_mem_krylovSpace A b i.isLt)
 
-/-- The zeroth Krylov space is trivial: `K_0(A,b) = 0`. Atlas: `krylov-subspace`.-/
+/-- The zeroth Krylov space is trivial: `K_0(A,b) = 0`. Atlas: `krylov-subspace`.
+@isnad1 id=eq.0h4v.s7.71a5926b5897 from=translated src=- shape=3e300426 vocab=2cbe8129
+-/
 @[simp] theorem krylovSpace_zero (A : Matrix n n K) (b : n → K) : krylovSpace A b 0 = ⊥ := by
   rw [krylovSpace, Set.range_eq_empty, Submodule.span_empty]
 
-/-- Zero generators produce the trivial Krylov space.-/
+/-- Zero generators produce the trivial Krylov space.
+@isnad1 id=eq.0h4v.s7.5eb5916aaa34 from=translated src=- shape=102419dc vocab=2cbe8129
+-/
 @[simp] theorem krylovSpace_start_zero (A : Matrix n n K) (q : ℕ) :
     krylovSpace A 0 q = ⊥ := by
   apply le_antisymm _ bot_le
@@ -78,7 +86,9 @@ theorem mem_krylovSpace_iff (A : Matrix n n K) (b : n → K) (q : ℕ) (x : n �
   simp
 
 /-- One Krylov step adds one generator: `K_{q+1}(A,b) = K_q(A,b) ⊔ span {A^q b}`.
-Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.-/
+Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
+@isnad1 id=eq.0h5v.s8.55a8ae138e07 from=translated src=- shape=e88878ae vocab=580b318a
+-/
 theorem krylovSpace_succ (A : Matrix n n K) (b : n → K) (q : ℕ) :
     krylovSpace A b (q + 1) = krylovSpace A b q ⊔ Submodule.span K {(A ^ q) *ᵥ b} := by
   rw [krylovSpace, krylovSpace, ← Submodule.span_union]
@@ -96,7 +106,9 @@ theorem krylovSpace_succ (A : Matrix n n K) (b : n → K) (q : ℕ) :
 
 /-- Krylov spaces are nested: `q ≤ q' → K_q(A,b) ≤ K_{q'}(A,b)`. Source: [`gm10`], Ch. 4.
 Atlas: `krylov-subspace`.
-atlas: krylov-subspace-/
+atlas: krylov-subspace
+@isnad1 id=le.1h6v.s8.6bc6e64d4730 from=translated src=- shape=ffd948e3 vocab=aabf300a
+-/
 theorem krylovSpace_mono (A : Matrix n n K) (b : n → K) {q q' : ℕ} (h : q ≤ q') :
     krylovSpace A b q ≤ krylovSpace A b q' :=
   Submodule.span_le.2 <| by
@@ -104,7 +116,9 @@ theorem krylovSpace_mono (A : Matrix n n K) (b : n → K) {q q' : ℕ} (h : q �
     exact pow_mulVec_mem_krylovSpace A b (lt_of_lt_of_le i.isLt h)
 
 /-- `A K_q(A,b) ⊆ K_{q+1}(A,b)`. Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
-atlas: krylov-subspace-/
+atlas: krylov-subspace
+@isnad1 id=mem.1h6v.s8.ee752bf90050 from=translated src=- shape=c92b923f vocab=6ddbf271
+-/
 theorem mulVec_mem_krylovSpace_succ (A : Matrix n n K) (b : n → K) {q : ℕ} {x : n → K}
     (hx : x ∈ krylovSpace A b q) : A *ᵥ x ∈ krylovSpace A b (q + 1) := by
   have hle : krylovSpace A b q ≤ (krylovSpace A b (q + 1)).comap (Matrix.mulVecLin A) := by
@@ -116,13 +130,17 @@ theorem mulVec_mem_krylovSpace_succ (A : Matrix n n K) (b : n → K) {q : ℕ} {
   exact hle hx
 
 /-- The starting vector lies in every nontrivial Krylov space: `b ∈ K_{q+1}(A,b)`.
-Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.-/
+Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
+@isnad1 id=mem.0h5v.s7.8a1da2f82e29 from=translated src=- shape=1c525f4a vocab=7292aa35
+-/
 theorem self_mem_krylovSpace_succ (A : Matrix n n K) (b : n → K) (q : ℕ) :
     b ∈ krylovSpace A b (q + 1) := by
   simpa using pow_mulVec_mem_krylovSpace A b (Nat.succ_pos q)
 
 /-- `dim K_q(A,b) ≤ q`. Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
-atlas: krylov-subspace-/
+atlas: krylov-subspace
+@isnad1 id=le.0h5v.s8.c2dece9926f8 from=translated src=- shape=2a8ba8b4 vocab=04b4f134
+-/
 theorem finrank_krylovSpace_le (A : Matrix n n K) (b : n → K) (q : ℕ) :
     Module.finrank K (krylovSpace A b q) ≤ q := by
   exact (finrank_range_le_card (R := K) (fun i : Fin q => (A ^ (i : ℕ)) *ᵥ b)).trans
@@ -130,7 +148,9 @@ theorem finrank_krylovSpace_le (A : Matrix n n K) (b : n → K) (q : ℕ) :
 
 /-! ### Shifted and intertwined Krylov spaces -/
 
-/-- `K_q(B, B b) ⊆ K_{q+1}(B, b)`. Helper for `golub-kahan-bidiagonalization`.-/
+/-- `K_q(B, B b) ⊆ K_{q+1}(B, b)`. Helper for `golub-kahan-bidiagonalization`.
+@isnad1 id=le.0h5v.s8.4c9b68e17fa0 from=translated src=- shape=8eff4850 vocab=965578c2
+-/
 theorem krylovSpace_mulVec_le_succ (B : Matrix n n K) (b : n → K) (q : ℕ) :
     krylovSpace B (B *ᵥ b) q ≤ krylovSpace B b (q + 1) := by
   refine Submodule.span_le.2 ?_
@@ -145,7 +165,9 @@ variable {m : Type*} [Fintype m] [DecidableEq m]
 
 /-- Krylov spaces are carried along an intertwining map: if `C B = B' C` then
 `C K_q(B, b) ⊆ K_q(B', C b)`. Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1. Helper for
-`golub-kahan-bidiagonalization`.-/
+`golub-kahan-bidiagonalization`.
+@isnad1 id=mem.2h9v.s9.3a94747c4a0a from=translated src=- shape=5b275c26 vocab=563b07cc
+-/
 theorem mulVec_mem_krylovSpace_of_mul_eq {C : Matrix m n K} {B : Matrix n n K}
     {B' : Matrix m m K} (hC : C * B = B' * C) {b x : n → K} {q : ℕ}
     (hx : x ∈ krylovSpace B b q) : C *ᵥ x ∈ krylovSpace B' (C *ᵥ b) q := by

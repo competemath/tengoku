@@ -23,7 +23,9 @@ noncomputable def logDefect (x : ℝ) : ℝ :=
   x - 1 - Real.log x
 
 /-- Scalar capacity certificate: for `0 < x`, if the logarithmic defect
-`logDefect x` is at most `1 / 6`, then `(x - 1)^2 ≤ 6 * logDefect x`.-/
+`logDefect x` is at most `1 / 6`, then `(x - 1)^2 ≤ 6 * logDefect x`.
+@isnad1 id=le.2h1v.s6.ddb943b717e3 from=translated src=- shape=dc34b56e vocab=e447171c
+-/
 theorem sq_sub_one_le_six_mul_logDefect {x : ℝ} (hx : 0 < x)
     (hdef : logDefect x ≤ 1 / 6) :
     (x - 1) ^ 2 ≤ 6 * logDefect x := by

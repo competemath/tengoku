@@ -23,7 +23,9 @@ def ofRowList {n α : Type*} (rows : List (n → α)) : Matrix (Fin rows.length)
 
 variable {𝕜 m n : Type*} [RCLike 𝕜]
 
-/-- The Gram matrix of a row list is the finite sum of its individual row Grams.-/
+/-- The Gram matrix of a row list is the finite sum of its individual row Grams.
+@isnad1 id=eq.0h3v.s8.0c98ef9c6350 from=translated src=- shape=a0b432d8 vocab=095eea1f
+-/
 theorem conjTranspose_ofRowList_mul_ofRowList (rows : List (n → 𝕜)) :
     (ofRowList rows)ᴴ * ofRowList rows =
       (rows.map (fun a => vecMulVec (star a) a)).sum := by
@@ -36,7 +38,9 @@ theorem conjTranspose_ofRowList_mul_ofRowList (rows : List (n → 𝕜)) :
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.sum_apply,
     Matrix.vecMulVec_apply, Pi.star_apply, ofRowList]
 
-/-- The native positional row enumeration has the original Gram matrix.-/
+/-- The native positional row enumeration has the original Gram matrix.
+@isnad1 id=eq.0h4v.s8.f1c26e3bcfdd from=translated src=- shape=07a02aba vocab=4be3b85a
+-/
 theorem sum_rowGrams_ofFn {N : ℕ} (A : Matrix (Fin N) n 𝕜) :
     ((List.ofFn (fun i => A i)).map (fun a => vecMulVec (star a) a)).sum = Aᴴ * A := by
   rw [List.map_ofFn, List.sum_ofFn]
@@ -45,7 +49,9 @@ theorem sum_rowGrams_ofFn {N : ℕ} (A : Matrix (Fin N) n 𝕜) :
     Function.comp_apply, Matrix.vecMulVec_apply, Pi.star_apply]
 
 /-- Inserting a row into a zero row adds its Gram exactly. This is the source of the
-Frequent Directions covariance invariant, including zero incoming rows.-/
+Frequent Directions covariance invariant, including zero incoming rows.
+@isnad1 id=eq.1h6v.s8.9ba67328e5d5 from=translated src=- shape=6964c55c vocab=35184767
+-/
 theorem conjTranspose_updateRow_mul_updateRow_eq_add [Fintype m] [DecidableEq m]
     (B : Matrix m n 𝕜) (i : m) (a : n → 𝕜) (hi : B i = 0) :
     (B.updateRow i a)ᴴ * B.updateRow i a = Bᴴ * B + vecMulVec (star a) a := by

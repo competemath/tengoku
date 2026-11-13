@@ -24,7 +24,9 @@ variable {Ω E F : Type*} [MeasurableSpace Ω]
   {μ : Measure Ω} [IsFiniteMeasure μ]
 
 /-- A globally bounded continuous test has a continuous expectation along
-an affine path with continuous scalar coefficients and measurable random data.-/
+an affine path with continuous scalar coefficients and measurable random data.
+@isnad1 id=continuo.6h11v.s8.dea49a45b8ae from=translated src=- shape=736bb132 vocab=0bae471c
+-/
 theorem continuous_integral_affine_path
     (X Z : Ω → E) (hX : AEStronglyMeasurable X μ) (hZ : AEStronglyMeasurable Z μ)
     (c : E) (a b : ℝ → ℝ) (ha : Continuous a) (hb : Continuous b)
@@ -42,7 +44,9 @@ theorem continuous_integral_affine_path
 
 /-- Differentiate the actual expected value of a bounded C¹ test along an
 affine random path. Bounds on its Fréchet derivative and the two scalar
-velocities yield an explicit integrable dominating function.-/
+velocities yield an explicit integrable dominating function.
+@isnad1 id=hasderiv.12h19v.s10.6162374dd8ef from=translated src=- shape=dded3165 vocab=d450152f
+-/
 theorem hasDerivAt_integral_affine_path
     (X Z : Ω → E) (hX : Integrable X μ) (hZ : Integrable Z μ)
     (c : E) (a b a' b' : ℝ → ℝ) {t₀ : ℝ} {s : Set ℝ} (hs : s ∈ 𝓝 t₀)
@@ -99,7 +103,9 @@ theorem hasDerivAt_integral_affine_path
 
 /-- Along square-root interpolation, the expected bounded C¹ test has its
 actual chain-rule derivative at every interior time. Singular endpoint
-velocities cause no issue because domination is local in the open interval.-/
+velocities cause no issue because domination is local in the open interval.
+@isnad1 id=hasderiv.9h12v.s10.6cbc2f8e4ca8 from=translated src=- shape=476bc36e vocab=bd467b22
+-/
 theorem hasDerivAt_integral_sqrt_affine_path
     (X Z : Ω → E) (hX : Integrable X μ) (hZ : Integrable Z μ)
     (c : E) (Φ : E → F) (DΦ : E → E →L[ℝ] F)

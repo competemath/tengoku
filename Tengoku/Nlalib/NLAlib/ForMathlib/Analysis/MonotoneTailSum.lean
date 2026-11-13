@@ -20,7 +20,9 @@ open scoped BigOperators
 namespace Antitone
 
 /-- The last `k` terms of the length-`l` block beginning at `k` have no
-larger average than the whole block, stated without division.-/
+larger average than the whole block, stated without division.
+@isnad1 id=le.2h3v.s6.fb99ff89fbcd from=translated src=- shape=162937c3 vocab=b17e0184
+-/
 theorem mul_sum_tail_le_mul_sum_block {a : ℕ → ℝ} (ha : Antitone a)
     {k l : ℕ} (hkl : k ≤ l) :
     (l : ℝ) * (∑ j ∈ Finset.range k, a (l + j)) ≤

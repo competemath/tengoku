@@ -20,7 +20,9 @@ variable {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E]
     {μ : Measure Ω} [IsFiniteMeasure μ] {X : Ω → E}
 
 /-- Markov's inequality at an actual integer Lp norm, with the zero-norm
-case included by the strict event.-/
+case included by the strict event.
+@isnad1 id=le.3h6v.s7.eefb0c32ec1f from=translated src=- shape=5ef63aa0 vocab=d6e7e401
+-/
 theorem measureReal_lt_mul_lpNorm_le_inv_pow {q : ℕ} (hq : 0 < q)
     (hX : MemLp X (q : ℝ≥0∞) μ) {a : ℝ} (ha : 0 < a) :
     μ.real {ω | a * lpNorm X (q : ℝ≥0∞) μ < ‖X ω‖} ≤ (a ^ q)⁻¹ := by
@@ -64,7 +66,9 @@ theorem measureReal_lt_mul_lpNorm_le_inv_pow {q : ℕ} (hq : 0 < q)
     _ = (a ^ q)⁻¹ := by rw [hm, mul_pow]; field_simp
 
 /-- The norm of an actual Lq random variable exceeds `exp(1)` times its
-Lq norm with probability at most `exp(-q)`, including zero norm.-/
+Lq norm with probability at most `exp(-q)`, including zero norm.
+@isnad1 id=le.2h5v.s7.3deccd9e8290 from=translated src=- shape=60ab0e1e vocab=ce74c43b
+-/
 theorem measureReal_lt_exp_mul_lpNorm_le_exp_neg {q : ℕ} (hq : 0 < q)
     (hX : MemLp X (q : ℝ≥0∞) μ) :
     μ.real {ω | Real.exp 1 * lpNorm X (q : ℝ≥0∞) μ < ‖X ω‖} ≤ Real.exp (-(q : ℝ)) := by

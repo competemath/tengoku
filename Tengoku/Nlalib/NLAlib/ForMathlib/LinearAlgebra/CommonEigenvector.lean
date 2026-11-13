@@ -18,7 +18,9 @@ namespace NLAlib
 /-- Every commuting family on a nonzero finite-dimensional vector space
 over an algebraically closed field has a common nonzero eigenvector.
 Source: Horn–Johnson (2013), Lemma 1.3.19; arbitrary, infinite and empty
-families are allowed.-/
+families are allowed.
+@isnad1 id=ex.1h4v.s8.43f110c24e6a from=translated src=- shape=d9031180 vocab=1f55df96
+-/
 theorem exists_common_eigenvector_of_pairwise_commute
     {K E ι : Type*} [Field K] [IsAlgClosed K] [AddCommGroup E] [Module K E]
     [FiniteDimensional K E] [Nontrivial E] (f : ι → Module.End K E)

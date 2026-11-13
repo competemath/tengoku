@@ -13,7 +13,9 @@ namespace MeasureTheory
 
 /-- Two actual finite resolvent grids, one for each spectrum, give a
 probability bound for their Hausdorff distance. The target algebras may differ
-and their spectra may be infinite. Finite measures and outer events suffice.-/
+and their spectra may be infinite. Finite measures and outer events suffice.
+@isnad1 id=le.5h12v.s9.06611f200ea3 from=translated src=- shape=5f9747a0 vocab=6e177390
+-/
 theorem measureReal_hausdorffDist_spectra_gt_le_two_resolvent_grids
     {Ω E F : Type*} [MeasurableSpace Ω] [CStarAlgebra E] [CStarAlgebra F]
     [Nontrivial E] [Nontrivial F]

@@ -25,14 +25,18 @@ variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 omit [DecidableEq m] in
 /-- The spectral norm squared is the norm of the Gram matrix `AᴴA`, over `ℝ` or `ℂ`, including
 empty dimensions. Atlas: `norms-frob-spec`, `svd`.
-atlas: norms-frob-spec-/
+atlas: norms-frob-spec
+@isnad1 id=eq.0h4v.s7.a8909455ed89 from=translated src=- shape=3e8835d4 vocab=fdc13f4c
+-/
 theorem specNorm_sq_eq_specNorm_conjTranspose_mul_self {𝕜 : Type*} [RCLike 𝕜]
     (A : Matrix m n 𝕜) : specNorm A ^ 2 = specNorm (Aᴴ * A) := by
   open scoped Matrix.Norms.L2Operator in unfold specNorm
   rw [sq, ← Matrix.l2_opNorm_conjTranspose_mul_self]
 
 /-- `‖A‖₂² = ‖AᵀA‖₂` for a real matrix (`specNorm_sq_eq_specNorm_conjTranspose_mul_self` at `ℝ`).
-Kept for the real consumers of the transpose spelling.-/
+Kept for the real consumers of the transpose spelling.
+@isnad1 id=eq.0h3v.s6.b5ddde512f31 from=translated src=- shape=e8e353fe vocab=5106d3d3
+-/
 theorem specNorm_sq_eq_specNorm_transpose_mul_self (A : Matrix m n ℝ) :
     specNorm A ^ 2 = specNorm (Aᵀ * A) := by
   rw [← Matrix.conjTranspose_eq_transpose_of_trivial]

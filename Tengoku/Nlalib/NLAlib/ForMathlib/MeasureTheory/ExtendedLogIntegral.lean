@@ -65,7 +65,9 @@ private theorem deficit_add_posPart (c : ℝ) (hc : 0 ≤ c) (t : EReal) (ht : t
         ← ENNReal.ofReal_add hc (neg_nonneg.mpr ht0)]
       simp only [sub_eq_add_neg]
 
-/-- Under an upper logarithmic bound the positive part has finite integral.-/
+/-- Under an upper logarithmic bound the positive part has finite integral.
+@isnad1 id=lt.1h4v.s6.d12beecffc94 from=translated src=- shape=67e998eb vocab=e26af501
+-/
 theorem lintegral_log_posPart_lt_top {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsFiniteMeasure μ] {g : α → ℝ} {c : ℝ}
     (hle : ∀ᵐ x ∂μ, ENNReal.log (ENNReal.ofReal (g x)) ≤ c) :
@@ -80,7 +82,9 @@ theorem lintegral_log_posPart_lt_top {α : Type*} [MeasurableSpace α]
       exact ENNReal.mul_lt_top ENNReal.ofReal_lt_top (measure_lt_top μ univ)
 
 /-- The upper-bound formula agrees with the ordinary positive-minus-negative
-extended integral. This also proves that its value does not depend on the bound.-/
+extended integral. This also proves that its value does not depend on the bound.
+@isnad1 id=eq.3h4v.s6.b3849b74d1ff from=translated src=- shape=03a5b603 vocab=3e3ec7fd
+-/
 theorem upperLogIntegral_eq_extendedLogIntegral {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ}
     (hg : Measurable g) {c : ℝ} (hc : 0 ≤ c)
@@ -123,7 +127,9 @@ theorem upperLogIntegral_eq_extendedLogIntegral {α : Type*} [MeasurableSpace α
     linarith
 
 /-- Consequently the genuine logarithmic integral has the expected ordinary
-integral value whenever the logarithm is integrable and positive arguments hold.-/
+integral value whenever the logarithm is integrable and positive arguments hold.
+@isnad1 id=eq.5h4v.s7.8abf80bfb691 from=translated src=- shape=ed6ee960 vocab=4126e3a6
+-/
 theorem extendedLogIntegral_eq_integral {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {c : ℝ} (hc : 0 ≤ c) (hpos : ∀ᵐ x ∂μ, 0 < g x)
@@ -136,7 +142,9 @@ theorem extendedLogIntegral_eq_integral {α : Type*} [MeasurableSpace α]
     simpa only [ENNReal.log_ofReal_of_pos hx, EReal.coe_le_coe_iff] using hxle
 
 /-- The genuine extended logarithmic integral is unaffected by almost-everywhere
-changes of its argument.-/
+changes of its argument.
+@isnad1 id=eq.1h4v.s5.b84003867d08 from=translated src=- shape=a61a0115 vocab=d8495a52
+-/
 theorem extendedLogIntegral_congr_ae {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {g h : α → ℝ} (hgh : g =ᵐ[μ] h) :
     extendedLogIntegral μ g = extendedLogIntegral μ h := by
@@ -145,20 +153,26 @@ theorem extendedLogIntegral_congr_ae {α : Type*} [MeasurableSpace α]
   all_goals filter_upwards [hgh] with x hx; rw [hx]
 
 /-- The genuine extended geometric mean is unaffected by almost-everywhere
-changes of its argument.-/
+changes of its argument.
+@isnad1 id=eq.1h4v.s5.1433872804cc from=translated src=- shape=a61a0115 vocab=c646e08d
+-/
 theorem geometricMean_congr_ae {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {g h : α → ℝ} (hgh : g =ᵐ[μ] h) :
     geometricMean μ g = geometricMean μ h :=
   congrArg EReal.exp (extendedLogIntegral_congr_ae hgh)
 
-/-- On a probability space the zero function has logarithmic integral `-∞`.-/
+/-- On a probability space the zero function has logarithmic integral `-∞`.
+@isnad1 id=eq.0h2v.s4.d5dee0814d3e from=translated src=- shape=78563dbc vocab=54e42d25
+-/
 @[simp]
 theorem extendedLogIntegral_zero {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ] :
     extendedLogIntegral μ (fun _ : α => (0 : ℝ)) = ⊥ := by
   simp [extendedLogIntegral]
 
-/-- On a probability space the geometric mean of zero is zero.-/
+/-- On a probability space the geometric mean of zero is zero.
+@isnad1 id=eq.0h2v.s5.757d78c46680 from=translated src=- shape=12888810 vocab=b2d1dcaa
+-/
 @[simp]
 theorem geometricMean_zero {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ] :
@@ -166,7 +180,9 @@ theorem geometricMean_zero {α : Type*} [MeasurableSpace α]
   simp [geometricMean]
 
 /-- The geometric mean is normalized on every nonnegative constant on a
-probability space.-/
+probability space.
+@isnad1 id=eq.1h3v.s5.a8f1f6b8fc6f from=translated src=- shape=85fd8d2c vocab=43edd3de
+-/
 @[simp]
 theorem geometricMean_const {α : Type*} [MeasurableSpace α]
     (μ : Measure α) [IsProbabilityMeasure μ] {a : ℝ} (ha : 0 ≤ a) :
@@ -182,7 +198,9 @@ theorem geometricMean_const {α : Type*} [MeasurableSpace α]
       EReal.exp_coe, Real.exp_log ha0] using congrArg EReal.exp hlog
 
 /-- If the logarithm has finite positive part and infinite negative part, its
-genuine extended geometric mean is zero.-/
+genuine extended geometric mean is zero.
+@isnad1 id=eq.2h3v.s6.99012778d9b2 from=translated src=- shape=03927374 vocab=55045673
+-/
 theorem geometricMean_eq_zero_of_lintegral_negPart_eq_top {α : Type*}
     [MeasurableSpace α] {μ : Measure α} {g : α → ℝ}
     (hpos : (∫⁻ x, (ENNReal.log (ENNReal.ofReal (g x))).toENNReal ∂μ) ≠ ∞)
@@ -193,7 +211,9 @@ theorem geometricMean_eq_zero_of_lintegral_negPart_eq_top {α : Type*}
     EReal.sub_top, EReal.exp_bot]
 
 /-- The upper-bound construction has the same value for any two nonnegative
-valid logarithmic upper bounds.-/
+valid logarithmic upper bounds.
+@isnad1 id=eq.5h5v.s6.f324d5988a6e from=translated src=- shape=b81cbf47 vocab=45fe292f
+-/
 theorem upperLogIntegral_eq_of_bounds {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {c d : ℝ} (hc : 0 ≤ c) (hd : 0 ≤ d)

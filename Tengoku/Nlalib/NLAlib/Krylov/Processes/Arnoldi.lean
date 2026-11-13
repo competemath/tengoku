@@ -63,13 +63,17 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-! ### Real forms of the orthonormal-column helpers -/
 
 /-- `(Qᵀ Q)_ij = q_i ⬝ q_j` for a real matrix (real form of `conjTranspose_mul_self_apply`).
-Helper for `arnoldi-def`.-/
+Helper for `arnoldi-def`.
+@isnad1 id=eq.0h5v.s6.6fc95b6d50fc from=translated src=- shape=5bf7c0c1 vocab=d5848740
+-/
 theorem transpose_mul_self_apply {k : Type*} (Q : Matrix n k ℝ) (i j : k) :
     (Qᵀ * Q) i j = Q.col i ⬝ᵥ Q.col j := by
   simp [Matrix.mul_apply, dotProduct, Matrix.col]
 
 /-- Columns of a real matrix with orthonormal columns: `q_i ⬝ q_j = δ_ij` (real form of
-`HasOrthonormalCols.star_col_dotProduct_col`). Helper for `arnoldi-def`.-/
+`HasOrthonormalCols.star_col_dotProduct_col`). Helper for `arnoldi-def`.
+@isnad1 id=eq.1h5v.s6.400403e8c65b from=translated src=- shape=42c42647 vocab=4e78000d
+-/
 theorem HasOrthonormalCols.col_dotProduct_col {k : Type*} [Fintype k] [DecidableEq k]
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (i j : k) :
     Q.col i ⬝ᵥ Q.col j = if i = j then 1 else 0 := by
@@ -97,7 +101,9 @@ namespace IsGradedKrylovBasis
 variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ} {Q : Matrix n (Fin q) ℝ}
 
 /-- The first `m ≤ q` columns of a graded basis span `K_m(A, b)` (also for `m = 0`).
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.2h6v.s6.90c43607e74f from=translated src=- shape=aa5ef9cb vocab=7f60fa8d
+-/
 theorem span_col_castLE (hQ : IsGradedKrylovBasis A b Q) {m : ℕ} (hm : m ≤ q) :
     Submodule.span ℝ (Set.range fun j : Fin m => Q.col (Fin.castLE hm j)) =
       krylovSpace A b m := by
@@ -105,20 +111,26 @@ theorem span_col_castLE (hQ : IsGradedKrylovBasis A b Q) {m : ℕ} (hm : m ≤ q
   · simp [krylovSpace]
   · exact hQ.nested ⟨m, hm⟩
 
-/-- Column `j` of a graded basis lies in `K_{j+1}(A, b)`. Atlas: `graded-krylov-basis-def`.-/
+/-- Column `j` of a graded basis lies in `K_{j+1}(A, b)`. Atlas: `graded-krylov-basis-def`.
+@isnad1 id=mem.1h6v.s7.6ffc887741ae from=translated src=- shape=e01b8148 vocab=fce7f259
+-/
 theorem col_mem (hQ : IsGradedKrylovBasis A b Q) (j : Fin q) :
     Q.col j ∈ krylovSpace A b (j + 1) := by
   rw [← hQ.nested j]
   exact Submodule.subset_span ⟨⟨j, Nat.lt_succ_self _⟩, rfl⟩
 
 /-- The columns of a graded basis span `K_q(A, b)`: `range Q = K_q(A, b)`.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.1h5v.s7.a06c844a827a from=translated src=- shape=a53ffc5a vocab=5a269116
+-/
 theorem range_mulVecLin (hQ : IsGradedKrylovBasis A b Q) :
     LinearMap.range Q.mulVecLin = krylovSpace A b q := by
   rw [Matrix.range_mulVecLin, ← hQ.span_col_castLE le_rfl]
   rfl
 
-/-- Column `i` of a graded basis is orthogonal to `K_i(A, b)`. Atlas: `graded-krylov-basis-def`.-/
+/-- Column `i` of a graded basis is orthogonal to `K_i(A, b)`. Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.2h7v.s7.674bd42679b0 from=translated src=- shape=d2281971 vocab=cb28ff4b
+-/
 theorem col_dotProduct_eq_zero (hQ : IsGradedKrylovBasis A b Q) (i : Fin q) {x : n → ℝ}
     (hx : x ∈ krylovSpace A b i) : Q.col i ⬝ᵥ x = 0 := by
   rw [← hQ.span_col_castLE i.isLt.le] at hx
@@ -144,7 +156,9 @@ theorem eq_sum_of_mem (hQ : IsGradedKrylovBasis A b Q) {x : n → ℝ}
   rfl
 
 /-- If `x ∈ K_q(A, b)` is orthogonal to the columns `qᵢ`, `i ≥ m`, then `x ∈ K_m(A, b)`.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=mem.4h7v.s8.5e7fc28fbf14 from=translated src=- shape=38762c45 vocab=5501f096
+-/
 theorem mem_of_forall_le_dotProduct_eq_zero (hQ : IsGradedKrylovBasis A b Q) {x : n → ℝ}
     (hx : x ∈ krylovSpace A b q) {m : ℕ} (hm : m ≤ q)
     (h0 : ∀ i : Fin q, m ≤ i → Q.col i ⬝ᵥ x = 0) : x ∈ krylovSpace A b m := by
@@ -156,7 +170,9 @@ theorem mem_of_forall_le_dotProduct_eq_zero (hQ : IsGradedKrylovBasis A b Q) {x 
     exact Submodule.zero_mem _
 
 /-- A matrix with orthonormal columns `qᵢ ∈ K_{i+1}(A, b)` is a graded Krylov basis (the span
-equalities follow by counting dimensions). Atlas: `graded-krylov-basis-def`.-/
+equalities follow by counting dimensions). Atlas: `graded-krylov-basis-def`.
+@isnad1 id=isgraded.2h5v.s8.08d675cd9096 from=translated src=- shape=66e0f2b4 vocab=44143ddf
+-/
 theorem of_mem (hQ : HasOrthonormalCols Q) (hmem : ∀ j : Fin q, Q.col j ∈ krylovSpace A b (j + 1)) :
     IsGradedKrylovBasis A b Q := by
   refine ⟨hQ, fun i => ?_⟩
@@ -171,14 +187,18 @@ theorem of_mem (hQ : HasOrthonormalCols Q) (hmem : ∀ j : Fin q, Q.col j ∈ kr
   rw [finrank_span_eq_card hli, Fintype.card_fin]
   exact finrank_krylovSpace_le A b _
 
-/-- Characterisation of graded bases by membership. Atlas: `graded-krylov-basis-def`.-/
+/-- Characterisation of graded bases by membership. Atlas: `graded-krylov-basis-def`.
+@isnad1 id=iff.0h5v.s8.24b046f713d3 from=translated src=- shape=15b83d5e vocab=44143ddf
+-/
 theorem _root_.NLAlib.isGradedKrylovBasis_iff :
     IsGradedKrylovBasis A b Q ↔
       HasOrthonormalCols Q ∧ ∀ j : Fin q, Q.col j ∈ krylovSpace A b (j + 1) :=
   ⟨fun h => ⟨h.orth, h.col_mem⟩, fun h => of_mem h.1 h.2⟩
 
 /-- A graded basis of size `q` forces `q ≤ krylovGrade A b` (its columns are `q` independent
-vectors of `K_q(A, b)`). Atlas: `graded-krylov-basis-def`.-/
+vectors of `K_q(A, b)`). Atlas: `graded-krylov-basis-def`.
+@isnad1 id=le.1h5v.s5.8ca5304e8e1c from=translated src=- shape=10b12bff vocab=78989b24
+-/
 theorem le_krylovGrade (hQ : IsGradedKrylovBasis A b Q) : q ≤ krylovGrade A b := by
   have h1 : Module.finrank ℝ (krylovSpace A b q) = q := by
     rw [← hQ.span_col_castLE le_rfl]
@@ -187,14 +207,18 @@ theorem le_krylovGrade (hQ : IsGradedKrylovBasis A b Q) : q ≤ krylovGrade A b 
   have h2 := finrank_krylovSpace A b q
   omega
 
-/-- `A q_j ∈ K_{j+2}(A, b)`.-/
+/-- `A q_j ∈ K_{j+2}(A, b)`.
+@isnad1 id=mem.1h6v.s8.d9f7dcc06c9d from=translated src=- shape=26c166fd vocab=16fbae0a
+-/
 theorem mulVec_col_mem (hQ : IsGradedKrylovBasis A b Q) (j : Fin q) :
     A *ᵥ Q.col j ∈ krylovSpace A b (j + 2) :=
   mulVec_mem_krylovSpace_succ A b (hQ.col_mem j)
 
 /-- **Hessenberg structure**: for a graded basis, `(Qᵀ A Q)_ij = 0` whenever `i > j + 1`, for
 every `A`. Source: Saad (2003) [`saad03`], Prop. 6.5; Trefethen–Bau (1997) [`tb97`], Lect. 33.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.2h7v.s7.70a28e96be99 from=translated src=- shape=9ec9180d vocab=e804a497
+-/
 theorem transpose_mul_mul_apply_eq_zero (hQ : IsGradedKrylovBasis A b Q) {i j : Fin q}
     (hij : (j : ℕ) + 1 < i) : (Qᵀ * A * Q) i j = 0 := by
   rw [transpose_mul_mul_apply_eq_dotProduct]
@@ -213,7 +237,9 @@ private lemma krylovSpace_le_of_mulVec_mem {m : ℕ} (hm : 0 < m)
 
 /-- **Unreduced Hessenberg**: the subdiagonal of `Qᵀ A Q` has no zero,
 `(Qᵀ A Q)_{j+1, j} ≠ 0`. Source: Saad (2003) [`saad03`], Prop. 6.6 (breakdown at step `j`
-iff `K_{j+1}` is invariant). Atlas: `graded-krylov-basis-def`.-/
+iff `K_{j+1}` is invariant). Atlas: `graded-krylov-basis-def`.
+@isnad1 id=ne.2h6v.s7.566e2ec7cbb8 from=translated src=- shape=b2dde257 vocab=58e7bfe6
+-/
 theorem transpose_mul_mul_apply_succ_ne_zero (hQ : IsGradedKrylovBasis A b Q) {j : ℕ}
     (hj : j + 1 < q) : (Qᵀ * A * Q) ⟨j + 1, hj⟩ ⟨j, by omega⟩ ≠ 0 := by
   intro h0
@@ -278,34 +304,48 @@ Source: Saad (2003) [`saad03`], §6.3.
 atlas: arnoldi-def-/
 def H (D : ArnoldiDecomp A b q) : Matrix (Fin q) (Fin q) ℝ := D.Qᵀ * A * D.Q
 
-/-- Unfolding `H`. Atlas: `arnoldi-def`.-/
+/-- Unfolding `H`. Atlas: `arnoldi-def`.
+@isnad1 id=eq.0h5v.s6.fd3751ec9926 from=translated src=- shape=aa1917a5 vocab=38344c38
+-/
 theorem H_def (D : ArnoldiDecomp A b q) : D.H = D.Qᵀ * A * D.Q := rfl
 
-/-- `H_ij = q_iᵀ A q_j`. Atlas: `arnoldi-def`.-/
+/-- `H_ij = q_iᵀ A q_j`. Atlas: `arnoldi-def`.
+@isnad1 id=eq.0h7v.s6.27210e29b773 from=translated src=- shape=66f86399 vocab=8e449060
+-/
 theorem H_apply (D : ArnoldiDecomp A b q) (i j : Fin q) : D.H i j = D.Q.col i ⬝ᵥ (A *ᵥ D.Q.col j) :=
   transpose_mul_mul_apply_eq_dotProduct _ _ _ _ _
 
-/-- The basis matrix has orthonormal columns. Atlas: `arnoldi-def`.-/
+/-- The basis matrix has orthonormal columns. Atlas: `arnoldi-def`.
+@isnad1 id=hasortho.0h5v.s5.fd7ba5eaf727 from=translated src=- shape=0732a06c vocab=e7271557
+-/
 theorem hasOrthonormalCols (D : ArnoldiDecomp A b q) : HasOrthonormalCols D.Q := D.graded.orth
 
-/-- The basis matrix spans the Krylov space: `range Q_q = K_q(A, b)`. Atlas: `arnoldi-def`.-/
+/-- The basis matrix spans the Krylov space: `range Q_q = K_q(A, b)`. Atlas: `arnoldi-def`.
+@isnad1 id=eq.0h5v.s7.97b4c0bb9476 from=translated src=- shape=cc97c350 vocab=c711ee39
+-/
 theorem range_Q (D : ArnoldiDecomp A b q) : LinearMap.range D.Q.mulVecLin = krylovSpace A b q :=
   D.graded.range_mulVecLin
 
 /-- An Arnoldi decomposition of size `q` exists only for `q ≤ krylovGrade A b`.
-Atlas: `arnoldi-def`.-/
+Atlas: `arnoldi-def`.
+@isnad1 id=le.0h5v.s5.fd783a0f9717 from=translated src=- shape=166eee09 vocab=e648c0f4
+-/
 theorem le_krylovGrade (D : ArnoldiDecomp A b q) : q ≤ krylovGrade A b := D.graded.le_krylovGrade
 
 /-- **`H_q` is upper Hessenberg**: `h_ij = 0` for `i > j + 1`, for every `A`.
 Source: Saad (2003) [`saad03`], Prop. 6.5; Trefethen–Bau (1997) [`tb97`], Lect. 33.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=eq.1h7v.s6.8431ddf7bb9e from=translated src=- shape=4436aa41 vocab=090bd75a
+-/
 theorem H_apply_eq_zero_of_add_one_lt (D : ArnoldiDecomp A b q) {i j : Fin q}
     (hij : (j : ℕ) + 1 < i) : D.H i j = 0 :=
   D.graded.transpose_mul_mul_apply_eq_zero hij
 
 /-- **`H_q` is unreduced**: its subdiagonal entries `h_{j+1,j}` are nonzero.
 Source: Saad (2003) [`saad03`], Prop. 6.6.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=ne.1h6v.s6.e4a6540ab476 from=translated src=- shape=5e8c2539 vocab=7a203c22
+-/
 theorem H_succ_apply_ne_zero (D : ArnoldiDecomp A b q) {j : ℕ} (hj : j + 1 < q) :
     D.H ⟨j + 1, hj⟩ ⟨j, by omega⟩ ≠ 0 :=
   D.graded.transpose_mul_mul_apply_succ_ne_zero hj
@@ -326,13 +366,17 @@ def restrict (D : ArnoldiDecomp A b q) {q' : ℕ} (h : q' ≤ q) : ArnoldiDecomp
     · exact D.graded.col_mem (Fin.castLE h j)
 
 /-- The basis of `D.restrict h` is the first `q'` columns of `D.Q`.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.1h6v.s6.64f2d3dc76fa from=translated src=- shape=7fb3581f vocab=244cc2d5
+-/
 theorem restrict_Q (D : ArnoldiDecomp A b q) {q' : ℕ} (h : q' ≤ q) :
     (D.restrict h).Q = D.Q.submatrix id (Fin.castLE h) := rfl
 
 /-- **Nesting**: `H_{q'}` is the leading principal `q' × q'` submatrix of `H_q`.
 Source: Saad (2011) [`saad11`], §6.3.
-atlas: graded-krylov-basis-def (partial)-/
+atlas: graded-krylov-basis-def (partial)
+@isnad1 id=eq.1h6v.s6.30aaa758d115 from=translated src=- shape=dd645cad vocab=4e8c17e4
+-/
 theorem H_restrict (D : ArnoldiDecomp A b q) {q' : ℕ} (h : q' ≤ q) :
     (D.restrict h).H = D.H.submatrix (Fin.castLE h) (Fin.castLE h) := by
   ext i j
@@ -340,7 +384,9 @@ theorem H_restrict (D : ArnoldiDecomp A b q) {q' : ℕ} (h : q' ≤ q) :
   rfl
 
 /-- Columns of two decompositions agree up to a scalar: `q'_j = (q_j ⬝ q'_j) q_j`.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.0h7v.s6.46a1b930bf99 from=translated src=- shape=5b885bea vocab=48f929f5
+-/
 theorem col_eq_smul_col (D D' : ArnoldiDecomp A b q) (j : Fin q) :
     D'.Q.col j = (D.Q.col j ⬝ᵥ D'.Q.col j) • D.Q.col j := by
   have hmem : D'.Q.col j ∈ krylovSpace A b q :=
@@ -354,7 +400,9 @@ theorem col_eq_smul_col (D D' : ArnoldiDecomp A b q) (j : Fin q) :
       (krylovSpace_mono A b (by omega) (D'.graded.col_mem j)), zero_smul]
 
 /-- The scalar relating matching columns is a sign: `(q_j ⬝ q'_j)² = 1`.
-Atlas: `graded-krylov-basis-def`.-/
+Atlas: `graded-krylov-basis-def`.
+@isnad1 id=eq.0h7v.s6.2471bbbd8841 from=translated src=- shape=21ba2f4d vocab=24bdf213
+-/
 theorem sq_col_dotProduct_col (D D' : ArnoldiDecomp A b q) (j : Fin q) :
     (D.Q.col j ⬝ᵥ D'.Q.col j) ^ 2 = 1 := by
   have h1 := D'.hasOrthonormalCols.col_dotProduct_col j j
@@ -365,7 +413,9 @@ theorem sq_col_dotProduct_col (D D' : ArnoldiDecomp A b q) (j : Fin q) :
 /-- **Uniqueness up to signs**: two Arnoldi decompositions of the same size differ by a
 diagonal `±1` matrix, `Q' = Q diag(s)`. Source: Saad (2003) [`saad03`], §6.3 (implicit-Q);
 Trefethen–Bau (1997) [`tb97`], Lect. 33.
-atlas: graded-krylov-basis-def (partial)-/
+atlas: graded-krylov-basis-def (partial)
+@isnad1 id=ex.0h6v.s6.5d1c54e4c2fc from=translated src=- shape=41b13e7a vocab=80859332
+-/
 theorem exists_sign (D D' : ArnoldiDecomp A b q) :
     ∃ s : Fin q → ℤˣ, D'.Q = D.Q * diagonal fun i => ((s i : ℤ) : ℝ) := by
   refine ⟨fun j => if 0 ≤ D.Q.col j ⬝ᵥ D'.Q.col j then 1 else -1, ?_⟩
@@ -387,7 +437,9 @@ theorem exists_sign (D D' : ArnoldiDecomp A b q) :
 [`saad03`], §6.3 (implicit-Q theorem; uniqueness of the Arnoldi basis); Trefethen–Bau (1997)
 [`tb97`], Lect. 33. Deviation: the hypothesis is that both are graded bases (not only that
 `Q̃ᵀ A Q̃` is Hessenberg with `Q̃ e₁ = b/‖b‖`).
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=eq.4h6v.s8.72bd0d188f14 from=translated src=- shape=4e872482 vocab=56071f01
+-/
 theorem Q_eq_of_pos (D D' : ArnoldiDecomp A b q)
     (h0 : ∀ hq : 0 < q, 0 < D.Q.col ⟨0, hq⟩ ⬝ᵥ b) (h0' : ∀ hq : 0 < q, 0 < D'.Q.col ⟨0, hq⟩ ⬝ᵥ b)
     (hH : ∀ j (hj : j + 1 < q), 0 < D.H ⟨j + 1, hj⟩ ⟨j, by omega⟩)
@@ -430,13 +482,17 @@ under its Lanczos name). Source: Golub–Meurant (2010) [`gm10`], Ch. 4.
 atlas: lanczos-recurrence-/
 abbrev T (D : LanczosDecomp A b q) : Matrix (Fin q) (Fin q) ℝ := ArnoldiDecomp.H D
 
-/-- For symmetric `A`, `T_q` is symmetric. Atlas: `lanczos-recurrence`.-/
+/-- For symmetric `A`, `T_q` is symmetric. Atlas: `lanczos-recurrence`.
+@isnad1 id=issymm.1h5v.s6.59d38c2ace28 from=translated src=- shape=582a6537 vocab=e3163c9a
+-/
 theorem isSymm_T (D : LanczosDecomp A b q) (hA : A.IsHermitian) : D.T.IsSymm :=
   Matrix.isHermitian_iff_isSymm.mp (Matrix.isHermitian_conjTranspose_mul_mul D.Q hA)
 
 /-- **For symmetric `A`, `T_q` is tridiagonal**: `t_ij = 0` whenever `|i − j| > 1`.
 Source: Golub–Meurant (2010) [`gm10`], Thm 4.2; Trefethen–Bau (1997) [`tb97`], Lect. 36.
-atlas: lanczos-recurrence, graded-krylov-basis-def (partial)-/
+atlas: lanczos-recurrence, graded-krylov-basis-def (partial)
+@isnad1 id=eq.2h7v.s6.95a8a8cd02d7 from=translated src=- shape=8c024173 vocab=2fbaf896
+-/
 theorem T_apply_eq_zero_of_one_lt_dist (D : LanczosDecomp A b q) (hA : A.IsHermitian) {i j : Fin q}
     (hij : 1 < |(i : ℤ) - j|) : D.T i j = 0 := by
   rcases lt_abs.1 hij with h | h

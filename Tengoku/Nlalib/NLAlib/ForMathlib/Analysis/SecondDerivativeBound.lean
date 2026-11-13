@@ -19,7 +19,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- A global upper bound on the second derivative gives the quadratic
-Taylor upper bound at one.-/
+Taylor upper bound at one.
+@isnad1 id=le.3h4v.s7.0781e9cc40bd from=translated src=- shape=eca2f53d vocab=a0e2c17f
+-/
 theorem le_add_of_second_derivative_le {f f' f'' : ℝ → ℝ} {C : ℝ}
     (h1 : ∀ t, HasDerivAt f (f' t) t)
     (h2 : ∀ t, HasDerivAt f' (f'' t) t)
@@ -47,7 +49,9 @@ theorem le_add_of_second_derivative_le {f f' f'' : ℝ → ℝ} {C : ℝ}
   linarith
 
 /-- The second derivative of a positive real power along a twice
-differentiable scalar function.-/
+differentiable scalar function.
+@isnad1 id=hasderiv.3h5v.s8.4b322e5a73e0 from=translated src=- shape=fcb15c05 vocab=96726bef
+-/
 theorem hasDerivAt_power_first {f f' f'' : ℝ → ℝ} {t r : ℝ}
     (h1 : HasDerivAt f (f' t) t) (h2 : HasDerivAt f' (f'' t) t)
     (hf : 0 < f t) :
@@ -59,7 +63,9 @@ theorem hasDerivAt_power_first {f f' f'' : ℝ → ℝ} {t r : ℝ}
 
 /-- A nonnegative moment with the usual power-weighted Hessian estimate
 has a quadratic power bound. It allows zeros of the moment anywhere.
-The hypothesis `f' 0 = 0` is supplied by evenness in applications.-/
+The hypothesis `f' 0 = 0` is supplied by evenness in applications.
+@isnad1 id=le.7h5v.s8.80ff227a3c49 from=translated src=- shape=00bce9aa vocab=b90750e1
+-/
 theorem rpow_le_of_moment_second_derivative_le {f f' f'' : ℝ → ℝ} {p K : ℝ}
     (hp : 2 ≤ p) (hK : 0 ≤ K) (hf : ∀ t, 0 ≤ f t)
     (h1 : ∀ t, HasDerivAt f (f' t) t)

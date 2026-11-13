@@ -20,7 +20,9 @@ namespace Fin
 
 /-- A finite antitone list in a nondegenerate compact interval is the limit of
 strictly antitone lists in that same interval. No separation assumption is imposed
-on the original list, and the empty list is included.-/
+on the original list, and the empty list is included.
+@isnad1 id=ex.3h4v.s7.8497a78e1ed7 from=translated src=- shape=d9d7e922 vocab=c7bb4960
+-/
 theorem exists_strictAnti_tendsto_mem_Icc {n : ℕ} {b : Fin n → ℝ}
     (hb : Antitone b) {l u : ℝ} (hlu : l < u) (hmem : ∀ i, b i ∈ Icc l u) :
     ∃ v : ℕ → Fin n → ℝ, (∀ k, StrictAnti (v k)) ∧

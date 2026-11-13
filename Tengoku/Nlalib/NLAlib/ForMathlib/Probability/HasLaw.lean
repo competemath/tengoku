@@ -14,7 +14,9 @@ open MeasureTheory
 namespace ProbabilityTheory
 
 /-- For a nonzero law `ν`, `HasLaw X ν μ ↔ μ.map X = ν`: a nonzero push-forward forces `X` to be
-a.e. measurable (`AEMeasurable.of_map_ne_zero`).-/
+a.e. measurable (`AEMeasurable.of_map_ne_zero`).
+@isnad1 id=iff.1h5v.s5.4eef3d1f9643 from=translated src=- shape=6a0cc667 vocab=bcdc20c7
+-/
 theorem hasLaw_iff_map_eq {Ω 𝓧 : Type*} [MeasurableSpace Ω] [MeasurableSpace 𝓧]
     {μ : Measure Ω} {ν : Measure 𝓧} {X : Ω → 𝓧} (hν : ν ≠ 0) :
     HasLaw X ν μ ↔ μ.map X = ν :=

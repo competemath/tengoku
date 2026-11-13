@@ -20,7 +20,9 @@ namespace NLAlib
 open scoped NLAlib.TwoPi
 
 /-- Pairing opposite Fourier frequencies gives the positive Chebyshev series term.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.1h3v.s9.2015a79b3ddd from=translated src=- shape=8d1eff6f vocab=feee7304
+-/
 theorem re_fourier_pair_eq_chebyshevAnalyticCoeff_mul_eval_T (F : ℂ → ℂ)
     {k : ℕ} (hk : 0 < k) (θ : ℝ) :
     ((fourierCoeff (chebyshevCircleFunction F) (k : ℤ) *
@@ -39,7 +41,9 @@ set_option maxHeartbeats 800000 in
 /-- The Chebyshev series on a real cosine argument reconstructs the original function's
 real part from the open-ellipse holomorphy and bound assumptions.
 Source: Trefethen, ATAP, Theorems 3.1(a), 8.1 and 8.2.
-Atlas `chebyshev-approx-analytic` (helper).-/
+Atlas `chebyshev-approx-analytic` (helper).
+@isnad1 id=hassum.3h4v.s7.d6868784b335 from=translated src=- shape=71236075 vocab=70e67983
+-/
 theorem hasSum_chebyshevAnalyticCoeff_mul_eval_T_cos_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -95,7 +99,9 @@ def chebyshevAnalyticTrunc (F : ℂ → ℂ) (N : ℕ) : ℝ[X] :=
   ∑ k ∈ range (N + 1), C (chebyshevAnalyticCoeff F k) * T ℝ (k : ℤ)
 
 /-- The canonical Chebyshev truncation has degree at most its cutoff.
-Source: Trefethen, ATAP, Chapter 3 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapter 3 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.0h2v.s4.8b32cac49e9c from=translated src=- shape=2a06e51d vocab=d884f1e6
+-/
 theorem degree_chebyshevAnalyticTrunc_le (F : ℂ → ℂ) (N : ℕ) :
     (chebyshevAnalyticTrunc F N).degree ≤ N := by
   unfold chebyshevAnalyticTrunc
@@ -107,7 +113,9 @@ theorem degree_chebyshevAnalyticTrunc_le (F : ℂ → ℂ) (N : ℕ) :
 
 /-- The Chebyshev series reconstructs the function on every point of `[-1,1]`.
 Source: Trefethen, ATAP, Theorems 3.1(a), 8.1 and 8.2.
-Atlas `chebyshev-approx-analytic` (helper).-/
+Atlas `chebyshev-approx-analytic` (helper).
+@isnad1 id=hassum.4h4v.s7.3b94f44e70d6 from=translated src=- shape=70cb438a vocab=c8909410
+-/
 theorem hasSum_chebyshevAnalyticCoeff_mul_eval_T_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -119,7 +127,9 @@ theorem hasSum_chebyshevAnalyticCoeff_mul_eval_T_of_open_ellipse
 /-- A geometric tail of positive Chebyshev coefficients gives the exact truncation constant.
 Source: Trefethen, ATAP, Theorem 8.2; coefficient decay and reconstruction are proved from
 the original open-ellipse hypotheses, without boundary continuity.
-atlas: chebyshev-approx-analytic (partial)-/
+atlas: chebyshev-approx-analytic (partial)
+@isnad1 id=le.4h5v.s7.3509508cf59d from=translated src=- shape=5f9ab4bd vocab=cee1622a
+-/
 theorem abs_re_sub_eval_chebyshevAnalyticTrunc_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -169,7 +179,9 @@ theorem abs_re_sub_eval_chebyshevAnalyticTrunc_le_of_open_ellipse
 of degree at most `N` with the exact error `2M ρ⁻ᴺ/(ρ-1)` on `[-1,1]`.
 Source: Trefethen, ATAP, Theorem 8.2.
 No boundary continuity or coefficient/approximation conclusion is assumed.
-atlas: bernstein-ellipse-approx-/
+atlas: bernstein-ellipse-approx
+@isnad1 id=ex.4h5v.s8.f7026478623d from=translated src=- shape=fc243f30 vocab=dc280507
+-/
 theorem exists_degree_le_abs_sub_eval_le_of_open_bernsteinEllipse
     {f : ℝ → ℝ} {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -186,7 +198,9 @@ theorem exists_degree_le_abs_sub_eval_le_of_open_bernsteinEllipse
 /-- Affine transplantation of the Bernstein-ellipse polynomial rate to any real interval.
 The analytic extension is of `t ↦ f(((c-a)t+c+a)/2)` on the original open ellipse.
 Source: Trefethen, ATAP, Theorem 8.2.
-atlas: bernstein-ellipse-approx-/
+atlas: bernstein-ellipse-approx
+@isnad1 id=ex.5h7v.s8.3cdaa0c01d55 from=translated src=- shape=6cce7218 vocab=d85bf5b1
+-/
 theorem exists_degree_le_abs_sub_eval_le_of_open_bernsteinEllipse_interval
     {f : ℝ → ℝ} {F : ℂ → ℂ} {a c ρ M : ℝ} (hac : a < c) (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -227,7 +241,9 @@ theorem exists_degree_le_abs_sub_eval_le_of_open_bernsteinEllipse_interval
 
 /-- The actual analytic Chebyshev coefficients are absolutely summable under
 open-ellipse holomorphy and boundedness. Source: Trefethen, ATAP, Theorem 8.1;
-geometric coefficient decay, including the degree-zero coefficient.-/
+geometric coefficient decay, including the degree-zero coefficient.
+@isnad1 id=summable.3h3v.s7.0f29243339d3 from=translated src=- shape=451eda82 vocab=1e67112a
+-/
 theorem summable_abs_chebyshevAnalyticCoeff_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))

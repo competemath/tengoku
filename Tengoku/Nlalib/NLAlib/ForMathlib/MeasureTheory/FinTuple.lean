@@ -22,7 +22,9 @@ step that extends a history of queries by one response. Upstream candidate for
 -/
 
 /-- `Fin.snoc` of measurable functions is measurable. The measurable analogue of
-`Continuous.finSnoc`, for tuples with one value type.-/
+`Continuous.finSnoc`, for tuples with one value type.
+@isnad1 id=measurab.2h5v.s7.9edfe348e3b1 from=translated src=- shape=f663e5f6 vocab=e1c83452
+-/
 @[fun_prop]
 theorem Measurable.finSnoc {α R : Type*} [MeasurableSpace α] [MeasurableSpace R] {i : ℕ}
     {f : α → Fin i → R} {g : α → R} (hf : Measurable f) (hg : Measurable g) :

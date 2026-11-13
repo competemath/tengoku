@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- Monic recurrence norm ratios telescope between any two orders, including
 a zero terminal norm. Source: operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h4v.s7.bb9ee5fd0ce1 from=translated src=- shape=e1ef5bc5 vocab=6e6efd5a
+-/
 theorem orthogonalPolynomialNorm_mul_prod_beta_eq {𝕜 : Type*} [Field 𝕜]
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : ∀ j ≤ n, hankelMomentDet L j ≠ 0)
     (k : ℕ) (hk : k ≤ n) :
@@ -46,7 +48,9 @@ theorem orthogonalPolynomialNorm_mul_prod_beta_eq {𝕜 : Type*} [Field 𝕜]
 /-- The monic Christoffel–Darboux identity has the explicit products of monic
 recurrence coefficients, and holds also at coinciding arguments without division.
 Source: Gautschi (2004), Theorem 1.32; operator derivations (OF10).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h5v.s8.d81becffcb00 from=translated src=- shape=05e3fa8d vocab=f4e44074
+-/
 theorem sub_mul_sum_prod_beta_mul_eval_monicOrthogonalPolynomial {𝕜 : Type*} [Field 𝕜]
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : ∀ j ≤ n + 1, hankelMomentDet L j ≠ 0)
     (x y : 𝕜) :
@@ -76,7 +80,9 @@ theorem sub_mul_sum_prod_beta_mul_eval_monicOrthogonalPolynomial {𝕜 : Type*} 
   linear_combination h
 
 /-- A normalized moment polynomial's squared value is its monic squared value
-divided by the positive monic norm.-/
+divided by the positive monic norm.
+@isnad1 id=eq.1h3v.s6.8a1f34238d66 from=translated src=- shape=d66e5d3d vocab=2c972821
+-/
 theorem sq_eval_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ}
     (hH : 0 < orthogonalPolynomialNorm L n) (x : ℝ) :
     (orthonormalMomentPolynomial L n).eval x ^ 2 =
@@ -89,7 +95,9 @@ theorem sq_eval_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {n : �
 polynomials, and is strictly positive because of the constant term. The top
 monic polynomial may be terminal: no normalization at order `n+1` is used.
 Source: Gautschi (2004), Corollary to Theorem 1.32; operator derivations (OF11).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=and.2h3v.s9.e6ed5894a66f from=translated src=- shape=eec3b7ac vocab=f8ecc310
+-/
 theorem sum_sq_eval_orthonormalMomentPolynomial_eq_confluent_and_pos
     (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) (hL : ∀ j ≤ n + 1, hankelMomentDet L j ≠ 0)
     (hH : ∀ j ≤ n, 0 < orthogonalPolynomialNorm L j) (x : ℝ) :
@@ -117,7 +125,9 @@ theorem sum_sq_eval_orthonormalMomentPolynomial_eq_confluent_and_pos
 the fully normalized square-root-beta Wronskian form. At a zero next norm the
 preceding monic norm-divided theorem is used instead.
 Source: Gautschi (2004), Corollary to Theorem 1.32; operator derivations (OF11).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=and.2h3v.s9.4fbb8de9e922 from=translated src=- shape=4bc0cf67 vocab=e070f23f
+-/
 theorem sum_sq_eval_orthonormalMomentPolynomial_eq_normalized_confluent_and_pos
     (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) (hL : ∀ j ≤ n + 1, hankelMomentDet L j ≠ 0)
     (hH : ∀ j ≤ n + 1, 0 < orthogonalPolynomialNorm L j) (x : ℝ) :

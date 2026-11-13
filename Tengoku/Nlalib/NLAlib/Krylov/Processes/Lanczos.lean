@@ -45,7 +45,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 /-- **Column form of the Arnoldi relation**: `A q_j = ∑ᵢ h_ij qᵢ` whenever `j + 1 < q` (then
 `A q_j ∈ K_{j+2} ⊆ K_q`); by `H_apply_eq_zero_of_add_one_lt` only `i ≤ j + 1` contribute.
 Source: Saad (2003) [`saad03`], Prop. 6.5.
-atlas: arnoldi-relation (partial)-/
+atlas: arnoldi-relation (partial)
+@isnad1 id=eq.1h6v.s7.487078fffef4 from=translated src=- shape=aa872872 vocab=8f2f4cd1
+-/
 theorem mulVec_col_eq_sum (D : ArnoldiDecomp A b q) {j : Fin q} (hj : (j : ℕ) + 1 < q) :
     A *ᵥ D.Q.col j = ∑ i, D.H i j • D.Q.col i := by
   have hmem : A *ᵥ D.Q.col j ∈ krylovSpace A b q :=
@@ -63,7 +65,9 @@ def Hbar (D : ArnoldiDecomp A b (q + 1)) : Matrix (Fin (q + 1)) (Fin q) ℝ :=
 /-- **`A Q_q = Q_{q+1} H̲_q`** with `H̲_q = Q_{q+1}ᵀ A Q_q` (`Hbar`, the `(q+1) × q` Hessenberg
 matrix), with no hypothesis beyond the decomposition of size `q + 1`. Source: Saad (2003)
 [`saad03`], Prop. 6.5, eq. (6.8). Also the form used by `gmres-arnoldi-form`.
-atlas: arnoldi-relation (partial)-/
+atlas: arnoldi-relation (partial)
+@isnad1 id=eq.0h5v.s7.433cbb88dfed from=translated src=- shape=b566fd28 vocab=a9be879a
+-/
 theorem mul_restrict_Q_eq_mul (D : ArnoldiDecomp A b (q + 1)) :
     A * (D.restrict q.le_succ).Q = D.Q * D.Hbar := by
   rw [Hbar]
@@ -85,7 +89,9 @@ theorem mul_restrict_Q_eq_mul (D : ArnoldiDecomp A b (q + 1)) :
 decomposition of size `q + 1`; by the Hessenberg structure `h̲ = h_{q+1,q} e_q`
 (`mul_restrict_Q_eq_add_smul`). Source: Saad (2003) [`saad03`], Prop. 6.5, eq. (6.7);
 Trefethen–Bau (1997) [`tb97`], Lect. 33, eq. (33.13).
-atlas: arnoldi-relation (partial)-/
+atlas: arnoldi-relation (partial)
+@isnad1 id=eq.0h5v.s8.8901fd6196e8 from=translated src=- shape=150d2c48 vocab=03cfadb3
+-/
 theorem mul_restrict_Q_eq_add_vecMulVec (D : ArnoldiDecomp A b (q + 1)) :
     A * (D.restrict q.le_succ).Q = (D.restrict q.le_succ).Q * (D.restrict q.le_succ).H +
       vecMulVec (D.Q.col (Fin.last q)) (fun j => D.H (Fin.last q) j.castSucc) := by
@@ -98,7 +104,9 @@ theorem mul_restrict_Q_eq_add_vecMulVec (D : ArnoldiDecomp A b (q + 1)) :
 /-- **The Arnoldi relation** `A Q_q = Q_q H_q + h_{q+1,q} q_{q+1} e_qᵀ` (for `q ≥ 1`; `e_q` is
 the last unit vector of `ℝ^q`). Source: Saad (2003) [`saad03`], Prop. 6.5, eq. (6.7);
 Trefethen–Bau (1997) [`tb97`], Lect. 33; Golub–Meurant (2010) [`gm10`], Thm 4.2.
-atlas: arnoldi-relation-/
+atlas: arnoldi-relation
+@isnad1 id=eq.1h5v.s8.63b5e421d05b from=translated src=- shape=53e18044 vocab=45f5a87d
+-/
 theorem mul_restrict_Q_eq_add_smul (D : ArnoldiDecomp A b (q + 1)) (hq : 0 < q) :
     A * (D.restrict q.le_succ).Q = (D.restrict q.le_succ).Q * (D.restrict q.le_succ).H +
       D.H (Fin.last q) ⟨q - 1, by omega⟩ •
@@ -116,7 +124,9 @@ theorem mul_restrict_Q_eq_add_smul (D : ArnoldiDecomp A b (q + 1)) (hq : 0 < q) 
 
 /-- **Breakdown**: when `q` reaches the grade, `K_q` is `A`-invariant and the Arnoldi relation
 closes, `A Q_q = Q_q H_q`. Source: Saad (2003) [`saad03`], Prop. 6.6.
-atlas: arnoldi-relation (partial)-/
+atlas: arnoldi-relation (partial)
+@isnad1 id=eq.1h5v.s6.ca72c179aea2 from=translated src=- shape=84040d0b vocab=9945fbad
+-/
 theorem mul_Q_eq_of_krylovGrade_le (D : ArnoldiDecomp A b q) (h : krylovGrade A b ≤ q) :
     A * D.Q = D.Q * D.H := by
   ext r j
@@ -135,7 +145,9 @@ theorem mul_Q_eq_of_krylovGrade_le (D : ArnoldiDecomp A b q) (h : krylovGrade A 
 /-- **Breakdown characterisation**: for `q ≥ 1`, the Arnoldi relation closes (`A Q_q = Q_q H_q`,
 `K_q` is `A`-invariant) iff `q` is the grade of `b`. Source: Saad (2003) [`saad03`],
 Prop. 6.6.
-atlas: arnoldi-relation (partial)-/
+atlas: arnoldi-relation (partial)
+@isnad1 id=iff.1h5v.s7.31d4dd9bbd23 from=translated src=- shape=39aea1c0 vocab=500aa4d0
+-/
 theorem mul_Q_eq_mul_H_iff (D : ArnoldiDecomp A b q) (hq : 0 < q) :
     A * D.Q = D.Q * D.H ↔ krylovGrade A b = q := by
   refine ⟨fun h => le_antisymm ?_ D.le_krylovGrade, fun h => D.mul_Q_eq_of_krylovGrade_le h.le⟩
@@ -163,14 +175,18 @@ theorem eq_of_forall_col_dotProduct_eq (D : ArnoldiDecomp A b q) {x y : n → �
 
 /-- The starting vector has coordinates supported on the first index: `(Q_qᵀ b)_i = 0` for
 `i > 0` (`b ∈ K_1 ⊆ K_i ⟂ qᵢ`). Source: Saad (2003) [`saad03`], Alg. 6.1 (`q₁ = b/‖b‖`).
-Atlas: `arnoldi-def`.-/
+Atlas: `arnoldi-def`.
+@isnad1 id=eq.1h6v.s6.986b047b8405 from=translated src=- shape=73d663b5 vocab=79bf4f36
+-/
 theorem transpose_Q_mulVec_apply_eq_zero (D : ArnoldiDecomp A b q) {i : Fin q}
     (hi : 0 < (i : ℕ)) : (D.Qᵀ *ᵥ b) i = 0 := by
   have hb : b ∈ krylovSpace A b i := by simpa using pow_mulVec_mem_krylovSpace A b (i := 0) hi
   exact D.graded.col_dotProduct_eq_zero i hb
 
 /-- `(q_1 ⬝ b)² = ‖b‖²`, i.e. `q_1 = ± b/‖b‖`. Source: Saad (2003) [`saad03`], Alg. 6.1.
-Atlas: `arnoldi-def`.-/
+Atlas: `arnoldi-def`.
+@isnad1 id=eq.1h5v.s6.22398e35afa2 from=translated src=- shape=a6c7589a vocab=78594b5b
+-/
 theorem sq_transpose_Q_mulVec_apply_zero (D : ArnoldiDecomp A b q) (hq : 0 < q) :
     (D.Qᵀ *ᵥ b) ⟨0, hq⟩ ^ 2 = b ⬝ᵥ b := by
   have hb : b ∈ LinearMap.range D.Q.mulVecLin := by
@@ -188,7 +204,9 @@ theorem sq_transpose_Q_mulVec_apply_zero (D : ArnoldiDecomp A b q) (hq : 0 < q) 
 end ArnoldiDecomp
 
 /-- A quadratic form at a vector supported on one index: `c ⬝ M c = c_{i₀}² M_{i₀ i₀}`.
-Helper for `lanczos-gauss-quadrature`.-/
+Helper for `lanczos-gauss-quadrature`.
+@isnad1 id=eq.1h4v.s6.7dcdc9a48936 from=translated src=- shape=362c142f vocab=0e94173a
+-/
 theorem dotProduct_mulVec_eq_of_apply_eq_zero {k : Type*} [Fintype k] [DecidableEq k]
     (M : Matrix k k ℝ) {c : k → ℝ} (i₀ : k) (hc : ∀ i, i ≠ i₀ → c i = 0) :
     c ⬝ᵥ (M *ᵥ c) = c i₀ ^ 2 * M i₀ i₀ := by
@@ -221,18 +239,24 @@ Source: Golub–Meurant (2010) [`gm10`], Alg. 4.1 (there `η_j`). Atlas: `lanczo
 def beta (D : LanczosDecomp A b q) (j : ℕ) : ℝ :=
   if h : 0 < j ∧ j < q then D.T ⟨j, h.2⟩ ⟨j - 1, by omega⟩ else 0
 
-/-- `vec j` is column `j` for `j < q`. Atlas: `lanczos-recurrence`.-/
+/-- `vec j` is column `j` for `j < q`. Atlas: `lanczos-recurrence`.
+@isnad1 id=eq.1h6v.s6.a645c6568b0c from=translated src=- shape=2d436c8d vocab=b9210f1a
+-/
 theorem vec_of_lt (D : LanczosDecomp A b q) {j : ℕ} (hj : j < q) : D.vec j = D.Q.col ⟨j, hj⟩ :=
   dite_eq_left hj
 
-/-- Every Lanczos vector lies in `K_q(A, b)`. Atlas: `lanczos-recurrence`.-/
+/-- Every Lanczos vector lies in `K_q(A, b)`. Atlas: `lanczos-recurrence`.
+@isnad1 id=mem.0h6v.s7.0a6b87676396 from=translated src=- shape=a07f326d vocab=e397513d
+-/
 theorem vec_mem (D : LanczosDecomp A b q) (j : ℕ) : D.vec j ∈ krylovSpace A b q := by
   unfold vec
   split_ifs with h
   · exact krylovSpace_mono A b (show j + 1 ≤ q by omega) (D.graded.col_mem ⟨j, h⟩)
   · exact Submodule.zero_mem _
 
-/-- `q_i ⬝ q_k = δ_ik` in the `ℕ`-indexed form. Atlas: `lanczos-recurrence`.-/
+/-- `q_i ⬝ q_k = δ_ik` in the `ℕ`-indexed form. Atlas: `lanczos-recurrence`.
+@isnad1 id=eq.0h7v.s6.1e74a749d2ae from=translated src=- shape=723fb3dc vocab=eac4a423
+-/
 theorem col_dotProduct_vec (D : LanczosDecomp A b q) (i : Fin q) (k : ℕ) :
     D.Q.col i ⬝ᵥ D.vec k = if (i : ℕ) = k then 1 else 0 := by
   unfold vec
@@ -247,7 +271,9 @@ theorem col_dotProduct_vec (D : LanczosDecomp A b q) (i : Fin q) (k : ℕ) :
 `ArnoldiDecomp.mul_restrict_Q_eq_add_smul` this is `A Q_q = Q_q T_q + β_q q_{q+1} e_qᵀ`.
 Source: Golub–Meurant (2010) [`gm10`], Thm 4.2; Trefethen–Bau (1997) [`tb97`], Lect. 36,
 eq. (36.3).
-atlas: lanczos-recurrence, arnoldi-relation (partial)-/
+atlas: lanczos-recurrence, arnoldi-relation (partial)
+@isnad1 id=eq.2h6v.s8.76b2c112d38f from=translated src=- shape=da6a295e vocab=3aa1cc58
+-/
 theorem mulVec_vec_eq (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ} (hj : j + 1 < q) :
     A *ᵥ D.vec j =
       D.beta j • D.vec (j - 1) + D.alpha j • D.vec j + D.beta (j + 1) • D.vec (j + 1) := by
@@ -295,7 +321,9 @@ theorem mulVec_vec_eq (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ} (
 `ArnoldiDecomp.hasOrthonormalCols`, `ArnoldiDecomp.range_Q` this is the Lanczos
 tridiagonalisation. Source: Golub–Meurant (2010) [`gm10`], Thm 4.2; Chen–Trogdon–Ubaru (2021)
 [`ctu21`], §2.
-atlas: lanczos-recurrence-/
+atlas: lanczos-recurrence
+@isnad1 id=eq.1h5v.s8.a7d9c6264312 from=translated src=- shape=987861c8 vocab=32e8ebe1
+-/
 theorem mul_restrict_Q_eq_add_beta_smul (D : LanczosDecomp A b (q + 1)) (hq : 0 < q) :
     A * (D.restrict q.le_succ).Q =
       (D.restrict q.le_succ).Q * LanczosDecomp.T (D.restrict q.le_succ) +
@@ -306,7 +334,9 @@ theorem mul_restrict_Q_eq_add_beta_smul (D : LanczosDecomp A b (q + 1)) (hq : 0 
 
 /-- The Lanczos off-diagonal coefficients do not vanish below the grade: `β_j ≠ 0` for
 `0 < j < q`. Source: Golub–Meurant (2010) [`gm10`], Thm 4.2 (no breakdown before the grade).
-Atlas: `lanczos-recurrence`.-/
+Atlas: `lanczos-recurrence`.
+@isnad1 id=ne.2h6v.s5.7316343ef9c0 from=translated src=- shape=5bac4594 vocab=6192fb6b
+-/
 theorem beta_ne_zero (D : LanczosDecomp A b q) {j : ℕ} (h0 : 0 < j) (hj : j < q) :
     D.beta j ≠ 0 := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
@@ -315,7 +345,9 @@ theorem beta_ne_zero (D : LanczosDecomp A b q) {j : ℕ} (h0 : 0 < j) (hj : j < 
 
 /-- The canonical (Gram–Schmidt) decomposition has positive `β_j` for `0 < j < q`.
 Source: Golub–Meurant (2010) [`gm10`], Alg. 4.1 (`η_j = ‖v_j‖ > 0`).
-Atlas: `lanczos-recurrence`.-/
+Atlas: `lanczos-recurrence`.
+@isnad1 id=lt.3h5v.s6.acb2632aabf3 from=translated src=- shape=2743a2f4 vocab=24089f98
+-/
 theorem beta_arnoldiDecomp_pos (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ} (h : q ≤ krylovGrade A b)
     {j : ℕ} (h0 : 0 < j) (hj : j < q) : 0 < LanczosDecomp.beta (arnoldiDecomp A b q h) j := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
@@ -326,7 +358,9 @@ theorem beta_arnoldiDecomp_pos (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ} (h
 `deg p < 2q`, `bᵀ p(A) b = ‖b‖² (p(T_q))₁₁`. Source: Golub–Meurant (2010) [`gm10`], Thm 6.6
 and §7.1; Chen–Trogdon–Ubaru (2021) [`ctu21`], Thm 2.1. Deviation: the degree bound is
 `p.degree < 2 * q` (no `natDegree`, no truncated subtraction).
-atlas: lanczos-gauss-quadrature-/
+atlas: lanczos-gauss-quadrature
+@isnad1 id=eq.3h6v.s8.3f232cc82d5c from=translated src=- shape=78fb01d9 vocab=02aaa32c
+-/
 theorem dotProduct_aeval_mulVec_eq (D : LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q)
     {p : Polynomial ℝ} (hp : p.degree < 2 * q) :
     b ⬝ᵥ (Polynomial.aeval A p *ᵥ b) =

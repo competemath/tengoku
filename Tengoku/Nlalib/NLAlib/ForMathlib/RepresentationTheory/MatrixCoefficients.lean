@@ -20,7 +20,9 @@ namespace Representation
 variable {G m n : Type*} [Group G] [Fintype G]
   [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
-/-- The matrix of the actual Schur average is the finite average of conjugates.-/
+/-- The matrix of the actual Schur average is the finite average of conjugates.
+@isnad1 id=eq.0h6v.s12.030b5ed51331 from=translated src=- shape=a9aa9b34 vocab=20042910
+-/
 theorem toMatrix_averagedIntertwiningMap
     (ρ : Representation ℂ G (n → ℂ)) (σ : Representation ℂ G (m → ℂ))
     (M : Matrix m n ℂ) :
@@ -31,7 +33,9 @@ theorem toMatrix_averagedIntertwiningMap
   simp only [map_smul, map_sum, LinearMap.toMatrix'_comp,
     LinearMap.toMatrix'_toLin']
 
-/-- On one irreducible, the matrix average is ordinary trace divided by dimension.-/
+/-- On one irreducible, the matrix average is ordinary trace divided by dimension.
+@isnad1 id=eq.0h4v.s11.a2414e451560 from=translated src=- shape=83eba45d vocab=e9a23cc8
+-/
 theorem sum_matrix_conjugates_eq_trace_smul
     [Nonempty n] (ρ : Representation ℂ G (n → ℂ)) [IsIrreducible ρ]
     (M : Matrix n n ℂ) :
@@ -44,7 +48,9 @@ theorem sum_matrix_conjugates_eq_trace_smul
       (Fintype.card n : ℂ) ≠ 0))]
   simp
 
-/-- Averaging conjugates between inequivalent irreducibles gives the zero matrix.-/
+/-- Averaging conjugates between inequivalent irreducibles gives the zero matrix.
+@isnad1 id=eq.1h6v.s11.c89dc694dd12 from=translated src=- shape=c95198eb vocab=ed928ae5
+-/
 theorem sum_matrix_conjugates_eq_zero
     (ρ : Representation ℂ G (n → ℂ)) (σ : Representation ℂ G (m → ℂ))
     [IsIrreducible ρ] [IsIrreducible σ] (hne : IsEmpty (Equiv ρ σ))
@@ -54,7 +60,9 @@ theorem sum_matrix_conjugates_eq_zero
   rw [← toMatrix_averagedIntertwiningMap, averagedIntertwiningMap_eq_zero ρ σ hne]
   simp
 
-/-- In a unitary matrix realization, inversion is conjugate transpose.-/
+/-- In a unitary matrix realization, inversion is conjugate transpose.
+@isnad1 id=eq.1h4v.s12.2df4ed22c984 from=translated src=- shape=39986f8f vocab=5bf02e67
+-/
 theorem toMatrix_inv_eq_conjTranspose
     (ρ : Representation ℂ G (n → ℂ))
     (hu : ∀ g, LinearMap.toMatrix' (ρ g) ∈ Matrix.unitaryGroup n ℂ) (g : G) :
@@ -69,7 +77,9 @@ theorem toMatrix_inv_eq_conjTranspose
     _ = _ := by rw [← hleft, Matrix.mul_assoc, hright, Matrix.mul_one]
 
 /-- Matrix coefficients of a single irreducible unitary representation satisfy
-Schur orthogonality with the exact reciprocal dimension normalization.-/
+Schur orthogonality with the exact reciprocal dimension normalization.
+@isnad1 id=eq.1h7v.s12.983ac4f2e8c1 from=translated src=- shape=4f0d313e vocab=05ed92a9
+-/
 theorem matrix_coefficients_orthogonality_self
     [Nonempty n] (ρ : Representation ℂ G (n → ℂ)) [IsIrreducible ρ]
     (hu : ∀ g, LinearMap.toMatrix' (ρ g) ∈ Matrix.unitaryGroup n ℂ)
@@ -90,7 +100,9 @@ theorem matrix_coefficients_orthogonality_self
     simpa [ht, hab, hij, Matrix.one_apply, div_eq_mul_inv, ite_and, mul_ite, ite_mul] using hh
 
 /-- Matrix coefficients of inequivalent irreducible unitary representations are
-orthogonal; no Fourier orthogonality certificate is assumed.-/
+orthogonal; no Fourier orthogonality certificate is assumed.
+@isnad1 id=eq.2h9v.s12.fcd5e65fbf63 from=translated src=- shape=e8eed752 vocab=ef5ce2ea
+-/
 theorem matrix_coefficients_orthogonality_of_inequivalent
     (ρ : Representation ℂ G (n → ℂ)) (σ : Representation ℂ G (m → ℂ))
     [IsIrreducible ρ] [IsIrreducible σ] (hne : IsEmpty (Equiv ρ σ))

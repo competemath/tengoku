@@ -20,7 +20,9 @@ namespace Matrix
 
 /-- The rank of a lower triangular factor with positive prefix and zero column tail is
 exactly its prefix length, including the empty prefix.
-Source: matrix toolkit rederivations, `lem:rankL`.-/
+Source: matrix toolkit rederivations, `lem:rankL`.
+@isnad1 id=eq.4h3v.s6.023f87d2dbc0 from=translated src=- shape=bab64513 vocab=22eef178
+-/
 theorem rank_eq_of_lowerTriangular_positive_prefix {n r : ℕ} (hr : r ≤ n)
     (L : Matrix (Fin n) (Fin n) ℝ) (hL : L.IsLowerTriangular)
     (hpos : ∀ i : Fin n, i.val < r → 0 < L i i)

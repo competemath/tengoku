@@ -19,7 +19,9 @@ variable {n κ : Type*} [Fintype n] [DecidableEq n] [Fintype κ]
 
 omit [DecidableEq n] in
 /-- Signed quadratic projections of a Hermitian coordinate combination
-have exactly the corresponding matrix quadratic Stieltjes transform.-/
+have exactly the corresponding matrix quadratic Stieltjes transform.
+@isnad1 id=eq.3h7v.s8.67c8e616fb12 from=translated src=- shape=3266b538 vocab=a7e00ac5
+-/
 theorem stieltjesTransform_quadraticMeasureCombination
     (H : κ → Matrix n n ℂ) (hH : ∀ k, (H k).IsHermitian) (s : κ → SignedMeasure ℝ)
     (M : ℂ → Matrix n n ℂ)
@@ -42,7 +44,9 @@ theorem stieltjesTransform_quadraticMeasureCombination
 
 omit [DecidableEq n] in
 /-- Positive scalar transforms force each signed quadratic coordinate
-measure to be nonnegative on all measurable sets.-/
+measure to be nonnegative on all measurable sets.
+@isnad1 id=le.4h7v.s8.6e923928cce0 from=translated src=- shape=a18bfef7 vocab=6658a45f
+-/
 theorem quadraticMeasureCombination_nonneg_of_stieltjes
     (H : κ → Matrix n n ℂ) (hH : ∀ k, (H k).IsHermitian) (s : κ → SignedMeasure ℝ)
     (M : ℂ → Matrix n n ℂ)
@@ -65,7 +69,9 @@ theorem quadraticMeasureCombination_nonneg_of_stieltjes
 /-- Actual positive scalar quadratic representations assemble to a native
 positive matrix measure whenever finite Hermitian coordinates reproduce
 the matrix transform. The coordinates are instantiated by polarization
-of the scalar measures in the analytic capstone.-/
+of the scalar measures in the analytic capstone.
+@isnad1 id=ex.3h5v.s9.5fa81d830c34 from=translated src=- shape=1b4dd2c8 vocab=e9207c6d
+-/
 theorem exists_positiveMatrixMeasure_of_stieltjesCombination
     (H : κ → Matrix n n ℂ) (hH : ∀ k, (H k).IsHermitian) (s : κ → SignedMeasure ℝ)
     (M : ℂ → Matrix n n ℂ)

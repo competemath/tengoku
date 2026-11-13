@@ -52,7 +52,9 @@ private lemma inv_add_lt_inv {x δ : ℝ} (hx : 0 < x) (hδ : 0 < δ) :
     1 / (x + δ) < 1 / x :=
   one_div_lt_one_div_of_lt hx (lt_add_of_pos_right x hδ)
 
-/-- The reciprocal-barrier gap factors as `δ * ∑ᵢ 1/(xᵢ(xᵢ+δ))`.-/
+/-- The reciprocal-barrier gap factors as `δ * ∑ᵢ 1/(xᵢ(xᵢ+δ))`.
+@isnad1 id=eq.2h3v.s6.f75363c5b094 from=translated src=- shape=1a1200d9 vocab=0cf3c81d
+-/
 theorem reciprocalBarrierGap_eq_mul_sum_inv_mul_inv_add {δ : ℝ} {x : I → ℝ}
     (hδ : 0 < δ) (hx : ∀ i, 0 < x i) :
     reciprocalBarrierGap δ x = δ * (∑ i, 1 / (x i * (x i + δ))) := by
@@ -65,7 +67,9 @@ theorem reciprocalBarrierGap_eq_mul_sum_inv_mul_inv_add {δ : ℝ} {x : I → �
   field_simp [ne_of_gt hxi, ne_of_gt hxiadd, ne_of_gt (mul_pos hxi hxiadd)]
   ring
 
-/-- The reciprocal-barrier gap is strictly positive for positive shifts and entries.-/
+/-- The reciprocal-barrier gap is strictly positive for positive shifts and entries.
+@isnad1 id=lt.2h3v.s5.5b383b3dacc1 from=translated src=- shape=8a49ffbf vocab=1c660ffb
+-/
 theorem reciprocalBarrierGap_pos [Nonempty I] {δ : ℝ} {x : I → ℝ}
     (hδ : 0 < δ) (hx : ∀ i, 0 < x i) : 0 < reciprocalBarrierGap δ x := by
   have hpos : 0 < ∑ i, 1 / (x i * (x i + δ)) := by
@@ -87,7 +91,9 @@ private lemma sum_mul_sq_le_sum_mul_sum_mul_sq {a b : I → ℝ}
 
 For `δ > 0` and positive `xᵢ`, with
 `D = ∑ᵢ 1/xᵢ − ∑ᵢ 1/(xᵢ+δ)`,
-`((∑ᵢ 1/(xᵢ+δ)²)/D) + ∑ᵢ 1/(xᵢ+δ) ≤ 1/δ + ∑ᵢ 1/xᵢ`.-/
+`((∑ᵢ 1/(xᵢ+δ)²)/D) + ∑ᵢ 1/(xᵢ+δ) ≤ 1/δ + ∑ᵢ 1/xᵢ`.
+@isnad1 id=le.2h3v.s8.a05ecce0a9a3 from=translated src=- shape=3e5002b3 vocab=d18b22d1
+-/
 theorem reciprocal_barrier_upper_le [Nonempty I] {δ : ℝ} {x : I → ℝ}
     (hδ : 0 < δ) (hx : ∀ i, 0 < x i) :
     (((∑ i, (1 / (x i + δ)) ^ 2) /
@@ -139,7 +145,9 @@ theorem reciprocal_barrier_upper_le [Nonempty I] {δ : ℝ} {x : I → ℝ}
 
 For `δ > 0`, `yᵢ > δ`, and the potential bound `δ * ∑ᵢ 1/yᵢ ≤ 1`,
 with `D = ∑ᵢ 1/(yᵢ−δ) − ∑ᵢ 1/yᵢ`,
-`1/δ − ∑ᵢ 1/yᵢ ≤ ((∑ᵢ 1/(yᵢ−δ)²)/D) − ∑ᵢ 1/(yᵢ−δ)`.-/
+`1/δ − ∑ᵢ 1/yᵢ ≤ ((∑ᵢ 1/(yᵢ−δ)²)/D) − ∑ᵢ 1/(yᵢ−δ)`.
+@isnad1 id=le.3h3v.s8.38b01b4480c3 from=translated src=- shape=0a5dc825 vocab=bfdfc0be
+-/
 theorem reciprocal_barrier_lower_le [Nonempty I] {δ : ℝ} {y : I → ℝ}
     (hδ : 0 < δ) (hy : ∀ i, δ < y i) (hcap : δ * (∑ i, 1 / y i) ≤ 1) :
     1 / δ - (∑ i, 1 / y i) ≤

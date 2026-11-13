@@ -24,7 +24,9 @@ def entryStieltjesTransform (P : PositiveMatrixMeasure ℝ n) (z : ℂ) (i j : n
   (ComplexMeasure.re (P.entry i j)).stieltjesTransform z +
     Complex.I * (ComplexMeasure.im (P.entry i j)).stieltjesTransform z
 
-/-- Real parts of entry measures are polarized scalar quadratic signed measures.-/
+/-- Real parts of entry measures are polarized scalar quadratic signed measures.
+@isnad1 id=eq.0h4v.s8.10e487619afb from=translated src=- shape=80db9b31 vocab=a1632454
+-/
 theorem re_entry_eq_quadraticForm (P : PositiveMatrixMeasure ℝ n) (i j : n) :
     ComplexMeasure.re (P.entry i j) = (1 / 4 : ℝ) •
       (P.quadraticForm (Pi.single i 1 + Pi.single j 1) -
@@ -41,7 +43,9 @@ theorem re_entry_eq_quadraticForm (P : PositiveMatrixMeasure ℝ n) (i j : n) :
   norm_num only [show (2 : ℂ).re = 2 from rfl, show (2 : ℂ).im = 0 from rfl, mul_zero, zero_mul, sub_zero, mul_one, add_zero] at hQ
   linarith
 
-/-- Imaginary parts of entry measures are polarized scalar quadratic signed measures.-/
+/-- Imaginary parts of entry measures are polarized scalar quadratic signed measures.
+@isnad1 id=eq.0h4v.s9.b7193cddef85 from=translated src=- shape=1921af25 vocab=349a1915
+-/
 theorem im_entry_eq_quadraticForm (P : PositiveMatrixMeasure ℝ n) (i j : n) :
     ComplexMeasure.im (P.entry i j) = (-1 / 4 : ℝ) •
       (P.quadraticForm (Pi.single i 1 + Complex.I • Pi.single j 1) -
@@ -62,7 +66,9 @@ theorem im_entry_eq_quadraticForm (P : PositiveMatrixMeasure ℝ n) (i j : n) :
   linarith
 
 /-- All quadratic integral identities imply literal entrywise Stieltjes
-integral identities for the native complex entry measures.-/
+integral identities for the native complex entry measures.
+@isnad1 id=eq.2h6v.s7.a477459f3aef from=translated src=- shape=aac1c3cc vocab=babdd756
+-/
 theorem entryStieltjesTransform_eq_of_quadraticForm
     (P : PositiveMatrixMeasure ℝ n) (M : ℂ → Matrix n n ℂ)
     (hrep : ∀ v : n → ℂ, ∀ z : ℂ, 0 < z.im →

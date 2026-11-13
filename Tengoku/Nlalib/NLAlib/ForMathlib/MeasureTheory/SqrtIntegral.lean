@@ -15,7 +15,9 @@ noncomputable section
 
 namespace MeasureTheory
 
-/-- The product of square roots of two nonnegative integrable functions is integrable.-/
+/-- The product of square roots of two nonnegative integrable functions is integrable.
+@isnad1 id=integrab.4h4v.s7.6fb1bc6e56cd from=translated src=- shape=a2ad74e9 vocab=fdcc2a67
+-/
 theorem Integrable.sqrt_mul_sqrt {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {f g : Ω → ℝ} (hf : Integrable f μ) (hg : Integrable g μ)
     (hf0 : ∀ ω, 0 ≤ f ω) (hg0 : ∀ ω, 0 ≤ g ω) :
@@ -31,7 +33,9 @@ theorem Integrable.sqrt_mul_sqrt {Ω : Type*} [MeasurableSpace Ω] {μ : Measure
   exact hfs.integrable_mul hgs
 
 /-- Cauchy–Schwarz bounds an integral of a square-root product by the square root of the
-product of its two integrals.-/
+product of its two integrals.
+@isnad1 id=le.4h4v.s7.d3eb8b6f9870 from=translated src=- shape=389ad070 vocab=3c135c9d
+-/
 theorem integral_sqrt_mul_sqrt_le {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     {f g : Ω → ℝ} (hf : Integrable f μ) (hg : Integrable g μ)
     (hf0 : ∀ ω, 0 ≤ f ω) (hg0 : ∀ ω, 0 ≤ g ω) :

@@ -19,7 +19,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι]
 
 /-- Two nonnegative weighted power moments are bounded by their joint
-moment times the total weight. The weights need not sum to one.-/
+moment times the total weight. The weights need not sum to one.
+@isnad1 id=le.2h5v.s7.8faecebcfedc from=translated src=- shape=ad3e1008 vocab=686d86dc
+-/
 theorem sum_mul_pow_mul_sum_mul_pow_le (w x : ι → ℝ)
     (hw : ∀ i, 0 ≤ w i) (hx : ∀ i, 0 ≤ x i) (a b : ℕ) :
     (∑ i, w i * x i ^ a) * (∑ i, w i * x i ^ b) ≤
@@ -63,7 +65,9 @@ theorem sum_mul_pow_mul_sum_mul_pow_le (w x : ι → ℝ)
   linarith
 
 /-- A nonempty product of weighted natural moments is bounded by the
-moment at the sum of the exponents, times the appropriate total weight.-/
+moment at the sum of the exponents, times the appropriate total weight.
+@isnad1 id=le.3h4v.s7.3394aaaab596 from=translated src=- shape=5c44e6b1 vocab=0bd56683
+-/
 theorem prod_list_sum_mul_pow_le (w x : ι → ℝ)
     (hw : ∀ i, 0 ≤ w i) (hx : ∀ i, 0 ≤ x i) (ks : List ℕ) (hne : ks ≠ []) :
     (ks.map fun k => ∑ i, w i * x i ^ k).prod ≤

@@ -21,7 +21,9 @@ open scoped Topology ComplexConjugate
 namespace NLAlib
 
 /-- An odd sine partial sum is an exact trigonometric telescope.
-Source: finite product-to-sum; helper for `chebyshev-series-abs-sign`.-/
+Source: finite product-to-sum; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.1h2v.s6.d7fdbbb156d7 from=translated src=- shape=aea6c706 vocab=210829bc
+-/
 theorem sum_sin_odd_eq (φ : ℝ) (hφ : Real.sin φ ≠ 0) (n : ℕ) :
     (∑ j ∈ range n, Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ)) =
       Real.sin ((n : ℝ) * φ) ^ 2 / Real.sin φ := by
@@ -45,14 +47,18 @@ theorem sum_sin_odd_eq (φ : ℝ) (hφ : Real.sin φ ≠ 0) (n : ℕ) :
   nlinarith
 
 /-- The odd sine partial sums have the uniform Dirichlet bound `1/|sin φ|`.
-Source: finite sine telescope; helper for `chebyshev-series-abs-sign`.-/
+Source: finite sine telescope; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=le.1h2v.s6.58ff44889481 from=translated src=- shape=32dce709 vocab=3264713a
+-/
 theorem norm_sum_sin_odd_le (φ : ℝ) (hφ : Real.sin φ ≠ 0) (n : ℕ) :
     ‖∑ j ∈ range n, Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ)‖ ≤ 1 / |Real.sin φ| := by
   rw [Real.norm_eq_abs, sum_sin_odd_eq φ hφ, abs_div, abs_of_nonneg (sq_nonneg _)]
   exact div_le_div_of_nonneg_right (Real.sin_sq_le_one _) (abs_nonneg _)
 
 /-- The reciprocal odd integers tend to zero.
-Source: elementary real reciprocal limit; helper for `chebyshev-series-abs-sign`.-/
+Source: elementary real reciprocal limit; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=tendsto.0h0v.s6.3591ec0efa82 from=translated src=- shape=818e6d6a vocab=60a78211
+-/
 theorem tendsto_one_div_odd_atTop :
     Tendsto (fun j : ℕ => 1 / (2 * (j : ℝ) + 1)) atTop (𝓝 0) := by
   apply squeeze_zero' (Filter.Eventually.of_forall (fun j => by positivity))
@@ -63,7 +69,9 @@ theorem tendsto_one_div_odd_atTop :
     (show (j : ℝ) ≤ 2 * j + 1 by nlinarith [Nat.cast_nonneg (α := ℝ) j])
 
 /-- The odd sine harmonic series converges in its ordinary partial-sum order away from zero.
-Source: Dirichlet's test; helper for `chebyshev-series-abs-sign`.-/
+Source: Dirichlet's test; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=ex.1h1v.s6.a2f82adb1ee2 from=translated src=- shape=61b6fa0b vocab=ea330795
+-/
 theorem exists_tendsto_sum_sin_odd_div (φ : ℝ) (hφ : Real.sin φ ≠ 0) :
     ∃ L : ℝ, Tendsto (fun n => ∑ j ∈ range n,
       Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ) / (2 * (j : ℝ) + 1)) atTop (𝓝 L) := by
@@ -77,7 +85,9 @@ theorem exists_tendsto_sum_sin_odd_div (φ : ℝ) (hφ : Real.sin φ ≠ 0) :
   simpa only [smul_eq_mul, one_div, mul_comm _ (Real.sin _), ← div_eq_mul_inv] using hL
 
 /-- Radial damping of the odd sine series is the real part of a complex arctangent.
-Source: Mathlib's actual complex arctangent power series; helper for `chebyshev-series-abs-sign`.-/
+Source: Mathlib's actual complex arctangent power series; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=hassum.2h2v.s7.0f317b13b478 from=translated src=- shape=bbf5d7a3 vocab=22ef89b7
+-/
 theorem hasSum_pow_mul_sin_odd_div (φ r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
     HasSum (fun j : ℕ => r ^ (2 * j + 1) * Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ) /
       (2 * (j : ℝ) + 1)) (-(Complex.arctan (Complex.I * (r : ℂ) * Complex.exp ((φ : ℂ) * Complex.I))).re) := by
@@ -123,7 +133,9 @@ theorem hasSum_pow_mul_sin_odd_div (φ r : ℝ) (hr0 : 0 ≤ r) (hr1 : r < 1) :
   simpa only [neg_neg] using hs.neg
 
 /-- The Cayley quotient of a nonreal unit point has zero real part and the opposite imaginary sign.
-Source: elementary unit-circle algebra; helper for `chebyshev-series-abs-sign`.-/
+Source: elementary unit-circle algebra; helper for `chebyshev-series-abs-sign`.
+@isnad1 id=and.2h1v.s7.6cd8196c8d40 from=translated src=- shape=417678fc vocab=a39e85f0
+-/
 theorem re_im_unit_circle_cayley {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im ≠ 0) :
     ((1 - w) / (1 + w)).re = 0 ∧
       ((1 - w) / (1 + w)).im = -2 * w.im / Complex.normSq (1 + w) ∧
@@ -150,7 +162,9 @@ theorem re_im_unit_circle_cayley {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im ≠ 0) 
 
 /-- The endpoint arctangent value of a nonreal unit-circle point gives the square-wave sign.
 Source: the principal complex logarithm and Cayley transform;
-helper for `chebyshev-series-abs-sign`.-/
+helper for `chebyshev-series-abs-sign`.
+@isnad1 id=eq.2h1v.s6.3f589a903b3a from=translated src=- shape=da84c189 vocab=a6ea512d
+-/
 theorem neg_re_arctan_I_mul_eq_sign {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im ≠ 0) :
     -(Complex.arctan (Complex.I * w)).re = Real.pi / 4 * Real.sign w.im := by
   let q : ℂ := (1 - w) / (1 + w)
@@ -181,7 +195,9 @@ theorem neg_re_arctan_I_mul_eq_sign {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im ≠ 
 
 /-- Radial arctangent evaluation is continuous at a nonreal unit-circle endpoint.
 Source: continuity of the principal logarithm away from its cut;
-helper for `chebyshev-series-abs-sign`.-/
+helper for `chebyshev-series-abs-sign`.
+@isnad1 id=continuo.2h1v.s6.caa117c22829 from=translated src=- shape=ece471b0 vocab=262320ad
+-/
 theorem continuousAt_neg_re_arctan_I_mul {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im ≠ 0) :
     ContinuousAt (fun r : ℝ => -(Complex.arctan (Complex.I * (r : ℂ) * w)).re) 1 := by
   obtain ⟨hqr, hqi, hd⟩ := re_im_unit_circle_cayley hw hi
@@ -212,7 +228,9 @@ theorem continuousAt_neg_re_arctan_I_mul {w : ℂ} (hw : ‖w‖ = 1) (hi : w.im
 
 /-- The odd sine harmonic series has the ordinary square-wave value.
 Source: Dirichlet's test, Abel's limit theorem, and the genuine arctangent power series;
-helper for `chebyshev-series-abs-sign`.-/
+helper for `chebyshev-series-abs-sign`.
+@isnad1 id=tendsto.1h1v.s7.e7867c11fe8e from=translated src=- shape=d5062619 vocab=18a207fc
+-/
 theorem tendsto_sum_sin_odd_div (φ : ℝ) (hφ : Real.sin φ ≠ 0) :
     Tendsto (fun n => ∑ j ∈ range n,
       Real.sin (((2 * j + 1 : ℕ) : ℝ) * φ) / (2 * (j : ℝ) + 1)) atTop

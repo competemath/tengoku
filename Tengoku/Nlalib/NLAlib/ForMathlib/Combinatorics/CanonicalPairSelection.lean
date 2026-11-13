@@ -15,7 +15,9 @@ arXiv:1711.00807v2, Section 3.1.
 namespace Finset
 
 /-- One selected unordered entry per distinct row gives at least half as
-many distinct canonical coordinates. Diagonal entries need no exception.-/
+many distinct canonical coordinates. Diagonal entries need no exception.
+@isnad1 id=le.0h3v.s6.f35085603796 from=translated src=- shape=ae54436d vocab=7c756060
+-/
 theorem card_le_two_mul_card_image_canonicalPair {ι : Type*} [LinearOrder ι]
     (s : Finset ι) (j : ι → ι) :
     s.card ≤ 2 * (s.image (fun i => (max i (j i), min i (j i)))).card := by

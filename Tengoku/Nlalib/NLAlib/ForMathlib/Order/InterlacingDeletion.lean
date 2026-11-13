@@ -14,7 +14,9 @@ noncomputable section
 namespace NLAlib
 
 /-- A non-strict monotone finite real list has an equal adjacent pair.
-Horn–Johnson 2013, Theorems 4.3.21 and 4.3.26; repeated-root deletion helper.-/
+Horn–Johnson 2013, Theorems 4.3.21 and 4.3.26; repeated-root deletion helper.
+@isnad1 id=ex.2h2v.s7.48ad5aad7ab6 from=translated src=- shape=0094447b vocab=49605df3
+-/
 theorem exists_adjacent_eq_of_monotone_not_strictMono {n : ℕ}
     (d : Fin (n + 1) → ℝ) (hd : Monotone d) (hn : ¬StrictMono d) :
     ∃ i : Fin n, d i.castSucc = d i.succ := by
@@ -27,7 +29,9 @@ theorem exists_adjacent_eq_of_monotone_not_strictMono {n : ℕ}
 
 /-- Adjacent upper rank-one interlacing inequalities imply the corresponding
 inequality at every strictly later original eigenvalue. Horn–Johnson 2013,
-Theorem 4.3.26; finite-list convention bridge.-/
+Theorem 4.3.26; finite-list convention bridge.
+@isnad1 id=le.3h5v.s6.07c5e5f75456 from=translated src=- shape=c89d22cb vocab=e6100f0c
+-/
 theorem interlacing_upper_of_adjacent {n : ℕ} (d b : Fin n → ℝ)
     (hd : Monotone d) (h : ∀ i j, i.val + 1 = j.val → b i ≤ d j) :
     ∀ i j, i < j → b i ≤ d j := by
@@ -36,7 +40,9 @@ theorem interlacing_upper_of_adjacent {n : ℕ} (d b : Fin n → ℝ)
   exact (h i l rfl).trans (hd (show l ≤ j by change i.val + 1 ≤ j.val; omega))
 
 /-- Numeric coordinates of the increasing embedding that omits one finite
-index. Mathlib's `Fin.succAbove`; supports repeated interlacing deletion.-/
+index. Mathlib's `Fin.succAbove`; supports repeated interlacing deletion.
+@isnad1 id=eq.0h3v.s6.0e3797498e0c from=translated src=- shape=a256b2b4 vocab=c0f4926e
+-/
 theorem val_succAbove_eq_ite {n : ℕ} (p : Fin (n + 1)) (i : Fin n) :
     (p.succAbove i).val = if i.val < p.val then i.val else i.val + 1 := by
   simp only [Fin.succAbove, Fin.lt_def, Fin.val_castSucc]
@@ -45,7 +51,9 @@ theorem val_succAbove_eq_ite {n : ℕ} (p : Fin (n + 1)) (i : Fin n) :
 /-- Removing an original eigenvalue at `p` and a target eigenvalue at
 `p+1` preserves bordered weak interlacing. Equality of the two removed
 values is a separate hypothesis used by the polynomial reconstruction.
-Horn–Johnson 2013, Theorem 4.3.21; repeated-root deletion helper.-/
+Horn–Johnson 2013, Theorem 4.3.21; repeated-root deletion helper.
+@isnad1 id=and.2h5v.s7.62be0be396d7 from=translated src=- shape=9e3cd2f5 vocab=5f815890
+-/
 theorem bordered_interlacing_succAbove {n : ℕ}
     (d : Fin (n + 1) → ℝ) (b : Fin (n + 2) → ℝ) (hb : Monotone b)
     (h : ∀ i, b i.castSucc ≤ d i ∧ d i ≤ b i.succ) (p : Fin (n + 1)) :
@@ -65,7 +73,9 @@ theorem bordered_interlacing_succAbove {n : ℕ}
 
 /-- An adjacent repeated original eigenvalue forces the intervening target
 eigenvalue in bordered interlacing. Horn–Johnson 2013, Theorem 4.3.21;
-the weak-equality case is retained exactly.-/
+the weak-equality case is retained exactly.
+@isnad1 id=eq.2h4v.s7.0767202aee5c from=translated src=- shape=50452d09 vocab=edcdb48e
+-/
 theorem bordered_interlacing_forced_root {n : ℕ}
     (d : Fin (n + 1) → ℝ) (b : Fin (n + 2) → ℝ)
     (h : ∀ i, b i.castSucc ≤ d i ∧ d i ≤ b i.succ)
@@ -76,7 +86,9 @@ theorem bordered_interlacing_forced_root {n : ℕ}
 
 /-- An adjacent repeated original eigenvalue forces the corresponding
 target eigenvalue in positive rank-one interlacing. Horn–Johnson 2013,
-Theorem 4.3.26; repeated-root deletion helper.-/
+Theorem 4.3.26; repeated-root deletion helper.
+@isnad1 id=eq.3h4v.s7.261d933c416e from=translated src=- shape=0c37d9ff vocab=15517b22
+-/
 theorem rank_one_interlacing_forced_root {n : ℕ}
     (d b : Fin (n + 1) → ℝ) (hlo : ∀ i, d i ≤ b i)
     (hhi : ∀ i j, i < j → b i ≤ d j) (i : Fin n)

@@ -22,7 +22,9 @@ transforms over a real gap of their averaged transform. A local
 O(height) estimate suffices: compact tests, almost-everywhere zero
 mass, and extension to the true parameter support are all proved.
 No measure-valued kernel, pointwise sample gap, or uniform sample
-boundary bound is supplied as a hypothesis.-/
+boundary bound is supplied as a hypothesis.
+@isnad1 id=ex.7h9v.s8.f03827c384cb from=translated src=- shape=e85d5d5c vocab=5e71a0b2
+-/
 theorem exists_uniform_stieltjes_bound_on_support_of_local_average_im_bound
     {T : Type*} [TopologicalSpace T] [MeasurableSpace T] [BorelSpace T]
     (ν : Measure T) [IsProbabilityMeasure ν]

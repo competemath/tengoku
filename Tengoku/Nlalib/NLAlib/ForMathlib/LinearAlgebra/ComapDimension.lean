@@ -16,7 +16,9 @@ open Module
 namespace NLAlib
 
 /-- Pullback by an endomorphism cannot lower a subspace's dimension.
-Quotient rank--nullity; helper for `ostrowski-congruence-eigenvalues`.-/
+Quotient rank--nullity; helper for `ostrowski-congruence-eigenvalues`.
+@isnad1 id=le.0h4v.s8.724a433e2e09 from=translated src=- shape=3e93eab0 vocab=eb851af0
+-/
 theorem finrank_le_finrank_comap_endomorphism {K V : Type*} [Field K]
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     (W : Submodule K V) (T : V →ₗ[K] V) :

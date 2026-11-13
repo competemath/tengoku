@@ -48,7 +48,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- Each Lanczos vector is a polynomial of exact degree `j` in `A` applied to `b`:
 `q_j = p_j(A) b` with `deg p_j = j`. Source: Golub–Meurant (2010) [`gm10`], Thm 4.2 (§4.1).
-Atlas: `lanczos-orthogonal-polynomials`.-/
+Atlas: `lanczos-orthogonal-polynomials`.
+@isnad1 id=ex.0h6v.s7.cbcec93f4fbe from=translated src=- shape=569d7e86 vocab=6f4e82d1
+-/
 theorem exists_col_eq_aeval (D : LanczosDecomp A b q) (j : Fin q) :
     ∃ p : ℝ[X], p.degree = j ∧ D.Q.col j = aeval A p *ᵥ b := by
   obtain ⟨p, hp, hpj⟩ := (mem_krylovSpace_iff A b _ _).1 (D.graded.col_mem j)
@@ -71,12 +73,16 @@ Source: Golub–Meurant (2010) [`gm10`], §4.1 and Ch. 2. Atlas: `lanczos-orthog
 def poly (D : LanczosDecomp A b q) (j : ℕ) : ℝ[X] :=
   if h : j < q then Classical.choose (D.exists_col_eq_aeval ⟨j, h⟩) else 0
 
-/-- `deg p_j = j` for `j < q`. Atlas: `lanczos-orthogonal-polynomials`.-/
+/-- `deg p_j = j` for `j < q`. Atlas: `lanczos-orthogonal-polynomials`.
+@isnad1 id=eq.1h6v.s5.fc023bee25fe from=translated src=- shape=9c8729e7 vocab=28669fd1
+-/
 theorem degree_poly (D : LanczosDecomp A b q) {j : ℕ} (hj : j < q) : (D.poly j).degree = j := by
   rw [poly, dite_eq_left hj]
   exact (Classical.choose_spec (D.exists_col_eq_aeval ⟨j, hj⟩)).1
 
-/-- `q_j = p_j(A) b` (both sides `0` for `j ≥ q`). Atlas: `lanczos-orthogonal-polynomials`.-/
+/-- `q_j = p_j(A) b` (both sides `0` for `j ≥ q`). Atlas: `lanczos-orthogonal-polynomials`.
+@isnad1 id=eq.0h6v.s7.3c6e3ba4bf62 from=translated src=- shape=7e2d81ec vocab=708bed93
+-/
 theorem vec_eq_aeval_poly (D : LanczosDecomp A b q) (j : ℕ) :
     D.vec j = aeval A (D.poly j) *ᵥ b := by
   rw [vec, poly]
@@ -84,7 +90,9 @@ theorem vec_eq_aeval_poly (D : LanczosDecomp A b q) (j : ℕ) :
   · exact (Classical.choose_spec (D.exists_col_eq_aeval ⟨j, hj⟩)).2
   · simp
 
-/-- The Lanczos polynomials have degree at most `j` (exactly `j` for `j < q`).-/
+/-- The Lanczos polynomials have degree at most `j` (exactly `j` for `j < q`).
+@isnad1 id=le.0h6v.s5.45d1fe617822 from=translated src=- shape=26297b2c vocab=f17d13df
+-/
 theorem degree_poly_le (D : LanczosDecomp A b q) (j : ℕ) : (D.poly j).degree ≤ j := by
   by_cases hj : j < q
   · rw [D.degree_poly hj]
@@ -93,7 +101,9 @@ theorem degree_poly_le (D : LanczosDecomp A b q) (j : ℕ) : (D.poly j).degree �
 /-- **The Lanczos polynomials are orthonormal for the spectral measure**:
 `∫ p_i p_j dμ_b = δ_ij` for `i < q` (and any `j`; `p_j = 0` for `j ≥ q`).
 Source: Golub–Meurant (2010) [`gm10`], Thm 4.2 and §2.1; Greenbaum (1997) [`greenbaum97`], §2.5.
-atlas: lanczos-orthogonal-polynomials-/
+atlas: lanczos-orthogonal-polynomials
+@isnad1 id=eq.2h7v.s7.94c901de7982 from=translated src=- shape=d4db1e6e vocab=19e0e85c
+-/
 theorem integral_poly_mul_poly (D : LanczosDecomp A b q) (hA : A.IsHermitian) {i j : ℕ}
     (hi : i < q) :
     ∫ x, (D.poly i).eval x * (D.poly j).eval x ∂spectralMeasure hA b =
@@ -101,7 +111,9 @@ theorem integral_poly_mul_poly (D : LanczosDecomp A b q) (hA : A.IsHermitian) {i
   rw [integral_eval_mul_eval_spectralMeasure, ← vec_eq_aeval_poly, ← vec_eq_aeval_poly,
     D.vec_of_lt hi, col_dotProduct_vec]
 
-/-- The Jacobi matrix of a symmetric `A` is Hermitian. Atlas: `lanczos-recurrence`.-/
+/-- The Jacobi matrix of a symmetric `A` is Hermitian. Atlas: `lanczos-recurrence`.
+@isnad1 id=ishermit.1h5v.s6.abb48366ad43 from=translated src=- shape=07b54f7c vocab=c1ebfffd
+-/
 theorem isHermitian_T (D : LanczosDecomp A b q) (hA : A.IsHermitian) : D.T.IsHermitian :=
   Matrix.isHermitian_conjTranspose_mul_mul D.Q hA
 
@@ -109,7 +121,9 @@ theorem isHermitian_T (D : LanczosDecomp A b q) (hA : A.IsHermitian) : D.T.IsHer
 `X p_j = β_j p_{j−1} + α_j p_j + β_{j+1} p_{j+1}`, so the Jacobi matrix `T` holds the recurrence
 coefficients of the orthonormal polynomials of `μ_b`. Source: Golub–Meurant (2010) [`gm10`],
 Thm 2.1 and Thm 4.2.
-atlas: lanczos-orthogonal-polynomials (partial)-/
+atlas: lanczos-orthogonal-polynomials (partial)
+@isnad1 id=eq.2h6v.s8.53e8dd131798 from=translated src=- shape=64aff9a6 vocab=8fd69390
+-/
 theorem X_mul_poly (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ} (hj : j + 1 < q) :
     X * D.poly j = C (D.beta j) * D.poly (j - 1) + C (D.alpha j) * D.poly j +
       C (D.beta (j + 1)) * D.poly (j + 1) := by
@@ -136,7 +150,9 @@ theorem X_mul_poly (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ} (hj 
 /-- **Christoffel–Darboux identity** for the Lanczos polynomials: for symmetric `A` and
 `1 ≤ m < q`, `(x − y) ∑_{j<m} p_j(x) p_j(y) = β_m (p_m(x) p_{m−1}(y) − p_{m−1}(x) p_m(y))`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 2 (Christoffel–Darboux formula).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.3h8v.s7.259cb46e5066 from=translated src=- shape=ed408c63 vocab=fc1f7448
+-/
 theorem sub_mul_sum_eval_poly_mul (D : LanczosDecomp A b q) (hA : A.IsHermitian) {m : ℕ}
     (hm0 : 0 < m) (hm : m < q) (x y : ℝ) :
     (x - y) * ∑ j ∈ Finset.range m, (D.poly j).eval x * (D.poly j).eval y =
@@ -165,7 +181,9 @@ theorem sub_mul_sum_eval_poly_mul (D : LanczosDecomp A b q) (hA : A.IsHermitian)
 `χ_q = charpoly T_q` (monic of degree `q`, `charpoly_T_monic`, `natDegree_charpoly_T`) is
 orthogonal in `μ_b` to every polynomial of degree `< q`. Source: Golub–Meurant (2010)
 [`gm10`], Thm 4.2 and §3.1 (`p_q` and `det(λI − J_q)` are proportional).
-atlas: lanczos-orthogonal-polynomials (partial)-/
+atlas: lanczos-orthogonal-polynomials (partial)
+@isnad1 id=eq.2h6v.s7.c9f2f974454a from=translated src=- shape=829e14a1 vocab=b30aed59
+-/
 theorem integral_eval_charpoly_mul_eq_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {r : ℝ[X]} (hr : r.degree < q) :
     ∫ x, D.T.charpoly.eval x * r.eval x ∂spectralMeasure hA b = 0 := by
@@ -178,7 +196,9 @@ theorem integral_eval_charpoly_mul_eq_zero (D : LanczosDecomp A b q) (hA : A.IsH
       (natDegree_le_iff_degree_le.1 (by rw [charpoly_natDegree_eq_dim, Fintype.card_fin])),
     ← ArnoldiDecomp.H_def, aeval_self_charpoly, Matrix.zero_mulVec, zero_dotProduct]
 
-/-- `charpoly T_q` is monic of degree `q`. Atlas: `lanczos-orthogonal-polynomials`.-/
+/-- `charpoly T_q` is monic of degree `q`. Atlas: `lanczos-orthogonal-polynomials`.
+@isnad1 id=and.0h5v.s6.1f80f40ee97b from=translated src=- shape=87a2aab4 vocab=ea52f78c
+-/
 theorem charpoly_T_monic (D : LanczosDecomp A b q) :
     D.T.charpoly.Monic ∧ D.T.charpoly.natDegree = q :=
   ⟨charpoly_monic _, by rw [charpoly_natDegree_eq_dim, Fintype.card_fin]⟩
@@ -213,7 +233,9 @@ private lemma leadingCoeff_poly_zero_eq (D : LanczosDecomp A b q) (hA : A.IsHerm
 `χ_j p_0 = β_1 ⋯ β_j p_j` with `χ_j = charpoly T_j` (`p_0 = ±1/‖b‖` is a constant; for
 `‖b‖ = 1` and the canonical signs this is `det(x I − T_j) = β_1 ⋯ β_j p_j(x)`).
 Source: Golub–Meurant (2010) [`gm10`], Ch. 3 and Thm 4.2 (labels to verify).
-atlas: lanczos-orthogonal-polynomials-/
+atlas: lanczos-orthogonal-polynomials
+@isnad1 id=eq.2h6v.s7.8b90c533e766 from=translated src=- shape=9087b05c vocab=eee3d32c
+-/
 theorem charpoly_restrict_T_mul_poly_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ}
     (hj : j < q) :
     (LanczosDecomp.T (D.restrict hj.le)).charpoly * D.poly 0 =
@@ -296,7 +318,9 @@ private lemma hasOrthonormalCols_submatrix_one {q' : ℕ} (h : q' ≤ q) :
 principal submatrix of `T_q`) satisfy `θ_i(T_{q'}) ≤ θ_i(T_q)` (eigenvalues in non-increasing
 order). Source: Golub–Meurant (2010) [`gm10`], Ch. 3 (interlacing);
 Horn–Johnson (2013) [`hj13`], Thm 4.3.17. Deviation: non-strict.
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=le.2h7v.s7.ae399d611d7a from=translated src=- shape=9494b958 vocab=fc7905a9
+-/
 theorem eigenvalues₀_restrict_T_le (D : LanczosDecomp A b q) (hA : A.IsHermitian) {q' : ℕ}
     (h : q' ≤ q) (i : Fin (Fintype.card (Fin q'))) :
     (isHermitian_T (D.restrict h) hA).eigenvalues₀ i ≤
@@ -312,7 +336,9 @@ with `q' = q − 1` and the upper half, the eigenvalues of `T_{q−1}` interlace
 Source: Golub–Meurant (2010) [`gm10`], Ch. 3; Horn–Johnson (2013) [`hj13`],
 Thm 4.3.17.
 Deviation: non-strict.
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=le.2h7v.s7.6a54aae261c8 from=translated src=- shape=875b9995 vocab=43e29f1d
+-/
 theorem eigenvalues₀_le_eigenvalues₀_restrict_T (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {q' : ℕ} (h : q' ≤ q) (i : Fin (Fintype.card (Fin q'))) :
     (D.isHermitian_T hA).eigenvalues₀ ⟨i + (Fintype.card (Fin q) - Fintype.card (Fin q')),
@@ -329,7 +355,9 @@ theorem eigenvalues₀_le_eigenvalues₀_restrict_T (D : LanczosDecomp A b q) (h
 /-- **Golub–Welsch**: `e₁ᵀ f(T_q) e₁ = ∑ᵢ f(θᵢ) (uᵢ)₁²` with `(θᵢ, uᵢ)` the eigenpairs of
 `T_q`: the Gauss rule has the eigenvalues of `T_q` as nodes and the squared first components
 of its eigenvectors as weights. Source: Golub–Meurant (2010) [`gm10`], Ch. 6 (Golub–Welsch).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.2h6v.s9.74512ace8b29 from=translated src=- shape=73c1e98b vocab=fce075ec
+-/
 theorem cfc_T_apply_zero_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q)
     (f : ℝ → ℝ) :
     cfc f D.T ⟨0, hq⟩ ⟨0, hq⟩ = ∑ i, f ((D.isHermitian_T hA).eigenvalues i) *
@@ -340,7 +368,9 @@ theorem cfc_T_apply_zero_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian) (hq
   simpa only [Pi.single_eq_same, one_pow, one_mul, dotProduct_single, mul_one] using h
 
 /-- The Gauss weights sum to one: `∑ᵢ (uᵢ)₁² = 1`. Source: Golub–Meurant (2010) [`gm10`],
-Thm 6.6. Atlas: `jacobi-matrix-identities`.-/
+Thm 6.6. Atlas: `jacobi-matrix-identities`.
+@isnad1 id=eq.2h5v.s8.600352329ae9 from=translated src=- shape=adfb5802 vocab=8512f262
+-/
 theorem sum_sq_eigenvectorBasis_T_apply_zero (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     (hq : 0 < q) : ∑ i, ((D.isHermitian_T hA).eigenvectorBasis i ⟨0, hq⟩) ^ 2 = 1 := by
   have h := sum_sq_eigenvectorBasis_dotProduct (D.isHermitian_T hA) (Pi.single ⟨0, hq⟩ 1)
@@ -349,7 +379,9 @@ theorem sum_sq_eigenvectorBasis_T_apply_zero (D : LanczosDecomp A b q) (hA : A.I
 /-- **The Lanczos quadrature value is a Gauss rule**: `(Q_qᵀ b)ᵀ f(T_q) (Q_qᵀ b) =
 ‖b‖² ∑ᵢ f(θᵢ) (uᵢ)₁²` for every `f`. Source: Golub–Meurant (2010) [`gm10`], Thm 6.6 and §7.1;
 Ubaru–Chen–Saad (2017) [`ucs17`], §3.
-atlas: jacobi-matrix-identities (partial), lanczos-gauss-quadrature (partial)-/
+atlas: jacobi-matrix-identities (partial), lanczos-gauss-quadrature (partial)
+@isnad1 id=eq.2h6v.s9.8dd4879e10f6 from=translated src=- shape=17f5dfc0 vocab=113b87e6
+-/
 theorem dotProduct_cfc_T_mulVec_eq_sum (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     (hq : 0 < q) (f : ℝ → ℝ) :
     (D.Qᵀ *ᵥ b) ⬝ᵥ (cfc f D.T *ᵥ (D.Qᵀ *ᵥ b)) = (b ⬝ᵥ b) * ∑ i,
@@ -363,7 +395,9 @@ theorem dotProduct_cfc_T_mulVec_eq_sum (D : LanczosDecomp A b q) (hA : A.IsHermi
 `deg p < 2q`, `bᵀ p(A) b = ‖b‖² ∑ᵢ p(θᵢ) (uᵢ)₁²` with nodes `θᵢ` the eigenvalues of `T_q` and
 weights the squared first eigenvector components. Source: Golub–Meurant (2010) [`gm10`],
 Thm 6.6; Chen–Trogdon–Ubaru (2021) [`ctu21`], Thm 2.1.
-atlas: lanczos-gauss-quadrature, jacobi-matrix-identities (partial)-/
+atlas: lanczos-gauss-quadrature, jacobi-matrix-identities (partial)
+@isnad1 id=eq.3h6v.s9.e973a6913650 from=translated src=- shape=701d8bab vocab=82d647f4
+-/
 theorem dotProduct_aeval_mulVec_eq_sum (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     (hq : 0 < q) {p : ℝ[X]} (hp : p.degree < 2 * q) :
     b ⬝ᵥ (aeval A p *ᵥ b) = (b ⬝ᵥ b) * ∑ i,

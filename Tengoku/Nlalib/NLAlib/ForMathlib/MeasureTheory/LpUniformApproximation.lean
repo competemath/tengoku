@@ -18,7 +18,9 @@ open MeasureTheory
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 /-- A uniform approximation error bounds the increase in the actual real
-Lp norm on a probability space. Only the comparison function needs Lp membership.-/
+Lp norm on a probability space. Only the comparison function needs Lp membership.
+@isnad1 id=le.5h6v.s7.f0952ce3ee17 from=translated src=- shape=35b37b55 vocab=d8e92fd1
+-/
 theorem MeasureTheory.lpNorm_le_add_of_uniform_approximation {f g : Ω → ℝ}
     {p : ENNReal} (hg : MemLp g p μ) (hp : 1 ≤ p) (hp_top : p ≠ ⊤)
     {δ : ℝ} (hδ : 0 ≤ δ) (hfg : ∀ x, |f x - g x| ≤ δ) :

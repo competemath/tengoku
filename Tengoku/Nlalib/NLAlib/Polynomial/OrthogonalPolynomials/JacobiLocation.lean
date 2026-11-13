@@ -24,7 +24,9 @@ namespace NLAlib
 Rayleigh value is the eigenvalue; positive support gives strict endpoint bounds.
 The eigenvector is arbitrary, rather than a chosen spectral basis.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=mem.5h6v.s7.9b123e458163 from=translated src=- shape=8f8c0a89 vocab=e8f9d30f
+-/
 theorem eigenvalue_orthogonalPolynomialJacobiMatrix_mem_Ioo
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n + 1 : ℕ∞) ≤ μ.support.encard)
@@ -129,7 +131,9 @@ theorem eigenvalue_orthogonalPolynomialJacobiMatrix_mem_Ioo
 /-- Every nonterminal canonical Gauss node lies strictly inside a support
 interval. No eigenvector normalization is assumed in the statement.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=mem.3h5v.s6.9b539c439603 from=translated src=- shape=1e033a25 vocab=1e3cbe06
+-/
 theorem gaussNodes_mem_Ioo {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n + 1 : ℕ∞) ≤ μ.support.encard) (i : Fin n) :
     gaussNodes μ hμ n i ∈ Ioo a b := by
@@ -144,7 +148,9 @@ theorem gaussNodes_mem_Ioo {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a
   · exact hB.mulVec_eigenvectorBasis i
 
 /-- Every canonical Gauss node lies in a closed support enclosure, including
-finite-support termination when the nodes are exactly the support.-/
+finite-support termination when the nodes are exactly the support.
+@isnad1 id=mem.3h5v.s6.79d911543e65 from=translated src=- shape=315a0cd6 vocab=9b9fba34
+-/
 theorem gaussNodes_mem_Icc {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) (i : Fin n) :
     gaussNodes μ hμ n i ∈ Icc a b := by

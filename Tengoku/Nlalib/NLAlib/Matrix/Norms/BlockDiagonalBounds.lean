@@ -10,7 +10,9 @@ noncomputable section
 open scoped Matrix
 namespace NLAlib
 
-/-- A coordinate quadratic bound controls the Euclidean operator norm.-/
+/-- A coordinate quadratic bound controls the Euclidean operator norm.
+@isnad1 id=le.2h5v.s7.c068e8552b00 from=translated src=- shape=16125056 vocab=a8cec6c3
+-/
 theorem specNorm_le_of_sum_norm_sq_mulVec_le {K m n : Type*} [RCLike K]
     [Fintype m] [Fintype n] [DecidableEq n] {A : Matrix m n K} {c : ℝ}
     (hc : 0 ≤ c) (h : ∀ x : n → K,
@@ -29,7 +31,9 @@ theorem specNorm_le_of_sum_norm_sq_mulVec_le {K m n : Type*} [RCLike K]
 variable {K m n : Type*} [RCLike K] [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n]
 
-/-- A block diagonal operator is bounded by the maximum diagonal-block norm.-/
+/-- A block diagonal operator is bounded by the maximum diagonal-block norm.
+@isnad1 id=le.0h5v.s7.87f43366f482 from=translated src=- shape=2221f444 vocab=5fe3018b
+-/
 theorem specNorm_fromBlocks_diagonal_le (A : Matrix m m K) (D : Matrix n n K) :
     specNorm (Matrix.fromBlocks A 0 0 D) ≤ max (specNorm A) (specNorm D) := by
   apply specNorm_le_of_sum_norm_sq_mulVec_le (le_max_of_le_left (specNorm_nonneg A))
@@ -48,7 +52,9 @@ theorem specNorm_fromBlocks_diagonal_le (A : Matrix m m K) (D : Matrix n n K) :
   nlinarith [mul_le_mul_of_nonneg_right hAm hposA, mul_le_mul_of_nonneg_right hDm hposD]
 
 /-- The norm of a directed off-diagonal pair is bounded by the maximum of its
-two block norms; this is valid for rectangular sibling blocks.-/
+two block norms; this is valid for rectangular sibling blocks.
+@isnad1 id=le.0h5v.s7.6f0bb0e4ebbd from=translated src=- shape=7d3ad6e2 vocab=5fe3018b
+-/
 theorem specNorm_fromBlocks_offDiagonal_le (B : Matrix m n K) (C : Matrix n m K) :
     specNorm (Matrix.fromBlocks 0 B C 0) ≤ max (specNorm B) (specNorm C) := by
   apply specNorm_le_of_sum_norm_sq_mulVec_le (le_max_of_le_left (specNorm_nonneg B))
@@ -67,7 +73,9 @@ theorem specNorm_fromBlocks_offDiagonal_le (B : Matrix m n K) (C : Matrix n m K)
   nlinarith [mul_le_mul_of_nonneg_right hBm hposB, mul_le_mul_of_nonneg_right hCm hposC]
 
 omit [DecidableEq m] [DecidableEq n] in
-/-- Disjoint rectangular blocks satisfy exact Frobenius Pythagoras.-/
+/-- Disjoint rectangular blocks satisfy exact Frobenius Pythagoras.
+@isnad1 id=eq.0h9v.s7.bd948afb1ac9 from=translated src=- shape=88e0b0da vocab=0f7928af
+-/
 theorem frobSq_fromBlocks {p q : Type*} [Fintype p] [Fintype q]
     (A : Matrix m p K) (B : Matrix m q K) (C : Matrix n p K) (D : Matrix n q K) :
     frobSq (Matrix.fromBlocks A B C D) = frobSq A + frobSq B + frobSq C + frobSq D := by

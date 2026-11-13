@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Summing an insertion weight over all size-`k` sets and all outside indices counts
 each size-`k+1` set exactly `k+1` times. Source: manuscript `sa:volume-theorem`;
-Deshpande--Rademacher--Vempala--Wang (2006), exact volume-sampling error.-/
+Deshpande--Rademacher--Vempala--Wang (2006), exact volume-sampling error.
+@isnad1 id=eq.0h4v.s7.141eccca1987 from=translated src=- shape=f1c5014c vocab=6a9c13e0
+-/
 theorem sum_powersetCard_sum_insert_eq {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (k : ℕ) (w : Finset ι → ℝ) :
     (∑ S ∈ s.powersetCard k, ∑ i ∈ s, if i ∉ S then w (insert i S) else 0) =
@@ -61,7 +63,9 @@ theorem sum_powersetCard_sum_insert_eq {ι : Type*} [DecidableEq ι]
       simp [hCard]
 
 /-- Every size-`k+1` subset of zero-indexed finite labels contains a label at least
-`k`. Source: manuscript `sa:volume-theorem`, the finite tail-index argument.-/
+`k`. Source: manuscript `sa:volume-theorem`, the finite tail-index argument.
+@isnad1 id=ex.1h3v.s6.4d83e8ec850a from=translated src=- shape=a637aaf5 vocab=d1dbf2f9
+-/
 theorem exists_tail_mem_of_mem_powersetCard_succ {n k : ℕ} {T : Finset (Fin n)}
     (hT : T ∈ (Finset.univ : Finset (Fin n)).powersetCard (k + 1)) :
     ∃ i ∈ T, k ≤ (i : ℕ) := by
@@ -86,7 +90,9 @@ theorem exists_tail_mem_of_mem_powersetCard_succ {n k : ℕ} {T : Finset (Fin n)
 /-- A nonnegative elementary spectral sum is dominated by the previous elementary
 sum times the zero-indexed spectral tail. Source: manuscript `sa:volume-theorem`;
 Deshpande et al. (2006), the factor-`k+1` upper bound. No strict eigenvalue positivity
-or ordering is needed for this finite subset inequality.-/
+or ordering is needed for this finite subset inequality.
+@isnad1 id=le.1h3v.s7.ef33f3d203c8 from=translated src=- shape=a51b7b6f vocab=f928f98d
+-/
 theorem sum_powersetCard_prod_succ_le_tail_mul_sum_prod {n : ℕ}
     (d : Fin n → ℝ) (hd : ∀ i, 0 ≤ d i) (k : ℕ) :
     (∑ T ∈ (Finset.univ : Finset (Fin n)).powersetCard (k + 1), ∏ i ∈ T, d i) ≤

@@ -123,22 +123,30 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {f : Ω → ℝ}
 include hf hf0 htail
 
 /-- A nonnegative measurable variable with tail `P{f > t} ≤ exp(-t/2)` is integrable
-(layer-cake integration; Vershynin 2018, Lemma 1.2.1).-/
+(layer-cake integration; Vershynin 2018, Lemma 1.2.1).
+@isnad1 id=integrab.3h3v.s6.4e14bccbb0dd from=translated src=- shape=e08f398e vocab=9199523c
+-/
 theorem integrable_of_exp_neg_half_tail : Integrable f μ :=
   (integrable_and_integral_sq_le_of_exp_neg_half_tail f hf hf0 htail).1
 
 /-- A nonnegative variable with tail `P{f > t} ≤ exp(-t/2)` has mean at most `2`
-(Vershynin 2018, Lemma 1.2.1).-/
+(Vershynin 2018, Lemma 1.2.1).
+@isnad1 id=le.3h3v.s7.bd838d59c90a from=translated src=- shape=84fd5ef0 vocab=aa65620f
+-/
 theorem integral_le_two_of_exp_neg_half_tail : (∫ ω, f ω ∂μ) ≤ 2 :=
   (integrable_and_integral_sq_le_of_exp_neg_half_tail f hf hf0 htail).2.1
 
 /-- A nonnegative measurable variable with tail `P{f > t} ≤ exp(-t/2)` is square integrable
-(Vershynin 2018, Lemma 1.2.1).-/
+(Vershynin 2018, Lemma 1.2.1).
+@isnad1 id=integrab.3h3v.s7.739135f8348b from=translated src=- shape=b8ef7218 vocab=55367d25
+-/
 theorem integrable_sq_of_exp_neg_half_tail : Integrable (fun ω => f ω ^ 2) μ :=
   (integrable_and_integral_sq_le_of_exp_neg_half_tail f hf hf0 htail).2.2.1
 
 /-- A nonnegative variable with tail `P{f > t} ≤ exp(-t/2)` has second moment at most `8`
-(Vershynin 2018, Lemma 1.2.1).-/
+(Vershynin 2018, Lemma 1.2.1).
+@isnad1 id=le.3h3v.s7.482ea1f3ff28 from=translated src=- shape=6921e388 vocab=a7ea7387
+-/
 theorem integral_sq_le_eight_of_exp_neg_half_tail : (∫ ω, f ω ^ 2 ∂μ) ≤ 8 :=
   (integrable_and_integral_sq_le_of_exp_neg_half_tail f hf hf0 htail).2.2.2
 

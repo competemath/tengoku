@@ -21,7 +21,9 @@ variable {Ω α β : Type*} [MeasurableSpace Ω] [MeasurableSpace α] [Measurabl
   {μ : Measure Ω} [IsProbabilityMeasure μ] {ν : Measure β} [IsProbabilityMeasure ν]
 
 /-- A uniform measurable-event bound under the second marginal remains valid
-when the first parameter is randomized independently.-/
+when the first parameter is randomized independently.
+@isnad1 id=le.5h9v.s7.e5010652c566 from=translated src=- shape=3e9cf2af vocab=188ff1f6
+-/
 theorem IndepFun.measure_mem_le_of_forall
     {X : Ω → α} {Y : Ω → β} (hind : IndepFun X Y μ)
     (hX : AEMeasurable X μ) (hY : HasLaw Y ν μ)
@@ -39,7 +41,9 @@ theorem IndepFun.measure_mem_le_of_forall
 
 /-- An integrable independent kernel whose inner mean is a constant has that
 conditional mean given its first coordinate. Equality of the inner mean is only
-required almost everywhere under the law of that coordinate.-/
+required almost everywhere under the law of that coordinate.
+@isnad1 id=eventual.5h9v.s7.e7d5b21080a8 from=translated src=- shape=f07e80c4 vocab=f905eab9
+-/
 theorem IndepFun.condExp_comp_eq_const
     {X : Ω → α} {Y : Ω → β} (hind : IndepFun X Y μ)
     (hX : Measurable X) (hY : HasLaw Y ν μ) {f : α × β → ℝ}

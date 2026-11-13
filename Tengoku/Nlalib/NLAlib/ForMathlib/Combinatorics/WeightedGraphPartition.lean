@@ -37,7 +37,9 @@ variable {V E : Type*} [Fintype V] [Nontrivial V]
 
 /-- A spanning tree can choose distinct actual edge occurrences, including
 their original orientations up to endpoint exchange. Thus parallel edges
-remain distinct factors and are never silently identified.-/
+remain distinct factors and are never silently identified.
+@isnad1 id=ex.1h4v.s9.7d5c5414e361 from=translated src=- shape=e04aec01 vocab=fc5c295b
+-/
 theorem exists_spanning_tree_occurrences
     (src dst : E → V)
     (hG : (SimpleGraph.indexedOccurrenceGraph src dst).Connected) :
@@ -82,7 +84,9 @@ exponent `p - v + 1`. This retains the full profile geometry.
 
 Source: Latała–van Handel–Youssef, arXiv:1711.00807v2, Theorem 2.8,
 integer even edge exponents. The proof uses a stationary tree-indexed chain
-after selecting an ordinary spanning tree.-/
+after selecting an ordinary spanning tree.
+@isnad1 id=le.9h9v.s8.fd4a655051d7 from=translated src=- shape=cda727be vocab=4e2f4ddb
+-/
 theorem sum_prod_edge_weight_le_of_connected
     (src dst : E → V) (hG : (SimpleGraph.indexedOccurrenceGraph src dst).Connected)
     (hp : 0 < Fintype.card E)

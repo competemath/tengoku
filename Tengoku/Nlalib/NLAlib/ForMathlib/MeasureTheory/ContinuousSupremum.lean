@@ -18,7 +18,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- A common absolute bound controls the absolute value of the supremum
-over any nonempty real parameter class.-/
+over any nonempty real parameter class.
+@isnad1 id=le.1h3v.s5.78ea1a969d98 from=translated src=- shape=95a088a6 vocab=0e31a148
+-/
 theorem abs_ciSup_le_of_abs_le {T : Type*} [Nonempty T]
     (f : T → ℝ) {M : ℝ} (h : ∀ t, |f t| ≤ M) : |⨆ t, f t| ≤ M := by
   have hb : BddAbove (Set.range f) := ⟨M, by
@@ -35,7 +37,9 @@ end Real
 namespace MeasureTheory
 
 /-- The supremum of continuous real tests is measurable when its range is
-bounded above at every sample. The parameter class can be uncountable.-/
+bounded above at every sample. The parameter class can be uncountable.
+@isnad1 id=measurab.2h3v.s6.e09df186f0e0 from=translated src=- shape=954addb4 vocab=5294f434
+-/
 theorem measurable_ciSup_of_continuous_of_bddAbove
     {T E : Type*} [TopologicalSpace E] [MeasurableSpace E]
     [OpensMeasurableSpace E] (f : E → T → ℝ)
@@ -46,7 +50,9 @@ theorem measurable_ciSup_of_continuous_of_bddAbove
 
 /-- Uniformly absolutely bounded continuous tests have an integrable
 supremum under every finite measure, with no countability assumption on
-the nonempty parameter class.-/
+the nonempty parameter class.
+@isnad1 id=integrab.2h5v.s6.eeeb8830c0bc from=translated src=- shape=d2641bce vocab=2896af0c
+-/
 theorem integrable_ciSup_of_continuous_of_abs_le
     {T E : Type*} [Nonempty T] [TopologicalSpace E] [MeasurableSpace E]
     [OpensMeasurableSpace E] (μ : Measure E) [IsFiniteMeasure μ]

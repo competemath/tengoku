@@ -19,7 +19,9 @@ variable {I Ω A B : Type*} [MeasurableSpace I] [MeasurableSpace Ω]
   [MeasurableSpace A] [MeasurableSpace B]
 
 /-- Sectionwise common laws give a common law after adjoining an independent
-index. This uses the actual product measure, rather than conditional laws.-/
+index. This uses the actual product measure, rather than conditional laws.
+@isnad1 id=haslaw.2h7v.s6.08f5bdb7a3b6 from=translated src=- shape=cda887c1 vocab=719664bd
+-/
 theorem hasLaw_prod_of_sections
     {ρ : Measure I} {ν : Measure Ω} {γ : Measure B}
     [IsProbabilityMeasure ρ] [IsProbabilityMeasure ν]
@@ -34,7 +36,9 @@ theorem hasLaw_prod_of_sections
   simp
 
 /-- With a countable separately sampled index, section laws mix by the actual
-measure bind. The section distributions are allowed to vary with the index.-/
+measure bind. The section distributions are allowed to vary with the index.
+@isnad1 id=haslaw.2h7v.s6.d1979aad235f from=translated src=- shape=2f666fc0 vocab=2daa5889
+-/
 theorem hasLaw_prod_of_section_laws [Countable I] [MeasurableSingletonClass I]
     {ρ : Measure I} {ν : Measure Ω} [IsProbabilityMeasure ρ] [IsProbabilityMeasure ν]
     {γ : I → Measure B} {g : I × Ω → B} (hg : Measurable g)
@@ -50,7 +54,9 @@ theorem hasLaw_prod_of_section_laws [Countable I] [MeasurableSingletonClass I]
 
 /-- If sections are independent and the second marginal law is constant, then
 mixing with an independent index preserves independence. The first marginal
-law may depend on the index.-/
+law may depend on the index.
+@isnad1 id=indepfun.4h9v.s7.1954af575342 from=translated src=- shape=cfbb99c2 vocab=8ac7b174
+-/
 theorem indepFun_prod_of_sections
     {ρ : Measure I} {ν : Measure Ω} {γ : Measure B}
     [IsProbabilityMeasure ρ] [IsProbabilityMeasure ν] [IsProbabilityMeasure γ]

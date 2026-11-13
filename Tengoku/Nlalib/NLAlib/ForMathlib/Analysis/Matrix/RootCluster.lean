@@ -25,7 +25,9 @@ namespace Matrix
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A full indexed family of distinct spectral points gives exactly the
-characteristic-root multiset, with no further roots or hidden multiplicities.-/
+characteristic-root multiset, with no further roots or hidden multiplicities.
+@isnad1 id=eq.2h3v.s6.aa307251b8d1 from=translated src=- shape=b383f17f vocab=8f770196
+-/
 theorem roots_charpoly_eq_map_of_injective_mem_spectrum
     (M : Matrix n n ℂ) (ev : n → ℂ) (hev : Function.Injective ev)
     (hmem : ∀ i, ev i ∈ spectrum ℂ M) :
@@ -42,7 +44,9 @@ theorem roots_charpoly_eq_map_of_injective_mem_spectrum
   simpa [S] using hroots
 
 /-- Selecting characteristic roots by a predicate agrees with selecting a
-complete indexed list of distinct eigenvalues.-/
+complete indexed list of distinct eigenvalues.
+@isnad1 id=eq.2h4v.s6.d4ac9cc0494a from=translated src=- shape=db53953e vocab=192bf372
+-/
 theorem sum_filter_roots_charpoly_eq_sum_ite_of_injective_mem_spectrum
     (M : Matrix n n ℂ) (ev : n → ℂ) (hev : Function.Injective ev)
     (hmem : ∀ i, ev i ∈ spectrum ℂ M) (p : ℂ → Prop) [DecidablePred p] :
@@ -55,7 +59,9 @@ theorem sum_filter_roots_charpoly_eq_sum_ite_of_injective_mem_spectrum
 
 /-- An affine complex matrix pencil has an analytic sum of its upper
 characteristic roots wherever its spectrum is disjoint from the real axis.
-No normality, eigenvalue labelling, or simplicity assumption is required.-/
+No normality, eigenvalue labelling, or simplicity assumption is required.
+@isnad1 id=analytic.1h4v.s7.3ff8befddd8f from=translated src=- shape=a81ca857 vocab=3a58bfd9
+-/
 theorem analyticAt_sum_filter_roots_charpoly_affine_upper
     (A E : Matrix n n ℂ) (u : ℂ)
     (hreal : ∀ z ∈ spectrum ℂ (A + u • E), z.im ≠ 0) :

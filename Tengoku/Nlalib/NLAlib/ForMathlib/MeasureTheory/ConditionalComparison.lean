@@ -18,7 +18,9 @@ namespace MeasureTheory
 /-- An integrable real comparison on a conditioning-measurable cut remains true for
 the conditional expectations on that cut.
 Source: Mathlib conditional indicator pull-out and conditional monotonicity;
-helper for Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).-/
+helper for Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).
+@isnad1 id=eventual.5h7v.s7.7651aa64d521 from=translated src=- shape=a366376f vocab=3f0c8026
+-/
 theorem ae_condExp_le_condExp_on_of_ae_le_on {Ω : Type*}
     {m mΩ : MeasurableSpace Ω} {μ : Measure Ω} (hm : m ≤ mΩ)
     {X Y : Ω → ℝ} (hX : Integrable X μ) (hY : Integrable Y μ)

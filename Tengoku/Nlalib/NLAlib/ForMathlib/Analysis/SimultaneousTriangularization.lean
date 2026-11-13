@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- An arbitrary commuting complex family shares one orthonormal upper
 triangularizing basis. Source: Horn–Johnson (2013), Theorem 2.3.3;
-the family can be infinite or empty, and dimension zero is included.-/
+the family can be infinite or empty, and dimension zero is included.
+@isnad1 id=ex.2h4v.s8.9d7b6fbea4fc from=translated src=- shape=baed7542 vocab=7ac1dbac
+-/
 theorem exists_orthonormalBasis_simultaneous_upper_triangular
     {E ι : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [FiniteDimensional ℂ E] (k : ℕ) (T : ι → Module.End ℂ E)

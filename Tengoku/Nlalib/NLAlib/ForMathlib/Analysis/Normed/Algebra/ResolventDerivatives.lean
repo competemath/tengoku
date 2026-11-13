@@ -21,7 +21,9 @@ namespace spectrum
 variable {𝕜 A : Type*} [NontriviallyNormedField 𝕜] [NormedRing A]
   [NormedAlgebra 𝕜 A] [CompleteSpace A]
 
-/-- The derivative of an actual resolvent power is its next power times the negative exponent.-/
+/-- The derivative of an actual resolvent power is its next power times the negative exponent.
+@isnad1 id=hasderiv.1h5v.s8.9d954c9dc0c4 from=translated src=- shape=66db36f1 vocab=487ba3e7
+-/
 theorem hasDerivAt_resolvent_pow (a : A) {z : 𝕜}
     (hz : z∈resolventSet 𝕜 a) (n : ℕ) :
     HasDerivAt (fun w : 𝕜 => resolvent a w^n)
@@ -43,7 +45,9 @@ theorem hasDerivAt_resolvent_pow (a : A) {z : 𝕜}
       _ = _ := by simp [← Nat.cast_smul_eq_nsmul 𝕜]
   exact he ▸ hd
 
-/-- The exact nth derivative of the native resolvent is the signed factorial times its next power.-/
+/-- The exact nth derivative of the native resolvent is the signed factorial times its next power.
+@isnad1 id=eq.1h5v.s8.0c13b3c764fc from=translated src=- shape=14d4f766 vocab=efd06f71
+-/
 theorem iteratedDeriv_resolvent (a : A) (n : ℕ) {z : 𝕜}
     (hz : z∈resolventSet 𝕜 a) :
     iteratedDeriv n (resolvent a) z=

@@ -18,7 +18,9 @@ open MeasureTheory ProbabilityTheory WithLp
 namespace ProbabilityTheory.IsGaussian
 
 /-- Finite real Gaussian laws with the same mean and every mixed coordinate
-covariance are equal, including singular and zero covariance.-/
+covariance are equal, including singular and zero covariance.
+@isnad1 id=eq.2h3v.s8.196cd18d1cf7 from=translated src=- shape=5f0f7cba vocab=fc940121
+-/
 theorem ext_of_pi_mean_covariance_eq
     {κ : Type*} [Fintype κ] (μ ν : Measure (κ → ℝ)) [IsGaussian μ] [IsGaussian ν]
     (hmean : (∫ x, x ∂μ) = ∫ x, x ∂ν)

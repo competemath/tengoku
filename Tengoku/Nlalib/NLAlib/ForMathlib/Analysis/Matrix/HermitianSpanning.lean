@@ -24,19 +24,25 @@ def hermitianUnitRe (i j : n) : Matrix n n ℂ := single i j 1 + single j i 1
 def hermitianUnitIm (i j : n) : Matrix n n ℂ := Complex.I • (single i j 1 - single j i 1)
 
 omit [Fintype n] in
-/-- Symmetric matrix units are Hermitian, including repeated indices.-/
+/-- Symmetric matrix units are Hermitian, including repeated indices.
+@isnad1 id=ishermit.0h3v.s5.0866c95a81e5 from=translated src=- shape=4aa7800d vocab=abc53b73
+-/
 theorem isHermitian_hermitianUnitRe (i j : n) : (hermitianUnitRe i j).IsHermitian := by
   simp [hermitianUnitRe, Matrix.IsHermitian, add_comm]
 
 omit [Fintype n] in
-/-- Imaginary skew matrix units are Hermitian, including repeated indices.-/
+/-- Imaginary skew matrix units are Hermitian, including repeated indices.
+@isnad1 id=ishermit.0h3v.s5.c9bf871696cb from=translated src=- shape=4aa7800d vocab=e393a919
+-/
 theorem isHermitian_hermitianUnitIm (i j : n) : (hermitianUnitIm i j).IsHermitian := by
   unfold hermitianUnitIm Matrix.IsHermitian
   rw [conjTranspose_smul, conjTranspose_sub]
   simp only [conjTranspose_single, star_one, Complex.star_def, Complex.conj_I]
   rw [neg_smul, ← smul_neg, neg_sub]
 
-/-- A plus/minus real quadratic probe extracts the symmetric entry sum.-/
+/-- A plus/minus real quadratic probe extracts the symmetric entry sum.
+@isnad1 id=eq.0h4v.s8.debe21076fb0 from=translated src=- shape=155ae2b0 vocab=698af74a
+-/
 theorem matrixQuadraticFormCLM_single_add_sub (A : Matrix n n ℂ) (i j : n) :
     matrixQuadraticFormCLM (Pi.single i 1 + Pi.single j 1) A -
       matrixQuadraticFormCLM (Pi.single i 1 - Pi.single j 1) A =
@@ -47,7 +53,9 @@ theorem matrixQuadraticFormCLM_single_add_sub (A : Matrix n n ℂ) (i j : n) :
     mulVec_single_one, Matrix.col_apply]
   ring
 
-/-- A plus/minus imaginary quadratic probe extracts the skew entry sum.-/
+/-- A plus/minus imaginary quadratic probe extracts the skew entry sum.
+@isnad1 id=eq.0h4v.s8.7eab881b260d from=translated src=- shape=6c658981 vocab=046caab3
+-/
 theorem matrixQuadraticFormCLM_single_add_sub_I (A : Matrix n n ℂ) (i j : n) :
     matrixQuadraticFormCLM (Pi.single i 1 + Complex.I • Pi.single j 1) A -
       matrixQuadraticFormCLM (Pi.single i 1 - Complex.I • Pi.single j 1) A =
@@ -60,7 +68,9 @@ theorem matrixQuadraticFormCLM_single_add_sub_I (A : Matrix n n ℂ) (i j : n) :
   ring
 
 /-- The finite Hermitian matrix-unit family spans every complex matrix;
-ordered pairs are used uniformly, with no chosen order on the indices.-/
+ordered pairs are used uniformly, with no chosen order on the indices.
+@isnad1 id=eq.0h2v.s7.103762a51a35 from=translated src=- shape=2702ac38 vocab=d7724e7b
+-/
 theorem sum_hermitianUnit_eq (A : Matrix n n ℂ) :
     (∑ i, ∑ j, ((A i j + A j i) / 4) • hermitianUnitRe i j) +
       (∑ i, ∑ j, ((A i j - A j i) / (4 * Complex.I)) • hermitianUnitIm i j) = A := by

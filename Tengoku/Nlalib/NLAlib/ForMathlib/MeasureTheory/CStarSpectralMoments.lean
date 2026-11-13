@@ -27,7 +27,9 @@ private theorem realMomentCFC : ContinuousFunctionalCalculus ℝ A IsSelfAdjoint
 attribute [local instance] realMomentCFC
 
 /-- A continuous real scalar function's actual spectral L`4q` norm equals
-the rooted native Gram moment of its genuine continuous functional calculus.-/
+the rooted native Gram moment of its genuine continuous functional calculus.
+@isnad1 id=eq.3h5v.s9.7e50f041fa92 from=translated src=- shape=1ccd471d vocab=91c26ccb
+-/
 theorem lpNorm_positiveSpectrumMeasure_eq_gramMoment (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) (f : ℝ → ℝ)
     (hf : ContinuousOn f (spectrum ℝ a)) (q : ℕ) (hq : 0 < q) :
@@ -52,7 +54,9 @@ theorem lpNorm_positiveSpectrumMeasure_eq_gramMoment (φ : A →ₚ[ℂ] ℂ)
     lpNorm_positiveSpectrumMeasure_eq φ ha f hf (4 * q) hp
 
 /-- The inverse-distance function on the actual spectrum has precisely
-the rooted native Gram moment of the original nonreal resolvent.-/
+the rooted native Gram moment of the original nonreal resolvent.
+@isnad1 id=eq.3h5v.s9.d3b0cc8c079c from=translated src=- shape=9488cd26 vocab=872a2829
+-/
 theorem lpNorm_positiveSpectrumMeasure_resolvent_modulus (φ : A →ₚ[ℂ] ℂ)
     {a : A} (ha : IsSelfAdjoint a) {z : ℂ} (hz : z.im ≠ 0)
     (q : ℕ) (hq : 0 < q) :

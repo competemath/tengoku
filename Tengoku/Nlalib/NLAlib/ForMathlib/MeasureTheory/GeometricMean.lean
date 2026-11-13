@@ -27,7 +27,9 @@ def regularizedGeometricMean {α : Type*} [MeasurableSpace α]
     ENNReal.ofReal (Real.exp (∫ x, Real.log (g x + δ) ∂μ))
 
 /-- A bounded nonnegative function has an integrable logarithm after any positive
-scalar regularization.-/
+scalar regularization.
+@isnad1 id=integrab.3h5v.s6.09137f5db401 from=translated src=- shape=5405054e vocab=cd074663
+-/
 theorem integrable_log_add_of_bounded {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsFiniteMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C δ : ℝ} (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) (hδ : 0 < δ) :
@@ -44,7 +46,9 @@ theorem integrable_log_add_of_bounded {α : Type*} [MeasurableSpace α]
     le_abs_self (Real.log (C + δ)), abs_nonneg (Real.log (C + δ)), abs_nonneg (Real.log δ)]
 
 /-- The exponentiated regularized logarithmic integral is monotone in the positive
-regularization parameter.-/
+regularization parameter.
+@isnad1 id=monotone.2h4v.s7.e0f1774ef3bb from=translated src=- shape=486f7cd4 vocab=673c2a19
+-/
 theorem monotone_exp_integral_log_add {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsFiniteMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) :
@@ -58,7 +62,9 @@ theorem monotone_exp_integral_log_add {α : Type*} [MeasurableSpace α]
   intro x
   exact Real.log_le_log (by linarith [(hbound x).1, δ.property]) (by linarith [show (δ : ℝ) ≤ (η : ℝ) from hδη])
 
-/-- Monotone convergence for logarithmic deficits, allowing an infinite limit.-/
+/-- Monotone convergence for logarithmic deficits, allowing an infinite limit.
+@isnad1 id=tendsto.1h4v.s6.c4b9ba5d0935 from=translated src=- shape=97ef4faf vocab=dcd6e2af
+-/
 theorem tendsto_lintegral_logDeficit_add_inv_nat {α : Type*} [MeasurableSpace α]
     {μ : Measure α} {g : α → ℝ} (hg : Measurable g) (c : ℝ) :
     Tendsto (fun n : ℕ => ∫⁻ x, logDeficit c (g x + 1 / ((n : ℝ) + 1)) ∂μ)
@@ -77,7 +83,9 @@ theorem tendsto_lintegral_logDeficit_add_inv_nat {α : Type*} [MeasurableSpace �
 
 /-- Exponentiating the regularized integrals converges to the actual bounded-above
 extended integral.  The upper bound `log (C+1)` controls the regularizations with
-parameter at most one.-/
+parameter at most one.
+@isnad1 id=tendsto.2h4v.s7.c2fbb812f0d9 from=translated src=- shape=c335c692 vocab=81a034dd
+-/
 theorem tendsto_exp_integral_log_add_inv_nat {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) :
@@ -114,7 +122,9 @@ theorem tendsto_exp_integral_log_add_inv_nat {α : Type*} [MeasurableSpace α]
 
 /-- Positive regularization equals the exponential of the genuine extended
 logarithmic integral, including the value zero when the logarithm has infinite
-negative part.-/
+negative part.
+@isnad1 id=eq.2h4v.s6.cdba5c6c58b4 from=translated src=- shape=6c93eab6 vocab=76e66b3a
+-/
 theorem regularizedGeometricMean_eq_exp_upperLogIntegral {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) :
@@ -136,7 +146,9 @@ theorem regularizedGeometricMean_eq_exp_upperLogIntegral {α : Type*} [Measurabl
 
 /-- The regularized mean is the genuine extended geometric mean. The logarithmic
 integral on the right is defined independently from its positive and negative
-parts, with `log 0 = -∞`. No integrability of the negative part is required.-/
+parts, with `log 0 = -∞`. No integrability of the negative part is required.
+@isnad1 id=eq.3h4v.s6.a7095e7484d3 from=translated src=- shape=7f0666cc vocab=334a3637
+-/
 theorem regularizedGeometricMean_eq_geometricMean {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hC : 0 ≤ C) (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) :
@@ -150,7 +162,9 @@ theorem regularizedGeometricMean_eq_geometricMean {α : Type*} [MeasurableSpace 
   · simp [ENNReal.ofReal_of_nonpos (le_of_not_gt hx)]
 
 /-- Any bound valid for every positive regularization passes to the genuine
-extended geometric mean, including when it vanishes.-/
+extended geometric mean, including when it vanishes.
+@isnad1 id=le.4h5v.s6.09a616937556 from=translated src=- shape=a744d44e vocab=297d11f4
+-/
 theorem le_geometricMean_of_le_exp_integral_log_add {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hC : 0 ≤ C) (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C)
@@ -160,7 +174,9 @@ theorem le_geometricMean_of_le_exp_integral_log_add {α : Type*} [MeasurableSpac
   rw [← regularizedGeometricMean_eq_geometricMean hg hC hbound]
   exact le_iInf (fun δ => ha δ δ.property)
 
-/-- A bounded nonnegative function has a finite extended geometric mean.-/
+/-- A bounded nonnegative function has a finite extended geometric mean.
+@isnad1 id=ne.3h4v.s6.79c5f4b2357d from=translated src=- shape=9a50ec9c vocab=dcf22bc3
+-/
 theorem geometricMean_ne_top_of_bounded {α : Type*} [MeasurableSpace α]
     {μ : Measure α} [IsProbabilityMeasure μ] {g : α → ℝ} (hg : Measurable g)
     {C : ℝ} (hC : 0 ≤ C) (hbound : ∀ x, 0 ≤ g x ∧ g x ≤ C) :

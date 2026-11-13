@@ -20,7 +20,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasu
   {X Y : Ω → ℝ}
 
 /-- Cauchy--Schwarz bounds a real covariance by the product of the standard
-deviations. No independence is assumed.-/
+deviations. No independence is assumed.
+@isnad1 id=le.2h4v.s7.cce83b40a488 from=translated src=- shape=b20177d2 vocab=e569d513
+-/
 theorem covariance_le_sqrt_variance_mul_sqrt_variance
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) :
     cov[X, Y; μ] ≤ Real.sqrt (Var[X; μ]) * Real.sqrt (Var[Y; μ]) := by
@@ -41,7 +43,9 @@ theorem covariance_le_sqrt_variance_mul_sqrt_variance
     Real.norm_eq_abs, sq_abs] using hle
 
 /-- Separate variance budgets imply the sharp sum budget. This includes zero
-variance, zero weights and fully correlated variables.-/
+variance, zero weights and fully correlated variables.
+@isnad1 id=le.7h7v.s8.ca0692082fae from=translated src=- shape=3659a2aa vocab=b1702900
+-/
 theorem variance_add_le_mul_sq_add_of_le_mul_sq
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 μ) {c a b : ℝ}
     (hc : 0 ≤ c) (ha : 0 ≤ a) (hb : 0 ≤ b)

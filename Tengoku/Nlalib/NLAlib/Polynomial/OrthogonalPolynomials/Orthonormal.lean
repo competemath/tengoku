@@ -21,7 +21,9 @@ of its squared norm. Its total value is zero if that square root vanishes.-/
 def orthonormalMomentPolynomial (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) : ℝ[X] :=
   C (Real.sqrt (orthogonalPolynomialNorm L n))⁻¹ * monicOrthogonalPolynomial L n
 
-/-- Positive squared norm preserves the exact degree under normalization.-/
+/-- Positive squared norm preserves the exact degree under normalization.
+@isnad1 id=eq.1h2v.s6.7fdc03368335 from=translated src=- shape=e6f8a9b4 vocab=77874dd6
+-/
 theorem degree_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ}
     (hH : 0 < orthogonalPolynomialNorm L n) :
     (orthonormalMomentPolynomial L n).degree = n := by
@@ -30,7 +32,9 @@ theorem degree_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ
     natDegree_monicOrthogonalPolynomial]
 
 /-- Positive-norm monic moment polynomials are recovered from their normalized
-versions by multiplication by the square-root norm.-/
+versions by multiplication by the square-root norm.
+@isnad1 id=eq.1h2v.s6.d9959f653adc from=translated src=- shape=16e8d6ee vocab=a88d9032
+-/
 theorem sqrt_norm_mul_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {n : ℕ}
     (hH : 0 < orthogonalPolynomialNorm L n) :
     C (Real.sqrt (orthogonalPolynomialNorm L n)) * orthonormalMomentPolynomial L n =
@@ -39,7 +43,9 @@ theorem sqrt_norm_mul_orthonormalMomentPolynomial {L : ℝ[X] →ₗ[ℝ] ℝ} {
     mul_inv_cancel₀ (Real.sqrt_pos.mpr hH).ne', C_1, one_mul]
 
 /-- Nonsingular moment systems and positive squared norms give normalized
-bilinear orthonormality.-/
+bilinear orthonormality.
+@isnad1 id=eq.4h3v.s7.cc48078d5ceb from=translated src=- shape=71035838 vocab=036665b3
+-/
 theorem functional_orthonormalMomentPolynomial_mul (L : ℝ[X] →ₗ[ℝ] ℝ) {i j : ℕ}
     (hi : hankelMomentDet L i ≠ 0) (hj : hankelMomentDet L j ≠ 0)
     (hHi : 0 < orthogonalPolynomialNorm L i) (hHj : 0 < orthogonalPolynomialNorm L j) :

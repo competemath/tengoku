@@ -86,7 +86,9 @@ def Admissible (sr : O → R) (tg : O → C) (alpha beta : E → O)
 -- --------------------------------------------------------- beta endpoint classes
 
 /-- The class of the `beta` row endpoint equals the `alpha` row endpoint class
-of the same paired pair.-/
+of the same paired pair.
+@isnad1 id=eq.0h7v.s5.a3f4ada021c7 from=translated src=- shape=d489a614 vocab=0229d1de
+-/
 lemma rowEnd_beta (sr : O → R) (alpha beta : E → O) (e : E) :
     rowEnd sr alpha beta e = Quotient.mk'' (sr (beta e)) := by
   apply Quotient.sound'
@@ -94,7 +96,9 @@ lemma rowEnd_beta (sr : O → R) (alpha beta : E → O) (e : E) :
     (⟨e, rfl, rfl⟩ : RowRel sr alpha beta (sr (alpha e)) (sr (beta e)))
 
 /-- The class of the `beta` column endpoint equals the `alpha` column endpoint
-class of the same paired pair.-/
+class of the same paired pair.
+@isnad1 id=eq.0h7v.s5.71cf6f4c647f from=translated src=- shape=d489a614 vocab=39e430f8
+-/
 lemma colEnd_beta (tg : O → C) (alpha beta : E → O) (e : E) :
     colEnd tg alpha beta e = Quotient.mk'' (tg (beta e)) := by
   apply Quotient.sound'
@@ -103,7 +107,9 @@ lemma colEnd_beta (tg : O → C) (alpha beta : E → O) (e : E) :
 
 -- -------------------------------------------------- label equivalence
 
-/-- An admissible row labeling is constant on `rowSetoid` classes.-/
+/-- An admissible row labeling is constant on `rowSetoid` classes.
+@isnad1 id=eq.2h14v.s6.778b41755a4e from=translated src=- shape=b12a43b0 vocab=e7e4d50e
+-/
 lemma rowSetoid_rel_imp_eq_of_admissible (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (x : R → I) (y : C → J)
     (hA : Admissible sr tg alpha beta x y) :
@@ -118,7 +124,9 @@ lemma rowSetoid_rel_imp_eq_of_admissible (sr : O → R) (tg : O → C)
   | symm x y h ih => exact ih.symm
   | trans x y z h1 h2 ih1 ih2 => exact ih1.trans ih2
 
-/-- An admissible column labeling is constant on `colSetoid` classes.-/
+/-- An admissible column labeling is constant on `colSetoid` classes.
+@isnad1 id=eq.2h14v.s6.76fddf940c46 from=translated src=- shape=3e8c6280 vocab=eb869218
+-/
 lemma colSetoid_rel_imp_eq_of_admissible (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (x : R → I) (y : C → J)
     (hA : Admissible sr tg alpha beta x y) :
@@ -134,7 +142,9 @@ lemma colSetoid_rel_imp_eq_of_admissible (sr : O → R) (tg : O → C)
   | trans x y z h1 h2 ih1 ih2 => exact ih1.trans ih2
 
 /-- A pair of original labels is admissible iff the row labeling descends to
-`rowSetoid` and the column labeling descends to `colSetoid`.-/
+`rowSetoid` and the column labeling descends to `colSetoid`.
+@isnad1 id=iff.0h12v.s6.ec0438b13415 from=translated src=- shape=41c443fc vocab=460624fe
+-/
 lemma admissible_iff_rowSetoid_le_ker_colSetoid_le_ker (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (x : R → I) (y : C → J) :
     Admissible sr tg alpha beta x y ↔
@@ -192,7 +202,9 @@ noncomputable def quotientLabelEquiv (sr : O → R) (tg : O → C)
           simp
 
 /-- The quotient label equivalence sends `(f, g)` to the pullback pair
-`(f ∘ Quotient.mk'', g ∘ Quotient.mk'')`.-/
+`(f ∘ Quotient.mk'', g ∘ Quotient.mk'')`.
+@isnad1 id=eq.0h12v.s9.05017ab87dec from=translated src=- shape=2d8bd1e9 vocab=308758d0
+-/
 lemma quotientLabelEquiv_apply (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (f : RowQuotient sr alpha beta → I)
     (g : ColQuotient tg alpha beta → J) :
@@ -227,7 +239,9 @@ private lemma sum_ite_eq_sum_subtype {α : Type*} [Fintype α] (p : α → Prop)
   rw [h₁, h₂, add_zero]
 
 /-- Pulling back quotient labels to original labels replaces the weight by its
-value at the endpoint classes.-/
+value at the endpoint classes.
+@isnad1 id=eq.0h13v.s7.cfe851d3de57 from=translated src=- shape=7262466a vocab=2dac7c4b
+-/
 lemma pairWeight_pullback [Fintype E] (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (w : I → J → ℝ) (f : RowQuotient sr alpha beta → I)
     (g : ColQuotient tg alpha beta → J) :
@@ -237,7 +251,9 @@ lemma pairWeight_pullback [Fintype E] (sr : O → R) (tg : O → C)
 
 /-- The exact finite-sum identity: the sum over original labels of the product
 of local indicators (which forces admissibility) equals the sum over quotient
-labels of the product of `w`-weights at the endpoint classes.-/
+labels of the product of `w`-weights at the endpoint classes.
+@isnad1 id=eq.0h11v.s8.1a154e610c5d from=translated src=- shape=fc8345c9 vocab=44b718d9
+-/
 theorem sum_prod_indicator_eq_sum_quotient
     (sr : O → R) (tg : O → C) (alpha beta : E → O)
     [Fintype R] [Fintype C] [Fintype E] [Fintype I] [Fintype J]
@@ -347,7 +363,9 @@ def quotientGraphHom (sr : O → R) (tg : O → C)
             rw [colEnd_beta, ht]
 
 /-- The vertex map of `quotientGraphHom` is surjective:
-every quotient vertex has a representative.-/
+every quotient vertex has a representative.
+@isnad1 id=surjecti.0h8v.s6.248ead061768 from=translated src=- shape=58b0dcff vocab=2a02ea42
+-/
 lemma surjective_sum_map_quotient (sr : O → R) (tg : O → C)
     (alpha beta : E → O) :
     Function.Surjective (Sum.map (Quotient.mk'' : R → RowQuotient sr alpha beta)
@@ -364,7 +382,9 @@ lemma surjective_sum_map_quotient (sr : O → R) (tg : O → C)
       simp [hc]
 
 /-- Connectedness of the original occurrence graph transfers to the paired
-quotient occurrence graph along the surjective homomorphism.-/
+quotient occurrence graph along the surjective homomorphism.
+@isnad1 id=connecte.2h8v.s6.304958569c26 from=translated src=- shape=366af2ce vocab=13873ffb
+-/
 theorem connected_quotient_of_connected (sr : O → R) (tg : O → C)
     (alpha beta : E → O) (hcover : Function.Bijective (Sum.elim alpha beta))
     (hG : (SimpleGraph.bipartiteOccurrenceGraph sr tg).Connected) :
@@ -389,7 +409,9 @@ def cycleCol (p : ℕ) : Fin p ⊕ Fin p → Fin p
   | Sum.inr t => t
 
 /-- In the Gram-cycle occurrence graph, row `t` is adjacent to column `t`
-via the occurrence `Sum.inl t`.-/
+via the occurrence `Sum.inl t`.
+@isnad1 id=adj.0h2v.s5.f9ebabbac600 from=translated src=- shape=ab893321 vocab=c9f02436
+-/
 lemma cycle_inl_edge (p : ℕ) (x : Fin p) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow p) (cycleCol p)).Adj
       (Sum.inl x) (Sum.inr x) := by
@@ -397,7 +419,9 @@ lemma cycle_inl_edge (p : ℕ) (x : Fin p) :
   refine ⟨Sum.inl x, ?_, ?_⟩ <;> rfl
 
 /-- In the Gram-cycle occurrence graph, column `t` is adjacent to row
-`finRotate p t` via the occurrence `Sum.inr t`.-/
+`finRotate p t` via the occurrence `Sum.inr t`.
+@isnad1 id=adj.0h2v.s5.622b70fe8ef6 from=translated src=- shape=48d435ed vocab=3f3faa7b
+-/
 lemma cycle_inr_edge (p : ℕ) (x : Fin p) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow p) (cycleCol p)).Adj
       (Sum.inr x) (Sum.inl (finRotate p x)) := by
@@ -406,7 +430,9 @@ lemma cycle_inr_edge (p : ℕ) (x : Fin p) :
 
 /-- Iterating the two-edge steps `row s -- col s -- row (finRotate p s)`,
 every row of the Gram-cycle occurrence graph is reachable from row `0` (the
-walk runs backwards from row `t` towards row `0`).-/
+walk runs backwards from row `t` towards row `0`).
+@isnad1 id=reachabl.1h2v.s7.d4f69cb24bcf from=translated src=- shape=47476431 vocab=fabed0be
+-/
 lemma cycle_reachable_row_down (q : ℕ) (m : ℕ) (hm : m < q + 1) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow (q + 1)) (cycleCol (q + 1))).Reachable
       (Sum.inl (⟨m, hm⟩ : Fin (q + 1))) (Sum.inl (0 : Fin (q + 1))) := by
@@ -425,20 +451,26 @@ lemma cycle_reachable_row_down (q : ℕ) (m : ℕ) (hm : m < q + 1) :
             (cycle_inr_edge (q + 1) (⟨m, hm'⟩ : Fin (q + 1))).reachable)
       exact (hroad.symm).trans (ih hm')
 
-/-- Every row of the Gram-cycle occurrence graph is reachable from row `0`.-/
+/-- Every row of the Gram-cycle occurrence graph is reachable from row `0`.
+@isnad1 id=reachabl.0h2v.s7.41d8f8c58b0d from=translated src=- shape=d3c6fb65 vocab=ef2dd5e8
+-/
 lemma cycle_reachable_row (q : ℕ) (t : Fin (q + 1)) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow (q + 1)) (cycleCol (q + 1))).Reachable
       (Sum.inl (0 : Fin (q + 1))) (Sum.inl t) := by
   exact (cycle_reachable_row_down q t.val t.isLt).symm
 
 /-- Every column of the Gram-cycle occurrence graph is reachable from row `0`
-through `row t -- col t`.-/
+through `row t -- col t`.
+@isnad1 id=reachabl.0h2v.s7.0185c806ec14 from=translated src=- shape=d3c6fb65 vocab=ac1207c9
+-/
 lemma cycle_reachable_col (q : ℕ) (c : Fin (q + 1)) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow (q + 1)) (cycleCol (q + 1))).Reachable
       (Sum.inl (0 : Fin (q + 1))) (Sum.inr c) := by
   exact (cycle_reachable_row q c).trans (cycle_inl_edge (q + 1) c).reachable
 
-/-- Every vertex of the Gram-cycle occurrence graph is reachable from row `0`.-/
+/-- Every vertex of the Gram-cycle occurrence graph is reachable from row `0`.
+@isnad1 id=reachabl.0h2v.s7.408b0cf05262 from=translated src=- shape=4a2fd64f vocab=ef2dd5e8
+-/
 lemma cycle_reachable_zero (q : ℕ) :
     ∀ x : Sum (Fin (q + 1)) (Fin (q + 1)),
       (SimpleGraph.bipartiteOccurrenceGraph (cycleRow (q + 1)) (cycleCol (q + 1))).Reachable
@@ -451,7 +483,9 @@ lemma cycle_reachable_zero (q : ℕ) :
 /-- The occurrence graph of the alternating Gram cycle of dimension `q + 1`
 is connected.  This proves the fact from the explicit closed-walk structure
 (`row t -- col t -- row (finRotate p t)`) and does not assume any quotient
-connectedness or spanning-tree certificate.-/
+connectedness or spanning-tree certificate.
+@isnad1 id=connecte.0h1v.s6.3f2ec2fc4cad from=translated src=- shape=f1140ddc vocab=e9bc9dc7
+-/
 theorem bipartiteOccurrenceGraph_cycle_connected (q : ℕ) :
     (SimpleGraph.bipartiteOccurrenceGraph (cycleRow (q + 1)) (cycleCol (q + 1))).Connected := by
   rw [SimpleGraph.connected_iff_exists_forall_reachable]
@@ -459,19 +493,25 @@ theorem bipartiteOccurrenceGraph_cycle_connected (q : ℕ) :
   intro x
   exact cycle_reachable_zero q x
 
-/-- The row quotient of the Gram cycle is nonempty (class of row `0`).-/
+/-- The row quotient of the Gram cycle is nonempty (class of row `0`).
+@isnad1 id=nonempty.0h4v.s7.f4b757e35ac8 from=translated src=- shape=9b9b8f8a vocab=80e1951f
+-/
 lemma rowQuotient_nonempty_cycle (q : ℕ) (alpha beta : E → Fin (q + 1) ⊕ Fin (q + 1)) :
     Nonempty (RowQuotient (cycleRow (q + 1)) alpha beta) :=
   ⟨Quotient.mk'' (0 : Fin (q + 1))⟩
 
-/-- The column quotient of the Gram cycle is nonempty (class of column `0`).-/
+/-- The column quotient of the Gram cycle is nonempty (class of column `0`).
+@isnad1 id=nonempty.0h4v.s7.eb3cd5a046b4 from=translated src=- shape=9b9b8f8a vocab=b07556ee
+-/
 lemma colQuotient_nonempty_cycle (q : ℕ) (alpha beta : E → Fin (q + 1) ⊕ Fin (q + 1)) :
     Nonempty (ColQuotient (cycleCol (q + 1)) alpha beta) :=
   ⟨Quotient.mk'' (0 : Fin (q + 1))⟩
 
 /-- For the alternating Gram cycle of dimension `q + 1`, every endpoint pairing
 whose `alpha`/`beta` endpoints cover the original occurrences exactly once has
-a connected paired quotient graph.-/
+a connected paired quotient graph.
+@isnad1 id=connecte.1h4v.s8.5cbf336b0937 from=translated src=- shape=c50fee7f vocab=1329cf56
+-/
 theorem bipartiteOccurrenceGraph_quotient_cycle_connected (q : ℕ) [Fintype E]
     (alpha beta : E → Fin (q + 1) ⊕ Fin (q + 1))
     (hcover : Function.Bijective (Sum.elim alpha beta)) :

@@ -16,7 +16,9 @@ namespace MeasureTheory
 
 /-- A one-coordinate conditional mean is measurable. Source: Mathlib's
 `StronglyMeasurable.integral_prod_right'` applied to coordinate resampling.
-Atlas: `entropy-tensorization`.-/
+Atlas: `entropy-tensorization`.
+@isnad1 id=measurab.1h5v.s6.c6a29ede00be from=translated src=- shape=35f8da6d vocab=6ab7286c
+-/
 theorem measurable_integral_update_pi {ι : Type*} [DecidableEq ι] {Ω : Type*}
     [MeasurableSpace Ω] (μ : ι → Measure Ω) [∀ i, IsProbabilityMeasure (μ i)] (i : ι) {f : (ι → Ω) → ℝ}
     (hfm : Measurable f) :

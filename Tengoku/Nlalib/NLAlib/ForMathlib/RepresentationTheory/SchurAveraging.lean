@@ -28,7 +28,9 @@ def averagedIntertwiningMap (ρ : Representation k G V) (σ : Representation k G
   exact invariantsEquivIntertwiningMap ρ σ
     ⟨(linHom ρ σ).averageMap M, (linHom ρ σ).averageMap_invariant M⟩
 
-/-- The intertwining average has its ordinary finite sum formula.-/
+/-- The intertwining average has its ordinary finite sum formula.
+@isnad1 id=eq.0h7v.s10.8edb722d8855 from=translated src=- shape=0f8f8f92 vocab=7ccaf4c6
+-/
 theorem averagedIntertwiningMap_toLinearMap
     (ρ : Representation k G V) (σ : Representation k G W) (M : V →ₗ[k] W) :
     (averagedIntertwiningMap ρ σ M).toLinearMap =
@@ -37,7 +39,9 @@ theorem averagedIntertwiningMap_toLinearMap
     GroupAlgebra.average, map_sum, linHom_apply,
     LinearMap.intertwiningMap_of_isIntertwiningMap]
 
-/-- Conjugation averaging preserves the ordinary trace.-/
+/-- Conjugation averaging preserves the ordinary trace.
+@isnad1 id=eq.0h5v.s10.fe526915bc5f from=translated src=- shape=2ef1fe92 vocab=3f73899d
+-/
 theorem trace_averagedIntertwiningMap [FiniteDimensional k V]
     (ρ : Representation k G V) (M : V →ₗ[k] V) :
     LinearMap.trace k V (averagedIntertwiningMap ρ ρ M).toLinearMap =
@@ -51,7 +55,9 @@ theorem trace_averagedIntertwiningMap [FiniteDimensional k V]
   simp_rw [hg]
   simp [smul_eq_mul, ← mul_assoc, Fintype.card_ne_zero]
 
-/-- Averaging a map between inequivalent irreducible representations gives zero.-/
+/-- Averaging a map between inequivalent irreducible representations gives zero.
+@isnad1 id=eq.1h7v.s8.409bef0012e0 from=translated src=- shape=b7ebd98a vocab=c105e20e
+-/
 theorem averagedIntertwiningMap_eq_zero
     (ρ : Representation k G V) (σ : Representation k G W)
     [IsIrreducible ρ] [IsIrreducible σ] (hne : IsEmpty (Equiv ρ σ))
@@ -60,7 +66,9 @@ theorem averagedIntertwiningMap_eq_zero
   exact Subsingleton.elim _ _
 
 /-- On a finite-dimensional irreducible over an algebraically closed field,
-the intertwining average is a scalar endomorphism.-/
+the intertwining average is a scalar endomorphism.
+@isnad1 id=ex.0h5v.s8.1174590a95ce from=translated src=- shape=362fe978 vocab=13ce9040
+-/
 theorem exists_averagedIntertwiningMap_eq_smul_id
     [IsAlgClosed k] [FiniteDimensional k V]
     (ρ : Representation k G V) [IsIrreducible ρ] (M : V →ₗ[k] V) :
@@ -72,7 +80,9 @@ theorem exists_averagedIntertwiningMap_eq_smul_id
   rfl
 
 /-- Trace identifies the scalar in Schur averaging, in ordinary unnormalized
-trace convention.-/
+trace convention.
+@isnad1 id=eq.1h5v.s9.5dbe974bbef4 from=translated src=- shape=9893766e vocab=138e5346
+-/
 theorem averagedIntertwiningMap_self_toLinearMap
     [IsAlgClosed k] [FiniteDimensional k V]
     (ρ : Representation k G V) [IsIrreducible ρ]

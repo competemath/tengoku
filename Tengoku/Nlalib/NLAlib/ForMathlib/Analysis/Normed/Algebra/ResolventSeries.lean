@@ -31,7 +31,9 @@ private theorem resolvent_add_factor {a h : A} {z : R}
   abel
 
 /-- The actual perturbation factorization of the native total resolvent.
-Only the original shifted element needs to be a unit for this identity.-/
+Only the original shifted element needs to be a unit for this identity.
+@isnad1 id=eq.1h5v.s7.b9ae59fdf8c2 from=translated src=- shape=6c2b974a vocab=f6261af5
+-/
 theorem resolvent_add_eq_inverse_mul {a h : A} {z : R}
     (hz : z ∈ resolventSet R a) :
     resolvent (a + h) z = (1 - resolvent a z * h)⁻¹ʳ * resolvent a z := by
@@ -48,7 +50,9 @@ variable {R A : Type*} [CommSemiring R] [NormedRing A] [Algebra R A]
   [CompleteSpace A]
 
 /-- A norm-small perturbation yields the literal ordered Neumann series of
-the perturbed resolvent, without assuming the desired inverse expansion.-/
+the perturbed resolvent, without assuming the desired inverse expansion.
+@isnad1 id=hassum.2h5v.s7.c6c56aaf90d9 from=translated src=- shape=b7e1cdd2 vocab=5dcaf14c
+-/
 theorem hasSum_resolvent_add_of_norm_mul_lt_one {a h : A} {z : R}
     (hz : z ∈ resolventSet R a) (hsmall : ‖resolvent a z * h‖ < 1) :
     HasSum (fun k : ℕ => (resolvent a z * h) ^ k * resolvent a z)
@@ -58,7 +62,9 @@ theorem hasSum_resolvent_add_of_norm_mul_lt_one {a h : A} {z : R}
 
 omit [CompleteSpace A] in
 /-- The same actual Neumann series is absolutely summable, so it can be
-multiplied with other ordered series and observed by continuous linear maps.-/
+multiplied with other ordered series and observed by continuous linear maps.
+@isnad1 id=summable.1h5v.s7.f861dbd6f329 from=translated src=- shape=39c60529 vocab=42f840cc
+-/
 theorem summable_norm_resolvent_add_series {a h : A} {z : R}
     (hsmall : ‖resolvent a z * h‖ < 1) :
     Summable (fun k : ℕ => ‖(resolvent a z * h) ^ k * resolvent a z‖) := by

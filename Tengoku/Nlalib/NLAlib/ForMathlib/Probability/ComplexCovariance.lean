@@ -22,7 +22,9 @@ variable {κ Ω Ω' : Type*} [Fintype κ] [DecidableEq κ]
 
 /-- Full real means and covariances identify the actual squared-modulus
 expectation of every continuous complex observation. Mixed real/imaginary
-covariances are retained, and no Gaussianity is needed.-/
+covariances are retained, and no Gaussianity is needed.
+@isnad1 id=eq.4h8v.s9.fc30d74f804c from=translated src=- shape=b7966f6d vocab=a6e44b05
+-/
 theorem integral_norm_sq_continuousLinearMap_eq_of_coordinate_mean_covariance_eq
     {X : Ω → κ → ℝ} {Y : Ω' → κ → ℝ}
     (hX : MemLp X 2 μ) (hY : MemLp Y 2 ν)

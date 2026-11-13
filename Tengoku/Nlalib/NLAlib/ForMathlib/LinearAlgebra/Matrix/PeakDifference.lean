@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- The row-difference matrix of a full-rank rectangular Jacobian is invertible when the
 left kernel contains a vector whose coordinates sum to one.
-Source: focused rederivations, the peak-difference derivative.-/
+Source: focused rederivations, the peak-difference derivative.
+@isnad1 id=ne.3h3v.s8.0992824890fd from=translated src=- shape=7db2d5de vocab=0afa25b7
+-/
 theorem det_row_difference_ne_zero {n : ℕ}
     (J : Matrix (Fin (n + 1)) (Fin n) ℝ)
     (hminor : Matrix.det (fun i j : Fin n => J i.succ j) ≠ 0)

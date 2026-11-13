@@ -11,7 +11,9 @@ open Polynomial Finset
 namespace NLAlib
 
 /-- Reindexing a finite grid reindexes its cardinal polynomial.
-Source: the finite Lagrange product; interpolation reference-grid helper.-/
+Source: the finite Lagrange product; interpolation reference-grid helper.
+@isnad1 id=eq.0h6v.s6.856c22f53407 from=translated src=- shape=ddeef4f3 vocab=96a9967c
+-/
 theorem lagrange_basis_univ_comp_equiv {F ι κ : Type*} [Field F]
     [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq κ]
     (v : ι → F) (e : κ ≃ ι) (i : κ) :

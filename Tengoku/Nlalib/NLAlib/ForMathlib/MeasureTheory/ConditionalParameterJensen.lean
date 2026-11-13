@@ -23,7 +23,9 @@ continuous family whose parameter perturbations satisfy an exponential compariso
 Countable dense fixed parameters and conditional comparison on measurable cuts
 prove this from scalar hypotheses, without assuming a conditional Jensen inequality.
 Source: Tropp 2011 (matrix Freedman), predictable-offset passage;
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=eventual.10h10v.s8.af096bb3d688 from=translated src=- shape=729cd56a vocab=53410e51
+-/
 theorem condExp_family_le_family_condExp_of_exponential_comparison
     {Ω E P : Type*} {m mΩ : MeasurableSpace Ω}
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

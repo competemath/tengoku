@@ -49,7 +49,9 @@ noncomputable def pairingSum [Fintype R] [Fintype C] [Fintype E] [Fintype I] [Fi
 
 /-- The exact quotient identity for `pairingSum`: the unrestricted indicator
 sum over original labels equals the sum over quotient labels of the product of
-the weights at the endpoint classes.-/
+the weights at the endpoint classes.
+@isnad1 id=eq.0h11v.s8.5eb70f8983cb from=translated src=- shape=3676e5b6 vocab=8ba6c4be
+-/
 lemma pairingSum_eq_sum_quotient (sr : O → R) (tg : O → C) (alpha beta : E → O)
     [Fintype R] [Fintype C] [Fintype E] [Fintype I] [Fintype J]
     [DecidableEq R] [DecidableEq C] [DecidableEq I] [DecidableEq J]
@@ -80,7 +82,9 @@ noncomputable instance cycleColQuotientFintype (q : ℕ) {E : Type*}
 /-- The exact unit-profile identity: with the constant-one profile on
 `Fin d1 × Fin d2` the unrestricted indicator sum equals
 `(d1 : ℝ) ^ r * (d2 : ℝ) ^ v`. The identity remains valid for `d1 = 0` or
-`d2 = 0`, preserving `0 ^ 0 = 1`.-/
+`d2 = 0`, preserving `0 ^ 0 = 1`.
+@isnad1 id=eq.0h6v.s8.c44889589657 from=translated src=- shape=584a52df vocab=dc4811b5
+-/
 theorem pairingSum_cycle_one [Fintype E]
     (q : ℕ) (alpha beta : E → Fin (q + 1) ⊕ Fin (q + 1))
     (d1 d2 : ℕ) :

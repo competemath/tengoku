@@ -19,7 +19,9 @@ variable {ι : Type*} [Fintype ι] {Ω : ι → Type*} [∀ i, MeasurableSpace (
   (ν : ∀ i, Measure (Ω i)) [∀ i, SigmaFinite (ν i)]
 
 /-- Independently swapping any fixed subset of coordinate pairs preserves
-the actual product law of two copies of each individual marginal.-/
+the actual product law of two copies of each individual marginal.
+@isnad1 id=measurep.0h4v.s7.6bd59d2ebf15 from=translated src=- shape=4e8a7d92 vocab=a2c0502b
+-/
 theorem measurePreserving_pi_prod_swap_if (p : ι → Prop) [DecidablePred p] :
     MeasurePreserving (fun x : ∀ i, Ω i × Ω i =>
       fun i => if p i then (x i).swap else x i)
@@ -36,7 +38,9 @@ theorem measurePreserving_pi_prod_swap_if (p : ι → Prop) [DecidablePred p] :
     exact ⟨measurable_id, Measure.map_id⟩
 
 /-- An actual measurable test of independent coordinate pairs has unchanged
-expectation after swapping any fixed subset of the pairs.-/
+expectation after swapping any fixed subset of the pairs.
+@isnad1 id=eq.1h6v.s8.43dc32abbf6e from=translated src=- shape=40053806 vocab=2b0c3a37
+-/
 theorem integral_pi_prod_swap_if {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] (p : ι → Prop) [DecidablePred p]
     (f : (∀ i, Ω i × Ω i) → E)
@@ -72,7 +76,9 @@ variable {ι Ω : Type*} [Fintype ι] [DecidableEq ι] [MeasurableSpace Ω]
   (ν : ι → Measure Ω) [∀ i, SigmaFinite (ν i)]
 
 /-- Swapping the same coordinate of two actual independent product samples
-preserves their joint law, without requiring identically distributed marginals.-/
+preserves their joint law, without requiring identically distributed marginals.
+@isnad1 id=measurep.0h4v.s7.80dc759a73b4 from=translated src=- shape=ebc08e20 vocab=5e56ca77
+-/
 theorem measurePreserving_prod_pi_update_swap (i : ι) :
     MeasurePreserving (fun q : (ι → Ω) × (ι → Ω) =>
       (Function.update q.1 i (q.2 i), Function.update q.2 i (q.1 i)))
@@ -88,7 +94,9 @@ theorem measurePreserving_prod_pi_update_swap (i : ι) :
         Equiv.arrowProdEquivProdArrow, hj]
 
 /-- The integral of an actual measurable test is invariant under the
-single-coordinate full-copy swap.-/
+single-coordinate full-copy swap.
+@isnad1 id=eq.1h6v.s8.75c0a1f441bd from=translated src=- shape=230b14f3 vocab=76382133
+-/
 theorem integral_prod_pi_update_swap {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] (i : ι) (f : ((ι → Ω) × (ι → Ω)) → E)
     (hf : AEStronglyMeasurable f ((Measure.pi ν).prod (Measure.pi ν))) :

@@ -211,7 +211,9 @@ subspace `W` of codimension at most `k` (`card n ≤ dim W + k`), then the `k`-t
 eigenvalue satisfies `λ_k ≤ c`. Horn–Johnson 2013, Thm 4.2.6 (HJ order eigenvalues
 increasingly and from `1`; here `eigenvalues₀` is decreasing and zero-indexed)
 atlas `courant-fischer`. No sign condition on `c` is needed.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=le.3h6v.s10.1faf925f4668 from=translated src=- shape=8e3f7d63 vocab=ba10f55d
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_of_forall_mem {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) (W : Submodule 𝕜 (n → 𝕜))
     (hW : Fintype.card n ≤ finrank 𝕜 W + k) {c : ℝ}
@@ -226,7 +228,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_of_forall_mem {A : Matrix n 
 /-- **Courant–Fischer, max-min half.** For Hermitian `A`, if `c · re (xᴴx) ≤ re (xᴴAx)` on a
 subspace `S` of dimension at least `k + 1`, then `c ≤ λ_k`. Horn–Johnson 2013, Thm 4.2.6
 (decreasing, zero-indexed convention) atlas `courant-fischer`.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=le.3h6v.s10.bc1785088dde from=translated src=- shape=db72d584 vocab=ba10f55d
+-/
 theorem _root_.Matrix.IsHermitian.le_eigenvalues₀_of_forall_mem {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) (S : Submodule 𝕜 (n → 𝕜))
     (hS : (k : ℕ) + 1 ≤ finrank 𝕜 S) {c : ℝ}
@@ -242,7 +246,9 @@ theorem _root_.Matrix.IsHermitian.le_eigenvalues₀_of_forall_mem {A : Matrix n 
 dimension at least `k + 1` (the span of the top `k + 1` eigenvectors) on which
 `λ_k · re (xᴴx) ≤ re (xᴴAx)`. Horn–Johnson 2013, proof of Thm 4.2.6
 atlas `courant-fischer`. Deviation: the dimension is stated as a lower bound.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=ex.1h4v.s10.1862cdb76413 from=translated src=- shape=f4817e33 vocab=ba10f55d
+-/
 theorem _root_.Matrix.IsHermitian.exists_submodule_eigenvalues₀_mul_le {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) :
     ∃ S : Submodule 𝕜 (n → 𝕜), (k : ℕ) + 1 ≤ finrank 𝕜 S ∧
@@ -256,7 +262,9 @@ theorem _root_.Matrix.IsHermitian.exists_submodule_eigenvalues₀_mul_le {A : Ma
 codimension at most `k` (the span of the eigenvectors `k, k+1, …`) on which
 `re (xᴴAx) ≤ λ_k · re (xᴴx)`. Horn–Johnson 2013, proof of Thm 4.2.6
 atlas `courant-fischer`.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=ex.1h4v.s10.1c2e7ec3b8d8 from=translated src=- shape=d5d491fa vocab=ba10f55d
+-/
 theorem _root_.Matrix.IsHermitian.exists_submodule_le_eigenvalues₀_mul {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) :
     ∃ W : Submodule 𝕜 (n → 𝕜), Fintype.card n ≤ finrank 𝕜 W + k ∧
@@ -268,7 +276,9 @@ theorem _root_.Matrix.IsHermitian.exists_submodule_le_eigenvalues₀_mul {A : Ma
 `λ_k = max_{dim S ≥ k+1} min_{0 ≠ x ∈ S} ρ(x)`, written with `⨆`/`⨅` (both attained) and the
 Rayleigh quotient `ρ = rayleighQuotient A`. Horn–Johnson 2013, Thm 4.2.6 (decreasing,
 zero-indexed convention) atlas `courant-fischer`.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=eq.1h4v.s12.25b35aafc525 from=translated src=- shape=529a5a36 vocab=f13a5b36
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_eq_iSup_iInf {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) :
     hA.eigenvalues₀ k =
@@ -302,7 +312,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_eq_iSup_iInf {A : Matrix n n �
 `λ_k = min_{codim W ≤ k} max_{0 ≠ x ∈ W} ρ(x)`, written with `⨅`/`⨆` (both attained) and the
 Rayleigh quotient `ρ = rayleighQuotient A`; codimension at most `k` is
 `card n ≤ dim W + k`. Horn–Johnson 2013, Thm 4.2.6 atlas `courant-fischer`.
-atlas: courant-fischer-/
+atlas: courant-fischer
+@isnad1 id=eq.1h4v.s12.47610a8753b2 from=translated src=- shape=aa9bc6d0 vocab=f13a5b36
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_eq_iInf_iSup {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (k : Fin (Fintype.card n)) :
     hA.eigenvalues₀ k =
@@ -336,7 +348,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_eq_iInf_iSup {A : Matrix n n �
 omit [DecidableEq n] in
 /-- Codimensions add under intersection: if `card n ≤ dim W₁ + a` and `card n ≤ dim W₂ + b`
 then `card n ≤ dim (W₁ ⊓ W₂) + (a + b)`. Helper for the Weyl inequalities;
-atlas `courant-fischer`.-/
+atlas `courant-fischer`.
+@isnad1 id=le.2h6v.s11.9423df4535a0 from=translated src=- shape=6932dae5 vocab=c3c48f13
+-/
 theorem card_le_finrank_inf_add {W₁ W₂ : Submodule 𝕜 (n → 𝕜)} {a b : ℕ}
     (h₁ : Fintype.card n ≤ finrank 𝕜 W₁ + a) (h₂ : Fintype.card n ≤ finrank 𝕜 W₂ + b) :
     Fintype.card n ≤ finrank 𝕜 (W₁ ⊓ W₂ : Submodule 𝕜 (n → 𝕜)) + (a + b) := by
@@ -350,7 +364,9 @@ theorem card_le_finrank_inf_add {W₁ W₂ : Submodule 𝕜 (n → 𝕜)} {a b :
 /-- **Loewner monotonicity of eigenvalues.** If `A ≤ B` in the Loewner order (`B − A` positive
 semidefinite; `open scoped MatrixOrder`) then `λ_k(A) ≤ λ_k(B)` for every `k`. Horn–Johnson
 2013, Cor 4.3.12. atlas `courant-fischer`.
-atlas: weyl-mirsky-/
+atlas: weyl-mirsky
+@isnad1 id=le.3h5v.s7.f96c393074cb from=translated src=- shape=6e97db69 vocab=eb8b6728
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_of_le {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (h : A ≤ B)
     (k : Fin (Fintype.card n)) : hA.eigenvalues₀ k ≤ hB.eigenvalues₀ k := by
@@ -364,7 +380,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_of_le {A B : 
 `λ_{i+j}(A + B) ≤ λ_i(A) + λ_j(B)` whenever `i + j < card n`, with the sorted eigenvalues of
 `A + B` taken through `hA.add hB`. Horn–Johnson 2013, Thm 4.3.1 (stated there increasingly;
 this is the decreasing, zero-indexed form). Atlas `courant-fischer`, `weyl-mirsky`.
-atlas: weyl-mirsky-/
+atlas: weyl-mirsky
+@isnad1 id=le.3h6v.s8.32ad94422734 from=translated src=- shape=26917ba8 vocab=c7b794f8
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_add_le {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (i j : Fin (Fintype.card n))
     (hij : (i : ℕ) + j < Fintype.card n) :
@@ -407,7 +425,9 @@ orthonormal columns, the eigenvalues of the compression `B = QᴴAQ` (Hermitian 
 Cor 4.3.37 (Poincaré separation theorem; the principal-submatrix case is `eigenvalues₀_submatrix_le`).
 The index of `λ(A)` is `Fin.castLE` of `i`, so no side condition `i < card n` is needed
 (`card r ≤ card n` is `card_le_card_of_hasOrthonormalCols`). Atlas `cauchy-interlacing`.
-atlas: cauchy-interlacing-/
+atlas: cauchy-interlacing
+@isnad1 id=le.2h6v.s8.7fd5924ac2f0 from=translated src=- shape=62b2f438 vocab=db2a372e
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_compression_le {r : Type*} [Fintype r]
     [DecidableEq r] {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) {Q : Matrix n r 𝕜} (hQ : HasOrthonormalCols Q)
@@ -428,7 +448,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_compression_le {r : Type*} [Fin
 `Q : n × r` with orthonormal columns, `λ_{i + (card n − card r)}(A) ≤ λ_i(QᴴAQ)`.
 Horn–Johnson 2013, Cor 4.3.37. The index bound is discharged inside the statement from
 `card r ≤ card n`. Atlas `cauchy-interlacing`.
-atlas: cauchy-interlacing-/
+atlas: cauchy-interlacing
+@isnad1 id=le.2h6v.s8.55da02ca43cd from=translated src=- shape=3e75bba9 vocab=c7ecc8b4
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_compression {r : Type*}
     [Fintype r] [DecidableEq r]
     {A : Matrix n n 𝕜} (hA : A.IsHermitian) {Q : Matrix n r 𝕜} (hQ : HasOrthonormalCols Q)
@@ -466,7 +488,9 @@ private theorem submatrix_eq_compression {r : Type*} [Fintype r] [DecidableEq r]
 
 /-- **Cauchy interlacing for principal submatrices, upper bound.** For Hermitian `A` and an
 embedding `e : r ↪ n`, `λ_i(A[e, e]) ≤ λ_i(A)`. Horn–Johnson 2013, Thm 4.3.17; the special case of `eigenvalues₀_compression_le` with the selection matrix atlas `cauchy-interlacing`.
-atlas: cauchy-interlacing-/
+atlas: cauchy-interlacing
+@isnad1 id=le.1h6v.s7.92ef3a706bc7 from=translated src=- shape=3736d26b vocab=0e511877
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_submatrix_le {r : Type*} [Fintype r]
     [DecidableEq r] {A : Matrix n n 𝕜} (hA : A.IsHermitian) (e : r ↪ n)
     (i : Fin (Fintype.card r)) :
@@ -480,7 +504,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_submatrix_le {r : Type*} [Finty
 /-- **Cauchy interlacing for principal submatrices, lower bound.** For Hermitian `A` and an
 embedding `e : r ↪ n`, `λ_{i + (card n − card r)}(A) ≤ λ_i(A[e, e])`. Horn–Johnson 2013,
 Thm 4.3.17. atlas `cauchy-interlacing`.
-atlas: cauchy-interlacing-/
+atlas: cauchy-interlacing
+@isnad1 id=le.1h6v.s7.f2d43471828e from=translated src=- shape=12b9be6b vocab=eea4d595
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_submatrix {r : Type*}
     [Fintype r] [DecidableEq r] {A : Matrix n n 𝕜} (hA : A.IsHermitian) (e : r ↪ n)
     (i : Fin (Fintype.card r)) :

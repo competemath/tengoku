@@ -27,7 +27,9 @@ def exponentialAtomicMeasure (a b : ι → ℝ) : FiniteMeasure ℝ :=
     by infer_instance⟩
 
 /-- Unfolding the atomic measure gives a finite sum of scaled Dirac measures.
-Source: Stahl, formula (1.3); atlas `trace-exponential-stahl` (helper).-/
+Source: Stahl, formula (1.3); atlas `trace-exponential-stahl` (helper).
+@isnad1 id=eq.0h3v.s6.94be02c2a8a6 from=translated src=- shape=c3f29752 vocab=4b34be6e
+-/
 theorem exponentialAtomicMeasure_toMeasure (a b : ι → ℝ) :
     (exponentialAtomicMeasure a b : Measure ℝ) =
       ∑ i, ENNReal.ofReal (Real.exp (a i)) • Measure.dirac (b i) := by
@@ -35,7 +37,9 @@ theorem exponentialAtomicMeasure_toMeasure (a b : ι → ℝ) :
 
 /-- Integrating any real function against these atoms gives its weighted sum.
 No separate integrability premise is needed for a finite atomic measure.
-Source: finite atomic integration; atlas `trace-exponential-stahl` (helper).-/
+Source: finite atomic integration; atlas `trace-exponential-stahl` (helper).
+@isnad1 id=eq.0h4v.s6.7bf153448544 from=translated src=- shape=d0e9e645 vocab=52f5780b
+-/
 theorem integral_exponentialAtomicMeasure (a b : ι → ℝ) (f : ℝ → ℝ) :
     (∫ x, f x ∂(exponentialAtomicMeasure a b : Measure ℝ)) =
       ∑ i, Real.exp (a i) * f (b i) := by
@@ -45,7 +49,9 @@ theorem integral_exponentialAtomicMeasure (a b : ι → ℝ) (f : ℝ → ℝ) :
     exact (integrable_dirac (by simp)).smul_measure ENNReal.ofReal_ne_top
 
 /-- Atoms inside `[l,u]` give a compactly supported exponential representation.
-Source: Stahl, formula (1.3); atlas `trace-exponential-stahl` (commuting case).-/
+Source: Stahl, formula (1.3); atlas `trace-exponential-stahl` (commuting case).
+@isnad1 id=iscompac.1h5v.s6.0052b50d9a84 from=translated src=- shape=4419a5d4 vocab=146f6200
+-/
 theorem isCompactExpRepresentation_exponentialAtomicMeasure (a b : ι → ℝ)
     {l u : ℝ} (hb : ∀ i, b i ∈ Icc l u) :
     IsCompactExpRepresentation (exponentialAtomicMeasure a b)

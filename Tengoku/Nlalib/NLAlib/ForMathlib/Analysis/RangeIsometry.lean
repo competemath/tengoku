@@ -15,7 +15,9 @@ namespace NLAlib
 /-- Equal pointwise norms identify the two ranges isometrically, and the
 range isometry extends to the entire finite-dimensional codomain. This
 works over the real or complex field, including zero maps. Horn–Johnson
-2013, Section 2.1; equal-Gram helper for complex CS.-/
+2013, Section 2.1; equal-Gram helper for complex CS.
+@isnad1 id=ex.1h5v.s10.202d84c7c698 from=translated src=- shape=23f2aa0e vocab=09bd39ad
+-/
 theorem exists_linearIsometry_comp_eq_of_norm_eq {𝕜 E F : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [NormedAddCommGroup F] [InnerProductSpace 𝕜 F] [FiniteDimensional 𝕜 F]

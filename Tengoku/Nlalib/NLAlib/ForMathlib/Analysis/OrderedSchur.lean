@@ -19,7 +19,9 @@ namespace NLAlib
 /-- Every complete ordering of the characteristic roots of a real or complex
 endomorphism is realized by an orthonormal upper triangularizing basis.
 Source: Horn–Johnson (2013), Theorem 2.3.1; repeated roots and dimension zero
-are allowed.-/
+are allowed.
+@isnad1 id=ex.2h5v.s9.aadf9471277e from=translated src=- shape=7918d251 vocab=7a84f76a
+-/
 theorem exists_orthonormalBasis_upper_triangular_with_charpoly
     {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [FiniteDimensional 𝕜 E] (k : ℕ) (f : Module.End 𝕜 E) (hk : finrank 𝕜 E = k)

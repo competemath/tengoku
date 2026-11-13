@@ -22,7 +22,9 @@ variable {κ Ω Ω' : Type*} [Fintype κ] [DecidableEq κ]
   {μ : Measure Ω} {ν : Measure Ω'} [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
 
 /-- A bilinear quadratic form is the contraction of all coordinate products
-with its values on coordinate basis pairs.-/
+with its values on coordinate basis pairs.
+@isnad1 id=eq.0h3v.s10.2c740a9b0844 from=translated src=- shape=969b7c17 vocab=89222000
+-/
 theorem bilin_quadratic_eq_sum_coordinates
     (B : (κ → ℝ) →L[ℝ] (κ → ℝ) →L[ℝ] ℝ) (x : κ → ℝ) :
     B x x = ∑ i, ∑ j, (x i * x j) * B (Pi.single i 1) (Pi.single j 1) := by
@@ -39,7 +41,9 @@ theorem bilin_quadratic_eq_sum_coordinates
 
 omit [IsProbabilityMeasure μ] in
 /-- Square integrability suffices for integrability of every actual continuous
-bilinear quadratic form.-/
+bilinear quadratic form.
+@isnad1 id=integrab.1h5v.s10.671639c179d3 from=translated src=- shape=72e3cb62 vocab=41e48f9a
+-/
 theorem integrable_bilin_quadratic_of_memLp_two
     (B : (κ → ℝ) →L[ℝ] (κ → ℝ) →L[ℝ] ℝ)
     {X : Ω → κ → ℝ} (hX : MemLp X 2 μ) :
@@ -53,7 +57,9 @@ theorem integrable_bilin_quadratic_of_memLp_two
 
 omit [IsProbabilityMeasure μ] in
 /-- The quadratic expectation is the exact contraction with every entry of
-the second-moment matrix; diagonal variances alone do not suffice.-/
+the second-moment matrix; diagonal variances alone do not suffice.
+@isnad1 id=eq.1h5v.s10.d0cae6d672f7 from=translated src=- shape=7abaeb39 vocab=0407fefa
+-/
 theorem integral_bilin_quadratic_eq_sum_second_moments
     (B : (κ → ℝ) →L[ℝ] (κ → ℝ) →L[ℝ] ℝ)
     {X : Ω → κ → ℝ} (hX : MemLp X 2 μ) :
@@ -75,7 +81,9 @@ theorem integral_bilin_quadratic_eq_sum_second_moments
 
 omit [IsProbabilityMeasure μ] [IsProbabilityMeasure ν] in
 /-- Matching every real coordinate second moment preserves the expectation
-of every continuous bilinear quadratic form.-/
+of every continuous bilinear quadratic form.
+@isnad1 id=eq.3h8v.s10.01f02d086e17 from=translated src=- shape=1f7ef3d0 vocab=d54f6c6e
+-/
 theorem integral_bilin_quadratic_eq_of_second_moments_eq
     (B : (κ → ℝ) →L[ℝ] (κ → ℝ) →L[ℝ] ℝ)
     {X : Ω → κ → ℝ} {Z : Ω' → κ → ℝ}
@@ -87,7 +95,9 @@ theorem integral_bilin_quadratic_eq_of_second_moments_eq
 
 omit [DecidableEq κ] in
 /-- Equal coordinate means and full covariances give equal second moments.
-Centeredness is sufficient but not necessary.-/
+Centeredness is sufficient but not necessary.
+@isnad1 id=eq.4h9v.s8.9dea0abcf6a5 from=translated src=- shape=16f5f3ad vocab=d8b8318a
+-/
 theorem integral_mul_coordinates_eq_of_mean_covariance_eq
     {X : Ω → κ → ℝ} {Z : Ω' → κ → ℝ}
     (hX : MemLp X 2 μ) (hZ : MemLp Z 2 ν)
@@ -104,7 +114,9 @@ theorem integral_mul_coordinates_eq_of_mean_covariance_eq
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Full coordinate means and covariances identify covariances after any two
-continuous real linear observations of the actual random vectors.-/
+continuous real linear observations of the actual random vectors.
+@isnad1 id=eq.4h9v.s9.9c152f94eead from=translated src=- shape=a61035ed vocab=51bcf60a
+-/
 theorem covariance_comp_continuousLinearMap_eq_of_coordinate_mean_covariance_eq
     {X : Ω → κ → ℝ} {Z : Ω' → κ → ℝ}
     (hX : MemLp X 2 μ) (hZ : MemLp Z 2 ν)
@@ -138,7 +150,9 @@ theorem covariance_comp_continuousLinearMap_eq_of_coordinate_mean_covariance_eq
 set_option backward.isDefEq.respectTransparency false in
 /-- Matching full coordinate means and covariances preserves the covariance of
 every pair of continuous real linear functionals, rather than only coordinate
-projections. Finite second moments justify all products and expectations.-/
+projections. Finite second moments justify all products and expectations.
+@isnad1 id=eq.4h5v.s10.9531cdb297f8 from=translated src=- shape=1fd83298 vocab=affe036c
+-/
 theorem covariance_continuousLinearMap_eq_of_coordinate_mean_covariance_eq
     (ρ σ : Measure (κ → ℝ)) [IsProbabilityMeasure ρ] [IsProbabilityMeasure σ]
     (hρ : MemLp id 2 ρ) (hσ : MemLp id 2 σ)

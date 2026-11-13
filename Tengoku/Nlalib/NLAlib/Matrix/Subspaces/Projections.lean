@@ -71,7 +71,9 @@ def IsBestFrobRankApprox (A : Matrix m n 𝕜) (k : ℕ) (Y : Matrix m n 𝕜) :
 /-! ### Isometry -/
 
 /-- If `U` has orthonormal columns then `‖Ux‖² = ‖x‖²`, written with dot products.
-Golub–Van Loan 2013, §2.4; atlas `projection-facts`.-/
+Golub–Van Loan 2013, §2.4; atlas `projection-facts`.
+@isnad1 id=eq.1h5v.s8.1841d8c7b411 from=translated src=- shape=44c1f400 vocab=f6dae9ec
+-/
 theorem star_mulVec_dotProduct_mulVec_self_of_hasOrthonormalCols [DecidableEq q]
     {U : Matrix m q 𝕜} (hU : HasOrthonormalCols U) (x : q → 𝕜) :
     star (U *ᵥ x) ⬝ᵥ (U *ᵥ x) = star x ⬝ᵥ x := by
@@ -80,25 +82,33 @@ theorem star_mulVec_dotProduct_mulVec_self_of_hasOrthonormalCols [DecidableEq q]
 /-! ### The orthogonal projector `QQᴴ` -/
 
 /-- Idempotence of `P = QQᴴ` for `Q` with orthonormal columns: `P² = P`.
-Atlas `projection-facts`.-/
+Atlas `projection-facts`.
+@isnad1 id=eq.1h4v.s8.bbe24b665ddd from=translated src=- shape=b5ae1cce vocab=1105a194
+-/
 theorem mul_conjTranspose_mul_mul_conjTranspose [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) : Q * Qᴴ * (Q * Qᴴ) = Q * Qᴴ := by
   rw [Matrix.mul_assoc, ← Matrix.mul_assoc Qᴴ, hQ.conjTranspose_mul_self, Matrix.one_mul]
 
-/-- Idempotence of the complementary projector `I − QQᴴ`. Atlas `projection-facts`.-/
+/-- Idempotence of the complementary projector `I − QQᴴ`. Atlas `projection-facts`.
+@isnad1 id=eq.1h4v.s9.395f4212c3bf from=translated src=- shape=8e31e747 vocab=2ee96319
+-/
 theorem one_sub_mul_conjTranspose_idem [DecidableEq m] [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) : (1 - Q * Qᴴ) * (1 - Q * Qᴴ) = 1 - Q * Qᴴ := by
   rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_sub, Matrix.one_mul, Matrix.mul_one,
     Matrix.one_mul, mul_conjTranspose_mul_mul_conjTranspose hQ]
   abel
 
-/-- `Qᴴ (I − QQᴴ) = 0` for `Q` with orthonormal columns. Atlas `projection-facts`.-/
+/-- `Qᴴ (I − QQᴴ) = 0` for `Q` with orthonormal columns. Atlas `projection-facts`.
+@isnad1 id=eq.1h4v.s8.da8216406c7b from=translated src=- shape=2d871faa vocab=2ee96319
+-/
 theorem conjTranspose_mul_one_sub_mul_conjTranspose [DecidableEq m] [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) : Qᴴ * (1 - Q * Qᴴ) = 0 := by
   rw [Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc, hQ.conjTranspose_mul_self,
     Matrix.one_mul, sub_self]
 
-/-- `(I − QQᴴ)ᴴ Q = 0` for `Q` with orthonormal columns. Atlas `projection-facts`.-/
+/-- `(I − QQᴴ)ᴴ Q = 0` for `Q` with orthonormal columns. Atlas `projection-facts`.
+@isnad1 id=eq.1h4v.s8.ee0a1fafcf98 from=translated src=- shape=eb940cbc vocab=2ee96319
+-/
 theorem one_sub_mul_conjTranspose_conjTranspose_mul [DecidableEq m] [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) : (1 - Q * Qᴴ)ᴴ * Q = 0 := by
   rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_one, Matrix.conjTranspose_mul,
@@ -108,27 +118,35 @@ theorem one_sub_mul_conjTranspose_conjTranspose_mul [DecidableEq m] [DecidableEq
 /-! ### The residual `(I − QQᴴ) A` -/
 
 omit [Fintype n] in
-/-- `projResidual Q A = (I − QQᴴ) A`. Atlas `projection-facts`.-/
+/-- `projResidual Q A = (I − QQᴴ) A`. Atlas `projection-facts`.
+@isnad1 id=eq.0h6v.s8.1b5152b48f96 from=translated src=- shape=8bf8a22b vocab=364a4384
+-/
 theorem residual_eq_one_sub_mul [DecidableEq m] (Q : Matrix m q 𝕜)
     (A : Matrix m n 𝕜) : projResidual Q A = (1 - Q * Qᴴ) * A := by
   rw [projResidual, Matrix.sub_mul, Matrix.one_mul, Matrix.mul_assoc]
 
 omit [Fintype n] in
-/-- Orthogonal decomposition `A = Q(QᴴA) + projResidual Q A`. Atlas `projection-facts`.-/
+/-- Orthogonal decomposition `A = Q(QᴴA) + projResidual Q A`. Atlas `projection-facts`.
+@isnad1 id=eq.0h6v.s7.8ffbd0a9a7e6 from=translated src=- shape=586f2fff vocab=76839f4d
+-/
 theorem mul_conjTranspose_mul_add_residual (Q : Matrix m q 𝕜) (A : Matrix m n 𝕜) :
     Q * (Qᴴ * A) + projResidual Q A = A := by
   rw [projResidual]; abel
 
 omit [Fintype n] in
 /-- The residual is orthogonal to `range Q`: `Qᴴ (I − QQᴴ) A = 0`. Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=eq.1h6v.s7.21d8a73d7761 from=translated src=- shape=58eff1bf vocab=96ff7732
+-/
 theorem conjTranspose_mul_residual [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) : Qᴴ * projResidual Q A = 0 := by
   rw [projResidual, Matrix.mul_sub, ← Matrix.mul_assoc, hQ.conjTranspose_mul_self, Matrix.one_mul,
     sub_self]
 
 /-- The residual is Frobenius-orthogonal to every matrix `QX` with columns in `range Q`.
-Atlas `projection-facts`.-/
+Atlas `projection-facts`.
+@isnad1 id=eq.1h7v.s6.96ba197c0fc3 from=translated src=- shape=6a83b95e vocab=cbf55bc7
+-/
 theorem frobInner_mul_residual [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q)
     (X : Matrix q n 𝕜) (A : Matrix m n 𝕜) : frobInner (Q * X) (projResidual Q A) = 0 := by
   rw [frobInner_eq_trace, Matrix.conjTranspose_mul, Matrix.mul_assoc,
@@ -136,19 +154,25 @@ theorem frobInner_mul_residual [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOr
 
 omit [Fintype n] in
 /-- Projecting the residual again changes nothing: `(I − QQᴴ)² A = (I − QQᴴ) A`.
-Atlas `projection-facts`.-/
+Atlas `projection-facts`.
+@isnad1 id=eq.1h6v.s6.e36e09473e33 from=translated src=- shape=453bc2dc vocab=87c100c9
+-/
 theorem residual_residual [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q)
     (A : Matrix m n 𝕜) : projResidual Q (projResidual Q A) = projResidual Q A := by
   show projResidual Q A - Q * (Qᴴ * projResidual Q A) = projResidual Q A
   rw [conjTranspose_mul_residual hQ, Matrix.mul_zero, sub_zero]
 
-/-- The residual of `QX` vanishes. Atlas `projection-facts`.-/
+/-- The residual of `QX` vanishes. Atlas `projection-facts`.
+@isnad1 id=eq.1h6v.s7.102ecc9b62ae from=translated src=- shape=cbc810c6 vocab=a3ef9e38
+-/
 theorem residual_mul_self [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q)
     {p : Type*} [Fintype p] (X : Matrix q p 𝕜) : projResidual Q (Q * X) = 0 := by
   rw [projResidual, ← Matrix.mul_assoc Qᴴ, hQ.conjTranspose_mul_self, Matrix.one_mul, sub_self]
 
 /-- The residual commutes with right multiplication: `((I − QQᴴ)A) Ω = (I − QQᴴ)(AΩ)`.
-Atlas `projection-facts`.-/
+Atlas `projection-facts`.
+@isnad1 id=eq.0h8v.s7.8ccd24595b7b from=translated src=- shape=169a8bc0 vocab=6a76b3f8
+-/
 theorem residual_mul (Q : Matrix m q 𝕜) (A : Matrix m n 𝕜) {p : Type*} [Fintype p]
     (Ω : Matrix n p 𝕜) : projResidual Q A * Ω = projResidual Q (A * Ω) := by
   simp only [projResidual, Matrix.sub_mul, Matrix.mul_assoc]
@@ -157,7 +181,9 @@ theorem residual_mul (Q : Matrix m q 𝕜) (A : Matrix m n 𝕜) {p : Type*} [Fi
 This is how `Q = orth(AΩ)` enters the range-finder analysis (HMT 2011, proof of Thm 9.1).
 No orthonormality is needed. Over `ℝ` the hypothesis may be given as `Q (Qᵀ (AΩ)) = AΩ`.
 Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=eq.1h8v.s8.676a2eb1d43e from=translated src=- shape=3a1bf967 vocab=a2bc5b20
+-/
 theorem residual_mul_eq_zero_of_range {Q : Matrix m q 𝕜} {A : Matrix m n 𝕜} {p : Type*}
     [Fintype p] {Ω : Matrix n p 𝕜} (h : Q * (Qᴴ * (A * Ω)) = A * Ω) :
     projResidual Q A * Ω = 0 := by
@@ -166,7 +192,9 @@ theorem residual_mul_eq_zero_of_range {Q : Matrix m q 𝕜} {A : Matrix m n 𝕜
 /-! ### Pythagoras and contraction -/
 
 /-- The squared Frobenius size of an orthonormal frame is its width.
-Stewart–Sun §I.5; valid at width zero.-/
+Stewart–Sun §I.5; valid at width zero.
+@isnad1 id=eq.1h4v.s5.22bfb81d2910 from=translated src=- shape=1f41c7a6 vocab=2a897624
+-/
 theorem frobSq_frame_eq_card [DecidableEq n] {Q : Matrix m n 𝕜} (hQ : HasOrthonormalCols Q) :
     frobSq Q = Fintype.card n := by
   rw [frobSq, frobInner_eq_trace, hQ.conjTranspose_mul_self, Matrix.trace_one,
@@ -174,7 +202,9 @@ theorem frobSq_frame_eq_card [DecidableEq n] {Q : Matrix m n 𝕜} (hQ : HasOrth
 
 /-- Pythagoras for the projector: `‖A‖_F² = ‖Q(QᴴA)‖_F² + ‖(I − QQᴴ)A‖_F²`.
 Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=eq.1h6v.s7.9982c2adfcc2 from=translated src=- shape=d8c584e7 vocab=48072da1
+-/
 theorem frobSq_eq_frobSq_proj_add_residual [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) :
     frobSq A = frobSq (Q * (Qᴴ * A)) + frobSq (projResidual Q A) := by
@@ -182,33 +212,43 @@ theorem frobSq_eq_frobSq_proj_add_residual [DecidableEq q] {Q : Matrix m q 𝕜}
   exact frobSq_add_of_frobInner_eq_zero _ _ (frobInner_mul_residual hQ _ A)
 
 /-- Pythagoras with the projection measured in `range Q` coordinates:
-`‖A‖_F² = ‖QᴴA‖_F² + ‖(I − QQᴴ)A‖_F²`. Atlas `projection-facts`.-/
+`‖A‖_F² = ‖QᴴA‖_F² + ‖(I − QQᴴ)A‖_F²`. Atlas `projection-facts`.
+@isnad1 id=eq.1h6v.s7.e215f9e81f6d from=translated src=- shape=2b21b252 vocab=48072da1
+-/
 theorem frobSq_eq_frobSq_conjTranspose_mul_add_residual [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) :
     frobSq A = frobSq (Qᴴ * A) + frobSq (projResidual Q A) := by
   rw [frobSq_eq_frobSq_proj_add_residual hQ A,
     frobSq_mul_left_of_orthonormal hQ.conjTranspose_mul_self]
 
-/-- `‖(I − QQᴴ)A‖_F² = ‖A‖_F² − ‖QᴴA‖_F²`. Atlas `projection-facts`.-/
+/-- `‖(I − QQᴴ)A‖_F² = ‖A‖_F² − ‖QᴴA‖_F²`. Atlas `projection-facts`.
+@isnad1 id=eq.1h6v.s7.d321ad66317c from=translated src=- shape=5e20da03 vocab=5b3518e5
+-/
 theorem frobSq_residual_eq_sub [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) :
     frobSq (projResidual Q A) = frobSq A - frobSq (Qᴴ * A) := by
   rw [frobSq_eq_frobSq_conjTranspose_mul_add_residual hQ A]; ring
 
 /-- The residual contracts: `‖(I − QQᴴ)A‖_F² ≤ ‖A‖_F²`. Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=le.1h6v.s6.e4f2297cc4ec from=translated src=- shape=9ab4374e vocab=707b349f
+-/
 theorem frobSq_residual_le [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q)
     (A : Matrix m n 𝕜) : frobSq (projResidual Q A) ≤ frobSq A := by
   rw [frobSq_eq_frobSq_proj_add_residual hQ A]
   exact le_add_of_nonneg_left (frobSq_nonneg _)
 
-/-- `‖QᴴA‖_F² ≤ ‖A‖_F²` for `Q` with orthonormal columns. Atlas `projection-facts`.-/
+/-- `‖QᴴA‖_F² ≤ ‖A‖_F²` for `Q` with orthonormal columns. Atlas `projection-facts`.
+@isnad1 id=le.1h6v.s7.6d7f19e1ab60 from=translated src=- shape=7d4abe2e vocab=052bcb1c
+-/
 theorem frobSq_conjTranspose_mul_le [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) : frobSq (Qᴴ * A) ≤ frobSq A := by
   rw [frobSq_eq_frobSq_conjTranspose_mul_add_residual hQ A]
   exact le_add_of_nonneg_right (frobSq_nonneg _)
 
-/-- The projection contracts: `‖QQᴴA‖_F² ≤ ‖A‖_F²`. Atlas `projection-facts`.-/
+/-- The projection contracts: `‖QQᴴA‖_F² ≤ ‖A‖_F²`. Atlas `projection-facts`.
+@isnad1 id=le.1h6v.s7.d83a18f20884 from=translated src=- shape=54f90aa7 vocab=052bcb1c
+-/
 theorem frobSq_proj_le [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q)
     (A : Matrix m n 𝕜) : frobSq (Q * (Qᴴ * A)) ≤ frobSq A := by
   rw [frobSq_mul_left_of_orthonormal hQ.conjTranspose_mul_self]
@@ -219,7 +259,9 @@ theorem frobSq_proj_le [DecidableEq q] {Q : Matrix m q 𝕜} (hQ : HasOrthonorma
 /-- Pythagoras in `range Q`: for every `B`,
 `‖A − QB‖_F² = ‖(I − QQᴴ)A‖_F² + ‖QᴴA − B‖_F²` (proof of HMT 2011, Thm 9.1).
 Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=eq.1h7v.s8.8a7e08f01b8c from=translated src=- shape=19b9cf7b vocab=25344297
+-/
 theorem frobSq_sub_mul_eq [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) (B : Matrix q n 𝕜) :
     frobSq (A - Q * B) = frobSq (projResidual Q A) + frobSq (Qᴴ * A - B) := by
@@ -230,7 +272,9 @@ theorem frobSq_sub_mul_eq [DecidableEq q]
     frobSq_mul_left_of_orthonormal hQ.conjTranspose_mul_self]
 
 /-- `Q(QᴴA)` is the best Frobenius approximation of `A` with columns in `range Q`:
-`‖(I − QQᴴ)A‖_F² ≤ ‖A − QB‖_F²` for every `B`. Atlas `projection-facts`.-/
+`‖(I − QQᴴ)A‖_F² ≤ ‖A − QB‖_F²` for every `B`. Atlas `projection-facts`.
+@isnad1 id=le.1h7v.s7.18f0df4c7f58 from=translated src=- shape=117e357f vocab=24e4e101
+-/
 theorem frobSq_residual_le_frobSq_sub_mul [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (A : Matrix m n 𝕜) (B : Matrix q n 𝕜) :
     frobSq (projResidual Q A) ≤ frobSq (A - Q * B) := by
@@ -241,7 +285,9 @@ theorem frobSq_residual_le_frobSq_sub_mul [DecidableEq q] {Q : Matrix m q 𝕜}
 if `range Q₁ ⊆ range Q₂`, written `Q₁ = Q₂ C`, then `‖(I − Q₂Q₂ᴴ)A‖_F² ≤ ‖(I − Q₁Q₁ᴴ)A‖_F²`.
 Deviation: only `Q₂` needs orthonormal columns; `Q₁` is arbitrary (with `residual` defined
 by the formula `A − Q₁Q₁ᴴA`). Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=le.2h9v.s7.3bf39113bf2c from=translated src=- shape=92e8c500 vocab=f3a35f20
+-/
 theorem frobSq_residual_le_of_eq_mul [DecidableEq q] {q₁ : Type*} [Fintype q₁]
     {Q₁ : Matrix m q₁ 𝕜} {Q₂ : Matrix m q 𝕜} (hQ₂ : HasOrthonormalCols Q₂)
     {C : Matrix q q₁ 𝕜} (hC : Q₁ = Q₂ * C) (A : Matrix m n 𝕜) :
@@ -253,7 +299,9 @@ theorem frobSq_residual_le_of_eq_mul [DecidableEq q] {q₁ : Type*} [Fintype q�
 
 /-- `Q ⟦QᴴA⟧ₖ` is a best rank-`k` Frobenius approximation of `A` among matrices `QB` with
 `rank B ≤ k` (HMT 2011, proof of Thm 9.1). Atlas `projection-facts`.
-atlas: projection-facts-/
+atlas: projection-facts
+@isnad1 id=le.3h9v.s8.37b7b6a46b87 from=translated src=- shape=7a4f5693 vocab=1887d6f9
+-/
 theorem frobSq_sub_mul_le_of_isBestFrobRankApprox [DecidableEq q] {k : ℕ} {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) {A : Matrix m n 𝕜} {Y : Matrix q n 𝕜}
     (hY : IsBestFrobRankApprox (Qᴴ * A) k Y) (B : Matrix q n 𝕜) (hB : B.rank ≤ k) :
@@ -266,21 +314,27 @@ theorem frobSq_sub_mul_le_of_isBestFrobRankApprox [DecidableEq q] {k : ℕ} {Q :
 
 omit [Fintype n] [Fintype q] in
 /-- `AᴴB = 0 ↔ BᴴA = 0`: orthogonality of column spaces is symmetric.
-Atlas `projection-facts`.-/
+Atlas `projection-facts`.
+@isnad1 id=iff.0h6v.s8.d066950989bf from=translated src=- shape=c6fb723d vocab=87b3128b
+-/
 theorem conjTranspose_mul_eq_zero_comm {A : Matrix m n 𝕜} {B : Matrix m q 𝕜} :
     Aᴴ * B = 0 ↔ Bᴴ * A = 0 := by
   constructor <;> intro h <;> simpa using congrArg Matrix.conjTranspose h
 
 omit [Fintype q] in
 /-- `(PᴴQ)ᴴ(PᴴQ) = (QᴴP)(QᴴP)ᴴ`: the Gram matrix of `PᴴQ` is the outer Gram matrix of
-`QᴴP`. Atlas `projection-facts`.-/
+`QᴴP`. Atlas `projection-facts`.
+@isnad1 id=eq.0h6v.s9.82b789dee3ed from=translated src=- shape=33c77b03 vocab=87b3128b
+-/
 theorem gram_conjTranspose_mul_eq (P : Matrix m n 𝕜) (Q : Matrix m q 𝕜) :
     (Pᴴ * Q)ᴴ * (Pᴴ * Q) = (Qᴴ * P) * (Qᴴ * P)ᴴ := by
   rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose, Matrix.conjTranspose_mul,
     Matrix.conjTranspose_conjTranspose]
 
 /-- If `Q`, `Qp` have orthonormal columns and `QQᴴ + QpQpᴴ = I`, then `QᴴQp = 0`.
-Golub–Van Loan 2013, §2.4; atlas `orthonormal-completion`.-/
+Golub–Van Loan 2013, §2.4; atlas `orthonormal-completion`.
+@isnad1 id=eq.3h6v.s8.adfe4d19a700 from=translated src=- shape=12d3651b vocab=c92df3b4
+-/
 theorem conjTranspose_mul_eq_zero_of_completion [DecidableEq m] [DecidableEq n] [DecidableEq q]
     {Q : Matrix m q 𝕜} {Qp : Matrix m n 𝕜} (hQ : HasOrthonormalCols Q)
     (hQp : HasOrthonormalCols Qp) (hcomp : Q * Qᴴ + Qp * Qpᴴ = 1) : Qᴴ * Qp = 0 := by
@@ -292,7 +346,9 @@ theorem conjTranspose_mul_eq_zero_of_completion [DecidableEq m] [DecidableEq n] 
 
 omit [Fintype n] in
 /-- For a completion `QQᴴ + QpQpᴴ = I` of `Q`, the residual lies in `range Qp`:
-`(I − QQᴴ)A = Qp (Qpᴴ (I − QQᴴ)A)`. Golub–Van Loan 2013, §2.4; atlas `projection-facts`.-/
+`(I − QQᴴ)A = Qp (Qpᴴ (I − QQᴴ)A)`. Golub–Van Loan 2013, §2.4; atlas `projection-facts`.
+@isnad1 id=eq.2h8v.s9.88fb8f6e8038 from=translated src=- shape=f9339936 vocab=ac675ccb
+-/
 theorem residual_eq_mul_conjTranspose_mul_residual [DecidableEq m] [DecidableEq q] {r : Type*}
     [Fintype r] {Q : Matrix m q 𝕜} {Qp : Matrix m r 𝕜} (hQ : HasOrthonormalCols Q)
     (hcomp : Q * Qᴴ + Qp * Qpᴴ = 1) (A : Matrix m n 𝕜) :
@@ -307,7 +363,9 @@ theorem residual_eq_mul_conjTranspose_mul_residual [DecidableEq m] [DecidableEq 
 def columnSpace [DecidableEq n] (B : Matrix m n 𝕜) : Submodule 𝕜 (EuclideanSpace 𝕜 m) :=
   LinearMap.range (Matrix.toEuclideanLin B)
 
-/-- The column space is the span of the columns.-/
+/-- The column space is the span of the columns.
+@isnad1 id=eq.0h4v.s8.673e86e0fb81 from=translated src=- shape=367cfc66 vocab=71979090
+-/
 theorem columnSpace_eq_span_columns [DecidableEq n] (B : Matrix m n 𝕜) :
     columnSpace B = Submodule.span 𝕜
       (Set.range (fun j => (WithLp.toLp 2 (B.col j) : EuclideanSpace 𝕜 m))) := by
@@ -328,7 +386,9 @@ private def col {ι : Type*} (V : Matrix m ι 𝕜) (j : ι) : EuclideanSpace �
   WithLp.toLp 2 (fun i => V i j)
 
 /-- A matrix has orthonormal columns exactly when its Euclidean columns form a
-Mathlib `Orthonormal` family, over either the real or complex field.-/
+Mathlib `Orthonormal` family, over either the real or complex field.
+@isnad1 id=iff.0h4v.s7.cab6203dc5c3 from=translated src=- shape=b48b3d8b vocab=3350d929
+-/
 theorem hasOrthonormalCols_iff_orthonormal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (V : Matrix m ι 𝕜) :
     HasOrthonormalCols V ↔ Orthonormal 𝕜 (fun j => WithLp.toLp 2 (V.col j)) := by
@@ -349,7 +409,9 @@ theorem hasOrthonormalCols_iff_orthonormal {ι : Type*} [Fintype ι] [DecidableE
     exact Finset.sum_congr rfl fun i _ => by rw [mul_comm]; rfl
 
 /-- The Euclidean columns of a matrix with orthonormal columns are a Mathlib
-`Orthonormal` family.-/
+`Orthonormal` family.
+@isnad1 id=orthonor.1h4v.s7.8ba451be2ab5 from=translated src=- shape=d9243ebd vocab=3350d929
+-/
 theorem HasOrthonormalCols.orthonormal {ι : Type*} [Fintype ι] [DecidableEq ι]
     {V : Matrix m ι 𝕜} (hV : HasOrthonormalCols V) :
     Orthonormal 𝕜 (fun j => WithLp.toLp 2 (V.col j)) :=
@@ -357,7 +419,9 @@ theorem HasOrthonormalCols.orthonormal {ι : Type*} [Fintype ι] [DecidableEq ι
 
 /-- A matrix with orthonormal columns has at most as many columns as rows (general finite
 index types). Atlas `orthonormal-completion`.
-atlas: orthonormal-completion-/
+atlas: orthonormal-completion
+@isnad1 id=le.1h4v.s5.b55cb81e295a from=translated src=- shape=d5dbedcd vocab=447260c3
+-/
 theorem card_le_card_of_hasOrthonormalCols {r : Type*} [Fintype r] [DecidableEq r]
     {Q : Matrix m r 𝕜} (hQ : HasOrthonormalCols Q) : Fintype.card r ≤ Fintype.card m := by
   have hinj : Function.Injective Q.mulVecLin := by
@@ -372,7 +436,9 @@ theorem card_le_card_of_hasOrthonormalCols {r : Type*} [Fintype r] [DecidableEq 
 the columns `e '' ι` of the finite row type `m`, extends to a unitary `m × m` matrix `W`
 (`WᴴW = I`). Golub–Van Loan 2013, §2.4 (completion of an orthonormal set); HMT 2011, §10.2.
 Atlas `orthonormal-completion`.
-atlas: orthonormal-completion-/
+atlas: orthonormal-completion
+@isnad1 id=ex.1h5v.s6.f416a7e206c6 from=translated src=- shape=e80cb1d7 vocab=3fdcc4cd
+-/
 theorem exists_unitary_completion [DecidableEq m] {ι : Type*} [Fintype ι] [DecidableEq ι]
     (V : Matrix m ι 𝕜) (hV : HasOrthonormalCols V) (e : ι ↪ m) :
     ∃ W : Matrix m m 𝕜, HasOrthonormalCols W ∧ ∀ i j, W i (e j) = V i j := by
@@ -406,7 +472,9 @@ theorem exists_unitary_completion [DecidableEq m] {ι : Type*} [Fintype ι] [Dec
 /-- **Unitary complement.** A matrix `Q : m × q` with orthonormal columns has a complement
 `Qp` with `card m − card q` orthonormal columns and `QQᴴ + QpQpᴴ = I`. From
 `exists_unitary_completion`. Golub–Van Loan 2013, §2.4; atlas `orthonormal-completion`.
-atlas: orthonormal-completion-/
+atlas: orthonormal-completion
+@isnad1 id=ex.1h4v.s8.2dd98ff991cb from=translated src=- shape=d9ef6d75 vocab=140832c8
+-/
 theorem exists_unitary_complement [DecidableEq m] [DecidableEq q] (Q : Matrix m q 𝕜)
     (hQ : HasOrthonormalCols Q) :
     ∃ Qp : Matrix m (Fin (Fintype.card m - Fintype.card q)) 𝕜,
@@ -445,7 +513,9 @@ theorem exists_unitary_complement [DecidableEq m] [DecidableEq q] (Q : Matrix m 
 
 omit [Fintype m] in
 /-- If `Q` has orthonormal columns and `x ∈ range Q`, then `Q Qᴴ x = x`: the projector `QQᴴ`
-fixes its range. Atlas `projection-facts`.-/
+fixes its range. Atlas `projection-facts`.
+@isnad1 id=eq.2h5v.s9.fecb08f361f7 from=translated src=- shape=5d4ad4b1 vocab=6c07bdbc
+-/
 theorem mulVec_conjTranspose_mulVec_of_mem_range [Fintype m] [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) {x : m → 𝕜}
     (hx : x ∈ LinearMap.range Q.mulVecLin) : Q *ᵥ (Qᴴ *ᵥ x) = x := by
@@ -455,7 +525,9 @@ theorem mulVec_conjTranspose_mulVec_of_mem_range [Fintype m] [DecidableEq q]
   simp only [Matrix.mulVecLin_apply, h]
 
 /-- `Qᴴ` is a contraction for `Q` with orthonormal columns: `‖Qᴴ x‖² ≤ ‖x‖²` (Bessel), written
-with explicit sums. Atlas `projection-facts`.-/
+with explicit sums. Atlas `projection-facts`.
+@isnad1 id=le.1h5v.s7.ab1e1f1aba50 from=translated src=- shape=74306c76 vocab=e09ed91b
+-/
 theorem sum_norm_sq_conjTranspose_mulVec_le [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) (x : m → 𝕜) :
     ∑ i, ‖(Qᴴ *ᵥ x) i‖ ^ 2 ≤ ∑ i, ‖x i‖ ^ 2 := by
@@ -472,7 +544,9 @@ theorem sum_norm_sq_conjTranspose_mulVec_le [DecidableEq q] {Q : Matrix m q 𝕜
 
 omit [Fintype m] in
 /-- For `x ∈ range Q` and `Q` with orthonormal columns, `‖Qᴴ x‖² = ‖x‖²`, written with dot
-products. Atlas `projection-facts`.-/
+products. Atlas `projection-facts`.
+@isnad1 id=eq.2h5v.s9.ef019ae950ba from=translated src=- shape=f81b84ad vocab=c1e3ef07
+-/
 theorem star_conjTranspose_mulVec_dotProduct_self_of_mem_range [Fintype m] [DecidableEq q]
     {Q : Matrix m q 𝕜} (hQ : HasOrthonormalCols Q) {x : m → 𝕜}
     (hx : x ∈ LinearMap.range Q.mulVecLin) :
@@ -485,7 +559,9 @@ theorem star_conjTranspose_mulVec_dotProduct_self_of_mem_range [Fintype m] [Deci
 
 omit [Fintype m] in
 /-- Range inclusion as a matrix identity: if `range Q ⊆ range Q'` and `Q'` has orthonormal
-columns, then `Q' Q'ᴴ Q = Q`. Atlas `projection-facts`.-/
+columns, then `Q' Q'ᴴ Q = Q`. Atlas `projection-facts`.
+@isnad1 id=eq.2h6v.s9.8f0844a8372b from=translated src=- shape=824e640a vocab=3d232740
+-/
 theorem mul_conjTranspose_mul_eq_of_range_le [Fintype m] [DecidableEq q] {q' : Type*}
     [Fintype q'] {Q : Matrix m q' 𝕜} {Q' : Matrix m q 𝕜} (hQ' : HasOrthonormalCols Q')
     (h : LinearMap.range Q.mulVecLin ≤ LinearMap.range Q'.mulVecLin) : Q' * (Q'ᴴ * Q) = Q := by
@@ -496,7 +572,9 @@ theorem mul_conjTranspose_mul_eq_of_range_le [Fintype m] [DecidableEq q] {q' : T
 
 omit [Fintype m] in
 /-- The orthogonal projector depends only on the range: if `Q`, `Q'` have orthonormal columns
-and the same range, then `QQᴴ = Q'Q'ᴴ`. Atlas `projection-facts`.-/
+and the same range, then `QQᴴ = Q'Q'ᴴ`. Atlas `projection-facts`.
+@isnad1 id=eq.3h6v.s9.0e90461b3df7 from=translated src=- shape=919c662c vocab=3b106c74
+-/
 theorem mul_conjTranspose_eq_of_range_eq [Fintype m] [DecidableEq q] {q' : Type*} [Fintype q']
     [DecidableEq q'] {Q : Matrix m q 𝕜} {Q' : Matrix m q' 𝕜} (hQ : HasOrthonormalCols Q)
     (hQ' : HasOrthonormalCols Q')

@@ -19,7 +19,9 @@ variable {A B E : Type*} [MeasurableSpace A] [MeasurableSpace B]
 
 /-- If the inner integral of a product-integrable function equals a strongly
 measurable function `g`, then `g ∘ Prod.fst` is its conditional expectation on
-the first coordinate.-/
+the first coordinate.
+@isnad1 id=eventual.3h7v.s7.12991bdbefda from=translated src=- shape=e6353a1c vocab=194c08ae
+-/
 theorem condExp_prod_fst_of_integral_eq
     {μ : Measure A} {ν : Measure B} [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
     {f : A × B → E} {g : A → E} (hf : Integrable f (μ.prod ν))

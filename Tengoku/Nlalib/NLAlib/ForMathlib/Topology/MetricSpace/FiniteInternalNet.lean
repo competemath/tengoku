@@ -12,7 +12,9 @@ namespace Metric
 
 /-- An external finite cover gives an internal cover of at most the same
 cardinality and twice the radius. This specializes Mathlib covering numbers
-and includes empty sets and zero radius.-/
+and includes empty sets and zero radius.
+@isnad1 id=ex.2h4v.s7.49fd80cc97fa from=translated src=- shape=f4ab5e3a vocab=d4bf44a5
+-/
 theorem exists_finset_subset_card_le_of_cover
     {X : Type*} [PseudoMetricSpace X] (S : Set X) (N : Finset X)
     {ε : ℝ} (hε : 0 ≤ ε)

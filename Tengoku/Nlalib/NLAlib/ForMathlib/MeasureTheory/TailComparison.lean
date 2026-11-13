@@ -57,7 +57,9 @@ private theorem strict_tail_antitone {Ω : Type*} (f : Ω → ℝ) (τ : ℝ) :
 
 /-- Strict stochastic upper-tail comparison implies nonstrict comparison, for finite
 measures and a.e.-measurable random variables. This uses continuity from above and does
-not assume an atomless law. Atlas `slepian` (tail convention bridge).-/
+not assume an atomless law. Atlas `slepian` (tail convention bridge).
+@isnad1 id=le.3h7v.s7.6a5274e9094e from=translated src=- shape=851e36f2 vocab=fb1b1b49
+-/
 theorem measure_ge_le_of_measure_gt_le {Ω Ω' : Type*} [MeasurableSpace Ω]
     [MeasurableSpace Ω'] {P : Measure Ω} {Q : Measure Ω'}
     [IsFiniteMeasure P] [IsFiniteMeasure Q] {X : Ω → ℝ} {Y : Ω' → ℝ}

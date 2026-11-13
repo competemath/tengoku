@@ -19,7 +19,9 @@ namespace MeasureTheory
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- A finite affine combination of integrable real variables has integrable
-norm, in any real normed space.-/
+norm, in any real normed space.
+@isnad1 id=integrab.1h7v.s7.3c502bd11459 from=translated src=- shape=5a090a6c vocab=f2a098ac
+-/
 theorem integrable_norm_add_sum_smul {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     {μ : Measure Ω} [IsFiniteMeasure μ] {X : ι → Ω → ℝ}
     (hX : ∀ i, Integrable (X i) μ) (z : E) (a : ι → E) :
@@ -37,7 +39,9 @@ theorem integrable_norm_add_sum_smul {Ω ι : Type*} [MeasurableSpace Ω] [Finty
   simpa only [norm_smul] using norm_sum_le Finset.univ (fun i => X i ω • a i)
 
 /-- The norm of a finite affine series is integrable under any product of
-scalar probability laws with finite first moments.-/
+scalar probability laws with finite first moments.
+@isnad1 id=integrab.1h5v.s7.092a79d2287d from=translated src=- shape=57877e0b vocab=3edb9d3f
+-/
 theorem integrable_norm_add_sum_smul_pi {ι : Type*} [Fintype ι]
     (ν : ι → Measure ℝ) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, Integrable (id : ℝ → ℝ) (ν i)) (z : E) (a : ι → E) :
@@ -118,7 +122,9 @@ private theorem integral_norm_add_sum_smul_pi_le_fin (n : ℕ) :
       _ = _ := (integral_fin_succ_norm_sum n η hη z a).symm
 
 /-- Comparisons of all one-coordinate affine norms tensorize to finite scalar
-product laws. The offset may be any vector and the coefficients are fixed.-/
+product laws. The offset may be any vector and the coefficients are fixed.
+@isnad1 id=le.3h6v.s9.04224429e3bf from=translated src=- shape=a6a6c7a9 vocab=a15a3e7b
+-/
 theorem integral_norm_add_sum_smul_pi_le {ι : Type*} [Fintype ι]
     (ν η : ι → Measure ℝ) [∀ i, IsProbabilityMeasure (ν i)]
     [∀ i, IsProbabilityMeasure (η i)]

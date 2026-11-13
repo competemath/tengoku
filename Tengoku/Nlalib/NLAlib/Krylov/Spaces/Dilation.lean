@@ -29,7 +29,9 @@ private theorem dilation_mulVec_inr (A : Matrix m n ℝ) (v : n → ℝ) :
 
 variable [DecidableEq m] [DecidableEq n]
 
-/-- Even powers of the dilation act on the left normal matrix.-/
+/-- Even powers of the dilation act on the left normal matrix.
+@isnad1 id=eq.0h5v.s8.939108ac7fb7 from=translated src=- shape=12db354b vocab=f5eb49fa
+-/
 theorem pow_dilation_mulVec_even (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     (dilation A) ^ (2 * j) *ᵥ Sum.elim b (0 : n → ℝ) =
       Sum.elim ((A * Aᵀ) ^ j *ᵥ b) (0 : n → ℝ) := by
@@ -42,7 +44,9 @@ theorem pow_dilation_mulVec_even (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) 
       Matrix.mulVec_mulVec, ← pow_succ']
 
 /-- Odd powers of the dilation act on the right normal matrix with starting vector
-`Aᵀb`.-/
+`Aᵀb`.
+@isnad1 id=eq.0h5v.s8.25371cd5c695 from=translated src=- shape=491d976c vocab=75128acd
+-/
 theorem pow_dilation_mulVec_odd (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     (dilation A) ^ (2 * j + 1) *ᵥ Sum.elim b (0 : n → ℝ) =
       Sum.elim (0 : m → ℝ) ((Aᵀ * A) ^ j *ᵥ (Aᵀ *ᵥ b)) := by
@@ -53,7 +57,9 @@ theorem pow_dilation_mulVec_odd (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
 
 /-- The two independent normal-matrix power families occupy disjoint blocks of the
 dilation Krylov space. Thus grades at least `q` on both sides give dilation grade at
-least `2q`, including `q = 0`.-/
+least `2q`, including `q = 0`.
+@isnad1 id=le.2h5v.s7.af14af1cf615 from=translated src=- shape=ed58336f vocab=bbd9839c
+-/
 theorem two_mul_le_krylovGrade_dilation {A : Matrix m n ℝ} {b : m → ℝ} {q : ℕ}
     (hleft : q ≤ krylovGrade (A * Aᵀ) b)
     (hright : q ≤ krylovGrade (Aᵀ * A) (Aᵀ *ᵥ b)) :

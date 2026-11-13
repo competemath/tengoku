@@ -22,7 +22,9 @@ namespace MeasureTheory
 /-- Uniform bounds for all conditional expectations onto finite measurable
 partitions imply the same actual `L^p` bound. The exponent is any finite
 extended exponent at least one, and the random variable takes values in an
-arbitrary real Banach space.-/
+arbitrary real Banach space.
+@isnad1 id=le.4h6v.s7.02ba74dce212 from=translated src=- shape=5ffb1bf4 vocab=8194a46b
+-/
 theorem eLpNorm_le_of_finite_condExp_le
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -85,7 +87,9 @@ theorem eLpNorm_le_of_finite_condExp_le
 
 /-- Uniform rooted moment bounds for the explicit atom means of every
 finite partition pass to the original random variable. The zero-mass atom
-convention and arbitrary real moment orders at least one are retained.-/
+convention and arbitrary real moment orders at least one are retained.
+@isnad1 id=le.4h6v.s7.7f24eeee900c from=translated src=- shape=9d8966dd vocab=66eabd51
+-/
 theorem integral_norm_rpow_root_le_of_finitePartitionMean_le
     {Ω E : Type*} [MeasurableSpace Ω]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]

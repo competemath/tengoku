@@ -64,7 +64,9 @@ atlas: arnoldi-def-/
 def arnoldiHessenberg (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) : Matrix (Fin q) (Fin q) ℝ :=
   (arnoldiMatrix A b q)ᵀ * A * arnoldiMatrix A b q
 
-/-- Column `j` of `Q_q` is the Arnoldi vector `q_j`. Atlas: `arnoldi-def`.-/
+/-- Column `j` of `Q_q` is the Arnoldi vector `q_j`. Atlas: `arnoldi-def`.
+@isnad1 id=eq.0h5v.s5.467f33ede51d from=translated src=- shape=34e95924 vocab=a2c81b8a
+-/
 theorem arnoldiMatrix_col (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) (j : Fin q) :
     (arnoldiMatrix A b q).col j = arnoldiBasis A b j := rfl
 
@@ -149,13 +151,17 @@ private lemma inner_gramSchmidt_eq_zero_of_mem_span (A : Matrix n n ℝ) (b : n 
   | add y z _ _ hy hz => rw [inner_add_right, hy, hz, add_zero]
   | smul c y _ hy => rw [inner_smul_right, hy, mul_zero]
 
-/-- The Arnoldi vector `q_j` lies in `K_{j+1}(A, b)`. Atlas: `arnoldi-def`.-/
+/-- The Arnoldi vector `q_j` lies in `K_{j+1}(A, b)`. Atlas: `arnoldi-def`.
+@isnad1 id=mem.0h4v.s7.37f21b0870e6 from=translated src=- shape=fe4d94b6 vocab=af0cfc17
+-/
 theorem arnoldiBasis_mem_krylovSpace (A : Matrix n n ℝ) (b : n → ℝ) (j : ℕ) :
     arnoldiBasis A b j ∈ krylovSpace A b (j + 1) := by
   rw [arnoldiBasis_eq]
   exact Submodule.smul_mem _ _ (gramSchmidt_ofLp_mem A b j)
 
-/-- Orthonormality of the Arnoldi vectors below the grade: `q_i ⬝ q_j = δ_ij`.-/
+/-- Orthonormality of the Arnoldi vectors below the grade: `q_i ⬝ q_j = δ_ij`.
+@isnad1 id=eq.2h5v.s6.a16d45c2f5c2 from=translated src=- shape=e9457ae7 vocab=15a9ea53
+-/
 theorem arnoldiBasis_dotProduct (A : Matrix n n ℝ) (b : n → ℝ) {i j : ℕ}
     (hi : i < krylovGrade A b) (hj : j < krylovGrade A b) :
     arnoldiBasis A b i ⬝ᵥ arnoldiBasis A b j = if i = j then 1 else 0 := by
@@ -170,7 +176,9 @@ theorem arnoldiBasis_dotProduct (A : Matrix n n ℝ) (b : n → ℝ) {i j : ℕ}
       gramSchmidt_orthogonal ℝ _ hij, mul_zero]
 
 /-- Distinct Arnoldi vectors are orthogonal, `q_iᵀ q_j = 0` for `i ≠ j`, with no grade hypothesis
-(past the grade the vectors are `0`). Helper for `lanczos-recurrence-algorithm`.-/
+(past the grade the vectors are `0`). Helper for `lanczos-recurrence-algorithm`.
+@isnad1 id=eq.1h5v.s5.02a58ae952e3 from=translated src=- shape=634724e0 vocab=70f106ad
+-/
 theorem arnoldiBasis_dotProduct_of_ne (A : Matrix n n ℝ) (b : n → ℝ) {i j : ℕ} (hij : i ≠ j) :
     arnoldiBasis A b i ⬝ᵥ arnoldiBasis A b j = 0 := by
   rw [arnoldiBasis, arnoldiBasis, ← (inner_eq_star_dotProduct_ofLp (𝕜 := ℝ) _ _).trans
@@ -180,7 +188,9 @@ theorem arnoldiBasis_dotProduct_of_ne (A : Matrix n n ℝ) (b : n → ℝ) {i j 
 
 /-- **The Arnoldi basis spans the Krylov space**: `range Q_q = K_q(A, b)`, with no hypothesis.
 Source: Saad (2003) [`saad03`], Prop. 6.4.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=eq.0h4v.s7.aa02af41c89a from=translated src=- shape=a7170794 vocab=07f118c3
+-/
 theorem range_arnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     LinearMap.range (arnoldiMatrix A b q).mulVecLin = krylovSpace A b q := by
   rw [Matrix.range_mulVecLin, krylovSpace_eq_map, ← span_gramSchmidt_Iio,
@@ -189,7 +199,9 @@ theorem range_arnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
 
 /-- **The Arnoldi basis is orthonormal below the grade**: `Q_qᵀ Q_q = I` for
 `q ≤ krylovGrade A b`. Source: Saad (2003) [`saad03`], Prop. 6.4.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=hasortho.1h4v.s5.f781ac2eecb6 from=translated src=- shape=e078e471 vocab=99874cad
+-/
 theorem hasOrthonormalCols_arnoldiMatrix {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
     (h : q ≤ krylovGrade A b) : HasOrthonormalCols (arnoldiMatrix A b q) := by
   rw [hasOrthonormalCols_iff_conjTranspose_mul_self, Matrix.conjTranspose_eq_transpose_of_trivial]
@@ -206,12 +218,16 @@ def stoppedArnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     Matrix n (Fin (min q (krylovGrade A b))) ℝ :=
   arnoldiMatrix A b (min q (krylovGrade A b))
 
-/-- Stopping at the grade removes the zero columns and leaves an orthonormal frame.-/
+/-- Stopping at the grade removes the zero columns and leaves an orthonormal frame.
+@isnad1 id=hasortho.0h4v.s5.d0a3818aa63f from=translated src=- shape=1cf3a43f vocab=91c5e004
+-/
 theorem hasOrthonormalCols_stoppedArnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     HasOrthonormalCols (stoppedArnoldiMatrix A b q) :=
   hasOrthonormalCols_arnoldiMatrix (min_le_right _ _)
 
-/-- The stopped frame spans the requested Krylov space, including early breakdown.-/
+/-- The stopped frame spans the requested Krylov space, including early breakdown.
+@isnad1 id=eq.0h4v.s7.6495fc23c1ee from=translated src=- shape=74a5dbd3 vocab=47491599
+-/
 theorem range_stoppedArnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     LinearMap.range (stoppedArnoldiMatrix A b q).mulVecLin = krylovSpace A b q := by
   rw [stoppedArnoldiMatrix, range_arnoldiMatrix]
@@ -219,12 +235,16 @@ theorem range_stoppedArnoldiMatrix (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ
   · rw [min_eq_left h]
   · rw [min_eq_right h, krylovSpace_eq_of_krylovGrade_le A b h]
 
-/-- The stopped compression has at most the requested number of columns.-/
+/-- The stopped compression has at most the requested number of columns.
+@isnad1 id=le.0h4v.s5.8337f2673fff from=translated src=- shape=bf7b86ea vocab=e29b19ed
+-/
 theorem card_stoppedArnoldiMatrix_le (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     Fintype.card (Fin (min q (krylovGrade A b))) ≤ q := by
   simpa using min_le_left q (krylovGrade A b)
 
-/-- The stopped compression uses exactly the dimension of the requested Krylov space.-/
+/-- The stopped compression uses exactly the dimension of the requested Krylov space.
+@isnad1 id=eq.0h4v.s8.54f3f957997b from=translated src=- shape=c18ea955 vocab=b020c1dc
+-/
 theorem card_stoppedArnoldiMatrix_eq_finrank (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     Fintype.card (Fin (min q (krylovGrade A b))) = Module.finrank ℝ (krylovSpace A b q) := by
   rw [Fintype.card_fin, finrank_krylovSpace A b q]
@@ -232,7 +252,9 @@ theorem card_stoppedArnoldiMatrix_eq_finrank (A : Matrix n n ℝ) (b : n → ℝ
 /-- **The Arnoldi Hessenberg matrix is upper Hessenberg**, `h_ij = 0` for `i > j + 1`, for every
 `A` and every `q` (no symmetry, no non-breakdown hypothesis).
 Source: Saad (2003) [`saad03`], Prop. 6.5; Trefethen–Bau (1997) [`tb97`], Lect. 33.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=eq.1h6v.s6.e91e0f015c8d from=translated src=- shape=a057393a vocab=33b7c5a9
+-/
 theorem arnoldiHessenberg_apply_eq_zero_of_add_one_lt (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ}
     {i j : Fin q} (hij : (j : ℕ) + 1 < i) : arnoldiHessenberg A b q i j = 0 := by
   rw [arnoldiHessenberg, transpose_mul_mul_apply_eq_dotProduct, arnoldiMatrix_col,
@@ -249,7 +271,9 @@ theorem arnoldiHessenberg_apply_eq_zero_of_add_one_lt (A : Matrix n n ℝ) (b : 
 /-- **For symmetric `A` the Arnoldi Hessenberg matrix is tridiagonal**: also `h_ij = 0` for
 `j > i + 1` (the Lanczos case). Source: Golub–Meurant (2010) [`gm10`], Thm 4.2;
 Trefethen–Bau (1997) [`tb97`], Lect. 36.
-atlas: lanczos-recurrence-/
+atlas: lanczos-recurrence
+@isnad1 id=eq.2h6v.s6.4c35d01bb680 from=translated src=- shape=54c658c0 vocab=4a44e8e1
+-/
 theorem arnoldiHessenberg_apply_eq_zero_of_add_one_lt_of_isHermitian {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (b : n → ℝ) {q : ℕ} {i j : Fin q} (hij : (i : ℕ) + 1 < j) :
     arnoldiHessenberg A b q i j = 0 := by
@@ -262,7 +286,9 @@ theorem arnoldiHessenberg_apply_eq_zero_of_add_one_lt_of_isHermitian {A : Matrix
 
 /-- The starting vector has Arnoldi coordinates supported on the first index:
 `(Q_qᵀ b)_i = 0` for `i > 0`. Source: Saad (2003) [`saad03`], Alg. 6.1 (`q₁ = b/‖b‖`).
-Atlas: `arnoldi-def`.-/
+Atlas: `arnoldi-def`.
+@isnad1 id=eq.1h5v.s6.666d99a0bffb from=translated src=- shape=ca6d333b vocab=3d6db74d
+-/
 theorem transpose_arnoldiMatrix_mulVec_apply_eq_zero (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ}
     {i : Fin q} (hi : 0 < (i : ℕ)) : ((arnoldiMatrix A b q)ᵀ *ᵥ b) i = 0 := by
   have hb : WithLp.toLp 2 b ∈ Submodule.span ℝ (gramSchmidt ℝ (krylovSeq A b) '' Set.Iio i) := by
@@ -283,18 +309,24 @@ def arnoldiDecomp (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) (h : q ≤ kryl
   graded := IsGradedKrylovBasis.of_mem (hasOrthonormalCols_arnoldiMatrix h) fun j =>
     arnoldiBasis_mem_krylovSpace A b j
 
-/-- The basis of the canonical decomposition is `arnoldiMatrix`. Atlas: `arnoldi-def`.-/
+/-- The basis of the canonical decomposition is `arnoldiMatrix`. Atlas: `arnoldi-def`.
+@isnad1 id=eq.1h4v.s5.66934c9681b0 from=translated src=- shape=679b69cb vocab=6ad50524
+-/
 theorem arnoldiDecomp_Q (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ} (h : q ≤ krylovGrade A b) :
     (arnoldiDecomp A b q h).Q = arnoldiMatrix A b q := rfl
 
 /-- The Hessenberg matrix of the canonical decomposition is `arnoldiHessenberg`.
-Atlas: `arnoldi-def`.-/
+Atlas: `arnoldi-def`.
+@isnad1 id=eq.1h4v.s5.f000b4a64035 from=translated src=- shape=44da0dc5 vocab=d50a1e13
+-/
 theorem arnoldiDecomp_H (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ} (h : q ≤ krylovGrade A b) :
     (arnoldiDecomp A b q h).H = arnoldiHessenberg A b q := rfl
 
 /-- **Existence of graded bases**: a graded orthonormal Krylov basis with `q` columns exists iff
 `q ≤ krylovGrade A b`. Source: Saad (2011) [`saad11`], §6.3; Saad (2003) [`saad03`], Prop. 6.4.
-atlas: graded-krylov-basis-def (partial)-/
+atlas: graded-krylov-basis-def (partial)
+@isnad1 id=iff.0h4v.s5.32483a5c79fa from=translated src=- shape=44fe462b vocab=78989b24
+-/
 theorem exists_isGradedKrylovBasis_iff (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     (∃ Q : Matrix n (Fin q) ℝ, IsGradedKrylovBasis A b Q) ↔ q ≤ krylovGrade A b :=
   ⟨fun ⟨_, hQ⟩ => hQ.le_krylovGrade, fun h => ⟨_, (arnoldiDecomp A b q h).graded⟩⟩
@@ -302,7 +334,9 @@ theorem exists_isGradedKrylovBasis_iff (A : Matrix n n ℝ) (b : n → ℝ) (q :
 /-- **The canonical decomposition has positive subdiagonal**: `h_{j+1,j} = ‖g_{j+1}‖/‖g_j‖ > 0`
 with `g_j` the unnormalised Gram–Schmidt vectors. Source: Saad (2003) [`saad03`], Alg. 6.1
 (`h_{j+1,j} = ‖w_j‖`).
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=lt.2h5v.s6.c84c353593e5 from=translated src=- shape=706726fb vocab=34a0dc23
+-/
 theorem arnoldiDecomp_H_subdiag_pos (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ}
     (h : q ≤ krylovGrade A b) {j : ℕ} (hj : j + 1 < q) :
     0 < (arnoldiDecomp A b q h).H ⟨j + 1, hj⟩ ⟨j, by omega⟩ := by
@@ -335,7 +369,9 @@ theorem arnoldiDecomp_H_subdiag_pos (A : Matrix n n ℝ) (b : n → ℝ) {q : �
   exact mul_pos (inv_pos.2 (hg j (by omega))) (hg (j + 1) (by omega))
 
 /-- The first canonical Arnoldi vector is `b/‖b‖`: `q_1 ⬝ b = ‖b‖ > 0` (for `b ≠ 0`, i.e.
-`0 < krylovGrade A b`). Source: Saad (2003) [`saad03`], Alg. 6.1. Atlas: `arnoldi-def`.-/
+`0 < krylovGrade A b`). Source: Saad (2003) [`saad03`], Alg. 6.1. Atlas: `arnoldi-def`.
+@isnad1 id=lt.1h3v.s5.a06c96445561 from=translated src=- shape=7e94c5a4 vocab=7b7ec3e1
+-/
 theorem arnoldiBasis_zero_dotProduct_pos (A : Matrix n n ℝ) (b : n → ℝ)
     (h : 0 < krylovGrade A b) : 0 < arnoldiBasis A b 0 ⬝ᵥ b := by
   have hg := norm_pos_iff.2 (gramSchmidt_ne_zero_of_lt A b h)
@@ -355,7 +391,9 @@ theorem arnoldiBasis_zero_dotProduct_pos (A : Matrix n n ℝ) (b : n → ℝ)
 /-- **Characterisation of the canonical decomposition**: an Arnoldi decomposition with
 `q_1 ⬝ b > 0` and positive subdiagonal is the Gram–Schmidt one, `Q = arnoldiMatrix A b q`.
 Source: Saad (2003) [`saad03`], §6.3 (implicit-Q); Trefethen–Bau (1997) [`tb97`], Lect. 33.
-atlas: arnoldi-def (partial)-/
+atlas: arnoldi-def (partial)
+@isnad1 id=eq.2h5v.s7.731b83262d56 from=translated src=- shape=5daa9cc5 vocab=cd266e1f
+-/
 theorem ArnoldiDecomp.Q_eq_arnoldiMatrix {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
     (D : ArnoldiDecomp A b q)
     (h0 : ∀ hq : 0 < q, 0 < D.Q.col ⟨0, hq⟩ ⬝ᵥ b)
@@ -367,7 +405,9 @@ theorem ArnoldiDecomp.Q_eq_arnoldiMatrix {A : Matrix n n ℝ} {b : n → ℝ} {q
 
 /-- The Arnoldi vectors vanish from the grade on: `arnoldiBasis A b j = 0` for
 `krylovGrade A b ≤ j` (breakdown). Helper for `lanczos-recurrence-algorithm`.
-Source: Saad (2003) [`saad03`], Prop. 6.6.-/
+Source: Saad (2003) [`saad03`], Prop. 6.6.
+@isnad1 id=eq.1h4v.s5.defae889a6eb from=translated src=- shape=4bb2f286 vocab=7188b1d5
+-/
 theorem arnoldiBasis_eq_zero_of_krylovGrade_le (A : Matrix n n ℝ) (b : n → ℝ) {j : ℕ}
     (hj : krylovGrade A b ≤ j) : arnoldiBasis A b j = 0 := by
   set D := arnoldiDecomp A b (krylovGrade A b) le_rfl

@@ -15,7 +15,9 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder ComplexStarModule
 namespace Matrix
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- A matrix with positive definite imaginary part is invertible.-/
+/-- A matrix with positive definite imaginary part is invertible.
+@isnad1 id=isunit.1h2v.s10.80d18b2195f2 from=translated src=- shape=46dea04b vocab=6b1370f1
+-/
 theorem isUnit_of_posDef_imaginaryPart {A : Matrix n n ℂ}
     (hA : (imaginaryPart A : Matrix n n ℂ).PosDef) : IsUnit A := by
   apply mulVec_injective_iff_isUnit.mp
@@ -31,7 +33,9 @@ theorem isUnit_of_posDef_imaginaryPart {A : Matrix n n ℂ}
   linarith
 
 /-- For a positive-imaginary matrix the usual inverse equation implies
-the polynomial negative-right-inverse identity.-/
+the polynomial negative-right-inverse identity.
+@isnad1 id=eq.2h3v.s10.ba89097a1cd9 from=translated src=- shape=964d0039 vocab=5165565c
+-/
 theorem mul_eq_neg_one_of_neg_inv_eq_of_posDef_imaginaryPart
     {A T : Matrix n n ℂ} (hA : (imaginaryPart A : Matrix n n ℂ).PosDef)
     (heq : -A⁻¹ = T) : T * A = -1 := by

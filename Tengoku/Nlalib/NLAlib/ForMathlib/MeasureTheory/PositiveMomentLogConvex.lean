@@ -17,7 +17,9 @@ open MeasureTheory
 namespace MeasureTheory
 
 /-- The first three finite moments of a nonnegative real function satisfy
-the moment Cauchy--Schwarz inequality, including zero first moment.-/
+the moment Cauchy--Schwarz inequality, including zero first moment.
+@isnad1 id=le.4h3v.s8.870e3b4ba337 from=translated src=- shape=665dcc62 vocab=0f6bd544
+-/
 theorem sq_integral_sq_le_integral_mul_integral_cube
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {f : Ω → ℝ}
     (hf : 0 ≤ᵐ[μ] f) (h1 : Integrable f μ)

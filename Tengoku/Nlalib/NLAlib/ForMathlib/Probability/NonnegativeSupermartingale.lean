@@ -23,7 +23,9 @@ namespace MeasureTheory
 /-- Bounded optional stopping for a real supermartingale, obtained from Mathlib's
 submartingale theorem by negation.
 Source: bounded optional stopping; Tropp 2011 (matrix Freedman);
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=le.3h6v.s7.de4aa47c814a from=translated src=- shape=962ad60c vocab=bd4311c4
+-/
 theorem integral_stoppedValue_le_integral_zero_of_supermartingale
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {ℱ : Filtration ℕ ‹MeasurableSpace Ω›}
     [SigmaFiniteFiltration μ ℱ] {S : ℕ → Ω → ℝ} (hS : Supermartingale S ℱ μ)
@@ -39,7 +41,9 @@ theorem integral_stoppedValue_le_integral_zero_of_supermartingale
 /-- The finite-horizon hitting event of a nonnegative supermartingale has measure
 at most its initial mean divided by the positive threshold.
 Source: bounded optional stopping and Markov's inequality;
-Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).-/
+Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).
+@isnad1 id=le.3h6v.s7.ecbd81853540 from=translated src=- shape=fb7ec435 vocab=0a34c104
+-/
 theorem measureReal_exists_le_nat_le_supermartingale_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {ℱ : Filtration ℕ ‹MeasurableSpace Ω›} {S : ℕ → Ω → ℝ} (hS : Supermartingale S ℱ μ)
@@ -72,7 +76,9 @@ theorem measureReal_exists_le_nat_le_supermartingale_le
 /-- Ville's exact anytime inequality for a nonnegative real supermartingale:
 `P(∃k, S_k≥c) ≤ E[S_0]/c`. No union bound over individual times is used.
 Source: bounded optional stopping and continuity of measure on an increasing union;
-Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).-/
+Tropp 2011 (matrix Freedman), atlas `matrix-freedman` (partial).
+@isnad1 id=le.3h5v.s7.f0c43d90af60 from=translated src=- shape=3b8d4a51 vocab=0a34c104
+-/
 theorem measureReal_exists_le_supermartingale_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {ℱ : Filtration ℕ ‹MeasurableSpace Ω›} {S : ℕ → Ω → ℝ} (hS : Supermartingale S ℱ μ)

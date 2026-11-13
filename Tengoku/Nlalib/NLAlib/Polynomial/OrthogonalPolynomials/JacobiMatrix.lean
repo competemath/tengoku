@@ -26,7 +26,9 @@ def orthogonalPolynomialJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) : Ma
   fun i j => L (X * orthonormalMomentPolynomial L j.val * orthonormalMomentPolynomial L i.val)
 
 /-- The moment Jacobi matrix is Hermitian by commutativity of scalar polynomial
-multiplication, even before positivity is assumed.-/
+multiplication, even before positivity is assumed.
+@isnad1 id=ishermit.0h2v.s6.46d5582d0b6c from=translated src=- shape=3ab33900 vocab=f6d2514b
+-/
 theorem isHermitian_orthogonalPolynomialJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     (orthogonalPolynomialJacobiMatrix L n).IsHermitian := by
   ext i j
@@ -35,7 +37,9 @@ theorem isHermitian_orthogonalPolynomialJacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ
   exact congrArg L (by ac_rfl)
 
 /-- Pairing normalized moment polynomials after multiplication by X extracts
-the two reciprocal square-root norms from their monic polynomial pairing.-/
+the two reciprocal square-root norms from their monic polynomial pairing.
+@isnad1 id=eq.0h3v.s8.238394780db3 from=translated src=- shape=c9e8efe6 vocab=6df5c8a6
+-/
 theorem functional_X_orthonormalMomentPolynomial_mul (L : ℝ[X] →ₗ[ℝ] ℝ) (i j : ℕ) :
     L (X * orthonormalMomentPolynomial L j * orthonormalMomentPolynomial L i) =
       (Real.sqrt (orthogonalPolynomialNorm L j))⁻¹ *
@@ -50,7 +54,9 @@ theorem functional_X_orthonormalMomentPolynomial_mul (L : ℝ[X] →ₗ[ℝ] ℝ
       rw [C_mul]; ring, C_mul', map_smul, smul_eq_mul]
 
 /-- Entries beyond neighboring polynomial degrees vanish in the moment Jacobi
-matrix. This is the finite compressed-multiplication tridiagonal identity.-/
+matrix. This is the finite compressed-multiplication tridiagonal identity.
+@isnad1 id=eq.2h4v.s6.afa36790b1d3 from=translated src=- shape=10044c81 vocab=863ef815
+-/
 theorem orthogonalPolynomialJacobiMatrix_apply_eq_zero (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) (i j : Fin n)
     (hij : i.val + 1 < j.val) : orthogonalPolynomialJacobiMatrix L n i j = 0 := by
@@ -62,7 +68,9 @@ theorem orthogonalPolynomialJacobiMatrix_apply_eq_zero (L : ℝ[X] →ₗ[ℝ] �
       exact_mod_cast (show 1 + i.val < j.val by omega)), mul_zero]
 
 /-- Every adjacent Jacobi entry is positive when the included squared norms are
-positive. Source: Gautschi (2004), Theorem 1.27.-/
+positive. Source: Gautschi (2004), Theorem 1.27.
+@isnad1 id=lt.3h4v.s6.949e04ed82d7 from=translated src=- shape=12b76260 vocab=1082d810
+-/
 theorem orthogonalPolynomialJacobiMatrix_superdiagonal_pos (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) (i j : Fin n)
@@ -79,7 +87,9 @@ theorem orthogonalPolynomialJacobiMatrix_superdiagonal_pos (L : ℝ[X] →ₗ[�
 
 /-- Positive finite moments give an unreduced Jacobi matrix with a simple spectrum.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=injectiv.2h2v.s6.ebe77d79ef86 from=translated src=- shape=50625492 vocab=cb2528ee
+-/
 theorem eigenvalues_orthogonalPolynomialJacobiMatrix_injective
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) :
@@ -91,7 +101,9 @@ theorem eigenvalues_orthogonalPolynomialJacobiMatrix_injective
     exact (orthogonalPolynomialJacobiMatrix_superdiagonal_pos L hL hH i j hij).ne'
 
 /-- Pairing a finite normalized polynomial expansion with one basis polynomial
-recovers exactly its coefficient. This is the finite orthonormal coordinate bridge.-/
+recovers exactly its coefficient. This is the finite orthonormal coordinate bridge.
+@isnad1 id=eq.2h4v.s8.30c386af388a from=translated src=- shape=e721f578 vocab=c14420ad
+-/
 theorem functional_sum_C_mul_orthonormalMomentPolynomial_mul (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ}
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) (v : Fin n → ℝ) (i : Fin n) :
@@ -110,7 +122,9 @@ theorem functional_sum_C_mul_orthonormalMomentPolynomial_mul (L : ℝ[X] →ₗ[
 /-- Every eigenvalue of compressed multiplication is a zero of the canonical
 degree-`n` monic polynomial. This includes finite-support termination.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=eq.2h3v.s6.e81465d38086 from=translated src=- shape=0e3ec76d vocab=39226bb7
+-/
 theorem eval_monicOrthogonalPolynomial_eigenvalues_eq_zero
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) (i : Fin n) :
@@ -200,7 +214,9 @@ theorem eval_monicOrthogonalPolynomial_eigenvalues_eq_zero
 canonical monic orthogonal polynomial. Its simple Hermitian spectrum therefore
 constructs every real Gauss node.
 Source: Gautschi (2004), Theorems 1.19 and 1.27.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=eq.2h2v.s6.e1190222a29a from=translated src=- shape=6aec226c vocab=823a9a29
+-/
 theorem charpoly_orthogonalPolynomialJacobiMatrix
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) :

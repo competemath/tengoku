@@ -21,7 +21,9 @@ namespace MeasureTheory
 domain, provided its conditional mean lies in that domain almost everywhere.
 The closed hypograph argument proves the inequality without assuming conditional Jensen.
 Source: Mathlib conditional Jensen and closed convex conditional-mean membership;
-Tropp 2011 (matrix Freedman), foundation for `matrix-freedman`.-/
+Tropp 2011 (matrix Freedman), foundation for `matrix-freedman`.
+@isnad1 id=eventual.7h8v.s8.863a14e4b97d from=translated src=- shape=54c072d3 vocab=66855d18
+-/
 theorem _root_.ConcaveOn.condExp_map_le_of_condExp_mem {Ω E : Type*}
     {m mΩ : MeasurableSpace Ω} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     {μ : Measure Ω} (hm : m ≤ mΩ) [SigmaFinite (μ.trim hm)]

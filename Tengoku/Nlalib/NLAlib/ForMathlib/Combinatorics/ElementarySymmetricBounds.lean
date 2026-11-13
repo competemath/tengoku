@@ -19,7 +19,9 @@ open scoped BigOperators
 namespace NLAlib
 
 /-- Expanding a power counts every distinct-index q-subset q! times; all remaining
-monomials are nonnegative. Includes q=0, empty sets, and q above the cardinality.-/
+monomials are nonnegative. Includes q=0, empty sets, and q above the cardinality.
+@isnad1 id=le.1h4v.s6.4a04d77b25b1 from=translated src=- shape=c6ff7461 vocab=843d36dc
+-/
 theorem factorial_mul_sum_powersetCard_prod_le_sum_pow {α : Type*}
     [Fintype α] [DecidableEq α] (s : Finset α) (f : α → ℝ)
     (hf : ∀ i ∈ s, 0 ≤ f i) (q : ℕ) :
@@ -69,7 +71,9 @@ theorem factorial_mul_sum_powersetCard_prod_le_sum_pow {α : Type*}
     exact Finset.prod_nonneg (fun j _ => hf _ (hRange j))
 
 /-- Repeated insertion bounds the r-th elementary sum by the product of the first r
-label-tail sums. The sequence need not be sorted.-/
+label-tail sums. The sequence need not be sorted.
+@isnad1 id=le.1h3v.s6.80712f6a1af2 from=translated src=- shape=9396efcf vocab=e98f2237
+-/
 theorem sum_powersetCard_prod_le_prod_sum_tail {n : ℕ} (f : Fin n → ℝ)
     (hf : ∀ i, 0 ≤ f i) (r : ℕ) :
     (∑ S ∈ (Finset.univ : Finset (Fin n)).powersetCard r, ∏ i ∈ S, f i) ≤
@@ -104,7 +108,9 @@ private theorem card_filter_fin_val_lt_le {n : ℕ} (S : Finset (Fin n)) (r : �
 
 /-- Inject a k-subset into an r-subset and a (k-r)-subset of the label tail after r.
 The first part is chosen to contain all selected labels below r; the original subset
-is recovered by union. Every monomial is retained exactly once in the injection.-/
+is recovered by union. Every monomial is retained exactly once in the injection.
+@isnad1 id=le.2h4v.s7.b7b3a2d358ec from=translated src=- shape=da5417dd vocab=835b8e05
+-/
 theorem sum_powersetCard_prod_le_mul_sum_powersetCard_tail {n r k : ℕ}
     (f : Fin n → ℝ) (hf : ∀ i, 0 ≤ f i) (hrk : r ≤ k) :
     (∑ S ∈ (Finset.univ : Finset (Fin n)).powersetCard k, ∏ i ∈ S, f i) ≤
@@ -174,7 +180,9 @@ theorem sum_powersetCard_prod_le_mul_sum_powersetCard_tail {n r k : ℕ}
 
 /-- The factorial elementary-symmetric bound needed for the actual pivot-history tail:
 (k-r)! e_k ≤ (product of the first r label tails) times the (k-r)-th power of tail r.
-All factors are retained, so zero tails and r=k need no positivity or cancellation.-/
+All factors are retained, so zero tails and r=k need no positivity or cancellation.
+@isnad1 id=le.2h4v.s7.6b58cfd4327c from=translated src=- shape=7b8e2a5a vocab=721018ff
+-/
 theorem factorial_mul_sum_powersetCard_prod_le_prod_sum_tail_mul_pow {n r k : ℕ}
     (f : Fin n → ℝ) (hf : ∀ i, 0 ≤ f i) (hrk : r ≤ k) :
     ((k - r).factorial : ℝ) *

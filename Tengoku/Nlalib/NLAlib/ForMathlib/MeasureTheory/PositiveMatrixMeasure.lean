@@ -32,11 +32,15 @@ namespace PositiveMatrixMeasure
 instance : CoeFun (PositiveMatrixMeasure α n) (fun _ => Set α → Matrix n n ℂ) :=
   ⟨fun μ => μ.toVectorMeasure⟩
 
-/-- Every measurable value of a positive matrix measure is positive semidefinite.-/
+/-- Every measurable value of a positive matrix measure is positive semidefinite.
+@isnad1 id=possemid.1h4v.s6.f429ac4f3f4d from=translated src=- shape=3a6351d1 vocab=ce343152
+-/
 theorem posSemidef (μ : PositiveMatrixMeasure α n) (s : Set α) (hs : MeasurableSet s) :
     Matrix.PosSemidef (μ s) := μ.posSemidef' s hs
 
-/-- Every measurable value of a positive matrix measure is Hermitian.-/
+/-- Every measurable value of a positive matrix measure is Hermitian.
+@isnad1 id=ishermit.1h4v.s7.24655fd5b900 from=translated src=- shape=ead13d4c vocab=3d7c9d12
+-/
 theorem isHermitian (μ : PositiveMatrixMeasure α n) (s : Set α) (hs : MeasurableSet s) :
     Matrix.IsHermitian (μ s) := (μ.posSemidef s hs).isHermitian
 
@@ -49,6 +53,9 @@ def entry (μ : PositiveMatrixMeasure α n) (i j : n) : ComplexMeasure α :=
         map_smul' := by intros; rfl }).toContinuousLinearMap
   μ.toVectorMeasure.mapRange L.toAddMonoidHom L.continuous
 
+/--
+@isnad1 id=eq.0h6v.s7.86016200825a from=translated src=- shape=70f3f641 vocab=c887594f
+-/
 @[simp] theorem entry_apply (μ : PositiveMatrixMeasure α n) (i j : n) (s : Set α) :
     μ.entry i j s = μ s i j := rfl
 
@@ -58,10 +65,15 @@ def quadraticForm (μ : PositiveMatrixMeasure α n) (v : n → ℂ) : SignedMeas
   μ.toVectorMeasure.mapRange (matrixRealQuadraticFormCLM v).toAddMonoidHom
     (matrixRealQuadraticFormCLM v).continuous
 
+/--
+@isnad1 id=eq.0h5v.s7.081e480dc743 from=translated src=- shape=4ea2ab66 vocab=4bbb460d
+-/
 @[simp] theorem quadraticForm_apply (μ : PositiveMatrixMeasure α n) (v : n → ℂ) (s : Set α) :
     μ.quadraticForm v s = (star v ⬝ᵥ (μ s *ᵥ v)).re := rfl
 
-/-- Scalar quadratic-form measures have nonnegative measurable values.-/
+/-- Scalar quadratic-form measures have nonnegative measurable values.
+@isnad1 id=le.1h5v.s6.2fd5c27afd59 from=translated src=- shape=d4e8b0e6 vocab=148af369
+-/
 theorem quadraticForm_nonneg (μ : PositiveMatrixMeasure α n) (v : n → ℂ)
     (s : Set α) (hs : MeasurableSet s) : 0 ≤ μ.quadraticForm v s :=
   (μ.posSemidef s hs).re_dotProduct_nonneg v
@@ -73,6 +85,9 @@ def realMatrixLine (H : Matrix n n ℂ) : ℝ →L[ℝ] Matrix n n ℂ :=
   (ContinuousLinearMap.id ℝ ℝ).smulRight H
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h3v.s7.822afdb85bda from=translated src=- shape=ef28fc11 vocab=cd6c570a
+-/
 @[simp] theorem realMatrixLine_apply (H : Matrix n n ℂ) (r : ℝ) :
     realMatrixLine H r = r • H := rfl
 
@@ -83,6 +98,9 @@ def matrixMeasureCombination {κ : Type*} [Fintype κ]
   ∑ k, (s k).mapRange (realMatrixLine (H k)).toAddMonoidHom (realMatrixLine (H k)).continuous
 
 omit [Fintype n] [DecidableEq n] in
+/--
+@isnad1 id=eq.0h6v.s7.da38437c75b1 from=translated src=- shape=75e58873 vocab=f2c9b3a9
+-/
 @[simp] theorem matrixMeasureCombination_apply {κ : Type*} [Fintype κ]
     (H : κ → Matrix n n ℂ) (s : κ → SignedMeasure α) (E : Set α) :
     matrixMeasureCombination H s E = ∑ k, (s k E) • H k := by
@@ -95,6 +113,9 @@ def quadraticMeasureCombination {κ : Type*} [Fintype κ]
   ∑ k, (matrixRealQuadraticFormCLM v (H k)) • s k
 
 omit [DecidableEq n] in
+/--
+@isnad1 id=eq.0h7v.s7.641f3ed5dd28 from=translated src=- shape=2cc48681 vocab=14d08252
+-/
 @[simp] theorem quadraticMeasureCombination_apply {κ : Type*} [Fintype κ]
     (H : κ → Matrix n n ℂ) (s : κ → SignedMeasure α) (v : n → ℂ) (E : Set α) :
     quadraticMeasureCombination H s v E =
@@ -105,7 +126,9 @@ omit [DecidableEq n] in
 
 omit [Fintype n] [DecidableEq n] in
 /-- A real signed combination of Hermitian matrices remains Hermitian
-on every set, including nonmeasurable sets.-/
+on every set, including nonmeasurable sets.
+@isnad1 id=ishermit.1h6v.s7.474f2c681b90 from=translated src=- shape=ca0fac2c vocab=bbd53bf0
+-/
 theorem isHermitian_matrixMeasureCombination {κ : Type*} [Fintype κ]
     (H : κ → Matrix n n ℂ) (hH : ∀ k, (H k).IsHermitian)
     (s : κ → SignedMeasure α) (E : Set α) :

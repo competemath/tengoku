@@ -19,7 +19,9 @@ namespace ProbabilityTheory
 
 /-- If the `X i` are independent and a.e.-measurable and each `exp (t X i)` is integrable for
 `i ∈ s`, then `exp (t ∑_{i ∈ s} X i)` is integrable; the `AEMeasurable` version of
-`iIndepFun.integrable_exp_mul_sum`. Atlas `hanson-wright` (helper).-/
+`iIndepFun.integrable_exp_mul_sum`. Atlas `hanson-wright` (helper).
+@isnad1 id=integrab.3h6v.s7.25db4b07c868 from=translated src=- shape=c0f4102e vocab=6e4f113e
+-/
 theorem iIndepFun.integrable_exp_mul_sum₀ {Ω ι : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
     [IsFiniteMeasure μ] {X : ι → Ω → ℝ}
     (h_indep : iIndepFun X μ) (h_meas : ∀ i, AEMeasurable (X i) μ)

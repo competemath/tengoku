@@ -26,7 +26,9 @@ open scoped ENNReal
 namespace Real
 
 /-- The symmetric exponential covariance is controlled by oriented positive
-squared differences. This is the scalar step of the independent-copy entropy method.-/
+squared differences. This is the scalar step of the independent-copy entropy method.
+@isnad1 id=le.1h3v.s7.fcafc5eb908e from=translated src=- shape=ccc5fe6f vocab=82ab0fe7
+-/
 theorem exp_mul_sub_mul_sub_le_posPart_sq {a b s : ℝ} (hs : 0 ≤ s) :
     (exp (s * a) - exp (s * b)) * (s * (a - b)) ≤
       s ^ 2 * (exp (s * a) * max (a - b) 0 ^ 2 +
@@ -49,7 +51,9 @@ theorem exp_mul_sub_mul_sub_le_posPart_sq {a b s : ℝ} (hs : 0 ≤ s) :
       (mul_nonneg hs (sub_nonneg.mpr hab))
     nlinarith
 
-/-- A bounded absolute value gives a uniform exponential bound at every real parameter.-/
+/-- A bounded absolute value gives a uniform exponential bound at every real parameter.
+@isnad1 id=le.1h3v.s5.6791171cf4b5 from=translated src=- shape=58747925 vocab=fdfd767d
+-/
 theorem exp_mul_le_exp_abs_mul_of_abs_le {u s M : ℝ} (hu : |u| ≤ M) :
     Real.exp (s * u) ≤ Real.exp (|s| * M) := by
   apply Real.exp_le_exp.mpr
@@ -65,7 +69,9 @@ namespace MeasureTheory
 actual independently resampled positive squared difference. The hypotheses
 are integrability of the displayed elementary functions, not an entropy bound.
 Source: the independent-copy step in the entropy method, Boucheron--Lugosi--Massart
-2013, Chapter 6.-/
+2013, Chapter 6.
+@isnad1 id=le.5h4v.s8.f59df34ec8ff from=translated src=- shape=4b92614a vocab=7a563cdc
+-/
 theorem entropy_exp_mul_le_integral_posPart_sq
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) {s : ℝ} (hs : 0 ≤ s)
@@ -160,7 +166,9 @@ private theorem exp_mul_posPart_sq_abs_le {a b M s : ℝ} (hM : 0 ≤ M)
     (sq_nonneg _) (Real.exp_pos _).le
 
 /-- A bounded measurable pair has an integrable exponentially weighted squared
-positive difference on every finite measure space.-/
+positive difference on every finite measure space.
+@isnad1 id=integrab.5h6v.s7.09c70b4c09ae from=translated src=- shape=9b532d43 vocab=ec3c388e
+-/
 theorem integrable_exp_mul_posPart_sub_sq_of_abs_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsFiniteMeasure μ]
     (f g : Ω → ℝ) (hf : Measurable f) (hg : Measurable g)
@@ -171,7 +179,9 @@ theorem integrable_exp_mul_posPart_sub_sq_of_abs_le
   exact fun x => exp_mul_posPart_sq_abs_le hM (hfb x) (hgb x)
 
 /-- The bounded measurable independent-copy entropy inequality. All
-integrability hypotheses are derived from the actual bound on `f`.-/
+integrability hypotheses are derived from the actual bound on `f`.
+@isnad1 id=le.4h5v.s8.4adedc833a43 from=translated src=- shape=0a0e945a vocab=3d44cc40
+-/
 theorem entropy_exp_mul_le_integral_posPart_sq_of_bounded
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ]
     (f : Ω → ℝ) (hfm : Measurable f) (M : ℝ) (hM : 0 ≤ M)

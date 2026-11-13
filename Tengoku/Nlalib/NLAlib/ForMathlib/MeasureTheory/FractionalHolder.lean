@@ -26,7 +26,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 /-- A nonnegative first-moment observable pairs with an `Lˢ` mass by Hölder,
 with fractional exponent `(s - 1) / s`. Both integrability of the product
 and its expectation bound follow from the two supplied moments. No
-independence or probability normalization is needed.-/
+independence or probability normalization is needed.
+@isnad1 id=and.5h5v.s8.c63fe4ad71f7 from=translated src=- shape=233bf1dc vocab=cc45c4de
+-/
 theorem integrable_and_integral_mul_rpow_le_lpNorm
     {M U : Ω → ℝ} {s : ℝ} (hs : 1 < s)
     (hM : MemLp M (ENNReal.ofReal s) μ) (hU : Integrable U μ)
@@ -80,7 +82,9 @@ theorem integrable_and_integral_mul_rpow_le_lpNorm
 
 /-- The Hölder endpoint at the even integer moment `2p`, including `p = 1`.
 Only the square mass needs an even higher moment; the other observable
-needs its ordinary expectation.-/
+needs its ordinary expectation.
+@isnad1 id=and.5h5v.s9.9cbe6604a9b2 from=translated src=- shape=d1567d82 vocab=aede8eae
+-/
 theorem integrable_and_integral_mul_rpow_le_lpNorm_two_mul
     {M U : Ω → ℝ} (p : ℕ) (hp : 0 < p)
     (hM : MemLp M (2 * (p : ℝ≥0∞)) μ) (hU : Integrable U μ)

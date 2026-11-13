@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [Fintype n] [DecidableEq n] in
 /-- Nonnegative real scaling preserves complex matrix Loewner order.
 Source: scaling the PSD difference; supports
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=le.2h4v.s7.1b82a244185e from=translated src=- shape=2ad36e17 vocab=bf5730fe
+-/
 theorem matrix_smul_le_smul_of_nonneg {A B : Matrix n n ℂ} (hAB : A ≤ B)
     {c : ℝ} (hc : 0 ≤ c) : c • A ≤ c • B := by
   apply Matrix.le_iff.mpr
@@ -34,7 +36,9 @@ theorem matrix_smul_le_smul_of_nonneg {A B : Matrix n n ℂ} (hAB : A ≤ B)
 
 /-- The operator norm of a PSD complex matrix is at most its real trace.
 Source: the finite spectral theorem and nonnegative eigenvalues; supports the audited
-variance-budget localization `audit:combined`, atlas `matrix-freedman` (partial).-/
+variance-budget localization `audit:combined`, atlas `matrix-freedman` (partial).
+@isnad1 id=le.1h2v.s5.f175fd53a864 from=translated src=- shape=620db6fc vocab=4c578e98
+-/
 theorem norm_le_re_trace_of_posSemidef (A : Matrix n n ℂ) (hA : A.PosSemidef) :
     ‖A‖ ≤ A.trace.re := by
   have htrace : A.trace.re = ∑ i, hA.isHermitian.eigenvalues i := by
@@ -51,7 +55,9 @@ theorem norm_le_re_trace_of_posSemidef (A : Matrix n n ℂ) (hA : A.PosSemidef) 
 
 omit [DecidableEq n] in
 /-- The real trace of the complex Gram matrix is the sum of squared entry norms.
-Source: finite Gram expansion; supports `audit:combined`, `matrix-freedman` (partial).-/
+Source: finite Gram expansion; supports `audit:combined`, `matrix-freedman` (partial).
+@isnad1 id=eq.0h3v.s6.a364d8b12eb6 from=translated src=- shape=74937008 vocab=d3059186
+-/
 theorem re_trace_conjTranspose_mul_self_eq_sum_sq_norm {m : Type*} [Fintype m]
     (A : Matrix m n ℂ) : (Aᴴ * A).trace.re = ∑ i, ∑ j, ‖A i j‖ ^ 2 := by
   simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.conjTranspose_apply,
@@ -65,7 +71,9 @@ theorem re_trace_conjTranspose_mul_self_eq_sum_sq_norm {m : Type*} [Fintype m]
 
 /-- The squared complex matrix operator norm is bounded by the Hilbert-Schmidt
 coordinate sum, with exact coefficient one.
-Source: PSD Gram norm versus trace; supports `audit:combined`, `matrix-freedman` (partial).-/
+Source: PSD Gram norm versus trace; supports `audit:combined`, `matrix-freedman` (partial).
+@isnad1 id=le.0h3v.s6.9dbccd1a42d5 from=translated src=- shape=9b958bd0 vocab=0591f728
+-/
 theorem norm_sq_le_sum_sq_norm_entries {m : Type*} [Fintype m] [DecidableEq m]
     (A : Matrix m n ℂ) : ‖A‖ ^ 2 ≤ ∑ i, ∑ j, ‖A i j‖ ^ 2 := by
   have h := norm_le_re_trace_of_posSemidef (Aᴴ * A) (Matrix.posSemidef_conjTranspose_mul_self A)
@@ -74,7 +82,9 @@ theorem norm_sq_le_sum_sq_norm_entries {m : Type*} [Fintype m] [DecidableEq m]
 
 omit [DecidableEq n] in
 /-- The real trace is monotone in complex matrix Loewner order.
-Source: nonnegative trace of the PSD difference; supports `matrix-freedman`.-/
+Source: nonnegative trace of the PSD difference; supports `matrix-freedman`.
+@isnad1 id=le.1h3v.s5.2d370b4a2493 from=translated src=- shape=7277bb8f vocab=22cea1f9
+-/
 theorem re_trace_le_re_trace_of_le {A B : Matrix n n ℂ} (h : A ≤ B) :
     A.trace.re ≤ B.trace.re := by
   have ht := (RCLike.nonneg_iff.mp (Matrix.le_iff.mp h).trace_nonneg).1
@@ -83,7 +93,9 @@ theorem re_trace_le_re_trace_of_le {A B : Matrix n n ℂ} (h : A ≤ B) :
   linarith
 
 /-- The real trace of a Hermitian matrix is at most dimension times its operator norm.
-Source: spectral theorem and the eigenvalue norm bound; supports `matrix-freedman`.-/
+Source: spectral theorem and the eigenvalue norm bound; supports `matrix-freedman`.
+@isnad1 id=le.1h2v.s6.a774e64f43a3 from=translated src=- shape=02a7b6f4 vocab=14e26e13
+-/
 theorem re_trace_le_card_mul_norm_of_isHermitian [Nonempty n] (A : Matrix n n ℂ) (hA : A.IsHermitian) :
     A.trace.re ≤ Fintype.card n * ‖A‖ := by
   have ht : A.trace.re = ∑ i, hA.eigenvalues i := by

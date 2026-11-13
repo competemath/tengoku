@@ -22,7 +22,9 @@ namespace MeasureTheory
 
 /-- A lower positive real moment is integrable whenever a higher one is.
 Source: moment monotonicity in the direct quadratic-probe proof.
-Atlas: `inverse-wishart-spectral-moment` (helper); allows exponents below one.-/
+Atlas: `inverse-wishart-spectral-moment` (helper); allows exponents below one.
+@isnad1 id=integrab.6h5v.s7.0b7ddc7d7804 from=translated src=- shape=eaacc11f vocab=91ff9268
+-/
 theorem integrable_rpow_of_nonneg_of_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsFiniteMeasure μ] {f : Ω → ℝ} {p q : ℝ}
     (hf : AEStronglyMeasurable f μ) (hfnn : ∀ ω, 0 ≤ f ω)
@@ -35,7 +37,9 @@ theorem integrable_rpow_of_nonneg_of_le {Ω : Type*} [MeasurableSpace Ω]
 
 /-- Rooted moments are monotone for all positive real exponents on a
 probability space. Source: moment monotonicity in the direct quadratic-probe
-proof. Atlas: `inverse-wishart-spectral-moment` (helper); includes `p < 1`.-/
+proof. Atlas: `inverse-wishart-spectral-moment` (helper); includes `p < 1`.
+@isnad1 id=le.5h5v.s7.287c8fc6494b from=translated src=- shape=716987d8 vocab=8a0bd085
+-/
 theorem integral_rpow_root_le_of_nonneg_of_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {f : Ω → ℝ} {p q : ℝ}
     (hf : AEStronglyMeasurable f μ) (hfnn : ∀ ω, 0 ≤ f ω)
@@ -60,7 +64,9 @@ theorem integral_rpow_root_le_of_nonneg_of_le {Ω : Type*} [MeasurableSpace Ω]
 /-- A bound on one positive real moment bounds every lower rooted moment.
 Source: moment monotonicity in the direct quadratic-probe proof.
 Atlas: `inverse-wishart-spectral-moment`, `pinv-spectral-expectation`
-(helper); neither exponent needs to be at least one.-/
+(helper); neither exponent needs to be at least one.
+@isnad1 id=le.7h6v.s7.9fe813adca95 from=translated src=- shape=d8203ffb vocab=8a0bd085
+-/
 theorem integral_rpow_root_le_of_integral_rpow_le {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} [IsProbabilityMeasure μ] {f : Ω → ℝ} {p q C : ℝ}
     (hf : AEStronglyMeasurable f μ) (hfnn : ∀ ω, 0 ≤ f ω)
@@ -77,7 +83,9 @@ theorem integral_rpow_root_le_of_integral_rpow_le {Ω : Type*} [MeasurableSpace 
 /-- A bound `E[f^q] ≤ C^q` implies integrability and `E[f^p] ≤ C^p`
 for every real `0 < p ≤ q`. Source: moment monotonicity in the direct
 quadratic-probe proof. Atlas: `inverse-wishart-spectral-moment`,
-`pinv-spectral-expectation` (helper); includes exponents below one.-/
+`pinv-spectral-expectation` (helper); includes exponents below one.
+@isnad1 id=le.7h6v.s7.9d4aaf74aba9 from=translated src=- shape=46e226f6 vocab=1d28c658
+-/
 theorem integral_rpow_le_of_integral_rpow_le {Ω : Type*}
     [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {f : Ω → ℝ} {p q C : ℝ}

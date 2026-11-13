@@ -15,7 +15,9 @@ open scoped Classical
 namespace MeasureTheory
 
 /-- A finite product event's real probability is the integral of its
-section probabilities. Source: finite Fubini; supports `srht-ose`.-/
+section probabilities. Source: finite Fubini; supports `srht-ose`.
+@isnad1 id=eq.0h5v.s6.2a4d8f2a73b4 from=translated src=- shape=b4797950 vocab=7e4a9b92
+-/
 theorem measureReal_prod_eq_integral_sections
     {α β : Type*} [Finite α] [Finite β]
     [MeasurableSpace α] [MeasurableSpace β]
@@ -31,7 +33,9 @@ theorem measureReal_prod_eq_integral_sections
 
 /-- Integrating a conditional bound outside a first-coordinate bad
 event gives the sum of that event probability and the conditional bound.
-Source: `srht-ose` final conditioning step.-/
+Source: `srht-ose` final conditioning step.
+@isnad1 id=le.2h7v.s7.70bc5332ea59 from=translated src=- shape=02ae282c vocab=fe85f6e1
+-/
 theorem measureReal_prod_le_measureReal_add_of_sections_le
     {α β : Type*} [Finite α] [Finite β]
     [MeasurableSpace α] [MeasurableSpace β]
@@ -59,7 +63,9 @@ theorem measureReal_prod_le_measureReal_add_of_sections_le
       simp only [integral_const, measureReal_def, measure_univ, ENNReal.toReal_one, one_smul]
 
 /-- A measurable product event's real probability is the integral of its section
-probabilities, for arbitrary probability spaces.-/
+probabilities, for arbitrary probability spaces.
+@isnad1 id=eq.1h5v.s6.b74c085b0f67 from=translated src=- shape=a5ee830a vocab=6e1339ba
+-/
 theorem measureReal_prod_eq_integral_sections_of_measurableSet
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ : Measure α) (ν : Measure β) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]
@@ -72,7 +78,9 @@ theorem measureReal_prod_eq_integral_sections_of_measurableSet
     (Filter.Eventually.of_forall (fun x => measure_lt_top ν _))
 
 /-- Integrate an almost-everywhere conditional event bound outside a measurable
-first-coordinate bad event, on arbitrary probability spaces.-/
+first-coordinate bad event, on arbitrary probability spaces.
+@isnad1 id=le.4h7v.s7.0a3410587c34 from=translated src=- shape=6b458494 vocab=29b8e0e2
+-/
 theorem measureReal_prod_le_measureReal_add_of_sections_le_of_measurableSet
     {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     (μ : Measure α) (ν : Measure β) [IsProbabilityMeasure μ] [IsProbabilityMeasure ν]

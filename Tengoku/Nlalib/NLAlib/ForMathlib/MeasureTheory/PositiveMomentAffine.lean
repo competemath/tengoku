@@ -30,7 +30,9 @@ attribute [local instance] realAffineCFC
 
 /-- Actual rooted moments of a positive affine function satisfy the scalar
 Minkowski bound, derived on the element's genuine spectrum probability
-measure. The functional need not be tracial.-/
+measure. The functional need not be tracial.
+@isnad1 id=le.5h6v.s9.69e7cd540b13 from=translated src=- shape=0cc1b751 vocab=6da7d64b
+-/
 theorem PositiveLinearMap.re_pow_affine_rpow_le (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1 = 1)
     {a : A} (ha : 0 ≤ a) {s c : ℝ} (hs : 0 ≤ s) (hc : 0 ≤ c)
     (m : ℕ) (hm : 0 < m) :

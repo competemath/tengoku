@@ -57,7 +57,9 @@ private theorem stieltjes_eventuallyEq_of_upperHalfPlane
 /-- Actual positive quadratic Stieltjes measures construct one genuine
 matrix continuation analytic at every common compact-support gap.
 The matrix function is constructed by finite complex polarization,
-uniformly across all real evaluation points.-/
+uniformly across all real evaluation points.
+@isnad1 id=ex.2h3v.s8.0678ecf79224 from=translated src=- shape=763afe26 vocab=60202069
+-/
 theorem exists_global_real_matrix_extension_of_quadratic_stieltjes
     (N : ℂ → M) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0<z.im → matrixQuadraticFormCLM v (N z)=
@@ -137,7 +139,9 @@ theorem exists_global_real_matrix_extension_of_quadratic_stieltjes
 
 /-- Actual positive quadratic Stieltjes measures construct an analytic
 matrix continuation through a specified common compact-support gap.
-Its values are Hermitian on the real axis by the true scalar kernels.-/
+Its values are Hermitian on the real axis by the true scalar kernels.
+@isnad1 id=ex.3h4v.s8.ace66f86cbc0 from=translated src=- shape=9bef049a vocab=60202069
+-/
 theorem exists_analytic_real_matrix_extension_of_quadratic_stieltjes
     (N : ℂ → M) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0<z.im → matrixQuadraticFormCLM v (N z)=
@@ -154,7 +158,9 @@ theorem exists_analytic_real_matrix_extension_of_quadratic_stieltjes
 germ with a matrix continuation reconstructed from finitely many
 polarization probes. Both the real value and the complex derivative
 are therefore given by the native scalar kernels, even though only
-upper-half-plane agreement was initially available.-/
+upper-half-plane agreement was initially available.
+@isnad1 id=and.5h6v.s9.08c10b884e69 from=translated src=- shape=ade4fb26 vocab=35f51823
+-/
 theorem quadratic_value_deriv_real_extension_of_stieltjes
     (N G : ℂ → M) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0<z.im → matrixQuadraticFormCLM v (N z)=
@@ -209,7 +215,9 @@ private theorem stieltjes_isHermitian_deriv_of_real_values
 /-- Nonzero actual positive quadratic measures force a true matrix
 Stieltjes continuation and its complex derivative to be positive
 definite below their common support. The positive boundary value and
-positive derivative are conclusions, not branch hypotheses.-/
+positive derivative are conclusions, not branch hypotheses.
+@isnad1 id=and.7h5v.s9.64146cc85db7 from=translated src=- shape=31859240 vocab=09d59ced
+-/
 theorem posDef_real_extension_and_deriv_of_quadratic_stieltjes
     (N G : ℂ → M) (μ : (n → ℂ) → FiniteMeasure ℝ)
     (hμ : ∀ v : n → ℂ, ∀ z : ℂ, 0<z.im → matrixQuadraticFormCLM v (N z)=

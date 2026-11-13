@@ -20,7 +20,9 @@ namespace NLAlib
 /-- The diagonal of a product of upper triangular matrices is the product of the diagonals,
 over any semiring. Golub–Van Loan 2013, §3.1; Horn–Johnson 2013, §0.7. Supports
 `cholesky-decomposition`, `qr-decomposition` and the commuting spectral sum and product
-formulas (`simultaneous-diagonalization`).-/
+formulas (`simultaneous-diagonalization`).
+@isnad1 id=eq.2h5v.s6.3c0b60059bc2 from=translated src=- shape=b67a9aae vocab=59199290
+-/
 theorem mul_apply_self_of_isUpperTriangular {n R : Type*} [Fintype n] [LinearOrder n]
     [Semiring R] {A B : Matrix n n R} (hA : A.IsUpperTriangular) (hB : B.IsUpperTriangular)
     (i : n) : (A * B) i i = A i i * B i i := by
@@ -33,7 +35,9 @@ theorem mul_apply_self_of_isUpperTriangular {n R : Type*} [Fintype n] [LinearOrd
 
 /-- The diagonal of a product of lower triangular matrices is the product of the diagonals,
 over any semiring. Golub–Van Loan 2013, §3.1. Supports `cholesky-decomposition` and
-`qr-decomposition`.-/
+`qr-decomposition`.
+@isnad1 id=eq.2h5v.s6.d05a7fe6c666 from=translated src=- shape=b67a9aae vocab=b0b70c92
+-/
 theorem mul_apply_self_of_isLowerTriangular {n R : Type*} [Fintype n] [LinearOrder n]
     [Semiring R] {A B : Matrix n n R} (hA : A.IsLowerTriangular) (hB : B.IsLowerTriangular)
     (i : n) : (A * B) i i = A i i * B i i := by

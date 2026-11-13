@@ -44,7 +44,9 @@ private theorem measure_norm_pos {μ : Measure ℝ} (hμ : HasPolynomialMoments 
 /-- Canonical Gauss nodes are distinct whenever there are at least as many
 support points as nodes, including a terminal atomic rule.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial), gauss-quadrature-general-measure (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), gauss-quadrature-general-measure (partial)
+@isnad1 id=injectiv.2h2v.s5.74819a680975 from=translated src=- shape=5ae671bb vocab=f11406b9
+-/
 theorem gaussNodes_injective {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : (n : ℕ∞) ≤ μ.support.encard) : Function.Injective (gaussNodes μ hμ n) :=
   eigenvalues_orthogonalPolynomialJacobiMatrix_injective _
@@ -53,7 +55,9 @@ theorem gaussNodes_injective {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) 
 /-- The product of the actual real Gauss-node factors is exactly the canonical
 monic orthogonal polynomial, including finite-support termination.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial), gauss-quadrature-general-measure (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.2h2v.s5.6753763b01cc from=translated src=- shape=64788f62 vocab=78f3dd5f
+-/
 theorem nodal_gaussNodes_eq_monicOrthogonalPolynomial {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) :
     Lagrange.nodal univ (gaussNodes μ hμ n) =
@@ -65,7 +69,9 @@ theorem nodal_gaussNodes_eq_monicOrthogonalPolynomial {μ : Measure ℝ}
 
 /-- The zeros of the canonical monic polynomial are exactly the constructed
 Gauss nodes. Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=iff.2h3v.s6.fe27e5a93326 from=translated src=- shape=36c77f31 vocab=7c108422
+-/
 theorem eval_monicOrthogonalPolynomial_eq_zero_iff_exists_gaussNodes {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) (x : ℝ) :
     (monicOrthogonalPolynomial (polynomialIntegral μ hμ) n).eval x = 0 ↔
@@ -82,7 +88,9 @@ theorem eval_monicOrthogonalPolynomial_eq_zero_iff_exists_gaussNodes {μ : Measu
 /-- The constructed `n`-node Gauss rule integrates every polynomial of degree
 below `2n`. No pre-existing node or quadrature certificate is assumed.
 Source: Gautschi (2004), Theorem 1.46.
-atlas: quadrature-exactness-characterisation (partial), gauss-quadrature-general-measure (partial)-/
+atlas: quadrature-exactness-characterisation (partial), gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.4h3v.s7.e6aa7b6d8774 from=translated src=- shape=e8694258 vocab=f7e976ed
+-/
 theorem integral_eval_eq_sum_gaussWeights_mul_eval {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) {p : ℝ[X]} (hp : p.degree < (2 * n : ℕ)) :
@@ -98,7 +106,9 @@ theorem integral_eval_eq_sum_gaussWeights_mul_eval {μ : Measure ℝ}
 
 /-- Every constructed Gauss weight is strictly positive, including a terminal
 finite atomic rule. Source: Gautschi (2004), Theorem 1.46.
-atlas: quadrature-exactness-characterisation (partial), gauss-quadrature-general-measure (partial), orthogonal-polynomial-zeros (partial)-/
+atlas: quadrature-exactness-characterisation (partial), gauss-quadrature-general-measure (partial), orthogonal-polynomial-zeros (partial)
+@isnad1 id=lt.2h3v.s5.b9cdb643d876 from=translated src=- shape=9d05f504 vocab=9ad7cc10
+-/
 theorem gaussWeights_pos {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n : ℕ}
     (hn : (n : ℕ∞) ≤ μ.support.encard) (i : Fin n) : 0 < gaussWeights μ hμ n i :=
   quadrature_weight_pos_of_gauss_exact hμ hn (gaussNodes_injective hμ hn) _
@@ -106,7 +116,9 @@ theorem gaussWeights_pos {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) {n :
 
 /-- The constructed Gauss weights sum to the measure's total mass.
 Source: Gautschi (2004), Theorem 1.46.
-atlas: gauss-quadrature-general-measure (partial)-/
+atlas: gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.3h2v.s6.1657c1d2a538 from=translated src=- shape=1127cb5a vocab=4a99e458
+-/
 theorem sum_gaussWeights_eq_measure_univ {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {n : ℕ} (hn0 : 0 < n) (hn : (n : ℕ∞) ≤ μ.support.encard) :
     (∑ i : Fin n, gaussWeights μ hμ n i) = (μ univ).toReal := by
@@ -119,7 +131,9 @@ theorem sum_gaussWeights_eq_measure_univ {μ : Measure ℝ} (hμ : HasPolynomial
 constructed Gauss rule, up to node permutation. Positivity of its weights is a
 consequence, not an additional assumption.
 Source: Gautschi (2004), Gauss-rule characterization.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=ex.5h4v.s7.c583bd40ff32 from=translated src=- shape=19e67e2d vocab=35c9ba7c
+-/
 theorem rule_eq_gaussNodes_gaussWeights_of_moments {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn0 : 0 < n)
     (hn : (n : ℕ∞) ≤ μ.support.encard) (v w : Fin n → ℝ) (hv : Function.Injective v)

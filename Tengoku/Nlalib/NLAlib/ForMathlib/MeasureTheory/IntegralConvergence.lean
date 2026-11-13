@@ -22,7 +22,9 @@ namespace MeasureTheory
 /-- The limit of integrals of a uniformly lower-bounded sequence is nonnegative
 when almost every point has a nonnegative pointwise limit. No integrability of
 those pointwise limits is assumed. Source: the one-sided Fatou argument in
-Edelman 1988; atlas wishart-lambda-min-tail (helper).-/
+Edelman 1988; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.5h5v.s7.4444454ca8b1 from=translated src=- shape=d19d92cb vocab=09bdb18c
+-/
 theorem nonneg_of_tendsto_integral_of_uniform_lower_bound
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsFiniteMeasure μ]
     (R : ℕ → Ω → ℝ) (hRi : ∀ n, Integrable (R n) μ)
@@ -55,7 +57,9 @@ derivative term has a uniform upper bound and a limiting upper bound by the shif
 The left-hand side uses ordinary domination; the right-hand side uses only the
 one-sided negative-part argument. In particular its pointwise limit need not be
 integrable. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.16h16v.s9.c53d11baf6a1 from=translated src=- shape=ffd17a83 vocab=e617f0ac
+-/
 theorem integral_nonneg_of_shift_identity_limit
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω) [IsFiniteMeasure μ]
     (F A B C : ℕ → Ω → ℝ) (Y A' B' C' : Ω → ℝ)
@@ -112,7 +116,9 @@ theorem integral_nonneg_of_shift_identity_limit
 convergence. This handles the second regularization limit after a fixed positive
 Gram shift: the test sees the shifted minimum while the derivative aggregates
 see the unshifted minimum. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.6h9v.s8.bae65f4a0f73 from=translated src=- shape=5b67bf26 vocab=53be61d2
+-/
 theorem integral_nonneg_of_positive_translates
     {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     (X A B : Ω → ℝ) (ψ ψ' : ℝ → ℝ) (hψ : Continuous ψ) (hψ' : Continuous ψ')

@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- Equal finite indexed value multisets differ by an index permutation.
 Source: the finite multiset multiplicity criterion; supports normal-matrix
-unitary similarity and prescribed eigenvalue ordering.-/
+unitary similarity and prescribed eigenvalue ordering.
+@isnad1 id=ex.1h4v.s6.8048022416ec from=translated src=- shape=63886760 vocab=582248e5
+-/
 theorem exists_perm_eq_of_map_univ_val_eq {n α : Type*} [Fintype n]
     (a b : n → α) (hab : Finset.univ.val.map a = Finset.univ.val.map b) :
     ∃ σ : Equiv.Perm n, ∀ i, b (σ i) = a i := by

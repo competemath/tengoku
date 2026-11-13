@@ -11,7 +11,9 @@ set_option autoImplicit false
 namespace Metric
 
 /-- The suprema of two nonempty compact real sets differ by at most
-their actual Hausdorff distance.-/
+their actual Hausdorff distance.
+@isnad1 id=le.4h2v.s5.2ee212aa5b7a from=translated src=- shape=b52a7736 vocab=f58794d8
+-/
 theorem abs_csSup_sub_csSup_le_hausdorffDist
     {S T : Set ℝ} (hS : IsCompact S) (hT : IsCompact T)
     (hSn : S.Nonempty) (hTn : T.Nonempty) :
@@ -33,7 +35,9 @@ theorem abs_csSup_sub_csSup_le_hausdorffDist
   exact abs_le.mpr ⟨by linarith only [hts],hst⟩
 
 /-- The infima of two nonempty compact real sets differ by at most
-their actual Hausdorff distance.-/
+their actual Hausdorff distance.
+@isnad1 id=le.4h2v.s5.96e4582a7ec6 from=translated src=- shape=b52a7736 vocab=8f674c12
+-/
 theorem abs_csInf_sub_csInf_le_hausdorffDist
     {S T : Set ℝ} (hS : IsCompact S) (hT : IsCompact T)
     (hSn : S.Nonempty) (hTn : T.Nonempty) :

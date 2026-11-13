@@ -20,7 +20,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 
 /-- The monic norm equals the mass times the product of positive-order monic
 recurrence subdiagonals. Source: Gautschi (2004), Theorem 1.27.
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h3v.s7.4d6b6e09b4e4 from=translated src=- shape=3531c2e4 vocab=b11679a8
+-/
 theorem orthogonalPolynomialNorm_eq_prod_beta
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (n : ℕ) (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0) :
     orthogonalPolynomialNorm L n = orthogonalPolynomialNorm L 0 *
@@ -44,7 +46,9 @@ def monicOrthogonalKernelPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (y
 /-- Multiplying by the argument difference gives the Christoffel–Darboux
 identity, with no distinct-argument hypothesis. Source: Gautschi (2004),
 Theorem 1.28.
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h4v.s9.2f92a750335d from=translated src=- shape=12147593 vocab=9b504860
+-/
 theorem X_sub_C_mul_monicOrthogonalKernelPolynomial
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (n : ℕ) (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) (y : 𝕜) :
     (X - C y) * monicOrthogonalKernelPolynomial L (n + 1) y =
@@ -90,7 +94,9 @@ theorem X_sub_C_mul_monicOrthogonalKernelPolynomial
 
 /-- The scalar multiplied Christoffel–Darboux formula includes coinciding
 arguments. Source: Gautschi (2004), Theorem 1.28.
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.1h5v.s8.f85b10af811c from=translated src=- shape=f3655a8b vocab=4aefe85d
+-/
 theorem sub_mul_eval_monicOrthogonalKernelPolynomial
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (n : ℕ) (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) (x y : 𝕜) :
     (x - y) * (monicOrthogonalKernelPolynomial L (n + 1) y).eval x =
@@ -106,7 +112,9 @@ theorem sub_mul_eval_monicOrthogonalKernelPolynomial
 
 /-- At coinciding arguments the kernel is the derivative Wronskian divided
 by the last monic norm. Source: Gautschi (2004), Theorem 1.28.
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.1h4v.s9.0925bc4bf519 from=translated src=- shape=a76d0a53 vocab=dddd4be0
+-/
 theorem eval_monicOrthogonalKernelPolynomial_self
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (n : ℕ) (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) (x : 𝕜) :
     (monicOrthogonalKernelPolynomial L (n + 1) x).eval x =

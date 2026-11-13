@@ -19,7 +19,9 @@ variable {n 𝕜 : Type*} [Fintype n] [DecidableEq n] [RCLike 𝕜]
 /-- The true operator norm of an existing matrix inverse is at most the
 reciprocal gap from a scalar perturbation. Neither normality nor a
 Neumann-series representation is required. Empty matrix dimensions are
-included. Source: the standard inverse perturbation bound.-/
+included. Source: the standard inverse perturbation bound.
+@isnad1 id=le.3h5v.s8.622ff1acddeb from=translated src=- shape=68422916 vocab=6589f56c
+-/
 theorem norm_nonsing_inv_le_of_sub_smul_one_le
     (X : Matrix n n 𝕜) (w : 𝕜) (r : ℝ) (hX : IsUnit X)
     (herror : ‖X-w•1‖≤r) (hgap : r<‖w‖) :

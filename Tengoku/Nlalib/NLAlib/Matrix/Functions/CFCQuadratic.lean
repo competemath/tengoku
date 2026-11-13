@@ -41,7 +41,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-! ### Orthonormality of the eigenvector basis -/
 
 /-- The eigenvector basis is orthonormal in dot-product form: `uᵢ ⬝ uⱼ = δᵢⱼ`.
-Helper for `krylov-eigenvector-angle`.-/
+Helper for `krylov-eigenvector-angle`.
+@isnad1 id=eq.1h4v.s8.0488b2794675 from=translated src=- shape=4bd9aee6 vocab=388974a2
+-/
 theorem eigenvectorBasis_dotProduct_eigenvectorBasis {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (i j : n) :
     (hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ (hA.eigenvectorBasis j : n → ℝ) =
@@ -51,7 +53,9 @@ theorem eigenvectorBasis_dotProduct_eigenvectorBasis {A : Matrix n n ℝ} (hA : 
   simpa [dotProduct_comm] using h
 
 /-- Eigen-coordinates of `p(A) v`: `uᵢ ⬝ p(A) v = p(λᵢ) (uᵢ ⬝ v)` for real symmetric `A`.
-Helper for `krylov-eigenvector-angle`.-/
+Helper for `krylov-eigenvector-angle`.
+@isnad1 id=eq.1h5v.s9.ff994d68812c from=translated src=- shape=69036f1d vocab=d9c3ac85
+-/
 theorem eigenvectorBasis_dotProduct_aeval_mulVec {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (p : ℝ[X]) (v : n → ℝ) (i : n) :
     (hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ (aeval A p *ᵥ v) =
@@ -60,7 +64,9 @@ theorem eigenvectorBasis_dotProduct_aeval_mulVec {A : Matrix n n ℝ} (hA : A.Is
   simp [dotProduct_smul, eigenvectorBasis_dotProduct_eigenvectorBasis hA]
 
 /-- An eigenvalue is the Rayleigh quotient of its unit eigenvector: `λᵢ = uᵢᵀ A uᵢ`.
-Atlas: `lanczos-gauss-quadrature` (helper).-/
+Atlas: `lanczos-gauss-quadrature` (helper).
+@isnad1 id=eq.1h3v.s8.a020e94ec5c1 from=translated src=- shape=f18cc58e vocab=383293c6
+-/
 theorem eigenvalues_eq_dotProduct_mulVec {A : Matrix n n ℝ} (hA : A.IsHermitian) (i : n) :
     hA.eigenvalues i =
       (hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ (A *ᵥ (hA.eigenvectorBasis i : n → ℝ)) := by
@@ -71,7 +77,9 @@ theorem eigenvalues_eq_dotProduct_mulVec {A : Matrix n n ℝ} (hA : A.IsHermitia
 /-- Eigen-expansion of a quadratic form of a matrix function: for symmetric `A`,
 `vᵀ f(A) v = ∑ᵢ f(λᵢ) (uᵢ ⬝ v)²` with `(λᵢ, uᵢ)` the eigenpairs of `A`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 7, eq. (7.1). Atlas: `spectral-measure`
-(helper).-/
+(helper).
+@isnad1 id=eq.1h4v.s8.1e86b790e52e from=translated src=- shape=8838b5de vocab=bd95b0cc
+-/
 theorem dotProduct_cfc_mulVec_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermitian) (f : ℝ → ℝ)
     (v : n → ℝ) :
     v ⬝ᵥ (cfc f A *ᵥ v) =
@@ -92,7 +100,9 @@ theorem dotProduct_cfc_mulVec_eq_sum {A : Matrix n n ℝ} (hA : A.IsHermitian) (
 /-- Rayleigh bounds from an eigenvalue enclosure: if every eigenvalue of the symmetric `A` lies
 in `[a, c]`, then `a ‖x‖² ≤ xᵀ A x ≤ c ‖x‖²`. Lower half.
 Source: Horn–Johnson (2013), Thm 4.2.2 (Rayleigh–Ritz). Atlas: `lanczos-gauss-quadrature`
-(helper).-/
+(helper).
+@isnad1 id=le.2h4v.s6.517b41d3bb83 from=translated src=- shape=2ab60b82 vocab=284abb46
+-/
 theorem mul_dotProduct_le_dotProduct_mulVec_of_eigenvalues {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {a : ℝ} (ha : ∀ i, a ≤ hA.eigenvalues i) (x : n → ℝ) :
     a * (x ⬝ᵥ x) ≤ x ⬝ᵥ (A *ᵥ x) := by
@@ -103,7 +113,9 @@ theorem mul_dotProduct_le_dotProduct_mulVec_of_eigenvalues {A : Matrix n n ℝ}
 
 /-- Upper Rayleigh bound from an eigenvalue enclosure: `xᵀ A x ≤ c ‖x‖²` if every eigenvalue is
 at most `c`. Source: Horn–Johnson (2013), Thm 4.2.2. Atlas: `lanczos-gauss-quadrature`
-(helper).-/
+(helper).
+@isnad1 id=le.2h4v.s6.ba629b134406 from=translated src=- shape=b791977f vocab=284abb46
+-/
 theorem dotProduct_mulVec_le_mul_dotProduct_of_eigenvalues {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {c : ℝ} (hc : ∀ i, hA.eigenvalues i ≤ c) (x : n → ℝ) :
     x ⬝ᵥ (A *ᵥ x) ≤ c * (x ⬝ᵥ x) := by
@@ -114,7 +126,9 @@ theorem dotProduct_mulVec_le_mul_dotProduct_of_eigenvalues {A : Matrix n n ℝ}
 
 /-- A function bounded by `E` on the eigenvalues gives a quadratic form bounded by `E ‖v‖²`:
 `|vᵀ g(A) v| ≤ E (v ⬝ v)`. Atlas: `lanczos-gauss-quadrature` (helper; the `cfc` form of
-`polynomial-spectral-bound`).-/
+`polynomial-spectral-bound`).
+@isnad1 id=le.2h5v.s7.bba6a733abe4 from=translated src=- shape=cc395a59 vocab=fbd66051
+-/
 theorem abs_dotProduct_cfc_mulVec_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {g : ℝ → ℝ}
     {E : ℝ} (hg : ∀ i, |g (hA.eigenvalues i)| ≤ E) (v : n → ℝ) :
     |v ⬝ᵥ (cfc g A *ᵥ v)| ≤ E * (v ⬝ᵥ v) := by
@@ -128,7 +142,9 @@ theorem abs_dotProduct_cfc_mulVec_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {
 
 /-- A matrix function of a symmetric `A` equals the polynomial calculus of any polynomial that
 agrees with `f` at the eigenvalues: `f(A) = p(A)` when `p(λᵢ) = f(λᵢ)` for all `i`.
-Standard (Higham 2008 [`higham08`], Def. 1.4 and Thm 1.12). Atlas: `lanczos-fa-error` (helper).-/
+Standard (Higham 2008 [`higham08`], Def. 1.4 and Thm 1.12). Atlas: `lanczos-fa-error` (helper).
+@isnad1 id=eq.2h4v.s8.352ba60f77ab from=translated src=- shape=8f1f94f0 vocab=317aca89
+-/
 theorem cfc_eq_aeval_of_forall_eval_eq {A : Matrix n n ℝ} (hA : A.IsHermitian) {f : ℝ → ℝ}
     {p : ℝ[X]} (h : ∀ i, p.eval (hA.eigenvalues i) = f (hA.eigenvalues i)) :
     cfc f A = aeval A p := by
@@ -139,7 +155,9 @@ theorem cfc_eq_aeval_of_forall_eval_eq {A : Matrix n n ℝ} (hA : A.IsHermitian)
   exact (h i).symm
 
 /-- The Lagrange interpolant of `f` at the distinct eigenvalues of the symmetric `A` takes the
-value `f(λᵢ)` at `λᵢ`. Helper for `lanczos-fa-error`.-/
+value `f(λᵢ)` at `λᵢ`. Helper for `lanczos-fa-error`.
+@isnad1 id=eq.1h4v.s8.c2d753e8f334 from=translated src=- shape=b38f82c6 vocab=08dd69a6
+-/
 theorem eval_interpolate_eigenvalues {A : Matrix n n ℝ} (hA : A.IsHermitian) (f : ℝ → ℝ)
     (i : n) :
     (Lagrange.interpolate (Finset.univ.image hA.eigenvalues) id f).eval (hA.eigenvalues i) =
@@ -149,7 +167,9 @@ theorem eval_interpolate_eigenvalues {A : Matrix n n ℝ} (hA : A.IsHermitian) (
 
 /-- `f(A)` is `p(A)` for the Lagrange interpolant `p` of `f` at the (distinct) eigenvalues of the
 symmetric `A`. Standard (Higham 2008 [`higham08`], Def. 1.4). Atlas: `lanczos-fa-error`
-(helper).-/
+(helper).
+@isnad1 id=eq.1h3v.s9.c8e9f1026e23 from=translated src=- shape=e07084d1 vocab=1c323189
+-/
 theorem cfc_eq_aeval_interpolate {A : Matrix n n ℝ} (hA : A.IsHermitian) (f : ℝ → ℝ) :
     cfc f A = aeval A (Lagrange.interpolate (Finset.univ.image hA.eigenvalues) id f) :=
   cfc_eq_aeval_of_forall_eval_eq hA (eval_interpolate_eigenvalues hA f)
@@ -157,7 +177,9 @@ theorem cfc_eq_aeval_interpolate {A : Matrix n n ℝ} (hA : A.IsHermitian) (f : 
 /-- **Spectral bound, `cfc` form.** If every eigenvalue of the symmetric `A` lies in `S` and
 `|g| ≤ M` on `S`, then `‖g(A) v‖² ≤ M² ‖v‖²`. The `cfc` form of
 `dotProduct_aeval_mulVec_self_le` (Saad 2003, §6.11). Atlas: `lanczos-fa-error` (helper; the
-`cfc` form of `polynomial-spectral-bound`).-/
+`cfc` form of `polynomial-spectral-bound`).
+@isnad1 id=le.3h6v.s8.115a1fcbbac3 from=translated src=- shape=2cdecaaf vocab=5a773c51
+-/
 theorem dotProduct_cfc_mulVec_self_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {g : ℝ → ℝ}
     {S : Set ℝ} {M : ℝ} (hspec : ∀ i, hA.eigenvalues i ∈ S) (hg : ∀ x ∈ S, |g x| ≤ M)
     (v : n → ℝ) : (cfc g A *ᵥ v) ⬝ᵥ (cfc g A *ᵥ v) ≤ M ^ 2 * (v ⬝ᵥ v) := by

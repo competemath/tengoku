@@ -51,7 +51,9 @@ def blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ) :
 
 omit [Fintype s] in
 /-- The generators `(A^i Ω) e_j` (`i < q`) lie in `K_q(A, Ω)`. Helper for
-`block-krylov-subspace`.-/
+`block-krylov-subspace`.
+@isnad1 id=mem.1h8v.s8.7e69e3fca7ba from=translated src=- shape=c2b9e32d vocab=91d3c319
+-/
 theorem pow_mulVec_col_mem_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s K) {q i : ℕ}
     (hi : i < q) (j : s) : (A ^ i) *ᵥ Ω.col j ∈ blockKrylovSpace A Ω q := by
   rw [← col_mul_eq_mulVec_col]
@@ -60,7 +62,9 @@ theorem pow_mulVec_col_mem_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s 
 omit [Fintype s] in
 /-- The Krylov space of a single column is contained in the block space:
 `K_q(A, Ω e_j) ⊆ K_q(A, Ω)`. Source: Saad (2011) [`saad11`], §6.3.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=le.0h7v.s8.3f6b93168fbf from=translated src=- shape=4458f6e3 vocab=3371e50d
+-/
 theorem krylovSpace_col_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ)
     (j : s) : krylovSpace A (Ω.col j) q ≤ blockKrylovSpace A Ω q :=
   Submodule.span_le.2 <| by
@@ -70,7 +74,9 @@ theorem krylovSpace_col_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s 
 omit [Fintype s] in
 /-- The block Krylov space is the sum of the single-vector Krylov spaces of the columns:
 `K_q(A, Ω) = ∑_j K_q(A, Ω e_j)`. Source: Saad (2011) [`saad11`], §6.3.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=eq.0h6v.s8.46f97b04791e from=translated src=- shape=05075f8e vocab=a1a47aef
+-/
 theorem blockKrylovSpace_eq_iSup (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ) :
     blockKrylovSpace A Ω q = ⨆ j, krylovSpace A (Ω.col j) q := by
   refine le_antisymm (Submodule.span_le.2 ?_) (iSup_le (krylovSpace_col_le_blockKrylovSpace A Ω q))
@@ -83,7 +89,9 @@ theorem blockKrylovSpace_eq_iSup (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ
 /-- Matrix-polynomial characterisation of the block Krylov space (valid for every `q`):
 `x ∈ K_q(A, Ω) ↔ x = ∑_j p_j(A) Ω e_j` for polynomials `p_j` of degree `< q`. Equivalently
 `x = ∑_{i<q} A^i Ω c_i`. Source: Saad (2011) [`saad11`], §6.3; Tropp–Webber (2023) [`tw23`], §7.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=iff.0h7v.s9.14be2818564b from=translated src=- shape=ae82000a vocab=50df0f33
+-/
 theorem mem_blockKrylovSpace_iff (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ) (x : n → K) :
     x ∈ blockKrylovSpace A Ω q ↔
       ∃ p : s → K[X], (∀ j, (p j).degree < q) ∧ x = ∑ j, aeval A (p j) *ᵥ Ω.col j := by
@@ -105,7 +113,9 @@ theorem mem_blockKrylovSpace_iff (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ
 /-- `range (p(A) Ω) ⊆ K_q(A, Ω)` for every scalar polynomial `p` with `deg p < q`: the form used
 by block Krylov low-rank approximation. Source: Musco–Musco (2015) [`mm15`], proof of Thm 1;
 Tropp–Webber (2023) [`tw23`], §7.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=le.1h7v.s9.7b8d148dbfee from=translated src=- shape=6542774f vocab=f3921d10
+-/
 theorem range_aeval_mul_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s K) {q : ℕ}
     {p : K[X]} (hp : p.degree < q) :
     LinearMap.range (aeval A p * Ω).mulVecLin ≤ blockKrylovSpace A Ω q := by
@@ -118,7 +128,9 @@ theorem range_aeval_mul_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s 
 omit [Fintype s] in
 /-- Block Krylov spaces are nested: `q ≤ q' → K_q(A, Ω) ⊆ K_{q'}(A, Ω)`.
 Source: Saad (2011) [`saad11`], §6.3.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=le.1h7v.s8.9eba556ed76f from=translated src=- shape=23dabf82 vocab=868154be
+-/
 theorem blockKrylovSpace_mono (A : Matrix n n K) (Ω : Matrix n s K) {q q' : ℕ} (h : q ≤ q') :
     blockKrylovSpace A Ω q ≤ blockKrylovSpace A Ω q' :=
   Submodule.span_le.2 <| by
@@ -129,7 +141,9 @@ theorem blockKrylovSpace_mono (A : Matrix n n K) (Ω : Matrix n s K) {q q' : ℕ
 
 omit [Fintype s] in
 /-- `A K_q(A, Ω) ⊆ K_{q+1}(A, Ω)`. Source: Saad (2011) [`saad11`], §6.3.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=mem.1h7v.s8.b95af38f349e from=translated src=- shape=f4dedafc vocab=6f48db19
+-/
 theorem mulVec_mem_blockKrylovSpace_succ (A : Matrix n n K) (Ω : Matrix n s K) {q : ℕ}
     {x : n → K} (hx : x ∈ blockKrylovSpace A Ω q) : A *ᵥ x ∈ blockKrylovSpace A Ω (q + 1) := by
   have hle : blockKrylovSpace A Ω q ≤
@@ -142,7 +156,9 @@ theorem mulVec_mem_blockKrylovSpace_succ (A : Matrix n n K) (Ω : Matrix n s K) 
   exact hle hx
 
 /-- `dim K_q(A, Ω) ≤ q s` for `Ω` with `s` columns. Source: Saad (2011) [`saad11`], §6.3.
-atlas: block-krylov-subspace-/
+atlas: block-krylov-subspace
+@isnad1 id=le.0h6v.s8.e09dac97c291 from=translated src=- shape=c95c6491 vocab=32ec210e
+-/
 theorem finrank_blockKrylovSpace_le (A : Matrix n n K) (Ω : Matrix n s K) (q : ℕ) :
     Module.finrank K (blockKrylovSpace A Ω q) ≤ q * Fintype.card s :=
   (finrank_range_le_card (R := K) _).trans (by simp)
@@ -158,14 +174,18 @@ def subspaceIterate (A : Matrix n n K) (Ω : Matrix n s K) (k : ℕ) :
     Submodule K (n → K) :=
   LinearMap.range (A ^ k * Ω).mulVecLin
 
-/-- `S_0 = range Ω`. Helper for `subspace-iteration-def`.-/
+/-- `S_0 = range Ω`. Helper for `subspace-iteration-def`.
+@isnad1 id=eq.0h5v.s7.c4b33c07ccf4 from=translated src=- shape=ed8dd101 vocab=1924fa27
+-/
 @[simp]
 theorem subspaceIterate_zero (A : Matrix n n K) (Ω : Matrix n s K) :
     subspaceIterate A Ω 0 = LinearMap.range Ω.mulVecLin := by
   simp [subspaceIterate]
 
 /-- One step of subspace iteration: `S_{k+1} = A S_k`. Source: Saad (2011) [`saad11`], §5.1.
-atlas: subspace-iteration-def-/
+atlas: subspace-iteration-def
+@isnad1 id=eq.0h6v.s8.52e9a3fd799b from=translated src=- shape=f7ab854b vocab=88b5b3c7
+-/
 theorem subspaceIterate_succ (A : Matrix n n K) (Ω : Matrix n s K) (k : ℕ) :
     subspaceIterate A Ω (k + 1) = (subspaceIterate A Ω k).map A.mulVecLin := by
   rw [subspaceIterate, subspaceIterate, pow_succ', Matrix.mul_assoc, Matrix.mulVecLin_mul,
@@ -174,7 +194,9 @@ theorem subspaceIterate_succ (A : Matrix n n K) (Ω : Matrix n s K) (k : ℕ) :
 /-- Orthonormalisation does not change the iteration: if the columns of `Q` span `S_k` (for
 instance `Q` is an orthonormal basis of `S_k`), then `range (A Q) = S_{k+1}`. Source: Saad (2011)
 [`saad11`], §5.1, Alg. 5.1.
-atlas: subspace-iteration-def-/
+atlas: subspace-iteration-def
+@isnad1 id=eq.1h8v.s8.e5c6a3e0e199 from=translated src=- shape=237337ad vocab=a0468af9
+-/
 theorem range_mul_eq_subspaceIterate_succ {k' : Type*} [Fintype k'] (A : Matrix n n K)
     (Ω : Matrix n s K) {k : ℕ} {Q : Matrix n k' K}
     (hQ : LinearMap.range Q.mulVecLin = subspaceIterate A Ω k) :
@@ -184,7 +206,9 @@ theorem range_mul_eq_subspaceIterate_succ {k' : Type*} [Fintype k'] (A : Matrix 
 /-- Subspace iteration is block Krylov with the fixed polynomial `x^k`:
 `S_k = range (A^k Ω) ⊆ K_{k+1}(A, Ω)`. Source: Saad (2011) [`saad11`], §5.1 and §6.3;
 Musco–Musco (2015) [`mm15`], §4.
-atlas: subspace-iteration-def-/
+atlas: subspace-iteration-def
+@isnad1 id=le.0h6v.s8.3ebea27cd8c3 from=translated src=- shape=f7de31f5 vocab=53d79c5c
+-/
 theorem subspaceIterate_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s K) (k : ℕ) :
     subspaceIterate A Ω k ≤ blockKrylovSpace A Ω (k + 1) := by
   have h := range_aeval_mul_le_blockKrylovSpace A Ω (q := k + 1) (p := X ^ k)
@@ -192,7 +216,9 @@ theorem subspaceIterate_le_blockKrylovSpace (A : Matrix n n K) (Ω : Matrix n s 
   simpa [subspaceIterate] using h
 
 /-- Right multiplication of the starting block can only shrink the iterates:
-`range (A^k Ω R) ⊆ range (A^k Ω)`. Helper for `subspace-iteration-def`.-/
+`range (A^k Ω R) ⊆ range (A^k Ω)`. Helper for `subspace-iteration-def`.
+@isnad1 id=le.0h8v.s8.6807d6354f42 from=translated src=- shape=467c8b3f vocab=dd39b9ce
+-/
 theorem subspaceIterate_mul_le {s' : Type*} [Fintype s'] (A : Matrix n n K) (Ω : Matrix n s K)
     (R : Matrix s s' K) (k : ℕ) : subspaceIterate A (Ω * R) k ≤ subspaceIterate A Ω k := by
   rw [subspaceIterate, subspaceIterate, ← Matrix.mul_assoc, Matrix.mulVecLin_mul,
@@ -201,7 +227,9 @@ theorem subspaceIterate_mul_le {s' : Type*} [Fintype s'] (A : Matrix n n K) (Ω 
 
 /-- Subspace iteration depends only on `range Ω`: `S_k(A, Ω R) = S_k(A, Ω)` for invertible `R`.
 Source: Saad (2011) [`saad11`], §5.1.
-atlas: subspace-iteration-def-/
+atlas: subspace-iteration-def
+@isnad1 id=eq.1h7v.s7.921ba4130b53 from=translated src=- shape=7d1ba3ac vocab=ce7ce17d
+-/
 theorem subspaceIterate_mul_of_isUnit [DecidableEq s] (A : Matrix n n K) (Ω : Matrix n s K)
     {R : Matrix s s K} (hR : IsUnit R) (k : ℕ) :
     subspaceIterate A (Ω * R) k = subspaceIterate A Ω k := by
@@ -216,7 +244,9 @@ columns and `range Q' ⊆ range Q`, then `U = Qᵀ Q'` has orthonormal columns a
 `Q'ᵀ A Q' = Uᵀ (Qᵀ A Q) U`. When the ranges are equal and `Q, Q'` have the same number of
 columns, `U` is orthogonal, so the compression of `A` to `S_k` (and its Ritz values) does not
 depend on the orthonormal basis chosen. Source: Saad (2011) [`saad11`], §4.3 and §5.1.
-atlas: subspace-iteration-def (partial)-/
+atlas: subspace-iteration-def (partial)
+@isnad1 id=and.3h6v.s9.d5fbd9881ec0 from=translated src=- shape=51e9ca1a vocab=bb96f167
+-/
 theorem transpose_mul_mul_eq_of_range_le {k₁ k₂ : Type*} [Fintype k₁] [DecidableEq k₁]
     [Fintype k₂] [DecidableEq k₂] {Q : Matrix n k₁ ℝ} {Q' : Matrix n k₂ ℝ}
     (hQ : HasOrthonormalCols Q) (hQ' : HasOrthonormalCols Q')

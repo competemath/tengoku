@@ -41,7 +41,9 @@ def polynomialWordProduct (X : ι → A) (l : List (ι×Polynomial K)) : A :=
 def polynomialWordMoment (φ : A →ₗ[K] K) (X : ι → A) (l : List (ι×Polynomial K)) : K :=
   φ (polynomialWordProduct X l)
 
-/-- Adjacent one-variable polynomials in the same actual generator merge by multiplication.-/
+/-- Adjacent one-variable polynomials in the same actual generator merge by multiplication.
+@isnad1 id=eq.0h9v.s8.ddf81b53cca9 from=translated src=- shape=bcfc3db3 vocab=a9b45dfc
+-/
 theorem polynomialWordProduct_merge (X : ι → A) (l r : List (ι×Polynomial K))
     (i : ι) (P Q : Polynomial K) :
     polynomialWordProduct X (l++(i,P)::(i,Q)::r)=
@@ -49,7 +51,9 @@ theorem polynomialWordProduct_merge (X : ι → A) (l r : List (ι×Polynomial K
   simp only [polynomialWordProduct,List.map_append,List.map_cons,List.prod_append,
     List.prod_cons,map_mul,mul_assoc]
 
-/-- A genuinely constant polynomial contributes its scalar factor and removes that position from the ordered moment.-/
+/-- A genuinely constant polynomial contributes its scalar factor and removes that position from the ordered moment.
+@isnad1 id=eq.2h8v.s8.d9bdd4c7f71b from=translated src=- shape=350b9626 vocab=85572cae
+-/
 theorem polynomialWordMoment_constant (φ : A →ₗ[K] K) (X : ι → A)
     (l : List (ι×Polynomial K)) (j : ℕ) (hj : j<l.length) (c : K)
     (hc : (l[j]).2=Polynomial.C c) :
@@ -73,7 +77,9 @@ def polynomialProductMoment (φ : A →ₗ[K] K) (X : ι → A) {m : ℕ}
   φ.compMultilinearMap ((MultilinearMap.mkPiAlgebraFin K m A).compLinearMap
     (fun j => (Polynomial.aeval (X (color j))).toLinearMap))
 
-/-- The multilinear polynomial-product moment is the literal ordered colored-word moment.-/
+/-- The multilinear polynomial-product moment is the literal ordered colored-word moment.
+@isnad1 id=eq.0h8v.s8.029b7fa28651 from=translated src=- shape=28ff6e4c vocab=ab3dc885
+-/
 theorem polynomialProductMoment_apply (φ : A →ₗ[K] K) (X : ι → A) {m : ℕ}
     (color : Fin m → ι) (P : Fin m → Polynomial K) :
     polynomialProductMoment φ X color P=
@@ -81,7 +87,9 @@ theorem polynomialProductMoment_apply (φ : A →ₗ[K] K) (X : ι → A) {m : �
   change φ ((List.ofFn fun j => Polynomial.aeval (X (color j)) (P j)).prod)=_
   simp only [polynomialWordMoment,polynomialWordProduct,List.map_ofFn,Function.comp_def]
 
-/-- Freeness and the genuine one-variable polynomial moments determine all ordered mixed moments.-/
+/-- Freeness and the genuine one-variable polynomial moments determine all ordered mixed moments.
+@isnad1 id=eq.5h9v.s9.eafdb5ae6288 from=translated src=- shape=f07cbda1 vocab=59eac04b
+-/
 theorem polynomialWordMoment_eq_of_free
     (φ : A →ₗ[K] K) (ψ : B →ₗ[K] K) (X : ι → A) (Y : ι → B)
     (hφ : φ 1=1) (hψ : ψ 1=1) (hX : IsFreeFamily φ X) (hY : IsFreeFamily ψ Y)
@@ -172,7 +180,9 @@ theorem polynomialWordMoment_eq_of_free
         exact hh
   exact hall l.length l rfl
 
-/-- Genuine powers determine the actual one-variable polynomial expectation.-/
+/-- Genuine powers determine the actual one-variable polynomial expectation.
+@isnad1 id=eq.1h8v.s9.867e81171654 from=translated src=- shape=fbcd49c7 vocab=91ef0ead
+-/
 theorem aeval_moment_eq_of_powers (φ : A →ₗ[K] K) (ψ : B →ₗ[K] K)
     (x : A) (y : B) (hpow : ∀ n : ℕ, φ (x^n)=ψ (y^n)) (P : Polynomial K) :
     φ (Polynomial.aeval x P)=ψ (Polynomial.aeval y P) := by
@@ -182,7 +192,9 @@ theorem aeval_moment_eq_of_powers (φ : A →ₗ[K] K) (ψ : B →ₗ[K] K)
     simp only [Polynomial.aeval_monomial,Algebra.algebraMap_eq_smul_one,smul_mul_assoc,
       one_mul,map_smul,hpow]
 
-/-- Free families with the same one-variable moments have the same actual free-algebra polynomial expectations.-/
+/-- Free families with the same one-variable moments have the same actual free-algebra polynomial expectations.
+@isnad1 id=eq.5h9v.s10.3c8adff44ff7 from=translated src=- shape=4f2a8f18 vocab=3bb3404e
+-/
 theorem freeAlgebra_lift_moment_eq_of_free
     (φ : A →ₗ[K] K) (ψ : B →ₗ[K] K) (X : ι → A) (Y : ι → B)
     (hφ : φ 1=1) (hψ : ψ 1=1) (hX : IsFreeFamily φ X) (hY : IsFreeFamily ψ Y)

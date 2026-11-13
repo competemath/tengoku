@@ -21,7 +21,9 @@ namespace NLAlib
 variable {𝕜 : Type*} [Field 𝕜]
 
 /-- Pairing a monic orthogonal polynomial with any other monic polynomial of the
-same degree gives its squared bilinear norm.-/
+same degree gives its squared bilinear norm.
+@isnad1 id=eq.3h5v.s9.69f07cde32e1 from=translated src=- shape=60ba87b2 vocab=1269775c
+-/
 theorem IsMonicOrthogonalPolynomial.functional_mul_eq_sq_of_monic
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {p q : 𝕜[X]}
     (hp : IsMonicOrthogonalPolynomial L n p) (hq : q.Monic) (hqn : q.natDegree = n) :
@@ -40,7 +42,9 @@ theorem IsMonicOrthogonalPolynomial.functional_mul_eq_sq_of_monic
 moment systems through the next order are nonsingular. In a positive measure this
 includes the terminal polynomial, and the coefficient at order zero is zero.
 Source: Gautschi (2004), Theorem 1.27.
-atlas: monic-orthogonal-recurrence (partial), formal-orthogonal-polynomials (partial)-/
+atlas: monic-orthogonal-recurrence (partial), formal-orthogonal-polynomials (partial)
+@isnad1 id=eq.1h3v.s9.aed6bc311836 from=translated src=- shape=e03515e0 vocab=7a138ad9
+-/
 theorem monicOrthogonalPolynomial_succ_eq
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ)
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) :

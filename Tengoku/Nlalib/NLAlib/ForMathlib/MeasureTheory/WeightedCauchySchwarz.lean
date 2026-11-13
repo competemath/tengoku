@@ -17,7 +17,9 @@ noncomputable section
 namespace MeasureTheory
 
 /-- Cauchy--Schwarz for two real functions, expressed with their actual square
-integrals and product integral. Source: the finite quadratic discriminant proof.-/
+integrals and product integral. Source: the finite quadratic discriminant proof.
+@isnad1 id=le.3h4v.s8.b3e9d18b6d43 from=translated src=- shape=d68650d0 vocab=bbd3bda1
+-/
 theorem sq_integral_mul_le_integral_sq_mul_integral_sq
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {f g : α → ℝ}
     (hfg : Integrable (fun x => f x * g x) μ)
@@ -41,7 +43,9 @@ theorem sq_integral_mul_le_integral_sq_mul_integral_sq
   nlinarith
 
 /-- The weighted square of an integral is bounded by the weighted square norm
-times the total weight. Source: Cauchy--Schwarz, finite quadratic proof.-/
+times the total weight. Source: Cauchy--Schwarz, finite quadratic proof.
+@isnad1 id=le.4h4v.s8.d7adfbf6c7af from=translated src=- shape=d0dac014 vocab=bbd3bda1
+-/
 theorem sq_integral_mul_le_integral_sq_mul_mul_integral
     {α : Type*} [MeasurableSpace α] {μ : Measure α} {f w : α → ℝ}
     (hw : ∀ x, 0 ≤ w x) (hf : Integrable (fun x => f x * w x) μ)

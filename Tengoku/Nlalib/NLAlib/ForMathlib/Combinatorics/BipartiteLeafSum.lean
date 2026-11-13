@@ -60,7 +60,9 @@ namespace Fintype
 
 /-- Occurrence regrouping bridge: the product over occurrences of a function
 `z` of the occurrence kind equals the product over kinds of `z e` raised to the
-number of occurrences of kind `e`.-/
+number of occurrences of kind `e`.
+@isnad1 id=eq.0h4v.s6.f9ba7c8bf8af from=translated src=- shape=03d60e27 vocab=25b4166c
+-/
 theorem prod_fiber_pow {R E : Type*} [Fintype R] [DecidableEq E] [Fintype E]
     (idx : R → E) (z : E → ℝ) :
     (∏ r : R, z (idx r)) =
@@ -86,7 +88,9 @@ variable {U V I J : Type*} [Fintype U] [Fintype V] [Fintype I] [Fintype J]
 equals summing over the label of the new leaf and the labelings of `U`, with the
 leaf factor `w (x none) (y v)` extracted from `F`. This is the row-leaf
 elimination identity of the bipartite partition-sum argument; it holds with no
-sign assumption and for empty index types.-/
+sign assumption and for empty index types.
+@isnad1 id=eq.0h7v.s7.770fd70c969a from=translated src=- shape=35b32958 vocab=5ec07689
+-/
 theorem sum_row_leaf_mul_eq_sum_column_sum_mul (v : V) (w : I → J → ℝ)
     (F : (U → I) → (V → J) → ℝ) :
     (∑ x : Option U → I, ∑ y : V → J,
@@ -121,7 +125,9 @@ theorem sum_row_leaf_mul_eq_sum_column_sum_mul (v : V) (w : I → J → ℝ)
 
 /-- Row-leaf elimination estimate: if `F` is nonnegative and every column sum of
 `w` is at most `a`, then summing over the label of the new leaf costs at most the
-factor `a`.-/
+factor `a`.
+@isnad1 id=le.2h8v.s7.4a43a49d1413 from=translated src=- shape=d0f0aca7 vocab=90f94221
+-/
 theorem sum_row_leaf_mul_le_mul_sum (v : V) (a : ℝ) (w : I → J → ℝ)
     (F : (U → I) → (V → J) → ℝ)
     (hcol : ∀ j : J, (∑ i : I, w i j) ≤ a)
@@ -150,7 +156,9 @@ theorem sum_row_leaf_mul_le_mul_sum (v : V) (a : ℝ) (w : I → J → ℝ)
 /-- Column-leaf analogue of `sum_row_leaf_mul_eq_sum_column_sum_mul`: the new leaf is a column
 (`Option V`) whose label is summed out, leaving the row sum `∑ j, w (x u) j`.
 Derived from the row identity by swapping the roles of rows (`U`, `I`) and
-columns (`V`, `J`) and flipping `w`.-/
+columns (`V`, `J`) and flipping `w`.
+@isnad1 id=eq.0h7v.s7.b47b0e1617e9 from=translated src=- shape=5efaceae vocab=5ec07689
+-/
 theorem sum_column_leaf_mul_eq_sum_row_sum_mul (u : U) (w : I → J → ℝ)
     (F : (U → I) → (V → J) → ℝ) :
     (∑ x : U → I, ∑ y : Option V → J,
@@ -170,7 +178,9 @@ theorem sum_column_leaf_mul_eq_sum_row_sum_mul (u : U) (w : I → J → ℝ)
 
 /-- Column-leaf elimination estimate: if `F` is nonnegative and every row sum of
 `w` is at most `a`, then summing over the label of the new column leaf costs at
-most the factor `a`.-/
+most the factor `a`.
+@isnad1 id=le.2h8v.s7.7e393e355ec9 from=translated src=- shape=8447a19f vocab=90f94221
+-/
 theorem sum_column_leaf_mul_le_mul_sum (u : U) (a : ℝ) (w : I → J → ℝ)
     (F : (U → I) → (V → J) → ℝ)
     (hrow : ∀ i : I, (∑ j : J, w i j) ≤ a)
@@ -199,7 +209,9 @@ theorem sum_column_leaf_mul_le_mul_sum (u : U) (a : ℝ) (w : I → J → ℝ)
 /-- Off-tree factor cap: for a nonnegative weight array `w` whose entries are at
 most `s`, the product of the `w`-weights over any finite set `A` of edges (with
 arbitrary labelings `x`, `y`) is at most `s ^ A.card`. This is the factor
-removed for each non-tree edge before leaf elimination.-/
+removed for each non-tree edge before leaf elimination.
+@isnad1 id=le.2h12v.s6.d40430cc1976 from=translated src=- shape=e2d71c9c vocab=69536f4e
+-/
 theorem prod_bipartite_edge_weight_le_pow {U V I J E : Type*}
     {w : I → J → ℝ} {s : ℝ}
     (hwnn : ∀ i j, 0 ≤ w i j) (hw : ∀ i j, w i j ≤ s)
@@ -216,7 +228,9 @@ theorem prod_bipartite_edge_weight_le_pow {U V I J E : Type*}
 
 /-- Split off-tree bound: if the edge set is the disjoint union `T ∪ O` (tree
 edges `T` and off-tree edges `O`), the full product is at most the tree product
-times `s ^ O.card`. The labelings `x`, `y` remain unrestricted functions.-/
+times `s ^ O.card`. The labelings `x`, `y` remain unrestricted functions.
+@isnad1 id=le.4h13v.s7.5160bcaa9f75 from=translated src=- shape=97ecea53 vocab=5a52578c
+-/
 theorem prod_bipartite_edge_weight_le_prod_mul_pow {U V I J E : Type*}
     [Fintype E] [DecidableEq E]
     {w : I → J → ℝ} {s : ℝ}

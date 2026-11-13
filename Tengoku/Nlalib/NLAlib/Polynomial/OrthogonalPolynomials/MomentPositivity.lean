@@ -23,7 +23,9 @@ namespace NLAlib
 /-- The squared bilinear norm of a finite monomial expansion is its Hankel quadratic
 form. This identity holds over any field, without positivity or conjugation.
 Source: OF3, Gautschi (2004), Chapter 1.
-atlas: hankel-moment-positivity (partial)-/
+atlas: hankel-moment-positivity (partial)
+@isnad1 id=eq.0h4v.s9.5e0da9ff7500 from=translated src=- shape=34e3962e vocab=af4c41e9
+-/
 theorem functional_sum_monomial_sq_eq_dotProduct {𝕜 : Type*} [Field 𝕜]
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (c : Fin n → 𝕜) :
     L ((∑ i : Fin n, monomial i.val (c i)) ^ 2) = c ⬝ᵥ (hankelMomentMatrix L n *ᵥ c) := by
@@ -37,7 +39,9 @@ theorem functional_sum_monomial_sq_eq_dotProduct {𝕜 : Type*} [Field 𝕜]
   simp only [smul_eq_mul]
   ring_nf
 
-/-- Every real Hankel moment matrix is symmetric.-/
+/-- Every real Hankel moment matrix is symmetric.
+@isnad1 id=ishermit.0h2v.s6.063a6a8d4236 from=translated src=- shape=de15e5c5 vocab=3b2c9327
+-/
 theorem isHermitian_hankelMomentMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     (hankelMomentMatrix L n).IsHermitian := by
   ext i j
@@ -45,7 +49,9 @@ theorem isHermitian_hankelMomentMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
 
 /-- Every finite Hankel matrix of a positive real measure is PSD.
 Source: Gautschi (2004), Section 1.1, polynomial squared integral identity.
-atlas: hankel-moment-positivity (partial)-/
+atlas: hankel-moment-positivity (partial)
+@isnad1 id=possemid.1h2v.s4.093a3a8ca14a from=translated src=- shape=0bdd3928 vocab=c335fcc4
+-/
 theorem posSemidef_hankelMomentMatrix (μ : Measure ℝ) (hμ : HasPolynomialMoments μ) (n : ℕ) :
     (hankelMomentMatrix (polynomialIntegral μ hμ) n).PosSemidef := by
   apply Matrix.PosSemidef.of_dotProduct_mulVec_nonneg
@@ -57,7 +63,9 @@ theorem posSemidef_hankelMomentMatrix (μ : Measure ℝ) (hμ : HasPolynomialMom
   exact integral_nonneg (fun x => sq_nonneg _)
 
 /-- A real measure Hankel matrix is PD exactly when the squared integral form is
-positive on every nonzero polynomial of degree below its order.-/
+positive on every nonzero polynomial of degree below its order.
+@isnad1 id=iff.1h2v.s6.25e2e3dccc16 from=translated src=- shape=679d9df2 vocab=ead9acc8
+-/
 theorem posDef_hankelMomentMatrix_iff_integral_sq_eval_pos (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     (hankelMomentMatrix (polynomialIntegral μ hμ) n).PosDef ↔
@@ -94,7 +102,9 @@ theorem posDef_hankelMomentMatrix_iff_integral_sq_eval_pos (μ : Measure ℝ)
 
 /-- Hankel moment positive definiteness is exactly the support-cardinality condition,
 including the empty matrix and zero measure. Source: Gautschi (2004), Section 1.1.
-atlas: hankel-moment-positivity (partial), orthogonal-polynomials-measure-def (partial)-/
+atlas: hankel-moment-positivity (partial), orthogonal-polynomials-measure-def (partial)
+@isnad1 id=iff.1h2v.s5.02dfa2286742 from=translated src=- shape=d2ad64c8 vocab=3fddd8a3
+-/
 theorem posDef_hankelMomentMatrix_iff_le_support_encard (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     (hankelMomentMatrix (polynomialIntegral μ hμ) n).PosDef ↔
@@ -102,7 +112,9 @@ theorem posDef_hankelMomentMatrix_iff_le_support_encard (μ : Measure ℝ)
   exact (posDef_hankelMomentMatrix_iff_integral_sq_eval_pos μ hμ n).trans
     (integral_sq_eval_pos_iff_le_support_encard μ hμ n)
 
-/-- Positive support nondegeneracy makes the finite Hankel moment determinant nonzero.-/
+/-- Positive support nondegeneracy makes the finite Hankel moment determinant nonzero.
+@isnad1 id=ne.2h2v.s5.6fea2ecbeaca from=translated src=- shape=c0bac890 vocab=7d964657
+-/
 theorem hankelMomentDet_ne_zero_of_le_support_encard (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) :
     hankelMomentDet (polynomialIntegral μ hμ) n ≠ 0 := by
@@ -110,7 +122,9 @@ theorem hankelMomentDet_ne_zero_of_le_support_encard (μ : Measure ℝ)
   exact isUnit_iff_ne_zero.mp (Matrix.isUnit_iff_isUnit_det _ |>.mp hpos.isUnit)
 
 /-- For positive-measure Hankel matrices, positive definiteness is equivalent simply
-to a positive determinant, since positive semidefiniteness is already known.-/
+to a positive determinant, since positive semidefiniteness is already known.
+@isnad1 id=iff.1h2v.s5.07ad6387bff9 from=translated src=- shape=5746c2b2 vocab=738fd61f
+-/
 theorem posDef_hankelMomentMatrix_iff_det_pos (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     (hankelMomentMatrix (polynomialIntegral μ hμ) n).PosDef ↔
@@ -121,7 +135,9 @@ theorem posDef_hankelMomentMatrix_iff_det_pos (μ : Measure ℝ)
     exact (posSemidef_hankelMomentMatrix μ hμ n).posDef_iff_det_ne_zero.mpr h.ne'
 
 /-- Hankel moment determinants are positive exactly up to the support-cardinality
-threshold. The empty determinant remains one for the zero measure.-/
+threshold. The empty determinant remains one for the zero measure.
+@isnad1 id=iff.1h2v.s5.cb167b721eeb from=translated src=- shape=a945f7d8 vocab=646ba025
+-/
 theorem hankelMomentDet_pos_iff_le_support_encard (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     0 < hankelMomentDet (polynomialIntegral μ hμ) n ↔
@@ -132,7 +148,9 @@ theorem hankelMomentDet_pos_iff_le_support_encard (μ : Measure ℝ)
 /-- The leading Hankel moment determinants through order `n` are all positive exactly
 when the order-`n` moment form is positive definite; this also includes order zero.
 Source: Gautschi (2004), Chapter 1, Hankel positivity criterion.
-atlas: hankel-moment-positivity (partial)-/
+atlas: hankel-moment-positivity (partial)
+@isnad1 id=iff.1h2v.s5.2369980ae256 from=translated src=- shape=99ba6714 vocab=e9dd6d7e
+-/
 theorem posDef_hankelMomentMatrix_iff_leading_dets_pos (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (n : ℕ) :
     (hankelMomentMatrix (polynomialIntegral μ hμ) n).PosDef ↔

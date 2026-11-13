@@ -18,7 +18,9 @@ namespace NLAlib
 nonzero vectors `x,y` with both images of `x` scalar multiples of `y`.
 If the second map is singular choose a kernel vector; otherwise use an
 eigenvector of its inverse times the first map. Horn–Johnson 2013,
-Theorem 2.6.1; supports the singular-pencil QZ form.-/
+Theorem 2.6.1; supports the singular-pencil QZ form.
+@isnad1 id=ex.1h4v.s8.f59b612ab0b1 from=translated src=- shape=dfb7e938 vocab=38ef6837
+-/
 theorem exists_nonzero_pencil_image_line {E F : Type*}
     [AddCommGroup E] [Module ℂ E] [FiniteDimensional ℂ E] [Nontrivial E]
     [AddCommGroup F] [Module ℂ F] [FiniteDimensional ℂ F] [Nontrivial F]

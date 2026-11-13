@@ -24,7 +24,9 @@ respective graded orthonormal Krylov bases. This follows by restricting the Lanc
 basis of the symmetric dilation to the even and odd vectors.
 Source: Golub--Van Loan (2013) [`gvl13`], Section 10.4.1; Paige--Saunders (1982), Section 3.
 atlas: golub-kahan-recurrence (partial)
-atlas: golub-kahan-bidiagonalization (partial)-/
+atlas: golub-kahan-bidiagonalization (partial)
+@isnad1 id=and.1h5v.s7.b7bb7918efbc from=translated src=- shape=db5f5a78 vocab=12a09d5b
+-/
 theorem isGradedKrylovBasis_golubKahanU_V {A : Matrix m n ℝ} {b : m → ℝ} {k : ℕ}
     (h : GolubKahanSucceeds A b k) :
     IsGradedKrylovBasis (A * Aᵀ) b (golubKahanU A b (k + 1)) ∧
@@ -37,7 +39,9 @@ Krylov grades are at least `k + 1`. In particular, `b = 0` and `Aᵀb = 0` fail 
 initialization. The converse uses the two independent power families in the disjoint
 coordinate blocks of the dilation, followed by native Lanczos breakdown.
 Source: Golub--Van Loan (2013) [`gvl13`], Section 10.4.1; Paige--Saunders (1982), Section 3.
-atlas: golub-kahan-recurrence (partial)-/
+atlas: golub-kahan-recurrence (partial)
+@isnad1 id=iff.0h5v.s7.14bbe8bd3de9 from=translated src=- shape=0781f90e vocab=2d1d3fd9
+-/
 theorem golubKahanSucceeds_iff (A : Matrix m n ℝ) (b : m → ℝ) (k : ℕ) :
     GolubKahanSucceeds A b k ↔
       k + 1 ≤ krylovGrade (A * Aᵀ) b ∧ k + 1 ≤ krylovGrade (Aᵀ * A) (Aᵀ *ᵥ b) := by
@@ -67,7 +71,9 @@ omit [DecidableEq m] [DecidableEq n] in
 /-- The compression has the recurrence's `alpha` on the diagonal and `beta` on
 its first subdiagonal. The underlying identities also hold after breakdown.
 Source: Golub--Van Loan (2013) [`gvl13`], Algorithm 10.4.1 and equation (10.4.4).
-atlas: golub-kahan-recurrence (partial)-/
+atlas: golub-kahan-recurrence (partial)
+@isnad1 id=and.1h5v.s7.fb16808bf785 from=translated src=- shape=92cb76f8 vocab=9e5b60f5
+-/
 theorem dotProduct_golubKahan_eq {A : Matrix m n ℝ} {b : m → ℝ} {k : ℕ}
     (_h : GolubKahanSucceeds A b k) :
     (∀ j ≤ k, (golubKahanRecurrence A b j).u ⬝ᵥ (A *ᵥ (golubKahanRecurrence A b j).v) =

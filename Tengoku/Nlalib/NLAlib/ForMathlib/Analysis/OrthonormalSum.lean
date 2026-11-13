@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- The orthogonal direct sum of two supplied bases is an orthonormal basis
 of the ambient space, with the exact original vectors on each summand.
-Horn–Johnson 2013, Section 2.1; real Schur and QZ block-completion helper.-/
+Horn–Johnson 2013, Section 2.1; real Schur and QZ block-completion helper.
+@isnad1 id=ex.0h7v.s10.da04e22746e1 from=translated src=- shape=4cfe96d9 vocab=c65169db
+-/
 theorem exists_orthonormalBasis_sum {𝕜 E ι κ : Type*} [RCLike 𝕜]
     [NormedAddCommGroup E] [InnerProductSpace 𝕜 E] [FiniteDimensional 𝕜 E]
     [Fintype ι] [Fintype κ] (P : Submodule 𝕜 E)

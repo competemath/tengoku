@@ -39,7 +39,9 @@ private theorem coeff_prod_one_add_X_indicator (S J : Finset n) :
     simp [h, Nat.choose_eq_zero_of_lt hlt]
 
 /-- The top possible coefficient of `det (I + X M)` is `det M`, including
-the empty-dimensional determinant.-/
+the empty-dimensional determinant.
+@isnad1 id=eq.0h3v.s8.2b82e3d13843 from=translated src=- shape=b614be68 vocab=446e3735
+-/
 theorem coeff_det_one_add_X_smul_card (M : Matrix n n R) :
     (det (1 + (X : R[X]) • M.map C)).coeff (Fintype.card n) = M.det := by
   classical
@@ -76,7 +78,9 @@ private theorem coeff_det_one_add_diagonal_indicator (K : Matrix n n R) (J : Fin
 
 /-- If `K (I + L) = L`, the sum of all principal minors of `L` whose index
 set contains `J` is `det (I + L)` times the principal `J` minor of `K`.
-For `K = L (I + L)⁻¹` this is the finite L-ensemble inclusion identity.-/
+For `K = L (I + L)⁻¹` this is the finite L-ensemble inclusion identity.
+@isnad1 id=eq.1h5v.s9.75bca8fb5e82 from=translated src=- shape=1fc99365 vocab=988c4682
+-/
 theorem sum_det_principal_minors_superset (L K : Matrix n n R)
     (hK : K * (1 + L) = L) (J : Finset n) :
     (∑ S : Finset n,

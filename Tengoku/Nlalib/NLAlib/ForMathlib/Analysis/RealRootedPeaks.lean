@@ -18,7 +18,9 @@ open Polynomial Real Set
 namespace NLAlib
 
 /-- The Laguerre expression is additive under products with squared factors.
-Source: the product rule; helper for interval Lebesgue peaks.-/
+Source: the product rule; helper for interval Lebesgue peaks.
+@isnad1 id=eq.0h3v.s10.ba936c8740cf from=translated src=- shape=2f4b3c61 vocab=f52098cc
+-/
 theorem polynomial_laguerre_mul (p q : ℝ[X]) (x : ℝ) :
     (p * q).derivative.eval x ^ 2 - (p * q).eval x * (p * q).derivative.derivative.eval x =
       q.eval x ^ 2 * (p.derivative.eval x ^ 2 - p.eval x * p.derivative.derivative.eval x) +
@@ -57,7 +59,9 @@ private theorem laguerre_prod_pos (m : Multiset ℝ) (hm : m ≠ 0) (x : ℝ)
 
 /-- A nonconstant polynomial that splits over the reals satisfies the strict
 Laguerre inequality at every point where it does not vanish.
-Source: products of real linear factors; focused reroutes, interval peak argument.-/
+Source: products of real linear factors; focused reroutes, interval peak argument.
+@isnad1 id=lt.3h2v.s9.9458045e3a9e from=translated src=- shape=12442585 vocab=6000fd0f
+-/
 theorem polynomial_laguerre_pos_of_splits {p : ℝ[X]} (hp : p.Splits)
     (hpc : p.derivative ≠ 0) {x : ℝ} (hx : p.eval x ≠ 0) :
     0 < p.derivative.eval x ^ 2 - p.eval x * p.derivative.derivative.eval x := by
@@ -82,7 +86,9 @@ theorem polynomial_laguerre_pos_of_splits {p : ℝ[X]} (hp : p.Splits)
 
 /-- Every critical point of a positive nonconstant real-rooted polynomial
 has strictly negative second derivative.
-Source: strict Laguerre inequality; focused reroutes, interval peak argument.-/
+Source: strict Laguerre inequality; focused reroutes, interval peak argument.
+@isnad1 id=lt.4h2v.s8.e2b7bfc47da7 from=translated src=- shape=7562492f vocab=5c8fc548
+-/
 theorem polynomial_second_derivative_neg_of_splits {p : ℝ[X]} (hp : p.Splits)
     (hpc : p.derivative ≠ 0) {x : ℝ} (hx : 0 < p.eval x) (hcrit : p.derivative.eval x = 0) :
     p.derivative.derivative.eval x < 0 := by
@@ -93,7 +99,9 @@ theorem polynomial_second_derivative_neg_of_splits {p : ℝ[X]} (hp : p.Splits)
 /-- A positive nonconstant real-rooted polynomial has strictly decreasing
 logarithmic derivative on every root-free interval.
 Source: strict Laguerre inequality and the mean value theorem;
-focused reroutes, interval peak uniqueness.-/
+focused reroutes, interval peak uniqueness.
+@isnad1 id=strictan.3h3v.s8.1204dcdb452b from=translated src=- shape=4e8b4957 vocab=30bca607
+-/
 theorem strictAntiOn_polynomial_logDeriv_of_splits {p : ℝ[X]} (hp : p.Splits)
     (hpc : p.derivative ≠ 0) {a b : ℝ} (hpos : ∀ x ∈ Ioo a b, 0 < p.eval x) :
     StrictAntiOn (fun x => p.derivative.eval x / p.eval x) (Ioo a b) := by
@@ -121,7 +129,9 @@ theorem eq_of_polynomial_critical_of_splits {p : ℝ[X]} (hp : p.Splits)
 /-- A real polynomial whose degree exceeds its known distinct real roots by
 at most one splits over the reals.
 Source: division by the root product leaves a polynomial of degree at most one;
-helper for the actual interpolation gap polynomials.-/
+helper for the actual interpolation gap polynomials.
+@isnad1 id=splits.3h2v.s6.3bcf04a19f2f from=translated src=- shape=03037933 vocab=cf6a14ce
+-/
 theorem polynomial_splits_of_natDegree_le_card_add_one {p : ℝ[X]} (hp : p ≠ 0)
     (s : Finset ℝ) (hs : ∀ r ∈ s, p.eval r = 0) (hdeg : p.natDegree ≤ s.card + 1) : p.Splits := by
   let q : ℝ[X] := ∏ r ∈ s, (X - C r)

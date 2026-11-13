@@ -34,7 +34,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 /-- The characteristic polynomial of a Lanczos Jacobi matrix satisfies the
 general-measure monic orthogonality specification. The last polynomial at
 finite-support termination is included. Source: Gautschi (2004), Theorem 1.27.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=ismonico.1h5v.s6.baaf9c363e26 from=translated src=- shape=c8a48542 vocab=5f034558
+-/
 theorem isMonicOrthogonalPolynomial_charpoly_T (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) :
     IsMonicOrthogonalPolynomial
@@ -48,7 +50,9 @@ theorem isMonicOrthogonalPolynomial_charpoly_T (D : LanczosDecomp A b q)
 /-- The finite-moment monic polynomial of a spectral measure is exactly the
 characteristic polynomial of its Lanczos compression, including termination.
 Source: Gautschi (2004), Theorem 1.27; operator derivations OP4.
-atlas: orthogonal-polynomials-measure-def (partial), orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial), orthogonal-polynomial-zeros (partial)
+@isnad1 id=eq.1h5v.s6.0b71e3a79c0f from=translated src=- shape=780e1512 vocab=264f5a2f
+-/
 theorem monicOrthogonalPolynomial_spectralMeasure_eq_charpoly_T
     (D : LanczosDecomp A b q) (hA : A.IsHermitian) :
     monicOrthogonalPolynomial
@@ -91,7 +95,9 @@ private theorem spectral_norm_pos (D : LanczosDecomp A b q)
 /-- The actual Lanczos compression and the canonical moment Jacobi matrix have
 the same sorted spectrum, independently of the basis signs.
 Source: Gautschi (2004), Theorem 1.27.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=eq.1h5v.s6.5e3d088838c7 from=translated src=- shape=47df263d vocab=a77e9b21
+-/
 theorem eigenvalues₀_T_eq_orthogonalPolynomialJacobiMatrix (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) :
     (D.isHermitian_T hA).eigenvalues₀ =
@@ -104,7 +110,9 @@ theorem eigenvalues₀_T_eq_orthogonalPolynomialJacobiMatrix (D : LanczosDecomp 
 
 /-- Consecutive actual Lanczos compressions strictly interlace before breakdown.
 Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)-/
+atlas: orthogonal-polynomial-zeros (partial), jacobi-matrix-identities (partial)
+@isnad1 id=and.1h6v.s8.411c3e26d017 from=translated src=- shape=76c4aafe vocab=7373a64b
+-/
 theorem eigenvalues₀_restrict_T_strict_interlacing {q : ℕ}
     (D : LanczosDecomp A b (q + 1)) (hA : A.IsHermitian) (i : Fin q) :
     (D.isHermitian_T hA).eigenvalues₀ (Fin.cast (Fintype.card_fin (q + 1)).symm i.succ) <
@@ -121,7 +129,9 @@ theorem eigenvalues₀_restrict_T_strict_interlacing {q : ℕ}
 /-- Every distinct-node rule matching the first `2q` actual matrix moments is
 the Lanczos Gauss rule, up to permutation. This includes exact grade termination.
 Source: Gautschi (2004), Gauss-rule characterization; operator derivations AQ2.
-atlas: quadrature-exactness-characterisation (partial)-/
+atlas: quadrature-exactness-characterisation (partial)
+@isnad1 id=ex.4h7v.s9.b687396771db from=translated src=- shape=00e7ce32 vocab=090e4f30
+-/
 theorem rule_eq_up_to_permutation_of_moments (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (v w : Fin q → ℝ) (hv : Function.Injective v)
     (hm : ∀ k < 2 * q, b ⬝ᵥ ((A ^ k) *ᵥ b) = ∑ i, w i * v i ^ k) :

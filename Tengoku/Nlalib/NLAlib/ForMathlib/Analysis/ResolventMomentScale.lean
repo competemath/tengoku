@@ -22,7 +22,9 @@ namespace Real
 
 /-- The two actual sub-Gaussian moment and realization thresholds have the
 source square-root scale. Zero variance and zero height are included.
-Source: arXiv:2201.05142v3, Lemma 7.3 (scalar helper).-/
+Source: arXiv:2201.05142v3, Lemma 7.3 (scalar helper).
+@isnad1 id=le.2h3v.s7.a89adb0fe0fd from=translated src=- shape=d22853bd vocab=12b9bc2f
+-/
 theorem gaussian_resolvent_moment_fluctuations_le {σ p : ℝ}
     (hσ : 0 ≤ σ) (hp : 0 ≤ p) (η : ℝ) :
     sqrt (4*(σ^2*(η⁻¹)^4)*p)+sqrt (σ^2*(η⁻¹)^4)*sqrt (2*p) ≤
@@ -46,7 +48,9 @@ theorem gaussian_resolvent_moment_fluctuations_le {σ p : ℝ}
 
 /-- The square-root mixed variance term is bounded by the spectral scale
 using its linear and cubic defining inequalities.
-Source: arXiv:2201.05142v3, Proposition 7.7 (scalar helper).-/
+Source: arXiv:2201.05142v3, Proposition 7.7 (scalar helper).
+@isnad1 id=le.6h4v.s7.392bbb6ec9e1 from=translated src=- shape=daf0841e vocab=469900d1
+-/
 theorem mixed_resolvent_scale_le_sq {R σ p δ : ℝ}
     (hR : 0 ≤ R) (hσ : 0 ≤ σ) (hp : 0 ≤ p) (hδ : 0 ≤ δ)
     (hRp : R*p ≤ δ) (hcube : R*σ^2*p^2 ≤ δ^3) :
@@ -63,7 +67,9 @@ theorem mixed_resolvent_scale_le_sq {R σ p δ : ℝ}
 
 /-- The explicit resolvent variance and gamma budgets have uniformly bounded
 normalized size once their original scalar components are bounded.
-Source: arXiv:2201.05142v3, Lemma 7.5 (scalar helper).-/
+Source: arXiv:2201.05142v3, Lemma 7.5 (scalar helper).
+@isnad1 id=other.11h8v.s9.89197279145b from=translated src=- shape=b1702e33 vocab=eb3a9765
+-/
 theorem resolvent_variance_and_gamma_scale_le
     {R E Q v ℓ p δ η : ℝ} (hQ : 0 ≤ Q) (hp : 0 ≤ p)
     (hδ : 0 ≤ δ) (hη : 0 < η) (hδη : δ ≤ η)
@@ -129,7 +135,9 @@ theorem resolvent_variance_and_gamma_scale_le
 /-- The original bilinear, matrix and radius scale inequalities imply the
 required bounds on the literal resolvent variance and gamma expressions.
 Source: arXiv:2201.05142v3, Lemma 7.5 and Proposition 7.7.
-atlas: independent-sum-spectrum-universality (partial)-/
+atlas: independent-sum-spectrum-universality (partial)
+@isnad1 id=other.14h9v.s9.d0f80bf7301a from=translated src=- shape=e18f6c65 vocab=eb3a9765
+-/
 theorem resolvent_variance_scale_le_of_source_parameters
     {R σ s E Q ℓ p δ η : ℝ} (hR : 0 ≤ R) (hσ : 0 ≤ σ) (hs : 0 ≤ s)
     (hp : 1 ≤ p) (hδ : 0 ≤ δ) (hη : 0 < η) (hδη : δ ≤ η)
@@ -180,7 +188,9 @@ theorem resolvent_variance_scale_le_of_source_parameters
 
 /-- The paired moment and concentration errors, the comparison remainder
 and the grid mesh fit one uniform reciprocal-square height bound.
-Source: arXiv:2201.05142v3, Proposition 7.7 (scalar helper).-/
+Source: arXiv:2201.05142v3, Proposition 7.7 (scalar helper).
+@isnad1 id=le.6h7v.s8.f97100cc546b from=translated src=- shape=468875b4 vocab=d44e7500
+-/
 theorem resolvent_grid_error_le_of_source_moment_budgets
     {B c p V δ η ε : ℝ} (hδ : 0 ≤ δ) (hη : 0 < η) (hε : ε ≤ δ)
     (hB : B*p ≤ 500*(δ/η^2)^2) (hc : c*p ≤ 22*(δ/η^2))
@@ -209,7 +219,9 @@ theorem resolvent_grid_error_le_of_source_moment_budgets
 
 /-- The actual rooted-moment comparison remainder has reciprocal-square
 height size at the linear and cubic source scales.
-Source: arXiv:2201.05142v3, Propositions 7.4 and 7.7 (scalar helper).-/
+Source: arXiv:2201.05142v3, Propositions 7.4 and 7.7 (scalar helper).
+@isnad1 id=le.8h6v.s8.bd94ce842ed9 from=translated src=- shape=8fd8d45d vocab=5c9d27ef
+-/
 theorem resolvent_comparison_remainder_le_of_source_parameters
     {R σ Q p δ η : ℝ} (hR : 0 ≤ R) (hp : 0 ≤ p)
     (hδ : 0 ≤ δ) (hη : 0 < η) (hδη : δ ≤ η) (hQ : Q ≤ σ^2)
@@ -239,7 +251,9 @@ theorem resolvent_comparison_remainder_le_of_source_parameters
 
 /-- A height above an explicit multiple of the spectral scale absorbs the
 computed reciprocal-square error into half the spectral-point resolvent.
-Source: arXiv:2201.05142v3, Lemma 7.1 (scalar helper).-/
+Source: arXiv:2201.05142v3, Lemma 7.1 (scalar helper).
+@isnad1 id=le.2h2v.s6.72ee13c6624c from=translated src=- shape=6fdc606a vocab=2c627975
+-/
 theorem resolvent_grid_error_le_inv_two_height
     {δ η : ℝ} (hη : 0 < η) (hheight : 160000*δ ≤ η) :
     80000*δ/η^2 ≤ (2*η)⁻¹ := by

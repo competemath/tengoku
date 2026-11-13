@@ -49,7 +49,9 @@ private theorem quadratic_coefficient_bound
 /-- A bounded continuous operator-valued random coefficient can be contracted
 quadratically with any L² finite real vector. No independence is needed for
 this integrability statement.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=integrab.4h10v.s11.94ce475c8beb from=translated src=- shape=a22da79f vocab=16128b9f
+-/
 theorem integrable_bilin_quadratic_of_memLp
     (D : Ω → κ → ℝ) (hD : MemLp D 2 P) (W : Ω → V) (hW : AEMeasurable W P)
     (T : V → (κ → ℝ) →L[ℝ] F) (hTc : Continuous T)
@@ -72,7 +74,9 @@ theorem integrable_bilin_quadratic_of_memLp
 /-- Independence factors a quadratic contraction into the actual second-moment
 tensor and the independent operator coefficient. Every integral is genuine:
 the vector is L² and the continuous operator field is uniformly bounded.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.5h10v.s11.8faa59094799 from=translated src=- shape=69b12733 vocab=1674caf8
+-/
 theorem integral_bilin_quadratic_eq_sum_of_indepFun
     (D : Ω → κ → ℝ) (hD : MemLp D 2 P) (W : Ω → V) (hW : AEMeasurable W P)
     (hDW : IndepFun D W P)

@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- Column `j` of a product is the matrix applied to column `j`: `(M N) e_j = M (N e_j)`.
 Stated over any non-unital non-associative semiring (covers `ℝ` and `ℂ`). Helper for
-`block-krylov-subspace` and `arnoldi-relation`.-/
+`block-krylov-subspace` and `arnoldi-relation`.
+@isnad1 id=eq.0h7v.s6.fbe10fb5ab64 from=translated src=- shape=e9f835e5 vocab=b4c8660d
+-/
 theorem col_mul_eq_mulVec_col {α : Type*} [NonUnitalNonAssocSemiring α] {m n s : Type*}
     [Fintype n] (M : Matrix m n α) (N : Matrix n s α) (j : s) :
     (M * N).col j = M *ᵥ N.col j := by
@@ -31,7 +33,9 @@ theorem col_mul_eq_mulVec_col {α : Type*} [NonUnitalNonAssocSemiring α] {m n s
 
 /-- Entries of a rectangular compression: `(Uᵀ A V)_{ij} = uᵢ ⬝ (A vⱼ)` for the columns `uᵢ`
 of `U` and `vⱼ` of `V` (the square case `U = V = Q` gives `(Qᵀ A Q)ᵢⱼ = qᵢᵀ A qⱼ`). Helper for
-`arnoldi-def` and `golub-kahan-bidiagonalization`.-/
+`arnoldi-def` and `golub-kahan-bidiagonalization`.
+@isnad1 id=eq.0h10v.s7.487ebb49467f from=translated src=- shape=01748f93 vocab=370ecc73
+-/
 theorem transpose_mul_mul_apply_eq_dotProduct {α : Type*} [CommSemiring α]
     {m n k l : Type*} [Fintype m] [Fintype n]
     (U : Matrix m k α) (A : Matrix m n α) (V : Matrix n l α) (i : k) (j : l) :

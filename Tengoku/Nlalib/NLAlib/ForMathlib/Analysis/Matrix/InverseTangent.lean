@@ -16,7 +16,9 @@ namespace Matrix
 variable {n 𝕜 : Type*} [Fintype n] [DecidableEq n] [RCLike 𝕜]
 
 /-- The exact native inverse tangent remainder at the second point is
-a quadratic sandwich of the first inverse.-/
+a quadratic sandwich of the first inverse.
+@isnad1 id=eq.2h4v.s9.aeca3912ea37 from=translated src=- shape=df4f3f30 vocab=97f819a3
+-/
 theorem inv_sub_inv_sub_tangent_eq (A B : Matrix n n 𝕜) (hA : IsUnit A) (hB : IsUnit B) :
     A⁻¹-B⁻¹-B⁻¹*(B-A)*B⁻¹=B⁻¹*(B-A)*A⁻¹*(B-A)*B⁻¹ := by
   have he : B⁻¹*(B-A)*A⁻¹=A⁻¹-B⁻¹ := by
@@ -33,7 +35,9 @@ theorem inv_sub_inv_sub_tangent_eq (A B : Matrix n n 𝕜) (hA : IsUnit A) (hB :
 
 /-- The inverse tangent lies below the actual inverse difference at two
 positive definite matrices. This is operator convexity in a form that
-retains the genuine noncommutative derivative.-/
+retains the genuine noncommutative derivative.
+@isnad1 id=le.2h4v.s8.3743201b8393 from=translated src=- shape=10ca7a02 vocab=7238fcdb
+-/
 theorem PosDef.inv_tangent_le {A B : Matrix n n 𝕜} (hA : A.PosDef) (hB : B.PosDef) :
     B⁻¹*(B-A)*B⁻¹≤A⁻¹-B⁻¹ := by
   apply Matrix.le_iff.mpr

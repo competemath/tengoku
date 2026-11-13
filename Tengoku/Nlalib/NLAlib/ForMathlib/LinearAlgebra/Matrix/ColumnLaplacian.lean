@@ -21,7 +21,9 @@ open Finset Matrix
 namespace NLAlib
 
 /-- Deleting the same row and column from a strict column Laplacian yields strict column
- diagonal dominance. Source: focused rederivations, `polyretry:peak-laplacian`.-/
+ diagonal dominance. Source: focused rederivations, `polyretry:peak-laplacian`.
+@isnad1 id=lt.2h4v.s7.af89e0ed0922 from=translated src=- shape=f40332fd vocab=9157148a
+-/
 theorem strictColumnLaplacian_minor_dominant {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)
@@ -47,7 +49,9 @@ theorem strictColumnLaplacian_minor_dominant {n : ℕ}
   linarith
 
 /-- Every deleted principal minor of a strict column Laplacian is nonsingular.
-Source: focused rederivations, `polyretry:peak-laplacian`, via Gershgorin.-/
+Source: focused rederivations, `polyretry:peak-laplacian`, via Gershgorin.
+@isnad1 id=ne.2h3v.s8.7db2cf1b79dc from=translated src=- shape=7885c199 vocab=24bdd286
+-/
 theorem strictColumnLaplacian_det_minor_ne_zero {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)
@@ -78,7 +82,9 @@ private theorem minorDiagonalHomotopy_det_ne_zero {n : ℕ}
   exact mul_le_of_le_one_left (norm_nonneg _) hs.2
 
 /-- The deleted principal cofactors of a strict column Laplacian have positive signed values.
-Source: focused rederivations, equation `polyretry:laplacian-cofactor`.-/
+Source: focused rederivations, equation `polyretry:laplacian-cofactor`.
+@isnad1 id=lt.2h3v.s8.d1928abbfc11 from=translated src=- shape=66014b72 vocab=cf9f6141
+-/
 theorem strictColumnLaplacian_signed_det_minor_pos {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)

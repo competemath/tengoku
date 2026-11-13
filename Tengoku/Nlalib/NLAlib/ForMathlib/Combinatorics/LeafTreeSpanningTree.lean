@@ -59,7 +59,9 @@ private theorem good_succ {G : SimpleGraph V} {n : ℕ}
 
 /-- Every finite connected graph with at least two vertices has a spanning
 tree built from one edge by leaf attachments, together with an equivalence
-between the tree vertices and the original vertices preserving all tree edges.-/
+between the tree vertices and the original vertices preserving all tree edges.
+@isnad1 id=ex.1h2v.s8.80afd6ad6bdd from=translated src=- shape=e221c210 vocab=eebe0091
+-/
 theorem exists_spanning_tree [Nontrivial V] (G : SimpleGraph V) (hG : G.Connected) :
     ∃ (n : ℕ) (t : LeafTree n) (f : Fin (n + 2) ≃ V),
       ∀ e ∈ t.edgeList, G.Adj (f e.1) (f e.2) := by
@@ -87,7 +89,9 @@ theorem exists_spanning_tree [Nontrivial V] (G : SimpleGraph V) (hG : G.Connecte
     omega
   exact ⟨n, t, Equiv.ofBijective f ⟨f.injective, hsurj⟩, ht⟩
 
-/-- The unordered edges in a leaf-grown tree are pairwise distinct.-/
+/-- The unordered edges in a leaf-grown tree are pairwise distinct.
+@isnad1 id=nodup.0h2v.s7.c6cccb246b4f from=translated src=- shape=ead19bf2 vocab=c8481423
+-/
 theorem edgeList_sym2_nodup {n : ℕ} (t : LeafTree n) :
     (t.edgeList.map (fun e => s(e.1, e.2))).Nodup := by
   induction t with

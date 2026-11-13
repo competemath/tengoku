@@ -52,7 +52,9 @@ private theorem directedOn_upperCuts {Ω : Type*} (X : Ω → ℝ)
     exact lt_of_le_of_lt (show (r : ℝ) ≤ q by exact_mod_cast h) hω
 
 /-- Upper-tail comparison is preserved by every continuous increasing real
-function, for random variables on arbitrary measure spaces.-/
+function, for random variables on arbitrary measure spaces.
+@isnad1 id=le.3h8v.s7.164a20435679 from=translated src=- shape=b3143124 vocab=adff2361
+-/
 theorem measure_lt_comp_le_of_measure_lt_le {Ω Ω' : Type*}
     [MeasurableSpace Ω] [MeasurableSpace Ω'] {μ : Measure Ω} {ν : Measure Ω'}
     (X : Ω → ℝ) (Y : Ω' → ℝ)
@@ -69,7 +71,9 @@ theorem measure_lt_comp_le_of_measure_lt_le {Ω Ω' : Type*}
     (hXY q).trans (le_iSup_of_le q (le_iSup_of_le hq le_rfl))
 
 /-- Continuous increasing nonnegative transforms have ordered nonnegative
-expectations when all scalar upper tails are ordered.-/
+expectations when all scalar upper tails are ordered.
+@isnad1 id=le.6h7v.s7.ccd17908f546 from=translated src=- shape=18a8391a vocab=14611fa4
+-/
 theorem lintegral_comp_le_of_measure_lt_le {Ω Ω' : Type*}
     [MeasurableSpace Ω] [MeasurableSpace Ω'] {μ : Measure Ω} {ν : Measure Ω'}
     {X : Ω → ℝ} {Y : Ω' → ℝ} (hX : AEMeasurable X μ) (hY : AEMeasurable Y ν)

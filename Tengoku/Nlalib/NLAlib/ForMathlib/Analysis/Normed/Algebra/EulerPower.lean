@@ -25,7 +25,9 @@ open scoped Topology
 variable {A : Type*} [NormedRing A] [NormOneClass A] [NormedAlgebra ℝ A]
 
 omit [NormedAlgebra ℝ A] in
-/-- A direct noncommutative power comparison on a common norm ball.-/
+/-- A direct noncommutative power comparison on a common norm ball.
+@isnad1 id=le.3h5v.s7.be8a3489a8fe from=translated src=- shape=1d648e0b vocab=e3ba8bb9
+-/
 theorem norm_pow_sub_pow_le_mul_pow (a b : A) {R : ℝ} (hR : 1 ≤ R)
     (ha : ‖a‖ ≤ R) (hb : ‖b‖ ≤ R) (n : ℕ) :
     ‖a ^ n - b ^ n‖ ≤ (n : ℝ) * R ^ n * ‖a - b‖ := by
@@ -52,7 +54,9 @@ theorem norm_pow_sub_pow_le_mul_pow (a b : A) {R : ℝ} (hR : 1 ≤ R)
 namespace NormedSpace
 
 /-- Equal first-order steps at the identity have asymptotically equal powers.
-No commutation between either sequence or their limit is assumed.-/
+No commutation between either sequence or their limit is assumed.
+@isnad1 id=tendsto.2h4v.s8.4fb5b957ebf0 from=translated src=- shape=df10668f vocab=b800467a
+-/
 theorem tendsto_pow_sub_pow_zero_of_tangent_eq {F G : ℕ → A} {H : A}
     (hF : Tendsto (fun n : ℕ => (n : ℝ) • (F n - 1)) atTop (𝓝 H))
     (hG : Tendsto (fun n : ℕ => (n : ℝ) • (G n - 1)) atTop (𝓝 H)) :
@@ -91,7 +95,9 @@ theorem tendsto_pow_sub_pow_zero_of_tangent_eq {F G : ℕ → A} {H : A}
 variable [CompleteSpace A]
 
 /-- First-order steps at the identity converge under repeated powers to the
-actual Banach-algebra exponential, by comparison with its derivative curve.-/
+actual Banach-algebra exponential, by comparison with its derivative curve.
+@isnad1 id=tendsto.1h3v.s7.0b31888591d6 from=translated src=- shape=ebc2d967 vocab=cd1f3ede
+-/
 theorem tendsto_pow_exp_of_tangent {F : ℕ → A} {H : A}
     (hF : Tendsto (fun n : ℕ => (n : ℝ) • (F n - 1)) atTop (𝓝 H)) :
     Tendsto (fun n => (F n) ^ n) atTop (𝓝 (NormedSpace.exp H)) := by
@@ -121,7 +127,9 @@ theorem tendsto_pow_exp_of_tangent {F : ℕ → A} {H : A}
 /-- The Euler power limit for any differentiable curve through the identity.
 Source: the elementary Banach-algebra product limit; interpolation limit
 prerequisite for Sutter--Berta--Tomamichel, Theorem 3.4.
-atlas: multivariate-golden-thompson (partial)-/
+atlas: multivariate-golden-thompson (partial)
+@isnad1 id=tendsto.2h3v.s7.643d7211bd37 from=translated src=- shape=849f3582 vocab=aacf168d
+-/
 theorem _root_.HasDerivAt.tendsto_pow_inv_nat {f : ℝ → A} {H : A}
     (hf : HasDerivAt f H 0) (hf0 : f 0 = 1) :
     Tendsto (fun n : ℕ => (f (n : ℝ)⁻¹) ^ n) atTop (𝓝 (NormedSpace.exp H)) := by

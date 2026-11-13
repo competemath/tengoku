@@ -21,7 +21,9 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
   [MeasurableSpace X] [MeasurableSpace Y] [BorelSpace X] [BorelSpace Y]
   [CompactSpace X] [T2Space Y]
 
-/-- The image of a compact fully supported measure under a continuous map has support exactly the range of the map.-/
+/-- The image of a compact fully supported measure under a continuous map has support exactly the range of the map.
+@isnad1 id=eq.2h4v.s6.df92e60780cc from=translated src=- shape=12adbcd5 vocab=dc08a860
+-/
 theorem support_map_eq_range_of_compact (μ : Measure X) (f : X → Y)
     (hf : Continuous f) (hfull : μ.support=Set.univ) :
     (μ.map f).support=Set.range f := by

@@ -15,7 +15,9 @@ namespace NLAlib
 /-- A commuting family has a common nonzero eigenvector inside any
 specified nonzero eigenspace of one designated member. The family may be
 infinite, and the eigenvalue may have any multiplicity. Horn–Johnson 2013,
-Theorem 2.3.3; the prescribed-order strengthening in derivations gen:simultaneous.-/
+Theorem 2.3.3; the prescribed-order strengthening in derivations gen:simultaneous.
+@isnad1 id=ex.2h6v.s8.859a3d6e3774 from=translated src=- shape=e69e43c9 vocab=87d31ebb
+-/
 theorem exists_common_eigenvector_with_eigenvalue
     {K E ι : Type*} [Field K] [IsAlgClosed K] [AddCommGroup E] [Module K E]
     [FiniteDimensional K E] (T : ι → Module.End K E)

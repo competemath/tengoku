@@ -11,7 +11,9 @@ finite sum of products of their real masses.
 namespace PMF
 
 /-- A finite probability-kernel composition has the usual real weighted-sum
-formula. All PMF masses are finite, so no additional finiteness premise is needed.-/
+formula. All PMF masses are finite, so no additional finiteness premise is needed.
+@isnad1 id=eq.0h5v.s6.9d6b61992455 from=translated src=- shape=6881cdf3 vocab=9e298f6d
+-/
 theorem toReal_bind_eq_sum {α β : Type*} [Fintype α] (p : PMF α)
     (q : α → PMF β) (b : β) :
     ((p.bind q) b).toReal = ∑ a, (p a).toReal * (q a b).toReal := by

@@ -28,7 +28,9 @@ variable {ι T Ω : Type*} [Fintype ι] [Nonempty T]
 /-- Actual independent copies bound the expected supremum of bounded
 continuous finite-coordinate tests by the uniform mean budget plus the
 expected supremum of their copy differences. Marginals may differ and
-the parameter class may be uncountable; no integrability premise is needed.-/
+the parameter class may be uncountable; no integrability premise is needed.
+@isnad1 id=le.3h7v.s8.00a441225a9f from=translated src=- shape=13d8cdef vocab=f75ffa0a
+-/
 theorem integral_ciSup_sum_pi_le_mean_add_integral_copy_sub
     (X : ι → Ω → T → ℝ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))
     {R v : ℝ} (hX : ∀ i ω t, |X i ω t| ≤ R)

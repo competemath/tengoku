@@ -21,7 +21,9 @@ def polarNewtonScalar (s : ℝ) : ℕ → ℝ
   | 0 => s
   | k + 1 => (polarNewtonScalar s k + (polarNewtonScalar s k)⁻¹) / 2
 
-/-- Positivity is preserved by every scalar Newton step.-/
+/-- Positivity is preserved by every scalar Newton step.
+@isnad1 id=lt.1h2v.s4.d82c646634c0 from=translated src=- shape=9141f3a7 vocab=c894ae87
+-/
 theorem polarNewtonScalar_pos {s : ℝ} (hs : 0 < s) (k : ℕ) :
     0 < polarNewtonScalar s k := by
   induction k with
@@ -29,12 +31,16 @@ theorem polarNewtonScalar_pos {s : ℝ} (hs : 0 < s) (k : ℕ) :
   | succ k ih => dsimp only [polarNewtonScalar]; positivity
 
 /-- The Cayley coordinate of a positive number lies strictly between minus
-one and one.-/
+one and one.
+@isnad1 id=lt.1h1v.s5.7102ebd432b7 from=translated src=- shape=e76d7ad7 vocab=6f27e6e0
+-/
 theorem abs_cayley_lt_one {s : ℝ} (hs : 0 < s) : |(s - 1) / (s + 1)| < 1 := by
   rw [abs_div, abs_of_pos (by linarith : 0 < s + 1), div_lt_one (by linarith)]
   exact abs_lt.mpr ⟨by linarith, by linarith⟩
 
-/-- A scalar Newton step squares its Cayley coordinate exactly.-/
+/-- A scalar Newton step squares its Cayley coordinate exactly.
+@isnad1 id=eq.1h1v.s7.feb0f8478948 from=translated src=- shape=0c74dd43 vocab=4b08faeb
+-/
 theorem cayley_polarNewton_step {s : ℝ} (hs : 0 < s) :
     (((s + s⁻¹) / 2) - 1) / (((s + s⁻¹) / 2) + 1) = ((s - 1) / (s + 1)) ^ 2 := by
   have hs0 : s ≠ 0 := hs.ne'
@@ -44,7 +50,9 @@ theorem cayley_polarNewton_step {s : ℝ} (hs : 0 < s) :
   ring
 
 /-- The Cayley coordinate of the actual recurrence is its initial coordinate
-raised to `2^k`.-/
+raised to `2^k`.
+@isnad1 id=eq.1h2v.s6.c88405c4df44 from=translated src=- shape=095768e8 vocab=255b1e71
+-/
 theorem cayley_polarNewtonScalar {s : ℝ} (hs : 0 < s) (k : ℕ) :
     (polarNewtonScalar s k - 1) / (polarNewtonScalar s k + 1) =
       ((s - 1) / (s + 1)) ^ (2 ^ k) := by
@@ -56,7 +64,9 @@ theorem cayley_polarNewtonScalar {s : ℝ} (hs : 0 < s) (k : ℕ) :
 
 /-- Exact closed form of every scalar iterate, including the initial value.
 Higham (1986), equations (3.4)–(3.7).
-atlas: polar-newton-iteration (partial)-/
+atlas: polar-newton-iteration (partial)
+@isnad1 id=eq.1h2v.s7.a61b93610c54 from=translated src=- shape=bd141b8f vocab=255b1e71
+-/
 theorem polarNewtonScalar_eq {s : ℝ} (hs : 0 < s) (k : ℕ) :
     polarNewtonScalar s k =
       (1 + ((s - 1) / (s + 1)) ^ (2 ^ k)) /
@@ -71,7 +81,9 @@ theorem polarNewtonScalar_eq {s : ℝ} (hs : 0 < s) (k : ℕ) :
   field_simp
   ring
 
-/-- Every positive scalar starting point converges to one.-/
+/-- Every positive scalar starting point converges to one.
+@isnad1 id=tendsto.1h1v.s5.2c3aa72ac944 from=translated src=- shape=32715943 vocab=10aa1867
+-/
 theorem tendsto_polarNewtonScalar {s : ℝ} (hs : 0 < s) :
     Tendsto (polarNewtonScalar s) atTop (𝓝 1) := by
   have hc : ‖(s - 1) / (s + 1)‖ < 1 := abs_cayley_lt_one hs
@@ -94,7 +106,9 @@ theorem tendsto_polarNewtonScalar {s : ℝ} (hs : 0 < s) :
 /-- Uniform explicit Newton error for any bound on the initial Cayley coordinate.
 The bound retains the denominator needed at the initial iteration.
 Higham (1986), §3.2.
-atlas: polar-newton-iteration (partial)-/
+atlas: polar-newton-iteration (partial)
+@isnad1 id=le.4h3v.s7.1df67b91a11e from=translated src=- shape=9d3ef399 vocab=5f78f43f
+-/
 theorem abs_polarNewtonScalar_sub_one_le {s r : ℝ} (hs : 0 < s)
     (hr : 0 ≤ r) (hr1 : r < 1) (hcr : |(s - 1) / (s + 1)| ≤ r) (k : ℕ) :
     |polarNewtonScalar s k - 1| ≤ 2 * r ^ (2 ^ k) / (1 - r ^ (2 ^ k)) := by

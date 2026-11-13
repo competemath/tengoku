@@ -26,7 +26,9 @@ variable {Ωs : Type*} [MeasurableSpace Ωs] {μ : Measure Ωs} [IsProbabilityMe
 product of the laws is needed.
 
 Standard (e.g. Durrett, *Probability*, Thm 2.1.12 / Kallenberg Lemma 3.11). Helper of atlas
-`gaussian-conditioning`.-/
+`gaussian-conditioning`.
+@isnad1 id=eq.4h7v.s7.932bd0df7580 from=translated src=- shape=ecdd7cc4 vocab=079de79f
+-/
 theorem lintegral_of_indepFun {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {X : Ωs → α} {Y : Ωs → β} (hX : AEMeasurable X μ) (hY : AEMeasurable Y μ)
     (hXY : IndepFun X Y μ) {g : α → β → ℝ≥0∞}
@@ -45,7 +47,9 @@ independent and `(x, y) ↦ g x y` is integrable for the product of the laws, th
 `E g(X, Y) = ∫ (∫ g(x, y) d(law Y)(y)) d(law X)(x)`.
 
 Standard (e.g. Durrett, *Probability*, Thm 2.1.12). Helper of atlas `gaussian-conditioning`
-(a Mathlib-level fact, not itself an atlas result).-/
+(a Mathlib-level fact, not itself an atlas result).
+@isnad1 id=eq.4h7v.s7.6bfe74927f28 from=translated src=- shape=dca5981e vocab=3ce9466c
+-/
 theorem integral_of_indepFun {α β : Type*} [MeasurableSpace α] [MeasurableSpace β]
     {X : Ωs → α} {Y : Ωs → β} (hX : AEMeasurable X μ) (hY : AEMeasurable Y μ)
     (hXY : IndepFun X Y μ) {g : α → β → ℝ}

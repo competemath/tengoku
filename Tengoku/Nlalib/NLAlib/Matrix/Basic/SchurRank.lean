@@ -16,7 +16,9 @@ noncomputable section
 open scoped Matrix
 namespace NLAlib
 /-- A rectangular block diagonal matrix has rank equal to the sum of its
-two block ranks. Horn–Johnson §0.4; Schur-rank helper.-/
+two block ranks. Horn–Johnson §0.4; Schur-rank helper.
+@isnad1 id=eq.0h7v.s7.5e5ef23ae02e from=translated src=- shape=831c7ee2 vocab=05827f88
+-/
 theorem rank_fromBlocks_zero_zero_eq {K m n p q : Type*} [Field K]
     [Fintype m] [Fintype n] [Fintype p] [Fintype q]
     (A : Matrix m p K) (D : Matrix n q K) :
@@ -69,7 +71,9 @@ theorem rank_fromBlocks_zero_zero_eq {K m n p q : Type*} [Field K]
 rank is exactly the Schur-complement rank. Rectangular trailing blocks,
 singular Schur complements and empty blocks are included. Horn–Johnson 2013,
 §0.8.4.
-atlas: complementary-nullities (partial)-/
+atlas: complementary-nullities (partial)
+@isnad1 id=eq.1h7v.s7.7181afd5bbf1 from=translated src=- shape=9e576c96 vocab=9ba9eb47
+-/
 theorem rank_fromBlocks_eq_rank_add_rank_schur {m n l : Type*}
     [Fintype m] [Fintype n] [Fintype l] [DecidableEq m] [DecidableEq n] [DecidableEq l]
     (A : Matrix m m ℝ) (B : Matrix m n ℝ) (C : Matrix l m ℝ) (D : Matrix l n ℝ)

@@ -22,7 +22,9 @@ namespace NLAlib
 /-- A direction with the correct sign at every extremal point decreases the uniform norm
 for some positive step. Source: Cheney (1966), Chapter 3, the perturbation argument for
 the alternation theorem; operator rederivations, `polybest:improvement`.
-The proof uses compactness to make the pointwise strict squared-error inequalities uniform.-/
+The proof uses compactness to make the pointwise strict squared-error inequalities uniform.
+@isnad1 id=ex.2h3v.s8.e5ac336d7e13 from=translated src=- shape=a2e8f3f0 vocab=6036c361
+-/
 theorem exists_pos_norm_sub_smul_lt_of_extremal_sign {K : Type*}
     [TopologicalSpace K] [CompactSpace K] (e h : C(K, ℝ)) (hE : 0 < ‖e‖)
     (hsign : ∀ x, |e x| = ‖e‖ → 0 < e x * h x) :

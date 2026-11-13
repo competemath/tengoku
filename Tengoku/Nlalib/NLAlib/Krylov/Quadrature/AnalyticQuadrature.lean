@@ -24,7 +24,9 @@ holomorphic extension `F` bounded by `M` on the open Bernstein ellipse of parame
 then `|vᵀ f(A) v − (Qᵀv)ᵀ f(QᵀAQ) (Qᵀv)| ≤ 4M ρ^{1−2q}/(ρ − 1) ‖v‖²` for every orthonormal `Q`
 with `K_q(A, v) ⊆ range Q` (`q ≥ 1`). Source: Trefethen (2019) [`atap`], Thm 8.2;
 Golub–Meurant (2010) [`gm10`], §6.2.
-atlas: lanczos-quadrature-analytic-error-/
+atlas: lanczos-quadrature-analytic-error
+@isnad1 id=le.10h12v.s10.cd2d62b4bfc7 from=translated src=- shape=cb45373a vocab=ab079019
+-/
 theorem abs_dotProduct_cfc_mulVec_sub_le_of_open_bernsteinEllipse
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q)
     (v : n → ℝ) {q : ℕ} (hq : 0 < q)
@@ -48,7 +50,9 @@ theorem abs_dotProduct_cfc_mulVec_sub_le_of_open_bernsteinEllipse
 `abs_dotProduct_cfc_mulVec_sub_le_of_open_bernsteinEllipse`,
 `‖f(A) v − Q f(QᵀAQ) Qᵀ v‖² ≤ (4M ρ^{1−q}/(ρ − 1))² ‖v‖²`.
 Source: Saad (1992) [`saad92`], Thm 3.4; Trefethen (2019) [`atap`], Thm 8.2.
-Atlas: `lanczos-fa-error` (analytic rate).-/
+Atlas: `lanczos-fa-error` (analytic rate).
+@isnad1 id=le.10h12v.s10.a1e5703473cf from=translated src=- shape=97aef205 vocab=c21b304d
+-/
 theorem dotProduct_cfc_mulVec_sub_krylovFunApprox_self_le_of_open_bernsteinEllipse
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q)
     (v : n → ℝ) {q : ℕ} (hq : 0 < q)

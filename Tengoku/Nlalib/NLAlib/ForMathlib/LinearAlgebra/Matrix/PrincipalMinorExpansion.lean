@@ -25,7 +25,9 @@ set_option backward.isDefEq.respectTransparency false
 variable {R n : Type*} [CommRing R] [Fintype n] [DecidableEq n]
 
 /-- Expanding `det (I + diag(z) M)` selects a principal minor and the product
-of the corresponding row weights. No symmetry or invertibility is required.-/
+of the corresponding row weights. No symmetry or invertibility is required.
+@isnad1 id=eq.0h4v.s8.02d3c62eaa7f from=translated src=- shape=9e775c2d vocab=5ccb4828
+-/
 theorem det_one_add_diagonal_mul (M : Matrix n n R) (z : n → R) :
     (1 + diagonal z * M).det =
       ∑ S : Finset n, (M.submatrix (Subtype.val : S → n) Subtype.val).det * ∏ i ∈ S, z i := by
@@ -51,7 +53,9 @@ theorem det_one_add_diagonal_mul (M : Matrix n n R) (z : n → R) :
   simp only [Finset.prod_ite_mem, Finset.univ_inter, mul_comm]
 
 /-- The sum of all principal minors is `det (I + M)`, including the empty
-minor one. This is the row-multilinear normalizer identity.-/
+minor one. This is the row-multilinear normalizer identity.
+@isnad1 id=eq.0h3v.s7.afcb5cdfa976 from=translated src=- shape=fceb59b2 vocab=4fd6b183
+-/
 theorem det_one_add_eq_sum_principal_minors (M : Matrix n n R) :
     (1 + M).det =
       ∑ S : Finset n, (M.submatrix (Subtype.val : S → n) Subtype.val).det := by

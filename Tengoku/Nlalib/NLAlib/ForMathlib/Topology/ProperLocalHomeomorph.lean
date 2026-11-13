@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- A proper local homeomorphism between Hausdorff spaces is a covering map.
 Source: compact discrete fibers and Mathlib's closed-map covering theorem;
-helper for `lebesgue-constant-lower-bound`.-/
+helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=iscoveri.2h3v.s5.26bf34e9f023 from=translated src=- shape=fe28e5a3 vocab=24df0e61
+-/
 theorem isCoveringMap_of_isProperMap_of_isLocalHomeomorph
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X] [T2Space E] [T2Space X]
     {f : E → X} (hf : IsProperMap f) (hlocal : IsLocalHomeomorph f) : IsCoveringMap f := by
@@ -36,7 +38,9 @@ theorem isCoveringMap_of_isProperMap_of_isLocalHomeomorph
 /-- A proper local homeomorphism with connected nonempty domain and simply connected
 locally path-connected target is bijective.
 Source: unique lifting of the identity followed by uniqueness of connected lifts;
-helper for `lebesgue-constant-lower-bound`.-/
+helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=bijectiv.2h3v.s5.353595fce2ed from=translated src=- shape=aa69546a vocab=8a481a3c
+-/
 theorem bijective_of_isProperMap_of_isLocalHomeomorph
     {E X : Type*} [TopologicalSpace E] [TopologicalSpace X] [T2Space E] [T2Space X]
     [Nonempty E] [PreconnectedSpace E] [SimplyConnectedSpace X] [LocallyPathConnectedSpace X]

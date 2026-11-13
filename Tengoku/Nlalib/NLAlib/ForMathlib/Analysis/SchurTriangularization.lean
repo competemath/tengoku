@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- Every finite-dimensional complex endomorphism has an orthonormal basis
 in which its coefficients below the diagonal vanish. Source: Horn–Johnson
-(2013), Theorem 2.3.1, by eigenline deflation; dimension zero is included.-/
+(2013), Theorem 2.3.1, by eigenline deflation; dimension zero is included.
+@isnad1 id=ex.1h3v.s8.015b67d3a101 from=translated src=- shape=43930577 vocab=073b8635
+-/
 theorem exists_orthonormalBasis_upper_triangular {E : Type*} [NormedAddCommGroup E]
     [InnerProductSpace ℂ E] [FiniteDimensional ℂ E] (k : ℕ) (T : Module.End ℂ E)
     (hk : Module.finrank ℂ E = k) :

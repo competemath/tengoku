@@ -17,7 +17,9 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder ComplexStarModule
 namespace Matrix
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The Euclidean inner product evaluates the native matrix quadratic probe.-/
+/-- The Euclidean inner product evaluates the native matrix quadratic probe.
+@isnad1 id=eq.0h3v.s12.90595a5fe75c from=translated src=- shape=ebb5116b vocab=de32a96f
+-/
 theorem inner_toEuclideanCLM_eq_matrixQuadraticFormCLM
     (A : Matrix n n ℂ) (x : EuclideanSpace ℂ n) :
     inner ℂ x (toEuclideanCLM (n := n) (𝕜 := ℂ) A x) = matrixQuadraticFormCLM x.ofLp A := by
@@ -25,7 +27,9 @@ theorem inner_toEuclideanCLM_eq_matrixQuadraticFormCLM
     RCLike.inner_apply', starRingEnd_apply, Pi.star_apply]
   rfl
 
-/-- Loewner imaginary coercivity gives the corresponding quadratic energy bound.-/
+/-- Loewner imaginary coercivity gives the corresponding quadratic energy bound.
+@isnad1 id=le.1h4v.s12.dbec0ba304e9 from=translated src=- shape=eae67b6e vocab=18787b79
+-/
 theorem mul_norm_sq_le_im_inner_of_imaginaryPart_ge
     {A : Matrix n n ℂ} {η : ℝ}
     (hA : η • (1 : Matrix n n ℂ) ≤ (imaginaryPart A : Matrix n n ℂ))
@@ -42,7 +46,9 @@ theorem mul_norm_sq_le_im_inner_of_imaginaryPart_ge
   change η * (matrixQuadraticFormCLM x.ofLp 1).re ≤ _ at h
   rwa [hnorm] at h
 
-/-- A coercive imaginary part bounds any negative right inverse by `1/η`.-/
+/-- A coercive imaginary part bounds any negative right inverse by `1/η`.
+@isnad1 id=le.3h4v.s10.4755546de550 from=translated src=- shape=f37673c2 vocab=62ee7446
+-/
 theorem norm_le_inv_of_mul_eq_neg_one_of_imaginaryPart_ge
     {T M : Matrix n n ℂ} {η : ℝ} (hη : 0 < η)
     (hTM : T * M = -1)
@@ -57,7 +63,9 @@ theorem norm_le_inv_of_mul_eq_neg_one_of_imaginaryPart_ge
     simpa using h
   · exact mul_norm_sq_le_im_inner_of_imaginaryPart_ge hT
 
-/-- A negative right inverse transports imaginary parts by congruence.-/
+/-- A negative right inverse transports imaginary parts by congruence.
+@isnad1 id=eq.1h3v.s11.c85d46afde83 from=translated src=- shape=71ba587a vocab=2c33ac75
+-/
 theorem imaginaryPart_eq_conjTranspose_mul_of_mul_eq_neg_one
     {T M : Matrix n n ℂ} (hTM : T * M = -1) :
     (imaginaryPart M : Matrix n n ℂ) =

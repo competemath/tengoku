@@ -9,7 +9,9 @@ import Tengoku.Seed.Data.Matrix.Block
 namespace Matrix
 variable {R m n p q : Type*}
 
-/-- Subtraction acts independently on the four blocks.-/
+/-- Subtraction acts independently on the four blocks.
+@isnad1 id=eq.0h13v.s7.f1753c03b49e from=translated src=- shape=f573c320 vocab=49fc1eec
+-/
 theorem fromBlocks_sub [Sub R] (A A' : Matrix m p R) (B B' : Matrix m q R)
     (C C' : Matrix n p R) (D D' : Matrix n q R) :
     fromBlocks A B C D - fromBlocks A' B' C' D' =

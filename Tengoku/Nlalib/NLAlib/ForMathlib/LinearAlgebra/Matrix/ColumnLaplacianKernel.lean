@@ -18,7 +18,9 @@ open Finset Matrix
 namespace NLAlib
 
 /-- A left nullvector of a strict column Laplacian is constant.
-Source: the finite maximum principle.-/
+Source: the finite maximum principle.
+@isnad1 id=eq.3h5v.s8.a9f7c5e0c02c from=translated src=- shape=7492ccdf vocab=995392ad
+-/
 theorem strictColumnLaplacian_vecMul_zero_constant {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)
@@ -43,7 +45,9 @@ theorem strictColumnLaplacian_vecMul_zero_constant {n : ℕ}
   exact (heq i).trans (heq k).symm
 
 /-- A zero-column-sum matrix has zero determinant.
-Source: its all-ones left nullvector.-/
+Source: its all-ones left nullvector.
+@isnad1 id=eq.1h2v.s7.30b09b5d740d from=translated src=- shape=535ca326 vocab=585925e7
+-/
 theorem det_eq_zero_of_column_sum_zero {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (hsum : ∀ j, ∑ i, A i j = 0) : A.det = 0 := by
   have hzero : A.transpose *ᵥ (fun _ => (1 : ℝ)) = 0 := by
@@ -54,7 +58,9 @@ theorem det_eq_zero_of_column_sum_zero {n : ℕ}
   simpa only [det_transpose] using h
 
 /-- Every row of the adjugate of a strict column Laplacian is constant.
-Source: the adjugate identities and finite maximum principle.-/
+Source: the adjugate identities and finite maximum principle.
+@isnad1 id=eq.2h5v.s8.32251833adac from=translated src=- shape=624dfb73 vocab=ab6941ef
+-/
 theorem strictColumnLaplacian_adjugate_row_constant {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)
@@ -68,7 +74,9 @@ theorem strictColumnLaplacian_adjugate_row_constant {n : ℕ}
   exact strictColumnLaplacian_vecMul_zero_constant A hpos hsum hv j k
 
 /-- The signed diagonal adjugate entries are strictly positive.
-Source: the positive deleted-principal-cofactor certificate.-/
+Source: the positive deleted-principal-cofactor certificate.
+@isnad1 id=lt.2h3v.s8.e042734a1897 from=translated src=- shape=2b47cd56 vocab=788d85b1
+-/
 theorem strictColumnLaplacian_signed_adjugate_diag_pos {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0)
@@ -81,7 +89,9 @@ theorem strictColumnLaplacian_signed_adjugate_diag_pos {n : ℕ}
   exact strictColumnLaplacian_signed_det_minor_pos A hpos hsum i
 
 /-- Signed principal cofactors form a strictly positive right nullvector.
-Source: focused rederivations, equation `polyretry:laplacian-cofactor`.-/
+Source: focused rederivations, equation `polyretry:laplacian-cofactor`.
+@isnad1 id=eq.2h2v.s8.abfb51b2d1d8 from=translated src=- shape=8c6297d2 vocab=2f34f3ea
+-/
 theorem strictColumnLaplacian_mulVec_signed_adjugate_diag_eq_zero {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0) :
@@ -103,7 +113,9 @@ theorem strictColumnLaplacian_mulVec_signed_adjugate_diag_eq_zero {n : ℕ}
 
 /-- A strict column Laplacian has a positive normalized right nullvector, explicitly
 obtained by normalizing its signed principal cofactors.
-Source: focused rederivations, `polyretry:positive-q-relation`.-/
+Source: focused rederivations, `polyretry:positive-q-relation`.
+@isnad1 id=ex.2h2v.s8.ec4f1f931f1d from=translated src=- shape=b5cea526 vocab=3773b72c
+-/
 theorem strictColumnLaplacian_exists_pos_kernel_sum_one {n : ℕ}
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hpos : ∀ i j, i ≠ j → 0 < A i j) (hsum : ∀ j, ∑ i, A i j = 0) :

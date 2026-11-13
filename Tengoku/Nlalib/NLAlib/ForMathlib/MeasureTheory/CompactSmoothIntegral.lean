@@ -23,7 +23,9 @@ variable {X E Ω : Type*}
 
 /-- A genuinely jointly C1 function near the actual compact support
 fibre has a differentiable parameter integral. No differentiability or
-derivative-domination certificate for the integral is assumed.-/
+derivative-domination certificate for the integral is assumed.
+@isnad1 id=differen.4h7v.s8.2a88121f3591 from=translated src=- shape=a626d9d0 vocab=c7331c92
+-/
 theorem differentiableAt_integral_of_contDiffOn_compact_support
     (μ : Measure Ω) [IsFiniteMeasure μ] (hμ : IsCompact μ.support)
     (F : X × Ω → E) (U : Set (X × Ω)) (hU : IsOpen U)

@@ -18,7 +18,9 @@ namespace Lagrange
 variable {𝕜 ι : Type*} [Field 𝕜] [DecidableEq ι]
 
 /-- Any polynomial functional is reconstructed from its cardinal values below
-the number of distinct nodes.-/
+the number of distinct nodes.
+@isnad1 id=eq.2h6v.s9.3b1b54b95d67 from=translated src=- shape=a1cd8dc6 vocab=ccb3764a
+-/
 theorem linearMap_eq_sum_basis_mul_eval (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     {s : Finset ι} {v : ι → 𝕜} (hv : InjOn v s) {p : 𝕜[X]}
     (hp : p.degree < s.card) :
@@ -32,7 +34,9 @@ theorem linearMap_eq_sum_basis_mul_eval (L : 𝕜[X] →ₗ[𝕜] 𝕜)
 
 /-- A rule on distinct nodes is exact below degree `#s+k` precisely when its
 weights are the functional's cardinal values and the nodal polynomial is
-orthogonal to every polynomial of degree below `k`.-/
+orthogonal to every polynomial of degree below `k`.
+@isnad1 id=iff.2h7v.s10.10c4a58390f6 from=translated src=- shape=2e14ea78 vocab=353c54b7
+-/
 theorem linearMap_eq_sum_weighted_eval_iff (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     {s : Finset ι} (hs : s.Nonempty) {v : ι → 𝕜} (hv : InjOn v s)
     (w : ι → 𝕜) (k : ℕ) :
@@ -100,7 +104,9 @@ end Lagrange
 namespace Polynomial
 
 /-- Polynomial linear functionals agree below a given degree exactly when
-their corresponding finitely many monomial moments agree.-/
+their corresponding finitely many monomial moments agree.
+@isnad1 id=iff.0h4v.s10.3f3f93df33e2 from=translated src=- shape=35866add vocab=2ca571b1
+-/
 theorem linearMap_eq_of_degree_lt_iff_pow {𝕜 : Type*} [Field 𝕜]
     (L M : 𝕜[X] →ₗ[𝕜] 𝕜) (d : ℕ) :
     (∀ p : 𝕜[X], p.degree < d → L p = M p) ↔

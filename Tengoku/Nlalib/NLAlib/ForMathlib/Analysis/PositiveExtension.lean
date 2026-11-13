@@ -18,7 +18,9 @@ open Set Submodule
 namespace NLAlib
 
 /-- The M. Riesz extension theorem with a prescribed value at one vector.
-The two bounds are actual order constraints against the original domain.-/
+The two bounds are actual order constraints against the original domain.
+@isnad1 id=ex.4h5v.s10.494d7b418f10 from=translated src=- shape=ad29947f vocab=727fa5af
+-/
 theorem exists_extension_nonneg_apply_eq {E : Type*} [AddCommGroup E] [Module ℝ E]
     (s : PointedCone ℝ E) (f : E →ₗ.[ℝ] ℝ) (y : E) (v : ℝ)
     (hnonneg : ∀ x : f.domain, (x : E) ∈ s → 0 ≤ f x)
@@ -86,7 +88,9 @@ theorem exists_extension_nonneg_apply_eq {E : Type*} [AddCommGroup E] [Module �
 
 /-- The least possible value of a positive extension at `y` is attained. It is
 the supremum of the original functional evaluated on domain vectors below
-`y`. Cofinality supplies both bounds, so this is a finite real supremum.-/
+`y`. Cofinality supplies both bounds, so this is a finite real supremum.
+@isnad1 id=ex.2h4v.s10.e5620a9da2ea from=translated src=- shape=1a077d1e vocab=6750d6a5
+-/
 theorem exists_extension_nonneg_apply_eq_sSup {E : Type*}
     [AddCommGroup E] [Module ℝ E] (s : PointedCone ℝ E) (f : E →ₗ.[ℝ] ℝ) (y : E)
     (hnonneg : ∀ x : f.domain, (x : E) ∈ s → 0 ≤ f x)

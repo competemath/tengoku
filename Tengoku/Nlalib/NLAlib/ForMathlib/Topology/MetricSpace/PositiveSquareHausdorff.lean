@@ -43,7 +43,9 @@ private theorem abs_sq_sub_sq_le_of_reference_radius
 most `2 δ R + δ²` in Hausdorff distance. Every positive point is at least
 `2δ`, so a point matched within `δ` is still positive; the theorem does
 not identify zero padding with positive spectrum. The radius `R` bounds
-only the positive part of the reference set `T`.-/
+only the positive part of the reference set `T`.
+@isnad1 id=le.10h4v.s8.3f1afdf5bc4b from=translated src=- shape=d8867527 vocab=130d9b70
+-/
 theorem hausdorffDist_sq_positive_le_of_gap
     {S T : Set ℝ} (hS : IsCompact S) (hT : IsCompact T)
     (hSn : S.Nonempty) (hTn : T.Nonempty) {δ R : ℝ} (hδ : 0 < δ)

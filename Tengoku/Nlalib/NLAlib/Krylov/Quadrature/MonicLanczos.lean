@@ -22,7 +22,9 @@ namespace NLAlib.LanczosDecomp
 variable {n : Type*} [Fintype n] [DecidableEq n] {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- The leading actual Lanczos compression has the parent's diagonal and
-off-diagonal coefficients on its included indices.-/
+off-diagonal coefficients on its included indices.
+@isnad1 id=eq.2h6v.s6.877e24ece35a from=translated src=- shape=b4b9516a vocab=6075ba99
+-/
 theorem T_restrict_eq_jacobiMatrix (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {j : ℕ} (hj : j ≤ q) : (LanczosDecomp.T (D.restrict hj)) = jacobiMatrix D.alpha D.beta j := by
   change ArnoldiDecomp.H (D.restrict hj) = _
@@ -33,7 +35,9 @@ theorem T_restrict_eq_jacobiMatrix (D : LanczosDecomp A b q) (hA : A.IsHermitian
 /-- The actual finite Jacobi denominator polynomial equals the monic characteristic
 polynomial of every leading signed Lanczos compression, including order zero and
 the displayed terminal order. Source: Gautschi (2004), Theorem 1.34; (OF8), (OF26).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.2h6v.s6.97534db11d4e from=translated src=- shape=36985a05 vocab=f16bb18c
+-/
 theorem jacobiContinuant_eq_charpoly_restrict_T (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {j : ℕ} (hj : j ≤ q) :
     jacobiContinuant D.alpha D.beta j = (LanczosDecomp.T (D.restrict hj)).charpoly := by
@@ -43,7 +47,9 @@ theorem jacobiContinuant_eq_charpoly_restrict_T (D : LanczosDecomp A b q) (hA : 
 starting-vector mass times the product of squared stored off-diagonals. Arbitrary
 Lanczos basis signs are allowed; the order is below the displayed decomposition
 size so every required coupling is stored. Source: Gautschi (2004), Theorem 1.27; (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.2h6v.s8.0f8f0c8df1c5 from=translated src=- shape=32555eb6 vocab=bb1a5f17
+-/
 theorem integral_sq_charpoly_restrict_T_eq_norm_sq_mul_prod_beta_sq
     (D : LanczosDecomp A b q) (hA : A.IsHermitian) {j : ℕ} (hj : j < q) :
     (∫ x, ((LanczosDecomp.T (D.restrict hj.le)).charpoly.eval x) ^ 2 ∂spectralMeasure hA b) =

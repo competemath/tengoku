@@ -19,7 +19,9 @@ variable {𝕜 n k l s : Type*} [RCLike 𝕜]
   [DecidableEq n] [DecidableEq k] [DecidableEq l]
 
 omit [Fintype s] [DecidableEq n] [DecidableEq l] in
-/-- The small operator in an orthogonal Arnoldi relation is the actual compression.-/
+/-- The small operator in an orthogonal Arnoldi relation is the actual compression.
+@isnad1 id=eq.3h9v.s9.b93cd8668fec from=translated src=- shape=af37d5dc vocab=c92df3b4
+-/
 theorem compression_eq_of_arnoldi_relation {A : Matrix n n 𝕜}
     {V : Matrix n k 𝕜} {U : Matrix n l 𝕜} {H : Matrix k k 𝕜} {T : Matrix l k 𝕜}
     (hV : HasOrthonormalCols V) (hVU : Vᴴ * U = 0)
@@ -30,7 +32,9 @@ theorem compression_eq_of_arnoldi_relation {A : Matrix n n 𝕜}
 
 omit [DecidableEq n] [DecidableEq k] [DecidableEq l] in
 /-- Exact projected Lyapunov residual, without any stability assumption.
-atlas: lyapunov-projection-residual-certificate (partial)-/
+atlas: lyapunov-projection-residual-certificate (partial)
+@isnad1 id=eq.3h13v.s10.1f1ef3cab09d from=translated src=- shape=94f19f71 vocab=95ddaeaa
+-/
 theorem projectedLyapunov_residual_eq {A : Matrix n n 𝕜}
     {V : Matrix n k 𝕜} {U : Matrix n l 𝕜} {H Y : Matrix k k 𝕜}
     {T : Matrix l k 𝕜} {B : Matrix n s 𝕜} {Bk : Matrix k s 𝕜}
@@ -55,7 +59,9 @@ theorem projectedLyapunov_residual_eq {A : Matrix n n 𝕜}
 
 /-- Both residual norms and the exact rank are computed on the small coupling.
 Zero-width and zero-rank couplings are included.
-atlas: lyapunov-projection-residual-certificate (partial)-/
+atlas: lyapunov-projection-residual-certificate (partial)
+@isnad1 id=other.7h13v.s10.51b07b991991 from=translated src=- shape=4657c765 vocab=cf0857f4
+-/
 theorem projectedLyapunov_residual_norms_and_rank {A : Matrix n n 𝕜}
     {V : Matrix n k 𝕜} {U : Matrix n l 𝕜} {H Y : Matrix k k 𝕜}
     {T : Matrix l k 𝕜} {B : Matrix n s 𝕜} {Bk : Matrix k s 𝕜}

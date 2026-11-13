@@ -388,7 +388,9 @@ def cyclicProfileArcs {κ : Type*} {N : ℕ} (w : Fin N → Bool × Option κ)
     (splitTaggedBlocks (profileBlocks w m)).2
 
 /-- The computed profile has one coefficient per original marked slot and per
-Neumann insertion, accounts for every resolvent, and has positive cyclic arcs.-/
+Neumann insertion, accounts for every resolvent, and has positive cyclic arcs.
+@isnad1 id=and.1h4v.s8.a41be850d076 from=translated src=- shape=9c978ab7 vocab=844defab
+-/
 theorem cyclicProfileArcs_spec {κ : Type*} {N : ℕ}
     (w : Fin N → Bool × Option κ) (m : Fin N → ℕ)
     (hMarked : 0 < ((List.ofFn w).filter (fun b => b.2.isSome)).length) :
@@ -410,7 +412,9 @@ theorem cyclicProfileArcs_spec {κ : Type*} {N : ℕ}
 
 /-- The same structurally computed arcs give the exact profile trace for all
 matrix coefficient interpretations. Only the two generators commute; no
-coefficient is moved across a matrix.-/
+coefficient is moved across a matrix.
+@isnad1 id=eq.2h10v.s9.2adb7924b538 from=translated src=- shape=b389fc47 vocab=db447d9d
+-/
 theorem _root_.Matrix.trace_profile_word_eq_cyclicProfileArcs
     {𝕜 n κ : Type*} [CommSemiring 𝕜] [Fintype n] [DecidableEq n]
     {X Y : Matrix n n 𝕜} (hXY : Commute X Y) {N : ℕ}

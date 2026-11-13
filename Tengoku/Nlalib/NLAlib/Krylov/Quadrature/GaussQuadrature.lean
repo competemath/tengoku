@@ -56,7 +56,9 @@ private lemma dotProduct_pow_mul_mulVec {M : Matrix n n ℝ} (hM : M.IsSymm)
     (hM.pow i).eq]
 
 /-- Lifting the projected powers: if `K_q(A,b) ⊆ range Q` then `Q (QᵀAQ)ʲ Qᵀ b = Aʲ b` for
-`j < q`. Atlas: `lanczos-gauss-quadrature` (helper).-/
+`j < q`. Atlas: `lanczos-gauss-quadrature` (helper).
+@isnad1 id=eq.3h7v.s9.4b194dc7e39c from=translated src=- shape=08297109 vocab=28cd33e7
+-/
 theorem mulVec_pow_transpose_mul_mul_mulVec_eq {A : Matrix n n ℝ} {Q : Matrix n k ℝ}
     (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {j : ℕ} (hj : j < q) :
@@ -75,7 +77,9 @@ theorem mulVec_pow_transpose_mul_mul_mulVec_eq {A : Matrix n n ℝ} {Q : Matrix 
 
 /-- Compressed powers act like powers on `Qᵀ b` up to degree `q`: if `K_q(A,b) ⊆ range Q` and
 `j ≤ q` then `Qᵀ Aʲ b = (QᵀAQ)ʲ Qᵀ b`. Source: Saad (1992) [`saad92`], Lemma 3.1.
-Atlas: `krylov-polynomial-exactness` (helper).-/
+Atlas: `krylov-polynomial-exactness` (helper).
+@isnad1 id=eq.3h7v.s9.f995a644eafd from=translated src=- shape=4d7984c2 vocab=11958e5e
+-/
 theorem transpose_mulVec_pow_mulVec_eq {A : Matrix n n ℝ} {Q : Matrix n k ℝ}
     (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {j : ℕ} (hj : j ≤ q) :
@@ -98,7 +102,9 @@ open Polynomial in
 /-- **Compression commutes with polynomials of degree `≤ q`.** If `Q` has orthonormal columns
 and `K_q(A,b) ⊆ range Q`, then `Qᵀ p(A) b = p(QᵀAQ) Qᵀ b` for every `p` with `deg p ≤ q`, for
 any square `A`. Source: Saad (1992) [`saad92`], Lemma 3.1.
-atlas: krylov-polynomial-exactness (partial)-/
+atlas: krylov-polynomial-exactness (partial)
+@isnad1 id=eq.3h7v.s9.8513c510ab4d from=translated src=- shape=d989e4f1 vocab=72ff4cff
+-/
 theorem transpose_mulVec_aeval_mulVec_eq {A : Matrix n n ℝ} {Q : Matrix n k ℝ}
     (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {p : ℝ[X]} (hp : p.degree ≤ q) :
@@ -160,7 +166,9 @@ Source: Golub–Meurant (2010) [`gm10`], Thm 6.6 and §7.1; Chen–Trogdon–Uba
 Thm 2.1.
 Deviation: any orthonormal `Q` whose range contains `K_q(A,b)`; with the Lanczos basis,
 `Qᵀb = ‖b‖e₁` and the right side is `‖b‖² (p(T_q))₁₁`.
-atlas: lanczos-gauss-quadrature-/
+atlas: lanczos-gauss-quadrature
+@isnad1 id=eq.4h7v.s9.cbc4951c2ee2 from=translated src=- shape=38cb70b3 vocab=9a04b472
+-/
 theorem dotProduct_aeval_mulVec_eq_of_degree_lt_two_mul {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {p : Polynomial ℝ}
@@ -184,7 +192,9 @@ theorem dotProduct_aeval_mulVec_eq_of_degree_lt_two_mul {A : Matrix n n ℝ} (hA
 /-- The eigenvalues of the compression `Qᵀ A Q` (`Q` with orthonormal columns) lie in any
 interval `[a, c]` containing the eigenvalues of `A` (the Ritz values stay inside the spectral
 interval). Source: Golub–Meurant (2010) [`gm10`], Ch. 4; Parlett (1998), Thm 10.1.1 (weak form).
-Atlas: `lanczos-gauss-quadrature` (helper; Matrix-level, to move to `Matrix/Basic/QuadForm`).-/
+Atlas: `lanczos-gauss-quadrature` (helper; Matrix-level, to move to `Matrix/Basic/QuadForm`).
+@isnad1 id=mem.3h7v.s7.e0a4bab1e7a2 from=translated src=- shape=27ca40b3 vocab=1d238ecc
+-/
 theorem eigenvalues_transpose_mul_mul_mem_Icc {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) {a c : ℝ}
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a c) (j : k) :
@@ -231,7 +241,9 @@ Source: Golub–Meurant (2010) [`gm10`], §6.2 (error of Gauss quadrature via be
 Chen–Trogdon–Ubaru (2021) [`ctu21`], Lem. 2.2; Ubaru–Chen–Saad (2017) [`ucs17`], proof of Thm 4.1.
 Deviation: stated with an arbitrary approximant `p` (the source takes the best uniform
 approximation, `E = E_{2q−1}(f)`); any orthonormal `Q` with `K_q ⊆ range Q`.
-atlas: lanczos-gauss-quadrature-/
+atlas: lanczos-gauss-quadrature
+@isnad1 id=le.6h11v.s9.29710b4e222e from=translated src=- shape=0d05e63f vocab=62e3e181
+-/
 theorem abs_dotProduct_cfc_mulVec_sub_le_of_degree_lt_two_mul {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ) {q : ℕ}
     (hK : krylovSpace A b q ≤ LinearMap.range Q.mulVecLin) {f : ℝ → ℝ}

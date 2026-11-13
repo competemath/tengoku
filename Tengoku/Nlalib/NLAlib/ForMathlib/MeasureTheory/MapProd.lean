@@ -19,7 +19,9 @@ namespace MeasureTheory
 
 /-- `(μ.map f).prod (ν.map g) = (μ.prod ν).map (fun p => (f p.1, g p.2))` for a.e.-measurable
 `f`, `g` and s-finite `μ`, `ν`; the `AEMeasurable` version of `Measure.map_prod_map`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.2h8v.s7.4187b54502ad from=translated src=- shape=4abb8df6 vocab=8d4ab0d1
+-/
 theorem measure_map_prod_map_of_aemeasurable {α β γ δ : Type*}
     [MeasurableSpace α] [MeasurableSpace β] [MeasurableSpace γ] [MeasurableSpace δ]
     {μ : Measure α} {ν : Measure β} [SFinite μ] [SFinite ν]

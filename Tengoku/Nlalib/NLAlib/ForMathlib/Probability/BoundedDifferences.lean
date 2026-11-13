@@ -23,7 +23,9 @@ namespace ProbabilityTheory
 /-- Coordinate oscillations bound the diameter of a function on a finite product,
 including heterogeneous coordinate types and the empty product.
 Boucheron–Lugosi–Massart 2013, §6.1;
-supports atlas `mcdiarmid`.-/
+supports atlas `mcdiarmid`.
+@isnad1 id=le.1h6v.s6.add805eb0cea from=translated src=- shape=0c7b7719 vocab=12295be4
+-/
 theorem _root_.abs_sub_le_sum_of_coordinate_oscillation
     {ι : Type*} [Fintype ι] [DecidableEq ι] {S : ι → Type*}
     (f : (∀ i, S i) → ℝ) (c : ι → ℝ)
@@ -46,7 +48,9 @@ theorem _root_.abs_sub_le_sum_of_coordinate_oscillation
 
 /-- A measurable scalar function of range diameter at most `c≥0` has centred
 MGF proxy `c²/4`. The infimum of its range need not be attained.
-Hoeffding's lemma (Boucheron–Lugosi–Massart 2013, Lemma 2.2); supports `mcdiarmid`.-/
+Hoeffding's lemma (Boucheron–Lugosi–Massart 2013, Lemma 2.2); supports `mcdiarmid`.
+@isnad1 id=hassubga.3h4v.s7.19d36254a7c7 from=translated src=- shape=4b65dbe7 vocab=abeaf38b
+-/
 theorem hasSubgaussianMGF_of_range_oscillation
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     (g : Ω → ℝ) (hg : AEMeasurable g μ) {c : ℝ} (hc : 0 ≤ c)

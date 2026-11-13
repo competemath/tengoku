@@ -17,7 +17,9 @@ open Polynomial MeasureTheory Set Finset
 namespace NLAlib
 
 /-- Polynomial evaluations are integrable for any finite measure concentrated on a
-compact interval. Source: the compact-moment prerequisite of ATAP Theorem 19.1.-/
+compact interval. Source: the compact-moment prerequisite of ATAP Theorem 19.1.
+@isnad1 id=integrab.1h4v.s6.a55733c6f0d5 from=translated src=- shape=1526081f vocab=5f1e9761
+-/
 theorem integrable_eval_of_ae_mem_Icc {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) (p : ℝ[X]) : Integrable p.eval μ := by
   refine (p.continuous.continuousOn.integrableOn_compact (isCompact_Icc (a := a) (b := b))).integrable_of_ae_notMem_eq_zero ?_
@@ -26,7 +28,9 @@ theorem integrable_eval_of_ae_mem_Icc {μ : Measure ℝ} [IsFiniteMeasure μ] {a
 
 /-- Every nonzero polynomial of degree below the number of distinct support witnesses
 has strictly positive squared integral. Source: positive definiteness of polynomial
-moments in the proof of ATAP Theorem 19.1.-/
+moments in the proof of ATAP Theorem 19.1.
+@isnad1 id=lt.5h7v.s7.eb6dfb2386ac from=translated src=- shape=497b254b vocab=221236e7
+-/
 theorem integral_sq_eval_pos_of_degree_lt {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {ι : Type*} (s : Finset ι) {u : ι → ℝ}
     (hu : InjOn u s) (huμ : ∀ i ∈ s, u i ∈ μ.support) {p : ℝ[X]}
@@ -51,7 +55,9 @@ theorem integral_sq_eval_pos_of_degree_lt {μ : Measure ℝ} [IsFiniteMeasure μ
 
 /-- Integrating the cardinal Lagrange polynomials gives a rule exact through degree
 `N−1` for any `N` distinct nodes. Source: Trefethen, ATAP, Theorem 19.1.
-atlas: gauss-quadrature-general-measure (partial)-/
+atlas: gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.3h7v.s7.564b36f0209d from=translated src=- shape=b893f00f vocab=e528b1e4
+-/
 theorem integral_eval_eq_sum_integral_basis_mul_eval_of_degree_lt
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b)
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (v : ι → ℝ) (hv : InjOn v s)
@@ -71,7 +77,9 @@ theorem integral_eval_eq_sum_integral_basis_mul_eval_of_degree_lt
 exact through degree `2N−1`. Orthogonality is stated directly for the monic nodal
 polynomial, so no normalization or positive norm of the degree-`N` polynomial is needed.
 Source: Trefethen, ATAP, Theorem 19.1; division proof.
-atlas: gauss-quadrature-general-measure (partial)-/
+atlas: gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.4h7v.s7.ac084b1fb4a2 from=translated src=- shape=77d39e76 vocab=d21b173e
+-/
 theorem integral_eval_eq_sum_integral_basis_mul_eval_of_orthogonal_nodal
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b)
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (v : ι → ℝ) (hv : InjOn v s)
@@ -112,7 +120,9 @@ theorem integral_eval_eq_sum_integral_basis_mul_eval_of_orthogonal_nodal
 /-- A Gauss weight equals the squared integral of its cardinal polynomial.
 Source: Trefethen, ATAP, Theorem 19.1. This proves positivity without requiring
 a nonzero norm for the degree-`N` orthogonal polynomial.
-atlas: gauss-quadrature-general-measure (partial)-/
+atlas: gauss-quadrature-general-measure (partial)
+@isnad1 id=eq.4h7v.s7.7b87c3994c77 from=translated src=- shape=5888f57a vocab=fdb740e4
+-/
 theorem integral_basis_eq_integral_sq_basis_of_orthogonal_nodal
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b)
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (v : ι → ℝ) (hv : InjOn v s)
@@ -144,7 +154,9 @@ mass, and exactness through degree `2N−1`. The supplied distinct nodes are def
 by their monic nodal polynomial's orthogonality to all degrees below `N`. The measure
 is concentrated on a compact interval and has at least `N` distinct support witnesses.
 Source: Trefethen, ATAP, Theorem 19.1. This includes exactly `N` support points.
-atlas: gauss-quadrature-general-measure-/
+atlas: gauss-quadrature-general-measure
+@isnad1 id=and.5h6v.s8.1f07ed6caadc from=translated src=- shape=eb4a7611 vocab=441ba98e
+-/
 theorem gauss_quadrature_of_orthogonal_nodal
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b)
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (hs : s.Nonempty)

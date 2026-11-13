@@ -16,7 +16,9 @@ open scoped Matrix.Norms.L2Operator ComplexOrder
 namespace MeasureTheory.PositiveMatrixMeasure
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Hermitian entry measures have symmetric signed real parts.-/
+/-- Hermitian entry measures have symmetric signed real parts.
+@isnad1 id=eq.0h4v.s9.4cf9a681c208 from=translated src=- shape=df3a0948 vocab=02c71e9a
+-/
 theorem re_entry_transpose (P : PositiveMatrixMeasure ℝ n) (i j : n) :
     ComplexMeasure.re (P.entry j i) = ComplexMeasure.re (P.entry i j) := by
   apply VectorMeasure.ext
@@ -25,7 +27,9 @@ theorem re_entry_transpose (P : PositiveMatrixMeasure ℝ n) (i j : n) :
   simpa only [Complex.star_def, Complex.conj_re] using
     congrArg Complex.re ((P.isHermitian E hE).apply i j)
 
-/-- Hermitian entry measures have skew-symmetric signed imaginary parts.-/
+/-- Hermitian entry measures have skew-symmetric signed imaginary parts.
+@isnad1 id=eq.0h4v.s9.de881d3b849a from=translated src=- shape=9d1f05c7 vocab=c4b09bea
+-/
 theorem im_entry_transpose (P : PositiveMatrixMeasure ℝ n) (i j : n) :
     ComplexMeasure.im (P.entry j i) = -ComplexMeasure.im (P.entry i j) := by
   apply VectorMeasure.ext

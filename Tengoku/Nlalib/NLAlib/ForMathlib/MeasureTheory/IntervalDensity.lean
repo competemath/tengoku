@@ -30,14 +30,18 @@ def intervalDensityMeasure (ρ : ℝ → ℝ) (a b : ℝ)
     isFiniteMeasure_withDensity_ofReal hρ.2⟩
 
 /-- The underlying measure is restricted Lebesgue measure weighted by the
-nonnegative part of the density.-/
+nonnegative part of the density.
+@isnad1 id=eq.1h3v.s6.c68460976bf0 from=translated src=- shape=3096e4ca vocab=78134458
+-/
 theorem intervalDensityMeasure_toMeasure (ρ : ℝ → ℝ) (a b : ℝ)
     (hρ : IntegrableOn ρ (Icc a b)) :
     (intervalDensityMeasure ρ a b hρ : Measure ℝ) =
       (volume.restrict (Icc a b)).withDensity (fun x => ENNReal.ofReal (ρ x)) := rfl
 
 /-- A measure constructed from an interval density is concentrated on that
-interval, including a degenerate or empty interval.-/
+interval, including a degenerate or empty interval.
+@isnad1 id=eventual.1h3v.s6.3d90924a9462 from=translated src=- shape=d53210c8 vocab=e5857ac3
+-/
 theorem ae_mem_Icc_intervalDensityMeasure (ρ : ℝ → ℝ) (a b : ℝ)
     (hρ : IntegrableOn ρ (Icc a b)) :
     ∀ᵐ x ∂(intervalDensityMeasure ρ a b hρ : Measure ℝ), x ∈ Icc a b := by
@@ -46,7 +50,9 @@ theorem ae_mem_Icc_intervalDensityMeasure (ρ : ℝ → ℝ) (a b : ℝ)
 
 /-- Integrating against an almost everywhere nonnegative interval density is
 its ordinary weighted integral. The test function is arbitrary, with Bochner
-integrals interpreted using Mathlib's total integral convention.-/
+integrals interpreted using Mathlib's total integral convention.
+@isnad1 id=eq.2h4v.s7.0d915dc47274 from=translated src=- shape=ef982885 vocab=0779897e
+-/
 theorem integral_intervalDensityMeasure {ρ : ℝ → ℝ} {a b : ℝ}
     (hρ : IntegrableOn ρ (Icc a b))
     (hpos : ∀ᵐ x ∂volume.restrict (Icc a b), 0 ≤ ρ x) (f : ℝ → ℝ) :
@@ -61,7 +67,9 @@ theorem integral_intervalDensityMeasure {ρ : ℝ → ℝ} {a b : ℝ}
   simp only [ENNReal.toReal_ofReal hx, smul_eq_mul]
 
 /-- An almost everywhere nonnegative integrable interval density gives a
-compact positive exponential representation of its weighted interval integrals.-/
+compact positive exponential representation of its weighted interval integrals.
+@isnad1 id=iscompac.3h3v.s7.8d74bfda9c62 from=translated src=- shape=c51763ae vocab=30694718
+-/
 theorem isCompactExpRepresentation_intervalDensityMeasure
     {ρ : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hρ : IntegrableOn ρ (Icc a b))
@@ -80,7 +88,9 @@ theorem isCompactExpRepresentation_intervalDensityMeasure
 namespace IsCompactExpRepresentation
 
 /-- Adding two compactly supported positive exponential measures adds their
-represented functions while preserving the common support interval.-/
+represented functions while preserving the common support interval.
+@isnad1 id=iscompac.2h6v.s6.65d449f2c4f5 from=translated src=- shape=14033dfc vocab=45fe35f0
+-/
 theorem add {ν₁ ν₂ : FiniteMeasure ℝ} {F₁ F₂ : ℝ → ℝ} {a b : ℝ}
     (h₁ : IsCompactExpRepresentation ν₁ F₁ a b)
     (h₂ : IsCompactExpRepresentation ν₂ F₂ a b) :

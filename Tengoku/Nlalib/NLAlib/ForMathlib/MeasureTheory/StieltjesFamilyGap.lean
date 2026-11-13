@@ -36,7 +36,9 @@ O(height) bound on the averaged imaginary transform forces every fixed
 nonnegative compact test in that region to have zero integral for
 almost every parameter. The sample measures need not form an assumed
 measurable kernel: measurability of the test integrals follows from
-Cauchy regularization of the actual transforms.-/
+Cauchy regularization of the actual transforms.
+@isnad1 id=eventual.7h8v.s8.1bd0bddf2f8c from=translated src=- shape=756d4a9c vocab=51bc784f
+-/
 theorem ae_integral_eq_zero_of_average_im_stieltjes_le_mul
     {T : Type*} [MeasurableSpace T] (ν : Measure T) [IsProbabilityMeasure ν]
     (ρ : T → FiniteMeasure ℝ) (r : T → ℂ → ℂ)

@@ -33,7 +33,9 @@ private theorem sum_fin_snoc {m : ℕ} (F : (Fin (m + 1) → n) → R) :
 
 /-- The trace of an ordered matrix word with a boundary factor is the exact
 finite sum of its closed entry chains. The case of zero interior factors is
-the usual trace sum of the boundary matrix.-/
+the usual trace sum of the boundary matrix.
+@isnad1 id=eq.0h5v.s8.8ccce1eaf43f from=translated src=- shape=70038038 vocab=ab250c8e
+-/
 theorem trace_mul_list_ofFn_prod_eq_sum {m : ℕ}
     (B : Matrix n n R) (A : Fin m → Matrix n n R) :
     (B * (List.ofFn A).prod).trace =
@@ -63,7 +65,9 @@ theorem trace_mul_list_ofFn_prod_eq_sum {m : ℕ}
     ring
 
 /-- A nonempty ordered matrix trace word is the sum over all assignments of
-its cyclic vertices, with the final factor joining the last vertex to zero.-/
+its cyclic vertices, with the final factor joining the last vertex to zero.
+@isnad1 id=eq.0h4v.s8.449a25137566 from=translated src=- shape=45c64fbf vocab=ab250c8e
+-/
 theorem trace_list_ofFn_prod_eq_sum {m : ℕ} (A : Fin (m + 1) → Matrix n n R) :
     (List.ofFn A).prod.trace =
       ∑ v : Fin (m + 1) → n,
@@ -76,7 +80,9 @@ theorem trace_list_ofFn_prod_eq_sum {m : ℕ} (A : Fin (m + 1) → Matrix n n R)
   exact mul_comm _ _
 
 /-- The cyclic finite-word trace expansion uses the native full-cycle
-permutation `finRotate`, in the same order as the original matrix word.-/
+permutation `finRotate`, in the same order as the original matrix word.
+@isnad1 id=eq.0h4v.s8.1da1f28104c7 from=translated src=- shape=81b13724 vocab=598f8a06
+-/
 theorem trace_list_ofFn_prod_eq_sum_cyclic {m : ℕ}
     (A : Fin (m + 1) → Matrix n n R) :
     (List.ofFn A).prod.trace =
@@ -93,7 +99,9 @@ theorem trace_list_ofFn_prod_eq_sum_cyclic {m : ℕ}
   rw [hr]
 
 /-- Rotating an ordered matrix list preserves its actual ordinary trace.
-No nonempty dimension or list assumption is needed. Source: trace cyclicity.-/
+No nonempty dimension or list assumption is needed. Source: trace cyclicity.
+@isnad1 id=eq.0h4v.s7.80753918df3d from=translated src=- shape=3600a121 vocab=40e34950
+-/
 theorem trace_list_prod_rotate {R n : Type*} [CommSemiring R] [Fintype n] [DecidableEq n]
     (L : List (Matrix n n R)) (s : ℕ) :
     (L.rotate s).prod.trace = L.prod.trace := by

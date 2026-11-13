@@ -17,7 +17,9 @@ namespace Matrix
 variable {K L m n : Type*} [Field K] [Field L]
 variable [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
-/-- Independent matrix columns remain independent after extending the scalar field.-/
+/-- Independent matrix columns remain independent after extending the scalar field.
+@isnad1 id=linearin.1h6v.s7.b815b7c32599 from=translated src=- shape=2a7e6fe7 vocab=4d964c89
+-/
 theorem linearIndependent_cols_map (σ : K →+* L) {A : Matrix m n K}
     (hA : LinearIndependent K A.col) : LinearIndependent L (A.map σ).col := by
   have hinj : Function.Injective A.mulVecLin := Matrix.mulVec_injective_iff.mpr hA

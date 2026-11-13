@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- `Γ(x + 1/2) ≤ Γ(x) √x` for `x > 0` (log-convexity of `Γ`, Bohr–Mollerup).
 Atlas: `chi-square-neg-moment` (helper). Ported from Prove2me solution
-`GaussianMatrix.inv_chi_square_Lq_bound` (`icl_Gamma_add_half_le`).-/
+`GaussianMatrix.inv_chi_square_Lq_bound` (`icl_Gamma_add_half_le`).
+@isnad1 id=le.1h1v.s5.a75e94674f19 from=translated src=- shape=6f1dec2a vocab=277dfdf9
+-/
 theorem Gamma_add_half_le_mul_sqrt {x : ℝ} (hx : 0 < x) :
     Gamma (x + 1 / 2) ≤ Gamma x * √x := by
   have h := Gamma_mul_add_mul_le_rpow_Gamma_mul_rpow_Gamma hx (by linarith : 0 < x + 1)
@@ -36,7 +38,9 @@ theorem Gamma_add_half_le_mul_sqrt {x : ℝ} (hx : 0 < x) :
 
 /-- **Euler's integral in `lintegral` form**: `∫₀^∞ c t^{a-1} e^{-rt} dt = c (1/r)^a Γ(a)` for
 `a, r > 0` and `c ≥ 0`. Atlas: `chi-square-neg-moment` (helper). Ported from Prove2me solution
-`GaussianMatrix.chi_square_neg_moment` (`cnm_gamma_lintegral`).-/
+`GaussianMatrix.chi_square_neg_moment` (`cnm_gamma_lintegral`).
+@isnad1 id=eq.3h3v.s7.7193c48352fa from=translated src=- shape=7eea3a09 vocab=8f38f6e1
+-/
 theorem lintegral_ofReal_mul_rpow_mul_exp_Ioi {a r : ℝ} (ha : 0 < a) (hr : 0 < r) (c : ℝ)
     (hc : 0 ≤ c) :
     ∫⁻ t in Ioi (0 : ℝ), ENNReal.ofReal (c * (t ^ (a - 1) * Real.exp (-(r * t))))
@@ -59,7 +63,9 @@ theorem lintegral_ofReal_mul_rpow_mul_exp_Ioi {a r : ℝ} (ha : 0 < a) (hr : 0 <
 Elementary; used for the chi-square small-ball density bound (Davidson–Szarek 2001,
 Vershynin 2012). Atlas: `tail-integral`. Ported from Prove2me solution
 `GaussianMatrix.integral_power_exp_le`.
-atlas: tail-integral (partial)-/
+atlas: tail-integral (partial)
+@isnad1 id=le.2h2v.s7.a41c7b3b3759 from=translated src=- shape=bb9edeec vocab=33f721cc
+-/
 theorem lintegral_rpow_mul_exp_le {a : ℝ} (ha : -1 < a) {t : ℝ} (ht : 0 ≤ t) :
     ∫⁻ x in Ioc 0 t, ENNReal.ofReal (x ^ a * Real.exp (-x / 2))
       ≤ ENNReal.ofReal (t ^ (a + 1) / (a + 1)) := by

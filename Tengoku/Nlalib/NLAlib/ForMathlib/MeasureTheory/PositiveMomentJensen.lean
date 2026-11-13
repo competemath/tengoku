@@ -28,7 +28,9 @@ attribute [local instance] realMomentJensenCFC
 
 /-- A genuine normalized positive functional's rooted positive integer
 moment dominates its first moment, by scalar Lp exponent comparison on
-the actual spectrum measure.-/
+the actual spectrum measure.
+@isnad1 id=le.3h4v.s8.7bbca8932fec from=translated src=- shape=a937f1b3 vocab=0a9ba178
+-/
 theorem PositiveLinearMap.re_le_re_pow_rpow (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1=1)
     {a : A} (ha : 0≤a) (m : ℕ) (hm : 0<m) :
     (φ a).re≤((φ (a^m)).re)^((m : ℝ)⁻¹) := by

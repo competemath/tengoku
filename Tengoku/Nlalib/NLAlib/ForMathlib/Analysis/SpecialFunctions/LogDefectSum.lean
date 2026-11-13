@@ -19,14 +19,18 @@ open scoped BigOperators
 
 namespace Real
 
-/-- The logarithmic defect of a positive real number is nonnegative.-/
+/-- The logarithmic defect of a positive real number is nonnegative.
+@isnad1 id=le.1h1v.s4.a31fe8392d27 from=translated src=- shape=a8dc2df9 vocab=172b0284
+-/
 theorem logDefect_nonneg {x : ℝ} (hx : 0 < x) : 0 ≤ logDefect x := by
   have hlog := log_le_sub_one_of_pos hx
   unfold logDefect
   linarith
 
 /-- A small total logarithmic defect controls the squared distance of a positive
-finite family from the constant family one.-/
+finite family from the constant family one.
+@isnad1 id=le.3h3v.s7.50f715725abb from=translated src=- shape=2f4ec2f6 vocab=2a5a59af
+-/
 theorem sum_sq_sub_one_le_six_mul_of_sum_logDefect_le
     {ι : Type*} [Fintype ι] (x : ι → ℝ) (eps : ℝ)
     (hx : ∀ i, 0 < x i) (heps : eps ≤ 1 / 6)
@@ -45,7 +49,9 @@ theorem sum_sq_sub_one_le_six_mul_of_sum_logDefect_le
 
 /-- For a positive finite family with sum equal to its cardinality, a product
 lower bound by `exp (-eps)`, with `eps ≤ 1 / 6`, implies a quadratic bound on
-its distance from the constant family one.-/
+its distance from the constant family one.
+@isnad1 id=le.4h3v.s7.d7da4372b69c from=translated src=- shape=ee9c1401 vocab=bd190876
+-/
 theorem sum_sq_sub_one_le_six_mul_of_exp_neg_le_prod
     {ι : Type*} [Fintype ι] (x : ι → ℝ) (eps : ℝ)
     (hx : ∀ i, 0 < x i) (hsum : ∑ i, x i = (Fintype.card ι : ℝ))

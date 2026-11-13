@@ -36,11 +36,15 @@ def jacobiFraction {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (x : 𝕜) 
 
 /-- The zero-order Jacobi scalar approximant is zero, without selecting a
 nonexistent first matrix coordinate. Source: operator derivations after (OF27).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.0h5v.s5.2947da02c453 from=translated src=- shape=dc893abd vocab=2cad095b
+-/
 @[simp] theorem jacobiFraction_zero {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (x : 𝕜) (k : ℕ) :
     jacobiFraction a β x 0 k = 0 := rfl
 
-/-- Shifting the start level of a Jacobi fraction shifts the coefficients.-/
+/-- Shifting the start level of a Jacobi fraction shifts the coefficients.
+@isnad1 id=eq.0h6v.s6.5608ac89307c from=translated src=- shape=d6fc6c4d vocab=812c863b
+-/
 theorem jacobiFraction_succ {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (x : 𝕜) (m k : ℕ) :
     jacobiFraction a β x m (k + 1) =
       jacobiFraction (fun i => a (i + 1)) (fun i => β (i + 1)) x m k := by
@@ -49,7 +53,9 @@ theorem jacobiFraction_succ {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (x
   | succ m ih => simp only [jacobiFraction, ih (k + 1)]
 
 /-- The trailing principal submatrix of a Jacobi matrix is the Jacobi matrix of the shifted
-coefficients.-/
+coefficients.
+@isnad1 id=eq.0h4v.s7.548fe58bfac5 from=translated src=- shape=a7107219 vocab=17043e4a
+-/
 theorem submatrix_succ_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (m : ℕ) :
     (jacobiMatrix a β (m + 1)).submatrix Fin.succ Fin.succ =
       jacobiMatrix (fun i => a (i + 1)) (fun i => β (i + 1)) m := by
@@ -57,7 +63,9 @@ theorem submatrix_succ_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 
   simp only [jacobiMatrix, Matrix.submatrix_apply, Matrix.of_apply, Fin.val_succ]
   split_ifs <;> first | rfl | (exfalso; omega)
 
-/-- `(x − J)` restricted to the trailing block is `x − J'`.-/
+/-- `(x − J)` restricted to the trailing block is `x − J'`.
+@isnad1 id=eq.0h5v.s9.70588f827133 from=translated src=- shape=6ce986c2 vocab=2beebdab
+-/
 theorem submatrix_succ_smul_one_sub_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (m : ℕ) (x : 𝕜) :
     (x • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) 𝕜) - jacobiMatrix a β (m + 1)).submatrix
         Fin.succ Fin.succ =
@@ -69,7 +77,9 @@ theorem submatrix_succ_smul_one_sub_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a 
 
 /-- Determinant recurrence of a Jacobi matrix along its first row:
 `det(x − J) = (x − a₀) det(x − J') − β₁² det(x − J'')` with `J'`, `J''` the trailing blocks
-(shifted coefficients). Source: Golub–Meurant (2010) [`gm10`], Ch. 3.-/
+(shifted coefficients). Source: Golub–Meurant (2010) [`gm10`], Ch. 3.
+@isnad1 id=eq.0h5v.s10.18b32e0a224b from=translated src=- shape=a8be616f vocab=b1ba2490
+-/
 theorem det_smul_one_sub_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a β : ℕ → 𝕜) (m : ℕ) (x : 𝕜) :
     (x • (1 : Matrix (Fin (m + 2)) (Fin (m + 2)) 𝕜) - jacobiMatrix a β (m + 2)).det =
       (x - a 0) * (x • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) 𝕜) -
@@ -113,7 +123,9 @@ theorem det_smul_one_sub_jacobiMatrix {𝕜 : Type*} [Field 𝕜] (a β : ℕ �
   ring
 
 /-- Every real Jacobi coefficient matrix is Hermitian, independently of
-off-diagonal positivity or irreducibility.-/
+off-diagonal positivity or irreducibility.
+@isnad1 id=ishermit.0h3v.s5.1de5285e77c9 from=translated src=- shape=f4b72a1b vocab=052dc024
+-/
 theorem isHermitian_jacobiMatrix (a β : ℕ → ℝ) (m : ℕ) :
     (jacobiMatrix a β m).IsHermitian := by
   ext i j
@@ -127,7 +139,9 @@ theorem isHermitian_jacobiMatrix (a β : ℕ → ℝ) (m : ℕ) :
     simp [hi, hj]
   · by_cases hj : (j : ℕ) + 1 = i <;> simp [hi, hj]
 
-/-- Mapping the coefficients of the actual Jacobi matrix maps all of its entries.-/
+/-- Mapping the coefficients of the actual Jacobi matrix maps all of its entries.
+@isnad1 id=eq.0h6v.s7.39d9b0eeca35 from=translated src=- shape=1cb21abf vocab=e4394f24
+-/
 theorem map_jacobiMatrix {𝕜 𝕜' : Type*} [Field 𝕜] [Field 𝕜']
     (f : 𝕜 →+* 𝕜') (a β : ℕ → 𝕜) (m : ℕ) :
     (jacobiMatrix a β m).map f = jacobiMatrix (f ∘ a) (f ∘ β) m := by

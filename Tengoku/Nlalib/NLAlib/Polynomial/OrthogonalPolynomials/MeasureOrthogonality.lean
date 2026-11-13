@@ -28,7 +28,9 @@ def monicMomentPolynomialSequence {𝕜 : Type*} [Field 𝕜]
       natDegree_monicOrthogonalPolynomial]
 
 /-- The first `n` monic moment polynomials span the polynomial space of degree
-strictly below `n`, including its empty order-zero case.-/
+strictly below `n`, including its empty order-zero case.
+@isnad1 id=ex.1h4v.s8.54ce088b5c21 from=translated src=- shape=baf5664f vocab=b7b881b3
+-/
 theorem exists_sum_smul_monicOrthogonalPolynomial_eq_of_degree_lt {𝕜 : Type*} [Field 𝕜]
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {p : 𝕜[X]} {n : ℕ} (hp : p.degree < n) :
     ∃ c : ℕ → 𝕜, (∑ j ∈ Finset.range n, c j • monicOrthogonalPolynomial L j) = p := by
@@ -46,7 +48,9 @@ theorem exists_sum_smul_monicOrthogonalPolynomial_eq_of_degree_lt {𝕜 : Type*}
 
 /-- The first `n+1` monic moment polynomials span all degree-`n` polynomials,
 without any positive-definiteness assumption. Source: triangular monic basis.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=ex.1h4v.s8.0f0618b3d931 from=translated src=- shape=4245b0f8 vocab=0eeeb542
+-/
 theorem exists_sum_smul_monicOrthogonalPolynomial_eq_of_degree_le {𝕜 : Type*} [Field 𝕜]
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {p : 𝕜[X]} {n : ℕ} (hp : p.degree ≤ n) :
     ∃ c : ℕ → 𝕜, (∑ j ∈ range (n + 1), c j • monicOrthogonalPolynomial L j) = p := by
@@ -63,7 +67,9 @@ theorem exists_sum_smul_monicOrthogonalPolynomial_eq_of_degree_le {𝕜 : Type*}
   exact (Submodule.mem_span_image_finset_iff_exists_fun' 𝕜).mp hmem
 
 /-- With at least `n` support points, the canonical measure polynomial of order `n`
-is monic and orthogonal to all lower degrees, including the terminal order.-/
+is monic and orthogonal to all lower degrees, including the terminal order.
+@isnad1 id=ismonico.2h2v.s5.03978c50e6d4 from=translated src=- shape=d4da2ba7 vocab=c453f570
+-/
 theorem isMonicOrthogonalPolynomial_polynomialIntegral (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) :
     IsMonicOrthogonalPolynomial (polynomialIntegral μ hμ) n
@@ -73,7 +79,9 @@ theorem isMonicOrthogonalPolynomial_polynomialIntegral (μ : Measure ℝ)
 
 /-- With at least `n` support points the monic lower-degree orthogonality problem
 of order `n` has a unique solution. Source: Gautschi (2004), Chapter 1.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=existsun.2h2v.s5.7830f5a7173d from=translated src=- shape=9c946b53 vocab=24792331
+-/
 theorem existsUnique_isMonicOrthogonalPolynomial_polynomialIntegral (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n : ℕ∞) ≤ μ.support.encard) :
     ∃! p : ℝ[X], IsMonicOrthogonalPolynomial (polynomialIntegral μ hμ) n p :=
@@ -82,7 +90,9 @@ theorem existsUnique_isMonicOrthogonalPolynomial_polynomialIntegral (μ : Measur
 
 /-- Every monic moment polynomial before support termination has positive squared
 integral norm. Source: Gautschi (2004), Chapter 1.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=lt.2h2v.s5.beb0e5062a6d from=translated src=- shape=dee18cf7 vocab=c7a2c478
+-/
 theorem orthogonalPolynomialNorm_pos_of_lt_support_encard (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) {n : ℕ} (hn : (n + 1 : ℕ∞) ≤ μ.support.encard) :
     0 < orthogonalPolynomialNorm (polynomialIntegral μ hμ) n := by
@@ -98,7 +108,9 @@ theorem orthogonalPolynomialNorm_pos_of_lt_support_encard (μ : Measure ℝ)
 /-- Distinct canonical measure polynomials whose moment systems are nonsingular
 are orthogonal. The larger order may be the finite-support terminal order.
 Source: Gautschi (2004), Chapter 1.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=eq.4h3v.s7.1753b3f92a4f from=translated src=- shape=40925022 vocab=b9412c4e
+-/
 theorem polynomialIntegral_monicOrthogonalPolynomial_mul_eq_zero (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) {i j : ℕ}
     (hi : (i : ℕ∞) ≤ μ.support.encard) (hj : (j : ℕ∞) ≤ μ.support.encard) (hij : i ≠ j) :
@@ -118,7 +130,9 @@ theorem polynomialIntegral_monicOrthogonalPolynomial_mul_eq_zero (μ : Measure �
 /-- At finite-support termination, the monic moment polynomial is exactly the
 node polynomial of the support. This includes the zero measure, whose terminal
 polynomial is the empty product one. Source: Gautschi (2004), Chapter 1.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=eq.2h1v.s6.0c225d2436cb from=translated src=- shape=6d4004c6 vocab=64f7337b
+-/
 theorem monicOrthogonalPolynomial_eq_nodal_support (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (hs : μ.support.Finite) :
     monicOrthogonalPolynomial (polynomialIntegral μ hμ) hs.toFinset.card =
@@ -144,7 +158,9 @@ theorem monicOrthogonalPolynomial_eq_nodal_support (μ : Measure ℝ)
 /-- The terminal finite-support monic polynomial has zero squared norm, and is
 therefore not normalized into an orthonormal polynomial.
 Source: Gautschi (2004), Chapter 1.
-atlas: orthogonal-polynomials-measure-def (partial)-/
+atlas: orthogonal-polynomials-measure-def (partial)
+@isnad1 id=eq.2h1v.s5.841e213366ab from=translated src=- shape=88dfb443 vocab=4ce11ccf
+-/
 theorem orthogonalPolynomialNorm_eq_zero_of_finite_support (μ : Measure ℝ)
     (hμ : HasPolynomialMoments μ) (hs : μ.support.Finite) :
     orthogonalPolynomialNorm (polynomialIntegral μ hμ) hs.toFinset.card = 0 := by

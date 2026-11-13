@@ -23,11 +23,15 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 For `R = 0` it is zero; at negative radii the displayed scalar formula is used.-/
 def radialProj (R : ℝ) (x : E) : E := (R / max R ‖x‖) • x
 
-/-- Radial projection at radius zero is the zero map.-/
+/-- Radial projection at radius zero is the zero map.
+@isnad1 id=eq.0h2v.s5.34419f11eca5 from=translated src=- shape=b391549a vocab=3f40729e
+-/
 @[simp] theorem radialProj_zero (x : E) : radialProj 0 x = 0 := by
   simp [radialProj]
 
-/-- Projection fixes every vector already inside the nonnegative-radius ball.-/
+/-- Projection fixes every vector already inside the nonnegative-radius ball.
+@isnad1 id=eq.2h3v.s5.5a7a49ce95f8 from=translated src=- shape=1b318f0e vocab=c316cbf8
+-/
 theorem radialProj_eq_self {R : ℝ} (hR : 0 ≤ R) {x : E} (hx : ‖x‖ ≤ R) :
     radialProj R x = x := by
   rcases hR.eq_or_lt with rfl | hR
@@ -35,7 +39,9 @@ theorem radialProj_eq_self {R : ℝ} (hR : 0 ≤ R) {x : E} (hx : ‖x‖ ≤ R)
     simp [hx0]
   · simp [radialProj, max_eq_left hx, hR.ne']
 
-/-- The projected vector always has norm at most the nonnegative radius.-/
+/-- The projected vector always has norm at most the nonnegative radius.
+@isnad1 id=le.1h3v.s5.5eb18cc64b52 from=translated src=- shape=73a6d464 vocab=c316cbf8
+-/
 theorem norm_radialProj_le {R : ℝ} (hR : 0 ≤ R) (x : E) : ‖radialProj R x‖ ≤ R := by
   rcases hR.eq_or_lt with rfl | hR
   · simp
@@ -45,7 +51,9 @@ theorem norm_radialProj_le {R : ℝ} (hR : 0 ≤ R) (x : E) : ‖radialProj R x�
   exact (div_le_iff₀ hd).mpr
     (mul_le_mul_of_nonneg_left (le_max_right R ‖x‖) hR.le)
 
-/-- Radial projection is continuous, including radius zero.-/
+/-- Radial projection is continuous, including radius zero.
+@isnad1 id=continuo.1h2v.s5.d52e272b6c1d from=translated src=- shape=a322f847 vocab=c9671a65
+-/
 theorem continuous_radialProj {R : ℝ} (hR : 0 ≤ R) :
     Continuous (radialProj R : E → E) := by
   rcases hR.eq_or_lt with rfl | hR

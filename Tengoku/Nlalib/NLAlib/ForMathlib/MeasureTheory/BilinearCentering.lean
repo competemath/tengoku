@@ -19,7 +19,9 @@ variable {Ω F G 𝕜 : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Subtracting the actual mean in both slots of a Bochner-integrable
 bilinear product subtracts exactly the bilinear product of its means. All
-cross-term integrability follows from the genuine continuous linear maps.-/
+cross-term integrability follows from the genuine continuous linear maps.
+@isnad1 id=eq.2h7v.s12.34fdb0db3ccd from=translated src=- shape=7c38bd94 vocab=4f0b2730
+-/
 theorem integral_bilinear_sub_integral
     (B : F →L[𝕜] F →L[𝕜] G) (f : Ω → F)
     (hf : Integrable f μ) (hBf : Integrable (fun x => B (f x) (f x)) μ) :

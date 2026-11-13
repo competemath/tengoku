@@ -24,7 +24,9 @@ variable {α : Type*} [Fintype α]
 /-- A tree partition with extra nonnegative vertex potentials is controlled
 by the degree-distribution moments of the degree and potential functions.
 There are `n` degree-excess factors and `c` additional potential factors.
-The moment exponent is exactly `n + c`, with no dimension enlargement.-/
+The moment exponent is exactly `n + c`, with no dimension enlargement.
+@isnad1 id=le.10h9v.s9.61f3b5151281 from=translated src=- shape=a91103a0 vocab=c6f3ef21
+-/
 theorem sum_edgeWeight_mul_prod_pow_le
     (w : α → α → ℝ) (hw : ∀ i j, 0 ≤ w i j)
     (hsymm : ∀ i j, w i j = w j i)
@@ -103,7 +105,9 @@ private theorem sum_mul_pow_le_of_power_sums
 constant one. The exponent is `p = n + c + 1`: a tree with `n + 2` vertices
 contributes `a ^ (n + 1)` and the `c` additional factors contribute `b ^ c`.
 This is the profile-sensitive tree inequality used after selecting a spanning
-tree in the weighted graph estimate for Gaussian Schatten moments.-/
+tree in the weighted graph estimate for Gaussian Schatten moments.
+@isnad1 id=le.9h9v.s9.81d3a069eab1 from=translated src=- shape=72be556a vocab=d59a3c6b
+-/
 theorem sum_edgeWeight_mul_prod_pow_le_of_power_sums
     (w : α → α → ℝ) (hw : ∀ i j, 0 ≤ w i j)
     (hsymm : ∀ i j, w i j = w j i)

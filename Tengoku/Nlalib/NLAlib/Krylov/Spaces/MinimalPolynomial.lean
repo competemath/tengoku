@@ -21,7 +21,9 @@ variable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The first dependent Krylov power gives a monic annihilator of degree exactly
 the grade, including the constant polynomial one for a zero vector.
-Source: operator derivations, Section 5.-/
+Source: operator derivations, Section 5.
+@isnad1 id=ex.0h4v.s8.9ddf60210782 from=translated src=- shape=829ad382 vocab=6087167a
+-/
 theorem exists_monic_aeval_mulVec_eq_zero_natDegree_eq_krylovGrade
     (A : Matrix n n K) (b : n → K) :
     ∃ p : K[X], p.Monic ∧ p.natDegree = krylovGrade A b ∧ aeval A p *ᵥ b = 0 := by
@@ -43,21 +45,27 @@ def vectorMinpoly (A : Matrix n n K) (b : n → K) : K[X] :=
 
 /-- The vector-relative minimal polynomial is monic.
 Source: Saad (2003), Props. 6.1–6.3.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=monic.0h4v.s5.7a6561a7f77d from=translated src=- shape=119ff05b vocab=e0b30575
+-/
 theorem vectorMinpoly_monic (A : Matrix n n K) (b : n → K) :
     (vectorMinpoly A b).Monic :=
   (Classical.choose_spec (exists_monic_aeval_mulVec_eq_zero_natDegree_eq_krylovGrade A b)).1
 
 /-- The degree of the vector-relative minimal polynomial is the Krylov grade.
 Source: Saad (2003), Props. 6.1–6.3.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=eq.0h4v.s5.9fee799c4d75 from=translated src=- shape=554a4cb3 vocab=70294035
+-/
 theorem natDegree_vectorMinpoly (A : Matrix n n K) (b : n → K) :
     (vectorMinpoly A b).natDegree = krylovGrade A b :=
   (Classical.choose_spec (exists_monic_aeval_mulVec_eq_zero_natDegree_eq_krylovGrade A b)).2.1
 
 /-- The vector-relative minimal polynomial annihilates its vector.
 Source: Saad (2003), Props. 6.1–6.3.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=eq.0h4v.s8.b97a8a702379 from=translated src=- shape=9b1a4ab5 vocab=335d694e
+-/
 theorem aeval_vectorMinpoly_mulVec (A : Matrix n n K) (b : n → K) :
     aeval A (vectorMinpoly A b) *ᵥ b = 0 :=
   (Classical.choose_spec (exists_monic_aeval_mulVec_eq_zero_natDegree_eq_krylovGrade A b)).2.2
@@ -65,7 +73,9 @@ theorem aeval_vectorMinpoly_mulVec (A : Matrix n n K) (b : n → K) :
 /-- A polynomial annihilates the vector exactly when the vector-relative minimal
 polynomial divides it. This is the full annihilator interface, with no nonzero
 vector or positive dimension assumption. Source: operator derivations, (S1).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=iff.0h5v.s8.9c5b72b20c58 from=translated src=- shape=4447e38f vocab=b2e98913
+-/
 theorem aeval_mulVec_eq_zero_iff_vectorMinpoly_dvd
     (A : Matrix n n K) (b : n → K) (p : K[X]) :
     aeval A p *ᵥ b = 0 ↔ vectorMinpoly A b ∣ p := by
@@ -89,7 +99,9 @@ theorem aeval_mulVec_eq_zero_iff_vectorMinpoly_dvd
 
 /-- The vector-relative minimal polynomial divides the operator minimal polynomial.
 Source: Saad (2003), Proposition 6.1.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=dvd.0h4v.s7.f5ad59962773 from=translated src=- shape=c49a2fbd vocab=c13266ad
+-/
 theorem vectorMinpoly_dvd_minpoly (A : Matrix n n K) (b : n → K) :
     vectorMinpoly A b ∣ minpoly K A := by
   apply (aeval_mulVec_eq_zero_iff_vectorMinpoly_dvd A b _).mp
@@ -107,7 +119,9 @@ theorem eq_vectorMinpoly_of_monic_of_natDegree_eq {A : Matrix n n K} {b : n → 
 
 /-- The operator minimal polynomial has degree at most the finite matrix dimension.
 Source: Cayley–Hamilton and polynomial divisibility.
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=le.0h3v.s6.241c9706b3ef from=translated src=- shape=cfb7b87c vocab=0eaedba8
+-/
 theorem natDegree_minpoly_le_card (A : Matrix n n K) :
     (minpoly K A).natDegree ≤ Fintype.card n := by
   simpa only [Matrix.charpoly_natDegree_eq_dim] using

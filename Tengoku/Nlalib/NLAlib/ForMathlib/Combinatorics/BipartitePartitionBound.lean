@@ -42,7 +42,9 @@ variable {U V E I J : Type*}
 /-- The product over the occurrence-indexed tree edges equals the syntax-tree
 weight: if the injective occurrence map `occ` realizes each tree edge `(i, j)`
 by an occurrence with endpoints `ur i`, `vc j`, then the product of the weights
-over `univ.map occ` equals `weight w t X Y`.-/
+over `univ.map occ` equals `weight w t X Y`.
+@isnad1 id=eq.1h16v.s9.f65b9f20d344 from=translated src=- shape=2a87bf29 vocab=3c448117
+-/
 theorem prod_bipartite_tree_edges_eq_weight [Fintype E] [DecidableEq E]
     {r q : ℕ} (t : RowRootedBipartiteTree r q)
     (sr : E → U) (tg : E → V)

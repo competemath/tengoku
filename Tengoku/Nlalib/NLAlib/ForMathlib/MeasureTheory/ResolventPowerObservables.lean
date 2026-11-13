@@ -26,7 +26,9 @@ def resolventPowerMean (μ : Measure Ω) (X : Ω → selfAdjoint A)
 
 variable {μ : Measure Ω} [IsFiniteMeasure μ]
 
-/-- The actual observable mean has derivative equal to the negative exponent times its next power mean.-/
+/-- The actual observable mean has derivative equal to the negative exponent times its next power mean.
+@isnad1 id=hasderiv.2h8v.s8.9431e8b1c789 from=translated src=- shape=e72b76b4 vocab=16517566
+-/
 theorem hasDerivAt_resolventPowerMean
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     (L : A →L[ℂ] E) {z : ℂ} (hz : z.im≠0) (n : ℕ) :
@@ -37,7 +39,9 @@ theorem hasDerivAt_resolventPowerMean
     (hasDerivAt_integral_resolvent_selfAdjoint_pow X hX hz n)
   simpa only [Function.comp_def,map_smul] using h
 
-/-- Every actual observable resolvent power mean is holomorphic on the upper half-plane.-/
+/-- Every actual observable resolvent power mean is holomorphic on the upper half-plane.
+@isnad1 id=differen.1h7v.s8.44d8f9a9f456 from=translated src=- shape=4f1ceb7f vocab=278289c7
+-/
 theorem differentiableOn_resolventPowerMean
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     (L : A →L[ℂ] E) (n : ℕ) :
@@ -45,7 +49,9 @@ theorem differentiableOn_resolventPowerMean
   intro z hz
   exact (hasDerivAt_resolventPowerMean X hX L (ne_of_gt hz) n).differentiableAt.differentiableWithinAt
 
-/-- Every continuous linear observable of a fixed self-adjoint resolvent has its genuine power derivative.-/
+/-- Every continuous linear observable of a fixed self-adjoint resolvent has its genuine power derivative.
+@isnad1 id=hasderiv.1h6v.s9.4741c354cb0b from=translated src=- shape=6091f0f9 vocab=fa48176d
+-/
 theorem hasDerivAt_linearMap_resolvent_pow
     (L : A →L[ℂ] E) (a : selfAdjoint A) {z : ℂ} (hz : z.im≠0) (n : ℕ) :
     HasDerivAt (fun w : ℂ => L (resolvent (a : A) w^n))

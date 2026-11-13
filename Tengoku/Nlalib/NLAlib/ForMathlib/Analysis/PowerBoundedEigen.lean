@@ -61,7 +61,9 @@ theorem eq_zero_of_bounded_pow_orbit_of_jordan_chain
 
 /-- Bounded power orbits force every unit-modulus generalized eigenspace
 to equal the ordinary eigenspace. Source: Horn–Johnson (2013), §5.6;
-the induction excludes Jordan chains without a Jordan normal form.-/
+the induction excludes Jordan chains without a Jordan normal form.
+@isnad1 id=eq.2h3v.s8.8dc36162357a from=translated src=- shape=76f77f06 vocab=bebfbf48
+-/
 theorem maxGenEigenspace_eq_eigenspace_of_bounded_pow_orbits
     (f : Module.End ℂ E) (hb : ∀ x : E, ∃ C : ℝ, ∀ k : ℕ, ‖(f ^ k) x‖ ≤ C)
     {μ : ℂ} (hμ : ‖μ‖ = 1) : f.maxGenEigenspace μ = f.eigenspace μ := by
@@ -90,7 +92,9 @@ theorem maxGenEigenspace_eq_eigenspace_of_bounded_pow_orbits
 
 /-- An eigenvalue with a bounded nonzero eigenvector orbit has modulus at
 most one. Source: Horn–Johnson (2013), §5.6; powers of a scalar larger than
-one are unbounded.-/
+one are unbounded.
+@isnad1 id=le.2h4v.s7.4843f49c3e82 from=translated src=- shape=20087b9a vocab=2ea7088e
+-/
 theorem norm_eigenvalue_le_one_of_bounded_pow_orbit
     (f : Module.End ℂ E) {μ : ℂ} {x : E} (hx : f.HasEigenvector μ x)
     (hb : ∃ C : ℝ, ∀ k : ℕ, ‖(f ^ k) x‖ ≤ C) : ‖μ‖ ≤ 1 := by

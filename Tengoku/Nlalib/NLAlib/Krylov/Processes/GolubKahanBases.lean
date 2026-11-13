@@ -18,7 +18,9 @@ namespace NLAlib
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- Both vectors of every Golub--Kahan state lie in their respective Krylov spaces.
-This is true without a success hypothesis, including zero vectors after breakdown.-/
+This is true without a success hypothesis, including zero vectors after breakdown.
+@isnad1 id=and.0h5v.s9.5c430deb7e67 from=translated src=- shape=ff5dfd4b vocab=1474687b
+-/
 theorem golubKahanRecurrence_mem (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) :
     (golubKahanRecurrence A b j).u ∈ krylovSpace (A * Aᵀ) b (j + 1) ∧
       (golubKahanRecurrence A b j).v ∈ krylovSpace (Aᵀ * A) (Aᵀ *ᵥ b) (j + 1) := by
@@ -41,7 +43,9 @@ theorem golubKahanRecurrence_mem (A : Matrix m n ℝ) (b : m → ℝ) (j : ℕ) 
     simpa only [golubKahanRecurrence, Function.iterate_succ_apply'] using And.intro hu hv
 
 /-- A dilation Krylov grade of at least `2q` gives both graded Golub--Kahan bases of
-width `q`. The case `q = 0` includes two empty frames.-/
+width `q`. The case `q = 0` includes two empty frames.
+@isnad1 id=and.1h5v.s7.27e041dc4333 from=translated src=- shape=bd6cf0ac vocab=010b5007
+-/
 theorem isGradedKrylovBasis_golubKahan_of_dilationGrade {A : Matrix m n ℝ} {b : m → ℝ}
     {q : ℕ} (hq : 2 * q ≤ krylovGrade (dilation A) (Sum.elim b (0 : n → ℝ))) :
     IsGradedKrylovBasis (A * Aᵀ) b (golubKahanU A b q) ∧
@@ -86,7 +90,9 @@ theorem isGradedKrylovBasis_golubKahan_of_dilationGrade {A : Matrix m n ℝ} {b 
     · intro j
       exact (golubKahanRecurrence_mem A b j).2
 
-/-- A successful Golub--Kahan state forces the dilation grade past its last odd link.-/
+/-- A successful Golub--Kahan state forces the dilation grade past its last odd link.
+@isnad1 id=le.1h5v.s7.f5e73217e172 from=translated src=- shape=dd2414e3 vocab=8e9e1544
+-/
 theorem two_mul_le_dilationGrade_of_golubKahanSucceeds {A : Matrix m n ℝ} {b : m → ℝ} {k : ℕ}
     (h : GolubKahanSucceeds A b k) :
     2 * (k + 1) ≤ krylovGrade (dilation A) (Sum.elim b (0 : n → ℝ)) := by

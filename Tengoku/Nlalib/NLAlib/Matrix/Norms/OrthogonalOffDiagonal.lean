@@ -22,7 +22,9 @@ variable {𝕜 n k l : Type*} [RCLike 𝕜] [Fintype n] [Fintype k] [Fintype l]
 
 omit [Fintype n] [DecidableEq n] in
 /-- An adjoint pair of off-diagonal blocks has the original spectral norm, including
-zero-width blocks.-/
+zero-width blocks.
+@isnad1 id=eq.0h4v.s7.6e91245689a2 from=translated src=- shape=013af11a vocab=8f05bc28
+-/
 theorem specNorm_fromBlocks_conjTranspose (Z : Matrix l k 𝕜) :
     specNorm (Matrix.fromBlocks 0 Zᴴ Z 0) = specNorm Z := by
   apply le_antisymm
@@ -38,7 +40,9 @@ theorem specNorm_fromBlocks_conjTranspose (Z : Matrix l k 𝕜) :
       Finset.sum_const_zero, zero_add, add_zero] using h
 
 omit [Fintype n] [DecidableEq n] [DecidableEq k] [DecidableEq l] in
-/-- An adjoint off-diagonal pair has twice the rectangular block's rank.-/
+/-- An adjoint off-diagonal pair has twice the rectangular block's rank.
+@isnad1 id=eq.0h4v.s7.1b580d80f2e0 from=translated src=- shape=090d25c7 vocab=5289dbaf
+-/
 theorem rank_fromBlocks_conjTranspose (Z : Matrix l k 𝕜) :
     (Matrix.fromBlocks 0 Zᴴ Z 0).rank = 2 * Z.rank := by
   have he : (Matrix.fromBlocks 0 Zᴴ Z 0).reindex (Equiv.refl (k ⊕ l))
@@ -49,7 +53,9 @@ theorem rank_fromBlocks_conjTranspose (Z : Matrix l k 𝕜) :
   omega
 
 omit [DecidableEq n] in
-/-- Isometric embedding on both sides preserves rank.-/
+/-- Isometric embedding on both sides preserves rank.
+@isnad1 id=eq.1h5v.s7.f04b2df5df9c from=translated src=- shape=6add9f3a vocab=6dcdd356
+-/
 theorem rank_mul_mul_conjTranspose_of_hasOrthonormalCols {V : Matrix n k 𝕜}
     (hV : HasOrthonormalCols V) (D : Matrix k k 𝕜) :
     (V * D * Vᴴ).rank = D.rank := by
@@ -63,7 +69,9 @@ theorem rank_mul_mul_conjTranspose_of_hasOrthonormalCols {V : Matrix n k 𝕜}
          _ ≤ (V * D * Vᴴ).rank := Matrix.rank_mul_le_right _ _
 
 omit [Fintype k] [Fintype l] [DecidableEq n] in
-/-- Joining orthogonal orthonormal frames gives an orthonormal frame.-/
+/-- Joining orthogonal orthonormal frames gives an orthonormal frame.
+@isnad1 id=hasortho.3h6v.s7.4177b66c9cd2 from=translated src=- shape=46f65e56 vocab=e55a153a
+-/
 theorem hasOrthonormalCols_fromCols_of_orthogonal {V : Matrix n k 𝕜} {U : Matrix n l 𝕜}
     (hV : HasOrthonormalCols V) (hU : HasOrthonormalCols U) (hVU : Vᴴ * U = 0) :
     HasOrthonormalCols (Matrix.fromCols V U) := by
@@ -76,7 +84,9 @@ theorem hasOrthonormalCols_fromCols_of_orthogonal {V : Matrix n k 𝕜} {U : Mat
     hU.conjTranspose_mul_self, hVU, hUV, Matrix.fromBlocks_one]
 
 omit [Fintype n] [DecidableEq n] [DecidableEq k] [DecidableEq l] in
-/-- The off-diagonal coupling is the isometric embedding of its small Hermitian block.-/
+/-- The off-diagonal coupling is the isometric embedding of its small Hermitian block.
+@isnad1 id=eq.0h7v.s9.6616a66b87b3 from=translated src=- shape=7ec53ca9 vocab=805bd7cf
+-/
 theorem orthogonalCoupling_eq_fromCols (V : Matrix n k 𝕜) (U : Matrix n l 𝕜)
     (Z : Matrix l k 𝕜) :
     U * Z * Vᴴ + V * Zᴴ * Uᴴ = Matrix.fromCols V U *
@@ -85,7 +95,9 @@ theorem orthogonalCoupling_eq_fromCols (V : Matrix n k 𝕜) (U : Matrix n l �
     Matrix.fromCols_mul_fromRows, Matrix.mul_zero, zero_add, add_zero]
 
 /-- All three exact invariants of a coupling between orthogonal subspaces.
-Zero-width and zero-rank couplings are retained.-/
+Zero-width and zero-rank couplings are retained.
+@isnad1 id=and.3h7v.s10.e7567e813512 from=translated src=- shape=5f6c3759 vocab=6319c0ac
+-/
 theorem norms_and_rank_orthogonalCoupling {V : Matrix n k 𝕜} {U : Matrix n l 𝕜}
     (hV : HasOrthonormalCols V) (hU : HasOrthonormalCols U) (hVU : Vᴴ * U = 0)
     (Z : Matrix l k 𝕜) :

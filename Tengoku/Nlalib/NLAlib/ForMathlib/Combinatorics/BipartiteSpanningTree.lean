@@ -181,7 +181,9 @@ such that each tree edge `(i, j)` is realized by the occurrence `occ k`: the
 `k`-th edge of `t` has row endpoint `ur i` and column endpoint `vc j`.
 The original root index shifts with each row attachment. Column vertices and
 edge occurrences may be empty, and finiteness of the occurrence type is not
-required.-/
+required.
+@isnad1 id=ex.1h5v.s9.32a57d9062a9 from=translated src=- shape=c57c4d30 vocab=22bb67e6
+-/
 theorem RowRootedBipartiteTree.exists_spanning_tree_syntax
     [Fintype U] [Fintype V] [Nonempty U]
     (sr : E → U) (tg : E → V)

@@ -23,7 +23,9 @@ namespace NLAlib
 
 variable {𝕜 : Type*} [Field 𝕜]
 
-/-- A finite monomial expansion recovers its indexed coefficients exactly.-/
+/-- A finite monomial expansion recovers its indexed coefficients exactly.
+@isnad1 id=eq.0h4v.s8.8ef43d7fb26b from=translated src=- shape=09825ade vocab=02ef6fce
+-/
 @[simp] theorem coeff_sum_monomial_fin {n : ℕ} (c : Fin n → 𝕜) (i : Fin n) :
     (∑ j : Fin n, monomial j.val (c j)).coeff i.val = c i := by
   simp only [finsetSum_coeff, coeff_monomial]
@@ -33,7 +35,9 @@ variable {𝕜 : Type*} [Field 𝕜]
     exact ite_eq_right (fun h => hji (Fin.ext h))
   · simp
 
-/-- A finite monomial coefficient vector is zero exactly when its polynomial is zero.-/
+/-- A finite monomial coefficient vector is zero exactly when its polynomial is zero.
+@isnad1 id=iff.0h3v.s8.9cea59974db2 from=translated src=- shape=112b1ec1 vocab=29ad71d9
+-/
 theorem sum_monomial_fin_eq_zero_iff {n : ℕ} (c : Fin n → 𝕜) :
     (∑ i : Fin n, monomial i.val (c i)) = 0 ↔ c = 0 := by
   constructor
@@ -44,7 +48,9 @@ theorem sum_monomial_fin_eq_zero_iff {n : ℕ} (c : Fin n → 𝕜) :
   · rintro rfl
     simp
 
-/-- Every finite order-`n` coefficient expansion has degree below `n`.-/
+/-- Every finite order-`n` coefficient expansion has degree below `n`.
+@isnad1 id=lt.0h3v.s8.77343ee1c395 from=translated src=- shape=3a52ea05 vocab=18cdec43
+-/
 theorem degree_sum_monomial_fin_lt {n : ℕ} (c : Fin n → 𝕜) :
     (∑ i : Fin n, monomial i.val (c i)).degree < n := by
   apply mem_degreeLT.mp
@@ -65,7 +71,9 @@ theorem eq_sum_monomial_fin_of_degree_lt {p : 𝕜[X]} {n : ℕ} (hp : p.degree 
     exact p.as_sum_range' n ((natDegree_lt_iff_degree_lt hp0).mpr hp)
 
 /-- The functional applied to a bounded-degree polynomial times a monomial is
-the corresponding Hankel row applied to its coefficient vector.-/
+the corresponding Hankel row applied to its coefficient vector.
+@isnad1 id=eq.0h5v.s10.f16bd6a98a31 from=translated src=- shape=64d29046 vocab=763d94e2
+-/
 theorem functional_sum_monomial_mul_X_pow (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n j : ℕ)
     (c : Fin n → 𝕜) :
     L ((∑ i : Fin n, monomial i.val (c i)) * X ^ j) =
@@ -77,7 +85,9 @@ theorem functional_sum_monomial_mul_X_pow (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n j :
   rfl
 
 /-- Orthogonality to the first `n` monomials is orthogonality to every polynomial
-of degree below `n`.-/
+of degree below `n`.
+@isnad1 id=eq.2h5v.s9.62d9a44aef27 from=translated src=- shape=2d6a7e93 vocab=224e87d4
+-/
 theorem functional_mul_eq_zero_of_monomial_tests (L : 𝕜[X] →ₗ[𝕜] 𝕜) {p : 𝕜[X]} {n : ℕ}
     (h : ∀ i : Fin n, L (p * X ^ i.val) = 0) {q : 𝕜[X]} (hq : q.degree < n) :
     L (p * q) = 0 := by
@@ -88,7 +98,9 @@ theorem functional_mul_eq_zero_of_monomial_tests (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     mul_comm (X ^ i.val) p, h i, smul_zero]
 
 /-- A polynomial's lower-degree moment equations are multiplication of its coefficient
-vector by the finite Hankel matrix.-/
+vector by the finite Hankel matrix.
+@isnad1 id=eq.1h5v.s9.98067885aad9 from=translated src=- shape=ff07fb80 vocab=864bffbc
+-/
 theorem functional_mul_X_pow_eq_hankel_mulVec (L : 𝕜[X] →ₗ[𝕜] 𝕜)
     {p : 𝕜[X]} {n : ℕ} (hp : p.degree < n) (j : Fin n) :
     L (p * X ^ j.val) = (hankelMomentMatrix L n *ᵥ (fun i => p.coeff i.val)) j := by
@@ -123,7 +135,9 @@ theorem eq_zero_of_degree_lt_of_orthogonal_of_hankelMomentDet_ne_zero
   simp only [hc', monomial_zero_right, Finset.sum_const_zero]
 
 /-- The finite moment-system monic polynomial is orthogonal to each lower monomial.
-Only the order-`n` Hankel determinant needs to be nonzero.-/
+Only the order-`n` Hankel determinant needs to be nonzero.
+@isnad1 id=eq.1h4v.s9.ffa083684371 from=translated src=- shape=322aff18 vocab=daab67bc
+-/
 theorem functional_monicOrthogonalPolynomial_mul_X_pow_eq_zero
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (hn : hankelMomentDet L n ≠ 0) (j : Fin n) :
     L (monicOrthogonalPolynomial L n * X ^ j.val) = 0 := by
@@ -148,7 +162,9 @@ theorem functional_monicOrthogonalPolynomial_mul_X_pow_eq_zero
 
 /-- Nonsingular finite moments give a monic polynomial orthogonal to every lower
 degree, also for nonpositive and complex moment functionals.
-Source: Gautschi (2004), Section 1.3, finite coefficient system.-/
+Source: Gautschi (2004), Section 1.3, finite coefficient system.
+@isnad1 id=ismonico.1h3v.s7.e84c8178207b from=translated src=- shape=c5ecdc06 vocab=697781c9
+-/
 theorem isMonicOrthogonalPolynomial_monicOrthogonalPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (hn : hankelMomentDet L n ≠ 0) :
     IsMonicOrthogonalPolynomial L n (monicOrthogonalPolynomial L n) := by
@@ -170,7 +186,9 @@ theorem IsMonicOrthogonalPolynomial.eq_of_hankelMomentDet_ne_zero
 /-- A nonsingular order-`n` Hankel system supplies the unique monic orthogonal
 polynomial of that degree. No positivity or complex-conjugation hypothesis is used.
 Source: Gautschi (2004), Section 1.3.
-atlas: formal-orthogonal-polynomials (partial), orthogonal-polynomials-measure-def (partial)-/
+atlas: formal-orthogonal-polynomials (partial), orthogonal-polynomials-measure-def (partial)
+@isnad1 id=existsun.1h3v.s7.d785a1aa740f from=translated src=- shape=c509d21d vocab=c4013ec9
+-/
 theorem existsUnique_isMonicOrthogonalPolynomial_of_hankelMomentDet_ne_zero
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (hn : hankelMomentDet L n ≠ 0) :
     ∃! p : 𝕜[X], IsMonicOrthogonalPolynomial L n p := by
@@ -180,7 +198,9 @@ theorem existsUnique_isMonicOrthogonalPolynomial_of_hankelMomentDet_ne_zero
   exact hq.eq_of_hankelMomentDet_ne_zero hp hn
 
 /-- Unique solvability of a monic orthogonality problem forces its Hankel system
-to be nonsingular; a nonzero homogeneous solution would give a second monic polynomial.-/
+to be nonsingular; a nonzero homogeneous solution would give a second monic polynomial.
+@isnad1 id=ne.1h3v.s7.ead479f3565e from=translated src=- shape=3b25bd92 vocab=c4013ec9
+-/
 theorem hankelMomentDet_ne_zero_of_existsUnique_isMonicOrthogonalPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {n : ℕ} (h : ∃! p : 𝕜[X], IsMonicOrthogonalPolynomial L n p) :
     hankelMomentDet L n ≠ 0 := by
@@ -215,7 +235,9 @@ theorem hankelMomentDet_ne_zero_of_existsUnique_isMonicOrthogonalPolynomial
 
 /-- A monic orthogonality problem is uniquely solvable exactly when its finite
 Hankel determinant is nonzero. Source: Gautschi (2004), Section 1.3.
-atlas: formal-orthogonal-polynomials (partial)-/
+atlas: formal-orthogonal-polynomials (partial)
+@isnad1 id=iff.0h3v.s7.512207a997e7 from=translated src=- shape=bf0f07c0 vocab=c4013ec9
+-/
 theorem existsUnique_isMonicOrthogonalPolynomial_iff_hankelMomentDet_ne_zero
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (∃! p : 𝕜[X], IsMonicOrthogonalPolynomial L n p) ↔ hankelMomentDet L n ≠ 0 :=
@@ -223,7 +245,9 @@ theorem existsUnique_isMonicOrthogonalPolynomial_iff_hankelMomentDet_ne_zero
     existsUnique_isMonicOrthogonalPolynomial_of_hankelMomentDet_ne_zero L⟩
 
 /-- Multiplying a monic orthogonal polynomial by its leading monomial gives its
-squared bilinear norm, since their difference has lower degree.-/
+squared bilinear norm, since their difference has lower degree.
+@isnad1 id=eq.1h4v.s9.59243b8ff2ec from=translated src=- shape=4e21d0fb vocab=656b6a71
+-/
 theorem IsMonicOrthogonalPolynomial.functional_mul_X_pow_eq_sq
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {p : 𝕜[X]}
     (hp : IsMonicOrthogonalPolynomial L n p) : L (p * X ^ n) = L (p ^ 2) := by
@@ -237,7 +261,9 @@ theorem IsMonicOrthogonalPolynomial.functional_mul_X_pow_eq_sq
   simpa only [pow_two] using (sub_eq_zero.mp h).symm
 
 /-- If the next moment system is nonsingular, the squared bilinear norm of a
-monic orthogonal polynomial is nonzero, even for complex formal functionals.-/
+monic orthogonal polynomial is nonzero, even for complex formal functionals.
+@isnad1 id=ne.2h4v.s8.ade9f3e76ea7 from=translated src=- shape=325ba87a vocab=b3100b25
+-/
 theorem IsMonicOrthogonalPolynomial.functional_sq_ne_zero
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {p : 𝕜[X]}
     (hp : IsMonicOrthogonalPolynomial L n p) (hn : hankelMomentDet L (n + 1) ≠ 0) :
@@ -260,7 +286,9 @@ theorem IsMonicOrthogonalPolynomial.functional_sq_ne_zero
 
 /-- Quasi-definiteness is equivalent to unique monic lower-degree orthogonality
 at every order. Source: Gautschi (2004), Section 1.3.
-atlas: formal-orthogonal-polynomials (partial)-/
+atlas: formal-orthogonal-polynomials (partial)
+@isnad1 id=iff.0h2v.s7.6485a8834c72 from=translated src=- shape=58c1ea0f vocab=fd98dd4f
+-/
 theorem quasiDefinitePolynomialFunctional_iff_forall_existsUnique
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) : QuasiDefinitePolynomialFunctional L ↔
       ∀ n, ∃! p : 𝕜[X], IsMonicOrthogonalPolynomial L n p := by
@@ -268,7 +296,9 @@ theorem quasiDefinitePolynomialFunctional_iff_forall_existsUnique
   simp_rw [existsUnique_isMonicOrthogonalPolynomial_iff_hankelMomentDet_ne_zero]
 
 /-- Every canonical formal monic polynomial has nonzero squared norm for a
-quasi-definite functional. Source: Gautschi (2004), Section 1.3.-/
+quasi-definite functional. Source: Gautschi (2004), Section 1.3.
+@isnad1 id=ne.1h3v.s7.a797e81a96d7 from=translated src=- shape=e8e92d83 vocab=eaa1f8ad
+-/
 theorem orthogonalPolynomialNorm_ne_zero_of_quasiDefinite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) (n : ℕ) :
     orthogonalPolynomialNorm L n ≠ 0 :=
@@ -276,7 +306,9 @@ theorem orthogonalPolynomialNorm_ne_zero_of_quasiDefinite
     (hL (n + 1))
 
 /-- Distinct canonical monic polynomials are bilinearly orthogonal whenever both
-finite Hankel systems are nonsingular.-/
+finite Hankel systems are nonsingular.
+@isnad1 id=eq.3h4v.s8.6788c74bfc2f from=translated src=- shape=62b8b2f0 vocab=f58e1593
+-/
 theorem functional_monicOrthogonalPolynomial_mul_eq_zero_of_ne
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) {i j : ℕ} (hi : hankelMomentDet L i ≠ 0)
     (hj : hankelMomentDet L j ≠ 0) (hij : i ≠ j) :
@@ -295,7 +327,9 @@ theorem functional_monicOrthogonalPolynomial_mul_eq_zero_of_ne
 /-- Monic recurrence subdiagonal coefficients do not vanish for a quasi-definite
 functional, at every positive order. Order zero is the recurrence boundary
 coefficient and equals zero by convention. Source: Gautschi (2004), Section 1.3.
-atlas: formal-orthogonal-polynomials (partial)-/
+atlas: formal-orthogonal-polynomials (partial)
+@isnad1 id=ne.2h3v.s7.e1c0e6341709 from=translated src=- shape=205e74c2 vocab=0c00d795
+-/
 theorem orthogonalRecurrenceBeta_ne_zero_of_quasiDefinite
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} (hL : QuasiDefinitePolynomialFunctional L) {n : ℕ} (hn : 0 < n) :
     orthogonalRecurrenceBeta L n ≠ 0 := by

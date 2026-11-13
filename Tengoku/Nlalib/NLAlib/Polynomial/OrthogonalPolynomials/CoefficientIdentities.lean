@@ -20,7 +20,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 
 /-- The monic recurrence diagonal is the difference of successive
 second-highest coefficients, including order zero.
-Source: Gautschi (2004), Theorem 1.27.-/
+Source: Gautschi (2004), Theorem 1.27.
+@isnad1 id=eq.1h3v.s7.42582dac5930 from=translated src=- shape=486132cc vocab=d70f620b
+-/
 theorem orthogonalRecurrenceAlpha_eq_sub_nextCoeff
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0) :
     orthogonalRecurrenceAlpha L n =

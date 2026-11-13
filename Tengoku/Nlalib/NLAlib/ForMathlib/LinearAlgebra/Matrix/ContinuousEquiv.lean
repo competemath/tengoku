@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- A real finite square matrix of nonzero determinant induces a continuous
 linear equivalence with exactly its matrix-vector action.
-Source: finite-dimensional linear algebra; universal Lebesgue comparison helper.-/
+Source: finite-dimensional linear algebra; universal Lebesgue comparison helper.
+@isnad1 id=ex.1h2v.s8.d99c7df97014 from=translated src=- shape=e3afc017 vocab=37bf80c5
+-/
 theorem exists_continuousLinearEquiv_apply_eq_mulVec {ι : Type*}
     [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℝ) (hA : A.det ≠ 0) :
     ∃ e : (ι → ℝ) ≃L[ℝ] (ι → ℝ), ∀ x, e x = A *ᵥ x := by

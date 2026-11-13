@@ -21,7 +21,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasu
 
 /-- **Jensen for the square root**: on a probability space, a square-integrable real random
 variable satisfies `E Y ≤ √(E Y²)`. Proved from `0 ≤ Var Y = E Y² − (E Y)²`; no sign condition
-on `Y`. Ported from the LRA project (`expectation_jensen_sqrt`, there for `Y ≥ 0`).-/
+on `Y`. Ported from the LRA project (`expectation_jensen_sqrt`, there for `Y ≥ 0`).
+@isnad1 id=le.2h3v.s7.65c792234843 from=translated src=- shape=07340120 vocab=4538c63b
+-/
 theorem integral_le_sqrt_integral_sq {Y : Ω → ℝ} (hYi : Integrable Y μ)
     (hY2 : Integrable (fun ω => Y ω ^ 2) μ) :
     ∫ ω, Y ω ∂μ ≤ Real.sqrt (∫ ω, Y ω ^ 2 ∂μ) := by
@@ -37,7 +39,9 @@ theorem integral_le_sqrt_integral_sq {Y : Ω → ℝ} (hYi : Integrable Y μ)
 
 /-- Jensen (Cauchy–Schwarz) in the form used for first moments: if `𝔼 X² ≤ c²` with `c ≥ 0`,
 then `𝔼 X ≤ c`. Corollary of `integral_le_sqrt_integral_sq`. Atlas: helper of
-`gordon`, `chevet`.-/
+`gordon`, `chevet`.
+@isnad1 id=le.4h4v.s7.005771958e21 from=translated src=- shape=6a6791aa vocab=65de9e47
+-/
 theorem integral_le_of_integral_sq_le (μ : Measure Ω) [IsProbabilityMeasure μ] (X : Ω → ℝ)
     (hX : Integrable X μ) (hX2 : Integrable (fun ω => X ω ^ 2) μ) (c : ℝ) (hc : 0 ≤ c)
     (h : ∫ ω, X ω ^ 2 ∂μ ≤ c ^ 2) : ∫ ω, X ω ∂μ ≤ c :=

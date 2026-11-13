@@ -19,7 +19,9 @@ namespace Real
 
 /-- A power-weighted derivative bound controls the difference of endpoint
 powers. Positivity is only required on the closed comparison interval, and
-the actual derivatives are required only on its interior.-/
+the actual derivatives are required only on its interior.
+@isnad1 id=le.6h6v.s7.b2f959fba8da from=translated src=- shape=10eaae1e vocab=8a0d9aa1
+-/
 theorem abs_rpow_sub_rpow_le_of_hasDerivAt_bound
     {f f' : ℝ → ℝ} {a b s K : ℝ} (hab : a ≤ b) (hs : 0 ≤ s)
     (hf : ContinuousOn f (Icc a b)) (hpos : ∀ x ∈ Icc a b, 0 < f x)

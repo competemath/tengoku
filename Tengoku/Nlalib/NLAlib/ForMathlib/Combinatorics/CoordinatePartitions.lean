@@ -31,17 +31,23 @@ def finsetSumCoordinates {α β ι : Type*} (S : Finset α) (T : Finset β) :
   right_inv x := by
     apply Prod.ext <;> funext a <;> rfl
 
-/-- The first coordinate function is literal restriction to the left summand.-/
+/-- The first coordinate function is literal restriction to the left summand.
+@isnad1 id=eq.0h7v.s9.ba0c3b2785f0 from=translated src=- shape=045f0f4b vocab=5ead86f9
+-/
 @[simp] theorem finsetSumCoordinates_fst {α β ι : Type*}
     (S : Finset α) (T : Finset β) (x : S.disjSum T → ι) (a : S) :
     (finsetSumCoordinates S T x).1 a = x ⟨Sum.inl a, by simpa using a.property⟩ := rfl
 
-/-- The second coordinate function is literal restriction to the right summand.-/
+/-- The second coordinate function is literal restriction to the right summand.
+@isnad1 id=eq.0h7v.s9.f4283feea508 from=translated src=- shape=c9a94273 vocab=3e670387
+-/
 @[simp] theorem finsetSumCoordinates_snd {α β ι : Type*}
     (S : Finset α) (T : Finset β) (x : S.disjSum T → ι) (b : T) :
     (finsetSumCoordinates S T x).2 b = x ⟨Sum.inr b, by simpa using b.property⟩ := rfl
 
-/-- A disjoint finite-set complement is taken separately in each summand.-/
+/-- A disjoint finite-set complement is taken separately in each summand.
+@isnad1 id=eq.0h4v.s6.28d7a1a6199f from=translated src=- shape=e33fb331 vocab=4c1fdff7
+-/
 theorem compl_finset_disjSum {α β : Type*} [Fintype α] [Fintype β]
     [DecidableEq α] [DecidableEq β]
     (S : Finset α) (T : Finset β) :

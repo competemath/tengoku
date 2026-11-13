@@ -22,7 +22,9 @@ variable {ι Ω Z F : Type*} [Fintype ι] [Nonempty ι]
   [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
 /-- The cardinality cancels the average over an independent finite uniform
-index, leaving the actual integral of the finite sum.-/
+index, leaving the actual integral of the finite sum.
+@isnad1 id=eq.1h5v.s7.7b82cfb9aef2 from=translated src=- shape=c0713ea0 vocab=e19a1b8e
+-/
 theorem card_smul_integral_uniform_prod (μ : Measure Ω) [SFinite μ]
     (f : ι → Ω → F)
     (hf : Integrable (fun p : ι × Ω => f p.1 p.2)
@@ -43,7 +45,9 @@ theorem card_smul_integral_uniform_prod (μ : Measure Ω) [SFinite μ]
 
 /-- An extra independent sample survives cancellation of the finite
 uniform index. Product association retains its joint dependence with the
-original sample inside each integrand.-/
+original sample inside each integrand.
+@isnad1 id=eq.1h7v.s8.0004eff0fa2d from=translated src=- shape=a1d00284 vocab=e19a1b8e
+-/
 theorem card_smul_integral_uniform_prod_prod
     (μ : Measure Ω) [SFinite μ] (γ : Measure Z) [SFinite γ]
     (f : ι → Ω → Z → F)

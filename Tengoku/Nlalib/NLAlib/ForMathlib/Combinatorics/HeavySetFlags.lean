@@ -28,7 +28,9 @@ def extendToCard (s : Finset ι) (r : ℕ) : Finset ι :=
   else s
 
 omit [DecidableEq ι] in
-/-- Cardinality padding always retains the original set.-/
+/-- Cardinality padding always retains the original set.
+@isnad1 id=le.0h3v.s4.0bad5f02dd05 from=translated src=- shape=8da8edd0 vocab=8a180fdb
+-/
 theorem subset_extendToCard (s : Finset ι) (r : ℕ) : s ⊆ s.extendToCard r := by
   classical
   unfold extendToCard
@@ -39,7 +41,9 @@ theorem subset_extendToCard (s : Finset ι) (r : ℕ) : s ⊆ s.extendToCard r :
 
 omit [DecidableEq ι] in
 /-- Padding has exactly the requested truncated cardinality when the original
-set fits in the requested budget.-/
+set fits in the requested budget.
+@isnad1 id=eq.1h3v.s5.d462921e549f from=translated src=- shape=0938f426 vocab=26470545
+-/
 theorem card_extendToCard (s : Finset ι) {r : ℕ} (h : s.card ≤ r) :
     (s.extendToCard r).card = min r (Fintype.card ι) := by
   classical
@@ -52,18 +56,24 @@ theorem card_extendToCard (s : Finset ι) {r : ℕ} (h : s.card ≤ r) :
 def neighborExtension (s : Finset ι) (neighbors : ι → Finset ι) (r : ℕ) : Finset ι :=
   (s ∪ s.biUnion neighbors).extendToCard r
 
-/-- Every original index belongs to the padded neighbor extension.-/
+/-- Every original index belongs to the padded neighbor extension.
+@isnad1 id=le.0h4v.s5.8d9380748af3 from=translated src=- shape=c8a7d07f vocab=afc1f10b
+-/
 theorem subset_neighborExtension (s : Finset ι) (neighbors : ι → Finset ι) (r : ℕ) :
     s ⊆ s.neighborExtension neighbors r :=
   subset_union_left.trans (subset_extendToCard _ _)
 
-/-- The extension contains the prescribed neighbors of every selected index.-/
+/-- The extension contains the prescribed neighbors of every selected index.
+@isnad1 id=mem.2h6v.s6.92635849fd5b from=translated src=- shape=d51786bf vocab=459c1598
+-/
 theorem mem_neighborExtension {s : Finset ι} {neighbors : ι → Finset ι} {r : ℕ}
     {i j : ι} (hj : j ∈ s) (hi : i ∈ neighbors j) :
     i ∈ s.neighborExtension neighbors r := by
   exact subset_extendToCard _ _ (mem_union_right _ (mem_biUnion.mpr ⟨j, hj, hi⟩))
 
-/-- A neighbor extension fits the union bound `|s| (1+c)`.-/
+/-- A neighbor extension fits the union bound `|s| (1+c)`.
+@isnad1 id=eq.2h5v.s6.7a008098c98e from=translated src=- shape=914740cb vocab=a3d51922
+-/
 theorem card_neighborExtension (s : Finset ι) (neighbors : ι → Finset ι)
     {r c : ℕ} (hc : ∀ j ∈ s, (neighbors j).card ≤ c)
     (hr : s.card + s.card * c ≤ r) :
@@ -85,27 +95,35 @@ def heavyNeighborFlag (rows : ℕ → Finset ι) (neighbors : ℕ → ι → Fin
     (N M : ℕ → ℕ) (k : ℕ) : Finset ι :=
   (heavyFlag rows neighbors N M k).neighborExtension (neighbors k) (M k)
 
-/-- The row sets are included in the main flag.-/
+/-- The row sets are included in the main flag.
+@isnad1 id=le.0h6v.s5.2aa39242eddc from=translated src=- shape=815864f8 vocab=71af576f
+-/
 theorem subset_heavyFlag (rows : ℕ → Finset ι) (neighbors : ℕ → ι → Finset ι)
     (N M : ℕ → ℕ) (k : ℕ) : rows k ⊆ heavyFlag rows neighbors N M k := by
   cases k with
   | zero => exact subset_extendToCard _ _
   | succ k => exact subset_union_right.trans (subset_extendToCard _ _)
 
-/-- Each main flag set lies in its intermediate neighbor set.-/
+/-- Each main flag set lies in its intermediate neighbor set.
+@isnad1 id=le.0h6v.s5.db29d682c369 from=translated src=- shape=846386c8 vocab=e8fd8d12
+-/
 theorem heavyFlag_subset_heavyNeighborFlag (rows : ℕ → Finset ι)
     (neighbors : ℕ → ι → Finset ι) (N M : ℕ → ℕ) (k : ℕ) :
     heavyFlag rows neighbors N M k ⊆ heavyNeighborFlag rows neighbors N M k :=
   subset_neighborExtension _ _ _
 
-/-- Each intermediate neighbor set lies in the next main flag set.-/
+/-- Each intermediate neighbor set lies in the next main flag set.
+@isnad1 id=le.0h6v.s6.bd18cc41a554 from=translated src=- shape=1a2b367a vocab=5eb48e5f
+-/
 theorem heavyNeighborFlag_subset_heavyFlag_succ (rows : ℕ → Finset ι)
     (neighbors : ℕ → ι → Finset ι) (N M : ℕ → ℕ) (k : ℕ) :
     heavyNeighborFlag rows neighbors N M k ⊆ heavyFlag rows neighbors N M (k + 1) :=
   subset_union_left.trans (subset_extendToCard _ _)
 
 /-- The main and intermediate flags have exact truncated cardinalities whenever
-the row and neighbor budgets fit between successive prescribed cutoffs.-/
+the row and neighbor budgets fit between successive prescribed cutoffs.
+@isnad1 id=and.4h7v.s7.f00b33368ccf from=translated src=- shape=57c7c252 vocab=b02e4928
+-/
 theorem card_heavyFlag_and_heavyNeighborFlag
     (rows : ℕ → Finset ι) (neighbors : ℕ → ι → Finset ι)
     (N M c : ℕ → ℕ) (hzero : (rows 0).card ≤ N 0)
@@ -144,7 +162,9 @@ def interleavedHeavyFlag (rows : ℕ → Finset ι) (neighbors : ℕ → ι → 
   if t % 2 = 0 then heavyFlag rows neighbors N M (t / 2)
   else heavyNeighborFlag rows neighbors N M (t / 2)
 
-/-- The interleaved heavy-set construction is a monotone finite-set flag.-/
+/-- The interleaved heavy-set construction is a monotone finite-set flag.
+@isnad1 id=monotone.0h5v.s5.c309dd404382 from=translated src=- shape=771d318f vocab=211b4794
+-/
 theorem monotone_interleavedHeavyFlag (rows : ℕ → Finset ι)
     (neighbors : ℕ → ι → Finset ι) (N M : ℕ → ℕ) :
     Monotone (interleavedHeavyFlag rows neighbors N M) := by
@@ -161,7 +181,9 @@ theorem monotone_interleavedHeavyFlag (rows : ℕ → Finset ι)
     exact heavyNeighborFlag_subset_heavyFlag_succ rows neighbors N M _
 
 /-- One permutation simultaneously realizes every main and neighbor set up to
-any finite truncation level as an exact initial segment.-/
+any finite truncation level as an exact initial segment.
+@isnad1 id=ex.0h6v.s7.740672243767 from=translated src=- shape=5f162383 vocab=28f6c014
+-/
 theorem exists_equiv_fin_prefix_heavyFlag (rows : ℕ → Finset ι)
     (neighbors : ℕ → ι → Finset ι) (N M : ℕ → ℕ) (L : ℕ) :
     ∃ e : Fin (Fintype.card ι) ≃ ι, ∀ k ≤ L, ∀ i : Fin (Fintype.card ι),

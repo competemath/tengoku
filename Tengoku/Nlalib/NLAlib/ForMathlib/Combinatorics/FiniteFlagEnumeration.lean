@@ -39,7 +39,9 @@ private theorem mem_iff_val_lt_card_of_lower {N : ℕ} (T : Finset (Fin N))
 
 /-- A finite monotone flag admits one enumeration making every member an
 initial segment of exactly its cardinality. Repeated sets, empty sets,
-incomplete flags, and empty ambient types are all included.-/
+incomplete flags, and empty ambient types are all included.
+@isnad1 id=ex.1h3v.s7.6d0be4b93038 from=translated src=- shape=d072b59e vocab=6a229945
+-/
 theorem exists_equiv_fin_prefix_of_monotone
     {ι : Type*} [Fintype ι] [DecidableEq ι] {m : ℕ}
     (S : Fin (m + 1) → Finset ι) (hS : Monotone S) :

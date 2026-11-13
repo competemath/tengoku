@@ -18,7 +18,9 @@ namespace Polynomial.Chebyshev
 variable (R : Type*) [CommRing R] [Nontrivial R]
 
 /-- The native rescaled second-kind Chebyshev polynomial at a nonnegative
-index has that exact degree, over every nontrivial commutative ring.-/
+index has that exact degree, over every nontrivial commutative ring.
+@isnad1 id=eq.0h2v.s5.3d0104ba0d47 from=translated src=- shape=b8f8a83d vocab=293271cd
+-/
 @[simp]
 theorem degree_S_natCast (n : ℕ) : (S R (n : ℤ)).degree = n := by
   induction n using Nat.twoStepInduction with
@@ -38,7 +40,9 @@ theorem degree_S_natCast (n : ℕ) : (S R (n : ℤ)).degree = n := by
       omega
 
 /-- The native rescaled second-kind Chebyshev polynomials at nonnegative
-indices are monic.-/
+indices are monic.
+@isnad1 id=monic.0h2v.s4.94d3c1d23173 from=translated src=- shape=88b70c49 vocab=e3b2778d
+-/
 theorem monic_S_natCast (n : ℕ) : (S R (n : ℤ)).Monic := by
   induction n using Nat.twoStepInduction with
   | zero => simp
@@ -60,7 +64,9 @@ noncomputable def chebyshevSsequence : Polynomial.Sequence R where
   elems' n := S R (n : ℤ)
   degree_eq' := degree_S_natCast R
 
-/-- Evaluation of the native sequence adapter introduces no new polynomial.-/
+/-- Evaluation of the native sequence adapter introduces no new polynomial.
+@isnad1 id=eq.0h2v.s5.0ead70cb99ed from=translated src=- shape=0c89638a vocab=671af95c
+-/
 @[simp]
 theorem chebyshevSsequence_apply (n : ℕ) : chebyshevSsequence R n = S R (n : ℤ) := rfl
 

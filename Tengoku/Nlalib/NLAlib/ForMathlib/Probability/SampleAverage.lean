@@ -14,7 +14,9 @@ open MeasureTheory ProbabilityTheory
 namespace MeasureTheory
 
 /-- The integral of a nonempty iid sample average is the original Bochner
-integral. The underlying sample space need not be finite or discrete.-/
+integral. The underlying sample space need not be finite or discrete.
+@isnad1 id=eq.1h5v.s7.02a4d1fbbab4 from=translated src=- shape=01dd5d56 vocab=58a8cc85
+-/
 theorem integral_inv_card_smul_sum_pi
     {Ω ι E : Type*} [MeasurableSpace Ω] [Fintype ι] [Nonempty ι]
     [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
@@ -32,7 +34,9 @@ theorem integral_inv_card_smul_sum_pi
 
 /-- The variance of an iid real sample average is the one-sample variance
 divided by its sample count. This also includes the empty sample family,
-where both sides are zero by the inverse-at-zero convention.-/
+where both sides are zero by the inverse-at-zero convention.
+@isnad1 id=eq.1h4v.s7.0f90bdacfd92 from=translated src=- shape=d0597ee7 vocab=4fd480b6
+-/
 theorem variance_inv_card_mul_sum_pi
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι]
     (μ : Measure Ω) [IsProbabilityMeasure μ] {f : Ω → ℝ} (hf : MemLp f 2 μ) :
@@ -54,7 +58,9 @@ theorem variance_inv_card_mul_sum_pi
 /-- The centered squared error of an average of independent real samples is
 the one-sample variance divided by the sample count. No moment hypotheses are
 needed for the finite probability space.
-Source: Drineas–Kannan–Mahoney 2006, Lemma 4.-/
+Source: Drineas–Kannan–Mahoney 2006, Lemma 4.
+@isnad1 id=eq.1h4v.s8.ec5989e5dd5b from=translated src=- shape=735be2ae vocab=01a1300c
+-/
 theorem integral_centered_average_sq_pi
     {ι : Type*} [Fintype ι] [MeasurableSpace ι] [MeasurableSingletonClass ι]
     (ν : Measure ι) [IsProbabilityMeasure ν] (f : ι → ℝ) {c : ℕ} (hc : 0 < c) :
@@ -94,7 +100,9 @@ theorem integral_centered_average_sq_pi
 
 /-- The squared complex absolute error of an independent sample average is
 the complex one-sample variance divided by the sample count. Source:
-Drineas–Kannan–Mahoney 2006, Lemma 4, by real and imaginary variances.-/
+Drineas–Kannan–Mahoney 2006, Lemma 4, by real and imaginary variances.
+@isnad1 id=eq.1h4v.s8.96a4f947f560 from=translated src=- shape=197ce51d vocab=7e8c17ec
+-/
 theorem integral_centered_average_norm_sq_pi
     {ι : Type*} [Fintype ι] [MeasurableSpace ι] [MeasurableSingletonClass ι]
     (ν : Measure ι) [IsProbabilityMeasure ν] (f : ι → ℂ) {c : ℕ} (hc : 0 < c) :

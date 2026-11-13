@@ -22,7 +22,9 @@ namespace NLAlib
 Source: focused reroutes, Lemma `lem:radial`; the scalar mean value theorem replaces
 the final integral identity, after the proper global inverse has been proved.
 Helper for `lebesgue-constant-lower-bound`.
-The strict derivative hypothesis is on the actual vector of peak differences.-/
+The strict derivative hypothesis is on the actual vector of peak differences.
+@isnad1 id=ex.7h6v.s10.3b1f9e9d813c from=translated src=- shape=677eaf49 vocab=752c81a4
+-/
 theorem exists_equal_peaks_with_convex_combination {n : ℕ}
     {U : Set (Fin n → ℝ)} [Nonempty U] [PreconnectedSpace U] (hU : IsOpen U)
     {M : Fin (n + 1) → (Fin n → ℝ) → ℝ}
@@ -100,7 +102,9 @@ theorem exists_equal_peaks_with_convex_combination {n : ℕ}
     linarith [hscalar s]
 
 /-- A finite convex combination lies between any common lower and upper bounds.
-Source: positivity of finite sums; helper for `lebesgue-constant-lower-bound`.-/
+Source: positivity of finite sums; helper for `lebesgue-constant-lower-bound`.
+@isnad1 id=mem.3h5v.s6.d463b45917fe from=translated src=- shape=783c2c94 vocab=2627a5b9
+-/
 theorem sum_mul_mem_Icc_of_nonneg_sum_one {ι : Type*} [Fintype ι]
     {w a : ι → ℝ} {A B : ℝ} (hw : ∀ i, 0 ≤ w i) (hs : ∑ i, w i = 1)
     (ha : ∀ i, a i ∈ Icc A B) : (∑ i, w i * a i) ∈ Icc A B := by

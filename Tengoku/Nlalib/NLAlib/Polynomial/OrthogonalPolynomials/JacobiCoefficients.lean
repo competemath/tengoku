@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- The actual moment Jacobi diagonal equals the monic recurrence alpha quotient.
 Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.1h3v.s6.033a445bd0a7 from=translated src=- shape=6c94e7c8 vocab=437de6ed
+-/
 theorem orthogonalPolynomialJacobiMatrix_apply_self_eq_alpha (L : ℝ[X] →ₗ[ℝ] ℝ)
     {n : ℕ} (i : Fin n) (hH : 0 < orthogonalPolynomialNorm L i.val) :
     orthogonalPolynomialJacobiMatrix L n i i = orthogonalRecurrenceAlpha L i.val := by
@@ -32,7 +34,9 @@ theorem orthogonalPolynomialJacobiMatrix_apply_self_eq_alpha (L : ℝ[X] →ₗ[
 
 /-- The actual positive Jacobi off-diagonal is the square root of the monic
 recurrence beta. Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.3h4v.s6.00697cd53a3e from=translated src=- shape=d095d387 vocab=5fd741aa
+-/
 theorem orthogonalPolynomialJacobiMatrix_superdiagonal_eq_sqrt_beta
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) (i j : Fin n)
@@ -53,7 +57,9 @@ theorem orthogonalPolynomialJacobiMatrix_superdiagonal_eq_sqrt_beta
 
 /-- Squaring the actual Jacobi off-diagonal gives the monic beta norm ratio.
 Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial)-/
+atlas: monic-orthogonal-recurrence (partial)
+@isnad1 id=eq.3h4v.s7.841a1d210bce from=translated src=- shape=ac9edcb7 vocab=7ba72089
+-/
 theorem sq_orthogonalPolynomialJacobiMatrix_superdiagonal_eq_beta
     (L : ℝ[X] →ₗ[ℝ] ℝ) {n : ℕ} (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) (i j : Fin n)
@@ -68,7 +74,9 @@ theorem sq_orthogonalPolynomialJacobiMatrix_superdiagonal_eq_beta
 off-diagonal coefficients and the zero boundary coefficient at order zero. The top
 polynomial is normalized only under its explicit positive norm hypothesis.
 Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.2h2v.s8.df5f17c9363d from=translated src=- shape=6e9aeab4 vocab=911f723c
+-/
 theorem X_mul_orthonormalMomentPolynomial (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ)
     (hL : ∀ k ≤ n + 1, hankelMomentDet L k ≠ 0)
     (hH : ∀ k ≤ n + 1, 0 < orthogonalPolynomialNorm L k) :
@@ -116,7 +124,9 @@ theorem X_mul_orthonormalMomentPolynomial (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ)
 coefficient matrix, with canonical positive square-root off-diagonals. This is a
 proved realization identity, including the empty order-zero matrix.
 Source: Gautschi (2004), Theorem 1.27; operator derivations (OF8).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.2h2v.s6.a23e92744129 from=translated src=- shape=701442b1 vocab=eb05906c
+-/
 theorem orthogonalPolynomialJacobiMatrix_eq_jacobiMatrix (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ)
     (hL : ∀ k ≤ n, hankelMomentDet L k ≠ 0)
     (hH : ∀ k < n, 0 < orthogonalPolynomialNorm L k) :

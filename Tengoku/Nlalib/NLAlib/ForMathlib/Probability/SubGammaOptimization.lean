@@ -56,7 +56,9 @@ private theorem subgamma_parameter {a V c : ℝ} (ha : 0 < a) (hV : 0 < V) (hc :
   nlinarith
 
 /-- The exact Chernoff exponent corresponding to any parameter in the original
-sub-gamma moment domain. A prefactor need not be a probability measure mass.-/
+sub-gamma moment domain. A prefactor need not be a probability measure mass.
+@isnad1 id=le.3h9v.s8.f269f9a52851 from=translated src=- shape=6488b79c vocab=927d4127
+-/
 theorem measureReal_ge_le_of_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c θ t : ℝ} (hθ : 0 ≤ θ)
@@ -104,7 +106,9 @@ private theorem ae_le_of_bounded_positive_mgf
   simpa only [add_sub_cancel, zero_mul, zero_div, sub_zero, add_zero] using hh
 
 /-- The sharp sub-gamma upper tail when the variance parameter is positive.
-The dimension prefactor is retained exactly.-/
+The dimension prefactor is retained exactly.
+@isnad1 id=le.5h8v.s8.8c81eeb9aaad from=translated src=- shape=80ade839 vocab=5a4fcd46
+-/
 theorem measureReal_ge_sqrt_add_le_of_subgamma_mgf_pos
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c : ℝ} (hV : 0 < V) (hc : 0 ≤ c)
@@ -161,7 +165,9 @@ private theorem measureReal_ge_le_of_zero_variance_subgamma_mgf
 /-- The sharp strict upper tail from a dimension-prefactored sub-gamma MGF.
 All zero parameters are included: when both variance and scale vanish the
 positive MGF bound forces `X ≤ m` almost surely, which requires a strict event.
-Source: Tropp's Gaussian-proxy comparison, scalar Chernoff optimization.-/
+Source: Tropp's Gaussian-proxy comparison, scalar Chernoff optimization.
+@isnad1 id=le.6h8v.s8.0f44d2af05eb from=translated src=- shape=d4d75c78 vocab=5a4fcd46
+-/
 theorem measureReal_gt_sqrt_add_le_of_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c : ℝ} (hd : 1 ≤ d) (hV : 0 ≤ V) (hc : 0 ≤ c)
@@ -199,7 +205,9 @@ theorem measureReal_gt_sqrt_add_le_of_subgamma_mgf
     exact hmono.trans (measureReal_ge_sqrt_add_le_of_subgamma_mgf_pos hV hc hexp hmgf hs)
 
 /-- The same sharp tail holds for a non-strict event whenever the variance or
-scale parameter is positive, including a zero deviation.-/
+scale parameter is positive, including a zero deviation.
+@isnad1 id=le.7h8v.s8.0e1be6741444 from=translated src=- shape=0fa50472 vocab=5a4fcd46
+-/
 theorem measureReal_ge_sqrt_add_le_of_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c : ℝ} (hd : 1 ≤ d) (hV : 0 ≤ V) (hc : 0 ≤ c)
@@ -249,7 +257,9 @@ private theorem le_sqrt_add_of_subgamma_dual {x a V c : ℝ}
 bound has the sharp mean bound, including `d = 1`, zero variance and zero
 scale. Integrability of `X` is needed because a positive MGF alone does not
 control its negative first moment.
-Source: Tropp's Gaussian-proxy comparison, scalar Laplace optimization.-/
+Source: Tropp's Gaussian-proxy comparison, scalar Laplace optimization.
+@isnad1 id=le.6h7v.s8.76399800285d from=translated src=- shape=baead431 vocab=8ca3bf6c
+-/
 theorem integral_le_sqrt_log_add_of_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX : Integrable X μ) {m d V c : ℝ}
@@ -274,7 +284,9 @@ theorem integral_le_sqrt_log_add_of_subgamma_mgf
   linarith
 
 /-- The strict absolute subgamma tail includes zero variance and zero scale.
-Both signed moment bounds concern the actual centered random variable.-/
+Both signed moment bounds concern the actual centered random variable.
+@isnad1 id=le.6h8v.s8.05ba89b48189 from=translated src=- shape=f113b857 vocab=292987ef
+-/
 theorem measureReal_gt_abs_sub_sqrt_add_le_of_sign_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c : ℝ} (hd : 1 ≤ d) (hV : 0 ≤ V) (hc : 0 ≤ c)
@@ -316,7 +328,9 @@ theorem measureReal_gt_abs_sub_sqrt_add_le_of_sign_subgamma_mgf
 
 /-- Two signed subgamma moments imply the actual absolute-deviation tail.
 The non-strict event is valid when at least one parameter is positive; this
-includes zero variance with positive scale and the endpoint `t=0`.-/
+includes zero variance with positive scale and the endpoint `t=0`.
+@isnad1 id=le.7h8v.s8.644d7beeb7ad from=translated src=- shape=d742ac3d vocab=292987ef
+-/
 theorem measureReal_ge_abs_sub_sqrt_add_le_of_sign_subgamma_mgf
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {m d V c : ℝ} (hd : 1 ≤ d) (hV : 0 ≤ V) (hc : 0 ≤ c)

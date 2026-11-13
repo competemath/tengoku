@@ -31,7 +31,9 @@ private theorem norm_pow_cstar_le (a : A) (n : ℕ) : ‖a^n‖≤‖a‖^n := b
     let := h
     exact norm_pow_le a n
 
-/-- Every mixed power of two nonreal self-adjoint resolvents is genuinely integrable under a finite measure.-/
+/-- Every mixed power of two nonreal self-adjoint resolvents is genuinely integrable under a finite measure.
+@isnad1 id=integrab.3h8v.s9.3ff383671618 from=translated src=- shape=cd7ccb0d vocab=2bca6bda
+-/
 theorem integrable_resolvent_selfAdjoint_mixed_powers
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     {z w : ℂ} (hz : z.im≠0) (hw : w.im≠0) (p q : ℕ) :
@@ -54,7 +56,9 @@ def resolventMixedMean (μ : Measure Ω) (X : Ω → selfAdjoint A)
     (L : A →L[ℂ] E) (p q : ℕ) (z w : ℂ) : E :=
   L (∫ ω, resolvent (X ω : A) z^p*resolvent (X ω : A) w^q ∂μ)
 
-/-- The actual mixed-power Bochner mean satisfies the finite lower-degree resolvent recursion.-/
+/-- The actual mixed-power Bochner mean satisfies the finite lower-degree resolvent recursion.
+@isnad1 id=eq.3h10v.s9.5d332a27f6d8 from=translated src=- shape=8acbecff vocab=bc674c81
+-/
 theorem sub_smul_resolventMixedMean
     (X : Ω → selfAdjoint A) (hX : AEStronglyMeasurable X μ)
     (L : A →L[ℂ] E) {z w : ℂ} (hz : z.im≠0) (hw : w.im≠0) (p q : ℕ) :
@@ -76,7 +80,9 @@ section Convergence
 variable {ι A₀ : Type*} [CStarAlgebra A₀]
   {Ω' B : ι → Type*} [∀ i, MeasurableSpace (Ω' i)] [∀ i, CStarAlgebra (B i)]
 
-/-- Convergence of every genuine positive-power mean at two distinct nonreal parameters implies convergence of every genuine mixed mean of positive total degree.-/
+/-- Convergence of every genuine positive-power mean at two distinct nonreal parameters implies convergence of every genuine mixed mean of positive total degree.
+@isnad1 id=tendsto.7h15v.s10.c91c49f11647 from=translated src=- shape=15a6716d vocab=fc07a526
+-/
 theorem tendsto_resolventMixedMean_of_powers
     (μ' : (i : ι) → Measure (Ω' i)) [∀ i, IsFiniteMeasure (μ' i)]
     (X : (i : ι) → Ω' i → selfAdjoint (B i))

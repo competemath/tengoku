@@ -21,7 +21,9 @@ variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 /-- The actual support of a push-forward under a homeomorphism is
 exactly the image of the original support. Compactness and finite
-mass are unnecessary.-/
+mass are unnecessary.
+@isnad1 id=eq.0h4v.s6.b416fdfec2d1 from=translated src=- shape=f1bbd617 vocab=1ce2b8c8
+-/
 theorem support_map_homeomorph (ν : Measure X) (e : X ≃ₜ Y) :
     (ν.map e).support=e '' ν.support := by
   have hc : IsClosed (e '' ν.support) := e.isClosedMap _ ν.isClosed_support

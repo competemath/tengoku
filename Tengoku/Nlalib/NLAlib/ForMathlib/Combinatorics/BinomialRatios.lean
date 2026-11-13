@@ -13,7 +13,9 @@ The exact finite ratio used when a determinant minor loses one column.
 namespace Nat
 
 /-- The ratio of consecutive binomial levels, after an admissible fixed-size
-shift. The denominator is nonzero under the displayed size conditions.-/
+shift. The denominator is nonzero under the displayed size conditions.
+@isnad1 id=eq.3h3v.s7.1b7952e2aa65 from=translated src=- shape=ca88fcae vocab=c794696f
+-/
 theorem cast_choose_pred_div_choose {n d s : ℕ} (hd : 0 < d) (hds : d ≤ s) (hsn : s ≤ n) :
     (((n - (d - 1)).choose (s - (d - 1)) : ℕ) : ℝ) / ((n - d).choose (s - d) : ℝ) =
       ((n - d + 1 : ℕ) : ℝ) / ((s - d + 1 : ℕ) : ℝ) := by

@@ -31,7 +31,9 @@ def finitePartitionMean (μ : Measure Ω) (cell : Ω → ι) (f : Ω → E) (i :
   (μ.real (cell ⁻¹' {i}))⁻¹ • ∫ ω in cell ⁻¹' {i}, f ω ∂μ
 
 /-- Integration of a scalar finite-output function is exactly its atom
-weighted sum, retaining atoms of mass zero.-/
+weighted sum, retaining atoms of mass zero.
+@isnad1 id=eq.1h5v.s6.853724d8331c from=translated src=- shape=8d981f38 vocab=eb53ba69
+-/
 theorem integral_comp_finite_eq_sum (cell : Ω → ι) (hcell : Measurable cell) (g : ι → ℝ) :
     (∫ ω, g (cell ω) ∂μ) = ∑ i, μ.real (cell ⁻¹' {i}) * g i := by
   rw [← integral_map hcell.aemeasurable (Integrable.of_finite (f := g)).aestronglyMeasurable,
@@ -43,7 +45,9 @@ theorem integral_comp_finite_eq_sum (cell : Ω → ι) (hcell : Measurable cell)
 omit [Fintype ι] in
 /-- For a finite measurable partition, a conditional expectation has an
 actual finite-output representation. On every positive-mass atom its value
-is the explicit normalized atom integral.-/
+is the explicit normalized atom integral.
+@isnad1 id=ex.2h6v.s7.abbf1bc1691c from=translated src=- shape=264dc18d vocab=c9b9b26c
+-/
 theorem exists_condExp_finitePartitionMean_factor
     (cell : Ω → ι) (hcell : Measurable cell) {f : Ω → E} (hf : Integrable f μ) :
     ∃ g : ι → E,
@@ -75,7 +79,9 @@ theorem exists_condExp_finitePartitionMean_factor
 
 /-- The finite weighted power sum of explicit atom means is exactly the
 actual conditional-expectation norm moment. No atom-positivity hypothesis
-is imposed; zero-mass atoms contribute zero on both sides.-/
+is imposed; zero-mass atoms contribute zero on both sides.
+@isnad1 id=eq.2h7v.s7.7cb462446602 from=translated src=- shape=631e1c12 vocab=b61e2694
+-/
 theorem sum_mul_norm_finitePartitionMean_rpow_eq_integral_condExp
     (cell : Ω → ι) (hcell : Measurable cell) {f : Ω → E} (hf : Integrable f μ) (q : ℝ) :
     (∑ i, μ.real (cell ⁻¹' {i}) * ‖finitePartitionMean μ cell f i‖ ^ q) =
@@ -92,7 +98,9 @@ theorem sum_mul_norm_finitePartitionMean_rpow_eq_integral_condExp
 
 /-- The explicit finite-partition mean is a contraction of every actual
 integrable norm moment of order at least one. This concrete finite-output
-bound is suitable for finite weighted matrix interpolation.-/
+bound is suitable for finite weighted matrix interpolation.
+@isnad1 id=le.4h7v.s7.c7a9f83107de from=translated src=- shape=c7be8bf2 vocab=7cd58a7c
+-/
 theorem sum_mul_norm_finitePartitionMean_rpow_le_integral
     (cell : Ω → ι) (hcell : Measurable cell) {f : Ω → E} (hf : Integrable f μ)
     {q : ℝ} (hq : 1 ≤ q) (hfm : Integrable (fun ω => ‖f ω‖ ^ q) μ) :
@@ -104,7 +112,9 @@ theorem sum_mul_norm_finitePartitionMean_rpow_le_integral
 omit [Fintype ι] [MeasurableSpace ι] [MeasurableSingletonClass ι] [IsFiniteMeasure μ] in
 /-- Explicit atom means commute with every continuous real linear map.
 Consequently a change to an equivalent finite-dimensional matrix norm does
-not alter the underlying atom mean.-/
+not alter the underlying atom mean.
+@isnad1 id=eq.1h9v.s8.a1e47635c18b from=translated src=- shape=7dbb5933 vocab=028ea65c
+-/
 theorem finitePartitionMean_comp_continuousLinearMap
     {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
     (cell : Ω → ι) {f : Ω → E} (hf : Integrable f μ) (T : E →L[ℝ] F) (i : ι) :

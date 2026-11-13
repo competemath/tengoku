@@ -51,7 +51,9 @@ private def injectiveImageEquiv (S : Finset α) :
   left_inv h := by apply Subtype.ext; funext i; rfl
   right_inv e := by ext i; rfl
 
-/-- There are `k!` injective functions with a specified size-`k` image.-/
+/-- There are `k!` injective functions with a specified size-`k` image.
+@isnad1 id=eq.1h3v.s6.c0840c347d4b from=translated src=- shape=f9dd9dc5 vocab=ef9c6c20
+-/
 theorem card_injective_functions_image (S : Finset α) (hS : S.card = k) :
     (((univ : Finset (Fin k → α)).filter Function.Injective).filter
       (fun h => univ.image h = S)).card = k.factorial := by
@@ -65,7 +67,9 @@ theorem card_injective_functions_image (S : Finset α) (hS : S.card = k) :
     Fintype.card_equiv (S.equivFinOfCardEq hS).symm, Fintype.card_fin]
 
 /-- Summing a support-dependent weight over injective ordered histories counts
-each size-`k` subset exactly `k!` times. No order on the ambient type is required.-/
+each size-`k` subset exactly `k!` times. No order on the ambient type is required.
+@isnad1 id=eq.0h4v.s7.6947bb3873a3 from=translated src=- shape=f376b59f vocab=df3d558a
+-/
 theorem sum_injective_image_eq_factorial_nsmul {M : Type*} [AddCommMonoid M]
     (f : Finset α → M) (k : ℕ) :
     (∑ h : Fin k → α, if Function.Injective h then f (univ.image h) else 0) =
@@ -85,7 +89,9 @@ theorem sum_injective_image_eq_factorial_nsmul {M : Type*} [AddCommMonoid M]
 
 omit [DecidableEq α] in
 /-- Elementary symmetric subset sums are invariant under a relabeling of the
-finite ambient type.-/
+finite ambient type.
+@isnad1 id=eq.0h6v.s6.7783e3598238 from=translated src=- shape=ebeacfd9 vocab=a7a8839b
+-/
 theorem sum_powersetCard_prod_equiv {β R : Type*} [Fintype β] [DecidableEq β]
     [CommSemiring R] (e : α ≃ β) (f : β → R) (k : ℕ) :
     (∑ S ∈ (univ : Finset α).powersetCard k, ∏ i ∈ S, f (e i)) =

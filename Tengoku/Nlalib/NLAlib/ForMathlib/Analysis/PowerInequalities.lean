@@ -15,7 +15,9 @@ noncomputable section
 namespace NLAlib
 
 /-- Paired mixed powers are bounded by the two endpoint powers for nonnegative
-scalars. Source: manuscript `eq:scalarpair`; supports `noncommutative-khintchine`.-/
+scalars. Source: manuscript `eq:scalarpair`; supports `noncommutative-khintchine`.
+@isnad1 id=le.3h4v.s7.b92b1521a3b3 from=translated src=- shape=24d1d3e9 vocab=c0564ed8
+-/
 theorem mixed_pow_add_mixed_pow_le {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
     {m l : ℕ} (hl : l ≤ m) :
     x ^ l * y ^ (m - l) + x ^ (m - l) * y ^ l ≤ x ^ m + y ^ m := by
@@ -35,7 +37,9 @@ theorem mixed_pow_add_mixed_pow_le {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
 
 /-- Integer Young's inequality, including zero scalars and order one.
 Source: operator manuscript `eq:young`; supports `noncommutative-khintchine`.
-The proof reuses Mathlib's convex Bernoulli inequality for positive `y`.-/
+The proof reuses Mathlib's convex Bernoulli inequality for positive `y`.
+@isnad1 id=le.3h3v.s7.c9563d3513f5 from=translated src=- shape=3783b4b5 vocab=1c88009b
+-/
 theorem nat_mul_mul_pow_le_pow_add {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
     {p : ℕ} (hp : 1 ≤ p) :
     (p : ℝ) * x * y ^ (p - 1) ≤ x ^ p + (p - 1 : ℕ) * y ^ p := by
@@ -69,7 +73,9 @@ theorem nat_mul_mul_pow_le_pow_add {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y)
 
 /-- The scalar polynomial mean-value inequality at an odd natural power.
 Source: manuscript `lem:meanvalue`; supports the individual sign-flip proof
-of `noncommutative-khintchine`. Negative scalars and exponent zero are included.-/
+of `noncommutative-khintchine`. Negative scalars and exponent zero are included.
+@isnad1 id=le.1h3v.s7.777b94a1f90a from=translated src=- shape=d86ff022 vocab=e2b6116a
+-/
 theorem sub_mul_sub_pow_le_of_even {m : ℕ} (hm : Even m) (a b : ℝ) :
     (a - b) * (a ^ (m + 1) - b ^ (m + 1)) ≤
       ((m + 1 : ℕ) : ℝ) / 2 * (a - b) ^ 2 * (a ^ m + b ^ m) := by
@@ -107,7 +113,9 @@ theorem sub_mul_sub_pow_le_of_even {m : ℕ} (hm : Even m) (a b : ℝ) :
 /-- Taking the nonnegative `2p`-th root of an integer moment bound gives
 the square-root constant, including zero moments and zero parameters.
 Source: final rooted form in manuscript `thm:khintchine`; supports
-`noncommutative-khintchine`.-/
+`noncommutative-khintchine`.
+@isnad1 id=le.5h4v.s7.53e4bd869aab from=translated src=- shape=736b1caa vocab=cda7cdd9
+-/
 theorem rpow_le_sqrt_mul_rpow_of_nat_pow_le
     {M V q : ℝ} (hM : 0 ≤ M) (hV : 0 ≤ V) (hq : 0 ≤ q)
     {p : ℕ} (hp : 1 ≤ p) (hbound : M ≤ q ^ p * V) :
@@ -121,7 +129,9 @@ theorem rpow_le_sqrt_mul_rpow_of_nat_pow_le
   exact h
 
 /-- Three nonnegative factors are bounded by the sum of their cubes.
-This division-free arithmetic-geometric mean inequality also covers zeros.-/
+This division-free arithmetic-geometric mean inequality also covers zeros.
+@isnad1 id=le.3h3v.s7.56efcd36a2a0 from=translated src=- shape=01aca38b vocab=cef4cf1d
+-/
 theorem three_mul_mul_mul_le_add_cube {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) :
     3*a*b*c ≤ a^3+b^3+c^3 := by

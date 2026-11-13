@@ -45,7 +45,9 @@ private theorem integral_sq_sum_pi_of_mean_zero
 
 /-- The actual squared modulus of a centered independent complex sum has
 expectation equal to the sum of its actual marginal second moments. The
-laws may be singular and the summand family may be empty.-/
+laws may be singular and the summand family may be empty.
+@isnad1 id=eq.2h4v.s8.4285c6233b35 from=translated src=- shape=9b9da32a vocab=9dccefc3
+-/
 theorem integral_norm_sq_sum_pi_of_mean_zero
     (ν : ι → Measure Ω) [∀ i, IsProbabilityMeasure (ν i)]
     (X : ι → Ω → ℂ) (hX : ∀ i, MemLp (X i) 2 (ν i))

@@ -83,7 +83,9 @@ def orthogonalRecurrenceBeta (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) : 𝕜 :=
   if n = 0 then 0 else orthogonalPolynomialNorm L n / orthogonalPolynomialNorm L (n - 1)
 
 /-- The lower correction in the finite moment construction has degree strictly less
-than its order, including the empty correction at order zero.-/
+than its order, including the empty correction at order zero.
+@isnad1 id=lt.0h3v.s7.cd3855a2e299 from=translated src=- shape=f07f49a8 vocab=93670cfb
+-/
 theorem degree_orthogonalPolynomialLowerPart_lt (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (orthogonalPolynomialLowerPart L n).degree < n := by
   apply mem_degreeLT.mp
@@ -92,12 +94,16 @@ theorem degree_orthogonalPolynomialLowerPart_lt (L : 𝕜[X] →ₗ[𝕜] 𝕜) 
   apply mem_degreeLT.mpr
   exact (degree_monomial_le _ _).trans_lt (by exact_mod_cast i.isLt)
 
-/-- Every moment-system polynomial is monic, even when the system is singular.-/
+/-- Every moment-system polynomial is monic, even when the system is singular.
+@isnad1 id=monic.0h3v.s6.4b006975f683 from=translated src=- shape=5594cd4c vocab=22ee7a4d
+-/
 theorem monic_monicOrthogonalPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (monicOrthogonalPolynomial L n).Monic :=
   monic_X_pow_add (degree_orthogonalPolynomialLowerPart_lt L n)
 
-/-- Every moment-system polynomial has exactly its prescribed degree.-/
+/-- Every moment-system polynomial has exactly its prescribed degree.
+@isnad1 id=eq.0h3v.s6.7d9563635f20 from=translated src=- shape=1c75b569 vocab=130fd12b
+-/
 @[simp] theorem natDegree_monicOrthogonalPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) :
     (monicOrthogonalPolynomial L n).natDegree = n := by
   unfold monicOrthogonalPolynomial
@@ -105,12 +111,16 @@ theorem monic_monicOrthogonalPolynomial (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ
   · simp
   · simpa using degree_orthogonalPolynomialLowerPart_lt L n
 
-/-- The order-zero monic moment polynomial is one, including the zero functional.-/
+/-- The order-zero monic moment polynomial is one, including the zero functional.
+@isnad1 id=eq.0h2v.s7.8c7b973b9d56 from=translated src=- shape=14ba2ab7 vocab=12235532
+-/
 @[simp] theorem monicOrthogonalPolynomial_zero (L : 𝕜[X] →ₗ[𝕜] 𝕜) :
     monicOrthogonalPolynomial L 0 = 1 := by
   simp [monicOrthogonalPolynomial, orthogonalPolynomialLowerPart]
 
-/-- The empty Hankel determinant is one, including the zero functional.-/
+/-- The empty Hankel determinant is one, including the zero functional.
+@isnad1 id=eq.0h2v.s7.1a86638db8c7 from=translated src=- shape=42e977f7 vocab=bf4a0f97
+-/
 @[simp] theorem hankelMomentDet_zero (L : 𝕜[X] →ₗ[𝕜] 𝕜) : hankelMomentDet L 0 = 1 := by
   simp [hankelMomentDet]
 

@@ -16,7 +16,9 @@ namespace MeasureTheory
 
 /-- A jointly continuous compactly supported fibre integral depends
 continuously on a compact parameter set. No regularity of the integrand
-outside the actual support is required.-/
+outside the actual support is required.
+@isnad1 id=continuo.3h6v.s7.bd993e7c3144 from=translated src=- shape=2f2eccb5 vocab=f8b29b43
+-/
 theorem continuousOn_integral_of_continuousOn_compact_support
     {X Ω E : Type*} [TopologicalSpace X] [FirstCountableTopology X]
     [TopologicalSpace Ω] [T2Space Ω] [SecondCountableTopology Ω]

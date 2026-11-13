@@ -24,7 +24,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 section $\{\omega \mid (X(\omega), y) \in E\}$ has probability at most $\delta_1$ for every
 $y \in G$, and $Y \notin G$ has probability at most $\delta_2$, then $(X, Y) \in E$ has
 probability at most $\delta_1 + \delta_2$. Fubini on the joint law $\mu_X \otimes \mu_Y$. Upstream
-candidate.-/
+candidate.
+@isnad1 id=le.8h10v.s7.e60217d55933 from=translated src=- shape=4523ee01 vocab=6ded0bcd
+-/
 theorem IndepFun.measureReal_mem_le_add [IsProbabilityMeasure μ] {α β : Type*}
     [MeasurableSpace α] [MeasurableSpace β] {X : Ω → α} {Y : Ω → β} (hXY : IndepFun X Y μ)
     (hX : AEMeasurable X μ) (hY : AEMeasurable Y μ) {E : Set (α × β)} (hE : MeasurableSet E)

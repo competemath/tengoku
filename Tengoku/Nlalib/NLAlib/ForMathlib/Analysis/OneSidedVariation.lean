@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A continuous real function on `[0,1]` grows by at most `L` if at every point
 before the right endpoint its positive-step quotients admit a subsequence
-converging to a value at most `L`. Scalar minimum argument, Lidskii operator route.-/
+converging to a value at most `L`. Scalar minimum argument, Lidskii operator route.
+@isnad1 id=le.2h2v.s7.65968f935808 from=translated src=- shape=e9163ca0 vocab=fcde3dd6
+-/
 theorem sub_le_of_continuous_of_subseq_difference_quotient_le
     (F : ℝ → ℝ) (hF : ContinuousOn F (Set.Icc 0 1)) (L : ℝ)
     (hv : ∀ t ∈ Set.Ico (0 : ℝ) 1, ∃ c ≤ L, ∃ φ : ℕ → ℕ, StrictMono φ ∧

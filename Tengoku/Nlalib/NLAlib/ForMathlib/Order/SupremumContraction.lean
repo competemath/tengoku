@@ -18,7 +18,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- Contracting the differences of one coordinate decreases the sum of its
-two signed supremum values. The parameter class can be arbitrary.-/
+two signed supremum values. The parameter class can be arbitrary.
+@isnad1 id=le.3h4v.s7.f85f12969632 from=translated src=- shape=07e07f93 vocab=5d5b175d
+-/
 theorem ciSup_add_ciSup_le_of_abs_sub_le {T : Type*} [Nonempty T]
     (b x y : T → ℝ)
     (hplus : BddAbove (Set.range fun t => b t + x t))

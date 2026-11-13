@@ -17,7 +17,9 @@ open Polynomial MeasureTheory Set
 namespace NLAlib
 
 /-- A nonnegative affine polynomial times a nonzero degree-`k` polynomial square
-has strictly positive integral when the support has at least `k+2` points.-/
+has strictly positive integral when the support has at least `k+2` points.
+@isnad1 id=lt.7h4v.s7.1f0b9a2022e7 from=translated src=- shape=dc62b7bb vocab=f2323493
+-/
 theorem integral_eval_mul_sq_pos {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {k : ℕ} (hn : (k + 2 : ℕ∞) ≤ μ.support.encard)
     {p r : ℝ[X]} (hp : p ≠ 0) (hpd : p.degree ≤ k)
@@ -55,7 +57,9 @@ theorem integral_eval_mul_sq_pos {μ : Measure ℝ} (hμ : HasPolynomialMoments 
 /-- A monic recurrence diagonal lies strictly between the endpoints of a compact
 support interval whenever the measure has more than `k+1` support points.
 Source: Gautschi (2004), Theorem 1.28; operator derivations OP12.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=mem.3h4v.s6.2555dc3cb002 from=translated src=- shape=4b3483ea vocab=5878ba43
+-/
 theorem orthogonalRecurrenceAlpha_mem_Ioo {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {a b : ℝ} (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {k : ℕ}
     (hn : (k + 2 : ℕ∞) ≤ μ.support.encard) :
@@ -99,7 +103,9 @@ theorem orthogonalRecurrenceAlpha_mem_Ioo {μ : Measure ℝ} (hμ : HasPolynomia
 the largest squared endpoint of a compact support interval. It equals the square
 of the symmetric Jacobi off-diagonal coefficient.
 Source: Gautschi (2004), Theorem 1.28; operator derivations OP13.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=and.4h4v.s7.0cb8ec26c9f8 from=translated src=- shape=3089332c vocab=f5561bd8
+-/
 theorem orthogonalRecurrenceBeta_pos_and_le {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {a b : ℝ} (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {k : ℕ} (hk : 0 < k)
     (hn : (k + 1 : ℕ∞) ≤ μ.support.encard) :

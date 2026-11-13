@@ -14,7 +14,9 @@ namespace NLAlib
 
 /-- Complete an embedding of finite types to an equivalence from a disjoint
 sum, preserving every prescribed first-summand coordinate. The cardinality
-identity supplies exactly the number of remaining coordinates.-/
+identity supplies exactly the number of remaining coordinates.
+@isnad1 id=ex.1h4v.s6.0568e030e9f0 from=translated src=- shape=ac3dd863 vocab=1bb2419c
+-/
 theorem exists_equiv_sum_extending_embedding {p q n : Type*}
     [Fintype p] [Fintype q] [Fintype n] (e : p ↪ n)
     (hcard : Fintype.card p + Fintype.card q = Fintype.card n) :

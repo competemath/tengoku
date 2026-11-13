@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Every finite dimensional real subspace contains a nearest point to an ambient vector.
 Source: the finite dimensional compactness proof of best approximation, Cheney (1966),
-Chapter 2. The ambient normed space need not be finite dimensional or complete.-/
+Chapter 2. The ambient normed space need not be finite dimensional or complete.
+@isnad1 id=ex.0h3v.s8.8f161a738c01 from=translated src=- shape=5c6d71a7 vocab=e0f9ee79
+-/
 theorem exists_norm_sub_eq_infDist_of_finiteDimensional {E : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E] (S : Submodule ℝ E)
     [FiniteDimensional ℝ S] (f : E) :

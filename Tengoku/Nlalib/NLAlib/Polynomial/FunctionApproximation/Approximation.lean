@@ -28,7 +28,9 @@ namespace NLAlib
 
 /-- The amplifier has degree at most `q`.
 Source: Musco–Musco (2015) [`mm15`], Lem. 4. Atlas: `chebyshev-amplifier`.
-atlas: chebyshev-amplifier-/
+atlas: chebyshev-amplifier
+@isnad1 id=le.0h3v.s4.fb2f3b7bc1f9 from=translated src=- shape=1ef98cf7 vocab=2134e464
+-/
 theorem degree_chebyshevAmplifier_le (α γ : ℝ) (q : ℕ) :
     (chebyshevAmplifier α γ q).degree ≤ q := by
   rw [chebyshevAmplifier_def, C_mul']
@@ -42,7 +44,9 @@ theorem degree_chebyshevAmplifier_le (α γ : ℝ) (q : ℕ) :
 
 /-- The amplifier equals `1` at `α(1 + γ)`.
 Source: Musco–Musco (2015) [`mm15`], Lem. 4. Atlas: `chebyshev-amplifier`.
-atlas: chebyshev-amplifier-/
+atlas: chebyshev-amplifier
+@isnad1 id=eq.2h3v.s6.9d20391fc3f0 from=translated src=- shape=34a71087 vocab=cc89cc30
+-/
 theorem eval_chebyshevAmplifier_self {α γ : ℝ} (q : ℕ) (hα : 0 < α) (hγ : 0 ≤ γ) :
     (chebyshevAmplifier α γ q).eval (α * (1 + γ)) = 1 := by
   rw [eval_chebyshevAmplifier, mul_div_cancel_left₀ _ hα.ne']
@@ -51,7 +55,9 @@ theorem eval_chebyshevAmplifier_self {α γ : ℝ} (q : ℕ) (hα : 0 < α) (hγ
 /-- Beyond `α(1 + γ)` the amplifier is at least `1`: `α(1 + γ) ≤ x → 1 ≤ p(x)`.
 Source: Musco–Musco (2015) [`mm15`], Lem. 4 (monotonicity of `T_q` on `[1, ∞)`). Atlas:
 `chebyshev-amplifier`.
-atlas: chebyshev-amplifier-/
+atlas: chebyshev-amplifier
+@isnad1 id=le.3h4v.s6.50bd78404300 from=translated src=- shape=865be263 vocab=cc89cc30
+-/
 theorem one_le_eval_chebyshevAmplifier {α γ x : ℝ} (q : ℕ) (hα : 0 < α) (hγ : 0 ≤ γ)
     (hx : α * (1 + γ) ≤ x) : 1 ≤ (chebyshevAmplifier α γ q).eval x := by
   rw [eval_chebyshevAmplifier]
@@ -65,7 +71,9 @@ theorem one_le_eval_chebyshevAmplifier {α γ x : ℝ} (q : ℕ) (hα : 0 < α) 
 /-- On `[−α, α]` the amplifier is exponentially small: `|p(x)| ≤ 2/(1 + √(2γ))^q`.
 Source: Musco–Musco (2015) [`mm15`], Lem. 4; Lem. 5 is the case `γ = ε`. Atlas:
 `chebyshev-amplifier`.
-atlas: chebyshev-amplifier-/
+atlas: chebyshev-amplifier
+@isnad1 id=le.3h4v.s6.e44c0261a97d from=translated src=- shape=6c73b390 vocab=f1274082
+-/
 theorem abs_eval_chebyshevAmplifier_le {α γ x : ℝ} (q : ℕ) (hα : 0 < α) (hγ : 0 ≤ γ)
     (hx : x ∈ Set.Icc (-α) α) :
     |(chebyshevAmplifier α γ q).eval x| ≤ 2 / (1 + √(2 * γ)) ^ q := by
@@ -87,7 +95,9 @@ theorem abs_eval_chebyshevAmplifier_le {α γ x : ℝ} (q : ℕ) (hα : 0 < α) 
 `2((√b − √a)/(√b + √a))^q`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 8; Saad (2003), §6.11.3. Atlas: `chebyshev-minimax`
 (κ-form).
-atlas: chebyshev-minimax-/
+atlas: chebyshev-minimax
+@isnad1 id=le.2h3v.s7.eff8e3cd0745 from=translated src=- shape=5d9b288a vocab=79722748
+-/
 theorem inv_eval_T_real_le_two_mul_pow {a b : ℝ} (q : ℕ) (ha : 0 < a) (hab : a < b) :
     1 / (T ℝ q).eval ((b + a) / (b - a)) ≤ 2 * ((√b - √a) / (√b + √a)) ^ q := by
   have hlow := sqrt_add_div_sqrt_sub_pow_div_two_le_eval_T_real ha hab q
@@ -104,7 +114,9 @@ theorem inv_eval_T_real_le_two_mul_pow {a b : ℝ} (q : ℕ) (ha : 0 < a) (hab :
 `|chebyshevResidual a b q (x)| ≤ 2((√b − √a)/(√b + √a))^q`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 8; Trefethen–Bau (1997), Thm 38.5. Atlas:
 `chebyshev-minimax` (κ-form).
-atlas: chebyshev-minimax-/
+atlas: chebyshev-minimax
+@isnad1 id=le.3h4v.s6.3135126e49c8 from=translated src=- shape=5d67f90d vocab=65fd8655
+-/
 theorem abs_eval_chebyshevResidual_le_two_mul_pow {a b x : ℝ} (q : ℕ) (ha : 0 < a) (hab : a < b)
     (hx : x ∈ Set.Icc a b) :
     |(chebyshevResidual a b q).eval x| ≤ 2 * ((√b - √a) / (√b + √a)) ^ q :=
@@ -117,7 +129,9 @@ degree `< q` with `|p(x) − 1/x| ≤ (2/a)((√b − √a)/(√b + √a))^q` on
 `p = (1 − r)/X` for the Chebyshev residual `r = chebyshevResidual a b q`.
 Source: Golub–Meurant (2010) [`gm10`], Ch. 8 (the CG error bound). Atlas:
 `inverse-polynomial-approx`.
-atlas: inverse-polynomial-approx-/
+atlas: inverse-polynomial-approx
+@isnad1 id=ex.2h3v.s7.1f54888fb543 from=translated src=- shape=f21f61e9 vocab=1f2466b4
+-/
 theorem exists_degree_lt_abs_eval_sub_inv_le {a b : ℝ} (q : ℕ) (ha : 0 < a) (hab : a < b) :
     ∃ p : ℝ[X], p.degree < q ∧ ∀ x ∈ Set.Icc a b,
       |p.eval x - 1 / x| ≤ (2 / a) * ((√b - √a) / (√b + √a)) ^ q := by

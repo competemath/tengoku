@@ -17,7 +17,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Cramer's rule at `(0, 0)`: `(N⁻¹)₀₀ = det N_{[1:],[1:]} / det N` (no hypothesis; both sides
-vanish when `N` is singular). Stated over any field. Helper for `jacobi-matrix-identities`.-/
+vanish when `N` is singular). Stated over any field. Helper for `jacobi-matrix-identities`.
+@isnad1 id=eq.0h3v.s8.721e1687692d from=translated src=- shape=6d6f55d8 vocab=799eb216
+-/
 theorem inv_apply_zero_zero {K : Type*} [Field K] {m : ℕ}
     (N : Matrix (Fin (m + 1)) (Fin (m + 1)) K) :
     N⁻¹ 0 0 = (N.submatrix Fin.succ Fin.succ).det / N.det := by
