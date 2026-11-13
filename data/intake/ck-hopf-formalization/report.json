@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "7402de0747b6bff4daf59decefb91c7934de859e5387b9e688d24a669707a2dc",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "ck-hopf-formalization",
+ "lint_mode": "proposed",
+ "modules": 5,
+ "part": 1,
+ "theorems": 74
+}

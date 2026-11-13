@@ -123,6 +123,7 @@ import Tengoku.ForbiddenMatrix
 import Tengoku.Cslib
 import Tengoku.FormalMath
 import Tengoku.Formalslt
+import Tengoku.CkHopfFormalization
 import Tengoku.Physlib
 import Tengoku.TaoAnalysis
 import Tengoku.Tautology
