@@ -29,7 +29,7 @@ range is discrete. Finally, the translations
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped MatrixGroups Pointwise
 
 open Matrix.SpecialLinearGroup
@@ -100,3 +100,4 @@ theorem continuous_upperRightHom {R : Type*} [CommRing R] [TopologicalSpace R]
   exact (continuous_quot_mk.comp this).congr fun x ↦ (upperRightHom_apply x).symm
 
 end Matrix.ProjectiveSpecialLinearGroup
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

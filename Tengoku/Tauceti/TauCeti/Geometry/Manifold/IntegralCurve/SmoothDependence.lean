@@ -34,7 +34,7 @@ in particular to the geodesic flow, which is the flow of the geodesic spray on t
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Filter Manifold Set
 open scoped ContDiff Manifold Topology
 
@@ -171,3 +171,4 @@ theorem contMDiffAt_maximalIntegralCurve {n : ℕ∞}
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

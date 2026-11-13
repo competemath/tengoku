@@ -33,7 +33,7 @@ a canonical linear map from the ordinary tangent space to the algebraic point de
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped ContDiff Derivation Manifold Topology
 
 noncomputable section
@@ -47,7 +47,7 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 -- Exposure is required for the exported characteristic equation below to unfold this definition
 -- under the module system.
 @[expose]
-def tangentToPointDerivation (x : M) : TangentSpace I x →ₗ[𝕜] PointDerivation I x where
+def Tengoku.Tauceti.tangentToPointDerivation (x : M) : TangentSpace I x →ₗ[𝕜] PointDerivation I x where
   toFun v :=
     Derivation.mk'
       { toFun := fun f => mvfderiv I f x v
@@ -92,7 +92,7 @@ def tangentToPointDerivation (x : M) : TangentSpace I x →ₗ[𝕜] PointDeriva
 /-- The point derivation associated to a tangent vector evaluates a smooth function by its
 directional derivative. -/
 @[simp]
-theorem tangentToPointDerivation_apply (x : M) (v : TangentSpace I x)
+theorem Tengoku.Tauceti.tangentToPointDerivation_apply (x : M) (v : TangentSpace I x)
     (f : C^∞⟮I, M; 𝕜⟯) : tangentToPointDerivation x v f = mvfderiv I f x v :=
   rfl
 
@@ -113,7 +113,7 @@ private theorem exists_contMDiffMap_eventuallyEq_extChartAt
 
 /-- On a finite-dimensional Hausdorff real manifold, smooth scalar-valued functions distinguish
 tangent vectors. -/
-theorem tangentToPointDerivation_injective
+theorem Tengoku.Tauceti.tangentToPointDerivation_injective
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M] [T2Space M]
@@ -343,7 +343,7 @@ variable {E' : Type*} [NormedAddCommGroup E'] [NormedSpace 𝕜 E']
   {M' : Type*} [TopologicalSpace M'] [ChartedSpace H' M']
 
 /-- Sending tangent vectors to point derivations commutes with the differential of a smooth map. -/
-theorem tangentToPointDerivation_mfderiv (f : C^∞⟮I, M; I', M'⟯) (x : M)
+theorem Tengoku.Tauceti.tangentToPointDerivation_mfderiv (f : C^∞⟮I, M; I', M'⟯) (x : M)
     (v : TangentSpace I x) :
     tangentToPointDerivation (f x) (mfderiv I I' f x v) =
       𝒅 f x (tangentToPointDerivation x v) := by
@@ -404,7 +404,7 @@ private theorem exists_contMDiffMap_comp_eventuallyEq
 
 /-- Every point derivation at an interior point of a finite-dimensional Hausdorff real manifold is
 directional differentiation along a tangent vector. -/
-theorem tangentToPointDerivation_surjective
+theorem Tengoku.Tauceti.tangentToPointDerivation_surjective
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
@@ -438,7 +438,7 @@ theorem tangentToPointDerivation_surjective
 
 /-- Point derivations and tangent vectors are canonically linearly equivalent at an interior point
 of a finite-dimensional Hausdorff real manifold. -/
-noncomputable def pointDerivationEquivTangentSpace
+noncomputable def Tengoku.Tauceti.pointDerivationEquivTangentSpace
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
@@ -449,7 +449,7 @@ noncomputable def pointDerivationEquivTangentSpace
 
 /-- The inverse of the point-derivation equivalence is directional differentiation. -/
 @[simp]
-theorem pointDerivationEquivTangentSpace_symm_apply
+theorem Tengoku.Tauceti.pointDerivationEquivTangentSpace_symm_apply
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
@@ -460,7 +460,7 @@ theorem pointDerivationEquivTangentSpace_symm_apply
 
 /-- Converting a point derivation to a tangent vector and back recovers the derivation. -/
 @[simp]
-theorem tangentToPointDerivation_pointDerivationEquivTangentSpace
+theorem Tengoku.Tauceti.tangentToPointDerivation_pointDerivationEquivTangentSpace
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
@@ -471,7 +471,7 @@ theorem tangentToPointDerivation_pointDerivationEquivTangentSpace
 
 /-- Converting a tangent vector to a point derivation and back recovers the vector. -/
 @[simp]
-theorem pointDerivationEquivTangentSpace_tangentToPointDerivation
+theorem Tengoku.Tauceti.pointDerivationEquivTangentSpace_tangentToPointDerivation
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M]
@@ -482,7 +482,7 @@ theorem pointDerivationEquivTangentSpace_tangentToPointDerivation
 
 /-- The equivalence between point derivations and tangent vectors is natural under smooth maps. -/
 @[simp]
-theorem pointDerivationEquivTangentSpace_fdifferential
+theorem Tengoku.Tauceti.pointDerivationEquivTangentSpace_fdifferential
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {H : Type*} [TopologicalSpace H] {I : ModelWithCorners ℝ E H}
     {M : Type*} [TopologicalSpace M] [ChartedSpace H M] [IsManifold I ∞ M] [T2Space M]
@@ -497,3 +497,4 @@ theorem pointDerivationEquivTangentSpace_fdifferential
   rw [tangentToPointDerivation_pointDerivationEquivTangentSpace (f x) hfx,
     tangentToPointDerivation_mfderiv,
     tangentToPointDerivation_pointDerivationEquivTangentSpace x hx]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -44,7 +44,7 @@ the values of `TauCeti.hurwitzClassNumber`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Finset
 
 namespace TauCeti
@@ -109,3 +109,4 @@ theorem reducedForms_eq_empty_of_mod_four_eq_one_or_two {D : ℕ} (hD : D % 4 = 
     lia
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

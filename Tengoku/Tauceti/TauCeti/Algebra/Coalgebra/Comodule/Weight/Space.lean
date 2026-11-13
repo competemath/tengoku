@@ -52,7 +52,7 @@ weights in Lie--Kolchin arguments.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped TensorProduct
 
 universe u v w x
@@ -280,3 +280,4 @@ end Comodule
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

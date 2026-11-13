@@ -138,7 +138,7 @@ and the conductor statement of Layer 4 is phrased with this normalization of `V_
 -/
 
 public noncomputable section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane CongruenceSubgroup Function
 
 open scoped Manifold MatrixGroups ModularForm Pointwise
@@ -1071,3 +1071,4 @@ end QExpansion
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

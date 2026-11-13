@@ -55,7 +55,7 @@ here descend from it.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open scoped MatrixGroups Pointwise
@@ -218,3 +218,4 @@ theorem glPosToPSL2R_smul (g : GL(2, ℝ)⁺) (τ : ℍ) :
   exact glPosToSL2R_coe_matrix g
 
 end UpperHalfPlane
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

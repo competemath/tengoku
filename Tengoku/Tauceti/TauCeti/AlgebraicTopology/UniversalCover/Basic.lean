@@ -51,7 +51,7 @@ presentations that omit proving their introduced topology is actually the standa
 -/
 
 public section
-noncomputable section
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti noncomputable section
 
 open scoped unitInterval
 open Topology
@@ -368,3 +368,4 @@ theorem proj_injOn_sheet {U : Set X} (hU_slsc : IsPathHomotopyTrivial U)
 end UniversalCover
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

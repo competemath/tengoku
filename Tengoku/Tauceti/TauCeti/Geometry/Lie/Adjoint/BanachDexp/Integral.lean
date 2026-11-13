@@ -29,7 +29,7 @@ Banach-algebra shadow of the left-trivialized differential-of-exponential factor
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 namespace TauCeti.Lie
@@ -71,3 +71,4 @@ theorem banachDexpFactor_apply_eq_integral (x y : R) :
   simp
 
 end TauCeti.Lie
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

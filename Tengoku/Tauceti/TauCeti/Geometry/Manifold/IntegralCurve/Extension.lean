@@ -46,7 +46,7 @@ read through the extended chart at `y`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Filter Function Manifold Set
 open scoped ContDiff Manifold Topology
 
@@ -63,7 +63,7 @@ every point of `w` is the value at `t₀` of an integral curve defined on all of
 Mathlib's `exists_isMIntegralCurveAt_of_contMDiffAt_boundaryless` gives an interval of existence
 that depends on the initial point; the content here is that it can be chosen uniformly. The field
 is autonomous, so the initial time is immaterial and `ε` is uniform in it too. -/
-theorem exists_mem_nhds_forall_exists_isMIntegralCurveOn_Ioo [CompleteSpace E] [IsManifold I 1 M]
+theorem Tengoku.Tauceti.exists_mem_nhds_forall_exists_isMIntegralCurveOn_Ioo [CompleteSpace E] [IsManifold I 1 M]
     [BoundarylessManifold I M] {x₀ : M}
     (hv : CMDiffAt 1 (fun x ↦ (⟨x, v x⟩ : TangentBundle I M)) x₀) :
     ∃ w ∈ 𝓝 x₀, ∃ ε > (0 : ℝ), ∀ t₀ : ℝ, ∀ x ∈ w, ∃ γ : ℝ → M,
@@ -206,3 +206,4 @@ theorem eventually_notMem_nhdsGT
   exact hmax c hc δ hδ hδeq
 
 end IsMIntegralCurveOn
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

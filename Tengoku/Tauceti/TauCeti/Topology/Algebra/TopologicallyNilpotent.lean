@@ -44,7 +44,7 @@ basis. The iff form has no counterpart in the source.
   commit `37bbdaeb`, `projects/AdicSpaces/Adic spaces/GeometricSeries.lean`.
 -/
 
-open Filter Topology
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti open Filter Topology
 
 public section
 
@@ -67,7 +67,7 @@ theorem IsTopologicallyNilpotent.neg {a : R} (ha : IsTopologicallyNilpotent a) :
 
 /-- Topological nilpotence is invariant under negation. -/
 @[simp]
-theorem isTopologicallyNilpotent_neg {a : R} :
+theorem Tengoku.Tauceti.isTopologicallyNilpotent_neg {a : R} :
     IsTopologicallyNilpotent (-a) ↔ IsTopologicallyNilpotent a :=
   ⟨fun h ↦ by simpa using h.neg, IsTopologicallyNilpotent.neg⟩
 
@@ -83,14 +83,14 @@ Multiplication by `a` is continuous, so `B` pulls back to a neighbourhood of `0`
 `SeparatelyContinuousMul` — and no Huber structure enters, which is why this sits here rather than
 beside the ring-of-definition form it generalises,
 `TauCeti.Huber.PairOfDefinition.exists_pow_idealOfDefinition_mul_mem`. -/
-theorem eventually_mul_pow_mem_of_isTopologicallyNilpotent {s : A}
+theorem Tengoku.Tauceti.eventually_mul_pow_mem_of_isTopologicallyNilpotent {s : A}
     (hs : IsTopologicallyNilpotent s) {B : Subring A} (hB : IsOpen (B : Set A)) (a : A) :
     ∀ᶠ n : ℕ in atTop, a * s ^ n ∈ B :=
   hs ((hB.preimage (continuous_const_mul a)).mem_nhds (by simp))
 
 /-- The existential form of `eventually_mul_pow_mem_of_isTopologicallyNilpotent`: some power of a
 topologically nilpotent element carries `a` into an open subring. -/
-theorem exists_mul_pow_mem_of_isTopologicallyNilpotent {s : A}
+theorem Tengoku.Tauceti.exists_mul_pow_mem_of_isTopologicallyNilpotent {s : A}
     (hs : IsTopologicallyNilpotent s) {B : Subring A} (hB : IsOpen (B : Set A)) (a : A) :
     ∃ n : ℕ, a * s ^ n ∈ B :=
   (eventually_mul_pow_mem_of_isTopologicallyNilpotent hs hB a).exists
@@ -98,3 +98,4 @@ theorem exists_mul_pow_mem_of_isTopologicallyNilpotent {s : A}
 end Absorb
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

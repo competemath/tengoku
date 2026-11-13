@@ -155,21 +155,21 @@ the proof goes through the `@[simp]` equation lemma `IsEllipticNet.invarNum_def`
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 variable {R S : Type*} [CommRing R] [CommRing S] (b c d : R) (m : ℤ)
 
 /-- The invariant numerator of a normalised EDS with one factor of `b` cancelled. Stated as the sum
 it reduces to rather than as a quotient;
 `IsEllipticNet.invarNum_normEDS_one_eq_reducedInvarNum_mul` is what
 identifies it as the cancellation. -/
-def reducedInvarNum : R :=
+def Tengoku.Tauceti.reducedInvarNum : R :=
   complEDS₂ b c d m + normEDS b c d m ^ 3 * b + 2 * complEDS₂Aux b c d m
 
 /-- The defining formula for `reducedInvarNum`. The definition body is not exposed, so this equation
 lemma is how a consumer computes with it. It is deliberately **not** `@[simp]`, for the reason
 `complEDS₂Aux_def` is not: tagging it would have `simp` unfold `reducedInvarNum` everywhere and
 defeat the point of naming the term. -/
-theorem reducedInvarNum_def : reducedInvarNum b c d m =
+theorem Tengoku.Tauceti.reducedInvarNum_def : reducedInvarNum b c d m =
     complEDS₂ b c d m + normEDS b c d m ^ 3 * b + 2 * complEDS₂Aux b c d m := (rfl)
 
 /-- The reduced invariant denominator, the counterpart of `reducedInvarNum`.
@@ -193,7 +193,7 @@ The factor `normEDS b c d 5 - d ^ 2` appearing in the residues `0`, `1` and `5` 
 residue that takes `b * c` out through the single `6`-complement is left carrying the remaining
 factor. It is not claimed to be a unit: over an arbitrary commutative ring nothing here proves it
 invertible. -/
-def reducedInvarDenom : R :=
+def Tengoku.Tauceti.reducedInvarDenom : R :=
   let C := complEDS b c d
   let W := normEDS b c d
   let r₆ := W 5 - d ^ 2
@@ -217,7 +217,7 @@ do: every goal mentioning `reducedInvarDenom` would acquire five undischarged co
 branch lemmas would then have nothing left to fire on. So the simp normal form of
 `reducedInvarDenom b c d m` is "the selected branch, when `m % 6` is known, and the folded term
 otherwise" — which is exactly this lemma off simp and those six on. -/
-theorem reducedInvarDenom_def : reducedInvarDenom b c d m =
+theorem Tengoku.Tauceti.reducedInvarDenom_def : reducedInvarDenom b c d m =
     if m % 6 = 0 then
       (normEDS b c d 5 - d ^ 2) * complEDS b c d 6 (m / 6) *
         normEDS b c d (m + 1) * normEDS b c d (m - 1)
@@ -239,42 +239,42 @@ elimination principle for `reducedInvarDenom`: the whole content of the definiti
 a consumer that knows `m % 6` should reach its branch directly rather than rewriting by
 `reducedInvarDenom_def` and discharging the preceding `if` conditions by hand. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_zero (h : m % 6 = 0) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_zero (h : m % 6 = 0) :
     reducedInvarDenom b c d m = (normEDS b c d 5 - d ^ 2) * complEDS b c d 6 (m / 6) *
       normEDS b c d (m + 1) * normEDS b c d (m - 1) := by
   simp [reducedInvarDenom_def, h]
 
 /-- The residue-`1` branch, selected. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_one (h : m % 6 = 1) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_one (h : m % 6 = 1) :
     reducedInvarDenom b c d m = (normEDS b c d 5 - d ^ 2) * complEDS b c d 6 ((m - 1) / 6) *
       normEDS b c d (m + 1) * normEDS b c d m := by
   simp [reducedInvarDenom_def, h]
 
 /-- The residue-`5` branch, selected. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_five (h : m % 6 = 5) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_five (h : m % 6 = 5) :
     reducedInvarDenom b c d m = (normEDS b c d 5 - d ^ 2) * complEDS b c d 6 ((m + 1) / 6) *
       normEDS b c d m * normEDS b c d (m - 1) := by
   simp [reducedInvarDenom_def, h]
 
 /-- The residue-`2` branch, selected. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_two (h : m % 6 = 2) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_two (h : m % 6 = 2) :
     reducedInvarDenom b c d m =
       complEDS b c d 3 ((m + 1) / 3) * complEDS b c d 2 (m / 2) * normEDS b c d (m - 1) := by
   simp [reducedInvarDenom_def, h]
 
 /-- The residue-`4` branch, selected. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_four (h : m % 6 = 4) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_four (h : m % 6 = 4) :
     reducedInvarDenom b c d m =
       complEDS b c d 3 ((m - 1) / 3) * complEDS b c d 2 (m / 2) * normEDS b c d (m + 1) := by
   simp [reducedInvarDenom_def, h]
 
 /-- The residue-`3` branch, selected — the final `else`, so no positive condition remains. -/
 @[simp]
-theorem reducedInvarDenom_of_emod_six_eq_three (h : m % 6 = 3) :
+theorem Tengoku.Tauceti.reducedInvarDenom_of_emod_six_eq_three (h : m % 6 = 3) :
     reducedInvarDenom b c d m =
       complEDS b c d 3 (m / 3) * complEDS b c d 2 ((m - 1) / 2) * normEDS b c d (m + 1) := by
   simp [reducedInvarDenom_def, h]
@@ -284,7 +284,7 @@ theorem reducedInvarDenom_of_emod_six_eq_three (h : m % 6 = 3) :
 normEDS b c d (-1)`, whose `normEDS` factors are `1` and `-1`, and `complEDS_zero` kills it. -/
 -- Not `@[simp]`: with the per-residue lemmas tagged, `simp` derives this from
 -- `reducedInvarDenom_of_emod_six_eq_zero`, and `simpNF` rejects the redundant annotation.
-theorem reducedInvarDenom_zero : reducedInvarDenom b c d 0 = 0 := by
+theorem Tengoku.Tauceti.reducedInvarDenom_zero : reducedInvarDenom b c d 0 = 0 := by
   simp
 
 /-- It vanishes at `1` as well, by the same mechanism: at `m = 1` the residue-`1` branch is
@@ -292,20 +292,20 @@ theorem reducedInvarDenom_zero : reducedInvarDenom b c d 0 = 0 := by
 `(1 - 1) / 6 = 0`, so `complEDS_zero` applies again. No `normEDS b c d 0` occurs in either
 branch. -/
 @[simp]
-theorem reducedInvarDenom_one : reducedInvarDenom b c d 1 = 0 := by
+theorem Tengoku.Tauceti.reducedInvarDenom_one : reducedInvarDenom b c d 1 = 0 := by
   simp
 
 /-- The formula takes the value `1` at `2`, the residue-`2` branch collapsing to
 `complEDS b c d 3 1 * complEDS b c d 2 1 * normEDS b c d 1`. This is the value that fixes the
 formula's normalisation. -/
 @[simp]
-theorem reducedInvarDenom_two : reducedInvarDenom b c d 2 = 1 := by
+theorem Tengoku.Tauceti.reducedInvarDenom_two : reducedInvarDenom b c d 2 = 1 := by
   simp
 
 /-- **The second complement read off the reduced numerator.** This is the direction the Lutz–Nagell
 development uses: it expresses `complEDS₂` through the invariant of the elliptic net, rather than
 through its own defining difference. -/
-theorem complEDS₂_eq_reducedInvarNum_sub :
+theorem Tengoku.Tauceti.complEDS₂_eq_reducedInvarNum_sub :
     complEDS₂ b c d m =
       reducedInvarNum b c d m - normEDS b c d m ^ 3 * b - 2 * complEDS₂Aux b c d m := by
   rw [reducedInvarNum_def]; ring
@@ -383,7 +383,7 @@ variable {F : Type*} [FunLike F R S] [RingHomClass F R S] (f : F)
 /-- The reduced numerator is natural in the coefficient ring. -/
 -- Not `@[simp]`: with `reducedInvarNum_eq_reducedInvarDenom_mul` in the set, `simp` derives this
 -- from `map_reducedInvarDenom`, and `simpNF` rejects the redundant annotation.
-theorem map_reducedInvarNum :
+theorem Tengoku.Tauceti.map_reducedInvarNum :
     f (reducedInvarNum b c d m) = reducedInvarNum (f b) (f c) (f d) m := by
   simp [reducedInvarNum_def, map_ofNat]
 
@@ -391,13 +391,13 @@ theorem map_reducedInvarNum :
 may be pushed through it rather than around the unexposed body. The six-way split on `m % 6` does
 not depend on the ring, so a ring map passes it unchanged. -/
 @[simp]
-theorem map_reducedInvarDenom :
+theorem Tengoku.Tauceti.map_reducedInvarDenom :
     f (reducedInvarDenom b c d m) = reducedInvarDenom (f b) (f c) (f d) m := by
   simp [reducedInvarDenom_def, apply_ite f]
 
 section ReducedInvariantIdentity
 
-open MvPolynomial NormEDSParam
+open MvPolynomial Tengoku.Tauceti.NormEDSParam
 open scoped nonZeroDivisors
 
 /-- `reducedInvarNum_eq_reducedInvarDenom_mul` under nonzerodivisor hypotheses on `b` and `c`. -/
@@ -416,7 +416,7 @@ the source's `redInvar_normEDS`. `@[simp]` as the canonical elimination rule for
 `invarNum_normEDS_one_eq_reducedInvarNum_mul` rather than racing it, and
 `reducedInvarNum_def` is deliberately outside the simp set. -/
 @[simp]
-theorem reducedInvarNum_eq_reducedInvarDenom_mul :
+theorem Tengoku.Tauceti.reducedInvarNum_eq_reducedInvarDenom_mul :
     reducedInvarNum b c d m = reducedInvarDenom b c d m * (d + b ^ 4) := by
   -- Prove it where `b` and `c` are nonzerodivisors — the universal parameters — and specialise.
   have huniv := reducedInvarNum_eq_reducedInvarDenom_mul_of_mem
@@ -427,3 +427,4 @@ theorem reducedInvarNum_eq_reducedInvarDenom_mul :
     using congr(aeval (NormEDSParam.rec b c d) $huniv)
 
 end ReducedInvariantIdentity
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -59,7 +59,7 @@ identifications remain future work.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace TauCeti.Multiquadratic
 
 /-- A **fundamental discriminant**: either `D ≡ 1 (mod 4)` with `D` squarefree, or `D = 4 * m`
@@ -293,3 +293,4 @@ theorem IsFundamentalDiscriminant.not_isSquare_rat {D : ℤ} (hD : IsFundamental
       (by simpa using h.div (⟨2, by norm_num⟩ : IsSquare (4 : ℚ)))
 
 end TauCeti.Multiquadratic
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

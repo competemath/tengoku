@@ -47,7 +47,7 @@ tangent vectors.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Bundle Function Manifold VectorField
 open scoped ContDiff Manifold Topology
 
@@ -63,14 +63,14 @@ private abbrev tangentVectorModelSpace {g : G} (v : TangentSpace I g) : E := v
 
 /-- The left-invariant vector field, expressed in the identity chart and parameterized by its
 generating tangent vector in the model space. -/
-noncomputable def mulInvariantCoordinateVectorField [IsManifold I 1 G] (p : E × E) : E :=
+noncomputable def Tengoku.Tauceti.mulInvariantCoordinateVectorField [IsManifold I 1 G] (p : E × E) : E :=
   let g := (extChartAt I (1 : G)).symm p.2
   tangentCoordChange I g (1 : G) g
     (mulInvariantVectorField (I := I) (G := G) p.1 g)
 
 /-- The parameterized coordinate field is the invariant vector field transported through the
 identity chart. -/
-theorem mulInvariantCoordinateVectorField_apply [IsManifold I 1 G] (v y : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateVectorField_apply [IsManifold I 1 G] (v y : E) :
     mulInvariantCoordinateVectorField (I := I) (G := G) (v, y) =
       tangentCoordChange I ((extChartAt I (1 : G)).symm y) (1 : G)
         ((extChartAt I (1 : G)).symm y)
@@ -80,7 +80,7 @@ theorem mulInvariantCoordinateVectorField_apply [IsManifold I 1 G] (v y : E) :
 
 /-- The invariant coordinate field is additive in its generating vector. -/
 @[simp]
-theorem mulInvariantCoordinateVectorField_add [IsManifold I 1 G] (v w y : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateVectorField_add [IsManifold I 1 G] (v w y : E) :
     mulInvariantCoordinateVectorField (I := I) (G := G) (v + w, y) =
       mulInvariantCoordinateVectorField (I := I) (G := G) (v, y) +
         mulInvariantCoordinateVectorField (I := I) (G := G) (w, y) := by
@@ -109,7 +109,7 @@ theorem mulInvariantCoordinateVectorField_add [IsManifold I 1 G] (v w y : E) :
 
 /-- The invariant coordinate field respects scalar multiplication in its generating vector. -/
 @[simp]
-theorem mulInvariantCoordinateVectorField_smul [IsManifold I 1 G] (c : ℝ) (v y : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateVectorField_smul [IsManifold I 1 G] (c : ℝ) (v y : E) :
     mulInvariantCoordinateVectorField (I := I) (G := G) (c • v, y) =
       c • mulInvariantCoordinateVectorField (I := I) (G := G) (v, y) := by
   let g := (extChartAt I (1 : G)).symm y
@@ -134,7 +134,7 @@ theorem mulInvariantCoordinateVectorField_smul [IsManifold I 1 G] (c : ℝ) (v y
 
 /-- At the identity coordinate, the parameterized invariant field equals its generator. -/
 @[simp]
-theorem mulInvariantCoordinateVectorField_one [IsManifold I 1 G] (v : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateVectorField_one [IsManifold I 1 G] (v : E) :
     mulInvariantCoordinateVectorField (I := I) (G := G)
       (v, I (chartAt H (1 : G) (1 : G))) = v := by
   have hidentityCoordinate : I (chartAt H (1 : G) (1 : G)) =
@@ -157,14 +157,14 @@ theorem mulInvariantCoordinateVectorField_one [IsManifold I 1 G] (v : E) :
 
 /-- The invariant coordinate field vanishes when its generating vector vanishes. -/
 @[simp]
-theorem mulInvariantCoordinateVectorField_zero [IsManifold I 1 G] (y : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateVectorField_zero [IsManifold I 1 G] (y : E) :
     mulInvariantCoordinateVectorField (I := I) (G := G) (0, y) = 0 := by
   simpa using mulInvariantCoordinateVectorField_smul
     (I := I) (G := G) (0 : ℝ) (0 : E) y
 
 /-- The coordinate expression of the parameterized left-invariant vector field is `C^n` at every
 generating vector over the identity coordinate when multiplication is `C^(n + 1)`. -/
-theorem contDiffAt_mulInvariantCoordinateVectorField (v : E) {n : ℕ∞ω}
+theorem Tengoku.Tauceti.contDiffAt_mulInvariantCoordinateVectorField (v : E) {n : ℕ∞ω}
     [ContMDiffMul I (n + 1) G] (h1 : I.IsInteriorPoint (1 : G)) :
     let _ : IsManifold I 1 G := IsManifold.of_le (n := n + 1) le_add_self
     ContDiffAt ℝ n (mulInvariantCoordinateVectorField (I := I) (G := G))
@@ -213,21 +213,21 @@ theorem contDiffAt_mulInvariantCoordinateVectorField (v : E) {n : ℕ∞ω}
 
 /-- At a fixed identity-chart coordinate, the invariant coordinate field as a continuous linear
 map of its generating model vector. -/
-noncomputable def mulInvariantCoordinateLinearMap [IsManifold I 1 G] (y : E) : E →L[ℝ] E :=
+noncomputable def Tengoku.Tauceti.mulInvariantCoordinateLinearMap [IsManifold I 1 G] (y : E) : E →L[ℝ] E :=
   let g := (extChartAt I (1 : G)).symm y
   (tangentCoordChange I g (1 : G) g).comp
     (mfderiv I I (fun x : G => g * x) (1 : G))
 
 /-- Applying the coordinate-field linear map recovers the parameterized coordinate vector field. -/
 @[simp]
-theorem mulInvariantCoordinateLinearMap_apply [IsManifold I 1 G] (y v : E) :
+theorem Tengoku.Tauceti.mulInvariantCoordinateLinearMap_apply [IsManifold I 1 G] (y v : E) :
     mulInvariantCoordinateLinearMap (I := I) (G := G) y v =
       mulInvariantCoordinateVectorField (I := I) (G := G) (v, y) := by
   rfl
 
 /-- At the identity coordinate, the coordinate-field linear map is the identity operator. -/
 @[simp]
-theorem mulInvariantCoordinateLinearMap_one [IsManifold I 1 G] :
+theorem Tengoku.Tauceti.mulInvariantCoordinateLinearMap_one [IsManifold I 1 G] :
     mulInvariantCoordinateLinearMap (I := I) (G := G)
       (I (chartAt H (1 : G) (1 : G))) = ContinuousLinearMap.id ℝ E := by
   apply ContinuousLinearMap.ext
@@ -236,7 +236,7 @@ theorem mulInvariantCoordinateLinearMap_one [IsManifold I 1 G] :
   exact mulInvariantCoordinateVectorField_one (I := I) (G := G) v
 
 /-- In finite dimensions, the coordinate-field linear map is `C^n` at the identity coordinate. -/
-theorem contDiffAt_mulInvariantCoordinateLinearMap_one {n : ℕ∞ω}
+theorem Tengoku.Tauceti.contDiffAt_mulInvariantCoordinateLinearMap_one {n : ℕ∞ω}
     [FiniteDimensional ℝ E] [ContMDiffMul I (n + 1) G] (h1 : I.IsInteriorPoint (1 : G)) :
     let _ : IsManifold I 1 G := IsManifold.of_le (n := n + 1) le_add_self
     ContDiffAt ℝ n (mulInvariantCoordinateLinearMap (I := I) (G := G))
@@ -263,7 +263,7 @@ theorem contDiffAt_mulInvariantCoordinateLinearMap_one {n : ℕ∞ω}
 
 /-- At the zero generating vector over the identity coordinate, the parameterized coordinate
 vector field has strict derivative equal to projection onto the generating-vector coordinate. -/
-theorem hasStrictFDerivAt_mulInvariantCoordinateVectorField_zero_one
+theorem Tengoku.Tauceti.hasStrictFDerivAt_mulInvariantCoordinateVectorField_zero_one
     [FiniteDimensional ℝ E] [ContMDiffMul I (1 + 1) G]
     (h1 : I.IsInteriorPoint (1 : G)) :
     let _ : IsManifold I 1 G := IsManifold.of_le (n := 1 + 1) (by norm_num)
@@ -302,3 +302,4 @@ theorem hasStrictFDerivAt_mulInvariantCoordinateVectorField_zero_one
     rfl
   exact (contDiffAt_mulInvariantCoordinateVectorField (I := I) (G := G) (v := 0) (n := 1)
     h1).hasStrictFDerivAt' hderiv one_ne_zero
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

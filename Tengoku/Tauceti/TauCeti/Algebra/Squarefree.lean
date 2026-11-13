@@ -34,7 +34,7 @@ that Mathlib does not provide directly, used across the multiquadratic developme
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 /-- A squarefree non-unit of a monoid is not a square. -/
 theorem Squarefree.not_isSquare {R : Type*} [Monoid R] {a : R}
     (ha : Squarefree a) (hu : ¬ IsUnit a) : ¬ IsSquare a := by
@@ -47,7 +47,7 @@ theorem Squarefree.neg {R : Type*} [Monoid R] [HasDistribNeg R] {n : R}
   ((Associated.refl n).neg_left).squarefree_iff.mpr hn
 
 /-- A squarefree integer other than `1` is not a rational square. -/
-theorem not_isSquare_intCast_of_squarefree_of_ne_one {n : ℤ}
+theorem Tengoku.Tauceti.not_isSquare_intCast_of_squarefree_of_ne_one {n : ℤ}
     (hsf : Squarefree n) (hne : n ≠ 1) : ¬ IsSquare ((n : ℤ) : ℚ) := by
   rw [Rat.isSquare_intCast_iff]
   rintro ⟨a, ha⟩
@@ -56,7 +56,7 @@ theorem not_isSquare_intCast_of_squarefree_of_ne_one {n : ℤ}
 
 /-- **Squareness depends only on the square class.** Multiplying by the square of a nonzero
 element does not change whether an element is a square. -/
-theorem isSquare_mul_sq_iff {G₀ : Type*} [CommGroupWithZero G₀] {x y : G₀} (hy : y ≠ 0) :
+theorem Tengoku.Tauceti.isSquare_mul_sq_iff {G₀ : Type*} [CommGroupWithZero G₀] {x y : G₀} (hy : y ≠ 0) :
     IsSquare (x * y ^ 2) ↔ IsSquare x := by
   refine ⟨fun h => ?_, fun h => h.mul (IsSquare.sq y)⟩
   have h' := h.mul (IsSquare.sq y⁻¹)
@@ -119,3 +119,4 @@ theorem four_dvd_or_exists_odd_prime_and_dvd_of_squarefree {R : Type*} [Ring R] 
     exact Or.inr ⟨p, hp, hp_ne_two, hpn, hsf p hp hpn⟩
 
 end Nat
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

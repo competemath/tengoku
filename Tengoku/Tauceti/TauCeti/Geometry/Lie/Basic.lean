@@ -20,7 +20,7 @@ This file records lightweight consequences of the Lie-group regularity hierarchy
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped ContDiff Manifold
 
 variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] [IsRCLikeNormedField 𝕜]
@@ -30,7 +30,7 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] [IsRCLikeNormedField 𝕜
 
 omit [IsRCLikeNormedField 𝕜] in
 /-- A Lie group modeled on a normed space is Hausdorff. -/
-theorem t2Space_of_lieGroup {n : ℕ∞ω} [LieGroup I n G] : T2Space G := by
+theorem Tengoku.Tauceti.t2Space_of_lieGroup {n : ℕ∞ω} [LieGroup I n G] : T2Space G := by
   let _ : T1Space G := I.t1Space G
   let _ : IsTopologicalGroup G := topologicalGroup_of_lieGroup I n
   exact IsTopologicalGroup.t2Space_iff_one_closed.mpr isClosed_singleton
@@ -41,3 +41,4 @@ that opt in with `attribute [local instance] LieGroup.minSmoothnessThree`. -/
 theorem LieGroup.minSmoothnessThree [LieGroup I 3 G] :
     LieGroup I (minSmoothness 𝕜 3) G := by
   simpa using (inferInstance : LieGroup I 3 G)
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

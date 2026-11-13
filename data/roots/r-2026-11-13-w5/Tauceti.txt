@@ -1,0 +1,1473 @@
+leakscan: 1642 global instances (290 can fire outside the library), 15 scoped; 15683 global simp lemmas (864 trigger on nothing of the library), 1 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 2 scoped
+roots: 317 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp AddCircle.nsmul_coe_period_div registered in Tengoku.Tauceti.TauCeti.Algebra.AddCircle (declared at line 199)
+leak: simp RingHom.toIntAlgHom_id registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Hom (declared at line 91)
+leak: simp RingHom.toIntAlgHom_comp registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Hom (declared at line 97)
+leak: simp RingHom.toIntAlgHom_toRingHom registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Hom (declared at line 103)
+leak: simp AlgHom.toRingHom_toIntAlgHom registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Hom (declared at line 114)
+leak: simp AlgHom.map_eq_map_fst registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Prod (declared at line 73)
+leak: simp Algebra.algebraMap_botEquivOfInjective registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Subalgebra.Lattice (declared at line 31)
+leak: simp AlgHom.restrictScalars_comp registered in Tengoku.Tauceti.TauCeti.Algebra.Algebra.Tower (declared at line 31)
+leak: simp BialgHomClass.coe_comp_antipode registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.Basic (declared at line 173)
+leak: simp BialgHomClass.map_antipode registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.Basic (declared at line 182)
+leak: instance TauCeti.AlgHom.instInv registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.FunctorOfPoints (declared at line 87)
+leak: instance TauCeti.AlgHom.instGroup registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.FunctorOfPoints (declared at line 104)
+leak: instance TauCeti.AlgHom.instCommGroup registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.FunctorOfPoints (declared at line 186)
+leak: instance TauCeti.SymmetricAlgebra.instHopfAlgebra registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.SymmetricAlgebra.Basic (declared at line 63)
+leak: simp TauCeti.SymmetricAlgebra.lift_symm_apply registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.SymmetricAlgebra.Basic (declared at line 91)
+leak: simp TauCeti.SymmetricAlgebra.convMul_apply_ι registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.SymmetricAlgebra.Basic (declared at line 99)
+leak: simp BialgHom.id_toRingHom registered in Tengoku.Tauceti.TauCeti.Algebra.Bialgebra.Hom (declared at line 24)
+leak: simp Bialgebra.Quotient.mkBialgHom_toAlgHom registered in Tengoku.Tauceti.TauCeti.Algebra.Bialgebra.Quotient (declared at line 96)
+leak: simp TauCeti.AlphaP.mk_ι_pow_eq_zero registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.AdditiveFrobeniusKernel.Basic (declared at line 172)
+leak: instance TauCeti.ScalarAut.instMulSemiringAction registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.BaseChange (declared at line 263)
+leak: simp TauCeti.ScalarAut.smul_tmul registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.BaseChange (declared at line 231)
+leak: simp TauCeti.ScalarAut.smul_def registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.BaseChange (declared at line 280)
+leak: simp TauCeti.ScalarAut.baseChangeMap_smul registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.BaseChange (declared at line 286)
+leak: simp TauCeti.AffineGroup.Product.productMap_restrict registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Product (declared at line 88)
+leak: simp TauCeti.AlgHom.toConv_toLinearMap_comp_mul' registered in Tengoku.Tauceti.TauCeti.Algebra.Coalgebra.Convolution (declared at line 218)
+leak: instance TauCeti.isFinite_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 106)
+leak: instance TauCeti.flat_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 112)
+leak: instance TauCeti.locallyOfFinitePresentation_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 118)
+leak: instance TauCeti.instIsCommMonObjHopfSpec registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 307)
+leak: simp TauCeti.hopfSpec_obj_X_left registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 125)
+leak: simp TauCeti.hopfSpec_obj_X_hom registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 132)
+leak: simp TauCeti.hopfSpec_obj_tensor_X_left registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 158)
+leak: simp TauCeti.algSpec_map_left_ofAlgHom registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 178)
+leak: simp TauCeti.hopfSpec_obj_one_left registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 203)
+leak: simp TauCeti.hopfSpec_obj_mul_left registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 220)
+leak: simp TauCeti.hopfSpec_obj_inv_left registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.HopfSpec (declared at line 241)
+leak: simp TauCeti.isSolvable_prod_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Solvable (declared at line 58)
+leak: instance CategoryTheory.Over.isIso_left registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Comma.Over (declared at line 34)
+leak: simp TauCeti.CommHopfAlgCat.isClosedImmersion_hopfSpec_map_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.ClosedImmersion (declared at line 54)
+leak: simp TauCeti.CommHopfAlgCat.isClosedImmersion_hopfSpec_map_comp_eqToHom_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.ClosedImmersion (declared at line 65)
+leak: simp TauCeti.CommHopfAlgCat.isClosedImmersion_eqToHom_comp_hopfSpec_map_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.ClosedImmersion (declared at line 79)
+leak: instance _private.Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.FiniteType.0.TauCeti.locallyOfFiniteType_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.FiniteType (declared at line 65)
+leak: instance _private.Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.Smooth.0.TauCeti.smooth_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.Smooth (declared at line 52)
+leak: instance Additive.distribMulAction registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.TypeTags (declared at line 35)
+leak: simp Additive.ofMul_smul registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.TypeTags (declared at line 44)
+leak: instance TauCeti.ScalarAut.instGroupLikeDistribMulAction registered in Tengoku.Tauceti.TauCeti.Algebra.Bialgebra.GroupLike.ScalarAut (declared at line 76)
+leak: instance TauCeti.CommHopfAlgCat.instMulSemiringActionAlgebraicClosure registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.CommHopfAlgCat.CharacterLattice.Basic (declared at line 68)
+leak: instance TauCeti.CommHopfAlgCat.instGaloisScalarMulSemiringAction registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.CommHopfAlgCat.CharacterLattice.Basic (declared at line 76)
+leak: instance TauCeti.CommHopfAlgCat.instGeometricCharacterGroupGaloisAction registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.CommHopfAlgCat.CharacterLattice.Basic (declared at line 84)
+leak: instance TauCeti.CommHopfAlgCat.instAdditiveCharacterGroupGaloisAction registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.CommHopfAlgCat.CharacterLattice.Basic (declared at line 98)
+leak: simp TauCeti.pow_expChar_monoidAlgebra_eq_algebraMap registered in Tengoku.Tauceti.TauCeti.Algebra.MonoidAlgebra.Torsion (declared at line 155)
+leak: simp BialgHom.monoidAlgebra_single_eq_one registered in Tengoku.Tauceti.TauCeti.Algebra.Bialgebra.GroupLike.Torsion (declared at line 77)
+leak: simp TauCeti.HopfAlgebra.antipode_antipode registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.Antipode (declared at line 86)
+leak: simp TauCeti.HopfAlgebra.antipode_comul_antidistrib_apply registered in Tengoku.Tauceti.TauCeti.Algebra.HopfAlgebra.Antipode (declared at line 226)
+leak: simp Homeomorph.setCongr_apply registered in Tengoku.Tauceti.TauCeti.Topology.Homeomorph.SetCongr (declared at line 27)
+leak: instance _private.Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.Connected.0.TauCeti.geometricallyConnected_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.AffineGroupScheme.Connected (declared at line 48)
+leak: instance _private.Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Geometrically.Connected.0.TauCeti.geometricallyConnected_respectsIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Geometrically.Connected (declared at line 37)
+leak: instance _private.Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Connected.Product.0.TauCeti.geometricallyConnected_respectsIso registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Connected.Product (declared at line 58)
+leak: simp Module.Basis.map_baseChange_repr registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.TensorProduct.Basis (declared at line 114)
+leak: instance TauCeti.instIsReducedTensorProductOfIsAlgClosed registered in Tengoku.Tauceti.TauCeti.RingTheory.FiniteType.Tensor.Product (declared at line 33)
+leak: instance TauCeti.instFGULift registered in Tengoku.Tauceti.TauCeti.Algebra.Category.CommGrpCat.FiniteGeneration (declared at line 31)
+leak: simp TauCeti.MonoidAlgebra.mapDomainBialgHomPreimage_single registered in Tengoku.Tauceti.TauCeti.Algebra.Bialgebra.MonoidAlgebra.GroupLike (declared at line 216)
+leak: instance CategoryTheory.ObjectProperty.essentiallySmall_of_ambient registered in Tengoku.Tauceti.TauCeti.CategoryTheory.ObjectProperty (declared at line 103)
+leak: instance CategoryTheory.ObjectProperty.ιOfLE_additive registered in Tengoku.Tauceti.TauCeti.CategoryTheory.ObjectProperty (declared at line 110)
+leak: instance CategoryTheory.Equivalence.congrFullSubcategory_functor_additive registered in Tengoku.Tauceti.TauCeti.CategoryTheory.ObjectProperty (declared at line 164)
+leak: instance CategoryTheory.Equivalence.congrFullSubcategory_inverse_additive registered in Tengoku.Tauceti.TauCeti.CategoryTheory.ObjectProperty (declared at line 174)
+leak: simp TauCeti.DirectSum.map_decompose_restrict registered in Tengoku.Tauceti.TauCeti.Algebra.DirectSum.Internal (declared at line 209)
+leak: simp Subgroup.subtype_comp_subgroupOfEquivOfLe registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.Map (declared at line 80)
+leak: simp Subgroup.map_quotientGroupMap_map_mk' registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.Map (declared at line 334)
+leak: simp MonoidHom.mem_eqLocus registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.Ker (declared at line 22)
+leak: simp AddMonoidHom.mem_eqLocus registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.Ker (declared at line 23)
+leak: simp Subgroup.map_mapGL registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Map (declared at line 62)
+leak: simp Matrix.GeneralLinearGroup.mem_range_map_val_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Frobenius (declared at line 67)
+leak: simp Matrix.GeneralLinearGroup.map_eq_self_iff_mem_equalizer registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Frobenius (declared at line 104)
+leak: simp Matrix.GeneralLinearGroup.map_iterateFrobenius_eq_self_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Frobenius (declared at line 141)
+leak: simp TauCeti.diagonal_mul_single_mul_diagonal registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.Diagonal (declared at line 42)
+leak: simp TauCeti.centralizer_scalar registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Diagonal.Basic (declared at line 309)
+leak: simp Matrix.SpecialLinearGroup.map_transvection registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Transvection (declared at line 656)
+leak: instance TauCeti.SplitTorus.instFGMultiplicativeFinsuppInt registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.SplitTorus.Basic (declared at line 72)
+leak: simp Matrix.pow_apply_diag_of_isUpperTriangular registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.Triangular (declared at line 320)
+leak: simp TauCeti.isUpperTriangular_transvection_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.Triangular (declared at line 407)
+leak: simp TauCeti.CommHopfAlgCat.mapPointsFunctor_app_eq_one_iff registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.HopfIdeal.Points.Kernel (declared at line 41)
+leak: instance TauCeti.mono_of_isClosedImmersion_underlying registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.GroupScheme.ClosedSubgroup (priority 900) (declared at line 57)
+leak: instance TauCeti.RootsOfUnityGroup.instFGMultiplicativeZMod registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.RootsOfUnity.Scheme (declared at line 70)
+leak: instance Matrix.SpecialLinearGroup.instCountable registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 90)
+leak: simp Matrix.SpecialLinearGroup.map_id registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 96)
+leak: simp Matrix.SpecialLinearGroup.map_comp registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 102)
+leak: simp Matrix.SpecialLinearGroup.mapGL_neg_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 169)
+leak: simp Matrix.SpecialLinearGroup.mem_center_iff_eq_one_or_eq_neg_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 179)
+leak: simp Matrix.SpecialLinearGroup.disjoint_center_iff_neg_one_notMem registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 300)
+leak: simp Matrix.SpecialLinearGroup.card_center_subgroupOf_eq_two_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 321)
+leak: simp Matrix.SpecialLinearGroup.inv_apply_one_zero registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 356)
+leak: simp Matrix.SpecialLinearGroup.inv_apply_one_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 363)
+leak: simp Matrix.SpecialLinearGroup.inv_apply_zero_zero registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 370)
+leak: simp Matrix.SpecialLinearGroup.inv_apply_zero_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SpecialLinearGroup.Basic (declared at line 377)
+leak: instance TauCeti.AlgHom.kernelIsMaximal registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.TangentSpace.Affine (declared at line 55)
+leak: simp TauCeti.TrivialGroup.convPoint_eq_one_iff registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Trivial (declared at line 82)
+leak: simp TauCeti.TrivialGroup.ofConv_eq_ofId registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Trivial (declared at line 87)
+leak: simp TauCeti.TrivialGroup.toConv_eq_one registered in Tengoku.Tauceti.TauCeti.Algebra.AlgebraicGroup.Trivial (declared at line 100)
+leak: instance TauCeti.Algebra.IsCentral.tensorProduct registered in Tengoku.Tauceti.TauCeti.Algebra.Central.TensorProduct (declared at line 97)
+leak: simp Algebra.TensorProduct.tmul_one_mul_eq_smul registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.Mul (declared at line 38)
+leak: simp Algebra.TensorProduct.basis_repr_mul_tmul_one registered in Tengoku.Tauceti.TauCeti.Algebra.TensorProduct.Mul (declared at line 53)
+leak: instance TauCeti.IsSimpleRing.tensorProduct registered in Tengoku.Tauceti.TauCeti.Algebra.CentralSimple.TensorProduct (declared at line 203)
+leak: instance TauCeti.IsSimpleRing.tensorProduct_of_isCentral_right registered in Tengoku.Tauceti.TauCeti.Algebra.CentralSimple.TensorProduct (declared at line 245)
+leak: simp FGModuleCat.finrank_biprod registered in Tengoku.Tauceti.TauCeti.Algebra.Category.FGModuleCat.Basic (declared at line 32)
+leak: instance TauCeti.instHasBinaryBiproductsFullSubcategoryOfIsClosedUnderBinaryProducts registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Exact.ExtensionClosed (declared at line 73)
+leak: simp FGModuleCat.finrank_forget₂_obj registered in Tengoku.Tauceti.TauCeti.Algebra.Category.FGModuleCat.Finrank (declared at line 34)
+leak: instance FGModuleCat.forget₂_preservesMonomorphisms registered in Tengoku.Tauceti.TauCeti.Algebra.Category.FGModuleCat.Injective (declared at line 35)
+leak: instance FGModuleCat.enoughProjectives registered in Tengoku.Tauceti.TauCeti.Algebra.Category.FGModuleCat.Projective (declared at line 70)
+leak: instance TauCeti.instIsClosedUnderIsomorphismsModuleCatIsFG registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.CartanMap.Basic (declared at line 134)
+leak: instance TauCeti.instContainsZeroModuleCatIsFG registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.CartanMap.Basic (declared at line 146)
+leak: instance TauCeti.instEssentiallySmallModuleCatIsFG registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.CartanMap.Basic (declared at line 156)
+leak: instance TauCeti.instIsClosedUnderBinaryProductsModuleCatIsFG registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.CartanMap.Basic (declared at line 186)
+leak: simp TensorProduct.finsuppScalarLeft_lTensor_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.DirectSum.Finsupp (declared at line 30)
+leak: instance PresheafOfModules.isMonoidal_inverseImage_W_toPresheaf registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Presheaf.IsMonoidalW (declared at line 194)
+leak: instance TauCeti.PresheafOfModules.monoidalClosed registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Presheaf.MonoidalClosed (declared at line 38)
+leak: instance TauCeti.SheafOfModules.hasFiniteBiproducts registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.Biproducts (declared at line 35)
+leak: instance TauCeti.SheafOfModules.preservesFiniteColimits_toSheaf registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.Exactness (declared at line 57)
+leak: instance TauCeti.SheafOfModules.isFinitePresentation_free registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.FinitePresentation (declared at line 68)
+leak: instance TauCeti.SheafOfModules.instAdditiveSheafOfModulesPushforward registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.Restriction (declared at line 181)
+leak: instance TauCeti.SheafOfModules.instAdditiveSheafOfModulesOverOverRingCatOverFunctor registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.Restriction (declared at line 185)
+leak: instance SheafOfModules.GeneratingSections.isIso_equivOfIso_π registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.GeneratingSections (declared at line 65)
+leak: simp SheafOfModules.GeneratingSections.equivOfIso_apply_I registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.GeneratingSections (declared at line 52)
+leak: simp SheafOfModules.GeneratingSections.equivOfIso_apply_π registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.GeneratingSections (declared at line 58)
+leak: instance TauCeti.SheafOfModules.instIsFiniteMap registered in Tengoku.Tauceti.TauCeti.Algebra.Category.ModuleCat.Sheaf.Quasicoherent.Refinement (declared at line 96)
+leak: simp TauCeti.ExactPairing.unit_evaluation registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Monoidal.Rigid.Biproduct (declared at line 85)
+leak: simp TauCeti.ExactPairing.unit_coevaluation registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Monoidal.Rigid.Biproduct (declared at line 90)
+leak: instance Submodule.Quotient.discreteTopology registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Module.Quotient (declared at line 31)
+leak: instance TauCeti.Algebra.IsCentral.baseChange registered in Tengoku.Tauceti.TauCeti.Algebra.Central.BaseChange (declared at line 80)
+leak: simp TauCeti.Algebra.isCentral_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Central.BaseChange (declared at line 154)
+leak: simp TauCeti.isCentral_matrix_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Central.Matrix (declared at line 52)
+leak: instance TauCeti.Quaternion.instIsCentral registered in Tengoku.Tauceti.TauCeti.Algebra.Central.Quaternion (declared at line 159)
+leak: simp TauCeti.Quaternion.mem_center_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Central.Quaternion (declared at line 124)
+leak: simp TauCeti.finrank_eq_one_of_finite registered in Tengoku.Tauceti.TauCeti.Algebra.CentralSimple.Wedderburn (declared at line 153)
+leak: simp TauCeti.finrank_eq_one_of_isSepClosed registered in Tengoku.Tauceti.TauCeti.Algebra.CentralSimple.SeparablyClosed (declared at line 119)
+leak: simp TauCeti.map_iterateFrobenius_unit_eq_pow registered in Tengoku.Tauceti.TauCeti.Algebra.CharP.Frobenius.Basic (declared at line 34)
+leak: simp TauCeti.tensorProductMap_frobeniusAlgHom_pow_apply registered in Tengoku.Tauceti.TauCeti.Algebra.CharP.Frobenius.TensorProduct (declared at line 34)
+leak: simp TauCeti.Module.Dual.baseChange_coord registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Dual.BaseChange (declared at line 124)
+leak: instance instFintypeMonoidHomUnits registered in Tengoku.Tauceti.TauCeti.GroupTheory.FiniteAbelian.CharacterOrthogonality (declared at line 118)
+leak: instance _private.Tengoku.Tauceti.TauCeti.LinearAlgebra.Eigenspace.JointEigenvector.Basic.0.instFintype registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Eigenspace.JointEigenvector.Basic (declared at line 302)
+leak: instance TauCeti.instInvolutiveInvConjClasses registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Conj (declared at line 108)
+leak: instance ConjClasses.instPowNat registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Conj (declared at line 311)
+leak: simp TauCeti.ConjClasses.ncard_carrier_mk_of_mem_center registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Conj (declared at line 165)
+leak: simp ConjClasses.map_mk registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Conj (declared at line 362)
+leak: simp TauCeti.ConjClasses.carrier_mk_one registered in Tengoku.Tauceti.TauCeti.Algebra.Group.ConjFinite (declared at line 31)
+leak: simp TauCeti.mem_conj_smul registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.Pointwise (declared at line 39)
+leak: simp Subgroup.zpowers_mk_self_eq_top registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.ZPowers (declared at line 73)
+leak: simp AddSubgroup.zmultiples_mk_self_eq_top registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Subgroup.ZPowers (declared at line 78)
+leak: simp TauCeti.isSquare_units_val_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Group.Units.Basic (declared at line 25)
+leak: instance AlgEquiv.smulAlgHom registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.AlgHom (declared at line 34)
+leak: instance AlgEquiv.mulActionAlgHom registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.AlgHom (declared at line 42)
+leak: simp Equiv.Perm.compl_fixedBy_prodCongrRight registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.FiniteSupportPerm (declared at line 221)
+leak: simp TauCeti.fixingSubgroup_univ registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.FixingSubgroup (declared at line 20)
+leak: simp TauCeti.Setoid.map_of_le_mk registered in Tengoku.Tauceti.TauCeti.Data.Setoid.Basic (declared at line 27)
+leak: simp TauCeti.MulAction.orbitRelQuotientBot_mk_eq_iff registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.OrbitRelQuotient (declared at line 100)
+leak: simp TauCeti.MulAction.card_orbitRelQuotient_eq_one registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.OrbitRelQuotient (declared at line 120)
+leak: simp TauCeti.MulAction.equivSubgroupOrbitsQuotientGroup_symm_mk registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.OrbitRelQuotient (declared at line 208)
+leak: simp TauCeti.MulAction.equivSubgroupOrbitsQuotientGroup_apply_smul registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.OrbitRelQuotient (declared at line 218)
+leak: simp TauCeti.MulAction.equivSubgroupOrbitsQuotientGroup_mapOfLE registered in Tengoku.Tauceti.TauCeti.Algebra.GroupAction.OrbitRelQuotient (declared at line 236)
+leak: simp MulAction.isPretransitive_range_toPermHom_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.PermCongr (declared at line 101)
+leak: simp MulAction.isPreprimitive_range_toPermHom_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.PermCongr (declared at line 108)
+leak: simp TauCeti.IsNonUnitalDGAlgebra.map_decompose registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.DG.Algebra.Defs (declared at line 94)
+leak: simp TauCeti.gradedTensor_add_tmul registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 201)
+leak: simp TauCeti.gradedTensor_tmul_add registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 207)
+leak: simp TauCeti.gradedTensor_smul_tmul registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 213)
+leak: simp TauCeti.gradedTensor_tmul_smul registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 219)
+leak: simp TauCeti.gradedTensor_zero_tmul registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 225)
+leak: simp TauCeti.gradedTensor_tmul_zero registered in Tengoku.Tauceti.TauCeti.RingTheory.GradedAlgebra.TensorProduct (declared at line 230)
+leak: simp HomologicalComplex.ι_tensorObj_d registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.TensorDifferential (declared at line 40)
+leak: simp HomologicalComplex.ι_tensorObj_d_assoc registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.TensorDifferential (declared at line 42)
+leak: simp HomologicalComplex.ι_whiskerLeft registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Summand (declared at line 61)
+leak: simp HomologicalComplex.ι_whiskerLeft_assoc registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Summand (declared at line 63)
+leak: simp HomologicalComplex.ι_whiskerRight registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Summand (declared at line 70)
+leak: simp HomologicalComplex.ι_whiskerRight_assoc registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Summand (declared at line 72)
+leak: instance TauCeti.epi_kernelSequence_g registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.ShortComplex.ShortExact (declared at line 32)
+leak: instance TauCeti.mono_cokernelSequence_f registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.ShortComplex.ShortExact (declared at line 42)
+leak: instance TauCeti.injective_cokernelSequence_X₂ registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Ext.Basic (declared at line 106)
+leak: simp TauCeti.coe_postcompOfLinear registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Ext.Basic (declared at line 168)
+leak: simp TauCeti.coe_precompOfLinear registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Ext.Basic (declared at line 176)
+leak: instance TauCeti.instIsArtinianRingDualNumber registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Ext.DualNumbers (declared at line 198)
+leak: simp HomologicalComplex.finrank_homology_forget registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.EulerCharacteristic.FiniteDimensional (declared at line 98)
+leak: simp Quiver.Path.addWeight_const registered in Tengoku.Tauceti.TauCeti.Combinatorics.Quiver.PathWeight (declared at line 33)
+leak: simp Prefunctor.addWeight_mapPath registered in Tengoku.Tauceti.TauCeti.Combinatorics.Quiver.PathWeight (declared at line 44)
+leak: simp TauCeti.Quiver.IsAcyclic.length_eq_zero registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Acyclic.Basic (declared at line 62)
+leak: simp TauCeti.Quiver.IsAcyclic.comp_eq_nil registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Acyclic.Basic (declared at line 95)
+leak: simp Prefunctor.length_mapPath registered in Tengoku.Tauceti.TauCeti.Combinatorics.Quiver.Prefunctor (declared at line 42)
+leak: instance TauCeti.instFiniteSymmetrify registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Symmetrify (declared at line 33)
+leak: instance TauCeti.instDecidableEqSymmetrify registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Symmetrify (declared at line 37)
+leak: instance TauCeti.instFintypeSymmetrify registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Symmetrify (declared at line 41)
+leak: instance TauCeti.instFintypeSymmetrifyHom registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Symmetrify (declared at line 45)
+leak: simp Quiver.Path.weight_toPath registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.PathAlgebra.Rescale (declared at line 70)
+leak: simp Quiver.Path.weight_one registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.PathAlgebra.Rescale (declared at line 86)
+leak: instance ComplexShape.refl.decidableRel registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.OneObject (declared at line 27)
+leak: simp HomologicalComplex.shortComplexFunctor_map_smul registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Linear (declared at line 30)
+leak: simp HomologicalComplex.homologyMap_smul registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Linear (declared at line 38)
+leak: instance TauCeti.koszulBraidedCategory registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Braiding (declared at line 403)
+leak: instance TauCeti.koszulSymmetricCategory registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Monoidal.Braiding (declared at line 428)
+leak: instance TauCeti.PeriodicComplex.instHasShift registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Periodic.Shift (declared at line 111)
+leak: instance TauCeti.PeriodicComplex.homotopyCategoryHasShift registered in Tengoku.Tauceti.TauCeti.Algebra.Homology.Periodic.Shift (declared at line 276)
+leak: simp TauCeti.LieAlgebra.ad_eq_zero_iff_mem_center registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.AdjointAction.Basic (declared at line 78)
+leak: simp TauCeti.LieAlgebra.ad_pow_expChar_pow registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.AdjointAction.Frobenius (declared at line 70)
+leak: simp TauCeti.LieAlgebra.ad_pow_expChar_pow_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.AdjointAction.Frobenius (declared at line 83)
+leak: simp TauCeti.LieAlgebra.ad_pow_expChar_pow_eq_zero_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.AdjointAction.Frobenius (declared at line 91)
+leak: instance TauCeti.LieModuleHom.instFiniteDimensional registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Basic (declared at line 169)
+leak: simp TauCeti.LieModuleHom.sum_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Basic (declared at line 157)
+leak: simp LieHom.map_ad_pow registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Basic (declared at line 251)
+leak: instance LieIdeal.isNilpotentBot registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Nilradical (declared at line 185)
+leak: instance LieIdeal.isNilpotentSup registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Nilradical (declared at line 216)
+leak: simp LieModuleHom.baseChange_map_lie registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Module (declared at line 30)
+leak: simp TauCeti.bilinForm_toMatrix_baseChange registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearForm.BaseChange (declared at line 84)
+leak: simp TauCeti.isKilling_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Killing.BaseChange (declared at line 97)
+leak: simp Submodule.one_tmul_mem_baseChange_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.TensorProduct.Range (declared at line 43)
+leak: simp LieSubmodule.one_tmul_mem_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Range (declared at line 48)
+leak: instance LieAlgebra.hasTrivialRadical_quotient_radical registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Solvable (declared at line 256)
+leak: simp LieAlgebra.hasTrivialRadical_quotient_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Solvable (declared at line 278)
+leak: simp LieIdeal.lcs_baseChange registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Radical (declared at line 87)
+leak: simp LieIdeal.isSolvable_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Radical (declared at line 118)
+leak: simp LieIdeal.isNilpotent_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Radical (declared at line 130)
+leak: simp LieAlgebra.hasTrivialRadical_baseChange_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Radical (declared at line 170)
+leak: simp LieAlgebra.radical_baseChange registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.BaseChange.Radical (declared at line 185)
+leak: simp TauCeti.isPos_reflectionPerm_self_iff_mem_negRoots registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Positive (declared at line 217)
+leak: simp RootPairing.Base.isPos_flip_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Positive (declared at line 634)
+leak: simp TauCeti.finrank_toSubmodule registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Submodule.Finrank (declared at line 37)
+leak: simp TauCeti.finrank_toLieSubmodule registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Submodule.Finrank (declared at line 46)
+leak: simp LieSubmodule.finrank_bot registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Submodule.Finrank (declared at line 62)
+leak: simp DirectSum.lieModuleOf_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.DirectSum (declared at line 74)
+leak: simp DirectSum.lieModuleComponent_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.DirectSum (declared at line 80)
+leak: simp TauCeti.lie_single_single registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Basic (declared at line 157)
+leak: instance TauCeti.instFreeSubtypeMatrixMemLieSubalgebraSl registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Finrank (declared at line 161)
+leak: instance TauCeti.instFiniteSubtypeMatrixMemLieSubalgebraSl registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Finrank (declared at line 168)
+leak: simp TauCeti.finrank_sl registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Finrank (declared at line 180)
+leak: simp TauCeti.lie_single_single_eq_singleSubSingle registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic (declared at line 140)
+leak: simp TauCeti.lie_singleSubSingle_single registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic (declared at line 151)
+leak: simp TauCeti.neg_singleSubSingle registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic (declared at line 161)
+leak: simp TauCeti.lie_singleSubSingle_single_swap registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic (declared at line 168)
+leak: simp TauCeti.val_one_one_eq_neg_val_zero_zero registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Sl2.Basic (declared at line 207)
+leak: simp TauCeti.pairingIn_indexEquiv registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 75)
+leak: simp TauCeti.indexEquiv_reflectionPerm registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 84)
+leak: simp TauCeti.root_indexEquiv_eq_add_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 94)
+leak: simp TauCeti.root_indexEquiv_eq_sub_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 104)
+leak: simp TauCeti.linearIndependent_root_indexEquiv_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 114)
+leak: simp TauCeti.chainTopCoeff_indexEquiv registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 133)
+leak: simp TauCeti.chainBotCoeff_indexEquiv registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.EquivInvariance (declared at line 152)
+leak: simp RootPairing.coroot'_reflectionPerm_self registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Weyl.Group (declared at line 112)
+leak: simp RootPairing.weylGroup.coe_ofIdx registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Weyl.Group (declared at line 189)
+leak: simp RootPairing.weylGroup.ofIdx_inv_eq registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Weyl.Group (declared at line 196)
+leak: simp RootPairing.weylGroup.ofIdx_mul_self registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Weyl.Group (declared at line 202)
+leak: simp Fin.rev_finRotate_rev registered in Tengoku.Tauceti.TauCeti.Data.Fin.Basic (declared at line 93)
+leak: simp Fin.rev_finRotate_symm registered in Tengoku.Tauceti.TauCeti.Data.Fin.Basic (declared at line 107)
+leak: simp Fin.predAbove_succ_succAbove registered in Tengoku.Tauceti.TauCeti.Data.Fin.Basic (declared at line 116)
+leak: simp TauCeti.span_int_range_ringChoose registered in Tengoku.Tauceti.TauCeti.RingTheory.Binomial (declared at line 149)
+leak: simp TauCeti.toAddSubgroup_subringClosure_range_ringChoose registered in Tengoku.Tauceti.TauCeti.RingTheory.Binomial (declared at line 206)
+leak: simp TauCeti.mem_subringClosure_range_ringChoose_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Binomial (declared at line 221)
+leak: simp TauCeti.Ring.choose_intCast registered in Tengoku.Tauceti.TauCeti.RingTheory.Binomial (declared at line 236)
+leak: simp TauCeti.Ring.mul_weighted_choose_add_mul_choose registered in Tengoku.Tauceti.TauCeti.RingTheory.Binomial (declared at line 344)
+leak: instance TauCeti.instHasCentralRadicalMatrixOfCharZero registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Radical (declared at line 409)
+leak: instance TauCeti.instHasTrivialRadicalSl registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.GeneralLinear.Radical (declared at line 491)
+leak: simp TauCeti.inf_derivedSeries_eq_bot_of_isSolvable registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Reductive (declared at line 304)
+leak: simp QuadraticMap.polarBilin_restrict registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Radical (declared at line 64)
+leak: simp QuadraticMap.radical_neg registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Radical (declared at line 73)
+leak: simp QuadraticMap.radical_prod registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Radical (declared at line 81)
+leak: simp TauCeti.BilinForm.nondegenerate_smul_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearForm.Basic (declared at line 50)
+leak: simp TauCeti.BilinForm.nondegenerate_neg_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearForm.Basic (declared at line 72)
+leak: simp TauCeti.orthogonal_range_ad_eq_ker_ad registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Killing.AdNilpotent (declared at line 98)
+leak: simp TauCeti.typeD_apply_inr_inr registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Orthogonal.TypeD.DiagonalCartan (declared at line 125)
+leak: instance TauCeti.Prod.instLieRingModule registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Prod (declared at line 49)
+leak: instance TauCeti.UniversalEnvelopingAlgebra.instCommRing registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.UniversalEnveloping.Abelian (declared at line 116)
+leak: simp TauCeti.rootSpace_neg_eq_bot_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Weights.Killing (declared at line 54)
+leak: simp TauCeti.IsChevalleySystem.map_root registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Weights.Chevalley.System (declared at line 94)
+leak: simp TauCeti.coe_rootSystem_reflection_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Weights.Reflection (declared at line 35)
+leak: instance TauCeti.instLinearWeightsTensorProduct registered in Tengoku.Tauceti.TauCeti.Algebra.Lie.Weights.TensorProduct (declared at line 237)
+leak: simp TauCeti.finrank_center_of_isCentral registered in Tengoku.Tauceti.TauCeti.Algebra.Subalgebra.Center (declared at line 129)
+leak: simp LinearEquiv.smulOfUnit_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Equiv.Basic (declared at line 68)
+leak: instance TauCeti.TensorProduct.isLattice_range_mk_one registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Lattice (declared at line 257)
+leak: instance TauCeti.TensorProduct.free_range_mk_one registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Lattice (declared at line 281)
+leak: simp LinearMap.toAddMonoidHom_comp registered in Tengoku.Tauceti.TauCeti.Algebra.Module.LinearMap.Defs (declared at line 25)
+leak: simp LinearMap.index_equiv_comp registered in Tengoku.Tauceti.TauCeti.Algebra.Module.LinearMap.Index (declared at line 29)
+leak: simp LinearMap.index_comp_equiv registered in Tengoku.Tauceti.TauCeti.Algebra.Module.LinearMap.Index (declared at line 40)
+leak: simp TauCeti.mapIic_symm_apply registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Submodule.Quotient (declared at line 50)
+leak: simp TauCeti.map_equivMapOfInjective_comap_subtype registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Submodule.Quotient (declared at line 136)
+leak: instance TauCeti.instModuleFiniteToAddSubgroup registered in Tengoku.Tauceti.TauCeti.Algebra.Module.Submodule.Finite (declared at line 29)
+leak: simp Set.span_zmod_eq_addSubgroupClosure registered in Tengoku.Tauceti.TauCeti.Algebra.Module.ZMod.Span.Basic (declared at line 22)
+leak: simp TauCeti.MonoidAlgebra.basis_repr registered in Tengoku.Tauceti.TauCeti.Algebra.MonoidAlgebra.Basis (declared at line 31)
+leak: simp TauCeti.trace_leftMulMatrix_monoidAlgebra registered in Tengoku.Tauceti.TauCeti.Algebra.MonoidAlgebra.Trace (declared at line 42)
+leak: simp TauCeti.MonoidAlgebra.trace_mulRight registered in Tengoku.Tauceti.TauCeti.Algebra.MonoidAlgebra.Trace (declared at line 53)
+leak: simp TauCeti.MonoidAlgebra.trace_mulLeft registered in Tengoku.Tauceti.TauCeti.Algebra.MonoidAlgebra.Trace (declared at line 70)
+leak: instance TauCeti.renameRingHomInvPair registered in Tengoku.Tauceti.TauCeti.Algebra.MvPolynomial.Rename (declared at line 83)
+leak: instance TauCeti.renameRingHomInvPairSymm registered in Tengoku.Tauceti.TauCeti.Algebra.MvPolynomial.Rename (declared at line 93)
+leak: simp MvPolynomial.killCompl_X_of_notMem_range registered in Tengoku.Tauceti.TauCeti.Algebra.MvPolynomial.Rename (declared at line 42)
+leak: simp OrderMonoidIso.withZero_symm_trans registered in Tengoku.Tauceti.TauCeti.Algebra.Order.Hom.MonoidWithZero (declared at line 30)
+leak: instance Units.instFiniteIndexPosSubgroup registered in Tengoku.Tauceti.TauCeti.Algebra.Order.Ring.Units (declared at line 33)
+leak: simp TauCeti.coeff_C_add_C_mul_X_pow registered in Tengoku.Tauceti.TauCeti.Algebra.Polynomial.Binomial (declared at line 23)
+leak: simp Polynomial.natDegree_C_sub_X registered in Tengoku.Tauceti.TauCeti.Algebra.Polynomial.LinearFactor (declared at line 46)
+leak: simp Polynomial.map_intCastRingHom_zmod_eq_zero_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Polynomial.MapZMod (declared at line 39)
+leak: simp Polynomial.unop_smeval registered in Tengoku.Tauceti.TauCeti.Algebra.Polynomial.Smeval (declared at line 33)
+leak: simp Int.discrim_emod_four registered in Tengoku.Tauceti.TauCeti.Algebra.QuadraticDiscriminant (declared at line 295)
+leak: simp QuaternionAlgebra.re_eq_of_algEquiv registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.AlgEquiv (declared at line 141)
+leak: simp TauCeti.QuaternionAlgebra.swapEquiv_apply_i registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.SymbolEquiv (declared at line 280)
+leak: simp TauCeti.QuaternionAlgebra.swapEquiv_apply_j registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.SymbolEquiv (declared at line 287)
+leak: simp TauCeti.QuaternionAlgebra.swapEquiv_symm_apply_i registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.SymbolEquiv (declared at line 294)
+leak: simp TauCeti.QuaternionAlgebra.swapEquiv_symm_apply_j registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.SymbolEquiv (declared at line 301)
+leak: instance TauCeti.QuaternionAlgebra.instIsSimpleRing registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.CentralSimple (declared at line 53)
+leak: instance TauCeti.QuaternionAlgebra.instIsCentral registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.CentralSimple (declared at line 134)
+leak: simp TauCeti.QuaternionAlgebra.mem_center_iff registered in Tengoku.Tauceti.TauCeti.Algebra.Quaternion.CentralSimple (declared at line 107)
+leak: simp TauCeti.AlgebraicGeometry.residueDegree_comp registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.ResidueDegree (declared at line 42)
+leak: simp TauCeti.AlgebraicGeometry.residueDegree_eq_one_of_isIso registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.ResidueDegree (declared at line 89)
+leak: simp TauCeti.AlgebraicGeometry.section_apply registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.RationalPoint.Basic (declared at line 77)
+leak: simp TauCeti.AlgebraicGeometry.residueDegree_eq_one_of_section registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.RationalPoint.Basic (declared at line 90)
+leak: simp TauCeti.specTargetImageIdeal_specMap registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.SchemeTheoreticImage (declared at line 33)
+leak: instance AlgebraicGeometry.Scheme.Modules.globalSectionsBaseModule registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Modules.GlobalSections (priority 900) (declared at line 157)
+leak: instance TauCeti.AlgebraicGeometry.Scheme.instNonemptyTop registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Scheme.Opens (declared at line 31)
+leak: instance TauCeti.AlgebraicGeometry.Scheme.instUniqueSpecFunctionField registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Modules.RationalFunctions (declared at line 119)
+leak: instance TauCeti.Topology.isFlasque_of_injective registered in Tengoku.Tauceti.TauCeti.Topology.Sheaves.Flasque (declared at line 71)
+leak: instance TauCeti.Topology.subsingleton_H'_succ_of_isFlasque registered in Tengoku.Tauceti.TauCeti.Topology.Sheaves.Flasque (declared at line 144)
+leak: instance TauCeti.Topology.subsingleton_H_succ_of_isFlasque registered in Tengoku.Tauceti.TauCeti.Topology.Sheaves.Flasque (declared at line 152)
+leak: simp TauCeti.ringKrullDim_tensorProduct_of_isNoetherianRing_of_finiteType registered in Tengoku.Tauceti.TauCeti.RingTheory.KrullDimension.FiniteType (declared at line 68)
+leak: instance WeierstrassCurve.Affine.instIsEllipticBaseChange registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.BaseChange (declared at line 96)
+leak: simp WeierstrassCurve.Affine.baseChange_self registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.BaseChange (declared at line 36)
+leak: instance WeierstrassCurve.Affine.moduleFinite_coordinateRing registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 117)
+leak: instance WeierstrassCurve.Affine.algebraFractionRingFunctionField registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 139)
+leak: instance WeierstrassCurve.Affine.finiteDimensional_functionField registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 158)
+leak: simp WeierstrassCurve.Affine.finrank_coordinateRing registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 126)
+leak: simp WeierstrassCurve.Affine.finrank_functionField registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 147)
+leak: simp WeierstrassCurve.Affine.toAlgHom_ratFuncX registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Finrank (declared at line 195)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.add_negPolynomial_smul_basis registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRing (declared at line 203)
+leak: simp AdjoinRoot.map_mk registered in Tengoku.Tauceti.TauCeti.RingTheory.AdjoinRoot.Basic (declared at line 71)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_XClass registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 113)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_YClass registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 122)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_XYIdeal registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 131)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_of_X registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 146)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_root registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 153)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_algebraMap registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 159)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_id registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 169)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.map_map registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.CoordinateRingMap (declared at line 191)
+leak: simp WeierstrassCurve.Affine.derivation_evalEval_polynomialX registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.Formula.Derivation (declared at line 158)
+leak: simp WeierstrassCurve.Affine.derivation_evalEval_polynomialY registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.Formula.Derivation (declared at line 169)
+leak: simp IntermediateField.extendRight_adjoin_simple_le_iff registered in Tengoku.Tauceti.TauCeti.FieldTheory.IntermediateField.ExtendRight (declared at line 67)
+leak: simp WeierstrassCurve.Affine.finrank_extendRight registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.AdjoinTower (declared at line 77)
+leak: simp TauCeti.RatFunc.finrank_adjoin_X_pow registered in Tengoku.Tauceti.TauCeti.FieldTheory.RatFunc.PowerTower (declared at line 46)
+leak: simp WeierstrassCurve.Affine.finrank_fieldRange_frobeniusAlgHom registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.FrobeniusTower (declared at line 115)
+leak: simp WeierstrassCurve.Affine.intDegree_norm_algebraMap_coordinateRing registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.FunctionField.Norm (declared at line 83)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.XYIdeal_ne_bot registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.XYIdealMaximal (declared at line 113)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.mk_mem_XYIdeal_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.XYIdealMaximal (declared at line 179)
+leak: simp WeierstrassCurve.Affine.CoordinateRing.XYIdeal_eq_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.XYIdealMaximal (declared at line 311)
+leak: simp TauCeti.FiniteField.pow_card_eq_self_iff_mem_range_algebraMap registered in Tengoku.Tauceti.TauCeti.FieldTheory.Finite.FrobeniusFixed (declared at line 72)
+leak: simp AlgHom.frobeniusAlgHom_comm registered in Tengoku.Tauceti.TauCeti.FieldTheory.Finite.FrobeniusFixed (declared at line 173)
+leak: simp WeierstrassCurve.Affine.Point.map_frobeniusAlgHom_eq_self_iff_mem_range_baseChange registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.Point.FrobeniusFixed (declared at line 102)
+leak: instance WeierstrassCurve.Affine.isIntegral_baseChange registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.ValuationIntegrality (declared at line 134)
+leak: instance WeierstrassCurve.Affine.expChar_coordinateRing registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.Affine.RelativeFrobenius (declared at line 57)
+leak: simp WeierstrassCurve.evalEval_ψ₂_of_isCharNeTwoNF registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic (declared at line 118)
+leak: simp WeierstrassCurve.eval_Ψ₃_of_a₁_eq_zero_of_a₃_eq_zero registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.CubicDiscriminant (declared at line 79)
+leak: simp WeierstrassCurve.evalEval_ψ₂_sq registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Discriminant (declared at line 76)
+leak: simp WeierstrassCurve.evalEval_ψ_eq_evalEval_Ψ registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Eval (declared at line 63)
+leak: simp WeierstrassCurve.evalEval_Ψ_sq_eq_eval_ΨSq registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Eval (declared at line 69)
+leak: simp WeierstrassCurve.evalEval_φ_eq_eval_Φ registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Eval (declared at line 77)
+leak: simp WeierstrassCurve.evalEval_Ψ_odd registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Eval (declared at line 83)
+leak: simp complEDS₂_two_three_two registered in Tengoku.Tauceti.TauCeti.NumberTheory.EllipticDivisibilitySequence.NormEDS (declared at line 203)
+leak: simp normEDS_two_three_two_eq_intCast registered in Tengoku.Tauceti.TauCeti.NumberTheory.EllipticDivisibilitySequence.NormEDS (declared at line 212)
+leak: instance WeierstrassCurve.isCharNeTwoNF_map registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 60)
+leak: instance WeierstrassCurve.isCharNeTwoNF_baseChange registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 68)
+leak: instance WeierstrassCurve.isShortNF_map registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 75)
+leak: instance WeierstrassCurve.isShortNF_baseChange registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 81)
+leak: simp WeierstrassCurve.variableChange_a₄_of_isShortNF registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 122)
+leak: simp WeierstrassCurve.variableChange_a₆_of_isShortNF registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.EllipticCurve.NormalForms (declared at line 131)
+leak: instance TauCeti.AlgebraicGeometry.Smooth.geometricallyReduced registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Morphisms.Smooth.GeometricallyReduced (priority 100) (declared at line 55)
+leak: instance AlgebraicGeometry.Scheme.functionFieldBaseAlgebra registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra (priority 900) (declared at line 67)
+leak: instance AlgebraicGeometry.Scheme.stalkBaseAlgebra registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra (priority 900) (declared at line 84)
+leak: instance AlgebraicGeometry.Scheme.residueFieldBaseAlgebra registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra (priority 900) (declared at line 89)
+leak: instance AlgebraicGeometry.Scheme.residueFieldStalkAlgebra registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.Scheme.BaseAlgebra (declared at line 94)
+leak: simp TauCeti.AlgebraicGeometry.Scheme.ord_one registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.WeilDivisor.Scheme.Order (declared at line 53)
+leak: simp TauCeti.AlgebraicGeometry.Scheme.ord_inv registered in Tengoku.Tauceti.TauCeti.AlgebraicGeometry.WeilDivisor.Scheme.Order (declared at line 61)
+leak: simp ClassGroup.mk_toPrincipalIdeal registered in Tengoku.Tauceti.TauCeti.RingTheory.ClassGroup.Basic (declared at line 81)
+leak: simp HomotopyGroup.mk_const_eq_one registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.Map (declared at line 110)
+leak: instance HomotopyGroup.subsingleton_pi registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.Product (declared at line 281)
+leak: simp TauCeti.FundamentalGroup.map_range_eq_bot_of_subsingleton registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.Basic (declared at line 92)
+leak: simp TauCeti.FundamentalGroup.mapOfEq_range_eq_bot_of_subsingleton registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.Basic (declared at line 116)
+leak: instance HomotopyGroup.subsingleton_of_topologicalVectorSpace registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.TopologicalVectorSpace (declared at line 48)
+leak: simp Path.Homotopic.Quotient.cast_mem_arrows_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroupoid.Basic (declared at line 35)
+leak: instance Path.Homotopic.Quotient.instTopologicalSpace registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.Path (declared at line 201)
+leak: simp Path.map_refl registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.Path (declared at line 71)
+leak: simp Path.Homotopic.Quotient.subpath_trans registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.Path (declared at line 217)
+leak: simp Path.Homotopic.Quotient.refl_cast registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.Path (declared at line 311)
+leak: simp TauCeti.FundamentalGroup.iSup_range_map_subtypeVal_eq_top registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.CoverGeneration (declared at line 119)
+leak: simp TauCeti.FundamentalGroup.range_map_subtypeVal_sup_eq_top registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.CoverGeneration (declared at line 172)
+leak: simp TauCeti.FundamentalGroup.mapOfEq_id registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.Homeomorph (declared at line 65)
+leak: simp TauCeti.FundamentalGroup.mapOfEq_rfl registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroup.Homeomorph (declared at line 77)
+leak: instance FundamentalGroupoid.instUniqueHom registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.FundamentalGroupoid.SimplyConnected (declared at line 31)
+leak: instance TauCeti.instPathConnectedSpaceSubtypePathComponent registered in Tengoku.Tauceti.TauCeti.Topology.PathComponent (declared at line 60)
+leak: instance TauCeti.instLocallyPathConnectedSpaceSubtypePathComponent registered in Tengoku.Tauceti.TauCeti.Topology.PathComponent (declared at line 65)
+leak: instance TauCeti.instT1SpaceConnectedComponents registered in Tengoku.Tauceti.TauCeti.Topology.ConnectedComponents (declared at line 66)
+leak: simp Homeomorph.image_connectedComponent registered in Tengoku.Tauceti.TauCeti.Topology.ConnectedComponents (declared at line 41)
+leak: simp AbstractSimplicialComplex.mem_toPreAbstractSimplicialComplex registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialComplex.Basic (declared at line 37)
+leak: simp PreAbstractSimplicialComplex.mem_inf registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialComplex.Basic (declared at line 68)
+leak: simp AbstractSimplicialComplex.mem_standardSimplex_iff registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialComplex.Realization (declared at line 221)
+leak: simp TauCeti.SSet.homologyMap_homology₀ε registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialSet.Homology.Zero (declared at line 75)
+leak: simp TauCeti.SSet.homologyMap_homology₀ε_assoc registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialSet.Homology.Zero (declared at line 76)
+leak: simp TauCeti.TopCat.toSSet_map_app_toSSetObj₀Equiv_symm registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialSet.TopAdj (declared at line 32)
+leak: simp TauCeti.TopCat.toSSetObjEquiv_toSSet_map_app registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.SimplicialSet.TopAdj (declared at line 38)
+leak: simp TauCeti.singularHomologyMap_singularHomology₀ε registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.Singular.Reduced (declared at line 41)
+leak: simp TauCeti.singularHomologyMap_singularHomology₀ε_assoc registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.Singular.Reduced (declared at line 42)
+leak: simp TauCeti.ThricePuncturedSphere.ne_zero registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.ThricePuncturedSphere.Basic (declared at line 72)
+leak: simp TauCeti.ThricePuncturedSphere.ne_one registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.ThricePuncturedSphere.Basic (declared at line 76)
+leak: instance AddCircle.subsingleton_homotopyGroup registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.UniversalCover.Circle.HigherHomotopy (declared at line 59)
+leak: instance Circle.subsingleton_homotopyGroup registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.UniversalCover.Circle.HigherHomotopy (declared at line 81)
+leak: instance TauCeti.EuclideanSpace.subsingleton_homotopyGroup_sphere registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.UniversalCover.Circle.HigherHomotopy (declared at line 106)
+leak: simp IsCoveringMap.stabilizer_eq_range registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.Monodromy.Basic (declared at line 136)
+leak: instance TauCeti.preservesColimit_empty_forget_action registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.Connected (declared at line 52)
+leak: instance TauCeti.reflectsColimit_empty_forget_action registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.Connected (declared at line 60)
+leak: simp TauCeti.mono_action_iff_injective registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.Connected (declared at line 66)
+leak: simp TauCeti.isConnected_action_iff_isTransitiveAction registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.Connected (declared at line 74)
+leak: simp TauCeti.isConnected_map_iff registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Galois.Connected (declared at line 86)
+leak: simp TauCeti.QuotientGroup.quotientKerEquivOfSurjective_apply_mk registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.KerEquiv (declared at line 37)
+leak: simp Homeomorph.Quotient.congr_mk registered in Tengoku.Tauceti.TauCeti.Topology.Homeomorph.Quotient (declared at line 29)
+leak: simp Homeomorph.Quotient.congrRight_mk registered in Tengoku.Tauceti.TauCeti.Topology.Homeomorph.Quotient (declared at line 41)
+leak: instance TauCeti.Sphere.instMulActionIntUnitsSphere registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.Ball.IntUnitsAction (declared at line 61)
+leak: instance TauCeti.RealProjectiveSpace.instNonemptySphere registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.UniversalCover.RealProjective.Basic (declared at line 65)
+leak: instance AddCircle.subsingleton_homotopyGroup_pi registered in Tengoku.Tauceti.TauCeti.AlgebraicTopology.UniversalCover.Torus.HigherHomotopy (declared at line 39)
+leak: simp TauCeti.summable_multichoose_mul_geometric_iff_norm_lt_one registered in Tengoku.Tauceti.TauCeti.Analysis.Analytic.Binomial (declared at line 62)
+leak: simp TauCeti.IsPositiveDefinite.map_zero_im registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.Basic (declared at line 129)
+leak: simp TauCeti.IsPositiveDefinite.conj_symm registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.Basic (declared at line 156)
+leak: simp TauCeti.IsPositiveDefinite.normalize_apply_zero registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.Normalize (declared at line 65)
+leak: simp TauCeti.IsPositiveDefiniteSub.map_zero_im registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.AddGroup (declared at line 214)
+leak: simp TauCeti.IsPositiveDefiniteSub.conj_symm registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.AddGroup (declared at line 235)
+leak: simp TauCeti.IsPositiveDefiniteSub.normalize_apply_zero registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.AddGroup (declared at line 286)
+leak: simp TauCeti.integral_exp_neg_two_pi_inner_eq_charFun_neg_two_pi_smul registered in Tengoku.Tauceti.TauCeti.Analysis.Bochner.Fourier.Convention (declared at line 59)
+leak: simp ContinuousLinearMap.fderiv_apply_self registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.Bilinear (declared at line 67)
+leak: simp ContinuousLinearMap.fderiv_fderiv_apply_self registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.Bilinear (declared at line 73)
+leak: simp HasStrictFDerivAt.implicitToOpenPartialHomeomorphOfComplemented_symm_self registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.ImplicitFunctionTheorem (declared at line 107)
+leak: simp TauCeti.isIntegralCurve_const_neg_gradient_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.Morse.GradientFlow (declared at line 75)
+leak: simp TauCeti.setOf_not_surjective_fderiv_eq_univ_of_finrank_lt_finrank registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.Sard.LowDimension (declared at line 104)
+leak: simp TauCeti.setOf_not_surjective_fderiv_eq_setOf_fderiv_eq_zero_of_finrank_eq_one registered in Tengoku.Tauceti.TauCeti.Analysis.Calculus.Sard.VanishingDerivative (declared at line 229)
+leak: simp TauCeti.mgf_id_conv registered in Tengoku.Tauceti.TauCeti.Probability.Moments.Basic (declared at line 48)
+leak: simp TauCeti.integral_exp_neg_mul_add_smul_dirac_zero registered in Tengoku.Tauceti.TauCeti.Analysis.CompletelyMonotone.Bernstein.Measures (declared at line 272)
+leak: simp TauCeti.integrableOn_exp_mul_Ioi_iff registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Integral.ExpDecay (declared at line 130)
+leak: simp TauCeti.integrableOn_exp_mul_Iic_iff registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Integral.ExpDecay (declared at line 139)
+leak: simp UpperHalfPlane.σ_eq_refl_of_det_pos registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.MoebiusAction (declared at line 54)
+leak: simp Matrix.SpecialLinearGroup.toGL_smul registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.MoebiusAction (declared at line 68)
+leak: simp ModularGroup.sl_smul_set registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.MoebiusAction (declared at line 90)
+leak: instance UpperHalfPlane.instMeasurableConstSMulSpecialLinearGroupFinOfNatNat registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.PSL.Action (declared at line 69)
+leak: instance UpperHalfPlane.instSMulInvariantMeasureSpecialLinearGroupFinOfNatNatVolume registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.PSL.Action (declared at line 75)
+leak: instance UpperHalfPlane.instMulActionPSL2 registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.PSL.Action (declared at line 123)
+leak: simp UpperHalfPlane.smul_eq_self_of_mem_center registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.PSL.Action (declared at line 98)
+leak: simp UpperHalfPlane.toPGL_smul registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.PSL.Action (declared at line 159)
+leak: simp Real.tanh_lt_tanh_iff registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Hyperbolic (declared at line 79)
+leak: simp TauCeti.boundaryCayley_re registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Pick.Nevanlinna (declared at line 110)
+leak: simp TauCeti.boundaryCayley_im registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Pick.Nevanlinna (declared at line 119)
+leak: simp TauCeti.compl_circleExp_image_Icc registered in Tengoku.Tauceti.TauCeti.Topology.Circle.Arc (declared at line 125)
+leak: instance TauCeti.locallyConnectedSpace_sphere registered in Tengoku.Tauceti.TauCeti.Topology.JordanCurve.Basic (declared at line 302)
+leak: instance TauCeti.locallyConnectedSpace_circle registered in Tengoku.Tauceti.TauCeti.Topology.JordanCurve.Basic (declared at line 332)
+leak: instance TauCeti.instContinuousConstSMulCircleUnitDisc registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.Basic (declared at line 98)
+leak: instance TauCeti.instNontrivialUnitDisc registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.Basic (declared at line 103)
+leak: simp TauCeti.Complex.UnitDisc.circle_smul_zero registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.Basic (declared at line 29)
+leak: simp TauCeti.Complex.UnitDisc.circle_smul_eq_zero_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.Basic (declared at line 37)
+leak: simp Real.artanh_neg_eq_neg_artanh registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Artanh (declared at line 81)
+leak: simp TauCeti.continuousOn_conj_conj_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Conformal.Reflection.Basic (declared at line 217)
+leak: simp TauCeti.differentiableOn_conj_conj_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Conformal.Reflection.Basic (declared at line 363)
+leak: simp TauCeti.dist_inversion_center_lt_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Conformal.Reflection.Circle.Basic (declared at line 75)
+leak: simp TauCeti.lt_dist_inversion_center_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Conformal.Reflection.Circle.Basic (declared at line 85)
+leak: simp TauCeti.isBounded_closedConvexHull registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.FilledHull (declared at line 90)
+leak: simp TauCeti.diam_closedConvexHull registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.FilledHull (declared at line 96)
+leak: instance OnePoint.instMulActionPSL registered in Tengoku.Tauceti.TauCeti.Topology.Compactification.OnePoint.ProjectiveLine (declared at line 83)
+leak: simp OnePoint.smul_some_eq_infty_iff registered in Tengoku.Tauceti.TauCeti.Topology.Compactification.OnePoint.ProjectiveLine (declared at line 67)
+leak: instance TauCeti.instT2SpaceProjectiveSpecialLinearGroupFinOfNatNatReal registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Matrix.ProjectiveSpecialLinearGroup (declared at line 39)
+leak: simp Complex.imLm_ne_zero registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.HalfPlaneUnbounded (declared at line 35)
+leak: simp Complex.reLm_ne_zero registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.HalfPlaneUnbounded (declared at line 40)
+leak: simp TauCeti.Periodic.deriv_qParam registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.Periodic (declared at line 99)
+leak: instance TauCeti.Complex.UnitDisc.instNonemptyPunctured registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.PuncturedManifold (declared at line 33)
+leak: instance TauCeti.Complex.UnitDisc.instChartedSpacePunctured registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UnitDisc.PuncturedManifold (declared at line 37)
+leak: simp MeasureTheory.covolume_conjAct_smul registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.FundamentalDomain (declared at line 303)
+leak: instance UpperHalfPlane.instIsOpenPosMeasureComapComplexCoeVolume registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Measure (declared at line 46)
+leak: instance UpperHalfPlane.instIsOpenPosMeasureVolume registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Measure (declared at line 69)
+leak: instance UpperHalfPlane.instNullSingletonClassVolume registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Measure (declared at line 81)
+leak: simp UpperHalfPlane.neg_one_div_ρ registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 45)
+leak: simp UpperHalfPlane.norm_ρ_add_one registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 51)
+leak: simp UpperHalfPlane.neg_one_div_ρ_add_one registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 58)
+leak: simp UpperHalfPlane.re_ρ registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 64)
+leak: simp UpperHalfPlane.I_ne_ρ registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 70)
+leak: simp UpperHalfPlane.I_ne_vadd_ρ registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 75)
+leak: simp UpperHalfPlane.ρ_ne_vadd_ρ registered in Tengoku.Tauceti.TauCeti.Analysis.Complex.UpperHalfPlane.Rho (declared at line 80)
+leak: simp rootsOfUnity.smul_pow registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.PowFiber (declared at line 47)
+leak: simp TauCeti.orbitRel_rootsOfUnity_apply registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.PowFiber (declared at line 74)
+leak: simp TauCeti.stabilizer_rootsOfUnity_of_ne_zero registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.PowFiber (declared at line 91)
+leak: simp TauCeti.stabilizer_rootsOfUnity_zero registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.PowFiber (declared at line 101)
+leak: simp intervalIntegral.integral_eq_zero_of_odd registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Integral.OddSymmetric (declared at line 31)
+leak: simp SchwartzMap.smulLeftCLM_comp_inv_smul_apply registered in Tengoku.Tauceti.TauCeti.Analysis.Distribution.SchwartzSpace.Cutoff (declared at line 58)
+leak: simp ContinuousLinearEquiv.closedComplemented_map_iff registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Module.Complement (declared at line 39)
+leak: simp ContinuousLinearMap.isClosed_range_adjoint_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Fredholm.Adjoint (declared at line 193)
+leak: simp TauCeti.isFredholm_adjoint_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Fredholm.Adjoint (declared at line 275)
+leak: simp TauCeti.apply_projectionL_ker registered in Tengoku.Tauceti.TauCeti.Analysis.Fredholm.Estimate (declared at line 60)
+leak: simp TauCeti.apply_projectionL_of_isTopCompl registered in Tengoku.Tauceti.TauCeti.Analysis.Fredholm.Estimate (declared at line 67)
+leak: simp TauCeti.isFredholm_zero_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Fredholm.Zero (declared at line 58)
+leak: simp MeasureTheory.Lp.compMeasurePreservingₗᵢ_apply registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Function.Lp.CompMeasurePreservingEquiv (declared at line 54)
+leak: simp MeasureTheory.Lp.compMeasurePreserving_toLp registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Function.Lp.CompMeasurePreservingEquiv (declared at line 80)
+leak: simp Module.Basis.repr_gramSchmidt_self_eq_one registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.GramSchmidtOrtho (declared at line 34)
+leak: simp TauCeti.laplacian_norm_sq registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.Laplacian.Basic (declared at line 195)
+leak: simp ContDiff.laplacian_comp_norm_sq registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.Laplacian.Basic (declared at line 219)
+leak: simp TauCeti.preimage_smul_vadd_ball_norm registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.Ball (declared at line 36)
+leak: simp TauCeti.preimage_smul_vadd_closedBall registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.Ball (declared at line 45)
+leak: simp TauCeti.preimage_smul_vadd_sphere registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.Ball (declared at line 55)
+leak: simp TauCeti.range_smul_coe_sphere registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Module.Ball (declared at line 72)
+leak: simp TauCeti.fderiv_exp_inner_apply registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.Laplacian.DriftMaximumPrinciple (declared at line 89)
+leak: simp TauCeti.laplacian_exp_inner registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.Laplacian.DriftMaximumPrinciple (declared at line 100)
+leak: simp LinearPMap.neg_smul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.LinearPMap.Basic (declared at line 35)
+leak: simp LinearPMap.smul_neg registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.LinearPMap.Basic (declared at line 42)
+leak: simp TauCeti.toBasis_toDual_apply registered in Tengoku.Tauceti.TauCeti.Analysis.InnerProductSpace.OrthonormalContraction (declared at line 58)
+leak: simp TauCeti.ker_one_sub registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Operator.Compact.RieszTheory (declared at line 65)
+leak: simp LDL.lowerInv_apply_diag registered in Tengoku.Tauceti.TauCeti.Analysis.Matrix.LDL (declared at line 45)
+leak: simp Matrix.posDef_fin_one_iff registered in Tengoku.Tauceti.TauCeti.Analysis.Matrix.PosDef (declared at line 43)
+leak: simp Matrix.PosSemidef.rank_sqrt registered in Tengoku.Tauceti.TauCeti.Analysis.Matrix.Sqrt (declared at line 68)
+leak: simp ContinuousLinearMap.exp_smul_one registered in Tengoku.Tauceti.TauCeti.Analysis.Normed.Operator.Exponential (declared at line 91)
+leak: simp Matrix.toQuadraticForm'_smul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.ToQuadraticForm (declared at line 47)
+leak: simp Matrix.toQuadraticForm'_neg registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.ToQuadraticForm (declared at line 71)
+leak: simp TauCeti.PDE.toQuadraticForm'_one registered in Tengoku.Tauceti.TauCeti.Analysis.PDE.Ellipticity.Basic (declared at line 79)
+leak: simp TauCeti.PDE.toQuadraticForm'_add registered in Tengoku.Tauceti.TauCeti.Analysis.PDE.Ellipticity.Basic (declared at line 118)
+leak: simp TauCeti.PDE.toQuadraticForm'_transpose registered in Tengoku.Tauceti.TauCeti.Analysis.PDE.Ellipticity.Basic (declared at line 139)
+leak: simp TauCeti.IsSemigroupGroupPD.conj_symm registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Basic (declared at line 261)
+leak: simp TauCeti.IsSemigroupGroupPD.diagonal_im registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Basic (declared at line 273)
+leak: simp TauCeti.IsSemigroupGroupPD.map_zero_im registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Basic (declared at line 298)
+leak: simp TauCeti.IsSemigroupGroupPD.timeSlice_conj_symm registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Time.Slice.Basic (declared at line 81)
+leak: simp TauCeti.IsSemigroupGroupPD.timeSlice_diagonal_im registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Time.Slice.Basic (declared at line 93)
+leak: simp TauCeti.IsSemigroupGroupPD.normalize_apply_zero registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Normalize (declared at line 69)
+leak: simp TauCeti.IsSemigroupGroupPD.timeAxis_conj_symm registered in Tengoku.Tauceti.TauCeti.Analysis.PositiveDefinite.SemigroupGroup.Time.Axis (declared at line 114)
+leak: simp Real.inv_sqrt_mul_sq registered in Tengoku.Tauceti.TauCeti.Analysis.Real.Sqrt (declared at line 26)
+leak: simp Finset.sum_powerset_neg_one_pow_card_of_ring registered in Tengoku.Tauceti.TauCeti.Data.Finset.Basic (declared at line 156)
+leak: simp Finset.sum_Icc_neg_one_pow_card_sub_card_left registered in Tengoku.Tauceti.TauCeti.Data.Finset.Basic (declared at line 189)
+leak: simp Finset.sum_Icc_neg_one_pow_card_sub_card_right registered in Tengoku.Tauceti.TauCeti.Data.Finset.Basic (declared at line 210)
+leak: simp TauCeti.fderiv_exp registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Exponential (declared at line 251)
+leak: simp TauCeti.Lie.exp_mulLeft_apply registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.Adjoint.OperatorExponential (declared at line 82)
+leak: simp TauCeti.Lie.exp_mulRight_apply registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.Adjoint.OperatorExponential (declared at line 94)
+leak: simp TauCeti.coeFn_cast_lp registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Function.Lp.CastMeasure (declared at line 39)
+leak: simp ProbabilityTheory.beta_one_right registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Beta (declared at line 422)
+leak: simp Polynomial.derivative_hermite registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Hermite.Derivative (declared at line 70)
+leak: simp Polynomial.iterate_derivative_hermite registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Hermite.Derivative (declared at line 79)
+leak: simp Polynomial.hermite_aeval_neg registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Hermite.Derivative (declared at line 100)
+leak: simp TauCeti.fourier_fourier_fourier_fourier registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Hermite.Function.Fourier.HilbertBasis (declared at line 394)
+leak: simp _private.Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Hermite.Function.Operator.0.TauCeti.derivCLM_comp_smulLeftCLM_id_sub_smulLeftCLM_id_comp_derivCLM registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Hermite.Function.Operator (declared at line 96)
+leak: instance TauCeti.symmetricMatrixNormedAddCommGroup registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 80)
+leak: instance TauCeti.symmetricMatrixIsUniformAddGroup registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 116)
+leak: instance TauCeti.symmetricMatrixSecondCountableTopology registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 120)
+leak: instance TauCeti.symmetricMatrixCompleteSpace registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 124)
+leak: instance TauCeti.symmetricMatrixContinuousENorm registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 128)
+leak: instance TauCeti.symmetricMatrixBorelSpace registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 132)
+leak: simp selfAdjoint.transpose_coe registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.SymmetricMatrix.Basic (declared at line 178)
+leak: simp Matrix.submatrix_one_mul_mul_submatrix_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.Congruence (declared at line 66)
+leak: instance TauCeti.chebyshevMeasureT.instIsFiniteMeasure registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Trigonometric.Chebyshev.Measure (declared at line 55)
+leak: instance TauCeti.chebyshevWeightedVolume.instIsFiniteMeasure registered in Tengoku.Tauceti.TauCeti.Analysis.SpecialFunctions.Trigonometric.Chebyshev.Measure (declared at line 87)
+leak: instance CategoryTheory.Action.essentiallySmall registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.EssentiallySmall (declared at line 54)
+leak: instance Action.resMonoidal registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Action.Monoidal (declared at line 113)
+leak: simp TauCeti.CategoryTheory.autMulEquivOfIso_hom registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Aut.Basic (declared at line 33)
+leak: instance CategoryTheory.ObjectProperty.exactPairingFullSubcategory registered in Tengoku.Tauceti.TauCeti.CategoryTheory.Monoidal.Rigid.Subcategory (declared at line 42)
+leak: instance TauCeti.IsSemiprimaryRing.mulOpposite registered in Tengoku.Tauceti.TauCeti.RingTheory.Jacobson.MulOpposite (declared at line 258)
+leak: simp TauCeti.Ring.mem_jacobson_mulOpposite_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Jacobson.MulOpposite (declared at line 118)
+leak: simp TauCeti.Ring.mem_jacobson_mulOpposite_pow_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Jacobson.MulOpposite (declared at line 171)
+leak: simp Equiv.Perm.count_one_parts_partition registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 99)
+leak: simp Equiv.Perm.count_parts_partition_of_ne_one registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 108)
+leak: simp Equiv.Perm.card_parts_partition registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 115)
+leak: simp Equiv.Perm.parts_partition_one registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 146)
+leak: simp Equiv.Perm.parts_partition_eq_replicate_one_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 153)
+leak: simp Equiv.Perm.parts_partition_of_isEmpty registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 173)
+leak: simp Equiv.Perm.parts_partition_eq_zero_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 180)
+leak: simp Equiv.Perm.parts_partition_conj registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 191)
+leak: simp Equiv.Perm.parts_partition_inv registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 198)
+leak: simp Equiv.Perm.lcm_parts_partition registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 212)
+leak: simp Equiv.Perm.cycleType_permCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 275)
+leak: simp Equiv.Perm.card_support_permCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 289)
+leak: simp Equiv.Perm.parts_partition_permCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 296)
+leak: simp Equiv.Perm.cycleType_eq_singleton_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Partition (declared at line 321)
+leak: simp TauCeti.IsPerfectMatching.apply_apply registered in Tengoku.Tauceti.TauCeti.Combinatorics.Enumerative.PerfectMatching (declared at line 71)
+leak: simp TauCeti.IsPerfectMatching.apply_ne registered in Tengoku.Tauceti.TauCeti.Combinatorics.Enumerative.PerfectMatching (declared at line 77)
+leak: simp SimpleGraph.map_comap_eq_inf_map_top registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Maps (declared at line 42)
+leak: simp SimpleGraph.comap_val registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Maps (declared at line 87)
+leak: instance SimpleGraph.instMeasurableSingletonClass registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Measurable (declared at line 44)
+leak: instance TauCeti.instDecidableRelSumAdj registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Sum (declared at line 44)
+leak: simp SimpleGraph.sum_le_iff registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Sum (declared at line 53)
+leak: simp TauCeti.Probability.uniformOn_apply_eq_apply registered in Tengoku.Tauceti.TauCeti.Probability.UniformSampling (declared at line 115)
+leak: simp SimpleGraph.sum_neg_one_pow_card_edgeSet_sub_left registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Moebius (declared at line 61)
+leak: simp SimpleGraph.sum_neg_one_pow_card_edgeSet_sub_right registered in Tengoku.Tauceti.TauCeti.Combinatorics.SimpleGraph.Moebius (declared at line 73)
+leak: simp TauCeti.MeasureTheory.bind_map registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.GiryMonad (declared at line 53)
+leak: simp TauCeti.Nat.Partition.prod_map_factorial_indiscrete registered in Tengoku.Tauceti.TauCeti.Combinatorics.Enumerative.Partition.Basic (declared at line 50)
+leak: simp YoungDiagram.card_transpose registered in Tengoku.Tauceti.TauCeti.Combinatorics.Young.Diagram (declared at line 45)
+leak: simp _private.Tengoku.Tauceti.TauCeti.Combinatorics.Young.Diagram.0.YoungDiagram.mergeSort_rowLens registered in Tengoku.Tauceti.TauCeti.Combinatorics.Young.Diagram (declared at line 84)
+leak: simp YoungDiagram.sum_rowLens registered in Tengoku.Tauceti.TauCeti.Combinatorics.Young.Diagram (declared at line 193)
+leak: simp Equiv.Perm.cycleType_sumCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.SumCongr (declared at line 81)
+leak: simp Equiv.Perm.card_support_sumCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.SumCongr (declared at line 91)
+leak: simp Equiv.Perm.parts_partition_sumCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.SumCongr (declared at line 98)
+leak: simp Equiv.Perm.sameCycle_permCongr registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.Basic (declared at line 99)
+leak: instance TauCeti.instModuleFiniteCenterMonoidAlgebra registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.ClassSum.Basis (declared at line 160)
+leak: simp Subrepresentation.mem_toSubmodule registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 83)
+leak: simp Subrepresentation.toSubmodule_bot registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 89)
+leak: simp Subrepresentation.toSubmodule_top registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 93)
+leak: simp Subrepresentation.toSubmodule_le_toSubmodule registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 97)
+leak: simp Subrepresentation.toSubmodule_lt_toSubmodule registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 102)
+leak: simp Subrepresentation.isCompl_toSubmodule registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 109)
+leak: simp Subrepresentation.coe_toRepresentation_asAlgebraHom_apply registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 186)
+leak: simp Subrepresentation.isSimpleModule_asSubmodule_iff registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Subrepresentation (declared at line 257)
+leak: instance TauCeti.IsSemisimpleModule.prod registered in Tengoku.Tauceti.TauCeti.RingTheory.SimpleModule.Basic (declared at line 36)
+leak: instance TauCeti.Representation.isIrreducible_trivial_self registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Irreducible (declared at line 137)
+leak: simp TauCeti.Representation.nonempty_equiv_iff_eq registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.Independence (declared at line 184)
+leak: simp TauCeti.smul_eq_centralCharacter_smul registered in Tengoku.Tauceti.TauCeti.RingTheory.Semisimple.CentralCharacter (declared at line 102)
+leak: simp TauCeti.Representation.asAlgebraHom_center registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.CentralCharacter (declared at line 108)
+leak: simp TauCeti.Representation.conj_char registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.Values (declared at line 229)
+leak: simp FDRep.conj_char registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.Values (declared at line 326)
+leak: simp ZMod.card_filter_not_self_dvd_val registered in Tengoku.Tauceti.TauCeti.Data.ZMod.Count (declared at line 83)
+leak: simp ZMod.finEquiv_apply registered in Tengoku.Tauceti.TauCeti.Data.ZMod.FinEquiv (declared at line 33)
+leak: simp ZMod.finEquiv_symm_apply_val registered in Tengoku.Tauceti.TauCeti.Data.ZMod.FinEquiv (declared at line 48)
+leak: simp TauCeti.finrank_zmod_two_additive_intUnits registered in Tengoku.Tauceti.TauCeti.Data.ZMod.IntUnitsPower (declared at line 56)
+leak: simp TauCeti.FiniteField.orbit_eq_rootSet_minpoly registered in Tengoku.Tauceti.TauCeti.FieldTheory.Finite.MinpolyOrbit (declared at line 166)
+leak: instance TauCeti.isIntegrallyClosedIn_algebraicClosure registered in Tengoku.Tauceti.TauCeti.FieldTheory.FunctionField.ConstantField (declared at line 137)
+leak: simp TauCeti.IsFunctionField.isSeparable_adjoin_iff_D_ne_zero registered in Tengoku.Tauceti.TauCeti.FieldTheory.FunctionField.Differential.Kaehler (declared at line 159)
+leak: simp TauCeti.IntermediateField.adjoin_simple_inv registered in Tengoku.Tauceti.TauCeti.FieldTheory.IntermediateField.Adjoin.Inv (declared at line 28)
+leak: instance IsDedekindDomain.HeightOneSpectrum.isTrivialOn_valuation registered in Tengoku.Tauceti.TauCeti.FieldTheory.FunctionField.Place.Adic (declared at line 70)
+leak: instance IntermediateField.finite_fixingSubgroup registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 264)
+leak: simp Subgroup.fixedField_iInf registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 108)
+leak: simp Subgroup.fixedField_iSup registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 120)
+leak: simp Subgroup.fixedField_inf registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 128)
+leak: simp Subgroup.fixedField_sup registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 137)
+leak: simp IntermediateField.fixingSubgroup_adjoin_simple registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 291)
+leak: simp IntermediateField.fixedField_stabilizer_eq_adjoin_simple registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 309)
+leak: simp IntermediateField.fixedField_iInf_stabilizer_eq_adjoin_range registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 315)
+leak: simp Subgroup.fixedField_map_conj registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.FixedField (declared at line 350)
+leak: simp IntermediateField.restrict_lift registered in Tengoku.Tauceti.TauCeti.FieldTheory.IntermediateField.Lift (declared at line 42)
+leak: simp IntermediateField.lift_le_lift_iff registered in Tengoku.Tauceti.TauCeti.FieldTheory.IntermediateField.Lift (declared at line 49)
+leak: instance TauCeti.instCompactSpaceAlgEquiv registered in Tengoku.Tauceti.TauCeti.FieldTheory.Galois.AbsoluteGaloisGroup.Basic (declared at line 190)
+leak: simp OrderIso.Iic_apply_coe registered in Tengoku.Tauceti.TauCeti.Order.Hom.Set (declared at line 29)
+leak: simp OrderIso.Iic_symm_apply_coe registered in Tengoku.Tauceti.TauCeti.Order.Hom.Set (declared at line 34)
+leak: instance TauCeti.distribMulActionFixedPointsAddSubmonoid registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 73)
+leak: instance TauCeti.distribMulActionQuotientFixedPointsAddSubmonoid registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 82)
+leak: instance TauCeti.distribMulActionFixedPointsAddSubgroup registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 137)
+leak: instance TauCeti.distribMulActionQuotientFixedPointsAddSubgroup registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 143)
+leak: simp TauCeti.fixedPoints_bot registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 54)
+leak: simp TauCeti.fixedPoints_top registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 60)
+leak: simp TauCeti.fixedPoints_addSubgroup_bot registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 109)
+leak: simp TauCeti.fixedPoints_addSubgroup_top registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 115)
+leak: simp TauCeti.fixedPoints_addSubgroup_eq_top_of_smul_eq registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 121)
+leak: simp TauCeti.fixedPoints_addSubgroup_eq_bot_of_subsingleton registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.FixedPoints (declared at line 128)
+leak: instance TauCeti.rootsOfUnity.mulDistribMulAction registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.Action (declared at line 40)
+leak: simp Polynomial.resultant_C_sub_X_right registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Basic (declared at line 45)
+leak: simp Polynomial.rootSet_mul registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Roots (declared at line 55)
+leak: simp Polynomial.Monic.discr_map registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 183)
+leak: simp Polynomial.Monic.isUnit_discr_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 571)
+leak: simp Polynomial.Monic.discr_ne_zero_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 585)
+leak: simp Polynomial.Monic.separable_map_iff_map_discr_ne_zero registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 605)
+leak: simp Polynomial.Monic.discr_ne_zero_iff_separable_map registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 614)
+leak: simp Polynomial.Monic.separable_map_zmod_iff_not_dvd_discr registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 624)
+leak: simp Cubic.toPoly_discr registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.Discriminant (declared at line 724)
+leak: simp Polynomial.mem_rootSet_X_pow_sub_C registered in Tengoku.Tauceti.TauCeti.FieldTheory.KummerExtension (declared at line 53)
+leak: simp Polynomial.map_natDegree_normalizedFactors_eq_singleton_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Factors (declared at line 220)
+leak: simp TauCeti.IntermediateField.mem_sup_adjoin_sq registered in Tengoku.Tauceti.TauCeti.FieldTheory.IntermediateField.Quadratic (declared at line 98)
+leak: simp AlgHom.liftNormal_equivFieldRange_apply registered in Tengoku.Tauceti.TauCeti.FieldTheory.Normal.Embeddings (declared at line 56)
+leak: simp AlgHom.card_of_normal registered in Tengoku.Tauceti.TauCeti.FieldTheory.Normal.Embeddings (declared at line 129)
+leak: simp TauCeti.FiniteField.fieldRange_frobeniusAlgHom_ratFunc registered in Tengoku.Tauceti.TauCeti.FieldTheory.RatFunc.Frobenius (declared at line 67)
+leak: simp TauCeti.FiniteField.finrank_fieldRange_frobeniusAlgHom_ratFunc registered in Tengoku.Tauceti.TauCeti.FieldTheory.RatFunc.Frobenius (declared at line 84)
+leak: simp Units.isSquare_iff_pos registered in Tengoku.Tauceti.TauCeti.FieldTheory.SquareClassGroup.Real (declared at line 38)
+leak: instance Convexity.StdSimplex.contractibleSpace registered in Tengoku.Tauceti.TauCeti.Geometry.Convex.ConvexSpace.ContractibleSpaceStdSimplex (declared at line 32)
+leak: instance Diffeomorph.instOne registered in Tengoku.Tauceti.TauCeti.Geometry.Diffeomorphism.Group (declared at line 57)
+leak: instance Diffeomorph.instMul registered in Tengoku.Tauceti.TauCeti.Geometry.Diffeomorphism.Group (declared at line 60)
+leak: instance Diffeomorph.instInv registered in Tengoku.Tauceti.TauCeti.Geometry.Diffeomorphism.Group (declared at line 64)
+leak: instance Diffeomorph.instGroup registered in Tengoku.Tauceti.TauCeti.Geometry.Diffeomorphism.Group (declared at line 80)
+leak: instance ContMDiffMap.instTopologicalSpaceWeakWhitney registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.ContMDiffMap.WeakWhitney (declared at line 105)
+leak: simp TauCeti.Hodge.weightGradedComplex_mk_eq_mk_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Hodge.Graded (declared at line 128)
+leak: instance TauCeti.Lie.instTopologicalSpaceConjAct registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.Adjoint.Conjugation (declared at line 42)
+leak: simp mvfderiv_apply_eq_mfderiv_apply registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorField.Regularity (declared at line 81)
+leak: simp TauCeti.mlieBracket_const_model_space registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorField.LieBracket (declared at line 54)
+leak: simp tangentMap_mul_prod_apply registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.InvariantVectorField.Basic (declared at line 71)
+leak: simp mulInvariantVectorField_one registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.InvariantVectorField.Basic (declared at line 135)
+leak: simp mfderiv_mul_left_mulInvariantVectorField registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.InvariantVectorField.Basic (declared at line 144)
+leak: instance LeftInvariantDerivation.instNormedAddCommGroup registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.Tangent.LeftInvariantDerivation (declared at line 249)
+leak: simp TauCeti.ContRepresentation.IsUnitary.inner_map_map registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Unitary.Basic (declared at line 73)
+leak: simp TauCeti.ContRepresentation.IsUnitary.norm_map registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Unitary.Basic (declared at line 79)
+leak: simp TauCeti.ContRepresentation.IsUnitary.adjoint_eq_inv registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Unitary.Basic (declared at line 150)
+leak: simp inverse_mfderiv_mul_right registered in Tengoku.Tauceti.TauCeti.Geometry.Lie.RightInvariantVectorField (declared at line 111)
+leak: simp TauCeti.boundary_euclideanHalfSpace registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Boundary.Model (declared at line 276)
+leak: instance TauCeti.boundaryChartedSpace registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Boundary.Charts (declared at line 214)
+leak: simp TauCeti.EuclideanHalfSpace.val_zero_apply registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Boundary.Collar.Local (declared at line 105)
+leak: simp TauCeti.EuclideanHalfSpace.eq_zero_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Boundary.Collar.Local (declared at line 130)
+leak: simp TauCeti.IsCollar.preimage_range registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Boundary.Collar.Global (declared at line 95)
+leak: simp TauCeti.ContMDiffWithinAt.subtypeVal_comp_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.ContMDiff.Subtype (declared at line 51)
+leak: simp TauCeti.ContMDiffAt.subtypeVal_comp_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.ContMDiff.Subtype (declared at line 59)
+leak: simp TauCeti.ContMDiffOn.subtypeVal_comp_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.ContMDiff.Subtype (declared at line 66)
+leak: simp TauCeti.ContMDiff.subtypeVal_comp_iff registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.ContMDiff.Subtype (declared at line 74)
+leak: simp TauCeti.Manifold.localFrameCoeff_basisAt registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.LocalFrame (declared at line 65)
+leak: simp TauCeti.Manifold.continuousLinearMapAt_trivializationAt_self registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.Tangent (declared at line 78)
+leak: simp TauCeti.Manifold.symmL_trivializationAt_self registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.Tangent (declared at line 87)
+leak: simp TauCeti.Manifold.TangentBundle.coe_chartAt_snd registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.Tangent (declared at line 116)
+leak: simp TauCeti.Manifold.localFrame_trivializationAt_self registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.Tangent (declared at line 461)
+leak: simp TauCeti.Manifold.mfderiv_subtype_val registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.VectorBundle.Tangent (declared at line 540)
+leak: simp TauCeti.IsBicollar.preimage_range registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.LocallyFlat.Bicollar (declared at line 159)
+leak: simp TauCeti.Manifold.pathELength_lineMap registered in Tengoku.Tauceti.TauCeti.Geometry.Manifold.Riemannian.PathELength (declared at line 288)
+leak: simp TauCeti.AlmostComplexStructure.re_smul_add_im_smul_I_eq_complex_smul registered in Tengoku.Tauceti.TauCeti.Geometry.Symplectic.Complex.Module.Basic (declared at line 151)
+leak: simp TauCeti.Submodule.map_prod_top_bot_skewSwap registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.TotallyReal.Basic (declared at line 134)
+leak: simp TauCeti.Submodule.map_prod_bot_top_skewSwap registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.TotallyReal.Basic (declared at line 150)
+leak: simp TauCeti.IsComplexLinearMap.eq_zero_iff_apply_stdComplexLineReal registered in Tengoku.Tauceti.TauCeti.Geometry.Symplectic.JHolomorphic.Line (declared at line 193)
+leak: simp Subgroup.groupEquivQuotientProdSubgroup_symm_apply registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 42)
+leak: simp AddSubgroup.addGroupEquivQuotientSumAddSubgroup_symm_apply registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 44)
+leak: simp Subgroup.groupEquivQuotientProdSubgroup_apply_fst registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 64)
+leak: simp AddSubgroup.addGroupEquivQuotientSumAddSubgroup_apply_fst registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 65)
+leak: simp Subgroup.groupEquivQuotientProdSubgroup_apply_snd_coe registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 70)
+leak: simp AddSubgroup.addGroupEquivQuotientSumAddSubgroup_apply_snd_coe registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coset.Basic (declared at line 71)
+leak: simp CoxeterSystem.mem_rightInvSeq_iff_isRightInversion registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.StrongExchange (declared at line 344)
+leak: simp CoxeterSystem.mem_leftInvSeq_iff_isLeftInversion registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.StrongExchange (declared at line 352)
+leak: simp TauCeti.odd_length_simple_mul_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.Length (declared at line 63)
+leak: simp TauCeti.even_length_simple_mul_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.Length (declared at line 71)
+leak: simp TauCeti.length_reindex registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.Length (declared at line 141)
+leak: simp TauCeti.length_map registered in Tengoku.Tauceti.TauCeti.GroupTheory.Coxeter.Length (declared at line 159)
+leak: simp TauCeti.doubleCoset_one_self registered in Tengoku.Tauceti.TauCeti.GroupTheory.DoubleCoset.Identity (declared at line 57)
+leak: simp TauCeti.doubleCosetMk_eq_mk_one_iff_mem registered in Tengoku.Tauceti.TauCeti.GroupTheory.DoubleCoset.Identity (declared at line 70)
+leak: simp DoubleCoset.doubleCoset_inv registered in Tengoku.Tauceti.TauCeti.GroupTheory.DoubleCoset.Inv (declared at line 37)
+leak: instance AddSubgroup.fg_of_addCommGroup registered in Tengoku.Tauceti.TauCeti.GroupTheory.Finiteness (priority 100) (declared at line 80)
+leak: instance Subgroup.fg_of_commGroup registered in Tengoku.Tauceti.TauCeti.GroupTheory.Finiteness (priority 100) (declared at line 90)
+leak: simp TauCeti.fixedBy_prod registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.Burnside (declared at line 48)
+leak: simp MonoidHom.map_conjNormal_val registered in Tengoku.Tauceti.TauCeti.GroupTheory.GroupAction.ConjAct (declared at line 34)
+leak: simp Subgroup.quotientEquivOfEq_mk registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Basic (declared in Tengoku.Seed.GroupTheory.Coset.Defs: an `attribute` command of the library turns it on)
+leak: simp TauCeti.stabilizer_quotientGroup_mk registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Basic (declared at line 58)
+leak: simp TauCeti.quotientBot_smul_eq_self_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Basic (declared at line 103)
+leak: instance Subgroup.instCountableQuotient registered in Tengoku.Tauceti.TauCeti.GroupTheory.Index.Basic (declared at line 130)
+leak: instance AddSubgroup.instCountableQuotient registered in Tengoku.Tauceti.TauCeti.GroupTheory.Index.Basic (declared at line 135)
+leak: instance Subgroup.instFiniteIndexComap registered in Tengoku.Tauceti.TauCeti.GroupTheory.Index.Basic (declared at line 143)
+leak: instance AddSubgroup.instFiniteIndexComap registered in Tengoku.Tauceti.TauCeti.GroupTheory.Index.Basic (declared at line 144)
+leak: simp MonoidHom.map_conjNormal_alternatingGroup_eq_inv registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.AlternatingCharacter (declared at line 171)
+leak: simp MonoidHom.comp_conjNormal_alternatingGroup_eq_inv registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.AlternatingCharacter (declared at line 197)
+leak: simp Equiv.Perm.IsCycle.pow_apply_eq_self_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.Perm.CyclePower (declared at line 56)
+leak: simp Subgroup.index_map_mk'_eq_index_sup registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Index (declared at line 30)
+leak: simp AddSubgroup.index_map_mk'_eq_index_sup registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Index (declared at line 33)
+leak: simp Subgroup.index_map_mk'_eq_index_sup registered in Tengoku.Tauceti.TauCeti.GroupTheory.QuotientGroup.Index (declared at line 30)
+leak: simp TauCeti.Subgroup.mem_sup_of_right_le_normalizer_left registered in Tengoku.Tauceti.TauCeti.GroupTheory.SemidirectProduct (declared at line 38)
+leak: simp TauCeti.SemidirectProduct.range_monoidHomSubgroup registered in Tengoku.Tauceti.TauCeti.GroupTheory.SemidirectProduct (declared at line 50)
+leak: simp TauCeti.Suzuki.pow_two_pow_succ_pow_two_pow_succ registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.CFSG.Suzuki.Generated (declared at line 65)
+leak: simp TauCeti.exponent_dihedralGroup_three registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.Dihedral.Basic (declared at line 94)
+leak: simp TauCeti.exponent_dihedralGroup_four registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.Dihedral.Basic (declared at line 100)
+leak: simp TauCeti.dihedralSr_ne_one registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.Dihedral.Basic (declared at line 474)
+leak: simp TauCeti.mem_zpowers_dihedralSr_iff registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.Dihedral.Basic (declared at line 480)
+leak: simp TauCeti.exponent_quaternionGroup_two registered in Tengoku.Tauceti.TauCeti.GroupTheory.SpecificGroups.Quaternion.Basic (declared at line 212)
+leak: simp TauCeti.AffineEquiv.commutatorElement_homothetyUnitsMulHom_zero_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.AffineSpace.AffineEquiv (declared at line 33)
+leak: simp TauCeti.dotProduct_self_eq_hammingNorm registered in Tengoku.Tauceti.TauCeti.InformationTheory.Coding.Binary.Basic (declared at line 59)
+leak: simp TauCeti.dotProduct_one_eq_hammingNorm registered in Tengoku.Tauceti.TauCeti.InformationTheory.Coding.Binary.Basic (declared at line 65)
+leak: simp TauCeti.four_dvd_hammingNorm_add_iff registered in Tengoku.Tauceti.TauCeti.InformationTheory.Coding.Binary.Basic (declared at line 71)
+leak: simp TauCeti.hammingNorm_const registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 30)
+leak: simp TauCeti.hammingDist_sumRec registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 36)
+leak: simp TauCeti.hammingNorm_sumRec registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 46)
+leak: simp TauCeti.hammingDist_sumElim registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 58)
+leak: simp TauCeti.hammingNorm_sumElim registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 66)
+leak: simp TauCeti.prod_ite_eq_zero_eq_pow_mul_pow_hammingNorm registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 82)
+leak: simp Equiv.hammingNorm_funLeft registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 114)
+leak: simp Equiv.hammingDist_funLeft registered in Tengoku.Tauceti.TauCeti.InformationTheory.Hamming (declared at line 121)
+leak: instance TauCeti.instFiniteCharacterModule registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.FiniteBilinearModule.Basic (declared at line 124)
+leak: simp TauCeti.dotProduct_self_eq_hammingNorm_ternary registered in Tengoku.Tauceti.TauCeti.InformationTheory.Coding.Weight.Divisibility (declared at line 27)
+leak: simp TauCeti.dotProduct_self_eq_zero_iff_three_dvd_hammingNorm registered in Tengoku.Tauceti.TauCeti.InformationTheory.Coding.Weight.Divisibility (declared at line 36)
+leak: simp TauCeti.det_one_sub_vecMulVec registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.OneSubVecMulVec (declared at line 91)
+leak: simp LinearMap.toMatrix₂Aux_comp_index registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearMap.GramCongruence (declared at line 70)
+leak: simp LinearMap.toMatrix₂Aux_mul_map_basis_toMatrixₛₗ registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearMap.GramCongruence (declared at line 88)
+leak: simp LinearMap.toMatrix₂Aux_mul_map_basis_toMatrix registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.BilinearMap.GramCongruence (declared at line 120)
+leak: simp _private.Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction.0.TauCeti.ExteriorAlgebra.contractLeft_coord_basis_eq_zero_of_not_mem registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 48)
+leak: simp TauCeti.ExteriorAlgebra.involute_ιMulti registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 69)
+leak: simp TauCeti.ExteriorAlgebra.involute_basis registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 82)
+leak: simp TauCeti.ExteriorAlgebra.basis_singleton registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 99)
+leak: simp TauCeti.ExteriorAlgebra.ι_mul_basis registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 136)
+leak: simp TauCeti.ExteriorAlgebra.contractLeft_coord_basis registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Contraction (declared at line 154)
+leak: instance CliffordAlgebra.faithfulSMul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Basic (declared at line 40)
+leak: simp Module.Basis.exteriorAlgebra_mem_evenOdd_card registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Grading (declared at line 87)
+leak: simp Module.Basis.exteriorAlgebra_mem_evenOdd_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Grading (declared at line 98)
+leak: simp CliffordAlgebra.involute_contractLeft registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Contraction (declared at line 57)
+leak: instance TauCeti.ExteriorAlgebra.instFree registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Dimension (declared at line 59)
+leak: instance TauCeti.ExteriorAlgebra.instFinite registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorAlgebra.Dimension (declared at line 66)
+leak: instance CliffordAlgebra.instFree registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Dimension (declared at line 135)
+leak: instance CliffordAlgebra.instFinite registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Dimension (declared at line 140)
+leak: simp CliffordAlgebra.map_star registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.Functoriality (declared at line 40)
+leak: simp CliffordAlgebra.prod_map_ι_sq_scalar registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.CliffordAlgebra.VolumeElement (declared at line 255)
+leak: simp Matrix.detRowAlternating_mulVec registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Determinant (declared at line 192)
+leak: simp Module.Dual.ker_id_sub_smulRight registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Dual.Lemmas (declared at line 36)
+leak: simp TauCeti.isIrreducible_comp_surjective_iff registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Restriction (declared at line 179)
+leak: simp TauCeti.isIrreducible_comp_equiv_iff registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Restriction (declared at line 188)
+leak: instance TauCeti.conjNormalRepMulAction registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Conjugate (declared at line 691)
+leak: instance TauCeti.conjNormalFDRepMulAction registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Conjugate (declared at line 799)
+leak: instance TauCeti.conjNormalFDRepSkeletonSMul registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Conjugate (declared at line 831)
+leak: instance TauCeti.conjNormalFDRepSkeletonMulAction registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Conjugate (declared at line 843)
+leak: simp TauCeti.map_iInf_eigenspace_unitHom_eq_conjNormal registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Eigenspace.JointEigenvector.Normal.Basic (declared at line 72)
+leak: simp LinearMap.GeneralLinearGroup.IsUnipotent.maxGenEigenspace_one_eq_top registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Eigenspace.Unipotent (declared at line 45)
+leak: instance TauCeti.instInvertibleTwoModuleEndInt registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.End.InvertibleTwo (declared at line 95)
+leak: simp _private.Tengoku.Tauceti.TauCeti.LinearAlgebra.End.Prod.0.Module.End.prodMap_pow registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.End.Prod (declared at line 38)
+leak: simp Module.End.rTensorAlgHom_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.End.TensorProduct (declared at line 44)
+leak: simp Module.End.lTensorAlgHom_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.End.TensorProduct (declared at line 52)
+leak: simp exteriorPower.map_finrank_eq_det_smul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.ExteriorPower (declared at line 266)
+leak: simp Submodule.finrank_quotient_prod registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Quotient.Prod (declared at line 112)
+leak: simp Matrix.adjugate_fin_two_eq_trace_smul_one_sub registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.AdjugateFinTwo (declared at line 25)
+leak: simp Matrix.isAlt_toBilin'_one_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.BilinearForm (declared at line 32)
+leak: simp CartanMatrix.A_det registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.Cartan.Classical (declared at line 133)
+leak: instance TauCeti.decidableMemSpectrum registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.EigenvalueSearch (declared at line 214)
+leak: simp Matrix.GeneralLinearGroup.mkOfDetNeZero_coe registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.MkOfDetNeZero (declared at line 49)
+leak: simp TauCeti.Matrix.GeneralLinearGroup.eval_entries_det_mvPolynomialX registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.PolynomialFunctions (declared at line 77)
+leak: simp QuadraticMap.Isometry.polar_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Isometry (declared at line 37)
+leak: simp QuadraticMap.IsometryEquiv.trans_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Isometry (declared at line 46)
+leak: simp Module.det_reflection registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Reflection (declared at line 25)
+leak: simp TauCeti.QuadraticMap.isOrtho_iff_of_mem_orthogonalGroup registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.OrthogonalGroup (declared at line 170)
+leak: simp TauCeti.QuadraticMap.polar_apply_of_mem_orthogonalGroup registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.OrthogonalGroup (declared at line 249)
+leak: simp TauCeti.polar_toQuadraticForm'_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.OrthogonalGroup.QuadraticForm (declared at line 47)
+leak: simp TauCeti.toMatrix_mem_orthogonalGroup_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.OrthogonalGroup.QuadraticForm (declared at line 54)
+leak: simp TauCeti.toMatrix_mem_specialOrthogonalGroup_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.OrthogonalGroup.QuadraticForm (declared at line 78)
+leak: simp Matrix.transpose_mul_J_mul_eq_det_smul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.SymplecticMultiplier (declared at line 74)
+leak: simp LinearEquiv.prodCongr_inj registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Prod (declared at line 42)
+leak: simp LinearEquiv.det_prodCongr registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Prod (declared at line 85)
+leak: simp QuadraticForm.baseChange_zero registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 277)
+leak: simp QuadraticForm.baseChange_add registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 283)
+leak: simp QuadraticForm.baseChange_neg registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 290)
+leak: simp QuadraticForm.baseChange_sub registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 297)
+leak: simp QuadraticForm.baseChange_smul registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 304)
+leak: simp QuadraticForm.baseChange_eq_zero_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 311)
+leak: simp QuadraticForm.anisotropic_baseChange_iff_of_finrank_le_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.BaseChange (declared at line 523)
+leak: simp QuadraticForm.equivalent_iff_finrank_eq_of_isAlgClosed registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Complex (declared at line 93)
+leak: simp QuadraticForm.equivalent_weightedSumSquares_one_iff_finrank_eq registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Complex (declared at line 107)
+leak: simp QuadraticMap.associated_weightedSumSquares registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Diagonal.Basic (declared at line 181)
+leak: simp QuadraticForm.toMatrix'_weightedSumSquares registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Diagonal.Basic (declared at line 200)
+leak: simp QuadraticForm.discr'_weightedSumSquares registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Diagonal.Basic (declared at line 214)
+leak: simp TauCeti.QuadraticForm.polarBilin_weightedSumSquares_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.QuadraticForm.Standard (declared at line 73)
+leak: simp RootPairing.RootPositiveForm.rootLength_reflectionPerm registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Weyl.Orbit (declared at line 89)
+leak: simp RootPairing.weylGroup.pow_three_ofIdx_mul_ofIdx_eq_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 142)
+leak: simp RootPairing.weylGroup.pow_four_ofIdx_mul_ofIdx_eq_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 155)
+leak: simp RootPairing.weylGroup.pow_six_ofIdx_mul_ofIdx_eq_one registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 167)
+leak: simp RootPairing.weylGroup.orderOf_ofIdx_mul_ofIdx_eq_three registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 209)
+leak: simp RootPairing.weylGroup.orderOf_ofIdx_mul_ofIdx_eq_four registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 226)
+leak: simp RootPairing.weylGroup.orderOf_ofIdx_mul_ofIdx_eq_six registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 245)
+leak: simp RootPairing.weylGroup.orderOf_ofIdx_mul_ofIdx_eq_coxeterMatrixOfBase registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.BraidRelation (declared at line 292)
+leak: simp RootPairing.pairingIn_flip registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Flip (declared at line 48)
+leak: simp RootPairing.Base.cartanMatrix_flip registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Flip (declared at line 71)
+leak: simp RootPairing.Base.flip_flip registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Flip (declared at line 84)
+leak: simp TauCeti.equivOfCartanMatrixEq_indexEquiv_apply registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Isomorphism (declared at line 59)
+leak: simp TauCeti.map_equivOfCartanMatrixEq registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Isomorphism (declared at line 91)
+leak: simp TauCeti.height_reflectionPerm_of_mem_support registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.RootSystem.Lowering (declared at line 59)
+leak: simp PowerSeries.constantCoeff_rescale registered in Tengoku.Tauceti.TauCeti.RingTheory.PowerSeries.Exp (declared at line 44)
+leak: instance TauCeti.SymmetricAlgebra.instLieRingModule registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.SymmetricAlgebra.AdjointAction (declared at line 72)
+leak: simp SymmetricAlgebra.equivMvPolynomial_isHomogeneous_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.SymmetricAlgebra.BasisComparison (declared at line 51)
+leak: instance SymmetricPower.finite registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.SymmetricPower.Basic (declared at line 242)
+leak: simp TauCeti.descPochhammer_natDegree registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Pochhammer (declared at line 40)
+leak: simp TauCeti.descPochhammer_degree registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Pochhammer (declared at line 49)
+leak: instance TauCeti.instMeasurableConstSMulConjAct registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.Conjugation (declared at line 72)
+leak: instance TauCeti.instSMulInvariantMeasureConjAct registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.Conjugation (declared at line 79)
+leak: instance TauCeti.instMeasurableSpaceMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 57)
+leak: instance TauCeti.instIsProbabilityMeasureMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 66)
+leak: instance TauCeti.instIsFiniteMeasureOnCompactsMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 70)
+leak: instance TauCeti.instIsOpenPosMeasureMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 76)
+leak: instance TauCeti.instIsMulLeftInvariantMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 82)
+leak: instance TauCeti.instIsHaarMeasureMultiplicative registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Group.TypeTags (declared at line 88)
+leak: instance TauCeti.instMeasurableSpaceList registered in Tengoku.Tauceti.TauCeti.MeasureTheory.MeasurableSpace.List (declared at line 35)
+leak: instance Convexity.StdSimplex.instMeasurableSpace registered in Tengoku.Tauceti.TauCeti.MeasureTheory.MeasurableSpace.StdSimplex (declared at line 38)
+leak: simp Measure.map_dirac_of_aemeasurable registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.Dirac (declared at line 35)
+leak: instance TauCeti.MeasureTheory.ProbabilityMeasure.borelSpace registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.ProbabilityMeasure.Borel (declared at line 149)
+leak: simp MeasureTheory.Measure.map_add_right_withDensity registered in Tengoku.Tauceti.TauCeti.MeasureTheory.Measure.WithDensity (declared at line 99)
+leak: simp PMF.sum_toReal_eq_one registered in Tengoku.Tauceti.TauCeti.Probability.ProbabilityMassFunction.Finite (declared at line 38)
+leak: simp NumberField.RingOfIntegers.mapRingEquiv_refl_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.RingOfIntegers.Transport (declared at line 33)
+leak: simp NumberField.RingOfIntegers.mapRingEquiv_trans_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.RingOfIntegers.Transport (declared at line 38)
+leak: simp Ideal.comap_mapRingEquiv_refl registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.RingOfIntegers.Transport (declared at line 52)
+leak: simp Ideal.comap_mapRingEquiv_trans registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.RingOfIntegers.Transport (declared at line 59)
+leak: simp Ideal.comap_mapRingEquiv_eq_bot_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.RingOfIntegers.Transport (declared at line 69)
+leak: simp TauCeti.ModularGroup.orbit_mk_int_vadd registered in Tengoku.Tauceti.TauCeti.NumberTheory.Modular.Orbits (declared at line 76)
+leak: simp TauCeti.ModularGroup.orbit_mk_eq_I_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.Modular.Orbits (declared at line 186)
+leak: simp TauCeti.ModularGroup.orbit_mk_eq_ρ_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.Modular.Orbits (declared at line 206)
+leak: instance TauCeti.ModularGroup.finite_stabilizer registered in Tengoku.Tauceti.TauCeti.NumberTheory.Modular.Stabilizer (declared at line 85)
+leak: instance NumberField.RingOfIntegers.smulCommClass registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.AutomorphismAction (declared at line 89)
+leak: simp NumberField.algebraMap_smul_eq_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.AutomorphismAction (declared at line 54)
+leak: simp NumberField.algebraMap_restrictNormal_smul registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.AutomorphismAction (declared at line 68)
+leak: simp Ideal.isUnramifiedAt_pointwise_smul_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.RamificationInertia.Galois (declared at line 61)
+leak: simp Ideal.inertia_pointwise_smul registered in Tengoku.Tauceti.TauCeti.NumberTheory.RamificationInertia.Galois (declared at line 143)
+leak: simp IsPrimitiveRoot.autToPow_eq_one_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.RootsOfUnity.PrimitiveRoots (declared at line 74)
+leak: instance TauCeti.TateCohomology.finite_tateCohomology_zero registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.TateCohomology.LowDegree (declared at line 155)
+leak: instance TauCeti.TateCohomology.finite_tateCohomology_negOne registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.TateCohomology.LowDegree (declared at line 310)
+leak: instance TauCeti.TateCohomology.subsingleton_tateCohomology_negOne_trivial_int registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.TateCohomology.LowDegree (declared at line 528)
+leak: simp TauCeti.TateCohomology.range_norm_trivial_int registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.TateCohomology.LowDegree (declared at line 477)
+leak: simp TauCeti.TateCohomology.natCard_tateCohomology_zero_trivial_int_eq_card registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.TateCohomology.LowDegree (declared at line 521)
+leak: simp FractionalIdeal.ringEquivOfRingEquiv_coeIdeal registered in Tengoku.Tauceti.TauCeti.RingTheory.FractionalIdeal.Operations (declared at line 66)
+leak: simp ClassGroup.mulEquiv_mk_fractionRing registered in Tengoku.Tauceti.TauCeti.NumberTheory.ClassGroup.Equiv (declared at line 54)
+leak: simp ClassGroup.mulEquiv_refl registered in Tengoku.Tauceti.TauCeti.NumberTheory.ClassGroup.Equiv (declared at line 103)
+leak: simp ClassGroup.mulEquiv_trans registered in Tengoku.Tauceti.TauCeti.NumberTheory.ClassGroup.Equiv (declared at line 115)
+leak: simp ClassGroup.mulEquiv_symm registered in Tengoku.Tauceti.TauCeti.NumberTheory.ClassGroup.Equiv (declared at line 144)
+leak: simp ClassGroup.mulEquiv_mk0 registered in Tengoku.Tauceti.TauCeti.NumberTheory.ClassGroup.Equiv (declared at line 193)
+leak: simp NumberField.Units.regulator_eq_one_of_rank_eq_zero registered in Tengoku.Tauceti.TauCeti.NumberTheory.EffectiveBounds.Regulator (declared at line 45)
+leak: simp NumberField.Units.regulator_rat_eq_one registered in Tengoku.Tauceti.TauCeti.NumberTheory.EffectiveBounds.Regulator (declared at line 97)
+leak: simp normEDS_mul_complEDS registered in Tengoku.Tauceti.TauCeti.NumberTheory.EllipticDivisibilitySequence.Complement (declared at line 139)
+leak: simp WeierstrassCurve.normEDS_six registered in Tengoku.Tauceti.TauCeti.NumberTheory.EllipticDivisibilitySequence.Six (declared at line 44)
+leak: instance HeckeCosetModule.instModule registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Basic (declared at line 899)
+leak: simp HeckeCosetModule.mem_support_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Basic (declared at line 924)
+leak: simp HeckeCosetModule.sum_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Basic (declared at line 942)
+leak: simp HeckeCosetModule.zero_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Basic (declared at line 956)
+leak: simp HeckeCosetModule.add_apply registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Basic (declared at line 963)
+leak: instance HeckeCosetModule.instMulHeckeRing registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Multiplication (declared at line 105)
+leak: instance HeckeCosetModule.instNonUnitalNonAssocSemiringHeckeRing registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.Multiplication (declared at line 191)
+leak: instance HeckeCosetModule.instOneHeckeRing registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.One (declared at line 85)
+leak: instance HeckeCosetModule.instNonAssocSemiringHeckeRing registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.One (declared at line 121)
+leak: simp CongruenceSubgroup.intCast_apply_zero_zero_add_natCast_mul_apply_one_zero_of_mem_Gamma0 registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CongruenceSubgroups.Basic (declared at line 225)
+leak: instance HeckeCoset.instOneBot registered in Tengoku.Tauceti.TauCeti.NumberTheory.HeckeRing.LeftCosetModule.Basic (declared at line 70)
+leak: simp TauCeti.LSeries.term_term_sub registered in Tengoku.Tauceti.TauCeti.NumberTheory.LSeries.Convergence (declared at line 204)
+leak: instance _private.Tengoku.Tauceti.TauCeti.NumberTheory.LSeries.WienerIkehara.Fourier.0.TauCeti.LSeries.instMeasurableSpaceCircle registered in Tengoku.Tauceti.TauCeti.NumberTheory.LSeries.WienerIkehara.Fourier (declared at line 53)
+leak: simp TauCeti.dvd_mul_sq_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.LegendreSymbol.SquareClass (declared at line 32)
+leak: simp TauCeti.legendreSym_mul_sq registered in Tengoku.Tauceti.TauCeti.NumberTheory.LegendreSymbol.SquareClass (declared at line 45)
+leak: simp TauCeti.mem_integer_iff_normalizedAbsoluteValue_le_one registered in Tengoku.Tauceti.TauCeti.NumberTheory.LocalField.NormalizedValuation (declared at line 412)
+leak: instance TauCeti.IsAdicComplete.henselianLocalRing registered in Tengoku.Tauceti.TauCeti.RingTheory.Henselian.Basic (declared at line 71)
+leak: instance TauCeti.henselianLocalRing_integer registered in Tengoku.Tauceti.TauCeti.NumberTheory.LocalField.Henselian (declared at line 32)
+leak: simp σ_mapGL_real_eq_refl registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Basic (declared at line 91)
+leak: simp CuspForm.coe_translate_gl registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Basic (declared at line 159)
+leak: simp ModularForm.smul_slash_of_det_pos registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Basic (declared at line 186)
+leak: simp UpperHalfPlane.isZeroAtImInfty_zero registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.BoundedAtCusp (declared at line 55)
+leak: simp OnePoint.IsZeroAt.zero registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.BoundedAtCusp (declared at line 69)
+leak: simp OnePoint.IsBoundedAt.zero registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.BoundedAtCusp (declared at line 73)
+leak: simp CongruenceSubgroup.Gamma0Map_toHomUnits_of_dvd registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CongruenceSubgroups.Units (declared at line 38)
+leak: instance _private.Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp.0.instNeZeroComplexCastCardUnitsZMod registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp (declared at line 68)
+leak: instance _private.Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp.0.instNeZeroNatExponentUnitsZMod registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp (declared at line 71)
+leak: instance _private.Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp.0.instNeZeroComplexCastExponentUnitsZMod registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.CharacterDecomp (declared at line 74)
+leak: simp TauCeti.ModularGroup.mapGL_T_zpow_eq_upperRightHom registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Cusps.Basic (declared at line 42)
+leak: simp TauCeti.ModularGroup.mapGL_T_pow_eq_upperRightHom registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Cusps.Basic (declared at line 51)
+leak: simp TauCeti.Subgroup.mk_T_pow_eq_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Cusps.Basic (declared at line 99)
+leak: simp TauCeti.Subgroup.T_pow_mem_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.ModularForms.Cusps.Basic (declared at line 199)
+leak: simp TauCeti.Multiquadratic.aut_mul_self_eq_one registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.Galois.Basic (declared at line 205)
+leak: simp TauCeti.Multiquadratic.legendreSym_evenPrimeDiscriminant_neg_four_eq_one_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.Legendre.EvenPrimeDiscriminant (declared at line 157)
+leak: simp TauCeti.Multiquadratic.legendreSym_evenPrimeDiscriminant_eight_eq_one_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.Legendre.EvenPrimeDiscriminant (declared at line 164)
+leak: simp TauCeti.Multiquadratic.legendreSym_evenPrimeDiscriminant_neg_eight_eq_one_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.Legendre.EvenPrimeDiscriminant (declared at line 171)
+leak: simp TauCeti.AdjoinRoot.root_sq registered in Tengoku.Tauceti.TauCeti.RingTheory.AdjoinRoot (declared at line 24)
+leak: instance TauCeti.NumberField.irreducible_X_sq_add_five registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.MinusFive.Basic (declared at line 33)
+leak: instance TauCeti.NumberField.irreducible_X_sq_add_twenty_one registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.MinusTwentyOne.Basic (declared at line 45)
+leak: instance TauCeti.NumberField.irreducible_X_sq_sub_three registered in Tengoku.Tauceti.TauCeti.NumberTheory.Multiquadratic.Three.Basic (declared at line 45)
+leak: simp NumberField.iSup_inertia_eq_top registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.Inertia (declared at line 231)
+leak: simp TauCeti.Algebra.norm_pi registered in Tengoku.Tauceti.TauCeti.RingTheory.NormTrace.Pi (declared at line 39)
+leak: simp TauCeti.Algebra.trace_pi registered in Tengoku.Tauceti.TauCeti.RingTheory.NormTrace.Pi (declared at line 62)
+leak: simp TauCeti.Algebra.norm_prod registered in Tengoku.Tauceti.TauCeti.RingTheory.NormTrace.Prod (declared at line 43)
+leak: simp TauCeti.NumberField.mixedEmbedding.negAt_mem_fundamentalCone_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.CanonicalEmbedding.NormLeOne (declared at line 35)
+leak: simp TauCeti.NumberField.mixedEmbedding.negAt_mem_unit_smul_normLeOne_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.CanonicalEmbedding.NormLeOne (declared at line 42)
+leak: simp TauCeti.FractionalIdeal.coe_dual_one_of_isDomain registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.Different.Basic (declared at line 44)
+leak: simp TauCeti.traceDual_one_fractionRing_self registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.Different.Basic (declared at line 117)
+leak: instance TauCeti.instNonemptyHeightOneSpectrumRingOfIntegersOfNumberField registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FinitePlace (declared at line 33)
+leak: simp Subgroup.coe_subgroupEquivAlgEquiv registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FixedField (declared at line 88)
+leak: simp Subgroup.subgroupEquivAlgEquiv_smul_ideal registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FixedField (declared at line 95)
+leak: simp NumberField.stabilizer_fixedField_zpowers_eq_top registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FixedField (declared at line 111)
+leak: simp Ideal.comap_stabilizer_fixedField_eq_subgroupOf registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FixedField (declared at line 163)
+leak: simp Ideal.comap_inertia_fixedField_eq_subgroupOf registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.FixedField (declared at line 198)
+leak: instance IsDedekindDomain.HeightOneSpectrum.adicCompletion_charZero registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.Completion (declared at line 87)
+leak: instance IsDedekindDomain.HeightOneSpectrum.isTopologicalRing_adicCompletionIntegers registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.Completion (declared at line 184)
+leak: simp IsDedekindDomain.HeightOneSpectrum.under_maximalIdeal_adicCompletionIntegers registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.Completion (declared at line 93)
+leak: simp IsDedekindDomain.HeightOneSpectrum.map_asIdeal_adicCompletionIntegers registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.Completion (declared at line 124)
+leak: simp IsDedekindDomain.HeightOneSpectrum.mem_maximalIdeal_pow_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.Completion (declared at line 158)
+leak: instance IsDedekindDomain.FiniteAdeleRing.instT2Space registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.FiniteAdeleRing.Basic (declared at line 67)
+leak: simp IsDedekindDomain.FiniteAdeleRing.one_apply registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.FiniteAdeleRing.Basic (declared at line 77)
+leak: simp IsDedekindDomain.FiniteAdeleRing.sub_apply registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.FiniteAdeleRing.Basic (declared at line 80)
+leak: simp IsDedekindDomain.FiniteAdeleRing.mul_apply registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.FiniteAdeleRing.Basic (declared at line 84)
+leak: simp IsDedekindDomain.FiniteAdeleRing.valued_coe_units_inv_apply registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.FiniteAdeleRing.ClassGroup (declared at line 93)
+leak: instance NumberField.InfiniteAdeleRing.instT2Space registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.Global.Adeles.Basic (declared at line 32)
+leak: instance NumberField.AdeleRing.instT2Space registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.Global.Adeles.Basic (declared at line 118)
+leak: instance IsDedekindDomain.HeightOneSpectrum.instValuativeRelAdicCompletion registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.AdicValuation.ValuativeRel (declared at line 66)
+leak: instance TauCeti.GlobalNumberFields.discreteTopology_principalSubgroup registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.Global.Adeles.Discrete (declared at line 62)
+leak: simp NumberField.isUnramifiedAtInfinitePlaces_iff_isTotallyReal registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.InfinitePlace.Basic (declared at line 68)
+leak: simp NumberField.not_isReal_of_isTotallyComplex registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.TotallyPositive (declared at line 136)
+leak: simp IsDedekindDomain.HeightOneSpectrum.intCast_mem_asIdeal_iff registered in Tengoku.Tauceti.TauCeti.NumberTheory.NumberField.ResidueDegree (declared at line 214)
+leak: simp TauCeti.Probability.integral_id_bernoulliMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Bernoulli.Basic (declared at line 54)
+leak: simp TauCeti.Probability.variance_id_bernoulliMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Bernoulli.Basic (declared at line 61)
+leak: simp TauCeti.Probability.mgf_id_bernoulliMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Bernoulli.Basic (declared at line 82)
+leak: simp TauCeti.Probability.cgf_id_bernoulliMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Bernoulli.Basic (declared at line 95)
+leak: simp TauCeti.Probability.charFun_bernoulliMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Bernoulli.Basic (declared at line 102)
+leak: simp TauCeti.Probability.integral_pow_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Basic (declared at line 119)
+leak: simp TauCeti.Probability.integral_id_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Basic (declared at line 173)
+leak: simp TauCeti.Probability.variance_id_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Basic (declared at line 183)
+leak: simp TauCeti.Probability.integrableExpSet_id_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Basic (declared at line 201)
+leak: simp TauCeti.Probability.cdf_betaMeasure_eq registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Cdf (declared at line 127)
+leak: simp TauCeti.Probability.measureReal_Iic_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Cdf (declared at line 147)
+leak: simp TauCeti.Probability.measureReal_Ioc_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Cdf (declared at line 155)
+leak: simp TauCeti.Probability.measureReal_Ioi_betaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Beta.Cdf (declared at line 167)
+leak: simp TauCeti.Probability.binomial_tail_eq_regularizedIncompleteBeta registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Binomial.Tail (declared at line 121)
+leak: simp TauCeti.Probability.binomial_cumulative_eq_regularizedIncompleteBeta registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Binomial.Tail (declared at line 151)
+leak: simp TauCeti.Probability.cdf_dirac registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Dirac (declared at line 34)
+leak: simp TauCeti.Probability.integrableExpSet_dirac registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Dirac (declared at line 40)
+leak: simp TauCeti.Probability.cgf_dirac' registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Dirac (declared at line 49)
+leak: simp TauCeti.Probability.cdf_cauchyMeasure_of_scale_ne_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Cauchy.Basic (declared at line 122)
+leak: simp TauCeti.Probability.integrable_exp_mul_id_cauchyMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Cauchy.Basic (declared at line 291)
+leak: simp TauCeti.Probability.integrableExpSet_id_cauchyMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Cauchy.Basic (declared at line 301)
+leak: simp TauCeti.Probability.cauchyMeasure_map_add_const registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Cauchy.Basic (declared at line 316)
+leak: simp TauCeti.Probability.charFun_cauchyMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Cauchy.Basic (declared at line 381)
+leak: instance TauCeti.Probability.instSigmaFiniteRealGammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 87)
+leak: simp TauCeti.Probability.gammaPDFReal_of_nonneg registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 124)
+leak: simp TauCeti.Probability.integral_pow_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 200)
+leak: simp TauCeti.Probability.integrable_inv_pow_gammaMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 295)
+leak: simp TauCeti.Probability.integral_inv_pow_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 303)
+leak: simp TauCeti.Probability.integral_id_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 320)
+leak: simp TauCeti.Probability.integral_sq_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 329)
+leak: simp TauCeti.Probability.integrableExpSet_id_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 407)
+leak: simp TauCeti.Probability.mgf_id_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 417)
+leak: simp TauCeti.Probability.cgf_id_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 438)
+leak: simp TauCeti.Probability.variance_id_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 449)
+leak: simp TauCeti.Probability.gammaMeasure_conv_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 462)
+leak: simp TauCeti.Probability.gammaMeasure_map_const_mul registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Basic (declared at line 504)
+leak: simp TauCeti.Probability.cdf_gammaMeasure_eq registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Cdf (declared at line 100)
+leak: simp TauCeti.Probability.measureReal_Iic_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Cdf (declared at line 132)
+leak: simp TauCeti.Probability.measureReal_Ioc_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Cdf (declared at line 140)
+leak: simp TauCeti.Probability.measureReal_Ioi_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Cdf (declared at line 152)
+leak: simp TauCeti.Probability.charFun_gammaMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.CharFun (declared at line 81)
+leak: simp TauCeti.Probability.bind_gammaMeasure_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gamma.Poisson (declared at line 126)
+leak: simp TauCeti.Probability.map_affine_multivariateGaussian registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gaussian.Affine (declared at line 63)
+leak: simp TauCeti.Probability.integral_abs_sub_pow_gaussianReal registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gaussian.Moments (declared at line 73)
+leak: simp TauCeti.Probability.centralMoment_id_two_mul_gaussianReal registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gaussian.Moments (declared at line 114)
+leak: simp TauCeti.Probability.centralMoment_id_two_mul_add_one_gaussianReal registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Gaussian.Moments (declared at line 136)
+leak: simp TauCeti.Probability.integrableExpSet_id_map_cast_geometricMeasure_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Geometric.Basic (declared at line 199)
+leak: simp TauCeti.Probability.mgf_id_map_cast_geometricMeasure_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Geometric.Basic (declared at line 209)
+leak: simp TauCeti.Probability.cgf_id_map_cast_geometricMeasure_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Geometric.Basic (declared at line 217)
+leak: simp TauCeti.Probability.charFun_map_cast_geometricMeasure_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Geometric.Basic (declared at line 223)
+leak: simp TauCeti.Probability.geometricMeasure_real_Iic_zero registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Geometric.Basic (declared at line 229)
+leak: simp TauCeti.Probability.integrable_rpow_paretoMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 111)
+leak: simp TauCeti.Probability.integrable_id_paretoMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 162)
+leak: simp TauCeti.Probability.integrable_sq_paretoMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 183)
+leak: simp TauCeti.Probability.cdf_paretoMeasure_eq registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 211)
+leak: simp TauCeti.Probability.integrable_exp_mul_id_paretoMeasure_iff registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 263)
+leak: simp TauCeti.Probability.integrableExpSet_id_paretoMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Pareto.Basic (declared at line 276)
+leak: simp TauCeti.Probability.mgf_id_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 53)
+leak: simp TauCeti.Probability.integrableExpSet_id_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 67)
+leak: simp TauCeti.Probability.cgf_id_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 74)
+leak: simp TauCeti.Probability.integral_id_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 82)
+leak: simp TauCeti.Probability.integral_sq_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 92)
+leak: simp TauCeti.Probability.variance_id_map_cast_poissonMeasure registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Basic (declared at line 124)
+leak: simp TauCeti.Probability.poissonMeasure_tail_eq_regularizedGamma registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Tail (declared at line 99)
+leak: simp TauCeti.Probability.poissonMeasure_real_Iic registered in Tengoku.Tauceti.TauCeti.Probability.Distributions.Poisson.Tail (declared at line 121)
+leak: simp TauCeti.Probability.compMeasurePreserving_eq_self_iff registered in Tengoku.Tauceti.TauCeti.Probability.Ergodic.FixedSpace (declared at line 56)
+leak: simp TauCeti.Probability.coe_compMeasurePreservingₗᵢ registered in Tengoku.Tauceti.TauCeti.Probability.Ergodic.FixedSpace (declared at line 91)
+leak: simp TauCeti.Probability.aestronglyMeasurable_invariants_iff_comp_ae_eq registered in Tengoku.Tauceti.TauCeti.Probability.Ergodic.InvariantSigma (declared at line 143)
+leak: simp TauCeti.Probability.condExpL2_invariants_eq_self_iff registered in Tengoku.Tauceti.TauCeti.Probability.Ergodic.CondExpProjection (declared at line 114)
+leak: instance TauCeti.instFiniteCenterMonoidAlgebra registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.FiniteField (declared at line 118)
+leak: instance TauCeti.instIsArtinianRingCenterMonoidAlgebra registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.CharacterTable.FiniteField (declared at line 123)
+leak: simp TauCeti.TensorPower.map_fin_zero registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Tensor.Power (declared at line 40)
+leak: simp TauCeti.stdSymplecticBilinForm_stdSymplecticRep registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.ClassicalGroups.Symplectic (declared at line 143)
+leak: instance Rep.simple_of_isIrreducible registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Simple.Basic (declared at line 95)
+leak: instance FDRep.simple_of_isIrreducible registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Simple.Basic (declared at line 206)
+leak: instance FDRep.isSimpleModule_asModule_of_simple registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Simple.Basic (declared at line 216)
+leak: simp SemistandardYoungTableau.lt_card_filter_rowLen_iff registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.ClassicalGroups.GelfandTsetlin.Tableau (declared at line 283)
+leak: simp TauCeti.Representation.ofModule'_apply registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.OfModule (declared at line 55)
+leak: simp TauCeti.Representation.asAlgebraHom_ofModule'_apply registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.OfModule (declared at line 71)
+leak: simp Representation.range_norm_eq_invariants registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Invariants (declared at line 67)
+leak: simp TauCeti.centralizer_span_range_map_const_eq_range_permTensorActionAlgHom registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Symmetric.TensorAction.SchurWeyl (declared at line 106)
+leak: simp ContIntertwiningMap.toIntertwiningMap_apply registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Intertwining (declared at line 55)
+leak: simp ContRepresentation.invariants_restrict_bot registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Invariants (declared at line 106)
+leak: simp ContRepresentation.invariants_restrict_top registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Invariants (declared at line 113)
+leak: simp ContRepresentation.linHom_apply_eq_self_iff_isIntertwining registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.LinHom (declared at line 129)
+leak: simp TauCeti.res_trivial registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Continuous.Restriction (declared at line 31)
+leak: instance ContinuousMap.discreteTopology registered in Tengoku.Tauceti.TauCeti.Topology.CompactOpen (declared at line 29)
+leak: instance TauCeti.discreteTopology_resolutionX registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.CompactDiscrete (declared at line 40)
+leak: instance TauCeti.discreteTopology_homogeneousCochains registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.CompactDiscrete (declared at line 48)
+leak: instance TauCeti.discreteTopology_continuousCohomology registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.CompactDiscrete (declared at line 56)
+leak: simp TauCeti.toPermHom_ker_eq_top_iff registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.GroupAction.Discrete (declared at line 99)
+leak: simp TauCeti.ContCohomology.mem_invariants_iff_mem_H0 registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.GroupCohomologyIso (declared at line 126)
+leak: simp TauCeti.ContCohomology.mem_cocycles₁_iff_mem_Z1 registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.GroupCohomologyIso (declared at line 141)
+leak: simp TauCeti.ContCohomology.mem_coboundaries₁_iff_mem_B1 registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.GroupCohomologyIso (declared at line 152)
+leak: simp TauCeti.ContCohomology.mem_cocycles₂_iff_mem_Z2 registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.GroupCohomologyIso (declared at line 160)
+leak: simp TauCeti.ContCohomology.mem_coboundaries₂_iff_mem_B2 registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.ContCohomology.GroupCohomologyIso (declared at line 170)
+leak: simp TauCeti.char_ofMulAction registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Permutation (declared at line 258)
+leak: simp TauCeti.char_ind_trivial registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Induction.Permutation (declared at line 275)
+leak: instance TauCeti.groupHomology.chainsFunctorAdditive registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Homological.GroupHomology.Functoriality (declared at line 32)
+leak: simp TauCeti.QuiverRep.map_nil registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Representation.Basic (declared at line 52)
+leak: instance TauCeti.isLocalRing_adjoinRoot_X_pow registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Truncated (declared at line 105)
+leak: simp TauCeti.Matrix.isReduced_iff_subsingleton registered in Tengoku.Tauceti.TauCeti.RingTheory.Semisimple.BasicAlgebra (declared at line 128)
+leak: simp TauCeti.DoubledQuiver.reachable_iff registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Quiver.Zigzag.Connected (declared at line 184)
+leak: simp TauCeti.mem_span_singleton_iff_mul_eq_self registered in Tengoku.Tauceti.TauCeti.RingTheory.PrimitiveIdempotent (declared at line 132)
+leak: simp TauCeti.polar_dualProd registered in Tengoku.Tauceti.TauCeti.RepresentationTheory.Spin.Polarization.Hyperbolic (declared at line 85)
+leak: simp TauCeti.blockTriangular_id_iff registered in Tengoku.Tauceti.TauCeti.LinearAlgebra.Matrix.GeneralLinearGroup.Borel (declared at line 105)
+leak: simp AdicCompletion.pi_of registered in Tengoku.Tauceti.TauCeti.RingTheory.AdicCompletion.Pi (declared at line 36)
+leak: instance Localization.AtPrime.algebraOfIsFractionRing registered in Tengoku.Tauceti.TauCeti.RingTheory.Localization.AtPrime (declared at line 51)
+leak: simp TauCeti.normalizedFactors_finset_prod_of_prime registered in Tengoku.Tauceti.TauCeti.RingTheory.UniqueFactorizationDomain.SubsetProduct (declared at line 33)
+leak: simp TauCeti.finset_prod_eq_iff_of_prime registered in Tengoku.Tauceti.TauCeti.RingTheory.UniqueFactorizationDomain.SubsetProduct (declared at line 40)
+leak: simp TauCeti.comap_subtype_map_lsmul registered in Tengoku.Tauceti.TauCeti.RingTheory.Length (declared at line 147)
+leak: instance TauCeti.integralClosure.isDedekindDomain_fractionRing registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.IntegralClosure (declared at line 116)
+leak: instance IsDedekindDomain.instIsIntegrallyClosedSubtypeMemSubalgebraInteger registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 68)
+leak: instance IsDedekindDomain.instIsNoetherianRingSubtypeMemSubalgebraInteger registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 220)
+leak: instance IsDedekindDomain.instDimensionLEOneSubtypeMemSubalgebraInteger registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 246)
+leak: instance IsDedekindDomain.instSubtypeMemSubalgebraInteger registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 265)
+leak: simp Set.mem_integer_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 63)
+leak: simp IsDedekindDomain.integer_map_asIdeal_eq_top registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 112)
+leak: simp IsDedekindDomain.integer_map_comap_eq registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Basic (declared at line 188)
+leak: simp IsDedekindDomain.integer_comap_map_pow registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SInteger.Spectrum (declared at line 116)
+leak: simp IsDedekindDomain.HeightOneSpectrum.valuationOfNeZero_eq_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.ValuationOfNeZero (declared at line 63)
+leak: simp IsDedekindDomain.HeightOneSpectrum.valuationOfNeZeroMod_mk_eq_one_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.DedekindDomain.SelmerGroup (declared at line 52)
+leak: simp Module.Basis.discr_smulTower registered in Tengoku.Tauceti.TauCeti.RingTheory.Discriminant.Tower (declared at line 82)
+leak: instance Module.Flat.pi registered in Tengoku.Tauceti.TauCeti.RingTheory.Flat.Pi (declared at line 59)
+leak: instance Algebra.GrothendieckAddGroup.instMul registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 89)
+leak: instance Algebra.GrothendieckAddGroup.instNonUnitalNonAssocRing registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 105)
+leak: instance Algebra.GrothendieckAddGroup.instNonUnitalRing registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 127)
+leak: instance Algebra.GrothendieckAddGroup.instOne registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 142)
+leak: instance Algebra.GrothendieckAddGroup.instNonAssocRing registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 148)
+leak: instance Algebra.GrothendieckAddGroup.instRing registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 165)
+leak: instance Algebra.GrothendieckAddGroup.instCommRing registered in Tengoku.Tauceti.TauCeti.RingTheory.GrothendieckRing (declared at line 229)
+leak: simp HahnSeries.leadingCoeff_inv registered in Tengoku.Tauceti.TauCeti.RingTheory.HahnSeries.Inverse (declared at line 46)
+leak: simp HahnSeries.leadingCoeff_div registered in Tengoku.Tauceti.TauCeti.RingTheory.HahnSeries.Inverse (declared at line 56)
+leak: simp TauCeti.Huber.isTopologicallyNilpotent_ringEquiv_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Huber.PowerBounded (declared at line 532)
+leak: simp isTopologicallyNilpotent_neg registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.TopologicallyNilpotent (declared at line 68)
+leak: simp DiscreteConvolution.single_convolution_single registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.InfiniteSum.DiscreteConvolution (declared at line 45)
+leak: simp DiscreteConvolution.single_addConvolution_single registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.InfiniteSum.DiscreteConvolution (declared at line 47)
+leak: simp Ideal.smul_top_eq_restrictScalars_map registered in Tengoku.Tauceti.TauCeti.RingTheory.Ideal.Extended (declared at line 91)
+leak: simp AlgHom.mapIntegralClosure_comp registered in Tengoku.Tauceti.TauCeti.RingTheory.IntegralClosure.Map (declared at line 35)
+leak: simp TauCeti.IsLocalRing.smul_maximalIdeal_pow registered in Tengoku.Tauceti.TauCeti.RingTheory.LocalRing.Pointwise (declared at line 33)
+leak: instance TauCeti.Localization.isLocalizationAwayOne registered in Tengoku.Tauceti.TauCeti.RingTheory.Localization.Away (declared at line 376)
+leak: simp TauCeti.Localization.invSelf_mul_algebraMap registered in Tengoku.Tauceti.TauCeti.RingTheory.Localization.Away (declared at line 118)
+leak: simp TauCeti.Localization.algebraMap_mul_invSelf registered in Tengoku.Tauceti.TauCeti.RingTheory.Localization.Away (declared at line 180)
+leak: simp TauCeti.coeff_msymm_eq_zero_of_degree_ne registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPolynomial.Symmetric.Schur.Monomial (declared at line 235)
+leak: simp TauCeti.coeff_msymm registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPolynomial.Symmetric.Schur.Monomial (declared at line 246)
+leak: simp TauCeti.msymm_eq_zero_of_card_lt registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPolynomial.Symmetric.Schur.Monomial (declared at line 270)
+leak: simp PowerSeries.coeff_toMvPowerSeries registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPowerSeries.Equiv (declared at line 40)
+leak: simp PowerSeries.map_toMvPowerSeries registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPowerSeries.Equiv (declared at line 62)
+leak: simp PowerSeries.eval₂_toMvPowerSeries registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPowerSeries.Substitution (declared at line 258)
+leak: simp PowerSeries.eval₂_id_toMvPowerSeries registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPowerSeries.Substitution (declared at line 284)
+leak: simp MvPowerSeries.coeff_single_rename registered in Tengoku.Tauceti.TauCeti.RingTheory.MvPowerSeries.Rename (declared at line 75)
+leak: simp TauCeti.Algebra.norm_baseChange_tmul registered in Tengoku.Tauceti.TauCeti.RingTheory.NormTrace.BaseChange (declared at line 31)
+leak: simp TauCeti.Algebra.trace_baseChange_tmul registered in Tengoku.Tauceti.TauCeti.RingTheory.NormTrace.BaseChange (declared at line 52)
+leak: simp Polynomial.cyclotomic_five registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Cyclotomic.Basic (declared at line 30)
+leak: simp Polynomial.Monic.modByMonic_mul_add registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.DegreeLT (declared at line 62)
+leak: simp Polynomial.dickson_two_sq_eval_two_mul registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Dickson (declared at line 92)
+leak: simp Polynomial.dickson_sq_mul_eval_mul registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Dickson (declared at line 104)
+leak: simp Polynomial.dickson_two_sq_eval_mul registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Dickson (declared at line 116)
+leak: simp AdjoinRoot.norm_algebraMap_sub_root registered in Tengoku.Tauceti.TauCeti.RingTheory.Polynomial.Resultant.AdjoinRoot (declared at line 303)
+leak: simp PowerSeries.aeval_X registered in Tengoku.Tauceti.TauCeti.RingTheory.PowerSeries.Evaluation (declared at line 67)
+leak: simp PowerSeries.aeval_C registered in Tengoku.Tauceti.TauCeti.RingTheory.PowerSeries.Evaluation (declared at line 72)
+leak: simp TauCeti.PowerSeries.IsDistinguished.gaussNorm_trunc registered in Tengoku.Tauceti.TauCeti.RingTheory.PowerSeries.GaussNorm (declared at line 196)
+leak: instance TauCeti.Matrix.isSimpleModule_pi registered in Tengoku.Tauceti.TauCeti.RingTheory.Semisimple.MatrixDivisionRing (declared at line 178)
+leak: simp TauCeti.isotypicComponent_self_eq_top registered in Tengoku.Tauceti.TauCeti.RingTheory.Semisimple.Multiplicity (declared at line 361)
+leak: simp TauCeti.finrank_linearMap_isotypicComponent registered in Tengoku.Tauceti.TauCeti.RingTheory.Semisimple.Multiplicity (declared at line 389)
+leak: simp Subring.topologicalClosure_coe registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Ring.Subring (declared at line 41)
+leak: simp UniformSpace.Completion.coe_coeRingHom registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Nonarchimedean.Completion.Basic (declared at line 98)
+leak: simp UniformSpace.Completion.mem_topologicalClosure_map_coeRingHom_iff registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Nonarchimedean.Completion.Basic (declared at line 124)
+leak: instance Ideal.Quotient.instT1Space registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Ring.Ideal (declared at line 79)
+leak: instance Valuation.integer.isIntegrallyClosedIn registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.Integral.Basic (declared at line 41)
+leak: instance Valuation.IsTrivialOn.comap registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.IsTrivialOn (declared at line 34)
+leak: simp TauCeti.ValuativeRel.zero_vlt_prod_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.ValuativeRel.BigOperators (declared at line 37)
+leak: simp TauCeti.ValuativeRel.prod_update_vle_prod_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.ValuativeRel.BigOperators (declared at line 52)
+leak: simp TauCeti.ValuativeRel.prod_vle_prod_update_iff registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.ValuativeRel.BigOperators (declared at line 63)
+leak: instance ValuativeExtension.valuationHasExtension registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.ValuativeRel.Extension (declared at line 39)
+leak: instance TauCeti.integerRingAlgebra registered in Tengoku.Tauceti.TauCeti.RingTheory.Valuation.ValuativeRel.Extension (declared at line 65)
+leak: instance OpenSubgroup.finiteIndex_toSubgroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Group.OpenSubgroup.FiniteIndex (declared at line 36)
+leak: instance OpenAddSubgroup.finiteIndex_toAddSubgroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Group.OpenSubgroup.FiniteIndex (declared at line 38)
+leak: instance TauCeti.QuotientGroup.instTotallyDisconnectedSpace registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Group.Profinite.Basic (declared at line 233)
+leak: simp Subgroup.map_topologicalClosure_quotient_eq registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Group.Profinite.Basic (declared at line 58)
+leak: simp Subgroup.iInf_openNormalSubgroup_eq_bot registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Group.Profinite.Basic (declared at line 124)
+leak: instance Submodule.isUniformAddGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.IsUniformGroup.Submodule (declared at line 54)
+leak: instance Submodule.isCountablyGenerated_uniformity registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.IsUniformGroup.Submodule (declared at line 61)
+leak: instance Subring.isUniformAddGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.IsUniformGroup.Subring (declared at line 45)
+leak: instance Pi.instNonarchimedeanGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Nonarchimedean.Pi (declared at line 48)
+leak: instance Pi.instNonarchimedeanAddGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Nonarchimedean.Pi (declared at line 49)
+leak: instance Submodule.continuousAdd registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Module.Submodule (declared at line 46)
+leak: instance Submodule.continuousConstSMul registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.Module.Submodule (declared at line 52)
+leak: instance TauCeti.Matrix.instContinuousInvSubtypeMatrixMemSubmonoidSpecialUnitaryGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.UnitaryGroup (declared at line 52)
+leak: instance TauCeti.Matrix.instIsTopologicalGroupSubtypeMatrixMemSubmonoidSpecialUnitaryGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.UnitaryGroup (declared at line 59)
+leak: instance TauCeti.Matrix.instCompactSpaceSubtypeMatrixMemSubmonoidSpecialUnitaryGroup registered in Tengoku.Tauceti.TauCeti.Topology.Algebra.UnitaryGroup (declared at line 97)
+leak: instance TauCeti.TopCommRingCat.instHasProductTopCommRingCat registered in Tengoku.Tauceti.TauCeti.Topology.Category.TopCommRingCat.Limits (declared at line 78)
+leak: instance TauCeti.TopCommRingCat.instHasProductsTopCommRingCat registered in Tengoku.Tauceti.TauCeti.Topology.Category.TopCommRingCat.Limits (declared at line 81)
+leak: instance TauCeti.TopCommRingCat.instHasLimitWalkingParallelPairTopCommRingCatParallelPair registered in Tengoku.Tauceti.TauCeti.Topology.Category.TopCommRingCat.Limits (declared at line 108)
+leak: instance TauCeti.TopCommRingCat.instHasEqualizersTopCommRingCat registered in Tengoku.Tauceti.TauCeti.Topology.Category.TopCommRingCat.Limits (declared at line 111)
+leak: simp AddCircle.homeomorphCircle_symm_one registered in Tengoku.Tauceti.TauCeti.Topology.Circle.AddCircle (declared at line 28)
+leak: simp TauCeti.eVariationOn_subtypeVal_comp registered in Tengoku.Tauceti.TauCeti.Topology.EMetricSpace.BoundedVariation (declared at line 31)
+leak: instance TauCeti.homotopyGroupSMul registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.FundamentalGroupAction (declared at line 118)
+leak: instance TauCeti.homotopyGroupMulAction registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.FundamentalGroupAction (declared at line 128)
+leak: instance TauCeti.homotopyGroupMulDistribMulAction registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.FundamentalGroupAction (declared at line 162)
+leak: simp GenLoop.homotopic_homeomorph_iff registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.LoopSpace (declared at line 66)
+leak: simp GenLoop.congr_apply registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.LoopSpace (declared at line 80)
+leak: simp GenLoop.congr_transAt registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.LoopSpace (declared at line 87)
+leak: simp GenLoop.genLoopGenLoopEquiv_apply registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.LoopSpace (declared at line 109)
+leak: simp GenLoop.genLoopGenLoopEquiv_transAt registered in Tengoku.Tauceti.TauCeti.Topology.Homotopy.HomotopyGroup.LoopSpace (declared at line 117)
+leak: instance TauCeti.instLocallyConnectedSpaceOfNoetherianSpace registered in Tengoku.Tauceti.TauCeti.Topology.NoetherianSpace.ConnectedComponents (declared at line 51)
+root: TubeData
+root: contMDiff_mulInvariantOneParameterSubgroup
+root: mulInvariantCoordinateLinearMap
+root: normEDS_dvd_normEDS_mul
+root: unitSumUnitSumUnitEquivFinThree
+root: slash_zpow_mul_mul_zpow_eq_smul
+root: contMDiff_tangentMap_mul_prod
+root: iSup_iInf_eigenspace_unitHom_eq_top
+root: coe_mem_modFormCharSpace_iff
+root: leftInvariantDerivationLinearIsometryEquivModelVectorSpace_apply_eq_lieEquiv_apply
+root: tangentToPointDerivation_apply
+root: normEDS_mul_complEDS
+root: contDiffAt_mulInvariantCoordinateVectorField
+root: contMDiff_mulInvariantExp_smul_mul_mul_mulInvariantExp_smul
+root: exists_isMIntegralCurveOn_maximalIntegralCurve_eq
+root: pos_of_nonneg_of_discrim_lt_zero
+root: finiteDimensional_leftInvariantDerivation
+root: mulRightInvariantVectorField_add
+root: t2Space_of_lieGroup
+root: mulInvariantOneParameterSubgroup_apply
+root: mulInvariantCoordinateVectorField_smul
+root: unitsLieAlgebraEquiv_apply
+root: hasDerivAt_extChartAt_mulInvariantIntegralCurve_zero
+root: hasFDerivAt_integral_Icc_of_contDiff
+root: zero_mem_maximalIntegralCurveInterval
+root: mulInvariantIntegralCurve_add
+root: mem_modFormCharSpace_iff
+root: normEDS_two_three_two_eq_id
+root: segmentAverage_zero
+root: diamondOpCuspHom
+root: nonneg_of_discrim_le_zero
+root: oneSubExpNegDivSelf_eq_tsum
+root: tangentToLeftInvariantDerivation_lie
+root: iSup_iInf_eigenspace_eq_top_of_isSemisimple
+root: complEDS₂Aux_two
+root: PathInTube
+root: maximalIntegralCurveInterval_eq_univ_of_not_bddAbove_not_bddBelow
+root: iSup_inf_iInf_eigenspace_unitHom_of_invariant
+root: glPosToSL2R_coe_matrix
+root: diamondOpCuspHom_apply
+root: semilocallySimplyConnectedAt_iff_paths
+root: tangentToPointDerivation_pointDerivationEquivTangentSpace
+root: isPreconnected_maximalIntegralCurveInterval
+root: tangentToLeftInvariantDerivation_apply
+root: tendsto_nsmul_apply_div_of_hasDerivAt
+root: diamondOpHom_apply
+root: unitSumUnitSumUnitEquivFinThree_inr_inr
+root: mulRightInvariantVectorField_apply
+root: unitSumUnitEquivFinTwo_symm_one
+root: hadamardFactor_eq_integral_Icc
+root: linearMap_ext_of_mem_cuspFormCharSpace
+root: mem_cuspFormCharSpace_iff_nebentypus
+root: map_reducedInvarDenom
+root: mulInvariantCoordinateVectorField_one
+root: maximalIntegralCurveInterval_eq_univ_iff
+root: unitSumUnitEquivFinTwo_inr
+root: norm_leftInvariantDerivation_eq_norm_modelVectorSpace
+root: mulInvariantCoordinateLinearMap_apply
+root: lieExp_generalLinearGroup_transpose
+root: isInternal_modFormCharSpace
+root: iSup_inf_iInf_eigenspace_unitHom_of_invariant_of_commGroup
+root: contMDiffOn_prod_modelWithCornersSelf_iff
+root: diamondOpCusp_apply_of_mem_cuspFormCharSpace
+root: complEDS₂Aux
+root: reducedInvarDenom_of_emod_six_eq_three
+root: unitSumUnitSumUnitEquivFinThree_inr_inl
+root: complEDS₂Aux_mul_b
+root: mulInvariantExp_neg
+root: mulInvariantCoordinateVectorField_apply
+root: complEDS₂Aux_zero
+root: reducedInvarDenom_of_emod_six_eq_four
+root: exists_isOpen_mem_isPathHomotopyTrivial
+root: lieExp_generalLinearGroup_units_conj
+root: exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
+root: pointDerivationEquivTangentSpace_tangentToPointDerivation
+root: oneSubExpNegDivSelf_zero
+root: lieExp_eq_expUnit
+root: isTopologicallyNilpotent_neg
+root: maximalIntegralCurveInterval
+root: psl2zToPSL2R_injective
+root: slash_zpow_eq_self_of_slash_eq
+root: mulInvariantCoordinateVectorField_zero
+root: isEllipticNet_normEDS
+root: oneSubExpNegDivSelf_eq_invOf_mul
+root: psl2zToPSL2R
+root: eq_of_mem_cuspFormCharSpace_of_ne_zero
+root: mulRightInvariantVectorField_one
+root: isEllipticSequence_iff
+root: diamondOpCusp_one
+root: oneParameterSubgroup
+root: map_oneSubExpNegDivSelf
+root: groupLieAlgebraEquivModelVectorSpace
+root: isEllipticSequence_normEDS
+root: segmentAverage
+root: diamondOp_one
+root: leftInvariantDerivationLieEquivGroupLieAlgebra_symm_apply
+root: iSup_inf_modFormCharSpace_of_invariant
+root: lieExp_generalLinearGroup_coe
+root: isInternal_cuspFormCharSpace
+root: slash_mapGL_eq_diamondOpNat
+root: tangentToPointDerivation
+root: not_mapClusterPt_nhdsLT_maximalIntegralCurve
+root: iSup_cuspFormCharSpace_eq_top
+root: exponentialLineBoundarylessManifold
+root: natCard_nonzeroJointWeights_le_finrank
+root: diamondOp
+root: unitSumUnitSumUnitEquivFinThree_symm_two
+root: lieExp_add_smul
+root: mulRightInvariantVectorField_eq_mpullback
+root: SemilocallySimplyConnectedOn
+root: diamondOpNat
+root: mvfderiv_mlieBracket
+root: mpullback_mulRightInvariantVectorField
+root: LeftCosetModule
+root: mem_cuspFormCharSpace_iff
+root: lieExp_nsmul
+root: oneSubExpNegDivSelf_eq_mul_invOf
+root: contMDiff_mulRightInvariantVectorField_modelSpace
+root: contMDiff_mulRightInvariantVectorField_infty
+root: iSupIndep_modFormCharSpace
+root: oneParameterSubgroup_apply
+root: unitSumUnitSumUnitEquivFinThree_inl
+root: diamondOpHom
+root: leftInvariantDerivationLieEquivGroupLieAlgebra_apply
+root: σ_mapGL_real_eq_refl
+root: complEDS₂Aux_def
+root: iSupIndep_iInf_eigenspace
+root: oneSubExpNegDivSelf_eq_integral_exp
+root: oneParameterSubgroup_eq_mulInvariantOneParameterSubgroup
+root: slash_mapGL_eq_diamondOpCuspNat
+root: diamondOpNat_of_not_coprime
+root: contMDiff_prod_modelWithCornersSelf_iff
+root: unitHomOfJointEigenvector
+root: unitSumUnitEquivFinTwo
+root: diamondOpNat_of_coprime
+root: iSup_inf_cuspFormCharSpace_of_invariant
+root: leftInvariantDerivationEquivGroupLieAlgebra_lie
+root: tangentToPointDerivation_injective
+root: unitSumUnitEquivFinTwo_inl
+root: sl2zToPSL2R_ker
+root: iSupIndep_cuspFormCharSpace
+root: psl2zToPSL2R_mk
+root: normEDS_two_three_two_eq_intCast
+root: hasMFDerivAt_mulInvariantExp_smul_zero
+root: exists_finsupp_of_diamondOp_invariant
+root: mulInvariantExp_smul
+root: exists_Ioo_subset_maximalIntegralCurveInterval_of_isGLB
+root: linearMap_ext_of_mem_modFormCharSpace
+root: exponentialLineContMDiffMulOne
+root: maximalIntegralCurveInterval_eq_univ_of_isCompact_of_mapsTo
+root: mulInvariantCoordinateLinearMap_one
+root: iSup_inf_iInf_eigenspace_of_invariant
+root: mulInvariantIntegralCurve_zero
+root: circleExpHom
+root: mulInvariantExpChart_zero
+root: IntervalPartition
+root: mulInvariantCoordinateVectorField_add
+root: existsUnique_isMIntegralCurve_mulInvariantVectorField
+root: lieExp_generalLinearGroup_diagonal
+root: mulRightInvariantVectorField_smul
+root: hasDerivAt_mulInvariantOneParameterSubgroup_val_zero
+root: iSup_iInf_eigenspace_unitHom_eq_top_of_commGroup
+root: cuspToModFormCharSpace
+root: semilocallySimplyConnectedAt_iff
+root: mulInvariantIntegralCurve
+root: slash_mapGL_eq_self_of_comp_of_mem_modFormCharSpace
+root: sl2zToPSL2R
+root: contMDiff_oneParameterSubgroup
+root: exists_unitHom_of_iInf_eigenspace_ne_bot
+root: tangentToLeftInvariantDerivation
+root: universalNormEDS_ne_zero
+root: leftInvariantDerivationLinearIsometryEquivModelVectorSpace
+root: det_pos_of_mem_slGL
+root: pointDerivationEquivTangentSpace
+root: mulInvariantVectorField_one
+root: pointDerivationEquivTangentSpace_fdifferential
+root: oneParameterSubgroup_eq_expUnitHom
+root: normEDS_mul_complEDS_div
+root: leftInvariantDerivationLinearIsometryEquivModelVectorSpace_symm_apply
+root: slash_mapGL_gamma0Twist_eq_diamondOpNat
+root: unitSumUnitSumUnitEquivFinThree_symm_one
+root: map_complEDS₂Aux
+root: iSup_modFormCharSpace_eq_top
+root: unitSumUnitSumUnitEquivFinThree_symm_zero
+root: eq_mulInvariantIntegralCurve
+root: eventually_notMem_nhdsGT_maximalIntegralCurve
+root: mfderiv_mul_left_mulInvariantVectorField
+root: complEDS₂_eq_sub_complEDS₂Aux
+root: coe_diamondOpCusp
+root: lieExp_zero
+root: isOpen_maximalIntegralCurveInterval
+root: rightInvariantDerivative_apply
+root: isEllipticNet_iff
+root: slash_mapGL_eq_self_of_comp_of_mem_cuspFormCharSpace
+root: isMIntegralCurve_maximalIntegralCurve
+root: oneSubExpNegDivSelf_mul
+root: mul_oneSubExpNegDivSelf
+root: contMDiff_tangentMap_mul_prod_comp
+root: contDiffAt_mulInvariantCoordinateLinearMap_one
+root: cuspToModFormCharSpace_injective
+root: mvfderiv_apply_eq_mfderiv_apply
+root: complEDS₂_eq_reducedInvarNum_sub
+root: reducedInvarDenom_of_emod_six_eq_two
+root: modFormCharSpace
+root: mulInvariantOneParameterSubgroup_eq_expUnitHom
+root: finiteDimensionalCompleteSpace
+root: coe_cuspToModFormCharSpace
+root: segmentAverage_eq_integral_Icc
+root: commute_oneSubExpNegDivSelf
+root: oneSubExpNegDivSelf
+root: reducedInvarNum_def
+root: contMDiff_mulInvariantIntegralCurve
+root: diamondOpCusp
+root: isDvdSequence_normEDS
+root: unitsLieAlgebraEquiv
+root: reducedInvarDenom_of_emod_six_eq_zero
+root: reducedInvarDenom
+root: eigenvalue_mul_of_jointEigenvector
+root: exists_mem_nhds_forall_exists_isMIntegralCurveOn_Ioo
+root: rightInvariantDerivative
+root: tangentToPointDerivation_surjective
+root: leftInvariantDerivationEquivGroupLieAlgebra
+root: mulInvariantOneParameterSubgroup
+root: BasedPath
+root: cuspFormCharSpace_def
+root: isOpen_integralClosure_toSubring
+root: isMIntegralCurve_mulInvariantIntegralCurve
+root: pointDerivationEquivTangentSpace_symm_apply
+root: reducedInvarDenom_def
+root: tangentToPointDerivation_mfderiv
+root: finrank_leftInvariantDerivation_eq_modelVectorSpace
+root: sl2zToPSL2R_apply
+root: summable_oneSubExpNegDivSelf
+root: mulInvariantOneParameterSubgroup_eq_mulInvariantExp_smul
+root: diamondOpCusp_mul
+root: contDiff_integral_Icc_of_contDiff
+root: complEDS₂_two_three_two
+root: diamondOp_coe_cuspForm
+root: reducedInvarNum
+root: reducedInvarDenom_of_emod_six_eq_one
+root: circleExpHom_apply
+root: exists_isMIntegralCurve_mulInvariantVectorField
+root: eventually_mul_pow_mem_of_isTopologicallyNilpotent
+root: maximalIntegralCurve
+root: coe_diamondOp
+root: NormEDSParam
+root: glPosToPSL2R
+root: map_reducedInvarNum
+root: modFormCharSpace_def
+root: tangentMap_mul_prod_apply
+root: maximalIntegralCurve_zero
+root: cuspFormCharSpace
+root: exists_mul_pow_mem_of_isTopologicallyNilpotent
+root: not_isSquare_intCast_of_squarefree_of_ne_one
+root: unitHomOfJointEigenvector_apply
+root: hasMFDerivAt_mulInvariantExp_smul
+root: ordConnected_maximalIntegralCurveInterval
+root: lieExp_neg
+root: mulRightInvariantVectorField
+root: diamondOpCuspNat_of_not_coprime
+root: lieExp
+root: isMIntegralCurveOn_maximalIntegralCurve
+root: mulInvariantExpChart_apply
+root: leftInvariantDerivationEquivGroupLieAlgebra_apply
+root: glPosToPSL2R_apply
+root: mulInvariantIntegralCurve_eq_const_mul
+root: exists_Ioo_subset_maximalIntegralCurveInterval_of_isLUB
+root: eventually_notMem_nhdsLT_maximalIntegralCurve
+root: hasStrictFDerivAt_mulInvariantCoordinateVectorField_zero_one
+root: diamondOp_mul
+root: reducedInvarDenom_two
+root: diamondOpCuspNat
+root: mulInvariantExp
+root: mulInvariantIntegralCurve_smul
+root: complEDS₂Aux_one
+root: not_mapClusterPt_nhdsGT_maximalIntegralCurve
+root: reducedInvarNum_eq_reducedInvarDenom_mul
+root: mulInvariantExp_eq_mulInvariantIntegralCurve
+root: slash_mapGL_gamma0Twist_eq_diamondOpCuspNat
+root: lieExp_eq_mulInvariantExp
+root: contMDiff_mvfderiv_mulInvariantVectorField
+root: hadamardFactor_self
+root: maximalIntegralCurve_eq_of_not_mem
+root: contMDiff_tangentBundle_mk_zero
+root: IsPathHomotopyTrivial
+root: isSquare_mul_sq_iff
+root: instFintypeMonoidHomUnits
+root: mem_modFormCharSpace_iff_nebentypus
+root: contMDiff_mulInvariantExp_smul
+root: reducedInvarDenom_one
+root: exists_finsupp_of_diamondOpCusp_invariant
+root: contMDiff_tangentBundle_mk_constBase
+root: mulInvariantExp_zero
+root: mulInvariantCoordinateVectorField
+root: slash_eq_of_Gamma0Map_eq
+root: hadamardFactor
+root: reducedInvarDenom_zero
+root: glPosToSL2R
+root: SemilocallySimplyConnectedAt
+root: inverse_mfderiv_mul_right
+root: mulInvariantExpChart
+root: reducedInvarDenom_of_emod_six_eq_five
+root: leftInvariantDerivationLieEquivGroupLieAlgebra
+root: diamondOpCuspNat_of_coprime
+root: contMDiff_mvfderiv_mulRightInvariantVectorField
+root: mulInvariantExp_nsmul
+root: diamondOp_apply_of_mem_modFormCharSpace
+root: leftInvariantDerivationEquivGroupLieAlgebra_symm_apply
+root: contMDiff_mulInvariantVectorField_modelSpace
+root: contMDiff_mulInvariantVectorField_infty
+root: eigenvalue_one_of_jointEigenvector
+root: unitSumUnitEquivFinTwo_symm_zero
+root: leftInvariantDerivationLinearIsometryEquivModelVectorSpace_apply
+root: iSupIndep_iInf_eigenspace_unitHom
+root: mfderiv_mul_apply_one
+root: mulInvariantExp_add_smul
+root: eigenvalue_ne_zero_of_jointEigenvector

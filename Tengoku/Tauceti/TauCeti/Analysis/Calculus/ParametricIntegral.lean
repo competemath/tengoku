@@ -25,7 +25,7 @@ for the point-derivation/tangent-space equivalence in the Lie groups roadmap.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open MeasureTheory
@@ -58,7 +58,7 @@ private theorem exists_eventually_norm_le_on_Icc
 
 /-- Differentiation under an integral over the compact unit interval for a continuously
 differentiable parameterized function. -/
-theorem hasFDerivAt_integral_Icc_of_contDiff
+theorem Tengoku.Tauceti.hasFDerivAt_integral_Icc_of_contDiff
      (h : E → ℝ → F) (hh : ContDiff ℝ 1 h.uncurry) (x₀ : E) :
     HasFDerivAt (fun x ↦ ∫ t in Set.Icc (0 : ℝ) 1, h x t)
       (∫ t in Set.Icc (0 : ℝ) 1,
@@ -121,7 +121,7 @@ private theorem contDiff_integral_Icc_of_contDiff_nat
 
 /-- Integration over the compact unit interval preserves continuous differentiability of any
 possibly infinite order in a parameter. -/
-theorem contDiff_integral_Icc_of_contDiff
+theorem Tengoku.Tauceti.contDiff_integral_Icc_of_contDiff
     {V : Type u} {W : Type v} [NormedAddCommGroup V] [NormedSpace ℝ V]
     [NormedAddCommGroup W] [NormedSpace ℝ W] [CompleteSpace W]
     (n : ℕ∞) (h : V → ℝ → W) (hh : ContDiff ℝ n h.uncurry) :
@@ -139,3 +139,4 @@ theorem contDiff_integral_Icc_of_contDiff
   funext x
   simpa only [Function.comp_apply, eh, ContinuousLinearEquiv.apply_symm_apply] using
     (isoW.integral_comp_comm (μ := volume.restrict (Set.Icc (0 : ℝ) 1)) (fun t ↦ eh x t))
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ smooth manifold with tangent vectors.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open MeasureTheory
@@ -34,11 +34,11 @@ variable {E : Type u} {F : Type v} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- The weighted average of `g` along the segment from `x` to `x + v`. -/
-noncomputable def segmentAverage (w : ℝ → ℝ) (g : E → F) (x v : E) : F :=
+noncomputable def Tengoku.Tauceti.segmentAverage (w : ℝ → ℝ) (g : E → F) (x v : E) : F :=
   ∫ t in (0 : ℝ)..1, w t • g (x + t • v)
 
 /-- A weighted segment average written as an integral over the compact unit interval. -/
-theorem segmentAverage_eq_integral_Icc (w : ℝ → ℝ) (g : E → F) (x : E) :
+theorem Tengoku.Tauceti.segmentAverage_eq_integral_Icc (w : ℝ → ℝ) (g : E → F) (x : E) :
     segmentAverage w g x = fun v ↦ ∫ t in Set.Icc (0 : ℝ) 1, w t • g (x + t • v) := by
   funext v
   rw [segmentAverage, intervalIntegral.integral_of_le zero_le_one,
@@ -65,18 +65,18 @@ theorem ContinuousLinearMap.segmentAverage_apply
 /-- At zero displacement, a weighted segment average is the integral of the weight times the
 value of the integrand at the basepoint. -/
 @[simp]
-theorem segmentAverage_zero [CompleteSpace F] (w : ℝ → ℝ) (g : E → F) (x : E) :
+theorem Tengoku.Tauceti.segmentAverage_zero [CompleteSpace F] (w : ℝ → ℝ) (g : E → F) (x : E) :
     segmentAverage w g x 0 = (∫ t in (0 : ℝ)..1, w t) • g x := by
   rw [segmentAverage]
   simp only [smul_zero, add_zero]
   exact intervalIntegral.integral_smul_const w (g x)
 
 /-- The averaged derivative along the segment from `x` to `y`. -/
-noncomputable def hadamardFactor (f : E → F) (x y : E) : E →L[ℝ] F :=
+noncomputable def Tengoku.Tauceti.hadamardFactor (f : E → F) (x y : E) : E →L[ℝ] F :=
   segmentAverage (fun _ ↦ 1) (fderiv ℝ f) x (y - x)
 
 /-- The averaged derivative written as an integral over the compact unit interval. -/
-theorem hadamardFactor_eq_integral_Icc (f : E → F) (x : E) :
+theorem Tengoku.Tauceti.hadamardFactor_eq_integral_Icc (f : E → F) (x : E) :
     hadamardFactor f x = fun y ↦ ∫ t in Set.Icc (0 : ℝ) 1,
       fderiv ℝ f (x + t • (y - x)) := by
   funext y
@@ -86,7 +86,7 @@ theorem hadamardFactor_eq_integral_Icc (f : E → F) (x : E) :
 
 /-- At the basepoint, the averaged derivative is the ordinary derivative. -/
 @[simp]
-theorem hadamardFactor_self [CompleteSpace F] (f : E → F) (x : E) :
+theorem Tengoku.Tauceti.hadamardFactor_self [CompleteSpace F] (f : E → F) (x : E) :
     hadamardFactor f x x = fderiv ℝ f x := by
   simp [hadamardFactor, segmentAverage]
 
@@ -122,3 +122,4 @@ theorem ContDiff.contDiff_hadamardFactor [CompleteSpace F] (f : E → F)
     (hf : ContDiff ℝ ∞ f)
     (x : E) : ContDiff ℝ ∞ (hadamardFactor f x) := by
   simpa using ContDiff.contDiff_hadamardFactor_of_succ (⊤ : ℕ∞) f (by simpa using hf) x
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

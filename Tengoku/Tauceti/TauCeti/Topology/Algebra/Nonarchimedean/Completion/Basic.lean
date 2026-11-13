@@ -59,7 +59,7 @@ of `G`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open UniformSpace
 
 namespace UniformSpace.Completion
@@ -234,3 +234,4 @@ theorem isIntegrallyClosedIn_topologicalClosure_map_coeRingHom {G : Subring A}
 end IntegrallyClosed
 
 end UniformSpace.Completion
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

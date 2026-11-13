@@ -33,7 +33,7 @@ that an additive subgroup containing an open one is open.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace Subring
 
 variable {R : Type*} [Ring R] [TopologicalSpace R] [IsSemitopologicalRing R]
@@ -52,8 +52,9 @@ variable {B : Type*} [CommRing B] [TopologicalSpace B] [SeparatelyContinuousAdd 
 /-- The integral closure of an open subring `R` of `B` is open: it contains `R` itself, as the
 image of `algebraMap`, and an additive subgroup containing an open one is open. Only separate
 continuity of addition on `B` is used, not the full additive topological group structure. -/
-theorem isOpen_integralClosure_toSubring {R : Subring B} (hR : IsOpen (R : Set B)) :
+theorem Tengoku.Tauceti.isOpen_integralClosure_toSubring {R : Subring B} (hR : IsOpen (R : Set B)) :
     IsOpen ((integralClosure R B).toSubring : Set B) :=
   AddSubgroup.isOpen_mono (H₁ := R.toAddSubgroup)
     (H₂ := (integralClosure R B).toSubring.toAddSubgroup)
     (fun x hx ↦ (integralClosure R B).algebraMap_mem ⟨x, hx⟩) hR
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

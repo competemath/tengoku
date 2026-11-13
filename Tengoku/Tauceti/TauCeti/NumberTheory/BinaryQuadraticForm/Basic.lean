@@ -81,7 +81,7 @@ the values of `TauCeti.hurwitzClassNumber`; the other definitions are not.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix
 open scoped MatrixGroups
 
@@ -226,3 +226,4 @@ docstring. -/
 end BinaryQuadraticForm
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

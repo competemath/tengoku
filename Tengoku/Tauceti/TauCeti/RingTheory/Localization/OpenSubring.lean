@@ -49,7 +49,7 @@ between the complements of the two closed subsets, is **not** proved in this fil
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace TauCeti.Localization
 
 variable {A : Type*} [CommRing A] [TopologicalSpace A] [ContinuousMul A]
@@ -94,3 +94,4 @@ noncomputable def awayRingEquivOfIsTopologicallyNilpotent (hB : IsOpen (B : Set 
 end TauCeti.Localization
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

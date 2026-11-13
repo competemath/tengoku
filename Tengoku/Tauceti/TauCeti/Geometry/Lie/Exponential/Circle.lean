@@ -31,7 +31,7 @@ generator to `1`; under that identification, the abstract Lie-group exponential 
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Manifold
 open scoped ContDiff Manifold
 
@@ -39,13 +39,13 @@ noncomputable section
 
 /-- Mathlib's circle exponential, bundled as a continuous homomorphism from the additive real line
 written multiplicatively. -/
-noncomputable def circleExpHom : ContinuousMonoidHom (Multiplicative ℝ) Circle where
+noncomputable def Tengoku.Tauceti.circleExpHom : ContinuousMonoidHom (Multiplicative ℝ) Circle where
   toMonoidHom := Circle.expHom.toMultiplicativeLeft
   continuous_toFun := Circle.exp.continuous.comp continuous_toAdd
 
 /-- The bundled circle exponential evaluates to Mathlib's `Circle.exp`. -/
 @[simp]
-theorem circleExpHom_apply (t : ℝ) :
+theorem Tengoku.Tauceti.circleExpHom_apply (t : ℝ) :
     circleExpHom (Multiplicative.ofAdd t) = Circle.exp t := (rfl)
 
 /-- A preliminary linear identification of the circle Lie algebra with the reals, obtained from
@@ -56,3 +56,4 @@ private noncomputable def circleLieAlgebraEquivModel :
       BoundarylessManifold.isInteriorPoint).trans
     ((EuclideanSpace.equiv (Fin 1) ℝ).toLinearEquiv.trans
       (LinearEquiv.funUnique (Fin 1) ℝ ℝ))
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

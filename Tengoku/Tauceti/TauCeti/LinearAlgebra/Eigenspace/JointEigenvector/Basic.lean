@@ -56,7 +56,7 @@ components of `M_k(Γ₁(N))`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open Polynomial
@@ -102,7 +102,7 @@ omit [IsCancelMulZero K] in
 functions, are supremum-independent — no commutation and no semisimplicity. A single
 endomorphism has independent eigenspaces (`Module.End.eigenspaces_iSupIndep`), and pointwise
 infima of independent families are independent (`iSupIndep.iInf`). -/
-lemma iSupIndep_iInf_eigenspace [IsDomain K] {ι : Type*} (f : ι → Module.End K V) :
+lemma Tengoku.Tauceti.iSupIndep_iInf_eigenspace [IsDomain K] {ι : Type*} (f : ι → Module.End K V) :
     iSupIndep fun χ : ι → K ↦ ⨅ i, (f i).eigenspace (χ i) :=
   iSupIndep.iInf (fun i ↦ (f i).eigenspace) fun i ↦ (f i).eigenspaces_iSupIndep
 
@@ -113,7 +113,7 @@ variable [Monoid G]
 /-- If `v ≠ 0` is a joint eigenvector of a monoid-hom representation
 `ρ : G →* Module.End K V` with eigenvalues `χ g`, then the eigenvalue at the
 identity is `1`. -/
-lemma eigenvalue_one_of_jointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
+lemma Tengoku.Tauceti.eigenvalue_one_of_jointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
     (hv : v ≠ 0) (hv_mem : ∀ g, v ∈ (ρ g).eigenspace (χ g)) : χ 1 = 1 := by
   have h1 := hv_mem 1
   rw [Module.End.mem_eigenspace_iff, map_one, Module.End.one_apply] at h1
@@ -122,7 +122,7 @@ lemma eigenvalue_one_of_jointEigenvector (ρ : G →* Module.End K V) (χ : G �
 /-- If `v ≠ 0` is a joint eigenvector of a monoid-hom representation
 `ρ : G →* Module.End K V` with eigenvalues `χ g`, then the eigenvalues are
 multiplicative: `χ (g₁ * g₂) = χ g₁ * χ g₂`. -/
-lemma eigenvalue_mul_of_jointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
+lemma Tengoku.Tauceti.eigenvalue_mul_of_jointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
     (hv : v ≠ 0) (hv_mem : ∀ g, v ∈ (ρ g).eigenspace (χ g)) (g₁ g₂ : G) :
     χ (g₁ * g₂) = χ g₁ * χ g₂ := by
   have h := hv_mem (g₁ * g₂)
@@ -139,7 +139,7 @@ variable [Group G]
 
 /-- The eigenvalues of a nonzero joint eigenvector of a group representation are
 nonzero: `χ g · χ g⁻¹ = χ 1 = 1`. -/
-lemma eigenvalue_ne_zero_of_jointEigenvector [Nontrivial K]
+lemma Tengoku.Tauceti.eigenvalue_ne_zero_of_jointEigenvector [Nontrivial K]
     (ρ : G →* Module.End K V) (χ : G → K) (v : V)
     (hv : v ≠ 0) (hv_mem : ∀ g, v ∈ (ρ g).eigenspace (χ g)) (g : G) :
     χ g ≠ 0 :=
@@ -150,7 +150,7 @@ lemma eigenvalue_ne_zero_of_jointEigenvector [Nontrivial K]
 /-- Given a joint eigenvector `v ≠ 0` for a monoid-hom representation
 `ρ : G →* Module.End K V` of a group `G`, the eigenvalue function `χ : G → K`
 factors through a monoid homomorphism `G →* Kˣ`. -/
-def unitHomOfJointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
+def Tengoku.Tauceti.unitHomOfJointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V)
     (hv : v ≠ 0) (hv_mem : ∀ g, v ∈ (ρ g).eigenspace (χ g)) : G →* Kˣ where
   -- multiplicativity supplies the inverse outright: `χ g * χ g⁻¹ = χ 1 = 1`
   toFun g :=
@@ -164,13 +164,13 @@ def unitHomOfJointEigenvector (ρ : G →* Module.End K V) (χ : G → K) (v : V
     Units.ext (eigenvalue_mul_of_jointEigenvector ρ χ v hv hv_mem g₁ g₂)
 
 @[simp]
-lemma unitHomOfJointEigenvector_apply (ρ : G →* Module.End K V) (χ : G → K)
+lemma Tengoku.Tauceti.unitHomOfJointEigenvector_apply (ρ : G →* Module.End K V) (χ : G → K)
     (v : V) (hv : v ≠ 0) (hv_mem : ∀ g, v ∈ (ρ g).eigenspace (χ g)) (g : G) :
     ((unitHomOfJointEigenvector ρ χ v hv hv_mem g) : K) = χ g := (rfl)
 
 /-- If the joint eigenspace of an eigenvalue function `χ` of a group representation is
 nonzero, then `χ` is (the underlying function of) a character `G →* Kˣ`. -/
-lemma exists_unitHom_of_iInf_eigenspace_ne_bot {ρ : G →* Module.End K V}
+lemma Tengoku.Tauceti.exists_unitHom_of_iInf_eigenspace_ne_bot {ρ : G →* Module.End K V}
     {χ : G → K} (hχ : ⨅ g, (ρ g).eigenspace (χ g) ≠ ⊥) :
     ∃ χ₀ : G →* Kˣ, (fun g ↦ ((χ₀ g) : K)) = χ := by
   obtain ⟨v, hv_mem, hv_ne⟩ := (Submodule.ne_bot_iff _).mp hχ
@@ -192,7 +192,7 @@ variable [Field K] [Module K V]
 
 /-- Over an algebraically closed field and in finite dimension, the joint eigenspaces of a
 pairwise-commuting family of semisimple endomorphisms exhaust the space. -/
-lemma iSup_iInf_eigenspace_eq_top_of_isSemisimple [IsAlgClosed K]
+lemma Tengoku.Tauceti.iSup_iInf_eigenspace_eq_top_of_isSemisimple [IsAlgClosed K]
     [FiniteDimensional K V] {ι : Type*} (f : ι → Module.End K V)
     (hcomm : Pairwise fun i j ↦ Commute (f i) (f j)) (hss : ∀ i, (f i).IsSemisimple) :
     (⨆ χ : ι → K, ⨅ i, (f i).eigenspace (χ i)) = ⊤ := by
@@ -206,7 +206,7 @@ lemma iSup_iInf_eigenspace_eq_top_of_isSemisimple [IsAlgClosed K]
 endomorphisms whose **restrictions** to it are semisimple is the supremum of its
 intersections with the joint eigenspaces: the restricted family diagonalizes, with no
 assumption on the ambient operators. -/
-lemma iSup_inf_iInf_eigenspace_of_invariant [IsAlgClosed K] {ι : Type*}
+lemma Tengoku.Tauceti.iSup_inf_iInf_eigenspace_of_invariant [IsAlgClosed K] {ι : Type*}
     (f : ι → Module.End K V)
     (p : Submodule K V) [FiniteDimensional K p] (hp : ∀ i, ∀ x ∈ p, f i x ∈ p)
     (hcomm : Pairwise fun i j ↦ Commute ((f i).restrict (hp i)) ((f j).restrict (hp j)))
@@ -229,7 +229,7 @@ variable [Group G] {ρ : G →* Module.End K V}
 over an algebraically closed field, in finite dimension, the joint eigenspaces indexed by
 characters `G →* Kˣ` exhaust the space — eigenvalue functions that are not
 characters contribute `⊥`. -/
-lemma iSup_iInf_eigenspace_unitHom_eq_top [IsAlgClosed K] [FiniteDimensional K V]
+lemma Tengoku.Tauceti.iSup_iInf_eigenspace_unitHom_eq_top [IsAlgClosed K] [FiniteDimensional K V]
     (hcomm : Pairwise fun g₁ g₂ ↦ Commute (ρ g₁) (ρ g₂))
     (hss : ∀ g, (ρ g).IsSemisimple) :
     (⨆ χ₀ : G →* Kˣ, ⨅ g, (ρ g).eigenspace (χ₀ g)) = ⊤ := by
@@ -241,14 +241,14 @@ lemma iSup_iInf_eigenspace_unitHom_eq_top [IsAlgClosed K] [FiniteDimensional K V
     exact le_iSup (fun ψ : G →* Kˣ ↦ ⨅ g, (ρ g).eigenspace (ψ g)) χ₀
 
 /-- **Character-indexed independence** of the joint eigenspaces, for any representation. -/
-lemma iSupIndep_iInf_eigenspace_unitHom :
+lemma Tengoku.Tauceti.iSupIndep_iInf_eigenspace_unitHom :
     iSupIndep fun χ₀ : G →* Kˣ ↦ ⨅ g, (ρ g).eigenspace (χ₀ g) :=
   (iSupIndep_iInf_eigenspace (fun g ↦ ρ g)).comp
     fun _ _ h ↦ MonoidHom.ext fun g ↦ Units.ext (congr_fun h g)
 
 /-- The number of characters with nonzero joint weight space in a finite-dimensional
 representation is bounded by the dimension of the representation. -/
-theorem natCard_nonzeroJointWeights_le_finrank [FiniteDimensional K V]
+theorem Tengoku.Tauceti.natCard_nonzeroJointWeights_le_finrank [FiniteDimensional K V]
     (ρ : G →* Module.End K V) :
     Nat.card {χ : G →* Kˣ // (⨅ g : G, (ρ g).eigenspace (χ g)) ≠ ⊥} ≤
       Module.finrank K V := by
@@ -259,7 +259,7 @@ theorem natCard_nonzeroJointWeights_le_finrank [FiniteDimensional K V]
 
 /-- **Character-indexed decomposition of a finite-dimensional invariant submodule**,
 assuming only that the restricted representation is semisimple. -/
-lemma iSup_inf_iInf_eigenspace_unitHom_of_invariant [IsAlgClosed K]
+lemma Tengoku.Tauceti.iSup_inf_iInf_eigenspace_unitHom_of_invariant [IsAlgClosed K]
     (p : Submodule K V) [FiniteDimensional K p] (hp : ∀ g, ∀ x ∈ p, ρ g x ∈ p)
     (hcomm : Pairwise fun g₁ g₂ ↦
       Commute ((ρ g₁).restrict (hp g₁)) ((ρ g₂).restrict (hp g₂)))
@@ -361,7 +361,7 @@ private lemma sum_fourierComponent (hunit : IsUnit (Nat.card G : K)) (v : V) :
 an arbitrary module over a commutative domain with enough roots of unity: the classical
 character projectors decompose every vector, with no finite-dimensionality or
 semisimplicity hypotheses. -/
-theorem iSup_iInf_eigenspace_unitHom_eq_top_of_commGroup
+theorem Tengoku.Tauceti.iSup_iInf_eigenspace_unitHom_eq_top_of_commGroup
     (hcard : IsUnit (Nat.card G : K)) :
     (⨆ χ₀ : G →* Kˣ, ⨅ g, (ρ g).eigenspace (χ₀ g)) = ⊤ := by
   refine top_unique fun v _ ↦ ?_
@@ -372,7 +372,7 @@ theorem iSup_iInf_eigenspace_unitHom_eq_top_of_commGroup
 /-- **Unconditional decomposition of an invariant submodule**: the character projectors
 preserve every `ρ`-invariant submodule, so it is the supremum of its intersections with
 the joint eigenspaces — again with no finite-dimensionality hypothesis. -/
-theorem iSup_inf_iInf_eigenspace_unitHom_of_invariant_of_commGroup
+theorem Tengoku.Tauceti.iSup_inf_iInf_eigenspace_unitHom_of_invariant_of_commGroup
     (hcard : IsUnit (Nat.card G : K))
     (p : Submodule K V) (hp : ∀ g, ∀ x ∈ p, ρ g x ∈ p) :
     (⨆ χ₀ : G →* Kˣ, p ⊓ ⨅ g, (ρ g).eigenspace (χ₀ g)) = p := by
@@ -389,3 +389,4 @@ end FourierDecomposition
 end DomainScalars
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

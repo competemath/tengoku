@@ -27,7 +27,7 @@ invertible.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open NormedSpace
 open TopologicalSpace
 
@@ -117,7 +117,7 @@ private theorem integral_oneSubExpNegDivSelfIntegrand (a : A) (n : ℕ) :
 
 /-- The regularized exponential quotient is the integral of the exponential along the line
 segment from `0` to `-a`. -/
-theorem oneSubExpNegDivSelf_eq_integral_exp (a : A) :
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_eq_integral_exp (a : A) :
     oneSubExpNegDivSelf ℝ a = ∫ t in (0 : ℝ)..1, exp (t • (-a)) := by
   rw [oneSubExpNegDivSelf_eq_tsum]
   calc
@@ -134,3 +134,4 @@ theorem oneSubExpNegDivSelf_eq_integral_exp (a : A) :
       intro t _ht
       rw [exp_eq_tsum ℝ]
       simp only [oneSubExpNegDivSelfIntegrand_apply]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

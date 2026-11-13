@@ -47,7 +47,7 @@ The inverse-free computation rule is `inv_smul_mk`.
 -/
 
 public section
-noncomputable section
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti noncomputable section
 
 open scoped unitInterval
 
@@ -213,3 +213,4 @@ theorem monodromy_basepointLift [LocallyPathConnectedSpace X] [PathConnectedSpac
       exact (Path.Homotopic.Quotient.trans_refl _).symm
 
 end TauCeti.UniversalCover
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

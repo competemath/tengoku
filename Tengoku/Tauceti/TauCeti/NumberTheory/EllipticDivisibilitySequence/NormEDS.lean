@@ -139,9 +139,9 @@ by `simp only [universalNormEDS, …]`, unfolding the definition. That does not 
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped nonZeroDivisors
-open MvPolynomial NormEDSParam
+open MvPolynomial Tengoku.Tauceti.NormEDSParam
 
 variable {R : Type*} [CommRing R] {b c d : R}
 
@@ -164,7 +164,7 @@ private theorem isEllipticNet_normEDS_of_mem (hb : b ∈ R⁰) :
 
 /-- **A normalised EDS is an elliptic net**, for arbitrary `b`, `c`, `d` over any commutative
 ring. In particular no nonzerodivisor hypothesis is needed on the parameters. -/
-theorem isEllipticNet_normEDS (b c d : R) : IsEllipticNet (normEDS b c d) := by
+theorem Tengoku.Tauceti.isEllipticNet_normEDS (b c d : R) : IsEllipticNet (normEDS b c d) := by
   -- Supply the defining equation rather than leaving it to `isDefEq`: `universalNormEDS`'s body
   -- is not exposed, so unification cannot cheaply see it as `normEDS (X B) (X C) (X D)`.
   have huniv : IsEllipticNet (universalNormEDS : ℤ → MvPolynomial NormEDSParam ℤ) := by
@@ -176,11 +176,11 @@ theorem isEllipticNet_normEDS (b c d : R) : IsEllipticNet (normEDS b c d) := by
     ← IsEllipticNet.map_rel, huniv, map_zero]
 
 /-- **A normalised EDS is an elliptic sequence**, the last index of the net held at `0`. -/
-theorem isEllipticSequence_normEDS (b c d : R) : IsEllipticSequence (normEDS b c d) :=
+theorem Tengoku.Tauceti.isEllipticSequence_normEDS (b c d : R) : IsEllipticSequence (normEDS b c d) :=
   (isEllipticNet_normEDS b c d).isEllipticSequence
 
 /-- **`normEDS 2 3 2` is the identity sequence on `ℤ`.** -/
-theorem normEDS_two_three_two_eq_id : normEDS (2 : ℤ) 3 2 = id := by
+theorem Tengoku.Tauceti.normEDS_two_three_two_eq_id : normEDS (2 : ℤ) 3 2 = id := by
   refine (isEllipticSequence_normEDS 2 3 2).ext IsEllipticSequence.id ?_ ?_ ?_ ?_ ?_ ?_
   · simp
   · simp
@@ -203,7 +203,7 @@ private theorem complEDS₂_two_three_two_int (n : ℤ) : complEDS₂ (2 : ℤ) 
 /-- **The 2-complement of `normEDS 2 3 2` is the constant `2`, over any commutative ring**:
 the complement of `n` in `2n` for the integer-cast sequence. -/
 @[simp]
-theorem complEDS₂_two_three_two (R : Type*) [CommRing R] (n : ℤ) :
+theorem Tengoku.Tauceti.complEDS₂_two_three_two (R : Type*) [CommRing R] (n : ℤ) :
     complEDS₂ (2 : R) 3 2 n = 2 := by
   have h := map_complEDS₂ (f := Int.castRingHom R) (b := (2 : ℤ)) (c := 3) (d := 2) n
   rw [complEDS₂_two_three_two_int] at h
@@ -212,7 +212,7 @@ theorem complEDS₂_two_three_two (R : Type*) [CommRing R] (n : ℤ) :
 /-- **`normEDS 2 3 2` is the integer cast, over any commutative ring.** The identity on `ℤ`
 transported along the unique ring map out of it. -/
 @[simp]
-theorem normEDS_two_three_two_eq_intCast (R : Type*) [CommRing R] :
+theorem Tengoku.Tauceti.normEDS_two_three_two_eq_intCast (R : Type*) [CommRing R] :
     normEDS (2 : R) 3 2 = Int.cast := by
   funext n
   have h := map_normEDS (f := Int.castRingHom R) (b := (2 : ℤ)) (c := 3) (d := 2) n
@@ -222,6 +222,7 @@ theorem normEDS_two_three_two_eq_intCast (R : Type*) [CommRing R] :
 /-- **The universal normalised EDS is nonzero away from `0`.** Specialising the three
 indeterminates at `(2, 3, 2)` sends `universalNormEDS n` to `n` itself, by
 `normEDS_two_three_two_eq_id`, so a vanishing value forces a vanishing index. -/
-theorem universalNormEDS_ne_zero {n : ℤ} (hn : n ≠ 0) : universalNormEDS n ≠ 0 := fun h ↦ hn <| by
+theorem Tengoku.Tauceti.universalNormEDS_ne_zero {n : ℤ} (hn : n ≠ 0) : universalNormEDS n ≠ 0 := fun h ↦ hn <| by
   apply_fun aeval (NormEDSParam.rec (2 : ℤ) 3 2) at h
   simpa using h
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

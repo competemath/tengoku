@@ -44,7 +44,7 @@ following Proposition 1.36.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Set Topology
 
 namespace TauCeti
@@ -126,3 +126,4 @@ theorem _root_.IsCoveringMap.semilocallySimplyConnectedSpace [SemilocallySimplyC
     exact Quotient.exact key
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

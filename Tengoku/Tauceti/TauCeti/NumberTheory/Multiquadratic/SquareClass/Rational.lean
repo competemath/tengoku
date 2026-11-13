@@ -58,7 +58,7 @@ so that this is `ℚ(√2, √3)` in disguise.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open IntermediateField
 
 open scoped Function
@@ -174,3 +174,4 @@ theorem sq_sqrt_ratCast {q : ℚ} (hq : 0 ≤ q) :
   rw [Real.sq_sqrt (by exact_mod_cast hq), eq_ratCast]
 
 end TauCeti.Multiquadratic
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

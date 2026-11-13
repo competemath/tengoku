@@ -21,7 +21,7 @@ Morrison's Mathlib universal-cover drafts, especially
 -/
 
 noncomputable section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open CategoryTheory Filter FundamentalGroupoid Set Topology TauCeti
 
 variable {X : Type*} [TopologicalSpace X]
@@ -31,7 +31,7 @@ variable {X : Type*} [TopologicalSpace X]
 /-- A partition of the unit interval `[0, 1]` into `n` segments, used as scaffolding for the
 tube construction below. (It is `public` only so that the `structureInType` environment linter
 can resolve its projections across the module boundary; it is not intended as reusable API.) -/
-public structure IntervalPartition (n : ℕ) : Type where
+public structure Tengoku.Tauceti.IntervalPartition (n : ℕ) : Type where
   /-- The partition points. -/
   t : Fin (n + 1) → unitInterval
   /-- The partition points are monotone. -/
@@ -41,7 +41,7 @@ public structure IntervalPartition (n : ℕ) : Type where
   /-- The last partition point is `1`. -/
   t_last : t (Fin.last n) = 1
 
-namespace IntervalPartition
+namespace Tengoku.Tauceti.IntervalPartition
 
 attribute [simp, grind =] t_zero t_last
 
@@ -57,13 +57,13 @@ public instance : IsEmpty (IntervalPartition 0) where
     have h1 : part.t 0 = 1 := part.t_last
     exact zero_ne_one (h0.symm.trans h1)
 
-end IntervalPartition
+end Tengoku.Tauceti.IntervalPartition
 
 /-- Data for a tubular neighborhood in an SLSC space: segment neighborhoods, point
 neighborhoods at all partition points, and the openness/path-connectedness/SLSC subset data.
 Like `IntervalPartition`, this is tube scaffolding marked `public` only so the `structureInType`
 environment linter can resolve its projections; it is not intended as reusable API. -/
-public structure TubeData (X : Type*) [TopologicalSpace X] (n : ℕ) : Type _ where
+public structure Tengoku.Tauceti.TubeData (X : Type*) [TopologicalSpace X] (n : ℕ) : Type _ where
   /-- Segment neighborhoods -/
   U : Fin n → Set X
   /-- Point neighborhoods at ALL partition points (including endpoints) -/
@@ -90,7 +90,7 @@ This means:
 `TauCeti.AlgebraicTopology.UniversalCover.BasedPath` builds and destructures tube membership
 directly (it refines the terminal vertex neighborhood before appealing to
 `Path.tube_subset_homotopy_class_source`); it is not otherwise part of the reusable API. -/
-public structure PathInTube {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
+public structure Tengoku.Tauceti.PathInTube {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
     (γ : Path x y) (part : IntervalPartition n) (T : TubeData X n) : Prop where
   /-- γ stays in the segment neighborhoods U[i] on each interval [t[i], t[i+1]] -/
   stays_in_U : ∀ i (s : unitInterval),
@@ -99,7 +99,7 @@ public structure PathInTube {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
   passes_through_V : ∀ j, γ (part.t j) ∈ T.V j
 
 /-- If γ is in a tube, then its subpath on segment i has range in U[i]. -/
-lemma PathInTube.subpath_range_subset {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
+lemma Tengoku.Tauceti.PathInTube.subpath_range_subset {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
     {γ : Path x y} {part : IntervalPartition n} {T : TubeData X n}
     (hγ : PathInTube γ part T) (i : Fin n) :
     Set.range (γ.subpath (part.t i.castSucc) (part.t i.succ)) ⊆ T.U i := by
@@ -112,11 +112,11 @@ lemma PathInTube.subpath_range_subset {X : Type*} [TopologicalSpace X] {x y : X}
       ⟨Set.Icc.le_convexComb h_mono t, Set.Icc.convexComb_le h_mono t⟩
 
 /-- Convert TubeData with partition to the set of paths in the tube -/
-def TubeData.toSet {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
+def Tengoku.Tauceti.TubeData.toSet {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
     (part : IntervalPartition n) (T : TubeData X n) : Set (Path x y) :=
   {γ | PathInTube γ part T}
 
-@[simp] theorem TubeData.mem_toSet_iff {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
+@[simp] theorem Tengoku.Tauceti.TubeData.mem_toSet_iff {X : Type*} [TopologicalSpace X] {x y : X} {n : ℕ}
     (part : IntervalPartition n) (T : TubeData X n) (γ : Path x y) :
     γ ∈ T.toSet part ↔ PathInTube γ part T :=
   Iff.rfl
@@ -294,7 +294,7 @@ theorem isOpen_pathTube {x y : X} {n : ℕ}
     (isOpen_setOf_forall_vertex_mem part V hV_open)
 
 /-- Given a partition and tube data, the set of paths in the tube is open in the path space. -/
-theorem TubeData.isOpen {x y : X} {n : ℕ} (part : IntervalPartition n) (T : TubeData X n) :
+theorem Tengoku.Tauceti.TubeData.isOpen {x y : X} {n : ℕ} (part : IntervalPartition n) (T : TubeData X n) :
     IsOpen (T.toSet (x := x) (y := y) part) := by
   have : T.toSet (x := x) (y := y) part =
       {γ' : Path x y |
@@ -654,3 +654,4 @@ public instance Path.Homotopic.Quotient.instDiscreteTopology
     fun p ↦ SemilocallySimplyConnectedOn.of_semilocallySimplyConnectedSpace (Set.range p)
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -71,7 +71,7 @@ two phrasings is mathlib's `DirichletCharacter.factorsThrough_iff_ker_unitsMap`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane CongruenceSubgroup
 
 open scoped MatrixGroups ModularForm
@@ -283,3 +283,4 @@ theorem exists_cuspForm_mem_cuspFormCharSpace_or_eq_zero {l : ℕ} [NeZero l]
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

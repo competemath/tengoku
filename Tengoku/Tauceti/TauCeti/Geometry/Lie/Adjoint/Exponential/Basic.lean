@@ -34,7 +34,7 @@ This advances Deliverable A, Layer 1 of
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 namespace TauCeti.Lie
@@ -122,3 +122,4 @@ theorem conj_lieExp (g : G) (X : LeftInvariantDerivation I G) :
 end Derivation
 
 end TauCeti.Lie
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

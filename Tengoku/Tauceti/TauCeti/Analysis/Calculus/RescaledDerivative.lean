@@ -22,11 +22,11 @@ for both real and complex scalars.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Filter
 
 /-- If `f` passes through zero with derivative `f'`, then `n • f (t / n)` tends to `t • f'`. -/
-theorem tendsto_nsmul_apply_div_of_hasDerivAt
+theorem Tengoku.Tauceti.tendsto_nsmul_apply_div_of_hasDerivAt
     {𝕜 F : Type*} [NontriviallyNormedField 𝕜] [CharZero 𝕜] [ContinuousSMul ℚ≥0 𝕜]
     [SeminormedAddCommGroup F] [NormedSpace 𝕜 F]
     {f : 𝕜 → F} {f' : F} (hf : HasDerivAt f f' 0) (hf0 : f 0 = 0) (t : 𝕜) :
@@ -41,3 +41,4 @@ theorem tendsto_nsmul_apply_div_of_hasDerivAt
       hscaled
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

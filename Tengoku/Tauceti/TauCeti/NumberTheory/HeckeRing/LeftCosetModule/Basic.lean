@@ -51,7 +51,7 @@ Mathlib stack.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open DoubleCoset Subgroup
 
 variable {G : Type*} [Group G] {Δ : Submonoid G} {H : Subgroup G}
@@ -293,10 +293,10 @@ end HeckeCoset
 Hecke cosets), the carrier of the natural representation of the Hecke ring. An `abbrev`
 of the underlying `Finsupp`, so the full `Finsupp` API applies transparently at every
 coefficient class — the stable named interface for the scalar operations below. -/
-abbrev LeftCosetModule (Δ : Submonoid G) (H : Subgroup G) (R : Type*) [Zero R] :=
+abbrev Tengoku.Tauceti.LeftCosetModule (Δ : Submonoid G) (H : Subgroup G) (R : Type*) [Zero R] :=
   HeckeCoset Δ ⊥ H →₀ R
 
-namespace LeftCosetModule
+namespace Tengoku.Tauceti.LeftCosetModule
 
 open HeckeCoset
 
@@ -378,9 +378,9 @@ noncomputable instance smulWithZero :
     rw [← MulOpposite.op_zero, smul_eq_sum]
     exact Finsupp.sum_zero_index
 
-end LeftCosetModule
+end Tengoku.Tauceti.LeftCosetModule
 
-namespace LeftCosetModule
+namespace Tengoku.Tauceti.LeftCosetModule
 
 open HeckeCoset
 
@@ -439,4 +439,5 @@ lemma eq_of_smul_eq_smul {t₁ t₂ : 𝕋 Δ H R}
   have h1 := congrArg (fun m ↦ m q) (h (Finsupp.single 1 1))
   rwa [smul_single_one_apply t₁ D hq, smul_single_one_apply t₂ D hq] at h1
 
-end LeftCosetModule
+end Tengoku.Tauceti.LeftCosetModule
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -44,7 +44,7 @@ The weak topology convention follows M. Hirsch, *Differential Topology*, GTM 33,
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Set Topology
 open scoped Manifold TauCeti.ManifoldWeakWhitney
 
@@ -192,3 +192,4 @@ theorem manifoldWeakWhitneyCurry_apply (f : C^n⟮I'.prod I, P × M; J, N⟯) (p
     manifoldWeakWhitneyCurry f p x = f (p, x) := (rfl)
 
 end ContMDiffMap
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)
