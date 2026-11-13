@@ -689,5 +689,23 @@ class WhereLemmas(unittest.TestCase):
         self.assertGreater(n, 1500)
 
 
+class RangeDifferences(unittest.TestCase):
+    """isnad.py tagtest prints, for each name whose ranges Lean and ranges.json disagree on, both: a fixture change is pinned from the job's log."""
+
+    def test_the_lines(self):
+        pinned = {n: [v["range"], v["sel"]] for n, v in RANGES.items()}
+        self.assertEqual(isnad.range_differences(pinned, pinned), [])
+        fresh = dict(pinned)
+        fresh["Fx.with_where.aux"] = [[57, 2, 57, 40], [57, 2, 57, 5]]
+        fresh["Fx.new_one"] = [[70, 0, 70, 9], [70, 8, 70, 9]]
+        del fresh["Fx.one_line"]
+        lines = isnad.range_differences(fresh, pinned)
+        self.assertEqual(len(lines), 3)
+        self.assertIn('ranges: Fx.new_one: Lean {"range": [70, 0, 70, 9], "sel": [70, 8, 70, 9]}; pinned none', lines)
+        self.assertTrue(any(ln.startswith("ranges: Fx.one_line: Lean none; pinned ") for ln in lines))
+        self.assertTrue(any(ln.startswith('ranges: Fx.with_where.aux: Lean {"range": [57, 2, 57, 40]') for ln in lines))
+        self.assertEqual(lines, sorted(lines))
+
+
 if __name__ == "__main__":
     unittest.main()

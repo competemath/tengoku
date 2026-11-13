@@ -496,6 +496,19 @@ def identities(recs: list[Record]) -> dict[str, tuple[str, str, str]]:
     return {r.name: (r.id, r.shape, r.vocab) for r in recs}
 
 
+def range_differences(fresh: dict[str, list], pinned: dict[str, list]) -> list[str]:
+    """For each name whose ranges Lean and ranges.json do not agree on, one line with both (`none` where one has no entry): what to pin after a change to the fixture."""
+
+    def shown(v: list | None) -> str:
+        return json.dumps({"range": v[0], "sel": v[1]}) if v is not None else "none"
+
+    return [
+        f"ranges: {n}: Lean {shown(fresh.get(n))}; pinned {shown(pinned.get(n))}"
+        for n in sorted(set(fresh) | set(pinned))
+        if fresh.get(n) != pinned.get(n)
+    ]
+
+
 def tagtest(exe: str | None = None) -> int:
     """The tagger on a real compile (CI, job isnad): Lean's ranges for the fixture are the ones the repository pins; tagging, tagging again and stripping each
     leave every theorem's identity as it was (the statements are compiled again after each step); the second tag is a no-op; the stripped file is equivalent to the
@@ -514,12 +527,9 @@ def tagtest(exe: str | None = None) -> int:
         want = {n: [v["range"], v["sel"]] for n, v in pinned.items()}
         if fresh != want:
             problems.append("Lean's ranges for the fixture are not the ones in tools/isnad/tagger/ranges.json")
-            # what Lean says, for each name that differs: what to pin after a change to the fixture (the job's log is the only place a fresh compile is seen)
-            for n in sorted(set(fresh) | set(want)):
-                if fresh.get(n) != want.get(n):
-                    print(
-                        f"ranges: {n}: Lean {json.dumps({'range': fresh[n][0], 'sel': fresh[n][1]}) if n in fresh else 'none'}; pinned {json.dumps({'range': want[n][0], 'sel': want[n][1]}) if n in want else 'none'}"
-                    )
+            # what Lean says, to pin after a change to the fixture (the job's log is the only place a fresh compile is seen)
+            for line in range_differences(fresh, want):
+                print(line)
         before = identities(recs)
 
         plan, skipped = plan_tags(recs, ranges, "seed")
