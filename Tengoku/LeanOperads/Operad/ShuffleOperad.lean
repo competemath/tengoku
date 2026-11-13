@@ -193,6 +193,9 @@ variable {A B C : Type} [Fintype A] [LinearOrder A] [Fintype B] [LinearOrder B] 
 /-- The quotient map.-/
 def proj (A : Type) [Fintype A] [LinearOrder A] : P A →ₗ[R] I.Quot A := (I.sub A).mkQ
 
+/--
+@isnad1 id=surjecti.0h4v.s8.7beac449e527 from=translated src=- shape=fd651445 vocab=89ebfb0c
+-/
 lemma proj_surjective (A : Type) [Fintype A] [LinearOrder A] : Function.Surjective (I.proj A) :=
   Submodule.mkQ_surjective _
 
@@ -287,6 +290,9 @@ def liftHom (ψ : ShuffleOperadHom R P Q)
     obtain ⟨y, rfl⟩ := I.proj_surjective _ q
     exact ψ.app_comp i e he x y
 
+/--
+@isnad1 id=eq.1h7v.s10.5be75ff91262 from=translated src=- shape=27dc7052 vocab=f27ade6b
+-/
 @[simp] lemma liftHom_proj (ψ : ShuffleOperadHom R P Q)
     (h : ∀ (A : Type) [Fintype A] [LinearOrder A], ∀ x ∈ I.sub A, ψ.app A x = 0)
     (A : Type) [Fintype A] [LinearOrder A] (x : P A) :

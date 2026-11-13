@@ -40,8 +40,14 @@ variable (R) in
 /-- The sign of a parity: `σ false = 1`, `σ true = -1`.-/
 def σ (b : Bool) : R := if b then -1 else 1
 
+/--
+@isnad1 id=eq.0h1v.s4.6eccf95ce975 from=translated src=- shape=43c38ba4 vocab=ccbcf5f7
+-/
 @[simp] lemma σ_false : σ R false = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.a1576b3fb94c from=translated src=- shape=7a0fbfa7 vocab=6513552d
+-/
 @[simp] lemma σ_true : σ R true = -1 := rfl
 
 variable (ε : V →ₗ[R] V) (μ : V →ₗ[R] V →ₗ[R] V) (Δ : V →ₗ[R] V)
@@ -73,21 +79,32 @@ structure IsBV : Prop where
 
 variable {ε μ Δ}
 
+/--
+@isnad1 id=ispar.2h6v.s6.2b532e93169f from=translated src=- shape=5169162a vocab=dd9ba901
+-/
 lemma IsPar.add {p : Bool} {x y : V} (hx : IsPar ε p x) (hy : IsPar ε p y) :
     IsPar ε p (x + y) := by
   unfold IsPar at *
   rw [map_add, hx, hy, smul_add]
 
+/--
+@isnad1 id=ispar.1h6v.s7.fa90b6e1f5b7 from=translated src=- shape=8fb71576 vocab=85172a13
+-/
 lemma IsPar.smul {p : Bool} {x : V} (hx : IsPar ε p x) (c : R) : IsPar ε p (c • x) := by
   unfold IsPar at *
   rw [map_smul, hx, smul_comm]
 
+/--
+@isnad1 id=ispar.2h6v.s6.c368ed22db9e from=translated src=- shape=5169162a vocab=93312fa6
+-/
 lemma IsPar.sub {p : Bool} {x y : V} (hx : IsPar ε p x) (hy : IsPar ε p y) :
     IsPar ε p (x - y) := by
   unfold IsPar at *
   rw [map_sub, hx, hy, smul_sub]
 
-/-- The deviation of homogeneous elements is homogeneous, of the parity of a bracket.-/
+/-- The deviation of homogeneous elements is homogeneous, of the parity of a bracket.
+@isnad1 id=ispar.3h9v.s8.35ffda3ea167 from=translated src=- shape=be4deb29 vocab=603e2063
+-/
 lemma IsBV.par_dev (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) : IsPar ε (!(xor p q)) (dev μ Δ p x y) := by
   unfold dev
@@ -98,35 +115,54 @@ lemma IsBV.par_dev (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x
     refine IsPar.smul ?_ _
     cases p <;> cases q <;> simpa using this
 
+/--
+@isnad1 id=ispar.3h9v.s8.555c858d0afd from=translated src=- shape=be4deb29 vocab=c529013c
+-/
 lemma IsBV.par_bracket (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) : IsPar ε (!(xor p q)) (bracket μ Δ p x y) :=
   (h.par_dev hx hy).smul _
 
+/--
+@isnad1 id=eq.0h8v.s8.3116a85fbdc3 from=translated src=- shape=12715421 vocab=1325df33
+-/
 lemma dev_sub_right (p : Bool) (x y z : V) :
     dev μ Δ p x (y - z) = dev μ Δ p x y - dev μ Δ p x z := by
   simp only [dev, map_sub, smul_sub]
   abel
 
+/--
+@isnad1 id=eq.0h8v.s8.ab38b3d7955a from=translated src=- shape=297f79c5 vocab=2fd327e3
+-/
 lemma dev_smul_right (p : Bool) (c : R) (x y : V) :
     dev μ Δ p x (c • y) = c • dev μ Δ p x y := by
   simp only [dev, map_smul, smul_sub, smul_comm c (σ R p)]
 
+/--
+@isnad1 id=eq.0h8v.s8.99833e06c188 from=translated src=- shape=ce4fcc6d vocab=1325df33
+-/
 lemma dev_sub_left (p : Bool) (x y z : V) :
     dev μ Δ p (x - y) z = dev μ Δ p x z - dev μ Δ p y z := by
   simp only [dev, map_sub, LinearMap.sub_apply, smul_sub]
   abel
 
+/--
+@isnad1 id=eq.0h8v.s8.3d12c4b0a186 from=translated src=- shape=c406ed4c vocab=2fd327e3
+-/
 lemma dev_smul_left (p : Bool) (c : R) (x z : V) :
     dev μ Δ p (c • x) z = c • dev μ Δ p x z := by
   simp only [dev, map_smul, LinearMap.smul_apply, smul_sub, smul_comm c (σ R p)]
 
-/-- **`Δ` is a derivation of the deviation**: `Δ ⟨x, y⟩ = -⟨Δ x, y⟩ - σ p ⟨x, Δ y⟩`.-/
+/-- **`Δ` is a derivation of the deviation**: `Δ ⟨x, y⟩ = -⟨Δ x, y⟩ - σ p ⟨x, Δ y⟩`.
+@isnad1 id=eq.1h7v.s9.38050d9e89d7 from=translated src=- shape=6df50ee1 vocab=8a150818
+-/
 lemma Δ_dev (hΔ : ∀ x, Δ (Δ x) = 0) (p : Bool) (x y : V) :
     Δ (dev μ Δ p x y) = -dev μ Δ (!p) (Δ x) y - σ R p • dev μ Δ p x (Δ y) := by
   simp only [dev, map_sub, map_smul, hΔ, LinearMap.zero_apply, map_zero, smul_zero, sub_zero]
   cases p <;> simp <;> abel
 
-/-- **The deviation is graded symmetric**: `⟨x, y⟩ = σ(|x| |y|) ⟨y, x⟩`.-/
+/-- **The deviation is graded symmetric**: `⟨x, y⟩ = σ(|x| |y|) ⟨y, x⟩`.
+@isnad1 id=eq.3h9v.s8.25a8acddea3e from=translated src=- shape=287527ab vocab=fe9e2737
+-/
 lemma IsBV.dev_comm (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) : dev μ Δ p x y = σ R (p && q) • dev μ Δ q y x := by
   have c1 := congrArg Δ (h.comm _ _ _ _ hx hy)
@@ -142,7 +178,9 @@ lemma IsBV.dev_comm (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p 
 
 /-- **The Jacobi identity for the deviation**:
 `⟨x, ⟨y, z⟩⟩ = -σ|x| ⟨⟨x, y⟩, z⟩ - σ(|x| + (|x| + 1)|y|) ⟨y, ⟨x, z⟩⟩`. It needs only `Δ² = 0` and
-the order condition, for any notion `H` of homogeneity.-/
+the order condition, for any notion `H` of homogeneity.
+@isnad1 id=eq.2h13v.s10.c2950446e2ed from=translated src=- shape=2fb10345 vocab=05d98f1e
+-/
 theorem dev_jacobi {H : Bool → V → Prop} (hΔ : ∀ x, Δ (Δ x) = 0)
     (hord : ∀ p q x y z, H p x → H q y →
       dev μ Δ p x (μ y z) = μ (dev μ Δ p x y) z + σ R ((!p) && q) • μ y (dev μ Δ p x z))
@@ -165,7 +203,9 @@ theorem dev_jacobi {H : Bool → V → Prop} (hΔ : ∀ x, Δ (Δ x) = 0)
 
 /-! ## Koszul's theorem -/
 
-/-- **The derived bracket is graded antisymmetric**: `[x, y] = -σ((|x| + 1)(|y| + 1)) [y, x]`.-/
+/-- **The derived bracket is graded antisymmetric**: `[x, y] = -σ((|x| + 1)(|y| + 1)) [y, x]`.
+@isnad1 id=eq.3h9v.s8.c2968369f4a6 from=translated src=- shape=e6027779 vocab=a2bef40a
+-/
 theorem IsBV.bracket_antisymm (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) :
     bracket μ Δ p x y = -σ R ((!p) && (!q)) • bracket μ Δ q y x := by
@@ -174,7 +214,9 @@ theorem IsBV.bracket_antisymm (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : I
   cases p <;> cases q <;> simp
 
 /-- **The Poisson rule**: the derived bracket is a graded derivation of the product,
-`[x, y z] = [x, y] z + σ((|x| + 1)|y|) y [x, z]`.-/
+`[x, y z] = [x, y] z + σ((|x| + 1)|y|) y [x, z]`.
+@isnad1 id=eq.3h10v.s10.e88fc4286979 from=translated src=- shape=f4dccd2e vocab=10799da8
+-/
 theorem IsBV.bracket_mul_right (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) (z : V) :
     bracket μ Δ p x (μ y z)
@@ -184,7 +226,9 @@ theorem IsBV.bracket_mul_right (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : 
     smul_comm (σ R p)]
 
 /-- **The graded Jacobi identity** for the derived bracket:
-`[x, [y, z]] = [[x, y], z] + σ((|x| + 1)(|y| + 1)) [y, [x, z]]`.-/
+`[x, [y, z]] = [[x, y], z] + σ((|x| + 1)(|y| + 1)) [y, [x, z]]`.
+@isnad1 id=eq.3h10v.s8.6f1ff47d3009 from=translated src=- shape=bef0817b vocab=cb2bda30
+-/
 theorem IsBV.bracket_jacobi (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsPar ε p x)
     (hy : IsPar ε q y) (z : V) :
     bracket μ Δ p x (bracket μ Δ q y z)
@@ -197,7 +241,9 @@ theorem IsBV.bracket_jacobi (h : IsBV ε μ Δ) {p q : Bool} {x y : V} (hx : IsP
   module
 
 /-- **`Δ` is a derivation of the derived bracket**:
-`Δ [x, y] = [Δ x, y] + σ(|x| + 1) [x, Δ y]`.-/
+`Δ [x, y] = [Δ x, y] + σ(|x| + 1) [x, Δ y]`.
+@isnad1 id=eq.1h7v.s9.97fb0bca5e42 from=translated src=- shape=ca7df0e2 vocab=f5af0d93
+-/
 theorem Δ_bracket (hΔ : ∀ x, Δ (Δ x) = 0) (p : Bool) (x y : V) :
     Δ (bracket μ Δ p x y)
       = bracket μ Δ (!p) (Δ x) y + σ R (!p) • bracket μ Δ p x (Δ y) := by

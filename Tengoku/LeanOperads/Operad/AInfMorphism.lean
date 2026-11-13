@@ -50,7 +50,9 @@ namespace MSer
 variable {R} {V W X Y : Type*} [AddCommGroup V] [Module R V] [AddCommGroup W] [Module R W]
   [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
 
-/-- Components of equal arities agree on corresponding inputs.-/
+/-- Components of equal arities agree on corresponding inputs.
+@isnad1 id=eq.2h8v.s7.94029ba78b32 from=translated src=- shape=348772bf vocab=6f2d0c66
+-/
 lemma congr (p : MSer R V W) {m n : ℕ} (h : m = n) {v : Fin m → V} {w : Fin n → V}
     (hv : ∀ (i : ℕ) (him : i < m) (hin : i < n), v ⟨i, him⟩ = w ⟨i, hin⟩) : p m v = p n w := by
   subst h
@@ -63,6 +65,9 @@ def applyComp (p : MSer R V W) {n : ℕ} (c : Composition n) (v : Fin n → V) :
     Fin c.length → W :=
   fun i => p (c.blocksFun i) (v ∘ c.embedding i)
 
+/--
+@isnad1 id=eq.0h9v.s8.f50ed66fc8c7 from=translated src=- shape=62aba0cb vocab=66ef3da3
+-/
 lemma applyComp_update (p : MSer R V W) {n : ℕ} (c : Composition n) (j : Fin n) (v : Fin n → V)
     (z : V) :
     applyComp p c (Function.update v j z) =
@@ -88,6 +93,9 @@ lemma applyComp_update (p : MSer R V W) {n : ℕ} (c : Composition n) (j : Fin n
     apply Function.update_comp_eq_of_notMem_range
     rwa [c.mem_range_embedding_iff']
 
+/--
+@isnad1 id=eq.0h5v.s7.e7f728c7d46b from=translated src=- shape=b8812e56 vocab=c737352d
+-/
 lemma applyComp_ones (p : MSer R V W) (n : ℕ) :
     applyComp p (Composition.ones n) =
       fun v i => p 1 fun _ => v (Fin.castLE (Composition.length_le _) i) := by
@@ -105,6 +113,9 @@ def compAlong (q : MSer R W X) (p : MSer R V W) {n : ℕ} (c : Composition n) :
     (fun v i x y => by simp only [applyComp_update, MultilinearMap.map_update_add])
     (fun v i r x => by simp only [applyComp_update, MultilinearMap.map_update_smul])
 
+/--
+@isnad1 id=eq.0h9v.s8.a876fdf7155d from=translated src=- shape=905c8804 vocab=b732273b
+-/
 @[simp] lemma compAlong_apply (q : MSer R W X) (p : MSer R V W) {n : ℕ} (c : Composition n)
     (v : Fin n → V) : compAlong q p c v = q c.length (applyComp p c v) :=
   rfl
@@ -114,6 +125,9 @@ running over the compositions `c` of `n`.-/
 def comp (q : MSer R W X) (p : MSer R V W) : MSer R V X :=
   fun n => ∑ c : Composition n, compAlong q p c
 
+/--
+@isnad1 id=eq.0h8v.s8.5305ed4618bd from=translated src=- shape=1647cfd7 vocab=9ced7582
+-/
 lemma comp_apply (q : MSer R W X) (p : MSer R V W) (n : ℕ) (v : Fin n → V) :
     comp q p n v = ∑ c : Composition n, q c.length (applyComp p c v) := by
   simp [comp, _root_.sum_apply]
@@ -124,20 +138,31 @@ def id : MSer R V V
   | 1 => MultilinearMap.ofSubsingleton R V V 0 LinearMap.id
   | _ => 0
 
+/--
+@isnad1 id=eq.0h3v.s7.76fb02db0dc8 from=translated src=- shape=8f8f74c4 vocab=eb9bd92a
+-/
 @[simp] lemma id_apply_one (v : Fin 1 → V) : id R V 1 v = v 0 :=
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.c4b61aa93d18 from=translated src=- shape=686896a9 vocab=69dee77a
+-/
 lemma id_apply_one' {n : ℕ} (h : n = 1) (v : Fin n → V) :
     id R V n v = v ⟨0, h.symm ▸ zero_lt_one⟩ := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s7.b75ff8d37c8d from=translated src=- shape=ef1277b0 vocab=ce1be878
+-/
 lemma id_of_ne_one {n : ℕ} (h : n ≠ 1) : id R V n = 0 := by
   match n, h with
   | 0, _ => rfl
   | n + 2, _ => rfl
 
-/-- **The identity is a right unit.**-/
+/-- **The identity is a right unit.**
+@isnad1 id=eq.0h4v.s6.74601fe95020 from=translated src=- shape=742f9fce vocab=788eb3a7
+-/
 @[simp] theorem comp_id (p : MSer R V W) : comp p (id R V) = p := by
   funext n
   rw [comp, Finset.sum_eq_single (Composition.ones n)]
@@ -168,7 +193,9 @@ lemma id_of_ne_one {n : ℕ} (h : n ≠ 1) : id R V n = 0 := by
 
 section Hat
 
-/-- Inputs of earlier blocks of a composition come before those of later blocks.-/
+/-- Inputs of earlier blocks of a composition come before those of later blocks.
+@isnad1 id=lt.1h6v.s7.242cf1cf5b19 from=translated src=- shape=225b1db9 vocab=7216863d
+-/
 lemma embedding_lt_embedding {n : ℕ} (c : Composition n) {i r : Fin c.length} (h : i < r)
     (j : Fin (c.blocksFun i)) (s : Fin (c.blocksFun r)) : c.embedding i j < c.embedding r s := by
   rw [Fin.lt_def, Composition.coe_embedding, Composition.coe_embedding]
@@ -190,15 +217,27 @@ def hat (f : MSer R V W) : MSer R (V × V) (W × W) := fun n =>
   MultilinearMap.prod ((f n).compLinearMap fun _ => LinearMap.fst R V V)
     (∑ s : Fin n, (f n).compLinearMap (hatFn εV s))
 
+/--
+@isnad1 id=eq.1h6v.s7.8a3b5a0c10f5 from=translated src=- shape=e72c9695 vocab=4bea1eb7
+-/
 lemma hatFn_of_lt {n : ℕ} {s t : Fin n} (h : t < s) :
     hatFn εV s t = εV ∘ₗ LinearMap.fst R V V := ite_eq_left h
 
+/--
+@isnad1 id=eq.0h5v.s7.b39bf3ffe0ab from=translated src=- shape=21f440d1 vocab=bc36dd44
+-/
 lemma hatFn_self {n : ℕ} (s : Fin n) : hatFn εV s s = LinearMap.snd R V V := by
   rw [hatFn, ite_eq_right (lt_irrefl s), ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h6v.s7.6a765a6da816 from=translated src=- shape=c6e3b371 vocab=bd064da9
+-/
 lemma hatFn_of_gt {n : ℕ} {s t : Fin n} (h : s < t) : hatFn εV s t = LinearMap.fst R V V := by
   rw [hatFn, ite_eq_right (not_lt.mpr h.le), ite_eq_right (ne_of_gt h)]
 
+/--
+@isnad1 id=eq.0h7v.s9.b1d13e9bc99c from=translated src=- shape=6e5a06da vocab=d89fef7d
+-/
 lemma hat_apply (f : MSer R V W) (n : ℕ) (v : Fin n → V × V) :
     hat εV f n v = (f n fun t => (v t).1, ∑ s : Fin n, f n fun t => hatFn εV s t (v t)) := by
   simp [hat, _root_.sum_apply]
@@ -211,7 +250,9 @@ def IsEven (f : MSer R V W) : Prop :=
 
 variable {εV εW}
 
-/-- **Extension by an odd parameter is functorial on even series.**-/
+/-- **Extension by an odd parameter is functorial on even series.**
+@isnad1 id=eq.1h8v.s8.38d7db74f588 from=translated src=- shape=85aa19ca vocab=0b522881
+-/
 theorem hat_comp {f : MSer R V W} (hf : IsEven εV εW f) (g : MSer R W X) :
     hat εV (comp g f) = comp (hat εW g) (hat εV f) := by
   funext n
@@ -267,7 +308,9 @@ theorem hat_comp {f : MSer R V W} (hf : IsEven εV εW f) (g : MSer R W X) :
       rfl
 
 variable (εV) in
-/-- **The extension of the identity is the identity.**-/
+/-- **The extension of the identity is the identity.**
+@isnad1 id=eq.0h3v.s7.58ef400ebb67 from=translated src=- shape=b056dca4 vocab=fbb5ee26
+-/
 @[simp] theorem hat_id : hat εV (id R V) = id R (V × V) := by
   funext n
   by_cases hn : n = 1
@@ -282,13 +325,18 @@ variable (εV) in
     rw [h1, id_of_ne_one hn]
 
 variable (εV) in
+/--
+@isnad1 id=iseven.0h3v.s6.7f69e4c463bf from=translated src=- shape=eaa0c801 vocab=3473e0a9
+-/
 lemma id_even : IsEven εV εV (id R V) := fun n v => by
   by_cases hn : n = 1
   · subst hn
     rfl
   · simp [id_of_ne_one hn]
 
-/-- **A composite of even series is even.**-/
+/-- **A composite of even series is even.**
+@isnad1 id=iseven.2h9v.s7.661a0c661545 from=translated src=- shape=1101db78 vocab=b06b92a5
+-/
 lemma comp_even {εX : X →ₗ[R] X} {f : MSer R V W} {g : MSer R W X} (hf : IsEven εV εW f)
     (hg : IsEven εW εX g) : IsEven εV εX (comp g f) := fun n v => by
   rw [comp_apply, comp_apply, map_sum]
@@ -302,9 +350,15 @@ end Hat
 
 /-! ## Low arities -/
 
+/--
+@isnad1 id=eq.0h1v.s4.616a4eb2701e from=translated src=- shape=d1283aec vocab=75766d92
+-/
 lemma composition_one (c : Composition 1) : c = Composition.ones 1 :=
   Composition.eq_ones_iff_le_length.2 ((Composition.length_pos_iff c).2 one_pos)
 
+/--
+@isnad1 id=or.0h1v.s5.52b52334cd66 from=translated src=- shape=e86f7d7c vocab=121e26c5
+-/
 lemma composition_two (c : Composition 2) :
     c = Composition.ones 2 ∨ c = Composition.single 2 two_pos := by
   have h1 := c.length_le
@@ -313,7 +367,9 @@ lemma composition_two (c : Composition 2) :
   · exact Or.inr ((Composition.eq_single_iff_length two_pos).2 h)
   · exact Or.inl (Composition.eq_ones_iff_length.2 h)
 
-/-- **A composite in arity one.**-/
+/-- **A composite in arity one.**
+@isnad1 id=eq.0h7v.s8.771671782207 from=translated src=- shape=5d159b6f vocab=a2bcda18
+-/
 lemma comp_apply_one (q : MSer R W X) (p : MSer R V W) (v : Fin 1 → V) :
     comp q p 1 v = q 1 ![p 1 v] := by
   rw [comp_apply, Fintype.sum_eq_single (Composition.ones 1)
@@ -328,7 +384,9 @@ lemma comp_apply_one (q : MSer R W X) (p : MSer R V W) (v : Fin 1 → V) :
   fin_cases t
   exact congr_arg v (Fin.ext rfl)
 
-/-- **A composite in arity two**: `q₂(p₁, p₁) + q₁(p₂)`.-/
+/-- **A composite in arity two**: `q₂(p₁, p₁) + q₁(p₂)`.
+@isnad1 id=eq.0h7v.s9.fb89343783ba from=translated src=- shape=67848aa2 vocab=e8d46ef4
+-/
 lemma comp_apply_two (q : MSer R W X) (p : MSer R V W) (v : Fin 2 → V) :
     comp q p 2 v = q 2 ![p 1 ![v 0], p 1 ![v 1]] + q 1 ![p 2 v] := by
   have hne : Composition.ones 2 ≠ Composition.single 2 two_pos := fun h => by
@@ -360,6 +418,9 @@ lemma comp_apply_two (q : MSer R W X) (p : MSer R V W) (v : Fin 2 → V) :
     intro j hj1 hj2
     exact congr_arg v (Fin.ext (by rw [Composition.coe_embedding]; simp))
 
+/--
+@isnad1 id=eq.0h6v.s8.77c15bc41af7 from=translated src=- shape=dcd7b6ba vocab=7474a968
+-/
 lemma hat_apply_one_snd (εV : V →ₗ[R] V) (f : MSer R V W) (w : Fin 1 → V × V) :
     (hat εV f 1 w).2 = f 1 ![(w 0).2] := by
   rw [hat_apply, Fin.sum_univ_one]
@@ -369,6 +430,9 @@ lemma hat_apply_one_snd (εV : V →ₗ[R] V) (f : MSer R V W) (w : Fin 1 → V 
   fin_cases t
   simp [hatFn_self]
 
+/--
+@isnad1 id=eq.0h6v.s9.d227310b66fc from=translated src=- shape=9700cb7c vocab=7ce908c4
+-/
 lemma hat_apply_two_snd (εV : V →ₗ[R] V) (f : MSer R V W) (w : Fin 2 → V × V) :
     (hat εV f 2 w).2 = f 2 ![(w 0).2, (w 1).1] + f 2 ![εV (w 0).1, (w 1).2] := by
   rw [hat_apply, Fin.sum_univ_two]
@@ -392,20 +456,31 @@ def lin (φ : V →ₗ[R] W) : MSer R V W
   | 1 => MultilinearMap.ofSubsingleton R V W 0 φ
   | _ => 0
 
+/--
+@isnad1 id=eq.0h5v.s8.939e346027d2 from=translated src=- shape=9ecb8c1c vocab=fbe0a7bc
+-/
 @[simp] lemma lin_apply_one (φ : V →ₗ[R] W) (v : Fin 1 → V) : lin φ 1 v = φ (v 0) :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s8.93c1e78ddd61 from=translated src=- shape=bfc963aa vocab=b7b5e0a7
+-/
 lemma lin_apply_one' (φ : V →ₗ[R] W) {n : ℕ} (h : n = 1) (v : Fin n → V) :
     lin φ n v = φ (v ⟨0, h.symm ▸ zero_lt_one⟩) := by
   subst h
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s7.cca7590ae97f from=translated src=- shape=9c70ff13 vocab=a0a4057c
+-/
 lemma lin_of_ne_one (φ : V →ₗ[R] W) {n : ℕ} (h : n ≠ 1) : lin φ n = 0 := by
   match n, h with
   | 0, _ => rfl
   | n + 2, _ => rfl
 
-/-- **Composing with a linear map on the right** applies it to every input.-/
+/-- **Composing with a linear map on the right** applies it to every input.
+@isnad1 id=eq.0h6v.s7.b20b293ab879 from=translated src=- shape=6fb5f994 vocab=8e78a5db
+-/
 theorem comp_lin_right (p : MSer R W X) (φ : V →ₗ[R] W) :
     comp p (lin φ) = fun n => (p n).compLinearMap fun _ => φ := by
   funext n
@@ -433,7 +508,9 @@ theorem comp_lin_right (p : MSer R W X) (φ : V →ₗ[R] W) :
     rw [lin_of_ne_one φ A, zero_apply]
   · simp
 
-/-- **The extension of a linear map** is the linear map on both components.-/
+/-- **The extension of a linear map** is the linear map on both components.
+@isnad1 id=eq.0h5v.s8.6497af4b51b2 from=translated src=- shape=5b95b813 vocab=7c0b5b9c
+-/
 theorem hat_lin (εV : V →ₗ[R] V) (φ : V →ₗ[R] W) : hat εV (lin φ) = lin (φ.prodMap φ) := by
   funext n
   by_cases hn : n = 1
@@ -464,9 +541,15 @@ def bser (b : Fam R V) : MSer R V (V × V)
   | 0 => 0
   | n + 1 => MultilinearMap.prod (MSer.id R V (n + 1)) (b n)
 
+/--
+@isnad1 id=eq.0h3v.s8.d36cde43de6c from=translated src=- shape=e7b8c6c9 vocab=e22feef1
+-/
 @[simp] lemma bser_zero (b : Fam R V) : bser b 0 = 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.ef315975a8c7 from=translated src=- shape=b7a0452d vocab=09ffc636
+-/
 lemma bser_succ_apply (b : Fam R V) (n : ℕ) (v : Fin (n + 1) → V) :
     bser b (n + 1) v = (MSer.id R V (n + 1) v, b n v) :=
   rfl
@@ -484,7 +567,9 @@ namespace IsInfMorph
 
 variable {εV : V →ₗ[R] V} {εW : W →ₗ[R] W} {εX : X →ₗ[R] X}
 
-/-- **In arity one, `f₁` is a chain map**: `f₁ (b₀ x) = b'₀ (f₁ x)`.-/
+/-- **In arity one, `f₁` is a chain map**: `f₁ (b₀ x) = b'₀ (f₁ x)`.
+@isnad1 id=eq.1h9v.s9.71211604beaa from=translated src=- shape=ea7ce52a vocab=bc8b5c19
+-/
 theorem chain {b : Fam R V} {b' : Fam R W} {f : MSer R V W} (hf : IsInfMorph εV εW b b' f)
     (x : V) : f 1 ![b 0 ![x]] = b' 0 ![f 1 ![x]] := by
   have h := congrArg (fun F : MSer R V (W × W) => (F 1 ![x]).2) hf.eq
@@ -492,7 +577,9 @@ theorem chain {b : Fam R V} {b' : Fam R W} {f : MSer R V W} (hf : IsInfMorph εV
   exact h
 
 /-- **In arity two, `f₁` is multiplicative up to the homotopy `f₂`**:
-`f₁ (b₁(x, y)) + f₂(b₀ x, y) + f₂(ε x, b₀ y) = b'₁(f₁ x, f₁ y) + b'₀ (f₂(x, y))`.-/
+`f₁ (b₁(x, y)) + f₂(b₀ x, y) + f₂(ε x, b₀ y) = b'₁(f₁ x, f₁ y) + b'₀ (f₂(x, y))`.
+@isnad1 id=eq.1h10v.s10.3ac32c4da849 from=translated src=- shape=16ad230f vocab=bc8b5c19
+-/
 theorem mul {b : Fam R V} {b' : Fam R W} {f : MSer R V W} (hf : IsInfMorph εV εW b b' f)
     (x y : V) :
     f 1 ![b 1 ![x, y]] + f 2 ![b 0 ![x], y] + f 2 ![εV x, b 0 ![y]] =

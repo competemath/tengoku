@@ -49,11 +49,17 @@ def Inj (S : Submodule R M) (S' : Submodule R M') (D : M →ₗ[R] M) (D' : M' �
     (F : M →ₗ[R] M') : Prop :=
   ∀ x ∈ S, D x = 0 → ∀ z' ∈ S', F x = D' z' → ∃ z ∈ S, D z = x
 
+/--
+@isnad1 id=surj.0h6v.s7.4baa8afcfb00 from=translated src=- shape=a175f8b0 vocab=b7f22da5
+-/
 lemma surj_bot (D : M →ₗ[R] M) (D' : M' →ₗ[R] M') (F : M →ₗ[R] M') :
     Surj ⊥ ⊥ D D' F := fun y' hy' _ => by
   rw [Submodule.mem_bot] at hy'
   exact ⟨0, zero_mem _, map_zero D, 0, zero_mem _, by rw [hy', map_zero, map_zero, sub_zero]⟩
 
+/--
+@isnad1 id=inj.0h6v.s7.d9416d62edfc from=translated src=- shape=a175f8b0 vocab=b4511d5b
+-/
 lemma inj_bot (D : M →ₗ[R] M) (D' : M' →ₗ[R] M') (F : M →ₗ[R] M') :
     Inj ⊥ ⊥ D D' F := fun x hx _ _ _ _ => by
   rw [Submodule.mem_bot] at hx
@@ -94,26 +100,40 @@ namespace Split
 variable (hs : Split D₀ D₁ U W)
 include hs
 
+/--
+@isnad1 id=mem.2h7v.s8.cb5d30b82507 from=translated src=- shape=0cc55b07 vocab=c88fac20
+-/
 lemma memW' {w : M} (hw : w ∈ W) : D₀ w + D₁ w ∈ W := by
   have := hs.memW w hw
   rwa [LinearMap.add_apply] at this
 
+/--
+@isnad1 id=eq.1h7v.s9.8dd3b0ccbbcf from=translated src=- shape=9ce74528 vocab=5589e888
+-/
 lemma dd' (x : M) : D₀ (D₀ x) + D₁ (D₀ x) + (D₀ (D₁ x) + D₁ (D₁ x)) = 0 := by
   have h := hs.dd x
   simpa only [LinearMap.add_apply, map_add] using h
 
+/--
+@isnad1 id=eq.2h7v.s8.01e18126862f from=translated src=- shape=ceb7d051 vocab=221baca2
+-/
 lemma d₀_d₀ {u : M} (hu : u ∈ U) : D₀ (D₀ u) = 0 :=
   (eq_zero_of_add hs.disj (hs.mem₀ _ (hs.mem₀ u hu))
     (W.add_mem (hs.mem₁ _ (hs.mem₀ u hu)) (hs.memW' (hs.mem₁ u hu)))
     (by linear_combination (norm := module) hs.dd' u)).1
 
-/-- `D (D₁ u) = -D₁ (D₀ u)`.-/
+/-- `D (D₁ u) = -D₁ (D₀ u)`.
+@isnad1 id=eq.2h7v.s9.1772da08cc79 from=translated src=- shape=baa262e6 vocab=b6d8017e
+-/
 lemma d_d₁ {u : M} (hu : u ∈ U) : D₀ (D₁ u) + D₁ (D₁ u) = -D₁ (D₀ u) := by
   have := (eq_zero_of_add hs.disj (hs.mem₀ _ (hs.mem₀ u hu))
     (W.add_mem (hs.mem₁ _ (hs.mem₀ u hu)) (hs.memW' (hs.mem₁ u hu)))
     (by linear_combination (norm := module) hs.dd' u)).2
   linear_combination (norm := module) this
 
+/--
+@isnad1 id=and.4h8v.s9.0925ad46cfa1 from=translated src=- shape=cf7c4d5d vocab=c88fac20
+-/
 lemma comps {u w : M} (hu : u ∈ U) (hw : w ∈ W) (h : (D₀ + D₁) (u + w) = 0) :
     D₀ u = 0 ∧ D₁ u + (D₀ w + D₁ w) = 0 :=
   eq_zero_of_add hs.disj (hs.mem₀ u hu) (W.add_mem (hs.mem₁ u hu) (hs.memW' hw)) (by
@@ -127,7 +147,9 @@ variable (hs : Split D₀ D₁ U W) (hs' : Split D₀' D₁' U' W')
 include hs hs' hF
 
 /-- **Extensions, surjectivity**: a quasi-isomorphism on the quotient and on the subcomplex is
-surjective on the homology of the extension.-/
+surjective on the homology of the extension.
+@isnad1 id=surj.6h12v.s10.49881fea5120 from=translated src=- shape=3e225df4 vocab=845ea4d6
+-/
 theorem surj_sup (hUs : Surj U U' D₀ D₀' F) (hWs : Surj W W' (D₀ + D₁) (D₀' + D₁') F)
     (hWi : Inj W W' (D₀ + D₁) (D₀' + D₁') F) :
     Surj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F := by
@@ -164,7 +186,9 @@ theorem surj_sup (hUs : Surj U U' D₀ D₀' F) (hWs : Surj W W' (D₀ + D₁) (
   · simp only [LinearMap.add_apply, map_add, map_sub, map_neg] at hwb ⊢
     linear_combination (norm := module) hua - hwb
 
-/-- **Extensions, injectivity**.-/
+/-- **Extensions, injectivity**.
+@isnad1 id=inj.6h12v.s10.5afa01aecf18 from=translated src=- shape=49430f43 vocab=845ea4d6
+-/
 theorem inj_sup (hUs : Surj U U' D₀ D₀' F) (hUi : Inj U U' D₀ D₀' F)
     (hWi : Inj W W' (D₀ + D₁) (D₀' + D₁') F) :
     Inj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F := by
@@ -207,7 +231,9 @@ theorem inj_sup (hUs : Surj U U' D₀ D₀' F) (hUi : Inj U U' D₀ D₀' F)
   linear_combination (norm := module) hda + hda₁ + hde
 
 /-- **Two out of three, surjectivity**: a quasi-isomorphism on the subcomplex and on the
-extension is surjective on the homology of the quotient.-/
+extension is surjective on the homology of the quotient.
+@isnad1 id=surj.6h12v.s10.85852e6b9486 from=translated src=- shape=a42d49bc vocab=845ea4d6
+-/
 theorem surj_of_sup (hWs : Surj W W' (D₀ + D₁) (D₀' + D₁') F)
     (hs_ : Surj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F)
     (hi_ : Inj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) : Surj U U' D₀ D₀' F := by
@@ -252,7 +278,9 @@ theorem surj_of_sup (hWs : Surj W W' (D₀ + D₁) (D₀' + D₁') F)
   simp only [map_sub, map_neg]
   linear_combination (norm := module) -hU
 
-/-- **Two out of three, injectivity**.-/
+/-- **Two out of three, injectivity**.
+@isnad1 id=inj.6h12v.s10.40b108ca592b from=translated src=- shape=3d15d75a vocab=845ea4d6
+-/
 theorem inj_of_sup (hWs : Surj W W' (D₀ + D₁) (D₀' + D₁') F)
     (hWi : Inj W W' (D₀ + D₁) (D₀' + D₁') F)
     (hi_ : Inj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) : Inj U U' D₀ D₀' F := by
@@ -302,7 +330,9 @@ theorem inj_of_sup (hWs : Surj W W' (D₀ + D₁) (D₀' + D₁') F)
     (by linear_combination (norm := module) hdz)).1
 
 /-- **Direct summands, surjectivity**: when `D₁` vanishes on `U`, a quasi-isomorphism on
-`U ⊔ W` is surjective on the homology of `W`.-/
+`U ⊔ W` is surjective on the homology of `W`.
+@isnad1 id=surj.6h12v.s10.22ae887dc5d9 from=translated src=- shape=ed7835fa vocab=06edd6ca
+-/
 theorem surj_of_sup_right (hU : ∀ u ∈ U, D₁ u = 0) (hU' : ∀ u ∈ U', D₁' u = 0)
     (hs_ : Surj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) :
     Surj W W' (D₀ + D₁) (D₀' + D₁') F := by
@@ -321,7 +351,9 @@ theorem surj_of_sup_right (hU : ∀ u ∈ U, D₁ u = 0) (hU' : ∀ u ∈ U', D�
   linear_combination (norm := module) this
 
 omit hs' hF in
-/-- **Direct summands, injectivity**.-/
+/-- **Direct summands, injectivity**.
+@isnad1 id=inj.3h12v.s10.4b95642e39ac from=translated src=- shape=fed18921 vocab=ed9e8479
+-/
 theorem inj_of_sup_right (hU : ∀ u ∈ U, D₁ u = 0)
     (hi_ : Inj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) :
     Inj W W' (D₀ + D₁) (D₀' + D₁') F := by
@@ -338,7 +370,9 @@ theorem inj_of_sup_right (hU : ∀ u ∈ U, D₁ u = 0)
 include hs' in
 /-- **Two out of three for the subcomplex, surjectivity**: a quasi-isomorphism on the quotient
 which is surjective on the homology of the extension is surjective on the homology of the
-subcomplex.-/
+subcomplex.
+@isnad1 id=surj.6h12v.s10.6f257db603d4 from=translated src=- shape=0cd69575 vocab=845ea4d6
+-/
 theorem surj_sub (hUs : Surj U U' D₀ D₀' F) (hUi : Inj U U' D₀ D₀' F)
     (hTs : Surj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) :
     Surj W W' (D₀ + D₁) (D₀' + D₁') F := by
@@ -377,7 +411,9 @@ theorem surj_sub (hUs : Surj U U' D₀ D₀' F) (hUi : Inj U U' D₀ D₀' F)
     linear_combination (norm := module) hxz - c0c - c1c - c0e - c1e - hf2 - hdd₀ - hdd₁
 
 include hs' in
-/-- **Two out of three for the subcomplex, injectivity**.-/
+/-- **Two out of three for the subcomplex, injectivity**.
+@isnad1 id=inj.6h12v.s10.05d8934cc294 from=translated src=- shape=88218db3 vocab=845ea4d6
+-/
 theorem inj_sub (hUi : Inj U U' D₀ D₀' F)
     (hTs : Surj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F)
     (hTi : Inj (U ⊔ W) (U' ⊔ W') (D₀ + D₁) (D₀' + D₁') F) :
@@ -446,7 +482,9 @@ structure FiltData (D₀ D₁ : M →ₗ[R] M) (D₀' D₁' : M' →ₗ[R] M') (
 variable {X S X' S' m}
 
 /-- **A quasi-isomorphism on the graded pieces of finite filtrations from `p₀` on is one on the
-filtered modules from `p₀` on.**-/
+filtered modules from `p₀` on.**
+@isnad1 id=and.4h15v.s10.1a71894f8998 from=translated src=- shape=25b27293 vocab=55cabade
+-/
 theorem qiso_filt_ge (hd : FiltData X S X' S' m D₀ D₁ D₀' D₁' F) {p₀ : ℕ}
     (hs : ∀ p, p₀ ≤ p → Surj (X p) (X' p) D₀ D₀' F)
     (hi : ∀ p, p₀ ≤ p → Inj (X p) (X' p) D₀ D₀' F) (p : ℕ) (hp : p₀ ≤ p) :
@@ -482,7 +520,9 @@ theorem qiso_filt_ge (hd : FiltData X S X' S' m D₀ D₁ D₀' D₁' F) {p₀ :
       inj_sup (hd.split p) (hd.split' p) (hd.hom p) (hs p hp₀) (hi p hp₀) h2⟩
 
 /-- **A quasi-isomorphism on the graded pieces of finite filtrations is one on the filtered
-modules.**-/
+modules.**
+@isnad1 id=and.3h14v.s9.05c9cd1fb5bc from=translated src=- shape=98fbf039 vocab=d1bd7e0a
+-/
 theorem qiso_filt (hd : FiltData X S X' S' m D₀ D₁ D₀' D₁' F)
     (hs : ∀ p, Surj (X p) (X' p) D₀ D₀' F) (hi : ∀ p, Inj (X p) (X' p) D₀ D₀' F) (p : ℕ) :
     Surj (S p) (S' p) (D₀ + D₁) (D₀' + D₁') F ∧ Inj (S p) (S' p) (D₀ + D₁) (D₀' + D₁') F :=
@@ -511,7 +551,9 @@ variable (hr : Retract S D r) (hr' : Retract S' D' r') (hFS : ∀ x ∈ S, F x �
   (hFD : ∀ x, F (D x) = D' (F x)) (hG : ∀ x, r' (F (r x)) = G x)
 include hr hr' hFS hFD hG
 
-/-- **Comparison through retractions, surjectivity.**-/
+/-- **Comparison through retractions, surjectivity.**
+@isnad1 id=surj.7h12v.s10.1b69c9210bbd from=translated src=- shape=a3b57f82 vocab=a2730a51
+-/
 theorem surj_of_retract (hKS : ∀ y ∈ S', K y ∈ S) (hGK : ∀ y ∈ S', G (K y) = r' y) :
     Surj S S' D D' F := by
   intro y' hy' hdy
@@ -524,7 +566,9 @@ theorem surj_of_retract (hKS : ∀ y ∈ S', K y ∈ S) (hGK : ∀ y ∈ S', G (
   exact ⟨_, hx, hr.Dr _, z', hz', hdz.symm⟩
 
 omit hFS in
-/-- **Comparison through retractions, injectivity.**-/
+/-- **Comparison through retractions, injectivity.**
+@isnad1 id=inj.5h12v.s10.07f61f24bcd9 from=translated src=- shape=8febf64e vocab=d401d807
+-/
 theorem inj_of_retract (hKG : ∀ x ∈ S, K (G x) = r x) : Inj S S' D D' F := by
   intro x hx hdx z' hz' hFx
   obtain ⟨w, hw, hdw⟩ := hr.acyc (x - r x) (S.sub_mem hx (hr.mem x hx))
@@ -537,7 +581,9 @@ theorem inj_of_retract (hKG : ∀ x ∈ S, K (G x) = r x) : Inj S S' D D' F := b
   exact ⟨w, hw, by rw [hdw, h1, sub_zero]⟩
 
 omit hr hr' hFS hFD hG in
-/-- A retraction for `D` is one for `-D`.-/
+/-- A retraction for `D` is one for `-D`.
+@isnad1 id=retract.1h5v.s7.a0de91d76f50 from=translated src=- shape=e3089f80 vocab=fd8e6540
+-/
 lemma Retract.neg (hr : Retract S D r) : Retract S (-D) r where
   mem := hr.mem
   memD x hx := by rw [LinearMap.neg_apply]; exact S.neg_mem (hr.memD x hx)

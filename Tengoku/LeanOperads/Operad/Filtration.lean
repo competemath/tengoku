@@ -101,6 +101,9 @@ def map (Φ : SymOperadFiltration R P) (f : SymOperadHom R P Q)
     obtain ⟨p, hp⟩ := Φ.exhaustive x
     exact ⟨p, x, hp, rfl⟩
 
+/--
+@isnad1 id=mem.2h8v.s9.53b88b05de52 from=translated src=- shape=c82512a6 vocab=57c8efbc
+-/
 lemma mem_map (Φ : SymOperadFiltration R P) (f : SymOperadHom R P Q)
     (hf : ∀ (A : Type) [Fintype A] [DecidableEq A], Function.Surjective (f.app A)) {p : ℕ}
     {A : Type} [Fintype A] [DecidableEq A] (x : P A) (hx : x ∈ Φ.F p A) :

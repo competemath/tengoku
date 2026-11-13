@@ -50,7 +50,9 @@ noncomputable def compFun (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g
     NSOperad.comp (R := R) a b (f (Classical.choose h).1) (g (Classical.choose h).2)
   else 0
 
-/-- **The composite at a factored tree.**-/
+/-- **The composite at a factored tree.**
+@isnad1 id=eq.1h11v.s10.d6a637916d3a from=translated src=- shape=e6c8375f vocab=85a10e3c
+-/
 lemma compFun_eq (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     {t : OfArity E (a + n + b)} (t₁ : OfArity E (a + 1 + b)) (t₂ : OfArity E n)
     (ht : t₁.1.graft a t₂.1 = t.1) :
@@ -63,7 +65,9 @@ lemma compFun_eq (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv 
     OfArity.graft a b (Classical.choose h).1 (Classical.choose h).2 = OfArity.graft a b t₁ t₂)
   rw [h1, h2]
 
-/-- **The composite vanishes at a tree that does not factor.**-/
+/-- **The composite vanishes at a tree that does not factor.**
+@isnad1 id=eq.1h9v.s8.c478d41dadf1 from=translated src=- shape=12959c0d vocab=843aa4cb
+-/
 lemma compFun_eq_zero (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     {t : OfArity E (a + n + b)}
     (ht : ∀ (t₁ : OfArity E (a + 1 + b)) (t₂ : OfArity E n), t₁.1.graft a t₂.1 ≠ t.1) :
@@ -99,10 +103,16 @@ noncomputable def compL (a b : ℕ) {n : ℕ} :
       · simp only [Pi.smul_apply, map_smul]
       · simp)
 
+/--
+@isnad1 id=eq.0h9v.s11.9ae88a031527 from=translated src=- shape=9b32b3ec vocab=60778c6d
+-/
 @[simp] lemma compL_apply (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     (t : OfArity E (a + n + b)) : compL a b f g t = compFun a b f g t := rfl
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.1h7v.s9.46181846c159 from=translated src=- shape=5e4132a4 vocab=a4ee2861
+-/
 lemma reindex_apply {m n : ℕ} (h : m = n) (f : TConv R E Q m) (t : OfArity E n) :
     reindex R (TConv R E Q) h f t = reindex R Q h (f (OfArity.cast h.symm t)) := by
   subst h
@@ -230,6 +240,9 @@ namespace TConv
 variable {R : Type u} [CommRing R] {E : Type v} {Q : ℕ → Type w}
   [∀ n, AddCommGroup (Q n)] [∀ n, Module R (Q n)] [NSOperad R Q]
 
+/--
+@isnad1 id=eq.0h9v.s11.f49fae5df485 from=translated src=- shape=41ee1dc8 vocab=409fac7a
+-/
 lemma comp_apply (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     (t : OfArity E (a + n + b)) :
     NSOperad.comp (R := R) (P := TConv R E Q) a b f g t = compFun a b f g t := rfl

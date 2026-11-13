@@ -141,17 +141,23 @@ variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetOpe
   {P P' Q Q' : Type} [Fintype P] [DecidableEq P] [Fintype P'] [DecidableEq P']
   [Fintype Q] [DecidableEq Q] [Fintype Q'] [DecidableEq Q']
 
-/-- Relabellings along equivalences with the same values agree.-/
+/-- Relabellings along equivalences with the same values agree.
+@isnad1 id=eq.1h6v.s6.7112cf1e9ce2 from=translated src=- shape=f6e7af38 vocab=ac222f92
+-/
 lemma map_congr {e e' : P ≃ P'} (h : ∀ p, e p = e' p) (X : S P) :
     SetOperad.map e X = SetOperad.map e' X := by
   rw [Equiv.ext h]
 
-/-- Two relabellings in a row, as one.-/
+/-- Two relabellings in a row, as one.
+@isnad1 id=eq.0h7v.s6.fa2b6b643527 from=translated src=- shape=a29c14c8 vocab=5cc32ea5
+-/
 lemma map_map (e : P ≃ P') (f : P' ≃ Q) (X : S P) :
     SetOperad.map f (SetOperad.map e X) = SetOperad.map (e.trans f) X :=
   (SetOperad.map_trans e f X).symm
 
-/-- **Relabelling the outer operation of a composite**, the slot `i'` being the image of `i`.-/
+/-- **Relabelling the outer operation of a composite**, the slot `i'` being the image of `i`.
+@isnad1 id=eq.1h9v.s8.4b9a3e722431 from=translated src=- shape=f9475628 vocab=f51b6176
+-/
 lemma comp_map_left (e : P ≃ P') (i : P) (i' : P') (hi : e i = i') (X : S P) (Y : S Q) :
     SetOperad.comp i' (SetOperad.map e X) Y
       = SetOperad.map ((compEquiv e (Equiv.refl Q) i).trans (slotEquiv hi))
@@ -162,7 +168,9 @@ lemma comp_map_left (e : P ≃ P') (i : P) (i' : P') (hi : e i = i') (X : S P) (
   refine (map_congr (e' := Equiv.refl _) (fun s => ?_) _).trans (SetOperad.map_refl _)
   rcases s with s | s <;> rfl
 
-/-- **Relabelling the inner operation of a composite.**-/
+/-- **Relabelling the inner operation of a composite.**
+@isnad1 id=eq.0h8v.s8.deae5622beff from=translated src=- shape=48be796f vocab=c367d508
+-/
 lemma comp_map_right (i : P) (f : Q ≃ Q') (X : S P) (Y : S Q) :
     SetOperad.comp i X (SetOperad.map f Y)
       = SetOperad.map (Equiv.sumCongr (Equiv.refl (Without P i)) f) (SetOperad.comp i X Y) := by
@@ -171,26 +179,34 @@ lemma comp_map_right (i : P) (f : Q ≃ Q') (X : S P) (Y : S Q) :
   refine h.symm.trans ?_
   exact map_congr (fun s => by rcases s with s | s <;> rfl) _
 
-/-- **Parallel associativity**, solved for the composite filling `i` first.-/
+/-- **Parallel associativity**, solved for the composite filling `i` first.
+@isnad1 id=eq.1h9v.s11.062020f9924c from=translated src=- shape=d5be136c vocab=79ec8e2c
+-/
 lemma comp_par_eq {i k : P} (hik : i ≠ k) (X : S P) (Y : S Q) (Z : S Q') :
     SetOperad.comp (Sum.inl ⟨k, Ne.symm hik⟩) (SetOperad.comp i X Y) Z
       = SetOperad.map (parEquiv hik Q Q').symm
           (SetOperad.comp (Sum.inl ⟨i, hik⟩) (SetOperad.comp k X Z) Y) := by
   rw [← SetOperad.comp_assoc_par hik, SetOperad.map_symm_map]
 
-/-- **Sequential associativity**, solved for the composite filling the inner operation first.-/
+/-- **Sequential associativity**, solved for the composite filling the inner operation first.
+@isnad1 id=eq.0h9v.s10.d51e2c7aed12 from=translated src=- shape=86b07f25 vocab=a9ad03af
+-/
 lemma comp_seq_eq (i : P) (j : Q) (X : S P) (Y : S Q) (Z : S Q') :
     SetOperad.comp (Sum.inr j) (SetOperad.comp i X Y) Z
       = SetOperad.map (seqEquiv i j Q').symm (SetOperad.comp i X (SetOperad.comp j Y Z)) := by
   rw [← SetOperad.comp_assoc_seq i j, SetOperad.map_symm_map]
 
-/-- **The right unit**, solved for the composite.-/
+/-- **The right unit**, solved for the composite.
+@isnad1 id=eq.0h4v.s7.5eb2d0b91a6d from=translated src=- shape=844452bb vocab=37846557
+-/
 lemma comp_one_eq (i : P) (X : S P) :
     SetOperad.comp i X SetOperad.one = SetOperad.map (rightUnitEquiv i).symm X := by
   conv_lhs => rw [← SetOperad.map_symm_map (rightUnitEquiv i) (SetOperad.comp i X SetOperad.one)]
   rw [SetOperad.comp_one]
 
-/-- **The left unit**, solved for the composite.-/
+/-- **The left unit**, solved for the composite.
+@isnad1 id=eq.0h3v.s7.c947557e8a9a from=translated src=- shape=4e6ecc17 vocab=23264356
+-/
 lemma one_comp_eq (Y : S Q) :
     SetOperad.comp () SetOperad.one Y = SetOperad.map (leftUnitEquiv Q).symm Y := by
   conv_lhs => rw [← SetOperad.map_symm_map (leftUnitEquiv Q) (SetOperad.comp () SetOperad.one Y)]
@@ -212,16 +228,24 @@ def fill (x : S A) (y : (a : A) → S (B a)) : (l : List A) → l.Nodup → S (S
       (SetOperad.comp (Sum.inl ⟨a, (List.nodup_cons.1 h).1⟩ : Stage B l)
         (fill x y l (List.nodup_cons.1 h).2) (y a))
 
+/--
+@isnad1 id=eq.1h5v.s7.4ccb1c686378 from=translated src=- shape=ae87e1c0 vocab=b1072197
+-/
 lemma fill_nil (x : S A) (y : (a : A) → S (B a)) (h : ([] : List A).Nodup) :
     fill x y [] h = SetOperad.map (initEquiv B) x := rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.5861c694405e from=translated src=- shape=92bc5853 vocab=2ff40c3e
+-/
 lemma fill_cons (x : S A) (y : (a : A) → S (B a)) (a : A) (l : List A) (h : (a :: l).Nodup) :
     fill x y (a :: l) h = SetOperad.map (stepEquiv a l (List.nodup_cons.1 h).1)
       (SetOperad.comp (Sum.inl ⟨a, (List.nodup_cons.1 h).1⟩ : Stage B l)
         (fill x y l (List.nodup_cons.1 h).2) (y a)) := rfl
 
 /-- **Filling does not depend on the order**: two orders of the same inputs give the same
-operation, by parallel associativity.-/
+operation, by parallel associativity.
+@isnad1 id=eq.3h7v.s7.4162b78b4df2 from=translated src=- shape=3648245c vocab=0621f1d8
+-/
 theorem fill_perm (x : S A) (y : (a : A) → S (B a)) {l l' : List A} (hp : l.Perm l')
     (hl : l.Nodup) (hl' : l'.Nodup) :
     SetOperad.map (stagePerm (B := B) fun _ => hp.mem_iff) (fill x y l hl) = fill x y l' hl' := by
@@ -295,7 +319,9 @@ def unitVal {l : List A} : Stage (fun _ : A => Unit) l → A
   | Sum.inr p => p.1.1
 
 /-- **Filling with units relabels**: inserting the unit at the inputs in `l` relabels the
-operation along a bijection that keeps track of the inputs.-/
+operation along a bijection that keeps track of the inputs.
+@isnad1 id=ex.1h4v.s7.b77adbfe5c0d from=translated src=- shape=01d17058 vocab=de1bb016
+-/
 theorem fill_one (x : S A) (l : List A) (hl : l.Nodup) :
     ∃ e : A ≃ Stage (fun _ : A => Unit) l, (∀ a, unitVal (e a) = a) ∧
       fill x (fun _ => SetOperad.one) l hl = SetOperad.map e x := by
@@ -364,6 +390,9 @@ namespace Splits
 variable {i : P} {L : List (Without P i ⊕ Q)} {L₁ : List P} {L₂ : List Q}
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=iff.1h7v.s6.9a1efd8c65da from=translated src=- shape=1245bccc vocab=169c7e12
+-/
 lemma mem_left (h : Splits L L₁ L₂) (p : Without P i) : p.1 ∈ L₁ ↔ Sum.inl p ∈ L := by
   induction h with
   | nil => simp
@@ -373,6 +402,9 @@ lemma mem_left (h : Splits L L₁ L₂) (p : Without P i) : p.1 ∈ L₁ ↔ Sum
   | right q _ ih => simp [ih]
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=iff.1h7v.s6.38ca842ca102 from=translated src=- shape=984f4505 vocab=e207760e
+-/
 lemma mem_right (h : Splits L L₁ L₂) (q : Q) : q ∈ L₂ ↔ Sum.inr q ∈ L := by
   induction h with
   | nil => simp
@@ -380,6 +412,9 @@ lemma mem_right (h : Splits L L₁ L₂) (q : Q) : q ∈ L₂ ↔ Sum.inr q ∈ 
   | right q' _ ih => simp [ih]
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=not.1h6v.s5.c13b7271fd5f from=translated src=- shape=0ec5efa1 vocab=7fca8c28
+-/
 lemma not_mem (h : Splits L L₁ L₂) : i ∉ L₁ := by
   induction h with
   | nil => simp
@@ -387,6 +422,9 @@ lemma not_mem (h : Splits L L₁ L₂) : i ∉ L₁ := by
   | right q _ ih => exact ih
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=nodup.2h6v.s5.eeeceef91167 from=translated src=- shape=2fee9c84 vocab=b4c6d208
+-/
 lemma nodup_left (h : Splits L L₁ L₂) (hL : L.Nodup) : L₁.Nodup := by
   induction h with
   | nil => exact List.nodup_nil
@@ -396,6 +434,9 @@ lemma nodup_left (h : Splits L L₁ L₂) (hL : L.Nodup) : L₁.Nodup := by
   | right q _ ih => exact ih (List.nodup_cons.1 hL).2
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=nodup.2h6v.s5.dfbb4c00821d from=translated src=- shape=258b7a71 vocab=b4c6d208
+-/
 lemma nodup_right (h : Splits L L₁ L₂) (hL : L.Nodup) : L₂.Nodup := by
   induction h with
   | nil => exact List.nodup_nil
@@ -437,7 +478,9 @@ def interEquiv {i : P} {L : List (Without P i ⊕ Q)} {L₁ : List P} {L₂ : Li
     rintro (⟨(c | ⟨c, w⟩), hc⟩ | (d | ⟨d, w⟩)) <;> rfl
 
 omit [Fintype P] [Fintype Q] [DecidableEq Q] in
-/-- Inner inputs first, then outer ones.-/
+/-- Inner inputs first, then outer ones.
+@isnad1 id=splits.0h5v.s6.cc8c861e85f1 from=translated src=- shape=1cf41c23 vocab=4b8c60f6
+-/
 lemma splits_append {i : P} (L₁ : List (Without P i)) (L₂ : List Q) :
     Splits (L₂.map Sum.inr ++ L₁.map Sum.inl) (L₁.map Subtype.val) L₂ := by
   induction L₂ with
@@ -449,7 +492,9 @@ lemma splits_append {i : P} (L₁ : List (Without P i)) (L₂ : List Q) :
 
 /-- **Filling the inputs of a composite is composing the filled operations** (the interchange
 law): inserting operations at some inputs of `X ∘ᵢ Y`, in any order, is the composite of `X`
-with those at its inputs inserted and `Y` with those at its inputs inserted.-/
+with those at its inputs inserted and `Y` with those at its inputs inserted.
+@isnad1 id=eq.2h13v.s11.b4225f7a80df from=translated src=- shape=12646abc vocab=00d7d26b
+-/
 theorem fill_comp (i : P) (X : S P) (Y : S Q) (w₁ : (p : P) → S (W₁ p))
     (w₂ : (q : Q) → S (W₂ q)) {L : List (Without P i ⊕ Q)} {L₁ : List P} {L₂ : List Q}
     (h : Splits L L₁ L₂) (hL : L.Nodup) :
@@ -510,7 +555,9 @@ noncomputable def total (x : S A) (y : (a : A) → S (B a)) : S (Σ a, B a) :=
   map (finalEquiv B _ fun a => Finset.mem_toList.2 (Finset.mem_univ a))
     (fill x y (Finset.univ : Finset A).toList (Finset.nodup_toList _))
 
-/-- **Total composition along any order of the inputs.**-/
+/-- **Total composition along any order of the inputs.**
+@isnad1 id=eq.2h6v.s7.e61c91301db6 from=translated src=- shape=a95f7b41 vocab=30233516
+-/
 theorem total_eq_fill (x : S A) (y : (a : A) → S (B a)) (l : List A) (hl : l.Nodup)
     (hc : ∀ a, a ∈ l) : total x y = map (finalEquiv B l hc) (fill x y l hl) := by
   have hp : (Finset.univ : Finset A).toList.Perm l :=
@@ -521,7 +568,9 @@ theorem total_eq_fill (x : S A) (y : (a : A) → S (B a)) (l : List A) (hl : l.N
   · exact absurd (Finset.mem_toList.2 (Finset.mem_univ _)) c.2
   · rfl
 
-/-- **The right unit law of total composition**: inserting the unit at every input.-/
+/-- **The right unit law of total composition**: inserting the unit at every input.
+@isnad1 id=eq.0h3v.s6.bb898fc930ff from=translated src=- shape=d60f0790 vocab=214e7d4b
+-/
 theorem total_one_right (x : S A) :
     map (Equiv.sigmaPUnit A) (total x fun _ => (one : S Unit)) = x := by
   have hc : ∀ a, a ∈ (Finset.univ : Finset A).toList :=
@@ -543,7 +592,9 @@ section TotalUnit
 variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetOperad S]
   {E : Unit → Type} [∀ u, Fintype (E u)] [∀ u, DecidableEq (E u)]
 
-/-- **The left unit law of total composition**: inserting an operation into the unit.-/
+/-- **The left unit law of total composition**: inserting an operation into the unit.
+@isnad1 id=eq.0h3v.s7.e5af1c673dc7 from=translated src=- shape=fd98a81c vocab=f3b3243a
+-/
 theorem total_one_left (y : (u : Unit) → S (E u)) :
     map (Equiv.uniqueSigma E) (total one y) = y () := by
   rw [total_eq_fill one y [()] (List.nodup_singleton _) (fun u => List.mem_singleton.2 rfl),
@@ -650,7 +701,9 @@ variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetOpe
   {A : Type} [Fintype A] [DecidableEq A] {B : A → Type} [∀ a, Fintype (B a)]
   [∀ a, DecidableEq (B a)]
 
-/-- **Filling only uses the operations inserted at the inputs filled.**-/
+/-- **Filling only uses the operations inserted at the inputs filled.**
+@isnad1 id=eq.2h7v.s7.5a65883e32b5 from=translated src=- shape=b2be2bd3 vocab=5556dcee
+-/
 theorem fill_congr (x : S A) {y y' : (a : A) → S (B a)} (l : List A) (hl : l.Nodup)
     (h : ∀ a ∈ l, y a = y' a) : fill x y l hl = fill x y' l hl := by
   induction l with
@@ -662,15 +715,23 @@ theorem fill_congr (x : S A) {y y' : (a : A) → S (B a)} (l : List A) (hl : l.N
 /-- The inputs other than `a`, in some order.-/
 noncomputable def others (a : A) : List A := (Finset.univ.erase a).toList
 
+/--
+@isnad1 id=nodup.0h2v.s4.fcb6d516df69 from=translated src=- shape=d671e702 vocab=480126d4
+-/
 lemma others_nodup (a : A) : (a :: others a).Nodup :=
   List.nodup_cons.2 ⟨by simp [others], Finset.nodup_toList _⟩
 
+/--
+@isnad1 id=mem.0h3v.s4.ec34c5b09fd8 from=translated src=- shape=8a0b9703 vocab=ba91e8c6
+-/
 lemma mem_others (a b : A) : b ∈ a :: others a := by
   by_cases h : b = a
   · exact h ▸ List.mem_cons_self
   · exact List.mem_cons_of_mem a (by simp [others, h])
 
-/-- **Total composition with the input `a` filled last.**-/
+/-- **Total composition with the input `a` filled last.**
+@isnad1 id=eq.0h6v.s11.063a12b97f69 from=translated src=- shape=9a2fccc9 vocab=1ee6d29e
+-/
 theorem total_eq_comp (x : S A) (y : (a : A) → S (B a)) (a : A) :
     SetOperad.total x y = SetOperad.map
       ((stepEquiv a (others a) (List.nodup_cons.1 (others_nodup a)).1).trans
@@ -700,9 +761,15 @@ noncomputable def fill (x : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l.
     Q (Stage B l) :=
   (Und.of R Q).symm (May.fill (S := Und R Q) (Und.of R Q x) (fun a => Und.of R Q (y a)) l hl)
 
+/--
+@isnad1 id=eq.1h6v.s9.e6bad0b4df05 from=translated src=- shape=2f5153c7 vocab=73f1ea7b
+-/
 lemma fill_nil (x : Q A) (y : (a : A) → Q (B a)) (h : ([] : List A).Nodup) :
     fill R x y [] h = map (R := R) (initEquiv B) x := rfl
 
+/--
+@isnad1 id=eq.1h8v.s17.7488c5403f20 from=translated src=- shape=ac2b21a3 vocab=64ec59fc
+-/
 lemma fill_cons (x : Q A) (y : (a : A) → Q (B a)) (a : A) (l : List A) (h : (a :: l).Nodup) :
     fill R x y (a :: l) h = map (R := R) (stepEquiv a l (List.nodup_cons.1 h).1)
       (comp (R := R) (Sum.inl ⟨a, (List.nodup_cons.1 h).1⟩ : Stage B l)
@@ -713,7 +780,9 @@ variable (R) in
 noncomputable def total (x : Q A) (y : (a : A) → Q (B a)) : Q (Σ a, B a) :=
   (Und.of R Q).symm (SetOperad.total (S := Und R Q) (Und.of R Q x) fun a => Und.of R Q (y a))
 
-/-- Filling, in an operad in modules, is linear in the outer operation.-/
+/-- Filling, in an operad in modules, is linear in the outer operation.
+@isnad1 id=eq.1h8v.s9.e03909cc34c9 from=translated src=- shape=025f38fa vocab=87dd873f
+-/
 lemma fill_add (x x' : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l.Nodup) :
     fill R (x + x') y l hl = fill R x y l hl + fill R x' y l hl := by
   induction l with
@@ -721,7 +790,9 @@ lemma fill_add (x x' : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l.Nodup
   | cons a l ih =>
     rw [fill_cons, fill_cons, fill_cons, ih, map_add, LinearMap.add_apply, map_add]
 
-/-- Filling, in an operad in modules, is linear in the outer operation.-/
+/-- Filling, in an operad in modules, is linear in the outer operation.
+@isnad1 id=eq.1h8v.s10.2e2524b8d485 from=translated src=- shape=4c832d58 vocab=65284d42
+-/
 lemma fill_smul (c : R) (x : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l.Nodup) :
     fill R (c • x) y l hl = c • fill R x y l hl := by
   induction l with
@@ -729,11 +800,16 @@ lemma fill_smul (c : R) (x : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l
   | cons a l ih =>
     rw [fill_cons, fill_cons, ih, map_smul, LinearMap.smul_apply, map_smul]
 
+/--
+@isnad1 id=eq.2h7v.s9.938c00d93ba3 from=translated src=- shape=a2b7736d vocab=6dbee03f
+-/
 lemma total_eq_fill (x : Q A) (y : (a : A) → Q (B a)) (l : List A) (hl : l.Nodup)
     (hc : ∀ a, a ∈ l) : total R x y = map (R := R) (finalEquiv B l hc) (fill R x y l hl) :=
   SetOperad.total_eq_fill (S := Und R Q) _ _ l hl hc
 
-/-- **Total composition is linear in the outer operation.**-/
+/-- **Total composition is linear in the outer operation.**
+@isnad1 id=eq.0h7v.s9.734e3d437754 from=translated src=- shape=f9c73488 vocab=6e1bbbfd
+-/
 theorem total_add (x x' : Q A) (y : (a : A) → Q (B a)) :
     total R (x + x') y = total R x y + total R x' y := by
   rw [total_eq_fill _ y _ (Finset.nodup_toList Finset.univ)
@@ -743,7 +819,9 @@ theorem total_add (x x' : Q A) (y : (a : A) → Q (B a)) :
     total_eq_fill x' y _ (Finset.nodup_toList Finset.univ)
       fun a => Finset.mem_toList.2 (Finset.mem_univ a), fill_add, map_add]
 
-/-- **Total composition is linear in the outer operation.**-/
+/-- **Total composition is linear in the outer operation.**
+@isnad1 id=eq.0h7v.s10.41ac4f1b442a from=translated src=- shape=a91e9f14 vocab=cb1d1722
+-/
 theorem total_smul (c : R) (x : Q A) (y : (a : A) → Q (B a)) :
     total R (c • x) y = c • total R x y := by
   rw [total_eq_fill _ y _ (Finset.nodup_toList Finset.univ)
@@ -751,7 +829,9 @@ theorem total_smul (c : R) (x : Q A) (y : (a : A) → Q (B a)) :
     total_eq_fill x y _ (Finset.nodup_toList Finset.univ)
       fun a => Finset.mem_toList.2 (Finset.mem_univ a), fill_smul, map_smul]
 
-/-- Total composition with one inserted operation varying.-/
+/-- Total composition with one inserted operation varying.
+@isnad1 id=eq.0h8v.s17.d43920ecc9d1 from=translated src=- shape=92c4914c vocab=3ee9f7a8
+-/
 lemma total_update (x : Q A) (y : (a : A) → Q (B a)) (a : A) (v : Q (B a)) :
     total R x (Function.update y a v)
       = map (R := R) ((stepEquiv a (others a) (List.nodup_cons.1 (others_nodup a)).1).trans
@@ -770,13 +850,17 @@ lemma total_update (x : Q A) (y : (a : A) → Q (B a)) (a : A) (v : Q (B a)) :
       exact Function.update_of_ne hba v y
   · exact Function.update_self a v y
 
-/-- **Total composition is multilinear in the inserted operations.**-/
+/-- **Total composition is multilinear in the inserted operations.**
+@isnad1 id=eq.0h9v.s9.df7d8edefc57 from=translated src=- shape=ee7307af vocab=e2f5ff72
+-/
 theorem total_update_add (x : Q A) (y : (a : A) → Q (B a)) (a : A) (v v' : Q (B a)) :
     total R x (Function.update y a (v + v'))
       = total R x (Function.update y a v) + total R x (Function.update y a v') := by
   rw [total_update, total_update, total_update, map_add, map_add]
 
-/-- **Total composition is multilinear in the inserted operations.**-/
+/-- **Total composition is multilinear in the inserted operations.**
+@isnad1 id=eq.0h9v.s10.71eb8f38716a from=translated src=- shape=755fec71 vocab=7b5d0896
+-/
 theorem total_update_smul (x : Q A) (y : (a : A) → Q (B a)) (a : A) (c : R) (v : Q (B a)) :
     total R x (Function.update y a (c • v)) = c • total R x (Function.update y a v) := by
   rw [total_update, total_update, map_smul, map_smul]
@@ -803,12 +887,16 @@ noncomputable def totalL : Q A →ₗ[R] MultilinearMap R (fun a => Q (B a)) (Q 
 
 /-! ### May's axioms in an operad in modules -/
 
-/-- **The right unit law of total composition** in an operad in modules.-/
+/-- **The right unit law of total composition** in an operad in modules.
+@isnad1 id=eq.0h4v.s9.b8a8a173729e from=translated src=- shape=f9f29b1c vocab=caa4ae70
+-/
 theorem total_one_right (x : Q A) :
     map (R := R) (Equiv.sigmaPUnit A) (total R x fun _ => (one R : Q Unit)) = x :=
   SetOperad.total_one_right (S := Und R Q) x
 
-/-- **The left unit law of total composition** in an operad in modules.-/
+/-- **The left unit law of total composition** in an operad in modules.
+@isnad1 id=eq.0h4v.s9.940d7753f605 from=translated src=- shape=bd52bb31 vocab=286b7cd4
+-/
 theorem total_one_left {E : Unit → Type} [∀ u, Fintype (E u)] [∀ u, DecidableEq (E u)]
     (y : (u : Unit) → Q (E u)) :
     map (R := R) (Equiv.uniqueSigma E) (total R (one R) y) = y () :=

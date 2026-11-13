@@ -37,10 +37,16 @@ variable {R : Type u} [CommRing R]
 
 namespace NSOperadIso
 
+/--
+@isnad1 id=eq.0h6v.s8.48ce2a68ca0e from=translated src=- shape=25d2c820 vocab=f8598975
+-/
 @[simp] lemma inv_hom_apply (e : NSOperadIso R P Q) (n : ℕ) (x : P n) :
     e.inv.app n (e.hom.app n x) = x :=
   LinearMap.congr_fun (congrArg (fun φ => NSOperadHom.app φ n) e.hom_inv_id) x
 
+/--
+@isnad1 id=eq.0h6v.s8.24024a303fb6 from=translated src=- shape=c39931da vocab=f8598975
+-/
 @[simp] lemma hom_inv_apply (e : NSOperadIso R P Q) (n : ℕ) (y : Q n) :
     e.hom.app n (e.inv.app n y) = y :=
   LinearMap.congr_fun (congrArg (fun φ => NSOperadHom.app φ n) e.inv_hom_id) y
@@ -62,7 +68,9 @@ def trans (e : NSOperadIso R P Q) (f : NSOperadIso R Q S) : NSOperadIso R P S wh
     ext n x
     simp
 
-/-- The components of an isomorphism are bijective.-/
+/-- The components of an isomorphism are bijective.
+@isnad1 id=bijectiv.0h5v.s7.410c86474769 from=translated src=- shape=08acce36 vocab=9a714ad8
+-/
 lemma bijective (e : NSOperadIso R P Q) (n : ℕ) : Function.Bijective (e.hom.app n) :=
   ⟨fun x y h => by rw [← e.inv_hom_apply n x, h, e.inv_hom_apply],
     fun y => ⟨e.inv.app n y, e.hom_inv_apply n y⟩⟩
@@ -82,10 +90,16 @@ noncomputable def invOfBijective (φ : NSOperadHom R P Q) (h : ∀ n, Function.B
     apply (h _).1
     simp only [LinearEquiv.coe_coe, LinearEquiv.apply_ofBijective_symm_apply, φ.app_comp]
 
+/--
+@isnad1 id=eq.1h6v.s8.6237776d349c from=translated src=- shape=343b4f6a vocab=df8e3595
+-/
 lemma app_invOfBijective (φ : NSOperadHom R P Q) (h : ∀ n, Function.Bijective (φ.app n))
     (n : ℕ) (y : Q n) : φ.app n ((φ.invOfBijective h).app n y) = y :=
   LinearEquiv.apply_ofBijective_symm_apply (φ.app n) (h := h n) y
 
+/--
+@isnad1 id=eq.1h6v.s8.8c8daa9d40b4 from=translated src=- shape=84a847f2 vocab=df8e3595
+-/
 lemma invOfBijective_app (φ : NSOperadHom R P Q) (h : ∀ n, Function.Bijective (φ.app n))
     (n : ℕ) (x : P n) : (φ.invOfBijective h).app n (φ.app n x) = x :=
   (h n).1 (app_invOfBijective φ h n (φ.app n x))
@@ -120,6 +134,9 @@ def UndNS.of {n : ℕ} : Q n ≃ UndNS R Q n := Equiv.refl _
 
 omit [NSOperad R Q] in
 variable {R Q} in
+/--
+@isnad1 id=eq.1h5v.s8.b9de21513a93 from=translated src=- shape=117a7d3e vocab=654d1b16
+-/
 @[simp] lemma UndNS.symm_reindexS {m n : ℕ} (h : m = n) (x : UndNS R Q m) :
     (UndNS.of R Q).symm (reindexS (UndNS R Q) h x) = reindex R Q h ((UndNS.of R Q).symm x) := by
   subst h
@@ -142,9 +159,15 @@ instance instNSSetOperadUndNS : NSSetOperad (UndNS R Q) where
 
 variable {R Q}
 
+/--
+@isnad1 id=eq.0h2v.s7.9a3546b5c8ee from=translated src=- shape=cd2e8e86 vocab=e779e8b5
+-/
 lemma UndNS.one_eq : (NSSetOperad.one : UndNS R Q 1) = UndNS.of R Q (NSOperad.one (R := R)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s11.2d7e53929df8 from=translated src=- shape=396f06f1 vocab=23f4579e
+-/
 lemma UndNS.comp_eq (a b : ℕ) {n : ℕ} (x : Q (a + 1 + b)) (y : Q n) :
     NSSetOperad.comp a b (UndNS.of R Q x) (UndNS.of R Q y)
       = UndNS.of R Q (NSOperad.comp (R := R) a b x y) := rfl
@@ -220,13 +243,18 @@ noncomputable def linHomEquivNS : NSSetOperadHom S (UndNS R Q) ≃ NSOperadHom R
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h6v.s8.6ab354aaa3ad from=translated src=- shape=7ae508ea vocab=cce2bbcf
+-/
 @[simp] lemma linExtend_single (φ : NSSetOperadHom S (UndNS R Q)) {n : ℕ} (s : S n) :
     (NSSetOperadHom.linExtend R φ).app n (Finsupp.single s 1) =
       (UndNS.of R Q).symm (φ.app n s) := by
   show Finsupp.lift (Q n) R (S n) _ (Finsupp.single s 1) = _
   simp
 
-/-- Morphisms out of a linearization agree when they agree on the basis.-/
+/-- Morphisms out of a linearization agree when they agree on the basis.
+@isnad1 id=eq.1h5v.s9.7e26f43c26e3 from=translated src=- shape=1acaf206 vocab=112d7461
+-/
 lemma NSOperadHom.ext_single {Φ Ψ : NSOperadHom R (LinNS R S) Q}
     (h : ∀ n (s : S n), Φ.app n (Finsupp.single s 1) = Ψ.app n (Finsupp.single s 1)) : Φ = Ψ :=
   NSOperadHom.ext fun n => Finsupp.lhom_ext' fun s => LinearMap.ext_ring (h n s)
@@ -264,6 +292,9 @@ noncomputable def NSSetOperadHom.lin (φ : NSSetOperadHom S T) :
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h7v.s8.1edb806781f1 from=translated src=- shape=a920d083 vocab=0dd5a56a
+-/
 @[simp] lemma NSSetOperadHom.lin_single (φ : NSSetOperadHom S T) {n : ℕ} (s : S n) (r : R) :
     (φ.lin R).app n (Finsupp.single s r) = Finsupp.single (φ.app n s) r :=
   Finsupp.mapDomain_single

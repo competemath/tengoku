@@ -89,24 +89,46 @@ def decIsShuffle : (t : LTree E) → Decidable t.IsShuffle
 
 instance : DecidablePred (IsShuffle (E := E)) := decIsShuffle
 
+/--
+@isnad1 id=eq.0h2v.s4.59555646e708 from=translated src=- shape=faa1838d vocab=8a8d976c
+-/
 @[simp] lemma labels_leaf (a : ℕ) : (leaf a : LTree E).labels = [a] := rfl
+/--
+@isnad1 id=eq.0h4v.s5.98db838e1c7e from=translated src=- shape=92cbddf1 vocab=a82f5d2c
+-/
 @[simp] lemma labels_node (e : E) (l r : LTree E) :
     (node e l r).labels = l.labels ++ r.labels := rfl
+/--
+@isnad1 id=eq.0h2v.s3.0e6968e19363 from=translated src=- shape=749cdb88 vocab=33109e3e
+-/
 @[simp] lemma minLabel_leaf (a : ℕ) : (leaf a : LTree E).minLabel = a := rfl
+/--
+@isnad1 id=eq.0h4v.s4.0b2171b1b30a from=translated src=- shape=2e0d609c vocab=4bafbaad
+-/
 @[simp] lemma minLabel_node (e : E) (l r : LTree E) :
     (node e l r).minLabel = min l.minLabel r.minLabel := rfl
+/--
+@isnad1 id=isshuffl.0h2v.s3.89f142d65626 from=translated src=- shape=b2cf713c vocab=4cbf0cad
+-/
 @[simp] lemma isShuffle_leaf (a : ℕ) : (leaf a : LTree E).IsShuffle := trivial
+/--
+@isnad1 id=iff.0h4v.s5.ab5ef7f49183 from=translated src=- shape=a350ae21 vocab=04fa2709
+-/
 @[simp] lemma isShuffle_node (e : E) (l r : LTree E) :
     (node e l r).IsShuffle ↔ l.minLabel < r.minLabel ∧ l.IsShuffle ∧ r.IsShuffle := Iff.rfl
 
 /-- On a shuffle monomial the least label is the least label of the leftmost leaf's subtree:
-the left subtree carries it.-/
+the left subtree carries it.
+@isnad1 id=eq.1h4v.s4.27a1dd5a0d09 from=translated src=- shape=7cf6da74 vocab=b11e20b2
+-/
 lemma minLabel_node_of_shuffle {e : E} {l r : LTree E} (h : (node e l r).IsShuffle) :
     (node e l r).minLabel = l.minLabel := by
   simp only [minLabel_node]
   exact min_eq_left h.1.le
 
-/-- The least label is at most every label.-/
+/-- The least label is at most every label.
+@isnad1 id=le.1h3v.s4.2809ca440522 from=translated src=- shape=7d7f594e vocab=05c31d16
+-/
 lemma minLabel_le_of_mem : ∀ (t : LTree E) {b : ℕ}, b ∈ t.labels → t.minLabel ≤ b
   | leaf a, b, hb => by simp at hb; simp [hb]
   | node e l r, b, hb => by
@@ -115,7 +137,9 @@ lemma minLabel_le_of_mem : ∀ (t : LTree E) {b : ℕ}, b ∈ t.labels → t.min
     · exact le_trans (min_le_left _ _) (minLabel_le_of_mem l hb)
     · exact le_trans (min_le_right _ _) (minLabel_le_of_mem r hb)
 
-/-- The least label is a label.-/
+/-- The least label is a label.
+@isnad1 id=mem.0h2v.s4.8214bd67c255 from=translated src=- shape=03b8eba6 vocab=f4867e6a
+-/
 lemma minLabel_mem : ∀ t : LTree E, t.minLabel ∈ t.labels
   | leaf a => by simp
   | node _ l r => by
@@ -154,18 +178,26 @@ def windows : LTree E → List (LTree E)
 /-- **Normality** for a set of arity-three leading monomials: no window is a leading monomial.-/
 def IsNormal (L : Set (LTree E)) (t : LTree E) : Prop := ∀ w ∈ t.windows, w ∉ L
 
+/--
+@isnad1 id=isnormal.1h5v.s4.16121354fa02 from=translated src=- shape=843bbc91 vocab=4df9dc21
+-/
 lemma IsNormal.left {L : Set (LTree E)} {e : E} {l r : LTree E} (h : IsNormal L (node e l r)) :
     IsNormal L l := fun w hw => h w (by
   simp only [windows, List.mem_append]
   exact Or.inl (Or.inr hw))
 
+/--
+@isnad1 id=isnormal.1h5v.s4.29c2d8129e25 from=translated src=- shape=a8ae14f8 vocab=4df9dc21
+-/
 lemma IsNormal.right {L : Set (LTree E)} {e : E} {l r : LTree E} (h : IsNormal L (node e l r)) :
     IsNormal L r := fun w hw => h w (by
   simp only [windows, List.mem_append]
   exact Or.inr hw)
 
 /-- **A window into the first slot of a shuffle monomial** with distinct labels is
-`e (f (0, 1), 2)` or `e (f (0, 2), 1)`.-/
+`e (f (0, 1), 2)` or `e (f (0, 2), 1)`.
+@isnad1 id=or.2h6v.s7.092627514e0f from=translated src=- shape=ca196f13 vocab=83caa695
+-/
 theorem window_left_shape {e f : E} {a b r : LTree E} (h : (node e (node f a b) r).IsShuffle)
     (hnd : (node e (node f a b) r).labels.Nodup) :
     window e f false a.minLabel b.minLabel r.minLabel = node e (node f (leaf 0) (leaf 1)) (leaf 2)
@@ -198,7 +230,9 @@ theorem window_left_shape {e f : E} {a b r : LTree E} (h : (node e (node f a b) 
       split_ifs <;> omega
     simp only [window, Bool.false_eq_true, ↓reduceIte, e0, e1, e2]
 
-/-- **A window into the second slot of a shuffle monomial** is the right comb `e (0, f (1, 2))`.-/
+/-- **A window into the second slot of a shuffle monomial** is the right comb `e (0, f (1, 2))`.
+@isnad1 id=eq.1h6v.s6.9b1fb032655e from=translated src=- shape=478d8c7f vocab=d348ac12
+-/
 theorem window_right_eq {e f : E} {l a b : LTree E} (h : (node e l (node f a b)).IsShuffle) :
     window e f true a.minLabel b.minLabel l.minLabel
       = node e (leaf 0) (node f (leaf 1) (leaf 2)) := by
@@ -229,7 +263,9 @@ def IsRightCombShape : LTree E → Prop
   | node _ (node _ _ _) _ => False
 
 /-- **Normal monomials are right combs**, for any set of leading monomials containing every
-window of an edge into the first slot.-/
+window of an edge into the first slot.
+@isnad1 id=isrightc.4h3v.s6.87ba889064fb from=translated src=- shape=b380eb30 vocab=59b166a1
+-/
 theorem isRightCombShape_of_normal {L : Set (LTree E)}
     (hL : ∀ e f : E, node e (node f (leaf 0) (leaf 1)) (leaf 2) ∈ L ∧
       node e (node f (leaf 0) (leaf 2)) (leaf 1) ∈ L) :
@@ -245,7 +281,9 @@ theorem isRightCombShape_of_normal {L : Set (LTree E)}
     refine (hn _ ?_ hw).elim
     simp [windows]
 
-/-- **The labels of a right-comb-shaped shuffle monomial increase** from left to right.-/
+/-- **The labels of a right-comb-shaped shuffle monomial increase** from left to right.
+@isnad1 id=pairwise.2h2v.s4.477e6627c6d0 from=translated src=- shape=83ea5fdc vocab=2555eff9
+-/
 theorem labels_sorted_of_rightCombShape :
     ∀ t : LTree E, t.IsShuffle → t.IsRightCombShape → t.labels.Pairwise (· < ·)
   | leaf _, _, _ => List.pairwise_singleton _ _
@@ -255,14 +293,23 @@ theorem labels_sorted_of_rightCombShape :
     exact ⟨fun b hb => lt_of_lt_of_le hs.1 (minLabel_le_of_mem r hb), ih⟩
   | node e (node f a b) r, _, hr => hr.elim
 
+/--
+@isnad1 id=eq.0h2v.s3.8de6fd997fcf from=translated src=- shape=11e3294d vocab=1d7f77ae
+-/
 @[simp] lemma length_labels : ∀ t : LTree E, t.labels.length = t.arity
   | leaf _ => rfl
   | node _ l r => by simp [labels, arity, length_labels l, length_labels r]
 
+/--
+@isnad1 id=lt.0h2v.s4.db82422c2abd from=translated src=- shape=db125da6 vocab=75e4ac4f
+-/
 lemma arity_pos : ∀ t : LTree E, 0 < t.arity
   | leaf _ => Nat.one_pos
   | node _ l _ => Nat.add_pos_left (arity_pos l) _
 
+/--
+@isnad1 id=eq.0h3v.s5.8eaa3e68a61d from=translated src=- shape=911f0e12 vocab=5db51243
+-/
 lemma labels_rightComb : ∀ (w : List E) (k : ℕ),
     (rightComb w k).labels = List.range' k (w.length + 1)
   | [], k => rfl
@@ -271,6 +318,9 @@ lemma labels_rightComb : ∀ (w : List E) (k : ℕ),
       List.length_cons, List.singleton_append]
     exact List.range'_succ.symm
 
+/--
+@isnad1 id=eq.0h3v.s4.50e18f2cdead from=translated src=- shape=6d9d7316 vocab=2bb29f7b
+-/
 lemma decorations_rightComb : ∀ (w : List E) (k : ℕ), (rightComb w k).decorations = w
   | [], _ => rfl
   | e :: w, k => by simp [rightComb, decorations, decorations_rightComb w (k + 1)]
@@ -293,7 +343,9 @@ theorem eq_rightComb_of_rightCombShape : ∀ (t : LTree E) (k : ℕ), t.IsRightC
     exact congrArg _ ih
   | node e (node f a b) r, _, hr, _ => hr.elim
 
-/-- The least label of a right comb is its first label.-/
+/-- The least label of a right comb is its first label.
+@isnad1 id=eq.0h3v.s4.7afa78e34a61 from=translated src=- shape=66eab36f vocab=9a3dfc9a
+-/
 lemma minLabel_rightComb : ∀ (w : List E) (k : ℕ), (rightComb w k).minLabel = k
   | [], _ => rfl
   | g :: u, j => by
@@ -301,7 +353,9 @@ lemma minLabel_rightComb : ∀ (w : List E) (k : ℕ), (rightComb w k).minLabel 
     omega
 
 /-- **The windows of a right comb** are the right combs of the consecutive pairs of its
-decoration word.-/
+decoration word.
+@isnad1 id=eq.0h3v.s6.c56e315644d7 from=translated src=- shape=4d434467 vocab=2b239137
+-/
 theorem windows_rightComb : ∀ (w : List E) (k : ℕ),
     (rightComb w k).windows
       = (w.zip w.tail).map fun p => node p.1 (leaf 0) (node p.2 (leaf 1) (leaf 2))
@@ -321,7 +375,9 @@ theorem windows_rightComb : ∀ (w : List E) (k : ℕ),
     rw [window_right_eq hs, windows_rightComb (f :: w) (k + 1)]
     rfl
 where
-  /-- Right combs are shuffle monomials.-/
+  /-- Right combs are shuffle monomials.
+  @isnad1 id=isshuffl.0h3v.s3.dd65dd32a6cc from=translated src=- shape=3acc1f86 vocab=f2ad17ee
+  -/
   isShuffle_rightComb : ∀ (w : List E) (k : ℕ), (rightComb w k).IsShuffle
     | [], _ => trivial
     | g :: u, j => ⟨by simp only [minLabel_leaf, minLabel_rightComb]; omega, trivial,
@@ -331,7 +387,9 @@ where
 
 /-- **The normal monomials** for a set `L` of arity-three leading monomials containing every
 window of an edge into the first slot: the right combs on `0, …, n - 1` with no consecutive pair
-`(e, f)` of decorations whose right comb `e (0, f (1, 2))` lies in `L`.-/
+`(e, f)` of decorations whose right comb `e (0, f (1, 2))` lies in `L`.
+@isnad1 id=iff.3h4v.s7.a86646037aa4 from=translated src=- shape=c6ed1e58 vocab=ce743ec1
+-/
 theorem isNormal_iff {L : Set (LTree E)}
     (hL : ∀ e f : E, node e (node f (leaf 0) (leaf 1)) (leaf 2) ∈ L ∧
       node e (node f (leaf 0) (leaf 2)) (leaf 1) ∈ L)
@@ -380,9 +438,18 @@ def size : LTree E → ℕ
   | leaf _ => 1
   | node _ l r => l.size + r.size + 1
 
+/--
+@isnad1 id=eq.0h2v.s4.010eb0788301 from=translated src=- shape=9c281545 vocab=93aa0ab7
+-/
 @[simp] lemma size_leaf (a : ℕ) : (leaf a : LTree E).size = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.a1bbf276df92 from=translated src=- shape=70b87992 vocab=6f08d152
+-/
 @[simp] lemma size_node (e : E) (l r : LTree E) : (node e l r).size = l.size + r.size + 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.6aca09bbe266 from=translated src=- shape=318fb545 vocab=f9f73aaa
+-/
 lemma size_add_one : ∀ t : LTree E, t.size + 1 = 2 * t.arity
   | leaf _ => rfl
   | node _ l r => by
@@ -399,13 +466,22 @@ def graft (e : E) (a : ℕ) : LTree E → ℕ → LTree E
   | node f l r, p + 1 =>
     if p < l.size then node f (graft e a l p) r else node f l (graft e a r (p - l.size))
 
+/--
+@isnad1 id=eq.0h4v.s4.4063339bd417 from=translated src=- shape=d936dcd8 vocab=81ca35c8
+-/
 @[simp] lemma graft_zero (e : E) (a : ℕ) (t : LTree E) : graft e a t 0 = node e t (leaf a) := by
   cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.56c3e0b7b4a5 from=translated src=- shape=793b4490 vocab=d861d76a
+-/
 lemma graft_node_succ (e : E) (a : ℕ) (f : E) (l r : LTree E) (p : ℕ) :
     graft e a (node f l r) (p + 1) =
       if p < l.size then node f (graft e a l p) r else node f l (graft e a r (p - l.size)) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.e7b20a7f99bf from=translated src=- shape=48ea680d vocab=f3959484
+-/
 lemma size_graft (e : E) (a : ℕ) : ∀ (t : LTree E) (p : ℕ), p < t.size →
     (graft e a t p).size = t.size + 2
   | t, 0, _ => by simp
@@ -419,6 +495,9 @@ lemma size_graft (e : E) (a : ℕ) : ∀ (t : LTree E) (p : ℕ), p < t.size →
     · simp only [size_node, size_graft e a r (p - l.size) (by omega)]
       omega
 
+/--
+@isnad1 id=perm.1h5v.s5.66bc76c31f8d from=translated src=- shape=5ec961de vocab=3bb104fd
+-/
 lemma labels_graft (e : E) (a : ℕ) : ∀ (t : LTree E) (p : ℕ), p < t.size →
     (graft e a t p).labels.Perm (t.labels ++ [a])
   | t, 0, _ => by simp
@@ -434,6 +513,9 @@ lemma labels_graft (e : E) (a : ℕ) : ∀ (t : LTree E) (p : ℕ), p < t.size �
     · simp only [labels_node, List.append_assoc]
       exact (labels_graft e a r _ (by omega)).append_left _
 
+/--
+@isnad1 id=eq.2h5v.s5.84389b8442f0 from=translated src=- shape=c091a92c vocab=d48baa57
+-/
 lemma minLabel_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), (∀ b ∈ t.labels, b < a) →
     p < t.size → (graft e a t p).minLabel = t.minLabel
   | t, 0, ha, _ => by
@@ -450,7 +532,9 @@ lemma minLabel_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), (∀ b ∈
         minLabel_graft e r (p - l.size) (fun b hb => ha b (Or.inr hb)) (by omega)]
 
 /-- Grafting a leaf with a label above all the others onto a shuffle monomial gives a shuffle
-monomial.-/
+monomial.
+@isnad1 id=isshuffl.3h5v.s5.052dc4ffb876 from=translated src=- shape=12ac2b51 vocab=bd3dad6d
+-/
 lemma isShuffle_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), t.IsShuffle →
     (∀ b ∈ t.labels, b < a) → p < t.size → (graft e a t p).IsShuffle
   | t, 0, hs, ha, _ => by
@@ -469,6 +553,9 @@ lemma isShuffle_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), t.IsShuff
     · exact ⟨by rw [minLabel_graft e r _ har (by omega)]; exact h1, hl,
         isShuffle_graft e r _ hr har (by omega)⟩
 
+/--
+@isnad1 id=ex.1h5v.s5.22e7098532f7 from=translated src=- shape=c4403e31 vocab=8eefd804
+-/
 lemma graft_eq_node (e : E) (a : ℕ) : ∀ (t : LTree E) (p : ℕ), p < t.size →
     ∃ g x y, graft e a t p = node g x y
   | t, 0, _ => ⟨e, t, leaf a, graft_zero e a t⟩
@@ -487,7 +574,9 @@ def prune (a : ℕ) : LTree E → LTree E
   | node f l (node g x y) =>
     if a ∈ l.labels then node f (prune a l) (node g x y) else node f l (prune a (node g x y))
 
-/-- **Pruning undoes grafting.**-/
+/-- **Pruning undoes grafting.**
+@isnad1 id=eq.2h5v.s5.bc2d369d50b1 from=translated src=- shape=f23f83ce vocab=13e682d8
+-/
 lemma prune_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), a ∉ t.labels → p < t.size →
     prune a (graft e a t p) = t
   | t, 0, _, _ => by simp [prune]
@@ -510,6 +599,9 @@ lemma prune_graft (e : E) {a : ℕ} : ∀ (t : LTree E) (p : ℕ), a ∉ t.label
       rw [hg] at ih ⊢
       simp [prune, ha.1, ih]
 
+/--
+@isnad1 id=ne.2h6v.s6.d3d0754f46c8 from=translated src=- shape=1711b1d5 vocab=7ee3a855
+-/
 lemma graft_zero_ne (e e' : E) {a : ℕ} : ∀ {t : LTree E} {p : ℕ}, a ∉ t.labels →
     p + 1 < t.size → graft e a t 0 ≠ graft e' a t (p + 1)
   | leaf _, _, _, h => by simp at h
@@ -529,7 +621,9 @@ lemma graft_zero_ne (e e' : E) {a : ℕ} : ∀ {t : LTree E} {p : ℕ}, a ∉ t.
       simp at this
 
 /-- **Grafting at different positions, or with different decorations, gives different
-monomials.**-/
+monomials.**
+@isnad1 id=and.4h7v.s6.de55c1cdc101 from=translated src=- shape=604ea4ca vocab=2670aef7
+-/
 theorem graft_inj {e e' : E} {a : ℕ} : ∀ (t : LTree E) (p p' : ℕ), a ∉ t.labels → p < t.size →
     p' < t.size → graft e a t p = graft e' a t p' → p = p' ∧ e = e'
   | t, 0, 0, _, _, _, h => by
@@ -559,7 +653,9 @@ theorem graft_inj {e e' : E} {a : ℕ} : ∀ (t : LTree E) (p p' : ℕ), a ∉ t
       exact ⟨by omega, rfl⟩
 
 /-- **Every shuffle monomial with at least two leaves is grafted** from one on fewer leaves, at
-its largest label `a`.-/
+its largest label `a`.
+@isnad1 id=ex.5h3v.s6.f093ce426b6d from=translated src=- shape=8c6f2c47 vocab=e0c248b4
+-/
 theorem exists_graft {a : ℕ} : ∀ (t : LTree E), t.IsShuffle → t.labels.Nodup → a ∈ t.labels →
     (∀ b ∈ t.labels, b ≤ a) → 2 ≤ t.arity →
     ∃ (s : LTree E) (p : ℕ) (e : E), p < s.size ∧ s.IsShuffle ∧ (∀ b ∈ s.labels, b < a) ∧
@@ -626,6 +722,9 @@ theorem exists_graft {a : ℕ} : ∀ (t : LTree E), t.IsShuffle → t.labels.Nod
           exact hb.elim (hla b) (hsa b)
         · rw [graft_node_succ, ite_eq_right (by omega), show l.size + p - l.size = p by omega, hg]
 
+/--
+@isnad1 id=eq.1h3v.s5.9fb9d7e08c16 from=translated src=- shape=db0ab306 vocab=cb9d4e7f
+-/
 lemma size_of_perm {t : LTree E} {n : ℕ} (h : t.labels.Perm (List.range (n + 1))) :
     t.size = 2 * n + 1 := by
   have h1 := size_add_one t
@@ -648,7 +747,9 @@ def monomials : ℕ → Finset (LTree E)
       (Finset.range (2 * n + 1) ×ˢ (Finset.univ : Finset E)).image
         fun pe => graft pe.2 (n + 1) s pe.1
 
-/-- **The monomials of arity `n` are the shuffle monomials** whose labels are `0, …, n - 1`.-/
+/-- **The monomials of arity `n` are the shuffle monomials** whose labels are `0, …, n - 1`.
+@isnad1 id=iff.0h3v.s5.bbace38d0051 from=translated src=- shape=703ae7aa vocab=8adfc4d3
+-/
 theorem mem_monomials : ∀ (n : ℕ) (t : LTree E),
     t ∈ monomials n ↔ t.IsShuffle ∧ t.labels.Perm (List.range n)
   | 0, t => by
@@ -697,6 +798,9 @@ theorem mem_monomials : ∀ (n : ℕ) (t : LTree E),
         exact (List.perm_append_right_iff _).1 (h1.symm.trans hl)
       exact ⟨s, ⟨hss, hsl⟩, p, e, by rw [size_of_perm hsl] at hp; exact hp, rfl⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.e12af47b6afb from=translated src=- shape=f8f71be5 vocab=7f0b1c8b
+-/
 lemma doubleFactorial_two_mul_add_one (n : ℕ) : (2 * n + 1)‼ = (2 * n + 1) * (2 * n - 1)‼ := by
   rcases n with _ | n
   · rfl

@@ -36,12 +36,18 @@ variable {A : Type*} [Fintype A] [LinearOrder A]
 /-- **The position** of an element of a finite linear order: the number of smaller elements.-/
 def opos (a : A) : ℕ := (Finset.univ.filter (· < a)).card
 
+/--
+@isnad1 id=lt.0h2v.s4.9e2959450e94 from=translated src=- shape=ba085434 vocab=2e2f3fe8
+-/
 lemma opos_lt_card (a : A) : opos a < Fintype.card A := by
   rw [opos, ← Finset.card_univ]
   refine Finset.card_lt_card ⟨Finset.filter_subset _ _, fun h => ?_⟩
   have := h (Finset.mem_univ a)
   simp at this
 
+/--
+@isnad1 id=strictmo.0h1v.s4.cf67a6d74756 from=translated src=- shape=9b2b986f vocab=83821a06
+-/
 lemma opos_strictMono : StrictMono (opos : A → ℕ) := by
   intro a b hab
   refine Finset.card_lt_card ⟨fun x hx => ?_, fun h => ?_⟩
@@ -50,11 +56,19 @@ lemma opos_strictMono : StrictMono (opos : A → ℕ) := by
   · have := h (Finset.mem_filter.2 ⟨Finset.mem_univ a, hab⟩)
     simp at this
 
+/--
+@isnad1 id=injectiv.0h1v.s3.dc737dd9ee1b from=translated src=- shape=9b2b986f vocab=1aeba2dc
+-/
 lemma opos_injective : Function.Injective (opos : A → ℕ) := opos_strictMono.injective
 
+/--
+@isnad1 id=iff.0h3v.s5.3e14213bc66b from=translated src=- shape=64619e23 vocab=b9378015
+-/
 lemma opos_lt_opos {a b : A} : opos a < opos b ↔ a < b := opos_strictMono.lt_iff_lt
 
-/-- **Order isomorphisms preserve positions.**-/
+/-- **Order isomorphisms preserve positions.**
+@isnad1 id=eq.0h4v.s6.e3b23b4a1123 from=translated src=- shape=78d0efce vocab=68594063
+-/
 lemma opos_orderIso {B : Type*} [Fintype B] [LinearOrder B] (σ : A ≃o B) (a : A) :
     opos (σ a) = opos a := by
   have h : Finset.univ.filter (· < σ a) =
@@ -69,18 +83,30 @@ lemma opos_orderIso {B : Type*} [Fintype B] [LinearOrder B] (σ : A ≃o B) (a :
       exact σ.lt_iff_lt.2 ha'
   rw [opos, opos, h, Finset.card_map]
 
+/--
+@isnad1 id=eq.0h2v.s4.823d8a6c5eee from=translated src=- shape=828f0b8a vocab=8558f6f1
+-/
 lemma opos_fin {k : ℕ} (x : Fin k) : opos x = x := by
   rw [opos, Finset.filter_gt_eq_Iio, Fin.card_Iio]
 
 /-- **The element at a position** below the cardinality.-/
 def oelt (n : ℕ) (h : n < Fintype.card A) : A := monoEquivOfFin A rfl ⟨n, h⟩
 
+/--
+@isnad1 id=eq.1h2v.s4.7987576b4c79 from=translated src=- shape=f8fcf31a vocab=64ae1246
+-/
 @[simp] lemma opos_oelt (n : ℕ) (h : n < Fintype.card A) : opos (oelt n h : A) = n := by
   rw [oelt, opos_orderIso, opos_fin]
 
+/--
+@isnad1 id=eq.0h2v.s4.34b1d0296dc2 from=translated src=- shape=a8b09de2 vocab=5c8b2fa0
+-/
 @[simp] lemma oelt_opos (a : A) : oelt (opos a) (opos_lt_card a) = a :=
   opos_injective (opos_oelt _ _)
 
+/--
+@isnad1 id=iff.1h3v.s5.a92b2de92a69 from=translated src=- shape=ddf5020e vocab=64ae1246
+-/
 lemma oelt_eq_iff {n : ℕ} (h : n < Fintype.card A) {a : A} : oelt n h = a ↔ n = opos a := by
   constructor
   · rintro rfl
@@ -99,28 +125,46 @@ variable {E : ℕ → Type v}
 /-- **Relabelling the leaves** of a tree along a map.-/
 def relabel (f : ℕ → ℕ) (t : STree E) : STree E := t.subst fun a => leaf (f a)
 
+/--
+@isnad1 id=eq.0h3v.s4.2f68bd078e67 from=translated src=- shape=9683e1a6 vocab=d6f6c44b
+-/
 lemma labels_relabel (f : ℕ → ℕ) (t : STree E) : (t.relabel f).labels = t.labels.map f := by
   rw [relabel, labels_subst]
   exact Multiset.bind_singleton _ _
 
+/--
+@isnad1 id=eq.1h3v.s4.db0175dd62fa from=translated src=- shape=59df71b4 vocab=4e1fd5cc
+-/
 lemma first_relabel (f : ℕ → ℕ) {t : STree E} (ht : t.IsShuffle) :
     (t.relabel f).first = f t.first := by
   rw [relabel, first_subst ht]
   rfl
 
+/--
+@isnad1 id=isshuffl.2h3v.s5.ccdea7c7f22c from=translated src=- shape=440cbdc7 vocab=70deb56c
+-/
 lemma isShuffle_relabel {f : ℕ → ℕ} {t : STree E} (ht : t.IsShuffle)
     (hf : StrictMonoOn f {a | a ∈ t.labels}) : (t.relabel f).IsShuffle :=
   isShuffle_subst ht (fun _ _ => isShuffle_leaf _) hf
 
+/--
+@isnad1 id=eq.0h4v.s5.82ffe474d6ad from=translated src=- shape=c1c5d345 vocab=a11da485
+-/
 lemma relabel_relabel (f g : ℕ → ℕ) (t : STree E) :
     (t.relabel f).relabel g = t.relabel (g ∘ f) := by
   rw [relabel, relabel, relabel, subst_subst]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.32e36394551f from=translated src=- shape=9528c0da vocab=b348e22f
+-/
 lemma relabel_congr {f g : ℕ → ℕ} {t : STree E} (h : ∀ a ∈ t.labels, f a = g a) :
     t.relabel f = t.relabel g :=
   subst_congr t fun a ha => by rw [h a ha]
 
+/--
+@isnad1 id=eq.1h3v.s5.c56dd699bb40 from=translated src=- shape=a80b9ad2 vocab=b348e22f
+-/
 lemma relabel_id {f : ℕ → ℕ} {t : STree E} (h : ∀ a ∈ t.labels, f a = a) : t.relabel f = t := by
   rw [relabel_congr h, relabel]
   exact subst_leaf t
@@ -143,10 +187,16 @@ def posL (n : ℕ) : ℕ :=
   else 0
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.0h6v.s7.e2027c73920a from=translated src=- shape=0426b407 vocab=ee87fc97
+-/
 lemma posR_opos (b : B) : posR i e (opos b) = opos (e (Sum.inr b)) := by
   rw [posR, dite_eq_left (opos_lt_card b), oelt_opos]
 
 omit [Fintype B] [LinearOrder B] in
+/--
+@isnad1 id=eq.0h6v.s7.26e6bf3b8a13 from=translated src=- shape=75907b34 vocab=2bc18918
+-/
 lemma posL_opos (a : Without A i) : posL i e (opos a.1) = opos (e (Sum.inl a)) := by
   rw [posL, dite_eq_left (opos_lt_card a.1)]
   simp only [oelt_opos, dite_eq_right a.2]
@@ -158,8 +208,14 @@ def graftFam (t : STree E) (n : ℕ) : STree E :=
 
 variable {i e}
 
+/--
+@isnad1 id=eq.0h7v.s6.b1d97deda5b6 from=translated src=- shape=4caba4f8 vocab=14c8542a
+-/
 lemma graftFam_opos (t : STree E) : graftFam i e t (opos i) = t.relabel (posR i e) := ite_eq_left rfl
 
+/--
+@isnad1 id=eq.1h8v.s7.50f102467faa from=translated src=- shape=2b5cd14a vocab=ba983b2f
+-/
 lemma graftFam_ne (t : STree E) (a : A) (ha : a ≠ i) :
     graftFam i e t (opos a) = leaf (opos (e (Sum.inl ⟨a, ha⟩))) := by
   rw [graftFam, ite_eq_right (fun h => ha (opos_injective h))]
@@ -169,7 +225,9 @@ variable (he : Operad.IsShuffle i e)
 include he
 
 omit [Fintype A] in
-/-- The positions of the inputs of the inner operation increase.-/
+/-- The positions of the inputs of the inner operation increase.
+@isnad1 id=strictmo.1h5v.s6.4ffaa1676e8f from=translated src=- shape=98e5a20d vocab=4e5bc389
+-/
 lemma strictMonoOn_posR : StrictMonoOn (posR i e) {m | m < Fintype.card B} := by
   intro m hm m' hm' hmm'
   rw [posR, posR, dite_eq_left (show m < Fintype.card B from hm),
@@ -178,6 +236,9 @@ lemma strictMonoOn_posR : StrictMonoOn (posR i e) {m | m < Fintype.card B} := by
   rw [← opos_lt_opos, opos_oelt, opos_oelt]
   exact hmm'
 
+/--
+@isnad1 id=isshuffl.3h8v.s6.e8bdb123815c from=translated src=- shape=3092e6c3 vocab=e62289ab
+-/
 lemma isShuffle_graftFam {t : STree E} (ht : t.IsShuffle)
     (htl : t.labels = (Finset.range (Fintype.card B)).val) (n : ℕ) :
     (graftFam i e t n).IsShuffle := by
@@ -188,7 +249,9 @@ lemma isShuffle_graftFam {t : STree E} (ht : t.IsShuffle)
     exact strictMonoOn_posR he hm hm' hmm'
   · exact isShuffle_leaf _
 
-/-- **The substituted family of a graft increases with its least leaves.**-/
+/-- **The substituted family of a graft increases with its least leaves.**
+@isnad1 id=strictmo.3h7v.s6.617417d6d7d8 from=translated src=- shape=9fb832cb vocab=39f1767c
+-/
 lemma strictMonoOn_graftFam {t : STree E} (ht : t.IsShuffle)
     (htl : t.labels = (Finset.range (Fintype.card B)).val) :
     StrictMonoOn (fun n => (graftFam i e t n).first) {n | n < Fintype.card A} := by
@@ -232,7 +295,9 @@ lemma strictMonoOn_graftFam {t : STree E} (ht : t.IsShuffle)
     · rw [dite_eq_right ha, dite_eq_right ha', opos_lt_opos]
       exact he.mono_left (show (⟨a, ha⟩ : Without A i) < ⟨a', ha'⟩ from haa')
 
-/-- **The graft of shuffle monomials along a shuffle is a shuffle tree.**-/
+/-- **The graft of shuffle monomials along a shuffle is a shuffle tree.**
+@isnad1 id=isshuffl.5h8v.s6.8257d63af4cc from=translated src=- shape=c552860a vocab=739b28e0
+-/
 lemma isShuffle_graft {s t : STree E} (hs : s.IsShuffle) (hsl : s.labels = (Finset.range
     (Fintype.card A)).val) (ht : t.IsShuffle) (htl : t.labels = (Finset.range
     (Fintype.card B)).val) : (s.subst (graftFam i e t)).IsShuffle :=
@@ -242,7 +307,9 @@ lemma isShuffle_graft {s t : STree E} (hs : s.IsShuffle) (hsl : s.labels = (Fins
 
 omit he in
 /-- **The leaves of a substituted family member**: the positions of the images of the inputs
-lying over `a`.-/
+lying over `a`.
+@isnad1 id=iff.1h9v.s8.45a0cb983477 from=translated src=- shape=264403f2 vocab=ffdcb0ab
+-/
 lemma mem_labels_graftFam {t : STree E} (htl : t.labels = (Finset.range (Fintype.card B)).val)
     (a : A) {c : ℕ} : c ∈ (graftFam i e t (opos a)).labels ↔
       ∃ y : Without A i ⊕ B, Sum.elim Subtype.val (fun _ => i) y = a ∧ c = opos (e y) := by
@@ -267,7 +334,9 @@ lemma mem_labels_graftFam {t : STree E} (htl : t.labels = (Finset.range (Fintype
       · exact absurd hy.symm ha
 
 omit he in
-/-- **The leaves of a graft** are the positions of the composite.-/
+/-- **The leaves of a graft** are the positions of the composite.
+@isnad1 id=eq.2h8v.s6.b63f6f95186a from=translated src=- shape=b0bfa726 vocab=62cd6095
+-/
 lemma labels_graft {s t : STree E} (hsl : s.labels = (Finset.range (Fintype.card A)).val)
     (htl : t.labels = (Finset.range (Fintype.card B)).val) :
     (s.subst (graftFam i e t)).labels = (Finset.range (Fintype.card C)).val := by
@@ -322,6 +391,9 @@ end Graft
 
 section Laws
 
+/--
+@isnad1 id=eq.2h5v.s6.d75b6ea1d906 from=translated src=- shape=1be9c8f2 vocab=2cdcd085
+-/
 lemma subst_congr_range {A : Type} [Fintype A] [LinearOrder A] {s : STree E}
     (hs : s.labels = (Finset.range (Fintype.card A)).val) {xs ys : ℕ → STree E}
     (h : ∀ a : A, xs (opos a) = ys (opos a)) : s.subst xs = s.subst ys :=
@@ -330,28 +402,45 @@ lemma subst_congr_range {A : Type} [Fintype A] [LinearOrder A] {s : STree E}
     rw [← opos_oelt n hn]
     exact h _
 
+/--
+@isnad1 id=eq.2h5v.s6.320a57d0b74d from=translated src=- shape=7431886b vocab=58bfcbfa
+-/
 lemma relabel_congr_range {A : Type} [Fintype A] [LinearOrder A] {t : STree E}
     (ht : t.labels = (Finset.range (Fintype.card A)).val) {f g : ℕ → ℕ}
     (h : ∀ a : A, f (opos a) = g (opos a)) : t.relabel f = t.relabel g :=
   subst_congr_range ht fun a => by rw [h a]
 
+/--
+@isnad1 id=eq.0h4v.s5.0128acdff48c from=translated src=- shape=8cd2c0ba vocab=00423bd3
+-/
 lemma relabel_subst (f : ℕ → ℕ) (t : STree E) (ys : ℕ → STree E) :
     (t.relabel f).subst ys = t.subst fun a => ys (f a) := by
   rw [relabel, subst_subst]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9b8d77623420 from=translated src=- shape=526d9c87 vocab=00423bd3
+-/
 lemma subst_relabel (t : STree E) (xs : ℕ → STree E) (g : ℕ → ℕ) :
     (t.subst xs).relabel g = t.subst fun a => (xs a).relabel g := by
   rw [relabel, subst_subst]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.09d6d70a678c from=translated src=- shape=8636a5dd vocab=d4226c1d
+-/
 @[simp] lemma relabel_leaf (f : ℕ → ℕ) (a : ℕ) : (leaf a : STree E).relabel f = leaf (f a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.06c3e0d5d91f from=translated src=- shape=b3c4969c vocab=8624c4a7
+-/
 @[simp] lemma opos_unit : opos () = 0 := by
   simp [opos]
 
-/-- **Grafting is equivariant** under order isomorphisms.-/
+/-- **Grafting is equivariant** under order isomorphisms.
+@isnad1 id=eq.3h15v.s10.9e79a7af5dbd from=translated src=- shape=30d3b71d vocab=8e9432cd
+-/
 theorem subst_graftFam_map {A A' B B' C C' : Type} [Fintype A] [LinearOrder A] [Fintype A']
     [LinearOrder A'] [Fintype B] [LinearOrder B] [Fintype B'] [LinearOrder B'] [Fintype C]
     [LinearOrder C] [Fintype C'] [LinearOrder C'] (σ : A ≃o A') (τ : B ≃o B') (ρ : C ≃o C')
@@ -374,7 +463,9 @@ theorem subst_graftFam_map {A A' B B' C C' : Type} [Fintype A] [LinearOrder A] [
       graftFam_ne t (σ a) hσ, ← opos_orderIso ρ (e (Sum.inl ⟨a, ha⟩)), h]
     rfl
 
-/-- **The right unit law of grafting.**-/
+/-- **The right unit law of grafting.**
+@isnad1 id=eq.2h7v.s8.aa58f12f1c2e from=translated src=- shape=11390225 vocab=b7b5c201
+-/
 theorem subst_graftFam_one {A C : Type} [Fintype A] [LinearOrder A] [Fintype C] [LinearOrder C]
     (i : A) (e : Without A i ⊕ Unit ≃ C) (φ : A ≃o C)
     (hφ : ∀ a, φ a = e ((Sym.rightUnitEquiv i).symm a)) {s : STree E}
@@ -388,7 +479,9 @@ theorem subst_graftFam_one {A C : Type} [Fintype A] [LinearOrder A] [Fintype C] 
       ← hφ, opos_orderIso]
   · rw [graftFam_ne _ a ha, ← Sym.rightUnitEquiv_symm_of_ne ha, ← hφ, opos_orderIso]
 
-/-- **The left unit law of grafting.**-/
+/-- **The left unit law of grafting.**
+@isnad1 id=eq.2h6v.s7.b735d7c75758 from=translated src=- shape=f1c2b720 vocab=634f34cf
+-/
 theorem subst_graftFam_one_left {B C : Type} [Fintype B] [LinearOrder B] [Fintype C]
     [LinearOrder C] (e : Without Unit () ⊕ B ≃ C) (φ : B ≃o C) (hφ : ∀ b, φ b = e (Sum.inr b))
     {t : STree E} (ht : t.labels = (Finset.range (Fintype.card B)).val) :
@@ -397,7 +490,9 @@ theorem subst_graftFam_one_left {B C : Type} [Fintype B] [LinearOrder B] [Fintyp
   refine (relabel_congr_range ht fun b => ?_).trans (relabel_id fun a _ => rfl)
   rw [posR_opos, ← hφ, opos_orderIso]
 
-/-- **Sequential associativity of grafting.**-/
+/-- **Sequential associativity of grafting.**
+@isnad1 id=eq.6h16v.s12.cbbf3c0f40c1 from=translated src=- shape=2d6e729a vocab=95964de6
+-/
 theorem subst_graftFam_seq {A B D C₁ C₃ C : Type} [Fintype A] [LinearOrder A] [Fintype B]
     [LinearOrder B] [Fintype D] [LinearOrder D] [Fintype C₁] [LinearOrder C₁] [Fintype C₃]
     [LinearOrder C₃] [Fintype C] [LinearOrder C] (i : A) (j : B) (e₁ : Without A i ⊕ B ≃ C₁)
@@ -432,7 +527,9 @@ theorem subst_graftFam_seq {A B D C₁ C₃ C : Type} [Fintype A] [LinearOrder A
     rw [graftFam_ne t a ha, subst_leaf', graftFam_ne u _ ha', graftFam_ne _ a ha]
     exact congrArg (fun x => leaf (opos x)) (h₁ ⟨a, ha⟩)
 
-/-- **Parallel associativity of grafting.**-/
+/-- **Parallel associativity of grafting.**
+@isnad1 id=eq.7h16v.s13.32d08ed17ed7 from=translated src=- shape=c5c43654 vocab=fb104d84
+-/
 theorem subst_graftFam_par {A B D C₁ C₃ C : Type} [Fintype A] [LinearOrder A] [Fintype B]
     [LinearOrder B] [Fintype D] [LinearOrder D] [Fintype C₁] [LinearOrder C₁] [Fintype C₃]
     [LinearOrder C₃] [Fintype C] [LinearOrder C] {i k : A} (hik : i ≠ k)
@@ -478,6 +575,9 @@ end Laws
 def SMono.cast {A A' : Finset ℕ} (h : A = A') (t : SMono E A) : SMono E A' :=
   ⟨t.1, t.2.1, h ▸ t.2.2⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.01c300bc9efc from=translated src=- shape=c6744a95 vocab=608ffd12
+-/
 @[simp] lemma SMono.cast_val {A A' : Finset ℕ} (h : A = A') (t : SMono E A) :
     (t.cast h).1 = t.1 := rfl
 
@@ -508,6 +608,9 @@ noncomputable def bil {X Y Z : Type*} (f : X → Y → Z) :
   Finsupp.linearCombination K fun x => Finsupp.linearCombination K fun y =>
     Finsupp.single (f x y) (1 : K)
 
+/--
+@isnad1 id=eq.0h9v.s10.a713dea0be5e from=translated src=- shape=0c390322 vocab=fce00c0a
+-/
 lemma bil_single {X Y Z : Type*} (f : X → Y → Z) (x : X) (y : Y) (a b : K) :
     bil f (Finsupp.single x a) (Finsupp.single y b) = Finsupp.single (f x y) (a * b) := by
   rw [bil, Finsupp.linearCombination_single, LinearMap.smul_apply,
@@ -519,6 +622,9 @@ noncomputable def mapM {A B : Type} [Fintype A] [LinearOrder A] [Fintype B] [Lin
     (σ : A ≃o B) : FreeSh K E A →ₗ[K] FreeSh K E B :=
   Finsupp.lmapDomain K K (SMono.cast (congrArg Finset.range (Fintype.card_congr σ.toEquiv)))
 
+/--
+@isnad1 id=eq.0h7v.s8.3124f28c3423 from=translated src=- shape=1e5a93c2 vocab=6c670d87
+-/
 lemma mapM_single {A B : Type} [Fintype A] [LinearOrder A] [Fintype B] [LinearOrder B]
     (σ : A ≃o B) (x : SMono E (Finset.range (Fintype.card A))) (a : K) :
     mapM σ (Finsupp.single x a) = Finsupp.single (x.cast
@@ -529,7 +635,9 @@ lemma mapM_single {A B : Type} [Fintype A] [LinearOrder A] [Fintype B] [LinearOr
 def oneM : SMono E (Finset.range (Fintype.card Unit)) :=
   ⟨leaf 0, isShuffle_leaf 0, by simp⟩
 
-/-- Bilinear identities are checked on basis elements.-/
+/-- Bilinear identities are checked on basis elements.
+@isnad1 id=eq.1h6v.s11.b1df4f0da851 from=translated src=- shape=254da339 vocab=e41d6b00
+-/
 lemma bil_ext {X Y M : Type*} [AddCommGroup M] [Module K M]
     {f g : (X →₀ K) →ₗ[K] (Y →₀ K) →ₗ[K] M}
     (h : ∀ x y, f (Finsupp.single x 1) (Finsupp.single y 1) =
@@ -537,6 +645,9 @@ lemma bil_ext {X Y M : Type*} [AddCommGroup M] [Module K M]
   Finsupp.lhom_ext' fun x => LinearMap.ext_ring
     (Finsupp.lhom_ext' fun y => LinearMap.ext_ring (h x y))
 
+/--
+@isnad1 id=eq.0h4v.s8.a19b0bd26f3c from=translated src=- shape=acdd0be9 vocab=83ac51ff
+-/
 lemma mapM_refl {A : Type} [Fintype A] [LinearOrder A] (x : FreeSh K E A) :
     mapM (OrderIso.refl A) x = x := by
   have : SMono.cast (E := E) (congrArg Finset.range
@@ -544,6 +655,9 @@ lemma mapM_refl {A : Type} [Fintype A] [LinearOrder A] (x : FreeSh K E A) :
   show Finsupp.mapDomain _ x = x
   rw [this, Finsupp.mapDomain_id]
 
+/--
+@isnad1 id=eq.0h8v.s9.ee544682d20f from=translated src=- shape=6a09d28e vocab=d64ec15e
+-/
 lemma mapM_trans {A B C : Type} [Fintype A] [LinearOrder A] [Fintype B] [LinearOrder B]
     [Fintype C] [LinearOrder C] (σ : A ≃o B) (τ : B ≃o C) (x : FreeSh K E A) :
     mapM (σ.trans τ) x = mapM τ (mapM σ x) := by
@@ -557,6 +671,9 @@ variable {A A' B B' C C' : Type} [Fintype A] [LinearOrder A] [Fintype A'] [Linea
   [Fintype B] [LinearOrder B] [Fintype B'] [LinearOrder B'] [Fintype C] [LinearOrder C]
   [Fintype C'] [LinearOrder C']
 
+/--
+@isnad1 id=eq.3h16v.s12.0ff9a51b03b0 from=translated src=- shape=2f557e19 vocab=0c0ffe2b
+-/
 lemma mapM_bil_graft (σ : A ≃o A') (τ : B ≃o B') (ρ : C ≃o C') (i : A)
     {e : Without A i ⊕ B ≃ C} (he : IsShuffle i e) {e' : Without A' (σ i) ⊕ B' ≃ C'}
     (he' : IsShuffle (σ i) e') (h : ∀ c, ρ (e c) = e' (Sym.compEquiv σ.toEquiv τ.toEquiv i c))
@@ -570,6 +687,9 @@ lemma mapM_bil_graft (σ : A ≃o A') (τ : B ≃o B') (ρ : C ≃o C') (i : A)
       exact Subtype.ext (subst_graftFam_map σ τ ρ i e e' h s.labels_eq t.labels_eq)
   exact congrArg (fun F => F x y) key
 
+/--
+@isnad1 id=eq.2h8v.s11.c172242e6ad8 from=translated src=- shape=ccbf303f vocab=d4311d7a
+-/
 lemma bil_graft_one (i : A) {e : Without A i ⊕ Unit ≃ C} (he : IsShuffle i e) (φ : A ≃o C)
     (hφ : ∀ a, φ a = e ((Sym.rightUnitEquiv i).symm a)) (x : FreeSh K E A) :
     bil (graft he) x (Finsupp.single oneM 1) = mapM φ x := by
@@ -581,6 +701,9 @@ lemma bil_graft_one (i : A) {e : Without A i ⊕ Unit ≃ C} (he : IsShuffle i e
     congr 1
     exact Subtype.ext (subst_graftFam_one i e φ hφ s.labels_eq)
 
+/--
+@isnad1 id=eq.2h7v.s11.a7b9eaaf1bc3 from=translated src=- shape=f02dc4d8 vocab=351a9ffe
+-/
 lemma bil_one_graft {e : Without Unit () ⊕ B ≃ C} (he : IsShuffle () e) (φ : B ≃o C)
     (hφ : ∀ b, φ b = e (Sum.inr b)) (y : FreeSh K E B) :
     bil (graft he) (Finsupp.single oneM 1) y = mapM φ y := by
@@ -655,7 +778,9 @@ variable {E : ℕ → Type v} {A B C : Type} [Fintype A] [LinearOrder A] [Fintyp
   (he : Operad.IsShuffle i e)
 include he
 
-/-- **Grafting a fixed inner monomial is a context.**-/
+/-- **Grafting a fixed inner monomial is a context.**
+@isnad1 id=issctx.1h7v.s6.c9b927c29318 from=translated src=- shape=c13378f0 vocab=e8889a8f
+-/
 theorem isSCtx_graft_left (t : SMono E (Finset.range (Fintype.card B))) :
     IsSCtx (fun s : SMono E (Finset.range (Fintype.card A)) => graft he s t) := by
   refine ⟨leaf 0, [], graftFam i e t.1, by rw [get?_nil]; rfl,
@@ -669,7 +794,9 @@ theorem isSCtx_graft_left (t : SMono E (Finset.range (Fintype.card B))) :
   · rw [replace_nil]
     rfl
 
-/-- **Grafting into a fixed outer monomial is a context.**-/
+/-- **Grafting into a fixed outer monomial is a context.**
+@isnad1 id=issctx.1h7v.s6.01a2e38372c1 from=translated src=- shape=09c74cf8 vocab=e8889a8f
+-/
 theorem isSCtx_graft_right (s : SMono E (Finset.range (Fintype.card A))) :
     IsSCtx (fun t : SMono E (Finset.range (Fintype.card B)) => graft he s t) := by
   have hi : opos i ∈ s.1.labels := by
@@ -703,6 +830,9 @@ namespace FreeSh
 
 variable {K : Type u} [CommRing K]
 
+/--
+@isnad1 id=eq.0h8v.s10.cde52a8018eb from=translated src=- shape=00572b9b vocab=bcb0d0f8
+-/
 lemma bil_single_right {X Y Z : Type*} (f : X → Y → Z) (x : X →₀ K) (y : Y) (b : K) :
     bil f x (Finsupp.single y b) = b • Finsupp.mapDomain (fun s => f s y) x := by
   induction x using Finsupp.induction_linear with
@@ -712,6 +842,9 @@ lemma bil_single_right {X Y Z : Type*} (f : X → Y → Z) (x : X →₀ K) (y :
   | single s a => rw [bil_single, Finsupp.mapDomain_single, Finsupp.smul_single, smul_eq_mul,
       mul_comm]
 
+/--
+@isnad1 id=eq.0h8v.s10.13d37fae8e45 from=translated src=- shape=5b5bca36 vocab=bcb0d0f8
+-/
 lemma bil_single_left {X Y Z : Type*} (f : X → Y → Z) (x : X) (a : K) (y : Y →₀ K) :
     bil f (Finsupp.single x a) y = a • Finsupp.mapDomain (f x) y := by
   induction y using Finsupp.induction_linear with
@@ -726,6 +859,9 @@ open STree FreeSh
 variable {K : Type u} [CommRing K] {E : ℕ → Type v} {ρ : Type*} {O : STree.AdmOrder E}
   (G : Rules K ρ O.toCtxOrder)
 
+/--
+@isnad1 id=mem.2h8v.s9.b4254832ed7d from=translated src=- shape=f93dbdfc vocab=500313ea
+-/
 lemma Rules.ideal_cast {X Y : Finset ℕ} (h : X = Y) {v : SMono E X →₀ K}
     (hv : v ∈ (G.rw X).ideal) : Finsupp.mapDomain (SMono.cast h) v ∈ (G.rw Y).ideal := by
   subst h

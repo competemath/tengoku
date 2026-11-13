@@ -40,11 +40,17 @@ def compFinRightHom {m n : ℕ} (i : Fin m) (α : P m) : P n →+ P (m - 1 + n) 
   map_zero' := compFin_zero_right i α
   map_add' β β' := compFin_add_right i α β β'
 
+/--
+@isnad1 id=eq.0h9v.s7.167abb33718f from=translated src=- shape=5c3059ac vocab=97c63b1a
+-/
 lemma compFin_sum_left {m n : ℕ} {ι : Type w} (s : Finset ι) (i : Fin m) (f : ι → P m)
     (β : P n) :
     compFin (R := R) i (∑ x ∈ s, f x) β = ∑ x ∈ s, compFin (R := R) i (f x) β :=
   map_sum (compFinLeftHom (R := R) i β) f s
 
+/--
+@isnad1 id=eq.0h9v.s7.9fa274bc73dc from=translated src=- shape=5cbf2dd6 vocab=97c63b1a
+-/
 lemma compFin_sum_right {m n : ℕ} {ι : Type w} (s : Finset ι) (i : Fin m) (α : P m)
     (g : ι → P n) :
     compFin (R := R) i α (∑ x ∈ s, g x) = ∑ x ∈ s, compFin (R := R) i α (g x) :=
@@ -52,7 +58,9 @@ lemma compFin_sum_right {m n : ℕ} {ι : Type w} (s : Finset ι) (i : Fin m) (�
 
 /-! ### Expanding the two bracketings into double sums -/
 
-/-- `(α ⋆ β) ⋆ γ`, expanded over the slot of the outer composition and the slot of `α`.-/
+/-- `(α ⋆ β) ⋆ γ`, expanded over the slot of the outer composition and the slot of `α`.
+@isnad1 id=eq.0h8v.s9.5039a4b30e33 from=translated src=- shape=9764e0cd vocab=9ceec38b
+-/
 lemma star_star_left {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     star (R := R) (star (R := R) α β) γ
       = ∑ i' : Fin (j + k + 1), ∑ i : Fin (j + 1),
@@ -62,7 +70,9 @@ lemma star_star_left {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l 
   rw [star_def]
   exact map_sum (compFinLeftHom (R := R) i' γ) _ _
 
-/-- `α ⋆ (β ⋆ γ)`, expanded over the slot of `α` and the slot of `β`.-/
+/-- `α ⋆ (β ⋆ γ)`, expanded over the slot of `α` and the slot of `β`.
+@isnad1 id=eq.0h8v.s9.003c0f68c60e from=translated src=- shape=5fc6945b vocab=9ceec38b
+-/
 lemma star_star_right {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     star (R := R) α (star (R := R) β γ)
       = ∑ i : Fin (j + 1), ∑ i'' : Fin (k + 1),
@@ -88,6 +98,9 @@ def nestedEmb {j k : ℕ} (i : Fin (j + 1)) : Fin (k + 1) ↪ Fin (j + k + 1) wh
 def nested {j k : ℕ} (i : Fin (j + 1)) : Finset (Fin (j + k + 1)) :=
   Finset.univ.map (nestedEmb i)
 
+/--
+@isnad1 id=iff.0h4v.s7.db9903e5b9f4 from=translated src=- shape=4a135796 vocab=ea24e5c3
+-/
 @[simp] lemma mem_nested {j k : ℕ} (i : Fin (j + 1)) (i' : Fin (j + k + 1)) :
     i' ∈ nested (k := k) i ↔ ∃ i'' : Fin (k + 1), (i' : ℕ) = (i : ℕ) + (i'' : ℕ) := by
   constructor
@@ -104,7 +117,9 @@ def disjointPart {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)
     compFin (R := R) i' (compFin (R := R) i α β) γ
 
 /-- Over the nested slots, the double sum reproduces `α ⋆ (β ⋆ γ)` term by term: this is exactly
-`compFin_assoc_seq`.-/
+`compFin_assoc_seq`.
+@isnad1 id=eq.0h9v.s11.d34d553c4050 from=translated src=- shape=93c7aad1 vocab=4340eb08
+-/
 lemma sum_nested {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1))
     (i : Fin (j + 1)) :
     reindex R P (by omega)
@@ -115,7 +130,9 @@ lemma sum_nested {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)
   refine Finset.sum_congr rfl fun i'' _ => ?_
   exact compFin_assoc_seq i i'' α β γ
 
-/-- **The associator, isolated.** `(α ⋆ β) ⋆ γ` is `α ⋆ (β ⋆ γ)` plus the disjoint-slot part.-/
+/-- **The associator, isolated.** `(α ⋆ β) ⋆ γ` is `α ⋆ (β ⋆ γ)` plus the disjoint-slot part.
+@isnad1 id=eq.0h8v.s10.f84723c85f68 from=translated src=- shape=7e4d7358 vocab=e0a35e08
+-/
 lemma star_star_left_split {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     star (R := R) (star (R := R) α β) γ
       = reindex R P (by omega) (star (R := R) α (star (R := R) β γ))
@@ -142,6 +159,9 @@ A slot of `α ⋆ β` outside `β`'s block is either strictly before `α`'s slot
 after the block `[i, i+k]`. Treating the two separately makes each of the two reindexing
 bijections below single-case. -/
 
+/--
+@isnad1 id=iff.0h4v.s7.4bbce1a8f1df from=translated src=- shape=33be26b9 vocab=66fb7a65
+-/
 lemma not_mem_nested_iff {j k : ℕ} (i : Fin (j + 1)) (i' : Fin (j + k + 1)) :
     i' ∉ nested (k := k) i ↔ (i' : ℕ) < (i : ℕ) ∨ (i : ℕ) + k < (i' : ℕ) := by
   simp only [mem_nested, not_exists]
@@ -163,12 +183,21 @@ def before {j k : ℕ} (i : Fin (j + 1)) : Finset (Fin (j + k + 1)) :=
 def after {j k : ℕ} (i : Fin (j + 1)) : Finset (Fin (j + k + 1)) :=
   Finset.univ.filter fun i' => (i : ℕ) + k < (i' : ℕ)
 
+/--
+@isnad1 id=iff.0h4v.s7.4078b19f094b from=translated src=- shape=42894d65 vocab=0ebca266
+-/
 @[simp] lemma mem_before {j k : ℕ} (i : Fin (j + 1)) (i' : Fin (j + k + 1)) :
     i' ∈ before (k := k) i ↔ (i' : ℕ) < (i : ℕ) := by simp [before]
 
+/--
+@isnad1 id=iff.0h4v.s7.145a1342a111 from=translated src=- shape=f8de2305 vocab=e571f0cf
+-/
 @[simp] lemma mem_after {j k : ℕ} (i : Fin (j + 1)) (i' : Fin (j + k + 1)) :
     i' ∈ after (k := k) i ↔ (i : ℕ) + k < (i' : ℕ) := by simp [after]
 
+/--
+@isnad1 id=eq.0h5v.s8.7734c4ea966b from=translated src=- shape=4b5c7c08 vocab=7a409e9f
+-/
 lemma sum_compl_nested {j k : ℕ} {M : Type w} [AddCommMonoid M] (i : Fin (j + 1))
     (f : Fin (j + k + 1) → M) :
     ∑ i' ∈ (nested (k := k) i)ᶜ, f i'
@@ -190,6 +219,9 @@ lemma sum_compl_nested {j k : ℕ} {M : Type w} [AddCommMonoid M] (i : Fin (j + 
 A `β`-then-`γ` pair with `γ` *before* `β` is the same data as a `γ`-then-`β` pair with `β`
 *after* `γ`, and vice versa. Term by term the identification is `compFin_assoc_par`. -/
 
+/--
+@isnad1 id=eq.0h8v.s11.e798702995d5 from=translated src=- shape=93cbbc40 vocab=88e4829d
+-/
 lemma sum_before_eq {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     ((∑ i : Fin (j + 1), ∑ i' ∈ before (k := k) i,
         compFin (R := R) i' (compFin (R := R) i α β) γ) : P (j + k + l + 1))
@@ -238,6 +270,9 @@ lemma sum_before_eq {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l +
       reindex_reindex]
     exact (reindex_self (R := R) (P := P) _ _).symm
 
+/--
+@isnad1 id=eq.0h8v.s11.8d914b6646be from=translated src=- shape=93cbbc40 vocab=88e4829d
+-/
 lemma sum_after_eq {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     ((∑ i : Fin (j + 1), ∑ i' ∈ after (k := k) i,
         compFin (R := R) i' (compFin (R := R) i α β) γ) : P (j + k + l + 1))
@@ -286,7 +321,9 @@ lemma sum_after_eq {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 
 /-! ### The pre-Lie identity -/
 
 /-- **The disjoint part is symmetric in `β` and `γ`.** Swapping the two inserted operations
-exchanges the "before" and "after" halves of the sum.-/
+exchanges the "before" and "after" halves of the sum.
+@isnad1 id=eq.0h8v.s10.ec32d6b951c0 from=translated src=- shape=51cba468 vocab=86b52788
+-/
 theorem disjointPart_symm {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     disjointPart (R := R) α β γ
       = reindex R P (by omega) (disjointPart (R := R) α γ β) := by
@@ -298,7 +335,9 @@ theorem disjointPart_symm {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : 
   exact add_comm _ _
 
 /-- **The pre-Lie identity.** The associator of the circle product is symmetric in its last two
-arguments, so the total space of a non-symmetric operad is a right pre-Lie algebra.-/
+arguments, so the total space of a non-symmetric operad is a right pre-Lie algebra.
+@isnad1 id=eq.0h8v.s11.11223b5b9921 from=translated src=- shape=e3749811 vocab=4cbf5079
+-/
 theorem star_assoc_symm {j k l : ℕ} (α : P (j + 1)) (β : P (k + 1)) (γ : P (l + 1)) :
     star (R := R) (star (R := R) α β) γ
         - reindex R P (by omega) (star (R := R) α (star (R := R) β γ))

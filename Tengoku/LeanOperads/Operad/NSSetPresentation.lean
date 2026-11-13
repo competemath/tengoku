@@ -52,6 +52,9 @@ inductive Rel (ρ : ∀ n : ℕ, NSSyn T n → NSSyn T n → Prop) : {n : ℕ} �
               (comp a (b + 1 + c) (reindexS (NSSyn T) (by omega) x) y)) z))
         (comp a (b + p + c) (reindexS (NSSyn T) (by omega) (comp (a + 1 + b) c x z)) y)
 
+/--
+@isnad1 id=rel.2h6v.s5.471eea558813 from=translated src=- shape=a5fb970e vocab=008fe89d
+-/
 lemma Rel.reindexS {ρ : ∀ n : ℕ, NSSyn T n → NSSyn T n → Prop} {m n : ℕ} (h : m = n)
     {x y : NSSyn T m} (hxy : Rel ρ x y) :
     Rel ρ (reindexS (NSSyn T) h x) (reindexS (NSSyn T) h y) := by
@@ -68,19 +71,33 @@ def eval (f : ∀ n, T n → S n) : {n : ℕ} → NSSyn T n → S n
 
 variable (f : ∀ n, T n → S n)
 
+/--
+@isnad1 id=eq.0h3v.s5.f443df056bc8 from=translated src=- shape=8e71baaa vocab=810132ce
+-/
 @[simp] lemma eval_one : eval f (one : NSSyn T 1) = NSSetOperad.one := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.4dd65ad2802d from=translated src=- shape=725f077b vocab=060b7ae7
+-/
 @[simp] lemma eval_gen {n : ℕ} (g : T n) : eval f (gen g) = f n g := rfl
 
+/--
+@isnad1 id=eq.0h8v.s7.836a3a09c06a from=translated src=- shape=a76fde51 vocab=202b208c
+-/
 @[simp] lemma eval_comp (a b : ℕ) {n : ℕ} (x : NSSyn T (a + 1 + b)) (y : NSSyn T n) :
     eval f (comp a b x y) = NSSetOperad.comp a b (eval f x) (eval f y) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.206647d3f3cb from=translated src=- shape=67a15c5b vocab=435669ac
+-/
 lemma eval_reindexS {m n : ℕ} (h : m = n) (x : NSSyn T m) :
     eval f (reindexS (NSSyn T) h x) = reindexS S h (eval f x) := by
   subst h
   rfl
 
-/-- Evaluation respects the axioms, and every relation it respects.-/
+/-- Evaluation respects the axioms, and every relation it respects.
+@isnad1 id=eq.2h7v.s6.3fd4fdf463da from=translated src=- shape=c150efaf vocab=45752fcb
+-/
 theorem eval_eq_of_rel {ρ : ∀ n : ℕ, NSSyn T n → NSSyn T n → Prop}
     (hf : ∀ {n : ℕ} (x y : NSSyn T n), ρ n x y → eval f x = eval f y)
     {n : ℕ} {x y : NSSyn T n} (h : Rel ρ x y) : eval f x = eval f y := by
@@ -116,12 +133,20 @@ variable {T : ℕ → Type w} {ρ : ∀ n : ℕ, NSSyn T n → NSSyn T n → Pro
 /-- The class of an expression.-/
 abbrev mk {n : ℕ} (x : NSSyn T n) : NSPres T ρ n := Quot.mk _ x
 
+/--
+@isnad1 id=surjecti.0h3v.s4.70666baa92ac from=translated src=- shape=fca91e1c vocab=747eeb5f
+-/
 lemma mk_surjective {n : ℕ} : Function.Surjective (mk (ρ := ρ) (n := n)) := Quot.exists_rep
 
-/-- A relation holds in the presented operad.-/
+/-- A relation holds in the presented operad.
+@isnad1 id=eq.0h6v.s5.b7f6656ab7f2 from=translated src=- shape=5824a2a3 vocab=9503bbc1
+-/
 lemma mk_eq_mk_of_rel {n : ℕ} {x y : NSSyn T n} (h : ρ n x y) : mk (ρ := ρ) x = mk y :=
   Quot.sound (.of h)
 
+/--
+@isnad1 id=eq.1h5v.s5.60281b7fe426 from=translated src=- shape=57d7826e vocab=768a6644
+-/
 lemma reindexS_mk {m n : ℕ} (h : m = n) (x : NSSyn T m) :
     reindexS (NSPres T ρ) h (mk x) = mk (reindexS (NSSyn T) h x) := by
   subst h
@@ -132,6 +157,9 @@ def compFn (a b : ℕ) {n : ℕ} : NSPres T ρ (a + 1 + b) → NSPres T ρ n →
   Quot.map₂ (NSSyn.comp a b) (fun x _ _ h => .comp a b (.refl x) h)
     (fun _ _ y h => .comp a b h (.refl y))
 
+/--
+@isnad1 id=eq.0h7v.s7.0fb9acf92e31 from=translated src=- shape=a7fe092a vocab=3d27903b
+-/
 @[simp] lemma compFn_mk (a b : ℕ) {n : ℕ} (x : NSSyn T (a + 1 + b)) (y : NSSyn T n) :
     compFn (ρ := ρ) a b (mk x) (mk y) = mk (.comp a b x y) := rfl
 
@@ -154,6 +182,9 @@ instance instNSSetOperad : NSSetOperad (NSPres T ρ) where
     simp only [reindexS_mk, compFn_mk]
     exact Quot.sound (NSSyn.Rel.assoc_par a b c x y z)
 
+/--
+@isnad1 id=eq.0h7v.s7.74da4fa8643c from=translated src=- shape=ae34d81e vocab=1ad11c60
+-/
 @[simp] lemma comp_mk (a b : ℕ) {n : ℕ} (x : NSSyn T (a + 1 + b)) (y : NSSyn T n) :
     NSSetOperad.comp a b (mk (ρ := ρ) x) (mk y) = mk (.comp a b x y) := rfl
 
@@ -172,13 +203,21 @@ def lift (f : ∀ n, T n → S n) (hf : Respects ρ f) : NSSetOperadHom (NSPres 
   app_one := rfl
   app_comp _ _ _ x y := Quot.inductionOn x fun _ => Quot.inductionOn y fun _ => rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.c0f18145fa65 from=translated src=- shape=c2cb1336 vocab=6ba5b952
+-/
 @[simp] lemma lift_mk (f : ∀ n, T n → S n) (hf : Respects ρ f) {n : ℕ} (x : NSSyn T n) :
     (lift f hf).app n (mk x) = NSSyn.eval f x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.810112f81c2e from=translated src=- shape=ddeeb69b vocab=f53e6636
+-/
 @[simp] lemma lift_gen (f : ∀ n, T n → S n) (hf : Respects ρ f) {n : ℕ} (g : T n) :
     (lift f hf).app n (gen g) = f n g := rfl
 
-/-- A morphism out of `NSPres T ρ` is its values on generators, extended.-/
+/-- A morphism out of `NSPres T ρ` is its values on generators, extended.
+@isnad1 id=eq.0h6v.s6.6aace86870ea from=translated src=- shape=72e0d4ca vocab=e2a185a3
+-/
 lemma app_mk (φ : NSSetOperadHom (NSPres T ρ) S) {n : ℕ} (x : NSSyn T n) :
     φ.app n (mk x) = NSSyn.eval (fun _ g => φ.app _ (gen g)) x := by
   induction x with
@@ -186,7 +225,9 @@ lemma app_mk (φ : NSSetOperadHom (NSPres T ρ) S) {n : ℕ} (x : NSSyn T n) :
   | gen g => rfl
   | comp a b x y ihx ihy => rw [NSSyn.eval_comp, ← ihx, ← ihy, ← φ.app_comp]; rfl
 
-/-- **Morphisms out of a presented operad are determined by the generators.**-/
+/-- **Morphisms out of a presented operad are determined by the generators.**
+@isnad1 id=eq.1h5v.s6.f4eaab1585d0 from=translated src=- shape=44200ca9 vocab=4c390aeb
+-/
 theorem hom_ext {φ ψ : NSSetOperadHom (NSPres T ρ) S}
     (h : ∀ (n : ℕ) (g : T n), φ.app _ (gen g) = ψ.app _ (gen g)) : φ = ψ := by
   ext n x
@@ -196,7 +237,9 @@ theorem hom_ext {φ ψ : NSSetOperadHom (NSPres T ρ) S}
   funext n g
   exact h n g
 
-/-- The generator values of a morphism respect the relations.-/
+/-- The generator values of a morphism respect the relations.
+@isnad1 id=respects.0h4v.s6.7afb7a28e451 from=translated src=- shape=f840f9ca vocab=fec69682
+-/
 lemma respects_app (φ : NSSetOperadHom (NSPres T ρ) S) :
     Respects ρ (fun _ g => φ.app _ (gen g)) := by
   intro n x y h

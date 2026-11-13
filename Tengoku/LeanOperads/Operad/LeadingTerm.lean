@@ -62,6 +62,9 @@ def fiberKer (f : X → Option Y) : Submodule K (X → K) where
     simp only [Set.mem_ofPred_eq, Pi.smul_apply, smul_eq_mul] at hv ⊢
     rw [← Finset.mul_sum, hv y, mul_zero]
 
+/--
+@isnad1 id=iff.0h5v.s7.f742f5438fdd from=translated src=- shape=4fb06978 vocab=756b22cc
+-/
 lemma mem_fiberKer {f : X → Option Y} {v : X → K} :
     v ∈ fiberKer K f ↔ ∀ y, ∑ x ∈ Finset.univ.filter (fun x => f x = some y), v x = 0 :=
   Iff.rfl
@@ -73,7 +76,9 @@ variable [LinearOrder X]
 /-- `x` is **the leading monomial** of `v`: in the support of `v`, and above the rest of it.-/
 def IsLeadingOf (v : X → K) (x : X) : Prop := v x ≠ 0 ∧ ∀ y, x < y → v y = 0
 
-/-- A vector has at most one leading monomial.-/
+/-- A vector has at most one leading monomial.
+@isnad1 id=eq.2h5v.s5.d744a35c4e39 from=translated src=- shape=daaae8c6 vocab=0c9cac91
+-/
 lemma IsLeadingOf.unique {v : X → K} {x x' : X} (h : IsLeadingOf v x) (h' : IsLeadingOf v x') :
     x = x' := by
   by_contra hne
@@ -87,7 +92,9 @@ def IsLeading (V : Set (X → K)) (x : X) : Prop := ∃ v ∈ V, IsLeadingOf v x
 variable [Fintype X] [DecidableEq Y]
 
 /-- **The leading monomials of the kernel of a linearized map** are the monomials sent to zero and
-those which are not the least of their fiber.-/
+those which are not the least of their fiber.
+@isnad1 id=iff.0h5v.s7.5bd24556e142 from=translated src=- shape=eeb1c4f0 vocab=5b8f5d27
+-/
 theorem isLeading_fiberKer_iff [Nontrivial K] (f : X → Option Y) (x : X) :
     IsLeading (fiberKer K f : Set (X → K)) x ↔ f x = none ∨ ∃ x' < x, f x' = f x := by
   constructor
@@ -134,6 +141,9 @@ def supportedOn (N : Set X) : Submodule K (X → K) where
   zero_mem' _ _ := rfl
   smul_mem' c v hv x hx := by simp [hv x hx]
 
+/--
+@isnad1 id=iff.0h4v.s7.e7872458c2d7 from=translated src=- shape=48e6cc11 vocab=cfbd92a1
+-/
 lemma mem_supportedOn {N : Set X} {v : X → K} : v ∈ supportedOn K N ↔ ∀ x ∉ N, v x = 0 :=
   Iff.rfl
 

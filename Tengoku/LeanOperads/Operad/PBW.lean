@@ -45,8 +45,14 @@ variable (R : Type*) [CommRing R] {g : Type*} [LieRing g] [LieAlgebra R g]
 noncomputable def lin : g →ₗ[R] (List I →₀ R) :=
   lmapDomain R R (fun a => [a]) ∘ₗ b.repr.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s9.19b38e623c96 from=translated src=- shape=d8639742 vocab=23f6f5bc
+-/
 lemma lin_apply (x : g) : lin R b x = mapDomain (fun a => [a]) (b.repr x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.d22862cbf766 from=translated src=- shape=99e53643 vocab=7b95b983
+-/
 lemma lin_basis (a : I) : lin R b (b a) = single [a] 1 := by
   rw [lin_apply, Module.Basis.repr_self, mapDomain_single]
 
@@ -54,16 +60,28 @@ lemma lin_basis (a : I) : lin R b (b a) = single [a] 1 := by
 noncomputable def ctxL (u v : List I) : (List I →₀ R) →ₗ[R] (List I →₀ R) :=
   lmapDomain R R fun w => u ++ w ++ v
 
+/--
+@isnad1 id=eq.0h5v.s8.011b8d5ef9e4 from=translated src=- shape=9eec96a6 vocab=0752e402
+-/
 lemma ctxL_apply (u v : List I) (x : List I →₀ R) :
     ctxL R u v x = mapDomain (fun w => u ++ w ++ v) x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.6bd355eb8070 from=translated src=- shape=e962130b vocab=e8cc664b
+-/
 lemma ctxL_single (u v w : List I) (c : R) :
     ctxL R u v (single w c) = single (u ++ w ++ v) c :=
   mapDomain_single
 
+/--
+@isnad1 id=eq.0h2v.s7.0f0bb1abbf3a from=translated src=- shape=29003988 vocab=b64ef198
+-/
 lemma ctxL_nil : ctxL R ([] : List I) [] = LinearMap.id :=
   lhom_ext fun w c => by rw [ctxL_single, List.nil_append, List.append_nil]; rfl
 
+/--
+@isnad1 id=or.1h3v.s6.1e2da97e7f41 from=translated src=- shape=4766219c vocab=f49d60fb
+-/
 lemma small_lists : ∀ {u v : List I}, u.length + v.length < 2 →
     (u = [] ∧ v = []) ∨ (u = [] ∧ ∃ d, v = [d]) ∨ (∃ c, u = [c] ∧ v = [])
   | [], [], _ => Or.inl ⟨rfl, rfl⟩
@@ -77,9 +95,15 @@ lemma small_lists : ∀ {u v : List I}, u.length + v.length < 2 →
 noncomputable def prodι (w : List I) : UniversalEnvelopingAlgebra R g :=
   (w.map fun a => ι R (b a)).prod
 
+/--
+@isnad1 id=eq.0h6v.s7.c7e695f71063 from=translated src=- shape=093601b8 vocab=67e85439
+-/
 lemma prodι_append (u v : List I) : prodι R b (u ++ v) = prodι R b u * prodι R b v := by
   simp [prodι, List.map_append, List.prod_append]
 
+/--
+@isnad1 id=eq.0h6v.s8.aeb6703352b9 from=translated src=- shape=b84d021c vocab=6102cf30
+-/
 lemma prodι_cons (a : I) (w : List I) : prodι R b (a :: w) = ι R (b a) * prodι R b w := by
   simp [prodι]
 
@@ -87,9 +111,15 @@ lemma prodι_cons (a : I) (w : List I) : prodι R b (a :: w) = ι R (b a) * prod
 noncomputable def toU : (List I →₀ R) →ₗ[R] UniversalEnvelopingAlgebra R g :=
   linearCombination R (prodι R b)
 
+/--
+@isnad1 id=eq.0h6v.s8.b7879ac78839 from=translated src=- shape=ebd42bb5 vocab=551c12d8
+-/
 lemma toU_single (w : List I) (c : R) : toU R b (single w c) = c • prodι R b w :=
   linearCombination_single R c w
 
+/--
+@isnad1 id=eq.0h7v.s10.0390c9778351 from=translated src=- shape=b24c5160 vocab=992ba754
+-/
 lemma toU_ctxL (u v : List I) (x : List I →₀ R) :
     toU R b (ctxL R u v x) = prodι R b u * toU R b x * prodι R b v := by
   induction x using Finsupp.induction_linear with
@@ -101,7 +131,9 @@ lemma toU_ctxL (u v : List I) (x : List I →₀ R) :
 
 variable [LinearOrder I]
 
-/-- A word which is not nondecreasing has a descent.-/
+/-- A word which is not nondecreasing has a descent.
+@isnad1 id=ex.1h2v.s6.7f5a76acc3c8 from=translated src=- shape=0d646c46 vocab=dc4a1784
+-/
 lemma exists_descent : ∀ {w : List I}, ¬ w.IsChain (· ≤ ·) →
     ∃ u x y v, w = u ++ [x, y] ++ v ∧ ¬ x ≤ y
   | [], h => absurd List.IsChain.nil h
@@ -135,12 +167,20 @@ noncomputable def rules : Rules R (Pair I) (ctxOrder I) where
       obtain ⟨a, -, rfl⟩ := Finset.mem_image.1 (mapDomain_support h)
       exact Or.inl (by simp)
 
+/--
+@isnad1 id=eq.0h5v.s7.7c0f50f84ef9 from=translated src=- shape=126d087a vocab=ed326a48
+-/
 lemma lead_eq (r : Pair I) : (rules R b).lead r = [r.1.2, r.1.1] := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.6decd14cd1d2 from=translated src=- shape=98669736 vocab=aa5f4946
+-/
 lemma tail_eq (r : Pair I) :
     (rules R b).tail r = single [r.1.1, r.1.2] 1 + lin R b ⁅b r.1.2, b r.1.1⁆ := rfl
 
-/-- **The normal words** are the nondecreasing ones.-/
+/-- **The normal words** are the nondecreasing ones.
+@isnad1 id=iff.0h5v.s6.2bbeb045a603 from=translated src=- shape=8cb26e3c vocab=e2e35cc6
+-/
 lemma normal_iff_isChain (w : List I) :
     (rules R b).Normal (b := ()) w ↔ w.IsChain (· ≤ ·) := by
   rw [Words.normal_iff]
@@ -159,11 +199,16 @@ lemma normal_iff_isChain (w : List I) :
 /-- **The rewriting system of the rules.**-/
 noncomputable abbrev sys : Rewriting R (List I) := (rules R b).rw ()
 
+/--
+@isnad1 id=mem.0h7v.s9.eae0061cbedd from=translated src=- shape=5488285a vocab=1c895591
+-/
 lemma red_ctx (r : Pair I) (u v : List I) :
     ctxL R u v ((rules R b).tail r) ∈ (sys R b).red (u ++ [r.1.2, r.1.1] ++ v) :=
   ⟨r, fun w => u ++ w ++ v, ⟨u, v, fun _ => rfl⟩, rfl, rfl⟩
 
-/-- **A reduction in a context.**-/
+/-- **A reduction in a context.**
+@isnad1 id=mem.2h9v.s10.5cb35e673e12 from=translated src=- shape=40b29600 vocab=77a71dc9
+-/
 lemma rel_mem {s : Set (List I)} {i j : I} (h : i < j) (u v : List I)
     (hs : u ++ [j, i] ++ v ∈ s) :
     single (u ++ [j, i] ++ v) 1 - (single (u ++ [i, j] ++ v) 1 +
@@ -171,7 +216,9 @@ lemma rel_mem {s : Set (List I)} {i j : I} (h : i < j) (u v : List I)
   have := (sys R b).sub_mem_idealOn hs (red_ctx R b ⟨(i, j), h⟩ u v)
   rwa [tail_eq, map_add, ctxL_single] at this
 
-/-- **Two letters commute up to their bracket**, modulo the rules at the words of length two.-/
+/-- **Two letters commute up to their bracket**, modulo the rules at the words of length two.
+@isnad1 id=mem.1h7v.s9.5ea34ce27e56 from=translated src=- shape=f10e9c4d vocab=e3d54337
+-/
 lemma swap_mem {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s) (c a : I) :
     single [c, a] 1 - single [a, c] 1 - lin R b ⁅b c, b a⁆ ∈ (sys R b).idealOn s := by
   rcases lt_trichotomy a c with h | rfl | h
@@ -188,7 +235,9 @@ lemma swap_mem {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s
     rw [e]
     exact neg_mem this
 
-/-- **A letter commutes with a Lie element up to their bracket.**-/
+/-- **A letter commutes with a Lie element up to their bracket.**
+@isnad1 id=mem.1h7v.s10.dff9d566a76c from=translated src=- shape=a2b51d38 vocab=935acbbd
+-/
 lemma lin_swap {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s) (c : I) (x : g) :
     ctxL R [c] [] (lin R b x) - ctxL R [] [c] (lin R b x) - lin R b ⁅b c, x⁆ ∈
       (sys R b).idealOn s := by
@@ -203,7 +252,9 @@ lemma lin_swap {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s
     exact swap_mem R b hs c a
   exact hF Submodule.mem_top
 
-/-- **The overlap `k j i` is resolvable**, by the Jacobi identity.-/
+/-- **The overlap `k j i` is resolvable**, by the Jacobi identity.
+@isnad1 id=mem.2h7v.s10.b57de4360ed8 from=translated src=- shape=1ee5ada5 vocab=7f9dcf7e
+-/
 theorem overlap_res {i j k : I} (hij : i < j) (hjk : j < k) :
     ctxL R [] [i] ((rules R b).tail ⟨(j, k), hjk⟩) -
       ctxL R [k] [] ((rules R b).tail ⟨(i, j), hij⟩) ∈
@@ -247,7 +298,9 @@ theorem overlap_res {i j k : I} (hij : i < j) (hjk : j < k) :
   rw [key, hJ, add_zero]
   exact sub_mem (sub_mem (add_mem (sub_mem (sub_mem (add_mem ha hb) hc) hd) he₁) he₂) he₃
 
-/-- **Every critical ambiguity is resolvable.**-/
+/-- **Every critical ambiguity is resolvable.**
+@isnad1 id=res.1h7v.s7.5424efcc22ce from=translated src=- shape=309c8138 vocab=71176a59
+-/
 theorem res_critical {r₁ r₂ : Pair I} (B : (rules R b).Amb () r₁ r₂)
     (hB : Critical (rules R b) B) : B.Res := by
   obtain ⟨a₁, b₁, a₂, b₂, h₁, h₂, ha, hb, hl⟩ := hB
@@ -302,7 +355,9 @@ theorem res_critical {r₁ r₂ : Pair I} (B : (rules R b).Amb () r₁ r₂)
     rw [Rules.Amb.Res, hf₁, hf₂, Rules.Amb.swap_top, ht₁]
     exact overlap_res R b hr₁ hr₂
 
-/-- **The rules of the enveloping algebra are confluent.**-/
+/-- **The rules of the enveloping algebra are confluent.**
+@isnad1 id=resolvab.0h4v.s6.61a2c646b9aa from=translated src=- shape=e84313f6 vocab=f754ca6d
+-/
 theorem resolvable : (sys R b).Resolvable :=
   Words.resolvable_of_critical _ (fun _ => List.cons_ne_nil _ _)
     fun B hB => res_critical R b B hB
@@ -315,14 +370,23 @@ noncomputable def lmul (a : I) : Module.End R (Q R b) :=
   (sys R b).ideal.mapQ (sys R b).ideal (ctxL R [a] [])
     fun _ hx => Rules.mapDomain_mem_ideal (rules R b) ⟨[a], [], fun _ => rfl⟩ hx
 
+/--
+@isnad1 id=eq.0h6v.s9.9f383fa0f9bd from=translated src=- shape=b76c23da vocab=bf0ac0a2
+-/
 lemma lmul_mk (a : I) (x : List I →₀ R) :
     lmul R b a (Submodule.Quotient.mk x) = Submodule.Quotient.mk (ctxL R [a] [] x) := rfl
 
 /-- **The action of the Lie algebra** on the quotient, as a linear map.-/
 noncomputable def ρ₀ : g →ₗ[R] Module.End R (Q R b) := b.constr R (lmul R b)
 
+/--
+@isnad1 id=eq.0h5v.s11.cb3b76f73e6f from=translated src=- shape=5d1eb658 vocab=9b223742
+-/
 lemma ρ₀_basis (a : I) : ρ₀ R b (b a) = lmul R b a := b.constr_basis R _ a
 
+/--
+@isnad1 id=eq.0h6v.s11.c0d45b0f1fd5 from=translated src=- shape=8ab4e9db vocab=94a87983
+-/
 lemma ρ₀_mk (y : g) (w : List I) :
     ρ₀ R b y (Submodule.Quotient.mk (single w 1)) =
       Submodule.Quotient.mk (ctxL R [] w (lin R b y)) := by
@@ -333,6 +397,9 @@ lemma ρ₀_mk (y : g) (w : List I) :
       List.append_nil, List.singleton_append]
   exact LinearMap.congr_fun this y
 
+/--
+@isnad1 id=eq.0h6v.s13.3d21aee5ed12 from=translated src=- shape=25c8f1fb vocab=9c88fd25
+-/
 lemma ρ₀_lie (x y : g) : ρ₀ R b ⁅x, y⁆ = ρ₀ R b x * ρ₀ R b y - ρ₀ R b y * ρ₀ R b x := by
   let B₁ : g →ₗ[R] g →ₗ[R] Module.End R (Q R b) :=
     (LieModule.toEnd R g g : g →ₗ[R] Module.End R g).compr₂ (ρ₀ R b)

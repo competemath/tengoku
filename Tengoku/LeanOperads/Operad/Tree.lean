@@ -60,13 +60,25 @@ def _root_.Operad.Forest.arityF : ∀ {k : ℕ}, Forest E k → ℕ
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s3.5552563970a5 from=translated src=- shape=319bb6c6 vocab=282bef65
+-/
 @[simp] lemma arity_leaf : (Tree.leaf (E := E)).arity = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.cab1bb19a5d0 from=translated src=- shape=60dec055 vocab=2c421189
+-/
 @[simp] lemma arity_node {k : ℕ} (e : E k) (f : Forest E k) :
     (Tree.node e f).arity = f.arityF := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.83a86b6c69fc from=translated src=- shape=862b045b vocab=7fa0c776
+-/
 @[simp] lemma arityF_nil : (Forest.nil (E := E)).arityF = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.c7dcee7be346 from=translated src=- shape=0f384f0b vocab=4d2d5a70
+-/
 @[simp] lemma arityF_cons {k : ℕ} (t : Tree E) (f : Forest E k) :
     (Forest.cons t f).arityF = t.arity + f.arityF := rfl
 
@@ -89,22 +101,40 @@ def _root_.Operad.Forest.graftF : ∀ {k : ℕ}, Forest E k → ℕ → Tree E �
 
 end
 
+/--
+@isnad1 id=eq.0h3v.s4.5fc7443506ae from=translated src=- shape=b2354b69 vocab=03df3a13
+-/
 @[simp] lemma graft_leaf (i : ℕ) (s : Tree E) : (Tree.leaf (E := E)).graft i s = s := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.793422a03e4d from=translated src=- shape=ec2f1f7c vocab=aebce414
+-/
 @[simp] lemma graft_node {k : ℕ} (e : E k) (f : Forest E k) (i : ℕ) (s : Tree E) :
     (Tree.node e f).graft i s = .node e (f.graftF i s) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.6a67b5fe544b from=translated src=- shape=6fa8acab vocab=534db227
+-/
 @[simp] lemma graftF_nil (i : ℕ) (s : Tree E) :
     (Forest.nil (E := E)).graftF i s = .nil := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.841ad285187a from=translated src=- shape=ef37d85e vocab=87fc8dc3
+-/
 lemma graftF_cons {k : ℕ} (t : Tree E) (f : Forest E k) (i : ℕ) (s : Tree E) :
     (Forest.cons t f).graftF i s =
       if i < t.arity then .cons (t.graft i s) f else .cons t (f.graftF (i - t.arity) s) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s6.c27117fcce0f from=translated src=- shape=f1da701b vocab=058481a3
+-/
 lemma graftF_cons_of_lt {k : ℕ} {t : Tree E} {f : Forest E k} {i : ℕ} (s : Tree E)
     (h : i < t.arity) : (Forest.cons t f).graftF i s = .cons (t.graft i s) f := by
   rw [graftF_cons, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h6v.s6.ab4b694b8fb3 from=translated src=- shape=490dbbed vocab=d4077fa8
+-/
 lemma graftF_cons_of_ge {k : ℕ} {t : Tree E} {f : Forest E k} {i : ℕ} (s : Tree E)
     (h : t.arity ≤ i) : (Forest.cons t f).graftF i s = .cons t (f.graftF (i - t.arity) s) := by
   rw [graftF_cons, ite_eq_right (by omega)]
@@ -117,7 +147,9 @@ in the head tree or further along. -/
 
 mutual
 
-/-- Grafting replaces one leaf by `s`, so the arity drops by one and gains `s.arity`.-/
+/-- Grafting replaces one leaf by `s`, so the arity drops by one and gains `s.arity`.
+@isnad1 id=eq.1h4v.s5.25acad351933 from=translated src=- shape=b90fdc0e vocab=71e7a892
+-/
 theorem arity_graft : ∀ (t : Tree E) (i : ℕ) (s : Tree E), i < t.arity →
     (t.graft i s).arity = t.arity - 1 + s.arity
   | .leaf, _, s, _ => by simp
@@ -125,7 +157,9 @@ theorem arity_graft : ∀ (t : Tree E) (i : ℕ) (s : Tree E), i < t.arity →
       simp only [graft_node, arity_node]
       exact Forest.arityF_graftF f i s h
 
-/-- The forest half of `arity_graft`.-/
+/-- The forest half of `arity_graft`.
+@isnad1 id=eq.1h5v.s5.5066152cd420 from=translated src=- shape=3fa7cd98 vocab=3e4ff480
+-/
 theorem _root_.Operad.Forest.arityF_graftF : ∀ {k : ℕ} (f : Forest E k) (i : ℕ) (s : Tree E),
     i < f.arityF → (f.graftF i s).arityF = f.arityF - 1 + s.arity
   | _, .nil, _, _, h => by simp at h
@@ -147,12 +181,16 @@ end
 
 mutual
 
-/-- **Right unit.** Grafting a bare leaf changes nothing, at any position.-/
+/-- **Right unit.** Grafting a bare leaf changes nothing, at any position.
+@isnad1 id=eq.0h3v.s4.d7d942bde6be from=translated src=- shape=a3c16c72 vocab=03df3a13
+-/
 theorem graft_leaf_right : ∀ (t : Tree E) (i : ℕ), t.graft i .leaf = t
   | .leaf, _ => rfl
   | .node _ f, i => by rw [graft_node, Forest.graftF_leaf f i]
 
-/-- The forest half of `graft_leaf_right`.-/
+/-- The forest half of `graft_leaf_right`.
+@isnad1 id=eq.0h4v.s4.9a78e5552810 from=translated src=- shape=905a27a5 vocab=9e4ca09c
+-/
 theorem _root_.Operad.Forest.graftF_leaf : ∀ {k : ℕ} (f : Forest E k) (i : ℕ),
     f.graftF i .leaf = f
   | _, .nil, _ => rfl
@@ -163,7 +201,9 @@ theorem _root_.Operad.Forest.graftF_leaf : ∀ {k : ℕ} (f : Forest E k) (i : �
 
 end
 
-/-- **Left unit.** A leaf is the operadic identity.-/
+/-- **Left unit.** A leaf is the operadic identity.
+@isnad1 id=eq.0h2v.s4.7f8dcff3fc72 from=translated src=- shape=b882a68e vocab=03df3a13
+-/
 @[simp] theorem leaf_graft (s : Tree E) : (Tree.leaf (E := E)).graft 0 s = s := rfl
 
 /-! ### Sequential associativity
@@ -173,7 +213,9 @@ of `s` is leaf `i + j` of the composite. -/
 
 mutual
 
-/-- **Sequential associativity**: grafting into a tree that was itself just grafted in.-/
+/-- **Sequential associativity**: grafting into a tree that was itself just grafted in.
+@isnad1 id=eq.2h6v.s5.cd8bb66b0eb9 from=translated src=- shape=bdf50175 vocab=7e425006
+-/
 theorem graft_graft_seq : ∀ (t : Tree E) (i : ℕ) (s : Tree E) (j : ℕ) (u : Tree E),
     i < t.arity → j < s.arity →
     (t.graft i s).graft (i + j) u = t.graft i (s.graft j u)
@@ -184,7 +226,9 @@ theorem graft_graft_seq : ∀ (t : Tree E) (i : ℕ) (s : Tree E) (j : ℕ) (u :
       simp only [graft_node]
       rw [Forest.graftF_graftF_seq f i s j u h hj]
 
-/-- The forest half of `graft_graft_seq`.-/
+/-- The forest half of `graft_graft_seq`.
+@isnad1 id=eq.2h7v.s6.783cce5b1232 from=translated src=- shape=5f7e4212 vocab=7f90448b
+-/
 theorem _root_.Operad.Forest.graftF_graftF_seq :
     ∀ {k : ℕ} (f : Forest E k) (i : ℕ) (s : Tree E) (j : ℕ) (u : Tree E),
     i < f.arityF → j < s.arity →
@@ -213,7 +257,9 @@ leaf by `s.arity - 1`, so the slot that was `i'` becomes `i' - 1 + s.arity`. -/
 mutual
 
 /-- **Parallel associativity**: grafting at two distinct slots commutes, after the shift that
-the first graft induces on the second slot.-/
+the first graft induces on the second slot.
+@isnad1 id=eq.2h6v.s6.c518df17909a from=translated src=- shape=96e0e3e0 vocab=71e7a892
+-/
 theorem graft_graft_par : ∀ (t : Tree E) (i : ℕ) (s : Tree E) (i' : ℕ) (u : Tree E),
     i < i' → i' < t.arity →
     (t.graft i s).graft (i' - 1 + s.arity) u = (t.graft i' u).graft i s
@@ -222,7 +268,9 @@ theorem graft_graft_par : ∀ (t : Tree E) (i : ℕ) (s : Tree E) (i' : ℕ) (u 
       simp only [graft_node]
       rw [Forest.graftF_graftF_par f i s i' u h h']
 
-/-- The forest half of `graft_graft_par`.-/
+/-- The forest half of `graft_graft_par`.
+@isnad1 id=eq.2h7v.s6.45fbfde74616 from=translated src=- shape=45211341 vocab=3e4ff480
+-/
 theorem _root_.Operad.Forest.graftF_graftF_par :
     ∀ {k : ℕ} (f : Forest E k) (i : ℕ) (s : Tree E) (i' : ℕ) (u : Tree E),
     i < i' → i' < f.arityF →
@@ -275,19 +323,33 @@ def _root_.Operad.Forest.weightF : ∀ {k : ℕ}, Forest E k → ℕ
 
 end
 
+/--
+@isnad1 id=eq.0h1v.s3.3da44788f468 from=translated src=- shape=319bb6c6 vocab=747dac2b
+-/
 @[simp] lemma weight_leaf : (Tree.leaf (E := E)).weight = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.ad42503b305e from=translated src=- shape=c002dc16 vocab=279b0272
+-/
 @[simp] lemma weight_node {k : ℕ} (e : E k) (f : Forest E k) :
     (Tree.node e f).weight = f.weightF + 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.3afb34319ddf from=translated src=- shape=862b045b vocab=b848a07c
+-/
 @[simp] lemma weightF_nil : (Forest.nil (E := E)).weightF = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.023b486f3355 from=translated src=- shape=0f384f0b vocab=6d36811b
+-/
 @[simp] lemma weightF_cons {k : ℕ} (t : Tree E) (f : Forest E k) :
     (Forest.cons t f).weightF = t.weight + f.weightF := rfl
 
 mutual
 
-/-- **Grafting adds weights.**-/
+/-- **Grafting adds weights.**
+@isnad1 id=eq.1h4v.s5.41a751d4f48b from=translated src=- shape=68e39fc4 vocab=1f12244e
+-/
 theorem weight_graft : ∀ (t : Tree E) (i : ℕ) (s : Tree E), i < t.arity →
     (t.graft i s).weight = t.weight + s.weight
   | .leaf, _, s, _ => by simp
@@ -296,7 +358,9 @@ theorem weight_graft : ∀ (t : Tree E) (i : ℕ) (s : Tree E), i < t.arity →
       rw [Forest.weightF_graftF f i s h]
       omega
 
-/-- The forest half of `weight_graft`.-/
+/-- The forest half of `weight_graft`.
+@isnad1 id=eq.1h5v.s5.4d05ce49b5d0 from=translated src=- shape=670e7521 vocab=68824799
+-/
 theorem _root_.Operad.Forest.weightF_graftF : ∀ {k : ℕ} (f : Forest E k) (i : ℕ) (s : Tree E),
     i < f.arityF → (f.graftF i s).weightF = f.weightF + s.weight
   | _, .nil, _, _, h => by simp at h

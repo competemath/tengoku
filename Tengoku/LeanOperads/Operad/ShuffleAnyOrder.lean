@@ -41,6 +41,9 @@ variable {L : Type*} [LinearOrder L]
 def DegLex (u w : List L) : Prop :=
   u.length < w.length ∨ u.length = w.length ∧ List.Lex (· < ·) u w
 
+/--
+@isnad1 id=lex.2h4v.s6.115ff720cb27 from=translated src=- shape=27f6e775 vocab=c0bc2fd9
+-/
 theorem lex_trans : ∀ {u v w : List L}, List.Lex (· < ·) u v → List.Lex (· < ·) v w →
     List.Lex (· < ·) u w
   | _, _, _, .nil, .cons _ => .nil
@@ -50,12 +53,18 @@ theorem lex_trans : ∀ {u v w : List L}, List.Lex (· < ·) u v → List.Lex (�
   | _, _, _, .rel h₁, .cons _ => .rel h₁
   | _, _, _, .rel h₁, .rel h₂ => .rel (h₁.trans h₂)
 
+/--
+@isnad1 id=lex.2h4v.s6.a6c9a15e995a from=translated src=- shape=e864e0b1 vocab=4d26e258
+-/
 theorem lex_append_right : ∀ {u w : List L}, List.Lex (· < ·) u w → u.length = w.length →
     ∀ Q : List L, List.Lex (· < ·) (u ++ Q) (w ++ Q)
   | _, _, .nil, h, _ => by simp at h
   | _, _, .cons hl, h, Q => .cons (lex_append_right hl (by simpa using h) Q)
   | _, _, .rel hr, _, _ => .rel hr
 
+/--
+@isnad1 id=deglex.2h4v.s4.ab7a8b33921a from=translated src=- shape=5499c893 vocab=608231d8
+-/
 theorem DegLex.trans {u v w : List L} : DegLex u v → DegLex v w → DegLex u w := by
   rintro (h₁ | ⟨h₁, l₁⟩) (h₂ | ⟨h₂, l₂⟩)
   · exact Or.inl (h₁.trans h₂)
@@ -63,7 +72,9 @@ theorem DegLex.trans {u v w : List L} : DegLex u v → DegLex v w → DegLex u w
   · exact Or.inl (h₁ ▸ h₂)
   · exact Or.inr ⟨h₁.trans h₂, lex_trans l₁ l₂⟩
 
-/-- **Concatenation on both sides preserves the degree-lexicographic order.**-/
+/-- **Concatenation on both sides preserves the degree-lexicographic order.**
+@isnad1 id=deglex.1h5v.s6.aad913d79dcd from=translated src=- shape=d27f6621 vocab=16c08356
+-/
 theorem DegLex.append {u w : List L} (h : DegLex u w) (P Q : List L) :
     DegLex (P ++ (u ++ Q)) (P ++ (w ++ Q)) := by
   rcases h with h | ⟨h, hl⟩
@@ -78,6 +89,9 @@ def LexEq (u w : List L) : Prop := u.length = w.length ∧ List.Lex (· < ·) u 
 
 variable [WellFoundedLT L]
 
+/--
+@isnad1 id=acc.2h4v.s5.9bee64de0b31 from=translated src=- shape=2dac8f1d vocab=9d185e36
+-/
 theorem acc_lexEq_cons {n : ℕ} (ih : ∀ u : List L, u.length = n → Acc LexEq u) :
     ∀ (b : L) (w : List L), w.length = n → Acc LexEq (b :: w) := by
   intro b
@@ -96,6 +110,9 @@ theorem acc_lexEq_cons {n : ℕ} (ih : ∀ u : List L, u.length = n → Acc LexE
     | cons h => exact ihw u ⟨hu, h⟩ (hu.trans hw)
     | rel h => exact ihb a h u (hu.trans hw)
 
+/--
+@isnad1 id=acc.1h3v.s5.e4822b48977f from=translated src=- shape=67f34a6b vocab=afd81316
+-/
 theorem acc_lexEq : ∀ (n : ℕ) (u : List L), u.length = n → Acc LexEq u
   | 0, u, hu => by
     rw [List.length_eq_zero_iff] at hu
@@ -106,7 +123,9 @@ theorem acc_lexEq : ∀ (n : ℕ) (u : List L), u.length = n → Acc LexEq u
     | nil => simp at hu
     | cons b w => exact acc_lexEq_cons (acc_lexEq n) b w (by simpa using hu)
 
-/-- **The degree-lexicographic order is well-founded.**-/
+/-- **The degree-lexicographic order is well-founded.**
+@isnad1 id=wellfoun.0h1v.s4.78f6f8a31ad1 from=translated src=- shape=da9a72aa vocab=1d435909
+-/
 theorem degLex_wf : WellFounded (DegLex (L := L)) := by
   have h : WellFounded (Prod.Lex (· < ·) LexEq : ℕ × List L → ℕ × List L → Prop) :=
     ⟨fun ⟨n, u⟩ => Prod.lexAccessible (wellFounded_lt.apply n)
@@ -132,13 +151,21 @@ def pathWord : STree E → List ℕ → List L
 /-- **The word of a leaf**: the word along its position.-/
 noncomputable def word (t : STree E) (b : ℕ) : List L := pathWord ltr t (t.pos b)
 
+/--
+@isnad1 id=eq.0h4v.s4.de467d7b779c from=translated src=- shape=93b4655b vocab=fdb34abf
+-/
 @[simp] lemma pathWord_nil (t : STree E) : pathWord ltr t [] = [] := by cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.ebbf79a66d1a from=translated src=- shape=f95d6a64 vocab=e1c01d16
+-/
 lemma pathWord_node_cons {k : ℕ} (e : E k) (c : Fin k → STree E) (i : ℕ) (q : List ℕ) :
     pathWord ltr (node e c) (i :: q) =
       if h : i < k then ltr k e i :: pathWord ltr (c ⟨i, h⟩) q else [] := rfl
 
-/-- **The word along a concatenated position.**-/
+/-- **The word along a concatenated position.**
+@isnad1 id=eq.1h7v.s6.5aeb01350d13 from=translated src=- shape=ee1e7296 vocab=1ff250d9
+-/
 theorem pathWord_append : ∀ {t u : STree E} {p : List ℕ}, t.get? p = some u → ∀ q : List ℕ,
     pathWord ltr t (p ++ q) = pathWord ltr t p ++ pathWord ltr u q
   | t, u, [], h, q => by
@@ -151,7 +178,9 @@ theorem pathWord_append : ∀ {t u : STree E} {p : List ℕ}, t.get? p = some u 
     rw [List.cons_append, pathWord_node_cons, pathWord_node_cons, dite_eq_left hi, dite_eq_left hi,
       pathWord_append h q, List.cons_append]
 
-/-- **The word along a replaced position** does not change.-/
+/-- **The word along a replaced position** does not change.
+@isnad1 id=eq.1h6v.s5.4d0dae3ef62f from=translated src=- shape=63e3bf96 vocab=74a23e9c
+-/
 theorem pathWord_replace : ∀ {t : STree E} {p : List ℕ}, (t.get? p).isSome → ∀ u : STree E,
     pathWord ltr (t.replace p u) p = pathWord ltr t p
   | t, [], _, u => by simp
@@ -162,7 +191,9 @@ theorem pathWord_replace : ∀ {t : STree E} {p : List ℕ}, (t.get? p).isSome �
     simp only [ite_true]
     rw [pathWord_replace h u]
 
-/-- **The word along a position incomparable with the replaced one** does not change.-/
+/-- **The word along a position incomparable with the replaced one** does not change.
+@isnad1 id=eq.1h10v.s6.636b90e3adff from=translated src=- shape=eb5dcfdb vocab=7bef02cf
+-/
 theorem pathWord_replace_of_incomp : ∀ (r : List ℕ) {i j : ℕ}, i ≠ j → ∀ (t : STree E)
     (p' q' : List ℕ) (u : STree E),
     pathWord ltr (t.replace (r ++ i :: p') u) (r ++ j :: q') = pathWord ltr t (r ++ j :: q')
@@ -177,12 +208,17 @@ theorem pathWord_replace_of_incomp : ∀ (r : List ℕ) {i j : ℕ}, i ≠ j →
       pathWord_node_cons]
     split_ifs <;> first | rfl | rw [pathWord_replace_of_incomp r hij _ p' q' u]
 
+/--
+@isnad1 id=eq.1h7v.s5.33bcd481f23d from=translated src=- shape=adc52b53 vocab=9847a53e
+-/
 lemma pathWord_replace_incomp {p r : List ℕ} (h : Incomp p r) (t u : STree E) :
     pathWord ltr (t.replace p u) r = pathWord ltr t r := by
   obtain ⟨r₀, i, j, p', q', hij, rfl, rfl⟩ := h
   exact pathWord_replace_of_incomp ltr r₀ hij t p' q' u
 
-/-- **The word along a position of a substituted tree** is that of the tree.-/
+/-- **The word along a position of a substituted tree** is that of the tree.
+@isnad1 id=eq.1h6v.s5.5676c32be62f from=translated src=- shape=bf3804a7 vocab=880953e9
+-/
 theorem pathWord_subst : ∀ {t : STree E} {q : List ℕ}, (t.get? q).isSome →
     ∀ xs : ℕ → STree E, pathWord ltr (t.subst xs) q = pathWord ltr t q
   | t, [], _, xs => by simp
@@ -192,7 +228,9 @@ theorem pathWord_subst : ∀ {t : STree E} {q : List ℕ}, (t.get? q).isSome →
     rw [subst_node, pathWord_node_cons, pathWord_node_cons, dite_eq_left hi, dite_eq_left hi,
       pathWord_subst h xs]
 
-/-- **The proper prefixes of a position are vertices.**-/
+/-- **The proper prefixes of a position are vertices.**
+@isnad1 id=ex.3h4v.s6.8948e07d70da from=translated src=- shape=a45f3af5 vocab=c3123de5
+-/
 lemma get?_node_of_prefix {t : STree E} {p r : List ℕ} (hp : (t.get? p).isSome) (h : r <+: p)
     (hne : r ≠ p) : ∃ k, ∃ (e : E k) (c : Fin k → STree E), t.get? r = some (node e c) := by
   obtain ⟨s, rfl⟩ := h
@@ -211,7 +249,9 @@ lemma get?_node_of_prefix {t : STree E} {p r : List ℕ} (hp : (t.get? p).isSome
 /-! ## Words in a context -/
 
 /-- **The word of a leaf of an input** inside a context: the word of the path to the hole, then
-the word of the input's leaf in the inserted monomial, then the word in the input.-/
+the word of the input's leaf in the inserted monomial, then the word in the input.
+@isnad1 id=eq.5h10v.s7.6353204f8329 from=translated src=- shape=f15ef25e vocab=1e13c518
+-/
 theorem word_ctx_in {T t g : STree E} {p : List ℕ} {xs : ℕ → STree E} (hp : (T.get? p).isSome)
     (ht : t = T.replace p (g.subst xs)) (hn : t.labels.Nodup) {a b : ℕ} (ha : a ∈ g.labels)
     (hb : b ∈ (xs a).labels) :
@@ -226,7 +266,9 @@ theorem word_ctx_in {T t g : STree E} {p : List ℕ} {xs : ℕ → STree E} (hp 
     pathWord_append ltr (get?_subst hga xs), pathWord_subst ltr (by rw [hga]; rfl)]
   rfl
 
-/-- **The word of a leaf outside the inputs** does not depend on the inserted monomial.-/
+/-- **The word of a leaf outside the inputs** does not depend on the inserted monomial.
+@isnad1 id=eq.4h8v.s6.d4bfa06944e5 from=translated src=- shape=48bc690e vocab=ff10c3a1
+-/
 theorem word_ctx_out {T U₁ U₂ : STree E} {p : List ℕ} (hp : (T.get? p).isSome)
     (hn₂ : (T.replace p U₂).labels.Nodup) {b : ℕ} (hb₁ : b ∈ (T.replace p U₁).labels)
     (hU₁ : b ∉ U₁.labels) : word ltr (T.replace p U₁) b = word ltr (T.replace p U₂) b := by
@@ -259,6 +301,9 @@ def pathLexBy (W : List L → List L → Prop) {A : Finset ℕ} (x y : SMono E A
   Pi.Lex (· < ·) (fun {_} u w => W u w) (fun a : A => word ltr x.1 a)
     (fun a : A => word ltr y.1 a)
 
+/--
+@isnad1 id=pathlexb.2h9v.s6.dd50f6d7c6e2 from=translated src=- shape=de3785f1 vocab=4c5ec290
+-/
 theorem pathLexBy_trans {W : List L → List L → Prop} (hW : ∀ {u v w}, W u v → W v w → W u w)
     {A : Finset ℕ} {x y z : SMono E A} (h₁ : pathLexBy ltr W x y) (h₂ : pathLexBy ltr W y z) :
     pathLexBy ltr W x z := by
@@ -277,7 +322,9 @@ theorem pathLexBy_trans {W : List L → List L → Prop} (hW : ∀ {u v w}, W u 
     rw [this]
     exact hyz
 
-/-- **Contexts preserve the path order of a word order preserved by concatenation.**-/
+/-- **Contexts preserve the path order of a word order preserved by concatenation.**
+@isnad1 id=pathlexb.2h10v.s7.d332f6abc479 from=translated src=- shape=fdf5c2c8 vocab=646c63fa
+-/
 theorem pathLexBy_ctx {W : List L → List L → Prop}
     (hW : ∀ {u w}, W u w → ∀ P Q, W (P ++ (u ++ Q)) (P ++ (w ++ Q))) {A B : Finset ℕ}
     {f : SMono E A → SMono E B} (hf : IsSCtx f) {x y : SMono E A} (h : pathLexBy ltr W x y) :
@@ -328,16 +375,24 @@ variable [LinearOrder L]
 lexicographically in the order of the leaves, each degree-lexicographically.-/
 def pathLex {A : Finset ℕ} (x y : SMono E A) : Prop := pathLexBy ltr DegLex x y
 
+/--
+@isnad1 id=pathlex.2h7v.s5.122abf139a41 from=translated src=- shape=cefb0604 vocab=4a033838
+-/
 theorem pathLex_trans {A : Finset ℕ} {x y z : SMono E A} (h₁ : pathLex ltr x y)
     (h₂ : pathLex ltr y z) : pathLex ltr x z :=
   pathLexBy_trans ltr (W := DegLex) (fun h h' => DegLex.trans h h') h₁ h₂
 
+/--
+@isnad1 id=wellfoun.0h4v.s5.00d804a490e9 from=translated src=- shape=fbe7bba1 vocab=15857fa4
+-/
 theorem pathLex_wf [WellFoundedLT L] (A : Finset ℕ) :
     WellFounded (pathLex ltr (A := A)) :=
   InvImage.wf (fun x : SMono E A => fun a : A => word ltr x.1 a)
     (Pi.Lex.wellFounded (· < ·) fun _ => degLex_wf)
 
-/-- **Contexts preserve the path-lexicographic order.**-/
+/-- **Contexts preserve the path-lexicographic order.**
+@isnad1 id=pathlex.2h8v.s6.33c857bd798e from=translated src=- shape=5e6cac94 vocab=f68f715f
+-/
 theorem pathLex_ctx {A B : Finset ℕ} {f : SMono E A → SMono E B} (hf : IsSCtx f)
     {x y : SMono E A} (h : pathLex ltr x y) : pathLex ltr (f x) (f y) :=
   pathLexBy_ctx ltr (fun h P Q => DegLex.append h P Q) hf h

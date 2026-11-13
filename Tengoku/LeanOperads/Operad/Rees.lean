@@ -67,12 +67,18 @@ noncomputable def filtration (R : Type u) [CommRing R] : SymOperadFiltration R (
 /-- **The defect of a composite**: the weight it drops.-/
 def defect (i : A) (s : S A) (t : S B) : ℕ := W.w A s + W.w B t - W.w _ (SetOperad.comp i s t)
 
+/--
+@isnad1 id=eq.0h7v.s7.9eacff894278 from=translated src=- shape=764ba882 vocab=6a7c4d31
+-/
 lemma w_comp_add_defect (i : A) (s : S A) (t : S B) :
     W.w _ (SetOperad.comp i s t) + W.defect i s t = W.w A s + W.w B t := by
   have := W.w_comp i s t
   unfold defect
   omega
 
+/--
+@isnad1 id=iff.0h7v.s7.b7d8fd4eeaab from=translated src=- shape=aa88cbf8 vocab=6a7c4d31
+-/
 lemma defect_eq_zero_iff (i : A) (s : S A) (t : S B) :
     W.defect i s t = 0 ↔ W.w _ (SetOperad.comp i s t) = W.w A s + W.w B t := by
   have := W.w_comp i s t
@@ -80,12 +86,18 @@ lemma defect_eq_zero_iff (i : A) (s : S A) (t : S B) :
   omega
 
 omit [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h11v.s7.e5885dd40359 from=translated src=- shape=f98346bd vocab=d18a281d
+-/
 lemma defect_map (σ : A ≃ A') (τ : B ≃ B') (i : A) (s : S A) (t : S B) :
     W.defect (σ i) (SetOperad.map σ s) (SetOperad.map τ t) = W.defect i s t := by
   unfold defect
   rw [← SetOperad.map_comp, W.w_map, W.w_map, W.w_map]
 
 omit [Fintype B] [DecidableEq B] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h5v.s5.a58566138bab from=translated src=- shape=b37adf66 vocab=4152d06a
+-/
 lemma defect_one_right (i : A) (s : S A) : W.defect i s SetOperad.one = 0 := by
   have h := congrArg (W.w A) (SetOperad.comp_one (S := S) i s)
   rw [W.w_map] at h
@@ -94,6 +106,9 @@ lemma defect_one_right (i : A) (s : S A) : W.defect i s SetOperad.one = 0 := by
   omega
 
 omit [Fintype A] [DecidableEq A] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h4v.s5.a6b10678453d from=translated src=- shape=9d3fbd0c vocab=06e61158
+-/
 lemma defect_one_left (t : S B) : W.defect () SetOperad.one t = 0 := by
   have h := congrArg (W.w B) (SetOperad.one_comp (S := S) t)
   rw [W.w_map] at h
@@ -101,7 +116,9 @@ lemma defect_one_left (t : S B) : W.defect () SetOperad.one t = 0 := by
   rw [h, W.w_one]
   omega
 
-/-- **The defect is additive along sequential composites.**-/
+/-- **The defect is additive along sequential composites.**
+@isnad1 id=eq.0h10v.s8.9e48c781ca53 from=translated src=- shape=bc919bd9 vocab=f36d17ac
+-/
 lemma defect_assoc_seq (i : A) (j : B) (s : S A) (t : S B) (u : S D) :
     W.defect i s t + W.defect (Sum.inr j) (SetOperad.comp i s t) u
       = W.defect j t u + W.defect i s (SetOperad.comp j t u) := by
@@ -114,7 +131,9 @@ lemma defect_assoc_seq (i : A) (j : B) (s : S A) (t : S B) (u : S D) :
   unfold defect
   omega
 
-/-- **The defect is additive along parallel composites.**-/
+/-- **The defect is additive along parallel composites.**
+@isnad1 id=eq.1h10v.s8.51fe19981ad0 from=translated src=- shape=e8b8e043 vocab=169e9561
+-/
 lemma defect_assoc_par {i k : A} (hik : i ≠ k) (s : S A) (t : S B) (u : S D) :
     W.defect i s t + W.defect (Sum.inl ⟨k, Ne.symm hik⟩) (SetOperad.comp i s t) u
       = W.defect k s u + W.defect (Sum.inl ⟨i, hik⟩) (SetOperad.comp k s u) t := by
@@ -157,10 +176,16 @@ noncomputable def single (s : S A) (r : R) : TwLin R W h A := Finsupp.single s r
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B']
   [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h6v.s7.8fb953ecf8c6 from=translated src=- shape=cf63dfe0 vocab=b86b93c9
+-/
 @[simp] lemma single_zero (s : S A) : single W h s 0 = 0 := Finsupp.single_zero s
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B']
   [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h8v.s8.d909500ed97b from=translated src=- shape=f73f750e vocab=f17682a4
+-/
 @[simp] lemma smul_single (a : R) (s : S A) (r : R) :
     a • single W h s r = single W h s (a * r) := Finsupp.smul_single a s r
 
@@ -168,6 +193,9 @@ omit [Fintype A'] [DecidableEq A'] [Fintype B] [DecidableEq B] [Fintype B'] [Dec
 noncomputable def mapL (e : A ≃ B) : TwLin R W h A →ₗ[R] TwLin R W h B := Lin.mapL R e
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B'] [DecidableEq B'] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h9v.s8.b8d95dc11107 from=translated src=- shape=7abd16f9 vocab=b31ddc24
+-/
 @[simp] lemma mapL_single (e : A ≃ B) (s : S A) (r : R) :
     mapL W h e (single W h s r) = single W h (SetOperad.map e s) r :=
   Lin.mapL_single e s r
@@ -180,6 +208,9 @@ noncomputable def compF (i : A) :
       Finsupp.single (SetOperad.comp i s t) (h ^ W.defect i s t)
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B'] [DecidableEq B'] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h11v.s12.a7ddc82b94f2 from=translated src=- shape=4aef91cb vocab=7b1c4658
+-/
 lemma compF_single (i : A) (s : S A) (t : S B) (r r' : R) :
     compF W h i (Finsupp.single s r) (Finsupp.single t r')
       = Finsupp.single (SetOperad.comp i s t) (h ^ W.defect i s t * (r * r')) := by
@@ -194,6 +225,9 @@ noncomputable def compL (i : A) :
   compF W h i
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B'] [DecidableEq B'] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h11v.s12.fc0cac5e253b from=translated src=- shape=4b5428f6 vocab=c7b72a80
+-/
 @[simp] lemma compL_single (i : A) (s : S A) (t : S B) (r r' : R) :
     compL W h i (single W h s r) (single W h t r')
       = single W h (SetOperad.comp i s t) (h ^ W.defect i s t * (r * r')) :=
@@ -206,6 +240,9 @@ noncomputable def lift {M : Type*} [AddCommGroup M] [Module R M] (f : S A → M)
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B']
   [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h9v.s8.a55a94a86450 from=translated src=- shape=4b188f18 vocab=579419e7
+-/
 @[simp] lemma lift_single {M : Type*} [AddCommGroup M] [Module R M] (f : S A → M) (s : S A)
     (r : R) : lift W h f (single W h s r) = r • f s := by
   show Finsupp.lift M R (S A) f (Finsupp.single s r) = r • f s
@@ -259,6 +296,9 @@ noncomputable def specializeL (A : Type) [Fintype A] [DecidableEq A] :
   Finsupp.mapRange.addMonoidHom (Polynomial.evalRingHom c).toAddMonoidHom
 
 omit [Fintype B] [DecidableEq B] in
+/--
+@isnad1 id=eq.0h7v.s9.6140347a9c71 from=translated src=- shape=8f10d245 vocab=1b87c30f
+-/
 @[simp] lemma specializeL_single (s : S A) (p : R[X]) :
     specializeL W c A (single W X s p) = single W c s (p.eval c) :=
   Finsupp.mapRange_single (hf := (Polynomial.evalRingHom c).toAddMonoidHom.map_zero)

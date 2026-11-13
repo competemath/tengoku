@@ -46,6 +46,9 @@ def substF (f : ∀ k, E k → Q k) : ∀ {k : ℕ} (a : ℕ), Q (a + k) → (fo
 
 end
 
+/--
+@isnad1 id=eq.0h4v.s6.983e81d38ee2 from=translated src=- shape=df24f31c vocab=cd3d0151
+-/
 @[simp] lemma extend_leaf (f : ∀ k, E k → Q k) :
     extend (R := R) f .leaf = one (R := R) (P := Q) := rfl
 
@@ -63,6 +66,9 @@ def corollaF (E : ℕ → Type w) : (k : ℕ) → Forest E k
 /-- The corolla on a `k`-ary generator: one vertex, `k` leaves.-/
 def corolla {k : ℕ} (e : E k) : Tree E := .node e (corollaF E k)
 
+/--
+@isnad1 id=eq.0h2v.s3.5300b3c47ec8 from=translated src=- shape=fdd709ad vocab=88b147ce
+-/
 @[simp] lemma arityF_corollaF (k : ℕ) : (corollaF E k).arityF = k := by
   induction k with
   | zero => rfl
@@ -70,19 +76,29 @@ def corolla {k : ℕ} (e : E k) : Tree E := .node e (corollaF E k)
       simp only [corollaF, Tree.arityF_cons, Tree.arity_leaf, ih]
       omega
 
+/--
+@isnad1 id=eq.0h3v.s4.d11a4618adea from=translated src=- shape=2b0cfc1f vocab=7f866207
+-/
 @[simp] lemma arity_corolla {k : ℕ} (e : E k) : (corolla e).arity = k := by
   simp only [corolla, Tree.arity_node, arityF_corollaF]
 
+/--
+@isnad1 id=eq.0h2v.s4.74105b211f4a from=translated src=- shape=6e910067 vocab=b9bd2d2c
+-/
 @[simp] lemma weightF_corollaF (k : ℕ) : (corollaF E k).weightF = 0 := by
   induction k with
   | zero => rfl
   | succ k ih => simp only [corollaF, Tree.weightF_cons, Tree.weight_leaf, ih]
 
-/-- A corolla has weight one: it is a single vertex.-/
+/-- A corolla has weight one: it is a single vertex.
+@isnad1 id=eq.0h3v.s4.ccdddba86a1b from=translated src=- shape=935dad65 vocab=abc7cb72
+-/
 @[simp] lemma weight_corolla {k : ℕ} (e : E k) : (corolla e).weight = 1 := by
   simp only [corolla, Tree.weight_node, weightF_corollaF]
 
-/-- Substituting bare leaves changes nothing.-/
+/-- Substituting bare leaves changes nothing.
+@isnad1 id=eq.0h7v.s9.589dd225ef40 from=translated src=- shape=c184d98b vocab=047623ba
+-/
 lemma substF_corollaF (f : ∀ k, E k → Q k) : ∀ (k a : ℕ) (α : Q (a + k)),
     substF (R := R) f a α (corollaF E k)
       = reindex R Q (by rw [arityF_corollaF]) α
@@ -102,7 +118,9 @@ lemma substF_corollaF (f : ∀ k, E k → Q k) : ∀ (k a : ℕ) (α : Q (a + k)
       exact reindex_reindex (R := R) (P := Q) _ _ α
 
 /-- **Evaluating a corolla returns the generator.** This is the base case of the universal
-property: `extend f` agrees with `f` on generators.-/
+property: `extend f` agrees with `f` on generators.
+@isnad1 id=eq.0h6v.s8.384d531cf41f from=translated src=- shape=1349aa1e vocab=61e6abbd
+-/
 theorem extend_corolla (f : ∀ k, E k → Q k) {k : ℕ} (e : E k) :
     extend (R := R) f (corolla e) = reindex R Q (arity_corolla e).symm (f k e) := by
   simp only [corolla, extend]

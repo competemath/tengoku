@@ -26,6 +26,9 @@ variable {α : Type u} {β : Type v} {γ : Type*}
 variable [Fintype α] [Fintype β] [Fintype γ] [DecidableEq α] [DecidableEq β] [DecidableEq γ]
 
 omit [DecidableEq α] [DecidableEq β] in
+/--
+@isnad1 id=eq.0h3v.s4.7d4484960ad4 from=translated src=- shape=a9a9aceb vocab=fa035ef3
+-/
 lemma map_univ_equiv (e : α ≃ β) : (univ : Finset α).map e.toEmbedding = univ := by
   ext b
   simp only [Finset.mem_map, Finset.mem_univ, true_and, iff_true]

@@ -44,11 +44,16 @@ def ctxOrder : CtxOrder Unit (fun _ => List I) where
 
 variable {I} {R : Type*} [CommRing R] {ρ : Type*} (G : Rules R ρ (ctxOrder I))
 
+/--
+@isnad1 id=iff.0h2v.s6.395863698279 from=translated src=- shape=5447bcf9 vocab=155577f1
+-/
 lemma isCtx_iff {f : List I → List I} :
     (ctxOrder I).IsCtx (a := ()) (b := ()) f ↔ ∃ u v : List I, ∀ w, f w = u ++ w ++ v :=
   Iff.rfl
 
-/-- **A word is normal** if and only if no leading word is a factor of it.-/
+/-- **A word is normal** if and only if no leading word is a factor of it.
+@isnad1 id=iff.0h5v.s6.98c23eabdae5 from=translated src=- shape=ccfcfa42 vocab=9cc5c6b3
+-/
 lemma normal_iff {w : List I} :
     G.Normal (b := ()) w ↔ ∀ r (u v : List I), u ++ G.lead r ++ v ≠ w := by
   refine ⟨fun h r u v => h r (fun x => u ++ x ++ v) ⟨u, v, fun _ => rfl⟩, ?_⟩
@@ -65,6 +70,9 @@ def Critical {r₁ r₂ : ρ} (B : G.Amb () r₁ r₂) : Prop :=
 
 variable {G}
 
+/--
+@isnad1 id=critical.1h7v.s6.80708fb77a5b from=translated src=- shape=7013053e vocab=a69097b5
+-/
 lemma Critical.swap {r₁ r₂ : ρ} {B : G.Amb () r₁ r₂} (h : Critical G B) :
     Critical G B.swap := by
   obtain ⟨a₁, b₁, a₂, b₂, h₁, h₂, ha, hb, hl⟩ := h
@@ -74,7 +82,9 @@ lemma Critical.swap {r₁ r₂ : ρ} {B : G.Amb () r₁ r₂} (h : Critical G B)
 
 variable (G)
 
-/-- **Classification**, when the first occurrence does not start after the second.-/
+/-- **Classification**, when the first occurrence does not start after the second.
+@isnad1 id=or.4h11v.s8.2a2415b5fd63 from=translated src=- shape=1dd7cea9 vocab=a87655ed
+-/
 theorem classify_le (hlead : ∀ r, G.lead r ≠ []) {r₁ r₂ : ρ} (A : G.Amb () r₁ r₂)
     {u₁ v₁ u₂ v₂ : List I} (h₁ : ∀ w, A.f₁ w = u₁ ++ w ++ v₁) (h₂ : ∀ w, A.f₂ w = u₂ ++ w ++ v₂)
     (hu : u₁.length ≤ u₂.length) :
@@ -157,7 +167,9 @@ theorem classify_le (hlead : ∀ r, G.lead r ≠ []) {r₁ r₂ : ρ} (A : G.Amb
           simp
 
 /-- **Classification of ambiguities of words**: every ambiguity between rules with nonempty
-leading words is disjoint or factors through a critical ambiguity.-/
+leading words is disjoint or factors through a critical ambiguity.
+@isnad1 id=or.1h7v.s7.c38a6269fc14 from=translated src=- shape=79b9353b vocab=bf244bbf
+-/
 theorem classify (hlead : ∀ r, G.lead r ≠ []) {r₁ r₂ : ρ} (A : G.Amb () r₁ r₂) :
     A.IsDisjoint ∨ ∃ B : G.Amb () r₁ r₂, Critical G B ∧ A.FactorsThrough B := by
   obtain ⟨u₁, v₁, h₁⟩ := A.ctx₁
@@ -169,7 +181,9 @@ theorem classify (hlead : ∀ r, G.lead r ≠ []) {r₁ r₂ : ρ} (A : G.Amb ()
     · exact Or.inr ⟨B.swap, hB.swap, Rules.Amb.FactorsThrough.of_swap h⟩
 
 /-- **Bergman's diamond lemma for free algebras**: if the leading words are nonempty and the
-critical ambiguities are resolvable, every ambiguity is resolvable.-/
+critical ambiguities are resolvable, every ambiguity is resolvable.
+@isnad1 id=resolvab.2h4v.s7.8c3bd4da293e from=translated src=- shape=9c2f11b8 vocab=82f0c709
+-/
 theorem resolvable_of_critical (hlead : ∀ r, G.lead r ≠ [])
     (hcrit : ∀ {r₁ r₂ : ρ} (B : G.Amb () r₁ r₂), Critical G B → B.Res) :
     (G.rw ()).Resolvable :=
@@ -180,7 +194,9 @@ theorem resolvable_of_critical (hlead : ∀ r, G.lead r ≠ [])
 
 /-- **Bergman's diamond lemma for free algebras**: if the leading words are nonempty and the
 critical ambiguities are resolvable, the normal words span a complement of the ideal of the
-rules.-/
+rules.
+@isnad1 id=iscompl.2h4v.s8.99c8b8a49559 from=translated src=- shape=f0a8e5c1 vocab=7934536f
+-/
 theorem isCompl_of_critical (hlead : ∀ r, G.lead r ≠ [])
     (hcrit : ∀ {r₁ r₂ : ρ} (B : G.Amb () r₁ r₂), Critical G B → B.Res) :
     IsCompl (Finsupp.supported R R {w : List I | G.Normal (b := ()) w}) (G.rw ()).ideal := by

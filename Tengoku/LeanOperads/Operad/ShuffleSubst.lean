@@ -41,16 +41,24 @@ section Lex
 
 variable {α : Type*} [LinearOrder α]
 
+/--
+@isnad1 id=iff.0h4v.s5.0be6f78e4ef2 from=translated src=- shape=a3252108 vocab=6a001731
+-/
 lemma cons_lt_cons_self_iff (c : α) (x y : List α) : c :: x < c :: y ↔ x < y := by
   rw [List.cons_lt_cons_iff]
   simp
 
+/--
+@isnad1 id=iff.0h4v.s6.46c6e342a65f from=translated src=- shape=7c662774 vocab=b477ce52
+-/
 lemma append_lt_append_left_iff (c x y : List α) : c ++ x < c ++ y ↔ x < y := by
   induction c with
   | nil => rfl
   | cons a c ih => rw [List.cons_append, List.cons_append, cons_lt_cons_self_iff, ih]
 
-/-- Comparing two lists of the same length decides the comparison of any extensions.-/
+/-- Comparing two lists of the same length decides the comparison of any extensions.
+@isnad1 id=lt.2h5v.s6.fce129674d23 from=translated src=- shape=2a722a84 vocab=66292686
+-/
 lemma append_lt_append_of_length_eq {x y : List α} (hxy : x.length = y.length) (h : x < y)
     (u v : List α) : x ++ u < y ++ v := by
   induction x generalizing y with
@@ -68,7 +76,9 @@ lemma append_lt_append_of_length_eq {x y : List α} (hxy : x.length = y.length) 
       · exact Or.inl h
       · exact Or.inr ⟨rfl, ih (by simpa using hxy) h⟩
 
-/-- **Lists of values on `0, …, n - 1`** are compared at the first index where they differ.-/
+/-- **Lists of values on `0, …, n - 1`** are compared at the first index where they differ.
+@isnad1 id=iff.0h4v.s6.928e12d726db from=translated src=- shape=f39e821c vocab=98e2fdf5
+-/
 lemma map_range_lt_iff (f g : ℕ → α) (n : ℕ) :
     (List.range n).map f < (List.range n).map g ↔
       ∃ i < n, (∀ j < i, f j = g j) ∧ f i < g i := by
@@ -92,7 +102,9 @@ lemma map_range_lt_iff (f g : ℕ → α) (n : ℕ) :
 /-- A list is **length-coded** when its head is the length of its tail.-/
 def LengthCoded (x : List ℕ) : Prop := ∃ y, x = y.length :: y
 
-/-- Two different length-coded lists compare like any extensions of them.-/
+/-- Two different length-coded lists compare like any extensions of them.
+@isnad1 id=lt.3h4v.s5.cddde33ab8fe from=translated src=- shape=f8d69e03 vocab=96ba7874
+-/
 lemma append_lt_append_of_lengthCoded {x y : List ℕ} (hx : LengthCoded x) (hy : LengthCoded y)
     (h : x < y) (u v : List ℕ) : x ++ u < y ++ v := by
   obtain ⟨x, rfl⟩ := hx
@@ -103,7 +115,9 @@ lemma append_lt_append_of_lengthCoded {x y : List ℕ} (hx : LengthCoded x) (hy 
   · exact Or.inl h
   · exact Or.inr ⟨hl, append_lt_append_of_length_eq hl h u v⟩
 
-/-- **Concatenations of length-coded lists** compare like the lists of lists.-/
+/-- **Concatenations of length-coded lists** compare like the lists of lists.
+@isnad1 id=iff.3h2v.s6.f23933d5365b from=translated src=- shape=993a55c3 vocab=da17d343
+-/
 lemma flatten_lt_flatten_iff {a b : List (List ℕ)} (hab : a.length = b.length)
     (ha : ∀ x ∈ a, LengthCoded x) (hb : ∀ x ∈ b, LengthCoded x) :
     a.flatten < b.flatten ↔ a < b := by
@@ -159,10 +173,19 @@ def plug (ins : ℕ → LTree E) : LTree E → LTree E
   | leaf a => ins a
   | node e l r => node e (l.plug ins) (r.plug ins)
 
+/--
+@isnad1 id=eq.0h2v.s3.4392fb04e72b from=translated src=- shape=739b0549 vocab=8e4bc346
+-/
 @[simp] lemma subtreeAt_nil (t : LTree E) : t.subtreeAt [] = t := by cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f884043d028e from=translated src=- shape=f782abdb vocab=cc68913b
+-/
 @[simp] lemma replaceAt_nil (t u : LTree E) : t.replaceAt [] u = u := by cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.daa3cd16e593 from=translated src=- shape=3274ed60 vocab=f47a17fa
+-/
 lemma replaceAt_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.replaceAt p (t.subtreeAt p) = t
   | leaf _, [] => rfl
   | leaf _, _ :: _ => rfl
@@ -172,7 +195,9 @@ lemma replaceAt_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.replaceAt p (t.
   | node e l r, true :: p => by
     simp only [replaceAt, subtreeAt, replaceAt_subtreeAt r p]
 
-/-- A vertex sits at the end of a path only if the path stays inside the tree.-/
+/-- A vertex sits at the end of a path only if the path stays inside the tree.
+@isnad1 id=perm.2h4v.s6.efefdaf6b402 from=translated src=- shape=69fb7056 vocab=2dc6d66a
+-/
 lemma labels_replaceAt_perm : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     (∃ e l r, t.subtreeAt p = node e l r) → u.labels.Perm (t.subtreeAt p).labels →
     (t.replaceAt p u).labels.Perm t.labels
@@ -186,6 +211,9 @@ lemma labels_replaceAt_perm : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     simp only [replaceAt, labels_node]
     exact (labels_replaceAt_perm r p u hv h).append_left _
 
+/--
+@isnad1 id=subset.0h3v.s4.afabbef40244 from=translated src=- shape=90485fc4 vocab=2fccf20a
+-/
 lemma labels_subtreeAt_subset : ∀ (t : LTree E) (p : List Bool),
     (t.subtreeAt p).labels ⊆ t.labels
   | leaf _, [] => fun _ h => h
@@ -198,7 +226,9 @@ lemma labels_subtreeAt_subset : ∀ (t : LTree E) (p : List Bool),
     simp only [labels_node, List.mem_append]
     exact Or.inr (labels_subtreeAt_subset r p h)
 
-/-- **The path to a leaf below a vertex** goes through the vertex.-/
+/-- **The path to a leaf below a vertex** goes through the vertex.
+@isnad1 id=eq.2h4v.s5.63b02ff61211 from=translated src=- shape=9e7045fb vocab=28f4f19f
+-/
 lemma path_of_mem_subtreeAt {i : ℕ} : ∀ (t : LTree E) (p : List Bool), t.labels.Nodup →
     i ∈ (t.subtreeAt p).labels → t.path i = t.decAt p ++ (t.subtreeAt p).path i
   | leaf _, [], _, _ => rfl
@@ -214,7 +244,9 @@ lemma path_of_mem_subtreeAt {i : ℕ} : ∀ (t : LTree E) (p : List Bool), t.lab
     simp only [path, subtreeAt, decAt, hl, ite_false, List.cons_append]
     rw [path_of_mem_subtreeAt r p (List.nodup_append.1 hnd).2.1 hi]
 
-/-- The path to a leaf of the replacing tree.-/
+/-- The path to a leaf of the replacing tree.
+@isnad1 id=eq.4h5v.s6.34dfa7dba322 from=translated src=- shape=703b18ec vocab=c90d1960
+-/
 lemma path_replaceAt_of_mem {i : ℕ} : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     t.labels.Nodup → (∃ e l r, t.subtreeAt p = node e l r) →
     u.labels.Perm (t.subtreeAt p).labels → i ∈ u.labels →
@@ -233,7 +265,9 @@ lemma path_replaceAt_of_mem {i : ℕ} : ∀ (t : LTree E) (p : List Bool) (u : L
     simp only [replaceAt, path, decAt, hl, ite_false, List.cons_append]
     rw [path_replaceAt_of_mem r p u (List.nodup_append.1 hnd).2.1 hv hu hi]
 
-/-- The path to a leaf away from the replaced subtree is unchanged.-/
+/-- The path to a leaf away from the replaced subtree is unchanged.
+@isnad1 id=eq.5h5v.s6.65bbd03f9bdc from=translated src=- shape=1b77300c vocab=4c8cc74a
+-/
 lemma path_replaceAt_of_not_mem {i : ℕ} : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     t.labels.Nodup → (∃ e l r, t.subtreeAt p = node e l r) →
     u.labels.Perm (t.subtreeAt p).labels → i ∈ t.labels → i ∉ (t.subtreeAt p).labels →
@@ -258,13 +292,18 @@ lemma path_replaceAt_of_not_mem {i : ℕ} : ∀ (t : LTree E) (p : List Bool) (u
       simp only [hl, ite_false]
       rw [path_replaceAt_of_not_mem r p u (List.nodup_append.1 hnd).2.1 hv hu hr hi']
 
+/--
+@isnad1 id=eq.0h3v.s5.de67bb671648 from=translated src=- shape=3fccf404 vocab=98bf127f
+-/
 lemma labels_plug (ins : ℕ → LTree E) :
     ∀ m : LTree E, (m.plug ins).labels = m.labels.flatMap fun k => (ins k).labels
   | leaf a => by simp [plug]
   | node e l r => by
     simp only [plug, labels_node, List.flatMap_append, labels_plug ins l, labels_plug ins r]
 
-/-- **The path to a leaf of a grafted tree**: through the leaf it is grafted on.-/
+/-- **The path to a leaf of a grafted tree**: through the leaf it is grafted on.
+@isnad1 id=eq.6h6v.s7.cd5755546b4a from=translated src=- shape=c9fa2a5b vocab=7916a272
+-/
 lemma path_plug (ins : ℕ → LTree E) {N : ℕ}
     (hdisj : ∀ k < N, ∀ k' < N, k ≠ k' → ∀ i ∈ (ins k).labels, i ∉ (ins k').labels) {i k : ℕ}
     (hk : k < N) (hi : i ∈ (ins k).labels) :
@@ -315,6 +354,9 @@ def IsEdge (t : LTree E) (p : List Bool) (s : Bool) : Prop := (t.subtreeAt p).Is
 /-- **The window of an edge.**-/
 def windowAt (t : LTree E) (p : List Bool) (s : Bool) : LTree E := (t.subtreeAt p).windowRoot s
 
+/--
+@isnad1 id=ex.1h4v.s5.0a28539482a0 from=translated src=- shape=3b83246b vocab=b0a15984
+-/
 lemma IsEdge.exists_node {t : LTree E} {p : List Bool} {s : Bool} (h : t.IsEdge p s) :
     ∃ e l r, t.subtreeAt p = node e l r := by
   unfold IsEdge at h
@@ -322,7 +364,9 @@ lemma IsEdge.exists_node {t : LTree E} {p : List Bool} {s : Bool} (h : t.IsEdge 
   match u, s, h with
   | node e l r, _, _ => exact ⟨e, l, r, rfl⟩
 
-/-- **The windows of a tree are those of its edges.**-/
+/-- **The windows of a tree are those of its edges.**
+@isnad1 id=iff.0h3v.s5.4ab73fc98b48 from=translated src=- shape=13d4e90d vocab=c6747655
+-/
 theorem mem_windows_iff {w : LTree E} :
     ∀ t : LTree E, w ∈ t.windows ↔ ∃ p s, t.IsEdge p s ∧ t.windowAt p s = w
   | leaf a => by
@@ -388,11 +432,17 @@ the window grafted onto the leaves `0, 1, 2` of `m`.-/
 def substAt (t : LTree E) (p : List Bool) (s : Bool) (m : LTree E) : LTree E :=
   t.replaceAt p (m.plug ((t.subtreeAt p).winIns s))
 
+/--
+@isnad1 id=eq.1h3v.s4.9ff99d1c7026 from=translated src=- shape=76926ab5 vocab=37587827
+-/
 lemma minLabel_eq_of_perm {t u : LTree E} (h : t.labels.Perm u.labels) :
     t.minLabel = u.minLabel :=
   le_antisymm (minLabel_le_of_mem t (h.symm.subset (minLabel_mem u)))
     (minLabel_le_of_mem u (h.subset (minLabel_mem t)))
 
+/--
+@isnad1 id=ne.3h4v.s5.dce245327cf2 from=translated src=- shape=a2ee0bf4 vocab=87b4f394
+-/
 lemma ne_of_nodup_append {l₁ l₂ : List ℕ} (h : (l₁ ++ l₂).Nodup) {a b : ℕ} (ha : a ∈ l₁)
     (hb : b ∈ l₂) : a ≠ b :=
   fun hab => (List.nodup_append.1 h).2.2 a ha b hb hab
@@ -406,9 +456,15 @@ structure WinSpec (u : LTree E) (s : Bool) : Prop where
   perm : u.labels.Perm ((u.winIns s 0).labels ++ (u.winIns s 1).labels ++ (u.winIns s 2).labels)
   window : (u.windowRoot s).plug (u.winIns s) = u
 
+/--
+@isnad1 id=eq.2h5v.s5.1aee3e4f0667 from=translated src=- shape=a45c0e38 vocab=120a7324
+-/
 lemma ins3_eq_of_ne {x y z : LTree E} {k : ℕ} (h0 : k ≠ 0) (h1 : k ≠ 1) : ins3 x y z k = z := by
   simp [ins3, h0, h1]
 
+/--
+@isnad1 id=winspec.3h3v.s4.d16ff58dbf10 from=translated src=- shape=35f1e471 vocab=b1050860
+-/
 theorem winSpec {u : LTree E} {s : Bool} (he : u.IsEdgeRoot s) (hs : u.IsShuffle)
     (hnd : u.labels.Nodup) : u.WinSpec s := by
   match u, s, he with
@@ -488,15 +544,24 @@ theorem winSpec {u : LTree E} {s : Bool} (he : u.IsEdgeRoot s) (hs : u.IsShuffle
 
 /-! ## Labels and the shuffle condition -/
 
+/--
+@isnad1 id=perm.1h3v.s6.0dba372e5f5a from=translated src=- shape=01b5374e vocab=fb622e6c
+-/
 lemma perm_labels_plug {m : LTree E} (hm : m.labels.Perm (List.range 3)) (ins : ℕ → LTree E) :
     (m.plug ins).labels.Perm ((ins 0).labels ++ (ins 1).labels ++ (ins 2).labels) := by
   rw [labels_plug]
   refine (hm.flatMap_right _).trans ?_
   simp [List.range_succ, List.append_assoc]
 
+/--
+@isnad1 id=lt.2h3v.s5.b08f72ddaa86 from=translated src=- shape=12c0ec21 vocab=8d533f27
+-/
 lemma lt_three_of_perm {m : LTree E} (hm : m.labels.Perm (List.range 3)) :
     ∀ a ∈ m.labels, a < 3 := fun _ ha => List.mem_range.1 (hm.subset ha)
 
+/--
+@isnad1 id=eq.2h3v.s6.3415c524a91a from=translated src=- shape=9b88eb5b vocab=6e321905
+-/
 lemma minLabel_plug {ins : ℕ → LTree E}
     (hmono : ∀ j k, j < k → k < 3 → (ins j).minLabel < (ins k).minLabel) :
     ∀ m : LTree E, (∀ a ∈ m.labels, a < 3) → (m.plug ins).minLabel = (ins m.minLabel).minLabel
@@ -512,6 +577,9 @@ lemma minLabel_plug {ins : ℕ → LTree E}
     · rw [h, min_self, min_self]
     · rw [min_eq_right h.le, min_eq_right (hmono _ _ h hl3).le]
 
+/--
+@isnad1 id=isshuffl.4h3v.s6.68788b2d3023 from=translated src=- shape=86668346 vocab=d7396a05
+-/
 lemma isShuffle_plug {ins : ℕ → LTree E}
     (hmono : ∀ j k, j < k → k < 3 → (ins j).minLabel < (ins k).minLabel)
     (hs : ∀ k < 3, (ins k).IsShuffle) :
@@ -524,6 +592,9 @@ lemma isShuffle_plug {ins : ℕ → LTree E}
     rw [minLabel_plug hmono l h3l, minLabel_plug hmono r h3r]
     exact hmono _ _ hlr (h3r _ (minLabel_mem r))
 
+/--
+@isnad1 id=isshuffl.1h3v.s4.7945c868c985 from=translated src=- shape=3b17f9a6 vocab=2d0df7c2
+-/
 lemma isShuffle_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.IsShuffle →
     (t.subtreeAt p).IsShuffle
   | leaf _, [], h => h
@@ -532,6 +603,9 @@ lemma isShuffle_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.IsShuffle →
   | node _ l _, false :: p, h => isShuffle_subtreeAt l p h.2.1
   | node _ _ r, true :: p, h => isShuffle_subtreeAt r p h.2.2
 
+/--
+@isnad1 id=nodup.1h3v.s4.65b97879a1c7 from=translated src=- shape=86bb7ba3 vocab=01789c7a
+-/
 lemma nodup_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.labels.Nodup →
     (t.subtreeAt p).labels.Nodup
   | leaf _, [], h => h
@@ -540,6 +614,9 @@ lemma nodup_subtreeAt : ∀ (t : LTree E) (p : List Bool), t.labels.Nodup →
   | node _ l _, false :: p, h => nodup_subtreeAt l p (List.nodup_append.1 h).1
   | node _ _ r, true :: p, h => nodup_subtreeAt r p (List.nodup_append.1 h).2.1
 
+/--
+@isnad1 id=isshuffl.4h4v.s6.edbc34a2b76b from=translated src=- shape=2a757895 vocab=bdbdefde
+-/
 lemma isShuffle_replaceAt : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     (∃ e l r, t.subtreeAt p = node e l r) → t.IsShuffle → u.IsShuffle →
     u.labels.Perm (t.subtreeAt p).labels → (t.replaceAt p u).IsShuffle
@@ -559,6 +636,9 @@ section Subst
 
 variable {t : LTree E} {p : List Bool} {s : Bool}
 
+/--
+@isnad1 id=lt.3h5v.s5.e29b8bd69c9d from=translated src=- shape=bd43df2e vocab=013e5c63
+-/
 lemma WinSpec.mono {u : LTree E} (h : u.WinSpec s) :
     ∀ j k, j < k → k < 3 → (u.winIns s j).minLabel < (u.winIns s k).minLabel := by
   intro j k hjk hk
@@ -567,28 +647,40 @@ lemma WinSpec.mono {u : LTree E} (h : u.WinSpec s) :
   · exact h.lt01.trans h.lt12
   · exact h.lt12
 
+/--
+@isnad1 id=winspec.3h4v.s5.e345fe82f484 from=translated src=- shape=334013e0 vocab=2a0fe760
+-/
 lemma winSpec_of_edge (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup) :
     (t.subtreeAt p).WinSpec s :=
   winSpec he (isShuffle_subtreeAt t p hs) (nodup_subtreeAt t p hnd)
 
-/-- **Substituting the window itself gives the monomial back.**-/
+/-- **Substituting the window itself gives the monomial back.**
+@isnad1 id=eq.3h4v.s5.e27c0aac6dd6 from=translated src=- shape=8ae4b6e9 vocab=fbefb12d
+-/
 theorem substAt_windowAt (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup) :
     t.substAt p s (t.windowAt p s) = t := by
   rw [substAt, windowAt, (winSpec_of_edge he hs hnd).window, replaceAt_subtreeAt]
 
 variable {m : LTree E}
 
+/--
+@isnad1 id=perm.4h5v.s5.2d4fa443a799 from=translated src=- shape=5ed2658f vocab=1b7b3e26
+-/
 lemma perm_labels_plug_winIns (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup)
     (hm : m.labels.Perm (List.range 3)) :
     (m.plug ((t.subtreeAt p).winIns s)).labels.Perm (t.subtreeAt p).labels :=
   (perm_labels_plug hm _).trans (winSpec_of_edge he hs hnd).perm.symm
 
-/-- **Substitution keeps the labels.**-/
+/-- **Substitution keeps the labels.**
+@isnad1 id=perm.4h5v.s5.a4da75d5f5c4 from=translated src=- shape=9daae3d4 vocab=104de000
+-/
 theorem perm_labels_substAt (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup)
     (hm : m.labels.Perm (List.range 3)) : (t.substAt p s m).labels.Perm t.labels :=
   labels_replaceAt_perm t p _ he.exists_node (perm_labels_plug_winIns he hs hnd hm)
 
-/-- **Substituting a shuffle monomial gives a shuffle monomial.**-/
+/-- **Substituting a shuffle monomial gives a shuffle monomial.**
+@isnad1 id=isshuffl.5h5v.s5.de58a0b8d6ad from=translated src=- shape=6963117b vocab=104de000
+-/
 theorem isShuffle_substAt (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup)
     (hms : m.IsShuffle) (hm : m.labels.Perm (List.range 3)) : (t.substAt p s m).IsShuffle := by
   have hw := winSpec_of_edge he hs hnd
@@ -596,6 +688,9 @@ theorem isShuffle_substAt (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels
     (isShuffle_plug hw.mono (fun k _ => hw.shuffle k) m hms (lt_three_of_perm hm))
     (perm_labels_plug_winIns he hs hnd hm)
 
+/--
+@isnad1 id=not.7h7v.s6.23c1c2bca2d0 from=translated src=- shape=850966b0 vocab=e26eb0e1
+-/
 lemma winIns_disjoint (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup) :
     ∀ k < 3, ∀ k' < 3, k ≠ k' → ∀ i ∈ ((t.subtreeAt p).winIns s k).labels,
       i ∉ ((t.subtreeAt p).winIns s k').labels := by
@@ -617,7 +712,9 @@ lemma winIns_disjoint (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nod
     | exact h2 i (List.mem_append.2 (Or.inr hi')) i hi rfl
 
 /-- **The path to a leaf below the window**, after substitution: to the window, then in `m` to
-the input containing the leaf, then inside that input.-/
+the input containing the leaf, then inside that input.
+@isnad1 id=eq.6h7v.s7.64d0abebbbbb from=translated src=- shape=10a771f8 vocab=70ebecd3
+-/
 theorem path_substAt_of_mem (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup)
     (hm : m.labels.Perm (List.range 3)) {i k : ℕ} (hk : k < 3)
     (hi : i ∈ ((t.subtreeAt p).winIns s k).labels) :
@@ -631,7 +728,9 @@ theorem path_substAt_of_mem (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labe
   rw [path_plug _ (winIns_disjoint he hs hnd) hk hi m (lt_three_of_perm hm)
     (hm.nodup_iff.2 List.nodup_range) (hm.symm.subset (List.mem_range.2 hk))]
 
-/-- The path to a leaf away from the window does not change.-/
+/-- The path to a leaf away from the window does not change.
+@isnad1 id=eq.6h6v.s6.37ca7cd491f8 from=translated src=- shape=91921687 vocab=8794bc32
+-/
 theorem path_substAt_of_not_mem (he : t.IsEdge p s) (hs : t.IsShuffle) (hnd : t.labels.Nodup)
     (hm : m.labels.Perm (List.range 3)) {i : ℕ} (hi : i ∈ t.labels)
     (hi' : i ∉ (t.subtreeAt p).labels) : (t.substAt p s m).path i = t.path i :=
@@ -645,13 +744,21 @@ end Subst
 the decorations along it.-/
 def seg (rk : E → ℕ) (t : LTree E) (i : ℕ) : List ℕ := (t.path i).length :: (t.path i).map rk
 
+/--
+@isnad1 id=lengthco.0h4v.s4.27bdd7010c2f from=translated src=- shape=f3d251aa vocab=eafa8b21
+-/
 lemma lengthCoded_seg (rk : E → ℕ) (t : LTree E) (i : ℕ) : LengthCoded (seg rk t i) :=
   ⟨(t.path i).map rk, by simp [seg]⟩
 
+/--
+@isnad1 id=eq.0h4v.s4.6a999ec13b25 from=translated src=- shape=c121678c vocab=408fba3c
+-/
 lemma pathKey_eq_flatten (rk : E → ℕ) (n : ℕ) (t : LTree E) :
     pathKey rk n t = ((List.range n).map (seg rk t)).flatten := rfl
 
-/-- **Keys compare like their lists of segments**, leaf by leaf.-/
+/-- **Keys compare like their lists of segments**, leaf by leaf.
+@isnad1 id=iff.0h5v.s5.473fd991a871 from=translated src=- shape=b44c42cb vocab=9aef12ec
+-/
 lemma pathKey_lt_iff (rk : E → ℕ) (n : ℕ) (t t' : LTree E) :
     pathKey rk n t < pathKey rk n t' ↔
       (List.range n).map (seg rk t) < (List.range n).map (seg rk t') := by
@@ -662,7 +769,9 @@ lemma pathKey_lt_iff (rk : E → ℕ) (n : ℕ) (t t' : LTree E) :
     exact lengthCoded_seg rk _ i
 
 /-- **Substituting a smaller monomial gives a smaller monomial**: the path-lexicographic key is
-compatible with substitution at a window.-/
+compatible with substitution at a window.
+@isnad1 id=lt.6h8v.s6.4dd3d3559bef from=translated src=- shape=43b3d6d3 vocab=3c3a783e
+-/
 theorem pathKey_substAt_lt (rk : E → ℕ) {n : ℕ} {t : LTree E} {p : List Bool} {s : Bool}
     (he : t.IsEdge p s) (hs : t.IsShuffle) (ht : t.labels.Perm (List.range n)) {m m' : LTree E}
     (hm : m.labels.Perm (List.range 3)) (hm' : m'.labels.Perm (List.range 3))
@@ -738,7 +847,9 @@ section Monomials
 variable [Fintype E] [DecidableEq E] {n : ℕ} {t : LTree E} {p : List Bool} {s : Bool}
 
 /-- **Substituting a monomial of arity three** at a window of a monomial of arity `n` gives a
-monomial of arity `n`.-/
+monomial of arity `n`.
+@isnad1 id=mem.3h6v.s6.34eea4a544bf from=translated src=- shape=1ce0d915 vocab=ee008690
+-/
 theorem substAt_mem_monomials (ht : t ∈ monomials n) (he : t.IsEdge p s) {m : LTree E}
     (hm : m ∈ monomials 3) : t.substAt p s m ∈ monomials n := by
   rw [mem_monomials] at ht hm ⊢
@@ -746,7 +857,9 @@ theorem substAt_mem_monomials (ht : t ∈ monomials n) (he : t.IsEdge p s) {m : 
   exact ⟨isShuffle_substAt he ht.1 hnd hm.1 hm.2, (perm_labels_substAt he ht.1 hnd hm.2).trans ht.2⟩
 
 omit [Fintype E] [DecidableEq E] in
-/-- **A monomial is not normal exactly when it has an edge whose window is a leading monomial.**-/
+/-- **A monomial is not normal exactly when it has an edge whose window is a leading monomial.**
+@isnad1 id=iff.0h3v.s5.bad7c9d05b28 from=translated src=- shape=ae7e14e2 vocab=81765bce
+-/
 theorem not_isNormal_iff {L : Set (LTree E)} :
     ¬ IsNormal L t ↔ ∃ p s, t.IsEdge p s ∧ t.windowAt p s ∈ L := by
   simp only [IsNormal, not_forall, not_not, mem_windows_iff]
@@ -756,6 +869,9 @@ theorem not_isNormal_iff {L : Set (LTree E)} :
   · rintro ⟨p, s, he, hw⟩
     exact ⟨_, ⟨p, s, he, rfl⟩, hw⟩
 
+/--
+@isnad1 id=lt.5h8v.s7.dfbd23d5ca3b from=translated src=- shape=9dab0f63 vocab=16cc8d7e
+-/
 theorem pathKey_substAt_lt' (rk : E → ℕ) (ht : t ∈ monomials n) (he : t.IsEdge p s)
     {m m' : LTree E} (hm : m ∈ monomials 3) (hm' : m' ∈ monomials 3)
     (h : pathKey rk 3 m < pathKey rk 3 m') :

@@ -142,15 +142,22 @@ section Relabel
 variable {P P' Q : Type} [Fintype P] [DecidableEq P] [Fintype P'] [DecidableEq P']
   [Fintype Q] [DecidableEq Q]
 
-/-- Two relabellings in a row, as one.-/
+/-- Two relabellings in a row, as one.
+@isnad1 id=eq.0h7v.s6.de479f7d7636 from=translated src=- shape=a29c14c8 vocab=82e39031
+-/
 lemma map_map (e : P ≃ P') (f : P' ≃ Q) (X : S P) : map f (map e X) = map (e.trans f) X :=
   (map_trans e f X).symm
 
-/-- Relabellings along equivalences with the same values agree.-/
+/-- Relabellings along equivalences with the same values agree.
+@isnad1 id=eq.1h6v.s6.f72fba67c7b4 from=translated src=- shape=f6e7af38 vocab=33f92eaf
+-/
 lemma map_congr {e e' : P ≃ P'} (h : ∀ p, e p = e' p) (X : S P) : map e X = map e' X := by
   rw [Equiv.ext h]
 
 omit [Fintype Q] [DecidableEq Q] in
+/--
+@isnad1 id=eq.0h5v.s6.352fc5abab17 from=translated src=- shape=e12b5613 vocab=47ef1393
+-/
 lemma map_symm_map (e : P ≃ P') (X : S P) : map e.symm (map e X) = X := by
   rw [map_map, Equiv.self_trans_symm, map_refl]
 
@@ -163,7 +170,9 @@ variable {A A' : Type} [Fintype A] [DecidableEq A] [Fintype A'] [DecidableEq A']
   {W' : A → Type} [∀ a, Fintype (W' a)] [∀ a, DecidableEq (W' a)]
   {V : A' → Type} [∀ a, Fintype (V a)] [∀ a, DecidableEq (V a)]
 
-/-- **Relabelling the inserted operations** relabels the total composite.-/
+/-- **Relabelling the inserted operations** relabels the total composite.
+@isnad1 id=eq.0h7v.s8.ae8b75ea1fca from=translated src=- shape=b216c027 vocab=fa70bbb2
+-/
 lemma total_congr (x : S A) (w : (a : A) → S (W a)) (τ : ∀ a, W a ≃ W' a) :
     total x (fun a => map (τ a) (w a)) = map (Equiv.sigmaCongrRight τ) (total x w) := by
   have h := total_map (S := S) (Equiv.refl A) τ x w (fun a => map (τ a) (w a)) fun _ => rfl
@@ -171,14 +180,18 @@ lemma total_congr (x : S A) (w : (a : A) → S (W a)) (τ : ∀ a, W a ≃ W' a)
   rw [← h]
   exact map_congr (fun _ => rfl) _
 
-/-- **Relabelling the outer operation** relabels the total composite.-/
+/-- **Relabelling the outer operation** relabels the total composite.
+@isnad1 id=eq.0h7v.s8.e4c6abae4567 from=translated src=- shape=97d40277 vocab=dae1051a
+-/
 lemma total_map_left (σ : A ≃ A') (x : S A) (w : (a : A') → S (V a)) :
     total (map σ x) w
       = map (Equiv.sigmaCongr σ fun a => Equiv.refl (V (σ a))) (total x fun a => w (σ a)) :=
   (total_map σ (fun a => Equiv.refl (V (σ a))) x (fun a => w (σ a)) w
     fun _ => (map_refl _).symm).symm
 
-/-- **The left unit law**, solved for the total composite.-/
+/-- **The left unit law**, solved for the total composite.
+@isnad1 id=eq.0h3v.s7.3a086c7899e4 from=translated src=- shape=ac48f63c vocab=c8a29573
+-/
 lemma total_one_left' {E : Unit → Type} [∀ u, Fintype (E u)] [∀ u, DecidableEq (E u)]
     (y : (u : Unit) → S (E u)) : total one y = map (unitSigma E).symm (y ()) := by
   rw [← total_one_left y, map_map]
@@ -187,12 +200,16 @@ lemma total_one_left' {E : Unit → Type} [∀ u, Fintype (E u)] [∀ u, Decidab
   rcases p with ⟨⟨⟩, e⟩
   rfl
 
-/-- **The right unit law**, solved for the total composite.-/
+/-- **The right unit law**, solved for the total composite.
+@isnad1 id=eq.0h3v.s7.b8861d80a2de from=translated src=- shape=055c3e42 vocab=c37fa9f2
+-/
 lemma total_one_right' (x : S A) : total x (fun _ => one) = map (Equiv.sigmaPUnit A).symm x := by
   conv_rhs => rw [← total_one_right x]
   rw [map_symm_map]
 
-/-- **Associativity** with the inserted operations indexed by the inputs of the composite.-/
+/-- **Associativity** with the inserted operations indexed by the inputs of the composite.
+@isnad1 id=eq.0h7v.s10.789ea291f010 from=translated src=- shape=f0c0085f vocab=71ee134a
+-/
 lemma total_assoc' {C : (Σ a, W a) → Type} [∀ p, Fintype (C p)] [∀ p, DecidableEq (C p)]
     (x : S A) (y : (a : A) → S (W a)) (z : (p : Σ a, W a) → S (C p)) :
     total (total x y) z
@@ -215,9 +232,15 @@ def pad (i : A) (y : S B) (a : A) : S (Pad i B a) :=
   if h : a = i then map (padIn h) y else map (padOut h) one
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.1h6v.s7.ce3dcfd185bf from=translated src=- shape=af007b62 vocab=b9959fe6
+-/
 lemma pad_of_eq {i a : A} (h : a = i) (y : S B) : pad i y a = map (padIn h) y := dite_eq_left h
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.1h6v.s7.df9c7d2b6412 from=translated src=- shape=2b2b9572 vocab=fb1ce0ab
+-/
 lemma pad_of_ne {i a : A} (h : a ≠ i) (y : S B) : pad i y a = map (padOut h) one := dite_eq_right h
 
 /-- **Partial composition from total composition**: insert `y` at `i` and the unit at every other
@@ -225,6 +248,9 @@ input.-/
 noncomputable def comp (i : A) (x : S A) (y : S B) : S (Without A i ⊕ B) :=
   map (padEquiv i B) (total x (pad i y))
 
+/--
+@isnad1 id=eq.0h6v.s8.5e9b837a8848 from=translated src=- shape=6a1e5fd5 vocab=a1fb1b2f
+-/
 lemma comp_def (i : A) (x : S A) (y : S B) : comp i x y = map (padEquiv i B) (total x (pad i y)) :=
   rfl
 
@@ -242,6 +268,9 @@ def padCongr (σ : A ≃ A') (τ : B ≃ B') (i a : A) : Pad i B a ≃ Pad (σ i
     rintro (⟨u, h⟩ | ⟨b, h⟩) <;> simp
 
 omit [Fintype A] [Fintype A'] in
+/--
+@isnad1 id=eq.0h10v.s9.aa78489f9db0 from=translated src=- shape=11169d52 vocab=e5c26d13
+-/
 lemma pad_map (σ : A ≃ A') (τ : B ≃ B') (i : A) (y : S B) (a : A) :
     pad (σ i) (map τ y) (σ a) = map (padCongr σ τ i a) (pad i y a) := by
   by_cases h : a = i
@@ -252,7 +281,9 @@ lemma pad_map (σ : A ≃ A') (τ : B ≃ B') (i : A) (y : S B) (a : A) :
     refine map_congr (fun _ => ?_) (one : S Unit)
     rfl
 
-/-- **Equivariance of partial composition.**-/
+/-- **Equivariance of partial composition.**
+@isnad1 id=eq.0h10v.s9.2599f9fd09fe from=translated src=- shape=598e3b0a vocab=651f0678
+-/
 theorem map_comp (σ : A ≃ A') (τ : B ≃ B') (i : A) (x : S A) (y : S B) :
     map (compEquiv σ τ i) (comp i x y) = comp (σ i) (map σ x) (map τ y) := by
   rw [comp, comp, ← total_map σ (padCongr σ τ i) x (pad i y) _ (pad_map σ τ i y), map_map,
@@ -265,12 +296,17 @@ def padUnit (i a : A) : Unit ≃ Pad i Unit a :=
   if h : a = i then padIn h else padOut h
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.0h4v.s6.0e8fc73ee899 from=translated src=- shape=6d96db5c vocab=1e9a8bdf
+-/
 lemma pad_one (i a : A) : pad i (one : S Unit) a = map (padUnit i a) one := by
   by_cases h : a = i
   · rw [pad_of_eq h, padUnit, dite_eq_left h]
   · rw [pad_of_ne h, padUnit, dite_eq_right h]
 
-/-- **The right unit law of partial composition.**-/
+/-- **The right unit law of partial composition.**
+@isnad1 id=eq.0h4v.s7.39b70272886e from=translated src=- shape=c4e4fed3 vocab=7eb3ac4e
+-/
 theorem comp_one (i : A) (x : S A) : map (rightUnitEquiv i) (comp i x one) = x := by
   rw [comp, show pad i (one : S Unit) = fun a => map (padUnit i a) one from funext (pad_one i),
     total_congr, total_one_right', map_map, map_map, map_map]
@@ -280,7 +316,9 @@ theorem comp_one (i : A) (x : S A) : map (rightUnitEquiv i) (comp i x one) = x :
     simp [padUnit, padIn, padEquiv]
   · simp [padUnit, padOut, padEquiv, h]
 
-/-- **The left unit law of partial composition.**-/
+/-- **The left unit law of partial composition.**
+@isnad1 id=eq.0h3v.s7.a4512727209e from=translated src=- shape=bb424f52 vocab=5e707670
+-/
 theorem one_comp (y : S B) : map (leftUnitEquiv B) (comp () one y) = y := by
   rw [comp, total_one_left', pad_of_eq rfl, map_map, map_map, map_map]
   exact (map_congr (e' := Equiv.refl B) (fun b => rfl) y).trans (map_refl y)
@@ -333,6 +371,9 @@ def padInr (i : A) (j : B) (D : Type) (b : B) :
     rintro (⟨u, h⟩ | ⟨d, h⟩) <;> rfl
 
 omit [Fintype A] [Fintype B] in
+/--
+@isnad1 id=eq.0h8v.s11.7f4da93784a9 from=translated src=- shape=f159cbbd vocab=0ff46752
+-/
 lemma pad_inr (i : A) (j : B) (z : S D) (b : B) :
     pad (Sum.inr j : Without A i ⊕ B) z (padEquiv i B ⟨i, padIn rfl b⟩)
       = map (padInr i j D b) (pad j z b) := by
@@ -347,7 +388,9 @@ lemma pad_inr (i : A) (j : B) (z : S D) (b : B) :
     rfl
 
 omit [Fintype A] in
-/-- **Sequential associativity at one input** of the outer operation.-/
+/-- **Sequential associativity at one input** of the outer operation.
+@isnad1 id=eq.0h9v.s11.aa06319b9b29 from=translated src=- shape=d95702bf vocab=36fd546e
+-/
 lemma total_pad_seq (i : A) (j : B) (y : S B) (z : S D) (a : A) :
     total (pad i y a) (fun b => pad (Sum.inr j : Without A i ⊕ B) z (padEquiv i B ⟨a, b⟩))
       = map (seqPad i j D a) (pad i (comp j y z) a) := by
@@ -369,7 +412,9 @@ lemma total_pad_seq (i : A) (j : B) (y : S B) (z : S D) (a : A) :
     refine map_congr (fun _ => ?_) (one : S Unit)
     rfl
 
-/-- **Sequential associativity of partial composition.**-/
+/-- **Sequential associativity of partial composition.**
+@isnad1 id=eq.0h9v.s10.fd15ff7292bb from=translated src=- shape=a0a31cce vocab=4e76e1e5
+-/
 theorem comp_assoc_seq (i : A) (j : B) (x : S A) (y : S B) (z : S D) :
     map (seqEquiv i j D) (comp (Sum.inr j) (comp i x y) z) = comp i x (comp j y z) := by
   rw [comp_def (Sum.inr j), comp_def i x y, total_map_left, total_assoc',
@@ -429,7 +474,9 @@ def parPad {i k : A} (hik : i ≠ k) (B D : Type) (a : A) :
     · exact absurd hk Sum.inr_ne_inl
 
 omit [Fintype A] in
-/-- **Parallel associativity at one input** of the outer operation.-/
+/-- **Parallel associativity at one input** of the outer operation.
+@isnad1 id=eq.1h9v.s12.cbe00a460238 from=translated src=- shape=37f94a17 vocab=7f09ee0b
+-/
 lemma total_pad_par {i k : A} (hik : i ≠ k) (y : S B) (z : S D) (a : A) :
     total (pad i y a)
         (fun b =>
@@ -477,7 +524,9 @@ lemma total_pad_par {i k : A} (hik : i ≠ k) (y : S B) (z : S D) (a : A) :
       refine map_congr (fun u => ?_) (one : S Unit)
       rfl
 
-/-- **Parallel associativity of partial composition.**-/
+/-- **Parallel associativity of partial composition.**
+@isnad1 id=eq.1h9v.s11.9682896e51c3 from=translated src=- shape=004b6a83 vocab=d5fb50a2
+-/
 theorem comp_assoc_par {i k : A} (hik : i ≠ k) (x : S A) (y : S B) (z : S D) :
     map (parEquiv hik B D) (comp (Sum.inl ⟨k, Ne.symm hik⟩) (comp i x y) z)
       = comp (Sum.inl ⟨i, hik⟩) (comp k x z) y := by
@@ -531,13 +580,18 @@ def stageVal {l : List A} : Stage B l → A
   | Sum.inr p => p.1.1
 
 omit [Fintype A] [∀ a, Fintype (B a)] in
+/--
+@isnad1 id=eq.1h5v.s9.10191d6644c6 from=translated src=- shape=6a55b444 vocab=dfdcb085
+-/
 lemma stageVal_step_inl {a : A} {l : List A} (ha : a ∉ l)
     (s : Without (Stage B l) (Sum.inl ⟨a, ha⟩)) :
     stageVal (stepEquiv a l ha (Sum.inl s)) = stageVal s.1 := by
   obtain ⟨(c | p), hs⟩ := s <;> rfl
 
 /-- **Filling with relabelled units relabels**, along a bijection that keeps track of the
-inputs.-/
+inputs.
+@isnad1 id=ex.2h6v.s8.a49c328ae778 from=translated src=- shape=16e37875 vocab=466fea6f
+-/
 theorem fill_units (x : S A) (y : (a : A) → S (B a)) (l : List A) (hl : l.Nodup)
     (hy : ∀ a ∈ l, ∃ τ : Unit ≃ B a, y a = SetOperad.map τ SetOperad.one) :
     ∃ e : A ≃ Stage B l, (∀ a, stageVal (e a) = a) ∧ fill x y l hl = SetOperad.map e x := by
@@ -694,15 +748,23 @@ def padL (l : List A) (y : (a : A) → S (B a)) (a : A) : S (PadL B l a) :=
   if h : a ∈ l then map (padLIn h) (y a) else map (padLOut h) one
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.1h6v.s7.4a811fb82451 from=translated src=- shape=c6bcef99 vocab=f939a544
+-/
 lemma padL_of_mem {l : List A} {a : A} (h : a ∈ l) (y : (a : A) → S (B a)) :
     padL l y a = map (padLIn h) (y a) := dite_eq_left h
 
 omit [Fintype A] in
+/--
+@isnad1 id=eq.1h6v.s7.4b913293c86b from=translated src=- shape=4396a2f6 vocab=99d0ce5e
+-/
 lemma padL_of_not_mem {l : List A} {a : A} (h : a ∉ l) (y : (a : A) → S (B a)) :
     padL l y a = map (padLOut h) one := dite_eq_right h
 
 omit [Fintype A] in
-/-- **One more step of padding at one input.**-/
+/-- **One more step of padding at one input.**
+@isnad1 id=eq.1h7v.s12.fc15b8acad79 from=translated src=- shape=b940b352 vocab=d816c5fc
+-/
 lemma total_padL_step (a : A) (l : List A) (ha : a ∉ l) (y : (a : A) → S (B a)) (b : A) :
     total (padL l y b)
         (fun u => pad (Sum.inl ⟨a, ha⟩ : Stage B l) (y a) (padLEquiv B l ⟨b, u⟩))
@@ -742,7 +804,9 @@ lemma total_padL_step (a : A) (l : List A) (ha : a ∉ l) (y : (a : A) → S (B 
       refine map_congr (fun u => ?_) (one : S Unit)
       rfl
 
-/-- **Filling, for partial composition from total composition, is a padded total composite.**-/
+/-- **Filling, for partial composition from total composition, is a padded total composite.**
+@isnad1 id=eq.1h6v.s8.9146df0fc816 from=translated src=- shape=035214b9 vocab=e7d4c4be
+-/
 theorem fill_toSetOperad (x : S A) (y : (a : A) → S (B a)) (l : List A) (hl : l.Nodup) :
     @May.fill S toSetOperad A _ _ B _ _ x y l hl = map (padLEquiv B l) (total x (padL l y)) := by
   letI : SetOperad S := toSetOperad
@@ -778,7 +842,9 @@ theorem fill_toSetOperad (x : S A) (y : (a : A) → S (B a)) (l : List A) (hl : 
         rfl
 
 /-- **Total composition from partial composition from total composition is total
-composition.**-/
+composition.**
+@isnad1 id=eq.0h5v.s6.3c2372a89497 from=translated src=- shape=93e778da vocab=18db1204
+-/
 theorem total_toSetOperad (x : S A) (y : (a : A) → S (B a)) :
     @SetOperad.total S toSetOperad A _ _ B _ _ x y = total x y := by
   letI : SetOperad S := toSetOperad
@@ -797,7 +863,9 @@ end Converse
 /-! ### The two constructions are inverse -/
 
 /-- **Two set operad structures** with the same relabelling, unit and partial composition are
-equal.-/
+equal.
+@isnad1 id=eq.3h3v.s7.320f1dbcd91f from=translated src=- shape=18d16186 vocab=119eeeb3
+-/
 theorem _root_.Operad.SetOperad.ext_of {I J : SetOperad S}
     (hmap : ∀ {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B] (e : A ≃ B)
       (x : S A), @SetOperad.map S I A B _ _ _ _ e x = @SetOperad.map S J A B _ _ _ _ e x)
@@ -819,7 +887,9 @@ theorem _root_.Operad.SetOperad.ext_of {I J : SetOperad S}
   rfl
 
 /-- **Two structures of operad in May's sense** with the same relabelling, unit and total
-composition are equal.-/
+composition are equal.
+@isnad1 id=eq.3h3v.s7.0a3212725689 from=translated src=- shape=ea39ba5b vocab=01b54fcb
+-/
 theorem ext_of {I J : MaySetOperad S}
     (hmap : ∀ {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B] (e : A ≃ B)
       (x : S A), @MaySetOperad.map S I A B _ _ _ _ e x = @MaySetOperad.map S J A B _ _ _ _ e x)

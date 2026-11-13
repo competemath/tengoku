@@ -50,14 +50,23 @@ namespace Homology
 /-- The class of a cycle.-/
 def mk (d : V →ₗ[R] V) : LinearMap.ker d →ₗ[R] Homology R d := (boundariesIn d).mkQ
 
+/--
+@isnad1 id=iff.0h5v.s11.d0f3e0a50a21 from=translated src=- shape=237a23ea vocab=eaa99cea
+-/
 lemma mk_eq_mk_iff {d : V →ₗ[R] V} (z z' : LinearMap.ker d) :
     mk d z = mk d z' ↔ ∃ v, d v = z.1 - z'.1 := by
   rw [mk, Submodule.mkQ_apply, Submodule.mkQ_apply, Submodule.Quotient.eq]
   simp [boundariesIn, Submodule.mem_comap, LinearMap.mem_range]
 
+/--
+@isnad1 id=surjecti.0h3v.s10.44fe69883f5e from=translated src=- shape=bfa3ea0e vocab=7f2d42b7
+-/
 lemma mk_surjective (d : V →ₗ[R] V) : Function.Surjective (mk d) :=
   Submodule.mkQ_surjective _
 
+/--
+@isnad1 id=eq.1h4v.s10.d3c8246f7fa8 from=translated src=- shape=fc8a7b94 vocab=7f0a02e4
+-/
 lemma mk_boundary {d : V →ₗ[R] V} (hd : ∀ v, d (d v) = 0) (v : V) :
     mk d ⟨d v, hd v⟩ = 0 := by
   rw [mk, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]
@@ -77,21 +86,32 @@ def map {dV : V →ₗ[R] V} {dW : W →ₗ[R] W} (f : V →ₗ[R] W) (hf : ∀ 
     obtain ⟨v, hv⟩ := hz
     exact ⟨f v, by rw [← hf, hv]; rfl⟩
 
+/--
+@isnad1 id=eq.1h7v.s12.613a31d8a3b4 from=translated src=- shape=83f961ab vocab=8ca04259
+-/
 @[simp] lemma map_mk {dV : V →ₗ[R] V} {dW : W →ₗ[R] W} (f : V →ₗ[R] W)
     (hf : ∀ v, f (dV v) = dW (f v)) (z : LinearMap.ker dV) :
     map f hf (mk dV z) = mk dW (cycleMap f hf z) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.7239df3dfa08 from=translated src=- shape=1f7c3551 vocab=68c5c9be
+-/
 lemma map_id (dV : V →ₗ[R] V) : map (dV := dV) LinearMap.id (fun _ => rfl) = LinearMap.id := by
   ext z
   rfl
 
+/--
+@isnad1 id=eq.2h9v.s11.acc4036bf939 from=translated src=- shape=13ff9594 vocab=d5061e14
+-/
 lemma map_comp {dV : V →ₗ[R] V} {dW : W →ₗ[R] W} {dU : U →ₗ[R] U} (f : V →ₗ[R] W)
     (hf : ∀ v, f (dV v) = dW (f v)) (g : W →ₗ[R] U) (hg : ∀ w, g (dW w) = dU (g w)) :
     map (g ∘ₗ f) (fun v => by simp [hf, hg]) = map g hg ∘ₗ map f hf := by
   ext z
   rfl
 
-/-- **Homotopic chain maps induce the same map on homology.**-/
+/-- **Homotopic chain maps induce the same map on homology.**
+@isnad1 id=eq.3h8v.s10.7edd90e16a1f from=translated src=- shape=82308e10 vocab=1a917673
+-/
 theorem map_eq_of_homotopy {dV : V →ₗ[R] V} {dW : W →ₗ[R] W} (f g : V →ₗ[R] W)
     (hf : ∀ v, f (dV v) = dW (f v)) (hg : ∀ v, g (dV v) = dW (g v)) (s : V →ₗ[R] W)
     (hs : ∀ v, f v - g v = dW (s v) + s (dV v)) : map f hf = map g hg := by
@@ -161,12 +181,16 @@ variable (hκ₁ : ∀ v, κ (v - δ (c.h v)) = v) (hκ₂ : ∀ v, κ v - δ (c
 include hκ₁ hκ₂
 
 omit hκ₁ in
-/-- `A = δ + δ h A`.-/
+/-- `A = δ + δ h A`.
+@isnad1 id=eq.1h9v.s9.32d5fb7de37e from=translated src=- shape=f9d87ffe vocab=781932a4
+-/
 lemma pA_eq_left (v : V) : pA δ κ v = δ v + δ (c.h (pA δ κ v)) :=
   sub_eq_iff_eq_add.mp (hκ₂ (δ v))
 
 omit hκ₂ in
-/-- `A = δ + A h δ`.-/
+/-- `A = δ + A h δ`.
+@isnad1 id=eq.1h9v.s9.b49a4e9d89ef from=translated src=- shape=717b8c13 vocab=781932a4
+-/
 lemma pA_eq_right (v : V) : pA δ κ v = δ v + pA δ κ (c.h (δ v)) := by
   have := hκ₁ (δ v)
   rw [map_sub] at this
@@ -175,7 +199,9 @@ lemma pA_eq_right (v : V) : pA δ κ v = δ v + pA δ κ (c.h (δ v)) := by
 variable (hdV : ∀ v, dV (dV v) = 0) (hδ : ∀ v, dV (dV v) + dV (δ v) + δ (dV v) + δ (δ v) = 0)
 include hdV hδ
 
-/-- **The key identity of the perturbation lemma**: `dV A + A dV + A ι π A = 0`.-/
+/-- **The key identity of the perturbation lemma**: `dV A + A dV + A ι π A = 0`.
+@isnad1 id=eq.4h9v.s11.0fad96cdb3e2 from=translated src=- shape=6adc9686 vocab=780b6038
+-/
 theorem perturb_key (v : V) :
     dV (pA δ κ v) + pA δ κ (dV v) + pA δ κ (c.ι (c.π (pA δ κ v))) = 0 := by
   set A := pA δ κ with hAdef
@@ -222,7 +248,9 @@ variable (hκ₁ : ∀ v, κ (v - δ (c.h v)) = v) (hκ₂ : ∀ v, κ v - δ (c
   (hdV : ∀ v, dV (dV v) = 0) (hδ : ∀ v, dV (dV v) + dV (δ v) + δ (dV v) + δ (δ v) = 0)
 
 include hκ₁ hκ₂ hdV hδ in
-/-- **The perturbed differential on `W` squares to zero.**-/
+/-- **The perturbed differential on `W` squares to zero.**
+@isnad1 id=eq.5h9v.s11.abfb11597f9a from=translated src=- shape=cfefa7d0 vocab=7a063306
+-/
 theorem perturb_dW_dW (hdW : ∀ w, dW (dW w) = 0) (w : W) :
     (dW + c.π ∘ₗ pA δ κ ∘ₗ c.ι) ((dW + c.π ∘ₗ pA δ κ ∘ₗ c.ι) w) = 0 := by
   have key := congrArg c.π (perturb_key hκ₁ hκ₂ hdV hδ (c.ι w))

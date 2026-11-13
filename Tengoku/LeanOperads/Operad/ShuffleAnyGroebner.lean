@@ -48,14 +48,29 @@ namespace SMono
 
 variable {A : Finset ℕ} (g : SMono E A)
 
+/--
+@isnad1 id=isshuffl.0h3v.s5.20506d0dd70c from=translated src=- shape=5014a85b vocab=27e254b3
+-/
 lemma isShuffle : g.1.IsShuffle := g.2.1
 
+/--
+@isnad1 id=eq.0h3v.s5.733f1e20f288 from=translated src=- shape=36949d5e vocab=27e254b3
+-/
 lemma labels_eq : g.1.labels = A.val := g.2.2
 
+/--
+@isnad1 id=nodup.0h3v.s5.d6f214f875b3 from=translated src=- shape=403851f7 vocab=3145ff7b
+-/
 lemma nodup : g.1.labels.Nodup := by rw [g.labels_eq]; exact A.nodup
 
+/--
+@isnad1 id=iff.0h4v.s5.8ad8ef65cb40 from=translated src=- shape=2025b08f vocab=c5b2223b
+-/
 lemma mem_labels {a : ℕ} : a ∈ g.1.labels ↔ a ∈ A := by rw [g.labels_eq]; rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.baa6126ec420 from=translated src=- shape=9a1229c3 vocab=8a287165
+-/
 lemma first_eq (g' : SMono E A) : g.1.first = g'.1.first :=
   first_eq_of_labels_eq g.isShuffle g'.isShuffle (g.labels_eq.trans g'.labels_eq.symm)
 
@@ -68,16 +83,25 @@ structure Inputs (A B : Finset ℕ) (xs : ℕ → STree E) : Prop where
   labels : ∀ a ∈ A, ∀ b ∈ (xs a).labels, b ∈ B
   mono : StrictMonoOn (fun a => (xs a).first) (A : Set ℕ)
 
+/--
+@isnad1 id=isshuffl.1h5v.s5.73a2cd825ed2 from=translated src=- shape=988e9a4f vocab=ec24e4d3
+-/
 lemma Inputs.subst_isShuffle {A B : Finset ℕ} {xs : ℕ → STree E} (h : Inputs A B xs)
     (g : SMono E A) : (g.1.subst xs).IsShuffle :=
   isShuffle_subst g.isShuffle (fun a ha => h.shuffle a (g.mem_labels.1 ha))
     (fun _ ha _ hb hab => h.mono (g.mem_labels.1 ha) (g.mem_labels.1 hb) hab)
 
+/--
+@isnad1 id=inputs.0h2v.s3.af69208c916d from=translated src=- shape=1623ca50 vocab=867d5e5b
+-/
 lemma inputs_leaf (A : Finset ℕ) : Inputs A A (leaf : ℕ → STree E) where
   shuffle _ _ := trivial
   labels _ ha _ hb := by rw [labels_leaf, Multiset.mem_singleton] at hb; exact hb ▸ ha
   mono _ _ _ _ h := h
 
+/--
+@isnad1 id=inputs.2h6v.s5.60b6d51f2a6c from=translated src=- shape=bc0a890c vocab=bf916fec
+-/
 lemma Inputs.comp {A A' B : Finset ℕ} {xs xs' : ℕ → STree E} (h : Inputs A B xs)
     (h' : Inputs A' A xs') : Inputs A' B fun a => (xs' a).subst xs where
   shuffle a ha := isShuffle_subst (h'.shuffle a ha) (fun b hb => h.shuffle b (h'.labels a ha b hb))
@@ -97,10 +121,15 @@ def IsSCtx {A B : Finset ℕ} (f : SMono E A → SMono E B) : Prop :=
   ∃ (T : STree E) (p : List ℕ) (xs : ℕ → STree E), (T.get? p).isSome ∧ Inputs A B xs ∧
     ∀ g, (f g).1 = T.replace p (g.1.subst xs)
 
+/--
+@isnad1 id=issctx.0h2v.s3.720a49771c77 from=translated src=- shape=4e74c7a3 vocab=bcbe0743
+-/
 theorem isSCtx_id (A : Finset ℕ) : IsSCtx (id : SMono E A → SMono E A) :=
   ⟨leaf 0, [], leaf, rfl, inputs_leaf A, fun g => by rw [replace_nil, subst_leaf]; rfl⟩
 
-/-- **Contexts compose.**-/
+/-- **Contexts compose.**
+@isnad1 id=issctx.2h6v.s5.eb4dc8e5b000 from=translated src=- shape=119596d3 vocab=8c56ccd0
+-/
 theorem isSCtx_comp {A A' B : Finset ℕ} {f : SMono E A → SMono E B}
     {g : SMono E A' → SMono E A} (hf : IsSCtx f) (hg : IsSCtx g) : IsSCtx (f ∘ g) := by
   obtain ⟨T, p, xs, hp, hxs, hf⟩ := hf
@@ -139,13 +168,18 @@ def AdmOrder.toCtxOrder (O : AdmOrder E) : CtxOrder (Finset ℕ) (SMono E) where
 
 /-! ## Occurrences -/
 
-/-- **The inputs of an occurrence** are subtrees.-/
+/-- **The inputs of an occurrence** are subtrees.
+@isnad1 id=eq.2h6v.s6.45a33b57262e from=translated src=- shape=c79116f3 vocab=8eb25122
+-/
 lemma get?_input {U ℓ : STree E} {p : List ℕ} {xs : ℕ → STree E}
     (hU : U.get? p = some (ℓ.subst xs)) {a : ℕ} (ha : a ∈ ℓ.labels) :
     U.get? (p ++ ℓ.pos a) = some (xs a) := by
   rw [get?_append_of hU, get?_subst (get?_pos ha)]
   rfl
 
+/--
+@isnad1 id=inputs.2h7v.s6.790e799e3a2f from=translated src=- shape=5f371917 vocab=2bfda3b4
+-/
 theorem inputs_of_occ {A B : Finset ℕ} (U : SMono E B) {p : List ℕ} {ℓ : SMono E A}
     {xs : ℕ → STree E} (hU : U.1.get? p = some (ℓ.1.subst xs))
     (hm : StrictMonoOn (fun a => (xs a).first) (A : Set ℕ)) : Inputs A B xs where
@@ -154,7 +188,9 @@ theorem inputs_of_occ {A B : Finset ℕ} (U : SMono E B) {p : List ℕ} {ℓ : S
     (Multiset.mem_of_le (labels_get?_le (get?_input hU (ℓ.mem_labels.2 ha))) hb)
   mono := hm
 
-/-- **An occurrence gives a monomial for each monomial on its leaves.**-/
+/-- **An occurrence gives a monomial for each monomial on its leaves.**
+@isnad1 id=and.2h8v.s7.1590cfa78f4e from=translated src=- shape=89051f53 vocab=218fe093
+-/
 theorem replace_mem {A B : Finset ℕ} (U : SMono E B) {p : List ℕ} {ℓ : SMono E A}
     {xs : ℕ → STree E} (hU : U.1.get? p = some (ℓ.1.subst xs))
     (hm : StrictMonoOn (fun a => (xs a).first) (A : Set ℕ)) (g : SMono E A) :
@@ -177,17 +213,28 @@ section CtxOf
 variable {A B : Finset ℕ} (U : SMono E B) (p : List ℕ) (ℓ : SMono E A) (xs : ℕ → STree E)
   (hU : U.1.get? p = some (ℓ.1.subst xs)) (hm : StrictMonoOn (fun a => (xs a).first) (A : Set ℕ))
 
+/--
+@isnad1 id=eq.2h8v.s7.fa71d98b756b from=translated src=- shape=7578945b vocab=7ad33bd2
+-/
 @[simp] lemma ctxOf_val (g : SMono E A) :
     (ctxOf U p ℓ xs hU hm g).1 = U.1.replace p (g.1.subst xs) := rfl
 
+/--
+@isnad1 id=issctx.2h7v.s6.e220069923c8 from=translated src=- shape=4a1dafe6 vocab=780da138
+-/
 theorem isSCtx_ctxOf : IsSCtx (ctxOf U p ℓ xs hU hm) :=
   ⟨U.1, p, xs, by rw [hU]; rfl, inputs_of_occ U hU hm, fun _ => rfl⟩
 
+/--
+@isnad1 id=eq.2h7v.s6.1ffa9d7de49a from=translated src=- shape=27d19a7e vocab=32e5b2a0
+-/
 lemma ctxOf_self : ctxOf U p ℓ xs hU hm ℓ = U := Subtype.ext (replace_self hU)
 
 end CtxOf
 
-/-- **A context at its value**: a context `f` replaces at a position of `f ℓ` itself.-/
+/-- **A context at its value**: a context `f` replaces at a position of `f ℓ` itself.
+@isnad1 id=ex.1h5v.s7.2ecd95960018 from=translated src=- shape=d2a9acc2 vocab=cbe04ddd
+-/
 lemma IsSCtx.normal {A B : Finset ℕ} {f : SMono E A → SMono E B} (hf : IsSCtx f)
     (ℓ : SMono E A) : ∃ p xs, (f ℓ).1.get? p = some (ℓ.1.subst xs) ∧ Inputs A B xs ∧
       ∀ g, (f g).1 = (f ℓ).1.replace p (g.1.subst xs) := by
@@ -206,7 +253,9 @@ def vert (t : STree E) : Set (List ℕ) := {q | ∃ k, ∃ (e : E k) (c : Fin k 
 /-- **The vertices of an occurrence** at `p` of a tree `ℓ`.-/
 def occVert (p : List ℕ) (ℓ : STree E) : Set (List ℕ) := (p ++ ·) '' vert ℓ
 
-/-- **The proper prefixes of a vertex are vertices.**-/
+/-- **The proper prefixes of a vertex are vertices.**
+@isnad1 id=mem.3h4v.s5.8d29fae9e508 from=translated src=- shape=865e8def vocab=f7a4d23e
+-/
 lemma vert_of_prefix {t : STree E} {q q' : List ℕ} (hq : q ∈ vert t) (h : q' <+: q)
     (hne : q' ≠ q) : q' ∈ vert t := by
   obtain ⟨k, e, c, hq⟩ := hq
@@ -223,6 +272,9 @@ lemma vert_of_prefix {t : STree E} {q q' : List ℕ} (hq : q ∈ vert t) (h : q'
       | leaf a => simp at hq
       | node e' c' => exact ⟨_, e', c', hw⟩
 
+/--
+@isnad1 id=mem.1h2v.s4.e14cfe5a955a from=translated src=- shape=0cc300b3 vocab=acc0310f
+-/
 lemma nil_mem_vert {t : STree E} (h : ∀ a, t ≠ leaf a) : [] ∈ vert t := by
   cases t with
   | leaf a => exact absurd rfl (h a)
@@ -230,7 +282,9 @@ lemma nil_mem_vert {t : STree E} (h : ∀ a, t ≠ leaf a) : [] ∈ vert t := by
 
 /-! ## Classification of ambiguities -/
 
-/-- **Occurrences at incomparable positions are disjoint.**-/
+/-- **Occurrences at incomparable positions are disjoint.**
+@isnad1 id=ex.7h13v.s8.c212fd155214 from=translated src=- shape=da7b67ad vocab=97382112
+-/
 theorem disjoint_of_incomp {A₁ A₂ B : Finset ℕ} {f₁ : SMono E A₁ → SMono E B}
     {f₂ : SMono E A₂ → SMono E B} {ℓ₁ : SMono E A₁} {ℓ₂ : SMono E A₂} {T : SMono E B}
     {p₁ p₂ : List ℕ} {xs₁ xs₂ : ℕ → STree E}
@@ -260,7 +314,9 @@ theorem disjoint_of_incomp {A₁ A₂ B : Finset ℕ} {f₁ : SMono E A₁ → S
 def updIn (xs : ℕ → STree E) (a : ℕ) (q : List ℕ) (u : STree E) : ℕ → STree E :=
   Function.update xs a ((xs a).replace q u)
 
-/-- **An occurrence inside an input of another one is disjoint from it.**-/
+/-- **An occurrence inside an input of another one is disjoint from it.**
+@isnad1 id=ex.7h15v.s8.22955727f2e0 from=translated src=- shape=c23d5f08 vocab=938a6f52
+-/
 theorem disjoint_of_nested {A₁ A₂ B : Finset ℕ} {f₁ : SMono E A₁ → SMono E B}
     {f₂ : SMono E A₂ → SMono E B} {ℓ₁ : SMono E A₁} {ℓ₂ : SMono E A₂} {T : SMono E B}
     {p₁ q₀ q'' : List ℕ} {a : ℕ} {xs₁ xs₂ : ℕ → STree E}
@@ -314,7 +370,9 @@ theorem disjoint_of_nested {A₁ A₂ B : Finset ℕ} {f₁ : SMono E A₁ → S
     exact Subtype.ext (replace_self (F2 y)).symm
 
 /-- **Overlapping occurrences factor through a critical ambiguity**: the truncation of the
-monomial to the union of the two occurrences.-/
+monomial to the union of the two occurrences.
+@isnad1 id=ex.8h13v.s9.a99b998f88fd from=translated src=- shape=71ca7ed9 vocab=ec6382dc
+-/
 theorem factors_of_overlap {A₁ A₂ B : Finset ℕ} {f₁ : SMono E A₁ → SMono E B}
     {f₂ : SMono E A₂ → SMono E B} {ℓ₁ : SMono E A₁} {ℓ₂ : SMono E A₂} {T : SMono E B}
     {p₁ q : List ℕ} {xs₁ xs₂ : ℕ → STree E}
@@ -420,6 +478,9 @@ def Critical {C : Finset ℕ} {r₁ r₂ : ρ} (B : G.Amb C r₁ r₂) : Prop :=
 
 variable {G}
 
+/--
+@isnad1 id=critical.1h9v.s6.28ab1a093354 from=translated src=- shape=fe8d3f8e vocab=7dfa2786
+-/
 lemma Critical.swap {C : Finset ℕ} {r₁ r₂ : ρ} {B : G.Amb C r₁ r₂} (h : Critical G B) :
     Critical G B.swap := by
   obtain ⟨p₁, p₂, xs₁, xs₂, h₁, h₂, hc, ho⟩ := h
@@ -435,7 +496,9 @@ lemma Critical.swap {C : Finset ℕ} {r₁ r₂ : ρ} {B : G.Amb C r₁ r₂} (h
 
 variable (G)
 
-/-- The data of an ambiguity: the two occurrences in its monomial.-/
+/-- The data of an ambiguity: the two occurrences in its monomial.
+@isnad1 id=ex.0h9v.s9.5d1577870b02 from=translated src=- shape=b24c4407 vocab=7bd89600
+-/
 lemma Amb.data {B : Finset ℕ} {r₁ r₂ : ρ} (A : G.Amb B r₁ r₂) :
     ∃ p₁ xs₁ p₂ xs₂, A.top.1.get? p₁ = some ((G.lead r₁).1.subst xs₁) ∧
       A.top.1.get? p₂ = some ((G.lead r₂).1.subst xs₂) ∧
@@ -448,7 +511,9 @@ lemma Amb.data {B : Finset ℕ} {r₁ r₂ : ρ} (A : G.Amb B r₁ r₂) :
   rw [ht] at h₂ hf₂
   exact ⟨p₁, xs₁, p₂, xs₂, h₁, h₂, hin₁, hin₂, hf₁, hf₂⟩
 
-/-- **Classification**, when the position of the first occurrence is a prefix of the second.-/
+/-- **Classification**, when the position of the first occurrence is a prefix of the second.
+@isnad1 id=or.8h13v.s9.e2a5a16005a6 from=translated src=- shape=f1ceaf94 vocab=22e581c2
+-/
 theorem classify_of_prefix (hlead : ∀ r a, (G.lead r).1 ≠ leaf a) {B : Finset ℕ} {r₁ r₂ : ρ}
     (A : G.Amb B r₁ r₂) {p₁ p₂ : List ℕ} {xs₁ xs₂ : ℕ → STree E}
     (hT₁ : A.top.1.get? p₁ = some ((G.lead r₁).1.subst xs₁))
@@ -488,7 +553,9 @@ theorem classify_of_prefix (hlead : ∀ r a, (G.lead r).1 ≠ leaf a) {B : Finse
     exact disjoint_of_nested hT₁ hin₁ hin₂ hf₁ hf₂ h₀ h''
 
 /-- **Classification of ambiguities**: every ambiguity between rules whose leading monomials are
-not leaves is disjoint or factors through a critical ambiguity.-/
+not leaves is disjoint or factors through a critical ambiguity.
+@isnad1 id=or.1h9v.s7.00ef7665d9c6 from=translated src=- shape=681b4bdc vocab=0023ab30
+-/
 theorem classify (hlead : ∀ r a, (G.lead r).1 ≠ leaf a) {B : Finset ℕ} {r₁ r₂ : ρ}
     (A : G.Amb B r₁ r₂) :
     A.IsDisjoint ∨ ∃ C, ∃ B' : G.Amb C r₁ r₂, Critical G B' ∧ A.FactorsThrough B' := by
@@ -503,7 +570,9 @@ theorem classify (hlead : ∀ r a, (G.lead r).1 ≠ leaf a) {B : Finset ℕ} {r�
   · exact Or.inl (disjoint_of_incomp hT₁ hT₂ hin₁ hin₂ hf₁ hf₂ hp)
 
 /-- **The Buchberger criterion for shuffle operads**: if no leading monomial is a leaf and every
-critical ambiguity is resolvable, every ambiguity is resolvable.-/
+critical ambiguity is resolvable, every ambiguity is resolvable.
+@isnad1 id=resolvab.2h6v.s7.3a3f195ff35a from=translated src=- shape=20ed6d75 vocab=55fd803d
+-/
 theorem resolvable_of_critical (hlead : ∀ r a, (G.lead r).1 ≠ leaf a)
     (hcrit : ∀ {C : Finset ℕ} {r₁ r₂ : ρ} (B : G.Amb C r₁ r₂), Critical G B → B.Res)
     (A : Finset ℕ) : (G.rw A).Resolvable :=
@@ -518,7 +587,9 @@ noncomputable def basisOfCritical (hlead : ∀ r a, (G.lead r).1 ≠ leaf a)
   (resolvable_of_critical G hlead hcrit A).basis
 
 /-- **Conversely**, if the normal monomials are independent modulo the ideal, every critical
-ambiguity is resolvable.-/
+ambiguity is resolvable.
+@isnad1 id=res.1h9v.s8.0b4ce07433a0 from=translated src=- shape=6029d13b vocab=32ba93df
+-/
 theorem Critical.res_of_isCompl {C : Finset ℕ} {r₁ r₂ : ρ} (B : G.Amb C r₁ r₂)
     (h : Disjoint (Finsupp.supported R R {t : SMono E C | G.Normal t}) (G.rw C).ideal) :
     B.Res :=

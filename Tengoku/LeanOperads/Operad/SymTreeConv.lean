@@ -90,41 +90,85 @@ def paths : BTree E → Finset (List Bool)
     insert [] (l.paths.map ⟨List.cons false, List.cons_injective⟩ ∪
       r.paths.map ⟨List.cons true, List.cons_injective⟩)
 
+/--
+@isnad1 id=eq.0h2v.s3.cb1749424932 from=translated src=- shape=739b0549 vocab=cb4264b4
+-/
 @[simp] lemma subAt_nil (t : BTree E) : t.subAt [] = t := by cases t <;> rfl
+/--
+@isnad1 id=eq.0h2v.s3.13e289f66fe5 from=translated src=- shape=3d7abdf1 vocab=489471cf
+-/
 @[simp] lemma cutAt_nil (t : BTree E) : t.cutAt [] = leaf := by cases t <;> rfl
+/--
+@isnad1 id=eq.0h2v.s4.e067ef51132f from=translated src=- shape=44e3297f vocab=ae6194df
+-/
 @[simp] lemma posAt_nil (t : BTree E) : t.posAt [] = 0 := by cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s4.6283dbfd37c1 from=translated src=- shape=a71821bf vocab=85e6df5e
+-/
 @[simp] lemma subAt_false (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).subAt (false :: p) = l.subAt p := rfl
+/--
+@isnad1 id=eq.0h5v.s4.d1e7b4f45932 from=translated src=- shape=f8efd123 vocab=d08bd61e
+-/
 @[simp] lemma subAt_true (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).subAt (true :: p) = r.subAt p := rfl
+/--
+@isnad1 id=eq.0h5v.s5.060e139b453c from=translated src=- shape=67dc2fd9 vocab=0c82a1b4
+-/
 @[simp] lemma cutAt_false (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).cutAt (false :: p) = node e (l.cutAt p) r := rfl
+/--
+@isnad1 id=eq.0h5v.s5.64b7958c677d from=translated src=- shape=4fadc354 vocab=30d5423f
+-/
 @[simp] lemma cutAt_true (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).cutAt (true :: p) = node e l (r.cutAt p) := rfl
+/--
+@isnad1 id=eq.0h5v.s4.8b8d9b907ded from=translated src=- shape=572be9b3 vocab=562cf077
+-/
 @[simp] lemma posAt_false (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).posAt (false :: p) = l.posAt p := rfl
+/--
+@isnad1 id=eq.0h5v.s5.fc2df6710522 from=translated src=- shape=b21c999a vocab=e778c219
+-/
 @[simp] lemma posAt_true (e : E) (l r : BTree E) (p : List Bool) :
     (node e l r).posAt (true :: p) = l.arity + r.posAt p := rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.d5c2ed49f1e5 from=translated src=- shape=cc45e07e vocab=7dc389b4
+-/
 @[simp] lemma mem_paths_leaf (p : List Bool) : p ∈ (leaf : BTree E).paths ↔ p = [] := by
   simp [paths]
 
+/--
+@isnad1 id=mem.0h2v.s4.0d946f7af2ed from=translated src=- shape=170e501c vocab=b2e3a2bb
+-/
 @[simp] lemma nil_mem_paths (t : BTree E) : [] ∈ t.paths := by
   cases t <;> simp [paths]
 
+/--
+@isnad1 id=iff.0h5v.s5.07a579fa0797 from=translated src=- shape=af4969f2 vocab=8e3af61d
+-/
 @[simp] lemma cons_false_mem_paths (e : E) (l r : BTree E) (p : List Bool) :
     false :: p ∈ (node e l r).paths ↔ p ∈ l.paths := by
   simp [paths]
 
+/--
+@isnad1 id=iff.0h5v.s5.3aea481464b7 from=translated src=- shape=3f7a5545 vocab=7416ae89
+-/
 @[simp] lemma cons_true_mem_paths (e : E) (l r : BTree E) (p : List Bool) :
     true :: p ∈ (node e l r).paths ↔ p ∈ r.paths := by
   simp [paths]
 
+/--
+@isnad1 id=not.0h3v.s4.bf160a1c979b from=translated src=- shape=b88e5fc6 vocab=cccbef5e
+-/
 lemma cons_not_mem_paths_leaf (b : Bool) (p : List Bool) : b :: p ∉ (leaf : BTree E).paths := by
   simp
 
-/-- **A tree is the graft of its cut at a path and the subtree there.**-/
+/-- **A tree is the graft of its cut at a path and the subtree there.**
+@isnad1 id=eq.1h3v.s5.49b10fca6c3b from=translated src=- shape=f2814792 vocab=9e99cf62
+-/
 theorem graft_cutAt_subAt : ∀ (t : BTree E) (p : List Bool), p ∈ t.paths →
     (t.cutAt p).graft (t.posAt p) (t.subAt p) = t
   | leaf, [], _ => rfl
@@ -141,7 +185,9 @@ theorem graft_cutAt_subAt : ∀ (t : BTree E) (p : List Bool), p ∈ t.paths →
     rw [graft_node_of_ge l _ (by omega), show l.arity + r.posAt p - l.arity = r.posAt p by omega,
       graft_cutAt_subAt r p h]
 where
-  /-- The cut-off leaf is a leaf of the cut tree.-/
+  /-- The cut-off leaf is a leaf of the cut tree.
+  @isnad1 id=lt.1h3v.s5.50c4814f02af from=translated src=- shape=1e446dc0 vocab=389b036b
+  -/
   posAt_lt_arity_cutAt : ∀ (t : BTree E) (p : List Bool), p ∈ t.paths →
       t.posAt p < (t.cutAt p).arity
     | leaf, [], _ => by simp
@@ -158,12 +204,16 @@ where
       simp only [cutAt_true, posAt_true, arity_node]
       omega
 
-/-- The cut-off leaf is a leaf of the cut tree.-/
+/-- The cut-off leaf is a leaf of the cut tree.
+@isnad1 id=lt.1h3v.s5.50c4814f02af from=translated src=- shape=1e446dc0 vocab=389b036b
+-/
 lemma posAt_lt (t : BTree E) {p : List Bool} (h : p ∈ t.paths) :
     t.posAt p < (t.cutAt p).arity :=
   graft_cutAt_subAt.posAt_lt_arity_cutAt t p h
 
-/-- Cutting at a path and keeping the subtree split the leaves.-/
+/-- Cutting at a path and keeping the subtree split the leaves.
+@isnad1 id=eq.1h3v.s6.6c3ebbd44490 from=translated src=- shape=359cae50 vocab=13133845
+-/
 lemma arity_cutAt (t : BTree E) {p : List Bool} (h : p ∈ t.paths) :
     (t.cutAt p).arity + (t.subAt p).arity = t.arity + 1 := by
   have := arity_graft (t.cutAt p) (t.posAt p) (t.subAt p) (t.posAt_lt h)
@@ -176,7 +226,9 @@ def leafPath : BTree E → ℕ → List Bool
   | node _ l r, a => if a < l.arity then false :: l.leafPath a else true :: r.leafPath (a - l.arity)
 
 /-- **Every graft is a cut at a path**: grafting `s` at the leaf `a` of `t` puts `s` at the end of
-the path to that leaf, cuts back to `t`, and leaves `a` leaves to its left.-/
+the path to that leaf, cuts back to `t`, and leaves `a` leaves to its left.
+@isnad1 id=and.1h4v.s6.015df9763297 from=translated src=- shape=490bed7d vocab=715cc0e5
+-/
 theorem leafPath_graft : ∀ (t : BTree E) (a : ℕ) (s : BTree E), a < t.arity →
     t.leafPath a ∈ (t.graft a s).paths ∧ (t.graft a s).subAt (t.leafPath a) = s ∧
       (t.graft a s).cutAt (t.leafPath a) = t ∧ (t.graft a s).posAt (t.leafPath a) = a
@@ -274,27 +326,47 @@ def swapAt : BTree E → List Bool → BTree E
 
 variable {tw}
 
+/--
+@isnad1 id=eq.0h3v.s4.7a4d394f8cf3 from=translated src=- shape=0e96b645 vocab=53bbeae4
+-/
 @[simp] lemma swapAt_leaf (q : List Bool) : (leaf : BTree E).swapAt tw q = leaf := rfl
+/--
+@isnad1 id=eq.0h5v.s5.33e9340010e6 from=translated src=- shape=e6f2987c vocab=8aad8875
+-/
 @[simp] lemma swapAt_nil (e : E) (l r : BTree E) :
     (node e l r).swapAt tw [] = node (tw e) r l := rfl
+/--
+@isnad1 id=eq.0h6v.s5.803b7e2f4ff7 from=translated src=- shape=fe9eb487 vocab=307f58c9
+-/
 @[simp] lemma swapAt_false (e : E) (l r : BTree E) (q : List Bool) :
     (node e l r).swapAt tw (false :: q) = node e (l.swapAt tw q) r := rfl
+/--
+@isnad1 id=eq.0h6v.s5.95a23f080c02 from=translated src=- shape=dc8c9d0a vocab=3df1b2e7
+-/
 @[simp] lemma swapAt_true (e : E) (l r : BTree E) (q : List Bool) :
     (node e l r).swapAt tw (true :: q) = node e l (r.swapAt tw q) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.fd4f34e468e2 from=translated src=- shape=31725ba3 vocab=ebaf7c51
+-/
 @[simp] theorem arity_swapAt : ∀ (t : BTree E) (q : List Bool), (t.swapAt tw q).arity = t.arity
   | leaf, _ => rfl
   | node e l r, [] => by simp [Nat.add_comm]
   | node e l r, false :: q => by simp [arity_swapAt l q]
   | node e l r, true :: q => by simp [arity_swapAt r q]
 
+/--
+@isnad1 id=eq.0h4v.s4.df56710610d7 from=translated src=- shape=31725ba3 vocab=cc7417e3
+-/
 @[simp] theorem weight_swapAt : ∀ (t : BTree E) (q : List Bool), (t.swapAt tw q).weight = t.weight
   | leaf, _ => rfl
   | node e l r, [] => by simp only [swapAt_nil, weight_node]; omega
   | node e l r, false :: q => by simp [weight_swapAt l q]
   | node e l r, true :: q => by simp [weight_swapAt r q]
 
-/-- **A swap is an involution** when the twist is.-/
+/-- **A swap is an involution** when the twist is.
+@isnad1 id=eq.1h4v.s4.6552a872ddef from=translated src=- shape=dab4eeb7 vocab=2e50c81f
+-/
 theorem swapAt_swapAt (htw : Function.Involutive tw) :
     ∀ (t : BTree E) (q : List Bool), (t.swapAt tw q).swapAt tw q = t
   | leaf, _ => rfl
@@ -310,26 +382,53 @@ def swapPath : List Bool → List Bool → List Bool
   | _ :: _, [] => []
   | c :: q, b :: p => if b = c then b :: swapPath q p else b :: p
 
+/--
+@isnad1 id=eq.0h0v.s3.8f0fd454f476 from=translated src=- shape=2c516afc vocab=84715d55
+-/
 @[simp] lemma swapPath_nil_nil : swapPath [] [] = [] := rfl
+/--
+@isnad1 id=eq.0h2v.s4.5be8805bbf78 from=translated src=- shape=6dce5004 vocab=2ff8f38e
+-/
 @[simp] lemma swapPath_nil_cons (b : Bool) (p : List Bool) : swapPath [] (b :: p) = (!b) :: p := rfl
+/--
+@isnad1 id=eq.0h2v.s4.ddd7055f578c from=translated src=- shape=538cff44 vocab=b612d013
+-/
 @[simp] lemma swapPath_cons_nil (c : Bool) (q : List Bool) : swapPath (c :: q) [] = [] := rfl
+/--
+@isnad1 id=eq.0h4v.s5.6c96c57e2cf3 from=translated src=- shape=2b9d8a7d vocab=e3e05135
+-/
 lemma swapPath_cons_cons (c : Bool) (q : List Bool) (b : Bool) (p : List Bool) :
     swapPath (c :: q) (b :: p) = if b = c then b :: swapPath q p else b :: p := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.60be0cca645d from=translated src=- shape=28e91722 vocab=ea46788b
+-/
 @[simp] lemma swapPath_cons_self (c : Bool) (q p : List Bool) :
     swapPath (c :: q) (c :: p) = c :: swapPath q p := by
   rw [swapPath_cons_cons, ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h4v.s4.3ad88c001756 from=translated src=- shape=f02c71a2 vocab=ea46788b
+-/
 lemma swapPath_cons_ne {c b : Bool} (h : b ≠ c) (q p : List Bool) :
     swapPath (c :: q) (b :: p) = b :: p := by
   rw [swapPath_cons_cons, ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h2v.s4.00b226e9abb7 from=translated src=- shape=7325e45f vocab=2e152066
+-/
 @[simp] lemma swapPath_true_false (q p : List Bool) :
     swapPath (true :: q) (false :: p) = false :: p := swapPath_cons_ne (by decide) q p
 
+/--
+@isnad1 id=eq.0h2v.s4.3b6db8f68ef2 from=translated src=- shape=7325e45f vocab=2e152066
+-/
 @[simp] lemma swapPath_false_true (q p : List Bool) :
     swapPath (false :: q) (true :: p) = true :: p := swapPath_cons_ne (by decide) q p
 
+/--
+@isnad1 id=eq.0h2v.s3.312ce0a7d5bf from=translated src=- shape=9a6fd1ba vocab=a958aeb2
+-/
 theorem swapPath_swapPath : ∀ (q p : List Bool), swapPath q (swapPath q p) = p
   | [], [] => rfl
   | [], b :: p => by simp
@@ -339,7 +438,9 @@ theorem swapPath_swapPath : ∀ (q p : List Bool), swapPath q (swapPath q p) = p
     · rw [swapPath_cons_cons, ite_eq_left h, swapPath_cons_cons, ite_eq_left h, swapPath_swapPath q p]
     · rw [swapPath_cons_cons, ite_eq_right h, swapPath_cons_cons, ite_eq_right h]
 
-/-- A swap at a vertex below the end of a path does not move the path.-/
+/-- A swap at a vertex below the end of a path does not move the path.
+@isnad1 id=eq.1h2v.s4.1a5a09cbd72c from=translated src=- shape=454a932e vocab=7669c5d3
+-/
 theorem swapPath_of_prefix : ∀ {q p : List Bool}, p <+: q → swapPath q p = p
   | [], [], _ => rfl
   | [], _ :: _, h => absurd (List.IsPrefix.length_le h) (by simp)
@@ -348,6 +449,9 @@ theorem swapPath_of_prefix : ∀ {q p : List Bool}, p <+: q → swapPath q p = p
     obtain ⟨rfl, h'⟩ := List.cons_prefix_cons.1 h
     rw [swapPath_cons_cons, ite_eq_left rfl, swapPath_of_prefix h']
 
+/--
+@isnad1 id=iff.0h5v.s5.8aa3c23f8586 from=translated src=- shape=f0715b80 vocab=ad3d2294
+-/
 theorem mem_paths_swapAt : ∀ (t : BTree E) (q p : List Bool),
     p ∈ (t.swapAt tw q).paths ↔ swapPath q p ∈ t.paths
   | leaf, [], [] => by simp
@@ -383,6 +487,9 @@ def unswapPos : BTree E → List Bool → ℕ → ℕ
   | node _ l _, false :: q, k => if k < l.arity then l.unswapPos q k else k
   | node _ l r, true :: q, k => if k < l.arity then k else l.arity + r.unswapPos q (k - l.arity)
 
+/--
+@isnad1 id=lt.1h4v.s4.4693c5bb3676 from=translated src=- shape=d2b14668 vocab=24444eae
+-/
 theorem swapPos_lt : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity →
     t.swapPos q k < t.arity
   | leaf, _, _, h => h
@@ -405,6 +512,9 @@ theorem swapPos_lt : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity �
     · have := swapPos_lt r q (k := k - l.arity) (by omega)
       omega
 
+/--
+@isnad1 id=lt.1h4v.s4.90a233683a1a from=translated src=- shape=d2b14668 vocab=f8f882ad
+-/
 theorem unswapPos_lt : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity →
     t.unswapPos q k < t.arity
   | leaf, _, _, h => h
@@ -427,6 +537,9 @@ theorem unswapPos_lt : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity 
     · have := unswapPos_lt r q (k := k - l.arity) (by omega)
       omega
 
+/--
+@isnad1 id=eq.1h4v.s4.782b1ce2aeec from=translated src=- shape=0dc0d50f vocab=30e64d46
+-/
 theorem unswapPos_swapPos : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity →
     t.unswapPos q (t.swapPos q k) = k
   | leaf, _, _, _ => rfl
@@ -451,6 +564,9 @@ theorem unswapPos_swapPos : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.a
         unswapPos_swapPos r q (k := k - l.arity) (by omega)]
       omega
 
+/--
+@isnad1 id=eq.1h4v.s4.dbaf3beeb3e3 from=translated src=- shape=0dc0d50f vocab=30e64d46
+-/
 theorem swapPos_unswapPos : ∀ (t : BTree E) (q : List Bool) {k : ℕ}, k < t.arity →
     t.swapPos q (t.unswapPos q k) = k
   | leaf, _, _, _ => rfl
@@ -485,7 +601,9 @@ def splitAt : BTree E → List Bool → ℕ × ℕ
 /-! ### A swap above or beside a cut, and a swap inside it -/
 
 /-- **A swap away from the subtree at `p`** moves the path, keeps the subtree, swaps the cut tree
-at the same vertex, and moves the cut-off leaf as it moves the leaves of the cut tree.-/
+at the same vertex, and moves the cut-off leaf as it moves the leaves of the cut tree.
+@isnad1 id=and.2h5v.s6.75f24f67cbcb from=translated src=- shape=9be9b8c7 vocab=ee5ab21d
+-/
 theorem swapAt_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths → ¬ p <+: q →
     (t.swapAt tw q).subAt (swapPath q p) = t.subAt p ∧
       (t.swapAt tw q).cutAt (swapPath q p) = (t.cutAt p).swapAt tw q ∧
@@ -526,7 +644,9 @@ theorem swapAt_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.
     simp [swapPos]
 
 /-- **A swap inside the subtree at `p`** swaps the subtree and keeps the cut tree and the cut-off
-leaf.-/
+leaf.
+@isnad1 id=and.2h5v.s6.0aa554d29fd6 from=translated src=- shape=22e74578 vocab=d55fd038
+-/
 theorem swapAt_cut_of_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths → p <+: q →
     (t.swapAt tw q).subAt p = (t.subAt p).swapAt tw (q.drop p.length) ∧
       (t.swapAt tw q).cutAt p = t.cutAt p ∧ (t.swapAt tw q).posAt p = t.posAt p
@@ -556,7 +676,9 @@ def shiftPos (a n k : ℕ) : ℕ := if k < a then k else k + n - 1
 
 /-- **Leaf positions under a swap away from the subtree at `p`**: the leaves of the cut tree move
 as in the swapped cut tree, and the leaves of the subtree move as one block, following the
-cut-off leaf.-/
+cut-off leaf.
+@isnad1 id=and.2h4v.s7.4226408adc97 from=translated src=- shape=d6b98139 vocab=8b0b29a3
+-/
 theorem swapPos_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths →
     ¬ p <+: q →
     (∀ k, k < (t.cutAt p).arity → k ≠ t.posAt p →
@@ -682,7 +804,9 @@ theorem swapPos_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t
         ite_eq_right (show ¬ l.arity + r.posAt p < l.arity by omega)]
 
 /-- **Leaf positions under a swap inside the subtree at `p`**: the block of the subtree is
-permuted as the swap permutes the leaves of the subtree, and the other leaves stay.-/
+permuted as the swap permutes the leaves of the subtree, and the other leaves stay.
+@isnad1 id=eq.3h5v.s7.8151a52fb1d4 from=translated src=- shape=7b9304b6 vocab=810ead71
+-/
 theorem swapPos_cut_of_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths → p <+: q →
     ∀ m, m < t.arity → t.swapPos q m = if t.posAt p ≤ m ∧ m < t.posAt p + (t.subAt p).arity then
       t.posAt p + (t.subAt p).swapPos (q.drop p.length) (m - t.posAt p) else m
@@ -719,7 +843,9 @@ theorem swapPos_cut_of_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.pat
 
 /-- **The sign of a swap away from the subtree at `p`**, against the sign of the same swap of the
 cut tree: they differ exactly by the parity of the shift of the cut-off leaf, weighted by the
-weight of the subtree.-/
+weight of the subtree.
+@isnad1 id=eq.2h4v.s7.b5dcca427888 from=translated src=- shape=014602de vocab=d86e0a60
+-/
 theorem splitAt_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths →
     ¬ p <+: q →
     ((t.splitAt q).1 * (t.splitAt q).2 + t.posAt p * (t.subAt p).weight) % 2
@@ -784,7 +910,9 @@ theorem splitAt_cut_of_not_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t
     rw [cons_true_mem_paths] at hp
     simp [splitAt, swapPos]
 
-/-- The sign of a swap inside the subtree at `p` is the sign of the same swap of the subtree.-/
+/-- The sign of a swap inside the subtree at `p` is the sign of the same swap of the subtree.
+@isnad1 id=eq.2h4v.s5.3e37b9cc6b55 from=translated src=- shape=87d506d3 vocab=97993ece
+-/
 theorem splitAt_cut_of_prefix : ∀ (t : BTree E) (q p : List Bool), p ∈ t.paths → p <+: q →
     t.splitAt q = (t.subAt p).splitAt (q.drop p.length)
   | leaf, q, p, hp, _ => by
@@ -809,6 +937,9 @@ end Swap
 /-- **A vertex** of a tree: a path ending at a vertex rather than at a leaf.-/
 def IsVertex (t : BTree E) (q : List Bool) : Prop := q ∈ t.paths ∧ t.subAt q ≠ leaf
 
+/--
+@isnad1 id=eq.1h4v.s5.70394ae50f10 from=translated src=- shape=101add5e vocab=21a0a62b
+-/
 theorem subAt_append : ∀ (t : BTree E) (p q : List Bool), p ∈ t.paths →
     t.subAt (p ++ q) = (t.subAt p).subAt q
   | leaf, p, q, hp => by
@@ -823,6 +954,9 @@ theorem subAt_append : ∀ (t : BTree E) (p q : List Bool), p ∈ t.paths →
     rw [cons_true_mem_paths] at hp
     simp [subAt_append r p q hp]
 
+/--
+@isnad1 id=iff.1h4v.s6.f20a45a1dffe from=translated src=- shape=ed748b84 vocab=21a0a62b
+-/
 theorem mem_paths_append : ∀ (t : BTree E) (p q : List Bool), p ∈ t.paths →
     (p ++ q ∈ t.paths ↔ q ∈ (t.subAt p).paths)
   | leaf, p, q, hp => by
@@ -837,14 +971,18 @@ theorem mem_paths_append : ∀ (t : BTree E) (p q : List Bool), p ∈ t.paths �
     rw [cons_true_mem_paths] at hp
     simp [mem_paths_append r p q hp]
 
-/-- A vertex inside the subtree at `p` is a vertex of that subtree.-/
+/-- A vertex inside the subtree at `p` is a vertex of that subtree.
+@isnad1 id=isvertex.3h4v.s5.76a994a1d795 from=translated src=- shape=3f26358c vocab=d4bd4d9d
+-/
 theorem isVertex_subAt {t : BTree E} {p q : List Bool} (hp : p ∈ t.paths) (hpq : p <+: q)
     (hq : t.IsVertex q) : (t.subAt p).IsVertex (q.drop p.length) := by
   obtain ⟨q', rfl⟩ := hpq
   simp only [List.drop_left]
   exact ⟨(mem_paths_append t p q' hp).1 hq.1, by rw [← subAt_append t p q' hp]; exact hq.2⟩
 
-/-- A vertex away from the subtree at `p` is a vertex of the cut tree.-/
+/-- A vertex away from the subtree at `p` is a vertex of the cut tree.
+@isnad1 id=isvertex.3h4v.s5.edd157c9b0ff from=translated src=- shape=9a51ccf5 vocab=917708ed
+-/
 theorem isVertex_cutAt : ∀ (t : BTree E) (p q : List Bool), p ∈ t.paths → ¬ p <+: q →
     t.IsVertex q → (t.cutAt p).IsVertex q
   | leaf, _, q, _, _, hq => absurd (by cases q <;> rfl) hq.2
@@ -889,17 +1027,25 @@ def compFinEquiv {m : ℕ} (i : Fin m) (n : ℕ) : Without (Fin m) i ⊕ Fin n �
       (insertEquiv i (m - i - 1) n))).trans
     (finCongr (show (i : ℕ) + n + (m - i - 1) = m - 1 + n by have := i.isLt; omega))
 
+/--
+@isnad1 id=eq.0h4v.s7.287a91d86d10 from=translated src=- shape=838766cd vocab=22b7dc7f
+-/
 lemma compFinEquiv_inl {m : ℕ} (i : Fin m) (n : ℕ) (k : Without (Fin m) i) :
     ((compFinEquiv i n (Sum.inl k) : Fin (m - 1 + n)) : ℕ) = BTree.shiftPos i n k.1 := by
   have hi := i.isLt
   exact insertEquiv_inl_val (i : ℕ) (m - i - 1) n
     ⟨⟨k.1, by omega⟩, fun h => k.2 (Fin.ext (by simpa using congrArg Fin.val h))⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.45dff806ea94 from=translated src=- shape=886d2c14 vocab=b8d466a4
+-/
 lemma compFinEquiv_inr {m : ℕ} (i : Fin m) (n : ℕ) (j : Fin n) :
     ((compFinEquiv i n (Sum.inr j) : Fin (m - 1 + n)) : ℕ) = i + j := rfl
 
 /-- **Relabelling the outer operation of a positional composite**: a relabelling `σ` of the outer
-inputs and a relabelling `τ` of the composite which moves the inserted block with the slot.-/
+inputs and a relabelling `τ` of the composite which moves the inserted block with the slot.
+@isnad1 id=eq.2h9v.s15.4f439a9b0cac from=translated src=- shape=36afe68d vocab=e2f7af9a
+-/
 lemma map_comp_map_left {m n : ℕ} (i : Fin m) (σ : Fin m ≃ Fin m)
     (τ : Fin (m - 1 + n) ≃ Fin (m - 1 + n))
     (hout : ∀ (k : Fin m) (hk : k ≠ i), (τ (compFinEquiv i n (Sum.inl ⟨k, hk⟩)) : ℕ)
@@ -917,7 +1063,9 @@ lemma map_comp_map_left {m n : ℕ} (i : Fin m) (σ : Fin m ≃ Fin m)
     simp only [compEquiv_inr, Equiv.refl_apply, compFinEquiv_inr]
 
 /-- **Relabelling the inserted operation of a positional composite**: the relabelling acts on the
-inserted block, and the other inputs stay.-/
+inserted block, and the other inputs stay.
+@isnad1 id=eq.2h9v.s14.ed3cf8976b99 from=translated src=- shape=a4a414bc vocab=d23d286a
+-/
 lemma map_comp_map_right {m n : ℕ} (i : Fin m) (ρ : Fin n ≃ Fin n)
     (τ : Fin (m - 1 + n) ≃ Fin (m - 1 + n))
     (hout : ∀ k : Without (Fin m) i,
@@ -964,6 +1112,9 @@ def swapPerm {n : ℕ} (t : OfArity E n) (q : List Bool) : Fin n ≃ Fin n where
   left_inv k := Fin.ext (unswapPos_swapPos t.1 q (by rw [t.2]; exact k.2))
   right_inv k := Fin.ext (swapPos_unswapPos t.1 q (by rw [t.2]; exact k.2))
 
+/--
+@isnad1 id=eq.0h5v.s6.02595b52a156 from=translated src=- shape=031a83e1 vocab=c1744853
+-/
 @[simp] lemma swapPerm_val {n : ℕ} (t : OfArity E n) (q : List Bool) (k : Fin n) :
     ((swapPerm t q k : Fin n) : ℕ) = t.1.swapPos q k := rfl
 
@@ -975,13 +1126,22 @@ def swapSign (t : BTree E) (q : List Bool) : R := (-1) ^ ((t.splitAt q).1 * (t.s
 def ev {n : ℕ} (f : TConv R E (toNS P) n) (t : OfArity E n) : P (Fin n) := f t
 
 omit [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (P A)] [SymOperad R P] in
+/--
+@isnad1 id=eq.0h5v.s7.cabd22759b37 from=translated src=- shape=87301213 vocab=e2ee4343
+-/
 @[simp] lemma ev_zero {n : ℕ} (t : OfArity E n) : ev (0 : TConv R E (toNS P) n) t = 0 := rfl
 
 omit [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (P A)] [SymOperad R P] in
+/--
+@isnad1 id=eq.0h7v.s7.04677276de2a from=translated src=- shape=cf04b0d1 vocab=8262e574
+-/
 @[simp] lemma ev_add {n : ℕ} (f g : TConv R E (toNS P) n) (t : OfArity E n) :
     ev (f + g) t = ev f t + ev g t := rfl
 
 omit [SymOperad R P] in
+/--
+@isnad1 id=eq.0h7v.s8.3f733e5ba332 from=translated src=- shape=44dca983 vocab=7ecfd3eb
+-/
 @[simp] lemma ev_smul {n : ℕ} (c : R) (f : TConv R E (toNS P) n) (t : OfArity E n) :
     ev (c • f) t = c • ev f t := rfl
 
@@ -998,12 +1158,18 @@ section Paths
 
 variable {j k : ℕ} {t : OfArity E (j + k + 1)} {p : List Bool}
 
+/--
+@isnad1 id=eq.1h5v.s7.2a1de763ee2c from=translated src=- shape=af1b525a vocab=079dc831
+-/
 lemma arity_cutAt_eq (h : p ∈ t.1.paths ∧ (t.1.subAt p).arity = k + 1) :
     (t.1.cutAt p).arity = j + 1 := by
   have := arity_cutAt t.1 h.1
   rw [t.2, h.2] at this
   omega
 
+/--
+@isnad1 id=lt.1h5v.s7.7caf357d49c0 from=translated src=- shape=4faa9fd2 vocab=420f62ba
+-/
 lemma posAt_lt_succ (h : p ∈ t.1.paths ∧ (t.1.subAt p).arity = k + 1) : t.1.posAt p < j + 1 := by
   have := posAt_lt t.1 h.1
   rwa [arity_cutAt_eq h] at this
@@ -1036,15 +1202,24 @@ section Linear
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=issymm.0h5v.s7.3eb95cda138b from=translated src=- shape=60697805 vocab=88fccb93
+-/
 lemma isSymm_zero : IsSymm tw (0 : TConv R E (toNS P) n) := by
   intro t q _
   rw [ev_zero, ev_zero, map_zero, smul_zero]
 
+/--
+@isnad1 id=issymm.2h7v.s7.7df3b98f33bd from=translated src=- shape=45cbb574 vocab=761f61bc
+-/
 lemma IsSymm.add {f g : TConv R E (toNS P) n} (hf : IsSymm tw f) (hg : IsSymm tw g) :
     IsSymm tw (f + g) := by
   intro t q hq
   rw [ev_add, ev_add, hf t q hq, hg t q hq, map_add, smul_add]
 
+/--
+@isnad1 id=issymm.1h7v.s7.d94a7de23bd8 from=translated src=- shape=a60fa7aa vocab=f462fc29
+-/
 lemma IsSymm.smul {f : TConv R E (toNS P) n} (c : R) (hf : IsSymm tw f) : IsSymm tw (c • f) := by
   intro t q hq
   rw [ev_smul, ev_smul, hf t q hq, map_smul, smul_comm]
@@ -1068,16 +1243,24 @@ section Twisting
 variable {R : Type u} [CommRing R] {P : ℕ → Type v}
   [∀ n, AddCommGroup (P n)] [∀ n, Module R (P n)] [NSOperad R P]
 
-/-- **Coefficients in an ideal.** Reindexing preserves an ideal.-/
+/-- **Coefficients in an ideal.** Reindexing preserves an ideal.
+@isnad1 id=mem.2h6v.s8.3f2a9aec3530 from=translated src=- shape=72550b15 vocab=eef3a15e
+-/
 lemma OperadIdeal.reindex_mem (I : OperadIdeal R P) {m n : ℕ} (h : m = n) {x : P m}
     (hx : x ∈ I.carrier m) : reindex R P h x ∈ I.carrier n := by
   subst h
   exact hx
 
+/--
+@isnad1 id=mem.1h8v.s9.48c37d61efe3 from=translated src=- shape=ff996439 vocab=9335770c
+-/
 lemma OperadIdeal.compFin_mem_left (I : OperadIdeal R P) {m n : ℕ} (i : Fin m) {α : P m}
     (hα : α ∈ I.carrier m) (β : P n) : compFin (R := R) i α β ∈ I.carrier (m - 1 + n) :=
   I.reindex_mem _ (I.comp_mem_left _ _ (I.reindex_mem _ hα) β)
 
+/--
+@isnad1 id=mem.1h8v.s9.e522aafd261a from=translated src=- shape=48cb7a94 vocab=9335770c
+-/
 lemma OperadIdeal.compFin_mem_right (I : OperadIdeal R P) {m n : ℕ} (i : Fin m) (α : P m)
     {β : P n} (hβ : β ∈ I.carrier n) : compFin (R := R) i α β ∈ I.carrier (m - 1 + n) :=
   I.reindex_mem _ (I.comp_mem_right _ _ _ hβ)

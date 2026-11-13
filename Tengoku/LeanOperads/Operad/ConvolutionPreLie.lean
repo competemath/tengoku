@@ -60,14 +60,18 @@ variable {P : ℕ → Type w} [∀ n, AddCommGroup (P n)] [∀ n, Module R (P n)
 
 /-! ## Reindexing -/
 
-/-- Reindexing along a reflexive equality is the identity map.-/
+/-- Reindexing along a reflexive equality is the identity map.
+@isnad1 id=eq.1h3v.s7.421d23aad03a from=translated src=- shape=7f92836a vocab=8f667af3
+-/
 @[simp] lemma reindex_toLinearMap_self {Q : ℕ → Type*} [∀ n, AddCommGroup (Q n)]
     [∀ n, Module R (Q n)] {n : ℕ} (h : n = n) :
     (reindex R Q h).toLinearMap = LinearMap.id := by
   ext x; exact reindex_self h x
 
 omit [NSCooperad R C] [NSOperad R P] in
-/-- A degreewise family of maps commutes with reindexing.-/
+/-- A degreewise family of maps commutes with reindexing.
+@isnad1 id=eq.1h7v.s9.abe67f957654 from=translated src=- shape=652d87ee vocab=97f4e2cb
+-/
 lemma apply_reindex (f : Conv R C P) {k k' : ℕ} (e : k = k') (x : C k) :
     f k' (reindex R C e x) = reindex R P e (f k x) := by
   subst e; rfl
@@ -84,6 +88,9 @@ noncomputable def cterm (m a b n : ℕ) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 +
       NSCooperad.decomp a b n ∘ₗ (reindex R C h.symm).toLinearMap
   else 0
 
+/--
+@isnad1 id=eq.1h9v.s11.827ba375ec02 from=translated src=- shape=1f71e798 vocab=497931a5
+-/
 lemma cterm_of_eq {m a b n : ℕ} (h : a + n + b = m) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b))
     (ψ : C n →ₗ[R] P n) :
     cterm m a b n φ ψ
@@ -91,15 +98,24 @@ lemma cterm_of_eq {m a b n : ℕ} (h : a + n + b = m) (φ : C (a + 1 + b) →ₗ
           NSCooperad.decomp a b n ∘ₗ (reindex R C h.symm).toLinearMap :=
   dite_eq_left h
 
+/--
+@isnad1 id=eq.1h9v.s9.83df317876f4 from=translated src=- shape=a4a01126 vocab=62ba2d06
+-/
 lemma cterm_of_ne {m a b n : ℕ} (h : a + n + b ≠ m) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b))
     (ψ : C n →ₗ[R] P n) : cterm m a b n φ ψ = 0 :=
   dite_eq_right h
 
+/--
+@isnad1 id=eq.0h9v.s7.5b41f3ae9921 from=translated src=- shape=633e022c vocab=a86cbb3d
+-/
 lemma convTerm_eq_cterm (f g : Conv R C P) (m a n b : ℕ) :
     convTerm f g m a n b = cterm m a b n (f (a + 1 + b)) (g n) := rfl
 
 /-! ### Bilinearity of a term -/
 
+/--
+@isnad1 id=eq.0h10v.s10.7c235455d614 from=translated src=- shape=7a693d79 vocab=62ba2d06
+-/
 lemma cterm_add_left (m a b n : ℕ) (φ₁ φ₂ : C (a + 1 + b) →ₗ[R] P (a + 1 + b))
     (ψ : C n →ₗ[R] P n) :
     cterm m a b n (φ₁ + φ₂) ψ = cterm m a b n φ₁ ψ + cterm m a b n φ₂ ψ := by
@@ -108,6 +124,9 @@ lemma cterm_add_left (m a b n : ℕ) (φ₁ φ₂ : C (a + 1 + b) →ₗ[R] P (a
       LinearMap.comp_add]
   · simp only [cterm_of_ne h, add_zero]
 
+/--
+@isnad1 id=eq.0h10v.s9.f93852918dc4 from=translated src=- shape=cdfe9d11 vocab=62ba2d06
+-/
 lemma cterm_add_right (m a b n : ℕ) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b))
     (ψ₁ ψ₂ : C n →ₗ[R] P n) :
     cterm m a b n φ (ψ₁ + ψ₂) = cterm m a b n φ ψ₁ + cterm m a b n φ ψ₂ := by
@@ -116,6 +135,9 @@ lemma cterm_add_right (m a b n : ℕ) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b
       LinearMap.comp_add]
   · simp only [cterm_of_ne h, add_zero]
 
+/--
+@isnad1 id=eq.0h8v.s9.097fa50584f5 from=translated src=- shape=0425799e vocab=62ba2d06
+-/
 lemma cterm_zero_left (m a b n : ℕ) (ψ : C n →ₗ[R] P n) :
     cterm m a b n (0 : C (a + 1 + b) →ₗ[R] P (a + 1 + b)) ψ = 0 := by
   by_cases h : a + n + b = m
@@ -123,6 +145,9 @@ lemma cterm_zero_left (m a b n : ℕ) (ψ : C n →ₗ[R] P n) :
       LinearMap.comp_zero]
   · exact cterm_of_ne h _ _
 
+/--
+@isnad1 id=eq.0h8v.s9.5abf3f84c02b from=translated src=- shape=8325b85b vocab=62ba2d06
+-/
 lemma cterm_zero_right (m a b n : ℕ) (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b)) :
     cterm m a b n φ (0 : C n →ₗ[R] P n) = 0 := by
   by_cases h : a + n + b = m
@@ -144,11 +169,17 @@ noncomputable def ctermRight (m a b n : ℕ) (φ : C (a + 1 + b) →ₗ[R] P (a 
   map_zero' := cterm_zero_right m a b n φ
   map_add' ψ₁ ψ₂ := cterm_add_right m a b n φ ψ₁ ψ₂
 
+/--
+@isnad1 id=eq.0h11v.s9.140b161fa782 from=translated src=- shape=d2df9f49 vocab=665d4a67
+-/
 lemma cterm_sum_left {ι : Type*} (s : Finset ι) (m a b n : ℕ)
     (φ : ι → (C (a + 1 + b) →ₗ[R] P (a + 1 + b))) (ψ : C n →ₗ[R] P n) :
     cterm m a b n (∑ i ∈ s, φ i) ψ = ∑ i ∈ s, cterm m a b n (φ i) ψ :=
   map_sum (ctermLeft m a b n ψ) φ s
 
+/--
+@isnad1 id=eq.0h11v.s9.8649ebbbc006 from=translated src=- shape=59183464 vocab=665d4a67
+-/
 lemma cterm_sum_right {ι : Type*} (s : Finset ι) (m a b n : ℕ)
     (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b)) (ψ : ι → (C n →ₗ[R] P n)) :
     cterm m a b n φ (∑ i ∈ s, ψ i) = ∑ i ∈ s, cterm m a b n φ (ψ i) :=
@@ -160,12 +191,17 @@ lemma cterm_sum_right {ι : Type*} (s : Finset ι) (m a b n : ℕ)
 def decomps (m : ℕ) : Finset (ℕ × ℕ × ℕ) :=
   (range (m + 1) ×ˢ range (m + 1) ×ˢ range (m + 1)).filter fun x => x.1 + x.2.1 + x.2.2 = m
 
+/--
+@isnad1 id=iff.0h2v.s6.1ff54677c12b from=translated src=- shape=02aa7f45 vocab=07da4c38
+-/
 @[simp] lemma mem_decomps {m : ℕ} {x : ℕ × ℕ × ℕ} :
     x ∈ decomps m ↔ x.1 + x.2.1 + x.2.2 = m := by
   simp only [decomps, mem_filter, mem_product, mem_range]
   omega
 
-/-- **The convolution product as a sum over the decompositions of the arity.**-/
+/-- **The convolution product as a sum over the decompositions of the arity.**
+@isnad1 id=eq.0h6v.s8.64f35f292178 from=translated src=- shape=067b1692 vocab=d0b5a200
+-/
 lemma star_eq_sum (f g : Conv R C P) (m : ℕ) :
     (f ⋆c g) m = ∑ x ∈ decomps m, cterm m x.1 x.2.2 x.2.1 (f (x.1 + 1 + x.2.2)) (g x.2.1) := by
   rw [star_apply, decomps, sum_filter, sum_product]
@@ -189,6 +225,9 @@ noncomputable def rterm (f g h : Conv R C P) (m : ℕ) (x y : ℕ × ℕ × ℕ)
   cterm m x.1 x.2.2 x.2.1 (f (x.1 + 1 + x.2.2))
     (cterm x.2.1 y.1 y.2.2 y.2.1 (g (y.1 + 1 + y.2.2)) (h y.2.1))
 
+/--
+@isnad1 id=eq.0h7v.s8.0133a6648458 from=translated src=- shape=25c0fab4 vocab=f2f8dc24
+-/
 lemma star_star_left_eq (f g h : Conv R C P) (m : ℕ) :
     ((f ⋆c g) ⋆c h) m
       = ∑ x ∈ decomps m, ∑ y ∈ decomps (x.1 + 1 + x.2.2), lterm f g h m x y := by
@@ -197,6 +236,9 @@ lemma star_star_left_eq (f g h : Conv R C P) (m : ℕ) :
   rw [star_eq_sum, cterm_sum_left]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.27c1b70e925b from=translated src=- shape=89692e04 vocab=c6edb4bb
+-/
 lemma star_star_right_eq (f g h : Conv R C P) (m : ℕ) :
     (f ⋆c (g ⋆c h)) m = ∑ x ∈ decomps m, ∑ y ∈ decomps x.2.1, rterm f g h m x y := by
   rw [star_eq_sum]
@@ -207,7 +249,9 @@ lemma star_star_right_eq (f g h : Conv R C P) (m : ℕ) :
 /-! ## Sorting the inner decompositions -/
 
 /-- The inner decompositions fall in three classes, by where the outer slot `x.1` sits relative to
-the inner block `[y.1, y.1 + y.2.1)`: inside it, before it, or after it.-/
+the inner block `[y.1, y.1 + y.2.1)`: inside it, before it, or after it.
+@isnad1 id=eq.0h4v.s8.41f2c5101725 from=translated src=- shape=d6c21446 vocab=20bb65f2
+-/
 lemma sum_split3 {M : Type*} [AddCommMonoid M] (x : ℕ × ℕ × ℕ) (s : Finset (ℕ × ℕ × ℕ))
     (F : ℕ × ℕ × ℕ → M) :
     ∑ y ∈ s, F y
@@ -230,7 +274,9 @@ term of `f ⋆c (g ⋆c h)` has `g ⋆c h` after `a` inputs of `f`. Both factor 
 two-step decomposition of `C m`, by `decomp_assoc_seq`, and the two remaining maps agree on pure
 tensors by `comp_assoc_seq`. -/
 
-/-- **Sequential associativity, termwise.**-/
+/-- **Sequential associativity, termwise.**
+@isnad1 id=eq.1h12v.s9.bb26262bb763 from=translated src=- shape=a093a177 vocab=62ba2d06
+-/
 theorem nested_term {a b c d p : ℕ} (m : ℕ) (hm : a + (c + p + d) + b = m)
     (φ : C (a + 1 + b) →ₗ[R] P (a + 1 + b)) (χ : C (c + 1 + d) →ₗ[R] P (c + 1 + d))
     (ψ : C p →ₗ[R] P p) :
@@ -270,7 +316,9 @@ theorem nested_term {a b c d p : ℕ} (m : ℕ) (hm : a + (c + p + d) + b = m)
         simp only [Φ₂, D, LinearMap.comp_apply, LinearEquiv.coe_coe]
         rw [← hco, LinearMap.map_lTensor, LinearMap.comp_assoc]
 
-/-- `nested_term` for index variables tied to its parameters by equations.-/
+/-- `nested_term` for index variables tied to its parameters by equations.
+@isnad1 id=eq.13h24v.s8.5e309ea2fd9f from=translated src=- shape=99bdef23 vocab=f4c83a74
+-/
 theorem nested_term' (f g h : Conv R C P) (m a b c d p A N B A' N' B' A₂ N₂ B₂ C₂ P₂ D₂ : ℕ)
     (hA : A = a + c) (hN : N = p) (hB : B = d + b) (hA' : A' = a) (hN' : N' = c + 1 + d)
     (hB' : B' = b) (hA₂ : A₂ = a) (hN₂ : N₂ = c + p + d) (hB₂ : B₂ = b) (hC₂ : C₂ = c)
@@ -279,7 +327,9 @@ theorem nested_term' (f g h : Conv R C P) (m a b c d p A N B A' N' B' A₂ N₂ 
   subst_vars
   exact nested_term _ rfl _ _ _
 
-/-- **The nested part of `(f ⋆c g) ⋆c h` is `f ⋆c (g ⋆c h)`.**-/
+/-- **The nested part of `(f ⋆c g) ⋆c h` is `f ⋆c (g ⋆c h)`.**
+@isnad1 id=eq.0h7v.s9.01ad496d313e from=translated src=- shape=4dc37bfc vocab=62d15b1e
+-/
 lemma sum_nested (f g h : Conv R C P) (m : ℕ) :
     ∑ x ∈ decomps m, ∑ y ∈ (decomps (x.1 + 1 + x.2.2)).filter
         (fun y => y.1 ≤ x.1 ∧ x.1 < y.1 + y.2.1), lterm f g h m x y
@@ -318,7 +368,9 @@ lemma sum_nested (f g h : Conv R C P) (m : ℕ) :
 `(f ⋆c g) ⋆c h` the first order is a term with `h` after `g`; in `(f ⋆c h) ⋆c g` the second order
 is a term with `g` before `h`. -/
 
-/-- **Parallel associativity, termwise.**-/
+/-- **Parallel associativity, termwise.**
+@isnad1 id=eq.1h12v.s9.bc4c4e79d080 from=translated src=- shape=72048ced vocab=2f5be008
+-/
 theorem parallel_term (f : Conv R C P) {a b c n p : ℕ} (m : ℕ) (hm : a + n + b + p + c = m)
     (X : C n →ₗ[R] P n) (Y : C p →ₗ[R] P p) :
     cterm m (a + n + b) c p
@@ -370,7 +422,9 @@ theorem parallel_term (f : Conv R C P) {a b c n p : ℕ} (m : ℕ) (hm : a + n +
         simp only [Ψ₂, E, LinearMap.comp_apply, LinearMap.map_rTensor, LinearMap.comp_assoc]
 
 /-- `parallel_term` for index variables tied to its parameters by equations: a term of
-`(f ⋆c g) ⋆c h` with `h` after `g` is a term of `(f ⋆c h) ⋆c g` with `g` before `h`.-/
+`(f ⋆c g) ⋆c h` with `h` after `g` is a term of `(f ⋆c h) ⋆c g` with `g` before `h`.
+@isnad1 id=eq.13h24v.s8.677c085a0bea from=translated src=- shape=ae94b4e4 vocab=57174b14
+-/
 theorem parallel_term' (f g h : Conv R C P)
     (m a b c n p A N B A' N' B' A₂ N₂ B₂ A₂' N₂' B₂' : ℕ)
     (hA : A = a + n + b) (hN : N = p) (hB : B = c) (hA' : A' = a) (hN' : N' = n)
@@ -381,7 +435,9 @@ theorem parallel_term' (f g h : Conv R C P)
   exact parallel_term f _ rfl _ _
 
 /-- **The terms of `(f ⋆c g) ⋆c h` with `h` after `g` are the terms of `(f ⋆c h) ⋆c g` with `g`
-before `h`.**-/
+before `h`.**
+@isnad1 id=eq.0h7v.s9.9c08b86a1bd4 from=translated src=- shape=101de0e9 vocab=30cb7f89
+-/
 lemma sum_after_eq_sum_before (f g h : Conv R C P) (m : ℕ) :
     ∑ x ∈ decomps m, ∑ y ∈ (decomps (x.1 + 1 + x.2.2)).filter (fun y => y.1 + y.2.1 ≤ x.1),
         lterm f g h m x y
@@ -425,7 +481,9 @@ noncomputable def afterPart (f g h : Conv R C P) (m : ℕ) : C m →ₗ[R] P m :
   ∑ x ∈ decomps m, ∑ y ∈ (decomps (x.1 + 1 + x.2.2)).filter (fun y => y.1 + y.2.1 ≤ x.1),
     lterm f g h m x y
 
-/-- **The associator is the disjoint part.**-/
+/-- **The associator is the disjoint part.**
+@isnad1 id=eq.0h7v.s9.4aeb6ffbae38 from=translated src=- shape=359dd434 vocab=f980a70d
+-/
 lemma associator_eq (f g h : Conv R C P) (m : ℕ) :
     ((f ⋆c g) ⋆c h) m - (f ⋆c (g ⋆c h)) m = beforePart f g h m + afterPart f g h m := by
   rw [star_star_left_eq, star_star_right_eq, ← sum_nested]
@@ -434,7 +492,9 @@ lemma associator_eq (f g h : Conv R C P) (m : ℕ) :
   abel
 
 /-- **The pre-Lie identity.** The associator of the convolution product is symmetric in its last
-two arguments.-/
+two arguments.
+@isnad1 id=eq.0h6v.s8.add4a57680dd from=translated src=- shape=7f4cc5d7 vocab=26d84a5e
+-/
 theorem star_assoc_symm (f g h : Conv R C P) :
     (f ⋆c g) ⋆c h - f ⋆c (g ⋆c h) = (f ⋆c h) ⋆c g - f ⋆c (h ⋆c g) := by
   funext m

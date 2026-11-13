@@ -48,32 +48,48 @@ def reindex {m n : ℕ} (h : m = n) : P m ≃ₗ[R] P n := by
 
 variable {R P}
 
+/--
+@isnad1 id=eq.0h4v.s7.79ba523d7ac3 from=translated src=- shape=71b8d0ef vocab=52e41c17
+-/
 @[simp]
 lemma reindex_rfl {n : ℕ} (x : P n) : reindex R P (rfl : n = n) x = x := rfl
 
 /-- Reindexing along *any* proof of a reflexive equality is the identity. Stronger than
 `reindex_rfl`, which only fires when the proof is syntactically `rfl`; in practice the proofs
-are produced by `omega` and are never syntactically `rfl`.-/
+are produced by `omega` and are never syntactically `rfl`.
+@isnad1 id=eq.1h4v.s8.59a28e6ecf40 from=translated src=- shape=5268941d vocab=68214a87
+-/
 @[simp]
 lemma reindex_self {n : ℕ} (h : n = n) (x : P n) : reindex R P h x = x := by
   obtain rfl : h = rfl := Subsingleton.elim _ _
   rfl
 
+/--
+@isnad1 id=eq.2h6v.s9.480651fdabb7 from=translated src=- shape=3495c0f0 vocab=5eb4f7f4
+-/
 @[simp]
 lemma reindex_reindex {l m n : ℕ} (h₁ : l = m) (h₂ : m = n) (x : P l) :
     reindex R P h₂ (reindex R P h₁ x) = reindex R P (h₁.trans h₂) x := by
   subst h₁; subst h₂; rfl
 
+/--
+@isnad1 id=eq.1h5v.s9.133539d0c46a from=translated src=- shape=d6672b8f vocab=a463a9fa
+-/
 @[simp]
 lemma reindex_symm_apply {m n : ℕ} (h : m = n) (x : P n) :
     (reindex R P h).symm x = reindex R P h.symm x := by
   subst h; rfl
 
+/--
+@isnad1 id=injectiv.1h4v.s8.abe45cc6b248 from=translated src=- shape=29658fd3 vocab=41cbab47
+-/
 lemma reindex_injective {m n : ℕ} (h : m = n) : Function.Injective (reindex R P h) :=
   (reindex R P h).injective
 
 /-- Two elements are equal iff their reindexings are. Useful for rewriting a goal into a
-convenient arity before comparing.-/
+convenient arity before comparing.
+@isnad1 id=iff.1h6v.s8.d37398fbdab1 from=translated src=- shape=cedf43dd vocab=68214a87
+-/
 lemma reindex_eq_iff {m n : ℕ} (h : m = n) (x y : P m) :
     reindex R P h x = reindex R P h y ↔ x = y :=
   (reindex R P h).injective.eq_iff
@@ -115,29 +131,45 @@ namespace NSOperad
 variable {R : Type u} [CommRing R] {P : ℕ → Type v}
   [∀ n, AddCommGroup (P n)] [∀ n, Module R (P n)] [NSOperad R P]
 
-/-- Composition is linear in the outer operation.-/
+/-- Composition is linear in the outer operation.
+@isnad1 id=eq.0h8v.s12.0aaf1257374e from=translated src=- shape=a829be4c vocab=221b629c
+-/
 lemma comp_add_left (a b : ℕ) {n : ℕ} (α α' : P (a + 1 + b)) (β : P n) :
     comp (R := R) a b (α + α') β = comp (R := R) a b α β + comp (R := R) a b α' β := by
   rw [map_add]; rfl
 
-/-- Composition is linear in the inserted operation.-/
+/-- Composition is linear in the inserted operation.
+@isnad1 id=eq.0h8v.s12.e7a57329ffb6 from=translated src=- shape=a86d3f8d vocab=221b629c
+-/
 lemma comp_add_right (a b : ℕ) {n : ℕ} (α : P (a + 1 + b)) (β β' : P n) :
     comp (R := R) a b α (β + β') = comp (R := R) a b α β + comp (R := R) a b α β' :=
   map_add _ _ _
 
+/--
+@isnad1 id=eq.0h6v.s10.bbe8209ff140 from=translated src=- shape=7aa1c17a vocab=221b629c
+-/
 lemma comp_zero_left (a b : ℕ) {n : ℕ} (β : P n) :
     comp (R := R) a b (0 : P (a + 1 + b)) β = 0 := by
   rw [map_zero]; rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.753e570ad39d from=translated src=- shape=7b3d0475 vocab=221b629c
+-/
 @[simp]
 lemma comp_zero_right (a b : ℕ) {n : ℕ} (α : P (a + 1 + b)) :
     comp (R := R) a b α (0 : P n) = 0 :=
   map_zero _
 
+/--
+@isnad1 id=eq.0h8v.s11.0e0911c3ffbc from=translated src=- shape=6ca24147 vocab=6e8898bc
+-/
 lemma comp_smul_left (a b : ℕ) {n : ℕ} (r : R) (α : P (a + 1 + b)) (β : P n) :
     comp (R := R) a b (r • α) β = r • comp (R := R) a b α β := by
   rw [map_smul]; rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.163660933de5 from=translated src=- shape=db68992c vocab=6e8898bc
+-/
 lemma comp_smul_right (a b : ℕ) {n : ℕ} (r : R) (α : P (a + 1 + b)) (β : P n) :
     comp (R := R) a b α (r • β) = r • comp (R := R) a b α β :=
   map_smul _ _ _
@@ -169,7 +201,9 @@ section Ass
 variable (R : Type u) [CommRing R]
 
 /-- On a constant family, reindexing is the identity. This is what lets `ring` finish the
-coherence obligations below.-/
+coherence obligations below.
+@isnad1 id=eq.1h4v.s8.7ac931c83fb3 from=translated src=- shape=bb85c5e9 vocab=c1cb8648
+-/
 @[simp]
 lemma reindex_ass {m n : ℕ} (h : m = n) (x : Ass R m) :
     reindex R (Ass R) h x = x := by

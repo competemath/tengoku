@@ -30,15 +30,27 @@ variable {R : Type u} [CommRing R]
 
 namespace SymOperadHom
 
+/--
+@isnad1 id=eq.0h4v.s8.f97f95af8b1f from=translated src=- shape=a5d73ded vocab=0b623aa1
+-/
 @[simp] lemma id_app (A : Type) [Fintype A] [DecidableEq A] (x : P A) :
     (SymOperadHom.id : SymOperadHom R P P).app A x = x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.53630409503f from=translated src=- shape=9102b19d vocab=9cd63791
+-/
 @[simp] lemma comp_id (φ : SymOperadHom R P Q) : φ.comp SymOperadHom.id = φ :=
   ext fun _ _ _ _ => rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.0b4309f7cde2 from=translated src=- shape=6dcbf638 vocab=9cd63791
+-/
 @[simp] lemma id_comp (φ : SymOperadHom R P Q) : SymOperadHom.id.comp φ = φ :=
   ext fun _ _ _ _ => rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.77e20ab2d4cc from=translated src=- shape=c1873c3b vocab=9be9fc11
+-/
 lemma comp_assoc {T : (A : Type) → [Fintype A] → [DecidableEq A] → Type*}
     [∀ (A : Type) [Fintype A] [DecidableEq A], AddCommGroup (T A)]
     [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (T A)] [SymOperad R T]
@@ -60,10 +72,16 @@ structure SymOperadIso where
 
 namespace SymOperadIso
 
+/--
+@isnad1 id=eq.0h6v.s8.583f86dadb17 from=translated src=- shape=5991fee2 vocab=96b3ff31
+-/
 @[simp] lemma inv_hom_apply (e : SymOperadIso R P Q) (A : Type) [Fintype A] [DecidableEq A]
     (x : P A) : e.inv.app A (e.hom.app A x) = x :=
   congrArg (fun φ : SymOperadHom R P P => φ.app A x) e.hom_inv_id
 
+/--
+@isnad1 id=eq.0h6v.s8.5de6b17a6bab from=translated src=- shape=b93953dd vocab=96b3ff31
+-/
 @[simp] lemma hom_inv_apply (e : SymOperadIso R P Q) (A : Type) [Fintype A] [DecidableEq A]
     (y : Q A) : e.hom.app A (e.inv.app A y) = y :=
   congrArg (fun φ : SymOperadHom R Q Q => φ.app A y) e.inv_hom_id
@@ -89,10 +107,15 @@ def linearEquiv (e : SymOperadIso R P Q) (A : Type) [Fintype A] [DecidableEq A] 
   LinearEquiv.ofLinearMap (e.hom.app A) (e.inv.app A) (LinearMap.ext fun y => e.hom_inv_apply A y)
     (LinearMap.ext fun x => e.inv_hom_apply A x)
 
+/--
+@isnad1 id=eq.0h6v.s9.4c090e38c16b from=translated src=- shape=97019c2a vocab=2650b2af
+-/
 @[simp] lemma linearEquiv_apply (e : SymOperadIso R P Q) (A : Type) [Fintype A] [DecidableEq A]
     (x : P A) : e.linearEquiv A x = e.hom.app A x := rfl
 
-/-- The components of an isomorphism are bijective.-/
+/-- The components of an isomorphism are bijective.
+@isnad1 id=bijectiv.0h5v.s8.ec5e22c166c0 from=translated src=- shape=27eba344 vocab=ed86f35d
+-/
 lemma bijective (e : SymOperadIso R P Q) (A : Type) [Fintype A] [DecidableEq A] :
     Function.Bijective (e.hom.app A) :=
   (e.linearEquiv A).bijective
@@ -106,6 +129,9 @@ noncomputable def ofBijective (φ : SymOperadHom R P Q)
   hom_inv_id := SymOperadHom.ext fun A _ _ x => SymOperadHom.invOfBijective_app φ h A x
   inv_hom_id := SymOperadHom.ext fun A _ _ y => SymOperadHom.app_invOfBijective φ h A y
 
+/--
+@isnad1 id=eq.1h4v.s8.d4892bcceb82 from=translated src=- shape=40c2cf42 vocab=4e11c1e5
+-/
 @[simp] lemma ofBijective_hom (φ : SymOperadHom R P Q)
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A], Function.Bijective (φ.app A)) :
     (ofBijective φ h).hom = φ := rfl

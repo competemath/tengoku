@@ -25,21 +25,39 @@ variable {L : Type v} [RightPreLieRing L]
 /-- The commutator `x * y - y * x`.-/
 def commutator (x y : L) : L := x * y - y * x
 
+/--
+@isnad1 id=eq.0h3v.s6.ede0921ec79a from=translated src=- shape=ccde432c vocab=4fb59775
+-/
 lemma commutator_def (x y : L) : commutator x y = x * y - y * x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.5e4111530756 from=translated src=- shape=acc2d0a4 vocab=fcf567da
+-/
 @[simp] lemma commutator_self (x : L) : commutator x x = 0 := sub_self _
 
+/--
+@isnad1 id=eq.0h3v.s5.83175da6dfc3 from=translated src=- shape=43748c76 vocab=5934cf4b
+-/
 lemma commutator_antisymm (x y : L) : commutator x y = -commutator y x := by
   simp only [commutator_def, neg_sub]
 
+/--
+@isnad1 id=eq.0h4v.s5.48b0b2c2f2aa from=translated src=- shape=b3d5c312 vocab=e2e1bdef
+-/
 lemma commutator_add_left (x x' y : L) :
     commutator (x + x') y = commutator x y + commutator x' y := by
   simp only [commutator_def, add_mul, mul_add]; abel
 
+/--
+@isnad1 id=eq.0h4v.s5.b4ece497a8cd from=translated src=- shape=f696fd59 vocab=e2e1bdef
+-/
 lemma commutator_add_right (x y y' : L) :
     commutator x (y + y') = commutator x y + commutator x y' := by
   simp only [commutator_def, add_mul, mul_add]; abel
 
+/--
+@isnad1 id=eq.0h3v.s5.b6856b200695 from=translated src=- shape=6f9dafc8 vocab=5934cf4b
+-/
 lemma commutator_neg_right (x y : L) : commutator x (-y) = -commutator x y := by
   simp only [commutator_def, mul_neg, neg_mul]; abel
 
@@ -53,7 +71,9 @@ private lemma jacobi_aux (x y z : L) :
   abel
 
 /-- **The Jacobi identity**, in cyclic form. Each of the three differences of associators vanishes
-by the right pre-Lie identity.-/
+by the right pre-Lie identity.
+@isnad1 id=eq.0h4v.s6.466590e1dc3a from=translated src=- shape=bc929cf2 vocab=e2e1bdef
+-/
 theorem jacobi (x y z : L) :
     commutator (commutator x y) z + commutator (commutator y z) x
         + commutator (commutator z x) y = 0 := by

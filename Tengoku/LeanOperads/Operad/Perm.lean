@@ -66,7 +66,9 @@ variable {R : Type u} [CommRing R]
 /-! ## 1. Splitting a sum over the three ranges -/
 
 /-- A sum over `Fin (a + n + b)` splits into the part before the inserted block, the block, and
-the part after.  Stated with explicit `Fin.mk`s so that no later proof mentions `Fin.castAdd`.-/
+the part after.  Stated with explicit `Fin.mk`s so that no later proof mentions `Fin.castAdd`.
+@isnad1 id=eq.0h5v.s7.3543fc7088b0 from=translated src=- shape=51c851c3 vocab=ece1d6e2
+-/
 lemma sum_split3 {M : Type u} [AddCommMonoid M] {a n b : ℕ} (f : Fin (a + n + b) → M) :
     ∑ j, f j
       = ((∑ i : Fin a, f (Fin.castAdd b (Fin.castAdd n i)))
@@ -75,10 +77,14 @@ lemma sum_split3 {M : Type u} [AddCommMonoid M] {a n b : ℕ} (f : Fin (a + n + 
   rw [Fin.sum_univ_add, Fin.sum_univ_add]
 
 /-- The coordinate of an explicit `Fin`.  `omega` treats `↑⟨x, h⟩` as an atom unless this fires
-first, which is why it appears in front of almost every arithmetic goal below.-/
+first, which is why it appears in front of almost every arithmetic goal below.
+@isnad1 id=eq.1h2v.s4.960214f50245 from=translated src=- shape=86830ce9 vocab=c3fc1cab
+-/
 lemma val_mk' {n : ℕ} (x : ℕ) (h : x < n) : ((⟨x, h⟩ : Fin n) : ℕ) = x := rfl
 
-/-- Reindexing `Perm` along an equality of arities is reindexing the argument.-/
+/-- Reindexing `Perm` along an equality of arities is reindexing the argument.
+@isnad1 id=eq.1h5v.s8.c225435d54e4 from=translated src=- shape=e9c9257d vocab=87e75929
+-/
 @[simp] lemma reindex_apply {m n : ℕ} (h : m = n) (x : Perm R m) (j : Fin n) :
     reindex R (Perm R) h x j = x ⟨(j : ℕ), by have := j.isLt; omega⟩ := by
   subst h; rfl
@@ -93,17 +99,26 @@ def permComp (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n) : P
     else if h2 : (j : ℕ) < a + n then α ⟨a, by omega⟩ * β ⟨(j : ℕ) - a, by omega⟩
     else (∑ t, β t) * α ⟨(j : ℕ) - n + 1, by have := j.isLt; omega⟩
 
+/--
+@isnad1 id=eq.2h7v.s7.2cc46a21a4f3 from=translated src=- shape=bdbb9dc5 vocab=8301b1e0
+-/
 lemma permComp_apply_lt (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n)
     (j : Fin (a + n + b)) (h : (j : ℕ) < a) (hlt : (j : ℕ) < a + 1 + b) :
     permComp a b α β j = (∑ t, β t) * α ⟨(j : ℕ), hlt⟩ := by
   rw [permComp, dite_eq_left h]
 
+/--
+@isnad1 id=eq.4h7v.s8.13df2d73ec33 from=translated src=- shape=a7a95deb vocab=67077fea
+-/
 lemma permComp_apply_mid (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n)
     (j : Fin (a + n + b)) (h1 : a ≤ (j : ℕ)) (h2 : (j : ℕ) < a + n)
     (ha : a < a + 1 + b) (hb : (j : ℕ) - a < n) :
     permComp a b α β j = α ⟨a, ha⟩ * β ⟨(j : ℕ) - a, hb⟩ := by
   rw [permComp, dite_eq_right (by omega), dite_eq_left h2]
 
+/--
+@isnad1 id=eq.2h7v.s8.bb759fdfad9d from=translated src=- shape=b6947053 vocab=4e986d3e
+-/
 lemma permComp_apply_ge (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n)
     (j : Fin (a + n + b)) (h : a + n ≤ (j : ℕ)) (hlt : (j : ℕ) - n + 1 < a + 1 + b) :
     permComp a b α β j = (∑ t, β t) * α ⟨(j : ℕ) - n + 1, hlt⟩ := by
@@ -114,6 +129,9 @@ lemma permComp_apply_ge (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Pe
 Each law is the same three-way split, and in each branch the statement is a ring identity in one
 or two values of `α` and `β`. -/
 
+/--
+@isnad1 id=eq.0h7v.s8.eced89ba8668 from=translated src=- shape=e01c5d3e vocab=df8e7c57
+-/
 lemma permComp_add_left (a b : ℕ) {n : ℕ} (α α' : Perm R (a + 1 + b)) (β : Perm R n) :
     permComp a b (α + α') β = permComp a b α β + permComp a b α' β := by
   funext j
@@ -136,6 +154,9 @@ lemma permComp_add_left (a b : ℕ) {n : ℕ} (α α' : Perm R (a + 1 + b)) (β 
       show (∑ t, β t) * (α _ + α' _) = _
       ring
 
+/--
+@isnad1 id=eq.0h7v.s8.8ee96c333c78 from=translated src=- shape=32261564 vocab=b3a66bdd
+-/
 lemma permComp_smul_left (a b : ℕ) {n : ℕ} (r : R) (α : Perm R (a + 1 + b)) (β : Perm R n) :
     permComp a b (r • α) β = r • permComp a b α β := by
   funext j
@@ -155,6 +176,9 @@ lemma permComp_smul_left (a b : ℕ) {n : ℕ} (r : R) (α : Perm R (a + 1 + b))
       show (∑ t, β t) * (r * α _) = _
       ring
 
+/--
+@isnad1 id=eq.0h7v.s8.4709e2f7a807 from=translated src=- shape=2c39d9c3 vocab=df8e7c57
+-/
 lemma permComp_add_right (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β β' : Perm R n) :
     permComp a b α (β + β') = permComp a b α β + permComp a b α β' := by
   funext j
@@ -177,6 +201,9 @@ lemma permComp_add_right (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β β'
         permComp_apply_ge _ _ _ _ _ (by omega) (by omega), hsum]
       ring
 
+/--
+@isnad1 id=eq.0h7v.s7.3727af157717 from=translated src=- shape=02488f82 vocab=b3a66bdd
+-/
 lemma permComp_smul_right (a b : ℕ) {n : ℕ} (r : R) (α : Perm R (a + 1 + b)) (β : Perm R n) :
     permComp a b α (r • β) = r • permComp a b α β := by
   funext j
@@ -204,6 +231,9 @@ def compL (a b : ℕ) {n : ℕ} :
     (permComp_add_left a b) (fun r α β => permComp_smul_left a b r α β)
     (permComp_add_right a b) (fun r α β => permComp_smul_right a b r α β)
 
+/--
+@isnad1 id=eq.0h6v.s11.e065908c3a21 from=translated src=- shape=5fcad9c3 vocab=55b80c40
+-/
 @[simp] lemma compL_apply (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n) :
     compL a b α β = permComp a b α β := rfl
 
@@ -212,7 +242,9 @@ def compL (a b : ℕ) {n : ℕ} :
 This is the lemma both associativity axioms need, and it is the statement that summing is a
 morphism of operads `Perm → Ass`. -/
 
-/-- **The total of a composite is the product of the totals.**-/
+/-- **The total of a composite is the product of the totals.**
+@isnad1 id=eq.0h6v.s8.7da99c193c1d from=translated src=- shape=1182bfd1 vocab=f2ca997f
+-/
 theorem sum_permComp (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n) :
     (∑ j, permComp a b α β j) = (∑ i, α i) * ∑ t, β t := by
   rw [sum_split3 (permComp a b α β), sum_split3 α]
@@ -260,8 +292,14 @@ in each range both sides reduce to a product of the same three values of `α`, `
 /-- The identity of `Perm`: the unique operation of arity one, with value `1`.-/
 def permOne : Perm R 1 := fun _ => 1
 
+/--
+@isnad1 id=eq.0h1v.s5.ffa58ee616dc from=translated src=- shape=0b23a90d vocab=d854ec42
+-/
 lemma sum_permOne : (∑ t, (permOne : Perm R 1) t) = 1 := by simp [permOne]
 
+/--
+@isnad1 id=eq.0h4v.s6.7f274ef13225 from=translated src=- shape=0ad07646 vocab=19cbb4eb
+-/
 theorem permComp_one_right (a b : ℕ) (α : Perm R (a + 1 + b)) :
     permComp a b α permOne = α := by
   funext j
@@ -276,6 +314,9 @@ theorem permComp_one_right (a b : ℕ) (α : Perm R (a + 1 + b)) :
     · rw [permComp_apply_ge _ _ _ _ _ (by omega) (by omega), sum_permOne, one_mul]
       exact congrArg α (Fin.ext (by simp only [val_mk']; omega))
 
+/--
+@isnad1 id=eq.0h3v.s10.bf770f7b0c98 from=translated src=- shape=aa00baa7 vocab=5880d271
+-/
 theorem permComp_one_left {n : ℕ} (α : Perm R n) :
     reindex R (Perm R) (show 0 + n + 0 = n by omega) (permComp 0 0 permOne α) = α := by
   funext j
@@ -286,6 +327,9 @@ theorem permComp_one_left {n : ℕ} (α : Perm R n) :
   rw [one_mul]
   exact congrArg α (Fin.ext (by simp))
 
+/--
+@isnad1 id=eq.0h9v.s12.6061ce1fd7bc from=translated src=- shape=ad49c0f0 vocab=4963f4c2
+-/
 theorem permComp_assoc_seq (a b c d : ℕ) {p : ℕ} (α : Perm R (a + 1 + b))
     (β : Perm R (c + 1 + d)) (γ : Perm R p) :
     reindex R (Perm R) (show a + c + p + (d + b) = a + (c + p + d) + b by omega)
@@ -358,6 +402,9 @@ theorem permComp_assoc_seq (a b c d : ℕ) {p : ℕ} (α : Perm R (a + 1 + b))
               = ⟨(j : ℕ) - (c + p + d) + 1, by omega⟩ from Fin.ext (by simp only [val_mk']; omega)]
           ring
 
+/--
+@isnad1 id=eq.0h9v.s13.034c622d0a79 from=translated src=- shape=72e4f786 vocab=1c7c7a1b
+-/
 theorem permComp_assoc_par (a b c : ℕ) {n p : ℕ} (α : Perm R (a + 1 + b + 1 + c))
     (β : Perm R n) (γ : Perm R p) :
     reindex R (Perm R) (show a + n + b + p + c = a + n + (b + p + c) by omega)
@@ -463,9 +510,15 @@ namespace Perm
 
 variable {R : Type u} [CommRing R]
 
+/--
+@isnad1 id=eq.0h6v.s11.d2e542a11c81 from=translated src=- shape=f588227c vocab=eb306c0b
+-/
 @[simp] lemma comp_eq (a b : ℕ) {n : ℕ} (α : Perm R (a + 1 + b)) (β : Perm R n) :
     NSOperad.comp (R := R) a b α β = permComp a b α β := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.c5e432e22160 from=translated src=- shape=59ae5be2 vocab=05b22e2d
+-/
 @[simp] lemma one_eq : (NSOperad.one (R := R) (P := Perm R)) = permOne := rfl
 
 /-- Summing the coordinates, as a linear map.-/

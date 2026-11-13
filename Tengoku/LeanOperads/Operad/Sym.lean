@@ -74,23 +74,41 @@ def seqEquiv [DecidableEq B] (i : A) (j : B) (D : Type) :
   left_inv := by rintro (⟨(a | b), hb⟩ | d) <;> rfl
   right_inv := by rintro (a | (b | d)) <;> rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.d347a126af4a from=translated src=- shape=d285fc9e vocab=2a22fb62
+-/
 @[simp] lemma seqEquiv_inl_inl [DecidableEq B] (i : A) (j : B) (a : Without A i) (h) :
     seqEquiv i j D (Sum.inl ⟨Sum.inl a, h⟩) = Sum.inl a := rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.fbbdc66fca7d from=translated src=- shape=348e607f vocab=0ca0be6a
+-/
 @[simp] lemma seqEquiv_inl_inr [DecidableEq B] (i : A) (j : B) (b : B) (hb) :
     seqEquiv i j D (Sum.inl ⟨Sum.inr b, hb⟩)
       = Sum.inr (Sum.inl ⟨b, fun h => hb (congrArg Sum.inr h)⟩) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.d4fcdb59a7e4 from=translated src=- shape=4c695672 vocab=b2dd218a
+-/
 @[simp] lemma seqEquiv_inr [DecidableEq B] (i : A) (j : B) (d : D) :
     seqEquiv i j D (Sum.inr d) = Sum.inr (Sum.inr d) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.be4cb5512d45 from=translated src=- shape=b6688c90 vocab=2f0e2d33
+-/
 @[simp] lemma seqEquiv_symm_inl [DecidableEq B] (i : A) (j : B) (a : Without A i) :
     (seqEquiv i j D).symm (Sum.inl a) = Sum.inl ⟨Sum.inl a, by simp⟩ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.982b22494437 from=translated src=- shape=be58ffd0 vocab=6ad28d4e
+-/
 @[simp] lemma seqEquiv_symm_inr_inl [DecidableEq B] (i : A) (j : B) (b : Without B j) :
     (seqEquiv i j D).symm (Sum.inr (Sum.inl b)) = Sum.inl ⟨Sum.inr b.1, by simpa using b.2⟩ :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.ea8c5687749b from=translated src=- shape=b8186910 vocab=0776b045
+-/
 @[simp] lemma seqEquiv_symm_inr_inr [DecidableEq B] (i : A) (j : B) (d : D) :
     (seqEquiv i j D).symm (Sum.inr (Sum.inr d)) = Sum.inr d := rfl
 
@@ -116,29 +134,47 @@ def parEquiv {i k : A} (hik : i ≠ k) (B D : Type) [DecidableEq B] [DecidableEq
   left_inv := by rintro (⟨(a | b), ha⟩ | d) <;> rfl
   right_inv := by rintro (⟨(a | d), ha⟩ | b) <;> rfl
 
+/--
+@isnad1 id=eq.2h6v.s10.13009d549ad9 from=translated src=- shape=b0b724ef vocab=d0cb1912
+-/
 @[simp] lemma parEquiv_inl_inl [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k)
     (a : Without A i) (ha : (Sum.inl a : Without A i ⊕ B) ≠ Sum.inl ⟨k, Ne.symm hik⟩) :
     parEquiv hik B D (Sum.inl ⟨Sum.inl a, ha⟩)
       = Sum.inl ⟨Sum.inl ⟨a.1, fun h => ha (by simp [Subtype.ext_iff, h])⟩, by
           simp [Subtype.ext_iff, a.2]⟩ := rfl
 
+/--
+@isnad1 id=eq.2h6v.s10.075ecca5c359 from=translated src=- shape=2ef921ec vocab=8fdc5e0a
+-/
 @[simp] lemma parEquiv_inl_inr [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k) (b : B)
     (hb : (Sum.inr b : Without A i ⊕ B) ≠ Sum.inl ⟨k, Ne.symm hik⟩) :
     parEquiv hik B D (Sum.inl ⟨Sum.inr b, hb⟩) = Sum.inr b := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.74d9217145ff from=translated src=- shape=eb734e6b vocab=501ffc6f
+-/
 @[simp] lemma parEquiv_inr [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k) (d : D) :
     parEquiv hik B D (Sum.inr d) = Sum.inl ⟨Sum.inr d, by simp⟩ := rfl
 
+/--
+@isnad1 id=eq.2h6v.s10.0fe02e3481b2 from=translated src=- shape=72058b48 vocab=016f2b1a
+-/
 @[simp] lemma parEquiv_symm_inl_inl [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k)
     (a : Without A k) (ha : (Sum.inl a : Without A k ⊕ D) ≠ Sum.inl ⟨i, hik⟩) :
     (parEquiv hik B D).symm (Sum.inl ⟨Sum.inl a, ha⟩)
       = Sum.inl ⟨Sum.inl ⟨a.1, fun h => ha (by simp [Subtype.ext_iff, h])⟩, by
           simp [Subtype.ext_iff, a.2]⟩ := rfl
 
+/--
+@isnad1 id=eq.2h6v.s10.3246f8549fa3 from=translated src=- shape=feaac1c3 vocab=9f5c4ca2
+-/
 @[simp] lemma parEquiv_symm_inl_inr [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k)
     (d : D) (hd : (Sum.inr d : Without A k ⊕ D) ≠ Sum.inl ⟨i, hik⟩) :
     (parEquiv hik B D).symm (Sum.inl ⟨Sum.inr d, hd⟩) = Sum.inr d := rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.37656ec09ed7 from=translated src=- shape=bbe12652 vocab=64cbcc8a
+-/
 @[simp] lemma parEquiv_symm_inr [DecidableEq B] [DecidableEq D] {i k : A} (hik : i ≠ k) (b : B) :
     (parEquiv hik B D).symm (Sum.inr b) = Sum.inl ⟨Sum.inr b, by simp⟩ := rfl
 
@@ -156,16 +192,28 @@ def compEquiv (σ : A ≃ A') (τ : B ≃ B') (i : A) : Without A i ⊕ B ≃ Wi
   left_inv := by rintro (⟨a, ha⟩ | b) <;> simp
   right_inv := by rintro (⟨a, ha⟩ | b) <;> simp
 
+/--
+@isnad1 id=eq.0h8v.s8.2a5e2d87a653 from=translated src=- shape=6cc760bf vocab=6a193f0e
+-/
 @[simp] lemma compEquiv_inl (σ : A ≃ A') (τ : B ≃ B') (i : A) (a : Without A i) :
     compEquiv σ τ i (Sum.inl a) = Sum.inl ⟨σ a.1, fun h => a.2 (σ.injective h)⟩ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.49da45f99db5 from=translated src=- shape=9e48d967 vocab=476ab97c
+-/
 @[simp] lemma compEquiv_inr (σ : A ≃ A') (τ : B ≃ B') (i : A) (b : B) :
     compEquiv σ τ i (Sum.inr b) = Sum.inr (τ b) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.0bc7cbed9088 from=translated src=- shape=22c6df7e vocab=10854bf8
+-/
 @[simp] lemma compEquiv_symm_inl (σ : A ≃ A') (τ : B ≃ B') (i : A) (a : Without A' (σ i)) :
     (compEquiv σ τ i).symm (Sum.inl a)
       = Sum.inl ⟨σ.symm a.1, fun h => a.2 (σ.symm_apply_eq.mp h)⟩ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.e8f1d6b89e9e from=translated src=- shape=c93a951f vocab=e12a96dc
+-/
 @[simp] lemma compEquiv_symm_inr (σ : A ≃ A') (τ : B ≃ B') (i : A) (b : B') :
     (compEquiv σ τ i).symm (Sum.inr b) = Sum.inr (τ.symm b) := rfl
 
@@ -187,9 +235,15 @@ def rightUnitEquiv (i : A) : Without A i ⊕ Unit ≃ A where
     · simp [h]
     · simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s6.46d72b0d0d31 from=translated src=- shape=577644f0 vocab=f8b1505c
+-/
 @[simp] lemma rightUnitEquiv_inl (i : A) (a : Without A i) :
     rightUnitEquiv i (Sum.inl a) = a.1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.06146845c776 from=translated src=- shape=96d041a6 vocab=81f21bf6
+-/
 @[simp] lemma rightUnitEquiv_inr (i : A) (u : Unit) : rightUnitEquiv i (Sum.inr u) = i := rfl
 
 /-- **The left unit.** Composing into the single input of the unit leaves the input set alone:
@@ -206,8 +260,14 @@ def leftUnitEquiv (B : Type) : Without Unit () ⊕ B ≃ B where
     · rfl
   right_inv := by intro b; rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.522b820eff4a from=translated src=- shape=7a012433 vocab=1120f178
+-/
 @[simp] lemma leftUnitEquiv_inr (b : B) : leftUnitEquiv B (Sum.inr b) = b := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.44f6fb2b10e1 from=translated src=- shape=97f37653 vocab=4b9bd965
+-/
 @[simp] lemma leftUnitEquiv_symm_apply (b : B) : (leftUnitEquiv B).symm b = Sum.inr b := rfl
 
 /-- The one-element type as the one-element `Fin`.-/
@@ -222,16 +282,28 @@ def slotEquiv {A B : Type} [DecidableEq A] {i i' : A} (h : i = i') :
     Without A i ⊕ B ≃ Without A i' ⊕ B :=
   Equiv.sumCongr (Equiv.subtypeEquivRight fun a => by rw [h]) (Equiv.refl B)
 
+/--
+@isnad1 id=eq.1h5v.s7.147a109c5368 from=translated src=- shape=9a94f178 vocab=0dd4380f
+-/
 @[simp] lemma slotEquiv_inl {A B : Type} [DecidableEq A] {i i' : A} (h : i = i')
     (a : Without A i) : slotEquiv (B := B) h (Sum.inl a) = Sum.inl ⟨a.1, h ▸ a.2⟩ := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.40b504027494 from=translated src=- shape=d7ab6cd6 vocab=468ebcf5
+-/
 @[simp] lemma slotEquiv_inr {A B : Type} [DecidableEq A] {i i' : A} (h : i = i') (b : B) :
     slotEquiv (A := A) h (Sum.inr b) = Sum.inr b := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.e4ad80d71931 from=translated src=- shape=d95acd92 vocab=fcab4f4c
+-/
 lemma rightUnitEquiv_symm_self {A : Type} [DecidableEq A] (i : A) :
     (rightUnitEquiv i).symm i = Sum.inr () := by
   simp [rightUnitEquiv]
 
+/--
+@isnad1 id=eq.1h3v.s6.25160a8d7419 from=translated src=- shape=acc0e9d5 vocab=c6e3d9ae
+-/
 lemma rightUnitEquiv_symm_of_ne {A : Type} [DecidableEq A] {i x : A} (h : x ≠ i) :
     (rightUnitEquiv i).symm x = Sum.inl ⟨x, h⟩ := by
   simp [rightUnitEquiv, h]
@@ -296,24 +368,39 @@ variable {R : Type u} [CommRing R]
 /-! ### Relabelling -/
 
 omit [Fintype B] [DecidableEq B] [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h4v.s7.b25b4ab94673 from=translated src=- shape=f7dd6603 vocab=c63c8cfc
+-/
 @[simp] lemma map_refl' (x : P A) : map (R := R) (Equiv.refl A) x = x := map_refl (R := R) x
 
 omit [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h8v.s9.974a9a46a8e4 from=translated src=- shape=c3c46dd7 vocab=4cc0d96c
+-/
 lemma map_map (e : A ≃ B) (f : B ≃ C) (x : P A) :
     map (R := R) f (map (R := R) e x) = map (R := R) (e.trans f) x :=
   (map_trans (R := R) e f x).symm
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h6v.s8.136e9aef2644 from=translated src=- shape=89ae3416 vocab=2b9987dd
+-/
 @[simp] lemma map_symm_map (e : A ≃ B) (x : P A) :
     map (R := R) e.symm (map (R := R) e x) = x := by
   rw [map_map, Equiv.self_trans_symm, map_refl (R := R)]
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h6v.s8.ffb490e913f9 from=translated src=- shape=35604655 vocab=2b9987dd
+-/
 @[simp] lemma map_map_symm (e : A ≃ B) (y : P B) :
     map (R := R) e (map (R := R) e.symm y) = y := by
   rw [map_map, Equiv.symm_trans_self, map_refl (R := R)]
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=injectiv.0h5v.s8.6e9315abd8f5 from=translated src=- shape=67cefb41 vocab=e792603f
+-/
 lemma map_injective (e : A ≃ B) : Function.Injective (map (R := R) (P := P) e) :=
   fun x y h => by simpa using congrArg (map (R := R) e.symm) h
 
@@ -325,6 +412,9 @@ def mapEquiv (e : A ≃ B) : P A ≃ₗ[R] P B :=
     (by ext x; exact map_symm_map (R := R) e x)
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h6v.s9.9648cdfef394 from=translated src=- shape=71295847 vocab=43d8d7cf
+-/
 @[simp] lemma mapEquiv_apply (e : A ≃ B) (x : P A) :
     mapEquiv (R := R) e x = map (R := R) e x := rfl
 
@@ -334,12 +424,18 @@ Equivariance for permutations of the outer and of the inserted inputs are the ca
 with one of the two bijections the identity. -/
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h8v.s14.8fde037448a3 from=translated src=- shape=1fd76516 vocab=2ea309f5
+-/
 lemma map_comp_outer (σ : Equiv.Perm A) (i : A) (x : P A) (y : P B) :
     map (R := R) (compEquiv σ (Equiv.refl B) i) (comp (R := R) i x y)
       = comp (R := R) (σ i) (map (R := R) σ x) y := by
   rw [map_comp (R := R), map_refl (R := R)]
 
 omit [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
+/--
+@isnad1 id=eq.0h8v.s13.d1b373c66aab from=translated src=- shape=e8aa9788 vocab=2ea309f5
+-/
 lemma map_comp_inner (τ : Equiv.Perm B) (i : A) (x : P A) (y : P B) :
     map (R := R) (compEquiv (Equiv.refl A) τ i) (comp (R := R) i x y)
       = comp (R := R) i x (map (R := R) τ y) := by
@@ -347,14 +443,18 @@ lemma map_comp_inner (τ : Equiv.Perm B) (i : A) (x : P A) (y : P B) :
   rfl
 
 omit [Fintype B] [DecidableEq B] [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
-/-- The right unit law, with the relabelling moved to the other side.-/
+/-- The right unit law, with the relabelling moved to the other side.
+@isnad1 id=eq.0h5v.s12.af7fceba4d15 from=translated src=- shape=27deff8f vocab=11c04f74
+-/
 lemma comp_one' (i : A) (x : P A) :
     comp (R := R) i x (one R) = map (R := R) (rightUnitEquiv i).symm x := by
   apply map_injective (R := R) (rightUnitEquiv i)
   rw [comp_one (R := R), map_map_symm]
 
 omit [Fintype A] [DecidableEq A] [Fintype C] [DecidableEq C] [Fintype D] [DecidableEq D] in
-/-- The left unit law, with the relabelling moved to the other side.-/
+/-- The left unit law, with the relabelling moved to the other side.
+@isnad1 id=eq.0h4v.s12.0a6c4676b6eb from=translated src=- shape=22a2c75f vocab=4fe89e9f
+-/
 lemma one_comp' (y : P B) :
     comp (R := R) () (one R) y = map (R := R) (leftUnitEquiv B).symm y := by
   apply map_injective (R := R) (leftUnitEquiv B)
@@ -397,7 +497,9 @@ variable {R : Type u} [CommRing R]
   [∀ (A : Type) [Fintype A] [DecidableEq A], AddCommGroup (Q A)]
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (Q A)] [SymOperad R Q]
 
-/-- Two morphisms with the same components are equal.-/
+/-- Two morphisms with the same components are equal.
+@isnad1 id=eq.1h5v.s9.4d4cd45cf8a3 from=translated src=- shape=57282184 vocab=c4be18c2
+-/
 @[ext] lemma ext {φ ψ : SymOperadHom R P Q}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (x : P A), φ.app A x = ψ.app A x) :
     φ = ψ := by
@@ -427,6 +529,9 @@ def comp (ψ : SymOperadHom R Q S) (φ : SymOperadHom R P Q) : SymOperadHom R P 
   app_one := by simp only [LinearMap.comp_apply, φ.app_one, ψ.app_one]
   app_comp i x y := by simp only [LinearMap.comp_apply, φ.app_comp, ψ.app_comp]
 
+/--
+@isnad1 id=eq.0h8v.s9.31d36fe04a0d from=translated src=- shape=beb094e5 vocab=b74ad039
+-/
 @[simp] lemma comp_app (ψ : SymOperadHom R Q S) (φ : SymOperadHom R P Q)
     (A : Type) [Fintype A] [DecidableEq A] (x : P A) :
     (ψ.comp φ).app A x = ψ.app A (φ.app A x) := rfl
@@ -446,12 +551,18 @@ noncomputable def invOfBijective (φ : SymOperadHom R P Q)
     apply (h _).1
     simp only [LinearEquiv.coe_coe, LinearEquiv.apply_ofBijective_symm_apply, φ.app_comp]
 
+/--
+@isnad1 id=eq.1h6v.s9.12e1f1c4b492 from=translated src=- shape=afcd2add vocab=82b92778
+-/
 lemma app_invOfBijective (φ : SymOperadHom R P Q)
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A], Function.Bijective (φ.app A))
     (A : Type) [Fintype A] [DecidableEq A] (y : Q A) :
     φ.app A ((φ.invOfBijective h).app A y) = y :=
   LinearEquiv.apply_ofBijective_symm_apply (φ.app A) (h := h A) y
 
+/--
+@isnad1 id=eq.1h6v.s9.b56d7d904819 from=translated src=- shape=c61fa914 vocab=82b92778
+-/
 lemma invOfBijective_app (φ : SymOperadHom R P Q)
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A], Function.Bijective (φ.app A))
     (A : Type) [Fintype A] [DecidableEq A] (x : P A) :
@@ -504,14 +615,23 @@ instance instSymOperadCom (R : Type u) [CommRing R] : SymOperad R (Com R) where
     simp only [LinearMap.id_apply, LinearMap.mul_apply']
     ring
 
+/--
+@isnad1 id=eq.0h5v.s8.091974aae890 from=translated src=- shape=b97ec596 vocab=b421d8dc
+-/
 @[simp] lemma com_map (R : Type u) [CommRing R] {A B : Type} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B] (e : A ≃ B) (x : Com R A) :
     SymOperad.map (R := R) (P := Com R) e x = x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.5cae16035679 from=translated src=- shape=e3fec0ba vocab=0b608788
+-/
 @[simp] lemma com_comp (R : Type u) [CommRing R] {A B : Type} [Fintype A] [DecidableEq A]
     [Fintype B] [DecidableEq B] (i : A) (x : Com R A) (y : Com R B) :
     SymOperad.comp (R := R) (P := Com R) i x y = x * y := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.4489f97b7b90 from=translated src=- shape=e17bb385 vocab=278afd94
+-/
 @[simp] lemma com_one (R : Type u) [CommRing R] : (SymOperad.one R : Com R Unit) = (1 : R) := rfl
 
 /-! ## The permutative operad
@@ -535,6 +655,9 @@ def mapL (e : A ≃ B) : (A → R) →ₗ[R] (B → R) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.d2e687a5c889 from=translated src=- shape=5033aa04 vocab=5b019cec
+-/
 @[simp] lemma mapL_apply (e : A ≃ B) (x : A → R) (b : B) : mapL e x b = x (e.symm b) := rfl
 
 /-- The composite of `x` at `i` with `y`, as a function on the composite input set.-/
@@ -542,10 +665,16 @@ def compFun [DecidableEq A] [Fintype B] (i : A) (x : A → R) (y : B → R) : Wi
   | Sum.inl a => x a.1 * ∑ b, y b
   | Sum.inr b => x i * y b
 
+/--
+@isnad1 id=eq.0h7v.s6.d8444323a353 from=translated src=- shape=5446e66e vocab=b23877cb
+-/
 @[simp] lemma compFun_inl [DecidableEq A] [Fintype B] (i : A) (x : A → R) (y : B → R)
     (a : Without A i) :
     compFun i x y (Sum.inl a) = x a.1 * ∑ b, y b := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.cc6b914a9fa8 from=translated src=- shape=7869cb19 vocab=5ef60de7
+-/
 @[simp] lemma compFun_inr [DecidableEq A] [Fintype B] (i : A) (x : A → R) (y : B → R) (b : B) :
     compFun i x y (Sum.inr b) = x i * y b := rfl
 
@@ -559,10 +688,15 @@ def compL [DecidableEq A] [Fintype B] (i : A) :
     (fun t x y => by
       funext c; rcases c with a | b <;> simp [Finset.mul_sum, mul_left_comm])
 
+/--
+@isnad1 id=eq.0h6v.s10.0d20e96a59c8 from=translated src=- shape=a60e9deb vocab=a428abd8
+-/
 @[simp] lemma compL_apply [DecidableEq A] [Fintype B] (i : A) (x : A → R) (y : B → R) :
     compL i x y = compFun i x y := rfl
 
-/-- **The sum of a composite is the product of the sums.**-/
+/-- **The sum of a composite is the product of the sums.**
+@isnad1 id=eq.0h6v.s7.4e81e19d01f6 from=translated src=- shape=a0d6170d vocab=681f530c
+-/
 theorem sum_compFun [Fintype A] [DecidableEq A] [Fintype B] (i : A) (x : A → R) (y : B → R) :
     ∑ c, compFun i x y c = (∑ a, x a) * ∑ b, y b := by
   rw [Fintype.sum_sum_type, Fintype.sum_eq_add_sum_subtype_ne x i, add_mul, add_comm]

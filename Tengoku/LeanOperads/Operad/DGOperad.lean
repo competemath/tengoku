@@ -121,30 +121,41 @@ local notation "𝐩" => GrOperad.par (R := R) (P := P)
 local notation "𝐜" => GrOperad.comp (R := R) (P := P)
 
 omit [Fintype B] [DecidableEq B] in
-/-- The parity involution anticommutes with the differential.-/
+/-- The parity involution anticommutes with the differential.
+@isnad1 id=eq.0h4v.s10.cdfac95c5e7c from=translated src=- shape=fbdffd36 vocab=9276ba03
+-/
 lemma d_eps (x : P A) : 𝐝 (𝐩 false x - 𝐩 true x) = -(𝐩 false (𝐝 x) - 𝐩 true (𝐝 x)) := by
   rw [map_sub, d_par, d_par]
   simp only [Bool.not_false, Bool.not_true]
   abel
 
 omit [Fintype B] [DecidableEq B] in
+/--
+@isnad1 id=eq.0h4v.s10.394ab5cb72a3 from=translated src=- shape=2f3bcca1 vocab=1e37c0f4
+-/
 lemma eps_eps (x : P A) :
     𝐩 false (𝐩 false x - 𝐩 true x) - 𝐩 true (𝐩 false x - 𝐩 true x) = x := by
   simp only [map_sub, par_par, ite_true, Bool.false_eq_true, ite_false, Bool.true_eq_false,
     sub_zero, zero_sub, sub_neg_eq_add]
   exact par_add x
 
-/-- **A composite of cycles is a cycle.**-/
+/-- **A composite of cycles is a cycle.**
+@isnad1 id=eq.2h7v.s12.cf0e271d9944 from=translated src=- shape=d1ea1d51 vocab=298fa23d
+-/
 lemma comp_cycle (i : A) {x : P A} {y : P B} (hx : 𝐝 x = 0) (hy : 𝐝 y = 0) :
     𝐝 (𝐜 i x y) = 0 := by
   rw [d_comp, hx, hy, map_zero, LinearMap.zero_apply, map_zero, add_zero]
 
-/-- **A boundary composed with a cycle is a boundary.**-/
+/-- **A boundary composed with a cycle is a boundary.**
+@isnad1 id=eq.1h7v.s13.03fa21503660 from=translated src=- shape=b77da23f vocab=298fa23d
+-/
 lemma comp_boundary_left (i : A) (w : P A) {y : P B} (hy : 𝐝 y = 0) :
     𝐜 i (𝐝 w) y = 𝐝 (𝐜 i w y) := by
   rw [d_comp, hy, map_zero, add_zero]
 
-/-- **A cycle composed with a boundary is a boundary.**-/
+/-- **A cycle composed with a boundary is a boundary.**
+@isnad1 id=eq.1h7v.s13.e2e9f2f7c95c from=translated src=- shape=becb6513 vocab=107651db
+-/
 lemma comp_boundary_right (i : A) {x : P A} (hx : 𝐝 x = 0) (w : P B) :
     𝐜 i x (𝐝 w) = 𝐝 (𝐜 i (𝐩 false x - 𝐩 true x) w) := by
   rw [d_comp, d_eps, hx]
@@ -169,12 +180,18 @@ instance (A : Type) [Fintype A] [DecidableEq A] : Module R (HomologyOp R P A) :=
 def cls (x : P A) (hx : 𝐝 x = 0) : HomologyOp R P A := Homology.mk 𝐝 ⟨x, hx⟩
 
 omit [Fintype B] [DecidableEq B] in
+/--
+@isnad1 id=eq.3h5v.s9.90acde70b6ad from=translated src=- shape=ac057585 vocab=3f4b3cbf
+-/
 lemma cls_congr {x x' : P A} (h : x = x') (hx : 𝐝 x = 0) (hx' : 𝐝 x' = 0) :
     cls x hx = cls x' hx' := by
   subst h
   rfl
 
 omit [Fintype B] [DecidableEq B] in
+/--
+@isnad1 id=ex.0h4v.s9.e2ceadd793e3 from=translated src=- shape=5d0c6424 vocab=3f4b3cbf
+-/
 lemma exists_cls (X : HomologyOp R P A) : ∃ (x : P A) (hx : 𝐝 x = 0), cls x hx = X := by
   obtain ⟨⟨x, hx⟩, rfl⟩ := Homology.mk_surjective _ X
   exact ⟨x, hx, rfl⟩

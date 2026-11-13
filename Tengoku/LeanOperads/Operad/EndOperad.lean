@@ -26,17 +26,29 @@ being read off `v`.-/
 def feed (i : A) (v : Without A i ⊕ B → V) (w : V) : A → V :=
   fun a => if h : a = i then w else v (Sum.inl ⟨a, h⟩)
 
+/--
+@isnad1 id=eq.0h6v.s5.8172185aac56 from=translated src=- shape=242803e4 vocab=36fbc116
+-/
 @[simp] lemma feed_self (i : A) (v : Without A i ⊕ B → V) (w : V) : feed i v w i = w :=
   dite_eq_left rfl
 
+/--
+@isnad1 id=eq.1h7v.s5.5e4e4ddde28b from=translated src=- shape=04048b7e vocab=092b48a4
+-/
 lemma feed_of_ne {i a : A} (h : a ≠ i) (v : Without A i ⊕ B → V) (w : V) :
     feed i v w a = v (Sum.inl ⟨a, h⟩) :=
   dite_eq_right h
 
+/--
+@isnad1 id=eq.0h7v.s5.9f08363dca5e from=translated src=- shape=5fea54db vocab=0aba6bc3
+-/
 @[simp] lemma feed_val (i : A) (v : Without A i ⊕ B → V) (w : V) (a : Without A i) :
     feed i v w a.1 = v (Sum.inl a) :=
   dite_eq_right a.2
 
+/--
+@isnad1 id=eq.0h6v.s5.4db1bc37a1b5 from=translated src=- shape=dd7779c3 vocab=ed1a7355
+-/
 lemma feed_eq_update [Zero V] (i : A) (v : Without A i ⊕ B → V) (w : V) :
     feed i v w = Function.update (feed i v 0) i w := by
   funext a
@@ -47,6 +59,9 @@ lemma feed_eq_update [Zero V] (i : A) (v : Without A i ⊕ B → V) (w : V) :
 
 variable [DecidableEq B]
 
+/--
+@isnad1 id=eq.0h8v.s7.712a68fc1c05 from=translated src=- shape=2bf0048e vocab=2b419469
+-/
 lemma feed_update_inl (i : A) (v : Without A i ⊕ B → V) (w : V) (a : Without A i) (z : V) :
     feed i (Function.update v (Sum.inl a) z) w = Function.update (feed i v w) a.1 z := by
   funext c
@@ -60,6 +75,9 @@ lemma feed_update_inl (i : A) (v : Without A i ⊕ B → V) (w : V) (a : Without
     · rw [Function.update_of_ne (fun e => hc (congrArg Subtype.val (Sum.inl_injective e))),
         Function.update_of_ne hc, feed_of_ne h]
 
+/--
+@isnad1 id=eq.0h8v.s6.290df1b52a99 from=translated src=- shape=2ebe13e2 vocab=5826f611
+-/
 lemma feed_update_inr (i : A) (v : Without A i ⊕ B → V) (w : V) (b : B) (z : V) :
     feed i (Function.update v (Sum.inr b) z) w = feed i v w := by
   funext c
@@ -109,6 +127,9 @@ def EndOp.compML (i : A) (f : EndOp R V A) (g : EndOp R V B) : EndOp R V (Withou
       · simp only [inr_update_inr, feed_update_inr, g.map_update_smul]
         rw [feed_eq_update, f.map_update_smul, ← feed_eq_update])
 
+/--
+@isnad1 id=eq.0h8v.s8.6a08aed797b3 from=translated src=- shape=6e3fc32f vocab=0c60f6e9
+-/
 @[simp] lemma EndOp.compML_apply (i : A) (f : EndOp R V A) (g : EndOp R V B)
     (v : Without A i ⊕ B → V) :
     EndOp.compML R V i f g v = f (feed i v (g fun b => v (Sum.inr b))) := rfl
@@ -131,12 +152,18 @@ def EndOp.mapL (e : A ≃ A') : EndOp R V A →ₗ[R] EndOp R V A' where
   map_add' _ _ := MultilinearMap.ext fun _ => rfl
   map_smul' _ _ := MultilinearMap.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.f4e3529bc39c from=translated src=- shape=4e27316d vocab=176173f4
+-/
 @[simp] lemma EndOp.mapL_apply (e : A ≃ A') (f : EndOp R V A) (v : A' → V) :
     EndOp.mapL R V e f v = f fun a => v (e a) := rfl
 
 /-- The unit: the identity of `V`.-/
 def EndOp.one : EndOp R V Unit := MultilinearMap.ofSubsingleton R V V () LinearMap.id
 
+/--
+@isnad1 id=eq.0h3v.s6.aef40e09fb79 from=translated src=- shape=7a79fe0f vocab=0a2b2418
+-/
 @[simp] lemma EndOp.one_apply (v : Unit → V) : EndOp.one R V v = v () := rfl
 
 /-- **The endomorphism operad is a symmetric operad.**-/
@@ -236,7 +263,9 @@ variable {P : (A : Type) → [Fintype A] → [DecidableEq A] → Type w}
 /-- The action of an operation on a family of elements.-/
 def SymAlgebra.act (α : SymAlgebra R P V) (x : P A) (v : A → V) : V := α.app A x v
 
-/-- **Composites act by substitution.**-/
+/-- **Composites act by substitution.**
+@isnad1 id=eq.0h10v.s11.9d08440e031b from=translated src=- shape=008d19b7 vocab=04be4d07
+-/
 lemma SymAlgebra.act_comp (α : SymAlgebra R P V) (i : A) (x : P A) (y : P B)
     (v : Without A i ⊕ B → V) :
     α.act (SymOperad.comp (R := R) i x y) v
@@ -245,14 +274,18 @@ lemma SymAlgebra.act_comp (α : SymAlgebra R P V) (i : A) (x : P A) (y : P B)
   rw [α.app_comp]
   rfl
 
-/-- **Relabelled operations act on relabelled families.**-/
+/-- **Relabelled operations act on relabelled families.**
+@isnad1 id=eq.0h9v.s8.09420ed9669f from=translated src=- shape=68232c33 vocab=986563f2
+-/
 lemma SymAlgebra.act_map (α : SymAlgebra R P V) (e : A ≃ A') (x : P A) (v : A' → V) :
     α.act (SymOperad.map (R := R) e x) v = α.act x fun a => v (e a) := by
   unfold SymAlgebra.act
   rw [α.app_map]
   rfl
 
-/-- The unit acts as the identity.-/
+/-- The unit acts as the identity.
+@isnad1 id=eq.0h5v.s7.a34e5d434262 from=translated src=- shape=b5b76297 vocab=42da3a13
+-/
 lemma SymAlgebra.act_one (α : SymAlgebra R P V) (v : Unit → V) :
     α.act (SymOperad.one R) v = v () := by
   unfold SymAlgebra.act

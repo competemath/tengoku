@@ -50,7 +50,9 @@ abbrev FreeSp : (A : Type) → [Fintype A] → [DecidableEq A] → Type (max 1 v
 
 variable {X}
 
-/-- Generator values respect the relations exactly when they are equivariant.-/
+/-- Generator values respect the relations exactly when they are equivariant.
+@isnad1 id=iff.0h3v.s6.65da70e4f7e0 from=translated src=- shape=0918506d vocab=680b9f5b
+-/
 lemma respects_spRel_iff {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type w}
     [SetOperad S] (f : ∀ n, SpGen X n → S (Fin n)) :
     Pres.Respects (spRel X) f ↔ SetSpeciesHom.Equivariant (Y := S) f := by
@@ -65,7 +67,9 @@ lemma respects_spRel_iff {S : (A : Type) → [Fintype A] → [DecidableEq A] →
 
 namespace FreeSp
 
-/-- The generators are equivariant.-/
+/-- The generators are equivariant.
+@isnad1 id=equivari.0h1v.s5.f5b5763213bb from=translated src=- shape=f5358dc4 vocab=0b03e856
+-/
 lemma gen_equivariant : SetSpeciesHom.Equivariant (X := X) (Y := FreeSp X)
     (fun _ g => Pres.gen g) := by
   intro n σ g
@@ -80,6 +84,9 @@ lemma gen_equivariant : SetSpeciesHom.Equivariant (X := X) (Y := FreeSp X)
 noncomputable def ι : SetSpeciesHom X (FreeSp X) :=
   SetSpeciesHom.extend (fun _ g => Pres.gen g) gen_equivariant
 
+/--
+@isnad1 id=eq.0h3v.s6.1123fbbbf121 from=translated src=- shape=83ebc332 vocab=d5869eda
+-/
 @[simp] lemma ι_app_fin (n : ℕ) (g : X (Fin n)) : ι.app (Fin n) g = Pres.gen g :=
   SetSpeciesHom.extend_app_fin gen_equivariant n g
 
@@ -91,12 +98,17 @@ noncomputable def homEquiv : SetOperadHom (FreeSp X) S ≃ SetSpeciesHom X S :=
   Pres.homEquiv.trans ((Equiv.subtypeEquivRight respects_spRel_iff).trans
     SetSpeciesHom.skeletonEquiv.symm)
 
+/--
+@isnad1 id=eq.0h5v.s7.c9d40f1db6e7 from=translated src=- shape=46559666 vocab=fa69d385
+-/
 lemma homEquiv_app_fin (φ : SetOperadHom (FreeSp X) S) (n : ℕ) (g : X (Fin n)) :
     (homEquiv φ).app (Fin n) g = φ.app (Fin n) (Pres.gen g) :=
   SetSpeciesHom.extend_app_fin ((respects_spRel_iff _).1 (Pres.respects_app φ)) n g
 
 /-- The morphism of species of a morphism out of the free operad is its restriction along the
-generators.-/
+generators.
+@isnad1 id=eq.0h5v.s7.920c8ade87ed from=translated src=- shape=c40e5a24 vocab=1fa9498a
+-/
 lemma homEquiv_apply (φ : SetOperadHom (FreeSp X) S) {A : Type} [Fintype A] [DecidableEq A]
     (x : X A) : (homEquiv φ).app A x = φ.app A (ι.app A x) := by
   rw [SetSpeciesHom.app_eq_chart (homEquiv φ) (Fintype.equivFin A).symm,
@@ -107,12 +119,16 @@ lemma homEquiv_apply (φ : SetOperadHom (FreeSp X) S) {A : Type} [Fintype A] [De
   rfl
 
 /-- **The morphism out of the free operad extending a morphism of species** restricts to it
-along the generators.-/
+along the generators.
+@isnad1 id=eq.0h5v.s7.5dccee880f05 from=translated src=- shape=b916871b vocab=1ddab2bf
+-/
 @[simp] lemma homEquiv_symm_ι (f : SetSpeciesHom X S) {A : Type} [Fintype A] [DecidableEq A]
     (x : X A) : (homEquiv.symm f).app A (ι.app A x) = f.app A x := by
   rw [← homEquiv_apply, Equiv.apply_symm_apply]
 
-/-- **Morphisms out of the free operad agree when they agree on the generators.**-/
+/-- **Morphisms out of the free operad agree when they agree on the generators.**
+@isnad1 id=eq.1h4v.s7.a7ceee09285b from=translated src=- shape=88df3385 vocab=c975684b
+-/
 theorem hom_ext {φ ψ : SetOperadHom (FreeSp X) S}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (x : X A),
       φ.app A (ι.app A x) = ψ.app A (ι.app A x)) : φ = ψ :=
@@ -160,7 +176,9 @@ def LinFin (F : SetSpeciesHom (UndSp R V) (Und R Q)) : Prop :=
       = c • (Und.of R Q).symm (F.app _ (UndSp.of R V v))
 
 /-- The linear extension of a morphism out of the free set operad kills the linearity relations
-exactly when the corresponding morphism of species is linear on the standard finite types.-/
+exactly when the corresponding morphism of species is linear on the standard finite types.
+@isnad1 id=iff.0h4v.s11.1d11f990bcd7 from=translated src=- shape=91689eb7 vocab=285779b3
+-/
 lemma kills_iff (ψ : SetOperadHom (FreeSp (UndSp R V)) (Und R Q)) :
     (∀ n, ∀ x ∈ linRel R V n, (linHomEquiv R ψ).app (Fin n) x = 0)
       ↔ LinFin (FreeSp.homEquiv ψ) := by
@@ -195,7 +213,9 @@ def undSpEquiv :
   left_inv _ := rfl
   right_inv _ := rfl
 
-/-- **Linearity on the standard finite types is linearity**, through numberings.-/
+/-- **Linearity on the standard finite types is linearity**, through numberings.
+@isnad1 id=iff.0h4v.s9.2e0796ff7a01 from=translated src=- shape=6acb014e vocab=b9413b83
+-/
 lemma isLinear_iff (F : SetSpeciesHom (UndSp R V) (Und R Q)) :
     SymSpeciesHom.IsLinear (undSpEquiv F) ↔ LinFin F := by
   constructor
@@ -227,6 +247,9 @@ noncomputable def homEquiv : SymOperadHom R (FreeL R V) Q ≃ SymSpeciesHom R V 
     (undSpEquiv.subtypeEquiv fun F => (isLinear_iff F).symm).trans
       SymSpeciesHom.undEquiv.symm
 
+/--
+@isnad1 id=eq.0h6v.s13.ad2890cafb31 from=translated src=- shape=a497bdeb vocab=2cdd3529
+-/
 lemma homEquiv_apply (φ : SymOperadHom R (FreeL R V) Q) {A : Type} [Fintype A] [DecidableEq A]
     (v : V A) : (homEquiv φ).app A v = φ.app A ((SymOperadIdeal.span R (linRel R V)).proj A
       (Finsupp.single (FreeSp.ι.app A (UndSp.of R V v)) 1)) := by
@@ -239,19 +262,26 @@ variable (R V) in
 the morphism corresponding to the identity.-/
 noncomputable def ι : SymSpeciesHom R V (FreeL R V) := homEquiv (SymOperadHom.id)
 
+/--
+@isnad1 id=eq.0h4v.s12.b09af0b20b66 from=translated src=- shape=9db48a9f vocab=5ada018c
+-/
 lemma ι_app {A : Type} [Fintype A] [DecidableEq A] (v : V A) :
     (ι R V).app A v = (SymOperadIdeal.span R (linRel R V)).proj A
       (Finsupp.single (FreeSp.ι.app A (UndSp.of R V v)) 1) :=
   homEquiv_apply _ v
 
 /-- The morphism of species of a morphism out of the free operad is its restriction along the
-generators.-/
+generators.
+@isnad1 id=eq.0h6v.s13.2853c064ec41 from=translated src=- shape=c1bf58a3 vocab=f5d23e62
+-/
 lemma homEquiv_apply' (φ : SymOperadHom R (FreeL R V) Q) {A : Type} [Fintype A] [DecidableEq A]
     (v : V A) : (homEquiv φ).app A v = φ.app A ((ι R V).app A v) := by
   rw [homEquiv_apply, ι_app]
 
 /-- **The morphism out of the free operad extending a morphism of linear species** restricts to
-it along the generators.-/
+it along the generators.
+@isnad1 id=eq.0h6v.s13.e96dd993d4cc from=translated src=- shape=76d7b6a1 vocab=42eff151
+-/
 @[simp] lemma homEquiv_symm_ι (f : SymSpeciesHom R V Q) {A : Type} [Fintype A] [DecidableEq A]
     (v : V A) : (homEquiv.symm f).app A ((ι R V).app A v) = f.app A v := by
   rw [← homEquiv_apply', Equiv.apply_symm_apply]

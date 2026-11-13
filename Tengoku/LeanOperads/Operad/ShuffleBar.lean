@@ -52,40 +52,70 @@ def mapDec (f : E → F) : LTree E → LTree F
   | leaf a => leaf a
   | node e l r => node (f e) (l.mapDec f) (r.mapDec f)
 
+/--
+@isnad1 id=eq.0h4v.s4.6a26a51c2be4 from=translated src=- shape=64388ceb vocab=ae9af9a9
+-/
 @[simp] lemma mapDec_leaf (f : E → F) (a : ℕ) : (leaf a : LTree E).mapDec f = leaf a := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.44797edbcf46 from=translated src=- shape=38d08a2a vocab=c4341ad8
+-/
 @[simp] lemma mapDec_node (f : E → F) (e : E) (l r : LTree E) :
     (node e l r).mapDec f = node (f e) (l.mapDec f) (r.mapDec f) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.6f2923e03f14 from=translated src=- shape=28b8d78b vocab=3d2de992
+-/
 @[simp] lemma labels_mapDec (f : E → F) : ∀ t : LTree E, (t.mapDec f).labels = t.labels
   | leaf _ => rfl
   | node _ l r => by simp [labels_mapDec f l, labels_mapDec f r]
 
+/--
+@isnad1 id=eq.0h4v.s4.947d9f8483ce from=translated src=- shape=ddbef6f7 vocab=9bafa0c4
+-/
 @[simp] lemma minLabel_mapDec (f : E → F) : ∀ t : LTree E, (t.mapDec f).minLabel = t.minLabel
   | leaf _ => rfl
   | node _ l r => by simp [minLabel_mapDec f l, minLabel_mapDec f r]
 
+/--
+@isnad1 id=eq.0h4v.s4.d38d0ba4c81f from=translated src=- shape=ddbef6f7 vocab=8074cdc7
+-/
 @[simp] lemma arity_mapDec (f : E → F) : ∀ t : LTree E, (t.mapDec f).arity = t.arity
   | leaf _ => rfl
   | node _ l r => by simp [arity, arity_mapDec f l, arity_mapDec f r]
 
+/--
+@isnad1 id=eq.0h4v.s4.8ffa0f531af5 from=translated src=- shape=ddbef6f7 vocab=afc08a97
+-/
 @[simp] lemma size_mapDec (f : E → F) : ∀ t : LTree E, (t.mapDec f).size = t.size
   | leaf _ => rfl
   | node _ l r => by simp [size_mapDec f l, size_mapDec f r]
 
+/--
+@isnad1 id=iff.0h4v.s4.ffe199aa0703 from=translated src=- shape=2664a30e vocab=3e625b06
+-/
 @[simp] lemma isShuffle_mapDec (f : E → F) : ∀ t : LTree E, (t.mapDec f).IsShuffle ↔ t.IsShuffle
   | leaf _ => Iff.rfl
   | node _ l r => by simp [isShuffle_mapDec f l, isShuffle_mapDec f r]
 
+/--
+@isnad1 id=eq.0h6v.s5.ff5b039411d2 from=translated src=- shape=a53f7fce vocab=3c706e6f
+-/
 lemma mapDec_mapDec {G : Type*} (f : E → F) (g : F → G) :
     ∀ t : LTree E, (t.mapDec f).mapDec g = t.mapDec (g ∘ f)
   | leaf _ => rfl
   | node _ l r => by simp [mapDec_mapDec f g l, mapDec_mapDec f g r]
 
+/--
+@isnad1 id=eq.0h2v.s3.ca0a96226ab5 from=translated src=- shape=c22bccd1 vocab=82817505
+-/
 lemma mapDec_id : ∀ t : LTree E, t.mapDec id = t
   | leaf _ => rfl
   | node _ l r => by simp [mapDec_id l, mapDec_id r]
 
+/--
+@isnad1 id=eq.0h5v.s5.7808c36f4a73 from=translated src=- shape=1747fd42 vocab=c00fc01b
+-/
 lemma path_mapDec (f : E → F) (i : ℕ) : ∀ t : LTree E, (t.mapDec f).path i = (t.path i).map f
   | leaf _ => rfl
   | node _ l r => by
@@ -94,6 +124,9 @@ lemma path_mapDec (f : E → F) (i : ℕ) : ∀ t : LTree E, (t.mapDec f).path i
     · rw [path_mapDec f i l]
     · rw [path_mapDec f i r]
 
+/--
+@isnad1 id=eq.0h4v.s5.e25faa0e2988 from=translated src=- shape=e27b4940 vocab=ef7a3f69
+-/
 lemma subtreeAt_append : ∀ (t : LTree E) (p q : List Bool),
     t.subtreeAt (p ++ q) = (t.subtreeAt p).subtreeAt q
   | leaf _, [], _ => by simp
@@ -103,6 +136,9 @@ lemma subtreeAt_append : ∀ (t : LTree E) (p q : List Bool),
   | node _ l _, false :: p, q => subtreeAt_append l p q
   | node _ _ r, true :: p, q => subtreeAt_append r p q
 
+/--
+@isnad1 id=eq.0h5v.s5.fb87e92b357c from=translated src=- shape=af1866e4 vocab=12327240
+-/
 lemma subtreeAt_mapDec (f : E → F) :
     ∀ (t : LTree E) (p : List Bool), (t.mapDec f).subtreeAt p = (t.subtreeAt p).mapDec f
   | leaf _, [] => rfl
@@ -111,6 +147,9 @@ lemma subtreeAt_mapDec (f : E → F) :
   | node _ l _, false :: p => subtreeAt_mapDec f l p
   | node _ _ r, true :: p => subtreeAt_mapDec f r p
 
+/--
+@isnad1 id=eq.0h6v.s5.c8cfdebbe916 from=translated src=- shape=93f3a9c0 vocab=d53c8a4a
+-/
 lemma replaceAt_mapDec (f : E → F) : ∀ (t : LTree E) (p : List Bool) (u : LTree E),
     (t.mapDec f).replaceAt p (u.mapDec f) = (t.replaceAt p u).mapDec f
   | leaf _, [], _ => rfl
@@ -121,11 +160,17 @@ lemma replaceAt_mapDec (f : E → F) : ∀ (t : LTree E) (p : List Bool) (u : LT
   | node e l r, true :: p, u => by
     simp only [mapDec_node, replaceAt, replaceAt_mapDec f r p u]
 
+/--
+@isnad1 id=eq.0h5v.s5.40819f6245f0 from=translated src=- shape=5f58a519 vocab=de824771
+-/
 lemma plug_mapDec (f : E → F) (ins : ℕ → LTree E) :
     ∀ m : LTree E, (m.mapDec f).plug (fun k => (ins k).mapDec f) = (m.plug ins).mapDec f
   | leaf _ => rfl
   | node e l r => by simp only [mapDec_node, plug, plug_mapDec f ins l, plug_mapDec f ins r]
 
+/--
+@isnad1 id=iff.0h5v.s4.6112b6fd0fb0 from=translated src=- shape=f6849239 vocab=1bc83440
+-/
 lemma isEdgeRoot_mapDec (f : E → F) :
     ∀ (u : LTree E) (s : Bool), (u.mapDec f).IsEdgeRoot s ↔ u.IsEdgeRoot s
   | leaf _, _ => Iff.rfl
@@ -134,11 +179,17 @@ lemma isEdgeRoot_mapDec (f : E → F) :
   | node _ (leaf _) (node _ _ _), _ => by cases ‹Bool› <;> exact Iff.rfl
   | node _ (node _ _ _) (node _ _ _), _ => by cases ‹Bool› <;> exact Iff.rfl
 
+/--
+@isnad1 id=iff.0h6v.s4.050b6727c4c3 from=translated src=- shape=675ab9b4 vocab=b36a4b00
+-/
 lemma isEdge_mapDec (f : E → F) (t : LTree E) (p : List Bool) (s : Bool) :
     (t.mapDec f).IsEdge p s ↔ t.IsEdge p s := by
   unfold IsEdge
   rw [subtreeAt_mapDec, isEdgeRoot_mapDec]
 
+/--
+@isnad1 id=eq.1h5v.s5.3cbd7db33f10 from=translated src=- shape=d451ab4f vocab=5b80efa3
+-/
 lemma windowRoot_mapDec (f : E → F) :
     ∀ (u : LTree E) (s : Bool), u.IsEdgeRoot s →
       (u.mapDec f).windowRoot s = (u.windowRoot s).mapDec f
@@ -147,11 +198,17 @@ lemma windowRoot_mapDec (f : E → F) :
   | node e c (node g a b), true, _ => by
     cases c <;> simp [windowRoot, window]
 
+/--
+@isnad1 id=eq.1h6v.s5.b216901bc42f from=translated src=- shape=819eb044 vocab=544488a9
+-/
 lemma windowAt_mapDec (f : E → F) (t : LTree E) (p : List Bool) (s : Bool) (h : t.IsEdge p s) :
     (t.mapDec f).windowAt p s = (t.windowAt p s).mapDec f := by
   unfold windowAt
   rw [subtreeAt_mapDec, windowRoot_mapDec f _ s h]
 
+/--
+@isnad1 id=eq.1h5v.s6.a73960dcca7f from=translated src=- shape=770b62ad vocab=f11dcf4d
+-/
 lemma winInputs_mapDec (f : E → F) :
     ∀ (u : LTree E) (s : Bool), u.IsEdgeRoot s →
       (u.mapDec f).winInputs s = ((u.winInputs s).1.mapDec f, (u.winInputs s).2.1.mapDec f,
@@ -162,11 +219,17 @@ lemma winInputs_mapDec (f : E → F) :
   | node e c (node g a b), true, _ => by
     cases c <;> rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.a28d46474ab3 from=translated src=- shape=74b9a27c vocab=0c01f18d
+-/
 lemma winIns_mapDec (f : E → F) (u : LTree E) (s : Bool) (h : u.IsEdgeRoot s) (k : ℕ) :
     (u.mapDec f).winIns s k = (u.winIns s k).mapDec f := by
   simp only [winIns, winInputs_mapDec f u s h, ins3]
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.1h7v.s5.766854211730 from=translated src=- shape=0412f7d5 vocab=9e2fd5d6
+-/
 lemma substAt_mapDec (f : E → F) (t : LTree E) (p : List Bool) (s : Bool) (h : t.IsEdge p s)
     (m : LTree E) : (t.mapDec f).substAt p s (m.mapDec f) = (t.substAt p s m).mapDec f := by
   unfold substAt
@@ -190,9 +253,15 @@ def nodeKeys : LTree X → Finset (ℕ ×ₗ ℕ)
   | leaf _ => ∅
   | node d l r => insert (key (node d l r)) (l.nodeKeys ∪ r.nodeKeys)
 
+/--
+@isnad1 id=eq.0h4v.s6.77f690b737d9 from=translated src=- shape=8e93be36 vocab=f398f7dd
+-/
 lemma key_node (d : X) (l r : LTree X) :
     key (node d l r) = toLex (min l.minLabel r.minLabel, l.arity + r.arity) := rfl
 
+/--
+@isnad1 id=and.1h3v.s7.87d9fefb9aff from=translated src=- shape=2fba8362 vocab=bd5aa58a
+-/
 lemma mem_nodeKeys_labels : ∀ (t : LTree X) {k : ℕ ×ₗ ℕ}, k ∈ t.nodeKeys →
     (ofLex k).1 ∈ t.labels ∧ (ofLex k).2 ≤ t.arity
   | leaf _, k, hk => by simp [nodeKeys] at hk
@@ -205,18 +274,27 @@ lemma mem_nodeKeys_labels : ∀ (t : LTree X) {k : ℕ ×ₗ ℕ}, k ∈ t.nodeK
     · have := mem_nodeKeys_labels r hk
       exact ⟨by simp [this.1], by simp only [arity]; omega⟩
 
+/--
+@isnad1 id=not.0h4v.s5.e30dab8d5840 from=translated src=- shape=1394637b vocab=dd45cd7c
+-/
 lemma key_not_mem_left (d : X) (l r : LTree X) : key (node d l r) ∉ l.nodeKeys := fun h => by
   have := (mem_nodeKeys_labels l h).2
   have := arity_pos r
   simp only [key, arity, ofLex_toLex] at *
   omega
 
+/--
+@isnad1 id=not.0h4v.s5.2ce49a20561b from=translated src=- shape=9f44d478 vocab=dd45cd7c
+-/
 lemma key_not_mem_right (d : X) (l r : LTree X) : key (node d l r) ∉ r.nodeKeys := fun h => by
   have := (mem_nodeKeys_labels r h).2
   have := arity_pos l
   simp only [key, arity, ofLex_toLex] at *
   omega
 
+/--
+@isnad1 id=disjoint.1h4v.s5.7f653342c235 from=translated src=- shape=e05e7052 vocab=ce5ed0bb
+-/
 lemma disjoint_nodeKeys {d : X} {l r : LTree X} (h : (node d l r).labels.Nodup) :
     Disjoint l.nodeKeys r.nodeKeys := by
   rw [Finset.disjoint_left]
@@ -224,6 +302,9 @@ lemma disjoint_nodeKeys {d : X} {l r : LTree X} (h : (node d l r).labels.Nodup) 
   simp only [labels_node] at h
   exact ne_of_nodup_append h (mem_nodeKeys_labels l hl).1 (mem_nodeKeys_labels r hr).1 rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.ad0c36ba9b99 from=translated src=- shape=2897ad80 vocab=2d9ce32d
+-/
 lemma key_mapDec {Y : Type*} (f : X → Y) (t : LTree X) : key (t.mapDec f) = key t := by
   simp [key]
 
@@ -239,7 +320,9 @@ def edgeWins : LTree X → List ((ℕ ×ₗ ℕ) × LTree X)
       | node f a b => [(key (node f a b), window e f true a.minLabel b.minLabel l.minLabel)]) ++
     l.edgeWins ++ r.edgeWins
 
-/-- **An edge window is the window of an edge**, at the position of its lower vertex.-/
+/-- **An edge window is the window of an edge**, at the position of its lower vertex.
+@isnad1 id=ex.1h4v.s6.30d9cd4d6c62 from=translated src=- shape=8daab338 vocab=14422460
+-/
 theorem exists_of_mem_edgeWins {k : ℕ ×ₗ ℕ} {w : LTree X} : ∀ t : LTree X, (k, w) ∈ t.edgeWins →
     ∃ p s, t.IsEdge p s ∧ key (t.subtreeAt (p ++ [s])) = k ∧ t.windowAt p s = w
   | leaf _, h => by simp [edgeWins] at h
@@ -264,6 +347,9 @@ theorem exists_of_mem_edgeWins {k : ℕ ×ₗ ℕ} {w : LTree X} : ∀ t : LTree
     · obtain ⟨p, s, hp, hk, hw⟩ := exists_of_mem_edgeWins r h
       exact ⟨true :: p, s, hp, hk, hw⟩
 
+/--
+@isnad1 id=and.1h4v.s7.317a3b8004d8 from=translated src=- shape=2e210051 vocab=4013a4d2
+-/
 lemma mem_edgeWins_key {k : ℕ ×ₗ ℕ} {w : LTree X} : ∀ t : LTree X, (k, w) ∈ t.edgeWins →
     k ∈ t.nodeKeys ∧ (ofLex k).2 < t.arity
   | leaf _, h => by simp [edgeWins] at h
@@ -300,11 +386,17 @@ def keyList : LTree X → List (ℕ ×ₗ ℕ)
   | leaf _ => []
   | node d l r => key (node d l r) :: (l.keyList ++ r.keyList)
 
+/--
+@isnad1 id=iff.0h3v.s5.d484a052ee32 from=translated src=- shape=b121587a vocab=b1bf4f3d
+-/
 lemma mem_keyList_iff : ∀ (t : LTree X) (k : ℕ ×ₗ ℕ), k ∈ t.keyList ↔ k ∈ t.nodeKeys
   | leaf _, k => by simp [keyList, nodeKeys]
   | node d l r, k => by
     simp [keyList, nodeKeys, mem_keyList_iff l, mem_keyList_iff r]
 
+/--
+@isnad1 id=nodup.1h2v.s4.cd1c404b309a from=translated src=- shape=c2825636 vocab=e00ecff3
+-/
 lemma nodup_keyList : ∀ t : LTree X, t.labels.Nodup → t.keyList.Nodup
   | leaf _, _ => by simp [keyList]
   | node d l r, hnd => by
@@ -321,10 +413,16 @@ def rootKey : LTree X → List (ℕ ×ₗ ℕ)
   | leaf _ => []
   | node d l r => [key (node d l r)]
 
+/--
+@isnad1 id=eq.0h4v.s7.c5b107d3e5d5 from=translated src=- shape=7d0ce6a0 vocab=0c19356d
+-/
 lemma edgeWins_keys (e : X) (l r : LTree X) : (node e l r).edgeWins.map Prod.fst =
     l.rootKey ++ r.rootKey ++ l.edgeWins.map Prod.fst ++ r.edgeWins.map Prod.fst := by
   cases l <;> cases r <;> simp [edgeWins, rootKey]
 
+/--
+@isnad1 id=perm.0h2v.s6.6e04ad314471 from=translated src=- shape=afb837f7 vocab=323776fa
+-/
 lemma perm_keyList : ∀ t : LTree X, t.keyList.Perm (t.rootKey ++ t.edgeWins.map Prod.fst)
   | leaf _ => by simp [keyList, rootKey, edgeWins]
   | node e l r => by
@@ -339,6 +437,9 @@ lemma perm_keyList : ∀ t : LTree X, t.keyList.Perm (t.rootKey ++ t.edgeWins.ma
 /-- The keys of the lower vertices of the edges: the vertices other than the root.-/
 def edgeKeys (t : LTree X) : Finset (ℕ ×ₗ ℕ) := (t.edgeWins.map Prod.fst).toFinset
 
+/--
+@isnad1 id=eq.0h2v.s4.58013b3ee9a7 from=translated src=- shape=15e861cb vocab=48cceba0
+-/
 lemma length_keyList : ∀ t : LTree X, t.keyList.length + 1 = t.arity
   | leaf _ => rfl
   | node d l r => by
@@ -347,7 +448,9 @@ lemma length_keyList : ∀ t : LTree X, t.keyList.length + 1 = t.arity
     simp only [keyList, List.length_cons, List.length_append, arity]
     omega
 
-/-- **A monomial with `n` distinct labels has `n - 2` edges.**-/
+/-- **A monomial with `n` distinct labels has `n - 2` edges.**
+@isnad1 id=eq.1h4v.s5.b03e2e55e625 from=translated src=- shape=c32b0179 vocab=af43864f
+-/
 lemma card_edgeKeys {e : X} {l r : LTree X} (hnd : (node e l r).labels.Nodup) :
     (node e l r).edgeKeys.card + 2 = (node e l r).arity := by
   have hp : (l.keyList ++ r.keyList).Perm ((node e l r).edgeWins.map Prod.fst) := by
@@ -365,9 +468,15 @@ lemma card_edgeKeys {e : X} {l r : LTree X} (hnd : (node e l r).labels.Nodup) :
   simp only [arity]
   omega
 
+/--
+@isnad1 id=iff.0h3v.s6.7034df6cb4ff from=translated src=- shape=5c96b5da vocab=349c8dce
+-/
 lemma mem_edgeKeys {t : LTree X} {k : ℕ ×ₗ ℕ} : k ∈ t.edgeKeys ↔ ∃ w, (k, w) ∈ t.edgeWins := by
   simp [edgeKeys]
 
+/--
+@isnad1 id=eq.0h4v.s6.782c51a470b9 from=translated src=- shape=97b4ed55 vocab=11a9ba26
+-/
 lemma edgeKeys_node (e : X) (l r : LTree X) :
     (node e l r).edgeKeys = l.nodeKeys ∪ r.nodeKeys := by
   have hp : (l.keyList ++ r.keyList).Perm ((node e l r).edgeWins.map Prod.fst) := by
@@ -378,6 +487,9 @@ lemma edgeKeys_node (e : X) (l r : LTree X) :
   rw [edgeKeys, ← List.toFinset_eq_of_perm _ _ hp]
   simp [mem_keyList_iff]
 
+/--
+@isnad1 id=eq.0h4v.s4.166df7ba994a from=translated src=- shape=1c3e619d vocab=e7e0eef5
+-/
 lemma nodeKeys_mapDec {Y : Type*} (f : X → Y) : ∀ t : LTree X, (t.mapDec f).nodeKeys = t.nodeKeys
   | leaf _ => rfl
   | node d l r => by
@@ -421,6 +533,9 @@ def rootFlag : BarTree E → Bool
   | leaf _ => false
   | node d _ _ => d.2
 
+/--
+@isnad1 id=le.0h2v.s5.af2abd2dbd9e from=translated src=- shape=352d3773 vocab=e752bd5d
+-/
 lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
   | leaf _ => by simp [cutKeys]
   | node d l r => by
@@ -432,6 +547,9 @@ lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
     · exact (cutKeys_subset r).trans fun k hk =>
         Finset.mem_insert_of_mem (Finset.mem_union_right _ hk)
 
+/--
+@isnad1 id=eq.0h3v.s4.4b36a61b7942 from=translated src=- shape=429b9a0d vocab=ef034076
+-/
 @[simp] lemma labels_mergeK (k : ℕ ×ₗ ℕ) : ∀ x : BarTree E, (mergeK x k).labels = x.labels
   | leaf _ => rfl
   | node d l r => by
@@ -440,6 +558,9 @@ lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
     · rfl
     · simp [labels_mergeK k l, labels_mergeK k r]
 
+/--
+@isnad1 id=eq.0h3v.s4.b25d26799d52 from=translated src=- shape=98cdf8c4 vocab=c485996a
+-/
 @[simp] lemma minLabel_mergeK (k : ℕ ×ₗ ℕ) : ∀ x : BarTree E, (mergeK x k).minLabel = x.minLabel
   | leaf _ => rfl
   | node d l r => by
@@ -448,6 +569,9 @@ lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
     · rfl
     · simp [minLabel_mergeK k l, minLabel_mergeK k r]
 
+/--
+@isnad1 id=eq.0h3v.s4.d74142bf1a78 from=translated src=- shape=98cdf8c4 vocab=63b23235
+-/
 @[simp] lemma arity_mergeK (k : ℕ ×ₗ ℕ) : ∀ x : BarTree E, (mergeK x k).arity = x.arity
   | leaf _ => rfl
   | node d l r => by
@@ -456,9 +580,15 @@ lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
     · rfl
     · simp [arity, arity_mergeK k l, arity_mergeK k r]
 
+/--
+@isnad1 id=eq.0h3v.s4.f004ff62f840 from=translated src=- shape=a51df83a vocab=a74728f7
+-/
 @[simp] lemma key_mergeK (k : ℕ ×ₗ ℕ) (x : BarTree E) : key (mergeK x k) = key x := by
   simp [key]
 
+/--
+@isnad1 id=eq.0h3v.s5.5043dc2c4ea5 from=translated src=- shape=8375da87 vocab=01608e83
+-/
 @[simp] lemma full_mergeK (k : ℕ ×ₗ ℕ) :
     ∀ x : BarTree E, (mergeK x k).mapDec Prod.fst = x.mapDec Prod.fst
   | leaf _ => rfl
@@ -469,14 +599,23 @@ lemma cutKeys_subset : ∀ x : BarTree E, cutKeys x ⊆ x.nodeKeys
     · simp only [mapDec_node]
       exact congrArg₂ _ (full_mergeK k l) (full_mergeK k r)
 
+/--
+@isnad1 id=iff.0h3v.s4.91f15b8ded4c from=translated src=- shape=03c48d72 vocab=a85a921b
+-/
 @[simp] lemma isShuffle_mergeK (k : ℕ ×ₗ ℕ) (x : BarTree E) :
     (mergeK x k).IsShuffle ↔ x.IsShuffle := by
   rw [← isShuffle_mapDec Prod.fst, full_mergeK, isShuffle_mapDec]
 
+/--
+@isnad1 id=eq.0h5v.s5.a391b6952f29 from=translated src=- shape=050d3890 vocab=e683def5
+-/
 lemma key_node_mergeK (d : E × Bool) (l r : BarTree E) (k : ℕ ×ₗ ℕ) :
     key (node d (mergeK l k) (mergeK r k)) = key (node d l r) := by
   simp [key_node]
 
+/--
+@isnad1 id=eq.1h3v.s4.ecec20e88d83 from=translated src=- shape=01c95d9c vocab=c49f715d
+-/
 lemma rootFlag_mergeK_le (k : ℕ ×ₗ ℕ) (x : BarTree E) (h : rootFlag x = false) :
     rootFlag (mergeK x k) = false := by
   cases x with
@@ -485,6 +624,9 @@ lemma rootFlag_mergeK_le (k : ℕ ×ₗ ℕ) (x : BarTree E) (h : rootFlag x = f
     simp only [mergeK]
     split_ifs <;> simp_all [rootFlag]
 
+/--
+@isnad1 id=eq.1h3v.s5.30fc6b6c6c47 from=translated src=- shape=3d0e29e0 vocab=52e3e040
+-/
 lemma mergeK_of_not_mem {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, k ∉ cutKeys x → mergeK x k = x
   | leaf _, _ => rfl
   | node d l r, hk => by
@@ -494,7 +636,9 @@ lemma mergeK_of_not_mem {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, k ∉ cutKeys x
       exact hk.1 (by simp [h1])
     simp only [mergeK, hroot, ite_false, mergeK_of_not_mem l hk.2.1, mergeK_of_not_mem r hk.2.2]
 
-/-- Merging along the cut edge of key `k` removes `k` from the cut edges.-/
+/-- Merging along the cut edge of key `k` removes `k` from the cut edges.
+@isnad1 id=eq.2h3v.s6.831296b2e034 from=translated src=- shape=68b2fc03 vocab=3599d2b7
+-/
 theorem cutKeys_mergeK {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, x.labels.Nodup → k ∈ cutKeys x →
     cutKeys (mergeK x k) = (cutKeys x).erase k
   | leaf _, _, hk => by simp [cutKeys] at hk
@@ -527,7 +671,9 @@ theorem cutKeys_mergeK {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, x.labels.Nodup �
           Finset.erase_union_distrib, Finset.erase_eq_of_notMem hk0,
           Finset.erase_eq_of_notMem hk']
 
-/-- **Merging along two different cut edges** in either order gives the same bar tree.-/
+/-- **Merging along two different cut edges** in either order gives the same bar tree.
+@isnad1 id=eq.1h4v.s5.8348d0956e35 from=translated src=- shape=5b2ec810 vocab=cb18c42d
+-/
 theorem mergeK_comm {k k' : ℕ ×ₗ ℕ} (hkk : k ≠ k') :
     ∀ x : BarTree E, mergeK (mergeK x k) k' = mergeK (mergeK x k') k
   | leaf _ => rfl
@@ -583,6 +729,9 @@ noncomputable def dTree (x : BarTree E) : BarTree E →₀ K :=
 noncomputable def d : (BarTree E →₀ K) →ₗ[K] (BarTree E →₀ K) :=
   Finsupp.linearCombination K (dTree K)
 
+/--
+@isnad1 id=eq.0h4v.s8.0de9279c566d from=translated src=- shape=3fec1cf7 vocab=a9955eb3
+-/
 @[simp] lemma d_single (x : BarTree E) (c : K) : d K (Finsupp.single x c) = c • dTree K x := by
   simp [d]
 
@@ -606,23 +755,37 @@ flag of the upper vertex kept.-/
 def substBar (x : BarTree E) (p : List Bool) (s : Bool) (σ : LTree E) : BarTree E :=
   x.substAt p s (liftW (flagAt x p) σ)
 
+/--
+@isnad1 id=eq.0h3v.s4.0d923724b4a6 from=translated src=- shape=4f9475f3 vocab=6930fcfe
+-/
 @[simp] lemma liftW_mapDec (c : Bool) : ∀ σ : LTree E, (liftW c σ).mapDec Prod.fst = σ
   | leaf _ => rfl
   | node e l r => by
     simp only [liftW, mapDec_node, mapDec_mapDec]
     exact congrArg₂ _ (mapDec_id l) (mapDec_id r)
 
+/--
+@isnad1 id=eq.0h3v.s4.8a11b8589aba from=translated src=- shape=9604373c vocab=a41b94a6
+-/
 @[simp] lemma labels_liftW (c : Bool) (σ : LTree E) : (liftW c σ).labels = σ.labels := by
   rw [← labels_mapDec Prod.fst, liftW_mapDec]
 
+/--
+@isnad1 id=iff.0h3v.s4.45df22beca31 from=translated src=- shape=def97f5b vocab=c49b9f05
+-/
 @[simp] lemma isShuffle_liftW (c : Bool) (σ : LTree E) : (liftW c σ).IsShuffle ↔ σ.IsShuffle := by
   rw [← isShuffle_mapDec Prod.fst, liftW_mapDec]
 
+/--
+@isnad1 id=eq.1h5v.s5.453312de6dda from=translated src=- shape=4ef45db7 vocab=9198829c
+-/
 lemma full_substBar {x : BarTree E} {p : List Bool} {s : Bool} (h : x.IsEdge p s) (σ : LTree E) :
     (substBar x p s σ).mapDec Prod.fst = (x.mapDec Prod.fst).substAt p s σ := by
   rw [substBar, ← substAt_mapDec Prod.fst x p s h, liftW_mapDec]
 
-/-- The window of an uncut edge, as a bar tree, is the window of the monomial lifted.-/
+/-- The window of an uncut edge, as a bar tree, is the window of the monomial lifted.
+@isnad1 id=eq.2h3v.s5.4513c7aa986d from=translated src=- shape=293530bf vocab=536b5075
+-/
 lemma windowRoot_of_uncut : ∀ (u : BarTree E) (s : Bool), u.IsEdgeRoot s →
     rootFlag (u.subtreeAt [s]) = false →
     u.windowRoot s = liftW (rootFlag u) ((u.mapDec Prod.fst).windowRoot s)
@@ -635,6 +798,9 @@ lemma windowRoot_of_uncut : ∀ (u : BarTree E) (s : Bool), u.IsEdgeRoot s →
     subst hc
     cases d <;> simp [windowRoot, window, rootFlag, liftW]
 
+/--
+@isnad1 id=eq.1h4v.s5.0e168d9aee8f from=translated src=- shape=c3ea693f vocab=8d6f9d63
+-/
 lemma windowAt_of_uncut {x : BarTree E} {p : List Bool} {s : Bool} (h : IsUncut x p s) :
     x.windowAt p s = liftW (flagAt x p) ((x.mapDec Prod.fst).windowAt p s) := by
   unfold windowAt flagAt
@@ -646,9 +812,15 @@ lemma windowAt_of_uncut {x : BarTree E} {p : List Bool} {s : Bool} (h : IsUncut 
 
 /-! ### Keys and merges under grafting and replacement -/
 
+/--
+@isnad1 id=eq.1h3v.s4.fe7b5d77aa95 from=translated src=- shape=8a8a1b8b vocab=ee3f5656
+-/
 lemma key_eq_of_perm {X : Type*} {t u : LTree X} (h : t.labels.Perm u.labels) : key t = key u := by
   simp only [key, minLabel_eq_of_perm h, ← length_labels, h.length_eq]
 
+/--
+@isnad1 id=le.0h3v.s4.8dc5623b9526 from=translated src=- shape=d0d59e0e vocab=c2057fcb
+-/
 lemma arity_subtreeAt_le {X : Type*} :
     ∀ (t : LTree X) (p : List Bool), (t.subtreeAt p).arity ≤ t.arity
   | leaf _, [] => le_rfl
@@ -663,6 +835,9 @@ lemma arity_subtreeAt_le {X : Type*} :
     simp only [subtreeAt, arity]
     omega
 
+/--
+@isnad1 id=not.1h3v.s6.33c94ddcb3d4 from=translated src=- shape=24433af8 vocab=26ea5920
+-/
 lemma not_mem_cutKeys_of_arity {k : ℕ ×ₗ ℕ} {u : BarTree E} (h : u.arity < (ofLex k).2) :
     k ∉ cutKeys u := fun hk => by
   have := (mem_nodeKeys_labels u (cutKeys_subset u hk)).2
@@ -671,6 +846,9 @@ lemma not_mem_cutKeys_of_arity {k : ℕ ×ₗ ℕ} {u : BarTree E} (h : u.arity 
 /-- The monomial `m` with no vertex flagged.-/
 abbrev unflag (m : LTree E) : BarTree E := m.mapDec (·, false)
 
+/--
+@isnad1 id=eq.0h3v.s6.1761eb7f6847 from=translated src=- shape=34a41341 vocab=40022283
+-/
 lemma cutKeys_plug_unflag (ins : ℕ → BarTree E) : ∀ m : LTree E,
     cutKeys ((unflag m).plug ins) = m.labels.toFinset.biUnion fun a => cutKeys (ins a)
   | leaf a => by simp [plug]
@@ -679,6 +857,9 @@ lemma cutKeys_plug_unflag (ins : ℕ → BarTree E) : ∀ m : LTree E,
       labels_node, List.toFinset_append]
     rw [cutKeys_plug_unflag ins l, cutKeys_plug_unflag ins r, Finset.union_biUnion]
 
+/--
+@isnad1 id=eq.0h6v.s7.8ebacd8d9c2f from=translated src=- shape=a4f7e2cf vocab=f541b326
+-/
 lemma cutKeys_plug_liftW (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r : LTree E) :
     cutKeys ((liftW c (node e l r)).plug ins) =
       (if c then {key ((liftW c (node e l r)).plug ins)} else ∅) ∪
@@ -686,6 +867,9 @@ lemma cutKeys_plug_liftW (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r : LTr
   simp only [liftW, plug, cutKeys, labels_node, List.toFinset_append]
   rw [cutKeys_plug_unflag ins l, cutKeys_plug_unflag ins r, Finset.union_biUnion]
 
+/--
+@isnad1 id=eq.0h4v.s5.83842bc12368 from=translated src=- shape=2798c57f vocab=38973051
+-/
 lemma mergeK_plug_unflag (ins : ℕ → BarTree E) (k : ℕ ×ₗ ℕ) : ∀ m : LTree E,
     mergeK ((unflag m).plug ins) k = (unflag m).plug fun a => mergeK (ins a) k
   | leaf _ => rfl
@@ -693,6 +877,9 @@ lemma mergeK_plug_unflag (ins : ℕ → BarTree E) (k : ℕ ×ₗ ℕ) : ∀ m :
     simp only [mapDec_node, plug, mergeK, Bool.false_eq_true, false_and, ite_false]
     rw [mergeK_plug_unflag ins k l, mergeK_plug_unflag ins k r]
 
+/--
+@isnad1 id=eq.1h7v.s6.c5b78d17b6b2 from=translated src=- shape=936493fc vocab=0f9fe035
+-/
 lemma mergeK_plug_liftW (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r : LTree E) (k : ℕ ×ₗ ℕ)
     (hk : ¬(c ∧ key ((liftW c (node e l r)).plug ins) = k)) :
     mergeK ((liftW c (node e l r)).plug ins) k =
@@ -704,6 +891,9 @@ lemma mergeK_plug_liftW (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r : LTre
   · rw [mergeK_plug_unflag, mergeK_plug_unflag]
     rfl
 
+/--
+@isnad1 id=eq.1h7v.s6.cf0244cf39aa from=translated src=- shape=5b204c7c vocab=b18d19c5
+-/
 lemma mergeK_plug_liftW_root (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r : LTree E)
     (k : ℕ ×ₗ ℕ) (hk : c ∧ key ((liftW c (node e l r)).plug ins) = k) :
     mergeK ((liftW c (node e l r)).plug ins) k = (liftW false (node e l r)).plug ins := by
@@ -713,6 +903,9 @@ lemma mergeK_plug_liftW_root (ins : ℕ → BarTree E) (c : Bool) (e : E) (l r :
   · rfl
   · exact absurd hk h'
 
+/--
+@isnad1 id=eq.0h4v.s5.5fed4d86ebfb from=translated src=- shape=3f932a88 vocab=760f1128
+-/
 lemma subtreeAt_mergeK (k : ℕ ×ₗ ℕ) :
     ∀ (x : BarTree E) (p : List Bool), (mergeK x k).subtreeAt p = mergeK (x.subtreeAt p) k
   | leaf _, [] => rfl
@@ -743,6 +936,9 @@ lemma subtreeAt_mergeK (k : ℕ ×ₗ ℕ) :
       · exact subtreeAt_mergeK k l p
       · exact subtreeAt_mergeK k r p
 
+/--
+@isnad1 id=eq.2h5v.s6.1af2f8a4b9d9 from=translated src=- shape=bcdca98f vocab=e73e9edc
+-/
 lemma mergeK_replaceAt (k : ℕ ×ₗ ℕ) : ∀ (x : BarTree E) (p : List Bool) (U : BarTree E),
     (∃ e l r, x.subtreeAt p = node e l r) → U.labels.Perm (x.subtreeAt p).labels →
     mergeK (x.replaceAt p U) k = (mergeK x k).replaceAt p (mergeK U k)
@@ -782,6 +978,9 @@ lemma mergeK_replaceAt (k : ℕ ×ₗ ℕ) : ∀ (x : BarTree E) (p : List Bool)
           mergeK_replaceAt k r p U hv hU]
         rfl
 
+/--
+@isnad1 id=eq.3h4v.s6.db6ae7e48968 from=translated src=- shape=ba78964c vocab=4b98d965
+-/
 lemma cutKeys_replaceAt : ∀ (x : BarTree E) (p : List Bool) (U : BarTree E),
     (∃ e l r, x.subtreeAt p = node e l r) → U.labels.Perm (x.subtreeAt p).labels →
     cutKeys U = cutKeys (x.subtreeAt p) → cutKeys (x.replaceAt p U) = cutKeys x
@@ -800,7 +999,9 @@ lemma cutKeys_replaceAt : ∀ (x : BarTree E) (p : List Bool) (U : BarTree E),
 /-! ### Substitution -/
 
 /-- **The window of an edge** of a shuffle monomial with distinct labels is a shuffle monomial of
-arity three on `0, 1, 2`.-/
+arity three on `0, 1, 2`.
+@isnad1 id=and.3h3v.s6.0ce100eb979e from=translated src=- shape=4754bee1 vocab=4078d678
+-/
 lemma windowRoot_shape {X : Type*} : ∀ (u : LTree X) (s : Bool), u.IsEdgeRoot s → u.IsShuffle →
     u.labels.Nodup → (u.windowRoot s).IsShuffle ∧ (u.windowRoot s).labels.Perm (List.range 3) ∧
       ∃ e l r, u.windowRoot s = node e l r
@@ -815,10 +1016,16 @@ lemma windowRoot_shape {X : Type*} : ∀ (u : LTree X) (s : Bool), u.IsEdgeRoot 
     rw [hw, h]
     exact ⟨by simp, (by decide : ([0, 1, 2] : List ℕ).Perm (List.range 3)), _, _, _, rfl⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.6eb1747195ca from=translated src=- shape=fcfc0299 vocab=8c486a99
+-/
 lemma winIns_root {X : Type*} (d d' : X) (l r : LTree X) (s : Bool)
     (he : (node d l r).IsEdgeRoot s) : (node d l r).winIns s = (node d' l r).winIns s := by
   cases s <;> cases l <;> cases r <;> first | rfl | exact absurd he (by simp [IsEdgeRoot])
 
+/--
+@isnad1 id=eq.2h6v.s6.67997d6df63c from=translated src=- shape=c8c20f8b vocab=26edec21
+-/
 lemma winIns_mergeK (k : ℕ ×ₗ ℕ) : ∀ (d : E × Bool) (l r : BarTree E) (s : Bool),
     (node d l r).IsEdgeRoot s → rootFlag ((node d l r).subtreeAt [s]) = false →
     (node d (mergeK l k) (mergeK r k)).winIns s = fun a => mergeK ((node d l r).winIns s a) k
@@ -844,7 +1051,9 @@ section Subst
 
 variable {x : BarTree E} {p : List Bool} {s : Bool} {σ : LTree E}
 
-/-- At an uncut edge, the vertex is its window, a monomial lifted, with the inputs grafted.-/
+/-- At an uncut edge, the vertex is its window, a monomial lifted, with the inputs grafted.
+@isnad1 id=eq.3h4v.s6.e36a41db3e99 from=translated src=- shape=5e55be3e vocab=8cc3a59f
+-/
 lemma subtreeAt_eq_plug (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s) :
     x.subtreeAt p =
       (liftW (flagAt x p) ((x.mapDec Prod.fst).windowAt p s)).plug ((x.subtreeAt p).winIns s) := by
@@ -852,6 +1061,9 @@ lemma subtreeAt_eq_plug (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x
   rw [← windowAt_of_uncut h]
   exact hw.window.symm
 
+/--
+@isnad1 id=and.3h4v.s6.f1a3213eb9f6 from=translated src=- shape=46ad5069 vocab=9b0d6fc2
+-/
 lemma window_full_shape (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s) :
     ((x.mapDec Prod.fst).windowAt p s).IsShuffle ∧
       ((x.mapDec Prod.fst).windowAt p s).labels.Perm (List.range 3) ∧
@@ -861,13 +1073,18 @@ lemma window_full_shape (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x
   exact windowRoot_shape _ s ((isEdgeRoot_mapDec _ _ s).2 h.1)
     (by simpa using isShuffle_subtreeAt x p hs) (by simpa using nodup_subtreeAt x p hnd)
 
+/--
+@isnad1 id=perm.4h6v.s6.15b84dc3ee61 from=translated src=- shape=a688909e vocab=ded603d7
+-/
 lemma perm_labels_plug_liftW (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσ : σ.labels.Perm (List.range 3)) (c : Bool) :
     ((liftW c σ).plug ((x.subtreeAt p).winIns s)).labels.Perm (x.subtreeAt p).labels :=
   ((perm_labels_plug (by simpa using hσ) _).trans
     (winSpec h.1 (isShuffle_subtreeAt x p hs) (nodup_subtreeAt x p hnd)).perm.symm)
 
-/-- **Substitution keeps the cut edges.**-/
+/-- **Substitution keeps the cut edges.**
+@isnad1 id=eq.5h5v.s6.4dcdfca5cfc9 from=translated src=- shape=8904c662 vocab=d127b754
+-/
 theorem cutKeys_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσ : σ.labels.Perm (List.range 3)) (hσn : ∃ e l r, σ = node e l r) :
     cutKeys (substBar x p s σ) = cutKeys x := by
@@ -884,7 +1101,9 @@ theorem cutKeys_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut 
   rw [cutKeys_plug_liftW, cutKeys_plug_liftW, List.toFinset_eq_of_perm _ _ hσ,
     List.toFinset_eq_of_perm _ _ hwl, hk]
 
-/-- **Merging commutes with substitution.**-/
+/-- **Merging commutes with substitution.**
+@isnad1 id=eq.5h6v.s6.ddcf2c08da8b from=translated src=- shape=60782a41 vocab=aeea5308
+-/
 theorem mergeK_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσ : σ.labels.Perm (List.range 3)) (hσn : ∃ e l r, σ = node e l r) (k : ℕ ×ₗ ℕ) :
     mergeK (substBar x p s σ) k = substBar (mergeK x k) p s σ := by
@@ -915,11 +1134,16 @@ theorem mergeK_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x
     rw [e1, winIns_mergeK k d L R s he hf,
       mergeK_plug_liftW _ _ _ _ _ _ (fun h' => hroot ⟨h'.1, hkey.symm.trans h'.2⟩)]
 
+/--
+@isnad1 id=iff.0h4v.s4.fe281fb87871 from=translated src=- shape=86eb794c vocab=626c944b
+-/
 lemma isEdgeRoot_mergeK (k : ℕ ×ₗ ℕ) (u : BarTree E) (s : Bool) :
     (mergeK u k).IsEdgeRoot s ↔ u.IsEdgeRoot s := by
   rw [← isEdgeRoot_mapDec Prod.fst, full_mergeK, isEdgeRoot_mapDec]
 
-/-- **An uncut edge stays uncut after a merge.**-/
+/-- **An uncut edge stays uncut after a merge.**
+@isnad1 id=isuncut.1h5v.s4.0494d8bcbccc from=translated src=- shape=b3dd4b9a vocab=d8d4539a
+-/
 lemma IsUncut.mergeK (h : IsUncut x p s) (k : ℕ ×ₗ ℕ) : IsUncut (mergeK x k) p s := by
   refine ⟨?_, ?_⟩
   · unfold IsEdge
@@ -929,14 +1153,23 @@ lemma IsUncut.mergeK (h : IsUncut x p s) (k : ℕ ×ₗ ℕ) : IsUncut (mergeK x
     rw [subtreeAt_mergeK]
     exact rootFlag_mergeK_le k _ h.2
 
+/--
+@isnad1 id=isshuffl.5h5v.s5.138ac40a649b from=translated src=- shape=2c3cd447 vocab=5e7f677e
+-/
 lemma isShuffle_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσs : σ.IsShuffle) (hσ : σ.labels.Perm (List.range 3)) : (substBar x p s σ).IsShuffle :=
   isShuffle_substAt h.1 hs hnd (by simpa using hσs) (by simpa using hσ)
 
+/--
+@isnad1 id=perm.4h5v.s5.d359cc3bd9ee from=translated src=- shape=bb232d60 vocab=5e7f677e
+-/
 lemma perm_labels_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσ : σ.labels.Perm (List.range 3)) : (substBar x p s σ).labels.Perm x.labels :=
   perm_labels_substAt h.1 hs hnd (by simpa using hσ)
 
+/--
+@isnad1 id=eq.4h5v.s6.33fb2b2c27a4 from=translated src=- shape=d7018f46 vocab=4291094a
+-/
 lemma rootFlag_substBar (hs : x.IsShuffle) (hnd : x.labels.Nodup) (h : IsUncut x p s)
     (hσn : ∃ e l r, σ = node e l r) : rootFlag (substBar x p s σ) = rootFlag x := by
   obtain ⟨e, l, r, rfl⟩ := hσn
@@ -960,6 +1193,9 @@ structure Valid (x : BarTree E) : Prop where
   nodup : x.labels.Nodup
   root : rootFlag x = false
 
+/--
+@isnad1 id=valid.1h3v.s4.96c54eab5086 from=translated src=- shape=f937f039 vocab=cc8852ab
+-/
 lemma Valid.mergeK {x : BarTree E} (hx : Valid x) (k : ℕ ×ₗ ℕ) : Valid (mergeK x k) :=
   ⟨(isShuffle_mergeK k x).2 hx.shuffle, by simpa using hx.nodup, rootFlag_mergeK_le k x hx.root⟩
 
@@ -969,6 +1205,9 @@ section Relators
 
 variable [Fintype E] [DecidableEq E]
 
+/--
+@isnad1 id=and.0h2v.s7.39a0cb1a7728 from=translated src=- shape=a742869d vocab=6ecc50fa
+-/
 lemma mono_shape (σ : Mono E 3) :
     σ.1.IsShuffle ∧ σ.1.labels.Perm (List.range 3) ∧ ∃ e l r, σ.1 = node e l r := by
   have h := (mem_monomials 3 σ.1).1 σ.2
@@ -980,6 +1219,9 @@ lemma mono_shape (σ : Mono E 3) :
     simp at this
   | node e l r => exact ⟨e, l, r, rfl⟩
 
+/--
+@isnad1 id=valid.2h5v.s6.f3e922f9fbf4 from=translated src=- shape=3c993de3 vocab=e163452d
+-/
 lemma Valid.substBar {x : BarTree E} (hx : Valid x) {p : List Bool} {s : Bool} (h : IsUncut x p s)
     (σ : Mono E 3) : Valid (substBar x p s σ.1) := by
   obtain ⟨hσs, hσ, hσn⟩ := mono_shape σ
@@ -1009,6 +1251,9 @@ end Relators
 def NormalBar (L : Set (LTree E)) (x : BarTree E) : Prop :=
   ∀ kw ∈ (x.mapDec Prod.fst).edgeWins, kw.1 ∉ cutKeys x → kw.2 ∉ L
 
+/--
+@isnad1 id=iff.2h4v.s6.d824bf152aac from=translated src=- shape=bbddfe4c vocab=8267a843
+-/
 lemma normalBar_mergeK {L : Set (LTree E)} {x : BarTree E} (hnd : x.labels.Nodup)
     {k : ℕ ×ₗ ℕ} (hk : k ∈ cutKeys x) :
     NormalBar L (mergeK x k) ↔
@@ -1025,6 +1270,9 @@ lemma normalBar_mergeK {L : Set (LTree E)} {x : BarTree E} (hnd : x.labels.Nodup
       exact h2 w hkw
     · exact h1 _ hkw fun h => hc (Finset.mem_erase.2 ⟨hkk, h⟩)
 
+/--
+@isnad1 id=mem.2h6v.s6.590fca87d255 from=translated src=- shape=3515ee03 vocab=763d390e
+-/
 lemma key_mem_cutKeys : ∀ (x : BarTree E) (q : List Bool) (d : E × Bool) (l r : BarTree E),
     x.subtreeAt q = node d l r → d.2 = true → key (node d l r) ∈ cutKeys x
   | leaf _, [], _, _, _, h, _ => by simp at h
@@ -1040,7 +1288,9 @@ lemma key_mem_cutKeys : ∀ (x : BarTree E) (q : List Bool) (d : E × Bool) (l r
     have := key_mem_cutKeys r' q d l r h hd
     simp [cutKeys, this]
 
-/-- **The cut edges are edges**, the root being uncut.-/
+/-- **The cut edges are edges**, the root being uncut.
+@isnad1 id=le.1h2v.s5.c4abb08a458b from=translated src=- shape=896ce822 vocab=abf58090
+-/
 lemma cutKeys_subset_edgeKeys {x : BarTree E} (hx : rootFlag x = false) :
     cutKeys x ⊆ (x.mapDec Prod.fst).edgeKeys := by
   cases x with
@@ -1062,6 +1312,9 @@ def cutK : BarTree E → ℕ ×ₗ ℕ → BarTree E
   | leaf a, _ => leaf a
   | node d l r, k => node d (cutAux l k) (cutAux r k)
 
+/--
+@isnad1 id=eq.0h3v.s5.c7260360ab32 from=translated src=- shape=8375da87 vocab=69c62f14
+-/
 @[simp] lemma full_cutAux (k : ℕ ×ₗ ℕ) :
     ∀ x : BarTree E, (cutAux x k).mapDec Prod.fst = x.mapDec Prod.fst
   | leaf _ => rfl
@@ -1072,6 +1325,9 @@ def cutK : BarTree E → ℕ ×ₗ ℕ → BarTree E
     · simp only [mapDec_node]
       exact congrArg₂ _ (full_cutAux k l) (full_cutAux k r)
 
+/--
+@isnad1 id=eq.0h3v.s5.9ee08c6a9ab6 from=translated src=- shape=8375da87 vocab=ea00d718
+-/
 @[simp] lemma full_cutK (k : ℕ ×ₗ ℕ) (x : BarTree E) :
     (cutK x k).mapDec Prod.fst = x.mapDec Prod.fst := by
   cases x with
@@ -1080,18 +1336,33 @@ def cutK : BarTree E → ℕ ×ₗ ℕ → BarTree E
     simp only [cutK, mapDec_node]
     exact congrArg₂ _ (full_cutAux k l) (full_cutAux k r)
 
+/--
+@isnad1 id=eq.0h3v.s4.d0402aac92b4 from=translated src=- shape=429b9a0d vocab=ca0d26d5
+-/
 @[simp] lemma labels_cutK (k : ℕ ×ₗ ℕ) (x : BarTree E) : (cutK x k).labels = x.labels := by
   rw [← labels_mapDec Prod.fst, full_cutK, labels_mapDec]
 
+/--
+@isnad1 id=iff.0h3v.s4.29c4a0209671 from=translated src=- shape=03c48d72 vocab=06f85338
+-/
 lemma isShuffle_cutK (k : ℕ ×ₗ ℕ) (x : BarTree E) : (cutK x k).IsShuffle ↔ x.IsShuffle := by
   rw [← isShuffle_mapDec Prod.fst, full_cutK, isShuffle_mapDec]
 
+/--
+@isnad1 id=eq.0h3v.s4.51376f80e3e2 from=translated src=- shape=ade6003c vocab=7a8fd1ed
+-/
 lemma rootFlag_cutK (k : ℕ ×ₗ ℕ) (x : BarTree E) : rootFlag (cutK x k) = rootFlag x := by
   cases x <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.7dbcbbbe438f from=translated src=- shape=a51df83a vocab=0016f61c
+-/
 lemma key_cutAux (k : ℕ ×ₗ ℕ) (x : BarTree E) : key (cutAux x k) = key x := by
   rw [← key_mapDec Prod.fst, full_cutAux, key_mapDec]
 
+/--
+@isnad1 id=eq.1h3v.s5.fa88fa26b625 from=translated src=- shape=fe69a46f vocab=5918245a
+-/
 lemma cutAux_of_not_mem {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, k ∉ x.nodeKeys → cutAux x k = x
   | leaf _, _ => rfl
   | node d l r, hk => by
@@ -1099,16 +1370,28 @@ lemma cutAux_of_not_mem {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, k ∉ x.nodeKey
     simp only [cutAux, ite_eq_right (Ne.symm hk.1), cutAux_of_not_mem l hk.2.1,
       cutAux_of_not_mem r hk.2.2]
 
+/--
+@isnad1 id=eq.0h3v.s4.e5d5376ce028 from=translated src=- shape=98cdf8c4 vocab=44eb9621
+-/
 lemma minLabel_cutAux (k : ℕ ×ₗ ℕ) (x : BarTree E) : (cutAux x k).minLabel = x.minLabel := by
   rw [← minLabel_mapDec Prod.fst, full_cutAux, minLabel_mapDec]
 
+/--
+@isnad1 id=eq.0h3v.s4.ee7eb6500cf5 from=translated src=- shape=98cdf8c4 vocab=ff527c1b
+-/
 lemma arity_cutAux (k : ℕ ×ₗ ℕ) (x : BarTree E) : (cutAux x k).arity = x.arity := by
   rw [← arity_mapDec Prod.fst, full_cutAux, arity_mapDec]
 
+/--
+@isnad1 id=eq.0h5v.s5.029984a5e4d2 from=translated src=- shape=050d3890 vocab=534141fd
+-/
 lemma key_node_cutAux (d : E × Bool) (l r : BarTree E) (k : ℕ ×ₗ ℕ) :
     key (node d (cutAux l k) (cutAux r k)) = key (node d l r) := by
   simp [key_node, minLabel_cutAux, arity_cutAux]
 
+/--
+@isnad1 id=eq.2h3v.s6.d4e36b041911 from=translated src=- shape=e874d5cf vocab=883a671f
+-/
 lemma cutKeys_cutAux {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, x.labels.Nodup → k ∈ x.nodeKeys →
     cutKeys (cutAux x k) = insert k (cutKeys x)
   | leaf _, _, hk => by simp [nodeKeys] at hk
@@ -1136,7 +1419,9 @@ lemma cutKeys_cutAux {k : ℕ ×ₗ ℕ} : ∀ x : BarTree E, x.labels.Nodup →
         simp only [Finset.mem_union, Finset.mem_insert]
         tauto
 
-/-- **Cutting an edge adds it to the cut edges.**-/
+/-- **Cutting an edge adds it to the cut edges.**
+@isnad1 id=eq.2h3v.s6.c037b8948710 from=translated src=- shape=64e5bec2 vocab=8b50dd39
+-/
 lemma cutKeys_cutK {x : BarTree E} (hnd : x.labels.Nodup) {k : ℕ ×ₗ ℕ}
     (hk : k ∈ (x.mapDec Prod.fst).edgeKeys) : cutKeys (cutK x k) = insert k (cutKeys x) := by
   cases x with
@@ -1157,6 +1442,9 @@ lemma cutKeys_cutK {x : BarTree E} (hnd : x.labels.Nodup) {k : ℕ ×ₗ ℕ}
       simp only [Finset.mem_union, Finset.mem_insert]
       tauto
 
+/--
+@isnad1 id=eq.1h3v.s5.8193782929d8 from=translated src=- shape=9d8255bc vocab=f028d3f9
+-/
 lemma mergeK_cutAux {k : ℕ ×ₗ ℕ} : ∀ y : BarTree E, k ∉ cutKeys y → mergeK (cutAux y k) k = y
   | leaf _, _ => rfl
   | node d l r, hk => by
@@ -1174,6 +1462,9 @@ lemma mergeK_cutAux {k : ℕ ×ₗ ℕ} : ∀ y : BarTree E, k ∉ cutKeys y →
     · rw [cutAux, ite_eq_right hroot, mergeK, ite_eq_right (by rw [key_node_cutAux]; exact fun h => hroot h.2),
         mergeK_cutAux l hkl, mergeK_cutAux r hkr]
 
+/--
+@isnad1 id=eq.2h3v.s5.7697230c6ca6 from=translated src=- shape=18f010b9 vocab=c392e467
+-/
 lemma cutAux_mergeK {k : ℕ ×ₗ ℕ} : ∀ y : BarTree E, y.labels.Nodup → k ∈ cutKeys y →
     cutAux (mergeK y k) k = y
   | leaf _, _, hk => by simp [cutKeys] at hk
@@ -1209,7 +1500,9 @@ lemma cutAux_mergeK {k : ℕ ×ₗ ℕ} : ∀ y : BarTree E, y.labels.Nodup → 
         rw [cutAux_mergeK r (List.nodup_append.1 hnd).2.1 h,
           mergeK_of_not_mem l fun h' => hl (cutKeys_subset l h'), cutAux_of_not_mem l hl]
 
-/-- **Merging undoes cutting.**-/
+/-- **Merging undoes cutting.**
+@isnad1 id=eq.2h3v.s5.c2af82b81546 from=translated src=- shape=b0ac0041 vocab=f1945242
+-/
 lemma mergeK_cutK {x : BarTree E} (hx : rootFlag x = false) {k : ℕ ×ₗ ℕ} (hk : k ∉ cutKeys x) :
     mergeK (cutK x k) k = x := by
   cases x with
@@ -1220,7 +1513,9 @@ lemma mergeK_cutK {x : BarTree E} (hx : rootFlag x = false) {k : ℕ ×ₗ ℕ} 
     have hkr : k ∉ cutKeys r := fun h => hk (by rw [cutKeys]; simp [h])
     rw [cutK, mergeK, ite_eq_right (by simp [hx]), mergeK_cutAux l hkl, mergeK_cutAux r hkr]
 
-/-- **Cutting undoes merging.**-/
+/-- **Cutting undoes merging.**
+@isnad1 id=eq.3h3v.s6.fb46fa277b9d from=translated src=- shape=ffebc8cd vocab=3ed8fb2f
+-/
 lemma cutK_mergeK {x : BarTree E} (hnd : x.labels.Nodup) (hx : rootFlag x = false)
     {k : ℕ ×ₗ ℕ} (hk : k ∈ cutKeys x) : cutK (mergeK x k) k = x := by
   cases x with
@@ -1238,6 +1533,9 @@ lemma cutK_mergeK {x : BarTree E} (hnd : x.labels.Nodup) (hx : rootFlag x = fals
       rw [cutAux_mergeK r (List.nodup_append.1 hnd).2.1 h,
         mergeK_of_not_mem l fun h' => hl (cutKeys_subset l h'), cutAux_of_not_mem l hl]
 
+/--
+@isnad1 id=eq.1h4v.s5.f6ce4078cf11 from=translated src=- shape=3e7c0e81 vocab=586b2e6b
+-/
 lemma mergeK_cutAux_comm {k k₀ : ℕ ×ₗ ℕ} (hkk : k ≠ k₀) :
     ∀ y : BarTree E, mergeK (cutAux y k₀) k = cutAux (mergeK y k) k₀
   | leaf _ => rfl
@@ -1253,7 +1551,9 @@ lemma mergeK_cutAux_comm {k k₀ : ℕ ×ₗ ℕ} (hkk : k ≠ k₀) :
           ite_eq_right h1, cutAux, ite_eq_right (by rw [key_node_mergeK]; exact h0),
           mergeK_cutAux_comm hkk l, mergeK_cutAux_comm hkk r]
 
-/-- **Merging and cutting different edges commute.**-/
+/-- **Merging and cutting different edges commute.**
+@isnad1 id=eq.1h4v.s5.9eb4ff5886f0 from=translated src=- shape=3e7c0e81 vocab=6c672495
+-/
 lemma mergeK_cutK_comm {k k₀ : ℕ ×ₗ ℕ} (hkk : k ≠ k₀) (x : BarTree E) :
     mergeK (cutK x k₀) k = cutK (mergeK x k) k₀ := by
   cases x with
@@ -1264,6 +1564,9 @@ lemma mergeK_cutK_comm {k k₀ : ℕ ×ₗ ℕ} (hkk : k ≠ k₀) (x : BarTree 
     · rw [cutK, mergeK, ite_eq_right (by rw [key_node_cutAux]; exact h1), mergeK, ite_eq_right h1, cutK,
         mergeK_cutAux_comm hkk l, mergeK_cutAux_comm hkk r]
 
+/--
+@isnad1 id=normalba.3h4v.s6.acb98fe22115 from=translated src=- shape=f14712fa vocab=db3425c3
+-/
 lemma normalBar_cutK {L : Set (LTree E)} {x : BarTree E} (hnd : x.labels.Nodup) {k : ℕ ×ₗ ℕ}
     (hk : k ∈ (x.mapDec Prod.fst).edgeKeys) (h : NormalBar L x) : NormalBar L (cutK x k) := by
   unfold NormalBar at h ⊢

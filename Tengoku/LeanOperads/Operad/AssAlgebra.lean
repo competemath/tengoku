@@ -33,18 +33,27 @@ namespace AssAlgebra
 def mul (A : Algebra R (Ass R) V) (x y : V) : V :=
   A.act (1 : Ass R 2) ![x, y]
 
+/--
+@isnad1 id=eq.0h5v.s9.007900a18a7e from=translated src=- shape=f113476e vocab=afbd0cce
+-/
 lemma mul_def (A : Algebra R (Ass R) V) (x y : V) :
     mul A x y = A.app 2 (1 : Ass R 2) ![x, y] := rfl
 
 /-! ### Computing the two tuple operations in arity 3 -/
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h2v.s6.243b0fc15e1a from=translated src=- shape=866b6469 vocab=e9fcbe02
+-/
 lemma midTuple_left (v : Fin 3 → V) :
     End.midTuple (V := V) 0 1 (n := 2) v = ![v 0, v 1] := by
   funext j
   fin_cases j <;> rfl
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h3v.s6.467179f1749d from=translated src=- shape=cf12942d vocab=201674e0
+-/
 lemma insTuple_left (w : V) (v : Fin 3 → V) :
     End.insTuple (V := V) 0 1 (n := 2) w v = ![w, v 2] := by
   funext i
@@ -56,12 +65,18 @@ lemma insTuple_left (w : V) (v : Fin 3 → V) :
     rfl
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h2v.s6.eb5066001cf3 from=translated src=- shape=866b6469 vocab=e9fcbe02
+-/
 lemma midTuple_right (v : Fin 3 → V) :
     End.midTuple (V := V) 1 0 (n := 2) v = ![v 1, v 2] := by
   funext j
   fin_cases j <;> rfl
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h3v.s6.843c9967f06a from=translated src=- shape=872a1ac4 vocab=201674e0
+-/
 lemma insTuple_right (w : V) (v : Fin 3 → V) :
     End.insTuple (V := V) 1 0 (n := 2) w v = ![v 0, w] := by
   funext i
@@ -75,12 +90,16 @@ lemma insTuple_right (w : V) (v : Fin 3 → V) :
 /-! ### Associativity -/
 
 /-- In `Ass`, the two ternary operations built from the binary generator coincide: both are
-`1 * 1`. This single `rfl` is the entire input to associativity.-/
+`1 * 1`. This single `rfl` is the entire input to associativity.
+@isnad1 id=eq.0h1v.s12.0103c4227b6b from=translated src=- shape=6dc17f10 vocab=8e19b029
+-/
 lemma ass_comp_eq :
     comp (R := R) (P := Ass R) 0 1 (1 : Ass R 2) (1 : Ass R 2)
       = comp (R := R) (P := Ass R) 1 0 (1 : Ass R 2) (1 : Ass R 2) := rfl
 
-/-- **Every algebra over `Ass` is an associative algebra.**-/
+/-- **Every algebra over `Ass` is an associative algebra.**
+@isnad1 id=eq.0h6v.s6.a3723db08adb from=translated src=- shape=1bd0fc5c vocab=0883249b
+-/
 theorem mul_assoc (A : Algebra R (Ass R) V) (x y z : V) :
     mul A (mul A x y) z = mul A x (mul A y z) := by
   -- Transport the `Ass`-level identity through the algebra structure.

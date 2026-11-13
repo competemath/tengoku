@@ -53,9 +53,15 @@ def innerSlice (a b : ℕ) {n : ℕ} (t₁ : OfArity E (a + 1 + b)) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.a24aad02e0a0 from=translated src=- shape=24405c66 vocab=7dd8a289
+-/
 @[simp] lemma outerSlice_apply (a b : ℕ) {n : ℕ} (t₂ : OfArity E n) (x : Chain R E (a + n + b))
     (t₁ : OfArity E (a + 1 + b)) : outerSlice a b t₂ x t₁ = x (OfArity.graft a b t₁ t₂) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s9.1080ffb34723 from=translated src=- shape=7f21569e vocab=70115d87
+-/
 @[simp] lemma innerSlice_apply (a b : ℕ) {n : ℕ} (t₁ : OfArity E (a + 1 + b))
     (x : Chain R E (a + n + b)) (t₂ : OfArity E n) :
     innerSlice a b t₁ x t₂ = x (OfArity.graft a b t₁ t₂) := rfl
@@ -99,15 +105,27 @@ def koszulDual (Rel : Submodule R (Chain R E 3)) : (n : ℕ) → Submodule R (Ch
         · exact (koszulDual Rel k).smul_mem c ((hx a b k h hk hab).2 t₁) }
   decreasing_by all_goals omega
 
+/--
+@isnad1 id=eq.0h3v.s8.2e9bb20bf025 from=translated src=- shape=d6e41d80 vocab=8a7145e6
+-/
 lemma koszulDual_two (Rel : Submodule R (Chain R E 3)) : koszulDual Rel 2 = ⊤ := by
   rw [koszulDual]
 
+/--
+@isnad1 id=eq.0h3v.s8.7ae10509efe5 from=translated src=- shape=d6e41d80 vocab=8a7145e6
+-/
 lemma koszulDual_one (Rel : Submodule R (Chain R E 3)) : koszulDual Rel 1 = ⊤ := by
   rw [koszulDual]
 
+/--
+@isnad1 id=eq.0h3v.s7.d07512110ed0 from=translated src=- shape=58a83a30 vocab=9c24207f
+-/
 lemma koszulDual_three (Rel : Submodule R (Chain R E 3)) : koszulDual Rel 3 = Rel := by
   rw [koszulDual]
 
+/--
+@isnad1 id=iff.0h5v.s11.2453280cf79f from=translated src=- shape=39035e40 vocab=067e7b65
+-/
 lemma mem_koszulDual_add_four (Rel : Submodule R (Chain R E 3)) (m : ℕ)
     (x : Chain R E (m + 4)) :
     x ∈ koszulDual Rel (m + 4) ↔ ∀ (a b k : ℕ) (h : a + k + b = m + 4), 2 ≤ k → 1 ≤ a + b →
@@ -118,13 +136,17 @@ lemma mem_koszulDual_add_four (Rel : Submodule R (Chain R E 3)) (m : ℕ)
   rw [koszulDual]
   rfl
 
-/-- In arity at most two every chain is in the Koszul dual.-/
+/-- In arity at most two every chain is in the Koszul dual.
+@isnad1 id=mem.1h5v.s8.399caaa4a6e4 from=translated src=- shape=b55c20b0 vocab=473c2792
+-/
 lemma mem_koszulDual_of_le_two (Rel : Submodule R (Chain R E 3)) {n : ℕ} (hn : n ≤ 2)
     (x : Chain R E n) : x ∈ koszulDual Rel n := by
   rcases (show n = 0 ∨ n = 1 ∨ n = 2 by omega) with rfl | rfl | rfl <;>
     (rw [koszulDual]; exact Submodule.mem_top)
 
-/-- A chain of arity one is a multiple of the leaf.-/
+/-- A chain of arity one is a multiple of the leaf.
+@isnad1 id=eq.0h5v.s9.dfc2de806802 from=translated src=- shape=aacb9c97 vocab=0b8af338
+-/
 lemma slice_trivial_outer (a b : ℕ) (x : Chain R E (a + 1 + b)) :
     outerSlice (R := R) a b OfArity.one x = x := by
   funext t₁
@@ -132,7 +154,9 @@ lemma slice_trivial_outer (a b : ℕ) (x : Chain R E (a + 1 + b)) :
   congr 1
   exact Subtype.ext (graft_leaf_right t₁.1 a)
 
-/-- Transport of membership along an equality of arities.-/
+/-- Transport of membership along an equality of arities.
+@isnad1 id=mem.2h6v.s8.d5860fc156bc from=translated src=- shape=9316bdb0 vocab=8671ef9d
+-/
 lemma mem_koszulDual_cast (Rel : Submodule R (Chain R E 3)) {m n : ℕ} (h : m = n)
     {x : Chain R E n} (hx : x ∈ koszulDual Rel n) :
     (fun t => x (OfArity.cast h t)) ∈ koszulDual Rel m := by
@@ -153,34 +177,54 @@ def eval {n : ℕ} (f : TConv R E Q n) : Chain R E n →ₗ[R] Q n where
     simp only [Pi.smul_apply, smul_eq_mul, mul_smul, RingHom.id_apply, Finset.smul_sum]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h6v.s8.5e3d652e8276 from=translated src=- shape=36aab4d3 vocab=11c8e888
+-/
 lemma eval_apply {n : ℕ} (f : TConv R E Q n) (x : Chain R E n) :
     eval f x = ∑ t, x t • f t := rfl
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h7v.s9.9468252da534 from=translated src=- shape=5d946700 vocab=7c0ac9c4
+-/
 lemma eval_add {n : ℕ} (f g : TConv R E Q n) (x : Chain R E n) :
     eval (f + g) x = eval f x + eval g x := by
   simp only [eval_apply, Pi.add_apply, smul_add, Finset.sum_add_distrib]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h7v.s9.5675ce614bab from=translated src=- shape=293f0236 vocab=3b0cf822
+-/
 lemma eval_smul {n : ℕ} (c : R) (f : TConv R E Q n) (x : Chain R E n) :
     eval (c • f) x = c • eval f x := by
   simp only [eval_apply, Pi.smul_apply, Finset.smul_sum, smul_comm c]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h6v.s9.cc3498f50ee7 from=translated src=- shape=4757b171 vocab=5d308789
+-/
 lemma eval_neg {n : ℕ} (f : TConv R E Q n) (x : Chain R E n) : eval (-f) x = -eval f x := by
   simp only [eval_apply, Pi.neg_apply, smul_neg, Finset.sum_neg_distrib]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h7v.s9.36297242c2d4 from=translated src=- shape=5d946700 vocab=b6304e09
+-/
 lemma eval_sub {n : ℕ} (f g : TConv R E Q n) (x : Chain R E n) :
     eval (f - g) x = eval f x - eval g x := by
   simp only [eval_apply, Pi.sub_apply, smul_sub, Finset.sum_sub_distrib]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h5v.s8.9ffdaf366d0f from=translated src=- shape=4199b3c3 vocab=20c5c769
+-/
 @[simp] lemma eval_zero {n : ℕ} (x : Chain R E n) : eval (0 : TConv R E Q n) x = 0 := by
   simp [eval_apply]
 
 omit [NSOperad R Q] in
-/-- Evaluation on the indicator of a tree.-/
+/-- Evaluation on the indicator of a tree.
+@isnad1 id=eq.0h7v.s8.3be67d6d16a7 from=translated src=- shape=126def59 vocab=0018db36
+-/
 lemma eval_single {n : ℕ} (f : TConv R E Q n) (t : OfArity E n) (r : R) :
     eval f (Pi.single t r) = r • f t := by
   rw [eval_apply, Finset.sum_eq_single t]
@@ -191,11 +235,15 @@ lemma eval_single {n : ℕ} (f : TConv R E Q n) (t : OfArity E n) (r : R) :
     exact absurd (Finset.mem_univ t) h
 
 omit [NSOperad R Q] in
-/-- A cochain is determined by its values on chains.-/
+/-- A cochain is determined by its values on chains.
+@isnad1 id=eq.1h6v.s8.ff4060e8a3a7 from=translated src=- shape=cb80c36f vocab=20c5c769
+-/
 lemma ext_eval {n : ℕ} {f g : TConv R E Q n} (h : ∀ x, eval f x = eval g x) : f = g :=
   funext fun t => by simpa [eval_single] using h (Pi.single t 1)
 
-/-- A composite of cochains, evaluated on a chain, as a sum over the factorizations.-/
+/-- A composite of cochains, evaluated on a chain, as a sum over the factorizations.
+@isnad1 id=eq.0h9v.s12.7e9617b11a5d from=translated src=- shape=5609a155 vocab=67270573
+-/
 lemma eval_comp_pairs (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     (x : Chain R E (a + n + b)) :
     eval (compL a b f g) x = ∑ p : OfArity E (a + 1 + b) × OfArity E n,
@@ -209,7 +257,9 @@ lemma eval_comp_pairs (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : T
       smul_zero]
   · rw [compL_apply, compFun_eq a b f g p.1 p.2 rfl]
 
-/-- **Evaluating a composite along outer slices.**-/
+/-- **Evaluating a composite along outer slices.**
+@isnad1 id=eq.0h9v.s12.53da2b07d1ac from=translated src=- shape=972e7460 vocab=f4626c52
+-/
 theorem eval_comp_outer (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     (x : Chain R E (a + n + b)) :
     eval (compL a b f g) x
@@ -220,7 +270,9 @@ theorem eval_comp_outer (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g :
   refine Finset.sum_congr rfl fun t₁ _ => ?_
   rw [map_smul, LinearMap.smul_apply, outerSlice_apply]
 
-/-- **Evaluating a composite along inner slices.**-/
+/-- **Evaluating a composite along inner slices.**
+@isnad1 id=eq.0h9v.s12.5f8d669e5f3e from=translated src=- shape=11e13e5c vocab=8a1dcdc7
+-/
 theorem eval_comp_inner (a b : ℕ) {n : ℕ} (f : TConv R E Q (a + 1 + b)) (g : TConv R E Q n)
     (x : Chain R E (a + n + b)) :
     eval (compL a b f g) x

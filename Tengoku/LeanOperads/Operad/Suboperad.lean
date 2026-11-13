@@ -36,7 +36,9 @@ variable (S : Suboperad R P)
 
 instance : CoeSort (Suboperad R P) (ℕ → Type v) := ⟨fun S n => S.carrier n⟩
 
-/-- Reindexing inside a suboperad agrees with reindexing in the ambient operad.-/
+/-- Reindexing inside a suboperad agrees with reindexing in the ambient operad.
+@isnad1 id=eq.1h6v.s11.595c95b4e094 from=translated src=- shape=e77b68d2 vocab=25860c75
+-/
 lemma coe_reindex {m n : ℕ} (h : m = n) (x : S.carrier m) :
     ((reindex R (fun k => (S.carrier k : Type v)) h x : S.carrier n) : P n)
       = reindex R P h (x : P m) := by
@@ -60,6 +62,9 @@ def compSub (a b : ℕ) {n : ℕ} :
     refine LinearMap.ext fun β => Subtype.ext ?_
     simp
 
+/--
+@isnad1 id=eq.0h8v.s13.ef07c3071009 from=translated src=- shape=6e73bbca vocab=9f8bc801
+-/
 @[simp] lemma coe_compSub (a b : ℕ) {n : ℕ} (α : S.carrier (a + 1 + b)) (β : S.carrier n) :
     ((S.compSub a b α β : S.carrier (a + n + b)) : P (a + n + b))
       = comp (R := R) a b (α : P _) (β : P _) := rfl

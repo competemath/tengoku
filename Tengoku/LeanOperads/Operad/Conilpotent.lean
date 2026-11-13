@@ -97,17 +97,25 @@ variable {R C}
 variable {A A' B D : Type} [Fintype A] [DecidableEq A] [Fintype A'] [DecidableEq A']
   [Fintype B] [DecidableEq B] [Fintype D] [DecidableEq D]
 
+/--
+@isnad1 id=iff.0h5v.s11.1ceb1eb949c6 from=translated src=- shape=084674b7 vocab=0e2f7837
+-/
 lemma mem_filt_succ {n : ℕ} {c : C A} :
     c ∈ filt R C (n + 1) A ↔ ∀ (B D : Type) [Fintype B] [DecidableEq B] [Fintype D]
       [DecidableEq D] (i : B) (e : Without B i ⊕ D ≃ A),
       decomp (R := R) i (map (R := R) e.symm c) ∈ filtTarget R C (filt R C n) B D :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6b23be06da96 from=translated src=- shape=62d995ae vocab=65d0a69e
+-/
 lemma filt_zero : filt R C 0 A = coaugSpan R C A :=
   rfl
 
 omit [Coaug R C] in
-/-- Relabellings of the generators of a span of relabellings stay in it.-/
+/-- Relabellings of the generators of a span of relabellings stay in it.
+@isnad1 id=mem.1h7v.s8.8bd390f91b2c from=translated src=- shape=608e7ae4 vocab=bf5ed0c1
+-/
 lemma map_mem_unitSpan (one : C Unit) (e : A ≃ A') {c : C A} (hc : c ∈ unitSpan R C one A) :
     map (R := R) e c ∈ unitSpan R C one A' := by
   induction hc using Submodule.span_induction with
@@ -118,7 +126,9 @@ lemma map_mem_unitSpan (one : C Unit) (e : A ≃ A') {c : C A} (hc : c ∈ unitS
   | add x y _ _ hx hy => simpa only [map_add] using add_mem hx hy
   | smul r x _ hx => simpa only [map_smul] using Submodule.smul_mem _ r hx
 
-/-- The coaugmentation span is a subcooperad.-/
+/-- The coaugmentation span is a subcooperad.
+@isnad1 id=mem.1h6v.s11.ee439c39f756 from=translated src=- shape=48afed60 vocab=3d17f0e1
+-/
 lemma decomp_mem_coaugSpan (i : A) {c : C (Without A i ⊕ B)}
     (hc : c ∈ coaugSpan R C (Without A i ⊕ B)) :
     decomp (R := R) i c ∈ tensSub R (coaugSpan R C A) (coaugSpan R C B) := by
@@ -130,12 +140,17 @@ lemma decomp_mem_coaugSpan (i : A) {c : C (Without A i ⊕ B)}
   | add x y _ _ hx hy => simpa only [map_add] using add_mem hx hy
   | smul r x _ hx => simpa only [map_smul] using Submodule.smul_mem _ r hx
 
+/--
+@isnad1 id=le.1h6v.s9.8234cb9e068d from=translated src=- shape=c9ea4d4a vocab=6c6935a3
+-/
 lemma filtTarget_mono {F G : ∀ (A : Type) [Fintype A] [DecidableEq A], Submodule R (C A)}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A], F A ≤ G A) :
     filtTarget R C F B D ≤ filtTarget R C G B D :=
   sup_le_sup_left (Submodule.map₂_le_map₂ (h B) (h D)) _
 
-/-- The filtration is stable under relabelling.-/
+/-- The filtration is stable under relabelling.
+@isnad1 id=mem.1h7v.s8.42fa3b1ae33d from=translated src=- shape=b57e3dd3 vocab=e136e265
+-/
 lemma map_mem_filt (n : ℕ) (e : A ≃ A') {c : C A} (hc : c ∈ filt R C n A) :
     map (R := R) e c ∈ filt R C n A' := by
   cases n with
@@ -145,7 +160,9 @@ lemma map_mem_filt (n : ℕ) (e : A ≃ A') {c : C A} (hc : c ∈ filt R C n A) 
     have h := hc B D i (e'.trans e.symm)
     rwa [← map_trans, show e.trans e'.symm = (e'.trans e.symm).symm by ext; simp]
 
-/-- Every stage of the filtration contains the coaugmentation.-/
+/-- Every stage of the filtration contains the coaugmentation.
+@isnad1 id=le.0h4v.s7.eec698f0f36d from=translated src=- shape=ef3ab244 vocab=af70d630
+-/
 lemma coaugSpan_le_filt (n : ℕ) (A : Type) [Fintype A] [DecidableEq A] :
     coaugSpan R C A ≤ filt R C n A := by
   induction n generalizing A with
@@ -155,7 +172,9 @@ lemma coaugSpan_le_filt (n : ℕ) (A : Type) [Fintype A] [DecidableEq A] :
     have := decomp_mem_coaugSpan (R := R) (C := C) i (map_mem_unitSpan _ e.symm hc)
     exact Submodule.mem_sup_right ((Submodule.map₂_le_map₂ (ih B) (ih D)) this)
 
-/-- **The coradical filtration is increasing.**-/
+/-- **The coradical filtration is increasing.**
+@isnad1 id=le.0h4v.s7.b56f89ed912a from=translated src=- shape=c5c80628 vocab=245195a3
+-/
 lemma filt_mono (n : ℕ) (A : Type) [Fintype A] [DecidableEq A] :
     filt R C n A ≤ filt R C (n + 1) A := by
   induction n generalizing A with
@@ -164,6 +183,9 @@ lemma filt_mono (n : ℕ) (A : Type) [Fintype A] [DecidableEq A] :
     intro c hc B D _ _ _ _ i e
     exact filtTarget_mono (fun A _ _ => ih A) (hc B D i e)
 
+/--
+@isnad1 id=le.1h5v.s7.a38cddba6455 from=translated src=- shape=5931301f vocab=7da274ec
+-/
 lemma filt_le_filt {m n : ℕ} (h : m ≤ n) (A : Type) [Fintype A] [DecidableEq A] :
     filt R C m A ≤ filt R C n A := by
   induction h with
@@ -208,15 +230,27 @@ variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetOpe
 /-- The weight of an operation, as a natural number.-/
 abbrev w (t : S A) : ℕ := (wt (S := S)).app A t
 
+/--
+@isnad1 id=eq.0h5v.s6.2042eb65fa9b from=translated src=- shape=0b8c3e08 vocab=88691ac4
+-/
 lemma w_map (e : A ≃ B) (t : S A) : w (SetOperad.map e t) = w t :=
   (wt (S := S)).app_map e t
 
+/--
+@isnad1 id=eq.0h1v.s5.c03b7acc145b from=translated src=- shape=5eb6c29a vocab=193e133e
+-/
 lemma w_one : w (SetOperad.one : S Unit) = 0 :=
   (wt (S := S)).app_one
 
+/--
+@isnad1 id=eq.0h6v.s7.35ee26d22cc5 from=translated src=- shape=12fdd284 vocab=bca3e1e5
+-/
 lemma w_comp (i : A) (p : S A) (q : S B) : w (SetOperad.comp i p q) = w p + w q :=
   (wt (S := S)).app_comp i p q
 
+/--
+@isnad1 id=iff.0h3v.s6.2a763a7d75f5 from=translated src=- shape=7dd1d78b vocab=95a76c10
+-/
 lemma w_eq_zero_iff (t : S A) : w t = 0 ↔ ∃ e : Unit ≃ A, t = SetOperad.map e SetOperad.one :=
   ⟨eq_unit t, fun ⟨e, he⟩ => by rw [he, w_map, w_one]⟩
 
@@ -232,7 +266,9 @@ variable {R : Type u} [CommRing R]
 variable {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
 
 /-- A decomposition lies in a submodule as soon as the tensor of every factorization it involves
-does.-/
+does.
+@isnad1 id=mem.1h7v.s12.dcac45e81447 from=translated src=- shape=48c761b6 vocab=7df6232e
+-/
 lemma decompL_mem (i : A) (x : S (Without A i ⊕ B) →₀ R)
     (P : Submodule R ((S A →₀ R) ⊗[R] (S B →₀ R)))
     (h : ∀ p q, x (SetOperad.comp i p q) ≠ 0 →
@@ -250,6 +286,9 @@ lemma decompL_mem (i : A) (x : S (Without A i ⊕ B) →₀ R)
 variable [SetOperad.ConnectedWeight S]
 
 omit [SetOperad.ConnectedWeight S] in
+/--
+@isnad1 id=mem.1h5v.s8.2849b964880b from=translated src=- shape=ed518f22 vocab=bfc6a4dc
+-/
 lemma single_unit_mem (one : S Unit →₀ R) (hone : one = Finsupp.single SetOperad.one 1)
     (e : Unit ≃ A) :
     Finsupp.single (SetOperad.map e SetOperad.one : S A) (1 : R)
@@ -277,10 +316,15 @@ noncomputable instance instCoaug : Coaug R (Lin R S) where
     obtain ⟨e₂, rfl⟩ := eq_unit q hw.2
     exact Submodule.apply_mem_map₂ _ (single_unit_mem _ rfl e₁) (single_unit_mem _ rfl e₂)
 
+/--
+@isnad1 id=eq.0h2v.s7.a320306b4a08 from=translated src=- shape=52866f0e vocab=a0c80be7
+-/
 lemma one_eq : Coaug.one (R := R) (C := Lin R S) = Finsupp.single SetOperad.one 1 :=
   rfl
 
-/-- **An operation of weight `n` lies in the `n`-th stage of the coradical filtration.**-/
+/-- **An operation of weight `n` lies in the `n`-th stage of the coradical filtration.**
+@isnad1 id=mem.0h4v.s8.31299f73a13c from=translated src=- shape=2624b381 vocab=2eb31bcf
+-/
 theorem single_mem_filt (t : S A) : Finsupp.single t (1 : R) ∈ filt R (Lin R S) (w t) A := by
   suffices h : ∀ n (A : Type) [Fintype A] [DecidableEq A] (t : S A), w t = n →
       Finsupp.single t (1 : R) ∈ filt R (Lin R S) n A from h _ A t rfl
@@ -314,7 +358,9 @@ theorem single_mem_filt (t : S A) : Finsupp.single t (1 : R) ∈ filt R (Lin R S
       · exact filt_le_filt (by omega) B (ih _ (by omega) B p rfl)
       · exact filt_le_filt (by omega) D (ih _ (by omega) D q rfl)
 
-/-- **The decomposition cooperad of a set operad with a connected weight is conilpotent.**-/
+/-- **The decomposition cooperad of a set operad with a connected weight is conilpotent.**
+@isnad1 id=conilpot.0h2v.s6.5be7ac6c2cc5 from=translated src=- shape=3c78ec57 vocab=f25f03d4
+-/
 theorem conilpotent : Conilpotent R (Lin R S) := by
   intro A _ _ x
   refine ⟨x.support.sup w, ?_⟩

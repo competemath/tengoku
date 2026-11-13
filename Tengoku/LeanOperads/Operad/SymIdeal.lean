@@ -56,6 +56,9 @@ def SymOperadHom.ker (f : SymOperadHom R P Q) : SymOperadIdeal R P where
     rw [LinearMap.mem_ker] at hy ⊢
     rw [f.app_comp, hy, map_zero]
 
+/--
+@isnad1 id=iff.0h6v.s8.b3005d66e7b2 from=translated src=- shape=18725ed5 vocab=14ced7a3
+-/
 @[simp] lemma SymOperadHom.mem_ker (f : SymOperadHom R P Q) {A : Type} [Fintype A]
     [DecidableEq A] (x : P A) : x ∈ f.ker.sub A ↔ f.app A x = 0 :=
   LinearMap.mem_ker
@@ -65,6 +68,9 @@ def SymOperadHom.ker (f : SymOperadHom R P Q) : SymOperadIdeal R P where
 def Sym.Perm.kerSum (R : Type u) [CommRing R] : SymOperadIdeal R (Perm R) :=
   (Perm.sumHom R).ker
 
+/--
+@isnad1 id=iff.0h3v.s8.26ab2a7ee8fb from=translated src=- shape=47bd83e7 vocab=72bd0e1a
+-/
 lemma Sym.Perm.mem_kerSum {A : Type} [Fintype A] [DecidableEq A] (x : Perm R A) :
     x ∈ (kerSum R).sub A ↔ ∑ a, x a = 0 :=
   SymOperadHom.mem_ker _ x

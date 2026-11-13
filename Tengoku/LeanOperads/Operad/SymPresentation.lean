@@ -34,6 +34,9 @@ variable {R : Type u} [CommRing R]
   [∀ (A : Type) [Fintype A] [DecidableEq A], AddCommGroup (P A)]
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (P A)] [SymOperad R P]
 
+/--
+@isnad1 id=eq.1h4v.s7.d52345b4ee23 from=translated src=- shape=87400113 vocab=407fd880
+-/
 @[ext] lemma ext {I J : SymOperadIdeal R P}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A], I.sub A = J.sub A) : I = J := by
   obtain ⟨I, _, _, _⟩ := I
@@ -51,6 +54,9 @@ instance : PartialOrder (SymOperadIdeal R P) where
   le_trans _ _ _ hIJ hJK A _ _ := (hIJ A).trans (hJK A)
   le_antisymm _ _ hIJ hJI := ext fun A _ _ => le_antisymm (hIJ A) (hJI A)
 
+/--
+@isnad1 id=iff.0h4v.s8.863ef1097020 from=translated src=- shape=cb7d76c9 vocab=7bfaae27
+-/
 lemma le_def {I J : SymOperadIdeal R P} :
     I ≤ J ↔ ∀ (A : Type) [Fintype A] [DecidableEq A], I.sub A ≤ J.sub A := Iff.rfl
 
@@ -70,14 +76,23 @@ def sInf (S : Set (SymOperadIdeal R P)) : SymOperadIdeal R P where
     simp only [Submodule.mem_iInf] at hy ⊢
     exact fun I hI => I.comp_mem_right i x (hy I hI)
 
+/--
+@isnad1 id=iff.0h5v.s8.ad63efc53103 from=translated src=- shape=146eca9a vocab=ba0964ba
+-/
 lemma mem_sInf {S : Set (SymOperadIdeal R P)} {A : Type} [Fintype A] [DecidableEq A] {x : P A} :
     x ∈ (sInf S).sub A ↔ ∀ I ∈ S, x ∈ I.sub A := by
   simp only [sInf, Submodule.mem_iInf]
 
+/--
+@isnad1 id=le.1h4v.s7.fa92304525e4 from=translated src=- shape=97b29832 vocab=1aec9496
+-/
 lemma sInf_le {S : Set (SymOperadIdeal R P)} {I : SymOperadIdeal R P} (h : I ∈ S) :
     sInf S ≤ I :=
   fun _ _ _ _ hx => mem_sInf.1 hx I h
 
+/--
+@isnad1 id=le.1h4v.s7.ae59af552547 from=translated src=- shape=334261a5 vocab=1aec9496
+-/
 lemma le_sInf {S : Set (SymOperadIdeal R P)} {J : SymOperadIdeal R P} (h : ∀ I ∈ S, J ≤ I) :
     J ≤ sInf S :=
   fun A _ _ _ hx => mem_sInf.2 fun I hI => h I hI A hx
@@ -89,13 +104,21 @@ def span (r : ∀ n : ℕ, Set (P (Fin n))) : SymOperadIdeal R P :=
 
 variable {r : ∀ n : ℕ, Set (P (Fin n))}
 
+/--
+@isnad1 id=le.0h4v.s7.a44cd7479bc3 from=translated src=- shape=1cfadee5 vocab=ff1e62e7
+-/
 lemma subset_span (n : ℕ) : r n ⊆ (span R r).sub (Fin n) :=
   fun _ hx => mem_sInf.2 fun _ hI => hI n hx
 
-/-- **The generated ideal lies in an ideal exactly when the relators do.**-/
+/-- **The generated ideal lies in an ideal exactly when the relators do.**
+@isnad1 id=iff.0h4v.s8.eaf20e39f568 from=translated src=- shape=664e456c vocab=f15ddd00
+-/
 lemma span_le {I : SymOperadIdeal R P} : span R r ≤ I ↔ ∀ n, r n ⊆ I.sub (Fin n) :=
   ⟨fun h n _ hx => h _ (subset_span n hx), fun h => sInf_le h⟩
 
+/--
+@isnad1 id=le.1h4v.s7.057b7abd59c7 from=translated src=- shape=3b808edb vocab=3abd603e
+-/
 lemma span_mono {r' : ∀ n : ℕ, Set (P (Fin n))} (h : ∀ n, r n ⊆ r' n) :
     span R r ≤ span R r' :=
   span_le.2 fun n => (h n).trans (subset_span n)
@@ -104,7 +127,9 @@ variable {Q : (A : Type) → [Fintype A] → [DecidableEq A] → Type w}
   [∀ (A : Type) [Fintype A] [DecidableEq A], AddCommGroup (Q A)]
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (Q A)] [SymOperad R Q]
 
-/-- **A morphism kills the generated ideal exactly when it kills the relators.**-/
+/-- **A morphism kills the generated ideal exactly when it kills the relators.**
+@isnad1 id=iff.0h5v.s9.1c7a90fb7ee2 from=translated src=- shape=98d7be97 vocab=1e3be6c2
+-/
 lemma span_le_ker_iff (φ : SymOperadHom R P Q) :
     span R r ≤ φ.ker ↔ ∀ n, ∀ x ∈ r n, φ.app (Fin n) x = 0 := by
   rw [span_le]
@@ -112,7 +137,9 @@ lemma span_le_ker_iff (φ : SymOperadHom R P Q) :
   · exact (SymOperadHom.mem_ker φ x).1 (h hx)
   · exact (SymOperadHom.mem_ker φ x).2 (h x hx)
 
-/-- A morphism killing the relators kills every element of the generated ideal.-/
+/-- A morphism killing the relators kills every element of the generated ideal.
+@isnad1 id=eq.2h7v.s9.b8c8520edf19 from=translated src=- shape=36828df1 vocab=813eaa11
+-/
 lemma app_eq_zero_of_mem_span (φ : SymOperadHom R P Q) (hφ : ∀ n, ∀ x ∈ r n, φ.app (Fin n) x = 0)
     {A : Type} [Fintype A] [DecidableEq A] {x : P A} (hx : x ∈ (span R r).sub A) :
     φ.app A x = 0 :=
@@ -130,6 +157,9 @@ noncomputable def presHomEquiv :
   left_inv ψ := ((span R r).liftHom_unique _ _ ψ rfl).symm
   right_inv φ := Subtype.ext ((span R r).liftHom_comp_projHom _ _)
 
+/--
+@isnad1 id=eq.0h7v.s12.4882886cec74 from=translated src=- shape=cb1c9852 vocab=d42664a6
+-/
 @[simp] lemma presHomEquiv_symm_mk (φ : {φ : SymOperadHom R P Q // ∀ n, ∀ x ∈ r n,
     φ.app (Fin n) x = 0}) {A : Type} [Fintype A] [DecidableEq A] (x : P A) :
     (presHomEquiv.symm φ).app A (Submodule.Quotient.mk x) = φ.1.app A x := rfl
@@ -174,7 +204,9 @@ variable {R : Type*} [CommRing R] {T : ℕ → Type*}
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (Q A)] [SymOperad R Q]
 
 /-- **Morphisms out of the linearization of a presented set operad agree when they agree on the
-generators.**-/
+generators.**
+@isnad1 id=eq.1h6v.s10.b369f85cb01b from=translated src=- shape=857e3782 vocab=6e77df1e
+-/
 theorem Pres.lin_hom_ext {φ ψ : SymOperadHom R (Lin R (Pres T ρ)) Q}
     (h : ∀ (n : ℕ) (g : T n),
       φ.app _ (Finsupp.single (Pres.gen g) 1) = ψ.app _ (Finsupp.single (Pres.gen g) 1)) :
@@ -183,7 +215,9 @@ theorem Pres.lin_hom_ext {φ ψ : SymOperadHom R (Lin R (Pres T ρ)) Q}
   exact Pres.hom_ext fun n g => congrArg (Und.of R Q) (h n g)
 
 /-- **Morphisms out of an operad presented by generators and linear relators agree when they
-agree on the generators.**-/
+agree on the generators.**
+@isnad1 id=eq.1h7v.s13.1050bcc7d554 from=translated src=- shape=6b3e0347 vocab=e5a1ee25
+-/
 theorem presLin_hom_ext {φ ψ : SymOperadHom R (SymOperadIdeal.span R r).Quot Q}
     (h : ∀ (n : ℕ) (g : T n),
       φ.app _ ((SymOperadIdeal.span R r).proj _ (Finsupp.single (Pres.gen g) 1))

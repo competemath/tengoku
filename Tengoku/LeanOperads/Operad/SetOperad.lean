@@ -70,6 +70,9 @@ namespace SetOperadHom
 variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v}
   {T : (A : Type) → [Fintype A] → [DecidableEq A] → Type w} [SetOperad S] [SetOperad T]
 
+/--
+@isnad1 id=eq.1h4v.s6.442f6567031e from=translated src=- shape=dcc9b5ef vocab=c92058ec
+-/
 @[ext] lemma ext {φ ψ : SetOperadHom S T}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (x : S A), φ.app A x = ψ.app A x) :
     φ = ψ := by
@@ -130,14 +133,23 @@ variable {S : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetOpe
   [Fintype C] [DecidableEq C]
 
 omit [Fintype C] [DecidableEq C] in
+/--
+@isnad1 id=eq.0h5v.s6.7ea2da511e2f from=translated src=- shape=e12b5613 vocab=8eb5f1b2
+-/
 @[simp] lemma map_symm_map (e : A ≃ B) (x : S A) : map e.symm (map e x) = x := by
   rw [← map_trans, Equiv.self_trans_symm, map_refl]
 
 omit [Fintype C] [DecidableEq C] in
+/--
+@isnad1 id=eq.0h5v.s6.3fd45207940c from=translated src=- shape=d72e8723 vocab=8eb5f1b2
+-/
 @[simp] lemma map_map_symm (e : A ≃ B) (y : S B) : map e (map e.symm y) = y := by
   rw [← map_trans, Equiv.symm_trans_self, map_refl]
 
 omit [Fintype C] [DecidableEq C] in
+/--
+@isnad1 id=injectiv.0h4v.s5.e2d8ec041bc8 from=translated src=- shape=90a40232 vocab=05871cb3
+-/
 lemma map_injective (e : A ≃ B) : Function.Injective (map (S := S) e) :=
   fun x y h => by simpa using congrArg (map e.symm) h
 
@@ -168,17 +180,25 @@ noncomputable def compL (i : A) : (S A →₀ R) →ₗ[R] (S B →₀ R) →ₗ
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h7v.s8.323112209131 from=translated src=- shape=2b9a4c79 vocab=662416b7
+-/
 @[simp] lemma mapL_single (e : A ≃ B) (s : S A) (r : R) :
     mapL R e (Finsupp.single s r) = Finsupp.single (SetOperad.map e s) r := by
   simp [mapL]
 
+/--
+@isnad1 id=eq.0h9v.s11.c35b368b16c3 from=translated src=- shape=298035a8 vocab=d71d84be
+-/
 @[simp] lemma compL_single (i : A) (s : S A) (t : S B) (r r' : R) :
     compL R i (Finsupp.single s r) (Finsupp.single t r')
       = Finsupp.single (SetOperad.comp i s t) (r * r') := by
   simp [compL, Finsupp.mapDomain_single, Finsupp.smul_single, smul_eq_mul]
 
 omit [SetOperad S] in
-/-- Two linear maps out of a free module agree when they agree on the basis.-/
+/-- Two linear maps out of a free module agree when they agree on the basis.
+@isnad1 id=eq.1h7v.s10.b3b1c57effd1 from=translated src=- shape=caf8085c vocab=821a650a
+-/
 lemma induction₁ {M : Type*} [AddCommGroup M] [Module R M] (f g : (S A →₀ R) →ₗ[R] M)
     (h : ∀ s, f (Finsupp.single s 1) = g (Finsupp.single s 1)) (x : S A →₀ R) : f x = g x := by
   have : f = g := Finsupp.lhom_ext' fun s => LinearMap.ext_ring (h s)
@@ -287,11 +307,20 @@ instance instSetOperadUnd : SetOperad (Und R Q) where
 
 variable {R Q} {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
 
+/--
+@isnad1 id=eq.0h6v.s8.ac09f3b6b986 from=translated src=- shape=ab1e2812 vocab=294dc334
+-/
 lemma Und.map_eq (e : A ≃ B) (x : Q A) :
     SetOperad.map e (Und.of R Q x) = Und.of R Q (SymOperad.map (R := R) e x) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.5ce37c982f0d from=translated src=- shape=ce724669 vocab=0690a0a9
+-/
 lemma Und.one_eq : (SetOperad.one : Und R Q Unit) = Und.of R Q (SymOperad.one R) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.7af2028af4b0 from=translated src=- shape=7d7184d0 vocab=2db6b079
+-/
 lemma Und.comp_eq (i : A) (x : Q A) (y : Q B) :
     SetOperad.comp i (Und.of R Q x) (Und.of R Q y)
       = Und.of R Q (SymOperad.comp (R := R) i x y) := rfl
@@ -392,7 +421,9 @@ noncomputable def linHomEquiv : SetOperadHom S (Und R Q) ≃ SymOperadHom R (Lin
       simp
       rfl) x
 
-/-- **Morphisms out of a linearization agree when they agree on the basis.**-/
+/-- **Morphisms out of a linearization agree when they agree on the basis.**
+@isnad1 id=eq.1h5v.s9.96fdff4b037c from=translated src=- shape=81a6ce8b vocab=559eeff7
+-/
 lemma SymOperadHom.ext_single {Φ Ψ : SymOperadHom R (Lin R S) Q}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (s : S A),
       Φ.app A (Finsupp.single s 1) = Ψ.app A (Finsupp.single s 1)) : Φ = Ψ := by
@@ -440,6 +471,9 @@ noncomputable def SetOperadHom.lin (φ : SetOperadHom S T) : SymOperadHom R (Lin
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h7v.s9.d2fac4f3dbb8 from=translated src=- shape=73567142 vocab=961d086b
+-/
 @[simp] lemma SetOperadHom.lin_single (φ : SetOperadHom S T) {A : Type} [Fintype A]
     [DecidableEq A] (s : S A) (r : R) :
     (φ.lin R).app A (Finsupp.single s r) = Finsupp.single (φ.app A s) r :=

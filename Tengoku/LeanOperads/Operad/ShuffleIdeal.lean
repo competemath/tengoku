@@ -41,6 +41,9 @@ variable {R : Type u} [CommRing R]
   [∀ (A : Type) [Fintype A] [LinearOrder A], AddCommGroup (P A)]
   [∀ (A : Type) [Fintype A] [LinearOrder A], Module R (P A)] [ShuffleOperad R P]
 
+/--
+@isnad1 id=eq.1h4v.s7.1fc2b4924861 from=translated src=- shape=87400113 vocab=b9e23a68
+-/
 @[ext] lemma ext {I J : ShuffleOperadIdeal R P}
     (h : ∀ (A : Type) [Fintype A] [LinearOrder A], I.sub A = J.sub A) : I = J := by
   obtain ⟨I, _, _, _⟩ := I
@@ -74,6 +77,9 @@ def sInf (S : Set (ShuffleOperadIdeal R P)) : ShuffleOperadIdeal R P where
     simp only [Submodule.mem_iInf] at hy ⊢
     exact fun I hI => I.comp_mem_right i e he x (hy I hI)
 
+/--
+@isnad1 id=iff.0h5v.s8.73a96edc6e0b from=translated src=- shape=146eca9a vocab=16644578
+-/
 lemma mem_sInf {S : Set (ShuffleOperadIdeal R P)} {A : Type} [Fintype A] [LinearOrder A]
     {x : P A} : x ∈ (sInf S).sub A ↔ ∀ I ∈ S, x ∈ I.sub A := by
   simp only [sInf, Submodule.mem_iInf]
@@ -86,6 +92,9 @@ def span (r : ∀ (A : Type) [Fintype A] [LinearOrder A], Set (P A)) : ShuffleOp
 
 variable {r : ∀ (A : Type) [Fintype A] [LinearOrder A], Set (P A)}
 
+/--
+@isnad1 id=le.0h4v.s7.0f24f951c898 from=translated src=- shape=812866a3 vocab=60090e98
+-/
 lemma subset_span (A : Type) [Fintype A] [LinearOrder A] : r A ⊆ (span R r).sub A :=
   fun _ hx => mem_sInf.2 fun _ hI => hI A hx
 
@@ -93,7 +102,9 @@ end ShuffleOperadIdeal
 
 /-! ## Sorting -/
 
-/-- **Sorting a finite type along an injective map into an ordered type.**-/
+/-- **Sorting a finite type along an injective map into an ordered type.**
+@isnad1 id=ex.1h3v.s6.a51436cd7310 from=translated src=- shape=188ddabc vocab=ba8bdec0
+-/
 lemma exists_sort {A D : Type} [Fintype A] [LinearOrder D] (key : A → D)
     (hkey : Function.Injective key) :
     ∃ α : A ≃ Fin (Fintype.card A), StrictMono fun k => key (α.symm k) := by
@@ -113,7 +124,9 @@ lemma exists_sort {A D : Type} [Fintype A] [LinearOrder D] (key : A → D)
   rw [hφ, hφ]
   exact (s.orderIsoOfFin hs).strictMono hkl
 
-/-- **Every bijection onto an ordered set is a shuffle once the inputs are numbered suitably.**-/
+/-- **Every bijection onto an ordered set is a shuffle once the inputs are numbered suitably.**
+@isnad1 id=ex.0h5v.s7.70c6ec1ae4c5 from=translated src=- shape=a69d3fd5 vocab=2236c996
+-/
 lemma exists_shuffle {A B D : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     [LinearOrder D] (i : A) (h : Without A i ⊕ B ≃ D) :
     ∃ (α : A ≃ Fin (Fintype.card A)) (β : B ≃ Fin (Fintype.card B)),
@@ -211,7 +224,9 @@ variable {R : Type u} [CommRing R]
   [∀ (A : Type) [Fintype A] [LinearOrder A], AddCommGroup (Q A)]
   [∀ (A : Type) [Fintype A] [LinearOrder A], Module R (Q A)] [ShuffleOperad R Q]
 
-/-- Two morphisms with the same components are equal.-/
+/-- Two morphisms with the same components are equal.
+@isnad1 id=eq.1h5v.s9.28f38815dfd1 from=translated src=- shape=57282184 vocab=c2605150
+-/
 @[ext] lemma ext {φ ψ : ShuffleOperadHom R P Q}
     (h : ∀ (A : Type) [Fintype A] [LinearOrder A] (x : P A), φ.app A x = ψ.app A x) :
     φ = ψ := by

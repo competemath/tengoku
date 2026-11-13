@@ -39,27 +39,45 @@ variable {R : Type u} [CommRing R] {V : Type v} [AddCommGroup V] [Module R V]
 /-! ## Binary composites -/
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h4v.s6.47859487c85a from=translated src=- shape=a337784a vocab=ce659e1b
+-/
 lemma vec2_update_zero (x y z : V) : Function.update ![x, y] 0 z = ![z, y] := by
   ext i
   fin_cases i <;> simp
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h4v.s6.c972ef7f5ce9 from=translated src=- shape=66f4f5c8 vocab=ce659e1b
+-/
 lemma vec2_update_one (x y z : V) : Function.update ![x, y] 1 z = ![x, z] := by
   ext i
   fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.0h6v.s8.f7df486c1727 from=translated src=- shape=31eff1a4 vocab=632c052c
+-/
 lemma mu_add_left (μ : End R V 2) (x x' y : V) : μ ![x + x', y] = μ ![x, y] + μ ![x', y] := by
   have := μ.map_update_add ![x, y] 0 x x'
   rwa [vec2_update_zero, vec2_update_zero, vec2_update_zero] at this
 
+/--
+@isnad1 id=eq.0h6v.s8.de7467e5a4a7 from=translated src=- shape=f31b90cf vocab=632c052c
+-/
 lemma mu_add_right (μ : End R V 2) (x y y' : V) : μ ![x, y + y'] = μ ![x, y] + μ ![x, y'] := by
   have := μ.map_update_add ![x, y] 1 y y'
   rwa [vec2_update_one, vec2_update_one, vec2_update_one] at this
 
+/--
+@isnad1 id=eq.0h6v.s8.7082bd72be54 from=translated src=- shape=346b401b vocab=e88069ba
+-/
 lemma mu_smul_left (μ : End R V 2) (c : R) (x y : V) : μ ![c • x, y] = c • μ ![x, y] := by
   have := μ.map_update_smul ![x, y] 0 c x
   rwa [vec2_update_zero, vec2_update_zero] at this
 
+/--
+@isnad1 id=eq.0h6v.s8.bcf5a11bd1a7 from=translated src=- shape=276b56aa vocab=e88069ba
+-/
 lemma mu_smul_right (μ : End R V 2) (c : R) (x y : V) : μ ![x, c • y] = c • μ ![x, y] := by
   have := μ.map_update_smul ![x, y] 1 c y
   rwa [vec2_update_one, vec2_update_one] at this
@@ -106,6 +124,9 @@ def bin (μ : End R V 2) {a b : ℕ} (A : End R V a) (B : End R V b) : End R V (
         Function.update_of_ne (by simp [Fin.ext_iff]; omega) _ _
       simp only [h1, h2, MultilinearMap.map_update_smul, mu_smul_right]
 
+/--
+@isnad1 id=eq.0h8v.s8.03af46542629 from=translated src=- shape=491e081a vocab=78972c25
+-/
 lemma bin_apply (μ : End R V 2) {a b : ℕ} (A : End R V a) (B : End R V b) (v : Fin (a + b) → V) :
     bin μ A B v = μ ![A fun i => v (Fin.castAdd b i), B fun j => v (Fin.natAdd a j)] := rfl
 
@@ -117,37 +138,61 @@ def binL (μ : End R V 2) (a b : ℕ) : End R V a →ₗ[R] End R V b →ₗ[R] 
     (fun A B B' => by ext v; simp only [bin_apply, add_apply, mu_add_right])
     (fun c A B => by ext v; simp only [bin_apply, smul_apply, mu_smul_right])
 
+/--
+@isnad1 id=eq.0h7v.s11.c5c67965795e from=translated src=- shape=5f854299 vocab=393617b0
+-/
 lemma binL_apply (μ : End R V 2) {a b : ℕ} (A : End R V a) (B : End R V b) :
     binL μ a b A B = bin μ A B := rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.5a0c87ef4573 from=translated src=- shape=879dfbea vocab=c65eb8d1
+-/
 lemma bin_sum_left (μ : End R V 2) {a b : ℕ} {ι : Type*} (s : Finset ι) (A : ι → End R V a)
     (B : End R V b) : bin μ (∑ x ∈ s, A x) B = ∑ x ∈ s, bin μ (A x) B := by
   rw [← binL_apply, map_sum, LinearMap.sum_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s7.29418b646d9c from=translated src=- shape=545d676c vocab=c65eb8d1
+-/
 lemma bin_sum_right (μ : End R V 2) {a b : ℕ} {ι : Type*} (s : Finset ι) (A : End R V a)
     (B : ι → End R V b) : bin μ A (∑ x ∈ s, B x) = ∑ x ∈ s, bin μ A (B x) := by
   rw [← binL_apply, map_sum]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.d8093169dfd0 from=translated src=- shape=9f7d20ec vocab=d8c582a4
+-/
 lemma bin_sub_left (μ : End R V 2) {a b : ℕ} (A A' : End R V a) (B : End R V b) :
     bin μ (A - A') B = bin μ A B - bin μ A' B := by
   rw [← binL_apply, map_sub, LinearMap.sub_apply]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.353f39b05f28 from=translated src=- shape=96c15975 vocab=d8c582a4
+-/
 lemma bin_sub_right (μ : End R V 2) {a b : ℕ} (A : End R V a) (B B' : End R V b) :
     bin μ A (B - B') = bin μ A B - bin μ A B' := by
   rw [← binL_apply, map_sub]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.327d67c5fa00 from=translated src=- shape=e7273733 vocab=2dbaac93
+-/
 @[simp] lemma bin_zero_left (μ : End R V 2) {a b : ℕ} (B : End R V b) :
     bin μ (0 : End R V a) B = 0 := by
   rw [← binL_apply, map_zero, LinearMap.zero_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.e65fef02b940 from=translated src=- shape=1f15e00a vocab=2dbaac93
+-/
 @[simp] lemma bin_zero_right (μ : End R V 2) {a b : ℕ} (A : End R V a) :
     bin μ A (0 : End R V b) = 0 := by
   rw [← binL_apply, map_zero]
 
+/--
+@isnad1 id=eq.0h8v.s6.96f2fbaa869c from=translated src=- shape=319a68c9 vocab=21e00397
+-/
 lemma bin_acast_left (μ : End R V 2) {a a' b : ℕ} (A : End R V a) (B : End R V b) :
     bin μ (acast A : End R V a') B = acast (bin μ A B) := by
   by_cases h : a = a'
@@ -155,6 +200,9 @@ lemma bin_acast_left (μ : End R V 2) {a a' b : ℕ} (A : End R V a) (B : End R 
     simp
   · rw [acast, dite_eq_right h, bin_zero_left, acast, dite_eq_right (by omega)]
 
+/--
+@isnad1 id=eq.0h8v.s6.6a833aee67da from=translated src=- shape=7e06d1fe vocab=21e00397
+-/
 lemma bin_acast_right (μ : End R V 2) {a b b' : ℕ} (A : End R V a) (B : End R V b) :
     bin μ A (acast B : End R V b') = acast (bin μ A B) := by
   by_cases h : b = b'
@@ -166,7 +214,9 @@ lemma bin_acast_right (μ : End R V 2) {a b b' : ℕ} (A : End R V a) (B : End R
 
 variable (ε : V →ₗ[R] V)
 
-/-- **The Leibniz rule** for a binary composite.-/
+/-- **The Leibniz rule** for a binary composite.
+@isnad1 id=eq.1h9v.s10.584bbece778b from=translated src=- shape=d18aa682 vocab=2d363cd0
+-/
 lemma comp_bin (d : V →ₗ[R] V) (μ : End R V 2)
     (hL : ∀ x y, d (μ ![x, y]) + μ ![d x, y] + μ ![ε x, d y] = 0) {a b : ℕ}
     (A : End R V a) (B : End R V b) :
@@ -178,7 +228,9 @@ lemma comp_bin (d : V →ₗ[R] V) (μ : End R V 2)
     neg_apply, bin_apply]
   linear_combination (norm := module) hL (A _) (B _)
 
-/-- **Associativity** for binary composites.-/
+/-- **Associativity** for binary composites.
+@isnad1 id=eq.1h10v.s11.84b92c0b5f60 from=translated src=- shape=de83aae3 vocab=e96357e7
+-/
 lemma bin_assoc (μ : End R V 2) (hA : ∀ x y z, μ ![μ ![x, y], z] + μ ![ε x, μ ![y, z]] = 0)
     {a b c : ℕ} (A : End R V a) (B : End R V b) (C : End R V c) :
     bin μ (bin μ A B) C = -reindex R (End R V) (add_assoc a b c).symm
@@ -196,7 +248,9 @@ lemma bin_assoc (μ : End R V 2) (hA : ∀ x y z, μ ![μ ![x, y], z] + μ ![ε 
   rw [e1, e2, e3]
   linear_combination (norm := module) hA _ _ _
 
-/-- **Inserting into the left factor** of a binary composite.-/
+/-- **Inserting into the left factor** of a binary composite.
+@isnad1 id=eq.0h11v.s11.63b056bc178b from=translated src=- shape=1b6e33be vocab=35c74f72
+-/
 lemma kcompFin_bin_left (μ : End R V 2) {j b l : ℕ} (A : End R V (j + 1)) (B : End R V b)
     (γ : End R V l) (i : Fin (j + 1)) :
     kcompFin ε 1 (Fin.castAdd b i) (bin μ A B) γ =
@@ -222,7 +276,9 @@ lemma kcompFin_bin_left (μ : End R V 2) {j b l : ℕ} (A : End R V (j + 1)) (B 
       LinearMap.id_apply]
     exact congrArg v (Fin.ext (by simp only [Fin.val_natAdd, Fin.val_cast]; omega))
 
-/-- **Inserting into the right factor** of a binary composite, across an even left factor.-/
+/-- **Inserting into the right factor** of a binary composite, across an even left factor.
+@isnad1 id=eq.1h11v.s11.91a870d7f2f4 from=translated src=- shape=2f383dd3 vocab=f775d2bb
+-/
 lemma kcompFin_bin_right (μ : End R V 2) {a k l : ℕ} (A : End R V a) (hA : IsHomog ε 0 A)
     (B : End R V (k + 1)) (γ : End R V l) (i : Fin (k + 1)) :
     kcompFin ε 1 (Fin.natAdd a i) (bin μ A B) γ =
@@ -263,7 +319,9 @@ lemma kcompFin_bin_right (μ : End R V 2) {a k l : ℕ} (A : End R V a) (hA : Is
     simp only [LinearMap.id_apply]
     exact congrArg v (Fin.ext (by simp only [Fin.val_natAdd, Fin.val_cast]; omega))
 
-/-- **Inserting into a binary composite** inserts into one of the two factors.-/
+/-- **Inserting into a binary composite** inserts into one of the two factors.
+@isnad1 id=eq.1h10v.s10.18844470d0a1 from=translated src=- shape=9e00f522 vocab=771932bc
+-/
 lemma kstar_bin (μ : End R V 2) {j k l : ℕ} (A : End R V (j + 1)) (hA : IsHomog ε 0 A)
     (B : End R V (k + 1)) (γ : End R V (l + 1)) :
     kstar ε 1 (j := j + 1 + k) (bin (a := j + 1) (b := k + 1) μ A B) γ =
@@ -282,6 +340,9 @@ section Sums
 
 variable {M : Type*} [AddCommMonoid M]
 
+/--
+@isnad1 id=eq.0h3v.s7.6ed4eca98d73 from=translated src=- shape=7ff83852 vocab=0bc3c066
+-/
 lemma sum_T1 (m : ℕ) (F : ℕ → ℕ → ℕ → M) :
     ∑ j ∈ range (m + 1), ∑ k ∈ range j, F k (j - 1 - k) (m - j) =
       ∑ p ∈ range m, ∑ k ∈ range (p + 1), F k (m - 1 - p) (p - k) := by
@@ -307,6 +368,9 @@ lemma sum_T1 (m : ℕ) (F : ℕ → ℕ → ℕ → M) :
     dsimp only
     rw [show m - 1 - (m - j + k) = j - 1 - k by omega, show m - j + k - k = m - j by omega]
 
+/--
+@isnad1 id=eq.0h3v.s7.2ffbb79e6c92 from=translated src=- shape=7e9c3495 vocab=0bc3c066
+-/
 lemma sum_T2 (m : ℕ) (G : ℕ → ℕ → ℕ → M) :
     ∑ j ∈ range (m + 1), ∑ k ∈ range j, G k (j - 1 - k) (m - j) =
       ∑ p ∈ range m, ∑ l ∈ range (m - 1 - p + 1), G p l (m - 1 - p - l) := by
@@ -332,6 +396,9 @@ lemma sum_T2 (m : ℕ) (G : ℕ → ℕ → ℕ → M) :
     dsimp only
     rw [show m - 1 - k - (j - 1 - k) = m - j by omega]
 
+/--
+@isnad1 id=eq.0h3v.s7.d6489d8d6cac from=translated src=- shape=b0365177 vocab=4c11d59e
+-/
 lemma sum_T3 (m : ℕ) (F : ℕ → ℕ → ℕ → M) :
     ∑ p ∈ range m, ∑ k ∈ range p, F k (p - 1 - k) (m - 1 - p) =
       ∑ k ∈ range m, ∑ l ∈ range (m - 1 - k), F k l (m - 1 - k - 1 - l) := by
@@ -364,11 +431,17 @@ end Sums
 /-- **The post-composition** of a family with a linear map.-/
 def fcomp (f : V →ₗ[R] V) (X : Fam R V) : Fam R V := fun n => f.compMultilinearMap (X n)
 
+/--
+@isnad1 id=eq.0h7v.s8.c3f41a20458b from=translated src=- shape=235d2ece vocab=50944aac
+-/
 lemma comp_sum (f : V →ₗ[R] V) {n : ℕ} {ι : Type*} (s : Finset ι) (x : ι → End R V n) :
     f.compMultilinearMap (∑ i ∈ s, x i) = ∑ i ∈ s, f.compMultilinearMap (x i) := by
   ext v
   simp [map_sum]
 
+/--
+@isnad1 id=eq.0h6v.s7.263a4ea1d3a0 from=translated src=- shape=90e277d1 vocab=6a301fbf
+-/
 lemma comp_acast (f : V →ₗ[R] V) {a b : ℕ} (x : End R V a) :
     f.compMultilinearMap (acast x : End R V b) = acast (f.compMultilinearMap x) := by
   by_cases h : a = b
@@ -382,30 +455,46 @@ lemma comp_acast (f : V →ₗ[R] V) {a b : ℕ} (x : End R V a) :
 def BIN (μ : End R V 2) (X Y : Fam R V) : Fam R V := fun n =>
   ∑ k ∈ range n, acast (bin μ (X k) (Y (n - 1 - k)))
 
+/--
+@isnad1 id=eq.0h6v.s8.67dba96b59e3 from=translated src=- shape=ec8c5464 vocab=91b1d926
+-/
 lemma BIN_apply (μ : End R V 2) (X Y : Fam R V) (n : ℕ) :
     BIN μ X Y n = ∑ k ∈ range n, acast (bin μ (X k) (Y (n - 1 - k))) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.b1625a79e6c4 from=translated src=- shape=077ded2a vocab=facae59b
+-/
 @[simp] lemma BIN_zero (μ : End R V 2) (X Y : Fam R V) : BIN μ X Y 0 = 0 := by
   simp [BIN_apply]
 
-/-- **Locality**: the product in arity `n + 1` only involves the factors of smaller arities.-/
+/-- **Locality**: the product in arity `n + 1` only involves the factors of smaller arities.
+@isnad1 id=eq.2h8v.s7.8d02017e2ea3 from=translated src=- shape=f362099f vocab=3bb77a2a
+-/
 lemma BIN_congr (μ : End R V 2) {X X' Y Y' : Fam R V} {n : ℕ} (hX : ∀ k < n, X k = X' k)
     (hY : ∀ k < n, Y k = Y' k) : BIN μ X Y n = BIN μ X' Y' n := by
   refine Finset.sum_congr rfl fun k hk => ?_
   rw [Finset.mem_range] at hk
   rw [hX k hk, hY (n - 1 - k) (by omega)]
 
+/--
+@isnad1 id=eq.0h6v.s8.5446eb7c56fb from=translated src=- shape=8b3d5f52 vocab=66001db3
+-/
 lemma BIN_sub_left (μ : End R V 2) (X X' Y : Fam R V) :
     BIN μ (X - X') Y = BIN μ X Y - BIN μ X' Y := by
   funext n
   simp only [BIN_apply, Pi.sub_apply, bin_sub_left, acast_sub, Finset.sum_sub_distrib]
 
+/--
+@isnad1 id=eq.0h6v.s8.1847555a7740 from=translated src=- shape=467caafe vocab=66001db3
+-/
 lemma BIN_sub_right (μ : End R V 2) (X Y Y' : Fam R V) :
     BIN μ X (Y - Y') = BIN μ X Y - BIN μ X Y' := by
   funext n
   simp only [BIN_apply, Pi.sub_apply, bin_sub_right, acast_sub, Finset.sum_sub_distrib]
 
-/-- **The Leibniz rule** for products of families.-/
+/-- **The Leibniz rule** for products of families.
+@isnad1 id=eq.1h7v.s9.331250e8709e from=translated src=- shape=2f5b20cc vocab=0c26a198
+-/
 lemma comp_BIN (d : V →ₗ[R] V) (μ : End R V 2)
     (hL : ∀ x y, d (μ ![x, y]) + μ ![d x, y] + μ ![ε x, d y] = 0) (X Y : Fam R V) :
     fcomp d (BIN μ X Y) = -BIN μ (fcomp d X) Y - BIN μ (fcomp ε X) (fcomp d Y) := by
@@ -413,7 +502,9 @@ lemma comp_BIN (d : V →ₗ[R] V) (μ : End R V 2)
   simp only [fcomp, BIN_apply, Pi.sub_apply, Pi.neg_apply, comp_sum, comp_acast,
     comp_bin ε d μ hL, acast_sub, acast_neg, Finset.sum_sub_distrib, Finset.sum_neg_distrib]
 
-/-- **Associativity** for products of families.-/
+/-- **Associativity** for products of families.
+@isnad1 id=eq.1h7v.s9.e059e030556e from=translated src=- shape=9a50e9fe vocab=8025ec40
+-/
 lemma BIN_assoc (μ : End R V 2) (hA : ∀ x y z, μ ![μ ![x, y], z] + μ ![ε x, μ ![y, z]] = 0)
     (X Y Z : Fam R V) : BIN μ (BIN μ X Y) Z + BIN μ (fcomp ε X) (BIN μ Y Z) = 0 := by
   funext m
@@ -440,6 +531,9 @@ lemma BIN_assoc (μ : End R V 2) (hA : ∀ x y z, μ ![μ ![x, y], z] + μ ![ε 
     (bin μ (Y l) (Z r))) : End R V (m + 1)))]
   simp only [Finset.sum_neg_distrib, neg_add_cancel]
 
+/--
+@isnad1 id=eq.2h11v.s9.1daeac054c16 from=translated src=- shape=bb400427 vocab=771932bc
+-/
 lemma kstar_acast_bin (μ : End R V 2) {k l j r : ℕ} (hj : k + 1 + l = j) (A : End R V (k + 1))
     (hA : IsHomog ε 0 A) (B : End R V (l + 1)) (γ : End R V (r + 1)) :
     kstar ε 1 (acast (bin μ A B) : End R V (j + 1)) γ =
@@ -448,7 +542,9 @@ lemma kstar_acast_bin (μ : End R V 2) {k l j r : ℕ} (hj : k + 1 + l = j) (A :
   rw [acast_of_eq (rfl : k + 1 + (l + 1) = k + 1 + l + 1), reindex_rfl]
   exact kstar_bin ε μ A hA B γ
 
-/-- **Inserting into a product of families** inserts into one of the factors.-/
+/-- **Inserting into a product of families** inserts into one of the factors.
+@isnad1 id=eq.1h7v.s8.2007bc1cbc78 from=translated src=- shape=93666eb3 vocab=96f0731b
+-/
 lemma tstar_BIN (μ : End R V 2) (X Y c : Fam R V) (hX : ∀ n, IsHomog ε 0 (X n)) :
     tstar ε 1 (BIN μ X Y) c = BIN μ (tstar ε 1 X c) Y + BIN μ (fcomp ε X) (tstar ε 1 Y c) := by
   funext m
@@ -484,9 +580,14 @@ lemma tstar_BIN (μ : End R V 2) (X Y c : Fam R V) (hX : ∀ n, IsHomog ε 0 (X 
 def op1 (f : V →ₗ[R] V) : End R V 1 := MultilinearMap.ofSubsingleton R V V 0 f
 
 omit ε in
+/--
+@isnad1 id=eq.0h4v.s7.0837d325849c from=translated src=- shape=8d562168 vocab=96dd62a4
+-/
 lemma op1_apply (f : V →ₗ[R] V) (v : Fin 1 → V) : op1 f v = f (v 0) := rfl
 
-/-- **Inserting into an operation of arity one** is composing.-/
+/-- **Inserting into an operation of arity one** is composing.
+@isnad1 id=eq.0h7v.s8.9040a9bb35e7 from=translated src=- shape=dc65a60f vocab=fc290d9e
+-/
 lemma kstar_op1 (q : ℕ) (f : V →ₗ[R] V) {k : ℕ} (β : End R V (k + 1)) :
     kstar ε q (op1 f) β = acast (f.compMultilinearMap β) := by
   rw [acast_of_eq (by omega)]
@@ -498,25 +599,36 @@ lemma kstar_op1 (q : ℕ) (f : V →ₗ[R] V) {k : ℕ} (β : End R V (k + 1)) :
   funext t
   exact congrArg v (Fin.ext (by simp))
 
+/--
+@isnad1 id=eq.0h10v.s8.347b436d5f41 from=translated src=- shape=5f74ff58 vocab=f0f02735
+-/
 lemma kcompFin_comp (q : ℕ) (f : V →ₗ[R] V) {m n : ℕ} (i : Fin m) (α : End R V m)
     (β : End R V n) :
     kcompFin ε q i (f.compMultilinearMap α) β = f.compMultilinearMap (kcompFin ε q i α β) := by
   ext v
   simp only [kcompFin, compFin_apply, twist_apply, LinearMap.compMultilinearMap_apply]
 
-/-- **Inserting into a post-composite** is post-composing the insertion.-/
+/-- **Inserting into a post-composite** is post-composing the insertion.
+@isnad1 id=eq.0h9v.s8.bfea81df5fc7 from=translated src=- shape=55b5bf69 vocab=9bc81337
+-/
 lemma kstar_comp (q : ℕ) (f : V →ₗ[R] V) {j k : ℕ} (α : End R V (j + 1)) (β : End R V (k + 1)) :
     kstar ε q (f.compMultilinearMap α) β = f.compMultilinearMap (kstar ε q α β) := by
   unfold kstar
   erw [comp_sum]
   exact Finset.sum_congr rfl fun i _ => kcompFin_comp ε q f i α β
 
+/--
+@isnad1 id=ishomog.1h8v.s7.10292e0a8c0f from=translated src=- shape=17deace4 vocab=59c3085c
+-/
 lemma isHomog_sum {q n : ℕ} {ι : Type*} (s : Finset ι) {x : ι → End R V n}
     (h : ∀ i ∈ s, IsHomog ε q (x i)) : IsHomog ε q (∑ i ∈ s, x i) := by
   intro v
   simp only [_root_.sum_apply, map_sum, Finset.smul_sum]
   exact Finset.sum_congr rfl fun i hi => h i hi v
 
+/--
+@isnad1 id=ishomog.1h7v.s6.395dd3cf617b from=translated src=- shape=3fde0d9b vocab=d349725b
+-/
 lemma isHomog_acast {q a b : ℕ} {x : End R V a} (h : IsHomog ε q x) :
     IsHomog ε q (acast x : End R V b) := by
   by_cases hab : a = b
@@ -526,6 +638,9 @@ lemma isHomog_acast {q a b : ℕ} {x : End R V a} (h : IsHomog ε q x) :
     intro v
     simp
 
+/--
+@isnad1 id=ishomog.3h8v.s7.dd003ff6f001 from=translated src=- shape=bd0594b6 vocab=5d9f5678
+-/
 lemma isHomog_bin {μ : End R V 2} (hμ : IsHomog ε 1 μ) {a b : ℕ} {A : End R V a}
     {B : End R V b} (hA : IsHomog ε 0 A) (hB : IsHomog ε 0 B) : IsHomog ε 1 (bin μ A B) := by
   intro v
@@ -538,6 +653,9 @@ lemma isHomog_bin {μ : End R V 2} (hμ : IsHomog ε 1 μ) {a b : ℕ} {A : End 
   funext t
   fin_cases t <;> rfl
 
+/--
+@isnad1 id=ishomog.3h7v.s7.af048b383484 from=translated src=- shape=f34c71f8 vocab=c3444c0c
+-/
 lemma isHomog_BIN {μ : End R V 2} (hμ : IsHomog ε 1 μ) {X Y : Fam R V} {n : ℕ}
     (hX : ∀ k < n, IsHomog ε 0 (X k)) (hY : ∀ k < n, IsHomog ε 0 (Y k)) :
     IsHomog ε 1 (BIN μ X Y n) :=
@@ -545,6 +663,9 @@ lemma isHomog_BIN {μ : End R V 2} (hμ : IsHomog ε 1 μ) {X Y : Fam R V} {n : 
     rw [Finset.mem_range] at hk
     exact isHomog_acast ε (isHomog_bin ε hμ (hX k hk) (hY _ (by omega)))
 
+/--
+@isnad1 id=ishomog.3h9v.s9.d403235d3c67 from=translated src=- shape=39bced5b vocab=039d8558
+-/
 lemma isHomog_comp {p q r : ℕ} {f : V →ₗ[R] V} (hf : ∀ x, f (ε x) = (-1 : R) ^ p • ε (f x))
     {n : ℕ} {α : End R V n} (hα : IsHomog ε q α) (hr : (-1 : R) ^ (q + p) = (-1) ^ r) :
     IsHomog ε r (f.compMultilinearMap α) := by
@@ -586,10 +707,16 @@ decreasing_by
   all_goals omega
 
 omit ε in
+/--
+@isnad1 id=eq.0h5v.s7.3fe32db8603d from=translated src=- shape=660f224d vocab=4aeb6062
+-/
 lemma tf_zero : tf μ e h 0 = op1 e := by
   rw [tf]
 
 omit ε in
+/--
+@isnad1 id=eq.0h6v.s8.af3337dc90b8 from=translated src=- shape=6c6debd5 vocab=28bd466a
+-/
 lemma tf_succ (n : ℕ) :
     tf μ e h (n + 1) = h.compMultilinearMap (BIN μ (tf μ e h) (tf μ e h) (n + 1)) := by
   rw [tf, BIN_apply, Finset.sum_attach (range (n + 1))
@@ -602,6 +729,9 @@ noncomputable def transfer (d : V →ₗ[R] V) : Fam R V
   | 0 => op1 (e ∘ₗ d ∘ₗ e)
   | n + 1 => e.compMultilinearMap (BIN μ (tf μ e h) (tf μ e h) (n + 1))
 
+/--
+@isnad1 id=eq.0h7v.s9.259866e4e029 from=translated src=- shape=76abdcbc vocab=ba42d853
+-/
 lemma tstar_succ (q : ℕ) (F c : Fam R V) (m : ℕ) :
     tstar ε q F c (m + 1) = (acast (kstar ε q (F 0) (c (m + 1))) : End R V (m + 1 + 1)) +
       ∑ j ∈ range (m + 1), (acast (kstar ε q (F (j + 1)) (c (m - j))) : End R V (m + 1 + 1)) := by
@@ -618,7 +748,9 @@ section Theorem
 variable {ε μ e h} {d : V →ₗ[R] V} (hd : DGA ε d μ) (hr : Retract ε d e h)
 
 include hd hr in
-/-- **The trees are even.**-/
+/-- **The trees are even.**
+@isnad1 id=ishomog.2h8v.s7.6a8d462ecb88 from=translated src=- shape=4cf7416f vocab=d5735770
+-/
 lemma tf_even (n : ℕ) : IsHomog ε 0 (tf μ e h n) := by
   induction n using Nat.strong_induction_on with
   | _ n ih =>
@@ -631,7 +763,9 @@ lemma tf_even (n : ℕ) : IsHomog ε 0 (tf μ e h n) := by
       (isHomog_BIN ε hd.μ_odd (fun k hk => ih k hk) (fun k hk => ih k hk)) (by norm_num)
 
 include hd hr in
-/-- **The key equation** in arity `n + 1`, from the ∞-morphism equation in lower arities.-/
+/-- **The key equation** in arity `n + 1`, from the ∞-morphism equation in lower arities.
+@isnad1 id=eq.3h8v.s9.c9676b36f57a from=translated src=- shape=bef55e16 vocab=d83e279d
+-/
 lemma key_of_morph {n : ℕ}
     (hM : ∀ k < n, fcomp d (tf μ e h) k + BIN μ (tf μ e h) (tf μ e h) k =
       tstar ε 1 (tf μ e h) (transfer μ e h d) k) :
@@ -655,7 +789,9 @@ lemma key_of_morph {n : ℕ}
   linear_combination (norm := module) h3
 
 include hr in
-/-- **The ∞-morphism equation** in arity `n + 1`, from the key equation.-/
+/-- **The ∞-morphism equation** in arity `n + 1`, from the key equation.
+@isnad1 id=eq.2h8v.s9.babae7c90d98 from=translated src=- shape=0d8f0c6f vocab=7abd1e7a
+-/
 lemma morph_of_key {n : ℕ}
     (hK : fcomp d (BIN μ (tf μ e h) (tf μ e h)) n +
       tstar ε 1 (BIN μ (tf μ e h) (tf μ e h)) (transfer μ e h d) n = 0) :
@@ -698,7 +834,9 @@ lemma morph_of_key {n : ℕ}
 
 include hd hr in
 /-- **The trees form an ∞-morphism** from the transferred structure to the dg algebra:
-`d ∘ f + μ (f, f) = f ⋆ b'`.-/
+`d ∘ f + μ (f, f) = f ⋆ b'`.
+@isnad1 id=eq.2h8v.s8.9a269b88d7ae from=translated src=- shape=cf75aec1 vocab=fca9ce50
+-/
 theorem morphism_eq (n : ℕ) :
     fcomp d (tf μ e h) n + BIN μ (tf μ e h) (tf μ e h) n =
       tstar ε 1 (tf μ e h) (transfer μ e h d) n := by
@@ -706,7 +844,9 @@ theorem morphism_eq (n : ℕ) :
   | _ n ih => exact morph_of_key hr (key_of_morph hd hr ih)
 
 include hd hr in
-/-- **The key equation** `d ∘ λ + λ ⋆ b' = 0`.-/
+/-- **The key equation** `d ∘ λ + λ ⋆ b' = 0`.
+@isnad1 id=eq.2h8v.s9.f9b617f62c08 from=translated src=- shape=5ef76c1b vocab=fca9ce50
+-/
 theorem key_eq (n : ℕ) :
     fcomp d (BIN μ (tf μ e h) (tf μ e h)) n +
       tstar ε 1 (BIN μ (tf μ e h) (tf μ e h)) (transfer μ e h d) n = 0 :=
@@ -714,7 +854,9 @@ theorem key_eq (n : ℕ) :
 
 include hd hr in
 /-- **The homotopy transfer theorem** for dg algebras: the transferred operations
-`b'₁ = e d e`, `b'ₙ = e ∘ ∑_{trees}` form an A∞-structure.-/
+`b'₁ = e d e`, `b'ₙ = e ∘ ∑_{trees}` form an A∞-structure.
+@isnad1 id=isainf.2h7v.s7.9dcc0b5251a5 from=translated src=- shape=db46430f vocab=cd8dd9a5
+-/
 theorem isAInf_transfer : IsAInf ε (transfer μ e h d) where
   odd n := by
     rcases n with _ | n

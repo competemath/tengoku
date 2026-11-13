@@ -34,6 +34,9 @@ other labels of `0, …, n - 1`.-/
 noncomputable def joinAt (n : ℕ) (S : Finset ℕ) (e : E) (a b : LTree E) : LTree E :=
   node e (destd S a) (destd (Finset.range n \ S) b)
 
+/--
+@isnad1 id=and.1h3v.s5.38904be69f63 from=translated src=- shape=61fe4337 vocab=b94dc851
+-/
 lemma labels_destd_perm (A : Finset ℕ) {t : LTree E} (ht : t.labels.Perm (List.range A.card)) :
     (destd A t).labels.Nodup ∧ (destd A t).labels.toFinset = A := by
   have hs := strictOn_nth A (t := t) fun _ hi => List.mem_range.1 (ht.subset hi)
@@ -47,13 +50,18 @@ lemma labels_destd_perm (A : Finset ℕ) {t : LTree E} (ht : t.labels.Perm (List
   rw [destd, labels_relabel]
   exact (ht.nodup_iff.2 List.nodup_range).map_on hinj
 
+/--
+@isnad1 id=isshuffl.2h3v.s4.2a0d27456682 from=translated src=- shape=54d18a9e vocab=67cef60e
+-/
 lemma isShuffle_destd (A : Finset ℕ) {t : LTree E} (ht : t.labels.Perm (List.range A.card))
     (hs : t.IsShuffle) : (destd A t).IsShuffle :=
   (isShuffle_relabel t (strictOn_nth A fun _ hi => List.mem_range.1 (ht.subset hi))).2 hs
 
 variable [Fintype E] [DecidableEq E]
 
-/-- **A set of labels containing `0`, a decoration and two monomials make a monomial.**-/
+/-- **A set of labels containing `0`, a decoration and two monomials make a monomial.**
+@isnad1 id=mem.4h6v.s7.37aa91c97021 from=translated src=- shape=81c1beec vocab=ec0230b9
+-/
 lemma joinAt_mem {n : ℕ} {S : Finset ℕ} (hS : S ⊆ Finset.range n) (h0 : 0 ∈ S) (e : E)
     {a b : LTree E} (ha : a ∈ monomials S.card) (hb : b ∈ monomials (n - S.card)) :
     joinAt n S e a b ∈ monomials n := by
@@ -137,6 +145,9 @@ lemma eq_joinAt {n : ℕ} {e : E} {l r : LTree E} (hm : node e l r ∈ monomials
   · rw [joinAt, destd_std, ← hrset, destd_std]
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=and.5h10v.s6.c78a19a369ee from=translated src=- shape=0014c233 vocab=90247a7e
+-/
 lemma joinAt_injective {n : ℕ} {S S' : Finset ℕ} {e e' : E} {a a' b b' : LTree E}
     (ha : a.labels.Perm (List.range S.card)) (ha' : a'.labels.Perm (List.range S'.card))
     (hb : b.labels.Perm (List.range (Finset.range n \ S).card))
@@ -151,6 +162,9 @@ lemma joinAt_injective {n : ℕ} {S S' : Finset ℕ} {e e' : E} {a a' b b' : LTr
   · rw [← std_destd _ hb, hr, std_destd _ hb']
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=iff.2h7v.s6.901af0aacdcb from=translated src=- shape=894f7344 vocab=af1384b5
+-/
 lemma rootP_joinAt {P : E → LTree E → LTree E → Prop} {n : ℕ} {S : Finset ℕ} {e : E}
     {a b : LTree E} (ha : a.labels.Perm (List.range S.card))
     (hb : b.labels.Perm (List.range (Finset.range n \ S).card)) :
@@ -158,7 +172,9 @@ lemma rootP_joinAt {P : E → LTree E → LTree E → Prop} {n : ℕ} {S : Finse
   rw [joinAt, RootP, std_destd S ha, std_destd _ hb]
 
 omit [Fintype E] [DecidableEq E] in
-/-- **The sets of `i` labels among `0, …, n - 1` containing `0`**: there are `C(n - 1, i - 1)`.-/
+/-- **The sets of `i` labels among `0, …, n - 1` containing `0`**: there are `C(n - 1, i - 1)`.
+@isnad1 id=eq.2h2v.s7.0bb3dec26b6a from=translated src=- shape=f2155d9a vocab=f9be3082
+-/
 lemma card_sets_zero {n i : ℕ} (hn : 1 ≤ n) (hi : 1 ≤ i) :
     ((Finset.range n).powerset.filter fun S => 0 ∈ S ∧ S.card = i).card =
       (n - 1).choose (i - 1) := by
@@ -189,7 +205,9 @@ noncomputable instance (P : E → LTree E → LTree E → Prop) [∀ e a b, Deci
   cases t <;> unfold RootP <;> infer_instance
 
 /-- **Counting at the root**: monomials of arity `n` with a property of the root vertex and of
-the standardized subtrees, by the number `i` of labels of the left subtree.-/
+the standardized subtrees, by the number `i` of labels of the left subtree.
+@isnad1 id=eq.0h3v.s8.8ed2a837b709 from=translated src=- shape=791d1f1a vocab=9fc777cf
+-/
 theorem card_filter_rootP (P : E → LTree E → LTree E → Prop) [DecidablePred (RootP P)]
     [∀ e a b, Decidable (P e a b)] (n : ℕ) :
     ((monomials (E := E) n).filter (RootP P)).card = ∑ i ∈ Finset.Ico 1 n,

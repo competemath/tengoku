@@ -68,6 +68,9 @@ abbrev Tot (R : Type u) [CommRing R] (P : ℕ → Type v)
 /-- The inclusion of a homogeneous piece.-/
 abbrev inc (k : ℕ) : Piece R P k →+ Tot R P := DirectSum.of (Piece R P) k
 
+/--
+@isnad1 id=eq.0h6v.s9.57753ff04919 from=translated src=- shape=134cdc6e vocab=1b29f0dc
+-/
 @[simp] lemma inc_mul_inc {i j : ℕ} (a : Piece R P i) (b : Piece R P j) :
     (inc i a * inc j b : Tot R P) = inc (i + j) (star (R := R) a b) :=
   DirectSum.of_mul_of a b
@@ -86,6 +89,9 @@ into six associators which cancel in pairs — each pair being one instance of `
 /-- The commutator of the circle product.-/
 def comm (x y : Tot R P) : Tot R P := x * y - y * x
 
+/--
+@isnad1 id=eq.0h3v.s7.f7d24e3aed8b from=translated src=- shape=7748e0b0 vocab=8b942e2d
+-/
 @[simp] lemma comm_self (x : Tot R P) : comm x x = 0 := sub_self _
 
 /-- The commutator, packaged as mathlib's bracket.-/

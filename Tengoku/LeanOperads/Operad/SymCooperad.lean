@@ -126,6 +126,9 @@ noncomputable def pair {X Y : Type*} [AddCommGroup X] [Module R X] [AddCommGroup
     (fun f g g' => TensorProduct.ext' fun x y => by simp [mul_add])
     (fun c f g => TensorProduct.ext' fun x y => by simp [mul_left_comm])
 
+/--
+@isnad1 id=eq.0h7v.s12.9a43ef155a6b from=translated src=- shape=d9a44602 vocab=b6d62084
+-/
 @[simp] lemma pair_tmul {X Y : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y]
     [Module R Y] (f : Module.Dual R X) (g : Module.Dual R Y) (x : X) (y : Y) :
     pair f g (x ⊗ₜ[R] y) = f x * g y := by
@@ -136,6 +139,9 @@ noncomputable def dualComp (i : A) :
     Dual R C A →ₗ[R] Dual R C B →ₗ[R] Dual R C (Without A i ⊕ B) :=
   pair.compr₂ (LinearMap.lcomp R R (decomp (R := R) (C := C) (B := B) i))
 
+/--
+@isnad1 id=eq.0h8v.s14.07d8b0467280 from=translated src=- shape=676dbc5c vocab=1f478e58
+-/
 @[simp] lemma dualComp_apply (i : A) (f : Dual R C A) (g : Dual R C B)
     (c : C (Without A i ⊕ B)) : dualComp i f g c = pair f g (decomp (R := R) i c) :=
   rfl
@@ -145,55 +151,88 @@ noncomputable def dualMap {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [
     (e : A ≃ B) : Dual R C A →ₗ[R] Dual R C B :=
   LinearMap.lcomp R R (map (R := R) (C := C) e.symm)
 
+/--
+@isnad1 id=eq.0h7v.s10.d2db337b227d from=translated src=- shape=09fec2b2 vocab=0980540c
+-/
 @[simp] lemma dualMap_apply {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) (f : Dual R C A) (c : C B) : dualMap e f c = f (map (R := R) e.symm c) :=
   rfl
 
+/--
+@isnad1 id=eq.0h9v.s13.ac4df4a08d44 from=translated src=- shape=5d1a544e vocab=1fa189ad
+-/
 lemma pair_map {X Y X' Y' : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     [AddCommGroup X'] [Module R X'] [AddCommGroup Y'] [Module R Y'] (f : Module.Dual R X')
     (g : Module.Dual R Y') (φ : X →ₗ[R] X') (ψ : Y →ₗ[R] Y') :
     pair f g ∘ₗ TensorProduct.map φ ψ = pair (f ∘ₗ φ) (g ∘ₗ ψ) :=
   TensorProduct.ext' fun x y => by simp
 
+/--
+@isnad1 id=eq.0h6v.s8.6bec06a3f2d0 from=translated src=- shape=89ae3416 vocab=6cdb680f
+-/
 lemma map_symm_map {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) (x : C A) : map (R := R) e.symm (map (R := R) e x) = x := by
   rw [← map_trans, Equiv.self_trans_symm, map_refl]
 
+/--
+@isnad1 id=eq.0h6v.s8.19c73b00b799 from=translated src=- shape=35604655 vocab=6cdb680f
+-/
 lemma map_map_symm {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) (x : C B) : map (R := R) e (map (R := R) e.symm x) = x := by
   rw [← map_trans, Equiv.symm_trans_self, map_refl]
 
+/--
+@isnad1 id=eq.0h5v.s12.eeefd740ec57 from=translated src=- shape=d9be1316 vocab=0b29a3d6
+-/
 lemma pair_counit_right {X Y : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     (f : Module.Dual R X) (ε : Module.Dual R Y) :
     pair f ε = f ∘ₗ (TensorProduct.rid R X).toLinearMap ∘ₗ LinearMap.lTensor X ε :=
   TensorProduct.ext' fun x y => by simp [mul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s12.fe2e805f30e9 from=translated src=- shape=1d113ffe vocab=01ffd2f3
+-/
 lemma pair_counit_left {X Y : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     (ε : Module.Dual R X) (g : Module.Dual R Y) :
     pair ε g = g ∘ₗ (TensorProduct.lid R Y).toLinearMap ∘ₗ LinearMap.rTensor Y ε :=
   TensorProduct.ext' fun x y => by simp
 
+/--
+@isnad1 id=eq.0h7v.s14.3b97664de667 from=translated src=- shape=5dea6437 vocab=0cf140b5
+-/
 lemma pair_assoc {X Y Z : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     [AddCommGroup Z] [Module R Z] (f : Module.Dual R X) (g : Module.Dual R Y)
     (h : Module.Dual R Z) :
     pair f (pair g h) ∘ₗ (TensorProduct.assoc R X Y Z).toLinearMap = pair (pair f g) h :=
   TensorProduct.ext_threefold fun x y z => by simp [mul_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s14.bee49fc97896 from=translated src=- shape=5a5fc22b vocab=69e43863
+-/
 lemma pair_swapLast {X Y Z : Type v} [AddCommGroup X] [Module R X] [AddCommGroup Y] [Module R Y]
     [AddCommGroup Z] [Module R Z] (f : Module.Dual R X) (g : Module.Dual R Y)
     (h : Module.Dual R Z) :
     pair (pair f h) g ∘ₗ (swapLast R X Y Z).toLinearMap = pair (pair f g) h :=
   TensorProduct.ext_threefold fun x y z => by simp [swapLast, mul_right_comm]
 
+/--
+@isnad1 id=eq.0h7v.s14.924134cfb01c from=translated src=- shape=e30c80dd vocab=d35410c1
+-/
 lemma pair_comp_decomp (i : A) (f : Dual R C A) (g : Dual R C B) :
     dualComp i f g = pair f g ∘ₗ decomp (R := R) i :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s12.350f4d90bdfd from=translated src=- shape=6a66117e vocab=c09e4593
+-/
 lemma pair_comp_left {X X' Y : Type*} [AddCommGroup X] [Module R X] [AddCommGroup X']
     [Module R X'] [AddCommGroup Y] [Module R Y] (F : Module.Dual R X') (φ : X →ₗ[R] X')
     (G : Module.Dual R Y) : pair (F ∘ₗ φ) G = pair F G ∘ₗ LinearMap.rTensor Y φ := by
   rw [LinearMap.rTensor, pair_map, LinearMap.comp_id]
 
+/--
+@isnad1 id=eq.0h7v.s12.64e079549533 from=translated src=- shape=a8e84d71 vocab=c58979b2
+-/
 lemma pair_comp_right {X Y Y' : Type*} [AddCommGroup X] [Module R X] [AddCommGroup Y]
     [Module R Y] [AddCommGroup Y'] [Module R Y'] (F : Module.Dual R X) (G : Module.Dual R Y')
     (ψ : Y →ₗ[R] Y') : pair F (G ∘ₗ ψ) = pair F G ∘ₗ LinearMap.lTensor X ψ := by
@@ -252,16 +291,25 @@ noncomputable instance instSymOperadDual : SymOperad R (Dual R C) where
       ← pair_swapLast]
     rfl
 
+/--
+@isnad1 id=eq.0h7v.s10.62dd0b8844d1 from=translated src=- shape=d7d93752 vocab=cb7cc426
+-/
 @[simp] lemma dual_map_apply {A B : Type} [Fintype A] [DecidableEq A] [Fintype B]
     [DecidableEq B] (e : A ≃ B) (f : Dual R C A) (c : C B) :
     SymOperad.map (R := R) (P := Dual R C) e f c = f (map (R := R) e.symm c) :=
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s14.fced79000a7d from=translated src=- shape=2ce4aefc vocab=6efb76a1
+-/
 @[simp] lemma dual_comp_apply (i : A) (f : Dual R C A) (g : Dual R C B)
     (c : C (Without A i ⊕ B)) :
     SymOperad.comp (R := R) (P := Dual R C) i f g c = pair f g (decomp (R := R) i c) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.4de85b2da61b from=translated src=- shape=02929f4d vocab=6bb67b59
+-/
 lemma dual_one : SymOperad.one R (P := Dual R C) = counit :=
   rfl
 
@@ -319,13 +367,22 @@ namespace ComC
 
 variable (R : Type u) [CommRing R]
 
+/--
+@isnad1 id=eq.0h4v.s7.7e53c05cd6e6 from=translated src=- shape=29162001 vocab=75039d5f
+-/
 @[simp] lemma map_eq {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) : SymCooperad.map (R := R) (C := ComC R) e = LinearMap.id :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.b123ee232251 from=translated src=- shape=a3b3bde9 vocab=c546c6cf
+-/
 @[simp] lemma counit_eq : SymCooperad.counit (R := R) (C := ComC R) = LinearMap.id :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.17567c064da4 from=translated src=- shape=444d1639 vocab=42ceaa92
+-/
 @[simp] lemma decomp_eq {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (i : A) : SymCooperad.decomp (R := R) (C := ComC R) (B := B) i
       = (TensorProduct.lid R R).symm.toLinearMap :=
@@ -338,7 +395,9 @@ noncomputable def dualHom : SymOperadHom R (Com R) (SymCooperad.Dual R (ComC R))
   app_one := LinearMap.ext_ring (by simp [SymCooperad.dual_one])
   app_comp _ _ _ := LinearMap.ext_ring (by simp [SymCooperad.dual_comp_apply])
 
-/-- Its components are bijective.-/
+/-- Its components are bijective.
+@isnad1 id=bijectiv.0h2v.s10.ef8315557834 from=translated src=- shape=e7be5d90 vocab=384982b8
+-/
 theorem dualHom_bijective (A : Type) [Fintype A] [DecidableEq A] :
     Function.Bijective ((dualHom R).app A) :=
   (LinearMap.ringLmapEquivSelf R R R).symm.bijective

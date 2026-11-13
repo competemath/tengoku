@@ -39,11 +39,17 @@ noncomputable def merge {a c : ℕ} (S : Finset (Fin (a + c))) (hS : S.card = a)
     else y ((Sᶜ.orderIsoOfFin (by rw [Finset.card_compl, Fintype.card_fin, hS]; omega)).symm
       ⟨t, Finset.mem_compl.2 h⟩)
 
+/--
+@isnad1 id=eq.2h7v.s10.8f630ffdde20 from=translated src=- shape=6707bcfb vocab=11e5cda3
+-/
 lemma merge_of_mem {a c : ℕ} {S : Finset (Fin (a + c))} (hS : S.card = a) {X : Type*}
     (x : Fin a → X) (y : Fin c → X) {t : Fin (a + c)} (h : t ∈ S) :
     merge S hS x y t = x ((S.orderIsoOfFin hS).symm ⟨t, h⟩) :=
   dite_eq_left h
 
+/--
+@isnad1 id=ex.2h7v.s7.a6ce9b630881 from=translated src=- shape=4f84fd95 vocab=88486a19
+-/
 lemma merge_of_not_mem {a c : ℕ} {S : Finset (Fin (a + c))} (hS : S.card = a) {X : Type*}
     (x : Fin a → X) (y : Fin c → X) {t : Fin (a + c)} (h : t ∉ S) :
     ∃ j, merge S hS x y t = y j :=
@@ -61,7 +67,9 @@ structure IsCInf (b : Fam R V) : Prop extends IsAInf ε b where
       (usgn (merge S.1 S.2 px py) S.1 : R) •
         b (a + c + 1) (merge S.1 S.2 x y ∘ Fin.cast (by omega)) = 0
 
-/-- The two interleavings of two letters.-/
+/-- The two interleavings of two letters.
+@isnad1 id=eq.0h2v.s10.bdefd87fb9fd from=translated src=- shape=aff5ed2a vocab=57b5e79f
+-/
 lemma sum_two {M : Type*} [AddCommMonoid M]
     (F : {S : Finset (Fin (0 + 1 + (0 + 1))) // S.card = 0 + 1} → M) :
     ∑ S, F S = F ⟨{0}, rfl⟩ + F ⟨{1}, rfl⟩ := by
@@ -73,6 +81,9 @@ lemma sum_two {M : Type*} [AddCommMonoid M]
   · exact hS.1 rfl
   · exact hS.2 rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.f87b4248aee4 from=translated src=- shape=a2683256 vocab=b0e49e07
+-/
 lemma merge_zero {X : Type*} (x y : Fin 1 → X) :
     merge (a := 1) (c := 1) {0} rfl x y = ![x 0, y 0] := by
   funext t
@@ -82,6 +93,9 @@ lemma merge_zero {X : Type*} (x y : Fin 1 → X) :
   · obtain ⟨j, hj⟩ := merge_of_not_mem (S := {0}) rfl x y (t := 1) (by decide)
     exact hj.trans (congrArg y (Subsingleton.elim _ _))
 
+/--
+@isnad1 id=eq.0h3v.s7.b349894bd521 from=translated src=- shape=89b8e57d vocab=b0e49e07
+-/
 lemma merge_one {X : Type*} (x y : Fin 1 → X) :
     merge (a := 1) (c := 1) {1} rfl x y = ![y 0, x 0] := by
   funext t
@@ -91,7 +105,9 @@ lemma merge_one {X : Type*} (x y : Fin 1 → X) :
   · exact (merge_of_mem rfl x y (Finset.mem_singleton_self 1)).trans
       (congrArg x (Subsingleton.elim _ _))
 
-/-- The shuffle condition on two letters.-/
+/-- The shuffle condition on two letters.
+@isnad1 id=eq.0h7v.s11.422a954d30dc from=translated src=- shape=5815e20a vocab=2c5788f8
+-/
 lemma shuffle_two (b : Fam R V) (x y : V) (px py : Bool) :
     ∑ S : {S : Finset (Fin (0 + 1 + (0 + 1))) // S.card = 0 + 1},
       (usgn (merge S.1 S.2 ![px] ![py]) S.1 : R) •
@@ -110,7 +126,9 @@ lemma shuffle_two (b : Fam R V) (x y : V) (px py : Bool) :
   congr 2
 
 /-- **A dg algebra is a C∞-algebra exactly when its product is commutative in the bar
-convention**: `μ(x, y) + σ(|x| |y|) μ(y, x) = 0` on homogeneous elements.-/
+convention**: `μ(x, y) + σ(|x| |y|) μ(y, x) = 0` on homogeneous elements.
+@isnad1 id=iff.0h5v.s8.987689797482 from=translated src=- shape=494daa95 vocab=3112d143
+-/
 theorem isCInf_dga_iff {d : End R V 1} {μ : End R V 2} :
     IsCInf ε (dga R V d μ) ↔ IsAInf ε (dga R V d μ) ∧
       ∀ (x y : V) (px py : Bool), IsPar ε px x → IsPar ε py y →

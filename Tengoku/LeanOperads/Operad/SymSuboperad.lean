@@ -64,6 +64,9 @@ def incl : SymOperadHom R S.Op P where
   app_one := rfl
   app_comp _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.915322ea701b from=translated src=- shape=5e8ebf08 vocab=53079cc5
+-/
 @[simp] lemma incl_app (x : S.Op A) : S.incl.app A x = x.1 := rfl
 
 variable {Q : (A : Type) → [Fintype A] → [DecidableEq A] → Type w}
@@ -83,6 +86,9 @@ def comap (φ : SymOperadHom R Q P) : SymSuboperad R Q where
     rw [Submodule.mem_comap, φ.app_comp]
     exact S.comp_mem i hx hy
 
+/--
+@isnad1 id=iff.0h7v.s9.0ed5723abf3e from=translated src=- shape=9a6137e2 vocab=d4fff934
+-/
 @[simp] lemma mem_comap (φ : SymOperadHom R Q P) (x : Q A) :
     x ∈ (S.comap φ).sub A ↔ φ.app A x ∈ S.sub A := Iff.rfl
 
@@ -94,7 +100,9 @@ namespace SymSuboperad
 
 variable {T : ℕ → Type w}
 
-/-- **A suboperad of the free operad containing the generators contains every operation.**-/
+/-- **A suboperad of the free operad containing the generators contains every operation.**
+@isnad1 id=mem.1h5v.s9.c66cab9042a6 from=translated src=- shape=a41b53f4 vocab=2cfe6a27
+-/
 theorem mem_of_gen (S : SymSuboperad R (Lin R (FreeSet T)))
     (h : ∀ n (g : T n), Finsupp.single (Pres.gen g) 1 ∈ S.sub (Fin n))
     {A : Type} [Fintype A] [DecidableEq A] (x : Lin R (FreeSet T) A) : x ∈ S.sub A := by

@@ -88,7 +88,9 @@ lemma eq_lc_or_rc (t : OfArity E 3) : (∃ e e', t = lc e e') ∨ ∃ e e', t = 
       subst this
       exact Or.inl ⟨e, e', rfl⟩
 
-/-- Every tree of arity four is one of the five shapes.-/
+/-- Every tree of arity four is one of the five shapes.
+@isnad1 id=or.0h2v.s7.907fb4db8064 from=translated src=- shape=6a831ac8 vocab=a60f0a75
+-/
 lemma cases_four (t : OfArity E 4) :
     (∃ e₁ e₂ e₃, t = ll e₁ e₂ e₃) ∨ (∃ e₁ e₂ e₃, t = lr e₁ e₂ e₃) ∨
     (∃ e₁ e₂ e₃, t = bl e₁ e₂ e₃) ∨ (∃ e₁ e₂ e₃, t = rl e₁ e₂ e₃) ∨
@@ -131,71 +133,158 @@ section Distinct
 
 variable {a b c a' b' c' : E}
 
+/--
+@isnad1 id=iff.0h5v.s5.5441efafbfb5 from=translated src=- shape=f37badba vocab=0a262dbf
+-/
 @[simp] lemma lc_inj : lc a b = lc a' b' ↔ a = a' ∧ b = b' :=
   ⟨fun h => by simpa [lc] using congrArg Subtype.val h, fun ⟨h, h'⟩ => h ▸ h' ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.446a59ce042e from=translated src=- shape=f37badba vocab=77f84fb8
+-/
 @[simp] lemma rc_inj : rc a b = rc a' b' ↔ a = a' ∧ b = b' :=
   ⟨fun h => by simpa [rc] using congrArg Subtype.val h, fun ⟨h, h'⟩ => h ▸ h' ▸ rfl⟩
 
+/--
+@isnad1 id=ne.0h5v.s4.77ecd6779351 from=translated src=- shape=cc7fddc7 vocab=7c480e10
+-/
 @[simp] lemma lc_ne_rc : lc a b ≠ rc a' b' := fun h => by
   simpa [lc, rc] using congrArg Subtype.val h
 
+/--
+@isnad1 id=ne.0h5v.s4.d807cdf9d386 from=translated src=- shape=cc7fddc7 vocab=7c480e10
+-/
 @[simp] lemma rc_ne_lc : rc a b ≠ lc a' b' := fun h => by
   simpa [lc, rc] using congrArg Subtype.val h
 
+/--
+@isnad1 id=iff.0h7v.s5.e11cedfb9b13 from=translated src=- shape=d7201a71 vocab=8504b919
+-/
 @[simp] lemma ll_inj : ll a b c = ll a' b' c' ↔ a = a' ∧ b = b' ∧ c = c' :=
   ⟨fun h => by simpa [ll] using congrArg Subtype.val h, fun ⟨h, h', h''⟩ => h ▸ h' ▸ h'' ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s5.ec67273687a6 from=translated src=- shape=d7201a71 vocab=1e6eceec
+-/
 @[simp] lemma lr_inj : lr a b c = lr a' b' c' ↔ a = a' ∧ b = b' ∧ c = c' :=
   ⟨fun h => by simpa [lr] using congrArg Subtype.val h, fun ⟨h, h', h''⟩ => h ▸ h' ▸ h'' ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s5.008faaecaa1b from=translated src=- shape=d7201a71 vocab=900aa3e8
+-/
 @[simp] lemma bl_inj : bl a b c = bl a' b' c' ↔ a = a' ∧ b = b' ∧ c = c' :=
   ⟨fun h => by simpa [bl] using congrArg Subtype.val h, fun ⟨h, h', h''⟩ => h ▸ h' ▸ h'' ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s5.5a8089a8c85e from=translated src=- shape=d7201a71 vocab=2f27a441
+-/
 @[simp] lemma rl_inj : rl a b c = rl a' b' c' ↔ a = a' ∧ b = b' ∧ c = c' :=
   ⟨fun h => by simpa [rl] using congrArg Subtype.val h, fun ⟨h, h', h''⟩ => h ▸ h' ▸ h'' ▸ rfl⟩
 
+/--
+@isnad1 id=iff.0h7v.s5.e1cfdfaeb7b6 from=translated src=- shape=d7201a71 vocab=3371f58b
+-/
 @[simp] lemma rr_inj : rr a b c = rr a' b' c' ↔ a = a' ∧ b = b' ∧ c = c' :=
   ⟨fun h => by simpa [rr] using congrArg Subtype.val h, fun ⟨h, h', h''⟩ => h ▸ h' ▸ h'' ▸ rfl⟩
 
+/--
+@isnad1 id=ne.0h7v.s5.3210e813c48d from=translated src=- shape=3d0815be vocab=e8f2b592
+-/
 @[simp] lemma ll_ne_lr : ll a b c ≠ lr a' b' c' := fun h => by
   simpa [ll, lr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.314eb515c847 from=translated src=- shape=3d0815be vocab=e787f5c4
+-/
 @[simp] lemma ll_ne_bl : ll a b c ≠ bl a' b' c' := fun h => by
   simpa [ll, bl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.489d2f5625a6 from=translated src=- shape=3d0815be vocab=22e1a545
+-/
 @[simp] lemma ll_ne_rl : ll a b c ≠ rl a' b' c' := fun h => by
   simpa [ll, rl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.48a9fc286f2e from=translated src=- shape=3d0815be vocab=46941f52
+-/
 @[simp] lemma ll_ne_rr : ll a b c ≠ rr a' b' c' := fun h => by
   simpa [ll, rr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.925b5abeef16 from=translated src=- shape=3d0815be vocab=e8f2b592
+-/
 @[simp] lemma lr_ne_ll : lr a b c ≠ ll a' b' c' := fun h => by
   simpa [ll, lr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.1ecc2670946b from=translated src=- shape=3d0815be vocab=0644d35a
+-/
 @[simp] lemma lr_ne_bl : lr a b c ≠ bl a' b' c' := fun h => by
   simpa [lr, bl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.b96cb2e24aaf from=translated src=- shape=3d0815be vocab=08ea6bef
+-/
 @[simp] lemma lr_ne_rl : lr a b c ≠ rl a' b' c' := fun h => by
   simpa [lr, rl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.3733d2c2a01d from=translated src=- shape=3d0815be vocab=2a053054
+-/
 @[simp] lemma lr_ne_rr : lr a b c ≠ rr a' b' c' := fun h => by
   simpa [lr, rr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.067bce8b89e5 from=translated src=- shape=3d0815be vocab=e787f5c4
+-/
 @[simp] lemma bl_ne_ll : bl a b c ≠ ll a' b' c' := fun h => by
   simpa [bl, ll] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.f0fa309c649c from=translated src=- shape=3d0815be vocab=0644d35a
+-/
 @[simp] lemma bl_ne_lr : bl a b c ≠ lr a' b' c' := fun h => by
   simpa [bl, lr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.a8200cc504ea from=translated src=- shape=3d0815be vocab=e94d0ce7
+-/
 @[simp] lemma bl_ne_rl : bl a b c ≠ rl a' b' c' := fun h => by
   simpa [bl, rl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.10f156f360ad from=translated src=- shape=3d0815be vocab=eab8101e
+-/
 @[simp] lemma bl_ne_rr : bl a b c ≠ rr a' b' c' := fun h => by
   simpa [bl, rr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.8fc00d0827ca from=translated src=- shape=3d0815be vocab=22e1a545
+-/
 @[simp] lemma rl_ne_ll : rl a b c ≠ ll a' b' c' := fun h => by
   simpa [rl, ll] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.267903ec747a from=translated src=- shape=3d0815be vocab=08ea6bef
+-/
 @[simp] lemma rl_ne_lr : rl a b c ≠ lr a' b' c' := fun h => by
   simpa [rl, lr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.4f1f86c0090c from=translated src=- shape=3d0815be vocab=e94d0ce7
+-/
 @[simp] lemma rl_ne_bl : rl a b c ≠ bl a' b' c' := fun h => by
   simpa [rl, bl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.f7ebbb35980c from=translated src=- shape=3d0815be vocab=27c794d4
+-/
 @[simp] lemma rl_ne_rr : rl a b c ≠ rr a' b' c' := fun h => by
   simpa [rl, rr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.30ff78683c26 from=translated src=- shape=3d0815be vocab=46941f52
+-/
 @[simp] lemma rr_ne_ll : rr a b c ≠ ll a' b' c' := fun h => by
   simpa [rr, ll] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.1d923c0804bd from=translated src=- shape=3d0815be vocab=2a053054
+-/
 @[simp] lemma rr_ne_lr : rr a b c ≠ lr a' b' c' := fun h => by
   simpa [rr, lr] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.94a8fd35e259 from=translated src=- shape=3d0815be vocab=eab8101e
+-/
 @[simp] lemma rr_ne_bl : rr a b c ≠ bl a' b' c' := fun h => by
   simpa [rr, bl] using congrArg Subtype.val h
+/--
+@isnad1 id=ne.0h7v.s5.8ff022539940 from=translated src=- shape=3d0815be vocab=27c794d4
+-/
 @[simp] lemma rr_ne_rl : rr a b c ≠ rl a' b' c' := fun h => by
   simpa [rr, rl] using congrArg Subtype.val h
 
@@ -210,7 +299,9 @@ open BTree.OfArity
 variable {R : Type u} [CommRing R] {E : Type v}
   {Q : ℕ → Type w} [∀ n, AddCommGroup (Q n)] [∀ n, Module R (Q n)] [NSOperad R Q]
 
-/-- **`compFin` of two cochains at a factored tree.**-/
+/-- **`compFin` of two cochains at a factored tree.**
+@isnad1 id=eq.1h11v.s8.52dac83e5919 from=translated src=- shape=bdc738ff vocab=a8dd9fb5
+-/
 lemma compFin_apply_graft {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R E Q n)
     (t₁ : OfArity E m) (t₂ : OfArity E n) (t : OfArity E (m - 1 + n))
     (h : t₁.1.graft i t₂.1 = t.1) :
@@ -222,7 +313,9 @@ lemma compFin_apply_graft {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv
     (by rw [OfArity.cast_val, OfArity.cast_val]; exact h), reindex_apply]
   simp only [OfArity.cast_cast, OfArity.cast_self]
 
-/-- **`compFin` of two cochains vanishes away from any factorization.**-/
+/-- **`compFin` of two cochains vanishes away from any factorization.**
+@isnad1 id=eq.1h9v.s8.c0df240c7a87 from=translated src=- shape=d316450f vocab=a8dd9fb5
+-/
 lemma compFin_apply_eq_zero {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R E Q n)
     (t : OfArity E (m - 1 + n))
     (h : ∀ (t₁ : OfArity E m) (t₂ : OfArity E n), t₁.1.graft i t₂.1 ≠ t.1) :
@@ -255,6 +348,9 @@ def sliceOut {m n : ℕ} (i : Fin m) (t₂ : OfArity E n) (x : Chain R E (m - 1 
     have := i.isLt
     omega⟩
 
+/--
+@isnad1 id=eq.0h9v.s7.f5f146cc29f2 from=translated src=- shape=ea420025 vocab=97c63b1a
+-/
 lemma compFin_sum_left {m n : ℕ} (i : Fin m) {ι : Type*} (s : Finset ι) (F : ι → Q m) (y : Q n) :
     compFin (R := R) i (∑ k ∈ s, F k) y = ∑ k ∈ s, compFin (R := R) i (F k) y := by
   classical
@@ -262,6 +358,9 @@ lemma compFin_sum_left {m n : ℕ} (i : Fin m) {ι : Type*} (s : Finset ι) (F :
   | empty => simp
   | insert k s hk ih => rw [Finset.sum_insert hk, Finset.sum_insert hk, compFin_add_left, ih]
 
+/--
+@isnad1 id=eq.0h9v.s7.da1d0df8677a from=translated src=- shape=ada26b5a vocab=97c63b1a
+-/
 lemma compFin_sum_right {m n : ℕ} (i : Fin m) (x : Q m) {ι : Type*} (s : Finset ι) (F : ι → Q n) :
     compFin (R := R) i x (∑ k ∈ s, F k) = ∑ k ∈ s, compFin (R := R) i x (F k) := by
   classical
@@ -278,6 +377,9 @@ def graftPair {m n : ℕ} (i : Fin m) (p : OfArity E m × OfArity E n) : OfArity
     omega⟩
 
 omit [Fintype E] [DecidableEq E] in
+/--
+@isnad1 id=injectiv.0h4v.s5.fe04fe9c9015 from=translated src=- shape=979b61b1 vocab=4e681da7
+-/
 lemma graftPair_injective {m n : ℕ} (i : Fin m) :
     Function.Injective (graftPair (E := E) (n := n) i) :=
   fun p q h => by
@@ -285,7 +387,9 @@ lemma graftPair_injective {m n : ℕ} (i : Fin m) :
       (by rw [q.1.2]; exact i.isLt) (by rw [p.2.2, q.2.2]) (congrArg Subtype.val h)
     exact Prod.ext (Subtype.ext h'.1) (Subtype.ext h'.2)
 
-/-- A `compFin` of cochains, evaluated on a chain, as a sum over the factorizations.-/
+/-- A `compFin` of cochains, evaluated on a chain, as a sum over the factorizations.
+@isnad1 id=eq.0h9v.s10.15e3b15650b3 from=translated src=- shape=757ae6db vocab=3737dac6
+-/
 lemma eval_compFin_pairs {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R E Q n)
     (x : Chain R E (m - 1 + n)) :
     eval (compFin (R := R) i f g) x = ∑ p : OfArity E m × OfArity E n,
@@ -297,7 +401,9 @@ lemma eval_compFin_pairs {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv 
   · rw [compFin_apply_graft i f g p.1 p.2 _ rfl]
     rfl
 
-/-- **Evaluating a `compFin` of cochains along inner slices.**-/
+/-- **Evaluating a `compFin` of cochains along inner slices.**
+@isnad1 id=eq.0h9v.s10.7e6355ad75b5 from=translated src=- shape=4d0e941e vocab=7b1ab42e
+-/
 theorem eval_compFin_in {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R E Q n)
     (x : Chain R E (m - 1 + n)) :
     eval (compFin (R := R) i f g) x
@@ -309,7 +415,9 @@ theorem eval_compFin_in {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R
   rw [compFin_smul_right]
   rfl
 
-/-- **Evaluating a `compFin` of cochains along outer slices.**-/
+/-- **Evaluating a `compFin` of cochains along outer slices.**
+@isnad1 id=eq.0h9v.s10.e3a113381b16 from=translated src=- shape=1054a084 vocab=6006209f
+-/
 theorem eval_compFin_out {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv R E Q n)
     (x : Chain R E (m - 1 + n)) :
     eval (compFin (R := R) i f g) x
@@ -321,6 +429,9 @@ theorem eval_compFin_out {m n : ℕ} (i : Fin m) (f : TConv R E Q m) (g : TConv 
   rw [compFin_smul_left]
 
 omit [NSOperad R Q] in
+/--
+@isnad1 id=eq.0h8v.s8.44fe2a2a437d from=translated src=- shape=5c7d5ef1 vocab=15a01b1e
+-/
 lemma eval_sum {n : ℕ} {ι : Type*} (s : Finset ι) (F : ι → TConv R E Q n) (x : Chain R E n) :
     eval (∑ k ∈ s, F k) x = ∑ k ∈ s, eval (F k) x := by
   classical
@@ -328,7 +439,9 @@ lemma eval_sum {n : ℕ} {ι : Type*} (s : Finset ι) (F : ι → TConv R E Q n)
   | empty => simp
   | insert k s hk ih => rw [Finset.sum_insert hk, Finset.sum_insert hk, eval_add, ih]
 
-/-- Summing over the trees of arity two is summing over the generators.-/
+/-- Summing over the trees of arity two is summing over the generators.
+@isnad1 id=eq.0h3v.s6.e621bd093ddd from=translated src=- shape=a2b0f14a vocab=031bee2c
+-/
 lemma sum_ofArity_two {M : Type*} [AddCommMonoid M] (F : OfArity E 2 → M) :
     ∑ t, F t = ∑ e, F (cor e) := by
   refine (Fintype.sum_bijective cor ⟨fun a b h => ?_, fun t => ?_⟩ _ _ fun _ => rfl).symm
@@ -345,24 +458,54 @@ section Named
 
 variable (x : Chain R E 4) (e p q : E)
 
+/--
+@isnad1 id=eq.0h6v.s6.bf11cbcf1389 from=translated src=- shape=a00ec699 vocab=73319253
+-/
 @[simp] lemma sliceOut_zero_lc : sliceOut (m := 3) (0 : Fin 3) (cor e) x (lc p q) = x (ll p q e) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.e7a1119a2fc8 from=translated src=- shape=a00ec699 vocab=d110a4d0
+-/
 @[simp] lemma sliceOut_one_lc : sliceOut (m := 3) (1 : Fin 3) (cor e) x (lc p q) = x (lr p q e) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.b89d599a064d from=translated src=- shape=a00ec699 vocab=96fb82f1
+-/
 @[simp] lemma sliceOut_two_lc : sliceOut (m := 3) (2 : Fin 3) (cor e) x (lc p q) = x (bl p q e) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.aa975107f290 from=translated src=- shape=4f352feb vocab=e129c54b
+-/
 @[simp] lemma sliceOut_zero_rc : sliceOut (m := 3) (0 : Fin 3) (cor e) x (rc p q) = x (bl p e q) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.69977870c3f4 from=translated src=- shape=a00ec699 vocab=79f11586
+-/
 @[simp] lemma sliceOut_one_rc : sliceOut (m := 3) (1 : Fin 3) (cor e) x (rc p q) = x (rl p q e) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.b5b5899bbc28 from=translated src=- shape=a00ec699 vocab=131de411
+-/
 @[simp] lemma sliceOut_two_rc : sliceOut (m := 3) (2 : Fin 3) (cor e) x (rc p q) = x (rr p q e) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.64db9d73522a from=translated src=- shape=db6d3fc3 vocab=be08075f
+-/
 @[simp] lemma sliceIn_zero_lc : sliceIn (n := 3) (0 : Fin 2) (cor e) x (lc p q) = x (ll e p q) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.455d01945bf9 from=translated src=- shape=db6d3fc3 vocab=bd1075ab
+-/
 @[simp] lemma sliceIn_zero_rc : sliceIn (n := 3) (0 : Fin 2) (cor e) x (rc p q) = x (lr e p q) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.817aee52e9ac from=translated src=- shape=db6d3fc3 vocab=0cb5155c
+-/
 @[simp] lemma sliceIn_one_lc : sliceIn (n := 3) (1 : Fin 2) (cor e) x (lc p q) = x (rl e p q) :=
   rfl
+/--
+@isnad1 id=eq.0h6v.s6.106182c9148c from=translated src=- shape=db6d3fc3 vocab=ecd852d3
+-/
 @[simp] lemma sliceIn_one_rc : sliceIn (n := 3) (1 : Fin 2) (cor e) x (rc p q) = x (rr e p q) :=
   rfl
 
@@ -398,7 +541,9 @@ variable [Fintype E] [DecidableEq E]
 omit [Fintype E] [DecidableEq E] in
 /-- **Membership in the Koszul dual in arity four**, slice by slice: a chain on the three-vertex
 trees lies in the Koszul dual exactly when its three outer slices and its two inner slices at
-every corolla lie in the relation space.-/
+every corolla lie in the relation space.
+@isnad1 id=iff.0h4v.s9.526185bcce8c from=translated src=- shape=6c460e70 vocab=6436279f
+-/
 theorem mem_koszulDual_four_iff (Rel : Submodule R (Chain R E 3)) (x : Chain R E 4) :
     x ∈ koszulDual Rel 4 ↔
       (∀ (a : Fin 3) (e : E), sliceOut (n := 2) a (cor e) x ∈ Rel) ∧

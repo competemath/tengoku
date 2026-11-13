@@ -74,33 +74,59 @@ def Resolvable : Prop :=
 /-- A set of monomials is **downward closed**.-/
 def IsDown (s : Set M) : Prop := ∀ m ∈ s, ∀ m', S.lt m' m → m' ∈ s
 
+/--
+@isnad1 id=isdown.0h4v.s4.0839051e215d from=translated src=- shape=577996db vocab=2ba1d539
+-/
 lemma isDown_below (m : M) : S.IsDown (S.below m) := fun _ h _ h' => S.trans h' h
 
+/--
+@isnad1 id=isdown.0h3v.s4.9ddeb19cd64d from=translated src=- shape=77c16275 vocab=3e9130cd
+-/
 lemma isDown_univ : S.IsDown Set.univ := fun _ _ _ _ => trivial
 
+/--
+@isnad1 id=le.1h5v.s7.e8cc8426e650 from=translated src=- shape=d8e24826 vocab=b30187eb
+-/
 lemma idealOn_mono {s t : Set M} (h : s ⊆ t) : S.idealOn s ≤ S.idealOn t :=
   Submodule.span_mono fun _ ⟨m, hm, v, hv, e⟩ => ⟨m, h hm, v, hv, e⟩
 
+/--
+@isnad1 id=le.0h4v.s7.ef8f63d50586 from=translated src=- shape=2a7c075e vocab=db87974d
+-/
 lemma idealOn_le_ideal (s : Set M) : S.idealOn s ≤ S.ideal :=
   S.idealOn_mono (Set.subset_univ s)
 
+/--
+@isnad1 id=mem.2h6v.s8.7dd39a0deb16 from=translated src=- shape=f8b0abfe vocab=8cf419e8
+-/
 lemma sub_mem_idealOn {s : Set M} {m : M} (hm : m ∈ s) {v : M →₀ R} (hv : v ∈ S.red m) :
     single m 1 - v ∈ S.idealOn s :=
   Submodule.subset_span ⟨m, hm, v, hv, rfl⟩
 
+/--
+@isnad1 id=mem.1h5v.s8.4679cf8785b6 from=translated src=- shape=d599987b vocab=c4f8fe8c
+-/
 lemma sub_mem_ideal {m : M} {v : M →₀ R} (hv : v ∈ S.red m) : single m 1 - v ∈ S.ideal :=
   S.sub_mem_idealOn (Set.mem_univ m) hv
 
+/--
+@isnad1 id=mem.1h5v.s8.8f9d83de185d from=translated src=- shape=809d978e vocab=6fcdaa43
+-/
 lemma red_mem_supported {m : M} {v : M →₀ R} (hv : v ∈ S.red m) :
     v ∈ supported R R (S.below m) :=
   (mem_supported R v).2 fun m' hm' => S.red_lt hv m' hm'
 
+/--
+@isnad1 id=iff.0h4v.s5.6349fa2623d0 from=translated src=- shape=f091ca06 vocab=09bd4e1f
+-/
 lemma mem_irr_iff {m : M} : m ∈ S.Irr ↔ ¬ (S.red m).Nonempty := by
   rw [Set.not_nonempty_iff_eq_empty]; rfl
 
 omit S in
 /-- A vector supported on a set of monomials whose basis vectors lie in a submodule lies in
-it.-/
+it.
+@isnad1 id=mem.2h5v.s9.f6ea54ec5e11 from=translated src=- shape=b1af906f vocab=b98b8f2b
+-/
 lemma mem_of_supported {N : Submodule R (M →₀ R)} {s : Set M} (h : ∀ m ∈ s, single m 1 ∈ N)
     {v : M →₀ R} (hv : v ∈ supported R R s) : v ∈ N := by
   rw [supported_eq_span_single] at hv
@@ -109,7 +135,9 @@ lemma mem_of_supported {N : Submodule R (M →₀ R)} {s : Set M} (h : ∀ m ∈
 /-! ## Spanning -/
 
 /-- **Spanning**: on a downward closed set `s` of monomials, every basis vector is congruent
-modulo the rewriting ideal on `s` to a combination of irreducible monomials.-/
+modulo the rewriting ideal on `s` to a combination of irreducible monomials.
+@isnad1 id=mem.2h5v.s9.0d374a6c325e from=translated src=- shape=18c7317e vocab=52c3fceb
+-/
 theorem single_mem_sup {s : Set M} (hs : S.IsDown s) (m : M) (hm : m ∈ s) :
     single m 1 ∈ supported R R S.Irr ⊔ S.idealOn s := by
   induction m using S.wf.induction with
@@ -122,11 +150,16 @@ theorem single_mem_sup {s : Set M} (hs : S.IsDown s) (m : M) (hm : m ∈ s) :
     rwa [sub_add_cancel] at this
   · exact Submodule.mem_sup_left (single_mem_supported R 1 (S.mem_irr_iff.2 h))
 
+/--
+@isnad1 id=le.1h4v.s9.d99531f23bc5 from=translated src=- shape=a7e8cec6 vocab=125e5eea
+-/
 theorem supported_le_sup {s : Set M} (hs : S.IsDown s) :
     supported R R s ≤ supported R R S.Irr ⊔ S.idealOn s :=
   fun _ hv => mem_of_supported (fun m hm => S.single_mem_sup hs m hm) hv
 
-/-- **The irreducible monomials and the ideal span everything.**-/
+/-- **The irreducible monomials and the ideal span everything.**
+@isnad1 id=eq.0h3v.s8.5da3d1ace624 from=translated src=- shape=6cdd1885 vocab=ef2d8688
+-/
 theorem sup_eq_top : supported R R S.Irr ⊔ S.ideal = ⊤ :=
   eq_top_iff.2 fun v _ => S.supported_le_sup S.isDown_univ (by rw [supported_univ]; trivial)
 
@@ -144,30 +177,49 @@ noncomputable def nfMono : M → (M →₀ R) :=
 /-- **The normal form**, the linear extension of `nfMono`.-/
 noncomputable def nf : (M →₀ R) →ₗ[R] (M →₀ R) := linearCombination R S.nfMono
 
+/--
+@isnad1 id=eq.0h5v.s8.9f2a2aa667b0 from=translated src=- shape=bdac6d9a vocab=2370f62d
+-/
 lemma nf_single (m : M) (c : R) : S.nf (single m c) = c • S.nfMono m :=
   linearCombination_single R c m
 
+/--
+@isnad1 id=eq.0h4v.s8.892acf15eba4 from=translated src=- shape=fa15bd51 vocab=b5600654
+-/
 lemma nf_apply (v : M →₀ R) : S.nf v = v.sum fun m c => c • S.nfMono m :=
   linearCombination_apply R v
 
+/--
+@isnad1 id=eq.1h4v.s8.aeec6bfa2f39 from=translated src=- shape=cee9a2f7 vocab=6087cce4
+-/
 lemma nfMono_of_nonempty {m : M} (h : (S.red m).Nonempty) : S.nfMono m = S.nf h.some := by
   classical
   rw [nfMono, WellFounded.fix_eq, dite_eq_left h, nf_apply]
   exact sum_congr fun m' hm' => by rw [dite_eq_left (S.red_lt h.some_mem m' hm')]; rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.9135e6849dcb from=translated src=- shape=82eb46fc vocab=1e36ab51
+-/
 lemma nfMono_of_irr {m : M} (h : m ∈ S.Irr) : S.nfMono m = single m 1 := by
   classical
   rw [nfMono, WellFounded.fix_eq, dite_eq_right (S.mem_irr_iff.1 h)]
 
+/--
+@isnad1 id=eq.1h4v.s8.a3cbe6d1d490 from=translated src=- shape=06b34533 vocab=b2acc551
+-/
 lemma nf_single_of_irr {m : M} (h : m ∈ S.Irr) : S.nf (single m 1) = single m 1 := by
   rw [nf_single, one_smul, S.nfMono_of_irr h]
 
-/-- The normal form is the identity on the combinations of irreducible monomials.-/
+/-- The normal form is the identity on the combinations of irreducible monomials.
+@isnad1 id=eq.1h4v.s8.5438ca4d860c from=translated src=- shape=6f63f34a vocab=fa3e0e42
+-/
 lemma nf_of_mem_supported {v : M →₀ R} (hv : v ∈ supported R R S.Irr) : S.nf v = v :=
   mem_of_supported (N := LinearMap.eqLocus S.nf LinearMap.id)
     (fun _ hm => S.nf_single_of_irr hm) hv
 
-/-- The normal form of a monomial is a combination of irreducible monomials.-/
+/-- The normal form of a monomial is a combination of irreducible monomials.
+@isnad1 id=mem.0h4v.s7.0059358c6fe0 from=translated src=- shape=7f193813 vocab=287c54a6
+-/
 lemma nfMono_mem_supported (m : M) : S.nfMono m ∈ supported R R S.Irr := by
   induction m using S.wf.induction with
   | _ m ih =>
@@ -180,12 +232,17 @@ lemma nfMono_mem_supported (m : M) : S.nfMono m ∈ supported R R S.Irr := by
   · rw [S.nfMono_of_irr (S.mem_irr_iff.2 h)]
     exact single_mem_supported R 1 (S.mem_irr_iff.2 h)
 
-/-- **The normal form is a combination of irreducible monomials.**-/
+/-- **The normal form is a combination of irreducible monomials.**
+@isnad1 id=mem.0h4v.s8.6c44131261f2 from=translated src=- shape=0e06586a vocab=fa3e0e42
+-/
 lemma nf_mem_supported (v : M →₀ R) : S.nf v ∈ supported R R S.Irr :=
   mem_of_supported (s := Set.univ) (N := (supported R R S.Irr).comap S.nf)
     (fun m _ => by rw [Submodule.mem_comap, nf_single, one_smul]; exact S.nfMono_mem_supported m)
     (by rw [supported_univ]; trivial)
 
+/--
+@isnad1 id=mem.0h4v.s7.5973bdc47073 from=translated src=- shape=e361c710 vocab=7dfb3b55
+-/
 lemma nfMono_sub_mem (m : M) : S.nfMono m - single m 1 ∈ S.ideal := by
   induction m using S.wf.induction with
   | _ m ih =>
@@ -201,7 +258,9 @@ lemma nfMono_sub_mem (m : M) : S.nfMono m - single m 1 ∈ S.ideal := by
   · rw [S.nfMono_of_irr (S.mem_irr_iff.2 h), sub_self]
     exact Submodule.zero_mem _
 
-/-- **The normal form is congruent to the identity** modulo the ideal.-/
+/-- **The normal form is congruent to the identity** modulo the ideal.
+@isnad1 id=mem.0h4v.s8.5444ef24e94e from=translated src=- shape=854a0486 vocab=fc7bdb7c
+-/
 lemma nf_sub_mem (v : M →₀ R) : S.nf v - v ∈ S.ideal :=
   mem_of_supported (s := Set.univ) (N := S.ideal.comap (S.nf - LinearMap.id))
     (fun m _ => by
@@ -209,7 +268,9 @@ lemma nf_sub_mem (v : M →₀ R) : S.nf v - v ∈ S.ideal :=
       exact S.nfMono_sub_mem m)
     (by rw [supported_univ]; trivial)
 
-/-- **The normal form stays in a set closed under reduction.**-/
+/-- **The normal form stays in a set closed under reduction.**
+@isnad1 id=mem.2h5v.s8.9456e354495d from=translated src=- shape=82e1f1f7 vocab=ebcdaa8d
+-/
 lemma nfMono_mem_of_closed {s : Set M} (hs : ∀ m ∈ s, ∀ v ∈ S.red m, v ∈ supported R R s) :
     ∀ m ∈ s, S.nfMono m ∈ supported R R s := by
   intro m
@@ -228,7 +289,9 @@ lemma nfMono_mem_of_closed {s : Set M} (hs : ∀ m ∈ s, ∀ v ∈ S.red m, v �
     exact single_mem_supported R 1 hm
 
 /-- **The normal form maps the combinations of a set closed under reduction into
-themselves.**-/
+themselves.**
+@isnad1 id=mem.2h5v.s9.c60181a53e1c from=translated src=- shape=3784eb60 vocab=df5e71cb
+-/
 lemma nf_mem_of_closed {s : Set M} (hs : ∀ m ∈ s, ∀ v ∈ S.red m, v ∈ supported R R s)
     {v : M →₀ R} (hv : v ∈ supported R R s) : S.nf v ∈ supported R R s :=
   mem_of_supported (N := (supported R R s).comap S.nf)
@@ -236,7 +299,9 @@ lemma nf_mem_of_closed {s : Set M} (hs : ∀ m ∈ s, ∀ v ∈ S.red m, v ∈ s
       rw [Submodule.mem_comap, nf_single, one_smul]
       exact S.nfMono_mem_of_closed hs m hm) hv
 
-/-- **The normal form of a reducible monomial lies strictly below it.**-/
+/-- **The normal form of a reducible monomial lies strictly below it.**
+@isnad1 id=mem.1h4v.s7.5033cf6096e4 from=translated src=- shape=83969f40 vocab=c3c17322
+-/
 lemma nfMono_mem_below {m : M} (h : (S.red m).Nonempty) :
     S.nfMono m ∈ supported R R (S.below m) := by
   rw [S.nfMono_of_nonempty h]
@@ -246,6 +311,9 @@ lemma nfMono_mem_below {m : M} (h : (S.red m).Nonempty) :
 
 /-! ## The diamond lemma -/
 
+/--
+@isnad1 id=le.1h4v.s9.01625faefe0d from=translated src=- shape=142d754e vocab=8cad7dbf
+-/
 lemma idealOn_le_ker {s : Set M} (h : ∀ m ∈ s, ∀ v ∈ S.red m, S.nf v = S.nfMono m) :
     S.idealOn s ≤ LinearMap.ker S.nf :=
   Submodule.span_le.2 fun _ ⟨m, hm, v, hv, e⟩ => by
@@ -255,7 +323,9 @@ lemma idealOn_le_ker {s : Set M} (h : ∀ m ∈ s, ∀ v ∈ S.red m, S.nf v = S
 variable {S}
 
 /-- **All reductions of a monomial have the same normal form** when every ambiguity is
-resolvable.-/
+resolvable.
+@isnad1 id=eq.2h5v.s8.84106ed48011 from=translated src=- shape=15979a0a vocab=678456e1
+-/
 theorem Resolvable.nf_red (hS : S.Resolvable) (m : M) : ∀ v ∈ S.red m, S.nf v = S.nfMono m := by
   induction m using S.wf.induction with
   | _ m ih =>
@@ -265,24 +335,32 @@ theorem Resolvable.nf_red (hS : S.Resolvable) (m : M) : ∀ v ∈ S.red m, S.nf 
   rw [LinearMap.mem_ker, map_sub, sub_eq_zero] at this
   rw [this, S.nfMono_of_nonempty hne]
 
-/-- **The normal form vanishes on the ideal** when every ambiguity is resolvable.-/
+/-- **The normal form vanishes on the ideal** when every ambiguity is resolvable.
+@isnad1 id=le.1h3v.s8.b16431038b3d from=translated src=- shape=3f48dfad vocab=92bdfa33
+-/
 theorem Resolvable.ideal_le_ker (hS : S.Resolvable) : S.ideal ≤ LinearMap.ker S.nf :=
   S.idealOn_le_ker fun m _ => hS.nf_red m
 
 /-- **The diamond lemma**, independence: when every ambiguity is resolvable, no nonzero
-combination of irreducible monomials lies in the ideal.-/
+combination of irreducible monomials lies in the ideal.
+@isnad1 id=disjoint.1h3v.s7.d3884016b3ca from=translated src=- shape=a0e4377f vocab=18ed09b7
+-/
 theorem Resolvable.disjoint (hS : S.Resolvable) : Disjoint (supported R R S.Irr) S.ideal :=
   Submodule.disjoint_def.2 fun v h1 h2 => by
     rw [← S.nf_of_mem_supported h1]
     exact hS.ideal_le_ker h2
 
 /-- **The diamond lemma**: when every ambiguity is resolvable, the irreducible monomials span a
-complement of the ideal.-/
+complement of the ideal.
+@isnad1 id=iscompl.1h3v.s7.65324c408094 from=translated src=- shape=a0e4377f vocab=0170eff9
+-/
 theorem Resolvable.isCompl (hS : S.Resolvable) : IsCompl (supported R R S.Irr) S.ideal :=
   ⟨hS.disjoint, codisjoint_iff.2 S.sup_eq_top⟩
 
 /-- **The converse of the diamond lemma**: if no nonzero combination of irreducible monomials
-lies in the ideal, every ambiguity is resolvable.-/
+lies in the ideal, every ambiguity is resolvable.
+@isnad1 id=resolvab.1h3v.s7.30caefd32ed5 from=translated src=- shape=79f5c70c vocab=18ed09b7
+-/
 theorem resolvable_of_disjoint (h : Disjoint (supported R R S.Irr) S.ideal) : S.Resolvable := by
   intro m v hv v' hv'
   have hsub : v - v' ∈ supported R R (S.below m) :=
@@ -298,11 +376,15 @@ theorem resolvable_of_disjoint (h : Disjoint (supported R R S.Irr) S.ideal) : S.
   exact hb
 
 /-- **The diamond lemma of Bergman**: the irreducible monomials span a complement of the
-rewriting ideal if and only if every ambiguity is resolvable relative to the order.-/
+rewriting ideal if and only if every ambiguity is resolvable relative to the order.
+@isnad1 id=iff.0h3v.s7.ff6793d4b532 from=translated src=- shape=a27e3d36 vocab=0170eff9
+-/
 theorem resolvable_iff : S.Resolvable ↔ IsCompl (supported R R S.Irr) S.ideal :=
   ⟨Resolvable.isCompl, fun h => resolvable_of_disjoint h.disjoint⟩
 
-/-- **The normal form decides membership in the ideal.**-/
+/-- **The normal form decides membership in the ideal.**
+@isnad1 id=iff.1h4v.s8.ff65eff746fd from=translated src=- shape=594aa15b vocab=15d12dc8
+-/
 theorem Resolvable.nf_eq_zero_iff (hS : S.Resolvable) {v : M →₀ R} :
     S.nf v = 0 ↔ v ∈ S.ideal := by
   refine ⟨fun h => ?_, fun h => hS.ideal_le_ker h⟩
@@ -310,7 +392,9 @@ theorem Resolvable.nf_eq_zero_iff (hS : S.Resolvable) {v : M →₀ R} :
   rwa [h, zero_sub, neg_neg] at this
 
 /-- **Two vectors are congruent modulo the ideal if and only if they have the same normal
-form.**-/
+form.**
+@isnad1 id=iff.1h5v.s9.308b7f520625 from=translated src=- shape=f8292498 vocab=97800e5a
+-/
 theorem Resolvable.nf_eq_nf_iff (hS : S.Resolvable) {v w : M →₀ R} :
     S.nf v = S.nf w ↔ v - w ∈ S.ideal := by
   rw [← hS.nf_eq_zero_iff, map_sub, sub_eq_zero]
@@ -322,6 +406,9 @@ noncomputable def Resolvable.basis (hS : S.Resolvable) :
   .ofRepr ((Submodule.quotientEquivOfIsCompl S.ideal _ hS.isCompl.symm).trans
     (supportedEquivFinsupp S.Irr))
 
+/--
+@isnad1 id=eq.1h4v.s9.21de5489bff3 from=translated src=- shape=ae468d01 vocab=52f8663b
+-/
 theorem Resolvable.basis_apply (hS : S.Resolvable) (m : S.Irr) :
     hS.basis m = Submodule.Quotient.mk (single (m : M) 1) := by
   simp only [Resolvable.basis, Module.Basis.coe_ofRepr]

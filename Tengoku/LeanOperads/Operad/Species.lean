@@ -37,10 +37,16 @@ abbrev FinBij.mk (S : Type u) [Finite S] : FinBij.{u} := ⟨FintypeCat.of S⟩
 def FinBij.hom {S T : FintypeCat.{u}} (e : S ≃ T) : (⟨S⟩ : FinBij.{u}) ⟶ ⟨T⟩ :=
   ⟨FintypeCat.equivEquivIso e⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.b2a9aa2c2310 from=translated src=- shape=afa65cbb vocab=d4e1836a
+-/
 @[simp] lemma FinBij.hom_refl {S : FintypeCat.{u}} :
     FinBij.hom (Equiv.refl S) = 𝟙 (⟨S⟩ : FinBij.{u}) :=
   Core.hom_ext rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.bcdfcf9fffb1 from=translated src=- shape=41be040f vocab=e698561b
+-/
 lemma FinBij.hom_trans {S T U : FintypeCat.{u}} (e : S ≃ T) (e' : T ≃ U) :
     FinBij.hom (e.trans e') = FinBij.hom e ≫ FinBij.hom e' :=
   Core.hom_ext rfl
@@ -64,10 +70,16 @@ def act (F : Species R) {S T : Type u} [Finite S] [Finite T] (e : S ≃ T) :
     F.component S ⟶ F.component T :=
   F.map (FinBij.hom (S := FintypeCat.of S) (T := FintypeCat.of T) e)
 
+/--
+@isnad1 id=eq.0h3v.s6.e30e8ac45f76 from=translated src=- shape=b63f25f1 vocab=6e5d3d66
+-/
 @[simp] lemma act_refl (F : Species R) {S : Type u} [Finite S] :
     F.act (Equiv.refl S) = 𝟙 _ := by
   rw [act, FinBij.hom_refl, F.map_id]
 
+/--
+@isnad1 id=eq.0h7v.s6.0c978e8661d7 from=translated src=- shape=41971334 vocab=5abb7253
+-/
 lemma act_trans (F : Species R) {S T U : Type u} [Finite S] [Finite T] [Finite U]
     (e : S ≃ T) (e' : T ≃ U) : F.act (e.trans e') = F.act e ≫ F.act e' := by
   rw [act, act, act, ← F.map_comp]

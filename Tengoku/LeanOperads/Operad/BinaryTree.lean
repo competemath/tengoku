@@ -46,17 +46,34 @@ def weight : BTree E → ℕ
   | leaf => 0
   | node _ l r => l.weight + r.weight + 1
 
+/--
+@isnad1 id=eq.0h1v.s3.b856ba7cf16c from=translated src=- shape=44598111 vocab=baabc860
+-/
 @[simp] lemma arity_leaf : (leaf : BTree E).arity = 1 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.49086ef60635 from=translated src=- shape=310eb023 vocab=9e75b67c
+-/
 @[simp] lemma arity_node (e : E) (l r : BTree E) : (node e l r).arity = l.arity + r.arity := rfl
+/--
+@isnad1 id=eq.0h1v.s3.8b71e0255bcc from=translated src=- shape=44598111 vocab=1fa6cb9d
+-/
 @[simp] lemma weight_leaf : (leaf : BTree E).weight = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.3ef08a9f4920 from=translated src=- shape=70b87992 vocab=cacd36f0
+-/
 @[simp] lemma weight_node (e : E) (l r : BTree E) :
     (node e l r).weight = l.weight + r.weight + 1 := rfl
 
+/--
+@isnad1 id=lt.0h2v.s4.a714bff8e0a6 from=translated src=- shape=db125da6 vocab=54978b30
+-/
 lemma arity_pos : ∀ t : BTree E, 0 < t.arity
   | leaf => Nat.one_pos
   | node _ l _ => Nat.lt_of_lt_of_le (arity_pos l) (Nat.le_add_right _ _)
 
-/-- **A binary tree with `n` leaves has `n - 1` vertices.**-/
+/-- **A binary tree with `n` leaves has `n - 1` vertices.**
+@isnad1 id=eq.0h2v.s4.71b79c59ea62 from=translated src=- shape=b61d648a vocab=d408bb96
+-/
 lemma weight_add_one : ∀ t : BTree E, t.weight + 1 = t.arity
   | leaf => rfl
   | node _ l r => by
@@ -81,21 +98,35 @@ def graft : BTree E → ℕ → BTree E → BTree E
   | node e l r, i, s =>
     if i < l.arity then node e (l.graft i s) r else node e l (r.graft (i - l.arity) s)
 
+/--
+@isnad1 id=eq.0h3v.s4.220a41950c21 from=translated src=- shape=c106aace vocab=fc97680a
+-/
 @[simp] lemma graft_leaf (i : ℕ) (s : BTree E) : (leaf : BTree E).graft i s = s := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.91be206731c6 from=translated src=- shape=880976dc vocab=9452f883
+-/
 lemma graft_node (e : E) (l r : BTree E) (i : ℕ) (s : BTree E) :
     (node e l r).graft i s =
       if i < l.arity then node e (l.graft i s) r else node e l (r.graft (i - l.arity) s) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.bfec96d26359 from=translated src=- shape=0bf9881e vocab=ac828263
+-/
 lemma graft_node_of_lt {e : E} {l : BTree E} (r : BTree E) {i : ℕ} (s : BTree E)
     (h : i < l.arity) : (node e l r).graft i s = node e (l.graft i s) r := by
   rw [graft_node, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h6v.s5.212d3561a863 from=translated src=- shape=b30620c3 vocab=3db2352c
+-/
 lemma graft_node_of_ge {e : E} (l : BTree E) {r : BTree E} {i : ℕ} (s : BTree E)
     (h : l.arity ≤ i) : (node e l r).graft i s = node e l (r.graft (i - l.arity) s) := by
   rw [graft_node, ite_eq_right (by omega)]
 
-/-- Grafting replaces one leaf by `s`.-/
+/-- Grafting replaces one leaf by `s`.
+@isnad1 id=eq.1h4v.s5.5236ec473879 from=translated src=- shape=8e1a90db vocab=2dc7a107
+-/
 theorem arity_graft : ∀ (t : BTree E) (i : ℕ) (s : BTree E), i < t.arity →
     (t.graft i s).arity + 1 = t.arity + s.arity
   | leaf, _, s, _ => by simp only [graft_leaf, arity_leaf]; omega
@@ -111,7 +142,9 @@ theorem arity_graft : ∀ (t : BTree E) (i : ℕ) (s : BTree E), i < t.arity →
       simp only [arity_node]
       omega
 
-/-- **Grafting adds weights.**-/
+/-- **Grafting adds weights.**
+@isnad1 id=eq.1h4v.s5.0f8dd79a5b07 from=translated src=- shape=0b3dfad0 vocab=f7c26f6d
+-/
 theorem weight_graft : ∀ (t : BTree E) (i : ℕ) (s : BTree E), i < t.arity →
     (t.graft i s).weight = t.weight + s.weight
   | leaf, _, s, _ => by simp
@@ -127,7 +160,9 @@ theorem weight_graft : ∀ (t : BTree E) (i : ℕ) (s : BTree E), i < t.arity �
       simp only [weight_node]
       omega
 
-/-- **Right unit.** Grafting a bare leaf changes nothing.-/
+/-- **Right unit.** Grafting a bare leaf changes nothing.
+@isnad1 id=eq.0h3v.s4.e665c5d7c706 from=translated src=- shape=22095d25 vocab=fc97680a
+-/
 theorem graft_leaf_right : ∀ (t : BTree E) (i : ℕ), t.graft i leaf = t
   | leaf, _ => rfl
   | node e l r, i => by
@@ -135,7 +170,9 @@ theorem graft_leaf_right : ∀ (t : BTree E) (i : ℕ), t.graft i leaf = t
     · rw [graft_node_of_lt r _ hi, graft_leaf_right l i]
     · rw [graft_node_of_ge l _ (by omega), graft_leaf_right r]
 
-/-- **Sequential associativity**: grafting into a tree that was itself just grafted in.-/
+/-- **Sequential associativity**: grafting into a tree that was itself just grafted in.
+@isnad1 id=eq.2h6v.s5.6a84416137a7 from=translated src=- shape=7f1e56ea vocab=2dc7a107
+-/
 theorem graft_graft_seq : ∀ (t : BTree E) (i : ℕ) (s : BTree E) (j : ℕ) (u : BTree E),
     i < t.arity → j < s.arity → (t.graft i s).graft (i + j) u = t.graft i (s.graft j u)
   | leaf, i, s, j, u, h, _ => by
@@ -153,7 +190,9 @@ theorem graft_graft_seq : ∀ (t : BTree E) (i : ℕ) (s : BTree E) (j : ℕ) (u
         graft_graft_seq r (i - l.arity) s j u (by omega) hj]
 
 /-- **Parallel associativity**: grafting at two distinct leaves commutes, after the shift the
-first graft induces on the second slot.-/
+first graft induces on the second slot.
+@isnad1 id=eq.2h6v.s6.1e4e81f4a172 from=translated src=- shape=d6441f54 vocab=ec14ec44
+-/
 theorem graft_graft_par : ∀ (t : BTree E) (i : ℕ) (s : BTree E) (i' : ℕ) (u : BTree E),
     i < i' → i' < t.arity → (t.graft i s).graft (i' - 1 + s.arity) u = (t.graft i' u).graft i s
   | leaf, _, _, _, _, h, h' => by simp only [arity_leaf] at h'; omega
@@ -178,7 +217,9 @@ theorem graft_graft_par : ∀ (t : BTree E) (i : ℕ) (s : BTree E) (i' : ℕ) (
           graft_graft_par r (i - l.arity) s (i' - l.arity) u (by omega) (by omega)]
 
 /-- **Unique factorization.** A tree is a graft at a given slot of a tree of a given arity in at
-most one way.-/
+most one way.
+@isnad1 id=and.4h6v.s6.237e24fcd0ca from=translated src=- shape=c8e9d103 vocab=b197b9c1
+-/
 theorem graft_inj : ∀ (t t' : BTree E) (i : ℕ) (s s' : BTree E), i < t.arity → i < t'.arity →
     s.arity = s'.arity → t.graft i s = t'.graft i s' → t = t' ∧ s = s'
   | leaf, leaf, _, s, s', _, _, _, h => ⟨rfl, h⟩
@@ -234,6 +275,9 @@ def OfArity (E : Type v) (n : ℕ) : Type v := {t : BTree E // t.arity = n}
 
 namespace OfArity
 
+/--
+@isnad1 id=eq.1h4v.s5.faa16dfefcc1 from=translated src=- shape=dbb85303 vocab=3ec1f553
+-/
 @[ext] lemma ext {n : ℕ} {s t : OfArity E n} (h : s.1 = t.1) : s = t := Subtype.ext h
 
 /-- The leaf, of arity one.-/
@@ -250,10 +294,15 @@ def graft (a b : ℕ) {n : ℕ} (t : OfArity E (a + 1 + b)) (s : OfArity E n) :
     rw [t.2, s.2] at this
     omega⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.5f45561a3b8e from=translated src=- shape=67fa614c vocab=9e79a1d9
+-/
 @[simp] lemma graft_val (a b : ℕ) {n : ℕ} (t : OfArity E (a + 1 + b)) (s : OfArity E n) :
     (graft a b t s).1 = t.1.graft a s.1 := rfl
 
-/-- **Unique factorization**, for trees of fixed arities.-/
+/-- **Unique factorization**, for trees of fixed arities.
+@isnad1 id=and.1h8v.s7.7dd62e937bf6 from=translated src=- shape=7f9ea0d4 vocab=67ff981b
+-/
 theorem graft_inj (a b : ℕ) {n : ℕ} {t t' : OfArity E (a + 1 + b)} {s s' : OfArity E n}
     (h : graft a b t s = graft a b t' s') : t = t' ∧ s = s' := by
   have := BTree.graft_inj t.1 t'.1 a s.1 s'.1 (by rw [t.2]; omega) (by rw [t'.2]; omega)
@@ -263,11 +312,20 @@ theorem graft_inj (a b : ℕ) {n : ℕ} {t t' : OfArity E (a + 1 + b)} {s s' : O
 /-- Changing the arity index along an equality.-/
 def cast {m n : ℕ} (h : m = n) (t : OfArity E m) : OfArity E n := ⟨t.1, t.2.trans h⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.9952587c770c from=translated src=- shape=df2134db vocab=4db3b302
+-/
 @[simp] lemma cast_val {m n : ℕ} (h : m = n) (t : OfArity E m) : (cast h t).1 = t.1 := rfl
 
+/--
+@isnad1 id=eq.2h5v.s5.24052fdecb46 from=translated src=- shape=8ec175c7 vocab=346c02f5
+-/
 @[simp] lemma cast_cast {l m n : ℕ} (h₁ : l = m) (h₂ : m = n) (t : OfArity E l) :
     cast h₂ (cast h₁ t) = cast (h₁.trans h₂) t := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.a151b8f1055c from=translated src=- shape=5bece346 vocab=e370cfd7
+-/
 @[simp] lemma cast_self {n : ℕ} (h : n = n) (t : OfArity E n) : cast h t = t := rfl
 
 end OfArity
@@ -287,6 +345,9 @@ def ofArityFinset : ℕ → Finset (BTree E)
         fun p => node p.1 p.2.1 p.2.2
   decreasing_by all_goals omega
 
+/--
+@isnad1 id=iff.0h3v.s5.28868dcd34d7 from=translated src=- shape=79f488d6 vocab=9b44a53c
+-/
 theorem mem_ofArityFinset : ∀ (t : BTree E) (n : ℕ), t ∈ ofArityFinset n ↔ t.arity = n
   | leaf, 0 => by simp [ofArityFinset]
   | leaf, 1 => by simp [ofArityFinset]

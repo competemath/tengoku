@@ -61,6 +61,9 @@ abbrev TotS (R : Type u) [CommRing R] (P : ℕ → Type v)
 /-- The inclusion of a homogeneous piece.-/
 abbrev incS (k : ℕ) : PieceS R P k →+ TotS R P := DirectSum.of (PieceS R P) k
 
+/--
+@isnad1 id=eq.0h6v.s9.1d63e840a83d from=translated src=- shape=134cdc6e vocab=6022da66
+-/
 @[simp] lemma incS_mul_incS {i j : ℕ} (a : PieceS R P i) (b : PieceS R P j) :
     (incS i a * incS j b : TotS R P) = incS (i + j) (sstar (R := R) a b) :=
   DirectSum.of_mul_of a b

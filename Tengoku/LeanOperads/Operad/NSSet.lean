@@ -30,15 +30,27 @@ def reindexS {m n : ℕ} (h : m = n) : S m → S n := fun x => h ▸ x
 
 variable {S}
 
+/--
+@isnad1 id=eq.1h3v.s4.47e9eed47568 from=translated src=- shape=c3d438c9 vocab=b85719cc
+-/
 @[simp] lemma reindexS_self {n : ℕ} (h : n = n) (x : S n) : reindexS S h x = x := rfl
 
+/--
+@isnad1 id=eq.2h5v.s5.d3d508da11c8 from=translated src=- shape=c139886a vocab=06035878
+-/
 @[simp] lemma reindexS_reindexS {l m n : ℕ} (h₁ : l = m) (h₂ : m = n) (x : S l) :
     reindexS S h₂ (reindexS S h₁ x) = reindexS S (h₁.trans h₂) x := by
   subst h₁; subst h₂; rfl
 
+/--
+@isnad1 id=injectiv.1h3v.s4.5d06de1dbe70 from=translated src=- shape=00720d9d vocab=dd6c95fb
+-/
 lemma reindexS_injective {m n : ℕ} (h : m = n) : Function.Injective (reindexS S h) := by
   subst h; exact fun _ _ h => h
 
+/--
+@isnad1 id=iff.1h5v.s5.6a4a8d238e92 from=translated src=- shape=bcb90e10 vocab=f03e4d1e
+-/
 lemma reindexS_symm_eq {m n : ℕ} (h : m = n) (x : S m) (y : S n) :
     reindexS S h x = y ↔ x = reindexS S h.symm y := by
   subst h; exact Iff.rfl
@@ -76,6 +88,9 @@ namespace NSSetOperadHom
 
 variable {S : ℕ → Type v} {T : ℕ → Type w} [NSSetOperad S] [NSSetOperad T]
 
+/--
+@isnad1 id=eq.1h4v.s5.3896ffd171d8 from=translated src=- shape=9fdc65aa vocab=f2654ae4
+-/
 @[ext] lemma ext {φ ψ : NSSetOperadHom S T} (h : ∀ n (x : S n), φ.app n x = ψ.app n x) :
     φ = ψ := by
   obtain ⟨φa, _, _⟩ := φ
@@ -84,7 +99,9 @@ variable {S : ℕ → Type v} {T : ℕ → Type w} [NSSetOperad S] [NSSetOperad 
   subst this
   rfl
 
-/-- Components commute with reindexing.-/
+/-- Components commute with reindexing.
+@isnad1 id=eq.1h6v.s5.80007c6be644 from=translated src=- shape=d7bf859b vocab=7cfb43c1
+-/
 lemma app_reindexS (φ : NSSetOperadHom S T) {m n : ℕ} (h : m = n) (x : S m) :
     φ.app n (reindexS S h x) = reindexS T h (φ.app m x) := by
   subst h; rfl
@@ -167,12 +184,18 @@ noncomputable def compL (a b : ℕ) {n : ℕ} :
 
 variable {R}
 
+/--
+@isnad1 id=eq.0h9v.s11.57656a2ad91d from=translated src=- shape=bfa91a04 vocab=a79cc2d5
+-/
 @[simp] lemma compL_single (a b : ℕ) {n : ℕ} (s : S (a + 1 + b)) (t : S n) (r r' : R) :
     compL R a b (Finsupp.single s r) (Finsupp.single t r')
       = Finsupp.single (NSSetOperad.comp a b s t) (r * r') := by
   simp [compL, Finsupp.mapDomain_single, Finsupp.smul_single, smul_eq_mul]
 
 omit [NSSetOperad S] in
+/--
+@isnad1 id=eq.1h6v.s9.b802193590a1 from=translated src=- shape=04456b51 vocab=1a6c4060
+-/
 @[simp] lemma reindex_single {m n : ℕ} (h : m = n) (s : S m) (r : R) :
     reindex R (LinNS R S) h (Finsupp.single s r) = Finsupp.single (reindexS S h s) r := by
   subst h; rfl
@@ -250,6 +273,9 @@ def nsOneSet : S (Fin 1) := map unitFinOne one
 /-! The axioms are transported from the linearization over `ℤ`, where `Operad.SymNS` proves
 them, along the injectivity of `Finsupp.single`. -/
 
+/--
+@isnad1 id=eq.0h1v.s7.20ee3cc4cd1d from=translated src=- shape=88dbd059 vocab=de4166ea
+-/
 lemma single_nsOneSet :
     (Finsupp.single (α := S (Fin 1)) (nsOneSet (S := S)) (1 : ℤ))
       = SymOperad.nsOne (R := ℤ) (P := Lin ℤ S) := by

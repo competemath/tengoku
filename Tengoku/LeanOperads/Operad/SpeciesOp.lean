@@ -60,9 +60,15 @@ namespace SetSpecies
 variable {X : (A : Type) → [Fintype A] → [DecidableEq A] → Type v} [SetSpecies X]
   {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
 
+/--
+@isnad1 id=eq.0h5v.s6.a5a2e0579afb from=translated src=- shape=e12b5613 vocab=a4d77d54
+-/
 @[simp] lemma map_symm_map (e : A ≃ B) (x : X A) : map e.symm (map e x) = x := by
   rw [← map_trans, Equiv.self_trans_symm, map_refl]
 
+/--
+@isnad1 id=eq.0h5v.s6.7aef79cb6927 from=translated src=- shape=d72e8723 vocab=a4d77d54
+-/
 @[simp] lemma map_map_symm (e : A ≃ B) (y : X B) : map e (map e.symm y) = y := by
   rw [← map_trans, Equiv.symm_trans_self, map_refl]
 
@@ -75,6 +81,9 @@ variable {X : (A : Type) → [Fintype A] → [DecidableEq A] → Type v}
   {Z : (A : Type) → [Fintype A] → [DecidableEq A] → Type x}
   [SetSpecies X] [SetSpecies Y] [SetSpecies Z]
 
+/--
+@isnad1 id=eq.1h4v.s6.837290d0a9f5 from=translated src=- shape=dcc9b5ef vocab=a2105dcd
+-/
 @[ext] lemma ext {φ ψ : SetSpeciesHom X Y}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (x : X A), φ.app A x = ψ.app A x) :
     φ = ψ := by
@@ -108,7 +117,9 @@ noncomputable def extendApp (f : ∀ n : ℕ, X (Fin n) → Y (Fin n)) (A : Type
     [DecidableEq A] (x : X A) : Y A :=
   SetSpecies.map (Fintype.equivFin A).symm (f _ (SetSpecies.map (Fintype.equivFin A) x))
 
-/-- **The extension does not depend on the numbering.**-/
+/-- **The extension does not depend on the numbering.**
+@isnad1 id=eq.1h7v.s6.326c2e4ccbf0 from=translated src=- shape=84725865 vocab=14b323fc
+-/
 lemma extendApp_chart {f : ∀ n : ℕ, X (Fin n) → Y (Fin n)} (hf : Equivariant f) {A : Type}
     [Fintype A] [DecidableEq A] {n : ℕ} (φ : Fin n ≃ A) (x : X A) :
     extendApp f A x = SetSpecies.map φ (f n (SetSpecies.map φ.symm x)) := by
@@ -134,13 +145,18 @@ noncomputable def extend (f : ∀ n : ℕ, X (Fin n) → Y (Fin n)) (hf : Equiva
     rw [extendApp_chart hf ((Fintype.equivFin A).symm.trans e), h1, SetSpecies.map_trans]
     rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.c62ee167480a from=translated src=- shape=a5298f7b vocab=9e32ff48
+-/
 @[simp] lemma extend_app_fin {f : ∀ n : ℕ, X (Fin n) → Y (Fin n)} (hf : Equivariant f)
     (n : ℕ) (x : X (Fin n)) : (extend f hf).app (Fin n) x = f n x := by
   show extendApp f (Fin n) x = f n x
   rw [extendApp_chart hf (Equiv.refl (Fin n)), Equiv.refl_symm, SetSpecies.map_refl,
     SetSpecies.map_refl]
 
-/-- A morphism of species, computed through a numbering.-/
+/-- A morphism of species, computed through a numbering.
+@isnad1 id=eq.0h7v.s6.6b2ba8809c67 from=translated src=- shape=5d0025de vocab=c0c64dcb
+-/
 lemma app_eq_chart (φ : SetSpeciesHom X Y) {A : Type} [Fintype A] [DecidableEq A] {n : ℕ}
     (e : Fin n ≃ A) (x : X A) :
     φ.app A x = SetSpecies.map e (φ.app (Fin n) (SetSpecies.map e.symm x)) := by
@@ -229,6 +245,9 @@ variable {R : Type u} [CommRing R]
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (W A)]
   [SymSpecies R V] [SymSpecies R W]
 
+/--
+@isnad1 id=eq.1h5v.s9.278e68b644dd from=translated src=- shape=6dd1fb43 vocab=afcb820e
+-/
 @[ext] lemma ext {φ ψ : SymSpeciesHom R V W}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (x : V A), φ.app A x = ψ.app A x) :
     φ = ψ := by

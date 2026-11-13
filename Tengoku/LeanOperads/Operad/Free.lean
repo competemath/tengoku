@@ -28,6 +28,9 @@ namespace TreeOfArity
 
 variable {E : ℕ → Type v}
 
+/--
+@isnad1 id=eq.1h4v.s5.f412671b59b8 from=translated src=- shape=84e36169 vocab=947d9e57
+-/
 @[ext] lemma ext {n : ℕ} {s t : TreeOfArity E n} (h : s.val = t.val) : s = t := Subtype.ext h
 
 /-- The operadic identity: the bare leaf.-/
@@ -42,6 +45,9 @@ def graft (a b : ℕ) {n : ℕ} (t : TreeOfArity E (a + 1 + b)) (s : TreeOfArity
     rw [Tree.arity_graft t.val a s.val (by omega), ht, hs]
     omega⟩
 
+/--
+@isnad1 id=eq.0h6v.s6.c82bf873631b from=translated src=- shape=e5792bb8 vocab=04900a02
+-/
 @[simp] lemma graft_val (a b : ℕ) {n : ℕ} (t : TreeOfArity E (a + 1 + b)) (s : TreeOfArity E n) :
     (graft a b t s).val = t.val.graft a s.val := rfl
 
@@ -59,10 +65,16 @@ variable {R : Type u} [CommRing R] {E : ℕ → Type v}
 /-- The basis element attached to a tree.-/
 noncomputable def gen {n : ℕ} (t : TreeOfArity E n) : Free R E n := Finsupp.single t 1
 
+/--
+@isnad1 id=eq.0h5v.s6.392ad1cd4b2b from=translated src=- shape=22affe56 vocab=48256ab1
+-/
 lemma smul_gen {n : ℕ} (t : TreeOfArity E n) (r : R) :
     r • gen (R := R) t = Finsupp.single t r := by
   rw [gen, Finsupp.smul_single, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s5.701a0945f59e from=translated src=- shape=216e8507 vocab=3d945672
+-/
 lemma gen_def {n : ℕ} (t : TreeOfArity E n) : gen (R := R) t = Finsupp.single t 1 := rfl
 
 /-- Grafting, extended bilinearly.-/
@@ -73,18 +85,26 @@ noncomputable def compL (a b : ℕ) {n : ℕ} :
       Finsupp.lsum R fun s =>
         LinearMap.toSpanSingleton R _ (gen (R := R) (TreeOfArity.graft a b t s))
 
+/--
+@isnad1 id=eq.0h7v.s10.8b7f5977ee5f from=translated src=- shape=6259a555 vocab=b72c524e
+-/
 @[simp] lemma compL_gen (a b : ℕ) {n : ℕ} (t : TreeOfArity E (a + 1 + b))
     (s : TreeOfArity E n) :
     compL (R := R) a b (gen t) (gen s) = gen (TreeOfArity.graft a b t s) := by
   simp only [compL, gen, Finsupp.lsum_single, LinearMap.toSpanSingleton_apply_one]
 
-/-- Reindexing a generator only changes the arity proof it carries.-/
+/-- Reindexing a generator only changes the arity proof it carries.
+@isnad1 id=eq.1h5v.s9.79757739ef1f from=translated src=- shape=07380e9b vocab=301475a3
+-/
 lemma reindex_gen {m n : ℕ} (h : m = n) (x : TreeOfArity E m) :
     reindex R (Free R E) h (gen x) = gen ⟨x.val, by rw [x.property, h]⟩ := by
   subst h
   rw [reindex_self]
   exact congrArg gen (Subtype.ext rfl)
 
+/--
+@isnad1 id=eq.0h9v.s10.89a265448859 from=translated src=- shape=18b8e5a5 vocab=8b7d5cb4
+-/
 lemma compL_single (a b : ℕ) {n : ℕ} (t : TreeOfArity E (a + 1 + b)) (r : R)
     (s : TreeOfArity E n) (r' : R) :
     compL (R := R) a b (Finsupp.single t r) (Finsupp.single s r')
@@ -92,7 +112,9 @@ lemma compL_single (a b : ℕ) {n : ℕ} (t : TreeOfArity E (a + 1 + b)) (r : R)
   rw [← smul_gen, ← smul_gen, map_smul, map_smul, LinearMap.smul_apply, compL_gen, smul_smul,
     smul_gen, mul_comm]
 
-/-- Reindexing a `single` only changes the arity proof the tree carries.-/
+/-- Reindexing a `single` only changes the arity proof the tree carries.
+@isnad1 id=eq.1h6v.s9.c7e5e9bad8b6 from=translated src=- shape=3b8e3539 vocab=a4f10b7a
+-/
 lemma reindex_single {m n : ℕ} (h : m = n) (x : TreeOfArity E m) (r : R) :
     reindex R (Free R E) h (Finsupp.single x r)
       = Finsupp.single ⟨x.val, by rw [x.property, h]⟩ r := by

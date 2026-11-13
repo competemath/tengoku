@@ -23,7 +23,9 @@ variable {R : Type u} [CommRing R] {P : ℕ → Type v}
   [∀ n, AddCommGroup (P n)] [∀ n, Module R (P n)] [NSOperad R P]
 
 /-- **Sequential associativity, `∘ᵢ` form.** Composing `γ` into the slot of `α ∘ᵢ β` that came
-from `β`'s slot `j` is the same as composing `β ∘ⱼ γ` into `α`'s slot `i`.-/
+from `β`'s slot `j` is the same as composing `β ∘ⱼ γ` into `α`'s slot `i`.
+@isnad1 id=eq.0h10v.s10.0ffffb81b89a from=translated src=- shape=a3d5468b vocab=adf557b6
+-/
 lemma compFin_assoc_seq {m n p : ℕ} (i : Fin m) (j : Fin n) (α : P m) (β : P n) (γ : P p) :
     reindex R P (by have := i.isLt; have := j.isLt; omega)
         (compFin (R := R)
@@ -66,7 +68,9 @@ lemma compFin_assoc_seq {m n p : ℕ} (i : Fin m) (j : Fin n) (α : P m) (β : P
 
 /-- **Parallel associativity, `∘ᵢ` form.** Composing into two distinct slots of `α` gives the same
 result in either order. The slot of the second insertion shifts by `n - 1` when `β` goes in
-first, which is what the index `i' + n - 1` records.-/
+first, which is what the index `i' + n - 1` records.
+@isnad1 id=eq.1h10v.s10.8909938b53aa from=translated src=- shape=fcf1b5a1 vocab=1dac6395
+-/
 lemma compFin_assoc_par {m n p : ℕ} (i i' : Fin m) (hlt : (i : ℕ) < (i' : ℕ))
     (α : P m) (β : P n) (γ : P p) :
     compFin (R := R)

@@ -35,22 +35,34 @@ def sstar {j k : ℕ} (α : P (j + 1)) (β : P (k + 1)) : P (j + k + 1) :=
 
 @[inherit_doc] scoped infixl:70 " ⋆ₛ " => sstar
 
+/--
+@isnad1 id=eq.0h6v.s10.6edc7bcd2b5f from=translated src=- shape=21e13a92 vocab=49b808c4
+-/
 lemma sstar_def {j k : ℕ} (α : P (j + 1)) (β : P (k + 1)) :
     sstar (R := R) α β = ∑ a : Fin (j + 1), ((-1 : R) ^ ((a : ℕ) * k)) • compFin (R := R) a α β :=
   rfl
 
 /-! ### Bilinearity -/
 
+/--
+@isnad1 id=eq.0h7v.s8.9f7566ec4e01 from=translated src=- shape=8c8f48b3 vocab=acff43ab
+-/
 lemma sstar_add_left {j k : ℕ} (α α' : P (j + 1)) (β : P (k + 1)) :
     sstar (R := R) (α + α') β = sstar (R := R) α β + sstar (R := R) α' β := by
   simp only [sstar_def, compFin_add_left, smul_add]
   rw [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h7v.s8.5f3fc5cec336 from=translated src=- shape=0bff8719 vocab=acff43ab
+-/
 lemma sstar_add_right {j k : ℕ} (α : P (j + 1)) (β β' : P (k + 1)) :
     sstar (R := R) α (β + β') = sstar (R := R) α β + sstar (R := R) α β' := by
   simp only [sstar_def, compFin_add_right, smul_add]
   rw [Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h7v.s10.0d541757398e from=translated src=- shape=a540ef6b vocab=b2064b90
+-/
 lemma sstar_smul_left {j k : ℕ} (r : R) (α : P (j + 1)) (β : P (k + 1)) :
     sstar (R := R) (r • α) β = r • sstar (R := R) α β := by
   have hpull : r • sstar (R := R) α β
@@ -59,6 +71,9 @@ lemma sstar_smul_left {j k : ℕ} (r : R) (α : P (j + 1)) (β : P (k + 1)) :
   rw [sstar_def, hpull]
   exact Finset.sum_congr rfl fun a _ => by rw [compFin_smul_left, smul_comm]
 
+/--
+@isnad1 id=eq.0h7v.s10.794cf71483a7 from=translated src=- shape=0a89a3f3 vocab=b2064b90
+-/
 lemma sstar_smul_right {j k : ℕ} (r : R) (α : P (j + 1)) (β : P (k + 1)) :
     sstar (R := R) α (r • β) = r • sstar (R := R) α β := by
   have hpull : r • sstar (R := R) α β
@@ -67,10 +82,16 @@ lemma sstar_smul_right {j k : ℕ} (r : R) (α : P (j + 1)) (β : P (k + 1)) :
   rw [sstar_def, hpull]
   exact Finset.sum_congr rfl fun a _ => by rw [compFin_smul_right, smul_comm]
 
+/--
+@isnad1 id=eq.0h5v.s8.64139c0085bb from=translated src=- shape=4a7e5153 vocab=acff43ab
+-/
 @[simp] lemma zero_sstar {j k : ℕ} (β : P (k + 1)) :
     sstar (R := R) (0 : P (j + 1)) β = 0 := by
   simp only [sstar_def, compFin_zero_left, smul_zero, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.0h5v.s8.dceb5162a53c from=translated src=- shape=0b88396d vocab=acff43ab
+-/
 @[simp] lemma sstar_zero {j k : ℕ} (α : P (j + 1)) :
     sstar (R := R) α (0 : P (k + 1)) = 0 := by
   simp only [sstar_def, compFin_zero_right, smul_zero, Finset.sum_const_zero]
@@ -80,6 +101,9 @@ lemma sstar_smul_right {j k : ℕ} (r : R) (α : P (j + 1)) (β : P (k + 1)) :
 The identity has degree zero, so every sign in `α ⋆ₛ 1` is `(-1)^0 = 1` and the signed product
 agrees with the unsigned one. Likewise `1 ⋆ₛ β` has a single term, at slot `0`. -/
 
+/--
+@isnad1 id=eq.0h4v.s8.7db0b589fa7a from=translated src=- shape=076e6ffd vocab=9b808d8a
+-/
 @[simp] lemma sstar_one {j : ℕ} (α : P (j + 1)) :
     sstar (R := R) α (one (R := R) (P := P)) = (j + 1) • α := by
   rw [sstar_def]
@@ -90,6 +114,9 @@ agrees with the unsigned one. Likewise `1 ⋆ₛ β` has a single term, at slot 
     exact reindex_self _ _
   rw [Finset.sum_congr rfl fun a _ => h a, Finset.sum_const, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h4v.s9.e02fa31df012 from=translated src=- shape=c37efe6c vocab=0ca996a0
+-/
 @[simp] lemma one_sstar {k : ℕ} (β : P (k + 1)) :
     reindex R P (by omega) (sstar (R := R) (one (R := R) (P := P)) β) = β := by
   rw [sstar_def, Fin.sum_univ_one]

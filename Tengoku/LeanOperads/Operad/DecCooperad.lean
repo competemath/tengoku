@@ -53,11 +53,16 @@ noncomputable def finComap {X Y : Type*} (c : X → Y) (hc : ∀ y, (c ⁻¹' {y
     ext a
     simp [Finsupp.ofSupportFinite_coe]
 
+/--
+@isnad1 id=eq.1h6v.s8.13030c9ac426 from=translated src=- shape=4842c027 vocab=35737884
+-/
 @[simp] lemma finComap_apply {X Y : Type*} (c : X → Y) (hc : ∀ y, (c ⁻¹' {y}).Finite)
     (x : Y →₀ R) (a : X) : finComap c hc x a = x (c a) :=
   rfl
 
-/-- An injective map has finite fibers.-/
+/-- An injective map has finite fibers.
+@isnad1 id=finite.1h4v.s4.7ab32e92fdf7 from=translated src=- shape=902d88c1 vocab=3a3de695
+-/
 lemma finite_preimage_of_injective {X Y : Type*} {c : X → Y} (hc : Function.Injective c) (y : Y) :
     (c ⁻¹' {y}).Finite :=
   Set.Subsingleton.finite fun _ ha _ hb => hc (ha.trans hb.symm)
@@ -67,11 +72,16 @@ variable (R) in
 noncomputable abbrev tens (X Y : Type*) : (X →₀ R) ⊗[R] (Y →₀ R) ≃ₗ[R] (X × Y →₀ R) :=
   finsuppTensorFinsupp' R X Y
 
+/--
+@isnad1 id=eq.0h7v.s10.3f946447dee9 from=translated src=- shape=a0b7b3a1 vocab=41b29e12
+-/
 lemma tens_tmul_apply {X Y : Type*} (x : X →₀ R) (y : Y →₀ R) (a : X) (b : Y) :
     tens R X Y (x ⊗ₜ y) (a, b) = x a * y b :=
   finsuppTensorFinsupp'_apply_apply R X Y x y a b
 
-/-- A coefficient of a tensor of finitely supported functions, as a pairing.-/
+/-- A coefficient of a tensor of finitely supported functions, as a pairing.
+@isnad1 id=eq.0h6v.s14.03878c715dc4 from=translated src=- shape=569bc740 vocab=77b566b8
+-/
 lemma tens_apply_eq_pair {X Y : Type*} (t : (X →₀ R) ⊗[R] (Y →₀ R)) (a : X) (b : Y) :
     tens R X Y t (a, b) = SymCooperad.pair (Finsupp.lapply a) (Finsupp.lapply b) t := by
   have : (Finsupp.lapply (a, b)) ∘ₗ (tens R X Y).toLinearMap
@@ -91,15 +101,23 @@ noncomputable def tens3' (X Y Z : Type*) :
     ((X →₀ R) ⊗[R] (Y →₀ R)) ⊗[R] (Z →₀ R) ≃ₗ[R] ((X × Y) × Z →₀ R) :=
   (TensorProduct.congr (tens R X Y) (LinearEquiv.refl R _)).trans (tens R (X × Y) Z)
 
+/--
+@isnad1 id=eq.0h10v.s12.e2c6e09ecb91 from=translated src=- shape=18099494 vocab=17a5f3a5
+-/
 @[simp] lemma tens3_tmul_apply {X Y Z : Type*} (x : X →₀ R) (y : Y →₀ R) (z : Z →₀ R) (a : X)
     (b : Y) (d : Z) : tens3 R X Y Z (x ⊗ₜ (y ⊗ₜ z)) (a, (b, d)) = x a * (y b * z d) := by
   simp [tens3]
 
+/--
+@isnad1 id=eq.0h10v.s12.44780509e0a0 from=translated src=- shape=f1375c76 vocab=341de1ad
+-/
 @[simp] lemma tens3'_tmul_apply {X Y Z : Type*} (x : X →₀ R) (y : Y →₀ R) (z : Z →₀ R) (a : X)
     (b : Y) (d : Z) : tens3' R X Y Z ((x ⊗ₜ y) ⊗ₜ z) ((a, b), d) = x a * y b * z d := by
   simp [tens3']
 
-/-- Decomposing the second factor, on coefficients.-/
+/-- Decomposing the second factor, on coefficients.
+@isnad1 id=eq.1h10v.s13.3ee7608c1d09 from=translated src=- shape=d7603766 vocab=493c61e2
+-/
 lemma tens3_lTensor {X Y Y₁ Y₂ : Type*} (g : (Y →₀ R) →ₗ[R] (Y₁ →₀ R) ⊗[R] (Y₂ →₀ R))
     (c : Y₁ × Y₂ → Y) (hg : ∀ y p, tens R Y₁ Y₂ (g y) p = y (c p))
     (t : (X →₀ R) ⊗[R] (Y →₀ R)) (a : X) (p : Y₁ × Y₂) :
@@ -112,7 +130,9 @@ lemma tens3_lTensor {X Y Y₁ Y₂ : Type*} (g : (Y →₀ R) →ₗ[R] (Y₁ �
     simp [tens3]
   | add t t' ht ht' => simp only [map_add, Finsupp.add_apply, ht, ht']
 
-/-- Decomposing the first factor, on coefficients.-/
+/-- Decomposing the first factor, on coefficients.
+@isnad1 id=eq.1h10v.s13.4917b488749e from=translated src=- shape=3fc1a57a vocab=3c61abdb
+-/
 lemma tens3'_rTensor {X X₁ X₂ Z : Type*} (g : (X →₀ R) →ₗ[R] (X₁ →₀ R) ⊗[R] (X₂ →₀ R))
     (c : X₁ × X₂ → X) (hg : ∀ x p, tens R X₁ X₂ (g x) p = x (c p))
     (t : (X →₀ R) ⊗[R] (Z →₀ R)) (p : X₁ × X₂) (d : Z) :
@@ -125,7 +145,9 @@ lemma tens3'_rTensor {X X₁ X₂ Z : Type*} (g : (X →₀ R) →ₗ[R] (X₁ �
     simp [tens3']
   | add t t' ht ht' => simp only [map_add, Finsupp.add_apply, ht, ht']
 
-/-- The associator, on coefficients.-/
+/-- The associator, on coefficients.
+@isnad1 id=eq.0h8v.s14.21c2862043b8 from=translated src=- shape=b37bcb39 vocab=e8e460db
+-/
 lemma tens3_assoc {X Y Z : Type*} (t : ((X →₀ R) ⊗[R] (Y →₀ R)) ⊗[R] (Z →₀ R)) (a : X) (b : Y)
     (d : Z) :
     tens3 R X Y Z (TensorProduct.assoc R _ _ _ t) (a, (b, d)) = tens3' R X Y Z t ((a, b), d) := by
@@ -135,7 +157,9 @@ lemma tens3_assoc {X Y Z : Type*} (t : ((X →₀ R) ⊗[R] (Y →₀ R)) ⊗[R]
     TensorProduct.ext_threefold fun x y z => by simp [mul_assoc]
   exact LinearMap.congr_fun this t
 
-/-- The exchange of the last two factors, on coefficients.-/
+/-- The exchange of the last two factors, on coefficients.
+@isnad1 id=eq.0h8v.s14.f39aa7ce81fa from=translated src=- shape=7d0e1c12 vocab=cfbf54fa
+-/
 lemma tens3'_swapLast {X Y Z : Type w} (t : ((X →₀ R) ⊗[R] (Y →₀ R)) ⊗[R] (Z →₀ R)) (a : X)
     (b : Y) (d : Z) :
     tens3' R X Z Y (swapLast R _ _ _ t) ((a, d), b) = tens3' R X Y Z t ((a, b), d) := by
@@ -145,7 +169,9 @@ lemma tens3'_swapLast {X Y Z : Type w} (t : ((X →₀ R) ⊗[R] (Y →₀ R)) �
     TensorProduct.ext_threefold fun x y z => by simp [swapLast, mul_right_comm]
   exact LinearMap.congr_fun this t
 
-/-- Two maps of tensor products, on coefficients.-/
+/-- Two maps of tensor products, on coefficients.
+@isnad1 id=eq.2h12v.s12.2db38bf682fb from=translated src=- shape=73101bb8 vocab=2991ec03
+-/
 lemma tens_map {X X' Y Y' : Type*} (f : (X →₀ R) →ₗ[R] (X' →₀ R)) (g : (Y →₀ R) →ₗ[R] (Y' →₀ R))
     (cf : X' → X) (cg : Y' → Y) (hf : ∀ x a, f x a = x (cf a)) (hg : ∀ y b, g y b = y (cg b))
     (t : (X →₀ R) ⊗[R] (Y →₀ R)) (a : X') (b : Y') :
@@ -155,7 +181,9 @@ lemma tens_map {X X' Y Y' : Type*} (f : (X →₀ R) →ₗ[R] (X' →₀ R)) (g
   | tmul x y => simp [hf, hg]
   | add t t' ht ht' => simp only [map_add, Finsupp.add_apply, ht, ht']
 
-/-- The counit `x ↦ x u` on the right, on coefficients.-/
+/-- The counit `x ↦ x u` on the right, on coefficients.
+@isnad1 id=eq.0h6v.s12.79b77e2f8f45 from=translated src=- shape=eb93d879 vocab=32a6485b
+-/
 lemma rid_lTensor_lapply {X U : Type*} (u : U) (t : (X →₀ R) ⊗[R] (U →₀ R)) (a : X) :
     TensorProduct.rid R (X →₀ R) (LinearMap.lTensor (X →₀ R) (Finsupp.lapply u) t) a
       = tens R X U t (a, u) := by
@@ -164,7 +192,9 @@ lemma rid_lTensor_lapply {X U : Type*} (u : U) (t : (X →₀ R) ⊗[R] (U →�
   | tmul x y => simp [mul_comm]
   | add t t' ht ht' => simp only [map_add, Finsupp.add_apply, ht, ht']
 
-/-- The counit `x ↦ x u` on the left, on coefficients.-/
+/-- The counit `x ↦ x u` on the left, on coefficients.
+@isnad1 id=eq.0h6v.s12.b927f0e446a7 from=translated src=- shape=3764a567 vocab=50874694
+-/
 lemma lid_rTensor_lapply {Y U : Type*} (u : U) (t : (U →₀ R) ⊗[R] (Y →₀ R)) (b : Y) :
     TensorProduct.lid R (Y →₀ R) (LinearMap.rTensor (Y →₀ R) (Finsupp.lapply u) t) b
       = tens R U Y t (u, b) := by
@@ -194,7 +224,9 @@ variable {A A' B B' D : Type} [Fintype A] [DecidableEq A] [Fintype A'] [Decidabl
   [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B'] [Fintype D] [DecidableEq D]
 
 variable {R} in
-/-- Relabelling, on coefficients.-/
+/-- Relabelling, on coefficients.
+@isnad1 id=eq.0h7v.s8.3ad9061eb43d from=translated src=- shape=5cb08bef vocab=7309b4fc
+-/
 lemma mapL_apply (e : A ≃ B) (x : S A →₀ R) (y : S B) :
     mapL R e x y = x (SetOperad.map e.symm y) := by
   conv_lhs => rw [← SetOperad.map_map_symm e y]
@@ -211,11 +243,16 @@ noncomputable def decompL (i : A) :
 variable {R}
 
 /-- **The coefficients of a decomposition**: the coefficient of `p ⊗ q` in `Δᵢ x` is the
-coefficient of `p ∘ᵢ q` in `x`.-/
+coefficient of `p ∘ᵢ q` in `x`.
+@isnad1 id=eq.0h7v.s11.99471c918536 from=translated src=- shape=b474a816 vocab=6dd74ab6
+-/
 lemma decompL_apply (i : A) (x : S (Without A i ⊕ B) →₀ R) (pq : S A × S B) :
     tens R (S A) (S B) (decompL R i x) pq = x (SetOperad.comp i pq.1 pq.2) := by
   simp [decompL]
 
+/--
+@isnad1 id=eq.0h9v.s11.7dff8566b31c from=translated src=- shape=c63f707b vocab=e834e8d9
+-/
 lemma decompL_map (σ : A ≃ A') (τ : B ≃ B') (i : A) :
     decompL R (σ i) ∘ₗ mapL R (compEquiv σ τ i)
       = TensorProduct.map (mapL R σ) (mapL R τ) ∘ₗ decompL (S := S) R i :=
@@ -226,6 +263,9 @@ lemma decompL_map (σ : A ≃ A') (τ : B ≃ B') (i : A) :
     rw [← SetOperad.map_symm_map (compEquiv σ τ i) (SetOperad.comp i _ _),
       SetOperad.map_comp, SetOperad.map_map_symm, SetOperad.map_map_symm])
 
+/--
+@isnad1 id=eq.0h4v.s11.2ba575a03d18 from=translated src=- shape=5464d4a0 vocab=7dadfb6a
+-/
 lemma decompL_counit_right (i : A) :
     (TensorProduct.rid R (S A →₀ R)).toLinearMap ∘ₗ
         LinearMap.lTensor (S A →₀ R) (Finsupp.lapply SetOperad.one) ∘ₗ decompL (B := Unit) R i ∘ₗ
@@ -235,6 +275,9 @@ lemma decompL_counit_right (i : A) :
     simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, rid_lTensor_lapply, decompL_apply,
       mapL_apply, Equiv.symm_symm, SetOperad.comp_one, LinearMap.id_apply]
 
+/--
+@isnad1 id=eq.0h3v.s11.948abd4535a4 from=translated src=- shape=cc7e0ff1 vocab=6e3c1f56
+-/
 lemma decompL_counit_left :
     (TensorProduct.lid R (S B →₀ R)).toLinearMap ∘ₗ
         LinearMap.rTensor (S B →₀ R) (Finsupp.lapply SetOperad.one) ∘ₗ decompL R () ∘ₗ
@@ -244,6 +287,9 @@ lemma decompL_counit_left :
     simp only [LinearMap.comp_apply, LinearEquiv.coe_coe, lid_rTensor_lapply, decompL_apply,
       mapL_apply, Equiv.symm_symm, SetOperad.one_comp, LinearMap.id_apply]
 
+/--
+@isnad1 id=eq.0h7v.s14.e8c8ef4c9175 from=translated src=- shape=3dc62849 vocab=3616d318
+-/
 lemma decompL_assoc_seq (i : A) (j : B) :
     LinearMap.lTensor (S A →₀ R) (decompL (B := D) R j) ∘ₗ decompL R i
       = (TensorProduct.assoc R (S A →₀ R) (S B →₀ R) (S D →₀ R)).toLinearMap ∘ₗ
@@ -255,6 +301,9 @@ lemma decompL_assoc_seq (i : A) (j : B) :
       tens3'_rTensor _ _ (decompL_apply i), decompL_apply, mapL_apply, Equiv.symm_symm]
     exact congrArg x (SetOperad.comp_assoc_seq i j a b d).symm)
 
+/--
+@isnad1 id=eq.1h7v.s14.55303bd53310 from=translated src=- shape=fbd695b9 vocab=a69a08fd
+-/
 lemma decompL_assoc_par {i k : A} (hik : i ≠ k) :
     LinearMap.rTensor (S B →₀ R) (decompL (B := D) R k) ∘ₗ decompL R (Sum.inl ⟨i, hik⟩)
       = (swapLast R (S A →₀ R) (S B →₀ R) (S D →₀ R)).toLinearMap ∘ₗ
@@ -293,7 +342,9 @@ variable {R : Type u} [CommRing R] {C : (A : Type) → [Fintype A] → [Decidabl
   [∀ (A : Type) [Fintype A] [DecidableEq A], AddCommGroup (D A)]
   [∀ (A : Type) [Fintype A] [DecidableEq A], Module R (D A)] [SymCooperad R D]
 
-/-- Morphisms of cooperads are determined by their components.-/
+/-- Morphisms of cooperads are determined by their components.
+@isnad1 id=eq.1h5v.s9.f9a4b080a715 from=translated src=- shape=57282184 vocab=bb19fa32
+-/
 @[ext] lemma ext {φ ψ : SymCooperadHom R C D}
     (h : ∀ (A : Type) [Fintype A] [DecidableEq A] (c : C A), φ.app A c = ψ.app A c) :
     φ = ψ := by
@@ -324,6 +375,9 @@ abbrev dualVal (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C))) {A : Type} [
   (Und.of R (SymCooperad.Dual R C)).symm (Ψ.app A p)
 
 omit [SetOperad.FiniteFact S] in
+/--
+@isnad1 id=eq.0h9v.s9.0e366ae44d7b from=translated src=- shape=4dbab261 vocab=6da7eb0a
+-/
 lemma dualVal_map (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C))) {A B : Type} [Fintype A]
     [DecidableEq A] [Fintype B] [DecidableEq B] (e : A ≃ B) (p : S A) (c : C B) :
     dualVal Ψ (SetOperad.map e p) c = dualVal Ψ p (SymCooperad.map (R := R) e.symm c) := by
@@ -331,12 +385,18 @@ lemma dualVal_map (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C))) {A B : Ty
   rfl
 
 omit [SetOperad.FiniteFact S] in
+/--
+@isnad1 id=eq.0h5v.s9.2ab9dd453a05 from=translated src=- shape=cde777f4 vocab=4358f00c
+-/
 lemma dualVal_one (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C))) (c : C Unit) :
     dualVal Ψ SetOperad.one c = SymCooperad.counit (R := R) c := by
   rw [dualVal, Ψ.app_one]
   rfl
 
 omit [SetOperad.FiniteFact S] in
+/--
+@isnad1 id=eq.0h10v.s13.80eea0690ffa from=translated src=- shape=82574808 vocab=95b2eaba
+-/
 lemma dualVal_comp (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C))) {A B : Type} [Fintype A]
     [DecidableEq A] [Fintype B] [DecidableEq B] (i : A) (p : S A) (q : S B)
     (c : C (Without A i ⊕ B)) :
@@ -378,10 +438,16 @@ noncomputable def transpose (Φ : SymCooperadHom R C (Lin R S)) :
       LinearMap.comp_apply, ← h, ← tens_apply_eq_pair]
     exact (decompL_apply i _ (p, q)).symm
 
+/--
+@isnad1 id=eq.0h7v.s9.10a5269eec6b from=translated src=- shape=0c8133c6 vocab=f4fdee24
+-/
 @[simp] lemma dualVal_transpose (Φ : SymCooperadHom R C (Lin R S)) {A : Type} [Fintype A]
     [DecidableEq A] (p : S A) (c : C A) : dualVal (transpose Φ) p c = Φ.app A c p :=
   rfl
 
+/--
+@isnad1 id=locallyf.0h4v.s7.b28da8dcfbc9 from=translated src=- shape=47112ce2 vocab=2a171aca
+-/
 lemma transpose_locallyFinite (Φ : SymCooperadHom R C (Lin R S)) :
     LocallyFinite (transpose Φ) :=
   fun A _ _ c => by
@@ -419,6 +485,9 @@ noncomputable def ofTranspose (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C)
       rw [dualVal, Ψ.app_comp]
       rfl)
 
+/--
+@isnad1 id=eq.1h7v.s9.1a147f24e097 from=translated src=- shape=55507e86 vocab=89552de9
+-/
 @[simp] lemma ofTranspose_apply (Ψ : SetOperadHom S (Und R (SymCooperad.Dual R C)))
     (hΨ : LocallyFinite Ψ) {A : Type} [Fintype A] [DecidableEq A] (c : C A) (p : S A) :
     (ofTranspose Ψ hΨ).app A c p = dualVal Ψ p c :=
@@ -435,6 +504,9 @@ noncomputable def coHomEquiv :
   left_inv _ := SymCooperadHom.ext fun _ _ _ _ => Finsupp.ext fun _ => rfl
   right_inv _ := Subtype.ext (SetOperadHom.ext fun _ _ _ _ => rfl)
 
+/--
+@isnad1 id=eq.0h7v.s11.46f10ad702c3 from=translated src=- shape=3d6d5e00 vocab=8f9db37d
+-/
 @[simp] lemma coHomEquiv_apply_apply (Φ : SymCooperadHom R C (Lin R S)) {A : Type} [Fintype A]
     [DecidableEq A] (p : S A) (c : C A) : dualVal (coHomEquiv Φ).1 p c = Φ.app A c p :=
   rfl

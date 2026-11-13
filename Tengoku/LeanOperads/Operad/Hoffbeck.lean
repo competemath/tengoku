@@ -50,7 +50,9 @@ noncomputable def dX (x : X) : X →₀ R := ∑ k ∈ cs x, sgn R (cs x) k • 
 noncomputable def d : (X →₀ R) →ₗ[R] (X →₀ R) := linearCombination R (dX cs mg)
 
 /-- A double sum over the ordered pairs of distinct elements of an antisymmetric function
-vanishes.-/
+vanishes.
+@isnad1 id=eq.1h4v.s7.c37554b1540a from=translated src=- shape=f416367a vocab=a3a36ad0
+-/
 lemma sum_sum_erase_eq_zero {M : Type*} [AddCommGroup M] (S : Finset N) (g : N → N → M)
     (hg : ∀ k ∈ S, ∀ k' ∈ S, k ≠ k' → g k k' + g k' k = 0) :
     ∑ k ∈ S, ∑ k' ∈ S.erase k, g k k' = 0 := by
@@ -99,7 +101,9 @@ open Finsupp
 variable {M : Type*} (lt : M → M → Prop)
 
 /-- **A step in the Dershowitz–Manna order on finite sets**: removing an element `t` and adding
-elements smaller than it.-/
+elements smaller than it.
+@isnad1 id=isdersho.4h5v.s6.d293bd968097 from=translated src=- shape=6fb3156b vocab=f5a86394
+-/
 lemma isDershowitzMannaLT_of_subset [Preorder M] (hlt : ∀ a b : M, a < b ↔ lt a b)
     {F F' : Finset M} {t : M} (ht : t ∈ F) (htt : ¬ lt t t)
     (h : ∀ m ∈ F', (m ∈ F ∧ m ≠ t) ∨ lt m t) :
@@ -129,7 +133,9 @@ lemma isDershowitzMannaLT_of_subset [Preorder M] (hlt : ∀ a b : M, a < b ↔ l
 
 variable {R : Type*} [CommRing R] {X : Type*} (u : X → M)
 
-/-- The part of an element over the fibre of `t`.-/
+/-- The part of an element over the fibre of `t`.
+@isnad1 id=mem.1h5v.s9.5c7f44577b8c from=translated src=- shape=6cdae029 vocab=9df55036
+-/
 lemma filter_mem_supported {s : Set X} {v : X →₀ R} (hv : v ∈ supported R R s) (p : X → Prop)
     [DecidablePred p] : v.filter p ∈ supported R R (s ∩ {x | p x}) := by
   rw [mem_supported] at hv ⊢
@@ -138,7 +144,9 @@ lemma filter_mem_supported {s : Set X} {v : X →₀ R} (hv : v ∈ supported R 
   exact ⟨hv hx.1, hx.2⟩
 
 /-- A linear map whose values on the basis elements of a set lie in a submodule maps the
-combinations of these elements into it.-/
+combinations of these elements into it.
+@isnad1 id=mem.2h7v.s10.04bca8da83c4 from=translated src=- shape=9520505f vocab=008ce2a4
+-/
 lemma map_mem_of_supported {X' : Type*} {s : Set X} (f : (X →₀ R) →ₗ[R] (X' →₀ R))
     {P : Submodule R (X' →₀ R)} (h : ∀ x ∈ s, f (single x 1) ∈ P) {v : X →₀ R}
     (hv : v ∈ supported R R s) : f v ∈ P := by
@@ -149,7 +157,9 @@ lemma map_mem_of_supported {X' : Type*} {s : Set X} (f : (X →₀ R) →ₗ[R] 
   exact h x hx
 
 /-- **The leading part of a cycle**: the part over `t` of a cycle of `D` whose other part lies
-over elements other than `t` and not above it is a cycle of the leading part `D₀`.-/
+over elements other than `t` and not above it is a cycle of the leading part `D₀`.
+@isnad1 id=eq.6h11v.s11.444a50887df8 from=translated src=- shape=61372950 vocab=18082078
+-/
 lemma leading_cycle (irr : ∀ a, ¬ lt a a) {V : Set X} (D D₀ : (X →₀ R) →ₗ[R] (X →₀ R))
     (hlead : ∀ x ∈ V,
       D (single x 1) - D₀ (single x 1) ∈ supported R R {y | lt (u y) (u x)})
@@ -192,7 +202,9 @@ to zero from `V'` and mapping `V'` to `V`, and `D₀` its leading part: over the
 `lt` on `M`, through `u : X → M`, `D` and `D₀` differ on `V ∪ V'` by terms over strictly smaller
 elements, and `D₀` preserves the fibres on `V`. If on every fibre every cycle of `D₀` in `V` is
 the boundary of an element of `V'`, then every cycle of `D` in `V` is the boundary of an element
-of `V'`.-/
+of `V'`.
+@isnad1 id=ex.8h11v.s12.1f1054750a90 from=translated src=- shape=19d578dc vocab=6369b4b2
+-/
 theorem exact_of_leading (wf : WellFounded lt) (trans : ∀ {a b c}, lt a b → lt b c → lt a c)
     {V V' : Set X} (D D₀ : (X →₀ R) →ₗ[R] (X →₀ R))
     (hD : ∀ x ∈ V', D (single x 1) ∈ supported R R V)
@@ -291,7 +303,9 @@ theorem exact_of_leading (wf : WellFounded lt) (trans : ∀ {a b c}, lt a b → 
 
 /-- **Hoffbeck's filtration argument over a down-closed set**: when the leading part also
 preserves the fibres on `V'`, every cycle of `D` in `V` lying over a down-closed set `Z` is the
-boundary of an element of `V'` lying over `Z`.-/
+boundary of an element of `V'` lying over `Z`.
+@isnad1 id=ex.9h12v.s12.f8c9d4c0aa3d from=translated src=- shape=dc39e2ec vocab=6369b4b2
+-/
 theorem exact_of_leading_down (wf : WellFounded lt)
     (trans : ∀ {a b c}, lt a b → lt b c → lt a c)
     {V V' : Set X} (D D₀ : (X →₀ R) →ₗ[R] (X →₀ R))
@@ -339,7 +353,9 @@ theorem exact_of_leading_down (wf : WellFounded lt)
 
 /-! ## Triangular families -/
 
-/-- **A finite set has a maximal element** for a strict order, through any map.-/
+/-- **A finite set has a maximal element** for a strict order, through any map.
+@isnad1 id=ex.2h6v.s6.538d548127cf from=translated src=- shape=bea91086 vocab=f7c04a3e
+-/
 lemma exists_max (irr : ∀ a, ¬ lt a a) (trans : ∀ {a b c}, lt a b → lt b c → lt a c)
     {ι : Type*} (f : ι → M) {s : Finset ι} (hs : s.Nonempty) :
     ∃ i ∈ s, ∀ j ∈ s, ¬ lt (f i) (f j) := by
@@ -364,7 +380,9 @@ lemma exists_max (irr : ∀ a, ¬ lt a a) (trans : ∀ {a b c}, lt a b → lt b 
         · exact hmax j hj h
 
 /-- The coefficient of `x` in an element equal to `x` up to terms over elements strictly smaller
-than `u x` is `1`.-/
+than `u x` is `1`.
+@isnad1 id=eq.2h7v.s8.ee67bf895d79 from=translated src=- shape=58768bf3 vocab=37c915ad
+-/
 lemma apply_self_of_triangular (irr : ∀ a, ¬ lt a a) {x : X} {f : X →₀ R}
     (hf : f - single x 1 ∈ supported R R {y | lt (u y) (u x)}) : f x = 1 := by
   have h : (f - single x 1 : X →₀ R) x = 0 := by
@@ -373,7 +391,9 @@ lemma apply_self_of_triangular (irr : ∀ a, ¬ lt a a) {x : X} {f : X →₀ R}
   rwa [Finsupp.sub_apply, Finsupp.single_eq_same, sub_eq_zero] at h
 
 /-- **A triangular family is linearly independent**: a family of elements each equal to a basis
-element `e i`, for an injective `e`, up to terms over elements strictly smaller than `u (e i)`.-/
+element `e i`, for an injective `e`, up to terms over elements strictly smaller than `u (e i)`.
+@isnad1 id=linearin.3h9v.s8.d3bca9ec38a4 from=translated src=- shape=47b4b504 vocab=d01a429c
+-/
 theorem linearIndependent_of_triangular (irr : ∀ a, ¬ lt a a)
     (trans : ∀ {a b c}, lt a b → lt b c → lt a c) {ι : Type*} {e : ι → X}
     (he : Function.Injective e) {f : ι → X →₀ R}
@@ -404,7 +424,9 @@ theorem linearIndependent_of_triangular (irr : ∀ a, ¬ lt a a)
 
 /-- **A triangular family spans**: if the maximal elements of the support of every element of a
 submodule `S` are among the basis elements `e i`, and each `f i ∈ S` is equal to `e i` up to terms
-over elements strictly smaller than `u (e i)`, the family `f` spans `S`.-/
+over elements strictly smaller than `u (e i)`, the family `f` spans `S`.
+@isnad1 id=le.4h10v.s10.4628ff981b46 from=translated src=- shape=8c07d872 vocab=95218c66
+-/
 theorem span_of_triangular (wf : WellFounded lt) (trans : ∀ {a b c}, lt a b → lt b c → lt a c)
     {ι : Type*} {e : ι → X} {f : ι → X →₀ R} {S : Submodule R (X →₀ R)} (hfS : ∀ i, f i ∈ S)
     (hf : ∀ i, f i - single (e i) 1 ∈ supported R R {y | lt (u y) (u (e i))})

@@ -96,18 +96,32 @@ def eval (f : ∀ n, T n → S (Fin n)) :
 
 variable (f : ∀ n, T n → S (Fin n))
 
+/--
+@isnad1 id=eq.0h3v.s5.fe3b748209c6 from=translated src=- shape=fd0f0e53 vocab=ea6a99de
+-/
 @[simp] lemma eval_one : eval f (one : Syn T Unit) = SetOperad.one := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.ad8aae148170 from=translated src=- shape=015062eb vocab=d0968b93
+-/
 @[simp] lemma eval_gen {n : ℕ} (g : T n) : eval f (gen g) = f n g := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.4e59a94cb6d0 from=translated src=- shape=ac5fc533 vocab=cbf3de65
+-/
 @[simp] lemma eval_map {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) (x : Syn T A) : eval f (map e x) = SetOperad.map e (eval f x) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s8.1987a9498c9d from=translated src=- shape=701c7ed2 vocab=f8536f57
+-/
 @[simp] lemma eval_comp {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (i : A) (x : Syn T A) (y : Syn T B) :
     eval f (comp i x y) = SetOperad.comp i (eval f x) (eval f y) := rfl
 
-/-- Evaluation respects the operad axioms, and every relation it respects.-/
+/-- Evaluation respects the operad axioms, and every relation it respects.
+@isnad1 id=eq.2h7v.s7.cf3cc2ad0da9 from=translated src=- shape=7447930a vocab=5cc13116
+-/
 theorem eval_eq_of_rel {ρ : ∀ {A : Type} [Fintype A] [DecidableEq A], Syn T A → Syn T A → Prop}
     (hf : ∀ {A : Type} [Fintype A] [DecidableEq A] (x y : Syn T A), ρ x y → eval f x = eval f y)
     {A : Type} [Fintype A] [DecidableEq A] {x y : Syn T A} (h : Rel ρ x y) :
@@ -143,13 +157,21 @@ variable {T : ℕ → Type w} {ρ : ∀ {A : Type} [Fintype A] [DecidableEq A], 
 /-- The class of an expression.-/
 def mk {A : Type} [Fintype A] [DecidableEq A] (x : Syn T A) : Pres T ρ A := Quot.mk _ x
 
+/--
+@isnad1 id=surjecti.0h3v.s6.80a45351cf45 from=translated src=- shape=4dd11bbb vocab=c631a2c9
+-/
 lemma mk_surjective {A : Type} [Fintype A] [DecidableEq A] :
     Function.Surjective (mk (ρ := ρ) (A := A)) := Quot.exists_rep
 
+/--
+@isnad1 id=eq.1h5v.s6.cc3748582173 from=translated src=- shape=818d1166 vocab=f1e95dfb
+-/
 lemma mk_eq_mk {A : Type} [Fintype A] [DecidableEq A] {x y : Syn T A} (h : Syn.Rel ρ x y) :
     mk (ρ := ρ) x = mk y := Quot.sound h
 
-/-- A relation holds in the presented operad.-/
+/-- A relation holds in the presented operad.
+@isnad1 id=eq.0h6v.s6.2c02e0413a47 from=translated src=- shape=a653b5a1 vocab=a169bec1
+-/
 lemma mk_eq_mk_of_rel {A : Type} [Fintype A] [DecidableEq A] {x y : Syn T A} (h : ρ x y) :
     mk (ρ := ρ) x = mk y := Quot.sound (.of h)
 
@@ -180,19 +202,30 @@ instance instSetOperad : SetOperad (Pres T ρ) where
     rintro ⟨x⟩ ⟨y⟩ ⟨z⟩
     exact Quot.sound (.assoc_par hik x y z)
 
+/--
+@isnad1 id=eq.0h6v.s7.51e929c153dd from=translated src=- shape=e6ff9173 vocab=9ebabdbc
+-/
 @[simp] lemma map_mk {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (e : A ≃ B) (x : Syn T A) : SetOperad.map e (mk (ρ := ρ) x) = mk (.map e x) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.b3c4c3852b6e from=translated src=- shape=5ee26544 vocab=b94e876b
+-/
 @[simp] lemma comp_mk {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     (i : A) (x : Syn T A) (y : Syn T B) :
     SetOperad.comp i (mk (ρ := ρ) x) (mk y) = mk (.comp i x y) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d79ec1aec653 from=translated src=- shape=59939204 vocab=5f52edd3
+-/
 lemma one_eq : (SetOperad.one : Pres T ρ Unit) = mk .one := rfl
 
 /-- A generator, in the presented operad.-/
 def gen {n : ℕ} (g : T n) : Pres T ρ (Fin n) := mk (.gen g)
 
-/-- Every element is the class of the evaluation of an expression at the generators.-/
+/-- Every element is the class of the evaluation of an expression at the generators.
+@isnad1 id=eq.0h4v.s6.86b19ef8b181 from=translated src=- shape=7cdd4bd6 vocab=6e482be7
+-/
 lemma mk_eq_eval {A : Type} [Fintype A] [DecidableEq A] (x : Syn T A) :
     mk (ρ := ρ) x = Syn.eval (fun _ g => gen g) x := by
   induction x with
@@ -215,13 +248,21 @@ def lift (f : ∀ n, T n → S (Fin n)) (hf : Respects ρ f) : SetOperadHom (Pre
   app_one := rfl
   app_comp _ x y := Quot.inductionOn x fun _ => Quot.inductionOn y fun _ => rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.05dec0e6674f from=translated src=- shape=7d43beb5 vocab=4e25c7bb
+-/
 @[simp] lemma lift_mk (f : ∀ n, T n → S (Fin n)) (hf : Respects ρ f) {A : Type} [Fintype A]
     [DecidableEq A] (x : Syn T A) : (lift f hf).app A (mk x) = Syn.eval f x := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.c240860bc0d6 from=translated src=- shape=0c0a19e9 vocab=0f7ba574
+-/
 @[simp] lemma lift_gen (f : ∀ n, T n → S (Fin n)) (hf : Respects ρ f) {n : ℕ} (g : T n) :
     (lift f hf).app (Fin n) (gen g) = f n g := rfl
 
-/-- A morphism out of `Pres T ρ` is its values on generators, extended.-/
+/-- A morphism out of `Pres T ρ` is its values on generators, extended.
+@isnad1 id=eq.0h6v.s7.97f02c123cfe from=translated src=- shape=9d6facc8 vocab=d6d2d036
+-/
 lemma app_mk (φ : SetOperadHom (Pres T ρ) S) {A : Type} [Fintype A] [DecidableEq A]
     (x : Syn T A) : φ.app A (mk x) = Syn.eval (fun _ g => φ.app _ (gen g)) x := by
   induction x with
@@ -230,7 +271,9 @@ lemma app_mk (φ : SetOperadHom (Pres T ρ) S) {A : Type} [Fintype A] [Decidable
   | map e x ih => rw [Syn.eval_map, ← ih, ← φ.app_map]; rfl
   | comp i x y ihx ihy => rw [Syn.eval_comp, ← ihx, ← ihy, ← φ.app_comp]; rfl
 
-/-- **Morphisms out of a presented operad are determined by the generators.**-/
+/-- **Morphisms out of a presented operad are determined by the generators.**
+@isnad1 id=eq.1h5v.s7.cbf09c36fa1f from=translated src=- shape=00e9d79d vocab=ddf8d0e2
+-/
 theorem hom_ext {φ ψ : SetOperadHom (Pres T ρ) S}
     (h : ∀ (n : ℕ) (g : T n), φ.app _ (gen g) = ψ.app _ (gen g)) : φ = ψ := by
   ext A _ _ x
@@ -240,7 +283,9 @@ theorem hom_ext {φ ψ : SetOperadHom (Pres T ρ) S}
   funext n g
   exact h n g
 
-/-- The generator values of a morphism respect the relations.-/
+/-- The generator values of a morphism respect the relations.
+@isnad1 id=respects.0h4v.s6.a58cc42991bc from=translated src=- shape=3cedab6d vocab=a61febee
+-/
 lemma respects_app (φ : SetOperadHom (Pres T ρ) S) :
     Respects ρ (fun _ g => φ.app _ (gen g)) := by
   intro A _ _ x y h

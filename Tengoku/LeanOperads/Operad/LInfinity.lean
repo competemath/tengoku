@@ -39,12 +39,21 @@ abbrev LFam : Type v := ∀ k : ℕ, End R V k
 
 /-! ## Signs -/
 
+/--
+@isnad1 id=eq.0h3v.s5.10ef95790e12 from=translated src=- shape=2e32c149 vocab=1d7c7f7a
+-/
 lemma σ_mul (a b : Bool) : σ R a * σ R b = σ R (xor a b) := by
   cases a <;> cases b <;> simp [σ]
 
+/--
+@isnad1 id=eq.0h2v.s5.0e7ab7a3819d from=translated src=- shape=a82b4189 vocab=d08c2e3e
+-/
 lemma σ_mul_self (a : Bool) : σ R a * σ R a = 1 := by
   cases a <;> simp [σ]
 
+/--
+@isnad1 id=eq.0h2v.s5.cbf93c563a25 from=translated src=- shape=bdd7e164 vocab=1d530bfd
+-/
 lemma σ_not (a : Bool) : σ R (!a) = -σ R a := by
   cases a <;> simp [σ]
 
@@ -78,6 +87,9 @@ structure IsLInf (ℓ : LFam R V) : Prop where
 
 /-! ## Computing the Jacobi expressions -/
 
+/--
+@isnad1 id=eq.2h8v.s9.68a1abf7d420 from=translated src=- shape=8b589fca vocab=0d6e13fb
+-/
 lemma term_eq (ℓ : LFam R V) {n : ℕ} (v : Fin n → V) (S : Finset (Fin n)) {k m : ℕ}
     (hk : S.card = k) (hm : Sᶜ.card = m) :
     ℓ (Sᶜ.card + 1) (Fin.cons (ℓ S.card (restr v S)) (restr v Sᶜ)) =
@@ -87,6 +99,9 @@ lemma term_eq (ℓ : LFam R V) {n : ℕ} (v : Fin n → V) (S : Finset (Fin n)) 
   subst hm
   rfl
 
+/--
+@isnad1 id=eq.3h5v.s7.e84c7381a4e6 from=translated src=- shape=f57bc252 vocab=bc351803
+-/
 lemma oe_eq {n k : ℕ} {S : Finset (Fin n)} (h : S.card = k) (f : Fin k → Fin n)
     (hf : ∀ x, f x ∈ S) (hm : StrictMono f) (a : Fin k) : S.orderEmbOfFin h a = f a :=
   (congrFun (Finset.orderEmbOfFin_unique h hf hm) a).symm
@@ -97,23 +112,47 @@ def two (d : End R V 1) (b : End R V 2) : LFam R V
   | 2 => b
   | _ => 0
 
+/--
+@isnad1 id=eq.0h4v.s6.3d5c21edf260 from=translated src=- shape=f2269723 vocab=c066027a
+-/
 @[simp] lemma two_one (d : End R V 1) (b : End R V 2) : two d b 1 = d := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.25e52e9d5762 from=translated src=- shape=7254b7f4 vocab=c066027a
+-/
 @[simp] lemma two_two (d : End R V 1) (b : End R V 2) : two d b 2 = b := rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.597894500a18 from=translated src=- shape=380392b6 vocab=0446603c
+-/
 lemma two_of_ge (d : End R V 1) (b : End R V 2) {k : ℕ} (hk : 3 ≤ k) : two d b k = 0 := by
   match k, hk with
   | k + 3, _ => rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.b1eacb9bd6b0 from=translated src=- shape=333e2080 vocab=abaccc0f
+-/
 @[simp] lemma two_zero (d : End R V 1) (b : End R V 2) : two d b 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.de44d9959e78 from=translated src=- shape=45d0fcd6 vocab=04dc8579
+-/
 @[simp] lemma two_zero_add (d : End R V 1) (b : End R V 2) : two d b (0 + 1) = d := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.4f87113d8a68 from=translated src=- shape=5aeb9b71 vocab=04dc8579
+-/
 @[simp] lemma two_one_add (d : End R V 1) (b : End R V 2) : two d b (1 + 1) = b := rfl
 
+/--
+@isnad1 id=strictmo.0h2v.s5.7f0a7d9e97c4 from=translated src=- shape=2779ff34 vocab=55480dcd
+-/
 lemma strictMono_fin_one {α : Type*} [Preorder α] (f : Fin 1 → α) : StrictMono f :=
   fun a b h => absurd h (by rw [Subsingleton.elim a b]; exact lt_irrefl b)
 
+/--
+@isnad1 id=strictmo.1h3v.s6.67986f76652e from=translated src=- shape=eebf4766 vocab=1d588766
+-/
 lemma strictMono_vec2 {n : ℕ} {i j : Fin n} (h : i < j) : StrictMono ![i, j] := by
   intro a b hab
   fin_cases a <;> fin_cases b
@@ -123,7 +162,9 @@ lemma strictMono_vec2 {n : ℕ} {i j : Fin n} (h : i < j) : StrictMono ![i, j] :
   · exact absurd hab (lt_irrefl _)
 
 omit [AddCommGroup V] in
-/-- The inputs in a singleton.-/
+/-- The inputs in a singleton.
+@isnad1 id=eq.2h5v.s7.c68cdfb24656 from=translated src=- shape=21de7873 vocab=2bcb3fed
+-/
 lemma restr_one {n : ℕ} (v : Fin n → V) {S : Finset (Fin n)} (h : S.card = 1) {i : Fin n}
     (hi : i ∈ S) : (fun a => v (S.orderEmbOfFin h a)) = ![v i] := by
   funext a
@@ -132,7 +173,9 @@ lemma restr_one {n : ℕ} (v : Fin n → V) {S : Finset (Fin n)} (h : S.card = 1
   rfl
 
 omit [AddCommGroup V] in
-/-- The inputs in a pair.-/
+/-- The inputs in a pair.
+@isnad1 id=eq.4h6v.s7.fb4b2a52d8a7 from=translated src=- shape=64329768 vocab=0bcba1a6
+-/
 lemma restr_two {n : ℕ} (v : Fin n → V) {S : Finset (Fin n)} (h : S.card = 2) {i j : Fin n}
     (hij : i < j) (hi : i ∈ S) (hj : j ∈ S) :
     (fun a => v (S.orderEmbOfFin h a)) = ![v i, v j] := by
@@ -140,7 +183,9 @@ lemma restr_two {n : ℕ} (v : Fin n → V) {S : Finset (Fin n)} (h : S.card = 2
   rw [oe_eq h ![i, j] (fun x => by fin_cases x; exacts [hi, hj]) (strictMono_vec2 hij)]
   fin_cases a <;> rfl
 
-/-- **The Jacobi expression in arity one**: `d (d x)`.-/
+/-- **The Jacobi expression in arity one**: `d (d x)`.
+@isnad1 id=eq.0h6v.s8.f681b187f39d from=translated src=- shape=eec291f5 vocab=a38560be
+-/
 lemma jac_two_one (d : End R V 1) (b : End R V 2) (p : Fin 1 → Bool) (v : Fin 1 → V) :
     jac (two d b) p v = d ![d ![v 0]] := by
   have hS : (Finset.univ.filter fun S : Finset (Fin 1) => S.Nonempty) = {Finset.univ} := by
@@ -158,7 +203,9 @@ lemma jac_two_one (d : End R V 1) (b : End R V 2) (p : Fin 1 → Bool) (v : Fin 
   fin_cases a
   exact congrArg v (Subsingleton.elim _ _)
 
-/-- **The Jacobi expression in arity two.**-/
+/-- **The Jacobi expression in arity two.**
+@isnad1 id=eq.0h6v.s9.5107aa3e9c4b from=translated src=- shape=a24124b0 vocab=1b0ab89b
+-/
 lemma jac_two_two (d : End R V 1) (b : End R V 2) (p : Fin 2 → Bool) (v : Fin 2 → V) :
     jac (two d b) p v =
       b ![d ![v 0], v 1] + σ R (p 1 && p 0) • b ![d ![v 1], v 0] + d ![b ![v 0, v 1]] := by
@@ -188,7 +235,9 @@ lemma jac_two_two (d : End R V 1) (b : End R V 2) (p : Fin 2 → Bool) (v : Fin 
   fin_cases a
   rfl
 
-/-- **The Jacobi expression in arity three.**-/
+/-- **The Jacobi expression in arity three.**
+@isnad1 id=eq.0h6v.s10.480d6b4865e5 from=translated src=- shape=51d2b62d vocab=8d18037c
+-/
 lemma jac_two_three (d : End R V 1) (b : End R V 2) (p : Fin 3 → Bool) (v : Fin 3 → V) :
     jac (two d b) p v =
       b ![b ![v 0, v 1], v 2] + σ R (p 2 && p 1) • b ![b ![v 0, v 2], v 1] +
@@ -237,7 +286,9 @@ lemma jac_two_three (d : End R V 1) (b : End R V 2) (p : Fin 3 → Bool) (v : Fi
     restr_one v (S := ({1, 2} : Finset (Fin 3))ᶜ) _ (i := 0) (by decide), add_assoc]
   rfl
 
-/-- **The Jacobi expressions vanish in arities at least four** for a two-term family.-/
+/-- **The Jacobi expressions vanish in arities at least four** for a two-term family.
+@isnad1 id=eq.1h7v.s6.cf4f03c96364 from=translated src=- shape=b42ebf03 vocab=996c415d
+-/
 lemma jac_two_of_ge (d : End R V 1) (b : End R V 2) {n : ℕ} (hn : 4 ≤ n) (p : Fin n → Bool)
     (v : Fin n → V) : jac (two d b) p v = 0 := by
   refine Finset.sum_eq_zero fun S _ => ?_
@@ -251,6 +302,9 @@ lemma jac_two_of_ge (d : End R V 1) (b : End R V 2) {n : ℕ} (hn : 4 ≤ n) (p 
       MultilinearMap.map_coord_zero _ 0 (Fin.cons_zero _ _), smul_zero]
   · rw [two_of_ge d b (show 3 ≤ Sᶜ.card + 1 by omega), zero_apply, smul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s6.e1d4382aa31a from=translated src=- shape=6b65083b vocab=173d027d
+-/
 lemma jac_zero (ℓ : LFam R V) (p : Fin 0 → Bool) (v : Fin 0 → V) : jac ℓ p v = 0 := by
   refine Finset.sum_eq_zero fun S hS => ?_
   exact absurd (Finset.mem_filter.1 hS).2 (by
@@ -259,6 +313,9 @@ lemma jac_zero (ℓ : LFam R V) (p : Fin 0 → Bool) (v : Fin 0 → V) : jac ℓ
 
 /-! ## Two-term L∞[1]-algebras -/
 
+/--
+@isnad1 id=ispar.2h6v.s7.f7ae2e32b6d4 from=translated src=- shape=a367e162 vocab=4c86a99b
+-/
 lemma IsHomog.isPar_one {d : End R V 1} (hd : IsHomog ε 1 d) {p : Bool} {x : V}
     (hx : IsPar ε p x) : IsPar ε (!p) (d ![x]) := by
   have h := hd ![x]
@@ -276,13 +333,18 @@ lemma IsHomog.isPar_one {d : End R V 1} (hd : IsHomog ε 1 d) {p : Bool} {x : V}
   rw [h', neg_smul]
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h3v.s7.c4cfdb4884c6 from=translated src=- shape=78b20e15 vocab=2379f2ea
+-/
 lemma vec_swap {x y : V} : ![x, y] ∘ Equiv.swap (0 : Fin 2) 1 = ![y, x] := by
   funext t
   fin_cases t <;> rfl
 
 /-- **Two-term L∞[1]-algebras**: an L∞[1]-structure concentrated in arities one and two is an odd
 differential and an odd graded symmetric bracket with `d² = 0`, the Leibniz rule and the shifted
-Jacobi identity.-/
+Jacobi identity.
+@isnad1 id=iff.0h5v.s11.0ce6d5d3af1b from=translated src=- shape=8f0f23f8 vocab=029636a3
+-/
 theorem isLInf_two_iff (d : End R V 1) (b : End R V 2) :
     IsLInf ε (two d b) ↔ IsHomog ε 1 d ∧ IsHomog ε 1 b ∧
       (∀ p q x y, IsPar ε p x → IsPar ε q y → b ![y, x] = σ R (p && q) • b ![x, y]) ∧
@@ -376,31 +438,49 @@ theorem isLInf_two_iff (d : End R V 1) (b : End R V 2) :
 /-! ## dg Lie algebras -/
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h2v.s5.b0faef6113cd from=translated src=- shape=b5b7e1e9 vocab=c2a09f20
+-/
 lemma vec_one_eq (v : Fin 1 → V) : v = ![v 0] := by
   funext t
   fin_cases t
   rfl
 
 omit [AddCommGroup V] in
+/--
+@isnad1 id=eq.0h2v.s6.c3997ffe67d7 from=translated src=- shape=0cabfa5e vocab=4e3792ea
+-/
 lemma vec_two_eq (v : Fin 2 → V) : v = ![v 0, v 1] := by
   funext t
   fin_cases t <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.ad4dfa842ae2 from=translated src=- shape=00c1a46e vocab=e88069ba
+-/
 lemma one_smul_arg (f : End R V 1) (c : R) (x : V) : f ![c • x] = c • f ![x] := by
   have := f.map_update_smul ![x] 0 c x
   rwa [show Function.update ![x] 0 (c • x) = ![c • x] by funext t; fin_cases t; rfl,
     show Function.update ![x] 0 x = ![x] by funext t; fin_cases t; rfl] at this
 
+/--
+@isnad1 id=eq.0h6v.s8.7082bd72be54 from=translated src=- shape=346b401b vocab=e88069ba
+-/
 lemma two_smul_left (β : End R V 2) (c : R) (x y : V) : β ![c • x, y] = c • β ![x, y] := by
   have := β.map_update_smul ![x, y] 0 c x
   rwa [show Function.update ![x, y] 0 (c • x) = ![c • x, y] by funext t; fin_cases t <;> rfl,
     show Function.update ![x, y] 0 x = ![x, y] by funext t; fin_cases t <;> rfl] at this
 
+/--
+@isnad1 id=eq.0h6v.s8.bcf5a11bd1a7 from=translated src=- shape=276b56aa vocab=e88069ba
+-/
 lemma two_smul_right (β : End R V 2) (c : R) (x y : V) : β ![x, c • y] = c • β ![x, y] := by
   have := β.map_update_smul ![x, y] 1 c y
   rwa [show Function.update ![x, y] 1 (c • y) = ![x, c • y] by funext t; fin_cases t <;> rfl,
     show Function.update ![x, y] 1 y = ![x, y] by funext t; fin_cases t <;> rfl] at this
 
+/--
+@isnad1 id=eq.0h3v.s7.0d6e3b709ef4 from=translated src=- shape=c08addcb vocab=7d4b5eb0
+-/
 lemma neg_eq_smul (x : V) : -x = (-1 : R) • x := by rw [neg_one_smul]
 
 /-- **A dg Lie superalgebra**: an odd differential `d` and an even bracket `[ , ]` with `d² = 0`,
@@ -423,15 +503,24 @@ structure IsDGLie (d : End R V 1) (β : End R V 2) : Prop where
 /-- **The bracket of the parity shift**: `ℓ₂(x, y) = [ε x, y]`.-/
 def shiftb (β : End R V 2) : End R V 2 := β.compLinearMap ![ε, LinearMap.id]
 
+/--
+@isnad1 id=eq.0h6v.s8.9b2772d9176d from=translated src=- shape=30c02534 vocab=6be32249
+-/
 lemma shiftb_apply (β : End R V 2) (x y : V) : shiftb ε β ![x, y] = β ![ε x, y] := by
   rw [shiftb, MultilinearMap.compLinearMap_apply]
   congr 1
   funext t
   fin_cases t <;> rfl
 
+/--
+@isnad1 id=iff.0h5v.s7.8bec7429144b from=translated src=- shape=4d6fe29a vocab=8a09ed73
+-/
 lemma isPar_neg_iff {p : Bool} {x : V} : IsPar (-ε) p x ↔ IsPar ε (!p) x := by
   rw [IsPar, IsPar, LinearMap.neg_apply, σ_not, neg_smul, neg_eq_iff_eq_neg]
 
+/--
+@isnad1 id=ispar.3h8v.s7.9d2e5fb222af from=translated src=- shape=c094de52 vocab=346fb86f
+-/
 lemma IsHomog.isPar_two_zero {β : End R V 2} (hβ : IsHomog ε 0 β) {p q : Bool} {x y : V}
     (hx : IsPar ε p x) (hy : IsPar ε q y) : IsPar ε (xor p q) (β ![x, y]) := by
   have h := hβ ![x, y]
@@ -441,7 +530,9 @@ lemma IsHomog.isPar_two_zero {β : End R V 2} (hβ : IsHomog ε 0 β) {p q : Boo
   exact h.symm
 
 /-- **dg Lie algebras are L∞-algebras**: a dg Lie superalgebra gives an L∞[1]-structure on its
-parity shift `(V, -ε)`, with `ℓ₁ = d` and `ℓ₂(x, y) = [ε x, y]`.-/
+parity shift `(V, -ε)`, with `ℓ₁ = d` and `ℓ₂(x, y) = [ε x, y]`.
+@isnad1 id=islinf.2h5v.s8.6fa8b8933290 from=translated src=- shape=07c78058 vocab=8c214bae
+-/
 theorem isLInf_of_dgLie (hε : ∀ x, ε (ε x) = x) {d : End R V 1} {β : End R V 2}
     (h : IsDGLie ε d β) : IsLInf (-ε) (two d (shiftb ε β)) := by
   have hd := h.d_odd

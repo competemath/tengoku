@@ -33,7 +33,9 @@ slot `p`. One application of `comp_assoc_par` per tree in the forest.
 
 The offsets `c` and `e` are parameters constrained by equations rather than written out, so that
 the induction hypothesis can be instantiated at `c + t.arity` without its syntactic form having
-to match what `substF`'s own recursion produces.-/
+to match what `substF`'s own recursion produces.
+@isnad1 id=eq.5h14v.s12.ca2f04e2b13d from=translated src=- shape=3ad89807 vocab=e7101fba
+-/
 lemma substF_comp (f : ∀ k, E k → Q k) :
     ∀ {k : ℕ} (fo : Forest E k) (p q d c e g : ℕ) (hc : c = p + d + q) (he : e = p + 1 + q)
       (_hg : g = q + fo.arityF)
@@ -104,7 +106,9 @@ along (where only the forest half recurses). -/
 
 mutual
 
-/-- **Evaluation is compatible with grafting** — the operad-morphism condition.-/
+/-- **Evaluation is compatible with grafting** — the operad-morphism condition.
+@isnad1 id=eq.2h8v.s11.74535ec14e32 from=translated src=- shape=d65bce12 vocab=c9bb1ca9
+-/
 theorem extend_graft (f : ∀ k, E k → Q k) :
     ∀ (t : Tree E) (a b : ℕ) (s : Tree E) (hab : t.arity = a + 1 + b)
       (h2 : a + (Tree.arity s) + b = (t.graft a s).arity),
@@ -130,7 +134,9 @@ theorem extend_graft (f : ∀ k, E k → Q k) :
       congr 1
       exact (reindex_reindex (R := R) (P := Q) _ _ _).symm
 
-/-- The forest half of `extend_graft`.-/
+/-- The forest half of `extend_graft`.
+@isnad1 id=eq.5h13v.s11.1e4a56ead904 from=translated src=- shape=f3094ef9 vocab=6374dc27
+-/
 theorem substF_graftF (f : ∀ k, E k → Q k) :
     ∀ {k : ℕ} (fo : Forest E k) (c a b w : ℕ) (s : Tree E) (α : Q (c + k))
       (fo' : Forest E k) (_hfo' : fo' = fo.graftF a s)
@@ -194,10 +200,16 @@ noncomputable def extendApp (f : ∀ k, E k → Q k) (n : ℕ) : Free R E n →�
   Finsupp.lsum R fun t =>
     LinearMap.toSpanSingleton R (Q n) (reindex R Q t.property (extend (R := R) f t.val))
 
+/--
+@isnad1 id=eq.0h6v.s9.3fbca0e5f5fa from=translated src=- shape=3b83a780 vocab=fdb5f9c3
+-/
 @[simp] lemma extendApp_gen (f : ∀ k, E k → Q k) {n : ℕ} (t : TreeOfArity E n) :
     extendApp (R := R) f n (Free.gen t) = reindex R Q t.property (extend (R := R) f t.val) := by
   simp only [extendApp, Free.gen, Finsupp.lsum_single, LinearMap.toSpanSingleton_apply_one]
 
+/--
+@isnad1 id=eq.0h7v.s9.8c1fc84ea96e from=translated src=- shape=f8abade4 vocab=80c5e5f3
+-/
 lemma extendApp_single (f : ∀ k, E k → Q k) {n : ℕ} (t : TreeOfArity E n) (r : R) :
     extendApp (R := R) f n (Finsupp.single t r)
       = r • reindex R Q t.property (extend (R := R) f t.val) := by
@@ -211,7 +223,9 @@ morphism laws — so it is a short mutual induction. -/
 
 mutual
 
-/-- A morphism of operads commutes with evaluation of trees.-/
+/-- A morphism of operads commutes with evaluation of trees.
+@isnad1 id=eq.0h7v.s8.4468a93c38bb from=translated src=- shape=608ee0ac vocab=24e28d33
+-/
 theorem app_extend {S : ℕ → Type x} [∀ n, AddCommGroup (S n)] [∀ n, Module R (S n)]
     [NSOperad R S] (φ : NSOperadHom R Q S) (g : ∀ k, E k → Q k) :
     ∀ (t : Tree E),
@@ -222,7 +236,9 @@ theorem app_extend {S : ℕ → Type x} [∀ n, AddCommGroup (S n)] [∀ n, Modu
       rw [NSOperadHom.app_reindex, app_substF φ g 0
         (reindex R Q (show k = 0 + k by omega) (g k e)) fo, NSOperadHom.app_reindex]
 
-/-- The forest half: a morphism commutes with substituting a forest.-/
+/-- The forest half: a morphism commutes with substituting a forest.
+@isnad1 id=eq.0h10v.s9.04234a69bbaf from=translated src=- shape=df6f85b1 vocab=eb21f812
+-/
 theorem app_substF {S : ℕ → Type x} [∀ n, AddCommGroup (S n)] [∀ n, Module R (S n)]
     [NSOperad R S] (φ : NSOperadHom R Q S) (g : ∀ k, E k → Q k) :
     ∀ {k : ℕ} (c : ℕ) (α : Q (c + k)) (fo : Forest E k),
@@ -249,6 +265,9 @@ last `k` leaves of a tree, one at a time, exactly as `substF` does with `comp`. 
 noncomputable def genOf {k : ℕ} (e : E k) : Free R E k :=
   Free.gen ⟨corolla e, arity_corolla e⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.3138d6ffdfcb from=translated src=- shape=10f76f34 vocab=e7efaeca
+-/
 lemma genOf_def {k : ℕ} (e : E k) :
     genOf (R := R) e = Free.gen ⟨corolla e, arity_corolla e⟩ := rfl
 
@@ -257,6 +276,9 @@ def substTree : ∀ {k : ℕ}, Tree E → ℕ → Forest E k → Tree E
   | _, T, _, .nil => T
   | _, T, c, .cons t fo => substTree (T.graft c t) (c + t.arity) fo
 
+/--
+@isnad1 id=eq.1h5v.s5.5ea2e98afaa9 from=translated src=- shape=eaced0d4 vocab=5df1cf38
+-/
 lemma arity_substTree : ∀ {k : ℕ} (T : Tree E) (c : ℕ) (fo : Forest E k), T.arity = c + k →
     (substTree T c fo).arity = c + fo.arityF
   | _, T, c, .nil, h => by simpa [substTree] using h
@@ -271,7 +293,9 @@ def substForest : ∀ {k₁ k₂ : ℕ}, Forest E k₁ → ℕ → Forest E k₂
   | _, _, F, _, .nil => F
   | _, _, F, c, .cons t fo => substForest (F.graftF c t) (c + t.arity) fo
 
-/-- Substituting into a tree with a labelled root is substituting into its forest.-/
+/-- Substituting into a tree with a labelled root is substituting into its forest.
+@isnad1 id=eq.0h7v.s5.251b83fa3ee5 from=translated src=- shape=939fb033 vocab=c25c17d3
+-/
 lemma substTree_node {k' : ℕ} (e : E k') (F : Forest E k') :
     ∀ {k : ℕ} (c : ℕ) (fo : Forest E k),
       substTree (Tree.node e F) c fo = Tree.node e (substForest F c fo)
@@ -279,7 +303,9 @@ lemma substTree_node {k' : ℕ} (e : E k') (F : Forest E k') :
   | _, c, .cons t fo => by
       rw [substTree, substForest, Tree.graft_node, substTree_node e (F.graftF c t)]
 
-/-- Substituting past a head tree that the offset already skips.-/
+/-- Substituting past a head tree that the offset already skips.
+@isnad1 id=eq.1h7v.s6.6b689cc6b414 from=translated src=- shape=66124d37 vocab=0d125bf8
+-/
 lemma substForest_cons_of_ge {k₁ : ℕ} (t : Tree E) (F : Forest E k₁) :
     ∀ {k : ℕ} (c : ℕ) (fo : Forest E k), t.arity ≤ c →
       substForest (Forest.cons t F) c fo = Forest.cons t (substForest F (c - t.arity) fo)
@@ -289,7 +315,9 @@ lemma substForest_cons_of_ge {k₁ : ℕ} (t : Tree E) (F : Forest E k₁) :
         substForest_cons_of_ge t (F.graftF (c - t.arity) s) (c + s.arity) fo (by omega),
         substForest, show c + s.arity - t.arity = c - t.arity + s.arity by omega]
 
-/-- Substituting a forest into a forest of bare leaves returns the forest.-/
+/-- Substituting a forest into a forest of bare leaves returns the forest.
+@isnad1 id=eq.0h3v.s4.f062879a3e36 from=translated src=- shape=dce240a9 vocab=29a6e61f
+-/
 lemma substForest_corollaF : ∀ {k : ℕ} (fo : Forest E k),
     substForest (corollaF E k) 0 fo = fo
   | _, .nil => rfl
@@ -298,7 +326,9 @@ lemma substForest_corollaF : ∀ {k : ℕ} (fo : Forest E k),
         Tree.graft_leaf, substForest_cons_of_ge t (corollaF E _) (0 + t.arity) fo (by omega),
         show 0 + t.arity - t.arity = 0 by omega, substForest_corollaF fo]
 
-/-- Substituting a forest into a corolla rebuilds the labelled tree.-/
+/-- Substituting a forest into a corolla rebuilds the labelled tree.
+@isnad1 id=eq.0h4v.s5.592db1cd04a1 from=translated src=- shape=626f1dd8 vocab=84493e60
+-/
 lemma substTree_corolla {k : ℕ} (e : E k) (fo : Forest E k) :
     substTree (corolla e) 0 fo = Tree.node e fo := by
   rw [corolla, substTree_node, substForest_corollaF]
@@ -307,6 +337,9 @@ lemma substTree_corolla {k : ℕ} (e : E k) (fo : Forest E k) :
 noncomputable def genMap (R : Type u) [CommRing R] (E : ℕ → Type w) :
     ∀ k, E k → Free R E k := fun _ e => genOf (R := R) e
 
+/--
+@isnad1 id=eq.0h4v.s5.2840484aa9aa from=translated src=- shape=e0b0c75d vocab=f422f8ef
+-/
 @[simp] lemma genMap_apply {k : ℕ} (e : E k) : genMap R E k e = genOf (R := R) e := rfl
 
 end Operad

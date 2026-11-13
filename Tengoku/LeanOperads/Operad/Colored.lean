@@ -194,8 +194,14 @@ variable (R V) in
 def castV : ∀ {c c' : C}, c = c' → V c →ₗ[R] V c'
   | _, _, rfl => LinearMap.id
 
+/--
+@isnad1 id=eq.1h5v.s7.759b76245435 from=translated src=- shape=2271ebc7 vocab=cd85ec90
+-/
 @[simp] lemma castV_self {c : C} (h : c = c) (x : V c) : castV R V h x = x := rfl
 
+/--
+@isnad1 id=eq.2h7v.s8.61235f356315 from=translated src=- shape=f75b198c vocab=3fbd2289
+-/
 lemma castV_castV {c c' c'' : C} (h : c = c') (h' : c' = c'') (x : V c) :
     castV R V h' (castV R V h x) = castV R V (h.trans h') x := by
   subst h
@@ -220,10 +226,16 @@ def cfeed (i : A) (h : d' = cA i) (v : ∀ z : Without A i ⊕ B, V (compColor c
   fun a => if ha : a = i then castV R V (h.trans (congrArg cA ha.symm)) w
     else v (Sum.inl ⟨a, ha⟩)
 
+/--
+@isnad1 id=eq.1h11v.s7.446536eb9b20 from=translated src=- shape=0173872c vocab=56fd3db4
+-/
 lemma cfeed_self (i : A) (h : d' = cA i) (v : ∀ z : Without A i ⊕ B, V (compColor cA i cB z))
     (w : V d') : cfeed R i h v w i = castV R V h w :=
   dite_eq_left rfl
 
+/--
+@isnad1 id=eq.2h12v.s7.125786dd0954 from=translated src=- shape=9be9819e vocab=52d5428d
+-/
 lemma cfeed_of_ne {i a : A} (ha : a ≠ i) (h : d' = cA i)
     (v : ∀ z : Without A i ⊕ B, V (compColor cA i cB z)) (w : V d') :
     cfeed R i h v w a = v (Sum.inl ⟨a, ha⟩) :=
@@ -231,6 +243,9 @@ lemma cfeed_of_ne {i a : A} (ha : a ≠ i) (h : d' = cA i)
 
 variable [DecidableEq B]
 
+/--
+@isnad1 id=eq.1h13v.s7.7b946cf55692 from=translated src=- shape=0761d6e5 vocab=685d8fa0
+-/
 lemma cfeed_update_inr (i : A) (h : d' = cA i)
     (v : ∀ z : Without A i ⊕ B, V (compColor cA i cB z)) (w : V d') (b : B) (z : V (cB b)) :
     cfeed R i h (Function.update v (Sum.inr b) z) w = cfeed R i h v w := by
@@ -246,6 +261,9 @@ lemma cfeed_update_inr (i : A) (h : d' = cA i)
     | (all_goals tauto; done)
 
 omit [DecidableEq B] in
+/--
+@isnad1 id=eq.1h11v.s8.22aa7ad48c7c from=translated src=- shape=e3ca6e5c vocab=6cc28fd2
+-/
 lemma cfeed_eq_update (i : A) (h : d' = cA i)
     (v : ∀ z : Without A i ⊕ B, V (compColor cA i cB z)) (w : V d') :
     cfeed R i h v w = Function.update (cfeed R i h v 0) i (castV R V h w) := by
@@ -261,6 +279,9 @@ variable {A A' B B' : Type} [Fintype A] [DecidableEq A] [Fintype A'] [DecidableE
   [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B']
 
 omit [Fintype A] [Fintype B] in
+/--
+@isnad1 id=eq.1h11v.s10.4a4d0e24e847 from=translated src=- shape=a60f97cc vocab=a5772380
+-/
 lemma castV_update_comp {c : A → C} {c' : B → C} (e : A ≃ B) (hc : ∀ a, c' (e a) = c a)
     (v : ∀ b, V (c' b)) (a₀ : A) (z : V (c' (e a₀))) :
     (fun a => castV R V (hc a) (Function.update v (e a₀) z (e a)))
@@ -285,6 +306,9 @@ def ColEnd.map {c : A → C} {c' : B → C} {d : C} (e : A ≃ B) (hc : ∀ a, c
   map_add' _ _ := MultilinearMap.ext fun _ => rfl
   map_smul' _ _ := MultilinearMap.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.1h11v.s10.31f79d9942ce from=translated src=- shape=0dccdb1f vocab=e458648d
+-/
 @[simp] lemma ColEnd.map_apply {c : A → C} {c' : B → C} {d : C} (e : A ≃ B)
     (hc : ∀ a, c' (e a) = c a) (f : ColEnd R V A c d) (v : ∀ b, V (c' b)) :
     ColEnd.map R V e hc f v = f fun a => castV R V (hc a) (v (e a)) :=
@@ -295,6 +319,9 @@ variable (R V) in
 def ColEnd.one (c : C) : ColEnd R V Unit (fun _ => c) c :=
   MultilinearMap.ofSubsingleton R (V c) (V c) () LinearMap.id
 
+/--
+@isnad1 id=eq.0h5v.s7.1f71790fb6e2 from=translated src=- shape=d81ef7f5 vocab=3cc03d11
+-/
 @[simp] lemma ColEnd.one_apply (c : C) (v : Unit → V c) : ColEnd.one R V c v = v () := rfl
 
 end ColEnd

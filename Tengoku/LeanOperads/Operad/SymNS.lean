@@ -76,12 +76,18 @@ def insertEquiv (a b n : ℕ) :
         simp only [h, h', h3, ↓reduceDIte, Fin.mk.injEq]
         omega
 
+/--
+@isnad1 id=eq.0h4v.s10.e891a8e79aa7 from=translated src=- shape=6cc202dc vocab=e0e68526
+-/
 lemma insertEquiv_inl_val (a b n : ℕ) (k : Without (Fin (a + 1 + b)) ⟨a, by omega⟩) :
     ((insertEquiv a b n (Sum.inl k) : Fin (a + n + b)) : ℕ)
       = if (k.1 : ℕ) < a then (k.1 : ℕ) else (k.1 : ℕ) + n - 1 := by
   show ((if h : (k.1 : ℕ) < a then _ else _ : Fin (a + n + b)) : ℕ) = _
   split_ifs <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.614be9d7914f from=translated src=- shape=49733893 vocab=e4c204d4
+-/
 @[simp] lemma insertEquiv_inr_val (a b n : ℕ) (j : Fin n) :
     ((insertEquiv a b n (Sum.inr j) : Fin (a + n + b)) : ℕ) = a + j := rfl
 
@@ -103,11 +109,17 @@ section Moves
 variable {A A' B B' : Type} [Fintype A] [DecidableEq A] [Fintype A'] [DecidableEq A']
   [Fintype B] [DecidableEq B] [Fintype B'] [DecidableEq B']
 
+/--
+@isnad1 id=eq.0h9v.s14.78b3aa2f7255 from=translated src=- shape=71ed821c vocab=24101890
+-/
 lemma comp_map_left (σ : A ≃ A') (i : A) (x : P A) (y : P B) :
     comp (R := R) (σ i) (map (R := R) σ x) y
       = map (R := R) (compEquiv σ (Equiv.refl B) i) (comp (R := R) i x y) := by
   rw [map_comp (R := R), map_refl (R := R)]
 
+/--
+@isnad1 id=eq.0h9v.s13.2fa8516e007d from=translated src=- shape=dafc67f7 vocab=3edf5a0f
+-/
 lemma comp_map_right (τ : B ≃ B') (i : A) (x : P A) (y : P B) :
     comp (R := R) i x (map (R := R) τ y)
       = map (R := R) (Equiv.sumCongr (Equiv.refl (Without A i)) τ) (comp (R := R) i x y) := by
@@ -119,6 +131,9 @@ lemma comp_map_right (τ : B ≃ B') (i : A) (x : P A) (y : P B) :
   exact h.symm
 
 omit [Fintype A'] [DecidableEq A'] [Fintype B'] [DecidableEq B'] in
+/--
+@isnad1 id=eq.1h8v.s13.0fa3e0601baa from=translated src=- shape=311408c8 vocab=9ee21c3d
+-/
 lemma comp_slot {i i' : A} (h : i = i') (x : P A) (y : P B) :
     comp (R := R) i' x y = map (R := R) (slotEquiv h) (comp (R := R) i x y) := by
   subst h
@@ -147,6 +162,9 @@ def nsComp (a b : ℕ) {n : ℕ} :
     P (Fin (a + 1 + b)) →ₗ[R] P (Fin n) →ₗ[R] P (Fin (a + n + b)) :=
   (comp (R := R) (⟨a, by omega⟩ : Fin (a + 1 + b))).compr₂ (map (R := R) (insertEquiv a b n))
 
+/--
+@isnad1 id=eq.0h7v.s15.b9d5538f1374 from=translated src=- shape=0e02115d vocab=86994a6f
+-/
 lemma nsComp_apply (a b : ℕ) {n : ℕ} (x : P (Fin (a + 1 + b))) (y : P (Fin n)) :
     nsComp (R := R) a b x y
       = map (R := R) (insertEquiv a b n) (comp (R := R) (⟨a, by omega⟩ : Fin (a + 1 + b)) x y) :=
@@ -155,7 +173,9 @@ lemma nsComp_apply (a b : ℕ) {n : ℕ} (x : P (Fin (a + 1 + b))) (y : P (Fin n
 /-- The unit on the standard one-element type.-/
 def nsOne : P (Fin 1) := map (R := R) unitFinOne (one R)
 
-/-- Two relabellings of the same element agree as soon as the bijections do.-/
+/-- Two relabellings of the same element agree as soon as the bijections do.
+@isnad1 id=eq.1h7v.s8.efa7e40bc37f from=translated src=- shape=45c780c1 vocab=fb9151d9
+-/
 lemma map_eq_of_equiv_eq {A B : Type} [Fintype A] [DecidableEq A] [Fintype B] [DecidableEq B]
     {e f : A ≃ B} (h : ∀ a, e a = f a) (x : P A) : map (R := R) e x = map (R := R) f x := by
   rw [Equiv.ext h]

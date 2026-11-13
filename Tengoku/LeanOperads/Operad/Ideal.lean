@@ -49,12 +49,18 @@ instance (n : ℕ) : Module R (I.Quot n) := inferInstanceAs (Module R (_ ⧸ _))
 /-- The quotient map.-/
 def proj (n : ℕ) : P n →ₗ[R] I.Quot n := (I.carrier n).mkQ
 
+/--
+@isnad1 id=eq.0h5v.s8.4a52697ddc15 from=translated src=- shape=188ef5ba vocab=be232b2f
+-/
 @[simp] lemma proj_apply {n : ℕ} (x : P n) : I.proj n x = Submodule.Quotient.mk x := rfl
 
 /-- Composition with a fixed outer operation, descended to the quotient.-/
 def compRight (a b : ℕ) {n : ℕ} (α : P (a + 1 + b)) : I.Quot n →ₗ[R] I.Quot (a + n + b) :=
   Submodule.mapQ _ _ (comp (R := R) a b α) fun _ hx => I.comp_mem_right a b α hx
 
+/--
+@isnad1 id=eq.0h8v.s10.25456ce6b484 from=translated src=- shape=592f6278 vocab=997690ab
+-/
 @[simp] lemma compRight_mk (a b : ℕ) {n : ℕ} (α : P (a + 1 + b)) (β : P n) :
     I.compRight a b α (Submodule.Quotient.mk β) =
       Submodule.Quotient.mk (comp (R := R) a b α β) := rfl

@@ -39,6 +39,9 @@ namespace LinOrd
 
 variable {A B D : Type}
 
+/--
+@isnad1 id=eq.1h3v.s4.15a31ee9eb5b from=translated src=- shape=0a505081 vocab=c450f847
+-/
 @[ext] lemma ext {x y : LinOrd A} (h : ∀ a b, x.lt a b ↔ y.lt a b) : x = y := by
   cases x
   cases y
@@ -53,6 +56,9 @@ def map {A B : Type} (e : A ≃ B) (x : LinOrd A) : LinOrd B where
   trans _ _ _ h h' := x.trans _ _ _ h h'
   total _ _ h := x.total _ _ fun h' => h (e.symm.injective h')
 
+/--
+@isnad1 id=iff.0h6v.s6.2a1c696ca6ba from=translated src=- shape=871214be vocab=2b315c32
+-/
 @[simp] lemma map_lt (e : A ≃ B) (x : LinOrd A) (b b' : B) :
     (map e x).lt b b' ↔ x.lt (e.symm b) (e.symm b') := Iff.rfl
 
@@ -73,15 +79,27 @@ def compLt (r : A → A → Prop) (s : B → B → Prop) (i : A) :
   | .inr _, .inl a' => r i a'.1
   | .inr b, .inr b' => s b b'
 
+/--
+@isnad1 id=eq.0h7v.s6.1af06914738d from=translated src=- shape=f4df74ea vocab=33dc2ce7
+-/
 @[simp] lemma compLt_inl_inl (r : A → A → Prop) (s : B → B → Prop) (i : A) (a a' : Without A i) :
     compLt r s i (.inl a) (.inl a') = r a.1 a'.1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.762f32ac688c from=translated src=- shape=7f3810e2 vocab=7ac995b3
+-/
 @[simp] lemma compLt_inl_inr (r : A → A → Prop) (s : B → B → Prop) (i : A) (a : Without A i)
     (b : B) : compLt r s i (.inl a) (.inr b) = r a.1 i := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.0d3e474e63bc from=translated src=- shape=2a9fd7e1 vocab=7ac995b3
+-/
 @[simp] lemma compLt_inr_inl (r : A → A → Prop) (s : B → B → Prop) (i : A) (b : B)
     (a : Without A i) : compLt r s i (.inr b) (.inl a) = r i a.1 := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.e2d38d26f8aa from=translated src=- shape=9da027b3 vocab=c22cf07f
+-/
 @[simp] lemma compLt_inr_inr (r : A → A → Prop) (s : B → B → Prop) (i : A) (b b' : B) :
     compLt r s i (.inr b) (.inr b') = s b b' := rfl
 
@@ -109,6 +127,9 @@ def comp (i : A) (x : LinOrd A) (y : LinOrd B) : LinOrd (Without A i ⊕ B) wher
     · exact x.total _ _ (Ne.symm a'.2)
     · exact y.total _ _ fun h' => h (congrArg Sum.inr h')
 
+/--
+@isnad1 id=iff.0h7v.s5.ccc48f21b714 from=translated src=- shape=73bd3325 vocab=609f58a0
+-/
 @[simp] lemma comp_lt (i : A) (x : LinOrd A) (y : LinOrd B) (u v : Without A i ⊕ B) :
     (comp i x y).lt u v ↔ compLt x.lt y.lt i u v := Iff.rfl
 
@@ -177,9 +198,14 @@ def std (n : ℕ) : LinOrd (Fin n) where
   trans _ _ _ h h' := lt_trans h h'
   total _ _ h := lt_or_gt_of_ne h
 
+/--
+@isnad1 id=iff.0h3v.s4.74e8a1aaf884 from=translated src=- shape=4c2bdad3 vocab=44a7bd90
+-/
 @[simp] lemma std_lt (n : ℕ) (a b : Fin n) : (std n).lt a b ↔ a < b := Iff.rfl
 
-/-- **The positional insertion carries a composite of standard orders to the standard order.**-/
+/-- **The positional insertion carries a composite of standard orders to the standard order.**
+@isnad1 id=eq.0h3v.s7.b4baed488f12 from=translated src=- shape=2b9603e4 vocab=9b36c02c
+-/
 theorem map_insertEquiv_comp_std (a b n : ℕ) :
     map (insertEquiv a b n) (comp (⟨a, by omega⟩ : Fin (a + 1 + b)) (std (a + 1 + b)) (std n))
       = std (a + n + b) := by
@@ -201,6 +227,9 @@ theorem map_insertEquiv_comp_std (a b n : ℕ) :
   · simp only [compLt_inr_inr, std_lt, Fin.lt_def, insertEquiv_inr_val]
     omega
 
+/--
+@isnad1 id=eq.0h0v.s4.b422cdebe818 from=translated src=- shape=1e9f3431 vocab=6196cfcc
+-/
 lemma map_unitFinOne_one : map unitFinOne one = std 1 := by
   ext u v
   simp only [map_lt, std_lt]
