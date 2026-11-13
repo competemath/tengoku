@@ -114,12 +114,22 @@ if group and all(st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p
 # record has no manifest in the group, so it was regenerated from its corpus and came out deleted (2026-11-13, tengoku#797 wave 2: Toric/Hopf/GrpAlg.lean, 50 deletions). The libraries of
 # the reports the group adds, and the libraries of the dependents that open them (62 modules of NavierStokesEuler use LeanPool's names), are skipped, but only while every change the group makes under the library is an existing `.lean` module modified in place (the shape of a roots PR; Gitar on
 # tengoku#821: the group is the diff of all the PRs in it, and a module added or a file that is no module beside the report is regenerated as before). Every other library is regenerated.
-roots_libs = (
-    intake_at_base if added_reports(base, head) else set()
-)  # the libraries of the reports AND the dependents whose modules open them (roots_tree.dependents)
-for lib in sorted(roots_libs):
+OPEN_MARK = re.compile(r" ?namespace (Tengoku\.[A-Za-z0-9_.]+) end \1 open \1 ?")  # what roots_tree.place_mark writes
+OPEN_NOTE = re.compile(r"^-- Tengoku: opens Tengoku\.[A-Za-z0-9_.]+: .*\n", re.M)  # and the note it appends
+
+
+def only_opens(path: str) -> bool:
+    """Whether the group's change to this module is nothing but the generated `namespace X end X open X` and its note: without them, the module is what it was at the base."""
+    return OPEN_NOTE.sub("", OPEN_MARK.sub("", run("show", f"{head}:{path}", check=False))) == run("show", f"{base}:{path}", check=False)
+
+
+# In a group that adds a ROOTS report, an intake library the group changes only in place is not regenerated (see tengoku#821, #823): the libraries of the reports (their modules are the roots
+# script's output, which the roots gate recomputed) and the dependents, whose modules gain nothing but the generated `open` of a renamed library (roots_tree.dependents: 62 modules of
+# NavierStokesEuler use LeanPool's names). A dependent module with any other change is regenerated as before, and so is a module added or a file that is no module (Gitar on #821, #823).
+reported = set(added_reports(base, head)) & intake_at_base
+for lib in sorted(intake_at_base if reported else set()):
     mine = [(st, p) for st, p in group if p == f"Tengoku/{lib}.lean" or p.startswith(f"Tengoku/{lib}/")]
-    if mine and all(st == "M" and p.endswith(".lean") for st, p in mine):
+    if mine and all(st == "M" and p.endswith(".lean") and (lib in reported or only_opens(p)) for st, p in mine):
         gone_ns.add(lib)
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
 left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)

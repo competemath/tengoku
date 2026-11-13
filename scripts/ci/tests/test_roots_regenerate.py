@@ -22,6 +22,13 @@ TOOLCHAIN = "leanprover/lean4:v4.34.0-rc2"
 GENERATOR_STUB = "import pathlib, sys\n\nwith pathlib.Path('generated.txt').open('a') as f:\n    f.write(' '.join(sys.argv[1:]) + '\\n')\n"
 BASIC = "import Tengoku\n\ntheorem good : 1 + 1 = 2 := rfl\n"
 RENAMED = "import Tengoku\n\ntheorem _root_.Tengoku.FxLib.good : 1 + 1 = 2 := rfl\n"
+DEP = "import Tengoku.FxLib.Fx.Basic\n\ntheorem d : good = good := rfl\n"
+DEP_OPEN = (
+    "import Tengoku.FxLib.Fx.Basic\n"
+    "namespace Tengoku.FxLib end Tengoku.FxLib open Tengoku.FxLib\n"
+    "theorem d : good = good := rfl\n"
+    "-- Tengoku: opens Tengoku.FxLib: its root names moved there, and this module uses them (generated)\n"
+)
 REPORT = "roots: 1 declarations of the library are in the root namespace (x)\nroot: good\n"
 
 
@@ -109,7 +116,7 @@ class RootsRegenerate(unittest.TestCase):
         r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
         r.write(
             "Tengoku/DepLib/Basic.lean",
-            "import Tengoku.FxLib.Fx.Basic\n\nnamespace Tengoku.FxLib end Tengoku.FxLib open Tengoku.FxLib\ntheorem d : good = good := rfl\n",
+            DEP_OPEN,
         )
         r.commit("roots with a dependent")
         rc, out, generated = self.regenerated(r)
@@ -122,10 +129,21 @@ class RootsRegenerate(unittest.TestCase):
         r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
         r.write(
             "Tengoku/DepLib/Basic.lean",
-            "import Tengoku.FxLib.Fx.Basic\n\nnamespace Tengoku.FxLib end Tengoku.FxLib open Tengoku.FxLib\ntheorem d : good = good := rfl\n",
+            DEP_OPEN,
         )
         r.write("Tengoku/DepLib/Extra.lean", "import Tengoku\n\ntheorem e : True := trivial\n")
         r.commit("roots, a dependent and another change to it")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("--libraries dep-lib", generated)
+
+    def test_a_dependent_module_with_any_other_change_is_regenerated(self):
+        # Gitar on #823: only the generated `open` and its note are excused in a library that has no report
+        r = self.repo()
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write("Tengoku/DepLib/Basic.lean", DEP_OPEN.replace("rfl", "by rfl"))  # the open AND a hand edit
+        r.commit("roots with a dependent that is also edited by hand")
         rc, out, generated = self.regenerated(r)
         self.assertEqual(rc, 0, out)
         self.assertIn("--libraries dep-lib", generated)
