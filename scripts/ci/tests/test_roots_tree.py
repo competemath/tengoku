@@ -412,5 +412,37 @@ class WhereThePreludeGoes(unittest.TestCase):
         self.assertEqual(out[5].rstrip(), self.MARK)
 
 
+class WithoutABlankLine(unittest.TestCase):
+    """No blank line in front of the first declaration (`public section` straight above it): the commands go on the end of the line before, so the declaration keeps its column (merge queue,
+    wave 4: FormalConjectures/…/Additive/Coset.lean:23, `sSup {…}` on the line after `noncomputable def`)."""
+
+    DEF = "noncomputable def zeta (k : Nat) : Nat :=\n  Nat.succ (zeta k)\n"
+    MARK = "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo"
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": "roots: 1 declarations\nroot: zeta\n"})
+        return changed.get("Tengoku/Foo/A.lean", text).split("\n")
+
+    def test_the_commands_go_on_the_end_of_the_line_before_the_declaration(self):
+        out = self.run_text("module\n\npublic import Tengoku\n\n@[expose] public section\n" + self.DEF)
+        self.assertEqual(out[4].rstrip(), "@[expose] public section " + self.MARK)
+        self.assertTrue(out[5].startswith("noncomputable def _root_.Tengoku.Foo.zeta"))  # still at column 0
+
+    def test_a_line_comment_above_keeps_them_on_the_declaration_line(self):
+        out = self.run_text("module\n\npublic import Tengoku\n-- note\n" + self.DEF)
+        self.assertEqual(out[3], "-- note")
+        self.assertTrue(out[4].startswith(self.MARK))
+
+    def test_an_import_line_is_not_given_a_tail(self):
+        out = self.run_text("module\n\npublic import Tengoku\n" + self.DEF)
+        self.assertEqual(out[2], "public import Tengoku")
+
+    def test_no_line_is_added_and_it_is_idempotent(self):
+        text = "module\n\npublic import Tengoku\n\n@[expose] public section\n" + self.DEF
+        once = self.run_text(text)
+        self.assertEqual(len(once), len(text.split("\n")) + 1)  # the footer line only
+        self.assertEqual("\n".join(once), "\n".join(self.run_text("\n".join(once))))
+
+
 if __name__ == "__main__":
     unittest.main()

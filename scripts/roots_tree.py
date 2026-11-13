@@ -145,6 +145,15 @@ def _blank_before(lines: list[str], first: int) -> int | None:
     return after[-1] if after else None
 
 
+def _ends_code_line(lines: list[str], i: int) -> bool:
+    """Whether the commands can go on the end of line `i`: it is a code line (not a header line: an `import` is followed by nothing on its line, and `module` has no tail) and has no
+    line comment, which would swallow what follows."""
+    if i < 0 or i >= len(lines):
+        return False
+    line = lines[i]
+    return bool(line.strip()) and not HEADER_LINE.match(line) and "--" not in line
+
+
 QUOTED = r"«[^»]*»"
 NAME_TOKEN = rf"(?:{QUOTED}|[^\s:({{\[⦃«»])+"
 PLAIN = r"[^\W\d][\w'!?]*"  # a plain identifier component: a letter or `_`, then letters, digits, `_`, `'`, `!`, `?` (Unicode letters and subscripts included)
@@ -306,6 +315,12 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
         spot = _blank_before(f.text, first)
         if spot is not None:
             f.insert(spot, 0, mark.rstrip())
+        elif not f.text[first].strip():
+            f.insert(first, 0, mark)  # the line after a `section` that opens the body is blank: its own line
+        elif _ends_code_line(f.text, first - 1):
+            # No blank line: the end of the line before (`@[expose] public section`, an `open …`), so that the declaration stays where it is (merge queue, wave 4: FormalConjectures
+            # …/Additive/Coset.lean:23, `public section` straight above `noncomputable def`, `sSup {…}` on the next line).
+            f.insert(first - 1, len(f.text[first - 1]), " " + mark.rstrip())
         else:
             f.insert(first, 0, mark)
         done["opened"] = True
