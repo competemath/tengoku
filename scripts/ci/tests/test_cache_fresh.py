@@ -15,13 +15,14 @@ from test_gates import Repo  # noqa: E402
 
 
 class TimeBudget(unittest.TestCase):
-    """What the queue's build can take, worst case, against the queue's check timeout (the ruleset's `check_response_timeout_minutes`, 120 on tengoku).
+    """What the queue's build can take, worst case, against the queue's check timeout (the ruleset's `check_response_timeout_minutes`, 240 on tengoku since 2026-11-13: it was 120).
     Measured on the real runs of 2026-10-14 (tag groups of 351 and 353 modules): checkout, toolchain and disk 3.7 min, seed 4.4, candidates 21.4,
     axioms 4.1, tags 6.1, leak report 16.6 (48 min between them; 60 leaves room for a larger group), the whole-library build 3 to 6 when the group
     is a tag group, and 25 for a part of 286 modules (the chain test of 2026-10-13), hence the 35-minute cap."""
 
-    LIMIT = 120
+    LIMIT = 240
     BEFORE, SEED, MIDDLE, PACK = 4, 5, 60, 3  # minutes: worst cases of the real runs; MIDDLE = candidates, axioms, tags and the leak report
+    LIBRARY = 150  # minutes: the candidates of a roots PR over a whole big library (LeanPool, 12,378 modules: 101 min measured on 2026-11-13 and the run was still going at 115)
     CANARY = 3  # the canary (scripts/ci/canary/Canary.lean) after the library build: its own `timeout 3m`
     WORKFLOW = HERE.parent.parent.parent / ".github" / "workflows" / "queue-gate.yml"
 
@@ -48,6 +49,8 @@ class TimeBudget(unittest.TestCase):
             self.LIMIT,
             f"restoring for up to {restore} min, then a build capped at {cap}, can take {worst} min of the queue's {self.LIMIT}",
         )
+        big = self.BEFORE + restore + self.SEED + self.LIBRARY + cap + int(canary[0]) + self.PACK
+        self.assertLessEqual(big, job, f"a roots PR over a whole big library can take {big} min but the job is stopped at {job}")
 
 
 class CommitIds(unittest.TestCase):
