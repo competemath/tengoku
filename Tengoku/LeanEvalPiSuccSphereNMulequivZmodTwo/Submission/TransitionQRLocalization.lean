@@ -52,6 +52,9 @@ namespace TransitionQRLocalization
 /-- The damping profile: `1` on `(-∞, 1]`, and `O(1/t)` for large `t`.-/
 def ramp (t : ℝ) : ℝ := (1 + t * Real.smoothTransition (t - 1))⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s5.6eea9cd3b8e9 from=translated src=- shape=6aac593b vocab=be38c370
+-/
 theorem ramp_denom_pos (t : ℝ) : 0 < 1 + t * Real.smoothTransition (t - 1) := by
   rcases le_or_gt t 1 with h | h
   · rw [Real.smoothTransition.zero_of_nonpos (by linarith), mul_zero, add_zero]
@@ -61,27 +64,45 @@ theorem ramp_denom_pos (t : ℝ) : 0 < 1 + t * Real.smoothTransition (t - 1) := 
       Real.smoothTransition.nonneg _
     nlinarith
 
+/--
+@isnad1 id=le.1h1v.s5.46ab0f1ee394 from=translated src=- shape=e52db299 vocab=52bcbdbc
+-/
 theorem ramp_denom_one_le (t : ℝ) (ht : 0 ≤ t) :
     1 ≤ 1 + t * Real.smoothTransition (t - 1) := by
   have h1 : 0 ≤ Real.smoothTransition (t - 1) := Real.smoothTransition.nonneg _
   nlinarith
 
+/--
+@isnad1 id=contdiff.0h0v.s5.53f5314ec9df from=translated src=- shape=3cea26be vocab=f499c4f0
+-/
 theorem contDiff_ramp : ContDiff ℝ ∞ ramp := by
   have hden : ContDiff ℝ ∞ fun t : ℝ => 1 + t * Real.smoothTransition (t - 1) :=
     contDiff_const.add (contDiff_id.mul
       (Real.smoothTransition.contDiff.comp (contDiff_id.sub contDiff_const)))
   exact hden.inv fun t => (ramp_denom_pos t).ne'
 
+/--
+@isnad1 id=lt.0h1v.s3.d80d2e0ab2bc from=translated src=- shape=8a62b088 vocab=2b780d65
+-/
 theorem ramp_pos (t : ℝ) : 0 < ramp t := inv_pos.mpr (ramp_denom_pos t)
 
+/--
+@isnad1 id=eq.1h1v.s4.5d5f5242915b from=translated src=- shape=278e0375 vocab=21afdbb7
+-/
 theorem ramp_eq_one_of_le_one {t : ℝ} (ht : t ≤ 1) : ramp t = 1 := by
   rw [ramp, Real.smoothTransition.zero_of_nonpos (by linarith), mul_zero,
     add_zero, inv_one]
 
+/--
+@isnad1 id=le.1h1v.s4.b3714196aff2 from=translated src=- shape=3965f485 vocab=21afdbb7
+-/
 theorem ramp_le_one {t : ℝ} (ht : 0 ≤ t) : ramp t ≤ 1 := by
   rw [ramp]
   exact inv_le_one_of_one_le₀ (ramp_denom_one_le t ht)
 
+/--
+@isnad1 id=le.1h1v.s5.d030ccd3848f from=translated src=- shape=79f76bea vocab=8f089ce9
+-/
 theorem mul_ramp_sq_le {t : ℝ} (ht : 0 ≤ t) : t * ramp t ^ 2 ≤ 2 := by
   rcases le_or_gt t 2 with h | h
   · have h1 : ramp t ≤ 1 := ramp_le_one ht
@@ -106,6 +127,9 @@ def squash (c : EuclideanSpace ℝ (Fin N)) (r : ℝ)
     (y : EuclideanSpace ℝ (Fin N)) : EuclideanSpace ℝ (Fin N) :=
   c + ramp (‖y - c‖ ^ 2 / r ^ 2) • (y - c)
 
+/--
+@isnad1 id=contdiff.0h3v.s7.4ab9f3d66a5a from=translated src=- shape=eb7335f3 vocab=198049d2
+-/
 theorem contDiff_squash (c : EuclideanSpace ℝ (Fin N)) (r : ℝ) :
     ContDiff ℝ ∞ (squash c r) := by
   have hsub : ContDiff ℝ ∞ fun y : EuclideanSpace ℝ (Fin N) => y - c :=
@@ -115,6 +139,9 @@ theorem contDiff_squash (c : EuclideanSpace ℝ (Fin N)) (r : ℝ) :
     ((contDiff_norm_sq ℝ).comp hsub).div_const _
   exact contDiff_const.add ((contDiff_ramp.comp hnorm).smul hsub)
 
+/--
+@isnad1 id=eq.2h4v.s7.2930056e209b from=translated src=- shape=835c92ca vocab=70e8be6a
+-/
 theorem squash_eq_self {c : EuclideanSpace ℝ (Fin N)} {r : ℝ} (hr : 0 < r)
     {y : EuclideanSpace ℝ (Fin N)} (hy : ‖y - c‖ ≤ r) : squash c r y = y := by
   have ht : ‖y - c‖ ^ 2 / r ^ 2 ≤ 1 := by
@@ -123,6 +150,9 @@ theorem squash_eq_self {c : EuclideanSpace ℝ (Fin N)} {r : ℝ} (hr : 0 < r)
     nlinarith
   rw [squash, ramp_eq_one_of_le_one ht, one_smul, add_sub_cancel]
 
+/--
+@isnad1 id=lt.1h4v.s7.717d9dbb7fea from=translated src=- shape=48fb0065 vocab=6b474b21
+-/
 theorem norm_squash_sub_lt {c : EuclideanSpace ℝ (Fin N)} {r : ℝ} (hr : 0 < r)
     (y : EuclideanSpace ℝ (Fin N)) : ‖squash c r y - c‖ < 2 * r := by
   set t : ℝ := ‖y - c‖ ^ 2 / r ^ 2 with htdef
@@ -151,7 +181,9 @@ variable {N k : ℕ}
 
 /-- **Localization.**  A gauge family which is smooth and orientation
 preserving on an open set is, near any point of that set, the restriction of a
-globally smooth gauge family with everywhere positive determinant.-/
+globally smooth gauge family with everywhere positive determinant.
+@isnad1 id=ex.4h5v.s11.48f834c8b444 from=translated src=- shape=e7f8880d vocab=318bca11
+-/
 theorem exists_global_of_contDiffOn
     (Phi : EuclideanSpace ℝ (Fin N) →
       EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
@@ -202,11 +234,16 @@ def qrSOTotal (A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin 
   if h : 0 < (PolarDecompositionCLM.clmMatrix A).det then
     PolarDecompositionCLM.qrSO A h else 1
 
+/--
+@isnad1 id=eq.1h2v.s8.26da9026f594 from=translated src=- shape=e69712e5 vocab=18d837d8
+-/
 theorem qrSOTotal_eq (A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
     (h : 0 < (PolarDecompositionCLM.clmMatrix A).det) :
     qrSOTotal A = PolarDecompositionCLM.qrSO A h := dite_eq_left h
 
-/-- **The factorization in total form.**-/
+/-- **The factorization in total form.**
+@isnad1 id=eq.1h2v.s9.5d7b0a092b68 from=translated src=- shape=0c434e2f vocab=404278fa
+-/
 theorem qr_factorization_total
     (A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
     (h : 0 < (PolarDecompositionCLM.clmMatrix A).det) :
@@ -219,7 +256,9 @@ variable (Phi : EuclideanSpace ℝ (Fin N) →
   EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
 variable {V : Set (EuclideanSpace ℝ (Fin N))}
 
-/-- **Local smoothness of the triangular factor.**-/
+/-- **Local smoothness of the triangular factor.**
+@isnad1 id=contdiff.4h5v.s10.edd58236f1e5 from=translated src=- shape=6596936e vocab=65265843
+-/
 theorem contDiffAt_qrUpper_of_contDiffOn (hV : IsOpen V)
     (hPhi : ContDiffOn ℝ ∞ Phi V)
     (hdet : ∀ x ∈ V, 0 < (PolarDecompositionCLM.clmMatrix (Phi x)).det)
@@ -233,7 +272,9 @@ theorem contDiffAt_qrUpper_of_contDiffOn (hV : IsOpen V)
   filter_upwards [hEq] with x hx
   rw [hx]
 
-/-- **Local smoothness of the special-orthogonal factor.**-/
+/-- **Local smoothness of the special-orthogonal factor.**
+@isnad1 id=contdiff.4h7v.s10.94ff722b936f from=translated src=- shape=dd630bc2 vocab=2cfd8f6a
+-/
 theorem contDiffAt_qrSOTotal_of_contDiffOn (hV : IsOpen V)
     (hPhi : ContDiffOn ℝ ∞ Phi V)
     (hdet : ∀ x ∈ V, 0 < (PolarDecompositionCLM.clmMatrix (Phi x)).det)

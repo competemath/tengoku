@@ -31,6 +31,9 @@ variable {n q : ℕ}
 
 /-! ## Smoothness of iterated derivatives on an open set -/
 
+/--
+@isnad1 id=contdiff.2h5v.s11.31806e738680 from=translated src=- shape=e92f5f4a vocab=1fdc4f4b
+-/
 theorem contDiffOn_iteratedFDeriv_of_isOpen {U : Set (Fin (n + 1) → ℝ)}
     (hU : IsOpen U) {f : (Fin (n + 1) → ℝ) → Fin (q + 1) → ℝ}
     (hf : ContDiffOn ℝ ∞ f U) (i : ℕ) :
@@ -45,7 +48,9 @@ theorem contDiffOn_iteratedFDeriv_of_isOpen {U : Set (Fin (n + 1) → ℝ)}
 
 /-- **Milnor's Step 2, local version.**  Let `x₀ ∈ C_i \ C_{i+1}` with `i ≥ 1`.
 Assuming Sard's theorem in dimension `n` (same target), some neighbourhood `V`
-of `x₀` satisfies `volume (f '' (C_i ∩ V)) = 0`.-/
+of `x₀` satisfies `volume (f '' (C_i ∩ V)) = 0`.
+@isnad1 id=ex.6h6v.s10.d369527ff7a8 from=translated src=- shape=49af0e28 vocab=0d0ba891
+-/
 theorem step2_local {U : Set (Fin (n + 1) → ℝ)} (hU : IsOpen U)
     {f : (Fin (n + 1) → ℝ) → Fin (q + 1) → ℝ} (hf : ContDiffOn ℝ ∞ f U)
     {i : ℕ} (hi : 1 ≤ i)
@@ -186,7 +191,9 @@ theorem step2_local {U : Set (Fin (n + 1) → ℝ)} (hU : IsOpen U)
 /-- **Milnor's Step 1, local version.**  Let `x₀` be a point of `U` where
 `df(x₀) ≠ 0`.  Assuming Sard's theorem in dimension `n` with target dimension
 `q`, some neighbourhood `V` of `x₀` satisfies
-`volume (f '' (critSet U f ∩ V)) = 0`.-/
+`volume (f '' (critSet U f ∩ V)) = 0`.
+@isnad1 id=ex.5h5v.s11.3c21a97214cb from=translated src=- shape=40a817b7 vocab=cad09af1
+-/
 theorem step1_local {U : Set (Fin (n + 1) → ℝ)} (hU : IsOpen U)
     {f : (Fin (n + 1) → ℝ) → Fin (q + 1) → ℝ} (hf : ContDiffOn ℝ ∞ f U)
     (IH : ∀ (U' : Set (Fin n → ℝ)) (g : (Fin n → ℝ) → Fin q → ℝ),

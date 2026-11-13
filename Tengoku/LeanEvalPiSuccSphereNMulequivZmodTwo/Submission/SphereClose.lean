@@ -36,14 +36,22 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 abbrev UnitSphere (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] : Type _ :=
   Metric.sphere (0 : E) 1
 
+/--
+@isnad1 id=eq.0h2v.s6.c59244c8cfef from=translated src=- shape=f568d0e0 vocab=4fd7be66
+-/
 theorem UnitSphere.norm_coe (v : UnitSphere E) : ‖(v : E)‖ = 1 :=
   mem_sphere_zero_iff_norm.mp v.2
 
+/--
+@isnad1 id=ne.1h3v.s7.89b6a67d4c68 from=translated src=- shape=6fdf3889 vocab=a68da431
+-/
 theorem UnitSphere.coe_ne_neg_coe {u v : UnitSphere E} (h : u ≠ -v) :
     (u : E) ≠ -(v : E) := fun hc =>
   h (Subtype.ext (hc.trans (coe_neg_sphere v).symm))
 
-/-- Two non-antipodal points of the unit sphere are at distance less than `2`.-/
+/-- Two non-antipodal points of the unit sphere are at distance less than `2`.
+@isnad1 id=lt.1h3v.s6.2eac1bbd7b02 from=translated src=- shape=ed93cda2 vocab=d7eb3fd9
+-/
 theorem dist_lt_two_of_ne_neg (u v : UnitSphere E) (h : u ≠ -v) : dist u v < 2 := by
   have hu : ‖(u : E)‖ = 1 := UnitSphere.norm_coe u
   have hv : ‖(v : E)‖ = 1 := UnitSphere.norm_coe v
@@ -57,7 +65,9 @@ theorem dist_lt_two_of_ne_neg (u v : UnitSphere E) (h : u ≠ -v) : dist u v < 2
   nlinarith
 
 /-- A point of the unit sphere is not antipodal to any point at distance less
-than `2` from it.-/
+than `2` from it.
+@isnad1 id=ne.1h3v.s6.c934c9761057 from=translated src=- shape=c4cc3ed4 vocab=d7eb3fd9
+-/
 theorem ne_neg_of_dist_lt_two (u v : UnitSphere E) (h : dist u v < 2) : u ≠ -v := by
   rintro rfl
   have hv : ‖(v : E)‖ = 1 := UnitSphere.norm_coe v
@@ -66,12 +76,16 @@ theorem ne_neg_of_dist_lt_two (u v : UnitSphere E) (h : dist u v < 2) : u ≠ -v
   rw [this, norm_smul, Real.norm_eq_abs, hv] at h
   norm_num at h
 
-/-- Normalizing a nonzero vector produces a unit vector.-/
+/-- Normalizing a nonzero vector produces a unit vector.
+@isnad1 id=eq.1h2v.s7.0a318c765ec4 from=translated src=- shape=14b2b5d9 vocab=6a622bb8
+-/
 theorem norm_normalize {v : E} (hv : v ≠ 0) : ‖‖v‖⁻¹ • v‖ = 1 := by
   rw [norm_smul, norm_inv, norm_norm]
   exact inv_mul_cancel₀ (norm_ne_zero_iff.mpr hv)
 
-/-- The chord between two non-antipodal unit vectors does not vanish.-/
+/-- The chord between two non-antipodal unit vectors does not vanish.
+@isnad1 id=ne.5h4v.s8.4a6e2d1790e3 from=translated src=- shape=f918ec81 vocab=15aff231
+-/
 theorem chord_ne_zero {u w : E} (hu : ‖u‖ = 1) (hw : ‖w‖ = 1) (h : u ≠ -w) {s : ℝ}
     (hs0 : 0 ≤ s) (hs1 : s ≤ 1) : (1 - s) • u + s • w ≠ 0 := by
   intro hc
@@ -104,6 +118,9 @@ def chordMap (f g : C(A, UnitSphere E)) : C(I × A, E) where
       continuous_subtype_val.comp continuous_fst
     exact ((continuous_const.sub hs).smul hf).add (hs.smul hg)
 
+/--
+@isnad1 id=ne.1h5v.s9.7baf0a5c9e5f from=translated src=- shape=ec02076e vocab=263ac2cd
+-/
 theorem chordMap_ne_zero (f g : C(A, UnitSphere E)) (h : ∀ a, dist (f a) (g a) < 2)
     (sa : I × A) : chordMap f g sa ≠ 0 :=
   chord_ne_zero (UnitSphere.norm_coe (f sa.2)) (UnitSphere.norm_coe (g sa.2))
@@ -153,7 +170,9 @@ def chordHomotopyRel (f g : C(A, UnitSphere E)) (h : ∀ a, dist (f a) (g a) < 2
     simp
 
 /-- Two sphere-valued maps that are pointwise at distance `< 2` are homotopic rel any
-set on which they agree.-/
+set on which they agree.
+@isnad1 id=homotopi.2h5v.s9.c98924c01f2b from=translated src=- shape=c930e43e vocab=7231441f
+-/
 theorem homotopicRel_of_dist_lt_two (f g : C(A, UnitSphere E))
     (h : ∀ a, dist (f a) (g a) < 2) (S : Set A) (hS : ∀ a ∈ S, f a = g a) :
     f.HomotopicRel g S :=
@@ -162,7 +181,9 @@ theorem homotopicRel_of_dist_lt_two (f g : C(A, UnitSphere E))
 end Chord
 
 /-- Generalized loops in the unit sphere that are pointwise at distance `< 2` are
-homotopic rel the cube boundary.-/
+homotopic rel the cube boundary.
+@isnad1 id=homotopi.1h5v.s9.1ff263096d11 from=translated src=- shape=abf44137 vocab=5a3fa917
+-/
 theorem genLoop_homotopic_of_dist_lt_two {N : Type*} {x : UnitSphere E}
     (p q : Ω^ N (UnitSphere E) x) (h : ∀ t, dist (p t) (q t) < 2) :
     GenLoop.Homotopic p q :=
@@ -182,13 +203,18 @@ def normalizeMap (g : C(A, E)) (hg : ∀ a, g a ≠ 0) : C(A, UnitSphere E) wher
     exact (((map_continuous g).norm).inv₀ fun a =>
       norm_ne_zero_iff.mpr (hg a)).smul (map_continuous g)
 
+/--
+@isnad1 id=eq.1h4v.s8.665e5b49b5bd from=translated src=- shape=ce58253b vocab=16e925e0
+-/
 @[simp]
 theorem normalizeMap_coe (g : C(A, E)) (hg : ∀ a, g a ≠ 0) (a : A) :
     (normalizeMap g hg a : E) = ‖g a‖⁻¹ • g a :=
   rfl
 
 /-- If a map into `E` is pointwise within distance `1` of a sphere-valued map, it does
-not vanish.-/
+not vanish.
+@isnad1 id=ne.1h5v.s8.0f8548379ae4 from=translated src=- shape=40bc298a vocab=968cfce8
+-/
 theorem ne_zero_of_dist_lt_one {f : C(A, UnitSphere E)} {g : C(A, E)}
     (h : ∀ a, dist ((f a : E)) (g a) < 1) (a : A) : g a ≠ 0 := by
   intro hc
@@ -197,7 +223,9 @@ theorem ne_zero_of_dist_lt_one {f : C(A, UnitSphere E)} {g : C(A, E)}
   exact lt_irrefl 1 this
 
 /-- If `g` is pointwise within distance `1` of the sphere-valued `f`, then `f` pairs
-positively with `g`.-/
+positively with `g`.
+@isnad1 id=lt.1h5v.s9.064e10922238 from=translated src=- shape=7b7bc817 vocab=3e5708cb
+-/
 theorem inner_pos_of_dist_lt_one {f : C(A, UnitSphere E)} {g : C(A, E)}
     (h : ∀ a, dist ((f a : E)) (g a) < 1) (a : A) : 0 < ⟪(f a : E), g a⟫ := by
   have hf : ‖(f a : E)‖ = 1 := UnitSphere.norm_coe (f a)
@@ -214,7 +242,9 @@ theorem inner_pos_of_dist_lt_one {f : C(A, UnitSphere E)} {g : C(A, E)}
 
 /-- A sphere-valued map `f` is homotopic, rel a set `S` on which `g` agrees with `f`,
 to the normalization of any map `g` into `E` that stays pointwise within distance `1`
-of `f`.-/
+of `f`.
+@isnad1 id=homotopi.2h5v.s9.815fb80a00bd from=translated src=- shape=03eb86ed vocab=fcff9837
+-/
 theorem normalizedRawHomotopyRel (f : C(A, UnitSphere E)) (g : C(A, E))
     (h : ∀ a, dist ((f a : E)) (g a) < 1) (S : Set A)
     (hS : ∀ a ∈ S, g a = (f a : E)) :

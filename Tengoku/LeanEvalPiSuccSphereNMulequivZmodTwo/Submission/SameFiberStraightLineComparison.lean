@@ -53,22 +53,33 @@ variable {X Y : FramedLevelSet n} (D : Data X Y)
 def straightMap (_D : Data X Y) (s : ℝ) (x : E) : F :=
   (1 - s) • X.g x + s • Y.g x
 
+/--
+@isnad1 id=contdiff.1h3v.s9.50e45680f721 from=translated src=- shape=89b53ed7 vocab=761e44da
+-/
 theorem straightMap_smooth :
     ContDiff ℝ ∞ (fun p : ℝ × E => D.straightMap p.1 p.2) := by
   exact ((contDiff_const.sub contDiff_fst).smul
       (X.smooth.comp contDiff_snd)).add
     (contDiff_fst.smul (Y.smooth.comp contDiff_snd))
 
+/--
+@isnad1 id=eq.1h3v.s5.28437a5c08e3 from=translated src=- shape=ea12c529 vocab=f9cddff2
+-/
 @[simp] theorem straightMap_zero : D.straightMap 0 = X.g := by
   funext x
   simp [straightMap]
 
+/--
+@isnad1 id=eq.1h3v.s5.a68deee55e29 from=translated src=- shape=9b370867 vocab=f9cddff2
+-/
 @[simp] theorem straightMap_one : D.straightMap 1 = Y.g := by
   funext x
   simp [straightMap]
 
 /-- Nonnegative pointwise pairing prevents the straight segment from passing
-through zero away from the common zero fiber.-/
+through zero away from the common zero fiber.
+@isnad1 id=eq.3h4v.s7.676a38cbe730 from=translated src=- shape=dc40ab94 vocab=b6d1f2d9
+-/
 theorem straightMap_fiber_eq (s : ℝ) (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     {x | D.straightMap s x = 0} = X.fiber := by
   ext x
@@ -107,7 +118,9 @@ theorem straightMap_fiber_eq (s : ℝ) (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     simp [straightMap, hx0, hy0]
 
 /-- First-jet agreement makes the derivative of every intermediate map
-literally equal to the source derivative on the common fiber.-/
+literally equal to the source derivative on the common fiber.
+@isnad1 id=eq.2h5v.s10.427e480a99d8 from=translated src=- shape=e22e1ee2 vocab=84496f32
+-/
 theorem fderiv_straightMap_of_mem_fiber
     (s : ℝ) {x : E} (hx : x ∈ X.fiber) :
     fderiv ℝ (D.straightMap s) x = fderiv ℝ X.g x := by

@@ -70,7 +70,9 @@ local notation "F" => EuclideanSpace ℝ (Fin n)
 /-! ## A relative-clopen connectedness helper -/
 
 /-- If `A ⊆ S` is nonempty, closed, and relatively open in `S` (in the metric sense),
-and `S` is preconnected, then `S ⊆ A`.-/
+and `S` is preconnected, then `S ⊆ A`.
+@isnad1 id=le.5h3v.s6.692a8ba44ced from=translated src=- shape=09f8d9da vocab=3ea5855c
+-/
 lemma subset_of_relOpen_closed {α : Type*} [MetricSpace α] {S A : Set α}
     (hS : IsPreconnected S) (hsub : A ⊆ S) (hclosed : IsClosed A)
     (hopen : ∀ z ∈ A, ∃ r > 0, S ∩ Metric.ball z r ⊆ A)
@@ -105,7 +107,9 @@ below needs two parameters, so we redo them over an arbitrary topological space.
 variable {m : ℕ}
 
 /-- Gram–Schmidt is continuous along a pointwise linearly independent continuous
-family of frames, over any parameter space.-/
+family of frames, over any parameter space.
+@isnad1 id=continuo.2h4v.s8.8671f24c6c1f from=translated src=- shape=d90098c9 vocab=2d162bd1
+-/
 lemma continuous_gramSchmidt_family' {X : Type*} [TopologicalSpace X]
     {A : X → Fin m → EuclideanSpace ℝ (Fin m)}
     (hA : ∀ i, Continuous fun t => A t i)
@@ -147,7 +151,9 @@ lemma continuous_gramSchmidt_family' {X : Type*} [TopologicalSpace X]
   exact key (i : ℕ) i rfl
 
 /-- Normalized Gram–Schmidt is continuous along a pointwise independent continuous
-family of frames, over any parameter space.-/
+family of frames, over any parameter space.
+@isnad1 id=continuo.2h4v.s8.7e3548556d1c from=translated src=- shape=d90098c9 vocab=9772e0be
+-/
 lemma continuous_gramSchmidtNormed_family' {X : Type*} [TopologicalSpace X]
     {A : X → Fin m → EuclideanSpace ℝ (Fin m)}
     (hA : ∀ i, Continuous fun t => A t i)
@@ -171,6 +177,9 @@ lemma continuous_gramSchmidtNormed_family' {X : Type*} [TopologicalSpace X]
 def slabFiber (C : LevelCobordismData n) (a b : ℝ) : Set (EuclideanSpace ℝ (Fin (n + 2))) :=
   C.fiber ∩ tcoord ⁻¹' Icc a b
 
+/--
+@isnad1 id=iscompac.0h4v.s6.c0c3084bfeeb from=translated src=- shape=ff383af6 vocab=8cd1280e
+-/
 lemma isCompact_slabFiber (C : LevelCobordismData n) (a b : ℝ) :
     IsCompact (slabFiber C a b) := by
   apply Metric.isCompact_of_isClosed_isBounded
@@ -200,6 +209,9 @@ lemma isCompact_slabFiber (C : LevelCobordismData n) (a b : ℝ) :
       _ ≤ |R| + (|a| + |b|) := add_le_add hspace htime
       _ = |R| + |a| + |b| := by ring
 
+/--
+@isnad1 id=le.1h4v.s5.b3a210b30964 from=translated src=- shape=55945e28 vocab=c700766f
+-/
 lemma slabFiber_subset_slabRegularSet (C : LevelCobordismData n) {a b : ℝ}
     (hreg : regularSlab C.G a b) :
     slabFiber C a b ⊆ slabRegularSet C.G := by
@@ -228,7 +240,9 @@ structure SlabTamedField (C : LevelCobordismData n) (a b : ℝ) where
   lipschitz : ∃ K : NNReal, LipschitzWith K w
 
 /-- Construction of a tamed time field over a regular slab, via a smooth Urysohn
-cutoff.-/
+cutoff.
+@isnad1 id=nonempty.1h4v.s4.81634d6e0472 from=translated src=- shape=3e677473 vocab=b4932899
+-/
 theorem exists_slabTamedField (C : LevelCobordismData n) {a b : ℝ}
     (hreg : regularSlab C.G a b) : Nonempty (SlabTamedField C a b) := by
   -- choose a collar inside the slab-regular set
@@ -343,7 +357,9 @@ namespace SlabTamedField
 
 variable {C : LevelCobordismData n} {a b : ℝ} (W : SlabTamedField C a b)
 
-/-- Global uniqueness for solutions of the tamed ODE.-/
+/-- Global uniqueness for solutions of the tamed ODE.
+@isnad1 id=eq.3h8v.s9.e9c17bea4e66 from=translated src=- shape=68246093 vocab=133da086
+-/
 theorem solution_unique {γ₁ γ₂ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
     (h₁ : ∀ t, HasDerivAt γ₁ (W.w (γ₁ t)) t)
     (h₂ : ∀ t, HasDerivAt γ₂ (W.w (γ₂ t)) t)
@@ -354,7 +370,9 @@ theorem solution_unique {γ₁ γ₂ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
     (fun t => ⟨h₁ t, mem_univ _⟩) (fun t => ⟨h₂ t, mem_univ _⟩) heq
 
 /-- Global existence for the tamed ODE: the field is bounded and globally Lipschitz,
-so Picard–Lindelöf solutions on arbitrarily large intervals can be glued.-/
+so Picard–Lindelöf solutions on arbitrarily large intervals can be glued.
+@isnad1 id=ex.0h6v.s8.3b203b5358f4 from=translated src=- shape=087fda35 vocab=133da086
+-/
 theorem exists_solution (p : EuclideanSpace ℝ (Fin (n + 2))) :
     ∃ γ : ℝ → EuclideanSpace ℝ (Fin (n + 2)),
       γ 0 = p ∧ ∀ t, HasDerivAt γ (W.w (γ t)) t := by
@@ -444,18 +462,29 @@ theorem exists_solution (p : EuclideanSpace ℝ (Fin (n + 2))) :
 def flow (p : EuclideanSpace ℝ (Fin (n + 2))) : ℝ → EuclideanSpace ℝ (Fin (n + 2)) :=
   Classical.choose (W.exists_solution p)
 
+/--
+@isnad1 id=eq.0h6v.s5.09b057cca8fc from=translated src=- shape=fa846eac vocab=811a6ddb
+-/
 @[simp] lemma flow_zero (p : EuclideanSpace ℝ (Fin (n + 2))) : W.flow p 0 = p :=
   (Classical.choose_spec (W.exists_solution p)).1
 
+/--
+@isnad1 id=hasderiv.0h7v.s8.a07a3cc0f6fc from=translated src=- shape=c4beaa96 vocab=46b6ccdf
+-/
 lemma hasDerivAt_flow (p : EuclideanSpace ℝ (Fin (n + 2))) (t : ℝ) :
     HasDerivAt (W.flow p) (W.w (W.flow p t)) t :=
   (Classical.choose_spec (W.exists_solution p)).2 t
 
+/--
+@isnad1 id=continuo.0h6v.s6.817636bc16ff from=translated src=- shape=d9555842 vocab=db3c556f
+-/
 lemma continuous_flow (p : EuclideanSpace ℝ (Fin (n + 2))) : Continuous (W.flow p) :=
   continuous_iff_continuousAt.mpr fun t => (W.hasDerivAt_flow p t).continuousAt
 
 /-- Invariance: a solution of the tamed ODE starting on the fiber stays on the fiber
-(the value of `C.G` is constant along any solution).-/
+(the value of `C.G` is constant along any solution).
+@isnad1 id=mem.2h7v.s8.272c5e1e77ac from=translated src=- shape=31046e1b vocab=2835d4c3
+-/
 theorem solution_mem_fiber {γ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
     (hγ : ∀ t, HasDerivAt γ (W.w (γ t)) t) (h0 : γ 0 ∈ C.fiber) :
     ∀ t, γ t ∈ C.fiber := by
@@ -475,11 +504,16 @@ theorem solution_mem_fiber {γ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
   rw [show C.G (γ 0) = 0 from h0] at h2
   exact h2
 
+/--
+@isnad1 id=mem.1h7v.s7.ef9da89f36fb from=translated src=- shape=7de3e96d vocab=2eb27579
+-/
 lemma flow_mem_fiber {p : EuclideanSpace ℝ (Fin (n + 2))} (hp : p ∈ C.fiber) (t : ℝ) :
     W.flow p t ∈ C.fiber :=
   W.solution_mem_fiber (W.hasDerivAt_flow p) (by rw [W.flow_zero]; exact hp) t
 
-/-- Time-shifts of solutions are solutions.-/
+/-- Time-shifts of solutions are solutions.
+@isnad1 id=hasderiv.1h8v.s9.606fe4c45758 from=translated src=- shape=b0428235 vocab=133da086
+-/
 lemma hasDerivAt_shift {γ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
     (hγ : ∀ t, HasDerivAt γ (W.w (γ t)) t) (c : ℝ) (u : ℝ) :
     HasDerivAt (fun z => γ (c + z)) (W.w (γ (c + u))) u := by
@@ -487,7 +521,9 @@ lemma hasDerivAt_shift {γ : ℝ → EuclideanSpace ℝ (Fin (n + 2))}
   have h2 := (hγ (c + u)).scomp u h1
   simpa [Function.comp_def] using h2
 
-/-- The flow shifted in time is the flow of the shifted starting point.-/
+/-- The flow shifted in time is the flow of the shifted starting point.
+@isnad1 id=eq.0h7v.s6.c299805c4483 from=translated src=- shape=bad08dc4 vocab=811a6ddb
+-/
 lemma flow_shift (p : EuclideanSpace ℝ (Fin (n + 2))) (c : ℝ) :
     W.flow (W.flow p c) = fun u => W.flow p (c + u) := by
   apply W.solution_unique (t₀ := 0)
@@ -497,7 +533,9 @@ lemma flow_shift (p : EuclideanSpace ℝ (Fin (n + 2))) (c : ℝ) :
 
 /-! ## Grönwall: Lipschitz dependence on the initial condition -/
 
-/-- Distance between flow lines grows at most exponentially.-/
+/-- Distance between flow lines grows at most exponentially.
+@isnad1 id=le.1h9v.s8.bf289f620482 from=translated src=- shape=65286877 vocab=cb709a63
+-/
 lemma dist_flow_flow_le {K : NNReal} (hK : LipschitzWith K W.w)
     (p q : EuclideanSpace ℝ (Fin (n + 2))) (s : ℝ) :
     dist (W.flow p s) (W.flow q s) ≤ dist p q * Real.exp (K * |s|) := by
@@ -540,7 +578,9 @@ lemma dist_flow_flow_le {K : NNReal} (hK : LipschitzWith K W.w)
     rw [neg_neg, sub_zero] at h
     rwa [abs_of_neg hs]
 
-/-- The time-`s` flow map is Lipschitz.-/
+/-- The time-`s` flow map is Lipschitz.
+@isnad1 id=lipschit.1h7v.s8.425779be3227 from=translated src=- shape=d4593c9a vocab=e92ca22d
+-/
 lemma lipschitzWith_flow_apply {K : NNReal} (hK : LipschitzWith K W.w) (s : ℝ) :
     LipschitzWith (Real.toNNReal (Real.exp (K * |s|))) (fun p => W.flow p s) := by
   apply LipschitzWith.of_dist_le_mul
@@ -553,11 +593,16 @@ lemma lipschitzWith_flow_apply {K : NNReal} (hK : LipschitzWith K W.w) (s : ℝ)
           Real.le_coe_toNNReal _
         exact mul_le_mul_of_nonneg_right h1 dist_nonneg
 
+/--
+@isnad1 id=continuo.0h6v.s7.dc1fae311b05 from=translated src=- shape=b34d1675 vocab=db3c556f
+-/
 lemma continuous_flow_apply (s : ℝ) : Continuous (fun p => W.flow p s) := by
   obtain ⟨K, hK⟩ := W.lipschitz
   exact (W.lipschitzWith_flow_apply hK s).continuous
 
-/-- The flow is Lipschitz in time, with constant the field bound.-/
+/-- The flow is Lipschitz in time, with constant the field bound.
+@isnad1 id=le.0h8v.s7.cc1c6b1dff03 from=translated src=- shape=5f84e6a5 vocab=6bb51cc1
+-/
 lemma dist_flow_self_le (p : EuclideanSpace ℝ (Fin (n + 2))) (s s' : ℝ) :
     dist (W.flow p s) (W.flow p s') ≤ (W.bound : ℝ) * |s - s'| := by
   -- MVT with the global speed bound, on the segment between `s'` and `s`
@@ -579,7 +624,9 @@ lemma dist_flow_self_le (p : EuclideanSpace ℝ (Fin (n + 2))) (s s' : ℝ) :
     calc ‖W.flow p s' - W.flow p s‖ ≤ (W.bound : ℝ) * (s' - s) := h1
       _ = (W.bound : ℝ) * -(s - s') := by ring
 
-/-- Joint continuity of the flow in (initial point, time).-/
+/-- Joint continuity of the flow in (initial point, time).
+@isnad1 id=continuo.0h5v.s8.431047004191 from=translated src=- shape=5bee87f6 vocab=b7ca5a77
+-/
 lemma continuous_flow_uncurry :
     Continuous fun q : EuclideanSpace ℝ (Fin (n + 2)) × ℝ => W.flow q.1 q.2 := by
   obtain ⟨K, hK⟩ := W.lipschitz

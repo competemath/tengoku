@@ -45,19 +45,29 @@ def tubeDeltaOneClass (n : ℕ) (hn : 2 ≤ n) : StableSpherePi n :=
 /-- Expected delta of the standard twist-`k` northern fiber.-/
 def tubeExpectedDelta (k : ℕ) : ZMod 2 := tubeTwistParity k
 
+/--
+@isnad1 id=eq.0h0v.s6.1eebfa051d14 from=translated src=- shape=3a1213c4 vocab=95388396
+-/
 @[simp] theorem tubeExpectedDelta_zero : tubeExpectedDelta 0 = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.8d4bc089734e from=translated src=- shape=3a1213c4 vocab=95388396
+-/
 @[simp] theorem tubeExpectedDelta_one : tubeExpectedDelta 1 = 1 := by
   rfl
 
-/-- The local tube framing contract computes the expected one-component delta.-/
+/-- The local tube framing contract computes the expected one-component delta.
+@isnad1 id=eq.0h2v.s4.e6aa0c451ea4 from=translated src=- shape=a9dbed4d vocab=a9960861
+-/
 theorem tubeNorthFiberContract_expectedDelta (m k : ℕ) :
     (tubeNorthFiberContract (m := m) k).parity = tubeExpectedDelta k := by
   rw [tubeNorthFiberContract_parity]
   rfl
 
-/-- The two standard tubes have different expected delta values.-/
+/-- The two standard tubes have different expected delta values.
+@isnad1 id=ne.0h0v.s4.3f994b7cc1b3 from=translated src=- shape=2560e880 vocab=95388396
+-/
 theorem tubeExpectedDelta_zero_ne_one :
     tubeExpectedDelta 0 ≠ tubeExpectedDelta 1 := by
   decide

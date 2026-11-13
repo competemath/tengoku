@@ -59,15 +59,24 @@ def perturbation (s : ℝ) (x : E) : E :=
 def forward (s : ℝ) (x : E) : E :=
   x + D.perturbation s x
 
+/--
+@isnad1 id=contdiff.0h2v.s9.53fda3ee6b31 from=translated src=- shape=5e6c3875 vocab=c3b6277b
+-/
 theorem contDiff_joint_perturbation :
     ContDiff ℝ ∞ (fun p : ℝ × E => D.perturbation p.1 p.2) := by
   exact (contDiff_normRamp.comp contDiff_fst).smul
     (D.smooth.comp contDiff_snd)
 
+/--
+@isnad1 id=contdiff.0h2v.s9.ef4a9163a63b from=translated src=- shape=5e6c3875 vocab=a27d832b
+-/
 theorem contDiff_joint_forward :
     ContDiff ℝ ∞ (fun p : ℝ × E => D.forward p.1 p.2) := by
   exact contDiff_snd.add D.contDiff_joint_perturbation
 
+/--
+@isnad1 id=lipschit.0h3v.s7.ab06c2671282 from=translated src=- shape=85f579fe vocab=88f8a237
+-/
 theorem perturbation_lipschitz (s : ℝ) :
     LipschitzWith D.K (D.perturbation s) := by
   rw [lipschitzWith_iff_dist_le_mul]
@@ -90,6 +99,9 @@ theorem perturbation_lipschitz (s : ℝ) :
 def inverseOperator (s : ℝ) (y x : E) : E :=
   y - D.perturbation s x
 
+/--
+@isnad1 id=contract.0h4v.s6.1424bc5ba45f from=translated src=- shape=056faec3 vocab=2de1dcd6
+-/
 theorem inverseOperator_contracting (s : ℝ) (y : E) :
     ContractingWith D.K (D.inverseOperator s y) := by
   refine ⟨D.K_lt_one, ?_⟩
@@ -104,10 +116,16 @@ def inverse (s : ℝ) (y : E) : E :=
   (D.inverseOperator_contracting s y).fixedPoint
     (D.inverseOperator s y)
 
+/--
+@isnad1 id=eq.0h4v.s5.82e27c33da08 from=translated src=- shape=36598338 vocab=e2f04d97
+-/
 theorem inverse_fixed (s : ℝ) (y : E) :
     D.inverseOperator s y (D.inverse s y) = D.inverse s y :=
   (D.inverseOperator_contracting s y).fixedPoint_isFixedPt
 
+/--
+@isnad1 id=eq.0h4v.s5.a78e4362d54f from=translated src=- shape=919c28f5 vocab=5a1c740c
+-/
 theorem forward_inverse (s : ℝ) (y : E) :
     D.forward s (D.inverse s y) = y := by
   have h := D.inverse_fixed s y
@@ -115,6 +133,9 @@ theorem forward_inverse (s : ℝ) (y : E) :
   rw [forward]
   exact (sub_eq_iff_eq_add.mp h).symm
 
+/--
+@isnad1 id=eq.0h4v.s5.edd7ee9d05fa from=translated src=- shape=919c28f5 vocab=5a1c740c
+-/
 theorem inverse_forward (s : ℝ) (x : E) :
     D.inverse s (D.forward s x) = x := by
   symm
@@ -122,21 +143,33 @@ theorem inverse_forward (s : ℝ) (x : E) :
     change x + D.perturbation s x - D.perturbation s x = x
     abel)
 
+/--
+@isnad1 id=bijectiv.0h3v.s5.fa296ccf8221 from=translated src=- shape=bfecba9b vocab=221a1f3b
+-/
 theorem forward_bijective (s : ℝ) : Bijective (D.forward s) :=
   ⟨fun x y hxy => by
       rw [← D.inverse_forward s x, ← D.inverse_forward s y, hxy],
     fun y => ⟨D.inverse s y, D.forward_inverse s y⟩⟩
 
+/--
+@isnad1 id=contdiff.0h3v.s8.a8d3bafc7fff from=translated src=- shape=0841a5a2 vocab=82c9f44b
+-/
 theorem contDiff_perturbation_slice (s : ℝ) :
     ContDiff ℝ ∞ (D.perturbation s) := by
   simpa [Function.comp_def] using D.contDiff_joint_perturbation.comp
     (contDiff_const.prodMk contDiff_id)
 
+/--
+@isnad1 id=contdiff.0h3v.s8.79ffe98553c2 from=translated src=- shape=0841a5a2 vocab=5f6d93bc
+-/
 theorem contDiff_forward_slice (s : ℝ) :
     ContDiff ℝ ∞ (D.forward s) := by
   simpa [Function.comp_def] using D.contDiff_joint_forward.comp
     (contDiff_const.prodMk contDiff_id)
 
+/--
+@isnad1 id=lt.0h4v.s10.101d54847ee8 from=translated src=- shape=1cdf7c33 vocab=f7c5c980
+-/
 theorem norm_fderiv_perturbation_lt_one (s : ℝ) (x : E) :
     ‖fderiv ℝ (D.perturbation s) x‖ < 1 := by
   calc
@@ -144,6 +177,9 @@ theorem norm_fderiv_perturbation_lt_one (s : ℝ) (x : E) :
       norm_fderiv_le_of_lipschitz ℝ (D.perturbation_lipschitz s)
     _ < 1 := by exact_mod_cast D.K_lt_one
 
+/--
+@isnad1 id=eq.0h4v.s12.ed6d3b9722c1 from=translated src=- shape=899cf4f4 vocab=8c404496
+-/
 theorem fderiv_forward_eq (s : ℝ) (x : E) :
     fderiv ℝ (D.forward s) x =
       ContinuousLinearMap.id ℝ E + fderiv ℝ (D.perturbation s) x := by
@@ -152,6 +188,9 @@ theorem fderiv_forward_eq (s : ℝ) (x : E) :
   change fderiv ℝ (fun y : E => y + D.perturbation s y) x = _
   exact ((hasFDerivAt_id x).add hp.hasFDerivAt).fderiv
 
+/--
+@isnad1 id=bijectiv.0h4v.s11.88608df6a38b from=translated src=- shape=12b69496 vocab=9fff7607
+-/
 theorem fderiv_forward_bijective (s : ℝ) (x : E) :
     Bijective (fderiv ℝ (D.forward s) x) := by
   let L : E →L[ℝ] E := fderiv ℝ (D.perturbation s) x
@@ -162,6 +201,9 @@ theorem fderiv_forward_bijective (s : ℝ) (x : E) :
   simpa [sub_neg_eq_add] using
     (ContinuousLinearMap.isUnit_iff_bijective.mp hu)
 
+/--
+@isnad1 id=isinvert.0h4v.s10.c02f01bf055e from=translated src=- shape=df8304a6 vocab=d9c7d7e6
+-/
 theorem fderiv_forward_isInvertible (s : ℝ) (x : E) :
     (fderiv ℝ (D.forward s) x).IsInvertible := by
   have hb := D.fderiv_forward_bijective s x
@@ -176,6 +218,9 @@ theorem fderiv_forward_isInvertible (s : ℝ) (x : E) :
 def inverseEquation (q : ((ℝ × E) × E)) : E :=
   D.forward q.1.1 q.2 - q.1.2
 
+/--
+@isnad1 id=contdiff.0h2v.s10.778d47d94e8c from=translated src=- shape=a899793a vocab=28e3ebab
+-/
 theorem contDiff_inverseEquation : ContDiff ℝ ∞ D.inverseEquation := by
   exact (D.contDiff_joint_forward.comp
     ((contDiff_fst.comp contDiff_fst).prodMk contDiff_snd)).sub
@@ -185,6 +230,9 @@ theorem contDiff_inverseEquation : ContDiff ℝ ∞ D.inverseEquation := by
 def inverseSection (q : ℝ × E) : E :=
   D.inverse q.1 q.2
 
+/--
+@isnad1 id=eq.0h4v.s12.dfa2e7378f4f from=translated src=- shape=ef9e6f23 vocab=baccfc9c
+-/
 theorem fderiv_inverseEquation_comp_inr (q : ℝ × E) (z : E) :
     (fderiv ℝ D.inverseEquation (q, z)).comp
         (ContinuousLinearMap.inr ℝ (ℝ × E) E) =
@@ -202,13 +250,18 @@ theorem fderiv_inverseEquation_comp_inr (q : ℝ × E) (z : E) :
   rw [← hslice]
   exact hcomp.fderiv.symm
 
+/--
+@isnad1 id=isinvert.0h4v.s12.9e778386a36e from=translated src=- shape=f3371f3a vocab=d15066f9
+-/
 theorem inverseEquation_partial_isInvertible (q : ℝ × E) (z : E) :
     ((fderiv ℝ D.inverseEquation (q, z)).comp
       (ContinuousLinearMap.inr ℝ (ℝ × E) E)).IsInvertible := by
   rw [D.fderiv_inverseEquation_comp_inr q z]
   exact D.fderiv_forward_isInvertible q.1 z
 
-/-- The Banach inverse is jointly smooth in time and target.-/
+/-- The Banach inverse is jointly smooth in time and target.
+@isnad1 id=contdiff.0h2v.s9.ceb15916340f from=translated src=- shape=405c4484 vocab=f2fdbc64
+-/
 theorem contDiff_inverseSection : ContDiff ℝ ∞ D.inverseSection := by
   rw [contDiff_iff_contDiffAt]
   intro q
@@ -234,13 +287,18 @@ theorem contDiff_inverseSection : ContDiff ℝ ∞ D.inverseSection := by
     rw [← hfwd, D.inverse_forward]
   exact hψ.congr_of_eventuallyEq heq
 
+/--
+@isnad1 id=contdiff.0h3v.s8.d9fa963fc057 from=translated src=- shape=0841a5a2 vocab=faaf18de
+-/
 theorem contDiff_inverse_slice (s : ℝ) :
     ContDiff ℝ ∞ (D.inverse s) := by
   simpa [inverseSection, Function.comp_def] using
     D.contDiff_inverseSection.comp (contDiff_const.prodMk contDiff_id)
 
 /-- The derivative of the inverse is surjective, obtained by differentiating
-`inverse s ∘ forward s = id`.-/
+`inverse s ∘ forward s = id`.
+@isnad1 id=surjecti.0h4v.s11.ed9b161cae73 from=translated src=- shape=12b69496 vocab=ef63cc1e
+-/
 theorem inverse_fderiv_surjective (s : ℝ) (x : E) :
     Surjective (fderiv ℝ (D.inverse s) x) := by
   let f : E → E := D.forward s
@@ -268,6 +326,9 @@ theorem inverse_fderiv_surjective (s : ℝ) (x : E) :
   have hz := congrArg (fun L : E →L[ℝ] E => L z) hderiv
   simpa [ContinuousLinearMap.comp_apply] using hz
 
+/--
+@isnad1 id=eq.0h2v.s6.89bffab2f74c from=translated src=- shape=1fdf8f0a vocab=f1e1366a
+-/
 theorem forward_zero : D.forward 0 = id := by
   funext x
   simp [forward, perturbation,
@@ -284,19 +345,29 @@ def toSmoothAmbientIsotopy : SmoothAmbientIsotopy n where
   right_inv := fun s _ x => D.forward_inverse s x
   inverse_fderiv_surjective := fun s _ x => D.inverse_fderiv_surjective s x
 
+/--
+@isnad1 id=eq.0h4v.s5.5375af15a88d from=translated src=- shape=c4705931 vocab=4bc95a48
+-/
 @[simp] theorem toSmoothAmbientIsotopy_forward (s : ℝ) (x : E) :
     D.toSmoothAmbientIsotopy.forward s x = D.forward s x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.80fe57a5fc94 from=translated src=- shape=c4705931 vocab=a3c91cd7
+-/
 @[simp] theorem toSmoothAmbientIsotopy_inverse (s : ℝ) (x : E) :
     D.toSmoothAmbientIsotopy.inverse s x = D.inverse s x := rfl
 
-/-- Endpoint action is the prescribed displacement.-/
+/-- Endpoint action is the prescribed displacement.
+@isnad1 id=eq.0h3v.s8.2a9c384ae99f from=translated src=- shape=942e9c90 vocab=803c8e66
+-/
 theorem toSmoothAmbientIsotopy_forward_one (x : E) :
     D.toSmoothAmbientIsotopy.forward 1 x = x + D.field x := by
   simp [toSmoothAmbientIsotopy, forward, perturbation,
     normRamp_of_three_quarter_le (show (3 / 4 : ℝ) ≤ 1 by norm_num)]
 
-/-- Vanishing of the field on a set gives literal relative fixedness.-/
+/-- Vanishing of the field on a set gives literal relative fixedness.
+@isnad1 id=fixedon.1h3v.s8.ee6eff7a2674 from=translated src=- shape=82e3c53d vocab=5fc55bcb
+-/
 theorem fixedOn_of_field_eq_zero {K : Set E}
     (hzero : ∀ x ∈ K, D.field x = 0) :
     D.toSmoothAmbientIsotopy.FixedOn K := by
@@ -305,7 +376,9 @@ theorem fixedOn_of_field_eq_zero {K : Set E}
 
 /-- Every compactly supported smooth displacement can be uniformly scaled
 into the small regime.  Downstream finite-subdivision arguments apply this to
-a divided difference, so the scale is the actual time-step length.-/
+a divided difference, so the scale is the actual time-step length.
+@isnad1 id=ex.2h2v.s9.e95c2f389a61 from=translated src=- shape=ee6e1b45 vocab=d89d538c
+-/
 theorem exists_scaled (raw : E → E) (hraw : ContDiff ℝ ∞ raw)
     (hsupp : HasCompactSupport raw) :
     ∃ ε : ℝ, ε > 0 ∧ ∃ D : SmallAmbientDisplacement n,

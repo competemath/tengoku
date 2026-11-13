@@ -28,6 +28,9 @@ local notation "F" => EuclideanSpace ℝ (Fin (m + 2))
 
 /-! ## The plateau is invisible on the northern sheet -/
 
+/--
+@isnad1 id=eq.0h2v.s6.b971e5ea9e8a from=translated src=- shape=fda4a930 vocab=c746b1b5
+-/
 @[simp] theorem vertC_plateauAux (u : E) :
     vertC (plateauAux u) = plateauB (vertC u) := by
   simp [plateauAux, vertC, eLast]
@@ -48,12 +51,18 @@ def tubeOffsetCirclePoint (k : ℕ) (y : F) (θ : ℝ) : E :=
 def tubeBridgeCirclePoint (k : ℕ) (y : F) (θ : ℝ) : E :=
   WithLp.toLp 2 fun i => (tubeOffsetCirclePoint k y θ i + 6) / 12
 
+/--
+@isnad1 id=eq.0h5v.s8.b36580d61306 from=translated src=- shape=d771d60a vocab=f0572fb1
+-/
 @[simp] theorem tubeBridgeCirclePoint_apply (k : ℕ) (y : F) (θ : ℝ)
     (i : Fin (m + 3)) :
     tubeBridgeCirclePoint k y θ i =
       (tubeOffsetCirclePoint k y θ i + 6) / 12 :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.e870590855be from=translated src=- shape=6422d8fa vocab=5255b07c
+-/
 theorem tubeApproxAmbient_bridgeCirclePoint (k : ℕ) (y : F) (θ : ℝ) :
     tubeApproxAmbient (WithLp.ofLp (tubeBridgeCirclePoint k y θ)) =
       tubeOffsetCirclePoint k y θ := by

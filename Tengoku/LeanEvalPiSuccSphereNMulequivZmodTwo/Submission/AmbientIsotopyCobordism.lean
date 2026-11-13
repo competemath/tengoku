@@ -53,14 +53,23 @@ namespace SmoothAmbientIsotopy
 
 variable (A : SmoothAmbientIsotopy n)
 
+/--
+@isnad1 id=eq.0h3v.s5.5c2a2a931e20 from=translated src=- shape=b78e8d5a vocab=86dac23c
+-/
 lemma inverse_zero (x : E) : A.inverse 0 x = x := by
   have h := A.right_inv 0 ⟨le_rfl, zero_le_one⟩ x
   rw [A.forward_zero] at h
   exact h
 
+/--
+@isnad1 id=contdiff.0h3v.s8.a680ea161273 from=translated src=- shape=0841a5a2 vocab=4d789bc3
+-/
 lemma contDiff_forward_slice (s : ℝ) : ContDiff ℝ ∞ (A.forward s) := by
   exact A.forward_smooth.comp (contDiff_const.prodMk contDiff_id)
 
+/--
+@isnad1 id=contdiff.0h3v.s8.7d8363c25246 from=translated src=- shape=0841a5a2 vocab=c250d486
+-/
 lemma contDiff_inverse_slice (s : ℝ) : ContDiff ℝ ∞ (A.inverse s) := by
   exact A.inverse_smooth.comp (contDiff_const.prodMk contDiff_id)
 
@@ -91,10 +100,15 @@ def pullback (X : FramedLevelSet n) : FramedLevelSet n where
     rw [hchain]
     exact hX.comp hA
 
+/--
+@isnad1 id=eq.0h4v.s5.c67251493584 from=translated src=- shape=05224a7b vocab=a3131136
+-/
 @[simp] theorem pullback_g (X : FramedLevelSet n) (x : E) :
     (A.pullback X).g x = X.g (A.inverse 1 x) := rfl
 
-/-- The endpoint fiber is the forward image of the source fiber.-/
+/-- The endpoint fiber is the forward image of the source fiber.
+@isnad1 id=eq.0h3v.s6.a154fe179f7f from=translated src=- shape=f9a8da81 vocab=30536238
+-/
 theorem pullback_fiber (X : FramedLevelSet n) :
     (A.pullback X).fiber = A.forward 1 '' X.fiber := by
   ext x
@@ -114,6 +128,9 @@ def pullbackSign {X : FramedLevelSet n} (S : FiberSign X) :
   continuous := S.continuous.comp (A.contDiff_inverse_slice 1).continuous
   nonzero _ hx := S.nonzero _ hx
 
+/--
+@isnad1 id=eq.0h5v.s5.b027306a0aaa from=translated src=- shape=bacdc11a vocab=21088930
+-/
 @[simp] theorem pullbackSign_apply {X : FramedLevelSet n}
     (S : FiberSign X) (x : E) :
     A.pullbackSign S x = S (A.inverse 1 x) := rfl
@@ -123,18 +140,30 @@ def inverseTrack
     (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : E :=
   A.inverse (normRamp (vertC v)) (initCLM (n + 1) v)
 
+/--
+@isnad1 id=eq.0h4v.s5.bdc746c28a97 from=translated src=- shape=370451c2 vocab=549914ed
+-/
 lemma inverseTrack_spaceTime (x : E) (t : ℝ) :
     A.inverseTrack (spaceTime x t) = A.inverse (normRamp t) x := by
   rw [inverseTrack, vertC_spaceTime, initCLM_spaceTime]
 
+/--
+@isnad1 id=contdiff.0h2v.s9.04fd0143ecc7 from=translated src=- shape=ef99916a vocab=f53c9a8c
+-/
 lemma contDiff_inverseTrack : ContDiff ℝ ∞ A.inverseTrack := by
   exact A.inverse_smooth.comp
     ((contDiff_normRamp.comp contDiff_vertC).prodMk (initCLM (n + 1)).contDiff)
 
+/--
+@isnad1 id=eq.1h4v.s6.58fb32f6f422 from=translated src=- shape=6df301ce vocab=702e8bc7
+-/
 lemma inverseTrack_of_le_quarter (x : E) {t : ℝ} (ht : t ≤ 1 / 4) :
     A.inverseTrack (spaceTime x t) = x := by
   rw [A.inverseTrack_spaceTime, normRamp_of_le_quarter ht, A.inverse_zero]
 
+/--
+@isnad1 id=eq.1h4v.s6.b9e194d10172 from=translated src=- shape=5cb8eb3f vocab=9984f093
+-/
 lemma inverseTrack_of_three_quarter_le (x : E) {t : ℝ}
     (ht : 3 / 4 ≤ t) :
     A.inverseTrack (spaceTime x t) = A.inverse 1 x := by
@@ -214,7 +243,9 @@ def signedCobordism {X : FramedLevelSet n} (S : FiberSign X) :
     rfl
 
 /-- Every smooth ambient isotopy therefore gives an actual signed framed
-cobordism to the transported endpoint presentation.-/
+cobordism to the transported endpoint presentation.
+@isnad1 id=nonempty.0h4v.s4.52b60195463c from=translated src=- shape=cb880272 vocab=d6f8271e
+-/
 theorem nonempty_signedCobordism {X : FramedLevelSet n} (S : FiberSign X) :
     Nonempty (SignedFramedLevelCobordism S (A.pullbackSign S)) :=
   ⟨A.signedCobordism S⟩

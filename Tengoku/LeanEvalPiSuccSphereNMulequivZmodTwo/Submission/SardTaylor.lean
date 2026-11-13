@@ -27,6 +27,9 @@ open scoped ContDiff Topology NNReal
 
 /-! ## Vanishing iterated derivatives transfer to the derivative function -/
 
+/--
+@isnad1 id=eq.1h4v.s9.9cb5fe64d144 from=translated src=- shape=9676b400 vocab=aad9c0bc
+-/
 theorem fderiv_eq_zero_of_iteratedFDeriv_one_eq_zero
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] {f : E → F} {x : E}
@@ -37,6 +40,9 @@ theorem fderiv_eq_zero_of_iteratedFDeriv_one_eq_zero
   rw [h2, h]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s12.1f6ffd9f5cff from=translated src=- shape=674f52a1 vocab=9c8be8dd
+-/
 theorem iteratedFDeriv_fderiv_eq_zero
     {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] {f : E → F} {x : E} {j : ℕ}
@@ -55,7 +61,9 @@ theorem iteratedFDeriv_fderiv_eq_zero
 /-- **Taylor estimate with vanishing derivatives.**  If `f` is `C^∞` on an open
 set `U`, `s ⊆ U` is convex, all iterated derivatives of orders `1, …, k` of `f`
 vanish at `x ∈ s`, and `‖D^{k+1} f‖ ≤ M` on `s`, then
-`‖f y - f x‖ ≤ M * ‖y - x‖ ^ (k+1)` for all `y ∈ s`.-/
+`‖f y - f x‖ ≤ M * ‖y - x‖ ^ (k+1)` for all `y ∈ s`.
+@isnad1 id=le.8h9v.s9.aa0ce9356c3f from=translated src=- shape=b95e3bee vocab=a7e8a234
+-/
 theorem norm_sub_le_of_vanishing_derivs
     {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] (k : ℕ) :
     ∀ {F : Type} [NormedAddCommGroup F] [NormedSpace ℝ F]
@@ -122,7 +130,9 @@ theorem norm_sub_le_of_vanishing_derivs
 /-! ## The subdivision grid -/
 
 /-- One-dimensional grid: any `u ∈ [0, 2ρ]` is within `ρ/m` of one of the `m`
-points `(2j+1)ρ/m`, `j = 0, …, m-1`.-/
+points `(2j+1)ρ/m`, `j = 0, …, m-1`.
+@isnad1 id=ex.4h3v.s7.5f3b5a207f46 from=translated src=- shape=3216de6b vocab=fc3c149a
+-/
 theorem exists_grid_index {ρ : ℝ} (hρ : 0 < ρ) {m : ℕ} (hm : 0 < m) {u : ℝ}
     (h0 : 0 ≤ u) (h2 : u ≤ 2 * ρ) :
     ∃ j : ℕ, j < m ∧ |u - (2 * j + 1) * ρ / m| ≤ ρ / m := by
@@ -191,7 +201,9 @@ def gridCenter (x₀ : Fin p → ℝ) (ρ : ℝ) (m : ℕ) (v : Fin p → Fin m)
     Fin p → ℝ :=
   fun i => x₀ i - ρ + (2 * (v i : ℕ) + 1) * ρ / m
 
-/-- The subcubes cover the cube.-/
+/-- The subcubes cover the cube.
+@isnad1 id=le.2h4v.s6.79c75cc76e8e from=translated src=- shape=8875c781 vocab=f121fc96
+-/
 theorem closedBall_subset_iUnion_grid {x₀ : Fin p → ℝ} {ρ : ℝ} (hρ : 0 < ρ)
     {m : ℕ} (hm : 0 < m) :
     closedBall x₀ ρ ⊆
@@ -220,7 +232,9 @@ theorem closedBall_subset_iUnion_grid {x₀ : Fin p → ℝ} {ρ : ℝ} (hρ : 0
   rw [h4]
   exact h3
 
-/-- Each subcube is contained in the big cube.-/
+/-- Each subcube is contained in the big cube.
+@isnad1 id=le.2h5v.s6.61e82e8f3e98 from=translated src=- shape=f121f816 vocab=59894796
+-/
 theorem grid_subset_closedBall {x₀ : Fin p → ℝ} {ρ : ℝ} (hρ : 0 < ρ) {m : ℕ}
     (hm : 0 < m) (v : Fin p → Fin m) :
     closedBall (gridCenter x₀ ρ m v) (ρ / m) ⊆ closedBall x₀ ρ := by
@@ -261,7 +275,9 @@ theorem grid_subset_closedBall {x₀ : Fin p → ℝ} {ρ : ℝ} (hρ : 0 < ρ) 
 
 /-- Milnor's Step 3, local version: on a closed cube inside `U`, the image of
 the set of points where all derivatives up to order `k` vanish is null,
-provided `p + 1 ≤ (k+1) q`.-/
+provided `p + 1 ≤ (k+1) q`.
+@isnad1 id=eq.5h7v.s8.f097f7a2ce8a from=translated src=- shape=17cf2837 vocab=253df9e2
+-/
 theorem step3_ball {U : Set (Fin p → ℝ)} (hU : IsOpen U)
     {f : (Fin p → ℝ) → Fin q → ℝ} (hf : ContDiffOn ℝ ∞ f U) {k : ℕ}
     (hk : p + 1 ≤ (k + 1) * q) {x₀ : Fin p → ℝ} {ρ : ℝ} (hρ : 0 < ρ)
@@ -387,7 +403,9 @@ theorem step3_ball {U : Set (Fin p → ℝ)} (hU : IsOpen U)
   exact le_zero_iff.1 h0
 
 /-- **Milnor's Step 3.**  The image of the set of deeply critical points
-(`C_k` with `p + 1 ≤ (k+1) q`) is null.-/
+(`C_k` with `p + 1 ≤ (k+1) q`) is null.
+@isnad1 id=eq.3h5v.s8.16f3cbe41001 from=translated src=- shape=d0dfaa5e vocab=c1b6ba8b
+-/
 theorem step3 {U : Set (Fin p → ℝ)} (hU : IsOpen U)
     {f : (Fin p → ℝ) → Fin q → ℝ} (hf : ContDiffOn ℝ ∞ f U) {k : ℕ}
     (hk : p + 1 ≤ (k + 1) * q) :

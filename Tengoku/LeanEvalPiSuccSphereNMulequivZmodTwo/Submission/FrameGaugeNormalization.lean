@@ -37,7 +37,9 @@ local notation "F" => EuclideanSpace ℝ (Fin n)
 /-! ## The derivative calculation -/
 
 /-- At a zero of `g`, differentiating a varying linear gauge contributes no
-product-rule correction.-/
+product-rule correction.
+@isnad1 id=eq.3h4v.s12.391f7383ce55 from=translated src=- shape=783d534e vocab=2b4628d3
+-/
 theorem fderiv_gauge_apply_of_eq_zero
     {Q : E → F →L[ℝ] F} {g : E → F}
     (hQ : ContDiff ℝ ∞ Q) (hg : ContDiff ℝ ∞ g)
@@ -80,13 +82,18 @@ def gaugeTransform (X : FramedLevelSet n) (Q : E → F →L[ℝ] F)
     rw [fderiv_gauge_apply_of_eq_zero hQ X.smooth hxg]
     exact (hQbij x).2.comp (X.regular x hxg)
 
+/--
+@isnad1 id=eq.2h4v.s11.e6251e419be7 from=translated src=- shape=7f76c986 vocab=6b575163
+-/
 @[simp] theorem gaugeTransform_g (X : FramedLevelSet n)
     (Q : E → F →L[ℝ] F) (hQ : ContDiff ℝ ∞ Q)
     (hQbij : ∀ x, Bijective (Q x)) (x : E) :
     (X.gaugeTransform Q hQ hQbij).g x = Q x (X.g x) :=
   rfl
 
-/-- A pointwise invertible gauge does not move the zero fiber.-/
+/-- A pointwise invertible gauge does not move the zero fiber.
+@isnad1 id=eq.2h3v.s10.93b111acc27f from=translated src=- shape=e162b256 vocab=cc9f85f1
+-/
 theorem gaugeTransform_fiber (X : FramedLevelSet n)
     (Q : E → F →L[ℝ] F) (hQ : ContDiff ℝ ∞ Q)
     (hQbij : ∀ x, Bijective (Q x)) :
@@ -114,6 +121,9 @@ def gaugeTransform {X : FramedLevelSet n} (S : FiberSign X)
     FiberSign (X.gaugeTransform Q hQ hQbij) :=
   S.restrict (by rw [FramedLevelSet.gaugeTransform_fiber])
 
+/--
+@isnad1 id=eq.2h5v.s10.7fa7652e5da8 from=translated src=- shape=f1481944 vocab=7d8936c0
+-/
 @[simp] theorem gaugeTransform_apply {X : FramedLevelSet n} (S : FiberSign X)
     (Q : E → F →L[ℝ] F) (hQ : ContDiff ℝ ∞ Q)
     (hQbij : ∀ x, Bijective (Q x)) (x : E) :
@@ -124,7 +134,9 @@ end FiberSign
 
 /-! ## A smooth family of gauges -/
 
-/-- Joint smoothness gives smoothness of every fixed-parameter gauge.-/
+/-- Joint smoothness gives smoothness of every fixed-parameter gauge.
+@isnad1 id=contdiff.1h3v.s11.e007b2ae2131 from=translated src=- shape=8dbe06e4 vocab=a3cd9f1e
+-/
 theorem contDiff_gauge_slice
     {Q : ℝ → E → F →L[ℝ] F}
     (hQ : ContDiff ℝ ∞ (fun p : ℝ × E => Q p.1 p.2)) (s : ℝ) :
@@ -167,6 +179,9 @@ def ofGauge (X : FramedLevelSet n)
       (contDiff_gauge_slice hQ s) X.smooth hx]
     exact (hQbij s ⟨hs0, hs1⟩ x).2.comp (X.regular x hx)
 
+/--
+@isnad1 id=eq.3h5v.s11.ed6632a51558 from=translated src=- shape=05ba06b7 vocab=239c9bcd
+-/
 @[simp] theorem ofGauge_H (X : FramedLevelSet n)
     (Q : ℝ → E → F →L[ℝ] F)
     (hQ : ContDiff ℝ ∞ (fun p : ℝ × E => Q p.1 p.2))

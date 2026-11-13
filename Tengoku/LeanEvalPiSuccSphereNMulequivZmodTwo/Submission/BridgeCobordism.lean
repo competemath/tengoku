@@ -69,6 +69,9 @@ def spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     EuclideanSpace ℝ (Fin (n + 1 + 1)) :=
   WithLp.toLp 2 (Fin.snoc (WithLp.ofLp x) t)
 
+/--
+@isnad1 id=eq.0h3v.s10.e2f9ed548f08 from=translated src=- shape=9186efab vocab=f6e5c580
+-/
 lemma initCLM_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     initCLM (n + 1) (spaceTime x t) = x := by
   apply (WithLp.equiv 2 _).injective
@@ -76,12 +79,17 @@ lemma initCLM_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
   show (Fin.snoc (α := fun _ => ℝ) (WithLp.ofLp x) t) j.castSucc = x j
   exact Fin.snoc_castSucc _ _ j
 
+/--
+@isnad1 id=eq.0h3v.s5.f8b60d050b81 from=translated src=- shape=f5f7f7e1 vocab=80e1a222
+-/
 lemma vertC_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     vertC (spaceTime x t) = t := by
   show (Fin.snoc (α := fun _ => ℝ) (WithLp.ofLp x) t) (Fin.last (n + 1)) = t
   exact Fin.snoc_last _ _
 
-/-- Space-time embedding as an affine map: linear part plus constant.-/
+/-- Space-time embedding as an affine map: linear part plus constant.
+@isnad1 id=eq.0h3v.s11.f064efbdcfd8 from=translated src=- shape=0f138a77 vocab=dd7fa1df
+-/
 lemma spaceTime_eq_affine (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     spaceTime x t = embedCLM (n + 1) x + t • eLast (n + 1) := by
   apply (WithLp.equiv 2 _).injective
@@ -98,13 +106,18 @@ lemma spaceTime_eq_affine (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     rw [Fin.snoc_castSucc]
     simp [eLast, hne]
 
+/--
+@isnad1 id=surjecti.0h1v.s10.348f9e2b2a5c from=translated src=- shape=160e8b2a vocab=381c0585
+-/
 lemma surjective_initCLM_succ :
     Function.Surjective (initCLM (n + 1) :
       EuclideanSpace ℝ (Fin (n + 1 + 1)) →L[ℝ] EuclideanSpace ℝ (Fin (n + 1))) :=
   fun x => ⟨spaceTime x 0, initCLM_spaceTime x 0⟩
 
 /-- The space-time embedding at a fixed time has the space embedding as
-derivative.-/
+derivative.
+@isnad1 id=hasfderi.0h3v.s9.14ba5a1f4bd1 from=translated src=- shape=29406bae vocab=7009052b
+-/
 lemma hasFDerivAt_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     HasFDerivAt (fun x' => spaceTime x' t) (embedCLM (n + 1)) x := by
   have h : (fun x' : EuclideanSpace ℝ (Fin (n + 1)) => spaceTime x' t)
@@ -114,7 +127,9 @@ lemma hasFDerivAt_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
   exact (embedCLM (n + 1)).hasFDerivAt.add_const _
 
 /-- Reconstruction: every point of space-time is `spaceTime` of its spatial and
-time parts.-/
+time parts.
+@isnad1 id=eq.0h2v.s10.d44312e400b2 from=translated src=- shape=4a1965f3 vocab=8fb3356e
+-/
 lemma spaceTime_init_vert (w : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     spaceTime (initCLM (n + 1) w) (vertC w) = w := by
   apply (WithLp.equiv 2 _).injective
@@ -130,6 +145,9 @@ def reparamCLM (n : ℕ) (s : ℝ) :
     + s • ((EuclideanSpace.proj (Fin.last (n + 1)) :
         EuclideanSpace ℝ (Fin (n + 1 + 1)) →L[ℝ] ℝ).smulRight (eLast (n + 1)))
 
+/--
+@isnad1 id=eq.0h3v.s12.835a3f191e90 from=translated src=- shape=1214eefa vocab=cfd422a1
+-/
 lemma reparamCLM_apply (s : ℝ) (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     reparamCLM n s v
       = embedCLM (n + 1) (initCLM (n + 1) v) + (s * vertC v) • eLast (n + 1) := by
@@ -144,26 +162,41 @@ def reparamMap (n : ℕ) (s c : ℝ) (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) 
     EuclideanSpace ℝ (Fin (n + 1 + 1)) :=
   spaceTime (initCLM (n + 1) v) (s * vertC v + c)
 
+/--
+@isnad1 id=eq.0h3v.s11.c078eea5f346 from=translated src=- shape=1858ca75 vocab=52e32edd
+-/
 lemma reparamMap_eq_affine (s c : ℝ) :
     reparamMap n s c = fun v => reparamCLM n s v + c • eLast (n + 1) := by
   funext v
   rw [reparamMap, spaceTime_eq_affine, reparamCLM_apply, add_smul]
   exact (add_assoc _ _ _).symm
 
+/--
+@isnad1 id=contdiff.0h3v.s9.bf1760b9e987 from=translated src=- shape=97785895 vocab=b83b7322
+-/
 lemma contDiff_reparamMap (s c : ℝ) : ContDiff ℝ ∞ (reparamMap n s c) := by
   rw [reparamMap_eq_affine]
   exact (reparamCLM n s).contDiff.add contDiff_const
 
+/--
+@isnad1 id=hasfderi.0h4v.s9.0d0575e11805 from=translated src=- shape=9e4ffccf vocab=9bfb5b04
+-/
 lemma hasFDerivAt_reparamMap (s c : ℝ) (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     HasFDerivAt (reparamMap n s c) (reparamCLM n s) v := by
   rw [reparamMap_eq_affine]
   exact (reparamCLM n s).hasFDerivAt.add_const _
 
+/--
+@isnad1 id=eq.0h4v.s11.185351f01e82 from=translated src=- shape=16273546 vocab=8ae48938
+-/
 lemma reparamCLM_spaceTime (s : ℝ) (x : EuclideanSpace ℝ (Fin (n + 1))) (τ : ℝ) :
     reparamCLM n s (spaceTime x τ) = spaceTime x (s * τ) := by
   rw [reparamCLM_apply, initCLM_spaceTime, vertC_spaceTime,
     spaceTime_eq_affine x (s * τ)]
 
+/--
+@isnad1 id=surjecti.1h2v.s11.97b432c81813 from=translated src=- shape=382a5c78 vocab=dcdb63bc
+-/
 lemma surjective_reparamCLM {s : ℝ} (hs : s ≠ 0) :
     Function.Surjective (reparamCLM n s) := by
   intro ζ
@@ -202,9 +235,15 @@ variable (C : FramedLevelCobordism n)
 def slice (t : ℝ) : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n) :=
   fun x => C.G (spaceTime x t)
 
+/--
+@isnad1 id=eq.1h3v.s6.530b31cd8456 from=translated src=- shape=843d8d19 vocab=1405bae0
+-/
 lemma slice_eq_zero {t : ℝ} (ht : t ≤ 1 / 4) : C.slice t = C.X₀.g :=
   funext fun x => C.collar_zero x t ht
 
+/--
+@isnad1 id=eq.1h3v.s6.f22a7e4f4f70 from=translated src=- shape=a40b27b5 vocab=072fce04
+-/
 lemma slice_eq_one {t : ℝ} (ht : 3 / 4 ≤ t) : C.slice t = C.X₁.g :=
   funext fun x => C.collar_one x t ht
 
@@ -225,6 +264,9 @@ lemma eq_on_slab_one {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
 def fiber : Set (EuclideanSpace ℝ (Fin (n + 1 + 1))) :=
   {v | C.G v = 0 ∧ 0 ≤ vertC v ∧ vertC v ≤ 1}
 
+/--
+@isnad1 id=isbounde.0h2v.s7.0b270ecdee51 from=translated src=- shape=39475db5 vocab=9258c0da
+-/
 lemma isBounded_fiber : Bornology.IsBounded C.fiber := by
   obtain ⟨R, hR⟩ := C.spatial_bounded
   apply (Metric.isBounded_closedBall
@@ -244,7 +286,9 @@ end FramedLevelCobordism
 
 /-! ### End-collar regularity inheritance -/
 
-/-- Chain rule along the fixed-time embedding.-/
+/-- Chain rule along the fixed-time embedding.
+@isnad1 id=eq.1h4v.s11.ca8f34608ac1 from=translated src=- shape=f242064e vocab=ae4f18b1
+-/
 lemma fderiv_comp_spaceTime {G : EuclideanSpace ℝ (Fin (n + 1 + 1)) →
       EuclideanSpace ℝ (Fin n)} (hG : ContDiff ℝ ∞ G)
     (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
@@ -258,7 +302,9 @@ lemma fderiv_comp_spaceTime {G : EuclideanSpace ℝ (Fin (n + 1 + 1)) →
 presentation: if `G` is constant in time on the collar, equal there to `g₀`, and
 `g₀` has surjective differential at `x`, then `G` has surjective differential at
 `(x, t)` for any collar time `t`.  This is the mechanism by which a common Sard
-value for `G` is automatically regular for both ends.-/
+value for `G` is automatically regular for both ends.
+@isnad1 id=surjecti.4h6v.s12.423009d54c71 from=translated src=- shape=3109daba vocab=3c367781
+-/
 theorem surjective_fderiv_of_time_collar
     {G : EuclideanSpace ℝ (Fin (n + 1 + 1)) → EuclideanSpace ℝ (Fin n)}
     (hG : ContDiff ℝ ∞ G)
@@ -276,7 +322,9 @@ theorem surjective_fderiv_of_time_collar
   rw [hEq, ContinuousLinearMap.coe_comp] at hsurj
   exact hsurj.of_comp
 
-/-- The outgoing-collar analogue of `surjective_fderiv_of_time_collar`.-/
+/-- The outgoing-collar analogue of `surjective_fderiv_of_time_collar`.
+@isnad1 id=surjecti.4h6v.s12.d2666e0d3b22 from=translated src=- shape=56d65b62 vocab=3c367781
+-/
 theorem surjective_fderiv_of_time_collar_right
     {G : EuclideanSpace ℝ (Fin (n + 1 + 1)) → EuclideanSpace ℝ (Fin n)}
     (hG : ContDiff ℝ ∞ G)
@@ -333,6 +381,9 @@ def transFun (C₁ C₂ : FramedLevelCobordism n) :
   fun v => if vertC v < 1 / 2 then C₁.G (reparamMap n 3 (-(1 / 2)) v)
     else C₂.G (reparamMap n 3 (-(3 / 2)) v)
 
+/--
+@isnad1 id=eq.3h4v.s10.3aa57803c83b from=translated src=- shape=7ad06ed1 vocab=95743f3f
+-/
 lemma transFun_middle {C₁ C₂ : FramedLevelCobordism n} (h : C₁.X₁ = C₂.X₀)
     {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
     (h1 : 5 / 12 < vertC v) (h2 : vertC v < 7 / 12) :
@@ -346,18 +397,30 @@ lemma transFun_middle {C₁ C₂ : FramedLevelCobordism n} (h : C₁.X₁ = C₂
   · rw [ite_eq_right hv]
     exact C₂.collar_zero (initCLM (n + 1) v) (3 * vertC v + -(3 / 2)) (by linarith)
 
+/--
+@isnad1 id=isopen.0h2v.s7.48f0c706e63f from=translated src=- shape=3b2170e0 vocab=964736db
+-/
 lemma isOpen_vert_lt (c : ℝ) :
     IsOpen {w : EuclideanSpace ℝ (Fin (n + 1 + 1)) | vertC w < c} :=
   isOpen_lt contDiff_vertC.continuous continuous_const
 
+/--
+@isnad1 id=isopen.0h2v.s7.30d9113fe6e5 from=translated src=- shape=ecbad568 vocab=964736db
+-/
 lemma isOpen_lt_vert (c : ℝ) :
     IsOpen {w : EuclideanSpace ℝ (Fin (n + 1 + 1)) | c < vertC w} :=
   isOpen_lt continuous_const contDiff_vertC.continuous
 
+/--
+@isnad1 id=isopen.0h3v.s7.d58f3f8c67fc from=translated src=- shape=bdecf016 vocab=964736db
+-/
 lemma isOpen_vert_between (c c' : ℝ) :
     IsOpen {w : EuclideanSpace ℝ (Fin (n + 1 + 1)) | c < vertC w ∧ vertC w < c'} :=
   (isOpen_lt_vert c).inter (isOpen_vert_lt c')
 
+/--
+@isnad1 id=contdiff.1h3v.s8.94526f5c8325 from=translated src=- shape=0bff33b2 vocab=adcc5b37
+-/
 lemma contDiff_transFun {C₁ C₂ : FramedLevelCobordism n} (h : C₁.X₁ = C₂.X₀) :
     ContDiff ℝ ∞ (transFun C₁ C₂) := by
   rw [contDiff_iff_contDiffAt]
@@ -374,6 +437,9 @@ lemma contDiff_transFun {C₁ C₂ : FramedLevelCobordism n} (h : C₁.X₁ = C�
     exact Filter.eventuallyEq_of_mem ((isOpen_lt_vert (1 / 2)).mem_nhds hv)
       fun w hw => ite_eq_right (not_lt.mpr (le_of_lt hw))
 
+/--
+@isnad1 id=surjecti.2h4v.s11.af703d170f12 from=translated src=- shape=7cd4f201 vocab=76ac0975
+-/
 lemma transFun_regular {C₁ C₂ : FramedLevelCobordism n} (h : C₁.X₁ = C₂.X₀) :
     ∀ v, transFun C₁ C₂ v = 0 →
       Function.Surjective (fderiv ℝ (transFun C₁ C₂) v) := by
@@ -464,9 +530,15 @@ def FramedLevelCobordism.trans (C₁ C₂ : FramedLevelCobordism n)
     rw [reparamMap, initCLM_spaceTime, hvt]
     exact C₂.collar_one x _ (by linarith)
 
+/--
+@isnad1 id=eq.1h3v.s4.714c2fa85039 from=translated src=- shape=e525c2b3 vocab=dabff7d4
+-/
 @[simp] lemma FramedLevelCobordism.trans_X₀ (C₁ C₂ : FramedLevelCobordism n)
     (h : C₁.X₁ = C₂.X₀) : (C₁.trans C₂ h).X₀ = C₁.X₀ := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.83482748b58e from=translated src=- shape=85c875f4 vocab=dabff7d4
+-/
 @[simp] lemma FramedLevelCobordism.trans_X₁ (C₁ C₂ : FramedLevelCobordism n)
     (h : C₁.X₁ = C₂.X₀) : (C₁.trans C₂ h).X₁ = C₂.X₁ := rfl
 
@@ -475,12 +547,21 @@ def FramedLevelCobordism.trans (C₁ C₂ : FramedLevelCobordism n)
 /-- The time-transition profile: `0` for `t ≤ 1/4`, `1` for `t ≥ 3/4`.-/
 def timeProfile (t : ℝ) : ℝ := Real.smoothTransition (2 * t - 1 / 2)
 
+/--
+@isnad1 id=eq.1h1v.s5.cef4b44bdeb2 from=translated src=- shape=44469b40 vocab=1f8d506b
+-/
 lemma timeProfile_of_le {t : ℝ} (ht : t ≤ 1 / 4) : timeProfile t = 0 :=
   Real.smoothTransition.zero_of_nonpos (by linarith)
 
+/--
+@isnad1 id=eq.1h1v.s5.e4221255ac58 from=translated src=- shape=c1676f1c vocab=1f8d506b
+-/
 lemma timeProfile_of_ge {t : ℝ} (ht : 3 / 4 ≤ t) : timeProfile t = 1 :=
   Real.smoothTransition.one_of_one_le (by linarith)
 
+/--
+@isnad1 id=contdiff.0h0v.s5.34a0dad0e7da from=translated src=- shape=3cea26be vocab=517ba14d
+-/
 lemma contDiff_timeProfile : ContDiff ℝ ∞ timeProfile :=
   Real.smoothTransition.contDiff.comp
     ((contDiff_const.mul contDiff_id).sub contDiff_const)
@@ -492,6 +573,9 @@ def timeInterp (g₀ g₁ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace 
   fun v => (1 - timeProfile (vertC v)) • g₀ (initCLM (n + 1) v)
     + timeProfile (vertC v) • g₁ (initCLM (n + 1) v)
 
+/--
+@isnad1 id=eq.1h5v.s6.513266116f64 from=translated src=- shape=6f4d00ba vocab=430fa04c
+-/
 lemma timeInterp_collar_zero
     (g₀ g₁ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n))
     (x : EuclideanSpace ℝ (Fin (n + 1))) {t : ℝ} (ht : t ≤ 1 / 4) :
@@ -499,6 +583,9 @@ lemma timeInterp_collar_zero
   rw [timeInterp, vertC_spaceTime, timeProfile_of_le ht, initCLM_spaceTime]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s6.bf76ff5bfebe from=translated src=- shape=009500c0 vocab=430fa04c
+-/
 lemma timeInterp_collar_one
     (g₀ g₁ : EuclideanSpace ℝ (Fin (n + 1)) → EuclideanSpace ℝ (Fin n))
     (x : EuclideanSpace ℝ (Fin (n + 1))) {t : ℝ} (ht : 3 / 4 ≤ t) :
@@ -514,6 +601,9 @@ def piInit (v : Fin (n + 1 + 1) → ℝ) : Fin (n + 1) → ℝ := Fin.init v
 /-- Time part of a pi-type space-time point.-/
 def piTime (v : Fin (n + 1 + 1) → ℝ) : ℝ := v (Fin.last (n + 1))
 
+/--
+@isnad1 id=contdiff.0h1v.s8.4e4c8bd5c412 from=translated src=- shape=f864da43 vocab=ea06b28f
+-/
 lemma contDiff_piInit : ContDiff ℝ ∞ (piInit (n := n)) := by
   rw [contDiff_pi]
   intro j
@@ -521,23 +611,41 @@ lemma contDiff_piInit : ContDiff ℝ ∞ (piInit (n := n)) := by
   exact (ContinuousLinearMap.proj (R := ℝ)
     (φ := fun _ : Fin (n + 1 + 1) => ℝ) j.castSucc).contDiff
 
+/--
+@isnad1 id=continuo.0h1v.s7.babd523b1b36 from=translated src=- shape=5224432a vocab=9d8348f3
+-/
 lemma continuous_piInit : Continuous (piInit (n := n)) :=
   contDiff_piInit.continuous
 
+/--
+@isnad1 id=continuo.0h1v.s6.118d51cfb71d from=translated src=- shape=d5362c06 vocab=4372145b
+-/
 lemma continuous_piTime : Continuous (piTime (n := n)) :=
   continuous_apply _
 
+/--
+@isnad1 id=eq.0h2v.s6.94ca2b5c841e from=translated src=- shape=72c34198 vocab=8fb5e855
+-/
 lemma piTime_ofLp (X : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     piTime (WithLp.ofLp X) = vertC X := rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.a525cb5b55d3 from=translated src=- shape=2d28573f vocab=0dc6d30f
+-/
 lemma piInit_ofLp (X : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     piInit (WithLp.ofLp X) = WithLp.ofLp (initCLM (n + 1) X) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.7a68caca90b5 from=translated src=- shape=240f2c46 vocab=ec5bcfae
+-/
 lemma piTime_ofLp_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     piTime (WithLp.ofLp (spaceTime x t)) = t := by
   show (Fin.snoc (α := fun _ => ℝ) (WithLp.ofLp x) t) (Fin.last (n + 1)) = t
   exact Fin.snoc_last _ _
 
+/--
+@isnad1 id=eq.0h3v.s7.dda71ee53745 from=translated src=- shape=dcc5ae5d vocab=42666f21
+-/
 lemma piInit_ofLp_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     piInit (WithLp.ofLp (spaceTime x t)) = WithLp.ofLp x := by
   show Fin.init (Fin.snoc (α := fun _ => ℝ) (WithLp.ofLp x) t) = WithLp.ofLp x
@@ -545,7 +653,9 @@ lemma piInit_ofLp_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
 
 /-! ### Clamping and the normalized raw map -/
 
-/-- The normalized raw map does not see the cube clamp.-/
+/-- The normalized raw map does not see the cube clamp.
+@isnad1 id=eq.0h4v.s10.cbf36fa59bfe from=translated src=- shape=44cfe02f vocab=a0b2f997
+-/
 lemma nraw_cubeClamp {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
     (southPole n)} (a : Approximation p) (x : Fin (n + 1) → ℝ) :
     nraw a (fun i => ((cubeClamp x i : ℝ))) = nraw a x := by
@@ -600,17 +710,28 @@ structure CobApproximation (a₁ : Approximation p₁) (a₂ : Approximation p�
 `t ≥ 5/8`.-/
 def cobSchedule (t : ℝ) : I := Set.projIcc 0 1 zero_le_one (4 * t - 3 / 2)
 
+/--
+@isnad1 id=eq.1h1v.s5.5244460f452e from=translated src=- shape=ef6b2476 vocab=82990c26
+-/
 lemma cobSchedule_of_le {t : ℝ} (ht : t ≤ 3 / 8) : cobSchedule t = 0 :=
   projIcc_eq_zero (by linarith)
 
+/--
+@isnad1 id=eq.1h1v.s5.d5f92319c484 from=translated src=- shape=53a79c4c vocab=82990c26
+-/
 lemma cobSchedule_of_ge {t : ℝ} (ht : 5 / 8 ≤ t) : cobSchedule t = 1 :=
   projIcc_eq_one (by linarith)
 
+/--
+@isnad1 id=continuo.0h0v.s4.505ed90359f2 from=translated src=- shape=28fc0566 vocab=73d6fa5a
+-/
 lemma continuous_cobSchedule : Continuous cobSchedule :=
   continuous_projIcc.comp (by fun_prop)
 
 /-- Existence of space-time approximations, from a homotopy rel boundary between
-the representatives.-/
+the representatives.
+@isnad1 id=nonempty.1h5v.s12.788e7adfbbf4 from=translated src=- shape=4fa774a9 vocab=fad12cc5
+-/
 theorem exists_cobApproximation {a₁ : Approximation p₁} {a₂ : Approximation p₂}
     (hpq : GenLoop.Homotopic a₁.representative a₂.representative) :
     Nonempty (CobApproximation a₁ a₂) := by
@@ -735,18 +856,30 @@ def hMapCobE (c : CobApproximation a₁ a₂)
     (X : EuclideanSpace ℝ (Fin (n + 1 + 1))) : EuclideanSpace ℝ (Fin n) :=
   hMapCob c (WithLp.ofLp X)
 
+/--
+@isnad1 id=eq.0h7v.s11.a90254f24adb from=translated src=- shape=0b7b3f53 vocab=09651248
+-/
 lemma norm_nrawCob (c : CobApproximation a₁ a₂) (v : Fin (n + 1 + 1) → ℝ) :
     ‖nrawCob c v‖ = 1 :=
   norm_normalize (c.rawC_ne_zero v)
 
+/--
+@isnad1 id=ne.0h7v.s11.747c16898b82 from=translated src=- shape=2b473bef vocab=3a6bb198
+-/
 lemma prawCob_ne_zero (c : CobApproximation a₁ a₂) (v : Fin (n + 1 + 1) → ℝ) :
     prawCob c v ≠ 0 :=
   plateauAux_ne_zero (norm_nrawCob c v)
 
+/--
+@isnad1 id=eq.0h7v.s11.bafbbff23b64 from=translated src=- shape=0b7b3f53 vocab=101f0f67
+-/
 lemma norm_nprepCob (c : CobApproximation a₁ a₂) (v : Fin (n + 1 + 1) → ℝ) :
     ‖nprepCob c v‖ = 1 :=
   norm_normalize (prawCob_ne_zero c v)
 
+/--
+@isnad1 id=contdiff.0h6v.s11.ec79451cce5d from=translated src=- shape=9ef26dc7 vocab=2bd8d227
+-/
 lemma contDiff_nprepCob (c : CobApproximation a₁ a₂) :
     ContDiff ℝ ∞ (nprepCob c) :=
   contDiff_normalize_comp
@@ -754,21 +887,31 @@ lemma contDiff_nprepCob (c : CobApproximation a₁ a₂) :
       (contDiff_normalize_comp c.contDiff_rawC c.rawC_ne_zero))
     (prawCob_ne_zero c)
 
+/--
+@isnad1 id=contdiff.0h6v.s11.22ac0472e111 from=translated src=- shape=f388c778 vocab=755b8cab
+-/
 lemma contDiff_hMapCob (c : CobApproximation a₁ a₂) : ContDiff ℝ ∞ (hMapCob c) :=
   (initCLM n).contDiff.comp (contDiff_nprepCob c)
 
+/--
+@isnad1 id=contdiff.0h6v.s11.b97dcabd97f1 from=translated src=- shape=7966545e vocab=19eed09a
+-/
 lemma contDiff_hMapCobE (c : CobApproximation a₁ a₂) :
     ContDiff ℝ ∞ (hMapCobE c) :=
   (contDiff_hMapCob c).comp (EuclideanSpace.equiv (Fin (n + 1 + 1)) ℝ).contDiff
 
-/-- Normalizing a unit vector does nothing.-/
+/-- Normalizing a unit vector does nothing.
+@isnad1 id=eq.1h2v.s6.60ff8ba4e25b from=translated src=- shape=686dca51 vocab=6a622bb8
+-/
 lemma normalize_of_norm_one {E' : Type*} [NormedAddCommGroup E']
     [InnerProductSpace ℝ E'] {w : E'} (hw : ‖w‖ = 1) : ‖w‖⁻¹ • w = w := by
   rw [hw]
   simp
 
 /-- On the incoming time collar, the space-time pipeline is the incoming
-bridge pipeline.-/
+bridge pipeline.
+@isnad1 id=eq.1h7v.s11.ce2904765258 from=translated src=- shape=9e2f87c3 vocab=ec54ac44
+-/
 lemma nprepCob_left (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → ℝ}
     (hv : piTime v ≤ 1 / 4) : nprepCob c v = nprep a₁ (piInit v) := by
   have h1 : nrawCob c v = nraw a₁ (piInit v) := by
@@ -777,6 +920,9 @@ lemma nprepCob_left (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → �
   rw [nprepCob, prawCob, h1]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.d83f078bc0b9 from=translated src=- shape=53452d06 vocab=ec54ac44
+-/
 lemma nprepCob_right (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → ℝ}
     (hv : 3 / 4 ≤ piTime v) : nprepCob c v = nprep a₂ (piInit v) := by
   have h1 : nrawCob c v = nraw a₂ (piInit v) := by
@@ -785,18 +931,26 @@ lemma nprepCob_right (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → �
   rw [nprepCob, prawCob, h1]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.5289117027ed from=translated src=- shape=0fcf2d7e vocab=3c4a7394
+-/
 lemma hMapCob_left (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → ℝ}
     (hv : piTime v ≤ 1 / 4) : hMapCob c v = bridgeHMap a₁ (piInit v) := by
   rw [hMapCob, nprepCob_left c hv]
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s11.984e93462711 from=translated src=- shape=0911b552 vocab=3c4a7394
+-/
 lemma hMapCob_right (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → ℝ}
     (hv : 3 / 4 ≤ piTime v) : hMapCob c v = bridgeHMap a₂ (piInit v) := by
   rw [hMapCob, nprepCob_right c hv]
   rfl
 
 /-- Quantitative normalization: normalizing moves a point at most twice its
-distance to a unit vector.-/
+distance to a unit vector.
+@isnad1 id=le.2h3v.s7.95ef222d5200 from=translated src=- shape=0421fffc vocab=a366e28c
+-/
 lemma norm_normalize_sub_le {E' : Type*} [NormedAddCommGroup E']
     [InnerProductSpace ℝ E'] {w s : E'} (hw : w ≠ 0) (hs : ‖s‖ = 1) :
     ‖‖w‖⁻¹ • w - s‖ ≤ 2 * ‖w - s‖ := by
@@ -818,7 +972,9 @@ lemma norm_normalize_sub_le {E' : Type*} [NormedAddCommGroup E']
     _ = 2 * ‖w - s‖ := by ring
 
 /-- Over the spatial complement of the open cube, the space-time horizontal map
-vanishes (the plateau collapses everything near the south pole).-/
+vanishes (the plateau collapses everything near the south pole).
+@isnad1 id=eq.1h7v.s11.67507f9c557a from=translated src=- shape=808aa659 vocab=4c991577
+-/
 lemma hMapCob_south (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → ℝ}
     (hj : ∃ j, piInit v j ≤ 0 ∨ 1 ≤ piInit v j) : hMapCob c v = 0 := by
   have hdist : dist (c.rawC v) (-eLast n) < 1 / 8 := c.rawC_south v hj
@@ -856,7 +1012,9 @@ lemma hMapCob_south (c : CobApproximation a₁ a₂) {v : Fin (n + 1 + 1) → �
 /-! ### Sard for the space-time map and end-regularity inheritance -/
 
 /-- Every smooth map into `ℝⁿ` (`n > 0`) has a regular value `y` with
-`0 < ‖y‖ < 1/8`, chosen in the fixed positive coordinate half-space.-/
+`0 < ‖y‖ < 1/8`, chosen in the fixed positive coordinate half-space.
+@isnad1 id=ex.2h3v.s8.0346d2eb9f0a from=translated src=- shape=e2f09251 vocab=d5a8444f
+-/
 theorem exists_small_regular_value {m : ℕ} (hn : 0 < n)
     {f : EuclideanSpace ℝ (Fin m) → EuclideanSpace ℝ (Fin n)}
     (hf : ContDiff ℝ ∞ f) :
@@ -889,7 +1047,9 @@ theorem exists_small_regular_value {m : ℕ} (hn : 0 < n)
     linarith [hcoord.1]
 
 /-- A regular value of the space-time map is a regular value of the incoming end
-map: the space-time map is locally time-constant on the incoming slab.-/
+map: the space-time map is locally time-constant on the incoming slab.
+@isnad1 id=isregula.1h7v.s11.146eec38ebf6 from=translated src=- shape=f635e1ea vocab=d36b818e
+-/
 theorem isRegularValue_left_of_cob (c : CobApproximation a₁ a₂)
     {y : EuclideanSpace ℝ (Fin n)} (hy : IsRegularValue (hMapCobE c) y) :
     IsRegularValue (bridgeHMapE a₁) y := by
@@ -923,7 +1083,9 @@ theorem isRegularValue_left_of_cob (c : CobApproximation a₁ a₂)
   rwa [hXdef, initCLM_spaceTime] at this
 
 /-- A regular value of the space-time map is a regular value of the outgoing end
-map.-/
+map.
+@isnad1 id=isregula.1h7v.s11.5c4776521dc6 from=translated src=- shape=7f0a10b4 vocab=d36b818e
+-/
 theorem isRegularValue_right_of_cob (c : CobApproximation a₁ a₂)
     {y : EuclideanSpace ℝ (Fin n)} (hy : IsRegularValue (hMapCobE c) y) :
     IsRegularValue (bridgeHMapE a₂) y := by
@@ -1025,6 +1187,9 @@ def middleCob (c : CobApproximation a₁ a₂) (y : EuclideanSpace ℝ (Fin n))
 def valueTransition : Set (EuclideanSpace ℝ (Fin (n + 1 + 1))) :=
   {v | 1 / 4 < vertC v ∧ vertC v < 3 / 4}
 
+/--
+@isnad1 id=isopen.0h1v.s7.58f296cfc1db from=translated src=- shape=4d4ec911 vocab=64444598
+-/
 lemma isOpen_valueTransition : IsOpen (valueTransition (n := n)) :=
   isOpen_vert_between (1 / 4) (3 / 4)
 
@@ -1032,11 +1197,17 @@ lemma isOpen_valueTransition : IsOpen (valueTransition (n := n)) :=
 def valueWeight (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : ℝ :=
   timeProfile (vertC v) * (1 - timeProfile (vertC v))
 
+/--
+@isnad1 id=contdiff.0h1v.s8.fa2f3ead4a84 from=translated src=- shape=b6c448a7 vocab=c0cab217
+-/
 lemma contDiff_valueWeight : ContDiff ℝ ∞ (valueWeight (n := n)) := by
   have hs : ContDiff ℝ ∞ fun v : EuclideanSpace ℝ (Fin (n + 1 + 1)) =>
       timeProfile (vertC v) := contDiff_timeProfile.comp contDiff_vertC
   exact hs.mul (contDiff_const.sub hs)
 
+/--
+@isnad1 id=lt.1h2v.s7.c15436fbdda6 from=translated src=- shape=5be8e986 vocab=4184efb1
+-/
 lemma valueWeight_pos {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
     (hv : v ∈ valueTransition (n := n)) : 0 < valueWeight v := by
   have hs0 : 0 < timeProfile (vertC v) := by
@@ -1049,12 +1220,18 @@ lemma valueWeight_pos {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
     linarith [hv.2]
   exact mul_pos hs0 (sub_pos.mpr hs1)
 
+/--
+@isnad1 id=le.0h2v.s5.9f0b6a9359d1 from=translated src=- shape=2bc55340 vocab=2b322ef7
+-/
 lemma valueWeight_nonneg (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     0 ≤ valueWeight v := by
   rw [valueWeight]
   exact mul_nonneg (Real.smoothTransition.nonneg _)
     (sub_nonneg.mpr (Real.smoothTransition.le_one _))
 
+/--
+@isnad1 id=le.0h2v.s5.053903ba63e2 from=translated src=- shape=799114bf vocab=2b322ef7
+-/
 lemma valueWeight_le_one (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     valueWeight v ≤ 1 := by
   have hs0 := Real.smoothTransition.nonneg (2 * vertC v - 1 / 2)
@@ -1070,6 +1247,9 @@ def valueBase
   bridgeHMapE a (initCLM (n + 1) v) -
     ((1 - timeProfile (vertC v)) • y + timeProfile (vertC v) • y')
 
+/--
+@isnad1 id=contdiff.0h5v.s11.b7bb24d70612 from=translated src=- shape=17c830fa vocab=fb506540
+-/
 lemma contDiff_valueBase
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' : EuclideanSpace ℝ (Fin n)) :
@@ -1086,6 +1266,9 @@ def valueQuot
     (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : EuclideanSpace ℝ (Fin n) :=
   (valueWeight v)⁻¹ • valueBase a y y' v
 
+/--
+@isnad1 id=contdiff.0h5v.s11.7a6e77f8699c from=translated src=- shape=9256036f vocab=e93aae51
+-/
 lemma contDiffOn_valueQuot
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' : EuclideanSpace ℝ (Fin n)) :
@@ -1101,12 +1284,18 @@ def valueCobFun
     (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : EuclideanSpace ℝ (Fin n) :=
   valueBase a y y' v - valueWeight v • w
 
+/--
+@isnad1 id=contdiff.0h6v.s11.d4669c24ee13 from=translated src=- shape=76d70d06 vocab=64737285
+-/
 lemma contDiff_valueCobFun
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' w : EuclideanSpace ℝ (Fin n)) :
     ContDiff ℝ ∞ (valueCobFun a y y' w) :=
   (contDiff_valueBase a y y').sub (contDiff_valueWeight.smul contDiff_const)
 
+/--
+@isnad1 id=eq.1h7v.s10.76c4a62c5f8a from=translated src=- shape=9984f144 vocab=06a032da
+-/
 lemma valueCobFun_eq_weight_smul
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' w : EuclideanSpace ℝ (Fin n))
@@ -1114,6 +1303,9 @@ lemma valueCobFun_eq_weight_smul
     valueCobFun a y y' w v = valueWeight v • (valueQuot a y y' v - w) := by
   simp [valueCobFun, valueQuot, smul_sub, smul_smul, (valueWeight_pos hv).ne']
 
+/--
+@isnad1 id=eq.1h8v.s10.1a432fb9c3b8 from=translated src=- shape=82e99b6e vocab=70fc718a
+-/
 lemma valueCobFun_collar_zero
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' w : EuclideanSpace ℝ (Fin n))
@@ -1123,6 +1315,9 @@ lemma valueCobFun_collar_zero
     timeProfile_of_le ht]
   simp
 
+/--
+@isnad1 id=eq.1h8v.s10.9211f1b6ea0a from=translated src=- shape=d02c6c6e vocab=70fc718a
+-/
 lemma valueCobFun_collar_one
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (y y' w : EuclideanSpace ℝ (Fin n))
@@ -1137,6 +1332,9 @@ def valueTarget (y y' w : EuclideanSpace ℝ (Fin n))
     (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : EuclideanSpace ℝ (Fin n) :=
   (1 - timeProfile (vertC v)) • y + timeProfile (vertC v) • y' + valueWeight v • w
 
+/--
+@isnad1 id=lt.3h6v.s8.b2bd951e8d02 from=translated src=- shape=b3ff3762 vocab=2f87221e
+-/
 lemma valueTarget_axis_pos (i : Fin n) {y y' w : EuclideanSpace ℝ (Fin n)}
     (hy : 0 < y i) (hy' : 0 < y' i)
     (hw : ‖w‖ < min (y i) (y' i) / 2)
@@ -1167,6 +1365,9 @@ lemma valueTarget_axis_pos (i : Fin n) {y y' w : EuclideanSpace ℝ (Fin n)}
     valueWeight v * w i
   nlinarith
 
+/--
+@isnad1 id=le.2h5v.s10.ce25e5529b70 from=translated src=- shape=451d4c89 vocab=452b945d
+-/
 lemma bridgeHMapE_norm_le_of_eq_ne_zero
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p)
@@ -1206,7 +1407,9 @@ The proof uses the flat quotient trick.  If `s` is the collar profile and
 slab.  A relative Sard value `w` of that quotient gives
 `G_w = q • (Φ-w)` on the slab, hence on its zero fiber
 `DG_w = q • DΦ`.  Choosing `w` in a sufficiently small ball preserves the common
-positive coordinate, so the spatial fiber remains inside the compact cube.-/
+positive coordinate, so the spatial fiber remains inside the compact cube.
+@isnad1 id=ex.7h6v.s11.5622935aa7b4 from=translated src=- shape=7f712979 vocab=860d88db
+-/
 theorem exists_valueChange_cobordism_spec (hn : 0 < n)
     {p : Ω^ (Fin (n + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
       (southPole n)} (a : Approximation p) (i : Fin n)

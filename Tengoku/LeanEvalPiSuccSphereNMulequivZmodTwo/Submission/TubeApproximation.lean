@@ -34,11 +34,17 @@ local notation "E" => EuclideanSpace ℝ (Fin (m + 3))
 def tubeApproxAmbient (v : Fin (m + 3) → ℝ) : E :=
   WithLp.toLp 2 fun i => 12 * v i - 6
 
+/--
+@isnad1 id=eq.0h3v.s8.3ed34c22cd7d from=translated src=- shape=d95301bf vocab=7fffcf55
+-/
 @[simp] theorem tubeApproxAmbient_apply (v : Fin (m + 3) → ℝ)
     (i : Fin (m + 3)) :
     tubeApproxAmbient (m := m) v i = 12 * v i - 6 :=
   rfl
 
+/--
+@isnad1 id=contdiff.0h1v.s8.1ed0aac6fb61 from=translated src=- shape=5e5a24f9 vocab=5705b7b0
+-/
 theorem contDiff_tubeApproxAmbient :
     ContDiff ℝ ∞ (tubeApproxAmbient (m := m)) := by
   have h : tubeApproxAmbient (m := m) = fun v =>
@@ -49,7 +55,9 @@ theorem contDiff_tubeApproxAmbient :
     fun_prop
 
 /-- If one source coordinate lies outside the middle cube, its affine image is
-already far outside the active tube.-/
+already far outside the active tube.
+@isnad1 id=not.1h3v.s7.698419a643f8 from=translated src=- shape=fa7a3243 vocab=b92e84e2
+-/
 theorem tubeApproxAmbient_off_outer_of_outer_coord
     {v : Fin (m + 3) → ℝ} {j : Fin (m + 3)}
     (hj : v j ≤ 1 / 4 ∨ 3 / 4 ≤ v j) :
@@ -94,16 +102,24 @@ theorem tubeApproxAmbient_off_outer_of_outer_coord
 def tubeApproxRaw (k : ℕ) (v : Fin (m + 3) → ℝ) : E :=
   tubeThomVec k (tubeApproxAmbient v)
 
+/--
+@isnad1 id=contdiff.0h2v.s8.9c9839e64f83 from=translated src=- shape=2fca6384 vocab=f51b2543
+-/
 theorem contDiff_tubeApproxRaw (k : ℕ) :
     ContDiff ℝ ∞ (tubeApproxRaw (m := m) k) :=
   (contDiff_tubeThomVec k).comp contDiff_tubeApproxAmbient
 
+/--
+@isnad1 id=eq.0h3v.s6.512d20e77648 from=translated src=- shape=c69fb9d2 vocab=8efa13a3
+-/
 theorem norm_tubeApproxRaw (k : ℕ) (v : Fin (m + 3) → ℝ) :
     ‖tubeApproxRaw (m := m) k v‖ = 1 :=
   norm_tubeThomVec k _
 
 /-- On the closed bridge collar the explicit raw map is exactly the canonical
-south pole.-/
+south pole.
+@isnad1 id=eq.1h3v.s9.3c1ebdb4d04e from=translated src=- shape=a6f1f4b9 vocab=12cb8436
+-/
 theorem tubeApproxRaw_eq_southPole_on_collar (k : ℕ)
     {v : Fin (m + 3) → ℝ}
     (hv : v ∈ closedAmbientCollar (Fin (m + 3))) :
@@ -121,7 +137,9 @@ theorem tubeApproxRaw_eq_southPole_on_collar (k : ℕ)
   rw [eVert_eq_eLast]
 
 /-- On the middle cube, collaring followed by the original `6t-3` expansion is
-the same affine map as `12v-6`.-/
+the same affine map as `12v-6`.
+@isnad1 id=eq.1h2v.s7.0726cd4366ef from=translated src=- shape=a40e6db5 vocab=00afebec
+-/
 theorem cubeToTubeAmbient_collarMap_cubeClamp_eq
     {v : Fin (m + 3) → ℝ}
     (hv : ∀ i, 1 / 4 < v i ∧ v i < 3 / 4) :
@@ -142,7 +160,9 @@ theorem cubeToTubeAmbient_collarMap_cubeClamp_eq
   ring
 
 /-- The affine raw map is not merely close to the clamped collared loop: it is
-pointwise equal to it.-/
+pointwise equal to it.
+@isnad1 id=eq.0h3v.s7.218a3da99f79 from=translated src=- shape=ecdea123 vocab=6c7f9f1c
+-/
 theorem tubeApproxRaw_eq_extended (k : ℕ) (v : Fin (m + 3) → ℝ) :
     tubeApproxRaw (m := m) k v =
       extended (tubeThomStableGenLoop (m := m) k) v := by

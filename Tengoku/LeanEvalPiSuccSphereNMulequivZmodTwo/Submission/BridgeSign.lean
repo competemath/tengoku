@@ -67,7 +67,9 @@ def signedMiddleCob (c : CobApproximation a₁ a₂)
 /-! ## The value-change pieces -/
 
 /-- The moving horizontal target stays inside the open unit ball when the two end
-values and the flat-Sard perturbation are small.-/
+values and the flat-Sard perturbation are small.
+@isnad1 id=lt.3h5v.s8.ca5e06f6f557 from=translated src=- shape=b6c81744 vocab=ff8f2773
+-/
 lemma valueTarget_norm_lt_one
     {y y' w : EuclideanSpace ℝ (Fin n)}
     (hy : ‖y‖ < 1 / 8) (hy' : ‖y'‖ < 1 / 8) (hw : ‖w‖ < 1 / 8)
@@ -95,7 +97,9 @@ lemma valueTarget_norm_lt_one
     _ < 1 := by nlinarith [norm_nonneg y, norm_nonneg y', norm_nonneg w]
 
 /-- The fixed sphere representative supplies the sheet label on a value-change
-cobordism.-/
+cobordism.
+@isnad1 id=nonempty.9h6v.s11.674dc14e63cc from=translated src=- shape=9f9124f5 vocab=c88b8c25
+-/
 theorem exists_signedValueCobordism (hn : 0 < n)
     {p : Ω^ (Fin (n + 1))
       (UnitSphere (EuclideanSpace ℝ (Fin (n + 1)))) (southPole n)}
@@ -161,7 +165,9 @@ theorem exists_signedValueCobordism (hn : 0 < n)
 /-- The forward Pontryagin--Thom bridge can be chosen with a continuous
 nonvanishing north/south label.  In particular, its positive (northern) union of
 components is tracked through both value slides and the common-value middle
-cobordism.-/
+cobordism.
+@isnad1 id=nonempty.1h4v.s9.7ec04700d4e6 from=translated src=- shape=60ac509d vocab=a1e594e7
+-/
 theorem exists_signedBridgeCobordism (hn : 0 < n)
     {z : HomotopyGroup (Fin (n + 1))
       (UnitSphere (EuclideanSpace ℝ (Fin (n + 1)))) (southPole n)}

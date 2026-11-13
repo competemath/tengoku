@@ -40,6 +40,9 @@ def matrixToEuclidean {m : ℕ}
     EuclideanSpace ℝ (Fin m × Fin m) :=
   WithLp.toLp 2 fun ij => M ij.1 ij.2
 
+/--
+@isnad1 id=continuo.0h1v.s6.246eb1b8d690 from=translated src=- shape=fe67561e vocab=c4285bb3
+-/
 theorem continuous_matrixToEuclidean {m : ℕ} :
     Continuous (matrixToEuclidean (m := m)) := by
   have hraw : Continuous fun M : Matrix (Fin m) (Fin m) ℝ =>
@@ -50,12 +53,18 @@ theorem continuous_matrixToEuclidean {m : ℕ} :
   unfold matrixToEuclidean
   exact (PiLp.continuous_toLp 2 (fun _ : Fin m × Fin m => ℝ)).comp hraw
 
+/--
+@isnad1 id=eq.0h2v.s4.72284360029a from=translated src=- shape=257a1ee2 vocab=f8fa08ce
+-/
 @[simp] theorem euclideanToMatrix_matrixToEuclidean {m : ℕ}
     (M : Matrix (Fin m) (Fin m) ℝ) :
     euclideanToMatrix (matrixToEuclidean M) = M := by
   ext i j
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.a8d9bf1de148 from=translated src=- shape=327cf196 vocab=7e6c5d5b
+-/
 @[simp] theorem matrixToEuclidean_euclideanToMatrix {m : ℕ}
     (v : EuclideanSpace ℝ (Fin m × Fin m)) :
     matrixToEuclidean (euclideanToMatrix v) = v := by
@@ -63,12 +72,18 @@ theorem continuous_matrixToEuclidean {m : ℕ} :
   funext ij
   rfl
 
+/--
+@isnad1 id=continuo.0h1v.s6.614441c4c377 from=translated src=- shape=56a4c800 vocab=25f6043b
+-/
 theorem continuous_euclideanToMatrix {m : ℕ} :
     Continuous (euclideanToMatrix (m := m)) := by
   apply continuous_matrix
   intro i j
   exact (EuclideanSpace.proj (i, j)).continuous
 
+/--
+@isnad1 id=continuo.0h1v.s6.4c5964488171 from=translated src=- shape=1f80de7e vocab=d1a77c73
+-/
 theorem continuous_det_euclideanToMatrix {m : ℕ} :
     Continuous fun v : EuclideanSpace ℝ (Fin m × Fin m) =>
       (euclideanToMatrix v).det := by
@@ -77,7 +92,9 @@ theorem continuous_det_euclideanToMatrix {m : ℕ} :
   exact hdet.comp continuous_euclideanToMatrix
 
 /-- A smooth Euclidean matrix-coordinate family decodes to a matrix with
-smooth entries.-/
+smooth entries.
+@isnad1 id=contdiff.1h5v.s7.21a024d4838d from=translated src=- shape=7f0b16f8 vocab=c86527cb
+-/
 theorem contDiff_euclideanToMatrix_apply
     {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
     {m : ℕ} {g : P → EuclideanSpace ℝ (Fin m × Fin m)}
@@ -87,7 +104,9 @@ theorem contDiff_euclideanToMatrix_apply
   exact (EuclideanSpace.proj (i, j)).contDiff.comp hg
 
 /-- The Gram--Schmidt projection is independent of the proof of positivity
-and respects equality of its underlying matrices.-/
+and respects equality of its underlying matrices.
+@isnad1 id=eq.3h3v.s7.a710fd8ec49a from=translated src=- shape=1c17fd4f vocab=dc5e27e2
+-/
 theorem matrixGramSchmidtSO_congr {m : ℕ}
     {M N : Matrix (Fin m) (Fin m) ℝ}
     (hMN : M = N) (hM : 0 < M.det) (hN : 0 < N.det) :
@@ -96,7 +115,9 @@ theorem matrixGramSchmidtSO_congr {m : ℕ}
   rfl
 
 /-- Relative smooth approximation of a continuous matrix family inside the
-open set of positive-determinant matrices.-/
+open set of positive-determinant matrices.
+@isnad1 id=ex.6h5v.s9.608c0efcbafb from=translated src=- shape=2923a952 vocab=200a612a
+-/
 theorem exists_contDiff_positiveDet_approx_and_eqOn
     {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
     [FiniteDimensional ℝ P]
@@ -153,7 +174,9 @@ required to be smoothly encoded near the closed relative set; the output is
 globally coordinatewise smooth and agrees with the input exactly on that set.
 
 The proof approximates in Euclidean matrix coordinates inside `det > 0` and
-then applies the exact Gram--Schmidt retraction.-/
+then applies the exact Gram--Schmidt retraction.
+@isnad1 id=ex.5h5v.s10.1e5ef92b1506 from=translated src=- shape=03fb455f vocab=0f1278a0
+-/
 theorem exists_contDiff_SO_approx_and_eqOn
     {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
     [FiniteDimensional ℝ P]

@@ -39,6 +39,9 @@ def cartesianSORelativeSet : Set P :=
   {p | p.1 = 0} ∪
     {p | p.1 = 1 ∧ p.2.1 ^ 2 + p.2.2 ^ 2 = 1}
 
+/--
+@isnad1 id=isclosed.0h0v.s4.3e5765f8ad93 from=translated src=- shape=48e0b26e vocab=62aabe91
+-/
 theorem isClosed_cartesianSORelativeSet :
     IsClosed cartesianSORelativeSet := by
   apply IsClosed.union
@@ -47,10 +50,16 @@ theorem isClosed_cartesianSORelativeSet :
     · exact isClosed_eq continuous_fst continuous_const
     · exact isClosed_eq (by fun_prop) continuous_const
 
+/--
+@isnad1 id=mem.0h1v.s5.9fd5aa17e2a0 from=translated src=- shape=4cc67872 vocab=1aae965f
+-/
 theorem timeZero_mem_cartesianSORelativeSet (z : ℝ × ℝ) :
     ((0 : ℝ), z) ∈ cartesianSORelativeSet :=
   Or.inl rfl
 
+/--
+@isnad1 id=mem.1h1v.s6.bc9b2b9a2bee from=translated src=- shape=36e67841 vocab=48cd0c65
+-/
 theorem endpointCircle_mem_cartesianSORelativeSet
     {z : ℝ × ℝ} (hz : z.1 ^ 2 + z.2 ^ 2 = 1) :
     ((1 : ℝ), z) ∈ cartesianSORelativeSet :=
@@ -58,7 +67,9 @@ theorem endpointCircle_mem_cartesianSORelativeSet
 
 /-- A continuous Cartesian `SO(m)` homotopy with a smooth relative collar can
 be made globally smooth while fixing both its identity start and its endpoint
-on the unit circle.-/
+on the unit circle.
+@isnad1 id=ex.5h3v.s11.418d16bbb153 from=translated src=- shape=5ba0b21b vocab=9197f3bf
+-/
 theorem exists_contDiff_cartesianSOHomotopy
     {m : ℕ} (hm : 0 < m)
     (R : P → SOGroup m) (hR : Continuous R)
@@ -80,7 +91,9 @@ theorem exists_contDiff_cartesianSOHomotopy
   · intro z hz
     exact hEq (endpointCircle_mem_cartesianSORelativeSet hz)
 
-/-- Curried form matching the input expected by `SOLocalExtension`.-/
+/-- Curried form matching the input expected by `SOLocalExtension`.
+@isnad1 id=ex.5h3v.s11.6c0c09a0099b from=translated src=- shape=1a093a59 vocab=b21d5e1a
+-/
 theorem exists_contDiff_curriedCartesianSOHomotopy
     {m : ℕ} (hm : 0 < m)
     (R : ℝ → ℝ × ℝ → SOGroup m)

@@ -24,7 +24,9 @@ noncomputable section
 open Function MeasureTheory Metric Set Filter
 open scoped ContDiff Topology
 
-/-- If `P 0` holds and `P m` fails, there is a last index where `P` holds.-/
+/-- If `P 0` holds and `P m` fails, there is a last index where `P` holds.
+@isnad1 id=ex.1h3v.s5.a718c72124af from=translated src=- shape=c5a50918 vocab=13a96747
+-/
 theorem exists_last_true {P : ℕ → Prop} {m : ℕ} (h0 : P 0) (hm : ¬P m) :
     ∃ i < m, P i ∧ ¬P (i + 1) := by
   induction m with
@@ -35,7 +37,9 @@ theorem exists_last_true {P : ℕ → Prop} {m : ℕ} (h0 : P 0) (hm : ¬P m) :
     · obtain ⟨i, hi, h⟩ := IH hPm
       exact ⟨i, by omega, h⟩
 
-/-- Maps into the zero-dimensional space have no critical points.-/
+/-- Maps into the zero-dimensional space have no critical points.
+@isnad1 id=eq.0h3v.s5.01c2aefe72fa from=translated src=- shape=4b7fdd66 vocab=854e4c63
+-/
 theorem critSet_target_zero {p : ℕ} (U : Set (Fin p → ℝ))
     (f : (Fin p → ℝ) → Fin 0 → ℝ) : critSet U f = ∅ := by
   ext x
@@ -45,7 +49,9 @@ theorem critSet_target_zero {p : ℕ} (U : Set (Fin p → ℝ))
   exact ⟨0, Subsingleton.elim _ _⟩
 
 /-- **Sard's theorem** for `C^∞` maps between the concrete Euclidean spaces
-`Fin p → ℝ` and `Fin q → ℝ` (with an open domain of definition).-/
+`Fin p → ℝ` and `Fin q → ℝ` (with an open domain of definition).
+@isnad1 id=eq.2h4v.s8.ae4133caab3b from=translated src=- shape=e9f9daad vocab=a696e796
+-/
 theorem sard_pi :
     ∀ (p q : ℕ) (U : Set (Fin p → ℝ)) (f : (Fin p → ℝ) → Fin q → ℝ),
       IsOpen U → ContDiffOn ℝ ∞ f U → volume (f '' critSet U f) = 0 := by

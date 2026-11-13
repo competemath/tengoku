@@ -44,7 +44,9 @@ def circleAngleExtension (a : ℝ × ℝ → ℝ) (x : E) : ℝ :=
   tubeCutoff x * a (uC x, uS x)
 
 /-- The cutoff removes the apparent singularity of the radial retraction, so
-the extended angle field is smooth on the whole ambient Euclidean space.-/
+the extended angle field is smooth on the whole ambient Euclidean space.
+@isnad1 id=contdiff.1h2v.s8.2464859e0365 from=translated src=- shape=f61e49a0 vocab=513492cc
+-/
 theorem contDiff_circleAngleExtension {a : ℝ × ℝ → ℝ}
     (ha : ContDiff ℝ ∞ a) :
     ContDiff ℝ ∞ (circleAngleExtension (m := m) a) := by
@@ -74,25 +76,38 @@ theorem contDiff_circleAngleExtension {a : ℝ × ℝ → ℝ}
     rw [circleAngleExtension, tubeCutoff_of_ge hy.le, zero_mul]
 
 /-- On the inner tube, where the cutoff is one, the extension is exactly the
-radial pullback of the prescribed circle angle.-/
+radial pullback of the prescribed circle angle.
+@isnad1 id=eq.1h3v.s6.00e19d008835 from=translated src=- shape=e732a6c4 vocab=bef4a5e9
+-/
 theorem circleAngleExtension_eq_of_mem_inner (a : ℝ × ℝ → ℝ) {x : E}
     (hx : x ∈ tubeRegion (m := m) (1 / 4)) :
     circleAngleExtension a x = a (uC x, uS x) := by
   rw [circleAngleExtension, tubeCutoff_eq_one_on_inner hx, one_mul]
 
+/--
+@isnad1 id=eq.0h2v.s4.7eba11209231 from=translated src=- shape=418a28e2 vocab=e21d8fd6
+-/
 lemma rad_circleAt (θ : ℝ) : rad (circleAt (m := m) θ) = 1 := by
   rw [rad, radSq_circleAt, Real.sqrt_one]
 
+/--
+@isnad1 id=eq.0h2v.s3.aba0c90c87cc from=translated src=- shape=232808c0 vocab=f698728c
+-/
 @[simp] lemma uC_circleAt (θ : ℝ) :
     uC (circleAt (m := m) θ) = Real.cos θ := by
   rw [uC, circleAt_apply_zero, rad_circleAt, div_one]
 
+/--
+@isnad1 id=eq.0h2v.s3.792b37e9dc3d from=translated src=- shape=232808c0 vocab=60394565
+-/
 @[simp] lemma uS_circleAt (θ : ℝ) :
     uS (circleAt (m := m) θ) = Real.sin θ := by
   rw [uS, circleAt_apply_one, rad_circleAt, div_one]
 
 /-- On the standard circle the extension recovers the given angle lift
-exactly.-/
+exactly.
+@isnad1 id=eq.0h3v.s4.ac95d8cf5fcb from=translated src=- shape=a7bcd40f vocab=e217afc5
+-/
 @[simp] theorem circleAngleExtension_circleAt (a : ℝ × ℝ → ℝ) (θ : ℝ) :
     circleAngleExtension (m := m) a (circleAt θ) =
       a (Real.cos θ, Real.sin θ) := by
@@ -108,7 +123,9 @@ def localHomotopy (X : FramedLevelSet (m + 2)) (a : ℝ × ℝ → ℝ)
     (contDiff_circleAngleExtension ha)
 
 /-- At the endpoint, the local homotopy realizes exactly the prescribed
-circle-valued rotation.-/
+circle-valued rotation.
+@isnad1 id=eq.1h4v.s7.c097ab1588dd from=translated src=- shape=a8e72fd1 vocab=1d8b3bcd
+-/
 @[simp] theorem localHomotopy_H_one_circleAt
     (X : FramedLevelSet (m + 2)) (a : ℝ × ℝ → ℝ)
     (ha : ContDiff ℝ ∞ a) (θ : ℝ) :
@@ -142,7 +159,9 @@ def extendCircleSOHomotopy
 /-- The extended `SO(m+2)` field is coordinatewise smooth on parameter-space
 times the whole ambient Euclidean space.  At the singular radial axis the
 cutoff is identically zero on a neighborhood, and `R 0 = 1` removes all
-dependence on the undefined angular direction.-/
+dependence on the undefined angular direction.
+@isnad1 id=contdiff.2h4v.s12.a6da2f746784 from=translated src=- shape=9f110e73 vocab=ba452b38
+-/
 theorem contDiff_extendCircleSOHomotopy
     {R : ℝ → ℝ × ℝ → SOGroup (m + 2)}
     (hR : ∀ i j, ContDiff ℝ ∞
@@ -188,7 +207,9 @@ theorem contDiff_extendCircleSOHomotopy
     rw [extendCircleSOHomotopy, tubeCutoff_of_ge hq.le, mul_zero,
       hRzero]
 
-/-- The extended family starts at the identity everywhere.-/
+/-- The extended family starts at the identity everywhere.
+@isnad1 id=eq.1h3v.s12.bc5aa78bf70e from=translated src=- shape=57008bbe vocab=17359a3c
+-/
 @[simp] theorem extendCircleSOHomotopy_zero
     (R : ℝ → ℝ × ℝ → SOGroup (m + 2))
     (hRzero : ∀ z, R 0 z = 1) (x : E) :
@@ -198,7 +219,9 @@ theorem contDiff_extendCircleSOHomotopy
     zero_mul, hRzero]
 
 /-- The extension is identically the identity outside the outer tube, at every
-homotopy time.-/
+homotopy time.
+@isnad1 id=eq.2h4v.s12.7134a2c0407e from=translated src=- shape=01193a21 vocab=52796edb
+-/
 theorem extendCircleSOHomotopy_eq_one_off_outer
     (R : ℝ → ℝ × ℝ → SOGroup (m + 2))
     (hRzero : ∀ z, R 0 z = 1) (s : ℝ) {x : E}
@@ -208,7 +231,9 @@ theorem extendCircleSOHomotopy_eq_one_off_outer
     hRzero]
 
 /-- On the standard circle the spatial extension is exactly the original
-circle homotopy (with the standard collar-flat reparameterization).-/
+circle homotopy (with the standard collar-flat reparameterization).
+@isnad1 id=eq.0h4v.s10.71d4c4cb42f3 from=translated src=- shape=dfcf59d3 vocab=63abb375
+-/
 @[simp] theorem extendCircleSOHomotopy_circleAt
     (R : ℝ → ℝ × ℝ → SOGroup (m + 2)) (s θ : ℝ) :
     extendCircleSOHomotopy (m := m) R s (circleAt θ) =
@@ -219,7 +244,9 @@ circle homotopy (with the standard collar-flat reparameterization).-/
     mul_one, uC_circleAt, uS_circleAt]
 
 /-- In particular, the endpoint agrees exactly with the prescribed endpoint
-field on the circle.-/
+field on the circle.
+@isnad1 id=eq.0h3v.s10.7464414a058b from=translated src=- shape=f81abbb5 vocab=a332de92
+-/
 @[simp] theorem extendCircleSOHomotopy_one_circleAt
     (R : ℝ → ℝ × ℝ → SOGroup (m + 2)) (θ : ℝ) :
     extendCircleSOHomotopy (m := m) R 1 (circleAt θ) =
@@ -240,7 +267,9 @@ def localSOHomotopy (X : FramedLevelSet (m + 2))
     (extendCircleSOHomotopy_zero R hRzero)
 
 /-- The actual defining-map homotopy restricts on the circle to the supplied
-`SO(m+2)` homotopy.-/
+`SO(m+2)` homotopy.
+@isnad1 id=eq.2h5v.s12.04b7693bcce6 from=translated src=- shape=2c137dad vocab=f57913db
+-/
 @[simp] theorem localSOHomotopy_H_circleAt
     (X : FramedLevelSet (m + 2))
     (R : ℝ → ℝ × ℝ → SOGroup (m + 2))

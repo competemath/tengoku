@@ -30,7 +30,9 @@ local notation "N" => EuclideanSpace ℝ (Fin n)
 local notation "C" => AddCircle (1 : ℝ)
 
 /-- A sufficiently thin closed tube about the zero section lies in every
-prescribed open neighborhood of the core circle.-/
+prescribed open neighborhood of the core circle.
+@isnad1 id=ex.2h3v.s8.15a8892e12e2 from=translated src=- shape=b99ad993 vocab=33e6515e
+-/
 theorem exists_closedTube_subset_open {U : Set E}
     (hUopen : IsOpen U) (hcircle : Set.range F.circle ⊆ U) :
     ∃ r : ℝ, 0 < r ∧
@@ -58,7 +60,9 @@ theorem exists_closedTube_subset_open {U : Set E}
     hballW (Metric.closedBall_subset_ball hrR hq.2)⟩
 
 /-- A radial bump whose compact tube support lies inside the prescribed open
-neighborhood, and also strictly inside the injective tube radius.-/
+neighborhood, and also strictly inside the injective tube radius.
+@isnad1 id=ex.2h3v.s9.7576e73fb715 from=translated src=- shape=3b8ebe4a vocab=9267dca4
+-/
 theorem exists_radialBump_supportCore_subset {U : Set E}
     (hUopen : IsOpen U) (hcircle : Set.range F.circle ⊆ U) :
     ∃ b : ContDiffBump (0 : N),
@@ -90,7 +94,9 @@ variable {F : SmoothFramedPeriodicCircle n}
 variable (D : F.PeriodicDisplacementExtensionData)
 
 /-- If the compact support core was placed in `U`, the ambient field
-vanishes pointwise outside `U`.-/
+vanishes pointwise outside `U`.
+@isnad1 id=eq.2h5v.s8.c07c2443076c from=translated src=- shape=5f893dae vocab=42d3a92e
+-/
 theorem ambientField_eq_zero_of_supportCore_subset {U : Set E}
     (hcore : D.supportCore ⊆ U) {x : E} (hx : x ∉ U) :
     D.ambientField x = 0 := by

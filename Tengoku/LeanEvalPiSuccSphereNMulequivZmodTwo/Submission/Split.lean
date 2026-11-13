@@ -48,6 +48,9 @@ def cutReparam (c : ℝ) : I → I := fun u =>
   if (u : ℝ) ≤ 1 / 2 then Set.projIcc (0 : ℝ) 1 zero_le_one (c * (2 * (u : ℝ)))
   else Set.projIcc (0 : ℝ) 1 zero_le_one (c + (1 - c) * (2 * (u : ℝ) - 1))
 
+/--
+@isnad1 id=continuo.0h1v.s5.e4d192641a2a from=translated src=- shape=86681899 vocab=d530f696
+-/
 theorem continuous_cutReparam (c : ℝ) : Continuous (cutReparam c) := by
   apply Continuous.if_le
   · exact continuous_projIcc.comp' (by fun_prop)
@@ -58,11 +61,17 @@ theorem continuous_cutReparam (c : ℝ) : Continuous (cutReparam c) := by
     have h : c * (2 * (u : ℝ)) = c + (1 - c) * (2 * (u : ℝ) - 1) := by rw [hu]; ring
     rw [h]
 
+/--
+@isnad1 id=eq.0h1v.s5.7595305a16f2 from=translated src=- shape=e1b1c12b vocab=4c9364bf
+-/
 theorem cutReparam_zero (c : ℝ) : cutReparam c 0 = 0 := by
   simp only [cutReparam, Set.Icc.coe_zero]
   rw [ite_eq_left (by norm_num)]
   exact projIcc_eq_zero (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s5.529442ef9ebc from=translated src=- shape=e1b1c12b vocab=4c9364bf
+-/
 theorem cutReparam_one (c : ℝ) : cutReparam c 1 = 1 := by
   simp only [cutReparam, Set.Icc.coe_one]
   rw [ite_eq_right (by norm_num)]
@@ -126,6 +135,9 @@ def rightGenLoop (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
       · refine p.2 _ ⟨j, ?_⟩
         rwa [Function.update_of_ne hne]⟩
 
+/--
+@isnad1 id=eq.3h7v.s8.146bebb3028b from=translated src=- shape=b3563e4a vocab=a7acdf6f
+-/
 @[simp]
 theorem leftGenLoop_apply (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
     (hcut : ∀ t : I^N, (t i : ℝ) = c → p t = x) (t : I^N) :
@@ -133,6 +145,9 @@ theorem leftGenLoop_apply (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
       = p (Function.update t i (Set.projIcc (0 : ℝ) 1 zero_le_one (c * (t i : ℝ)))) :=
   rfl
 
+/--
+@isnad1 id=eq.3h7v.s8.a534be3c98dc from=translated src=- shape=1f0c2b91 vocab=805e8386
+-/
 @[simp]
 theorem rightGenLoop_apply (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
     (hcut : ∀ t : I^N, (t i : ℝ) = c → p t = x) (t : I^N) :
@@ -142,7 +157,9 @@ theorem rightGenLoop_apply (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
   rfl
 
 /-- The concatenation of the two restrictions along coordinate `i` is the
-reparametrization of `p` by `cutReparam c` in coordinate `i`.-/
+reparametrization of `p` by `cutReparam c` in coordinate `i`.
+@isnad1 id=eq.3h7v.s8.2097e845fe11 from=translated src=- shape=772beb2c vocab=dc9b85e5
+-/
 theorem transAt_left_right_apply (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
     (hcut : ∀ t : I^N, (t i : ℝ) = c → p t = x) (t : I^N) :
     GenLoop.transAt i (leftGenLoop p i c hc0 hc1 hcut) (rightGenLoop p i c hc0 hc1 hcut) t
@@ -171,6 +188,9 @@ def splitHomotopyMap (s : I) (t : I^N) : I^N :=
   Function.update t i (Set.projIcc (0 : ℝ) 1 zero_le_one
     ((1 - (s : ℝ)) * (t i : ℝ) + (s : ℝ) * ((cutReparam c (t i) : I) : ℝ)))
 
+/--
+@isnad1 id=continuo.0h3v.s7.9443afc148e9 from=translated src=- shape=a5bc36d3 vocab=e195a7b5
+-/
 theorem continuous_splitHomotopyMap :
     Continuous fun st : I × I^N => splitHomotopyMap i c st.1 st.2 := by
   refine continuous_snd.update i (continuous_projIcc.comp' ?_)
@@ -181,6 +201,9 @@ theorem continuous_splitHomotopyMap :
       (continuous_subtype_val.comp ((continuous_apply i).comp continuous_snd))).add
     ((continuous_subtype_val.comp continuous_fst).mul hc)
 
+/--
+@isnad1 id=eq.0h4v.s5.ee8aa3c3e7b8 from=translated src=- shape=dd0414e0 vocab=32aed99c
+-/
 theorem splitHomotopyMap_zero (t : I^N) : splitHomotopyMap i c 0 t = t := by
   have h : (1 - ((0 : I) : ℝ)) * (t i : ℝ) + ((0 : I) : ℝ) * ((cutReparam c (t i) : I) : ℝ)
       = (t i : ℝ) := by
@@ -188,6 +211,9 @@ theorem splitHomotopyMap_zero (t : I^N) : splitHomotopyMap i c 0 t = t := by
   simp only [splitHomotopyMap]
   rw [h, Set.projIcc_val, Function.update_eq_self]
 
+/--
+@isnad1 id=eq.0h4v.s5.86729613988c from=translated src=- shape=904b6f23 vocab=979edff5
+-/
 theorem splitHomotopyMap_one (t : I^N) :
     splitHomotopyMap i c 1 t = Function.update t i (cutReparam c (t i)) := by
   have h : (1 - ((1 : I) : ℝ)) * (t i : ℝ) + ((1 : I) : ℝ) * ((cutReparam c (t i) : I) : ℝ)
@@ -196,6 +222,9 @@ theorem splitHomotopyMap_one (t : I^N) :
   simp only [splitHomotopyMap]
   rw [h, Set.projIcc_val]
 
+/--
+@isnad1 id=mem.1h5v.s6.d689e8879b0f from=translated src=- shape=ad82277e vocab=fecadfdf
+-/
 theorem splitHomotopyMap_mem_boundary (s : I) {t : I^N} (ht : t ∈ Cube.boundary N) :
     splitHomotopyMap i c s t ∈ Cube.boundary N := by
   obtain ⟨j, hj⟩ := ht
@@ -245,7 +274,9 @@ def splitHomotopy (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
 
 /-- **Hyperplane cut**: a generalized loop that collapses the slice `t i = c` to the
 basepoint is homotopic rel boundary to the concatenation, along coordinate `i`, of
-its left (`t i ∈ [0,c]`) and right (`t i ∈ [c,1]`) restrictions.-/
+its left (`t i ∈ [0,c]`) and right (`t i ∈ [c,1]`) restrictions.
+@isnad1 id=homotopi.3h6v.s7.930de0d6c1e6 from=translated src=- shape=98db9923 vocab=dfcda3b9
+-/
 theorem homotopic_transAt_restrictions (hc0 : 0 < c) (hc1 : c < 1)
     (hcut : ∀ t : I^N, (t i : ℝ) = c → p t = x) :
     GenLoop.Homotopic p
@@ -255,7 +286,9 @@ theorem homotopic_transAt_restrictions (hc0 : 0 < c) (hc1 : c < 1)
 
 /-- Class form of the hyperplane cut.  NOTE the order: by `HomotopyGroup.mul_spec`
 (`⟦a⟧ * ⟦b⟧ = ⟦transAt i b a⟧`, the right factor runs first), the class of `p` is the
-class of the RIGHT restriction times the class of the LEFT restriction.-/
+class of the RIGHT restriction times the class of the LEFT restriction.
+@isnad1 id=eq.3h6v.s8.c29ca65a40d1 from=translated src=- shape=16b70c94 vocab=1cc7a084
+-/
 theorem genLoopClass_eq_right_mul_left [Nonempty N] (hc0 : 0 < c) (hc1 : c < 1)
     (hcut : ∀ t : I^N, (t i : ℝ) = c → p t = x) :
     (⟦p⟧ : HomotopyGroup N X x)

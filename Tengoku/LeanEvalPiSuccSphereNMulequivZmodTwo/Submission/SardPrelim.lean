@@ -39,17 +39,28 @@ open scoped ContDiff Topology
 
 /-! ## Smoothness index bookkeeping -/
 
+/--
+@isnad1 id=le.0h0v.s4.78cbb6115a8f from=translated src=- shape=fc228040 vocab=a197a3df
+-/
 theorem one_le_infty : (1 : WithTop ℕ∞) ≤ ∞ := by exact_mod_cast le_top
 
+/--
+@isnad1 id=ne.0h0v.s4.cb98d4320f82 from=translated src=- shape=8dfd8052 vocab=11f7191b
+-/
 theorem infty_ne_zero : (∞ : WithTop ℕ∞) ≠ 0 := by simp
 
+/--
+@isnad1 id=le.0h1v.s5.d8041d62fa9f from=translated src=- shape=ff556d52 vocab=170dd909
+-/
 theorem add_one_le_infty (m : ℕ) : (m : WithTop ℕ∞) + 1 ≤ ∞ := by
   exact_mod_cast le_top
 
 /-! ## Local-to-global null images -/
 
 /-- If every point of `S` has a neighbourhood `V` such that `f '' (S ∩ V)` is
-`μ`-null, then `f '' S` is `μ`-null.  (Lindelöf argument.)-/
+`μ`-null, then `f '' S` is `μ`-null.  (Lindelöf argument.)
+@isnad1 id=eq.1h5v.s6.9a709fe2d375 from=translated src=- shape=fd34bc42 vocab=b6274eac
+-/
 theorem image_null_of_locally_image_null
     {α β : Type*} [TopologicalSpace α] [SecondCountableTopology α]
     [MeasurableSpace β] {μ : Measure β} {f : α → β} {S : Set α}
@@ -68,6 +79,9 @@ theorem image_null_of_locally_image_null
 
 /-! ## Standard basis vectors -/
 
+/--
+@isnad1 id=eq.0h2v.s6.5a61c3e5594a from=translated src=- shape=259b9f12 vocab=20cac815
+-/
 theorem sum_smul_single {d : ℕ} (c : Fin d → ℝ) :
     ∑ j, c j • Pi.single j (1 : ℝ) = c := by
   have h : ∀ j : Fin d, c j • Pi.single j (1 : ℝ) = Pi.single j (c j) := by
@@ -80,7 +94,9 @@ theorem sum_smul_single {d : ℕ} (c : Fin d → ℝ) :
   exact Finset.univ_sum_single c
 
 /-- A continuous linear map on `Fin d → ℝ` that is nonzero at some vector is
-nonzero at some standard basis vector.-/
+nonzero at some standard basis vector.
+@isnad1 id=ex.1h4v.s8.6ebf83bcd812 from=translated src=- shape=b1f33d46 vocab=cd33d295
+-/
 theorem exists_apply_single_ne_zero {d : ℕ} {F : Type*} [NormedAddCommGroup F]
     [NormedSpace ℝ F] {ξ : (Fin d → ℝ) →L[ℝ] F} {v : Fin d → ℝ} (hv : ξ v ≠ 0) :
     ∃ s : Fin d, ξ (Pi.single s 1) ≠ 0 := by
@@ -93,7 +109,9 @@ theorem exists_apply_single_ne_zero {d : ℕ} {F : Type*} [NormedAddCommGroup F]
 
 /-! ## Surjectivity is an open condition -/
 
-/-- The set of surjective continuous linear maps into `Fin q → ℝ` is open.-/
+/-- The set of surjective continuous linear maps into `Fin q → ℝ` is open.
+@isnad1 id=isopen.0h2v.s8.01ac07441933 from=translated src=- shape=9ee1e0ee vocab=671f8d0c
+-/
 theorem isOpen_setOf_surjective {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {q : ℕ} :
     IsOpen {L : E →L[ℝ] (Fin q → ℝ) | Surjective L} := by
@@ -131,13 +149,18 @@ theorem isOpen_setOf_surjective {E : Type*} [NormedAddCommGroup E]
   rw [hco] at hsurj
   exact hsurj.of_comp
 
+/--
+@isnad1 id=isclosed.0h2v.s8.7ef2660d7a97 from=translated src=- shape=e606ad4a vocab=da0a952f
+-/
 theorem isClosed_setOf_not_surjective {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {q : ℕ} :
     IsClosed {L : E →L[ℝ] (Fin q → ℝ) | ¬Surjective L} := by
   have h := (isOpen_setOf_surjective (E := E) (q := q)).isClosed_compl
   simpa [compl_ofPred] using h
 
-/-- The zero map is not surjective onto a nontrivial space.-/
+/-- The zero map is not surjective onto a nontrivial space.
+@isnad1 id=not.0h2v.s8.41d5c76a447c from=translated src=- shape=31d39f39 vocab=14c8a070
+-/
 theorem not_surjective_zero {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     [NormedAddCommGroup F] [NormedSpace ℝ F] [Nontrivial F] :
     ¬Surjective ((0 : E →L[ℝ] F) : E → F) := by
@@ -147,7 +170,9 @@ theorem not_surjective_zero {E F : Type*} [NormedAddCommGroup E] [NormedSpace �
   exact hy (by simpa using hx.symm)
 
 /-- Surjectivity of a continuous linear map into `Fin 1 → ℝ` is equivalent to
-being nonzero.-/
+being nonzero.
+@isnad1 id=iff.0h2v.s9.c755613448d7 from=translated src=- shape=afd64634 vocab=595fd53f
+-/
 theorem surjective_iff_ne_zero_fin_one {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] (L : E →L[ℝ] (Fin 1 → ℝ)) :
     Surjective L ↔ L ≠ 0 := by
@@ -193,12 +218,21 @@ def splitCLE (n : ℕ) (i : Fin (n + 1)) :
     (Fin (n + 1) → ℝ) ≃L[ℝ] ℝ × (Fin n → ℝ) :=
   (splitLinearEquiv n i).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.0h3v.s9.3dfe0973745f from=translated src=- shape=9483505d vocab=4eb07cd6
+-/
 @[simp] theorem splitCLE_apply (i : Fin (n + 1)) (x : Fin (n + 1) → ℝ) :
     splitCLE n i x = (x i, Fin.removeNth i x) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.f32872999f79 from=translated src=- shape=17d445b3 vocab=683f3bc6
+-/
 @[simp] theorem splitCLE_symm_apply (i : Fin (n + 1)) (p : ℝ × (Fin n → ℝ)) :
     (splitCLE n i).symm p = Fin.insertNth i p.1 p.2 := rfl
 
+/--
+@isnad1 id=measurep.0h2v.s10.97c3a551392f from=translated src=- shape=f7374fb0 vocab=14e21d73
+-/
 theorem measurePreserving_splitCLE (i : Fin (n + 1)) :
     MeasurePreserving (splitCLE n i) volume volume := by
   have h := volume_preserving_piFinSuccAbove (fun _ : Fin (n + 1) => ℝ) i
@@ -207,7 +241,9 @@ theorem measurePreserving_splitCLE (i : Fin (n + 1)) :
   rwa [hcoe] at h
 
 /-- If the image of `A` under the coordinate-splitting map is contained in a
-null set, then `A` is null.-/
+null set, then `A` is null.
+@isnad1 id=eq.2h4v.s10.d020d886afe2 from=translated src=- shape=b6e7cef3 vocab=fef7e687
+-/
 theorem splitCLE_image_null (i : Fin (n + 1)) {A : Set (Fin (n + 1) → ℝ)}
     {B : Set (ℝ × (Fin n → ℝ))} (hAB : splitCLE n i '' A ⊆ B)
     (hB : volume B = 0) : volume A = 0 := by
@@ -217,6 +253,9 @@ theorem splitCLE_image_null (i : Fin (n + 1)) {A : Set (Fin (n + 1) → ℝ)}
 
 /-! ## Singletons are null -/
 
+/--
+@isnad1 id=eq.0h2v.s8.969a70fbffee from=translated src=- shape=70b06a95 vocab=c3995d29
+-/
 theorem volume_singleton_pi {q : ℕ} (y : Fin (q + 1) → ℝ) :
     volume ({y} : Set (Fin (q + 1) → ℝ)) = 0 := by
   have h1 : ({y} : Set (Fin (q + 1) → ℝ)) = Set.pi univ fun i => {y i} :=
@@ -240,16 +279,28 @@ def vanishSet (U : Set (Fin p → ℝ)) (f : (Fin p → ℝ) → Fin q → ℝ) 
     Set (Fin p → ℝ) :=
   {x ∈ U | ∀ j, 1 ≤ j → j ≤ i → iteratedFDeriv ℝ j f x = 0}
 
+/--
+@isnad1 id=le.0h4v.s5.6610594e9926 from=translated src=- shape=62733cdf vocab=ff73c3c9
+-/
 theorem critSet_subset (U : Set (Fin p → ℝ)) (f : (Fin p → ℝ) → Fin q → ℝ) :
     critSet U f ⊆ U := fun _ hx => hx.1
 
+/--
+@isnad1 id=le.0h5v.s5.cbcf572f92bb from=translated src=- shape=4c7d3fa9 vocab=e5067d63
+-/
 theorem vanishSet_subset (U : Set (Fin p → ℝ)) (f : (Fin p → ℝ) → Fin q → ℝ)
     (i : ℕ) : vanishSet U f i ⊆ U := fun _ hx => hx.1
 
+/--
+@isnad1 id=le.1h6v.s5.5af150440e6e from=translated src=- shape=25de6034 vocab=e5067d63
+-/
 theorem vanishSet_antitone {U : Set (Fin p → ℝ)} {f : (Fin p → ℝ) → Fin q → ℝ}
     {i j : ℕ} (hij : i ≤ j) : vanishSet U f j ⊆ vanishSet U f i :=
   fun _ hx => ⟨hx.1, fun k hk1 hki => hx.2 k hk1 (hki.trans hij)⟩
 
+/--
+@isnad1 id=eq.2h6v.s9.92aed4aa35ec from=translated src=- shape=f97a4e00 vocab=644e3b7a
+-/
 theorem fderiv_eq_zero_of_mem_vanishSet {U : Set (Fin p → ℝ)}
     {f : (Fin p → ℝ) → Fin q → ℝ} {i : ℕ} (hi : 1 ≤ i) {x : Fin p → ℝ}
     (hx : x ∈ vanishSet U f i) : fderiv ℝ f x = 0 := by
@@ -261,7 +312,9 @@ theorem fderiv_eq_zero_of_mem_vanishSet {U : Set (Fin p → ℝ)}
   simp
 
 /-- On a nontrivial target, the sets `C_i` (for `i ≥ 1`) consist of critical
-points.-/
+points.
+@isnad1 id=le.1h5v.s6.edf0d4084d76 from=translated src=- shape=e6889a7f vocab=4b5514a3
+-/
 theorem vanishSet_subset_critSet {U : Set (Fin p → ℝ)}
     {f : (Fin p → ℝ) → Fin (q + 1) → ℝ} {i : ℕ} (hi : 1 ≤ i) :
     vanishSet U f i ⊆ critSet U f := by
@@ -271,7 +324,9 @@ theorem vanishSet_subset_critSet {U : Set (Fin p → ℝ)}
   exact not_surjective_zero
 
 /-- The intersection of the critical set with a compact subset of `U` is
-compact.-/
+compact.
+@isnad1 id=iscompac.4h5v.s8.5eedbd271a7e from=translated src=- shape=aa631069 vocab=4bb2f588
+-/
 theorem isCompact_critSet_inter {U : Set (Fin p → ℝ)}
     {f : (Fin p → ℝ) → Fin q → ℝ} (hU : IsOpen U) (hf : ContDiffOn ℝ ∞ f U)
     {K : Set (Fin p → ℝ)} (hK : IsCompact K) (hKU : K ⊆ U) :
@@ -294,6 +349,9 @@ theorem isCompact_critSet_inter {U : Set (Fin p → ℝ)}
 
 /-! ## `Function.update` as an affine perturbation -/
 
+/--
+@isnad1 id=eq.0h4v.s6.cd8ed433a037 from=translated src=- shape=93a5df7a vocab=e6f86797
+-/
 theorem update_eq_add_smul_single {m : ℕ} (y : Fin m → ℝ) (s : Fin m) (a : ℝ) :
     Function.update y s a = y + (a - y s) • Pi.single s 1 := by
   funext j
@@ -301,7 +359,9 @@ theorem update_eq_add_smul_single {m : ℕ} (y : Fin m → ℝ) (s : Fin m) (a :
   · simp
   · simp [hj]
 
-/-- Injectivity computation for the derivative of the chart map.-/
+/-- Injectivity computation for the derivative of the chart map.
+@isnad1 id=eq.2h4v.s10.2ea7b269b4b7 from=translated src=- shape=379df76f vocab=9062f8d4
+-/
 theorem chart_deriv_inj {D : (Fin (n + 1) → ℝ) →L[ℝ] ℝ} {s : Fin (n + 1)}
     (hd : D (Pi.single s 1) ≠ 0) (ξ : Fin (n + 1) → ℝ)
     (hξ : ξ + (D ξ - ξ s) • Pi.single s 1 = 0) : ξ = 0 := by
@@ -337,7 +397,9 @@ theorem chart_deriv_inj {D : (Fin (n + 1) → ℝ) →L[ℝ] ℝ} {s : Fin (n + 
 /-- **Chart lemma.**  Let `σ` be a smooth scalar function on an open set `U`
 with `∂σ/∂x_s (x₀) ≠ 0`.  Then the map `h : y ↦ update y s (σ y)` is a
 diffeomorphism from a neighbourhood `V ⊆ U` of `x₀` onto an open set `W`,
-with a smooth inverse `h'`.-/
+with a smooth inverse `h'`.
+@isnad1 id=ex.4h5v.s11.145a731f2452 from=translated src=- shape=7af50826 vocab=12697a08
+-/
 theorem exists_chart {U : Set (Fin (n + 1) → ℝ)} (hU : IsOpen U)
     {σ : (Fin (n + 1) → ℝ) → ℝ} (hσ : ContDiffOn ℝ ∞ σ U)
     {x₀ : Fin (n + 1) → ℝ} (hx₀ : x₀ ∈ U) {s : Fin (n + 1)}

@@ -69,9 +69,15 @@ variable {n : ℕ} (F : SmoothFramedPeriodicCircle n)
 /-- The `j`-th normal vector of the chosen frame.-/
 def normal (j : Fin n) (u : ℝ) : E[n] := F.frame u j.succ
 
+/--
+@isnad1 id=contdiff.0h3v.s7.df0130513443 from=translated src=- shape=d1a30e37 vocab=33b3b6eb
+-/
 theorem smooth_normal (j : Fin n) : ContDiff ℝ ∞ (F.normal j) :=
   F.smooth_frame j.succ
 
+/--
+@isnad1 id=periodic.0h3v.s5.8b2eac559489 from=translated src=- shape=6642679b vocab=085c42e0
+-/
 theorem periodic_normal (j : Fin n) :
     Function.Periodic (F.normal j) 1 :=
   F.periodic_frame j.succ
@@ -80,6 +86,9 @@ theorem periodic_normal (j : Fin n) :
 def tubeLift (q : ℝ × N[n]) : E[n] :=
   F.lift q.1 + ∑ j : Fin n, q.2 j • F.normal j q.1
 
+/--
+@isnad1 id=contdiff.0h2v.s8.661029d57a7d from=translated src=- shape=86825644 vocab=af321d3f
+-/
 theorem smooth_tubeLift : ContDiff ℝ ∞ F.tubeLift := by
   apply F.smooth_lift.comp contDiff_fst |>.add
   apply ContDiff.sum
@@ -87,10 +96,16 @@ theorem smooth_tubeLift : ContDiff ℝ ∞ F.tubeLift := by
   exact ((EuclideanSpace.proj j).contDiff.comp contDiff_snd).smul
     ((F.smooth_normal j).comp contDiff_fst)
 
+/--
+@isnad1 id=eq.0h3v.s6.5259b54433ae from=translated src=- shape=228b60b2 vocab=d6530aa6
+-/
 @[simp] theorem tubeLift_zero (u : ℝ) :
     F.tubeLift (u, 0) = F.lift u := by
   simp [tubeLift]
 
+/--
+@isnad1 id=periodic.0h3v.s5.9412413a6c56 from=translated src=- shape=0fea457a vocab=c02417d6
+-/
 theorem periodic_tubeLift (z : N[n]) :
     Function.Periodic (fun u => F.tubeLift (u, z)) 1 := by
   intro u
@@ -105,10 +120,16 @@ theorem periodic_tubeLift (z : N[n]) :
 def tube (q : C × N[n]) : E[n] :=
   (F.periodic_tubeLift q.2).lift q.1
 
+/--
+@isnad1 id=eq.0h4v.s6.306deef92d36 from=translated src=- shape=73134321 vocab=6a3b8641
+-/
 @[simp] theorem tube_coe (u : ℝ) (z : N[n]) :
     F.tube ((u : C), z) = F.tubeLift (u, z) := by
   simp [tube]
 
+/--
+@isnad1 id=continuo.0h2v.s7.2b7564903c5e from=translated src=- shape=f7622d25 vocab=ee8fbd0c
+-/
 theorem continuous_tube : Continuous F.tube := by
   have hq : IsOpenQuotientMap
       (Prod.map (fun u : ℝ => (u : C)) (id : N[n] → N[n])) :=
@@ -116,6 +137,9 @@ theorem continuous_tube : Continuous F.tube := by
   rw [← hq.continuous_comp_iff]
   simpa [Function.comp_def, Prod.map] using F.smooth_tubeLift.continuous
 
+/--
+@isnad1 id=eq.0h3v.s6.58d5b695a577 from=translated src=- shape=5a3bcca0 vocab=f0fbe5fb
+-/
 @[simp] theorem tube_zero (a : C) : F.tube (a, 0) = F.circle a := by
   obtain ⟨u, rfl⟩ := QuotientAddGroup.mk_surjective a
   rw [F.tube_coe, F.tubeLift_zero, F.circle_coe]
@@ -130,12 +154,18 @@ def tubeDeriv (u : ℝ) : (ℝ × N[n]) →L[ℝ] E[n] :=
       (((EuclideanSpace.proj j).comp
         (ContinuousLinearMap.snd ℝ ℝ N[n])).smulRight (F.normal j u))
 
+/--
+@isnad1 id=eq.0h5v.s10.5be5fb9e7b63 from=translated src=- shape=2c1619a3 vocab=f471f056
+-/
 @[simp] theorem tubeDeriv_apply (u a : ℝ) (z : N[n]) :
     F.tubeDeriv u (a, z) =
       a • (F.speed u • F.frame u 0) +
         ∑ j : Fin n, z j • F.normal j u := by
   simp [tubeDeriv]
 
+/--
+@isnad1 id=hasfderi.0h3v.s9.6b7282d59a20 from=translated src=- shape=4e8a2e6d vocab=7a5e3212
+-/
 theorem hasFDerivAt_tubeLift_zero (u : ℝ) :
     HasFDerivAt F.tubeLift (F.tubeDeriv u) (u, 0) := by
   have hfst : HasFDerivAt (fun q : ℝ × N[n] => q.1)
@@ -181,6 +211,9 @@ theorem hasFDerivAt_tubeLift_zero (u : ℝ) :
     simp
   exact hbase.add hnormal
 
+/--
+@isnad1 id=bijectiv.0h3v.s10.215af7f4ae7d from=translated src=- shape=aad32c6a vocab=48066cf5
+-/
 theorem tubeDeriv_bijective (u : ℝ) :
     Function.Bijective (F.tubeDeriv u) := by
   let B : Fin (n + 1) → E[n] := F.frame u
@@ -238,6 +271,9 @@ def tubeDerivEquiv (u : ℝ) : (ℝ × N[n]) ≃L[ℝ] E[n] :=
       ((F.tubeDeriv u) : (ℝ × N[n]) →ₗ[ℝ] E[n])
       (F.tubeDeriv_bijective u)).toContinuousLinearEquiv
 
+/--
+@isnad1 id=eq.0h3v.s10.7f326cd983d9 from=translated src=- shape=0476efc6 vocab=82736d4d
+-/
 @[simp] theorem tubeDerivEquiv_coe (u : ℝ) :
     (F.tubeDerivEquiv u : (ℝ × N[n]) →L[ℝ] E[n]) = F.tubeDeriv u := by
   apply ContinuousLinearMap.ext
@@ -254,9 +290,15 @@ def tubeLocalHomeomorph (u : ℝ) :
       exact F.hasFDerivAt_tubeLift_zero u)
     (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s7.c6ec70032d76 from=translated src=- shape=e2f45238 vocab=0adaffb6
+-/
 @[simp] theorem tubeLocalHomeomorph_coe (u : ℝ) :
     (F.tubeLocalHomeomorph u : (ℝ × N[n]) → E[n]) = F.tubeLift := rfl
 
+/--
+@isnad1 id=mem.0h3v.s8.6eab9bdb53aa from=translated src=- shape=67d2919c vocab=74acb8e8
+-/
 theorem tube_center_mem_localSource (u : ℝ) :
     (u, (0 : N[n])) ∈ (F.tubeLocalHomeomorph u).source := by
   exact F.smooth_tubeLift.contDiffAt
@@ -266,6 +308,9 @@ theorem tube_center_mem_localSource (u : ℝ) :
         exact F.hasFDerivAt_tubeLift_zero u)
       (by simp)
 
+/--
+@isnad1 id=injon.0h3v.s8.12a22c6ccfd5 from=translated src=- shape=bfbf7e6f vocab=94570d9a
+-/
 theorem tube_injOn_localSource (u : ℝ) :
     Set.InjOn F.tubeLift (F.tubeLocalHomeomorph u).source := by
   rw [← F.tubeLocalHomeomorph_coe u]
@@ -273,6 +318,9 @@ theorem tube_injOn_localSource (u : ℝ) :
 
 /-! ## Uniform local boxes and global injectivity -/
 
+/--
+@isnad1 id=ex.0h3v.s8.b678de4c1756 from=translated src=- shape=5e129b65 vocab=110d4ee7
+-/
 theorem exists_tube_local_box (u : ℝ) :
     ∃ ε > 0, ∃ r > 0,
       Ioo (u - ε) (u + ε) ×ˢ Metric.ball (0 : N[n]) r ⊆
@@ -297,6 +345,9 @@ structure TubeLocalBoxData (u : ℝ) where
         Metric.ball (0 : N[n]) normalRadius ⊆
       (F.tubeLocalHomeomorph u).source
 
+/--
+@isnad1 id=nonempty.0h3v.s3.8d222f5b6eb7 from=translated src=- shape=efe0a783 vocab=54f45a8e
+-/
 theorem nonempty_tubeLocalBoxData (u : ℝ) :
     Nonempty (F.TubeLocalBoxData u) := by
   obtain ⟨ε, hε, r, hr, hbox⟩ := F.exists_tube_local_box u
@@ -311,6 +362,9 @@ theorem nonempty_tubeLocalBoxData (u : ℝ) :
 def tubeLocalBoxData (u : ℝ) : F.TubeLocalBoxData u :=
   Classical.choice (F.nonempty_tubeLocalBoxData u)
 
+/--
+@isnad1 id=mem.0h3v.s5.666827f8a6da from=translated src=- shape=eeed7188 vocab=2fbe08b2
+-/
 @[simp] theorem mem_tubeLocalBox_phase (u : ℝ) :
     u ∈ Ioo (u - (F.tubeLocalBoxData u).phaseRadius)
       (u + (F.tubeLocalBoxData u).phaseRadius) := by
@@ -322,16 +376,25 @@ def tubeQuotientBox (u : ℝ) : Set (C × N[n]) :=
       (u + (F.tubeLocalBoxData u).phaseRadius)) ×ˢ
     Metric.ball (0 : N[n]) (F.tubeLocalBoxData u).normalRadius
 
+/--
+@isnad1 id=isopen.0h3v.s6.9a8a0ccec380 from=translated src=- shape=905d2949 vocab=e4e984f1
+-/
 theorem isOpen_tubeQuotientBox (u : ℝ) : IsOpen (F.tubeQuotientBox u) := by
   apply IsOpen.prod
   · exact QuotientAddGroup.isOpenMap_coe _ isOpen_Ioo
   · exact Metric.isOpen_ball
 
+/--
+@isnad1 id=mem.0h3v.s7.a9c744a7d8d4 from=translated src=- shape=22a7e0c9 vocab=d648f28e
+-/
 @[simp] theorem tube_zero_mem_quotientBox (u : ℝ) :
     ((u : C), (0 : N[n])) ∈ F.tubeQuotientBox u := by
   exact ⟨⟨u, F.mem_tubeLocalBox_phase u, rfl⟩,
     Metric.mem_ball_self (F.tubeLocalBoxData u).normalRadius_pos⟩
 
+/--
+@isnad1 id=injon.0h3v.s5.fefbc3ebeb79 from=translated src=- shape=0a5d87ac vocab=a8868c62
+-/
 theorem tube_injOn_quotientBox (u : ℝ) :
     Set.InjOn F.tube (F.tubeQuotientBox u) := by
   rintro ⟨a, z⟩ ⟨⟨ua, hua, rfl⟩, hz⟩
@@ -347,7 +410,9 @@ theorem tube_injOn_quotientBox (u : ℝ) :
   rfl
 
 /-- The quotient tube is injective on one full constant-radius tube around
-the compact embedded circle.-/
+the compact embedded circle.
+@isnad1 id=ex.0h2v.s7.9e78872d4a10 from=translated src=- shape=ff7a3ddb vocab=b7a2a670
+-/
 theorem exists_tube_global_injOn :
     ∃ r > 0, Set.InjOn F.tube
       ((Set.univ : Set C) ×ˢ Metric.ball (0 : N[n]) r) := by
@@ -382,7 +447,9 @@ theorem exists_tube_global_injOn :
   refine ⟨r, hr, hTinj.mono ?_⟩
   exact (prod_mono hCU hrW).trans hUWT
 
-/-- After shrinking, the full open tube is an embedded copy of the product.-/
+/-- After shrinking, the full open tube is an embedded copy of the product.
+@isnad1 id=ex.0h2v.s10.c7bc100600e2 from=translated src=- shape=9d2edead vocab=bf1b1aba
+-/
 theorem exists_tube_global_embedding :
     ∃ r > 0,
       Set.InjOn F.tube
@@ -425,6 +492,9 @@ theorem exists_tube_global_embedding :
 
 /-! ## A uniform derivative radius -/
 
+/--
+@isnad1 id=periodic.0h2v.s10.db82fd1603c8 from=translated src=- shape=fb53eb3f vocab=f20aa97a
+-/
 theorem periodic_fderiv_tubeLift :
     Function.Periodic (fun q : ℝ × N[n] => fderiv ℝ F.tubeLift q)
       ((1 : ℝ), (0 : N[n])) := by
@@ -438,6 +508,9 @@ theorem periodic_fderiv_tubeLift :
   have h := congrArg (fun f : (ℝ × N[n]) → E[n] => fderiv ℝ f q) hfun
   simpa only [fderiv_comp_add_right] using h
 
+/--
+@isnad1 id=isopen.0h2v.s11.7708276d1967 from=translated src=- shape=bfec8c99 vocab=34907cf9
+-/
 theorem isOpen_tubeLift_regularSet :
     IsOpen ((fderiv ℝ F.tubeLift) ⁻¹'
       Set.range ((↑) : (((ℝ × N[n]) ≃L[ℝ] E[n]) →
@@ -445,6 +518,9 @@ theorem isOpen_tubeLift_regularSet :
   exact ContinuousLinearEquiv.isOpen.preimage
     (F.smooth_tubeLift.continuous_fderiv (by simp))
 
+/--
+@isnad1 id=mem.0h3v.s11.f5e1b91a3a93 from=translated src=- shape=9eab1361 vocab=abfbd0ad
+-/
 theorem tubeLift_zero_mem_regularSet (u : ℝ) :
     (u, (0 : N[n])) ∈ (fderiv ℝ F.tubeLift) ⁻¹'
       Set.range ((↑) : (((ℝ × N[n]) ≃L[ℝ] E[n]) →
@@ -453,6 +529,9 @@ theorem tubeLift_zero_mem_regularSet (u : ℝ) :
   rw [F.tubeDerivEquiv_coe u]
   exact (F.hasFDerivAt_tubeLift_zero u).fderiv.symm
 
+/--
+@isnad1 id=ex.0h2v.s11.2f3f21962f78 from=translated src=- shape=3246979e vocab=dfba61b2
+-/
 theorem exists_tubeLift_uniform_deriv_equiv :
     ∃ r > 0, ∀ (u : ℝ) (z : N[n]), z ∈ Metric.ball (0 : N[n]) r →
       ∃ e : (ℝ × N[n]) ≃L[ℝ] E[n],
@@ -526,6 +605,9 @@ structure GlobalSmoothTube where
         inverse (F.tubeLift p) =
           (((g (F.tubeLift p)).1 : C), (g (F.tubeLift p)).2)
 
+/--
+@isnad1 id=nonempty.0h2v.s3.89d0ab368532 from=translated src=- shape=1f8e965c vocab=d01235f9
+-/
 theorem nonempty_globalSmoothTube : Nonempty F.GlobalSmoothTube := by
   obtain ⟨R, hR, hRinj, hRemb⟩ := F.exists_tube_global_embedding
   obtain ⟨S, hS, hSderiv⟩ := F.exists_tubeLift_uniform_deriv_equiv
@@ -617,6 +699,9 @@ theorem nonempty_globalSmoothTube : Nonempty F.GlobalSmoothTube := by
 def globalSmoothTube : F.GlobalSmoothTube :=
   Classical.choice F.nonempty_globalSmoothTube
 
+/--
+@isnad1 id=eq.1h3v.s7.f2763ae360cc from=translated src=- shape=0108bd13 vocab=9c1ab5aa
+-/
 @[simp] theorem globalSmoothTube_inverse_apply (q : C × N[n])
     (hq : q ∈ (Set.univ : Set C) ×ˢ
       Metric.ball (0 : N[n]) F.globalSmoothTube.radius) :
@@ -641,6 +726,9 @@ variable (D : F.PeriodicDisplacementExtensionData)
 def quotientDisplacement (a : C) : E[n] :=
   D.displacement_periodic.lift a
 
+/--
+@isnad1 id=eq.0h4v.s5.4bbe3bd401df from=translated src=- shape=f5e6642c vocab=042999cf
+-/
 @[simp] theorem quotientDisplacement_coe (u : ℝ) :
     D.quotientDisplacement (u : C) = D.displacement u := rfl
 
@@ -653,11 +741,17 @@ def supportCore : Set E[n] :=
   F.tube '' ((Set.univ : Set C) ×ˢ
     Metric.closedBall (0 : N[n]) D.radialBump.rOut)
 
+/--
+@isnad1 id=iscompac.0h3v.s6.0f89c8e88352 from=translated src=- shape=20ae27af vocab=33db530e
+-/
 theorem isCompact_supportCore : IsCompact D.supportCore := by
   exact (isCompact_univ.prod
     (isCompact_closedBall (0 : N[n]) D.radialBump.rOut)).image
       F.continuous_tube
 
+/--
+@isnad1 id=isclosed.0h3v.s6.b835e726dad7 from=translated src=- shape=20ae27af vocab=7ab53b99
+-/
 theorem isClosed_supportCore : IsClosed D.supportCore :=
   D.isCompact_supportCore.isClosed
 
@@ -669,23 +763,35 @@ def ambientField (x : E[n]) : E[n] := by
       D.quotientDisplacement (F.globalSmoothTube.inverse x).1
   else 0
 
+/--
+@isnad1 id=eq.1h4v.s6.e7bc1a20e652 from=translated src=- shape=612205eb vocab=e6b1b02b
+-/
 theorem tube_inverse_right {x : E[n]} (hx : x ∈ D.tubeImage) :
     F.tube (F.globalSmoothTube.inverse x) = x := by
   rcases hx with ⟨q, hq, rfl⟩
   rw [F.globalSmoothTube.inverse_left q hq]
 
+/--
+@isnad1 id=mem.1h4v.s7.63bf52a103ea from=translated src=- shape=523b991a vocab=3d2f4cb3
+-/
 theorem inverse_mem_tubeDomain {x : E[n]} (hx : x ∈ D.tubeImage) :
     F.globalSmoothTube.inverse x ∈ D.tubeDomain := by
   rcases hx with ⟨q, hq, rfl⟩
   rw [F.globalSmoothTube.inverse_left q hq]
   exact hq
 
+/--
+@isnad1 id=eq.1h4v.s8.12f9f806729d from=translated src=- shape=9cf6ba82 vocab=90fd0267
+-/
 theorem ambientField_tube (q : C × N[n]) (hq : q ∈ D.tubeDomain) :
     D.ambientField (F.tube q) =
       D.radialBump q.2 • D.quotientDisplacement q.1 := by
   rw [ambientField, ite_eq_left ⟨q, hq, rfl⟩,
     F.globalSmoothTube.inverse_left q hq]
 
+/--
+@isnad1 id=eq.1h5v.s8.2ce71a319815 from=translated src=- shape=6a89049d vocab=d46f058d
+-/
 theorem ambientField_tubeLift (u : ℝ) (z : N[n])
     (hz : z ∈ Metric.ball (0 : N[n]) F.globalSmoothTube.radius) :
     D.ambientField (F.tubeLift (u, z)) =
@@ -694,6 +800,9 @@ theorem ambientField_tubeLift (u : ℝ) (z : N[n])
     D.ambientField_tube ((u : C), z) ⟨Set.mem_univ _, hz⟩,
     D.quotientDisplacement_coe]
 
+/--
+@isnad1 id=eq.0h4v.s6.2d584cd29600 from=translated src=- shape=9f3566b4 vocab=50f5a5e1
+-/
 theorem ambientField_zeroSection (u : ℝ) :
     D.ambientField (F.tubeLift (u, (0 : N[n]))) = D.displacement u := by
   have hz : (0 : N[n]) ∈ Metric.ball (0 : N[n]) F.globalSmoothTube.radius :=
@@ -704,10 +813,16 @@ theorem ambientField_zeroSection (u : ℝ) :
     simpa [Metric.mem_closedBall] using D.radialBump.rIn_pos.le
   simp [hb]
 
+/--
+@isnad1 id=eq.1h4v.s8.8dcc6025b24e from=translated src=- shape=6e8e7d92 vocab=cf41e8f7
+-/
 theorem ambientField_eq_zero_of_not_mem_tubeImage {x : E[n]}
     (hx : x ∉ D.tubeImage) : D.ambientField x = 0 := by
   simp [ambientField, hx]
 
+/--
+@isnad1 id=eq.1h4v.s8.d36f585f08e7 from=translated src=- shape=6e8e7d92 vocab=29b988fb
+-/
 theorem ambientField_eq_zero_of_not_mem_supportCore {x : E[n]}
     (hx : x ∉ D.supportCore) : D.ambientField x = 0 := by
   by_cases ht : x ∈ D.tubeImage
@@ -725,10 +840,16 @@ theorem ambientField_eq_zero_of_not_mem_supportCore {x : E[n]}
     simp [q, hb]
   · exact D.ambientField_eq_zero_of_not_mem_tubeImage ht
 
+/--
+@isnad1 id=hascompa.0h3v.s8.2e4f5261e704 from=translated src=- shape=97786e8b vocab=fb9b920b
+-/
 theorem hasCompactSupport_ambientField : HasCompactSupport D.ambientField :=
   HasCompactSupport.intro D.isCompact_supportCore
     (fun x hx => D.ambientField_eq_zero_of_not_mem_supportCore hx)
 
+/--
+@isnad1 id=contdiff.1h5v.s9.2543c6fe32fc from=translated src=- shape=ebf7dc8d vocab=c0d40816
+-/
 theorem contDiffAt_ambientField_tubeLift (u : ℝ) (z : N[n])
     (hz : z ∈ Metric.ball (0 : N[n]) F.globalSmoothTube.radius) :
     ContDiffAt ℝ ∞ D.ambientField (F.tubeLift (u, z)) := by
@@ -793,6 +914,9 @@ theorem contDiffAt_ambientField_tubeLift (u : ℝ) (z : N[n])
       (F.tubeLift (u, z)) := D.displacement_smooth.contDiffAt.comp _ hg1
   exact (hb.smul hd).congr_of_eventuallyEq hlocal
 
+/--
+@isnad1 id=contdiff.0h3v.s8.923584750e72 from=translated src=- shape=2342dc7a vocab=21a4672f
+-/
 theorem contDiff_ambientField : ContDiff ℝ ∞ D.ambientField := by
   rw [contDiff_iff_contDiffAt]
   intro x
@@ -814,7 +938,9 @@ theorem contDiff_ambientField : ContDiff ℝ ∞ D.ambientField := by
 
 /-- A sufficiently small scalar multiple of the radial extension produces a
 global smooth ambient isotopy with the prescribed scaled action on the
-circle.-/
+circle.
+@isnad1 id=ex.0h3v.s9.ee7bb12a9f8d from=translated src=- shape=02c97bdf vocab=6dfcdd27
+-/
 theorem exists_scaledSmallAmbientDisplacement :
     ∃ ε : ℝ, ε > 0 ∧ ∃ S : SmallAmbientDisplacement n,
       S.field = (fun x => ε • D.ambientField x) ∧
@@ -837,6 +963,9 @@ def canonicalRadialBump (F : SmoothFramedPeriodicCircle n) :
   rIn_pos := by linarith [F.globalSmoothTube.radius_pos]
   rIn_lt_rOut := by linarith [F.globalSmoothTube.radius_pos]
 
+/--
+@isnad1 id=lt.0h2v.s6.c4613962c39b from=translated src=- shape=e4b6570f vocab=597e58ab
+-/
 theorem canonicalRadialBump_rOut_lt :
     (canonicalRadialBump F).rOut < F.globalSmoothTube.radius := by
   dsimp [canonicalRadialBump]

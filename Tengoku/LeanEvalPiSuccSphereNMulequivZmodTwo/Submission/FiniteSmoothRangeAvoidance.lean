@@ -34,7 +34,9 @@ variable {D P ι : Type*}
 space has dense complement.
 
 This is the simultaneous-parameter version of
-`ContDiff.dense_compl_range_of_finrank_lt_finrank`.-/
+`ContDiff.dense_compl_range_of_finrank_lt_finrank`.
+@isnad1 id=dense.2h4v.s7.e174c44d0d48 from=translated src=- shape=b26a6a6a vocab=b27e6b00
+-/
 theorem dense_compl_iUnion_range_of_contDiff
     [Fintype ι] [Countable ι]
     (f : ι → D → P) (hf : ∀ i, ContDiff ℝ 1 (f i))
@@ -49,7 +51,9 @@ theorem dense_compl_iUnion_range_of_contDiff
 
 /-- Binary specialization, convenient when a bad secant locus is covered by
 the two coordinate charts in which respectively the first or second circle
-difference coordinate is nonzero.-/
+difference coordinate is nonzero.
+@isnad1 id=dense.3h4v.s7.fda18c8dfaa0 from=translated src=- shape=38c569cf vocab=4d1d8325
+-/
 theorem dense_compl_union_range_of_contDiff
     (f g : D → P) (hf : ContDiff ℝ 1 f) (hg : ContDiff ℝ 1 g)
     (hDP : Module.finrank ℝ D < Module.finrank ℝ P) :
@@ -66,7 +70,9 @@ theorem dense_compl_union_range_of_contDiff
   simp [F]
 
 /-- Inside every nonempty open set there is a parameter avoiding all ranges
-in a finite smooth lower-dimensional family.-/
+in a finite smooth lower-dimensional family.
+@isnad1 id=ex.4h5v.s7.b9caebdda5e6 from=translated src=- shape=1b83b926 vocab=27a8142e
+-/
 theorem exists_mem_open_avoid_iUnion_range
     [Fintype ι] [Countable ι]
     (f : ι → D → P) (hf : ∀ i, ContDiff ℝ 1 (f i))

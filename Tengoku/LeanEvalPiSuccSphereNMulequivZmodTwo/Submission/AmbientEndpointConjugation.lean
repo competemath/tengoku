@@ -44,6 +44,9 @@ def endpointConjugateInverse (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (x : E) : E :=
   A.forward 1 (B.inverse s (A.inverse 1 x))
 
+/--
+@isnad1 id=contdiff.0h3v.s9.de5a60839353 from=translated src=- shape=2976e745 vocab=4d053b3e
+-/
 theorem contDiff_endpointConjugateForward (B A : SmoothAmbientIsotopy n) :
     ContDiff ℝ ∞ (fun p : ℝ × E =>
       endpointConjugateForward B A p.1 p.2) := by
@@ -54,6 +57,9 @@ theorem contDiff_endpointConjugateForward (B A : SmoothAmbientIsotopy n) :
     B.forward_smooth.comp (contDiff_fst.prodMk hAinv)
   exact (A.contDiff_forward_slice 1).comp hB
 
+/--
+@isnad1 id=contdiff.0h3v.s9.05dbb5160aab from=translated src=- shape=2976e745 vocab=ca61dfef
+-/
 theorem contDiff_endpointConjugateInverse (B A : SmoothAmbientIsotopy n) :
     ContDiff ℝ ∞ (fun p : ℝ × E =>
       endpointConjugateInverse B A p.1 p.2) := by
@@ -64,6 +70,9 @@ theorem contDiff_endpointConjugateInverse (B A : SmoothAmbientIsotopy n) :
     B.inverse_smooth.comp (contDiff_fst.prodMk hAinv)
   exact (A.contDiff_forward_slice 1).comp hB
 
+/--
+@isnad1 id=leftinve.1h4v.s6.c689ef843729 from=translated src=- shape=c6fd566f vocab=7964a634
+-/
 theorem endpointConjugate_leftInverse (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (hs : s ∈ Icc (0 : ℝ) 1) :
     LeftInverse (endpointConjugateInverse B A s)
@@ -73,6 +82,9 @@ theorem endpointConjugate_leftInverse (B A : SmoothAmbientIsotopy n)
   rw [A.left_inv 1 ⟨zero_le_one, le_rfl⟩,
     B.left_inv s hs, A.right_inv 1 ⟨zero_le_one, le_rfl⟩]
 
+/--
+@isnad1 id=rightinv.1h4v.s6.2025ca2610d2 from=translated src=- shape=c6fd566f vocab=c8b4c4ff
+-/
 theorem endpointConjugate_rightInverse (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (hs : s ∈ Icc (0 : ℝ) 1) :
     RightInverse (endpointConjugateInverse B A s)
@@ -127,12 +139,18 @@ def conjugateByEndpoint (B A : SmoothAmbientIsotopy n) :
     have hz := congrArg (fun M : E →L[ℝ] E => M z) hderiv
     simpa [ContinuousLinearMap.comp_apply] using hz
 
+/--
+@isnad1 id=eq.0h5v.s6.3f3e65619be0 from=translated src=- shape=48e807e6 vocab=2ebe67f8
+-/
 @[simp] theorem conjugateByEndpoint_forward (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (x : E) :
     (B.conjugateByEndpoint A).forward s x =
       A.forward 1 (B.forward s (A.inverse 1 x)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.5ac3b71d9a08 from=translated src=- shape=8590d132 vocab=2ebe67f8
+-/
 @[simp] theorem conjugateByEndpoint_inverse (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (x : E) :
     (B.conjugateByEndpoint A).inverse s x =
@@ -140,7 +158,9 @@ def conjugateByEndpoint (B A : SmoothAmbientIsotopy n) :
   rfl
 
 /-- On the current image of an original point, endpoint conjugation is the
-literal transported original move.-/
+literal transported original move.
+@isnad1 id=eq.0h5v.s6.de974781eb9b from=translated src=- shape=1d768207 vocab=cfbefa3e
+-/
 theorem conjugateByEndpoint_forward_endpoint_image
     (B A : SmoothAmbientIsotopy n) (s : ℝ) (x : E) :
     (B.conjugateByEndpoint A).forward s (A.forward 1 x) =
@@ -148,7 +168,9 @@ theorem conjugateByEndpoint_forward_endpoint_image
   rw [conjugateByEndpoint_forward,
     A.left_inv 1 ⟨zero_le_one, le_rfl⟩]
 
-/-- A relative fixed set is transported to its current endpoint image.-/
+/-- A relative fixed set is transported to its current endpoint image.
+@isnad1 id=fixedon.1h4v.s6.fb9ada006d29 from=translated src=- shape=d375b90b vocab=d6b519ce
+-/
 theorem FixedOn.conjugateByEndpoint {B A : SmoothAmbientIsotopy n}
     {K : Set E} (hB : B.FixedOn K) :
     (B.conjugateByEndpoint A).FixedOn (A.forward 1 '' K) := by
@@ -157,7 +179,9 @@ theorem FixedOn.conjugateByEndpoint {B A : SmoothAmbientIsotopy n}
   rw [conjugateByEndpoint_forward_endpoint_image, hB s hs y hyK]
 
 /-- Endpoint conjugation transports the image of every set by the accumulated
-endpoint map.-/
+endpoint map.
+@isnad1 id=eq.0h5v.s7.998e2f0dbbf1 from=translated src=- shape=77aa3ba9 vocab=a6d39c3a
+-/
 theorem conjugateByEndpoint_forward_image (B A : SmoothAmbientIsotopy n)
     (s : ℝ) (K : Set E) :
     (B.conjugateByEndpoint A).forward s '' (A.forward 1 '' K) =
@@ -172,7 +196,9 @@ theorem conjugateByEndpoint_forward_image (B A : SmoothAmbientIsotopy n)
       conjugateByEndpoint_forward_endpoint_image B A s y⟩
 
 /-- Composing the accumulated move with the transported next move applies the
-two original endpoint maps in order.-/
+two original endpoint maps in order.
+@isnad1 id=eq.0h4v.s6.9ee3d430b13b from=translated src=- shape=ee50cfeb vocab=4bcd7956
+-/
 theorem followedBy_conjugateByEndpoint_forward_one
     (A B : SmoothAmbientIsotopy n) (x : E) :
     (A.followedBy (B.conjugateByEndpoint A)).forward 1 x =

@@ -69,30 +69,48 @@ def planeRotation (θ : ℝ) : SmoothAmbientIsotopy (m + 1) where
     rw [hfd]
     exact (SO2FrameGauge.rotateCLM_bijective _).2
 
+/--
+@isnad1 id=eq.0h4v.s6.1c0cb50633a4 from=translated src=- shape=b3eb181e vocab=0d8794c1
+-/
 @[simp] theorem planeRotation_forward (θ s : ℝ) (x : E) :
     (planeRotation θ).forward s x =
       SO2FrameGauge.rotate (planeRotationAngle θ s) x :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.5b5337877c53 from=translated src=- shape=a8eef8e7 vocab=82d38244
+-/
 @[simp] theorem planeRotation_inverse (θ s : ℝ) (x : E) :
     (planeRotation θ).inverse s x =
       SO2FrameGauge.rotate (-(planeRotationAngle θ s)) x :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.a3e3388de080 from=translated src=- shape=1d838610 vocab=1cd10b2a
+-/
 @[simp] theorem planeRotationAngle_zero (θ : ℝ) :
     planeRotationAngle θ 0 = 0 := by
   rw [planeRotationAngle,
     normRamp_of_le_quarter (show (0 : ℝ) ≤ 1 / 4 by norm_num), zero_mul]
 
+/--
+@isnad1 id=eq.0h1v.s3.528d6f6b53ad from=translated src=- shape=1fa26838 vocab=1cd10b2a
+-/
 @[simp] theorem planeRotationAngle_one (θ : ℝ) :
     planeRotationAngle θ 1 = θ := by
   rw [planeRotationAngle,
     normRamp_of_three_quarter_le (show (3 / 4 : ℝ) ≤ 1 by norm_num), one_mul]
 
+/--
+@isnad1 id=eq.0h3v.s6.18f3fa19b914 from=translated src=- shape=8463f2b6 vocab=7bca74af
+-/
 @[simp] theorem planeRotation_forward_endpoint (θ : ℝ) (x : E) :
     (planeRotation θ).forward 1 x = SO2FrameGauge.rotate θ x := by
   rw [planeRotation_forward, planeRotationAngle_one]
 
+/--
+@isnad1 id=eq.0h3v.s6.7fa99c833861 from=translated src=- shape=89008888 vocab=2c8720a6
+-/
 @[simp] theorem planeRotation_inverse_endpoint (θ : ℝ) (x : E) :
     (planeRotation θ).inverse 1 x = SO2FrameGauge.rotate (-θ) x := by
   rw [planeRotation_inverse, planeRotationAngle_one]

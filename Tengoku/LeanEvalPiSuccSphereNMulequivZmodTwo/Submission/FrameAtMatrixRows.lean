@@ -44,6 +44,9 @@ def matrixRowsONBasis (Q : SOGroup (n + 1)) :
         |>.span_eq_top_of_card_eq_finrank (by simp)
     exact hspan.ge
 
+/--
+@isnad1 id=eq.0h3v.s10.8539a73cab76 from=translated src=- shape=b6c83507 vocab=68b7f1ab
+-/
 @[simp] theorem matrixRowsONBasis_apply (Q : SOGroup (n + 1))
     (i : Fin (n + 1)) :
     matrixRowsONBasis Q i =
@@ -51,7 +54,9 @@ def matrixRowsONBasis (Q : SOGroup (n + 1)) :
   simp [matrixRowsONBasis]
 
 /-- For an `SO(n+1)` row frame, the generalized cross product of the final
-`n` rows is exactly row zero.  The determinant-one condition fixes the sign.-/
+`n` rows is exactly row zero.  The determinant-one condition fixes the sign.
+@isnad1 id=eq.0h2v.s10.b66066e284ec from=translated src=- shape=57054fda vocab=b890363f
+-/
 theorem crossVec_matrixRows_succ (Q : SOGroup (n + 1)) :
     crossVec (fun i : Fin n =>
       matrixRows (Q : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) i.succ) =
@@ -94,7 +99,9 @@ theorem crossVec_matrixRows_succ (Q : SOGroup (n + 1)) :
       (orthonormal_iff_ite.mp horth (0 : Fin (n + 1)) j.succ).symm
 
 /-- The normal gradient rows are recovered directly from the values of the
-differential on an explicit orthonormal row frame.-/
+differential on an explicit orthonormal row frame.
+@isnad1 id=eq.2h5v.s12.37b715b5a8b5 from=translated src=- shape=0199b8ec vocab=488b9b1e
+-/
 theorem gradVec_eq_matrixRows_succ_of_rightInverse
     (X : FramedLevelSet n) (x : E) (Q : SOGroup (n + 1))
     (htangent : fderiv ℝ X.g x
@@ -124,7 +131,9 @@ theorem gradVec_eq_matrixRows_succ_of_rightInverse
     simpa [PiLp.single_apply, eq_comm] using hq
 
 /-- A differential which is zero on row zero and the identity on the remaining
-rows has exactly the explicit `SO` row frame as its intrinsic oriented frame.-/
+rows has exactly the explicit `SO` row frame as its intrinsic oriented frame.
+@isnad1 id=eq.2h4v.s12.32a9a2d1cbb1 from=translated src=- shape=fd1d2d31 vocab=c8bf51c0
+-/
 theorem frameAt_eq_matrixRows_of_SO_rightInverse
     (X : FramedLevelSet n) (x : E) (Q : SOGroup (n + 1))
     (htangent : fderiv ℝ X.g x
@@ -150,7 +159,9 @@ theorem frameAt_eq_matrixRows_of_SO_rightInverse
     exact gradVec_eq_matrixRows_succ_of_rightInverse X x Q htangent hnormal j
 
 /-- The normalized Gram--Schmidt matrix therefore recovers the original
-special-orthogonal matrix literally.-/
+special-orthogonal matrix literally.
+@isnad1 id=eq.2h4v.s12.403048adc3bf from=translated src=- shape=96841cfd vocab=7dcad992
+-/
 theorem frameMatrix_eq_of_SO_rightInverse
     (X : FramedLevelSet n) (x : E) (Q : SOGroup (n + 1))
     (htangent : fderiv ℝ X.g x

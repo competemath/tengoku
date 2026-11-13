@@ -30,7 +30,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 variable {N : Type*} {x : UnitSphere E}
 
 /-- A point of the sphere distinct from `y` lies in the source of the stereographic
-projection centred at `y`.-/
+projection centred at `y`.
+@isnad1 id=mem.1h3v.s10.631b6970bf3b from=translated src=- shape=e55c6543 vocab=60659f41
+-/
 theorem mem_stereographic_source {y z : UnitSphere E} (h : z ≠ y) :
     z ∈ (stereographic (UnitSphere.norm_coe y)).source := by
   rw [stereographic_source, Set.mem_compl_singleton_iff]
@@ -85,7 +87,9 @@ def missHomotopy (p : Ω^ N (UnitSphere E) x) (y : UnitSphere E)
       (mem_stereographic_source hxy)
 
 /-- A generalized loop in the unit sphere missing some point is homotopic rel
-boundary to the constant loop.-/
+boundary to the constant loop.
+@isnad1 id=homotopi.1h5v.s9.17895aa72da4 from=translated src=- shape=198418ab vocab=7318c0e5
+-/
 theorem homotopic_const_of_misses [Nonempty N] (p : Ω^ N (UnitSphere E) x)
     (y : UnitSphere E) (h : ∀ t, p t ≠ y) : GenLoop.Homotopic p GenLoop.const := by
   have hxy : x ≠ y := by
@@ -97,14 +101,18 @@ theorem homotopic_const_of_misses [Nonempty N] (p : Ω^ N (UnitSphere E) x)
   exact ⟨missHomotopy p y h hxy⟩
 
 /-- Quotient version: the class of a generalized loop missing a point is the class
-of the constant loop.-/
+of the constant loop.
+@isnad1 id=eq.1h5v.s10.c5ae896eed9e from=translated src=- shape=d232c451 vocab=6a078789
+-/
 theorem homotopy_class_eq_const_of_misses [Nonempty N] (p : Ω^ N (UnitSphere E) x)
     (y : UnitSphere E) (h : ∀ t, p t ≠ y) :
     (⟦p⟧ : HomotopyGroup N (UnitSphere E) x) = ⟦GenLoop.const⟧ :=
   Quotient.sound (homotopic_const_of_misses p y h)
 
 /-- Group version: the class of a generalized loop missing a point is the identity
-element of the homotopy group.-/
+element of the homotopy group.
+@isnad1 id=eq.1h5v.s10.4f72765dbdb6 from=translated src=- shape=a426434f vocab=bbc3d5cb
+-/
 theorem homotopy_class_eq_one_of_misses [DecidableEq N] [Nonempty N]
     (p : Ω^ N (UnitSphere E) x) (y : UnitSphere E) (h : ∀ t, p t ≠ y) :
     ⟦p⟧ = (1 : HomotopyGroup N (UnitSphere E) x) := by

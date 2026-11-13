@@ -40,19 +40,34 @@ variable {n : ℕ}
 def normRamp (t : ℝ) : ℝ :=
   Real.smoothTransition (2 * (t - 1 / 4))
 
+/--
+@isnad1 id=contdiff.0h0v.s5.52e5a1c92e3d from=translated src=- shape=3cea26be vocab=8c473df8
+-/
 lemma contDiff_normRamp : ContDiff ℝ ∞ normRamp :=
   Real.smoothTransition.contDiff.comp
     (contDiff_const.mul (contDiff_id.sub contDiff_const))
 
+/--
+@isnad1 id=eq.1h1v.s5.63fd3caa5308 from=translated src=- shape=44469b40 vocab=e7a6f95b
+-/
 lemma normRamp_of_le_quarter {t : ℝ} (ht : t ≤ 1 / 4) : normRamp t = 0 :=
   Real.smoothTransition.zero_of_nonpos (by linarith)
 
+/--
+@isnad1 id=eq.1h1v.s5.fc70d7e837b0 from=translated src=- shape=c1676f1c vocab=e7a6f95b
+-/
 lemma normRamp_of_three_quarter_le {t : ℝ} (ht : 3 / 4 ≤ t) : normRamp t = 1 :=
   Real.smoothTransition.one_of_one_le (by linarith)
 
+/--
+@isnad1 id=le.0h1v.s3.49e67652651d from=translated src=- shape=8a62b088 vocab=b0294533
+-/
 lemma normRamp_nonneg (t : ℝ) : 0 ≤ normRamp t :=
   Real.smoothTransition.nonneg _
 
+/--
+@isnad1 id=le.0h1v.s3.adf00df43605 from=translated src=- shape=b14ee516 vocab=b0294533
+-/
 lemma normRamp_le_one (t : ℝ) : normRamp t ≤ 1 :=
   Real.smoothTransition.le_one _
 
@@ -68,6 +83,9 @@ def restrict {X Y : FramedLevelSet n} (S : FiberSign X)
   continuous := S.continuous
   nonzero x hx := S.nonzero x (h hx)
 
+/--
+@isnad1 id=eq.1h5v.s6.fce00f3eeb97 from=translated src=- shape=ec96e1cb vocab=1ba4f37d
+-/
 @[simp] theorem restrict_apply {X Y : FramedLevelSet n} (S : FiberSign X)
     (h : Y.fiber ⊆ X.fiber) (x : EuclideanSpace ℝ (Fin (n + 1))) :
     S.restrict h x = S x :=
@@ -102,7 +120,9 @@ namespace DefiningMapHomotopy
 
 variable {X₀ X₁ : FramedLevelSet n}
 
-/-- The target fiber coincides with the source fiber.-/
+/-- The target fiber coincides with the source fiber.
+@isnad1 id=le.0h4v.s5.b3965957779c from=translated src=- shape=ac2da318 vocab=e4bba4a8
+-/
 theorem fiber_subset (D : DefiningMapHomotopy X₀ X₁) :
     X₁.fiber ⊆ X₀.fiber := by
   intro x hx
@@ -119,10 +139,16 @@ def cobMap (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) :
     EuclideanSpace ℝ (Fin n) :=
   D.H (normRamp (vertC v)) (initCLM (n + 1) v)
 
+/--
+@isnad1 id=eq.0h6v.s5.ff58090626ca from=translated src=- shape=30db7825 vocab=ce5823cb
+-/
 lemma cobMap_spaceTime (x : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     D.cobMap (spaceTime x t) = D.H (normRamp t) x := by
   rw [cobMap, initCLM_spaceTime, vertC_spaceTime]
 
+/--
+@isnad1 id=contdiff.0h4v.s8.7682aeda60f6 from=translated src=- shape=cd1567cf vocab=27678209
+-/
 lemma contDiff_cobMap : ContDiff ℝ ∞ D.cobMap := by
   have hpair : ContDiff ℝ ∞
       fun v : EuclideanSpace ℝ (Fin (n + 1 + 1)) =>
@@ -130,12 +156,17 @@ lemma contDiff_cobMap : ContDiff ℝ ∞ D.cobMap := by
     (contDiff_normRamp.comp contDiff_vertC).prodMk (initCLM (n + 1)).contDiff
   exact D.smooth.comp hpair
 
-/-- Any zero of the switched family lies spatially on the common fiber.-/
+/-- Any zero of the switched family lies spatially on the common fiber.
+@isnad1 id=mem.1h5v.s10.7e61585ba80c from=translated src=- shape=c3edd25c vocab=801e3789
+-/
 lemma mem_fiber_of_cobMap_eq_zero {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
     (hv : D.cobMap v = 0) : initCLM (n + 1) v ∈ X₀.fiber := by
   have hmem : initCLM (n + 1) v ∈ {x | D.H (normRamp (vertC v)) x = 0} := hv
   rwa [D.fiber_eq _ (normRamp_nonneg _) (normRamp_le_one _)] at hmem
 
+/--
+@isnad1 id=ex.0h4v.s10.bf15efba4201 from=translated src=- shape=f7a6e297 vocab=5598c7ec
+-/
 lemma cobMap_spatial_bounded :
     ∃ R, ∀ v, D.cobMap v = 0 → ‖initCLM (n + 1) v‖ ≤ R := by
   obtain ⟨R, hR⟩ := X₀.fiber_bounded.subset_closedBall 0
@@ -144,7 +175,9 @@ lemma cobMap_spatial_bounded :
   rwa [mem_closedBall, dist_zero_right] at this
 
 /-- The switched family is regular on its zero surface: the spatial derivative
-of the current family member is already surjective.-/
+of the current family member is already surjective.
+@isnad1 id=surjecti.1h5v.s11.aea6e59f941c from=translated src=- shape=1646ae33 vocab=e5e63ad3
+-/
 theorem cobMap_regular :
     ∀ v, D.cobMap v = 0 → Function.Surjective (fderiv ℝ D.cobMap v) := by
   intro v hv y
@@ -205,6 +238,9 @@ def signedCobordism (S : FiberSign X₀) :
     rw [initCLM_spaceTime]
     rfl
 
+/--
+@isnad1 id=nonempty.0h5v.s4.05fcbeeb109d from=translated src=- shape=bf751f46 vocab=8d60bced
+-/
 theorem nonempty_signedCobordism (S : FiberSign X₀) :
     Nonempty (SignedFramedLevelCobordism S (S.restrict D.fiber_subset)) :=
   ⟨D.signedCobordism S⟩
@@ -280,7 +316,9 @@ def signInterpolationCobordism (S T : FiberSign X)
     ring
 
 /-- Only the sign pattern of a label on the fiber matters for the signed
-cobordism relation.-/
+cobordism relation.
+@isnad1 id=nonempty.1h4v.s6.90b6352ee860 from=translated src=- shape=f0e6729f vocab=adbf67a0
+-/
 theorem nonempty_signedCobordism_of_sign_pattern (S T : FiberSign X)
     (h : ∀ x ∈ X.fiber, (0 < S x ↔ 0 < T x)) :
     Nonempty (SignedFramedLevelCobordism S T) :=
@@ -291,7 +329,9 @@ end SignInterpolation
 /-! ## Slice regularity transfer -/
 
 /-- If the fixed-time slice through a zero has surjective spatial derivative,
-then the space-time map has surjective derivative there.-/
+then the space-time map has surjective derivative there.
+@isnad1 id=surjecti.2h3v.s12.ec658ca5d2ae from=translated src=- shape=86122501 vocab=dd784976
+-/
 lemma surjective_fderiv_of_slice
     {G : EuclideanSpace ℝ (Fin (n + 1 + 1)) → EuclideanSpace ℝ (Fin n)}
     (hG : ContDiff ℝ ∞ G) {v : EuclideanSpace ℝ (Fin (n + 1 + 1))}
@@ -325,14 +365,23 @@ juxtaposition and shrinks them into standard charts. -/
 /-- The interpolated scale `(1 - r) + r·c`, positive on `[0, 1]` for `c > 0`.-/
 def slideScale (c r : ℝ) : ℝ := 1 - r + r * c
 
+/--
+@isnad1 id=eq.0h1v.s4.5739d11994c8 from=translated src=- shape=1d838610 vocab=9dd82ef9
+-/
 @[simp] lemma slideScale_zero (c : ℝ) : slideScale c 0 = 1 := by
   unfold slideScale
   ring
 
+/--
+@isnad1 id=eq.0h1v.s3.347050a88e10 from=translated src=- shape=1fa26838 vocab=9dd82ef9
+-/
 @[simp] lemma slideScale_one (c : ℝ) : slideScale c 1 = c := by
   unfold slideScale
   ring
 
+/--
+@isnad1 id=lt.3h2v.s5.deb6b181cddc from=translated src=- shape=492f4386 vocab=169e55fa
+-/
 lemma slideScale_pos {c : ℝ} (hc : 0 < c) {r : ℝ} (h0 : 0 ≤ r) (h1 : r ≤ 1) :
     0 < slideScale c r := by
   unfold slideScale
@@ -343,6 +392,9 @@ lemma slideScale_pos {c : ℝ} (hc : 0 < c) {r : ℝ} (h0 : 0 ≤ r) (h1 : r ≤
     exact lt_of_lt_of_le (sub_pos.mpr hrlt)
       (le_add_of_nonneg_right (mul_nonneg h0 hc.le))
 
+/--
+@isnad1 id=le.3h2v.s5.c9986ad0bdb8 from=translated src=- shape=c611f898 vocab=c82bcff9
+-/
 lemma slideScale_le_max {c : ℝ} (hc : 0 < c) {r : ℝ} (h0 : 0 ≤ r) (h1 : r ≤ 1) :
     slideScale c r ≤ max 1 c := by
   unfold slideScale
@@ -355,23 +407,35 @@ def slideTrack (c : ℝ) (b : EuclideanSpace ℝ (Fin (n + 1)))
   (slideScale c (normRamp (vertC v)))⁻¹ •
     (initCLM (n + 1) v - normRamp (vertC v) • b)
 
+/--
+@isnad1 id=eq.0h5v.s9.65c7cb046b04 from=translated src=- shape=becd5131 vocab=b8037549
+-/
 lemma slideTrack_spaceTime (c : ℝ) (b x : EuclideanSpace ℝ (Fin (n + 1)))
     (t : ℝ) :
     slideTrack c b (spaceTime x t) =
       (slideScale c (normRamp t))⁻¹ • (x - normRamp t • b) := by
   rw [slideTrack, initCLM_spaceTime, vertC_spaceTime]
 
+/--
+@isnad1 id=eq.1h5v.s6.0372494ed929 from=translated src=- shape=92079b57 vocab=fd68a5af
+-/
 lemma slideTrack_of_le_quarter (c : ℝ) (b x : EuclideanSpace ℝ (Fin (n + 1)))
     {t : ℝ} (ht : t ≤ 1 / 4) : slideTrack c b (spaceTime x t) = x := by
   rw [slideTrack_spaceTime, normRamp_of_le_quarter ht, slideScale_zero]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s8.512afa0166d2 from=translated src=- shape=6bceeca5 vocab=2ef33a32
+-/
 lemma slideTrack_of_three_quarter_le (c : ℝ)
     (b x : EuclideanSpace ℝ (Fin (n + 1))) {t : ℝ} (ht : 3 / 4 ≤ t) :
     slideTrack c b (spaceTime x t) = c⁻¹ • (x - b) := by
   rw [slideTrack_spaceTime, normRamp_of_three_quarter_le ht, slideScale_one,
     one_smul]
 
+/--
+@isnad1 id=contdiff.1h3v.s9.55a5d33fcf2d from=translated src=- shape=f5dfcfbe vocab=8ecfd6e6
+-/
 lemma contDiff_slideTrack (c : ℝ) (hc : 0 < c)
     (b : EuclideanSpace ℝ (Fin (n + 1))) :
     ContDiff ℝ ∞ (slideTrack c b (n := n)) := by
@@ -394,7 +458,9 @@ lemma contDiff_slideTrack (c : ℝ) (hc : 0 < c)
   exact hinv.smul hvec
 
 /-- A defining map is regular along any invertible scale-and-translate
-pullback of its fiber.-/
+pullback of its fiber.
+@isnad1 id=surjecti.2h5v.s11.b9a4747b02a6 from=translated src=- shape=d0923711 vocab=987f2dc4
+-/
 lemma FramedLevelSet.surjective_fderiv_affine (X : FramedLevelSet n) {a : ℝ}
     (ha : a ≠ 0) (w : EuclideanSpace ℝ (Fin (n + 1)))
     {x : EuclideanSpace ℝ (Fin (n + 1))} (hx : X.g (a⁻¹ • (x - w)) = 0) :
@@ -444,7 +510,9 @@ def FramedLevelSet.affinePullback (X : FramedLevelSet n) (c : ℝ) (hc : c ≠ 0
           linarith
   regular := fun x hx => X.surjective_fderiv_affine hc _ hx
 
-/-- The pullback fiber is the affine image of the original fiber.-/
+/-- The pullback fiber is the affine image of the original fiber.
+@isnad1 id=eq.1h4v.s8.49740ebf1b6b from=translated src=- shape=439f4fe9 vocab=5c38a369
+-/
 theorem FramedLevelSet.affinePullback_fiber (X : FramedLevelSet n) (c : ℝ)
     (hc : c ≠ 0) (b : EuclideanSpace ℝ (Fin (n + 1))) :
     (X.affinePullback c hc b).fiber = (fun z => c • z + b) '' X.fiber := by
@@ -548,7 +616,9 @@ def signedSlideCobordism {X : FramedLevelSet n} (S : FiberSign X) (c : ℝ)
     rfl
 
 /-- Every scale-and-translate repositioning is realized by a signed
-cobordism.-/
+cobordism.
+@isnad1 id=nonempty.1h5v.s5.673aa22757ac from=translated src=- shape=9b92171c vocab=33606f56
+-/
 theorem nonempty_signedSlideCobordism {X : FramedLevelSet n} (S : FiberSign X)
     (c : ℝ) (hc : 0 < c) (b : EuclideanSpace ℝ (Fin (n + 1))) :
     Nonempty (SignedFramedLevelCobordism S (S.affinePullback c hc.ne' b)) :=

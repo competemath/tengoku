@@ -41,7 +41,9 @@ def ProductOn (C : FramedLevelCobordism n) (K : Set E) (g : E → F) : Prop :=
   ∀ x ∈ K, ∀ t : ℝ, C.G (spaceTime x t) = g x
 
 /-- Gluing two product cobordisms over the same set produces another literal
-product there.-/
+product there.
+@isnad1 id=producto.3h5v.s6.272888ddca77 from=translated src=- shape=b4ad4149 vocab=ff7d6f57
+-/
 theorem ProductOn.trans {C₁ C₂ : FramedLevelCobordism n} {K : Set E}
     {g : E → F} (h₁ : C₁.ProductOn K g) (h₂ : C₂.ProductOn K g)
     (hmid : C₁.X₁ = C₂.X₀) : (C₁.trans C₂ hmid).ProductOn K g := by
@@ -65,7 +67,9 @@ def ProductOn {X₀ X₁ : FramedLevelSet n} {S₀ : FiberSign X₀}
   C.cobordism.ProductOn K g ∧
     ∀ x ∈ K, ∀ t : ℝ, C (spaceTime x t) = σ x
 
-/-- Signed gluing preserves a common literal product region.-/
+/-- Signed gluing preserves a common literal product region.
+@isnad1 id=producto.2h12v.s7.86e589f3dd2b from=translated src=- shape=a57b949f vocab=79489787
+-/
 theorem ProductOn.trans {X₀ X₁ X₂ : FramedLevelSet n}
     {S₀ : FiberSign X₀} {S₁ : FiberSign X₁} {S₂ : FiberSign X₂}
     {C₁ : SignedFramedLevelCobordism S₀ S₁}
@@ -90,7 +94,9 @@ end SignedFramedLevelCobordism
 
 namespace SmoothAmbientIsotopy
 
-/-- A relative ambient sweep is a literal signed product on its fixed set.-/
+/-- A relative ambient sweep is a literal signed product on its fixed set.
+@isnad1 id=producto.1h5v.s5.d8e533dba45d from=translated src=- shape=61aabe4b vocab=bffb66d2
+-/
 theorem FixedOn.signedCobordism_productOn {A : SmoothAmbientIsotopy n}
     {K : Set E} (hA : A.FixedOn K) {X : FramedLevelSet n}
     (S : FiberSign X) :
@@ -112,7 +118,9 @@ def FixedOn {X₀ X₁ : FramedLevelSet n} (D : DefiningMapHomotopy X₀ X₁)
   ∀ s ∈ Icc (0 : ℝ) 1, ∀ x ∈ K, D.H s x = g x
 
 /-- The signed cobordism of a stationary defining-map homotopy is a literal
-product over its stationary set.-/
+product over its stationary set.
+@isnad1 id=producto.1h7v.s6.fb3a713d74fc from=translated src=- shape=ad9a4b0e vocab=386ea83b
+-/
 theorem FixedOn.signedCobordism_productOn {X₀ X₁ : FramedLevelSet n}
     {D : DefiningMapHomotopy X₀ X₁} {K : Set E} {g : E → F}
     (hD : D.FixedOn K g) (S : FiberSign X₀) :
@@ -134,7 +142,9 @@ namespace SmoothAmbientIsotopy
 
 /-- If the ambient move and the frame homotopy preserve `K`, and the target
 label agrees there, then the complete ambient/frame/sign normalization
-cobordism is a literal product over `K`, even after both gluings.-/
+cobordism is a literal product over `K`, even after both gluings.
+@isnad1 id=producto.4h8v.s8.f9a4337dd16a from=translated src=- shape=c0db9e6d vocab=de43ee33
+-/
 theorem signedNormalizationCobordism_productOn
     (A : SmoothAmbientIsotopy n) {X Y : FramedLevelSet n}
     (D : DefiningMapHomotopy (A.pullback X) Y)

@@ -49,6 +49,9 @@ def unitSphereHomeomorphOfLinearIsometryEquiv (e : E ≃ₗᵢ[ℝ] F) :
     simp only [mem_sphere_zero_iff_norm, LinearIsometryEquiv.coe_toHomeomorph,
       LinearIsometryEquiv.norm_map]
 
+/--
+@isnad1 id=eq.0h4v.s9.136ee07a9f13 from=translated src=- shape=9953985b vocab=4e5cb6e8
+-/
 @[simp]
 theorem unitSphereHomeomorphOfLinearIsometryEquiv_apply_coe (e : E ≃ₗᵢ[ℝ] F)
     (v : UnitSphere E) :
@@ -61,16 +64,23 @@ hyperplane is the whole space and the reflection is the identity.-/
 def basepointReflection (b x : UnitSphere E) : E ≃ₗᵢ[ℝ] E :=
   Submodule.reflection (ℝ ∙ ((b : E) - (x : E)))ᗮ
 
-/-- The basepoint reflection sends the first point to the second.-/
+/-- The basepoint reflection sends the first point to the second.
+@isnad1 id=eq.0h3v.s8.9660fb5f82fb from=translated src=- shape=873fc287 vocab=d132fd10
+-/
 theorem basepointReflection_apply_fst (b x : UnitSphere E) :
     basepointReflection b x (b : E) = (x : E) :=
   Submodule.reflection_sub (by rw [UnitSphere.norm_coe, UnitSphere.norm_coe])
 
+/--
+@isnad1 id=involuti.0h3v.s7.d16fd5e44c22 from=translated src=- shape=cbd6a44b vocab=4b0be855
+-/
 theorem basepointReflection_involutive (b x : UnitSphere E) :
     Function.Involutive (basepointReflection b x) :=
   Submodule.reflection_involutive _
 
-/-- The basepoint reflection also sends the second point to the first.-/
+/-- The basepoint reflection also sends the second point to the first.
+@isnad1 id=eq.0h3v.s8.74e481cda588 from=translated src=- shape=eabeb8cf vocab=d132fd10
+-/
 theorem basepointReflection_apply_snd (b x : UnitSphere E) :
     basepointReflection b x (x : E) = (b : E) := by
   conv_lhs => rw [← basepointReflection_apply_fst b x]
@@ -81,6 +91,9 @@ theorem basepointReflection_apply_snd (b x : UnitSphere E) :
 def rotateToBasepointHomeomorph (b x : UnitSphere E) : UnitSphere E ≃ₜ UnitSphere E :=
   unitSphereHomeomorphOfLinearIsometryEquiv (basepointReflection b x)
 
+/--
+@isnad1 id=eq.0h3v.s8.5ce5e0debb7d from=translated src=- shape=99a12c0f vocab=46b88a20
+-/
 theorem rotateToBasepointHomeomorph_fst (b x : UnitSphere E) :
     rotateToBasepointHomeomorph b x b = x :=
   Subtype.ext (basepointReflection_apply_fst b x)

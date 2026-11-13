@@ -46,6 +46,9 @@ gradients.-/
 def frameAt (X : FramedLevelSet n) (x : E) : Fin (n + 1) → E :=
   Fin.cons (tauField X.g x) fun i => gradVec X.g i x
 
+/--
+@isnad1 id=eq.0h4v.s7.f5d8116e0ecb from=translated src=- shape=b70bad5a vocab=b9067ad7
+-/
 lemma tauField_inner_gradVec (g : E → F) (x : E) (i : Fin n) :
     ⟪tauField g x, gradVec g i x⟫ = 0 := by
   rw [tauField, real_inner_smul_left]
@@ -53,7 +56,9 @@ lemma tauField_inner_gradVec (g : E → F) (x : E) (i : Fin n) :
     inner_crossVec_self (fun j => gradVec g j x) i
   rw [h, mul_zero]
 
-/-- At a regular point the frame is linearly independent (hence a basis).-/
+/-- At a regular point the frame is linearly independent (hence a basis).
+@isnad1 id=linearin.1h3v.s8.ce7504191c57 from=translated src=- shape=fa122b26 vocab=025f2613
+-/
 lemma linearIndependent_frameAt (X : FramedLevelSet n) {x : E}
     (hx : x ∈ regularSet X.g) :
     LinearIndependent ℝ (frameAt X x) := by
@@ -82,7 +87,9 @@ def rowsMatrix (v : Fin m → EuclideanSpace ℝ (Fin m)) : Matrix (Fin m) (Fin 
   Matrix.of fun i => WithLp.ofLp (v i)
 
 /-- Adding a linear combination of the other rows to a row does not change the
-determinant.-/
+determinant.
+@isnad1 id=eq.1h4v.s7.f84e4536c94e from=translated src=- shape=fbc6cf77 vocab=0c29e19e
+-/
 lemma det_updateRow_add_of_mem_span (A : Matrix (Fin m) (Fin m) ℝ) (j : Fin m)
     {w : Fin m → ℝ} (hw : w ∈ Submodule.span ℝ (A '' {i | i ≠ j})) :
     (A.updateRow j (A j + w)).det = A.det := by
@@ -112,7 +119,9 @@ lemma det_updateRow_add_of_mem_span (A : Matrix (Fin m) (Fin m) ℝ) (j : Fin m)
     _ = A.det := add_zero _
 
 /-- The Gram–Schmidt correction of the `i`-th vector lies in the span of the previous
-Gram–Schmidt vectors.-/
+Gram–Schmidt vectors.
+@isnad1 id=mem.0h3v.s9.a405bfb808ad from=translated src=- shape=8ffdb855 vocab=c1f7e596
+-/
 lemma gramSchmidt_sub_mem_span (v : Fin m → EuclideanSpace ℝ (Fin m)) (i : Fin m) :
     gramSchmidt ℝ v i - v i ∈ Submodule.span ℝ (gramSchmidt ℝ v '' Set.Iio i) := by
   have h := gramSchmidt_def ℝ v i
@@ -130,7 +139,9 @@ lemma gramSchmidt_sub_mem_span (v : Fin m → EuclideanSpace ℝ (Fin m)) (i : F
   have himg : gramSchmidt ℝ v j ∈ gramSchmidt ℝ v '' Set.Iio i := ⟨j, hjlt, rfl⟩
   exact Submodule.span_mono (Set.singleton_subset_iff.mpr himg) hmem
 
-/-- **Gram–Schmidt preserves the determinant** of the matrix of rows.-/
+/-- **Gram–Schmidt preserves the determinant** of the matrix of rows.
+@isnad1 id=eq.0h2v.s6.50cafd1a1807 from=translated src=- shape=f944765e vocab=5bb4bc35
+-/
 lemma det_rowsMatrix_gramSchmidt (v : Fin m → EuclideanSpace ℝ (Fin m)) :
     (rowsMatrix (gramSchmidt ℝ v)).det = (rowsMatrix v).det := by
   classical
@@ -219,7 +230,9 @@ lemma det_rowsMatrix_gramSchmidt (v : Fin m → EuclideanSpace ℝ (Fin m)) :
     simp [hMix, rowsMatrix]
   rw [← hm, hall m, h0]
 
-/-- Determinant of the normalized Gram–Schmidt row matrix.-/
+/-- Determinant of the normalized Gram–Schmidt row matrix.
+@isnad1 id=eq.0h2v.s7.cea66afcc951 from=translated src=- shape=581416fd vocab=979ca329
+-/
 lemma det_rowsMatrix_gramSchmidtNormed (v : Fin m → EuclideanSpace ℝ (Fin m)) :
     (rowsMatrix (gramSchmidtNormed ℝ v)).det
       = (∏ i, ‖gramSchmidt ℝ v i‖⁻¹) * (rowsMatrix v).det := by
@@ -238,7 +251,9 @@ lemma det_rowsMatrix_gramSchmidtNormed (v : Fin m → EuclideanSpace ℝ (Fin m)
     _ = (∏ i, ‖gramSchmidt ℝ v i‖⁻¹) * (rowsMatrix v).det := by
         rw [det_rowsMatrix_gramSchmidt]
 
-/-- The row matrix of the frame is the `crossRows` matrix of the gradients and `τ`.-/
+/-- The row matrix of the frame is the `crossRows` matrix of the gradients and `τ`.
+@isnad1 id=eq.0h3v.s6.60165ac82142 from=translated src=- shape=4ae8733a vocab=f034b9e0
+-/
 lemma rowsMatrix_frameAt (X : FramedLevelSet n) (x : E) :
     rowsMatrix (frameAt X x)
       = crossRows (fun i => gradVec X.g i x) (tauField X.g x) := by
@@ -246,6 +261,9 @@ lemma rowsMatrix_frameAt (X : FramedLevelSet n) (x : E) :
   rcases Fin.eq_zero_or_eq_succ i with rfl | ⟨k, rfl⟩ <;>
     simp [rowsMatrix, frameAt, crossRows]
 
+/--
+@isnad1 id=lt.1h3v.s7.1fea65b1004e from=translated src=- shape=d3750b4c vocab=15f1b910
+-/
 lemma det_rowsMatrix_frameAt_pos (X : FramedLevelSet n) {x : E}
     (hx : x ∈ regularSet X.g) :
     0 < (rowsMatrix (frameAt X x)).det := by
@@ -255,7 +273,9 @@ lemma det_rowsMatrix_frameAt_pos (X : FramedLevelSet n) {x : E}
 /-! ## Continuity of Gram–Schmidt along a continuous family -/
 
 /-- Gram–Schmidt is continuous along a pointwise linearly independent continuous
-family of frames.-/
+family of frames.
+@isnad1 id=continuo.2h4v.s8.8671f24c6c1f from=translated src=- shape=d90098c9 vocab=2d162bd1
+-/
 lemma continuous_gramSchmidt_family {T : Type*} [TopologicalSpace T]
     {A : T → Fin m → EuclideanSpace ℝ (Fin m)}
     (hA : ∀ i, Continuous fun t => A t i)
@@ -297,7 +317,9 @@ lemma continuous_gramSchmidt_family {T : Type*} [TopologicalSpace T]
   exact key (i : ℕ) i rfl
 
 /-- Normalized Gram–Schmidt is continuous along a pointwise independent continuous
-family of frames.-/
+family of frames.
+@isnad1 id=continuo.2h4v.s8.7e3548556d1c from=translated src=- shape=d90098c9 vocab=9772e0be
+-/
 lemma continuous_gramSchmidtNormed_family {T : Type*} [TopologicalSpace T]
     {A : T → Fin m → EuclideanSpace ℝ (Fin m)}
     (hA : ∀ i, Continuous fun t => A t i)
@@ -322,7 +344,9 @@ def frameLoop (X : FramedLevelSet n) (γ : ℝ → EuclideanSpace ℝ (Fin (n + 
     ℝ → Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ :=
   fun t => rowsMatrix (gramSchmidtNormed ℝ (frameAt X (γ t)))
 
-/-- Continuity of the frame family along a continuous curve in the regular set.-/
+/-- Continuity of the frame family along a continuous curve in the regular set.
+@isnad1 id=continuo.2h5v.s8.a8bd44ed2a5c from=translated src=- shape=35c3acda vocab=9229a133
+-/
 lemma continuous_frameAt_comp (X : FramedLevelSet n)
     {T : Type*} [TopologicalSpace T]
     {γ : T → EuclideanSpace ℝ (Fin (n + 1))} (hγc : Continuous γ)
@@ -338,6 +362,9 @@ lemma continuous_frameAt_comp (X : FramedLevelSet n)
     rw [heq]
     exact (contDiff_gradVec X.g X.smooth k).continuous.comp hγc
 
+/--
+@isnad1 id=continuo.2h3v.s7.af8a9c01aa63 from=translated src=- shape=fd76f228 vocab=5ff5d134
+-/
 theorem continuous_frameLoop (X : FramedLevelSet n)
     {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))} (hγc : Continuous γ)
     (hγ : ∀ t, γ t ∈ X.fiber) :
@@ -352,7 +379,9 @@ theorem continuous_frameLoop (X : FramedLevelSet n)
   exact (EuclideanSpace.proj j).continuous.comp h
 
 /-- The orthonormalized frame matrix varies continuously along a continuous
-family of regular points, with an arbitrary topological parameter space.-/
+family of regular points, with an arbitrary topological parameter space.
+@isnad1 id=continuo.2h4v.s8.a6b153ed2a2b from=translated src=- shape=9f313ad1 vocab=e0ec1b8f
+-/
 theorem continuous_frameMatrix_comp (X : FramedLevelSet n)
     {T : Type*} [TopologicalSpace T]
     {γ : T → EuclideanSpace ℝ (Fin (n + 1))} (hγc : Continuous γ)
@@ -367,6 +396,9 @@ theorem continuous_frameMatrix_comp (X : FramedLevelSet n)
     (A := fun t => frameAt X (γ t)) (continuous_frameAt_comp X hγc hγ) hInd i
   exact (EuclideanSpace.proj j).continuous.comp h
 
+/--
+@isnad1 id=periodic.1h4v.s6.b06650aa895d from=translated src=- shape=837ba6bc vocab=d26391f3
+-/
 theorem frameLoop_periodic (X : FramedLevelSet n)
     {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))} {T : ℝ}
     (h : Function.Periodic γ T) :
@@ -375,7 +407,9 @@ theorem frameLoop_periodic (X : FramedLevelSet n)
   unfold frameLoop
   rw [h t]
 
-/-- The frame loop takes values in the special orthogonal group.-/
+/-- The frame loop takes values in the special orthogonal group.
+@isnad1 id=mem.1h4v.s9.fbea9a0c9fa1 from=translated src=- shape=6525d0fb vocab=5a05962f
+-/
 theorem frameLoop_mem_specialOrthogonalGroup (X : FramedLevelSet n)
     {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))} (hγ : ∀ t, γ t ∈ X.fiber) (t : ℝ) :
     frameLoop X γ t ∈ Matrix.specialOrthogonalGroup (Fin (n + 1)) ℝ := by
@@ -424,7 +458,9 @@ theorem frameLoop_mem_specialOrthogonalGroup (X : FramedLevelSet n)
   exact Matrix.mem_specialOrthogonalGroup_iff.mpr ⟨horth, hdet1⟩
 
 /-- The orthonormalized frame at any regular point lies in the special
-orthogonal group.  Fiber membership is not needed for this pointwise form.-/
+orthogonal group.  Fiber membership is not needed for this pointwise form.
+@isnad1 id=mem.1h3v.s9.7fdda7b94b24 from=translated src=- shape=8ee0ecd9 vocab=7b148b60
+-/
 theorem frameMatrix_mem_specialOrthogonalGroup_of_regular (X : FramedLevelSet n)
     {x : EuclideanSpace ℝ (Fin (n + 1))} (hreg : x ∈ regularSet X.g) :
     rowsMatrix (gramSchmidtNormed ℝ (frameAt X x)) ∈

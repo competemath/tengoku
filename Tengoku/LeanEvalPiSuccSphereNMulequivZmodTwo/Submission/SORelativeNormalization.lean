@@ -31,7 +31,9 @@ local notation "F" => EuclideanSpace ℝ (Fin n)
 local notation "M" => Matrix (Fin n) (Fin n) ℝ
 
 /-- Smoothness of the endpoint gauge obtained by fixing the time parameter at
-one.-/
+one.
+@isnad1 id=contdiff.1h2v.s10.d060b751ee28 from=translated src=- shape=76f4e8e6 vocab=f9dc08be
+-/
 theorem contDiff_endpointGauge
     {R : ℝ → E → SOGroup n}
     (hR : ∀ i j, ContDiff ℝ ∞
@@ -56,6 +58,9 @@ def endpointSign (A : SmoothAmbientIsotopy n) {X : FramedLevelSet n}
     (contDiff_endpointGauge hR)
     (fun x => SOFrameGauge.toCLM_bijective (R 1 x))
 
+/--
+@isnad1 id=eq.1h6v.s9.f1e782ef2635 from=translated src=- shape=0040870c vocab=e25c6e98
+-/
 @[simp] theorem endpointSign_apply (A : SmoothAmbientIsotopy n)
     {X : FramedLevelSet n} (S : FiberSign X)
     (R : ℝ → E → SOGroup n)

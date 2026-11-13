@@ -52,6 +52,9 @@ def crossRows (v : Fin n → E) (w : E) : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ
 def crossDet (v : Fin n → E) (w : E) : ℝ :=
   (crossRows v w).det
 
+/--
+@isnad1 id=eq.0h4v.s7.391a314e70d0 from=translated src=- shape=c886f55b vocab=f8462195
+-/
 lemma updateRow_crossRows (v : Fin n → E) (w w' : E) :
     (crossRows v w).updateRow 0 (WithLp.ofLp w') = crossRows v w' := by
   unfold crossRows
@@ -60,6 +63,9 @@ lemma updateRow_crossRows (v : Fin n → E) (w w' : E) :
   · simp
   · simp
 
+/--
+@isnad1 id=eq.0h4v.s8.0d4c0e5354a8 from=translated src=- shape=7bc396ba vocab=aa0b2bed
+-/
 lemma crossDet_add (v : Fin n → E) (w w' : E) :
     crossDet v (w + w') = crossDet v w + crossDet v w' := by
   have h := Matrix.det_updateRow_add (crossRows v w) 0
@@ -67,6 +73,9 @@ lemma crossDet_add (v : Fin n → E) (w w' : E) :
   rw [show WithLp.ofLp w + WithLp.ofLp w' = WithLp.ofLp (w + w') from rfl] at h
   simpa only [crossDet, updateRow_crossRows] using h
 
+/--
+@isnad1 id=eq.0h4v.s7.fcae40bdd318 from=translated src=- shape=6202c53b vocab=e6ed8453
+-/
 lemma crossDet_smul (v : Fin n → E) (c : ℝ) (w : E) :
     crossDet v (c • w) = c * crossDet v w := by
   have h := Matrix.det_updateRow_smul (crossRows v w) 0 c (WithLp.ofLp w)
@@ -79,9 +88,14 @@ def crossLM (v : Fin n → E) : E →ₗ[ℝ] ℝ where
   map_add' := crossDet_add v
   map_smul' := crossDet_smul v
 
+/--
+@isnad1 id=eq.0h3v.s9.b0f0a631462e from=translated src=- shape=e7242c72 vocab=4374d9f6
+-/
 @[simp] lemma crossLM_apply (v : Fin n → E) (w : E) : crossLM v w = crossDet v w := rfl
 
-/-- The determinant vanishes when the first row equals one of the other rows.-/
+/-- The determinant vanishes when the first row equals one of the other rows.
+@isnad1 id=eq.0h3v.s5.4b789e7d7f47 from=translated src=- shape=a650e802 vocab=e152f6c0
+-/
 lemma crossDet_apply_self (v : Fin n → E) (i : Fin n) :
     crossDet v (v i) = 0 := by
   apply Matrix.det_zero_of_row_eq (i := (0 : Fin (n + 1))) (j := i.succ)
@@ -95,10 +109,15 @@ lemma crossDet_apply_self (v : Fin n → E) (i : Fin n) :
 def crossVec (v : Fin n → E) : E :=
   WithLp.toLp 2 fun j => crossDet v (EuclideanSpace.single j 1)
 
+/--
+@isnad1 id=eq.0h3v.s7.2ac46e203782 from=translated src=- shape=c8b8b7d8 vocab=259d59a6
+-/
 @[simp] lemma crossVec_apply (v : Fin n → E) (j : Fin (n + 1)) :
     crossVec v j = crossDet v (EuclideanSpace.single j 1) := rfl
 
-/-- Fundamental property of the cross product.-/
+/-- Fundamental property of the cross product.
+@isnad1 id=eq.0h3v.s7.779519bc0089 from=translated src=- shape=f680f586 vocab=c7facbab
+-/
 lemma inner_crossVec (v : Fin n → E) (w : E) :
     ⟪crossVec v, w⟫ = crossDet v w := by
   have hw : w = ∑ j, w j • EuclideanSpace.single j (1 : ℝ) := by
@@ -111,23 +130,33 @@ lemma inner_crossVec (v : Fin n → E) (w : E) :
         simp
     _ = crossDet v w := by rw [← hw]; rfl
 
-/-- The cross product is orthogonal to each of the input vectors.-/
+/-- The cross product is orthogonal to each of the input vectors.
+@isnad1 id=eq.0h3v.s7.070a785288b4 from=translated src=- shape=1ad702b6 vocab=688745f8
+-/
 lemma inner_crossVec_self (v : Fin n → E) (i : Fin n) :
     ⟪crossVec v, v i⟫ = 0 := by
   rw [inner_crossVec, crossDet_apply_self]
 
-/-- Orientation: pairing the cross product with itself gives the norm squared.-/
+/-- Orientation: pairing the cross product with itself gives the norm squared.
+@isnad1 id=eq.0h2v.s7.e1752c991382 from=translated src=- shape=dedf58e8 vocab=5e1e73a2
+-/
 lemma crossDet_crossVec (v : Fin n → E) :
     crossDet v (crossVec v) = ‖crossVec v‖ ^ 2 := by
   rw [← inner_crossVec, real_inner_self_eq_norm_sq]
 
 /-! ## Nonvanishing of the cross product -/
 
+/--
+@isnad1 id=eq.0h3v.s7.89e972819ab6 from=translated src=- shape=aa398570 vocab=c4a55e0f
+-/
 lemma row_crossRows (v : Fin n → E) (w : E) :
     (crossRows v w).row = fun i => WithLp.ofLp ((Fin.cons w v : Fin (n + 1) → E) i) := by
   funext i j
   rcases Fin.eq_zero_or_eq_succ i with rfl | ⟨k, rfl⟩ <;> simp [crossRows, Matrix.row]
 
+/--
+@isnad1 id=iff.0h3v.s8.9503c06e51b1 from=translated src=- shape=dca3f3b6 vocab=d115ec72
+-/
 lemma linearIndependent_rows_iff (v : Fin n → E) (w : E) :
     LinearIndependent ℝ (crossRows v w).row ↔
       LinearIndependent ℝ (Fin.cons w v : Fin (n + 1) → E) := by
@@ -135,12 +164,18 @@ lemma linearIndependent_rows_iff (v : Fin n → E) (w : E) :
   exact (WithLp.linearEquiv 2 ℝ (Fin (n + 1) → ℝ)).toLinearMap.linearIndependent_iff
     (LinearEquiv.ker _) (v := (Fin.cons w v : Fin (n + 1) → E))
 
+/--
+@isnad1 id=iff.0h3v.s8.7967ee64f20f from=translated src=- shape=380a0188 vocab=7c76821f
+-/
 lemma crossDet_ne_zero_iff (v : Fin n → E) (w : E) :
     crossDet v w ≠ 0 ↔ LinearIndependent ℝ (Fin.cons w v : Fin (n + 1) → E) := by
   rw [← linearIndependent_rows_iff, Matrix.linearIndependent_rows_iff_isUnit,
     Matrix.isUnit_iff_isUnit_det, isUnit_iff_ne_zero]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s8.488eb1dd5316 from=translated src=- shape=e3ce8a6a vocab=e1a2365b
+-/
 lemma crossVec_eq_zero_of_not_linearIndependent {v : Fin n → E}
     (hv : ¬ LinearIndependent ℝ v) : crossVec v = 0 := by
   have h0 : ∀ w : E, crossDet v w = 0 := by
@@ -154,6 +189,9 @@ lemma crossVec_eq_zero_of_not_linearIndependent {v : Fin n → E}
   funext j
   simpa using h0 (EuclideanSpace.single j 1)
 
+/--
+@isnad1 id=ne.1h2v.s8.7a57eccfc9b6 from=translated src=- shape=aad104c4 vocab=e1a2365b
+-/
 lemma crossVec_ne_zero_of_linearIndependent {v : Fin n → E}
     (hv : LinearIndependent ℝ v) : crossVec v ≠ 0 := by
   -- the span of `n` vectors is a proper subspace of `ℝ^{n+1}`; pick `w` outside it
@@ -172,6 +210,9 @@ lemma crossVec_ne_zero_of_linearIndependent {v : Fin n → E}
   apply hdet
   rw [← inner_crossVec, hzero, inner_zero_left]
 
+/--
+@isnad1 id=iff.0h2v.s8.d3df9ebd753d from=translated src=- shape=c26868c2 vocab=e1a2365b
+-/
 lemma crossVec_ne_zero_iff (v : Fin n → E) :
     crossVec v ≠ 0 ↔ LinearIndependent ℝ v := by
   constructor
@@ -188,12 +229,17 @@ def gradVec (g : E → F) (i : Fin n) (x : E) : E :=
   (InnerProductSpace.toDual ℝ (EuclideanSpace ℝ (Fin (n + 1)))).symm
     ((EuclideanSpace.proj i).comp (fderiv ℝ g x))
 
+/--
+@isnad1 id=eq.0h5v.s10.e7aa7654c70d from=translated src=- shape=58b3a321 vocab=49820106
+-/
 lemma inner_gradVec (g : E → F) (i : Fin n) (x : E) (w : E) :
     ⟪gradVec g i x, w⟫ = fderiv ℝ g x w i :=
   InnerProductSpace.toDual_symm_apply
 
 /-- Pairing a coefficient vector with `fderiv g` corresponds to pairing the
-associated combination of gradients.-/
+associated combination of gradients.
+@isnad1 id=eq.0h5v.s11.5c7b96cb4c3b from=translated src=- shape=69f6e325 vocab=d9c3935c
+-/
 lemma inner_sum_gradVec (g : E → F) (x : E) (c : F) (w : E) :
     ⟪∑ i, c i • gradVec g i x, w⟫ = ⟪c, fderiv ℝ g x w⟫ := by
   rw [sum_inner]
@@ -202,7 +248,9 @@ lemma inner_sum_gradVec (g : E → F) (x : E) (c : F) (w : E) :
   exact Finset.sum_congr rfl fun i _ => mul_comm _ _
 
 /-- Surjectivity of the derivative is equivalent to linear independence of the
-component gradients.-/
+component gradients.
+@isnad1 id=iff.0h3v.s10.df0ca19bae91 from=translated src=- shape=7345e936 vocab=f2800940
+-/
 lemma surjective_fderiv_iff_linearIndependent (g : E → F) (x : E) :
     Surjective (fderiv ℝ g x) ↔ LinearIndependent ℝ (fun i => gradVec g i x) := by
   constructor
@@ -250,7 +298,9 @@ lemma surjective_fderiv_iff_linearIndependent (g : E → F) (x : E) :
 /-! ## Smoothness -/
 
 /-- The cross product of a smooth family of vectors is smooth (it is polynomial in
-the coordinates of the family).-/
+the coordinates of the family).
+@isnad1 id=contdiff.1h3v.s8.e4765a4292c8 from=translated src=- shape=e5a8bcd5 vocab=0ab85420
+-/
 lemma contDiff_crossVec_comp {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ X]
     {v : X → Fin n → E} (hv : ∀ i, ContDiff ℝ ∞ fun x => v x i) :
     ContDiff ℝ ∞ fun x => crossVec (v x) := by
@@ -279,7 +329,9 @@ lemma contDiff_crossVec_comp {X : Type*} [NormedAddCommGroup X] [NormedSpace ℝ
       exact (EuclideanSpace.proj i).contDiff.comp (hv k)
   exact hentry (σ i)
 
-/-- Gradients of a smooth map are smooth.-/
+/-- Gradients of a smooth map are smooth.
+@isnad1 id=contdiff.1h3v.s9.af1076a93577 from=translated src=- shape=635f708f vocab=4db76714
+-/
 lemma contDiff_gradVec (g : E → F) (hg : ContDiff ℝ ∞ g) (i : Fin n) :
     ContDiff ℝ ∞ (gradVec g i) := by
   apply (InnerProductSpace.toDual ℝ
@@ -304,15 +356,24 @@ def tauField (g : E → F) (x : E) : E :=
 def regularSet (g : E → F) : Set E :=
   {x | Surjective (fderiv ℝ g x)}
 
+/--
+@isnad1 id=contdiff.1h2v.s9.8399dbf99599 from=translated src=- shape=022d4876 vocab=185746f7
+-/
 lemma contDiff_kerCross {g : E → F} (hg : ContDiff ℝ ∞ g) :
     ContDiff ℝ ∞ (kerCross g) :=
   contDiff_crossVec_comp fun i => contDiff_gradVec g hg i
 
+/--
+@isnad1 id=iff.0h3v.s8.021d6ad552f7 from=translated src=- shape=b34359df vocab=9c1ebcaf
+-/
 lemma kerCross_ne_zero_iff (g : E → F) (x : E) :
     kerCross g x ≠ 0 ↔ x ∈ regularSet g := by
   rw [kerCross, crossVec_ne_zero_iff]
   exact (surjective_fderiv_iff_linearIndependent g x).symm
 
+/--
+@isnad1 id=isopen.1h2v.s8.41d433637e6d from=translated src=- shape=9eb7a5b6 vocab=8b376a3c
+-/
 lemma isOpen_regularSet {g : E → F} (hg : ContDiff ℝ ∞ g) :
     IsOpen (regularSet g) := by
   have : regularSet g = kerCross g ⁻¹' ({0}ᶜ) := by
@@ -322,12 +383,18 @@ lemma isOpen_regularSet {g : E → F} (hg : ContDiff ℝ ∞ g) :
   rw [this]
   exact (contDiff_kerCross hg).continuous.isOpen_preimage _ isOpen_compl_singleton
 
+/--
+@isnad1 id=eq.1h3v.s7.792dd64735ca from=translated src=- shape=5daf53e9 vocab=f34cfb2a
+-/
 lemma norm_tauField {g : E → F} {x : E} (hx : x ∈ regularSet g) :
     ‖tauField g x‖ = 1 := by
   have h : kerCross g x ≠ 0 := (kerCross_ne_zero_iff g x).mpr hx
   rw [tauField, norm_smul, norm_inv, norm_norm,
     inv_mul_cancel₀ (norm_ne_zero_iff.mpr h)]
 
+/--
+@isnad1 id=ne.1h3v.s8.f1f65426ae61 from=translated src=- shape=d330a5c1 vocab=01e3e397
+-/
 lemma tauField_ne_zero {g : E → F} {x : E} (hx : x ∈ regularSet g) :
     tauField g x ≠ 0 := by
   intro h
@@ -335,7 +402,9 @@ lemma tauField_ne_zero {g : E → F} {x : E} (hx : x ∈ regularSet g) :
   rw [h, norm_zero] at this
   norm_num at this
 
-/-- The kernel field lies in the kernel of the derivative.-/
+/-- The kernel field lies in the kernel of the derivative.
+@isnad1 id=eq.0h3v.s10.1557805d12ba from=translated src=- shape=c31f6e2b vocab=0e423976
+-/
 lemma fderiv_kerCross_eq_zero (g : E → F) (x : E) :
     fderiv ℝ g x (kerCross g x) = 0 := by
   apply (WithLp.equiv 2 _).injective
@@ -346,12 +415,17 @@ lemma fderiv_kerCross_eq_zero (g : E → F) (x : E) :
   rw [inner_gradVec] at h
   exact h
 
+/--
+@isnad1 id=eq.0h3v.s10.f85bb3eb23cc from=translated src=- shape=c31f6e2b vocab=1e4b62b8
+-/
 lemma fderiv_tauField_eq_zero (g : E → F) (x : E) :
     fderiv ℝ g x (tauField g x) = 0 := by
   rw [tauField, map_smul, fderiv_kerCross_eq_zero, smul_zero]
 
 /-- Orientation: the determinant of the matrix with first row `τ` and remaining rows
-the gradients is positive.-/
+the gradients is positive.
+@isnad1 id=lt.1h3v.s6.e4173752b217 from=translated src=- shape=d3be04c5 vocab=b81b2068
+-/
 lemma crossDet_tauField_pos {g : E → F} {x : E} (hx : x ∈ regularSet g) :
     0 < crossDet (fun i => gradVec g i x) (tauField g x) := by
   have h : kerCross g x ≠ 0 := (kerCross_ne_zero_iff g x).mpr hx
@@ -363,7 +437,9 @@ lemma crossDet_tauField_pos {g : E → F} {x : E} (hx : x ∈ regularSet g) :
   exact mul_pos (inv_pos.mpr hpos) (pow_pos hpos 2)
 
 /-- The kernel of the derivative at a regular point is exactly the line spanned by
-the unit kernel field.-/
+the unit kernel field.
+@isnad1 id=iff.1h4v.s11.d2599513debd from=translated src=- shape=0d26ad6a vocab=de96804c
+-/
 lemma fderiv_eq_zero_iff_mem_span_tauField {g : E → F} {x : E} (hx : x ∈ regularSet g)
     (w : E) :
     fderiv ℝ g x w = 0 ↔ w ∈ Submodule.span ℝ {tauField g x} := by
@@ -392,7 +468,9 @@ lemma fderiv_eq_zero_iff_mem_span_tauField {g : E → F} {x : E} (hx : x ∈ reg
     rw [← hker] at h
     exact LinearMap.mem_ker.mp h
 
-/-- The unit kernel field is smooth on the regular set.-/
+/-- The unit kernel field is smooth on the regular set.
+@isnad1 id=contdiff.1h2v.s9.3882218a0be4 from=translated src=- shape=4506840a vocab=0a42f7f7
+-/
 lemma contDiffOn_tauField {g : E → F} (hg : ContDiff ℝ ∞ g) :
     ContDiffOn ℝ ∞ (tauField g) (regularSet g) := by
   intro x hx
@@ -426,12 +504,21 @@ variable (X : FramedLevelSet n)
 /-- The zero fiber of the presentation.-/
 def fiber : Set (EuclideanSpace ℝ (Fin (n + 1))) := {v | X.g v = 0}
 
+/--
+@isnad1 id=isclosed.0h2v.s6.c01a5a7afbfc from=translated src=- shape=117007b0 vocab=0394f387
+-/
 lemma isClosed_fiber : IsClosed X.fiber :=
   isClosed_singleton.preimage X.smooth.continuous
 
+/--
+@isnad1 id=iscompac.0h2v.s6.4a49f59dfebb from=translated src=- shape=117007b0 vocab=4bf390ef
+-/
 lemma isCompact_fiber : IsCompact X.fiber :=
   Metric.isCompact_of_isClosed_isBounded X.isClosed_fiber X.fiber_bounded
 
+/--
+@isnad1 id=le.0h2v.s5.2790f7c1200e from=translated src=- shape=f6180d51 vocab=53540398
+-/
 lemma fiber_subset_regularSet : X.fiber ⊆ regularSet X.g :=
   fun v hv => X.regular v hv
 

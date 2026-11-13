@@ -44,40 +44,67 @@ def heightRight (t : ℝ) : ℝ :=
 def height (t : ℝ) : ℝ :=
   if t < 1 / 2 then heightLeft t else heightRight t
 
+/--
+@isnad1 id=contdiff.0h0v.s5.ef3e1ad8abe3 from=translated src=- shape=3cea26be vocab=71ebdfe4
+-/
 lemma contDiff_leftCutoff : ContDiff ℝ ∞ leftCutoff := by
   exact Real.smoothTransition.contDiff.comp
     (contDiff_const.mul (contDiff_id.sub contDiff_const))
 
+/--
+@isnad1 id=contdiff.0h0v.s5.7f0fff3a74c8 from=translated src=- shape=3cea26be vocab=eb6384b5
+-/
 lemma contDiff_rightCutoff : ContDiff ℝ ∞ rightCutoff := by
   exact Real.smoothTransition.contDiff.comp
     (contDiff_const.mul (contDiff_id.sub contDiff_const))
 
+/--
+@isnad1 id=contdiff.0h0v.s5.533ebe6b69a4 from=translated src=- shape=3cea26be vocab=82371f5d
+-/
 lemma contDiff_heightLeft : ContDiff ℝ ∞ heightLeft := by
   exact ((contDiff_const.sub contDiff_leftCutoff).mul contDiff_const).add
     (contDiff_leftCutoff.mul (contDiff_id.sub contDiff_const))
 
+/--
+@isnad1 id=contdiff.0h0v.s5.170936008cf9 from=translated src=- shape=3cea26be vocab=5b853aaa
+-/
 lemma contDiff_heightRight : ContDiff ℝ ∞ heightRight := by
   exact ((contDiff_const.sub contDiff_rightCutoff).mul
     (contDiff_id.sub contDiff_const)).add contDiff_rightCutoff
 
+/--
+@isnad1 id=eq.1h1v.s5.30adb8da7ee6 from=translated src=- shape=c1676f1c vocab=720d0c06
+-/
 lemma leftCutoff_eq_one {t : ℝ} (ht : 3 / 8 ≤ t) : leftCutoff t = 1 := by
   apply Real.smoothTransition.one_of_one_le
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s5.35b8a27d4fd8 from=translated src=- shape=44469b40 vocab=683777de
+-/
 lemma rightCutoff_eq_zero {t : ℝ} (ht : t ≤ 5 / 8) : rightCutoff t = 0 := by
   apply Real.smoothTransition.zero_of_nonpos
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.c5bc09d47e15 from=translated src=- shape=27fd4b32 vocab=3f01bfc5
+-/
 lemma heightLeft_eq_linear {t : ℝ} (ht : 3 / 8 ≤ t) :
     heightLeft t = t - 1 / 2 := by
   rw [heightLeft, leftCutoff_eq_one ht]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.2fe2f7a356d2 from=translated src=- shape=b20fd2f3 vocab=f4f1eddd
+-/
 lemma heightRight_eq_linear {t : ℝ} (ht : t ≤ 5 / 8) :
     heightRight t = t - 1 / 2 := by
   rw [heightRight, rightCutoff_eq_zero ht]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s6.d1815ecb9bcc from=translated src=- shape=4b642ea3 vocab=a41f56a6
+-/
 lemma height_eq_linear {t : ℝ} (ht₀ : 3 / 8 ≤ t) (ht₁ : t ≤ 5 / 8) :
     height t = t - 1 / 2 := by
   rw [height]
@@ -85,6 +112,9 @@ lemma height_eq_linear {t : ℝ} (ht₀ : 3 / 8 ≤ t) (ht₁ : t ≤ 5 / 8) :
   · exact heightLeft_eq_linear ht₀
   · exact heightRight_eq_linear ht₁
 
+/--
+@isnad1 id=contdiff.0h0v.s5.248344956e0e from=translated src=- shape=3cea26be vocab=4eb37d63
+-/
 theorem contDiff_height : ContDiff ℝ ∞ height := by
   rw [contDiff_iff_contDiffAt]
   intro t
@@ -105,6 +135,9 @@ theorem contDiff_height : ContDiff ℝ ∞ height := by
     exact Filter.eventuallyEq_of_mem (Ioi_mem_nhds ht) fun s hs => by
       rw [height, ite_eq_right (not_lt.mpr hs.le)]
 
+/--
+@isnad1 id=eq.1h1v.s5.de134bd86541 from=translated src=- shape=30562bcb vocab=f3731f0e
+-/
 lemma height_of_le_quarter {t : ℝ} (ht : t ≤ 1 / 4) : height t = -1 := by
   have hhalf : t < 1 / 2 := by linarith
   have hcut : leftCutoff t = 0 := by
@@ -113,6 +146,9 @@ lemma height_of_le_quarter {t : ℝ} (ht : t ≤ 1 / 4) : height t = -1 := by
   rw [height, ite_eq_left hhalf, heightLeft, hcut]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.fc5dde59f9e6 from=translated src=- shape=c1676f1c vocab=29be26ae
+-/
 lemma height_of_threeQuarter_le {t : ℝ} (ht : 3 / 4 ≤ t) : height t = 1 := by
   have hhalf : ¬ t < 1 / 2 := by linarith
   have hcut : rightCutoff t = 1 := by
@@ -121,6 +157,9 @@ lemma height_of_threeQuarter_le {t : ℝ} (ht : 3 / 4 ≤ t) : height t = 1 := b
   rw [height, ite_eq_right hhalf, heightRight, hcut]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s5.d7ff018fdc83 from=translated src=- shape=86fe62fc vocab=01993ad3
+-/
 lemma height_neg_of_lt_half {t : ℝ} (ht : t < 1 / 2) : height t < 0 := by
   rw [height, ite_eq_left ht, heightLeft]
   have hc0 := Real.smoothTransition.nonneg (8 * (t - 1 / 4))
@@ -137,6 +176,9 @@ lemma height_neg_of_lt_half {t : ℝ} (ht : t < 1 / 2) : height t < 0 := by
       mul_nonpos_of_nonneg_of_nonpos hc0 htlin.le
     linarith
 
+/--
+@isnad1 id=lt.1h1v.s5.c8bd384b62bd from=translated src=- shape=3f8dd538 vocab=01993ad3
+-/
 lemma height_pos_of_half_lt {t : ℝ} (ht : 1 / 2 < t) : 0 < height t := by
   rw [height, ite_eq_right (not_lt.mpr ht.le), heightRight]
   have hc0 := Real.smoothTransition.nonneg (8 * (t - 5 / 8))
@@ -152,10 +194,16 @@ lemma height_pos_of_half_lt {t : ℝ} (ht : 1 / 2 < t) : 0 < height t := by
     have hsecond : 0 ≤ rightCutoff t := hc0
     exact add_pos_of_pos_of_nonneg hfirst hsecond
 
+/--
+@isnad1 id=eq.0h0v.s5.83edcb002292 from=translated src=- shape=7ed1bc26 vocab=c041db5f
+-/
 @[simp] lemma height_half : height (1 / 2) = 0 := by
   rw [height_eq_linear (by norm_num) (by norm_num)]
   ring
 
+/--
+@isnad1 id=iff.0h1v.s5.b6bff2ee6a94 from=translated src=- shape=99cfdeaa vocab=c041db5f
+-/
 lemma height_eq_zero_iff {t : ℝ} : height t = 0 ↔ t = 1 / 2 := by
   constructor
   · intro h
@@ -166,12 +214,18 @@ lemma height_eq_zero_iff {t : ℝ} : height t = 0 ↔ t = 1 / 2 := by
   · rintro rfl
     exact height_half
 
+/--
+@isnad1 id=hasderiv.0h0v.s5.cabcfa7fd4a0 from=translated src=- shape=a32d56c3 vocab=646837f2
+-/
 lemma hasDerivAt_height_half : HasDerivAt height 1 (1 / 2) := by
   apply (hasDerivAt_id (1 / 2)).sub_const (1 / 2) |>.congr_of_eventuallyEq
   exact Filter.eventuallyEq_of_mem
     (isOpen_Ioo.mem_nhds (show (1 / 2 : ℝ) ∈ Ioo (3 / 8) (5 / 8) by norm_num))
     fun t ht => height_eq_linear ht.1.le ht.2.le
 
+/--
+@isnad1 id=le.0h1v.s4.2badf51df821 from=translated src=- shape=18c18b5c vocab=b616f583
+-/
 lemma neg_one_le_height (t : ℝ) : -1 ≤ height t := by
   by_cases ht : t ≤ 1 / 4
   · rw [height_of_le_quarter ht]
@@ -190,6 +244,9 @@ lemma neg_one_le_height (t : ℝ) : -1 ≤ height t := by
         mul_nonneg (sub_nonneg.mpr hc1) hlin
       linarith
 
+/--
+@isnad1 id=le.0h1v.s3.c10df8486b4f from=translated src=- shape=b14ee516 vocab=74bda057
+-/
 lemma height_le_one (t : ℝ) : height t ≤ 1 := by
   by_cases ht : 3 / 4 ≤ t
   · rw [height_of_threeQuarter_le ht]
@@ -225,6 +282,9 @@ def cassiniQ (x : E) : ℝ :=
   ((x (planeFirst m) - 1) ^ 2 + x (planeSecond m) ^ 2) *
     ((x (planeFirst m) + 1) ^ 2 + x (planeSecond m) ^ 2) - 1
 
+/--
+@isnad1 id=eq.0h2v.s8.0ca02f161928 from=translated src=- shape=b640840b vocab=73617e41
+-/
 lemma cassiniQ_eq (x : E) :
     cassiniQ m x = radiusSq m x ^ 2 - 2 * x (planeFirst m) ^ 2 +
       2 * x (planeSecond m) ^ 2 := by
@@ -236,14 +296,23 @@ def levelMap (a : ℝ) (x : E) : F :=
   WithLp.toLp 2 (Fin.lastCases (cassiniQ m x - a)
     (fun j : Fin (m + 1) => x j.castSucc.castSucc))
 
+/--
+@isnad1 id=eq.0h3v.s7.265cd5e5bdb5 from=translated src=- shape=afea6f81 vocab=8c3bf0a6
+-/
 @[simp] lemma levelMap_apply_last (a : ℝ) (x : E) :
     levelMap m a x (Fin.last (m + 1)) = cassiniQ m x - a := by
   simp [levelMap]
 
+/--
+@isnad1 id=eq.0h4v.s7.c1637fc614b5 from=translated src=- shape=a7111260 vocab=0b4117e7
+-/
 @[simp] lemma levelMap_apply_castSucc (a : ℝ) (x : E) (j : Fin (m + 1)) :
     levelMap m a x j.castSucc = x j.castSucc.castSucc := by
   simp [levelMap]
 
+/--
+@isnad1 id=contdiff.0h1v.s7.0c87e4830b22 from=translated src=- shape=41de37fa vocab=8479fabe
+-/
 lemma contDiff_cassiniQ : ContDiff ℝ ∞ (cassiniQ m) := by
   exact (((((EuclideanSpace.proj (planeFirst m) : E →L[ℝ] ℝ).contDiff.sub
       contDiff_const).pow 2).add
@@ -253,6 +322,9 @@ lemma contDiff_cassiniQ : ContDiff ℝ ∞ (cassiniQ m) := by
       ((EuclideanSpace.proj (planeSecond m) : E →L[ℝ] ℝ).contDiff.pow 2))).sub
     contDiff_const
 
+/--
+@isnad1 id=contdiff.0h2v.s8.65afb03298f9 from=translated src=- shape=cd9b5bdf vocab=5e3417eb
+-/
 lemma contDiff_levelMap (a : ℝ) : ContDiff ℝ ∞ (levelMap m a) := by
   rw [contDiff_piLp]
   intro i
@@ -265,10 +337,16 @@ lemma contDiff_levelMap (a : ℝ) : ContDiff ℝ ∞ (levelMap m a) := by
 def eventMap (v : E') : F :=
   levelMap m (height (vertC v) / 2) (initCLM (m + 3) v)
 
+/--
+@isnad1 id=eq.0h3v.s6.f70ff347d277 from=translated src=- shape=6f7d8ed2 vocab=dcd5a554
+-/
 lemma eventMap_spaceTime (x : E) (t : ℝ) :
     eventMap m (spaceTime x t) = levelMap m (height t / 2) x := by
   rw [eventMap, initCLM_spaceTime, vertC_spaceTime]
 
+/--
+@isnad1 id=contdiff.0h1v.s8.9b9fd8ebe45b from=translated src=- shape=5fc2f4f7 vocab=3cedcb74
+-/
 lemma contDiff_eventMap : ContDiff ℝ ∞ (eventMap m) := by
   rw [contDiff_piLp]
   intro i
@@ -281,20 +359,32 @@ lemma contDiff_eventMap : ContDiff ℝ ∞ (eventMap m) := by
       simp only [eventMap, levelMap_apply_castSucc, initCLM_apply]
       exact (EuclideanSpace.proj j.castSucc.castSucc.castSucc : E' →L[ℝ] ℝ).contDiff
 
+/--
+@isnad1 id=eq.1h3v.s6.66e677128744 from=translated src=- shape=8aec1ae6 vocab=b955a2d2
+-/
 lemma eventMap_collar_zero (x : E) {t : ℝ} (ht : t ≤ 1 / 4) :
     eventMap m (spaceTime x t) = levelMap m (-1 / 2) x := by
   rw [eventMap_spaceTime, height_of_le_quarter ht]
 
+/--
+@isnad1 id=eq.1h3v.s6.31a2d58f98d4 from=translated src=- shape=cb4caa44 vocab=af96f52a
+-/
 lemma eventMap_collar_one (x : E) {t : ℝ} (ht : 3 / 4 ≤ t) :
     eventMap m (spaceTime x t) = levelMap m (1 / 2) x := by
   rw [eventMap_spaceTime, height_of_threeQuarter_le ht]
 
+/--
+@isnad1 id=eq.1h3v.s9.b7592add70d8 from=translated src=- shape=45b17fc1 vocab=6cac112c
+-/
 lemma transverse_eq_zero_of_eventMap_eq_zero {v : E'}
     (hv : eventMap m v = 0) (j : Fin (m + 1)) :
     v j.castSucc.castSucc.castSucc = 0 := by
   have h := congrArg (fun q : F => q j.castSucc) hv
   simpa [eventMap] using h
 
+/--
+@isnad1 id=eq.1h2v.s10.fdbc8b42d21e from=translated src=- shape=50743e16 vocab=2db0a7f2
+-/
 lemma cassiniQ_eq_height_of_eventMap_eq_zero {v : E'}
     (hv : eventMap m v = 0) :
     cassiniQ m (initCLM (m + 3) v) = height (vertC v) / 2 := by
@@ -304,6 +394,9 @@ lemma cassiniQ_eq_height_of_eventMap_eq_zero {v : E'}
 
 /-! ## Explicit differential -/
 
+/--
+@isnad1 id=eq.0h4v.s11.8183116bbaab from=translated src=- shape=3605e605 vocab=027f391f
+-/
 lemma fderiv_eventMap_apply_castSucc (v h : E') (j : Fin (m + 1)) :
     fderiv ℝ (eventMap m) v h j.castSucc = h j.castSucc.castSucc.castSucc := by
   let outProj : F →L[ℝ] ℝ := EuclideanSpace.proj j.castSucc
@@ -323,6 +416,9 @@ lemma fderiv_eventMap_apply_castSucc (v h : E') (j : Fin (m + 1)) :
     rw [← hcomp.fderiv, hfun, hcoord.fderiv]
   exact congrArg (fun A : E' →L[ℝ] ℝ => A h) hmaps
 
+/--
+@isnad1 id=eq.0h3v.s12.90366d40fd64 from=translated src=- shape=1ab5e54b vocab=03f075c8
+-/
 lemma fderiv_eventMap_apply_last (v h : E') :
     fderiv ℝ (eventMap m) v h (Fin.last (m + 1)) =
       4 * v (planeFirst m).castSucc *
@@ -373,10 +469,16 @@ def transverseLift (y : F) : E' :=
   ∑ j : Fin (m + 1), y j.castSucc •
     EuclideanSpace.single j.castSucc.castSucc.castSucc 1
 
+/--
+@isnad1 id=eq.0h3v.s8.36153a4e75c2 from=translated src=- shape=ca5e2999 vocab=a57d07c2
+-/
 @[simp] lemma transverseLift_apply_castSucc (y : F) (j : Fin (m + 1)) :
     transverseLift m y j.castSucc.castSucc.castSucc = y j.castSucc := by
   simp [transverseLift, Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.3df6bb144596 from=translated src=- shape=4539eb46 vocab=439ebeb5
+-/
 @[simp] lemma transverseLift_apply_planeFirst (y : F) :
     transverseLift m y (planeFirst m).castSucc = 0 := by
   simp [transverseLift, Pi.single_apply, planeFirst, Fin.ext_iff]
@@ -385,6 +487,9 @@ def transverseLift (y : F) : E' :=
   rw [ite_eq_right]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.3c519b9a25c5 from=translated src=- shape=4539eb46 vocab=c9c4733c
+-/
 @[simp] lemma transverseLift_apply_planeSecond (y : F) :
     transverseLift m y (planeSecond m).castSucc = 0 := by
   simp [transverseLift, Pi.single_apply, planeSecond, Fin.ext_iff]
@@ -393,6 +498,9 @@ def transverseLift (y : F) : E' :=
   rw [ite_eq_right]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s7.8fabcbdfe082 from=translated src=- shape=5031f530 vocab=363abe4b
+-/
 @[simp] lemma transverseLift_apply_time (y : F) :
     transverseLift m y (Fin.last (m + 3)) = 0 := by
   simp [transverseLift, Pi.single_apply, Fin.ext_iff]
@@ -404,7 +512,9 @@ def transverseLift (y : F) : E' :=
 /-- The Cassini space-time equation is a submersion on its zero fiber.  If one
 spatial partial is nonzero it supplies the last target coordinate.  If both
 vanish, the height range excludes the two minima `(±1,0)` and leaves only the
-saddle `(0,0,1/2)`, where the time partial is `-1/2`.-/
+saddle `(0,0,1/2)`, where the time partial is `-1/2`.
+@isnad1 id=surjecti.1h2v.s11.15626c30860f from=translated src=- shape=d92253b0 vocab=810f3686
+-/
 theorem eventMap_regular (v : E') (hv : eventMap m v = 0) :
     Function.Surjective (fderiv ℝ (eventMap m) v) := by
   intro y
@@ -539,7 +649,9 @@ theorem eventMap_regular (v : E') (hv : eventMap m v = 0) :
           rw [ht, hasDerivAt_height_half.deriv]
           ring
 
-/-- The zero surface is uniformly spatially bounded.-/
+/-- The zero surface is uniformly spatially bounded.
+@isnad1 id=ex.0h1v.s11.32cbc2c07dcd from=translated src=- shape=74d8c00f vocab=fde289a4
+-/
 lemma eventMap_spatial_bounded :
     ∃ R : ℝ, ∀ v, eventMap m v = 0 → ‖initCLM (m + 3) v‖ ≤ R := by
   refine ⟨2, ?_⟩
@@ -711,10 +823,16 @@ def signedSplitCobordism :
     SignedFramedLevelCobordism (targetSign m) (sourceSign m) :=
   (signedCobordism m).reverse
 
+/--
+@isnad1 id=nonempty.0h1v.s4.0b945c3d0160 from=translated src=- shape=9821a6ba vocab=7d9e59ba
+-/
 theorem nonempty_signedSaddleCobordism :
     Nonempty (SignedFramedLevelCobordism (sourceSign m) (targetSign m)) :=
   ⟨signedCobordism m⟩
 
+/--
+@isnad1 id=nonempty.0h1v.s4.d18823331c5e from=translated src=- shape=9821a6ba vocab=7d9e59ba
+-/
 theorem nonempty_signedSaddleSplit :
     Nonempty (SignedFramedLevelCobordism (targetSign m) (sourceSign m)) :=
   ⟨signedSplitCobordism m⟩
@@ -723,7 +841,9 @@ end StandardSaddle
 
 /-- Dimension-independent adapter: every codimension at least two carries a
 literal standard signed saddle generator with constant positive signs on both
-ends, in both time directions.-/
+ends, in both time directions.
+@isnad1 id=ex.1h1v.s5.601b37a79e5d from=translated src=- shape=ea67fbf1 vocab=fe6d9128
+-/
 theorem exists_standardSignedSaddle (n : ℕ) (hn : 2 ≤ n) :
     ∃ X₀ : FramedLevelSet n, ∃ X₁ : FramedLevelSet n,
       ∃ S₀ : FiberSign X₀, ∃ S₁ : FiberSign X₁,

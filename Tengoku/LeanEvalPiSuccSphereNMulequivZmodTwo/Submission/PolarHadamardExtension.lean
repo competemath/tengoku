@@ -33,7 +33,9 @@ def polarFirstQuotient
 
 /-- Away from no point at all (including radius zero), the filled polar
 quotient is the derivative in the varying direction plus the rescaled
-derivative remainder.-/
+derivative remainder.
+@isnad1 id=eq.1h7v.s9.56fa5079fe26 from=translated src=- shape=2d16e57e vocab=21c6a731
+-/
 theorem polarFirstQuotient_eq_linear_add_remainder
     {E F T : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -60,7 +62,9 @@ theorem polarFirstQuotient_eq_linear_add_remainder
             simp [hr]
 
 /-- The derivative remainder divided by the polar radius tends to zero,
-uniformly for a direction parameter tending to `t₀`.-/
+uniformly for a direction parameter tending to `t₀`.
+@isnad1 id=tendsto.3h7v.s9.5120c560a8c2 from=translated src=- shape=5c4edce1 vocab=e1e9c9a6
+-/
 theorem tendsto_polarFirstRemainder_div
     {E F T : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -113,7 +117,9 @@ theorem tendsto_polarFirstRemainder_div
     hrem_comp.trans_isBigO hx_bigO
   simpa [x, r] using hrem_radius.tendsto_inv_smul_nhds_zero
 
-/-- A Hadamard-style extension theorem for the first polar quotient.-/
+/-- A Hadamard-style extension theorem for the first polar quotient.
+@isnad1 id=continuo.3h7v.s8.b3a9525d7258 from=translated src=- shape=4964fa0e vocab=3a47d220
+-/
 theorem continuousAt_polarFirstQuotient
     {E F T : Type*}
     [NormedAddCommGroup E] [NormedSpace ℝ E]

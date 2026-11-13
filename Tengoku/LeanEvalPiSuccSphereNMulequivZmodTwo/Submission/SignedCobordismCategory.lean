@@ -29,6 +29,9 @@ def reverseMap (C : FramedLevelCobordism n)
     (v : EuclideanSpace ℝ (Fin (n + 1 + 1))) : EuclideanSpace ℝ (Fin n) :=
   C.G (reparamMap n (-1) 1 v)
 
+/--
+@isnad1 id=contdiff.0h2v.s8.afb3007c9764 from=translated src=- shape=46734157 vocab=2e19852f
+-/
 lemma contDiff_reverseMap (C : FramedLevelCobordism n) :
     ContDiff ℝ ∞ C.reverseMap :=
   C.smooth.comp (contDiff_reparamMap (-1) 1)
@@ -68,8 +71,14 @@ def reverse (C : FramedLevelCobordism n) : FramedLevelCobordism n where
     rw [reparamMap, initCLM_spaceTime, vertC_spaceTime]
     exact C.collar_zero x (-1 * t + 1) (by linarith)
 
+/--
+@isnad1 id=eq.0h2v.s4.0b693c1d789d from=translated src=- shape=d6576abc vocab=ba3a1380
+-/
 @[simp] lemma reverse_X₀ (C : FramedLevelCobordism n) : C.reverse.X₀ = C.X₁ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.a2274df11466 from=translated src=- shape=d6576abc vocab=ba3a1380
+-/
 @[simp] lemma reverse_X₁ (C : FramedLevelCobordism n) : C.reverse.X₁ = C.X₀ := rfl
 
 end FramedLevelCobordism
@@ -115,19 +124,25 @@ def reverse (C : SignedFramedLevelCobordism S₀ S₁) :
     rw [reparamMap, initCLM_spaceTime, vertC_spaceTime]
     exact C.collar_zero x (-1 * t + 1) (by linarith)
 
-/-- Nonempty signed cobordism is a reflexive relation.-/
+/-- Nonempty signed cobordism is a reflexive relation.
+@isnad1 id=nonempty.0h3v.s4.23a1ff59f782 from=translated src=- shape=8e4730ad vocab=4e271200
+-/
 theorem nonempty_refl (S : FiberSign X₀) :
     Nonempty (SignedFramedLevelCobordism S S) :=
   ⟨refl S⟩
 
-/-- Nonempty signed cobordism is symmetric.-/
+/-- Nonempty signed cobordism is symmetric.
+@isnad1 id=nonempty.1h5v.s4.177bd2d614a0 from=translated src=- shape=74530a11 vocab=4e271200
+-/
 theorem nonempty_symm
     (h : Nonempty (SignedFramedLevelCobordism S₀ S₁)) :
     Nonempty (SignedFramedLevelCobordism S₁ S₀) := by
   obtain ⟨C⟩ := h
   exact ⟨C.reverse⟩
 
-/-- Nonempty signed cobordisms compose.-/
+/-- Nonempty signed cobordisms compose.
+@isnad1 id=nonempty.2h7v.s5.7e9a655c361e from=translated src=- shape=0ef67db7 vocab=4e271200
+-/
 theorem nonempty_trans {X₂ : FramedLevelSet n} {S₂ : FiberSign X₂}
     (h₀₁ : Nonempty (SignedFramedLevelCobordism S₀ S₁))
     (h₁₂ : Nonempty (SignedFramedLevelCobordism S₁ S₂)) :

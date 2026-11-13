@@ -43,11 +43,16 @@ instance : CoeFun (FiberSign X) fun _ => E → ℝ := ⟨FiberSign.toFun⟩
 /-- The positively labelled union of fiber components.-/
 def positivePart : Set E := {x | x ∈ X.fiber ∧ 0 < S x}
 
+/--
+@isnad1 id=le.0h3v.s5.4736a0384ee8 from=translated src=- shape=8772cd16 vocab=dcf989f0
+-/
 theorem positivePart_subset_fiber : S.positivePart ⊆ X.fiber :=
   fun _ hx => hx.1
 
 /-- A continuous path contained in the fiber has the same label sign at its two
-ends.-/
+ends.
+@isnad1 id=iff.1h4v.s9.dc8a15f81637 from=translated src=- shape=294fbae0 vocab=f2b3e617
+-/
 theorem pos_iff_of_path (γ : C(I, E)) (hγ : ∀ t, γ t ∈ X.fiber) :
     0 < S (γ 0) ↔ 0 < S (γ 1) := by
   have hcont : Continuous fun t : I => S (γ t) := S.continuous.comp γ.continuous
@@ -112,6 +117,9 @@ def transFun
   fun v => if vertC v < 1 / 2 then C₁ (reparamMap n 3 (-(1 / 2)) v)
     else C₂ (reparamMap n 3 (-(3 / 2)) v)
 
+/--
+@isnad1 id=eq.2h10v.s10.5b26094a92f0 from=translated src=- shape=045739d3 vocab=bb3d89ef
+-/
 lemma transFun_middle
     {X₂ : FramedLevelSet n} {S₂ : FiberSign X₂}
     (C₁ : SignedFramedLevelCobordism S₀ S₁)
@@ -134,6 +142,9 @@ lemma transFun_middle
       (3 * vertC v + -(3 / 2))) = S₁ (initCLM (n + 1) v)
     exact hcol
 
+/--
+@isnad1 id=continuo.0h9v.s7.65a2319b300b from=translated src=- shape=7dca3c2b vocab=15508814
+-/
 lemma continuous_transFun
     {X₂ : FramedLevelSet n} {S₂ : FiberSign X₂}
     (C₁ : SignedFramedLevelCobordism S₀ S₁)
@@ -231,6 +242,9 @@ plateaued sphere representative.-/
 def fiberSign (B : BridgeData n z) : FiberSign B.fls :=
   bridgeFiberSignOf B.approx B.y B.y_ne_zero B.regular_y B.norm_y_lt_one
 
+/--
+@isnad1 id=eq.0h4v.s9.2f07c30d70fd from=translated src=- shape=c89ccb76 vocab=28cd0e3c
+-/
 @[simp]
 theorem fiberSign_apply (B : BridgeData n z) (x : E) :
     B.fiberSign x = vertC (nprep B.approx (WithLp.ofLp x)) :=

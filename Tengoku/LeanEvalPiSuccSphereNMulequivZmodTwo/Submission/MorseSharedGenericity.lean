@@ -33,7 +33,9 @@ local notation "E₂" => EuclideanSpace ℝ (Fin 2)
 
 /-- Every ball contains a value which is regular for all maps in a finite
 smooth family.  The proof uses the actual Sard null-set theorem, not a finite
-intersection-of-dense-sets shortcut.-/
+intersection-of-dense-sets shortcut.
+@isnad1 id=ex.2h6v.s8.26ece58aabbb from=translated src=- shape=6095ff43 vocab=961b1066
+-/
 theorem exists_common_regularValue_in_ball
     {ι : Type*} [Fintype ι] {p q : ℕ}
     (f : ι → EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q))
@@ -58,7 +60,9 @@ theorem exists_common_regularValue_in_ball
   apply hybad
   exact Set.mem_iUnion.mpr ⟨i, ⟨x, hsurj, hfx⟩⟩
 
-/-- Open-domain version used by local normal/parameter maps.-/
+/-- Open-domain version used by local normal/parameter maps.
+@isnad1 id=ex.3h7v.s8.cd1a4a423a88 from=translated src=- shape=492f553c vocab=5327e201
+-/
 theorem exists_common_regularValueOn_in_ball
     {ι : Type*} [Fintype ι] {p q : ℕ}
     (U : ι → Set (EuclideanSpace ℝ (Fin p)))
@@ -90,7 +94,9 @@ theorem exists_common_regularValueOn_in_ball
 
 /-- A jointly continuous family of linear maps which is surjective at one
 parameter on a compact set remains surjective there for every sufficiently
-nearby parameter.-/
+nearby parameter.
+@isnad1 id=eventual.3h7v.s9.e3625de29ae4 from=translated src=- shape=f1226836 vocab=b0d6891e
+-/
 theorem eventually_uniform_surjective
     {P X E : Type*} [TopologicalSpace P] [TopologicalSpace X]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -108,7 +114,9 @@ theorem eventually_uniform_surjective
 
 /-- Useful affine specialization: a compact family of surjective maps stays
 surjective after adding one uniformly small scalar multiple of a continuous
-family.-/
+family.
+@isnad1 id=eventual.4h6v.s10.337164e64757 from=translated src=- shape=09c3bb84 vocab=e582b52c
+-/
 theorem eventually_uniform_surjective_add_smul
     {X E : Type*} [TopologicalSpace X]
     [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -138,7 +146,9 @@ def MorseJetGood : Set (E₂ × (E₂ →L[ℝ] E₂)) :=
 
 /-- Morse-good jets form an open set.  This is the precise openness statement
 needed to keep all previously processed compact chart cores Morse while a
-later local Sard tilt is chosen sufficiently small.-/
+later local Sard tilt is chosen sufficiently small.
+@isnad1 id=isopen.0h0v.s10.03ef804e92df from=translated src=- shape=c89a3cab vocab=a4b239b1
+-/
 theorem isOpen_morseJetGood : IsOpen MorseJetGood := by
   have hgrad : IsOpen {J : E₂ × (E₂ →L[ℝ] E₂) | J.1 ≠ 0} := by
     have hzero : IsClosed ({0} : Set E₂) := isClosed_singleton
@@ -163,7 +173,9 @@ theorem isOpen_morseJetGood : IsOpen MorseJetGood := by
   exact hgrad.union hhess
 
 /-- Joint continuity of the gradient/Hessian jet upgrades Morse-goodness at
-one parameter to one common parameter neighborhood on a compact set.-/
+one parameter to one common parameter neighborhood on a compact set.
+@isnad1 id=eventual.3h5v.s11.027d47fbf1ca from=translated src=- shape=e29640e1 vocab=ee7ac3f8
+-/
 theorem eventually_uniform_morseJetGood
     {P X : Type*} [TopologicalSpace P] [TopologicalSpace X]
     {K : Set X} (hK : IsCompact K)

@@ -40,7 +40,9 @@ variable {p q : ℕ}
 /-! ## Transfer between `EuclideanSpace ℝ (Fin n)` and `Fin n → ℝ` -/
 
 /-- Null sets in `Fin q → ℝ` pull back to null sets in `EuclideanSpace ℝ (Fin q)`
-along the canonical identification.-/
+along the canonical identification.
+@isnad1 id=eq.2h3v.s8.1aa4be2b9970 from=translated src=- shape=ef029f10 vocab=c6780aea
+-/
 theorem euclidean_null_of_pi_null {A : Set (EuclideanSpace ℝ (Fin q))}
     {B : Set (Fin q → ℝ)} (hAB : ∀ a ∈ A, WithLp.ofLp a ∈ B)
     (hB : volume B = 0) : volume A = 0 := by
@@ -52,7 +54,9 @@ theorem euclidean_null_of_pi_null {A : Set (EuclideanSpace ℝ (Fin q))}
 /-! ## Sard's theorem -/
 
 /-- **Sard's theorem.**  Let `U ⊆ ℝ^p` be open and `f : ℝ^p → ℝ^q` a `C^∞` map
-on `U`.  The set of critical values of `f` on `U` has Lebesgue measure zero.-/
+on `U`.  The set of critical values of `f` on `U` has Lebesgue measure zero.
+@isnad1 id=eq.2h4v.s10.bb262c149c30 from=translated src=- shape=0e26e376 vocab=fc67bcda
+-/
 theorem sard {U : Set (EuclideanSpace ℝ (Fin p))} (hU : IsOpen U)
     {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
     (hf : ContDiffOn ℝ ∞ f U) :
@@ -108,7 +112,9 @@ theorem sard {U : Set (EuclideanSpace ℝ (Fin p))} (hU : IsOpen U)
     rw [eP.symm_apply_apply]
     rfl
 
-/-- **Sard's theorem**, global-domain version.-/
+/-- **Sard's theorem**, global-domain version.
+@isnad1 id=eq.1h3v.s10.395f6e67833d from=translated src=- shape=e5cce02e vocab=3c1408e7
+-/
 theorem sard_global {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
     (hf : ContDiff ℝ ∞ f) :
     volume (f '' {x | ¬Function.Surjective (fderiv ℝ f x)}) = 0 := by
@@ -118,7 +124,9 @@ theorem sard_global {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin 
 /-! ## The easy case `p < q` -/
 
 /-- **Sard's theorem, easy case.**  The range of a `C¹` map `ℝ^p → ℝ^q` with
-`p < q` is Lebesgue-null.-/
+`p < q` is Lebesgue-null.
+@isnad1 id=eq.2h3v.s9.41e05158c37b from=translated src=- shape=68395597 vocab=8a9880bc
+-/
 theorem sard_of_lt (hpq : p < q)
     {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
     (hf : ContDiff ℝ 1 f) : volume (Set.range f) = 0 := by
@@ -160,7 +168,9 @@ def IsRegularValueOn (f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin
     (U : Set (EuclideanSpace ℝ (Fin p))) (y : EuclideanSpace ℝ (Fin q)) : Prop :=
   ∀ x, x ∈ U → f x = y → Function.Surjective (fderivWithin ℝ f U x)
 
-/-- The regular values of a `C^∞` map on an open Euclidean domain are dense.-/
+/-- The regular values of a `C^∞` map on an open Euclidean domain are dense.
+@isnad1 id=dense.2h4v.s8.26cd23f3a15b from=translated src=- shape=d981088c vocab=5bba8b89
+-/
 theorem sard_dense_regular_values_on
     {U : Set (EuclideanSpace ℝ (Fin p))} (hU : IsOpen U)
     {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
@@ -185,7 +195,9 @@ theorem sard_dense_regular_values_on
   have hpos : 0 < volume O := hO.measure_pos volume hOne
   exact absurd (measure_mono_null hsub (sard hU hf)) hpos.ne'
 
-/-- The set of regular values of a `C^∞` map is dense.-/
+/-- The set of regular values of a `C^∞` map is dense.
+@isnad1 id=dense.1h3v.s7.45b1a67dbba2 from=translated src=- shape=182314a4 vocab=500d4acd
+-/
 theorem sard_dense_regular_values
     {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
     (hf : ContDiff ℝ ∞ f) : Dense {y | IsRegularValue f y} := by
@@ -207,7 +219,9 @@ theorem sard_dense_regular_values
   have hpos : 0 < volume O := hO.measure_pos volume hOne
   exact absurd (measure_mono_null hsub (sard_global hf)) hpos.ne'
 
-/-- Every ball in the target of a `C^∞` map contains a regular value.-/
+/-- Every ball in the target of a `C^∞` map contains a regular value.
+@isnad1 id=ex.2h5v.s8.73b4dfc4c8d5 from=translated src=- shape=2696ee34 vocab=a09f053b
+-/
 theorem sard_exists_regular_value_in_ball
     {f : EuclideanSpace ℝ (Fin p) → EuclideanSpace ℝ (Fin q)}
     (hf : ContDiff ℝ ∞ f) (z : EuclideanSpace ℝ (Fin q)) {r : ℝ} (hr : 0 < r) :
@@ -220,7 +234,9 @@ theorem sard_exists_regular_value_in_ball
 
 /-- **Sard's theorem, rank-deficient form** (Knill).  The image of the set of
 points where the differential has rank less than both `m` and `n` is null.
-(The rank-deficient set is contained in the non-surjectivity critical set.)-/
+(The rank-deficient set is contained in the non-surjectivity critical set.)
+@isnad1 id=eq.1h3v.s12.9caf07ce487d from=translated src=- shape=e1a86bf9 vocab=5c8eec24
+-/
 theorem sard_rank_deficient {m n : ℕ}
     {f : EuclideanSpace ℝ (Fin m) → EuclideanSpace ℝ (Fin n)}
     (hf : ContDiff ℝ ∞ f) :
@@ -249,7 +265,9 @@ theorem sard_rank_deficient {m n : ℕ}
 
 /-- **Regular value theorem, a.e. form.**  For a `C^∞` function
 `f : ℝᵐ → ℝ`, almost every `c : ℝ` is a regular value: every point of the
-level set `f⁻¹(c)` has nonzero derivative.-/
+level set `f⁻¹(c)` has nonzero derivative.
+@isnad1 id=eventual.1h2v.s10.2189737f9f14 from=translated src=- shape=e1592f6e vocab=45f1b7ed
+-/
 theorem regular_value_ae {m : ℕ} (f : EuclideanSpace ℝ (Fin m) → ℝ)
     (hf : ContDiff ℝ ∞ f) :
     ∀ᵐ c ∂(volume : Measure ℝ), ∀ x, f x = c → fderiv ℝ f x ≠ 0 := by

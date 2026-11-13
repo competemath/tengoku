@@ -58,6 +58,9 @@ section Units
 
 variable {k : ℕ}
 
+/--
+@isnad1 id=eq.0h3v.s9.6efed07fe557 from=translated src=- shape=59abe214 vocab=28cb9a95
+-/
 theorem apply_eq_mulVec
     (A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
     (v : Fin k → ℝ) :
@@ -66,6 +69,9 @@ theorem apply_eq_mulVec
   conv_lhs => rw [← PolarDecompositionCLM.toEuclideanCLM_clmMatrix A]
   rfl
 
+/--
+@isnad1 id=ne.1h2v.s9.fed91158b806 from=translated src=- shape=8d82f9e1 vocab=d0902d47
+-/
 theorem det_clmMatrix_ne_zero_of_injective
     {A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (h : Function.Injective A) :
@@ -82,6 +88,9 @@ theorem det_clmMatrix_ne_zero_of_injective
   have hcoe := congrArg (WithLp.ofLp (p := 2)) this
   simpa using hcoe
 
+/--
+@isnad1 id=isunit.1h2v.s9.b95da544eef6 from=translated src=- shape=a0512b48 vocab=dc8a6a0c
+-/
 theorem isUnit_of_det_clmMatrix_ne_zero
     {A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (h : (PolarDecompositionCLM.clmMatrix A).det ≠ 0) : IsUnit A := by
@@ -90,6 +99,9 @@ theorem isUnit_of_det_clmMatrix_ne_zero
   have hmap := hM.map (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ))
   rwa [PolarDecompositionCLM.toEuclideanCLM_clmMatrix] at hmap
 
+/--
+@isnad1 id=isunit.1h2v.s10.e00034282c0a from=translated src=- shape=a405c078 vocab=6f2d725e
+-/
 theorem isUnit_of_injective
     {A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (h : Function.Injective A) : IsUnit A :=
@@ -105,16 +117,24 @@ def coDeriv (X : FramedLevelSet n) (x : EuclideanSpace ℝ (Fin (n + 1))) :
     EuclideanSpace ℝ (Fin n) →L[ℝ] EuclideanSpace ℝ (Fin (n + 1)) :=
   ∑ i : Fin n, (EuclideanSpace.proj i).smulRight (gradVec X.g i x)
 
+/--
+@isnad1 id=contdiff.0h2v.s10.9511c39b0ade from=translated src=- shape=a9b00a4c vocab=8e30d104
+-/
 theorem contDiff_fderiv (X : FramedLevelSet n) :
     ContDiff ℝ ∞ fun x => fderiv ℝ X.g x :=
   X.smooth.fderiv_right (by simp)
 
+/--
+@isnad1 id=contdiff.0h2v.s10.48fdee3b1e97 from=translated src=- shape=54150094 vocab=68ff2435
+-/
 theorem contDiff_coDeriv (X : FramedLevelSet n) :
     ContDiff ℝ ∞ (coDeriv X) := by
   refine ContDiff.sum fun i _ => ?_
   exact contDiff_const.smulRight (contDiff_gradVec X.g X.smooth i)
 
-/-- **The transpose property.**-/
+/-- **The transpose property.**
+@isnad1 id=eq.0h5v.s11.56015c070d8a from=translated src=- shape=320dd4f7 vocab=8b586b2b
+-/
 theorem inner_coDeriv (X : FramedLevelSet n)
     (x : EuclideanSpace ℝ (Fin (n + 1))) (w : EuclideanSpace ℝ (Fin n))
     (v : EuclideanSpace ℝ (Fin (n + 1))) :
@@ -137,9 +157,15 @@ def gram (X : FramedLevelSet n) (x : EuclideanSpace ℝ (Fin (n + 1))) :
     EuclideanSpace ℝ (Fin n) →L[ℝ] EuclideanSpace ℝ (Fin n) :=
   (fderiv ℝ X.g x).comp (coDeriv X x)
 
+/--
+@isnad1 id=contdiff.0h2v.s9.25f9df895ecd from=translated src=- shape=8d304bb4 vocab=8c192220
+-/
 theorem contDiff_gram (X : FramedLevelSet n) : ContDiff ℝ ∞ (gram X) :=
   (contDiff_fderiv X).clm_comp (contDiff_coDeriv X)
 
+/--
+@isnad1 id=eq.0h4v.s10.acf1b795646c from=translated src=- shape=b70ac03e vocab=9cdbb917
+-/
 theorem inner_gram_self (X : FramedLevelSet n)
     (x : EuclideanSpace ℝ (Fin (n + 1))) (w : EuclideanSpace ℝ (Fin n)) :
     ⟪w, gram X x w⟫ = ‖coDeriv X x w‖ ^ 2 := by
@@ -147,6 +173,9 @@ theorem inner_gram_self (X : FramedLevelSet n)
       ⟪coDeriv X x w, coDeriv X x w⟫ := (inner_coDeriv X x w (coDeriv X x w)).symm
   rw [hstep, real_inner_self_eq_norm_sq]
 
+/--
+@isnad1 id=injectiv.1h3v.s11.4a58bed39f3f from=translated src=- shape=952daf05 vocab=3b428952
+-/
 theorem coDeriv_injective (X : FramedLevelSet n)
     {x : EuclideanSpace ℝ (Fin (n + 1))}
     (hx : Function.Surjective (fderiv ℝ X.g x)) :
@@ -162,6 +191,9 @@ theorem coDeriv_injective (X : FramedLevelSet n)
   rw [inner_self_eq_zero] at this
   exact sub_eq_zero.mp this
 
+/--
+@isnad1 id=injectiv.1h3v.s11.fe6dd073b53d from=translated src=- shape=a4accef4 vocab=e800e096
+-/
 theorem gram_injective (X : FramedLevelSet n)
     {x : EuclideanSpace ℝ (Fin (n + 1))}
     (hx : Function.Surjective (fderiv ℝ X.g x)) :
@@ -179,6 +211,9 @@ theorem gram_injective (X : FramedLevelSet n)
   have := coDeriv_injective X hx h0
   exact sub_eq_zero.mp this
 
+/--
+@isnad1 id=isunit.1h3v.s11.00c6ce213898 from=translated src=- shape=61017975 vocab=59aac683
+-/
 theorem isUnit_gram (X : FramedLevelSet n)
     {x : EuclideanSpace ℝ (Fin (n + 1))}
     (hx : Function.Surjective (fderiv ℝ X.g x)) : IsUnit (gram X x) :=
@@ -188,6 +223,9 @@ theorem isUnit_gram (X : FramedLevelSet n)
 def unitSet (X : FramedLevelSet n) : Set (EuclideanSpace ℝ (Fin (n + 1))) :=
   {x | IsUnit (gram X x)}
 
+/--
+@isnad1 id=isopen.0h2v.s6.be6624c0c175 from=translated src=- shape=117007b0 vocab=5a2cc83e
+-/
 theorem isOpen_unitSet (X : FramedLevelSet n) : IsOpen (unitSet X) :=
   Units.isOpen.preimage (contDiff_gram X).continuous
 
@@ -198,6 +236,9 @@ def transition (X Y : FramedLevelSet n) (x : EuclideanSpace ℝ (Fin (n + 1))) :
     EuclideanSpace ℝ (Fin n) →L[ℝ] EuclideanSpace ℝ (Fin n) :=
   (fderiv ℝ Y.g x).comp ((coDeriv X x).comp (Ring.inverse (gram X x)))
 
+/--
+@isnad1 id=contdiff.0h3v.s9.87b17e56f6e1 from=translated src=- shape=5f9045d1 vocab=a8cf705f
+-/
 theorem contDiffOn_transition (X Y : FramedLevelSet n) :
     ContDiffOn ℝ ∞ (transition X Y) (unitSet X) := by
   intro x hx
@@ -214,7 +255,9 @@ theorem contDiffOn_transition (X Y : FramedLevelSet n) :
     ((contDiff_coDeriv X).contDiffAt.clm_comp hinv))).contDiffWithinAt
 
 /-- **The transition solves the first-jet equation** at a point where the Gram
-field is invertible and the two kernels agree.-/
+field is invertible and the two kernels agree.
+@isnad1 id=eq.2h4v.s12.add6f9f912c7 from=translated src=- shape=8929e8e3 vocab=287bff15
+-/
 theorem transition_comp (X Y : FramedLevelSet n)
     {p : EuclideanSpace ℝ (Fin (n + 1))} (hu : IsUnit (gram X p))
     (hker : ∀ w, fderiv ℝ X.g p w = 0 → fderiv ℝ Y.g p w = 0) :
@@ -242,7 +285,9 @@ theorem transition_comp (X Y : FramedLevelSet n)
 
 /-- **The kernel comparison.**  At a regular point of `X`, the kernel of
 `D X(p)` is a line; so a single nonzero vector annihilated by both derivatives
-forces the kernel of `D X(p)` to be contained in that of `D Y(p)`.-/
+forces the kernel of `D X(p)` to be contained in that of `D Y(p)`.
+@isnad1 id=eq.5h6v.s13.9e65cd21cb8b from=translated src=- shape=0d780608 vocab=f76c4936
+-/
 theorem fderiv_eq_zero_of_ker (X Y : FramedLevelSet n)
     {p : EuclideanSpace ℝ (Fin (n + 1))}
     (hsurj : Function.Surjective (fderiv ℝ X.g p))

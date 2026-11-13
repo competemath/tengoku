@@ -36,7 +36,9 @@ open Topology.Homotopy Metric Module
 namespace Submission
 
 /-- Every homotopy class in `π_{m+1}` of the `n`-sphere, with `m + 1 < n`, is the
-class of the constant loop.-/
+class of the constant loop.
+@isnad1 id=eq.1h4v.s12.fe39eccd8d87 from=translated src=- shape=f6228cb6 vocab=79a37e37
+-/
 theorem homotopy_class_eq_const_of_succ_lt {m n : ℕ} (h : m + 1 < n)
     (x : UnitSphere (EuclideanSpace ℝ (Fin (n + 1))))
     (z : HomotopyGroup (Fin (m + 1)) (UnitSphere (EuclideanSpace ℝ (Fin (n + 1)))) x) :
@@ -78,7 +80,9 @@ theorem homotopy_class_eq_const_of_succ_lt {m n : ℕ} (h : m + 1 < n)
   exact homotopy_class_eq_const_of_misses a.representative _ hmiss
 
 /-- **Triviality of low homotopy groups of spheres**: `π_k(Sⁿ)` is a subsingleton
-for `k < n`.-/
+for `k < n`.
+@isnad1 id=subsingl.1h3v.s10.259d223042d1 from=translated src=- shape=4937a753 vocab=70db292b
+-/
 theorem homotopyGroup_sphere_subsingleton (k n : ℕ) (h : k < n)
     (x : Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1) :
     Subsingleton
@@ -105,7 +109,9 @@ theorem homotopyGroup_sphere_subsingleton (k n : ℕ) (h : k < n)
     rw [homotopy_class_eq_const_of_succ_lt h x z,
       homotopy_class_eq_const_of_succ_lt h x z']
 
-/-- **Spheres of dimension at least `2` are simply connected.**-/
+/-- **Spheres of dimension at least `2` are simply connected.**
+@isnad1 id=simplyco.1h1v.s9.0ee627175c65 from=translated src=- shape=e1beec83 vocab=d10e810a
+-/
 theorem sphere_simplyConnected (n : ℕ) (h : 2 ≤ n) :
     SimplyConnectedSpace (Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1) := by
   have hrank : 1 < Module.rank ℝ (EuclideanSpace ℝ (Fin (n + 1))) := by

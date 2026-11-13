@@ -44,18 +44,30 @@ variable {N : Type*} {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E
 /-- Coordinatewise clamp of `ℝ^N` onto the unit cube.-/
 def cubeClamp (v : N → ℝ) : I^N := fun i => Set.projIcc (0 : ℝ) 1 zero_le_one (v i)
 
+/--
+@isnad1 id=continuo.0h1v.s5.1e361a75f39e from=translated src=- shape=3694b2b4 vocab=3bf3dc49
+-/
 theorem continuous_cubeClamp : Continuous (cubeClamp (N := N)) :=
   continuous_pi fun i => continuous_projIcc.comp (continuous_apply i)
 
+/--
+@isnad1 id=eq.0h2v.s5.6465ff5d39fc from=translated src=- shape=aff7d0ce vocab=c38f1cef
+-/
 @[simp]
 theorem cubeClamp_coords (t : I^N) : cubeClamp (fun i => (t i : ℝ)) = t :=
   funext fun i => Set.projIcc_val zero_le_one (t i)
 
+/--
+@isnad1 id=le.1h3v.s6.7f0700a7b215 from=translated src=- shape=9f2fb12d vocab=51eb4566
+-/
 theorem cubeClamp_coe_le {v : N → ℝ} {i : N} (h : v i ≤ 1 / 4) :
     ((cubeClamp v i : ℝ)) ≤ 1 / 4 := by
   rw [cubeClamp, Set.coe_projIcc]
   exact max_le (by norm_num) ((min_le_right _ _).trans h)
 
+/--
+@isnad1 id=le.1h3v.s6.fd8ebb8f352c from=translated src=- shape=c7ecf7bf vocab=51eb4566
+-/
 theorem le_cubeClamp_coe {v : N → ℝ} {i : N} (h : 3 / 4 ≤ v i) :
     (3 / 4 : ℝ) ≤ (cubeClamp v i : ℝ) := by
   rw [cubeClamp, Set.coe_projIcc]
@@ -73,6 +85,9 @@ of) the boundary of the cube: some coordinate is at most `1/5` or at least `4/5`
 def closedAmbientCollar (N : Type*) : Set (N → ℝ) :=
   {v | ∃ i, v i ≤ 1 / 5 ∨ 4 / 5 ≤ v i}
 
+/--
+@isnad1 id=isopen.0h1v.s4.28ee96b36c2b from=translated src=- shape=01e60de4 vocab=ecba26c9
+-/
 theorem isOpen_ambientCollar : IsOpen (ambientCollar N) := by
   have h : ambientCollar N
       = ⋃ i, ({v : N → ℝ | v i < 1 / 4} ∪ {v : N → ℝ | 3 / 4 < v i}) := by
@@ -83,6 +98,9 @@ theorem isOpen_ambientCollar : IsOpen (ambientCollar N) := by
     (isOpen_lt (continuous_apply i) continuous_const).union
       (isOpen_lt continuous_const (continuous_apply i))
 
+/--
+@isnad1 id=isclosed.0h1v.s4.d338245573d0 from=translated src=- shape=fea4225f vocab=198a2a80
+-/
 theorem isClosed_closedAmbientCollar [Finite N] : IsClosed (closedAmbientCollar N) := by
   have h : closedAmbientCollar N
       = ⋃ i, ({v : N → ℝ | v i ≤ 1 / 5} ∪ {v : N → ℝ | 4 / 5 ≤ v i}) := by
@@ -93,11 +111,17 @@ theorem isClosed_closedAmbientCollar [Finite N] : IsClosed (closedAmbientCollar 
     (isClosed_le (continuous_apply i) continuous_const).union
       (isClosed_le continuous_const (continuous_apply i))
 
+/--
+@isnad1 id=le.0h1v.s3.b24db61c5a1b from=translated src=- shape=bf78fcae vocab=bbbee206
+-/
 theorem closedAmbientCollar_subset : closedAmbientCollar N ⊆ ambientCollar N := by
   rintro v ⟨i, hi | hi⟩
   · exact ⟨i, Or.inl (by linarith)⟩
   · exact ⟨i, Or.inr (by linarith)⟩
 
+/--
+@isnad1 id=mem.1h2v.s5.275ab6c1422f from=translated src=- shape=6a627843 vocab=ceee3aec
+-/
 theorem coords_mem_closedAmbientCollar {t : I^N} (ht : t ∈ Cube.boundary N) :
     (fun i => (t i : ℝ)) ∈ closedAmbientCollar N := by
   obtain ⟨i, hi | hi⟩ := ht
@@ -117,19 +141,30 @@ coordinates onto the cube and passing to the ambient space `E`.-/
 def extended (p : Ω^ N (UnitSphere E) x) : (N → ℝ) → E := fun v =>
   ((collared p).1 (cubeClamp v) : E)
 
+/--
+@isnad1 id=continuo.0h4v.s7.ba9c6674fe41 from=translated src=- shape=cc9aa847 vocab=9f965d8e
+-/
 theorem continuous_extended (p : Ω^ N (UnitSphere E) x) : Continuous (extended p) :=
   continuous_subtype_val.comp ((map_continuous (collared p).1).comp continuous_cubeClamp)
 
+/--
+@isnad1 id=eq.0h5v.s7.48c73295a86a from=translated src=- shape=40b42a3e vocab=fde1e792
+-/
 theorem norm_extended (p : Ω^ N (UnitSphere E) x) (v : N → ℝ) :
     ‖extended p v‖ = 1 :=
   UnitSphere.norm_coe _
 
+/--
+@isnad1 id=eq.0h5v.s9.951ff55474b4 from=translated src=- shape=2a970c33 vocab=1654f9c9
+-/
 theorem extended_coords (p : Ω^ N (UnitSphere E) x) (t : I^N) :
     extended p (fun i => (t i : ℝ)) = ((collared p).1 t : E) := by
   show ((collared p).1 (cubeClamp fun i => (t i : ℝ)) : E) = _
   rw [cubeClamp_coords]
 
-/-- On the ambient collar, the clamped extension is constantly the basepoint.-/
+/-- On the ambient collar, the clamped extension is constantly the basepoint.
+@isnad1 id=eq.1h5v.s7.418945cc6bf2 from=translated src=- shape=70fd40a7 vocab=452d82e9
+-/
 theorem extended_eq_basepoint (p : Ω^ N (UnitSphere E) x) {v : N → ℝ}
     (hv : v ∈ ambientCollar N) : extended p v = (x : E) := by
   obtain ⟨i, hi | hi⟩ := hv
@@ -137,7 +172,9 @@ theorem extended_eq_basepoint (p : Ω^ N (UnitSphere E) x) {v : N → ℝ}
   · exact congrArg Subtype.val (collared_eq_basepoint p ⟨i, Or.inr (le_cubeClamp_coe hi.le)⟩)
 
 /-- The clamped extension is `C^∞` (being locally constant) on the open ambient
-collar.-/
+collar.
+@isnad1 id=contdiff.0h4v.s7.923c9c6ec1a4 from=translated src=- shape=0a539081 vocab=1ce853c6
+-/
 theorem contDiffOn_extended [Fintype N] (p : Ω^ N (UnitSphere E) x) :
     ContDiffOn ℝ ∞ (extended p) (ambientCollar N) :=
   contDiffOn_const.congr fun _ hv => extended_eq_basepoint p hv
@@ -162,7 +199,9 @@ structure Approximation [Fintype N] (p : Ω^ N (UnitSphere E) x) where
   homotopic : GenLoop.Homotopic p representative
 
 /-- The raw map of an approximation never vanishes: it is `1/8`-close to a
-sphere-valued map.-/
+sphere-valued map.
+@isnad1 id=ne.0h6v.s7.9f2db53e73ad from=translated src=- shape=ee8013dd vocab=922ca89f
+-/
 theorem Approximation.raw_ne_zero [Fintype N] {p : Ω^ N (UnitSphere E) x} (a : Approximation p)
     (v : N → ℝ) : a.raw v ≠ 0 := by
   intro h0
@@ -171,7 +210,9 @@ theorem Approximation.raw_ne_zero [Fintype N] {p : Ω^ N (UnitSphere E) x} (a : 
   norm_num at h
 
 /-- Existence of smooth approximations, via Mathlib's smooth approximation theorem
-`Continuous.exists_contDiff_approx_and_eqOn`.-/
+`Continuous.exists_contDiff_approx_and_eqOn`.
+@isnad1 id=nonempty.0h4v.s7.209eba164a7a from=translated src=- shape=d830f30b vocab=5e466611
+-/
 theorem exists_approximation [Fintype N] (p : Ω^ N (UnitSphere E) x) :
     Nonempty (Approximation p) := by
   obtain ⟨g, g_smooth, g_close, g_eq, -⟩ :=
@@ -215,7 +256,9 @@ theorem exists_approximation [Fintype N] (p : Ω^ N (UnitSphere E) x) :
         exact (congrArg Subtype.val ((collared p).2 t ht)).symm
 
 /-- Every homotopy class in the sphere is represented by the normalization of a
-smooth raw map.-/
+smooth raw map.
+@isnad1 id=ex.0h4v.s9.432d3f01334d from=translated src=- shape=bc47eabe vocab=57e0c6ca
+-/
 theorem exists_approximation_of_homotopy_class [Fintype N]
     (z : HomotopyGroup N (UnitSphere E) x) :
     ∃ (p : Ω^ N (UnitSphere E) x) (a : Approximation p), z = ⟦a.representative⟧ := by

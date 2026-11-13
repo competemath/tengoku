@@ -38,13 +38,18 @@ def signedCollapseRaw (x : E) : E :=
   B.northCutoff x • embedCLM n (B.fls.g x) +
     (2 * B.northCutoff x - 1) • eLast n
 
+/--
+@isnad1 id=contdiff.0h3v.s10.ba1d7564bed7 from=translated src=- shape=329912ff vocab=cd75c47c
+-/
 lemma contDiff_signedCollapseRaw : ContDiff ℝ ∞ B.signedCollapseRaw := by
   exact (B.contDiff_northCutoff.smul
       ((embedCLM n).contDiff.comp B.fls.smooth)).add
     (((contDiff_const.mul B.contDiff_northCutoff).sub contDiff_const).smul contDiff_const)
 
 /-- The canonical northern cutoff is compactly supported in the Euclidean bridge
-domain.-/
+domain.
+@isnad1 id=hascompa.0h3v.s9.bf238377eb4f from=translated src=- shape=61de884b vocab=336f0a8e
+-/
 theorem hasCompactSupport_northCutoff : HasCompactSupport B.northCutoff := by
   have hsupp : support B.northCutoff ⊆
       Metric.closedBall (0 : E) (n + 1 : ℝ) := by
@@ -86,10 +91,15 @@ theorem hasCompactSupport_northCutoff : HasCompactSupport B.northCutoff := by
   exact IsCompact.of_isClosed_subset
     (ProperSpace.isCompact_closedBall (0 : E) (n + 1 : ℝ)) isClosed_closure htsupp
 
+/--
+@isnad1 id=eq.0h4v.s10.9dc078984cc3 from=translated src=- shape=03660979 vocab=43a00cbd
+-/
 lemma fls_g_eq_northSource (x : E) :
     B.fls.g x = initCLM n (B.northSource x) - B.y := rfl
 
-/-- Closed form for the pairing with the original bridge sphere point.-/
+/-- Closed form for the pairing with the original bridge sphere point.
+@isnad1 id=eq.0h4v.s10.39674a6f73eb from=translated src=- shape=9d11d707 vocab=4038ee25
+-/
 lemma inner_signedCollapseRaw_source (x : E) :
     ⟪B.signedCollapseRaw x, B.northSource x⟫ =
       B.northCutoff x *
@@ -110,7 +120,9 @@ lemma inner_signedCollapseRaw_source (x : E) :
 
 /-- The signed numerator lies in the open hemisphere centered at the original
 bridge point.  This simultaneously proves nonvanishing and supplies the chord
-homotopy used below.-/
+homotopy used below.
+@isnad1 id=lt.0h4v.s9.32ba10302fc9 from=translated src=- shape=fce5cf25 vocab=aaff6317
+-/
 lemma inner_signedCollapseRaw_source_pos (x : E) :
     0 < ⟪B.signedCollapseRaw x, B.northSource x⟫ := by
   rw [B.inner_signedCollapseRaw_source]
@@ -161,6 +173,9 @@ lemma inner_signedCollapseRaw_source_pos (x : E) :
         nlinarith
       nlinarith [sq_nonneg (t + 1 / 2)]
 
+/--
+@isnad1 id=ne.0h4v.s9.68752926cb2a from=translated src=- shape=ded31342 vocab=4b3e990c
+-/
 lemma signedCollapseRaw_ne_zero (x : E) : B.signedCollapseRaw x ≠ 0 := by
   intro hzero
   have hpos := B.inner_signedCollapseRaw_source_pos x
@@ -175,20 +190,32 @@ def signedCollapse (x : E) : UnitSphere E :=
     mem_sphere_zero_iff_norm.mpr
       (norm_normalize (B.signedCollapseRaw_ne_zero x))⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.0862b114a575 from=translated src=- shape=9e22bb02 vocab=aec1b272
+-/
 @[simp] lemma signedCollapse_coe (x : E) :
     (B.signedCollapse x : E) =
       ‖B.signedCollapseRaw x‖⁻¹ • B.signedCollapseRaw x := rfl
 
+/--
+@isnad1 id=contdiff.0h3v.s10.344589b31662 from=translated src=- shape=ef6a31d1 vocab=75754ab6
+-/
 lemma contDiff_signedCollapse :
     ContDiff ℝ ∞ fun x => (B.signedCollapse x : E) :=
   contDiff_normalize_comp B.contDiff_signedCollapseRaw B.signedCollapseRaw_ne_zero
 
+/--
+@isnad1 id=continuo.0h3v.s10.fd1c52e4c827 from=translated src=- shape=040a9532 vocab=1ba2116c
+-/
 lemma continuous_signedCollapse : Continuous B.signedCollapse :=
   Continuous.subtype_mk B.contDiff_signedCollapse.continuous _
 
 def signedCollapseCM : C(E, UnitSphere E) :=
   ⟨B.signedCollapse, B.continuous_signedCollapse⟩
 
+/--
+@isnad1 id=eq.1h4v.s9.a59bcadd1037 from=translated src=- shape=5bc3b02e vocab=b934d369
+-/
 lemma northCutoff_of_southFiber {x : E}
     (hx : B.northSource x = southPointOf B.y) :
     B.northCutoff x = 0 := by
@@ -197,6 +224,9 @@ lemma northCutoff_of_southFiber {x : E}
 
 /-! ## Cubical loop and comparison with the bridge representative -/
 
+/--
+@isnad1 id=eq.1h4v.s9.4cad47f3f603 from=translated src=- shape=a14cc3d3 vocab=71e982f0
+-/
 lemma signedCollapseRaw_cube_boundary {t : I^(Fin (n + 1))}
     (ht : t ∈ Cube.boundary (Fin (n + 1))) :
     B.signedCollapseRaw (cubeToBridgeDomain t) = -eLast n := by
@@ -210,6 +240,9 @@ lemma signedCollapseRaw_cube_boundary {t : I^(Fin (n + 1))}
   rw [signedCollapseRaw, hcut]
   module
 
+/--
+@isnad1 id=eq.1h4v.s9.e9dd8ab8c219 from=translated src=- shape=e03ea320 vocab=d053c6f6
+-/
 theorem signedCollapse_cube_boundary {t : I^(Fin (n + 1))}
     (ht : t ∈ Cube.boundary (Fin (n + 1))) :
     B.signedCollapse (cubeToBridgeDomain t) = southPole n := by
@@ -225,9 +258,15 @@ def signedCollapseLoop :
       ⟨cubeToBridgeDomain, continuous_cubeToBridgeDomain⟩,
     fun _ ht => B.signedCollapse_cube_boundary ht⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.7f197ccbaa7d from=translated src=- shape=e17f7844 vocab=bdf23832
+-/
 @[simp] lemma signedCollapseLoop_apply (t : I^(Fin (n + 1))) :
     B.signedCollapseLoop t = B.signedCollapse (cubeToBridgeDomain t) := rfl
 
+/--
+@isnad1 id=lt.0h4v.s10.d5a279393f10 from=translated src=- shape=75396099 vocab=f4015fb8
+-/
 lemma inner_signedCollapse_source_pos (x : E) :
     0 < ⟪(B.signedCollapse x : E), B.northSource x⟫ := by
   rw [signedCollapse_coe, real_inner_smul_left]
@@ -235,6 +274,9 @@ lemma inner_signedCollapse_source_pos (x : E) :
     (inv_pos.mpr (norm_pos_iff.mpr (B.signedCollapseRaw_ne_zero x)))
     (B.inner_signedCollapseRaw_source_pos x)
 
+/--
+@isnad1 id=ne.0h4v.s10.459656885afc from=translated src=- shape=17ba4385 vocab=487908bf
+-/
 lemma northSourcePoint_ne_neg_signedCollapse (x : E) :
     B.northSourcePoint x ≠ -B.signedCollapse x := by
   intro heq
@@ -246,10 +288,16 @@ lemma northSourcePoint_ne_neg_signedCollapse (x : E) :
     UnitSphere.norm_coe] at hpos
   norm_num at hpos
 
+/--
+@isnad1 id=lt.0h4v.s10.6c7fd7337cbc from=translated src=- shape=4b4a4ba4 vocab=be16876a
+-/
 lemma dist_northSourcePoint_signedCollapse_lt_two (x : E) :
     dist (B.northSourcePoint x) (B.signedCollapse x) < 2 :=
   dist_lt_two_of_ne_neg _ _ (B.northSourcePoint_ne_neg_signedCollapse x)
 
+/--
+@isnad1 id=lt.0h4v.s12.46863017973c from=translated src=- shape=1b36de04 vocab=747cd05c
+-/
 lemma dist_prepLoop_signedCollapseLoop_lt_two (t : I^(Fin (n + 1))) :
     dist (prepLoop B.approx t) (B.signedCollapseLoop t) < 2 := by
   rw [B.prepLoop_eq_northSourcePoint, signedCollapseLoop_apply]

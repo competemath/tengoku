@@ -76,29 +76,47 @@ def clmMatrix (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin
     Matrix (Fin k) (Fin k) ℝ :=
   (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)).symm Φ
 
+/--
+@isnad1 id=eq.0h2v.s12.aae0e78e5a17 from=translated src=- shape=05123477 vocab=056e5298
+-/
 @[simp] theorem toEuclideanCLM_clmMatrix
     (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)) :
     (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) (clmMatrix Φ) = Φ :=
   (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)).apply_symm_apply Φ
 
+/--
+@isnad1 id=eq.0h2v.s12.f5c8f24ba82f from=translated src=- shape=da6d64c5 vocab=056e5298
+-/
 @[simp] theorem clmMatrix_toEuclideanCLM (M : Matrix (Fin k) (Fin k) ℝ) :
     clmMatrix ((Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) M) = M :=
   (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)).symm_apply_apply M
 
+/--
+@isnad1 id=eq.0h1v.s9.875a355dee9a from=translated src=- shape=76276535 vocab=7365c877
+-/
 @[simp] theorem clmMatrix_one :
     clmMatrix (1 : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)) = 1 :=
   map_one _
 
+/--
+@isnad1 id=eq.0h3v.s10.45fb083e8f21 from=translated src=- shape=00603466 vocab=b5417cc6
+-/
 theorem clmMatrix_sub
     (Φ Ψ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)) :
     clmMatrix (Φ - Ψ) = clmMatrix Φ - clmMatrix Ψ :=
   map_sub _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s10.254d7e2aeb6a from=translated src=- shape=5aa0a18f vocab=ec0e2f3a
+-/
 theorem clmMatrix_smul (c : ℝ)
     (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)) :
     clmMatrix (c • Φ) = c • clmMatrix Φ :=
   map_smul _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s13.8560d700deb9 from=translated src=- shape=e2ac8c4f vocab=6b4d101c
+-/
 theorem toEuclideanCLM_mul (M N : Matrix (Fin k) (Fin k) ℝ) :
     (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) (M * N) =
       ((Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) M).comp
@@ -106,14 +124,18 @@ theorem toEuclideanCLM_mul (M N : Matrix (Fin k) (Fin k) ℝ) :
   rw [map_mul]
   rfl
 
-/-- Coordinates of the value of a gauge, through its matrix.-/
+/-- Coordinates of the value of a gauge, through its matrix.
+@isnad1 id=eq.0h4v.s9.ce7b4a05d807 from=translated src=- shape=7383b13b vocab=f2354a20
+-/
 theorem clm_apply_coord (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
     (u : EuclideanSpace ℝ (Fin k)) (i : Fin k) :
     Φ u i = ∑ j : Fin k, clmMatrix Φ i j * u j := by
   conv_lhs => rw [← toEuclideanCLM_clmMatrix Φ]
   rfl
 
-/-- An invertible matrix acts bijectively.-/
+/-- An invertible matrix acts bijectively.
+@isnad1 id=bijectiv.1h2v.s12.21a04b064f42 from=translated src=- shape=46cf40c1 vocab=a16b70e0
+-/
 theorem bijective_toEuclideanCLM_of_det_ne_zero
     {M : Matrix (Fin k) (Fin k) ℝ} (h : M.det ≠ 0) :
     Function.Bijective (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ) M) := by
@@ -129,6 +151,9 @@ theorem bijective_toEuclideanCLM_of_det_ne_zero
     have := congrArg (fun N => (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ) N) x) h1
     simpa [toEuclideanCLM_mul] using this
 
+/--
+@isnad1 id=bijectiv.1h2v.s9.d378acc169c6 from=translated src=- shape=1fccb638 vocab=0eec854e
+-/
 theorem bijective_of_det_clmMatrix_ne_zero
     {Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (h : (clmMatrix Φ).det ≠ 0) : Function.Bijective Φ := by
@@ -140,7 +165,9 @@ theorem bijective_of_det_clmMatrix_ne_zero
 /-- **Upper-triangularity with positive diagonal is an admissibility condition
 for a distortion.**  No norm bound and no symmetry are used: this is the
 Gram--Schmidt analogue of
-`Submission.PositiveDistortion.bijective_one_sub_smul_of_inner_pos`.-/
+`Submission.PositiveDistortion.bijective_one_sub_smul_of_inner_pos`.
+@isnad1 id=bijectiv.4h3v.s12.dec6feaab7ec from=translated src=- shape=f42494cd vocab=458055d1
+-/
 theorem bijective_one_sub_smul_of_upperTriangular
     {A : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (hupper : ∀ i j : Fin k, j < i → clmMatrix A i j = 0)
@@ -188,6 +215,9 @@ theorem bijective_one_sub_smul_of_upperTriangular
 
 /-! ## The Gram--Schmidt (`QR`) factorization of an invertible gauge -/
 
+/--
+@isnad1 id=mem.1h2v.s8.41a3a1f9245d from=translated src=- shape=57fa1209 vocab=c9b67d60
+-/
 theorem mem_specialOrthogonalGroup_transpose {Q : Matrix (Fin k) (Fin k) ℝ}
     (hQ : Q ∈ Matrix.specialOrthogonalGroup (Fin k) ℝ) :
     Qᵀ ∈ Matrix.specialOrthogonalGroup (Fin k) ℝ := by
@@ -200,6 +230,9 @@ theorem mem_specialOrthogonalGroup_transpose {Q : Matrix (Fin k) (Fin k) ℝ}
 
 variable {Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
 
+/--
+@isnad1 id=lt.1h2v.s8.f41165ded652 from=translated src=- shape=f324e6b8 vocab=c91e9ceb
+-/
 theorem det_transpose_clmMatrix_pos (h : 0 < (clmMatrix Φ).det) :
     0 < ((clmMatrix Φ)ᵀ).det := by
   rwa [Matrix.det_transpose]
@@ -213,6 +246,9 @@ def qrSO (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
       (matrixGramSchmidtSO ((clmMatrix Φ)ᵀ)
         (det_transpose_clmMatrix_pos h)).property⟩
 
+/--
+@isnad1 id=eq.1h2v.s8.05f0422623ad from=translated src=- shape=637ec6c1 vocab=53a1424b
+-/
 theorem qrSO_coe (h : 0 < (clmMatrix Φ).det) :
     ((qrSO Φ h : SOGroup k) : Matrix (Fin k) (Fin k) ℝ)
       = (rowsMatrix (gramSchmidtNormed ℝ (matrixRows ((clmMatrix Φ)ᵀ))))ᵀ :=
@@ -228,28 +264,40 @@ def qrUpper (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k
     EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k) :=
   (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) (qrUpperMatrix Φ)
 
+/--
+@isnad1 id=eq.0h2v.s8.7f6f8eeb9472 from=translated src=- shape=a571f2f3 vocab=6c1fbfa8
+-/
 @[simp] theorem clmMatrix_qrUpper :
     clmMatrix (qrUpper Φ) = qrUpperMatrix Φ :=
   clmMatrix_toEuclideanCLM _
 
+/--
+@isnad1 id=linearin.1h2v.s8.5ca4a6a60e43 from=translated src=- shape=1b3dc9d3 vocab=36eadbe9
+-/
 theorem linearIndependent_matrixRows_transpose (h : 0 < (clmMatrix Φ).det) :
     LinearIndependent ℝ (matrixRows ((clmMatrix Φ)ᵀ)) :=
   linearIndependent_matrixRows_of_det_ne_zero
     (ne_of_gt (det_transpose_clmMatrix_pos h))
 
-/-- **The triangular factor is upper triangular.**-/
+/-- **The triangular factor is upper triangular.**
+@isnad1 id=eq.1h4v.s8.f4e41368f1c5 from=translated src=- shape=42253eb6 vocab=45a81077
+-/
 theorem qrUpperMatrix_eq_zero_of_lt (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ]
       EuclideanSpace ℝ (Fin k)) {i j : Fin k} (hij : j < i) :
     qrUpperMatrix Φ i j = 0 :=
   GramSchmidtTriangular.gsLower_eq_zero_of_lt _ hij
 
-/-- **The triangular factor has positive diagonal.**-/
+/-- **The triangular factor has positive diagonal.**
+@isnad1 id=lt.1h3v.s8.1f7ed09d6151 from=translated src=- shape=f611b18c vocab=f44f97ed
+-/
 theorem qrUpperMatrix_diag_pos (h : 0 < (clmMatrix Φ).det) (i : Fin k) :
     0 < qrUpperMatrix Φ i i :=
   GramSchmidtTriangular.gsLower_diag_pos
     (linearIndependent_matrixRows_transpose h) i
 
-/-- **The Gram--Schmidt factorization of an orientation-preserving gauge.**-/
+/-- **The Gram--Schmidt factorization of an orientation-preserving gauge.**
+@isnad1 id=eq.1h2v.s9.0b6f8f3cbcac from=translated src=- shape=270cd4f8 vocab=15aa80f6
+-/
 theorem qr_factorization (h : 0 < (clmMatrix Φ).det) :
     Φ = (SOFrameGauge.toCLM (qrSO Φ h)).comp (qrUpper Φ) := by
   have hfac : (clmMatrix Φ)ᵀ
@@ -271,7 +319,9 @@ theorem qr_factorization (h : 0 < (clmMatrix Φ).det) :
     _ = (SOFrameGauge.toCLM (qrSO Φ h)).comp (qrUpper Φ) := toEuclideanCLM_mul _ _
 
 /-- **The triangular factor is an admissible distortion**: the straight-line
-path from the identity to it consists of bijections.-/
+path from the identity to it consists of bijections.
+@isnad1 id=bijectiv.3h3v.s12.e37b6a4ebc68 from=translated src=- shape=b25dcda5 vocab=be795cf4
+-/
 theorem bijective_one_sub_smul_qrUpper (h : 0 < (clmMatrix Φ).det)
     {s : ℝ} (hs0 : 0 ≤ s) (hs1 : s ≤ 1) :
     Function.Bijective
@@ -294,6 +344,9 @@ section Smooth
 
 variable {T : Type*} [NormedAddCommGroup T] [NormedSpace ℝ T]
 
+/--
+@isnad1 id=eq.0h4v.s9.cc211bfca379 from=translated src=- shape=8b75d990 vocab=4c8fdb89
+-/
 theorem clmMatrix_apply
     (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k))
     (i j : Fin k) :
@@ -304,7 +357,9 @@ theorem clmMatrix_apply
       WithLp.ofLp (EuclideanSpace.single j (1 : ℝ)))) i
   simp [Matrix.mulVec, dotProduct, EuclideanSpace.single]
 
-/-- Entrywise smoothness of the matrix of a smooth family of gauges.-/
+/-- Entrywise smoothness of the matrix of a smooth family of gauges.
+@isnad1 id=contdiff.1h5v.s10.1cbd5f8c140d from=translated src=- shape=304fa6fe vocab=e169c704
+-/
 theorem contDiff_clmMatrix_apply {Ψ : T → EuclideanSpace ℝ (Fin k) →L[ℝ]
       EuclideanSpace ℝ (Fin k)} (hΨ : ContDiff ℝ ∞ Ψ) (i j : Fin k) :
     ContDiff ℝ ∞ fun t => clmMatrix (Ψ t) i j := by
@@ -318,7 +373,9 @@ theorem contDiff_clmMatrix_apply {Ψ : T → EuclideanSpace ℝ (Fin k) →L[ℝ
       (EuclideanSpace.single j (1 : ℝ))).contDiff.comp hΨ)
 
 /-- A family of matrices with smooth entries induces a smooth family of
-gauges.-/
+gauges.
+@isnad1 id=contdiff.1h3v.s12.097e57b8248b from=translated src=- shape=5591a1c2 vocab=127f4658
+-/
 theorem contDiff_toEuclideanCLM_of_entries
     {M : T → Matrix (Fin k) (Fin k) ℝ}
     (hM : ∀ i j, ContDiff ℝ ∞ fun t => M t i j) :
@@ -334,7 +391,9 @@ theorem contDiff_toEuclideanCLM_of_entries
   rw [hrw]
   exact ContDiff.sum fun l _ => (hM i l).mul contDiff_const
 
-/-- Smooth dependence of the special-orthogonal `QR` factor.-/
+/-- Smooth dependence of the special-orthogonal `QR` factor.
+@isnad1 id=contdiff.2h5v.s10.ad9520b80497 from=translated src=- shape=315c9937 vocab=134ce7c6
+-/
 theorem contDiff_qrSOMatrix_apply
     {Ψ : T → EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (hΨ : ContDiff ℝ ∞ Ψ) (h : ∀ t, 0 < (clmMatrix (Ψ t)).det) (i j : Fin k) :
@@ -352,7 +411,9 @@ theorem contDiff_qrSOMatrix_apply
     (fun a b => contDiff_clmMatrix_apply hΨ b a)
     (fun t => det_transpose_clmMatrix_pos (h t)) j i
 
-/-- Smooth dependence of the triangular `QR` factor.-/
+/-- Smooth dependence of the triangular `QR` factor.
+@isnad1 id=contdiff.2h5v.s10.33b880422dda from=translated src=- shape=ec4c08c9 vocab=a9c0c545
+-/
 theorem contDiff_qrUpperMatrix_apply
     {Ψ : T → EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (hΨ : ContDiff ℝ ∞ Ψ) (h : ∀ t, 0 < (clmMatrix (Ψ t)).det) (i j : Fin k) :
@@ -375,7 +436,9 @@ theorem contDiff_qrUpperMatrix_apply
       (fun a b => contDiff_clmMatrix_apply hΨ b a)
       (fun t => det_transpose_clmMatrix_pos (h t)) i l)
 
-/-- **The triangular `QR` distortion of a smooth family is smooth.**-/
+/-- **The triangular `QR` distortion of a smooth family is smooth.**
+@isnad1 id=contdiff.2h3v.s10.2fba6b07b621 from=translated src=- shape=03a6d637 vocab=261dfe29
+-/
 theorem contDiff_qrUpper
     {Ψ : T → EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k)}
     (hΨ : ContDiff ℝ ∞ Ψ) (h : ∀ t, 0 < (clmMatrix (Ψ t)).det) :
@@ -387,6 +450,9 @@ end Smooth
 
 /-! ## The Hermitian square root and the polar decomposition -/
 
+/--
+@isnad1 id=injectiv.1h3v.s6.8aac428a1ad8 from=translated src=- shape=90a327b6 vocab=976623f6
+-/
 theorem mulVec_injective_of_mul_eq_one {A B : Matrix (Fin k) (Fin k) ℝ}
     (h : B * A = 1) : Function.Injective A.mulVec := by
   intro x y hxy
@@ -402,6 +468,9 @@ def posDefSqrt {M : Matrix (Fin k) (Fin k) ℝ} (hM : M.PosDef) :
       hM.isHermitian.eigenvectorUnitary)
     (Matrix.diagonal fun i => Real.sqrt (hM.isHermitian.eigenvalues i))
 
+/--
+@isnad1 id=eq.1h2v.s6.d17b8e3d0d67 from=translated src=- shape=4c27d60c vocab=d8a29545
+-/
 theorem posDefSqrt_mul_self {M : Matrix (Fin k) (Fin k) ℝ} (hM : M.PosDef) :
     posDefSqrt hM * posDefSqrt hM = M := by
   have hmul := map_mul (Unitary.conjStarAlgAut ℝ (Matrix (Fin k) (Fin k) ℝ)
@@ -417,6 +486,9 @@ theorem posDefSqrt_mul_self {M : Matrix (Fin k) (Fin k) ℝ} (hM : M.PosDef) :
   rw [hd]
   exact hM.isHermitian.spectral_theorem.symm
 
+/--
+@isnad1 id=posdef.1h2v.s4.6d65f2d8bcce from=translated src=- shape=ae4aeae8 vocab=33058a62
+-/
 theorem posDefSqrt_posDef {M : Matrix (Fin k) (Fin k) ℝ} (hM : M.PosDef) :
     (posDefSqrt hM).PosDef := by
   set U : Matrix (Fin k) (Fin k) ℝ :=
@@ -442,6 +514,9 @@ theorem posDefSqrt_posDef {M : Matrix (Fin k) (Fin k) ℝ} (hM : M.PosDef) :
 
 /-! ### The polar factors -/
 
+/--
+@isnad1 id=posdef.1h2v.s8.924031d696df from=translated src=- shape=5994afee vocab=2f7bd928
+-/
 theorem posDef_conjTranspose_mul_self (h : (clmMatrix Φ).det ≠ 0) :
     ((clmMatrix Φ)ᴴ * clmMatrix Φ).PosDef := by
   have hinj : Function.Injective (clmMatrix Φ).mulVec :=
@@ -455,14 +530,23 @@ def polarPosMatrix (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ
     (h : (clmMatrix Φ).det ≠ 0) : Matrix (Fin k) (Fin k) ℝ :=
   posDefSqrt (posDef_conjTranspose_mul_self h)
 
+/--
+@isnad1 id=posdef.1h2v.s8.9b70d4e2d664 from=translated src=- shape=be2ce75e vocab=67aaa425
+-/
 theorem polarPosMatrix_posDef (h : (clmMatrix Φ).det ≠ 0) :
     (polarPosMatrix Φ h).PosDef :=
   posDefSqrt_posDef _
 
+/--
+@isnad1 id=eq.1h2v.s8.311ce71ad893 from=translated src=- shape=7b664ebc vocab=dd685aa7
+-/
 theorem polarPosMatrix_mul_self (h : (clmMatrix Φ).det ≠ 0) :
     polarPosMatrix Φ h * polarPosMatrix Φ h = (clmMatrix Φ)ᴴ * clmMatrix Φ :=
   posDefSqrt_mul_self _
 
+/--
+@isnad1 id=lt.1h2v.s8.352c8ba68096 from=translated src=- shape=0dcf4747 vocab=24a20d49
+-/
 theorem polarPosMatrix_det_pos (h : (clmMatrix Φ).det ≠ 0) :
     0 < (polarPosMatrix Φ h).det :=
   (polarPosMatrix_posDef h).det_pos
@@ -472,6 +556,9 @@ def polarOrthMatrix (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace �
     (h : (clmMatrix Φ).det ≠ 0) : Matrix (Fin k) (Fin k) ℝ :=
   clmMatrix Φ * (polarPosMatrix Φ h)⁻¹
 
+/--
+@isnad1 id=eq.1h2v.s8.c31d65a9248e from=translated src=- shape=bd8824fe vocab=5f9b56ee
+-/
 theorem polarOrthMatrix_mul_polarPosMatrix (h : (clmMatrix Φ).det ≠ 0) :
     polarOrthMatrix Φ h * polarPosMatrix Φ h = clmMatrix Φ := by
   have hunit : IsUnit (polarPosMatrix Φ h).det :=
@@ -479,6 +566,9 @@ theorem polarOrthMatrix_mul_polarPosMatrix (h : (clmMatrix Φ).det ≠ 0) :
   rw [polarOrthMatrix, Matrix.mul_assoc,
     Matrix.nonsing_inv_mul _ hunit, Matrix.mul_one]
 
+/--
+@isnad1 id=eq.1h2v.s8.0a89f7e1c8f8 from=translated src=- shape=61f061bb vocab=2bcd4dbd
+-/
 theorem polarOrthMatrix_conjTranspose_mul_self (h : (clmMatrix Φ).det ≠ 0) :
     (polarOrthMatrix Φ h)ᴴ * polarOrthMatrix Φ h = 1 := by
   have hunit : IsUnit (polarPosMatrix Φ h).det :=
@@ -492,11 +582,17 @@ theorem polarOrthMatrix_conjTranspose_mul_self (h : (clmMatrix Φ).det ≠ 0) :
     Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hunit, Matrix.mul_one,
     Matrix.nonsing_inv_mul _ hunit]
 
+/--
+@isnad1 id=mem.1h2v.s8.1b32aa4ca2e0 from=translated src=- shape=e272b37a vocab=24b3ee76
+-/
 theorem polarOrthMatrix_mem_orthogonalGroup (h : (clmMatrix Φ).det ≠ 0) :
     polarOrthMatrix Φ h ∈ Matrix.orthogonalGroup (Fin k) ℝ := by
   refine (Matrix.mem_orthogonalGroup_iff (Fin k) ℝ).mpr ?_
   exact mul_eq_one_comm.mp (polarOrthMatrix_conjTranspose_mul_self h)
 
+/--
+@isnad1 id=lt.1h2v.s8.7b1bc8d888e1 from=translated src=- shape=6534b3ab vocab=a6d1c6f7
+-/
 theorem polarOrthMatrix_det_pos (h : 0 < (clmMatrix Φ).det) :
     0 < (polarOrthMatrix Φ (ne_of_gt h)).det := by
   have hP := polarPosMatrix_det_pos (ne_of_gt h)
@@ -505,6 +601,9 @@ theorem polarOrthMatrix_det_pos (h : 0 < (clmMatrix Φ).det) :
   rw [Matrix.det_mul] at hmul
   nlinarith [hmul, hP, h]
 
+/--
+@isnad1 id=mem.1h2v.s8.77e4b4b7a022 from=translated src=- shape=5c74d196 vocab=2ae4fc45
+-/
 theorem polarOrthMatrix_mem_specialOrthogonalGroup (h : 0 < (clmMatrix Φ).det) :
     polarOrthMatrix Φ (ne_of_gt h) ∈
       Matrix.specialOrthogonalGroup (Fin k) ℝ := by
@@ -535,7 +634,9 @@ def polarPos (Φ : EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin 
     EuclideanSpace ℝ (Fin k) →L[ℝ] EuclideanSpace ℝ (Fin k) :=
   (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) (polarPosMatrix Φ h)
 
-/-- **`Φ = R ∘ P` with `R` special orthogonal and `P` positive definite.**-/
+/-- **`Φ = R ∘ P` with `R` special orthogonal and `P` positive definite.**
+@isnad1 id=eq.1h2v.s9.d9eb74c5732d from=translated src=- shape=62f9b4f6 vocab=56ddafc5
+-/
 theorem polar_factorization (h : 0 < (clmMatrix Φ).det) :
     Φ = (SOFrameGauge.toCLM (polarSO Φ h)).comp (polarPos Φ (ne_of_gt h)) := by
   calc Φ = (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℝ)) (clmMatrix Φ) :=
@@ -549,7 +650,9 @@ theorem polar_factorization (h : 0 < (clmMatrix Φ).det) :
 /-- **The positive factor has positive-definite quadratic form**, which is
 exactly the admissibility hypothesis of
 `Submission.PositiveDistortion.bijective_one_sub_smul_of_inner_pos` and of
-`BridgeEntryStandardTarget.StandardEntryDatum.A_positive`.-/
+`BridgeEntryStandardTarget.StandardEntryDatum.A_positive`.
+@isnad1 id=lt.2h3v.s9.ed00412360ff from=translated src=- shape=2e63fdb9 vocab=c847f269
+-/
 theorem polarPos_inner_pos (h : (clmMatrix Φ).det ≠ 0)
     (v : EuclideanSpace ℝ (Fin k)) (hv : v ≠ 0) :
     0 < ⟪polarPos Φ h v, v⟫ := by

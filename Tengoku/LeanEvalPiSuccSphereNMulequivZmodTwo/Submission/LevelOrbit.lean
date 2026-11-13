@@ -37,7 +37,9 @@ local notation "E" => EuclideanSpace ℝ (Fin (n + 1))
 local notation "F" => EuclideanSpace ℝ (Fin n)
 
 /-- The unit kernel field always has norm at most one (it is either `0` or a unit
-vector).-/
+vector).
+@isnad1 id=le.0h3v.s7.36dfd5f87d29 from=translated src=- shape=1bf990e0 vocab=d3795659
+-/
 lemma norm_tauField_le_one (g : E → F) (x : E) : ‖tauField g x‖ ≤ 1 := by
   rcases eq_or_ne (kerCross g x) 0 with h | h
   · rw [tauField, h, smul_zero, norm_zero]; norm_num
@@ -61,7 +63,9 @@ structure TamedField (X : FramedLevelSet n) where
 
 namespace FramedLevelSet
 
-/-- Construction of a tamed field via a smooth Urysohn cutoff.-/
+/-- Construction of a tamed field via a smooth Urysohn cutoff.
+@isnad1 id=nonempty.0h2v.s3.4025a197468b from=translated src=- shape=1f8e965c vocab=c85eea4f
+-/
 theorem exists_tamedField (X : FramedLevelSet n) : Nonempty (TamedField X) := by
   -- choose a collar inside the regular set
   obtain ⟨δ₂, hδ₂pos, hδ₂sub⟩ :=
@@ -154,7 +158,9 @@ namespace TamedField
 
 variable {X : FramedLevelSet n} (V : TamedField X)
 
-/-- Global uniqueness for solutions of the tamed ODE.-/
+/-- Global uniqueness for solutions of the tamed ODE.
+@isnad1 id=eq.3h6v.s9.6ea6ede691ac from=translated src=- shape=d8916027 vocab=214fe94c
+-/
 theorem solution_unique {γ₁ γ₂ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
     (h₁ : ∀ t, HasDerivAt γ₁ (V.v (γ₁ t)) t)
     (h₂ : ∀ t, HasDerivAt γ₂ (V.v (γ₂ t)) t)
@@ -165,7 +171,9 @@ theorem solution_unique {γ₁ γ₂ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
     (fun t => ⟨h₁ t, mem_univ _⟩) (fun t => ⟨h₂ t, mem_univ _⟩) heq
 
 /-- Global existence for the tamed ODE: the field is bounded and globally Lipschitz,
-so Picard–Lindelöf solutions on arbitrarily large intervals can be glued.-/
+so Picard–Lindelöf solutions on arbitrarily large intervals can be glued.
+@isnad1 id=ex.0h4v.s8.3acb3c4ff33d from=translated src=- shape=e25caec9 vocab=214fe94c
+-/
 theorem exists_solution (p : EuclideanSpace ℝ (Fin (n + 1))) :
     ∃ γ : ℝ → EuclideanSpace ℝ (Fin (n + 1)),
       γ 0 = p ∧ ∀ t, HasDerivAt γ (V.v (γ t)) t := by
@@ -251,18 +259,29 @@ theorem exists_solution (p : EuclideanSpace ℝ (Fin (n + 1))) :
 def flow (p : EuclideanSpace ℝ (Fin (n + 1))) : ℝ → EuclideanSpace ℝ (Fin (n + 1)) :=
   Classical.choose (V.exists_solution p)
 
+/--
+@isnad1 id=eq.0h4v.s5.9bb8e41ab6ab from=translated src=- shape=4cddb410 vocab=12b25469
+-/
 @[simp] lemma flow_zero (p : EuclideanSpace ℝ (Fin (n + 1))) : V.flow p 0 = p :=
   (Classical.choose_spec (V.exists_solution p)).1
 
+/--
+@isnad1 id=hasderiv.0h5v.s8.6680bc6d668f from=translated src=- shape=b79f9f53 vocab=9d876115
+-/
 lemma hasDerivAt_flow (p : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     HasDerivAt (V.flow p) (V.v (V.flow p t)) t :=
   (Classical.choose_spec (V.exists_solution p)).2 t
 
+/--
+@isnad1 id=continuo.0h4v.s6.04887e0667d7 from=translated src=- shape=7afd15ec vocab=b7fe8557
+-/
 lemma continuous_flow (p : EuclideanSpace ℝ (Fin (n + 1))) : Continuous (V.flow p) :=
   continuous_iff_continuousAt.mpr fun t => (V.hasDerivAt_flow p t).continuousAt
 
 /-- Invariance: a solution of the tamed ODE starting on the fiber stays on the fiber
-(the value of `X.g` is constant along any solution).-/
+(the value of `X.g` is constant along any solution).
+@isnad1 id=mem.2h5v.s8.f928f7659005 from=translated src=- shape=aafc6ce8 vocab=9ea74f49
+-/
 theorem solution_mem_fiber {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
     (hγ : ∀ t, HasDerivAt γ (V.v (γ t)) t) (h0 : γ 0 ∈ X.fiber) :
     ∀ t, γ t ∈ X.fiber := by
@@ -282,11 +301,16 @@ theorem solution_mem_fiber {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
   rw [show X.g (γ 0) = 0 from h0] at this
   exact this
 
+/--
+@isnad1 id=mem.1h5v.s7.7d1deadb5a64 from=translated src=- shape=fe8fe741 vocab=7fbc5723
+-/
 lemma flow_mem_fiber {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber) (t : ℝ) :
     V.flow p t ∈ X.fiber :=
   V.solution_mem_fiber (V.hasDerivAt_flow p) (by rw [V.flow_zero]; exact hp) t
 
-/-- On the fiber, the tamed field agrees with the unit kernel field.-/
+/-- On the fiber, the tamed field agrees with the unit kernel field.
+@isnad1 id=eq.1h4v.s6.cf7f7b36f736 from=translated src=- shape=adcd57d7 vocab=17c0499b
+-/
 lemma v_eq_tau_of_mem_fiber {x : EuclideanSpace ℝ (Fin (n + 1))} (hx : x ∈ X.fiber) :
     V.v x = tauField X.g x :=
   V.eq_tau x (Metric.self_subset_cthickening _ hx)
@@ -306,6 +330,9 @@ def straightenDeriv (X : FramedLevelSet n) (q : EuclideanSpace ℝ (Fin (n + 1))
     EuclideanSpace ℝ (Fin (n + 1)) →L[ℝ] EuclideanSpace ℝ (Fin n) × ℝ :=
   (fderiv ℝ X.g q).prod (innerSL ℝ (tauField X.g q))
 
+/--
+@isnad1 id=bijectiv.1h3v.s10.15926f79abb0 from=translated src=- shape=b83eacb5 vocab=546b0aba
+-/
 lemma straightenDeriv_bijective (X : FramedLevelSet n)
     {q : EuclideanSpace ℝ (Fin (n + 1))} (hq : q ∈ X.fiber) :
     Function.Bijective (straightenDeriv X q) := by
@@ -330,11 +357,17 @@ lemma straightenDeriv_bijective (X : FramedLevelSet n)
         Module.finrank_self]
     exact (LinearMap.injective_iff_surjective_of_finrank_eq_finrank hfr).mp hinj
 
+/--
+@isnad1 id=contdiff.0h3v.s8.15b854cfbaca from=translated src=- shape=f10ee8ae vocab=b1f14e19
+-/
 lemma contDiff_straighten (X : FramedLevelSet n) (q : EuclideanSpace ℝ (Fin (n + 1))) :
     ContDiff ℝ ∞ (straighten X q) := by
   apply ContDiff.prodMk X.smooth
   exact ContDiff.inner ℝ contDiff_const (contDiff_id.sub contDiff_const)
 
+/--
+@isnad1 id=hasfderi.0h3v.s9.711498458581 from=translated src=- shape=453fdf29 vocab=f8ecde6d
+-/
 lemma hasFDerivAt_straighten (X : FramedLevelSet n) (q : EuclideanSpace ℝ (Fin (n + 1))) :
     HasFDerivAt (straighten X q) (straightenDeriv X q) q := by
   apply HasFDerivAt.prodMk
@@ -345,7 +378,9 @@ lemma hasFDerivAt_straighten (X : FramedLevelSet n) (q : EuclideanSpace ℝ (Fin
     simpa [Function.comp_def] using h2
 
 /-- **Flow box lemma.** Near a fiber point `q`, every fiber point in a small ball lies
-on the flow line through `q`, at a time as small as desired.-/
+on the flow line through `q`, at a time as small as desired.
+@isnad1 id=ex.2h5v.s8.43c58d93be00 from=translated src=- shape=7b2ba735 vocab=aae2c461
+-/
 theorem TamedField.exists_flowbox {X : FramedLevelSet n} (V : TamedField X)
     {q : EuclideanSpace ℝ (Fin (n + 1))} (hq : q ∈ X.fiber) {c : ℝ} (hc : 0 < c) :
     ∃ r > 0, ∀ x ∈ X.fiber ∩ ball q r, ∃ s : ℝ, |s| < c ∧ V.flow q s = x := by
@@ -486,7 +521,9 @@ namespace TamedField
 
 variable {X : FramedLevelSet n} (V : TamedField X)
 
-/-- Time-shifts of solutions are solutions.-/
+/-- Time-shifts of solutions are solutions.
+@isnad1 id=hasderiv.1h6v.s9.092e0253264a from=translated src=- shape=9ae3334b vocab=214fe94c
+-/
 lemma hasDerivAt_shift {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
     (hγ : ∀ t, HasDerivAt γ (V.v (γ t)) t) (a : ℝ) (u : ℝ) :
     HasDerivAt (fun w => γ (a + w)) (V.v (γ (a + u))) u := by
@@ -494,7 +531,9 @@ lemma hasDerivAt_shift {γ : ℝ → EuclideanSpace ℝ (Fin (n + 1))}
   have h2 := (hγ (a + u)).scomp u h1
   simpa [Function.comp_def] using h2
 
-/-- The flow shifted in time is the flow of the shifted starting point.-/
+/-- The flow shifted in time is the flow of the shifted starting point.
+@isnad1 id=eq.0h5v.s6.46980d7354cd from=translated src=- shape=126393eb vocab=12b25469
+-/
 lemma flow_shift (p : EuclideanSpace ℝ (Fin (n + 1))) (a : ℝ) :
     V.flow (V.flow p a) = fun u => V.flow p (a + u) := by
   apply V.solution_unique (t₀ := 0)
@@ -503,7 +542,9 @@ lemma flow_shift (p : EuclideanSpace ℝ (Fin (n + 1))) (a : ℝ) :
   · simp
 
 /-- **Periodicity**: the flow line through any fiber point is periodic, with a period
-bounded below by `1/2`.-/
+bounded below by `1/2`.
+@isnad1 id=ex.1h4v.s7.520d3be0276e from=translated src=- shape=3570317b vocab=5fded15f
+-/
 theorem exists_period {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber) :
     ∃ T : ℝ, 1 / 2 ≤ T ∧ Function.Periodic (V.flow p) T := by
   classical
@@ -563,18 +604,29 @@ theorem exists_period {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber
 def orbit (p : EuclideanSpace ℝ (Fin (n + 1))) : Set (EuclideanSpace ℝ (Fin (n + 1))) :=
   range (V.flow p)
 
+/--
+@isnad1 id=mem.0h4v.s6.ac818a03c9bb from=translated src=- shape=b414a93e vocab=947910e8
+-/
 lemma mem_orbit_self (p : EuclideanSpace ℝ (Fin (n + 1))) : p ∈ V.orbit p :=
   ⟨0, V.flow_zero p⟩
 
+/--
+@isnad1 id=mem.0h5v.s6.1ba047558457 from=translated src=- shape=160d1862 vocab=4bdabfd1
+-/
 lemma flow_mem_orbit (p : EuclideanSpace ℝ (Fin (n + 1))) (t : ℝ) :
     V.flow p t ∈ V.orbit p := ⟨t, rfl⟩
 
+/--
+@isnad1 id=le.1h4v.s6.38ff5ce4eaa8 from=translated src=- shape=5423ac67 vocab=10b923d2
+-/
 lemma orbit_subset_fiber {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber) :
     V.orbit p ⊆ X.fiber := by
   rintro x ⟨t, rfl⟩
   exact V.flow_mem_fiber hp t
 
-/-- Orbits through points of an orbit coincide with the original orbit.-/
+/-- Orbits through points of an orbit coincide with the original orbit.
+@isnad1 id=eq.1h5v.s7.fcf4f8a2e3e1 from=translated src=- shape=3fd59d1a vocab=947910e8
+-/
 lemma orbit_eq_of_mem {p x : EuclideanSpace ℝ (Fin (n + 1))} (hx : x ∈ V.orbit p) :
     V.orbit x = V.orbit p := by
   obtain ⟨a, rfl⟩ := hx
@@ -590,7 +642,9 @@ lemma orbit_eq_of_mem {p x : EuclideanSpace ℝ (Fin (n + 1))} (hx : x ∈ V.orb
     congr 1
     ring
 
-/-- Orbits of fiber points are compact (continuous periodic image of `[0, T]`).-/
+/-- Orbits of fiber points are compact (continuous periodic image of `[0, T]`).
+@isnad1 id=iscompac.1h4v.s7.6f789ce12a1a from=translated src=- shape=fa448f77 vocab=e0cd7488
+-/
 lemma isCompact_orbit {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber) :
     IsCompact (V.orbit p) := by
   obtain ⟨T, hT, hper⟩ := V.exists_period hp
@@ -599,7 +653,9 @@ lemma isCompact_orbit {p : EuclideanSpace ℝ (Fin (n + 1))} (hp : p ∈ X.fiber
   rw [orbit, ← himg]
   exact (isCompact_Icc).image (V.continuous_flow p)
 
-/-- Orbits of fiber points are relatively open in the fiber.-/
+/-- Orbits of fiber points are relatively open in the fiber.
+@isnad1 id=ex.2h5v.s8.7c56ecaa5e0d from=translated src=- shape=7a682892 vocab=8f47b95d
+-/
 lemma orbit_isOpen_in_fiber {p q : EuclideanSpace ℝ (Fin (n + 1))}
     (hp : p ∈ X.fiber) (hq : q ∈ V.orbit p) :
     ∃ r > 0, X.fiber ∩ ball q r ⊆ V.orbit p := by
@@ -611,7 +667,9 @@ lemma orbit_isOpen_in_fiber {p q : EuclideanSpace ℝ (Fin (n + 1))}
   have : x ∈ V.orbit q := ⟨s, hs⟩
   rwa [V.orbit_eq_of_mem hq] at this
 
-/-- Two orbits of fiber points either coincide or are disjoint.-/
+/-- Two orbits of fiber points either coincide or are disjoint.
+@isnad1 id=or.0h5v.s8.1876c5923538 from=translated src=- shape=683e5af9 vocab=da345420
+-/
 theorem orbit_eq_or_disjoint {p q : EuclideanSpace ℝ (Fin (n + 1))} :
     V.orbit p = V.orbit q ∨ Disjoint (V.orbit p) (V.orbit q) := by
   by_cases h : Disjoint (V.orbit p) (V.orbit q)
@@ -620,7 +678,9 @@ theorem orbit_eq_or_disjoint {p q : EuclideanSpace ℝ (Fin (n + 1))} :
     obtain ⟨x, hxp, hxq⟩ := Set.not_disjoint_iff.mp h
     rw [← V.orbit_eq_of_mem hxp, ← V.orbit_eq_of_mem hxq]
 
-/-- **Finiteness**: the fiber is a finite union of orbits.-/
+/-- **Finiteness**: the fiber is a finite union of orbits.
+@isnad1 id=ex.0h3v.s8.2467c2f63328 from=translated src=- shape=5ae1577d vocab=7254e7f0
+-/
 theorem exists_finite_orbit_cover :
     ∃ s : Finset (EuclideanSpace ℝ (Fin (n + 1))),
       (∀ q ∈ s, q ∈ X.fiber) ∧ X.fiber = ⋃ q ∈ s, V.orbit q := by

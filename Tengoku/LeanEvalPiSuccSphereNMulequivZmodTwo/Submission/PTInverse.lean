@@ -46,9 +46,15 @@ local notation "F" => EuclideanSpace ℝ (Fin n)
 to the Euclidean domain.-/
 def northSource (x : E) : E := nprep B.approx (WithLp.ofLp x)
 
+/--
+@isnad1 id=eq.0h4v.s9.741645863292 from=translated src=- shape=1fd8ce2b vocab=f95ac9cb
+-/
 lemma norm_northSource (x : E) : ‖B.northSource x‖ = 1 :=
   norm_nprep B.approx (WithLp.ofLp x)
 
+/--
+@isnad1 id=contdiff.0h3v.s10.b721fb5fdb73 from=translated src=- shape=329912ff vocab=cff38304
+-/
 lemma contDiff_northSource : ContDiff ℝ ∞ B.northSource := by
   exact (contDiff_nprep B.approx).comp
     (EuclideanSpace.equiv (Fin (n + 1)) ℝ).contDiff
@@ -57,12 +63,21 @@ lemma contDiff_northSource : ContDiff ℝ ∞ B.northSource := by
 latitude `-1/4`.-/
 def northCutoff (x : E) : ℝ := plateauA (vertC (B.northSource x))
 
+/--
+@isnad1 id=le.0h4v.s9.3e305259f634 from=translated src=- shape=edb5aa8f vocab=6506c215
+-/
 lemma northCutoff_nonneg (x : E) : 0 ≤ B.northCutoff x :=
   plateauA_nonneg _
 
+/--
+@isnad1 id=le.0h4v.s9.030b535f35af from=translated src=- shape=bd01b761 vocab=6506c215
+-/
 lemma northCutoff_le_one (x : E) : B.northCutoff x ≤ 1 :=
   plateauA_le_one _
 
+/--
+@isnad1 id=contdiff.0h3v.s9.0081d1229159 from=translated src=- shape=611f7ff0 vocab=b1d40ae7
+-/
 lemma contDiff_northCutoff : ContDiff ℝ ∞ B.northCutoff := by
   exact contDiff_plateauA.comp (contDiff_vertC.comp B.contDiff_northSource)
 
@@ -71,17 +86,24 @@ lemma contDiff_northCutoff : ContDiff ℝ ∞ B.northCutoff := by
 def northThomRaw (x : E) : E :=
   plateauAux (B.northSource x) - B.northCutoff x • embedCLM n B.y
 
+/--
+@isnad1 id=contdiff.0h3v.s10.d85769f58b0f from=translated src=- shape=329912ff vocab=b300db63
+-/
 lemma contDiff_northThomRaw : ContDiff ℝ ∞ B.northThomRaw := by
   exact (contDiff_plateauAux.comp B.contDiff_northSource).sub
     (B.contDiff_northCutoff.smul contDiff_const)
 
-/-- The horizontal embedding is adjoint to forgetting the last coordinate.-/
+/-- The horizontal embedding is adjoint to forgetting the last coordinate.
+@isnad1 id=eq.0h3v.s11.a75d4da800cb from=translated src=- shape=db42855b vocab=df898377
+-/
 lemma inner_embedCLM_left (y : F) (u : E) :
     ⟪embedCLM n y, u⟫ = ⟪y, initCLM n u⟫ := by
   simp [PiLp.inner_apply, RCLike.inner_apply, Fin.sum_univ_castSucc,
     embedCLM_apply_castSucc, embedCLM_apply_last, initCLM_apply]
 
-/-- Closed form for the pairing of the collapse numerator with the source point.-/
+/-- Closed form for the pairing of the collapse numerator with the source point.
+@isnad1 id=eq.0h4v.s10.7d4b5e5bce04 from=translated src=- shape=ddf45210 vocab=7d5b9667
+-/
 lemma inner_northThomRaw_source (x : E) :
     ⟪B.northThomRaw x, B.northSource x⟫ =
       plateauA (vertC (B.northSource x)) *
@@ -93,7 +115,9 @@ lemma inner_northThomRaw_source (x : E) :
     inner_embedCLM_left (n := n), northCutoff]
   ring
 
-/-- The collapse numerator pairs positively with the original sphere point.-/
+/-- The collapse numerator pairs positively with the original sphere point.
+@isnad1 id=lt.0h4v.s9.cd682ad15e4e from=translated src=- shape=fce5cf25 vocab=3c7ef1ea
+-/
 lemma inner_northThomRaw_source_pos (x : E) :
     0 < ⟪B.northThomRaw x, B.northSource x⟫ := by
   rw [B.inner_northThomRaw_source]
@@ -130,6 +154,9 @@ lemma inner_northThomRaw_source_pos (x : E) :
       mul_nonneg (plateauA_nonneg t) hbracket.le
     linarith
 
+/--
+@isnad1 id=ne.0h4v.s9.9b569d3ce372 from=translated src=- shape=ded31342 vocab=69ddd301
+-/
 lemma northThomRaw_ne_zero (x : E) : B.northThomRaw x ≠ 0 := by
   intro h0
   have hpos := B.inner_northThomRaw_source_pos x
@@ -141,12 +168,21 @@ def northThom (x : E) : UnitSphere E :=
   ⟨‖B.northThomRaw x‖⁻¹ • B.northThomRaw x,
     mem_sphere_zero_iff_norm.mpr (norm_normalize (B.northThomRaw_ne_zero x))⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.947e31e14387 from=translated src=- shape=9e22bb02 vocab=27244663
+-/
 lemma northThom_coe (x : E) :
     (B.northThom x : E) = ‖B.northThomRaw x‖⁻¹ • B.northThomRaw x := rfl
 
+/--
+@isnad1 id=contdiff.0h3v.s10.25de2d7860c6 from=translated src=- shape=ef6a31d1 vocab=cdd14a89
+-/
 lemma contDiff_northThom : ContDiff ℝ ∞ fun x => (B.northThom x : E) :=
   contDiff_normalize_comp B.contDiff_northThomRaw B.northThomRaw_ne_zero
 
+/--
+@isnad1 id=continuo.0h3v.s10.d33e20bc5b94 from=translated src=- shape=040a9532 vocab=e65c76ca
+-/
 lemma continuous_northThom : Continuous B.northThom := by
   exact Continuous.subtype_mk B.contDiff_northThom.continuous _
 
@@ -155,7 +191,9 @@ def northThomCM : C(E, UnitSphere E) :=
 
 /-! ## Local normal-coordinate contract -/
 
-/-- On the northern fiber the cutoff is identically one.-/
+/-- On the northern fiber the cutoff is identically one.
+@isnad1 id=eq.1h4v.s9.108482f9c2d6 from=translated src=- shape=5bc3b02e vocab=723a3328
+-/
 lemma northCutoff_of_northFiber {x : E}
     (hx : B.northSource x = northPoint B.y) : B.northCutoff x = 1 := by
   rw [northCutoff, hx]
@@ -172,16 +210,25 @@ def northThomHorizontal (x : E) : F := initCLM n (B.northThom x : E)
 def ptNorthPole : UnitSphere E :=
   ⟨eLast n, by rw [mem_sphere_zero_iff_norm, norm_eLast]⟩
 
+/--
+@isnad1 id=eq.0h1v.s8.680511f51034 from=translated src=- shape=83d7ce35 vocab=5fa71cf1
+-/
 @[simp] lemma ptNorthPole_coe : (ptNorthPole (n := n) : E) = eLast n := rfl
 
 /-! ## Southern collapse and cubical loop -/
 
+/--
+@isnad1 id=eq.1h4v.s9.8bb68e9ef73c from=translated src=- shape=38b19927 vocab=b1224bf5
+-/
 lemma northThomRaw_of_southCap {x : E}
     (hx : vertC (B.northSource x) ≤ -(1 / 2)) :
     B.northThomRaw x = -eLast n := by
   rw [northThomRaw, plateauAux_of_le hx, northCutoff, plateauA_of_le hx]
   simp
 
+/--
+@isnad1 id=eq.1h4v.s9.d0ed1abe84e7 from=translated src=- shape=55f2206c vocab=a7cc75cf
+-/
 theorem northThom_of_southCap {x : E}
     (hx : vertC (B.northSource x) ≤ -(1 / 2)) :
     B.northThom x = southPole n := by
@@ -190,6 +237,9 @@ theorem northThom_of_southCap {x : E}
     norm_neg, norm_eLast]
   simp
 
+/--
+@isnad1 id=le.0h3v.s9.ac4231b4a7f0 from=translated src=- shape=4315fde0 vocab=adcfabd6
+-/
 lemma southPointOf_mem_southCap :
     vertC (southPointOf B.y) ≤ -(1 / 2) := by
   rw [vertC_southPointOf]
@@ -207,9 +257,15 @@ lemma southPointOf_mem_southCap :
 def cubeToBridgeDomain (t : I^(Fin (n + 1))) : E :=
   WithLp.toLp 2 fun i => (t i : ℝ)
 
+/--
+@isnad1 id=eq.0h3v.s6.f44454153aa2 from=translated src=- shape=6d6257e8 vocab=6b136938
+-/
 @[simp] lemma cubeToBridgeDomain_apply (t : I^(Fin (n + 1))) (i : Fin (n + 1)) :
     cubeToBridgeDomain t i = (t i : ℝ) := rfl
 
+/--
+@isnad1 id=continuo.0h1v.s7.2a984dd1ff0e from=translated src=- shape=393619d2 vocab=9c9bdd9b
+-/
 lemma continuous_cubeToBridgeDomain :
     Continuous (cubeToBridgeDomain (n := n)) := by
   have h : cubeToBridgeDomain (n := n) = fun t =>
@@ -220,16 +276,25 @@ lemma continuous_cubeToBridgeDomain :
   intro i
   exact continuous_subtype_val.comp (continuous_apply i)
 
+/--
+@isnad1 id=eq.0h4v.s9.eb3d4c9fe52b from=translated src=- shape=b8072c27 vocab=50b20cd0
+-/
 lemma northSource_cube (t : I^(Fin (n + 1))) :
     B.northSource (cubeToBridgeDomain t) =
       nprep B.approx (fun i => (t i : ℝ)) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.4db5512299a6 from=translated src=- shape=a14cc3d3 vocab=781b1185
+-/
 lemma northSource_cube_boundary {t : I^(Fin (n + 1))}
     (ht : t ∈ Cube.boundary (Fin (n + 1))) :
     B.northSource (cubeToBridgeDomain t) = -eLast n := by
   rw [B.northSource_cube]
   exact nprep_of_mem_collar B.approx (coords_mem_closedAmbientCollar ht)
 
+/--
+@isnad1 id=eq.1h4v.s9.fa636e05ee1c from=translated src=- shape=e03ea320 vocab=7986668d
+-/
 theorem northThom_cube_boundary {t : I^(Fin (n + 1))}
     (ht : t ∈ Cube.boundary (Fin (n + 1))) :
     B.northThom (cubeToBridgeDomain t) = southPole n := by
@@ -246,6 +311,9 @@ def northThomLoop :
       ⟨cubeToBridgeDomain, continuous_cubeToBridgeDomain⟩,
     fun _ ht => B.northThom_cube_boundary ht⟩
 
+/--
+@isnad1 id=eq.0h4v.s11.dac2b6ab9668 from=translated src=- shape=e17f7844 vocab=f1f121ad
+-/
 @[simp] lemma northThomLoop_apply (t : I^(Fin (n + 1))) :
     B.northThomLoop t = B.northThom (cubeToBridgeDomain t) := rfl
 
@@ -256,15 +324,24 @@ def northSourcePoint (x : E) : UnitSphere E :=
   ⟨B.northSource x,
     mem_sphere_zero_iff_norm.mpr (B.norm_northSource x)⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.4286999a5c9f from=translated src=- shape=96d8143e vocab=ab2cd109
+-/
 @[simp] lemma northSourcePoint_coe (x : E) :
     (B.northSourcePoint x : E) = B.northSource x := rfl
 
+/--
+@isnad1 id=lt.0h4v.s10.8d1ef6f143d4 from=translated src=- shape=75396099 vocab=67738c14
+-/
 lemma inner_northThom_source_pos (x : E) :
     0 < ⟪(B.northThom x : E), B.northSource x⟫ := by
   rw [northThom_coe, real_inner_smul_left]
   exact mul_pos (inv_pos.mpr (norm_pos_iff.mpr (B.northThomRaw_ne_zero x)))
     (B.inner_northThomRaw_source_pos x)
 
+/--
+@isnad1 id=ne.0h4v.s10.8990c70bb973 from=translated src=- shape=17ba4385 vocab=efda2aed
+-/
 lemma northSourcePoint_ne_neg_northThom (x : E) :
     B.northSourcePoint x ≠ -B.northThom x := by
   intro hc
@@ -276,15 +353,24 @@ lemma northSourcePoint_ne_neg_northThom (x : E) :
     UnitSphere.norm_coe] at hpos
   norm_num at hpos
 
+/--
+@isnad1 id=lt.0h4v.s10.3ec435c25c22 from=translated src=- shape=4b4a4ba4 vocab=9436350b
+-/
 lemma dist_northSourcePoint_northThom_lt_two (x : E) :
     dist (B.northSourcePoint x) (B.northThom x) < 2 :=
   dist_lt_two_of_ne_neg _ _ (B.northSourcePoint_ne_neg_northThom x)
 
+/--
+@isnad1 id=eq.0h4v.s11.c57194d62791 from=translated src=- shape=b3a3c218 vocab=cff63f2b
+-/
 lemma prepLoop_eq_northSourcePoint (t : I^(Fin (n + 1))) :
     prepLoop B.approx t = B.northSourcePoint (cubeToBridgeDomain t) := by
   apply Subtype.ext
   rw [prepLoop_coe, northSourcePoint_coe, B.northSource_cube]
 
+/--
+@isnad1 id=lt.0h4v.s12.b718c2a4cf72 from=translated src=- shape=1b36de04 vocab=59e33d5e
+-/
 lemma dist_prepLoop_northThomLoop_lt_two (t : I^(Fin (n + 1))) :
     dist (prepLoop B.approx t) (B.northThomLoop t) < 2 := by
   rw [B.prepLoop_eq_northSourcePoint, northThomLoop_apply]

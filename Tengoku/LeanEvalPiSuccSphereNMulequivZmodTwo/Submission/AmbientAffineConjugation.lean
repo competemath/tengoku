@@ -36,6 +36,9 @@ def affineConjugateInverse (A : SmoothAmbientIsotopy n) (L : E ≃L[ℝ] E)
     (b : E) (s : ℝ) (x : E) : E :=
   b + L (A.inverse s (L.symm (x - b)))
 
+/--
+@isnad1 id=contdiff.0h4v.s10.28bcd4eebf14 from=translated src=- shape=d290d53e vocab=a773909c
+-/
 theorem contDiff_affineConjugateForward (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) :
     ContDiff ℝ ∞
@@ -47,6 +50,9 @@ theorem contDiff_affineConjugateForward (A : SmoothAmbientIsotopy n)
     A.forward_smooth.comp (contDiff_fst.prodMk hinner)
   exact contDiff_const.add (L.contDiff.comp hmove)
 
+/--
+@isnad1 id=contdiff.0h4v.s10.7d44183778ff from=translated src=- shape=d290d53e vocab=6d092227
+-/
 theorem contDiff_affineConjugateInverse (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) :
     ContDiff ℝ ∞
@@ -58,6 +64,9 @@ theorem contDiff_affineConjugateInverse (A : SmoothAmbientIsotopy n)
     A.inverse_smooth.comp (contDiff_fst.prodMk hinner)
   exact contDiff_const.add (L.contDiff.comp hmove)
 
+/--
+@isnad1 id=leftinve.1h5v.s9.74bc9c2c8785 from=translated src=- shape=93c724c1 vocab=e394683b
+-/
 theorem affineConjugate_leftInverse (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) (s : ℝ) (hs : s ∈ Icc (0 : ℝ) 1) :
     LeftInverse (affineConjugateInverse A L b s)
@@ -69,6 +78,9 @@ theorem affineConjugate_leftInverse (A : SmoothAmbientIsotopy n)
     L.apply_symm_apply]
   abel
 
+/--
+@isnad1 id=rightinv.1h5v.s9.17fe2a9e42a9 from=translated src=- shape=93c724c1 vocab=0be329c1
+-/
 theorem affineConjugate_rightInverse (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) (s : ℝ) (hs : s ∈ Icc (0 : ℝ) 1) :
     RightInverse (affineConjugateInverse A L b s)
@@ -124,12 +136,18 @@ def conjugateAffine (A : SmoothAmbientIsotopy n) (L : E ≃L[ℝ] E) (b : E) :
     have hz := congrArg (fun M : E →L[ℝ] E => M z) hderiv
     simpa [ContinuousLinearMap.comp_apply] using hz
 
+/--
+@isnad1 id=eq.0h6v.s12.35d68197960d from=translated src=- shape=561d7f90 vocab=bd576d6a
+-/
 @[simp] theorem conjugateAffine_forward (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) (s : ℝ) (x : E) :
     (A.conjugateAffine L b).forward s x =
       b + L (A.forward s (L.symm (x - b))) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.f2c4c8c891e7 from=translated src=- shape=561d7f90 vocab=ec50623f
+-/
 @[simp] theorem conjugateAffine_inverse (A : SmoothAmbientIsotopy n)
     (L : E ≃L[ℝ] E) (b : E) (s : ℝ) (x : E) :
     (A.conjugateAffine L b).inverse s x =
@@ -137,7 +155,9 @@ def conjugateAffine (A : SmoothAmbientIsotopy n) (L : E ≃L[ℝ] E) (b : E) :
   rfl
 
 /-- Affine conjugation transports the relative fixed set by the same affine
-chart.-/
+chart.
+@isnad1 id=fixedon.1h5v.s11.9d8224f81d19 from=translated src=- shape=b0b7e1d5 vocab=03b0f34c
+-/
 theorem FixedOn.conjugateAffine {A : SmoothAmbientIsotopy n} {K : Set E}
     (hA : A.FixedOn K) (L : E ≃L[ℝ] E) (b : E) :
     (A.conjugateAffine L b).FixedOn
@@ -157,12 +177,18 @@ equivalence.-/
 def dilationCLE (r : ℝ) (hr : r ≠ 0) : E₂ ≃L[ℝ] E₂ :=
   ContinuousLinearEquiv.smulLeft (Units.mk0 r hr)
 
+/--
+@isnad1 id=eq.1h3v.s11.3135c5f78da9 from=translated src=- shape=7ede4a10 vocab=85c58f8a
+-/
 @[simp] theorem dilationCLE_apply (r : ℝ) (hr : r ≠ 0) (x : E₂) :
     dilationCLE r hr x = r • x := by
   rw [dilationCLE, ContinuousLinearEquiv.smulLeft_apply_apply, Units.smul_def]
   have hval : (↑(Units.mk0 r hr) : ℝ) = r := rfl
   rw [hval]
 
+/--
+@isnad1 id=eq.1h3v.s11.186eee644282 from=translated src=- shape=69659ffc vocab=8e92020e
+-/
 @[simp] theorem dilationCLE_symm_apply (r : ℝ) (hr : r ≠ 0) (x : E₂) :
     (dilationCLE r hr).symm x = r⁻¹ • x := by
   rw [dilationCLE]
@@ -179,7 +205,9 @@ def affineLocalizedPlaneRotation (θ : ℝ) (L : E₂ ≃L[ℝ] E₂) (b : E₂)
   (localizedPlaneRotation (m := m) θ).conjugateAffine L b
 
 /-- The positioned move fixes every point whose affine-chart coordinate lies
-outside the squared-radius-two support ball.-/
+outside the squared-radius-two support ball.
+@isnad1 id=fixedon.0h4v.s11.6c415f629c1a from=translated src=- shape=fd14c2fc vocab=094e4d74
+-/
 theorem affineLocalizedPlaneRotation_fixedOn (θ : ℝ)
     (L : E₂ ≃L[ℝ] E₂) (b : E₂) :
     (affineLocalizedPlaneRotation (m := m) θ L b).FixedOn
@@ -187,7 +215,9 @@ theorem affineLocalizedPlaneRotation_fixedOn (θ : ℝ)
   exact (localizedPlaneRotation_fixedOn (m := m) θ).conjugateAffine L b
 
 /-- On the transported inner ball, the endpoint is the corresponding affine
-conjugate of the full plane rotation.-/
+conjugate of the full plane rotation.
+@isnad1 id=eq.1h5v.s13.24eb1a68bdf9 from=translated src=- shape=704730d8 vocab=067e0eee
+-/
 theorem affineLocalizedPlaneRotation_endpoint_of_le_one (θ : ℝ)
     (L : E₂ ≃L[ℝ] E₂) (b : E₂) {x : E₂}
     (hx : localRadialSq (L.symm (x - b)) ≤ 1) :
