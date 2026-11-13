@@ -1,0 +1,445 @@
+/-
+# The Poincaré–Birkhoff–Witt theorem
+
+For a Lie algebra `g` over a commutative ring `R` with a basis `b` indexed by a well-ordered type
+`I`, **the products of the basis vectors along the nondecreasing words are a basis of the
+universal enveloping algebra** (`PBW.basis`, `PBW.basis_apply`); in particular the canonical map
+`g → U g` is injective for every Lie algebra which is free as a module (`PBW.ι_injective`).
+
+This is the classical instance of inhomogeneous Koszul duality: the enveloping algebra is
+presented by the quadratic-linear relations `b j b i = b i b j + [b j, b i]`, and the theorem says
+that its associated graded algebra is the symmetric algebra, presented by their quadratic parts.
+The proof is the diamond lemma for free algebras (`Words`):
+
+* **the rules** (`PBW.rules`): the word `j i` reduces to `i j + [b j, b i]` for `i < j`, the
+  bracket expanded in the basis as one-letter words (`PBW.lin`); the normal words are the
+  nondecreasing ones (`PBW.normal_iff_isChain`);
+* **the critical ambiguities** are the words `k j i` with `i < j < k`, and they are resolvable by
+  the Jacobi identity (`PBW.overlap_res`, `PBW.res_critical`); so the nondecreasing words are a
+  basis of the free module on the words modulo the ideal of the rules;
+* **this quotient is the enveloping algebra** (`PBW.quotEquiv`): the products of the basis vectors
+  kill the ideal (`PBW.ideal_le_ker`) and span; conversely the Lie algebra acts on the quotient by
+  left multiplication of words (`PBW.ρ`), and the action of the enveloping algebra on the class of
+  the empty word is a left inverse (`PBW.ψ_toQU`).
+-/
+import Tengoku.LeanOperads.Operad.DiamondWords
+import Tengoku.Seed.Algebra.Lie.UniversalEnveloping
+import Tengoku.Seed.LinearAlgebra.Basis.Bilinear
+import Tengoku.Seed.Data.List.Chain
+import Tengoku.Seed.SetTheory.Ordinal.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace Operad
+
+namespace PBW
+
+open Finsupp Words STree UniversalEnvelopingAlgebra
+
+variable (R : Type*) [CommRing R] {g : Type*} [LieRing g] [LieAlgebra R g]
+  {I : Type*} (b : Module.Basis I R g)
+
+/-! ## Words and the enveloping algebra -/
+
+/-- **A Lie element as a combination of one-letter words.**-/
+noncomputable def lin : g →ₗ[R] (List I →₀ R) :=
+  lmapDomain R R (fun a => [a]) ∘ₗ b.repr.toLinearMap
+
+/--
+@isnad1 id=eq.0h5v.s9.19b38e623c96 from=translated src=- shape=d8639742 vocab=23f6f5bc
+-/
+lemma lin_apply (x : g) : lin R b x = mapDomain (fun a => [a]) (b.repr x) := rfl
+
+/--
+@isnad1 id=eq.0h5v.s8.d22862cbf766 from=translated src=- shape=99e53643 vocab=7b95b983
+-/
+lemma lin_basis (a : I) : lin R b (b a) = single [a] 1 := by
+  rw [lin_apply, Module.Basis.repr_self, mapDomain_single]
+
+/-- **The context** `w ↦ u ++ w ++ v`, as a linear map.-/
+noncomputable def ctxL (u v : List I) : (List I →₀ R) →ₗ[R] (List I →₀ R) :=
+  lmapDomain R R fun w => u ++ w ++ v
+
+/--
+@isnad1 id=eq.0h5v.s8.011b8d5ef9e4 from=translated src=- shape=9eec96a6 vocab=0752e402
+-/
+lemma ctxL_apply (u v : List I) (x : List I →₀ R) :
+    ctxL R u v x = mapDomain (fun w => u ++ w ++ v) x := rfl
+
+/--
+@isnad1 id=eq.0h6v.s8.6bd355eb8070 from=translated src=- shape=e962130b vocab=e8cc664b
+-/
+lemma ctxL_single (u v w : List I) (c : R) :
+    ctxL R u v (single w c) = single (u ++ w ++ v) c :=
+  mapDomain_single
+
+/--
+@isnad1 id=eq.0h2v.s7.0f0bb1abbf3a from=translated src=- shape=29003988 vocab=b64ef198
+-/
+lemma ctxL_nil : ctxL R ([] : List I) [] = LinearMap.id :=
+  lhom_ext fun w c => by rw [ctxL_single, List.nil_append, List.append_nil]; rfl
+
+/--
+@isnad1 id=or.1h3v.s6.1e2da97e7f41 from=translated src=- shape=4766219c vocab=f49d60fb
+-/
+lemma small_lists : ∀ {u v : List I}, u.length + v.length < 2 →
+    (u = [] ∧ v = []) ∨ (u = [] ∧ ∃ d, v = [d]) ∨ (∃ c, u = [c] ∧ v = [])
+  | [], [], _ => Or.inl ⟨rfl, rfl⟩
+  | [], [d], _ => Or.inr (Or.inl ⟨rfl, d, rfl⟩)
+  | [], _ :: _ :: _, h => by simp only [List.length_cons, List.length_nil] at h; omega
+  | [c], [], _ => Or.inr (Or.inr ⟨c, rfl, rfl⟩)
+  | [_], _ :: _, h => by simp only [List.length_cons, List.length_nil] at h; omega
+  | _ :: _ :: _, _, h => by simp only [List.length_cons] at h; omega
+
+/-- **The product of the basis vectors along a word.**-/
+noncomputable def prodι (w : List I) : UniversalEnvelopingAlgebra R g :=
+  (w.map fun a => ι R (b a)).prod
+
+/--
+@isnad1 id=eq.0h6v.s7.c7e695f71063 from=translated src=- shape=093601b8 vocab=67e85439
+-/
+lemma prodι_append (u v : List I) : prodι R b (u ++ v) = prodι R b u * prodι R b v := by
+  simp [prodι, List.map_append, List.prod_append]
+
+/--
+@isnad1 id=eq.0h6v.s8.aeb6703352b9 from=translated src=- shape=b84d021c vocab=6102cf30
+-/
+lemma prodι_cons (a : I) (w : List I) : prodι R b (a :: w) = ι R (b a) * prodι R b w := by
+  simp [prodι]
+
+/-- **Words to the enveloping algebra.**-/
+noncomputable def toU : (List I →₀ R) →ₗ[R] UniversalEnvelopingAlgebra R g :=
+  linearCombination R (prodι R b)
+
+/--
+@isnad1 id=eq.0h6v.s8.b7879ac78839 from=translated src=- shape=ebd42bb5 vocab=551c12d8
+-/
+lemma toU_single (w : List I) (c : R) : toU R b (single w c) = c • prodι R b w :=
+  linearCombination_single R c w
+
+/--
+@isnad1 id=eq.0h7v.s10.0390c9778351 from=translated src=- shape=b24c5160 vocab=992ba754
+-/
+lemma toU_ctxL (u v : List I) (x : List I →₀ R) :
+    toU R b (ctxL R u v x) = prodι R b u * toU R b x * prodι R b v := by
+  induction x using Finsupp.induction_linear with
+  | zero => simp
+  | add x y hx hy => simp only [map_add, hx, hy, mul_add, add_mul]
+  | single w c =>
+    rw [ctxL_single, toU_single, toU_single, prodι_append, prodι_append, mul_smul_comm,
+      smul_mul_assoc]
+
+variable [LinearOrder I]
+
+/-- A word which is not nondecreasing has a descent.
+@isnad1 id=ex.1h2v.s6.7f5a76acc3c8 from=translated src=- shape=0d646c46 vocab=dc4a1784
+-/
+lemma exists_descent : ∀ {w : List I}, ¬ w.IsChain (· ≤ ·) →
+    ∃ u x y v, w = u ++ [x, y] ++ v ∧ ¬ x ≤ y
+  | [], h => absurd List.IsChain.nil h
+  | [a], h => absurd (List.IsChain.singleton a) h
+  | a :: c :: w, h => by
+    rw [List.isChain_cons_cons] at h
+    by_cases hac : a ≤ c
+    · obtain ⟨u, x, y, v, hw, hxy⟩ := exists_descent fun h' => h ⟨hac, h'⟩
+      exact ⟨a :: u, x, y, v, by rw [hw]; rfl, hxy⟩
+    · exact ⟨[], a, c, w, rfl, hac⟩
+
+variable [WellFoundedLT I]
+
+/-! ## The rules -/
+
+/-- **The pairs** `i < j`, which index the rules.-/
+abbrev Pair (I : Type*) [LT I] := {p : I × I // p.1 < p.2}
+
+/-- **The rules of the enveloping algebra**: the word `j i` reduces to `i j + [b j, b i]` for
+`i < j`.-/
+noncomputable def rules : Rules R (Pair I) (ctxOrder I) where
+  src _ := ()
+  lead r := [r.1.2, r.1.1]
+  tail r := single [r.1.1, r.1.2] 1 + lin R b ⁅b r.1.2, b r.1.1⁆
+  tail_lt r m hm := by
+    classical
+    rcases Finset.mem_union.1 (support_add hm) with h | h
+    · rw [Finset.mem_singleton.1 (support_single_subset h)]
+      exact Or.inr ⟨rfl, List.Lex.rel r.2⟩
+    · rw [lin_apply] at h
+      obtain ⟨a, -, rfl⟩ := Finset.mem_image.1 (mapDomain_support h)
+      exact Or.inl (by simp)
+
+/--
+@isnad1 id=eq.0h5v.s7.7c0f50f84ef9 from=translated src=- shape=126d087a vocab=ed326a48
+-/
+lemma lead_eq (r : Pair I) : (rules R b).lead r = [r.1.2, r.1.1] := rfl
+
+/--
+@isnad1 id=eq.0h5v.s9.6decd14cd1d2 from=translated src=- shape=98669736 vocab=aa5f4946
+-/
+lemma tail_eq (r : Pair I) :
+    (rules R b).tail r = single [r.1.1, r.1.2] 1 + lin R b ⁅b r.1.2, b r.1.1⁆ := rfl
+
+/-- **The normal words** are the nondecreasing ones.
+@isnad1 id=iff.0h5v.s6.2bbeb045a603 from=translated src=- shape=8cb26e3c vocab=e2e35cc6
+-/
+lemma normal_iff_isChain (w : List I) :
+    (rules R b).Normal (b := ()) w ↔ w.IsChain (· ≤ ·) := by
+  rw [Words.normal_iff]
+  constructor
+  · intro h
+    by_contra hc
+    obtain ⟨u, x, y, v, rfl, hxy⟩ := exists_descent hc
+    exact h ⟨(y, x), lt_of_not_ge hxy⟩ u v rfl
+  · rintro hc r u v rfl
+    have := hc.infix ⟨u, v, rfl⟩
+    rw [lead_eq, List.isChain_pair] at this
+    exact absurd r.2 (not_lt.2 this)
+
+/-! ## Resolving the ambiguities -/
+
+/-- **The rewriting system of the rules.**-/
+noncomputable abbrev sys : Rewriting R (List I) := (rules R b).rw ()
+
+/--
+@isnad1 id=mem.0h7v.s9.eae0061cbedd from=translated src=- shape=5488285a vocab=1c895591
+-/
+lemma red_ctx (r : Pair I) (u v : List I) :
+    ctxL R u v ((rules R b).tail r) ∈ (sys R b).red (u ++ [r.1.2, r.1.1] ++ v) :=
+  ⟨r, fun w => u ++ w ++ v, ⟨u, v, fun _ => rfl⟩, rfl, rfl⟩
+
+/-- **A reduction in a context.**
+@isnad1 id=mem.2h9v.s10.5cb35e673e12 from=translated src=- shape=40b29600 vocab=77a71dc9
+-/
+lemma rel_mem {s : Set (List I)} {i j : I} (h : i < j) (u v : List I)
+    (hs : u ++ [j, i] ++ v ∈ s) :
+    single (u ++ [j, i] ++ v) 1 - (single (u ++ [i, j] ++ v) 1 +
+      ctxL R u v (lin R b ⁅b j, b i⁆)) ∈ (sys R b).idealOn s := by
+  have := (sys R b).sub_mem_idealOn hs (red_ctx R b ⟨(i, j), h⟩ u v)
+  rwa [tail_eq, map_add, ctxL_single] at this
+
+/-- **Two letters commute up to their bracket**, modulo the rules at the words of length two.
+@isnad1 id=mem.1h7v.s9.5ea34ce27e56 from=translated src=- shape=f10e9c4d vocab=e3d54337
+-/
+lemma swap_mem {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s) (c a : I) :
+    single [c, a] 1 - single [a, c] 1 - lin R b ⁅b c, b a⁆ ∈ (sys R b).idealOn s := by
+  rcases lt_trichotomy a c with h | rfl | h
+  · have := rel_mem R b h [] [] (hs _ rfl)
+    simp only [List.nil_append, List.append_nil, ctxL_nil, LinearMap.id_apply] at this
+    rwa [sub_add_eq_sub_sub] at this
+  · simp
+  · have := rel_mem R b h [] [] (hs _ rfl)
+    simp only [List.nil_append, List.append_nil, ctxL_nil, LinearMap.id_apply] at this
+    have e : single [c, a] 1 - single [a, c] 1 - lin R b ⁅b c, b a⁆ =
+        -(single [a, c] 1 - (single [c, a] 1 + lin R b ⁅b a, b c⁆)) := by
+      rw [← lie_skew (b a) (b c), map_neg]
+      abel
+    rw [e]
+    exact neg_mem this
+
+/-- **A letter commutes with a Lie element up to their bracket.**
+@isnad1 id=mem.1h7v.s10.dff9d566a76c from=translated src=- shape=a2b51d38 vocab=935acbbd
+-/
+lemma lin_swap {s : Set (List I)} (hs : ∀ w : List I, w.length = 2 → w ∈ s) (c : I) (x : g) :
+    ctxL R [c] [] (lin R b x) - ctxL R [] [c] (lin R b x) - lin R b ⁅b c, x⁆ ∈
+      (sys R b).idealOn s := by
+  let F : g →ₗ[R] (List I →₀ R) := ctxL R [c] [] ∘ₗ lin R b - ctxL R [] [c] ∘ₗ lin R b -
+    lin R b ∘ₗ (LieModule.toEnd R g g (b c) : g →ₗ[R] g)
+  have hF : ⊤ ≤ ((sys R b).idealOn s).comap F := by
+    rw [← b.span_eq, Submodule.span_le]
+    rintro _ ⟨a, rfl⟩
+    simp only [F, SetLike.mem_coe, Submodule.mem_comap, LinearMap.sub_apply,
+      LinearMap.coe_comp, Function.comp_apply, LieModule.toEnd_apply_apply, lin_basis,
+      ctxL_single, List.nil_append, List.append_nil, List.singleton_append]
+    exact swap_mem R b hs c a
+  exact hF Submodule.mem_top
+
+/-- **The overlap `k j i` is resolvable**, by the Jacobi identity.
+@isnad1 id=mem.2h7v.s10.b57de4360ed8 from=translated src=- shape=1ee5ada5 vocab=7f9dcf7e
+-/
+theorem overlap_res {i j k : I} (hij : i < j) (hjk : j < k) :
+    ctxL R [] [i] ((rules R b).tail ⟨(j, k), hjk⟩) -
+      ctxL R [k] [] ((rules R b).tail ⟨(i, j), hij⟩) ∈
+        (sys R b).idealOn ((sys R b).below [k, j, i]) := by
+  have hik := hij.trans hjk
+  have h2 : ∀ w : List I, w.length = 2 → w ∈ (sys R b).below [k, j, i] :=
+    fun w hw => Or.inl (by simp [hw])
+  have ha := rel_mem R b hik [j] [] (s := (sys R b).below [k, j, i])
+    (Or.inr ⟨rfl, List.Lex.rel hjk⟩)
+  have hb := rel_mem R b hij [] [k] (s := (sys R b).below [k, j, i])
+    (Or.inr ⟨rfl, List.Lex.rel hjk⟩)
+  have hc := rel_mem R b hik [] [j] (s := (sys R b).below [k, j, i])
+    (Or.inr ⟨rfl, List.Lex.cons (List.Lex.rel hij)⟩)
+  have hd := rel_mem R b hjk [i] [] (s := (sys R b).below [k, j, i])
+    (Or.inr ⟨rfl, List.Lex.rel hik⟩)
+  have he₁ := lin_swap R b h2 j ⁅b k, b i⁆
+  have he₂ := lin_swap R b h2 k ⁅b j, b i⁆
+  have he₃ := lin_swap R b h2 i ⁅b k, b j⁆
+  have hJ : lin R b ⁅b j, ⁅b k, b i⁆⁆ - lin R b ⁅b k, ⁅b j, b i⁆⁆ -
+      lin R b ⁅b i, ⁅b k, b j⁆⁆ = 0 := by
+    rw [← map_sub, ← map_sub, leibniz_lie (b k) (b j) (b i), ← lie_skew (b i) ⁅b k, b j⁆]
+    rw [show ⁅b j, ⁅b k, b i⁆⁆ - (⁅⁅b k, b j⁆, b i⁆ + ⁅b j, ⁅b k, b i⁆⁆) - -⁅⁅b k, b j⁆, b i⁆ =
+      (0 : g) by abel, map_zero]
+  simp only [List.nil_append, List.append_nil, List.cons_append] at ha hb hc hd
+  rw [tail_eq, tail_eq, map_add, map_add, ctxL_single, ctxL_single]
+  simp only [List.nil_append, List.append_nil, List.cons_append]
+  have key : single [j, k, i] 1 + ctxL R [] [i] (lin R b ⁅b k, b j⁆) -
+      (single [k, i, j] 1 + ctxL R [k] [] (lin R b ⁅b j, b i⁆)) =
+      (single [j, k, i] 1 - (single [j, i, k] 1 + ctxL R [j] [] (lin R b ⁅b k, b i⁆))) +
+      (single [j, i, k] 1 - (single [i, j, k] 1 + ctxL R [] [k] (lin R b ⁅b j, b i⁆))) -
+      (single [k, i, j] 1 - (single [i, k, j] 1 + ctxL R [] [j] (lin R b ⁅b k, b i⁆))) -
+      (single [i, k, j] 1 - (single [i, j, k] 1 + ctxL R [i] [] (lin R b ⁅b k, b j⁆))) +
+      (ctxL R [j] [] (lin R b ⁅b k, b i⁆) - ctxL R [] [j] (lin R b ⁅b k, b i⁆) -
+        lin R b ⁅b j, ⁅b k, b i⁆⁆) -
+      (ctxL R [k] [] (lin R b ⁅b j, b i⁆) - ctxL R [] [k] (lin R b ⁅b j, b i⁆) -
+        lin R b ⁅b k, ⁅b j, b i⁆⁆) -
+      (ctxL R [i] [] (lin R b ⁅b k, b j⁆) - ctxL R [] [i] (lin R b ⁅b k, b j⁆) -
+        lin R b ⁅b i, ⁅b k, b j⁆⁆) +
+      (lin R b ⁅b j, ⁅b k, b i⁆⁆ - lin R b ⁅b k, ⁅b j, b i⁆⁆ - lin R b ⁅b i, ⁅b k, b j⁆⁆) := by
+    abel
+  rw [key, hJ, add_zero]
+  exact sub_mem (sub_mem (add_mem (sub_mem (sub_mem (add_mem ha hb) hc) hd) he₁) he₂) he₃
+
+/-- **Every critical ambiguity is resolvable.**
+@isnad1 id=res.1h7v.s7.5424efcc22ce from=translated src=- shape=309c8138 vocab=71176a59
+-/
+theorem res_critical {r₁ r₂ : Pair I} (B : (rules R b).Amb () r₁ r₂)
+    (hB : Critical (rules R b) B) : B.Res := by
+  obtain ⟨a₁, b₁, a₂, b₂, h₁, h₂, ha, hb, hl⟩ := hB
+  have ht₁ : B.top = a₁ ++ [r₁.1.2, r₁.1.1] ++ b₁ := h₁ _
+  have ht₂ : B.top = a₂ ++ [r₂.1.2, r₂.1.1] ++ b₂ := B.eq.trans (h₂ _)
+  have hl₁ : a₁.length + b₁.length < 2 := by
+    rw [ht₁, lead_eq, lead_eq] at hl
+    simp only [List.length_append, List.length_cons, List.length_nil] at hl
+    omega
+  have hl₂ : a₂.length + b₂.length = a₁.length + b₁.length := by
+    have := congrArg List.length (ht₁.symm.trans ht₂)
+    simp only [List.length_append, List.length_cons, List.length_nil] at this
+    omega
+  obtain ⟨⟨i₁, j₁⟩, hr₁⟩ := r₁
+  obtain ⟨⟨i₂, j₂⟩, hr₂⟩ := r₂
+  have heq := ht₁.symm.trans ht₂
+  rcases small_lists hl₁ with ⟨rfl, rfl⟩ | ⟨rfl, d, rfl⟩ | ⟨c, rfl, rfl⟩
+  · -- the same occurrence
+    obtain ⟨rfl, rfl⟩ : a₂ = [] ∧ b₂ = [] := by
+      simp only [List.length_nil, add_zero] at hl₂
+      exact ⟨List.eq_nil_of_length_eq_zero (by omega), List.eq_nil_of_length_eq_zero (by omega)⟩
+    simp only [List.nil_append, List.append_nil, List.cons.injEq, and_true] at heq
+    obtain ⟨rfl, rfl⟩ := heq
+    exact B.res_of_eq (funext fun w => by rw [h₁, h₂])
+  · -- the overlap `j₁ i₁ d`
+    obtain ⟨rfl, c, rfl⟩ : b₂ = [] ∧ ∃ c, a₂ = [c] := by
+      rcases hb with h | h
+      · exact absurd h (List.cons_ne_nil _ _)
+      · subst h
+        simp only [List.length_nil, add_zero, List.length_singleton] at hl₂
+        exact ⟨rfl, List.length_eq_one_iff.1 hl₂⟩
+    simp only [List.nil_append, List.append_nil, List.cons_append, List.cons.injEq,
+      and_true] at heq
+    obtain ⟨rfl, rfl, rfl⟩ := heq
+    have hf₁ : B.f₁ = fun w => [] ++ w ++ [d] := funext h₁
+    have hf₂ : B.f₂ = fun w => [j₁] ++ w ++ [] := funext h₂
+    rw [Rules.Amb.Res, hf₁, hf₂, ht₁]
+    exact overlap_res R b hr₂ hr₁
+  · -- the overlap `c j₁ i₁`, in the other order
+    obtain ⟨rfl, d, rfl⟩ : a₂ = [] ∧ ∃ d, b₂ = [d] := by
+      rcases ha with h | h
+      · exact absurd h (List.cons_ne_nil _ _)
+      · subst h
+        simp only [List.length_nil, zero_add, add_zero, List.length_singleton] at hl₂
+        exact ⟨rfl, List.length_eq_one_iff.1 hl₂⟩
+    simp only [List.nil_append, List.append_nil, List.cons_append, List.cons.injEq,
+      and_true] at heq
+    obtain ⟨rfl, rfl, rfl⟩ := heq
+    rw [← Rules.Amb.res_swap]
+    have hf₁ : B.swap.f₁ = fun w => [] ++ w ++ [i₁] := funext h₂
+    have hf₂ : B.swap.f₂ = fun w => [c] ++ w ++ [] := funext h₁
+    rw [Rules.Amb.Res, hf₁, hf₂, Rules.Amb.swap_top, ht₁]
+    exact overlap_res R b hr₁ hr₂
+
+/-- **The rules of the enveloping algebra are confluent.**
+@isnad1 id=resolvab.0h4v.s6.61a2c646b9aa from=translated src=- shape=e84313f6 vocab=f754ca6d
+-/
+theorem resolvable : (sys R b).Resolvable :=
+  Words.resolvable_of_critical _ (fun _ => List.cons_ne_nil _ _)
+    fun B hB => res_critical R b B hB
+
+/-- **The quotient of the free module on the words by the ideal of the rules.**-/
+abbrev Q := (List I →₀ R) ⧸ (sys R b).ideal
+
+/-- **Left multiplication by a letter** on the quotient.-/
+noncomputable def lmul (a : I) : Module.End R (Q R b) :=
+  (sys R b).ideal.mapQ (sys R b).ideal (ctxL R [a] [])
+    fun _ hx => Rules.mapDomain_mem_ideal (rules R b) ⟨[a], [], fun _ => rfl⟩ hx
+
+/--
+@isnad1 id=eq.0h6v.s9.9f383fa0f9bd from=translated src=- shape=b76c23da vocab=bf0ac0a2
+-/
+lemma lmul_mk (a : I) (x : List I →₀ R) :
+    lmul R b a (Submodule.Quotient.mk x) = Submodule.Quotient.mk (ctxL R [a] [] x) := rfl
+
+/-- **The action of the Lie algebra** on the quotient, as a linear map.-/
+noncomputable def ρ₀ : g →ₗ[R] Module.End R (Q R b) := b.constr R (lmul R b)
+
+/--
+@isnad1 id=eq.0h5v.s11.cb3b76f73e6f from=translated src=- shape=5d1eb658 vocab=9b223742
+-/
+lemma ρ₀_basis (a : I) : ρ₀ R b (b a) = lmul R b a := b.constr_basis R _ a
+
+/--
+@isnad1 id=eq.0h6v.s11.c0d45b0f1fd5 from=translated src=- shape=8ab4e9db vocab=94a87983
+-/
+lemma ρ₀_mk (y : g) (w : List I) :
+    ρ₀ R b y (Submodule.Quotient.mk (single w 1)) =
+      Submodule.Quotient.mk (ctxL R [] w (lin R b y)) := by
+  have : LinearMap.applyₗ (Submodule.Quotient.mk (single w 1) : Q R b) ∘ₗ ρ₀ R b =
+      (sys R b).ideal.mkQ ∘ₗ ctxL R [] w ∘ₗ lin R b := b.ext fun a => by
+    simp only [LinearMap.coe_comp, Function.comp_apply, LinearMap.applyₗ_apply_apply,
+      ρ₀_basis, lmul_mk, ctxL_single, lin_basis, Submodule.mkQ_apply, List.nil_append,
+      List.append_nil, List.singleton_append]
+  exact LinearMap.congr_fun this y
+
+/--
+@isnad1 id=eq.0h6v.s13.3d21aee5ed12 from=translated src=- shape=25c8f1fb vocab=9c88fd25
+-/
+lemma ρ₀_lie (x y : g) : ρ₀ R b ⁅x, y⁆ = ρ₀ R b x * ρ₀ R b y - ρ₀ R b y * ρ₀ R b x := by
+  let B₁ : g →ₗ[R] g →ₗ[R] Module.End R (Q R b) :=
+    (LieModule.toEnd R g g : g →ₗ[R] Module.End R g).compr₂ (ρ₀ R b)
+  let B₂ : g →ₗ[R] g →ₗ[R] Module.End R (Q R b) :=
+    LinearMap.mk₂ R (fun x y => ρ₀ R b x * ρ₀ R b y - ρ₀ R b y * ρ₀ R b x)
+      (fun x x' y => by simp only [map_add, add_mul, mul_add]; abel)
+      (fun c x y => by simp only [map_smul, smul_mul_assoc, mul_smul_comm, smul_sub])
+      (fun x y y' => by simp only [map_add, add_mul, mul_add]; abel)
+      (fun c x y => by simp only [map_smul, smul_mul_assoc, mul_smul_comm, smul_sub])
+  have h : B₁ = B₂ := LinearMap.ext_basis b b fun c a => by
+    simp only [B₁, B₂, LinearMap.compr₂_apply, LinearMap.mk₂_apply, LieHom.coe_toLinearMap,
+      LieModule.toEnd_apply_apply, ρ₀_basis]
+    refine Submodule.linearMap_qext _ (lhom_ext fun w r => ?_)
+    have key : ρ₀ R b ⁅b c, b a⁆ (Submodule.Quotient.mk (single w 1)) =
+        (lmul R b c * lmul R b a - lmul R b a * lmul R b c)
+          (Submodule.Quotient.mk (single w 1)) := by
+      rw [ρ₀_mk, LinearMap.sub_apply, Module.End.mul_apply, Module.End.mul_apply, lmul_mk,
+        lmul_mk, lmul_mk, lmul_mk]
+      simp only [ctxL_single]
+      rw [← Submodule.Quotient.mk_sub, Submodule.Quotient.eq]
+      have hm := Rules.mapDomain_mem_ideal (rules R b) (a := ()) (b := ())
+        (g := fun v => [] ++ v ++ w)
+        ⟨[], w, fun _ => rfl⟩ (swap_mem R b (s := Set.univ) (fun _ _ => trivial) c a)
+      have e : ctxL R [] w (lin R b ⁅b c, b a⁆) -
+          (single ([c] ++ ([a] ++ w ++ []) ++ []) 1 - single ([a] ++ ([c] ++ w ++ []) ++ []) 1) =
+          -mapDomain (fun v => [] ++ v ++ w)
+            (single [c, a] 1 - single [a, c] 1 - lin R b ⁅b c, b a⁆) := by
+        rw [mapDomain_sub, mapDomain_sub, mapDomain_single, mapDomain_single, ctxL_apply]
+        simp only [List.nil_append, List.append_nil, List.cons_append]
+        abel
+      rw [e]
+      exact neg_mem hm
+    simp only [LinearMap.comp_apply, Submodule.mkQ_apply]
+    rw [← smul_single_one, Submodule.Quotient.mk_smul, map_smul, map_smul, key]
+  have := LinearMap.congr_fun₂ h x y
+  simpa only [B₁, B₂, LinearMap.compr₂_apply, LinearMap.mk₂_apply, LieHom.coe_toLinearMap,
+    LieModule.toEnd_apply_apply] using this
+
+/-! ## The theorem -/
+
+end PBW
+
+end Operad

@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "dcf2426157803ff4a4a0c6ae0272b2a080d46864faca3c9c251e8b6b5f6eb51a",
+ "factory_changes": {
+  "inert lines removed": 4,
+  "modules changed": 3
+ },
+ "gate2_unjudged": [],
+ "library": "lean-operads",
+ "lint_mode": "proposed",
+ "modules": 92,
+ "part": 1,
+ "theorems": 1618
+}

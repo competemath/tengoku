@@ -1,0 +1,476 @@
+/-
+# Multilinear maps on free modules and on quotient modules
+
+Two general tools for defining multilinear maps, used for the Schur functor of an operad.
+
+* **On free modules** (`ML.finsuppLift`): a multilinear map `(X →₀ R)^ι → W` is given by
+  arbitrary values on tuples of basis vectors, and is determined by them (`ML.finsupp_ext`). It
+  vanishes when one argument lies in a submodule `N` as soon as, the other arguments being basis
+  vectors, the induced linear map in the remaining argument kills `N`
+  (`ML.finsuppLift_eq_zero`).
+* **On direct sums of free modules** (`ML.dsLift`): the same, the arguments being basis vectors
+  of given summands (`ML.dsLift_lof_single`, `ML.ds_ext`), with the vanishing criterion for
+  submodules spanned by relators of the summands (`ML.dsLift_eq_zero`).
+* **On quotient modules** (`ML.liftQ`): a multilinear map `M^ι → W` vanishing whenever one
+  argument lies in `N` descends to `(M ⧸ N)^ι` (`ML.liftQ_mk`). It only depends on the arguments
+  modulo `N` (`ML.eq_of_sub_mem`), argument by argument, and is determined by its values on
+representatives (`ML.quot_ext`).
+-/
+import Tengoku.Seed.LinearAlgebra.Multilinear.Basic
+import Tengoku.Seed.LinearAlgebra.PiTensorProduct.Finsupp
+import Tengoku.Seed.LinearAlgebra.Quotient.Basic
+import Tengoku.Seed.LinearAlgebra.Multilinear.DirectSum
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace Operad
+
+namespace ML
+
+open Function
+
+variable {R : Type*} [CommRing R] {ι : Type*} [Fintype ι] [DecidableEq ι]
+  {W : Type*} [AddCommGroup W] [Module R W]
+
+/-! ## Free modules -/
+
+section Finsupp
+
+variable {X : Type*}
+
+/-- **Multilinear maps on free modules agree when they agree on tuples of basis vectors.**
+@isnad1 id=eq.1h6v.s9.85db146a29c4 from=translated src=- shape=c22d138d vocab=807a1cf2
+-/
+theorem finsupp_ext {f g : MultilinearMap R (fun _ : ι => X →₀ R) W}
+    (h : ∀ t : ι → X, f (fun i => Finsupp.single (t i) 1) = g (fun i => Finsupp.single (t i) 1)) :
+    f = g := by
+  classical
+  ext x
+  have hx : x = fun i => ∑ y ∈ (x i).support, (x i) y • Finsupp.single y (1 : R) := by
+    funext i
+    conv_lhs => rw [← Finsupp.sum_single (x i)]
+    simp only [Finsupp.sum, Finsupp.smul_single, smul_eq_mul, mul_one]
+  rw [hx, MultilinearMap.map_sum_finset, MultilinearMap.map_sum_finset]
+  refine Finset.sum_congr rfl fun t _ => ?_
+  rw [MultilinearMap.map_smul_univ, MultilinearMap.map_smul_univ, h]
+
+/-- **The multilinear map on free modules with given values on tuples of basis vectors.**-/
+noncomputable def finsuppLift (g : (ι → X) → W) : MultilinearMap R (fun _ : ι => X →₀ R) W :=
+  haveI := Classical.decEq R
+  haveI := Classical.decEq X
+  ((Finsupp.lift W R (ι → X) g).comp
+    (PiTensorProduct.ofFinsuppEquiv' (R := R) (κ := fun _ : ι => X)).toLinearMap).compMultilinearMap
+    (PiTensorProduct.tprod R)
+
+/--
+@isnad1 id=eq.0h6v.s7.ab762b7aa699 from=translated src=- shape=d5d066a3 vocab=dbb54525
+-/
+@[simp] lemma finsuppLift_single (g : (ι → X) → W) (t : ι → X) :
+    finsuppLift (R := R) g (fun i => Finsupp.single (t i) 1) = g t := by
+  haveI := Classical.decEq R
+  haveI := Classical.decEq X
+  unfold finsuppLift
+  simp only [LinearMap.compMultilinearMap_apply, LinearMap.comp_apply, LinearEquiv.coe_coe,
+    PiTensorProduct.ofFinsuppEquiv'_tprod_single, Finset.prod_const_one, Finsupp.lift_apply,
+    Finsupp.sum_single_index, one_smul, zero_smul]
+
+/-- **Vanishing on a submodule in one argument**: the other arguments being basis vectors, it
+suffices that the induced linear map in the remaining argument kills the submodule.
+@isnad1 id=eq.2h8v.s10.133991ef7ae1 from=translated src=- shape=3bf9d7b8 vocab=5d7c9cd5
+-/
+theorem finsuppLift_eq_zero [Nonempty X] (g : (ι → X) → W) (N : Submodule R (X →₀ R))
+    (hg : ∀ (t : ι → X) (i : ι),
+      N ≤ LinearMap.ker (Finsupp.lift W R X fun y => g (update t i y)))
+    (x : ι → X →₀ R) (i : ι) (hx : x i ∈ N) : finsuppLift (R := R) g x = 0 := by
+  classical
+  set m := finsuppLift (R := R) g
+  -- inserting `x i` at the coordinate `i` through a linear map
+  let ℓ : (X →₀ R) →ₗ[R] (X →₀ R) := Finsupp.lift (X →₀ R) R X fun _ => x i
+  let F := m.compLinearMap fun j => if j = i then ℓ else LinearMap.id
+  have hF : F = 0 := by
+    refine finsupp_ext fun t => ?_
+    have hupd : (fun j => (if j = i then ℓ else LinearMap.id) (Finsupp.single (t j) (1 : R)))
+        = update (fun j => Finsupp.single (t j) (1 : R)) i (x i) := by
+      funext j
+      by_cases hj : j = i
+      · subst hj
+        simp [ℓ]
+      · simp [hj]
+    show m _ = 0
+    rw [hupd]
+    have hlin : (m.toLinearMap (fun j => Finsupp.single (t j) (1 : R)) i)
+        = Finsupp.lift W R X fun y => g (update t i y) := by
+      refine Finsupp.lhom_ext fun y c => ?_
+      rw [MultilinearMap.toLinearMap_apply, Finsupp.lift_apply, Finsupp.sum_single_index
+        (by simp), ← Finsupp.smul_single_one, MultilinearMap.map_update_smul]
+      congr 1
+      rw [show update (fun j => Finsupp.single (t j) (1 : R)) i (Finsupp.single y 1)
+          = fun j => Finsupp.single (update t i y j) 1 from by
+        funext j
+        by_cases hj : j = i
+        · subst hj
+          simp
+        · simp [hj]]
+      exact finsuppLift_single g _
+    have := congrArg (fun L => L (x i)) hlin
+    simp only [MultilinearMap.toLinearMap_apply] at this
+    rw [this]
+    exact hg t i hx
+  obtain ⟨y₀⟩ := ‹Nonempty X›
+  have hx' : x = fun j => (if j = i then ℓ else LinearMap.id)
+      (update x i (Finsupp.single y₀ 1) j) := by
+    funext j
+    by_cases hj : j = i
+    · subst hj
+      simp [ℓ]
+    · simp [hj]
+  rw [hx']
+  exact congrArg (fun G : MultilinearMap R (fun _ : ι => X →₀ R) W =>
+    G (update x i (Finsupp.single y₀ 1))) hF
+
+end Finsupp
+
+/-! ## Families of free modules, and direct sums of them -/
+
+section FinsuppDep
+
+variable {X : ι → Type*}
+
+/-- **Multilinear maps on a family of free modules agree when they agree on tuples of basis
+vectors.**
+@isnad1 id=eq.1h6v.s9.52eb06a4d0fc from=translated src=- shape=14ca78a2 vocab=807a1cf2
+-/
+theorem finsupp_ext' {f g : MultilinearMap R (fun i => X i →₀ R) W}
+    (h : ∀ t : ∀ i, X i,
+      f (fun i => Finsupp.single (t i) 1) = g (fun i => Finsupp.single (t i) 1)) :
+    f = g := by
+  classical
+  ext x
+  have hx : x = fun i => ∑ y ∈ (x i).support, (x i) y • Finsupp.single y (1 : R) := by
+    funext i
+    conv_lhs => rw [← Finsupp.sum_single (x i)]
+    simp only [Finsupp.sum, Finsupp.smul_single, smul_eq_mul, mul_one]
+  rw [hx, MultilinearMap.map_sum_finset, MultilinearMap.map_sum_finset]
+  refine Finset.sum_congr rfl fun t _ => ?_
+  rw [MultilinearMap.map_smul_univ, MultilinearMap.map_smul_univ, h]
+
+/-- **The multilinear map on a family of free modules with given values on tuples of basis
+vectors.**-/
+noncomputable def finsuppLift' (g : (∀ i, X i) → W) : MultilinearMap R (fun i => X i →₀ R) W :=
+  haveI := Classical.decEq R
+  haveI := fun i => Classical.decEq (X i)
+  ((Finsupp.lift W R (∀ i, X i) g).comp
+    (PiTensorProduct.ofFinsuppEquiv' (R := R) (κ := X)).toLinearMap).compMultilinearMap
+    (PiTensorProduct.tprod R)
+
+/--
+@isnad1 id=eq.0h6v.s8.ff9b23e177b5 from=translated src=- shape=9bfb91c7 vocab=a756af62
+-/
+@[simp] lemma finsuppLift'_single (g : (∀ i, X i) → W) (t : ∀ i, X i) :
+    finsuppLift' (R := R) g (fun i => Finsupp.single (t i) 1) = g t := by
+  haveI := Classical.decEq R
+  haveI := fun i => Classical.decEq (X i)
+  unfold finsuppLift'
+  simp only [LinearMap.compMultilinearMap_apply, LinearMap.comp_apply, LinearEquiv.coe_coe,
+    PiTensorProduct.ofFinsuppEquiv'_tprod_single, Finset.prod_const_one, Finsupp.lift_apply,
+    Finsupp.sum_single_index, one_smul, zero_smul]
+
+/-- In one argument, the others being basis vectors, the multilinear map is the linear map with
+the corresponding values on basis vectors.
+@isnad1 id=eq.0h8v.s10.eefe6f1510d7 from=translated src=- shape=f301ec70 vocab=c69d676f
+-/
+lemma finsuppLift'_update (g : (∀ i, X i) → W) (t : ∀ i, X i) (i : ι) (z : X i →₀ R) :
+    finsuppLift' (R := R) g (update (fun j => Finsupp.single (t j) 1) i z)
+      = Finsupp.lift W R (X i) (fun y => g (update t i y)) z := by
+  have h := congrArg (fun L : (X i →₀ R) →ₗ[R] W => L z)
+    (show (finsuppLift' (R := R) g).toLinearMap (fun j => Finsupp.single (t j) 1) i
+        = Finsupp.lift W R (X i) (fun y => g (update t i y)) from
+      Finsupp.lhom_ext fun y c => by
+        rw [MultilinearMap.toLinearMap_apply, Finsupp.lift_apply, Finsupp.sum_single_index
+          (by simp), ← Finsupp.smul_single_one, MultilinearMap.map_update_smul]
+        congr 1
+        rw [show update (fun j => Finsupp.single (t j) (1 : R)) i (Finsupp.single y 1)
+            = fun j => Finsupp.single (update t i y j) 1 from by
+          funext j
+          by_cases hj : j = i
+          · subst hj
+            simp
+          · simp [hj]]
+        exact finsuppLift'_single g _)
+  simpa only [MultilinearMap.toLinearMap_apply] using h
+
+end FinsuppDep
+
+section DirectSum
+
+open DirectSum
+
+variable {κ : Type*} [DecidableEq κ] {X : κ → Type*}
+
+/-- **The multilinear map on a direct sum of free modules** with given values on tuples of basis
+vectors of given summands.-/
+@[irreducible] noncomputable def dsLift (g : ∀ n : ι → κ, (∀ i, X (n i)) → W) :
+    MultilinearMap R (fun _ : ι => ⨁ k, (X k →₀ R)) W :=
+  MultilinearMap.fromDirectSumEquiv (R := R) (κ := fun _ : ι => κ)
+    (M := fun _ k => X k →₀ R) fun n => finsuppLift' (X := fun i => X (n i)) (g n)
+
+/--
+@isnad1 id=eq.0h8v.s10.29be105b2c98 from=translated src=- shape=9f3ff363 vocab=aa8dbdb3
+-/
+@[simp] lemma dsLift_lof (g : ∀ n : ι → κ, (∀ i, X (n i)) → W) (n : ι → κ)
+    (y : ∀ i, X (n i) →₀ R) :
+    dsLift (R := R) g (fun i => lof R κ (fun k => X k →₀ R) (n i) (y i))
+      = finsuppLift' (R := R) (X := fun i => X (n i)) (g n) y := by
+  unfold dsLift
+  exact MultilinearMap.fromDirectSumEquiv_lof (R := R) (κ := fun _ : ι => κ)
+    (M := fun _ k => X k →₀ R) _ n y
+
+end DirectSum
+
+/-! ## Quotient modules -/
+
+section Quot
+
+variable {M : Type*} [AddCommGroup M] [Module R M] (N : Submodule R M)
+
+/-- **A multilinear map vanishing on `N` in each argument only depends on its arguments modulo
+`N`.**-/
+theorem eq_of_sub_mem (f : MultilinearMap R (fun _ : ι => M) W)
+    (hf : ∀ (x : ι → M) (i : ι), x i ∈ N → f x = 0) (x y : ι → M)
+    (h : ∀ i, x i - y i ∈ N) : f x = f y := by
+  suffices key : ∀ s : Finset ι, ∀ x y : ι → M, (∀ i, x i - y i ∈ N) →
+      (∀ i ∉ s, x i = y i) → f x = f y from
+    key Finset.univ x y h fun i hi => absurd (Finset.mem_univ i) hi
+  intro s
+  induction s using Finset.induction_on with
+  | empty =>
+    intro x y _ hs
+    exact congrArg f (funext fun i => hs i (Finset.notMem_empty i))
+  | insert j s hj ih =>
+    intro x y hxy hs
+    have h1 : f (update x j (y j)) = f y := by
+      refine ih _ _ (fun i => ?_) (fun i hi => ?_)
+      · by_cases hij : i = j
+        · subst hij
+          simp
+        · rw [update_of_ne hij]
+          exact hxy i
+      · by_cases hij : i = j
+        · subst hij
+          simp
+        · rw [update_of_ne hij]
+          exact hs i (by simp [hij, hi])
+    have h2 : f x - f (update x j (y j)) = 0 := by
+      rw [← hf (update x j (x j - y j)) j (by simpa using hxy j),
+        MultilinearMap.map_update_sub, update_eq_self]
+    rw [← h1, ← sub_eq_zero, h2]
+
+/-- A representative of a class.-/
+noncomputable def rep (q : M ⧸ N) : M := Function.surjInv (Submodule.mkQ_surjective N) q
+
+/--
+@isnad1 id=eq.0h4v.s8.68d22daba7cd from=translated src=- shape=44f879d5 vocab=9dcb81b6
+-/
+lemma mkQ_rep (q : M ⧸ N) : N.mkQ (rep N q) = q :=
+  Function.surjInv_eq (Submodule.mkQ_surjective N) q
+
+omit [Fintype ι] [DecidableEq ι] in
+/-- **Multilinear maps on a quotient module agree when they agree on representatives.**
+@isnad1 id=eq.1h7v.s9.1c59af65dc9f from=translated src=- shape=3acac812 vocab=49b51c5a
+-/
+theorem quot_ext {f g : MultilinearMap R (fun _ : ι => M ⧸ N) W}
+    (h : ∀ x : ι → M, f (fun i => N.mkQ (x i)) = g (fun i => N.mkQ (x i))) : f = g := by
+  ext y
+  have hy : y = fun i => N.mkQ (rep N (y i)) := funext fun i => (mkQ_rep N (y i)).symm
+  rw [hy]
+  exact h _
+
+/--
+@isnad1 id=mem.0h5v.s8.ad802688bb11 from=translated src=- shape=9403710b vocab=000efe57
+-/
+lemma rep_add_sub_mem (a b : M ⧸ N) : rep N (a + b) - (rep N a + rep N b) ∈ N := by
+  rw [← Submodule.Quotient.mk_eq_zero, Submodule.Quotient.mk_sub, Submodule.Quotient.mk_add]
+  simp only [← Submodule.mkQ_apply, mkQ_rep, sub_self]
+
+/--
+@isnad1 id=mem.0h5v.s8.ba9b37636e78 from=translated src=- shape=e2ae2edb vocab=55ca322e
+-/
+lemma rep_smul_sub_mem (c : R) (a : M ⧸ N) : rep N (c • a) - c • rep N a ∈ N := by
+  rw [← Submodule.Quotient.mk_eq_zero, Submodule.Quotient.mk_sub, Submodule.Quotient.mk_smul]
+  simp only [← Submodule.mkQ_apply, mkQ_rep, sub_self]
+
+/--
+@isnad1 id=mem.0h4v.s8.9d32e62d321c from=translated src=- shape=07718606 vocab=3e963b5c
+-/
+lemma rep_mkQ_sub_mem (x : M) : rep N (N.mkQ x) - x ∈ N := by
+  rw [← Submodule.Quotient.mk_eq_zero, Submodule.Quotient.mk_sub]
+  simp only [← Submodule.mkQ_apply, mkQ_rep, sub_self]
+
+/-- **A multilinear map vanishing on `N` in each argument descends to the quotient.**-/
+noncomputable def liftQ (f : MultilinearMap R (fun _ : ι => M) W)
+    (hf : ∀ (x : ι → M) (i : ι), x i ∈ N → f x = 0) :
+    MultilinearMap R (fun _ : ι => M ⧸ N) W where
+  toFun q := f fun i => rep N (q i)
+  map_update_add' q i a b := by
+    have e : ∀ c : M ⧸ N, (fun j => rep N (update q i c j)) = update (fun j => rep N (q j)) i
+        (rep N c) := fun c => by
+      funext j
+      by_cases hj : j = i
+      · subst hj
+        simp
+      · simp [hj]
+    rw [e, e, e, ← MultilinearMap.map_update_add]
+    refine eq_of_sub_mem N f hf _ _ fun j => ?_
+    by_cases hj : j = i
+    · subst hj
+      simpa using rep_add_sub_mem N a b
+    · simp [hj]
+  map_update_smul' q i c a := by
+    have e : ∀ c : M ⧸ N, (fun j => rep N (update q i c j)) = update (fun j => rep N (q j)) i
+        (rep N c) := fun c => by
+      funext j
+      by_cases hj : j = i
+      · subst hj
+        simp
+      · simp [hj]
+    rw [e, e, ← MultilinearMap.map_update_smul]
+    refine eq_of_sub_mem N f hf _ _ fun j => ?_
+    by_cases hj : j = i
+    · subst hj
+      simpa using rep_smul_sub_mem N c a
+    · simp [hj]
+
+/--
+@isnad1 id=eq.1h7v.s9.20b727071e4a from=translated src=- shape=1edc4d74 vocab=4f02df69
+-/
+lemma liftQ_mkQ (f : MultilinearMap R (fun _ : ι => M) W)
+    (hf : ∀ (x : ι → M) (i : ι), x i ∈ N → f x = 0) (x : ι → M) :
+    liftQ N f hf (fun i => N.mkQ (x i)) = f x :=
+  eq_of_sub_mem N f hf _ _ fun i => rep_mkQ_sub_mem N (x i)
+
+/--
+@isnad1 id=eq.1h7v.s8.2f7a68b72e45 from=translated src=- shape=8190de8c vocab=9f0246c5
+-/
+@[simp] lemma liftQ_mk (f : MultilinearMap R (fun _ : ι => M) W)
+    (hf : ∀ (x : ι → M) (i : ι), x i ∈ N → f x = 0) (x : ι → M) :
+    liftQ N f hf (fun i => Submodule.Quotient.mk (x i)) = f x :=
+  liftQ_mkQ N f hf x
+
+end Quot
+
+/-! ## Families of quotient modules -/
+
+section QuotDep
+
+variable {M : ι → Type*} [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)]
+  (N : ∀ i, Submodule R (M i))
+
+/-- **A multilinear map vanishing on `N i` in each argument `i` only depends on its arguments
+modulo the `N i`.**-/
+theorem eq_of_sub_mem' (f : MultilinearMap R M W)
+    (hf : ∀ (x : ∀ i, M i) (i : ι), x i ∈ N i → f x = 0) (x y : ∀ i, M i)
+    (h : ∀ i, x i - y i ∈ N i) : f x = f y := by
+  suffices key : ∀ s : Finset ι, ∀ x y : ∀ i, M i, (∀ i, x i - y i ∈ N i) →
+      (∀ i ∉ s, x i = y i) → f x = f y from
+    key Finset.univ x y h fun i hi => absurd (Finset.mem_univ i) hi
+  intro s
+  induction s using Finset.induction_on with
+  | empty =>
+    intro x y _ hs
+    exact congrArg f (funext fun i => hs i (Finset.notMem_empty i))
+  | insert j s hj ih =>
+    intro x y hxy hs
+    have h1 : f (update x j (y j)) = f y := by
+      refine ih _ _ (fun i => ?_) (fun i hi => ?_)
+      · by_cases hij : i = j
+        · subst hij
+          simp
+        · rw [update_of_ne hij]
+          exact hxy i
+      · by_cases hij : i = j
+        · subst hij
+          simp
+        · rw [update_of_ne hij]
+          exact hs i (by simp [hij, hi])
+    have h2 : f x - f (update x j (y j)) = 0 := by
+      rw [← hf (update x j (x j - y j)) j (by simpa using hxy j),
+        MultilinearMap.map_update_sub, update_eq_self]
+    rw [← h1, ← sub_eq_zero, h2]
+
+/-- **A multilinear map vanishing on `N i` in each argument `i` descends to the quotients.**-/
+noncomputable def liftQ' (f : MultilinearMap R M W)
+    (hf : ∀ (x : ∀ i, M i) (i : ι), x i ∈ N i → f x = 0) :
+    MultilinearMap R (fun i => M i ⧸ N i) W where
+  toFun q := f fun i => rep (N i) (q i)
+  map_update_add' q i a b := by
+    have e : ∀ c : M i ⧸ N i, (fun j => rep (N j) (update q i c j))
+        = update (fun j => rep (N j) (q j)) i (rep (N i) c) := fun c => by
+      funext j
+      by_cases hj : j = i
+      · subst hj
+        simp
+      · simp [hj]
+    rw [e, e, e, ← MultilinearMap.map_update_add]
+    refine eq_of_sub_mem' N f hf _ _ fun j => ?_
+    by_cases hj : j = i
+    · subst hj
+      simpa using rep_add_sub_mem (N j) a b
+    · simp [hj]
+  map_update_smul' q i c a := by
+    have e : ∀ c : M i ⧸ N i, (fun j => rep (N j) (update q i c j))
+        = update (fun j => rep (N j) (q j)) i (rep (N i) c) := fun c => by
+      funext j
+      by_cases hj : j = i
+      · subst hj
+        simp
+      · simp [hj]
+    rw [e, e, ← MultilinearMap.map_update_smul]
+    refine eq_of_sub_mem' N f hf _ _ fun j => ?_
+    by_cases hj : j = i
+    · subst hj
+      simpa using rep_smul_sub_mem (N j) c a
+    · simp [hj]
+
+/--
+@isnad1 id=eq.1h7v.s9.31fcc4d23a25 from=translated src=- shape=c57cd7d6 vocab=06501292
+-/
+lemma liftQ'_mkQ (f : MultilinearMap R M W)
+    (hf : ∀ (x : ∀ i, M i) (i : ι), x i ∈ N i → f x = 0) (x : ∀ i, M i) :
+    liftQ' N f hf (fun i => (N i).mkQ (x i)) = f x :=
+  eq_of_sub_mem' N f hf _ _ fun i => rep_mkQ_sub_mem (N i) (x i)
+
+/--
+@isnad1 id=eq.1h7v.s9.96041c83c2b7 from=translated src=- shape=1274e7be vocab=659db792
+-/
+@[simp] lemma liftQ'_mk (f : MultilinearMap R M W)
+    (hf : ∀ (x : ∀ i, M i) (i : ι), x i ∈ N i → f x = 0) (x : ∀ i, M i) :
+    liftQ' N f hf (fun i => Submodule.Quotient.mk (x i)) = f x :=
+  liftQ'_mkQ N f hf x
+
+omit [Fintype ι] [DecidableEq ι] in
+/-- **Multilinear maps on a family of quotient modules agree when they agree on
+representatives.**
+@isnad1 id=eq.1h7v.s10.7a12cf97a277 from=translated src=- shape=13b76e30 vocab=49b51c5a
+-/
+theorem quot_ext' {f g : MultilinearMap R (fun i => M i ⧸ N i) W}
+    (h : ∀ x : ∀ i, M i, f (fun i => (N i).mkQ (x i)) = g (fun i => (N i).mkQ (x i))) :
+    f = g := by
+  ext y
+  have hy : y = fun i => (N i).mkQ (rep (N i) (y i)) :=
+    funext fun i => (mkQ_rep (N i) (y i)).symm
+  rw [hy]
+  exact h _
+
+end QuotDep
+
+/-! ## Vanishing on generated submodules, for a family of free modules -/
+
+section FinsuppDepZero
+
+variable {X : ι → Type*}
+
+end FinsuppDepZero
+
+end ML
+
+end Operad
