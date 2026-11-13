@@ -81,5 +81,16 @@
       "by",
       "at"
     ]
+  },
+  "statement_correction": {
+    "$comment": "A tentative record whose statement and proof were split in the wrong place (tools/lean_extract.py before tengoku#811 ended a statement at the `:=` of a let/have in its type: 510 records) is never edited: append {\"statement_correction\": \"<name>\", \"statement\": \"...\", \"proof\": \"...\", \"reason\": \"...\", \"by\": \"...\", \"at\": \"...\"}. The newest correction of a name wins; the old lines stay as history. Only text moves between the two fields or falls away from the end: the corrected statement and proof, with whitespace ignored, are a prefix of the record's current text, and the corrected statement and the current one are one a prefix of the other. Tentative records only: staging and trusted records are compiled.",
+    "required": [
+      "statement_correction",
+      "statement",
+      "proof",
+      "reason",
+      "by",
+      "at"
+    ]
   }
 }

@@ -115,6 +115,55 @@ class StatsTest(unittest.TestCase):
         self.assertEqual((z["tentative"], z["tentative_already_trusted"]), (0, 1))
         self.assertGreaterEqual(s["totals"]["tentative"], 0)
 
+    def corrected(self):
+        """A manifest theorem and its tentative record, harvested cut at the `:=` of a let (tengoku#811), with its correction appended."""
+        full = "theorem t : let n := 1; n = 1"
+        write(self.root / "data/intake/eta/manifest.jsonl", [{"name": "E.t", "statement": full}])
+        cut = {"name": "t", "statement": "theorem t : let n", "proof": ":= 1; n = 1 := rfl"}
+        fix = {"statement_correction": "t", "statement": full, "proof": ":= rfl", "reason": "cut at a let", "by": "t", "at": "2026-11-13"}
+        write(self.root / "data/tentative/eta.jsonl", [cut, {"name": "u", "statement": "theorem u : True", "proof": ":= trivial"}, fix])
+        return fix
+
+    def test_a_statement_correction_is_not_a_second_record(self):
+        self.corrected()
+        s = stats.collect(self.root)
+        e = s["libraries"]["eta"]
+        self.assertEqual(e["tentative"] + e["tentative_already_trusted"], 2)  # t and u, not three lines
+        self.assertEqual(s["totals"]["tentative"], 3 + e["tentative"])
+
+    def test_the_correction_text_is_what_a_record_is_matched_by(self):
+        """The cut record never matched the manifest's statement; with its correction it is the theorem the tree already holds."""
+        self.corrected()
+        e = stats.collect(self.root)["libraries"]["eta"]
+        self.assertEqual(e["tentative_already_trusted"], 1)
+        self.assertEqual(e["tentative"], 1)
+
+    def test_the_newest_correction_wins_and_only_its_own_name(self):
+        fix = self.corrected()
+        tentative = self.root / "data/tentative/eta.jsonl"
+        with tentative.open("a") as f:
+            f.write(json.dumps({**fix, "statement": "theorem t : let n", "proof": ":= 1; n = 1 := rfl"}) + "\n")  # back to the cut text
+        recs = {r["name"]: r for r in stats.iter_records(tentative)}
+        self.assertEqual(sorted(recs), ["t", "u"])
+        self.assertEqual(recs["t"]["statement"], "theorem t : let n")
+        self.assertEqual(recs["u"]["statement"], "theorem u : True")
+        self.assertEqual(stats.collect(self.root)["libraries"]["eta"]["tentative_already_trusted"], 0)
+
+    def test_a_correction_line_without_its_newline_is_nothing_for_both(self):
+        self.corrected()
+        tentative = self.root / "data/tentative/eta.jsonl"
+        tentative.write_text(tentative.read_text().rstrip("\n"))  # the last line, the correction, has no newline
+        e = stats.collect(self.root)["libraries"]["eta"]
+        self.assertEqual(e["tentative"] + e["tentative_already_trusted"], 2)
+        self.assertEqual(e["tentative_already_trusted"], 0)
+
+    def test_the_word_alone_in_a_records_text_is_no_correction(self):
+        write(
+            self.root / "data/tentative/eta.jsonl",
+            [{"name": "w", "statement": "theorem w : True", "proof": ":= by simp -- statement_correction"}],
+        )
+        self.assertEqual(stats.collect(self.root)["libraries"]["eta"]["tentative"], 1)
+
     def test_empty_tree(self):
         empty = Path(tempfile.mkdtemp())
         s = stats.collect(empty)
