@@ -1,0 +1,1 @@
+-- Nlalib: a factory bundle (data/intake/nlalib). This file only marks the library for Tengoku/All.lean.
