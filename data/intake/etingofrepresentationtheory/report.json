@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "d6c138387457fd57de7ca1a2f43244d9bf66231a320cf1b17aef2dc9c85e5733",
+ "factory_changes": {
+  "inert lines removed": 3,
+  "modules changed": 3
+ },
+ "gate2_unjudged": [],
+ "library": "etingofrepresentationtheory",
+ "lint_mode": "proposed",
+ "modules": 57,
+ "part": 1,
+ "theorems": 367
+}

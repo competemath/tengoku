@@ -1,0 +1,1 @@
+-- Etingofrepresentationtheory: a factory bundle (data/intake/etingofrepresentationtheory). This file only marks the library for Tengoku/All.lean.
