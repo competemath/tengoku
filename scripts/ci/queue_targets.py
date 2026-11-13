@@ -112,10 +112,12 @@ if group and all(st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p
     gone_ns |= intake_at_base
 # A ROOTS PR (scripts/ci/roots_check.py) edits the modules of intake libraries in place, and a manifest only when a record's name starts with a root. A library whose roots have no
 # record has no manifest in the group, so it was regenerated from its corpus and came out deleted (2026-11-13, tengoku#797 wave 2: Toric/Hopf/GrpAlg.lean, 50 deletions). The libraries of
-# the reports the group adds are skipped, but only while every change the group makes under the library is an existing `.lean` module modified in place (the shape of a roots PR; Gitar on
+# the reports the group adds, and the libraries of the dependents that open them (62 modules of NavierStokesEuler use LeanPool's names), are skipped, but only while every change the group makes under the library is an existing `.lean` module modified in place (the shape of a roots PR; Gitar on
 # tengoku#821: the group is the diff of all the PRs in it, and a module added or a file that is no module beside the report is regenerated as before). Every other library is regenerated.
-roots_libs = set(added_reports(base, head)) & intake_at_base
-for lib in roots_libs:
+roots_libs = (
+    intake_at_base if added_reports(base, head) else set()
+)  # the libraries of the reports AND the dependents whose modules open them (roots_tree.dependents)
+for lib in sorted(roots_libs):
     mine = [(st, p) for st, p in group if p == f"Tengoku/{lib}.lean" or p.startswith(f"Tengoku/{lib}/")]
     if mine and all(st == "M" and p.endswith(".lean") for st, p in mine):
         gone_ns.add(lib)
