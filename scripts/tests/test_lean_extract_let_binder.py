@@ -191,6 +191,18 @@ class Cases(unittest.TestCase):
             self.assertEqual(d.statement, f"theorem t : {typ}", typ)
             self.assertIn("obtain", d.proof, typ)
 
+    def test_a_match_with_its_first_arm_on_the_same_line_owns_the_arms_that_follow(self):
+        """Gitar on #811"""
+        for src, stmt in (
+            ("theorem t : f n = match n with | 0 => 1 | _ => 2 := by\n  rfl\n", "theorem t : f n = match n with | 0 => 1 | _ => 2"),
+            ("theorem t : f n = match n with | 0 => 1\n  | _ => 2 := by\n  rfl\n", "theorem t : f n = match n with | 0 => 1\n  | _ => 2"),
+            (
+                "theorem t : f n = match n, m with\n  | 0, _ => 1\n  | _, _ => 2 := by\n  rfl\n",
+                "theorem t : f n = match n, m with\n  | 0, _ => 1\n  | _, _ => 2",
+            ),
+        ):
+            self.assertEqual(self.one(src).statement, stmt, src)
+
     def test_a_fun_with_its_first_arm_on_the_same_line_owns_the_arms_that_follow(self):
         d = self.one("theorem t : f = fun | 0 => 1\n  | _ => 2 := by\n  rfl\n")
         self.assertEqual(d.statement, "theorem t : f = fun | 0 => 1\n  | _ => 2")
@@ -289,6 +301,82 @@ class Generated(unittest.TestCase):
         self.assertGreater(with_binders, 3500)
 
 
+def generated_arm_theorem(rnd: random.Random):
+    """(source, statement, first arm) of a theorem defined by match arms whose type holds a fun/λ/match in many shapes"""
+    typ_parts = rnd.choice(
+        [
+            "∀ n, f n = n",
+            "∀ n, (List.range n).map fun i => i = List.range n",
+            "∀ n, (fun i => i) n = n",
+            "∀ n, id (λ i => i + 1) n = n + 1",
+            "∀ n, (match n with | 0 => 0 | _ => n) = n",
+            "∀ n, k n = (let a := n; a)",
+            "∀ n, k n = have h := n; n",
+        ]
+    )
+    pre = rnd.choice(["", " (n : Nat)", " {α : Type} [Foo α]"])
+    statement = f"theorem t{rnd.randint(0, 999)}{pre} : {typ_parts}"
+    indent = rnd.choice(["  ", "    ", ""])
+    arms = [
+        f"{indent}| 0 => "
+        + rnd.choice(
+            [
+                "rfl",
+                "by simp",
+                "by\n      obtain ⟨a, b⟩ := foo",
+                "by\n      calc a = b := rfl\n        _ = c := rfl",
+                "by\n      have h := foo\n      let q := 1\n      simp",
+            ]
+        )
+    ]
+    arms.append(f"{indent}| n + 1 => " + rnd.choice(["rfl", "by\n      set k := n with hk\n      simp"]))
+    nxt = rnd.choice(["", "\ndef f : Nat := 1", "\ntheorem u : True := trivial", "\nend Foo", "\n/-- doc -/\ntheorem u : True := trivial"])
+    return statement + "\n" + "\n".join(arms) + "\n" + nxt + "\n", statement, arms[0]
+
+
+class GeneratedArms(unittest.TestCase):
+    def test_3000_arm_theorems(self):
+        """shapes whose arms are the theorem's own: no fun/λ/match in the type, or one that is parenthesised or whose body ends on its line"""
+        rnd = random.Random(20261113)
+        for _ in range(3000):
+            src, statement, first_arm = generated_arm_theorem(rnd)
+            ds = le.extract_declarations(src)
+            d = ds[0]
+            self.assertEqual(d.statement, statement, src)
+            self.assertTrue(d.proof.startswith(first_arm.strip()), src)
+            self.assertEqual([x.name for x in ds[1:]], [x.name for x in ds[1:] if x.name == "u"], src)  # nothing else was swallowed
+
+
+def generated_lambda_type_theorem(rnd: random.Random):
+    """(source, statement) of a theorem with a fun/λ/match in its type, in the shapes that own arms, followed by its proof"""
+    typ = rnd.choice(
+        [
+            "f n = match n with | 0 => 1 | _ => 2",
+            "f n = match n with\n      | 0 => 1\n      | _ => 2",
+            "h = fun\n      | 0 => 1\n      | _ => 2",
+            "h = fun | 0 => 1 | _ => 2",
+            "h = fun | 0 => 1\n      | _ => 2",
+            "g = λ\n      | 0 => 1\n      | _ => 2",
+        ]
+    )
+    statement = f"theorem t{rnd.randint(0, 999)} : {typ}"
+    proof = rnd.choice([":= rfl", ":= by\n  rfl", ":= by\n  obtain ⟨a, b⟩ := foo\n  simp", ":= by\n  set k := 1\n  calc a = b := rfl"])
+    nxt = rnd.choice(["", "\ndef f : Nat := 1", "\ntheorem u : True := trivial"])
+    return statement + " " + proof + "\n" + nxt + "\n", statement
+
+
+class GeneratedLambdaTypes(unittest.TestCase):
+    def test_3000_theorems_whose_type_owns_arms(self):
+        """the type's arms are not the theorem's: the statement runs to the declaration's own `:=` (the real records: fundamentalSystem_legal_rules, singleton_cost_cases, source_le_cost, cost_le_of).
+        Known limit, 0 of the 54,049 real records of batch 7: an arm-DEFINED theorem (no `:=` of its own) whose type also holds such a fun/match cannot be told from this shape, and is read as this one."""
+        rnd = random.Random(20261114)
+        for _ in range(3000):
+            src, statement = generated_lambda_type_theorem(rnd)
+            d = le.extract_declarations(src)[0]
+            self.assertEqual(d.statement, statement, src)
+            self.assertTrue(d.proof.startswith(":="), src)
+
+
 class Mutants(unittest.TestCase):
     def test_without_the_binder_pattern_the_real_example_is_cut_again(self):
         original = le._TYPE_BINDER_RE
@@ -331,10 +419,9 @@ class Mutants(unittest.TestCase):
         import inspect
 
         src = inspect.getsource(le._find_statement_end)
-        line = 'if not rest or rest.endswith("with") or rest.startswith("|"):'
-        self.assertEqual(src.count(line), 1)
+        line = next(ln for ln in src.splitlines() if ln.strip().startswith("if not rest or"))
         ns = dict(vars(le))
-        exec(src.replace(line, "if True:"), ns)
+        exec(src.replace(line, line[: len(line) - len(line.lstrip())] + "if True:"), ns)
         text = "theorem t : ∀ n, (List.range n).map fun i => i = List.range n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n"
         start = le._DECL_KEYWORD_RE.search(text).end()
         mutant_end = ns["_find_statement_end"](text, start)

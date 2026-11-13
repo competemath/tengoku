@@ -129,6 +129,7 @@ _TYPE_BINDER_RE = re.compile(r"(?<![\w.'!?])(?:letI|haveI|let|have)(?![\w'!?])")
 _MATCH_ARM_RE = re.compile(r"\n[ \t]*\|[^\n]*=>")
 # Arms that belong to the TYPE, not to the theorem: `theorem t : f = fun\n  | 0 => 1\n  | _ => 2 := by ...`. After one of these words at depth 0 that ends its line (or opens with an arm, or is a
 # `match ... with`) an arm is not the declaration's own.
+_WITH_RE = re.compile(r"(?<![\w.'!?])with(?![\w'!?])")  # a `match ... with` whose first arm is on the same line
 _LAMBDA_RE = re.compile(r"(?<![\w.'!?])(?:fun|λ|match)(?![\w'!?])")
 
 
@@ -166,8 +167,8 @@ def _find_statement_end(text: str, search_from: int) -> int | None:
             continue
         elif depth == 0 and ch in "fλm" and (lm := _LAMBDA_RE.match(text, i)):
             rest = text[lm.end() : text.find("\n", lm.end()) if text.find("\n", lm.end()) != -1 else len(text)].strip()
-            # only a `fun`/`λ` that ends its line (its arms follow), `match ... with`, or `fun | ...` owns the arms that follow; `fun i => i = x` on one line does not
-            if not rest or rest.endswith("with") or rest.startswith("|"):
+            # only a `fun`/`λ` that ends its line (its arms follow), `match ... with` (its first arm may follow on the same line), or `fun | ...` owns the arms that follow; `fun i => i = x` on one line does not
+            if not rest or rest.endswith("with") or rest.startswith("|") or (lm.group(0) == "match" and _WITH_RE.search(rest)):
                 lambda_seen = True
         elif depth == 0 and ch == "\n" and text[i:].lstrip().startswith(("theorem ", "lemma ")):
             # Next declaration started before `:=` was found — bail out
