@@ -1,7 +1,9 @@
 """scripts/isnad_tag.py: writing tags into Lean files, taking them out, and the equivalence law. The ranges are the real ones: `tools/isnad/tagger/ranges.json` is what
 `tengoku-isnad --ranges` printed for `tools/isnad/tagger/Fixture.lean` (CI: pr-tests, job isnad, compares a fresh run against it)."""
 
+import contextlib
 import importlib.util
+import io
 import json
 import random
 import re
@@ -705,6 +707,60 @@ class RangeDifferences(unittest.TestCase):
         self.assertTrue(any(ln.startswith("ranges: Fx.one_line: Lean none; pinned ") for ln in lines))
         self.assertTrue(any(ln.startswith('ranges: Fx.with_where.aux: Lean {"range": [57, 2, 57, 40]') for ln in lines))
         self.assertEqual(lines, sorted(lines))
+
+    def test_tagtest_prints_them_when_lean_disagrees(self):
+        # tagtest with Lean replaced: the fixture's own ranges come back, one changed and one more name; the job must fail and print exactly those two names
+        def line(name, rng, sel):
+            return "\t".join(
+                [
+                    isnad.RANGE_TAG,
+                    name,
+                    isnad.FIXTURE_MODULE,
+                    f"{rng[0]}:{rng[1]}",
+                    f"{rng[2]}:{rng[3]}",
+                    f"{sel[0]}:{sel[1]}",
+                    f"{sel[2]}:{sel[3]}",
+                ]
+            )
+
+        lines = [line(n, v["range"], v["sel"]) for n, v in RANGES.items() if n != "Fx.with_where.aux"]
+        lines.append(line("Fx.with_where.aux", [57, 2, 57, 40], [57, 2, 57, 5]))
+        lines.append(line("Fx.extra", [70, 0, 70, 9], [70, 8, 70, 9]))
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "compile_fixture", lambda d: None),
+            mock.patch.object(isnad, "fixture_facts", lambda d, exe: ([], lines)),
+            contextlib.redirect_stdout(out),
+        ):
+            self.assertEqual(isnad.tagtest(), 1)
+        printed = [ln for ln in out.getvalue().splitlines() if ln.startswith("ranges: ")]
+        self.assertEqual([ln.split(":")[1].strip() for ln in printed], ["Fx.extra", "Fx.with_where.aux"])
+        self.assertIn("FAIL Lean's ranges for the fixture are not the ones in tools/isnad/tagger/ranges.json", out.getvalue())
+
+    def test_tagtest_prints_nothing_when_lean_agrees(self):
+        def line(name, rng, sel):
+            return "\t".join(
+                [
+                    isnad.RANGE_TAG,
+                    name,
+                    isnad.FIXTURE_MODULE,
+                    f"{rng[0]}:{rng[1]}",
+                    f"{rng[2]}:{rng[3]}",
+                    f"{sel[0]}:{sel[1]}",
+                    f"{sel[2]}:{sel[3]}",
+                ]
+            )
+
+        lines = [line(n, v["range"], v["sel"]) for n, v in RANGES.items()]
+        out = io.StringIO()
+        with (
+            mock.patch.object(isnad, "compile_fixture", lambda d: None),
+            mock.patch.object(isnad, "fixture_facts", lambda d, exe: ([], lines)),
+            contextlib.redirect_stdout(out),
+        ):
+            isnad.tagtest()
+        self.assertNotIn("ranges: ", out.getvalue())
+        self.assertNotIn("not the ones in tools/isnad/tagger/ranges.json", out.getvalue())
 
 
 if __name__ == "__main__":
