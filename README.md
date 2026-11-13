@@ -1,3 +1,8 @@
+> [!WARNING]
+> **Tengoku is changing fast. If you are planning a serious project on it, wait for the v2 release.**
+> It has been going through many breaking changes: modules move, names change, and libraries are removed or rebuilt. Anything you build on today may need rework.
+> Releases after v2 will come with migration support, so moving from one release to the next has a written path. Until then, pin a specific commit and expect to re-pin by hand.
+
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
 <h1 align="center">Tengoku (天国)</h1>
 <p align="center"><em>Formal mathematics from many Lean projects, translated onto one Lean version and machine-checked.</em></p>
