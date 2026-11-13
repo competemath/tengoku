@@ -12,12 +12,11 @@ Invariants:
   1. Nothing is lost: for every real record the new statement plus the new proof is the old statement plus the old proof, up to whitespace.
   2. Every real record that ended in a let/have binder (615 of the 758) now ends its statement after the claim. The new and the old statement are one a prefix of the other: the new one is longer when the old
      one stopped inside the type, and shorter when the old one had swallowed the arms of a theorem defined by match arms.
-  3. A real record the old code split right is split the same way (3,905 of the 3,944 sampled; 5 cannot be split from the 200 characters of proof the fixture keeps; the 34 others were wrong before:
+  3. A real record the old code split right is split the same way (3,904 of the 3,944 sampled; 6 cannot be split from the 200 characters of proof the fixture keeps; the 34 others were wrong before:
      11 cut at a binder, 23 that had swallowed their match arms).
-     Known limit, unchanged: a theorem defined by match arms whose arms hold a `:=` of a keyword that is not a binder (`obtain`, `set`) is still cut inside an arm (about 90 of the 758).
   4. 5,000 generated declarations with 0 to 4 binders of the four kinds, nested brackets, default arguments, comments and identifiers that contain the keywords: the statement is exactly the text before the
      declaration's own `:=`.
-  5. Mutants: the pattern that finds binders removed, and the proof-end pattern as it was (a match arm at column 0 ended the proof) each fail a real check."""
+  5. Mutants: the pattern that finds binders removed, the arm pattern removed, and the proof-end pattern as it was (a match arm at column 0 ended the proof) each fail a real check."""
 
 from __future__ import annotations
 
@@ -92,7 +91,12 @@ class RealRecords(unittest.TestCase):
                 self.assertFalse(ends_in_binder(d.statement), r["name"])
             grew += len(d.statement) > len(r["statement"])
         self.assertGreaterEqual(binder_ending_before, 600)
-        self.assertGreaterEqual(grew, 600)  # the rest are cut inside a match arm of a theorem defined by arms, a limit this change leaves
+        self.assertGreaterEqual(
+            grew, 590
+        )  # the others are theorems defined by match arms whose old statement had swallowed their arms: shorter now
+        self.assertEqual(
+            [r["name"] for r in REAL["truncated"] if MATCH_ARM.search(split(r).statement)], []
+        )  # no statement holds an arm line any more (Gitar on #811)
 
     def test_the_records_the_old_code_split_right_are_split_the_same_way(self):
         same = changed = 0
@@ -109,7 +113,7 @@ class RealRecords(unittest.TestCase):
             self.assertTrue(a.startswith(b) or b.startswith(a), r["name"])
             last = r["statement"].rstrip().splitlines()[-1]
             self.assertTrue(BINDER_LINE.match(last) or MATCH_ARM.search(r["statement"]), r["name"])  # it was a truncation too
-        self.assertEqual((same, changed), (3905, 34))
+        self.assertEqual((same, changed), (3904, 34))
 
     def test_gitars_example(self):
         (d,) = le.extract_declarations(
@@ -162,10 +166,23 @@ class Cases(unittest.TestCase):
         self.assertTrue(d.proof.startswith("| 0 => rfl"))
         self.assertIn("simp", d.proof)
 
-    def test_known_limit_an_arm_with_a_non_binder_assignment_still_cuts_the_statement(self):
-        """unchanged by this change (about 90 of the 758 real records): `obtain ... := e` in an arm is the first `:=` the scan meets that is not a binder's"""
-        d = self.one("theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n")
-        self.assertTrue(d.statement.endswith("obtain ⟨a, b⟩"))
+    def test_an_assignment_inside_an_arm_does_not_end_the_statement(self):
+        """Gitar on #811: `obtain ... := e`, a `set ... := e` or a `calc` step inside an arm is not the declaration's `:=`; the statement ends at the first arm"""
+        for body in (
+            "obtain ⟨a, b⟩ := foo n\n      simp",
+            "set k := n + 1 with hk\n      simp",
+            "calc n + 1 + 0 = n + 1 := by simp\n        _ = n + 1 := rfl",
+            "have h := foo n\n      calc n + 1 = n + 1 := rfl",
+        ):
+            d = self.one(f"theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      {body}\n")
+            self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n", body)
+            self.assertIn(body.splitlines()[0], d.proof, body)
+
+    def test_arms_that_belong_to_the_type_do_not_end_the_statement(self):
+        d = self.one("theorem t : f = fun\n  | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : f = fun\n  | 0 => 1\n  | _ => 2")
+        d = self.one("theorem t : g = match n with\n  | 0 => 1\n  | _ => 2 := by\n  rfl\n")
+        self.assertEqual(d.statement, "theorem t : g = match n with\n  | 0 => 1\n  | _ => 2")
 
     def test_have_and_let_in_arms_are_consumed_as_binders_so_the_statement_still_ends_at_the_first_arm(self):
         d = self.one(
@@ -261,7 +278,7 @@ class Mutants(unittest.TestCase):
         le._TYPE_BINDER_RE = re.compile(r"(?!)")
         try:
             cut = [r for r in REAL["truncated"] if (d := split(r)) is not None and ends_in_binder(d.statement)]
-            self.assertGreaterEqual(len(cut), 600)  # what the harvest did
+            self.assertGreaterEqual(len(cut), 590)  # what the harvest did
             (d,) = le.extract_declarations("theorem t : let N := 3; N = 3 := by decide\n")
             self.assertEqual(d.statement, "theorem t : let N")
         finally:
@@ -278,18 +295,19 @@ class Mutants(unittest.TestCase):
         (d,) = le.extract_declarations("theorem t : ∀ p : Nat, p = p\n| 0 => rfl\n| p + 1 => rfl\n")
         self.assertIn("p + 1", d.proof)
 
-    def test_without_the_stop_at_the_next_command_an_arm_theorem_swallows_it(self):
-        src = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => rfl\n\ndef f : Nat := 1\n"
-        (t,) = [d for d in le.extract_declarations(src) if d.name == "t"]
-        self.assertEqual(t.statement, "theorem t : ∀ n : Nat, n + 0 = n")
-        original = le._TOP_LEVEL_LINE_RE
-        # the stop reads this pattern; a pattern that never matches is the code before the fix
-        le._TOP_LEVEL_LINE_RE = re.compile(r"(?!)")
+    def test_without_the_arm_pattern_an_assignment_inside_an_arm_cuts_the_statement_again(self):
+        src = "theorem t : ∀ n : Nat, n + 0 = n\n  | 0 => rfl\n  | n + 1 => by\n      obtain ⟨a, b⟩ := foo n\n      simp\n"
+        (d,) = le.extract_declarations(src)
+        self.assertEqual(d.statement, "theorem t : ∀ n : Nat, n + 0 = n")
+        original = le._MATCH_ARM_RE
+        le._MATCH_ARM_RE = re.compile(r"(?!)")
         try:
-            (t2,) = [d for d in le.extract_declarations(src) if d.name == "t"]
-            self.assertIn("def f", t2.statement)
+            (d2,) = le.extract_declarations(src)
+            self.assertTrue(
+                d2.statement.endswith("obtain ⟨a, b⟩")
+            )  # what the harvest did (7 records of batch 7, about 90 of the 758 sampled)
         finally:
-            le._TOP_LEVEL_LINE_RE = original
+            le._MATCH_ARM_RE = original
 
     def test_without_the_arm_fallback_an_arm_theorem_with_a_let_is_skipped(self):
         src = "theorem t : ∀ p : Nat,\n    let a := p\n    a = p\n  | 0 => rfl\n  | p + 1 => rfl\n"
