@@ -33,6 +33,7 @@ from _git import (
     unplaced,
 )
 from restructure_check import is_restructure
+from roots_check import added_reports
 from studied_check import is_studied
 from tag_check import is_tag, module_of
 
@@ -109,6 +110,10 @@ intake_at_base = {
 group = changed_files(base, head)
 if group and all(st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in intake_at_base for st, p in group):
     gone_ns |= intake_at_base
+# A ROOTS PR (scripts/ci/roots_check.py) edits the modules of intake libraries in place, and a manifest only when a record's name starts with a root. A library whose roots have no
+# record has no manifest in the group, so it was regenerated from its corpus and came out deleted (2026-11-13, tengoku#797 wave 2: Toric/Hopf/GrpAlg.lean, 50 deletions). The libraries
+# of the reports the group adds are skipped; every other library of the group is regenerated as before.
+gone_ns |= set(added_reports(base, head)) & intake_at_base
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
 left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)
 touched: set[str] = set()  # libraries with any data change (staging or trusted)
