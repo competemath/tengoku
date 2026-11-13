@@ -39,14 +39,18 @@ section PreservesEpimorphisms
 
 variable {R : Type u} {S : Type u} [CommRing R] [CommRing S] (f : R →+* S)
 
-/-- Restriction of scalars preserves epimorphisms of module objects.-/
+/-- Restriction of scalars preserves epimorphisms of module objects.
+@isnad1 id=preserve.0h3v.s5.15c8d101bc00 from=translated src=- shape=e0bb3683 vocab=4455e8ce
+-/
 instance restrictScalars_preservesEpimorphisms :
     (restrictScalars f).PreservesEpimorphisms where
   preserves {X Y} g hg := by
     rw [ModuleCat.epi_iff_surjective] at hg ⊢
     exact hg
 
-/-- Extension of scalars preserves projective module objects.-/
+/-- Extension of scalars preserves projective module objects.
+@isnad1 id=preserve.0h3v.s5.258c3ba4d04c from=translated src=- shape=6c65be4e vocab=15d5d1f8
+-/
 instance extendScalars_preservesProjectiveObjects :
     (extendScalars.{u, u, u} f).PreservesProjectiveObjects :=
   Functor.preservesProjectiveObjects_of_adjunction_of_preservesEpimorphisms
@@ -60,7 +64,9 @@ open Abelian
 
 variable {R : Type u} {S : Type u} [CommRing R] [CommRing S] (f : R →+* S)
 
-/-- Restriction of scalars preserves a strict projective-dimension bound.-/
+/-- Restriction of scalars preserves a strict projective-dimension bound.
+@isnad1 id=hasproje.1h5v.s7.c7c75aa4617a from=translated src=- shape=a54ba2c0 vocab=61cc8654
+-/
 theorem hasProjectiveDimensionLT_restrictScalars
     [(restrictScalars.{u} f).PreservesProjectiveObjects]
     [(restrictScalars.{u} f).PreservesHomology]
@@ -99,7 +105,9 @@ theorem hasProjectiveDimensionLT_restrictScalars
           (by omega))
 
 /-- A retract of the restriction of its scalar extension inherits any strict projective-dimension
-bound held by that extension.-/
+bound held by that extension.
+@isnad1 id=hasproje.1h6v.s8.e18bd35717b4 from=translated src=- shape=aa512dbe vocab=37aebdd2
+-/
 theorem hasProjectiveDimensionLT_of_retract_restrictScalars_extendScalars
     [Small.{u} R] [Small.{u} S]
     [(restrictScalars.{u} f).PreservesProjectiveObjects]
@@ -131,7 +139,9 @@ private lemma adj_homEquiv_naturality_left
   simp [Adjunction.homEquiv_naturality_left]
 
 /-- A subsingleton Ext type from an extended module yields the corresponding subsingleton Ext type
-into a restricted module.-/
+into a restricted module.
+@isnad1 id=subsingl.1h6v.s7.be05afdddf38 from=translated src=- shape=77852b9e vocab=6bcbfbd3
+-/
 theorem subsingleton_ext_restrictScalars_of_subsingleton_ext_extendScalars
     [Small.{u} R] [Small.{u} S]
     [(extendScalars.{u, u, u} f).PreservesHomology]

@@ -59,7 +59,9 @@ noncomputable abbrev ModuleCat.restrictScalarsRight
   _root_.ModuleCat.restrictScalars (algebraMap k A₂)
 
 /-- Scalar multiplication through the base algebra map on a tensor product module agrees with the
-original base-ring scalar action.-/
+original base-ring scalar action.
+@isnad1 id=eq.0h7v.s10.bc15a7af8f38 from=translated src=- shape=0776896d vocab=2f3d3a17
+-/
 theorem ModuleCat.tensorProduct_algebraMap_smul
     (X : _root_.ModuleCat.{u} A₁) (Y : _root_.ModuleCat.{u} A₂) (c : k) (z : X ⊗[k] Y) :
     (algebraMap k (A₁ ⊗[k] A₂) c) • z = c • z := by
@@ -95,14 +97,18 @@ noncomputable def ModuleCat.restrictScalarsTensorProductIso
   (ModuleCat.restrictScalarsTensorProductLinearEquiv X Y).toModuleIso
 
 /-- The forward morphism of the scalar-restriction tensor-product isomorphism sends each pure
-tensor to the same pure tensor.-/
+tensor to the same pure tensor.
+@isnad1 id=eq.0h7v.s10.9aa7c39213e4 from=translated src=- shape=56bc91ea vocab=9e8859a8
+-/
 @[simp]
 theorem ModuleCat.restrictScalarsTensorProductIso_hom_tmul
     (X : _root_.ModuleCat.{u} A₁) (Y : _root_.ModuleCat.{u} A₂) (x : X) (y : Y) :
     (ModuleCat.restrictScalarsTensorProductIso X Y).hom (x ⊗ₜ[k] y) = x ⊗ₜ[k] y := rfl
 
 /-- The scalar-restriction tensor-product isomorphism commutes with a pair of module morphisms and
-their tensor product.-/
+their tensor product.
+@isnad1 id=eq.0h9v.s10.eef04239b77f from=translated src=- shape=7cf045d2 vocab=73e604b6
+-/
 theorem ModuleCat.restrictScalarsTensorProductIso_naturality
     {X X' : _root_.ModuleCat.{u} A₁} {Y Y' : _root_.ModuleCat.{u} A₂}
     (f : X ⟶ X') (g : Y ⟶ Y') :
@@ -167,7 +173,9 @@ noncomputable def ProjectiveResolution.restrictScalarsTensorProductXIso
     (P₁.complex.X i.1.1) (P₂.complex.X i.1.2))
 
 /-- The inverse degreewise comparison carries the canonical base-ring inclusion to the image of the
-corresponding inclusion before scalar restriction.-/
+corresponding inclusion before scalar restriction.
+@isnad1 id=eq.1h10v.s12.55273a13ad5d from=translated src=- shape=170d9a1d vocab=7cfd2efd
+-/
 theorem ProjectiveResolution.restrictScalarsTensorProductXIso_inv_iota
     (P₁ : CategoryTheory.ProjectiveResolution M₁)
     (P₂ : CategoryTheory.ProjectiveResolution M₂)
@@ -190,7 +198,9 @@ theorem ProjectiveResolution.restrictScalarsTensorProductXIso_inv_iota
     Limits.ι_comp_sigmaComparison]
 
 /-- The degreewise scalar-restriction comparison commutes with the canonical inclusion from a
-bidegree into its total degree.-/
+bidegree into its total degree.
+@isnad1 id=eq.1h10v.s12.a0a9ad20c569 from=translated src=- shape=86542bcd vocab=954caf5c
+-/
 theorem ProjectiveResolution.restrictScalarsTensorProductXIso_iota
     (P₁ : CategoryTheory.ProjectiveResolution M₁)
     (P₂ : CategoryTheory.ProjectiveResolution M₂)
@@ -213,7 +223,9 @@ theorem ProjectiveResolution.restrictScalarsTensorProductXIso_iota
     Iso.hom_inv_id, Category.id_comp]
 
 /-- The degreewise scalar-restriction comparison intertwines the first bifunctor differential with
-the first differential on the tensor product of the base-ring complexes.-/
+the first differential on the tensor product of the base-ring complexes.
+@isnad1 id=eq.0h10v.s12.97506be08e9a from=translated src=- shape=a9d9cfdf vocab=d304e6da
+-/
 theorem ProjectiveResolution.restrictScalarsTensorProductXIso_d1
     (P₁ : CategoryTheory.ProjectiveResolution M₁)
     (P₂ : CategoryTheory.ProjectiveResolution M₂)
@@ -258,7 +270,9 @@ theorem ProjectiveResolution.restrictScalarsTensorProductXIso_d1
       simp
 
 /-- The degreewise scalar-restriction comparison intertwines the second bifunctor differential with
-the second differential on the tensor product of the base-ring complexes.-/
+the second differential on the tensor product of the base-ring complexes.
+@isnad1 id=eq.0h10v.s12.ba5c9be66692 from=translated src=- shape=a9d9cfdf vocab=201bffde
+-/
 theorem ProjectiveResolution.restrictScalarsTensorProductXIso_d2
     (P₁ : CategoryTheory.ProjectiveResolution M₁)
     (P₂ : CategoryTheory.ProjectiveResolution M₂)
@@ -335,7 +349,9 @@ noncomputable def ProjectiveResolution.restrictScalarsTensorProductComplexIso
       ← Category.assoc, ← Category.assoc, Iso.inv_hom_id, Category.id_comp, Category.id_comp]
 
 /-- At bidegree zero, the scalar-restriction comparison identifies the induced resolution map with
-the tensor product of the two resolution maps.-/
+the tensor product of the two resolution maps.
+@isnad1 id=eq.1h7v.s14.580397fddfb3 from=translated src=- shape=f41edc40 vocab=262cda0f
+-/
 theorem ProjectiveResolution.restrictScalarsTensorProductIso_augmentation
     (P₁ : CategoryTheory.ProjectiveResolution M₁)
     (P₂ : CategoryTheory.ProjectiveResolution M₂)

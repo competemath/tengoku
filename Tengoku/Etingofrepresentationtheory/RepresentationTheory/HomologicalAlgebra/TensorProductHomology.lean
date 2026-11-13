@@ -59,7 +59,9 @@ private lemma iCycles_tensor_comp_d₂ (j m j' : ℤ) :
   rw [mapBifunctor.d₂_eq' _ _ _ _ j (show (ComplexShape.up ℤ).Rel m (m + 1) by simp) j']
   exact comp_units_zsmul_eq_zero _ _ _ (h0 _)
 
-/-- The degree-component map obtained from two cycles is annihilated by every outgoing differential.-/
+/-- The degree-component map obtained from two cycles is annihilated by every outgoing differential.
+@isnad1 id=eq.0h6v.s10.a55f4692248e from=translated src=- shape=1ed24c8e vocab=13637380
+-/
 lemma cyclesTensorCyclesToTensorComponent_comp_d (j m j' : ℤ) :
     cyclesTensorCyclesToTensorComponent C D j m ≫ (HomologicalComplex.tensorObj C D).d (j + m) j' = 0 := by
   have h1 : HomologicalComplex.ιTensorObj C D j m (j + m) rfl ≫
@@ -81,7 +83,9 @@ noncomputable def cyclesTensorCyclesToTensorCycles (j m : ℤ) :
   (HomologicalComplex.tensorObj C D).liftCycles (cyclesTensorCyclesToTensorComponent C D j m) (j + m + 1) (by simp)
     (cyclesTensorCyclesToTensorComponent_comp_d C D j m _)
 
-/-- Including the induced tensor-product cycle map recovers the corresponding map into the degree component.-/
+/-- Including the induced tensor-product cycle map recovers the corresponding map into the degree component.
+@isnad1 id=eq.0h5v.s9.e8281b16d846 from=translated src=- shape=e1469741 vocab=bf349bd5
+-/
 @[reassoc (attr := simp)]
 lemma cyclesTensorCyclesToTensorCycles_comp_iCycles (j m : ℤ) :
     cyclesTensorCyclesToTensorCycles C D j m ≫ (HomologicalComplex.tensorObj C D).iCycles (j + m)
@@ -214,7 +218,9 @@ noncomputable def homologyTensorCyclesToTensorHomology (j m : ℤ) :
       exact HomologicalComplex.liftCycles_homologyπ_eq_zero_of_boundary _ _ _ _ _
         (toCycles_whiskerRight_cyclesTensorι C D j m)))
 
-/-- Projecting the first cycle factor to homology and then using the mixed map recovers the map defined on two cycle objects.-/
+/-- Projecting the first cycle factor to homology and then using the mixed map recovers the map defined on two cycle objects.
+@isnad1 id=eq.0h5v.s10.e518b3fec30f from=translated src=- shape=0012f962 vocab=5e91f2c3
+-/
 @[reassoc (attr := simp)]
 lemma tensorRight_homologyProjection_comp_homologyTensorCyclesToTensorHomology (j m : ℤ) :
     (C.homologyπ j ▷ D.cycles m) ≫ homologyTensorCyclesToTensorHomology C D j m = cyclesTensorCyclesToTensorHomology C D j m :=
@@ -234,29 +240,39 @@ noncomputable def homologyTensorHomologyToTensorHomology (j m : ℤ) :
       exact HomologicalComplex.liftCycles_homologyπ_eq_zero_of_boundary _ _ _ _ _
         (whiskerLeft_toCycles_cyclesTensorι C D j m)))
 
-/-- Projecting the second cycle factor to homology before the pairwise homology map gives the homology-tensored-with-cycles map.-/
+/-- Projecting the second cycle factor to homology before the pairwise homology map gives the homology-tensored-with-cycles map.
+@isnad1 id=eq.0h5v.s10.30bc0cf992b7 from=translated src=- shape=01be5b0a vocab=f92f5ec5
+-/
 @[reassoc (attr := simp)]
 lemma tensorLeft_homologyProjection_comp_homologyTensorHomologyToTensorHomology (j m : ℤ) :
     (C.homology j ◁ D.homologyπ m) ≫ homologyTensorHomologyToTensorHomology C D j m = homologyTensorCyclesToTensorHomology C D j m :=
   Cofork.IsColimit.π_desc (tensorLeft_homologyCokernel_isColimit D m (C.homology j))
 
-/-- Tensoring a canonical homology projection on the right by a module yields an epimorphism.-/
+/-- Tensoring a canonical homology projection on the right by a module yields an epimorphism.
+@isnad1 id=epi.0h4v.s8.5312fadba4aa from=translated src=- shape=d8c9fd59 vocab=bb660ad6
+-/
 instance tensorRight_homologyProjection_epi (j : ℤ) (Z : ModuleCat.{u} k) :
     Epi (C.homologyπ j ▷ Z) :=
   Limits.epi_of_isColimit_cofork (tensorRight_homologyCokernel_isColimit C j Z)
 
-/-- Tensoring a canonical homology projection on the left by a module preserves its epimorphism property.-/
+/-- Tensoring a canonical homology projection on the left by a module preserves its epimorphism property.
+@isnad1 id=epi.0h4v.s8.7d712f0d7ead from=translated src=- shape=70a5c75f vocab=7293892e
+-/
 instance tensorLeft_homologyProjection_epi (m : ℤ) (W : ModuleCat.{u} k) :
     Epi (W ◁ D.homologyπ m) :=
   Limits.epi_of_isColimit_cofork (tensorLeft_homologyCokernel_isColimit D m W)
 
-/-- The tensor product of the two canonical projections onto homology is an epimorphism.-/
+/-- The tensor product of the two canonical projections onto homology is an epimorphism.
+@isnad1 id=epi.0h5v.s9.285f57f78b8e from=translated src=- shape=33fe4122 vocab=bf6e11f1
+-/
 instance tensorHomologyProjections_epi (j m : ℤ) :
     Epi (C.homologyπ j ⊗ₘ D.homologyπ m) := by
   rw [MonoidalCategory.tensorHom_def]
   infer_instance
 
-/-- Passing both cycle factors to homology before applying the pairwise tensor-homology map gives the direct cycle-level map.-/
+/-- Passing both cycle factors to homology before applying the pairwise tensor-homology map gives the direct cycle-level map.
+@isnad1 id=eq.0h5v.s10.24276a09a2d6 from=translated src=- shape=d11b1e87 vocab=ec055370
+-/
 @[reassoc (attr := simp)]
 lemma tensorHomologyProjections_comp_homologyTensorHomologyToTensorHomology (j m : ℤ) :
     (C.homologyπ j ⊗ₘ D.homologyπ m) ≫ homologyTensorHomologyToTensorHomology C D j m
@@ -270,7 +286,9 @@ section Naturality
 
 variable {C C' D D' : CochainComplex (ModuleCat.{u} k) ℤ}
 
-/-- The component-level tensor map on cycles commutes with maps of the two complexes.-/
+/-- The component-level tensor map on cycles commutes with maps of the two complexes.
+@isnad1 id=eq.0h9v.s11.020ef884467e from=translated src=- shape=f41051ab vocab=d973989e
+-/
 lemma cyclesTensorCyclesToTensorComponent_natural (f : C ⟶ C') (g : D ⟶ D') (j m : ℤ) :
     (HomologicalComplex.cyclesMap f j ⊗ₘ HomologicalComplex.cyclesMap g m)
         ≫ cyclesTensorCyclesToTensorComponent C' D' j m
@@ -283,7 +301,9 @@ lemma cyclesTensorCyclesToTensorComponent_natural (f : C ⟶ C') (g : D ⟶ D') 
   rw [MonoidalCategory.tensorHom_def]
   rfl
 
-/-- The map from tensors of cycles to tensor-product cycles is natural in both complexes.-/
+/-- The map from tensors of cycles to tensor-product cycles is natural in both complexes.
+@isnad1 id=eq.0h9v.s11.df7b2727c461 from=translated src=- shape=33f63854 vocab=d20fe52c
+-/
 lemma cyclesTensorCyclesToTensorCycles_natural (f : C ⟶ C') (g : D ⟶ D') (j m : ℤ) :
     (HomologicalComplex.cyclesMap f j ⊗ₘ HomologicalComplex.cyclesMap g m)
         ≫ cyclesTensorCyclesToTensorCycles C' D' j m
@@ -293,7 +313,9 @@ lemma cyclesTensorCyclesToTensorCycles_natural (f : C ⟶ C') (g : D ⟶ D') (j 
     Category.assoc, Category.assoc, cyclesTensorCyclesToTensorCycles_comp_iCycles, HomologicalComplex.cyclesMap_i,
     ← Category.assoc, cyclesTensorCyclesToTensorCycles_comp_iCycles, cyclesTensorCyclesToTensorComponent_natural]
 
-/-- The cycle-tensor map to tensor-product homology commutes with morphisms of both complexes.-/
+/-- The cycle-tensor map to tensor-product homology commutes with morphisms of both complexes.
+@isnad1 id=eq.0h9v.s11.78544565f740 from=translated src=- shape=3d0d76bb vocab=3564e14e
+-/
 lemma cyclesTensorCyclesToTensorHomology_natural (f : C ⟶ C') (g : D ⟶ D') (j m : ℤ) :
     (HomologicalComplex.cyclesMap f j ⊗ₘ HomologicalComplex.cyclesMap g m)
         ≫ cyclesTensorCyclesToTensorHomology C' D' j m
@@ -302,7 +324,9 @@ lemma cyclesTensorCyclesToTensorHomology_natural (f : C ⟶ C') (g : D ⟶ D') (
   rw [cyclesTensorCyclesToTensorHomology, cyclesTensorCyclesToTensorHomology, ← Category.assoc, cyclesTensorCyclesToTensorCycles_natural,
     Category.assoc, Category.assoc, HomologicalComplex.homologyπ_naturality]
 
-/-- The pairwise map from a tensor of homology objects to tensor-product homology is natural in both inputs.-/
+/-- The pairwise map from a tensor of homology objects to tensor-product homology is natural in both inputs.
+@isnad1 id=eq.0h9v.s11.6b4acbf971a8 from=translated src=- shape=33f63854 vocab=c253b098
+-/
 lemma homologyTensorHomologyToTensorHomology_natural (f : C ⟶ C') (g : D ⟶ D') (j m : ℤ) :
     (HomologicalComplex.homologyMap f j ⊗ₘ HomologicalComplex.homologyMap g m)
         ≫ homologyTensorHomologyToTensorHomology C' D' j m
@@ -327,7 +351,9 @@ noncomputable def totalHomologyTensorToTensorHomology (C D : CochainComplex (Mod
       ⟶ (HomologicalComplex.tensorObj C D).homology i :=
   Sigma.desc fun p => homologyTensorHomologyToTensorHomology C D p.1.1 p.1.2 ≫ eqToHom (by rw [p.2])
 
-/-- On each summand, the total-degree homology map agrees with the pairwise map followed by degree transport.-/
+/-- On each summand, the total-degree homology map agrees with the pairwise map followed by degree transport.
+@isnad1 id=eq.0h5v.s11.7d022b64d46c from=translated src=- shape=26adf645 vocab=07692641
+-/
 @[reassoc (attr := simp)]
 lemma sigmaInclusion_comp_totalHomologyTensorToTensorHomology (C D : CochainComplex (ModuleCat.{u} k) ℤ) (i : ℤ) (p : TotalDegreeIndex i) :
     Sigma.ι (fun p : TotalDegreeIndex i => C.homology p.1.1 ⊗ D.homology p.1.2) p
@@ -335,7 +361,9 @@ lemma sigmaInclusion_comp_totalHomologyTensorToTensorHomology (C D : CochainComp
       = homologyTensorHomologyToTensorHomology C D p.1.1 p.1.2 ≫ eqToHom (by rw [p.2]) :=
   Sigma.ι_desc _ _
 
-/-- The summand indexed by a chosen degree pair is sent by the total map through the corresponding pairwise homology morphism.-/
+/-- The summand indexed by a chosen degree pair is sent by the total map through the corresponding pairwise homology morphism.
+@isnad1 id=eq.0h5v.s10.363c3657f1eb from=translated src=- shape=b763e70d vocab=7d7a30be
+-/
 lemma sigmaInclusion_pair_comp_totalHomologyTensorToTensorHomology (C D : CochainComplex (ModuleCat.{u} k) ℤ) (j m : ℤ) :
     Sigma.ι (fun p : TotalDegreeIndex (j + m) => C.homology p.1.1 ⊗ D.homology p.1.2)
         ⟨(j, m), rfl⟩ ≫ totalHomologyTensorToTensorHomology C D (j + m)
@@ -363,7 +391,9 @@ noncomputable def totalHomologyTensorFunctor (i : ℤ) :
       HomologicalComplex.homologyMap_comp, HomologicalComplex.homologyMap_comp,
       MonoidalCategory.tensorHom_comp_tensorHom]
 
-/-- Mapping the total-degree functor after a summand inclusion equals the tensor of the induced homology maps followed by the target inclusion.-/
+/-- Mapping the total-degree functor after a summand inclusion equals the tensor of the induced homology maps followed by the target inclusion.
+@isnad1 id=eq.0h6v.s13.4f89c73516d1 from=translated src=- shape=8dee451c vocab=ba392e2d
+-/
 @[reassoc (attr := simp)]
 lemma sigmaInclusion_naturality (i : ℤ)
     {X Y : (CochainComplex (ModuleCat.{u} k) ℤ) × (CochainComplex (ModuleCat.{u} k) ℤ)}
@@ -392,7 +422,9 @@ noncomputable def totalHomologyTensorNatTrans (i : ℤ) :
       Category.comp_id, Category.id_comp]
     exact homologyTensorHomologyToTensorHomology_natural φ.1 φ.2 j m
 
-/-- The total-degree map from pairwise homology tensors is natural in both cochain complexes.-/
+/-- The total-degree map from pairwise homology tensors is natural in both cochain complexes.
+@isnad1 id=eq.0h8v.s12.e3e351c34198 from=translated src=- shape=ea8bcb23 vocab=e114883d
+-/
 lemma totalHomologyTensorToTensorHomology_natural {C C' D D' : CochainComplex (ModuleCat.{u} k) ℤ}
     (f : C ⟶ C') (g : D ⟶ D') (i : ℤ) :
     (totalHomologyTensorFunctor i).map ((f, g) : ((C, D) : (CochainComplex (ModuleCat.{u} k) ℤ) ×
@@ -404,7 +436,9 @@ lemma totalHomologyTensorToTensorHomology_natural {C C' D D' : CochainComplex (M
 
 end Assembly
 
-/-- The specified complex constructed from two cochain complexes agrees with their monoidal tensor object.-/
+/-- The specified complex constructed from two cochain complexes agrees with their monoidal tensor object.
+@isnad1 id=eq.0h3v.s7.ba90ef7874e5 from=translated src=- shape=09bef398 vocab=2dadb956
+-/
 lemma tensorComplex_eq_tensorObj (C D : CochainComplex (ModuleCat.{u} k) ℤ) :
     RepresentationTheory.Mathlib.Algebra.Homology.CochainComplex.Monoidal.CochainComplex.binaryOperation C D = HomologicalComplex.tensorObj C D :=
   rfl
@@ -426,10 +460,14 @@ add_decl_doc sigmaInclusion_comp_totalHomologyTensorToTensorHomology_assoc
 
 namespace Auxiliary
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.0h5v.s11.7d022b64d46c from=translated src=- shape=26adf645 vocab=07692641
+-/
 alias statement024740 := sigmaInclusion_comp_totalHomologyTensorToTensorHomology
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.0h7v.s11.7498f838393b from=translated src=- shape=14e932e0 vocab=07692641
+-/
 alias statement024741 := sigmaInclusion_comp_totalHomologyTensorToTensorHomology_assoc
 
 end Auxiliary
@@ -445,5 +483,7 @@ alias _root_.RepresentationTheory.HomologicalAlgebra.TensorProductHomology.Auxil
 /-- An auxiliary statement whose displayed formal type contains an elided term.-/
 alias _root_.RepresentationTheory.HomologicalAlgebra.TensorProductHomology.Auxiliary.statement020810 := _root_.RepresentationTheory.HomologicalAlgebra.TensorProductHomology.tensorRight_homologyCokernel_isColimit
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.0h5v.s10.363c3657f1eb from=translated src=- shape=b763e70d vocab=7d7a30be
+-/
 alias _root_.RepresentationTheory.HomologicalAlgebra.TensorProductHomology.Auxiliary.statement024742 := _root_.RepresentationTheory.HomologicalAlgebra.TensorProductHomology.sigmaInclusion_pair_comp_totalHomologyTensorToTensorHomology

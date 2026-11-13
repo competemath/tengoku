@@ -64,7 +64,9 @@ noncomputable def SymmetricAlgebra.prodAlgEquivTensorProduct :
       simpa using (SymmetricAlgebra.ι k (U × W)).map_add (u, 0) (0, w) |>.symm)
 
 /-- The product-to-tensor algebra equivalence sends a generator from the first factor to its left
-tensor inclusion.-/
+tensor inclusion.
+@isnad1 id=eq.0h4v.s12.9c21fa2457fe from=translated src=- shape=1130c50f vocab=894535c3
+-/
 @[simp]
 theorem SymmetricAlgebra.prodAlgEquivTensorProduct_iota_fst (u : U) :
     SymmetricAlgebra.prodAlgEquivTensorProduct k U W
@@ -75,7 +77,9 @@ theorem SymmetricAlgebra.prodAlgEquivTensorProduct_iota_fst (u : U) :
   simp [SymmetricAlgebra.prodAlgEquivTensorProduct, SymmetricAlgebra.prodToTensorProduct]
 
 /-- The product-to-tensor algebra equivalence sends a generator from the second factor to its right
-tensor inclusion.-/
+tensor inclusion.
+@isnad1 id=eq.0h4v.s12.9dff846216de from=translated src=- shape=21e2ae55 vocab=0f50bb59
+-/
 @[simp]
 theorem SymmetricAlgebra.prodAlgEquivTensorProduct_iota_snd (w : W) :
     SymmetricAlgebra.prodAlgEquivTensorProduct k U W

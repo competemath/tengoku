@@ -22,7 +22,9 @@ namespace Polynomial
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
-/-- A ring homomorphism carries the discriminant of a monic polynomial to the discriminant of its image.-/
+/-- A ring homomorphism carries the discriminant of a monic polynomial to the discriminant of its image.
+@isnad1 id=eq.1h4v.s6.0c58fa58f394 from=translated src=- shape=9007f75a vocab=3aa89a04
+-/
 theorem discr_map_of_monic [Nontrivial S] {f : R[X]} (hf : f.Monic) (φ : R →+* S) :
     (f.map φ).discr = φ f.discr := by
   rcases Nat.eq_zero_or_pos f.natDegree with h0 | hpos
@@ -42,7 +44,9 @@ theorem discr_map_of_monic [Nontrivial S] {f : R[X]} (hf : f.Monic) (φ : R →+
       (isUnit_one.neg).pow _
     exact ((hu.mul_right_inj).mp e2).symm
 
-/-- Under the stated derivative-degree condition, a polynomial is separable exactly when its discriminant is nonzero.-/
+/-- Under the stated derivative-degree condition, a polynomial is separable exactly when its discriminant is nonzero.
+@isnad1 id=iff.2h2v.s8.afac9f1e117c from=translated src=- shape=11f19000 vocab=67739444
+-/
 theorem discr_ne_zero_iff_separable_of_natDegree_derivative_eq {K : Type*} [Field K] {f : K[X]}
     (hpos : 0 < f.natDegree) (hd : f.derivative.natDegree = f.natDegree - 1) :
     f.discr ≠ 0 ↔ f.Separable := by
@@ -75,7 +79,9 @@ open Polynomial MvPolynomial
 
 variable {N : ℕ} {k : Type*} [Field k]
 
-/-- A characteristic polynomial with nonvanishing discriminant is separable.-/
+/-- A characteristic polynomial with nonvanishing discriminant is separable.
+@isnad1 id=separabl.2h3v.s6.5e708a3377f7 from=translated src=- shape=3eb289f6 vocab=ff7a7226
+-/
 theorem charpoly_separable_of_discr_ne_zero [CharZero k] (M : Matrix (Fin N) (Fin N) k)
     (hN : 0 < N) (h : M.discr ≠ 0) : M.charpoly.Separable := by
   have hpos : 0 < M.charpoly.natDegree := by
@@ -84,12 +90,16 @@ theorem charpoly_separable_of_discr_ne_zero [CharZero k] (M : Matrix (Fin N) (Fi
     natDegree_eq_of_degree_eq_some (degree_derivative (by omega))
   exact (Polynomial.discr_ne_zero_iff_separable_of_natDegree_derivative_eq hpos hd).mp h
 
-/-- The roots of a characteristic polynomial have no repetitions when its discriminant is nonzero.-/
+/-- The roots of a characteristic polynomial have no repetitions when its discriminant is nonzero.
+@isnad1 id=nodup.2h3v.s6.ee4550d0d922 from=translated src=- shape=d10fae18 vocab=969483e0
+-/
 theorem charpoly_roots_nodup_of_discr_ne_zero [CharZero k] (M : Matrix (Fin N) (Fin N) k)
     (hN : 0 < N) (h : M.discr ≠ 0) : M.charpoly.roots.Nodup :=
   Polynomial.nodup_roots (charpoly_separable_of_discr_ne_zero M hN h)
 
-/-- A nonzero characteristic-polynomial discriminant gives exactly one distinct root for each matrix dimension.-/
+/-- A nonzero characteristic-polynomial discriminant gives exactly one distinct root for each matrix dimension.
+@isnad1 id=eq.2h3v.s6.a4a15298a953 from=translated src=- shape=8070628b vocab=ef6f2fd3
+-/
 theorem charpoly_rootFinset_card_eq_of_discr_ne_zero [IsAlgClosed k] [CharZero k] [DecidableEq k]
     (M : Matrix (Fin N) (Fin N) k)
     (hN : 0 < N) (h : M.discr ≠ 0) : M.charpoly.roots.toFinset.card = N := by
@@ -102,7 +112,9 @@ noncomputable def genericMatrixDiscriminant
     (k : Type*) [Field k] (N : ℕ) : MvPolynomial (Fin N × Fin N) k :=
   (mvPolynomialX (Fin N) (Fin N) k).discr
 
-/-- Evaluating the generic matrix discriminant gives the discriminant of the resulting matrix.-/
+/-- Evaluating the generic matrix discriminant gives the discriminant of the resulting matrix.
+@isnad1 id=eq.0h3v.s8.f99863d2b0d9 from=translated src=- shape=95c2daf2 vocab=d4c3e62c
+-/
 theorem eval_genericMatrixDiscriminant (N : ℕ) (x : Fin N × Fin N → k) :
     MvPolynomial.eval x (genericMatrixDiscriminant k N) =
       (Matrix.of fun i j => x (i, j)).discr := by
@@ -117,7 +129,9 @@ theorem eval_genericMatrixDiscriminant (N : ℕ) (x : Fin N × Fin N → k) :
   simp only [Matrix.discr]
   rw [hchar, Polynomial.discr_map_of_monic (charpoly_monic _) (MvPolynomial.eval x)]
 
-/-- The generic matrix discriminant polynomial is nonzero in positive size over characteristic zero.-/
+/-- The generic matrix discriminant polynomial is nonzero in positive size over characteristic zero.
+@isnad1 id=ne.1h2v.s6.12cf548dfddd from=translated src=- shape=c3764fba vocab=15c8639f
+-/
 theorem genericMatrixDiscriminant_ne_zero [CharZero k]
     (N : ℕ) (hN : 0 < N) : genericMatrixDiscriminant k N ≠ 0 := by
   intro hzero

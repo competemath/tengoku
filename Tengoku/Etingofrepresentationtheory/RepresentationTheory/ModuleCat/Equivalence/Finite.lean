@@ -17,7 +17,9 @@ open CategoryTheory
 namespace RepresentationTheory.ModuleCat.Equivalence.Finite
 
 /-- An equivalence between module categories over Artinian rings sends the regular module to a
-finite module.-/
+finite module.
+@isnad1 id=finite.0h3v.s7.2cf3a6633010 from=translated src=- shape=6fd442b9 vocab=96264441
+-/
 theorem ModuleCat.Equivalence.finite_image_regular
     {B₁ : Type u} [Ring B₁] [IsArtinianRing B₁]
     {B₂ : Type u} [Ring B₂] [IsArtinianRing B₂]

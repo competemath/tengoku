@@ -52,7 +52,9 @@ private def matrixBaseChange (n : ℕ) (D : Type u) [Ring D] [Algebra k D] :
   c1.trans (c2.trans c3)
 
 /-- An algebra equivalence with a finite product of matrix algebras induces a nonempty
-scalar-extended algebra equivalence with the corresponding product.-/
+scalar-extended algebra equivalence with the corresponding product.
+@isnad1 id=nonempty.0h7v.s10.a92a7a0ac67b from=translated src=- shape=aefbd9a1 vocab=d04fd620
+-/
 theorem nonempty_tensorProduct_algEquiv_pi_matrix
     {n : ℕ} (D : Fin n → Type u) [∀ i, DivisionRing (D i)] [∀ i, Algebra k (D i)]
     (d : Fin n → ℕ) {A : Type u} [Ring A] [Algebra k A]

@@ -16,7 +16,9 @@ open CategoryTheory CategoryTheory.Limits
 
 namespace RepresentationTheory.FDRep.Biproduct
 
-/-- A morphism of finite-dimensional representations commutes with the action of every group element.-/
+/-- A morphism of finite-dimensional representations commutes with the action of every group element.
+@isnad1 id=eq.0h6v.s13.08c13f225fe4 from=translated src=- shape=b1f3b45f vocab=904f91c3
+-/
 lemma hom_commutes_action {G : Type} [Group G] {A B : FDRep ℂ G} (f : A ⟶ B) (g : G)
     (a : (A : Type)) :
     f.hom.hom.hom (A.ρ g a) = B.ρ g (f.hom.hom.hom a) := by
@@ -61,7 +63,9 @@ noncomputable def biprodCarrierLinearEquiv {G : Type} [Group G] (X Y : FDRep ℂ
            ((biprod.inr ≫ biprod.snd : Y ⟶ Y)).hom.hom.hom p.2 = p.2
       rw [biprod.inl_snd, biprod.inr_snd, hzero, hid, zero_add]
 
-/-- The character of a binary biproduct representation is the pointwise sum of the characters of its summands.-/
+/-- The character of a binary biproduct representation is the pointwise sum of the characters of its summands.
+@isnad1 id=eq.0h4v.s7.ae3045fe7b6f from=translated src=- shape=3c018fec vocab=9d1786b9
+-/
 lemma character_biprod {G : Type} [Group G] (X Y : FDRep ℂ G) (g : G) :
     (X ⊞ Y).character g = X.character g + Y.character g := by
   have hequiv : ∀ v, (biprodCarrierLinearEquiv X Y) ((X ⊞ Y).ρ g v)
@@ -97,5 +101,7 @@ alias _root_.RepresentationTheory.FDRep.Biproduct.biprodCarrierComplexLinearEqui
 
 /--
 The character of a binary biproduct representation is the pointwise sum of the characters of its
-summands.-/
+summands.
+@isnad1 id=eq.0h4v.s7.ae3045fe7b6f from=translated src=- shape=3c018fec vocab=9d1786b9
+-/
 alias _root_.RepresentationTheory.FDRep.Biproduct.character_biprod_complex := _root_.RepresentationTheory.FDRep.Biproduct.character_biprod

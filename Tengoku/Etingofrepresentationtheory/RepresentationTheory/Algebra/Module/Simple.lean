@@ -13,7 +13,9 @@ namespace RepresentationTheory.Algebra.Module.Simple
 
 variable {R : Type*} [Ring R]
 
-/-- A simple module is finitely generated.-/
+/-- A simple module is finitely generated.
+@isnad1 id=finite.0h2v.s5.db1e5ef6b96d from=translated src=- shape=4317f884 vocab=8c928c7a
+-/
 theorem IsSimpleModule.finite {M : Type*} [AddCommGroup M] [Module R M]
     [IsSimpleModule R M] : Module.Finite R M := by
   haveI := IsSimpleModule.nontrivial R M

@@ -38,7 +38,9 @@ def ElementProperty (e : R) : Prop :=
 variable {R}
 
 /-- In a commutative ring, the property is equivalent to being a nonzero idempotent such that every
-idempotent absorbing into it is zero or equal to it.-/
+idempotent absorbing into it is zero or equal to it.
+@isnad1 id=iff.0h2v.s6.7bb52ee5800c from=translated src=- shape=1dacacf5 vocab=5872fcc7
+-/
 theorem elementProperty_iff {A : Type*} [CommRing A] {e : A} :
     ElementProperty A e ↔
       e ≠ 0 ∧ IsIdempotentElem e ∧
@@ -70,7 +72,9 @@ theorem elementProperty_iff {A : Type*} [CommRing A] {e : A} :
       rw [this, h]; ring
 
 /-- A ring equivalence sends an element satisfying the property to one satisfying the corresponding
-property.-/
+property.
+@isnad1 id=elementp.1h4v.s7.d7cff7529c81 from=translated src=- shape=65b4ec1d vocab=4a887bc9
+-/
 theorem ElementProperty.map {A B : Type*} [CommRing A] [CommRing B]
     (φ : A ≃+* B) {e : A} (he : ElementProperty A e) :
     ElementProperty B (φ e) := by
@@ -93,7 +97,9 @@ theorem ElementProperty.map {A B : Type*} [CommRing A] [CommRing B]
     · left; rw [h, map_zero]
     · right; rw [h]
 
-/-- A coordinate unit in a finite dependent product of fields satisfies the property.-/
+/-- A coordinate unit in a finite dependent product of fields satisfies the property.
+@isnad1 id=elementp.0h3v.s6.b84bbb00cd67 from=translated src=- shape=0e569c72 vocab=e825163b
+-/
 theorem elementProperty_pi_single {ι : Type*} [Finite ι] [DecidableEq ι]
     (K : ι → Type*) [∀ i, Field (K i)] (i : ι) :
     ElementProperty (∀ j, K j) (Pi.single i 1) := by
@@ -126,7 +132,9 @@ theorem elementProperty_pi_single {ι : Type*} [Finite ι] [DecidableEq ι]
       · rw [hxne j hj, Pi.single_eq_of_ne hj]
 
 /-- An Artinian commutative ring has a complete orthogonal idempotent family whose entries are
-exactly the elements satisfying the property.-/
+exactly the elements satisfying the property.
+@isnad1 id=ex.0h1v.s6.cc2b1053f33c from=translated src=- shape=3fcc17af vocab=5a2a7537
+-/
 theorem exists_completeOrthogonalIdempotents_elementProperty_of_isArtinianRing
     (A : Type u) [CommRing A] [IsArtinianRing A] :
     ∃ (ι : Type u) (_ : Fintype ι) (e : ι → A),
@@ -210,7 +218,9 @@ theorem exists_completeOrthogonalIdempotents_elementProperty_of_isArtinianRing
   exact ⟨ι, inferInstance, e, he, he_indec, surj⟩
 
 /-- An element of the center subalgebra satisfies the property there if and only if its underlying
-ring element does.-/
+ring element does.
+@isnad1 id=iff.0h3v.s7.33f70d39681e from=translated src=- shape=2b4c120e vocab=d2691cd1
+-/
 theorem elementProperty_center_iff
     {k : Type*} [Field k] [Algebra k R] (z : ↥(Subalgebra.center k R)) :
     ElementProperty R (z : R) ↔
@@ -237,7 +247,9 @@ theorem elementProperty_center_iff
       Subtype.ext hor, Subtype.ext hsum⟩
 
 /-- A finite-dimensional algebra has a family summing to one whose distinct entries multiply to
-zero and whose entries are exactly the elements satisfying the property.-/
+zero and whose entries are exactly the elements satisfying the property.
+@isnad1 id=ex.0h2v.s7.4e6824ad3b3e from=translated src=- shape=79749dc8 vocab=bb1b4b58
+-/
 theorem exists_orthogonalFamily_elementProperty_of_finiteDimensional
     {k : Type*} [Field k] [Algebra k R] [FiniteDimensional k R] :
     ∃ (ι : Type u) (_ : Fintype ι) (e : ι → R),
@@ -266,7 +278,9 @@ theorem exists_orthogonalFamily_elementProperty_of_finiteDimensional
     obtain ⟨i, hi⟩ := hz_surj ⟨f, hfc⟩ hzf
     exact ⟨i, congrArg (Subalgebra.val _) hi⟩
 
-/-- The elements satisfying the property in a finite-dimensional algebra form a finite type.-/
+/-- The elements satisfying the property in a finite-dimensional algebra form a finite type.
+@isnad1 id=finite.0h2v.s5.5f9aeb69be5c from=translated src=- shape=b1cc8588 vocab=19f48bdd
+-/
 theorem finite_elementProperty_of_finiteDimensional
     (k : Type*) [Field k] [Algebra k R] [FiniteDimensional k R] :
     Finite {e : R // ElementProperty R e} := by

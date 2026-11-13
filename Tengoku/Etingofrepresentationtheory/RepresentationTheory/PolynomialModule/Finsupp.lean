@@ -29,7 +29,9 @@ namespace RepresentationTheory.PolynomialModule.Finsupp
 variable {R : Type u} [CommRing R]
 
 /-- A finitely supported family satisfying a successor recurrence with a zero-preserving map is
-zero.-/
+zero.
+@isnad1 id=eq.2h3v.s7.03f044eed49c from=translated src=- shape=2b7cd148 vocab=c8b9c75a
+-/
 theorem finsupp_eq_zero_of_apply_eq_map_succ {M : Type u} [AddCommGroup M]
     (g : M → M) (hg0 : g 0 = 0)
     (f : ℕ →₀ M) (h : ∀ k, f (k) = g (f (k + 1))) :
@@ -45,7 +47,9 @@ theorem finsupp_eq_zero_of_apply_eq_map_succ {M : Type u} [AddCommGroup M]
   exact hN (by rw [h N, hN1, hg0])
 
 /-- The module structure obtained by restricting polynomial scalars along constants agrees with
-the standard one.-/
+the standard one.
+@isnad1 id=eq.0h1v.s9.85859522bb06 from=translated src=- shape=14a7cf42 vocab=8c231d3c
+-/
 theorem restrictScalars_polynomial_module_eq :
     ((ModuleCat.restrictScalars.{u} (Polynomial.C (R := R))).obj
       (ModuleCat.of (Polynomial R) (Polynomial R))).isModule =
@@ -56,7 +60,9 @@ theorem restrictScalars_polynomial_module_eq :
   rw [← Polynomial.smul_eq_C_mul]
 
 /-- The polynomial-module endomorphism given by multiplication by `X` minus a mapped linear action
-is injective.-/
+is injective.
+@isnad1 id=injectiv.0h3v.s10.61c83107cf76 from=translated src=- shape=618b1674 vocab=2287dd98
+-/
 theorem X_smul_id_sub_map_injective
     {N : Type u} [AddCommGroup N] [Module R N]
     (xAct : N →ₗ[R] N) :
@@ -149,7 +155,9 @@ noncomputable def finsuppToTensorPolynomial
         exact (Quotient.sound' (AddConGen.Rel.of _ _
           (TensorProduct.Eqv.of_smul r ((X : Polynomial R) ^ k) m))).symm }
 
-/-- Converting a polynomial tensor to coefficients and back recovers the original tensor.-/
+/-- Converting a polynomial tensor to coefficients and back recovers the original tensor.
+@isnad1 id=leftinve.0h2v.s11.9e274909effd from=translated src=- shape=2e81398e vocab=49ff761b
+-/
 theorem finsuppToTensorPolynomial_leftInverse_tensorPolynomialToFinsupp
     (N : Type u) [AddCommGroup N] [Module R N] :
     Function.LeftInverse (finsuppToTensorPolynomial N (R := R))
@@ -188,7 +196,9 @@ theorem finsuppToTensorPolynomial_leftInverse_tensorPolynomialToFinsupp
   · intro x y hx hy; simp only [map_add, hx, hy]
 
 /-- Converting a finitely supported coefficient family to a polynomial tensor and back recovers the
-family.-/
+family.
+@isnad1 id=rightinv.0h2v.s11.0926282cd8b0 from=translated src=- shape=2e81398e vocab=b3f944a1
+-/
 theorem finsuppToTensorPolynomial_rightInverse_tensorPolynomialToFinsupp
     (N : Type u) [AddCommGroup N] [Module R N] :
     Function.RightInverse (finsuppToTensorPolynomial N (R := R))
@@ -208,13 +218,17 @@ theorem finsuppToTensorPolynomial_rightInverse_tensorPolynomialToFinsupp
     (fun h => by simp [Finsupp.mem_support_iff, not_not] at h; simp [h])]
   exact ite_eq_left rfl
 
-/-- The coefficient-family map on polynomial tensors is injective.-/
+/-- The coefficient-family map on polynomial tensors is injective.
+@isnad1 id=injectiv.0h2v.s10.ce1e857996ab from=translated src=- shape=87cb4393 vocab=a7e31c74
+-/
 theorem tensorPolynomialToFinsupp_injective
     (N : Type u) [AddCommGroup N] [Module R N] :
     Function.Injective (tensorPolynomialToFinsupp N (R := R)) :=
   (finsuppToTensorPolynomial_leftInverse_tensorPolynomialToFinsupp N).injective
 
-/-- The map from polynomial tensors to finitely supported coefficient families is bijective.-/
+/-- The map from polynomial tensors to finitely supported coefficient families is bijective.
+@isnad1 id=bijectiv.0h2v.s10.f67bcdac78b6 from=translated src=- shape=87cb4393 vocab=a5b2d177
+-/
 theorem tensorPolynomialToFinsupp_bijective
     (N : Type u) [AddCommGroup N] [Module R N] :
     Function.Bijective (tensorPolynomialToFinsupp N (R := R)) :=
@@ -222,7 +236,9 @@ theorem tensorPolynomialToFinsupp_bijective
     (finsuppToTensorPolynomial_rightInverse_tensorPolynomialToFinsupp N).surjective⟩
 
 /-- Rewrites a finite sum of iterated linear-map actions using its zeroth term and shifted
-coefficient sum.-/
+coefficient sum.
+@isnad1 id=eq.1h5v.s9.fedf418369c4 from=translated src=- shape=1491e504 vocab=60da5e7d
+-/
 theorem finsupp_sum_powers_eq_zero_add_map_sum_range
     {M : Type u} [AddCommGroup M] [Module R M]
     (φ : M →ₗ[R] M) (f : ℕ →₀ M)

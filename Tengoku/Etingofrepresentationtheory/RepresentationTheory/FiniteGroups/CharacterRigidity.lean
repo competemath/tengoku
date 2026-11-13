@@ -25,13 +25,17 @@ noncomputable abbrev auxiliaryModuleFunctor : FDRep ℂ G ⥤ ModuleCat ℂ :=
   Action.forget (FGModuleCat ℂ) G ⋙ forget₂ (FGModuleCat ℂ) (ModuleCat ℂ)
 
 omit [Finite G] in
-/-- The linear map underlying the image of a monomorphism under the auxiliary module functor is injective.-/
+/-- The linear map underlying the image of a monomorphism under the auxiliary module functor is injective.
+@isnad1 id=injectiv.0h4v.s10.8618a1a037f6 from=translated src=- shape=0477531b vocab=8593502a
+-/
 theorem injective_auxiliaryModuleFunctor_map_of_mono {A B : FDRep ℂ G} (g : A ⟶ B) [Mono g] :
     Function.Injective (auxiliaryModuleFunctor.map g).hom := by
   haveI : Mono (auxiliaryModuleFunctor.map g) := inferInstance
   rw [← ModuleCat.mono_iff_injective]; infer_instance
 
-/-- Every finite-dimensional complex representation is an Artinian object.-/
+/-- Every finite-dimensional complex representation is an Artinian object.
+@isnad1 id=isartini.0h2v.s5.8cec1a412a05 from=translated src=- shape=e1d671b7 vocab=348e2143
+-/
 instance isArtinianObject (V : FDRep ℂ G) : IsArtinianObject V := by
   set len : Subobject V → ℕ := fun s => finrank ℂ ((s : FDRep ℂ G) : Type) with hlen
   have hlt : ∀ a b : Subobject V, a < b → len a < len b := by
@@ -71,7 +75,9 @@ instance isArtinianObject (V : FDRep ℂ G) : IsArtinianObject V := by
     exact not_strictAnti_of_wellFoundedLT f hf)
 
 omit [Finite G] in
-/-- A finite-dimensional complex representation of dimension zero is a zero object.-/
+/-- A finite-dimensional complex representation of dimension zero is a zero object.
+@isnad1 id=iszero.1h2v.s7.6777ba13e6ea from=translated src=- shape=641fe590 vocab=2935a432
+-/
 theorem isZero_of_finrank_eq_zero {V : FDRep ℂ G} (h : finrank ℂ (V : Type) = 0) :
     IsZero V := by
   haveI : Subsingleton (V : Type) := finrank_zero_iff.mp h
@@ -84,13 +90,17 @@ theorem isZero_of_finrank_eq_zero {V : FDRep ℂ G} (h : finrank ℂ (V : Type) 
   exact (IsZero.iff_id_eq_zero V).2 (Subsingleton.elim _ _)
 
 omit [Finite G] in
-/-- A nonzero finite-dimensional complex representation has positive dimension.-/
+/-- A nonzero finite-dimensional complex representation has positive dimension.
+@isnad1 id=lt.1h2v.s7.5e554d81f22e from=translated src=- shape=a313e416 vocab=523e8a9e
+-/
 theorem finrank_pos_of_not_isZero {V : FDRep ℂ G} (h : ¬ IsZero V) :
     0 < finrank ℂ (V : Type) :=
   Nat.pos_of_ne_zero fun h0 => h (isZero_of_finrank_eq_zero h0)
 
 omit [Finite G] in
-/-- The morphism space into a zero representation has dimension zero.-/
+/-- The morphism space into a zero representation has dimension zero.
+@isnad1 id=eq.1h3v.s8.894af328f736 from=translated src=- shape=b661d78e vocab=c9c82937
+-/
 theorem finrank_hom_eq_zero_of_isZero {S V : FDRep ℂ G} (h : IsZero V) :
     finrank ℂ (S ⟶ V) = 0 := by
   haveI : Subsingleton (S ⟶ V) := ⟨fun f g => h.eq_of_tgt f g⟩
@@ -107,7 +117,9 @@ noncomputable def homLinearEquivOfIso (S : FDRep ℂ G) {A B : FDRep ℂ G} (e :
   right_inv f := by simp
 
 omit [Finite G] in
-/-- Isomorphic target representations have morphism spaces of equal dimension from any fixed source.-/
+/-- Isomorphic target representations have morphism spaces of equal dimension from any fixed source.
+@isnad1 id=eq.0h5v.s9.fd16a8d7894d from=translated src=- shape=797132ae vocab=442f55d7
+-/
 theorem finrank_hom_eq_of_iso (S : FDRep ℂ G) {A B : FDRep ℂ G} (e : A ≅ B) :
     finrank ℂ (S ⟶ A) = finrank ℂ (S ⟶ B) :=
   (homLinearEquivOfIso S e).finrank_eq
@@ -123,13 +135,17 @@ noncomputable def homBiprodLinearEquiv (S A B : FDRep ℂ G) :
   right_inv p := by ext <;> simp
 
 omit [Finite G] in
-/-- The dimension of morphisms into a binary biproduct is the sum of the two component morphism-space dimensions.-/
+/-- The dimension of morphisms into a binary biproduct is the sum of the two component morphism-space dimensions.
+@isnad1 id=eq.0h4v.s10.2536c45225e9 from=translated src=- shape=3f127a38 vocab=bb6b4c5d
+-/
 theorem finrank_hom_biprod (S A B : FDRep ℂ G) :
     finrank ℂ (S ⟶ A ⊞ B) = finrank ℂ (S ⟶ A) + finrank ℂ (S ⟶ B) := by
   rw [(homBiprodLinearEquiv S A B).finrank_eq, Module.finrank_prod]
 
 omit [Finite G] in
-/-- The dimension of a binary biproduct representation is the sum of the dimensions of its two summands.-/
+/-- The dimension of a binary biproduct representation is the sum of the dimensions of its two summands.
+@isnad1 id=eq.0h3v.s9.be3d8aaa6af9 from=translated src=- shape=ff0a1600 vocab=b9dd7a24
+-/
 theorem finrank_biprod (A B : FDRep ℂ G) :
     finrank ℂ (A ⊞ B : FDRep ℂ G) = finrank ℂ (A : Type) + finrank ℂ (B : Type) := by
   haveI : PreservesBinaryBiproduct A B (auxiliaryModuleFunctor (G := G)) :=
@@ -155,7 +171,9 @@ noncomputable def auxiliaryDefinition {X Y : FDRep ℂ G} (f : X ⟶ Y) [IsSplit
       (BinaryBiproduct.isLimit X (cokernel f))⟩
 
 omit [Finite G] in
-/-- A monomorphism with simple source cannot be the zero morphism.-/
+/-- A monomorphism with simple source cannot be the zero morphism.
+@isnad1 id=ne.0h4v.s8.4c8d54412f55 from=translated src=- shape=37e0c1f7 vocab=655bc6e2
+-/
 theorem ne_zero_of_mono_of_simple {S V : FDRep ℂ G} (f : S ⟶ V) [Mono f] [Simple S] :
     f ≠ 0 :=
   fun h0 => (Simple.not_isZero S) ((IsZero.iff_id_eq_zero S).2
@@ -166,7 +184,9 @@ section CharField
 variable [Fintype G] [Invertible (Fintype.card G : ℂ)]
 
 omit [Fintype G] [Invertible (Fintype.card G : ℂ)] in
-/-- Equal characters of finite-group representations imply equality of their morphism-space dimensions from any fixed source.-/
+/-- Equal characters of finite-group representations imply equality of their morphism-space dimensions from any fixed source.
+@isnad1 id=eq.1h4v.s9.f5b9af480d22 from=translated src=- shape=e2d2517b vocab=7455827c
+-/
 theorem finrank_hom_eq_of_character_eq (S V W : FDRep ℂ G) (h : V.character = W.character) :
     finrank ℂ (S ⟶ V) = finrank ℂ (S ⟶ W) := by
   letI := Fintype.ofFinite G
@@ -178,7 +198,9 @@ theorem finrank_hom_eq_of_character_eq (S V W : FDRep ℂ G) (h : V.character = 
 
 end CharField
 
-/-- A finite-group representation of the specified dimension is isomorphic to a representation whose morphism-space dimensions agree for every simple source.-/
+/-- A finite-group representation of the specified dimension is isomorphic to a representation whose morphism-space dimensions agree for every simple source.
+@isnad1 id=nonempty.2h4v.s9.c9cdbc5e4880 from=translated src=- shape=35c8469b vocab=eae4a8ad
+-/
 theorem nonempty_iso_of_finrank_eq_of_finrank_hom_simple_eq :
     ∀ (n : ℕ) (V W : FDRep ℂ G), finrank ℂ (V : Type) = n →
       (∀ S : FDRep ℂ G, Simple S → finrank ℂ (S ⟶ V) = finrank ℂ (S ⟶ W)) →
@@ -232,7 +254,9 @@ theorem nonempty_iso_of_finrank_eq_of_finrank_hom_simple_eq :
       obtain ⟨eQ⟩ := ih (finrank ℂ (Q : Type)) hQlt Q Q' rfl hQhom
       exact ⟨eV ≪≫ biprod.mapIso (Iso.refl S₀) eQ ≪≫ eW.symm⟩
 
-/-- Finite-group representations over the complex numbers with equal characters are isomorphic.-/
+/-- Finite-group representations over the complex numbers with equal characters are isomorphic.
+@isnad1 id=nonempty.1h3v.s6.d8f722f4a45f from=translated src=- shape=c57fc536 vocab=5d2f74cf
+-/
 theorem nonempty_iso_of_character_eq {G : Type} [Group G] [Finite G] (V W : FDRep ℂ G)
     (h : V.character = W.character) : Nonempty (V ≅ W) := by
   haveI : Fintype G := Fintype.ofFinite G

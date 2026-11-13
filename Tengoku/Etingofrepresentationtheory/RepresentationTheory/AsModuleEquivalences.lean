@@ -50,7 +50,9 @@ noncomputable def tensorProductToDirectSum (b : Module.Basis β k S) :
       Finsupp.linearEquivFunOnFinite k W β ≪≫ₗ
         (DirectSum.linearEquivFunOnFintype k β (fun _ => W)).symm
 
-/-- Describes the direct-sum coordinates of a pure tensor using the chosen basis coefficients.-/
+/-- Describes the direct-sum coordinates of a pure tensor using the chosen basis coefficients.
+@isnad1 id=eq.0h7v.s10.7ccabb0f4ed2 from=translated src=- shape=6896b607 vocab=f8b4ad92
+-/
 theorem tensorProductToDirectSum_tmul (b : Module.Basis β k S) (s : S) (w : W) :
     (DirectSum.linearEquivFunOnFintype k β (fun _ => W))
         (tensorProductToDirectSum (W := W) b (s ⊗ₜ[k] w)) =
@@ -60,7 +62,9 @@ theorem tensorProductToDirectSum_tmul (b : Module.Basis β k S) (s : S) (w : W) 
   funext i
   simp [Finsupp.linearEquivFunOnFinite_apply, TensorProduct.finsuppScalarLeft_apply_tmul_apply]
 
-/-- Evaluating the image of a pure tensor at an index gives the corresponding basis coefficient times its second factor.-/
+/-- Evaluating the image of a pure tensor at an index gives the corresponding basis coefficient times its second factor.
+@isnad1 id=eq.0h8v.s9.afd97d455717 from=translated src=- shape=fd881906 vocab=ec6ca7ba
+-/
 @[simp] theorem tensorProductToDirectSum_tmul_apply
     (b : Module.Basis β k S) (s : S) (w : W) (i : β) :
     tensorProductToDirectSum (W := W) b (s ⊗ₜ[k] w) i = b.repr s i • w := by

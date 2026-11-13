@@ -36,14 +36,18 @@ variable {κ : Type w} [LinearOrder κ]
 /-- Assigns to an element its order rank relative to a finite ordered set.-/
 def Finset.rank (s : Finset κ) (a : κ) : ℕ := (s.filter (· < a)).card
 
-/-- The rank of a member of a finite ordered set is strictly below its cardinality.-/
+/-- The rank of a member of a finite ordered set is strictly below its cardinality.
+@isnad1 id=lt.1h3v.s5.a470a28faa61 from=translated src=- shape=880caef1 vocab=463fbe90
+-/
 theorem Finset.rank_lt_card {s : Finset κ} {a : κ} (ha : a ∈ s) :
     Finset.rank s a < s.card := by
   classical
   refine Finset.card_lt_card ⟨Finset.filter_subset _ _, fun hsub => ?_⟩
   exact absurd (Finset.mem_filter.mp (hsub ha)).2 (lt_irrefl a)
 
-/-- The finite-set order embedding sends the rank of a member back to that member.-/
+/-- The finite-set order embedding sends the rank of a member back to that member.
+@isnad1 id=eq.2h4v.s6.5e6114e05cdf from=translated src=- shape=f787bfce vocab=57762566
+-/
 theorem Finset.orderEmbOfFin_rank {s : Finset κ} {n : ℕ} (h : s.card = n)
     {a : κ} (ha : a ∈ s) :
     s.orderEmbOfFin h ⟨Finset.rank s a, h ▸ Finset.rank_lt_card ha⟩ = a := by
@@ -80,7 +84,9 @@ section Contraction
 
 variable {κ : Type w} [LinearOrder κ] [DecidableEq κ]
 
-/-- After removing a member, the order embedding agrees with skipping that member's rank.-/
+/-- After removing a member, the order embedding agrees with skipping that member's rank.
+@isnad1 id=eq.3h4v.s8.1f4b5c968167 from=translated src=- shape=236cea38 vocab=d19e2e6c
+-/
 theorem Finset.orderEmbOfFin_erase_succAbove_rank
     {s : Finset κ} {n : ℕ} (h : s.card = n + 1) {a : κ} (ha : a ∈ s)
     (herase : (s.erase a).card = n) :
@@ -96,7 +102,9 @@ theorem Finset.orderEmbOfFin_erase_succAbove_rank
   · exact (s.orderEmbOfFin h).strictMono.comp (Fin.strictMono_succAbove j₀)
 
 omit [DecidableEq κ] in
-/-- An exterior-power coordinate functional vanishes on a basis subset that omits its index.-/
+/-- An exterior-power coordinate functional vanishes on a basis subset that omits its index.
+@isnad1 id=eq.1h7v.s13.77e8a74c1561 from=translated src=- shape=d2443da6 vocab=91fe94b4
+-/
 theorem Module.Basis.exteriorPower_coordinate_apply_eq_zero_of_not_mem
     (b : Module.Basis κ k V) (a : κ) (n : ℕ)
     (s : Set.powersetCard κ (n + 1)) (ha : a ∉ (s : Finset κ)) :
@@ -110,7 +118,9 @@ theorem Module.Basis.exteriorPower_coordinate_apply_eq_zero_of_not_mem
     exact ha (Finset.orderEmbOfFin_mem _ _ _)
   simp [Function.comp_apply, this]
 
-/-- States the asserted relation between the displayed exterior-coordinate constructions.-/
+/-- States the asserted relation between the displayed exterior-coordinate constructions.
+@isnad1 id=eq.2h7v.s13.03e3903d2271 from=translated src=- shape=ca324ac7 vocab=80f1fa92
+-/
 theorem exteriorPower_coordinate_delete (b : Module.Basis κ k V) (a : κ) (n : ℕ)
     (s : Set.powersetCard κ (n + 1)) (ha : a ∈ (s : Finset κ))
     (herase : ((s : Finset κ).erase a).card = n) :
@@ -156,7 +166,9 @@ section Monomial
 variable {κ : Type w}
 
 /-- The symmetric-algebra basis vector at an exponent is the corresponding unit-coefficient
-monomial.-/
+monomial.
+@isnad1 id=eq.0h5v.s10.884e323316ea from=translated src=- shape=3af80efb vocab=8598a463
+-/
 theorem Module.Basis.symmetricAlgebra_apply_eq_monomial
     (b : Module.Basis κ k V) (α : κ →₀ ℕ) :
     b.symmetricAlgebra α =
@@ -164,7 +176,9 @@ theorem Module.Basis.symmetricAlgebra_apply_eq_monomial
   simp [Module.Basis.symmetricAlgebra]
 
 /-- Multiplying a symmetric basis vector by a basis generator increments that generator's
-exponent.-/
+exponent.
+@isnad1 id=eq.0h6v.s10.1225af4e746c from=translated src=- shape=0b93e3eb vocab=4dde8719
+-/
 theorem Module.Basis.symmetricAlgebra_mul_apply
     (b : Module.Basis κ k V) (a : κ) (α : κ →₀ ℕ) :
     SymmetricAlgebra.ι k V (b a) * b.symmetricAlgebra α =
@@ -193,7 +207,9 @@ noncomputable def Module.Basis.symmetricExteriorTensor
     Module.Basis ((κ →₀ ℕ) × Set.powersetCard κ i) k (degreeIndexedType k V i) :=
   (b.symmetricAlgebra).tensorProduct (b.exteriorPower i)
 
-/-- A tensor basis vector is the pure tensor of its symmetric and exterior basis vectors.-/
+/-- A tensor basis vector is the pure tensor of its symmetric and exterior basis vectors.
+@isnad1 id=eq.0h6v.s13.ad18d40fcad3 from=translated src=- shape=584b1dfb vocab=aa9f8918
+-/
 @[simp]
 theorem Module.Basis.symmetricExteriorTensor_apply
     (b : Module.Basis κ k V) (i : ℕ)
@@ -212,14 +228,18 @@ def erase {i : ℕ} (s : Set.powersetCard κ (i + 1)) (a : (s : Finset κ)) :
     rfl)⟩
 
 omit [LinearOrder κ] in
-/-- The underlying finset of the deletion map is obtained by erasing the chosen member.-/
+/-- The underlying finset of the deletion map is obtained by erasing the chosen member.
+@isnad1 id=eq.0h4v.s7.58116b7f20d8 from=translated src=- shape=ea24295a vocab=0a7ad2a8
+-/
 @[simp]
 theorem erase_val {i : ℕ} (s : Set.powersetCard κ (i + 1)) (a : (s : Finset κ)) :
     (erase s a : Finset κ) = (s : Finset κ).erase a := rfl
 
 variable [Fintype κ]
 
-/-- States the asserted reindexing relation between the displayed tensor-basis constructions.-/
+/-- States the asserted reindexing relation between the displayed tensor-basis constructions.
+@isnad1 id=eq.0h7v.s14.b8238d7e7bf5 from=translated src=- shape=e263437b vocab=46d5d626
+-/
 theorem Module.Basis.symmetricExteriorTensor_reindex
     (b : Module.Basis κ k V) (i : ℕ)
     (α : κ →₀ ℕ) (s : Set.powersetCard κ (i + 1)) :
@@ -254,14 +274,22 @@ end KBasis
 
 end RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis
 
-/-- An auxiliary statement whose displayed formal type is unavailable.-/
+/-- An auxiliary statement whose displayed formal type is unavailable.
+@isnad1 id=eq.2h7v.s13.03e3903d2271 from=translated src=- shape=ca324ac7 vocab=80f1fa92
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Auxiliary.statement019265 := _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.exteriorPower_coordinate_delete
 
-/-- An auxiliary statement whose displayed formal type is unavailable.-/
+/-- An auxiliary statement whose displayed formal type is unavailable.
+@isnad1 id=eq.0h7v.s14.b8238d7e7bf5 from=translated src=- shape=e263437b vocab=46d5d626
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Auxiliary.statement021167 := _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Module.Basis.symmetricExteriorTensor_reindex
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.3h4v.s8.1f4b5c968167 from=translated src=- shape=236cea38 vocab=d19e2e6c
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Auxiliary.statement021834 := _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Finset.orderEmbOfFin_erase_succAbove_rank
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.2h4v.s6.5e6114e05cdf from=translated src=- shape=f787bfce vocab=57762566
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Auxiliary.statement021835 := _root_.RepresentationTheory.LinearAlgebra.SymmetricExteriorBasis.Finset.orderEmbOfFin_rank

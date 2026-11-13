@@ -24,7 +24,9 @@ variable
     (a₁ ⊗ₜ[k] a₂ : A₁ ⊗[k] A₂) • (n₁ ⊗ₜ[k] n₂ : N₁ ⊗[k] N₂)
       = (a₁ • n₁) ⊗ₜ[k] (a₂ • n₂))
 attribute [local instance] RepresentationTheory.Algebra.TensorProduct.ModuleCat.moduleCarrier RepresentationTheory.Algebra.TensorProduct.ModuleCat.moduleCarrierAux RepresentationTheory.Algebra.TensorProduct.ModuleCat.isScalarTower RepresentationTheory.Algebra.TensorProduct.ModuleCat.isScalarTowerAux RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductModule
-/-- Provides the scalar-tower structure from the base field through a tensor-product algebra to a tensor product of modules.-/
+/-- Provides the scalar-tower structure from the base field through a tensor-product algebra to a tensor product of modules.
+@isnad1 id=isscalar.0h5v.s9.d5b40361a57d from=translated src=- shape=855ee3c9 vocab=cb509456
+-/
 local instance tensorProductModuleIsScalarTower (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A₂) :
     IsScalarTower k (A₁ ⊗[k] A₂) (X ⊗[k] Y) := by
   refine ⟨fun c s z => ?_⟩
@@ -49,7 +51,9 @@ noncomputable def tensorProductLinearMapIso (X₁ : ModuleCat.{u} A₁) (X₂ : 
     ModuleCat.of k (↥(RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProduct k A₁ A₂ X₁ X₂) →ₗ[A₁ ⊗[k] A₂] N₁ ⊗[k] N₂)
       ≅ ModuleCat.of k ((X₁ →ₗ[A₁] N₁) ⊗[k] (X₂ →ₗ[A₂] N₂)) :=
   (tensorProductLinearMapEquiv k N₁ N₂ hN X₁ X₂).toModuleIso
-/-- States that the tensor-product linear-map construction is compatible with a morphism in the first module factor.-/
+/-- States that the tensor-product linear-map construction is compatible with a morphism in the first module factor.
+@isnad1 id=eq.1h9v.s13.36956b050d5c from=translated src=- shape=cca44e89 vocab=17726ab6
+-/
 theorem tensorProductLinearMap_comp_map_left {X₁ X₁' : ModuleCat.{u} A₁} (f : X₁' ⟶ X₁)
     (X₂ : ModuleCat.{u} A₂) :
     (RepresentationTheory.TensorProduct.LinearMap.LinearMap.precompLinear k (RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductLinearMap k f (𝟙 X₂))).comp
@@ -62,7 +66,9 @@ theorem tensorProductLinearMap_comp_map_left {X₁ X₁' : ModuleCat.{u} A₁} (
   refine RepresentationTheory.TensorProduct.LinearMap.LinearMap.ext_tmul k A₁ A₂ X₁' X₂ N₁ N₂ fun x₁ x₂ => ?_
   simp only [LinearMap.comp_apply, TensorProduct.map_tmul, LinearMap.id_coe, id_eq, RepresentationTheory.TensorProduct.LinearMap.LinearMap.precompLinear_apply,
     RepresentationTheory.TensorProduct.LinearMap.TensorProduct.linearMapTensor_tmul_apply_tmul, RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductLinearMap_tmul, ModuleCat.hom_id, LinearMap.id_coe]
-/-- States that the tensor-product linear-map construction is compatible with a morphism in the second module factor.-/
+/-- States that the tensor-product linear-map construction is compatible with a morphism in the second module factor.
+@isnad1 id=eq.1h9v.s13.a5d8fb0d31c6 from=translated src=- shape=c0e71906 vocab=17726ab6
+-/
 theorem tensorProductLinearMap_comp_map_right (X₁ : ModuleCat.{u} A₁) {X₂ X₂' : ModuleCat.{u} A₂}
     (g : X₂' ⟶ X₂) :
     (RepresentationTheory.TensorProduct.LinearMap.LinearMap.precompLinear k (RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductLinearMap k (𝟙 X₁) g)).comp

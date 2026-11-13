@@ -29,7 +29,9 @@ abbrev toModuleCat : FGModuleCat.{u} A ⥤ ModuleCat.{u} A :=
 
 variable {A}
 
-/-- A morphism of finitely generated modules is epic when its image under the functor to modules is epic.-/
+/-- A morphism of finitely generated modules is epic when its image under the functor to modules is epic.
+@isnad1 id=epi.1h4v.s7.95de525892dd from=translated src=- shape=b43314e9 vocab=083c108b
+-/
 theorem epi_of_toModuleCat_map_epi {X Y : FGModuleCat.{u} A} (φ : X ⟶ Y)
     (h : Epi ((toModuleCat A).map φ)) : Epi φ := by
   haveI := h
@@ -41,7 +43,9 @@ theorem epi_of_toModuleCat_map_epi {X Y : FGModuleCat.{u} A} (φ : X ⟶ Y)
     rw [← Functor.map_comp, ← Functor.map_comp, hab]
   exact (cancel_epi ((toModuleCat A).map φ)).mp hcomp
 
-/-- A finitely generated module is projective if its image in the module category is projective.-/
+/-- A finitely generated module is projective if its image in the module category is projective.
+@isnad1 id=projecti.1h2v.s5.abf19e122e85 from=translated src=- shape=9fd09424 vocab=17eca39e
+-/
 theorem projective_of_toModuleCat_projective {P : FGModuleCat.{u} A}
     (h : Projective ((toModuleCat A).obj P)) : Projective P := by
   haveI := h
@@ -54,7 +58,9 @@ theorem projective_of_toModuleCat_projective {P : FGModuleCat.{u} A}
   apply (toModuleCat A).map_injective
   rw [Functor.map_comp, (toModuleCat A).map_preimage, hg]
 
-/-- The category of finitely generated modules over a Noetherian ring has enough projective objects.-/
+/-- The category of finitely generated modules over a Noetherian ring has enough projective objects.
+@isnad1 id=enoughpr.0h1v.s4.9793991bdc39 from=translated src=- shape=9499e9bc vocab=c6e80913
+-/
 instance enoughProjectives_of_isNoetherianRing [IsNoetherianRing A] :
     EnoughProjectives (FGModuleCat.{u} A) where
   presentation X := by

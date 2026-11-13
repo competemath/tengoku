@@ -38,7 +38,9 @@ noncomputable def basisSymmetricAlgebraComplexDifferential (b : Module.Basis κ 
     (RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction.exteriorPowerContraction
       k (b.coord a) i)
 
-/-- The differential on a pure tensor is expressed as a finite sum over the given basis.-/
+/-- The differential on a pure tensor is expressed as a finite sum over the given basis.
+@isnad1 id=eq.0h7v.s14.559041921394 from=translated src=- shape=457c7130 vocab=48fab8e0
+-/
 @[simp]
 theorem basisSymmetricAlgebraComplexDifferential_tmul (b : Module.Basis κ k V) (i : ℕ)
     (s : SymmetricAlgebra k V) (w : ⋀[k]^(i + 1) V) :
@@ -99,7 +101,9 @@ private theorem koszulDD_diag (b : Module.Basis κ k V) (i : ℕ) (a : κ) :
   | tmul s w => rw [koszulDD_tmul]; simp
   | add x y hx hy => rw [map_add, hx, hy, add_zero]
 
-/-- Two consecutive degree-lowering linear maps compose to zero.-/
+/-- Two consecutive degree-lowering linear maps compose to zero.
+@isnad1 id=eq.0h5v.s14.7daad4d68cdc from=translated src=- shape=fbcd6943 vocab=fc2f1212
+-/
 theorem basisSymmetricAlgebraComplexDifferential_comp (b : Module.Basis κ k V) (i : ℕ) :
     (basisSymmetricAlgebraComplexDifferential b i).comp
       (basisSymmetricAlgebraComplexDifferential b (i + 1)) = 0 := by
@@ -128,13 +132,17 @@ noncomputable def basisSymmetricAlgebraComplex (b : Module.Basis κ k V) :
       apply ModuleCat.hom_ext
       exact basisSymmetricAlgebraComplexDifferential_comp b i)
 
-/-- The degree i object of the basis-indexed symmetric-algebra chain complex.-/
+/-- The degree i object of the basis-indexed symmetric-algebra chain complex.
+@isnad1 id=eq.0h5v.s11.a01611027bdb from=translated src=- shape=73f10067 vocab=5bf3d278
+-/
 @[simp]
 theorem basisSymmetricAlgebraComplex_X (b : Module.Basis κ k V) (i : ℕ) :
     (basisSymmetricAlgebraComplex b).X i = ModuleCat.of _ (degreeIndexedType k V i) :=
   rfl
 
-/-- The differential from degree i + 1 to degree i in the basis-indexed chain complex.-/
+/-- The differential from degree i + 1 to degree i in the basis-indexed chain complex.
+@isnad1 id=eq.0h5v.s12.f5241f4ba6ee from=translated src=- shape=5398daf0 vocab=d491ff11
+-/
 theorem basisSymmetricAlgebraComplex_d (b : Module.Basis κ k V) (i : ℕ) :
     (basisSymmetricAlgebraComplex b).d (i + 1) i =
       ModuleCat.ofHom (basisSymmetricAlgebraComplexDifferential b i) :=

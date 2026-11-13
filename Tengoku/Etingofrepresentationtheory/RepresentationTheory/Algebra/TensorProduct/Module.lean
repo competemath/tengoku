@@ -32,7 +32,9 @@ noncomputable def TensorProduct.moduleEndAlgHom :
   Module.compHom (M₁ ⊗[k] M₂) (R := Module.End k (M₁ ⊗[k] M₂))
     (TensorProduct.moduleEndAlgHom k A₁ A₂ M₁ M₂).toRingHom
 
-/-- Scalar multiplication of pure tensors is computed componentwise.-/
+/-- Scalar multiplication of pure tensors is computed componentwise.
+@isnad1 id=eq.0h9v.s10.8283d768d96f from=translated src=- shape=8d075275 vocab=e447f3df
+-/
 theorem TensorProduct.smul_tmul (a₁ : A₁) (a₂ : A₂) (m₁ : M₁) (m₂ : M₂) :
     (TensorProduct.instModule k A₁ A₂ M₁ M₂).toSMul.smul
         (a₁ ⊗ₜ[k] a₂ : A₁ ⊗[k] A₂) (m₁ ⊗ₜ[k] m₂)

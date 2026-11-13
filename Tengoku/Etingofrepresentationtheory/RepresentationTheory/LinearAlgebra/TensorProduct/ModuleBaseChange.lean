@@ -40,13 +40,17 @@ noncomputable instance instModuleTensorProduct : Module (S ⊗[K] A) (S ⊗[K] V
     (scalarExtensionAction (A := A) (V := V) (S := S)).toRingHom
 
 /-- Scalar multiplication by the extended algebra agrees with evaluation of its action
-homomorphism on the extended module.-/
+homomorphism on the extended module.
+@isnad1 id=eq.0h6v.s11.7bfd59dff0dc from=translated src=- shape=a656714d vocab=94c57bf2
+-/
 theorem smul_eq_scalarExtensionAction (y : S ⊗[K] A) (x : S ⊗[K] V) :
     (y • x : S ⊗[K] V) = scalarExtensionAction (A := A) (V := V) (S := S) y x :=
   rfl
 
 /-- An extended-algebra tensor formed from a scalar and the algebra unit acts by scalar
-multiplication on the extended module.-/
+multiplication on the extended module.
+@isnad1 id=eq.0h6v.s10.70eb004a6783 from=translated src=- shape=fe1cc21e vocab=66f88808
+-/
 theorem tmul_one_smul_eq_smul (s : S) (x : S ⊗[K] V) :
     ((s ⊗ₜ[K] (1 : A) : S ⊗[K] A) • x : S ⊗[K] V) = s • x := by
   rw [smul_eq_scalarExtensionAction, scalarExtensionAction, AlgHom.liftEquiv_tmul, map_one]

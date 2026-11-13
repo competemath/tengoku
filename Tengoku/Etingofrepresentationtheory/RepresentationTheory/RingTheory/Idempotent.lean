@@ -33,7 +33,9 @@ noncomputable def sandwichLinearMap (e : A) : A →ₗ[k] A where
   map_add' a b := by simp [mul_add, add_mul]
   map_smul' c a := by simp [Algebra.smul_mul_assoc]
 
-/-- Evaluating the sandwich linear map sends an element to the corresponding double product.-/
+/-- Evaluating the sandwich linear map sends an element to the corresponding double product.
+@isnad1 id=eq.0h4v.s7.235b4f572f87 from=translated src=- shape=5477deeb vocab=144d727e
+-/
 @[simp]
 lemma sandwichLinearMap_apply (e a : A) : sandwichLinearMap (k := k) e a = e * a * e := rfl
 
@@ -42,24 +44,32 @@ noncomputable def sandwichSubmodule (e : A) : Submodule k A :=
   LinearMap.range (sandwichLinearMap (k := k) e)
 
 /-- Membership in the sandwich submodule is equivalent to being a double product with the fixed
-element.-/
+element.
+@isnad1 id=iff.0h4v.s7.7ede1686cc8d from=translated src=- shape=7e30c9dd vocab=ab4fd721
+-/
 lemma mem_sandwichSubmodule_iff (e a : A) :
     a ∈ sandwichSubmodule (k := k) e ↔ ∃ b : A, e * b * e = a :=
   LinearMap.mem_range
 
-/-- An idempotent acts as a left identity on elements of the sandwich submodule.-/
+/-- An idempotent acts as a left identity on elements of the sandwich submodule.
+@isnad1 id=eq.2h4v.s7.9b16d05c2143 from=translated src=- shape=57235f87 vocab=2b7ee55f
+-/
 lemma left_mul_eq_of_mem_sandwichSubmodule {e : A} (he : IsIdempotentElem e) {x : A}
     (hx : x ∈ sandwichSubmodule (k := k) e) : e * x = x := by
   obtain ⟨a, rfl⟩ := (mem_sandwichSubmodule_iff e x).mp hx
   rw [← mul_assoc, ← mul_assoc, he.eq]
 
-/-- An idempotent acts as a right identity on elements of the sandwich submodule.-/
+/-- An idempotent acts as a right identity on elements of the sandwich submodule.
+@isnad1 id=eq.2h4v.s7.081d0c230c47 from=translated src=- shape=4da61216 vocab=2b7ee55f
+-/
 lemma right_mul_eq_of_mem_sandwichSubmodule {e : A} (he : IsIdempotentElem e) {x : A}
     (hx : x ∈ sandwichSubmodule (k := k) e) : x * e = x := by
   obtain ⟨a, rfl⟩ := (mem_sandwichSubmodule_iff e x).mp hx
   rw [mul_assoc, he.eq]
 
-/-- The product of two elements of the sandwich submodule belongs to it.-/
+/-- The product of two elements of the sandwich submodule belongs to it.
+@isnad1 id=mem.2h5v.s8.d6695cf0050a from=translated src=- shape=97368264 vocab=ab4fd721
+-/
 lemma mul_mem_sandwichSubmodule {e : A} {x y : A}
     (hx : x ∈ sandwichSubmodule (k := k) e) (hy : y ∈ sandwichSubmodule (k := k) e) :
     x * y ∈ sandwichSubmodule (k := k) e := by
@@ -69,18 +79,24 @@ lemma mul_mem_sandwichSubmodule {e : A} {x y : A}
   refine ⟨a * e * e * b, ?_⟩
   simp only [mul_assoc]
 
-/-- An idempotent belongs to its sandwich submodule.-/
+/-- An idempotent belongs to its sandwich submodule.
+@isnad1 id=mem.1h3v.s7.0c2deb46d560 from=translated src=- shape=d8a84d81 vocab=55867e0d
+-/
 lemma idempotent_mem_sandwichSubmodule (e : A) (he : IsIdempotentElem e) :
     e ∈ sandwichSubmodule (k := k) e := by
   rw [mem_sandwichSubmodule_iff]
   exact ⟨1, by rw [mul_one, he.eq]⟩
 
-/-- The finite dimension of the sandwich submodule is bounded by that of the ambient algebra.-/
+/-- The finite dimension of the sandwich submodule is bounded by that of the ambient algebra.
+@isnad1 id=le.0h3v.s8.8d8520f2f421 from=translated src=- shape=18f5d148 vocab=5db0aa04
+-/
 theorem sandwichSubmodule_finrank_le (e : A) [Module.Finite k A] :
     Module.finrank k (sandwichSubmodule (k := k) e) ≤ Module.finrank k A :=
   Submodule.finrank_le _
 
-/-- The sandwich submodule is finite over the base field when the ambient algebra is finite.-/
+/-- The sandwich submodule is finite over the base field when the ambient algebra is finite.
+@isnad1 id=finite.0h3v.s7.de13b18e33bb from=translated src=- shape=c6aa3b4f vocab=670c0c1d
+-/
 noncomputable instance sandwichSubmodule_moduleFinite (e : A) [Module.Finite k A] :
     Module.Finite k (sandwichSubmodule (k := k) e) :=
   Module.Finite.of_injective (Submodule.subtype _) (Submodule.subtype_injective _)
@@ -149,12 +165,16 @@ variable {e : A} (he : IsIdempotentElem e)
     (fun r x y => Subtype.ext (Algebra.mul_smul_comm r (x : A) (y : A)))
 
 /-- The subtype of the associated submodule is finite as a module when the ambient algebra is
-finite.-/
+finite.
+@isnad1 id=finite.0h3v.s7.345366f8377f from=translated src=- shape=c6aa3b4f vocab=f6e91708
+-/
 noncomputable instance moduleFinite [Module.Finite k A] :
     Module.Finite k (submodule (k := k) e) :=
   sandwichSubmodule_moduleFinite e
 
-/-- The finite dimension of the associated submodule is at most that of the ambient algebra.-/
+/-- The finite dimension of the associated submodule is at most that of the ambient algebra.
+@isnad1 id=le.0h3v.s8.18c5bdadf005 from=translated src=- shape=18f5d148 vocab=0ebb5ea7
+-/
 theorem finrank_le [Module.Finite k A] :
     Module.finrank k (submodule (k := k) e) ≤ Module.finrank k A :=
   sandwichSubmodule_finrank_le e
@@ -173,7 +193,9 @@ section EndLeftIdeal
 variable {e : A} (he : IsIdempotentElem e)
 include he
 
-/-- Right multiplication by an idempotent fixes every element of its principal span.-/
+/-- Right multiplication by an idempotent fixes every element of its principal span.
+@isnad1 id=eq.2h3v.s6.0aad3e5f582b from=translated src=- shape=225afaf4 vocab=4816a3f6
+-/
 lemma mul_idempotent_eq_of_mem_span_singleton {x : A}
     (hx : x ∈ Submodule.span A ({e} : Set A)) : x * e = x := by
   rw [Submodule.mem_span_singleton] at hx
@@ -181,7 +203,9 @@ lemma mul_idempotent_eq_of_mem_span_singleton {x : A}
   rw [smul_eq_mul, mul_assoc, he.eq]
 
 /-- Applying an endomorphism of the principal submodule to the idempotent gives an element of the
-sandwich submodule.-/
+sandwich submodule.
+@isnad1 id=mem.1h4v.s10.a3609542e5e8 from=translated src=- shape=edb32d31 vocab=919ddf88
+-/
 lemma apply_idempotent_mem_sandwichSubmodule
     (φ : Module.End A ↥(Submodule.span A ({e} : Set A))) :
     (φ ⟨e, Submodule.subset_span rfl⟩).val ∈ sandwichSubmodule (k := k) e := by
@@ -305,5 +329,7 @@ end EndLeftIdeal
 
 end RepresentationTheory.RingTheory.Idempotent
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=mem.1h4v.s10.a3609542e5e8 from=translated src=- shape=edb32d31 vocab=919ddf88
+-/
 alias _root_.RepresentationTheory.RingTheory.Idempotent.Auxiliary.statement018733 := _root_.RepresentationTheory.RingTheory.Idempotent.apply_idempotent_mem_sandwichSubmodule

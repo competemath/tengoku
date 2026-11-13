@@ -26,7 +26,9 @@ noncomputable section
 
 variable {A : Type u} [Ring A] [IsNoetherianRing A]
 
-/-- The forgetful functor from finitely generated modules to modules preserves monomorphisms over a Noetherian ring.-/
+/-- The forgetful functor from finitely generated modules to modules preserves monomorphisms over a Noetherian ring.
+@isnad1 id=preserve.0h1v.s9.89d52aa9d0c4 from=translated src=- shape=f6d9f013 vocab=c4999fd2
+-/
 instance preservesMonomorphisms_forgetToModuleCat :
     (forget₂ (FGModuleCat.{u} A) (ModuleCat.{u} A)).PreservesMonomorphisms := by
   haveI : PreservesLimitsOfShape WalkingCospan
@@ -51,7 +53,9 @@ def subobjectOrderEmbeddingToModuleCat (X : FGModuleCat.{u} A) :
         refine Subobject.mk_le_mk_of_comm (F.map (Subobject.ofLE P Q h)) ?_
         rw [← F.map_comp, Subobject.ofLE_arrow])
 
-/-- The subobjects of a finitely generated module over a Noetherian Artinian ring form a finite-dimensional order.-/
+/-- The subobjects of a finitely generated module over a Noetherian Artinian ring form a finite-dimensional order.
+@isnad1 id=finitedi.0h2v.s6.13c2bd44485a from=translated src=- shape=39503051 vocab=df2e7d3d
+-/
 theorem finiteDimensionalOrder_subobject [IsArtinianRing A] (X : FGModuleCat.{u} A) :
     FiniteDimensionalOrder (Subobject X) := by
   have hsm : StrictMono (fun P : Subobject X =>

@@ -55,7 +55,9 @@ variable (k V) in
 def equivBaseRing : degreeZero k V ≃ₗ[k] k := ULift.moduleEquiv
 
 /-- The base-ring equivalence sends scalar multiplication to multiplication after applying the
-inverse algebra map.-/
+inverse algebra map.
+@isnad1 id=eq.0h4v.s10.28955ba9b9ab from=translated src=- shape=33ee71fb vocab=36481bb0
+-/
 @[simp]
 theorem equivBaseRing_smul (s : SymmetricAlgebra k V) (x : degreeZero k V) :
     equivBaseRing k V (s • x) = SymmetricAlgebra.algebraMapInv s * equivBaseRing k V x :=
@@ -76,7 +78,9 @@ noncomputable def symmetricAlgebraToDegreeZero :
     simp [smul_eq_mul]
 
 /-- Applying the base-ring equivalence to the symmetric-algebra map gives the inverse algebra
-map.-/
+map.
+@isnad1 id=eq.0h3v.s10.a4a1f286354f from=translated src=- shape=783b09c6 vocab=5557a6d8
+-/
 @[simp]
 theorem equivBaseRing_symmetricAlgebraToDegreeZero (s : SymmetricAlgebra k V) :
     degreeZero.equivBaseRing k V (symmetricAlgebraToDegreeZero k V s) =
@@ -95,14 +99,18 @@ noncomputable def tensorToDegreeZero :
         (exteriorPower.zeroEquiv k V).toLinearMap))
 
 /-- The base-ring equivalence evaluates the tensor map on a pure tensor as scalar multiplication by
-the inverse algebra image.-/
+the inverse algebra image.
+@isnad1 id=eq.0h4v.s13.8dc8a8c353bc from=translated src=- shape=08f42ca5 vocab=4343ae5e
+-/
 @[simp]
 theorem equivBaseRing_tensorToDegreeZero_tmul (s : SymmetricAlgebra k V) (w : ⋀[k]^0 V) :
     degreeZero.equivBaseRing k V (tensorToDegreeZero k V (s ⊗ₜ[k] w)) =
       exteriorPower.zeroEquiv k V w • SymmetricAlgebra.algebraMapInv s := by
   simp [tensorToDegreeZero, map_smul]
 
-/-- Composing the tensor map with the degree-zero basis-indexed map is zero.-/
+/-- Composing the tensor map with the degree-zero basis-indexed map is zero.
+@isnad1 id=eq.0h4v.s14.42263a3eca39 from=translated src=- shape=ee2c924e vocab=01e2c919
+-/
 theorem tensorToDegreeZero_comp_basisMap_zero
     {κ : Type w} [Fintype κ] (b : Module.Basis κ k V) :
     (tensorToDegreeZero k V).comp
@@ -130,7 +138,9 @@ noncomputable def exteriorPowerBasis
   (b.exteriorPower i).baseChange (SymmetricAlgebra k V)
 
 /-- Each vector of the exterior-power basis is the pure tensor of one with the corresponding
-exterior-power basis vector.-/
+exterior-power basis vector.
+@isnad1 id=eq.0h6v.s13.aa8e48d56905 from=translated src=- shape=0982a33e vocab=07e0393d
+-/
 @[simp]
 theorem exteriorPowerBasis_apply
     {I : Type w} [LinearOrder I] (b : Module.Basis I k V) (i : ℕ)
@@ -142,7 +152,9 @@ theorem exteriorPowerBasis_apply
 
 variable {κ : Type w} [Fintype κ]
 
-/-- A theorem whose formal type could not be rendered in the packet.-/
+/-- A theorem whose formal type could not be rendered in the packet.
+@isnad1 id=eq.0h6v.s14.bb9c1aebd0a3 from=translated src=- shape=d220305a vocab=f79d432a
+-/
 theorem basisIndexedMap_unrendered
     (b : Module.Basis κ k V) (i : ℕ) (v : Fin (i + 1) → V) :
     RepresentationTheory.Algebra.Homology.BasisSymmetricAlgebraComplex.basisSymmetricAlgebraComplexDifferential
@@ -170,5 +182,7 @@ theorem basisIndexedMap_unrendered
 
 end RepresentationTheory.LinearAlgebra.ExteriorPower.DegreeZero
 
-/-- An auxiliary statement whose displayed formal type is unavailable.-/
+/-- An auxiliary statement whose displayed formal type is unavailable.
+@isnad1 id=eq.0h6v.s14.bb9c1aebd0a3 from=translated src=- shape=d220305a vocab=f79d432a
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.ExteriorPower.DegreeZero.Auxiliary.statement021169 := _root_.RepresentationTheory.LinearAlgebra.ExteriorPower.DegreeZero.basisIndexedMap_unrendered

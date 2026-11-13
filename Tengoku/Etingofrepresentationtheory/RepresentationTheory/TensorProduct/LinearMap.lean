@@ -48,7 +48,9 @@ noncomputable def TensorProduct.algebraHomEnd :
   Module.compHom (X₁ ⊗[k] X₂) (R := Module.End k (X₁ ⊗[k] X₂))
     (TensorProduct.algebraHomEnd k A₁ A₂ X₁ X₂).toRingHom
 
-/-- Multiplying a pure tensor by a pure tensor of scalars acts componentwise under the induced module structure.-/
+/-- Multiplying a pure tensor by a pure tensor of scalars acts componentwise under the induced module structure.
+@isnad1 id=eq.0h9v.s10.33aac59f769d from=translated src=- shape=8d075275 vocab=7f6fe981
+-/
 theorem TensorProduct.smul_tmul_moduleOverTensorProduct (a₁ : A₁) (a₂ : A₂) (x₁ : X₁) (x₂ : X₂) :
     (TensorProduct.moduleOverTensorProduct k A₁ A₂ X₁ X₂).toSMul.smul (a₁ ⊗ₜ[k] a₂ : A₁ ⊗[k] A₂) (x₁ ⊗ₜ[k] x₂)
       = (a₁ • x₁) ⊗ₜ[k] (a₂ • x₂) := by
@@ -57,7 +59,9 @@ theorem TensorProduct.smul_tmul_moduleOverTensorProduct (a₁ : A₁) (a₂ : A�
     Module.endTensorEndAlgHom_apply]
   rfl
 
-/-- The base ring, tensor product algebra, and tensor product module form a scalar tower for the induced module structure.-/
+/-- The base ring, tensor product algebra, and tensor product module form a scalar tower for the induced module structure.
+@isnad1 id=isscalar.0h5v.s9.ee28fad19f50 from=translated src=- shape=5a9be196 vocab=1d53f70e
+-/
 theorem TensorProduct.isScalarTower_moduleOverTensorProduct :
     @IsScalarTower k (A₁ ⊗[k] A₂) (X₁ ⊗[k] X₂) _ (TensorProduct.moduleOverTensorProduct k A₁ A₂ X₁ X₂).toSMul _ := by
   letI := TensorProduct.moduleOverTensorProduct k A₁ A₂ X₁ X₂
@@ -81,7 +85,9 @@ def LinearMap.precompLinear (s : M →ₗ[R] M') : (M' →ₗ[R] L) →ₗ[k] (M
   map_add' a b := by ext x; simp
   map_smul' c a := by ext x; simp
 
-/-- Applying the precomposition map to a linear map yields its composition with the fixed map.-/
+/-- Applying the precomposition map to a linear map yields its composition with the fixed map.
+@isnad1 id=eq.0h7v.s10.d5ccf958c5fe from=translated src=- shape=8958408e vocab=b837a298
+-/
 @[simp] theorem LinearMap.precompLinear_apply (s : M →ₗ[R] M') (φ : M' →ₗ[R] L) :
     LinearMap.precompLinear k s φ = φ ∘ₗ s := rfl
 
@@ -128,12 +134,16 @@ variable (hP : ∀ (a₁ : A₁) (a₂ : A₂) (x₁ : P₁) (x₂ : P₂),
   (hN : ∀ (a₁ : A₁) (a₂ : A₂) (x₁ : N₁) (x₂ : N₂),
       (a₁ ⊗ₜ[k] a₂ : A₁ ⊗[k] A₂) • (x₁ ⊗ₜ[k] x₂ : N₁ ⊗[k] N₂) = (a₁ • x₁) ⊗ₜ[k] (a₂ • x₂))
 
-/-- The induced linear map sends a pure tensor to the tensor of the two componentwise images.-/
+/-- The induced linear map sends a pure tensor to the tensor of the two componentwise images.
+@isnad1 id=eq.2h11v.s11.db537e21953f from=translated src=- shape=515c7673 vocab=24562e43
+-/
 @[simp] theorem TensorProduct.mapLinear_tmul (f₁ : P₁ →ₗ[A₁] N₁) (f₂ : P₂ →ₗ[A₂] N₂) (p₁ : P₁) (p₂ : P₂) :
     TensorProduct.mapLinear k A₁ A₂ P₁ P₂ N₁ N₂ hP hN f₁ f₂ (p₁ ⊗ₜ[k] p₂) = f₁ p₁ ⊗ₜ[k] f₂ p₂ :=
   rfl
 
-/-- Two linear maps out of a tensor product are equal when they agree on every pure tensor.-/
+/-- Two linear maps out of a tensor product are equal when they agree on every pure tensor.
+@isnad1 id=eq.1h9v.s11.f18f02badfbf from=translated src=- shape=2730b3ed vocab=b752d702
+-/
 theorem LinearMap.ext_tmul {g h : (P₁ ⊗[k] P₂) →ₗ[A₁ ⊗[k] A₂] (N₁ ⊗[k] N₂)}
     (H : ∀ (p₁ : P₁) (p₂ : P₂), g (p₁ ⊗ₜ[k] p₂) = h (p₁ ⊗ₜ[k] p₂)) : g = h := by
   refine LinearMap.ext fun z => ?_
@@ -160,7 +170,9 @@ noncomputable def TensorProduct.linearMapTensor :
           simp only [LinearMap.coe_mk, AddHom.coe_mk, LinearMap.smul_apply, TensorProduct.mapLinear_tmul,
             TensorProduct.smul_tmul', RingHom.id_apply] }
 
-/-- A pure tensor of linear maps sends a pure tensor of vectors to the tensor of their componentwise images.-/
+/-- A pure tensor of linear maps sends a pure tensor of vectors to the tensor of their componentwise images.
+@isnad1 id=eq.2h11v.s12.e0f829c6a910 from=translated src=- shape=ff6b8d99 vocab=7427c5d1
+-/
 @[simp] theorem TensorProduct.linearMapTensor_tmul_apply_tmul
     (f₁ : P₁ →ₗ[A₁] N₁) (f₂ : P₂ →ₗ[A₂] N₂) (p₁ : P₁) (p₂ : P₂) :
     TensorProduct.linearMapTensor k A₁ A₂ P₁ P₂ N₁ N₂ hP hN (f₁ ⊗ₜ[k] f₂) (p₁ ⊗ₜ[k] p₂)
@@ -182,7 +194,9 @@ def LinearEquiv.finFunctionProd (X : Type u) [AddCommGroup X] [Module k X] (n m 
   left_inv _ := rfl
   right_inv g := by funext p; obtain ⟨i, j⟩ := p; rfl
 
-/-- The reindexed family has at each pair the value of the original doubly indexed family at its two components.-/
+/-- The reindexed family has at each pair the value of the original doubly indexed family at its two components.
+@isnad1 id=eq.0h7v.s9.abf45ec3b901 from=translated src=- shape=51857c69 vocab=3e365b2b
+-/
 @[simp] theorem LinearEquiv.finFunctionProd_apply (X : Type u) [AddCommGroup X] [Module k X] (n m : ℕ)
     (f : Fin n → Fin m → X) (i : Fin n) (j : Fin m) :
     LinearEquiv.finFunctionProd k X n m f (i, j) = f i j := rfl
@@ -196,7 +210,9 @@ noncomputable def TensorProduct.finFunctionTensorEquiv (M₁ M₂ : Type u)
       TensorProduct.piRight k k M₁ (fun _ : Fin m => M₂)) ≪≫ₗ
     LinearEquiv.finFunctionProd k (M₁ ⊗[k] M₂) n m
 
-/-- On a pure tensor of finite families, the coordinate at a pair is the tensor of the corresponding coordinates.-/
+/-- On a pure tensor of finite families, the coordinate at a pair is the tensor of the corresponding coordinates.
+@isnad1 id=eq.0h9v.s10.a05b60b198bb from=translated src=- shape=eabd4e44 vocab=e2774b1d
+-/
 @[simp] theorem TensorProduct.finFunctionTensorEquiv_tmul_apply (M₁ M₂ : Type u)
     [AddCommGroup M₁] [Module k M₁] [AddCommGroup M₂] [Module k M₂] (n m : ℕ)
     (x₁ : Fin n → M₁) (x₂ : Fin m → M₂) (i : Fin n) (j : Fin m) :
@@ -219,7 +235,9 @@ def LinearEquiv.precomp (e : X ≃ₗ[R] Y) : (X →ₗ[R] L) ≃ₗ[k] (Y →�
   left_inv φ := by ext x; simp
   right_inv ψ := by ext y; simp
 
-/-- The induced equivalence evaluates a linear map at the inverse image of the given argument.-/
+/-- The induced equivalence evaluates a linear map at the inverse image of the given argument.
+@isnad1 id=eq.0h8v.s10.b4d0403dc1d2 from=translated src=- shape=6d8ea565 vocab=0269716f
+-/
 @[simp] theorem LinearEquiv.precomp_apply (e : X ≃ₗ[R] Y) (φ : X →ₗ[R] L) (y : Y) :
     LinearEquiv.precomp k e φ y = φ (e.symm y) := rfl
 
@@ -237,7 +255,9 @@ variable (P₁ P₂ N₁ N₂ : Type u)
   [instP : Module (A₁ ⊗[k] A₂) (P₁ ⊗[k] P₂)] [IsScalarTower k (A₁ ⊗[k] A₂) (P₁ ⊗[k] P₂)]
   [instN : Module (A₁ ⊗[k] A₂) (N₁ ⊗[k] N₂)] [IsScalarTower k (A₁ ⊗[k] A₂) (N₁ ⊗[k] N₂)]
 
-/-- The map from tensors of linear maps is bijective when its source modules are finite families of their respective scalar algebras.-/
+/-- The map from tensors of linear maps is bijective when its source modules are finite families of their respective scalar algebras.
+@isnad1 id=bijectiv.2h7v.s13.547e44ed5b09 from=translated src=- shape=b99bd980 vocab=2ef0f79b
+-/
 theorem TensorProduct.linearMapTensor_fin_bijective (n m : ℕ)
     [instF : Module (A₁ ⊗[k] A₂) ((Fin n → A₁) ⊗[k] (Fin m → A₂))]
     [IsScalarTower k (A₁ ⊗[k] A₂) ((Fin n → A₁) ⊗[k] (Fin m → A₂))]
@@ -332,7 +352,9 @@ theorem TensorProduct.linearMapTensor_fin_bijective (n m : ℕ)
   rw [hFE]
   exact E.bijective
 
-/-- The map from tensors of linear maps to induced maps on tensor products is bijective when both source modules are finite and projective.-/
+/-- The map from tensors of linear maps to induced maps on tensor products is bijective when both source modules are finite and projective.
+@isnad1 id=bijectiv.2h7v.s12.8f7de7365b82 from=translated src=- shape=b4b38206 vocab=e6b4e60a
+-/
 theorem TensorProduct.linearMapTensor_bijective
     [Module.Finite A₁ P₁] [Module.Projective A₁ P₁]
     [Module.Finite A₂ P₂] [Module.Projective A₂ P₂]

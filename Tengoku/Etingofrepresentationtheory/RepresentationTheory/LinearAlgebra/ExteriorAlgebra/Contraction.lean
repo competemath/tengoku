@@ -25,7 +25,9 @@ section Formula
 
 variable (R)
 
-/-- A theorem declaration whose formal type was not rendered in the supplied data.-/
+/-- A theorem declaration whose formal type was not rendered in the supplied data.
+@isnad1 id=eq.0h5v.s13.ee4da8cb3ddc from=translated src=- shape=e752648b vocab=2e2244cd
+-/
 theorem unrenderedTheorem (u : Module.Dual R M) :
     ∀ (n : ℕ) (v : Fin (n + 1) → M),
       CliffordAlgebra.contractLeft u (ExteriorAlgebra.ιMulti R (n + 1) v) =
@@ -73,7 +75,9 @@ section Graded
 
 variable (R)
 
-/-- Left contraction maps elements of exterior degree `n + 1` into exterior degree `n`.-/
+/-- Left contraction maps elements of exterior degree `n + 1` into exterior degree `n`.
+@isnad1 id=mem.1h5v.s13.254ca8533f00 from=translated src=- shape=d4e1ee17 vocab=04e4881e
+-/
 theorem contractLeft_maps_exteriorPower_succ (u : Module.Dual R M) (n : ℕ)
     {x : ExteriorAlgebra R M} (hx : x ∈ ⋀[R]^(n + 1) M) :
     CliffordAlgebra.contractLeft u x ∈ ⋀[R]^n M := by
@@ -96,7 +100,9 @@ noncomputable def exteriorPowerContraction (u : Module.Dual R M) (n : ℕ) :
 
 variable {R}
 
-/-- Evaluating exterior-power contraction gives the negative of left contraction on the underlying element.-/
+/-- Evaluating exterior-power contraction gives the negative of left contraction on the underlying element.
+@isnad1 id=eq.0h5v.s14.69271af05027 from=translated src=- shape=5e45bdec vocab=2e71308d
+-/
 @[simp]
 theorem exteriorPowerContraction_apply (u : Module.Dual R M) (n : ℕ)
     (x : ⋀[R]^(n + 1) M) :
@@ -104,7 +110,9 @@ theorem exteriorPowerContraction_apply (u : Module.Dual R M) (n : ℕ)
       -CliffordAlgebra.contractLeft u (x : ExteriorAlgebra R M) :=
   rfl
 
-/-- The supplied data does not provide a rendered formal type for this theorem declaration.-/
+/-- The supplied data does not provide a rendered formal type for this theorem declaration.
+@isnad1 id=eq.0h5v.s14.8a4ab7c558e7 from=translated src=- shape=42064d9f vocab=4d4a76c1
+-/
 theorem exteriorPowerContraction_unrenderedAux (u : Module.Dual R M) (n : ℕ)
     (v : Fin (n + 1) → M) :
     exteriorPowerContraction R u n (exteriorPower.ιMulti R (n + 1) v) =
@@ -120,7 +128,9 @@ theorem exteriorPowerContraction_unrenderedAux (u : Module.Dual R M) (n : ℕ)
   simp only [pow_succ]
   module
 
-/-- Applying consecutive exterior-power contractions using the same dual vector gives zero.-/
+/-- Applying consecutive exterior-power contractions using the same dual vector gives zero.
+@isnad1 id=eq.0h5v.s13.7f72a1a0bf47 from=translated src=- shape=274fa691 vocab=56f7bb4e
+-/
 @[simp]
 theorem exteriorPowerContraction_apply_succ (u : Module.Dual R M) (n : ℕ)
     (x : ⋀[R]^(n + 2) M) :
@@ -128,7 +138,9 @@ theorem exteriorPowerContraction_apply_succ (u : Module.Dual R M) (n : ℕ)
   apply Subtype.ext
   simp [CliffordAlgebra.contractLeft_contractLeft]
 
-/-- Exterior-power contractions by two dual vectors anticommute on elements two degrees higher.-/
+/-- Exterior-power contractions by two dual vectors anticommute on elements two degrees higher.
+@isnad1 id=eq.0h6v.s14.4450713f7f80 from=translated src=- shape=38e19288 vocab=620beb61
+-/
 theorem exteriorPowerContraction_anticommute (u u' : Module.Dual R M) (n : ℕ)
     (x : ⋀[R]^(n + 2) M) :
     exteriorPowerContraction R u n (exteriorPowerContraction R u' (n + 1) x) =
@@ -140,8 +152,12 @@ end Graded
 
 end RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction
 
-/-- The formal statement of this declaration is unavailable in the packet.-/
+/-- The formal statement of this declaration is unavailable in the packet.
+@isnad1 id=eq.0h5v.s13.ee4da8cb3ddc from=translated src=- shape=e752648b vocab=2e2244cd
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction.Auxiliary.statement018207 := _root_.RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction.unrenderedTheorem
 
-/-- The formal statement of this declaration is unavailable in the packet.-/
+/-- The formal statement of this declaration is unavailable in the packet.
+@isnad1 id=eq.0h5v.s14.8a4ab7c558e7 from=translated src=- shape=42064d9f vocab=4d4a76c1
+-/
 alias _root_.RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction.Auxiliary.statement019272 := _root_.RepresentationTheory.LinearAlgebra.ExteriorAlgebra.Contraction.exteriorPowerContraction_unrenderedAux

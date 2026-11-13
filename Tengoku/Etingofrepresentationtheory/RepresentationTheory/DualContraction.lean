@@ -14,7 +14,9 @@ namespace RepresentationTheory.DualContraction
 
 variable {k G V : Type*} [Field k] [Group G] [AddCommGroup V] [Module k V]
 
-/-- Contracting a pure tensor after applying the dual and original representation actions gives the original contraction.-/
+/-- Contracting a pure tensor after applying the dual and original representation actions gives the original contraction.
+@isnad1 id=eq.0h7v.s12.d776029386b2 from=translated src=- shape=9559e22f vocab=0e323f77
+-/
 theorem contractLeft_dual_action_tmul_action (ρ : Representation k G V) (g : G)
     (f : Module.Dual k V) (v : V) :
     contractLeft k V ((ρ.dual g) f ⊗ₜ[k] (ρ g v))
@@ -24,7 +26,9 @@ theorem contractLeft_dual_action_tmul_action (ρ : Representation k G V) (g : G)
   congr 1
   rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
 
-/-- Left contraction on a nontrivial finite-dimensional vector space is nonzero.-/
+/-- Left contraction on a nontrivial finite-dimensional vector space is nonzero.
+@isnad1 id=ne.0h2v.s10.1f2c3cdf74b2 from=translated src=- shape=86d162ee vocab=d4eb4e93
+-/
 theorem contractLeft_ne_zero [Nontrivial V] [FiniteDimensional k V] :
     contractLeft k V ≠ 0 := by
   intro h

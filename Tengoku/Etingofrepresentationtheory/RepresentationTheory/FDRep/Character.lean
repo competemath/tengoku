@@ -22,7 +22,9 @@ namespace RepresentationTheory.FDRep.Character
 
 /-- The group-cardinality-normalized sum of the character values of the first representation at
 each element times those of the second at its inverse equals the field dimension of the morphisms
-from the second representation to the first.-/
+from the second representation to the first.
+@isnad1 id=eq.0h4v.s9.55fd16736d00 from=translated src=- shape=7be7e011 vocab=95ee5623
+-/
 theorem normalizedCharacterSum_eq_finrank_hom
     {k : Type u} {G : Type v} [Field k] [Group G] [Fintype G]
     [Invertible (Fintype.card G : k)] (V W : FDRep k G) :
@@ -36,7 +38,9 @@ theorem normalizedCharacterSum_eq_finrank_hom
 open scoped Classical in
 /-- For simple finite-dimensional representations, the group-cardinality-normalized sum of their
 character values at an element and its inverse is one when the representations are isomorphic and
-zero otherwise.-/
+zero otherwise.
+@isnad1 id=eq.0h4v.s9.eb431f86d311 from=translated src=- shape=93a8040a vocab=6c7279f1
+-/
 theorem normalizedCharacterSum_eq_ite_iso_of_simple
     {k : Type u} {G : Type v} [Field k] [IsAlgClosed k] [Group G] [Fintype G]
     [Invertible (Fintype.card G : k)] (V W : FDRep k G) [Simple V] [Simple W] :

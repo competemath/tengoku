@@ -32,7 +32,9 @@ def coordinateProjection (j : ι) : AuxiliaryIndexedFamily M →ₗ[A] Auxiliary
   (LinearMap.single A M j).comp (LinearMap.proj j)
 
 omit [Fintype ι] in
-/-- Selecting coordinate `j` retains only the `j`-th value of the indexed element.-/
+/-- Selecting coordinate `j` retains only the `j`-th value of the indexed element.
+@isnad1 id=eq.0h5v.s8.306616544f98 from=translated src=- shape=fec089db vocab=1f6f8cec
+-/
 @[simp]
 theorem coordinateProjection_apply (j : ι) (x : AuxiliaryIndexedFamily M) :
     coordinateProjection (A := A) M j x = Pi.single j (x j) := by
@@ -41,7 +43,9 @@ theorem coordinateProjection_apply (j : ι) (x : AuxiliaryIndexedFamily M) :
 variable {M}
 
 omit [Fintype ι] in
-/-- An endomorphism of a pairwise non-equivalent family of simple modules sends a vector supported at one index to zero at every distinct index.-/
+/-- An endomorphism of a pairwise non-equivalent family of simple modules sends a vector supported at one index to zero at every distinct index.
+@isnad1 id=eq.3h7v.s8.cb6917d86e45 from=translated src=- shape=0831a423 vocab=4c72f43f
+-/
 theorem linearMap_single_apply_eq_zero
     (hsimp : ∀ i, IsSimpleModule A (M i))
     (hdist : Pairwise (fun i j => ¬ Nonempty (M i ≃ₗ[A] M j)))
@@ -59,13 +63,17 @@ theorem linearMap_single_apply_eq_zero
   have : g m = 0 := by rw [hg]; rfl
   simpa [g] using this
 
-/-- A finitely indexed element is the sum of the single-coordinate elements formed from all of its values.-/
+/-- A finitely indexed element is the sum of the single-coordinate elements formed from all of its values.
+@isnad1 id=eq.0h3v.s6.e95ebef14cb1 from=translated src=- shape=0acb0991 vocab=15d17840
+-/
 theorem sum_single_apply_eq (x : AuxiliaryIndexedFamily M) : ∑ i, Pi.single i (x i) = x := by
   funext k
   rw [Finset.sum_apply, Finset.sum_pi_single]
   simp
 
-/-- Coordinate selection commutes pointwise with any linear endomorphism of a finite pairwise non-equivalent family of simple modules.-/
+/-- Coordinate selection commutes pointwise with any linear endomorphism of a finite pairwise non-equivalent family of simple modules.
+@isnad1 id=eq.2h6v.s9.d30275599212 from=translated src=- shape=ff7db225 vocab=b605971d
+-/
 theorem coordinateProjection_commutes
     (hsimp : ∀ i, IsSimpleModule A (M i))
     (hdist : Pairwise (fun i j => ¬ Nonempty (M i ≃ₗ[A] M j)))
@@ -92,7 +100,9 @@ theorem coordinateProjection_commutes
 variable (M)
 
 omit [∀ i, Module.Finite 𝕜 (M i)] in
-/-- For a finite pairwise non-equivalent family of simple modules, an algebra element acts as the identity on one selected member and as zero on every other member.-/
+/-- For a finite pairwise non-equivalent family of simple modules, an algebra element acts as the identity on one selected member and as zero on every other member.
+@isnad1 id=ex.3h5v.s9.51a28ce1a6fe from=translated src=- shape=16438a60 vocab=a053787b
+-/
 theorem exists_smul_eq_ite (hfin : ∀ i, Module.Finite 𝕜 (M i))
     (hsimp : ∀ i, IsSimpleModule A (M i))
     (hdist : Pairwise (fun i j => ¬ Nonempty (M i ≃ₗ[A] M j)))
@@ -130,7 +140,9 @@ theorem exists_smul_eq_ite (hfin : ∀ i, Module.Finite 𝕜 (M i))
 def scalarActionAlgHom (i : ι) : A →ₐ[𝕜] Module.End 𝕜 (M i) := Algebra.lsmul 𝕜 𝕜 (M i)
 
 omit [Fintype ι] [DecidableEq ι] [∀ i, Module.Finite 𝕜 (M i)] in
-/-- Evaluating the scalar-action algebra homomorphism on an element and a vector agrees with scalar multiplication.-/
+/-- Evaluating the scalar-action algebra homomorphism on an element and a vector agrees with scalar multiplication.
+@isnad1 id=eq.0h7v.s9.595695792e08 from=translated src=- shape=5ca6fc1a vocab=f02588f4
+-/
 @[simp]
 theorem scalarActionAlgHom_apply (i : ι) (a : A) (v : M i) :
     (scalarActionAlgHom M i a : M i →ₗ[𝕜] M i) v = a • v := rfl
@@ -140,13 +152,17 @@ def moduleTraceLinearMap (i : ι) : A →ₗ[𝕜] 𝕜 :=
   (LinearMap.trace 𝕜 (M i)).comp (scalarActionAlgHom M i).toLinearMap
 
 omit [Fintype ι] [DecidableEq ι] [∀ i, Module.Finite 𝕜 (M i)] in
-/-- The module trace functional evaluates an algebra element as the trace of its scalar-action endomorphism.-/
+/-- The module trace functional evaluates an algebra element as the trace of its scalar-action endomorphism.
+@isnad1 id=eq.0h6v.s10.3b3c33b5494d from=translated src=- shape=77940b5b vocab=fde03c69
+-/
 @[simp]
 theorem moduleTraceLinearMap_apply (i : ι) (a : A) :
     moduleTraceLinearMap M i a = LinearMap.trace 𝕜 (M i) (scalarActionAlgHom M i a) := rfl
 
 omit [DecidableEq ι] in
-/-- The trace functionals of a finite pairwise non-equivalent family of finite-dimensional simple modules are linearly independent in characteristic zero.-/
+/-- The trace functionals of a finite pairwise non-equivalent family of finite-dimensional simple modules are linearly independent in characteristic zero.
+@isnad1 id=linearin.2h4v.s9.68c3734d8182 from=translated src=- shape=47f1d9a5 vocab=f8f8792d
+-/
 theorem linearIndependent_moduleTraceLinearMap [CharZero 𝕜]
     (hsimp : ∀ i, IsSimpleModule A (M i))
     (hdist : Pairwise (fun i j => ¬ Nonempty (M i ≃ₗ[A] M j))) :

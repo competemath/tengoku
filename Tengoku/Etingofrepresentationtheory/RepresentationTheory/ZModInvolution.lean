@@ -39,7 +39,9 @@ private lemma factor_eq (hq : 2 ≤ q) : q ^ 2 - 1 = (q - 1) * (q + 1) := by
     rw [hm]; ring
   rw [h1, h2]; omega
 
-/-- Characterizes fixed points by divisibility of their natural representatives.-/
+/-- Characterizes fixed points by divisibility of their natural representatives.
+@isnad1 id=iff.1h2v.s7.05c94b85d095 from=translated src=- shape=e51957a9 vocab=d2c26aba
+-/
 lemma zmodTransform_fixed_iff (hq : 2 ≤ q) (x : ZMod (q ^ 2 - 1)) :
     zmodTransform q x = x ↔ (q + 1) ∣ x.val := by
   haveI : NeZero (q ^ 2 - 1) := ⟨by have := four_le q hq; omega⟩
@@ -64,7 +66,9 @@ lemma zmodTransform_fixed_iff (hq : 2 ≤ q) (x : ZMod (q ^ 2 - 1)) :
     rw [Nat.cast_sub (by omega : 1 ≤ q), Nat.cast_one, sub_mul, one_mul, sub_eq_zero] at hzero
     exact hzero
 
-/-- The transformation has `q - 1` fixed points.-/
+/-- The transformation has `q - 1` fixed points.
+@isnad1 id=eq.1h1v.s8.1e24da823130 from=translated src=- shape=49f4d219 vocab=1e59b791
+-/
 lemma card_zmodTransform_fixedPoints [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) :
     (Finset.univ.filter (fun x : ZMod (q ^ 2 - 1) => zmodTransform q x = x)).card = q - 1 := by
   have hfac : q ^ 2 - 1 = (q - 1) * (q + 1) := factor_eq q hq
@@ -103,12 +107,16 @@ lemma card_zmodTransform_fixedPoints [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) :
     rw [ZMod.val_natCast_of_lt (hlt_k k hk)]
     exact Nat.mul_div_cancel_left k (by omega)
 
-/-- An element belongs to the first auxiliary finite set exactly when it is not fixed.-/
+/-- An element belongs to the first auxiliary finite set exactly when it is not fixed.
+@isnad1 id=iff.0h2v.s8.1a1c96040287 from=translated src=- shape=ee554177 vocab=40ea4808
+-/
 lemma mem_auxiliaryZModFinsetA_iff [NeZero (q ^ 2 - 1)] (x : ZMod (q ^ 2 - 1)) :
     x ∈ auxiliaryZModFinsetA q ↔ zmodTransform q x ≠ x := by
   simp only [auxiliaryZModFinsetA, Finset.mem_filter, Finset.mem_univ, true_and]
 
-/-- The first auxiliary finite set has cardinality `q * (q - 1)`.-/
+/-- The first auxiliary finite set has cardinality `q * (q - 1)`.
+@isnad1 id=eq.1h1v.s6.87497b20d704 from=translated src=- shape=98c36f22 vocab=fb1b7257
+-/
 theorem card_auxiliaryZModFinsetA [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) : (auxiliaryZModFinsetA q).card = q * (q - 1) := by
   classical
   set F := Finset.univ.filter (fun x : ZMod (q ^ 2 - 1) => zmodTransform q x = x) with hF
@@ -136,7 +144,9 @@ theorem card_auxiliaryZModFinsetA [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) : (auxilia
     rw [h1, h2]; omega
   omega
 
-/-- Applying the transformation twice is the identity when `q ≥ 2`.-/
+/-- Applying the transformation twice is the identity when `q ≥ 2`.
+@isnad1 id=eq.1h2v.s6.6b1db4f61083 from=translated src=- shape=8f54f8b2 vocab=93063c87
+-/
 lemma zmodTransform_involutive (hq : 2 ≤ q) (x : ZMod (q ^ 2 - 1)) : zmodTransform q (zmodTransform q x) = x := by
   haveI : NeZero (q ^ 2 - 1) := ⟨by have := four_le q hq; omega⟩
   have hsq : (q : ZMod (q ^ 2 - 1)) ^ 2 = 1 := by
@@ -146,7 +156,9 @@ lemma zmodTransform_involutive (hq : 2 ≤ q) (x : ZMod (q ^ 2 - 1)) : zmodTrans
   simp only [zmodTransform]
   rw [← mul_assoc, ← pow_two, hsq, one_mul]
 
-/-- The second auxiliary finite set and its transformed image are disjoint, have equal cardinality, and have union equal to the first auxiliary finite set.-/
+/-- The second auxiliary finite set and its transformed image are disjoint, have equal cardinality, and have union equal to the first auxiliary finite set.
+@isnad1 id=and.1h1v.s9.c0bde0e776b2 from=translated src=- shape=3d5ea09d vocab=854f41fd
+-/
 theorem auxiliaryZModFinsets_partition [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) :
     Disjoint (auxiliaryZModFinsetB q) ((auxiliaryZModFinsetB q).image (zmodTransform q))
       ∧ (auxiliaryZModFinsetB q) ∪ (auxiliaryZModFinsetB q).image (zmodTransform q) = auxiliaryZModFinsetA q
@@ -197,7 +209,9 @@ theorem auxiliaryZModFinsets_partition [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) :
   ·
     exact Finset.card_image_of_injective _ hinv.injective
 
-/-- The second auxiliary finite set has cardinality `q * (q - 1) / 2`.-/
+/-- The second auxiliary finite set has cardinality `q * (q - 1) / 2`.
+@isnad1 id=eq.1h1v.s6.f70d64ecb1a4 from=translated src=- shape=82cffecc vocab=21904945
+-/
 theorem card_auxiliaryZModFinsetB [NeZero (q ^ 2 - 1)] (hq : 2 ≤ q) :
     (auxiliaryZModFinsetB q).card = q * (q - 1) / 2 := by
   obtain ⟨hdisj, hunion, hcard⟩ := auxiliaryZModFinsets_partition q hq

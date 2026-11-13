@@ -69,23 +69,33 @@ noncomputable def weightElement (q : ℂˣ) : QuantumSL2 q := freeAlgebraMap q a
 /-- The inverse weight element of the parameterized algebra.-/
 noncomputable def inverseWeightElement (q : ℂˣ) : QuantumSL2 q := freeAlgebraMap q auxiliaryFreeAlgebraElementTwo
 
-/-- The weight element multiplied by its inverse element is one.-/
+/-- The weight element multiplied by its inverse element is one.
+@isnad1 id=eq.0h1v.s5.9060849e7a5d from=translated src=- shape=8a9736c4 vocab=11096f27
+-/
 @[simp] lemma weightElement_mul_inverseWeightElement (q : ℂˣ) : weightElement q * inverseWeightElement q = 1 := by
   have h := RingQuot.mkAlgHom_rel ℂ (Relations.weight_inverse (q := q)); simp only [map_mul, map_one] at h; exact h
 
-/-- The inverse weight element multiplied by the weight element is one.-/
+/-- The inverse weight element multiplied by the weight element is one.
+@isnad1 id=eq.0h1v.s5.dcdcf2deb8e7 from=translated src=- shape=8a9736c4 vocab=11096f27
+-/
 @[simp] lemma inverseWeightElement_mul_weightElement (q : ℂˣ) : inverseWeightElement q * weightElement q = 1 := by
   have h := RingQuot.mkAlgHom_rel ℂ (Relations.inverse_weight (q := q)); simp only [map_mul, map_one] at h; exact h
 
-/-- Moving the weight element past the raising element introduces the square of the parameter.-/
+/-- Moving the weight element past the raising element introduces the square of the parameter.
+@isnad1 id=eq.0h1v.s6.4cbe51e7c9bf from=translated src=- shape=74ca4403 vocab=ef3241df
+-/
 @[simp] lemma weightElement_mul_raisingElement (q : ℂˣ) : weightElement q * raisingElement q = ((q : ℂ) ^ 2) • (raisingElement q * weightElement q) := by
   have h := RingQuot.mkAlgHom_rel ℂ (Relations.weight_raising (q := q)); simp only [map_mul, map_smul] at h; exact h
 
-/-- Moving the weight element past the lowering element introduces the inverse square of the parameter.-/
+/-- Moving the weight element past the lowering element introduces the inverse square of the parameter.
+@isnad1 id=eq.0h1v.s6.8dae04435097 from=translated src=- shape=b383e42a vocab=34b1454b
+-/
 @[simp] lemma weightElement_mul_loweringElement (q : ℂˣ) : weightElement q * loweringElement q = ((q : ℂ) ^ 2)⁻¹ • (loweringElement q * weightElement q) := by
   have h := RingQuot.mkAlgHom_rel ℂ (Relations.weight_lowering (q := q)); simp only [map_mul, map_smul] at h; exact h
 
-/-- Scaling the raising-lowering commutator by the difference of the parameter and its inverse gives the difference of the weight elements.-/
+/-- Scaling the raising-lowering commutator by the difference of the parameter and its inverse gives the difference of the weight elements.
+@isnad1 id=eq.0h1v.s7.622d490623ce from=translated src=- shape=82b6bac3 vocab=0aaa6cea
+-/
 @[simp] lemma parameterDifference_smul_commutator (q : ℂˣ) :
     ((q : ℂ) - (q : ℂ)⁻¹) • (raisingElement q * loweringElement q - loweringElement q * raisingElement q) = weightElement q - inverseWeightElement q := by
   have h := RingQuot.mkAlgHom_rel ℂ (Relations.raising_lowering (q := q))
@@ -105,13 +115,17 @@ private theorem complexCharacterFree_respectsRelations (q : ℂˣ) :
 noncomputable def complexCharacter (q : ℂˣ) : QuantumSL2 q →ₐ[ℂ] ℂ :=
   RingQuot.liftAlgHom ℂ ⟨complexCharacterFree, complexCharacterFree_respectsRelations q⟩
 
-/-- The distinguished complex-valued algebra homomorphism is surjective.-/
+/-- The distinguished complex-valued algebra homomorphism is surjective.
+@isnad1 id=surjecti.0h1v.s6.a608ee241700 from=translated src=- shape=d36c3dbd vocab=2316f7d4
+-/
 theorem complexCharacter_surjective (q : ℂˣ) : Function.Surjective (complexCharacter q) := by
   intro z
   refine ⟨algebraMap ℂ (QuantumSL2 q) z, ?_⟩
   exact (complexCharacter q).commutes z
 
-/-- For a parameter of infinite order and a nonzero scalar, multiplication by successive even powers of the parameter is injective in the exponent.-/
+/-- For a parameter of infinite order and a nonzero scalar, multiplication by successive even powers of the parameter is injective in the exponent.
+@isnad1 id=injectiv.2h2v.s6.133692d5e474 from=translated src=- shape=52227d3e vocab=43a54d70
+-/
 lemma injective_evenPower_mul_of_infiniteOrder (q : ℂˣ) (hq : ¬ IsOfFinOrder q) (μ₀ : ℂ) (hμ₀ : μ₀ ≠ 0) :
     Function.Injective (fun n : ℕ => (q : ℂ) ^ (2 * n) * μ₀) := by
   intro a b hab
@@ -138,12 +152,16 @@ noncomputable def weightActionEnd : Module.End ℂ V where
 
 omit [FiniteDimensional ℂ V] in
 
-/-- The weight-action endomorphism evaluates as scalar action by the weight element.-/
+/-- The weight-action endomorphism evaluates as scalar action by the weight element.
+@isnad1 id=eq.0h3v.s8.bdec6a845b24 from=translated src=- shape=602f62b4 vocab=c440ac2c
+-/
 @[simp] lemma weightActionEnd_apply (v : V) : weightActionEnd q V v = weightElement q • v := rfl
 
 omit [FiniteDimensional ℂ V] in
 
-/-- Applying the raising element to a weight eigenvector multiplies its eigenvalue by the square of the parameter.-/
+/-- Applying the raising element to a weight eigenvector multiplies its eigenvalue by the square of the parameter.
+@isnad1 id=eq.1h4v.s9.d881d4ba0c9e from=translated src=- shape=439af8a7 vocab=246f8087
+-/
 lemma weightActionEnd_smul_raisingElement (μ : ℂ) (w : V) (hw : weightActionEnd q V w = μ • w) :
     weightActionEnd q V (raisingElement q • w) = ((q : ℂ) ^ 2 * μ) • (raisingElement q • w) := by
   simp only [weightActionEnd_apply] at hw ⊢
@@ -152,7 +170,9 @@ lemma weightActionEnd_smul_raisingElement (μ : ℂ) (w : V) (hw : weightActionE
 
 omit [FiniteDimensional ℂ V] in
 
-/-- Applying the lowering element to a weight eigenvector multiplies its eigenvalue by the inverse square of the parameter.-/
+/-- Applying the lowering element to a weight eigenvector multiplies its eigenvalue by the inverse square of the parameter.
+@isnad1 id=eq.1h4v.s9.d57acd3a4d4e from=translated src=- shape=c3a40c4d vocab=71e618dd
+-/
 lemma weightActionEnd_smul_loweringElement (μ : ℂ) (w : V) (hw : weightActionEnd q V w = μ • w) :
     weightActionEnd q V (loweringElement q • w) = (((q : ℂ) ^ 2)⁻¹ * μ) • (loweringElement q • w) := by
   simp only [weightActionEnd_apply] at hw ⊢
@@ -161,7 +181,9 @@ lemma weightActionEnd_smul_loweringElement (μ : ℂ) (w : V) (hw : weightAction
 
 omit [FiniteDimensional ℂ V] in
 
-/-- Every eigenvalue of the weight-action endomorphism is nonzero.-/
+/-- Every eigenvalue of the weight-action endomorphism is nonzero.
+@isnad1 id=ne.1h3v.s7.46eea0dd30ff from=translated src=- shape=3000a288 vocab=b87c04fd
+-/
 lemma weightActionEnd_eigenvalue_ne_zero (μ : ℂ) (hμ : (weightActionEnd q V).HasEigenvalue μ) : μ ≠ 0 := by
   rintro rfl
   obtain ⟨v, hv, hv0⟩ := hμ.exists_hasEigenvector
@@ -174,7 +196,9 @@ lemma weightActionEnd_eigenvalue_ne_zero (μ : ℂ) (hμ : (weightActionEnd q V)
     exact h
   exact hv0 this
 
-/-- A nontrivial finite-dimensional module at an infinite-order parameter has a weight eigenvalue whose shift by the squared parameter is not an eigenvalue.-/
+/-- A nontrivial finite-dimensional module at an infinite-order parameter has a weight eigenvalue whose shift by the squared parameter is not an eigenvalue.
+@isnad1 id=ex.1h2v.s8.23d1c3233fe7 from=translated src=- shape=c308c760 vocab=752bff18
+-/
 lemma exists_weightEigenvalue_not_shifted_of_infiniteOrder (hq : ¬ IsOfFinOrder q) [Nontrivial V] :
     ∃ μ : ℂ, (weightActionEnd q V).HasEigenvalue μ ∧ ¬ (weightActionEnd q V).HasEigenvalue ((q : ℂ) ^ 2 * μ) := by
   obtain ⟨μ₀, hμ₀⟩ := Module.End.exists_eigenvalue (weightActionEnd q V)
@@ -195,7 +219,9 @@ lemma exists_weightEigenvalue_not_shifted_of_infiniteOrder (hq : ¬ IsOfFinOrder
     (fun n => (h_chain n).exists_hasEigenvector.choose_spec)
   exact Module.Finite.not_linearIndependent_of_infinite _ h_li
 
-/-- A nontrivial finite-dimensional module at an infinite-order parameter has a nonzero weight eigenvector annihilated by the raising element.-/
+/-- A nontrivial finite-dimensional module at an infinite-order parameter has a nonzero weight eigenvector annihilated by the raising element.
+@isnad1 id=ex.1h2v.s8.e69b97040d0a from=translated src=- shape=6f1cd711 vocab=6ab3c4e2
+-/
 theorem exists_ne_zero_raising_annihilated_weightEigenvector (hq : ¬ IsOfFinOrder q) [Nontrivial V] :
     ∃ (v : V) (lam : ℂ), v ≠ 0 ∧ raisingElement q • v = 0 ∧ weightElement q • v = lam • v := by
   obtain ⟨μ, hμ, hμ2⟩ := exists_weightEigenvalue_not_shifted_of_infiniteOrder q V hq
@@ -213,7 +239,9 @@ theorem exists_ne_zero_raising_annihilated_weightEigenvector (hq : ¬ IsOfFinOrd
 
 end HighestWeight
 
-/-- No positive power of an infinite-order complex unit is one.-/
+/-- No positive power of an infinite-order complex unit is one.
+@isnad1 id=ne.2h2v.s5.1b901d8f6ebb from=translated src=- shape=5ca7336a vocab=86d455d9
+-/
 lemma pow_ne_one_of_infiniteOrder (q : ℂˣ) (hq : ¬ IsOfFinOrder q) {n : ℕ} (hn : 0 < n) : (q : ℂ) ^ n ≠ 1 := by
   intro h
   refine hq (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, ?_⟩)
@@ -221,11 +249,15 @@ lemma pow_ne_one_of_infiniteOrder (q : ℂˣ) (hq : ¬ IsOfFinOrder q) {n : ℕ}
   push_cast
   simpa using h
 
-/-- The square of an infinite-order complex unit is not one.-/
+/-- The square of an infinite-order complex unit is not one.
+@isnad1 id=ne.1h1v.s5.add27c3f3744 from=translated src=- shape=fa0eea95 vocab=31a8a31f
+-/
 lemma sq_ne_one_of_infiniteOrder (q : ℂˣ) (hq : ¬ IsOfFinOrder q) : (q : ℂ) ^ 2 ≠ 1 :=
   pow_ne_one_of_infiniteOrder q hq (by norm_num)
 
-/-- An infinite-order complex unit differs from its inverse.-/
+/-- An infinite-order complex unit differs from its inverse.
+@isnad1 id=ne.1h1v.s5.e51cd896cdef from=translated src=- shape=839ce61f vocab=91136952
+-/
 lemma sub_inv_ne_zero_of_infiniteOrder (q : ℂˣ) (hq : ¬ IsOfFinOrder q) : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0 := by
   intro h
   have h2 : (q : ℂ) = (q : ℂ)⁻¹ := sub_eq_zero.mp h
@@ -247,24 +279,34 @@ noncomputable def loweringWeight (lam : ℂ) (i : ℕ) : ℂ := lam * (((q : ℂ
 
 omit [Module ℂ V] [IsScalarTower ℂ (QuantumSL2 q) V] in
 
-/-- The zeroth lowering iterate is the original vector.-/
+/-- The zeroth lowering iterate is the original vector.
+@isnad1 id=eq.0h3v.s5.94625fea893f from=translated src=- shape=5acd4bc6 vocab=a432d6ca
+-/
 @[simp] lemma loweringIterate_zero (v : V) : loweringIterate q V v 0 = v := by simp [loweringIterate]
 
 omit [Module ℂ V] [IsScalarTower ℂ (QuantumSL2 q) V] in
 
-/-- The next lowering iterate is obtained by applying the lowering element.-/
+/-- The next lowering iterate is obtained by applying the lowering element.
+@isnad1 id=eq.0h4v.s7.d17541935339 from=translated src=- shape=bb532fa9 vocab=d6e8bc65
+-/
 lemma loweringIterate_succ (v : V) (i : ℕ) : loweringIterate q V v (i + 1) = loweringElement q • loweringIterate q V v i := by
   simp only [loweringIterate, pow_succ', mul_smul]
 
-/-- The zeroth lowering weight is the initial scalar.-/
+/-- The zeroth lowering weight is the initial scalar.
+@isnad1 id=eq.0h2v.s4.1d9f60f2886d from=translated src=- shape=72a94b1c vocab=e23bc990
+-/
 @[simp] lemma loweringWeight_zero (lam : ℂ) : loweringWeight q lam 0 = lam := by simp [loweringWeight]
 
-/-- Every term of the lowering-weight sequence from a nonzero initial scalar is nonzero.-/
+/-- Every term of the lowering-weight sequence from a nonzero initial scalar is nonzero.
+@isnad1 id=ne.1h3v.s5.3c249bfe31bc from=translated src=- shape=b7d4133f vocab=e23bc990
+-/
 lemma loweringWeight_ne_zero (lam : ℂ) (hlam : lam ≠ 0) (i : ℕ) : loweringWeight q lam i ≠ 0 := by
   apply mul_ne_zero hlam
   exact pow_ne_zero _ (inv_ne_zero (pow_ne_zero _ q.ne_zero))
 
-/-- The weight element acts on each lowering iterate with the corresponding shifted eigenvalue.-/
+/-- The weight element acts on each lowering iterate with the corresponding shifted eigenvalue.
+@isnad1 id=eq.1h5v.s8.5ef71f3c52ae from=translated src=- shape=5e7fbb3e vocab=8ccd50d4
+-/
 lemma weightElement_smul_loweringIterate (v : V) (lam : ℂ) (hKv : weightElement q • v = lam • v) (i : ℕ) :
     weightElement q • loweringIterate q V v i = loweringWeight q lam i • loweringIterate q V v i := by
   induction i with
@@ -276,7 +318,9 @@ lemma weightElement_smul_loweringIterate (v : V) (lam : ℂ) (hKv : weightElemen
     simp only [loweringWeight, pow_succ]
     ring
 
-/-- The inverse weight element acts on each lowering iterate by the inverse shifted eigenvalue.-/
+/-- The inverse weight element acts on each lowering iterate by the inverse shifted eigenvalue.
+@isnad1 id=eq.2h5v.s9.401f44c64c35 from=translated src=- shape=05116ce9 vocab=7ae86494
+-/
 lemma inverseWeightElement_smul_loweringIterate (v : V) (lam : ℂ) (hlam : lam ≠ 0) (hKv : weightElement q • v = lam • v) (i : ℕ) :
     inverseWeightElement q • loweringIterate q V v i = (loweringWeight q lam i)⁻¹ • loweringIterate q V v i := by
   have hK := weightElement_smul_loweringIterate q V v lam hKv i
@@ -289,7 +333,9 @@ lemma inverseWeightElement_smul_loweringIterate (v : V) (lam : ℂ) (hlam : lam 
   simp only [smul_smul, inv_mul_cancel₀ hmu, one_smul] at this
   exact this
 
-/-- On a simultaneous weight and inverse-weight eigenvector, raising after lowering equals lowering after raising plus the indicated scalar action.-/
+/-- On a simultaneous weight and inverse-weight eigenvector, raising after lowering equals lowering after raising plus the indicated scalar action.
+@isnad1 id=eq.3h4v.s9.bdf8a745aacd from=translated src=- shape=4f553372 vocab=bea25529
+-/
 lemma raisingElement_smul_loweringElement_smul (hne : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (x : V) (a : ℂ)
     (hK : weightElement q • x = a • x) (hL : inverseWeightElement q • x = a⁻¹ • x) :
     raisingElement q • (loweringElement q • x) = loweringElement q • (raisingElement q • x) + (((q : ℂ) - (q : ℂ)⁻¹)⁻¹ * (a - a⁻¹)) • x := by
@@ -309,7 +355,9 @@ lemma raisingElement_smul_loweringElement_smul (hne : (q : ℂ) - (q : ℂ)⁻¹
 noncomputable def raisingOnLoweringPowerCoeff (lam : ℂ) (i : ℕ) : ℂ :=
   ∑ j ∈ Finset.range (i + 1), ((q : ℂ) - (q : ℂ)⁻¹)⁻¹ * (loweringWeight q lam j - (loweringWeight q lam j)⁻¹)
 
-/-- On a vector killed by the raising element, raising the next lowering iterate yields the specified coefficient times the preceding iterate.-/
+/-- On a vector killed by the raising element, raising the next lowering iterate yields the specified coefficient times the preceding iterate.
+@isnad1 id=eq.4h5v.s9.39b75ef48d49 from=translated src=- shape=c69e155c vocab=0c63f936
+-/
 lemma raisingElement_smul_loweringIterate_succ (hne : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (v : V) (lam : ℂ) (hlam : lam ≠ 0)
     (he : raisingElement q • v = 0) (hKv : weightElement q • v = lam • v) (i : ℕ) :
     raisingElement q • loweringIterate q V v (i + 1) = raisingOnLoweringPowerCoeff q lam i • loweringIterate q V v i := by
@@ -331,7 +379,9 @@ lemma raisingElement_smul_loweringIterate_succ (hne : (q : ℂ) - (q : ℂ)⁻¹
       simp only [raisingOnLoweringPowerCoeff, Finset.sum_range_succ]
     rw [hstep]
 
-/-- For a nonzero initial scalar and an infinite-order parameter, the lowering-weight sequence is injective.-/
+/-- For a nonzero initial scalar and an infinite-order parameter, the lowering-weight sequence is injective.
+@isnad1 id=injectiv.2h2v.s5.a267e57ae9a7 from=translated src=- shape=1c44b70e vocab=c1938a6f
+-/
 lemma loweringWeight_injective_of_infiniteOrder (hq : ¬ IsOfFinOrder q) (lam : ℂ) (hlam : lam ≠ 0) :
     Function.Injective (loweringWeight q lam) := by
   intro a b hab
@@ -354,7 +404,9 @@ lemma loweringWeight_injective_of_infiniteOrder (hq : ¬ IsOfFinOrder q) (lam : 
 
 end Ladder
 
-/-- At an infinite-order parameter, vanishing of the raising-on-lowering coefficient forces the square of the eigenvalue to equal the indicated even power of the parameter.-/
+/-- At an infinite-order parameter, vanishing of the raising-on-lowering coefficient forces the square of the eigenvalue to equal the indicated even power of the parameter.
+@isnad1 id=eq.3h3v.s6.6af3b213d635 from=translated src=- shape=9f29cffa vocab=e2a018c1
+-/
 lemma sq_eq_evenPower_of_raisingOnLoweringPowerCoeff_eq_zero (q : ℂˣ) (hq : ¬ IsOfFinOrder q) (lam : ℂ) (hlam : lam ≠ 0) (N : ℕ)
     (h : raisingOnLoweringPowerCoeff q lam N = 0) : lam ^ 2 = (q : ℂ) ^ (2 * N) := by
   have hqne : (q : ℂ) ≠ 0 := q.ne_zero
@@ -402,7 +454,9 @@ lemma sq_eq_evenPower_of_raisingOnLoweringPowerCoeff_eq_zero (q : ℂˣ) (hq : �
     rw [← mul_assoc, mul_inv_cancel₀ hlam, one_mul]
   rw [pow_mul]; exact hlam2
 
-/-- A complex submodule stable under the raising, lowering, weight, and inverse-weight elements is stable under every algebra element.-/
+/-- A complex submodule stable under the raising, lowering, weight, and inverse-weight elements is stable under every algebra element.
+@isnad1 id=mem.5h5v.s9.824e618c119e from=translated src=- shape=f8b0c0c8 vocab=2db6a34b
+-/
 lemma smul_mem_of_stable_generators (q : ℂˣ) (V : Type*) [AddCommGroup V] [Module ℂ V]
     [Module (QuantumSL2 q) V] [IsScalarTower ℂ (QuantumSL2 q) V] (W : Submodule ℂ V)
     (hclE : ∀ x ∈ W, raisingElement q • x ∈ W) (hclF : ∀ x ∈ W, loweringElement q • x ∈ W)
@@ -434,7 +488,9 @@ lemma smul_mem_of_stable_generators (q : ℂˣ) (V : Type*) [AddCommGroup V] [Mo
     rw [map_add, add_smul]
     exact W.add_mem (ha y hy) (hb y hy)
 
-/-- A finite-dimensional simple module at an infinite-order parameter has a nonzero vector killed by the raising element whose weight eigenvalue is a sign times the indicated parameter power.-/
+/-- A finite-dimensional simple module at an infinite-order parameter has a nonzero vector killed by the raising element whose weight eigenvalue is a sign times the indicated parameter power.
+@isnad1 id=ex.1h2v.s9.7e5fe3607491 from=translated src=- shape=0d174a13 vocab=567ed77d
+-/
 theorem exists_highestWeightVector_eigenvalue_eq_sign_mul_pow (q : ℂˣ) (hq : ¬ IsOfFinOrder q)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
@@ -559,7 +615,9 @@ theorem exists_highestWeightVector_eigenvalue_eq_sign_mul_pow (q : ℂˣ) (hq : 
     congr 1
     rw [hfinrank_sub, mul_assoc, inv_mul_cancel₀ (pow_ne_zero N q.ne_zero), mul_one]
 
-/-- Moving a power of the weight element past the raising element introduces the corresponding power of the squared parameter.-/
+/-- Moving a power of the weight element past the raising element introduces the corresponding power of the squared parameter.
+@isnad1 id=eq.0h2v.s7.98f69589ad13 from=translated src=- shape=00e91eba vocab=ef3241df
+-/
 lemma weightElement_pow_mul_raisingElement (q : ℂˣ) (n : ℕ) :
     weightElement q ^ n * raisingElement q = (((q : ℂ) ^ 2) ^ n) • (raisingElement q * weightElement q ^ n) := by
   induction n with
@@ -569,7 +627,9 @@ lemma weightElement_pow_mul_raisingElement (q : ℂˣ) (n : ℕ) :
         smul_mul_assoc, smul_smul, mul_assoc (raisingElement q), ← pow_succ (weightElement q),
         mul_comm ((q : ℂ) ^ 2), ← pow_succ]
 
-/-- Moving a power of the weight element past the lowering element introduces the corresponding power of the inverse squared parameter.-/
+/-- Moving a power of the weight element past the lowering element introduces the corresponding power of the inverse squared parameter.
+@isnad1 id=eq.0h2v.s7.99fba64f0fdb from=translated src=- shape=0449f3c2 vocab=34b1454b
+-/
 lemma weightElement_pow_mul_loweringElement (q : ℂˣ) (n : ℕ) :
     weightElement q ^ n * loweringElement q = ((((q : ℂ) ^ 2)⁻¹) ^ n) • (loweringElement q * weightElement q ^ n) := by
   induction n with
@@ -579,23 +639,31 @@ lemma weightElement_pow_mul_loweringElement (q : ℂˣ) (n : ℕ) :
         smul_mul_assoc, smul_smul, mul_assoc (loweringElement q), ← pow_succ (weightElement q),
         mul_comm (((q : ℂ) ^ 2)⁻¹), ← pow_succ]
 
-/-- The parameter square raised to the order of the parameter is one.-/
+/-- The parameter square raised to the order of the parameter is one.
+@isnad1 id=eq.0h1v.s6.7132bf9360ac from=translated src=- shape=96041a16 vocab=4ee7b168
+-/
 lemma sq_pow_orderOf (q : ℂˣ) : ((q : ℂ) ^ 2) ^ orderOf q = 1 := by
   have hq1 : (q : ℂ) ^ orderOf q = 1 := by
     rw [← Units.val_pow_eq_pow_val, pow_orderOf_eq_one, Units.val_one]
   rw [← pow_mul, mul_comm, pow_mul, hq1, one_pow]
 
-/-- The order-th power of the weight element commutes with the raising element.-/
+/-- The order-th power of the weight element commutes with the raising element.
+@isnad1 id=eq.0h1v.s7.d503a5a6f7de from=translated src=- shape=6b0e848c vocab=3ae60ee0
+-/
 lemma weightElement_order_pow_commutes_raisingElement (q : ℂˣ) :
     weightElement q ^ orderOf q * raisingElement q = raisingElement q * weightElement q ^ orderOf q := by
   rw [weightElement_pow_mul_raisingElement, sq_pow_orderOf, one_smul]
 
-/-- The order-th power of the weight element commutes with the lowering element.-/
+/-- The order-th power of the weight element commutes with the lowering element.
+@isnad1 id=eq.0h1v.s7.ba4b7993b7a9 from=translated src=- shape=6b0e848c vocab=fbaf5073
+-/
 lemma weightElement_order_pow_commutes_loweringElement (q : ℂˣ) :
     weightElement q ^ orderOf q * loweringElement q = loweringElement q * weightElement q ^ orderOf q := by
   rw [weightElement_pow_mul_loweringElement, inv_pow, sq_pow_orderOf, inv_one, one_smul]
 
-/-- The order-th power of the weight element commutes with every algebra element.-/
+/-- The order-th power of the weight element commutes with every algebra element.
+@isnad1 id=eq.0h2v.s7.3ec73b070533 from=translated src=- shape=4567a47d vocab=66bea711
+-/
 lemma weightElement_order_pow_commutes (q : ℂˣ) (a : QuantumSL2 q) :
     weightElement q ^ orderOf q * a = a * weightElement q ^ orderOf q := by
   suffices H : ∀ p : FreeAlgebra ℂ Generator,
@@ -624,7 +692,9 @@ lemma weightElement_order_pow_commutes (q : ℂˣ) (a : QuantumSL2 q) :
   | add x y hx hy =>
       rw [map_add, mul_add, add_mul, hx, hy]
 
-/-- A power of the weight-action endomorphism acts by the corresponding power of the weight element.-/
+/-- A power of the weight-action endomorphism acts by the corresponding power of the weight element.
+@isnad1 id=eq.0h4v.s8.1e89b3e72bb1 from=translated src=- shape=fa978bba vocab=b35ddefc
+-/
 lemma weightActionEnd_pow_apply (q : ℂˣ) (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] (n : ℕ) (v : V) :
     (weightActionEnd q V ^ n) v = weightElement q ^ n • v := by
@@ -632,7 +702,9 @@ lemma weightActionEnd_pow_apply (q : ℂˣ) (V : Type*) [AddCommGroup V] [Module
   | zero => simp
   | succ n ih => rw [pow_succ, Module.End.mul_apply, weightActionEnd_apply, ih, ← mul_smul, ← pow_succ]
 
-/-- On a finite-dimensional simple module at a finite-order parameter, the order-th power of the weight element acts by a nonzero scalar.-/
+/-- On a finite-dimensional simple module at a finite-order parameter, the order-th power of the weight element acts by a nonzero scalar.
+@isnad1 id=ex.1h2v.s8.3fb233588150 from=translated src=- shape=d88f1913 vocab=8d769c7f
+-/
 theorem weightElement_order_pow_smul_eq_scalar (q : ℂˣ) (_hq : IsOfFinOrder q)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
@@ -682,7 +754,9 @@ theorem weightElement_order_pow_smul_eq_scalar (q : ℂˣ) (_hq : IsOfFinOrder q
     rw [Module.End.mem_eigenspace_iff, weightActionEnd_pow_apply] at hmem
     exact hmem
 
-/-- On a finite-dimensional simple module at a finite-order parameter, the weight-action endomorphism is semisimple, its eigenspaces span, and a common positive power of its eigenvalues is fixed.-/
+/-- On a finite-dimensional simple module at a finite-order parameter, the weight-action endomorphism is semisimple, its eigenspaces span, and a common positive power of its eigenvalues is fixed.
+@isnad1 id=and.1h2v.s8.1d3856083929 from=translated src=- shape=5914efa8 vocab=26a6bd5f
+-/
 theorem weightActionEnd_structure_of_finiteOrder (q : ℂˣ) (hq : IsOfFinOrder q)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
@@ -717,14 +791,18 @@ theorem weightActionEnd_structure_of_finiteOrder (q : ℂˣ) (hq : IsOfFinOrder 
   have h2 : (μ ^ orderOf q - α) • v = 0 := by rw [sub_smul, h1, sub_self]
   exact (smul_eq_zero.mp h2).resolve_right hv0 |> sub_eq_zero.mp
 
-/-- A complex unit whose square is not one differs from its inverse.-/
+/-- A complex unit whose square is not one differs from its inverse.
+@isnad1 id=ne.1h1v.s6.24873c45c313 from=translated src=- shape=fb7fb4ef vocab=0d37af3b
+-/
 lemma sub_inv_ne_zero_of_sq_ne_one (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0 := by
   intro h
   have h2 : (q : ℂ) = (q : ℂ)⁻¹ := sub_eq_zero.mp h
   have : (q : ℂ) ^ 2 = 1 := by rw [sq]; nth_rewrite 2 [h2]; exact mul_inv_cancel₀ q.ne_zero
   exact hq2 this
 
-/-- Moving the inverse weight element past the raising element introduces the inverse square of the parameter.-/
+/-- Moving the inverse weight element past the raising element introduces the inverse square of the parameter.
+@isnad1 id=eq.0h1v.s6.fdb2af0c67cf from=translated src=- shape=b383e42a vocab=a25c8e49
+-/
 @[simp] lemma inverseWeightElement_mul_raisingElement (q : ℂˣ) : inverseWeightElement q * raisingElement q = ((q : ℂ) ^ 2)⁻¹ • (raisingElement q * inverseWeightElement q) := by
   have hq2 : ((q : ℂ) ^ 2) ≠ 0 := pow_ne_zero _ q.ne_zero
   have key : raisingElement q * inverseWeightElement q = ((q : ℂ) ^ 2) • (inverseWeightElement q * raisingElement q) := by
@@ -738,7 +816,9 @@ lemma sub_inv_ne_zero_of_sq_ne_one (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) : (q 
     exact h
   rw [key, smul_smul, inv_mul_cancel₀ hq2, one_smul]
 
-/-- Moving the inverse weight element past the lowering element introduces the square of the parameter.-/
+/-- Moving the inverse weight element past the lowering element introduces the square of the parameter.
+@isnad1 id=eq.0h1v.s6.0a0d97606598 from=translated src=- shape=74ca4403 vocab=bc5f3e06
+-/
 @[simp] lemma inverseWeightElement_mul_loweringElement (q : ℂˣ) : inverseWeightElement q * loweringElement q = ((q : ℂ) ^ 2) • (loweringElement q * inverseWeightElement q) := by
   have key : loweringElement q * inverseWeightElement q = ((q : ℂ) ^ 2)⁻¹ • (inverseWeightElement q * loweringElement q) := by
     have h : inverseWeightElement q * (weightElement q * loweringElement q) * inverseWeightElement q = inverseWeightElement q * (((q : ℂ) ^ 2)⁻¹ • (loweringElement q * weightElement q)) * inverseWeightElement q := by
@@ -752,7 +832,9 @@ lemma sub_inv_ne_zero_of_sq_ne_one (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) : (q 
   have hq2 : ((q : ℂ) ^ 2) ≠ 0 := pow_ne_zero _ q.ne_zero
   rw [key, smul_smul, mul_inv_cancel₀ hq2, one_smul]
 
-/-- The product of the raising and lowering elements is their reverse product plus the normalized difference of the weight elements.-/
+/-- The product of the raising and lowering elements is their reverse product plus the normalized difference of the weight elements.
+@isnad1 id=eq.1h1v.s7.7782aec1cda1 from=translated src=- shape=3d85f146 vocab=597e8dc2
+-/
 lemma raisingElement_mul_loweringElement (q : ℂˣ) (hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) :
     raisingElement q * loweringElement q = loweringElement q * raisingElement q + (((q : ℂ) - (q : ℂ)⁻¹)⁻¹) • (weightElement q - inverseWeightElement q) := by
   have h := parameterDifference_smul_commutator q
@@ -760,7 +842,9 @@ lemma raisingElement_mul_loweringElement (q : ℂˣ) (hq' : (q : ℂ) - (q : ℂ
     rw [← h, inv_smul_smul₀ hq']
   rw [← hd]; abel
 
-/-- Moving the weight element past a power of the raising element introduces the indicated even power of the parameter.-/
+/-- Moving the weight element past a power of the raising element introduces the indicated even power of the parameter.
+@isnad1 id=eq.0h2v.s7.34a8f98fbe94 from=translated src=- shape=27a7d826 vocab=ef3241df
+-/
 lemma weightElement_mul_raisingElement_pow (q : ℂˣ) (n : ℕ) :
     weightElement q * raisingElement q ^ n = (((q : ℂ) ^ 2) ^ n) • (raisingElement q ^ n * weightElement q) := by
   induction n with
@@ -770,7 +854,9 @@ lemma weightElement_mul_raisingElement_pow (q : ℂˣ) (n : ℕ) :
         weightElement_mul_raisingElement, mul_smul_comm, smul_smul, ← mul_assoc (raisingElement q ^ n) (raisingElement q) (weightElement q),
         ← pow_succ ((q : ℂ) ^ 2) n]
 
-/-- Moving the inverse weight element past a power of the raising element introduces the corresponding power of the inverse squared parameter.-/
+/-- Moving the inverse weight element past a power of the raising element introduces the corresponding power of the inverse squared parameter.
+@isnad1 id=eq.0h2v.s7.2418c0f2d3ff from=translated src=- shape=ebe8bf5f vocab=a25c8e49
+-/
 lemma inverseWeightElement_mul_raisingElement_pow (q : ℂˣ) (n : ℕ) :
     inverseWeightElement q * raisingElement q ^ n = ((((q : ℂ) ^ 2)⁻¹) ^ n) • (raisingElement q ^ n * inverseWeightElement q) := by
   induction n with
@@ -780,7 +866,9 @@ lemma inverseWeightElement_mul_raisingElement_pow (q : ℂˣ) (n : ℕ) :
         inverseWeightElement_mul_raisingElement, mul_smul_comm, smul_smul, ← mul_assoc (raisingElement q ^ n) (raisingElement q) (inverseWeightElement q),
         ← pow_succ (((q : ℂ) ^ 2)⁻¹) n]
 
-/-- Moving the weight element past a power of the lowering element introduces the inverse of the indicated even power of the parameter.-/
+/-- Moving the weight element past a power of the lowering element introduces the inverse of the indicated even power of the parameter.
+@isnad1 id=eq.0h2v.s7.b64e1cba7007 from=translated src=- shape=ebe8bf5f vocab=34b1454b
+-/
 lemma weightElement_mul_loweringElement_pow (q : ℂˣ) (n : ℕ) :
     weightElement q * loweringElement q ^ n = ((((q : ℂ) ^ 2)⁻¹) ^ n) • (loweringElement q ^ n * weightElement q) := by
   induction n with
@@ -790,7 +878,9 @@ lemma weightElement_mul_loweringElement_pow (q : ℂˣ) (n : ℕ) :
         weightElement_mul_loweringElement, mul_smul_comm, smul_smul, ← mul_assoc (loweringElement q ^ n) (loweringElement q) (weightElement q),
         ← pow_succ (((q : ℂ) ^ 2)⁻¹) n]
 
-/-- Moving the inverse weight element past a power of the lowering element introduces the corresponding power of the squared parameter.-/
+/-- Moving the inverse weight element past a power of the lowering element introduces the corresponding power of the squared parameter.
+@isnad1 id=eq.0h2v.s7.2d296c39e595 from=translated src=- shape=27a7d826 vocab=bc5f3e06
+-/
 lemma inverseWeightElement_mul_loweringElement_pow (q : ℂˣ) (n : ℕ) :
     inverseWeightElement q * loweringElement q ^ n = (((q : ℂ) ^ 2) ^ n) • (loweringElement q ^ n * inverseWeightElement q) := by
   induction n with
@@ -800,7 +890,9 @@ lemma inverseWeightElement_mul_loweringElement_pow (q : ℂˣ) (n : ℕ) :
         inverseWeightElement_mul_loweringElement, mul_smul_comm, smul_smul, ← mul_assoc (loweringElement q ^ n) (loweringElement q) (inverseWeightElement q),
         ← pow_succ ((q : ℂ) ^ 2) n]
 
-/-- A successor power of the raising element multiplied by the lowering element satisfies the displayed commutation expansion.-/
+/-- A successor power of the raising element multiplied by the lowering element satisfies the displayed commutation expansion.
+@isnad1 id=eq.1h2v.s9.28b19b0eaba7 from=translated src=- shape=188620ee vocab=039d5d7b
+-/
 lemma raisingElement_succ_pow_mul_loweringElement (q : ℂˣ) (hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (n : ℕ) :
     raisingElement q ^ (n + 1) * loweringElement q
       = loweringElement q * raisingElement q ^ (n + 1)
@@ -834,7 +926,9 @@ lemma raisingElement_succ_pow_mul_loweringElement (q : ℂˣ) (hq' : (q : ℂ) -
         weightElement_mul_raisingElement_pow q (n + 1), inverseWeightElement_mul_raisingElement_pow q (n + 1)]
     module
 
-/-- If the squared parameter is not one, the order-th power of the raising element commutes with the lowering element.-/
+/-- If the squared parameter is not one, the order-th power of the raising element commutes with the lowering element.
+@isnad1 id=eq.1h1v.s7.510757a619b4 from=translated src=- shape=60f4abd0 vocab=a6743521
+-/
 lemma raisingElement_order_pow_commutes_loweringElement (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) :
     raisingElement q ^ orderOf q * loweringElement q = loweringElement q * raisingElement q ^ orderOf q := by
   have hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0 := sub_inv_ne_zero_of_sq_ne_one q hq2
@@ -858,19 +952,27 @@ lemma raisingElement_order_pow_commutes_loweringElement (q : ℂˣ) (hq2 : (q : 
     rw [raisingElement_succ_pow_mul_loweringElement q hq' m, hSA, hSB]
     simp
 
-/-- The order-th power of the raising element commutes with the weight element.-/
+/-- The order-th power of the raising element commutes with the weight element.
+@isnad1 id=eq.0h1v.s7.43505b6f98bc from=translated src=- shape=6b0e848c vocab=3ae60ee0
+-/
 lemma raisingElement_order_pow_commutes_weightElement (q : ℂˣ) : raisingElement q ^ orderOf q * weightElement q = weightElement q * raisingElement q ^ orderOf q := by
   rw [weightElement_mul_raisingElement_pow q (orderOf q), sq_pow_orderOf, one_smul]
 
-/-- The order-th power of the raising element commutes with the inverse weight element.-/
+/-- The order-th power of the raising element commutes with the inverse weight element.
+@isnad1 id=eq.0h1v.s7.b7326bc6108e from=translated src=- shape=6b0e848c vocab=22d14cf7
+-/
 lemma raisingElement_order_pow_commutes_inverseWeightElement (q : ℂˣ) : raisingElement q ^ orderOf q * inverseWeightElement q = inverseWeightElement q * raisingElement q ^ orderOf q := by
   rw [inverseWeightElement_mul_raisingElement_pow q (orderOf q), inv_pow, sq_pow_orderOf, inv_one, one_smul]
 
-/-- The order-th power of the raising element commutes with the raising element.-/
+/-- The order-th power of the raising element commutes with the raising element.
+@isnad1 id=eq.0h1v.s7.64ff7288f07c from=translated src=- shape=a08ecb9a vocab=03c9c79b
+-/
 lemma raisingElement_order_pow_commutes_raisingElement (q : ℂˣ) : raisingElement q ^ orderOf q * raisingElement q = raisingElement q * raisingElement q ^ orderOf q := by
   rw [← pow_succ, ← pow_succ']
 
-/-- If the squared parameter is not one, the order-th power of the raising element commutes with every algebra element.-/
+/-- If the squared parameter is not one, the order-th power of the raising element commutes with every algebra element.
+@isnad1 id=eq.1h2v.s7.9574a2961e0b from=translated src=- shape=7429bfc4 vocab=c2bae02b
+-/
 lemma raisingElement_order_pow_commutes (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) (a : QuantumSL2 q) :
     raisingElement q ^ orderOf q * a = a * raisingElement q ^ orderOf q := by
   suffices H : ∀ p : FreeAlgebra ℂ Generator,
@@ -897,13 +999,17 @@ lemma raisingElement_order_pow_commutes (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) 
   | add x y hx hy =>
       rw [map_add, mul_add, add_mul, hx, hy]
 
-/-- The product of the lowering and raising elements is their reverse product minus the normalized difference of the weight elements.-/
+/-- The product of the lowering and raising elements is their reverse product minus the normalized difference of the weight elements.
+@isnad1 id=eq.1h1v.s7.46e1c66ae4e7 from=translated src=- shape=53e56bf6 vocab=0aaa6cea
+-/
 lemma loweringElement_mul_raisingElement (q : ℂˣ) (hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) :
     loweringElement q * raisingElement q = raisingElement q * loweringElement q - (((q : ℂ) - (q : ℂ)⁻¹)⁻¹) • (weightElement q - inverseWeightElement q) := by
   have h := raisingElement_mul_loweringElement q hq'
   rw [h]; abel
 
-/-- A successor power of the lowering element multiplied by the raising element satisfies the displayed commutation expansion.-/
+/-- A successor power of the lowering element multiplied by the raising element satisfies the displayed commutation expansion.
+@isnad1 id=eq.1h2v.s9.40d1a15deb17 from=translated src=- shape=f6029908 vocab=039d5d7b
+-/
 lemma loweringElement_succ_pow_mul_raisingElement (q : ℂˣ) (hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (n : ℕ) :
     loweringElement q ^ (n + 1) * raisingElement q
       = raisingElement q * loweringElement q ^ (n + 1)
@@ -937,7 +1043,9 @@ lemma loweringElement_succ_pow_mul_raisingElement (q : ℂˣ) (hq' : (q : ℂ) -
         weightElement_mul_loweringElement_pow q (n + 1), inverseWeightElement_mul_loweringElement_pow q (n + 1)]
     module
 
-/-- If the squared parameter is not one, the order-th power of the lowering element commutes with the raising element.-/
+/-- If the squared parameter is not one, the order-th power of the lowering element commutes with the raising element.
+@isnad1 id=eq.1h1v.s7.6ca0fbccecc1 from=translated src=- shape=60f4abd0 vocab=a6743521
+-/
 lemma loweringElement_order_pow_commutes_raisingElement (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) :
     loweringElement q ^ orderOf q * raisingElement q = raisingElement q * loweringElement q ^ orderOf q := by
   have hq' : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0 := sub_inv_ne_zero_of_sq_ne_one q hq2
@@ -961,19 +1069,27 @@ lemma loweringElement_order_pow_commutes_raisingElement (q : ℂˣ) (hq2 : (q : 
     rw [loweringElement_succ_pow_mul_raisingElement q hq' m, hSA, hSB]
     simp
 
-/-- The order-th power of the lowering element commutes with the weight element.-/
+/-- The order-th power of the lowering element commutes with the weight element.
+@isnad1 id=eq.0h1v.s7.47f4a2bc826b from=translated src=- shape=6b0e848c vocab=fbaf5073
+-/
 lemma loweringElement_order_pow_commutes_weightElement (q : ℂˣ) : loweringElement q ^ orderOf q * weightElement q = weightElement q * loweringElement q ^ orderOf q := by
   rw [weightElement_mul_loweringElement_pow q (orderOf q), inv_pow, sq_pow_orderOf, inv_one, one_smul]
 
-/-- The order-th power of the lowering element commutes with the inverse weight element.-/
+/-- The order-th power of the lowering element commutes with the inverse weight element.
+@isnad1 id=eq.0h1v.s7.d0a2f23b4f1b from=translated src=- shape=6b0e848c vocab=bb803c6b
+-/
 lemma loweringElement_order_pow_commutes_inverseWeightElement (q : ℂˣ) : loweringElement q ^ orderOf q * inverseWeightElement q = inverseWeightElement q * loweringElement q ^ orderOf q := by
   rw [inverseWeightElement_mul_loweringElement_pow q (orderOf q), sq_pow_orderOf, one_smul]
 
-/-- The order-th power of the lowering element commutes with the lowering element.-/
+/-- The order-th power of the lowering element commutes with the lowering element.
+@isnad1 id=eq.0h1v.s7.38f50440084a from=translated src=- shape=a08ecb9a vocab=18cdcddf
+-/
 lemma loweringElement_order_pow_commutes_loweringElement (q : ℂˣ) : loweringElement q ^ orderOf q * loweringElement q = loweringElement q * loweringElement q ^ orderOf q := by
   rw [← pow_succ, ← pow_succ']
 
-/-- If the squared parameter is not one, the order-th power of the lowering element commutes with every algebra element.-/
+/-- If the squared parameter is not one, the order-th power of the lowering element commutes with every algebra element.
+@isnad1 id=eq.1h2v.s7.dce0740f76a9 from=translated src=- shape=7429bfc4 vocab=328314aa
+-/
 lemma loweringElement_order_pow_commutes (q : ℂˣ) (hq2 : (q : ℂ) ^ 2 ≠ 1) (a : QuantumSL2 q) :
     loweringElement q ^ orderOf q * a = a * loweringElement q ^ orderOf q := by
   suffices H : ∀ p : FreeAlgebra ℂ Generator,
@@ -1012,10 +1128,14 @@ noncomputable def algebraActionEnd (x : QuantumSL2 q) : Module.End ℂ V where
   map_add' := by intro a b; rw [smul_add]
   map_smul' := by intro c v; exact smul_comm x c v
 
-/-- The algebra-action endomorphism evaluates as scalar action by its algebra element.-/
+/-- The algebra-action endomorphism evaluates as scalar action by its algebra element.
+@isnad1 id=eq.0h4v.s8.01caa9287ef6 from=translated src=- shape=9011fbc7 vocab=34a71363
+-/
 @[simp] lemma algebraActionEnd_apply (x : QuantumSL2 q) (v : V) : algebraActionEnd q V x v = x • v := rfl
 
-/-- A central element acts by a scalar on every finite-dimensional simple module.-/
+/-- A central element acts by a scalar on every finite-dimensional simple module.
+@isnad1 id=ex.1h3v.s8.655ed3e5495d from=translated src=- shape=2c965f9e vocab=34032cd0
+-/
 theorem exists_scalar_smul_eq_of_central (x : QuantumSL2 q) (hx : ∀ a : QuantumSL2 q, x * a = a * x)
     [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
     ∃ α : ℂ, ∀ v : V, x • v = α • v := by
@@ -1044,13 +1164,17 @@ theorem exists_scalar_smul_eq_of_central (x : QuantumSL2 q) (hx : ∀ a : Quantu
   rw [Module.End.mem_eigenspace_iff, algebraActionEnd_apply] at hmem
   exact hmem
 
-/-- On a finite-dimensional simple module, the order-th power of the raising element acts by a scalar when the squared parameter is not one.-/
+/-- On a finite-dimensional simple module, the order-th power of the raising element acts by a scalar when the squared parameter is not one.
+@isnad1 id=ex.1h2v.s8.f8a4bb70fb2a from=translated src=- shape=bdc9f7ab vocab=9a560229
+-/
 theorem raisingElement_order_pow_smul_eq_scalar (hq2 : (q : ℂ) ^ 2 ≠ 1)
     [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
     ∃ α : ℂ, ∀ v : V, raisingElement q ^ orderOf q • v = α • v :=
   exists_scalar_smul_eq_of_central q V (raisingElement q ^ orderOf q) (raisingElement_order_pow_commutes q hq2)
 
-/-- On a finite-dimensional simple module, the order-th power of the lowering element acts by a scalar when the squared parameter is not one.-/
+/-- On a finite-dimensional simple module, the order-th power of the lowering element acts by a scalar when the squared parameter is not one.
+@isnad1 id=ex.1h2v.s8.17b8492b1b0b from=translated src=- shape=bdc9f7ab vocab=b72d9961
+-/
 theorem loweringElement_order_pow_smul_eq_scalar (hq2 : (q : ℂ) ^ 2 ≠ 1)
     [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V] :
     ∃ α : ℂ, ∀ v : V, loweringElement q ^ orderOf q • v = α • v :=
@@ -1072,24 +1196,34 @@ noncomputable def raisingWeight (lam : ℂ) (i : ℕ) : ℂ := lam * ((q : ℂ) 
 
 omit [Module ℂ V] [IsScalarTower ℂ (QuantumSL2 q) V] in
 
-/-- The zeroth raising iterate is the original vector.-/
+/-- The zeroth raising iterate is the original vector.
+@isnad1 id=eq.0h3v.s5.5b536effb0fd from=translated src=- shape=5acd4bc6 vocab=b07e7d59
+-/
 @[simp] lemma raisingIterate_zero (w : V) : raisingIterate q V w 0 = w := by simp [raisingIterate]
 
 omit [Module ℂ V] [IsScalarTower ℂ (QuantumSL2 q) V] in
 
-/-- The next raising iterate is obtained by applying the raising element.-/
+/-- The next raising iterate is obtained by applying the raising element.
+@isnad1 id=eq.0h4v.s7.9ca853ab58f2 from=translated src=- shape=bb532fa9 vocab=8dfd481a
+-/
 lemma raisingIterate_succ (w : V) (i : ℕ) : raisingIterate q V w (i + 1) = raisingElement q • raisingIterate q V w i := by
   simp only [raisingIterate, pow_succ', mul_smul]
 
-/-- The zeroth raising weight is the initial scalar.-/
+/-- The zeroth raising weight is the initial scalar.
+@isnad1 id=eq.0h2v.s4.f13df0b74248 from=translated src=- shape=72a94b1c vocab=a6145dac
+-/
 @[simp] lemma raisingWeight_zero (lam : ℂ) : raisingWeight q lam 0 = lam := by simp [raisingWeight]
 
-/-- Every term of the raising-weight sequence from a nonzero initial scalar is nonzero.-/
+/-- Every term of the raising-weight sequence from a nonzero initial scalar is nonzero.
+@isnad1 id=ne.1h3v.s5.8836a2a28ec4 from=translated src=- shape=b7d4133f vocab=a6145dac
+-/
 lemma raisingWeight_ne_zero (lam : ℂ) (hlam : lam ≠ 0) (i : ℕ) : raisingWeight q lam i ≠ 0 := by
   apply mul_ne_zero hlam
   exact pow_ne_zero _ (pow_ne_zero _ q.ne_zero)
 
-/-- The weight element acts on each raising iterate with the corresponding shifted eigenvalue.-/
+/-- The weight element acts on each raising iterate with the corresponding shifted eigenvalue.
+@isnad1 id=eq.1h5v.s8.8313afdc6d70 from=translated src=- shape=5e7fbb3e vocab=b5109faa
+-/
 lemma weightElement_smul_raisingIterate (w : V) (lam : ℂ) (hKw : weightElement q • w = lam • w) (i : ℕ) :
     weightElement q • raisingIterate q V w i = raisingWeight q lam i • raisingIterate q V w i := by
   induction i with
@@ -1101,7 +1235,9 @@ lemma weightElement_smul_raisingIterate (w : V) (lam : ℂ) (hKw : weightElement
     simp only [raisingWeight, pow_succ]
     ring
 
-/-- The inverse weight element acts on each raising iterate by the inverse shifted eigenvalue.-/
+/-- The inverse weight element acts on each raising iterate by the inverse shifted eigenvalue.
+@isnad1 id=eq.2h5v.s9.cf049976a69b from=translated src=- shape=05116ce9 vocab=230ef7c7
+-/
 lemma inverseWeightElement_smul_raisingIterate (w : V) (lam : ℂ) (hlam : lam ≠ 0) (hKw : weightElement q • w = lam • w) (i : ℕ) :
     inverseWeightElement q • raisingIterate q V w i = (raisingWeight q lam i)⁻¹ • raisingIterate q V w i := by
   have hK := weightElement_smul_raisingIterate q V w lam hKw i
@@ -1113,7 +1249,9 @@ lemma inverseWeightElement_smul_raisingIterate (w : V) (lam : ℂ) (hlam : lam �
   simp only [smul_smul, inv_mul_cancel₀ hnu, one_smul] at this
   exact this
 
-/-- On a simultaneous weight and inverse-weight eigenvector, lowering after raising equals raising after lowering minus the indicated scalar action.-/
+/-- On a simultaneous weight and inverse-weight eigenvector, lowering after raising equals raising after lowering minus the indicated scalar action.
+@isnad1 id=eq.3h4v.s9.4a25a9268f79 from=translated src=- shape=5e0e0aa1 vocab=7784f2b8
+-/
 lemma loweringElement_smul_raisingElement_smul (hne : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (x : V) (a : ℂ)
     (hK : weightElement q • x = a • x) (hL : inverseWeightElement q • x = a⁻¹ • x) :
     loweringElement q • (raisingElement q • x) = raisingElement q • (loweringElement q • x) - (((q : ℂ) - (q : ℂ)⁻¹)⁻¹ * (a - a⁻¹)) • x := by
@@ -1125,7 +1263,9 @@ lemma loweringElement_smul_raisingElement_smul (hne : (q : ℂ) - (q : ℂ)⁻¹
 noncomputable def loweringOnRaisingPowerCoeff (lam : ℂ) (i : ℕ) : ℂ :=
   -∑ j ∈ Finset.range (i + 1), ((q : ℂ) - (q : ℂ)⁻¹)⁻¹ * (raisingWeight q lam j - (raisingWeight q lam j)⁻¹)
 
-/-- On a vector killed by the lowering element, lowering the next raising iterate yields the specified coefficient times the preceding iterate.-/
+/-- On a vector killed by the lowering element, lowering the next raising iterate yields the specified coefficient times the preceding iterate.
+@isnad1 id=eq.4h5v.s9.7c1aff67af3b from=translated src=- shape=c69e155c vocab=2a11a7bf
+-/
 lemma loweringElement_smul_raisingIterate_succ (hne : (q : ℂ) - (q : ℂ)⁻¹ ≠ 0) (w : V) (lam : ℂ) (hlam : lam ≠ 0)
     (hf : loweringElement q • w = 0) (hKw : weightElement q • w = lam • w) (i : ℕ) :
     loweringElement q • raisingIterate q V w (i + 1) = loweringOnRaisingPowerCoeff q lam i • raisingIterate q V w i := by
@@ -1150,7 +1290,9 @@ lemma loweringElement_smul_raisingIterate_succ (hne : (q : ℂ) - (q : ℂ)⁻¹
 
 end LowerLadder
 
-/-- If the order-th power of the raising element annihilates a finite-dimensional simple module, then its finrank is at most the parameter order.-/
+/-- If the order-th power of the raising element annihilates a finite-dimensional simple module, then its finrank is at most the parameter order.
+@isnad1 id=le.3h2v.s8.adc87023d340 from=translated src=- shape=a09e5b01 vocab=55590f7f
+-/
 theorem finrank_le_orderOf_of_raising_pow_smul_eq_zero (q : ℂˣ) (hq : IsOfFinOrder q) (hq2 : (q : ℂ) ^ 2 ≠ 1)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V]
@@ -1266,7 +1408,9 @@ theorem finrank_le_orderOf_of_raising_pow_smul_eq_zero (q : ℂˣ) (hq : IsOfFin
   rw [← hW, hWtop, finrank_top] at hspan
   exact hspan
 
-/-- If the order-th power of the lowering element annihilates a finite-dimensional simple module, then its finrank is at most the parameter order.-/
+/-- If the order-th power of the lowering element annihilates a finite-dimensional simple module, then its finrank is at most the parameter order.
+@isnad1 id=le.3h2v.s8.f6673197e80e from=translated src=- shape=a09e5b01 vocab=a7d27887
+-/
 theorem finrank_le_orderOf_of_lowering_pow_smul_eq_zero (q : ℂˣ) (hq : IsOfFinOrder q) (hq2 : (q : ℂ) ^ 2 ≠ 1)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V]
@@ -1383,7 +1527,9 @@ theorem finrank_le_orderOf_of_lowering_pow_smul_eq_zero (q : ℂˣ) (hq : IsOfFi
   rw [← hW, hWtop, finrank_top] at hspan
   exact hspan
 
-/-- If the order-th powers of the raising and lowering elements act by nonzero scalars, then the finrank of the simple module is at most the parameter order.-/
+/-- If the order-th powers of the raising and lowering elements act by nonzero scalars, then the finrank of the simple module is at most the parameter order.
+@isnad1 id=le.6h4v.s9.1abaaaf3d4b0 from=translated src=- shape=6770cbb1 vocab=db2318be
+-/
 theorem finrank_le_orderOf_of_raising_lowering_pow_smul_ne_zero (q : ℂˣ) (hq : IsOfFinOrder q) (hq2 : (q : ℂ) ^ 2 ≠ 1)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]
     [IsScalarTower ℂ (QuantumSL2 q) V] [FiniteDimensional ℂ V] [IsSimpleModule (QuantumSL2 q) V]
@@ -1518,7 +1664,9 @@ theorem finrank_le_orderOf_of_raising_lowering_pow_smul_ne_zero (q : ℂˣ) (hq 
   rw [← hW, hWtop, finrank_top] at hspan
   exact hspan
 
-/-- A finite-dimensional simple module at a finite-order parameter has finrank at most the parameter order when its square is not one.-/
+/-- A finite-dimensional simple module at a finite-order parameter has finrank at most the parameter order when its square is not one.
+@isnad1 id=le.2h2v.s8.5371b62927b7 from=translated src=- shape=2d96cf0c vocab=cf5cc197
+-/
 theorem finrank_le_orderOf (q : ℂˣ) (hq : IsOfFinOrder q)
     (hq2 : (q : ℂ) ^ 2 ≠ 1)
     (V : Type*) [AddCommGroup V] [Module ℂ V] [Module (QuantumSL2 q) V]

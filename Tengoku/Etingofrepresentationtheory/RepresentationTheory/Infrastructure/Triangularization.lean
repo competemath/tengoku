@@ -24,7 +24,9 @@ variable {k : Type*} [Field k] {V : Type*} [AddCommGroup V] [Module k V]
 
 /-- The matrix of an endomorphism in a basis is block triangular with respect to the identity
 order if and only if each basis vector is mapped into the span of the basis vectors indexed at
-most by it.-/
+most by it.
+@isnad1 id=iff.0h5v.s10.608c0b26e88f from=translated src=- shape=61974404 vocab=63c1012a
+-/
 theorem toMatrix_blockTriangular_iff {N : ℕ} (b : Basis (Fin N) k V) (A : V →ₗ[k] V) :
     (LinearMap.toMatrix b b A).BlockTriangular id ↔
       ∀ j, A (b j) ∈ Submodule.span k (b '' Set.Iic j) := by
@@ -40,7 +42,9 @@ theorem toMatrix_blockTriangular_iff {N : ℕ} (b : Basis (Fin N) k V) (A : V �
 
 /-- If every basis vector is mapped into the span of the basis vectors indexed at most by it,
 then the matrix of the endomorphism in that basis is block triangular with respect to the identity
-order.-/
+order.
+@isnad1 id=blocktri.1h5v.s10.8a46c7b9845b from=translated src=- shape=ca338f35 vocab=63c1012a
+-/
 theorem toMatrix_blockTriangular_of_mem_span_Iic {N : ℕ} (b : Basis (Fin N) k V)
     (A : V →ₗ[k] V) (h : ∀ j, A (b j) ∈ Submodule.span k (b '' Set.Iic j)) :
     (LinearMap.toMatrix b b A).BlockTriangular id :=
@@ -53,7 +57,9 @@ section Existence
 variable {k : Type u} [Field k]
 
 /-- If the minimal polynomial of an endomorphism splits and the module has the specified finite
-rank, then some basis gives the endomorphism a block-triangular matrix.-/
+rank, then some basis gives the endomorphism a block-triangular matrix.
+@isnad1 id=ex.2h4v.s10.de11c6d344ec from=translated src=- shape=28853ca6 vocab=8cd0819b
+-/
 theorem exists_basis_blockTriangular_of_minpoly_splits (k : Type u) [Field k] :
     ∀ (N : ℕ) {V : Type v} [AddCommGroup V] [Module k V] [Module.Finite k V] (A : V →ₗ[k] V),
       Module.finrank k V = N → (minpoly k A).Splits →
@@ -167,7 +173,9 @@ theorem exists_basis_blockTriangular_of_minpoly_splits (k : Type u) [Field k] :
 variable {V : Type v} [AddCommGroup V] [Module k V] [Module.Finite k V]
 
 /-- If an endomorphism has split characteristic polynomial and the specified finite rank, then
-some basis indexed by that rank gives it a block-triangular matrix.-/
+some basis indexed by that rank gives it a block-triangular matrix.
+@isnad1 id=ex.2h4v.s9.b3c4003034c5 from=translated src=- shape=b70c4b2c vocab=3d354fd9
+-/
 theorem exists_basis_blockTriangular_of_charpoly_splits {N : ℕ} (A : V →ₗ[k] V)
     (hN : Module.finrank k V = N) (hsplit : (LinearMap.charpoly A).Splits) :
     ∃ b : Basis (Fin N) k V, (LinearMap.toMatrix b b A).BlockTriangular id :=
@@ -176,7 +184,9 @@ theorem exists_basis_blockTriangular_of_charpoly_splits {N : ℕ} (A : V →ₗ[
 
 /-- If an endomorphism has split characteristic polynomial and the specified finite rank, then it
 has a block-triangular matrix whose diagonal entries give a linear-factor decomposition of its
-characteristic polynomial.-/
+characteristic polynomial.
+@isnad1 id=ex.2h4v.s10.c0a5312a3f53 from=translated src=- shape=0a7fda70 vocab=a0b5618f
+-/
 theorem exists_basis_diagonal_charpoly_of_splits {N : ℕ} (A : V →ₗ[k] V)
     (hN : Module.finrank k V = N) (hsplit : (LinearMap.charpoly A).Splits) :
     ∃ (b : Basis (Fin N) k V) (lam : Fin N → k),
@@ -188,7 +198,9 @@ theorem exists_basis_diagonal_charpoly_of_splits {N : ℕ} (A : V →ₗ[k] V)
   rw [← LinearMap.charpoly_toMatrix A b, Matrix.charpoly_of_isUpperTriangular _ hb]
 
 /-- Over an algebraically closed field, an endomorphism of the specified finite rank has a basis
-in which its matrix is block triangular.-/
+in which its matrix is block triangular.
+@isnad1 id=ex.1h4v.s9.fa088b6e25a5 from=translated src=- shape=27e05207 vocab=9169a329
+-/
 theorem exists_basis_blockTriangular_of_isAlgClosed [IsAlgClosed k] {N : ℕ}
     (A : V →ₗ[k] V) (hN : Module.finrank k V = N) :
     ∃ b : Basis (Fin N) k V, (LinearMap.toMatrix b b A).BlockTriangular id :=
@@ -201,7 +213,9 @@ section Perm
 variable {k : Type*} [Field k]
 
 /-- The roots of the product of the linear factors associated to a finite family are exactly the
-multiset of values of that family.-/
+multiset of values of that family.
+@isnad1 id=eq.0h3v.s7.8fb318d9e7fe from=translated src=- shape=88114615 vocab=606d844a
+-/
 theorem roots_prod_X_sub_C {ι : Type*} [Fintype ι] (f : ι → k) :
     (∏ i, (X - C (f i))).roots = Finset.univ.val.map f := by
   have h : (∏ i, (X - C (f i))) = ((Finset.univ.val.map f).map fun a => X - C a).prod := by
@@ -210,7 +224,9 @@ theorem roots_prod_X_sub_C {ι : Type*} [Fintype ι] (f : ι → k) :
 
 omit [Field k] in
 /-- If two functions on a finite index type have equal multisets of values, then one is obtained
-from the other by a permutation of the indices.-/
+from the other by a permutation of the indices.
+@isnad1 id=ex.1h4v.s6.f238bfa5a826 from=translated src=- shape=3ace9817 vocab=a57a3421
+-/
 theorem exists_perm_eq_comp_of_map_univ_eq {N : ℕ} {lam mu : Fin N → k}
     (h : Finset.univ.val.map lam = Finset.univ.val.map mu) :
     ∃ e : Equiv.Perm (Fin N), ∀ i, lam i = mu (e i) := by
@@ -227,7 +243,9 @@ theorem exists_perm_eq_comp_of_map_univ_eq {N : ℕ} {lam mu : Fin N → k}
   exact ((fib (lam i)) ⟨i, rfl⟩).2.symm
 
 /-- If two indexed products of monic linear factors are equal, then their roots agree after a
-permutation of the indices.-/
+permutation of the indices.
+@isnad1 id=ex.1h4v.s8.617fc8079a14 from=translated src=- shape=02a38b83 vocab=4fc13ed1
+-/
 theorem exists_perm_eq_comp_of_prod_X_sub_C_eq {N : ℕ} {lam mu : Fin N → k}
     (h : (∏ i, (X - C (lam i))) = ∏ i, (X - C (mu i))) :
     ∃ e : Equiv.Perm (Fin N), ∀ i, lam i = mu (e i) := by
@@ -235,7 +253,9 @@ theorem exists_perm_eq_comp_of_prod_X_sub_C_eq {N : ℕ} {lam mu : Fin N → k}
   rw [← roots_prod_X_sub_C lam, ← roots_prod_X_sub_C mu, h]
 
 /-- The sum over fixed-cardinality multisets of products of an indexed family is invariant under
-permuting its indices.-/
+permuting its indices.
+@isnad1 id=eq.0h5v.s7.ecfe23651c56 from=translated src=- shape=11058c41 vocab=9df116d0
+-/
 theorem sum_sym_prod_map_comp_perm {N : ℕ} (lam : Fin N → k)
     (e : Equiv.Perm (Fin N)) (n : ℕ) :
     ∑ s : Sym (Fin N) n, ((s : Multiset (Fin N)).map (fun i => lam (e i))).prod
@@ -251,7 +271,9 @@ variable {k : Type u} [Field k] {V : Type v} [AddCommGroup V] [Module k V]
   [Module.Finite k V]
 
 /-- A prescribed linear-factor decomposition of the characteristic polynomial can be realized,
-up to a permutation, as the diagonal of a block-triangular matrix for the endomorphism.-/
+up to a permutation, as the diagonal of a block-triangular matrix for the endomorphism.
+@isnad1 id=ex.2h5v.s10.c2c779016f81 from=translated src=- shape=a69fd13e vocab=3bbbba00
+-/
 theorem exists_basis_diagonal_comp_perm_of_charpoly_eq_prod {N : ℕ} (A : V →ₗ[k] V)
     (hN : Module.finrank k V = N) (lam : Fin N → k)
     (hlam : LinearMap.charpoly A = ∏ i, (X - C (lam i))) :

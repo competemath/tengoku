@@ -27,7 +27,9 @@ section General
 variable {k G : Type*} [CommRing k] [Group G]
 
 /-- An element of a group monoid algebra is central exactly when its coefficients are invariant
-under conjugation.-/
+under conjugation.
+@isnad1 id=iff.0h3v.s8.e03d1518dc8f from=translated src=- shape=585e66b0 vocab=4c0f69c8
+-/
 theorem mem_center_iff_coeff_conj_invariant (x : MonoidAlgebra k G) :
     x ∈ Subalgebra.center k (MonoidAlgebra k G) ↔
       ∀ g h : G, x.coeff (g * h * g⁻¹) = x.coeff h := by

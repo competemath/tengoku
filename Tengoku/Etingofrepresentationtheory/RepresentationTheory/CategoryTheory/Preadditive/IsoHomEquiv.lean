@@ -20,12 +20,16 @@ def homPrecomposeIsoAddEquiv {C : Type*} [Category C] [Preadditive C] {X X' Y : 
   right_inv g := by simp
   map_add' f g := by simp only [Preadditive.comp_add]
 
-/-- Applying the morphism equivalence sends a map to its composite with the inverse isomorphism.-/
+/-- Applying the morphism equivalence sends a map to its composite with the inverse isomorphism.
+@isnad1 id=eq.0h6v.s8.030d6ad91986 from=translated src=- shape=67a6c020 vocab=309fe4bf
+-/
 @[simp] lemma homPrecomposeIsoAddEquiv_apply {C : Type*} [Category C] [Preadditive C]
     {X X' Y : C} (α : X ≅ X') (f : X ⟶ Y) :
     homPrecomposeIsoAddEquiv α f = α.inv ≫ f := rfl
 
-/-- Applying the inverse morphism equivalence sends a map to its composite with the isomorphism.-/
+/-- Applying the inverse morphism equivalence sends a map to its composite with the isomorphism.
+@isnad1 id=eq.0h6v.s9.24ba3417858f from=translated src=- shape=7065bb57 vocab=3e4820ea
+-/
 @[simp] lemma homPrecomposeIsoAddEquiv_symm_apply {C : Type*} [Category C] [Preadditive C]
     {X X' Y : C} (α : X ≅ X') (g : X' ⟶ Y) :
     (homPrecomposeIsoAddEquiv α).symm g = α.hom ≫ g := rfl

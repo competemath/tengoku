@@ -55,17 +55,23 @@ noncomputable def TensorProduct.rightFreeToFinsupp (I₂ : Type u) :
   left_inv _ := rfl
   right_inv _ := rfl
 
-/-- The left free-module equivalence acts as the identity on carrier elements.-/
+/-- The left free-module equivalence acts as the identity on carrier elements.
+@isnad1 id=eq.0h4v.s9.7f813f8ab7ed from=translated src=- shape=c65f29f7 vocab=970dc808
+-/
 @[simp] lemma TensorProduct.leftFreeToFinsupp_apply (I₁ : Type u)
     (x : ↑((ModuleCat.free A₁).obj I₁)) :
     TensorProduct.leftFreeToFinsupp k A₁ I₁ x = x := rfl
 
-/-- The right free-module equivalence acts as the identity on carrier elements.-/
+/-- The right free-module equivalence acts as the identity on carrier elements.
+@isnad1 id=eq.0h4v.s9.36c0d3e83443 from=translated src=- shape=c65f29f7 vocab=3aa2456a
+-/
 @[simp] lemma TensorProduct.rightFreeToFinsupp_apply (I₂ : Type u)
     (x : ↑((ModuleCat.free A₂).obj I₂)) :
     TensorProduct.rightFreeToFinsupp k A₂ I₂ x = x := rfl
 
-/-- Evaluation after the left free-module equivalence commutes with scalar multiplication.-/
+/-- Evaluation after the left free-module equivalence commutes with scalar multiplication.
+@isnad1 id=eq.0h6v.s10.a10d18bf5826 from=translated src=- shape=292158d9 vocab=e8a63a34
+-/
 lemma TensorProduct.leftFreeToFinsupp_smul_apply (I₁ : Type u) (a₁ : A₁)
     (x : ↑((ModuleCat.free A₁).obj I₁)) (i : I₁) :
     TensorProduct.leftFreeToFinsupp k A₁ I₁ (a₁ • x) i =
@@ -73,7 +79,9 @@ lemma TensorProduct.leftFreeToFinsupp_smul_apply (I₁ : Type u) (a₁ : A₁)
   change (a₁ • TensorProduct.leftFreeToFinsupp k A₁ I₁ x) i = _
   rw [Finsupp.smul_apply, smul_eq_mul]
 
-/-- Evaluation after the right free-module equivalence commutes with scalar multiplication.-/
+/-- Evaluation after the right free-module equivalence commutes with scalar multiplication.
+@isnad1 id=eq.0h6v.s10.53b5dd88a1b1 from=translated src=- shape=292158d9 vocab=8ced28b1
+-/
 lemma TensorProduct.rightFreeToFinsupp_smul_apply (I₂ : Type u) (a₂ : A₂)
     (y : ↑((ModuleCat.free A₂).obj I₂)) (j : I₂) :
     TensorProduct.rightFreeToFinsupp k A₂ I₂ (a₂ • y) j =
@@ -91,7 +99,9 @@ noncomputable def TensorProduct.freeToFinsupp (I₁ I₂ : Type u) :
     (finsuppTensorFinsupp k k A₁ A₂ I₁ I₂)
 
 /-- At a pair of indices, the free tensor equivalence of a pure tensor is the tensor of the
-evaluated coefficients.-/
+evaluated coefficients.
+@isnad1 id=eq.0h9v.s12.57d313665330 from=translated src=- shape=9c393462 vocab=4cb59f3d
+-/
 lemma TensorProduct.freeToFinsupp_tmul_apply (I₁ I₂ : Type u)
     (x : ↑((ModuleCat.free A₁).obj I₁)) (y : ↑((ModuleCat.free A₂).obj I₂))
     (i : I₁) (j : I₂) :
@@ -102,7 +112,9 @@ lemma TensorProduct.freeToFinsupp_tmul_apply (I₁ I₂ : Type u)
     finsuppTensorFinsupp_apply]
 
 /-- The free tensor equivalence carries scalar multiples of pure tensors to the corresponding
-product scalar action.-/
+product scalar action.
+@isnad1 id=eq.0h9v.s12.104c8f9dd2ed from=translated src=- shape=bbb6591e vocab=dd28c452
+-/
 lemma TensorProduct.freeToFinsupp_smul_tmul (I₁ I₂ : Type u) (a₁ : A₁) (a₂ : A₂)
     (x : ↑((ModuleCat.free A₁).obj I₁)) (y : ↑((ModuleCat.free A₂).obj I₂)) :
     TensorProduct.freeToFinsupp k A₁ A₂ I₁ I₂ ((a₁ • x) ⊗ₜ[k] (a₂ • y)) =
@@ -137,7 +149,9 @@ noncomputable def TensorProduct.freeToFinsuppOverTensorProduct (I₁ I₂ : Type
   left_inv := (TensorProduct.freeToFinsupp k A₁ A₂ I₁ I₂).left_inv
   right_inv := (TensorProduct.freeToFinsupp k A₁ A₂ I₁ I₂).right_inv
 
-/-- Free objects are projective after applying the displayed binary module construction.-/
+/-- Free objects are projective after applying the displayed binary module construction.
+@isnad1 id=projecti.0h5v.s7.1e85ba43f202 from=translated src=- shape=32b48295 vocab=9055bbdd
+-/
 theorem ModuleCat.projective_tensorProductFree (I₁ I₂ : Type u) :
     Projective (RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProduct k A₁ A₂
       ((ModuleCat.free A₁).obj I₁)
@@ -163,7 +177,9 @@ noncomputable def CategoryTheory.Retract.tensorProduct
 
 variable (A₁ A₂)
 
-/-- The displayed iterated module construction preserves projective objects.-/
+/-- The displayed iterated module construction preserves projective objects.
+@isnad1 id=projecti.0h5v.s8.e4350f1d6a60 from=translated src=- shape=5c4a5318 vocab=1674c440
+-/
 theorem ModuleCat.projective_tensorProduct (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A₂)
     [Projective X] [Projective Y] :
     Projective

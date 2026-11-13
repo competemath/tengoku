@@ -25,7 +25,9 @@ namespace RepresentationTheory.CategoryTheory.Abelian.ModuleCat.ShortExact
 
 variable {R : Type u} [Ring R] [Small.{v} R]
 
-/-- Under the stated exactness and degree-one extension uniqueness hypotheses, the middle module object is isomorphic to the biproduct of the endpoints.-/
+/-- Under the stated exactness and degree-one extension uniqueness hypotheses, the middle module object is isomorphic to the biproduct of the endpoints.
+@isnad1 id=nonempty.3h6v.s7.0e52f51f3d20 from=translated src=- shape=904e0306 vocab=132280d7
+-/
 theorem nonempty_iso_biprod_of_shortExact_of_extOne_subsingleton
     {A B C : ModuleCat.{v} R} {f : A ⟶ B} {g : B ⟶ C} (w : f ≫ g = 0)
     (hSES : (ShortComplex.mk f g w).ShortExact)

@@ -49,7 +49,9 @@ noncomputable def element (b : Basis κ k V) :
       simp only [tensorBasis, Basis.piTensorProduct_apply]
       exact (SymmetricPower.tprod_equiv σ (fun i => b (p i))).symm)
 
-/-- On an index obtained from a function, the associated element is the symmetric-power class of the corresponding tensor-basis element.-/
+/-- On an index obtained from a function, the associated element is the symmetric-power class of the corresponding tensor-basis element.
+@isnad1 id=eq.0h6v.s9.31d218ee23c0 from=translated src=- shape=7db7ae32 vocab=89bc5875
+-/
 @[simp] lemma element_ofFunction (b : Basis κ k V) (p : Fin n → κ) :
     element b (indexOfFunction p) = SymmetricPower.mk k (Fin n) V (tensorBasis b p) :=
   rfl
@@ -60,13 +62,17 @@ noncomputable def tensorCoordinates (b : Basis κ k V) :
   (Finsupp.lmapDomain k k (indexOfFunction (n := n) (κ := κ))).comp
     (tensorBasis b).repr.toLinearMap
 
-/-- The tensor coordinate map sends a tensor-basis element to the unit singleton at its function index.-/
+/-- The tensor coordinate map sends a tensor-basis element to the unit singleton at its function index.
+@isnad1 id=eq.0h6v.s9.d30475c8f831 from=translated src=- shape=2f21d2c3 vocab=26ff17ef
+-/
 @[simp] lemma tensorCoordinates_tensorBasis (b : Basis κ k V) (p : Fin n → κ) :
     tensorCoordinates b (tensorBasis b p) = Finsupp.single (indexOfFunction p) 1 := by
   simp only [tensorCoordinates, LinearMap.comp_apply, LinearEquiv.coe_coe, Basis.repr_self,
     Finsupp.lmapDomain_apply, Finsupp.mapDomain_single]
 
-/-- The tensor coordinate map is unchanged by reindexing with a permutation of `Fin n`.-/
+/-- The tensor coordinate map is unchanged by reindexing with a permutation of `Fin n`.
+@isnad1 id=eq.0h7v.s10.3d2477ff1f22 from=translated src=- shape=f942ede4 vocab=70dce434
+-/
 lemma tensorCoordinates_reindex (b : Basis κ k V) (σ : Equiv.Perm (Fin n))
     (x : ⨂[k] (_ : Fin n), V) :
     tensorCoordinates b (PiTensorProduct.reindex k (fun _ : Fin n => V) σ x) =
@@ -108,7 +114,9 @@ noncomputable def coordinates (b : Basis κ k V) :
     change tensorCoordinates b (r • a) = r • tensorCoordinates b a
     rw [map_smul]
 
-/-- Taking coordinates after forming a symmetric-power class agrees with the tensor coordinate map.-/
+/-- Taking coordinates after forming a symmetric-power class agrees with the tensor coordinate map.
+@isnad1 id=eq.0h6v.s10.a2cc6d68a327 from=translated src=- shape=8594c0f3 vocab=3ede86d8
+-/
 @[simp] lemma coordinates_mk (b : Basis κ k V) (x : ⨂[k] (_ : Fin n), V) :
     coordinates b (SymmetricPower.mk k (Fin n) V x) = tensorCoordinates b x :=
   rfl
@@ -118,7 +126,9 @@ noncomputable def elementLinearMap (b : Basis κ k V) :
     (Index n κ →₀ k) →ₗ[k] SymmetricPower k (Fin n) V :=
   Finsupp.linearCombination k (element b)
 
-/-- Evaluating the element linear map on a singleton coefficient function scales the associated element.-/
+/-- Evaluating the element linear map on a singleton coefficient function scales the associated element.
+@isnad1 id=eq.0h7v.s9.85bef7768aa0 from=translated src=- shape=7379dec0 vocab=f185666b
+-/
 @[simp] lemma elementLinearMap_single (b : Basis κ k V) (m : Index n κ) (r : k) :
     elementLinearMap b (Finsupp.single m r) = r • element b m := by
   simp only [elementLinearMap, Finsupp.linearCombination_single]

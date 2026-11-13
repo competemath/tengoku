@@ -13,13 +13,17 @@ import Tengoku.Seed.Algebra.Algebra.Tower
 
 namespace RepresentationTheory.Mathlib.Algebra.Algebra.FiniteDimensional.RingProperties
 
-/-- A ring that is finite-dimensional as an algebra over a field is Artinian.-/
+/-- A ring that is finite-dimensional as an algebra over a field is Artinian.
+@isnad1 id=isartini.0h2v.s5.564e928206a1 from=translated src=- shape=962998db vocab=4a897bd9
+-/
 theorem FiniteDimensional.isArtinianRing
     (k A : Type*) [Field k] [Ring A] [Algebra k A] [FiniteDimensional k A] :
     IsArtinianRing A :=
   isArtinian_of_tower k inferInstance
 
-/-- A ring that is finite-dimensional as an algebra over a field is semiprimary.-/
+/-- A ring that is finite-dimensional as an algebra over a field is semiprimary.
+@isnad1 id=issemipr.0h2v.s5.9ab2078ab4b6 from=translated src=- shape=962998db vocab=10b5270f
+-/
 theorem FiniteDimensional.isSemiprimaryRing
     (k A : Type*) [Field k] [Ring A] [Algebra k A] [FiniteDimensional k A] :
     IsSemiprimaryRing A :=

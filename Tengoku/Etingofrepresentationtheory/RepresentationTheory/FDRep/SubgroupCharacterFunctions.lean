@@ -35,7 +35,9 @@ def subgroupCharacterFunctionSubmodule : Submodule ℂ (G → ℂ) where
     rw [hf h g, mul_left_comm]
 
 /-- A function belongs to the subgroup-character submodule exactly when left multiplication by a
-subgroup element scales it by the character value.-/
+subgroup element scales it by the character value.
+@isnad1 id=iff.0h4v.s9.7a233dc882ec from=translated src=- shape=9453bb2c vocab=88f11d0b
+-/
 lemma mem_subgroupCharacterFunctionSubmodule_iff (f : G → ℂ) :
     f ∈ subgroupCharacterFunctionSubmodule H lam ↔
       ∀ (h : ↥H) (g : G), f (h.val * g) = (lam h : ℂ) * f g :=
@@ -48,12 +50,16 @@ def rightTranslationLinearMap (a : G) : (G → ℂ) →ₗ[ℂ] (G → ℂ) wher
   map_smul' _ _ := rfl
 
 /-- Right translation sends a function to its evaluation after right multiplication by the
-translating element.-/
+translating element.
+@isnad1 id=eq.0h4v.s7.190dc1183b62 from=translated src=- shape=553f4243 vocab=dbc810bd
+-/
 @[simp]
 lemma rightTranslationLinearMap_apply (a : G) (f : G → ℂ) (g : G) :
     rightTranslationLinearMap a f g = f (g * a) := rfl
 
-/-- The subgroup-character function submodule is stable under every right translation.-/
+/-- The subgroup-character function submodule is stable under every right translation.
+@isnad1 id=mem.1h5v.s8.b3279ca01b04 from=translated src=- shape=f2d69b6a vocab=d11a0738
+-/
 lemma rightTranslationLinearMap_mem {f : G → ℂ}
     (hf : f ∈ subgroupCharacterFunctionSubmodule H lam) (a : G) :
     rightTranslationLinearMap a f ∈ subgroupCharacterFunctionSubmodule H lam := by
@@ -76,7 +82,9 @@ def subgroupCharacterFunctionRepresentation :
     apply LinearMap.ext; intro f
     exact Subtype.ext (funext fun g => congr_arg f.val (mul_assoc g a b).symm)
 
-/-- The representation action evaluates a function after right multiplication of its argument.-/
+/-- The representation action evaluates a function after right multiplication of its argument.
+@isnad1 id=eq.0h6v.s11.d6178417ed63 from=translated src=- shape=434cd440 vocab=97637098
+-/
 @[simp]
 lemma subgroupCharacterFunctionRepresentation_apply (a : G)
     (f : ↥(subgroupCharacterFunctionSubmodule H lam)) (g : G) :
@@ -131,7 +139,9 @@ def subgroupCharacterFunctionLinearEquivOfNormalizer (s : G)
   map_smul' _ _ := rfl
 
 /-- The normalizer linear equivalence sends a function to evaluation after left multiplication by
-the normalizing element.-/
+the normalizing element.
+@isnad1 id=eq.1h6v.s10.03027906d6c5 from=translated src=- shape=60580de0 vocab=9e3e76e9
+-/
 @[simp]
 lemma subgroupCharacterFunctionLinearEquivOfNormalizer_apply (s : G)
     (hs : s ∈ Subgroup.normalizer H) (f : subgroupCharacterFunctionSubmodule H lam) (g : G) :
@@ -162,13 +172,17 @@ def subgroupCharacterAveraging : (G → ℂ) →ₗ[ℂ] (G → ℂ) where
     exact Finset.sum_congr rfl fun h _ => by ring
 
 /-- At each group element, the averaging map is the normalized subgroup sum weighted by inverse
-character values.-/
+character values.
+@isnad1 id=eq.0h5v.s9.476c1fde3c1f from=translated src=- shape=bcdffd1d vocab=d64112e0
+-/
 lemma subgroupCharacterAveraging_apply (f : G → ℂ) (g : G) :
     subgroupCharacterAveraging H lam f g =
       (Fintype.card ↥H : ℂ)⁻¹ *
         ∑ h : ↥H, (((lam h)⁻¹ : ℂˣ) : ℂ) * f (h.val * g) := rfl
 
-/-- The subgroup-character average of any function belongs to the associated function submodule.-/
+/-- The subgroup-character average of any function belongs to the associated function submodule.
+@isnad1 id=mem.0h4v.s8.ba87a7169bdc from=translated src=- shape=c4c8758e vocab=e3fc8be0
+-/
 lemma subgroupCharacterAveraging_mem (f : G → ℂ) :
     subgroupCharacterAveraging H lam f ∈ subgroupCharacterFunctionSubmodule H lam := by
   intro h₀ g
@@ -198,7 +212,9 @@ lemma subgroupCharacterAveraging_mem (f : G → ℂ) :
         ((((lam h)⁻¹ : ℂˣ) : ℂ) * (((lam h₀)⁻¹ : ℂˣ) : ℂ) * X) := by
       ring
 
-/-- The subgroup-character averaging map fixes every function in the associated submodule.-/
+/-- The subgroup-character averaging map fixes every function in the associated submodule.
+@isnad1 id=eq.1h4v.s8.0f753d532443 from=translated src=- shape=fe773c4b vocab=e3fc8be0
+-/
 lemma subgroupCharacterAveraging_eq_self {f : G → ℂ}
     (hf : f ∈ subgroupCharacterFunctionSubmodule H lam) :
     subgroupCharacterAveraging H lam f = f := by
@@ -222,7 +238,9 @@ def toSubgroupCharacterFunctionSubmoduleAt (a : G) :
     fun _ => subgroupCharacterAveraging_mem H lam _
 
 /-- Restricting the map into the subgroup-character function submodule agrees with the associated
-representation action.-/
+representation action.
+@isnad1 id=eq.0h4v.s11.a3839fbc124a from=translated src=- shape=9a923a4d vocab=ccbcd361
+-/
 lemma toSubgroupCharacterFunctionSubmoduleAt_comp_subtype (a : G) :
     toSubgroupCharacterFunctionSubmoduleAt H lam a ∘ₗ
         (subgroupCharacterFunctionSubmodule H lam).subtype =
@@ -235,14 +253,18 @@ lemma toSubgroupCharacterFunctionSubmoduleAt_comp_subtype (a : G) :
     (rightTranslationLinearMap_mem H lam f.2 a)
 
 /-- Including the submodule-valued map into all functions equals subgroup-character averaging
-after right translation.-/
+after right translation.
+@isnad1 id=eq.0h4v.s9.963aa390423a from=translated src=- shape=b26cf2af vocab=7b778b7f
+-/
 lemma subtype_comp_toSubgroupCharacterFunctionSubmoduleAt (a : G) :
     (subgroupCharacterFunctionSubmodule H lam).subtype ∘ₗ
         toSubgroupCharacterFunctionSubmoduleAt H lam a =
       subgroupCharacterAveraging H lam ∘ₗ rightTranslationLinearMap a := rfl
 
 /-- The trace of the subgroup-character function representation equals the trace of averaging
-composed with right translation on the full function space.-/
+composed with right translation on the full function space.
+@isnad1 id=eq.0h4v.s12.9c08984622cd from=translated src=- shape=be7b194f vocab=13fc22ba
+-/
 lemma trace_subgroupCharacterFunctionRepresentation_eq (a : G) :
     LinearMap.trace ℂ _ (subgroupCharacterFunctionRepresentation H lam a) =
       LinearMap.trace ℂ (G → ℂ)
@@ -308,7 +330,9 @@ private lemma trace_proj_comp (a : G) :
 
 /-! Character and dimension formulas. -/
 
-/-- An auxiliary result involving the representation associated with subgroup character data.-/
+/-- An auxiliary result involving the representation associated with subgroup character data.
+@isnad1 id=eq.0h4v.s9.2cc04f475652 from=translated src=- shape=6fd37ce2 vocab=8f968ee2
+-/
 theorem auxiliary_representationFromSubgroupCharacter (a : G) :
     (representationFromSubgroupCharacter H lam).character a =
       (Fintype.card ↥H : ℂ)⁻¹ * ∑ x : G,
@@ -335,7 +359,9 @@ theorem auxiliary_representationFromSubgroupCharacter (a : G) :
     rw [dite_eq_right hm, dite_eq_right hm']
 
 /-- The dimension of the representation associated with subgroup character data is the group
-cardinality divided by the subgroup cardinality.-/
+cardinality divided by the subgroup cardinality.
+@isnad1 id=eq.0h3v.s8.94b2ebc28c17 from=translated src=- shape=6160eea9 vocab=c04cefeb
+-/
 theorem finrank_representationFromSubgroupCharacter :
     Module.finrank ℂ (representationFromSubgroupCharacter H lam) =
       Fintype.card G / Fintype.card ↥H := by
@@ -370,5 +396,7 @@ theorem finrank_representationFromSubgroupCharacter :
 
 end RepresentationTheory.FDRep.SubgroupCharacterFunctions
 
-/-- An auxiliary statement whose displayed formal type is unavailable.-/
+/-- An auxiliary statement whose displayed formal type is unavailable.
+@isnad1 id=eq.0h4v.s9.2cc04f475652 from=translated src=- shape=6fd37ce2 vocab=8f968ee2
+-/
 alias _root_.RepresentationTheory.FDRep.SubgroupCharacterFunctions.Auxiliary.statement004835 := _root_.RepresentationTheory.FDRep.SubgroupCharacterFunctions.auxiliary_representationFromSubgroupCharacter

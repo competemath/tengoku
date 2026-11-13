@@ -78,30 +78,42 @@ noncomputable def stage_data : ∀ n, StageData P n
 /-- The object associated to a projective resolution at the specified stage.-/
 noncomputable def stage_object (n : ℕ) : C := (stage_data P n).target
 
-/-- The object associated to the zero stage is the resolved object.-/
+/-- The object associated to the zero stage is the resolved object.
+@isnad1 id=eq.0h3v.s5.b0b4a12acce9 from=translated src=- shape=7ceb868e vocab=89a57065
+-/
 @[simp] lemma stage_object_zero : stage_object P 0 = M := rfl
 
 /-- The short complex associated to a projective resolution and a stage.-/
 noncomputable def stage_short_complex (n : ℕ) : ShortComplex C :=
   ShortComplex.kernelSequence (stage_data P n).to_target
 
-/-- Identifies the middle object of the associated short complex with the resolution component.-/
+/-- Identifies the middle object of the associated short complex with the resolution component.
+@isnad1 id=eq.0h4v.s6.4f59725e4452 from=translated src=- shape=3fd10cb8 vocab=850ba8f1
+-/
 @[simp] lemma stage_short_complex_X2 (n : ℕ) :
     (stage_short_complex P n).X₂ = P.complex.X n := rfl
 
-/-- Identifies the third object of the associated short complex.-/
+/-- Identifies the third object of the associated short complex.
+@isnad1 id=eq.0h4v.s5.a67730c7c909 from=translated src=- shape=4892005b vocab=eaa5617b
+-/
 @[simp] lemma stage_short_complex_X3 (n : ℕ) :
     (stage_short_complex P n).X₃ = stage_object P n := rfl
 
-/-- Identifies the first object of the associated short complex.-/
+/-- Identifies the first object of the associated short complex.
+@isnad1 id=eq.0h4v.s6.b19d20764e57 from=translated src=- shape=137e8d71 vocab=cc08c4d2
+-/
 @[simp] lemma stage_short_complex_X1 (n : ℕ) :
     (stage_short_complex P n).X₁ = stage_object P (n + 1) := rfl
 
-/-- The middle object of the associated short complex is projective.-/
+/-- The middle object of the associated short complex is projective.
+@isnad1 id=projecti.0h4v.s5.1ecfff7a8152 from=translated src=- shape=26d1b556 vocab=d62a422f
+-/
 instance stage_short_complex_X2_projective (n : ℕ) : Projective (stage_short_complex P n).X₂ := by
   rw [stage_short_complex_X2]; exact P.projective n
 
-/-- The associated short complex is short exact.-/
+/-- The associated short complex is short exact.
+@isnad1 id=shortexa.0h4v.s5.96d2dbb3b42e from=translated src=- shape=81e67d3c vocab=8f2691fd
+-/
 lemma stage_short_complex_short_exact (n : ℕ) : (stage_short_complex P n).ShortExact := by
   haveI hp : Epi (stage_data P n).to_target := (stage_data P n).epi_to_target
   change (ShortComplex.kernelSequence (stage_data P n).to_target).ShortExact
@@ -110,5 +122,7 @@ lemma stage_short_complex_short_exact (n : ℕ) : (stage_short_complex P n).Shor
 
 end RepresentationTheory.CategoryTheory.Abelian.ObjectData.AbelianCategoryObjectData
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=exact.0h5v.s7.5961d7db07cc from=translated src=- shape=718dccaf vocab=3402271c
+-/
 alias _root_.RepresentationTheory.CategoryTheory.Abelian.ObjectData.AbelianCategoryObjectData.StageData.Auxiliary.statement014592 := _root_.RepresentationTheory.CategoryTheory.Abelian.ObjectData.AbelianCategoryObjectData.StageData.exact

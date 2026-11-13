@@ -39,7 +39,9 @@ attribute [local instance]
 
 section ZeroMorphisms
 
-/-- The displayed auxiliary two-variable map vanishes when its first morphism argument is zero.-/
+/-- The displayed auxiliary two-variable map vanishes when its first morphism argument is zero.
+@isnad1 id=eq.0h8v.s10.e4cd8b3a1bbb from=translated src=- shape=152f0948 vocab=38bacfe8
+-/
 theorem auxiliaryMap_zero_left {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u} A₂}
     (g : Y ⟶ Y') :
     RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductLinearMap
@@ -53,7 +55,9 @@ theorem auxiliaryMap_zero_left {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u}
       ModuleCat.hom_zero, LinearMap.zero_apply, zero_tmul, LinearMap.zero_apply]
   | add a b ha hb => simp only [map_add, ha, hb]
 
-/-- This auxiliary map is zero when its first morphism input is zero.-/
+/-- This auxiliary map is zero when its first morphism input is zero.
+@isnad1 id=eq.0h8v.s9.da3cb07001c1 from=translated src=- shape=b3b56057 vocab=07540686
+-/
 theorem auxiliaryMapToSingle_zero_left {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u} A₂}
     (g : Y ⟶ Y') :
     RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductMap
@@ -63,7 +67,9 @@ theorem auxiliaryMapToSingle_zero_left {X X' : ModuleCat.{u} A₁} {Y Y' : Modul
       k (0 : X ⟶ X') g) = 0
   rw [auxiliaryMap_zero_left, ModuleCat.ofHom_zero]
 
-/-- The displayed auxiliary two-variable map vanishes when its second morphism argument is zero.-/
+/-- The displayed auxiliary two-variable map vanishes when its second morphism argument is zero.
+@isnad1 id=eq.0h8v.s10.e850e82f5943 from=translated src=- shape=ad30a08c vocab=38bacfe8
+-/
 theorem auxiliaryMap_zero_right {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u} A₂}
     (f : X ⟶ X') :
     RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductLinearMap
@@ -77,7 +83,9 @@ theorem auxiliaryMap_zero_right {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u
       ModuleCat.hom_zero, LinearMap.zero_apply, tmul_zero, LinearMap.zero_apply]
   | add a b ha hb => simp only [map_add, ha, hb]
 
-/-- This auxiliary map is zero when its second morphism input is zero.-/
+/-- This auxiliary map is zero when its second morphism input is zero.
+@isnad1 id=eq.0h8v.s9.20c2a655d88b from=translated src=- shape=6f90996a vocab=07540686
+-/
 theorem auxiliaryMapToSingle_zero_right {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u} A₂}
     (f : X ⟶ X') :
     RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductMap
@@ -87,7 +95,9 @@ theorem auxiliaryMapToSingle_zero_right {X X' : ModuleCat.{u} A₁} {Y Y' : Modu
       k f (0 : Y ⟶ Y')) = 0
   rw [auxiliaryMap_zero_right, ModuleCat.ofHom_zero]
 
-/-- The indicated functor sends zero morphisms to zero morphisms.-/
+/-- The indicated functor sends zero morphisms to zero morphisms.
+@isnad1 id=preserve.0h3v.s9.6f8c95a6ae50 from=translated src=- shape=6a832ad8 vocab=f6c41591
+-/
 instance auxiliaryFunctor_preservesZeroMorphisms :
     (RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductFunctor
       k A₁ A₂).PreservesZeroMorphisms where
@@ -98,7 +108,9 @@ instance auxiliaryFunctor_preservesZeroMorphisms :
       k (0 : X ⟶ X') (𝟙 Y) = 0
     exact auxiliaryMapToSingle_zero_left (𝟙 Y)
 
-/-- Every object image under the indicated functor has the zero-morphism preservation property.-/
+/-- Every object image under the indicated functor has the zero-morphism preservation property.
+@isnad1 id=preserve.0h4v.s9.358ec07da5af from=translated src=- shape=a8a95126 vocab=58549d55
+-/
 instance auxiliaryFunctor_obj_preservesZeroMorphisms (X : ModuleCat.{u} A₁) :
     ((RepresentationTheory.Algebra.TensorProduct.ModuleCat.tensorProductFunctor
       k A₁ A₂).obj X).PreservesZeroMorphisms where
@@ -107,7 +119,9 @@ instance auxiliaryFunctor_obj_preservesZeroMorphisms (X : ModuleCat.{u} A₁) :
       k (𝟙 X) (0 : Y ⟶ Y') = 0
     exact auxiliaryMapToSingle_zero_right (𝟙 X)
 
-/-- For every natural number, the fibre of the downward complex shape over that index is finite.-/
+/-- For every natural number, the fibre of the downward complex shape over that index is finite.
+@isnad1 id=finite.0h1v.s5.fa1038cf1f43 from=translated src=- shape=f0cb1513 vocab=48164be0
+-/
 instance finite_preimage_down (n : ℕ) :
     Finite (ComplexShape.π (ComplexShape.down ℕ) (ComplexShape.down ℕ)
       (ComplexShape.down ℕ) ⁻¹' {n}) := by
@@ -148,7 +162,9 @@ noncomputable abbrev auxiliaryMap
     | (_ + 1), _, h => absurd h (by simp)
     | 0, (_ + 1), h => absurd h (by simp)
 
-/-- The differential from degree one to degree zero composed with the auxiliary morphism is zero.-/
+/-- The differential from degree one to degree zero composed with the auxiliary morphism is zero.
+@isnad1 id=eq.0h7v.s11.3fdfe53026e8 from=translated src=- shape=72ec3eee vocab=7a476c32
+-/
 theorem d_auxiliaryMap (P₁ : ProjectiveResolution M₁) (P₂ : ProjectiveResolution M₂) :
     (tensorProduct (k := k) P₁ P₂).d 1 0 ≫ auxiliaryMap (k := k) P₁ P₂ = 0 := by
   have hd₁ : P₁.complex.d 1 0 ≫ ((ChainComplex.toSingle₀Equiv P₁.complex M₁) P₁.π).1 = 0 :=

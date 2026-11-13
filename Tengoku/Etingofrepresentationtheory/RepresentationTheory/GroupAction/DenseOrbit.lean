@@ -20,7 +20,9 @@ variable {V : Type*} [TopologicalSpace V]
 
 namespace IsIrreducible
 
-/-- For a finite collection of subsets covering an irreducible space after taking closures, at least one of the original subsets is dense.-/
+/-- For a finite collection of subsets covering an irreducible space after taking closures, at least one of the original subsets is dense.
+@isnad1 id=ex.3h4v.s6.2ffd7f679a16 from=translated src=- shape=fa36d4b2 vocab=e811bd71
+-/
 theorem exists_mem_dense_of_finite_closure_cover {ι : Type*}
     (hV : IsIrreducible (Set.univ : Set V)) {s : Set ι} (hs : s.Finite) (A : ι → Set V)
     (hcover : (Set.univ : Set V) ⊆ ⋃ i ∈ s, closure (A i)) :
@@ -45,7 +47,9 @@ variable {G : Type*} [Group G] [MulAction G V]
 
 namespace MulAction.orbitRel.Quotient
 
-/-- When an irreducible topological space has finitely many orbit classes under a group action, some class, viewed through the orbit-relation quotient, is dense.-/
+/-- When an irreducible topological space has finitely many orbit classes under a group action, some class, viewed through the orbit-relation quotient, is dense.
+@isnad1 id=ex.1h2v.s5.54b0f16846d6 from=translated src=- shape=1134984f vocab=a00f78b0
+-/
 theorem exists_dense_orbit_of_finite (hV : IsIrreducible (Set.univ : Set V))
     [Finite (orbitRel.Quotient G V)] :
     ∃ x : orbitRel.Quotient G V, Dense x.orbit := by
@@ -64,7 +68,9 @@ end MulAction.orbitRel.Quotient
 
 namespace MulAction
 
-/-- A group action with finitely many orbit classes on an irreducible topological space admits a point with dense orbit.-/
+/-- A group action with finitely many orbit classes on an irreducible topological space admits a point with dense orbit.
+@isnad1 id=ex.1h2v.s5.cf9e26e0af55 from=translated src=- shape=8afc167f vocab=d5687f89
+-/
 theorem exists_dense_orbit_of_finite_orbitRel_quotient (hV : IsIrreducible (Set.univ : Set V))
     [Finite (orbitRel.Quotient G V)] :
     ∃ x : V, Dense (MulAction.orbit G x) := by

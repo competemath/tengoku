@@ -46,7 +46,9 @@ noncomputable def monoidAlgebraToClassFunctions :
     exact Finset.sum_congr rfl fun g _ => by
       rw [show (r • a).coeff g = r • a.coeff g from rfl, smul_eq_mul]; split <;> simp
 
-/-- A singleton monoid-algebra term maps to the function supported on its conjugacy class with the given coefficient.-/
+/-- A singleton monoid-algebra term maps to the function supported on its conjugacy class with the given coefficient.
+@isnad1 id=eq.0h4v.s8.c6d870a5b0f0 from=translated src=- shape=e0c37720 vocab=862c6393
+-/
 lemma monoidAlgebraToClassFunctions_single (g : G) (c : k) :
     monoidAlgebraToClassFunctions k G (single g c) =
       fun C' => if ConjClasses.mk g = C' then c else 0 := by
@@ -64,7 +66,9 @@ noncomputable def conjugacyClassToAuxiliary : ConjClasses G → AuxiliaryClassQu
   fun C' => Submodule.mkQ (auxiliaryRelationSubmodule k G) (single (Quotient.out C') 1)
 
 omit [Fintype G] [DecidableEq G] in
-/-- The difference of unit singleton terms at conjugate group elements belongs to the auxiliary relation submodule.-/
+/-- The difference of unit singleton terms at conjugate group elements belongs to the auxiliary relation submodule.
+@isnad1 id=mem.1h4v.s8.8c77755fb83b from=translated src=- shape=f449436a vocab=216cf789
+-/
 lemma single_sub_single_mem_auxiliaryRelationSubmodule_of_isConj {a b : G} (h : IsConj a b) :
     single a (1 : k) - single b 1 ∈ auxiliaryRelationSubmodule k G := by
   obtain ⟨c, hc⟩ := isConj_iff.mp h
@@ -88,7 +92,9 @@ noncomputable def monoidAlgebraActionHom : MonoidAlgebra k G →ₐ[k] Module.En
   Algebra.lsmul k k M
 
 omit [Module.Finite k M] in
-/-- Evaluating the monoid-algebra action homomorphism agrees with scalar multiplication on the module.-/
+/-- Evaluating the monoid-algebra action homomorphism agrees with scalar multiplication on the module.
+@isnad1 id=eq.0h5v.s9.f02c1fc8b2a5 from=translated src=- shape=77cf4470 vocab=9ca28a94
+-/
 @[simp] lemma monoidAlgebraActionHom_apply (x : MonoidAlgebra k G) (m : M) :
     monoidAlgebraActionHom k M x m = x • m := rfl
 
@@ -98,19 +104,25 @@ noncomputable def moduleTrace : MonoidAlgebra k G →ₗ[k] k :=
   (LinearMap.trace k M).comp (monoidAlgebraActionHom k M).toLinearMap
 
 omit [Module.Finite k M] in
-/-- The module trace functional evaluates an algebra element as the trace of its action endomorphism.-/
+/-- The module trace functional evaluates an algebra element as the trace of its action endomorphism.
+@isnad1 id=eq.0h4v.s10.1dbd7ca0613e from=translated src=- shape=84119404 vocab=47606fbd
+-/
 lemma moduleTrace_eq_trace_action (x : MonoidAlgebra k G) :
     moduleTrace k M x = LinearMap.trace k M (monoidAlgebraActionHom k M x) := rfl
 
 omit [Module.Finite k M] in
-/-- The module trace of a product is unchanged when the factors are reversed.-/
+/-- The module trace of a product is unchanged when the factors are reversed.
+@isnad1 id=eq.0h5v.s9.b9de7c5cc3e5 from=translated src=- shape=d385fd5a vocab=8c384541
+-/
 lemma moduleTrace_mul_comm (x y : MonoidAlgebra k G) :
     moduleTrace k M (x * y) = moduleTrace k M (y * x) := by
   simp only [moduleTrace_eq_trace_action, map_mul]
   exact LinearMap.trace_mul_comm k _ _
 
 omit [Module.Finite k M] in
-/-- The auxiliary relation submodule lies in the kernel of the module trace map.-/
+/-- The auxiliary relation submodule lies in the kernel of the module trace map.
+@isnad1 id=le.0h3v.s9.5bfb1dd56676 from=translated src=- shape=d29f4e50 vocab=ebef09ad
+-/
 lemma auxiliaryRelationSubmodule_le_ker_moduleTrace :
     auxiliaryRelationSubmodule k G ≤ LinearMap.ker (moduleTrace k M) := by
   rw [auxiliaryRelationSubmodule, Submodule.span_le]
@@ -124,14 +136,18 @@ noncomputable def auxiliaryModuleTrace : AuxiliaryClassQuotient k G →ₗ[k] k 
     (auxiliaryRelationSubmodule_le_ker_moduleTrace M)
 
 omit [Module.Finite k M] in
-/-- The auxiliary module trace of a quotient image agrees with the module trace of its representative.-/
+/-- The auxiliary module trace of a quotient image agrees with the module trace of its representative.
+@isnad1 id=eq.0h4v.s10.699f03000bf6 from=translated src=- shape=a3ddc680 vocab=7a323eb6
+-/
 @[simp] lemma auxiliaryModuleTrace_mkQ (x : MonoidAlgebra k G) :
     auxiliaryModuleTrace k M (Submodule.mkQ (auxiliaryRelationSubmodule k G) x) =
       moduleTrace k M x :=
   Submodule.liftQ_apply _ _ _
 
 omit [Module.Finite k M] in
-/-- The auxiliary module trace of a quotient unit singleton equals the trace of its action.-/
+/-- The auxiliary module trace of a quotient unit singleton equals the trace of its action.
+@isnad1 id=eq.0h4v.s11.b761285f13ff from=translated src=- shape=ff61aa68 vocab=031efe04
+-/
 lemma auxiliaryModuleTrace_mkQ_single_one (g : G) :
     auxiliaryModuleTrace k M
         (Submodule.mkQ (auxiliaryRelationSubmodule k G) (single g 1)) =

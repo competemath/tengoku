@@ -47,7 +47,9 @@ private lemma aeval_mem {W : Submodule k M} (hW : ∀ x ∈ W, T x ∈ W) (q : k
     exact ih (T z) (hW z hz)
 
 /-- A basis vector belongs to an invariant submodule whenever it has a nonzero coefficient in a
-member of that submodule and the basis has distinct eigenvalues.-/
+member of that submodule and the basis has distinct eigenvalues.
+@isnad1 id=mem.5h9v.s9.e8606024b2ac from=translated src=- shape=e2e0168e vocab=c3c1f6db
+-/
 theorem basis_mem_of_mem_invariant_and_repr_ne_zero
     (hT : ∀ s, T (b s) = w s • b s) (hw : Function.Injective w)
     {W : Submodule k M} (hW : ∀ x ∈ W, T x ∈ W)

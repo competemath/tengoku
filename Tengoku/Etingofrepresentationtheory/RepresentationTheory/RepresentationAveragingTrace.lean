@@ -22,19 +22,25 @@ variable {k : Type*} [Field k]
     (σ : Representation k Γ W)
 
 omit [Module.Finite k W] in
-/-- The averaging map is the inverse group order times the sum of the representation operators.-/
+/-- The averaging map is the inverse group order times the sum of the representation operators.
+@isnad1 id=eq.0h4v.s9.157874f3d887 from=translated src=- shape=48187444 vocab=d1f9ffad
+-/
 lemma averageMap_eq_inv_card_smul_sum :
     averageMap σ = (Fintype.card Γ : k)⁻¹ • ∑ h : Γ, σ h := by
   simp only [averageMap, GroupAlgebra.average, map_smul, map_sum, asAlgebraHom_of, invOf_eq_inv]
 
 omit [Module.Finite k W] in
-/-- The averaging map sends a vector to the inverse group order times the sum of all its translates.-/
+/-- The averaging map sends a vector to the inverse group order times the sum of all its translates.
+@isnad1 id=eq.0h5v.s9.9865bf562f62 from=translated src=- shape=80b3df15 vocab=d1f9ffad
+-/
 lemma averageMap_apply_eq_inv_card_smul_sum (w : W) :
     averageMap σ w = (Fintype.card Γ : k)⁻¹ • ∑ h : Γ, σ h w := by
   rw [averageMap_eq_inv_card_smul_sum]; simp
 
 omit [Module.Finite k W] in
-/-- The kernel of the averaging map equals the kernel defining the coinvariants.-/
+/-- The kernel of the averaging map equals the kernel defining the coinvariants.
+@isnad1 id=eq.0h4v.s7.7a4aa53ac6b0 from=translated src=- shape=dc34a86a vocab=bb850458
+-/
 lemma averageMap_ker_eq_coinvariants_ker :
     LinearMap.ker (averageMap σ) = Coinvariants.ker σ := by
   apply le_antisymm
@@ -66,7 +72,9 @@ lemma averageMap_ker_eq_coinvariants_ker :
     rw [key, sub_self]
 
 omit [Invertible (Fintype.card Γ : k)] [Fintype Γ] [Module.Finite k W] in
-/-- An endomorphism intertwining a representation preserves its invariant vectors.-/
+/-- An endomorphism intertwining a representation preserves its invariant vectors.
+@isnad1 id=mem.1h6v.s8.b5f9410d9d22 from=translated src=- shape=70229dbe vocab=7e28ab2c
+-/
 lemma intertwiningMap_mem_invariants (Φ : IntertwiningMap σ σ) :
     ∀ x ∈ invariants σ, Φ.toLinearMap x ∈ invariants σ := by
   intro x hx
@@ -77,7 +85,9 @@ lemma intertwiningMap_mem_invariants (Φ : IntertwiningMap σ σ) :
   rw [hx g] at h
   exact h.symm
 
-/-- The trace induced on coinvariants is the average of the traces obtained by composing with the group action.-/
+/-- The trace induced on coinvariants is the average of the traces obtained by composing with the group action.
+@isnad1 id=eq.0h5v.s11.f4768b5aa5f3 from=translated src=- shape=358cf243 vocab=aa6e74f4
+-/
 theorem trace_coinvariantsMap_eq_average_trace (Φ : IntertwiningMap σ σ) :
     LinearMap.trace k (Coinvariants σ) (Coinvariants.map σ σ Φ)
       = (Fintype.card Γ : k)⁻¹ * ∑ h : Γ, LinearMap.trace k W (σ h ∘ₗ Φ.toLinearMap) := by
@@ -137,7 +147,9 @@ theorem trace_coinvariantsMap_eq_average_trace (Φ : IntertwiningMap σ σ) :
 
 section Helpers
 
-/-- The trace of a domain reindexing map on finitely supported functions is the sum of one over its fixed points.-/
+/-- The trace of a domain reindexing map on finitely supported functions is the sum of one over its fixed points.
+@isnad1 id=eq.0h3v.s10.63c0874697ca from=translated src=- shape=0d523b7e vocab=952bf72d
+-/
 lemma trace_finsupp_lmapDomain_eq_sum_fixedPoints {k : Type*} [Field k] {ι : Type*}
     [Fintype ι] [DecidableEq ι] (φ : ι → ι) :
     LinearMap.trace k (ι →₀ k) (Finsupp.lmapDomain k k φ)
@@ -147,7 +159,9 @@ lemma trace_finsupp_lmapDomain_eq_sum_fixedPoints {k : Type*} [Field k] {ι : Ty
   rw [Matrix.diag_apply, LinearMap.toMatrix_apply, Finsupp.coe_basisSingleOne]
   simp [Finsupp.lmapDomain_apply, Finsupp.mapDomain_single, Finsupp.single_apply]
 
-/-- The trace of a domain map on a monoid algebra is the sum of one over its fixed points.-/
+/-- The trace of a domain map on a monoid algebra is the sum of one over its fixed points.
+@isnad1 id=eq.0h3v.s10.dc18920ad7a8 from=translated src=- shape=4aeaf136 vocab=ec0673a8
+-/
 lemma trace_monoidAlgebra_mapDomain_eq_sum_fixedPoints {k : Type*} [Field k] {ι : Type*}
     [Monoid ι] [Fintype ι] [DecidableEq ι] (φ : ι → ι) :
     LinearMap.trace k (MonoidAlgebra k ι) (MonoidAlgebra.mapDomainLinearMap k k φ) =
@@ -159,7 +173,9 @@ lemma trace_monoidAlgebra_mapDomain_eq_sum_fixedPoints {k : Type*} [Field k] {ι
   change (Finsupp.single (φ x) 1) x = _
   exact Finsupp.single_apply
 
-/-- An auxiliary result whose formal statement is unavailable.-/
+/-- An auxiliary result whose formal statement is unavailable.
+@isnad1 id=eq.0h5v.s8.93eadcbb42fb from=translated src=- shape=5ec9796c vocab=7835e761
+-/
 lemma auxiliary_theorem {G : Type*} [Group G] [DecidableEq G] (H : Subgroup G) [Fintype H]
     [DecidablePred (· ∈ H)] {k : Type*} [AddCommMonoid k] (a : G) (f : H → k) :
     ∑ h : H, (if (↑h : G) = a then f h else 0) = if ha : a ∈ H then f ⟨a, ha⟩ else 0 := by

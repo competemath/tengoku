@@ -23,7 +23,9 @@ noncomputable def binaryOperation (C D : CochainComplex (ModuleCat.{u} k) ℤ) :
     CochainComplex (ModuleCat.{u} k) ℤ :=
   HomologicalComplex.tensorObj C D
 
-/-- Cochain complexes of modules over a field form a monoidal preadditive category.-/
+/-- Cochain complexes of modules over a field form a monoidal preadditive category.
+@isnad1 id=monoidal.0h1v.s8.ccb800024290 from=translated src=- shape=d18258b5 vocab=6af4b802
+-/
 noncomputable instance monoidalPreadditive :
     MonoidalPreadditive (HomologicalComplex (ModuleCat.{u} k) (ComplexShape.up ℤ)) where
   whiskerLeft_zero {X Y Z} := by

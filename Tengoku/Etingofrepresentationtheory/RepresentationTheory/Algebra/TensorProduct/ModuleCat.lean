@@ -34,11 +34,15 @@ noncomputable local instance moduleCarrier (X : ModuleCat.{u} A₁) : Module k X
 noncomputable local instance moduleCarrierAux (Y : ModuleCat.{u} A₂) : Module k Y :=
   Module.compHom Y (algebraMap k A₂)
 
-/-- The carrier action of an algebra object satisfies the scalar-tower law.-/
+/-- The carrier action of an algebra object satisfies the scalar-tower law.
+@isnad1 id=isscalar.0h3v.s8.ded1d2534a86 from=translated src=- shape=c65b1c6f vocab=2bec8020
+-/
 local instance isScalarTower (X : ModuleCat.{u} A₁) : IsScalarTower k A₁ X :=
   { smul_assoc := fun a b x => by rw [Algebra.smul_def]; exact mul_smul _ _ _ }
 
-/-- Auxiliary scalar-tower instance for the carrier of a module-category object.-/
+/-- Auxiliary scalar-tower instance for the carrier of a module-category object.
+@isnad1 id=isscalar.0h3v.s8.ded1d2534a86 from=translated src=- shape=c65b1c6f vocab=2bec8020
+-/
 local instance isScalarTowerAux (Y : ModuleCat.{u} A₂) : IsScalarTower k A₂ Y :=
   { smul_assoc := fun a b x => by rw [Algebra.smul_def]; exact mul_smul _ _ _ }
 
@@ -47,7 +51,9 @@ noncomputable local instance tensorProductModule (X : ModuleCat.{u} A₁)
     (Y : ModuleCat.{u} A₂) : Module (A₁ ⊗[k] A₂) (X ⊗[k] Y) :=
   RepresentationTheory.Algebra.TensorProduct.Module.TensorProduct.instModule k A₁ A₂ X Y
 
-/-- Scalar multiplication by a pure tensor acts componentwise on pure module tensors.-/
+/-- Scalar multiplication by a pure tensor acts componentwise on pure module tensors.
+@isnad1 id=eq.0h9v.s10.86bd7bd0cc6b from=translated src=- shape=958ae147 vocab=b6759ca7
+-/
 @[simp] theorem smul_tmul (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A₂)
     (a₁ : A₁) (a₂ : A₂) (m₁ : X) (m₂ : Y) :
     (a₁ ⊗ₜ[k] a₂ : A₁ ⊗[k] A₂) • (m₁ ⊗ₜ[k] m₂ : X ⊗[k] Y)
@@ -82,12 +88,16 @@ noncomputable def tensorProductLinearMap {X X' : ModuleCat.{u} A₁}
       | add z1 z2 h1 h2 => simp only [smul_add, map_add, h1, h2]
     | add s1 s2 ih1 ih2 => simp only [add_smul, map_add, ih1, ih2]
 
-/-- Describes the value of the induced linear map on a pure tensor.-/
+/-- Describes the value of the induced linear map on a pure tensor.
+@isnad1 id=eq.0h11v.s10.906335706fed from=translated src=- shape=ad4cfe65 vocab=fd88aa91
+-/
 @[simp] theorem tensorProductLinearMap_tmul {X X' : ModuleCat.{u} A₁}
     {Y Y' : ModuleCat.{u} A₂} (f : X ⟶ X') (g : Y ⟶ Y') (m₁ : X) (m₂ : Y) :
     tensorProductLinearMap k f g (m₁ ⊗ₜ[k] m₂) = f.hom m₁ ⊗ₜ[k] g.hom m₂ := rfl
 
-/-- Tensor-product linear maps send identity morphisms to the identity map.-/
+/-- Tensor-product linear maps send identity morphisms to the identity map.
+@isnad1 id=eq.0h5v.s9.30a909cf71ce from=translated src=- shape=e9ecae6e vocab=9b7af9ff
+-/
 theorem tensorProductLinearMap_id (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A₂) :
     tensorProductLinearMap k (𝟙 X) (𝟙 Y) = LinearMap.id := by
   refine LinearMap.ext fun z => ?_
@@ -96,7 +106,9 @@ theorem tensorProductLinearMap_id (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A�
   | tmul m₁ m₂ => rfl
   | add a b ha hb => rw [map_add, ha, hb, map_add, LinearMap.id_coe, id_eq]
 
-/-- Tensor-product linear maps respect composition in both arguments.-/
+/-- Tensor-product linear maps respect composition in both arguments.
+@isnad1 id=eq.0h13v.s10.43beecdc193f from=translated src=- shape=2855486f vocab=8be853b0
+-/
 theorem tensorProductLinearMap_comp {X X' X'' : ModuleCat.{u} A₁}
     {Y Y' Y'' : ModuleCat.{u} A₂} (f₁ : X ⟶ X') (f₂ : X' ⟶ X'')
     (g₁ : Y ⟶ Y') (g₂ : Y' ⟶ Y'') :
@@ -114,18 +126,24 @@ noncomputable def tensorProductMap {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat
     tensorProduct k A₁ A₂ X Y ⟶ tensorProduct k A₁ A₂ X' Y' :=
   ModuleCat.ofHom (tensorProductLinearMap k f g)
 
-/-- The underlying linear map of a tensor-product morphism is the induced linear map.-/
+/-- The underlying linear map of a tensor-product morphism is the induced linear map.
+@isnad1 id=eq.0h9v.s9.11b70daadef0 from=translated src=- shape=f46843fe vocab=70831fa9
+-/
 @[simp] theorem tensorProductMap_hom {X X' : ModuleCat.{u} A₁} {Y Y' : ModuleCat.{u} A₂}
     (f : X ⟶ X') (g : Y ⟶ Y') :
     (tensorProductMap k f g).hom = tensorProductLinearMap k f g := rfl
 
-/-- The tensor-product morphism construction preserves identity morphisms.-/
+/-- The tensor-product morphism construction preserves identity morphisms.
+@isnad1 id=eq.0h5v.s8.3986a0b8b67e from=translated src=- shape=1449f079 vocab=5b1868ff
+-/
 theorem tensorProductMap_id (X : ModuleCat.{u} A₁) (Y : ModuleCat.{u} A₂) :
     tensorProductMap k (𝟙 X) (𝟙 Y) = 𝟙 (tensorProduct k A₁ A₂ X Y) := by
   apply ModuleCat.hom_ext
   rw [tensorProductMap_hom, tensorProductLinearMap_id, ModuleCat.hom_id]
 
-/-- The tensor-product morphism construction preserves composition.-/
+/-- The tensor-product morphism construction preserves composition.
+@isnad1 id=eq.0h13v.s9.c0f1695798c7 from=translated src=- shape=ace867c5 vocab=26cb84fc
+-/
 theorem tensorProductMap_comp {X X' X'' : ModuleCat.{u} A₁}
     {Y Y' Y'' : ModuleCat.{u} A₂} (f₁ : X ⟶ X') (f₂ : X' ⟶ X'')
     (g₁ : Y ⟶ Y') (g₂ : Y' ⟶ Y'') :

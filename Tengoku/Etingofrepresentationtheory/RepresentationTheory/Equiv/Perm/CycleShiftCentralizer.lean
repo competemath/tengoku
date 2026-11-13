@@ -33,7 +33,9 @@ def permuteFunctions (β M : Type*) [Group M] : _root_.Equiv.Perm β →* MulAut
   map_mul' _ _ := MulEquiv.ext fun _ => rfl
 
 /-- The permuted function evaluates at a point by applying the original function to its inverse
-image.-/
+image.
+@isnad1 id=eq.0h5v.s9.772843d77f96 from=translated src=- shape=1274943a vocab=b2fdbac9
+-/
 @[simp]
 theorem permuteFunctions_apply {β M : Type*} [Group M] (σ : _root_.Equiv.Perm β)
     (v : β → M) (b : β) :
@@ -58,14 +60,18 @@ def centralizerFactorCongr {β γ : Type*} (e : β ≃ γ) (m : ℕ) :
         simp [SemidirectProduct.mul_left, _root_.Equiv.permCongr_def])
       (_root_.Equiv.ext fun c => by simp [SemidirectProduct.mul_right])
 
-/-- The auxiliary centralizer factor of an empty label type is a subsingleton.-/
+/-- The auxiliary centralizer factor of an empty label type is a subsingleton.
+@isnad1 id=subsingl.0h2v.s3.1bdfac310496 from=translated src=- shape=4012ca59 vocab=1412e350
+-/
 instance centralizerFactor_subsingleton_of_isEmpty (β : Type*) [IsEmpty β] (m : ℕ) :
     Subsingleton (CentralizerFactor β m) :=
   ⟨fun _ _ => SemidirectProduct.ext (funext fun b => isEmptyElim b)
     (_root_.Equiv.ext fun b => isEmptyElim b)⟩
 
 /-- For a finite label type, the auxiliary factor has cardinality equal to the cycle size raised to
-the label cardinality times its factorial.-/
+the label cardinality times its factorial.
+@isnad1 id=eq.0h2v.s5.a630a5f52087 from=translated src=- shape=72e139dc vocab=e8e9ed44
+-/
 theorem card_centralizerFactor (β : Type*) [Finite β] (m : ℕ) :
     Nat.card (CentralizerFactor β m) = m ^ Nat.card β * Nat.factorial (Nat.card β) := by
   rw [Nat.card_congr SemidirectProduct.equivProd, Nat.card_prod, Nat.card_perm, Nat.card_fun,
@@ -100,7 +106,9 @@ def cycleShift : _root_.Equiv.Perm (CycleIndexSpace β) where
   left_inv s := by cases s with | mk m p => cases p; simp
   right_inv s := by cases s with | mk m p => cases p; simp
 
-/-- The cycle shift fixes the index and label and adds one to the cyclic coordinate.-/
+/-- The cycle shift fixes the index and label and adds one to the cyclic coordinate.
+@isnad1 id=eq.0h4v.s6.dd2e942a050a from=translated src=- shape=388c3482 vocab=10817485
+-/
 @[simp]
 theorem cycleShift_apply (m : ℕ) (b : β m) (x : ZMod m) :
     cycleShift β ⟨m, (b, x)⟩ = ⟨m, (b, x + 1)⟩ := rfl
@@ -116,19 +124,25 @@ def centralizerDataAction (w : CentralizerData β) (s : CycleIndexSpace β) : Cy
     s.2.2 + Multiplicative.toAdd ((w s.1).left ((w s.1).right s.2.1)))⟩
 
 /-- Centralizer data acts by permuting a cycle label and adding the associated cyclic component to
-its position.-/
+its position.
+@isnad1 id=eq.0h5v.s8.24aae51c12cc from=translated src=- shape=8fb26da7 vocab=5c381dee
+-/
 @[simp]
 theorem centralizerDataAction_apply (w : CentralizerData β) (m : ℕ) (b : β m) (x : ZMod m) :
     centralizerDataAction w ⟨m, (b, x)⟩ =
       ⟨m, ((w m).right b, x + Multiplicative.toAdd ((w m).left ((w m).right b)))⟩ := rfl
 
-/-- The identity centralizer datum acts as the identity.-/
+/-- The identity centralizer datum acts as the identity.
+@isnad1 id=eq.0h2v.s6.8854f224d594 from=translated src=- shape=50dadb85 vocab=4c902c23
+-/
 @[simp]
 theorem centralizerDataAction_one (s : CycleIndexSpace β) : centralizerDataAction 1 s = s := by
   obtain ⟨m, b, x⟩ := s
   simp [centralizerDataAction]
 
-/-- The action of a product of centralizer data is the composite of the two actions.-/
+/-- The action of a product of centralizer data is the composite of the two actions.
+@isnad1 id=eq.0h4v.s6.395b4f1a906d from=translated src=- shape=6fb30a09 vocab=30149819
+-/
 theorem centralizerDataAction_mul (w₁ w₂ : CentralizerData β) (s : CycleIndexSpace β) :
     centralizerDataAction (w₁ * w₂) s =
       centralizerDataAction w₁ (centralizerDataAction w₂ s) := by
@@ -150,12 +164,16 @@ def centralizerDataPermHom : CentralizerData β →* _root_.Equiv.Perm (CycleInd
   map_one' := _root_.Equiv.ext centralizerDataAction_one
   map_mul' w₁ w₂ := _root_.Equiv.ext (centralizerDataAction_mul w₁ w₂)
 
-/-- The permutation homomorphism acts on cycle points by the centralizer-data action.-/
+/-- The permutation homomorphism acts on cycle points by the centralizer-data action.
+@isnad1 id=eq.0h3v.s8.34df666dce80 from=translated src=- shape=5d73be19 vocab=e4999674
+-/
 @[simp]
 theorem centralizerDataPermHom_apply (w : CentralizerData β) (s : CycleIndexSpace β) :
     centralizerDataPermHom w s = centralizerDataAction w s := rfl
 
-/-- The action of centralizer data commutes with the canonical cycle shift.-/
+/-- The action of centralizer data commutes with the canonical cycle shift.
+@isnad1 id=eq.0h3v.s6.041abbdeb6e0 from=translated src=- shape=c0501f85 vocab=07dd94d2
+-/
 theorem centralizerDataAction_cycleShift (w : CentralizerData β) (s : CycleIndexSpace β) :
     centralizerDataAction w (cycleShift β s) = cycleShift β (centralizerDataAction w s) := by
   obtain ⟨m, b, x⟩ := s
@@ -163,7 +181,9 @@ theorem centralizerDataAction_cycleShift (w : CentralizerData β) (s : CycleInde
   exact congrArg (Sigma.mk m) (by rw [add_right_comm])
 
 /-- Every permutation arising from centralizer data belongs to the centralizer of the cycle
-shift.-/
+shift.
+@isnad1 id=mem.0h2v.s8.1359eddaf504 from=translated src=- shape=327c4128 vocab=c08e2145
+-/
 theorem centralizerDataPermHom_mem_centralizer (w : CentralizerData β) :
     centralizerDataPermHom w ∈ _root_.Subgroup.centralizer {cycleShift β} := by
   rw [_root_.Subgroup.mem_centralizer_singleton_iff]
@@ -172,12 +192,16 @@ theorem centralizerDataPermHom_mem_centralizer (w : CentralizerData β) :
   exact centralizerDataAction_cycleShift w s
 
 /-- Equality of two dependent pairs with the same natural-number index implies equality of their
-second components.-/
+second components.
+@isnad1 id=eq.1h4v.s6.f3fd13922af4 from=translated src=- shape=0a946f8f vocab=c48eaa12
+-/
 theorem sigma_mk_inj {m : ℕ} {p q : β m × ZMod m}
     (h : (⟨m, p⟩ : CycleIndexSpace β) = ⟨m, q⟩) : p = q := by
   simpa using h
 
-/-- The permutation homomorphism from centralizer data is injective.-/
+/-- The permutation homomorphism from centralizer data is injective.
+@isnad1 id=injectiv.0h1v.s8.f8ab648c3925 from=translated src=- shape=1f18761e vocab=a9c44d89
+-/
 theorem centralizerDataPermHom_injective :
     _root_.Function.Injective (centralizerDataPermHom (β := β)) := by
   rw [injective_iff_map_eq_one]
@@ -203,7 +227,9 @@ section Centralizer
 
 variable {k : _root_.Equiv.Perm (CycleIndexSpace β)}
 
-/-- A natural power of the cycle shift adds the cast of that power to the cyclic coordinate.-/
+/-- A natural power of the cycle shift adds the cast of that power to the cyclic coordinate.
+@isnad1 id=eq.0h5v.s7.827d696383c7 from=translated src=- shape=284942e4 vocab=787a641c
+-/
 theorem cycleShift_pow_apply (j : ℕ) {m : ℕ} (b : β m) (x : ZMod m) :
     (cycleShift β ^ j) ⟨m, (b, x)⟩ = ⟨m, (b, x + j)⟩ := by
   induction j generalizing x with
@@ -213,7 +239,9 @@ theorem cycleShift_pow_apply (j : ℕ) {m : ℕ} (b : β m) (x : ZMod m) :
       exact congrArg (Sigma.mk m) (congrArg (Prod.mk b) (by push_cast; ring))
 
 /-- A permutation centralizing the cycle shift commutes pointwise with every natural power of that
-shift.-/
+shift.
+@isnad1 id=eq.1h4v.s7.6c2684166845 from=translated src=- shape=ab837ec8 vocab=1e117b8d
+-/
 theorem apply_pow_eq_pow_apply (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     (j : ℕ) (s : CycleIndexSpace β) :
     k ((cycleShift β ^ j) s) = (cycleShift β ^ j) (k s) := by
@@ -223,12 +251,16 @@ theorem apply_pow_eq_pow_apply (hk : k ∈ _root_.Subgroup.centralizer {cycleShi
 
 variable [IsEmpty (β 0)]
 
-/-- If the zeroth label type is empty, any index carrying a label is nonzero.-/
+/-- If the zeroth label type is empty, any index carrying a label is nonzero.
+@isnad1 id=nezero.0h3v.s4.1c3c0abfc772 from=translated src=- shape=f896fb74 vocab=f8a7198b
+-/
 theorem neZero_index_of_nonempty {m : ℕ} (b : β m) : NeZero m :=
   ⟨fun h => IsEmpty.false (show β 0 from h ▸ b)⟩
 
 /-- The natural-number index of the image under a centralizing permutation divides the original
-cycle size.-/
+cycle size.
+@isnad1 id=dvd.1h5v.s7.9dc721f4629e from=translated src=- shape=38f1239d vocab=538abc97
+-/
 theorem sigma_fst_apply_dvd (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     {m : ℕ} (b : β m) (x : ZMod m) :
     (k ⟨m, (b, x)⟩).1 ∣ m := by
@@ -243,7 +275,9 @@ theorem sigma_fst_apply_dvd (hk : k ∈ _root_.Subgroup.centralizer {cycleShift 
   exact (ZMod.natCast_eq_zero_iff m m').mp (by simpa using h3)
 
 /-- A permutation centralizing the cycle shift preserves the natural-number index of every cycle
-point.-/
+point.
+@isnad1 id=eq.1h5v.s7.e09aaaa2eab0 from=translated src=- shape=38f1239d vocab=472ab6f5
+-/
 theorem sigma_fst_apply (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     {m : ℕ} (b : β m) (x : ZMod m) :
     (k ⟨m, (b, x)⟩).1 = m := by
@@ -256,7 +290,9 @@ theorem sigma_fst_apply (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
   exact h1
 
 /-- On each cycle label, a centralizing permutation acts by a target label and a fixed cyclic
-offset.-/
+offset.
+@isnad1 id=ex.1h4v.s7.73f72c783334 from=translated src=- shape=9010fdfb vocab=f9835513
+-/
 theorem exists_cycleParameter (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     {m : ℕ} (b : β m) :
     ∃ p : β m × ZMod m, ∀ x : ZMod m, k ⟨m, (b, x)⟩ = ⟨m, (p.1, p.2 + x)⟩ := by
@@ -280,14 +316,18 @@ noncomputable def cycleParameter (hk : k ∈ _root_.Subgroup.centralizer {cycleS
   (exists_cycleParameter hk b).choose
 
 /-- A centralizing permutation sends a cycle point to the parameterized target label and adds the
-associated cyclic offset.-/
+associated cyclic offset.
+@isnad1 id=eq.1h5v.s7.721ed3c55d4c from=translated src=- shape=eb8f419c vocab=5ce9b0f8
+-/
 theorem apply_eq_cycleParameter (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     {m : ℕ} (b : β m) (x : ZMod m) :
     k ⟨m, (b, x)⟩ = ⟨m, ((cycleParameter hk b).1, (cycleParameter hk b).2 + x)⟩ :=
   (exists_cycleParameter hk b).choose_spec x
 
 /-- The first components of the cycle parameters for a centralizing permutation and its inverse
-compose to the identity in one order.-/
+compose to the identity in one order.
+@isnad1 id=eq.1h4v.s6.ea2a1296fce9 from=translated src=- shape=b65a427d vocab=d98fc4c0
+-/
 theorem cycleParameter_fst_leftInverse
     (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β}) {m : ℕ} (b : β m) :
     (cycleParameter (_root_.InvMemClass.inv_mem hk) (cycleParameter hk b).1).1 = b := by
@@ -298,7 +338,9 @@ theorem cycleParameter_fst_leftInverse
   exact congrArg Prod.fst (sigma_mk_inj h)
 
 /-- The first components of the cycle parameters for a centralizing permutation and its inverse
-compose to the identity in the other order.-/
+compose to the identity in the other order.
+@isnad1 id=eq.1h4v.s6.848694d2f21b from=translated src=- shape=d5597dd9 vocab=d98fc4c0
+-/
 theorem cycleParameter_fst_rightInverse
     (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β}) {m : ℕ} (b : β m) :
     (cycleParameter hk (cycleParameter (_root_.InvMemClass.inv_mem hk) b).1).1 = b := by
@@ -318,7 +360,9 @@ noncomputable def cycleLabelPerm (hk : k ∈ _root_.Subgroup.centralizer {cycleS
   right_inv b := cycleParameter_fst_rightInverse hk b
 
 /-- The induced permutation on cycle labels is the first component of the associated cycle
-parameter.-/
+parameter.
+@isnad1 id=eq.1h4v.s7.609333d3376c from=translated src=- shape=83c92f7b vocab=fb1f7169
+-/
 @[simp]
 theorem cycleLabelPerm_apply (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β})
     {m : ℕ} (b : β m) :
@@ -332,7 +376,9 @@ noncomputable def centralizerDataOfMem
     right := cycleLabelPerm hk m }
 
 /-- Extracting data from a centralizing permutation and mapping it back recovers the original
-permutation.-/
+permutation.
+@isnad1 id=eq.1h2v.s8.6627aa684ffb from=translated src=- shape=f4719bc9 vocab=cb1bc905
+-/
 theorem centralizerDataPermHom_fromCentralizer
     (hk : k ∈ _root_.Subgroup.centralizer {cycleShift β}) :
     centralizerDataPermHom (centralizerDataOfMem hk) = k := by
@@ -353,7 +399,9 @@ noncomputable def centralizerDataEquiv :
         Subtype.ext (centralizerDataPermHom_fromCentralizer k.2)⟩⟩
 
 /-- The permutation underlying the centralizer-data equivalence agrees with the permutation
-homomorphism.-/
+homomorphism.
+@isnad1 id=eq.0h2v.s9.27541f8f799e from=translated src=- shape=b8bc3fa4 vocab=74b388a3
+-/
 @[simp]
 theorem coe_centralizerDataEquiv (w : CentralizerData β) :
     (centralizerDataEquiv w : _root_.Equiv.Perm (CycleIndexSpace β)) =
@@ -363,8 +411,12 @@ end Centralizer
 
 end RepresentationTheory.Equiv.Perm.CycleShiftCentralizer
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.1h4v.s6.ea2a1296fce9 from=translated src=- shape=b65a427d vocab=d98fc4c0
+-/
 alias _root_.RepresentationTheory.Equiv.Perm.CycleShiftCentralizer.Auxiliary.statement016951 := _root_.RepresentationTheory.Equiv.Perm.CycleShiftCentralizer.cycleParameter_fst_leftInverse
 
-/-- An auxiliary statement whose displayed formal type contains an elided term.-/
+/-- An auxiliary statement whose displayed formal type contains an elided term.
+@isnad1 id=eq.1h4v.s6.848694d2f21b from=translated src=- shape=d5597dd9 vocab=d98fc4c0
+-/
 alias _root_.RepresentationTheory.Equiv.Perm.CycleShiftCentralizer.Auxiliary.statement016952 := _root_.RepresentationTheory.Equiv.Perm.CycleShiftCentralizer.cycleParameter_fst_rightInverse

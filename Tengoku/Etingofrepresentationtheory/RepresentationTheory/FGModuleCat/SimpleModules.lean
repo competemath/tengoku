@@ -42,7 +42,9 @@ private lemma simple_of_fullyFaithful_preservesMono {C D : Type*} [Category C] [
         (fun h => hne (F.map_injective (by rwa [F.map_zero])))
       exact isIso_of_fully_faithful F f
 
-/-- A finite simple module over a Noetherian ring defines a simple object in the category of finitely generated modules.-/
+/-- A finite simple module over a Noetherian ring defines a simple object in the category of finitely generated modules.
+@isnad1 id=simple.0h2v.s6.763924e8b0c0 from=translated src=- shape=54194e43 vocab=11f27ce9
+-/
 lemma simple_of_isSimpleModule
     (N : Type u) [AddCommGroup N] [Module A N] [Module.Finite A N] [IsSimpleModule A N] :
     Simple (FGModuleCat.of A N) := by
@@ -51,7 +53,9 @@ lemma simple_of_isSimpleModule
   exact simple_of_fullyFaithful_preservesMono (forget₂ (FGModuleCat.{u} A) (ModuleCat.{u} A))
     (FGModuleCat.of A N)
 
-/-- The carrier of a simple finitely generated module over a Noetherian ring is a simple module.-/
+/-- The carrier of a simple finitely generated module over a Noetherian ring is a simple module.
+@isnad1 id=issimple.0h2v.s6.003b9b29ccac from=translated src=- shape=6bbc1d16 vocab=56b4b7f0
+-/
 lemma isSimpleModule_carrier_of_simple (X : FGModuleCat.{u} A) [Simple X] :
     IsSimpleModule A X := by
   haveI hXnt : Nontrivial X := by
@@ -85,7 +89,9 @@ variable (k : Type u) [instField : Field k] (A : Type u) [Ring A] [instAlg : Alg
 
 include instField instAlg instFin
 
-/-- For a finite algebra over a field, there is a finite family of finite simple submodules such that every simple module is equivalent to a member.-/
+/-- For a finite algebra over a field, there is a finite family of finite simple submodules such that every simple module is equivalent to a member.
+@isnad1 id=ex.0h2v.s10.925124626099 from=translated src=- shape=b3c484ba vocab=ddbcc85a
+-/
 theorem exists_completeSimpleSubmoduleFamily :
     ∃ (n : ℕ) (S : Fin n → Submodule A (A ⧸ Ring.jacobson A)),
       (∀ i, Module.Finite k ↥(S i)) ∧ (∀ i, IsSimpleModule A ↥(S i)) ∧
@@ -138,7 +144,9 @@ theorem exists_completeSimpleSubmoduleFamily :
   haveI := hSsimple i₀
   exact ⟨i₀, ⟨(LinearEquiv.ofBijective _ (LinearMap.bijective_of_ne_zero hi₀)).symm⟩⟩
 
-/-- For a finite algebra over a field, there is an indexed family of simple finitely generated modules containing every simple object up to isomorphism.-/
+/-- For a finite algebra over a field, there is an indexed family of simple finitely generated modules containing every simple object up to isomorphism.
+@isnad1 id=ex.0h2v.s7.f28235c7705e from=translated src=- shape=6b0af7bd vocab=e6dc732d
+-/
 theorem exists_completeSimpleObjectFamily :
     ∃ (ι : Type) (_ : Fintype ι) (V : ι → FGModuleCat.{u} A),
       (∀ i, Simple (V i)) ∧
