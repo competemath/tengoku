@@ -18,7 +18,7 @@ in the root namespace as candidates for upstreaming to mathlib.
 -/
 
 @[expose] public section
-
+namespace Tengoku.ChebotarevDensity end Tengoku.ChebotarevDensity open Tengoku.ChebotarevDensity 
 noncomputable section
 
 open Filter Topology
@@ -27,7 +27,7 @@ open Filter Topology
 asymptotics.
 @isnad1 id=tendsto.0h0v.s5.635a6b80d346 from=translated src=- shape=f67324b0 vocab=b154b36f
 -/
-theorem tendsto_log_one_div_sub_one_atTop :
+theorem Tengoku.ChebotarevDensity.tendsto_log_one_div_sub_one_atTop :
     Tendsto (fun s : ℝ ↦ Real.log (1 / (s - 1))) (𝓝[>] (1 : ℝ)) atTop := by
   refine Real.tendsto_log_atTop.comp ?_
   have h1 : Tendsto (fun s : ℝ ↦ s - 1) (𝓝[>] (1 : ℝ)) (𝓝[>] (0 : ℝ)) := by
@@ -44,7 +44,7 @@ analytic content is just that `log(1/(s-1)) → ∞`, so the additive
 bounded term washes out under division.
 @isnad1 id=tendsto.2h1v.s7.ca1731f3c6b7 from=translated src=- shape=e8498024 vocab=409eb06b
 -/
-theorem tendsto_ratio_one_of_log_pm_bounded
+theorem Tengoku.ChebotarevDensity.tendsto_ratio_one_of_log_pm_bounded
     (f : ℝ → ℝ) (h_le : ∃ C : ℝ, ∀ᶠ s in 𝓝[>] (1 : ℝ), f s ≤ Real.log (1 / (s - 1)) + C)
     (h_lower : ∃ C : ℝ, ∀ᶠ s in 𝓝[>] (1 : ℝ), Real.log (1 / (s - 1)) - C ≤ f s) :
     Tendsto (fun s : ℝ ↦ f s / Real.log (1 / (s - 1))) (𝓝[>] 1) (𝓝 1) := by
@@ -58,3 +58,4 @@ theorem tendsto_ratio_one_of_log_pm_bounded
   refine (add_zero (1 : ℝ) ▸ h0.const_add 1).congr' ?_
   filter_upwards [hL.eventually_gt_atTop 0] with s h
   rw [add_div_eq_mul_add_div _ _ h.ne', one_mul, add_sub_cancel]
+-- Tengoku: root names of this library moved to Tengoku.ChebotarevDensity so they do not collide with other libraries (generated)

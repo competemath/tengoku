@@ -38,7 +38,7 @@ the fields of Hironaka's real and complex statements), and the main theorems ins
 -/
 
 @[expose] public section
-
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
 universe u
 
 open scoped Manifold ContDiff
@@ -46,7 +46,7 @@ open scoped Manifold ContDiff
 /-- A bundled analytic manifold over `𝕜` modelled on `E`: Hausdorff, second countable, without
 boundary, with analytic (`C^ω`) chart changes — for `E` finite-dimensional, Hironaka's
 non-singular analytic `𝕜`-space [Hir64, pp. 119–121].-/
-structure AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*)
+structure Tengoku.Hironaka.AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*)
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] where
   /-- The underlying type of points.-/
   carrier : Type u
@@ -56,7 +56,7 @@ structure AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Ty
   [t2 : T2Space carrier]
   [secondCountable : SecondCountableTopology carrier]
 
-namespace AnalyticManifold
+namespace Tengoku.Hironaka.AnalyticManifold
 
 attribute [instance] AnalyticManifold.top AnalyticManifold.charted AnalyticManifold.manifold
   AnalyticManifold.t2 AnalyticManifold.secondCountable
@@ -125,4 +125,5 @@ noncomputable def sigmaOpens {ι : Type u} [Countable ι]
 
 end SigmaOpens
 
-end AnalyticManifold
+end Tengoku.Hironaka.AnalyticManifold
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

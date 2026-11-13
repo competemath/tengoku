@@ -25,12 +25,12 @@ meets each fibre in at most one point. A chain argument (`countable_inter_of_isP
 finishes the proof.
 -/
 
-open Set TopologicalSpace
+namespace Tengoku.LanaTemperedFundamentalGroups end Tengoku.LanaTemperedFundamentalGroups open Tengoku.LanaTemperedFundamentalGroups open Set TopologicalSpace
 
 /-- Let `S` be an open cover of `E` in which each member meets only finitely many members, and
 let `F ⊆ E` meet each member of the cover in a finite set. Then every preconnected subset of `E`
 meets `F` in a countable set. -/
-theorem countable_inter_of_isPreconnected {E ι : Type*} [TopologicalSpace E]
+theorem Tengoku.LanaTemperedFundamentalGroups.countable_inter_of_isPreconnected {E ι : Type*} [TopologicalSpace E]
     (S : ι → Set E) (hS : ∀ i, IsOpen (S i)) (hcov : ∀ x, ∃ i, x ∈ S i)
     (hfin : ∀ i, {j | (S i ∩ S j).Nonempty}.Finite) {F : Set E} (hF : ∀ i, (S i ∩ F).Finite)
     {C : Set E} (hC : IsPreconnected C) : (C ∩ F).Countable := by
@@ -131,3 +131,4 @@ theorem IsCoveringMap.countable_connectedComponent_inter_fibre {E Z : Type*} [To
     [TopologicalSpace Z] [NoetherianSpace Z] {p : E → Z} (hp : IsCoveringMap p) (e : E) (z : Z) :
     (connectedComponent e ∩ p ⁻¹' {z}).Countable :=
   hp.countable_inter_fibre_of_isPreconnected isPreconnected_connectedComponent z
+-- Tengoku: root names of this library moved to Tengoku.LanaTemperedFundamentalGroups so they do not collide with other libraries (generated)

@@ -22,7 +22,7 @@ coheight-`1` DVR point, `ordTop_fun_eq_valuation` replaces `X.ordTop · z` by th
 Source: §3 of the paper (equation (3.3)).
 -/
 
-set_option autoImplicit false
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero set_option autoImplicit false
 
 universe u
 
@@ -81,25 +81,25 @@ end AlgebraicGeometry.Scheme
 variable {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X] {n κ : ℕ}
 
 /-- The normalized order `ord_z(a_p) / (q+1) ∈ WithTop ℚ` of the `p`-th coordinate: `normalizedOrder` specialized to the order function `X.ordTop · z`.-/
-abbrev normalizedOrdTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
+abbrev Tengoku.MiyaokaMoriCharzero.normalizedOrdTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) : WithTop ℚ :=
   normalizedOrder (fun f ↦ X.ordTop f z) (jetCoordinateWeight p) (a p.1 p.2)
 
 /-- The weighted order `β_z = min_{i,q} ord_z(a_{i,q}) / (q+1) ∈ WithTop ℚ` (zero coordinates contribute `⊤`):
 `weightedOrder` specialized to the jet weights `jetCoordinateWeight` and the order function `X.ordTop · z`.-/
-abbrev weightedOrderTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) : WithTop ℚ :=
+abbrev Tengoku.MiyaokaMoriCharzero.weightedOrderTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) : WithTop ℚ :=
   weightedOrder jetCoordinateWeight (fun f ↦ X.ordTop f z) (fun p : JetCoordinate n κ ↦ a p.1 p.2)
 
 /--
 @isnad1 id=eq.0h5v.s6.b2751fe8213a from=translated src=- shape=3b1f45f3 vocab=e5894525
 -/
-theorem weightedOrderTop_def (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) :
+theorem Tengoku.MiyaokaMoriCharzero.weightedOrderTop_def (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) :
     weightedOrderTop a z = Finset.univ.inf (normalizedOrdTop a z) := rfl
 
 /--
 @isnad1 id=eq.1h6v.s7.0fd2c2ec9a85 from=translated src=- shape=6f614d4c vocab=3d748a93
 -/
-theorem normalizedOrdTop_of_ne_zero (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
+theorem Tengoku.MiyaokaMoriCharzero.normalizedOrdTop_of_ne_zero (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) (hp : a p.1 p.2 ≠ 0) :
     normalizedOrdTop a z p = (((X.ord (a p.1 p.2) z : ℤ) : ℚ) / ((p.2 : ℕ) + 1) : ℚ) := by
   simp [normalizedOrdTop, normalizedOrder, X.ordTop_of_ne_zero hp, jetCoordinateWeight]
@@ -107,21 +107,21 @@ theorem normalizedOrdTop_of_ne_zero (a : Fin (n + 1) → Fin κ → X.functionFi
 /--
 @isnad1 id=iff.0h6v.s7.759fafd932f9 from=translated src=- shape=60efcce5 vocab=4322ffe3
 -/
-theorem normalizedOrdTop_eq_top_iff (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
+theorem Tengoku.MiyaokaMoriCharzero.normalizedOrdTop_eq_top_iff (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) : normalizedOrdTop a z p = ⊤ ↔ a p.1 p.2 = 0 := by
   rw [normalizedOrdTop, normalizedOrder, WithTop.map_eq_top_iff, Scheme.ordTop_eq_top_iff]
 
 /--
 @isnad1 id=le.0h6v.s6.e33fc55584f4 from=translated src=- shape=f789bab0 vocab=ffc53836
 -/
-theorem weightedOrderTop_le (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
+theorem Tengoku.MiyaokaMoriCharzero.weightedOrderTop_le (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) : weightedOrderTop a z ≤ normalizedOrdTop a z p :=
   weightedOrder_le_coordinate jetCoordinateWeight (fun f ↦ X.ordTop f z) (fun p ↦ a p.1 p.2) p
 
 /-- The weighted order of a nonzero tuple is finite and attained at some nonzero coordinate.
 @isnad1 id=ex.1h5v.s8.a09429381af6 from=translated src=- shape=473e4c44 vocab=417a3498
 -/
-theorem weightedOrderTop_attained (a : Fin (n + 1) → Fin κ → X.functionField)
+theorem Tengoku.MiyaokaMoriCharzero.weightedOrderTop_attained (a : Fin (n + 1) → Fin κ → X.functionField)
     (hne : ∃ i q, a i q ≠ 0) (z : X) :
     ∃ p : JetCoordinate n κ, a p.1 p.2 ≠ 0 ∧
       weightedOrderTop a z = (((X.ord (a p.1 p.2) z : ℤ) : ℚ) / ((p.2 : ℕ) + 1) : ℚ) := by
@@ -139,9 +139,10 @@ theorem weightedOrderTop_attained (a : Fin (n + 1) → Fin κ → X.functionFiel
 /--
 @isnad1 id=ne.1h5v.s7.ef59fce1561c from=translated src=- shape=3d642962 vocab=35eac7a8
 -/
-theorem weightedOrderTop_ne_top (a : Fin (n + 1) → Fin κ → X.functionField)
+theorem Tengoku.MiyaokaMoriCharzero.weightedOrderTop_ne_top (a : Fin (n + 1) → Fin κ → X.functionField)
     (hne : ∃ i q, a i q ≠ 0) (z : X) : weightedOrderTop a z ≠ ⊤ := by
   obtain ⟨p, -, hp⟩ := weightedOrderTop_attained a hne z
   rw [hp]; exact WithTop.coe_ne_top
 
 end
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

@@ -19,8 +19,8 @@ monomialization of `Hironaka/Resolution/Standard/Analytic.lean`).
 -/
 
 @[expose] public section
-
-namespace AnalyticManifold
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
+namespace Tengoku.Hironaka.AnalyticManifold
 
 /-- The model space `E` itself as an analytic manifold (Mathlib's `chartedSpaceSelf` and
 `instIsManifoldModelSpace`, Hausdorff and second countable by hypothesis), as `ModuleCat.of`
@@ -32,6 +32,7 @@ abbrev of (𝕜 : Type) [RCLike 𝕜] (E : Type) [NormedAddCommGroup E]
     [NormedSpace 𝕜 E] [SecondCountableTopology E] : AnalyticManifold.{0} 𝕜 E :=
   ⟨E⟩
 
-end AnalyticManifold
+end Tengoku.Hironaka.AnalyticManifold
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

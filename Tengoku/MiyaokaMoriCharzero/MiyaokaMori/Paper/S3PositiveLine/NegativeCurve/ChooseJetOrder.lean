@@ -9,7 +9,7 @@ Choice of the jet order `k`: for every rational `c` and every `d > 0` there is `
 used in Lemma 5.1).
 -/
 
-set_option autoImplicit false
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero set_option autoImplicit false
 set_option maxHeartbeats 400000
 
 universe u v w u' v'
@@ -19,7 +19,7 @@ noncomputable section
 /--
 @isnad1 id=ex.1h2v.s5.4dadafd9089c from=translated src=- shape=2489e5e2 vocab=807e522e
 -/
-theorem choose_jet_order (c d : ℚ) (hd : 0 < d) :
+theorem Tengoku.MiyaokaMoriCharzero.choose_jet_order (c d : ℚ) (hd : 0 < d) :
     ∃ κ : ℕ, 1 ≤ κ ∧ c < d * harmonic κ := by
   obtain ⟨κ, hκ, hineq⟩ :=
     MiyaokaMori.Jet.exists_realization_order d (c / 2) 0 1 0 hd
@@ -28,3 +28,4 @@ theorem choose_jet_order (c d : ℚ) (hd : 0 < d) :
   · convert hineq using 1 <;> norm_num <;> ring
 
 end
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

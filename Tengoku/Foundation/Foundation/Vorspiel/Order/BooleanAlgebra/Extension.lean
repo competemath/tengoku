@@ -14,7 +14,7 @@ an adjoined element, and the extension of an order isomorphism along it.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Foundation end Tengoku.Foundation open Tengoku.Foundation 
 namespace BooleanAlgebra
 
 variable {γ : Type*} [BooleanAlgebra γ]
@@ -169,7 +169,7 @@ end BooleanSubalgebra
 
 /-- `b` is a companion of `a` under `e : A ≃o B`: every `w : A` relates to `a` (by
 disjointness or by `≤`) exactly as `e w` relates to `b`.-/
-def IsCompanion (e : A ≃o B) (a : α) (b : β) : Prop :=
+def Tengoku.Foundation.IsCompanion (e : A ≃o B) (a : α) (b : β) : Prop :=
   ∀ w : A, ((w : α) ⊓ a = ⊥ ↔ (e w : β) ⊓ b = ⊥) ∧ ((w : α) ≤ a ↔ (e w : β) ≤ b)
 
 variable {e : A ≃o B} {a : α} {b : β}
@@ -177,7 +177,7 @@ variable {e : A ≃o B} {a : α} {b : β}
 /--
 @isnad1 id=iscompan.1h7v.s8.66fbd0b7fbba from=translated src=- shape=7b6fdc96 vocab=f4040a5f
 -/
-lemma IsCompanion.symm (h : IsCompanion e a b) : IsCompanion e.symm b a := by
+lemma Tengoku.Foundation.IsCompanion.symm (h : IsCompanion e a b) : IsCompanion e.symm b a := by
   intro v
   have := h (e.symm v)
   rw [OrderIso.apply_symm_apply] at this
@@ -186,7 +186,7 @@ lemma IsCompanion.symm (h : IsCompanion e a b) : IsCompanion e.symm b a := by
 /--
 @isnad1 id=ex.0h7v.s9.7ee248a019e4 from=translated src=- shape=9b964f42 vocab=a03f58f7
 -/
-lemma exists_companionPiece [DenselyOrdered β] (e : A ≃o B) (a : α) (p : A) :
+lemma Tengoku.Foundation.exists_companionPiece [DenselyOrdered β] (e : A ≃o B) (a : α) (p : A) :
     ∃ c : β, c ≤ (e p : β) ∧ (c = ⊥ ↔ (p : α) ⊓ a = ⊥) ∧ (c = (e p : β) ↔ (p : α) ≤ a) := by
   by_cases h₁ : (p : α) ⊓ a = ⊥
   · refine ⟨⊥, bot_le, iff_of_true rfl h₁, ?_⟩
@@ -202,7 +202,7 @@ lemma exists_companionPiece [DenselyOrdered β] (e : A ≃o B) (a : α) (p : A) 
 /--
 @isnad1 id=ex.1h6v.s7.48c7d751a6ab from=translated src=- shape=f4cc4d69 vocab=c0920c74
 -/
-theorem exists_isCompanion [Nontrivial β] [DenselyOrdered β]
+theorem Tengoku.Foundation.exists_isCompanion [Nontrivial β] [DenselyOrdered β]
     (hA : (A : Set α).Finite) (e : A ≃o B) (a : α) :
     ∃ b : β, IsCompanion e a b := by
   have : Finite A := hA.to_subtype
@@ -260,7 +260,7 @@ noncomputable section
 /--
 @isnad1 id=le.2h11v.s10.712453f336d8 from=translated src=- shape=6566e7e9 vocab=794a1da2
 -/
-lemma IsCompanion.map_le_map (h : IsCompanion e a b) {y₁ z₁ y₂ z₂ : A}
+lemma Tengoku.Foundation.IsCompanion.map_le_map (h : IsCompanion e a b) {y₁ z₁ y₂ z₂ : A}
     (hle : ((y₁ : α) ⊓ a) ⊔ ((z₁ : α) ⊓ aᶜ) ≤ ((y₂ : α) ⊓ a) ⊔ ((z₂ : α) ⊓ aᶜ)) :
     ((e y₁ : β) ⊓ b) ⊔ ((e z₁ : β) ⊓ bᶜ) ≤ ((e y₂ : β) ⊓ b) ⊔ ((e z₂ : β) ⊓ bᶜ) := by
   obtain ⟨h₁, h₂⟩ := BooleanAlgebra.insertRep_le_insertRep_iff.mp hle
@@ -278,7 +278,7 @@ variable {u u₁ u₂ : (closure (insert a (A : Set α)) : BooleanSubalgebra α)
 
 /-- The underlying map of `IsCompanion.extend`: transport a normal-form representative of `u`
 along `e`, `a ↦ b`.-/
-def IsCompanion.mapRep (_h : IsCompanion e a b)
+def Tengoku.Foundation.IsCompanion.mapRep (_h : IsCompanion e a b)
     (u : (closure (insert a (A : Set α)) : BooleanSubalgebra α)) :
     (closure (insert b (B : Set β)) : BooleanSubalgebra β) :=
   ⟨((e (insertRepPair u).1 : β) ⊓ b) ⊔ ((e (insertRepPair u).2 : β) ⊓ bᶜ),
@@ -287,13 +287,13 @@ def IsCompanion.mapRep (_h : IsCompanion e a b)
 /--
 @isnad1 id=eq.1h8v.s9.21b239314316 from=translated src=- shape=5bb35dbd vocab=4dd01168
 -/
-@[simp] lemma IsCompanion.val_mapRep (h : IsCompanion e a b) : (h.mapRep u : β) =
+@[simp] lemma Tengoku.Foundation.IsCompanion.val_mapRep (h : IsCompanion e a b) : (h.mapRep u : β) =
     ((e (insertRepPair u).1 : β) ⊓ b) ⊔ ((e (insertRepPair u).2 : β) ⊓ bᶜ) := rfl
 
 /--
 @isnad1 id=eq.2h10v.s10.2fbc2fdf0271 from=translated src=- shape=c42ea202 vocab=8c592b5d
 -/
-lemma IsCompanion.mapRep_eq (h : IsCompanion e a b) {y z : A}
+lemma Tengoku.Foundation.IsCompanion.mapRep_eq (h : IsCompanion e a b) {y z : A}
     (hu : (u : α) = ((y : α) ⊓ a) ⊔ ((z : α) ⊓ aᶜ)) :
     (h.mapRep u : β) = ((e y : β) ⊓ b) ⊔ ((e z : β) ⊓ bᶜ) := by
   rw [h.val_mapRep]
@@ -303,7 +303,7 @@ lemma IsCompanion.mapRep_eq (h : IsCompanion e a b) {y z : A}
 /--
 @isnad1 id=le.2h9v.s8.3a3be353bf31 from=translated src=- shape=ebf5ac68 vocab=0a48bc88
 -/
-lemma IsCompanion.mapRep_mono (h : IsCompanion e a b) (hu : u₁ ≤ u₂) :
+lemma Tengoku.Foundation.IsCompanion.mapRep_mono (h : IsCompanion e a b) (hu : u₁ ≤ u₂) :
     h.mapRep u₁ ≤ h.mapRep u₂ := by
   show (h.mapRep u₁ : β) ≤ (h.mapRep u₂ : β)
   rw [h.val_mapRep, h.val_mapRep]
@@ -312,7 +312,7 @@ lemma IsCompanion.mapRep_mono (h : IsCompanion e a b) (hu : u₁ ≤ u₂) :
 /--
 @isnad1 id=eq.1h8v.s8.3738d423cbf9 from=translated src=- shape=6cbe66f7 vocab=ae45cc75
 -/
-lemma IsCompanion.mapRep_mapRep (h : IsCompanion e a b) : h.symm.mapRep (h.mapRep u) = u := by
+lemma Tengoku.Foundation.IsCompanion.mapRep_mapRep (h : IsCompanion e a b) : h.symm.mapRep (h.mapRep u) = u := by
   refine Subtype.ext ?_
   rw [h.symm.mapRep_eq (y := e (insertRepPair u).1) (z := e (insertRepPair u).2) h.val_mapRep,
     OrderIso.symm_apply_apply, OrderIso.symm_apply_apply]
@@ -320,7 +320,7 @@ lemma IsCompanion.mapRep_mapRep (h : IsCompanion e a b) : h.symm.mapRep (h.mapRe
 
 /-- Given a companion `b` of `a` under `e`, extend `e` to an order isomorphism between the
 subalgebras generated by adjoining `a` (resp. `b`) to `A` (resp. `B`).-/
-def IsCompanion.extend (h : IsCompanion e a b) :
+def Tengoku.Foundation.IsCompanion.extend (h : IsCompanion e a b) :
     (closure (insert a (A : Set α)) : BooleanSubalgebra α) ≃o
       (closure (insert b (B : Set β)) : BooleanSubalgebra β) where
   toFun := h.mapRep
@@ -338,7 +338,7 @@ end
 /--
 @isnad1 id=ex.1h8v.s10.b0ed92dd7adc from=translated src=- shape=d3a19303 vocab=e9b053c9
 -/
-lemma IsCompanion.extend_spec (h : IsCompanion e a b)
+lemma Tengoku.Foundation.IsCompanion.extend_spec (h : IsCompanion e a b)
     (x : (closure (insert a (A : Set α)) : BooleanSubalgebra α)) :
     ∃ y z : A, (x : α) = ((y : α) ⊓ a) ⊔ ((z : α) ⊓ aᶜ) ∧
       (h.extend x : β) = ((e y : β) ⊓ b) ⊔ ((e z : β) ⊓ bᶜ) :=
@@ -347,7 +347,7 @@ lemma IsCompanion.extend_spec (h : IsCompanion e a b)
 /--
 @isnad1 id=eq.1h8v.s10.df2bfea7ea5a from=translated src=- shape=2773715f vocab=1845e237
 -/
-lemma IsCompanion.extend_coe (h : IsCompanion e a b) (x : A) :
+lemma Tengoku.Foundation.IsCompanion.extend_coe (h : IsCompanion e a b) (x : A) :
     (h.extend ⟨x, le_closure_insert x.2⟩ : β) = e x := by
   show (h.mapRep ⟨x, le_closure_insert x.2⟩ : β) = e x
   rw [h.mapRep_eq (y := x) (z := x) (BooleanAlgebra.eq_insertRep_self ..)]
@@ -356,14 +356,14 @@ lemma IsCompanion.extend_coe (h : IsCompanion e a b) (x : A) :
 /--
 @isnad1 id=eq.1h7v.s9.9b26257111e6 from=translated src=- shape=5627f89b vocab=56e1d7ea
 -/
-lemma IsCompanion.extend_self (h : IsCompanion e a b) :
+lemma Tengoku.Foundation.IsCompanion.extend_self (h : IsCompanion e a b) :
     (h.extend ⟨a, self_mem_closure_insert⟩ : β) = b := by
   show (h.mapRep ⟨a, self_mem_closure_insert⟩ : β) = b
   rw [h.mapRep_eq (y := ⊤) (z := ⊥) (by simp)]
   simp [e.map_top, e.map_bot]
 
 open Classical in
-def botOrderIso [Nontrivial α] [Nontrivial β] :
+def Tengoku.Foundation.botOrderIso [Nontrivial α] [Nontrivial β] :
     (⊥ : BooleanSubalgebra α) ≃o (⊥ : BooleanSubalgebra β) where
   toFun x := if (x : α) = ⊥ then ⊥ else ⊤
   invFun v := if (v : β) = ⊥ then ⊥ else ⊤
@@ -380,3 +380,4 @@ def botOrderIso [Nontrivial α] [Nontrivial β] :
     rcases hcases x with rfl | rfl <;> rcases hcases y with rfl | rfl <;> simp [hα']
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Foundation so they do not collide with other libraries (generated)

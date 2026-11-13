@@ -1,0 +1,10 @@
+leakscan: 6 global instances (1 can fire outside the library), 0 scoped; 5 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 7 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance instNeZeroNatHPow_tengoku registered in Tengoku.PadicLFunctions.PadicLFunctions.Measure.Basic (declared at line 43)
+root: PadicMeasure
+root: zetaNeg_eq_zero_of_even
+root: zetaNeg_zero
+root: neg_one_pow_mul_one_sub_pow_mul_zetaNeg
+root: zetaNeg_eq_riemannZeta
+root: instNeZeroNatHPow_tengoku
+root: zetaNeg

@@ -46,7 +46,7 @@ fails; every statement therefore goes through the identities with their declared
 -/
 
 @[expose] public section
-
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
 noncomputable section
 
 open TopologicalSpace Set
@@ -320,3 +320,4 @@ theorem _root_.AnalyticManifold.restrictTransportDiffeomorph_apply_val
 end Hironaka.Manifold
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

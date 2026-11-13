@@ -13,7 +13,7 @@ order isomorphic (`iso_of_countable_atomless`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.Foundation end Tengoku.Foundation open Tengoku.Foundation 
 open BooleanSubalgebra
 
 variable {α β : Type*} [BooleanAlgebra α] [BooleanAlgebra β]
@@ -27,14 +27,14 @@ lemma BooleanSubalgebra.coe_bot_finite : ((⊥ : BooleanSubalgebra α) : Set α)
 variable (α β) in
 /-- A partial isomorphism between `α` and `β`: an order isomorphism between two finite
 Boolean subalgebras.-/
-structure PartialIso where
+structure Tengoku.Foundation.PartialIso where
   domSubalg : BooleanSubalgebra α
   codSubalg : BooleanSubalgebra β
   finite_dom : (domSubalg : Set α).Finite
   finite_cod : (codSubalg : Set β).Finite
   iso : domSubalg ≃o codSubalg
 
-namespace PartialIso
+namespace Tengoku.Foundation.PartialIso
 
 instance : Preorder (PartialIso α β) where
   le f g := ∃ hA : f.domSubalg ≤ g.domSubalg, ∀ x : f.domSubalg, (g.iso ⟨x, hA x.2⟩ : β) = f.iso x
@@ -123,14 +123,14 @@ def definedAtRight [Nontrivial α] [DenselyOrdered α] (b : β) : Order.Cofinal 
     obtain ⟨g, hmem, hfg⟩ := (definedAtLeft (β := α) b).isCofinal f.comm
     exact ⟨g.comm, hmem, comm_le_comm hfg⟩
 
-end PartialIso
+end Tengoku.Foundation.PartialIso
 
-open PartialIso
+open Tengoku.Foundation.PartialIso
 
 /--
 @isnad1 id=nonempty.0h2v.s6.82e75f9fc487 from=translated src=- shape=94f55436 vocab=d7b293e8
 -/
-theorem iso_of_countable_atomless
+theorem Tengoku.Foundation.iso_of_countable_atomless
     [Countable α] [Nontrivial α] [DenselyOrdered α]
     [Countable β] [Nontrivial β] [DenselyOrdered β] :
     Nonempty (α ≃o β) := by
@@ -175,3 +175,4 @@ theorem iso_of_countable_atomless
       eval_eq_of_mem_of_mem hgI hmI h₂ (hgm h₂), Subtype.coe_le_coe, m.iso.le_iff_le,
       Subtype.mk_le_mk]
   exact ⟨⟨⟨F, G, hleft, hright⟩, hrel _ _⟩⟩
+-- Tengoku: root names of this library moved to Tengoku.Foundation so they do not collide with other libraries (generated)

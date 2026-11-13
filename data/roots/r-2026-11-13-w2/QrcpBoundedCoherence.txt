@@ -1,0 +1,15 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 0 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 13 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: pivotPrefix
+root: norm_inv_eq_inv_sqrt_min_eigenvalue
+root: gamma_eq_inv_sqrt_min_eigenvalue
+root: columnA
+root: prefixSpan
+root: AMatrix
+root: mu
+root: residualScore
+root: gamma
+root: selectedMatrix
+root: IsQRCPPivotSequence
+root: orthogonalProjector
+root: colToEuclidean

@@ -25,7 +25,7 @@ Sources: Stacks Project, Tags 02QR, 02QT and 02QU.
 -/
 
 noncomputable section
-
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero 
 open AlgebraicGeometry CategoryTheory TopologicalSpace
 open scoped BigOperators Classical
 
@@ -295,3 +295,4 @@ theorem IsIntegralCycleLift.unique {X : Scheme.{u}} {β : AlgebraicCycle X ℕ�
   simpa only [Int.toNat_of_nonneg (hα x).1, Int.toNat_of_nonneg (hγ x).1] using hint
 
 end AlgebraicGeometry.Intersection
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

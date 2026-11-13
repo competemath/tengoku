@@ -52,7 +52,7 @@ amounts to formalising §1 of [mochizuki2010] together with the noncritical Bely
   Math. J. Okayama Univ. **46** (2004), 105–113.
 -/
 
-local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
+namespace Tengoku.LanaGenl end Tengoku.LanaGenl open Tengoku.LanaGenl local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
 local notation:50 f:51 " ≈[" s "] " g:51 => DiscrepancyEquiv f g s
 
 universe u
@@ -185,3 +185,4 @@ structure ProofPackage where
 end HeightTheory
 
 end Genl
+-- Tengoku: root names of this library moved to Tengoku.LanaGenl so they do not collide with other libraries (generated)

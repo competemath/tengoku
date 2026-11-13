@@ -1,0 +1,26 @@
+leakscan: 19 global instances (5 can fire outside the library), 0 scoped; 43 global simp lemmas (6 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 2 scoped
+roots: 13 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Set.adjunctiveSet registered in Tengoku.Foundation.Foundation.Vorspiel.AdjunctiveSet (declared at line 28)
+leak: instance List.adjunctiveSet registered in Tengoku.Foundation.Foundation.Vorspiel.AdjunctiveSet (declared at line 34)
+leak: instance Multiset.adjunctiveSet registered in Tengoku.Foundation.Foundation.Vorspiel.AdjunctiveSet (declared at line 39)
+leak: instance Finset.adjunctiveSet registered in Tengoku.Foundation.Foundation.Vorspiel.AdjunctiveSet (declared at line 44)
+leak: instance Option.instHasSubset_tengoku registered in Tengoku.Foundation.Foundation.Vorspiel.Option (declared at line 17)
+leak: simp BooleanSubalgebra.val_eq_bot registered in Tengoku.Foundation.Foundation.Vorspiel.Order.BooleanAlgebra.Extension (declared at line 138)
+leak: simp FoundationFork.Finset.equiv_univ registered in Tengoku.Foundation.Foundation.Vorspiel.Finset.Basic (declared at line 88)
+leak: simp FoundationFork.Finset.sup_univ_equiv registered in Tengoku.Foundation.Foundation.Vorspiel.Finset.Basic (declared at line 94)
+leak: simp FoundationFork.himp_himp_inf_himp_inf_le registered in Tengoku.Foundation.Foundation.Vorspiel.Order.Heyting (declared at line 31)
+leak: simp FoundationFork.himp_inf_himp_inf_sup_le registered in Tengoku.Foundation.Foundation.Vorspiel.Order.Heyting (declared at line 44)
+leak: simp FoundationFork.Part.mem_vector_mOfFn registered in Tengoku.Foundation.Foundation.Vorspiel.Part (declared at line 20)
+root: instAdjoinSet
+root: exists_isCompanion
+root: exists_companionPiece
+root: botOrderIso
+root: instAdjoinMultiset
+root: PartialIso
+root: instAdjoinFinsetOfDecidableEq
+root: iso_of_countable_atomless
+root: instAdjoinList
+root: IsCompanion
+root: Adjoin
+root: small_preimage_of_injective
+root: AdjunctiveSet

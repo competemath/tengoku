@@ -4,26 +4,26 @@ public import Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.MeasureTheory.Constructi
 public import Tengoku
 
 public section
-
+namespace Tengoku.GibbsMeasure end Tengoku.GibbsMeasure open Tengoku.GibbsMeasure 
 open MeasureTheory Set
 
 section juxt
 variable {S E : Type*} {𝓔 : MeasurableSpace E} {Λ s : Set S} {t : S → Set E} {η : S → E} {x : S}
 
-noncomputable def juxt (Λ : Set S) (η : S → E) (ζ : Λ → E) (x : S) : E := by
+noncomputable def Tengoku.GibbsMeasure.juxt (Λ : Set S) (η : S → E) (ζ : Λ → E) (x : S) : E := by
   classical exact dite (x ∈ Λ) (fun h ↦ ζ ⟨x, h⟩) (fun _ ↦ η x)
 
 /--
 @isnad1 id=eq.1h6v.s5.20915cda56d1 from=translated src=- shape=9c2931a5 vocab=6606e4f7
 -/
 @[simp]
-lemma juxt_apply_of_mem (hx : x ∈ Λ) (ζ : Λ → E) : juxt Λ η ζ x = ζ ⟨x, hx⟩ := by simp [juxt, hx]
+lemma Tengoku.GibbsMeasure.juxt_apply_of_mem (hx : x ∈ Λ) (ζ : Λ → E) : juxt Λ η ζ x = ζ ⟨x, hx⟩ := by simp [juxt, hx]
 
 /--
 @isnad1 id=eq.1h6v.s5.ee46799800ba from=translated src=- shape=accff1cc vocab=37cca4e8
 -/
 @[simp]
-lemma juxt_apply_of_not_mem (h : x ∉ Λ) (ζ : Λ → E) : juxt Λ η ζ x = η x := by simp [juxt, h]
+lemma Tengoku.GibbsMeasure.juxt_apply_of_not_mem (h : x ∉ Λ) (ζ : Λ → E) : juxt Λ η ζ x = η x := by simp [juxt, h]
 
 /--
 @isnad1 id=measurab.0h5v.s5.105f67f6553b from=translated src=- shape=72a59ed8 vocab=80d95a65
@@ -36,7 +36,7 @@ protected lemma Measurable.juxt : Measurable (juxt Λ η) := by
 /--
 @isnad1 id=eq.1h6v.s7.2333a7ca7f60 from=translated src=- shape=9ae1adb8 vocab=8dbf6c9a
 -/
-lemma preimage_juxt_pi [DecidablePred (· ∈ s)] (hη : η ∈ (s \ Λ).pi t) :
+lemma Tengoku.GibbsMeasure.preimage_juxt_pi [DecidablePred (· ∈ s)] (hη : η ∈ (s \ Λ).pi t) :
     juxt Λ η ⁻¹' s.pi t = univ.pi fun j : Λ ↦ if (j : S) ∈ s then t j else univ := by
   ext ζ
   simp only [mem_preimage, mem_pi]
@@ -51,7 +51,7 @@ lemma preimage_juxt_pi [DecidablePred (· ∈ s)] (hη : η ∈ (s \ Λ).pi t) :
 /--
 @isnad1 id=eq.1h6v.s6.7929fbb98a4f from=translated src=- shape=f4f36418 vocab=8ba8957a
 -/
-lemma preimage_juxt_pi_eq_empty (hη : η ∉ (s \ Λ).pi t) :
+lemma Tengoku.GibbsMeasure.preimage_juxt_pi_eq_empty (hη : η ∉ (s \ Λ).pi t) :
     juxt Λ η ⁻¹' s.pi t = ∅ := by
   rw [eq_empty_iff_forall_notMem]
   intro ζ hζ
@@ -63,7 +63,7 @@ lemma preimage_juxt_pi_eq_empty (hη : η ∉ (s \ Λ).pi t) :
 /--
 @isnad1 id=eq.2h8v.s8.75d21a1149c0 from=translated src=- shape=b9b97e84 vocab=e6c02123
 -/
-lemma map_juxt_pi [DecidablePred (· ∈ s)] (μ : Measure (Λ → E))
+lemma Tengoku.GibbsMeasure.map_juxt_pi [DecidablePred (· ∈ s)] (μ : Measure (Λ → E))
     (ht : ∀ i, MeasurableSet (t i)) (hs : s.Countable) (η : S → E) :
     μ.map (juxt Λ η) (s.pi t) =
       ((s \ Λ).pi t).indicator
@@ -76,7 +76,7 @@ lemma map_juxt_pi [DecidablePred (· ∈ s)] (μ : Measure (Λ → E))
 /--
 @isnad1 id=measurab.2h7v.s7.76032242c6bd from=translated src=- shape=4ac97168 vocab=e2084115
 -/
-lemma measurable_map_juxt_pi (μ : Measure (Λ → E)) (ht : ∀ i, MeasurableSet (t i))
+lemma Tengoku.GibbsMeasure.measurable_map_juxt_pi (μ : Measure (Λ → E)) (ht : ∀ i, MeasurableSet (t i))
     (hs : s.Countable) :
     Measurable[cylinderEvents (X := fun _ : S ↦ E) Λᶜ] fun η : S → E ↦
       μ.map (juxt Λ η) (s.pi t) := by
@@ -86,3 +86,4 @@ lemma measurable_map_juxt_pi (μ : Measure (Λ → E)) (ht : ∀ i, MeasurableSe
     (MeasurableSet.pi_cylinderEvents (fun _ h ↦ h.2) (hs.mono sdiff_subset) fun i _ ↦ ht i)
 
 end juxt
+-- Tengoku: root names of this library moved to Tengoku.GibbsMeasure so they do not collide with other libraries (generated)

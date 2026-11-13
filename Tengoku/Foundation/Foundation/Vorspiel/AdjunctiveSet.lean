@@ -5,8 +5,8 @@ public import Tengoku.Seed.Data.Set.Finite.Basic
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
 
 @[expose] public section
-
-class Adjoin (β : outParam Type*) (α : Type*) where
+namespace Tengoku.Foundation end Tengoku.Foundation open Tengoku.Foundation 
+class Tengoku.Foundation.Adjoin (β : outParam Type*) (α : Type*) where
   adjoin : β → α → α
 export Adjoin (adjoin)
 
@@ -18,7 +18,7 @@ instance (α : Type*) : Adjoin α (Multiset α) := ⟨Multiset.cons⟩
 
 instance (α : Type*) [DecidableEq α] : Adjoin α (Finset α) := ⟨insert⟩
 
-class AdjunctiveSet (β : outParam Type*) (α : Type*) extends Membership β α, HasSubset α, EmptyCollection α, Adjoin β α where
+class Tengoku.Foundation.AdjunctiveSet (β : outParam Type*) (α : Type*) extends Membership β α, HasSubset α, EmptyCollection α, Adjoin β α where
   subset_iff {a b : α} : a ⊆ b ↔ ∀ x ∈ a, x ∈ b
   not_mem_empty (x : β) : ¬x ∈ (∅ : α)
   mem_cons_iff {x z : β} {a : α} : x ∈ adjoin z a ↔ x = z ∨ x ∈ a
@@ -47,7 +47,7 @@ instance Finset.adjunctiveSet [DecidableEq α] : AdjunctiveSet α (Finset α) wh
   not_mem_empty := by simp
   mem_cons_iff := by simp [Adjoin.adjoin]
 
-namespace AdjunctiveSet
+namespace Tengoku.Foundation.AdjunctiveSet
 
 variable {β α : Type*} [AdjunctiveSet β α]
 
@@ -143,7 +143,7 @@ noncomputable def _root_.Finset.toAdjunctiveSet : Finset β → α := fun s ↦ 
 -/
 @[simp] lemma finset_toAdjunctiveSet_finite (s : Finset β) : Finite (s.toAdjunctiveSet : α) := by simp [Finite, set]
 
-end AdjunctiveSet
+end Tengoku.Foundation.AdjunctiveSet
 
 namespace Set
 
@@ -162,3 +162,4 @@ variable {α : Type*}
 end Set
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Foundation so they do not collide with other libraries (generated)

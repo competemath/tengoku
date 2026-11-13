@@ -1,0 +1,17 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 32 global simp lemmas (11 trigger on nothing of the library), 0 scoped; 1 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 4 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp LinearEquiv.toLinearMap_one registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Algebra.Module.Equiv.Basic (declared at line 11)
+leak: simp ENNReal.prod_eq_top registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Basic.ENNReal.BigOperators (declared at line 10)
+leak: simp ENat.toENNReal_le_natCast registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Basic.Real.ENatENNReal (declared at line 10)
+leak: simp ENat.prod_eq_top registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Data.ENat.BigOperators (declared at line 10)
+leak: simp ENat.le_toNat_self_iff registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Data.ENat.Monoid (declared at line 15)
+leak: simp ContinuousLinearEquiv.toLinearEquiv_one registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.Algebra.Module.Equiv (declared at line 10)
+leak: simp Metric.one_le_coveringNumber_iff registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.MetricSpace.CoveringNumbers (declared at line 31)
+leak: simp Metric.coveringNumber_ne_zero registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.MetricSpace.CoveringNumbers (declared at line 73)
+leak: simp Metric.one_le_coveringNumber registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.MetricSpace.CoveringNumbers (declared at line 77)
+leak: simp Metric.one_le_externalCoveringNumber registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.MetricSpace.CoveringNumbers (declared at line 90)
+leak: simp Metric.one_le_packingNumber registered in Tengoku.MeanFourier.MeanFourier.Mathlib.Topology.MetricSpace.CoveringNumbers (declared at line 103)
+root: UnitaryRepresentation
+root: isBddFun_iff_exists_forall_norm_le'
+root: isBddFun_iff_exists_forall_norm_le
+root: isBddFun_iff_exists_forall_abs_le

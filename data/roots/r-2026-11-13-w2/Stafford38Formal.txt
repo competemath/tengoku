@@ -1,0 +1,8 @@
+leakscan: 4 global instances (0 can fire outside the library), 0 scoped; 56 global simp lemmas (1 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 5 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp MvPolynomial.coeff_zero_compat registered in Tengoku.Stafford38Formal.Stafford38.MathlibCompat.MvPolynomialCoeff (declared at line 12)
+root: prime_span_eq_maximalIdeal_transport
+root: unit_power_factor_transport
+root: castAtPrimeLocalization
+root: two_unit_power_factors_transport
+root: selected_center_retained_factors_at_canonical_prime

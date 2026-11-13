@@ -18,7 +18,7 @@ public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Debate.Prob.Basics
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Prob/Pmf.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -34,7 +34,7 @@ noncomputable section
 variable {α β γ : Type}
 
 /-- Turn a `Prob` into a `PMF`-/
-def Prob.toPmf (f : Prob α) : PMF α where
+def Tengoku.AisafetyAtlas.Prob.toPmf (f : Prob α) : PMF α where
   val x := .ofReal (f.prob x)
   property := by
     have e : f.supp.sum (fun x => ENNReal.ofReal (f.prob x)) = 1 := by
@@ -91,7 +91,7 @@ def PMF.toProb (f : PMF α) (finite : f.support.Finite) : Prob α where
 /-- `Prob.toPmf` has the expected coe
 @isnad1 id=eq.0h3v.s5.effd1a8720ab from=translated src=- shape=3848d58c vocab=5854fb67
 -/
-@[simp] lemma Prob.toPmf_coe (f : Prob α) (x : α) : f.toPmf x = ENNReal.ofReal (f.prob x) := rfl
+@[simp] lemma Tengoku.AisafetyAtlas.Prob.toPmf_coe (f : Prob α) (x : α) : f.toPmf x = ENNReal.ofReal (f.prob x) := rfl
 
 /-- `PMF.toProb` has the expected prob
 @isnad1 id=eq.1h3v.s5.c654ca1ee882 from=translated src=- shape=cceffa12 vocab=c12da4d3
@@ -102,7 +102,7 @@ def PMF.toProb (f : PMF α) (finite : f.support.Finite) : Prob α where
 /-- `Prob.toPmf` has finite support
 @isnad1 id=finite.0h2v.s3.18f9a59d1279 from=translated src=- shape=3d086f6a vocab=eb007187
 -/
-lemma Prob.toPmf_support_finite (f : Prob α) : f.toPmf.support.Finite := by
+lemma Tengoku.AisafetyAtlas.Prob.toPmf_support_finite (f : Prob α) : f.toPmf.support.Finite := by
   apply Set.Finite.ofFinset f.supp; intro x
   simp only [mem_iff, ne_eq, PMF.mem_support_iff, toPmf_coe, ENNReal.ofReal_eq_zero, not_le]
   constructor
@@ -112,7 +112,7 @@ lemma Prob.toPmf_support_finite (f : Prob α) : f.toPmf.support.Finite := by
 /-- `Prob → PMF → Prob` is the identity
 @isnad1 id=eq.0h2v.s3.f17d5bc3e8c7 from=translated src=- shape=e6906362 vocab=4a49e486
 -/
-theorem Prob.toProb_toPmf (f : Prob α) : f.toPmf.toProb f.toPmf_support_finite = f := by
+theorem Tengoku.AisafetyAtlas.Prob.toProb_toPmf (f : Prob α) : f.toPmf.toProb f.toPmf_support_finite = f := by
   ext; simp only [PMF.prob_toProb, toPmf_coe, ENNReal.toReal_ofReal_eq_iff]; apply prob_nonneg
 
 /-- `PMF → Prob → PMF` is the identity on finitely-supported `PMF`s.
@@ -136,14 +136,14 @@ lemma PMF.bind_apply' (p : PMF α) (f : α → PMF β) (y : β) :
 /-- `Prob.toPmf` commutes with pure
 @isnad1 id=eq.0h2v.s4.89b8bae937ae from=translated src=- shape=64469822 vocab=897a2a98
 -/
-lemma Prob.pure_toPmf (x : α) : (pure x : Prob α).toPmf = pure x := by
+lemma Tengoku.AisafetyAtlas.Prob.pure_toPmf (x : α) : (pure x : Prob α).toPmf = pure x := by
   ext y; simp only [toPmf_coe, prob_pure, PMF.pure_apply']
   split_ifs; simp only [ENNReal.ofReal_one]; simp only [ENNReal.ofReal_zero]
 
 /-- `Prob.toPmf` commutes with bind
 @isnad1 id=eq.0h4v.s5.760511f459aa from=translated src=- shape=90fedbae vocab=96374cf2
 -/
-lemma Prob.bind_toPmf (f : Prob α) (g : α → Prob β) :
+lemma Tengoku.AisafetyAtlas.Prob.bind_toPmf (f : Prob α) (g : α → Prob β) :
     (f >>= g).toPmf = f.toPmf >>= (fun x ↦ (g x).toPmf) := by
   ext y
   simp only [Prob.toPmf_coe, PMF.bind_apply', Prob.prob_bind, Prob.exp, Finsupp.sum,
@@ -158,7 +158,7 @@ lemma Prob.bind_toPmf (f : Prob α) (g : α → Prob β) :
 /-- `Prob.exp` is tsum over `toPmf`
 @isnad1 id=eq.0h3v.s5.e33caeb92ebd from=translated src=- shape=7f7248e9 vocab=8bbe9cf4
 -/
-lemma Prob.tsum_toPmf_eq_exp (f : Prob α) (u : α → ℝ) :
+lemma Tengoku.AisafetyAtlas.Prob.tsum_toPmf_eq_exp (f : Prob α) (u : α → ℝ) :
     ∑' x, (f.toPmf x).toReal * u x = f.exp u := by
   apply HasSum.tsum_eq; simp only [Prob.toPmf_coe, ENNReal.toReal_ofReal (prob_nonneg _)]
   apply Finset.hasSum_sum; intro _ m
@@ -184,14 +184,15 @@ lemma PMF.integrable_of_support_finite (f : PMF α) (u : α → ℝ) (hf : f.sup
 /-- Everything is integrable over `toPmf`, since it has finite support
 @isnad1 id=integrab.0h3v.s5.e3044e669fdd from=translated src=- shape=dcdd4233 vocab=be5c5f7b
 -/
-lemma Prob.integrable_toPmf (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
+lemma Tengoku.AisafetyAtlas.Prob.integrable_toPmf (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
     [MeasurableSingletonClass α] : MeasureTheory.Integrable u f.toPmf.toMeasure :=
   PMF.integrable_of_support_finite _ _ f.toPmf_support_finite
 
 /-- `Prob.exp` is integration over `toPmf`, if `α` is nice
 @isnad1 id=eq.0h3v.s5.38f1c47005bf from=translated src=- shape=ff49ff94 vocab=da45163b
 -/
-lemma Prob.integral_toPmf_eq_exp (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
+lemma Tengoku.AisafetyAtlas.Prob.integral_toPmf_eq_exp (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
     [MeasurableSingletonClass α] : ∫ x, u x ∂(f.toPmf.toMeasure) = f.exp u := by
   simp_rw [←Prob.tsum_toPmf_eq_exp, ←smul_eq_mul]
   exact PMF.integral_eq_tsum _ _ (f.integrable_toPmf _)
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)

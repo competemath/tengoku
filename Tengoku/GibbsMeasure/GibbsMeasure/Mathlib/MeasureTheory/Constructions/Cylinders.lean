@@ -9,7 +9,7 @@ public import Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.MeasureTheory.Measurable
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.GibbsMeasure end Tengoku.GibbsMeasure open Tengoku.GibbsMeasure 
 open Function MeasureTheory Set
 
 variable {S E : Type*} {mE : MeasurableSpace E}
@@ -17,7 +17,7 @@ variable {S E : Type*} {mE : MeasurableSpace E}
 /--
 @isnad1 id=iff.2h7v.s6.ee8729d55339 from=translated src=- shape=b0a0cd36 vocab=0bcc2d9d
 -/
-lemma mem_congr_of_measurableSet_cylinderEvents {Δ : Set S} {B : Set (S → E)}
+lemma Tengoku.GibbsMeasure.mem_congr_of_measurableSet_cylinderEvents {Δ : Set S} {B : Set (S → E)}
     (hB : MeasurableSet[cylinderEvents Δ] B) {f₁ f₂ : S → E} (h : ∀ i ∈ Δ, f₁ i = f₂ i) :
     f₁ ∈ B ↔ f₂ ∈ B := by
   unfold cylinderEvents at hB
@@ -120,3 +120,4 @@ lemma _root_.MeasurableSet.pi_cylinderEvents {s : Set ι} (hs : s ⊆ Δ) (hsc :
     (ht i hi).preimage (measurable_cylinderEvent_apply (hs hi))
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.GibbsMeasure so they do not collide with other libraries (generated)

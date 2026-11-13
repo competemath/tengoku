@@ -36,7 +36,7 @@ development pass (see `.mathlib-quality/plan.md`, Generality Decisions).
   constant functions (source: Eq. (3.1), `eq:restrict measures`).
 -/
 
-open scoped fwdDiff
+namespace Tengoku.PadicLFunctions end Tengoku.PadicLFunctions open Tengoku.PadicLFunctions open scoped fwdDiff
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
@@ -51,10 +51,10 @@ dual used in the source.
 
 Source: RJW Def. 3.6 (`def:measures`, TeX line 760) together with the `𝒪_L`-valued
 convention of line 765.-/
-abbrev PadicMeasure (X : Type*) [TopologicalSpace X] :=
+abbrev Tengoku.PadicLFunctions.PadicMeasure (X : Type*) [TopologicalSpace X] :=
   C(X, ℤ_[p]) →ₗ[ℤ_[p]] ℤ_[p]
 
-namespace PadicMeasure
+namespace Tengoku.PadicLFunctions.PadicMeasure
 
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
@@ -177,4 +177,5 @@ theorem exists_locallyConstant_norm_sub_le (f : C(X, ℤ_[p])) {ε : ℝ} (hε :
 
 end compact
 
-end PadicMeasure
+end Tengoku.PadicLFunctions.PadicMeasure
+-- Tengoku: root names of this library moved to Tengoku.PadicLFunctions so they do not collide with other libraries (generated)

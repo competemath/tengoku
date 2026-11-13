@@ -27,7 +27,7 @@ convergence.
 - `ODE.EulerMethod.tendsto_path`: Convergence as `h → 0⁺`.
 -/
 
-open Set Filter
+namespace Tengoku.MerelyTrue end Tengoku.MerelyTrue open Tengoku.MerelyTrue open Set Filter
 
 /-! ## Grid helpers -/
 
@@ -46,7 +46,7 @@ theorem Nat.floor_div_eq_of_mem_Ico {h : α} (hh : 0 < h) {a : α}
 `[a + ⌊(t - a) / h⌋₊ * h, a + (⌊(t - a) / h⌋₊ + 1) * h)`.
 @isnad1 id=mem.2h4v.s8.7bc601a9f911 from=translated src=- shape=673da5f2 vocab=79bcd2b9
 -/
-theorem mem_Ico_Nat_floor_div {h : α} (hh : 0 < h) {a t : α} (hat : a ≤ t) :
+theorem Tengoku.MerelyTrue.mem_Ico_Nat_floor_div {h : α} (hh : 0 < h) {a t : α} (hat : a ≤ t) :
     t ∈ Ico (a + ⌊(t - a) / h⌋₊ * h) (a + (↑⌊(t - a) / h⌋₊ + 1) * h) := by
   constructor <;> nlinarith [Nat.floor_le (div_nonneg (sub_nonneg.mpr hat) hh.le),
     Nat.lt_floor_add_one ((t - a) / h), mul_div_cancel₀ (t - a) hh.ne']
@@ -56,19 +56,19 @@ theorem mem_Ico_Nat_floor_div {h : α} (hh : 0 < h) {a t : α} (hat : a ≤ t) :
 /-- The piecewise linear interpolation of a sequence `y` with slopes `c` on a regular grid
 with step size `h` starting at `a`. On `[a + n * h, a + (n + 1) * h)`, the value is
 `y n + (t - (a + n * h)) • c n`. -/
-noncomputable def piecewiseLinear {E : Type*} [AddCommGroup E] [Module α E]
+noncomputable def Tengoku.MerelyTrue.piecewiseLinear {E : Type*} [AddCommGroup E] [Module α E]
     (y : ℕ → E) (c : ℕ → E) (h : α) (a : α) (t : α) : E :=
   let n := ⌊(t - a) / h⌋₊
   y n + (t - (a + n * h)) • c n
 
 /-- The piecewise constant function taking value `c n` on `[a + n * h, a + (n + 1) * h)`. -/
-noncomputable def piecewiseConst {E : Type*} (c : ℕ → E) (h : α) (a : α) (t : α) : E :=
+noncomputable def Tengoku.MerelyTrue.piecewiseConst {E : Type*} (c : ℕ → E) (h : α) (a : α) (t : α) : E :=
   c ⌊(t - a) / h⌋₊
 
 /-- The piecewise constant function equals `c n` on `[a + n * h, a + (n + 1) * h)`.
 @isnad1 id=eq.2h7v.s8.13d39ab5b0e2 from=translated src=- shape=f62ff4b4 vocab=7e1a914c
 -/
-theorem piecewiseConst_eq_on_Ico {E : Type*} {c : ℕ → E} {h : α} {a : α}
+theorem Tengoku.MerelyTrue.piecewiseConst_eq_on_Ico {E : Type*} {c : ℕ → E} {h : α} {a : α}
     (hh : 0 < h) {n : ℕ} {t : α}
     (ht : t ∈ Ico (a + n * h) (a + (n + 1) * h)) :
     piecewiseConst c h a t = c n := by
@@ -79,7 +79,7 @@ variable [TopologicalSpace α] [OrderTopology α]
 /-- The regular grid of closed intervals `[a + n * h, a + (n + 1) * h]` is locally finite.
 @isnad1 id=locallyf.1h3v.s7.311809ea898b from=translated src=- shape=650fb8f2 vocab=d941d072
 -/
-theorem locallyFinite_Icc_grid {h : α} (hh : 0 < h) (a : α) :
+theorem Tengoku.MerelyTrue.locallyFinite_Icc_grid {h : α} (hh : 0 < h) (a : α) :
     LocallyFinite fun n : ℕ => Icc (a + n * h) (a + (↑n + 1) * h) := by
   intro x
   refine ⟨Ioo (x - h) (x + h), Ioo_mem_nhds (by linarith) (by linarith),
@@ -140,3 +140,4 @@ variable {v : ℝ → E → E} {K L : NNReal} {M : ℝ}
 include hv hvt hM
 
 end ODE.EulerMethod
+-- Tengoku: root names of this library moved to Tengoku.MerelyTrue so they do not collide with other libraries (generated)

@@ -1,0 +1,13 @@
+leakscan: 58 global instances (8 can fire outside the library), 1 scoped; 46 global simp lemmas (2 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 1 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance AlgebraicGeometry.Flat.isOpenImmersion registered in Tengoku.LanaPi1.Pi1.Mathlib.AlgebraicGeometry.Morphisms.Flat (priority 100) (declared at line 27)
+leak: instance CategoryTheory.MorphismProperty.Over.instCreatesFiniteLimitsTopOverForgetOfHasPullbacksOfIsStableUnderCompositionOfContainsIdentitiesOfIsStableUnderBaseChangeOfHasOfPostcompProperty registered in Tengoku.LanaPi1.Pi1.Mathlib.CategoryTheory.Limits.MorphismProperty (declared at line 15)
+leak: simp Ideal.quotientInfRingEquivPiQuotient_mk registered in Tengoku.LanaPi1.Pi1.Mathlib.RingTheory.Ideal.Quotient.Operations (declared at line 9)
+leak: instance Algebra.instIsStandardSmoothOfRelativeDimensionOfSubsingleton registered in Tengoku.LanaPi1.Pi1.Mathlib.RingTheory.RingHom.Etale (declared at line 15)
+leak: instance Algebra.instIsStandardSmoothOfRelativeDimensionOfNatNatOfIsStandardSmoothOfFormallyUnramified registered in Tengoku.LanaPi1.Pi1.Mathlib.RingTheory.RingHom.Etale (priority 100) (declared at line 32)
+leak: instance AffOrbicurve.instFinitePolynomialCoordinateRingToAffine registered in Tengoku.LanaPi1.Pi1.Orbicurve.Elliptic (declared at line 56)
+leak: instance AffOrbicurve.instFaithfulSMulPolynomialCoordinateRingToAffine registered in Tengoku.LanaPi1.Pi1.Orbicurve.Elliptic (declared at line 59)
+leak: instance AffOrbicurve.instFaithfulSMulPolynomialFunctionFieldToAffine registered in Tengoku.LanaPi1.Pi1.Orbicurve.Elliptic (declared at line 68)
+leak: instance Pi1.Orbifold.FibreAut.instFiniteObjCompFintypeCatIncl registered in Tengoku.LanaPi1.Pi1.Orbifold.EtaleMathlib (declared at line 94)
+leak: simp IsLocalizedModule.iso_symm_apply'' registered in Tengoku.LanaPi1.Pi1.RingTheory.Smooth.StandardSmoothSmooth (declared at line 100)
+root: AffOrbicurve

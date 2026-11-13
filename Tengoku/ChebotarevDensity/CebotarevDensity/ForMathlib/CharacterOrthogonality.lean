@@ -30,7 +30,7 @@ None of these lemmas mention number fields or Dirichlet density.
 -/
 
 @[expose] public section
-
+namespace Tengoku.ChebotarevDensity end Tengoku.ChebotarevDensity open Tengoku.ChebotarevDensity 
 noncomputable section
 
 variable {G : Type*} [CommGroup G] {M : Type*} [CommRing M] [IsDomain M]
@@ -41,7 +41,7 @@ vanishes. A specialisation of `sum_hom_units_eq_zero` on the dual group `G →* 
 evaluation hom `χ ↦ χ g`.
 @isnad1 id=eq.1h3v.s8.96f9a3f9956e from=translated src=- shape=e0ac27cd vocab=9d54ee8c
 -/
-theorem sum_char_apply_eq_zero_of_ne_one [Finite G] [HasEnoughRootsOfUnity M (Monoid.exponent G)]
+theorem Tengoku.ChebotarevDensity.sum_char_apply_eq_zero_of_ne_one [Finite G] [HasEnoughRootsOfUnity M (Monoid.exponent G)]
     [Fintype (G →* Mˣ)] {g : G} (hg : g ≠ 1) :
     ∑ χ : G →* Mˣ, ((χ g : Mˣ) : M) = 0 := by
   obtain ⟨χ₀, hχ₀⟩ := CommGroup.exists_apply_ne_one_of_hasEnoughRootsOfUnity G M hg
@@ -56,7 +56,7 @@ for a nontrivial character `χ : G →* Mˣ`, the sum of `χ g` over all `g : G`
 specialisation of `sum_hom_units_eq_zero` to `(Units.coeHom M).comp χ`.
 @isnad1 id=eq.1h3v.s8.46b029b7a699 from=translated src=- shape=4cf96952 vocab=dd6bbec4
 -/
-theorem sum_char_self_eq_zero_of_ne_one {χ : G →* Mˣ} (hχ : χ ≠ 1) :
+theorem Tengoku.ChebotarevDensity.sum_char_self_eq_zero_of_ne_one {χ : G →* Mˣ} (hχ : χ ≠ 1) :
     ∑ g : G, ((χ g : Mˣ) : M) = 0 := by
   obtain ⟨g₀, hg₀⟩ := DFunLike.ne_iff.mp hχ
   rw [MonoidHom.one_apply] at hg₀
@@ -74,7 +74,7 @@ orthogonality (`sum_char_apply_eq_zero_of_ne_one`) and collapses the character s
 principal term using the hypothesis.
 @isnad1 id=eq.1h4v.s8.f6174c0bd9c1 from=translated src=- shape=5293029b vocab=afc41e48
 -/
-theorem sum_eq_card_mul_of_sum_char_mul_eq_zero (f : G → M)
+theorem Tengoku.ChebotarevDensity.sum_eq_card_mul_of_sum_char_mul_eq_zero (f : G → M)
     (hf : ∀ χ : G →* Mˣ, χ ≠ 1 → ∑ s : G, ((χ s : Mˣ) : M) * f s = 0) (u : G) :
     ∑ s : G, f s = (Nat.card (G →* Mˣ) : M) * f u := by
   classical
@@ -111,7 +111,7 @@ domain, if every nontrivial character moment of `f : G → M` vanishes (`∑ s, 
 (every value equals the common average) after cancelling the nonzero dual cardinality.
 @isnad1 id=ex.1h3v.s8.db86f2f36fce from=translated src=- shape=f3cc062f vocab=488f5439
 -/
-theorem exists_const_of_sum_char_mul_eq_zero [CharZero M] (f : G → M)
+theorem Tengoku.ChebotarevDensity.exists_const_of_sum_char_mul_eq_zero [CharZero M] (f : G → M)
     (hf : ∀ χ : G →* Mˣ, χ ≠ 1 → ∑ s : G, ((χ s : Mˣ) : M) * f s = 0) :
     ∃ c, f = Function.const G c := by
   have hcard0 : (Nat.card (G →* Mˣ) : M) ≠ 0 := Nat.cast_ne_zero.mpr Nat.card_pos.ne'
@@ -121,3 +121,4 @@ theorem exists_const_of_sum_char_mul_eq_zero [CharZero M] (f : G → M)
       (sum_eq_card_mul_of_sum_char_mul_eq_zero f hf 1))
 
 end
+-- Tengoku: root names of this library moved to Tengoku.ChebotarevDensity so they do not collide with other libraries (generated)

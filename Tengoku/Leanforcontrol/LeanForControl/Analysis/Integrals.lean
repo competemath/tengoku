@@ -1,6 +1,6 @@
 import Tengoku
 
-open MeasureTheory intervalIntegral Set Topology
+namespace Tengoku.Leanforcontrol end Tengoku.Leanforcontrol open Tengoku.Leanforcontrol open MeasureTheory intervalIntegral Set Topology
 
 open MeasureTheory intervalIntegral Real Set Filter
 
@@ -77,7 +77,7 @@ lemma Continuous.intervalIntegrable_comp {t₀ t₁ : ℝ} (hle : t₀ ≤ t₁)
     whenever `f` is antitone on `(0, ∞)`.
 @isnad1 id=antitone.2h1v.s7.885d2b754ae4 from=translated src=- shape=f6f86475 vocab=7337a825
 -/
-lemma antitoneOn_halfWindow_average {f : ℝ → ℝ}
+lemma Tengoku.Leanforcontrol.antitoneOn_halfWindow_average {f : ℝ → ℝ}
     (hf_anti : AntitoneOn f (Set.Ioi 0))
     (hf_int : ∀ a b, 0 < a → 0 < b → IntervalIntegrable f volume a b) :
     AntitoneOn (fun η => (2 / η) * ∫ s in (η / 2)..η, f s) (Set.Ioi 0) := by
@@ -106,3 +106,4 @@ lemma antitoneOn_halfWindow_average {f : ℝ → ℝ}
     fun t ht => hf_anti (mul_pos hη₁_pos (by linarith [ht.1]))
       (mul_pos hη₂_pos (by linarith [ht.1]))
       (by gcongr; linarith [ht.1])
+-- Tengoku: root names of this library moved to Tengoku.Leanforcontrol so they do not collide with other libraries (generated)

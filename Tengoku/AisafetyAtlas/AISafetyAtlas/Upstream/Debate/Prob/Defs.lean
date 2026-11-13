@@ -17,7 +17,7 @@ public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Debate.Misc.Finset
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Prob/Defs.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -41,7 +41,7 @@ noncomputable section
 variable {α β γ : Type}
 
 /-- Prob α is a finitely supported probability distribution over results α-/
-structure Prob (α : Type) where
+structure Tengoku.AisafetyAtlas.Prob (α : Type) where
   /-- Finitely supported probabilities-/
   prob : α →₀ ℝ
   /-- prob is nonnegative-/
@@ -50,28 +50,28 @@ structure Prob (α : Type) where
   total : prob.sum (λ _ p ↦ p) = 1
 
 /-- The support for f-/
-def Prob.supp (f : Prob α) : Finset α := f.prob.support
+def Tengoku.AisafetyAtlas.Prob.supp (f : Prob α) : Finset α := f.prob.support
 
 /-- Integral w.r.t. a distribution-/
-def Prob.exp (f : Prob α) (g : α → ℝ) : ℝ :=
+def Tengoku.AisafetyAtlas.Prob.exp (f : Prob α) (g : α → ℝ) : ℝ :=
   f.prob.sum (λ x p ↦ p * g x)
 
 /-- Expectation of a real-valued distribution-/
-def Prob.mean (f : Prob ℝ) : ℝ := f.exp id
+def Tengoku.AisafetyAtlas.Prob.mean (f : Prob ℝ) : ℝ := f.exp id
 
 /-- The probability that a prop holds-/
-def Prob.pr (f : Prob α) (p : α → Prop) :=
+def Tengoku.AisafetyAtlas.Prob.pr (f : Prob α) (p : α → Prop) :=
   f.exp (λ x ↦ if p x then 1 else 0)
 
 /-- Conditional probabilities: f.cond p q = Pr_f(p | q) = f.pr (p ∧ q) / f.pr q-/
-def Prob.cond (f : Prob α) (p q : α → Prop) : ℝ :=
+def Tengoku.AisafetyAtlas.Prob.cond (f : Prob α) (p q : α → Prop) : ℝ :=
   f.pr (λ x ↦ p x ∧ q x) / f.pr q
 
 /-- Conditional expectations: f.cexp u q = E_f(u | q) = f.exp (u * q) / f.pr q-/
-def Prob.cexp (f : Prob α) (u : α → ℝ) (q : α → Prop) : ℝ :=
+def Tengoku.AisafetyAtlas.Prob.cexp (f : Prob α) (u : α → ℝ) (q : α → Prop) : ℝ :=
   f.exp (λ x ↦ if q x then u x else 0) / f.pr q
 
-namespace Prob
+namespace Tengoku.AisafetyAtlas.Prob
 
 -- Basics
 /--
@@ -122,4 +122,5 @@ instance : Monad Prob where
       · simp only [forall_const, implies_true]
     exact { prob := prob, prob_nonneg := fun {_} => nonneg _, total := total }
 
-end Prob
+end Tengoku.AisafetyAtlas.Prob
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)

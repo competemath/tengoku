@@ -20,12 +20,12 @@ public import Tengoku.Seed.RingTheory.Ideal.GoingUp
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k : Type u} [Field k]
 
@@ -167,4 +167,5 @@ theorem IsCoreOf.congr_left {X X' C : AffOrbicurve k} (e : Iso X X') (h : IsCore
 
 end Core
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

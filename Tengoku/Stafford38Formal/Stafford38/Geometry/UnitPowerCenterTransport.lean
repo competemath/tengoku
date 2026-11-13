@@ -4,12 +4,12 @@ public import Tengoku.Seed.RingTheory.Localization.AtPrime.Basic
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
 
 @[expose] public section
-
+namespace Tengoku.Stafford38Formal end Tengoku.Stafford38Formal open Tengoku.Stafford38Formal 
 open IsLocalRing
 
 universe u
 
-def castAtPrimeLocalization
+def Tengoku.Stafford38Formal.castAtPrimeLocalization
     {R : Type u} [CommRing R] {P Q : Ideal R} [P.IsPrime] [Q.IsPrime]
     (hPQ : P = Q) (x : Localization.AtPrime Q) : Localization.AtPrime P := by
   cases hPQ
@@ -20,7 +20,7 @@ equality of primes.  This preserves the same base elements and exponent; only
 the localization carrier of the unit changes.
 @isnad1 id=and.3h7v.s10.7f52ff977131 from=translated src=- shape=7ee6f4ef vocab=da7ae508
 -/
-theorem unit_power_factor_transport
+theorem Tengoku.Stafford38Formal.unit_power_factor_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q)
     (q s : R) (n : ℕ) (uQ : Localization.AtPrime Q)
@@ -38,7 +38,7 @@ theorem unit_power_factor_transport
 exponent or the shared uniformizer.
 @isnad1 id=ex.5h10v.s11.52634abbf749 from=translated src=- shape=e6af3677 vocab=8f0cdc68
 -/
-theorem two_unit_power_factors_transport
+theorem Tengoku.Stafford38Formal.two_unit_power_factors_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q)
     (q₀ q₁ s : R) (n₀ n₁ : ℕ)
@@ -67,7 +67,7 @@ indexed by `PB`.  This changes only the localization of each unit; the same
 `s`, `q₀`, `q₁`, and strict-order exponents `a < a + e` remain.
 @isnad1 id=ex.5h10v.s11.90ffa17e7070 from=translated src=- shape=1d292f4f vocab=60d0b869
 -/
-theorem selected_center_retained_factors_at_canonical_prime
+theorem Tengoku.Stafford38Formal.selected_center_retained_factors_at_canonical_prime
     {B : Type u} [CommRing B]
     (PB centerB : Ideal B) [PB.IsPrime] [centerB.IsPrime]
     (hPB_eq : PB = centerB)
@@ -92,7 +92,7 @@ generator statement; rewriting under `AtPrime` can fail because its ring
 instance is indexed by the prime.
 @isnad1 id=eq.2h4v.s9.735068d38eda from=translated src=- shape=045ba5fa vocab=092cb848
 -/
-theorem prime_span_eq_maximalIdeal_transport
+theorem Tengoku.Stafford38Formal.prime_span_eq_maximalIdeal_transport
     {R : Type u} [CommRing R]
     (P Q : Ideal R) [P.IsPrime] [Q.IsPrime] (hPQ : P = Q) (s : R)
     (hspan : Ideal.span {algebraMap R (Localization.AtPrime Q) s} =
@@ -101,3 +101,4 @@ theorem prime_span_eq_maximalIdeal_transport
       maximalIdeal (Localization.AtPrime P) := by
   cases hPQ
   exact hspan
+-- Tengoku: root names of this library moved to Tengoku.Stafford38Formal so they do not collide with other libraries (generated)

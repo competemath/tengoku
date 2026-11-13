@@ -46,7 +46,7 @@ the proof of Theorem 2.1 consumes are recorded separately in
   Math. J. Okayama Univ. **52** (2010), 1–28.
 -/
 
-local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
+namespace Tengoku.LanaGenl end Tengoku.LanaGenl open Tengoku.LanaGenl local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
 local notation:50 f:51 " ≈[" s "] " g:51 => DiscrepancyEquiv f g s
 
 universe u
@@ -130,3 +130,4 @@ def StatementII : Prop :=
 end HeightTheory
 
 end Genl
+-- Tengoku: root names of this library moved to Tengoku.LanaGenl so they do not collide with other libraries (generated)

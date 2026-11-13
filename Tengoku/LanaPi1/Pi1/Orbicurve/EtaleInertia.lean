@@ -24,12 +24,12 @@ the `t`-line (`AffOrbicurve.exists_isCentered_centerIdeal_eq`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal IntermediateField IntermediateField.algebraAdjoinAdjoin Polynomial
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k Ω : Type u} [Field k] [Field Ω] [Algebra k Ω] {t : Ω}
 
@@ -130,4 +130,5 @@ section Etale
 
 end Etale
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

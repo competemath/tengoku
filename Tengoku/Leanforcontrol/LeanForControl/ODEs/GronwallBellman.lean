@@ -1,7 +1,7 @@
 import Tengoku
 import Tengoku.Leanforcontrol.LeanForControl.Analysis.Integrals
 
-open MeasureTheory intervalIntegral Real Set Filter
+namespace Tengoku.Leanforcontrol end Tengoku.Leanforcontrol open Tengoku.Leanforcontrol open MeasureTheory intervalIntegral Real Set Filter
 
 /-!
 # Gronwall's Inequality (Lemma A.1)
@@ -36,7 +36,7 @@ and its derivative is `μ t`.
 /--
 @isnad1 id=hasderiv.2h4v.s6.532a54a437b7 from=translated src=- shape=d8d5bbfa vocab=037e7297
 -/
-lemma hasDerivAt_integral {a b : ℝ} {μ : ℝ → ℝ}
+lemma Tengoku.Leanforcontrol.hasDerivAt_integral {a b : ℝ} {μ : ℝ → ℝ}
     (hμ : ContinuousOn μ (Icc a b)) (t : ℝ) (ht : t ∈ Ioo a b) :
     HasDerivAt (fun x ↦ ∫ τ in a..x, μ τ) (μ t) t :=
   intervalIntegral.integral_hasDerivAt_right
@@ -55,7 +55,7 @@ that avoids unordered interval (`uIcc`) issues by explicitly requiring `a ≤ t`
 /--
 @isnad1 id=continuo.2h3v.s6.0d8abbe1f244 from=translated src=- shape=587750eb vocab=01fdafdd
 -/
-lemma continuousOn_integral_Icc {a t : ℝ} {f : ℝ → ℝ} (h : a ≤ t)
+lemma Tengoku.Leanforcontrol.continuousOn_integral_Icc {a t : ℝ} {f : ℝ → ℝ} (h : a ≤ t)
     (hf_int : IntegrableOn f (Icc a t) volume) :
     ContinuousOn (fun s ↦ ∫ τ in a..s, f τ) (Icc a t) := by
   have hu : Set.uIcc a t = Set.Icc a t := Set.uIcc_of_le h
@@ -83,3 +83,4 @@ then `y` is bounded by:
 /-! ## Special case 1: constant Λ -/
 
 /-! ## Special case 1: constant Λ, μ -/
+-- Tengoku: root names of this library moved to Tengoku.Leanforcontrol so they do not collide with other libraries (generated)

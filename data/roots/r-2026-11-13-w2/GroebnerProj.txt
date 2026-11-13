@@ -1,0 +1,6 @@
+leakscan: 3 global instances (1 can fire outside the library), 0 scoped; 28 global simp lemmas (1 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 2 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance IsWellFounded.onFun registered in Tengoku.GroebnerProj.Groebner.MonomialOrderEmbedding (declared at line 24)
+leak: simp Function.LeftInverse.of_subsingleton registered in Tengoku.GroebnerProj.Groebner.ToMathlib.Function (declared at line 3)
+root: imp_and_iff_and
+root: and_imp_iff_and

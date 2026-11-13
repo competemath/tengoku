@@ -1,0 +1,8 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 0 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 6 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: sum_eq_card_mul_of_sum_char_mul_eq_zero
+root: sum_char_self_eq_zero_of_ne_one
+root: sum_char_apply_eq_zero_of_ne_one
+root: tendsto_ratio_one_of_log_pm_bounded
+root: exists_const_of_sum_char_mul_eq_zero
+root: tendsto_log_one_div_sub_one_atTop

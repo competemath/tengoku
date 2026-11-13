@@ -31,34 +31,34 @@ It follows the structure of the `Monad` hierarchy:
 -/
 
 @[expose] public section
-
+namespace Tengoku.Polyfun end Tengoku.Polyfun open Tengoku.Polyfun 
 universe u v
 
 /-- The `Extract` typeclass provides the `extract` operation, dual to `Pure.pure`.-/
-class Extract (w : Type u → Type v) where
+class Tengoku.Polyfun.Extract (w : Type u → Type v) where
   /-- Extract a value from the comonadic context.-/
   extract {α : Type u} : w α → α
 
 /-- The `Extend` typeclass provides the `extend` operation, dual to `Bind.bind`.-/
-class Extend (w : Type u → Type v) where
+class Tengoku.Polyfun.Extend (w : Type u → Type v) where
   /-- Extend a function across the comonadic context.-/
   extend {α β : Type u} : w α → (w α → β) → w β
 
 /-- The `Coseq` typeclass provides the `coseq` operation (`<@>`), dual to `Seq.seq` (`<*>`).
     It combines two comonadic contexts, pairing their results.-/
-class Coseq (w : Type u → Type v) where
+class Tengoku.Polyfun.Coseq (w : Type u → Type v) where
   /-- Combine two comonadic contexts.-/
   coseq : {α β : Type u} → w α → w β → w (α × β)
 
 /-- The `CoseqLeft` typeclass provides the `coseqLeft` operation (`<@`), dual to `SeqLeft.seqLeft`
   (`<*`). Evaluates two contexts but returns the result of the first.-/
-class CoseqLeft (w : Type u → Type v) where
+class Tengoku.Polyfun.CoseqLeft (w : Type u → Type v) where
   /-- Evaluate two contexts, returning the first result.-/
   coseqLeft : {α β : Type u} → w α → w β → w α
 
 /-- The `CoseqRight` typeclass provides the `coseqRight` operation (`@>`), dual to
   `SeqRight.seqRight` (`*>`). Evaluates two contexts but returns the result of the second.-/
-class CoseqRight (w : Type u → Type v) where
+class Tengoku.Polyfun.CoseqRight (w : Type u → Type v) where
   /-- Evaluate two contexts, returning the second result.-/
   coseqRight : {α β : Type u} → w α → w β → w β
 
@@ -77,7 +77,7 @@ local infixl:60 " @> "  => CoseqRight.coseqRight
 
 /-- `Coapplicative` functor. Dual to `Applicative`.
     Combines `Functor`, `Extract`, and `Coseq` operations.-/
-class Coapplicative (w : Type u → Type v) extends
+class Tengoku.Polyfun.Coapplicative (w : Type u → Type v) extends
     Functor w, Extract w, Coseq w, CoseqLeft w, CoseqRight w where
   /-- Default implementation for `coseqLeft` using `coseq` and `map`.-/
   coseqLeft wa wb := Functor.map Prod.fst (coseq wa wb)
@@ -86,7 +86,7 @@ class Coapplicative (w : Type u → Type v) extends
 
 /-- `Comonad`. Dual to `Monad`.
     Combines `Coapplicative` structure with `Extend`.-/
-class Comonad (w : Type u → Type v) extends Coapplicative w, Extend w where
+class Tengoku.Polyfun.Comonad (w : Type u → Type v) extends Coapplicative w, Extend w where
   /-- Default implementation for `map` using `extend` and `extract`.
       Note: This requires that the `Functor` instance provided to `Coapplicative`
       is compatible with this definition. `LawfulComonad` ensures this.-/
@@ -103,7 +103,7 @@ class Comonad (w : Type u → Type v) extends Coapplicative w, Extend w where
 /-! ## Lawful hierarchy -/
 
 /-- Lawful `Coapplicative` functor. Dual to `LawfulApplicative`.-/
-class LawfulCoapplicative (w : Type u → Type v) [Coapplicative w] extends LawfulFunctor w where
+class Tengoku.Polyfun.LawfulCoapplicative (w : Type u → Type v) [Coapplicative w] extends LawfulFunctor w where
   /-- Ensure default `coseqLeft` law holds even if overridden.-/
   coseqLeft_eq : ∀ {α β : Type u} (wa : w α) (wb : w β),
     @coseqLeft w _ α β wa wb = Functor.map (@Prod.fst α β) (coseq wa wb)
@@ -124,7 +124,7 @@ class LawfulCoapplicative (w : Type u → Type v) [Coapplicative w] extends Lawf
 export LawfulCoapplicative (coseqLeft_eq coseqRight_eq coseq_assoc map_coseq)
 
 /-- Lawful `Comonad`. Dual to `LawfulMonad`.-/
-class LawfulComonad (w : Type u → Type v) [Comonad w] extends LawfulCoapplicative w where
+class Tengoku.Polyfun.LawfulComonad (w : Type u → Type v) [Comonad w] extends LawfulCoapplicative w where
   /-- Compatibility between `map` and `extend`/`extract`.
       Since `Comonad.map` defines map this way, this law ensures the `Functor` instance
       used by `LawfulCoapplicative` (and `LawfulFunctor`) is consistent.-/
@@ -149,20 +149,20 @@ variable {w : Type u → Type v} [Comonad w] [LawfulComonad w]
 /--
 @isnad1 id=eq.0h3v.s5.d67b199c1249 from=translated src=- shape=bd69cac0 vocab=70711cd9
 -/
-theorem comonad_id_map {α : Type u} (wa : w α) : Functor.map id wa = wa :=
+theorem Tengoku.Polyfun.comonad_id_map {α : Type u} (wa : w α) : Functor.map id wa = wa :=
   id_map wa
 
 /--
 @isnad1 id=eq.0h7v.s6.209b85560f16 from=translated src=- shape=086d07bd vocab=a1ec3c10
 -/
-@[simp] theorem comonad_comp_map {α β γ : Type u} (f : β → γ) (g : α → β) (wa : w α) :
+@[simp] theorem Tengoku.Polyfun.comonad_comp_map {α β γ : Type u} (f : β → γ) (g : α → β) (wa : w α) :
     Functor.map (f ∘ g) wa = Functor.map f (Functor.map g wa) :=
   comp_map g f wa
 
 /--
 @isnad1 id=eq.0h5v.s5.521f9d4a7acb from=translated src=- shape=4278d538 vocab=d59eb031
 -/
-@[simp] theorem extract_map {α β : Type u} (f : α → β) (wa : w α) :
+@[simp] theorem Tengoku.Polyfun.extract_map {α β : Type u} (f : α → β) (wa : w α) :
     extract (Functor.map f wa) = f (extract wa) := by
   rw [map_eq_extend_extract, extract_extend, Function.comp_apply]
 
@@ -177,7 +177,7 @@ variable {w : Type u → Type u} [Comonad w]
 
 /-- Duplicate the comonadic context. Defined via `extend`.-/
 @[simp]
-def duplicate {α : Type u} (wa : w α) : w (w α) :=
+def Tengoku.Polyfun.duplicate {α : Type u} (wa : w α) : w (w α) :=
   extend wa id
 
 variable [LawfulComonad w]
@@ -186,13 +186,13 @@ variable {α : Type u} (wa : w α)
 /--
 @isnad1 id=eq.0h3v.s5.1cc7ea424af8 from=translated src=- shape=062c1ca2 vocab=43405045
 -/
-theorem extract_duplicate_eq_id : extract (duplicate wa) = wa :=
+theorem Tengoku.Polyfun.extract_duplicate_eq_id : extract (duplicate wa) = wa :=
   extract_extend wa id
 
 /--
 @isnad1 id=eq.0h3v.s5.d15459464527 from=translated src=- shape=7d1b4b08 vocab=4582cb8e
 -/
-theorem map_extract_duplicate_eq_id : Functor.map extract (duplicate wa) = wa := by
+theorem Tengoku.Polyfun.map_extract_duplicate_eq_id : Functor.map extract (duplicate wa) = wa := by
   rw [duplicate, map_eq_extend_extract, extend_assoc]
   simp only [Function.comp_apply, extract_extend, id_def]
   rw [extend_extract]
@@ -200,7 +200,7 @@ theorem map_extract_duplicate_eq_id : Functor.map extract (duplicate wa) = wa :=
 /--
 @isnad1 id=eq.0h5v.s5.8456d9130076 from=translated src=- shape=01bbb692 vocab=d3c048f9
 -/
-theorem extend_eq_map_duplicate {β : Type u} (f : w α → β) :
+theorem Tengoku.Polyfun.extend_eq_map_duplicate {β : Type u} (f : w α → β) :
     extend wa f = Functor.map f (duplicate wa) := by
   rw [duplicate, map_eq_extend_extract, extend_assoc]
   simp only [Function.comp_apply, extract_extend, id_def]
@@ -208,7 +208,7 @@ theorem extend_eq_map_duplicate {β : Type u} (f : w α → β) :
 /--
 @isnad1 id=eq.0h3v.s5.d1d567e489b7 from=translated src=- shape=37531ff2 vocab=7083df5b
 -/
-theorem duplicate_duplicate_eq_map_duplicate :
+theorem Tengoku.Polyfun.duplicate_duplicate_eq_map_duplicate :
     duplicate (duplicate wa) = Functor.map duplicate (duplicate wa) := by
   have h_lhs : duplicate (duplicate wa) = extend wa duplicate := by
     rw [duplicate, duplicate, extend_assoc]
@@ -221,3 +221,4 @@ theorem duplicate_duplicate_eq_map_duplicate :
 
 end Duplicate
 -- Tengoku: 3 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.Polyfun so they do not collide with other libraries (generated)
