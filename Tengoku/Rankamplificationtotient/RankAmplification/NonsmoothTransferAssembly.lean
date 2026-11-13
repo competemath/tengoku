@@ -17,6 +17,9 @@ noncomputable section
 def nonsmoothNonSquareSet (x h y : ℕ) : Finset ℕ :=
   nonsmoothShiftedSet x h y \ squareSourceSet x h y (2 * x).sqrt
 
+/--
+@isnad1 id=iff.0h4v.s6.9a62ff767111 from=translated src=- shape=f71ebc2a vocab=17a0c7ec
+-/
 @[simp]
 theorem mem_nonsmoothNonSquareSet {x h y n : ℕ} :
     n ∈ nonsmoothNonSquareSet x h y ↔
@@ -24,6 +27,9 @@ theorem mem_nonsmoothNonSquareSet {x h y n : ℕ} :
         n ∉ squareSourceSet x h y (2 * x).sqrt := by
   simp [nonsmoothNonSquareSet]
 
+/--
+@isnad1 id=disjoint.0h3v.s5.18ebf2b53cbb from=translated src=- shape=c844db14 vocab=34259778
+-/
 theorem nonsmoothSquareSourceSet_disjoint_nonSquareSet (x h y : ℕ) :
     Disjoint (nonsmoothSquareSourceSet x h y (2 * x).sqrt)
       (nonsmoothNonSquareSet x h y) := by
@@ -35,7 +41,9 @@ theorem nonsmoothSquareSourceSet_disjoint_nonSquareSet (x h y : ℕ) :
   exact (mem_nonsmoothNonSquareSet.mp hnonsquare).2
     (Finset.mem_inter.mp hsquare').2
 
-/-- The square-source and nonsquare branches partition the entire nonsmooth set.-/
+/-- The square-source and nonsquare branches partition the entire nonsmooth set.
+@isnad1 id=eq.0h3v.s5.70db55902433 from=translated src=- shape=044430a9 vocab=8f22dd53
+-/
 theorem nonsmoothSquareSourceSet_union_nonSquareSet (x h y : ℕ) :
     nonsmoothSquareSourceSet x h y (2 * x).sqrt ∪ nonsmoothNonSquareSet x h y =
       nonsmoothShiftedSet x h y := by
@@ -44,6 +52,9 @@ theorem nonsmoothSquareSourceSet_union_nonSquareSet (x h y : ℕ) :
     mem_nonsmoothNonSquareSet]
   tauto
 
+/--
+@isnad1 id=eq.0h3v.s5.94853548b334 from=translated src=- shape=8a836f23 vocab=947d42b6
+-/
 theorem nonsmoothShiftedCount_eq_square_add_nonSquare (x h y : ℕ) :
     nonsmoothShiftedCount x h y =
       (nonsmoothSquareSourceSet x h y (2 * x).sqrt).card +
@@ -59,6 +70,9 @@ theorem nonsmoothShiftedCount_eq_square_add_nonSquare (x h y : ℕ) :
 def canonicalLargestPrimeProvider (n : ℕ) : ℕ :=
   largestPrimeFactor n.totient
 
+/--
+@isnad1 id=lt.1h4v.s5.3897b1238c88 from=translated src=- shape=98176ffd vocab=afd50f21
+-/
 theorem canonicalLargestPrimeProvider_gt_of_mem_offDiagonalNonSquare
     {x h y n : ℕ}
     (hn : n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt) :
@@ -68,6 +82,9 @@ theorem canonicalLargestPrimeProvider_gt_of_mem_offDiagonalNonSquare
     (mem_offDiagonalNonsmoothSet.mp hoff).1
   exact hnonsmooth.2.2.2
 
+/--
+@isnad1 id=prime.2h4v.s5.a60760e68c0c from=translated src=- shape=c4b69857 vocab=bdab5ddd
+-/
 theorem canonicalLargestPrimeProvider_prime_of_mem_offDiagonalNonSquare
     {x h y n : ℕ} (hy : 0 < y)
     (hn : n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt) :
@@ -78,7 +95,9 @@ theorem canonicalLargestPrimeProvider_prime_of_mem_offDiagonalNonSquare
   change 1 < largestPrimeFactor n.totient
   omega
 
-/-- Nonsquare membership removes the only obstruction to the provider lemma for the canonical largest prime.-/
+/-- Nonsquare membership removes the only obstruction to the provider lemma for the canonical largest prime.
+@isnad1 id=not.4h4v.s6.6a03f9abd192 from=translated src=- shape=453f45d8 vocab=60e44fb4
+-/
 theorem canonicalLargestPrimeProvider_sq_not_dvd
     {x h y n : ℕ} (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x)
     (hn : n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt) :
@@ -94,7 +113,9 @@ theorem canonicalLargestPrimeProvider_sq_not_dvd
   exact canonicalLargestPrimeProvider_prime_of_mem_offDiagonalNonSquare
     (hh.trans_le hhy) hn
 
-/-- The provider theorem supplies a skeleton canonically indexed by the largest prime factor.-/
+/-- The provider theorem supplies a skeleton canonically indexed by the largest prime factor.
+@isnad1 id=nonempty.4h4v.s6.57d8df0c2537 from=translated src=- shape=2b6fae52 vocab=70abc386
+-/
 theorem nonempty_canonicalLargestPrimeSkeleton
     {x h y n : ℕ} (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x)
     (hn : n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt) :
@@ -118,13 +139,18 @@ def canonicalLargestPrimeSkeleton {x h y : ℕ}
     LargePrimeSkeleton h n.1 (canonicalLargestPrimeProvider n.1) :=
   Classical.choice (nonempty_canonicalLargestPrimeSkeleton hh hhy hxy n.2)
 
-/-- For odd shifts, every nonsquare nonsmooth solution is off diagonal, so the selector above is defined on the whole nonsquare branch.-/
+/-- For odd shifts, every nonsquare nonsmooth solution is off diagonal, so the selector above is defined on the whole nonsquare branch.
+@isnad1 id=eq.1h3v.s5.c33eeff427fc from=translated src=- shape=d93be4a9 vocab=c9ee8643
+-/
 theorem offDiagonalNonSquareSet_eq_nonsmoothNonSquareSet_of_odd
     {x h y : ℕ} (hodd : Odd h) :
     offDiagonalNonSquareSet x h y (2 * x).sqrt = nonsmoothNonSquareSet x h y := by
   rw [offDiagonalNonSquareSet, nonsmoothNonSquareSet,
     offDiagonalNonsmoothSet_eq_nonsmoothShiftedSet_of_odd hodd]
 
+/--
+@isnad1 id=nonempty.4h4v.s5.e5b37b556af2 from=translated src=- shape=a3e87e82 vocab=4e29c95c
+-/
 theorem nonempty_canonicalLargestPrimeSkeleton_of_mem_nonsmoothNonSquare
     {x h y n : ℕ} (hodd : Odd h) (hhy : h ≤ y) (hxy : y ≤ x)
     (hn : n ∈ nonsmoothNonSquareSet x h y) :
@@ -135,7 +161,9 @@ theorem nonempty_canonicalLargestPrimeSkeleton_of_mem_nonsmoothNonSquare
 
 /-! ## Fixed-cofactor uniqueness off the diagonal -/
 
-/-- Lemma 3.3 needs only nonvanishing normalized slope.-/
+/-- Lemma 3.3 needs only nonvanishing normalized slope.
+@isnad1 id=eq.3h7v.s5.e96e0bf92fdb from=translated src=- shape=fbb1e31b vocab=0a4cb114
+-/
 theorem LargePrimeSkeleton.n_eq_of_same_cofactors_of_not_diagonal
     {h n p n' p' : ℕ} (s : LargePrimeSkeleton h n p)
     (hnotdiag : ¬s.IsDiagonal) (t : LargePrimeSkeleton h n' p')
@@ -199,7 +227,9 @@ theorem LargePrimeSkeleton.n_eq_of_same_cofactors_of_not_diagonal
     _ = t.m1 * (normalizedA t.m1 t.m2 * D + 1) := by rw [hm₁, hm₂]
     _ = n' := hnT.symm
 
-/-- Chosen cofactor pairs are injective whenever every selected skeleton is off diagonal.-/
+/-- Chosen cofactor pairs are injective whenever every selected skeleton is off diagonal.
+@isnad1 id=injectiv.1h4v.s7.1c238b3277ff from=translated src=- shape=f72a0b97 vocab=bc16b95a
+-/
 theorem cofactorPair_injective_of_not_diagonal {h : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
     (skeleton : (n : {n // n ∈ S}) → LargePrimeSkeleton h n.1 (provider n))
@@ -210,7 +240,9 @@ theorem cofactorPair_injective_of_not_diagonal {h : ℕ} (S : Finset ℕ)
   exact (skeleton a).n_eq_of_same_cofactors_of_not_diagonal (hoff a) (skeleton b)
     (congrArg Prod.fst hab) (congrArg Prod.snd hab)
 
-/-- Off-diagonal version of Corollary 3.4, valid for every shift rather than only odd shifts.-/
+/-- Off-diagonal version of Corollary 3.4, valid for every shift rather than only odd shifts.
+@isnad1 id=le.2h5v.s7.b5f53ba778fb from=translated src=- shape=6cd31175 vocab=0363cbbe
+-/
 theorem card_skeletonNumbers_le_cofactor_bound_of_not_diagonal
     {h X : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
@@ -248,6 +280,9 @@ def primeLargeCofactorCodeSet (x y P : ℕ) : Finset ProviderCode :=
   ((squareSourcePrimeRange y P).sigma fun p ↦
     smoothFactorPairSet p ((2 * x * y) / p ^ 2)).map sigmaToPrimeProviderCode
 
+/--
+@isnad1 id=iff.0h4v.s6.4a956543bfb3 from=translated src=- shape=680f18a9 vocab=157fc673
+-/
 @[simp]
 theorem mem_primeLargeCofactorCodeSet {x y P : ℕ} {c : ProviderCode} :
     c ∈ primeLargeCofactorCodeSet x y P ↔
@@ -267,6 +302,9 @@ theorem mem_primeLargeCofactorCodeSet {x y P : ℕ} {c : ProviderCode} :
     exact Finset.mem_sigma.mpr
       ⟨mem_squareSourcePrimeRange.mpr ⟨hyp, hpP, hp⟩, hk⟩
 
+/--
+@isnad1 id=le.7h6v.s8.762ae2cdcddd from=translated src=- shape=d4d4c0ed vocab=5044221f
+-/
 theorem providerCodeImage_subset_primeLargeCofactorCodeSet
     {x h y : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
@@ -304,19 +342,27 @@ def canonicalLargeCofactorSet {x h y : ℕ}
     (fun n ↦ canonicalLargestPrimeProvider n.1)
     (canonicalLargestPrimeSkeleton hh hhy hxy) (x / y)
 
+/--
+@isnad1 id=eq.3h3v.s6.e4db89e9cd51 from=translated src=- shape=defe3f8e vocab=fc180b1e
+-/
 theorem canonicalSmall_union_large_eq {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x) :
     canonicalSmallCofactorSet hh hhy hxy ∪ canonicalLargeCofactorSet hh hhy hxy =
       offDiagonalNonSquareSet x h y (2 * x).sqrt := by
   exact small_union_large_eq _ _ _
 
+/--
+@isnad1 id=disjoint.3h3v.s5.56e347af94d5 from=translated src=- shape=b66e3c95 vocab=dd872be1
+-/
 theorem canonicalSmall_disjoint_large {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x) :
     Disjoint (canonicalSmallCofactorSet hh hhy hxy)
       (canonicalLargeCofactorSet hh hhy hxy) := by
   exact small_disjoint_large _ _ _
 
-/-- Exact four-way finite backbone: square sources, then canonical small and large nonsquare cofactors.-/
+/-- Exact four-way finite backbone: square sources, then canonical small and large nonsquare cofactors.
+@isnad1 id=eq.3h3v.s6.92518810c061 from=translated src=- shape=53cfc80c vocab=d1b35c45
+-/
 theorem offDiagonalNonSquare_card_eq_canonicalSmall_add_large {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x) :
     (offDiagonalNonSquareSet x h y (2 * x).sqrt).card =
@@ -324,7 +370,9 @@ theorem offDiagonalNonSquare_card_eq_canonicalSmall_add_large {x h y : ℕ}
         (canonicalLargeCofactorSet hh hhy hxy).card := by
   exact card_eq_small_add_large _ _ _
 
-/-- Exact square/small/large partition for the odd-shift nonsmooth set.-/
+/-- Exact square/small/large partition for the odd-shift nonsmooth set.
+@isnad1 id=eq.3h3v.s6.0c3e34037de2 from=translated src=- shape=e899a5ac vocab=4ea9350c
+-/
 theorem nonsmoothShiftedCount_eq_square_add_canonicalSmall_add_large
     {x h y : ℕ} (hodd : Odd h) (hhy : h ≤ y) (hxy : y ≤ x) :
     nonsmoothShiftedCount x h y =
@@ -335,6 +383,9 @@ theorem nonsmoothShiftedCount_eq_square_add_canonicalSmall_add_large
     ← offDiagonalNonSquareSet_eq_nonsmoothNonSquareSet_of_odd hodd,
     offDiagonalNonSquare_card_eq_canonicalSmall_add_large hodd.pos hhy hxy]
 
+/--
+@isnad1 id=le.0h4v.s6.a25a14ba7e88 from=translated src=- shape=891bb784 vocab=9e66060b
+-/
 theorem canonicalSkeleton_n_le {x h y : ℕ}
     (n : {n // n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt}) :
     n.1 ≤ x := by
@@ -342,6 +393,9 @@ theorem canonicalSkeleton_n_le {x h y : ℕ}
   exact (mem_nonsmoothShiftedSet.mp
     (mem_offDiagonalNonsmoothSet.mp hoff).1).2.1
 
+/--
+@isnad1 id=prime.3h4v.s6.58630fff5343 from=translated src=- shape=ce5e402f vocab=5e23a517
+-/
 theorem canonicalSkeleton_provider_prime {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (_hxy : y ≤ x)
     (n : {n // n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt}) :
@@ -349,11 +403,17 @@ theorem canonicalSkeleton_provider_prime {x h y : ℕ}
   exact canonicalLargestPrimeProvider_prime_of_mem_offDiagonalNonSquare
     (hh.trans_le hhy) n.2
 
+/--
+@isnad1 id=lt.0h4v.s6.f5b8bee70696 from=translated src=- shape=973ce606 vocab=30a138af
+-/
 theorem canonicalSkeleton_provider_gt {x h y : ℕ}
     (n : {n // n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt}) :
     y < canonicalLargestPrimeProvider n.1 :=
   canonicalLargestPrimeProvider_gt_of_mem_offDiagonalNonSquare n.2
 
+/--
+@isnad1 id=not.3h4v.s7.bb4476a8ce93 from=translated src=- shape=354d564c vocab=55f52e94
+-/
 theorem canonicalSkeleton_not_diagonal {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hxy : y ≤ x)
     (n : {n // n ∈ offDiagonalNonSquareSet x h y (2 * x).sqrt}) :
@@ -370,6 +430,9 @@ def nonsquareSkeletonMajorant (x y : ℕ) : ℝ :=
 
 /-! ## Closing the Section 9 transfer hypothesis -/
 
+/--
+@isnad1 id=eq.1h3v.s4.8b5087cae486 from=translated src=- shape=2dd87b17 vocab=ca176be6
+-/
 theorem nonsmoothShiftedSet_eq_empty_of_size_lt_cutoff
     {x h y : ℕ} (hxy : x < y) :
     nonsmoothShiftedSet x h y = ∅ := by
@@ -386,6 +449,9 @@ theorem nonsmoothShiftedSet_eq_empty_of_size_lt_cutoff
   have hphin : n.totient ≤ n := Nat.totient_le n
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.dad9f7d40cc4 from=translated src=- shape=0ca34b77 vocab=bba9de87
+-/
 theorem offDiagonalNonSquareSet_eq_empty_of_size_lt_cutoff
     {x h y : ℕ} (hxy : x < y) :
     offDiagonalNonSquareSet x h y (2 * x).sqrt = ∅ := by
@@ -396,6 +462,9 @@ theorem offDiagonalNonSquareSet_eq_empty_of_size_lt_cutoff
   rw [nonsmoothShiftedSet_eq_empty_of_size_lt_cutoff hxy] at hnonsmooth
   exact Finset.notMem_empty n hnonsmooth
 
+/--
+@isnad1 id=le.0h2v.s4.f4a2f8c790c3 from=translated src=- shape=5ffe46ab vocab=a23339cf
+-/
 theorem nonsquareSkeletonMajorant_nonneg (x y : ℕ) :
     0 ≤ nonsquareSkeletonMajorant x y := by
   have hlog : 0 ≤ Real.log (x / y : ℕ) := by

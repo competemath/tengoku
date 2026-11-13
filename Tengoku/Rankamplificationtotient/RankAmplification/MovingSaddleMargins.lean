@@ -16,11 +16,17 @@ noncomputable section
 def movingSourceLoss (x : ℝ) : ℝ :=
   2 * (movingJ x : ℝ) * movingK x + (movingJ x : ℝ) * Real.log 2
 
+/--
+@isnad1 id=eq.0h1v.s5.f3df306fa51e from=translated src=- shape=9c9f1d81 vocab=4921a8ed
+-/
 theorem movingSourceLogThreshold_eq (x : ℝ) :
     movingSourceLogThreshold x = (1 / 2 : ℝ) * scaleL x - movingSourceLoss x := by
   simp [movingSourceLogThreshold, movingSourceLoss]
   ring
 
+/--
+@isnad1 id=islittle.0h0v.s3.24cdc991ae69 from=translated src=- shape=47806ae7 vocab=617761f6
+-/
 theorem movingEtaR_isLittleO_etaL : movingEtaR =o[atTop] movingEtaL := by
   have h := movingR_isLittleO_scaleL.mul_isBigO (isBigO_refl movingEta atTop)
   apply h.congr'
@@ -29,6 +35,9 @@ theorem movingEtaR_isLittleO_etaL : movingEtaR =o[atTop] movingEtaL := by
   · filter_upwards [] with x
     simp [movingEtaL, mul_comm]
 
+/--
+@isnad1 id=islittle.0h0v.s5.50dda52118a0 from=translated src=- shape=080c0d74 vocab=aeca5692
+-/
 theorem movingJ_mul_log_two_isLittleO_etaR :
     (fun x ↦ (movingJ x : ℝ) * Real.log 2) =o[atTop] movingEtaR := by
   have hsmall :
@@ -51,10 +60,16 @@ theorem movingJ_mul_log_two_isLittleO_etaR :
         nlinarith
   exact hsmall.trans_isLittleO movingJ_sq_mul_log2_isLittleO_etaR
 
+/--
+@isnad1 id=islittle.0h0v.s5.395fc2995e63 from=translated src=- shape=080c0d74 vocab=c0b4487d
+-/
 theorem movingJ_mul_log_two_isLittleO_etaL :
     (fun x ↦ (movingJ x : ℝ) * Real.log 2) =o[atTop] movingEtaL :=
   movingJ_mul_log_two_isLittleO_etaR.trans movingEtaR_isLittleO_etaL
 
+/--
+@isnad1 id=islittle.0h0v.s3.1be8ba03e786 from=translated src=- shape=47806ae7 vocab=7d4e20f2
+-/
 theorem movingSourceLoss_isLittleO_etaL : movingSourceLoss =o[atTop] movingEtaL := by
   have hJK := movingJ_mul_K_isLittleO_etaL.const_mul_left 2
   have hsum := hJK.add movingJ_mul_log_two_isLittleO_etaL
@@ -63,6 +78,9 @@ theorem movingSourceLoss_isLittleO_etaL : movingSourceLoss =o[atTop] movingEtaL 
   simp [movingSourceLoss]
   ring
 
+/--
+@isnad1 id=islittle.0h0v.s4.bc91400cb977 from=translated src=- shape=3116060c vocab=7659ca09
+-/
 theorem log3_mul_sqrt_scaleA_isLittleO_log2 :
     (fun x ↦ log3 x * Real.sqrt (scaleA x)) =o[atTop] log2 := by
   have hbig := scaleA_isEquivalent_log3.symm.isBigO.mul
@@ -73,6 +91,9 @@ theorem log3_mul_sqrt_scaleA_isLittleO_log2 :
   · filter_upwards [] with x
     rfl
 
+/--
+@isnad1 id=eventual.0h0v.s5.260088a5df45 from=translated src=- shape=8e106e86 vocab=470d521a
+-/
 theorem eventually_log3_le_eta_mul_log2_div_two :
     ∀ᶠ x in atTop, log3 x ≤ movingEta x * log2 x / 2 := by
   have hbound :=
@@ -87,6 +108,9 @@ theorem eventually_log3_le_eta_mul_log2_div_two :
     (le_div_iff₀ hsqrt).2 (by nlinarith)
   simpa [div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using hdiv
 
+/--
+@isnad1 id=islittle.0h0v.s4.9e16d124ea4a from=translated src=- shape=ed61af91 vocab=a6bd2e7f
+-/
 theorem scaleA_mul_log2_isLittleO_scaleL :
     (fun x ↦ scaleA x * log2 x) =o[atTop] scaleL := by
   have h := scaleA_isLittleO_log2.mul_isBigO (isBigO_refl log2 atTop)
@@ -98,6 +122,9 @@ theorem scaleA_mul_log2_isLittleO_scaleL :
   exact hsq.trans
     (log2_sq_isLittleO_sqrt_scaleL.trans_isBigO sqrt_scaleL_isBigO_scaleL)
 
+/--
+@isnad1 id=eq.3h1v.s6.6cbf5ee6ac00 from=translated src=- shape=fd770bfa vocab=fc398411
+-/
 theorem eta_mul_sqrt_ratio_sq {x : ℝ}
     (hL : 0 ≤ scaleL x) (hL2 : 0 < log2 x) (hA : 0 < scaleA x) :
     (movingEta x * Real.sqrt (scaleL x / log2 x)) ^ 2 =
@@ -109,6 +136,9 @@ theorem eta_mul_sqrt_ratio_sq {x : ℝ}
   rw [mul_pow, inv_pow, hAsq, hRsq]
   field_simp [hA.ne', hL2.ne']
 
+/--
+@isnad1 id=eventual.0h0v.s5.38d7c6d0686b from=translated src=- shape=c39e19af vocab=b0569d43
+-/
 theorem eventually_three_le_eta_mul_sqrt_ratio :
     ∀ᶠ x in atTop,
       3 ≤ movingEta x * Real.sqrt (scaleL x / log2 x) := by
@@ -129,6 +159,9 @@ theorem eventually_three_le_eta_mul_sqrt_ratio :
     exact (le_div_iff₀ hden).2 hprod
   nlinarith
 
+/--
+@isnad1 id=le.3h1v.s6.59f2f74bf1af from=translated src=- shape=99c53a99 vocab=bbc1406d
+-/
 theorem movingSqrtRatio_mul_K_ge_quarter_L {x : ℝ}
     (hL : 0 < scaleL x) (hL2 : 0 < log2 x)
     (hRatio : (1 / 3 : ℝ) ≤ movingK x / movingR x) :
@@ -148,7 +181,9 @@ theorem movingSqrtRatio_mul_K_ge_quarter_L {x : ℝ}
     _ ≤ (scaleL x / movingR x) * movingK x :=
       mul_le_mul_of_nonneg_left hKR (div_nonneg hL0 hR.le)
 
-/-- The source and transfer margins (10.34) hold for all sufficiently large arguments.-/
+/-- The source and transfer margins (10.34) hold for all sufficiently large arguments.
+@isnad1 id=eventual.0h0v.s3.8087dd0ad1ef from=translated src=- shape=07c3c963 vocab=afa25697
+-/
 theorem eventually_hasMovingSaddleMargins :
     ∀ᶠ x in atTop, HasMovingSaddleMargins x := by
   have hloss := movingSourceLoss_isLittleO_etaL.bound (by norm_num : (0 : ℝ) < 1 / 8)

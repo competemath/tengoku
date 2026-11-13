@@ -55,14 +55,23 @@ def fixedRankCombinedError
   fixedRankMaximumError εlow εhigh εoff x +
     Real.log 3 / scaleV (x : ℝ)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.e01c49892916 from=translated src=- shape=f2cca0a6 vocab=c0208cb8
+-/
 theorem tendsto_scaleV_nat_atTop :
     Tendsto (fun x : ℕ ↦ scaleV (x : ℝ)) atTop atTop :=
   tendsto_scaleV_atTop.comp (tendsto_natCast_atTop_atTop (R := ℝ))
 
+/--
+@isnad1 id=eventual.0h0v.s4.79f36b4a86b0 from=translated src=- shape=cfa6313e vocab=2e78d695
+-/
 theorem eventually_scaleV_nat_pos :
     ∀ᶠ x : ℕ in atTop, 0 < scaleV (x : ℝ) :=
   tendsto_scaleV_nat_atTop.eventually_gt_atTop 0
 
+/--
+@isnad1 id=tendsto.3h3v.s6.a05092dc4d16 from=translated src=- shape=7a4de9c6 vocab=d0f0c425
+-/
 theorem tendsto_fixedRankMaximumError_zero
     {εlow εhigh εoff : ℕ → ℝ}
     (hlow : Tendsto εlow atTop (nhds 0))
@@ -72,6 +81,9 @@ theorem tendsto_fixedRankMaximumError_zero
   change Tendsto (fun x ↦ max (max (εlow x) (εhigh x)) (εoff x)) atTop (nhds 0)
   simpa only [max_self] using (hlow.max hhigh).max hoff
 
+/--
+@isnad1 id=tendsto.3h3v.s6.c003df942e18 from=translated src=- shape=7a4de9c6 vocab=678c25de
+-/
 theorem tendsto_fixedRankCombinedError_zero
     {εlow εhigh εoff : ℕ → ℝ}
     (hlow : Tendsto εlow atTop (nhds 0))
@@ -88,6 +100,9 @@ theorem tendsto_fixedRankCombinedError_zero
 
 /-! ## Three exponential branch bounds become one -/
 
+/--
+@isnad1 id=le.1h5v.s6.ce82084b1d8a from=translated src=- shape=e248e0e3 vocab=700485a0
+-/
 theorem sum_three_fixedRankExponentialMajorant_le_combined
     {J x : ℕ} {εlow εhigh εoff : ℕ → ℝ}
     (hV : 0 < scaleV (x : ℝ)) :
@@ -140,7 +155,9 @@ theorem sum_three_fixedRankExponentialMajorant_le_combined
 
 /-! ## Theorems 10.13 and 10.14 at the optimized cutoff -/
 
-/-- The exact fixed-rank diagonal estimate assembled from the three analytic branches.-/
+/-- The exact fixed-rank diagonal estimate assembled from the three analytic branches.
+@isnad1 id=fixedran.1h4v.s5.df0b6df731b2 from=translated src=- shape=dd622d67 vocab=d9d0ea64
+-/
 theorem fixedRankDiagonalEstimate_of_analyticData
     {J : ℕ} {εlow εhigh εoff : ℕ → ℝ}
     (data : FixedRankAnalyticData J εlow εhigh εoff) :
@@ -171,7 +188,9 @@ theorem fixedRankDiagonalEstimate_of_analyticData
         1 * fixedRankExponentialMajorant J
           (fixedRankCombinedError εlow εhigh εoff) x := by ring
 
-/-- The optimized form of Theorem 10.14, with all analytic dependencies explicit.-/
+/-- The optimized form of Theorem 10.14, with all analytic dependencies explicit.
+@isnad1 id=eventual.1h4v.s6.1aca1f08fae9 from=translated src=- shape=133c2451 vocab=1bd53d6f
+-/
 theorem fixedRank_theorem10_14
     {J : ℕ} {εlow εhigh εoff : ℕ → ℝ}
     (data : FixedRankAnalyticData J εlow εhigh εoff) :
@@ -182,7 +201,9 @@ theorem fixedRank_theorem10_14
             (fixedRankCombinedError εlow εhigh εoff) x := by
   simpa using (fixedRankDiagonalEstimate_of_analyticData data).bound
 
-/-- Odd shifts remove the diagonal from the assembled fixed-rank theorem.-/
+/-- Odd shifts remove the diagonal from the assembled fixed-rank theorem.
+@isnad1 id=eventual.1h4v.s6.7b969713eb32 from=translated src=- shape=4a8a9c06 vocab=3101db58
+-/
 theorem fixedRank_odd_shift_bound_of_analyticData
     {J : ℕ} {εlow εhigh εoff : ℕ → ℝ}
     (data : FixedRankAnalyticData J εlow εhigh εoff) :

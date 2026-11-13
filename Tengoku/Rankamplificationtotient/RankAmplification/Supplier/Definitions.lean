@@ -43,11 +43,17 @@ def residualDemandProduct {J y Y : ℕ} (P : LabelledPrimeDemands J y Y)
     (B : Finset (Fin J)) (q : ℕ) : ℕ :=
   blockDemandProduct P (B \ powerLabels P B q)
 
+/--
+@isnad1 id=lt.0h5v.s4.d68b753089ad from=translated src=- shape=a0bba990 vocab=2a227d17
+-/
 theorem blockDemandProduct_pos {J y Y : ℕ} (P : LabelledPrimeDemands J y Y)
     (B : Finset (Fin J)) :
     0 < blockDemandProduct P B := by
   exact Finset.prod_pos fun i hi ↦ (P.prime i).pos
 
+/--
+@isnad1 id=dvd.1h6v.s5.00ca991c3e9a from=translated src=- shape=e08c1efb vocab=29b205cc
+-/
 theorem demand_dvd_blockDemandProduct {J y Y : ℕ} (P : LabelledPrimeDemands J y Y)
     {B : Finset (Fin J)} {i : Fin J} (hi : i ∈ B) :
     P.value i ∣ blockDemandProduct P B := by
@@ -66,6 +72,9 @@ structure LabelPartition (J : ℕ) where
 abbrev LabelPartition.Block {J : ℕ} (π : LabelPartition J) :=
   {B : Finset (Fin J) // B ∈ π.blocks}
 
+/--
+@isnad1 id=nonempty.0h3v.s5.ba36a469bcb2 from=translated src=- shape=f234e42b vocab=61be4366
+-/
 theorem LabelPartition.block_nonempty {J : ℕ} (π : LabelPartition J) (B : π.Block) :
     B.1.Nonempty :=
   π.nonempty B.1 B.2
@@ -76,10 +85,16 @@ noncomputable def LabelPartition.blockOf {J : ℕ} (π : LabelPartition J) (i : 
   classical
   exact ⟨Classical.choose (π.covers i), (Classical.choose_spec (π.covers i)).1⟩
 
+/--
+@isnad1 id=mem.0h3v.s5.970925add57d from=translated src=- shape=ec0d8a1d vocab=607127c1
+-/
 theorem LabelPartition.mem_blockOf {J : ℕ} (π : LabelPartition J) (i : Fin J) :
     i ∈ (π.blockOf i).1 :=
   (Classical.choose_spec (π.covers i)).2
 
+/--
+@isnad1 id=eq.1h4v.s6.2ae45739d702 from=translated src=- shape=c2f3c621 vocab=04129873
+-/
 theorem LabelPartition.block_eq_of_mem {J : ℕ} (π : LabelPartition J) (i : Fin J)
     (B : π.Block) (hi : i ∈ B.1) :
     π.blockOf i = B := by
@@ -94,6 +109,9 @@ private theorem labelPartition_blocks_injective {J : ℕ} :
   cases h
   rfl
 
+/--
+@isnad1 id=finite.0h1v.s2.a8aa047d93b7 from=translated src=- shape=76a08d12 vocab=32b16e6e
+-/
 instance labelPartitionFinite (J : ℕ) : Finite (LabelPartition J) :=
   Finite.of_injective LabelPartition.blocks labelPartition_blocks_injective
 
@@ -130,11 +148,17 @@ def natBase {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : LinearDescriptor P x B) : ℕ :=
   d.base
 
+/--
+@isnad1 id=le.0h7v.s5.b38a766f800e from=translated src=- shape=3dc80dbb vocab=4e665e40
+-/
 theorem base_le {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : LinearDescriptor P x B) :
     d.natBase ≤ 2 * x :=
   Nat.lt_succ_iff.mp d.base.isLt
 
+/--
+@isnad1 id=lt.1h8v.s5.594f92d01814 from=translated src=- shape=91ea5031 vocab=ae824c78
+-/
 theorem demand_lt_base {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : LinearDescriptor P x B) {i : Fin J} (hi : i ∈ B) :
     P.value i < d.natBase := by
@@ -144,6 +168,9 @@ theorem demand_lt_base {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     Nat.le_of_dvd (Nat.sub_pos_of_lt d.base_prime.one_lt) hdvd
   exact hle.trans_lt (Nat.sub_lt d.base_prime.pos Nat.zero_lt_one)
 
+/--
+@isnad1 id=lt.1h7v.s5.75c9237c3542 from=translated src=- shape=d4377cc7 vocab=cdf5d944
+-/
 theorem base_gt_lowerCutoff {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : LinearDescriptor P x B) (hB : B.Nonempty) :
     y < d.natBase := by
@@ -165,6 +192,9 @@ theorem eq_of_base_eq {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
   apply base_injective
   exact Fin.ext h
 
+/--
+@isnad1 id=finite.0h6v.s4.173eb6b03a06 from=translated src=- shape=e122ad7b vocab=d0cbdabd
+-/
 instance finite {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} : Finite (LinearDescriptor P x B) :=
   Finite.of_injective LinearDescriptor.base base_injective
@@ -178,22 +208,34 @@ def natBase {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} (d : PowerDescriptor P B) : ℕ :=
   d.base
 
+/--
+@isnad1 id=le.0h6v.s5.bb3d937b2252 from=translated src=- shape=f7a64bdc vocab=b9c60a4f
+-/
 theorem base_le {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} (d : PowerDescriptor P B) :
     d.natBase ≤ Y :=
   Nat.lt_succ_iff.mp d.base.isLt
 
+/--
+@isnad1 id=lt.0h6v.s5.b0224d08d88e from=translated src=- shape=65b00687 vocab=4554ae09
+-/
 theorem multiplicity_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} (d : PowerDescriptor P B) :
     0 < powerMultiplicity P B d.natBase := by
   exact Finset.card_pos.mpr d.occurs
 
+/--
+@isnad1 id=ex.0h6v.s5.fd828cada84c from=translated src=- shape=6487bb1b vocab=cabf23ce
+-/
 theorem base_eq_demand {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} (d : PowerDescriptor P B) :
     ∃ i ∈ B, P.value i = d.natBase := by
   obtain ⟨i, hi⟩ := d.occurs
   exact ⟨i, (Finset.mem_filter.mp hi).1, (Finset.mem_filter.mp hi).2⟩
 
+/--
+@isnad1 id=lt.0h6v.s5.a956dfb29361 from=translated src=- shape=63e11e7e vocab=fbec892a
+-/
 theorem base_gt_lowerCutoff {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} (d : PowerDescriptor P B) :
     y < d.natBase := by
@@ -215,6 +257,9 @@ theorem eq_of_base_eq {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
   apply base_injective
   exact Fin.ext h
 
+/--
+@isnad1 id=finite.0h5v.s4.f1217f4107e7 from=translated src=- shape=c20467db vocab=30e4c2e0
+-/
 instance finite {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {B : Finset (Fin J)} : Finite (PowerDescriptor P B) :=
   Finite.of_injective PowerDescriptor.base base_injective
@@ -223,6 +268,9 @@ end PowerDescriptor
 
 namespace SupplierDescriptor
 
+/--
+@isnad1 id=ne.0h8v.s5.b104931bf520 from=translated src=- shape=4eef5bec vocab=8a8331a6
+-/
 theorem linear_power_base_ne {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (linear : LinearDescriptor P x B)
     (power : PowerDescriptor P B) :
@@ -231,6 +279,9 @@ theorem linear_power_base_ne {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x :
   have hlt := linear.demand_lt_base hi
   omega
 
+/--
+@isnad1 id=finite.0h6v.s4.f6681bd31cc5 from=translated src=- shape=e122ad7b vocab=e7c9b1f1
+-/
 instance finite {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} : Finite (SupplierDescriptor P x B) := by
   classical
@@ -255,16 +306,25 @@ def selectedExponent {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) : ℕ :=
   d.elim (fun _ ↦ 1) fun source ↦ powerMultiplicity P B source.natBase + 1
 
+/--
+@isnad1 id=eq.0h7v.s5.e8cacbf63d32 from=translated src=- shape=0fde1dc1 vocab=83633fbf
+-/
 theorem selectedDivisor_eq_pow {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     d.selectedDivisor = d.base ^ d.selectedExponent := by
   cases d <;> simp [selectedDivisor, base, selectedExponent]
 
+/--
+@isnad1 id=lt.0h7v.s5.4c02c02d9d38 from=translated src=- shape=5b23fd33 vocab=02924498
+-/
 theorem selectedExponent_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     0 < d.selectedExponent := by
   cases d <;> simp [selectedExponent]
 
+/--
+@isnad1 id=prime.0h7v.s5.2e41e8f9749e from=translated src=- shape=f11c6893 vocab=8ff1362e
+-/
 theorem base_prime {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     Nat.Prime d.base := by
@@ -272,11 +332,17 @@ theorem base_prime {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
   | inl source => exact source.base_prime
   | inr source => exact source.base_prime
 
+/--
+@isnad1 id=lt.0h7v.s5.e6a5f5f6d6f5 from=translated src=- shape=5b23fd33 vocab=fb89fa01
+-/
 theorem base_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     0 < d.base :=
   d.base_prime.pos
 
+/--
+@isnad1 id=lt.0h7v.s5.74dceaef3837 from=translated src=- shape=5b23fd33 vocab=5f41c37d
+-/
 theorem selectedDivisor_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     0 < d.selectedDivisor := by
@@ -284,6 +350,9 @@ theorem selectedDivisor_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : 
   | inl source => exact source.base_prime.pos
   | inr source => exact pow_pos source.base_prime.pos _
 
+/--
+@isnad1 id=dvd.0h7v.s5.d32f51ee74a3 from=translated src=- shape=be7aa076 vocab=6fee4ebb
+-/
 theorem base_dvd_selectedDivisor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     d.base ∣ d.selectedDivisor := by
@@ -291,6 +360,9 @@ theorem base_dvd_selectedDivisor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} 
   | inl source => exact dvd_rfl
   | inr source => exact dvd_pow_self source.natBase (Nat.succ_ne_zero _)
 
+/--
+@isnad1 id=le.0h7v.s5.475a20870b2b from=translated src=- shape=fe0daee0 vocab=c1e63a89
+-/
 theorem base_le_max {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     d.base ≤ max (2 * x) Y := by
@@ -298,11 +370,17 @@ theorem base_le_max {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
   | inl source => exact source.base_le.trans (le_max_left _ _)
   | inr source => exact source.base_le.trans (le_max_right _ _)
 
+/--
+@isnad1 id=le.1h7v.s6.b82f15830b4c from=translated src=- shape=bb8c309c vocab=086190f1
+-/
 theorem base_le_two_mul {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) (hY : Y ≤ 2 * x) :
     d.base ≤ 2 * x :=
   d.base_le_max.trans (max_le (le_rfl) hY)
 
+/--
+@isnad1 id=lt.1h7v.s5.cfbf9ff6ad38 from=translated src=- shape=d4377cc7 vocab=b834561d
+-/
 theorem base_gt_lowerCutoff {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) (hB : B.Nonempty) :
     y < d.base := by
@@ -324,6 +402,9 @@ theorem eq_of_base_eq {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
       | inl linear => exact False.elim (linear_power_base_ne linear power h.symm)
       | inr other => exact congrArg Sum.inr (PowerDescriptor.eq_of_base_eq h)
 
+/--
+@isnad1 id=eq.0h7v.s5.e6b3c3bd2fa3 from=translated src=- shape=e8786980 vocab=53a4c711
+-/
 theorem primeSupport_selectedDivisor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     primeSupport d.selectedDivisor = {d.base} := by
@@ -361,32 +442,50 @@ def selectedDivisor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     (s : SupplierSystem P x) : ℕ :=
   ∏ B : s.partition.Block, (s.descriptor B).selectedDivisor
 
+/--
+@isnad1 id=dvd.0h7v.s6.b26d1cef2010 from=translated src=- shape=7d870519 vocab=a5bbc66e
+-/
 theorem descriptor_selectedDivisor_dvd {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) (B : s.partition.Block) :
     (s.descriptor B).selectedDivisor ∣ s.selectedDivisor := by
   exact Finset.dvd_prod_of_mem (fun C : s.partition.Block ↦
     (s.descriptor C).selectedDivisor) (Finset.mem_univ B)
 
+/--
+@isnad1 id=dvd.0h7v.s6.54f1a8a710bf from=translated src=- shape=7d870519 vocab=707dd9e6
+-/
 theorem descriptor_base_dvd {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) (B : s.partition.Block) :
     (s.descriptor B).base ∣ s.selectedDivisor :=
   (s.descriptor B).base_dvd_selectedDivisor.trans (s.descriptor_selectedDivisor_dvd B)
 
+/--
+@isnad1 id=lt.0h6v.s5.c6e3a6934ed4 from=translated src=- shape=5b46be78 vocab=a1e1dd6c
+-/
 theorem selectedDivisor_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) :
     0 < s.selectedDivisor := by
   exact Finset.prod_pos fun B hB ↦ (s.descriptor B).selectedDivisor_pos
 
+/--
+@isnad1 id=ne.1h8v.s7.2bca9d9755de from=translated src=- shape=dc13a53c vocab=22530db0
+-/
 theorem base_ne_of_ne {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) {B C : s.partition.Block} (hBC : B ≠ C) :
     (s.descriptor B).base ≠ (s.descriptor C).base :=
   (s.bases_injective.ne hBC)
 
+/--
+@isnad1 id=lt.0h7v.s6.d5e90d9a2f27 from=translated src=- shape=a6d160c0 vocab=7a637904
+-/
 theorem descriptor_base_gt_lowerCutoff {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) (B : s.partition.Block) :
     y < (s.descriptor B).base :=
   (s.descriptor B).base_gt_lowerCutoff (s.partition.block_nonempty B)
 
+/--
+@isnad1 id=coprime.1h8v.s7.19e94f350af4 from=translated src=- shape=291aed9b vocab=4d626e0c
+-/
 theorem selectedDivisors_coprime {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) {B C : s.partition.Block} (hBC : B ≠ C) :
     Nat.Coprime (s.descriptor B).selectedDivisor (s.descriptor C).selectedDivisor := by
@@ -394,6 +493,9 @@ theorem selectedDivisors_coprime {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
   exact Nat.coprime_pow_primes _ _ (s.descriptor B).base_prime
     (s.descriptor C).base_prime (s.bases_injective.ne hBC)
 
+/--
+@isnad1 id=dvd.1h7v.s6.33221ec26b11 from=translated src=- shape=63e86078 vocab=a5bbc66e
+-/
 theorem selectedDivisor_dvd_of_forall_descriptor_dvd {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} (s : SupplierSystem P x)
     (hdvd : ∀ B, (s.descriptor B).selectedDivisor ∣ N) :
@@ -410,7 +512,9 @@ theorem selectedDivisor_dvd_of_forall_descriptor_dvd {J y Y : ℕ}
       · exact hdvd B
       · exact ih
 
-/-- Every prime factor selected by a supplier system lies above the lower cutoff `y`.-/
+/-- Every prime factor selected by a supplier system lies above the lower cutoff `y`.
+@isnad1 id=lt.2h7v.s5.cec1ec9ce1e4 from=translated src=- shape=f4033f31 vocab=0c3c711e
+-/
 theorem primeFactor_selectedDivisor_gt_lowerCutoff {J y Y p : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x)
     (hp : Nat.Prime p) (hdvd : p ∣ s.selectedDivisor) :
@@ -436,6 +540,9 @@ private theorem code_injective {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x
   cases h
   rfl
 
+/--
+@isnad1 id=finite.0h5v.s4.199e12333346 from=translated src=- shape=546c8e14 vocab=b2e506b0
+-/
 instance finite {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ} :
     Finite (SupplierSystem P x) :=
   by
@@ -473,24 +580,36 @@ def localFactor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     (B : s.partition.Block) : ℕ :=
   (s.descriptor B).base ^ R.exponent B
 
+/--
+@isnad1 id=lt.0h9v.s5.ae24646f4dd9 from=translated src=- shape=61a0ddb7 vocab=ea70bfc0
+-/
 theorem exponent_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     {s : SupplierSystem P x} (R : SupplierRealization (N := N) s)
     (B : s.partition.Block) :
     0 < R.exponent B :=
   (R.exactFactor B).1
 
+/--
+@isnad1 id=dvd.0h9v.s5.e36905ee5733 from=translated src=- shape=c417fd54 vocab=10f69328
+-/
 theorem localFactor_dvd {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     {s : SupplierSystem P x} (R : SupplierRealization (N := N) s)
     (B : s.partition.Block) :
     R.localFactor B ∣ N :=
   (R.exactFactor B).2.1
 
+/--
+@isnad1 id=dvd.0h9v.s6.f730bf6ddf2f from=translated src=- shape=c6c55c2a vocab=59885b14
+-/
 theorem selectedDivisor_dvd_localFactor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} {s : SupplierSystem P x}
     (R : SupplierRealization (N := N) s) (B : s.partition.Block) :
     (s.descriptor B).selectedDivisor ∣ R.localFactor B :=
   R.selected_dvd B
 
+/--
+@isnad1 id=le.0h9v.s6.dfdb47dfe35c from=translated src=- shape=c6c55c2a vocab=819cd115
+-/
 theorem selectedExponent_le_exponent {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} {s : SupplierSystem P x}
     (R : SupplierRealization (N := N) s) (B : s.partition.Block) :
@@ -499,6 +618,9 @@ theorem selectedExponent_le_exponent {J y Y : ℕ}
   rw [← (s.descriptor B).selectedDivisor_eq_pow]
   exact R.selected_dvd B
 
+/--
+@isnad1 id=dvd.0h8v.s5.393949f14f54 from=translated src=- shape=0934052b vocab=e4f52fca
+-/
 theorem systemSelectedDivisor_dvd {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} {s : SupplierSystem P x}
     (R : SupplierRealization (N := N) s) :
@@ -536,7 +658,9 @@ noncomputable def ofSystemDivisor {J y Y : ℕ}
     apply ((s.descriptor B).base_prime.pow_dvd_iff_le_factorization hN).mp
     rwa [← (s.descriptor B).selectedDivisor_eq_pow]
 
-/-- For positive ambient integers, the paper's realization criterion is exact.-/
+/-- For positive ambient integers, the paper's realization criterion is exact.
+@isnad1 id=iff.1h7v.s5.c59833a1c97b from=translated src=- shape=711c2a1f vocab=9fb5da58
+-/
 theorem nonempty_realization_iff_systemSelectedDivisor_dvd {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} (s : SupplierSystem P x) (hN : N ≠ 0) :
     Nonempty (SupplierRealization (N := N) s) ↔ s.selectedDivisor ∣ N := by
@@ -545,6 +669,9 @@ theorem nonempty_realization_iff_systemSelectedDivisor_dvd {J y Y : ℕ}
     exact R.systemSelectedDivisor_dvd
   · exact fun hdvd ↦ ⟨ofSystemDivisor s hN hdvd⟩
 
+/--
+@isnad1 id=injectiv.0h8v.s5.9b2b44f68824 from=translated src=- shape=54f1579d vocab=28e4ffb3
+-/
 theorem localFactor_injective {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     {s : SupplierSystem P x} (R : SupplierRealization (N := N) s) :
     Function.Injective R.localFactor := by
@@ -571,6 +698,9 @@ def localFactor {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     (σ : OccurrenceAssignment R) (i : Fin J) : ℕ :=
   R.localFactor (σ.source i)
 
+/--
+@isnad1 id=eq.0h11v.s6.87654c48beb0 from=translated src=- shape=da39eb56 vocab=1a5b0b21
+-/
 theorem source_eq {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     {s : SupplierSystem P x} {R : SupplierRealization (N := N) s}
     (σ τ : OccurrenceAssignment R) (i : Fin J) :
@@ -579,6 +709,9 @@ theorem source_eq {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
   exact s.partition.eq_of_overlap (σ.source i).2 (τ.source i).2
     (σ.label_mem i) (τ.label_mem i)
 
+/--
+@isnad1 id=eq.0h10v.s5.29dc28750f78 from=translated src=- shape=1dc9ea0e vocab=663eb561
+-/
 theorem unique {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     {s : SupplierSystem P x} {R : SupplierRealization (N := N) s}
     (σ τ : OccurrenceAssignment R) : σ = τ := by

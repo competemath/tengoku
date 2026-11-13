@@ -17,6 +17,9 @@ noncomputable def smoothPredecessorPrimeSet (X Y : ℕ) : Finset ℕ := by
   classical
   exact (Nat.primesLE X).filter fun p ↦ IsSmooth Y (p - 1)
 
+/--
+@isnad1 id=iff.0h3v.s5.58ff2fed5d23 from=translated src=- shape=97486ba0 vocab=c5dd7e4c
+-/
 @[simp]
 theorem mem_smoothPredecessorPrimeSet {X Y p : ℕ} :
     p ∈ smoothPredecessorPrimeSet X Y ↔
@@ -25,24 +28,33 @@ theorem mem_smoothPredecessorPrimeSet {X Y p : ℕ} :
   rw [smoothPredecessorPrimeSet, Finset.mem_filter, Nat.mem_primesLE]
   aesop
 
+/--
+@isnad1 id=prime.1h3v.s4.cd667057b8a8 from=translated src=- shape=7cfd432b vocab=300f3b9c
+-/
 theorem smoothPredecessorPrimeSet_prime {X Y p : ℕ}
     (hp : p ∈ smoothPredecessorPrimeSet X Y) : p.Prime :=
   (mem_smoothPredecessorPrimeSet.mp hp).1
 
-/-- A prime divisor contributes its predecessor to the totient.-/
+/-- A prime divisor contributes its predecessor to the totient.
+@isnad1 id=dvd.2h2v.s4.cf57bb1cea0a from=translated src=- shape=0c2acc96 vocab=8a55ae12
+-/
 theorem prime_pred_dvd_totient {p n : ℕ} (hp : p.Prime) (hpn : p ∣ n) :
     p - 1 ∣ n.totient := by
   have htot := Nat.totient_dvd_of_dvd hpn
   rw [Nat.totient_prime hp] at htot
   exact htot
 
-/-- Smoothness of a totient forces smoothness of every prime predecessor in its support.-/
+/-- Smoothness of a totient forces smoothness of every prime predecessor in its support.
+@isnad1 id=issmooth.3h3v.s5.a195444511c8 from=translated src=- shape=5827677e vocab=6ba94610
+-/
 theorem prime_pred_smooth_of_totient_smooth {Y p n : ℕ} (hp : p.Prime) (hpn : p ∣ n)
     (hphi : IsSmooth Y n.totient) : IsSmooth Y (p - 1) := by
   apply hphi.of_dvd (prime_pred_dvd_totient hp hpn)
   exact Nat.ne_of_gt (Nat.sub_pos_of_lt hp.one_lt)
 
-/-- Every integer counted by `Φ(X,Y)` is factored over the finite set of primes with smooth predecessor.-/
+/-- Every integer counted by `Φ(X,Y)` is factored over the finite set of primes with smooth predecessor.
+@isnad1 id=mem.1h3v.s5.addc970e6cb4 from=translated src=- shape=c3d61f21 vocab=718e58e5
+-/
 theorem smoothTotient_mem_factoredNumbers {X Y n : ℕ} (hn : n ∈ smoothTotientSet X Y) :
     n ∈ Nat.factoredNumbers (smoothPredecessorPrimeSet X Y) := by
   rw [Nat.mem_factoredNumbers']
@@ -60,7 +72,9 @@ def smoothTotientRankinSum (X Y : ℕ) (c : ℝ) : ℝ :=
 def smoothPredecessorEulerProduct (X Y : ℕ) (c : ℝ) : ℝ :=
   rankinEulerMajorant (smoothPredecessorPrimeSet X Y) 1 c
 
-/-- Exact Euler-product expansion over all integers factored by smooth-predecessor primes.-/
+/-- Exact Euler-product expansion over all integers factored by smooth-predecessor primes.
+@isnad1 id=hassum.1h3v.s6.874885ff7d92 from=translated src=- shape=7074a7c0 vocab=c2eb20ec
+-/
 theorem hasSum_smoothPredecessor_factored (X Y : ℕ) {c : ℝ} (hc : 0 < c) :
     HasSum
       (fun n : Nat.factoredNumbers (smoothPredecessorPrimeSet X Y) ↦
@@ -79,7 +93,9 @@ theorem hasSum_smoothPredecessor_factored (X Y : ℕ) {c : ℝ} (hc : 0 < c) :
   simpa [smoothPredecessorEulerProduct, rankinEulerMajorant, rankinEulerRatio,
     hfilter, reciprocalRpowMonoidHom_apply] using heuler.2
 
-/-- The finite Dirichlet sum in the Rankin reduction is bounded by the complete Euler product.-/
+/-- The finite Dirichlet sum in the Rankin reduction is bounded by the complete Euler product.
+@isnad1 id=le.1h3v.s4.10c8bdccd1bf from=translated src=- shape=3443539d vocab=d70be544
+-/
 theorem smoothTotientRankinSum_le_eulerProduct (X Y : ℕ) {c : ℝ} (hc : 0 < c) :
     smoothTotientRankinSum X Y c ≤ smoothPredecessorEulerProduct X Y c := by
   let e : {n : ℕ // n ∈ smoothTotientSet X Y} ↪
@@ -113,7 +129,9 @@ theorem smoothTotientRankinSum_le_eulerProduct (X Y : ℕ) {c : ℝ} (hc : 0 < c
   rw [hfinite, hmap]
   exact hle
 
-/-- The exact Rankin inequality for the smooth-totient census.-/
+/-- The exact Rankin inequality for the smooth-totient census.
+@isnad1 id=le.1h3v.s5.3b1e270f8868 from=translated src=- shape=8b893bb9 vocab=65c7846a
+-/
 theorem smoothTotientCount_le_rankinEuler {X Y : ℕ} {c : ℝ} (hc : 0 < c) :
     (smoothTotientCount X Y : ℝ) ≤
       (X : ℝ) ^ c * smoothPredecessorEulerProduct X Y c := by
@@ -142,7 +160,9 @@ theorem smoothTotientCount_le_rankinEuler {X Y : ℕ} {c : ℝ} (hc : 0 < c) :
       mul_le_mul_of_nonneg_left (smoothTotientRankinSum_le_eulerProduct X Y hc)
         (Real.rpow_nonneg (Nat.cast_nonneg X) _)
 
-/-- Exact logarithm of the BFPS Euler product.-/
+/-- Exact logarithm of the BFPS Euler product.
+@isnad1 id=eq.1h3v.s6.974637105f10 from=translated src=- shape=54f60ad8 vocab=a60e1963
+-/
 theorem log_smoothPredecessorEulerProduct {X Y : ℕ} {c : ℝ} (hc : 0 < c) :
     Real.log (smoothPredecessorEulerProduct X Y c) =
       ∑ p ∈ smoothPredecessorPrimeSet X Y,
@@ -153,7 +173,9 @@ theorem log_smoothPredecessorEulerProduct {X Y : ℕ} {c : ℝ} (hc : 0 < c) :
   simpa [smoothPredecessorEulerProduct, rankinEulerRatio] using
     (log_rankinEulerMajorant (P := smoothPredecessorPrimeSet X Y) (j := 1) hp hc)
 
-/-- Elementary rational majorant for the logarithm of the BFPS Euler product.-/
+/-- Elementary rational majorant for the logarithm of the BFPS Euler product.
+@isnad1 id=le.1h3v.s6.72c428233ba2 from=translated src=- shape=8916416a vocab=47cb6040
+-/
 theorem log_smoothPredecessorEulerProduct_le {X Y : ℕ} {c : ℝ} (hc : 0 < c) :
     Real.log (smoothPredecessorEulerProduct X Y c) ≤
       ∑ p ∈ smoothPredecessorPrimeSet X Y,

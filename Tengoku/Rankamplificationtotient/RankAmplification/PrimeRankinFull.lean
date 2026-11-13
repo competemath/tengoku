@@ -15,11 +15,16 @@ noncomputable section
 /-- A convenient absolute constant in the explicit prime-counting bound.-/
 def primeCountingConstant : ℝ := 2 * Real.log 4 + 2
 
+/--
+@isnad1 id=lt.0h0v.s3.d473b600f2df from=translated src=- shape=ff3a10fc vocab=0e1e0279
+-/
 theorem primeCountingConstant_pos : 0 < primeCountingConstant := by
   rw [primeCountingConstant]
   positivity
 
-/-- Elementary inequality used to absorb the square-root term in Chebyshev's explicit bound.-/
+/-- Elementary inequality used to absorb the square-root term in Chebyshev's explicit bound.
+@isnad1 id=le.1h1v.s5.fdbc54ed8193 from=translated src=- shape=07dccf84 vocab=71d83edf
+-/
 theorem log_le_two_mul_sqrt {x : ℝ} (hx : 1 < x) :
     Real.log x ≤ 2 * Real.sqrt x := by
   have hsqrt : 0 < Real.sqrt x := Real.sqrt_pos.2 (zero_lt_one.trans hx)
@@ -31,7 +36,9 @@ theorem log_le_two_mul_sqrt {x : ℝ} (hx : 1 < x) :
       ring
     _ ≤ 2 * Real.sqrt x := by linarith
 
-/-- Pure `x / log x` form of Mathlib's explicit Chebyshev prime-counting estimate.-/
+/-- Pure `x / log x` form of Mathlib's explicit Chebyshev prime-counting estimate.
+@isnad1 id=le.1h1v.s5.5b57f610e12a from=translated src=- shape=b996d074 vocab=4c44f634
+-/
 theorem primeCounting_le_constant_mul_div {x : ℝ} (hx : 1 < x) :
     (Nat.primeCounting ⌊x⌋₊ : ℝ) ≤ primeCountingConstant * x / Real.log x := by
   have hlog : 0 < Real.log x := Real.log_pos hx
@@ -56,7 +63,9 @@ theorem primeCounting_le_constant_mul_div {x : ℝ} (hx : 1 < x) :
       rw [primeCountingConstant]
       ring
 
-/-- Local integrability of the Abel kernel for the full Rankin prime sum.-/
+/-- Local integrability of the Abel kernel for the full Rankin prime sum.
+@isnad1 id=integrab.0h2v.s6.5288cf0ea2f5 from=translated src=- shape=66a71ba0 vocab=8a565389
+-/
 theorem integrableOn_primeCounting_mul_rpow (R : ℝ) (δ : ℝ) :
     IntegrableOn (fun t : ℝ ↦
       (Nat.primeCounting ⌊t⌋₊ : ℝ) * t ^ (δ - 2)) (Set.Icc 2 R) volume := by
@@ -72,7 +81,9 @@ theorem integrableOn_primeCounting_mul_rpow (R : ℝ) (δ : ℝ) :
   simp [c, Set.indicator_apply]
   ring
 
-/-- Exact Abel-summation identity for the full prime Rankin sum.-/
+/-- Exact Abel-summation identity for the full prime Rankin sum.
+@isnad1 id=eq.1h2v.s7.bd37096fbee5 from=translated src=- shape=13707b55 vocab=59e44018
+-/
 theorem primeRankinSum_eq_primeCounting_integral {R : ℕ} {δ : ℝ} (hR : 2 ≤ R) :
     primeRankinSum R δ =
       (R : ℝ) ^ (-1 + δ) * Nat.primeCounting R +
@@ -130,6 +141,9 @@ theorem primeRankinSum_eq_primeCounting_integral {R : ℕ} {δ : ℝ} (hR : 2 �
 def rankinLogIntegral (δ : ℝ) (R : ℝ) : ℝ :=
   ∫ t in (2 : ℝ)..R, t ^ (δ - 1) / Real.log t
 
+/--
+@isnad1 id=interval.2h3v.s6.6808b1caa805 from=translated src=- shape=c89c4093 vocab=bf82cac4
+-/
 theorem intervalIntegrable_rankinLogKernel {δ a b : ℝ} (ha : 1 < a) (hab : a ≤ b) :
     IntervalIntegrable (fun t : ℝ ↦ t ^ (δ - 1) / Real.log t) volume a b := by
   refine ContinuousOn.intervalIntegrable fun t ht ↦ ContinuousAt.continuousWithinAt ?_
@@ -140,6 +154,9 @@ theorem intervalIntegrable_rankinLogKernel {δ a b : ℝ} (ha : 1 < a) (hab : a 
   exact (continuousAt_id.rpow_const (Or.inl htpos.ne')).div
     (Real.continuousAt_log htpos.ne') hlog
 
+/--
+@isnad1 id=le.1h2v.s4.f5d0cc1c37c3 from=translated src=- shape=61bdc3e7 vocab=047d3000
+-/
 theorem rankinLogIntegral_nonneg {δ : ℝ} {R : ℝ} (hR : 2 ≤ R) :
     0 ≤ rankinLogIntegral δ R := by
   rw [rankinLogIntegral]
@@ -148,7 +165,9 @@ theorem rankinLogIntegral_nonneg {δ : ℝ} {R : ℝ} (hR : 2 ≤ R) :
   exact div_nonneg (Real.rpow_nonneg (by linarith [ht.1]) _)
     (Real.log_nonneg (by linarith [ht.1]))
 
-/-- Abel summation and the explicit prime-counting estimate reduce the full Rankin sum to `rankinLogIntegral`.-/
+/-- Abel summation and the explicit prime-counting estimate reduce the full Rankin sum to `rankinLogIntegral`.
+@isnad1 id=le.2h2v.s6.f6809bb90538 from=translated src=- shape=7f5bb78c vocab=ce780581
+-/
 theorem primeRankinSum_le_rankinLogIntegral {R : ℕ} {δ : ℝ}
     (hR : 2 ≤ R) (hδ0 : 0 ≤ δ) :
     primeRankinSum R δ ≤ primeCountingConstant *
@@ -227,7 +246,9 @@ theorem primeRankinSum_le_rankinLogIntegral {R : ℕ} {δ : ℝ}
 
 /-! ## The split logarithmic integral -/
 
-/-- Derivative of the endpoint kernel used on the upper part of the split integral.-/
+/-- Derivative of the endpoint kernel used on the upper part of the split integral.
+@isnad1 id=eq.1h2v.s7.6ff0aea57cc5 from=translated src=- shape=e2c0c3a6 vocab=0a4f61e2
+-/
 theorem deriv_rpow_div_log {δ t : ℝ} (ht : 1 < t) :
     deriv (fun x : ℝ ↦ x ^ δ / Real.log x) t =
       t ^ (δ - 1) * (δ * Real.log t - 1) / Real.log t ^ 2 := by
@@ -240,7 +261,9 @@ theorem deriv_rpow_div_log {δ t : ℝ} (ht : 1 < t) :
   rw [Real.rpow_sub_one ht0]
   field_simp
 
-/-- On a range where `δ log B ≤ 2`, the exponential weight costs only `exp 2`.-/
+/-- On a range where `δ log B ≤ 2`, the exponential weight costs only `exp 2`.
+@isnad1 id=le.3h2v.s6.0b894a185cc2 from=translated src=- shape=33444d54 vocab=aa89efec
+-/
 theorem rankinLogIntegral_le_exp_two_loglog {δ B : ℝ}
     (hB : 2 ≤ B) (hδ0 : 0 ≤ δ) (hδB : δ * Real.log B ≤ 2) :
     rankinLogIntegral δ B ≤ Real.exp 2 *
@@ -281,7 +304,9 @@ theorem rankinLogIntegral_le_exp_two_loglog {δ B : ℝ}
       rw [intervalIntegral.integral_const_mul,
         integral_inv_div_log (by norm_num) hBone]
 
-/-- Above a point where `δ log A ≥ 2`, the logarithmic kernel is controlled by the derivative of `t^δ / log t`.-/
+/-- Above a point where `δ log A ≥ 2`, the logarithmic kernel is controlled by the derivative of `t^δ / log t`.
+@isnad1 id=le.4h3v.s7.82d48f790b7b from=translated src=- shape=ffe33e1e vocab=bdcca873
+-/
 theorem rankinLogIntegral_tail_le {δ A B : ℝ}
     (hδ : 0 < δ) (hA : 1 < A) (hAB : A ≤ B)
     (hδA : 2 ≤ δ * Real.log A) :
@@ -349,7 +374,9 @@ theorem rankinLogIntegral_tail_le {δ A B : ℝ}
       dsimp [g]
       field_simp
 
-/-- Uniform bound for the logarithmic Rankin integral throughout `0 < δ ≤ 1/2`.-/
+/-- Uniform bound for the logarithmic Rankin integral throughout `0 < δ ≤ 1/2`.
+@isnad1 id=le.3h2v.s7.031179526931 from=translated src=- shape=6393ebdb vocab=533beb51
+-/
 theorem rankinLogIntegral_le_full {δ R : ℝ}
     (hR : 2 ≤ R) (hδ : 0 < δ) (hδhalf : δ ≤ 1 / 2) :
     rankinLogIntegral δ R ≤
@@ -413,7 +440,9 @@ theorem rankinLogIntegral_le_full {δ R : ℝ}
 
 /-! ## Full prime-sum bounds -/
 
-/-- Direct explicit full-exponent estimate before harmless normalization of the two terms.-/
+/-- Direct explicit full-exponent estimate before harmless normalization of the two terms.
+@isnad1 id=le.3h2v.s7.254c2850603d from=translated src=- shape=f3e6623a vocab=864d95a6
+-/
 theorem primeRankinSum_le_full_raw {R : ℕ} {δ : ℝ}
     (hR : 2 ≤ R) (hδ : 0 < δ) (hδhalf : δ ≤ 1 / 2) :
     primeRankinSum R δ ≤ primeCountingConstant *
@@ -435,7 +464,9 @@ def fullPrimeRankinError (R : ℕ) (δ : ℝ) : ℝ :=
         (Real.log (Real.log (3 * (R : ℝ))) - Real.log (Real.log 2)) +
       3 * (R : ℝ) ^ δ / (δ * Real.log R))
 
-/-- The desired unconditional full-exponent prime Rankin estimate.-/
+/-- The desired unconditional full-exponent prime Rankin estimate.
+@isnad1 id=le.3h2v.s5.4f319c00fda8 from=translated src=- shape=215e3854 vocab=41372188
+-/
 theorem primeRankinSum_le_full {R : ℕ} {δ : ℝ}
     (hR : 2 ≤ R) (hδ : 0 < δ) (hδhalf : δ ≤ 1 / 2) :
     primeRankinSum R δ ≤ fullPrimeRankinError R δ := by
@@ -481,7 +512,9 @@ theorem primeRankinSum_le_full {R : ℕ} {δ : ℝ}
 
 /-! ## The paper's exponent and the all-range divisor tail -/
 
-/-- At the paper's chosen exponent, `R^δ = u`.-/
+/-- At the paper's chosen exponent, `R^δ = u`.
+@isnad1 id=eq.2h2v.s5.fb6a32164297 from=translated src=- shape=ef4d9491 vocab=7f1c3157
+-/
 theorem rankinBase_rpow_delta {X R : ℕ} (hR : 1 < R) (hu : 0 < rankinU X R) :
     (R : ℝ) ^ rankinDelta X R = rankinU X R := by
   have hRpos : 0 < (R : ℝ) := by positivity
@@ -499,7 +532,9 @@ def fullULogUPrimeError (R X : ℕ) : ℝ :=
         (Real.log (Real.log (3 * (R : ℝ))) - Real.log (Real.log 2)) +
       3 * rankinU X R / Real.log (rankinU X R))
 
-/-- Unconditional `log log (3R) + u / log u` estimate throughout the paper range `1 < u ≤ √R`.-/
+/-- Unconditional `log log (3R) + u / log u` estimate throughout the paper range `1 < u ≤ √R`.
+@isnad1 id=le.3h2v.s5.7ecb1a9d9792 from=translated src=- shape=20c90fe8 vocab=0ffbc1a2
+-/
 theorem primeRankinSum_le_full_uLogU {R X : ℕ}
     (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R) :
@@ -520,7 +555,9 @@ theorem primeRankinSum_le_full_uLogU {R X : ℕ}
 def fullPaperDivisorError (R X : ℕ) : ℝ :=
   divisorEulerHalfLoss * fullULogUPrimeError R X
 
-/-- Lemma 2.5's general exponential estimate on the entire paper range `1 < u ≤ √R`; unlike `finiteDivisorWeightedSmoothCount_le_paper_error`, this theorem has no small-exponent premise.-/
+/-- Lemma 2.5's general exponential estimate on the entire paper range `1 < u ≤ √R`; unlike `finiteDivisorWeightedSmoothCount_le_paper_error`, this theorem has no small-exponent premise.
+@isnad1 id=le.4h2v.s6.d76e5506b8f4 from=translated src=- shape=d16c5389 vocab=2771f4b1
+-/
 theorem finiteDivisorWeightedSmoothCount_le_full_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R) :
@@ -553,7 +590,9 @@ theorem finiteDivisorWeightedSmoothCount_le_full_paper_error {R X : ℕ}
       apply mul_le_mul_of_nonneg_left _ (by positivity)
       exact Real.exp_le_exp.mpr (add_le_add_right herror _)
 
-/-- Log-normalized full-range form of the general estimate (2.6).-/
+/-- Log-normalized full-range form of the general estimate (2.6).
+@isnad1 id=le.4h2v.s6.83a762146279 from=translated src=- shape=9549ec05 vocab=875f1d80
+-/
 theorem log_divisorWeightedSmoothCount_div_le_full_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R) :
@@ -571,7 +610,9 @@ theorem log_divisorWeightedSmoothCount_div_le_full_paper_error {R X : ℕ}
     div_pos (finiteDivisorWeightedSmoothCount_pos hX) hXreal
   simpa only [Real.log_exp] using Real.log_le_log hdivpos hdiv
 
-/-- Clean full-range form of Lemma 2.5 under the explicit dominance inequality.-/
+/-- Clean full-range form of Lemma 2.5 under the explicit dominance inequality.
+@isnad1 id=le.5h2v.s7.261657d3d016 from=translated src=- shape=5750f192 vocab=973d4ae8
+-/
 theorem finiteDivisorWeightedSmoothCount_le_full_half_u_log_u {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R)

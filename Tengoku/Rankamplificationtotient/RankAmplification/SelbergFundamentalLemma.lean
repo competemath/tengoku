@@ -21,10 +21,16 @@ namespace BFPSTwoAffine
 def directMertensProduct (z : ℕ) : ℝ :=
   ∏ p ∈ Nat.primesLE z, (1 - (p : ℝ)⁻¹)
 
+/--
+@isnad1 id=lt.1h1v.s5.fde657d08f2a from=translated src=- shape=fb5031f0 vocab=8fde40d2
+-/
 theorem directMertensFactor_pos {p : ℕ} (hp : p.Prime) :
     0 < 1 - (p : ℝ)⁻¹ := by
   exact sub_pos.mpr (inv_lt_one_of_one_lt₀ (by exact_mod_cast hp.one_lt))
 
+/--
+@isnad1 id=lt.0h1v.s3.babac3ee37a2 from=translated src=- shape=b9369acb vocab=1f21e814
+-/
 theorem directMertensProduct_pos (z : ℕ) : 0 < directMertensProduct z := by
   unfold directMertensProduct
   exact Finset.prod_pos fun p hp ↦
@@ -44,7 +50,9 @@ def harmonicSmoothEmbedding (z : ℕ) :
   inj' := fun a b hab ↦ Subtype.ext <| congrArg
     (fun q : (z + 1).smoothNumbers ↦ (q : ℕ)) hab
 
-/-- Euler's elementary observation: the reciprocal prime product contains the harmonic sum.-/
+/-- Euler's elementary observation: the reciprocal prime product contains the harmonic sum.
+@isnad1 id=le.0h1v.s3.20f1b51b36e5 from=translated src=- shape=0a9af14d vocab=99babdf0
+-/
 theorem harmonic_le_mertensProduct (z : ℕ) :
     ((harmonic z : ℚ) : ℝ) ≤ mertensProduct z := by
   let e := harmonicSmoothEmbedding z
@@ -79,17 +87,25 @@ theorem harmonic_le_mertensProduct (z : ℕ) :
     _ = ∑ n ∈ A, ((n.1 : ℝ)⁻¹) := hmap
     _ ≤ mertensProduct z := hle
 
+/--
+@isnad1 id=eq.0h1v.s3.ab9007240292 from=translated src=- shape=6b4ab8ce vocab=e11d85ee
+-/
 theorem mertensProduct_eq_inv_directMertensProduct (z : ℕ) :
     mertensProduct z = (directMertensProduct z)⁻¹ := by
   unfold mertensProduct directMertensProduct
   rw [Finset.prod_inv_distrib]
 
+/--
+@isnad1 id=eq.0h1v.s3.6d15244e1817 from=translated src=- shape=6b4ab8ce vocab=e11d85ee
+-/
 theorem directMertensProduct_eq_inv_mertensProduct (z : ℕ) :
     directMertensProduct z = (mertensProduct z)⁻¹ := by
   rw [mertensProduct_eq_inv_directMertensProduct]
   simp
 
-/-- Fully unconditional elementary direct-product decay.-/
+/-- Fully unconditional elementary direct-product decay.
+@isnad1 id=le.1h1v.s5.ef33ef6f86d3 from=translated src=- shape=2b0e15f3 vocab=5c46c09f
+-/
 theorem directMertensProduct_le_inv_log_add_one
     {z : ℕ} (hz : 1 ≤ z) :
     directMertensProduct z ≤ (Real.log ((z + 1 : ℕ) : ℝ))⁻¹ := by
@@ -104,6 +120,9 @@ theorem directMertensProduct_le_inv_log_add_one
       (harmonic_le_mertensProduct z)).trans
     ((inv_le_inv₀ hHarmPos hlogPos).mpr hlogHarm)
 
+/--
+@isnad1 id=eq.1h2v.s5.129df7a9ccef from=translated src=- shape=2510f828 vocab=8828003e
+-/
 theorem localDensity_apply_prime {m p : ℕ} (hp : p.Prime) :
     localDensity m p = ((if p ∣ m then 1 else 2 : ℕ) : ℝ) / p := by
   rw [localDensity, shiftedBadResidueCount_prime hp]
@@ -120,6 +139,9 @@ noncomputable instance shiftedRootTypeFintype (m d : ℕ) [NeZero d] :
   unfold shiftedRootType
   infer_instance
 
+/--
+@isnad1 id=eq.0h2v.s4.b8b3e1da9fb0 from=translated src=- shape=d0a0227f vocab=ea921812
+-/
 theorem shiftedBadResidueCount_eq_card_shiftedRootType
     (m d : ℕ) [NeZero d] :
     shiftedBadResidueCount m d = Fintype.card (shiftedRootType m d) := by
@@ -147,6 +169,9 @@ theorem shiftedBadResidueCount_eq_card_shiftedRootType
       rw [shiftedBadResidueCount, Fintype.card_coe]
     _ = Fintype.card (shiftedRootType m d) := Fintype.card_congr rootEquiv
 
+/--
+@isnad1 id=eq.1h4v.s10.b63d448ddaaa from=translated src=- shape=6d559d7e vocab=ba8094fc
+-/
 theorem shiftedProductMod_chineseRemainder
     {m a b : ℕ} (hab : a.Coprime b) (q : ZMod (a * b)) :
     ZMod.chineseRemainder hab (shiftedProductMod m (a * b) q) =
@@ -179,6 +204,9 @@ noncomputable def shiftedRootType_mulEquiv
     (p := fun q : ZMod a ↦ shiftedProductMod m a q = 0)
     (q := fun q : ZMod b ↦ shiftedProductMod m b q = 0))
 
+/--
+@isnad1 id=eq.3h3v.s5.3d934deabf93 from=translated src=- shape=152c656c vocab=5e0e723b
+-/
 theorem shiftedBadResidueCount_mul_of_coprime
     (m : ℕ) {a b : ℕ} (hab : a.Coprime b) (ha : a ≠ 0) (hb : b ≠ 0) :
     shiftedBadResidueCount m (a * b) =
@@ -192,11 +220,17 @@ theorem shiftedBadResidueCount_mul_of_coprime
   exact (Fintype.card_congr (shiftedRootType_mulEquiv m hab)).trans
     (Fintype.card_prod _ _)
 
+/--
+@isnad1 id=eq.0h1v.s4.715e289dd8bf from=translated src=- shape=1d838610 vocab=daa84f70
+-/
 @[simp]
 theorem shiftedBadResidueCount_zero (m : ℕ) :
     shiftedBadResidueCount m 0 = 0 := by
   simp [shiftedBadResidueCount, shiftedBadResidueSet]
 
+/--
+@isnad1 id=eq.0h1v.s4.80f4c8f09d9d from=translated src=- shape=1d838610 vocab=daa84f70
+-/
 @[simp]
 theorem shiftedBadResidueCount_one (m : ℕ) :
     shiftedBadResidueCount m 1 = 1 := by
@@ -207,10 +241,16 @@ def shiftedRootCount (m : ℕ) : ArithmeticFunction ℕ where
   toFun d := shiftedBadResidueCount m d
   map_zero' := shiftedBadResidueCount_zero m
 
+/--
+@isnad1 id=eq.0h2v.s4.aa2559b0db30 from=translated src=- shape=95236941 vocab=4d8c456c
+-/
 @[simp]
 theorem shiftedRootCount_apply (m d : ℕ) :
     shiftedRootCount m d = shiftedBadResidueCount m d := rfl
 
+/--
+@isnad1 id=ismultip.0h1v.s2.a123b819b571 from=translated src=- shape=6da4ece3 vocab=79c8a405
+-/
 theorem shiftedRootCount_isMultiplicative (m : ℕ) :
     (shiftedRootCount m).IsMultiplicative := by
   constructor
@@ -223,6 +263,9 @@ theorem shiftedRootCount_isMultiplicative (m : ℕ) :
     · simp [hb]
     exact shiftedBadResidueCount_mul_of_coprime m hab ha hb
 
+/--
+@isnad1 id=eq.1h2v.s4.285cfdaaf4d5 from=translated src=- shape=2b30bba8 vocab=21a10b15
+-/
 theorem prod_primeFactors_shiftedBadResidueCount
     {m d : ℕ} (hsq : Squarefree d) :
     ∏ p ∈ d.primeFactors, shiftedBadResidueCount m p =
@@ -232,7 +275,9 @@ theorem prod_primeFactors_shiftedBadResidueCount
     d d.primeFactors subset_rfl,
     Nat.prod_primeFactors_of_squarefree hsq]
 
-/-- On squarefree moduli the sieve density is exactly the CRT root count divided by the modulus.-/
+/-- On squarefree moduli the sieve density is exactly the CRT root count divided by the modulus.
+@isnad1 id=eq.2h2v.s5.1a6d85ad3b3b from=translated src=- shape=a1dc134f vocab=1b0eecdd
+-/
 theorem sieveDensity_eq_shiftedBadResidueCount_div
     {m d : ℕ} (hd : d ≠ 0) (hsq : Squarefree d) :
     sieveDensity m d = (shiftedBadResidueCount m d : ℝ) / d := by
@@ -242,7 +287,9 @@ theorem sieveDensity_eq_shiftedBadResidueCount_div
     prod_primeFactors_shiftedBadResidueCount hsq,
     Nat.prod_primeFactors_of_squarefree hsq]
 
-/-- Exact squarefree-modulus remainder formula underlying paper (9.2).-/
+/-- Exact squarefree-modulus remainder formula underlying paper (9.2).
+@isnad1 id=eq.3h4v.s6.dc16774b95f4 from=translated src=- shape=4c574dd8 vocab=e9ab1fbb
+-/
 theorem boundingSieve_rem_eq_excess_sub_fraction
     {m R z d : ℕ} (hm : Even m) (hd : 0 < d) (hsq : Squarefree d) :
     (boundingSieve m R z hm).rem d =
@@ -257,6 +304,9 @@ theorem boundingSieve_rem_eq_excess_sub_fraction
   field_simp
   ring
 
+/--
+@isnad1 id=le.3h4v.s5.f510487ecf4b from=translated src=- shape=7fe74a01 vocab=2d87439b
+-/
 theorem abs_boundingSieve_rem_le_shiftedBadResidueCount
     {m R z d : ℕ} (hm : Even m) (hd : 0 < d) (hsq : Squarefree d) :
     |(boundingSieve m R z hm).rem d| ≤ shiftedBadResidueCount m d := by
@@ -285,6 +335,9 @@ theorem abs_boundingSieve_rem_le_shiftedBadResidueCount
   rw [abs_le]
   constructor <;> linarith
 
+/--
+@isnad1 id=le.1h2v.s5.2a64193ee8f6 from=translated src=- shape=54fa885b vocab=b9a5b5ad
+-/
 theorem shiftedBadResidueCount_le_two_pow_card_primeFactors
     {m d : ℕ} (hsq : Squarefree d) :
     shiftedBadResidueCount m d ≤ 2 ^ d.primeFactors.card := by
@@ -297,7 +350,9 @@ theorem shiftedBadResidueCount_le_two_pow_card_primeFactors
         (Nat.prime_of_mem_primeFactors hp)
     _ = 2 ^ d.primeFactors.card := by simp
 
-/-- The completely explicit paper remainder bound `|r_d| ≤ 2^ω(d)`.-/
+/-- The completely explicit paper remainder bound `|r_d| ≤ 2^ω(d)`.
+@isnad1 id=le.3h4v.s6.f59b6669f9e3 from=translated src=- shape=47536734 vocab=530ae6f6
+-/
 theorem abs_boundingSieve_rem_le_two_pow_card_primeFactors
     {m R z d : ℕ} (hm : Even m) (hd : 0 < d) (hsq : Squarefree d) :
     |(boundingSieve m R z hm).rem d| ≤
@@ -309,6 +364,9 @@ theorem abs_boundingSieve_rem_le_two_pow_card_primeFactors
 def multiplierCorrectionFactor (m p : ℕ) : ℝ :=
   if p ∣ m then (1 - (p : ℝ)⁻¹)⁻¹ else 1
 
+/--
+@isnad1 id=le.1h2v.s4.b385b28e6c87 from=translated src=- shape=30e226e4 vocab=14398c85
+-/
 theorem one_le_multiplierCorrectionFactor {m p : ℕ} (hp : p.Prime) :
     1 ≤ multiplierCorrectionFactor m p := by
   unfold multiplierCorrectionFactor
@@ -316,11 +374,16 @@ theorem one_le_multiplierCorrectionFactor {m p : ℕ} (hp : p.Prime) :
   · exact one_le_primeEulerFactor hp
   · exact le_rfl
 
+/--
+@isnad1 id=le.1h2v.s4.319d78cf06d5 from=translated src=- shape=30e226e4 vocab=14398c85
+-/
 theorem multiplierCorrectionFactor_nonneg {m p : ℕ} (hp : p.Prime) :
     0 ≤ multiplierCorrectionFactor m p :=
   zero_le_one.trans (one_le_multiplierCorrectionFactor hp)
 
-/-- Pointwise local comparison.-/
+/-- Pointwise local comparison.
+@isnad1 id=le.1h2v.s6.53a51984c7db from=translated src=- shape=f2f57d2f vocab=b542fcf8
+-/
 theorem one_sub_localDensity_le_base_sq_mul_correction
     {m p : ℕ} (hp : p.Prime) :
     1 - localDensity m p ≤
@@ -340,6 +403,9 @@ theorem one_sub_localDensity_le_base_sq_mul_correction
     simp only [mul_one, div_eq_mul_inv]
     nlinarith [sq_nonneg ((p : ℝ)⁻¹)]
 
+/--
+@isnad1 id=le.1h2v.s4.c346e1a53c81 from=translated src=- shape=8786dcb6 vocab=1e39f9e7
+-/
 theorem localSieveProduct_nonneg {m z : ℕ} (hm : Even m) :
     0 ≤ localSieveProduct m z := by
   unfold localSieveProduct
@@ -351,6 +417,9 @@ theorem localSieveProduct_nonneg {m z : ℕ} (hm : Even m) :
   rw [sub_nonneg, div_le_one (by exact_mod_cast hp.pos)]
   exact_mod_cast hcount.le
 
+/--
+@isnad1 id=le.0h2v.s5.1187753ca59f from=translated src=- shape=1b51f02d vocab=744b6280
+-/
 theorem localSieveProduct_le_base_sq_mul_corrections (m z : ℕ) :
     localSieveProduct m z ≤
       directMertensProduct z ^ 2 *
@@ -384,6 +453,9 @@ theorem localSieveProduct_le_base_sq_mul_corrections (m z : ℕ) :
         ∏ p ∈ Nat.primesLE z, multiplierCorrectionFactor m p := by
       rw [Finset.prod_mul_distrib, ← Finset.prod_pow]
 
+/--
+@isnad1 id=le.1h2v.s4.2ed3d8117b2b from=translated src=- shape=57fa2794 vocab=c5099d10
+-/
 theorem correctionProduct_le_totientEulerWeight
     {m z : ℕ} (hm : m ≠ 0) :
     (∏ p ∈ Nat.primesLE z, multiplierCorrectionFactor m p) ≤
@@ -409,7 +481,9 @@ theorem correctionProduct_le_totientEulerWeight
   · intro p hp _
     exact one_le_primeEulerFactor (Nat.prime_of_mem_primeFactors hp)
 
-/-- Exact finite local-product reduction with the paper's singular factor.-/
+/-- Exact finite local-product reduction with the paper's singular factor.
+@isnad1 id=le.1h2v.s5.82e95d4cd28d from=translated src=- shape=c7b811b3 vocab=89fbb6f9
+-/
 theorem localSieveProduct_le_directMertens_sq_mul_totientWeight
     {m z : ℕ} (hm : m ≠ 0) :
     localSieveProduct m z ≤
@@ -433,6 +507,9 @@ def CutoffLogLowerBound (cutoff : ℕ → ℕ) (c : ℝ) : Prop :=
     1 ≤ cutoff R ∧
       c * Real.log R ≤ Real.log ((cutoff R + 1 : ℕ) : ℝ)
 
+/--
+@isnad1 id=directme.2h2v.s4.ffe753fbd54c from=translated src=- shape=ab055a1b vocab=cb0c3c5b
+-/
 theorem directMertensProductUpperBound_of_cutoffLogLowerBound
     {cutoff : ℕ → ℕ} {c : ℝ} (hc : 0 < c)
     (hcut : CutoffLogLowerBound cutoff c) :
@@ -454,7 +531,9 @@ theorem directMertensProductUpperBound_of_cutoffLogLowerBound
       simp only [mul_inv_rev, div_eq_mul_inv]
       ring
 
-/-- In particular, any cutoff dominating `R` has constant one.-/
+/-- In particular, any cutoff dominating `R` has constant one.
+@isnad1 id=directme.1h1v.s5.b73802b23f6b from=translated src=- shape=b9993c2f vocab=abf7a98b
+-/
 theorem directMertensProductUpperBound_of_le
     {cutoff : ℕ → ℕ}
     (hcut : ∀ R, 3 ≤ R → R ≤ cutoff R) :
@@ -469,13 +548,18 @@ theorem directMertensProductUpperBound_of_le
   simpa using directMertensProductUpperBound_of_cutoffLogLowerBound
     (cutoff := cutoff) (c := 1) (by norm_num) hlog
 
+/--
+@isnad1 id=directme.0h0v.s3.4af8a4fba95c from=translated src=- shape=a212a91e vocab=6e5af276
+-/
 theorem directMertensProductUpperBound_id :
     DirectMertensProductUpperBound id 1 := by
   apply directMertensProductUpperBound_of_le
   intro R _hR
   exact le_rfl
 
-/-- One base Mertens bound supplies the squared, singular-factor BFPS product estimate.-/
+/-- One base Mertens bound supplies the squared, singular-factor BFPS product estimate.
+@isnad1 id=mertensl.2h2v.s5.6b2681358f1a from=translated src=- shape=8d7b6e56 vocab=908025ab
+-/
 theorem mertensLocalProductUpperBound_of_directMertens
     {cutoff : ℕ → ℕ} {C : ℝ} (hC : 0 ≤ C)
     (hM : DirectMertensProductUpperBound cutoff C) :
@@ -500,6 +584,9 @@ theorem mertensLocalProductUpperBound_of_directMertens
       unfold totientWeight
       ring
 
+/--
+@isnad1 id=mertensl.2h2v.s5.8323fcaeb2e3 from=translated src=- shape=5f84d8bf vocab=8e65c3fe
+-/
 theorem mertensLocalProductUpperBound_of_cutoffLogLowerBound
     {cutoff : ℕ → ℕ} {c : ℝ} (hc : 0 < c)
     (hcut : CutoffLogLowerBound cutoff c) :
@@ -507,6 +594,9 @@ theorem mertensLocalProductUpperBound_of_cutoffLogLowerBound
   mertensLocalProductUpperBound_of_directMertens (inv_nonneg.mpr hc.le)
     (directMertensProductUpperBound_of_cutoffLogLowerBound hc hcut)
 
+/--
+@isnad1 id=mertensl.0h0v.s3.7c0aaa0fcfbb from=translated src=- shape=a212a91e vocab=7d2bb458
+-/
 theorem mertensLocalProductUpperBound_id :
     MertensLocalProductUpperBound id 1 := by
   simpa using mertensLocalProductUpperBound_of_directMertens
@@ -522,12 +612,18 @@ namespace SelbergFundamental
 def truncatedDivisors (s : SelbergSieve) : Finset ℕ :=
   s.prodPrimes.divisors.filter fun l ↦ (l : ℝ) ^ 2 ≤ s.level
 
+/--
+@isnad1 id=iff.0h2v.s5.ff12f1561a96 from=translated src=- shape=13b56ff5 vocab=69b32ab3
+-/
 @[simp]
 theorem mem_truncatedDivisors {s : SelbergSieve} {l : ℕ} :
     l ∈ truncatedDivisors s ↔
       l ∣ s.prodPrimes ∧ (l : ℝ) ^ 2 ≤ s.level := by
   simp [truncatedDivisors, BoundingSieve.prodPrimes_ne_zero]
 
+/--
+@isnad1 id=mem.0h1v.s4.2ff4d6f46270 from=translated src=- shape=51e469f9 vocab=c1133796
+-/
 theorem one_mem_truncatedDivisors (s : SelbergSieve) :
     1 ∈ truncatedDivisors s := by
   rw [mem_truncatedDivisors]
@@ -537,6 +633,9 @@ theorem one_mem_truncatedDivisors (s : SelbergSieve) :
 def truncatedMass (s : SelbergSieve) : ℝ :=
   ∑ l ∈ truncatedDivisors s, s.selbergTerms l
 
+/--
+@isnad1 id=lt.0h1v.s3.349e665d897e from=translated src=- shape=b9369acb vocab=464f9a02
+-/
 theorem truncatedMass_pos (s : SelbergSieve) : 0 < truncatedMass s := by
   have hle : s.selbergTerms 1 ≤ truncatedMass s := by
     unfold truncatedMass
@@ -545,11 +644,17 @@ theorem truncatedMass_pos (s : SelbergSieve) : 0 < truncatedMass s := by
       (one_mem_truncatedDivisors s)
   exact (s.selbergTerms_pos (one_dvd _)).trans_le hle
 
+/--
+@isnad1 id=eq.0h1v.s4.9d32267b9930 from=translated src=- shape=08c74d6c vocab=c8015201
+-/
 @[simp]
 theorem selbergTerms_one (s : BoundingSieve) : s.selbergTerms 1 = 1 := by
   rw [BoundingSieve.selbergTerms_apply, s.nu_mult.map_one]
   simp
 
+/--
+@isnad1 id=le.0h1v.s3.d3f99ec8ab2a from=translated src=- shape=b9369acb vocab=ced6dfda
+-/
 theorem one_le_truncatedMass (s : SelbergSieve) : 1 ≤ truncatedMass s := by
   rw [← selbergTerms_one s.toBoundingSieve]
   unfold truncatedMass
@@ -557,6 +662,9 @@ theorem one_le_truncatedMass (s : SelbergSieve) : 1 ≤ truncatedMass s := by
     (fun l hl ↦ (s.selbergTerms_pos (mem_truncatedDivisors.mp hl).1).le)
     (one_mem_truncatedDivisors s)
 
+/--
+@isnad1 id=le.0h1v.s4.c13d3badd9ab from=translated src=- shape=562e4a6d vocab=5d20b937
+-/
 theorem truncatedMass_inv_le_one (s : SelbergSieve) :
     (truncatedMass s)⁻¹ ≤ 1 :=
   (inv_le_one₀ (truncatedMass_pos s)).mpr (one_le_truncatedMass s)
@@ -567,12 +675,18 @@ def minimizingDiagonal (s : SelbergSieve) (l : ℕ) : ℝ :=
     (μ l : ℝ) * s.selbergTerms l / truncatedMass s
   else 0
 
+/--
+@isnad1 id=eq.1h2v.s5.5a505224a7dd from=translated src=- shape=fac3d5e8 vocab=0ae47db1
+-/
 theorem cast_moebius_sq_eq_one_of_dvd
     {s : BoundingSieve} {l : ℕ} (hl : l ∣ s.prodPrimes) :
     (μ l : ℝ) ^ 2 = 1 := by
   exact_mod_cast ArithmeticFunction.moebius_sq_eq_one_of_squarefree
     (s.squarefree_of_dvd_prodPrimes hl)
 
+/--
+@isnad1 id=eq.0h1v.s5.4bf3324050ac from=translated src=- shape=53c57535 vocab=5d84f021
+-/
 theorem minimizingDiagonal_normalized (s : SelbergSieve) :
     ∑ l ∈ s.prodPrimes.divisors,
         (μ l : ℝ) * minimizingDiagonal s l = 1 := by
@@ -603,6 +717,9 @@ theorem minimizingDiagonal_normalized (s : SelbergSieve) :
     _ = 1 := by
       rw [← Finset.sum_div, ← truncatedMass, div_self hmass]
 
+/--
+@isnad1 id=eq.0h1v.s6.5b7ce47bb9c4 from=translated src=- shape=c4926bee vocab=9b1a0f29
+-/
 theorem minimizingDiagonal_objective (s : SelbergSieve) :
     ∑ l ∈ s.prodPrimes.divisors,
         (s.selbergTerms l)⁻¹ * minimizingDiagonal s l ^ 2 =
@@ -639,7 +756,9 @@ theorem minimizingDiagonal_objective (s : SelbergSieve) :
       rw [← Finset.sum_div, ← truncatedMass]
       field_simp
 
-/-- The exact finite minimization inequality (Engel's form of Cauchy--Schwarz).-/
+/-- The exact finite minimization inequality (Engel's form of Cauchy--Schwarz).
+@isnad1 id=le.1h2v.s6.ad11f5c244b6 from=translated src=- shape=e346dffd vocab=0ab51146
+-/
 theorem minimizingDiagonal_is_minimal
     (s : SelbergSieve) (y : ℕ → ℝ)
     (hy : ∑ l ∈ truncatedDivisors s, (μ l : ℝ) * y l = 1) :
@@ -667,6 +786,9 @@ theorem minimizingDiagonal_is_minimal
 def reverseMobiusTransform (P : ℕ) (y : ℕ → ℝ) (n : ℕ) : ℝ :=
   ∑ x ∈ n.divisorsAntidiagonal, (μ x.1 : ℝ) * y (P / x.2)
 
+/--
+@isnad1 id=eq.1h3v.s5.b7a87a3c1bfc from=translated src=- shape=f4d9f444 vocab=eed3e0a4
+-/
 theorem sum_reverseMobiusTransform
     (P : ℕ) (y : ℕ → ℝ) {n : ℕ} (hn : 0 < n) :
     ∑ d ∈ n.divisors, reverseMobiusTransform P y d = y (P / n) := by
@@ -674,6 +796,9 @@ theorem sum_reverseMobiusTransform
     (R := ℝ) (f := reverseMobiusTransform P y)
     (g := fun k ↦ y (P / k))).mpr (by intro k hk; rfl)) n hn
 
+/--
+@isnad1 id=eq.2h2v.s5.8e5a03e297da from=translated src=- shape=b8cb44fe vocab=05e82d40
+-/
 theorem div_divisor_complement
     {P d : ℕ} (hP : P ≠ 0) (hd : d ∣ P) : P / (P / d) = d := by
   have hd0 : 0 < d := Nat.pos_of_ne_zero (ne_zero_of_dvd_ne_zero hP hd)
@@ -682,6 +807,9 @@ theorem div_divisor_complement
   apply (Nat.div_eq_iff_eq_mul_left hquot (Nat.div_dvd_of_dvd hd)).mpr
   exact (Nat.mul_div_cancel' hd).symm
 
+/--
+@isnad1 id=eq.3h3v.s6.f0ccdb9896b7 from=translated src=- shape=da17c3c9 vocab=a2e7c113
+-/
 theorem div_quotient_divisor_complement
     {P d a : ℕ} (hP : P ≠ 0) (hd : d ∣ P) (ha : a ∣ P / d) :
     P / ((P / d) / a) = d * a := by
@@ -706,6 +834,9 @@ def weightFromDiagonal (s : BoundingSieve) (y : ℕ → ℝ) (d : ℕ) : ℝ :=
     (s.nu d)⁻¹ * reverseMobiusTransform s.prodPrimes y (s.prodPrimes / d)
   else 0
 
+/--
+@isnad1 id=eq.1h3v.s5.e73f30e05ada from=translated src=- shape=d5331850 vocab=a0c62822
+-/
 theorem weightFromDiagonal_apply_of_dvd
     {s : BoundingSieve} {y : ℕ → ℝ} {d : ℕ}
     (hd : d ∣ s.prodPrimes) :
@@ -714,13 +845,18 @@ theorem weightFromDiagonal_apply_of_dvd
   rw [weightFromDiagonal, dite_eq_left hd]
   field_simp [s.nu_ne_zero hd]
 
+/--
+@isnad1 id=iff.2h3v.s5.ce45edba2fee from=translated src=- shape=5e7d3062 vocab=05e82d40
+-/
 theorem divisor_complement_condition
     {P l d : ℕ} (hl : l ∣ P) (hd : d ∣ P) :
     l ∣ P / d ↔ d ∣ P / l := by
   rw [Nat.dvd_div_iff_mul_dvd hd, Nat.dvd_div_iff_mul_dvd hl,
     Nat.mul_comm]
 
-/-- The constructed weights have exactly the prescribed diagonal coordinates.-/
+/-- The constructed weights have exactly the prescribed diagonal coordinates.
+@isnad1 id=eq.1h3v.s6.bf5bba5b39f3 from=translated src=- shape=0bd63d55 vocab=2edf27f6
+-/
 theorem diagonalCoordinate_weightFromDiagonal
     (s : BoundingSieve) (y : ℕ → ℝ) {l : ℕ}
     (hl : l ∣ s.prodPrimes) :
@@ -773,6 +909,9 @@ theorem diagonalCoordinate_weightFromDiagonal
       sum_reverseMobiusTransform s.prodPrimes y hquotPos
     _ = y l := by rw [div_divisor_complement hP hl]
 
+/--
+@isnad1 id=eq.0h2v.s5.25abe3690a1c from=translated src=- shape=4025173e vocab=a9512214
+-/
 theorem reverseMobiusTransform_prodPrimes
     (s : BoundingSieve) (y : ℕ → ℝ) :
     reverseMobiusTransform s.prodPrimes y s.prodPrimes =
@@ -791,6 +930,9 @@ theorem reverseMobiusTransform_prodPrimes
       rw [div_divisor_complement s.prodPrimes_ne_zero
         (Nat.dvd_of_mem_divisors hl)]
 
+/--
+@isnad1 id=eq.2h3v.s6.7e682bcaa9c2 from=translated src=- shape=e101f1c2 vocab=1b688d02
+-/
 theorem reverseMobiusTransform_divisor
     {P d : ℕ} (hP : P ≠ 0) (hd : d ∣ P) (y : ℕ → ℝ) :
     reverseMobiusTransform P y (P / d) =
@@ -813,6 +955,9 @@ theorem reverseMobiusTransform_divisor
 def minimizingWeight (s : SelbergSieve) : ℕ → ℝ :=
   weightFromDiagonal s.toBoundingSieve (minimizingDiagonal s)
 
+/--
+@isnad1 id=eq.0h1v.s4.d53d2ae1b812 from=translated src=- shape=59ae2d96 vocab=ccd86e65
+-/
 theorem minimizingWeight_one (s : SelbergSieve) :
     minimizingWeight s 1 = 1 := by
   rw [minimizingWeight, weightFromDiagonal, dite_eq_left (one_dvd _),
@@ -820,12 +965,17 @@ theorem minimizingWeight_one (s : SelbergSieve) :
     reverseMobiusTransform_prodPrimes]
   exact minimizingDiagonal_normalized s
 
+/--
+@isnad1 id=eq.1h2v.s4.be00fae157bd from=translated src=- shape=16b11ef8 vocab=0f03893b
+-/
 theorem minimizingWeight_eq_zero_of_not_dvd
     {s : SelbergSieve} {d : ℕ} (hd : ¬d ∣ s.prodPrimes) :
     minimizingWeight s d = 0 := by
   simp [minimizingWeight, weightFromDiagonal, hd]
 
-/-- The constructed minimizing weights have the standard Selberg support `d² ≤ level`.-/
+/-- The constructed minimizing weights have the standard Selberg support `d² ≤ level`.
+@isnad1 id=eq.2h2v.s5.b417e8875250 from=translated src=- shape=2b55c763 vocab=73e5964a
+-/
 theorem minimizingWeight_eq_zero_of_level_lt_sq
     {s : SelbergSieve} {d : ℕ} (hd : d ∣ s.prodPrimes)
     (hlevel : s.level < (d : ℝ) ^ 2) :
@@ -858,6 +1008,9 @@ theorem minimizingWeight_eq_zero_of_level_lt_sq
     rw [hzero a ha, mul_zero]
   rw [hsum, mul_zero]
 
+/--
+@isnad1 id=eq.1h2v.s4.205938cc6598 from=translated src=- shape=5423264f vocab=b184ab5c
+-/
 theorem minimizingWeight_eq_zero_of_not_mem_truncated
     {s : SelbergSieve} {d : ℕ} (hd : d ∉ truncatedDivisors s) :
     minimizingWeight s d = 0 := by
@@ -866,7 +1019,9 @@ theorem minimizingWeight_eq_zero_of_not_mem_truncated
     exact lt_of_not_ge fun hsq ↦ hd (mem_truncatedDivisors.mpr ⟨hdP, hsq⟩)
   · exact minimizingWeight_eq_zero_of_not_dvd hdP
 
-/-- Consequently the associated `Λ²` coefficient vanishes above the Selberg level.-/
+/-- Consequently the associated `Λ²` coefficient vanishes above the Selberg level.
+@isnad1 id=eq.1h2v.s4.31236fb3fe52 from=translated src=- shape=5a4e76b1 vocab=2ef0b8da
+-/
 theorem lambdaSquared_minimizingWeight_eq_zero_of_level_lt
     {s : SelbergSieve} {n : ℕ} (hn : s.level < (n : ℝ)) :
     BoundingSieve.lambdaSquared (minimizingWeight s) n = 0 := by
@@ -901,7 +1056,9 @@ theorem lambdaSquared_minimizingWeight_eq_zero_of_level_lt
         zero_mul]
   · rfl
 
-/-- The error term is exactly supported on divisors at most the Selberg level.-/
+/-- The error term is exactly supported on divisors at most the Selberg level.
+@isnad1 id=eq.0h1v.s6.726744ad98c5 from=translated src=- shape=368aed3e vocab=b294efa4
+-/
 theorem errSum_lambdaSquared_minimizingWeight_eq_level_restriction
     (s : SelbergSieve) :
     s.errSum (BoundingSieve.lambdaSquared (minimizingWeight s)) =
@@ -925,6 +1082,9 @@ def levelRestrictedRemainder (s : SelbergSieve) : ℝ :=
       |BoundingSieve.lambdaSquared (minimizingWeight s) d| * |s.rem d|
     else 0
 
+/--
+@isnad1 id=eq.0h1v.s3.35a1b068a94f from=translated src=- shape=dcf98fb0 vocab=c732de81
+-/
 theorem errSum_lambdaSquared_minimizingWeight_eq_levelRestrictedRemainder
     (s : SelbergSieve) :
     s.errSum (BoundingSieve.lambdaSquared (minimizingWeight s)) =
@@ -932,6 +1092,9 @@ theorem errSum_lambdaSquared_minimizingWeight_eq_levelRestrictedRemainder
   rw [levelRestrictedRemainder]
   exact errSum_lambdaSquared_minimizingWeight_eq_level_restriction s
 
+/--
+@isnad1 id=eq.1h2v.s6.1f8073992c83 from=translated src=- shape=56e20ec9 vocab=097b4918
+-/
 theorem diagonalCoordinate_minimizingWeight
     (s : SelbergSieve) {l : ℕ} (hl : l ∣ s.prodPrimes) :
     (∑ d ∈ s.prodPrimes.divisors,
@@ -940,7 +1103,9 @@ theorem diagonalCoordinate_minimizingWeight
   exact diagonalCoordinate_weightFromDiagonal s.toBoundingSieve
     (minimizingDiagonal s) hl
 
-/-- Mathlib's diagonalization evaluated at the exact finite minimizer.-/
+/-- Mathlib's diagonalization evaluated at the exact finite minimizer.
+@isnad1 id=eq.0h1v.s3.e25dd8e219b8 from=translated src=- shape=caf1d0a7 vocab=b7fbb602
+-/
 theorem mainSum_lambdaSquared_minimizingWeight (s : SelbergSieve) :
     s.mainSum (BoundingSieve.lambdaSquared (minimizingWeight s)) =
       (truncatedMass s)⁻¹ := by
@@ -957,7 +1122,9 @@ theorem mainSum_lambdaSquared_minimizingWeight (s : SelbergSieve) :
         (Nat.dvd_of_mem_divisors hl)]
     _ = (truncatedMass s)⁻¹ := minimizingDiagonal_objective s
 
-/-- Exact finite Selberg upper bound.-/
+/-- Exact finite Selberg upper bound.
+@isnad1 id=le.0h1v.s5.ee508c6a1f0a from=translated src=- shape=a2197522 vocab=5c035b99
+-/
 theorem siftedSum_le_minimizing_main_add_error (s : SelbergSieve) :
     s.siftedSum ≤
       s.totalMass * (truncatedMass s)⁻¹ +
@@ -986,6 +1153,9 @@ def minimizingSelbergSieve (m R z : ℕ) (hm : Even m) : SelbergSieve :=
       exact_mod_cast Nat.le_max_left 1 z
     nlinarith)
 
+/--
+@isnad1 id=eq.2h3v.s5.1cfd7aa6d9f0 from=translated src=- shape=8206deb7 vocab=2f25f573
+-/
 @[simp]
 theorem minimizingSelbergSieve_level_of_one_le
     {m R z : ℕ} (hm : Even m) (hz : 1 ≤ z) :
@@ -993,11 +1163,17 @@ theorem minimizingSelbergSieve_level_of_one_le
   change (((max 1 z : ℕ) : ℝ) ^ 2) = (z : ℝ) ^ 2
   rw [max_eq_right hz]
 
+/--
+@isnad1 id=eq.1h3v.s4.12436acafde1 from=translated src=- shape=a64e85f7 vocab=4736a633
+-/
 @[simp]
 theorem minimizingSelbergSieve_totalMass
     (m R z : ℕ) (hm : Even m) :
     (minimizingSelbergSieve m R z hm).totalMass = R := rfl
 
+/--
+@isnad1 id=eq.3h4v.s5.c99490c5aaa2 from=translated src=- shape=99f8da7d vocab=a7ff095c
+-/
 theorem minimizingWeight_eq_zero_of_cutoff_lt
     {m R z d : ℕ} (hm : Even m) (hz : 1 ≤ z) (hzd : z < d) :
     SelbergFundamental.minimizingWeight
@@ -1011,6 +1187,9 @@ theorem minimizingWeight_eq_zero_of_cutoff_lt
   have hd0 : 0 ≤ (d : ℝ) := by positivity
   nlinarith
 
+/--
+@isnad1 id=eq.3h4v.s5.43c04d6fa0be from=translated src=- shape=202d9524 vocab=c79fb379
+-/
 theorem lambdaSquared_minimizingWeight_eq_zero_of_cutoff_sq_lt
     {m R z n : ℕ} (hm : Even m) (hz : 1 ≤ z) (hn : z ^ 2 < n) :
     BoundingSieve.lambdaSquared
@@ -1031,6 +1210,9 @@ def minimizingWeightRemainderMajorant
         ((2 ^ d.primeFactors.card : ℕ) : ℝ)
     else 0
 
+/--
+@isnad1 id=le.1h3v.s4.f9bc68998ed9 from=translated src=- shape=f0542c85 vocab=7b2ea7cf
+-/
 theorem levelRestrictedRemainder_le_minimizingWeightRemainderMajorant
     (m R z : ℕ) (hm : Even m) :
     SelbergFundamental.levelRestrictedRemainder
@@ -1097,6 +1279,9 @@ def CombinatorialRemainderLocalProductUpperBound
     minimizingWeightRemainderMajorant m R (cutoff R) hm ≤
       C * R * localSieveProduct m (cutoff R)
 
+/--
+@isnad1 id=levelres.1h2v.s3.2df65f4cad93 from=translated src=- shape=723b5712 vocab=28e932a3
+-/
 theorem levelRestrictedRemainderLocalProductUpperBound_of_combinatorial
     {cutoff : ℕ → ℕ} {C : ℝ}
     (hrem : CombinatorialRemainderLocalProductUpperBound cutoff C) :
@@ -1105,6 +1290,9 @@ theorem levelRestrictedRemainderLocalProductUpperBound_of_combinatorial
   exact (levelRestrictedRemainder_le_minimizingWeightRemainderMajorant
     m R (cutoff R) hmEven).trans (hrem m R hm hmEven hR)
 
+/--
+@isnad1 id=minimizi.1h2v.s3.5720330d4712 from=translated src=- shape=723b5712 vocab=177ea67e
+-/
 theorem minimizingRemainderLocalProductUpperBound_of_levelRestricted
     {cutoff : ℕ → ℕ} {C : ℝ}
     (hrem : LevelRestrictedRemainderLocalProductUpperBound cutoff C) :
@@ -1117,7 +1305,9 @@ theorem minimizingRemainderLocalProductUpperBound_of_levelRestricted
   rw [SelbergFundamental.errSum_lambdaSquared_minimizingWeight_eq_levelRestrictedRemainder]
   exact hrem m R hm hmEven hR
 
-/-- The exact target `SelbergFundamentalLemmaUpperBound` follows from precisely the denominator and remainder estimates above; all Selberg-weight algebra has already been discharged.-/
+/-- The exact target `SelbergFundamentalLemmaUpperBound` follows from precisely the denominator and remainder estimates above; all Selberg-weight algebra has already been discharged.
+@isnad1 id=selbergf.2h3v.s4.fa08a489a49b from=translated src=- shape=1ac400c4 vocab=7d681436
+-/
 theorem selbergFundamentalLemmaUpperBound_of_mass_and_remainder
     {cutoff : ℕ → ℕ} {Cmass Crem : ℝ}
     (hmass : TruncatedMassLocalProductUpperBound cutoff Cmass)
@@ -1147,6 +1337,9 @@ theorem selbergFundamentalLemmaUpperBound_of_mass_and_remainder
         (mul_le_mul_of_nonneg_left hmass' (by positivity)) hrem'
     _ = (Cmass + Crem) * R * localSieveProduct m (cutoff R) := by ring
 
+/--
+@isnad1 id=selbergf.2h3v.s4.72bc15923313 from=translated src=- shape=1ac400c4 vocab=f794fd4e
+-/
 theorem selbergFundamentalLemmaUpperBound_of_mass_and_levelRestrictedRemainder
     {cutoff : ℕ → ℕ} {Cmass Crem : ℝ}
     (hmass : TruncatedMassLocalProductUpperBound cutoff Cmass)
@@ -1155,6 +1348,9 @@ theorem selbergFundamentalLemmaUpperBound_of_mass_and_levelRestrictedRemainder
   selbergFundamentalLemmaUpperBound_of_mass_and_remainder hmass
     (minimizingRemainderLocalProductUpperBound_of_levelRestricted hrem)
 
+/--
+@isnad1 id=selbergf.2h3v.s4.de5b803abd92 from=translated src=- shape=1ac400c4 vocab=6a78b5be
+-/
 theorem selbergFundamentalLemmaUpperBound_of_mass_and_combinatorialRemainder
     {cutoff : ℕ → ℕ} {Cmass Crem : ℝ}
     (hmass : TruncatedMassLocalProductUpperBound cutoff Cmass)
@@ -1178,6 +1374,9 @@ def minimizingAffineSelbergSieve (R z : ℕ) : SelbergSieve :=
       exact_mod_cast Nat.le_max_left 1 z
     nlinarith)
 
+/--
+@isnad1 id=eq.0h3v.s4.ae4191a7f61f from=translated src=- shape=e14ff061 vocab=7e0c81bb
+-/
 @[simp]
 theorem minimizingAffineSelbergSieve_totalMass (R z : ℕ) :
     (L.minimizingAffineSelbergSieve R z).totalMass = R := rfl
@@ -1199,7 +1398,9 @@ def MinimizingRemainderLogSquaredUpperBound
       (SelbergFundamental.minimizingWeight s)) ≤
         C * logSquaredScale R
 
-/-- The same finite minimizer discharges the algebraic part of `AffinePrimePair.DimensionTwoSelbergUpperBound`.-/
+/-- The same finite minimizer discharges the algebraic part of `AffinePrimePair.DimensionTwoSelbergUpperBound`.
+@isnad1 id=dimensio.2h4v.s5.7971c659b060 from=translated src=- shape=0c0bf93b vocab=5053cf0f
+-/
 theorem dimensionTwoSelbergUpperBound_of_mass_and_remainder
     {cutoff : ℕ → ℕ} {Cmass Crem : ℝ}
     (hmass : L.TruncatedMassLogSquaredUpperBound cutoff Cmass)

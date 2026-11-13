@@ -21,6 +21,9 @@ def reciprocalRpowMonoidHom (s : ℝ) : ℕ →* ℝ where
   map_mul' m n := by
     rw [Nat.cast_mul, Real.mul_rpow (Nat.cast_nonneg m) (Nat.cast_nonneg n)]
 
+/--
+@isnad1 id=eq.0h2v.s5.7bd7f3b08300 from=translated src=- shape=7d8b3926 vocab=82d1522d
+-/
 @[simp]
 theorem reciprocalRpowMonoidHom_apply (s : ℝ) (n : ℕ) :
     reciprocalRpowMonoidHom s n = (n : ℝ) ^ (-s) := rfl
@@ -33,6 +36,9 @@ def softenedMertensProduct (R : ℕ) (s : ℝ) : ℝ :=
 def smoothRpowTsum (R : ℕ) (s : ℝ) : ℝ :=
   ∑' n : (R + 1).smoothNumbers, (n.1 : ℝ) ^ (-s)
 
+/--
+@isnad1 id=lt.2h2v.s6.21d92abd975a from=translated src=- shape=9ca54363 vocab=c2d862bb
+-/
 theorem norm_reciprocalRpowMonoidHom_prime_lt_one {s : ℝ} (hs : 0 < s)
     {p : ℕ} (hp : p.Prime) :
     ‖reciprocalRpowMonoidHom s p‖ < 1 := by
@@ -40,7 +46,9 @@ theorem norm_reciprocalRpowMonoidHom_prime_lt_one {s : ℝ} (hs : 0 < s)
     abs_of_nonneg (Real.rpow_nonneg (Nat.cast_nonneg p) _)]
   exact Real.rpow_lt_one_of_one_lt_of_neg (by exact_mod_cast hp.one_lt) (neg_neg_of_pos hs)
 
-/-- Exact finite Euler-product expansion at a convergent exponent.-/
+/-- Exact finite Euler-product expansion at a convergent exponent.
+@isnad1 id=eq.1h2v.s4.c37bf4d2b375 from=translated src=- shape=0eb5832c vocab=c9e55512
+-/
 theorem smoothRpowTsum_eq_softenedMertensProduct (R : ℕ) {s : ℝ} (hs : 0 < s) :
     smoothRpowTsum R s = softenedMertensProduct R s := by
   have h := EulerProduct.summable_and_hasSum_smoothNumbers_prod_primesBelow_geometric
@@ -54,11 +62,16 @@ theorem smoothRpowTsum_eq_softenedMertensProduct (R : ℕ) {s : ℝ} (hs : 0 < s
 /-- The full p-series in the normalization convenient for the Euler product.-/
 def naturalPSeries (s : ℝ) : ℝ := ∑' n : ℕ, (n : ℝ) ^ (-s)
 
+/--
+@isnad1 id=summable.1h1v.s5.603c6040cd2f from=translated src=- shape=4ef34d07 vocab=e51fd383
+-/
 theorem summable_naturalPSeries {s : ℝ} (hs : 1 < s) :
     Summable (fun n : ℕ ↦ (n : ℝ) ^ (-s)) := by
   exact Real.summable_nat_rpow.mpr (by linarith)
 
-/-- Restricting the p-series to smooth positive integers only decreases it.-/
+/-- Restricting the p-series to smooth positive integers only decreases it.
+@isnad1 id=le.1h2v.s4.228b41cdd199 from=translated src=- shape=ef85f838 vocab=03c9fdcd
+-/
 theorem smoothRpowTsum_le_naturalPSeries (R : ℕ) {s : ℝ} (hs : 1 < s) :
     smoothRpowTsum R s ≤ naturalPSeries s := by
   unfold smoothRpowTsum naturalPSeries
@@ -68,7 +81,9 @@ theorem smoothRpowTsum_le_naturalPSeries (R : ℕ) {s : ℝ} (hs : 1 < s) :
     (fun n ↦ Real.rpow_nonneg (Nat.cast_nonneg n) _)
     (summable_naturalPSeries hs)
 
-/-- The integral-test tail bound beginning at the integer `2`.-/
+/-- The integral-test tail bound beginning at the integer `2`.
+@isnad1 id=le.1h1v.s6.32f01f419889 from=translated src=- shape=700665ab vocab=576683b8
+-/
 theorem naturalPSeries_tail_le {s : ℝ} (hs : 1 < s) :
     (∑' n : ℕ, ((n + 2 : ℕ) : ℝ) ^ (-s)) ≤ 1 / (s - 1) := by
   have hanti : AntitoneOn (fun x : ℝ ↦ x ^ (-s)) (Ici (1 : ℝ)) :=
@@ -95,7 +110,9 @@ theorem naturalPSeries_tail_le {s : ℝ} (hs : 1 < s) :
   field_simp [hsne, hneg]
   ring
 
-/-- Elementary explicit bound `ζ(s) ≤ 1 + 1/(s-1)` for real `s > 1`.-/
+/-- Elementary explicit bound `ζ(s) ≤ 1 + 1/(s-1)` for real `s > 1`.
+@isnad1 id=le.1h1v.s5.26fd0a9bf2f0 from=translated src=- shape=b0e2616d vocab=f2cc610c
+-/
 theorem naturalPSeries_le (s : ℝ) (hs : 1 < s) :
     naturalPSeries s ≤ 1 + 1 / (s - 1) := by
   have hsum := summable_naturalPSeries hs
@@ -114,7 +131,9 @@ theorem naturalPSeries_le (s : ℝ) (hs : 1 < s) :
       simp only [Nat.zero_add, Nat.cast_one, hone]
     _ ≤ 1 + 1 / (s - 1) := add_le_add le_rfl (naturalPSeries_tail_le hs)
 
-/-- The softened finite Euler product has the same explicit p-series majorant.-/
+/-- The softened finite Euler product has the same explicit p-series majorant.
+@isnad1 id=le.1h2v.s5.fbdbe27b5d89 from=translated src=- shape=8e6544d7 vocab=804e78a8
+-/
 theorem softenedMertensProduct_le (R : ℕ) (s : ℝ) (hs : 1 < s) :
     softenedMertensProduct R s ≤ 1 + 1 / (s - 1) := by
   rw [← smoothRpowTsum_eq_softenedMertensProduct R (lt_trans zero_lt_one hs)]

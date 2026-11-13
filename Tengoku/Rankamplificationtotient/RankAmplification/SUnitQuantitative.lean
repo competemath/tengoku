@@ -32,6 +32,9 @@ def IsRationalSUnit (S : Finset ℕ) (q : ℚ) : Prop :=
     IsPrimeSupportUnit S a ∧ IsPrimeSupportUnit S b ∧
       (q = (a : ℚ) / (b : ℚ) ∨ q = -((a : ℚ) / (b : ℚ)))
 
+/--
+@isnad1 id=ne.1h2v.s4.609a018b1114 from=translated src=- shape=0695f1c1 vocab=5a72e2dd
+-/
 theorem IsRationalSUnit.ne_zero
     {S : Finset ℕ} {q : ℚ} (hq : IsRationalSUnit S q) : q ≠ 0 := by
   rintro rfl
@@ -44,18 +47,27 @@ theorem IsRationalSUnit.ne_zero
     have hzero : (a : ℚ) / (b : ℚ) = 0 := by linarith
     exact haCast (div_eq_zero_iff.mp hzero |>.resolve_right hbCast)
 
+/--
+@isnad1 id=isration.2h3v.s5.25c852cc9497 from=translated src=- shape=148a40bf vocab=bdff6e20
+-/
 theorem IsRationalSUnit.of_nat_div
     {S : Finset ℕ} {a b : ℕ}
     (ha : IsPrimeSupportUnit S a) (hb : IsPrimeSupportUnit S b) :
     IsRationalSUnit S ((a : ℚ) / (b : ℚ)) :=
   ⟨a, b, ha, hb, Or.inl rfl⟩
 
+/--
+@isnad1 id=isration.2h3v.s5.ba373be6f1c8 from=translated src=- shape=cde139aa vocab=ab087502
+-/
 theorem IsRationalSUnit.neg_of_nat_div
     {S : Finset ℕ} {a b : ℕ}
     (ha : IsPrimeSupportUnit S a) (hb : IsPrimeSupportUnit S b) :
     IsRationalSUnit S (-((a : ℚ) / (b : ℚ))) :=
   ⟨a, b, ha, hb, Or.inr rfl⟩
 
+/--
+@isnad1 id=isration.1h2v.s3.172e925e79dd from=translated src=- shape=2ac6c560 vocab=d3967e8a
+-/
 theorem IsRationalSUnit.neg
     {S : Finset ℕ} {q : ℚ} (hq : IsRationalSUnit S q) :
     IsRationalSUnit S (-q) := by
@@ -91,10 +103,16 @@ def QuantitativeRationalSUnitEquationTheorem : Prop :=
 def sameSupportRationalPair (h j : ℕ) : ℚ × ℚ :=
   (((j + h : ℕ) : ℚ) / (h : ℚ), -((j : ℚ) / (h : ℚ)))
 
+/--
+@isnad1 id=isprimes.1h1v.s4.3bc8492b4dbc from=translated src=- shape=16c07a33 vocab=e1cf3e3a
+-/
 theorem shift_isPrimeSupportUnit {h : ℕ} (hh : 0 < h) :
     IsPrimeSupportUnit (primeSupport h) h :=
   ⟨hh, fun _p hp ↦ hp⟩
 
+/--
+@isnad1 id=isration.2h2v.s5.789a3cfc2160 from=translated src=- shape=b8aa26bf vocab=b0f17b1e
+-/
 theorem sameSupportRationalPair_isSolution
     {h j : ℕ} (hh : 0 < h) (hsame : IsSameSupportIndex h j) :
     IsRationalSUnitEquationSolution (primeSupport h)
@@ -111,6 +129,9 @@ theorem sameSupportRationalPair_isSolution
   norm_cast
   omega
 
+/--
+@isnad1 id=injectiv.1h1v.s4.c9997475c00d from=translated src=- shape=435f4909 vocab=52de0ddf
+-/
 theorem sameSupportRationalPair_injective {h : ℕ} (hh : 0 < h) :
     Function.Injective (sameSupportRationalPair h) := by
   intro j k hjk
@@ -128,6 +149,9 @@ def rationalPairIndex (h : ℕ) (z : ℚ × ℚ) : ℕ :=
     classical
     exact if hz : ∃ j, sameSupportRationalPair h j = z then Classical.choose hz else 0
 
+/--
+@isnad1 id=eq.1h2v.s4.9d3600557a46 from=translated src=- shape=62b13b56 vocab=17898689
+-/
 theorem rationalPairIndex_sameSupportRationalPair
     {h j : ℕ} (hh : 0 < h) :
     rationalPairIndex h (sameSupportRationalPair h j) = j := by
@@ -146,6 +170,9 @@ def sameSupportCarrierFromRational
     classical
     exact (U.image (rationalPairIndex h)).filter (IsSameSupportIndex h)
 
+/--
+@isnad1 id=issamesu.2h2v.s4.15b7f84c1d04 from=translated src=- shape=bcadecc1 vocab=403bb37a
+-/
 theorem isSameSupportCarrier_sameSupportCarrierFromRational
     {h : ℕ} (hh : 0 < h) {U : Finset (ℚ × ℚ)}
     (hU : IsRationalSUnitEquationCarrier (primeSupport h) U) :
@@ -161,6 +188,9 @@ theorem isSameSupportCarrier_sameSupportCarrierFromRational
     · exact (hU _ _).mpr (sameSupportRationalPair_isSolution hh hsame)
     · exact rationalPairIndex_sameSupportRationalPair hh
 
+/--
+@isnad1 id=le.0h2v.s4.1497a4d57b7a from=translated src=- shape=fbc61425 vocab=798d0813
+-/
 theorem card_sameSupportCarrierFromRational_le
     (h : ℕ) (U : Finset (ℚ × ℚ)) :
     (sameSupportCarrierFromRational h U).card ≤ U.card := by
@@ -168,11 +198,16 @@ theorem card_sameSupportCarrierFromRational_le
   unfold sameSupportCarrierFromRational
   exact (Finset.card_filter_le _ _).trans Finset.card_image_le
 
+/--
+@isnad1 id=eq.0h1v.s3.1faf1750140e from=translated src=- shape=c52356c6 vocab=7fe5565c
+-/
 theorem rationalSUnitEquationBound_primeSupport (h : ℕ) :
     rationalSUnitEquationBound (primeSupport h) = pptSameSupportBound h :=
   rfl
 
-/-- The finite PPT conclusion follows formally from the quantitative rational unit-equation theorem.-/
+/-- The finite PPT conclusion follows formally from the quantitative rational unit-equation theorem.
+@isnad1 id=terminal.2h1v.s4.7b541dc2ad8b from=translated src=- shape=9edaa0d7 vocab=d8ebe10c
+-/
 theorem terminalPPTSameSupportBound_of_quantitativeRationalSUnitEquation
     {h : ℕ} (hh : 0 < h)
     (hE : QuantitativeRationalSUnitEquationTheorem) :
@@ -191,6 +226,9 @@ theorem terminalPPTSameSupportBound_of_quantitativeRationalSUnitEquation
 def rationalPrimeOrder (p : ℕ) (q : ℚ) : ℤ :=
   padicValRat p q
 
+/--
+@isnad1 id=eq.3h3v.s5.b82f672a09dd from=translated src=- shape=222a2034 vocab=d06240a4
+-/
 theorem rationalPrimeOrder_mul
     {p : ℕ} (hp : p.Prime) {q r : ℚ} (hq : q ≠ 0) (hr : r ≠ 0) :
     rationalPrimeOrder p (q * r) =
@@ -198,6 +236,9 @@ theorem rationalPrimeOrder_mul
   letI : Fact p.Prime := ⟨hp⟩
   exact padicValRat.mul hq hr
 
+/--
+@isnad1 id=eq.0h2v.s3.6843bf26b457 from=translated src=- shape=3b878b1c vocab=b9dbb901
+-/
 theorem rationalPrimeOrder_neg (p : ℕ) (q : ℚ) :
     rationalPrimeOrder p (-q) = rationalPrimeOrder p q :=
   padicValRat.neg q
@@ -206,6 +247,9 @@ theorem rationalPrimeOrder_neg (p : ℕ) (q : ℚ) :
 def rationalPrimeNorm (p : ℕ) (q : ℚ) : ℚ :=
   padicNorm p q
 
+/--
+@isnad1 id=eq.1h3v.s5.d754f4b31497 from=translated src=- shape=b87ee010 vocab=0102bc3f
+-/
 theorem rationalPrimeNorm_mul
     {p : ℕ} (hp : p.Prime) (q r : ℚ) :
     rationalPrimeNorm p (q * r) =
@@ -213,6 +257,9 @@ theorem rationalPrimeNorm_mul
   letI : Fact p.Prime := ⟨hp⟩
   exact padicNorm.mul q r
 
+/--
+@isnad1 id=eq.1h3v.s5.83c1d767f398 from=translated src=- shape=b87ee010 vocab=bb00ca64
+-/
 theorem rationalPrimeNorm_div
     {p : ℕ} (hp : p.Prime) (q r : ℚ) :
     rationalPrimeNorm p (q / r) =
@@ -220,10 +267,16 @@ theorem rationalPrimeNorm_div
   letI : Fact p.Prime := ⟨hp⟩
   exact padicNorm.div q r
 
+/--
+@isnad1 id=eq.0h2v.s3.6fbe54faa15d from=translated src=- shape=5a76020b vocab=9b093dfd
+-/
 theorem rationalPrimeNorm_neg (p : ℕ) (q : ℚ) :
     rationalPrimeNorm p (-q) = rationalPrimeNorm p q :=
   padicNorm.neg q
 
+/--
+@isnad1 id=le.1h3v.s5.f4624f98ce0c from=translated src=- shape=4ff89d61 vocab=dbc1e2b4
+-/
 theorem rationalPrimeNorm_nonarchimedean
     {p : ℕ} (hp : p.Prime) (q r : ℚ) :
     rationalPrimeNorm p (q + r) ≤
@@ -231,6 +284,9 @@ theorem rationalPrimeNorm_nonarchimedean
   letI : Fact p.Prime := ⟨hp⟩
   exact padicNorm.nonarchimedean
 
+/--
+@isnad1 id=eq.3h3v.s5.f76f0cc11484 from=translated src=- shape=ef21d062 vocab=2b372c56
+-/
 theorem IsRationalSUnit.rationalPrimeOrder_eq_zero_of_not_mem
     {S : Finset ℕ} {q : ℚ} (hq : IsRationalSUnit S q)
     {p : ℕ} (hp : p.Prime) (hpS : p ∉ S) :
@@ -256,6 +312,9 @@ theorem IsRationalSUnit.rationalPrimeOrder_eq_zero_of_not_mem
   · rw [hab, rationalPrimeOrder, padicValRat.neg,
       padicValRat.div haCast hbCast, hva, hvb, sub_zero]
 
+/--
+@isnad1 id=eq.3h3v.s5.0328731da7f5 from=translated src=- shape=84ac5abc vocab=7f95484a
+-/
 theorem IsRationalSUnit.rationalPrimeNorm_eq_one_of_not_mem
     {S : Finset ℕ} {q : ℚ} (hq : IsRationalSUnit S q)
     {p : ℕ} (hp : p.Prime) (hpS : p ∉ S) :
@@ -275,45 +334,77 @@ def rationalHeight (q : ℚ) : ℝ :=
 def rationalLogHeight (q : ℚ) : ℝ :=
   Height.logHeight₁ q
 
+/--
+@isnad1 id=eq.0h1v.s4.4dd175b85e40 from=translated src=- shape=084928e0 vocab=2b0d79aa
+-/
 theorem rationalHeight_eq_max_num_den (q : ℚ) :
     rationalHeight q = max q.num.natAbs q.den := by
   exact Rat.mulHeight₁_eq_max q
 
+/--
+@isnad1 id=eq.0h1v.s4.57931a574849 from=translated src=- shape=56167bc4 vocab=9cfc859e
+-/
 theorem rationalLogHeight_eq_log_max_num_den (q : ℚ) :
     rationalLogHeight q = Real.log ((max q.num.natAbs q.den : ℕ) : ℝ) := by
   simpa only [rationalLogHeight] using Rat.logHeight₁_eq_log_max q
 
+/--
+@isnad1 id=le.0h1v.s3.6b436a0313e8 from=translated src=- shape=b9369acb vocab=2c6a27f2
+-/
 theorem one_le_rationalHeight (q : ℚ) : 1 ≤ rationalHeight q :=
   Height.one_le_mulHeight₁ q
 
+/--
+@isnad1 id=le.0h1v.s3.cb68076d313e from=translated src=- shape=b9369acb vocab=aa49e5f5
+-/
 theorem zero_le_rationalLogHeight (q : ℚ) : 0 ≤ rationalLogHeight q :=
   Height.zero_le_logHeight₁ q
 
+/--
+@isnad1 id=eq.0h1v.s3.4b9b16965ac9 from=translated src=- shape=8fc7e33b vocab=164d2ac2
+-/
 theorem rationalHeight_inv (q : ℚ) :
     rationalHeight q⁻¹ = rationalHeight q :=
   Height.mulHeight₁_inv q
 
+/--
+@isnad1 id=eq.0h1v.s3.c4d3a7d63c01 from=translated src=- shape=8fc7e33b vocab=a07c2155
+-/
 theorem rationalHeight_neg (q : ℚ) :
     rationalHeight (-q) = rationalHeight q :=
   Height.mulHeight₁_neg q
 
+/--
+@isnad1 id=eq.0h2v.s5.d85f9f1985f0 from=translated src=- shape=d14eb2af vocab=1c99c2f0
+-/
 theorem rationalHeight_pow (q : ℚ) (n : ℕ) :
     rationalHeight (q ^ n) = rationalHeight q ^ n :=
   Height.mulHeight₁_pow q n
 
+/--
+@isnad1 id=le.0h2v.s4.75faf47eac06 from=translated src=- shape=0438c7a3 vocab=74703d3c
+-/
 theorem rationalHeight_mul_le (q r : ℚ) :
     rationalHeight (q * r) ≤ rationalHeight q * rationalHeight r :=
   Height.mulHeight₁_mul_le q r
 
+/--
+@isnad1 id=eq.0h2v.s4.a7b04b3ad920 from=translated src=- shape=a7853f84 vocab=10981dc1
+-/
 theorem rationalLogHeight_pow (q : ℚ) (n : ℕ) :
     rationalLogHeight (q ^ n) = n * rationalLogHeight q :=
   Height.logHeight₁_pow q n
 
+/--
+@isnad1 id=le.0h2v.s4.137faf77f068 from=translated src=- shape=0438c7a3 vocab=0283bb5c
+-/
 theorem rationalLogHeight_mul_le (q r : ℚ) :
     rationalLogHeight (q * r) ≤ rationalLogHeight q + rationalLogHeight r :=
   Height.logHeight₁_mul_le q r
 
-/-- Northcott finiteness for the rational height; this is the finite-height input in the small-height branch of Evertse's proof.-/
+/-- Northcott finiteness for the rational height; this is the finite-height input in the small-height branch of Evertse's proof.
+@isnad1 id=finite.0h1v.s3.200e16c09df3 from=translated src=- shape=4cfe8e1f vocab=894919bb
+-/
 theorem finite_rationalHeight_le (B : ℝ) :
     {q : ℚ | rationalHeight q ≤ B}.Finite :=
   NumberField.finite_setOfPred_mulHeight₁_le ℚ B
@@ -342,6 +433,9 @@ theorem IsPrimeSupportUnit.eq_prod_factorization
       Finsupp.prod_of_support_subset n.factorization hn.2 (fun p e ↦ p ^ e)
         (by simp)
 
+/--
+@isnad1 id=eq.1h2v.s7.624f72ee6700 from=translated src=- shape=2cddb56b vocab=c0d65ab4
+-/
 theorem IsPrimeSupportUnit.cast_eq_prod_factorization
     {S : Finset ℕ} {n : ℕ} (hn : IsPrimeSupportUnit S n) :
     (n : ℚ) = ∏ p : S, (p.1 : ℚ) ^ n.factorization p.1 := by
@@ -355,7 +449,9 @@ theorem IsPrimeSupportUnit.cast_eq_prod_factorization
       simpa using
         (Finset.prod_attach S (fun p ↦ (p : ℚ) ^ n.factorization p)).symm
 
-/-- The canonical exponent vector reconstructs a positive quotient of natural `S`-units.-/
+/-- The canonical exponent vector reconstructs a positive quotient of natural `S`-units.
+@isnad1 id=eq.3h3v.s6.3801af03adc0 from=translated src=- shape=40affc3c vocab=24744fe8
+-/
 theorem rationalMonomial_exponentVector_nat_div
     {S : Finset ℕ} {a b : ℕ}
     (hS : ∀ p ∈ S, p.Prime)
@@ -386,17 +482,25 @@ theorem rationalMonomial_exponentVector_nat_div
         ← IsPrimeSupportUnit.cast_eq_prod_factorization ha,
         ← IsPrimeSupportUnit.cast_eq_prod_factorization hb]
 
+/--
+@isnad1 id=eq.0h2v.s4.4373872b9e92 from=translated src=- shape=0363c66f vocab=f58a003e
+-/
 theorem rationalExponentVector_neg (S : Finset ℕ) (q : ℚ) :
     rationalExponentVector S (-q) = rationalExponentVector S q := by
   funext p
   exact rationalPrimeOrder_neg p.1 q
 
+/--
+@isnad1 id=eq.0h2v.s4.acf37bbd487d from=translated src=- shape=4bf8f032 vocab=a889df1b
+-/
 theorem rationalMonomial_exponentVector_neg (S : Finset ℕ) (q : ℚ) :
     rationalMonomial S (rationalExponentVector S (-q)) =
       rationalMonomial S (rationalExponentVector S q) := by
   rw [rationalExponentVector_neg]
 
-/-- Reconstruction of a nonzero rational `S`-unit from its canonical exponent vector and one sign bit.-/
+/-- Reconstruction of a nonzero rational `S`-unit from its canonical exponent vector and one sign bit.
+@isnad1 id=ex.2h2v.s6.b725ce418010 from=translated src=- shape=1e49ef1a vocab=62765bfa
+-/
 theorem IsRationalSUnit.exists_sign_mul_rationalMonomial
     {S : Finset ℕ} (hS : ∀ p ∈ S, p.Prime) {q : ℚ}
     (hq : IsRationalSUnit S q) :
@@ -427,6 +531,9 @@ def exponentQuotient49 {S : Finset ℕ}
     (e : RationalExponentVector S) : RationalExponentVector S :=
   fun p ↦ e p / 49
 
+/--
+@isnad1 id=eq.0h3v.s6.b2127f713bb4 from=translated src=- shape=6cdeee90 vocab=313b01f6
+-/
 theorem exponentResidue49_add_mul_quotient
     {S : Finset ℕ} (e : RationalExponentVector S) (p : S) :
     ((exponentResidue49 e p : Fin 49) : ℕ) +
@@ -435,6 +542,9 @@ theorem exponentResidue49_add_mul_quotient
   rw [Int.natMod, Int.toNat_of_nonneg (Int.emod_nonneg _ (by norm_num : (49 : ℤ) ≠ 0))]
   exact Int.emod_add_mul_ediv _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.feed73620b0f from=translated src=- shape=441619be vocab=313b01f6
+-/
 theorem exponentResidue49_add_quotient_mul
     {S : Finset ℕ} (e : RationalExponentVector S) (p : S) :
     ((exponentResidue49 e p : Fin 49) : ℕ) +
@@ -447,6 +557,9 @@ def rationalResidueRepresentative49
     (S : Finset ℕ) (r : ExponentResidue49 S) : ℚ :=
   ∏ p : S, (p.1 : ℚ) ^ (r p : ℕ)
 
+/--
+@isnad1 id=eq.1h2v.s5.9b5f7b37f3c3 from=translated src=- shape=cfcd13de vocab=b2c05cf1
+-/
 theorem rationalMonomial_eq_residue_mul_pow
     {S : Finset ℕ} (hS : ∀ p ∈ S, p.Prime)
     (e : RationalExponentVector S) :
@@ -482,6 +595,9 @@ def signedResidueRepresentatives49 (S : Finset ℕ) : Finset ℚ := by
   classical
   exact Finset.univ.image (signedResidueRepresentative49 S)
 
+/--
+@isnad1 id=le.0h1v.s5.63df9efdd493 from=translated src=- shape=41b6b8ad vocab=946bdec9
+-/
 theorem card_signedResidueRepresentatives49_le (S : Finset ℕ) :
     (signedResidueRepresentatives49 S).card ≤ 2 * 49 ^ S.card := by
   classical
@@ -492,7 +608,9 @@ theorem card_signedResidueRepresentatives49_le (S : Finset ℕ) :
     _ = 2 * 49 ^ S.card := by
       simp
 
-/-- Every rational `S`-unit is represented by one of the signed residue vectors, modulo a 49th power.-/
+/-- Every rational `S`-unit is represented by one of the signed residue vectors, modulo a 49th power.
+@isnad1 id=ex.2h2v.s6.0815266ae61e from=translated src=- shape=c2004cad vocab=d347a3df
+-/
 theorem IsRationalSUnit.exists_mem_signedResidueRepresentatives49_mul_pow
     {S : Finset ℕ} (hS : ∀ p ∈ S, p.Prime) {q : ℚ}
     (hq : IsRationalSUnit S q) :
@@ -515,7 +633,9 @@ theorem IsRationalSUnit.exists_mem_signedResidueRepresentatives49_mul_pow
     · simpa [signedResidueRepresentative49, e, mul_assoc] using hqε.trans
         (congrArg ((-1 : ℚ) * ·) hsplit)
 
-/-- Packaged finite-quotient statement: at most `2 * 49^|S|` classes cover all rational `S`-units modulo 49th powers.-/
+/-- Packaged finite-quotient statement: at most `2 * 49^|S|` classes cover all rational `S`-units modulo 49th powers.
+@isnad1 id=ex.1h1v.s6.9d717a4c9c25 from=translated src=- shape=fa1cd7e9 vocab=babab7a3
+-/
 theorem exists_signedResidueCarrier49
     (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) :
     ∃ R : Finset ℚ, R.card ≤ 2 * 49 ^ S.card ∧
@@ -527,6 +647,9 @@ theorem exists_signedResidueCarrier49
 
 /-! ## The low-height branch -/
 
+/--
+@isnad1 id=le.0h2v.s4.34c80c5a8cc7 from=translated src=- shape=0438c7a3 vocab=99a52db0
+-/
 theorem rationalHeight_div_le (q r : ℚ) :
     rationalHeight (q / r) ≤ rationalHeight q * rationalHeight r := by
   rw [div_eq_mul_inv]
@@ -559,10 +682,16 @@ theorem eq_one_or_neg_one_of_rationalHeight_lt_two
 def lowHeightCutoff49 : ℝ :=
   2 ^ 24
 
+/--
+@isnad1 id=lt.0h0v.s5.d7f689be28d2 from=translated src=- shape=cb926bd6 vocab=e1bfad9e
+-/
 theorem lowHeightCutoff49_sq_lt_two_pow_49 :
     lowHeightCutoff49 * lowHeightCutoff49 < (2 : ℝ) ^ 49 := by
   norm_num [lowHeightCutoff49, ← pow_add]
 
+/--
+@isnad1 id=lt.6h5v.s6.970582db46f8 from=translated src=- shape=d358ee52 vocab=f917c713
+-/
 theorem rationalHeight_ratio_lt_two_of_common_power49
     {r z₁ z₂ q₁ q₂ : ℚ}
     (hq₁ : q₁ ≠ 0) (hq₂ : q₂ ≠ 0)
@@ -597,6 +726,9 @@ theorem rationalHeight_ratio_lt_two_of_common_power49
     (zero_le_one.trans (one_le_rationalHeight (z₁ / z₂)))
     (by norm_num : (0 : ℝ) ≤ 2) (by norm_num : (49 : ℕ) ≠ 0)).mp hheightPow
 
+/--
+@isnad1 id=or.6h5v.s6.f502cfedf09f from=translated src=- shape=06cb4120 vocab=fec43fbc
+-/
 theorem power49_class_pair_eq_or_eq_neg
     {r z₁ z₂ q₁ q₂ : ℚ}
     (hq₁ : q₁ ≠ 0) (hq₂ : q₂ ≠ 0)
@@ -628,6 +760,9 @@ theorem power49_class_pair_eq_or_eq_neg
 def rationalLowHeightBall49 : Finset ℚ :=
   (finite_rationalHeight_le lowHeightCutoff49).toFinset
 
+/--
+@isnad1 id=iff.0h1v.s4.d5d6a724be54 from=translated src=- shape=cf694dd6 vocab=62944578
+-/
 @[simp]
 theorem mem_rationalLowHeightBall49 {q : ℚ} :
     q ∈ rationalLowHeightBall49 ↔ rationalHeight q ≤ lowHeightCutoff49 := by
@@ -639,6 +774,9 @@ def lowPowerClass49 (r : ℚ) : Finset ℚ := by
   exact rationalLowHeightBall49.filter fun q ↦
     q ≠ 0 ∧ ∃ z : ℚ, q = r * z ^ 49
 
+/--
+@isnad1 id=iff.0h2v.s6.6c090fd90aa8 from=translated src=- shape=bfaa5e4d vocab=cf2ce4d7
+-/
 @[simp]
 theorem mem_lowPowerClass49 {r q : ℚ} :
     q ∈ lowPowerClass49 r ↔
@@ -647,7 +785,9 @@ theorem mem_lowPowerClass49 {r q : ℚ} :
   classical
   simp [lowPowerClass49]
 
-/-- Uniform two-element bound for a fixed signed 49th-power residue class.-/
+/-- Uniform two-element bound for a fixed signed 49th-power residue class.
+@isnad1 id=le.0h1v.s3.4bb30aa46a47 from=translated src=- shape=fcff7bf0 vocab=87f24f15
+-/
 theorem card_lowPowerClass49_le_two (r : ℚ) :
     (lowPowerClass49 r).card ≤ 2 := by
   classical
@@ -666,6 +806,9 @@ def lowPowerClassUnion49 (S : Finset ℕ) : Finset ℚ := by
   classical
   exact (signedResidueRepresentatives49 S).biUnion lowPowerClass49
 
+/--
+@isnad1 id=le.0h1v.s5.624d02341e25 from=translated src=- shape=41b6b8ad vocab=c15d44c1
+-/
 theorem card_lowPowerClassUnion49_le (S : Finset ℕ) :
     (lowPowerClassUnion49 S).card ≤ 4 * 49 ^ S.card := by
   classical
@@ -678,6 +821,9 @@ theorem card_lowPowerClassUnion49_le (S : Finset ℕ) :
       Nat.mul_le_mul_right 2 (card_signedResidueRepresentatives49_le S)
     _ = 4 * 49 ^ S.card := by ring
 
+/--
+@isnad1 id=mem.3h2v.s5.ab68ee602cd1 from=translated src=- shape=add631a3 vocab=93373386
+-/
 theorem IsRationalSUnit.mem_lowPowerClassUnion49
     {S : Finset ℕ} (hS : ∀ p ∈ S, p.Prime) {q : ℚ}
     (hq : IsRationalSUnit S q)
@@ -689,6 +835,9 @@ theorem IsRationalSUnit.mem_lowPowerClassUnion49
   exact Finset.mem_biUnion.mpr ⟨r, hr,
     mem_lowPowerClass49.mpr ⟨hheight, hq.ne_zero, z, hz⟩⟩
 
+/--
+@isnad1 id=isration.1h2v.s3.67420eafe890 from=translated src=- shape=2ac6c560 vocab=68c0fa48
+-/
 theorem IsRationalSUnit.inv
     {S : Finset ℕ} {q : ℚ} (hq : IsRationalSUnit S q) :
     IsRationalSUnit S q⁻¹ := by
@@ -700,6 +849,9 @@ theorem IsRationalSUnit.inv
     rw [hab]
     field_simp
 
+/--
+@isnad1 id=isration.2h3v.s4.12dabda6bc5c from=translated src=- shape=029b4bf7 vocab=fb73da02
+-/
 theorem IsRationalSUnit.mul
     {S : Finset ℕ} {q r : ℚ}
     (hq : IsRationalSUnit S q) (hr : IsRationalSUnit S r) :
@@ -728,6 +880,9 @@ theorem IsRationalSUnit.mul
     push_cast
     ring
 
+/--
+@isnad1 id=isration.2h3v.s4.a3073e6a2789 from=translated src=- shape=029b4bf7 vocab=38b43797
+-/
 theorem IsRationalSUnit.div
     {S : Finset ℕ} {q r : ℚ}
     (hq : IsRationalSUnit S q) (hr : IsRationalSUnit S r) :
@@ -739,6 +894,9 @@ theorem IsRationalSUnit.div
 def rationalEquationPairOfRatio (q : ℚ) : ℚ × ℚ :=
   (q / (q + 1), 1 / (q + 1))
 
+/--
+@isnad1 id=eq.1h1v.s5.739f9bf1f65a from=translated src=- shape=2f61225d vocab=79c0585d
+-/
 theorem rationalEquationPairOfRatio_ratio_of_ne
     {q : ℚ} (hq : q + 1 ≠ 0) :
     (rationalEquationPairOfRatio q).1 /
@@ -746,6 +904,9 @@ theorem rationalEquationPairOfRatio_ratio_of_ne
   simp only [rationalEquationPairOfRatio]
   field_simp
 
+/--
+@isnad1 id=eq.1h3v.s4.0ba51eef9dce from=translated src=- shape=e07d9fa2 vocab=2ce2169c
+-/
 theorem rationalEquationPairOfRatio_eq_of_solution
     {S : Finset ℕ} {x y : ℚ}
     (hsol : IsRationalSUnitEquationSolution S x y) :
@@ -763,6 +924,9 @@ def lowHeightRationalSUnitEquationRatioSet (S : Finset ℕ) : Finset ℚ := by
     IsRationalSUnitEquationSolution S
       (rationalEquationPairOfRatio q).1 (rationalEquationPairOfRatio q).2
 
+/--
+@isnad1 id=le.0h1v.s5.97d371794a8c from=translated src=- shape=41b6b8ad vocab=dc62fe7b
+-/
 theorem card_lowHeightRationalSUnitEquationRatioSet_le (S : Finset ℕ) :
     (lowHeightRationalSUnitEquationRatioSet S).card ≤ 4 * 49 ^ S.card :=
   by
@@ -780,6 +944,9 @@ def IsLowHeightRationalSUnitEquationSolution
   IsRationalSUnitEquationSolution S x y ∧
     rationalHeight (x / y) ≤ lowHeightCutoff49
 
+/--
+@isnad1 id=le.1h2v.s4.16c20a79f496 from=translated src=- shape=302d1058 vocab=01ce74a0
+-/
 theorem height_le_of_mem_lowPowerClassUnion49
     {S : Finset ℕ} {q : ℚ} (hq : q ∈ lowPowerClassUnion49 S) :
     rationalHeight q ≤ lowHeightCutoff49 := by
@@ -787,6 +954,9 @@ theorem height_le_of_mem_lowPowerClassUnion49
   obtain ⟨r, _hr, hqr⟩ := Finset.mem_biUnion.mp hq
   exact (mem_lowPowerClass49.mp hqr).1
 
+/--
+@isnad1 id=iff.0h2v.s5.1d9850686088 from=translated src=- shape=cd85d42c vocab=a3606be6
+-/
 @[simp]
 theorem mem_lowHeightRationalSUnitEquationRatioSet
     {S : Finset ℕ} {q : ℚ} :
@@ -798,7 +968,9 @@ theorem mem_lowHeightRationalSUnitEquationRatioSet
   classical
   simp [lowHeightRationalSUnitEquationRatioSet]
 
-/-- Exact membership theorem for the constructed low-height solution carrier.-/
+/-- Exact membership theorem for the constructed low-height solution carrier.
+@isnad1 id=iff.1h3v.s5.5a2b85728d7c from=translated src=- shape=6c8b56b4 vocab=944d1f3c
+-/
 theorem mem_lowHeightRationalSUnitEquationCarrier
     {S : Finset ℕ} (hS : ∀ p ∈ S, p.Prime) {x y : ℚ} :
     (x, y) ∈ lowHeightRationalSUnitEquationCarrier S ↔
@@ -830,12 +1002,17 @@ theorem mem_lowHeightRationalSUnitEquationCarrier
     refine ⟨q, mem_lowHeightRationalSUnitEquationRatioSet.mpr ⟨hqUnion, ?_⟩, hpair⟩
     simpa only [hpair] using hsol
 
+/--
+@isnad1 id=le.0h1v.s5.7237a4090824 from=translated src=- shape=fa08df20 vocab=3d96451c
+-/
 theorem card_lowHeightRationalSUnitEquationCarrier_le (S : Finset ℕ) :
     (lowHeightRationalSUnitEquationCarrier S).card ≤ 4 * 49 ^ S.card := by
   classical
   exact Finset.card_image_le.trans (card_lowHeightRationalSUnitEquationRatioSet_le S)
 
-/-- Fully unconditional quantitative low-height branch of Evertse's rational theorem.-/
+/-- Fully unconditional quantitative low-height branch of Evertse's rational theorem.
+@isnad1 id=ex.1h1v.s6.934e5f7d8137 from=translated src=- shape=956fd093 vocab=a5cb8db7
+-/
 theorem exists_lowHeightRationalSUnitEquationCarrier
     (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) :
     ∃ U : Finset (ℚ × ℚ),
@@ -851,8 +1028,14 @@ theorem exists_lowHeightRationalSUnitEquationCarrier
 /-- Evertse's quadratic cyclotomic extension `ℚ(ρ)`, where `ρ` is a primitive cube root of unity.-/
 abbrev EvertseCubicField := CyclotomicField 3 ℚ
 
+/--
+@isnad1 id=nezero.0h0v.s3.34d034c8feef from=translated src=- shape=2d35c0cb vocab=72ebdef6
+-/
 local instance evertseThreeNeZero : NeZero (3 : ℚ) := ⟨by norm_num⟩
 
+/--
+@isnad1 id=iscyclot.0h0v.s5.d4228996ce70 from=translated src=- shape=25ec0872 vocab=0369045f
+-/
 local instance evertseIsCyclotomic :
     IsCyclotomicExtension {3} ℚ EvertseCubicField :=
   CyclotomicField.isCyclotomicExtension 3 ℚ
@@ -861,6 +1044,9 @@ local instance evertseIsCyclotomic :
 def evertseRho : EvertseCubicField :=
   IsCyclotomicExtension.zeta 3 ℚ EvertseCubicField
 
+/--
+@isnad1 id=isprimit.0h0v.s4.fe0b8071f74e from=translated src=- shape=aeae7466 vocab=1df14b5a
+-/
 theorem evertseRho_isPrimitiveRoot : IsPrimitiveRoot evertseRho 3 :=
   IsCyclotomicExtension.zeta_spec 3 ℚ EvertseCubicField
 
@@ -873,6 +1059,9 @@ def evertseEta (x y : ℚ) : EvertseCubicField :=
   algebraMap ℚ EvertseCubicField x -
     evertseRho ^ 2 * algebraMap ℚ EvertseCubicField y
 
+/--
+@isnad1 id=ne.1h2v.s6.15d6d7030b1c from=translated src=- shape=3e3476e4 vocab=9faf5bcf
+-/
 theorem rational_quadratic_form_ne_zero_of_add_eq_one
     {x y : ℚ} (hxy : x + y = 1) :
     x ^ 2 + x * y + y ^ 2 ≠ 0 := by
@@ -903,6 +1092,9 @@ def evertseNormalizedHeight (z : EvertseCubicField) : ℝ :=
 def evertseRationalPrimeIdeal (p : ℕ) : Ideal (𝓞 ℚ) :=
   Ideal.map Rat.ringOfIntegersEquiv.symm (Ideal.span {(p : ℤ)})
 
+/--
+@isnad1 id=ne.1h1v.s6.2e0db204799c from=translated src=- shape=ab6e947a vocab=3610e919
+-/
 theorem evertseRationalPrimeIdeal_ne_bot {p : ℕ} (hp : p.Prime) :
     evertseRationalPrimeIdeal p ≠ ⊥ := by
   intro hbot
@@ -911,6 +1103,9 @@ theorem evertseRationalPrimeIdeal_ne_bot {p : ℕ} (hp : p.Prime) :
   rw [Ideal.span_singleton_eq_bot] at hspan
   exact hp.ne_zero (by exact_mod_cast hspan)
 
+/--
+@isnad1 id=isprime.1h1v.s4.3395d8655e91 from=translated src=- shape=30dc53ce vocab=22743804
+-/
 theorem evertseRationalPrimeIdeal_isPrime {p : ℕ} (hp : p.Prime) :
     (evertseRationalPrimeIdeal p).IsPrime := by
   letI : (Ideal.span {(p : ℤ)}).IsPrime := by
@@ -970,10 +1165,16 @@ def evertsePrimeInteger (p : ℕ) : 𝓞 EvertseCubicField :=
 /-- The rational prime ideal `(3)` used for the unique ramified finite place.-/
 def evertseThreePrimeIdeal : Ideal ℤ := Ideal.span {(3 : ℤ)}
 
+/--
+@isnad1 id=ne.0h0v.s4.53793daac5de from=translated src=- shape=e0b023cc vocab=91c77b18
+-/
 theorem evertseThreePrimeIdeal_ne_bot : evertseThreePrimeIdeal ≠ ⊥ := by
   rw [evertseThreePrimeIdeal, ne_eq, Ideal.span_singleton_eq_bot]
   norm_num
 
+/--
+@isnad1 id=isprime.0h0v.s2.146dc3d52278 from=translated src=- shape=25b03439 vocab=84855d7f
+-/
 theorem evertseThreePrimeIdeal_isPrime : evertseThreePrimeIdeal.IsPrime := by
   rw [evertseThreePrimeIdeal, Ideal.span_singleton_prime]
   · exact Nat.prime_iff_prime_int.mp (by decide)
@@ -1029,6 +1230,9 @@ def evertsePlaceAbv
   | Sum.inl w => w.1
   | Sum.inr w => w.1.1
 
+/--
+@isnad1 id=eq.1h2v.s8.3b51237ae13e from=translated src=- shape=c6f4500c vocab=2f3b11a6
+-/
 @[simp]
 theorem evertsePlaceAbv_infinite
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
@@ -1036,6 +1240,9 @@ theorem evertsePlaceAbv_infinite
     evertsePlaceAbv (S := S) (hS := hS) (Sum.inl w) = w.1 :=
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s9.0ccb6d533492 from=translated src=- shape=031f71c9 vocab=8f6a41ff
+-/
 @[simp]
 theorem evertsePlaceAbv_finite
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
@@ -1058,6 +1265,9 @@ def evertseLocalCloseness
 
 /-! ## Product formula and the normalized three-root bound -/
 
+/--
+@isnad1 id=eq.1h1v.s5.e4abd5aabc35 from=translated src=- shape=4cedcb82 vocab=5897adc6
+-/
 lemma min_one_eq_div_max_one {a : ℝ} (ha : 0 < a) :
     min 1 a = a / max a 1 := by
   apply (eq_div_iff (lt_of_lt_of_le ha (le_max_left a 1)).ne').2
@@ -1115,12 +1325,17 @@ def toComposition {q : ℕ} (k : EvertseGammaIndex q) : Composition (2 * q) wher
     change q + q = 2 * q
     omega
 
+/--
+@isnad1 id=eq.0h2v.s7.6fd9728f47d3 from=translated src=- shape=ddfcf49d vocab=41ec6fdf
+-/
 @[simp]
 theorem toComposition_blocks {q : ℕ} (k : EvertseGammaIndex q) :
     k.toComposition.blocks = List.ofFn (fun i => (k.1 i : ℕ) + 1) :=
   rfl
 
-/-- The positive-block encoding of weak compositions is injective.-/
+/-- The positive-block encoding of weak compositions is injective.
+@isnad1 id=injectiv.0h1v.s4.c13750b4389b from=translated src=- shape=2911d742 vocab=8c806965
+-/
 theorem toComposition_injective (q : ℕ) :
     Function.Injective (@toComposition q) := by
   intro k l h
@@ -1132,13 +1347,17 @@ theorem toComposition_injective (q : ℕ) :
   have hi := congrFun hf i
   simpa using Nat.add_right_cancel hi
 
-/-- The number of weak compositions of `q` is bounded by the number of all compositions of `2q`.-/
+/-- The number of weak compositions of `q` is bounded by the number of all compositions of `2q`.
+@isnad1 id=le.0h1v.s5.41e727f2cd4a from=translated src=- shape=dadc4eed vocab=cf05409c
+-/
 theorem card_le_compositions (q : ℕ) :
     Fintype.card (EvertseGammaIndex q) ≤ 2 ^ (2 * q - 1) := by
   rw [← composition_card (2 * q)]
   exact Fintype.card_le_of_injective _ (toComposition_injective q)
 
-/-- A coarse exponential bound tailored to the constant in Evertse's theorem.-/
+/-- A coarse exponential bound tailored to the constant in Evertse's theorem.
+@isnad1 id=le.0h1v.s5.f19cc9ccefd9 from=translated src=- shape=fab95342 vocab=f1088b39
+-/
 theorem card_le_seven_pow (q : ℕ) :
     Fintype.card (EvertseGammaIndex q) ≤ 7 ^ (q + 1) := by
   calc
@@ -1153,13 +1372,17 @@ theorem card_le_seven_pow (q : ℕ) :
 def gamma {q : ℕ} (k : EvertseGammaIndex q) (i : Fin q) : ℝ :=
   (k.1 i : ℕ) / (2 * q : ℝ)
 
-/-- Every normalized exponent coordinate is nonnegative.-/
+/-- Every normalized exponent coordinate is nonnegative.
+@isnad1 id=le.0h3v.s4.4dd7d468584a from=translated src=- shape=d78b0cc0 vocab=095f5e99
+-/
 theorem gamma_nonneg {q : ℕ} (k : EvertseGammaIndex q) (i : Fin q) :
     0 ≤ k.gamma i := by
   unfold gamma
   positivity
 
-/-- The normalized coordinates of a weak composition sum to `1/2`.-/
+/-- The normalized coordinates of a weak composition sum to `1/2`.
+@isnad1 id=eq.1h2v.s5.642b7e67d2b1 from=translated src=- shape=fea98389 vocab=caa4f0fe
+-/
 theorem sum_gamma {q : ℕ} (hq : 0 < q) (k : EvertseGammaIndex q) :
     ∑ i, k.gamma i = (1 / 2 : ℝ) := by
   unfold gamma
@@ -1233,7 +1456,9 @@ private theorem floor_allocation_sum_ge {q : ℕ} (alpha : Fin q → ℝ)
     linarith
   exact_mod_cast hcast
 
-/-- Every nonnegative vector of total mass at least one dominates one of the normalized weak composition vectors.-/
+/-- Every nonnegative vector of total mass at least one dominates one of the normalized weak composition vectors.
+@isnad1 id=ex.3h2v.s6.dedf96c19797 from=translated src=- shape=7cac4c15 vocab=9a2af952
+-/
 theorem EvertseGammaIndex.exists_gamma_le {q : ℕ} (hq : 0 < q)
     (alpha : Fin q → ℝ) (halpha : ∀ i, 0 ≤ alpha i)
     (hsum : 1 ≤ ∑ i, alpha i) :
@@ -1268,13 +1493,17 @@ def evertseLocalGamma {ι : Type*} [Fintype ι]
     (k : EvertseGammaIndex (Fintype.card ι)) (i : ι) : ℝ :=
   k.gamma (Fintype.equivFin ι i)
 
-/-- Local simplex coordinates are nonnegative.-/
+/-- Local simplex coordinates are nonnegative.
+@isnad1 id=le.0h3v.s4.86052f96704f from=translated src=- shape=8371e5a0 vocab=3ac71ad3
+-/
 theorem evertseLocalGamma_nonneg {ι : Type*} [Fintype ι]
     (k : EvertseGammaIndex (Fintype.card ι)) (i : ι) :
     0 ≤ evertseLocalGamma k i :=
   EvertseGammaIndex.gamma_nonneg _ _
 
-/-- The local simplex coordinates sum to `1/2`.-/
+/-- The local simplex coordinates sum to `1/2`.
+@isnad1 id=eq.0h2v.s5.2b97bc949bc4 from=translated src=- shape=3e45df88 vocab=22b09ca6
+-/
 theorem sum_evertseLocalGamma_eq_half {ι : Type*} [Fintype ι] [Nonempty ι]
     (k : EvertseGammaIndex (Fintype.card ι)) :
     ∑ i, evertseLocalGamma k i = (1 / 2 : ℝ) := by
@@ -1282,7 +1511,9 @@ theorem sum_evertseLocalGamma_eq_half {ι : Type*} [Fintype ι] [Nonempty ι]
     exact (Fintype.equivFin ι).sum_comp k.gamma]
   exact EvertseGammaIndex.sum_gamma (Fintype.card_pos_iff.mpr inferInstance) k
 
-/-- The finite simplex cover, stated invariantly over an arbitrary nonempty finite type.-/
+/-- The finite simplex cover, stated invariantly over an arbitrary nonempty finite type.
+@isnad1 id=ex.2h2v.s6.5d8997bdb0fe from=translated src=- shape=4f16d69c vocab=414db08f
+-/
 theorem exists_evertseLocalGamma_le {ι : Type*} [Fintype ι] [Nonempty ι]
     (alpha : ι → ℝ) (halpha : ∀ i, 0 ≤ alpha i)
     (hsum : 1 ≤ ∑ i, alpha i) :
@@ -1300,7 +1531,9 @@ theorem exists_evertseLocalGamma_le {ι : Type*} [Fintype ι] [Nonempty ι]
   refine ⟨k, fun i => ?_⟩
   simpa [evertseLocalGamma, alphaFin, e] using hk (e i)
 
-/-- The invariant simplex carrier has at most `7^(q+1)` elements.-/
+/-- The invariant simplex carrier has at most `7^(q+1)` elements.
+@isnad1 id=le.0h1v.s5.c17f8d347cce from=translated src=- shape=0f51190b vocab=3b4bed70
+-/
 theorem evertseGammaIndex_card_le {ι : Type*} [Fintype ι] :
     Fintype.card (EvertseGammaIndex (Fintype.card ι)) ≤
       7 ^ (Fintype.card ι + 1) :=
@@ -1315,7 +1548,9 @@ def evertseLogarithmicLoss {ι : Type*} [Fintype ι]
     (H : ℝ) (f : ι → ℝ) (i : ι) : ℝ :=
   -Real.log (f i) / Real.log H
 
-/-- Normalized logarithmic losses are nonnegative.-/
+/-- Normalized logarithmic losses are nonnegative.
+@isnad1 id=le.3h4v.s6.9db7a331dd86 from=translated src=- shape=b9f1299e vocab=7c45dc11
+-/
 theorem evertseLogarithmicLoss_nonneg {ι : Type*} [Fintype ι]
     {H : ℝ} (hH : 1 < H) {f : ι → ℝ}
     (hfpos : ∀ i, 0 < f i) (hfle : ∀ i, f i ≤ 1) (i : ι) :
@@ -1324,7 +1559,9 @@ theorem evertseLogarithmicLoss_nonneg {ι : Type*} [Fintype ι]
   exact div_nonneg (neg_nonneg.mpr (Real.log_nonpos (hfpos i).le (hfle i)))
     (Real.log_nonneg (le_of_lt hH))
 
-/-- A product saving of `H⁻¹` supplies total normalized logarithmic loss at least one.-/
+/-- A product saving of `H⁻¹` supplies total normalized logarithmic loss at least one.
+@isnad1 id=le.3h3v.s6.09b1957d9ca6 from=translated src=- shape=713bb408 vocab=6445d5ce
+-/
 theorem one_le_sum_evertseLogarithmicLoss
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {H : ℝ} (hH : 1 < H) {f : ι → ℝ}
@@ -1340,7 +1577,9 @@ theorem one_le_sum_evertseLogarithmicLoss
     linarith
   · exact fun i _hi => (hfpos i).ne'
 
-/-- Comparing a normalized logarithmic loss with `g` is equivalent to the multiplicative estimate `f ≤ H⁻ᵍ`.-/
+/-- Comparing a normalized logarithmic loss with `g` is equivalent to the multiplicative estimate `f ≤ H⁻ᵍ`.
+@isnad1 id=iff.2h3v.s6.aa67f9adb86c from=translated src=- shape=ada82b4a vocab=fc175319
+-/
 theorem evertseLogarithmicLoss_bound_iff
     {H f : ℝ} (hH : 1 < H) (hf : 0 < f) {g : ℝ} :
     g ≤ -Real.log f / Real.log H ↔ f ≤ H ^ (-g : ℝ) := by
@@ -1356,7 +1595,9 @@ theorem evertseLogarithmicLoss_bound_iff
     rw [Real.log_rpow (by positivity)] at hlog
     linarith
 
-/-- Multiplicative product savings are covered by one of the finitely many simplex systems.-/
+/-- Multiplicative product savings are covered by one of the finitely many simplex systems.
+@isnad1 id=ex.4h3v.s6.98bc6bf6fbeb from=translated src=- shape=a6d9526d vocab=456f2897
+-/
 theorem exists_evertseGamma_rpow_bound
     {ι : Type*} [Fintype ι] [Nonempty ι]
     {H : ℝ} (hH : 1 < H) {f : ι → ℝ}
@@ -1389,7 +1630,9 @@ def evertseTriplePlaceCloseness
 
 /-! ## Pair determinants and the four-point Vandermonde kernel -/
 
-/-- On the affine line `x+y=1`, the projective determinant is simply `x₁-x₂`.-/
+/-- On the affine line `x+y=1`, the projective determinant is simply `x₁-x₂`.
+@isnad1 id=eq.2h5v.s5.9bd5ebbe9aa1 from=translated src=- shape=4a2207e3 vocab=fef67b6f
+-/
 theorem evertseSolution_determinant_eq_sub
     {S : Finset ℕ} {x₁ y₁ x₂ y₂ : ℚ}
     (hsol₁ : IsRationalSUnitEquationSolution S x₁ y₁)
@@ -1430,7 +1673,9 @@ def evertseClosestRoot (v : AbsoluteValue EvertseCubicField ℝ)
     (fun r : Fin 3 => evertseRawCloseness v z (evertseThreeRoots r))
     Finset.univ_nonempty)
 
-/-- The selected root minimizes raw local closeness among the three target roots.-/
+/-- The selected root minimizes raw local closeness among the three target roots.
+@isnad1 id=le.0h3v.s5.3e68b4dca84c from=translated src=- shape=432dac92 vocab=15f8a94f
+-/
 theorem evertseClosestRoot_le (v : AbsoluteValue EvertseCubicField ℝ)
     (z : EvertseCubicField) (r : Fin 3) :
     evertseRawCloseness v z (evertseThreeRoots (evertseClosestRoot v z)) ≤
@@ -1439,13 +1684,17 @@ theorem evertseClosestRoot_le (v : AbsoluteValue EvertseCubicField ℝ)
     (fun r : Fin 3 => evertseRawCloseness v z (evertseThreeRoots r))
     Finset.univ_nonempty)).2 r (Finset.mem_univ r)
 
-/-- Raw local closeness is nonnegative.-/
+/-- Raw local closeness is nonnegative.
+@isnad1 id=le.0h3v.s5.7ad2a2183524 from=translated src=- shape=13449ebc vocab=4655e55e
+-/
 theorem evertseRawCloseness_nonneg (v : AbsoluteValue EvertseCubicField ℝ)
     (z root : EvertseCubicField) :
     0 ≤ evertseRawCloseness v z root :=
   le_min (by norm_num) (v.nonneg _)
 
-/-- The cube of the least root-closeness is at most the product of all three.-/
+/-- The cube of the least root-closeness is at most the product of all three.
+@isnad1 id=le.0h2v.s5.f63cc931488a from=translated src=- shape=72c0f423 vocab=52d8eedf
+-/
 theorem evertseClosestRoot_cube_le_triple
     (v : AbsoluteValue EvertseCubicField ℝ) (z : EvertseCubicField) :
     evertseRawCloseness v z (evertseThreeRoots (evertseClosestRoot v z)) ^ 3 ≤
@@ -1470,7 +1719,9 @@ theorem evertseClosestRoot_cube_le_triple
     (mul_nonneg (evertseRawCloseness_nonneg _ _ _)
       (evertseRawCloseness_nonneg _ _ _))
 
-/-- Closeness of two points is bounded by their closeness to a common root.-/
+/-- Closeness of two points is bounded by their closeness to a common root.
+@isnad1 id=le.0h4v.s6.e1e049dc4a64 from=translated src=- shape=711cbb54 vocab=d712aca0
+-/
 theorem evertseRawCloseness_sub_le_add
     (v : AbsoluteValue EvertseCubicField ℝ)
     (z w root : EvertseCubicField) :
@@ -1502,7 +1753,9 @@ theorem evertseRawCloseness_sub_le_add
         evertseRawCloseness, min_eq_right hw']
       exact (min_le_right _ _).trans htri
 
-/-- Among four points, two are closest to the same one of the three roots.-/
+/-- Among four points, two are closest to the same one of the three roots.
+@isnad1 id=ex.0h2v.s7.af96c2dbb425 from=translated src=- shape=236775e7 vocab=f63c054f
+-/
 theorem exists_pair_evertseRawVandermonde_local
     (v : AbsoluteValue EvertseCubicField ℝ)
     (z : Fin 4 → EvertseCubicField) :
@@ -1546,7 +1799,9 @@ theorem exists_pair_evertseRawVandermonde_local
         (le_max_left _ _)
   exact hcub.trans (mul_le_mul_of_nonneg_left hmaxcube (by norm_num))
 
-/-- At an infinite place, normalized closeness is raw closeness.-/
+/-- At an infinite place, normalized closeness is raw closeness.
+@isnad1 id=eq.1h4v.s8.d4a89a7621a5 from=translated src=- shape=89a07013 vocab=96254c63
+-/
 theorem evertsePlaceNormalizedCloseness_infinite_eq_raw
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (w : NumberField.InfinitePlace EvertseCubicField)
@@ -1555,7 +1810,9 @@ theorem evertsePlaceNormalizedCloseness_infinite_eq_raw
       evertseRawCloseness w.1 z root :=
   rfl
 
-/-- At a finite place, the square of normalized closeness is raw closeness.-/
+/-- At a finite place, the square of normalized closeness is raw closeness.
+@isnad1 id=eq.1h4v.s9.55869f66d7d4 from=translated src=- shape=320ba23d vocab=117fd57e
+-/
 theorem evertsePlaceNormalizedCloseness_finite_sq_eq_raw
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (w : {w : NumberField.FinitePlace EvertseCubicField //
@@ -1566,7 +1823,9 @@ theorem evertsePlaceNormalizedCloseness_finite_sq_eq_raw
   unfold evertsePlaceNormalizedCloseness evertseRawCloseness
   exact Real.sq_sqrt (le_min (by norm_num) (w.1.1.nonneg _))
 
-/-- At an infinite place, normalized and raw triple closeness agree.-/
+/-- At an infinite place, normalized and raw triple closeness agree.
+@isnad1 id=eq.1h3v.s8.e4cee821ae35 from=translated src=- shape=2e7a8bfa vocab=a37c2060
+-/
 theorem evertseTriplePlaceCloseness_infinite_eq_raw
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (w : NumberField.InfinitePlace EvertseCubicField)
@@ -1575,7 +1834,9 @@ theorem evertseTriplePlaceCloseness_infinite_eq_raw
       evertseRawTripleCloseness w.1 z :=
   rfl
 
-/-- At a finite place, the square of normalized triple closeness is the raw product.-/
+/-- At a finite place, the square of normalized triple closeness is the raw product.
+@isnad1 id=eq.1h3v.s9.e9671d7e4f09 from=translated src=- shape=7816c846 vocab=06dc3fc3
+-/
 theorem evertseTriplePlaceCloseness_finite_sq_eq_raw
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (w : {w : NumberField.FinitePlace EvertseCubicField //
@@ -1591,7 +1852,9 @@ theorem evertseTriplePlaceCloseness_finite_sq_eq_raw
     evertsePlaceNormalizedCloseness_finite_sq_eq_raw,
     evertsePlaceNormalizedCloseness_finite_sq_eq_raw]
 
-/-- Normalized placewise closeness is nonnegative.-/
+/-- Normalized placewise closeness is nonnegative.
+@isnad1 id=le.1h4v.s5.70e23316d388 from=translated src=- shape=4a215940 vocab=e989e634
+-/
 theorem evertsePlaceNormalizedCloseness_nonneg
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (v : EvertsePlace S hS) (z root : EvertseCubicField) :
@@ -1600,7 +1863,9 @@ theorem evertsePlaceNormalizedCloseness_nonneg
   · exact le_min (by norm_num) (w.1.nonneg _)
   · exact Real.sqrt_nonneg _
 
-/-- Normalized triple closeness is nonnegative.-/
+/-- Normalized triple closeness is nonnegative.
+@isnad1 id=le.1h3v.s5.083d783a4035 from=translated src=- shape=04d43acd vocab=b730057b
+-/
 theorem evertseTriplePlaceCloseness_nonneg
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (v : EvertsePlace S hS) (z : EvertseCubicField) :
@@ -1621,7 +1886,9 @@ private theorem max_sq_eq_max_sq_of_nonneg
     have hs : b ^ 2 ≤ a ^ 2 := pow_le_pow_left₀ hb h' 2
     rw [max_eq_left h', max_eq_left hs]
 
-/-- The four-point local pigeonhole estimate in the normalized place convention.-/
+/-- The four-point local pigeonhole estimate in the normalized place convention.
+@isnad1 id=ex.1h3v.s7.e696d1dbcdac from=translated src=- shape=92c23896 vocab=c4ed0a9a
+-/
 theorem exists_pair_evertsePlaceVandermonde_local
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (v : EvertsePlace S hS) (z : Fin 4 → EvertseCubicField) :
@@ -1675,11 +1942,15 @@ theorem exists_pair_evertsePlaceVandermonde_local
 /-- One of the six unordered pairs of four indices, represented in increasing order.-/
 abbrev EvertseFourPair := {p : Fin 4 × Fin 4 // p.1 < p.2}
 
-/-- There are exactly six unordered pairs of four indices.-/
+/-- There are exactly six unordered pairs of four indices.
+@isnad1 id=eq.0h0v.s7.6b618613d64e from=translated src=- shape=b0ae1d2b vocab=f283579a
+-/
 theorem card_evertseFourPair : Fintype.card EvertseFourPair = 6 := by
   decide
 
-/-- Normalized local closeness is symmetric in its two field arguments.-/
+/-- Normalized local closeness is symmetric in its two field arguments.
+@isnad1 id=eq.1h4v.s5.f4855e03f354 from=translated src=- shape=21366408 vocab=19d3ff10
+-/
 theorem evertsePlaceNormalizedCloseness_symm
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (v : EvertsePlace S hS) (z w : EvertseCubicField) :
@@ -1696,7 +1967,9 @@ theorem evertsePlaceNormalizedCloseness_symm
       rw [show z - w = -(w - z) by ring, map_neg_eq_map]
     rw [habv]
 
-/-- Canonical unordered-pair form of the normalized local four-point estimate.-/
+/-- Canonical unordered-pair form of the normalized local four-point estimate.
+@isnad1 id=ex.1h3v.s8.66d1907be35e from=translated src=- shape=99ea57dc vocab=2e61df94
+-/
 theorem exists_evertseFourPair_local
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime}
     (v : EvertsePlace S hS) (z : Fin 4 → EvertseCubicField) :
@@ -1746,6 +2019,9 @@ def evertseFourPointProjectiveVandermonde
 def evertseRationalHeightBall (B : ℝ) : Finset ℚ :=
   (finite_rationalHeight_le B).toFinset
 
+/--
+@isnad1 id=iff.0h2v.s4.e981e564391c from=translated src=- shape=3b82e6d2 vocab=8af4d4a6
+-/
 @[simp]
 theorem mem_evertseRationalHeightBall {B : ℝ} {q : ℚ} :
     q ∈ evertseRationalHeightBall B ↔ rationalHeight q ≤ B := by
@@ -1769,7 +2045,9 @@ def IsBoundedRationalSUnitEquationSolution
     (S : Finset ℕ) (B : ℝ) (x y : ℚ) : Prop :=
   IsRationalSUnitEquationSolution S x y ∧ rationalHeight (x / y) ≤ B
 
-/-- Membership in the bounded carrier is exactly the bounded solution predicate.-/
+/-- Membership in the bounded carrier is exactly the bounded solution predicate.
+@isnad1 id=iff.0h4v.s5.887aa85054d2 from=translated src=- shape=fbe71092 vocab=115c3fe4
+-/
 @[simp]
 theorem mem_boundedRationalSUnitEquationCarrier
     {S : Finset ℕ} {B : ℝ} {x y : ℚ} :
@@ -1817,7 +2095,9 @@ def boundedHighRationalSUnitEquationCarrier
   (boundedRationalSUnitEquationCarrier S B).filter fun z =>
     lowHeightCutoff49 < rationalHeight (z.1 / z.2)
 
-/-- Exact membership theorem for the bounded high branch.-/
+/-- Exact membership theorem for the bounded high branch.
+@isnad1 id=iff.0h4v.s5.ef8699b18c5f from=translated src=- shape=3dc4e25b vocab=7ac89a7b
+-/
 @[simp]
 theorem mem_boundedHighRationalSUnitEquationCarrier
     {S : Finset ℕ} {B : ℝ} {x y : ℚ} :
@@ -1851,7 +2131,9 @@ def boundedEvertseGammaCarrier
   exact (boundedHighRationalSUnitEquationCarrier S B).filter fun z =>
     IsInEvertseGamma hS k z.1 z.2
 
-/-- Exact membership theorem for a bounded fixed-simplex fiber.-/
+/-- Exact membership theorem for a bounded fixed-simplex fiber.
+@isnad1 id=iff.1h5v.s7.795699127d25 from=translated src=- shape=11f9ccf4 vocab=0e57395f
+-/
 @[simp]
 theorem mem_boundedEvertseGammaCarrier
     {S : Finset ℕ} {hS : ∀ p ∈ S, p.Prime} {B : ℝ}
@@ -1881,7 +2163,9 @@ def evertseFourPointMinHeight
     (z : Fin 4 → EvertseCubicField) : ℝ :=
   evertseNormalizedHeight (z (evertseFourPointMinHeightIndex z))
 
-/-- On the affine line `x+y=1`, injectivity of solution pairs implies injectivity of their first coordinates.-/
+/-- On the affine line `x+y=1`, injectivity of solution pairs implies injectivity of their first coordinates.
+@isnad1 id=injectiv.2h2v.s6.9e9b6d9ad2e9 from=translated src=- shape=1c8d88de vocab=ae6909bb
+-/
 theorem evertseFirstCoordinate_injective_of_pair_injective
     {S : Finset ℕ} (u : Fin 4 → ℚ × ℚ)
     (hu : ∀ i, IsRationalSUnitEquationSolution S (u i).1 (u i).2)
@@ -1944,7 +2228,9 @@ def evertsePlaceProjectiveDistance
     (evertsePlaceProjectiveNorm v X₁ E₁ *
       evertsePlaceProjectiveNorm v X₂ E₂)
 
-/-- Elementary affine comparison used to truncate a projective distance at one.-/
+/-- Elementary affine comparison used to truncate a projective distance at one.
+@isnad1 id=le.2h3v.s6.039271e0fb91 from=translated src=- shape=94413a52 vocab=7d6eb1fc
+-/
 theorem div_max_mul_max_le_two_mul_min
     {a b d : ℝ} (hd0 : 0 ≤ d) (hd : d ≤ a + b) :
     d / (max a 1 * max b 1) ≤ 2 * min 1 d := by
@@ -1966,7 +2252,9 @@ theorem div_max_mul_max_le_two_mul_min
       mul_nonneg (sub_nonneg.mpr hA) (sub_nonneg.mpr hB)
     nlinarith
 
-/-- The six pairwise endpoint products over four real projective norms give the cube of every endpoint norm.-/
+/-- The six pairwise endpoint products over four real projective norms give the cube of every endpoint norm.
+@isnad1 id=eq.0h1v.s7.9a071912d301 from=translated src=- shape=c6700fb5 vocab=7d89fc32
+-/
 theorem evertseFourPair_endpointProduct_real (e : Fin 4 → ℝ) :
     (∏ i : Fin 4, ∏ j ∈ Finset.Ioi i, (e j * e i)) =
       ∏ i : Fin 4, e i ^ 3 := by

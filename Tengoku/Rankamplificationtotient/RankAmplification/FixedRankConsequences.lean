@@ -17,6 +17,9 @@ def fixedRankExponentialMajorant
   (x : ℝ) * Real.exp
     (-Real.sqrt J * scaleG (x : ℝ) + ε x * scaleV (x : ℝ))
 
+/--
+@isnad1 id=le.0h3v.s4.e7f0a6cdf2d9 from=translated src=- shape=37bc4839 vocab=4790b364
+-/
 theorem fixedRankExponentialMajorant_nonneg (J : ℕ) (ε : ℕ → ℝ) (x : ℕ) :
     0 ≤ fixedRankExponentialMajorant J ε x := by
   unfold fixedRankExponentialMajorant
@@ -33,7 +36,9 @@ structure FixedRankDiagonalEstimate
       (aboveCutoffDiagonalCount x h (fixedRankNatUpperY J x) : ℝ) +
         C * fixedRankExponentialMajorant J ε x
 
-/-- Odd shifts remove the displayed diagonal exactly.-/
+/-- Odd shifts remove the displayed diagonal exactly.
+@isnad1 id=eventual.1h3v.s6.4c0634fed498 from=translated src=- shape=bfadc7ee vocab=a5aefbf9
+-/
 theorem FixedRankDiagonalEstimate.odd_bound
     {J : ℕ} {ε : ℕ → ℝ} {C : ℝ}
     (estimate : FixedRankDiagonalEstimate J ε C) :
@@ -46,7 +51,9 @@ theorem FixedRankDiagonalEstimate.odd_bound
 
 /-! ## Absorbing a varying `ε(x)V` term -/
 
-/-- A real sequence tending to zero is eventually bounded in absolute value by one.-/
+/-- A real sequence tending to zero is eventually bounded in absolute value by one.
+@isnad1 id=eventual.1h1v.s5.ae5cf47fcec5 from=translated src=- shape=722b8c03 vocab=1d66f6cc
+-/
 theorem eventually_abs_le_one_of_tendsto_zero
     {ε : ℕ → ℝ} (hε : Tendsto ε atTop (nhds 0)) :
     ∀ᶠ x : ℕ in atTop, |ε x| ≤ 1 := by
@@ -56,7 +63,9 @@ theorem eventually_abs_le_one_of_tendsto_zero
   have hdist := hN x hx
   simpa [Real.dist_eq] using hdist.le
 
-/-- The varying secondary error is smaller than any fixed positive multiple of `G`.-/
+/-- The varying secondary error is smaller than any fixed positive multiple of `G`.
+@isnad1 id=eventual.2h2v.s6.f76bf7c579e2 from=translated src=- shape=d0bcc321 vocab=f8575912
+-/
 theorem eventually_error_mul_scaleV_le_margin_scaleG
     {ε : ℕ → ℝ} (hε : Tendsto ε atTop (nhds 0))
     {margin : ℝ} (hmargin : 0 < margin) :
@@ -82,7 +91,9 @@ theorem eventually_error_mul_scaleV_le_margin_scaleG
       mul_le_mul_of_nonneg_right hεone hVnonneg
     _ ≤ margin * scaleG (x : ℝ) := by simpa using hV
 
-/-- The fixed-rank exponent with coefficient `√J` eventually dominates every smaller `B`.-/
+/-- The fixed-rank exponent with coefficient `√J` eventually dominates every smaller `B`.
+@isnad1 id=eventual.2h3v.s6.53488f43d7ae from=translated src=- shape=399826bc vocab=71b4cdf2
+-/
 theorem eventually_fixedRank_exponent_le_coefficient
     {J : ℕ} {ε : ℕ → ℝ} (hε : Tendsto ε atTop (nhds 0))
     {B : ℝ} (hB : B < Real.sqrt J) :
@@ -93,7 +104,9 @@ theorem eventually_fixedRank_exponent_le_coefficient
   filter_upwards [eventually_error_mul_scaleV_le_margin_scaleG hε hmargin] with x hx
   linarith
 
-/-- Corresponding comparison of exponential majorants.-/
+/-- Corresponding comparison of exponential majorants.
+@isnad1 id=eventual.2h3v.s6.dbef43b12855 from=translated src=- shape=339e7c0f vocab=6ba3d43a
+-/
 theorem eventually_fixedRankMajorant_le_coefficient
     {J : ℕ} {ε : ℕ → ℝ} (hε : Tendsto ε atTop (nhds 0))
     {B : ℝ} (hB : B < Real.sqrt J) :
@@ -106,7 +119,9 @@ theorem eventually_fixedRankMajorant_le_coefficient
 
 /-! ## Corollary 1.2 forms -/
 
-/-- Uniform odd-shift estimate for every coefficient below `√J`.-/
+/-- Uniform odd-shift estimate for every coefficient below `√J`.
+@isnad1 id=eventual.2h4v.s6.f713a16f549a from=translated src=- shape=8c43d9c3 vocab=0be10875
+-/
 theorem FixedRankDiagonalEstimate.uniform_odd_coefficient_bound
     {J : ℕ} {ε : ℕ → ℝ} {C B : ℝ}
     (estimate : FixedRankDiagonalEstimate J ε C)
@@ -120,13 +135,17 @@ theorem FixedRankDiagonalEstimate.uniform_odd_coefficient_bound
   exact (hx h hh hhy hodd).trans
     (mul_le_mul_of_nonneg_left hmajor estimate.constant_nonneg)
 
-/-- Every fixed positive shift eventually belongs to the growing fixed-rank shift range.-/
+/-- Every fixed positive shift eventually belongs to the growing fixed-rank shift range.
+@isnad1 id=eventual.1h2v.s4.705d9a229c04 from=translated src=- shape=1c44500c vocab=0784f315
+-/
 theorem eventually_fixed_shift_le_fixedRankNatY
     (J : ℕ) (hJ : 0 < J) (h : ℕ) :
     ∀ᶠ x : ℕ in atTop, h ≤ fixedRankNatY J x :=
   (tendsto_fixedRankNatY_atTop J hJ).eventually_ge_atTop h
 
-/-- Fixed-shift version of Corollary 1.2, with its explicit constant retained.-/
+/-- Fixed-shift version of Corollary 1.2, with its explicit constant retained.
+@isnad1 id=eventual.4h5v.s6.5b13baffed60 from=translated src=- shape=96fde7e0 vocab=23ca41d8
+-/
 theorem FixedRankDiagonalEstimate.fixed_odd_shift_coefficient_bound
     {J : ℕ} {ε : ℕ → ℝ} {C B : ℝ}
     (estimate : FixedRankDiagonalEstimate J ε C)

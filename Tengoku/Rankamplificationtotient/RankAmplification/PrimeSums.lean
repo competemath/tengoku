@@ -25,30 +25,50 @@ def primeLogReciprocalSum (R : ℕ) : ℝ :=
 def primeRankinSum (R : ℕ) (δ : ℝ) : ℝ :=
   ∑ p ∈ Nat.primesLE R, (p : ℝ) ^ (-1 + δ)
 
+/--
+@isnad1 id=eq.0h0v.s3.fef439a062cf from=translated src=- shape=1ac31801 vocab=3a3abd28
+-/
 @[simp]
 theorem primeReciprocalSum_zero : primeReciprocalSum 0 = 0 := by
   simp [primeReciprocalSum]
 
+/--
+@isnad1 id=eq.0h0v.s3.8888460a1265 from=translated src=- shape=1ac31801 vocab=e3ecc20c
+-/
 @[simp]
 theorem primeLogReciprocalSum_zero : primeLogReciprocalSum 0 = 0 := by
   simp [primeLogReciprocalSum]
 
+/--
+@isnad1 id=eq.0h1v.s4.0dfe1f45e0c9 from=translated src=- shape=a0dd47fb vocab=1fd8f599
+-/
 @[simp]
 theorem primeRankinSum_zero (δ : ℝ) : primeRankinSum 0 δ = 0 := by
   simp [primeRankinSum]
 
+/--
+@isnad1 id=le.0h1v.s3.5c0d1b3b390a from=translated src=- shape=b9369acb vocab=b11bfe39
+-/
 theorem primeReciprocalSum_nonneg (R : ℕ) : 0 ≤ primeReciprocalSum R := by
   exact sum_nonneg fun p hp ↦ inv_nonneg.mpr (Nat.cast_nonneg p)
 
+/--
+@isnad1 id=le.0h1v.s3.8609050bedc5 from=translated src=- shape=b9369acb vocab=53976d74
+-/
 theorem primeLogReciprocalSum_nonneg (R : ℕ) : 0 ≤ primeLogReciprocalSum R := by
   refine sum_nonneg fun p hp ↦ div_nonneg ?_ (Nat.cast_nonneg p)
   exact Real.log_nonneg (mod_cast (Nat.one_le_iff_ne_zero.mpr
     (Nat.Prime.ne_zero (Nat.prime_of_mem_primesLE hp))))
 
+/--
+@isnad1 id=le.0h2v.s4.58c889d7f488 from=translated src=- shape=787c1379 vocab=0f7a4281
+-/
 theorem primeRankinSum_nonneg (R : ℕ) (δ : ℝ) : 0 ≤ primeRankinSum R δ := by
   exact sum_nonneg fun p _ ↦ Real.rpow_nonneg (Nat.cast_nonneg p) _
 
-/-- Derivative of the reciprocal-log kernel on its positive range.-/
+/-- Derivative of the reciprocal-log kernel on its positive range.
+@isnad1 id=eq.1h1v.s7.4539829f7e60 from=translated src=- shape=75758330 vocab=36edd1f8
+-/
 theorem deriv_reciprocalLogKernel {x : ℝ} (hx : 1 < x) :
     deriv (fun t : ℝ ↦ (t * Real.log t)⁻¹) x =
       -((Real.log x + 1) / (x ^ 2 * Real.log x ^ 2)) := by
@@ -63,7 +83,9 @@ theorem deriv_reciprocalLogKernel {x : ℝ} (hx : 1 < x) :
       simpa only [neg_div] using hd]
   field_simp
 
-/-- Local integrability of the theta kernel needed for logarithmic reciprocal sums.-/
+/-- Local integrability of the theta kernel needed for logarithmic reciprocal sums.
+@isnad1 id=integrab.0h1v.s6.5c7898f60040 from=translated src=- shape=a0023e48 vocab=d2784f34
+-/
 theorem integrableOn_theta_div_sq (x : ℝ) :
     IntegrableOn (fun t : ℝ ↦ Chebyshev.theta t / t ^ 2) (Set.Icc 2 x) volume := by
   conv => arg 1; ext t; rw [Chebyshev.theta, div_eq_mul_one_div, mul_comm, sum_filter]
@@ -73,7 +95,9 @@ theorem integrableOn_theta_div_sq (x : ℝ) :
   have ht2 : t ^ 2 ≠ 0 := pow_ne_zero 2 ht0
   fun_prop (disch := assumption)
 
-/-- Local integrability of the theta kernel needed for reciprocal prime sums.-/
+/-- Local integrability of the theta kernel needed for reciprocal prime sums.
+@isnad1 id=integrab.0h1v.s6.9ac983ee0743 from=translated src=- shape=17a802e0 vocab=dfab0571
+-/
 theorem integrableOn_theta_mul_reciprocalLogDerivative (x : ℝ) :
     IntegrableOn (fun t : ℝ ↦
       Chebyshev.theta t * (Real.log t + 1) / (t ^ 2 * Real.log t ^ 2))
@@ -95,7 +119,9 @@ theorem integrableOn_theta_mul_reciprocalLogDerivative (x : ℝ) :
   simp [c, Set.indicator_apply, sum_filter, Chebyshev.theta_eq_sum_Icc]
   ring
 
-/-- Exact Abel-summation identity for the logarithmically weighted reciprocal prime sum.-/
+/-- Exact Abel-summation identity for the logarithmically weighted reciprocal prime sum.
+@isnad1 id=eq.1h1v.s6.bdc430154101 from=translated src=- shape=4a8c774c vocab=7b254d1d
+-/
 theorem primeLogReciprocalSum_eq_theta_integral {R : ℕ} (hR : 2 ≤ R) :
     primeLogReciprocalSum R =
       Chebyshev.theta R / R + ∫ t in (2 : ℝ)..R, Chebyshev.theta t / t ^ 2 := by
@@ -130,7 +156,9 @@ theorem primeLogReciprocalSum_eq_theta_integral {R : ℕ} (hR : 2 ≤ R) :
     have ht0 : t ≠ 0 := by linarith [ht.1]
     exact ((continuousAt_id.pow 2).inv₀ (pow_ne_zero 2 ht0)).neg.continuousWithinAt
 
-/-- Exact Abel-summation identity for the reciprocal prime sum.-/
+/-- Exact Abel-summation identity for the reciprocal prime sum.
+@isnad1 id=eq.1h1v.s7.44e744ff95a6 from=translated src=- shape=89447f04 vocab=7d384729
+-/
 theorem primeReciprocalSum_eq_theta_integral {R : ℕ} (hR : 2 ≤ R) :
     primeReciprocalSum R = Chebyshev.theta R / (R * Real.log R) +
       ∫ t in (2 : ℝ)..R,
@@ -184,7 +212,9 @@ theorem primeReciprocalSum_eq_theta_integral {R : ℕ} (hR : 2 ≤ R) :
     · exact deriv_reciprocalLogKernel (by linarith [hy.1])
     · exact deriv_reciprocalLogKernel (by linarith [ht.1])
 
-/-- Chebyshev's bound after partial summation: an explicit estimate for `∑ log p / p`.-/
+/-- Chebyshev's bound after partial summation: an explicit estimate for `∑ log p / p`.
+@isnad1 id=le.1h1v.s5.a4c844ba088a from=translated src=- shape=6632d609 vocab=4efe5e5c
+-/
 theorem primeLogReciprocalSum_le {R : ℕ} (hR : 2 ≤ R) :
     primeLogReciprocalSum R ≤ Real.log 4 * (1 + Real.log R) := by
   rw [primeLogReciprocalSum_eq_theta_integral hR]
@@ -230,7 +260,9 @@ theorem primeLogReciprocalSum_le {R : ℕ} (hR : 2 ≤ R) :
         (Real.log_nonneg (show (1 : ℝ) ≤ 4 by norm_num)))
     _ = Real.log 4 * (1 + Real.log R) := by ring
 
-/-- Explicit Mertens-type upper bound obtained solely from Chebyshev's theta estimate.-/
+/-- Explicit Mertens-type upper bound obtained solely from Chebyshev's theta estimate.
+@isnad1 id=le.1h1v.s6.6e72205697d5 from=translated src=- shape=bce0779f vocab=ee6d1351
+-/
 theorem primeReciprocalSum_le {R : ℕ} (hR : 2 ≤ R) :
     primeReciprocalSum R ≤ Real.log 4 *
       (Real.log (Real.log R) - Real.log (Real.log 2) + (Real.log 2)⁻¹) := by
@@ -316,7 +348,9 @@ theorem primeReciprocalSum_le {R : ℕ} (hR : 2 ≤ R) :
       field_simp
       ring
 
-/-- A convenient linear upper bound for the exponential on the unit interval.-/
+/-- A convenient linear upper bound for the exponential on the unit interval.
+@isnad1 id=le.2h1v.s5.b2d831c7dbf9 from=translated src=- shape=489df7e5 vocab=9081149e
+-/
 theorem exp_le_one_add_two_mul {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     Real.exp x ≤ 1 + 2 * x := by
   have habs : |x| ≤ 1 := by simpa [abs_of_nonneg hx0] using hx1
@@ -325,7 +359,9 @@ theorem exp_le_one_add_two_mul {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
     (le_abs_self (Real.exp x - 1)).trans (by simpa [abs_of_nonneg hx0] using h)
   linarith
 
-/-- Pointwise small-exponent Rankin estimate for a prime below the cutoff.-/
+/-- Pointwise small-exponent Rankin estimate for a prime below the cutoff.
+@isnad1 id=le.4h3v.s7.3458260ae571 from=translated src=- shape=fa494c59 vocab=9b6c7469
+-/
 theorem prime_rpow_neg_one_add_le {p R : ℕ} {δ : ℝ} (hp : p.Prime) (hpR : p ≤ R)
     (hδ0 : 0 ≤ δ) (hδR : δ * Real.log R ≤ 1) :
     (p : ℝ) ^ (-1 + δ) ≤
@@ -351,7 +387,9 @@ theorem prime_rpow_neg_one_add_le {p R : ℕ} {δ : ℝ} (hp : p.Prime) (hpR : p
     _ = (p : ℝ)⁻¹ + 2 * δ * (Real.log p / p) := by
       field_simp
 
-/-- Finite Rankin prime sum reduced to the two partial-summation inputs.-/
+/-- Finite Rankin prime sum reduced to the two partial-summation inputs.
+@isnad1 id=le.2h2v.s6.7e0f0c563fbe from=translated src=- shape=446e2f77 vocab=294d5b42
+-/
 theorem primeRankinSum_le_aux {R : ℕ} {δ : ℝ} (hδ0 : 0 ≤ δ)
     (hδR : δ * Real.log R ≤ 1) :
     primeRankinSum R δ ≤
@@ -368,7 +406,9 @@ theorem primeRankinSum_le_aux {R : ℕ} {δ : ℝ} (hδ0 : 0 ≤ δ)
       rw [sum_add_distrib, primeReciprocalSum, primeLogReciprocalSum,
         ← Finset.mul_sum]
 
-/-- Explicit small-exponent prime-sum bound of the form `O(log log R + δ log R)`, with every constant displayed.-/
+/-- Explicit small-exponent prime-sum bound of the form `O(log log R + δ log R)`, with every constant displayed.
+@isnad1 id=le.3h2v.s7.cbd8ea4f4d47 from=translated src=- shape=e1850c81 vocab=623dc403
+-/
 theorem primeRankinSum_le {R : ℕ} {δ : ℝ} (hR : 2 ≤ R) (hδ0 : 0 ≤ δ)
     (hδR : δ * Real.log R ≤ 1) :
     primeRankinSum R δ ≤
@@ -385,7 +425,9 @@ theorem primeRankinSum_le {R : ℕ} {δ : ℝ} (hR : 2 ≤ R) (hδ0 : 0 ≤ δ)
       exact add_le_add (primeReciprocalSum_le hR)
         (mul_le_mul_of_nonneg_left (primeLogReciprocalSum_le hR) (by positivity))
 
-/-- The same estimate with the conventional harmless `3R` inside the double logarithm.-/
+/-- The same estimate with the conventional harmless `3R` inside the double logarithm.
+@isnad1 id=le.3h2v.s7.c221b070eb58 from=translated src=- shape=824ce4ca vocab=623dc403
+-/
 theorem primeRankinSum_le_loglog_three_mul {R : ℕ} {δ : ℝ} (hR : 2 ≤ R)
     (hδ0 : 0 ≤ δ) (hδR : δ * Real.log R ≤ 1) :
     primeRankinSum R δ ≤

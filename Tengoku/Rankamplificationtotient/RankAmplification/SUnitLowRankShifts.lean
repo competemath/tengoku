@@ -22,7 +22,9 @@ theorem eq_prime_pow_of_primeSupport_subset_singleton {n p : ℕ} (hn : 0 < n)
   have hmem : d ∈ primeSupport n := Nat.mem_primeFactors.mpr ⟨hd, hdvd, hn.ne'⟩
   simpa using hsub hmem
 
-/-- A shift with a one-element prime support is a positive power of that prime.-/
+/-- A shift with a one-element prime support is a positive power of that prime.
+@isnad1 id=ex.2h2v.s5.a112e444b6fb from=translated src=- shape=79267af9 vocab=9b0501ce
+-/
 theorem exists_pos_pow_of_primeSupport_eq_singleton {h p : ℕ} (hh : 0 < h)
     (hsupp : primeSupport h = {p}) : ∃ a : ℕ, 0 < a ∧ h = p ^ a := by
   obtain ⟨k, hk⟩ := eq_prime_pow_of_primeSupport_subset_singleton hh (by rw [hsupp])
@@ -35,7 +37,9 @@ theorem exists_pos_pow_of_primeSupport_eq_singleton {h p : ℕ} (hh : 0 < h)
     exact (Finset.singleton_ne_empty p) this
   · exact hk0
 
-/-- Every shift whose prime support has at most one element admits an exact finite carrier for the affine `S`-unit equation.-/
+/-- Every shift whose prime support has at most one element admits an exact finite carrier for the affine `S`-unit equation.
+@isnad1 id=terminal.1h1v.s4.ae6763b0d31f from=translated src=- shape=923eeeab vocab=eda801ce
+-/
 theorem terminalEvertseSUnitFiniteness_of_card_primeSupport_le_one
     {h : ℕ} (hcard : (primeSupport h).card ≤ 1) :
     TerminalEvertseSUnitFiniteness h := by
@@ -64,7 +68,9 @@ theorem terminalEvertseSUnitFiniteness_of_card_primeSupport_le_one
       rw [hpow]
       exact terminalEvertseSUnitFiniteness_prime_pow hpPrime ha
 
-/-- The quantitative Pollack--Pomerance--Treviño bound holds unconditionally for every shift with at most one prime factor.-/
+/-- The quantitative Pollack--Pomerance--Treviño bound holds unconditionally for every shift with at most one prime factor.
+@isnad1 id=terminal.2h1v.s4.ee156ad38c7c from=translated src=- shape=66d847ae vocab=66b3778c
+-/
 theorem terminalPPTSameSupportBound_of_card_primeSupport_le_one
     {h : ℕ} (hh : 0 < h) (hcard : (primeSupport h).card ≤ 1) :
     TerminalPPTSameSupportBound h := by
@@ -90,7 +96,9 @@ theorem terminalPPTSameSupportBound_of_card_primeSupport_le_one
 
 /-! ## The rank-one part of `J_h` for an arbitrary shift -/
 
-/-- If `p^α + h = p^γ` with `α < γ`, then `α` is exactly the `p`-adic valuation of `h`.-/
+/-- If `p^α + h = p^γ` with `α < γ`, then `α` is exactly the `p`-adic valuation of `h`.
+@isnad1 id=eq.3h4v.s6.629c1039eadf from=translated src=- shape=fb5f85f3 vocab=728de956
+-/
 theorem factorization_eq_of_prime_pow_shift {h p α γ : ℕ} (hp : p.Prime)
     (hlt : α < γ) (heq : p ^ α + h = p ^ γ) : h.factorization p = α := by
   have hppos : 0 < p := hp.pos
@@ -122,7 +130,9 @@ theorem factorization_eq_of_prime_pow_shift {h p α γ : ℕ} (hp : p.Prime)
   rw [hfac, Nat.factorization_mul (pow_ne_zero _ hppos.ne') hmpos.ne']
   simp [hp.factorization_pow, Nat.factorization_eq_zero_of_not_dvd hnd]
 
-/-- A same-support index whose own prime support is the single prime `p` is uniquely determined: it must equal `p ^ v_p(h)`.-/
+/-- A same-support index whose own prime support is the single prime `p` is uniquely determined: it must equal `p ^ v_p(h)`.
+@isnad1 id=eq.4h3v.s6.868adc8354c2 from=translated src=- shape=a36e5c1c vocab=6ffa4b68
+-/
 theorem sameSupportIndex_singleton_eq {h p j : ℕ} (hp : p.Prime) (hh : 0 < h)
     (hj : IsSameSupportIndex h j) (hjp : primeSupport j = {p}) :
     j = p ^ h.factorization p := by
@@ -136,7 +146,9 @@ theorem sameSupportIndex_singleton_eq {h p j : ℕ} (hp : p.Prime) (hh : 0 < h)
     exact (Nat.pow_lt_pow_iff_right hp.one_lt).mp hmono
   rw [hα, factorization_eq_of_prime_pow_shift hp hlt heq]
 
-/-- At most one same-support index has any given singleton prime support.-/
+/-- At most one same-support index has any given singleton prime support.
+@isnad1 id=eq.6h4v.s5.f336603ef008 from=translated src=- shape=3a57da87 vocab=2f54cc8b
+-/
 theorem sameSupportIndex_singleton_unique {h p j k : ℕ} (hp : p.Prime) (hh : 0 < h)
     (hj : IsSameSupportIndex h j) (hjp : primeSupport j = {p})
     (hk : IsSameSupportIndex h k) (hkp : primeSupport k = {p}) :
@@ -144,7 +156,9 @@ theorem sameSupportIndex_singleton_unique {h p j k : ℕ} (hp : p.Prime) (hh : 0
   (sameSupportIndex_singleton_eq hp hh hj hjp).trans
     (sameSupportIndex_singleton_eq hp hh hk hkp).symm
 
-/-- The prime in a singleton support divides the shift.-/
+/-- The prime in a singleton support divides the shift.
+@isnad1 id=mem.3h3v.s5.5d32a007a8eb from=translated src=- shape=122f2d36 vocab=1ae4ffee
+-/
 theorem singleton_support_prime_mem_primeSupport {h p j : ℕ} (hh : 0 < h)
     (hj : IsSameSupportIndex h j) (hjp : primeSupport j = {p}) :
     p ∈ primeSupport h := by
@@ -157,6 +171,9 @@ def rankOneSameSupportCarrier (h : ℕ) : Finset ℕ := by
   exact ((primeSupport h).image fun p ↦ p ^ h.factorization p).filter
     (IsSameSupportIndex h)
 
+/--
+@isnad1 id=mem.4h3v.s5.f92f804cb907 from=translated src=- shape=e9b3e70a vocab=a87a1066
+-/
 theorem mem_rankOneSameSupportCarrier_of {h j : ℕ} (hh : 0 < h)
     (hj : IsSameSupportIndex h j) {p : ℕ} (hp : p.Prime)
     (hjp : primeSupport j = {p}) :
@@ -167,13 +184,18 @@ theorem mem_rankOneSameSupportCarrier_of {h j : ℕ} (hh : 0 < h)
     ⟨p, singleton_support_prime_mem_primeSupport hh hj hjp, ?_⟩, hj⟩
   exact (sameSupportIndex_singleton_eq hp hh hj hjp).symm
 
+/--
+@isnad1 id=issamesu.1h2v.s4.758418db614d from=translated src=- shape=30a1b31e vocab=2f56b05f
+-/
 theorem isSameSupportIndex_of_mem_rankOneSameSupportCarrier
     {h j : ℕ} (hj : j ∈ rankOneSameSupportCarrier h) :
     IsSameSupportIndex h j := by
   classical
   exact (Finset.mem_filter.mp hj).2
 
-/-- The rank-one part of `J_h` has at most `ω(h)` elements, for every shift.-/
+/-- The rank-one part of `J_h` has at most `ω(h)` elements, for every shift.
+@isnad1 id=le.0h1v.s3.a17e32398225 from=translated src=- shape=93f360f3 vocab=6888f733
+-/
 theorem card_rankOneSameSupportCarrier_le (h : ℕ) :
     (rankOneSameSupportCarrier h).card ≤ (primeSupport h).card := by
   classical

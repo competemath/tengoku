@@ -17,6 +17,9 @@ noncomputable section
 def residuePrimeIntervalSet (D a L U : ℕ) : Finset ℕ :=
   (Finset.Ioc L U).filter fun q ↦ q.Prime ∧ q ≡ a [MOD D]
 
+/--
+@isnad1 id=iff.0h5v.s5.a3552ff1b52f from=translated src=- shape=4daf9585 vocab=d4eb6432
+-/
 @[simp]
 theorem mem_residuePrimeIntervalSet {D a L U q : ℕ} :
     q ∈ residuePrimeIntervalSet D a L U ↔
@@ -31,11 +34,16 @@ def residuePrimeIntervalCount (D a L U : ℕ) : ℕ :=
 def residuePrimeIntervalReciprocalSum (D a L U : ℕ) : ℝ :=
   ∑ q ∈ residuePrimeIntervalSet D a L U, (q : ℝ)⁻¹
 
+/--
+@isnad1 id=le.0h4v.s4.7fa1447e9f6b from=translated src=- shape=f0c23793 vocab=a1970f71
+-/
 theorem residuePrimeIntervalReciprocalSum_nonneg (D a L U : ℕ) :
     0 ≤ residuePrimeIntervalReciprocalSum D a L U := by
   exact Finset.sum_nonneg fun q _ ↦ inv_nonneg.mpr (Nat.cast_nonneg q)
 
-/-- Adjacent residue-class intervals concatenate exactly.-/
+/-- Adjacent residue-class intervals concatenate exactly.
+@isnad1 id=eq.2h5v.s5.7c7f97a2b225 from=translated src=- shape=4c962c55 vocab=26af73f2
+-/
 theorem residuePrimeIntervalSet_union {D a L M U : ℕ} (hLM : L ≤ M) (hMU : M ≤ U) :
     residuePrimeIntervalSet D a L M ∪ residuePrimeIntervalSet D a M U =
       residuePrimeIntervalSet D a L U := by
@@ -50,6 +58,9 @@ theorem residuePrimeIntervalSet_union {D a L M U : ℕ} (hLM : L ≤ M) (hMU : M
     · exact Or.inl ⟨hq.1, hqM, hq.2.2⟩
     · exact Or.inr ⟨lt_of_not_ge hqM, hq.2⟩
 
+/--
+@isnad1 id=disjoint.0h5v.s4.2b1e88e4e9ae from=translated src=- shape=660f00c1 vocab=1d74b556
+-/
 theorem residuePrimeIntervalSet_disjoint {D a L M U : ℕ} :
     Disjoint (residuePrimeIntervalSet D a L M) (residuePrimeIntervalSet D a M U) := by
   rw [Finset.disjoint_left]
@@ -58,7 +69,9 @@ theorem residuePrimeIntervalSet_disjoint {D a L M U : ℕ} :
   have hright := (mem_residuePrimeIntervalSet.mp hqRight).1
   omega
 
-/-- Exact additivity of reciprocal mass over adjacent intervals.-/
+/-- Exact additivity of reciprocal mass over adjacent intervals.
+@isnad1 id=eq.2h5v.s5.53c4b2e915c2 from=translated src=- shape=77097c92 vocab=4bac130c
+-/
 theorem residuePrimeIntervalReciprocalSum_consecutive {D a L M U : ℕ}
     (hLM : L ≤ M) (hMU : M ≤ U) :
     residuePrimeIntervalReciprocalSum D a L U =
@@ -68,7 +81,9 @@ theorem residuePrimeIntervalReciprocalSum_consecutive {D a L M U : ℕ}
   rw [← residuePrimeIntervalSet_union hLM hMU,
     Finset.sum_union residuePrimeIntervalSet_disjoint]
 
-/-- A reciprocal interval sum is at most its cardinality divided by the lower endpoint.-/
+/-- A reciprocal interval sum is at most its cardinality divided by the lower endpoint.
+@isnad1 id=le.1h4v.s5.12d5994df423 from=translated src=- shape=11f4e51f vocab=2ac2bcb3
+-/
 theorem residuePrimeIntervalReciprocalSum_le_card_mul_inv {D a L U : ℕ}
     (hL : 0 < L) :
     residuePrimeIntervalReciprocalSum D a L U ≤
@@ -85,7 +100,9 @@ theorem residuePrimeIntervalReciprocalSum_le_card_mul_inv {D a L U : ℕ}
       exact (inv_le_inv₀ hqReal hLReal).2 (by exact_mod_cast hLq)
     _ = ((residuePrimeIntervalSet D a L U).card : ℝ) * (L : ℝ)⁻¹ := by simp
 
-/-- The interval count is bounded by the elementary census of one residue class.-/
+/-- The interval count is bounded by the elementary census of one residue class.
+@isnad1 id=le.1h4v.s5.3482e470988b from=translated src=- shape=bde72d90 vocab=f4cc003f
+-/
 theorem residuePrimeIntervalCount_le_div_add_one {D a L U : ℕ} (hD : 0 < D) :
     residuePrimeIntervalCount D a L U ≤ U / D + 1 := by
   calc
@@ -106,10 +123,16 @@ theorem residuePrimeIntervalCount_le_div_add_one {D a L U : ℕ} (hD : 0 < D) :
 def finsetIndicator (S : Finset ℕ) (n : ℕ) : ℝ :=
   if n ∈ S then 1 else 0
 
+/--
+@isnad1 id=eq.0h2v.s5.ba181f8f900f from=translated src=- shape=2710ca53 vocab=979a37a5
+-/
 @[simp]
 theorem finsetIndicator_apply {S : Finset ℕ} {n : ℕ} :
     finsetIndicator S n = if n ∈ S then 1 else 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.5a3701164ccd from=translated src=- shape=f80f62ad vocab=ad6b8305
+-/
 theorem sum_finsetIndicator_range (S : Finset ℕ) (N : ℕ) :
     ∑ n ∈ Finset.range N, finsetIndicator S n =
       ((S.filter fun n ↦ n < N).card : ℝ) := by
@@ -118,7 +141,9 @@ theorem sum_finsetIndicator_range (S : Finset ℕ) (N : ℕ) :
     simp [and_comm]
   simp [finsetIndicator, hsets]
 
-/-- Generic discrete Abel identity for reciprocal weights on a finite interval.-/
+/-- Generic discrete Abel identity for reciprocal weights on a finite interval.
+@isnad1 id=eq.2h3v.s7.be05a868325a from=translated src=- shape=da08c560 vocab=9362dd5e
+-/
 theorem finset_reciprocal_sum_eq_boundary_add_prefix {S : Finset ℕ} {L U : ℕ}
     (hLU : L < U) (hS : S ⊆ Finset.Ioc L U) :
     (∑ n ∈ S, (n : ℝ)⁻¹) =
@@ -191,7 +216,9 @@ theorem finset_reciprocal_sum_eq_boundary_add_prefix {S : Finset ℕ} {L U : ℕ
       field_simp
       ring
 
-/-- Abel summation specialized to residue-class prime intervals.-/
+/-- Abel summation specialized to residue-class prime intervals.
+@isnad1 id=eq.1h4v.s6.f838aaf54adb from=translated src=- shape=d4ce0496 vocab=d926fb31
+-/
 theorem residuePrimeIntervalReciprocalSum_eq_boundary_add_prefix {D a L U : ℕ}
     (hLU : L < U) :
     residuePrimeIntervalReciprocalSum D a L U =
@@ -222,7 +249,9 @@ theorem residuePrimeIntervalReciprocalSum_eq_boundary_add_prefix {D a L U : ℕ}
       exact ⟨⟨hq.1, hq.2.1.trans hmU, hq.2.2⟩, hq.2.1⟩
   rw [hfilter]
 
-/-- A supplied pointwise prefix-count envelope gives the corresponding exact reciprocal bound.-/
+/-- A supplied pointwise prefix-count envelope gives the corresponding exact reciprocal bound.
+@isnad1 id=le.2h5v.s7.e6140931e25c from=translated src=- shape=010c1513 vocab=fc0d9304
+-/
 theorem residuePrimeIntervalReciprocalSum_le_of_prefix_bound {D a L U : ℕ}
     (hLU : L < U) (B : ℕ → ℝ)
     (hB : ∀ m ∈ Finset.Icc (L + 1) U,
@@ -256,7 +285,9 @@ def DyadicBrunTitchmarshHypothesis (C : ℝ) (D a J : ℕ) : Prop :=
     (residuePrimeIntervalCount D a (2 ^ j * D) (2 ^ (j + 1) * D) : ℝ) ≤
       C * (2 ^ j * D : ℝ) / ((D.totient : ℝ) * j)
 
-/-- A single dyadic interval-counting estimate implies the matching reciprocal-mass estimate.-/
+/-- A single dyadic interval-counting estimate implies the matching reciprocal-mass estimate.
+@isnad1 id=le.3h5v.s6.c21287736b9a from=translated src=- shape=413aee51 vocab=a67e4eab
+-/
 theorem dyadicResiduePrimeReciprocalSum_le {C : ℝ} {D a J j : ℕ}
     (hD : 0 < D) (hBT : DyadicBrunTitchmarshHypothesis C D a J)
     (hj : j ∈ Finset.Icc 2 J) :
@@ -280,7 +311,9 @@ theorem dyadicResiduePrimeReciprocalSum_le {C : ℝ} {D a J j : ℕ}
       have hscaleReal : (2 ^ j * D : ℝ) ≠ 0 := by exact_mod_cast hscale.ne'
       field_simp
 
-/-- Exact dyadic decomposition from the initial interval `(0,4D]` through block `J`.-/
+/-- Exact dyadic decomposition from the initial interval `(0,4D]` through block `J`.
+@isnad1 id=eq.1h3v.s6.808a58b4dd29 from=translated src=- shape=14d77939 vocab=fdae0f3c
+-/
 theorem residuePrimeIntervalReciprocalSum_dyadic_decomposition {D a J : ℕ}
     (hJ : 2 ≤ J) :
     residuePrimeIntervalReciprocalSum D a 0 (2 ^ (J + 1) * D) =
@@ -318,7 +351,9 @@ theorem residuePrimeIntervalReciprocalSum_dyadic_decomposition {D a J : ℕ}
           rw [Finset.sum_Icc_succ_top (by omega)]
           ring
 
-/-- A prime congruent to `1` modulo a positive `D` is strictly larger than `D`.-/
+/-- A prime congruent to `1` modulo a positive `D` is strictly larger than `D`.
+@isnad1 id=lt.3h2v.s4.8fa002cc6693 from=translated src=- shape=caae2b29 vocab=04556f11
+-/
 theorem modulus_lt_prime_of_modEq_one {D q : ℕ} (_hD : 0 < D) (hq : q.Prime)
     (hmod : q ≡ 1 [MOD D]) : D < q := by
   have hdiv : D ∣ q - 1 :=
@@ -329,7 +364,9 @@ theorem modulus_lt_prime_of_modEq_one {D q : ℕ} (_hD : 0 < D) (hq : q.Prime)
   have hDle : D ≤ q - 1 := Nat.le_of_dvd hqSubPos hdiv
   omega
 
-/-- Initial reciprocal mass is controlled using only its cardinality and congruence.-/
+/-- Initial reciprocal mass is controlled using only its cardinality and congruence.
+@isnad1 id=le.1h2v.s5.e30707e984cf from=translated src=- shape=877a1c26 vocab=2ac2bcb3
+-/
 theorem initialResiduePrimeReciprocalSum_le_card_mul_inv {D U : ℕ} (hD : 0 < D) :
     residuePrimeIntervalReciprocalSum D 1 0 U ≤
       (residuePrimeIntervalCount D 1 0 U : ℝ) * (D : ℝ)⁻¹ := by
@@ -347,7 +384,9 @@ theorem initialResiduePrimeReciprocalSum_le_card_mul_inv {D U : ℕ} (hD : 0 < D
       exact (inv_le_inv₀ hqReal hDReal).2 (by exact_mod_cast hDq)
     _ = ((residuePrimeIntervalSet D 1 0 U).card : ℝ) * (D : ℝ)⁻¹ := by simp
 
-/-- The elementary initial range contains at most five candidates in the residue class.-/
+/-- The elementary initial range contains at most five candidates in the residue class.
+@isnad1 id=le.1h1v.s5.0fd28d0c1805 from=translated src=- shape=6688f072 vocab=0031a643
+-/
 theorem initialResiduePrimeCount_le_five {D : ℕ} (hD : 0 < D) :
     residuePrimeIntervalCount D 1 0 (4 * D) ≤ 5 := by
   calc
@@ -355,7 +394,9 @@ theorem initialResiduePrimeCount_le_five {D : ℕ} (hD : 0 < D) :
       residuePrimeIntervalCount_le_div_add_one hD
     _ = 5 := by simp [hD.ne']
 
-/-- Fully elementary bound for the short initial range in terms of Euler's totient.-/
+/-- Fully elementary bound for the short initial range in terms of Euler's totient.
+@isnad1 id=le.1h1v.s5.b1976368a69c from=translated src=- shape=c91275b3 vocab=e38a9cd2
+-/
 theorem initialResiduePrimeReciprocalSum_le_five_mul_totient_inv {D : ℕ}
     (hD : 0 < D) :
     residuePrimeIntervalReciprocalSum D 1 0 (4 * D) ≤
@@ -375,7 +416,9 @@ theorem initialResiduePrimeReciprocalSum_le_five_mul_totient_inv {D : ℕ}
     _ ≤ 5 * (D.totient : ℝ)⁻¹ := by
       exact mul_le_mul_of_nonneg_left ((inv_le_inv₀ hDPos hphiPos).2 hphiD) (by norm_num)
 
-/-- The dyadic harmonic loss is at most `1 + log J`.-/
+/-- The dyadic harmonic loss is at most `1 + log J`.
+@isnad1 id=le.0h1v.s5.db819dbcc4e9 from=translated src=- shape=f7f6b3f3 vocab=258be4c3
+-/
 theorem sum_Icc_two_natCast_inv_le_one_add_log (J : ℕ) :
     (∑ j ∈ Finset.Icc 2 J, (j : ℝ)⁻¹) ≤ 1 + Real.log J := by
   calc
@@ -391,7 +434,9 @@ theorem sum_Icc_two_natCast_inv_le_one_add_log (J : ℕ) :
       simp only [harmonic_eq_sum_Icc, Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast]
     _ ≤ 1 + Real.log J := harmonic_le_one_add_log J
 
-/-- Finite reciprocal Brun–Titchmarsh reduction at a dyadic endpoint.-/
+/-- Finite reciprocal Brun–Titchmarsh reduction at a dyadic endpoint.
+@isnad1 id=le.4h3v.s7.6ed14cbabb01 from=translated src=- shape=8d683ba0 vocab=0ecc9a62
+-/
 theorem residuePrimeReciprocalSum_le_of_dyadicBT_endpoint {C : ℝ} {D J : ℕ}
     (hC : 0 ≤ C) (hD : 0 < D) (hJ : 2 ≤ J)
     (hBT : DyadicBrunTitchmarshHypothesis C D 1 J) :
@@ -430,7 +475,9 @@ theorem residuePrimeReciprocalSum_le_of_dyadicBT_endpoint {C : ℝ} {D J : ℕ}
       exact add_le_add le_rfl
         (mul_le_mul_of_nonneg_left (sum_Icc_two_natCast_inv_le_one_add_log J) hC)
 
-/-- Monotonicity in the upper endpoint.-/
+/-- Monotonicity in the upper endpoint.
+@isnad1 id=le.1h5v.s4.c65cbfb8b390 from=translated src=- shape=20f1d866 vocab=a1970f71
+-/
 theorem residuePrimeIntervalReciprocalSum_mono_upper {D a L U V : ℕ} (hUV : U ≤ V) :
     residuePrimeIntervalReciprocalSum D a L U ≤
       residuePrimeIntervalReciprocalSum D a L V := by
@@ -443,7 +490,9 @@ theorem residuePrimeIntervalReciprocalSum_mono_upper {D a L U V : ℕ} (hUV : U 
   · intro q _hq _hqNot
     positivity
 
-/-- The endpoint reduction for an arbitrary cutoff covered by the dyadic range.-/
+/-- The endpoint reduction for an arbitrary cutoff covered by the dyadic range.
+@isnad1 id=le.5h4v.s7.8049f24b25b4 from=translated src=- shape=4e3c880b vocab=0ecc9a62
+-/
 theorem residuePrimeReciprocalSum_le_of_dyadicBT {C : ℝ} {D J X : ℕ}
     (hC : 0 ≤ C) (hD : 0 < D) (hJ : 2 ≤ J)
     (hX : X ≤ 2 ^ (J + 1) * D)
@@ -457,13 +506,18 @@ theorem residuePrimeReciprocalSum_le_of_dyadicBT {C : ℝ} {D J X : ℕ}
 def reciprocalBrunTitchmarshDepth (X : ℕ) : ℕ :=
   Nat.log 2 X + 1
 
+/--
+@isnad1 id=le.1h1v.s4.0caa7f187682 from=translated src=- shape=35bd48ee vocab=4b65e81b
+-/
 theorem two_le_reciprocalBrunTitchmarshDepth {X : ℕ} (hX : 2 ≤ X) :
     2 ≤ reciprocalBrunTitchmarshDepth X := by
   rw [reciprocalBrunTitchmarshDepth]
   have hlog : 0 < Nat.log 2 X := Nat.log_pos (by norm_num) hX
   omega
 
-/-- The canonical depth covers every integer up to `X`, for every positive modulus.-/
+/-- The canonical depth covers every integer up to `X`, for every positive modulus.
+@isnad1 id=le.1h2v.s5.f9437629a385 from=translated src=- shape=55e8d4ea vocab=5a55dcc6
+-/
 theorem le_dyadic_cutoff_reciprocalBrunTitchmarshDepth {D X : ℕ} (hD : 0 < D) :
     X ≤ 2 ^ (reciprocalBrunTitchmarshDepth X + 1) * D := by
   change X ≤ 2 ^ (Nat.log 2 X + 1 + 1) * D
@@ -476,7 +530,9 @@ theorem le_dyadic_cutoff_reciprocalBrunTitchmarshDepth {D X : ℕ} (hD : 0 < D) 
     _ ≤ 2 ^ (Nat.log 2 X + 1 + 1) * D :=
       Nat.le_mul_of_pos_right _ hD
 
-/-- The logarithm of the canonical dyadic depth is bounded by an explicit iterated logarithm.-/
+/-- The logarithm of the canonical dyadic depth is bounded by an explicit iterated logarithm.
+@isnad1 id=le.0h1v.s5.ea09897d3601 from=translated src=- shape=a620a96a vocab=60d2a17b
+-/
 theorem log_reciprocalBrunTitchmarshDepth_le_log_one_add_logb {X : ℕ} :
     Real.log (reciprocalBrunTitchmarshDepth X) ≤
       Real.log (1 + Real.logb 2 X) := by
@@ -491,7 +547,9 @@ theorem log_reciprocalBrunTitchmarshDepth_le_log_one_add_logb {X : ℕ} :
       simp [reciprocalBrunTitchmarshDepth])
   exact Real.log_le_log hdepthPos hdepth
 
-/-- Canonical finite form of Lemma 2.3 from a supplied dyadic Brun–Titchmarsh premise.-/
+/-- Canonical finite form of Lemma 2.3 from a supplied dyadic Brun–Titchmarsh premise.
+@isnad1 id=le.4h3v.s7.606d17954f87 from=translated src=- shape=88275d82 vocab=1e8ee636
+-/
 theorem residuePrimeReciprocalSum_le_of_dyadicBT_canonical {C : ℝ} {D X : ℕ}
     (hC : 0 ≤ C) (hD : 0 < D) (hX : 2 ≤ X)
     (hBT : DyadicBrunTitchmarshHypothesis C D 1
@@ -508,7 +566,9 @@ theorem residuePrimeReciprocalSum_le_of_dyadicBT_canonical {C : ℝ} {D X : ℕ}
   apply mul_le_mul_of_nonneg_left _ hC
   exact add_le_add le_rfl log_reciprocalBrunTitchmarshDepth_le_log_one_add_logb
 
-/-- The residue class `1 (mod D)` contributes no prime at all below `D`.-/
+/-- The residue class `1 (mod D)` contributes no prime at all below `D`.
+@isnad1 id=eq.1h2v.s4.43e6a03e0356 from=translated src=- shape=22211a0e vocab=2543e97c
+-/
 theorem residuePrimeIntervalSet_one_eq_empty_of_upper_lt_modulus {D X : ℕ}
     (hXD : X < D) :
     residuePrimeIntervalSet D 1 0 X = ∅ := by
@@ -519,7 +579,9 @@ theorem residuePrimeIntervalSet_one_eq_empty_of_upper_lt_modulus {D X : ℕ}
   have hDq := modulus_lt_prime_of_modEq_one hD hqData.2.2.1 hqData.2.2.2
   omega
 
-/-- The reciprocal sum is zero when `D > X`, as stated in Lemma 2.3.-/
+/-- The reciprocal sum is zero when `D > X`, as stated in Lemma 2.3.
+@isnad1 id=eq.1h2v.s4.5f75d7e44492 from=translated src=- shape=a2e6e141 vocab=02ae3193
+-/
 @[simp]
 theorem residuePrimeIntervalReciprocalSum_one_eq_zero_of_upper_lt_modulus {D X : ℕ}
     (hXD : X < D) :

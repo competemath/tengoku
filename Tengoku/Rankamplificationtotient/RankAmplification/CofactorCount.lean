@@ -28,6 +28,9 @@ private def sigmaNatToPair : (Σ _ : ℕ, ℕ) ↪ (ℕ × ℕ) where
 def cofactorPairSet (X : ℕ) : Finset (ℕ × ℕ) :=
   (cofactorPairSigma X).map sigmaNatToPair
 
+/--
+@isnad1 id=iff.0h3v.s6.684fe609f22d from=translated src=- shape=bdb56928 vocab=6566a491
+-/
 @[simp]
 theorem mem_cofactorPairSet {X m₁ m₂ : ℕ} :
     (m₁, m₂) ∈ cofactorPairSet X ↔ 1 ≤ m₁ ∧ 1 ≤ m₂ ∧ m₁ * m₂ ≤ X := by
@@ -57,6 +60,9 @@ theorem mem_cofactorPairSet {X m₁ m₂ : ℕ} :
     rw [Nat.le_div_iff_mul_le hm₁, mul_comm]
     exact hprod
 
+/--
+@isnad1 id=eq.0h1v.s5.f9f866400b62 from=translated src=- shape=bb5f4c8a vocab=298f82b0
+-/
 theorem card_cofactorPairSet_eq_sum_div (X : ℕ) :
     (cofactorPairSet X).card = ∑ m ∈ Finset.Icc 1 X, X / m := by
   classical
@@ -65,12 +71,17 @@ theorem card_cofactorPairSet_eq_sum_div (X : ℕ) :
   intro m hm
   simp [Nat.card_Icc]
 
+/--
+@isnad1 id=le.0h1v.s5.d80069626fe2 from=translated src=- shape=f7f6b3f3 vocab=258be4c3
+-/
 theorem real_harmonic_sum_le (X : ℕ) :
     (∑ m ∈ Finset.Icc 1 X, (m : ℝ)⁻¹) ≤ 1 + Real.log X := by
   simpa only [harmonic_eq_sum_Icc, Rat.cast_sum, Rat.cast_inv, Rat.cast_natCast,
     Rat.cast_ofNat] using harmonic_le_one_add_log X
 
-/-- Explicit divisor-hyperbola bound: at most `X(1+log X)` positive ordered pairs.-/
+/-- Explicit divisor-hyperbola bound: at most `X(1+log X)` positive ordered pairs.
+@isnad1 id=le.0h1v.s5.2aea17bc396d from=translated src=- shape=16417a38 vocab=d6723f65
+-/
 theorem card_cofactorPairSet_cast_le (X : ℕ) :
     ((cofactorPairSet X).card : ℝ) ≤ X * (1 + Real.log X) := by
   rw [card_cofactorPairSet_eq_sum_div, Nat.cast_sum]
@@ -86,7 +97,9 @@ theorem card_cofactorPairSet_cast_le (X : ℕ) :
     _ ≤ (X : ℝ) * (1 + Real.log X) :=
       mul_le_mul_of_nonneg_left (real_harmonic_sum_le X) (Nat.cast_nonneg X)
 
-/-- Fully quantitative finite form of Corollary 3.4 for any chosen family of skeletons.-/
+/-- Fully quantitative finite form of Corollary 3.4 for any chosen family of skeletons.
+@isnad1 id=le.2h5v.s7.63c1615b8a9f from=translated src=- shape=b8be98b0 vocab=cfc48fff
+-/
 theorem card_skeletonNumbers_le_cofactor_bound {h X : ℕ} (hodd : Odd h) (S : Finset ℕ)
     (provider : (x : {n // n ∈ S}) → ℕ)
     (skeleton : (x : {n // n ∈ S}) → LargePrimeSkeleton h x.1 (provider x))

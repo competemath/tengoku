@@ -14,6 +14,9 @@ noncomputable section
 
 /-! ## Comparing `log₂ x` with `G` -/
 
+/--
+@isnad1 id=islittle.0h0v.s3.8f74391cdbf3 from=translated src=- shape=d231363d vocab=f141189c
+-/
 theorem log2_isLittleO_sqrt_scaleL :
     log2 =o[atTop] (fun x ↦ Real.sqrt (scaleL x)) := by
   have h :=
@@ -25,6 +28,9 @@ theorem log2_isLittleO_sqrt_scaleL :
   · filter_upwards [] with x
     simp [Function.comp_apply, Real.sqrt_eq_rpow]
 
+/--
+@isnad1 id=isbigo.0h0v.s3.599d94725e96 from=translated src=- shape=afbd0cda vocab=6847f01b
+-/
 theorem sqrt_scaleL_isBigO_scaleG :
     (fun x ↦ Real.sqrt (scaleL x)) =O[atTop] scaleG := by
   rw [isBigO_iff]
@@ -44,11 +50,15 @@ theorem sqrt_scaleL_isBigO_scaleG :
     _ = ‖scaleG x‖ := (Real.norm_of_nonneg hright).symm
     _ = 1 * ‖scaleG x‖ := by ring
 
-/-- The logarithm of every fixed polylogarithmic range is negligible relative to `G`.-/
+/-- The logarithm of every fixed polylogarithmic range is negligible relative to `G`.
+@isnad1 id=islittle.0h0v.s3.bd1abf622b44 from=translated src=- shape=47806ae7 vocab=8f244d9e
+-/
 theorem log2_isLittleO_scaleG : log2 =o[atTop] scaleG :=
   log2_isLittleO_sqrt_scaleL.trans_isBigO sqrt_scaleL_isBigO_scaleG
 
-/-- For fixed positive `J` and `A₀`, eventually `A₀ log₂ x ≤ T_J`.-/
+/-- For fixed positive `J` and `A₀`, eventually `A₀ log₂ x ≤ T_J`.
+@isnad1 id=eventual.2h2v.s5.767cb187475e from=translated src=- shape=9805f73f vocab=2671785a
+-/
 theorem eventually_mul_log2_le_fixedRankT
     {J : ℕ} (hJ : 0 < J) {A₀ : ℝ} (hA₀ : 0 ≤ A₀) :
     ∀ᶠ x : ℝ in atTop, A₀ * log2 x ≤ fixedRankT J x := by
@@ -77,9 +87,15 @@ theorem eventually_mul_log2_le_fixedRankT
 def fixedPolylogCutoff (A₀ : ℝ) (x : ℕ) : ℕ :=
   ⌊(scaleL (x : ℝ)) ^ A₀⌋₊
 
+/--
+@isnad1 id=eq.0h2v.s5.5b31bc49bed9 from=translated src=- shape=347b3c1e vocab=3be638e0
+-/
 @[simp] theorem fixedPolylogCutoff_eq_floor (A₀ : ℝ) (x : ℕ) :
     fixedPolylogCutoff A₀ x = ⌊(scaleL (x : ℝ)) ^ A₀⌋₊ := rfl
 
+/--
+@isnad1 id=eventual.2h2v.s5.8813c4c3604f from=translated src=- shape=3e2abef3 vocab=ef706c0d
+-/
 theorem eventually_polylog_real_le_fixedRankY
     {J : ℕ} (hJ : 0 < J) {A₀ : ℝ} (hA₀ : 0 ≤ A₀) :
     ∀ᶠ x : ℝ in atTop, (scaleL x) ^ A₀ ≤ fixedRankY J x := by
@@ -89,7 +105,9 @@ theorem eventually_polylog_real_le_fixedRankY
   apply Real.exp_le_exp.mpr
   simpa only [log2_eq, scaleL_eq, mul_comm] using hx
 
-/-- Every fixed polylogarithmic natural range lies inside `h ≤ y_J`.-/
+/-- Every fixed polylogarithmic natural range lies inside `h ≤ y_J`.
+@isnad1 id=eventual.2h2v.s5.c7c9a81a2b1d from=translated src=- shape=cc5e725b vocab=820f435a
+-/
 theorem eventually_fixedPolylogCutoff_le_fixedRankNatY
     {J : ℕ} (hJ : 0 < J) {A₀ : ℝ} (hA₀ : 0 ≤ A₀) :
     ∀ᶠ x : ℕ in atTop,
@@ -101,7 +119,9 @@ theorem eventually_fixedPolylogCutoff_le_fixedRankNatY
 
 /-! ## Corollary 1.3 -/
 
-/-- Polylogarithmically uniform odd-shift consequence at every coefficient `B<√J`.-/
+/-- Polylogarithmically uniform odd-shift consequence at every coefficient `B<√J`.
+@isnad1 id=eventual.3h5v.s6.ab0640f20fb1 from=translated src=- shape=fb19855f vocab=39c17b13
+-/
 theorem FixedRankDiagonalEstimate.polylog_odd_coefficient_bound
     {J : ℕ} {ε : ℕ → ℝ} {C B A₀ : ℝ}
     (estimate : FixedRankDiagonalEstimate J ε C)

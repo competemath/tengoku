@@ -22,9 +22,15 @@ variable (L : AffinePrimePair)
 def productValue (r : ℕ) : ℕ :=
   L.leftValue r * L.rightValue r
 
+/--
+@isnad1 id=lt.0h2v.s3.47b338b59b9d from=translated src=- shape=787c1379 vocab=86c2c4dc
+-/
 theorem productValue_pos (r : ℕ) : 0 < L.productValue r :=
   mul_pos (L.value_pos r).1 (L.value_pos r).2
 
+/--
+@isnad1 id=strictmo.0h1v.s3.beaf9cb37082 from=translated src=- shape=8735051e vocab=0e58d92d
+-/
 theorem productValue_strictMono : StrictMono L.productValue := by
   intro r s hrs
   have hleft := L.value_strictMono_left hrs
@@ -38,6 +44,9 @@ theorem productValue_strictMono : StrictMono L.productValue := by
 def shiftedProductValue (t : ℕ) : ℕ :=
   L.productValue (t + 1)
 
+/--
+@isnad1 id=strictmo.0h1v.s3.a1effc04d26c from=translated src=- shape=8735051e vocab=afc36ce4
+-/
 theorem shiftedProductValue_strictMono : StrictMono L.shiftedProductValue := by
   intro r s hrs
   exact L.productValue_strictMono (Nat.add_lt_add_right hrs 1)
@@ -51,6 +60,9 @@ def shiftedProductEmbedding : ℕ ↪ ℕ where
 def selbergSupport (R : ℕ) : Finset ℕ :=
   (Finset.range R).map L.shiftedProductEmbedding
 
+/--
+@isnad1 id=iff.0h3v.s5.08bdcf5fd068 from=translated src=- shape=bd08aaef vocab=b95a0502
+-/
 @[simp]
 theorem mem_selbergSupport {R N : ℕ} :
     N ∈ L.selbergSupport R ↔ ∃ t < R, L.shiftedProductValue t = N := by
@@ -65,6 +77,9 @@ def shiftedProductMod (d : ℕ) (t : ZMod d) : ZMod d :=
 def shiftedBadResidueSet (d : ℕ) : Finset (Fin d) :=
   Finset.univ.filter fun t ↦ d ∣ L.shiftedProductValue t
 
+/--
+@isnad1 id=iff.0h3v.s5.ea11df3b734b from=translated src=- shape=e60c17ab vocab=0e56fcc2
+-/
 @[simp]
 theorem mem_shiftedBadResidueSet {d : ℕ} {t : Fin d} :
     t ∈ L.shiftedBadResidueSet d ↔ d ∣ L.shiftedProductValue t := by
@@ -74,14 +89,18 @@ theorem mem_shiftedBadResidueSet {d : ℕ} {t : Fin d} :
 def shiftedBadResidueCount (d : ℕ) : ℕ :=
   (L.shiftedBadResidueSet d).card
 
-/-- Divisibility by `d` is exactly vanishing of the shifted product modulo `d`.-/
+/-- Divisibility by `d` is exactly vanishing of the shifted product modulo `d`.
+@isnad1 id=iff.0h3v.s5.d8f222db2b91 from=translated src=- shape=812ac5bc vocab=74106a68
+-/
 theorem shiftedProductMod_natCast_eq_zero_iff_dvd (d t : ℕ) :
     L.shiftedProductMod d t = 0 ↔ d ∣ L.shiftedProductValue t := by
   rw [← ZMod.natCast_eq_zero_iff]
   simp only [shiftedProductMod, shiftedProductValue, productValue, leftValue, rightValue,
     Nat.cast_mul, Nat.cast_add, Nat.cast_one]
 
-/-- Translation by one identifies shifted bad residues with the existing local bad-residue set.-/
+/-- Translation by one identifies shifted bad residues with the existing local bad-residue set.
+@isnad1 id=eq.1h2v.s4.b12d600f17c5 from=translated src=- shape=4c6d9a46 vocab=184a44d7
+-/
 theorem shiftedBadResidueCount_eq_badResidueSet_card {p : ℕ} (hp : p.Prime) :
     L.shiftedBadResidueCount p = (L.badResidueSet p hp).card := by
   letI : NeZero p := ⟨hp.ne_zero⟩
@@ -113,12 +132,17 @@ theorem shiftedBadResidueCount_eq_badResidueSet_card {p : ℕ} (hp : p.Prime) :
       Fintype.card_congr rootEquiv
     _ = (L.badResidueSet p hp).card := Fintype.card_coe _
 
+/--
+@isnad1 id=le.1h2v.s4.4e14d8a312d5 from=translated src=- shape=0f504e13 vocab=4947ee9b
+-/
 theorem shiftedBadResidueCount_le_two {p : ℕ} (hp : p.Prime) :
     L.shiftedBadResidueCount p ≤ 2 := by
   rw [L.shiftedBadResidueCount_eq_badResidueSet_card hp]
   exact L.card_badResidueSet_le_two hp
 
-/-- For this special pair of constant-one forms the two local roots coincide modulo `2`, so the local density is strictly below one for every prime.-/
+/-- For this special pair of constant-one forms the two local roots coincide modulo `2`, so the local density is strictly below one for every prime.
+@isnad1 id=lt.1h2v.s3.88434477626f from=translated src=- shape=e76568e9 vocab=2b60f3a3
+-/
 theorem shiftedBadResidueCount_lt_prime {p : ℕ} (hp : p.Prime) :
     L.shiftedBadResidueCount p < p := by
   by_cases hpTwo : p = 2
@@ -149,7 +173,9 @@ theorem shiftedBadResidueCount_lt_prime {p : ℕ} (hp : p.Prime) :
 
 /-! ## Exact residue-class counting -/
 
-/-- The shifted product respects congruences in its parameter.-/
+/-- The shifted product respects congruences in its parameter.
+@isnad1 id=modeq.1h4v.s4.2b488c4a153d from=translated src=- shape=554d9180 vocab=bbb891ee
+-/
 theorem shiftedProductValue_modEq {d t u : ℕ} (htu : t ≡ u [MOD d]) :
     L.shiftedProductValue t ≡ L.shiftedProductValue u [MOD d] := by
   rw [← ZMod.natCast_eq_natCast_iff] at htu ⊢
@@ -161,6 +187,9 @@ theorem shiftedProductValue_modEq {d t u : ℕ} (htu : t ≡ u [MOD d]) :
 def divisibleParameterSet (R d : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ d ∣ L.shiftedProductValue t
 
+/--
+@isnad1 id=iff.0h4v.s5.94beea89f92c from=translated src=- shape=399c5118 vocab=a3a6b73f
+-/
 @[simp]
 theorem mem_divisibleParameterSet {R d t : ℕ} :
     t ∈ L.divisibleParameterSet R d ↔ t < R ∧ d ∣ L.shiftedProductValue t := by
@@ -170,12 +199,17 @@ theorem mem_divisibleParameterSet {R d t : ℕ} :
 def parameterResidueFiber (R d : ℕ) (a : Fin d) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ t ≡ a.val [MOD d]
 
+/--
+@isnad1 id=iff.0h4v.s5.bc09ecb93594 from=translated src=- shape=2fb29c1a vocab=208ecf31
+-/
 @[simp]
 theorem mem_parameterResidueFiber {R d : ℕ} {a : Fin d} {t : ℕ} :
     t ∈ parameterResidueFiber R d a ↔ t < R ∧ t ≡ a.val [MOD d] := by
   simp [parameterResidueFiber]
 
-/-- Exact size of one residue fibre.-/
+/-- Exact size of one residue fibre.
+@isnad1 id=eq.1h3v.s6.82988b26764d from=translated src=- shape=11e78cb9 vocab=f98a3cbb
+-/
 theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
     (parameterResidueFiber R d a).card =
       R / d + if a.val < R % d then 1 else 0 := by
@@ -186,11 +220,16 @@ theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
 def residueExcessCount (R d : ℕ) : ℕ :=
   ((L.shiftedBadResidueSet d).filter fun a ↦ a.val < R % d).card
 
+/--
+@isnad1 id=le.0h3v.s4.7765b672ee12 from=translated src=- shape=104d2678 vocab=683c4696
+-/
 theorem residueExcessCount_le (R d : ℕ) :
     L.residueExcessCount R d ≤ L.shiftedBadResidueCount d := by
   exact Finset.card_filter_le _ _
 
-/-- The divisible parameters are the disjoint union of their bad residue fibres.-/
+/-- The divisible parameters are the disjoint union of their bad residue fibres.
+@isnad1 id=eq.1h3v.s5.1b6118e87267 from=translated src=- shape=9ffb98dc vocab=ace1d56a
+-/
 theorem divisibleParameterSet_eq_biUnion {R d : ℕ} (hd : 0 < d) :
     L.divisibleParameterSet R d =
       (L.shiftedBadResidueSet d).biUnion (parameterResidueFiber R d) := by
@@ -213,6 +252,9 @@ theorem divisibleParameterSet_eq_biUnion {R d : ℕ} (hd : 0 < d) :
     exact ⟨htaData.1,
       Nat.modEq_zero_iff_dvd.mp (hvalue.trans haDiv.modEq_zero_nat)⟩
 
+/--
+@isnad1 id=pairwise.0h3v.s4.ae8cf8be7902 from=translated src=- shape=563ace90 vocab=51c0e387
+-/
 theorem parameterResidueFiber_pairwiseDisjoint (R d : ℕ) :
     ((L.shiftedBadResidueSet d : Finset (Fin d)) : Set (Fin d)).PairwiseDisjoint
       (parameterResidueFiber R d) := by
@@ -227,7 +269,9 @@ theorem parameterResidueFiber_pairwiseDisjoint (R d : ℕ) :
   have habMod : a.val ≡ b.val [MOD d] := hat.symm.trans hbt
   simpa only [Nat.ModEq, Nat.mod_eq_of_lt a.isLt, Nat.mod_eq_of_lt b.isLt] using habMod
 
-/-- Exact residue-count formula, including the incomplete final block.-/
+/-- Exact residue-count formula, including the incomplete final block.
+@isnad1 id=eq.1h3v.s5.2b65e55e8e6b from=translated src=- shape=ae4317b4 vocab=6025c681
+-/
 theorem card_divisibleParameterSet_eq {R d : ℕ} (hd : 0 < d) :
     (L.divisibleParameterSet R d).card =
       L.shiftedBadResidueCount d * (R / d) + L.residueExcessCount R d := by
@@ -238,13 +282,18 @@ theorem card_divisibleParameterSet_eq {R d : ℕ} (hd : 0 < d) :
   simp only [Finset.sum_const_nat, shiftedBadResidueCount, residueExcessCount,
     Finset.card_filter]
 
-/-- Real form of the exact count error `r_d`, with `0 ≤ r_d ≤ ν(d)`.-/
+/-- Real form of the exact count error `r_d`, with `0 ≤ r_d ≤ ν(d)`.
+@isnad1 id=eq.1h3v.s6.fecccf6628b2 from=translated src=- shape=2b2844b5 vocab=b01561e1
+-/
 theorem card_divisibleParameterSet_cast_eq_main_add_error {R d : ℕ} (hd : 0 < d) :
     ((L.divisibleParameterSet R d).card : ℝ) =
       (L.shiftedBadResidueCount d : ℝ) * (R / d : ℕ) +
         L.residueExcessCount R d := by
   exact_mod_cast L.card_divisibleParameterSet_eq hd
 
+/--
+@isnad1 id=le.0h3v.s4.29c66417f2cd from=translated src=- shape=eefa0564 vocab=210ac93a
+-/
 theorem residueExcessCount_cast_le (R d : ℕ) :
     (L.residueExcessCount R d : ℝ) ≤ L.shiftedBadResidueCount d := by
   exact_mod_cast L.residueExcessCount_le R d
@@ -259,9 +308,15 @@ def localDensity (p : ℕ) : ℝ :=
 def sieveDensity : ArithmeticFunction ℝ :=
   ArithmeticFunction.prodPrimeFactors L.localDensity
 
+/--
+@isnad1 id=ismultip.0h1v.s2.27fa57f030c3 from=translated src=- shape=1a6c1393 vocab=d7290ad9
+-/
 theorem sieveDensity_isMultiplicative : L.sieveDensity.IsMultiplicative :=
   ArithmeticFunction.IsMultiplicative.prodPrimeFactors L.localDensity
 
+/--
+@isnad1 id=eq.1h2v.s4.5e7efbabbdff from=translated src=- shape=c551cba8 vocab=f7d41cad
+-/
 @[simp]
 theorem sieveDensity_apply_prime {p : ℕ} (hp : p.Prime) :
     L.sieveDensity p = L.localDensity p := by
@@ -272,6 +327,9 @@ theorem sieveDensity_apply_prime {p : ℕ} (hp : p.Prime) :
 def activePrimeSet (z : ℕ) : Finset ℕ :=
   (Nat.primesLE z).filter fun p ↦ 0 < L.shiftedBadResidueCount p
 
+/--
+@isnad1 id=iff.0h3v.s5.ca01727e6147 from=translated src=- shape=e1f373fe vocab=b0b5a299
+-/
 @[simp]
 theorem mem_activePrimeSet {z p : ℕ} :
     p ∈ L.activePrimeSet z ↔
@@ -283,6 +341,9 @@ theorem mem_activePrimeSet {z p : ℕ} :
 def activePrimeProduct (z : ℕ) : ℕ :=
   ∏ p ∈ L.activePrimeSet z, p
 
+/--
+@isnad1 id=squarefr.0h2v.s3.cd4f6222b944 from=translated src=- shape=a51c7acb vocab=9a23ff70
+-/
 theorem activePrimeProduct_squarefree (z : ℕ) : Squarefree (L.activePrimeProduct z) := by
   rw [activePrimeProduct]
   refine Finset.squarefree_prod_of_pairwise_isCoprime (fun p hp q hq hpq ↦ ?_)
@@ -291,6 +352,9 @@ theorem activePrimeProduct_squarefree (z : ℕ) : Squarefree (L.activePrimeProdu
   exact (coprime_primes (L.mem_activePrimeSet.mp hp).1
     (L.mem_activePrimeSet.mp hq).1).mpr hpq
 
+/--
+@isnad1 id=iff.1h3v.s4.f0b84de00521 from=translated src=- shape=0be99932 vocab=cd03189e
+-/
 theorem prime_dvd_activePrimeProduct_iff {z p : ℕ} (hp : p.Prime) :
     p ∣ L.activePrimeProduct z ↔ p ∈ L.activePrimeSet z := by
   constructor
@@ -303,7 +367,9 @@ theorem prime_dvd_activePrimeProduct_iff {z p : ℕ} (hp : p.Prime) :
   · intro hpMem
     exact dvd_prod_of_mem _ hpMem
 
-/-- A prime with no bad residue divides no shifted affine product.-/
+/-- A prime with no bad residue divides no shifted affine product.
+@isnad1 id=not.2h3v.s4.8b89d8136689 from=translated src=- shape=56048cef vocab=adce0eb6
+-/
 theorem not_dvd_shiftedProductValue_of_count_eq_zero {p t : ℕ} (hp : p.Prime)
     (hcount : L.shiftedBadResidueCount p = 0) :
     ¬p ∣ L.shiftedProductValue t := by
@@ -351,7 +417,9 @@ def affineSelbergSieve (R z : ℕ) (level : ℝ) (hlevel : 1 ≤ level) : Selber
   level := level
   one_le_level := hlevel
 
-/-- The abstract sieve's divisibility sum is exactly the finite parameter count.-/
+/-- The abstract sieve's divisibility sum is exactly the finite parameter count.
+@isnad1 id=eq.0h4v.s4.92d6dd0cc6de from=translated src=- shape=f98426bb vocab=33d2645c
+-/
 theorem affineBoundingSieve_multSum (R z d : ℕ) :
     (L.affineBoundingSieve R z).multSum d =
       (L.divisibleParameterSet R d).card := by
@@ -360,21 +428,27 @@ theorem affineBoundingSieve_multSum (R z d : ℕ) :
   rw [Finset.filter_map, Finset.card_map]
   rfl
 
-/-- Hence the abstract remainder has a completely explicit finite meaning.-/
+/-- Hence the abstract remainder has a completely explicit finite meaning.
+@isnad1 id=eq.0h4v.s5.c26c82c2909a from=translated src=- shape=ff725812 vocab=feba7dfc
+-/
 theorem affineBoundingSieve_rem (R z d : ℕ) :
     (L.affineBoundingSieve R z).rem d =
       (L.divisibleParameterSet R d).card - L.sieveDensity d * R := by
   rw [BoundingSieve.rem, L.affineBoundingSieve_multSum]
   rfl
 
-/-- Exact remainder formula after splitting `[0,R)` into complete residue blocks.-/
+/-- Exact remainder formula after splitting `[0,R)` into complete residue blocks.
+@isnad1 id=eq.1h4v.s6.9834c5a8de0c from=translated src=- shape=45bf7a82 vocab=63c33db0
+-/
 theorem affineBoundingSieve_rem_eq_floor_add_excess {R z d : ℕ} (hd : 0 < d) :
     (L.affineBoundingSieve R z).rem d =
       (L.shiftedBadResidueCount d : ℝ) * (R / d : ℕ) +
         L.residueExcessCount R d - L.sieveDensity d * R := by
   rw [L.affineBoundingSieve_rem, L.card_divisibleParameterSet_cast_eq_main_add_error hd]
 
-/-- At a prime modulus, the remainder is the incomplete-block excess minus the exact fractional part of the local main term.-/
+/-- At a prime modulus, the remainder is the incomplete-block excess minus the exact fractional part of the local main term.
+@isnad1 id=eq.1h4v.s6.0b51d815b815 from=translated src=- shape=832f0cb9 vocab=bd988ae4
+-/
 theorem affineBoundingSieve_rem_prime {R z p : ℕ} (hp : p.Prime) :
     (L.affineBoundingSieve R z).rem p =
       (L.residueExcessCount R p : ℝ) -
@@ -389,7 +463,9 @@ theorem affineBoundingSieve_rem_prime {R z p : ℕ} (hp : p.Prime) :
   field_simp
   ring
 
-/-- The exact prime-modulus remainder has the classical local bound `|r_p| ≤ ν(p)`.-/
+/-- The exact prime-modulus remainder has the classical local bound `|r_p| ≤ ν(p)`.
+@isnad1 id=le.1h4v.s4.8dbd1c2cc94e from=translated src=- shape=0d9a9328 vocab=622ac9fe
+-/
 theorem abs_affineBoundingSieve_rem_prime_le {R z p : ℕ} (hp : p.Prime) :
     |(L.affineBoundingSieve R z).rem p| ≤ L.shiftedBadResidueCount p := by
   rw [L.affineBoundingSieve_rem_prime hp]
@@ -418,6 +494,9 @@ theorem abs_affineBoundingSieve_rem_prime_le {R z p : ℕ} (hp : p.Prime) :
 
 /-! ## Identifying the sifted set -/
 
+/--
+@isnad1 id=iff.0h3v.s5.cf3e924afaa7 from=translated src=- shape=39322a9b vocab=85009b19
+-/
 theorem coprime_activePrimeProduct_iff {z t : ℕ} :
     Nat.Coprime (L.activePrimeProduct z) (L.shiftedProductValue t) ↔
       ∀ p ∈ Nat.primesLE z, ¬p ∣ L.shiftedProductValue t := by
@@ -445,6 +524,9 @@ def siftedParameterSet (R z : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦
     Nat.Coprime (L.activePrimeProduct z) (L.shiftedProductValue t)
 
+/--
+@isnad1 id=iff.0h4v.s5.ce93f41225dd from=translated src=- shape=7c46f716 vocab=df30cd22
+-/
 @[simp]
 theorem mem_siftedParameterSet {R z t : ℕ} :
     t ∈ L.siftedParameterSet R z ↔
@@ -456,10 +538,15 @@ def parameterShiftEmbedding : ℕ ↪ ℕ where
   toFun t := t + 1
   inj' := fun _ _ h ↦ Nat.add_right_cancel h
 
+/--
+@isnad1 id=eq.0h1v.s4.08cb2af193c8 from=translated src=- shape=a436e3dd vocab=e7e556ae
+-/
 @[simp]
 theorem parameterShiftEmbedding_apply (t : ℕ) : parameterShiftEmbedding t = t + 1 := rfl
 
-/-- The abstract sifted parameters and the pre-existing paper-style sifted set agree exactly.-/
+/-- The abstract sifted parameters and the pre-existing paper-style sifted set agree exactly.
+@isnad1 id=eq.0h3v.s4.d6c6ae29a695 from=translated src=- shape=0dc75f51 vocab=7dd5e1fa
+-/
 theorem siftedPairSet_eq_map (R z : ℕ) :
     L.siftedPairSet R z =
       (L.siftedParameterSet R z).map parameterShiftEmbedding := by
@@ -490,6 +577,9 @@ theorem siftedPairSet_eq_map (R z : ℕ) :
 def leftSmallPrimePairSet (R z : ℕ) : Finset ℕ :=
   (L.primePairSet R).filter fun r ↦ L.leftValue r ≤ z
 
+/--
+@isnad1 id=iff.0h4v.s5.64a36c1a5f3f from=translated src=- shape=488272d5 vocab=1fcc95bc
+-/
 @[simp]
 theorem mem_leftSmallPrimePairSet {R z r : ℕ} :
     r ∈ L.leftSmallPrimePairSet R z ↔
@@ -500,13 +590,18 @@ theorem mem_leftSmallPrimePairSet {R z r : ℕ} :
 def rightSmallPrimePairSet (R z : ℕ) : Finset ℕ :=
   (L.primePairSet R).filter fun r ↦ L.rightValue r ≤ z
 
+/--
+@isnad1 id=iff.0h4v.s5.cd3d5e681bd5 from=translated src=- shape=488272d5 vocab=54dedcb8
+-/
 @[simp]
 theorem mem_rightSmallPrimePairSet {R z r : ℕ} :
     r ∈ L.rightSmallPrimePairSet R z ↔
       r ∈ L.primePairSet R ∧ L.rightValue r ≤ z := by
   simp [rightSmallPrimePairSet]
 
-/-- Strict monotonicity gives the elementary `O(z)` bound for left-value exceptions.-/
+/-- Strict monotonicity gives the elementary `O(z)` bound for left-value exceptions.
+@isnad1 id=le.0h3v.s4.ab4e87d65318 from=translated src=- shape=e3d20d45 vocab=e8751550
+-/
 theorem card_leftSmallPrimePairSet_le (R z : ℕ) :
     (L.leftSmallPrimePairSet R z).card ≤ z + 1 := by
   rw [← Finset.card_range (z + 1)]
@@ -517,7 +612,9 @@ theorem card_leftSmallPrimePairSet_le (R z : ℕ) :
   · intro a _ha b _hb hab
     exact L.value_strictMono_left.injective hab
 
-/-- Strict monotonicity gives the elementary `O(z)` bound for right-value exceptions.-/
+/-- Strict monotonicity gives the elementary `O(z)` bound for right-value exceptions.
+@isnad1 id=le.0h3v.s4.1e40ce8416b4 from=translated src=- shape=e3d20d45 vocab=23a731c9
+-/
 theorem card_rightSmallPrimePairSet_le (R z : ℕ) :
     (L.rightSmallPrimePairSet R z).card ≤ z + 1 := by
   rw [← Finset.card_range (z + 1)]
@@ -528,7 +625,9 @@ theorem card_rightSmallPrimePairSet_le (R z : ℕ) :
   · intro a _ha b _hb hab
     exact L.value_strictMono_right.injective hab
 
-/-- Every prime pair either survives the sieve or has a prime value at most `z`.-/
+/-- Every prime pair either survives the sieve or has a prime value at most `z`.
+@isnad1 id=le.0h3v.s5.6de5173328f7 from=translated src=- shape=561bf0ff vocab=aa9a0fa1
+-/
 theorem primePairSet_subset_sifted_union_small (R z : ℕ) :
     L.primePairSet R ⊆
       (L.siftedPairSet R z ∪ L.leftSmallPrimePairSet R z) ∪
@@ -545,7 +644,9 @@ theorem primePairSet_subset_sifted_union_small (R z : ℕ) :
       L.mem_leftSmallPrimePairSet.mpr ⟨hr, Nat.le_of_not_gt hleft⟩
     exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr hsmall)))
 
-/-- Exact finite reduction: the prime-pair count is at most the sifted count plus `2(z+1)`.-/
+/-- Exact finite reduction: the prime-pair count is at most the sifted count plus `2(z+1)`.
+@isnad1 id=le.0h3v.s5.3096674dd4f7 from=translated src=- shape=f82b2f21 vocab=f9de3fac
+-/
 theorem card_primePairSet_le_sifted_add (R z : ℕ) :
     (L.primePairSet R).card ≤ (L.siftedPairSet R z).card + 2 * (z + 1) := by
   calc

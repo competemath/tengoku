@@ -12,12 +12,17 @@ namespace RankAmplification
 def shiftedMultipleSet (x a d : ℕ) : Finset ℕ :=
   (Finset.Icc 1 x).filter fun n ↦ d ∣ n + a
 
+/--
+@isnad1 id=iff.0h4v.s5.f63ce2da4d4f from=translated src=- shape=e1a1bf60 vocab=1b8ce837
+-/
 @[simp]
 theorem mem_shiftedMultipleSet {x a d n : ℕ} :
     n ∈ shiftedMultipleSet x a d ↔ 1 ≤ n ∧ n ≤ x ∧ d ∣ n + a := by
   simp [shiftedMultipleSet, and_assoc]
 
-/-- One shifted residue class modulo `d` contributes at most `x/d+1` positive integers up to `x`.-/
+/-- One shifted residue class modulo `d` contributes at most `x/d+1` positive integers up to `x`.
+@isnad1 id=le.1h3v.s5.9a3bb9af22c4 from=translated src=- shape=30d50065 vocab=59c3db69
+-/
 theorem shiftedMultipleSet_card_le {x a d : ℕ} (hd : 0 < d) :
     (shiftedMultipleSet x a d).card ≤ x / d + 1 := by
   by_cases hempty : shiftedMultipleSet x a d = ∅
@@ -40,13 +45,18 @@ theorem shiftedMultipleSet_card_le {x a d : ℕ} (hd : 0 < d) :
 def squareSourceAtPrimeSet (x h p : ℕ) : Finset ℕ :=
   (Finset.Icc 1 x).filter fun n ↦ p ^ 2 ∣ n * (n + h)
 
+/--
+@isnad1 id=iff.0h4v.s6.c6553386b8d6 from=translated src=- shape=c7c659c3 vocab=b746237c
+-/
 @[simp]
 theorem mem_squareSourceAtPrimeSet {x h p n : ℕ} :
     n ∈ squareSourceAtPrimeSet x h p ↔
       1 ≤ n ∧ n ≤ x ∧ p ^ 2 ∣ n * (n + h) := by
   simp [squareSourceAtPrimeSet, and_assoc]
 
-/-- If `0 < h < p`, a prime-square divisor of `n(n+h)` cannot split between the two factors.-/
+/-- If `0 < h < p`, a prime-square divisor of `n(n+h)` cannot split between the two factors.
+@isnad1 id=iff.3h3v.s6.d02520e104e0 from=translated src=- shape=77e933cd vocab=bb4b68c7
+-/
 theorem prime_sq_dvd_mul_shifted_iff {p n h : ℕ} (hp : p.Prime) (hh : 0 < h)
     (hph : h < p) :
     p ^ 2 ∣ n * (n + h) ↔ p ^ 2 ∣ n ∨ p ^ 2 ∣ n + h := by
@@ -72,7 +82,9 @@ theorem prime_sq_dvd_mul_shifted_iff {p n h : ℕ} (hp : p.Prime) (hh : 0 < h)
     · exact hn.trans (Nat.dvd_mul_right n (n + h))
     · exact hnShift.trans (Nat.dvd_mul_left (n + h) n)
 
-/-- A per-prime square-source set is covered by the two possible shifted residue classes.-/
+/-- A per-prime square-source set is covered by the two possible shifted residue classes.
+@isnad1 id=le.3h3v.s6.93a21faf0826 from=translated src=- shape=2edcfd3f vocab=2eb6ffd1
+-/
 theorem squareSourceAtPrimeSet_subset_two_classes {x h p : ℕ} (hp : p.Prime)
     (hh : 0 < h) (hph : h < p) :
     squareSourceAtPrimeSet x h p ⊆
@@ -86,7 +98,9 @@ theorem squareSourceAtPrimeSet_subset_two_classes {x h p : ℕ} (hp : p.Prime)
   · apply Finset.mem_union_right
     exact mem_shiftedMultipleSet.mpr ⟨hnData.1, hnData.2.1, hnShiftSquare⟩
 
-/-- The exact two-residue-class bound for one prime.-/
+/-- The exact two-residue-class bound for one prime.
+@isnad1 id=le.3h3v.s6.a14b34bf0aee from=translated src=- shape=9865b12d vocab=3e4b77a6
+-/
 theorem squareSourceAtPrimeSet_card_le {x h p : ℕ} (hp : p.Prime)
     (hh : 0 < h) (hph : h < p) :
     (squareSourceAtPrimeSet x h p).card ≤ 2 * (x / p ^ 2 + 1) := by
@@ -102,7 +116,9 @@ theorem squareSourceAtPrimeSet_card_le {x h p : ℕ} (hp : p.Prime)
         (shiftedMultipleSet_card_le (pow_pos hp.pos 2))
     _ = 2 * (x / p ^ 2 + 1) := by omega
 
-/-- A square-source prime is automatically at most `√(2x)` when both shifted arguments are at most `2x`.-/
+/-- A square-source prime is automatically at most `√(2x)` when both shifted arguments are at most `2x`.
+@isnad1 id=le.7h4v.s6.e5da4641ee47 from=translated src=- shape=f961c371 vocab=ed9c13c4
+-/
 theorem squareSource_prime_le_sqrt_two_mul {x h p n : ℕ} (hp : p.Prime)
     (hh : 0 < h) (hph : h < p) (hn : 1 ≤ n) (hnx : n ≤ x) (hhx : h ≤ x)
     (hsquare : p ^ 2 ∣ n * (n + h)) :
@@ -119,6 +135,9 @@ theorem squareSource_prime_le_sqrt_two_mul {x h p n : ℕ} (hp : p.Prime)
 def squareSourcePrimeRange (y P : ℕ) : Finset ℕ :=
   (Finset.Ioc y P).filter Nat.Prime
 
+/--
+@isnad1 id=iff.0h3v.s5.b96276899cb1 from=translated src=- shape=8323a705 vocab=353b79da
+-/
 @[simp]
 theorem mem_squareSourcePrimeRange {y P p : ℕ} :
     p ∈ squareSourcePrimeRange y P ↔ y < p ∧ p ≤ P ∧ p.Prime := by
@@ -129,6 +148,9 @@ noncomputable def squareSourceSet (x h y P : ℕ) : Finset ℕ := by
   classical
   exact (squareSourcePrimeRange y P).biUnion fun p ↦ squareSourceAtPrimeSet x h p
 
+/--
+@isnad1 id=iff.0h5v.s6.e1ed20953110 from=translated src=- shape=be90dbb4 vocab=1fe538a3
+-/
 @[simp]
 theorem mem_squareSourceSet {x h y P n : ℕ} :
     n ∈ squareSourceSet x h y P ↔
@@ -145,7 +167,9 @@ theorem mem_squareSourceSet {x h y P n : ℕ} :
     exact ⟨p, mem_squareSourcePrimeRange.mpr ⟨hyp, hpP, hp⟩,
       mem_squareSourceAtPrimeSet.mpr ⟨hn, hnx, hsquare⟩⟩
 
-/-- At the canonical square-root cutoff, membership is equivalent to carrying any prime-square witness above `y`; no separate upper-bound hypothesis on the witness is needed.-/
+/-- At the canonical square-root cutoff, membership is equivalent to carrying any prime-square witness above `y`; no separate upper-bound hypothesis on the witness is needed.
+@isnad1 id=iff.3h4v.s6.9b73a16b5163 from=translated src=- shape=fba81943 vocab=b96ebc2e
+-/
 theorem mem_squareSourceSet_sqrt_cutoff {x h y n : ℕ} (hh : 0 < h)
     (hhy : h ≤ y) (hhx : h ≤ x) :
     n ∈ squareSourceSet x h y (2 * x).sqrt ↔
@@ -160,7 +184,9 @@ theorem mem_squareSourceSet_sqrt_cutoff {x h y n : ℕ} (hh : 0 < h)
       squareSource_prime_le_sqrt_two_mul hp hh hph hnPos hnx hhx hsquare
     exact mem_squareSourceSet.mpr ⟨p, hyp, hpUpper, hp, hsquare, hnPos, hnx⟩
 
-/-- Finite-union square-source bound over a bounded prime range.-/
+/-- Finite-union square-source bound over a bounded prime range.
+@isnad1 id=le.2h4v.s6.87276e637090 from=translated src=- shape=e1b5dda9 vocab=2fadf15b
+-/
 theorem squareSourceSet_card_le_sum {x h y P : ℕ} (hh : 0 < h) (hhy : h ≤ y) :
     (squareSourceSet x h y P).card ≤
       ∑ p ∈ squareSourcePrimeRange y P, 2 * (x / p ^ 2 + 1) := by
@@ -177,6 +203,9 @@ theorem squareSourceSet_card_le_sum {x h y P : ℕ} (hh : 0 < h) (hhy : h ≤ y)
 noncomputable def nonsmoothSquareSourceSet (x h y P : ℕ) : Finset ℕ :=
   nonsmoothShiftedSet x h y ∩ squareSourceSet x h y P
 
+/--
+@isnad1 id=iff.0h5v.s6.a2705a91de2a from=translated src=- shape=48060ded vocab=3dd3e43f
+-/
 @[simp]
 theorem mem_nonsmoothSquareSourceSet {x h y P n : ℕ} :
     n ∈ nonsmoothSquareSourceSet x h y P ↔
@@ -190,7 +219,9 @@ theorem mem_nonsmoothSquareSourceSet {x h y P n : ℕ} :
     have hnData := mem_nonsmoothShiftedSet.mp hnonsmooth
     exact ⟨hnonsmooth, p, hyp, hpP, hp, hsquare, hnData.1, hnData.2.1⟩
 
-/-- At the canonical cutoff, the nonsmooth square-source branch needs only an explicit above-`y` prime-square witness.-/
+/-- At the canonical cutoff, the nonsmooth square-source branch needs only an explicit above-`y` prime-square witness.
+@isnad1 id=iff.3h4v.s6.850feed2e55c from=translated src=- shape=94afd52f vocab=eed00031
+-/
 theorem mem_nonsmoothSquareSourceSet_sqrt_cutoff {x h y n : ℕ} (hh : 0 < h)
     (hhy : h ≤ y) (hhx : h ≤ x) :
     n ∈ nonsmoothSquareSourceSet x h y (2 * x).sqrt ↔
@@ -205,12 +236,16 @@ theorem mem_nonsmoothSquareSourceSet_sqrt_cutoff {x h y n : ℕ} (hh : 0 < h)
     have hnData := mem_nonsmoothShiftedSet.mp hnonsmooth
     exact ⟨hnonsmooth, hnData.1, hnData.2.1, hp⟩
 
-/-- The witnessed nonsmooth square-source branch is bounded by the aggregate square-source set.-/
+/-- The witnessed nonsmooth square-source branch is bounded by the aggregate square-source set.
+@isnad1 id=le.0h4v.s4.d3758e0412c0 from=translated src=- shape=4b5b69e1 vocab=73a36829
+-/
 theorem nonsmoothSquareSourceSet_subset_squareSourceSet (x h y P : ℕ) :
     nonsmoothSquareSourceSet x h y P ⊆ squareSourceSet x h y P := by
   exact Finset.inter_subset_right
 
-/-- Cardinal bound for the explicitly witnessed nonsmooth square-source branch.-/
+/-- Cardinal bound for the explicitly witnessed nonsmooth square-source branch.
+@isnad1 id=le.2h4v.s6.ea03d69e9a05 from=translated src=- shape=e1b5dda9 vocab=b97a3b86
+-/
 theorem nonsmoothSquareSourceSet_card_le_sum {x h y P : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) :
     (nonsmoothSquareSourceSet x h y P).card ≤
@@ -220,13 +255,17 @@ theorem nonsmoothSquareSourceSet_card_le_sum {x h y P : ℕ}
 
 /-! ## Reciprocal-square tail -/
 
-/-- The bounded prime range is contained in the corresponding interval of all integers.-/
+/-- The bounded prime range is contained in the corresponding interval of all integers.
+@isnad1 id=le.0h2v.s4.abb0c1665e6c from=translated src=- shape=dd68c58f vocab=46a2fa77
+-/
 theorem squareSourcePrimeRange_subset_Ioc (y P : ℕ) :
     squareSourcePrimeRange y P ⊆ Finset.Ioc y P := by
   intro p hp
   exact Finset.mem_of_mem_filter p hp
 
-/-- There are at most `P` primes in `(y,P]`; this elementary bound supplies the `+P` term.-/
+/-- There are at most `P` primes in `(y,P]`; this elementary bound supplies the `+P` term.
+@isnad1 id=le.0h2v.s3.0cb0a53db158 from=translated src=- shape=9da2df65 vocab=a4d936ab
+-/
 theorem squareSourcePrimeRange_card_le (y P : ℕ) :
     (squareSourcePrimeRange y P).card ≤ P := by
   calc
@@ -235,7 +274,9 @@ theorem squareSourcePrimeRange_card_le (y P : ℕ) :
     _ = P - y := by simp
     _ ≤ P := Nat.sub_le P y
 
-/-- Explicit reciprocal-square tail over the bounded prime interval.-/
+/-- Explicit reciprocal-square tail over the bounded prime interval.
+@isnad1 id=le.2h2v.s5.9de367a04690 from=translated src=- shape=4614e813 vocab=c2b3f04a
+-/
 theorem sum_squareSourcePrimeRange_inv_sq_le_inv {y P : ℕ}
     (hy : 0 < y) (hyP : y ≤ P) :
     (∑ p ∈ squareSourcePrimeRange y P, (((p : ℝ) ^ 2)⁻¹)) ≤ (y : ℝ)⁻¹ := by
@@ -249,7 +290,9 @@ theorem sum_squareSourcePrimeRange_inv_sq_le_inv {y P : ℕ}
       sum_Ioc_inv_sq_le_sub hy.ne' hyP
     _ ≤ (y : ℝ)⁻¹ := sub_le_self _ (by positivity)
 
-/-- Cast the finite-union estimate to the natural real reciprocal-square majorant.-/
+/-- Cast the finite-union estimate to the natural real reciprocal-square majorant.
+@isnad1 id=le.2h4v.s6.acfef9f963ba from=translated src=- shape=4d4ecd7d vocab=7ebb711c
+-/
 theorem squareSourceSet_card_cast_le_sum {x h y P : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) :
     ((squareSourceSet x h y P).card : ℝ) ≤
@@ -277,7 +320,9 @@ theorem squareSourceSet_card_cast_le_sum {x h y P : ℕ}
           (x : ℝ) * (((p : ℝ) ^ 2)⁻¹) + 1 := by linarith
       exact mul_le_mul_of_nonneg_left hadd (by norm_num)
 
-/-- Explicit `x/y + P` square-source bound.-/
+/-- Explicit `x/y + P` square-source bound.
+@isnad1 id=le.4h4v.s6.15ace84f4c10 from=translated src=- shape=6af03548 vocab=ec5ee379
+-/
 theorem squareSourceSet_card_cast_le {x h y P : ℕ} (hh : 0 < h) (hhy : h ≤ y)
     (hy : 0 < y) (hyP : y ≤ P) :
     ((squareSourceSet x h y P).card : ℝ) ≤
@@ -316,7 +361,9 @@ theorem squareSourceSet_card_cast_le {x h y P : ℕ} (hh : 0 < h) (hhy : h ≤ y
         (mul_le_mul_of_nonneg_left hsum (by positivity))
         (mul_le_mul_of_nonneg_left hcard (by norm_num))
 
-/-- The preceding estimate at a square-root-sized upper cutoff.-/
+/-- The preceding estimate at a square-root-sized upper cutoff.
+@isnad1 id=le.5h4v.s7.efd78e930795 from=translated src=- shape=47a0cd96 vocab=f10895b2
+-/
 theorem squareSourceSet_card_cast_le_at_sqrt_cutoff {x h y P : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) (hyP : y ≤ P)
     (hP : P ≤ (2 * x).sqrt) :
@@ -328,7 +375,9 @@ theorem squareSourceSet_card_cast_le_at_sqrt_cutoff {x h y P : ℕ}
   exact (squareSourceSet_card_cast_le hh hhy hy hyP).trans
     (add_le_add le_rfl htwice)
 
-/-- The full square-source branch at its automatic cutoff satisfies an explicit `2x/y + 2√(2x)` bound.-/
+/-- The full square-source branch at its automatic cutoff satisfies an explicit `2x/y + 2√(2x)` bound.
+@isnad1 id=le.3h3v.s7.a54096b64d1a from=translated src=- shape=2c20079d vocab=f10895b2
+-/
 theorem squareSourceSet_card_cast_le_sqrt_cutoff {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) :
     ((squareSourceSet x h y (2 * x).sqrt).card : ℝ) ≤
@@ -348,7 +397,9 @@ theorem squareSourceSet_card_cast_le_sqrt_cutoff {x h y : ℕ}
     simp only [Finset.card_empty, Nat.cast_zero]
     positivity
 
-/-- The explicitly witnessed nonsmooth square-source branch inherits the same unconditional square-root-cutoff estimate.-/
+/-- The explicitly witnessed nonsmooth square-source branch inherits the same unconditional square-root-cutoff estimate.
+@isnad1 id=le.3h3v.s7.5307965e3426 from=translated src=- shape=2c20079d vocab=7fe85654
+-/
 theorem nonsmoothSquareSourceSet_card_cast_le_sqrt_cutoff {x h y : ℕ}
     (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) :
     ((nonsmoothSquareSourceSet x h y (2 * x).sqrt).card : ℝ) ≤

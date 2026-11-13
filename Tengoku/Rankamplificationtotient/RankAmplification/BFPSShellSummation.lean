@@ -18,18 +18,25 @@ noncomputable section
 def bfpsGeometricEndpoint (Y base i : ℕ) : ℕ :=
   Y / base ^ i
 
+/--
+@isnad1 id=eq.0h2v.s3.d717920b00b0 from=translated src=- shape=2d8bf611 vocab=e0d2cf3d
+-/
 @[simp]
 theorem bfpsGeometricEndpoint_zero (Y base : ℕ) :
     bfpsGeometricEndpoint Y base 0 = Y := by
   simp [bfpsGeometricEndpoint]
 
-/-- One step divides the preceding endpoint by `base`.-/
+/-- One step divides the preceding endpoint by `base`.
+@isnad1 id=eq.0h3v.s5.c13da32beff7 from=translated src=- shape=58bff498 vocab=92f2f20f
+-/
 theorem bfpsGeometricEndpoint_succ (Y base i : ℕ) :
     bfpsGeometricEndpoint Y base (i + 1) =
       bfpsGeometricEndpoint Y base i / base := by
   simp only [bfpsGeometricEndpoint, pow_succ, Nat.div_div_eq_div_mul]
 
-/-- Geometric endpoints are antitone in the shell index.-/
+/-- Geometric endpoints are antitone in the shell index.
+@isnad1 id=antitone.0h2v.s3.292fdee2c72d from=translated src=- shape=443e0365 vocab=97646798
+-/
 theorem bfpsGeometricEndpoint_antitone (Y base : ℕ) :
     Antitone (bfpsGeometricEndpoint Y base) := by
   apply antitone_nat_of_succ_le
@@ -37,17 +44,24 @@ theorem bfpsGeometricEndpoint_antitone (Y base : ℕ) :
   rw [bfpsGeometricEndpoint_succ]
   exact Nat.div_le_self _ _
 
+/--
+@isnad1 id=le.1h4v.s4.9512e51213f9 from=translated src=- shape=11038c10 vocab=05dad918
+-/
 theorem bfpsGeometricEndpoint_le_of_le {Y base i j : ℕ} (hij : i ≤ j) :
     bfpsGeometricEndpoint Y base j ≤ bfpsGeometricEndpoint Y base i :=
   bfpsGeometricEndpoint_antitone Y base hij
 
-/-- If the final endpoint is positive, every earlier endpoint is positive.-/
+/-- If the final endpoint is positive, every earlier endpoint is positive.
+@isnad1 id=le.2h4v.s5.ebc2931fd1f4 from=translated src=- shape=3126667e vocab=05dad918
+-/
 theorem one_le_bfpsGeometricEndpoint_of_le {Y base i K : ℕ}
     (hiK : i ≤ K) (hK : 1 ≤ bfpsGeometricEndpoint Y base K) :
     1 ≤ bfpsGeometricEndpoint Y base i :=
   hK.trans (bfpsGeometricEndpoint_le_of_le hiK)
 
-/-- Before a positive terminal endpoint, consecutive shells are strict when `base ≥ 2`.-/
+/-- Before a positive terminal endpoint, consecutive shells are strict when `base ≥ 2`.
+@isnad1 id=lt.3h4v.s6.d4f9f223923e from=translated src=- shape=4143aa88 vocab=21d53feb
+-/
 theorem bfpsGeometricEndpoint_succ_lt {Y base i K : ℕ}
     (hbase : 2 ≤ base) (hiK : i + 1 ≤ K)
     (hK : 1 ≤ bfpsGeometricEndpoint Y base K) :
@@ -64,6 +78,9 @@ def bfpsGeometricPrimeShell (X Y base i : ℕ) : Finset ℕ :=
     (bfpsGeometricEndpoint Y base (i + 1))
     (bfpsGeometricEndpoint Y base i)
 
+/--
+@isnad1 id=iff.0h5v.s6.1784ae161dd7 from=translated src=- shape=4f460675 vocab=24c06e38
+-/
 @[simp]
 theorem mem_bfpsGeometricPrimeShell {X Y base i p : ℕ} :
     p ∈ bfpsGeometricPrimeShell X Y base i ↔
@@ -72,7 +89,9 @@ theorem mem_bfpsGeometricPrimeShell {X Y base i p : ℕ} :
         bfpsGeometricEndpoint Y base (i + 1) < largestPrimeFactor (p - 1) := by
   simp [bfpsGeometricPrimeShell]
 
-/-- Distinct geometric shells before a positive terminal endpoint are disjoint.-/
+/-- Distinct geometric shells before a positive terminal endpoint are disjoint.
+@isnad1 id=disjoint.3h6v.s5.a265a03377dd from=translated src=- shape=4adfdd1e vocab=2a42cb29
+-/
 theorem bfpsGeometricPrimeShell_disjoint {X Y base i j K : ℕ}
     (hij : i < j) (hjK : j < K)
     (hK : 1 ≤ bfpsGeometricEndpoint Y base K) :
@@ -94,7 +113,9 @@ theorem bfpsGeometricPrimeShell_disjoint {X Y base i j K : ℕ}
 
 /-! ## Exact telescoping -/
 
-/-- Exact cardinal decomposition into the terminal smooth set and all preceding geometric shells.-/
+/-- Exact cardinal decomposition into the terminal smooth set and all preceding geometric shells.
+@isnad1 id=eq.1h4v.s5.3da5c317521f from=translated src=- shape=0ea8b2dd vocab=198586e9
+-/
 theorem card_smoothPredecessorPrimeSet_eq_terminal_add_shells
     (X Y base K : ℕ) (hK : 1 ≤ bfpsGeometricEndpoint Y base K) :
     (smoothPredecessorPrimeSet X Y).card =
@@ -116,7 +137,9 @@ theorem card_smoothPredecessorPrimeSet_eq_terminal_add_shells
 
 /-! ## Discharging the weighted smooth-multiplier input -/
 
-/-- The predecessor reduction's weighted sum is a sub-sum of the full finite smooth totient sum.-/
+/-- The predecessor reduction's weighted sum is a sub-sum of the full finite smooth totient sum.
+@isnad1 id=le.0h3v.s5.c12869ffe342 from=translated src=- shape=47bb4e53 vocab=0669464c
+-/
 theorem bfpsWeightedSmoothMultiplierSum_le_finiteSmoothTotientWeightSum
     (X Y lo : ℕ) :
     bfpsWeightedSmoothMultiplierSum X Y lo ≤
@@ -140,13 +163,18 @@ theorem bfpsWeightedSmoothMultiplierSum_le_finiteSmoothTotientWeightSum
 def bfpsFiniteTotientWeightMajorant (X Y lo : ℕ) : ℝ :=
   mertensProduct Y * finiteSmoothCount Y (X / (lo + 1))
 
+/--
+@isnad1 id=le.0h3v.s4.29aece82f467 from=translated src=- shape=ea9ef4de vocab=1ba6fba5
+-/
 theorem bfpsWeightedSmoothMultiplierSum_le_finiteMajorant (X Y lo : ℕ) :
     bfpsWeightedSmoothMultiplierSum X Y lo ≤
       bfpsFiniteTotientWeightMajorant X Y lo := by
   exact (bfpsWeightedSmoothMultiplierSum_le_finiteSmoothTotientWeightSum X Y lo).trans
     (finiteSmoothTotientWeightSum_le Y (X / (lo + 1)))
 
-/-- Thus the formerly abstract weighted-multiplier input is now unconditional.-/
+/-- Thus the formerly abstract weighted-multiplier input is now unconditional.
+@isnad1 id=hasbfpsw.0h0v.s1.77dc533086e8 from=translated src=- shape=49959d42 vocab=8c2bbbbd
+-/
 theorem hasBFPSWeightedSmoothMultiplierBound_finite :
     HasBFPSWeightedSmoothMultiplierBound bfpsFiniteTotientWeightMajorant := by
   intro X Y lo
@@ -157,6 +185,9 @@ def bfpsLogSmoothMultiplierMajorant (X Y lo : ℕ) : ℝ :=
   (Real.exp (4 * Real.log 4) * (1 + Real.log Y)) *
     finiteSmoothCount Y (X / (lo + 1))
 
+/--
+@isnad1 id=le.1h3v.s4.eca0f28d0f5b from=translated src=- shape=e173c087 vocab=f413ffbe
+-/
 theorem bfpsWeightedSmoothMultiplierSum_le_logMajorant
     {X Y lo : ℕ} (hY : 3 ≤ Y) :
     bfpsWeightedSmoothMultiplierSum X Y lo ≤
@@ -166,7 +197,9 @@ theorem bfpsWeightedSmoothMultiplierSum_le_logMajorant
 
 /-! ## Terminal census and shell majorant sums -/
 
-/-- Subtracting one injects predecessor primes into the corresponding finite smooth set.-/
+/-- Subtracting one injects predecessor primes into the corresponding finite smooth set.
+@isnad1 id=le.0h2v.s3.6995d17c5cd5 from=translated src=- shape=3b5bc8c6 vocab=c06fd7e6
+-/
 theorem card_smoothPredecessorPrimeSet_le_finiteSmoothCount (X Y : ℕ) :
     (smoothPredecessorPrimeSet X Y).card ≤ finiteSmoothCount Y X := by
   unfold finiteSmoothCount
@@ -201,7 +234,9 @@ def bfpsGeometricLogMajorantSum (X Y base K : ℕ) : ℝ :=
         (bfpsGeometricEndpoint Y base i)
         (bfpsGeometricEndpoint Y base (i + 1))
 
-/-- A single geometric shell, with the smooth multiplier input discharged by the exact finite Mertens product.-/
+/-- A single geometric shell, with the smooth multiplier input discharged by the exact finite Mertens product.
+@isnad1 id=le.5h6v.s6.3ea7ef17fb70 from=translated src=- shape=b1e72ac4 vocab=ab9705cf
+-/
 theorem card_bfpsGeometricPrimeShell_cast_le_finiteMajorant
     {X Y base i K : ℕ} {C : ℝ}
     (hbase : 2 ≤ base) (hiK : i < K)
@@ -223,7 +258,9 @@ theorem card_bfpsGeometricPrimeShell_cast_le_finiteMajorant
   exact card_smoothPredecessorPrimeShell_cast_le_majorant
     hlo hlohi hhi hC hsieve hasBFPSWeightedSmoothMultiplierBound_finite
 
-/-- A single geometric shell with the explicit logarithmic smooth-multiplier majorant.-/
+/-- A single geometric shell with the explicit logarithmic smooth-multiplier majorant.
+@isnad1 id=le.5h6v.s6.a3813e7b9a16 from=translated src=- shape=b1e72ac4 vocab=e804b9e8
+-/
 theorem card_bfpsGeometricPrimeShell_cast_le_logMajorant
     {X Y base i K : ℕ} {C : ℝ}
     (hbase : 2 ≤ base) (hiK : i < K)
@@ -257,7 +294,9 @@ theorem card_bfpsGeometricPrimeShell_cast_le_logMajorant
 
 /-! ## Global finite BFPS reductions -/
 
-/-- Strongest unconditional finite shell summation available after supplying only the genuinely two-affine sieve estimate.-/
+/-- Strongest unconditional finite shell summation available after supplying only the genuinely two-affine sieve estimate.
+@isnad1 id=le.4h5v.s6.7e989c942820 from=translated src=- shape=c8311738 vocab=99e43b73
+-/
 theorem card_smoothPredecessorPrimeSet_cast_le_geometricFiniteMajorant
     {X Y base K : ℕ} {C : ℝ}
     (hbase : 2 ≤ base) (hK : 3 ≤ bfpsGeometricEndpoint Y base K)
@@ -293,7 +332,9 @@ theorem card_smoothPredecessorPrimeSet_cast_le_geometricFiniteMajorant
       simp [Finset.mul_sum, mul_assoc]
       ring
 
-/-- Logarithmic, constant-only relaxation of the global finite BFPS shell reduction.-/
+/-- Logarithmic, constant-only relaxation of the global finite BFPS shell reduction.
+@isnad1 id=le.4h5v.s6.d53c36430c7a from=translated src=- shape=c8311738 vocab=56238f8c
+-/
 theorem card_smoothPredecessorPrimeSet_cast_le_geometricLogMajorant
     {X Y base K : ℕ} {C : ℝ}
     (hbase : 2 ≤ base) (hK : 3 ≤ bfpsGeometricEndpoint Y base K)
@@ -336,7 +377,9 @@ def HasBFPSHildebrandGeometricShellBound
     (finiteSmoothCount (bfpsGeometricEndpoint Y base K) X : ℝ) +
       bfpsGeometricLogMajorantSum X Y base K ≤ bound X Y base K
 
-/-- Finite BFPS Lemma 2.2 reduction: once a two-affine sieve constant and a named Dickman--Hildebrand compression bound are supplied, the global predecessor-prime count follows.-/
+/-- Finite BFPS Lemma 2.2 reduction: once a two-affine sieve constant and a named Dickman--Hildebrand compression bound are supplied, the global predecessor-prime count follows.
+@isnad1 id=le.5h6v.s6.ac5591ef0e64 from=translated src=- shape=210cb985 vocab=9e5e330b
+-/
 theorem card_smoothPredecessorPrimeSet_cast_le_hildebrandBound
     {X Y base K : ℕ} {C : ℝ}
     {bound : ℕ → ℕ → ℕ → ℕ → ℝ}

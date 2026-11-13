@@ -22,10 +22,16 @@ def bfpsShellMultiplierCutoff (X Y base i : ℕ) : ℕ :=
 def bfpsFullRankinSmoothDensity (R H : ℕ) : ℝ :=
   Real.exp (-rankinU H R * Real.log (rankinU H R) + fullPaperDivisorError R H)
 
+/--
+@isnad1 id=lt.0h2v.s4.d8e5985a6baa from=translated src=- shape=5ffe46ab vocab=1425a07e
+-/
 theorem bfpsFullRankinSmoothDensity_pos (R H : ℕ) :
     0 < bfpsFullRankinSmoothDensity R H := by
   exact Real.exp_pos _
 
+/--
+@isnad1 id=le.4h2v.s6.23322025a87d from=translated src=- shape=16c5907b vocab=9c86eff6
+-/
 theorem finiteSmoothCount_le_fullRankinDensity {R H : ℕ}
     (hH : 0 < H) (hR : 2 ≤ R) (hu : 1 < rankinU H R)
     (huSqrt : rankinU H R ≤ Real.sqrt R) :
@@ -33,7 +39,9 @@ theorem finiteSmoothCount_le_fullRankinDensity {R H : ℕ}
       H * bfpsFullRankinSmoothDensity R H := by
   exact finiteSmoothCount_le_full_paper_error hH hR hu huSqrt
 
-/-- The elementary all-range fallback `Ψ(H,R) ≤ H`.-/
+/-- The elementary all-range fallback `Ψ(H,R) ≤ H`.
+@isnad1 id=le.0h2v.s3.9c4d0e24342a from=translated src=- shape=bf83e09e vocab=a73add30
+-/
 theorem finiteSmoothCount_le_cutoff (R H : ℕ) :
     finiteSmoothCount R H ≤ H := by
   rw [finiteSmoothCount]
@@ -72,6 +80,9 @@ def bfpsHybridUniformShellDensity (X Y base K : ℕ) : ℝ :=
             (bfpsShellMultiplierCutoff X Y base i)
     else 1
 
+/--
+@isnad1 id=le.0h4v.s4.9470fb1f8a2b from=translated src=- shape=f0c23793 vocab=f9cf294a
+-/
 theorem bfpsHybridUniformShellDensity_nonneg (X Y base K : ℕ) :
     0 ≤ bfpsHybridUniformShellDensity X Y base K := by
   unfold bfpsHybridUniformShellDensity
@@ -81,6 +92,9 @@ theorem bfpsHybridUniformShellDensity_nonneg (X Y base K : ℕ) :
         (bfpsGeometricEndpoint Y base i) (bfpsShellMultiplierCutoff X Y base i)).le
   · norm_num
 
+/--
+@isnad1 id=eq.1h4v.s5.93c2c879ebf6 from=translated src=- shape=d8b94c9e vocab=a1ab22d2
+-/
 theorem bfpsHybridUniformShellDensity_eq_rankinSum {X Y base K : ℕ}
     (h : BFPSFullRankinShellAdmissible X Y base K) :
     bfpsHybridUniformShellDensity X Y base K =
@@ -102,7 +116,9 @@ def HasBFPSTerminalHildebrandSmoothDensity
           (bfpsShellMultiplierCutoff X Y base i) : ℝ) ≤
         bfpsShellMultiplierCutoff X Y base i * density X Y base K
 
-/-- The hybrid Rankin-or-trivial density is an unconditional instance of the uniform input.-/
+/-- The hybrid Rankin-or-trivial density is an unconditional instance of the uniform input.
+@isnad1 id=hasbfpst.0h0v.s1.5580d2f22eee from=translated src=- shape=49959d42 vocab=438925c5
+-/
 theorem hasBFPSTerminalHildebrandSmoothDensity_hybrid :
     HasBFPSTerminalHildebrandSmoothDensity bfpsHybridUniformShellDensity := by
   intro X Y base K hbase hK
@@ -160,11 +176,17 @@ theorem hasBFPSTerminalHildebrandSmoothDensity_hybrid :
 def bfpsHildebrandLogKernel (R : ℕ) : ℝ :=
   (1 + Real.log R) / (Real.log R) ^ 2
 
+/--
+@isnad1 id=le.0h1v.s3.00268aafc01d from=translated src=- shape=b9369acb vocab=0494234f
+-/
 theorem bfpsHildebrandLogKernel_nonneg (R : ℕ) :
     0 ≤ bfpsHildebrandLogKernel R := by
   unfold bfpsHildebrandLogKernel
   positivity
 
+/--
+@isnad1 id=lt.1h1v.s4.9822a681f875 from=translated src=- shape=998257d8 vocab=d08708e8
+-/
 theorem one_lt_log_nat {R : ℕ} (hR : 3 ≤ R) :
     1 < Real.log R := by
   have hexp : Real.exp 1 < (R : ℝ) :=
@@ -173,7 +195,9 @@ theorem one_lt_log_nat {R : ℕ} (hR : 3 ≤ R) :
   rw [← Real.exp_log hRpos] at hexp
   exact Real.exp_lt_exp.mp hexp
 
-/-- The shell kernel is decreasing on the integer range `R ≥ 3`.-/
+/-- The shell kernel is decreasing on the integer range `R ≥ 3`.
+@isnad1 id=le.2h2v.s4.a90d5f59a49e from=translated src=- shape=9a8d8d4a vocab=0494234f
+-/
 theorem bfpsHildebrandLogKernel_antitone {R S : ℕ} (hR : 3 ≤ R) (hRS : R ≤ S) :
     bfpsHildebrandLogKernel S ≤ bfpsHildebrandLogKernel R := by
   have ha : 1 < Real.log R := one_lt_log_nat hR
@@ -189,7 +213,9 @@ theorem bfpsHildebrandLogKernel_antitone {R S : ℕ} (hR : 3 ≤ R) (hRS : R ≤
 
 /-! ## Exact shell-width cancellation -/
 
-/-- Natural division loses no more than one geometric block.-/
+/-- Natural division loses no more than one geometric block.
+@isnad1 id=le.1h4v.s5.ad28c4765846 from=translated src=- shape=af0afc57 vocab=53c79405
+-/
 theorem bfpsGeometricEndpoint_mul_shellMultiplierCutoff_le
     {X Y base i : ℕ} (hbase : 1 ≤ base) :
     bfpsGeometricEndpoint Y base i * bfpsShellMultiplierCutoff X Y base i ≤
@@ -215,7 +241,9 @@ theorem bfpsGeometricEndpoint_mul_shellMultiplierCutoff_le
       apply Nat.mul_le_mul_left
       exact Nat.div_mul_le_self X (bfpsGeometricEndpoint Y base (i + 1) + 1)
 
-/-- One logarithmic shell term after inserting a common smooth-number density.-/
+/-- One logarithmic shell term after inserting a common smooth-number density.
+@isnad1 id=le.5h6v.s7.f365c7aaeede from=translated src=- shape=08c18fa6 vocab=c419c428
+-/
 theorem bfpsGeometricLogMajorantTerm_le_uniformDensity
     {X Y base K i : ℕ} {density : ℝ}
     (hbase : 2 ≤ base) (hiK : i < K)
@@ -290,7 +318,9 @@ def bfpsHildebrandGeometricClosedBound
     (1 + (K : ℝ) * Real.exp (4 * Real.log 4) * (base : ℝ) *
       bfpsHildebrandLogKernel (bfpsGeometricEndpoint Y base K))
 
-/-- The strongest closed finite constructor obtainable from the exact common-density input.-/
+/-- The strongest closed finite constructor obtainable from the exact common-density input.
+@isnad1 id=hasbfpsh.1h1v.s4.14778b49e259 from=translated src=- shape=a916b203 vocab=57948077
+-/
 theorem hasBFPSHildebrandGeometricShellBound_of_uniformDensity
     {density : ℕ → ℕ → ℕ → ℕ → ℝ}
     (hsmooth : HasBFPSTerminalHildebrandSmoothDensity density) :
@@ -323,12 +353,17 @@ theorem hasBFPSHildebrandGeometricShellBound_of_uniformDensity
 def bfpsHybridHildebrandGeometricBound (X Y base K : ℕ) : ℝ :=
   bfpsHildebrandGeometricClosedBound bfpsHybridUniformShellDensity X Y base K
 
+/--
+@isnad1 id=hasbfpsh.0h0v.s1.e7c733c0f3d3 from=translated src=- shape=49959d42 vocab=eb269829
+-/
 theorem hasBFPSHildebrandGeometricShellBound_hybrid :
     HasBFPSHildebrandGeometricShellBound bfpsHybridHildebrandGeometricBound := by
   exact hasBFPSHildebrandGeometricShellBound_of_uniformDensity
     hasBFPSTerminalHildebrandSmoothDensity_hybrid
 
-/-- Explicit global BFPS predecessor-prime estimate obtained from the checked hybrid smooth density.-/
+/-- Explicit global BFPS predecessor-prime estimate obtained from the checked hybrid smooth density.
+@isnad1 id=le.4h5v.s6.abf471ba0556 from=translated src=- shape=6ffb9c73 vocab=3eb61d96
+-/
 theorem card_smoothPredecessorPrimeSet_cast_le_hybridHildebrandBound
     {X Y base K : ℕ} {C : ℝ}
     (hbase : 2 ≤ base) (hK : 3 ≤ bfpsGeometricEndpoint Y base K)

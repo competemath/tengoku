@@ -19,10 +19,16 @@ namespace BFPSTwoAffine
 /-- Product of the BFPS linear forms.-/
 def productValue (m q : ℕ) : ℕ := q * (m * q + 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.fc13cb9f3c91 from=translated src=- shape=61bdc3e7 vocab=e1e17161
+-/
 theorem productValue_pos (m q : ℕ) (hq : 0 < q) : 0 < productValue m q := by
   unfold productValue
   positivity
 
+/--
+@isnad1 id=strictmo.0h1v.s3.0c05afd3fe95 from=translated src=- shape=f736e2c1 vocab=19e37553
+-/
 theorem productValue_strictMono (m : ℕ) : StrictMono (productValue m) := by
   intro q r hqr
   have hright : m * q + 1 ≤ m * r + 1 := by
@@ -36,6 +42,9 @@ theorem productValue_strictMono (m : ℕ) : StrictMono (productValue m) := by
 /-- Zero-based encoding `q=t+1`.-/
 def shiftedProductValue (m t : ℕ) : ℕ := productValue m (t + 1)
 
+/--
+@isnad1 id=strictmo.0h1v.s3.1276496bdbcf from=translated src=- shape=f736e2c1 vocab=831f5aad
+-/
 theorem shiftedProductValue_strictMono (m : ℕ) : StrictMono (shiftedProductValue m) := by
   intro t u htu
   exact productValue_strictMono m (Nat.add_lt_add_right htu 1)
@@ -49,6 +58,9 @@ def shiftedProductEmbedding (m : ℕ) : ℕ ↪ ℕ where
 def selbergSupport (m R : ℕ) : Finset ℕ :=
   (Finset.range R).map (shiftedProductEmbedding m)
 
+/--
+@isnad1 id=iff.0h3v.s5.df189c93c916 from=translated src=- shape=acd0f994 vocab=26fe1c8c
+-/
 @[simp]
 theorem mem_selbergSupport {m R N : ℕ} :
     N ∈ selbergSupport m R ↔ ∃ t < R, shiftedProductValue m t = N := by
@@ -62,6 +74,9 @@ def shiftedProductMod (m d : ℕ) (t : ZMod d) : ZMod d :=
 def shiftedBadResidueSet (m d : ℕ) : Finset (Fin d) :=
   Finset.univ.filter fun t ↦ d ∣ shiftedProductValue m t
 
+/--
+@isnad1 id=iff.0h3v.s5.7c3e395cd29b from=translated src=- shape=872449ee vocab=bb48bba9
+-/
 @[simp]
 theorem mem_shiftedBadResidueSet {m d : ℕ} {t : Fin d} :
     t ∈ shiftedBadResidueSet m d ↔ d ∣ shiftedProductValue m t := by
@@ -71,6 +86,9 @@ theorem mem_shiftedBadResidueSet {m d : ℕ} {t : Fin d} :
 def shiftedBadResidueCount (m d : ℕ) : ℕ :=
   (shiftedBadResidueSet m d).card
 
+/--
+@isnad1 id=iff.0h3v.s5.5a5329f1c97c from=translated src=- shape=452cabdf vocab=8e95b7af
+-/
 theorem shiftedProductMod_natCast_eq_zero_iff_dvd (m d t : ℕ) :
     shiftedProductMod m d t = 0 ↔ d ∣ shiftedProductValue m t := by
   rw [← ZMod.natCast_eq_zero_iff]
@@ -81,12 +99,18 @@ theorem shiftedProductMod_natCast_eq_zero_iff_dvd (m d t : ℕ) :
 def badResidueSet (m p : ℕ) (hp : p.Prime) : Finset (ZMod p) :=
   {0} ∪ AffinePrimePair.affineRootSet p m hp
 
+/--
+@isnad1 id=iff.1h3v.s7.bf84836a73ce from=translated src=- shape=3c92a6f4 vocab=61a7b567
+-/
 @[simp]
 theorem mem_badResidueSet_iff {m p : ℕ} (hp : p.Prime) {q : ZMod p} :
     q ∈ badResidueSet m p hp ↔ q * ((m : ZMod p) * q + 1) = 0 := by
   letI : Fact p.Prime := ⟨hp⟩
   simp [badResidueSet, AffinePrimePair.mem_affineRootSet]
 
+/--
+@isnad1 id=disjoint.1h2v.s5.dd491ff83a42 from=translated src=- shape=e48df465 vocab=4d7ed47a
+-/
 theorem zero_disjoint_affineRootSet {m p : ℕ} (hp : p.Prime) :
     Disjoint ({0} : Finset (ZMod p)) (AffinePrimePair.affineRootSet p m hp) := by
   letI : Fact p.Prime := ⟨hp⟩
@@ -97,6 +121,9 @@ theorem zero_disjoint_affineRootSet {m p : ℕ} (hp : p.Prime) :
   have hroot := (AffinePrimePair.mem_affineRootSet hp).mp hqRoot
   norm_num at hroot
 
+/--
+@isnad1 id=eq.2h2v.s4.1f8f4fbfdf48 from=translated src=- shape=5dbbbf00 vocab=0d44cbba
+-/
 theorem affineRootSet_eq_empty_of_prime_dvd {m p : ℕ} (hp : p.Prime)
     (hpm : p ∣ m) :
     AffinePrimePair.affineRootSet p m hp = ∅ := by
@@ -108,6 +135,9 @@ theorem affineRootSet_eq_empty_of_prime_dvd {m p : ℕ} (hp : p.Prime)
   rw [hmzero, zero_mul, zero_add] at hroot
   exact one_ne_zero hroot
 
+/--
+@isnad1 id=eq.2h2v.s4.e8f7571c3fd9 from=translated src=- shape=837b1fee vocab=16458d0f
+-/
 theorem card_affineRootSet_eq_one_of_prime_not_dvd {m p : ℕ} (hp : p.Prime)
     (hpm : ¬p ∣ m) :
     (AffinePrimePair.affineRootSet p m hp).card = 1 := by
@@ -123,7 +153,9 @@ theorem card_affineRootSet_eq_one_of_prime_not_dvd {m p : ℕ} (hp : p.Prime)
   apply Nat.le_antisymm (AffinePrimePair.card_affineRootSet_le_one hp)
   exact Finset.card_pos.mpr ⟨q, hq⟩
 
-/-- Exact local count: one root at primes dividing `m`, and two roots otherwise.-/
+/-- Exact local count: one root at primes dividing `m`, and two roots otherwise.
+@isnad1 id=eq.1h2v.s5.c51c4fdae769 from=translated src=- shape=1b527608 vocab=3232efdc
+-/
 theorem card_badResidueSet {m p : ℕ} (hp : p.Prime) :
     (badResidueSet m p hp).card = if p ∣ m then 1 else 2 := by
   rw [badResidueSet,
@@ -134,7 +166,9 @@ theorem card_badResidueSet {m p : ℕ} (hp : p.Prime) :
   · rw [ite_eq_right hpm, card_affineRootSet_eq_one_of_prime_not_dvd hp hpm]
     simp
 
-/-- Translation by one identifies zero-based parameter residues with the local root set.-/
+/-- Translation by one identifies zero-based parameter residues with the local root set.
+@isnad1 id=eq.1h2v.s4.3879e5a48f8b from=translated src=- shape=00c7f30b vocab=ddfada82
+-/
 theorem shiftedBadResidueCount_eq_badResidueSet_card {m p : ℕ} (hp : p.Prime) :
     shiftedBadResidueCount m p = (badResidueSet m p hp).card := by
   letI : NeZero p := ⟨hp.ne_zero⟩
@@ -166,22 +200,33 @@ theorem shiftedBadResidueCount_eq_badResidueSet_card {m p : ℕ} (hp : p.Prime) 
       Fintype.card_congr rootEquiv
     _ = (badResidueSet m p hp).card := Fintype.card_coe _
 
+/--
+@isnad1 id=eq.1h2v.s5.16ab7fd6791f from=translated src=- shape=696c5698 vocab=68176045
+-/
 theorem shiftedBadResidueCount_prime {m p : ℕ} (hp : p.Prime) :
     shiftedBadResidueCount m p = if p ∣ m then 1 else 2 := by
   rw [shiftedBadResidueCount_eq_badResidueSet_card hp,
     card_badResidueSet hp]
 
+/--
+@isnad1 id=lt.1h2v.s4.454668a54cf3 from=translated src=- shape=c71658ac vocab=02403726
+-/
 theorem shiftedBadResidueCount_pos {m p : ℕ} (hp : p.Prime) :
     0 < shiftedBadResidueCount m p := by
   rw [shiftedBadResidueCount_prime hp]
   split <;> omega
 
+/--
+@isnad1 id=le.1h2v.s4.d0910c1538b8 from=translated src=- shape=48b9d1cd vocab=5d0eb92c
+-/
 theorem shiftedBadResidueCount_le_two {m p : ℕ} (hp : p.Prime) :
     shiftedBadResidueCount m p ≤ 2 := by
   rw [shiftedBadResidueCount_prime hp]
   split <;> omega
 
-/-- Evenness removes the sole saturation obstruction at `p=2`.-/
+/-- Evenness removes the sole saturation obstruction at `p=2`.
+@isnad1 id=lt.2h2v.s4.c308b5595b0a from=translated src=- shape=b5ac45ae vocab=1690ec76
+-/
 theorem shiftedBadResidueCount_lt_prime_of_even {m p : ℕ}
     (hm : Even m) (hp : p.Prime) :
     shiftedBadResidueCount m p < p := by
@@ -196,6 +241,9 @@ theorem shiftedBadResidueCount_lt_prime_of_even {m p : ℕ}
 
 /-! ## Exact residue counts in an incomplete interval -/
 
+/--
+@isnad1 id=modeq.1h4v.s4.2538dce85129 from=translated src=- shape=9d7bd58e vocab=8cfbd70d
+-/
 theorem shiftedProductValue_modEq {m d t u : ℕ} (htu : t ≡ u [MOD d]) :
     shiftedProductValue m t ≡ shiftedProductValue m u [MOD d] := by
   rw [← ZMod.natCast_eq_natCast_iff] at htu ⊢
@@ -207,6 +255,9 @@ theorem shiftedProductValue_modEq {m d t u : ℕ} (htu : t ≡ u [MOD d]) :
 def divisibleParameterSet (m R d : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ d ∣ shiftedProductValue m t
 
+/--
+@isnad1 id=iff.0h4v.s5.3ab54c03aca3 from=translated src=- shape=297be663 vocab=4dfde2ad
+-/
 @[simp]
 theorem mem_divisibleParameterSet {m R d t : ℕ} :
     t ∈ divisibleParameterSet m R d ↔ t < R ∧ d ∣ shiftedProductValue m t := by
@@ -216,11 +267,17 @@ theorem mem_divisibleParameterSet {m R d t : ℕ} :
 def parameterResidueFiber (R d : ℕ) (a : Fin d) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ t ≡ a.val [MOD d]
 
+/--
+@isnad1 id=iff.0h4v.s5.451fb823c55c from=translated src=- shape=2fb29c1a vocab=ea74bc1f
+-/
 @[simp]
 theorem mem_parameterResidueFiber {R d : ℕ} {a : Fin d} {t : ℕ} :
     t ∈ parameterResidueFiber R d a ↔ t < R ∧ t ≡ a.val [MOD d] := by
   simp [parameterResidueFiber]
 
+/--
+@isnad1 id=eq.1h3v.s6.fd220f276155 from=translated src=- shape=11e78cb9 vocab=a929cd8a
+-/
 theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
     (parameterResidueFiber R d a).card =
       R / d + if a.val < R % d then 1 else 0 := by
@@ -231,10 +288,16 @@ theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
 def residueExcessCount (m R d : ℕ) : ℕ :=
   ((shiftedBadResidueSet m d).filter fun a ↦ a.val < R % d).card
 
+/--
+@isnad1 id=le.0h3v.s4.cf5fd723c3fb from=translated src=- shape=394048df vocab=9da24d74
+-/
 theorem residueExcessCount_le (m R d : ℕ) :
     residueExcessCount m R d ≤ shiftedBadResidueCount m d :=
   Finset.card_filter_le _ _
 
+/--
+@isnad1 id=eq.1h3v.s5.6d4c0e70d25d from=translated src=- shape=6b1d5842 vocab=7a896c55
+-/
 theorem divisibleParameterSet_eq_biUnion {m R d : ℕ} (hd : 0 < d) :
     divisibleParameterSet m R d =
       (shiftedBadResidueSet m d).biUnion (parameterResidueFiber R d) := by
@@ -256,6 +319,9 @@ theorem divisibleParameterSet_eq_biUnion {m R d : ℕ} (hd : 0 < d) :
     exact ⟨htaData.1,
       Nat.modEq_zero_iff_dvd.mp (hvalue.trans haDiv.modEq_zero_nat)⟩
 
+/--
+@isnad1 id=pairwise.0h3v.s4.499e146cd720 from=translated src=- shape=a416e2aa vocab=21acf3d1
+-/
 theorem parameterResidueFiber_pairwiseDisjoint (m R d : ℕ) :
     ((shiftedBadResidueSet m d : Finset (Fin d)) : Set (Fin d)).PairwiseDisjoint
       (parameterResidueFiber R d) := by
@@ -271,7 +337,9 @@ theorem parameterResidueFiber_pairwiseDisjoint (m R d : ℕ) :
   simpa only [Nat.ModEq, Nat.mod_eq_of_lt a.isLt,
     Nat.mod_eq_of_lt b.isLt] using habMod
 
-/-- Exact count, with the final incomplete residue block retained.-/
+/-- Exact count, with the final incomplete residue block retained.
+@isnad1 id=eq.1h3v.s5.c412bc4b7794 from=translated src=- shape=833310c1 vocab=144ac305
+-/
 theorem card_divisibleParameterSet_eq {m R d : ℕ} (hd : 0 < d) :
     (divisibleParameterSet m R d).card =
       shiftedBadResidueCount m d * (R / d) + residueExcessCount m R d := by
@@ -282,6 +350,9 @@ theorem card_divisibleParameterSet_eq {m R d : ℕ} (hd : 0 < d) :
   simp only [Finset.sum_const_nat, shiftedBadResidueCount,
     residueExcessCount, Finset.card_filter]
 
+/--
+@isnad1 id=eq.1h3v.s6.2a1e19578b85 from=translated src=- shape=27b7e036 vocab=39f18c90
+-/
 theorem card_divisibleParameterSet_cast_eq_main_add_error
     {m R d : ℕ} (hd : 0 < d) :
     ((divisibleParameterSet m R d).card : ℝ) =
@@ -289,6 +360,9 @@ theorem card_divisibleParameterSet_cast_eq_main_add_error
         residueExcessCount m R d := by
   exact_mod_cast card_divisibleParameterSet_eq hd
 
+/--
+@isnad1 id=le.0h3v.s4.90999a397af5 from=translated src=- shape=7f4d5ef3 vocab=15186c0b
+-/
 theorem residueExcessCount_cast_le (m R d : ℕ) :
     (residueExcessCount m R d : ℝ) ≤ shiftedBadResidueCount m d := by
   exact_mod_cast residueExcessCount_le m R d
@@ -303,10 +377,16 @@ def localDensity (m p : ℕ) : ℝ :=
 def sieveDensity (m : ℕ) : ArithmeticFunction ℝ :=
   ArithmeticFunction.prodPrimeFactors (localDensity m)
 
+/--
+@isnad1 id=ismultip.0h1v.s2.5acbaafb88e2 from=translated src=- shape=1a6c1393 vocab=75307738
+-/
 theorem sieveDensity_isMultiplicative (m : ℕ) :
     (sieveDensity m).IsMultiplicative :=
   ArithmeticFunction.IsMultiplicative.prodPrimeFactors (localDensity m)
 
+/--
+@isnad1 id=eq.1h2v.s4.1df4226a9182 from=translated src=- shape=52642f6c vocab=6ccd12fe
+-/
 @[simp]
 theorem sieveDensity_apply_prime {m p : ℕ} (hp : p.Prime) :
     sieveDensity m p = localDensity m p := by
@@ -317,6 +397,9 @@ theorem sieveDensity_apply_prime {m p : ℕ} (hp : p.Prime) :
 def primeProduct (z : ℕ) : ℕ :=
   ∏ p ∈ Nat.primesLE z, p
 
+/--
+@isnad1 id=squarefr.0h1v.s2.2381ab7ba54b from=translated src=- shape=6da4ece3 vocab=6b3af3e1
+-/
 theorem primeProduct_squarefree (z : ℕ) : Squarefree (primeProduct z) := by
   rw [primeProduct]
   refine Finset.squarefree_prod_of_pairwise_isCoprime (fun p hp q hq hpq ↦ ?_)
@@ -325,6 +408,9 @@ theorem primeProduct_squarefree (z : ℕ) : Squarefree (primeProduct z) := by
   exact (coprime_primes (Nat.prime_of_mem_primesLE hp)
     (Nat.prime_of_mem_primesLE hq)).mpr hpq
 
+/--
+@isnad1 id=iff.1h2v.s4.a95d8ac831dc from=translated src=- shape=bbca4a27 vocab=09817abc
+-/
 theorem prime_dvd_primeProduct_iff {z p : ℕ} (hp : p.Prime) :
     p ∣ primeProduct z ↔ p ∈ Nat.primesLE z := by
   constructor
@@ -367,6 +453,9 @@ def selbergSieve (m R z : ℕ) (hm : Even m)
   level := level
   one_le_level := hlevel
 
+/--
+@isnad1 id=eq.1h4v.s4.bdf725802abd from=translated src=- shape=efe4f818 vocab=fcd5b2d9
+-/
 theorem boundingSieve_multSum (m R z d : ℕ) (hm : Even m) :
     (boundingSieve m R z hm).multSum d =
       (divisibleParameterSet m R d).card := by
@@ -375,12 +464,18 @@ theorem boundingSieve_multSum (m R z d : ℕ) (hm : Even m) :
   rw [Finset.filter_map, Finset.card_map]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.3ee8eda9927a from=translated src=- shape=43a919ae vocab=72ae118f
+-/
 theorem boundingSieve_rem (m R z d : ℕ) (hm : Even m) :
     (boundingSieve m R z hm).rem d =
       (divisibleParameterSet m R d).card - sieveDensity m d * R := by
   rw [BoundingSieve.rem, boundingSieve_multSum]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s6.f4e599c70d96 from=translated src=- shape=6a0849f5 vocab=baeae8fa
+-/
 theorem boundingSieve_rem_eq_floor_add_excess
     {m R z d : ℕ} (hm : Even m) (hd : 0 < d) :
     (boundingSieve m R z hm).rem d =
@@ -388,6 +483,9 @@ theorem boundingSieve_rem_eq_floor_add_excess
         residueExcessCount m R d - sieveDensity m d * R := by
   rw [boundingSieve_rem, card_divisibleParameterSet_cast_eq_main_add_error hd]
 
+/--
+@isnad1 id=eq.2h4v.s6.cc0de8dbb07d from=translated src=- shape=f949c6d5 vocab=8db32d6f
+-/
 theorem boundingSieve_rem_prime {m R z p : ℕ} (hm : Even m) (hp : p.Prime) :
     (boundingSieve m R z hm).rem p =
       (residueExcessCount m R p : ℝ) -
@@ -402,6 +500,9 @@ theorem boundingSieve_rem_prime {m R z p : ℕ} (hm : Even m) (hp : p.Prime) :
   field_simp
   ring
 
+/--
+@isnad1 id=le.2h4v.s5.900c1af34b0c from=translated src=- shape=74c8524e vocab=b30f1617
+-/
 theorem abs_boundingSieve_rem_prime_le
     {m R z p : ℕ} (hm : Even m) (hp : p.Prime) :
     |(boundingSieve m R z hm).rem p| ≤ shiftedBadResidueCount m p := by
@@ -430,6 +531,9 @@ theorem abs_boundingSieve_rem_prime_le
 
 /-! ## Exact sifted-set identification -/
 
+/--
+@isnad1 id=iff.0h3v.s5.e43bc8028212 from=translated src=- shape=78df3f7e vocab=3e500c87
+-/
 theorem coprime_primeProduct_iff {m z t : ℕ} :
     Nat.Coprime (primeProduct z) (shiftedProductValue m t) ↔
       ∀ p ∈ Nat.primesLE z, ¬p ∣ shiftedProductValue m t := by
@@ -451,6 +555,9 @@ def siftedParameterSet (m R z : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦
     Nat.Coprime (primeProduct z) (shiftedProductValue m t)
 
+/--
+@isnad1 id=iff.0h4v.s5.1b610d3a5bf8 from=translated src=- shape=d3326d42 vocab=a339f27e
+-/
 @[simp]
 theorem mem_siftedParameterSet {m R z t : ℕ} :
     t ∈ siftedParameterSet m R z ↔
@@ -462,12 +569,18 @@ def siftedPairSet (m R z : ℕ) : Finset ℕ :=
   (Finset.Icc 1 R).filter fun q ↦
     ∀ p ∈ Nat.primesLE z, ¬p ∣ productValue m q
 
+/--
+@isnad1 id=iff.0h4v.s6.91f9c168a1b0 from=translated src=- shape=401d7e6c vocab=c63b4efe
+-/
 @[simp]
 theorem mem_siftedPairSet {m R z q : ℕ} :
     q ∈ siftedPairSet m R z ↔
       1 ≤ q ∧ q ≤ R ∧ ∀ p ∈ Nat.primesLE z, ¬p ∣ productValue m q := by
   simp [siftedPairSet, and_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s4.f1a66f750d8c from=translated src=- shape=ee4d3604 vocab=1de09d1f
+-/
 theorem siftedPairSet_eq_map (m R z : ℕ) :
     siftedPairSet m R z =
       (siftedParameterSet m R z).map AffinePrimePair.parameterShiftEmbedding := by
@@ -495,6 +608,9 @@ theorem siftedPairSet_eq_map (m R z : ℕ) :
 
 /-! ## From prime pairs to the sifted sum -/
 
+/--
+@isnad1 id=strictmo.1h1v.s5.803fbc056524 from=translated src=- shape=568d3ca7 vocab=61851bde
+-/
 theorem rightValue_strictMono {m : ℕ} (hm : 0 < m) :
     StrictMono fun q ↦ m * q + 1 := by
   intro q r hqr
@@ -504,6 +620,9 @@ theorem rightValue_strictMono {m : ℕ} (hm : 0 < m) :
 def leftSmallPrimePairSet (m R z : ℕ) : Finset ℕ :=
   (bfpsAffinePrimeSet m 0 R).filter fun q ↦ q ≤ z
 
+/--
+@isnad1 id=iff.0h4v.s5.7c67ad27cce8 from=translated src=- shape=da761bc2 vocab=ddafd6fe
+-/
 @[simp]
 theorem mem_leftSmallPrimePairSet {m R z q : ℕ} :
     q ∈ leftSmallPrimePairSet m R z ↔
@@ -514,12 +633,18 @@ theorem mem_leftSmallPrimePairSet {m R z q : ℕ} :
 def rightSmallPrimePairSet (m R z : ℕ) : Finset ℕ :=
   (bfpsAffinePrimeSet m 0 R).filter fun q ↦ m * q + 1 ≤ z
 
+/--
+@isnad1 id=iff.0h4v.s6.44eb9db82eff from=translated src=- shape=3c2ea1fa vocab=3ff92f84
+-/
 @[simp]
 theorem mem_rightSmallPrimePairSet {m R z q : ℕ} :
     q ∈ rightSmallPrimePairSet m R z ↔
       q ∈ bfpsAffinePrimeSet m 0 R ∧ m * q + 1 ≤ z := by
   simp [rightSmallPrimePairSet]
 
+/--
+@isnad1 id=le.0h3v.s4.2d55a2736806 from=translated src=- shape=1b4fc605 vocab=3689da18
+-/
 theorem card_leftSmallPrimePairSet_le (m R z : ℕ) :
     (leftSmallPrimePairSet m R z).card ≤ z + 1 := by
   rw [← Finset.card_range (z + 1)]
@@ -530,6 +655,9 @@ theorem card_leftSmallPrimePairSet_le (m R z : ℕ) :
   · intro q _hq r _hr hqr
     exact hqr
 
+/--
+@isnad1 id=le.1h3v.s5.b2ddb8d9d9c1 from=translated src=- shape=8e858179 vocab=88a0278c
+-/
 theorem card_rightSmallPrimePairSet_le
     {m : ℕ} (hm : 0 < m) (R z : ℕ) :
     (rightSmallPrimePairSet m R z).card ≤ z + 1 := by
@@ -541,6 +669,9 @@ theorem card_rightSmallPrimePairSet_le
   · intro q _hq r _hr hqr
     exact (rightValue_strictMono hm).injective hqr
 
+/--
+@isnad1 id=mem.3h4v.s6.10377ab72e60 from=translated src=- shape=74a8b9a6 vocab=469be4cb
+-/
 theorem mem_siftedPairSet_of_prime_values_gt
     {m R z q : ℕ} (hq : q ∈ bfpsAffinePrimeSet m 0 R)
     (hqLarge : z < q) (hrightLarge : z < m * q + 1) :
@@ -559,6 +690,9 @@ theorem mem_siftedPairSet_of_prime_values_gt
       (Nat.prime_dvd_prime_iff_eq hp hqData.2.2.2).mp hpRight
     omega
 
+/--
+@isnad1 id=le.0h3v.s5.584f6f748264 from=translated src=- shape=d1b65b91 vocab=b518fef4
+-/
 theorem primePairSet_subset_sifted_union_small
     (m R z : ℕ) :
     bfpsAffinePrimeSet m 0 R ⊆
@@ -574,6 +708,9 @@ theorem primePairSet_subset_sifted_union_small
   · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr
       (mem_leftSmallPrimePairSet.mpr ⟨hq, Nat.le_of_not_gt hleft⟩))))
 
+/--
+@isnad1 id=le.1h3v.s6.3de4c0bb8f80 from=translated src=- shape=83195e4e vocab=69e38048
+-/
 theorem card_primePairSet_le_sifted_add
     {m : ℕ} (hm : 0 < m) (R z : ℕ) :
     (bfpsAffinePrimeSet m 0 R).card ≤
@@ -594,6 +731,9 @@ theorem card_primePairSet_le_sifted_add
         (card_rightSmallPrimePairSet_le hm R z)
     _ = (siftedPairSet m R z).card + 2 * (z + 1) := by omega
 
+/--
+@isnad1 id=le.0h3v.s4.3403e10660b9 from=translated src=- shape=22ff65e2 vocab=8e3eec38
+-/
 theorem bfpsAffinePrimeSet_subset_full (m lo hi : ℕ) :
     bfpsAffinePrimeSet m lo hi ⊆ bfpsAffinePrimeSet m 0 hi := by
   intro q hq
@@ -601,6 +741,9 @@ theorem bfpsAffinePrimeSet_subset_full (m lo hi : ℕ) :
   exact mem_bfpsAffinePrimeSet.mpr
     ⟨by omega, hqData.2.1, hqData.2.2.1, hqData.2.2.2⟩
 
+/--
+@isnad1 id=le.0h3v.s4.c716fcafddfa from=translated src=- shape=483fccdc vocab=1894f293
+-/
 theorem card_bfpsAffinePrimeSet_le_full (m lo hi : ℕ) :
     (bfpsAffinePrimeSet m lo hi).card ≤ (bfpsAffinePrimeSet m 0 hi).card :=
   Finset.card_le_card (bfpsAffinePrimeSet_subset_full m lo hi)
@@ -619,6 +762,9 @@ theorem eq_two_of_mem_bfpsAffinePrimeSet_of_odd
       Nat.mul_le_mul hm hqData.2.2.1.two_le
     omega
 
+/--
+@isnad1 id=le.2h3v.s5.464a9f7ab63f from=translated src=- shape=7b041945 vocab=d6514ab2
+-/
 theorem card_bfpsAffinePrimeSet_le_one_of_odd
     {m : ℕ} (hm : 2 ≤ m) (hmOdd : Odd m) (lo hi : ℕ) :
     (bfpsAffinePrimeSet m lo hi).card ≤ 1 := by
@@ -654,6 +800,9 @@ def DimensionTwoSelbergUpperBound
     (boundingSieve m R (cutoff R) hm).siftedSum ≤
       C * bfpsLogSquaredScale R * ((m : ℝ) / (m.totient : ℝ))
 
+/--
+@isnad1 id=dimensio.3h3v.s5.edaec898b6d2 from=translated src=- shape=ac852b6d vocab=d24931c5
+-/
 theorem dimensionTwoSelbergUpperBound_of_fundamental_and_mertens
     {cutoff : ℕ → ℕ} {Cfund Cmertens : ℝ} (hCfund : 0 ≤ Cfund)
     (hfund : SelbergFundamentalLemmaUpperBound cutoff Cfund)
@@ -673,6 +822,9 @@ theorem dimensionTwoSelbergUpperBound_of_fundamental_and_mertens
       unfold bfpsLogSquaredScale AffinePrimePair.logSquaredScale
       ring
 
+/--
+@isnad1 id=le.1h1v.s5.4726d487cb98 from=translated src=- shape=66f8d5e7 vocab=0a3ae16e
+-/
 theorem one_le_bfpsTotientRatio {m : ℕ} (hm : 1 ≤ m) :
     (1 : ℝ) ≤ (m : ℝ) / (m.totient : ℝ) := by
   rw [le_div_iff₀ (by exact_mod_cast Nat.totient_pos.mpr hm)]

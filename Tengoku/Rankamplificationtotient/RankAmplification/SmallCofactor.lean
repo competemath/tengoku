@@ -14,7 +14,9 @@ def eulerNumerator (s : Finset ℕ) : ℕ := ∏ p ∈ s, (p - 1)
 /-- The denominator obtained by multiplying the reduced Euler factors belonging to a prime set.-/
 def eulerDenominator (s : Finset ℕ) : ℕ := ∏ p ∈ s, p
 
-/-- A finite product of Euler factors is the quotient of the corresponding integral products.-/
+/-- A finite product of Euler factors is the quotient of the corresponding integral products.
+@isnad1 id=eq.1h1v.s6.599a61c873f0 from=translated src=- shape=1d5b9293 vocab=6a7eb38c
+-/
 theorem prod_eulerFactor_eq_div (s : Finset ℕ) (hs : ∀ p ∈ s, p.Prime) :
     (∏ p ∈ s, (1 - (p : ℚ)⁻¹)) = (eulerNumerator s : ℚ) / eulerDenominator s := by
   classical
@@ -32,7 +34,9 @@ theorem prod_eulerFactor_eq_div (s : Finset ℕ) (hs : ∀ p ∈ s, p.Prime) :
     _ = (∏ p ∈ s, ((p - 1 : ℕ) : ℚ)) / ∏ p ∈ s, (p : ℚ) :=
       Finset.prod_div_distrib (s := s) _ _
 
-/-- Cross-multiplying equal Euler ratios gives an integral identity on their prime supports.-/
+/-- Cross-multiplying equal Euler ratios gives an integral identity on their prime supports.
+@isnad1 id=eq.3h2v.s6.391a37afbf85 from=translated src=- shape=d43a0be2 vocab=5e6f37cd
+-/
 theorem euler_products_cross_eq_of_totient_cross_eq {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0)
     (hcross : a.totient * b = b.totient * a) :
     eulerNumerator (primeSupport a) * eulerDenominator (primeSupport b) =
@@ -60,7 +64,9 @@ theorem euler_products_cross_eq_of_totient_cross_eq {a b : ℕ} (ha : a ≠ 0) (
     (div_eq_div_iff (Nat.cast_ne_zero.mpr hdenA) (Nat.cast_ne_zero.mpr hdenB)).mp hratio
   exact_mod_cast hcrossQ'
 
-/-- The largest prime occurring in either of two prime sets satisfying the Euler-product cross identity occurs in both sets.-/
+/-- The largest prime occurring in either of two prime sets satisfying the Euler-product cross identity occurs in both sets.
+@isnad1 id=other.4h2v.s6.c56a93cc1eb5 from=translated src=- shape=d309dfd5 vocab=f53307ea
+-/
 theorem max_mem_both_of_euler_products_cross_eq (S T : Finset ℕ)
     (hS : ∀ q ∈ S, q.Prime) (hT : ∀ q ∈ T, q.Prime) (hne : (S ∪ T).Nonempty)
     (hcross : eulerNumerator S * eulerDenominator T =
@@ -117,7 +123,9 @@ theorem max_mem_both_of_euler_products_cross_eq (S T : Finset ℕ)
     by_contra hPnotS
     exact one_sided_impossible T S hT hS hTle hcross.symm hPT hPnotS
 
-/-- Finite sets of primes are determined by the product of their Euler factors.-/
+/-- Finite sets of primes are determined by the product of their Euler factors.
+@isnad1 id=eq.3h2v.s6.f80911ef624e from=translated src=- shape=aed072dd vocab=7d939df8
+-/
 theorem primeFinset_eq_of_euler_products_cross_eq (S T : Finset ℕ)
     (hS : ∀ q ∈ S, q.Prime) (hT : ∀ q ∈ T, q.Prime)
     (hcross : eulerNumerator S * eulerDenominator T =
@@ -193,7 +201,9 @@ theorem primeFinset_eq_of_euler_products_cross_eq (S T : Finset ℕ)
           exact Finset.notMem_empty q this
         exact hSempty.trans hTempty.symm
 
-/-- Equality of the reduced totient ratios forces equality of prime supports.-/
+/-- Equality of the reduced totient ratios forces equality of prime supports.
+@isnad1 id=eq.3h2v.s5.6e7b0bb8093e from=translated src=- shape=e3719d49 vocab=42ba4790
+-/
 theorem primeSupport_eq_of_totient_cross_eq {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0)
     (hcross : a.totient * b = b.totient * a) :
     primeSupport a = primeSupport b := by
@@ -212,7 +222,9 @@ def normalizedA (m₁ m₂ : ℕ) : ℕ :=
 def normalizedB (m₁ m₂ : ℕ) : ℕ :=
   m₁.totient / Nat.gcd m₁.totient m₂.totient
 
-/-- The normalized coefficients are coprime for positive cofactors.-/
+/-- The normalized coefficients are coprime for positive cofactors.
+@isnad1 id=coprime.2h2v.s4.0fa71d9b476f from=translated src=- shape=4c218ca2 vocab=258521a3
+-/
 theorem normalizedA_coprime_normalizedB {m₁ m₂ : ℕ} (hm₁ : 0 < m₁) (_hm₂ : 0 < m₂) :
     (normalizedA m₁ m₂).Coprime (normalizedB m₁ m₂) := by
   have htot₁ : 0 < m₁.totient := Nat.totient_pos.mpr hm₁
@@ -220,7 +232,9 @@ theorem normalizedA_coprime_normalizedB {m₁ m₂ : ℕ} (hm₁ : 0 < m₁) (_h
     Nat.gcd_pos_of_pos_left _ htot₁
   exact (Nat.coprime_div_gcd_div_gcd hg).symm
 
-/-- A balance relation has a unique primitive direction: its two multipliers are a common multiple of the normalized coefficients `a` and `b`.-/
+/-- A balance relation has a unique primitive direction: its two multipliers are a common multiple of the normalized coefficients `a` and `b`.
+@isnad1 id=ex.3h4v.s6.759a374610ff from=translated src=- shape=3be8f18a vocab=cf3983b3
+-/
 theorem exists_normalized_common_multiplier {m₁ m₂ k₁ k₂ : ℕ}
     (hm₁ : 0 < m₁) (hm₂ : 0 < m₂)
     (hbalance : k₁ * m₁.totient = k₂ * m₂.totient) :
@@ -262,7 +276,9 @@ theorem exists_normalized_common_multiplier {m₁ m₂ k₁ k₂ : ℕ}
       _ = a * (b * c) := by rw [hk₁]; ac_rfl
   exact ⟨c, hk₁, hk₂⟩
 
-/-- The first cofactor in a large-prime skeleton is positive.-/
+/-- The first cofactor in a large-prime skeleton is positive.
+@isnad1 id=lt.0h4v.s4.b036b956f2ac from=translated src=- shape=710851aa vocab=01002611
+-/
 theorem LargePrimeSkeleton.m1_pos {h n p : ℕ} (s : LargePrimeSkeleton h n p) :
     0 < s.m1 := by
   apply Nat.pos_of_ne_zero
@@ -271,7 +287,9 @@ theorem LargePrimeSkeleton.m1_pos {h n p : ℕ} (s : LargePrimeSkeleton h n p) :
   rw [hm]
   exact dvd_zero s.q1
 
-/-- The second cofactor in a large-prime skeleton is positive.-/
+/-- The second cofactor in a large-prime skeleton is positive.
+@isnad1 id=lt.0h4v.s4.bb26ab494413 from=translated src=- shape=710851aa vocab=dd8ba735
+-/
 theorem LargePrimeSkeleton.m2_pos {h n p : ℕ} (s : LargePrimeSkeleton h n p) :
     0 < s.m2 := by
   apply Nat.pos_of_ne_zero
@@ -280,14 +298,18 @@ theorem LargePrimeSkeleton.m2_pos {h n p : ℕ} (s : LargePrimeSkeleton h n p) :
   rw [hm]
   exact dvd_zero s.q2
 
-/-- The paper's normalized `a,b,c` decomposition for a large-prime skeleton.-/
+/-- The paper's normalized `a,b,c` decomposition for a large-prime skeleton.
+@isnad1 id=ex.0h4v.s6.1d358afd15e0 from=translated src=- shape=6c28373c vocab=9a531895
+-/
 theorem LargePrimeSkeleton.exists_normalized_common_multiplier {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) :
     ∃ c, s.k1 = normalizedA s.m1 s.m2 * c ∧
       s.k2 = normalizedB s.m1 s.m2 * c :=
   RankAmplification.exists_normalized_common_multiplier s.m1_pos s.m2_pos s.balance
 
-/-- In a skeleton the common multiplier `c` in the normalized decomposition is positive.-/
+/-- In a skeleton the common multiplier `c` in the normalized decomposition is positive.
+@isnad1 id=ex.0h4v.s6.c021179144aa from=translated src=- shape=142a1871 vocab=67ef32f6
+-/
 theorem LargePrimeSkeleton.exists_pos_normalized_common_multiplier {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) :
     ∃ c, 0 < c ∧ s.k1 = normalizedA s.m1 s.m2 * c ∧
@@ -300,7 +322,9 @@ theorem LargePrimeSkeleton.exists_pos_normalized_common_multiplier {h n p : ℕ}
     exact s.k1_pos.ne' hk₁
   exact ⟨c, hc, hk₁, hk₂⟩
 
-/-- Substituting the normalized decomposition into the two cofactor factorizations gives the paper's affine equation (3.4), in subtraction-free form.-/
+/-- Substituting the normalized decomposition into the two cofactor factorizations gives the paper's affine equation (3.4), in subtraction-free form.
+@isnad1 id=eq.2h5v.s7.930114573a2f from=translated src=- shape=be7444b9 vocab=1404522c
+-/
 theorem LargePrimeSkeleton.normalized_shift_equation {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) {c : ℕ}
     (hk₁ : s.k1 = normalizedA s.m1 s.m2 * c)
@@ -316,7 +340,9 @@ theorem LargePrimeSkeleton.normalized_shift_equation {h n p : ℕ}
       rw [s.q2_eq, hk₂]
       ring
 
-/-- A vanishing normalized slope would force equality of the two reduced totient ratios.-/
+/-- A vanishing normalized slope would force equality of the two reduced totient ratios.
+@isnad1 id=eq.1h2v.s5.62a7f6e5aa39 from=translated src=- shape=be382476 vocab=9f996b75
+-/
 theorem totient_cross_eq_of_normalized_diagonal {m₁ m₂ : ℕ}
     (hdiag : m₁ * normalizedA m₁ m₂ = m₂ * normalizedB m₁ m₂) :
     m₁.totient * m₂ = m₂.totient * m₁ := by
@@ -332,7 +358,9 @@ theorem totient_cross_eq_of_normalized_diagonal {m₁ m₂ : ℕ}
     _ = (m₁ * normalizedA m₁ m₂) * g := by rw [hdiag]
     _ = m₂.totient * m₁ := by rw [htot₂]; ac_rfl
 
-/-- For an odd shift, the normalized slope in (3.5) cannot vanish.-/
+/-- For an odd shift, the normalized slope in (3.5) cannot vanish.
+@isnad1 id=ne.1h4v.s6.f6cec0044fdb from=translated src=- shape=c4fb6482 vocab=2e6c83ed
+-/
 theorem LargePrimeSkeleton.normalized_slopes_ne {h n p : ℕ} (hodd : Odd h)
     (s : LargePrimeSkeleton h n p) :
     s.m1 * normalizedA s.m1 s.m2 ≠ s.m2 * normalizedB s.m1 s.m2 := by
@@ -357,7 +385,9 @@ theorem LargePrimeSkeleton.normalized_slopes_ne {h n p : ℕ} (hodd : Odd h)
   rw [← hm₂eq]
   exact hsupport
 
-/-- A nonconstant integral affine equation has at most one natural-number parameter.-/
+/-- A nonconstant integral affine equation has at most one natural-number parameter.
+@isnad1 id=eq.3h6v.s6.d803787c44c3 from=translated src=- shape=f2bb5fb4 vocab=5c386ba3
+-/
 theorem affine_parameter_unique {A B L R C D : ℕ} (hAB : A ≠ B)
     (hC : A * C + L = B * C + R) (hD : A * D + L = B * D + R) :
     C = D := by
@@ -376,7 +406,9 @@ theorem affine_parameter_unique {A B L R C D : ℕ} (hAB : A ≠ B)
   · have hcast : (C : ℤ) = D := sub_eq_zero.mp hparam
     exact_mod_cast hcast
 
-/-- **Paper Lemma 3.3.** For an odd shift, two large-prime skeletons carrying the same ordered cofactor pair determine the same integer `n`.-/
+/-- **Paper Lemma 3.3.** For an odd shift, two large-prime skeletons carrying the same ordered cofactor pair determine the same integer `n`.
+@isnad1 id=eq.3h7v.s5.65695ab1df6a from=translated src=- shape=3054197d vocab=e9dcc2b0
+-/
 theorem LargePrimeSkeleton.n_eq_of_same_cofactors {h n p n' p' : ℕ} (hodd : Odd h)
     (s : LargePrimeSkeleton h n p) (t : LargePrimeSkeleton h n' p')
     (hm₁ : s.m1 = t.m1) (hm₂ : s.m2 = t.m2) :
@@ -440,7 +472,9 @@ theorem LargePrimeSkeleton.n_eq_of_same_cofactors {h n p n' p' : ℕ} (hodd : Od
 def fixedCofactorSkeletonNumbers (h m₁ m₂ : ℕ) : Set ℕ :=
   {n | ∃ p, ∃ s : LargePrimeSkeleton h n p, s.m1 = m₁ ∧ s.m2 = m₂}
 
-/-- Set-theoretic fixed-fiber form of Lemma 3.3: every prescribed cofactor fiber has at most one natural number in it.-/
+/-- Set-theoretic fixed-fiber form of Lemma 3.3: every prescribed cofactor fiber has at most one natural number in it.
+@isnad1 id=subsingl.1h3v.s4.f392e6820261 from=translated src=- shape=9bab1ada vocab=deadf4a3
+-/
 theorem fixedCofactorSkeletonNumbers_subsingleton {h : ℕ} (hodd : Odd h) (m₁ m₂ : ℕ) :
     (fixedCofactorSkeletonNumbers h m₁ m₂).Subsingleton := by
   intro n hn n' hn'
@@ -450,7 +484,9 @@ theorem fixedCofactorSkeletonNumbers_subsingleton {h : ℕ} (hodd : Odd h) (m₁
   · exact hs₁.trans ht₁.symm
   · exact hs₂.trans ht₂.symm
 
-/-- Injection foundation for Corollary 3.4.-/
+/-- Injection foundation for Corollary 3.4.
+@isnad1 id=injectiv.1h4v.s7.1b5f0232d47e from=translated src=- shape=78af0160 vocab=1780175e
+-/
 theorem cofactorPair_injective_on_skeletonNumbers {h : ℕ} (hodd : Odd h) (S : Finset ℕ)
     (provider : (x : {n // n ∈ S}) → ℕ)
     (skeleton : (x : {n // n ∈ S}) → LargePrimeSkeleton h x.1 (provider x)) :
@@ -461,7 +497,9 @@ theorem cofactorPair_injective_on_skeletonNumbers {h : ℕ} (hodd : Odd h) (S : 
   · exact congrArg Prod.fst hpair
   · exact congrArg Prod.snd hpair
 
-/-- Finite cardinal form of the cofactor-pair injection: choosing one skeleton for each member of `S` produces exactly `|S|` distinct ordered pairs.-/
+/-- Finite cardinal form of the cofactor-pair injection: choosing one skeleton for each member of `S` produces exactly `|S|` distinct ordered pairs.
+@isnad1 id=eq.1h4v.s7.38578f5c9892 from=translated src=- shape=4f69fe18 vocab=341b72b4
+-/
 theorem card_cofactorPair_image_eq {h : ℕ} (hodd : Odd h) (S : Finset ℕ)
     (provider : (x : {n // n ∈ S}) → ℕ)
     (skeleton : (x : {n // n ∈ S}) → LargePrimeSkeleton h x.1 (provider x)) :

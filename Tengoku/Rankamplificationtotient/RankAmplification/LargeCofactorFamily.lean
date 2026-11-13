@@ -36,6 +36,9 @@ def largeCofactorCodeSet (x y P : ℕ) : Finset ProviderCode :=
   ((Finset.Ioc y P).sigma fun p ↦ smoothFactorPairSet p ((2 * x * y) / p ^ 2)).map
     sigmaToProviderCode
 
+/--
+@isnad1 id=iff.0h4v.s6.0ec7ce397bce from=translated src=- shape=607f3fa2 vocab=30733246
+-/
 @[simp]
 theorem mem_largeCofactorCodeSet {x y P : ℕ} {c : ProviderCode} :
     c ∈ largeCofactorCodeSet x y P ↔
@@ -68,7 +71,9 @@ def providerCodeImage {h : ℕ} (S : Finset ℕ)
     Finset ProviderCode :=
   S.attach.image (providerCodeOf provider skeleton)
 
-/-- Exact fibre decomposition of a finite skeleton family by `(p,k₁,k₂)`.-/
+/-- Exact fibre decomposition of a finite skeleton family by `(p,k₁,k₂)`.
+@isnad1 id=eq.0h4v.s7.73791d981664 from=translated src=- shape=977bfa4d vocab=990fe6f8
+-/
 theorem card_eq_sum_providerCode_fibers {h : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
     (skeleton : (n : {n // n ∈ S}) → LargePrimeSkeleton h n.1 (provider n)) :
@@ -85,7 +90,9 @@ private def subtypeNatEmbedding {S : Finset ℕ} : {n // n ∈ S} ↪ ℕ where
   toFun n := n.1
   inj' _ _ h := Subtype.ext h
 
-/-- A fixed-code fibre occupies at most one residue class modulo the product of its providers.-/
+/-- A fixed-code fibre occupies at most one residue class modulo the product of its providers.
+@isnad1 id=le.3h6v.s7.1232d8c552e0 from=translated src=- shape=bac74952 vocab=6c6db0d1
+-/
 theorem providerCode_fiber_card_le {x h : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
     (skeleton : (n : {n // n ∈ S}) → LargePrimeSkeleton h n.1 (provider n))
@@ -144,7 +151,9 @@ theorem providerCode_fiber_card_le {x h : ℕ} (S : Finset ℕ)
     have hresidue := shiftedDivisibilitySet_card_le (x := x) hh hq1.pos hq2.pos hlarge
     simpa [F, ProviderCode.denominator] using hcardMap.trans hresidue
 
-/-- The provider prime is below the square-root endpoint forced by `q₁q₂ ≤ 2xy`.-/
+/-- The provider prime is below the square-root endpoint forced by `q₁q₂ ≤ 2xy`.
+@isnad1 id=le.5h6v.s6.fbce63acecb5 from=translated src=- shape=14f3470d vocab=394ee238
+-/
 theorem LargePrimeSkeleton.provider_le_sqrt_two_mul_xy {h n p x y : ℕ}
     (s : LargePrimeSkeleton h n p) (hnx : n ≤ x) (hy : 0 < y) (hhy : h ≤ y)
     (hxy : y ≤ x) (hlarge : x / y < s.m1 * s.m2) :
@@ -167,7 +176,9 @@ theorem LargePrimeSkeleton.provider_le_sqrt_two_mul_xy {h n p x y : ℕ}
     _ ≤ s.q1 * s.q2 := Nat.mul_le_mul hpq1 hpq2
     _ ≤ 2 * x * y := s.provider_product_le_two_mul_xy hnx hy hhy hxy hlarge
 
-/-- Every actual large-cofactor code belongs to the canonical finite code universe.-/
+/-- Every actual large-cofactor code belongs to the canonical finite code universe.
+@isnad1 id=le.7h6v.s8.fc5659245856 from=translated src=- shape=d4d4c0ed vocab=9fe845b3
+-/
 theorem providerCodeImage_subset_largeCofactorCodeSet {x h y : ℕ} (S : Finset ℕ)
     (provider : (n : {n // n ∈ S}) → ℕ)
     (skeleton : (n : {n // n ∈ S}) → LargePrimeSkeleton h n.1 (provider n))

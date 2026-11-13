@@ -13,7 +13,9 @@ noncomputable section
 
 /-! ## Proposition 9.4: exact diagonal parametrization -/
 
-/-- Forward half of Proposition 9.4, retaining both the shifted factorization and the exact common totient `Γ_j r`.-/
+/-- Forward half of Proposition 9.4, retaining both the shifted factorization and the exact common totient `Γ_j r`.
+@isnad1 id=and.1h5v.s6.b82fdabbb016 from=translated src=- shape=d683e322 vocab=430b94d0
+-/
 theorem proposition9_3_forward {h Y n j r : ℕ}
     (hrep : IsDiagonalRepresentation h Y n j r) :
     n + h = (j + h) * (diagonalB h j * r + 1) ∧
@@ -21,7 +23,9 @@ theorem proposition9_3_forward {h Y n j r : ℕ}
       n.totient = diagonalGamma h j * r := by
   exact ⟨hrep.2.2.2.1, hrep.totient_eq, hrep.totient_eq_gamma_mul⟩
 
-/-- Converse half of Proposition 9.4: a diagonal provider skeleton is represented by the exact same-support affine prime pair.-/
+/-- Converse half of Proposition 9.4: a diagonal provider skeleton is represented by the exact same-support affine prime pair.
+@isnad1 id=ex.3h5v.s5.ef2a621037c3 from=translated src=- shape=c5d2ebdc vocab=356a6266
+-/
 theorem proposition9_3_converse {h n p Y : ℕ} (s : LargePrimeSkeleton h n p)
     (hp : p.Prime) (hdiag : s.IsDiagonal)
     (hcut : Y < largestPrimeFactor n.totient) :
@@ -32,7 +36,9 @@ theorem proposition9_3_converse {h n p Y : ℕ} (s : LargePrimeSkeleton h n p)
 def IsSameSupportCarrier (h : ℕ) (J : Finset ℕ) : Prop :=
   ∀ j, j ∈ J ↔ IsSameSupportIndex h j
 
-/-- For odd shifts the empty finset is an exact carrier, unconditionally.-/
+/-- For odd shifts the empty finset is an exact carrier, unconditionally.
+@isnad1 id=issamesu.1h1v.s3.8636c072268c from=translated src=- shape=1e1cb490 vocab=fbf6b8cd
+-/
 theorem isSameSupportCarrier_empty_of_odd {h : ℕ} (hodd : Odd h) :
     IsSameSupportCarrier h ∅ := by
   intro j
@@ -60,11 +66,17 @@ def diagonalAffinePair (h j : ℕ) : AffinePrimePair :=
       right_pos := by norm_num
       slopes_ne := by norm_num }
 
+/--
+@isnad1 id=eq.2h3v.s5.5b1be9f15f38 from=translated src=- shape=0a2bdea6 vocab=48abebc1
+-/
 @[simp]
 theorem diagonalAffinePair_leftValue {h j : ℕ} (hh : 0 < h) (hj : 0 < j) (r : ℕ) :
     (diagonalAffinePair h j).leftValue r = diagonalA h j * r + 1 := by
   simp [diagonalAffinePair, hh, hj, AffinePrimePair.leftValue]
 
+/--
+@isnad1 id=eq.2h3v.s5.aaa23392db5c from=translated src=- shape=0a2bdea6 vocab=c2a51489
+-/
 @[simp]
 theorem diagonalAffinePair_rightValue {h j : ℕ} (hh : 0 < h) (hj : 0 < j) (r : ℕ) :
     (diagonalAffinePair h j).rightValue r = diagonalB h j * r + 1 := by
@@ -74,6 +86,9 @@ theorem diagonalAffinePair_rightValue {h j : ℕ} (hh : 0 < h) (hj : 0 < j) (r :
 def diagonalPrimePairSet (h j R : ℕ) : Finset ℕ :=
   (diagonalAffinePair h j).primePairSet R
 
+/--
+@isnad1 id=iff.2h4v.s6.6d8e776f52ac from=translated src=- shape=4b88d56f vocab=099b7212
+-/
 @[simp]
 theorem mem_diagonalPrimePairSet {h j R r : ℕ} (hh : 0 < h) (hj : 0 < j) :
     r ∈ diagonalPrimePairSet h j R ↔
@@ -86,11 +101,16 @@ theorem mem_diagonalPrimePairSet {h j R r : ℕ} (hh : 0 < h) (hj : 0 < j) :
 def diagonalPrimeValueSet (x h j : ℕ) : Finset ℕ :=
   (diagonalPrimePairSet h j x).image fun r ↦ j * (diagonalA h j * r + 1)
 
+/--
+@isnad1 id=le.0h3v.s4.845b1786ebfb from=translated src=- shape=890d63d5 vocab=62c0258a
+-/
 theorem card_diagonalPrimeValueSet_le (x h j : ℕ) :
     (diagonalPrimeValueSet x h j).card ≤ (diagonalPrimePairSet h j x).card := by
   exact Finset.card_image_le
 
-/-- A represented diagonal integer below `x` occurs in the fixed-index prime-value set.-/
+/-- A represented diagonal integer below `x` occurs in the fixed-index prime-value set.
+@isnad1 id=mem.3h6v.s5.3f2eae0c0e28 from=translated src=- shape=bfc574b4 vocab=4b694e07
+-/
 theorem IsDiagonalRepresentation.mem_diagonalPrimeValueSet
     {x h Y n j r : ℕ} (hh : 0 < h) (hnx : n ≤ x)
     (hrep : IsDiagonalRepresentation h Y n j r) :
@@ -110,7 +130,9 @@ theorem IsDiagonalRepresentation.mem_diagonalPrimeValueSet
   exact mem_diagonalPrimePairSet hh hj |>.mpr
     ⟨hrep.2.1, hrx, hrep.2.2.2.2.1, hrep.2.2.2.2.2.1⟩
 
-/-- Exact finite cover of the displayed diagonal by a supplied carrier for `J_h`.-/
+/-- Exact finite cover of the displayed diagonal by a supplied carrier for `J_h`.
+@isnad1 id=le.2h4v.s5.9003f7f5d83b from=translated src=- shape=1cc1c7bb vocab=38ea2e45
+-/
 theorem aboveCutoffDiagonalSet_subset_biUnion_diagonalPrimeValueSet
     {x h Y : ℕ} {J : Finset ℕ} (hh : 0 < h)
     (hJ : IsSameSupportCarrier h J) :
@@ -122,7 +144,9 @@ theorem aboveCutoffDiagonalSet_subset_biUnion_diagonalPrimeValueSet
   exact ⟨j, (hJ j).mpr hrep.1,
     hrep.mem_diagonalPrimeValueSet hh hnData.2.1⟩
 
-/-- Purely finite diagonal count bound by the sum of fixed affine prime-pair counts.-/
+/-- Purely finite diagonal count bound by the sum of fixed affine prime-pair counts.
+@isnad1 id=le.2h4v.s5.2cabb53bd9c0 from=translated src=- shape=ec783907 vocab=03d7b881
+-/
 theorem aboveCutoffDiagonalCount_le_sum_diagonalPrimePairSet
     {x h Y : ℕ} {J : Finset ℕ} (hh : 0 < h)
     (hJ : IsSameSupportCarrier h J) :
@@ -145,7 +169,9 @@ def DiagonalAffineSieveHypothesis (h : ℕ) (J : Finset ℕ) (C : ℝ) : Prop :=
   ∀ j ∈ J, ∀ R, 3 ≤ R →
     ((diagonalPrimePairSet h j R).card : ℝ) ≤ C * AffinePrimePair.logSquaredScale R
 
-/-- A finite family of the pointwise conclusions produced by `AffineSelbergReduction` admits one uniform constant.-/
+/-- A finite family of the pointwise conclusions produced by `AffineSelbergReduction` admits one uniform constant.
+@isnad1 id=ex.1h2v.s5.73996f4229f4 from=translated src=- shape=d7820fe8 vocab=f62e624e
+-/
 theorem exists_diagonalAffineSieveHypothesis_of_pointwise
     {h : ℕ} {J : Finset ℕ}
     (hpoint : ∀ j ∈ J, (diagonalAffinePair h j).HasLogSquaredPrimePairBound) :
@@ -174,7 +200,9 @@ theorem exists_diagonalAffineSieveHypothesis_of_pointwise
     _ ≤ C * AffinePrimePair.logSquaredScale R :=
       mul_le_mul_of_nonneg_right hjmax hscale
 
-/-- Proposition 9.6 from a finite `J_h` carrier and a uniform fixed-affine sieve input.-/
+/-- Proposition 9.6 from a finite `J_h` carrier and a uniform fixed-affine sieve input.
+@isnad1 id=le.4h5v.s6.ad56d5c4a1e7 from=translated src=- shape=203efeb9 vocab=5b8c6949
+-/
 theorem proposition9_5_diagonal_bound
     {x h Y : ℕ} {J : Finset ℕ} {C : ℝ} (hh : 0 < h) (hx : 3 ≤ x)
     (hJ : IsSameSupportCarrier h J)
@@ -195,7 +223,9 @@ theorem proposition9_5_diagonal_bound
       simp
       ring
 
-/-- Odd-shift simplification of Proposition 9.6: there is no diagonal to estimate.-/
+/-- Odd-shift simplification of Proposition 9.6: there is no diagonal to estimate.
+@isnad1 id=eq.1h3v.s4.a31033289ee9 from=translated src=- shape=93fe3a2c vocab=4b2390f1
+-/
 theorem proposition9_5_diagonal_zero_of_odd {x h Y : ℕ} (hodd : Odd h) :
     aboveCutoffDiagonalCount x h Y = 0 :=
   aboveCutoffDiagonalCount_eq_zero_of_odd hodd
@@ -210,18 +240,27 @@ def offDiagonalSquareSourceSet (x h y P : ℕ) : Finset ℕ :=
 def offDiagonalNonSquareSet (x h y P : ℕ) : Finset ℕ :=
   offDiagonalNonsmoothSet x h y \ squareSourceSet x h y P
 
+/--
+@isnad1 id=iff.0h5v.s5.03773ebd6052 from=translated src=- shape=f915fa46 vocab=047d5d9d
+-/
 @[simp]
 theorem mem_offDiagonalSquareSourceSet {x h y P n : ℕ} :
     n ∈ offDiagonalSquareSourceSet x h y P ↔
       n ∈ offDiagonalNonsmoothSet x h y ∧ n ∈ squareSourceSet x h y P := by
   simp [offDiagonalSquareSourceSet]
 
+/--
+@isnad1 id=iff.0h5v.s5.43bb95a28584 from=translated src=- shape=190d5188 vocab=42cb5cd3
+-/
 @[simp]
 theorem mem_offDiagonalNonSquareSet {x h y P n : ℕ} :
     n ∈ offDiagonalNonSquareSet x h y P ↔
       n ∈ offDiagonalNonsmoothSet x h y ∧ n ∉ squareSourceSet x h y P := by
   simp [offDiagonalNonSquareSet]
 
+/--
+@isnad1 id=disjoint.0h4v.s4.2871256fc041 from=translated src=- shape=4b5b69e1 vocab=7fb751af
+-/
 theorem offDiagonalSquareSourceSet_disjoint_nonSquareSet (x h y P : ℕ) :
     Disjoint (offDiagonalSquareSourceSet x h y P)
       (offDiagonalNonSquareSet x h y P) := by
@@ -230,7 +269,9 @@ theorem offDiagonalSquareSourceSet_disjoint_nonSquareSet (x h y P : ℕ) :
   exact (mem_offDiagonalNonSquareSet.mp hnonsquare).2
     (mem_offDiagonalSquareSourceSet.mp hsquare).2
 
-/-- Exact square/nonsquare partition inside the off-diagonal remainder.-/
+/-- Exact square/nonsquare partition inside the off-diagonal remainder.
+@isnad1 id=eq.0h4v.s4.2326f1ffdaa4 from=translated src=- shape=112d0e87 vocab=0d91c315
+-/
 theorem offDiagonalSquareSourceSet_union_nonSquareSet (x h y P : ℕ) :
     offDiagonalSquareSourceSet x h y P ∪ offDiagonalNonSquareSet x h y P =
       offDiagonalNonsmoothSet x h y := by
@@ -239,6 +280,9 @@ theorem offDiagonalSquareSourceSet_union_nonSquareSet (x h y P : ℕ) :
     mem_offDiagonalNonSquareSet]
   tauto
 
+/--
+@isnad1 id=eq.0h4v.s5.ead02ea687b6 from=translated src=- shape=c139540a vocab=0b477321
+-/
 theorem offDiagonalNonsmoothCount_eq_square_add_nonSquare (x h y P : ℕ) :
     offDiagonalNonsmoothCount x h y =
       (offDiagonalSquareSourceSet x h y P).card +
@@ -248,12 +292,16 @@ theorem offDiagonalNonsmoothCount_eq_square_add_nonSquare (x h y P : ℕ) :
     Finset.card_union_of_disjoint
       (offDiagonalSquareSourceSet_disjoint_nonSquareSet x h y P)]
 
-/-- The witnessed square part is controlled by the unconditional square-source census.-/
+/-- The witnessed square part is controlled by the unconditional square-source census.
+@isnad1 id=le.0h4v.s4.1bb2c135864b from=translated src=- shape=4b5b69e1 vocab=9fe0e589
+-/
 theorem offDiagonalSquareSourceSet_subset_squareSourceSet (x h y P : ℕ) :
     offDiagonalSquareSourceSet x h y P ⊆ squareSourceSet x h y P :=
   Finset.inter_subset_right
 
-/-- Unconditional square-source contribution at the automatic square-root endpoint.-/
+/-- Unconditional square-source contribution at the automatic square-root endpoint.
+@isnad1 id=le.3h3v.s7.fb36b3bc2289 from=translated src=- shape=2c20079d vocab=ab9edda9
+-/
 theorem offDiagonalSquareSourceSet_card_cast_le_sqrt_cutoff
     {x h y : ℕ} (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) :
     ((offDiagonalSquareSourceSet x h y (2 * x).sqrt).card : ℝ) ≤
@@ -272,7 +320,9 @@ def NonSquareTransferHypothesis (E : ℕ → ℕ → ℕ → ℝ) : Prop :=
   ∀ x h y, 0 < h → h ≤ y → 0 < y →
     ((offDiagonalNonSquareSet x h y (2 * x).sqrt).card : ℝ) ≤ E x h y
 
-/-- The off-diagonal transfer bound obtained by combining the unconditional square-source branch with the supplied nonsquare estimate.-/
+/-- The off-diagonal transfer bound obtained by combining the unconditional square-source branch with the supplied nonsquare estimate.
+@isnad1 id=le.4h4v.s7.7fd7a1c74395 from=translated src=- shape=2413d11d vocab=f38ac2ef
+-/
 theorem proposition9_6_offDiagonal_bound
     {E : ℕ → ℕ → ℕ → ℝ} (hE : NonSquareTransferHypothesis E)
     {x h y : ℕ} (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) :
@@ -284,7 +334,9 @@ theorem proposition9_6_offDiagonal_bound
     (offDiagonalSquareSourceSet_card_cast_le_sqrt_cutoff hh hhy hy)
     (hE x h y hh hhy hy)
 
-/-- Full displayed-diagonal form of Proposition 9.7.-/
+/-- Full displayed-diagonal form of Proposition 9.7.
+@isnad1 id=le.4h4v.s7.3d5eeff5f126 from=translated src=- shape=503083c8 vocab=770af256
+-/
 theorem proposition9_6_nonsmooth_bound
     {E : ℕ → ℕ → ℕ → ℝ} (hE : NonSquareTransferHypothesis E)
     {x h y : ℕ} (hh : 0 < h) (hhy : h ≤ y) (hy : 0 < y) :
@@ -295,7 +347,9 @@ theorem proposition9_6_nonsmooth_bound
     Nat.cast_add]
   exact add_le_add le_rfl (proposition9_6_offDiagonal_bound hE hh hhy hy)
 
-/-- Odd shifts have no displayed diagonal, so the transfer bound controls the entire nonsmooth branch directly.-/
+/-- Odd shifts have no displayed diagonal, so the transfer bound controls the entire nonsmooth branch directly.
+@isnad1 id=le.4h4v.s7.50126f1cf0a0 from=translated src=- shape=0114b04d vocab=2491004d
+-/
 theorem proposition9_6_nonsmooth_bound_of_odd
     {E : ℕ → ℕ → ℕ → ℝ} (hE : NonSquareTransferHypothesis E)
     {x h y : ℕ} (hodd : Odd h) (hhy : h ≤ y) (hy : 0 < y) :
@@ -306,7 +360,9 @@ theorem proposition9_6_nonsmooth_bound_of_odd
   rw [aboveCutoffDiagonalCount_eq_zero_of_odd hodd, Nat.cast_zero, zero_add] at hbound
   exact hbound
 
-/-- Assembly of Propositions 9.5 and 9.6: a fixed-shift nonsmooth count is bounded by its finite affine diagonal sieve contribution plus the transfer error.-/
+/-- Assembly of Propositions 9.5 and 9.6: a fixed-shift nonsmooth count is bounded by its finite affine diagonal sieve contribution plus the transfer error.
+@isnad1 id=le.7h6v.s7.8bac39e0ddea from=translated src=- shape=f4e23d65 vocab=55277d53
+-/
 theorem corollary9_6_assembled_bound
     {E : ℕ → ℕ → ℕ → ℝ} (hE : NonSquareTransferHypothesis E)
     {x h y : ℕ} {J : Finset ℕ} {C : ℝ}
@@ -321,7 +377,9 @@ theorem corollary9_6_assembled_bound
 
 /-! ## Odd shifts and Corollary 1.5 -/
 
-/-- All finite diagonal-transfer objects collapse in the expected way for an odd shift.-/
+/-- All finite diagonal-transfer objects collapse in the expected way for an odd shift.
+@isnad1 id=and.1h3v.s6.387e05147d62 from=translated src=- shape=0118bbe0 vocab=9df441d3
+-/
 theorem section9_odd_shift_collapse {x h Y : ℕ} (hodd : Odd h) :
     sameSupportIndices h = ∅ ∧
       aboveCutoffDiagonalSet x h Y = ∅ ∧
@@ -349,7 +407,9 @@ def MovingRankDiagonalHypothesis (Y H : ℕ → ℕ) (ε : ℕ → ℝ) : Prop :
       (shiftedEqualTotientCount x h : ℝ) ≤
         (aboveCutoffDiagonalCount x h (Y x) : ℝ) + halfExponentMajorant ε x
 
-/-- Odd-shift specialization of the moving-rank diagonal estimate.-/
+/-- Odd-shift specialization of the moving-rank diagonal estimate.
+@isnad1 id=eventual.3h4v.s5.0628ae767e8f from=translated src=- shape=a32a3bf7 vocab=df7ee244
+-/
 theorem movingRank_bound_of_odd
     {Y H : ℕ → ℕ} {ε : ℕ → ℝ}
     (hmove : MovingRankDiagonalHypothesis Y H ε)
@@ -370,7 +430,9 @@ def HasConsecutiveHalfExponentBound : Prop :=
       ∀ᶠ x in Filter.atTop,
         (shiftedEqualTotientCount x 1 : ℝ) ≤ halfExponentMajorant ε x
 
-/-- Corollary 1.5: the moving-rank diagonal estimate implies the consecutive equal-totient bound, because `h=1` is odd and its diagonal is empty.-/
+/-- Corollary 1.5: the moving-rank diagonal estimate implies the consecutive equal-totient bound, because `h=1` is odd and its diagonal is empty.
+@isnad1 id=hasconse.2h3v.s5.12292d74c849 from=translated src=- shape=b0ad2ffd vocab=244550fc
+-/
 theorem theorem1_5_consecutive
     {Y H : ℕ → ℕ} {ε : ℕ → ℝ}
     (hmove : MovingRankDiagonalHypothesis Y H ε)

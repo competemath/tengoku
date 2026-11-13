@@ -10,7 +10,9 @@ noncomputable section
 
 /-! ## Numbers supported on a single prime -/
 
-/-- A positive natural number whose prime support is contained in `{p}` is a power of `p`.-/
+/-- A positive natural number whose prime support is contained in `{p}` is a power of `p`.
+@isnad1 id=iff.1h2v.s5.d0806fd2af23 from=translated src=- shape=5eaa96fb vocab=4040ccda
+-/
 theorem isPrimeSupportUnit_singleton_iff {p n : ℕ} (hp : p.Prime) :
     IsPrimeSupportUnit {p} n ↔ ∃ i : ℕ, n = p ^ i := by
   constructor
@@ -26,14 +28,18 @@ theorem isPrimeSupportUnit_singleton_iff {p n : ℕ} (hp : p.Prime) :
     exact Finset.mem_singleton.mpr
       ((Nat.prime_dvd_prime_iff_eq hqp hp).mp (hqp.dvd_of_dvd_pow hqd))
 
-/-- The prime support of a positive prime power `p ^ a` is `{p}`.-/
+/-- The prime support of a positive prime power `p ^ a` is `{p}`.
+@isnad1 id=eq.2h2v.s5.63b20ba7f4e6 from=translated src=- shape=f9b1f770 vocab=11af024a
+-/
 theorem primeSupport_prime_pow {p a : ℕ} (hp : p.Prime) (ha : 0 < a) :
     primeSupport (p ^ a) = {p} :=
   Nat.primeFactors_prime_pow ha.ne' hp
 
 /-! ## The prime-power affine equation -/
 
-/-- For `d ≥ 1` the number `p ^ d + 1` is `≡ 1 (mod p)` and exceeds `1`, hence is never a power of the prime `p`.-/
+/-- For `d ≥ 1` the number `p ^ d + 1` is `≡ 1 (mod p)` and exceeds `1`, hence is never a power of the prime `p`.
+@isnad1 id=ne.2h3v.s5.dcd9bde7e65a from=translated src=- shape=de050987 vocab=65e9c7a8
+-/
 theorem prime_pow_add_one_ne_prime_pow {p d e : ℕ} (hp : p.Prime) (hd : 0 < d) :
     p ^ d + 1 ≠ p ^ e := by
   intro heq
@@ -112,7 +118,9 @@ theorem eq_of_prime_pow_add_prime_pow_eq_prime_pow {p a i j : ℕ} (hp : p.Prime
 
 /-! ## Exact affine carriers for prime-power shifts -/
 
-/-- For the shift `2 ^ a` the affine `S`-unit equation has exactly one positive solution.-/
+/-- For the shift `2 ^ a` the affine `S`-unit equation has exactly one positive solution.
+@isnad1 id=issunita.1h1v.s6.7734c02afdec from=translated src=- shape=367bccfe vocab=04e961a7
+-/
 theorem isSUnitAffineCarrier_prime_pow_two {a : ℕ} (ha : 0 < a) :
     IsSUnitAffineCarrier (primeSupport (2 ^ a)) (2 ^ a) {(2 ^ a, 2 ^ (a + 1))} := by
   have hsupp : primeSupport (2 ^ a) = {2} := primeSupport_prime_pow Nat.prime_two ha
@@ -132,7 +140,9 @@ theorem isSUnitAffineCarrier_prime_pow_two {a : ℕ} (ha : 0 < a) :
     rw [Finset.mem_singleton, Prod.mk.injEq]
     exact ⟨by rw [hia], by rw [hja]⟩
 
-/-- For the shift `p ^ a` with `p` an odd prime the affine `S`-unit equation has no positive solution at all.-/
+/-- For the shift `p ^ a` with `p` an odd prime the affine `S`-unit equation has no positive solution at all.
+@isnad1 id=issunita.3h2v.s6.40ca34b41212 from=translated src=- shape=e9648b91 vocab=f3d66687
+-/
 theorem isSUnitAffineCarrier_prime_pow_odd {p a : ℕ} (hp : p.Prime) (hp2 : p ≠ 2)
     (ha : 0 < a) :
     IsSUnitAffineCarrier (primeSupport (p ^ a)) (p ^ a) ∅ := by
@@ -145,7 +155,9 @@ theorem isSUnitAffineCarrier_prime_pow_odd {p a : ℕ} (hp : p.Prime) (hp2 : p �
   obtain ⟨j, rfl⟩ := (isPrimeSupportUnit_singleton_iff hp).mp hv
   exact hp2 (eq_of_prime_pow_add_prime_pow_eq_prime_pow hp ha huv).1
 
-/-- A prime-power shift has an exact affine carrier with at most one element.-/
+/-- A prime-power shift has an exact affine carrier with at most one element.
+@isnad1 id=ex.2h2v.s6.4e7665757df4 from=translated src=- shape=05a3dda2 vocab=c1fec46d
+-/
 theorem exists_isSUnitAffineCarrier_prime_pow_card_le_one {p a : ℕ} (hp : p.Prime) (ha : 0 < a) :
     ∃ U : Finset (ℕ × ℕ), IsSUnitAffineCarrier (primeSupport (p ^ a)) (p ^ a) U ∧ U.card ≤ 1 := by
   by_cases hp2 : p = 2
@@ -155,13 +167,17 @@ theorem exists_isSUnitAffineCarrier_prime_pow_card_le_one {p a : ℕ} (hp : p.Pr
 
 /-! ## Unconditional terminal endpoints for prime-power shifts -/
 
-/-- The qualitative Evertse endpoint holds unconditionally for prime-power shifts.-/
+/-- The qualitative Evertse endpoint holds unconditionally for prime-power shifts.
+@isnad1 id=terminal.2h2v.s5.44098dc980f1 from=translated src=- shape=58428754 vocab=05384dfa
+-/
 theorem terminalEvertseSUnitFiniteness_prime_pow {p a : ℕ} (hp : p.Prime) (ha : 0 < a) :
     TerminalEvertseSUnitFiniteness (p ^ a) := by
   obtain ⟨U, hU, -⟩ := exists_isSUnitAffineCarrier_prime_pow_card_le_one hp ha
   exact ⟨U, hU⟩
 
-/-- The quantitative Pollack--Pomerance--Treviño endpoint holds unconditionally for prime-power shifts: the same-support carrier has at most one element, far below the stated bound.-/
+/-- The quantitative Pollack--Pomerance--Treviño endpoint holds unconditionally for prime-power shifts: the same-support carrier has at most one element, far below the stated bound.
+@isnad1 id=terminal.2h2v.s5.40054c158b89 from=translated src=- shape=58428754 vocab=9c58e909
+-/
 theorem terminalPPTSameSupportBound_prime_pow {p a : ℕ} (hp : p.Prime) (ha : 0 < a) :
     TerminalPPTSameSupportBound (p ^ a) := by
   obtain ⟨U, hU, hcard⟩ := exists_isSUnitAffineCarrier_prime_pow_card_le_one hp ha
@@ -177,7 +193,9 @@ theorem terminalPPTSameSupportBound_prime_pow {p a : ℕ} (hp : p.Prime) (ha : 0
 
 /-! ## The exact set of same-support indices for a power of two -/
 
-/-- For `h = 2 ^ a` with `a ≥ 1` the same-support indices are exactly `{2 ^ a}`.-/
+/-- For `h = 2 ^ a` with `a ≥ 1` the same-support indices are exactly `{2 ^ a}`.
+@isnad1 id=iff.1h2v.s5.a5e0116db0f0 from=translated src=- shape=2e696602 vocab=09136262
+-/
 theorem sameSupportIndices_two_pow {a j : ℕ} (ha : 0 < a) :
     IsSameSupportIndex (2 ^ a) j ↔ j = 2 ^ a := by
   constructor

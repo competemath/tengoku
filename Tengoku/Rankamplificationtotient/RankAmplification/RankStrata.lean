@@ -35,6 +35,9 @@ noncomputable def intermediateRankShiftedSet (x h y J : ℕ) : Finset ℕ := by
   classical
   exact (Finset.Ico 1 J).biUnion fun r ↦ exactRankShiftedSet x h y r
 
+/--
+@isnad1 id=iff.0h5v.s5.75662f8f3dba from=translated src=- shape=8a6f4603 vocab=d5751257
+-/
 @[simp]
 theorem mem_exactRankShiftedSet {x h y r n : ℕ} :
     n ∈ exactRankShiftedSet x h y r ↔
@@ -42,6 +45,9 @@ theorem mem_exactRankShiftedSet {x h y r n : ℕ} :
   classical
   simp [exactRankShiftedSet]
 
+/--
+@isnad1 id=iff.0h5v.s5.d4ffa9e97bc2 from=translated src=- shape=e401874a vocab=210143e8
+-/
 @[simp]
 theorem mem_atLeastRankShiftedSet {x h y R n : ℕ} :
     n ∈ atLeastRankShiftedSet x h y R ↔
@@ -49,6 +55,9 @@ theorem mem_atLeastRankShiftedSet {x h y R n : ℕ} :
   classical
   simp [atLeastRankShiftedSet]
 
+/--
+@isnad1 id=iff.0h5v.s5.e8430f4b0625 from=translated src=- shape=8a6f4603 vocab=bf586b56
+-/
 @[simp]
 theorem mem_belowRankShiftedSet {x h y R n : ℕ} :
     n ∈ belowRankShiftedSet x h y R ↔
@@ -65,6 +74,9 @@ theorem mem_belowRankShiftedSet {x h y R n : ℕ} :
     exact ⟨largePrimeRank y n.totient, Finset.mem_range.mpr hrank,
       mem_exactRankShiftedSet.mpr ⟨hn, rfl⟩⟩
 
+/--
+@isnad1 id=iff.0h5v.s5.cd06337f620c from=translated src=- shape=08563ada vocab=d9f2d075
+-/
 @[simp]
 theorem mem_intermediateRankShiftedSet {x h y J n : ℕ} :
     n ∈ intermediateRankShiftedSet x h y J ↔
@@ -84,19 +96,25 @@ theorem mem_intermediateRankShiftedSet {x h y J n : ℕ} :
     exact ⟨largePrimeRank y n.totient, Finset.mem_Ico.mpr ⟨hrankOne, hrankJ⟩,
       mem_exactRankShiftedSet.mpr ⟨hn, rfl⟩⟩
 
-/-- Every exact-rank stratum is part of the shifted solution set.-/
+/-- Every exact-rank stratum is part of the shifted solution set.
+@isnad1 id=le.0h4v.s4.5e983c3e608b from=translated src=- shape=5c467ba3 vocab=abba7b38
+-/
 theorem exactRankShiftedSet_subset_shiftedEqualTotientSet (x h y r : ℕ) :
     exactRankShiftedSet x h y r ⊆ shiftedEqualTotientSet x h := by
   intro n hn
   exact (mem_exactRankShiftedSet.mp hn).1
 
-/-- Every at-least-rank stratum is part of the shifted solution set.-/
+/-- Every at-least-rank stratum is part of the shifted solution set.
+@isnad1 id=le.0h4v.s4.ca15376fe45d from=translated src=- shape=5c467ba3 vocab=770375b9
+-/
 theorem atLeastRankShiftedSet_subset_shiftedEqualTotientSet (x h y R : ℕ) :
     atLeastRankShiftedSet x h y R ⊆ shiftedEqualTotientSet x h := by
   intro n hn
   exact (mem_atLeastRankShiftedSet.mp hn).1
 
-/-- Increasing the prime cutoff can only decrease the large-prime rank.-/
+/-- Increasing the prime cutoff can only decrease the large-prime rank.
+@isnad1 id=le.1h3v.s4.48d64cf684f2 from=translated src=- shape=1b84b391 vocab=bd2a76db
+-/
 theorem largePrimeRank_anti_cutoff {y Y n : ℕ} (hyY : y ≤ Y) :
     largePrimeRank Y n ≤ largePrimeRank y n := by
   rw [largePrimeRank, largePrimeRank]
@@ -109,7 +127,9 @@ theorem largePrimeRank_anti_cutoff {y Y n : ℕ} (hyY : y ≤ Y) :
 
 /-! ## Disjointness and finite partitions -/
 
-/-- Two different exact-rank strata are disjoint.-/
+/-- Two different exact-rank strata are disjoint.
+@isnad1 id=disjoint.1h5v.s5.dc4d6c2b15f5 from=translated src=- shape=c8edb86f vocab=62f6e07f
+-/
 theorem exactRankShiftedSet_disjoint {x h y r s : ℕ} (hrs : r ≠ s) :
     Disjoint (exactRankShiftedSet x h y r) (exactRankShiftedSet x h y s) := by
   rw [Finset.disjoint_left]
@@ -118,13 +138,17 @@ theorem exactRankShiftedSet_disjoint {x h y r s : ℕ} (hrs : r ≠ s) :
   have hrankS := (mem_exactRankShiftedSet.mp hns).2
   exact hrs (hrankR.symm.trans hrankS)
 
-/-- Any finite collection of exact-rank strata is pairwise disjoint.-/
+/-- Any finite collection of exact-rank strata is pairwise disjoint.
+@isnad1 id=pairwise.0h4v.s4.9d53f22cce4e from=translated src=- shape=4a961fe8 vocab=c636c7c5
+-/
 theorem exactRankShiftedSet_pairwiseDisjoint (x h y : ℕ) (s : Finset ℕ) :
     (s : Set ℕ).PairwiseDisjoint fun r ↦ exactRankShiftedSet x h y r := by
   intro r _ t _ hrt
   exact exactRankShiftedSet_disjoint hrt
 
-/-- The below-`R` and at-least-`R` strata are disjoint.-/
+/-- The below-`R` and at-least-`R` strata are disjoint.
+@isnad1 id=disjoint.0h4v.s4.66e2fb3c267b from=translated src=- shape=4b5b69e1 vocab=fe1db2e3
+-/
 theorem belowRankShiftedSet_disjoint_atLeastRankShiftedSet (x h y R : ℕ) :
     Disjoint (belowRankShiftedSet x h y R) (atLeastRankShiftedSet x h y R) := by
   rw [Finset.disjoint_left]
@@ -133,7 +157,9 @@ theorem belowRankShiftedSet_disjoint_atLeastRankShiftedSet (x h y R : ℕ) :
   have hle := (mem_atLeastRankShiftedSet.mp hatLeast).2
   exact (Nat.not_lt_of_ge hle) hlt
 
-/-- Every shifted solution lies either below rank `R` or at rank at least `R`.-/
+/-- Every shifted solution lies either below rank `R` or at rank at least `R`.
+@isnad1 id=eq.0h4v.s4.6f20d722038e from=translated src=- shape=f8f13a9a vocab=6e4881bb
+-/
 theorem belowRankShiftedSet_union_atLeastRankShiftedSet (x h y R : ℕ) :
     belowRankShiftedSet x h y R ∪ atLeastRankShiftedSet x h y R =
       shiftedEqualTotientSet x h := by
@@ -148,7 +174,9 @@ theorem belowRankShiftedSet_union_atLeastRankShiftedSet (x h y R : ℕ) :
     · exact Or.inl ⟨hn, hrank⟩
     · exact Or.inr ⟨hn, hrank⟩
 
-/-- Cardinality of a finite union of exact-rank strata is the sum of their cardinalities.-/
+/-- Cardinality of a finite union of exact-rank strata is the sum of their cardinalities.
+@isnad1 id=eq.0h4v.s4.fcf2c83c950b from=translated src=- shape=2294cdd7 vocab=14016430
+-/
 theorem belowRankShiftedSet_card_eq_sum (x h y R : ℕ) :
     (belowRankShiftedSet x h y R).card =
       ∑ r ∈ Finset.range R, exactRankShiftedCount x h y r := by
@@ -156,7 +184,9 @@ theorem belowRankShiftedSet_card_eq_sum (x h y R : ℕ) :
     Finset.card_biUnion (exactRankShiftedSet_pairwiseDisjoint x h y (Finset.range R))]
   rfl
 
-/-- Exact finite count partition at an arbitrary rank threshold.-/
+/-- Exact finite count partition at an arbitrary rank threshold.
+@isnad1 id=eq.0h4v.s5.8045580daf22 from=translated src=- shape=9da4eebe vocab=d9b416f0
+-/
 theorem shiftedEqualTotientCount_eq_sum_exactRank_add_atLeastRank (x h y R : ℕ) :
     shiftedEqualTotientCount x h =
       (∑ r ∈ Finset.range R, exactRankShiftedCount x h y r) +
@@ -166,20 +196,26 @@ theorem shiftedEqualTotientCount_eq_sum_exactRank_add_atLeastRank (x h y R : ℕ
       (belowRankShiftedSet_disjoint_atLeastRankShiftedSet x h y R),
     belowRankShiftedSet_card_eq_sum, atLeastRankShiftedCount]
 
-/-- Rank at least zero imposes no restriction.-/
+/-- Rank at least zero imposes no restriction.
+@isnad1 id=eq.0h3v.s4.082970ec100f from=translated src=- shape=e2a56572 vocab=4301e0e5
+-/
 theorem atLeastRankShiftedSet_zero (x h y : ℕ) :
     atLeastRankShiftedSet x h y 0 = shiftedEqualTotientSet x h := by
   ext n
   simp
 
-/-- Count form of the rank-at-least-zero identity.-/
+/-- Count form of the rank-at-least-zero identity.
+@isnad1 id=eq.0h3v.s4.dbbef2cadf49 from=translated src=- shape=1affbd57 vocab=2a3c280d
+-/
 theorem atLeastRankShiftedCount_zero (x h y : ℕ) :
     atLeastRankShiftedCount x h y 0 = shiftedEqualTotientCount x h := by
   rw [atLeastRankShiftedCount, atLeastRankShiftedSet_zero, shiftedEqualTotientCount]
 
 /-! ## Monotonicity -/
 
-/-- Exact-rank strata are monotone in the ambient size cutoff.-/
+/-- Exact-rank strata are monotone in the ambient size cutoff.
+@isnad1 id=le.1h5v.s5.000e179fd92e from=translated src=- shape=8442b325 vocab=9ad6f8e2
+-/
 theorem exactRankShiftedSet_mono_size {W X h y r : ℕ} (hWX : W ≤ X) :
     exactRankShiftedSet W h y r ⊆ exactRankShiftedSet X h y r := by
   intro n hn
@@ -188,7 +224,9 @@ theorem exactRankShiftedSet_mono_size {W X h y r : ℕ} (hWX : W ≤ X) :
   apply mem_exactRankShiftedSet.mpr
   refine ⟨mem_shiftedEqualTotientSet.mpr ⟨hbase.1, hbase.2.1.trans hWX, hbase.2.2⟩, hnData.2⟩
 
-/-- At-least-rank strata are monotone in the ambient size cutoff.-/
+/-- At-least-rank strata are monotone in the ambient size cutoff.
+@isnad1 id=le.1h5v.s5.e84bf36ace4f from=translated src=- shape=8442b325 vocab=4460744f
+-/
 theorem atLeastRankShiftedSet_mono_size {W X h y R : ℕ} (hWX : W ≤ X) :
     atLeastRankShiftedSet W h y R ⊆ atLeastRankShiftedSet X h y R := by
   intro n hn
@@ -197,36 +235,48 @@ theorem atLeastRankShiftedSet_mono_size {W X h y R : ℕ} (hWX : W ≤ X) :
   apply mem_atLeastRankShiftedSet.mpr
   refine ⟨mem_shiftedEqualTotientSet.mpr ⟨hbase.1, hbase.2.1.trans hWX, hbase.2.2⟩, hnData.2⟩
 
-/-- Cardinal monotonicity of exact-rank strata in the size cutoff.-/
+/-- Cardinal monotonicity of exact-rank strata in the size cutoff.
+@isnad1 id=le.1h5v.s4.10f3b581f58f from=translated src=- shape=c06ee3a9 vocab=c6812c1a
+-/
 theorem exactRankShiftedCount_mono_size {W X h y r : ℕ} (hWX : W ≤ X) :
     exactRankShiftedCount W h y r ≤ exactRankShiftedCount X h y r := by
   exact Finset.card_le_card (exactRankShiftedSet_mono_size hWX)
 
-/-- Cardinal monotonicity of at-least-rank strata in the size cutoff.-/
+/-- Cardinal monotonicity of at-least-rank strata in the size cutoff.
+@isnad1 id=le.1h5v.s4.42d67aadef92 from=translated src=- shape=c06ee3a9 vocab=0c300e5c
+-/
 theorem atLeastRankShiftedCount_mono_size {W X h y R : ℕ} (hWX : W ≤ X) :
     atLeastRankShiftedCount W h y R ≤ atLeastRankShiftedCount X h y R := by
   exact Finset.card_le_card (atLeastRankShiftedSet_mono_size hWX)
 
-/-- Raising the rank threshold shrinks the at-least-rank stratum.-/
+/-- Raising the rank threshold shrinks the at-least-rank stratum.
+@isnad1 id=le.1h5v.s5.49f85edd5c56 from=translated src=- shape=972ac46a vocab=4460744f
+-/
 theorem atLeastRankShiftedSet_anti_threshold {x h y R S : ℕ} (hRS : R ≤ S) :
     atLeastRankShiftedSet x h y S ⊆ atLeastRankShiftedSet x h y R := by
   intro n hn
   have hnData := mem_atLeastRankShiftedSet.mp hn
   exact mem_atLeastRankShiftedSet.mpr ⟨hnData.1, hRS.trans hnData.2⟩
 
-/-- Cardinal antitonicity in the rank threshold.-/
+/-- Cardinal antitonicity in the rank threshold.
+@isnad1 id=le.1h5v.s4.667b433e4e3f from=translated src=- shape=59087258 vocab=0c300e5c
+-/
 theorem atLeastRankShiftedCount_anti_threshold {x h y R S : ℕ} (hRS : R ≤ S) :
     atLeastRankShiftedCount x h y S ≤ atLeastRankShiftedCount x h y R := by
   exact Finset.card_le_card (atLeastRankShiftedSet_anti_threshold hRS)
 
-/-- Raising the rank threshold enlarges the below-rank union.-/
+/-- Raising the rank threshold enlarges the below-rank union.
+@isnad1 id=le.1h5v.s5.b9c98f601642 from=translated src=- shape=7d57ce53 vocab=81647cf2
+-/
 theorem belowRankShiftedSet_mono_threshold {x h y R S : ℕ} (hRS : R ≤ S) :
     belowRankShiftedSet x h y R ⊆ belowRankShiftedSet x h y S := by
   intro n hn
   have hnData := mem_belowRankShiftedSet.mp hn
   exact mem_belowRankShiftedSet.mpr ⟨hnData.1, hnData.2.trans_le hRS⟩
 
-/-- Increasing the prime cutoff shrinks every at-least-rank stratum.-/
+/-- Increasing the prime cutoff shrinks every at-least-rank stratum.
+@isnad1 id=le.1h5v.s5.22d32d9d1ee9 from=translated src=- shape=d08e4e43 vocab=4460744f
+-/
 theorem atLeastRankShiftedSet_anti_cutoff {x h y Y R : ℕ} (hyY : y ≤ Y) :
     atLeastRankShiftedSet x h Y R ⊆ atLeastRankShiftedSet x h y R := by
   intro n hn
@@ -234,12 +284,16 @@ theorem atLeastRankShiftedSet_anti_cutoff {x h y Y R : ℕ} (hyY : y ≤ Y) :
   apply mem_atLeastRankShiftedSet.mpr
   exact ⟨hnData.1, hnData.2.trans (largePrimeRank_anti_cutoff hyY)⟩
 
-/-- Cardinal antitonicity of at-least-rank strata in the prime cutoff.-/
+/-- Cardinal antitonicity of at-least-rank strata in the prime cutoff.
+@isnad1 id=le.1h5v.s4.7ec47d1faf8d from=translated src=- shape=4ae38dad vocab=0c300e5c
+-/
 theorem atLeastRankShiftedCount_anti_cutoff {x h y Y R : ℕ} (hyY : y ≤ Y) :
     atLeastRankShiftedCount x h Y R ≤ atLeastRankShiftedCount x h y R := by
   exact Finset.card_le_card (atLeastRankShiftedSet_anti_cutoff hyY)
 
-/-- Increasing the prime cutoff enlarges the below-rank union.-/
+/-- Increasing the prime cutoff enlarges the below-rank union.
+@isnad1 id=le.1h5v.s5.859d0486e163 from=translated src=- shape=8041a3ee vocab=81647cf2
+-/
 theorem belowRankShiftedSet_mono_cutoff {x h y Y R : ℕ} (hyY : y ≤ Y) :
     belowRankShiftedSet x h y R ⊆ belowRankShiftedSet x h Y R := by
   intro n hn
@@ -247,7 +301,9 @@ theorem belowRankShiftedSet_mono_cutoff {x h y Y R : ℕ} (hyY : y ≤ Y) :
   apply mem_belowRankShiftedSet.mpr
   exact ⟨hnData.1, (largePrimeRank_anti_cutoff hyY).trans_lt hnData.2⟩
 
-/-- An exact rank above a threshold lies in the corresponding at-least-rank stratum.-/
+/-- An exact rank above a threshold lies in the corresponding at-least-rank stratum.
+@isnad1 id=le.1h5v.s5.2f1623ce3741 from=translated src=- shape=972ac46a vocab=1238429c
+-/
 theorem exactRankShiftedSet_subset_atLeastRankShiftedSet {x h y R r : ℕ} (hRr : R ≤ r) :
     exactRankShiftedSet x h y r ⊆ atLeastRankShiftedSet x h y R := by
   intro n hn
@@ -255,25 +311,33 @@ theorem exactRankShiftedSet_subset_atLeastRankShiftedSet {x h y R r : ℕ} (hRr 
   apply mem_atLeastRankShiftedSet.mpr
   exact ⟨hnData.1, hnData.2 ▸ hRr⟩
 
-/-- Cardinal form of exact-rank containment in an at-least-rank stratum.-/
+/-- Cardinal form of exact-rank containment in an at-least-rank stratum.
+@isnad1 id=le.1h5v.s4.8f7a6a895f9d from=translated src=- shape=59087258 vocab=7f3cffbc
+-/
 theorem exactRankShiftedCount_le_atLeastRankShiftedCount {x h y R r : ℕ} (hRr : R ≤ r) :
     exactRankShiftedCount x h y r ≤ atLeastRankShiftedCount x h y R := by
   exact Finset.card_le_card (exactRankShiftedSet_subset_atLeastRankShiftedSet hRr)
 
 /-! ## Rank zero and the nonsmooth branch -/
 
-/-- The exact rank-zero stratum is precisely the smooth shifted branch.-/
+/-- The exact rank-zero stratum is precisely the smooth shifted branch.
+@isnad1 id=eq.0h3v.s4.2495b619969b from=translated src=- shape=07b25af5 vocab=70f4aa4a
+-/
 theorem exactRankShiftedSet_zero (x h y : ℕ) :
     exactRankShiftedSet x h y 0 = smoothShiftedSet x h y := by
   ext n
   rw [mem_exactRankShiftedSet, mem_smoothShiftedSet_iff_rank_zero]
 
-/-- Count form of the rank-zero/smooth identity.-/
+/-- Count form of the rank-zero/smooth identity.
+@isnad1 id=eq.0h3v.s4.3d7c84ca5a54 from=translated src=- shape=04ce352e vocab=280941df
+-/
 theorem exactRankShiftedCount_zero (x h y : ℕ) :
     exactRankShiftedCount x h y 0 = smoothShiftedCount x h y := by
   rw [exactRankShiftedCount, exactRankShiftedSet_zero, smoothShiftedCount]
 
-/-- The exact rank-zero stratum grows with the prime cutoff.-/
+/-- The exact rank-zero stratum grows with the prime cutoff.
+@isnad1 id=le.1h4v.s5.2acf4c8de528 from=translated src=- shape=0db0310a vocab=9ad6f8e2
+-/
 theorem exactRankShiftedSet_zero_mono_cutoff {x h y Y : ℕ} (hyY : y ≤ Y) :
     exactRankShiftedSet x h y 0 ⊆ exactRankShiftedSet x h Y 0 := by
   rw [exactRankShiftedSet_zero, exactRankShiftedSet_zero]
@@ -282,12 +346,16 @@ theorem exactRankShiftedSet_zero_mono_cutoff {x h y Y : ℕ} (hyY : y ≤ Y) :
   exact mem_smoothShiftedSet.mpr
     ⟨hnData.1, hnData.2.1, hnData.2.2.1, hnData.2.2.2.mono hyY⟩
 
-/-- Cardinal monotonicity of the rank-zero stratum in the prime cutoff.-/
+/-- Cardinal monotonicity of the rank-zero stratum in the prime cutoff.
+@isnad1 id=le.1h4v.s5.48e1fc075fed from=translated src=- shape=7b7c61d7 vocab=c6812c1a
+-/
 theorem exactRankShiftedCount_zero_mono_cutoff {x h y Y : ℕ} (hyY : y ≤ Y) :
     exactRankShiftedCount x h y 0 ≤ exactRankShiftedCount x h Y 0 := by
   exact Finset.card_le_card (exactRankShiftedSet_zero_mono_cutoff hyY)
 
-/-- For `1 ≤ y`, rank at least one is exactly the paper's nonsmooth branch.-/
+/-- For `1 ≤ y`, rank at least one is exactly the paper's nonsmooth branch.
+@isnad1 id=eq.1h3v.s5.6b003a888696 from=translated src=- shape=348e8d50 vocab=01787b85
+-/
 theorem atLeastRankShiftedSet_one_eq_nonsmoothShiftedSet {x h y : ℕ} (hy : 1 ≤ y) :
     atLeastRankShiftedSet x h y 1 = nonsmoothShiftedSet x h y := by
   ext n
@@ -315,20 +383,26 @@ theorem atLeastRankShiftedSet_one_eq_nonsmoothShiftedSet {x h y : ℕ} (hy : 1 �
       exact (Nat.not_lt_of_ge (hsmooth.largestPrimeFactor_le hy)) hlpf
     omega
 
-/-- Count form of the rank-at-least-one/nonsmooth identity.-/
+/-- Count form of the rank-at-least-one/nonsmooth identity.
+@isnad1 id=eq.1h3v.s4.c798bf3c8360 from=translated src=- shape=f1d3503f vocab=f93a762e
+-/
 theorem atLeastRankShiftedCount_one_eq_nonsmoothShiftedCount {x h y : ℕ} (hy : 1 ≤ y) :
     atLeastRankShiftedCount x h y 1 = nonsmoothShiftedCount x h y := by
   rw [atLeastRankShiftedCount, atLeastRankShiftedSet_one_eq_nonsmoothShiftedSet hy,
     nonsmoothShiftedCount]
 
-/-- Every positive exact-rank stratum lies in the nonsmooth branch.-/
+/-- Every positive exact-rank stratum lies in the nonsmooth branch.
+@isnad1 id=le.2h4v.s5.263016a96224 from=translated src=- shape=d2eeacb3 vocab=91973a11
+-/
 theorem exactRankShiftedSet_subset_nonsmoothShiftedSet {x h y r : ℕ}
     (hy : 1 ≤ y) (hr : 1 ≤ r) :
     exactRankShiftedSet x h y r ⊆ nonsmoothShiftedSet x h y := by
   rw [← atLeastRankShiftedSet_one_eq_nonsmoothShiftedSet hy]
   exact exactRankShiftedSet_subset_atLeastRankShiftedSet hr
 
-/-- Cardinal form of positive exact-rank containment in the nonsmooth branch.-/
+/-- Cardinal form of positive exact-rank containment in the nonsmooth branch.
+@isnad1 id=le.2h4v.s5.e602df8e7c42 from=translated src=- shape=9fb00c5f vocab=d2fd5fd2
+-/
 theorem exactRankShiftedCount_le_nonsmoothShiftedCount {x h y r : ℕ}
     (hy : 1 ≤ y) (hr : 1 ≤ r) :
     exactRankShiftedCount x h y r ≤ nonsmoothShiftedCount x h y := by
@@ -336,7 +410,9 @@ theorem exactRankShiftedCount_le_nonsmoothShiftedCount {x h y r : ℕ}
 
 /-! ## Successive and truncated rank decompositions -/
 
-/-- One step of the rank filtration: rank at least `R` is the disjoint union of exact rank `R` and rank at least `R+1`.-/
+/-- One step of the rank filtration: rank at least `R` is the disjoint union of exact rank `R` and rank at least `R+1`.
+@isnad1 id=eq.0h4v.s5.1739319d2713 from=translated src=- shape=75519f48 vocab=7186d943
+-/
 theorem exactRankShiftedSet_union_atLeastRankShiftedSet_succ (x h y R : ℕ) :
     exactRankShiftedSet x h y R ∪ atLeastRankShiftedSet x h y (R + 1) =
       atLeastRankShiftedSet x h y R := by
@@ -352,7 +428,9 @@ theorem exactRankShiftedSet_union_atLeastRankShiftedSet_succ (x h y R : ℕ) :
     · exact Or.inl ⟨hn, heq.symm⟩
     · exact Or.inr ⟨hn, hlt⟩
 
-/-- The two pieces in the successive rank decomposition are disjoint.-/
+/-- The two pieces in the successive rank decomposition are disjoint.
+@isnad1 id=disjoint.0h4v.s5.738e2074bd9f from=translated src=- shape=335d4725 vocab=5987b37c
+-/
 theorem exactRankShiftedSet_disjoint_atLeastRankShiftedSet_succ (x h y R : ℕ) :
     Disjoint (exactRankShiftedSet x h y R) (atLeastRankShiftedSet x h y (R + 1)) := by
   rw [Finset.disjoint_left]
@@ -362,7 +440,9 @@ theorem exactRankShiftedSet_disjoint_atLeastRankShiftedSet_succ (x h y R : ℕ) 
   rw [heq] at hle
   omega
 
-/-- Cardinal recurrence for successive rank thresholds.-/
+/-- Cardinal recurrence for successive rank thresholds.
+@isnad1 id=eq.0h4v.s5.7c759424b9cf from=translated src=- shape=2ddcbcb9 vocab=c4f364f0
+-/
 theorem atLeastRankShiftedCount_eq_exactRank_add_succ (x h y R : ℕ) :
     atLeastRankShiftedCount x h y R =
       exactRankShiftedCount x h y R + atLeastRankShiftedCount x h y (R + 1) := by
@@ -372,7 +452,9 @@ theorem atLeastRankShiftedCount_eq_exactRank_add_succ (x h y R : ℕ) :
       (exactRankShiftedSet_disjoint_atLeastRankShiftedSet_succ x h y R),
     exactRankShiftedCount, atLeastRankShiftedCount]
 
-/-- The intermediate ranks `1,…,J-1` are disjoint from rank at least `J`.-/
+/-- The intermediate ranks `1,…,J-1` are disjoint from rank at least `J`.
+@isnad1 id=disjoint.0h4v.s4.bb42c1b63bfb from=translated src=- shape=4b5b69e1 vocab=5e2a5bac
+-/
 theorem intermediateRankShiftedSet_disjoint_atLeastRankShiftedSet (x h y J : ℕ) :
     Disjoint (intermediateRankShiftedSet x h y J) (atLeastRankShiftedSet x h y J) := by
   rw [Finset.disjoint_left]
@@ -381,7 +463,9 @@ theorem intermediateRankShiftedSet_disjoint_atLeastRankShiftedSet (x h y J : ℕ
   have hle := (mem_atLeastRankShiftedSet.mp hatLeast).2
   exact (Nat.not_lt_of_ge hle) hlt
 
-/-- The nonsmooth branch is exactly ranks `1,…,J-1` together with rank at least `J`.-/
+/-- The nonsmooth branch is exactly ranks `1,…,J-1` together with rank at least `J`.
+@isnad1 id=eq.2h4v.s5.97ff5272b735 from=translated src=- shape=cdeaeebe vocab=aeaaf5b0
+-/
 theorem intermediateRankShiftedSet_union_atLeastRankShiftedSet_eq_nonsmooth
     {x h y J : ℕ} (hy : 1 ≤ y) (hJ : 1 ≤ J) :
     intermediateRankShiftedSet x h y J ∪ atLeastRankShiftedSet x h y J =
@@ -406,7 +490,9 @@ theorem intermediateRankShiftedSet_union_atLeastRankShiftedSet_eq_nonsmooth
     · exact Or.inl (mem_intermediateRankShiftedSet.mpr ⟨hData.1, hData.2, hlt⟩)
     · exact Or.inr (mem_atLeastRankShiftedSet.mpr ⟨hData.1, hle⟩)
 
-/-- Cardinality of the finite intermediate-rank union.-/
+/-- Cardinality of the finite intermediate-rank union.
+@isnad1 id=eq.0h4v.s5.e8f93f2201e2 from=translated src=- shape=dcafa0b8 vocab=79ae903b
+-/
 theorem intermediateRankShiftedSet_card_eq_sum (x h y J : ℕ) :
     (intermediateRankShiftedSet x h y J).card =
       ∑ r ∈ Finset.Ico 1 J, exactRankShiftedCount x h y r := by
@@ -414,7 +500,9 @@ theorem intermediateRankShiftedSet_card_eq_sum (x h y J : ℕ) :
     Finset.card_biUnion (exactRankShiftedSet_pairwiseDisjoint x h y (Finset.Ico 1 J))]
   rfl
 
-/-- **Exact rank truncation used in Sections 4--8.** The nonsmooth count is the sum of ranks `1,…,J-1` and the rank-at-least-`J` remainder.-/
+/-- **Exact rank truncation used in Sections 4--8.** The nonsmooth count is the sum of ranks `1,…,J-1` and the rank-at-least-`J` remainder.
+@isnad1 id=eq.2h4v.s6.807308b77696 from=translated src=- shape=1cc9411f vocab=39a929bf
+-/
 theorem nonsmoothShiftedCount_eq_sum_exactRank_add_atLeastRank
     {x h y J : ℕ} (hy : 1 ≤ y) (hJ : 1 ≤ J) :
     nonsmoothShiftedCount x h y =
@@ -426,7 +514,9 @@ theorem nonsmoothShiftedCount_eq_sum_exactRank_add_atLeastRank
       (intermediateRankShiftedSet_disjoint_atLeastRankShiftedSet x h y J),
     intermediateRankShiftedSet_card_eq_sum, atLeastRankShiftedCount]
 
-/-- Full finite decomposition into the smooth branch, ranks `1,…,J-1`, and rank at least `J`.-/
+/-- Full finite decomposition into the smooth branch, ranks `1,…,J-1`, and rank at least `J`.
+@isnad1 id=eq.2h4v.s6.62d0f058715b from=translated src=- shape=a1fe4c4d vocab=669f2478
+-/
 theorem shiftedEqualTotientCount_eq_smooth_add_sum_exactRank_add_atLeastRank
     {x h y J : ℕ} (hy : 1 ≤ y) (hJ : 1 ≤ J) :
     shiftedEqualTotientCount x h = smoothShiftedCount x h y +
@@ -437,7 +527,9 @@ theorem shiftedEqualTotientCount_eq_smooth_add_sum_exactRank_add_atLeastRank
 
 /-! ## Provider consequences -/
 
-/-- A prime provider above `y` contributes at least one occurrence to the large-prime rank of the totient represented by a skeleton.-/
+/-- A prime provider above `y` contributes at least one occurrence to the large-prime rank of the totient represented by a skeleton.
+@isnad1 id=le.2h5v.s5.b31a39cc4ab5 from=translated src=- shape=768a9a52 vocab=680e7891
+-/
 theorem LargePrimeSkeleton.one_le_largePrimeRank_totient {h n p y : ℕ}
     (s : LargePrimeSkeleton h n p) (hp : p.Prime) (hyp : y < p) :
     1 ≤ largePrimeRank y n.totient := by
@@ -471,7 +563,9 @@ theorem LargePrimeSkeleton.one_le_largePrimeRank_totient {h n p y : ℕ}
     exact Finset.single_le_sum (fun _ _ ↦ Nat.zero_le _) hpfilter
   omega
 
-/-- The balance and cofactor fields of a skeleton imply equality of its two totients.-/
+/-- The balance and cofactor fields of a skeleton imply equality of its two totients.
+@isnad1 id=eq.0h4v.s4.e364b54eedc9 from=translated src=- shape=8a8ec449 vocab=3092f183
+-/
 theorem LargePrimeSkeleton.totient_eq_shifted_totient {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) :
     n.totient = (n + h).totient := by
@@ -494,7 +588,9 @@ theorem LargePrimeSkeleton.totient_eq_shifted_totient {h n p : ℕ}
     _ = s.m2.totient * (s.q2 - 1) := by rw [hq₂pred]
     _ = (n + h).totient := htotient₂.symm
 
-/-- A skeleton with a prime provider above `y` belongs to the rank-at-least-one shifted stratum whenever its represented integer lies below the ambient cutoff.-/
+/-- A skeleton with a prime provider above `y` belongs to the rank-at-least-one shifted stratum whenever its represented integer lies below the ambient cutoff.
+@isnad1 id=mem.3h6v.s5.a3d08ed0857a from=translated src=- shape=887bfdde vocab=c3c95609
+-/
 theorem LargePrimeSkeleton.mem_atLeastRankShiftedSet_one {x h n p y : ℕ}
     (s : LargePrimeSkeleton h n p) (hp : p.Prime) (hyp : y < p) (hnx : n ≤ x) :
     n ∈ atLeastRankShiftedSet x h y 1 := by

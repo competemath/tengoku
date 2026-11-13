@@ -6,7 +6,9 @@ import Tengoku.Rankamplificationtotient.RankAmplification.Definitions
 
 namespace RankAmplification
 
-/-- A natural prime dividing a finite product divides one of its factors.-/
+/-- A natural prime dividing a finite product divides one of its factors.
+@isnad1 id=ex.2h4v.s5.1cdc725970bf from=translated src=- shape=f2467e4e vocab=80960fa7
+-/
 theorem exists_mem_dvd_finset_prod_of_prime {p : ℕ} (hp : p.Prime) {ι : Type*}
     (s : Finset ι) (f : ι → ℕ) (h : p ∣ ∏ a ∈ s, f a) :
     ∃ a ∈ s, p ∣ f a := by
@@ -21,7 +23,9 @@ theorem exists_mem_dvd_finset_prod_of_prime {p : ℕ} (hp : p.Prime) {ι : Type*
       · obtain ⟨b, hbs, hfb⟩ := ih hrest
         exact ⟨b, Finset.mem_insert_of_mem hbs, hfb⟩
 
-/-- A prime divisor is bounded by the largest-prime-factor convention used in the paper.-/
+/-- A prime divisor is bounded by the largest-prime-factor convention used in the paper.
+@isnad1 id=le.3h2v.s4.fff7ba529df0 from=translated src=- shape=12992d18 vocab=916d52f9
+-/
 theorem prime_le_largestPrimeFactor {q m : ℕ} (hq : q.Prime) (hm : m ≠ 0) (hqm : q ∣ m) :
     q ≤ largestPrimeFactor m := by
   have hmem : q ∈ m.primeFactors := Nat.mem_primeFactors.mpr ⟨hq, hqm, hm⟩
@@ -29,7 +33,9 @@ theorem prime_le_largestPrimeFactor {q m : ℕ} (hq : q.Prime) (hm : m ≠ 0) (h
     simpa using (Finset.le_sup (f := id) hmem)
   exact hsup.trans (Nat.le_max_right 1 _)
 
-/-- Above the convention value `1`, the largest prime factor belongs to the prime support.-/
+/-- Above the convention value `1`, the largest prime factor belongs to the prime support.
+@isnad1 id=mem.1h1v.s4.00a09bb32ba4 from=translated src=- shape=ddf8fa3d vocab=72f18666
+-/
 theorem largestPrimeFactor_mem_primeFactors {m : ℕ} (hlarge : 1 < largestPrimeFactor m) :
     largestPrimeFactor m ∈ m.primeFactors := by
   have hsup : 1 < m.primeFactors.sup id := by
@@ -43,30 +49,40 @@ theorem largestPrimeFactor_mem_primeFactors {m : ℕ} (hlarge : 1 < largestPrime
   rw [largestPrimeFactor, Nat.max_eq_right hsup.le, hqeq]
   exact hqmem
 
-/-- Above the convention value, `largestPrimeFactor m` is prime.-/
+/-- Above the convention value, `largestPrimeFactor m` is prime.
+@isnad1 id=prime.1h1v.s4.335fc1dfc452 from=translated src=- shape=a485e098 vocab=bd6dd9b8
+-/
 theorem largestPrimeFactor_prime {m : ℕ} (hlarge : 1 < largestPrimeFactor m) :
     (largestPrimeFactor m).Prime :=
   Nat.prime_of_mem_primeFactors (largestPrimeFactor_mem_primeFactors hlarge)
 
-/-- Above the convention value, `largestPrimeFactor m` divides `m`.-/
+/-- Above the convention value, `largestPrimeFactor m` divides `m`.
+@isnad1 id=dvd.1h1v.s4.71981d869fbc from=translated src=- shape=42790d27 vocab=42c6860a
+-/
 theorem largestPrimeFactor_dvd {m : ℕ} (hlarge : 1 < largestPrimeFactor m) :
     largestPrimeFactor m ∣ m :=
   Nat.dvd_of_mem_primeFactors (largestPrimeFactor_mem_primeFactors hlarge)
 
-/-- Smoothness bounds the largest prime factor, including the paper's convention at `1`.-/
+/-- Smoothness bounds the largest prime factor, including the paper's convention at `1`.
+@isnad1 id=le.2h2v.s4.1fe4cf09c530 from=translated src=- shape=632dbebe vocab=e55baa8f
+-/
 theorem largestPrimeFactor_le_of_isSmooth {y m : ℕ} (hy : 1 ≤ y) (hm : IsSmooth y m) :
     largestPrimeFactor m ≤ y := by
   rw [largestPrimeFactor, Nat.max_le]
   exact ⟨hy, Finset.sup_le fun q hq ↦ hm.2 q hq⟩
 
-/-- If primes `p` and `q` satisfy `p ∣ q - 1`, then `p < q`.-/
+/-- If primes `p` and `q` satisfy `p ∣ q - 1`, then `p < q`.
+@isnad1 id=lt.3h2v.s5.06465acc11ee from=translated src=- shape=e0ffd0e3 vocab=a4e74818
+-/
 theorem prime_lt_of_dvd_pred {p q : ℕ} (_hp : p.Prime) (hq : q.Prime) (h : p ∣ q - 1) :
     p < q := by
   have hpred : 0 < q - 1 := Nat.sub_pos_of_lt hq.one_lt
   have hle : p ≤ q - 1 := Nat.le_of_dvd hpred h
   omega
 
-/-- A provider congruence can be written with a positive multiplier.-/
+/-- A provider congruence can be written with a positive multiplier.
+@isnad1 id=ex.3h2v.s6.9cd5589e564b from=translated src=- shape=1c6ede82 vocab=733d08bc
+-/
 theorem exists_pos_mul_add_one_eq_of_dvd_pred {p q : ℕ} (_hp : p.Prime) (hq : q.Prime)
     (h : p ∣ q - 1) : ∃ k : ℕ, 0 < k ∧ q = k * p + 1 := by
   obtain ⟨k, hk⟩ := h
@@ -83,7 +99,9 @@ theorem exists_pos_mul_add_one_eq_of_dvd_pred {p q : ℕ} (_hp : p.Prime) (hq : 
     _ = p * k + 1 := by rw [hk]
     _ = k * p + 1 := by rw [mul_comm]
 
-/-- A squared prime divisor of an integer supplies that prime to its totient.-/
+/-- A squared prime divisor of an integer supplies that prime to its totient.
+@isnad1 id=dvd.2h2v.s5.ff1a4d9a049e from=translated src=- shape=7f51cccd vocab=71626031
+-/
 theorem prime_dvd_totient_of_sq_dvd {q N : ℕ} (hq : q.Prime) (hqsq : q ^ 2 ∣ N) :
     q ∣ N.totient := by
   have hlocal : q ∣ (q ^ 2).totient := by
@@ -91,7 +109,9 @@ theorem prime_dvd_totient_of_sq_dvd {q N : ℕ} (hq : q.Prime) (hqsq : q ^ 2 ∣
     simp
   exact hlocal.trans (Nat.totient_dvd_of_dvd hqsq)
 
-/-- A prime divisor absent from the totient occurs to exponent exactly one in the integer.-/
+/-- A prime divisor absent from the totient occurs to exponent exactly one in the integer.
+@isnad1 id=ex.3h2v.s5.91089df8a69b from=translated src=- shape=8428f87c vocab=1f171e44
+-/
 theorem exists_cofactor_of_prime_dvd_not_dvd_totient {q N : ℕ} (hq : q.Prime)
     (hqdvd : q ∣ N) (hqtot : ¬q ∣ N.totient) :
     ∃ m : ℕ, N = m * q ∧ ¬q ∣ m := by
@@ -103,13 +123,17 @@ theorem exists_cofactor_of_prime_dvd_not_dvd_totient {q N : ℕ} (hq : q.Prime)
   rw [Nat.div_mul_cancel hqdvd] at hsq
   simpa only [pow_two] using hsq
 
-/-- Removing a prime that occurs to exponent one exposes the corresponding Euler factor.-/
+/-- Removing a prime that occurs to exponent one exposes the corresponding Euler factor.
+@isnad1 id=eq.3h3v.s5.cff662e3ac88 from=translated src=- shape=50a7ae00 vocab=a960a9c3
+-/
 theorem totient_eq_cofactor_mul_pred {N m q : ℕ} (hq : q.Prime) (hN : N = m * q)
     (hqcofactor : ¬q ∣ m) : N.totient = m.totient * (q - 1) := by
   have hcoprime : m.Coprime q := (hq.coprime_iff_not_dvd.mpr hqcofactor).symm
   rw [hN, Nat.totient_mul hcoprime, Nat.totient_prime hq]
 
-/-- Paper Lemma 3.1 (provider lemma).-/
+/-- Paper Lemma 3.1 (provider lemma).
+@isnad1 id=ex.4h2v.s6.f48cf8819343 from=translated src=- shape=e22c3c4c vocab=a4d16ceb
+-/
 theorem exists_prime_provider_of_dvd_totient {N p : ℕ} (hN : 1 ≤ N) (hp : p.Prime)
     (hptot : p ∣ N.totient) (hp_sq : ¬p ^ 2 ∣ N) :
     ∃ q : ℕ, q.Prime ∧ q ∣ N ∧ p ∣ q - 1 := by
@@ -166,7 +190,9 @@ structure LargePrimeSkeleton (h n p : ℕ) where
   multipliers_lpf_le : largestPrimeFactor (k1 * k2) ≤ p
   providers_ne : q1 ≠ q2
 
-/-- Core form of paper Lemma 3.2.-/
+/-- Core form of paper Lemma 3.2.
+@isnad1 id=nonempty.9h4v.s6.9a43bf6b4682 from=translated src=- shape=1e924054 vocab=d6315fed
+-/
 theorem exists_largePrimeSkeleton_of_maximal_prime {h n M p : ℕ} (hn : 1 ≤ n) (hh : 1 ≤ h)
     (hp : p.Prime) (hphi1 : n.totient = M) (hphi2 : (n + h).totient = M) (hpM : p ∣ M)
     (hmax : ∀ {q : ℕ}, q.Prime → q ∣ M → q ≤ p) (hph : h < p)
@@ -266,7 +292,9 @@ theorem exists_largePrimeSkeleton_of_maximal_prime {h n M p : ℕ} (hn : 1 ≤ n
     providers_ne := hq1_ne_q2
   }⟩
 
-/-- Paper Lemma 3.2 (large-prime skeleton), with the inessential ambient bound `n ≤ x` omitted.-/
+/-- Paper Lemma 3.2 (large-prime skeleton), with the inessential ambient bound `n ≤ x` omitted.
+@isnad1 id=nonempty.7h4v.s6.8828c898f7d4 from=translated src=- shape=2e2a6866 vocab=778d73ef
+-/
 theorem exists_largePrimeSkeleton {h n M p : ℕ} (hn : 1 ≤ n) (hh : 1 ≤ h)
     (hphi1 : n.totient = M) (hphi2 : (n + h).totient = M)
     (hpdef : p = largestPrimeFactor M) (hph : h < p)

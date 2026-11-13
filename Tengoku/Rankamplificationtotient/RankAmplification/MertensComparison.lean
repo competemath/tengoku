@@ -12,7 +12,9 @@ open scoped BigOperators Nat.Prime
 
 noncomputable section
 
-/-- A real-variable inequality used in the factorwise Euler-product comparison.-/
+/-- A real-variable inequality used in the factorwise Euler-product comparison.
+@isnad1 id=le.5h3v.s7.1349d0abe157 from=translated src=- shape=a97d6f07 vocab=73e1eea8
+-/
 theorem inverse_one_sub_le_exp_mul_inverse_one_sub {a b t : ℝ}
     (hb : 0 ≤ b) (hba : b ≤ a) (ha : a ≤ 1 / 2) (ht : 0 ≤ t)
     (hdiff : a - b ≤ a * t) :
@@ -42,7 +44,9 @@ theorem inverse_one_sub_le_exp_mul_inverse_one_sub {a b t : ℝ}
     _ ≤ Real.exp (2 * a * t) * (1 - b)⁻¹ :=
       mul_le_mul_of_nonneg_right hratio (inv_nonneg.mpr hdb.le)
 
-/-- One prime factor at exponent one is controlled by its factor at exponent `1 + δ`.-/
+/-- One prime factor at exponent one is controlled by its factor at exponent `1 + δ`.
+@isnad1 id=le.2h2v.s7.f578b9aae8e4 from=translated src=- shape=8706d94f vocab=1ba3e140
+-/
 theorem mertensFactor_le_softenedFactor {p : ℕ} (hp : p.Prime) {δ : ℝ} (hδ : 0 ≤ δ) :
     (1 - (p : ℝ)⁻¹)⁻¹ ≤
       Real.exp (2 * δ * (Real.log p / p)) *
@@ -87,7 +91,9 @@ theorem mertensFactor_le_softenedFactor {p : ℕ} (hp : p.Prime) {δ : ℝ} (hδ
   rw [hexp] at hmain
   simpa only [a, b, t, P, div_eq_mul_inv] using hmain
 
-/-- Product form of the factorwise comparison.-/
+/-- Product form of the factorwise comparison.
+@isnad1 id=le.1h2v.s6.22222603944d from=translated src=- shape=37696d90 vocab=53434cac
+-/
 theorem mertensProduct_le_exp_mul_softened (R : ℕ) {δ : ℝ} (hδ : 0 ≤ δ) :
     mertensProduct R ≤
       Real.exp (2 * δ * primeLogReciprocalSum R) * softenedMertensProduct R (1 + δ) := by
@@ -109,7 +115,9 @@ theorem mertensProduct_le_exp_mul_softened (R : ℕ) {δ : ℝ} (hδ : 0 ≤ δ)
       rw [Finset.prod_mul_distrib, ← Real.exp_sum]
       simp only [← Finset.mul_sum, primeLogReciprocalSum]
 
-/-- The correction exponent is uniformly bounded at `δ = 1 / log R`.-/
+/-- The correction exponent is uniformly bounded at `δ = 1 / log R`.
+@isnad1 id=le.1h1v.s6.60879e0edebd from=translated src=- shape=51a11135 vocab=dab97a30
+-/
 theorem mertens_correction_le {R : ℕ} (hR : 3 ≤ R) :
     2 * (Real.log R)⁻¹ * primeLogReciprocalSum R ≤ 4 * Real.log 4 := by
   have hR2 : 2 ≤ R := hR.trans' (by norm_num)
@@ -132,7 +140,9 @@ theorem mertens_correction_le {R : ℕ} (hR : 3 ≤ R) :
       nlinarith
     _ = 4 * Real.log 4 := by ring
 
-/-- Explicit Mertens-product upper bound, completing Lemma 2.2.-/
+/-- Explicit Mertens-product upper bound, completing Lemma 2.2.
+@isnad1 id=le.1h1v.s6.f4ebdcee9fe9 from=translated src=- shape=f65e0254 vocab=f63bd777
+-/
 theorem mertensProduct_le_log (R : ℕ) (hR : 3 ≤ R) :
     mertensProduct R ≤ Real.exp (4 * Real.log 4) * (1 + Real.log R) := by
   have hlog : 0 < Real.log (R : ℝ) :=

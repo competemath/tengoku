@@ -19,6 +19,9 @@ def reciprocalNatMonoidHom : ℕ →* ℝ where
     simp only [Nat.cast_mul, mul_inv_rev]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.77c0ef9d44db from=translated src=- shape=e81061cb vocab=7d23df18
+-/
 @[simp]
 theorem reciprocalNatMonoidHom_apply (n : ℕ) :
     reciprocalNatMonoidHom n = (n : ℝ)⁻¹ := rfl
@@ -31,12 +34,17 @@ def mertensProduct (R : ℕ) : ℝ :=
 def smoothReciprocalTsum (R : ℕ) : ℝ :=
   ∑' n : (R + 1).smoothNumbers, ((n.1 : ℝ)⁻¹)
 
+/--
+@isnad1 id=lt.1h1v.s5.755f43d02705 from=translated src=- shape=3071a3d3 vocab=765d5c37
+-/
 theorem norm_reciprocalNatMonoidHom_prime_lt_one {p : ℕ} (hp : p.Prime) :
     ‖reciprocalNatMonoidHom p‖ < 1 := by
   rw [reciprocalNatMonoidHom_apply, Real.norm_eq_abs, abs_inv, abs_of_nonneg (Nat.cast_nonneg p)]
   exact inv_lt_one_of_one_lt₀ (by exact_mod_cast hp.one_lt)
 
-/-- Absolute convergence and the exact product formula over the weak cutoff `p ≤ R`.-/
+/-- Absolute convergence and the exact product formula over the weak cutoff `p ≤ R`.
+@isnad1 id=and.0h1v.s7.1cf992b64ebe from=translated src=- shape=5bfd510b vocab=a0e2f931
+-/
 theorem summable_and_hasSum_smooth_reciprocals (R : ℕ) :
     Summable (fun n : (R + 1).smoothNumbers ↦ ‖((n.1 : ℝ)⁻¹)‖) ∧
       HasSum (fun n : (R + 1).smoothNumbers ↦ ((n.1 : ℝ)⁻¹)) (mertensProduct R) := by
@@ -46,11 +54,16 @@ theorem summable_and_hasSum_smooth_reciprocals (R : ℕ) :
     (R + 1)
   simpa only [mertensProduct, Nat.primesLE, reciprocalNatMonoidHom_apply] using h
 
-/-- Equality (2.1) of Lemma 2.2.-/
+/-- Equality (2.1) of Lemma 2.2.
+@isnad1 id=eq.0h1v.s3.65b4b6ea944a from=translated src=- shape=b70c6bb1 vocab=634f6dea
+-/
 theorem smoothReciprocalTsum_eq_mertensProduct (R : ℕ) :
     smoothReciprocalTsum R = mertensProduct R := by
   exact (summable_and_hasSum_smooth_reciprocals R).2.tsum_eq
 
+/--
+@isnad1 id=lt.0h1v.s3.77089121cca9 from=translated src=- shape=b9369acb vocab=0820beec
+-/
 theorem mertensProduct_pos (R : ℕ) : 0 < mertensProduct R := by
   unfold mertensProduct
   apply Finset.prod_pos
@@ -59,6 +72,9 @@ theorem mertensProduct_pos (R : ℕ) : 0 < mertensProduct R := by
   have hone : (1 : ℝ) < p := by exact_mod_cast hpPrime.one_lt
   exact inv_pos.mpr (sub_pos.mpr (inv_lt_one_of_one_lt₀ hone))
 
+/--
+@isnad1 id=lt.0h1v.s3.a0e230dbaf3a from=translated src=- shape=b9369acb vocab=dd0c60ce
+-/
 theorem smoothReciprocalTsum_pos (R : ℕ) : 0 < smoothReciprocalTsum R := by
   rw [smoothReciprocalTsum_eq_mertensProduct]
   exact mertensProduct_pos R

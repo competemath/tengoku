@@ -10,7 +10,9 @@ namespace RankAmplification
 def LargePrimeSkeleton.IsDiagonal {h n p : ℕ} (s : LargePrimeSkeleton h n p) : Prop :=
   s.m1 * normalizedA s.m1 s.m2 = s.m2 * normalizedB s.m1 s.m2
 
-/-- Two positive coprime pairs representing the same rational number agree coordinatewise.-/
+/-- Two positive coprime pairs representing the same rational number agree coordinatewise.
+@isnad1 id=and.4h4v.s5.4aba4162b1f4 from=translated src=- shape=8fd46e37 vocab=fb75830d
+-/
 theorem coprime_pair_eq_of_cross_mul {a b c d : ℕ} (ha : 0 < a)
     (hab : a.Coprime b) (hcd : c.Coprime d) (hcross : a * d = c * b) :
     a = c ∧ b = d := by
@@ -25,13 +27,18 @@ theorem coprime_pair_eq_of_cross_mul {a b c d : ℕ} (ha : 0 < a)
   have hbd : d = b := Nat.mul_left_cancel ha hcross
   exact ⟨rfl, hbd.symm⟩
 
-/-- The coefficients `(A_j,B_j)` form the reduced ratio `(j+h):j`.-/
+/-- The coefficients `(A_j,B_j)` form the reduced ratio `(j+h):j`.
+@isnad1 id=coprime.1h2v.s4.c93ab4731620 from=translated src=- shape=9693e3c7 vocab=a8f47533
+-/
 theorem diagonalA_coprime_diagonalB {h j : ℕ} (hj : 0 < j) :
     (diagonalA h j).Coprime (diagonalB h j) := by
   have hg : 0 < Nat.gcd (j + h) j := Nat.gcd_pos_of_pos_right _ hj
   simpa only [diagonalA, diagonalB, diagonalGCD, Nat.gcd_comm] using
     (Nat.coprime_div_gcd_div_gcd hg)
 
+/--
+@isnad1 id=eq.1h4v.s5.76513af12236 from=translated src=- shape=a93984f8 vocab=46080f23
+-/
 theorem LargePrimeSkeleton.m2_eq_m1_add_h_of_diagonal {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) (hdiag : s.IsDiagonal) :
     s.m2 = s.m1 + h := by
@@ -48,12 +55,18 @@ theorem LargePrimeSkeleton.m2_eq_m1_add_h_of_diagonal {h n p : ℕ}
   rw [hdiag] at hexpanded
   exact (Nat.add_left_cancel hexpanded).symm
 
+/--
+@isnad1 id=eq.1h4v.s5.da0f1245a759 from=translated src=- shape=789352e9 vocab=ecc76747
+-/
 theorem LargePrimeSkeleton.primeSupport_eq_of_diagonal {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) (hdiag : s.IsDiagonal) :
     primeSupport s.m1 = primeSupport s.m2 := by
   have hcross := totient_cross_eq_of_normalized_diagonal hdiag
   exact primeSupport_eq_of_totient_cross_eq s.m1_pos.ne' s.m2_pos.ne' hcross
 
+/--
+@isnad1 id=issamesu.1h4v.s4.497984d3f75b from=translated src=- shape=440289e9 vocab=de96e0c1
+-/
 theorem LargePrimeSkeleton.sameSupportIndex_of_diagonal {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) (hdiag : s.IsDiagonal) :
     IsSameSupportIndex h s.m1 := by
@@ -61,7 +74,9 @@ theorem LargePrimeSkeleton.sameSupportIndex_of_diagonal {h n p : ℕ}
   rw [← s.m2_eq_m1_add_h_of_diagonal hdiag]
   exact s.primeSupport_eq_of_diagonal hdiag
 
-/-- On a diagonal skeleton, the totient-normalized coefficients are exactly the geometric coefficients `A_j,B_j`.-/
+/-- On a diagonal skeleton, the totient-normalized coefficients are exactly the geometric coefficients `A_j,B_j`.
+@isnad1 id=and.1h4v.s5.9032c204445a from=translated src=- shape=6a6e8986 vocab=eb2ecccd
+-/
 theorem LargePrimeSkeleton.normalized_eq_diagonal_coefficients {h n p : ℕ}
     (s : LargePrimeSkeleton h n p) (hdiag : s.IsDiagonal) :
     normalizedA s.m1 s.m2 = diagonalA h s.m1 ∧
@@ -98,7 +113,9 @@ theorem LargePrimeSkeleton.normalized_eq_diagonal_coefficients {h n p : ℕ}
       (Nat.gcd_pos_of_pos_left _ (Nat.totient_pos.mpr s.m1_pos))
   exact coprime_pair_eq_of_cross_mul hnormPos hnormCoprime hdiagCoprime hcross
 
-/-- A diagonal skeleton yields the exact affine prime-pair representation, including any supplied largest-prime cutoff on its common totient.-/
+/-- A diagonal skeleton yields the exact affine prime-pair representation, including any supplied largest-prime cutoff on its common totient.
+@isnad1 id=ex.3h5v.s5.ef2a621037c3 from=translated src=- shape=c5d2ebdc vocab=356a6266
+-/
 theorem LargePrimeSkeleton.exists_diagonalRepresentation {h n p Y : ℕ}
     (s : LargePrimeSkeleton h n p) (hp : p.Prime) (hdiag : s.IsDiagonal)
     (hcut : Y < largestPrimeFactor n.totient) :

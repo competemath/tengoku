@@ -70,12 +70,21 @@ def rightTailPairSum (x h H : ℕ) : ℝ :=
   ∑ d₁ ∈ W.support, ∑ d₂ ∈ W.support with H < d₂,
     W.weight d₁ * W.weight d₂ * (shiftedDivisibilitySet x h d₁ d₂).card
 
+/--
+@isnad1 id=le.1h2v.s4.f874e586a57c from=translated src=- shape=2fa60541 vocab=0db3704e
+-/
 theorem weight_nonneg_of_mem {d : ℕ} (hd : d ∈ W.support) : 0 ≤ W.weight d :=
   W.weight_nonneg d hd
 
+/--
+@isnad1 id=ne.1h2v.s4.33ec3fdec064 from=translated src=- shape=e706ccb9 vocab=94009b03
+-/
 theorem support_ne_zero {d : ℕ} (hd : d ∈ W.support) : d ≠ 0 :=
   (W.support_pos d hd).ne'
 
+/--
+@isnad1 id=le.0h2v.s4.3bcd36eaec5f from=translated src=- shape=0d4521f5 vocab=eb0e0003
+-/
 theorem eval_nonneg (N : ℕ) : 0 ≤ W.eval N := by
   unfold eval
   exact Finset.sum_nonneg fun d hd ↦ by
@@ -83,16 +92,25 @@ theorem eval_nonneg (N : ℕ) : 0 ≤ W.eval N := by
     · simpa [hdiv] using W.weight_nonneg d hd
     · simp [hdiv]
 
+/--
+@isnad1 id=le.0h1v.s3.72f049358490 from=translated src=- shape=b9369acb vocab=80f25279
+-/
 theorem mass_nonneg : 0 ≤ W.mass := by
   unfold mass
   exact Finset.sum_nonneg fun d hd ↦
     div_nonneg (W.weight_nonneg d hd) (Nat.cast_nonneg d)
 
+/--
+@isnad1 id=le.0h2v.s4.a4869fdde383 from=translated src=- shape=0d4521f5 vocab=1446a9e7
+-/
 theorem tailMass_nonneg (H : ℕ) : 0 ≤ W.tailMass H := by
   unfold tailMass
   exact Finset.sum_nonneg fun d hd ↦
     div_nonneg (W.weight_nonneg d (Finset.mem_filter.mp hd).1) (Nat.cast_nonneg d)
 
+/--
+@isnad1 id=le.1h3v.s5.86f03088534b from=translated src=- shape=f0783e2b vocab=a9687e9b
+-/
 theorem eval_le_supNorm {B N : ℕ} (hN : N ∈ Finset.Icc 1 B) :
     W.eval N ≤ W.supNorm B := by
   classical
@@ -101,24 +119,41 @@ theorem eval_le_supNorm {B N : ℕ} (hN : N ∈ Finset.Icc 1 B) :
   rw [dite_eq_left hnonempty]
   exact Finset.le_max' _ _ (Finset.mem_image.mpr ⟨N, hN, rfl⟩)
 
+/--
+@isnad1 id=le.1h2v.s4.1cbf6b646370 from=translated src=- shape=08dd841c vocab=80d682ca
+-/
 theorem supNorm_nonneg {B : ℕ} (hB : 1 ≤ B) : 0 ≤ W.supNorm B := by
   have hmem : 1 ∈ Finset.Icc 1 B := Finset.mem_Icc.mpr ⟨le_rfl, hB⟩
   exact (W.eval_nonneg 1).trans (W.eval_le_supNorm hmem)
 
+/--
+@isnad1 id=eq.0h2v.s4.068d651cffea from=translated src=- shape=18895fbb vocab=e6d4456b
+-/
 @[simp]
 theorem restrictAbove_support (H : ℕ) :
     (W.restrictAbove H).support = W.support.filter (H < ·) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2e5b189da6d6 from=translated src=- shape=093fa8a2 vocab=aa208a66
+-/
 @[simp]
 theorem restrictAbove_weight (H d : ℕ) : (W.restrictAbove H).weight d = W.weight d := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.3111cca7e1b5 from=translated src=- shape=33e5716c vocab=4233f17f
+-/
 theorem restrictAbove_mass (H : ℕ) : (W.restrictAbove H).mass = W.tailMass H := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.2900c72647cd from=translated src=- shape=8d0ea475 vocab=5b29b352
+-/
 theorem eval_eq_sum_filter (N : ℕ) :
     W.eval N = ∑ d ∈ W.support.filter (· ∣ N), W.weight d := by
   simp [eval, Finset.sum_filter]
 
-/-- Bilinear expansion for two different finite divisor weights.-/
+/-- Bilinear expansion for two different finite divisor weights.
+@isnad1 id=eq.0h4v.s6.327e659d660f from=translated src=- shape=4245181a vocab=47667283
+-/
 theorem sum_eval_mul_eval_eq_pair_sum_two (W₁ W₂ : FiniteDivisorWeight) (x h : ℕ) :
     ∑ n ∈ Finset.Icc 1 x, W₁.eval n * W₂.eval (n + h) =
       ∑ d₂ ∈ W₂.support, ∑ d₁ ∈ W₁.support,
@@ -150,7 +185,9 @@ theorem sum_eval_mul_eval_eq_pair_sum_two (W₁ W₂ : FiniteDivisorWeight) (x h
         (shiftedDivisibilitySet x h d₁ d₂).card := by
       simp [mul_comm]
 
-/-- Expanding both divisor sums turns the shifted convolution into a weighted sum of the exact compatibility counts `N_h(d₁,d₂)`.-/
+/-- Expanding both divisor sums turns the shifted convolution into a weighted sum of the exact compatibility counts `N_h(d₁,d₂)`.
+@isnad1 id=eq.0h3v.s6.7ab7e11a1bc5 from=translated src=- shape=588143ae vocab=47667283
+-/
 theorem sum_eval_mul_eval_eq_pair_sum_swapped (x h : ℕ) :
     ∑ n ∈ Finset.Icc 1 x, W.eval n * W.eval (n + h) =
       ∑ d₁ ∈ W.support, ∑ d₂ ∈ W.support,
@@ -182,7 +219,9 @@ theorem sum_eval_mul_eval_eq_pair_sum_swapped (x h : ℕ) :
         (shiftedDivisibilitySet x h d₂ d₁).card := by
       simp [mul_comm]
 
-/-- The same expansion with the unshifted divisor in the first coordinate.-/
+/-- The same expansion with the unshifted divisor in the first coordinate.
+@isnad1 id=eq.0h3v.s6.e74108933910 from=translated src=- shape=9d169693 vocab=47667283
+-/
 theorem sum_eval_mul_eval_eq_pair_sum (x h : ℕ) :
     ∑ n ∈ Finset.Icc 1 x, W.eval n * W.eval (n + h) =
       ∑ d₁ ∈ W.support, ∑ d₂ ∈ W.support,
@@ -190,7 +229,9 @@ theorem sum_eval_mul_eval_eq_pair_sum (x h : ℕ) :
           (shiftedDivisibilitySet x h d₁ d₂).card := by
   rw [W.sum_eval_mul_eval_eq_pair_sum_swapped x h, Finset.sum_comm]
 
-/-- In the small-product range, the exact compatibility count has the paper's `2x/(d₁d₂)` real-valued upper bound.-/
+/-- In the small-product range, the exact compatibility count has the paper's `2x/(d₁d₂)` real-valued upper bound.
+@isnad1 id=le.5h4v.s6.1b3c3e613a6c from=translated src=- shape=b3fa10b2 vocab=3af66c29
+-/
 theorem shiftedDivisibilitySet_card_cast_le_two_mul_div {x h d₁ d₂ : ℕ}
     (hh : 0 < h) (hd₁ : 0 < d₁) (hd₂ : 0 < d₂)
     (hlarge : ∀ p : ℕ, p.Prime → p ∣ d₁ → h < p) (hprod : d₁ * d₂ ≤ x) :
@@ -217,6 +258,9 @@ theorem shiftedDivisibilitySet_card_cast_le_two_mul_div {x h d₁ d₂ : ℕ}
       rw [mul_div_assoc]
       nlinarith
 
+/--
+@isnad1 id=or.1h3v.s5.adec24d93835 from=translated src=- shape=fcfc7159 vocab=2abc6656
+-/
 theorem sqrt_lt_left_or_right_of_lt_mul {x d₁ d₂ : ℕ} (hprod : x < d₁ * d₂) :
     x.sqrt < d₁ ∨ x.sqrt < d₂ := by
   by_contra h
@@ -224,7 +268,9 @@ theorem sqrt_lt_left_or_right_of_lt_mul {x d₁ d₂ : ℕ} (hprod : x < d₁ * 
   have hmul : d₁ * d₂ ≤ x.sqrt * x.sqrt := Nat.mul_le_mul h.1 h.2
   exact (Nat.not_lt_of_ge (hmul.trans (Nat.sqrt_le x))) hprod
 
-/-- Every large-product pair is charged to at least one strict square-root tail.-/
+/-- Every large-product pair is charged to at least one strict square-root tail.
+@isnad1 id=le.0h3v.s5.bfb12b6eadc4 from=translated src=- shape=2b4eb26c vocab=716ae12f
+-/
 theorem largePairSum_le_tailPairSums (x h : ℕ) :
     W.largePairSum x h ≤
       W.leftTailPairSum x h x.sqrt + W.rightTailPairSum x h x.sqrt := by
@@ -267,6 +313,9 @@ theorem largePairSum_le_tailPairSums (x h : ℕ) :
           ∑ d₁ ∈ W.support, ∑ d₂ ∈ W.support with x.sqrt < d₂, term d₁ d₂ := by
       rw [Finset.sum_add_distrib, Finset.sum_filter]
 
+/--
+@isnad1 id=eq.0h2v.s5.2acc77bfe7f3 from=translated src=- shape=42030b62 vocab=c9b97ade
+-/
 theorem Icc_filter_dvd_card_eq_div (x d : ℕ) :
     ((Finset.Icc 1 x).filter (d ∣ ·)).card = x / d := by
   have hinterval : Finset.Icc 1 x = Finset.Ioc 0 x := by
@@ -276,6 +325,9 @@ theorem Icc_filter_dvd_card_eq_div (x d : ℕ) :
   rw [hinterval]
   exact Nat.Ioc_filter_dvd_card_eq_div x d
 
+/--
+@isnad1 id=eq.0h3v.s5.800e2a664775 from=translated src=- shape=31ffcb95 vocab=164c9bd8
+-/
 theorem sum_dvd_indicator_eq (x d : ℕ) (a : ℝ) :
     (∑ n ∈ Finset.Icc 1 x, if d ∣ n then a else 0) = a * (x / d : ℕ) := by
   classical
@@ -286,7 +338,9 @@ theorem sum_dvd_indicator_eq (x d : ℕ) (a : ℝ) :
     _ = a * ((Finset.Icc 1 x).filter (d ∣ ·)).card := by simp [mul_comm]
     _ = a * (x / d : ℕ) := by rw [Icc_filter_dvd_card_eq_div]
 
-/-- The elementary reciprocal-mass estimate for one divisor sum.-/
+/-- The elementary reciprocal-mass estimate for one divisor sum.
+@isnad1 id=le.0h2v.s5.5c3ad9153d8d from=translated src=- shape=0d7bf2fb vocab=9457b113
+-/
 theorem sum_eval_le_mul_mass (x : ℕ) :
     (∑ n ∈ Finset.Icc 1 x, W.eval n) ≤ x * W.mass := by
   classical
@@ -311,6 +365,9 @@ theorem sum_eval_le_mul_mass (x : ℕ) :
           field_simp [W.support_ne_zero hd]
     _ = x * ∑ d ∈ W.support, W.weight d / d := by rw [Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h4v.s5.458bf890ef46 from=translated src=- shape=59d2ee7d vocab=efa38548
+-/
 theorem leftTailPairSum_eq_sum (x h H : ℕ) :
     W.leftTailPairSum x h H =
       ∑ n ∈ Finset.Icc 1 x, (W.restrictAbove H).eval n * W.eval (n + h) := by
@@ -318,6 +375,9 @@ theorem leftTailPairSum_eq_sum (x h H : ℕ) :
   rw [sum_eval_mul_eval_eq_pair_sum_two, Finset.sum_comm]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.6e130d43aafe from=translated src=- shape=c740c39d vocab=dd7dcc58
+-/
 theorem rightTailPairSum_eq_sum (x h H : ℕ) :
     W.rightTailPairSum x h H =
       ∑ n ∈ Finset.Icc 1 x, W.eval n * (W.restrictAbove H).eval (n + h) := by
@@ -325,7 +385,9 @@ theorem rightTailPairSum_eq_sum (x h H : ℕ) :
   rw [sum_eval_mul_eval_eq_pair_sum_two, Finset.sum_comm]
   rfl
 
-/-- Translating `[1,x]` by `h ≤ x` embeds it in `[1,2x]`, so a shifted divisor sum is controlled by the ordinary reciprocal-mass estimate at `2x`.-/
+/-- Translating `[1,x]` by `h ≤ x` embeds it in `[1,2x]`, so a shifted divisor sum is controlled by the ordinary reciprocal-mass estimate at `2x`.
+@isnad1 id=le.1h4v.s6.92fb974f1bf1 from=translated src=- shape=e8c5f641 vocab=64507a6a
+-/
 theorem sum_restrictAbove_eval_shift_le {x h H : ℕ} (hhx : h ≤ x) :
     (∑ n ∈ Finset.Icc 1 x, (W.restrictAbove H).eval (n + h)) ≤
       2 * x * W.tailMass H := by
@@ -351,6 +413,9 @@ theorem sum_restrictAbove_eval_shift_le {x h H : ℕ} (hhx : h ≤ x) :
         (W.restrictAbove H).sum_eval_le_mul_mass (2 * x)
     _ = 2 * x * W.tailMass H := by rw [W.restrictAbove_mass]
 
+/--
+@isnad1 id=le.3h5v.s6.36f068b7cfb9 from=translated src=- shape=00539241 vocab=37b9d867
+-/
 theorem leftTailPairSum_le {x h H : ℕ} {M : ℝ} (hhx : h ≤ x) (hMnonneg : 0 ≤ M)
     (hM : ∀ N : ℕ, 1 ≤ N → N ≤ 2 * x → W.eval N ≤ M) :
     W.leftTailPairSum x h H ≤ x * M * W.tailMass H := by
@@ -371,6 +436,9 @@ theorem leftTailPairSum_le {x h H : ℕ} {M : ℝ} (hhx : h ≤ x) (hMnonneg : 0
       rw [W.restrictAbove_mass]
       ring
 
+/--
+@isnad1 id=le.3h5v.s6.a802efc70a01 from=translated src=- shape=1df5f679 vocab=5fe075c0
+-/
 theorem rightTailPairSum_le {x h H : ℕ} {M : ℝ} (hhx : h ≤ x) (hMnonneg : 0 ≤ M)
     (hM : ∀ N : ℕ, 1 ≤ N → N ≤ 2 * x → W.eval N ≤ M) :
     W.rightTailPairSum x h H ≤ 2 * x * M * W.tailMass H := by
@@ -389,6 +457,9 @@ theorem rightTailPairSum_le {x h H : ℕ} {M : ℝ} (hhx : h ≤ x) (hMnonneg : 
       mul_le_mul_of_nonneg_left (W.sum_restrictAbove_eval_shift_le hhx) hMnonneg
     _ = 2 * x * M * W.tailMass H := by ring
 
+/--
+@isnad1 id=eq.0h3v.s5.7954cbe97132 from=translated src=- shape=70bbfd87 vocab=b5b59b9a
+-/
 theorem sum_eval_mul_eval_eq_small_add_large (x h : ℕ) :
     (∑ n ∈ Finset.Icc 1 x, W.eval n * W.eval (n + h)) =
       W.smallPairSum x h + W.largePairSum x h := by
@@ -404,7 +475,9 @@ theorem sum_eval_mul_eval_eq_small_add_large (x h : ℕ) :
       (fun d₂ ↦ W.weight d₁ * W.weight d₂ *
         (shiftedDivisibilitySet x h d₁ d₂).card))
 
-/-- The `d₁d₂ ≤ x` part of Lemma 2.4 contributes at most `2xΛ²`.-/
+/-- The `d₁d₂ ≤ x` part of Lemma 2.4 contributes at most `2xΛ²`.
+@isnad1 id=le.2h3v.s6.826a016ac2a0 from=translated src=- shape=eb2e3749 vocab=63d2f527
+-/
 theorem smallPairSum_le_two_mul_mass_sq {x h : ℕ} (hh : 0 < h)
     (hlarge : ∀ d ∈ W.support, 0 < W.weight d →
       ∀ p : ℕ, p.Prime → p ∣ d → h < p) :
@@ -467,7 +540,9 @@ theorem smallPairSum_le_two_mul_mass_sq {x h : ℕ} (hh : 0 < h)
           rw [← Finset.sum_mul, ← Finset.mul_sum]
         _ = 2 * x * (∑ d ∈ W.support, W.weight d / d) ^ 2 := by ring
 
-/-- Lemma 2.4, in the exact finite-support form used by the supplier weights.-/
+/-- Lemma 2.4, in the exact finite-support form used by the supplier weights.
+@isnad1 id=le.5h4v.s7.87f66ab59d95 from=translated src=- shape=a906d822 vocab=58ffe2b9
+-/
 theorem shifted_divisor_convolution {x h : ℕ} {M : ℝ} (hh : 0 < h) (hhx : h ≤ x)
     (hMnonneg : 0 ≤ M)
     (hM : ∀ N : ℕ, 1 ≤ N → N ≤ 2 * x → W.eval N ≤ M)
@@ -493,7 +568,9 @@ theorem shifted_divisor_convolution {x h : ℕ} {M : ℝ} (hh : 0 < h) (hhx : h 
     _ ≤ 2 * x * W.mass ^ 2 + 4 * x * M * W.tailMass x.sqrt := by
       nlinarith
 
-/-- Lemma 2.4 with `M` instantiated by the paper's literal maximum norm.-/
+/-- Lemma 2.4 with `M` instantiated by the paper's literal maximum norm.
+@isnad1 id=le.3h3v.s7.e75c2b238b1d from=translated src=- shape=23a91c62 vocab=879876a4
+-/
 theorem shifted_divisor_convolution_supNorm {x h : ℕ} (hh : 0 < h) (hhx : h ≤ x)
     (hlarge : ∀ d ∈ W.support, 0 < W.weight d →
       ∀ p : ℕ, p.Prime → p ∣ d → h < p) :

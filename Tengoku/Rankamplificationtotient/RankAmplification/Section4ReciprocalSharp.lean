@@ -20,6 +20,9 @@ def logSqReciprocalKernel (t : ℝ) : ℝ := (1 + Real.log t) ^ 2 / t ^ 2
 def logSqReciprocalPrimitive (t : ℝ) : ℝ :=
   -((Real.log t ^ 2 + 4 * Real.log t + 5) / t)
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.7a225899885e from=translated src=- shape=111225e6 vocab=fe6e3b9f
+-/
 theorem hasDerivAt_logSqReciprocalPrimitive {t : ℝ} (ht : 0 < t) :
     HasDerivAt logSqReciprocalPrimitive (logSqReciprocalKernel t) t := by
   have hlog : HasDerivAt Real.log t⁻¹ t := Real.hasDerivAt_log ht.ne'
@@ -44,6 +47,9 @@ theorem hasDerivAt_logSqReciprocalPrimitive {t : ℝ} (ht : 0 < t) :
   rw [hval] at hres
   exact hres
 
+/--
+@isnad1 id=continuo.1h1v.s5.1389fa9b3960 from=translated src=- shape=d95d17de vocab=382d56e3
+-/
 theorem continuousOn_logSqReciprocalKernel {s : Set ℝ} (hs : s ⊆ {(0 : ℝ)}ᶜ) :
     ContinuousOn logSqReciprocalKernel s := by
   unfold logSqReciprocalKernel
@@ -53,7 +59,9 @@ theorem continuousOn_logSqReciprocalKernel {s : Set ℝ} (hs : s ⊆ {(0 : ℝ)}
   · intro t ht
     exact pow_ne_zero 2 (by simpa using hs ht)
 
-/-- The Abel kernel is decreasing on `[1,∞)`; this is what makes the sum-versus-integral comparison legitimate.-/
+/-- The Abel kernel is decreasing on `[1,∞)`; this is what makes the sum-versus-integral comparison legitimate.
+@isnad1 id=antitone.0h0v.s3.85a4fc893ea4 from=translated src=- shape=f2a09be3 vocab=70bb1403
+-/
 theorem antitoneOn_logSqReciprocalKernel :
     AntitoneOn logSqReciprocalKernel (Set.Ici (1 : ℝ)) := by
   intro s hs t ht hst
@@ -81,7 +89,9 @@ theorem antitoneOn_logSqReciprocalKernel :
   rw [← div_pow, ← div_pow]
   exact hsq
 
-/-- Fundamental theorem of calculus for the Abel kernel.-/
+/-- Fundamental theorem of calculus for the Abel kernel.
+@isnad1 id=eq.2h2v.s5.7389aadfa9e7 from=translated src=- shape=03104f1f vocab=ccde0344
+-/
 theorem integral_logSqReciprocalKernel {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) :
     (∫ t in a..b, logSqReciprocalKernel t) =
       logSqReciprocalPrimitive b - logSqReciprocalPrimitive a := by
@@ -98,7 +108,9 @@ theorem integral_logSqReciprocalKernel {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) 
 
 /-! ## Partial summation: the logarithm moves to the lower endpoint -/
 
-/-- **Abel/partial summation for the reciprocal-square tail, exact primitive form.** Summing the Abel kernel over the integers in `(y,P]` and comparing with `∫_y^P` leaves the logarithm at the *lower* endpoint `y`, uniformly in the upper endpoint `P`.-/
+/-- **Abel/partial summation for the reciprocal-square tail, exact primitive form.** Summing the Abel kernel over the integers in `(y,P]` and comparing with `∫_y^P` leaves the logarithm at the *lower* endpoint `y`, uniformly in the upper endpoint `P`.
+@isnad1 id=le.1h2v.s6.dd121427a277 from=translated src=- shape=3ec17ae1 vocab=af912db7
+-/
 theorem sum_Ioc_logSqReciprocalKernel_le_primitive {y P : ℕ} (hy : 1 ≤ y) :
     (∑ n ∈ Finset.Ioc y P, logSqReciprocalKernel n) ≤
       (Real.log y ^ 2 + 4 * Real.log y + 5) / y := by
@@ -138,7 +150,9 @@ theorem sum_Ioc_logSqReciprocalKernel_le_primitive {y P : ℕ} (hy : 1 ≤ y) :
       linarith
     linarith
 
-/-- The same partial summation in the `5 (1 + log y)^2 / y` normalisation.-/
+/-- The same partial summation in the `5 (1 + log y)^2 / y` normalisation.
+@isnad1 id=le.1h2v.s6.5601743a7579 from=translated src=- shape=f0bff4f2 vocab=af912db7
+-/
 theorem sum_Ioc_logSqReciprocalKernel_le {y P : ℕ} (hy : 1 ≤ y) :
     (∑ n ∈ Finset.Ioc y P, logSqReciprocalKernel n) ≤
       5 * (1 + Real.log y) ^ 2 / y := by
@@ -148,7 +162,9 @@ theorem sum_Ioc_logSqReciprocalKernel_le {y P : ℕ} (hy : 1 ≤ y) :
   gcongr
   nlinarith [hlogy]
 
-/-- **The sharp reciprocal-square prime tail, exact primitive form.** The best constant this elementary partial summation gives: the right-hand side is the exact value at `y` of the primitive of `(1 + log t)^2 / t^2`.-/
+/-- **The sharp reciprocal-square prime tail, exact primitive form.** The best constant this elementary partial summation gives: the right-hand side is the exact value at `y` of the primitive of `(1 + log t)^2 / t^2`.
+@isnad1 id=le.1h2v.s7.0d52a7664524 from=translated src=- shape=336c8d85 vocab=72462ccf
+-/
 theorem sum_squareSourcePrimeRange_one_add_log_sq_le_primitive {y P : ℕ} (hy : 1 ≤ y) :
     (∑ p ∈ squareSourcePrimeRange y P, (1 + Real.log p) ^ 2 / (p : ℝ) ^ 2) ≤
       (Real.log y ^ 2 + 4 * Real.log y + 5) / y := by
@@ -160,7 +176,9 @@ theorem sum_squareSourcePrimeRange_one_add_log_sq_le_primitive {y P : ℕ} (hy :
     positivity
   exact hsub.trans (sum_Ioc_logSqReciprocalKernel_le_primitive hy)
 
-/-- **The sharp reciprocal-square prime tail.** This is the missing partial-summation step of the paper's `Σ₁ ≪ x ∑_{p>y} (log p)^2/p^2 ≪ x (log y)^2 / y`: the logarithm is evaluated at the running prime on the left and only at the lower endpoint `y` on the right, uniformly in `P`.-/
+/-- **The sharp reciprocal-square prime tail.** This is the missing partial-summation step of the paper's `Σ₁ ≪ x ∑_{p>y} (log p)^2/p^2 ≪ x (log y)^2 / y`: the logarithm is evaluated at the running prime on the left and only at the lower endpoint `y` on the right, uniformly in `P`.
+@isnad1 id=le.1h2v.s7.4ea2db9ef626 from=translated src=- shape=09d42ea6 vocab=72462ccf
+-/
 theorem sum_squareSourcePrimeRange_one_add_log_sq_le {y P : ℕ} (hy : 1 ≤ y) :
     (∑ p ∈ squareSourcePrimeRange y P, (1 + Real.log p) ^ 2 / (p : ℝ) ^ 2) ≤
       5 * (1 + Real.log y) ^ 2 / y := by
@@ -172,7 +190,9 @@ theorem sum_squareSourcePrimeRange_one_add_log_sq_le {y P : ℕ} (hy : 1 ≤ y) 
     positivity
   exact hsub.trans (sum_Ioc_logSqReciprocalKernel_le hy)
 
-/-- The literal shape displayed in the paper: `∑_{y < p ≤ P} (log p)^2/p^2 ≪ (log y)^2/y`, with the absolute constant `5` and the harmless `1 +` guarding `y = 1`.-/
+/-- The literal shape displayed in the paper: `∑_{y < p ≤ P} (log p)^2/p^2 ≪ (log y)^2/y`, with the absolute constant `5` and the harmless `1 +` guarding `y = 1`.
+@isnad1 id=le.1h2v.s7.f2649c61de82 from=translated src=- shape=5721d52b vocab=72462ccf
+-/
 theorem sum_squareSourcePrimeRange_log_sq_le {y P : ℕ} (hy : 1 ≤ y) :
     (∑ p ∈ squareSourcePrimeRange y P, Real.log p ^ 2 / (p : ℝ) ^ 2) ≤
       5 * (1 + Real.log y) ^ 2 / y := by
@@ -188,7 +208,9 @@ theorem sum_squareSourcePrimeRange_log_sq_le {y P : ℕ} (hy : 1 ≤ y) :
 
 /-! ## The per-prime Mertens factor at the running prime -/
 
-/-- The per-prime input to (4.5) with the Mertens logarithm kept at the running prime `p`, rather than pushed up to the top endpoint of the range.-/
+/-- The per-prime input to (4.5) with the Mertens logarithm kept at the running prime `p`, rather than pushed up to the top endpoint of the range.
+@isnad1 id=le.1h2v.s7.caf8bef34ca2 from=translated src=- shape=11e7a443 vocab=eb9ea5ad
+-/
 theorem smoothProviderPairReciprocalSum_le_running {p X : ℕ} (hp : 3 ≤ p) :
     smoothProviderPairReciprocalSum p X ≤
       Real.exp (4 * Real.log 4) ^ 2 * ((1 + Real.log p) ^ 2 / (p : ℝ) ^ 2) := by
@@ -214,11 +236,16 @@ theorem smoothProviderPairReciprocalSum_le_running {p X : ℕ} (hp : 3 ≤ p) :
 /-- The explicit absolute constant `5 · 4^8` in the sharp form of (4.5).-/
 def section4SharpConstant : ℝ := 5 * Real.exp (4 * Real.log 4) ^ 2
 
+/--
+@isnad1 id=le.0h0v.s3.b1867c59e455 from=translated src=- shape=ff3a10fc vocab=e9af56cd
+-/
 theorem section4SharpConstant_nonneg : 0 ≤ section4SharpConstant := by
   unfold section4SharpConstant
   positivity
 
-/-- **Sharp (4.5).** The same left-hand side as `section4ReciprocalSum_le`, but with the logarithm at the *lower* endpoint `y` and an absolute constant, instead of the Mertens factor evaluated at the top endpoint `⌊√(2xy)⌋`.-/
+/-- **Sharp (4.5).** The same left-hand side as `section4ReciprocalSum_le`, but with the logarithm at the *lower* endpoint `y` and an absolute constant, instead of the Mertens factor evaluated at the top endpoint `⌊√(2xy)⌋`.
+@isnad1 id=le.2h2v.s6.b47b133cd7fc from=translated src=- shape=6cf1e217 vocab=95d38317
+-/
 theorem section4ReciprocalSum_le_sharp {x y : ℕ} (hy : 2 ≤ y) (_hxy : y ≤ x) :
     section4ReciprocalSum x y ≤
       section4SharpConstant * (x : ℝ) * (1 + Real.log y) ^ 2 / (y : ℝ) := by
@@ -245,13 +272,17 @@ theorem section4ReciprocalSum_le_sharp {x y : ℕ} (hy : 2 ≤ y) (_hxy : y ≤ 
       unfold section4SharpConstant
       ring
 
-/-- The sharp (4.5) estimate in the `(y : ℝ)⁻¹` normalisation used by the assembly modules.-/
+/-- The sharp (4.5) estimate in the `(y : ℝ)⁻¹` normalisation used by the assembly modules.
+@isnad1 id=le.2h2v.s6.9fe0d0119e01 from=translated src=- shape=e120a321 vocab=d843299c
+-/
 theorem section4ReciprocalSum_le_sharp' {x y : ℕ} (hy : 2 ≤ y) (hxy : y ≤ x) :
     section4ReciprocalSum x y ≤
       section4SharpConstant * (x : ℝ) * (1 + Real.log y) ^ 2 * (y : ℝ)⁻¹ := by
   simpa only [div_eq_mul_inv] using section4ReciprocalSum_le_sharp hy hxy
 
-/-- **Sharp outer estimate.** The Section 4 + Section 5 outer sum with the sharp reciprocal term; this is the sharp analogue of `nonsquare_outer_sum_le`.-/
+/-- **Sharp outer estimate.** The Section 4 + Section 5 outer sum with the sharp reciprocal term; this is the sharp analogue of `nonsquare_outer_sum_le`.
+@isnad1 id=le.3h3v.s8.ee40dbc0c70f from=translated src=- shape=3dbc266c vocab=84460c69
+-/
 theorem nonsquare_outer_sum_le_sharp {x y : ℕ} {saving : ℝ}
     (hy : 2 ≤ y) (hxy : y ≤ x)
     (hRankin : HasSection5IntermediateRankinSaving x y saving) :

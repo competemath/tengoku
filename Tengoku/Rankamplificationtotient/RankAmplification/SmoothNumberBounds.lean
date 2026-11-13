@@ -12,7 +12,9 @@ noncomputable section
 def finiteSmoothCount (R X : ℕ) : ℕ :=
   (finiteSmoothSet R X).card
 
-/-- Every positive integer has at least one divisor, so the ordinary smooth count is bounded by the divisor-weighted smooth count.-/
+/-- Every positive integer has at least one divisor, so the ordinary smooth count is bounded by the divisor-weighted smooth count.
+@isnad1 id=le.0h2v.s4.e6602f08ed9f from=translated src=- shape=ef554e1c vocab=e7a566fc
+-/
 theorem finiteSmoothCount_cast_le_divisorWeighted (R X : ℕ) :
     (finiteSmoothCount R X : ℝ) ≤ finiteDivisorWeightedSmoothCount R X := by
   rw [finiteSmoothCount, finiteDivisorWeightedSmoothCount_eq]
@@ -27,13 +29,18 @@ theorem finiteSmoothCount_cast_le_divisorWeighted (R X : ℕ) :
       exact_mod_cast Finset.card_pos.mpr
         ⟨1, Nat.mem_divisors.mpr ⟨one_dvd m, hm0⟩⟩
 
+/--
+@isnad1 id=lt.1h2v.s4.b4d9da15ba28 from=translated src=- shape=61bdc3e7 vocab=eee417d0
+-/
 theorem finiteSmoothCount_pos {R X : ℕ} (hX : 0 < X) :
     0 < finiteSmoothCount R X := by
   rw [finiteSmoothCount, Finset.card_pos]
   refine ⟨1, mem_finiteSmoothSet.mpr ⟨by norm_num, hX, ?_⟩⟩
   simp [IsSmooth]
 
-/-- Full-range explicit de Bruijn-type upper bound inherited from `PrimeRankinFull`.-/
+/-- Full-range explicit de Bruijn-type upper bound inherited from `PrimeRankinFull`.
+@isnad1 id=le.4h2v.s6.8999703230f4 from=translated src=- shape=287539db vocab=341f6fa2
+-/
 theorem finiteSmoothCount_le_full_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R) :
@@ -43,7 +50,9 @@ theorem finiteSmoothCount_le_full_paper_error {R X : ℕ}
   exact (finiteSmoothCount_cast_le_divisorWeighted R X).trans
     (finiteDivisorWeightedSmoothCount_le_full_paper_error hX hR hu huSqrt)
 
-/-- Clean exponential smooth-number estimate under the same explicit dominance condition.-/
+/-- Clean exponential smooth-number estimate under the same explicit dominance condition.
+@isnad1 id=le.5h2v.s7.1eea63c0ad83 from=translated src=- shape=729a7153 vocab=f26ff13e
+-/
 theorem finiteSmoothCount_le_full_half_u_log_u {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R)
@@ -55,7 +64,9 @@ theorem finiteSmoothCount_le_full_half_u_log_u {R X : ℕ}
   exact (finiteSmoothCount_cast_le_divisorWeighted R X).trans
     (finiteDivisorWeightedSmoothCount_le_full_half_u_log_u hX hR hu huSqrt hdom)
 
-/-- Log-normalized general smooth-number bound.-/
+/-- Log-normalized general smooth-number bound.
+@isnad1 id=le.4h2v.s6.f6c84c8bafb4 from=translated src=- shape=7f4498f1 vocab=fef44d05
+-/
 theorem log_finiteSmoothCount_div_le_full_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R) :

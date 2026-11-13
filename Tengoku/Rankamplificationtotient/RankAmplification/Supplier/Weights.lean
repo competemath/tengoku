@@ -18,12 +18,18 @@ noncomputable instance SupplierDescriptor.fintypeForWeights
 
 /-! ## Reindexing the numerical weights -/
 
+/--
+@isnad1 id=eq.0h6v.s6.30144547de2e from=translated src=- shape=5edb3af1 vocab=9a8fed87
+-/
 theorem supplierWeight_eq_fiberCard {J y Y : ℕ} (P : LabelledPrimeDemands J y Y)
     (x d : ℕ) :
     supplierWeight P x d =
       ((allSupplierSystems P x).filter fun s ↦ s.selectedDivisor = d).card := by
   rfl
 
+/--
+@isnad1 id=iff.0h6v.s5.692e894b1f7d from=translated src=- shape=3b644970 vocab=96310390
+-/
 theorem supplierWeight_pos_iff_mem_support {J y Y : ℕ} (P : LabelledPrimeDemands J y Y)
     (x d : ℕ) :
     0 < supplierWeight P x d ↔ d ∈ supplierDivisorSupport P x := by
@@ -38,6 +44,9 @@ theorem supplierWeight_pos_iff_mem_support {J y Y : ℕ} (P : LabelledPrimeDeman
     obtain ⟨s, hs, hsd⟩ := Finset.mem_image.mp h
     exact ⟨s, Finset.mem_filter.mpr ⟨hs, hsd⟩⟩
 
+/--
+@isnad1 id=mem.0h6v.s5.1aa06b50fd7f from=translated src=- shape=f611bc20 vocab=93610111
+-/
 theorem mem_allSupplierSystems {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
     {x : ℕ} (s : SupplierSystem P x) :
     s ∈ allSupplierSystems P x := by
@@ -45,6 +54,9 @@ theorem mem_allSupplierSystems {J y Y : ℕ} {P : LabelledPrimeDemands J y Y}
   unfold allSupplierSystems
   simp
 
+/--
+@isnad1 id=eq.1h6v.s6.e40c5864de19 from=translated src=- shape=ab5c8b14 vocab=09230739
+-/
 theorem supplierDivisorWeight_eq_dividingSystemCard {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) (hN : N ≠ 0) :
     supplierDivisorWeight P x N =
@@ -56,6 +68,9 @@ theorem supplierDivisorWeight_eq_dividingSystemCard {J y Y : ℕ}
   ext s
   simp [Nat.mem_divisors, hN]
 
+/--
+@isnad1 id=le.2h7v.s5.b751da30addb from=translated src=- shape=1a532e08 vocab=3993f720
+-/
 theorem one_le_supplierDivisorWeight_of_system {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} (s : SupplierSystem P x)
     (hN : N ≠ 0) (hdvd : s.selectedDivisor ∣ N) :
@@ -64,7 +79,9 @@ theorem one_le_supplierDivisorWeight_of_system {J y Y : ℕ}
   exact Finset.card_pos.mpr
     ⟨s, Finset.mem_filter.mpr ⟨mem_allSupplierSystems s, hdvd⟩⟩
 
-/-- The coverage conclusion of Lemma 10.7 from an explicit realization certificate.-/
+/-- The coverage conclusion of Lemma 10.7 from an explicit realization certificate.
+@isnad1 id=le.1h8v.s5.2ff5cb9fe48d from=translated src=- shape=da5ce16a vocab=46e7ff0b
+-/
 theorem one_le_supplierDivisorWeight_of_realization {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ} {s : SupplierSystem P x}
     (R : SupplierRealization (N := N) s) (hN : N ≠ 0) :
@@ -93,6 +110,9 @@ private theorem reciprocal_fiber_sum {α : Type*} [DecidableEq α]
       Finset.sum_fiberwise_of_maps_to
         (fun a ha ↦ Finset.mem_image.mpr ⟨a, ha, rfl⟩) (fun a ↦ 1 / (g a : ℚ))
 
+/--
+@isnad1 id=eq.0h5v.s4.18caed166954 from=translated src=- shape=d4ac095d vocab=48dd58e9
+-/
 theorem supplierReciprocalMass_eq_systemMass {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x : ℕ) :
     supplierReciprocalMass P x = supplierSystemReciprocalMass P x := by
@@ -133,6 +153,9 @@ def SupplierSystem.toRelaxedData {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} 
     (s : SupplierSystem P x) : RelaxedSupplierData P x :=
   ⟨s.partition, s.descriptor⟩
 
+/--
+@isnad1 id=injectiv.0h5v.s5.1205b8a06f86 from=translated src=- shape=8daa7dd7 vocab=d10e2487
+-/
 theorem SupplierSystem.toRelaxedData_injective {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} :
     Function.Injective (SupplierSystem.toRelaxedData :
@@ -143,6 +166,9 @@ theorem SupplierSystem.toRelaxedData_injective {J y Y : ℕ}
   cases h
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.b0c56e4801ef from=translated src=- shape=b2cf0157 vocab=b74921fb
+-/
 theorem SupplierSystem.reciprocalWeight_toRelaxedData {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.toRelaxedData.reciprocalWeight = 1 / (s.selectedDivisor : ℚ) := by
@@ -154,6 +180,9 @@ theorem SupplierSystem.reciprocalWeight_toRelaxedData {J y Y : ℕ}
     ((s.descriptor B).selectedDivisor : ℚ)
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=eq.0h5v.s5.0930b81ecee4 from=translated src=- shape=c5999433 vocab=62b575af
+-/
 theorem relaxedSupplierReciprocalMass_eq_partitionSum {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x : ℕ) :
     relaxedSupplierReciprocalMass P x =
@@ -169,6 +198,9 @@ theorem relaxedSupplierReciprocalMass_eq_partitionSum {J y Y : ℕ}
     fun (B : π.Block) (d : SupplierDescriptor P x B.1) ↦
       1 / (d.selectedDivisor : ℚ)).symm
 
+/--
+@isnad1 id=le.0h5v.s5.6e50ea519a04 from=translated src=- shape=c5999433 vocab=15df7173
+-/
 theorem supplierReciprocalMass_le_partitionDescriptorMass {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x : ℕ) :
     supplierReciprocalMass P x ≤
@@ -194,12 +226,18 @@ theorem supplierReciprocalMass_le_partitionDescriptorMass {J y Y : ℕ}
         unfold RelaxedSupplierData.reciprocalWeight
         exact Finset.prod_nonneg fun B hB ↦ one_div_nonneg.mpr (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=le.0h6v.s5.9ce6a09a7b2e from=translated src=- shape=d63a2954 vocab=cf666afe
+-/
 theorem descriptorReciprocalMass_nonneg {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x : ℕ) (B : Finset (Fin J)) :
     0 ≤ descriptorReciprocalMass P x B := by
   unfold descriptorReciprocalMass
   exact Finset.sum_nonneg fun d hd ↦ one_div_nonneg.mpr (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=le.0h5v.s4.5d3f270a6bc9 from=translated src=- shape=05601c67 vocab=973ed3c2
+-/
 theorem supplierReciprocalMass_nonneg {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x : ℕ) :
     0 ≤ supplierReciprocalMass P x := by
@@ -214,6 +252,9 @@ noncomputable def supplierSystemReciprocalTail {J y Y : ℕ}
   ∑ s ∈ (allSupplierSystems P x).filter (H < ·.selectedDivisor),
     1 / (s.selectedDivisor : ℚ)
 
+/--
+@isnad1 id=eq.0h6v.s4.b366428bad1d from=translated src=- shape=a1d5184a vocab=a85253bc
+-/
 theorem supplierReciprocalTail_eq_systemTail {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     supplierReciprocalTail P x H = supplierSystemReciprocalTail P x H := by
@@ -246,12 +287,18 @@ theorem supplierReciprocalTail_eq_systemTail {J y Y : ℕ}
       · intro s hs
         rfl
 
+/--
+@isnad1 id=le.0h6v.s4.2c331de56e4d from=translated src=- shape=68982eb5 vocab=2685cc15
+-/
 theorem supplierReciprocalTail_nonneg {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     0 ≤ supplierReciprocalTail P x H := by
   unfold supplierReciprocalTail
   exact Finset.sum_nonneg fun d hd ↦ div_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=le.0h6v.s4.88bdfe274f6a from=translated src=- shape=56aff6dd vocab=06defab9
+-/
 theorem supplierReciprocalTail_le_mass {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     supplierReciprocalTail P x H ≤ supplierReciprocalMass P x := by
@@ -264,6 +311,9 @@ theorem supplierReciprocalTail_le_mass {J y Y : ℕ}
   · intro s hs hnot
     exact one_div_nonneg.mpr (Nat.cast_nonneg _)
 
+/--
+@isnad1 id=le.0h6v.s5.3548800e1adb from=translated src=- shape=de9e02ea vocab=d908a4c4
+-/
 theorem supplierReciprocalTail_le_partitionDescriptorMass {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     supplierReciprocalTail P x H ≤
@@ -271,7 +321,9 @@ theorem supplierReciprocalTail_le_partitionDescriptorMass {J y Y : ℕ}
   (supplierReciprocalTail_le_mass P x H).trans
     (supplierReciprocalMass_le_partitionDescriptorMass P x)
 
-/-- A genuinely `H`-dependent finite tail estimate, requiring no distributional input.-/
+/-- A genuinely `H`-dependent finite tail estimate, requiring no distributional input.
+@isnad1 id=le.0h6v.s6.1dd485bde925 from=translated src=- shape=9739c47a vocab=49f2b909
+-/
 theorem supplierReciprocalTail_le_systemCount_div {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     supplierReciprocalTail P x H ≤
@@ -297,6 +349,9 @@ theorem supplierReciprocalTail_le_systemCount_div {J y Y : ℕ}
     _ = (Fintype.card (SupplierSystem P x) : ℚ) / (H + 1) := by
       simp [allSupplierSystems]
 
+/--
+@isnad1 id=le.0h6v.s8.1d082387d29f from=translated src=- shape=9739c47a vocab=37f90559
+-/
 theorem supplierReciprocalTail_le_relaxedSystemCount_div {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x H : ℕ) :
     supplierReciprocalTail P x H ≤
@@ -325,12 +380,18 @@ noncomputable def admissibleSourceOccurrenceCount {J y Y : ℕ}
 noncomputable def labelledPartitionCount (J : ℕ) : ℕ :=
   Fintype.card (LabelPartition J)
 
+/--
+@isnad1 id=le.0h6v.s4.1a8d99b232ef from=translated src=- shape=1fadf3b9 vocab=4e7ca376
+-/
 theorem admissibleSourceOccurrenceCount_le_primeFactors {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) :
     admissibleSourceOccurrenceCount P x N ≤ N.primeFactors.card := by
   unfold admissibleSourceOccurrenceCount admissibleSourceOccurrenceBases
   exact Finset.card_filter_le _ _
 
+/--
+@isnad1 id=lt.1h7v.s5.27a3519fc79c from=translated src=- shape=5d697f7a vocab=b4654b94
+-/
 theorem admissibleSourceOccurrenceBase_gt_lowerCutoff {J y Y q : ℕ}
     {P : LabelledPrimeDemands J y Y} {x N : ℕ}
     (hq : q ∈ admissibleSourceOccurrenceBases P x N) :
@@ -338,7 +399,9 @@ theorem admissibleSourceOccurrenceBase_gt_lowerCutoff {J y Y q : ℕ}
   obtain ⟨B, hB, d, rfl⟩ := (Finset.mem_filter.mp hq).2
   exact d.base_gt_lowerCutoff hB
 
-/-- The elementary product bound behind any logarithmic estimate for the occurrence count.-/
+/-- The elementary product bound behind any logarithmic estimate for the occurrence count.
+@isnad1 id=le.1h6v.s5.e3e9ad1b27fa from=translated src=- shape=13824005 vocab=328cfbbe
+-/
 theorem cutoffSucc_pow_admissibleSourceOccurrenceCount_le {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) (hN : N ≠ 0) :
     (y + 1) ^ admissibleSourceOccurrenceCount P x N ≤ N := by
@@ -366,6 +429,9 @@ theorem cutoffSucc_pow_admissibleSourceOccurrenceCount_le {J y Y : ℕ}
 def HasExponentialCutoffScale (y : ℕ) (T : ℝ) : Prop :=
   Real.exp T ≤ (y + 1 : ℕ)
 
+/--
+@isnad1 id=le.2h7v.s5.ab0b1ee6a038 from=translated src=- shape=1931a036 vocab=6da41275
+-/
 theorem exp_occurrenceCount_mul_le_ambient {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) {T : ℝ} (hN : N ≠ 0)
     (hscale : HasExponentialCutoffScale y T) :
@@ -379,6 +445,9 @@ theorem exp_occurrenceCount_mul_le_ambient {J y Y : ℕ}
     _ ≤ (N : ℝ) := by
       exact_mod_cast cutoffSucc_pow_admissibleSourceOccurrenceCount_le P x N hN
 
+/--
+@isnad1 id=le.4h7v.s6.d7d998c2de63 from=translated src=- shape=13df2399 vocab=75f8ea0e
+-/
 theorem occurrenceCount_le_log_two_mul_div_scale {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) {T : ℝ}
     (hN : 0 < N) (hNx : N ≤ 2 * x) (hT : 0 < T)
@@ -422,6 +491,9 @@ noncomputable def DividingSupplierSystem.labelBaseCode
       s.1.descriptorBase_mem_admissibleSourceOccurrenceBases hN s.2
         (s.1.partition.blockOf i)⟩⟩
 
+/--
+@isnad1 id=injectiv.1h6v.s6.e05c76d4ce03 from=translated src=- shape=e42000fb vocab=0e810263
+-/
 theorem DividingSupplierSystem.labelBaseCode_injective
     {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x N : ℕ} (hN : N ≠ 0) :
     Function.Injective (DividingSupplierSystem.labelBaseCode (P := P) (x := x) hN) := by
@@ -444,6 +516,9 @@ theorem DividingSupplierSystem.labelBaseCode_injective
   cases hdescriptor
   rfl
 
+/--
+@isnad1 id=le.1h6v.s5.0dbe7996f19a from=translated src=- shape=0ff0aa02 vocab=b1fa0453
+-/
 theorem supplierDivisorWeight_le_partitionCount_mul_occurrenceCount_pow {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) (hN : N ≠ 0) :
     supplierDivisorWeight P x N ≤
@@ -467,7 +542,9 @@ theorem supplierDivisorWeight_le_partitionCount_mul_occurrenceCount_pow {J y Y :
   rw [hfilterCard]
   simpa [labelledPartitionCount, admissibleSourceOccurrenceCount] using hcard
 
-/-- The paper's `max(1, W)^J` presentation of the same pointwise multiplicity estimate.-/
+/-- The paper's `max(1, W)^J` presentation of the same pointwise multiplicity estimate.
+@isnad1 id=le.1h6v.s6.af3ebda03b86 from=translated src=- shape=1c1466a3 vocab=813e5a0b
+-/
 theorem supplierDivisorWeight_le_partitionCount_mul_maxOccurrenceCount_pow {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (x N : ℕ) (hN : N ≠ 0) :
     supplierDivisorWeight P x N ≤

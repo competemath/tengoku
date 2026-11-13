@@ -31,7 +31,9 @@ def fixedRankSaddleError (J : ℕ) (x : ℝ) : ℝ :=
 def fixedRankSaddleNormalizedError (J : ℕ) (x : ℝ) : ℝ :=
   fixedRankSaddleError J x / scaleV x
 
-/-- The saddle Rankin parameter is exactly `√J V`.-/
+/-- The saddle Rankin parameter is exactly `√J V`.
+@isnad1 id=eq.2h2v.s5.772a60ab6ff2 from=translated src=- shape=1a91b752 vocab=152b833e
+-/
 theorem scaleL_div_fixedRankT_eq_sqrt_mul_scaleV
     {J : ℕ} {x : ℝ} (hJ : 0 < J) (hG : scaleG x ≠ 0) :
     scaleL x / fixedRankT J x = Real.sqrt J * scaleV x := by
@@ -40,7 +42,9 @@ theorem scaleL_div_fixedRankT_eq_sqrt_mul_scaleV
   rw [fixedRankT, scaleV_eq]
   field_simp [hsqrt, hG]
 
-/-- Exact unfolded rate at the saddle.-/
+/-- Exact unfolded rate at the saddle.
+@isnad1 id=eq.2h2v.s6.89b95cb0950a from=translated src=- shape=7fb43346 vocab=c2081d0f
+-/
 theorem fixedRankSaddleRate_eq
     {J : ℕ} {x : ℝ} (hJ : 0 < J) (hG : scaleG x ≠ 0) :
     fixedRankSaddleRate J x =
@@ -50,13 +54,17 @@ theorem fixedRankSaddleRate_eq
   rw [fixedRankSaddleRate, fixedRankSmoothRate,
     scaleL_div_fixedRankT_eq_sqrt_mul_scaleV hJ hG]
 
-/-- Requested exact cutoff hookup: `J T_J = √J G`.-/
+/-- Requested exact cutoff hookup: `J T_J = √J G`.
+@isnad1 id=eq.1h2v.s5.444bb21fecdb from=translated src=- shape=912221ca vocab=bc8f96ba
+-/
 theorem fixedRank_J_mul_T_eq_sqrt_mul_G
     {J : ℕ} {x : ℝ} (hJ : 0 < J) :
     (J : ℝ) * fixedRankT J x = Real.sqrt J * scaleG x :=
   nat_mul_fixedRankT hJ
 
-/-- On the positive scale range, `V²=L/A`.-/
+/-- On the positive scale range, `V²=L/A`.
+@isnad1 id=eq.2h1v.s5.8d68fe27c904 from=translated src=- shape=f0227ffc vocab=36615238
+-/
 theorem scaleV_sq_eq_scaleL_div_scaleA
     {x : ℝ} (hL : 0 < scaleL x) (hA : 0 < scaleA x) :
     scaleV x ^ 2 = scaleL x / scaleA x := by
@@ -66,7 +74,9 @@ theorem scaleV_sq_eq_scaleL_div_scaleA
   field_simp [hG.ne', hA.ne']
   nlinarith
 
-/-- Exact logarithmic form `2 log V = L₂ - log A`.-/
+/-- Exact logarithmic form `2 log V = L₂ - log A`.
+@isnad1 id=eq.2h1v.s5.94ccc3750a7c from=translated src=- shape=32d7207a vocab=0643ca23
+-/
 theorem two_mul_log_scaleV
     {x : ℝ} (hL : 0 < scaleL x) (hA : 0 < scaleA x) :
     2 * Real.log (scaleV x) = log2 x - Real.log (scaleA x) := by
@@ -82,7 +92,9 @@ theorem two_mul_log_scaleV
     _ = log2 x - Real.log (scaleA x) := by
       simp only [log2_eq, scaleL_eq]
 
-/-- Exact normalized error formula.-/
+/-- Exact normalized error formula.
+@isnad1 id=eq.3h2v.s6.b24fbc7194c8 from=translated src=- shape=6bac8ec4 vocab=d03e3714
+-/
 theorem fixedRankSaddleNormalizedError_eq
     {J : ℕ} {x : ℝ} (hJ : 0 < J)
     (hL : 0 < scaleL x) (hA : 0 < scaleA x) :
@@ -101,7 +113,9 @@ theorem fixedRankSaddleNormalizedError_eq
 
 /-! ## The first logarithmic normalization -/
 
-/-- The logarithm of `A` is negligible compared with `L₂`.-/
+/-- The logarithm of `A` is negligible compared with `L₂`.
+@isnad1 id=islittle.0h0v.s3.7fe1f0f28d74 from=translated src=- shape=afbd0cda vocab=5ee78dcd
+-/
 theorem log_scaleA_isLittleO_log2 :
     (fun x ↦ Real.log (scaleA x)) =o[atTop] log2 := by
   have hlogA : (fun x ↦ Real.log (scaleA x)) =o[atTop] scaleA := by
@@ -113,7 +127,9 @@ theorem log_scaleA_isLittleO_log2 :
       rfl
   exact hlogA.trans scaleA_isLittleO_log2
 
-/-- The inner logarithm of `√J V` is asymptotic to `L₂/2`.-/
+/-- The inner logarithm of `√J V` is asymptotic to `L₂/2`.
+@isnad1 id=tendsto.1h1v.s6.77f7a4a77fff from=translated src=- shape=0b136566 vocab=dd6f4600
+-/
 theorem tendsto_log_sqrt_mul_scaleV_div_half_log2_one
     (J : ℕ) (hJ : 0 < J) :
     Tendsto
@@ -157,7 +173,9 @@ theorem tendsto_log_sqrt_mul_scaleV_div_half_log2_one
 
 /-! ## The two iterated-logarithm errors -/
 
-/-- First expansion: `log₂(√J V) = log₃ x - log 2 + o(1)`.-/
+/-- First expansion: `log₂(√J V) = log₃ x - log 2 + o(1)`.
+@isnad1 id=tendsto.1h1v.s6.54f003abb045 from=translated src=- shape=d3847d93 vocab=76441d1f
+-/
 theorem tendsto_fixedRank_log2_error_zero
     (J : ℕ) (hJ : 0 < J) :
     Tendsto
@@ -191,7 +209,9 @@ theorem tendsto_fixedRank_log2_error_zero
   rw [hlogHalf]
   ring
 
-/-- The first iterated logarithm at the saddle itself tends to infinity.-/
+/-- The first iterated logarithm at the saddle itself tends to infinity.
+@isnad1 id=tendsto.1h1v.s5.1f32cafa022a from=translated src=- shape=cd3565ed vocab=deebb936
+-/
 theorem tendsto_log2_sqrt_mul_scaleV_atTop
     (J : ℕ) (hJ : 0 < J) :
     Tendsto (fun x ↦ log2 (Real.sqrt J * scaleV x)) atTop atTop := by
@@ -203,7 +223,9 @@ theorem tendsto_log2_sqrt_mul_scaleV_atTop
     Real.tendsto_log_atTop.comp
       (tendsto_scaleV_atTop.const_mul_atTop hsqrtJ)
 
-/-- Second expansion: `log₃(√J V) = log₄ x + o(1)`.-/
+/-- Second expansion: `log₃(√J V) = log₄ x + o(1)`.
+@isnad1 id=tendsto.1h1v.s5.f39c80c2fb4b from=translated src=- shape=4dd02a39 vocab=5696f350
+-/
 theorem tendsto_fixedRank_log3_error_zero
     (J : ℕ) (hJ : 0 < J) :
     Tendsto
@@ -259,7 +281,9 @@ theorem tendsto_fixedRank_log3_error_zero
   rw [Real.log_div hleft.ne' hright.ne']
   rfl
 
-/-- The full logarithmic bracket in the fixed-rank saddle differs from `A` by `o(1)`.-/
+/-- The full logarithmic bracket in the fixed-rank saddle differs from `A` by `o(1)`.
+@isnad1 id=tendsto.1h1v.s6.897a2c2b7b9e from=translated src=- shape=588a31b9 vocab=446d5f10
+-/
 theorem tendsto_fixedRank_saddleBracket_sub_scaleA_zero
     (J : ℕ) (hJ : 0 < J) :
     Tendsto
@@ -281,7 +305,9 @@ theorem tendsto_fixedRank_saddleBracket_sub_scaleA_zero
 
 /-! ## The `o_J(V)` conclusion -/
 
-/-- Explicit normalized form of the paper's fixed-rank saddle asymptotic.-/
+/-- Explicit normalized form of the paper's fixed-rank saddle asymptotic.
+@isnad1 id=tendsto.1h1v.s5.8d4c400ca114 from=translated src=- shape=26bbd37e vocab=e4350ea9
+-/
 theorem tendsto_fixedRankSaddleNormalizedError_zero
     (J : ℕ) (hJ : 0 < J) :
     Tendsto (fixedRankSaddleNormalizedError J) atTop (nhds 0) := by
@@ -299,7 +325,9 @@ theorem tendsto_fixedRankSaddleNormalizedError_zero
   filter_upwards [eventually_scaleL_pos, eventually_scaleA_pos] with x hL hA
   exact (fixedRankSaddleNormalizedError_eq hJ hL hA).symm
 
-/-- Main theorem: at `T=G/√J`, the smooth rate is `√J G + o_J(V)`.-/
+/-- Main theorem: at `T=G/√J`, the smooth rate is `√J G + o_J(V)`.
+@isnad1 id=islittle.1h1v.s5.c4165fcf8979 from=translated src=- shape=39707f78 vocab=d3be69ab
+-/
 theorem fixedRankSaddleError_isLittleO_scaleV
     (J : ℕ) (hJ : 0 < J) :
     (fun x ↦ fixedRankSaddleRate J x - Real.sqrt J * scaleG x)
@@ -312,7 +340,9 @@ theorem fixedRankSaddleError_isLittleO_scaleV
   · change Tendsto (fixedRankSaddleNormalizedError J) atTop (nhds 0)
     exact tendsto_fixedRankSaddleNormalizedError_zero J hJ
 
-/-- Equivalent named form with the smooth-rate definition exposed.-/
+/-- Equivalent named form with the smooth-rate definition exposed.
+@isnad1 id=islittle.1h1v.s5.0d9ca76dfad7 from=translated src=- shape=4d368d92 vocab=fc566cb5
+-/
 theorem fixedRankSmoothRate_at_saddle_isLittleO
     (J : ℕ) (hJ : 0 < J) :
     (fun x ↦ fixedRankSmoothRate x (scaleG x / Real.sqrt J) -
@@ -320,7 +350,9 @@ theorem fixedRankSmoothRate_at_saddle_isLittleO
   simpa only [fixedRankSaddleRate, fixedRankT] using
     fixedRankSaddleError_isLittleO_scaleV J hJ
 
-/-- Quantified consequence: every positive multiple of `V` eventually bounds the absolute fixed-rank saddle error.-/
+/-- Quantified consequence: every positive multiple of `V` eventually bounds the absolute fixed-rank saddle error.
+@isnad1 id=eventual.2h2v.s6.6abd8a743f16 from=translated src=- shape=1e769971 vocab=89c16ea3
+-/
 theorem eventually_fixedRankSaddleError_norm_le
     (J : ℕ) (hJ : 0 < J) {c : ℝ} (hc : 0 < c) :
     ∀ᶠ x : ℝ in atTop,

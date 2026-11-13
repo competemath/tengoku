@@ -32,6 +32,9 @@ variable (P : Progression)
 /-- Value of the progression at parameter `t`.-/
 def value (t : ℕ) : ℕ := P.base + P.step * t
 
+/--
+@isnad1 id=strictmo.0h1v.s3.a3ee4130df62 from=translated src=- shape=8735051e vocab=c5801a54
+-/
 theorem value_strictMono : StrictMono P.value := by
   intro t u htu
   unfold value
@@ -46,6 +49,9 @@ def valueEmbedding : ℕ ↪ ℕ where
 def support (R : ℕ) : Finset ℕ :=
   (Finset.range R).map P.valueEmbedding
 
+/--
+@isnad1 id=iff.0h3v.s5.31b8a6f323de from=translated src=- shape=bd08aaef vocab=4152e439
+-/
 @[simp]
 theorem mem_support {R n : ℕ} :
     n ∈ P.support R ↔ ∃ t < R, P.value t = n := by
@@ -55,6 +61,9 @@ theorem mem_support {R n : ℕ} :
 def badResidueSet (d : ℕ) : Finset (Fin d) :=
   Finset.univ.filter fun t ↦ d ∣ P.value t
 
+/--
+@isnad1 id=iff.0h3v.s5.c4d3b2eb3638 from=translated src=- shape=e60c17ab vocab=422fa2d2
+-/
 @[simp]
 theorem mem_badResidueSet {d : ℕ} {t : Fin d} :
     t ∈ P.badResidueSet d ↔ d ∣ P.value t := by
@@ -63,12 +72,17 @@ theorem mem_badResidueSet {d : ℕ} {t : Fin d} :
 /-- Number of progression parameters modulo `d` producing a divisible value.-/
 def badResidueCount (d : ℕ) : ℕ := (P.badResidueSet d).card
 
+/--
+@isnad1 id=modeq.1h4v.s4.92516b7b7347 from=translated src=- shape=554d9180 vocab=758b9ddf
+-/
 theorem value_modEq {d t u : ℕ} (htu : t ≡ u [MOD d]) :
     P.value t ≡ P.value u [MOD d] := by
   unfold value
   exact htu.mul_left P.step |>.add_left P.base
 
-/-- Multiplication by the step is cancellable modulo every modulus coprime to it.-/
+/-- Multiplication by the step is cancellable modulo every modulus coprime to it.
+@isnad1 id=le.1h2v.s4.8637436173e7 from=translated src=- shape=24d82ae4 vocab=ecda3084
+-/
 theorem badResidueSet_card_le_one {d : ℕ} (hcop : P.step.Coprime d) :
     (P.badResidueSet d).card ≤ 1 := by
   apply Finset.card_le_one.mpr
@@ -95,7 +109,9 @@ theorem badResidueSet_card_le_one {d : ℕ} (hcop : P.step.Coprime d) :
   simpa only [Nat.ModEq, Nat.mod_eq_of_lt x.isLt,
     Nat.mod_eq_of_lt y.isLt] using hmod
 
-/-- A primitive linear congruence has a root modulo every positive modulus coprime to its step.-/
+/-- A primitive linear congruence has a root modulo every positive modulus coprime to its step.
+@isnad1 id=nonempty.2h2v.s4.e4f54a3d1808 from=translated src=- shape=acab3b04 vocab=8fe862b4
+-/
 theorem badResidueSet_nonempty {d : ℕ} (hd : 0 < d)
     (hcop : P.step.Coprime d) : (P.badResidueSet d).Nonempty := by
   letI : NeZero d := ⟨hd.ne'⟩
@@ -124,6 +140,9 @@ theorem badResidueSet_nonempty {d : ℕ} (hd : 0 < d)
         P.base - ((P.step : ZMod d) * (P.step : ZMod d)⁻¹) * P.base := by ring
     _ = 0 := by rw [ZMod.mul_inv_of_unit _ hstepUnit]; ring
 
+/--
+@isnad1 id=eq.2h2v.s4.47f57e665134 from=translated src=- shape=2f34ae5d vocab=2902af40
+-/
 theorem badResidueCount_eq_one {d : ℕ} (hd : 0 < d)
     (hcop : P.step.Coprime d) : P.badResidueCount d = 1 := by
   apply Nat.le_antisymm
@@ -136,6 +155,9 @@ theorem badResidueCount_eq_one {d : ℕ} (hd : 0 < d)
 def divisibleParameterSet (R d : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ d ∣ P.value t
 
+/--
+@isnad1 id=iff.0h4v.s5.46ae5acddad4 from=translated src=- shape=399c5118 vocab=22bde46f
+-/
 @[simp]
 theorem mem_divisibleParameterSet {R d t : ℕ} :
     t ∈ P.divisibleParameterSet R d ↔ t < R ∧ d ∣ P.value t := by
@@ -145,11 +167,17 @@ theorem mem_divisibleParameterSet {R d t : ℕ} :
 def parameterResidueFiber (_P : Progression) (R d : ℕ) (a : Fin d) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ t ≡ a.val [MOD d]
 
+/--
+@isnad1 id=iff.0h5v.s5.42489653deff from=translated src=- shape=16294c33 vocab=5853fc60
+-/
 @[simp]
 theorem mem_parameterResidueFiber {R d : ℕ} {a : Fin d} {t : ℕ} :
     t ∈ P.parameterResidueFiber R d a ↔ t < R ∧ t ≡ a.val [MOD d] := by
   simp [parameterResidueFiber]
 
+/--
+@isnad1 id=eq.1h4v.s6.b8c290803fd9 from=translated src=- shape=9b32d9ac vocab=5b14a631
+-/
 theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
     (P.parameterResidueFiber R d a).card =
       R / d + if a.val < R % d then 1 else 0 := by
@@ -160,10 +188,16 @@ theorem card_parameterResidueFiber {R d : ℕ} (hd : 0 < d) (a : Fin d) :
 def residueExcessCount (R d : ℕ) : ℕ :=
   ((P.badResidueSet d).filter fun a ↦ a.val < R % d).card
 
+/--
+@isnad1 id=le.1h3v.s4.1a81df429564 from=translated src=- shape=4683bdf8 vocab=03c9d886
+-/
 theorem residueExcessCount_le_one {R d : ℕ} (hcop : P.step.Coprime d) :
     P.residueExcessCount R d ≤ 1 := by
   exact (Finset.card_filter_le _ _).trans (P.badResidueSet_card_le_one hcop)
 
+/--
+@isnad1 id=eq.1h3v.s5.1bf8fdae17be from=translated src=- shape=b0ec5aa7 vocab=92be5260
+-/
 theorem divisibleParameterSet_eq_biUnion {R d : ℕ} (hd : 0 < d) :
     P.divisibleParameterSet R d =
       (P.badResidueSet d).biUnion (P.parameterResidueFiber R d) := by
@@ -185,6 +219,9 @@ theorem divisibleParameterSet_eq_biUnion {R d : ℕ} (hd : 0 < d) :
     exact ⟨htaData.1,
       Nat.modEq_zero_iff_dvd.mp (hvalue.trans haDiv.modEq_zero_nat)⟩
 
+/--
+@isnad1 id=pairwise.0h3v.s4.cabab1c47e61 from=translated src=- shape=bba5c1f8 vocab=ff8e5dc9
+-/
 theorem parameterResidueFiber_pairwiseDisjoint (R d : ℕ) :
     ((P.badResidueSet d : Finset (Fin d)) : Set (Fin d)).PairwiseDisjoint
       (P.parameterResidueFiber R d) := by
@@ -201,6 +238,9 @@ theorem parameterResidueFiber_pairwiseDisjoint (R d : ℕ) :
   simpa only [Nat.ModEq, Nat.mod_eq_of_lt a.isLt,
     Nat.mod_eq_of_lt b.isLt] using habMod
 
+/--
+@isnad1 id=eq.2h3v.s5.2be3ef4a9bfc from=translated src=- shape=9030ce2a vocab=ebc95b19
+-/
 theorem card_divisibleParameterSet_eq {R d : ℕ} (hd : 0 < d)
     (hcop : P.step.Coprime d) :
     (P.divisibleParameterSet R d).card =
@@ -223,6 +263,9 @@ theorem card_divisibleParameterSet_eq {R d : ℕ} (hd : 0 < d)
 def activePrimeSet (z : ℕ) : Finset ℕ :=
   (Nat.primesLE z).filter fun p ↦ ¬p ∣ P.step
 
+/--
+@isnad1 id=iff.0h3v.s5.06dfc062ea78 from=translated src=- shape=9c45284b vocab=42b5dc2e
+-/
 @[simp]
 theorem mem_activePrimeSet {z p : ℕ} :
     p ∈ P.activePrimeSet z ↔ p.Prime ∧ p ≤ z ∧ ¬p ∣ P.step := by
@@ -233,6 +276,9 @@ theorem mem_activePrimeSet {z p : ℕ} :
 def activePrimeProduct (z : ℕ) : ℕ :=
   ∏ p ∈ P.activePrimeSet z, p
 
+/--
+@isnad1 id=squarefr.0h2v.s3.45b54be47f17 from=translated src=- shape=a51c7acb vocab=2e93cc33
+-/
 theorem activePrimeProduct_squarefree (z : ℕ) :
     Squarefree (P.activePrimeProduct z) := by
   rw [activePrimeProduct]
@@ -242,6 +288,9 @@ theorem activePrimeProduct_squarefree (z : ℕ) :
   exact (coprime_primes (P.mem_activePrimeSet.mp hp).1
     (P.mem_activePrimeSet.mp hq).1).mpr hpq
 
+/--
+@isnad1 id=coprime.0h2v.s3.8b3ebf6bb75a from=translated src=- shape=4fe5e5f8 vocab=efdda3f2
+-/
 theorem step_coprime_activePrimeProduct (z : ℕ) :
     P.step.Coprime (P.activePrimeProduct z) := by
   rw [activePrimeProduct, Nat.coprime_prod_right_iff]
@@ -249,6 +298,9 @@ theorem step_coprime_activePrimeProduct (z : ℕ) :
   have hpData := P.mem_activePrimeSet.mp hp
   exact (hpData.1.coprime_iff_not_dvd.mpr hpData.2.2).symm
 
+/--
+@isnad1 id=coprime.1h3v.s4.c280b5e537dd from=translated src=- shape=77a05c3d vocab=b8bfbc63
+-/
 theorem step_coprime_of_dvd_activePrimeProduct {z d : ℕ}
     (hd : d ∣ P.activePrimeProduct z) : P.step.Coprime d :=
   (P.step_coprime_activePrimeProduct z).coprime_dvd_right hd
@@ -260,15 +312,24 @@ def localDensity (_P : Progression) (p : ℕ) : ℝ := (p : ℝ)⁻¹
 def sieveDensity : ArithmeticFunction ℝ :=
   ArithmeticFunction.prodPrimeFactors P.localDensity
 
+/--
+@isnad1 id=ismultip.0h1v.s2.b6989e9f5269 from=translated src=- shape=1a6c1393 vocab=75c2b38d
+-/
 theorem sieveDensity_isMultiplicative : P.sieveDensity.IsMultiplicative :=
   ArithmeticFunction.IsMultiplicative.prodPrimeFactors P.localDensity
 
+/--
+@isnad1 id=eq.1h2v.s4.2d16c471059a from=translated src=- shape=e409d70f vocab=7bdabad5
+-/
 @[simp]
 theorem sieveDensity_apply_prime {p : ℕ} (hp : p.Prime) :
     P.sieveDensity p = (p : ℝ)⁻¹ := by
   rw [sieveDensity, ArithmeticFunction.prodPrimeFactors_apply hp.ne_zero]
   simp [hp.primeFactors, localDensity]
 
+/--
+@isnad1 id=eq.2h2v.s5.a943fc364451 from=translated src=- shape=6e1e9a50 vocab=fac8fe7b
+-/
 theorem sieveDensity_eq_inv {d : ℕ} (hd : d ≠ 0) (hsq : Squarefree d) :
     P.sieveDensity d = (d : ℝ)⁻¹ := by
   rw [sieveDensity, ArithmeticFunction.prodPrimeFactors_apply hd]
@@ -301,6 +362,9 @@ def selbergSieve (R z : ℕ) (level : ℝ) (hlevel : 1 ≤ level) : SelbergSieve
   level := level
   one_le_level := hlevel
 
+/--
+@isnad1 id=eq.0h4v.s4.bbdc91f4eb7d from=translated src=- shape=f98426bb vocab=a1facfa2
+-/
 theorem boundingSieve_multSum (R z d : ℕ) :
     (P.boundingSieve R z).multSum d = (P.divisibleParameterSet R d).card := by
   simp [BoundingSieve.multSum, boundingSieve, support, valueEmbedding,
@@ -308,12 +372,18 @@ theorem boundingSieve_multSum (R z d : ℕ) :
   rw [Finset.filter_map, Finset.card_map]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.8e3b04ea7c20 from=translated src=- shape=ff725812 vocab=38a6c687
+-/
 theorem boundingSieve_rem {R z d : ℕ} :
     (P.boundingSieve R z).rem d =
       (P.divisibleParameterSet R d).card - P.sieveDensity d * R := by
   rw [BoundingSieve.rem, P.boundingSieve_multSum]
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.e100c7d85ff8 from=translated src=- shape=17004d52 vocab=2ff14b05
+-/
 theorem boundingSieve_rem_eq_excess_sub_fraction
     {R z d : ℕ} (hdDvd : d ∣ P.activePrimeProduct z) :
     (P.boundingSieve R z).rem d =
@@ -332,6 +402,9 @@ theorem boundingSieve_rem_eq_excess_sub_fraction
   field_simp
   ring
 
+/--
+@isnad1 id=le.1h4v.s5.202619da1d96 from=translated src=- shape=e6078593 vocab=0e325907
+-/
 theorem abs_boundingSieve_rem_le_one {R z d : ℕ}
     (hdDvd : d ∣ P.activePrimeProduct z) :
     |(P.boundingSieve R z).rem d| ≤ 1 := by
@@ -356,6 +429,9 @@ def siftedParameterSet (R z : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦
     Nat.Coprime (P.activePrimeProduct z) (P.value t)
 
+/--
+@isnad1 id=iff.0h4v.s5.82085a527d32 from=translated src=- shape=7c46f716 vocab=74339a48
+-/
 @[simp]
 theorem mem_siftedParameterSet {R z t : ℕ} :
     t ∈ P.siftedParameterSet R z ↔
@@ -366,11 +442,17 @@ theorem mem_siftedParameterSet {R z t : ℕ} :
 def primeParameterSet (R : ℕ) : Finset ℕ :=
   (Finset.range R).filter fun t ↦ (P.value t).Prime
 
+/--
+@isnad1 id=iff.0h3v.s4.d4213a8ba3e2 from=translated src=- shape=7d615a57 vocab=88f65004
+-/
 @[simp]
 theorem mem_primeParameterSet {R t : ℕ} :
     t ∈ P.primeParameterSet R ↔ t < R ∧ (P.value t).Prime := by
   simp [primeParameterSet]
 
+/--
+@isnad1 id=le.1h3v.s5.e1dceb1ab658 from=translated src=- shape=f00d60e4 vocab=b3758232
+-/
 theorem primeParameterSet_subset_siftedParameterSet {R z : ℕ}
     (hlarge : ∀ t < R, z < P.value t) :
     P.primeParameterSet R ⊆ P.siftedParameterSet R z := by
@@ -394,6 +476,9 @@ def minimizingSieve (R z : ℕ) : SelbergSieve :=
       exact_mod_cast Nat.le_max_left 1 z
     nlinarith)
 
+/--
+@isnad1 id=eq.0h3v.s4.8df960aabc8f from=translated src=- shape=e14ff061 vocab=16377b4f
+-/
 @[simp]
 theorem minimizingSieve_totalMass (R z : ℕ) :
     (P.minimizingSieve R z).totalMass = R := rfl
@@ -402,6 +487,9 @@ theorem minimizingSieve_totalMass (R z : ℕ) :
 def localSieveProduct (z : ℕ) : ℝ :=
   ∏ p ∈ P.activePrimeSet z, (1 - (p : ℝ)⁻¹)
 
+/--
+@isnad1 id=lt.0h2v.s4.8b0d2133675b from=translated src=- shape=0d4521f5 vocab=719807d1
+-/
 theorem localSieveProduct_pos (z : ℕ) : 0 < P.localSieveProduct z := by
   unfold localSieveProduct
   exact Finset.prod_pos fun p hp ↦
@@ -415,6 +503,9 @@ def minimizingWeightRemainderMajorant (R z : ℕ) : ℝ :=
       |BoundingSieve.lambdaSquared (SelbergFundamental.minimizingWeight s) d|
     else 0
 
+/--
+@isnad1 id=le.0h3v.s4.9defcdcaf9e8 from=translated src=- shape=37780208 vocab=dcc04062
+-/
 theorem levelRestrictedRemainder_le_majorant (R z : ℕ) :
     SelbergFundamental.levelRestrictedRemainder (P.minimizingSieve R z) ≤
       P.minimizingWeightRemainderMajorant R z := by
@@ -468,6 +559,9 @@ def ProgressionSelbergUpperBound
     (P.boundingSieve R (cutoff R)).siftedSum ≤
       C * R * P.localSieveProduct (cutoff R)
 
+/--
+@isnad1 id=progress.2h3v.s4.838f5edd1984 from=translated src=- shape=1ac400c4 vocab=94bdeccb
+-/
 theorem progressionSelbergUpperBound_of_mass_and_remainder
     {cutoff : ℕ → ℕ} {Cmass Crem : ℝ}
     (hmass : TruncatedMassLocalProductUpperBound cutoff Cmass)
@@ -502,6 +596,9 @@ theorem progressionSelbergUpperBound_of_mass_and_remainder
 
 /-! ## Unconditional local-product comparison -/
 
+/--
+@isnad1 id=eq.0h2v.s4.b3fd2fa45acf from=translated src=- shape=859b6895 vocab=28c53ca7
+-/
 theorem localSieveProduct_eq_directMertens_mul_correction
     (P : Progression) (z : ℕ) :
     P.localSieveProduct z =
@@ -520,6 +617,9 @@ theorem localSieveProduct_eq_directMertens_mul_correction
     field_simp [(BFPSTwoAffine.directMertensFactor_pos hpPrime).ne']
   · simp [hpd, BFPSTwoAffine.multiplierCorrectionFactor]
 
+/--
+@isnad1 id=le.0h2v.s4.28f7625f58e3 from=translated src=- shape=2a4f93dc vocab=d5d593e7
+-/
 theorem localSieveProduct_le_directMertens_mul_totientWeight
     (P : Progression) (z : ℕ) :
     P.localSieveProduct z ≤
@@ -530,6 +630,9 @@ theorem localSieveProduct_le_directMertens_mul_totientWeight
     (BFPSTwoAffine.correctionProduct_le_totientEulerWeight P.step_pos.ne')
     (BFPSTwoAffine.directMertensProduct_pos z).le
 
+/--
+@isnad1 id=le.0h2v.s5.4e893df8b68c from=translated src=- shape=47982254 vocab=cb9ce8ed
+-/
 theorem localSieveProduct_le_directMertens_mul_totient_ratio
     (P : Progression) (z : ℕ) :
     P.localSieveProduct z ≤
@@ -567,14 +670,23 @@ def dyadicProgression (D a j : ℕ) (hD : 0 < D) (hcop : D.Coprime a) :
     exact (Nat.coprime_add_mul_left_right D (reducedResidue D a)
       (dyadicStartIndex D a j)).mpr hb
 
+/--
+@isnad1 id=eq.2h3v.s4.4fde126ff4d3 from=translated src=- shape=4db3e2e9 vocab=1ca8314c
+-/
 @[simp]
 theorem dyadicProgression_step {D a j : ℕ} {hD : 0 < D} {hcop : D.Coprime a} :
     (dyadicProgression D a j hD hcop).step = D := rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.1b152bbdcc67 from=translated src=- shape=deaad44a vocab=a8030e9f
+-/
 @[simp]
 theorem dyadicProgression_base {D a j : ℕ} {hD : 0 < D} {hcop : D.Coprime a} :
     (dyadicProgression D a j hD hcop).base = dyadicBase D a j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.a831075715dc from=translated src=- shape=8d468da8 vocab=775cecde
+-/
 theorem residuePrimeIntervalSet_reducedResidue (D a L U : ℕ) :
     residuePrimeIntervalSet D a L U =
       residuePrimeIntervalSet D (reducedResidue D a) L U := by
@@ -665,6 +777,9 @@ private theorem dyadic_parameter_data
       _ = b + D * k := by rw [hKt]
       _ = q := hqEq.symm
 
+/--
+@isnad1 id=le.2h3v.s6.8670f4e9a842 from=translated src=- shape=271b6297 vocab=62fa749c
+-/
 theorem residuePrimeIntervalCount_le_primeParameterSet
     {D a j : ℕ} (hD : 0 < D) (hcop : D.Coprime a) :
     residuePrimeIntervalCount D a (dyadicLength j * D)
@@ -711,6 +826,9 @@ theorem residuePrimeIntervalCount_le_primeParameterSet
       _ = P.value (parameter r) := congrArg P.value heq
       _ = r := by rw [hrParam]; exact hrData.2
 
+/--
+@isnad1 id=eq.2h3v.s6.2bf0ff4e16af from=translated src=- shape=48630d04 vocab=1438be25
+-/
 theorem residuePrimeIntervalSet_eq_empty_of_not_coprime
     {D a j : ℕ} (hD : 0 < D) (hcop : ¬D.Coprime a) :
     residuePrimeIntervalSet D a (dyadicLength j * D)
@@ -735,6 +853,9 @@ theorem residuePrimeIntervalSet_eq_empty_of_not_coprime
   have hqLe : q ≤ D := hgEq ▸ hgLe
   omega
 
+/--
+@isnad1 id=eq.2h3v.s5.48e6b1211da0 from=translated src=- shape=8536cc9b vocab=2115ab14
+-/
 theorem residuePrimeIntervalCount_eq_zero_of_not_coprime
     {D a j : ℕ} (hD : 0 < D) (hcop : ¬D.Coprime a) :
     residuePrimeIntervalCount D a (dyadicLength j * D)
@@ -743,6 +864,9 @@ theorem residuePrimeIntervalCount_eq_zero_of_not_coprime
     residuePrimeIntervalSet_eq_empty_of_not_coprime hD hcop]
   simp
 
+/--
+@isnad1 id=lt.2h4v.s5.ae25d24fcf27 from=translated src=- shape=2154f4f7 vocab=5885c7a1
+-/
 theorem dyadicProgression_value_gt_lower
     {D a j : ℕ} (hD : 0 < D) (hcop : D.Coprime a) (t : ℕ) :
     dyadicLength j * D < (dyadicProgression D a j hD hcop).value t := by
@@ -755,7 +879,9 @@ theorem dyadicProgression_value_gt_lower
       dyadicStartIndex, hb]
     nlinarith
 
-/-- The exact elementary census: a dyadic interval contains at most `2^j` members of one residue class, including the non-coprime and zero-modulus cases.-/
+/-- The exact elementary census: a dyadic interval contains at most `2^j` members of one residue class, including the non-coprime and zero-modulus cases.
+@isnad1 id=le.0h3v.s5.aa3a6566673b from=translated src=- shape=a5005177 vocab=aedf91e6
+-/
 theorem residuePrimeIntervalCount_le_dyadicLength (D a j : ℕ) :
     residuePrimeIntervalCount D a (dyadicLength j * D)
       (2 * dyadicLength j * D) ≤ dyadicLength j := by
@@ -777,7 +903,9 @@ theorem residuePrimeIntervalCount_le_dyadicLength (D a j : ℕ) :
     · rw [residuePrimeIntervalCount_eq_zero_of_not_coprime hDPos hcop]
       exact Nat.zero_le _
 
-/-- A completely unconditional baseline.-/
+/-- A completely unconditional baseline.
+@isnad1 id=dyadicbr.0h3v.s3.f8b2885855b6 from=translated src=- shape=04abdc1c vocab=8f002bbc
+-/
 theorem dyadicBrunTitchmarshHypothesis_elementary (D a J : ℕ) :
     DyadicBrunTitchmarshHypothesis (J : ℝ) D a J := by
   intro j hj
@@ -837,7 +965,9 @@ def DyadicCutoffBelowInterval
     (cutoff : ℕ → ℕ) (D J : ℕ) : Prop :=
   ∀ j ∈ Finset.Icc 2 J, cutoff (dyadicLength j) ≤ dyadicLength j * D
 
-/-- Euler's elementary Mertens-product estimate is already strong enough for the dyadic local-product input at the identity cutoff, with its exact change-of-base constant.-/
+/-- Euler's elementary Mertens-product estimate is already strong enough for the dyadic local-product input at the identity cutoff, with its exact change-of-base constant.
+@isnad1 id=dyadicdi.0h1v.s4.91b4edf517ca from=translated src=- shape=b71003c7 vocab=ed586ba2
+-/
 theorem dyadicDirectMertensUpperBound_id (J : ℕ) :
     DyadicDirectMertensUpperBound id (Real.log 2)⁻¹ J := by
   intro j hj
@@ -865,6 +995,9 @@ theorem dyadicDirectMertensUpperBound_id (J : ℕ) :
         ne_of_gt (Real.log_pos (by norm_num))
       field_simp
 
+/--
+@isnad1 id=dyadiccu.1h2v.s4.34e89eb628d1 from=translated src=- shape=e19c2bca vocab=31c8b8cf
+-/
 theorem dyadicCutoffBelowInterval_id {D J : ℕ} (hD : 0 < D) :
     DyadicCutoffBelowInterval id D J := by
   intro j _hj

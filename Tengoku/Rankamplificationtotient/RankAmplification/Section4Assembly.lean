@@ -16,6 +16,9 @@ noncomputable section
 def section4MertensFactor (P : ℕ) : ℝ :=
   Real.exp (4 * Real.log 4) * (1 + Real.log P)
 
+/--
+@isnad1 id=le.0h1v.s3.87905cf0fc3c from=translated src=- shape=b9369acb vocab=6b6a57e4
+-/
 theorem section4MertensFactor_nonneg (P : ℕ) :
     0 ≤ section4MertensFactor P := by
   unfold section4MertensFactor
@@ -24,6 +27,9 @@ theorem section4MertensFactor_nonneg (P : ℕ) :
   · exact mul_nonneg (Real.exp_pos _).le
       (add_nonneg zero_le_one (Real.log_nonneg (by exact_mod_cast (Nat.one_le_iff_ne_zero.mpr hP))))
 
+/--
+@isnad1 id=le.2h3v.s5.ba69b50a9fef from=translated src=- shape=9b413187 vocab=206f17e2
+-/
 theorem finiteProviderReciprocalSum_le_endpoint
     {p X P : ℕ} (hp : 3 ≤ p) (hpP : p ≤ P) :
     finiteProviderReciprocalSum p X ≤
@@ -39,6 +45,9 @@ theorem finiteProviderReciprocalSum_le_endpoint
       unfold section4MertensFactor
       gcongr
 
+/--
+@isnad1 id=le.2h3v.s6.855214b41012 from=translated src=- shape=c2b01f15 vocab=b038c38f
+-/
 theorem smoothProviderPairReciprocalSum_le_endpoint_sq
     {p X P : ℕ} (hp : 3 ≤ p) (hpP : p ≤ P) :
     smoothProviderPairReciprocalSum p X ≤
@@ -64,7 +73,9 @@ def section4ReciprocalSum (x y : ℕ) : ℝ :=
   (x : ℝ) * ∑ p ∈ section5PrimeRange x y,
     smoothProviderPairReciprocalSum p (section5LocalCutoff x y p)
 
-/-- Explicit finite form of (4.5).-/
+/-- Explicit finite form of (4.5).
+@isnad1 id=le.2h2v.s6.50425ed052ea from=translated src=- shape=58e54d7a vocab=f9f68bf2
+-/
 theorem section4ReciprocalSum_le {x y : ℕ} (hy : 2 ≤ y) (hxy : y ≤ x) :
     section4ReciprocalSum x y ≤
       (x : ℝ) * (section4MertensFactor (section5Ambient x y).sqrt) ^ 2 * (y : ℝ)⁻¹ := by
@@ -99,7 +110,9 @@ theorem section4ReciprocalSum_le {x y : ℕ} (hy : 2 ≤ y) (hxy : y ≤ x) :
           (section5_y_le_sqrt_ambient hxy))
       exact mul_nonneg (Nat.cast_nonneg x) hfactor
 
-/-- The outer nonsquare sum is the reciprocal term plus the Section 5 `B₄` census.-/
+/-- The outer nonsquare sum is the reciprocal term plus the Section 5 `B₄` census.
+@isnad1 id=eq.0h2v.s6.5948d0eeb939 from=translated src=- shape=d3ba3882 vocab=11e0a992
+-/
 theorem nonsquare_outer_sum_eq_section4_add_B4 (x y : ℕ) :
     (∑ p ∈ squareSourcePrimeRange y (2 * x * y).sqrt,
       smoothProviderPairMajorant x p ((2 * x * y) / p ^ 2)) =
@@ -107,7 +120,9 @@ theorem nonsquare_outer_sum_eq_section4_add_B4 (x y : ℕ) :
   simpa [section4ReciprocalSum, section5PrimeRange, section5Ambient,
     section5LocalCutoff] using sum_smoothProviderPairMajorant_eq_reciprocal_add_B4 x y
 
-/-- Completely explicit Section 4+5 outer estimate before the eventual saddle verification.-/
+/-- Completely explicit Section 4+5 outer estimate before the eventual saddle verification.
+@isnad1 id=le.3h3v.s8.53b03da02821 from=translated src=- shape=19f4f5e2 vocab=8363b155
+-/
 theorem nonsquare_outer_sum_le {x y : ℕ} {saving : ℝ}
     (hy : 2 ≤ y) (hxy : y ≤ x)
     (hRankin : HasSection5IntermediateRankinSaving x y saving) :

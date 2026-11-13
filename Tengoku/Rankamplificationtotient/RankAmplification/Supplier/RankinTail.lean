@@ -13,6 +13,9 @@ noncomputable section
 
 /-! ## Elementary smoothness and finite-fibre lemmas -/
 
+/--
+@isnad1 id=issmooth.2h2v.s4.78545d348be5 from=translated src=- shape=baee4c62 vocab=e55baa8f
+-/
 theorem isSmooth_of_largestPrimeFactor_le {Y n : ℕ} (hn : n ≠ 0)
     (hlarge : largestPrimeFactor n ≤ Y) :
     IsSmooth Y n := by
@@ -21,6 +24,9 @@ theorem isSmooth_of_largestPrimeFactor_le {Y n : ℕ} (hn : n ≠ 0)
   exact (Finset.le_sup (f := id) hp).trans
     ((le_max_right 1 ((primeSupport n).sup id)).trans hlarge)
 
+/--
+@isnad1 id=issmooth.2h3v.s4.af8ac8f2405e from=translated src=- shape=6aaec05f vocab=dd126b0d
+-/
 theorem isSmooth_mul {Y m n : ℕ} (hm : IsSmooth Y m) (hn : IsSmooth Y n) :
     IsSmooth Y (m * n) := by
   refine ⟨Nat.mul_ne_zero hm.1 hn.1, ?_⟩
@@ -29,6 +35,9 @@ theorem isSmooth_mul {Y m n : ℕ} (hm : IsSmooth Y m) (hn : IsSmooth Y n) :
   rw [Nat.primeFactors_mul hm.1 hn.1] at hp
   exact (Finset.mem_union.mp hp).elim (hm.2 p) (hn.2 p)
 
+/--
+@isnad1 id=issmooth.1h4v.s5.02fca7e16fd7 from=translated src=- shape=1026decc vocab=61159eaa
+-/
 theorem isSmooth_finset_prod {Y : ℕ} { α : Type*} [DecidableEq α]
     (S : Finset α) (f : α → ℕ) (hf : ∀ a ∈ S, IsSmooth Y (f a)) :
     IsSmooth Y (∏ a ∈ S, f a) := by
@@ -39,11 +48,17 @@ theorem isSmooth_finset_prod {Y : ℕ} { α : Type*} [DecidableEq α]
       exact isSmooth_mul (hf a (Finset.mem_insert_self a S))
         (ih fun b hb ↦ hf b (Finset.mem_insert_of_mem hb))
 
+/--
+@isnad1 id=le.1h1v.s4.de8404d4fb4e from=translated src=- shape=ca25070e vocab=2b5c6f03
+-/
 theorem one_le_orderedDivisorCount_two {m : ℕ} (hm : m ≠ 0) :
     1 ≤ orderedDivisorCount 2 m := by
   rw [orderedDivisorCount_two]
   exact Finset.card_pos.mpr ⟨1, Nat.mem_divisors.mpr ⟨one_dvd m, hm⟩⟩
 
+/--
+@isnad1 id=le.2h2v.s5.653ad05fac3a from=translated src=- shape=b39d41f3 vocab=9d4f79e6
+-/
 theorem one_le_orderedDivisorCount_of_pos_rank {j m : ℕ}
     (hj : 0 < j) (hm : m ≠ 0) :
     1 ≤ orderedDivisorCount j m := by
@@ -58,7 +73,9 @@ theorem one_le_orderedDivisorCount_of_pos_rank {j m : ℕ}
           Finset.single_le_sum (fun d hd ↦ Nat.zero_le _)
             (Nat.mem_divisors.mpr ⟨dvd_rfl, hm⟩)
 
-/-- A finite reciprocal-sum encoding lemma.-/
+/-- A finite reciprocal-sum encoding lemma.
+@isnad1 id=le.3h9v.s7.ee190f54d301 from=translated src=- shape=90167433 vocab=a85d74e3
+-/
 @[nolint unusedArguments]
 theorem finite_reciprocal_sum_le_tau_smooth_tail
     {α : Type*} [DecidableEq α] (S : Finset α) (code denominator : α → ℕ)
@@ -114,7 +131,9 @@ theorem finite_reciprocal_sum_le_tau_smooth_tail
       intro m hm
       ring
 
-/-- The ordinary divisor-weighted smooth tail dominates any finite encoding whose fibres are bounded by a constant: `τ₂(m) ≥ 1` supplies the missing weight.-/
+/-- The ordinary divisor-weighted smooth tail dominates any finite encoding whose fibres are bounded by a constant: `τ₂(m) ≥ 1` supplies the missing weight.
+@isnad1 id=le.3h8v.s7.85009ddedebc from=translated src=- shape=95898a11 vocab=cadfac29
+-/
 theorem finite_reciprocal_sum_le_card_mul_divisor_smooth_tail
     {α : Type*} [DecidableEq α] (S : Finset α) (code denominator : α → ℕ)
     (R H X C : ℕ)
@@ -135,7 +154,9 @@ theorem finite_reciprocal_sum_le_card_mul_divisor_smooth_tail
       exact one_le_orderedDivisorCount_two
         (Nat.ne_of_gt (Nat.zero_lt_of_lt (mem_finiteSmoothTailSet.mp hm).1))
 
-/-- Rank-sensitive form of the constant-fibre estimate.-/
+/-- Rank-sensitive form of the constant-fibre estimate.
+@isnad1 id=le.4h9v.s7.2cdb0defeba0 from=translated src=- shape=15d0d793 vocab=dea50265
+-/
 theorem finite_reciprocal_sum_le_card_mul_tau_smooth_tail
     {α : Type*} [DecidableEq α] (S : Finset α) (code denominator : α → ℕ)
     (j R H X C : ℕ) (hj : 0 < j)
@@ -156,7 +177,9 @@ theorem finite_reciprocal_sum_le_card_mul_tau_smooth_tail
       exact one_le_orderedDivisorCount_of_pos_rank hj
         (Nat.ne_of_gt (Nat.zero_lt_of_lt (mem_finiteSmoothTailSet.mp hm).1))
 
-/-- A tail-to-census inequality with an explicit reciprocal cutoff.-/
+/-- A tail-to-census inequality with an explicit reciprocal cutoff.
+@isnad1 id=le.0h3v.s5.79f15e0870fc from=translated src=- shape=3d7589d9 vocab=1d6b4f0d
+-/
 theorem finiteTauSmoothReciprocalTail_two_le_count_div (R H X : ℕ) :
     finiteTauSmoothReciprocalTail 2 R H X ≤
       finiteDivisorWeightedSmoothCount R X / (H + 1) := by
@@ -187,7 +210,9 @@ noncomputable def finiteLargePrimeTransfer (Z W : ℕ) : ℝ :=
   ∑ p ∈ (Finset.Ioc Z W.sqrt).filter Nat.Prime,
     finiteDivisorWeightedSmoothCount p (W / p ^ 2)
 
-/-- Pointwise finite Rankin applied inside the large-prime transfer sum.-/
+/-- Pointwise finite Rankin applied inside the large-prime transfer sum.
+@isnad1 id=le.1h3v.s7.60c9bf0d5a91 from=translated src=- shape=07058aa7 vocab=fc62c691
+-/
 theorem finiteLargePrimeTransfer_le_rankin {Z W : ℕ} {sigma : ℝ}
     (hsigma : 0 ≤ sigma) :
     finiteLargePrimeTransfer Z W ≤
@@ -201,7 +226,9 @@ theorem finiteLargePrimeTransfer_le_rankin {Z W : ℕ} {sigma : ℝ}
   simpa only [finiteDivisorWeightedSmoothCount] using
     finiteTauSmoothCount_le_rankin (j := 2) (R := p) (X := W / p ^ 2) hsigma
 
-/-- An unconditional elementary majorant for the finite divisor-weighted smooth census.-/
+/-- An unconditional elementary majorant for the finite divisor-weighted smooth census.
+@isnad1 id=le.0h2v.s4.0d06b5725938 from=translated src=- shape=7d6e4234 vocab=17540182
+-/
 theorem finiteDivisorWeightedSmoothCount_le_square (R X : ℕ) :
     finiteDivisorWeightedSmoothCount R X ≤ (X : ℝ) ^ 2 := by
   classical
@@ -245,6 +272,9 @@ def powerSelectedPart {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) : ℕ :=
   d.base ^ d.powerSelectedExponent
 
+/--
+@isnad1 id=eq.0h7v.s5.d99d3b0ed109 from=translated src=- shape=0fde1dc1 vocab=f12d35ef
+-/
 @[simp]
 theorem selectedDivisor_eq_linearSelectedPart_mul_powerSelectedPart
     {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
@@ -253,6 +283,9 @@ theorem selectedDivisor_eq_linearSelectedPart_mul_powerSelectedPart
   cases d <;> simp [selectedDivisor, linearSelectedPart, powerSelectedPart,
     powerSelectedExponent, base]
 
+/--
+@isnad1 id=lt.0h7v.s5.67e4ca12a183 from=translated src=- shape=5b23fd33 vocab=fa7902dd
+-/
 theorem linearPredecessor_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ}
     {B : Finset (Fin J)} (d : SupplierDescriptor P x B) :
     0 < d.linearPredecessor := by
@@ -261,6 +294,9 @@ theorem linearPredecessor_pos {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x 
       exact Nat.sub_pos_of_lt source.base_prime.one_lt
   | inr source => simp [linearPredecessor]
 
+/--
+@isnad1 id=issmooth.0h7v.s5.0ecb10acead9 from=translated src=- shape=9f25370d vocab=bd4bd1f8
+-/
 theorem linearPredecessor_smooth {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} {B : Finset (Fin J)}
     (d : SupplierDescriptor P x B) :
@@ -271,6 +307,9 @@ theorem linearPredecessor_smooth {J y Y : ℕ}
         (Nat.ne_of_gt (Nat.sub_pos_of_lt source.base_prime.one_lt)) source.smooth
   | inr source => simp [linearPredecessor, IsSmooth]
 
+/--
+@isnad1 id=le.0h7v.s5.e1c1f644bf59 from=translated src=- shape=be7aa076 vocab=17539bb7
+-/
 theorem linearPredecessor_le_selectedDivisor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} {B : Finset (Fin J)}
     (d : SupplierDescriptor P x B) :
@@ -281,6 +320,9 @@ theorem linearPredecessor_le_selectedDivisor {J y Y : ℕ}
   | inr source =>
       exact Nat.succ_le_iff.mpr (selectedDivisor_pos (Sum.inr source))
 
+/--
+@isnad1 id=le.0h7v.s5.e7ba70040609 from=translated src=- shape=24d1848f vocab=e7ba48bf
+-/
 theorem linearSelectedPart_le_two_mul_predecessor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} {B : Finset (Fin J)}
     (d : SupplierDescriptor P x B) :
@@ -292,6 +334,9 @@ theorem linearSelectedPart_le_two_mul_predecessor {J y Y : ℕ}
       omega
   | inr source => simp [linearSelectedPart, linearPredecessor]
 
+/--
+@isnad1 id=le.0h7v.s5.c5d195ed57a5 from=translated src=- shape=7728f12e vocab=a74c7f28
+-/
 theorem powerSelectedExponent_le_card_add_one {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} {B : Finset (Fin J)}
     (d : SupplierDescriptor P x B) :
@@ -302,6 +347,9 @@ theorem powerSelectedExponent_le_card_add_one {J y Y : ℕ}
       unfold powerSelectedExponent powerMultiplicity powerLabels
       simpa only [Sum.elim_inr] using Nat.add_le_add_right (Finset.card_filter_le B _) 1
 
+/--
+@isnad1 id=le.0h7v.s5.b5b8373ccaaf from=translated src=- shape=2c76c87b vocab=15031f46
+-/
 theorem powerSelectedPart_le_Y_pow {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} {B : Finset (Fin J)}
     (d : SupplierDescriptor P x B) :
@@ -315,7 +363,9 @@ end SupplierDescriptor
 
 namespace LabelPartition
 
-/-- Every finite partition of `Fin J` has at most `J` nonempty blocks.-/
+/-- Every finite partition of `Fin J` has at most `J` nonempty blocks.
+@isnad1 id=le.0h2v.s4.19c757ab9cf9 from=translated src=- shape=93f5b8f2 vocab=34bff4b6
+-/
 theorem block_card_le {J : ℕ} (pi : LabelPartition J) :
     Fintype.card pi.Block ≤ J := by
   classical
@@ -331,7 +381,9 @@ theorem block_card_le {J : ℕ} (pi : LabelPartition J) :
       rwa [h]
   simpa [representative] using Fintype.card_le_of_injective representative hinjective
 
-/-- The block cardinalities sum to the cardinality of the label type.-/
+/-- The block cardinalities sum to the cardinality of the label type.
+@isnad1 id=eq.0h2v.s6.5019891f9dce from=translated src=- shape=9c434deb vocab=8a945fbf
+-/
 theorem sum_block_card {J : ℕ} (pi : LabelPartition J) :
     (∑ B : pi.Block, B.1.card) = J := by
   classical
@@ -371,6 +423,9 @@ def powerSelectedProduct {J y Y : ℕ} {P : LabelledPrimeDemands J y Y} {x : ℕ
     (s : SupplierSystem P x) : ℕ :=
   ∏ B : s.partition.Block, (s.descriptor B).powerSelectedPart
 
+/--
+@isnad1 id=eq.0h6v.s5.33cb63f4de13 from=translated src=- shape=f4d5a080 vocab=f4163ef4
+-/
 theorem selectedDivisor_eq_linear_mul_power {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.selectedDivisor = s.linearSelectedProduct * s.powerSelectedProduct := by
@@ -378,12 +433,18 @@ theorem selectedDivisor_eq_linear_mul_power {J y Y : ℕ}
   simp_rw [SupplierDescriptor.selectedDivisor_eq_linearSelectedPart_mul_powerSelectedPart]
   exact Finset.prod_mul_distrib
 
+/--
+@isnad1 id=lt.0h6v.s5.9cb9b6b9fb1a from=translated src=- shape=5b46be78 vocab=c9e801e8
+-/
 theorem linearPredecessorProduct_pos {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     0 < s.linearPredecessorProduct := by
   unfold linearPredecessorProduct
   exact Finset.prod_pos fun B hB ↦ (s.descriptor B).linearPredecessor_pos
 
+/--
+@isnad1 id=issmooth.0h6v.s4.6868382d7f0b from=translated src=- shape=b768cf60 vocab=4d153217
+-/
 theorem linearPredecessorProduct_smooth {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     IsSmooth Y s.linearPredecessorProduct := by
@@ -392,6 +453,9 @@ theorem linearPredecessorProduct_smooth {J y Y : ℕ}
     (fun B : s.partition.Block ↦ (s.descriptor B).linearPredecessor)
     (fun B hB ↦ (s.descriptor B).linearPredecessor_smooth)
 
+/--
+@isnad1 id=le.0h6v.s5.6a57560bdb69 from=translated src=- shape=857fbe52 vocab=610ece8f
+-/
 theorem linearPredecessorProduct_le_selectedDivisor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.linearPredecessorProduct ≤ s.selectedDivisor := by
@@ -399,6 +463,9 @@ theorem linearPredecessorProduct_le_selectedDivisor {J y Y : ℕ}
   exact Finset.prod_le_prod (fun B hB ↦ Nat.zero_le _)
     (fun B hB ↦ (s.descriptor B).linearPredecessor_le_selectedDivisor)
 
+/--
+@isnad1 id=le.0h6v.s5.89df68cef1e4 from=translated src=- shape=3bf04d99 vocab=c9930cf8
+-/
 theorem linearSelectedProduct_le_two_pow_mul_predecessor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.linearSelectedProduct ≤ 2 ^ J * s.linearPredecessorProduct := by
@@ -416,6 +483,9 @@ theorem linearSelectedProduct_le_two_pow_mul_predecessor {J y Y : ℕ}
       exact Nat.mul_le_mul_right _
         (pow_le_pow_right' (by norm_num) s.partition.block_card_le)
 
+/--
+@isnad1 id=le.0h6v.s7.9c94da48c276 from=translated src=- shape=02167b91 vocab=7eeedfa9
+-/
 theorem sum_powerSelectedExponent_le_two_mul {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     (∑ B : s.partition.Block, (s.descriptor B).powerSelectedExponent) ≤ 2 * J := by
@@ -430,13 +500,18 @@ theorem sum_powerSelectedExponent_le_two_mul {J y Y : ℕ}
     _ ≤ 2 * J := by
       simpa [two_mul] using Nat.add_le_add_left s.partition.block_card_le J
 
+/--
+@isnad1 id=le.1h4v.s4.52b432a75233 from=translated src=- shape=c9cf621b vocab=8ed97a5d
+-/
 theorem one_le_upperCutoff_of_pos_rank {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) (hJ : 0 < J) :
     1 ≤ Y := by
   let i : Fin J := ⟨0, hJ⟩
   exact (P.prime i).one_lt.le.trans (P.upper i)
 
-/-- Exact paper-scale bound for the type-(P) part.-/
+/-- Exact paper-scale bound for the type-(P) part.
+@isnad1 id=le.0h6v.s5.8df9c2ea0498 from=translated src=- shape=8af473e7 vocab=c24c9399
+-/
 theorem powerSelectedProduct_le_upperCutoff_pow_two_mul {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.powerSelectedProduct ≤ Y ^ (2 * J) := by
@@ -460,7 +535,9 @@ theorem powerSelectedProduct_le_upperCutoff_pow_two_mul {J y Y : ℕ}
           (one_le_upperCutoff_of_pos_rank P (Nat.pos_of_ne_zero hJ))
           s.sum_powerSelectedExponent_le_two_mul
 
-/-- Every selected divisor is controlled by its smooth predecessor code and the explicit `2^J Y^(2J)` loss from the source split.-/
+/-- Every selected divisor is controlled by its smooth predecessor code and the explicit `2^J Y^(2J)` loss from the source split.
+@isnad1 id=le.0h6v.s6.34b5219db58e from=translated src=- shape=8e4afcb0 vocab=367862d5
+-/
 theorem selectedDivisor_le_encodingFactor_mul_predecessor {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x) :
     s.selectedDivisor ≤
@@ -474,6 +551,9 @@ theorem selectedDivisor_le_encodingFactor_mul_predecessor {J y Y : ℕ}
     _ = (2 ^ J * Y ^ (2 * J)) * s.linearPredecessorProduct := by
       ac_rfl
 
+/--
+@isnad1 id=lt.0h4v.s6.dc8686386049 from=translated src=- shape=de7a5e12 vocab=aa0b483f
+-/
 theorem encodingFactor_pos {J y Y : ℕ} (P : LabelledPrimeDemands J y Y) :
     0 < 2 ^ J * Y ^ (2 * J) := by
   by_cases hJ : J = 0
@@ -483,6 +563,9 @@ theorem encodingFactor_pos {J y Y : ℕ} (P : LabelledPrimeDemands J y Y) :
       (pow_pos (Nat.zero_lt_of_lt (one_le_upperCutoff_of_pos_rank P
         (Nat.pos_of_ne_zero hJ))) _)
 
+/--
+@isnad1 id=le.1h6v.s6.d1f206a5b2f5 from=translated src=- shape=a51ef689 vocab=f5a809a5
+-/
 theorem linearPredecessorProduct_le_two_mul_pow {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x : ℕ} (s : SupplierSystem P x)
     (hx : 0 < x) :
@@ -504,7 +587,9 @@ theorem linearPredecessorProduct_le_two_mul_pow {J y Y : ℕ}
     _ ≤ (2 * x) ^ J := by
       exact pow_le_pow_right' (by omega) s.partition.block_card_le
 
-/-- A selected-divisor tail element maps to the advertised finite smooth predecessor tail.-/
+/-- A selected-divisor tail element maps to the advertised finite smooth predecessor tail.
+@isnad1 id=mem.3h8v.s7.61cff9c24b23 from=translated src=- shape=6667fd45 vocab=7635385a
+-/
 theorem linearPredecessorProduct_mem_finiteSmoothTailSet {J y Y : ℕ}
     {P : LabelledPrimeDemands J y Y} {x H Hcode : ℕ} (s : SupplierSystem P x)
     (hx : 0 < x) (hlarge : H < s.selectedDivisor)
@@ -522,7 +607,9 @@ end SupplierSystem
 
 /-! ## Supplier tail bounds -/
 
-/-- Finite divisor-weighted smooth-tail bound for one labelled supplier family.-/
+/-- Finite divisor-weighted smooth-tail bound for one labelled supplier family.
+@isnad1 id=le.2h7v.s7.8d11974a11fb from=translated src=- shape=e3c897e8 vocab=bcf97eec
+-/
 theorem supplierReciprocalTail_le_divisorSmoothTail {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ}
     (hx : 0 < x) (hscale : (2 ^ J * Y ^ (2 * J)) * Hcode ≤ H) :
@@ -546,7 +633,9 @@ theorem supplierReciprocalTail_le_divisorSmoothTail {J y Y : ℕ}
     simpa [allSupplierSystems] using
       (Finset.card_filter_le (allSupplierSystems P x) (H < ·.selectedDivisor))
 
-/-- Rank-sensitive supplier-tail encoding.-/
+/-- Rank-sensitive supplier-tail encoding.
+@isnad1 id=le.3h7v.s7.f3bb8ff0daef from=translated src=- shape=883b4e0a vocab=bcf97eec
+-/
 theorem supplierReciprocalTail_le_tauSmoothTail {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ}
     (hJ : 0 < J) (hx : 0 < x)
@@ -571,7 +660,9 @@ theorem supplierReciprocalTail_le_tauSmoothTail {J y Y : ℕ}
     simpa [allSupplierSystems] using
       (Finset.card_filter_le (allSupplierSystems P x) (H < ·.selectedDivisor))
 
-/-- The same supplier tail bounded by the finite divisor-weighted smooth census.-/
+/-- The same supplier tail bounded by the finite divisor-weighted smooth census.
+@isnad1 id=le.2h7v.s7.3f7bddaa254a from=translated src=- shape=2c975f56 vocab=70b2562d
+-/
 theorem supplierReciprocalTail_le_divisorSmoothCount {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ}
     (hx : 0 < x) (hscale : (2 ^ J * Y ^ (2 * J)) * Hcode ≤ H) :
@@ -582,7 +673,9 @@ theorem supplierReciprocalTail_le_divisorSmoothCount {J y Y : ℕ}
     gcongr
     exact finiteTauSmoothReciprocalTail_two_le_count_div Y Hcode ((2 * x) ^ J)
 
-/-- The supplier tail followed by the exact finite Rankin inequality.-/
+/-- The supplier tail followed by the exact finite Rankin inequality.
+@isnad1 id=le.4h8v.s7.70856771530d from=translated src=- shape=321bd73a vocab=1ddad4bc
+-/
 theorem supplierReciprocalTail_le_rankin {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ} {delta : ℝ}
     (hx : 0 < x) (hscale : (2 ^ J * Y ^ (2 * J)) * Hcode ≤ H)
@@ -596,7 +689,9 @@ theorem supplierReciprocalTail_le_rankin {J y Y : ℕ}
     gcongr
     exact finiteTauSmoothReciprocalTail_le_rankin hHcode hdelta
 
-/-- Moving-rank version followed by the finite weighted Rankin inequality.-/
+/-- Moving-rank version followed by the finite weighted Rankin inequality.
+@isnad1 id=le.5h8v.s7.01f3e684e7d5 from=translated src=- shape=4b88102a vocab=1ddad4bc
+-/
 theorem supplierReciprocalTail_le_tauRankin {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ} {delta : ℝ}
     (hJ : 0 < J) (hx : 0 < x)
@@ -611,7 +706,9 @@ theorem supplierReciprocalTail_le_tauRankin {J y Y : ℕ}
     gcongr
     exact finiteTauSmoothReciprocalTail_le_rankin hHcode hdelta
 
-/-- The same rank-sensitive bridge with the paper's named Rankin exponent.-/
+/-- The same rank-sensitive bridge with the paper's named Rankin exponent.
+@isnad1 id=le.6h7v.s7.f8eb5f874720 from=translated src=- shape=27b02819 vocab=e9ef2e55
+-/
 theorem supplierReciprocalTail_le_chosenTauRankin {J y Y : ℕ}
     (P : LabelledPrimeDemands J y Y) {x H Hcode : ℕ}
     (hJ : 0 < J) (hx : 0 < x)

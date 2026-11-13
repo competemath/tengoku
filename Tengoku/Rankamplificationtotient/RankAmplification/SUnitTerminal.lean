@@ -31,6 +31,9 @@ def affineCarrierOfFinite (S : Finset ℕ) (h : ℕ)
   letI := Fintype.ofFinite (AffineSolution S h)
   exact Finset.univ.map (affineSolutionEmbedding S h)
 
+/--
+@isnad1 id=iff.0h4v.s5.b0041ef3a632 from=translated src=- shape=326c382e vocab=fe882cb0
+-/
 @[simp]
 theorem mem_affineCarrierOfFinite (S : Finset ℕ) (h u v : ℕ)
     [Finite (AffineSolution S h)] :
@@ -47,13 +50,18 @@ theorem mem_affineCarrierOfFinite (S : Finset ℕ) (h u v : ℕ)
     let z : AffineSolution S h := ⟨(u, v), huv⟩
     exact Finset.mem_map.mpr ⟨z, Finset.mem_univ z, rfl⟩
 
+/--
+@isnad1 id=issunita.0h2v.s4.dcbabddbca67 from=translated src=- shape=8d6c2f75 vocab=b9ef743c
+-/
 theorem isSUnitAffineCarrier_affineCarrierOfFinite
     (S : Finset ℕ) (h : ℕ) [Finite (AffineSolution S h)] :
     IsSUnitAffineCarrier S h (affineCarrierOfFinite S h) := by
   intro u v
   exact mem_affineCarrierOfFinite S h u v
 
-/-- Conversely, an exact carrier makes the solution subtype finite.-/
+/-- Conversely, an exact carrier makes the solution subtype finite.
+@isnad1 id=finite.1h3v.s4.b8b273dbd69f from=translated src=- shape=3379c55d vocab=d11fc2c4
+-/
 theorem finite_affineSolution_of_carrier
     {S : Finset ℕ} {h : ℕ} {U : Finset (ℕ × ℕ)}
     (hU : IsSUnitAffineCarrier S h U) :
@@ -67,7 +75,9 @@ theorem finite_affineSolution_of_carrier
   apply Subtype.ext
   exact congrArg (fun q : target ↦ q.1) hzw
 
-/-- `TerminalEvertseSUnitFiniteness` is exactly finiteness of the special solution subtype.-/
+/-- `TerminalEvertseSUnitFiniteness` is exactly finiteness of the special solution subtype.
+@isnad1 id=iff.0h1v.s3.03438f91eeb6 from=translated src=- shape=3a4bed8a vocab=5f2e710e
+-/
 theorem terminalEvertseSUnitFiniteness_iff_finite (h : ℕ) :
     TerminalEvertseSUnitFiniteness h ↔
       Finite (AffineSolution (primeSupport h) h) := by
@@ -91,6 +101,9 @@ def boundedAffineCarrier (S : Finset ℕ) (h B : ℕ) : Finset (ℕ × ℕ) := b
   exact ((Finset.range (B + 1)).product (Finset.range (B + 1))).filter
     fun z ↦ IsSUnitAffineSolution S h z.1 z.2
 
+/--
+@isnad1 id=issunita.1h3v.s4.42438733323a from=translated src=- shape=1d384e31 vocab=a553e263
+-/
 theorem isSUnitAffineCarrier_boundedAffineCarrier
     {S : Finset ℕ} {h B : ℕ} (hB : AffineSolutionHeightBound S h B) :
     IsSUnitAffineCarrier S h (boundedAffineCarrier S h B) := by
@@ -104,6 +117,9 @@ theorem isSUnitAffineCarrier_boundedAffineCarrier
     exact ⟨Finset.mem_product.mpr
       ⟨Finset.mem_range.mpr (by omega), Finset.mem_range.mpr (by omega)⟩, huv⟩
 
+/--
+@isnad1 id=terminal.1h2v.s3.6e2cae965b43 from=translated src=- shape=2e07a77f vocab=0a20bbc0
+-/
 theorem terminalEvertseSUnitFiniteness_of_heightBound
     {h B : ℕ}
     (hB : AffineSolutionHeightBound (primeSupport h) h B) :
@@ -115,6 +131,9 @@ theorem terminalEvertseSUnitFiniteness_of_heightBound
 def affineCarrierHeight (U : Finset (ℕ × ℕ)) : ℕ :=
   U.sum fun z ↦ z.1 + z.2
 
+/--
+@isnad1 id=affineso.1h3v.s4.65267eb59708 from=translated src=- shape=42c9edb6 vocab=95f32106
+-/
 theorem affineSolutionHeightBound_of_carrier
     {S : Finset ℕ} {h : ℕ} {U : Finset (ℕ × ℕ)}
     (hU : IsSUnitAffineCarrier S h U) :
@@ -126,6 +145,9 @@ theorem affineSolutionHeightBound_of_carrier
     exact Finset.single_le_sum (fun z _hz ↦ Nat.zero_le (z.1 + z.2)) huvMem
   omega
 
+/--
+@isnad1 id=iff.0h1v.s3.a74f24ede509 from=translated src=- shape=3cbbd9d9 vocab=0a20bbc0
+-/
 theorem terminalEvertseSUnitFiniteness_iff_heightBound (h : ℕ) :
     TerminalEvertseSUnitFiniteness h ↔
       ∃ B, AffineSolutionHeightBound (primeSupport h) h B := by
@@ -137,6 +159,9 @@ theorem terminalEvertseSUnitFiniteness_iff_heightBound (h : ℕ) :
 
 /-! ## The zero shift -/
 
+/--
+@isnad1 id=iff.0h1v.s4.220914f486ae from=translated src=- shape=52f05914 vocab=97190cbb
+-/
 theorem isPrimeSupportUnit_empty_iff {n : ℕ} :
     IsPrimeSupportUnit ∅ n ↔ n = 1 := by
   constructor
@@ -151,12 +176,18 @@ theorem isPrimeSupportUnit_empty_iff {n : ℕ} :
   · rintro rfl
     simp [IsPrimeSupportUnit]
 
+/--
+@isnad1 id=issunita.0h0v.s5.32624073f67b from=translated src=- shape=31ebf4d0 vocab=4287316c
+-/
 theorem isSUnitAffineCarrier_zero :
     IsSUnitAffineCarrier (primeSupport 0) 0 {(1, 1)} := by
   intro u v
   simp [IsSUnitAffineSolution, isPrimeSupportUnit_empty_iff]
   omega
 
+/--
+@isnad1 id=terminal.0h0v.s2.3dfe675b23ea from=translated src=- shape=e590c3e1 vocab=699a9633
+-/
 theorem terminalEvertseSUnitFiniteness_zero :
     TerminalEvertseSUnitFiniteness 0 :=
   ⟨{(1, 1)}, isSUnitAffineCarrier_zero⟩
@@ -174,6 +205,9 @@ def IsPrimitiveSUnitAffineCarrier
     (S : Finset ℕ) (c : ℕ) (U : Finset (ℕ × ℕ)) : Prop :=
   ∀ a b, (a, b) ∈ U ↔ IsPrimitiveSUnitAffineSolution S c a b
 
+/--
+@isnad1 id=iff.1h5v.s5.13e6cef22d5f from=translated src=- shape=c5749587 vocab=1644f51a
+-/
 @[simp, nolint simpNF]
 theorem mem_primitiveSUnitAffineCarrier
     {S : Finset ℕ} {c : ℕ} {U : Finset (ℕ × ℕ)}
@@ -197,6 +231,9 @@ def primitiveAffineCarrierOfFinite (S : Finset ℕ) (c : ℕ)
   letI := Fintype.ofFinite (PrimitiveAffineSolution S c)
   exact Finset.univ.map (primitiveAffineSolutionEmbedding S c)
 
+/--
+@isnad1 id=iff.0h4v.s5.e5fa56fee568 from=translated src=- shape=326c382e vocab=3d272cfa
+-/
 @[simp]
 theorem mem_primitiveAffineCarrierOfFinite (S : Finset ℕ) (c a b : ℕ)
     [Finite (PrimitiveAffineSolution S c)] :
@@ -213,6 +250,9 @@ theorem mem_primitiveAffineCarrierOfFinite (S : Finset ℕ) (c a b : ℕ)
     let z : PrimitiveAffineSolution S c := ⟨(a, b), hab⟩
     exact Finset.mem_map.mpr ⟨z, Finset.mem_univ z, rfl⟩
 
+/--
+@isnad1 id=isprimit.0h2v.s4.c26191c7898e from=translated src=- shape=8d6c2f75 vocab=1dda9e78
+-/
 theorem isPrimitiveSUnitAffineCarrier_of_finite
     (S : Finset ℕ) (c : ℕ) [Finite (PrimitiveAffineSolution S c)] :
     IsPrimitiveSUnitAffineCarrier S c
@@ -220,6 +260,9 @@ theorem isPrimitiveSUnitAffineCarrier_of_finite
   intro a b
   exact mem_primitiveAffineCarrierOfFinite S c a b
 
+/--
+@isnad1 id=finite.1h3v.s4.852311fd598b from=translated src=- shape=3379c55d vocab=7f859800
+-/
 theorem finite_primitiveAffineSolution_of_carrier
     {S : Finset ℕ} {c : ℕ} {U : Finset (ℕ × ℕ)}
     (hU : IsPrimitiveSUnitAffineCarrier S c U) :
@@ -233,6 +276,9 @@ theorem finite_primitiveAffineSolution_of_carrier
   apply Subtype.ext
   exact congrArg (fun q : target ↦ q.1) hzw
 
+/--
+@isnad1 id=isprimes.1h4v.s4.5de2ec2cb1e0 from=translated src=- shape=6980aa58 vocab=ac302ed3
+-/
 theorem normalizedSUnitA_isPrimeSupportUnit_of_affine
     {S : Finset ℕ} {h u v : ℕ}
     (hsol : IsSUnitAffineSolution S h u v) :
@@ -241,6 +287,9 @@ theorem normalizedSUnitA_isPrimeSupportUnit_of_affine
   exact (Nat.primeFactors_mono (normalizedSUnitA_dvd_left h u)
     hsol.1.ne_zero).trans hsol.1.2
 
+/--
+@isnad1 id=isprimes.1h4v.s4.b83d2299d47b from=translated src=- shape=6980aa58 vocab=b15327bd
+-/
 theorem normalizedSUnitB_isPrimeSupportUnit_of_affine
     {S : Finset ℕ} {h u v : ℕ}
     (hsol : IsSUnitAffineSolution S h u v) :
@@ -251,7 +300,9 @@ theorem normalizedSUnitB_isPrimeSupportUnit_of_affine
   exact (Nat.primeFactors_mono (normalizedSUnitB_dvd_right h u)
     hsol.2.1.ne_zero).trans hsol.2.1.2
 
-/-- Every affine solution normalizes to a primitive equation with `c = h / gcd(u,u+h)`.-/
+/-- Every affine solution normalizes to a primitive equation with `c = h / gcd(u,u+h)`.
+@isnad1 id=isprimit.1h4v.s4.5a8bd51f1733 from=translated src=- shape=667ea99c vocab=47429070
+-/
 theorem normalized_isPrimitiveSUnitAffineSolution
     {S : Finset ℕ} {h u v : ℕ}
     (hsol : IsSUnitAffineSolution S h u v) :
@@ -261,6 +312,9 @@ theorem normalized_isPrimitiveSUnitAffineSolution
     normalizedSUnitB_isPrimeSupportUnit_of_affine hsol,
     normalizedSUnit_coprime hsol.1.pos, normalizedSUnit_affine hsol.1.pos⟩
 
+/--
+@isnad1 id=isprimes.2h3v.s4.f6da3962578d from=translated src=- shape=26c66de5 vocab=06729f23
+-/
 theorem IsPrimeSupportUnit.mul
     {S : Finset ℕ} {m n : ℕ}
     (hm : IsPrimeSupportUnit S m) (hn : IsPrimeSupportUnit S n) :
@@ -270,6 +324,9 @@ theorem IsPrimeSupportUnit.mul
   rw [Nat.primeFactors_mul hm.ne_zero hn.ne_zero]
   exact Finset.union_subset hm.2 hn.2
 
+/--
+@isnad1 id=mem.1h2v.s4.f0bd96cb978c from=translated src=- shape=bf666908 vocab=ef72f538
+-/
 theorem diagonalGCD_mem_shift_divisors {h u : ℕ} (hh : 0 < h) :
     diagonalGCD h u ∈ h.divisors :=
   Nat.mem_divisors.mpr ⟨diagonalGCD_dvd_shift h u, hh.ne'⟩
@@ -290,6 +347,9 @@ def TerminalPrimitiveDivisorFiniteTypes (h : ℕ) : Prop :=
   ∀ g ∈ h.divisors,
     Finite (PrimitiveAffineSolution (primeSupport h) (h / g))
 
+/--
+@isnad1 id=iff.0h1v.s2.0561927d0641 from=translated src=- shape=fc2c1e2b vocab=e8067eb5
+-/
 theorem terminalPrimitiveDivisorSUnitFiniteness_iff_finiteTypes (h : ℕ) :
     TerminalPrimitiveDivisorSUnitFiniteness h ↔
       TerminalPrimitiveDivisorFiniteTypes h := by
@@ -313,12 +373,18 @@ theorem terminalPrimitiveDivisorSUnitFiniteness_iff_finiteTypes (h : ℕ) :
     choose F hF using hExists
     exact ⟨F, fun g hg ↦ hF g hg⟩
 
+/--
+@isnad1 id=isprimes.2h2v.s5.aecbba6681ac from=translated src=- shape=dc431bae vocab=246c6160
+-/
 theorem divisor_isPrimeSupportUnit
     {h g : ℕ} (hh : 0 < h) (hg : g ∈ h.divisors) :
     IsPrimeSupportUnit (primeSupport h) g := by
   refine ⟨Nat.pos_of_mem_divisors hg, ?_⟩
   exact Nat.primeFactors_mono (Nat.dvd_of_mem_divisors hg) hh.ne'
 
+/--
+@isnad1 id=issunita.3h4v.s6.a584118c221d from=translated src=- shape=8f965f6d vocab=28b72019
+-/
 theorem primitive_reconstruction_isSUnitAffineSolution
     {h g a b : ℕ} (hh : 0 < h) (hg : g ∈ h.divisors)
     (hab : IsPrimitiveSUnitAffineSolution (primeSupport h) (h / g) a b) :
@@ -334,7 +400,9 @@ theorem primitive_reconstruction_isSUnitAffineSolution
     _ = g * (a + h / g) := by ring
     _ = g * b := by rw [hab]
 
-/-- Finiteness of the unnormalized equation implies finiteness of every primitive divisor equation: reconstruction is injective because its divisor `g` is positive.-/
+/-- Finiteness of the unnormalized equation implies finiteness of every primitive divisor equation: reconstruction is injective because its divisor `g` is positive.
+@isnad1 id=terminal.2h1v.s4.3638155edeb6 from=translated src=- shape=4963a319 vocab=c369aa51
+-/
 theorem terminalPrimitiveDivisorFiniteTypes_of_terminalEvertse
     {h : ℕ} (hh : 0 < h) (hE : TerminalEvertseSUnitFiniteness h) :
     TerminalPrimitiveDivisorFiniteTypes h := by
@@ -369,6 +437,9 @@ def affineCarrierFromPrimitive
   exact (primitiveReconstruction h F).filter fun z ↦
     IsSUnitAffineSolution S h z.1 z.2
 
+/--
+@isnad1 id=issunita.2h3v.s5.913d1e539121 from=translated src=- shape=44dd20fe vocab=59bdb69e
+-/
 theorem isSUnitAffineCarrier_affineCarrierFromPrimitive
     {S : Finset ℕ} {h : ℕ} (hh : 0 < h)
     {F : ℕ → Finset (ℕ × ℕ)}
@@ -398,6 +469,9 @@ theorem isSUnitAffineCarrier_affineCarrierFromPrimitive
     · exact diagonalGCD_mul_normalizedSUnitA h u
     · exact (diagonalGCD_mul_normalizedSUnitB h u).trans hsol.2.2
 
+/--
+@isnad1 id=terminal.2h1v.s4.d326e8d10a00 from=translated src=- shape=4963a319 vocab=059edf31
+-/
 theorem terminalEvertseSUnitFiniteness_of_primitiveDivisors
     {h : ℕ} (hh : 0 < h)
     (hprimitive : TerminalPrimitiveDivisorSUnitFiniteness h) :
@@ -406,6 +480,9 @@ theorem terminalEvertseSUnitFiniteness_of_primitiveDivisors
   exact ⟨affineCarrierFromPrimitive (primeSupport h) h F,
     isSUnitAffineCarrier_affineCarrierFromPrimitive hh hF⟩
 
+/--
+@isnad1 id=terminal.2h1v.s4.44e56b76cccd from=translated src=- shape=4963a319 vocab=c369aa51
+-/
 theorem terminalEvertseSUnitFiniteness_of_primitiveFiniteTypes
     {h : ℕ} (hh : 0 < h)
     (hfinite : TerminalPrimitiveDivisorFiniteTypes h) :
@@ -413,7 +490,9 @@ theorem terminalEvertseSUnitFiniteness_of_primitiveFiniteTypes
   terminalEvertseSUnitFiniteness_of_primitiveDivisors hh
     ((terminalPrimitiveDivisorSUnitFiniteness_iff_finiteTypes h).mpr hfinite)
 
-/-- For a positive shift, Evertse's terminal input is equivalent to finiteness of the normalized primitive equations.-/
+/-- For a positive shift, Evertse's terminal input is equivalent to finiteness of the normalized primitive equations.
+@isnad1 id=iff.1h1v.s4.1cdb2537c489 from=translated src=- shape=61782199 vocab=c369aa51
+-/
 theorem terminalEvertseSUnitFiniteness_iff_primitiveFiniteTypes
     {h : ℕ} (hh : 0 < h) :
     TerminalEvertseSUnitFiniteness h ↔
@@ -430,12 +509,18 @@ def TerminalQuantitativeSUnitBound (h : ℕ) : Prop :=
     IsSUnitAffineCarrier (primeSupport h) h U ∧
       U.card ≤ pptSameSupportBound h
 
+/--
+@isnad1 id=terminal.1h1v.s2.041cca5fbeb1 from=translated src=- shape=6321fd23 vocab=aa4f317f
+-/
 theorem terminalEvertseSUnitFiniteness_of_quantitative
     {h : ℕ} (hquant : TerminalQuantitativeSUnitBound h) :
     TerminalEvertseSUnitFiniteness h := by
   obtain ⟨U, hU, _hcard⟩ := hquant
   exact ⟨U, hU⟩
 
+/--
+@isnad1 id=terminal.2h1v.s4.da6107137167 from=translated src=- shape=4963a319 vocab=868dabbd
+-/
 theorem terminalPPTSameSupportBound_of_quantitative
     {h : ℕ} (hh : 0 < h) (hquant : TerminalQuantitativeSUnitBound h) :
     TerminalPPTSameSupportBound h := by
@@ -449,6 +534,9 @@ def primitiveFamilyCardSum
     (h : ℕ) (F : ℕ → Finset (ℕ × ℕ)) : ℕ :=
   h.divisors.sum fun g ↦ (F g).card
 
+/--
+@isnad1 id=le.0h2v.s4.2e0b67215a88 from=translated src=- shape=26ac915d vocab=33f2bfcc
+-/
 theorem card_primitiveReconstruction_le
     (h : ℕ) (F : ℕ → Finset (ℕ × ℕ)) :
     (primitiveReconstruction h F).card ≤ primitiveFamilyCardSum h F := by
@@ -465,6 +553,9 @@ theorem card_primitiveReconstruction_le
       intro g _hg
       exact Finset.card_image_le
 
+/--
+@isnad1 id=le.0h3v.s4.da71931a2769 from=translated src=- shape=e4289175 vocab=f227e8a6
+-/
 theorem card_affineCarrierFromPrimitive_le
     (S : Finset ℕ) (h : ℕ) (F : ℕ → Finset (ℕ × ℕ)) :
     (affineCarrierFromPrimitive S h F).card ≤ primitiveFamilyCardSum h F := by
@@ -477,6 +568,9 @@ def TerminalPrimitiveDivisorPPTBound (h : ℕ) : Prop :=
     IsPrimitiveDivisorCarrierFamily (primeSupport h) h F ∧
       primitiveFamilyCardSum h F ≤ pptSameSupportBound h
 
+/--
+@isnad1 id=terminal.2h1v.s4.1911ae9e1591 from=translated src=- shape=4963a319 vocab=44228123
+-/
 theorem terminalQuantitativeSUnitBound_of_primitivePPT
     {h : ℕ} (hh : 0 < h) (hPPT : TerminalPrimitiveDivisorPPTBound h) :
     TerminalQuantitativeSUnitBound h := by
@@ -485,12 +579,18 @@ theorem terminalQuantitativeSUnitBound_of_primitivePPT
     isSUnitAffineCarrier_affineCarrierFromPrimitive hh hF, ?_⟩
   exact (card_affineCarrierFromPrimitive_le (primeSupport h) h F).trans hcard
 
+/--
+@isnad1 id=terminal.2h1v.s4.6d8e2cff44f4 from=translated src=- shape=4963a319 vocab=d508f0a9
+-/
 theorem terminalEvertseSUnitFiniteness_of_primitivePPT
     {h : ℕ} (hh : 0 < h) (hPPT : TerminalPrimitiveDivisorPPTBound h) :
     TerminalEvertseSUnitFiniteness h := by
   obtain ⟨F, hF, _hcard⟩ := hPPT
   exact terminalEvertseSUnitFiniteness_of_primitiveDivisors hh ⟨F, hF⟩
 
+/--
+@isnad1 id=terminal.2h1v.s4.df9e99fd98b9 from=translated src=- shape=4963a319 vocab=2d425083
+-/
 theorem terminalPPTSameSupportBound_of_primitivePPT
     {h : ℕ} (hh : 0 < h) (hPPT : TerminalPrimitiveDivisorPPTBound h) :
     TerminalPPTSameSupportBound h := by

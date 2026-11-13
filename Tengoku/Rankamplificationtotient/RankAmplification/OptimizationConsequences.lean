@@ -20,6 +20,9 @@ noncomputable section
 def reciprocalSaddleProfile (r : ℝ) : ℝ :=
   min r r⁻¹
 
+/--
+@isnad1 id=le.1h1v.s4.bdef4b805cbc from=translated src=- shape=97c35add vocab=0c316f2c
+-/
 theorem reciprocalSaddleProfile_le_one {r : ℝ} (hr : 0 < r) :
     reciprocalSaddleProfile r ≤ 1 := by
   unfold reciprocalSaddleProfile
@@ -28,6 +31,9 @@ theorem reciprocalSaddleProfile_le_one {r : ℝ} (hr : 0 < r) :
   · have hrOne : 1 < r := lt_of_not_ge h
     exact (min_le_right _ _).trans ((inv_le_one₀ hr).2 hrOne.le)
 
+/--
+@isnad1 id=iff.1h1v.s5.7e278edffbb9 from=translated src=- shape=a6d5929f vocab=ad9787b1
+-/
 theorem reciprocalSaddleProfile_eq_one_iff {r : ℝ} (hr : 0 < r) :
     reciprocalSaddleProfile r = 1 ↔ r = 1 := by
   constructor
@@ -41,13 +47,18 @@ theorem reciprocalSaddleProfile_eq_one_iff {r : ℝ} (hr : 0 < r) :
   · rintro rfl
     simp [reciprocalSaddleProfile]
 
+/--
+@isnad1 id=lt.2h1v.s5.77935a952a1e from=translated src=- shape=d34e1a3e vocab=ad9787b1
+-/
 theorem reciprocalSaddleProfile_lt_one {r : ℝ}
     (hr : 0 < r) (hne : r ≠ 1) :
     reciprocalSaddleProfile r < 1 :=
   lt_of_le_of_ne (reciprocalSaddleProfile_le_one hr)
     (fun h ↦ hne ((reciprocalSaddleProfile_eq_one_iff hr).mp h))
 
-/-- On a fixed upper window, distance from the saddle and loss in the profile are comparable.-/
+/-- On a fixed upper window, distance from the saddle and loss in the profile are comparable.
+@isnad1 id=and.3h2v.s6.e619eb7c30df from=translated src=- shape=94069923 vocab=3e553117
+-/
 theorem reciprocalSaddleProfile_loss_bounds
     {r C : ℝ} (hr : 0 < r) (hrC : r ≤ C) (hC : 1 ≤ C) :
     1 - reciprocalSaddleProfile r ≤ |r - 1| ∧
@@ -80,7 +91,9 @@ theorem reciprocalSaddleProfile_loss_bounds
       have hdelta : 0 ≤ r - 1 := sub_nonneg.mpr hrOne'.le
       simpa [mul_comm] using mul_le_mul_of_nonneg_right hrC hdelta
 
-/-- On a fixed positive window, convergence of the reciprocal profile to its maximum is equivalent to convergence of its argument to the unique saddle.-/
+/-- On a fixed positive window, convergence of the reciprocal profile to its maximum is equivalent to convergence of its argument to the unique saddle.
+@isnad1 id=iff.2h4v.s6.5d78e18b0ef3 from=translated src=- shape=e7bf7440 vocab=ce21d2b7
+-/
 theorem tendsto_reciprocalSaddleProfile_one_iff
     {α : Type*} {l : Filter α} {r : α → ℝ} {C : ℝ}
     (hC : 1 ≤ C) (hr : ∀ᶠ x in l, 0 < r x ∧ r x ≤ C) :
@@ -119,7 +132,9 @@ theorem tendsto_reciprocalSaddleProfile_one_iff
 
 /-! ## Corollary 7.2: exact rank-one optimization -/
 
-/-- The rank-one exponent normalized by `G` is exactly the reciprocal profile of `T/G`.-/
+/-- The rank-one exponent normalized by `G` is exactly the reciprocal profile of `T/G`.
+@isnad1 id=eq.2h2v.s5.56869c9ec9b9 from=translated src=- shape=ee45df13 vocab=efec7a4a
+-/
 theorem section5SaddleExponent_div_scaleG
     {X T : ℝ} (hG : scaleG X ≠ 0) (hT : T ≠ 0) :
     section5SaddleExponent X T / scaleG X =
@@ -130,7 +145,9 @@ theorem section5SaddleExponent_div_scaleG
   unfold reciprocalSaddleProfile
   field_simp [hG]
 
-/-- Corollary 7.2, exact maximum and unique positive equality case.-/
+/-- Corollary 7.2, exact maximum and unique positive equality case.
+@isnad1 id=and.2h2v.s5.32b7c82c879d from=translated src=- shape=94a22d3d vocab=a7ee51fb
+-/
 theorem corollary7_2_exact_maximum {X T : ℝ}
     (hG : 0 < scaleG X) (hT : 0 < T) :
     section5SaddleExponent X T ≤ scaleG X ∧
@@ -138,7 +155,9 @@ theorem corollary7_2_exact_maximum {X T : ℝ}
   ⟨section5SaddleExponent_le_scaleG hG.le hT,
     section5SaddleExponent_eq_scaleG_iff hG hT⟩
 
-/-- Corollary 7.2, fixed-ratio formula.-/
+/-- Corollary 7.2, fixed-ratio formula.
+@isnad1 id=eq.2h2v.s5.ada4896949fa from=translated src=- shape=09633025 vocab=0b8b470c
+-/
 theorem corollary7_2_fixed_ratio
     {X lam : ℝ} (hG : scaleG X ≠ 0) (hlam : lam ≠ 0) :
     section5SaddleExponent X (lam * scaleG X) =
@@ -146,7 +165,9 @@ theorem corollary7_2_fixed_ratio
   rw [section5SaddleExponent_at_mul_scaleG hG hlam]
   ring
 
-/-- Loss in the unnormalized rank-one exponent is comparable to distance from the saddle, uniformly on every fixed upper window.-/
+/-- Loss in the unnormalized rank-one exponent is comparable to distance from the saddle, uniformly on every fixed upper window.
+@isnad1 id=and.4h3v.s6.48f42bdfa705 from=translated src=- shape=0adb0fb7 vocab=6eaa4df3
+-/
 theorem section5SaddleExponent_loss_bounds
     {X T C : ℝ} (hG : 0 < scaleG X) (hT : 0 < T)
     (hTC : T ≤ C * scaleG X) (hC : 1 ≤ C) :
@@ -184,7 +205,9 @@ theorem section5SaddleExponent_loss_bounds
         mul_le_mul_of_nonneg_left hprofile.2 hG.le
       _ = C * (scaleG X * (1 - reciprocalSaddleProfile r)) := by ring
 
-/-- Corollary 7.2(i): in a fixed positive window, preserving the optimal leading coefficient is equivalent to `T/G → 1`.-/
+/-- Corollary 7.2(i): in a fixed positive window, preserving the optimal leading coefficient is equivalent to `T/G → 1`.
+@isnad1 id=iff.2h2v.s7.7e375aec787a from=translated src=- shape=bf1468e2 vocab=55676a3d
+-/
 theorem corollary7_2_leadingCoefficient_iff
     {T : ℝ → ℝ} {C : ℝ} (hC : 1 ≤ C)
     (hwindow : ∀ᶠ x in atTop,
@@ -206,7 +229,9 @@ theorem corollary7_2_leadingCoefficient_iff
   exact (tendsto_congr' hnormalized).trans
     (tendsto_reciprocalSaddleProfile_one_iff hC hratio)
 
-/-- For a fixed positive ratio, the normalized exponent is eventually the constant `min(lam,lam⁻¹)`.-/
+/-- For a fixed positive ratio, the normalized exponent is eventually the constant `min(lam,lam⁻¹)`.
+@isnad1 id=tendsto.1h1v.s5.3a588b7025d6 from=translated src=- shape=0b0aafdb vocab=5314d90a
+-/
 theorem corollary7_2_fixed_ratio_limit {lam : ℝ} (hlam : 0 < lam) :
     Tendsto
       (fun x ↦ section5SaddleExponent x (lam * scaleG x) / scaleG x)
@@ -216,7 +241,9 @@ theorem corollary7_2_fixed_ratio_limit {lam : ℝ} (hlam : 0 < lam) :
   filter_upwards [tendsto_scaleG_atTop.eventually_gt_atTop 0] with x hG
   rw [corollary7_2_fixed_ratio hG.ne' hlam.ne', mul_div_cancel_right₀ _ hG.ne']
 
-/-- Exact one-sided second-order expansion around `T=G`.-/
+/-- Exact one-sided second-order expansion around `T=G`.
+@isnad1 id=eq.2h2v.s7.045e56d3fac9 from=translated src=- shape=8098e1c7 vocab=92213b0e
+-/
 theorem section5SaddleExponent_add_scaleG_exact
     {X Δ : ℝ} (hG : 0 < scaleG X) (hT : 0 < scaleG X + Δ) :
     section5SaddleExponent X (scaleG X + Δ) =
@@ -240,7 +267,9 @@ theorem section5SaddleExponent_add_scaleG_exact
     field_simp [hT.ne']
     ring
 
-/-- The paper's `O(Δ²/G)` remainder, as an explicit inequality with constant one.-/
+/-- The paper's `O(Δ²/G)` remainder, as an explicit inequality with constant one.
+@isnad1 id=le.2h2v.s6.f212765ddfa3 from=translated src=- shape=310b09c2 vocab=10b1fd1e
+-/
 theorem section5SaddleExponent_secondOrder_error
     {X Δ : ℝ} (hG : 0 < scaleG X) (hT : 0 < scaleG X + Δ) :
     |section5SaddleExponent X (scaleG X + Δ) -
@@ -259,7 +288,9 @@ theorem section5SaddleExponent_secondOrder_error
     apply div_le_div_of_nonneg_left (sq_nonneg _) hG
     linarith
 
-/-- Corollary 7.2(ii), in ratio form: on a fixed window, exponent loss is `o(S)` exactly when displacement from the saddle is `o(S)`.-/
+/-- Corollary 7.2(ii), in ratio form: on a fixed window, exponent loss is `o(S)` exactly when displacement from the saddle is `o(S)`.
+@isnad1 id=iff.2h3v.s7.1bf534b95d7e from=translated src=- shape=23b2e05c vocab=add83c7f
+-/
 theorem corollary7_2_secondOrder_iff
     {T S : ℝ → ℝ} {C : ℝ} (hC : 1 ≤ C)
     (hwindow : ∀ᶠ x in atTop,
@@ -322,7 +353,9 @@ theorem corollary7_2_secondOrder_iff
         _ = |(T x - scaleG x) / S x| := by
           rw [abs_div, abs_of_pos hx.2.2.2]
 
-/-- The exact local expansion in Corollary 7.2 implies the stated `O(Delta²/G)` remainder for every perturbation `Delta=o(G)`.-/
+/-- The exact local expansion in Corollary 7.2 implies the stated `O(Delta²/G)` remainder for every perturbation `Delta=o(G)`.
+@isnad1 id=isbigo.1h1v.s6.d25b7716aa50 from=translated src=- shape=23d631f9 vocab=e79363b0
+-/
 theorem corollary7_2_secondOrder_expansion
     {Delta : ℝ → ℝ} (hDelta : Delta =o[atTop] scaleG) :
     (fun x ↦ section5SaddleExponent x (scaleG x + Delta x) -
@@ -351,12 +384,17 @@ def movingTransferExponent (c x : ℝ) : ℝ :=
 def movingOuterCutoff (c x : ℝ) : ℝ :=
   Real.exp (c * movingR x)
 
+/--
+@isnad1 id=eq.0h2v.s4.4427602ef484 from=translated src=- shape=534da806 vocab=37da8cf9
+-/
 @[simp]
 theorem log_movingOuterCutoff (c x : ℝ) :
     Real.log (movingOuterCutoff c x) = c * movingR x := by
   simp [movingOuterCutoff]
 
-/-- The moving profile is a rescaled copy of the reciprocal rank-one profile.-/
+/-- The moving profile is a rescaled copy of the reciprocal rank-one profile.
+@isnad1 id=eq.1h1v.s6.8e9d44f6a60c from=translated src=- shape=957031a1 vocab=813b7727
+-/
 theorem movingSaddleExponent_eq_half_mul_reciprocalSaddleProfile
     {c : ℝ} (hc : 0 < c) :
     movingSaddleExponent c =
@@ -368,7 +406,9 @@ theorem movingSaddleExponent_eq_half_mul_reciprocalSaddleProfile
   · field_simp [hc.ne']
     norm_num
 
-/-- The dimensional transfer exponent factors exactly as its coefficient times `R`.-/
+/-- The dimensional transfer exponent factors exactly as its coefficient times `R`.
+@isnad1 id=eq.0h2v.s4.689c53d9d2c5 from=translated src=- shape=43f21ce9 vocab=d6c7fe94
+-/
 theorem movingTransferExponent_eq_profile_mul_movingR (c x : ℝ) :
     movingTransferExponent c x = movingSaddleExponent c * movingR x := by
   have hR : 0 ≤ movingR x := Real.sqrt_nonneg _
@@ -377,21 +417,27 @@ theorem movingTransferExponent_eq_profile_mul_movingR (c x : ℝ) :
   simpa [mul_comm] using
     (mul_min_of_nonneg c (1 / (4 * c)) hR).symm
 
-/-- Exact fixed-ratio form of (10.52), normalized by `R`.-/
+/-- Exact fixed-ratio form of (10.52), normalized by `R`.
+@isnad1 id=eq.1h2v.s5.e57af2d2d1f0 from=translated src=- shape=881ac70c vocab=ac1e303d
+-/
 theorem movingTransferExponent_div_movingR
     {c x : ℝ} (hR : movingR x ≠ 0) :
     movingTransferExponent c x / movingR x = movingSaddleExponent c := by
   rw [movingTransferExponent_eq_profile_mul_movingR,
     mul_div_cancel_right₀ _ hR]
 
-/-- Proposition 10.27: the profile has maximum `1/2`, attained uniquely at `c=1/2`.-/
+/-- Proposition 10.27: the profile has maximum `1/2`, attained uniquely at `c=1/2`.
+@isnad1 id=and.1h1v.s6.cb3b8e49f381 from=translated src=- shape=b50a6f8f vocab=5b89cd29
+-/
 theorem proposition10_27_exact_maximum {c : ℝ} (hc : 0 < c) :
     movingSaddleExponent c ≤ 1 / 2 ∧
       (movingSaddleExponent c = 1 / 2 ↔ c = 1 / 2) :=
   ⟨movingSaddleExponent_le_half hc,
     movingSaddleExponent_eq_half_iff hc⟩
 
-/-- The corresponding unnormalized transfer exponent is uniquely maximized at `c=1/2`.-/
+/-- The corresponding unnormalized transfer exponent is uniquely maximized at `c=1/2`.
+@isnad1 id=and.2h2v.s7.1dfe1e10bfe4 from=translated src=- shape=4d3b5aba vocab=5b4ed7f2
+-/
 theorem proposition10_27_transfer_exact_maximum
     {c x : ℝ} (hc : 0 < c) (hR : 0 < movingR x) :
     movingTransferExponent c x ≤ (1 / 2 : ℝ) * movingR x ∧
@@ -409,7 +455,9 @@ theorem proposition10_27_transfer_exact_maximum
       rw [hcHalf]
       norm_num [movingSaddleExponent]
 
-/-- Distance from the moving optimum and loss of its coefficient are uniformly comparable on every fixed upper window.-/
+/-- Distance from the moving optimum and loss of its coefficient are uniformly comparable on every fixed upper window.
+@isnad1 id=and.3h2v.s7.b9f57633846e from=translated src=- shape=173b8028 vocab=62194c3c
+-/
 theorem movingSaddleExponent_loss_bounds
     {c C : ℝ} (hc : 0 < c) (hcC : c ≤ C) (hC : 1 / 2 ≤ C) :
     1 / 2 - movingSaddleExponent c ≤ |c - 1 / 2| ∧
@@ -442,7 +490,9 @@ theorem movingSaddleExponent_loss_bounds
       _ = 2 * C *
           ((1 / 2 : ℝ) * (1 - reciprocalSaddleProfile (2 * c))) := by ring
 
-/-- Uniform uniqueness of the moving saddle: the coefficient tends to `1/2` exactly when `c` tends to `1/2`.-/
+/-- Uniform uniqueness of the moving saddle: the coefficient tends to `1/2` exactly when `c` tends to `1/2`.
+@isnad1 id=iff.2h4v.s7.a8eef6472e34 from=translated src=- shape=ceba1602 vocab=727f3ba8
+-/
 theorem tendsto_movingSaddleExponent_half_iff
     {α : Type*} {l : Filter α} {c : α → ℝ} {C : ℝ}
     (hC : 1 / 2 ≤ C) (hc : ∀ᶠ x in l, 0 < c x ∧ c x ≤ C) :
@@ -487,7 +537,9 @@ theorem tendsto_movingSaddleExponent_half_iff
       ((tendsto_const_nhds : Tendsto (fun _ : α ↦ (1 / 2 : ℝ)) l
         (nhds (1 / 2))).sub hloss)
 
-/-- Proposition 10.27 in the paper's fixed-`c` normalization.-/
+/-- Proposition 10.27 in the paper's fixed-`c` normalization.
+@isnad1 id=tendsto.0h1v.s5.d8bbf87f6d59 from=translated src=- shape=a4fd65f1 vocab=e3ad1b55
+-/
 theorem proposition10_27_fixed_ratio_limit {c : ℝ} :
     Tendsto (fun x ↦ movingTransferExponent c x / movingR x)
       atTop (nhds (movingSaddleExponent c)) := by
@@ -496,7 +548,9 @@ theorem proposition10_27_fixed_ratio_limit {c : ℝ} :
   filter_upwards [tendsto_movingR_atTop.eventually_gt_atTop 0] with x hR
   exact (movingTransferExponent_div_movingR hR.ne').symm
 
-/-- A varying cutoff preserves the optimal leading coefficient precisely when `c→1/2`.-/
+/-- A varying cutoff preserves the optimal leading coefficient precisely when `c→1/2`.
+@isnad1 id=iff.2h2v.s7.3795881eece6 from=translated src=- shape=6ecd1659 vocab=22fcae83
+-/
 theorem proposition10_27_leadingCoefficient_iff
     {c : ℝ → ℝ} {C : ℝ} (hC : 1 / 2 ≤ C)
     (hwindow : ∀ᶠ x in atTop, 0 < c x ∧ c x ≤ C) :
@@ -511,7 +565,9 @@ theorem proposition10_27_leadingCoefficient_iff
   exact (tendsto_congr' hnormalized).trans
     (tendsto_movingSaddleExponent_half_iff hC hwindow)
 
-/-- Precise interpretation of the `o(1)` in (10.52): adding any coefficient error tending to zero leaves the normalized exponent at the fixed profile value.-/
+/-- Precise interpretation of the `o(1)` in (10.52): adding any coefficient error tending to zero leaves the normalized exponent at the fixed profile value.
+@isnad1 id=tendsto.1h2v.s6.905762aea94b from=translated src=- shape=27f1e90a vocab=a632576e
+-/
 theorem proposition10_27_fixed_ratio_with_vanishing_error
     {c : ℝ} {error : ℝ → ℝ} (herror : Tendsto error atTop (nhds 0)) :
     Tendsto
@@ -527,7 +583,9 @@ theorem proposition10_27_fixed_ratio_with_vanishing_error
   rw [add_div, movingTransferExponent_div_movingR hR.ne',
     mul_div_cancel_right₀ _ hR.ne']
 
-/-- At the optimizing cutoff `c=1/2`, the preceding statement gives coefficient `1/2`.-/
+/-- At the optimizing cutoff `c=1/2`, the preceding statement gives coefficient `1/2`.
+@isnad1 id=tendsto.1h1v.s6.44b7fc287dc5 from=translated src=- shape=91827eef vocab=d8ec414e
+-/
 theorem proposition10_27_optimal_with_vanishing_error
     {error : ℝ → ℝ} (herror : Tendsto error atTop (nhds 0)) :
     Tendsto

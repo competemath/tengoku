@@ -10,7 +10,9 @@ noncomputable section
 
 /-! ## The `h`-free rescaling of the finite terms onto the paper's display -/
 
-/-- **The rescaling step of `(9.8)`, free of the shift.** The exact finite majorant produced by the skeleton calculation, ``` 2x/y + 2⌊√(2x)⌋ + ⌊x/y⌋(1 + log⌊x/y⌋) + paperTheorem16LogSqConstant · x (log y)² / y + smoothMultiplierB4Sum x y, ``` is at most `paperTheorem16LogSqConstant` times the paper's displayed sum `x/y + x^{1/2} + x log x / y + x (log y)² / y + ∑_{y<p≤(2xy)^{1/2}} Ψ_τ(2xy/p², p)`.-/
+/-- **The rescaling step of `(9.8)`, free of the shift.** The exact finite majorant produced by the skeleton calculation, ``` 2x/y + 2⌊√(2x)⌋ + ⌊x/y⌋(1 + log⌊x/y⌋) + paperTheorem16LogSqConstant · x (log y)² / y + smoothMultiplierB4Sum x y, ``` is at most `paperTheorem16LogSqConstant` times the paper's displayed sum `x/y + x^{1/2} + x log x / y + x (log y)² / y + ∑_{y<p≤(2xy)^{1/2}} Ψ_τ(2xy/p², p)`.
+@isnad1 id=le.2h2v.s7.b3e3f1e9285f from=translated src=- shape=b602b389 vocab=0b85046d
+-/
 theorem finiteTransferTerms_le_paperTransferDisplay {x y : ℕ} (hy : 2 ≤ y) (hxy : y ≤ x) :
     2 * (x : ℝ) * (y : ℝ)⁻¹ + 2 * ((2 * x).sqrt : ℝ) +
         (x / y : ℕ) * (1 + Real.log (x / y : ℕ)) +

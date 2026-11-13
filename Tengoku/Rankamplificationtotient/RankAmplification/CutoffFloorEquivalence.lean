@@ -9,18 +9,24 @@ namespace RankAmplification
 
 open Nat
 
-/-- For a natural `n` and a nonnegative real `Y`, the floored strict inequality is the real one.-/
+/-- For a natural `n` and a nonnegative real `Y`, the floored strict inequality is the real one.
+@isnad1 id=iff.1h2v.s5.0e8efbdd3465 from=translated src=- shape=fcda727e vocab=d41f1159
+-/
 theorem natFloor_lt_iff_lt {Y : ℝ} (hY : 0 ≤ Y) (n : ℕ) :
     ⌊Y⌋₊ < n ↔ Y < (n : ℝ) :=
   Nat.floor_lt hY
 
-/-- The cutoff clause of a diagonal representation is unchanged by flooring a real cutoff.-/
+/-- The cutoff clause of a diagonal representation is unchanged by flooring a real cutoff.
+@isnad1 id=iff.1h4v.s6.466625d089c9 from=translated src=- shape=aa86c083 vocab=0b5058c2
+-/
 theorem diagonalCutoff_natFloor_iff {Y : ℝ} (hY : 0 ≤ Y) (h j r : ℕ) :
     ⌊Y⌋₊ < largestPrimeFactor (diagonalGamma h j * r) ↔
       Y < (largestPrimeFactor (diagonalGamma h j * r) : ℝ) :=
   natFloor_lt_iff_lt hY _
 
-/-- A diagonal representation at the floored cutoff is exactly one at the paper's real cutoff.-/
+/-- A diagonal representation at the floored cutoff is exactly one at the paper's real cutoff.
+@isnad1 id=iff.1h5v.s8.a4bcfc68030f from=translated src=- shape=0cdca477 vocab=27a1cfad
+-/
 theorem isDiagonalRepresentation_natFloor_iff {Y : ℝ} (hY : 0 ≤ Y) (h n j r : ℕ) :
     IsDiagonalRepresentation h ⌊Y⌋₊ n j r ↔
       (IsSameSupportIndex h j ∧
@@ -35,7 +41,9 @@ theorem isDiagonalRepresentation_natFloor_iff {Y : ℝ} (hY : 0 ≤ Y) (h n j r 
   unfold IsDiagonalRepresentation
   rw [diagonalCutoff_natFloor_iff hY]
 
-/-- Membership in the above-cutoff diagonal at a floored real cutoff is the paper's condition.-/
+/-- Membership in the above-cutoff diagonal at a floored real cutoff is the paper's condition.
+@isnad1 id=iff.1h3v.s8.9660f1cbbe2f from=translated src=- shape=a09e6030 vocab=daab8efa
+-/
 theorem isAboveCutoffDiagonal_natFloor_iff {Y : ℝ} (hY : 0 ≤ Y) (h n : ℕ) :
     IsAboveCutoffDiagonal h ⌊Y⌋₊ n ↔
       ∃ j r, IsSameSupportIndex h j ∧
@@ -54,7 +62,9 @@ theorem isAboveCutoffDiagonal_natFloor_iff {Y : ℝ} (hY : 0 ≤ Y) (h n : ℕ) 
   · rintro ⟨j, r, hrep⟩
     exact ⟨j, r, (isDiagonalRepresentation_natFloor_iff hY h n j r).2 hrep⟩
 
-/-- Two real cutoffs with the same floor give the same diagonal count.-/
+/-- Two real cutoffs with the same floor give the same diagonal count.
+@isnad1 id=eq.3h4v.s6.02dd996937eb from=translated src=- shape=c6a4c8d9 vocab=a7990440
+-/
 theorem aboveCutoffDiagonalCount_natFloor_congr {Y Z : ℝ} (hY : 0 ≤ Y) (hZ : 0 ≤ Z)
     (hYZ : ∀ n : ℕ, Y < (n : ℝ) ↔ Z < (n : ℝ)) (x h : ℕ) :
     aboveCutoffDiagonalCount x h ⌊Y⌋₊ = aboveCutoffDiagonalCount x h ⌊Z⌋₊ := by

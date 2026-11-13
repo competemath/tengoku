@@ -13,7 +13,9 @@ open scoped Nat.Prime
 
 noncomputable section
 
-/-- The project's weak smoothness cutoff agrees with Mathlib's strict cutoff after adding one.-/
+/-- The project's weak smoothness cutoff agrees with Mathlib's strict cutoff after adding one.
+@isnad1 id=iff.0h2v.s4.e6f150fbd352 from=translated src=- shape=cea4ff83 vocab=dc37691b
+-/
 theorem isSmooth_iff_mem_smoothNumbers_succ {R n : ℕ} :
     IsSmooth R n ↔ n ∈ (R + 1).smoothNumbers := by
   rw [Nat.mem_smoothNumbers_iff_primeFactors_subset]
@@ -29,16 +31,24 @@ theorem isSmooth_iff_mem_smoothNumbers_succ {R n : ℕ} :
 def divisorRankinWeight (s : ℝ) (n : ℕ) : ℝ :=
   (orderedDivisorCount 2 n : ℝ) * (n : ℝ) ^ (-s)
 
+/--
+@isnad1 id=le.0h2v.s4.3c482aee4243 from=translated src=- shape=25b8bdde vocab=994224cf
+-/
 theorem divisorRankinWeight_nonneg (s : ℝ) (n : ℕ) :
     0 ≤ divisorRankinWeight s n := by
   exact mul_nonneg (Nat.cast_nonneg _) (Real.rpow_nonneg (Nat.cast_nonneg n) _)
 
+/--
+@isnad1 id=eq.0h1v.s4.7bd44546bf06 from=translated src=- shape=0e0c2bda vocab=b5fd9a89
+-/
 @[simp]
 theorem divisorRankinWeight_one (s : ℝ) : divisorRankinWeight s 1 = 1 := by
   simp only [divisorRankinWeight, orderedDivisorCount, Nat.cast_one, Real.one_rpow, mul_one]
   exact_mod_cast (ArithmeticFunction.isMultiplicative_zeta.pow (k := 2)).map_one
 
-/-- The divisor Rankin kernel is multiplicative on coprime inputs.-/
+/-- The divisor Rankin kernel is multiplicative on coprime inputs.
+@isnad1 id=eq.1h3v.s5.010e9616b586 from=translated src=- shape=6ba6a952 vocab=457e138d
+-/
 theorem divisorRankinWeight_mul_of_coprime {m n : ℕ} (h : Nat.Coprime m n) (s : ℝ) :
     divisorRankinWeight s (m * n) =
       divisorRankinWeight s m * divisorRankinWeight s n := by
@@ -48,7 +58,9 @@ theorem divisorRankinWeight_mul_of_coprime {m n : ℕ} (h : Nat.Coprime m n) (s 
     htau, Nat.cast_mul, Nat.cast_mul, Real.mul_rpow (Nat.cast_nonneg m) (Nat.cast_nonneg n)]
   ring
 
-/-- The ordered rank-two divisor count on a prime power.-/
+/-- The ordered rank-two divisor count on a prime power.
+@isnad1 id=eq.1h2v.s5.f9b08686a711 from=translated src=- shape=731d2797 vocab=c1f7a338
+-/
 theorem orderedDivisorCount_two_prime_pow {p : ℕ} (hp : p.Prime) (a : ℕ) :
     orderedDivisorCount 2 (p ^ a) = a + 1 := by
   rw [orderedDivisorCount_two, Nat.card_divisors (pow_ne_zero a hp.ne_zero)]
@@ -57,7 +69,9 @@ theorem orderedDivisorCount_two_prime_pow {p : ℕ} (hp : p.Prime) (a : ℕ) :
   · rw [Nat.primeFactors_prime_pow (Nat.succ_ne_zero a) hp, Finset.prod_singleton,
       Nat.factorization_pow_self hp]
 
-/-- The local divisor Rankin series is the square of the geometric Euler factor.-/
+/-- The local divisor Rankin series is the square of the geometric Euler factor.
+@isnad1 id=hassum.2h2v.s6.4c4f64aed89c from=translated src=- shape=1e9614f8 vocab=6a1cb5d3
+-/
 theorem hasSum_divisorRankinWeight_prime_pow {p : ℕ} (hp : p.Prime) {s : ℝ}
     (hs : 0 < s) :
     HasSum (fun a : ℕ ↦ divisorRankinWeight s (p ^ a))
@@ -84,7 +98,9 @@ theorem hasSum_divisorRankinWeight_prime_pow {p : ℕ} (hp : p.Prime) {s : ℝ}
     hseries.congr_fun hterm
   simpa [one_div] using hseries'
 
-/-- Exact Euler product for the divisor kernel over all positive `R`-smooth integers.-/
+/-- Exact Euler product for the divisor kernel over all positive `R`-smooth integers.
+@isnad1 id=hassum.1h2v.s6.2b8f7c2a0b96 from=translated src=- shape=cf430eba vocab=a22a2eed
+-/
 theorem hasSum_divisorRankinWeight_smooth (R : ℕ) {s : ℝ} (hs : 0 < s) :
     HasSum (fun m : (R + 1).smoothNumbers ↦ divisorRankinWeight s m)
       (rankinEulerMajorant (Nat.primesLE R) 2 s) := by
@@ -109,7 +125,9 @@ theorem hasSum_divisorRankinWeight_smooth (R : ℕ) {s : ℝ} (hs : 0 < s) :
       (Nat.prime_of_mem_primesLE hp) hs).tsum_eq
   exact hprod ▸ heuler.2
 
-/-- The finite divisor Rankin sum is bounded by the full smooth Euler product.-/
+/-- The finite divisor Rankin sum is bounded by the full smooth Euler product.
+@isnad1 id=le.1h3v.s5.0146d08d417c from=translated src=- shape=c4c34ced vocab=9a44d6bf
+-/
 theorem finiteDivisorRankinSum_le_eulerMajorant {R X : ℕ} {s : ℝ} (hs : 0 < s) :
     finiteSmoothRpowSum (fun m ↦ orderedDivisorCount 2 m) R X (-s) ≤
       rankinEulerMajorant (Nat.primesLE R) 2 s := by
@@ -149,12 +167,17 @@ theorem finiteDivisorRankinSum_le_eulerMajorant {R X : ℕ} {s : ℝ} (hs : 0 < 
 def divisorEulerLoss (s : ℝ) : ℝ :=
   2 / (1 - (2 : ℝ) ^ (-s))
 
+/--
+@isnad1 id=lt.1h1v.s4.40e598f981a6 from=translated src=- shape=35bd48ee vocab=c8784cb7
+-/
 theorem divisorEulerLoss_pos {s : ℝ} (hs : 0 < s) : 0 < divisorEulerLoss s := by
   rw [divisorEulerLoss]
   exact div_pos (by norm_num) (sub_pos.mpr <|
     Real.rpow_lt_one_of_one_lt_of_neg (by norm_num) (neg_lt_zero.mpr hs))
 
-/-- The logarithm of the rank-two Euler majorant is controlled by the weighted prime sum.-/
+/-- The logarithm of the rank-two Euler majorant is controlled by the weighted prime sum.
+@isnad1 id=le.1h2v.s6.e3e191574208 from=translated src=- shape=cc73236a vocab=9e5d69a6
+-/
 theorem log_rankinEulerMajorant_le_divisorEulerLoss_mul_primeRankinSum
     {R : ℕ} {δ : ℝ} (hδ1 : δ < 1) :
     Real.log (rankinEulerMajorant (Nat.primesLE R) 2 (1 - δ)) ≤
@@ -196,6 +219,9 @@ theorem log_rankinEulerMajorant_le_divisorEulerLoss_mul_primeRankinSum
       rw [← Finset.sum_div]
       ring
 
+/--
+@isnad1 id=lt.1h2v.s5.d151141ec258 from=translated src=- shape=47f73423 vocab=fcb24a0b
+-/
 theorem rankinEulerMajorant_primes_pos {R : ℕ} {s : ℝ} (hs : 0 < s) :
     0 < rankinEulerMajorant (Nat.primesLE R) 2 s := by
   rw [rankinEulerMajorant]
@@ -205,7 +231,9 @@ theorem rankinEulerMajorant_primes_pos {R : ℕ} {s : ℝ} (hs : 0 < s) :
     (Nat.prime_of_mem_primesLE hp).one_lt hs
   positivity
 
-/-- Exponential form of the preceding logarithmic Euler-product estimate.-/
+/-- Exponential form of the preceding logarithmic Euler-product estimate.
+@isnad1 id=le.1h2v.s6.959c889b3b29 from=translated src=- shape=58d039b0 vocab=e0908b66
+-/
 theorem rankinEulerMajorant_le_exp_primeRankinSum {R : ℕ} {δ : ℝ}
     (hδ1 : δ < 1) :
     rankinEulerMajorant (Nat.primesLE R) 2 (1 - δ) ≤
@@ -216,20 +244,26 @@ theorem rankinEulerMajorant_le_exp_primeRankinSum {R : ℕ} {δ : ℝ}
 
 /-! ## The chosen Rankin exponent -/
 
-/-- A strict version of `rankinDelta_le_one`, useful because convergence of the Euler product requires a strictly positive Dirichlet exponent.-/
+/-- A strict version of `rankinDelta_le_one`, useful because convergence of the Euler product requires a strictly positive Dirichlet exponent.
+@isnad1 id=lt.3h2v.s5.6ef500aaddc5 from=translated src=- shape=99626437 vocab=d3253723
+-/
 theorem rankinDelta_lt_one {H R : ℕ} (hR : 1 < R)
     (huR : rankinU H R < R) (hu : 0 < rankinU H R) :
     rankinDelta H R < 1 := by
   rw [rankinDelta, div_lt_one (Real.log_pos (by exact_mod_cast hR))]
   exact Real.log_lt_log hu huR
 
-/-- The defining identity `δ log R = log u`.-/
+/-- The defining identity `δ log R = log u`.
+@isnad1 id=eq.1h2v.s5.0065f0125686 from=translated src=- shape=789a02d3 vocab=fed21172
+-/
 theorem rankinDelta_mul_log_base {H R : ℕ} (hR : 1 < R) :
     rankinDelta H R * Real.log R = Real.log (rankinU H R) := by
   rw [rankinDelta, div_mul_cancel₀]
   exact (Real.log_pos (by exact_mod_cast hR)).ne'
 
-/-- The paper's condition `u ≤ R^(1/2)` puts the chosen exponent in `δ ≤ 1/2`.-/
+/-- The paper's condition `u ≤ R^(1/2)` puts the chosen exponent in `δ ≤ 1/2`.
+@isnad1 id=le.3h2v.s6.06490e167c39 from=translated src=- shape=0fd9a1b5 vocab=ee92acd4
+-/
 theorem rankinDelta_le_half_of_u_le_sqrt {H R : ℕ} (hR : 1 < R)
     (hu : 0 < rankinU H R) (huSqrt : rankinU H R ≤ Real.sqrt R) :
     rankinDelta H R ≤ 1 / 2 := by
@@ -242,7 +276,9 @@ theorem rankinDelta_le_half_of_u_le_sqrt {H R : ℕ} (hR : 1 < R)
     _ = Real.log R / 2 := Real.log_sqrt hRpos.le
     _ = (1 / 2) * Real.log R := by ring
 
-/-- Unconditional finite form of the Rankin/Euler-product argument for Lemma 2.5.-/
+/-- Unconditional finite form of the Rankin/Euler-product argument for Lemma 2.5.
+@isnad1 id=le.4h2v.s6.2286f417ba03 from=translated src=- shape=2a128eb2 vocab=3f9b65ab
+-/
 theorem finiteDivisorWeightedSmoothCount_le_exp_primeRankinSum {R X : ℕ}
     (hX : 0 < X) (hR : 1 < R) (hu : 1 ≤ rankinU X R)
     (huR : rankinU X R < R) :
@@ -311,7 +347,9 @@ def uLogUPrimeError (R X : ℕ) : ℝ :=
     2 * Real.log 4 * (1 + (Real.log 2)⁻¹) *
       (rankinU X R / Real.log (rankinU X R))
 
-/-- In the small-exponent range, the explicit Chebyshev error has the paper's conventional `log log (3R) + u / log u` form.-/
+/-- In the small-exponent range, the explicit Chebyshev error has the paper's conventional `log log (3R) + u / log u` form.
+@isnad1 id=le.3h2v.s5.22ad17a31bb5 from=translated src=- shape=37e67b70 vocab=cb53c5e6
+-/
 theorem smallPrimeRankinError_le_uLogUPrimeError {R X : ℕ}
     (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (hsmall : rankinDelta X R * Real.log R ≤ 1) :
@@ -363,7 +401,9 @@ theorem smallPrimeRankinError_le_uLogUPrimeError {R X : ℕ}
     _ = 2 * Real.log 4 * (1 + (Real.log 2)⁻¹) *
         (rankinU X R / Real.log (rankinU X R)) := by ring
 
-/-- Prime Rankin sum with an explicit `log log (3R) + u / log u` upper bound.-/
+/-- Prime Rankin sum with an explicit `log log (3R) + u / log u` upper bound.
+@isnad1 id=le.3h2v.s5.b96c0956d2b7 from=translated src=- shape=37e67b70 vocab=606b920d
+-/
 theorem primeRankinSum_le_uLogUPrimeError {R X : ℕ}
     (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (hsmall : rankinDelta X R * Real.log R ≤ 1) :
@@ -376,12 +416,17 @@ theorem primeRankinSum_le_uLogUPrimeError {R X : ℕ}
 def divisorEulerHalfLoss : ℝ :=
   2 / (1 - (2 : ℝ) ^ (-(1 / 2 : ℝ)))
 
+/--
+@isnad1 id=lt.0h0v.s3.3f4179d892ac from=translated src=- shape=ff3a10fc vocab=4305a481
+-/
 theorem divisorEulerHalfLoss_pos : 0 < divisorEulerHalfLoss := by
   rw [divisorEulerHalfLoss]
   exact div_pos (by norm_num) (sub_pos.mpr <|
     Real.rpow_lt_one_of_one_lt_of_neg (by norm_num) (by norm_num))
 
-/-- Monotonicity of the Euler-factor loss on the half-exponent range.-/
+/-- Monotonicity of the Euler-factor loss on the half-exponent range.
+@isnad1 id=le.1h1v.s5.48f81e07660b from=translated src=- shape=443b29fc vocab=f2101f76
+-/
 theorem divisorEulerLoss_le_half {δ : ℝ} (hδ : δ ≤ 1 / 2) :
     divisorEulerLoss (1 - δ) ≤ divisorEulerHalfLoss := by
   have hs : 0 < 1 - δ := by linarith
@@ -399,7 +444,9 @@ theorem divisorEulerLoss_le_half {δ : ℝ} (hδ : δ ≤ 1 / 2) :
 def paperDivisorError (R X : ℕ) : ℝ :=
   divisorEulerHalfLoss * uLogUPrimeError R X
 
-/-- Explicit unconditional version of Lemma 2.5 in the range where `δ log R ≤ 1`.-/
+/-- Explicit unconditional version of Lemma 2.5 in the range where `δ log R ≤ 1`.
+@isnad1 id=le.5h2v.s6.296c3f40d68c from=translated src=- shape=9f8c94e9 vocab=5f7819e0
+-/
 theorem finiteDivisorWeightedSmoothCount_le_explicit {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 ≤ rankinU X R)
     (huR : rankinU X R < R)
@@ -433,7 +480,9 @@ theorem finiteDivisorWeightedSmoothCount_le_explicit {R X : ℕ}
       apply mul_le_mul_of_nonneg_left _ (by positivity)
       exact Real.exp_le_exp.mpr (add_le_add_right herror _)
 
-/-- Clean exponential tail.-/
+/-- Clean exponential tail.
+@isnad1 id=le.6h2v.s7.fc30ee88c820 from=translated src=- shape=f4ec40f9 vocab=435107f4
+-/
 theorem finiteDivisorWeightedSmoothCount_le_half_u_log_u {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 ≤ rankinU X R)
     (huR : rankinU X R < R)
@@ -456,7 +505,9 @@ theorem finiteDivisorWeightedSmoothCount_le_half_u_log_u {R X : ℕ}
 
 /-! ## Paper-shaped formulation -/
 
-/-- The divisor-weighted census is positive as soon as the cutoff contains `1`.-/
+/-- The divisor-weighted census is positive as soon as the cutoff contains `1`.
+@isnad1 id=lt.1h2v.s4.23c35aa04261 from=translated src=- shape=cee548f2 vocab=3af07dbb
+-/
 theorem finiteDivisorWeightedSmoothCount_pos {R X : ℕ} (hX : 0 < X) :
     0 < finiteDivisorWeightedSmoothCount R X := by
   have hmem : 1 ∈ finiteSmoothSet R X := by
@@ -471,7 +522,9 @@ theorem finiteDivisorWeightedSmoothCount_pos {R X : ℕ} (hX : 0 < X) :
   rw [hone] at hle
   exact zero_lt_one.trans_le hle
 
-/-- Paper-shaped exponential form of the general estimate (2.6), with a fixed Euler multiplier and the explicit error `log log (3R) + u / log u`.-/
+/-- Paper-shaped exponential form of the general estimate (2.6), with a fixed Euler multiplier and the explicit error `log log (3R) + u / log u`.
+@isnad1 id=le.5h2v.s6.9c144a6ca428 from=translated src=- shape=e0cfdff5 vocab=ed5345e9
+-/
 theorem finiteDivisorWeightedSmoothCount_le_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R)
@@ -505,7 +558,9 @@ theorem finiteDivisorWeightedSmoothCount_le_paper_error {R X : ℕ}
       apply mul_le_mul_of_nonneg_left _ (by positivity)
       exact Real.exp_le_exp.mpr (add_le_add_right herror _)
 
-/-- Log-normalized form of (2.6).-/
+/-- Log-normalized form of (2.6).
+@isnad1 id=le.5h2v.s6.59d25167cd93 from=translated src=- shape=ad34267e vocab=38abe19d
+-/
 theorem log_divisorWeightedSmoothCount_div_le_paper_error {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R)
@@ -524,7 +579,9 @@ theorem log_divisorWeightedSmoothCount_div_le_paper_error {R X : ℕ}
     div_pos (finiteDivisorWeightedSmoothCount_pos hX) hXreal
   simpa only [Real.log_exp] using Real.log_le_log hdivpos hdiv
 
-/-- Clean form of Lemma 2.5 under one explicit dominance inequality.-/
+/-- Clean form of Lemma 2.5 under one explicit dominance inequality.
+@isnad1 id=le.6h2v.s7.99a2a6a3365b from=translated src=- shape=ffec8994 vocab=0fc2b43f
+-/
 theorem finiteDivisorWeightedSmoothCount_le_paper_half_u_log_u {R X : ℕ}
     (hX : 0 < X) (hR : 2 ≤ R) (hu : 1 < rankinU X R)
     (huSqrt : rankinU X R ≤ Real.sqrt R)

@@ -49,25 +49,36 @@ def smoothMultiplierB4Upper (x y : ℕ) : ℝ :=
   ∑ p ∈ section5UpperPrimeRange x y,
     finiteDivisorWeightedSmoothCount p (section5LocalCutoff x y p)
 
+/--
+@isnad1 id=iff.0h3v.s5.2ffcd2eef9fe from=translated src=- shape=b4ec4857 vocab=5dd2ebbe
+-/
 @[simp]
 theorem mem_section5PrimeRange {x y p : ℕ} :
     p ∈ section5PrimeRange x y ↔
       y < p ∧ p ≤ (section5Ambient x y).sqrt ∧ p.Prime := by
   simp [section5PrimeRange, squareSourcePrimeRange, and_assoc]
 
+/--
+@isnad1 id=iff.0h3v.s5.41a609d6e767 from=translated src=- shape=2a4cc711 vocab=9da8b266
+-/
 @[simp]
 theorem mem_section5IntermediatePrimeRange {x y p : ℕ} :
     p ∈ section5IntermediatePrimeRange x y ↔
       p ∈ section5PrimeRange x y ∧ p ≤ y ^ 2 := by
   simp [section5IntermediatePrimeRange]
 
+/--
+@isnad1 id=iff.0h3v.s5.b576cd54562d from=translated src=- shape=dce8d452 vocab=1bf185c2
+-/
 @[simp]
 theorem mem_section5UpperPrimeRange {x y p : ℕ} :
     p ∈ section5UpperPrimeRange x y ↔
       p ∈ section5PrimeRange x y ∧ y ^ 2 < p := by
   simp [section5UpperPrimeRange]
 
-/-- Exact decomposition at `p = y²`.-/
+/-- Exact decomposition at `p = y²`.
+@isnad1 id=eq.0h2v.s4.1ad8361a2721 from=translated src=- shape=b624e142 vocab=18794a71
+-/
 theorem smoothMultiplierB4Sum_eq_intermediate_add_upper (x y : ℕ) :
     smoothMultiplierB4Sum x y =
       smoothMultiplierB4Intermediate x y + smoothMultiplierB4Upper x y := by
@@ -78,7 +89,9 @@ theorem smoothMultiplierB4Sum_eq_intermediate_add_upper (x y : ℕ) :
         (fun p ↦ p ≤ y ^ 2)
         (fun p ↦ finiteDivisorWeightedSmoothCount p (section5LocalCutoff x y p))).symm
 
-/-- The smooth divisor census is bounded by the elementary divisor hyperbola estimate.-/
+/-- The smooth divisor census is bounded by the elementary divisor hyperbola estimate.
+@isnad1 id=le.0h2v.s5.4f8da56d13b0 from=translated src=- shape=997c9e78 vocab=da80d13f
+-/
 theorem finiteDivisorWeightedSmoothCount_le_hyperbola (R X : ℕ) :
     finiteDivisorWeightedSmoothCount R X ≤ (X : ℝ) * (1 + Real.log X) := by
   classical
@@ -90,7 +103,9 @@ theorem finiteDivisorWeightedSmoothCount_le_hyperbola (R X : ℕ) :
         IsSmooth R (k.1 * k.2)
     _ ≤ (X : ℝ) * (1 + Real.log X) := card_cofactorPairSet_cast_le X
 
-/-- The `B₄` sum is exactly the cardinality branch in the summed large-cofactor majorant.-/
+/-- The `B₄` sum is exactly the cardinality branch in the summed large-cofactor majorant.
+@isnad1 id=eq.0h2v.s5.d8852d895273 from=translated src=- shape=4bfc7756 vocab=2543d1ac
+-/
 theorem sum_smoothProviderPairMajorant_eq_reciprocal_add_B4 (x y : ℕ) :
     (∑ p ∈ section5PrimeRange x y,
       smoothProviderPairMajorant x p (section5LocalCutoff x y p)) =
@@ -115,7 +130,9 @@ def HasSection5IntermediateRankinSaving (x y : ℕ) (saving : ℝ) : Prop :=
       saving ≤ rankinU (section5LocalCutoff x y p) p *
         Real.log (rankinU (section5LocalCutoff x y p) p) / 2
 
-/-- Pointwise consequence of the intermediate-range Rankin input.-/
+/-- Pointwise consequence of the intermediate-range Rankin input.
+@isnad1 id=le.2h4v.s5.d4da31338d8e from=translated src=- shape=18ef1231 vocab=bd90f9ec
+-/
 theorem finiteDivisorWeightedSmoothCount_section5Intermediate_le
     {x y p : ℕ} {saving : ℝ}
     (hinput : HasSection5IntermediateRankinSaving x y saving)
@@ -137,7 +154,9 @@ theorem finiteDivisorWeightedSmoothCount_section5Intermediate_le
       apply Real.exp_le_exp.mpr
       linarith
 
-/-- Casting the local floor can only increase it to the corresponding real quotient.-/
+/-- Casting the local floor can only increase it to the corresponding real quotient.
+@isnad1 id=le.0h3v.s5.bc1ef7043027 from=translated src=- shape=cc7636fc vocab=51810f9e
+-/
 theorem section5LocalCutoff_cast_le (x y p : ℕ) :
     (section5LocalCutoff x y p : ℝ) ≤
       (section5Ambient x y : ℝ) * ((p : ℝ) ^ 2)⁻¹ := by
@@ -148,7 +167,9 @@ theorem section5LocalCutoff_cast_le (x y p : ℕ) :
     _ = (section5Ambient x y : ℝ) * ((p : ℝ) ^ 2)⁻¹ := by
       norm_num [div_eq_mul_inv]
 
-/-- The lower endpoint is below the square-root endpoint whenever `y ≤ x`.-/
+/-- The lower endpoint is below the square-root endpoint whenever `y ≤ x`.
+@isnad1 id=le.1h2v.s4.12da2500e7b4 from=translated src=- shape=bb88a214 vocab=6f9abb9f
+-/
 theorem section5_y_le_sqrt_ambient {x y : ℕ} (hxy : y ≤ x) :
     y ≤ (section5Ambient x y).sqrt := by
   apply Nat.le_sqrt'.2
@@ -158,7 +179,9 @@ theorem section5_y_le_sqrt_ambient {x y : ℕ} (hxy : y ≤ x) :
     _ ≤ 2 * (x * y) := Nat.le_mul_of_pos_left _ (by omega)
     _ = section5Ambient x y := by simp [section5Ambient, mul_assoc]
 
-/-- The reciprocal-square mass of the intermediate range has the elementary `1/y` bound.-/
+/-- The reciprocal-square mass of the intermediate range has the elementary `1/y` bound.
+@isnad1 id=le.2h2v.s5.9daddf8f3f5d from=translated src=- shape=51b361a0 vocab=ce1c7b20
+-/
 theorem sum_section5IntermediatePrimeRange_inv_sq_le {x y : ℕ}
     (hy : 0 < y) (hxy : y ≤ x) :
     (∑ p ∈ section5IntermediatePrimeRange x y, (((p : ℝ) ^ 2)⁻¹)) ≤
@@ -174,7 +197,9 @@ theorem sum_section5IntermediatePrimeRange_inv_sq_le {x y : ℕ}
     _ ≤ (y : ℝ)⁻¹ :=
       sum_squareSourcePrimeRange_inv_sq_le_inv hy (section5_y_le_sqrt_ambient hxy)
 
-/-- Uniform intermediate-range contribution after the full Rankin estimate.-/
+/-- Uniform intermediate-range contribution after the full Rankin estimate.
+@isnad1 id=le.3h3v.s6.99e71fd697f2 from=translated src=- shape=6886926e vocab=08ab7d4a
+-/
 theorem smoothMultiplierB4Intermediate_le {x y : ℕ} {saving : ℝ}
     (hy : 0 < y) (hxy : y ≤ x)
     (hinput : HasSection5IntermediateRankinSaving x y saving) :
@@ -210,7 +235,9 @@ theorem smoothMultiplierB4Intermediate_le {x y : ℕ} {saving : ℝ}
 
 /-! ## The unconditional range above `y²` -/
 
-/-- A local hyperbola bound with its floor replaced by the real quotient.-/
+/-- A local hyperbola bound with its floor replaced by the real quotient.
+@isnad1 id=le.1h3v.s6.b97478133bf9 from=translated src=- shape=b0a04b9d vocab=5d992ac4
+-/
 theorem finiteDivisorWeightedSmoothCount_section5LocalCutoff_le
     {x y p : ℕ} (hambient : 0 < section5Ambient x y) :
     finiteDivisorWeightedSmoothCount p (section5LocalCutoff x y p) ≤
@@ -253,7 +280,9 @@ theorem finiteDivisorWeightedSmoothCount_section5LocalCutoff_le
       _ = (section5Ambient x y : ℝ) * (1 + Real.log (section5Ambient x y)) *
           ((p : ℝ) ^ 2)⁻¹ := by ring
 
-/-- Reciprocal-square mass above the split point `y²`.-/
+/-- Reciprocal-square mass above the split point `y²`.
+@isnad1 id=le.1h2v.s6.cef9d63f6540 from=translated src=- shape=d5bf0b79 vocab=e9ee8067
+-/
 theorem sum_section5UpperPrimeRange_inv_sq_le {x y : ℕ} (hy : 0 < y) :
     (∑ p ∈ section5UpperPrimeRange x y, (((p : ℝ) ^ 2)⁻¹)) ≤
       ((y : ℝ) ^ 2)⁻¹ := by
@@ -284,7 +313,9 @@ theorem sum_section5UpperPrimeRange_inv_sq_le {x y : ℕ} (hy : 0 < y) :
     rw [hempty]
     simp
 
-/-- The `p > y²` portion of Proposition 5.1, with explicit constants.-/
+/-- The `p > y²` portion of Proposition 5.1, with explicit constants.
+@isnad1 id=le.2h2v.s6.94e3986dcabf from=translated src=- shape=f6ffe596 vocab=45917796
+-/
 theorem smoothMultiplierB4Upper_le {x y : ℕ}
     (hy : 0 < y) (hxy : y ≤ x) :
     smoothMultiplierB4Upper x y ≤
@@ -320,7 +351,9 @@ theorem smoothMultiplierB4Upper_le {x y : ℕ}
 
 /-! ## Finite and uniform forms of Proposition 5.1 -/
 
-/-- The completely explicit two-range estimate before absorbing the elementary upper tail.-/
+/-- The completely explicit two-range estimate before absorbing the elementary upper tail.
+@isnad1 id=le.3h3v.s7.d208a8c304ba from=translated src=- shape=6a9a36a9 vocab=c08a7052
+-/
 theorem smoothMultiplierB4Sum_le_exp_add_upper {x y : ℕ} {saving : ℝ}
     (hy : 0 < y) (hxy : y ≤ x)
     (hinput : HasSection5IntermediateRankinSaving x y saving) :
@@ -337,7 +370,9 @@ def HasSection5B4Absorption (x y : ℕ) (T saving error : ℝ) : Prop :=
       2 * (1 + Real.log (section5Ambient x y)) * (y : ℝ)⁻¹ ≤
     Real.exp (-T + error)
 
-/-- Finite Proposition 5.1 under its two explicitly named analytic inputs.-/
+/-- Finite Proposition 5.1 under its two explicitly named analytic inputs.
+@isnad1 id=le.4h5v.s6.a716dde6b13b from=translated src=- shape=dc59d997 vocab=e0ee5e67
+-/
 theorem proposition5_1_finite {x y : ℕ} {T saving error : ℝ}
     (hy : 0 < y) (hxy : y ≤ x)
     (hRankin : HasSection5IntermediateRankinSaving x y saving)
@@ -373,7 +408,9 @@ def HasProposition5_1Uniformity (c₀ C₀ : ℝ) (error : ℕ → ℝ → ℝ) 
         HasSection5IntermediateRankinSaving x y saving ∧
           HasSection5B4Absorption x y T saving (error x T)
 
-/-- Uniform Proposition 5.1, reduced to the single named moving-uniformity proposition above.-/
+/-- Uniform Proposition 5.1, reduced to the single named moving-uniformity proposition above.
+@isnad1 id=le.5h6v.s6.10a173a413d0 from=translated src=- shape=e033632f vocab=d081418e
+-/
 theorem proposition5_1_uniform {c₀ C₀ : ℝ} {error : ℕ → ℝ → ℝ}
     (huniform : HasProposition5_1Uniformity c₀ C₀ error) :
     ∀ x y T,
@@ -399,13 +436,17 @@ def IsSection5UniformLittleOScaleV (c₀ C₀ : ℝ) (error : ℕ → ℝ → �
 def section5SaddleExponent (X T : ℝ) : ℝ :=
   min T (scaleG X ^ 2 / T)
 
-/-- Replacing `G²` by its defining product `LA`.-/
+/-- Replacing `G²` by its defining product `LA`.
+@isnad1 id=eq.2h2v.s5.bb4ec945cc1a from=translated src=- shape=8879c21e vocab=12449da1
+-/
 theorem section5SaddleExponent_eq_min_LA {X T : ℝ}
     (hL : 0 ≤ scaleL X) (hA : 0 ≤ scaleA X) :
     section5SaddleExponent X T = min T (scaleL X * scaleA X / T) := by
   rw [section5SaddleExponent, scaleG_sq hL hA]
 
-/-- Exact balance at `T = G`.-/
+/-- Exact balance at `T = G`.
+@isnad1 id=eq.1h1v.s4.6fad8afc6b44 from=translated src=- shape=026af91d vocab=06f18941
+-/
 @[simp, nolint simpNF]
 theorem section5SaddleExponent_at_scaleG {X : ℝ} (hG : scaleG X ≠ 0) :
     section5SaddleExponent X (scaleG X) = scaleG X := by
@@ -414,7 +455,9 @@ theorem section5SaddleExponent_at_scaleG {X : ℝ} (hG : scaleG X ≠ 0) :
     field_simp
   rw [hquotient, min_self]
 
-/-- The balanced choice is globally optimal among positive cutoffs.-/
+/-- The balanced choice is globally optimal among positive cutoffs.
+@isnad1 id=le.2h2v.s5.f641a4f2091f from=translated src=- shape=20813ef9 vocab=a7ee51fb
+-/
 theorem section5SaddleExponent_le_scaleG {X T : ℝ}
     (hG : 0 ≤ scaleG X) (hT : 0 < T) :
     section5SaddleExponent X T ≤ scaleG X := by
@@ -427,7 +470,9 @@ theorem section5SaddleExponent_le_scaleG {X T : ℝ}
       nlinarith
     exact (min_le_right _ _).trans hquotient
 
-/-- The positive saddle is the unique maximizer.-/
+/-- The positive saddle is the unique maximizer.
+@isnad1 id=iff.2h2v.s5.4830bca7eb0c from=translated src=- shape=dd344fec vocab=80413365
+-/
 theorem section5SaddleExponent_eq_scaleG_iff {X T : ℝ}
     (hG : 0 < scaleG X) (hT : 0 < T) :
     section5SaddleExponent X T = scaleG X ↔ T = scaleG X := by
@@ -448,7 +493,9 @@ theorem section5SaddleExponent_eq_scaleG_iff {X T : ℝ}
   · rintro rfl
     exact section5SaddleExponent_at_scaleG hG.ne'
 
-/-- Fixed-ratio substitution: at `T = λG` the exponent is `G min(λ, λ⁻¹)`.-/
+/-- Fixed-ratio substitution: at `T = λG` the exponent is `G min(λ, λ⁻¹)`.
+@isnad1 id=eq.2h2v.s5.6e92113eb779 from=translated src=- shape=9c02952b vocab=0b8b470c
+-/
 theorem section5SaddleExponent_at_mul_scaleG {X lam : ℝ}
     (hG : scaleG X ≠ 0) (hlam : lam ≠ 0) :
     section5SaddleExponent X (lam * scaleG X) =
@@ -458,21 +505,27 @@ theorem section5SaddleExponent_at_mul_scaleG {X lam : ℝ}
   rw [section5SaddleExponent, hquotient, mul_comm lam (scaleG X)]
   exact (mul_min_of_nonneg lam lam⁻¹ (scaleG_nonneg X)).symm
 
-/-- The local Rankin parameter `L/(2T)` becomes exactly `V/2` at the saddle.-/
+/-- The local Rankin parameter `L/(2T)` becomes exactly `V/2` at the saddle.
+@isnad1 id=eq.1h1v.s5.f63952d30667 from=translated src=- shape=83f0fc51 vocab=ac1ae262
+-/
 theorem scaleL_div_two_scaleG_eq_scaleV_div_two {X : ℝ}
     (hG : scaleG X ≠ 0) :
     scaleL X / (2 * scaleG X) = scaleV X / 2 := by
   rw [scaleV_eq]
   field_simp
 
-/-- More generally, at `T = λG` the local parameter is `V/(2λ)`.-/
+/-- More generally, at `T = λG` the local parameter is `V/(2λ)`.
+@isnad1 id=eq.2h2v.s6.7309e3da83ce from=translated src=- shape=4d280d5f vocab=ac1ae262
+-/
 theorem scaleL_div_two_mul_scaleG_eq {X lam : ℝ}
     (hG : scaleG X ≠ 0) (hlam : lam ≠ 0) :
     scaleL X / (2 * (lam * scaleG X)) = scaleV X / (2 * lam) := by
   rw [scaleV_eq]
   field_simp
 
-/-- The exact saddle belongs to every fixed window containing the ratio `1`.-/
+/-- The exact saddle belongs to every fixed window containing the ratio `1`.
+@isnad1 id=issectio.2h3v.s5.682c920ac79c from=translated src=- shape=411dc469 vocab=21ec8060
+-/
 theorem scaleG_mem_section5SaddleWindow {c₀ C₀ X : ℝ}
     (hc₀ : c₀ ≤ 1) (hC₀ : 1 ≤ C₀) :
     IsSection5SaddleWindow c₀ C₀ X (scaleG X) := by
@@ -480,7 +533,9 @@ theorem scaleG_mem_section5SaddleWindow {c₀ C₀ X : ℝ}
   · simpa only [one_mul] using mul_le_mul_of_nonneg_right hc₀ (scaleG_nonneg X)
   · simpa only [one_mul] using mul_le_mul_of_nonneg_right hC₀ (scaleG_nonneg X)
 
-/-- Proposition 5.1 at the exact Section 5 saddle `T = G`.-/
+/-- Proposition 5.1 at the exact Section 5 saddle `T = G`.
+@isnad1 id=le.6h5v.s6.61a24c3ff049 from=translated src=- shape=fc871646 vocab=630e4ebd
+-/
 theorem proposition5_1_uniform_at_scaleG {c₀ C₀ : ℝ} {error : ℕ → ℝ → ℝ}
     (huniform : HasProposition5_1Uniformity c₀ C₀ error)
     (hc₀ : c₀ ≤ 1) (hC₀ : 1 ≤ C₀)

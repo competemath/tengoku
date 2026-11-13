@@ -38,12 +38,18 @@ def siftedPairSet (R z : ℕ) : Finset ℕ :=
   (Finset.Icc 1 R).filter fun r ↦
     ∀ p ∈ Nat.primesLE z, ¬p ∣ L.leftValue r * L.rightValue r
 
+/--
+@isnad1 id=iff.0h3v.s5.0133197fa625 from=translated src=- shape=47d1bc62 vocab=f87e52a0
+-/
 @[simp]
 theorem mem_primePairSet {R r : ℕ} :
     r ∈ L.primePairSet R ↔
       1 ≤ r ∧ r ≤ R ∧ (L.leftValue r).Prime ∧ (L.rightValue r).Prime := by
   simp [primePairSet, and_assoc]
 
+/--
+@isnad1 id=iff.0h4v.s6.0877f567ebd8 from=translated src=- shape=806a090e vocab=80500173
+-/
 @[simp]
 theorem mem_siftedPairSet {R z r : ℕ} :
     r ∈ L.siftedPairSet R z ↔
@@ -51,6 +57,9 @@ theorem mem_siftedPairSet {R z r : ℕ} :
         ∀ p ∈ Nat.primesLE z, ¬p ∣ L.leftValue r * L.rightValue r := by
   simp [siftedPairSet, and_assoc]
 
+/--
+@isnad1 id=and.0h2v.s4.931ed9769f1f from=translated src=- shape=5009d9f3 vocab=25ec599b
+-/
 theorem value_pos (r : ℕ) : 0 < L.leftValue r ∧ 0 < L.rightValue r := by
   constructor
   · simp only [leftValue]
@@ -58,17 +67,25 @@ theorem value_pos (r : ℕ) : 0 < L.leftValue r ∧ 0 < L.rightValue r := by
   · simp only [rightValue]
     omega
 
+/--
+@isnad1 id=strictmo.0h1v.s3.b068be548730 from=translated src=- shape=8735051e vocab=6138f040
+-/
 theorem value_strictMono_left : StrictMono L.leftValue := by
   intro a b hab
   unfold leftValue
   exact Nat.add_lt_add_right (Nat.mul_lt_mul_of_pos_left hab L.left_pos) 1
 
+/--
+@isnad1 id=strictmo.0h1v.s3.5aa48dbb2f81 from=translated src=- shape=8735051e vocab=015a0cec
+-/
 theorem value_strictMono_right : StrictMono L.rightValue := by
   intro a b hab
   unfold rightValue
   exact Nat.add_lt_add_right (Nat.mul_lt_mul_of_pos_left hab L.right_pos) 1
 
-/-- Prime pairs whose two values exceed the sifting level survive the finite sieve.-/
+/-- Prime pairs whose two values exceed the sifting level survive the finite sieve.
+@isnad1 id=mem.3h4v.s5.26c201ddff20 from=translated src=- shape=f7d05666 vocab=ad734ead
+-/
 theorem mem_siftedPairSet_of_prime_values_gt {R z r : ℕ} (hr : r ∈ L.primePairSet R)
     (hleft : z < L.leftValue r) (hright : z < L.rightValue r) :
     r ∈ L.siftedPairSet R z := by
@@ -85,7 +102,9 @@ theorem mem_siftedPairSet_of_prime_values_gt {R z r : ℕ} (hr : r ∈ L.primePa
     have hple : p ≤ z := Nat.le_of_mem_primesLE hpz
     omega
 
-/-- A single affine form can take a prescribed value at most once.-/
+/-- A single affine form can take a prescribed value at most once.
+@isnad1 id=le.0h3v.s5.588d2a4aa91c from=translated src=- shape=3dd0464c vocab=d5177019
+-/
 theorem card_filter_leftValue_le_one (R q : ℕ) :
     ((Finset.Icc 1 R).filter fun r ↦ L.leftValue r = q).card ≤ 1 := by
   apply Finset.card_le_one.mpr
@@ -94,6 +113,9 @@ theorem card_filter_leftValue_le_one (R q : ℕ) :
   have hbEq := (Finset.mem_filter.mp hb).2
   exact L.value_strictMono_left.injective (haEq.trans hbEq.symm)
 
+/--
+@isnad1 id=le.0h3v.s5.e187078c9567 from=translated src=- shape=3dd0464c vocab=648119a1
+-/
 theorem card_filter_rightValue_le_one (R q : ℕ) :
     ((Finset.Icc 1 R).filter fun r ↦ L.rightValue r = q).card ≤ 1 := by
   apply Finset.card_le_one.mpr
@@ -107,13 +129,18 @@ def affineRootSet (p A : ℕ) (hp : p.Prime) : Finset (ZMod p) := by
   letI : Fact p.Prime := ⟨hp⟩
   exact Finset.univ.filter fun r ↦ (A : ZMod p) * r + 1 = 0
 
+/--
+@isnad1 id=iff.1h3v.s7.905733f70e8e from=translated src=- shape=5f3a73c5 vocab=05f40415
+-/
 @[simp]
 theorem mem_affineRootSet {p A : ℕ} (hp : p.Prime) {r : ZMod p} :
     r ∈ affineRootSet p A hp ↔ (A : ZMod p) * r + 1 = 0 := by
   letI : Fact p.Prime := ⟨hp⟩
   simp [affineRootSet]
 
-/-- A nonconstant affine congruence has one root; a constant-one congruence has none.-/
+/-- A nonconstant affine congruence has one root; a constant-one congruence has none.
+@isnad1 id=le.1h2v.s4.d71a6170d76f from=translated src=- shape=21024356 vocab=e2c63576
+-/
 theorem card_affineRootSet_le_one {p A : ℕ} (hp : p.Prime) :
     (affineRootSet p A hp).card ≤ 1 := by
   letI : Fact p.Prime := ⟨hp⟩
@@ -134,6 +161,9 @@ theorem card_affineRootSet_le_one {p A : ℕ} (hp : p.Prime) :
 def badResidueSet (p : ℕ) (hp : p.Prime) : Finset (ZMod p) :=
   affineRootSet p L.leftSlope hp ∪ affineRootSet p L.rightSlope hp
 
+/--
+@isnad1 id=iff.1h3v.s8.9849318df830 from=translated src=- shape=c729d6aa vocab=c6528362
+-/
 @[simp]
 theorem mem_badResidueSet_iff {p : ℕ} (hp : p.Prime) {r : ZMod p} :
     r ∈ L.badResidueSet p hp ↔
@@ -141,7 +171,9 @@ theorem mem_badResidueSet_iff {p : ℕ} (hp : p.Prime) {r : ZMod p} :
   letI : Fact p.Prime := ⟨hp⟩
   simp [badResidueSet, mul_eq_zero]
 
-/-- Dimension at most two: every prime modulus excludes at most two residue classes.-/
+/-- Dimension at most two: every prime modulus excludes at most two residue classes.
+@isnad1 id=le.1h2v.s4.420a3de8ee1a from=translated src=- shape=e1254190 vocab=800b319d
+-/
 theorem card_badResidueSet_le_two {p : ℕ} (hp : p.Prime) :
     (L.badResidueSet p hp).card ≤ 2 := by
   unfold badResidueSet

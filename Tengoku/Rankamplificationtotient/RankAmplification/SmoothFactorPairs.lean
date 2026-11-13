@@ -14,6 +14,9 @@ noncomputable def smoothFactorPairSet (R X : ℕ) : Finset (ℕ × ℕ) := by
   classical
   exact (cofactorPairSet X).filter fun k ↦ IsSmooth R (k.1 * k.2)
 
+/--
+@isnad1 id=iff.0h4v.s6.8eb640c8b93d from=translated src=- shape=a813811e vocab=8c680568
+-/
 @[simp]
 theorem mem_smoothFactorPairSet {R X k₁ k₂ : ℕ} :
     (k₁, k₂) ∈ smoothFactorPairSet R X ↔
@@ -21,7 +24,9 @@ theorem mem_smoothFactorPairSet {R X k₁ k₂ : ℕ} :
   classical
   simp [smoothFactorPairSet, and_assoc]
 
-/-- The product map sends every smooth factor pair to the finite smooth census.-/
+/-- The product map sends every smooth factor pair to the finite smooth census.
+@isnad1 id=mapsto.0h2v.s5.5c95b1703adc from=translated src=- shape=52ca5237 vocab=dc416557
+-/
 theorem smoothFactorPairSet_product_mapsTo (R X : ℕ) :
     ((smoothFactorPairSet R X : Finset (ℕ × ℕ)) : Set (ℕ × ℕ)).MapsTo
       (fun k ↦ k.1 * k.2) (finiteSmoothSet R X : Set ℕ) := by
@@ -29,7 +34,9 @@ theorem smoothFactorPairSet_product_mapsTo (R X : ℕ) :
   obtain ⟨hk₁, hk₂, hkX, hsmooth⟩ := mem_smoothFactorPairSet.mp hk
   exact mem_finiteSmoothSet.mpr ⟨Nat.mul_pos hk₁ hk₂, hkX, hsmooth⟩
 
-/-- A fixed-product fibre of positive ordered factor pairs has exactly `τ(m)` elements.-/
+/-- A fixed-product fibre of positive ordered factor pairs has exactly `τ(m)` elements.
+@isnad1 id=eq.1h3v.s6.8d81a5f95858 from=translated src=- shape=11f03ece vocab=2aeda562
+-/
 theorem smoothFactorPair_fiber_card_eq_divisors {R X m : ℕ}
     (hm : m ∈ finiteSmoothSet R X) :
     ((smoothFactorPairSet R X).filter fun k ↦ k.1 * k.2 = m).card = m.divisors.card := by
@@ -68,7 +75,9 @@ theorem smoothFactorPair_fiber_card_eq_divisors {R X m : ℕ}
     refine ⟨mem_smoothFactorPairSet.mpr
       ⟨hdpos, hquotpos, hprod.le.trans hmData.2.1, hsmoothprod⟩, hprod⟩
 
-/-- Exact natural-cardinality form of the reindexing in (4.6).-/
+/-- Exact natural-cardinality form of the reindexing in (4.6).
+@isnad1 id=eq.0h2v.s4.0ef1e0523da9 from=translated src=- shape=251fdd0f vocab=92f411e0
+-/
 theorem card_smoothFactorPairSet_eq_sum_divisors (R X : ℕ) :
     (smoothFactorPairSet R X).card =
       ∑ m ∈ finiteSmoothSet R X, m.divisors.card := by
@@ -83,13 +92,17 @@ theorem card_smoothFactorPairSet_eq_sum_divisors (R X : ℕ) :
       intro m hm
       exact smoothFactorPair_fiber_card_eq_divisors hm
 
-/-- Exact real-valued identity with the paper's `Ψτ(X,R)`.-/
+/-- Exact real-valued identity with the paper's `Ψτ(X,R)`.
+@isnad1 id=eq.0h2v.s4.985d71bf6461 from=translated src=- shape=51b252d7 vocab=324a1441
+-/
 theorem card_smoothFactorPairSet_cast_eq (R X : ℕ) :
     ((smoothFactorPairSet R X).card : ℝ) = finiteDivisorWeightedSmoothCount R X := by
   rw [card_smoothFactorPairSet_eq_sum_divisors, Nat.cast_sum,
     finiteDivisorWeightedSmoothCount_eq]
 
-/-- Dropping the `+1` terms in two provider forms gives the cutoff used in (4.6).-/
+/-- Dropping the `+1` terms in two provider forms gives the cutoff used in (4.6).
+@isnad1 id=le.2h4v.s6.0dfe400bec0e from=translated src=- shape=050e4ee5 vocab=dc46af4e
+-/
 theorem multiplier_product_le_div_sq {p k₁ k₂ X : ℕ} (hp : 0 < p)
     (hprovider : (k₁ * p + 1) * (k₂ * p + 1) ≤ X) :
     k₁ * k₂ ≤ X / p ^ 2 := by
@@ -102,7 +115,9 @@ theorem multiplier_product_le_div_sq {p k₁ k₂ X : ℕ} (hp : 0 < p)
     k₁ * k₂ * p ^ 2 = (k₁ * p) * (k₂ * p) := by ring
     _ ≤ X := hmul
 
-/-- Any finite family of actual provider multiplier pairs is bounded by the smooth census in (4.6).-/
+/-- Any finite family of actual provider multiplier pairs is bounded by the smooth census in (4.6).
+@isnad1 id=le.2h3v.s7.8d8690aa5ac8 from=translated src=- shape=ebaa7bfb vocab=cbea4598
+-/
 theorem card_providerMultiplierFamily_cast_le {p X : ℕ} (hp : 0 < p)
     (S : Finset (ℕ × ℕ))
     (hS : ∀ k ∈ S,
