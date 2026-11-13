@@ -4,7 +4,7 @@ There are three kinds of release on the repository's Releases page. Know which o
 
 | Kind | Tag | Made by | What it holds |
 | --- | --- | --- | --- |
-| **Dataset snapshot** | `vX.Y.Z` (today: `v1.0.0`) | `.github/workflows/snapshot.yml`, monthly and on demand; a month with no change publishes nothing | `tengoku-dataset.jsonl.gz` (every trusted record), `snapshot.json` (commit, toolchain, counts, the dataset's sha256) and `CITATION.cff`. Cited by DOI. |
+| **Dataset snapshot** | `vX.Y.Z` (today: `v1.0.0`) | `.github/workflows/snapshot.yml`, on demand. No cadence is promised: a scheduled check runs on the 1st of each month, and `v1.0.0` is still the only snapshot published | `tengoku-dataset.jsonl.gz` (every trusted record), `snapshot.json` (commit, toolchain, counts, the dataset's sha256) and `CITATION.cff`. Cited by DOI. |
 | **Nightly cache** | `cache-<timestamp>`, `cache-latest` (pointer) | `.github/workflows/build.yml` | The compiled tree in parts, for `scripts/cache.sh get`. Not a version of the library: it is `main` on a given night. |
 | **Cache deltas** | `lake-deltas-cache-<timestamp>` (pre-release, one per nightly cache) | the merge queue ([the delta store](testing.md#the-delta-store)) | One small attested file per merge, `d-<commit>.tar.zst`: what changed since that nightly cache. (`cache-topups` is the retired [top-up](topups.md) design.) |
 
