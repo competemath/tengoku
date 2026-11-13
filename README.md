@@ -1,4 +1,4 @@
-> [!WARNING]
+> [!NOTE]
 > **Tengoku is changing fast.** If you are planning a serious project on it, wait for the v2 release. Releases after v2 will come with migration support and stable environments.
 
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
