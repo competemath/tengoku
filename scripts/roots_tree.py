@@ -144,6 +144,8 @@ ROOT_DECL = re.compile(
 NAMESPACE_NAME = re.compile(rf"^(?P<pre>\s*(?:(?:public|noncomputable)\s+)*namespace\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 END_NAME = re.compile(rf"^(?P<pre>\s*end\s+)(?P<name>(?:{QUOTED}|[^\s«»])+)\s*$")
 OPEN_MARK = "namespace {ns} end {ns} open {ns} "
+ROOT_PREFIX = re.compile(r"(?<![\w.'«])_root_\.")  # an explicit root-namespace prefix
+TOKEN_HEAD = re.compile(r"(?:«[^»]*»|[^\s.«»(){}\[\]⟨⟩,:;])+")  # the first component of the name that follows it
 OPEN_HEADS = (  # `open scoped …` first; when that leaves no valid ending, `scoped` is an argument (the order a backtracking match would try)
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+scoped\s+)"),
     re.compile(r"^(?P<pre>\s*(?:@\[[^\]]*\]\s*)?open\s+)"),
@@ -187,6 +189,12 @@ def _uses_roots(f: Lines, roots: set[str]) -> bool:
     return any(pat.search(c) for c in f.code)
 
 
+def head_of_token(text: str) -> str:
+    """the first component of the name at the start of `text` (empty when there is none)"""
+    m = TOKEN_HEAD.match(text)
+    return m.group(0) if m else ""
+
+
 def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = True) -> dict:
     """The edits of one module: a declaration whose name is a root of the library, a `namespace R` block of a root R (with its `end`), and a dotted `R.x` declaration get `<ns>.`
     in front; the first body line gets `namespace NS end NS open NS` when the module declares or still uses a root. All of it goes INSIDE existing lines (no line moves)."""
@@ -222,6 +230,16 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
                 done["dotted"] += 1
             else:
                 done["declared"].append(name)
+    for i, code in enumerate(
+        f.code
+    ):  # `_root_.R…`: the name is spelled from the root explicitly (a declaration `def _root_.R.x`, or a use), so it does not move with the namespace block
+        for t in reversed(list(ROOT_PREFIX.finditer(code))):
+            head = head_of_token(code[t.end() :])
+            if head in roots:
+                f.insert(i, t.end(), ns + ".")
+                done["heads"].add(head)
+                if t.end() + len(head) < len(code) and code[t.end() + len(head)] == "." and ROOT_DECL.match(code):
+                    done["dotted"] += 1
     for i, code in enumerate(
         f.code
     ):  # `open R` of a root namespace R: the namespace moved, so the `open` follows (right to left: an insertion shifts the columns after it)
