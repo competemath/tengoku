@@ -98,8 +98,33 @@ def good_link(url: str) -> bool:
     return u.scheme in ("http", "https") and bool(u.hostname) and "." in (u.hostname or "") and not re.search(r"\s", url)
 
 
-def squash(s: str) -> str:
-    return re.sub(r"\s+", "", s)
+SEAM = "\0"  # where a record's statement ends and its proof begins: the one place whitespace may differ
+
+
+def moves_only(old_stmt: str, old_proof: str, stmt: str, proof: str) -> bool:
+    """True when (stmt, proof) is the text of (old_stmt, old_proof) with the seam between the fields moved, or with the end cut off.
+    The characters are compared exactly; whitespace may differ only AT a seam (the extractor strips it there). A space inside a field
+    is part of what a statement says (`(a b : N)` is not `(ab : N)`; a newline ends a `--` comment), so it must be the same."""
+    old = old_stmt.rstrip() + SEAM + old_proof.lstrip()
+    new = stmt.rstrip() + SEAM + proof.lstrip()
+    if SEAM in old_stmt + old_proof + stmt + proof:
+        return False
+    i = j = 0
+    while j < len(new):
+        if new[j] == SEAM:  # the new seam: skip the whitespace the old text has here, and the old seam if it is here
+            j += 1
+            while i < len(old) and (old[i].isspace() or old[i] == SEAM):
+                i += 1
+        elif i < len(old) and old[i] == SEAM:  # the old seam, inside the new text: skip the whitespace the new text has here
+            i += 1
+            while j < len(new) and new[j].isspace():
+                j += 1
+        elif i < len(old) and new[j] == old[i]:
+            i += 1
+            j += 1
+        else:
+            return False
+    return True
 
 
 _FILES: dict[str, dict] = {}
@@ -148,6 +173,8 @@ def check_statement_correction(p: str, no: int, r: dict, t: str) -> list[str]:
     f = tentative_file(p)
     if n not in f["texts"]:
         return out + [f"{p}:{no}: statement_correction for {n}, which is no record of this file"]
+    if n in trusted_names():
+        out.append(f"{p}:{no}: {n} is already trusted; its text is the compiled one")
     if n in f["tombstoned"]:
         out.append(f"{p}:{no}: {n} is retracted; a correction for it would have no effect")
     if n in f["corrected"]:
@@ -156,11 +183,11 @@ def check_statement_correction(p: str, no: int, r: dict, t: str) -> list[str]:
     old_stmt, old_proof = f["texts"][n]
     if (stmt, proof) == (old_stmt, old_proof):
         out.append(f"{p}:{no}: the statement_correction of {n} changes nothing")
-    if not squash(old_stmt + old_proof).startswith(squash(stmt + proof)):
+    if not moves_only(old_stmt, old_proof, stmt, proof):
         out.append(
-            f"{p}:{no}: the corrected text of {n} must be a prefix of the current statement and proof (whitespace ignored): a correction moves text between the fields or drops it from the end, it adds none"
+            f"{p}:{no}: the corrected text of {n} must be the current statement and proof with the seam between them moved, or the end cut off: the same characters, whitespace differing only at the seam"
         )
-    a, b = squash(stmt), squash(old_stmt)
+    a, b = stmt.rstrip(), old_stmt.rstrip()
     if not (a.startswith(b) or b.startswith(a)):
         out.append(f"{p}:{no}: the corrected statement of {n} and the current one must be one a prefix of the other")
     if not re.search(r"(?<![\w'])" + re.escape(n.rsplit(".", 1)[-1]) + r"(?![\w'])", stmt):
