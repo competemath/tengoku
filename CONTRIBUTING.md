@@ -40,7 +40,7 @@ the easiest way to do each thing.
 
 ## Retract a theorem
 
-Nothing is ever deleted. Append a tombstone line to
+No record is ever deleted. Append a tombstone line to
 `data/trusted/<library>.jsonl`:
 
 ```
@@ -92,6 +92,28 @@ merge queue (`python3 scripts/ci/fuzz/run.py --all --replay` runs them locally; 
 tested](docs/testing.md#fuzzing)). `CODEOWNERS` review applies. Run the scenario
 campaign against the sandbox before touching `scripts/ci/` or the workflows
 (`scripts/ci/campaign/README.md`).
+
+## Other kinds of change
+
+Most pull requests are one of the kinds above. The tree also changes through classes that mostly bots and the maintainers
+send; each is recognised by the files it touches and judged by its own check ([PR classes](docs/pr-classes.md)):
+
+| Class | What it is | Section |
+| --- | --- | --- |
+| intake, extend | A library's verified bundle from the translation factory (`tengoku-intake[bot]`), whole or in parts. Most new modules arrive this way. | 6 |
+| tag | isnad tags written into the docstrings of modules already in the tree. | 7 |
+| restructure | A move of files, recomputed from a script (the seed moved into `Tengoku/Seed/` this way). | 5 |
+| raze | Takes modules of an intake library **out** of the tree, with their dependents, and leaves a marker in `data/raze/`. It is the one operation that removes modules; it is not a retraction of a record. | 8 |
+| scope-fix | Makes a library's global instance, simp lemma or notation `scoped` or `local`, checked line by line (`scripts/ci/scope_fix_check.py`). | none yet |
+| studied | Theorems Leak runs proved and rated four stars or more. | 9 |
+| roots | Moves a library's root-namespace declarations into `Tengoku.<Library>`, recomputed from a script. | 11 |
+
+Two rules apply to any library module you write by hand or generate, and the gate and the merge queue enforce them:
+
+- **No global notation.** A `notation`, `infix`, `prefix` or `postfix` command is accepted only with `scoped` or `local` in front ([bundle lint](docs/bundle-lint.md)).
+- **No declarations in the root namespace.** Put a library's names under `Tengoku.<Library>`. The merge queue reports root names now and refuses them once the repository variable `TENGOKU_ROOTS_REQUIRED` is `1`.
+
+Seeded upstream code (Mathlib, Batteries, Aesop, …) lives under `Tengoku/Seed/`; [SEED.md](SEED.md) maps each package to its folder.
 
 ## Fix docs
 
