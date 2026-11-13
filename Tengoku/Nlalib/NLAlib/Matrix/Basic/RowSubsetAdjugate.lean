@@ -26,7 +26,9 @@ def rowSubsetCrossGram (A B : Matrix n d 𝕜) (S : Finset n) : Matrix d d 𝕜 
   Aᴴ * coordinateSelector S * B
 
 /-- Cross-Gram Cauchy–Binet keeps the determinant product of corresponding
-minors and makes their common support explicit.-/
+minors and makes their common support explicit.
+@isnad1 id=eq.0h6v.s8.f9962e0dc7b6 from=translated src=- shape=c7e17110 vocab=cb96811c
+-/
 theorem det_rowSubsetCrossGram_eq_sum_minors (A B : Matrix n d 𝕜) (S : Finset n) :
     (rowSubsetCrossGram A B S).det = ∑ J : SizedSubset n d,
       if J.val ⊆ S then star ((A.submatrix (sizedSubsetIndex J) id).det) *
@@ -44,7 +46,9 @@ theorem det_rowSubsetCrossGram_eq_sum_minors (A B : Matrix n d 𝕜) (S : Finset
   split_ifs <;> simp
 
 /-- The all-data cross-Gram normalizer on an arbitrary ambient row set.
-It is valid for deficient matrices and singular cross-Grams as well.-/
+It is valid for deficient matrices and singular cross-Grams as well.
+@isnad1 id=eq.1h7v.s7.de091caf1829 from=translated src=- shape=cd0aaf31 vocab=740ddb5f
+-/
 theorem sum_det_rowSubsetCrossGram_powersetCard (A B : Matrix n d 𝕜)
     (T : Finset n) (s : ℕ) (hds : Fintype.card d ≤ s) :
     (∑ S ∈ T.powersetCard s, (rowSubsetCrossGram A B S).det) =
@@ -65,7 +69,9 @@ theorem sum_det_rowSubsetCrossGram_powersetCard (A B : Matrix n d 𝕜)
     rw [ite_eq_right (fun hJS => hJT (hJS.trans (Finset.mem_powersetCard.mp hS).1))]
 
 /-- Deleting a Gram row and a Gram column gives the cross-Gram of the two
-corresponding column-deleted data matrices.-/
+corresponding column-deleted data matrices.
+@isnad1 id=eq.0h7v.s7.012136fc32cb from=translated src=- shape=f9b21acb vocab=deffecf2
+-/
 theorem rowSubsetGram_submatrix_succAbove {D : ℕ}
     (X : Matrix n (Fin (D + 1)) 𝕜) (S : Finset n) (i j : Fin (D + 1)) :
     (rowSubsetGram X S).submatrix j.succAbove i.succAbove =
@@ -75,7 +81,9 @@ theorem rowSubsetGram_submatrix_succAbove {D : ℕ}
     Matrix.conjTranspose_apply, id_eq]
 
 /-- Summing every cofactor counts each `(D-1)`-row minor with its exact
-superset multiplicity. This includes singular row subsets and the scalar case.-/
+superset multiplicity. This includes singular row subsets and the scalar case.
+@isnad1 id=eq.1h6v.s8.346ae917a983 from=translated src=- shape=9b162591 vocab=e42eb928
+-/
 theorem sum_adjugate_rowSubsetGram_powersetCard_fin_succ {D : ℕ}
     (X : Matrix n (Fin (D + 1)) 𝕜) (T : Finset n) (s : ℕ) (hDs : D ≤ s) :
     (∑ S ∈ T.powersetCard s, (rowSubsetGram X S).adjugate) =
@@ -91,7 +99,9 @@ theorem sum_adjugate_rowSubsetGram_powersetCard_fin_succ {D : ℕ}
 
 /-- The adjugate sum over fixed-size row subsets, on arbitrary finite column
 labels. No full-rank or general-position condition is used. The column dimension
-is positive; singular adjugates are deliberately retained.-/
+is positive; singular adjugates are deliberately retained.
+@isnad1 id=eq.2h6v.s7.5bb650e8b40e from=translated src=- shape=2b4458c2 vocab=ed0843a0
+-/
 theorem sum_adjugate_rowSubsetGram_powersetCard (X : Matrix n d 𝕜)
     (T : Finset n) (s : ℕ) (hd : 0 < Fintype.card d) (hds : Fintype.card d - 1 ≤ s) :
     (∑ S ∈ T.powersetCard s, (rowSubsetGram X S).adjugate) =

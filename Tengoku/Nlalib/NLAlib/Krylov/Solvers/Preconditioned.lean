@@ -42,7 +42,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- **Krylov spaces under a change of variables:** `K_q(WB, Wv) = W K_q(BW, v)`. With
 `P⁻¹ = WWᵀ` and `B = WᵀA` this is `K_q(P⁻¹A, P⁻¹r) = W K_q(WᵀAW, Wᵀr)`, the identity behind
 split preconditioning. Source: Saad (2003) [`saad03`], §9.2.1.
-atlas: preconditioned-cg (partial)-/
+atlas: preconditioned-cg (partial)
+@isnad1 id=eq.0h5v.s7.bfa62faa6f44 from=translated src=- shape=ca057b8a vocab=5e5b52be
+-/
 theorem krylovSpace_mul_mulVec_eq_map (W B : Matrix n n ℝ) (v : n → ℝ) (q : ℕ) :
     krylovSpace (W * B) (W *ᵥ v) q = (krylovSpace (B * W) v q).map W.mulVecLin := by
   rw [krylovSpace, krylovSpace, Submodule.map_span, ← Set.range_comp]
@@ -53,7 +55,9 @@ theorem krylovSpace_mul_mulVec_eq_map (W B : Matrix n n ℝ) (v : n → ℝ) (q 
 
 /-- **Affine minimisers under an invertible change of variables:** `x` minimises `E` over
 `x₀ + W S` iff `W⁻¹x` minimises `E ∘ W` over `W⁻¹x₀ + S`. Helper for `preconditioned-cg`
-(belongs in `NLAlib.Krylov.Solvers.Minimizer`).-/
+(belongs in `NLAlib.Krylov.Solvers.Minimizer`).
+@isnad1 id=iff.1h6v.s8.9c17b1680e83 from=translated src=- shape=877156dd vocab=3734f188
+-/
 theorem isAffineMinimizer_map_iff {W : Matrix n n ℝ} (hW : IsUnit W) {E : (n → ℝ) → ℝ}
     {x₀ x : n → ℝ} {S : Submodule ℝ (n → ℝ)} :
     IsAffineMinimizer E x₀ (S.map W.mulVecLin) x ↔
@@ -79,7 +83,9 @@ theorem isAffineMinimizer_map_iff {W : Matrix n n ℝ} (hW : IsUnit W) {E : (n �
 
 omit [DecidableEq n] in
 /-- The CG objective under a change of variables: `φ_{A,c}(Wy) = φ_{WᵀAW, Wᵀc}(y)`.
-Helper for `preconditioned-cg`.-/
+Helper for `preconditioned-cg`.
+@isnad1 id=eq.0h5v.s6.347e95d5a4c2 from=translated src=- shape=b3d7e951 vocab=886d0944
+-/
 theorem cgObjective_mulVec (A W : Matrix n n ℝ) (c y : n → ℝ) :
     cgObjective A c (W *ᵥ y) = cgObjective (Wᵀ * A * W) (Wᵀ *ᵥ c) y := by
   have hq := quadForm_conjTranspose_mul_mul A W y
@@ -97,12 +103,16 @@ atlas: preconditioned-cg-/
 def IsPCGIterate (A P : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) (x : n → ℝ) : Prop :=
   IsAffineMinimizer (cgObjective A c) x₀ (krylovSpace (P⁻¹ * A) (P⁻¹ *ᵥ (c - A *ᵥ x₀)) q) x
 
-/-- If `Wᵀ P W = I` then `W` is invertible. Helper for `preconditioned-cg`.-/
+/-- If `Wᵀ P W = I` then `W` is invertible. Helper for `preconditioned-cg`.
+@isnad1 id=isunit.1h3v.s6.86468de7ead6 from=translated src=- shape=46243e70 vocab=866a5826
+-/
 theorem isUnit_of_transpose_mul_mul_eq_one {P W : Matrix n n ℝ} (hW : Wᵀ * P * W = 1) :
     IsUnit W :=
   (Matrix.isUnit_iff_isUnit_det W).2 (Matrix.isUnit_det_of_left_inverse hW)
 
-/-- If `Wᵀ P W = I` then `P⁻¹ = W Wᵀ`. Helper for `preconditioned-cg`.-/
+/-- If `Wᵀ P W = I` then `P⁻¹ = W Wᵀ`. Helper for `preconditioned-cg`.
+@isnad1 id=eq.1h3v.s7.baf91d67cc0b from=translated src=- shape=cfb4744c vocab=6c0155b8
+-/
 theorem inv_eq_mul_transpose_of_transpose_mul_mul_eq_one {P W : Matrix n n ℝ}
     (hW : Wᵀ * P * W = 1) : P⁻¹ = W * Wᵀ := by
   refine Matrix.inv_eq_left_inv ?_
@@ -111,7 +121,9 @@ theorem inv_eq_mul_transpose_of_transpose_mul_mul_eq_one {P W : Matrix n n ℝ}
 
 /-- A positive definite `P` has a symmetric inverse square root: some `W = Wᵀ` with
 `Wᵀ P W = I` (`W = P^{-1/2} = U diag(λ^{-1/2}) Uᵀ`). Source: Horn–Johnson (2013), Thm 7.2.6.
-Helper for `preconditioned-cg` (belongs in `NLAlib.Matrix.Spectral.Core`).-/
+Helper for `preconditioned-cg` (belongs in `NLAlib.Matrix.Spectral.Core`).
+@isnad1 id=ex.1h2v.s6.e31fa4fb4fe1 from=translated src=- shape=b81adace vocab=7a1ece5b
+-/
 theorem exists_isSymm_transpose_mul_mul_eq_one {P : Matrix n n ℝ} (hP : P.PosDef) :
     ∃ W : Matrix n n ℝ, W.IsSymm ∧ Wᵀ * P * W = 1 := by
   set U : Matrix n n ℝ := (hP.1.eigenvectorUnitary : Matrix n n ℝ)
@@ -144,7 +156,9 @@ theorem exists_isSymm_transpose_mul_mul_eq_one {P : Matrix n n ℝ} (hP : P.PosD
 is a PCG iterate for `(A, P, c, x₀)` iff `W⁻¹x` is a CG iterate for `WᵀAW ŷ = Wᵀc` from
 `W⁻¹x₀`. With `W = P^{-1/2}` this is CG on `P^{-1/2} A P^{-1/2}`; with `W = L⁻ᵀ`, `P = LLᵀ`,
 CG on `L⁻¹AL⁻ᵀ`. Source: Saad (2003) [`saad03`], §9.2.1 (split preconditioning).
-atlas: preconditioned-cg (partial)-/
+atlas: preconditioned-cg (partial)
+@isnad1 id=iff.1h8v.s7.f248c5852bc4 from=translated src=- shape=93214f86 vocab=831a04bf
+-/
 theorem isPCGIterate_iff_isCGIterate {A P W : Matrix n n ℝ} (hW : Wᵀ * P * W = 1)
     {c x₀ x : n → ℝ} {q : ℕ} :
     IsPCGIterate A P c x₀ q x ↔
@@ -169,7 +183,9 @@ Proof: CG on `P^{-1/2} A P^{-1/2}`, whose spectrum lies in `[a, b]`
 (`isPCGIterate_iff_isCGIterate`, `quadForm_sub_le_of_isCGIterate`).
 Source: Saad (2003) [`saad03`], §9.2; Greenbaum (1997) [`greenbaum97`], Ch. 8.
 Deviation: squared `A`-norms.
-atlas: preconditioned-cg-/
+atlas: preconditioned-cg
+@isnad1 id=le.7h10v.s8.5c29cbd41c0c from=translated src=- shape=acf304c0 vocab=d8095afb
+-/
 theorem quadForm_sub_le_of_isPCGIterate {A P : Matrix n n ℝ} (hP : P.PosDef) {a b : ℝ}
     (ha : 0 < a) (hab : a ≤ b) (hlow : a • P ≤ A) (hup : A ≤ b • P) {c x₀ xs x : n → ℝ}
     (hxs : A *ᵥ xs = c) {q : ℕ} (hx : IsPCGIterate A P c x₀ q x) :
@@ -234,7 +250,9 @@ def IsCGLSIterate (A : Matrix m n ℝ) (b : m → ℝ) (x₀ : n → ℝ) (q : �
 omit [DecidableEq n] in
 /-- The least-squares objective is twice the CG objective of the normal equations plus a
 constant: `‖b − Ay‖² = 2 φ_{AᵀA, Aᵀb}(y) + ‖b‖²`. Source: Saad (2003) [`saad03`], §8.3.
-Helper for `cgls-lsqr-bound`.-/
+Helper for `cgls-lsqr-bound`.
+@isnad1 id=eq.0h5v.s7.9ae17816ac78 from=translated src=- shape=45851f59 vocab=393c34a8
+-/
 theorem dotProduct_sub_mulVec_self_eq (A : Matrix m n ℝ) (b : m → ℝ) (y : n → ℝ) :
     (b - A *ᵥ y) ⬝ᵥ (b - A *ᵥ y) = 2 * cgObjective (Aᵀ * A) (Aᵀ *ᵥ b) y + b ⬝ᵥ b := by
   have hq := quadForm_conjTranspose_mul_self A y
@@ -247,7 +265,9 @@ theorem dotProduct_sub_mulVec_self_eq (A : Matrix m n ℝ) (b : m → ℝ) (y : 
 /-- **CGLS is CG on the normal equations.** `x` is a CGLS iterate for `min ‖b − Ax‖` iff it is
 a CG iterate for `AᵀA x = Aᵀb` (same starting point, same Krylov space). Source: Saad (2003)
 [`saad03`], §8.3 (CGNR).
-atlas: cgls-lsqr-bound (partial)-/
+atlas: cgls-lsqr-bound (partial)
+@isnad1 id=iff.0h7v.s6.bbeb3aaded04 from=translated src=- shape=531eea56 vocab=6f69492f
+-/
 theorem isCGLSIterate_iff_isCGIterate {A : Matrix m n ℝ} {b : m → ℝ} {x₀ x : n → ℝ} {q : ℕ} :
     IsCGLSIterate A b x₀ q x ↔ IsCGIterate (Aᵀ * A) (Aᵀ *ᵥ b) x₀ q x := by
   have hr : Aᵀ *ᵥ b - (Aᵀ * A) *ᵥ x₀ = Aᵀ *ᵥ (b - A *ᵥ x₀) := by
@@ -261,7 +281,9 @@ omit [DecidableEq n] in
 /-- **Residual splitting for least squares.** If `x⋆` solves the normal equations
 `AᵀA x⋆ = Aᵀb`, then `‖b − Ax‖² = ‖b − Ax⋆‖² + ‖A(x − x⋆)‖²` for every `x`.
 Source: Saad (2003) [`saad03`], §8.3; Trefethen–Bau (1997) [`tb97`], Thm 11.1.
-atlas: cgls-lsqr-bound (partial)-/
+atlas: cgls-lsqr-bound (partial)
+@isnad1 id=eq.1h6v.s8.22b569c852da from=translated src=- shape=febaef52 vocab=9233567c
+-/
 theorem dotProduct_sub_mulVec_self_eq_add {A : Matrix m n ℝ} {b : m → ℝ} {xs : n → ℝ}
     (hxs : Aᵀ *ᵥ (A *ᵥ xs) = Aᵀ *ᵥ b) (x : n → ℝ) :
     (b - A *ᵥ x) ⬝ᵥ (b - A *ᵥ x) =
@@ -286,7 +308,9 @@ CGLS iterate from `x₀`. Then
 Proof: CG on `AᵀA` with spectrum in `[σ_lo², σ_hi²]` (`quadForm_sub_le_of_isCGIterate`).
 Source: Saad (2003) [`saad03`], §8.3; Paige–Saunders (1982) [`ps82`].
 Deviation: squared norms; the singular-value hypothesis in Rayleigh form.
-atlas: cgls-lsqr-bound-/
+atlas: cgls-lsqr-bound
+@isnad1 id=le.6h10v.s9.13d75de4891d from=translated src=- shape=b007f7db vocab=9c3a3bda
+-/
 theorem dotProduct_mulVec_sub_le_of_isCGLSIterate {A : Matrix m n ℝ} {σlo σhi : ℝ}
     (hlo : 0 < σlo) (hlohi : σlo ≤ σhi)
     (hlow : ∀ v, σlo ^ 2 * (v ⬝ᵥ v) ≤ (A *ᵥ v) ⬝ᵥ (A *ᵥ v))
@@ -318,7 +342,9 @@ theorem dotProduct_mulVec_sub_le_of_isCGLSIterate {A : Matrix m n ℝ} {σlo σh
 `dotProduct_mulVec_sub_le_of_isCGLSIterate`,
 `‖b − Ax‖² ≤ ‖b − Ax⋆‖² + (2((σ_hi − σ_lo)/(σ_hi + σ_lo))^q)² ‖A(x₀ − x⋆)‖²`.
 Source: Saad (2003) [`saad03`], §8.3.
-atlas: cgls-lsqr-bound-/
+atlas: cgls-lsqr-bound
+@isnad1 id=le.6h10v.s9.c0a66e752c06 from=translated src=- shape=6835dcd6 vocab=9c3a3bda
+-/
 theorem dotProduct_sub_mulVec_le_of_isCGLSIterate {A : Matrix m n ℝ} {σlo σhi : ℝ}
     (hlo : 0 < σlo) (hlohi : σlo ≤ σhi)
     (hlow : ∀ v, σlo ^ 2 * (v ⬝ᵥ v) ≤ (A *ᵥ v) ⬝ᵥ (A *ᵥ v))

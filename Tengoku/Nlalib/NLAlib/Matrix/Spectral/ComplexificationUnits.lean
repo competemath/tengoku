@@ -8,7 +8,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A real square matrix is invertible exactly when its complexification is.
-The reflection uses the actual determinant, including dimension zero.-/
+The reflection uses the actual determinant, including dimension zero.
+@isnad1 id=iff.0h2v.s8.db9f7379dd3c from=translated src=- shape=a7464697 vocab=a17b0c2f
+-/
 theorem isUnit_realMatrixComplexification_iff (A : Matrix n n ℝ) :
     IsUnit (realMatrixComplexification A : Matrix n n ℂ) ↔ IsUnit A := by
   constructor

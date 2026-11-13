@@ -21,14 +21,18 @@ def matrixRecoveryProgram :
     Pi.single ((Fintype.equivFin n).symm j) (1 : K))).map
     (fun responses => Matrix.of fun i j => responses (Fintype.equivFin n j) i)
 
-/-- The coordinate queries recover the input matrix exactly.-/
+/-- The coordinate queries recover the input matrix exactly.
+@isnad1 id=eq.0h3v.s5.7538f1dba542 from=translated src=- shape=7cec23d5 vocab=3778fa4f
+-/
 @[simp] theorem run_matrixRecoveryProgram (A : Matrix n n K) :
     matrixRecoveryProgram.run A.mulVec = A := by
   simp only [matrixRecoveryProgram, QueryProgram.run_map, QueryProgram.run_family,
     Matrix.mulVec_single_one, Equiv.symm_apply_apply]
   rfl
 
-/-- Every oracle-free matrix function can be evaluated after `card n` queries.-/
+/-- Every oracle-free matrix function can be evaluated after `card n` queries.
+@isnad1 id=ex.0h4v.s6.beae5e278143 from=translated src=- shape=0acd5770 vocab=18cd5c4e
+-/
 theorem exists_matvecAlg_apply_of_matrixRecovery {β : Type*} (f : Matrix n n K → β) :
     ∃ alg : MatvecAlg K n β, alg.cost = Fintype.card n ∧ ∀ A, alg.run A = f A := by
   refine ⟨⟨_, matrixRecoveryProgram.map f⟩, rfl, ?_⟩

@@ -21,7 +21,9 @@ variable {K n : Type*} [Field K] [Fintype n] [LinearOrder n]
 
 /-- Leading null vectors determine row inclusion: every vector supported
 strictly before a diagonal label whose leading output vanishes must also
-have zero output at that label. This criterion applies over any field.-/
+have zero output at that label. This criterion applies over any field.
+@isnad1 id=hasrowin.1h3v.s7.ab95439f2f17 from=translated src=- shape=a135bf80 vocab=d5e96486
+-/
 theorem hasRowInclusion_of_prefix_kernel {A : Matrix n n K}
     (hA : ∀ i : n, ∀ x : n → K, (∀ j : n, ¬j < i → x j = 0) →
       (∀ j : n, j < i → (A *ᵥ x) j = 0) → (A *ᵥ x) i = 0) :

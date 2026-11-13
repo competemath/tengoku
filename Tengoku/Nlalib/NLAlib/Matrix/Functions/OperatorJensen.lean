@@ -22,7 +22,9 @@ K₁ + K₂ᴴ A₂ K₂) ≼ K₁ᴴ f(A₁) K₁ + K₂ᴴ f(A₂) K₂`.
 
 Tropp 2015, Thm 8.5.2. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
 Introduction to Matrix Concentration Inequalities, Ch 8*.
-atlas: operator-monotone-convex-/
+atlas: operator-monotone-convex
+@isnad1 id=le.6h9v.s10.2bbebe9df321 from=translated src=- shape=daa9e84d vocab=bfdc874f
+-/
 theorem NLAlib.operator_jensen {d m n : ℕ} [NeZero d] [NeZero m] [NeZero n]
     (I : Set ℝ) (f : ℝ → ℝ) (hf : OperatorConvexOn I f)
     (A₁ : Matrix (Fin m) (Fin m) ℂ) (A₂ : Matrix (Fin n) (Fin n) ℂ)

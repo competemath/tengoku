@@ -37,6 +37,9 @@ def rationalSecondBlockDifference (P Q : 𝕜[X]) (A : Matrix m m 𝕜)
     rationalMatrixEval P Q A * polynomialSecondBlockDifference Q A B C G H -
     rationalBlockDifference P Q A B G * polynomialBlockDifference Q B C H) * (aeval C Q)⁻¹
 
+/--
+@isnad1 id=isunit.2h7v.s10.69dd293ef9e2 from=translated src=- shape=91b988c0 vocab=9f82f563
+-/
 theorem isUnit_aeval_upperBlockTwo (Q : 𝕜[X]) (A : Matrix m m 𝕜)
     (B : Matrix n n 𝕜) (H : Matrix m n 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) :
@@ -44,6 +47,9 @@ theorem isUnit_aeval_upperBlockTwo (Q : 𝕜[X]) (A : Matrix m m 𝕜)
   rw [aeval_upperBlockTwo]
   exact Matrix.isUnit_fromBlocks_zero₂₁.mpr ⟨hA, hB⟩
 
+/--
+@isnad1 id=isunit.3h10v.s10.9a15ce388dba from=translated src=- shape=e237c284 vocab=5e03d476
+-/
 theorem isUnit_aeval_upperBlockThree (Q : 𝕜[X]) (A : Matrix m m 𝕜)
     (B : Matrix n n 𝕜) (C : Matrix o o 𝕜) (G : Matrix m n 𝕜) (H : Matrix n o 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) (hC : IsUnit (aeval C Q)) :
@@ -52,7 +58,9 @@ theorem isUnit_aeval_upperBlockThree (Q : 𝕜[X]) (A : Matrix m m 𝕜)
 
 /-- The first difference is exactly the upper block of the rational function
 of the actual triangular matrix. Source: F16--F17.
-atlas: matrix-function-block-divided-differences (partial)-/
+atlas: matrix-function-block-divided-differences (partial)
+@isnad1 id=eq.2h8v.s9.5e348fe25fdf from=translated src=- shape=762ff289 vocab=fa49be12
+-/
 theorem rationalMatrixEval_upperBlockTwo (P Q : 𝕜[X]) (A : Matrix m m 𝕜)
     (B : Matrix n n 𝕜) (H : Matrix m n 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) :
@@ -71,7 +79,9 @@ theorem rationalMatrixEval_upperBlockTwo (P Q : 𝕜[X]) (A : Matrix m m 𝕜)
 /-- The ordered second difference is exactly the first-to-third block.
 Only the three diagonal denominator evaluations need be invertible.
 Source: F16--F17.
-atlas: matrix-function-block-divided-differences (partial)-/
+atlas: matrix-function-block-divided-differences (partial)
+@isnad1 id=eq.3h11v.s10.6febd8879024 from=translated src=- shape=7442cb8d vocab=007f98a9
+-/
 theorem rationalMatrixEval_upperBlockThree (P Q : 𝕜[X]) (A : Matrix m m 𝕜)
     (B : Matrix n n 𝕜) (C : Matrix o o 𝕜) (G : Matrix m n 𝕜) (H : Matrix n o 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) (hC : IsUnit (aeval C Q)) :
@@ -98,7 +108,9 @@ theorem rationalMatrixEval_upperBlockThree (P Q : 𝕜[X]) (A : Matrix m m 𝕜)
   simp only [rationalSecondBlockDifference, sub_sub]
 
 /-- Rational evaluation preserves rectangular intertwining, provided the two
-denominators are invertible.-/
+denominators are invertible.
+@isnad1 id=eq.3h8v.s9.d8beb3c84608 from=translated src=- shape=f8967c76 vocab=4c1383a7
+-/
 theorem rationalMatrixEval_mul_eq_mul_rationalMatrixEval (P Q : 𝕜[X])
     {A : Matrix m m 𝕜} {B : Matrix n n 𝕜} {S : Matrix m n 𝕜}
     (h : A * S = S * B) (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) :

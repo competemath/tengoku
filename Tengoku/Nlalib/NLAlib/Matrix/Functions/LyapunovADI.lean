@@ -47,7 +47,9 @@ private theorem lyapunovADI_factor_step (A : Matrix n n K) (p : ℝ)
   rw [cayleyTransform_eq_one_add A p hP]
   simp only [Matrix.add_mul, Matrix.one_mul, Matrix.smul_mul, lyapunovADISolve]
 
-/-- The computed residual factor is exactly the propagated original factor.-/
+/-- The computed residual factor is exactly the propagated original factor.
+@isnad1 id=eq.1h7v.s8.924da1ea4cd3 from=translated src=- shape=19895288 vocab=fc1061aa
+-/
 theorem lyapunovADI_fst (A : Matrix n n K) (B : Matrix n s K) (p : ℕ → ℝ)
     (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     (lyapunovADI A B p j).1 = lyapunovADIPropagator A p j * B := by
@@ -60,7 +62,9 @@ theorem lyapunovADI_fst (A : Matrix n n K) (B : Matrix n s K) (p : ℕ → ℝ)
 
 /-- The exact residual of the actual iterate is its computed factor Gram.
 Source: user derivations, equation (G8).
-atlas: lyapunov-adi-residual-factor (partial)-/
+atlas: lyapunov-adi-residual-factor (partial)
+@isnad1 id=eq.1h7v.s9.afc8583a7654 from=translated src=- shape=b7d7e54c vocab=415f8a67
+-/
 theorem lyapunovADI_residual (A : Matrix n n K) (B : Matrix n s K) (p : ℕ → ℝ)
     (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     A * (lyapunovADI A B p j).2 + (lyapunovADI A B p j).2 * Aᴴ + B * Bᴴ =
@@ -88,7 +92,9 @@ theorem lyapunovADI_residual (A : Matrix n n K) (B : Matrix n s K) (p : ℕ → 
     rw [hAX]
     module
 
-/-- Each actual ADI increment is positive semidefinite.-/
+/-- Each actual ADI increment is positive semidefinite.
+@isnad1 id=possemid.1h7v.s7.18c6f2422c3e from=translated src=- shape=f995cbb0 vocab=f734de5c
+-/
 theorem posSemidef_lyapunovADI_increment (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hp : ∀ j, 0 < p j) (j : ℕ) :
     ((lyapunovADI A B p (j + 1)).2 - (lyapunovADI A B p j).2).PosSemidef := by
@@ -96,7 +102,9 @@ theorem posSemidef_lyapunovADI_increment (A : Matrix n n K) (B : Matrix n s K)
   rw [add_sub_cancel_left]
   exact (Matrix.posSemidef_self_mul_conjTranspose _).smul (by exact_mod_cast mul_nonneg (by norm_num : (0:ℝ) ≤ 2) (hp j).le)
 
-/-- The actual solution iterates are Loewner monotone from zero.-/
+/-- The actual solution iterates are Loewner monotone from zero.
+@isnad1 id=monotone.1h6v.s6.46b7c5219c89 from=translated src=- shape=4fe1b3e9 vocab=21597478
+-/
 theorem monotone_lyapunovADI_snd (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hp : ∀ j, 0 < p j) : Monotone (fun j => (lyapunovADI A B p j).2) := by
   apply monotone_nat_of_le_succ
@@ -158,7 +166,9 @@ private theorem lyapunovADI_error_step (A E : Matrix n n K) (W : Matrix n s K)
 
 /-- The exact error is propagated by the actual ordered Cayley product.
 Source: user derivations, equation (G9).
-atlas: lyapunov-adi-residual-factor (partial)-/
+atlas: lyapunov-adi-residual-factor (partial)
+@isnad1 id=eq.2h8v.s9.b530c4ebb10b from=translated src=- shape=e5b2ab6a vocab=c6053d8f
+-/
 theorem sub_lyapunovADI_snd (A X : Matrix n n K) (B : Matrix n s K) (p : ℕ → ℝ)
     (hP : ∀ j, IsUnit (A - (p j : K) • 1).det)
     (hX : A * X + X * Aᴴ + B * Bᴴ = 0) (j : ℕ) :
@@ -180,7 +190,9 @@ theorem sub_lyapunovADI_snd (A X : Matrix n n K) (B : Matrix n s K) (p : ℕ →
       lyapunovADIPropagator, Matrix.conjTranspose_mul]
     simp only [Matrix.mul_assoc]
 
-/-- The computed iterate lies between zero and every PSD solution.-/
+/-- The computed iterate lies between zero and every PSD solution.
+@isnad1 id=and.4h8v.s9.f7301ba2e101 from=translated src=- shape=284f79d0 vocab=cb5d6a1b
+-/
 theorem lyapunovADI_snd_nonneg_le_solution (A X : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hp : ∀ j, 0 < p j)
     (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (hX : X.PosSemidef)

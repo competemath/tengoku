@@ -47,7 +47,9 @@ def arnoldiQueryAlgorithm (b : n → ℝ) (q : ℕ) :
 
 /-- The finite-query implementation returns the native Arnoldi matrix for every matrix
 and vector, without a no-breakdown hypothesis.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h4v.s6.02fe5ea930d6 from=translated src=- shape=30cc01a4 vocab=99de17fd
+-/
 theorem run_arnoldiQueryAlgorithm (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     (arnoldiQueryAlgorithm b q).run (A *ᵥ ·) = arnoldiMatrix A b (q + 1) := by
   rw [arnoldiQueryAlgorithm, QueryAlgorithm.run_withOutput]

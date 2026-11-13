@@ -23,7 +23,9 @@ def chebyshevUSequence : Polynomial.Sequence ℝ where
 
 /-- Every real polynomial of degree below `n` has a finite second-kind Chebyshev expansion.
 Source: Rivlin, Chebyshev Polynomials, Chapter 1; Mathlib polynomial-sequence spanning.
-This is the sine-basis construction needed by sharp `jackson-lipschitz`.-/
+This is the sine-basis construction needed by sharp `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s7.4cba5e81da15 from=translated src=- shape=2a1adcea vocab=a9977411
+-/
 theorem exists_sum_smul_U_eq_of_degree_lt {p : ℝ[X]} {n : ℕ} (hp : p.degree < n) :
     ∃ c : ℕ → ℝ, (∑ j ∈ range n, c j • U ℝ (j : ℤ)) = p := by
   let S := chebyshevUSequence
@@ -40,7 +42,9 @@ theorem exists_sum_smul_U_eq_of_degree_lt {p : ℝ[X]} {n : ℕ} (hp : p.degree 
 /-- A degree-bounded polynomial times `sin(t)` is a finite sine series with no frequency
 above the degree cutoff.
 Source: Rivlin, Chebyshev Polynomials, Chapter 1, `sin(t)U_j(cos(t))=sin((j+1)t)`;
-helper for sharp `jackson-lipschitz`.-/
+helper for sharp `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s6.c59947a3cbd6 from=translated src=- shape=0dadd5b2 vocab=d525ca63
+-/
 theorem exists_sine_expansion_of_degree_lt {p : ℝ[X]} {n : ℕ} (hp : p.degree < n) :
     ∃ c : ℕ → ℝ, ∀ t : ℝ,
       sin t * p.eval (cos t) = ∑ j ∈ range n, c j * sin (((j + 1 : ℕ) : ℝ) * t) := by
@@ -56,7 +60,9 @@ theorem exists_sine_expansion_of_degree_lt {p : ℝ[X]} {n : ℕ} (hp : p.degree
   norm_cast
 
 /-- The odd sawtooth interpolant has a finite sine expansion of degree at most `n`.
-Helper for `jackson-lipschitz`.-/
+Helper for `jackson-lipschitz`.
+@isnad1 id=ex.0h1v.s5.b3356a9736d9 from=translated src=- shape=8e71be4e vocab=aaab55d4
+-/
 theorem exists_sine_expansion_sawtoothApprox (n : ℕ) :
     ∃ c : ℕ → ℝ, ∀ t : ℝ,
       sawtoothApprox n t = ∑ j ∈ range n, c j * sin (((j + 1 : ℕ) : ℝ) * t) :=

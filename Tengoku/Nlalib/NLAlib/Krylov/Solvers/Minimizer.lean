@@ -55,7 +55,9 @@ def IsAffineMinimizer (E : (n → K) → ℝ) (x₀ : n → K) (S : Submodule K 
 variable {E : (n → K) → ℝ} {x₀ x : n → K} {S : Submodule K (n → K)}
 
 /-- `IsAffineMinimizer` is Mathlib's `IsMinOn` on the affine subspace `x₀ + S`.
-Source: KRYLOV_DEFINITIONS §3.2.-/
+Source: KRYLOV_DEFINITIONS §3.2.
+@isnad1 id=iff.0h6v.s9.a71e7e067278 from=translated src=- shape=50d37360 vocab=3861fa1b
+-/
 theorem isAffineMinimizer_iff_isMinOn :
     IsAffineMinimizer E x₀ S x ↔
       x ∈ AffineSubspace.mk' x₀ S ∧ IsMinOn E (AffineSubspace.mk' x₀ S) x := by
@@ -65,17 +67,23 @@ theorem isAffineMinimizer_iff_isMinOn :
   simpa using h (z - x₀) hz
 
 /-- A minimiser beats every point of the affine space: `z − x₀ ∈ S → E x ≤ E z`.
-Source: KRYLOV_DEFINITIONS §3.2.-/
+Source: KRYLOV_DEFINITIONS §3.2.
+@isnad1 id=le.2h7v.s8.184d75e0fca8 from=translated src=- shape=89b15ce7 vocab=c1cdf1cf
+-/
 theorem IsAffineMinimizer.le_of_sub_mem (hx : IsAffineMinimizer E x₀ S x) {z : n → K}
     (hz : z - x₀ ∈ S) : E x ≤ E z := by
   simpa using hx.2 (z - x₀) hz
 
-/-- A minimiser beats the starting point: `E x ≤ E x₀`. Source: KRYLOV_DEFINITIONS §3.2.-/
+/-- A minimiser beats the starting point: `E x ≤ E x₀`. Source: KRYLOV_DEFINITIONS §3.2.
+@isnad1 id=le.1h6v.s6.31d5d334b15c from=translated src=- shape=8183a533 vocab=baa6a158
+-/
 theorem IsAffineMinimizer.le_self (hx : IsAffineMinimizer E x₀ S x) : E x ≤ E x₀ :=
   hx.le_of_sub_mem (by simp)
 
 /-- Two minimisers over the same affine space have the same value.
-Source: KRYLOV_DEFINITIONS §3.2.-/
+Source: KRYLOV_DEFINITIONS §3.2.
+@isnad1 id=eq.2h7v.s6.0bf4090d8434 from=translated src=- shape=9d2c0d2c vocab=ec8b9b82
+-/
 theorem IsAffineMinimizer.apply_eq {x' : n → K} (hx : IsAffineMinimizer E x₀ S x)
     (hx' : IsAffineMinimizer E x₀ S x') : E x = E x' :=
   le_antisymm (hx.le_of_sub_mem hx'.1) (hx'.le_of_sub_mem hx.1)
@@ -83,7 +91,9 @@ theorem IsAffineMinimizer.apply_eq {x' : n → K} (hx : IsAffineMinimizer E x₀
 /-- **Monotonicity.** A minimiser over a larger space is at least as good:
 `S ≤ S'` gives `E x' ≤ E x`. With `S = K_q`, `S' = K_{q+1}` this is monotonicity of a
 minimising Krylov method in the iteration count. Source: Saad (2003) [`saad03`], §6.5.6
-(GMRES residuals are nonincreasing).-/
+(GMRES residuals are nonincreasing).
+@isnad1 id=le.3h8v.s8.ab7366f86dd6 from=translated src=- shape=c7f01403 vocab=baa6a158
+-/
 theorem IsAffineMinimizer.le_of_le {S' : Submodule K (n → K)} {x' : n → K}
     (hx : IsAffineMinimizer E x₀ S x) (hx' : IsAffineMinimizer E x₀ S' x') (h : S ≤ S') :
     E x' ≤ E x :=
@@ -107,7 +117,9 @@ private lemma sub_mulVec_add_aeval (A : Matrix n n K) (c x₀ : n → K) (s : K[
 `r₀ = c − A x₀`, then `c − A x = p(A) r₀` for a residual polynomial `p` (`deg p ≤ q`,
 `p(0) = 1`). No hypothesis on `A`. Source: Saad (2003) [`saad03`], §6.11; Trefethen–Bau (1997)
 [`tb97`], Lect. 35. Atlas: `residual-polynomial` (partial: forward direction).
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=ex.1h7v.s9.eff8868f7525 from=translated src=- shape=ea24d46f vocab=c8b691a7
+-/
 theorem exists_sub_mulVec_eq_aeval_mulVec_of_sub_mem_krylovSpace {A : Matrix n n K}
     {c x₀ x : n → K} {q : ℕ} (hx : x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q) :
     ∃ p : K[X], p.degree ≤ q ∧ p.eval 0 = 1 ∧
@@ -120,7 +132,9 @@ theorem exists_sub_mulVec_eq_aeval_mulVec_of_sub_mem_krylovSpace {A : Matrix n n
 /-- **Every residual polynomial is realised in `x₀ + K_q`.** For `deg p ≤ q`, `p(0) = 1` there
 is `y ∈ K_q(A, r₀)` with `c − A (x₀ + y) = p(A) r₀`. No hypothesis on `A`.
 Source: Saad (2003) [`saad03`], §6.11. Atlas: `residual-polynomial` (partial: converse).
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=ex.2h7v.s9.0d2014511234 from=translated src=- shape=5acd1a9b vocab=d647db16
+-/
 theorem exists_mem_krylovSpace_sub_mulVec_eq_aeval_mulVec (A : Matrix n n K) (c x₀ : n → K)
     {q : ℕ} {p : K[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1) :
     ∃ y ∈ krylovSpace A (c - A *ᵥ x₀) q,
@@ -132,7 +146,9 @@ theorem exists_mem_krylovSpace_sub_mulVec_eq_aeval_mulVec (A : Matrix n n K) (c 
 /-- **Error form of the residual polynomial.** If `A x⋆ = c` and `x − x₀ ∈ K_q(A, r₀)`, then
 `x − x⋆ = p(A)(x₀ − x⋆)` for a residual polynomial `p`. Source: Saad (2003) [`saad03`], §6.11;
 Trefethen–Bau (1997) [`tb97`], Thm 38.3 (proof). Atlas: `residual-polynomial` (partial).
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=ex.2h8v.s9.a2f53b856ec4 from=translated src=- shape=5f67de12 vocab=c8b691a7
+-/
 theorem exists_sub_eq_aeval_mulVec_of_sub_mem_krylovSpace {A : Matrix n n K}
     {c x₀ xs x : n → K} (hxs : A *ᵥ xs = c) {q : ℕ}
     (hx : x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q) :
@@ -150,7 +166,9 @@ theorem exists_sub_eq_aeval_mulVec_of_sub_mem_krylovSpace {A : Matrix n n K}
 /-- **Error form, converse.** If `A x⋆ = c`, every residual polynomial `p` is realised:
 some `y ∈ K_q(A, r₀)` has `x₀ + y − x⋆ = p(A)(x₀ − x⋆)`. No hypothesis on `A`.
 Source: Saad (2003) [`saad03`], §6.11. Atlas: `residual-polynomial` (partial).
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=ex.3h8v.s9.6ae193ef6dda from=translated src=- shape=842bcc61 vocab=d647db16
+-/
 theorem exists_mem_krylovSpace_add_sub_eq_aeval_mulVec {A : Matrix n n K} {c xs : n → K}
     (hxs : A *ᵥ xs = c) (x₀ : n → K) {q : ℕ} {p : K[X]} (hp : p.degree ≤ q)
     (hp0 : p.eval 0 = 1) :
@@ -168,7 +186,9 @@ theorem exists_mem_krylovSpace_add_sub_eq_aeval_mulVec {A : Matrix n n K} {c xs 
 Source: Saad (2003) [`saad03`], §6.11; Trefethen–Bau (1997) [`tb97`], Lect. 35.
 Deviation: the converse direction needs `A` injective (`IsUnit A`); the forward direction
 (`exists_sub_mulVec_eq_aeval_mulVec_of_sub_mem_krylovSpace`) holds for every `A`.
-atlas: residual-polynomial (partial)-/
+atlas: residual-polynomial (partial)
+@isnad1 id=iff.1h7v.s9.8bdbf000cb17 from=translated src=- shape=a58fd8e7 vocab=7975ca47
+-/
 theorem sub_mem_krylovSpace_iff_exists_sub_mulVec_eq {A : Matrix n n K} (hA : IsUnit A)
     {c x₀ x : n → K} {q : ℕ} :
     x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q ↔
@@ -188,7 +208,9 @@ theorem sub_mem_krylovSpace_iff_exists_sub_mulVec_eq {A : Matrix n n K} (hA : Is
 (`deg p ≤ q`, `p(0) = 1`). No hypothesis on `A` or `E`. Source: Saad (2003) [`saad03`],
 Thm 6.29 (proof); Trefethen–Bau (1997) [`tb97`], Thm 38.3 (proof); KRYLOV_DEFINITIONS §3.2.
 Atlas: `residual-polynomial` (consumer: `cg-convergence`, `minres-bound`).
-atlas: affine-krylov-minimiser-/
+atlas: affine-krylov-minimiser
+@isnad1 id=le.4h10v.s9.1056679cca94 from=translated src=- shape=44f0edd5 vocab=e14dd8fb
+-/
 theorem IsAffineMinimizer.le_aeval {E : (n → K) → ℝ} {A : Matrix n n K} {c x₀ xs x : n → K}
     {q : ℕ} (hx : IsAffineMinimizer E x₀ (krylovSpace A (c - A *ᵥ x₀) q) x)
     (hxs : A *ᵥ xs = c) {p : K[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1) :
@@ -202,7 +224,9 @@ theorem IsAffineMinimizer.le_aeval {E : (n → K) → ℝ} {A : Matrix n n K} {c
 residual polynomial `p`. No solution `x⋆` is needed (GMRES on singular or inconsistent
 systems). Source: Saad (2003) [`saad03`], Prop 6.32 (proof); KRYLOV_DEFINITIONS §3.3.
 Atlas: `residual-polynomial` (consumer: `gmres-def`).
-atlas: affine-krylov-minimiser-/
+atlas: affine-krylov-minimiser
+@isnad1 id=le.3h9v.s9.3c79added141 from=translated src=- shape=fe5db4da vocab=adf080b4
+-/
 theorem IsAffineMinimizer.le_aeval_residual {F : (n → K) → ℝ} {A : Matrix n n K}
     {c x₀ x : n → K} {q : ℕ}
     (hx : IsAffineMinimizer (fun y => F (c - A *ᵥ y)) x₀ (krylovSpace A (c - A *ᵥ x₀) q) x)
@@ -222,7 +246,9 @@ CG is `g = X` (via `cgObjective_eq_add_quadForm_sub`), MINRES `g = X²`, the err
 method `g = 1`. Source: Greenbaum (1997) [`greenbaum97`], §3.1 (CG) and §3.2 (MINRES);
 Saad (2003) [`saad03`], Thm 6.29; KRYLOV_DEFINITIONS §3.2.
 Atlas: `cg-convergence`, `minres-bound` (the shared step; tags are on the instances).
-atlas: affine-krylov-minimiser-/
+atlas: affine-krylov-minimiser
+@isnad1 id=le.7h10v.s9.b310347e3ebd from=translated src=- shape=9ca66641 vocab=c8dbe5ca
+-/
 theorem quadForm_sub_le_of_isAffineMinimizer {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {g : ℝ[X]} (hg : ∀ i, 0 ≤ g.eval (hA.eigenvalues i)) {c x₀ xs x : n → ℝ}
     (hxs : A *ᵥ xs = c) {q : ℕ}

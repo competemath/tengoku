@@ -19,7 +19,9 @@ polynomial with the sharp error `πL(c-a)/(4(n+1))`, for every `n ≥ 0`.
 Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
 The sawtooth interpolation, sharp norm, periodic error, cosine-polynomial representation,
 and affine rescaling are all proved without an approximation certificate.
-atlas: jackson-lipschitz-/
+atlas: jackson-lipschitz
+@isnad1 id=ex.2h5v.s7.e57feafff45d from=translated src=- shape=9af0b445 vocab=5525c7cc
+-/
 theorem exists_degree_le_abs_sub_eval_le_jackson_interval {f : ℝ → ℝ} {a c : ℝ}
     {L : NNReal} (hac : a < c) (hf : LipschitzOnWith L f (Icc a c)) (n : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x ∈ Icc a c,

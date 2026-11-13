@@ -20,7 +20,9 @@ and the lower-right block of `U (fromBlocks A 0 0 B) U` is `Kᴴ A K`.
 Tropp 2015, proof of Thm 8.5.2 (unitary dilation). Atlas: `operator-monotone-convex`. Ported from
 the Prove2me mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
 
-Auxiliary; not a numbered result in the source.-/
+Auxiliary; not a numbered result in the source.
+@isnad1 id=other.1h5v.s9.0f67420121a8 from=translated src=- shape=fc278aee vocab=e587212c
+-/
 theorem NLAlib.isometry_reflection_identities
     {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq κ]
     (K : Matrix ι κ ℂ) (hK : K.conjTranspose * K = 1)

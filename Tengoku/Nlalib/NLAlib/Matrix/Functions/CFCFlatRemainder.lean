@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A scalar function flat to first order on the spectrum has zero
 Fréchet derivative along the real subspace of Hermitian matrices.
-Only differentiability at the finitely many eigenvalues is needed.-/
+Only differentiability at the finitely many eigenvalues is needed.
+@isnad1 id=hasfderi.3h3v.s9.7e174094440d from=translated src=- shape=ff507eb4 vocab=5d8031ef
+-/
 theorem hasFDerivWithinAt_cfc_zero_of_spectral_vanishing
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {g : ℝ → ℝ}
     (hg : ∀ i, g (hA.eigenvalues i) = 0)

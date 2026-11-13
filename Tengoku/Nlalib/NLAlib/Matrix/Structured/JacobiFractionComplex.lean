@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A nonreal shift of any actual real Hermitian matrix has nonzero determinant;
 the empty matrix is included. Source: operator derivations (OF25).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=ne.2h3v.s7.196f92fbe7a7 from=translated src=- shape=1e1b9306 vocab=ffd3f978
+-/
 theorem det_smul_one_sub_map_ne_zero_of_im_ne_zero {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) {z : ℂ} (hz : z.im ≠ 0) :
     (z • (1 : Matrix ι ι ℂ) - A.map Complex.ofRealHom).det ≠ 0 := by
@@ -37,7 +39,9 @@ theorem det_smul_one_sub_map_ne_zero_of_im_ne_zero {ι : Type*} [Fintype ι] [De
 /-- The literal complex nested Jacobi fraction is the actual resolvent entry
 at every nonreal argument. All intermediate determinants are nonzero by Hermitian
 symmetry, without any off-diagonal sign restriction. Source: operator derivations (OF25).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.1h4v.s9.5d2228046236 from=translated src=- shape=752226bf vocab=a7965330
+-/
 theorem inv_smul_one_sub_map_jacobiMatrix_apply_zero_zero (a β : ℕ → ℝ) (m : ℕ)
     {z : ℂ} (hz : z.im ≠ 0) :
     (z • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) ℂ) -
@@ -66,7 +70,9 @@ theorem inv_smul_one_sub_map_jacobiMatrix_apply_zero_zero (a β : ℕ → ℝ) (
 of its trailing and full characteristic determinants. In particular, at real
 intermediate fraction poles this uses the final determinant rather than a false
 literal nested equality. Source: operator derivations (OF26).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.0h4v.s10.b426d27f7477 from=translated src=- shape=112a36a0 vocab=cb67d04f
+-/
 theorem inv_smul_one_sub_map_jacobiMatrix_apply_zero_zero_eq_det_ratio
     (a β : ℕ → ℝ) (m : ℕ) (z : ℂ) :
     (z • (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) ℂ) -
@@ -83,7 +89,9 @@ theorem inv_smul_one_sub_map_jacobiMatrix_apply_zero_zero_eq_det_ratio
 /-- Every positive-length complex Jacobi fraction at a nonreal argument is
 nonzero, since its actual trailing and full determinants are both nonzero.
 Source: operator derivations (OF25)–(OF26).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=ne.1h4v.s6.45a0eb46c653 from=translated src=- shape=1f5253f5 vocab=472b6a55
+-/
 theorem jacobiFraction_map_ne_zero_of_im_ne_zero (a β : ℕ → ℝ) (m : ℕ)
     {z : ℂ} (hz : z.im ≠ 0) :
     jacobiFraction (Complex.ofRealHom ∘ a) (Complex.ofRealHom ∘ β) z (m + 1) 0 ≠ 0 := by
@@ -97,7 +105,9 @@ theorem jacobiFraction_map_ne_zero_of_im_ne_zero (a β : ℕ → ℝ) (m : ℕ)
 /-- Every scalar Schur denominator of the literal nonreal fraction is nonzero.
 Applying this theorem to each shifted coefficient family gives all its internal
 denominators. Source: operator derivations (OF25).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=ne.1h4v.s7.62ccce8c2d67 from=translated src=- shape=5f52b83f vocab=cc560fd6
+-/
 theorem jacobiFraction_step_denominator_ne_zero_of_im_ne_zero (a β : ℕ → ℝ) (m : ℕ)
     {z : ℂ} (hz : z.im ≠ 0) :
     z - Complex.ofRealHom (a 0) - Complex.ofRealHom (β 1) ^ 2 *

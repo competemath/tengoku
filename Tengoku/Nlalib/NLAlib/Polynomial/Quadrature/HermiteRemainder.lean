@@ -20,7 +20,9 @@ namespace NLAlib
 Hermite remainder for any lower-degree interpolant matching the same derivative jets.
 Repeated nodes are interior; prescribed endpoints may have multiplicity one.
 Source: finite multiplicity Rolle argument in operator derivations (AQ4), (AQ9)–(AQ11).
-The evaluation point is assumed off the nodal roots; node values are exact separately.-/
+The evaluation point is assumed off the nodal roots; node values are exact separately.
+@isnad1 id=ex.12h7v.s9.941d30ae8647 from=translated src=- shape=4dbf15f4 vocab=fde2fafb
+-/
 theorem exists_sub_eval_eq_iteratedDeriv_mul_of_multiset
     {a b x : ℝ} (m : Multiset ℝ) (hm : 0 < m.card)
     (hmem : ∀ y ∈ m, y ∈ Icc a b)
@@ -116,7 +118,9 @@ theorem exists_sub_eval_eq_iteratedDeriv_mul_of_multiset
 order-`2n` remainder, including evaluation at a node or at an interval endpoint.
 Source: operator derivations, (AQ3)–(AQ4); Gautschi (2004), Gauss derivative remainder.
 This is the scalar interpolation component, before integration against the measure.
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=ex.7h6v.s8.1c3c34af9eeb from=translated src=- shape=8211af80 vocab=a4860c4d
+-/
 theorem exists_sub_eval_hermiteInterpolate_eq {n : ℕ} (hn : 0 < n)
     {a b x : ℝ} (hab : a < b) {v : Fin n → ℝ} (hv : Function.Injective v)
     (hva : ∀ i, v i ∈ Ioo a b) (hx : x ∈ Icc a b) {f : ℝ → ℝ}

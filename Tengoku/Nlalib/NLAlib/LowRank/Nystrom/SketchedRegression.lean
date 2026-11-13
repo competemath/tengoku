@@ -87,7 +87,9 @@ variable (Q : Matrix m q ℝ) (A : Matrix m n ℝ)
 
 /-- Rank-deficient remark in the proofs of `thm:GN` / `thm:tGN` (Chen–Persson): if
 `A = Q(QᵀA)` (i.e. `E = 0`) and `ΨᵀQ` has full column rank, the fitted core is exactly `QᵀA`.
-Atlas `sketched-regression`.-/
+Atlas `sketched-regression`.
+@isnad1 id=eq.2h7v.s7.0ed076a805a3 from=translated src=- shape=7ab9a736 vocab=a1432d92
+-/
 theorem sketchedCore_eq_of_eq_mul (Ψ : Matrix m s ℝ) (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q)))
     (hA : A = Q * (Qᵀ * A)) : sketchedCore Q Ψ A = Qᵀ * A := by
   unfold sketchedCore
@@ -95,7 +97,9 @@ theorem sketchedCore_eq_of_eq_mul (Ψ : Matrix m s ℝ) (hG₁ : IsUnit ((Ψᵀ 
   rw [← Matrix.mul_assoc Ψᵀ, ← Matrix.mul_assoc, pinvL_mul (G := Ψᵀ * Q) hG₁, Matrix.one_mul]
 
 /-- Rank-deficient remark (Chen–Persson, proofs of `thm:GN` / `thm:tGN`): if `A = Q(QᵀA)` and
-`ΨᵀQ` has full column rank, then `Â = A`. Atlas `sketched-regression`.-/
+`ΨᵀQ` has full column rank, then `Â = A`. Atlas `sketched-regression`.
+@isnad1 id=eq.2h7v.s7.1dc464c19e5a from=translated src=- shape=0114bd34 vocab=ad601fce
+-/
 theorem sketchedOutput_eq_of_eq_mul (Ψ : Matrix m s ℝ)
     (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q))) (hA : A = Q * (Qᵀ * A)) :
     sketchedOutput Q Ψ A = A := by
@@ -114,7 +118,9 @@ variable (Q : Matrix m q ℝ) (Qp : Matrix m r ℝ) (Ψ : Matrix m s ℝ)
 
 omit [Fintype s] in
 /-- `Ψᵀ E = G₂ (Q⊥ᵀ E)` where `G₂ = Ψᵀ Q⊥` (Chen–Persson, proof of `lem:completion`).
-Atlas `sketched-regression`.-/
+Atlas `sketched-regression`.
+@isnad1 id=eq.2h9v.s8.b1c5afbc528c from=translated src=- shape=8d0a5844 vocab=72e715c3
+-/
 theorem transpose_mul_residual_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) :
     Ψᵀ * projResidual Q A = (Ψᵀ * Qp) * (Qpᵀ * projResidual Q A) := by
   conv_lhs => rw [residual_eq_mul_conjTranspose_mul_residual hQ hcomp A,
@@ -123,7 +129,9 @@ theorem transpose_mul_residual_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ 
 
 omit [Fintype s] in
 /-- First display in the proof of `lem:completion` (Chen–Persson):
-`Ψᵀ A = G₁ (QᵀA) + G₂ (Q⊥ᵀ E)` with `G₁ = ΨᵀQ`, `G₂ = ΨᵀQ⊥`. Atlas `sketched-regression`.-/
+`Ψᵀ A = G₁ (QᵀA) + G₂ (Q⊥ᵀ E)` with `G₁ = ΨᵀQ`, `G₂ = ΨᵀQ⊥`. Atlas `sketched-regression`.
+@isnad1 id=eq.2h9v.s8.e2270dd1af9c from=translated src=- shape=f5e9443f vocab=72e715c3
+-/
 theorem sketch_decomp (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) :
     Ψᵀ * A = (Ψᵀ * Q) * (Qᵀ * A) + (Ψᵀ * Qp) * (Qpᵀ * projResidual Q A) := by
   calc Ψᵀ * A = Ψᵀ * (Q * (Qᵀ * A) + projResidual Q A) := by
@@ -133,7 +141,9 @@ theorem sketch_decomp (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ
 
 /-- Second display in the proof of `lem:completion`, also `eq:tGN-fitted-core` (Chen–Persson;
 Tropp–Webber 2023 §5): `X̂ = (ΨᵀQ)† ΨᵀA = QᵀA + G₁† G₂ (Q⊥ᵀ E)`, using `G₁† G₁ = I`.
-Atlas `sketched-regression`.-/
+Atlas `sketched-regression`.
+@isnad1 id=eq.3h9v.s8.6f5521a67ffb from=translated src=- shape=4bebb442 vocab=d4082a92
+-/
 theorem sketchedCore_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1)
     (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q))) :
     sketchedCore Q Ψ A =
@@ -144,7 +154,9 @@ theorem sketchedCore_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qp�
     ← Matrix.mul_assoc]
 
 /-- Error decomposition in the proof of `lem:completion` (Chen–Persson):
-`A - Â = E - Q G₁† G₂ (Q⊥ᵀ E)`. Atlas `sketched-regression`.-/
+`A - Â = E - Q G₁† G₂ (Q⊥ᵀ E)`. Atlas `sketched-regression`.
+@isnad1 id=eq.3h9v.s8.15ee0d7791ae from=translated src=- shape=253993b4 vocab=5a964812
+-/
 theorem error_decomp (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1)
     (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q))) :
     A - sketchedOutput Q Ψ A =
@@ -157,7 +169,9 @@ theorem error_decomp (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ 
 /-- Pythagorean identity in the proof of `lem:completion` (Chen–Persson; Tropp–Webber 2023 §5):
 `‖A - Â‖_F² = ‖(I - QQᵀ)A‖_F² + ‖G₁† G₂ Q⊥ᵀ E‖_F²`. The two terms of `error_decomp` lie in
 `range(Q⊥)` and `range(Q)`, which are orthogonal. Atlas `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.3h9v.s8.f483ea2a4b7e from=translated src=- shape=f9144e55 vocab=f9e83269
+-/
 theorem frobSq_error [Fintype n] (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1)
     (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q))) :
     frobSq (A - sketchedOutput Q Ψ A) =
@@ -169,7 +183,9 @@ theorem frobSq_error [Fintype n] (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ +
 
 /-- `‖Q⊥ᵀ E‖_F² = ‖E‖_F²` (Chen–Persson, end of the proof of `lem:completion` and proof of
 `lem:tGN-core`, `‖B‖_F = ‖A⊥‖_F`). Atlas `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.3h7v.s7.7b42f804fd6a from=translated src=- shape=202631d5 vocab=08f6c821
+-/
 theorem frobSq_transpose_mul_residual [Fintype n] [DecidableEq r] (hQ : HasOrthonormalCols Q)
     (hQp : HasOrthonormalCols Qp) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) :
     frobSq (Qpᵀ * projResidual Q A) = frobSq (projResidual Q A) := by
@@ -180,7 +196,9 @@ theorem frobSq_transpose_mul_residual [Fintype n] [DecidableEq r] (hQ : HasOrtho
 /-- Deterministic core of `lem:tGN-core` and `eq:tGN-fitted-core` (Chen–Persson): the noise
 term `E_core = (ΨᵀQ)† Ψᵀ A⊥` equals `G₁† G₂ B` with `G₁ = ΨᵀQ`, `G₂ = ΨᵀQ⊥`, `B = Q⊥ᵀ A⊥`, where
 `A⊥ = (I - QQᵀ)A = projResidual Q A` (LRA `core_noise_eq`, there with the noise written out).
-Atlas `sketched-regression`.-/
+Atlas `sketched-regression`.
+@isnad1 id=eq.2h9v.s8.249bef8cb592 from=translated src=- shape=1784b099 vocab=722b1645
+-/
 theorem coreNoise_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) :
     coreNoise Q Ψ A = pinvL (Ψᵀ * Q) * (Ψᵀ * Qp) * (Qpᵀ * projResidual Q A) := by
   rw [coreNoise, transpose_mul_residual_eq Q Qp Ψ A hQ hcomp,
@@ -189,7 +207,9 @@ theorem coreNoise_eq (hQ : HasOrthonormalCols Q) (hcomp : Q * Qᵀ + Qp * Qpᵀ 
 /-- `eq:tGN-fitted-core` (Chen–Persson; Tropp–Webber 2023 §5): `X̂ = C + E_core` with `C = QᵀA`
 and `E_core = coreNoise Q Ψ A = (ΨᵀQ)† Ψᵀ A⊥` (LRA `sketchedCore_eq_add_core_noise`).
 Atlas `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.3h9v.s8.b311f03ea63a from=translated src=- shape=d1a513a7 vocab=ff581367
+-/
 theorem sketchedCore_eq_add_coreNoise (hQ : HasOrthonormalCols Q)
     (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) (hG₁ : IsUnit ((Ψᵀ * Q)ᵀ * (Ψᵀ * Q))) :
     sketchedCore Q Ψ A = Qᵀ * A + coreNoise Q Ψ A := by
@@ -201,7 +221,9 @@ end Completion
 
 /-- `‖Q⊥ᵀ E‖₂ = ‖E‖₂` for the spectral norm (Chen–Persson, proof of `lem:tGN-core`:
 `‖B‖ = ‖A⊥‖`; the LRA project's former `SpectralIsometry`). Atlas `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.3h7v.s7.8336319234bc from=translated src=- shape=2419c43a vocab=c06b0861
+-/
 theorem specNorm_transpose_mul_residual [Fintype n] [DecidableEq m] [DecidableEq n] [DecidableEq r]
     {Q : Matrix m q ℝ} (hQ : HasOrthonormalCols Q) {Qp : Matrix m r ℝ} (hQp : HasOrthonormalCols Qp)
     (hcomp : Q * Qᵀ + Qp * Qpᵀ = 1) (A : Matrix m n ℝ) :

@@ -28,7 +28,9 @@ def reQuadFormCLM (x : n → ℂ) : Matrix n n ℂ →L[ℝ] ℝ :=
         simp [quadForm, Matrix.smul_mulVec, dotProduct_smul] }
 
 /-- Matrix monotonicity forces every finite Löwner matrix to be positive,
-including lists with repeated nodes.-/
+including lists with repeated nodes.
+@isnad1 id=possemid.4h4v.s6.d777c0aaf5e9 from=translated src=- shape=7f7d412e vocab=8a75e250
+-/
 theorem OperatorMonotoneOn.posSemidef_loewnerMatrix {I : Set ℝ} {f : ℝ → ℝ}
     (hm : OperatorMonotoneOn I f) (hI : IsOpen I) (hf : DifferentiableOn ℝ f I)
     (ev : n → ℝ) (hev : ∀ i, ev i ∈ I) : (loewnerMatrix f ev).PosSemidef := by
@@ -57,7 +59,9 @@ theorem OperatorMonotoneOn.posSemidef_loewnerMatrix {I : Set ℝ} {f : ℝ → �
   exact (posSemidef_realMatrixComplexification_iff (loewnerMatrix f ev)).mp hc
 
 /-- Positive Löwner matrices imply monotonicity on every ordered matrix
-segment in an open convex scalar domain.-/
+segment in an open convex scalar domain.
+@isnad1 id=le.9h5v.s9.738f9c517bfb from=translated src=- shape=4f394f45 vocab=5039f99f
+-/
 theorem cfc_le_of_posSemidef_loewnerMatrices {I : Set ℝ} {f : ℝ → ℝ}
     (hI : IsOpen I) (hcI : Convex ℝ I) (hf : DifferentiableOn ℝ f I)
     (hL : ∀ ev : n → ℝ, (∀ i, ev i ∈ I) → (loewnerMatrix f ev).PosSemidef)
@@ -111,7 +115,9 @@ theorem cfc_le_of_posSemidef_loewnerMatrices {I : Set ℝ} {f : ℝ → ℝ}
 /-- Löwner's criterion in every finite size on an open interval:
 operator monotonicity is equivalent to positivity of every finite
 divided-difference matrix. Convex open sets include unbounded intervals.
-atlas: matrix-monotone-loewner-criterion-/
+atlas: matrix-monotone-loewner-criterion
+@isnad1 id=iff.3h2v.s6.0e30beaf822a from=translated src=- shape=63dcf910 vocab=53c20dd4
+-/
 theorem operatorMonotoneOn_iff_posSemidef_loewnerMatrix {I : Set ℝ} {f : ℝ → ℝ}
     (hI : IsOpen I) (hcI : Convex ℝ I) (hf : DifferentiableOn ℝ f I) :
     OperatorMonotoneOn I f ↔ ∀ (d : ℕ) (ev : Fin d → ℝ),

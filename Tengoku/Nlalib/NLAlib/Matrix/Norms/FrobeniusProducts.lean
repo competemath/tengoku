@@ -18,19 +18,25 @@ namespace NLAlib
 variable {𝕜 : Type*} [RCLike 𝕜]
 variable {m n p q : Type*} [Fintype m] [Fintype n] [Fintype p] [Fintype q]
 
-/-- Left matrix multiplication is adjoint to left multiplication by the adjoint.-/
+/-- Left matrix multiplication is adjoint to left multiplication by the adjoint.
+@isnad1 id=eq.0h7v.s7.340e9c2ebcf7 from=translated src=- shape=b99f37d3 vocab=9855c8cb
+-/
 theorem frobInner_mul_left (A : Matrix m p 𝕜) (X : Matrix p n 𝕜) (Y : Matrix m n 𝕜) :
     frobInner (A * X) Y = frobInner X (Aᴴ * Y) := by
   rw [frobInner_eq_trace, frobInner_eq_trace, Matrix.conjTranspose_mul, Matrix.mul_assoc]
 
-/-- Right multiplication by an adjoint is adjoint to ordinary right multiplication.-/
+/-- Right multiplication by an adjoint is adjoint to ordinary right multiplication.
+@isnad1 id=eq.0h7v.s7.b8ca5724e012 from=translated src=- shape=7b84a4d0 vocab=9855c8cb
+-/
 theorem frobInner_mul_right (X : Matrix m p 𝕜) (B : Matrix n p 𝕜) (Y : Matrix m n 𝕜) :
     frobInner (X * Bᴴ) Y = frobInner X (Y * B) := by
   rw [frobInner_eq_trace, frobInner_eq_trace, Matrix.conjTranspose_mul,
     Matrix.conjTranspose_conjTranspose, Matrix.mul_assoc, Matrix.trace_mul_comm B,
     Matrix.mul_assoc]
 
-/-- A two-sided trial matrix pairs with a residual through the reduced residual.-/
+/-- A two-sided trial matrix pairs with a residual through the reduced residual.
+@isnad1 id=eq.0h9v.s8.b3708c0ab70d from=translated src=- shape=ff94dc10 vocab=9855c8cb
+-/
 theorem frobInner_mul_mul_conjTranspose (V : Matrix m p 𝕜) (T : Matrix p q 𝕜)
     (W : Matrix n q 𝕜) (R : Matrix m n 𝕜) :
     frobInner (V * T * Wᴴ) R = frobInner T (Vᴴ * R * W) := by

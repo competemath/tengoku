@@ -23,7 +23,9 @@ pairs of positive definite matrices.
 
 Tropp 2015, Thm 8.6.2. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
 Introduction to Matrix Concentration Inequalities, Ch 8*.
-atlas: operator-monotone-convex-/
+atlas: operator-monotone-convex
+@isnad1 id=le.7h7v.s9.f987a61bdc98 from=translated src=- shape=b6618805 vocab=4876b9db
+-/
 theorem NLAlib.matrixPerspective_jointly_operatorConvex {d : ℕ} [NeZero d]
     (f : ℝ → ℝ) (hf : OperatorConvexOn (Set.Ioi 0) f)
     (A₁ A₂ H₁ H₂ : Matrix (Fin d) (Fin d) ℂ)

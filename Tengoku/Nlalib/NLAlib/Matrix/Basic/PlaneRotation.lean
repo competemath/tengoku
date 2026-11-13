@@ -37,7 +37,9 @@ def planeRotation (u v : n → ℝ) (c s : ℝ) : Matrix n n ℝ :=
     s • (Matrix.vecMulVec u v - Matrix.vecMulVec v u)
 
 omit [DecidableEq n] in
-/-- `‖u‖ = 1` as a dot product, for real vectors (proof helper).-/
+/-- `‖u‖ = 1` as a dot product, for real vectors (proof helper).
+@isnad1 id=eq.1h2v.s6.6646cea18c4d from=translated src=- shape=cf535164 vocab=9e920d83
+-/
 theorem dotProduct_self_eq_one_of_norm_toLp_eq_one {u : n → ℝ}
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1) : u ⬝ᵥ u = 1 := by
   have h := EuclideanSpace.real_norm_sq_eq (WithLp.toLp 2 u : EuclideanSpace ℝ n)
@@ -46,7 +48,9 @@ theorem dotProduct_self_eq_one_of_norm_toLp_eq_one {u : n → ℝ}
   exact Finset.sum_congr rfl fun i _ => (sq (u i)).symm
 
 /-- A plane rotation with `c² + s² = 1` in the plane of an orthonormal pair is orthogonal.
-Golub–Van Loan 2013, §5.1.8.-/
+Golub–Van Loan 2013, §5.1.8.
+@isnad1 id=hasortho.4h5v.s7.254d7f296963 from=translated src=- shape=bec5d1ec vocab=5e18aded
+-/
 theorem hasOrthonormalCols_planeRotation (u v : n → ℝ)
     (hu : ‖(WithLp.toLp 2 u : EuclideanSpace ℝ n)‖ = 1)
     (hv : ‖(WithLp.toLp 2 v : EuclideanSpace ℝ n)‖ = 1) (huv : u ⬝ᵥ v = 0)
@@ -89,7 +93,9 @@ theorem hasOrthonormalCols_planeRotation (u v : n → ℝ)
 
 /-- A plane rotation acts by `x ↦ x + (c − 1)((u·x) u + (v·x) v) + s ((v·x) u − (u·x) v)`:
 on the plane, `u ↦ c u − s v` and `v ↦ s u + c v`; the orthogonal complement is fixed.
-Golub–Van Loan 2013, §5.1.8.-/
+Golub–Van Loan 2013, §5.1.8.
+@isnad1 id=eq.0h6v.s8.89c27f149ac3 from=translated src=- shape=9db46d6b vocab=62ce8432
+-/
 theorem planeRotation_mulVec (u v x : n → ℝ) (c s : ℝ) :
     planeRotation u v c s *ᵥ x = x +
       (c - 1) • ((u ⬝ᵥ x) • u + (v ⬝ᵥ x) • v) +
@@ -101,7 +107,9 @@ theorem planeRotation_mulVec (u v x : n → ℝ) (c s : ℝ) :
   ring
 
 /-- The rational parametrisation `(c, s) = ((1 − t²)/(1 + t²), 2t/(1 + t²))` of the unit circle,
-for every real `t`.-/
+for every real `t`.
+@isnad1 id=eq.0h1v.s7.3870d5e13e96 from=translated src=- shape=9f02cf74 vocab=4d09f77c
+-/
 theorem sq_rational_rotation_coefficients (t : ℝ) :
     ((1 - t ^ 2) / (1 + t ^ 2)) ^ 2 + (2 * t / (1 + t ^ 2)) ^ 2 = 1 := by
   have hden : 1 + t ^ 2 ≠ 0 := ne_of_gt (by positivity)

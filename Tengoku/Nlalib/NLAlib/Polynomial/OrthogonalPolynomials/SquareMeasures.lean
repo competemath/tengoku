@@ -18,7 +18,9 @@ open Polynomial MeasureTheory
 
 namespace NLAlib
 
-/-- Squaring the variable preserves every finite polynomial moment.-/
+/-- Squaring the variable preserves every finite polynomial moment.
+@isnad1 id=haspolyn.1h1v.s5.c73669d4e271 from=translated src=- shape=b8b2c02e vocab=398050de
+-/
 theorem hasPolynomialMoments_map_sq {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) :
     HasPolynomialMoments (Measure.map (fun x : ℝ => x ^ 2) μ) := by
   intro p
@@ -28,7 +30,9 @@ theorem hasPolynomialMoments_map_sq {μ : Measure ℝ} (hμ : HasPolynomialMomen
   simp
 
 /-- Multiplying a measure by the nonnegative square density preserves finite
-polynomial moments.-/
+polynomial moments.
+@isnad1 id=haspolyn.1h1v.s5.6c08113fc9cd from=translated src=- shape=27bd220e vocab=5bba5163
+-/
 theorem hasPolynomialMoments_withDensity_sq {μ : Measure ℝ} (hμ : HasPolynomialMoments μ) :
     HasPolynomialMoments (μ.withDensity (fun x : ℝ => ENNReal.ofReal (x ^ 2))) := by
   intro p
@@ -40,7 +44,9 @@ theorem hasPolynomialMoments_withDensity_sq {μ : Measure ℝ} (hμ : HasPolynom
   simp
 
 /-- A polynomial integral against the squared-variable pushforward is its
-composition with `X²` integrated against the original measure.-/
+composition with `X²` integrated against the original measure.
+@isnad1 id=eq.1h2v.s7.a3d4367c43b3 from=translated src=- shape=0a830102 vocab=aa7c822a
+-/
 theorem polynomialIntegral_map_sq (μ : Measure ℝ) (hμ : HasPolynomialMoments μ) (p : ℝ[X]) :
     polynomialIntegral (Measure.map (fun x : ℝ => x ^ 2) μ) (hasPolynomialMoments_map_sq hμ) p =
       polynomialIntegral μ hμ (p.comp (X ^ 2)) := by
@@ -49,7 +55,9 @@ theorem polynomialIntegral_map_sq (μ : Measure ℝ) (hμ : HasPolynomialMoments
   simp only [polynomialIntegral_apply, eval_comp, eval_pow, eval_X]
 
 /-- A square-density polynomial integral is the polynomial product with `X²`
-integrated against the original measure.-/
+integrated against the original measure.
+@isnad1 id=eq.1h2v.s7.e96529fab3d4 from=translated src=- shape=994a4465 vocab=73f994ad
+-/
 theorem polynomialIntegral_withDensity_sq (μ : Measure ℝ) (hμ : HasPolynomialMoments μ)
     (p : ℝ[X]) :
     polynomialIntegral (μ.withDensity (fun x : ℝ => ENNReal.ofReal (x ^ 2)))
@@ -60,7 +68,9 @@ theorem polynomialIntegral_withDensity_sq (μ : Measure ℝ) (hμ : HasPolynomia
     eval_mul, eval_pow, eval_X]
 
 /-- Squaring the variable preserves the order-`k` Hankel nondegeneracy whenever
-the original measure has at least `2k` support points. Symmetry is not needed.-/
+the original measure has at least `2k` support points. Symmetry is not needed.
+@isnad1 id=ne.2h2v.s6.51f297152f78 from=translated src=- shape=abfecad6 vocab=fc80000e
+-/
 theorem hankelMomentDet_map_sq_ne_zero {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {k : ℕ} (hk : (2 * k : ℕ∞) ≤ μ.support.encard) :
     hankelMomentDet
@@ -88,7 +98,9 @@ theorem hankelMomentDet_map_sq_ne_zero {μ : Measure ℝ} (hμ : HasPolynomialMo
   exact isUnit_iff_ne_zero.mp (Matrix.isUnit_iff_isUnit_det _ |>.mp hpos.isUnit)
 
 /-- The odd squared-variable moment system is nonsingular whenever the original
-measure has at least `2k+1` support points. This also covers mass at zero.-/
+measure has at least `2k+1` support points. This also covers mass at zero.
+@isnad1 id=ne.2h2v.s6.8edc91dcad89 from=translated src=- shape=0212c5ec vocab=2de150ac
+-/
 theorem hankelMomentDet_map_sq_withDensity_sq_ne_zero {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) {k : ℕ} (hk : (2 * k + 1 : ℕ∞) ≤ μ.support.encard) :
     hankelMomentDet

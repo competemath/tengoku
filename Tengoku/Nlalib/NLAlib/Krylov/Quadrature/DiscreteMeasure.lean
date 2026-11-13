@@ -28,7 +28,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- The grade of a diagonal matrix at a nonzero-coordinate vector is its full
 dimension when the diagonal entries are distinct. The empty case is included.
 Source: Gautschi (2004), Section 2.2.3.1, weighted Vandermonde construction.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h3v.s5.a9a6cea30562 from=translated src=- shape=f9b3d817 vocab=5e1d2437
+-/
 theorem krylovGrade_diagonal_eq_card {N : ℕ} (t b : Fin N → ℝ)
     (ht : Function.Injective t) (hb : ∀ i, b i ≠ 0) :
     krylovGrade (Matrix.diagonal t) b = N := by
@@ -51,7 +53,9 @@ theorem krylovGrade_diagonal_eq_card {N : ℕ} (t b : Fin N → ℝ)
 
 /-- Positive atomic weights and distinct nodes give a diagonal spectral problem
 whose grade equals the number of atoms. Source: Gautschi (2004), Section 2.2.3.1.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h3v.s5.ba6ee9537654 from=translated src=- shape=491252d7 vocab=dc6a59f7
+-/
 theorem krylovGrade_diagonal_sqrt_eq_card {N : ℕ} (t w : Fin N → ℝ)
     (ht : Function.Injective t) (hw : ∀ i, 0 < w i) :
     krylovGrade (Matrix.diagonal t) (fun i => Real.sqrt (w i)) = N :=
@@ -64,7 +68,9 @@ variable {t w : n → ℝ} {q : ℕ}
 /-- For a diagonal spectral problem, each Lanczos column is the corresponding
 polynomial evaluated at each node, multiplied by its square-root weight.
 Source: Gautschi (2004), Section 2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.0h7v.s6.5e9a436d4c39 from=translated src=- shape=be7393c8 vocab=4fd7ee66
+-/
 theorem Q_apply_diagonal_sqrt_eq_eval_poly_mul
     (D : LanczosDecomp (Matrix.diagonal t) (fun i => Real.sqrt (w i)) q)
     (r : n) (j : Fin q) : D.Q r j = Real.sqrt (w r) * (D.poly j.val).eval (t r) := by
@@ -76,7 +82,9 @@ theorem Q_apply_diagonal_sqrt_eq_eval_poly_mul
 /-- At full dimension the polynomial evaluations obey dual orthogonality at the
 atomic nodes. Source: Gautschi (2004), Section 2.2.3.2. Positivity is needed only
 to divide by the atomic weights.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.1h6v.s7.0f00e92b7f43 from=translated src=- shape=678b9710 vocab=70bcd063
+-/
 theorem sum_eval_poly_mul_eval_poly_eq_div_weight {N : ℕ} {t w : Fin N → ℝ}
     (D : LanczosDecomp (Matrix.diagonal t) (fun i => Real.sqrt (w i)) N)
     (hw : ∀ i, 0 < w i) (r s : Fin N) :
@@ -113,7 +121,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- A positively oriented first Krylov vector gives the bordered starting-vector
 identity. Source: Gautschi (2004), Section 2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h5v.s7.e5ab1dfaf76d from=translated src=- shape=eacb2e40 vocab=5aa14410
+-/
 theorem transpose_Q_mulVec_eq_single_of_pos (D : ArnoldiDecomp A b q) (hq : 0 < q)
     (h0 : 0 < D.Q.col ⟨0, hq⟩ ⬝ᵥ b) :
     D.Qᵀ *ᵥ b = Pi.single ⟨0, hq⟩ ‖WithLp.toLp 2 b‖ := by
@@ -135,7 +145,9 @@ end ArnoldiDecomp
 /-- The canonical Arnoldi construction has the positively oriented bordered
 starting-vector identity, including a complete discrete spectral problem.
 Source: Gautschi (2004), Section 2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h4v.s7.1c1ad66a16b9 from=translated src=- shape=f76c9d6d vocab=2b42b01d
+-/
 theorem transpose_arnoldiMatrix_mulVec_eq_single
     (A : Matrix n n ℝ) (b : n → ℝ) {q : ℕ} (hq : 0 < q) (h : q ≤ krylovGrade A b) :
     (arnoldiMatrix A b q)ᵀ *ᵥ b = Pi.single ⟨0, hq⟩ ‖WithLp.toLp 2 b‖ := by

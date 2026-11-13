@@ -67,7 +67,9 @@ variable {A : Matrix n n ℝ} {c x₀ x : n → ℝ} {q : ℕ}
 /-- **Petrov–Galerkin characterisation.** `x` is a GMRES iterate iff `x − x₀ ∈ K_q(A, r₀)` and
 the residual is orthogonal to `A K_q(A, r₀)`. Source: Saad (2003) [`saad03`], Prop 5.3 and
 §6.5.1; Trefethen–Bau (1997) [`tb97`], Lect. 35.
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=iff.0h6v.s9.d6a6fb06701b from=translated src=- shape=0fdcfaf0 vocab=e943539c
+-/
 theorem isGMRESIterate_iff_forall_dotProduct_eq_zero :
     IsGMRESIterate A c x₀ q x ↔ x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q ∧
       ∀ z ∈ krylovSpace A (c - A *ᵥ x₀) q, (A *ᵥ z) ⬝ᵥ (c - A *ᵥ x) = 0 := by
@@ -116,7 +118,9 @@ theorem isGMRESIterate_iff_forall_dotProduct_eq_zero :
 /-- **Existence.** For every square `A`, right-hand side `c`, start `x₀` and `q` there is a
 GMRES iterate (a least-squares problem over `A K_q`; no hypothesis on `A`).
 Source: Saad (2003) [`saad03`], §6.5.1; Saad–Schultz (1986) [`ss86`], §2.
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=ex.0h5v.s5.1f9722daa647 from=translated src=- shape=2b0689aa vocab=9d90ab54
+-/
 theorem exists_isGMRESIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) :
     ∃ x, IsGMRESIterate A c x₀ q x := by
   set r₀ := c - A *ᵥ x₀
@@ -146,7 +150,9 @@ theorem exists_isGMRESIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ
 /-- **The GMRES residual is unique**: two GMRES iterates for the same data have the same
 residual `c − A x`. Source: Saad (2003) [`saad03`], §6.5.1 (the residual is the orthogonal
 projection of `r₀` onto `(A K_q)^⟂`).
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=eq.2h7v.s7.ebf33da79266 from=translated src=- shape=afc790fc vocab=50442a71
+-/
 theorem IsGMRESIterate.sub_mulVec_eq {x' : n → ℝ} (hx : IsGMRESIterate A c x₀ q x)
     (hx' : IsGMRESIterate A c x₀ q x') : c - A *ᵥ x = c - A *ᵥ x' := by
   obtain ⟨h1, o1⟩ := isGMRESIterate_iff_forall_dotProduct_eq_zero.1 hx
@@ -170,7 +176,9 @@ theorem IsGMRESIterate.eq_of_isUnit {x' : n → ℝ} (hA : IsUnit A)
 /-- **Polynomial form of the residual**: `c − A x = p(A) r₀` for a residual polynomial `p`
 (`deg p ≤ q`, `p(0) = 1`). Source: Saad (2003) [`saad03`], §6.5.6; Trefethen–Bau (1997)
 [`tb97`], Lect. 35.
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=ex.1h6v.s8.5a210a9834bf from=translated src=- shape=742d4e02 vocab=01880451
+-/
 theorem IsGMRESIterate.exists_sub_mulVec_eq_aeval (hx : IsGMRESIterate A c x₀ q x) :
     ∃ p : ℝ[X], p.degree ≤ q ∧ p.eval 0 = 1 ∧ c - A *ᵥ x = aeval A p *ᵥ (c - A *ᵥ x₀) :=
   exists_sub_mulVec_eq_aeval_mulVec_of_sub_mem_krylovSpace hx.1
@@ -178,7 +186,9 @@ theorem IsGMRESIterate.exists_sub_mulVec_eq_aeval (hx : IsGMRESIterate A c x₀ 
 /-- **GMRES beats every residual polynomial**: `‖r_q‖² ≤ ‖p(A) r₀‖²` for every `p` with
 `deg p ≤ q` and `p(0) = 1`. No hypothesis on `A`. Source: Saad (2003) [`saad03`], Prop 6.32
 (proof); Trefethen–Bau (1997) [`tb97`], Thm 35.2 (proof).
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=le.3h7v.s9.e90ea50186e6 from=translated src=- shape=9fe00a30 vocab=295c2fd1
+-/
 theorem IsGMRESIterate.le_aeval (hx : IsGMRESIterate A c x₀ q x) {p : ℝ[X]}
     (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1) :
     (c - A *ᵥ x) ⬝ᵥ (c - A *ᵥ x) ≤
@@ -188,7 +198,9 @@ theorem IsGMRESIterate.le_aeval (hx : IsGMRESIterate A c x₀ q x) {p : ℝ[X]}
 /-- **`‖r_q‖² = min_{p ∈ 𝒫_q⁰} ‖p(A) r₀‖²`**: the squared GMRES residual is the least value of
 `‖p(A) r₀‖²` over residual polynomials. Source: Saad (2003) [`saad03`], §6.5.6;
 Trefethen–Bau (1997) [`tb97`], Lect. 35 (GMRES as a polynomial approximation problem).
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=isleast.1h6v.s9.803108ef7560 from=translated src=- shape=46d308ca vocab=147529a3
+-/
 theorem IsGMRESIterate.isLeast_dotProduct_aeval (hx : IsGMRESIterate A c x₀ q x) :
     IsLeast {v | ∃ p : ℝ[X], p.degree ≤ q ∧ p.eval 0 = 1 ∧
         v = (aeval A p *ᵥ (c - A *ᵥ x₀)) ⬝ᵥ (aeval A p *ᵥ (c - A *ᵥ x₀))}
@@ -201,7 +213,9 @@ theorem IsGMRESIterate.isLeast_dotProduct_aeval (hx : IsGMRESIterate A c x₀ q 
 
 /-- **GMRES residuals are nonincreasing**: for `q ≤ q'`, `‖r_{q'}‖² ≤ ‖r_q‖²`.
 Source: Saad (2003) [`saad03`], §6.5.6; Saad–Schultz (1986) [`ss86`], §3.
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=le.3h8v.s7.b7d87412743f from=translated src=- shape=e5795b0b vocab=15174e3c
+-/
 theorem IsGMRESIterate.le_of_le {q' : ℕ} {x' : n → ℝ} (hx : IsGMRESIterate A c x₀ q x)
     (hx' : IsGMRESIterate A c x₀ q' x') (h : q ≤ q') :
     (c - A *ᵥ x') ⬝ᵥ (c - A *ᵥ x') ≤ (c - A *ᵥ x) ⬝ᵥ (c - A *ᵥ x) :=
@@ -210,7 +224,9 @@ theorem IsGMRESIterate.le_of_le {q' : ℕ} {x' : n → ℝ} (hx : IsGMRESIterate
 /-- **Finite termination.** For invertible `A`, a GMRES iterate with `q` at least the grade
 `ν = krylovGrade A r₀` solves the system: `c − A x = 0`. Source: Saad (2003) [`saad03`],
 Prop 6.10 (no breakdown before the solution) and §6.5.6; Saad–Schultz (1986) [`ss86`], §3.
-atlas: gmres-def (partial)-/
+atlas: gmres-def (partial)
+@isnad1 id=eq.3h6v.s7.52ca54a5f132 from=translated src=- shape=58855c6c vocab=4f2623b1
+-/
 theorem IsGMRESIterate.sub_mulVec_eq_zero_of_krylovGrade_le (hA : IsUnit A)
     (hx : IsGMRESIterate A c x₀ q x) (hq : krylovGrade A (c - A *ᵥ x₀) ≤ q) :
     c - A *ᵥ x = 0 := by
@@ -228,7 +244,9 @@ theorem IsGMRESIterate.sub_mulVec_eq_zero_of_krylovGrade_le (hA : IsUnit A)
 satisfies `‖r_q‖² ≤ M² ‖r₀‖²`. Source: Greenbaum (1997) [`greenbaum97`], §3.1; Paige–Saunders
 (1975) [`ps75`].
 Deviation: no invertibility of `A` and no solution `x⋆` needed (the bound is on residuals).
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.5h8v.s8.9c16aefaf5af from=translated src=- shape=a997c8bd vocab=c5086d98
+-/
 theorem IsGMRESIterate.dotProduct_le_sq_mul_of_isHermitian (hA : A.IsHermitian)
     (hx : IsGMRESIterate A c x₀ q x) {p : ℝ[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1)
     {M : ℝ} (hM : ∀ i, |p.eval (hA.eigenvalues i)| ≤ M) :
@@ -242,7 +260,9 @@ theorem IsGMRESIterate.dotProduct_le_sq_mul_of_isHermitian (hA : A.IsHermitian)
 /-- **MINRES, definite case (Chebyshev rate).** If `A` is symmetric with every eigenvalue in
 `[a, b]`, `0 < a < b`, then `‖r_q‖ ≤ 2 ((√b − √a)/(√b + √a))^q ‖r₀‖` (squared form).
 Source: Greenbaum (1997) [`greenbaum97`], §3.1; Liesen–Strakoš (2013) [`ls13`], §5.6.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.5h8v.s8.6d31b9cfdc9e from=translated src=- shape=34626fa6 vocab=93273bf3
+-/
 theorem IsGMRESIterate.dotProduct_le_of_eigenvalues_mem_Icc (hA : A.IsHermitian) {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b)
     (hx : IsGMRESIterate A c x₀ q x) :
@@ -256,7 +276,9 @@ theorem IsGMRESIterate.dotProduct_le_of_eigenvalues_mem_Icc (hA : A.IsHermitian)
 `A x⋆ = c`, `x` is a GMRES iterate iff it minimises `‖· − x⋆‖²_{A²} = quadForm (A²) (· − x⋆)`
 over `x₀ + K_q(A, r₀)`; so `quadForm_sub_le_of_isAffineMinimizer` with `g = X²` applies.
 Source: Greenbaum (1997) [`greenbaum97`], §3.2; KRYLOV_DEFINITIONS §3.2.
-Atlas: `minres-bound` (helper).-/
+Atlas: `minres-bound` (helper).
+@isnad1 id=iff.2h7v.s8.65ea3511ce60 from=translated src=- shape=e1fd9818 vocab=dd9e960c
+-/
 theorem isGMRESIterate_iff_isAffineMinimizer (hA : A.IsHermitian) {xs : n → ℝ}
     (hxs : A *ᵥ xs = c) :
     IsGMRESIterate A c x₀ q x ↔
@@ -291,7 +313,9 @@ Deviation: real eigenvalues and a real eigenvector matrix only (the printed stat
 complex diagonalisation, `κ(V) max |p(λᵢ)|` over the complex spectrum, which is the nonnormal
 case of interest; it is not available over `ℝ` and enters as a hypothesis on
 `A.map (algebraMap ℝ ℂ)` when a consumer needs it). The constant `‖V‖₂ ‖V⁻¹‖₂` is the source's.
-atlas: gmres-diagonalizable (partial)-/
+atlas: gmres-diagonalizable (partial)
+@isnad1 id=le.6h11v.s8.a1eb66f391ec from=translated src=- shape=4d835b03 vocab=df00cd29
+-/
 theorem IsGMRESIterate.dotProduct_le_of_eq_mul_diagonal_mul {V W : Matrix n n ℝ}
     {d : n → ℝ} (hVW : V * W = 1) (hAd : A = V * Matrix.diagonal d * W)
     (hx : IsGMRESIterate A c x₀ q x) {p : ℝ[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1)

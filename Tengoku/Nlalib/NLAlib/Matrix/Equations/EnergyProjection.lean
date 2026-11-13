@@ -27,17 +27,23 @@ for every operator; positivity and symmetry are hypotheses of the projection res
 def frobEnergy (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ) (X : Matrix m n ℝ) : ℝ :=
   frobInner X (S X)
 
-/-- The energy of the zero matrix is zero.-/
+/-- The energy of the zero matrix is zero.
+@isnad1 id=eq.0h3v.s6.4d5f5547cfd2 from=translated src=- shape=54bf461a vocab=9731cfc2
+-/
 @[simp] theorem frobEnergy_zero (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ) :
     frobEnergy S 0 = 0 := by simp [frobEnergy]
 
-/-- A real scalar acts quadratically on operator energy.-/
+/-- A real scalar acts quadratically on operator energy.
+@isnad1 id=eq.0h5v.s7.243665adeb41 from=translated src=- shape=59ab745a vocab=51ee13fe
+-/
 theorem frobEnergy_smul (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ) (c : ℝ)
     (X : Matrix m n ℝ) : frobEnergy S (c • X) = c ^ 2 * frobEnergy S X := by
   simp only [frobEnergy, map_smul, frobInner_smul_left, frobInner_smul_right]
   ring
 
-/-- Symmetry expands an energy of a sum with a single real cross pairing.-/
+/-- Symmetry expands an energy of a sum with a single real cross pairing.
+@isnad1 id=eq.1h5v.s9.82fd58e06d91 from=translated src=- shape=a926acb6 vocab=48a0d353
+-/
 theorem frobEnergy_add (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
     (hS : ∀ U V, frobInner U (S V) = frobInner (S U) V) (U V : Matrix m n ℝ) :
     frobEnergy S (U + V) = frobEnergy S U + 2 * frobInner V (S U) + frobEnergy S V := by
@@ -45,7 +51,9 @@ theorem frobEnergy_add (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
   rw [hS U V, frobInner_comm (S U) V]
   ring
 
-/-- Symmetry expands an energy of a difference with a single real cross pairing.-/
+/-- Symmetry expands an energy of a difference with a single real cross pairing.
+@isnad1 id=eq.1h5v.s9.3e9a3e755f34 from=translated src=- shape=bb09d25a vocab=7c5d6a45
+-/
 theorem frobEnergy_sub (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
     (hS : ∀ U V, frobInner U (S V) = frobInner (S U) V) (U V : Matrix m n ℝ) :
     frobEnergy S (U - V) = frobEnergy S U - 2 * frobInner V (S U) + frobEnergy S V := by
@@ -53,7 +61,9 @@ theorem frobEnergy_sub (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
   rw [hS U V, frobInner_comm (S U) V]
   ring
 
-/-- Residual orthogonality gives the exact operator-energy Pythagorean identity.-/
+/-- Residual orthogonality gives the exact operator-energy Pythagorean identity.
+@isnad1 id=eq.2h6v.s9.211ab1dede11 from=translated src=- shape=1f8808f3 vocab=8a5642f8
+-/
 theorem frobEnergy_sub_eq_add_of_frobInner_eq_zero
     (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
     (hS : ∀ U V, frobInner U (S V) = frobInner (S U) V)
@@ -64,7 +74,9 @@ theorem frobEnergy_sub_eq_add_of_frobInner_eq_zero
 
 /-- For a positive definite self-adjoint matrix operator, a trial matrix minimizes
 energy error exactly when its residual is Frobenius-orthogonal to the trial subspace.
-Source: Palitta–Simoncini, Proposition 2.2, in an arbitrary linear trial space.-/
+Source: Palitta–Simoncini, Proposition 2.2, in an arbitrary linear trial space.
+@isnad1 id=iff.3h6v.s9.4f0b9cb4fc3b from=translated src=- shape=1e46c9df vocab=c6556ef5
+-/
 theorem isMinOn_frobEnergy_sub_iff_forall_frobInner_eq_zero
     (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
     (hS : ∀ U V, frobInner U (S V) = frobInner (S U) V)
@@ -135,7 +147,9 @@ error on the two-sided trial space. Orthonormal factors are allowed but unnecess
 for this equivalence; uniqueness concerns the represented matrix, not its coefficients.
 Source: Palitta–Simoncini (2019), Definition 2.1 and Proposition 2.2, including unequal
 reduced dimensions and arbitrary Frobenius self-adjoint positive definite operators.
-atlas: matrix-equation-galerkin-optimality (partial)-/
+atlas: matrix-equation-galerkin-optimality (partial)
+@isnad1 id=iff.3h10v.s10.2e45b83ebe35 from=translated src=- shape=fc1c1a3d vocab=5795bdf8
+-/
 theorem conjTranspose_residual_mul_eq_zero_iff_unique_frobEnergy_minimizer
     (S : Matrix m n ℝ →ₗ[ℝ] Matrix m n ℝ)
     (hS : ∀ U V, frobInner U (S V) = frobInner (S U) V)
@@ -197,7 +211,9 @@ def matrixMultitermLinearMap (A : ι → Matrix m m ℝ) (B : ι → Matrix n n 
   map_smul' c X := by
     simp only [Matrix.mul_smul, Matrix.smul_mul, Finset.smul_sum, RingHom.id_apply]
 
-/-- Evaluation of the multiterm operator is the displayed finite matrix sum.-/
+/-- Evaluation of the multiterm operator is the displayed finite matrix sum.
+@isnad1 id=eq.0h6v.s7.1824a4b547bc from=translated src=- shape=79bff286 vocab=fc210d27
+-/
 @[simp] theorem matrixMultitermLinearMap_apply
     (A : ι → Matrix m m ℝ) (B : ι → Matrix n n ℝ) (X : Matrix m n ℝ) :
     matrixMultitermLinearMap A B X = ∑ i, A i * X * B i := rfl
@@ -206,7 +222,9 @@ def matrixMultitermLinearMap (A : ι → Matrix m m ℝ) (B : ι → Matrix n n 
 trial matrix when the whole operator is Frobenius self-adjoint and positive definite.
 Individual coefficient matrices need not be positive definite or symmetric.
 Source: Palitta–Simoncini (2019), Proposition 2.2.
-atlas: matrix-equation-galerkin-optimality (partial)-/
+atlas: matrix-equation-galerkin-optimality (partial)
+@isnad1 id=iff.3h12v.s10.3cde8860554a from=translated src=- shape=9f093248 vocab=efc225a8
+-/
 theorem conjTranspose_multiterm_residual_mul_eq_zero_iff_unique_frobEnergy_minimizer
     {p q : Type*} [Fintype p] [Fintype q]
     (A : ι → Matrix m m ℝ) (B : ι → Matrix n n ℝ)

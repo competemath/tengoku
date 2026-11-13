@@ -18,7 +18,9 @@ namespace NLAlib
 
 variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- A Hermitian matrix is bounded above by the positive square root of its square.-/
+/-- A Hermitian matrix is bounded above by the positive square root of its square.
+@isnad1 id=le.1h3v.s8.20cac99fdf4b from=translated src=- shape=a08505bc vocab=d02451e9
+-/
 theorem le_cfc_sqrt_sq {X : Matrix n n 𝕜} (hX : X.IsHermitian) :
     X ≤ cfc Real.sqrt (X ^ 2) := by
   calc
@@ -29,7 +31,9 @@ theorem le_cfc_sqrt_sq {X : Matrix n n 𝕜} (hX : X.IsHermitian) :
         exact le_abs_self x) (by fun_prop) (by fun_prop)
     _ = cfc Real.sqrt (X ^ 2) := cfc_comp_pow Real.sqrt 2 X (by fun_prop) hX
 
-/-- The geometric mean attains a positive block completion.-/
+/-- The geometric mean attains a positive block completion.
+@isnad1 id=possemid.2h4v.s6.0f7a277f9ae2 from=translated src=- shape=c0651ad8 vocab=862a3e47
+-/
 theorem posSemidef_fromBlocks_matrixGeometricMean {A B : Matrix n n 𝕜}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     (Matrix.fromBlocks A (matrixGeometricMean A B) (matrixGeometricMean A B) B).PosSemidef := by
@@ -84,7 +88,9 @@ private theorem le_matrixGeometricMean_of_sqrt_mono
 
 /-- The geometric mean is the greatest Hermitian positive block completion
 over real matrices, including a singular second argument.
-atlas: matrix-geometric-mean-block-maximum (partial)-/
+atlas: matrix-geometric-mean-block-maximum (partial)
+@isnad1 id=and.2h3v.s7.51234cc746e7 from=translated src=- shape=0956d967 vocab=058a8c61
+-/
 theorem matrixGeometricMean_block_maximum_real {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     (Matrix.fromBlocks A (matrixGeometricMean A B) (matrixGeometricMean A B) B).PosSemidef ∧
@@ -98,7 +104,9 @@ theorem matrixGeometricMean_block_maximum_real {A B : Matrix n n ℝ}
 
 /-- The geometric mean is the greatest Hermitian positive block completion
 over complex matrices, including a singular second argument.
-atlas: matrix-geometric-mean-block-maximum (partial)-/
+atlas: matrix-geometric-mean-block-maximum (partial)
+@isnad1 id=and.2h3v.s7.09f4e7f17b6b from=translated src=- shape=0956d967 vocab=56d25907
+-/
 theorem matrixGeometricMean_block_maximum_complex {A B : Matrix n n ℂ}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     (Matrix.fromBlocks A (matrixGeometricMean A B) (matrixGeometricMean A B) B).PosSemidef ∧

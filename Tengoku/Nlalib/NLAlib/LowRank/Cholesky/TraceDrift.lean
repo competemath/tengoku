@@ -22,13 +22,17 @@ Source: manuscript `sa:rp-recursion`, its convex scalar function `f`.-/
 def traceExcessDrift (τ x : ℝ) : ℝ := (max (x - τ) 0) ^ 2 / x
 
 /-- The scalar trace drift is nonnegative at nonnegative trace.
-Source: manuscript `sa:rp-recursion`, nonnegative drift.-/
+Source: manuscript `sa:rp-recursion`, nonnegative drift.
+@isnad1 id=le.1h2v.s4.d4ce599cbd0d from=translated src=- shape=61bdc3e7 vocab=7e9a5d39
+-/
 theorem traceExcessDrift_nonneg {τ x : ℝ} (hx : 0 ≤ x) : 0 ≤ traceExcessDrift τ x :=
   div_nonneg (sq_nonneg _) hx
 
 /-- Finite Jensen for the RPCholesky trace drift follows directly from weighted
 Cauchy--Schwarz. Source: manuscript `sa:rp-recursion`; this avoids differentiating
-the piecewise function while retaining its exact drift and zero branch.-/
+the piecewise function while retaining its exact drift and zero branch.
+@isnad1 id=le.4h4v.s7.e50f7a25aeac from=translated src=- shape=5e2a0c48 vocab=4aca0597
+-/
 theorem traceExcessDrift_sum_le_sum {ι : Type*} [Fintype ι]
     (w x : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hx : ∀ i, 0 ≤ x i)
     (hwSum : ∑ i, w i = 1) {τ : ℝ} (hτ : 0 ≤ τ) :

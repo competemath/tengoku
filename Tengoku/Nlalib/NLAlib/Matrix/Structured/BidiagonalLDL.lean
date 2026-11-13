@@ -15,7 +15,9 @@ open scoped Matrix
 namespace NLAlib
 variable {𝕜 : Type*} [CommRing 𝕜]
 
-/-- The entry formula for a unit lower bidiagonal LDL transpose product.-/
+/-- The entry formula for a unit lower bidiagonal LDL transpose product.
+@isnad1 id=eq.0h6v.s8.34216fd35212 from=translated src=- shape=50e553f2 vocab=4988694f
+-/
 theorem darbouxLowerMatrix_mul_diagonal_mul_transpose_apply {n : ℕ}
     (d e : ℕ → 𝕜) (i j : Fin n) :
     (darbouxLowerMatrix n e * diagonal (fun k : Fin n => d k.val) *

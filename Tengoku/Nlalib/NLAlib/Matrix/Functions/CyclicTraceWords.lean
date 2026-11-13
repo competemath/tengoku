@@ -146,7 +146,9 @@ private theorem specNorm_list_alternating_prod_le {𝕜 n : Type*} [RCLike 𝕜]
 open scoped Matrix.Norms.L2Operator in
 /-- The actual cyclic middle contains k-2 bounded random coefficients and all
 other deterministic factors, with sharp constant one and no division by any
-norm. Includes zero radius and empty matrix dimensions.-/
+norm. Includes zero radius and empty matrix dimensions.
+@isnad1 id=le.2h7v.s8.1b2d8fa22df8 from=translated src=- shape=c904e0b1 vocab=fbb59fc9
+-/
 theorem specNorm_cyclicTraceWordMiddle_le {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
     {m : ℕ} (Z Y : Fin (m + 2) → Matrix n n 𝕜) {R : ℝ} (hR : 0 ≤ R)
     (hZ : ∀ l, specNorm (Z l) ≤ R) (j : Fin (m + 2)) :
@@ -166,7 +168,9 @@ theorem specNorm_cyclicTraceWordMiddle_le {𝕜 n : Type*} [RCLike 𝕜] [Fintyp
     _ = _ := by rw [prod_cyclicTraceCutMiddle (fun l => specNorm (Y l)) j]
 
 open scoped Matrix.Norms.L2Operator in
-/-- The cyclic matrix middle is continuous in its coefficient array.-/
+/-- The cyclic matrix middle is continuous in its coefficient array.
+@isnad1 id=continuo.0h5v.s7.875de7b2bfaa from=translated src=- shape=224faf35 vocab=a1c717bd
+-/
 theorem continuous_cyclicTraceWordMiddle {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
     {m : ℕ} (Y : Fin (m + 2) → Matrix n n 𝕜) (j : Fin (m + 2)) :
     Continuous (fun Z => cyclicTraceWordMiddle Z Y j) := by
@@ -207,7 +211,9 @@ private theorem trace_alternating_word_eq_cyclic_cut_aux
 
 /-- The exact cyclic cut of the literal ordered alternating trace word. The
 actual middle matrix is deterministic algebra and needs no norm, support,
-Hermitian, or dimension assumption.-/
+Hermitian, or dimension assumption.
+@isnad1 id=eq.0h6v.s8.a996784cf560 from=translated src=- shape=76d590be vocab=b7de0bfe
+-/
 theorem trace_alternating_word_eq_cyclic_cut
     {S n : Type*} [CommSemiring S] [Fintype n] [DecidableEq n] {m : ℕ}
     (Z Y : Fin (m + 2) → Matrix n n S) (j : Fin (m + 2)) :
@@ -220,7 +226,9 @@ private theorem cyclicTraceCutMiddle_zero (j : Fin 2) : cyclicTraceCutMiddle j =
   simp [cyclicTraceCutMiddle]
 
 /-- At the two-pair boundary, the exact middle is simply the other Y factor.
-There is no scalar division or positive-radius assumption in the cut.-/
+There is no scalar division or positive-radius assumption in the cut.
+@isnad1 id=eq.0h5v.s8.3b42924ca1a2 from=translated src=- shape=3241027b vocab=a5b79e27
+-/
 theorem trace_alternating_two_pairs_eq_cyclic_cut
     {R n : Type*} [CommSemiring R] [Fintype n] [DecidableEq n]
     (Z Y : Fin 2 → Matrix n n R) (j : Fin 2) :

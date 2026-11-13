@@ -46,7 +46,9 @@ def run (A : Matrix n n 𝕜) (x₀ : n → 𝕜) : ℕ → Outcome n 𝕜
     | .success x => .success x
     | .breakdown => .breakdown
 
-/-- A continuing step is exactly the normalized inverse step at an invertible shift.-/
+/-- A continuing step is exactly the normalized inverse step at an invertible shift.
+@isnad1 id=iff.0h5v.s8.12b282f2e93b from=translated src=- shape=f0079890 vocab=546415f9
+-/
 theorem advance_eq_next_iff (A : Matrix n n 𝕜) (x y : n → 𝕜) :
     advance A x = .next y ↔
       A *ᵥ x ≠ rayleighQuotient A x • x ∧
@@ -56,7 +58,9 @@ theorem advance_eq_next_iff (A : Matrix n n 𝕜) (x y : n → 𝕜) :
   split_ifs <;> simp_all
 
 /-- A singular shifted matrix at a noneigenvector is a breakdown.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=iff.0h4v.s8.b8cbb4f84a9b from=translated src=- shape=0f6a6120 vocab=c5de7460
+-/
 theorem advance_eq_breakdown_iff (A : Matrix n n 𝕜) (x : n → 𝕜) :
     advance A x = .breakdown ↔ A *ᵥ x ≠ rayleighQuotient A x • x ∧
       ¬ IsUnit (A - rayleighQuotient A x • (1 : Matrix n n 𝕜)) := by
@@ -64,7 +68,9 @@ theorem advance_eq_breakdown_iff (A : Matrix n n 𝕜) (x : n → 𝕜) :
   unfold advance
   split_ifs <;> simp_all
 
-/-- Successful termination returns exactly the current eigenvector.-/
+/-- Successful termination returns exactly the current eigenvector.
+@isnad1 id=iff.0h5v.s7.96a4ac6f7df2 from=translated src=- shape=cacbb620 vocab=04471aae
+-/
 theorem advance_eq_success_iff (A : Matrix n n 𝕜) (x y : n → 𝕜) :
     advance A x = .success y ↔ A *ᵥ x = rayleighQuotient A x • x ∧ x = y := by
   classical
@@ -72,7 +78,9 @@ theorem advance_eq_success_iff (A : Matrix n n 𝕜) (x y : n → 𝕜) :
   split_ifs <;> simp_all
 
 /-- Along any sequence of valid inverse steps, the target overlap stays nonzero and the
-local neighborhood is invariant.-/
+local neighborhood is invariant.
+@isnad1 id=and.9h8v.s8.28fbf4d43aa1 from=translated src=- shape=d81349f2 vocab=1c3542e6
+-/
 theorem run_invariants (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -91,7 +99,9 @@ theorem run_invariants (hA : A.IsHermitian) {i : n} {g M : ℝ}
 
 /-- Every infinite valid RQI run contracts geometrically and cubically in eigenvector-line
 angle. The displayed geometric factor equals `2⁻ᵏ`.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.9h8v.s8.2a6999b930cb from=translated src=- shape=0633b9b6 vocab=398876c2
+-/
 theorem run_tangent_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -117,7 +127,9 @@ theorem run_tangent_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
         _ = (1 / 2 : ℝ) ^ (k + 1) * tangent hA i (x 0) := by rw [pow_succ]; ring
 
 /-- The eigenvector-line angle of every infinite valid local RQI run tends to zero.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=tendsto.9h7v.s8.6b7fee131c71 from=translated src=- shape=646ed710 vocab=78e2040c
+-/
 theorem tendsto_tangent_run (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -136,7 +148,9 @@ theorem tendsto_tangent_run (hA : A.IsHermitian) {i : n} {g M : ℝ}
 
 /-- The Rayleigh quotients of every infinite valid local RQI run converge to the target
 eigenvalue. No scalar cubic convergence is asserted for an interior eigenvalue.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=tendsto.9h7v.s8.4c095dd91a16 from=translated src=- shape=f84714ac vocab=8d5cde41
+-/
 theorem tendsto_rayleighQuotient_run (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -162,7 +176,9 @@ theorem tendsto_rayleighQuotient_run (hA : A.IsHermitian) {i : n} {g M : ℝ}
   exact tendsto_iff_norm_sub_tendsto_zero.mpr (by simpa only [Real.norm_eq_abs] using he)
 
 /-- Successful termination at a vector with nonzero target overlap necessarily returns
-the target eigenvalue, not another eigenvalue.-/
+the target eigenvalue, not another eigenvalue.
+@isnad1 id=and.3h6v.s8.b0e824c1f9c9 from=translated src=- shape=52b66560 vocab=6306bf4e
+-/
 theorem eigenvalue_eq_of_advance_success (hA : A.IsHermitian) {i : n} {x y : n → 𝕜}
     (hx : hA.eigenvectorCoordinates x i ≠ 0) (hsuccess : advance A x = .success y) :
     y = x ∧ rayleighQuotient A x = hA.eigenvalues i ∧ A *ᵥ y = hA.eigenvalues i • y := by
@@ -176,7 +192,9 @@ theorem eigenvalue_eq_of_advance_success (hA : A.IsHermitian) {i : n} {x y : n �
 
 /-- Infinite runs phrased through the actual stopping/breakdown transition satisfy both
 line-angle and Rayleigh-quotient convergence.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.8h7v.s8.4736abc249d3 from=translated src=- shape=748e71f5 vocab=e369a6a6
+-/
 theorem tendsto_of_advance_next (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -193,7 +211,9 @@ theorem tendsto_of_advance_next (hA : A.IsHermitian) {i : n} {g M : ℝ}
     tendsto_rayleighQuotient_run hA hg hM hgap hdiam hx hlocal hstep hshift⟩
 
 /-- Every active or successfully terminated finite run retains normalization, nonzero
-target overlap, and the invariant neighborhood. A breakdown makes no output-vector claim.-/
+target overlap, and the invariant neighborhood. A breakdown makes no output-vector claim.
+@isnad1 id=match1.8h8v.s9.ad95e7e03cdf from=translated src=- shape=ac10e966 vocab=c1f7773e
+-/
 theorem run_state_invariants (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -225,7 +245,9 @@ theorem run_state_invariants (hA : A.IsHermitian) {i : n} {g M : ℝ}
           tangentSq_step_le_neighborhood hA hg hM hgap hdiam hy.2.1 hy.2.2 hshift⟩
       · trivial
 
-/-- The successful outcome of a finite run is an actual Rayleigh eigenvector.-/
+/-- The successful outcome of a finite run is an actual Rayleigh eigenvector.
+@isnad1 id=eq.1h6v.s7.06c295f89843 from=translated src=- shape=571658cd vocab=de01a8ca
+-/
 theorem mulVec_eq_rayleighQuotient_smul_of_run_success (A : Matrix n n 𝕜)
     (x₀ : n → 𝕜) (k : ℕ) {y : n → 𝕜} (hsuccess : run A x₀ k = .success y) :
     A *ᵥ y = rayleighQuotient A y • y := by
@@ -246,7 +268,9 @@ theorem mulVec_eq_rayleighQuotient_smul_of_run_success (A : Matrix n n 𝕜)
 
 /-- Any successful finite local RQI run returns a unit eigenvector for the selected target
 eigenvalue. Interior-eigenvalue breakdown is kept distinct from successful termination.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.9h9v.s9.345a99235314 from=translated src=- shape=d4b23067 vocab=7a9cf737
+-/
 theorem run_success_target (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)

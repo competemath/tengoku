@@ -23,7 +23,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m : Type*} [Fintype m] [DecidableEq m]
 /-- A zero diagonal entry of a positive semidefinite matrix kills its column: `aᵢᵢ = 0` gives
 `aⱼᵢ = 0` for every `j` (from `eᵢᴴ A eᵢ = 0 ⟹ A eᵢ = 0`,
 `Matrix.PosSemidef.dotProduct_mulVec_zero_iff`). Stated over any `RCLike` field (real and complex
-matrices). Horn–Johnson 2013, Obs. 7.1.10.-/
+matrices). Horn–Johnson 2013, Obs. 7.1.10.
+@isnad1 id=eq.2h5v.s6.24f22bf7423c from=translated src=- shape=a2116cb8 vocab=28b18b99
+-/
 theorem apply_eq_zero_of_posSemidef_of_apply_self_eq_zero {A : Matrix m m 𝕜}
     (hA : A.PosSemidef) {i : m} (h : A i i = 0) (j : m) : A j i = 0 := by
   have h0 : star (Pi.single i 1 : m → 𝕜) ⬝ᵥ A *ᵥ Pi.single i 1 = 0 := by
@@ -31,7 +33,9 @@ theorem apply_eq_zero_of_posSemidef_of_apply_self_eq_zero {A : Matrix m m 𝕜}
   have := congrFun ((hA.dotProduct_mulVec_zero_iff _).1 h0) j
   simpa using this
 
-/-- A zero diagonal entry of a positive semidefinite matrix kills its row.-/
+/-- A zero diagonal entry of a positive semidefinite matrix kills its row.
+@isnad1 id=eq.2h5v.s6.fb6759be4737 from=translated src=- shape=317fad04 vocab=28b18b99
+-/
 theorem apply_eq_zero_of_posSemidef_of_apply_self_eq_zero' {A : Matrix m m 𝕜}
     (hA : A.PosSemidef) {i : m} (h : A i i = 0) (j : m) : A i j = 0 := by
   have hs : A i j = star (A j i) := by

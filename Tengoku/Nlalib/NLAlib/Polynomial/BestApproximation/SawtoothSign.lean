@@ -18,7 +18,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The sawtooth error is nonzero strictly inside every half-period grid cell.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=ne.2h3v.s5.f7fb83a64dc8 from=translated src=- shape=fc4f0dfd vocab=0a935b3c
+-/
 theorem sawtoothError_ne_zero_of_between_grid {n j : ℕ} (hj : j ≤ n) {t : ℝ}
     (ht : t ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
     sawtoothError n t ≠ 0 := by
@@ -35,7 +37,9 @@ theorem sawtoothError_ne_zero_of_between_grid {n j : ℕ} (hj : j ≤ n) {t : �
 
 /-- A scaled sawtooth error with positive value at one point has positive value throughout
 the same root-free cell. This is the intermediate-value argument, not a sign premise.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=lt.5h5v.s6.f8fbca55f74e from=translated src=- shape=8bf29c51 vocab=f71ad753
+-/
 theorem mul_sawtoothError_pos_of_pos_on_cell {n j : ℕ} (hj : j ≤ n) {s x y : ℝ}
     (hs : s ≠ 0) (hx : x ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1)))
     (hy : y ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1)))
@@ -49,7 +53,9 @@ theorem mul_sawtoothError_pos_of_pos_on_cell {n j : ℕ} (hj : j ≤ n) {s x y :
 
 /-- The sawtooth error is positive in the first half-period grid cell, because
 its origin value is pi and there are no extra zeros.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=lt.1h2v.s5.1626c6765164 from=translated src=- shape=1d6c02b4 vocab=bde0aacd
+-/
 theorem sawtoothError_pos_on_first_cell (n : ℕ) {t : ℝ}
     (ht : t ∈ Ioo (sawtoothGridAngle n 0) (sawtoothGridAngle n 1)) : 0 < sawtoothError n t := by
   have ht0 : 0 < t := by simpa [sawtoothGridAngle] using ht.1
@@ -70,7 +76,9 @@ theorem sawtoothError_pos_on_first_cell (n : ℕ) {t : ℝ}
 /-- The sawtooth-error sign alternates on successive grid cells: the scaled error
 `(-1)^j(B-τ_n)` is strictly positive. A failed sign flip would give a local extremum at a
 simple interpolation zero, contradicting Fermat's theorem.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=lt.2h3v.s6.8d8a390e4f3b from=translated src=- shape=14144002 vocab=6d794875
+-/
 theorem mul_sawtoothError_pos_on_grid_cell (n j : ℕ) (hj : j ≤ n) {t : ℝ}
     (ht : t ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
     0 < (-1 : ℝ) ^ j * sawtoothError n t := by
@@ -115,7 +123,9 @@ theorem mul_sawtoothError_pos_on_grid_cell (n j : ℕ) (hj : j ≤ n) {t : ℝ}
   exact hall j hj t ht
 
 /-- The absolute interpolation error equals its alternating signed value on each cell.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.2h3v.s6.c0991e53823b from=translated src=- shape=3b15de03 vocab=f95e6956
+-/
 theorem abs_sawtoothError_eq_mul_on_grid_cell (n j : ℕ) (hj : j ≤ n) {t : ℝ}
     (ht : t ∈ Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
     |sawtoothError n t| = (-1 : ℝ) ^ j * sawtoothError n t := by
@@ -124,13 +134,17 @@ theorem abs_sawtoothError_eq_mul_on_grid_cell (n j : ℕ) (hj : j ≤ n) {t : �
   exact h
 
 /-- The odd sine interpolant has the required full-period reflection symmetry.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h2v.s5.fb6c193acd04 from=translated src=- shape=1f7e8921 vocab=f1f7c871
+-/
 theorem sawtoothApprox_two_pi_sub (n : ℕ) (t : ℝ) :
     sawtoothApprox n (2 * Real.pi - t) = -sawtoothApprox n t := by
   simp [sawtoothApprox, sin_two_pi_sub, cos_two_pi_sub]
 
 /-- The unwrapped sawtooth error changes sign under reflection about pi.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h2v.s5.e449469f777f from=translated src=- shape=1f7e8921 vocab=6899b9eb
+-/
 theorem sawtoothError_two_pi_sub (n : ℕ) (t : ℝ) :
     sawtoothError n (2 * Real.pi - t) = -sawtoothError n t := by
   unfold sawtoothError

@@ -24,7 +24,9 @@ omit [DecidableEq ι] in
 /-- A positive subsolution controls every eigenvalue of every complex matrix
 dominated by the nonnegative comparison matrix.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=le.5h7v.s7.f4dc02bc8284 from=translated src=- shape=8a9f9f42 vocab=d1302ac8
+-/
 theorem norm_eigenvalue_le_of_abs_le_of_positive_subsolution
     {A : Matrix ι ι ℝ} {B : Matrix ι ι ℂ} (hBA : ∀ i j, norm (B i j) ≤ A i j)
     {p : ι → ℝ} (hp : ∀ i, 0 < p i) {r : ℝ}
@@ -63,7 +65,9 @@ theorem norm_eigenvalue_le_of_abs_le_of_positive_subsolution
 /-- A positive subsolution bounds the entire complex spectral radius.
 No real-spectrum or diagonalizability assumption is used.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=le.3h5v.s7.44367a9978ca from=translated src=- shape=9aaed99a vocab=47bae917
+-/
 theorem spectralRadius_le_of_abs_le_of_positive_subsolution
     {A : Matrix ι ι ℝ} {B : Matrix ι ι ℂ} (hBA : ∀ i j, norm (B i j) ≤ A i j)
     {p : ι → ℝ} (hp : ∀ i, 0 < p i) {r : ℝ}

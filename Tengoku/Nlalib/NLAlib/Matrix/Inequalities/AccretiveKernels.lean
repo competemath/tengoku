@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n]
 
 /-- Taking the Hermitian part takes the real part of a quadratic form.
-This relates the native self-adjoint-part map to accretivity.-/
+This relates the native self-adjoint-part map to accretivity.
+@isnad1 id=eq.0h3v.s10.62ec8525e4f1 from=translated src=- shape=cb08e8a3 vocab=0c44a87e
+-/
 theorem quadForm_selfAdjointPart (A : Matrix n n ℂ) (x : n → ℂ) :
     quadForm (selfAdjointPart ℝ A : Matrix n n ℂ) x = (quadForm A x).re := by
   simp only [selfAdjointPart_apply_coe, Matrix.star_eq_conjTranspose,
@@ -34,7 +36,9 @@ theorem quadForm_selfAdjointPart (A : Matrix n n ℂ) (x : n → ℂ) :
 
 /-- With positive semidefinite Hermitian part, annihilation by `A` implies
 annihilation by its Hermitian part. Source: Horn–Johnson (2013), Lemma 7.1.11.
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=eq.2h3v.s11.80baf3b6349f from=translated src=- shape=4c39efee vocab=b98ad6a4
+-/
 theorem selfAdjointPart_mulVec_eq_zero_of_mulVec_eq_zero
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     {x : n → ℂ} (hx : A *ᵥ x = 0) :
@@ -46,7 +50,9 @@ theorem selfAdjointPart_mulVec_eq_zero_of_mulVec_eq_zero
 
 /-- The kernel of an accretive matrix is the common kernel of its real
 and imaginary Hermitian parts. Source: operator derivations, (S12).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=iff.1h3v.s11.414376dbeb08 from=translated src=- shape=c023caec vocab=2b76bd18
+-/
 theorem mulVec_eq_zero_iff_realPart_and_imaginaryPart_mulVec_eq_zero
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     (x : n → ℂ) :
@@ -66,7 +72,9 @@ theorem mulVec_eq_zero_iff_realPart_and_imaginaryPart_mulVec_eq_zero
 
 /-- An accretive matrix and its adjoint have identical kernels.
 Source: Horn–Johnson (2013), Lemma 7.1.11; operator derivations, (S12).
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=iff.1h3v.s10.70de0247f397 from=translated src=- shape=d9bf1124 vocab=91f6e58f
+-/
 theorem mulVec_eq_zero_iff_conjTranspose_mulVec_eq_zero
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef)
     (x : n → ℂ) : A *ᵥ x = 0 ↔ Aᴴ *ᵥ x = 0 := by
@@ -86,7 +94,9 @@ theorem mulVec_eq_zero_iff_conjTranspose_mulVec_eq_zero
 
 /-- The Hermitian part of an accretive matrix has rank no greater than the
 matrix. Source: Horn–Johnson (2013), Observation 7.1.12.
-atlas: psd-hermitian-part (partial)-/
+atlas: psd-hermitian-part (partial)
+@isnad1 id=le.1h2v.s11.90f8f7ed22be from=translated src=- shape=546b0652 vocab=2a01615a
+-/
 theorem rank_selfAdjointPart_le_of_posSemidef
     {A : Matrix n n ℂ} (hA : (selfAdjointPart ℝ A : Matrix n n ℂ).PosSemidef) :
     (selfAdjointPart ℝ A : Matrix n n ℂ).rank ≤ A.rank := by

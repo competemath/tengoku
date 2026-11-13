@@ -19,7 +19,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m n : Type*}
   [Fintype m] [Fintype n] [DecidableEq n] [Nonempty n]
 
 /-- Multiplication by the augmented data matrix separates its data and
-right-hand-side blocks.-/
+right-hand-side blocks.
+@isnad1 id=eq.0h6v.s7.c5c090b400f0 from=translated src=- shape=1e6bb04f vocab=3d66fb6b
+-/
 theorem tlsDataMatrix_mulVec (A : Matrix m n 𝕜) (b : m → 𝕜) (v : n ⊕ Unit → 𝕜) :
     tlsDataMatrix A b *ᵥ v = A *ᵥ (v ∘ Sum.inl) + v (Sum.inr ()) • b := by
   rw [tlsDataMatrix, Matrix.fromCols_mulVec]
@@ -27,7 +29,9 @@ theorem tlsDataMatrix_mulVec (A : Matrix m n 𝕜) (b : m → 𝕜) (v : n ⊕ U
   ext i
   simp [Matrix.mulVec, dotProduct, smul_eq_mul, mul_comm]
 
-/-- The first block of a minimum augmented-Gram eigenvector equation.-/
+/-- The first block of a minimum augmented-Gram eigenvector equation.
+@isnad1 id=eq.1h6v.s9.de4f2798f0fd from=translated src=- shape=3217be91 vocab=9edb90c6
+-/
 theorem tls_minimum_eigenvector_first_block (A : Matrix m n 𝕜) (b : m → 𝕜)
     (v : n ⊕ Unit → 𝕜)
     (he : ((tlsDataMatrix A b)ᴴ * tlsDataMatrix A b) *ᵥ v = (tlsValue A b : 𝕜) • v) :
@@ -43,7 +47,9 @@ theorem tls_minimum_eigenvector_first_block (A : Matrix m n 𝕜) (b : m → �
   linear_combination hh
 
 /-- Under the strict gap no nonzero minimum eigenvector can have a zero
-last coordinate. The inverse is justified by a positive definite matrix.-/
+last coordinate. The inverse is justified by a positive definite matrix.
+@isnad1 id=ne.3h6v.s8.53b3bf7650e1 from=translated src=- shape=f258f43f vocab=e331fcc0
+-/
 theorem tls_minimum_eigenvector_last_ne_zero_of_gap (A : Matrix m n 𝕜) (b : m → 𝕜)
     (hgap : tlsValue A b < lambdaMin (Aᴴ * A)) (v : n ⊕ Unit → 𝕜)
     (hv : v ≠ 0)
@@ -62,7 +68,9 @@ theorem tls_minimum_eigenvector_last_ne_zero_of_gap (A : Matrix m n 𝕜) (b : m
   | inr i => cases i; exact hz
 
 /-- Every minimum eigenvector chart point is the strict-gap inverse
-formula. The denominator is explicitly proved nonzero first.-/
+formula. The denominator is explicitly proved nonzero first.
+@isnad1 id=eq.3h6v.s9.3e784c68a01d from=translated src=- shape=2d148d1f vocab=686e5594
+-/
 theorem tlsSolutionOfVector_eq_inverse_of_gap (A : Matrix m n 𝕜) (b : m → 𝕜)
     (hgap : tlsValue A b < lambdaMin (Aᴴ * A)) (v : n ⊕ Unit → 𝕜) (hv : v ≠ 0)
     (he : ((tlsDataMatrix A b)ᴴ * tlsDataMatrix A b) *ᵥ v = (tlsValue A b : 𝕜) • v) :
@@ -84,7 +92,9 @@ theorem tlsSolutionOfVector_eq_inverse_of_gap (A : Matrix m n 𝕜) (b : m → �
 
 /-- The strict gap guarantees attainment and gives precisely one TLS
 solution, equal to the classical shifted normal inverse formula.
-atlas: total-least-squares-svd (partial)-/
+atlas: total-least-squares-svd (partial)
+@isnad1 id=iff.1h6v.s9.6b1cd5178fe2 from=translated src=- shape=5a8ce78d vocab=532004c8
+-/
 theorem isTLSOptimal_iff_eq_inverse_of_gap (A : Matrix m n 𝕜) (b : m → 𝕜)
     (hgap : tlsValue A b < lambdaMin (Aᴴ * A)) (x : n → 𝕜) :
     IsTLSOptimal A b x ↔ x = (Aᴴ * A - (tlsValue A b : 𝕜) • 1)⁻¹ *ᵥ (Aᴴ *ᵥ b) := by

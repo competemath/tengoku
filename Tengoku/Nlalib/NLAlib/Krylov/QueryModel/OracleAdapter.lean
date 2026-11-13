@@ -14,7 +14,9 @@ def adaptResponses (g : S → R) : {q : ℕ} → QueryProgram Q R β q → Query
   | _, .query value next => .query value (fun response => adaptResponses g (next (g response)))
 
 /-- Running an adapted strategy is exactly running its original strategy with
-the correspondingly adapted oracle.-/
+the correspondingly adapted oracle.
+@isnad1 id=eq.0h8v.s5.94f4c5dae491 from=translated src=- shape=016b7237 vocab=9c470f04
+-/
 @[simp] theorem run_adaptResponses (g : S → R) (f : Q → S) (p : QueryProgram Q R β q) :
     (adaptResponses g p).run f = p.run (g ∘ f) := by
   induction p with

@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- In diagonal coordinates the polynomial derivative is multiplication
-entry by entry by its confluent divided-difference matrix.-/
+entry by entry by its confluent divided-difference matrix.
+@isnad1 id=eq.0h4v.s9.d30cfd9fba48 from=translated src=- shape=c0cb0c3a vocab=5eaf3b1d
+-/
 theorem frechetDerivative_diagonal_apply (p : ℝ[X]) (ev : n → ℝ) (H : Matrix n n ℂ) :
     p.frechetDerivative (diagonal (fun i => (ev i : ℂ))) H =
       Matrix.of (fun i j => (((p.dividedDifference (ev i)).eval (ev j) : ℝ) : ℂ) * H i j) := by

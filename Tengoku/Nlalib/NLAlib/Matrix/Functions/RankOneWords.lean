@@ -25,7 +25,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 omit [DecidableEq ι] in
 /-- Sandwiching a matrix by one real rank-one matrix gives its quadratic
-form times that same rank-one matrix.-/
+form times that same rank-one matrix.
+@isnad1 id=eq.0h3v.s7.fdc2548e21ef from=translated src=- shape=bd235ae0 vocab=e0eed0a9
+-/
 theorem vecMulVec_mul_mul_vecMulVec (y : ι → ℝ) (B : Matrix ι ι ℝ) :
     vecMulVec y y * B * vecMulVec y y =
       (y ⬝ᵥ (B *ᵥ y)) • vecMulVec y y := by
@@ -33,7 +35,9 @@ theorem vecMulVec_mul_mul_vecMulVec (y : ι → ℝ) (B : Matrix ι ι ℝ) :
     ← dotProduct_mulVec]
 
 /-- A positive natural power of a real rank-one matrix is the same
-rank-one matrix times a power of its trace.-/
+rank-one matrix times a power of its trace.
+@isnad1 id=eq.0h3v.s7.af0a64c29a2d from=translated src=- shape=82c126af vocab=e9b434e4
+-/
 theorem vecMulVec_pow_succ (y : ι → ℝ) (p : ℕ) :
     vecMulVec y y ^ (p + 1) = (y ⬝ᵥ y) ^ p • vecMulVec y y := by
   induction p with
@@ -42,7 +46,9 @@ theorem vecMulVec_pow_succ (y : ι → ℝ) (p : ℕ) :
     rw [pow_succ, ih, smul_mul_assoc, vecMulVec_mul_vecMulVec, vecMulVec_smul,
       smul_smul, pow_succ]
 
-/-- Pairing a rank-one power with a matrix gives its directional moment.-/
+/-- Pairing a rank-one power with a matrix gives its directional moment.
+@isnad1 id=eq.0h4v.s7.b3ca0784c446 from=translated src=- shape=2636a94a vocab=d15e639d
+-/
 theorem trace_mul_vecMulVec_pow_succ (C : Matrix ι ι ℝ) (y : ι → ℝ) (p : ℕ) :
     (C * vecMulVec y y ^ (p + 1)).trace =
       (y ⬝ᵥ y) ^ p * (y ⬝ᵥ (C *ᵥ y)) := by
@@ -51,7 +57,9 @@ theorem trace_mul_vecMulVec_pow_succ (C : Matrix ι ι ℝ) (y : ι → ℝ) (p 
   rw [dotProduct_comm (C *ᵥ y) y]
 
 /-- Multiplying rank-one-separated factors after an initial rank-one
-matrix contracts each factor to a scalar quadratic form.-/
+matrix contracts each factor to a scalar quadratic form.
+@isnad1 id=eq.0h3v.s7.3c957ead8154 from=translated src=- shape=0bdb00e7 vocab=1975918a
+-/
 theorem vecMulVec_mul_prod_map_mul_vecMulVec (y : ι → ℝ)
     (Bs : List (Matrix ι ι ℝ)) :
     vecMulVec y y * (Bs.map fun B => B * vecMulVec y y).prod =
@@ -64,7 +72,9 @@ theorem vecMulVec_mul_prod_map_mul_vecMulVec (y : ι → ℝ)
       smul_mul_assoc, ih, smul_smul]
 
 /-- The trace of a nonempty cyclic rank-one word is exactly the product
-of its scalar quadratic forms.-/
+of its scalar quadratic forms.
+@isnad1 id=eq.1h3v.s7.86dbdbc90d46 from=translated src=- shape=16d49b15 vocab=9f80206c
+-/
 theorem trace_prod_map_mul_vecMulVec (y : ι → ℝ)
     (Bs : List (Matrix ι ι ℝ)) (hne : Bs ≠ []) :
     (Bs.map fun B => B * vecMulVec y y).prod.trace =
@@ -79,7 +89,9 @@ theorem trace_prod_map_mul_vecMulVec (y : ι → ℝ)
     exact mul_comm _ _
 
 /-- Absolute quadratic forms of powers are bounded by the corresponding
-moments of the absolute eigenvalues, retaining the test vector weights.-/
+moments of the absolute eigenvalues, retaining the test vector weights.
+@isnad1 id=le.1h4v.s8.b45f91662ba7 from=translated src=- shape=7c480739 vocab=505db41c
+-/
 theorem abs_dotProduct_pow_mulVec_le_sum_abs_eigenvalues_pow
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (y : ι → ℝ) (k : ℕ) :
     |y ⬝ᵥ (A ^ k *ᵥ y)| ≤
@@ -96,7 +108,9 @@ theorem abs_dotProduct_pow_mulVec_le_sum_abs_eigenvalues_pow
 /-- A nonempty cyclic word with real rank-one insertions is bounded by
 one absolute spectral moment and a power of the rank-one trace.
 This is the direction-preserving estimate for higher insertions in the
-finite-moment Khatri--Rao covariance proof.-/
+finite-moment Khatri--Rao covariance proof.
+@isnad1 id=le.2h4v.s8.a6e992b2a47c from=translated src=- shape=7be3c8d3 vocab=67bbfb2e
+-/
 theorem abs_trace_prod_pow_mul_vecMulVec_le
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (y : ι → ℝ)
     (ks : List ℕ) (hne : ks ≠ []) :

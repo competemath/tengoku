@@ -24,7 +24,9 @@ strictly positive preimage under the native derivative. The preimage is
 constructed by the convergent positive Neumann inverse of the true
 Frobenius stability map.
 Source: Montanari--Saeed (2026), Theorem 3, stable real-branch derivative.
-atlas: block-wishart-variational-edges (partial)-/
+atlas: block-wishart-variational-edges (partial)
+@isnad1 id=ex.6h5v.s10.fed936281786 from=translated src=- shape=863ad7f0 vocab=40b1c592
+-/
 theorem exists_posDef_matrixKTransformDeriv_preimage
     (ν : Measure (selfAdjoint M)) [IsProbabilityMeasure ν] (hν : IsCompact ν.support)
     (α : ℝ) (hα : 0<α) (S : M) (hS : S.PosDef)
@@ -78,7 +80,9 @@ has a strictly positive native derivative. The slope is obtained from
 the true positive inverse of the K derivative, rather than assumed as a
 branch property.
 Source: Montanari--Saeed (2026), Theorem 3, real branch identification.
-atlas: block-wishart-variational-edges (partial)-/
+atlas: block-wishart-variational-edges (partial)
+@isnad1 id=ex.6h5v.s10.06411a19427d from=translated src=- shape=47025438 vocab=c97e3e9e
+-/
 theorem exists_analytic_matrixKTransform_inverse_branch_posDef_deriv
     (ν : Measure (selfAdjoint M)) [IsProbabilityMeasure ν] (hν : IsCompact ν.support)
     (α : ℝ) (hα : 0<α) (S : M) (hS : S.PosDef)

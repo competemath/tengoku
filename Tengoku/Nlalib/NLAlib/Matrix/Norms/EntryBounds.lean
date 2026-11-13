@@ -14,7 +14,9 @@ namespace NLAlib
 
 open scoped Matrix.Norms.L2Operator in
 /-- The norm of any entry of a real or complex matrix is bounded by its
-spectral norm, on arbitrary finite index types.-/
+spectral norm, on arbitrary finite index types.
+@isnad1 id=le.0h6v.s5.c0dd739c5fe9 from=translated src=- shape=b13a09c4 vocab=62f3f980
+-/
 theorem norm_apply_le_specNorm {𝕜 m n : Type*} [RCLike 𝕜] [Fintype m] [Fintype n]
     [DecidableEq m] [DecidableEq n] (A : Matrix m n 𝕜) (i : m) (j : n) :
     ‖A i j‖ ≤ specNorm A := by
@@ -29,7 +31,9 @@ theorem norm_apply_le_specNorm {𝕜 m n : Type*} [RCLike 𝕜] [Fintype m] [Fin
     _ = specNorm A := by simp [e]
 
 open scoped Matrix.Norms.L2Operator in
-/-- The absolute value of a real matrix entry is bounded by its spectral norm.-/
+/-- The absolute value of a real matrix entry is bounded by its spectral norm.
+@isnad1 id=le.0h5v.s5.5c486ec0e319 from=translated src=- shape=eb1f2d35 vocab=b89412fa
+-/
 theorem abs_apply_le_specNorm {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m]
     [DecidableEq n] (A : Matrix m n ℝ) (i : m) (j : n) : |A i j| ≤ specNorm A := by
   simpa only [Real.norm_eq_abs] using norm_apply_le_specNorm A i j

@@ -24,12 +24,16 @@ atlas: matrix-divided-differences-def-/
 def loewnerMatrix {ι : Type*} (f : ℝ → ℝ) (nodes : ι → ℝ) : Matrix ι ι ℝ :=
   fun i j => dslope f (nodes i) (nodes j)
 
-/-- Repeated nodes use the derivative, rather than division by zero.-/
+/-- Repeated nodes use the derivative, rather than division by zero.
+@isnad1 id=eq.0h4v.s5.3c03e4ee5daf from=translated src=- shape=8259a265 vocab=446baa0d
+-/
 @[simp] theorem loewnerMatrix_apply_self {ι : Type*} (f : ℝ → ℝ)
     (nodes : ι → ℝ) (i : ι) : loewnerMatrix f nodes i i = deriv f (nodes i) :=
   dslope_same _ _
 
-/-- At unequal nodes the Löwner matrix is the usual scalar difference quotient.-/
+/-- At unequal nodes the Löwner matrix is the usual scalar difference quotient.
+@isnad1 id=eq.1h5v.s6.dcbfe3f85aac from=translated src=- shape=9ab9f617 vocab=b169bb65
+-/
 theorem loewnerMatrix_apply_of_ne {ι : Type*} (f : ℝ → ℝ) (nodes : ι → ℝ)
     (i j : ι) (h : nodes i ≠ nodes j) :
     loewnerMatrix f nodes i j = (f (nodes i) - f (nodes j)) / (nodes i - nodes j) := by
@@ -39,7 +43,9 @@ theorem loewnerMatrix_apply_of_ne {ι : Type*} (f : ℝ → ℝ) (nodes : ι →
   ring
 
 /-- The confluent scalar divided difference is symmetric, without a
-differentiability hypothesis away from its total diagonal value.-/
+differentiability hypothesis away from its total diagonal value.
+@isnad1 id=eq.0h3v.s5.82edb8bd0727 from=translated src=- shape=bfc08b83 vocab=d78cf4e6
+-/
 theorem dslope_swap (f : ℝ → ℝ) (x y : ℝ) : dslope f x y = dslope f y x := by
   by_cases h : x = y
   · subst y; rfl
@@ -48,14 +54,18 @@ theorem dslope_swap (f : ℝ → ℝ) (x y : ℝ) : dslope f x y = dslope f y x 
   field_simp
   ring
 
-/-- Every Löwner matrix is symmetric, including confluent node families.-/
+/-- Every Löwner matrix is symmetric, including confluent node families.
+@isnad1 id=issymm.0h3v.s4.184cc1d9a47d from=translated src=- shape=012adc8c vocab=aa934c38
+-/
 theorem loewnerMatrix_isSymm {ι : Type*} (f : ℝ → ℝ) (nodes : ι → ℝ) :
     (loewnerMatrix f nodes).IsSymm := by
   ext i j
   exact dslope_swap f _ _
 
 /-- Polynomial Löwner entries agree with evaluation of the existing exact
-polynomial divided difference, including the confluent derivative value.-/
+polynomial divided difference, including the confluent derivative value.
+@isnad1 id=eq.0h3v.s5.07027ab39765 from=translated src=- shape=7db1791a vocab=dd9c76b6
+-/
 theorem dslope_polynomial_eq_eval_dividedDifference (p : Polynomial ℝ) (x y : ℝ) :
     dslope (fun t => p.eval t) x y = (p.dividedDifference x).eval y := by
   by_cases h : y = x

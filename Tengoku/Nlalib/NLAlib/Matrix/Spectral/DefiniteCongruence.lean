@@ -27,7 +27,9 @@ open scoped Matrix.Norms.L2Operator in
 simultaneously congruent to the identity and a real diagonal in factor form.
 The diagonal entries are nonnegative whenever the second matrix is PSD.
 Horn–Johnson (2013), Theorem 7.6.1; extends the real form to `RCLike`.
-atlas: simultaneous-diagonalization-congruence (partial)-/
+atlas: simultaneous-diagonalization-congruence (partial)
+@isnad1 id=ex.2h4v.s8.81f3e85efe06 from=translated src=- shape=7ecf2d75 vocab=6ad0e8a0
+-/
 theorem exists_definite_pair_congruence_diagonal {𝕜 : Type*} [RCLike 𝕜]
     {A B : Matrix n n 𝕜} (hA : A.PosDef) (hB : B.IsHermitian) :
     ∃ (S : Matrix n n 𝕜) (d : n → ℝ), IsUnit S ∧ A = S * Sᴴ ∧
@@ -77,7 +79,9 @@ theorem exists_definite_pair_congruence_diagonal {𝕜 : Type*} [RCLike 𝕜]
 
 /-- Simultaneous congruence to identity and a diagonal makes the relative
 operator similar to that exact diagonal. Horn--Johnson (2013), Theorem 7.6.1;
-helper for `simultaneous-diagonalization-congruence`.-/
+helper for `simultaneous-diagonalization-congruence`.
+@isnad1 id=eq.3h5v.s7.19800b656d39 from=translated src=- shape=7c14f242 vocab=e59bde79
+-/
 theorem inverse_mul_eq_inv_transpose_mul_diagonal_mul_transpose
     {A B S : Matrix n n ℝ} {d : n → ℝ} (hS : IsUnit S)
     (hA : A = S * Sᵀ) (hB : B = S * diagonal d * Sᵀ) :
@@ -91,7 +95,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The diagonal of a definite-pair congruence enumerates the relative
 operator's eigenvalues with full characteristic multiplicity.
 Horn--Johnson (2013), Theorem 7.6.1;
-helper for `simultaneous-diagonalization-congruence`.-/
+helper for `simultaneous-diagonalization-congruence`.
+@isnad1 id=eq.3h5v.s8.fa112524b97c from=translated src=- shape=80e64c1f vocab=9ace11d3
+-/
 theorem charpoly_inverse_mul_eq_prod_of_congruence
     {A B S : Matrix n n ℝ} {d : n → ℝ} (hS : IsUnit S)
     (hA : A = S * Sᵀ) (hB : B = S * diagonal d * Sᵀ) :
@@ -104,7 +110,9 @@ theorem charpoly_inverse_mul_eq_prod_of_congruence
 open scoped Matrix.Norms.L2Operator in
 /-- The real relative spectrum of a definite-pair congruence is exactly
 the diagonal range. Horn--Johnson (2013), Theorem 7.6.1;
-helper for `simultaneous-diagonalization-congruence`.-/
+helper for `simultaneous-diagonalization-congruence`.
+@isnad1 id=eq.3h5v.s7.e46116be1961 from=translated src=- shape=b2dffa7c vocab=e5dd2dc4
+-/
 theorem spectrum_inverse_mul_eq_range_of_congruence
     {A B S : Matrix n n ℝ} {d : n → ℝ} (hS : IsUnit S)
     (hA : A = S * Sᵀ) (hB : B = S * diagonal d * Sᵀ) :
@@ -116,7 +124,9 @@ theorem spectrum_inverse_mul_eq_range_of_congruence
 
 /-- The relative operator of a definite-pair congruence is diagonalizable
 over the real field. Horn--Johnson (2013), Corollary 7.6.2;
-helper for `simultaneous-diagonalization-congruence`.-/
+helper for `simultaneous-diagonalization-congruence`.
+@isnad1 id=isdiagon.3h5v.s7.f50a0ba1b2ef from=translated src=- shape=989dacfe vocab=2e7e7204
+-/
 theorem isDiagonalizable_inverse_mul_of_congruence
     {A B S : Matrix n n ℝ} {d : n → ℝ} (hS : IsUnit S)
     (hA : A = S * Sᵀ) (hB : B = S * diagonal d * Sᵀ) :
@@ -129,7 +139,9 @@ theorem isDiagonalizable_inverse_mul_of_congruence
 
 /-- Positive and negative inertia of the definite-pair diagonal are those
 of the second matrix. Horn--Johnson (2013), Theorem 7.6.1;
-helper for `simultaneous-diagonalization-congruence`.-/
+helper for `simultaneous-diagonalization-congruence`.
+@isnad1 id=and.2h4v.s7.89b0b66a81e0 from=translated src=- shape=4dff29a2 vocab=149cdbdf
+-/
 theorem inertia_diagonal_eq_of_congruence {B S : Matrix n n ℝ} {d : n → ℝ}
     (hS : IsUnit S) (hB : B = S * diagonal d * Sᵀ) :
     inertiaPos (diagonal d) = inertiaPos B ∧ inertiaNeg (diagonal d) = inertiaNeg B := by
@@ -141,7 +153,9 @@ theorem inertia_diagonal_eq_of_congruence {B S : Matrix n n ℝ} {d : n → ℝ}
 
 /-- A positive definite and symmetric pair has a real diagonalizable
 relative operator. Horn--Johnson (2013), Corollary 7.6.2.
-atlas: simultaneous-diagonalization-congruence (partial)-/
+atlas: simultaneous-diagonalization-congruence (partial)
+@isnad1 id=isdiagon.2h3v.s6.5fa0f98f6b3b from=translated src=- shape=1a58e248 vocab=068f8553
+-/
 theorem isDiagonalizable_inverse_mul_of_posDef {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) : IsDiagonalizable (A⁻¹ * B) := by
   obtain ⟨S, d, hS, hAA, hBB, -⟩ := exists_definite_pair_congruence_diagonal hA hB
@@ -151,7 +165,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The product of a positive definite real matrix and a symmetric real
 matrix is diagonalizable over the real field.
 Horn--Johnson (2013), Corollary 7.6.2.
-atlas: simultaneous-diagonalization-congruence (partial)-/
+atlas: simultaneous-diagonalization-congruence (partial)
+@isnad1 id=isdiagon.2h3v.s6.c704d4b91911 from=translated src=- shape=2089c167 vocab=e536fd70
+-/
 theorem isDiagonalizable_mul_of_posDef {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) : IsDiagonalizable (A * B) := by
   let : Invertible A := hA.isUnit.invertible
@@ -161,7 +177,9 @@ theorem isDiagonalizable_mul_of_posDef {A B : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- The relative operator of a positive definite and PSD pair has
 nonnegative real spectrum. Horn--Johnson (2013), Corollary 7.6.2.
-atlas: simultaneous-diagonalization-congruence (partial)-/
+atlas: simultaneous-diagonalization-congruence (partial)
+@isnad1 id=le.2h3v.s6.da93e72d902b from=translated src=- shape=569c680d vocab=bfb185c1
+-/
 theorem spectrum_inverse_mul_subset_nonneg_of_posDef {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) : spectrum ℝ (A⁻¹ * B) ⊆ Set.Ici 0 := by
   obtain ⟨S, d, hS, hAA, hBB, hd⟩ := exists_definite_pair_congruence_diagonal hA hB.isHermitian
@@ -172,7 +190,9 @@ theorem spectrum_inverse_mul_subset_nonneg_of_posDef {A B : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- The product of a positive definite and PSD real pair has nonnegative
 real spectrum. Horn--Johnson (2013), Corollary 7.6.2.
-atlas: simultaneous-diagonalization-congruence (partial)-/
+atlas: simultaneous-diagonalization-congruence (partial)
+@isnad1 id=le.2h3v.s6.49e02ae5affe from=translated src=- shape=94ca6ad3 vocab=a3aa9fe8
+-/
 theorem spectrum_mul_subset_nonneg_of_posDef {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosSemidef) : spectrum ℝ (A * B) ⊆ Set.Ici 0 := by
   let : Invertible A := hA.isUnit.invertible
@@ -185,7 +205,9 @@ eigenvalue list, its inertia and PSD signs, and real diagonalizability of
 both relative and ordinary products. The general indefinite and PSD-pair
 variants are separate parts of the atlas bundle.
 Horn--Johnson (2013), Theorem 7.6.1 and Corollary 7.6.2.
-atlas: simultaneous-diagonalization-congruence-/
+atlas: simultaneous-diagonalization-congruence
+@isnad1 id=and.2h3v.s9.645c8737cdaf from=translated src=- shape=034822a7 vocab=c21327ac
+-/
 theorem definite_pair_congruence_characterizations {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.IsHermitian) :
     (∃ (S : Matrix n n ℝ) (d : n → ℝ), IsUnit S ∧ A = S * Sᵀ ∧

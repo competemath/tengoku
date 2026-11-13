@@ -21,7 +21,9 @@ variable {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
 variable {A : Matrix n n 𝕜}
 
 /-- At an extremal target eigenvalue, the Rayleigh quotient error bounds the off-axis
-weight from below by the spectral gap.-/
+weight from below by the spectral gap.
+@isnad1 id=le.4h6v.s8.da67e27defe1 from=translated src=- shape=0a3af3a7 vocab=324f4794
+-/
 theorem gap_mul_tangentSq_div_le_abs_rayleighQuotient_sub (hA : A.IsHermitian)
     {i : n} {g : ℝ}
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -54,7 +56,9 @@ theorem gap_mul_tangentSq_div_le_abs_rayleighQuotient_sub (hA : A.IsHermitian)
 
 /-- Every nonterminal local iterate for a simple extremal eigenvalue has a nonsingular
 shift. Thus the algorithm cannot break down in this variant.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=ne.9h8v.s8.68e778ff1120 from=translated src=- shape=da6b0d85 vocab=243aa210
+-/
 theorem eigenvalues_ne_rayleighQuotient_of_extremal (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -82,7 +86,9 @@ theorem eigenvalues_ne_rayleighQuotient_of_extremal (hA : A.IsHermitian) {i : n}
 
 /-- Explicit scalar cubic convergence at a smallest or largest simple eigenvalue:
 `|ρ(x₊)-λ| ≤ (8 M/g³)|ρ(x)-λ|³`. The inverse step is justified by the preceding theorem.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=le.9h7v.s9.1b3dcaa6ac98 from=translated src=- shape=60e78754 vocab=742bd7e1
+-/
 theorem abs_rayleighQuotient_step_sub_le_cube_of_extremal (hA : A.IsHermitian)
     {i : n} {g M : ℝ} (hg : 0 < g) (hgM : g ≤ M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)

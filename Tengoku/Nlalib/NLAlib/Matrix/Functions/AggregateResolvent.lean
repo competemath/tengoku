@@ -41,7 +41,9 @@ variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι]
 local notation "M" => Matrix n n ℂ
 
 /-- The first resolvent identity restores the common unperturbed resolvent
-at the left end of a real Hermitian perturbation.-/
+at the left end of a real Hermitian perturbation.
+@isnad1 id=eq.3h5v.s8.b2ef240c7780 from=translated src=- shape=b33561c6 vocab=6a5a690f
+-/
 theorem resolvent_sub_smul_eq_sub_mul_resolvent (A Z : M) (α : ℝ) (ζ : ℂ)
     (hA : A.IsHermitian) (hZ : Z.IsHermitian) (hζ : ζ.im ≠ 0) :
     resolvent (A - α • Z) ζ = resolvent A ζ -
@@ -58,7 +60,9 @@ theorem resolvent_sub_smul_eq_sub_mul_resolvent (A Z : M) (α : ℝ) (ζ : ℂ)
   simpa only [add_comm] using (sub_eq_iff_eq_add.mp h).symm
 
 /-- The first resolvent identity restores the common unperturbed resolvent
-at the right end of a real Hermitian perturbation.-/
+at the right end of a real Hermitian perturbation.
+@isnad1 id=eq.3h5v.s8.01b7de214867 from=translated src=- shape=f412f230 vocab=6a5a690f
+-/
 theorem resolvent_sub_smul_eq_sub_resolvent_mul (A Z : M) (α : ℝ) (ζ : ℂ)
     (hA : A.IsHermitian) (hZ : Z.IsHermitian) (hζ : ζ.im ≠ 0) :
     resolvent (A - α • Z) ζ = resolvent A ζ -

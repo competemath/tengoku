@@ -45,17 +45,25 @@ section Zero
 
 variable [Zero R]
 
+/--
+@isnad1 id=eq.2h6v.s7.0c98b2bb2f19 from=translated src=- shape=76732935 vocab=b5ef5ff5
+-/
 theorem leadingSubmatrix_apply (A : Matrix n n R) {k : ℕ} (i j : Fin k)
     (hi : (i : ℕ) < Fintype.card n) (hj : (j : ℕ) < Fintype.card n) :
     leadingSubmatrix A k i j = A (monoEquivOfFin n rfl ⟨i, hi⟩) (monoEquivOfFin n rfl ⟨j, hj⟩) := by
   simp [leadingSubmatrix, hi, hj]
 
+/--
+@isnad1 id=eq.1h6v.s6.ade93522647f from=translated src=- shape=3b978ad5 vocab=c61da3fd
+-/
 theorem leadingSubmatrix_apply_of_card_le (A : Matrix n n R) {k : ℕ} (i j : Fin k)
     (h : Fintype.card n ≤ i ∨ Fintype.card n ≤ j) :
     leadingSubmatrix A k i j = 0 := by
   rcases h with h | h <;> simp [leadingSubmatrix, not_lt.2 h]
 
-/-- For `k ≤ card n` the leading block is the submatrix along the `k` smallest indices.-/
+/-- For `k ≤ card n` the leading block is the submatrix along the `k` smallest indices.
+@isnad1 id=eq.1h4v.s7.1168efa45895 from=translated src=- shape=30a7eef3 vocab=e075fb4c
+-/
 theorem leadingSubmatrix_eq_submatrix (A : Matrix n n R) {k : ℕ} (hk : k ≤ Fintype.card n) :
     leadingSubmatrix A k =
       A.submatrix (fun i : Fin k => monoEquivOfFin n rfl (Fin.castLE hk i))
@@ -64,7 +72,9 @@ theorem leadingSubmatrix_eq_submatrix (A : Matrix n n R) {k : ℕ} (hk : k ≤ F
   rw [leadingSubmatrix_apply A i j (lt_of_lt_of_le i.2 hk) (lt_of_lt_of_le j.2 hk)]
   rfl
 
-/-- On `Fin m` with `k ≤ m`, `leadingSubmatrix A k = A(0:k, 0:k)`.-/
+/-- On `Fin m` with `k ≤ m`, `leadingSubmatrix A k = A(0:k, 0:k)`.
+@isnad1 id=eq.1h4v.s5.20422a3aa432 from=translated src=- shape=9b6158ac vocab=9cb9a73b
+-/
 theorem leadingSubmatrix_fin {m : ℕ} (A : Matrix (Fin m) (Fin m) R) {k : ℕ} (hk : k ≤ m) :
     leadingSubmatrix A k = A.submatrix (Fin.castLE hk) (Fin.castLE hk) := by
   ext i j
@@ -76,6 +86,9 @@ theorem leadingSubmatrix_fin {m : ℕ} (A : Matrix (Fin m) (Fin m) R) {k : ℕ} 
   rw [e]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.55560e7efc23 from=translated src=- shape=fbb61ae3 vocab=a48bce64
+-/
 @[simp] theorem leadingSubmatrix_transpose (A : Matrix n n R) (k : ℕ) :
     leadingSubmatrix Aᵀ k = (leadingSubmatrix A k)ᵀ := by
   ext i j
@@ -91,16 +104,23 @@ section CommRing
 
 variable [CommRing R]
 
+/--
+@isnad1 id=eq.0h3v.s5.21f1915e7d58 from=translated src=- shape=fa21b433 vocab=f5a75676
+-/
 @[simp] theorem leadingMinor_zero (A : Matrix n n R) : leadingMinor A 0 = 1 := by
   simp [leadingMinor, Matrix.det_isEmpty]
 
-/-- Beyond the dimension the leading minor is `0` (a zero row appears).-/
+/-- Beyond the dimension the leading minor is `0` (a zero row appears).
+@isnad1 id=eq.1h4v.s5.835d077c52bb from=translated src=- shape=ed1aac12 vocab=818e3b53
+-/
 theorem leadingMinor_of_card_lt (A : Matrix n n R) {k : ℕ} (hk : Fintype.card n < k) :
     leadingMinor A k = 0 :=
   Matrix.det_eq_zero_of_row_eq_zero ⟨Fintype.card n, hk⟩ fun j =>
     leadingSubmatrix_apply_of_card_le A _ j (Or.inl le_rfl)
 
-/-- The full leading minor is the determinant.-/
+/-- The full leading minor is the determinant.
+@isnad1 id=eq.0h3v.s5.7c7f11fb25f4 from=translated src=- shape=988ee014 vocab=f56ad5e8
+-/
 theorem leadingMinor_card (A : Matrix n n R) : leadingMinor A (Fintype.card n) = A.det := by
   rw [leadingMinor, leadingSubmatrix_eq_submatrix A le_rfl]
   have : (fun i : Fin (Fintype.card n) => monoEquivOfFin n rfl (Fin.castLE le_rfl i)) =
@@ -109,11 +129,16 @@ theorem leadingMinor_card (A : Matrix n n R) : leadingMinor A (Fintype.card n) =
   rw [this]
   exact Matrix.det_submatrix_equiv_self _ _
 
-/-- On `Fin m` with `k ≤ m`, the leading minor is `det A(0:k, 0:k)`.-/
+/-- On `Fin m` with `k ≤ m`, the leading minor is `det A(0:k, 0:k)`.
+@isnad1 id=eq.1h4v.s5.d692aef86b07 from=translated src=- shape=abaa613b vocab=b1a4c997
+-/
 theorem leadingMinor_fin {m : ℕ} (A : Matrix (Fin m) (Fin m) R) {k : ℕ} (hk : k ≤ m) :
     leadingMinor A k = (A.submatrix (Fin.castLE hk) (Fin.castLE hk)).det := by
   rw [leadingMinor, leadingSubmatrix_fin A hk]
 
+/--
+@isnad1 id=eq.0h4v.s5.32e5d70ca43a from=translated src=- shape=2c206e81 vocab=822cd37a
+-/
 @[simp] theorem leadingMinor_transpose (A : Matrix n n R) (k : ℕ) :
     leadingMinor Aᵀ k = leadingMinor A k := by
   rw [leadingMinor, leadingSubmatrix_transpose, Matrix.det_transpose, leadingMinor]

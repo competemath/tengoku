@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*}
 
 /-- Increasing a positive definite matrix in Loewner order preserves positive
-definiteness. Bhatia, Chapter V; supports `loewner-heinz-real`.-/
+definiteness. Bhatia, Chapter V; supports `loewner-heinz-real`.
+@isnad1 id=posdef.2h3v.s5.ccfd707aa0b7 from=translated src=- shape=0cfe5c0f vocab=3669462d
+-/
 theorem posDef_of_posDef_le {A B : Matrix n n ℝ} (hA : A.PosDef) (hAB : A ≤ B) :
     B.PosDef := by
   have h := hA.add_posSemidef (Matrix.le_iff.mp hAB)
@@ -32,7 +34,9 @@ variable [Fintype n] [DecidableEq n]
 
 /-- The Loewner--Heinz inequality for the actual real symmetric functional
 calculus, including both exponents zero and one. Bhatia, Theorem V.1.9.
-atlas: loewner-heinz-real (partial)-/
+atlas: loewner-heinz-real (partial)
+@isnad1 id=le.3h4v.s8.e0bb32f133c3 from=translated src=- shape=9ff5bb1c vocab=fb0eb4c2
+-/
 theorem cfc_rpow_le_cfc_rpow {A B : Matrix n n ℝ} (hA : A.PosSemidef)
     (hAB : A ≤ B) {r : ℝ} (hr : r ∈ Set.Icc 0 1) :
     cfc (fun x : ℝ => x ^ r) A ≤ cfc (fun x : ℝ => x ^ r) B := by
@@ -49,7 +53,9 @@ theorem cfc_rpow_le_cfc_rpow {A B : Matrix n n ℝ} (hA : A.PosSemidef)
 
 /-- Inversion reverses Loewner order on positive definite real matrices.
 Bhatia, Proposition V.1.6.
-atlas: loewner-heinz-real (partial)-/
+atlas: loewner-heinz-real (partial)
+@isnad1 id=le.2h3v.s6.61f40225206a from=translated src=- shape=87f357d2 vocab=2a8e9e17
+-/
 theorem inv_le_inv_of_posDef {A B : Matrix n n ℝ} (hA : A.PosDef) (hAB : A ≤ B) :
     B⁻¹ ≤ A⁻¹ := by
   have hAc := (posDef_realMatrixComplexification (𝕜 := ℂ)) hA
@@ -62,7 +68,9 @@ theorem inv_le_inv_of_posDef {A B : Matrix n n ℝ} (hA : A.PosDef) (hAB : A ≤
 
 /-- The logarithm is operator monotone for positive definite real matrices.
 Bhatia, Proposition V.1.6.
-atlas: loewner-heinz-real (partial)-/
+atlas: loewner-heinz-real (partial)
+@isnad1 id=le.2h3v.s8.62fb2325bb9d from=translated src=- shape=3323cd46 vocab=2ed7fab2
+-/
 theorem cfc_log_le_cfc_log {A B : Matrix n n ℝ} (hA : A.PosDef) (hAB : A ≤ B) :
     cfc Real.log A ≤ cfc Real.log B := by
   have hB : B.PosDef := posDef_of_posDef_le hA hAB
@@ -74,7 +82,9 @@ theorem cfc_log_le_cfc_log {A B : Matrix n n ℝ} (hA : A.PosDef) (hAB : A ≤ B
 
 /-- Operator concavity of every real power between zero and one on the real
 positive-semidefinite cone. Bhatia, Theorem V.1.9.
-atlas: loewner-heinz-real (partial)-/
+atlas: loewner-heinz-real (partial)
+@isnad1 id=concaveo.1h2v.s7.4c6e0f3494a3 from=translated src=- shape=4d08484b vocab=3429b70c
+-/
 theorem concaveOn_cfc_rpow {r : ℝ} (hr : r ∈ Set.Icc 0 1) :
     ConcaveOn ℝ {A : Matrix n n ℝ | A.PosSemidef}
       (fun A => cfc (fun x : ℝ => x ^ r) A) := by
@@ -108,7 +118,9 @@ theorem concaveOn_cfc_rpow {r : ℝ} (hr : r ∈ Set.Icc 0 1) :
 cone and inverse/log order on the positive-definite cone. Powers are the
 actual real scalar functional calculus and exponent zero is unital.
 Bhatia, Theorem V.1.9 and Proposition V.1.6.
-atlas: loewner-heinz-real-/
+atlas: loewner-heinz-real
+@isnad1 id=and.1h2v.s9.5b39e321824f from=translated src=- shape=d025d01e vocab=d7f331b2
+-/
 theorem loewner_heinz_real {r : ℝ} (hr : r ∈ Set.Icc 0 1) :
     MonotoneOn (fun A : Matrix n n ℝ => cfc (fun x : ℝ => x ^ r) A)
       {A | A.PosSemidef} ∧

@@ -26,7 +26,9 @@ def steinGramian (A Q : Matrix n n K) : Matrix n n K :=
   ∑' j : ℕ, A ^ j * Q * (Aᴴ) ^ j
 
 /-- A proved geometric power bound gives absolute convergence of the Gramian
-series. This helper is instantiated below from the spectral radius itself.-/
+series. This helper is instantiated below from the spectral radius itself.
+@isnad1 id=summable.4h6v.s8.1a4e5d64b2a8 from=translated src=- shape=b29bfe6d vocab=e9b6df30
+-/
 theorem summable_stein_of_power_bound (A Q : Matrix n n K) (C r : ℝ)
     (hC : 0 ≤ C) (hr : 0 ≤ r) (hr1 : r < 1)
     (hpow : ∀ j : ℕ, specNorm (A ^ j) ≤ C * r ^ j) :
@@ -46,7 +48,9 @@ theorem summable_stein_of_power_bound (A Q : Matrix n n K) (C r : ℝ)
         (specNorm_nonneg _) (mul_nonneg (mul_nonneg hC (pow_nonneg hr j)) (specNorm_nonneg _))
     _ = _ := by rw [← pow_mul, mul_comm 2 j, pow_mul]; ring
 
-/-- A convergent Stein series solves the actual equation.-/
+/-- A convergent Stein series solves the actual equation.
+@isnad1 id=eq.1h4v.s9.09ebeab34555 from=translated src=- shape=17aeb011 vocab=e54d74a4
+-/
 theorem steinGramian_sub_mul_mul_conjTranspose (A Q : Matrix n n K)
     (hs : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j)) :
     steinGramian A Q - A * steinGramian A Q * Aᴴ = Q := by
@@ -64,7 +68,9 @@ theorem steinGramian_sub_mul_mul_conjTranspose (A Q : Matrix n n K)
       -(Q - steinGramian A Q + A * steinGramian A Q * Aᴴ) := by abel
   rw [hid, heq, neg_zero]
 
-/-- The exact infinite Gramian tail is the propagated full Gramian.-/
+/-- The exact infinite Gramian tail is the propagated full Gramian.
+@isnad1 id=eq.1h5v.s9.8c98aac12577 from=translated src=- shape=f80d37d2 vocab=ac03eca2
+-/
 theorem steinGramian_sub_partialSum (A Q : Matrix n n K)
     (hs : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j)) (N : ℕ) :
     steinGramian A Q - steinPartialSum A Q N = A ^ N * steinGramian A Q * (Aᴴ) ^ N :=
@@ -89,7 +95,9 @@ theorem eq_steinGramian_of_solution (A Q X : Matrix n n K)
   rw [hid] at hzero
   exact sub_eq_zero.mp (tendsto_nhds_unique (tendsto_const_nhds.sub hlim) hzero)
 
-/-- Convergent Stein Gramians are positive semidefinite for PSD forcing.-/
+/-- Convergent Stein Gramians are positive semidefinite for PSD forcing.
+@isnad1 id=possemid.2h4v.s8.9fd5e2ca0b84 from=translated src=- shape=c5f42d6b vocab=21b73c5f
+-/
 theorem posSemidef_steinGramian (A Q : Matrix n n K) (hQ : Q.PosSemidef)
     (hs : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j)) : (steinGramian A Q).PosSemidef := by
   have hlim : Tendsto (steinPartialSum A Q) atTop (𝓝 (steinGramian A Q)) :=
@@ -111,7 +119,9 @@ theorem posSemidef_steinGramian (A Q : Matrix n n K) (hQ : Q.PosSemidef)
 /-- The actual complex Gramian series converges for spectral radius below one;
 the matrix itself need not have norm below one. Source: user derivations,
 Stein Gramians and finite-dimensional geometric power bounds.
-atlas: stein-gramian-smith-doubling (partial)-/
+atlas: stein-gramian-smith-doubling (partial)
+@isnad1 id=summable.1h3v.s7.cb716f70c4fa from=translated src=- shape=07f3eadf vocab=1f73a381
+-/
 theorem summable_stein_of_spectralRadius_lt_one (A Q : Matrix n n ℂ)
     (hA : spectralRadius ℂ A < 1) : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j) := by
   have hρ : (spectralRadius ℂ A).toReal < 1 :=
@@ -124,7 +134,9 @@ theorem summable_stein_of_spectralRadius_lt_one (A Q : Matrix n n ℂ)
     (zero_le_one.trans (one_le_matrixPowerBoundConstant A hr N)) hr.le hr1 hN
 
 /-- The same actual Gramian series converges for a real matrix using its
-complexified spectral radius.-/
+complexified spectral radius.
+@isnad1 id=summable.1h3v.s7.5d4a8ef82f74 from=translated src=- shape=954af29f vocab=24bcbf03
+-/
 theorem summable_real_stein_of_complex_spectralRadius_lt_one (A Q : Matrix n n ℝ)
     (hA : spectralRadius ℂ (A.map Complex.ofReal) < 1) :
     Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j) := by
@@ -140,7 +152,9 @@ theorem summable_real_stein_of_complex_spectralRadius_lt_one (A Q : Matrix n n �
     (zero_le_one.trans (one_le_matrixPowerBoundConstant AC hr N)) hr.le
     (by dsimp [ε]; linarith) hN
 
-/-- Positive definite forcing gives a positive definite Gramian.-/
+/-- Positive definite forcing gives a positive definite Gramian.
+@isnad1 id=posdef.2h4v.s8.4dd2914fe1e9 from=translated src=- shape=c5f42d6b vocab=e6225781
+-/
 theorem posDef_steinGramian (A Q : Matrix n n K) (hQ : Q.PosDef)
     (hs : Summable (fun j : ℕ => A ^ j * Q * (Aᴴ) ^ j)) : (steinGramian A Q).PosDef := by
   have hG := posSemidef_steinGramian A Q hQ.posSemidef hs
@@ -149,7 +163,9 @@ theorem posDef_steinGramian (A Q : Matrix n n K) (hQ : Q.PosDef)
   exact hQ.add_posSemidef (hG.mul_mul_conjTranspose_same A)
 
 /-- A positive definite strict Stein certificate forces every complex
-eigenvalue into the unit disk, without normality.-/
+eigenvalue into the unit disk, without normality.
+@isnad1 id=lt.3h4v.s7.4ce08b7a258e from=translated src=- shape=2264921c vocab=160fd8cf
+-/
 theorem norm_lt_one_of_posDef_stein (A X : Matrix n n ℂ) (hX : X.PosDef)
     (hR : (X - A * X * Aᴴ).PosDef) {μ : ℂ} (hμ : μ ∈ spectrum ℂ A) : ‖μ‖ < 1 := by
   obtain ⟨y, hy, hyA⟩ := exists_vecMul_eq_smul_of_mem_spectrum hμ
@@ -180,7 +196,9 @@ theorem norm_lt_one_of_posDef_stein (A X : Matrix n n ℂ) (hX : X.PosDef)
 
 /-- Discrete stability is equivalent to a positive definite strict Stein
 certificate. Source: user derivations, Stein stability equivalence.
-atlas: stein-gramian-smith-doubling (partial)-/
+atlas: stein-gramian-smith-doubling (partial)
+@isnad1 id=iff.0h2v.s7.f91721683a74 from=translated src=- shape=70a5ff00 vocab=bafe1f8a
+-/
 theorem spectralRadius_lt_one_iff_exists_posDef_stein (A : Matrix n n ℂ) :
     spectralRadius ℂ A < 1 ↔ ∃ X : Matrix n n ℂ, X.PosDef ∧ (X - A * X * Aᴴ).PosDef := by
   constructor

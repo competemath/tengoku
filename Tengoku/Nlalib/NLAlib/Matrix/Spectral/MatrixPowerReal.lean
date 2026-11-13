@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 open scoped Matrix.Norms.L2Operator in
 /-- Complexification commutes with matrix powers. Source: Horn–Johnson
-(2013), §5.6; this is the matrix ring-homomorphism power identity.-/
+(2013), §5.6; this is the matrix ring-homomorphism power identity.
+@isnad1 id=eq.0h3v.s6.cd05521cf7bf from=translated src=- shape=28e8569a vocab=71d1941e
+-/
 theorem map_ofReal_matrix_pow (A : Matrix n n ℝ) (k : ℕ) :
     (A ^ k).map Complex.ofReal = (A.map Complex.ofReal) ^ k :=
   map_pow Complex.ofRealHom.mapMatrix A k
@@ -30,7 +32,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Real matrix power decay is equivalent to the complexified spectral
 radius being below one. Source: Horn–Johnson (2013), Theorem 5.6.12; the
 spectrum is explicitly taken over the complex field.
-atlas: matrix-power-convergence-/
+atlas: matrix-power-convergence
+@isnad1 id=iff.0h2v.s7.1162a292eef9 from=translated src=- shape=43133193 vocab=b2e5e5cc
+-/
 theorem tendsto_real_matrix_pow_zero_iff_complex_spectralRadius_lt_one
     (A : Matrix n n ℝ) : Tendsto (fun k : ℕ => A ^ k) atTop (𝓝 0) ↔
       spectralRadius ℂ (A.map Complex.ofReal) < 1 := by
@@ -53,7 +57,9 @@ open scoped Matrix.Norms.L2Operator in
 estimate with the defined complex finite-prefix constant.
 Horn–Johnson (2013), Lemma 5.6.10; complexification uses the same spectral
 radius and bounds the real Euclidean operator norm.
-atlas: matrix-power-convergence-/
+atlas: matrix-power-convergence
+@isnad1 id=ex.1h3v.s7.ffe001024d1e from=translated src=- shape=1234a6c6 vocab=2a5f388d
+-/
 theorem exists_prefix_specNorm_real_matrix_pow_le_complex_spectralRadius_add
     (A : Matrix n n ℝ) {ε : ℝ} (hε : 0 < ε) : ∃ N : ℕ, ∀ k : ℕ,
       specNorm (A ^ k) ≤
@@ -70,7 +76,9 @@ theorem exists_prefix_specNorm_real_matrix_pow_le_complex_spectralRadius_add
 open scoped Matrix.Norms.L2Operator in
 /-- Real matrix powers are absolutely summable when their complex spectral
 radius is below one. Source: Horn–Johnson (2013), Corollary 5.6.13.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=summable.1h2v.s7.b479b1115643 from=translated src=- shape=f2f72774 vocab=98ff4303
+-/
 theorem summable_real_matrix_pow_of_complex_spectralRadius_lt_one {A : Matrix n n ℝ}
     (hA : spectralRadius ℂ (A.map Complex.ofReal) < 1) : Summable (fun k : ℕ => A ^ k) := by
   let C := A.map Complex.ofReal
@@ -94,7 +102,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The real Neumann series has the exact real inverse as its sum when the
 complex spectral radius is below one. Source: Horn–Johnson (2013),
 Corollary 5.6.13; no real norm-below-one assumption is imposed.
-atlas: matrix-power-convergence-/
+atlas: matrix-power-convergence
+@isnad1 id=hassum.1h2v.s7.c06322c44f77 from=translated src=- shape=5995865e vocab=a2f9b4a1
+-/
 theorem hasSum_real_matrix_pow_inv_of_complex_spectralRadius_lt_one {A : Matrix n n ℝ}
     (hA : spectralRadius ℂ (A.map Complex.ofReal) < 1) : HasSum (fun k : ℕ => A ^ k) (1 - A)⁻¹ := by
   have hs := summable_real_matrix_pow_of_complex_spectralRadius_lt_one hA

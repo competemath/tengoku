@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A scalar function differentiable at every eigenvalue has, along the
 Hermitian matrices, the derivative of a polynomial matching its values
-and first derivatives at those eigenvalues.-/
+and first derivatives at those eigenvalues.
+@isnad1 id=ex.2h3v.s9.585997b51685 from=translated src=- shape=2eb87aa3 vocab=a0a2fd37
+-/
 theorem exists_hermite_polynomial_hasFDerivWithinAt_cfc
     {A : Matrix n n ℂ} (hA : A.IsHermitian) {f : ℝ → ℝ}
     (hf : ∀ i, DifferentiableAt ℝ f (hA.eigenvalues i)) :

@@ -20,7 +20,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
 /-- A positive subsolution bounds the real value of the complex spectral radius.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=le.3h4v.s7.194a19c324be from=translated src=- shape=d5ed8b81 vocab=0ac8675b
+-/
 theorem spectralRadius_toReal_le_of_positive_subsolution {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) {p : ι → ℝ} (hp : ∀ i, 0 < p i)
     {r : ℝ} (hAp : ∀ i, (A *ᵥ p) i ≤ r * p i) :
@@ -38,7 +40,9 @@ theorem spectralRadius_toReal_le_of_positive_subsolution {A : Matrix ι ι ℝ}
 /-- A nonzero nonnegative supersolution bounds the spectral radius from below.
 No positive Perron vector or support-overlap assumption is required.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=le.4h4v.s7.751e6b6eebae from=translated src=- shape=0de715dc vocab=1d591150
+-/
 theorem le_spectralRadius_toReal_of_nonnegative_supersolution {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) {x : ι → ℝ} (hx : ∀ i, 0 ≤ x i) (hxne : x ≠ 0)
     {r : ℝ} (hAx : ∀ i, r * x i ≤ (A *ᵥ x) i) :
@@ -70,7 +74,9 @@ theorem le_spectralRadius_toReal_of_nonnegative_supersolution {A : Matrix ι ι 
 
 /-- The minimum/maximum ratio certificate for every strictly positive vector.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=and.2h3v.s7.aff25dd38b2e from=translated src=- shape=4151e2f2 vocab=d489a91d
+-/
 theorem collatz_ratio_bounds {A : Matrix ι ι ℝ} (hA : ∀ i j, 0 ≤ A i j)
     {x : ι → ℝ} (hx : ∀ i, 0 < x i) :
     Finset.univ.inf' Finset.univ_nonempty (fun i => (A *ᵥ x) i / x i) ≤
@@ -94,7 +100,9 @@ theorem collatz_ratio_bounds {A : Matrix ι ι ℝ} (hA : ∀ i j, 0 ≤ A i j)
 /-- The upper Collatz infimum equals the spectral radius: its explicit
 greatest-lower-bound formulation includes cases where it is not attained.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=isglb.1h2v.s7.4809c5ce84d2 from=translated src=- shape=a36d54c7 vocab=519e6226
+-/
 theorem isGLB_positive_collatz_max_ratios {A : Matrix ι ι ℝ} (hA : ∀ i j, 0 ≤ A i j) :
     IsGLB {s : ℝ | ∃ x : ι → ℝ, (∀ i, 0 < x i) ∧
       s = Finset.univ.sup' Finset.univ_nonempty (fun i => (A *ᵥ x) i / x i)}
@@ -113,7 +121,9 @@ theorem isGLB_positive_collatz_max_ratios {A : Matrix ι ι ℝ} (hA : ∀ i j, 
 for which some nonzero nonnegative supersolution exists. This is exactly the
 maximum of `min_{i:xᵢ>0} (Ax)ᵢ/xᵢ`, and the Perron vector attains it.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=isgreate.1h2v.s7.ed8ac00f3e96 from=translated src=- shape=b716daa5 vocab=bcf6cbaa
+-/
 theorem isGreatest_nonnegative_collatz_supersolutions {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) :
     IsGreatest {r : ℝ | ∃ x : ι → ℝ, (∀ i, 0 ≤ x i) ∧ x ≠ 0 ∧

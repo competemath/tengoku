@@ -51,7 +51,9 @@ private lemma pd_combo {d : ℕ} (A B : Matrix (Fin d) (Fin d) ℂ)
 /-- Matrix relative entropy is jointly convex on pairs of positive definite matrices.
 
 Tropp 2015, Thm 8.1.4. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
-Introduction to Matrix Concentration Inequalities, Ch 8*.-/
+Introduction to Matrix Concentration Inequalities, Ch 8*.
+@isnad1 id=convexon.0h1v.s8.48b59b4f59b6 from=translated src=- shape=2761c213 vocab=b02b826e
+-/
 theorem NLAlib.convexOn_relativeEntropy {d : ℕ} [NeZero d] :
     ConvexOn ℝ {P : Matrix (Fin d) (Fin d) ℂ × Matrix (Fin d) (Fin d) ℂ |
       P.1.PosDef ∧ P.2.PosDef} (fun P => relativeEntropy P.1 P.2) := by

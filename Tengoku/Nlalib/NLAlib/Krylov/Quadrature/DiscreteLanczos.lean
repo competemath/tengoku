@@ -41,7 +41,9 @@ private theorem norm_toLp_sqrt_eq_sqrt_sum {n : Type*} [Fintype n] (w : n → �
 /-- Actual Lanczos on the diagonal nodes produces an orthonormal square basis of full
 order `N`, including the empty discrete measure.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=hasortho.2h3v.s7.ed59642b6262 from=translated src=- shape=183ee8cc vocab=7197b390
+-/
 theorem hasOrthonormalCols_lanczosRecurrence_diagonal_sqrt
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ r, 0 < w r) :
     HasOrthonormalCols (Matrix.of fun r (j : Fin N) =>
@@ -52,7 +54,9 @@ theorem hasOrthonormalCols_lanczosRecurrence_diagonal_sqrt
 
 /-- The full basis produced by actual diagonal Lanczos has orthonormal rows as well.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=other.2h3v.s7.ebe6b9379aa1 from=translated src=- shape=f239cebd vocab=5a830194
+-/
 theorem lanczosRecurrence_diagonal_sqrt_mul_conjTranspose_eq_one
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ r, 0 < w r) :
     let Q := Matrix.of fun r (j : Fin N) =>
@@ -63,7 +67,9 @@ theorem lanczosRecurrence_diagonal_sqrt_mul_conjTranspose_eq_one
 /-- The full actual Lanczos basis has the positive bordered mass identity, with monic
 Stieltjes beta zero equal to total mass. The first coordinate is used only in positive order.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=other.3h3v.s7.758a79ab7e8e from=translated src=- shape=4414656c vocab=57ec8910
+-/
 theorem transpose_lanczosRecurrence_diagonal_sqrt_mulVec_sqrt_eq_single
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ r, 0 < w r) (hN : 0 < N) :
     let Q := Matrix.of fun r (j : Fin N) =>
@@ -78,7 +84,9 @@ theorem transpose_lanczosRecurrence_diagonal_sqrt_mulVec_sqrt_eq_single
 
 /-- Before exact finite-support termination every positive-index actual Lanczos coupling
 is positive. Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=lt.4h4v.s6.be6d4eda2f49 from=translated src=- shape=6ab7f38f vocab=712fe0e9
+-/
 theorem lanczosBeta_diagonal_sqrt_pos (t w : Fin N → ℝ) (ht : Function.Injective t)
     (hw : ∀ r, 0 < w r) {j : ℕ} (hj0 : 0 < j) (hj : j < N) :
     0 < lanczosBeta (diagonal t) (fun r => Real.sqrt (w r)) j := by
@@ -87,7 +95,9 @@ theorem lanczosBeta_diagonal_sqrt_pos (t w : Fin N → ℝ) (ht : Function.Injec
 
 /-- The actual finite-node Lanczos coupling vanishes at exact order `N`.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h3v.s5.7d52de147f7e from=translated src=- shape=0dad9367 vocab=712fe0e9
+-/
 theorem lanczosBeta_diagonal_sqrt_eq_zero (t w : Fin N → ℝ) (ht : Function.Injective t)
     (hw : ∀ r, 0 < w r) :
     lanczosBeta (diagonal t) (fun r => Real.sqrt (w r)) N = 0 := by
@@ -97,7 +107,9 @@ theorem lanczosBeta_diagonal_sqrt_eq_zero (t w : Fin N → ℝ) (ht : Function.I
 /-- Computed Stieltjes values are the actual Lanczos orthonormal polynomials evaluated at
 the nodes. This identifies the value-only implementation with the polynomial procedure.
 Source: Gautschi (2004), §2.2.3.1.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.3h5v.s6.226019774537 from=translated src=- shape=7941de13 vocab=331f18ea
+-/
 theorem discreteStieltjesValues_eq_eval_lanczosPoly
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ r, 0 < w r) {j : ℕ} (hj : j < N)
     (r : Fin N) :
@@ -118,7 +130,9 @@ theorem discreteStieltjesValues_eq_eval_lanczosPoly
 
 /-- Values produced by the actual Stieltjes procedure obey the exact reciprocal-weight
 dual orthogonality identity. Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h5v.s6.c2f8528b8932 from=translated src=- shape=e13c4b5b vocab=1e19e483
+-/
 theorem sum_discreteStieltjesValues_mul_eq_div_weight
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ r, 0 < w r) (r s : Fin N) :
     (∑ j : Fin N, discreteStieltjesValues t w j.val r * discreteStieltjesValues t w j.val s) =

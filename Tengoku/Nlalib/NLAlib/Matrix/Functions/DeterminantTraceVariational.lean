@@ -49,7 +49,9 @@ variable {n K : Type*} [Fintype n] [DecidableEq n] [RCLike K]
 
 /-- PSD AM-GM inequality over `RCLike` fields: the determinant (a real number)
 of a positive semidefinite matrix is at most the `card n`-th power of its
-normalized trace.-/
+normalized trace.
+@isnad1 id=le.2h3v.s8.75476b786a62 from=translated src=- shape=0715e5ad vocab=df39eb33
+-/
 theorem _root_.Matrix.PosSemidef.re_det_le_pow_re_trace_div_card
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef) :
     RCLike.re M.det ≤ (RCLike.re M.trace / (Fintype.card n : ℝ)) ^ Fintype.card n := by
@@ -112,13 +114,17 @@ def determinantTraceObjectiveSet (M : Matrix n n K) : Set ℝ :=
     v = (RCLike.re (Y * M).trace / (Fintype.card n : ℝ)) ^ Fintype.card n}
 
 /-- The determinant-trace objective set is nonempty: the identity matrix is
-positive definite with determinant one. This includes the empty index type.-/
+positive definite with determinant one. This includes the empty index type.
+@isnad1 id=nonempty.0h3v.s4.8727a86dfed2 from=translated src=- shape=a903ac8d vocab=d35852b1
+-/
 theorem determinantTraceObjectiveSet_nonempty (M : Matrix n n K) :
     (determinantTraceObjectiveSet M).Nonempty := by
   exact ⟨_, 1, Matrix.PosDef.one, Matrix.det_one, rfl⟩
 
 /-- AM-GM lower bound in variational form: any positive definite `Y` with
-`det Y = 1` gives an upper bound for `re M.det`.-/
+`det Y = 1` gives an upper bound for `re M.det`.
+@isnad1 id=le.4h4v.s8.5d427bd8093d from=translated src=- shape=64d6798f vocab=7ac95d3d
+-/
 theorem _root_.Matrix.PosSemidef.re_det_le_objective_of_det_one
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef)
     {Y : Matrix n n K} (hY : Y.PosDef) (hYdet : Y.det = 1) :
@@ -149,7 +155,9 @@ theorem _root_.Matrix.PosSemidef.re_det_le_objective_of_det_one
   exact hSM.re_det_le_pow_re_trace_div_card hN
 
 /-- In positive dimension, the determinant is a lower bound for every
-determinant-trace objective of a PSD matrix.-/
+determinant-trace objective of a PSD matrix.
+@isnad1 id=mem.2h3v.s7.4a3f9eafa308 from=translated src=- shape=4a4b9ea7 vocab=b7961055
+-/
 theorem _root_.Matrix.PosSemidef.re_det_mem_lowerBounds_determinantTraceObjectiveSet
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef) :
     RCLike.re M.det ∈ lowerBounds (determinantTraceObjectiveSet M) := by
@@ -157,14 +165,18 @@ theorem _root_.Matrix.PosSemidef.re_det_mem_lowerBounds_determinantTraceObjectiv
   exact hM.re_det_le_objective_of_det_one hN hY hYdet
 
 /-- In positive dimension the determinant-trace objective set of a PSD matrix
-is bounded below by its determinant.-/
+is bounded below by its determinant.
+@isnad1 id=bddbelow.2h3v.s5.c5a4bb3c4fe3 from=translated src=- shape=85c3130f vocab=27783710
+-/
 theorem _root_.Matrix.PosSemidef.determinantTraceObjectiveSet_bddBelow
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef) :
     BddBelow (determinantTraceObjectiveSet M) :=
   ⟨RCLike.re M.det, hM.re_det_mem_lowerBounds_determinantTraceObjectiveSet hN⟩
 
 /-- For positive definite `M`, the determinant-trace lower bound is attained at
-the positive definite matrix `Y = (re M.det) ^ (1 / card n) • M⁻¹`.-/
+the positive definite matrix `Y = (re M.det) ^ (1 / card n) • M⁻¹`.
+@isnad1 id=ex.2h3v.s8.fdde0fe9bf5f from=translated src=- shape=b2ab314a vocab=4e4e0e76
+-/
 theorem _root_.Matrix.PosDef.exists_det_one_objective_eq_re_det
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosDef) :
     ∃ Y : Matrix n n K, Y.PosDef ∧ Y.det = 1 ∧
@@ -219,7 +231,9 @@ theorem _root_.Matrix.PosDef.exists_det_one_objective_eq_re_det
     exact hObj.symm
 
 /-- In positive dimension the determinant of a positive definite matrix is
-the least value of its determinant-trace objective set.-/
+the least value of its determinant-trace objective set.
+@isnad1 id=isleast.2h3v.s7.4b2b3efdc08a from=translated src=- shape=126dc34f vocab=f4ec06a0
+-/
 theorem _root_.Matrix.PosDef.isLeast_determinantTraceObjectiveSet
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosDef) :
     IsLeast (determinantTraceObjectiveSet M) (RCLike.re M.det) := by
@@ -229,7 +243,9 @@ theorem _root_.Matrix.PosDef.isLeast_determinantTraceObjectiveSet
 
 /-- In positive dimension, the determinant of a PSD matrix is the greatest
 lower bound of its determinant-trace objective set. Singular matrices are
-handled by positive scalar regularization; attainment is not assumed.-/
+handled by positive scalar regularization; attainment is not assumed.
+@isnad1 id=isglb.2h3v.s7.a07e2c1f30d7 from=translated src=- shape=126dc34f vocab=25ef21d6
+-/
 theorem _root_.Matrix.PosSemidef.isGLB_determinantTraceObjectiveSet
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef) :
     IsGLB (determinantTraceObjectiveSet M) (RCLike.re M.det) := by
@@ -268,7 +284,9 @@ theorem _root_.Matrix.PosSemidef.isGLB_determinantTraceObjectiveSet
     (Eventually.mono self_mem_nhdsWithin fun δ hδ => hbound δ hδ)
 
 /-- In positive dimension, the infimum of normalized trace powers over
-determinant-one positive definite test matrices equals the PSD determinant.-/
+determinant-one positive definite test matrices equals the PSD determinant.
+@isnad1 id=eq.2h3v.s7.cfc2c8064380 from=translated src=- shape=149fcb7a vocab=82846e6d
+-/
 theorem _root_.Matrix.PosSemidef.sInf_determinantTraceObjectiveSet
     {M : Matrix n n K} (hN : 0 < Fintype.card n) (hM : M.PosSemidef) :
     sInf (determinantTraceObjectiveSet M) = RCLike.re M.det :=

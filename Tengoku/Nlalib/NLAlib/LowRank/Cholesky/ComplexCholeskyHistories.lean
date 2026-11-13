@@ -43,7 +43,9 @@ def complexCholeskyExpectedTrace (A : Matrix n n ℂ) (t : ℕ) : ℝ :=
   ∑ h : Fin t → n, complexCholeskyHistoryWeight A t h * (complexCholeskyResidualHistory A t h).trace.re
 
 /-- Every finite-history residual remains positive semidefinite.
-Source: manuscript `sa:rp-one-step`; CETW (2025), PSD invariant.-/
+Source: manuscript `sa:rp-one-step`; CETW (2025), PSD invariant.
+@isnad1 id=possemid.1h4v.s5.834186e16e4e from=translated src=- shape=6dcacc4d vocab=5daad647
+-/
 theorem posSemidef_complexCholeskyResidualHistory {A : Matrix n n ℂ} (hA : A.PosSemidef)
     (t : ℕ) (h : Fin t → n) : (complexCholeskyResidualHistory A t h).PosSemidef := by
   induction t with
@@ -51,7 +53,9 @@ theorem posSemidef_complexCholeskyResidualHistory {A : Matrix n n ℂ} (hA : A.P
   | succ t ih => exact posSemidef_eliminationStep (ih (Fin.init h)) _
 
 /-- Every finite-history Cholesky residual is bounded above by its original matrix.
-Source: manuscript `sa:rp-one-step`; CETW (2025), PSD order invariant.-/
+Source: manuscript `sa:rp-one-step`; CETW (2025), PSD order invariant.
+@isnad1 id=possemid.1h4v.s5.4134ee9ea197 from=translated src=- shape=00b86b1c vocab=ca1dcdb3
+-/
 theorem posSemidef_sub_complexCholeskyResidualHistory {A : Matrix n n ℂ} (hA : A.PosSemidef)
     (t : ℕ) (h : Fin t → n) : (A - complexCholeskyResidualHistory A t h).PosSemidef := by
   induction t with
@@ -65,7 +69,9 @@ theorem posSemidef_sub_complexCholeskyResidualHistory {A : Matrix n n ℂ} (hA :
     abel
 
 /-- Finite adaptive-history weights are nonnegative for positive semidefinite input.
-Source: manuscript `sa:rpcholesky`, finite probability law.-/
+Source: manuscript `sa:rpcholesky`, finite probability law.
+@isnad1 id=le.1h4v.s5.6d8dfade90ae from=translated src=- shape=f658ee3d vocab=84fe7b69
+-/
 theorem complexCholeskyHistoryWeight_nonneg {A : Matrix n n ℂ} (hA : A.PosSemidef)
     (t : ℕ) (h : Fin t → n) : 0 ≤ complexCholeskyHistoryWeight A t h := by
   induction t with
@@ -77,7 +83,9 @@ theorem complexCholeskyHistoryWeight_nonneg {A : Matrix n n ℂ} (hA : A.PosSemi
 omit [DecidableEq n] in
 /-- Finite adaptive expectation at the next time is the current weighted average
 of the finite transition expectations. Source: manuscript `sa:rpcholesky`;
-finite conditional averaging, with no regular conditional probability assumption.-/
+finite conditional averaging, with no regular conditional probability assumption.
+@isnad1 id=eq.0h4v.s8.31f6efa05770 from=translated src=- shape=0c4b613c vocab=f52aaef9
+-/
 theorem sum_complexCholeskyHistoryWeight_mul_succ (A : Matrix n n ℂ) (t : ℕ)
     (f : Matrix n n ℂ → ℝ) :
     (∑ h : Fin (t + 1) → n, complexCholeskyHistoryWeight A (t + 1) h *
@@ -97,7 +105,9 @@ theorem sum_complexCholeskyHistoryWeight_mul_succ (A : Matrix n n ℂ) (t : ℕ)
 
 omit [DecidableEq n] in
 /-- The adaptive-history weights sum to one at every time, including after absorption.
-Source: manuscript `sa:rpcholesky`, finite probability histories.-/
+Source: manuscript `sa:rpcholesky`, finite probability histories.
+@isnad1 id=eq.0h3v.s5.5f6a0cee27af from=translated src=- shape=2759df1d vocab=e372b8bc
+-/
 theorem sum_complexCholeskyHistoryWeight [Nonempty n] (A : Matrix n n ℂ) (t : ℕ) :
     ∑ h : Fin t → n, complexCholeskyHistoryWeight A t h = 1 := by
   induction t with
@@ -108,13 +118,17 @@ theorem sum_complexCholeskyHistoryWeight [Nonempty n] (A : Matrix n n ℂ) (t : 
 
 omit [DecidableEq n] in
 /-- The expected trace starts at the original input trace.
-Source: manuscript `sa:rpcholesky`, initial trace `u_0 = tr A`.-/
+Source: manuscript `sa:rpcholesky`, initial trace `u_0 = tr A`.
+@isnad1 id=eq.0h2v.s4.41a20fe45651 from=translated src=- shape=657654b8 vocab=cf1f6f11
+-/
 @[simp] theorem complexCholeskyExpectedTrace_zero (A : Matrix n n ℂ) :
     complexCholeskyExpectedTrace A 0 = A.trace.re := by
   simp [complexCholeskyExpectedTrace, complexCholeskyHistoryWeight, complexCholeskyResidualHistory]
 
 /-- Every expected Cholesky residual trace is nonnegative.
-Source: manuscript `sa:rpcholesky`, bounded finite moments.-/
+Source: manuscript `sa:rpcholesky`, bounded finite moments.
+@isnad1 id=le.1h3v.s5.f0475acb6728 from=translated src=- shape=5d0d9b3d vocab=d29041b3
+-/
 theorem complexCholeskyExpectedTrace_nonneg {A : Matrix n n ℂ} (hA : A.PosSemidef) (t : ℕ) :
     0 ≤ complexCholeskyExpectedTrace A t := by
   apply Finset.sum_nonneg
@@ -123,7 +137,9 @@ theorem complexCholeskyExpectedTrace_nonneg {A : Matrix n n ℂ} (hA : A.PosSemi
   exact re_trace_nonneg_of_posSemidef (posSemidef_complexCholeskyResidualHistory hA t h)
 
 /-- The expected trace is nonincreasing along the actual finite-history process.
-Source: manuscript `sa:rpcholesky`, bounded finite moments and monotonicity.-/
+Source: manuscript `sa:rpcholesky`, bounded finite moments and monotonicity.
+@isnad1 id=antitone.1h2v.s5.e54a35dde001 from=translated src=- shape=19d220b7 vocab=43560578
+-/
 theorem complexCholeskyExpectedTrace_antitone [Nonempty n] {A : Matrix n n ℂ}
     (hA : A.PosSemidef) : Antitone (complexCholeskyExpectedTrace A) := by
   apply antitone_nat_of_succ_le
@@ -149,7 +165,9 @@ theorem complexCholeskyExpectedTrace_antitone [Nonempty n] {A : Matrix n n ℂ}
     _ = R.trace.re := by rw [← Finset.sum_mul, sum_choleskyPivotProbability, one_mul]
 
 /-- The actual adaptive expected trace obeys the exact finite one-step averaging
-formula before applying the scalar tail drift. Source: manuscript `sa:rp-recursion`.-/
+formula before applying the scalar tail drift. Source: manuscript `sa:rp-recursion`.
+@isnad1 id=eq.1h3v.s7.f5e89bd8214f from=translated src=- shape=68933006 vocab=7431fd0e
+-/
 theorem complexCholeskyExpectedTrace_succ_eq [Nonempty n] {A : Matrix n n ℂ}
     (hA : A.PosSemidef) (t : ℕ) :
     complexCholeskyExpectedTrace A (t + 1) =
@@ -167,7 +185,9 @@ theorem complexCholeskyExpectedTrace_succ_eq [Nonempty n] {A : Matrix n n ℂ}
 
 /-- Every positive-probability adaptive history has exhausted one residual rank per
 nonzero pivot. Source: manuscript `sa:rp-rank`; CETW (2025), exact-rank exhaustion.
-The zero state is absorbing, so subtraction is totalized on natural ranks.-/
+The zero state is absorbing, so subtraction is totalized on natural ranks.
+@isnad1 id=le.2h4v.s6.d0e7605afcaa from=translated src=- shape=5b138ac2 vocab=e84e9d38
+-/
 theorem rank_complexCholeskyResidualHistory_le_sub {A : Matrix n n ℂ} (hA : A.PosSemidef)
     (t : ℕ) (h : Fin t → n) (hw : 0 < complexCholeskyHistoryWeight A t h) :
     (complexCholeskyResidualHistory A t h).rank ≤ A.rank - t := by
@@ -211,7 +231,9 @@ theorem rank_complexCholeskyResidualHistory_le_sub {A : Matrix n n ℂ} (hA : A.
 
 /-- Every positive-probability pivot history is exact once its length reaches the
 input rank. Source: manuscript `sa:rp-rank`; CETW (2025), rank-zero termination.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=eq.3h4v.s6.1acb21eb41af from=translated src=- shape=c8b4fd6f vocab=f60452d1
+-/
 theorem complexCholeskyResidualHistory_eq_zero_of_rank_le {A : Matrix n n ℂ} (hA : A.PosSemidef)
     {t : ℕ} (ht : A.rank ≤ t) (h : Fin t → n) (hw : 0 < complexCholeskyHistoryWeight A t h) :
     complexCholeskyResidualHistory A t h = 0 := by
@@ -222,7 +244,9 @@ theorem complexCholeskyResidualHistory_eq_zero_of_rank_le {A : Matrix n n ℂ} (
 
 /-- The expected trace is exactly zero after at most the input rank positive pivots.
 Source: manuscript `sa:rp-rank` and `sa:rp-theorem`, zero-tail branch.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=eq.2h3v.s5.6013df0d8410 from=translated src=- shape=15652f32 vocab=a6dc5241
+-/
 theorem complexCholeskyExpectedTrace_eq_zero_of_rank_le {A : Matrix n n ℂ} (hA : A.PosSemidef)
     {t : ℕ} (ht : A.rank ≤ t) : complexCholeskyExpectedTrace A t = 0 := by
   apply Finset.sum_eq_zero
@@ -251,7 +275,9 @@ def complexCholeskyHistoryLaw [Nonempty n] [MeasurableSpace n] [MeasurableSingle
     MeasureTheory.Measure (Fin t → n) := (complexCholeskyHistoryPMF A hA t).toMeasure
 
 /-- Integration over adaptive histories is their transition-weighted sum.
-Source: CETW (2025), finite conditional averaging.-/
+Source: CETW (2025), finite conditional averaging.
+@isnad1 id=eq.1h4v.s7.2b863dbf96a2 from=translated src=- shape=ddef8f8f vocab=1a4505e9
+-/
 theorem integral_complexCholeskyHistoryLaw [Nonempty n]
     [MeasurableSpace n] [MeasurableSingletonClass n]
     (A : Matrix n n ℂ) (hA : A.PosSemidef) (t : ℕ) (f : (Fin t → n) → ℝ) :
@@ -266,7 +292,9 @@ theorem integral_complexCholeskyHistoryLaw [Nonempty n]
   rfl
 
 /-- The weighted trace formula computes the residual-trace expectation.
-Source: CETW (2025), RPCholesky trace potential.-/
+Source: CETW (2025), RPCholesky trace potential.
+@isnad1 id=eq.1h3v.s6.4b1a0d37108c from=translated src=- shape=709d3b34 vocab=6f65bb8c
+-/
 theorem integral_trace_complexCholeskyHistoryLaw [Nonempty n]
     [MeasurableSpace n] [MeasurableSingletonClass n]
     (A : Matrix n n ℂ) (hA : A.PosSemidef) (t : ℕ) :
@@ -274,7 +302,9 @@ theorem integral_trace_complexCholeskyHistoryLaw [Nonempty n]
       complexCholeskyExpectedTrace A t := integral_complexCholeskyHistoryLaw A hA t _
 
 /-- A random history with the adaptive law has the same trace expectation.
-Source: CETW (2025), RPCholesky trace potential.-/
+Source: CETW (2025), RPCholesky trace potential.
+@isnad1 id=eq.2h6v.s6.f1997a7a5e92 from=translated src=- shape=04a50875 vocab=113484e6
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_of_hasLaw [Nonempty n]
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {Ω : Type*} [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω}
@@ -286,7 +316,9 @@ theorem integral_trace_complexCholeskyHistoryLaw_of_hasLaw [Nonempty n]
   exact hH.integral_comp (Measurable.aestronglyMeasurable (measurable_of_finite (fun h : Fin t → n => (complexCholeskyResidualHistory A t h).trace.re)))
 
 /-- Each adaptive history has its product of conditional pivot probabilities as mass.
-Source: CETW (2025), RPCholesky pivot rule.-/
+Source: CETW (2025), RPCholesky pivot rule.
+@isnad1 id=eq.1h4v.s6.d3190a0725bf from=translated src=- shape=0ff912b1 vocab=9dadc650
+-/
 theorem complexCholeskyHistoryLaw_singleton [Nonempty n]
     [MeasurableSpace n] [MeasurableSingletonClass n]
     (A : Matrix n n ℂ) (hA : A.PosSemidef) (t : ℕ) (h : Fin t → n) :

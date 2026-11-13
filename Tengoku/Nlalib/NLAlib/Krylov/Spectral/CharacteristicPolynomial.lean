@@ -35,7 +35,9 @@ variable {k : Type*} [Fintype k] [DecidableEq k]
 `χ = charpoly (QᵀAQ)` when `K_{card k}(A, b) ⊆ range Q` (polynomial exactness and
 Cayley–Hamilton). Any real `A`. Source: Saad (2011) [`saad11`], §6.6; Saad (1992) [`saad92`],
 Lemma 3.1.
-atlas: krylov-polynomial-exactness-/
+atlas: krylov-polynomial-exactness
+@isnad1 id=eq.2h5v.s9.5a91f8b16bc4 from=translated src=- shape=eb660b52 vocab=074ca647
+-/
 theorem transpose_mulVec_aeval_charpoly_mulVec_eq_zero {A : Matrix n n ℝ}
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ)
     (hK : krylovSpace A b (Fintype.card k) ≤ LinearMap.range Q.mulVecLin) :
@@ -46,7 +48,9 @@ theorem transpose_mulVec_aeval_charpoly_mulVec_eq_zero {A : Matrix n n ℝ}
 
 /-- **The characteristic residual is orthogonal to `range Q`**, hence to the Krylov space it
 contains. Any real `A`. Source: Saad (2011) [`saad11`], §6.6.
-atlas: krylov-polynomial-exactness-/
+atlas: krylov-polynomial-exactness
+@isnad1 id=eq.3h6v.s9.23ab9e7f3b11 from=translated src=- shape=b3d1801d vocab=9b3c94af
+-/
 theorem dotProduct_aeval_charpoly_mulVec_eq_zero_of_mem_range {A : Matrix n n ℝ}
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ)
     (hK : krylovSpace A b (Fintype.card k) ≤ LinearMap.range Q.mulVecLin)
@@ -61,7 +65,9 @@ theorem dotProduct_aeval_charpoly_mulVec_eq_zero_of_mem_range {A : Matrix n n �
 `‖p(A) b‖² = ‖χ(A) b‖² + ‖(p − χ)(A) b‖²` with `χ = charpoly (QᵀAQ)`, since `(p − χ)(A) b` lies
 in the Krylov space and `χ(A) b` is orthogonal to it. Any real `A`. Source: Saad (2011)
 [`saad11`], §6.6.
-atlas: krylov-polynomial-exactness-/
+atlas: krylov-polynomial-exactness
+@isnad1 id=eq.4h6v.s10.212cba987706 from=translated src=- shape=3d715535 vocab=b6ee7dd4
+-/
 theorem dotProduct_aeval_mulVec_self_eq_charpoly_add {A : Matrix n n ℝ}
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ)
     (hK : krylovSpace A b (Fintype.card k) ≤ LinearMap.range Q.mulVecLin)
@@ -90,7 +96,9 @@ theorem dotProduct_aeval_mulVec_self_eq_charpoly_add {A : Matrix n n ℝ}
 /-- **The characteristic polynomial of a Krylov compression minimises `‖p(A) b‖²`** among
 monic polynomials of its degree, when `K_{card k}(A, b) ⊆ range Q`. Any real `A`. Source: Saad
 (2011) [`saad11`], §6.6 (the Lanczos polynomial as the least-residual monic polynomial).
-atlas: krylov-polynomial-exactness-/
+atlas: krylov-polynomial-exactness
+@isnad1 id=le.4h6v.s10.6bb2f672e4dc from=translated src=- shape=02116117 vocab=784fee0c
+-/
 theorem dotProduct_aeval_charpoly_mulVec_self_le {A : Matrix n n ℝ}
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ)
     (hK : krylovSpace A b (Fintype.card k) ≤ LinearMap.range Q.mulVecLin)
@@ -104,7 +112,9 @@ theorem dotProduct_aeval_charpoly_mulVec_self_le {A : Matrix n n ℝ}
 /-- **Uniqueness of the minimiser below the grade**: for `card k ≤ krylovGrade A b`, a monic `p`
 of degree `card k` attains the minimal residual norm iff `p = charpoly (QᵀAQ)`. Any real `A`.
 Source: Saad (2011) [`saad11`], §6.6.
-atlas: krylov-polynomial-exactness-/
+atlas: krylov-polynomial-exactness
+@isnad1 id=iff.5h6v.s10.75cc87a9755b from=translated src=- shape=68b5a9e0 vocab=91c56fe1
+-/
 theorem dotProduct_aeval_mulVec_self_eq_charpoly_iff {A : Matrix n n ℝ}
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (b : n → ℝ)
     (hK : krylovSpace A b (Fintype.card k) ≤ LinearMap.range Q.mulVecLin)
@@ -129,7 +139,9 @@ theorem dotProduct_aeval_mulVec_self_eq_charpoly_iff {A : Matrix n n ℝ}
 
 /-- **The column count of a basis of a Krylov space is its dimension**: if `Q` has orthonormal
 columns and `range Q = K_q(A, b)` with `q ≤ krylovGrade A b`, then `card k = q`. Helper for
-`krylov-polynomial-exactness`.-/
+`krylov-polynomial-exactness`.
+@isnad1 id=eq.3h6v.s7.a673472fda18 from=translated src=- shape=a6cd8ae9 vocab=e74a75a0
+-/
 theorem card_eq_of_range_eq_krylovSpace {A : Matrix n n ℝ} {Q : Matrix n k ℝ}
     (hQ : HasOrthonormalCols Q) {b : n → ℝ} {q : ℕ}
     (hspan : LinearMap.range Q.mulVecLin = krylovSpace A b q) (hq : q ≤ krylovGrade A b) :

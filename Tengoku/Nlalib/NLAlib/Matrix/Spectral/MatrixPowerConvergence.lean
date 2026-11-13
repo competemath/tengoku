@@ -22,7 +22,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Decaying powers force spectral radius below one. Source: Horn–Johnson
 (2013), Theorem 5.6.12; one sufficiently small positive power controls the
 spectral radius by the spectral-mapping norm bound.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=lt.1h2v.s7.67296792b494 from=translated src=- shape=f378a64d vocab=b7b7ae6a
+-/
 theorem spectralRadius_lt_one_of_tendsto_matrix_pow_zero {A : Matrix n n ℂ}
     (hA : Tendsto (fun k : ℕ => A ^ k) atTop (𝓝 0)) : spectralRadius ℂ A < 1 := by
   cases isEmpty_or_nonempty n with
@@ -44,7 +46,9 @@ theorem spectralRadius_lt_one_of_tendsto_matrix_pow_zero {A : Matrix n n ℂ}
 open scoped Matrix.Norms.L2Operator in
 /-- Matrix powers decay exactly for spectral radius below one.
 Horn–Johnson (2013), Theorem 5.6.12; arbitrary finite indices may be empty.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=iff.0h2v.s7.04c2e6ba7e1a from=translated src=- shape=fb37d011 vocab=b7b7ae6a
+-/
 theorem tendsto_matrix_pow_zero_iff_spectralRadius_lt_one (A : Matrix n n ℂ) :
     Tendsto (fun k : ℕ => A ^ k) atTop (𝓝 0) ↔ spectralRadius ℂ A < 1 :=
   ⟨spectralRadius_lt_one_of_tendsto_matrix_pow_zero,
@@ -54,7 +58,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The sum of the convergent matrix geometric series is the inverse of
 `1-A`. Source: Horn–Johnson (2013), Corollary 5.6.13; finite geometric sums
 give the inverse identity, with no norm-below-one assumption on `A` itself.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=eq.1h2v.s7.b4a4c65dde96 from=translated src=- shape=2aa78da4 vocab=2495dfb3
+-/
 theorem tsum_matrix_pow_eq_inv_of_spectralRadius_lt_one {A : Matrix n n ℂ}
     (hA : spectralRadius ℂ A < 1) : (∑' k : ℕ, A ^ k) = (1 - A)⁻¹ := by
   have hs := summable_matrix_pow_of_spectralRadius_lt_one hA
@@ -73,7 +79,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The matrix geometric series has the stated inverse as its sum.
 Source: Horn–Johnson (2013), Corollary 5.6.13; combines absolute convergence
 and the telescoping inverse identity.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=hassum.1h2v.s7.d8a4069b4e64 from=translated src=- shape=4e54a777 vocab=53b54c87
+-/
 theorem hasSum_matrix_pow_inv_of_spectralRadius_lt_one {A : Matrix n n ℂ}
     (hA : spectralRadius ℂ A < 1) : HasSum (fun k : ℕ => A ^ k) (1 - A)⁻¹ := by
   rw [← tsum_matrix_pow_eq_inv_of_spectralRadius_lt_one hA]
@@ -82,7 +90,9 @@ theorem hasSum_matrix_pow_inv_of_spectralRadius_lt_one {A : Matrix n n ℂ}
 open scoped Matrix.Norms.L2Operator in
 /-- The denominator of the Neumann series is nonsingular whenever the
 spectral radius is below one. Source: Horn–Johnson (2013), Corollary 5.6.13.
-atlas: matrix-power-convergence (partial)-/
+atlas: matrix-power-convergence (partial)
+@isnad1 id=isunit.1h2v.s6.a6a7db003821 from=translated src=- shape=1cfd3582 vocab=e2a66539
+-/
 theorem isUnit_one_sub_of_matrix_spectralRadius_lt_one {A : Matrix n n ℂ}
     (hA : spectralRadius ℂ A < 1) : IsUnit (1 - A) := by
   have hs := summable_matrix_pow_of_spectralRadius_lt_one hA

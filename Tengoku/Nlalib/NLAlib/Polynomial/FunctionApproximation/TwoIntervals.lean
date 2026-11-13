@@ -18,7 +18,9 @@ namespace NLAlib
 /-- Two disjoint intervals of equal length fold into the positive interval
 `[-bc,-ad]` under `x²-(b+c)x`.
 Source: Greenbaum (1997), §3.1; operator derivations §3, helper for
-`two-interval-minimax`.-/
+`two-interval-minimax`.
+@isnad1 id=mem.5h5v.s7.dfd336974ecc from=translated src=- shape=d1f5ccd0 vocab=8e07f0ca
+-/
 theorem quadratic_mem_Icc_of_mem_two_intervals {a b c d x : ℝ}
     (hab : a < b) (hbc : b < c) (hcd : c < d) (hlen : d - c = b - a)
     (hx : x ∈ Icc a b ∪ Icc c d) :
@@ -47,7 +49,9 @@ theorem quadratic_mem_Icc_of_mem_two_intervals {a b c d x : ℝ}
 equals one at zero, and is exponentially small on two equal-length intervals.
 Source: Greenbaum (1997), §3.1; Liesen–Strakoš (2013), §5.6;
 operator derivations §3. No optimality assertion is added.
-atlas: two-interval-minimax-/
+atlas: two-interval-minimax
+@isnad1 id=ex.5h5v.s8.53fe806baf9e from=translated src=- shape=7261f18b vocab=74a5d1bf
+-/
 theorem exists_degree_le_abs_eval_le_on_two_intervals {a b c d : ℝ}
     (hab : a < b) (hb : b < 0) (hc : 0 < c) (hcd : c < d)
     (hlen : d - c = b - a) (k : ℕ) :

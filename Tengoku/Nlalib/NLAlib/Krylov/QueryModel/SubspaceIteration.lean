@@ -27,7 +27,9 @@ def family : {s : ℕ} → (Fin s → Q) → QueryProgram Q R (Fin s → R) s
   | _s + 1, v => .query (v 0) (fun response =>
       map (Fin.cons response) (family (fun j => v j.succ)))
 
-/-- A finite query family returns the oracle's values at its members.-/
+/-- A finite query family returns the oracle's values at its members.
+@isnad1 id=eq.0h5v.s5.15693ad7b188 from=translated src=- shape=1e90df29 vocab=5049f5f4
+-/
 @[simp] theorem run_family (f : Q → R) {s : ℕ} (v : Fin s → Q) :
     (family v).run f = fun j => f (v j) := by
   induction s with
@@ -51,7 +53,9 @@ def blockMultiplyProgram (Ω : Matrix n (Fin s) K) :
     (QueryProgram.family fun j => Ω.col j)
 
 omit [DecidableEq n] in
-/-- The block multiplication program has the expected matrix product as its output.-/
+/-- The block multiplication program has the expected matrix product as its output.
+@isnad1 id=eq.0h5v.s6.db179ddb90cb from=translated src=- shape=77c1a743 vocab=b0c0ef6b
+-/
 theorem run_blockMultiplyProgram (A : Matrix n n K) (Ω : Matrix n (Fin s) K) :
     (blockMultiplyProgram Ω).run A.mulVec = A * Ω := by
   simp only [blockMultiplyProgram, QueryProgram.run_map, QueryProgram.run_family]
@@ -64,7 +68,9 @@ def blockPowerProgram : (q : ℕ) → Matrix n (Fin s) K →
   | q + 1, Ω => (blockMultiplyProgram Ω).bind (blockPowerProgram q)
 
 /-- The repeated block program computes precisely `A^q Ω`.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h6v.s7.a64a71d6629c from=translated src=- shape=59fed400 vocab=eccf9352
+-/
 theorem run_blockPowerProgram (A : Matrix n n K) (q : ℕ) (Ω : Matrix n (Fin s) K) :
     (blockPowerProgram q Ω).run A.mulVec = A ^ q * Ω := by
   induction q generalizing Ω with
@@ -75,7 +81,9 @@ theorem run_blockPowerProgram (A : Matrix n n K) (q : ℕ) (Ω : Matrix n (Fin s
 
 /-- The native subspace iterate is computable with `s * q` scalar matrix-vector queries.
 The algorithm is chosen before the matrix, and zero width or zero steps cost zero.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=ex.0h5v.s8.2567202904ad from=translated src=- shape=54423d0b vocab=d6679244
+-/
 theorem exists_matvecAlg_subspaceIterate (Ω : Matrix n (Fin s) K) (q : ℕ) :
     ∃ alg : MatvecAlg K n (Submodule K (n → K)), alg.cost = s * q ∧
       ∀ A : Matrix n n K, alg.run A = subspaceIterate A Ω q := by

@@ -15,7 +15,9 @@ namespace NLAlib
 set_option backward.isDefEq.respectTransparency false
 variable {𝕜 : Type*} [RCLike 𝕜] {m n : Type*} [Fintype m] [Fintype n] [DecidableEq n]
 
-/-- Normalization is continuous at every nonzero coordinate vector.-/
+/-- Normalization is continuous at every nonzero coordinate vector.
+@isnad1 id=continuo.1h3v.s6.1636bf908dc9 from=translated src=- shape=851c993b vocab=7061ee93
+-/
 theorem continuousAt_unitNormalize {ι : Type*} [Fintype ι] (v : ι → 𝕜) (hv : v ≠ 0) :
     ContinuousAt (unitNormalize : (ι → 𝕜) → (ι → 𝕜)) v := by
   have hn : (‖WithLp.toLp 2 v‖ : 𝕜) ≠ 0 := by
@@ -38,7 +40,9 @@ def tlsCorrectionCosts (A : Matrix m n 𝕜) (b : m → 𝕜) : Set ℝ :=
 /-- The full augmented-domain smallest Gram eigenvalue is the greatest
 lower bound of actual finite TLS costs. This includes cases in which the
 infimum is not attained.
-atlas: total-least-squares-svd (partial)-/
+atlas: total-least-squares-svd (partial)
+@isnad1 id=isglb.0h5v.s5.1995a1ef94f7 from=translated src=- shape=0200f0ce vocab=a6a31717
+-/
 theorem isGLB_tlsCorrectionCosts (A : Matrix m n 𝕜) (b : m → 𝕜) :
     IsGLB (tlsCorrectionCosts A b) (tlsValue A b) := by
   constructor

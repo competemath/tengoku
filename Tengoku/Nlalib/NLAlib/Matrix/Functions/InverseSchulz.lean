@@ -26,7 +26,9 @@ def inverseSchulzIterate (A X : Matrix n n ℂ) : ℕ → Matrix n n ℂ
   | 0 => X
   | k + 1 => inverseSchulzIterate A X k * (2 • 1 - A * inverseSchulzIterate A X k)
 
-/-- A Newton–Schulz step squares the right residual, for arbitrary matrices.-/
+/-- A Newton–Schulz step squares the right residual, for arbitrary matrices.
+@isnad1 id=eq.0h3v.s8.9897f0aa85d7 from=translated src=- shape=f6985e91 vocab=65830519
+-/
 theorem one_sub_mul_inverseSchulz_step (A X : Matrix n n ℂ) :
     1 - A * (X * (2 • 1 - A * X)) = (1 - A * X) ^ 2 := by
   simp only [two_smul]
@@ -34,7 +36,9 @@ theorem one_sub_mul_inverseSchulz_step (A X : Matrix n n ℂ) :
 
 /-- The exact residual after `k` steps is the initial residual raised to `2^k`.
 Higham (2008), §5.3; no initial commutation hypothesis is needed.
-atlas: matrix-inverse-newton-schulz (partial)-/
+atlas: matrix-inverse-newton-schulz (partial)
+@isnad1 id=eq.0h4v.s7.5a5342ff35a2 from=translated src=- shape=abab461d vocab=d78a3ae2
+-/
 theorem one_sub_mul_inverseSchulzIterate (A X : Matrix n n ℂ) (k : ℕ) :
     1 - A * inverseSchulzIterate A X k = (1 - A * X) ^ (2 ^ k) := by
   induction k with
@@ -45,7 +49,9 @@ theorem one_sub_mul_inverseSchulzIterate (A X : Matrix n n ℂ) (k : ℕ) :
 
 /-- A right residual of spectral radius below one forces the matrix to be
 invertible, even when the initial approximate inverse does not commute.
-atlas: matrix-inverse-newton-schulz (partial)-/
+atlas: matrix-inverse-newton-schulz (partial)
+@isnad1 id=isunit.1h3v.s7.616a9766f112 from=translated src=- shape=eaac0747 vocab=c656d750
+-/
 theorem isUnit_of_spectralRadius_inverseSchulz_residual_lt_one
     {A X : Matrix n n ℂ} (h : spectralRadius ℂ (1 - A * X) < 1) : IsUnit A := by
   have hAX : IsUnit (A * X) := by
@@ -56,7 +62,9 @@ theorem isUnit_of_spectralRadius_inverseSchulz_residual_lt_one
   rw [Matrix.det_mul] at hd
   exact isUnit_of_mul_isUnit_left hd
 
-/-- The iterate error is the inverse times the negative right residual.-/
+/-- The iterate error is the inverse times the negative right residual.
+@isnad1 id=eq.1h4v.s7.b013cc42f7ee from=translated src=- shape=fda6451d vocab=f3dfdcaf
+-/
 theorem inverseSchulzIterate_sub_inv {A X : Matrix n n ℂ}
     (hA : IsUnit A) (k : ℕ) :
     inverseSchulzIterate A X k - A⁻¹ = -A⁻¹ * (1 - A * X) ^ (2 ^ k) := by
@@ -69,7 +77,9 @@ theorem inverseSchulzIterate_sub_inv {A X : Matrix n n ℂ}
 
 /-- Spectral-radius decay of the initial residual implies convergence of
 the actual Newton–Schulz recursion to the matrix inverse.
-atlas: matrix-inverse-newton-schulz (partial)-/
+atlas: matrix-inverse-newton-schulz (partial)
+@isnad1 id=tendsto.1h3v.s7.1b4dcfb7793e from=translated src=- shape=0d660426 vocab=d0cbdeba
+-/
 theorem tendsto_inverseSchulzIterate_inv {A X : Matrix n n ℂ}
     (h : spectralRadius ℂ (1 - A * X) < 1) :
     Tendsto (inverseSchulzIterate A X) atTop (𝓝 A⁻¹) := by
@@ -86,7 +96,9 @@ theorem tendsto_inverseSchulzIterate_inv {A X : Matrix n n ℂ}
 
 /-- A spectral-norm contraction of the initial residual gives the explicit
 Newton–Schulz error bound. Higham (2008), §5.3.
-atlas: matrix-inverse-newton-schulz (partial)-/
+atlas: matrix-inverse-newton-schulz (partial)
+@isnad1 id=le.1h4v.s7.35f1a1c7b45e from=translated src=- shape=c72d9322 vocab=80e5e9f1
+-/
 theorem specNorm_inverseSchulzIterate_sub_inv_le [Nonempty n] {A X : Matrix n n ℂ}
     (hA : IsUnit A) (k : ℕ) :
     specNorm (inverseSchulzIterate A X k - A⁻¹) ≤

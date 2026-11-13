@@ -20,7 +20,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 def quadraticObjective (H : Matrix n n 𝕜) (f x : n → 𝕜) : ℝ :=
   (1 / 2 : ℝ) * RCLike.re (quadForm H x) - RCLike.re (star f ⬝ᵥ x)
 
-/-- Completing the square at a solution of the Hermitian normal equation.-/
+/-- Completing the square at a solution of the Hermitian normal equation.
+@isnad1 id=eq.2h6v.s8.a998f2768631 from=translated src=- shape=800af310 vocab=80959d3b
+-/
 theorem quadraticObjective_add_of_mulVec_eq {H : Matrix n n 𝕜} (hH : H.IsHermitian)
     {f x : n → 𝕜} (hx : H *ᵥ x = f) (y : n → 𝕜) :
     quadraticObjective H f (x + y) = quadraticObjective H f x +
@@ -34,7 +36,9 @@ theorem quadraticObjective_add_of_mulVec_eq {H : Matrix n n 𝕜} (hH : H.IsHerm
   ring
 
 /-- A positive definite quadratic has a strict, unique minimum at each
-solution of its normal equation.-/
+solution of its normal equation.
+@isnad1 id=and.2h5v.s7.ea0e5c98ba00 from=translated src=- shape=598c8a3d vocab=704a3ef0
+-/
 theorem quadraticObjective_minimizer_of_posDef {H : Matrix n n 𝕜} (hH : H.PosDef)
     {f x : n → 𝕜} (hx : H *ᵥ x = f) :
     (∀ y, quadraticObjective H f x ≤ quadraticObjective H f y) ∧
@@ -56,7 +60,9 @@ theorem quadraticObjective_minimizer_of_posDef {H : Matrix n n 𝕜} (hH : H.Pos
     linarith
 
 /-- The unique minimizer of a positive definite Hermitian quadratic is
-`H⁻¹f`, with the total matrix inverse justified by positive definiteness.-/
+`H⁻¹f`, with the total matrix inverse justified by positive definiteness.
+@isnad1 id=and.1h4v.s7.bf5bd67a3b9e from=translated src=- shape=fa22e1b5 vocab=410505af
+-/
 theorem quadraticObjective_inv_mulVec_minimizer {H : Matrix n n 𝕜} (hH : H.PosDef)
     (f : n → 𝕜) :
     (∀ y, quadraticObjective H f (H⁻¹ *ᵥ f) ≤ quadraticObjective H f y) ∧

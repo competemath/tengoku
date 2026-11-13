@@ -17,7 +17,9 @@ set_option maxHeartbeats 1200000
 variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A commuting Hermitian pair has one orthonormal eigenvector matrix,
-and both diagonal lists are real. Horn–Johnson (2013), Theorem 2.5.5.-/
+and both diagonal lists are real. Horn–Johnson (2013), Theorem 2.5.5.
+@isnad1 id=ex.3h4v.s9.dd39a36403ec from=translated src=- shape=b6ebd368 vocab=a13cdf93
+-/
 theorem exists_unitary_congruence_diagonal_of_commute {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hAB : Commute A B) :
     ∃ (U : Matrix n n 𝕜) (a b : n → ℝ), HasOrthonormalCols U ∧

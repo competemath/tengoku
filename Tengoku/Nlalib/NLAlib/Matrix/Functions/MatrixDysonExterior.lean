@@ -18,7 +18,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 
 /-- The polynomial Dyson identity gives a quadratic inequality for the
-actual operator norm; no scalar branch or spectral representation is assumed.-/
+actual operator norm; no scalar branch or spectral representation is assumed.
+@isnad1 id=le.2h6v.s9.4fb141835295 from=translated src=- shape=4b39a077 vocab=98255e34
+-/
 theorem mul_specNorm_le_one_add_of_matrixDyson
     (A : Matrix n n ℂ) (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
     {z : ℂ} (X : Matrix n n ℂ)
@@ -50,7 +52,9 @@ theorem mul_specNorm_le_one_add_of_matrixDyson
   nlinarith
 
 omit [Nonempty n] in
-/-- Along any fixed vertical line, imaginary coercivity forces norm decay.-/
+/-- Along any fixed vertical line, imaginary coercivity forces norm decay.
+@isnad1 id=tendsto.4h5v.s10.126427bda0b1 from=translated src=- shape=53d32534 vocab=100f2cd5
+-/
 theorem tendsto_specNorm_matrixDyson_vertical
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -67,7 +71,9 @@ theorem tendsto_specNorm_matrixDyson_vertical
   simpa using specNorm_le_inv_im_of_matrixDyson A hA S hS hz _ (hpos _ hz) (heq _ hz)
 
 /-- Continuity and the actual Dyson equation select the small norm branch
-outside every radius strictly larger than `‖A‖ + 2 sqrt ‖S‖`.-/
+outside every radius strictly larger than `‖A‖ + 2 sqrt ‖S‖`.
+@isnad1 id=lt.8h6v.s11.89dc165a822b from=translated src=- shape=d5ee551d vocab=8c025544
+-/
 theorem specNorm_lt_two_div_of_matrixDyson_exterior
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -95,7 +101,9 @@ theorem specNorm_lt_two_div_of_matrixDyson_exterior
   simpa only [Complex.re_add_im] using hb
 
 /-- Taking norms in the proved imaginary Dyson congruence retains the
-variance-map operator norm, without replacing it by a trace estimate.-/
+variance-map operator norm, without replacing it by a trace estimate.
+@isnad1 id=le.4h5v.s11.d7f738f25e9a from=translated src=- shape=ec732995 vocab=f2b9a56e
+-/
 theorem norm_imaginaryPart_le_matrixDyson_quadratic
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -121,7 +129,9 @@ theorem norm_imaginaryPart_le_matrixDyson_quadratic
 
 /-- The exterior imaginary-part estimate with the exact support radius.
 All bounds are derived from the equation, positivity, and continuity.
-atlas: matrix-dyson-stieltjes-representation (partial)-/
+atlas: matrix-dyson-stieltjes-representation (partial)
+@isnad1 id=le.8h6v.s11.0db63d508508 from=translated src=- shape=919bd6f5 vocab=4f968ea7
+-/
 theorem norm_imaginaryPart_le_of_matrixDyson_exterior
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)

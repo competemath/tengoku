@@ -21,7 +21,9 @@ namespace NLAlib
 variable {n r : Type*} [Fintype n] [Fintype r] [DecidableEq n] [DecidableEq r]
 
 /-- The absolute trace of a real square matrix is bounded by its dimension times its
-spectral norm. This includes empty matrices.-/
+spectral norm. This includes empty matrices.
+@isnad1 id=le.0h2v.s5.b60cbe49bf32 from=translated src=- shape=c028550a vocab=fed23311
+-/
 theorem abs_trace_le_card_mul_specNorm (A : Matrix n n ℝ) :
     |A.trace| ≤ Fintype.card n * specNorm A := by
   calc |A.trace| ≤ ∑ i, |A i i| := Finset.abs_sum_le_sum_abs _ _
@@ -29,7 +31,9 @@ theorem abs_trace_le_card_mul_specNorm (A : Matrix n n ℝ) :
     _ = _ := by simp
 
 /-- Orthonormal compression cannot increase the spectral norm, even for nonsymmetric
-matrices. This bounds the deterministic trace correction in deflated trace estimation.-/
+matrices. This bounds the deterministic trace correction in deflated trace estimation.
+@isnad1 id=le.1h4v.s7.8773ed0436aa from=translated src=- shape=e9f8521c vocab=33f3a485
+-/
 theorem specNorm_conjTranspose_mul_mul_le_of_hasOrthonormalCols
     {Q : Matrix n r ℝ} (hQ : HasOrthonormalCols Q) (A : Matrix n n ℝ) :
     specNorm (Qᴴ * A * Q) ≤ specNorm A := by
@@ -46,7 +50,9 @@ theorem specNorm_conjTranspose_mul_mul_le_of_hasOrthonormalCols
     _ = specNorm A := by ring
 
 /-- The complementary two-sided orthogonal compression cannot increase the spectral
-norm. It bounds the residual quadratic form uniformly in the orthonormal frame.-/
+norm. It bounds the residual quadratic form uniformly in the orthonormal frame.
+@isnad1 id=le.1h4v.s8.602fa8de32b8 from=translated src=- shape=18bd55cb vocab=3d9e12ff
+-/
 theorem specNorm_one_sub_mul_conjTranspose_mul_mul_one_sub_le
     {Q : Matrix n r ℝ} (hQ : HasOrthonormalCols Q) (A : Matrix n n ℝ) :
     specNorm ((1 - Q * Qᴴ) * A * (1 - Q * Qᴴ)) ≤ specNorm A := by
@@ -67,7 +73,9 @@ theorem specNorm_one_sub_mul_conjTranspose_mul_mul_one_sub_le
 `|tr(Qᵀ A Q) + wᵀ(I-QQᵀ)A(I-QQᵀ)w| ≤ ‖A‖₂(d + ‖w‖₂²)`.
 Source: supplied operator derivations, (T2). The matrix need not be symmetric and empty
 frames and zero-dimensional matrices are included. Helper for `hutchpp-unbiased` and
-`xtrace-unbiased`.-/
+`xtrace-unbiased`.
+@isnad1 id=le.1h5v.s8.be993e56d4f0 from=translated src=- shape=9702c995 vocab=b8702f38
+-/
 theorem abs_trace_compression_add_quadForm_residual_le
     (A : Matrix n n ℝ) {Q : Matrix n r ℝ} (hQ : HasOrthonormalCols Q) (w : n → ℝ) :
     |(Qᵀ * A * Q).trace + quadForm ((1 - Q * Qᵀ) * A * (1 - Q * Qᵀ)) w| ≤

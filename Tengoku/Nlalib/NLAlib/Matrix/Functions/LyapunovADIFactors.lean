@@ -30,7 +30,9 @@ private theorem lyapunovADI_snd_sum (A : Matrix n n K) (B : Matrix n s K)
 
 /-- The accumulated factor represents the actual computed iterate exactly.
 Source: user derivations, low-rank ADI factor update.
-atlas: lyapunov-adi-residual-factor (partial)-/
+atlas: lyapunov-adi-residual-factor (partial)
+@isnad1 id=eq.1h7v.s7.7754a1327055 from=translated src=- shape=b1a9b17a vocab=645c419a
+-/
 theorem lyapunovADIFactor_mul_conjTranspose (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hp : ∀ j, 0 < p j) (j : ℕ) :
     lyapunovADIFactor A B p j * (lyapunovADIFactor A B p j)ᴴ = (lyapunovADI A B p j).2 := by
@@ -53,7 +55,9 @@ theorem lyapunovADIFactor_mul_conjTranspose (A : Matrix n n K) (B : Matrix n s K
         (lyapunovADIUpdateFactor A B p i a c * (starRingEnd K) (lyapunovADIUpdateFactor A B p i b c)) := by ring
     _ = _ := by rw [hs]
 
-/-- Every solved update factor has rank at most that of the original forcing factor.-/
+/-- Every solved update factor has rank at most that of the original forcing factor.
+@isnad1 id=le.1h7v.s7.01c56a3b2c7b from=translated src=- shape=aae8efa5 vocab=aec5121f
+-/
 theorem rank_lyapunovADIUpdateFactor_le (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     (lyapunovADIUpdateFactor A B p j).rank ≤ B.rank := by
@@ -62,7 +66,9 @@ theorem rank_lyapunovADIUpdateFactor_le (A : Matrix n n K) (B : Matrix n s K)
     ((congrArg Matrix.rank (lyapunovADI_fst A B p hP j)).le.trans (Matrix.rank_mul_le_right _ _))
 
 /-- The actual iterate has the sharp uncompressed rank bound `j * rank B`,
-which in turn is at most `j * s`.-/
+which in turn is at most `j * s`.
+@isnad1 id=le.1h7v.s8.69e04c9d1b8c from=translated src=- shape=8e1ba536 vocab=9b9aea9c
+-/
 theorem rank_lyapunovADI_snd_le (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     (lyapunovADI A B p j).2.rank ≤ j * B.rank := by
@@ -78,14 +84,18 @@ theorem rank_lyapunovADI_snd_le (A : Matrix n n K) (B : Matrix n s K)
         (rank_lyapunovADIUpdateFactor_le A B p hP j))
     exact (rank_add_le _ _).trans (by nlinarith)
 
-/-- The residual spectral norm is the square of the residual-factor norm.-/
+/-- The residual spectral norm is the square of the residual-factor norm.
+@isnad1 id=eq.1h7v.s9.adea16fe9f6e from=translated src=- shape=d4155f9b vocab=0289c4ca
+-/
 theorem specNorm_lyapunovADI_residual [DecidableEq s] (A : Matrix n n K)
     (B : Matrix n s K) (p : ℕ → ℝ) (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     specNorm (A * (lyapunovADI A B p j).2 + (lyapunovADI A B p j).2 * Aᴴ + B * Bᴴ) =
       specNorm (lyapunovADI A B p j).1 ^ 2 := by
   rw [lyapunovADI_residual A B p hP, specNorm_mul_conjTranspose_self]
 
-/-- The residual Frobenius norm can be computed from its smaller column Gram.-/
+/-- The residual Frobenius norm can be computed from its smaller column Gram.
+@isnad1 id=eq.1h7v.s9.c515438632e2 from=translated src=- shape=69365753 vocab=7b3c3f2f
+-/
 theorem frobNorm_lyapunovADI_residual (A : Matrix n n K) (B : Matrix n s K)
     (p : ℕ → ℝ) (hP : ∀ j, IsUnit (A - (p j : K) • 1).det) (j : ℕ) :
     frobNorm (A * (lyapunovADI A B p j).2 + (lyapunovADI A B p j).2 * Aᴴ + B * Bᴴ) =

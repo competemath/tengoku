@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- An adjugate diagonal entry is the principal minor deleting that label,
 over arbitrary finite indices. Empty minors have determinant one.
-Horn–Johnson 2013, §0.8.10; determinant-derivative finite-index bridge.-/
+Horn–Johnson 2013, §0.8.10; determinant-derivative finite-index bridge.
+@isnad1 id=eq.0h3v.s6.493f597c5cb7 from=translated src=- shape=d2a658a1 vocab=b3b39a2d
+-/
 theorem adjugate_apply_self_eq_det_complement (A : Matrix n n ℝ) (i : n) :
     A.adjugate i i = (A.submatrix
       (Subtype.val : {j : n // j ≠ i} → n) (Subtype.val : {j : n // j ≠ i} → n)).det := by
@@ -63,7 +65,9 @@ open scoped Matrix.Norms.Elementwise in
 codimension-one minors, for arbitrary finite labels and every dimension.
 At dimension zero the sum is empty and the derivative is zero.
 Horn–Johnson 2013, §0.8.10.
-atlas: determinant-derivative-/
+atlas: determinant-derivative
+@isnad1 id=hasderiv.0h3v.s8.f93781d9d9f5 from=translated src=- shape=d0940ed7 vocab=18a07211
+-/
 theorem hasDerivAt_det_smul_one_sub_sum_complement_minors (A : Matrix n n ℝ) (t : ℝ) :
     HasDerivAt (fun s => (s • (1 : Matrix n n ℝ) - A).det)
       (∑ i : n, ((t • (1 : Matrix n n ℝ) - A).submatrix

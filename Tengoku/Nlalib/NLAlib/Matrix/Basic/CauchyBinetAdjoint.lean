@@ -17,13 +17,17 @@ open scoped Matrix
 namespace NLAlib
 
 /-- The chosen enumeration of a sized subset is injective.
-Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.-/
+Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.
+@isnad1 id=injectiv.0h3v.s4.caced40d8cb1 from=translated src=- shape=faf8977c vocab=e59be7a7
+-/
 theorem sizedSubsetIndex_injective {n r : Type*} [Fintype r]
     (S : SizedSubset n r) : Function.Injective (sizedSubsetIndex S) := by
   exact Subtype.val_injective.comp (Equiv.injective _)
 
 /-- The chosen enumeration ranges over exactly its sized subset.
-Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.-/
+Horn--Johnson (2013), Section 0.8.7; compound-matrix coordinate helper.
+@isnad1 id=eq.0h3v.s5.cca67b32854b from=translated src=- shape=ff6c17c0 vocab=694730a4
+-/
 theorem range_sizedSubsetIndex {n r : Type*} [Fintype r]
     (S : SizedSubset n r) : Set.range (sizedSubsetIndex S) = (S.val : Set n) := by
   ext x
@@ -39,7 +43,9 @@ theorem range_sizedSubsetIndex {n r : Type*} [Fintype r]
 /-- The compound of the identity is the identity at every minor size,
 including the unique empty minor and impossible-size empty compounds.
 Source: Horn--Johnson (2013), Section 0.8.7.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h3v.s7.8e467b6eb6f3 from=translated src=- shape=7559d450 vocab=3c357fef
+-/
 theorem compoundMatrix_one {n r R : Type*} [Fintype n] [Fintype r]
     [DecidableEq n] [DecidableEq r] [CommRing R] :
     compoundMatrix r (1 : Matrix n n R) = 1 := by
@@ -67,7 +73,9 @@ theorem compoundMatrix_one {n r R : Type*} [Fintype n] [Fintype r]
 /-- Compounds commute with conjugate transpose over every commutative star
 ring, using exactly the same fixed row and column enumerations.
 Source: Horn--Johnson (2013), Section 0.8.7.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h5v.s7.6ed48f83e29d from=translated src=- shape=04a4c7c3 vocab=92d14d7d
+-/
 theorem compoundMatrix_conjTranspose {m n r R : Type*}
     [Fintype r] [DecidableEq r] [CommRing R] [StarRing R]
     (A : Matrix m n R) :
@@ -81,7 +89,9 @@ theorem compoundMatrix_conjTranspose {m n r R : Type*}
 values of all full-column minors. Too few rows, singular matrices and
 empty rows or columns need no separate hypotheses.
 Source: Horn--Johnson (2013), Section 0.8.1.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h4v.s7.527554b3f270 from=translated src=- shape=2f76d603 vocab=36ad91c1
+-/
 theorem det_conjTranspose_mul_self_eq_sum_norm_sq {𝕜 m r : Type*} [RCLike 𝕜]
     [Fintype m] [Fintype r] [DecidableEq m] [DecidableEq r]
     (A : Matrix m r 𝕜) :

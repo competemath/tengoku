@@ -35,7 +35,9 @@ of the determinant.-/
 noncomputable def detNormalizeScaling (X : Matrix n n ℂ) : ℝ :=
   (X.det.re ^ (1 / (Fintype.card n : ℝ)))⁻¹
 
-/-- The rescaling factor in `detNormalizeScaling` is positive.-/
+/-- The rescaling factor in `detNormalizeScaling` is positive.
+@isnad1 id=lt.1h2v.s5.71767587ef95 from=translated src=- shape=f279bf63 vocab=fc738e4d
+-/
 theorem _root_.Matrix.PosDef.detNormalizeScaling_pos {X : Matrix n n ℂ} (hX : X.PosDef) :
     0 < detNormalizeScaling X := by
   unfold detNormalizeScaling
@@ -54,7 +56,9 @@ private theorem det_normalize_scaling_pow_card (X : Matrix n n ℂ) (hX : X.PosD
   rw [one_div_mul_cancel hN_ne, Real.rpow_one]
 
 /-- Rescaling a complex positive definite matrix by `detNormalizeScaling` yields
-determinant exactly one.-/
+determinant exactly one.
+@isnad1 id=eq.2h2v.s6.4464b76280b8 from=translated src=- shape=62dcf433 vocab=087e3588
+-/
 theorem _root_.Matrix.PosDef.det_smul_detNormalizeScaling_eq_one {X : Matrix n n ℂ} (hX : X.PosDef)
     (hN : 0 < Fintype.card n) :
     (detNormalizeScaling X • X).det = 1 := by
@@ -78,7 +82,9 @@ theorem _root_.Matrix.PosDef.det_smul_detNormalizeScaling_eq_one {X : Matrix n n
 /-- Normalization bridge for determinant-ratio objectives: for every positive definite
 `X` and every `ℝ`-linear map `T`, there is a determinant-one positive definite matrix
 `Y` (namely `detNormalizeScaling X • X`) with
-`(T Y).det.re = (T X).det.re / X.det.re`.-/
+`(T Y).det.re = (T X).det.re / X.det.re`.
+@isnad1 id=ex.2h3v.s9.8798e755df3b from=translated src=- shape=a7501fb5 vocab=4037ca4f
+-/
 theorem _root_.Matrix.PosDef.exists_det_eq_one_re_det_map_eq_div {X : Matrix n n ℂ} (hX : X.PosDef)
     (hN : 0 < Fintype.card n) (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     ∃ Y, Y.PosDef ∧ Y.det = 1 ∧ (T Y).det.re = (T X).det.re / X.det.re := by
@@ -98,7 +104,9 @@ theorem _root_.Matrix.PosDef.exists_det_eq_one_re_det_map_eq_div {X : Matrix n n
 /-- The set of attainable real determinant-ratio objectives over positive definite
 matrices equals the set of attainable objectives over determinant-one matrices.
 The forward direction reads the ratio off a determinant-one witness; the backward
-direction restores determinant one by rescaling.-/
+direction restores determinant one by rescaling.
+@isnad1 id=eq.1h2v.s9.def1b5afc62c from=translated src=- shape=7d3a9ebb vocab=9086ce29
+-/
 theorem detRatio_attainable_sets_eq (hN : 0 < Fintype.card n)
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     {d : ℝ | ∃ X, X.PosDef ∧ X.det = 1 ∧ d = (T X).det.re} =
@@ -116,7 +124,9 @@ theorem detRatio_attainable_sets_eq (hN : 0 < Fintype.card n)
     rw [hd, hYT]
 
 /-- The infimum of the determinant-one attainable objectives equals the infimum of
-the determinant-ratio attainable objectives.-/
+the determinant-ratio attainable objectives.
+@isnad1 id=eq.1h2v.s9.a090c6f07d44 from=translated src=- shape=68196282 vocab=fc1cb012
+-/
 theorem detRatio_normalized_sInf_eq (hN : 0 < Fintype.card n)
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     sInf {d : ℝ | ∃ X, X.PosDef ∧ X.det = 1 ∧ d = (T X).det.re} =

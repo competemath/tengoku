@@ -14,7 +14,9 @@ open scoped Matrix ComplexOrder
 namespace NLAlib
 variable {𝕜 : Type*} [RCLike 𝕜] {m n : Type*} [Fintype m] [Fintype n] [DecidableEq n]
 
-/-- Subtracting the smallest Hermitian eigenvalue yields a PSD matrix.-/
+/-- Subtracting the smallest Hermitian eigenvalue yields a PSD matrix.
+@isnad1 id=possemid.1h3v.s7.095bad6b200d from=translated src=- shape=520e2e26 vocab=68c939bf
+-/
 theorem _root_.Matrix.IsHermitian.posSemidef_sub_lambdaMin_smul_one [Nonempty n]
     {H : Matrix n n 𝕜} (hH : H.IsHermitian) :
     (H - (lambdaMin H : 𝕜) • 1).PosSemidef := by
@@ -41,7 +43,9 @@ theorem _root_.Matrix.IsHermitian.posSemidef_sub_lambdaMin_smul_one [Nonempty n]
   rw [he]
   exact hpos.mul_mul_conjTranspose_same U
 
-/-- Every Hermitian matrix has a unit smallest-eigenvalue vector.-/
+/-- Every Hermitian matrix has a unit smallest-eigenvalue vector.
+@isnad1 id=ex.1h3v.s7.0016887ad044 from=translated src=- shape=1fe6a210 vocab=2ba35c6f
+-/
 theorem _root_.Matrix.IsHermitian.exists_unit_lambdaMin_eigenvector [Nonempty n]
     {H : Matrix n n 𝕜} (hH : H.IsHermitian) :
     ∃ v : n → 𝕜, ‖WithLp.toLp 2 v‖ = 1 ∧ H *ᵥ v = (lambdaMin H : 𝕜) • v := by
@@ -57,7 +61,9 @@ theorem _root_.Matrix.IsHermitian.exists_unit_lambdaMin_eigenvector [Nonempty n]
   simpa only [Pi.smul_apply, RCLike.real_smul_eq_coe_mul, smul_eq_mul] using congrFun hh i
 
 /-- A shift strictly below the smallest Hermitian eigenvalue is positive
-definite. This applies in particular to strict-gap TLS normal matrices.-/
+definite. This applies in particular to strict-gap TLS normal matrices.
+@isnad1 id=posdef.2h4v.s7.6f9b502905e3 from=translated src=- shape=7c77d767 vocab=46d0a2bd
+-/
 theorem _root_.Matrix.IsHermitian.posDef_sub_smul_one_of_lt_lambdaMin [Nonempty n]
     {H : Matrix n n 𝕜} (hH : H.IsHermitian) {a : ℝ} (ha : a < lambdaMin H) :
     (H - (a : 𝕜) • 1).PosDef := by
@@ -72,7 +78,9 @@ theorem _root_.Matrix.IsHermitian.posDef_sub_smul_one_of_lt_lambdaMin [Nonempty 
     ring
   · simp [Matrix.one_apply, hij]
 
-/-- The Gram Rayleigh defect is exactly the shifted PSD quadratic.-/
+/-- The Gram Rayleigh defect is exactly the shifted PSD quadratic.
+@isnad1 id=eq.0h5v.s9.99abe38978a1 from=translated src=- shape=035291e6 vocab=44ef4273
+-/
 theorem re_quadForm_gram_sub_lambdaMin (C : Matrix m n 𝕜) (v : n → 𝕜) :
     RCLike.re (quadForm (Cᴴ * C - (lambdaMin (Cᴴ * C) : 𝕜) • 1) v) =
       ‖WithLp.toLp 2 (C *ᵥ v)‖ ^ 2 - lambdaMin (Cᴴ * C) * ‖WithLp.toLp 2 v‖ ^ 2 := by
@@ -81,7 +89,9 @@ theorem re_quadForm_gram_sub_lambdaMin (C : Matrix m n 𝕜) (v : n → 𝕜) :
     norm_toLp_sq_eq_re_star_dotProduct]
   rw [← quadForm, quadForm_conjTranspose_mul_self]
 
-/-- The least Gram eigenvalue bounds every unit-direction residual.-/
+/-- The least Gram eigenvalue bounds every unit-direction residual.
+@isnad1 id=le.1h5v.s8.0e74d120b3da from=translated src=- shape=e4f4718d vocab=d9da3afb
+-/
 theorem lambdaMin_gram_le_norm_mulVec_sq [Nonempty n] (C : Matrix m n 𝕜)
     {v : n → 𝕜} (hv : ‖WithLp.toLp 2 v‖ = 1) :
     lambdaMin (Cᴴ * C) ≤ ‖WithLp.toLp 2 (C *ᵥ v)‖ ^ 2 := by
@@ -91,7 +101,9 @@ theorem lambdaMin_gram_le_norm_mulVec_sq [Nonempty n] (C : Matrix m n 𝕜)
   linarith
 
 /-- Equality in the unit Rayleigh lower bound identifies the entire
-minimum eigenspace, with no simplicity assumption.-/
+minimum eigenspace, with no simplicity assumption.
+@isnad1 id=iff.1h5v.s9.b887ebc139ce from=translated src=- shape=f8a8853f vocab=de8d5d83
+-/
 theorem norm_mulVec_sq_eq_lambdaMin_gram_iff [Nonempty n] (C : Matrix m n 𝕜)
     {v : n → 𝕜} (hv : ‖WithLp.toLp 2 v‖ = 1) :
     ‖WithLp.toLp 2 (C *ᵥ v)‖ ^ 2 = lambdaMin (Cᴴ * C) ↔

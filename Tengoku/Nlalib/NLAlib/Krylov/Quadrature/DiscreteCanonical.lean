@@ -56,7 +56,9 @@ private theorem discrete_hankel_posDef (t w : Fin N → ℝ)
 orthonormal columns for distinct finite nodes and positive weights, including
 the empty discrete measure.
 Source: OF20, canonical discrete orthogonality.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=hasortho.2h3v.s5.d266cf9a9930 from=translated src=- shape=e964d412 vocab=bae9f1e9
+-/
 theorem hasOrthonormalCols_discreteOrthogonalPolynomialEvaluationMatrix
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ i, 0 < w i) :
     HasOrthonormalCols (discreteOrthogonalPolynomialEvaluationMatrix t w) := by
@@ -88,7 +90,9 @@ theorem hasOrthonormalCols_discreteOrthogonalPolynomialEvaluationMatrix
 
 /-- The actual canonical discrete evaluation matrix also has orthonormal rows,
 because it is square. Source: OF20, finite discrete dual orthogonality.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h3v.s7.13a8da6ad947 from=translated src=- shape=76d8facf vocab=7132c319
+-/
 theorem discreteOrthogonalPolynomialEvaluationMatrix_mul_conjTranspose_eq_one
     (t w : Fin N → ℝ) (ht : Function.Injective t) (hw : ∀ i, 0 < w i) :
     discreteOrthogonalPolynomialEvaluationMatrix t w *

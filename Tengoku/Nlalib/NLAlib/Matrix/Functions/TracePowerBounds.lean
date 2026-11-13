@@ -26,7 +26,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 open scoped Matrix.Norms.L2Operator in
-/-- Every even power of a real symmetric matrix has nonnegative trace.MatrixTail.-/
+/-- Every even power of a real symmetric matrix has nonnegative trace.MatrixTail.
+@isnad1 id=le.2h3v.s6.d8e9507f37a7 from=translated src=- shape=1abe6209 vocab=2ce0bec0
+-/
 theorem trace_pow_nonneg_of_even {A : Matrix ι ι ℝ} (hA : A.IsHermitian) {n : ℕ}
     (hn : Even n) : 0 ≤ (A ^ n).trace := by
   rw [trace_pow_eq_sum_eigenvalues hA]
@@ -34,7 +36,9 @@ theorem trace_pow_nonneg_of_even {A : Matrix ι ι ℝ} (hA : A.IsHermitian) {n 
 
 open scoped Matrix.Norms.L2Operator in
 /-- An even power of the spectral norm of a real symmetric matrix is bounded by the trace of the
-same matrix power. The hypothesis `0 < q` covers the empty index type, where both sides vanish.MatrixTail.-/
+same matrix power. The hypothesis `0 < q` covers the empty index type, where both sides vanish.MatrixTail.
+@isnad1 id=le.2h3v.s7.87fc1e04d0a9 from=translated src=- shape=73cf0cfd vocab=62f7bdb3
+-/
 theorem specNorm_pow_two_mul_le_trace_pow {A : Matrix ι ι ℝ} (hA : A.IsHermitian) {q : ℕ}
     (hq : 0 < q) : specNorm A ^ (2 * q) ≤ (A ^ (2 * q)).trace := by
   cases isEmpty_or_nonempty ι with

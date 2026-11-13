@@ -253,7 +253,9 @@ private theorem cfc_transpose {d : ℕ} (H : Matrix (Fin d) (Fin d) ℂ)
 Tropp 2015, §8.7–8.8, eq. (8.8.1). Atlas: `operator-monotone-convex`. Ported from the Prove2me
 mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
 
-Uses `Hᵀ` in the right tensor factor, as required by the complex vectorization convention.-/
+Uses `Hᵀ` in the right tensor factor, as required by the complex vectorization convention.
+@isnad1 id=eq.2h3v.s7.7299ed802977 from=translated src=- shape=2d781861 vocab=44911a1c
+-/
 theorem NLAlib.relativeEntropy_eq_jointTensorEval_sub_trace {d : ℕ} [NeZero d]
     (A H : Matrix (Fin d) (Fin d) ℂ) (hA : A.PosDef) (hH : H.PosDef) :
     relativeEntropy A H =

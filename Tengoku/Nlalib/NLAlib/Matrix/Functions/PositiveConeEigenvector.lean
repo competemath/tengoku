@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 
 /-- A symmetric cone-positive operator on the Hermitian Frobenius space
-has a nonzero PSD eigenmatrix at its operator norm.-/
+has a nonzero PSD eigenmatrix at its operator norm.
+@isnad1 id=ex.2h2v.s10.b5e4831fb002 from=translated src=- shape=96ed6a42 vocab=f0b82ca8
+-/
 theorem exists_posSemidef_norm_eigenvector
     (T : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n)
     (hT : T.IsSymmetric)

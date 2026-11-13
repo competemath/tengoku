@@ -20,7 +20,9 @@ variable {K E F : Type*} [Field K] [AddCommGroup E] [Module K E]
 
 /-- Rank-nullity on a subspace says that the image dimension plus the
 dimension lost in the kernel is the original dimension. Horn–Johnson §0.4.2;
-helper for `rank-inequalities`.-/
+helper for `rank-inequalities`.
+@isnad1 id=eq.0h5v.s9.84c4e5ee11fd from=translated src=- shape=f9325519 vocab=0cdebc62
+-/
 theorem finrank_map_add_finrank_inf_ker (f : E →ₗ[K] F) (S : Submodule K E) :
     Module.finrank K (S.map f) + Module.finrank K (S ⊓ LinearMap.ker f : Submodule K E) =
       Module.finrank K S := by
@@ -39,7 +41,9 @@ variable {m n p q : Type*} [Fintype n] [Fintype p] [Fintype q]
 
 /-- Sylvester's rank inequality with natural-number subtraction, including
 empty indices. Horn–Johnson 2013, §0.4.2.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=le.0h6v.s6.5f3d2f94354f from=translated src=- shape=2b34b0b8 vocab=5811332e
+-/
 theorem rank_add_rank_sub_card_le_rank_mul (A : Matrix m n K) (B : Matrix n p K) :
     A.rank + B.rank - Fintype.card n ≤ (A * B).rank := by
   have hB := finrank_map_add_finrank_inf_ker A.mulVecLin (LinearMap.range B.mulVecLin)
@@ -55,7 +59,9 @@ theorem rank_add_rank_sub_card_le_rank_mul (A : Matrix m n K) (B : Matrix n p K)
 
 /-- Frobenius's rank inequality for three conformable matrices over a field,
 including empty indices. Horn–Johnson 2013, §0.4.2.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=le.0h8v.s8.b53c63f46081 from=translated src=- shape=b9161fc0 vocab=fd14d172
+-/
 theorem rank_mul_add_rank_mul_le_rank_add_rank_mul_mul
     (A : Matrix m n K) (B : Matrix n p K) (C : Matrix p q K) :
     (A * B).rank + (B * C).rank ≤ B.rank + (A * B * C).rank := by
@@ -74,7 +80,9 @@ theorem rank_mul_add_rank_mul_le_rank_add_rank_mul_mul
 
 /-- Once one solution is given, all solutions differ from it by a vector
 in the matrix kernel. Horn–Johnson 2013, §0.4.5.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=iff.1h7v.s8.45cf3a4becb5 from=translated src=- shape=536898ca vocab=fb3ad01b
+-/
 theorem mulVec_eq_iff_sub_mem_ker (A : Matrix m n K) (b : m → K) (x₀ : n → K)
     (h₀ : A *ᵥ x₀ = b) (x : n → K) :
     A *ᵥ x = b ↔ x - x₀ ∈ LinearMap.ker A.mulVecLin := by
@@ -84,7 +92,9 @@ theorem mulVec_eq_iff_sub_mem_ker (A : Matrix m n K) (b : m → K) (x₀ : n →
 /-- The full rank bounds for a product, including the Sylvester lower bound,
 hold over arbitrary fields and finite middle/column indices. Horn–Johnson
 2013, §0.4.2.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=and.0h6v.s7.b8fa62bbc649 from=translated src=- shape=41e566e7 vocab=9ae63ad2
+-/
 theorem rank_mul_bounds (A : Matrix m n K) (B : Matrix n p K) :
     A.rank + B.rank - Fintype.card n ≤ (A * B).rank ∧
       (A * B).rank ≤ min A.rank B.rank :=
@@ -94,7 +104,9 @@ theorem rank_mul_bounds (A : Matrix m n K) (B : Matrix n p K) :
 in the original column space. This is the Rouché–Capelli solvability criterion,
 with arbitrary finite indices and all zero-dimensional cases.
 Horn–Johnson 2013, §0.4.5.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=iff.0h5v.s6.d27a6a7eb86e from=translated src=- shape=edf3d6db vocab=9fa13d76
+-/
 theorem rank_fromCols_eq_iff_exists_mulVec_eq [Fintype m]
     (A : Matrix m n K) (b : m → K) :
     (Matrix.fromCols A (fun i (_ : Unit) => b i)).rank = A.rank ↔
@@ -134,7 +146,9 @@ theorem rank_fromCols_eq_iff_exists_mulVec_eq [Fintype m]
 
 /-- The affine solution set is the translate of the kernel through any one
 solution. Horn–Johnson 2013, §0.4.5.
-atlas: rank-inequalities-/
+atlas: rank-inequalities
+@isnad1 id=eq.1h6v.s8.038d6633515d from=translated src=- shape=04de7c6c vocab=7cdb92f1
+-/
 theorem solution_set_eq_add_ker (A : Matrix m n K) (b : m → K) (x₀ : n → K)
     (h₀ : A *ᵥ x₀ = b) :
     {x : n → K | A *ᵥ x = b} =

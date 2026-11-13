@@ -42,19 +42,25 @@ def eliminationTraceProduct (A : Matrix n n 𝕜) : List n → ℝ
   | i :: l => RCLike.re A.trace * eliminationTraceProduct (eliminationStep A i) l
 
 omit [Fintype n] [DecidableEq n] in
-/-- Concatenating histories continues elimination from the first residual.-/
+/-- Concatenating histories continues elimination from the first residual.
+@isnad1 id=eq.0h5v.s5.79a0c372d854 from=translated src=- shape=a6f4ad5f vocab=f51732b2
+-/
 theorem eliminationListResidual_append (A : Matrix n n 𝕜) (l r : List n) :
     eliminationListResidual A (l ++ r) = eliminationListResidual (eliminationListResidual A l) r := by
   simp [eliminationListResidual, List.foldl_append]
 
 omit [Fintype n] [DecidableEq n] in
-/-- Appending a pivot applies one additional Schur update.-/
+/-- Appending a pivot applies one additional Schur update.
+@isnad1 id=eq.0h5v.s5.5eb066b7421f from=translated src=- shape=2410d37f vocab=d7678573
+-/
 theorem eliminationListResidual_append_singleton (A : Matrix n n 𝕜) (l : List n) (i : n) :
     eliminationListResidual A (l ++ [i]) = eliminationStep (eliminationListResidual A l) i := by
   simp [eliminationListResidual, List.foldl_append]
 
 omit [Fintype n] [DecidableEq n] in
-/-- Appending a pivot multiplies the pivot product by the next residual diagonal.-/
+/-- Appending a pivot multiplies the pivot product by the next residual diagonal.
+@isnad1 id=eq.0h5v.s6.d5c8592f44ca from=translated src=- shape=9779bb60 vocab=31743b3a
+-/
 theorem eliminationPivotProduct_append_singleton (A : Matrix n n 𝕜) (l : List n) (i : n) :
     eliminationPivotProduct A (l ++ [i]) =
       eliminationPivotProduct A l * eliminationListResidual A l i i := by
@@ -63,7 +69,9 @@ theorem eliminationPivotProduct_append_singleton (A : Matrix n n 𝕜) (l : List
   | cons j l ih => simp [eliminationPivotProduct, eliminationListResidual, ih, mul_assoc]
 
 omit [DecidableEq n] in
-/-- Appending a pivot multiplies the trace product by the current residual trace.-/
+/-- Appending a pivot multiplies the trace product by the current residual trace.
+@isnad1 id=eq.0h5v.s7.13ecd4061cd3 from=translated src=- shape=2b2bb3a3 vocab=0dc9db37
+-/
 theorem eliminationTraceProduct_append_singleton (A : Matrix n n 𝕜) (l : List n) (i : n) :
     eliminationTraceProduct A (l ++ [i]) =
       eliminationTraceProduct A l * RCLike.re (eliminationListResidual A l).trace := by
@@ -71,21 +79,27 @@ theorem eliminationTraceProduct_append_singleton (A : Matrix n n 𝕜) (l : List
   | nil => simp [eliminationTraceProduct, eliminationListResidual]
   | cons j l ih => simp [eliminationTraceProduct, eliminationListResidual, ih, mul_assoc]
 
-/-- Every chronological elimination residual of a PSD matrix remains PSD.-/
+/-- Every chronological elimination residual of a PSD matrix remains PSD.
+@isnad1 id=possemid.1h4v.s6.41f149ae7bad from=translated src=- shape=41ed73bc vocab=bbd81d6d
+-/
 theorem posSemidef_eliminationListResidual {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (l : List n) : (eliminationListResidual A l).PosSemidef := by
   induction l generalizing A with
   | nil => exact hA
   | cons i l ih => exact ih (posSemidef_eliminationStep hA i)
 
-/-- Chronological PSD residuals decrease in Loewner order.-/
+/-- Chronological PSD residuals decrease in Loewner order.
+@isnad1 id=le.1h4v.s6.167232e10407 from=translated src=- shape=6ca65f39 vocab=b511e907
+-/
 theorem eliminationListResidual_le {A : Matrix n n 𝕜} (hA : A.PosSemidef) (l : List n) :
     eliminationListResidual A l ≤ A := by
   induction l generalizing A with
   | nil => exact le_rfl
   | cons i l ih => exact (ih (posSemidef_eliminationStep hA i)).trans (eliminationStep_le hA i)
 
-/-- Chronological PSD residuals have nonincreasing real trace.-/
+/-- Chronological PSD residuals have nonincreasing real trace.
+@isnad1 id=le.1h4v.s8.008ffd3fe42a from=translated src=- shape=6ac71087 vocab=b9ce5537
+-/
 theorem re_trace_eliminationListResidual_le {A : Matrix n n 𝕜} (hA : A.PosSemidef) (l : List n) :
     RCLike.re (eliminationListResidual A l).trace ≤ RCLike.re A.trace := by
   have hn := re_trace_nonneg_of_posSemidef (Matrix.le_iff.mp (eliminationListResidual_le hA l))
@@ -123,7 +137,9 @@ private theorem det_submatrix_cons_of_ne_zero (A : Matrix n n 𝕜) {k : ℕ}
   simp [D, Matrix.det_unique]
 
 /-- A PSD selected principal determinant factors through its first Schur pivot,
-including zero pivots and repeated selected indices.-/
+including zero pivots and repeated selected indices.
+@isnad1 id=eq.1h6v.s7.9a43366322ee from=translated src=- shape=d6124ec5 vocab=29f546e6
+-/
 theorem det_submatrix_cons_eq_mul_det_eliminationStep {A : Matrix n n 𝕜}
     (hA : A.PosSemidef) {k : ℕ} (i : n) (h : Fin k → n) :
     (A.submatrix (Fin.cons i h) (Fin.cons i h)).det =
@@ -137,7 +153,9 @@ theorem det_submatrix_cons_eq_mul_det_eliminationStep {A : Matrix n n 𝕜}
   · exact det_submatrix_cons_of_ne_zero A i h hi
 
 /-- The selected principal determinant equals the product of chronological
-elimination pivots. No distinctness or positive-pivot assumption is needed.-/
+elimination pivots. No distinctness or positive-pivot assumption is needed.
+@isnad1 id=eq.1h5v.s6.42e51f4e90aa from=translated src=- shape=587fd03a vocab=eb00c9a7
+-/
 theorem det_submatrix_eq_eliminationPivotProduct {A : Matrix n n 𝕜}
     (hA : A.PosSemidef) {k : ℕ} (h : Fin k → n) :
     (A.submatrix h h).det = eliminationPivotProduct A (List.ofFn h) := by
@@ -148,7 +166,9 @@ theorem det_submatrix_eq_eliminationPivotProduct {A : Matrix n n 𝕜}
       det_submatrix_cons_eq_mul_det_eliminationStep hA]
     rw [ih (posSemidef_eliminationStep hA (h 0))]
 
-/-- The real trace product is nonnegative for every PSD pivot history.-/
+/-- The real trace product is nonnegative for every PSD pivot history.
+@isnad1 id=le.1h4v.s5.69b886a67cbe from=translated src=- shape=8c1a21b1 vocab=eab0d492
+-/
 theorem eliminationTraceProduct_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (l : List n) : 0 ≤ eliminationTraceProduct A l := by
   induction l generalizing A with
@@ -158,7 +178,9 @@ theorem eliminationTraceProduct_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef)
       (ih (posSemidef_eliminationStep hA i))
 
 /-- The real chronological pivot product also has the expected last-step
-factorization: PSD diagonal pivots are real even for complex matrices.-/
+factorization: PSD diagonal pivots are real even for complex matrices.
+@isnad1 id=eq.1h5v.s8.a61f4bfce72c from=translated src=- shape=00546c16 vocab=a163875f
+-/
 theorem re_eliminationPivotProduct_append_singleton {A : Matrix n n 𝕜}
     (hA : A.PosSemidef) (l : List n) (i : n) :
     RCLike.re (eliminationPivotProduct A (l ++ [i])) =
@@ -168,7 +190,9 @@ theorem re_eliminationPivotProduct_append_singleton {A : Matrix n n 𝕜}
     diag_eq_ofReal_re_of_posSemidef (posSemidef_eliminationListResidual hA l) i]
   simp
 
-/-- Every elimination step removes at most one rank, including a zero pivot.-/
+/-- Every elimination step removes at most one rank, including a zero pivot.
+@isnad1 id=le.0h4v.s6.4e8946180e71 from=translated src=- shape=2172b32a vocab=b96e8f1d
+-/
 theorem rank_le_rank_eliminationStep_add_one (A : Matrix n n 𝕜) (i : n) :
     A.rank ≤ (eliminationStep A i).rank + 1 := by
   by_cases hi : A i i = 0
@@ -177,7 +201,9 @@ theorem rank_le_rank_eliminationStep_add_one (A : Matrix n n 𝕜) (i : n) :
   · exact (rank_eliminationStep_add_one_eq hi).ge
 
 /-- A chronological history removes at most its length in rank. This bound
-does not assume that the chosen pivots are supported or nonzero.-/
+does not assume that the chosen pivots are supported or nonzero.
+@isnad1 id=le.0h4v.s6.41b14fd469cd from=translated src=- shape=4efff045 vocab=1a70ee45
+-/
 theorem rank_le_rank_eliminationListResidual_add_length (A : Matrix n n 𝕜) (l : List n) :
     A.rank ≤ (eliminationListResidual A l).rank + l.length := by
   induction l generalizing A with
@@ -189,7 +215,9 @@ theorem rank_le_rank_eliminationListResidual_add_length (A : Matrix n n 𝕜) (l
     omega
 
 /-- All pre-step traces are positive until the number of requested steps exceeds
-the original rank, even for an arbitrary list of zero or repeated pivots.-/
+the original rank, even for an arbitrary list of zero or repeated pivots.
+@isnad1 id=lt.2h4v.s6.05ffe40fac99 from=translated src=- shape=f846b914 vocab=4c4f15fd
+-/
 theorem eliminationTraceProduct_pos {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (l : List n) (hl : l.length ≤ A.rank) : 0 < eliminationTraceProduct A l := by
   induction l generalizing A with
@@ -206,7 +234,9 @@ theorem eliminationTraceProduct_pos {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     exact mul_pos hTrace (ih (posSemidef_eliminationStep hA i) hLen)
 
 omit [DecidableEq n] in
-/-- One elimination correction has rank at most one, including a zero pivot.-/
+/-- One elimination correction has rank at most one, including a zero pivot.
+@isnad1 id=le.0h4v.s6.86c660312d8d from=translated src=- shape=a48a3aec vocab=953ad564
+-/
 theorem rank_sub_eliminationStep_le_one (A : Matrix n n 𝕜) (i : n) :
     (A - eliminationStep A i).rank ≤ 1 := by
   rw [eliminationStep, sub_sub_cancel, ← Matrix.smul_vecMulVec]
@@ -214,7 +244,9 @@ theorem rank_sub_eliminationStep_le_one (A : Matrix n n 𝕜) (i : n) :
 
 omit [DecidableEq n] in
 /-- The actual approximation accumulated along a history has rank at most
-the history length, even for repeated or zero pivots.-/
+the history length, even for repeated or zero pivots.
+@isnad1 id=le.0h4v.s6.bf22cb2b200e from=translated src=- shape=c8487415 vocab=2b93613e
+-/
 theorem rank_sub_eliminationListResidual_le_length (A : Matrix n n 𝕜) (l : List n) :
     (A - eliminationListResidual A l).rank ≤ l.length := by
   induction l generalizing A with
@@ -230,7 +262,9 @@ theorem rank_sub_eliminationListResidual_le_length (A : Matrix n n 𝕜) (l : Li
       ((add_le_add (rank_sub_eliminationStep_le_one A i) (ih _)).trans (by simp only [List.length_cons]; omega))
 
 /-- A nonzero chronological pivot product certifies exactly one rank removed
-per step. Positivity is unnecessary for this algebraic rank identity.-/
+per step. Positivity is unnecessary for this algebraic rank identity.
+@isnad1 id=eq.1h4v.s6.1e109b90c0b9 from=translated src=- shape=d26dcdc9 vocab=c9d90819
+-/
 theorem rank_eliminationListResidual_add_length_eq_of_pivotProduct_ne_zero
     (A : Matrix n n 𝕜) (l : List n) (hl : eliminationPivotProduct A l ≠ 0) :
     (eliminationListResidual A l).rank + l.length = A.rank := by

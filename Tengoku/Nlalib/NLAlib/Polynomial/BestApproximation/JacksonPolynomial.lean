@@ -26,7 +26,9 @@ def realChebyshevCircleFunction (f : ℝ → ℝ) (t : AddCircle (2 * Real.pi)) 
   f ((fourier 1 t).re)
 
 /-- Every cosine-circle argument lies in the closed unit interval.
-Source: unit norm of Fourier characters; helper for `jackson-lipschitz`.-/
+Source: unit norm of Fourier characters; helper for `jackson-lipschitz`.
+@isnad1 id=mem.0h1v.s7.fc1a69def809 from=translated src=- shape=aef31c38 vocab=5f2907f9
+-/
 theorem re_fourier_one_mem_Icc (t : AddCircle (2 * Real.pi)) :
     (fourier 1 t).re ∈ Icc (-1 : ℝ) 1 := by
   have h : |(fourier 1 t).re| ≤ 1 := by
@@ -35,14 +37,18 @@ theorem re_fourier_one_mem_Icc (t : AddCircle (2 * Real.pi)) :
   exact abs_le.mp h
 
 /-- The cosine pullback of a continuous interval function is continuous.
-Helper for `jackson-lipschitz` (cosine substitution).-/
+Helper for `jackson-lipschitz` (cosine substitution).
+@isnad1 id=continuo.1h1v.s6.5762fdff345c from=translated src=- shape=50a0f874 vocab=65796519
+-/
 theorem continuous_realChebyshevCircleFunction {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) : Continuous (realChebyshevCircleFunction f) :=
   hf.comp_continuous (Complex.continuous_re.comp (fourier 1).continuous)
     re_fourier_one_mem_Icc
 
 /-- The cosine pullback is even.
-Source: conjugation of Fourier characters; helper for `jackson-lipschitz`.-/
+Source: conjugation of Fourier characters; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s7.08397a7edfe0 from=translated src=- shape=8b19009b vocab=17cd6605
+-/
 theorem even_realChebyshevCircleFunction (f : ℝ → ℝ) (t : AddCircle (2 * Real.pi)) :
     realChebyshevCircleFunction f (-t) = realChebyshevCircleFunction f t := by
   have h : fourier 1 (-t) = conj (fourier 1 t) := by
@@ -52,7 +58,9 @@ theorem even_realChebyshevCircleFunction (f : ℝ → ℝ) (t : AddCircle (2 * R
   rw [h, Complex.conj_re]
 
 /-- Evaluating the circle pullback at a real angle gives the usual cosine substitution.
-Source: the Fourier character definition; helper for `jackson-lipschitz`.-/
+Source: the Fourier character definition; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s5.63188535081f from=translated src=- shape=aa4985d6 vocab=693a296f
+-/
 theorem realChebyshevCircleFunction_coe (f : ℝ → ℝ) (t : ℝ) :
     realChebyshevCircleFunction f (t : AddCircle (2 * Real.pi)) = f (cos t) := by
   unfold realChebyshevCircleFunction
@@ -60,7 +68,9 @@ theorem realChebyshevCircleFunction_coe (f : ℝ → ℝ) (t : ℝ) :
     simpa only [Nat.cast_one, one_mul] using re_fourier_nat_coe_eq_cos 1 t]
 
 /-- Evaluating `T_k` on the real part of a unit character gives the real `k`th character.
-Source: the Chebyshev cosine identity; helper for `jackson-lipschitz`.-/
+Source: the Chebyshev cosine identity; helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s8.52902c27a69e from=translated src=- shape=cf939c3e vocab=3d5fcb07
+-/
 theorem eval_T_re_fourier_one (k : ℕ) (t : AddCircle (2 * Real.pi)) :
     (T ℝ (k : ℤ)).eval ((fourier 1 t).re) = (fourier (k : ℤ) t).re := by
   induction t using QuotientAddGroup.induction_on with | H t =>
@@ -73,7 +83,9 @@ theorem eval_T_re_fourier_one (k : ℕ) (t : AddCircle (2 * Real.pi)) :
 is an algebraic polynomial of the same degree. The coefficients are its
 Fourier coefficients rather than an assumed polynomial representation.
 Finite cosine expansion and Fourier convolution;
-construction for atlas `jackson-lipschitz`.-/
+construction for atlas `jackson-lipschitz`.
+@isnad1 id=ex.3h3v.s9.6e831be38793 from=translated src=- shape=6c18eb90 vocab=1a688665
+-/
 theorem exists_polynomial_circle_convolution {K : ℝ[X]} {n : ℕ} (hK : K.degree ≤ n)
     {g : AddCircle (2 * Real.pi) → ℝ} (hg : Continuous g) (heven : ∀ t, g (-t) = g t) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ a : AddCircle (2 * Real.pi),
@@ -114,7 +126,9 @@ theorem exists_polynomial_circle_convolution {K : ℝ[X]} {n : ℕ} (hK : K.degr
     ring
 
 /-- Cosine substitution preserves the Lipschitz constant of a unit-interval function.
-Source: the one-Lipschitz cosine function; helper for sharp `jackson-lipschitz`.-/
+Source: the one-Lipschitz cosine function; helper for sharp `jackson-lipschitz`.
+@isnad1 id=lipschit.1h2v.s5.5d0cb6af6433 from=translated src=- shape=1efbc17b vocab=73b30d62
+-/
 theorem lipschitzWith_comp_cos {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) : LipschitzWith L (fun t : ℝ => f (cos t)) := by
   apply LipschitzWith.of_dist_le_mul
@@ -127,7 +141,9 @@ theorem lipschitzWith_comp_cos {f : ℝ → ℝ} {L : NNReal}
 /-- The fixed sharp periodic convolution for a cosine pullback is represented by an
 algebraic polynomial with degree at most `n`.
 Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem);
-construction for atlas `jackson-lipschitz`.-/
+construction for atlas `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s6.338fad554838 from=translated src=- shape=802e4b6c vocab=c3489aa5
+-/
 theorem exists_polynomial_jacksonPeriodicApprox {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (n : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x : ℝ,
@@ -154,7 +170,9 @@ theorem exists_polynomial_jacksonPeriodicApprox {f : ℝ → ℝ}
 /-- The required sharp Jackson theorem on the unit interval: a degree-`n` algebraic
 polynomial approximates every `L`-Lipschitz function with error at most `πL/(2(n+1))`.
 Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
-Atlas `jackson-lipschitz` (unit-interval form).-/
+Atlas `jackson-lipschitz` (unit-interval form).
+@isnad1 id=ex.1h3v.s7.b86ebd291f69 from=translated src=- shape=18fc9c50 vocab=0c3fcdf8
+-/
 theorem exists_degree_le_abs_sub_eval_le_jackson_unit {f : ℝ → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) (n : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ n ∧ ∀ x ∈ Icc (-1 : ℝ) 1,

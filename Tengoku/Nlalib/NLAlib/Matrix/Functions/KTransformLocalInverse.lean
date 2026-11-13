@@ -32,7 +32,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Strict Frobenius positivity of the true derivative on Hermitian
 directions makes its genuine complex-linear derivative injective on all
-matrices, through the actual real/imaginary Hermitian decomposition.-/
+matrices, through the actual real/imaginary Hermitian decomposition.
+@isnad1 id=injectiv.5h4v.s10.4b1684ba9139 from=translated src=- shape=1b2a3afb vocab=7f823e7e
+-/
 theorem injective_matrixKTransformDerivComplex_of_quadratic_pos
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 < α)
@@ -93,7 +95,9 @@ branch. The branch solves the original K equation near the source real
 parameter and stays in the true simultaneous inverse domain. This is the
 local branch milestone for the block-Wishart spectral-edge theorem; no
 global Stieltjes identification or variational conclusion is asserted.
-atlas: block-wishart-variational-edges (partial)-/
+atlas: block-wishart-variational-edges (partial)
+@isnad1 id=ex.6h5v.s10.8c2b719524ff from=translated src=- shape=99ecd1a9 vocab=a9a3b5e7
+-/
 theorem exists_analytic_matrixKTransform_inverse_branch
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsProbabilityMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 < α)

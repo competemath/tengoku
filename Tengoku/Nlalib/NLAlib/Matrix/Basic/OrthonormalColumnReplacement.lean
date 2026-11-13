@@ -20,7 +20,9 @@ variable {𝕜 n d : Type*} [RCLike 𝕜] [Fintype n] [Fintype d] [DecidableEq d
 
 omit [Fintype d] in
 /-- Replacing a column of an orthonormal frame by an orthogonal vector gives
-a diagonal Gram matrix, with the vector's squared length at that column.-/
+a diagonal Gram matrix, with the vector's squared length at that column.
+@isnad1 id=eq.2h6v.s8.444f7505e2d4 from=translated src=- shape=08a6f6d9 vocab=b23ecff2
+-/
 theorem conjTranspose_mul_updateCol_of_orthonormal
     (Q : Matrix n d 𝕜) (hQ : HasOrthonormalCols Q) (e : n → 𝕜)
     (he : Qᴴ *ᵥ e = 0) (i : d) :
@@ -57,7 +59,9 @@ theorem conjTranspose_mul_updateCol_of_orthonormal
       · simp [Matrix.one_apply_ne hab, Matrix.diagonal_apply_ne _ hab]
 
 /-- The Gram determinant after replacing a frame column by an orthogonal
-vector is its actual squared Euclidean length, also over complex scalars.-/
+vector is its actual squared Euclidean length, also over complex scalars.
+@isnad1 id=eq.2h6v.s8.6927e463026a from=translated src=- shape=fe3ee816 vocab=a8c25bb9
+-/
 theorem re_det_gram_updateCol_of_orthonormal
     (Q : Matrix n d 𝕜) (hQ : HasOrthonormalCols Q) (e : n → 𝕜)
     (he : Qᴴ *ᵥ e = 0) (i : d) :

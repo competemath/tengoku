@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The actual polynomial Dyson identity bounds the normalization error
 by the linear and quadratic matrix norm terms. Positivity is unnecessary
-for this algebraic estimate.-/
+for this algebraic estimate.
+@isnad1 id=le.1h5v.s9.411cf20d8435 from=translated src=- shape=a0473011 vocab=593d7ad0
+-/
 theorem specNorm_matrixDyson_normalization_error_le
     (A : Matrix n n ℂ) (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
     (z : ℂ) (X : Matrix n n ℂ)
@@ -44,7 +46,9 @@ theorem specNorm_matrixDyson_normalization_error_le
     _ = _ := by ring
 
 /-- On the positive imaginary axis the Dyson normalization error is
-bounded by `‖A‖/y + ‖S‖/y²`, derived entirely from the equation.-/
+bounded by `‖A‖/y + ‖S‖/y²`, derived entirely from the equation.
+@isnad1 id=le.5h5v.s11.9af1fd3a525f from=translated src=- shape=5589bf49 vocab=07ea8207
+-/
 theorem specNorm_matrixDyson_normalization_error_mul_I_le
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -69,7 +73,9 @@ normalization `iy M(iy) → -I`. No normalization, holomorphy, scalar measure,
 or compact-support assumption is supplied to this theorem.
 Source: Ajanki--Erdos--Kruger (2019), Proposition 2.1.
 This theorem supplies the normalization component.
-atlas: matrix-dyson-stieltjes-representation (partial)-/
+atlas: matrix-dyson-stieltjes-representation (partial)
+@isnad1 id=tendsto.4h4v.s10.f395dff5cfbe from=translated src=- shape=e9bf0738 vocab=bf54a0f1
+-/
 theorem tendsto_mul_I_smul_matrixDyson
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)

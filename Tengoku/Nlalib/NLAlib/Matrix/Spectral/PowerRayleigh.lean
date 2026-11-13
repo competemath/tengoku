@@ -21,7 +21,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Mathlib's Rayleigh quotient of a real matrix is the matrix Rayleigh quotient
 `rayleighQuotient A b = bᵀAb / bᵀb`.
 Source: Mathlib's `ContinuousLinearMap.rayleighQuotient`.
-The zero-vector convention is totalized division by zero.-/
+The zero-vector convention is totalized division by zero.
+@isnad1 id=eq.0h3v.s12.053bd1b5d1ad from=translated src=- shape=2440f3e9 vocab=ff4b52f5
+-/
 theorem rayleighQuotient_toEuclideanCLM_eq (A : Matrix n n ℝ) (b : n → ℝ) :
     (Matrix.toEuclideanCLM (𝕜 := ℝ) A).rayleighQuotient (WithLp.toLp 2 b) =
       rayleighQuotient A b := by
@@ -34,7 +36,9 @@ theorem rayleighQuotient_toEuclideanCLM_eq (A : Matrix n n ℝ) (b : n → ℝ) 
 
 open scoped Matrix.Norms.L2Operator in
 /-- A PSD matrix's totalized Rayleigh quotient lies between zero and its spectral
-norm, even at a zero vector. Source: the spectral theorem.-/
+norm, even at a zero vector. Source: the spectral theorem.
+@isnad1 id=and.1h3v.s13.0b69f9dfa83d from=translated src=- shape=17a6419f vocab=f376c824
+-/
 theorem rayleighQuotient_toEuclideanCLM_bounds {A : Matrix n n ℝ} (hA : A.PosSemidef)
     (b : n → ℝ) :
     0 ≤ (Matrix.toEuclideanCLM (𝕜 := ℝ) A).rayleighQuotient (WithLp.toLp 2 b) ∧
@@ -51,7 +55,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The relative power-method Rayleigh error is bounded by logarithmic inverse top
 overlap divided by `2q+1`. finite concave-power Jensen.
 The chosen eigenvector is deterministic; no eigenvalue gap is assumed.
-atlas: random-start-power (partial)-/
+atlas: random-start-power (partial)
+@isnad1 id=le.4h5v.s12.25e78b8a6dbc from=translated src=- shape=852ef022 vocab=e954e443
+-/
 theorem sub_rayleighQuotient_pow_div_specNorm_le_log_overlap_div
     {A : Matrix n n ℝ} (hA : A.PosSemidef) (hL : 0 < specNorm A)
     (i₀ : n) (h₀ : hA.isHermitian.eigenvalues i₀ = specNorm A) (b : n → ℝ)

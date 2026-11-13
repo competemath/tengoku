@@ -27,7 +27,9 @@ variable {m n k r r' t q : Type*} [Fintype m] [Fintype n] [Fintype k]
 omit [Fintype t] [DecidableEq n] in
 /-- A polynomially filtered block SVD has the corresponding filtered diagonal blocks.
 Source: manuscript `sa:filter`, the intertwining step before `sa:filter-theorem`.
-The blocks need not be diagonal, so their squared singular blocks are written as Grams.-/
+The blocks need not be diagonal, so their squared singular blocks are written as Grams.
+@isnad1 id=eq.7h15v.s10.8893eb8460f5 from=translated src=- shape=273705a0 vocab=42cb0ef6
+-/
 theorem aeval_gram_mul_mul_eq_of_block_decomposition
     {A : Matrix m n ℝ} {U₁ : Matrix m k ℝ} {U₂ : Matrix m r ℝ}
     {V₁ : Matrix n k ℝ} {V₂ : Matrix n r' ℝ}
@@ -91,7 +93,9 @@ omit [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n] [DecidableEq r]
   [DecidableEq r'] in
 /-- The explicit competitor for filtered range finding has precisely the leading block
 and the filtered tail correction. Source: manuscript `sa:filter-theorem`, its competitor
-`Z = Y Ω₁† C⁻¹ V₁ᵀ`. The right inverses are supplied as data.-/
+`Z = Y Ω₁† C⁻¹ V₁ᵀ`. The right inverses are supplied as data.
+@isnad1 id=eq.4h20v.s9.32df6c689e6a from=translated src=- shape=5e52bf5c vocab=1548516e
+-/
 theorem sub_mul_mul_mul_transpose_eq_of_filtered_blocks
     {A : Matrix m n ℝ} {U₁ : Matrix m k ℝ} {U₂ : Matrix m r ℝ}
     {V₁ : Matrix n k ℝ} {V₂ : Matrix n r' ℝ}
@@ -116,7 +120,9 @@ theorem sub_mul_mul_mul_transpose_eq_of_filtered_blocks
 omit [DecidableEq m] in
 /-- The filtered one-competitor argument bounds both squared norms, with the same exact
 tail correction. Source: manuscript `sa:filter-theorem`. This algebraic form is the reusable
-core; the next theorem supplies the filtered blocks by polynomial calculus.-/
+core; the next theorem supplies the filtered blocks by polynomial calculus.
+@isnad1 id=and.10h22v.s9.a53abf4fde0a from=translated src=- shape=bb43099f vocab=4c466c00
+-/
 theorem residual_sq_le_of_filtered_blocks
     {A : Matrix m n ℝ} {U₁ : Matrix m k ℝ} {U₂ : Matrix m r ℝ}
     {V₁ : Matrix n k ℝ} {V₂ : Matrix n r' ℝ}
@@ -184,7 +190,9 @@ theorem residual_sq_le_of_filtered_blocks
 constants. Source: manuscript `sa:filter-theorem`; HMT (2011), the one-competitor argument.
 Grams replace squares to generalize diagonal SVD blocks to arbitrary orthogonal blocks.
 The result includes an empty leading or tail block.
-atlas: polynomial-filter-range-finder (partial)-/
+atlas: polynomial-filter-range-finder (partial)
+@isnad1 id=and.11h19v.s10.82b48684c7ae from=translated src=- shape=c4c7260a vocab=4a78f1c4
+-/
 theorem residual_sq_le_of_polynomial_filter
     {A : Matrix m n ℝ} {U₁ : Matrix m k ℝ} {U₂ : Matrix m r ℝ}
     {V₁ : Matrix n k ℝ} {V₂ : Matrix n r' ℝ}
@@ -210,7 +218,9 @@ theorem residual_sq_le_of_polynomial_filter
 omit [DecidableEq n] in
 /-- A frame containing the block Krylov space reproduces every filtered sketch of degree
 below the Krylov order, simultaneously. Source: manuscript `sa:filter`, its final block
-Krylov specialization; Musco--Musco (2015), polynomial competitor argument.-/
+Krylov specialization; Musco--Musco (2015), polynomial competitor argument.
+@isnad1 id=eq.3h9v.s9.ac7b289a5da0 from=translated src=- shape=84d10b89 vocab=22d001e3
+-/
 theorem mul_transpose_aeval_gram_mul_mul_eq_of_blockKrylovSpace_le
     (A : Matrix m n ℝ) (Ω : Matrix n t ℝ) {Q : Matrix m q ℝ}
     (hQo : HasOrthonormalCols Q) {order : ℕ}
@@ -233,13 +243,17 @@ def filterTailMaxAbs (s : ℕ → ℝ) (p : ℝ[X]) (a b : ℕ) : ℝ :=
     (fun i => Real.toNNReal (|s i * p.eval (s i ^ 2)|)) : NNReal) : ℝ)
 
 /-- The leading filter minimum bounds each leading filter value from below.
-Source: manuscript `sa:filter`, definition of `c_phi`.-/
+Source: manuscript `sa:filter`, definition of `c_phi`.
+@isnad1 id=le.0h4v.s5.9031efc896d0 from=translated src=- shape=e9ae6f38 vocab=0301c05b
+-/
 theorem filterHeadMinAbs_le {κ : ℕ} [Nonempty (Fin κ)] (s : Fin κ → ℝ)
     (p : ℝ[X]) (i : Fin κ) : filterHeadMinAbs s p ≤ |p.eval ((s i) ^ 2)| :=
   Finset.inf'_le _ (Finset.mem_univ i)
 
 /-- Every finite tail filter value is bounded by the zero-safe tail maximum.
-Source: manuscript `sa:filter`, definition of `t_phi`.-/
+Source: manuscript `sa:filter`, definition of `t_phi`.
+@isnad1 id=le.1h5v.s6.72cbd456af03 from=translated src=- shape=04f5a898 vocab=a150ae0c
+-/
 theorem abs_mul_eval_le_filterTailMaxAbs (s : ℕ → ℝ) (p : ℝ[X]) {a b i : ℕ}
     (hi : i < min a b) : |s i * p.eval (s i ^ 2)| ≤ filterTailMaxAbs s p a b := by
   have h := Finset.le_sup (f := fun j => Real.toNNReal (|s j * p.eval (s j ^ 2)|))
@@ -252,7 +266,9 @@ theorem abs_mul_eval_le_filterTailMaxAbs (s : ℕ → ℝ) (p : ℝ[X]) {a b i :
 competitor. Source: manuscript `sa:filter`, the scalar spectral inequality following
 `sa:filter-theorem`. Choosing `c = filterHeadMinAbs` and `τ = filterTailMaxAbs`
 gives exactly its constants; the tail can be empty.
-atlas: polynomial-filter-range-finder (partial)-/
+atlas: polynomial-filter-range-finder (partial)
+@isnad1 id=le.14h20v.s10.bc3708d09073 from=translated src=- shape=4dd790fc vocab=fe0b4e94
+-/
 theorem specNorm_residual_sq_le_of_polynomial_filter_envelopes
     [DecidableEq t] {κ a b : ℕ} {A : Matrix m n ℝ} {U₁ : Matrix m (Fin κ) ℝ}
     {U₂ : Matrix m (Fin a) ℝ} {V₁ : Matrix n (Fin κ) ℝ}
@@ -313,7 +329,9 @@ theorem specNorm_residual_sq_le_of_polynomial_filter_envelopes
 Source: manuscript `sa:filter`, scalar inequality with zero-indexed padded singular
 values. The leading and tail diagonal arrays come from the ordinary SVD block
 certificate. Empty tails are included.
-atlas: polynomial-filter-range-finder (partial)-/
+atlas: polynomial-filter-range-finder (partial)
+@isnad1 id=le.11h18v.s10.dd87ff845937 from=translated src=- shape=d4a37007 vocab=5362255a
+-/
 theorem specNorm_residual_sq_le_filterTailMaxAbs_div_filterHeadMinAbs
     [DecidableEq t] {κ a b : ℕ} [Nonempty (Fin κ)] {A : Matrix m n ℝ}
     {U₁ : Matrix m (Fin κ) ℝ} {U₂ : Matrix m (Fin a) ℝ}

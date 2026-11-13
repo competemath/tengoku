@@ -20,7 +20,9 @@ variable {𝕜 ι r c : Type*} [RCLike 𝕜] [Fintype ι] [Fintype r] [Fintype c
 
 omit [Fintype r] in
 /-- A real weighted Gram sum centered at its actual mean equals the raw Gram
-sum minus the mean Gram. Positivity of the weights is unnecessary for this identity.-/
+sum minus the mean Gram. Positivity of the weights is unnecessary for this identity.
+@isnad1 id=eq.2h7v.s9.d9e919ab945e from=translated src=- shape=da2d9f04 vocab=be3da386
+-/
 theorem sum_smul_sub_mul_conjTranspose (p : ι → ℝ) (hp : ∑ i, p i = 1)
     (M : ι → Matrix r c 𝕜) (B : Matrix r c 𝕜) (hmean : ∑ i, p i • M i = B) :
     (∑ i, p i • ((M i - B) * (M i - B)ᴴ)) =

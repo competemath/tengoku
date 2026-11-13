@@ -19,7 +19,9 @@ namespace NLAlib
 /-- A rule exact below degree `2n` equals the integral of the actual finite Hermite
 interpolant of the sampled values and first derivatives.
 Source: Gautschi (2004), Theorem 1.48; operator derivations, (AQ3).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=eq.3h5v.s7.5a5c1a6d3d4d from=translated src=- shape=2cf89d70 vocab=ab98b2cb
+-/
 theorem integral_hermiteInterpolate_eq_quadrature {μ : Measure ℝ} {n : ℕ} (hn : 0 < n)
     (v w : Fin n → ℝ) (hv : Function.Injective v)
     (hexact : ∀ p : ℝ[X], p.degree < (2 * n : ℕ) →
@@ -40,7 +42,9 @@ theorem integral_hermiteInterpolate_eq_quadrature {μ : Measure ℝ} {n : ℕ} (
 interior nodes have the classical integral derivative remainder with an interior point.
 The nodal squared norm may be zero. Source: Gautschi (2004), Theorem 1.48;
 operator derivations, (AQ3)–(AQ6).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=ex.9h7v.s9.e9dacb06e843 from=translated src=- shape=0854ab3b vocab=482519e4
+-/
 theorem exists_integral_sub_quadrature_eq_iteratedDeriv_mul_nodal_sq
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : 0 < n)
@@ -86,7 +90,9 @@ theorem exists_integral_sub_quadrature_eq_iteratedDeriv_mul_nodal_sq
 integrates every function exactly. This handles finite-support termination without
 asserting interior locations for the terminal nodes.
 Source: operator derivations, the zero-norm branch of (AQ6).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=eq.5h7v.s8.5bb03035630b from=translated src=- shape=e005ecb1 vocab=bdfba078
+-/
 theorem integral_eq_quadrature_of_integral_nodal_sq_eq_zero
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn : 0 < n)

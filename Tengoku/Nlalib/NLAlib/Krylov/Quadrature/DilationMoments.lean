@@ -22,7 +22,9 @@ variable {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
 
 /-- Every even power of the actual rectangular Hermitian dilation is block diagonal.
 Source: Gautschi (2004), Section 2.2; operator derivations (OP19).
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.0h4v.s8.fc83df533ab7 from=translated src=- shape=583c46ba vocab=d55998ab
+-/
 theorem dilation_pow_two_mul (B : Matrix m n ℝ) (k : ℕ) :
     dilation B ^ (2 * k) = fromBlocks ((B * Bᵀ) ^ k) 0 0 ((Bᵀ * B) ^ k) := by
   rw [pow_mul, dilation_sq, fromBlocks_diagonal_pow]
@@ -30,7 +32,9 @@ theorem dilation_pow_two_mul (B : Matrix m n ℝ) (k : ℕ) :
 
 /-- Every odd power of the actual rectangular symmetric dilation has zero diagonal
 blocks. Source: Gautschi (2004), Section 2.2; operator derivations (OP19).
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.0h4v.s8.6051b9b87667 from=translated src=- shape=02ae3c71 vocab=110ee1c5
+-/
 theorem dilation_pow_two_mul_add_one (B : Matrix m n ℝ) (k : ℕ) :
     dilation B ^ (2 * k + 1) =
       fromBlocks 0 (((B * Bᵀ) ^ k) * B) (((Bᵀ * B) ^ k) * Bᵀ) 0 := by

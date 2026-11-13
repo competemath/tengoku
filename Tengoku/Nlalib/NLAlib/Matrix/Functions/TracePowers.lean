@@ -22,7 +22,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Every natural Hermitian power has real trace equal to the corresponding
 power sum of its real eigenvalues (spectral theorem); supports the integer trace method for
-`noncommutative-khintchine` and the complex trace tails of `rpcholesky`.-/
+`noncommutative-khintchine` and the complex trace tails of `rpcholesky`.
+@isnad1 id=eq.1h3v.s6.159e3d3f8eb9 from=translated src=- shape=a18fd712 vocab=e5dae65b
+-/
 theorem re_trace_pow_eq_sum_eigenvalues_pow
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) (r : ℕ) :
     (A ^ r).trace.re = ∑ i, hA.eigenvalues i ^ r := by
@@ -36,7 +38,9 @@ theorem re_trace_pow_eq_sum_eigenvalues_pow
 
 /-- Two powers of a real diagonal matrix, separated by a Hermitian matrix,
 have real trace equal to a sum weighted by squared complex entry norms (eigenbasis
-expansion).-/
+expansion).
+@isnad1 id=eq.1h5v.s8.811679642e28 from=translated src=- shape=af38f1e0 vocab=97cda94f
+-/
 theorem re_trace_mul_diagonal_pow_mul_mul_diagonal_pow
     (C : Matrix ι ι ℂ) (hC : C.IsHermitian) (ev : ι → ℝ) (a b : ℕ) :
     (C * (Matrix.diagonal (fun i => (ev i : ℂ))) ^ a * C *
@@ -69,7 +73,9 @@ theorem re_trace_mul_diagonal_pow_mul_mul_diagonal_pow
 
 /-- Unitary conjugation simultaneously preserves every polynomial product
 trace. Source: trace cyclicity and the star-algebra automorphism;
-supports the eigenbasis reduction in `noncommutative-khintchine`.-/
+supports the eigenbasis reduction in `noncommutative-khintchine`.
+@isnad1 id=other.0h6v.s12.ca476d6d1a83 from=translated src=- shape=41be5c77 vocab=c7e43df2
+-/
 theorem trace_mul_pow_mul_mul_pow_conjStarAlgAut
     (U : Matrix.unitaryGroup ι ℂ) (C H : Matrix ι ι ℂ) (a b : ℕ) :
     let E := Unitary.conjStarAlgAut ℂ (Matrix ι ι ℂ) U
@@ -80,7 +86,9 @@ theorem trace_mul_pow_mul_mul_pow_conjStarAlgAut
 
 /-- Even mixed powers in a Hermitian diagonal basis are bounded by the endpoint
 quadratic trace. Negative eigenvalues and exponent zero are included. Tropp 2015, §4.8;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=le.3h5v.s8.29de4316456d from=translated src=- shape=9f782969 vocab=2f9fab08
+-/
 theorem re_trace_mul_diagonal_pow_mul_le
     (C : Matrix ι ι ℂ) (hC : C.IsHermitian) (ev : ι → ℝ)
     {m l : ℕ} (hm : Even m) (hl : l ≤ m) :
@@ -124,7 +132,9 @@ theorem re_trace_mul_diagonal_pow_mul_le
 
 /-- **Mixed-power trace inequality.** For Hermitian `C,H`, even `m` and `l≤m`,
 `re tr(C Hˡ C H^(m-l))≤re tr(C² Hᵐ)`. Tropp 2015, §4.8 (polynomial trace method);
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=le.4h5v.s8.fb6e332c5e78 from=translated src=- shape=ce577544 vocab=4158987e
+-/
 theorem re_trace_mul_pow_mul_le_trace_sq_mul_pow
     (C H : Matrix ι ι ℂ) (hC : C.IsHermitian) (hH : H.IsHermitian)
     {m l : ℕ} (hm : Even m) (hl : l ≤ m) :

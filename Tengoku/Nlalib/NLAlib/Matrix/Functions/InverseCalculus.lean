@@ -25,7 +25,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The derivative of an invertible matrix curve is obtained by multiplication
 on both sides by its inverse. Source: the Banach algebra inverse derivative;
-atlas wishart-lambda-min-tail (operator calculus helper).-/
+atlas wishart-lambda-min-tail (operator calculus helper).
+@isnad1 id=hasderiv.2h4v.s8.7bec25c75058 from=translated src=- shape=74125faf vocab=cad733cd
+-/
 theorem hasDerivAt_matrix_inv {A : ℝ → Matrix ι ι ℝ}
     {A' : Matrix ι ι ℝ} {t : ℝ} (hA : HasDerivAt A A' t)
     (hunit : IsUnit (A t)) :
@@ -45,7 +47,9 @@ theorem hasDerivAt_matrix_inv {A : ℝ → Matrix ι ι ℝ}
 /-- Cyclicity of trace collapses the derivative of a noncommutative matrix
 power to one trace term. Source: ported from SparseFockFormal,
 `TracePowerConvexity.trace_power_derivative_sum`; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=eq.0h4v.s8.73acda7a6cc6 from=translated src=- shape=758a4775 vocab=bde11862
+-/
 theorem trace_power_derivative_sum (C B : Matrix ι ι ℝ) (n : ℕ) :
     Matrix.trace (∑ i ∈ Finset.range n, C ^ (n.pred - i) * B * C ^ i) =
       (n : ℝ) * Matrix.trace (B * C ^ (n - 1)) := by
@@ -69,7 +73,9 @@ theorem trace_power_derivative_sum (C B : Matrix ι ι ℝ) (n : ℕ) :
 /-- Trace of a differentiable matrix power has the usual scalar-looking
 derivative after cyclicity is used. Source: ported from SparseFockFormal,
 `TracePowerConvexity.hasDerivAt_tracePowerAlong`, generalized to matrix curves;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.1h5v.s7.4a04a8b0c8b9 from=translated src=- shape=640c981c vocab=7397fbac
+-/
 theorem hasDerivAt_matrix_trace_pow {A : ℝ → Matrix ι ι ℝ}
     {A' : Matrix ι ι ℝ} {t : ℝ} (hA : HasDerivAt A A' t) (n : ℕ) :
     HasDerivAt (fun x => Matrix.trace (A x ^ n))
@@ -82,7 +88,9 @@ theorem hasDerivAt_matrix_trace_pow {A : ℝ → Matrix ι ι ℝ}
 
 /-- Along an invertible matrix curve, the derivative of `tr(A⁻ⁿ)` is
 `-n tr(A⁻⁽ⁿ⁺¹⁾ A')`. Source: inverse derivative and trace cyclicity;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.2h5v.s8.bdb6f1197363 from=translated src=- shape=3196d226 vocab=5c82f2cc
+-/
 theorem hasDerivAt_matrix_trace_inv_pow {A : ℝ → Matrix ι ι ℝ}
     {A' : Matrix ι ι ℝ} {t : ℝ} (hA : HasDerivAt A A' t)
     (hunit : IsUnit (A t)) (n : ℕ) :
@@ -105,7 +113,9 @@ theorem hasDerivAt_matrix_trace_inv_pow {A : ℝ → Matrix ι ι ℝ}
 set_option maxHeartbeats 800000 in
 /-- Cyclic matrix inverse powers give an explicit quadratic trace kernel
 after differentiating. Source: inverse derivative and finite power rule;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=eq.0h4v.s8.178ebdacb297 from=translated src=- shape=130cfcc1 vocab=6d914c06
+-/
 theorem trace_inv_power_derivative_sum (R B : Matrix ι ι ℝ) (n : ℕ) :
     Matrix.trace ((∑ i ∈ Finset.range (n + 1),
       R ^ ((n + 1).pred - i) * (-R * B * R) * R ^ i) * B) =
@@ -123,7 +133,9 @@ theorem trace_inv_power_derivative_sum (R B : Matrix ι ι ℝ) (n : ℕ) :
 /-- The directional trace term in an inverse-power derivative has the
 negative Hessian kernel as derivative. Source: inverse derivative and
 noncommutative power rule; atlas `wishart-lambda-min-tail` (operator calculus
-helper), generalized to non-affine curves.-/
+helper), generalized to non-affine curves.
+@isnad1 id=hasderiv.3h6v.s9.0b01613363d8 from=translated src=- shape=cc51756c vocab=040bf6ae
+-/
 theorem hasDerivAt_matrix_trace_inv_pow_mul {A D : ℝ → Matrix ι ι ℝ}
     {D' : Matrix ι ι ℝ} {t : ℝ} (hA : HasDerivAt A (D t) t)
     (hD : HasDerivAt D D' t) (hunit : IsUnit (A t)) (n : ℕ) :
@@ -141,7 +153,9 @@ theorem hasDerivAt_matrix_trace_inv_pow_mul {A D : ℝ → Matrix ι ι ℝ}
 
 /-- Along an affine matrix line, the directional inverse-power trace has
 the negative Hessian kernel as derivative. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.1h5v.s9.ba9ed95c61a3 from=translated src=- shape=4a5a8912 vocab=4b31b14e
+-/
 theorem hasDerivAt_matrix_trace_inv_pow_mul_const (A B : Matrix ι ι ℝ)
     (n : ℕ) (t : ℝ) (hunit : IsUnit (A + t • B)) :
     HasDerivAt (fun x => Matrix.trace ((A + x • B)⁻¹ ^ (n + 1) * B))
@@ -156,7 +170,9 @@ theorem hasDerivAt_matrix_trace_inv_pow_mul_const (A B : Matrix ι ι ℝ)
 /-- Exact second derivative of an inverse trace power along an affine
 matrix line, expressed without differentiating eigenvectors.
 Source: inverse derivative and trace cyclicity; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.1h5v.s9.e6e415896005 from=translated src=- shape=d6df30a4 vocab=69077fb6
+-/
 theorem hasDerivAt_matrix_trace_inv_pow_first (A B : Matrix ι ι ℝ)
     (n : ℕ) (t : ℝ) (hunit : IsUnit (A + t • B)) :
     HasDerivAt (fun x => -(n : ℝ) * Matrix.trace ((A + x • B)⁻¹ ^ (n + 1) * B))

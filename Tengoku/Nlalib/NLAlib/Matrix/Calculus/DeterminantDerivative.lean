@@ -24,7 +24,9 @@ private def detRowsContinuous : ContinuousMultilinearMap ℝ (fun _ : n => n →
     cont := continuous_id.matrix_det }
 
 /-- The sum of determinants obtained by replacing one row is the adjugate
-trace pairing. Horn–Johnson 2013, §0.8.10; determinant-derivative helper.-/
+trace pairing. Horn–Johnson 2013, §0.8.10; determinant-derivative helper.
+@isnad1 id=eq.0h3v.s6.628cb1186152 from=translated src=- shape=7962f096 vocab=0b6bd9eb
+-/
 theorem sum_det_updateRow_eq_trace_adjugate_mul (A H : Matrix n n ℝ) :
     (∑ i : n, (A.updateRow i (H i)).det) = (A.adjugate * H).trace := by
   simp_rw [← Matrix.cramer_transpose_apply, Matrix.cramer_eq_adjugate_mulVec,
@@ -36,7 +38,9 @@ theorem sum_det_updateRow_eq_trace_adjugate_mul (A H : Matrix n n ℝ) :
 open scoped Matrix.Norms.Elementwise in
 /-- Jacobi's formula for a differentiable matrix path applies at every matrix,
 including singular matrices and empty indices. Horn–Johnson 2013, §0.8.10.
-atlas: determinant-derivative-/
+atlas: determinant-derivative
+@isnad1 id=hasderiv.1h4v.s7.69af3639dc64 from=translated src=- shape=b6a41708 vocab=f94ce8b9
+-/
 theorem hasDerivAt_det {A : ℝ → Matrix n n ℝ} {H : Matrix n n ℝ} {t : ℝ}
     (hA : HasDerivAt A H t) :
     HasDerivAt (fun s => (A s).det) ((A t).adjugate * H).trace t := by
@@ -50,7 +54,9 @@ open scoped Matrix.Norms.Elementwise in
 /-- The logarithmic determinant derivative is the inverse trace pairing when
 the determinant is positive. Horn–Johnson 2013, §0.8.10. The proof only needs
 nonzero determinant for the derivative of the real logarithm.
-atlas: determinant-derivative-/
+atlas: determinant-derivative
+@isnad1 id=hasderiv.2h4v.s7.c91a0369a371 from=translated src=- shape=86e676a1 vocab=be33222a
+-/
 theorem hasDerivAt_log_det {A : ℝ → Matrix n n ℝ} {H : Matrix n n ℝ} {t : ℝ}
     (hA : HasDerivAt A H t) (hDet : 0 < (A t).det) :
     HasDerivAt (fun s => Real.log (A s).det) ((A t)⁻¹ * H).trace t := by
@@ -63,7 +69,9 @@ theorem hasDerivAt_log_det {A : ℝ → Matrix n n ℝ} {H : Matrix n n ℝ} {t 
 open scoped Matrix.Norms.Elementwise in
 /-- The derivative of `det(t I - A)` is the trace of its adjugate, including
 the empty matrix. Horn–Johnson 2013, §0.8.10.
-atlas: determinant-derivative-/
+atlas: determinant-derivative
+@isnad1 id=hasderiv.0h3v.s7.c6bce10a73cf from=translated src=- shape=038cf6f9 vocab=8b16ba24
+-/
 theorem hasDerivAt_det_smul_one_sub (A : Matrix n n ℝ) (t : ℝ) :
     HasDerivAt (fun s => (s • (1 : Matrix n n ℝ) - A).det)
       (t • (1 : Matrix n n ℝ) - A).adjugate.trace t := by
@@ -76,7 +84,9 @@ open scoped Matrix.Norms.Elementwise in
 the principal minors obtained by deleting one index. At size one these are
 the empty determinants; size zero is covered by the adjugate trace theorem.
 Horn–Johnson 2013, §0.8.10.
-atlas: determinant-derivative-/
+atlas: determinant-derivative
+@isnad1 id=hasderiv.0h3v.s9.b3e2cb502829 from=translated src=- shape=09812708 vocab=f31500f2
+-/
 theorem hasDerivAt_det_smul_one_sub_sum_principal_minors {k : ℕ}
     (A : Matrix (Fin (k + 1)) (Fin (k + 1)) ℝ) (t : ℝ) :
     HasDerivAt (fun s => (s • (1 : Matrix (Fin (k + 1)) (Fin (k + 1)) ℝ) - A).det)

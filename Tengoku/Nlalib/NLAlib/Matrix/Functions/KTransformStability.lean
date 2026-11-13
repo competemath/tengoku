@@ -13,7 +13,9 @@ set_option maxHeartbeats 600000
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Invertible whitening transports the actual derivative quadratic test to
-strict Hilbert positivity of the actual Frobenius stability operator.-/
+strict Hilbert positivity of the actual Frobenius stability operator.
+@isnad1 id=iff.4h4v.s10.a5ccbdd8f09b from=translated src=- shape=1b64eef7 vocab=b82fcf10
+-/
 theorem matrixKTransform_quadratic_iff
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)
@@ -65,7 +67,9 @@ theorem matrixKTransform_quadratic_iff
 
 /-- The derivative's strict Frobenius positivity is equivalent to the actual
 Frobenius operator norm being below one. Source (F22).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=iff.4h4v.s10.99936fd2ee8c from=translated src=- shape=a7005cd3 vocab=09244ec0
+-/
 theorem matrixKTransform_quadratic_iff_norm_lt_one [Nonempty n]
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)
@@ -80,7 +84,9 @@ theorem matrixKTransform_quadratic_iff_norm_lt_one [Nonempty n]
     (posSemidef_matrixKStabilityFrobenius ν hν α hα.le S hS hgap)
 
 /-- The actual Frobenius norm test is equivalent to a strict positive matrix
-supersolution, stated on source matrices rather than a surrogate operator.-/
+supersolution, stated on source matrices rather than a surrogate operator.
+@isnad1 id=iff.4h4v.s10.0108484deada from=translated src=- shape=c87e39e2 vocab=ee0de23e
+-/
 theorem matrixKTransform_norm_iff_supersolution [Nonempty n]
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)
@@ -100,7 +106,9 @@ theorem matrixKTransform_norm_iff_supersolution [Nonempty n]
     exact ⟨toHermitianFrobenius hY.isHermitian,hY,hg⟩
 
 /-- Positive matrix supersolutions and positive derivative witnesses are
-exactly equivalent under actual square-root congruence. Source (F23).-/
+exactly equivalent under actual square-root congruence. Source (F23).
+@isnad1 id=iff.4h4v.s10.d60c3844c68e from=translated src=- shape=b8fe95a4 vocab=c2a38a13
+-/
 theorem matrixKTransform_supersolution_iff_derivative_witness
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)
@@ -123,7 +131,9 @@ theorem matrixKTransform_supersolution_iff_derivative_witness
 compactly supported matrix probability measure and its actual derivative.
 Only support points need satisfy the strict denominator gap.
 Source: user derivations (F20)--(F23).
-atlas: matrix-k-transform-stability-/
+atlas: matrix-k-transform-stability
+@isnad1 id=and.4h4v.s11.ea08812ea036 from=translated src=- shape=9e018329 vocab=ccb3f588
+-/
 theorem matrixKTransform_stability_iff [Nonempty n]
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsProbabilityMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)

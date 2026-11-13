@@ -29,7 +29,9 @@ def jacksonPeriodicApprox (n : ℕ) (g : ℝ → ℝ) (x : ℝ) : ℝ :=
 
 /-- The unwrapped sawtooth error is smooth, hence absolutely continuous on the
 integration interval.
-Source: the explicit polynomial-sine construction; helper for sharp `jackson-lipschitz`.-/
+Source: the explicit polynomial-sine construction; helper for sharp `jackson-lipschitz`.
+@isnad1 id=absolute.0h1v.s4.4d7b9aec8824 from=translated src=- shape=3c05b4a2 vocab=3d9e4fe5
+-/
 theorem absolutelyContinuousOnInterval_sawtoothError (n : ℕ) :
     AbsolutelyContinuousOnInterval (sawtoothError n) 0 (2 * Real.pi) := by
   have hp : ContDiff ℝ 1 (fun x : ℝ => (sawtoothSineInterp n).eval x) := by
@@ -42,7 +44,9 @@ theorem absolutelyContinuousOnInterval_sawtoothError (n : ℕ) :
 /-- Integration by parts gives the exact error of the fixed convolution approximant.
 The periodic endpoint contribution is `-2π g(x)` and the polynomial kernel is the
 negative derivative of the proved sawtooth error.
-Helper for `jackson-lipschitz` (periodic Jackson theorem).-/
+Helper for `jackson-lipschitz` (periodic Jackson theorem).
+@isnad1 id=eq.2h4v.s7.ad8cb4f7330c from=translated src=- shape=cad3155b vocab=c6a3b8f1
+-/
 theorem sub_jacksonPeriodicApprox_eq_integral {g : ℝ → ℝ} {L : NNReal} (hg : LipschitzWith L g)
     (hper : Function.Periodic g (2 * Real.pi)) (n : ℕ) (x : ℝ) :
     g x - jacksonPeriodicApprox n g x = -(2 * Real.pi)⁻¹ *
@@ -76,7 +80,9 @@ theorem sub_jacksonPeriodicApprox_eq_integral {g : ℝ → ℝ} {L : NNReal} (hg
 `π L/(2(n+1))` for every periodic `L`-Lipschitz real function. All kernel norm and
 absolute-continuity inputs are proved rather than assumed.
 Source: Arnold, *Numerical Analysis* lecture notes, §1.2 (Jackson's theorem).
-Atlas `jackson-lipschitz` (periodic error helper).-/
+Atlas `jackson-lipschitz` (periodic error helper).
+@isnad1 id=le.2h4v.s6.c5e1314efcd4 from=translated src=- shape=f94e7e5e vocab=c96c8706
+-/
 theorem abs_sub_jacksonPeriodicApprox_le {g : ℝ → ℝ} {L : NNReal} (hg : LipschitzWith L g)
     (hper : Function.Periodic g (2 * Real.pi)) (n : ℕ) (x : ℝ) :
     |g x - jacksonPeriodicApprox n g x| ≤ Real.pi * (L : ℝ) / (2 * (n + 1)) := by

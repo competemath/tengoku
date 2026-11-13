@@ -29,7 +29,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 /-- A positive definite matrix with trace equal to its dimension and determinant
 at least `exp (-eps)`, for `eps ≤ 1 / 6`, has squared Frobenius distance from
 the identity at most `6 * eps`. The trace and determinant are real; their real
-parts express the statement uniformly over `ℝ` and `ℂ`.-/
+parts express the statement uniformly over `ℝ` and `ℂ`.
+@isnad1 id=le.4h4v.s8.d597df01e2d9 from=translated src=- shape=e38c6316 vocab=9ab650f7
+-/
 theorem _root_.Matrix.PosDef.frobSq_sub_one_le_six_mul_of_exp_neg_le_det
     {A : Matrix n n 𝕜} (hA : A.PosDef) (eps : ℝ)
     (htr : RCLike.re A.trace = (Fintype.card n : ℝ))

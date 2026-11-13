@@ -24,6 +24,9 @@ local notation "M" => Matrix n n 𝕜
 private local instance : ContinuousAdd (M →L[𝕜] M →L[𝕜] M) :=
   (inferInstance : IsTopologicalAddGroup (M →L[𝕜] M →L[𝕜] M)).toContinuousAdd
 
+/--
+@isnad1 id=continuo.0h2v.s12.8f99d871ff04 from=translated src=- shape=de1ec4ab vocab=285aaa58
+-/
 @[fun_prop] theorem continuous_flip_matrixBilinear :
     Continuous (fun L : M →L[𝕜] M →L[𝕜] M => L.flip) :=
   (flipₗᵢ 𝕜 M M M).continuous
@@ -32,6 +35,9 @@ private local instance : ContinuousAdd (M →L[𝕜] M →L[𝕜] M) :=
 def monomialBlockMap (A B : M) (k : ℕ) : M →L[𝕜] M :=
   ∑ j ∈ Finset.range k, mulLeftRight 𝕜 M (A ^ (k.pred - j)) (B ^ j)
 
+/--
+@isnad1 id=eq.0h6v.s9.6ee1777adf84 from=translated src=- shape=9cd929fd vocab=4bfdd7d3
+-/
 @[simp] theorem monomialBlockMap_apply (A B H : M) (k : ℕ) :
     monomialBlockMap A B k H = monomialBlockDifference A B H k := by
   simp [monomialBlockMap, monomialBlockDifference]
@@ -40,12 +46,17 @@ def monomialBlockMap (A B : M) (k : ℕ) : M →L[𝕜] M :=
 def polynomialBlockMap (p : 𝕜[X]) (A B : M) : M →L[𝕜] M :=
   ∑ k ∈ Finset.range (p.natDegree + 1), p.coeff k • monomialBlockMap A B k
 
+/--
+@isnad1 id=eq.0h6v.s9.57c45115070d from=translated src=- shape=7cd54492 vocab=b8e60259
+-/
 @[simp] theorem polynomialBlockMap_apply (p : 𝕜[X]) (A B H : M) :
     polynomialBlockMap p A B H = polynomialBlockDifference p A B H := by
   simp [polynomialBlockMap, polynomialBlockDifference]
 
 /-- On the diagonal, the first block map is the existing noncommutative
-polynomial insertion derivative.-/
+polynomial insertion derivative.
+@isnad1 id=eq.0h4v.s8.baabfcc0a728 from=translated src=- shape=ae497357 vocab=6637a999
+-/
 theorem polynomialBlockMap_self (p : 𝕜[X]) (A : M) :
     polynomialBlockMap p A A = p.frechetDerivative A := by
   ext H i j
@@ -59,6 +70,9 @@ def polynomialSecondBlockMap (p : 𝕜[X]) (A B C : M) : M →L[𝕜] M →L[�
       (compL 𝕜 M M M (mulLeftRight 𝕜 M 1 (C ^ j))).comp
         ((mul 𝕜 M).comp (monomialBlockMap A B (k.pred - j)))
 
+/--
+@isnad1 id=eq.0h8v.s11.4433294e0369 from=translated src=- shape=ebebf120 vocab=b24bf2e4
+-/
 @[simp] theorem polynomialSecondBlockMap_apply (p : 𝕜[X]) (A B C G H : M) :
     polynomialSecondBlockMap p A B C G H = polynomialSecondBlockDifference p A B C G H := by
   simp [polynomialSecondBlockMap, polynomialSecondBlockDifference]
@@ -69,6 +83,9 @@ def rationalBlockMap (P Q : 𝕜[X]) (A B : M) : M →L[𝕜] M :=
     (polynomialBlockMap P A B -
       (mulLeftRight 𝕜 M (rationalMatrixEval P Q A) 1).comp (polynomialBlockMap Q A B))
 
+/--
+@isnad1 id=eq.0h7v.s9.87cd9e3f7e00 from=translated src=- shape=45dc69b2 vocab=7d09d1b2
+-/
 @[simp] theorem rationalBlockMap_apply (P Q : 𝕜[X]) (A B H : M) :
     rationalBlockMap P Q A B H = rationalBlockDifference P Q A B H := by
   simp [rationalBlockMap, rationalBlockDifference, Matrix.sub_mul]
@@ -81,20 +98,32 @@ def rationalSecondBlockMap (P Q : 𝕜[X]) (A B C : M) : M →L[𝕜] M →L[�
         (polynomialSecondBlockMap Q A B C) -
       bilinearComp (mul 𝕜 M) (rationalBlockMap P Q A B) (polynomialBlockMap Q B C))
 
+/--
+@isnad1 id=eq.0h9v.s11.5770ff45047e from=translated src=- shape=027c5db5 vocab=e2fa3e6e
+-/
 @[simp] theorem rationalSecondBlockMap_apply (P Q : 𝕜[X]) (A B C G H : M) :
     rationalSecondBlockMap P Q A B C G H = rationalSecondBlockDifference P Q A B C G H := by
   simp [rationalSecondBlockMap, rationalSecondBlockDifference, Matrix.sub_mul]
 
+/--
+@isnad1 id=continuo.0h3v.s9.4586a6e15dbe from=translated src=- shape=c54fb426 vocab=bee52dd2
+-/
 @[fun_prop] theorem continuous_monomialBlockMap (k : ℕ) :
     Continuous (fun Z : M × M => monomialBlockMap Z.1 Z.2 k) := by
   unfold monomialBlockMap
   fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s9.221ee1332ab3 from=translated src=- shape=8c71cf21 vocab=a267d582
+-/
 @[fun_prop] theorem continuous_polynomialBlockMap (p : 𝕜[X]) :
     Continuous (fun Z : M × M => polynomialBlockMap p Z.1 Z.2) := by
   unfold polynomialBlockMap monomialBlockMap
   fun_prop
 
+/--
+@isnad1 id=continuo.0h3v.s11.c3d9100f803c from=translated src=- shape=59cbe9a0 vocab=825ecb7e
+-/
 @[fun_prop] theorem continuous_polynomialSecondBlockMap (p : 𝕜[X]) :
     Continuous (fun Z : M × M × M => polynomialSecondBlockMap p Z.1 Z.2.1 Z.2.2) := by
   unfold polynomialSecondBlockMap monomialBlockMap
@@ -109,6 +138,9 @@ def rationalSecondBlockMap (P Q : 𝕜[X]) (A B C : M) : M →L[𝕜] M →L[�
     · fun_prop
   convert! hc.const_smul (p.coeff k) using 1
 
+/--
+@isnad1 id=continuo.1h5v.s9.3db8ac7ae389 from=translated src=- shape=f6bac56e vocab=cbd5f072
+-/
 theorem continuousAt_rationalMatrixEval (P Q : 𝕜[X]) (A : M)
     (hA : IsUnit (aeval A Q)) : ContinuousAt (rationalMatrixEval P Q) A := by
   unfold rationalMatrixEval
@@ -118,6 +150,9 @@ theorem continuousAt_rationalMatrixEval (P Q : 𝕜[X]) (A : M)
       (f := fun X : M => aeval X Q)
       (Q.hasFDerivAt_aeval_noncomm A).continuousAt)
 
+/--
+@isnad1 id=continuo.2h6v.s10.8eb03d944dd7 from=translated src=- shape=fa281f85 vocab=13f19a8d
+-/
 theorem continuousAt_rationalBlockMap (P Q : 𝕜[X]) (A B : M)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) :
     ContinuousAt (fun Z : M × M => rationalBlockMap P Q Z.1 Z.2) (A, B) := by
@@ -136,6 +171,9 @@ theorem continuousAt_rationalBlockMap (P Q : 𝕜[X]) (A B : M)
   unfold rationalBlockMap
   fun_prop
 
+/--
+@isnad1 id=continuo.3h7v.s11.655821e4bdbb from=translated src=- shape=50c647c1 vocab=859fc12d
+-/
 theorem continuousAt_rationalSecondBlockMap (P Q : 𝕜[X]) (A B C : M)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) (hC : IsUnit (aeval C Q)) :
     ContinuousAt (fun Z : M × M × M => rationalSecondBlockMap P Q Z.1 Z.2.1 Z.2.2)

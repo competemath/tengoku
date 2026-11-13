@@ -47,7 +47,9 @@ def lyapunovCayleySolution (A Q : Matrix n n ℂ) : Matrix n n ℂ :=
   steinGramian (cayleyTransform A 1) ((2 : ℂ) • ((A - 1)⁻¹ * Q * ((A - 1)⁻¹)ᴴ))
 
 /-- The continuous Lyapunov equation follows from the actual convergent
-Cayley Stein Gramian. No continuous exponential bound is a hypothesis.-/
+Cayley Stein Gramian. No continuous exponential bound is a hypothesis.
+@isnad1 id=eq.1h3v.s7.99733852b87a from=translated src=- shape=2e1cf75b vocab=2b26d0af
+-/
 theorem lyapunovCayleySolution_equation (A Q : Matrix n n ℂ) (hA : IsHurwitz A) :
     A * lyapunovCayleySolution A Q + lyapunovCayleySolution A Q * Aᴴ + Q = 0 := by
   have hP : IsUnit (A - 1).det := by
@@ -73,7 +75,9 @@ theorem lyapunovCayleySolution_equation (A Q : Matrix n n ℂ) (hA : IsHurwitz A
     abel
   exact (smul_eq_zero.mp hzero).resolve_left (by norm_num)
 
-/-- The Cayley construction preserves PSD forcing.-/
+/-- The Cayley construction preserves PSD forcing.
+@isnad1 id=possemid.2h3v.s5.57a50aec3693 from=translated src=- shape=13016ce4 vocab=39bf6cce
+-/
 theorem posSemidef_lyapunovCayleySolution (A Q : Matrix n n ℂ)
     (hA : IsHurwitz A) (hQ : Q.PosSemidef) : (lyapunovCayleySolution A Q).PosSemidef := by
   apply posSemidef_steinGramian
@@ -84,7 +88,9 @@ theorem posSemidef_lyapunovCayleySolution (A Q : Matrix n n ℂ)
 /-- Positive definite forcing gives a positive definite continuous solution.
 This supplies the strict Lyapunov certificate needed to obtain uniform
 Hurwitz semigroup decay. Source: user derivations, Lyapunov stability.
-atlas: lyapunov-stability-gramian (partial)-/
+atlas: lyapunov-stability-gramian (partial)
+@isnad1 id=posdef.2h3v.s5.ba1cc7d8edc7 from=translated src=- shape=13016ce4 vocab=fc4ee08a
+-/
 theorem posDef_lyapunovCayleySolution (A Q : Matrix n n ℂ)
     (hA : IsHurwitz A) (hQ : Q.PosDef) : (lyapunovCayleySolution A Q).PosDef := by
   have hP : IsUnit (A - 1) := by simpa using hA.isUnit_sub_pos_smul_one 1 zero_lt_one

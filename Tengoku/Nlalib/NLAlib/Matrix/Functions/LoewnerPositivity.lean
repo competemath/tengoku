@@ -19,7 +19,9 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder Topology
 namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- A positive Löwner matrix makes the Hadamard derivative positive.-/
+/-- A positive Löwner matrix makes the Hadamard derivative positive.
+@isnad1 id=possemid.2h5v.s8.0037c1be9252 from=translated src=- shape=46f3e996 vocab=3bc33ecb
+-/
 theorem posSemidef_loewnerDerivative {f : ℝ → ℝ} {ev : n → ℝ}
     (hL : (loewnerMatrix f ev).PosSemidef) (U : unitary (Matrix n n ℂ))
     {H : Matrix n n ℂ} (hH : H.PosSemidef) :
@@ -29,7 +31,9 @@ theorem posSemidef_loewnerDerivative {f : ℝ → ℝ} {ev : n → ℝ}
   exact (hLc.hadamard (hH.conjTranspose_mul_mul_same (U : Matrix n n ℂ))).mul_mul_conjTranspose_same _
 
 /-- On an open spectral domain, operator monotonicity forces the actual
-divided-difference derivative to preserve the positive cone.-/
+divided-difference derivative to preserve the positive cone.
+@isnad1 id=possemid.7h7v.s9.62c16a90f87e from=translated src=- shape=eecfd3af vocab=f532ccf2
+-/
 theorem OperatorMonotoneOn.posSemidef_loewnerDerivative {I : Set ℝ} {f : ℝ → ℝ}
     (hm : OperatorMonotoneOn I f) (hI : IsOpen I) (hf : DifferentiableOn ℝ f I)
     {A : Matrix n n ℂ} (hA : A.IsHermitian) (hAI : spectrum ℝ A ⊆ I)

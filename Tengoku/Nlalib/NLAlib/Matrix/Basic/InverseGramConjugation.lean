@@ -20,7 +20,9 @@ variable {𝕜 m r s : Type*} [RCLike 𝕜] [Fintype m] [Fintype r] [Fintype s]
   [DecidableEq r]
 
 /-- An invertible right factor gives the exact inverse normalized Gram and
-proves its invertibility, rather than assuming that conclusion.-/
+proves its invertibility, rather than assuming that conclusion.
+@isnad1 id=and.3h6v.s9.94fef8c045e2 from=translated src=- shape=dd58be5c vocab=bbdf9259
+-/
 theorem inv_gram_of_mul_right_eq (Q Y : Matrix m r 𝕜) (R : Matrix r r 𝕜)
     (hR : IsUnit R) (hY : IsUnit (Yᴴ*Y)) (hQR : Q*R=Y) :
     (Qᴴ*Q)⁻¹ = R*(Yᴴ*Y)⁻¹*Rᴴ ∧ IsUnit (Qᴴ*Q) := by
@@ -42,7 +44,9 @@ theorem inv_gram_of_mul_right_eq (Q Y : Matrix m r 𝕜) (R : Matrix r r 𝕜)
 
 /-- The inverse normalized top-Gram trace splits into the dimension plus the
 independent lower-block contribution. Empty lower blocks are allowed.
-atlas: gaussian-haar-sketch-solve-exact (partial)-/
+atlas: gaussian-haar-sketch-solve-exact (partial)
+@isnad1 id=eq.4h8v.s10.fc573ad9c16b from=translated src=- shape=28ccc059 vocab=5f7f54fe
+-/
 theorem trace_inv_gram_of_mul_right_eq (Q Y : Matrix m r 𝕜) (Z : Matrix s r 𝕜)
     (R : Matrix r r 𝕜) (hR : IsUnit R) (hY : IsUnit (Yᴴ*Y)) (hQR : Q*R=Y)
     (hGram : Rᴴ*R=Yᴴ*Y+Zᴴ*Z) :
@@ -53,7 +57,9 @@ theorem trace_inv_gram_of_mul_right_eq (Q Y : Matrix m r 𝕜) (Z : Matrix s r �
     Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).mp hY),Matrix.trace_one]
 
 /-- The inverse-Gram lower-block trace is an actual squared Frobenius norm.
-This identity supports integrability without assuming entrywise inverse moments.-/
+This identity supports integrability without assuming entrywise inverse moments.
+@isnad1 id=eq.1h6v.s9.fc9de618f84c from=translated src=- shape=cedae010 vocab=b70af742
+-/
 theorem frobSq_mul_pinvR_adjoint_eq_re_trace (X : Matrix r m 𝕜) (Z : Matrix s r 𝕜)
     (hX : IsUnit (X*Xᴴ)) :
     frobSq (Z*(pinvR X)ᴴ) = RCLike.re (Matrix.trace ((X*Xᴴ)⁻¹*(Zᴴ*Z))) := by

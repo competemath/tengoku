@@ -28,7 +28,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- A square real matrix of full rank has nonzero determinant (rank–nullity). Helper for the
-inverse-Wishart computations; atlas `inverse-wishart-mean` (helper).-/
+inverse-Wishart computations; atlas `inverse-wishart-mean` (helper).
+@isnad1 id=ne.1h2v.s5.bec43579bb71 from=translated src=- shape=d0c60fdb vocab=a72621c1
+-/
 theorem det_ne_zero_of_rank_eq {n : Type*} [Fintype n] [DecidableEq n] (M : Matrix n n ℝ)
     (h : M.rank = Fintype.card n) : M.det ≠ 0 := by
   intro hdet
@@ -43,7 +45,9 @@ theorem det_ne_zero_of_rank_eq {n : Type*} [Fintype n] [DecidableEq n] (M : Matr
 
 /-- `(G Gᵀ)⁻¹` is positive semidefinite for every real matrix `G` (Mathlib's total inverse, `0`
 when `G Gᵀ` is singular). Helper for Tropp–Webber 2023, App. B; atlas `inverse-wishart-mean`
-(helper).-/
+(helper).
+@isnad1 id=possemid.0h3v.s5.ac7e810aaef7 from=translated src=- shape=c7fcdf1a vocab=7af24bb1
+-/
 theorem posSemidef_inv_self_mul_transpose {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m]
     (G : Matrix m n ℝ) : ((G * Gᵀ)⁻¹).PosSemidef := by
   have := Matrix.posSemidef_self_mul_conjTranspose G
@@ -52,7 +56,9 @@ theorem posSemidef_inv_self_mul_transpose {m n : Type*} [Fintype m] [Fintype n] 
 
 /-- An entry of a real positive semidefinite matrix is dominated by the diagonal:
 `|Mᵢⱼ| ≤ Mᵢᵢ + Mⱼⱼ`. Horn–Johnson 2013, Obs. 7.1.10; helper for Tropp–Webber 2023, App. B;
-atlas `inverse-wishart-mean` (helper).-/
+atlas `inverse-wishart-mean` (helper).
+@isnad1 id=le.1h4v.s5.3c25d99de166 from=translated src=- shape=07547dd2 vocab=5d2baaff
+-/
 theorem abs_apply_le_apply_self_add_apply_self {m : Type*} [Fintype m] [DecidableEq m]
     (M : Matrix m m ℝ) (hM : M.PosSemidef) (i j : m) : |M i j| ≤ M i i + M j j := by
   have hs : M j i = M i j := by

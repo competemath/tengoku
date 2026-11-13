@@ -24,7 +24,9 @@ set_option backward.isDefEq.respectTransparency.types false in
 characteristic-polynomial companion matrix. Native basis representation is
 the similarity interface, including dimension zero and arbitrary finite labels.
 Source: operator derivations, (S2)–(S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=ex.1h4v.s12.3c730727af8c from=translated src=- shape=6ba75bde vocab=65090961
+-/
 theorem exists_basis_toMatrix_eq_companionMatrix_of_krylovGrade_eq_card
     {A : Matrix n n K} {b : n → K} (hb : krylovGrade A b = Fintype.card n) :
     ∃ B : Module.Basis (Fin A.charpoly.natDegree) K (n → K),
@@ -93,7 +95,9 @@ theorem exists_basis_toMatrix_eq_companionMatrix_of_krylovGrade_eq_card
 minimal and characteristic polynomials coincide. This is similarity stated through
 a native basis and holds over every field, including empty matrices.
 Source: Horn–Johnson (2013), Theorem 3.3.14; operator derivations, (S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.0h3v.s12.2fa0f46da212 from=translated src=- shape=3351e435 vocab=5a194702
+-/
 theorem minpoly_eq_charpoly_iff_exists_basis_toMatrix_eq_companionMatrix
     (A : Matrix n n K) :
     minpoly K A = A.charpoly ↔

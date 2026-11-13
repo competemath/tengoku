@@ -44,7 +44,9 @@ def terminalCoordinateMatrix (n : ℕ) : Matrix (Fin n) (Fin n) 𝕜 :=
   diagonal (fun i => if i.val+1 = n then 1 else 0)
 
 /-- Left multiplication by a unit lower bidiagonal matrix uses only the current
-row and its immediate predecessor, including the first-row boundary.-/
+row and its immediate predecessor, including the first-row boundary.
+@isnad1 id=eq.0h6v.s7.533b412d832b from=translated src=- shape=61ece8e7 vocab=bda20298
+-/
 theorem darbouxLowerMatrix_mul_apply {n : ℕ} (e : ℕ → 𝕜)
     (B : Matrix (Fin n) (Fin n) 𝕜) (i j : Fin n) :
     (darbouxLowerMatrix n e * B) i j = B i j +
@@ -89,7 +91,9 @@ private theorem darbouxUpperMatrix_mul_apply {n : ℕ} (q : ℕ → 𝕜)
 
 /-- The lower/upper factors give the monic Jacobi entries `q_j+e_(j-1)`
 and `q_(j-1)e_(j-1)`, with zero elimination term in the first row.
-Source: finite Darboux factorization, OP24.-/
+Source: finite Darboux factorization, OP24.
+@isnad1 id=eq.0h4v.s7.d018c774a0dd from=translated src=- shape=0f272aee vocab=65257e97
+-/
 theorem darbouxLowerMatrix_mul_darbouxUpperMatrix (n : ℕ) (q e : ℕ → 𝕜) :
     darbouxLowerMatrix n e * darbouxUpperMatrix n q =
       monicJacobiMatrix n (fun i => q i + if i=0 then 0 else e (i-1))
@@ -105,7 +109,9 @@ theorem darbouxLowerMatrix_mul_darbouxUpperMatrix (n : ℕ) (q e : ℕ → 𝕜)
 
 /-- Reversing finite bidiagonal factors gives diagonal `q_j+e_j` except at
 the last row, where the absent next coordinate removes `e_j`.
-Source: finite Darboux factorization, OP24.-/
+Source: finite Darboux factorization, OP24.
+@isnad1 id=eq.0h4v.s7.9a23ac816d30 from=translated src=- shape=89faeef6 vocab=c2aa8969
+-/
 theorem darbouxUpperMatrix_mul_darbouxLowerMatrix (n : ℕ) (q e : ℕ → 𝕜) :
     darbouxUpperMatrix n q * darbouxLowerMatrix n e =
       monicJacobiMatrix n
@@ -125,7 +131,9 @@ theorem darbouxUpperMatrix_mul_darbouxLowerMatrix (n : ℕ) (q e : ℕ → 𝕜)
 /-- The finite monic Darboux reversal has its exact last-coordinate correction.
 The formula also includes empty dimension, where both sides are empty matrices.
 Source: Gautschi (2004), Theorem 1.33; operator derivations OP24.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.0h4v.s7.3d647ea57d66 from=translated src=- shape=cc1266e4 vocab=59f669dc
+-/
 theorem monicJacobiMatrix_eq_darbouxUpperMatrix_mul_darbouxLowerMatrix_add_boundary
     (n : ℕ) (q e : ℕ → 𝕜) :
     monicJacobiMatrix n (fun i => q i + e i) (fun i => q i * e (i-1)) =

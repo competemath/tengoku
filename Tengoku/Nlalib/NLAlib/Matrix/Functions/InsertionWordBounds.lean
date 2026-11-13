@@ -25,7 +25,9 @@ def insertionWordGaps : List Bool → List ℕ × ℕ
     | (k :: ks, t) => ((k + 1) :: ks, t)
 
 /-- Gap compression preserves both the number of marked positions and
-the total number of unmarked positions.-/
+the total number of unmarked positions.
+@isnad1 id=and.0h1v.s5.3482dc442622 from=translated src=- shape=25e2ab3c vocab=a8c54da6
+-/
 theorem insertionWordGaps_length_sum (w : List Bool) :
     (insertionWordGaps w).1.length = w.count true ∧
       (insertionWordGaps w).1.sum + (insertionWordGaps w).2 = w.count false := by
@@ -38,7 +40,9 @@ theorem insertionWordGaps_length_sum (w : List Bool) :
       cases b <;> cases ks <;> simp_all [insertionWordGaps]
       omega
 
-/-- The two Boolean counts add up to the length of the word.-/
+/-- The two Boolean counts add up to the length of the word.
+@isnad1 id=eq.0h1v.s4.6a8f5970c987 from=translated src=- shape=07f2f83e vocab=ea0ebbd0
+-/
 theorem count_false_add_count_true_eq_length (w : List Bool) :
     w.count false + w.count true = w.length := by
   induction w with
@@ -49,7 +53,9 @@ section Semiring
 
 variable {R : Type*} [Semiring R]
 
-/-- Gap compression is an exact algebraic identity in every semiring.-/
+/-- Gap compression is an exact algebraic identity in every semiring.
+@isnad1 id=eq.0h4v.s6.5eddcfe0f232 from=translated src=- shape=5c926149 vocab=33993b02
+-/
 theorem insertionWord_eq_prod_gaps_mul_pow (A X : R) (w : List Bool) :
     insertionWord A X w =
       ((insertionWordGaps w).1.map fun k => A ^ k * X).prod *
@@ -72,7 +78,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- A word containing a marked factor has the same trace as a nonempty
 cyclic product of powers followed by marked factors. The exponents sum
-to its number of unmarked factors.-/
+to its number of unmarked factors.
+@isnad1 id=ex.1h4v.s7.eb0a7ff198ef from=translated src=- shape=f45e21c1 vocab=22919849
+-/
 theorem exists_trace_insertionWord_eq_prod_pow_mul (A X : Matrix ι ι ℝ)
     (w : List Bool) (hw : 0 < w.count true) :
     ∃ ks : List ℕ, ks ≠ [] ∧ ks.length = w.count true ∧ ks.sum = w.count false ∧
@@ -93,7 +101,9 @@ theorem exists_trace_insertionWord_eq_prod_pow_mul (A X : Matrix ι ι ℝ)
         rw [Matrix.trace_mul_comm _ (A ^ t), pow_add]
         simp only [Matrix.mul_assoc]
 
-/-- A word with no marked positions is the ordinary power.-/
+/-- A word with no marked positions is the ordinary power.
+@isnad1 id=eq.1h4v.s6.d8b7c7193f4c from=translated src=- shape=50669dff vocab=8948b2de
+-/
 theorem insertionWord_eq_pow_of_count_true_eq_zero (A X : Matrix ι ι ℝ)
     (w : List Bool) (hw : w.count true = 0) :
     insertionWord A X w = A ^ w.count false := by
@@ -106,7 +116,9 @@ theorem insertionWord_eq_pow_of_count_true_eq_zero (A X : Matrix ι ι ℝ)
   simpa using congrArg (fun k => A ^ k) hs
 
 /-- The absolute trace of a real symmetric power is at most its
-absolute spectral trace moment.-/
+absolute spectral trace moment.
+@isnad1 id=le.1h3v.s7.cd97017903c4 from=translated src=- shape=9425a668 vocab=2da28217
+-/
 theorem abs_trace_pow_le_trace_cfc_abs_pow {A : Matrix ι ι ℝ}
     (hA : A.IsHermitian) (k : ℕ) :
     |(A ^ k).trace| ≤ (cfc (fun x : ℝ => |x| ^ k) A).trace := by
@@ -116,7 +128,9 @@ theorem abs_trace_pow_le_trace_cfc_abs_pow {A : Matrix ι ι ℝ}
 
 /-- The trace of any insertion word with rank-one positive marked factor
 is bounded by one absolute spectral moment; all insertion positions have
-the same bound.-/
+the same bound.
+@isnad1 id=le.2h4v.s8.8377a8c5f677 from=translated src=- shape=501890c3 vocab=4a5f9d96
+-/
 theorem abs_trace_insertionWord_vecMulVec_le
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (y : ι → ℝ)
     (w : List Bool) (hw : 0 < w.count true) :
@@ -129,7 +143,9 @@ theorem abs_trace_insertionWord_vecMulVec_le
   simpa only [hl, hs] using abs_trace_prod_pow_mul_vecMulVec_le hA y ks hne
 
 /-- The canonical positive trace moment bounds every rank-one insertion
-word, including the zero-insertion case.-/
+word, including the zero-insertion case.
+@isnad1 id=le.1h4v.s8.4df348349d63 from=translated src=- shape=6aea13bd vocab=6c33fb54
+-/
 theorem abs_trace_insertionWord_vecMulVec_le_trace_mul_pow
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (y : ι → ℝ) (w : List Bool) :
     |(insertionWord A (vecMulVec y y) w).trace| ≤

@@ -32,7 +32,9 @@ def matrixKTransformDomain (ν : Measure (selfAdjoint (Matrix n n ℂ))) :
   {S | IsUnit S ∧ ∀ T ∈ ν.support, IsUnit (1 + S * T.val)}
 
 /-- Compactness of the actual support makes simultaneous denominator
-invertibility an open condition on the actual matrix variable.-/
+invertibility an open condition on the actual matrix variable.
+@isnad1 id=isopen.1h2v.s9.03a73c536adb from=translated src=- shape=896668da vocab=8c1785b9
+-/
 theorem isOpen_matrixKTransformDomain
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) (hν : IsCompact ν.support) :
     IsOpen (matrixKTransformDomain ν) := by
@@ -67,7 +69,9 @@ def matrixKTransformDerivComplex (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     α⁻¹ • ContinuousLinearMap.mulLeftRight ℂ (Matrix n n ℂ) S⁻¹ S⁻¹
 
 /-- Restricting the genuine kernel derivative to real scalars preserves its
-actual matrix action.-/
+actual matrix action.
+@isnad1 id=eq.0h3v.s8.74ea7bc212c6 from=translated src=- shape=037b32c6 vocab=3c387e42
+-/
 theorem matrixKResolventDerivComplex_restrictScalars (S T : Matrix n n ℂ) :
     (matrixKResolventDerivComplex S T).restrictScalars ℝ = matrixKResolventDeriv S T := by
   ext X
@@ -75,7 +79,9 @@ theorem matrixKResolventDerivComplex_restrictScalars (S T : Matrix n n ℂ) :
 
 /-- The complex derivative restricts exactly to the existing actual real
 derivative. Scalar restriction is an isometry, so this identity also holds
-for the total Bochner integrals before admissibility is assumed.-/
+for the total Bochner integrals before admissibility is assumed.
+@isnad1 id=eq.0h4v.s8.e395006dfbe2 from=translated src=- shape=23db98a5 vocab=68b902d5
+-/
 theorem matrixKTransformDerivComplex_restrictScalars
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) (α : ℝ) (S : Matrix n n ℂ) :
     (matrixKTransformDerivComplex ν α S).restrictScalars ℝ = matrixKTransformDeriv ν α S := by
@@ -91,7 +97,9 @@ theorem matrixKTransformDerivComplex_restrictScalars
 
 /-- At every actual inverse-domain point, the K-transform has its genuine
 complex Fréchet derivative. Support compactness supplies differentiation
-under the integral; no holomorphy assumption is added.-/
+under the integral; no holomorphy assumption is added.
+@isnad1 id=hasfderi.2h4v.s9.4ef89413ba1c from=translated src=- shape=5c5c2602 vocab=29cc16c1
+-/
 theorem hasFDerivAt_matrixKTransform_complex
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) {S : Matrix n n ℂ}
@@ -111,7 +119,9 @@ private theorem continuousAt_matrixKResolventDerivComplex (S T : Matrix n n ℂ)
 
 /-- The genuine complex derivative is continuous at every actual inverse
 domain point. A common compact parameter neighborhood supplies the integral
-majorant, with no condition away from the support.-/
+majorant, with no condition away from the support.
+@isnad1 id=continuo.2h4v.s9.267a0780b825 from=translated src=- shape=08bff3e9 vocab=18b30e62
+-/
 theorem continuousAt_matrixKTransformDerivComplex
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) {S : Matrix n n ℂ}
@@ -142,7 +152,9 @@ theorem continuousAt_matrixKTransformDerivComplex
 
 /-- The actual K-transform is complex C1 near every point of its true
 inverse domain. This supplies the differentiability input for the local
-inverse theorem, rather than assuming an analytic branch exists.-/
+inverse theorem, rather than assuming an analytic branch exists.
+@isnad1 id=contdiff.2h4v.s9.7e85f1985603 from=translated src=- shape=acff93be vocab=c14f2755
+-/
 theorem contDiffAt_matrixKTransform_complex
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) {S : Matrix n n ℂ}

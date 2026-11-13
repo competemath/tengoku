@@ -67,13 +67,17 @@ def operatorCapacity (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) : ℝ :=
   sInf {d : ℝ | ∃ X : Matrix n n ℂ, X.PosDef ∧ X.det = 1 ∧ d = (T X).det.re}
 
 /-- The objective set of `operatorCapacity` is nonempty: `X = 1` is positive definite with
-determinant `1`.-/
+determinant `1`.
+@isnad1 id=nonempty.0h2v.s8.b03f645a2af2 from=translated src=- shape=b5d291a5 vocab=1fbb93da
+-/
 theorem operatorCapacity_attainable_nonempty (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     ({d : ℝ | ∃ X : Matrix n n ℂ, X.PosDef ∧ X.det = 1 ∧ d = (T X).det.re}).Nonempty := by
   refine ⟨(T (1 : Matrix n n ℂ)).det.re, 1, Matrix.PosDef.one, Matrix.det_one, rfl⟩
 
 /-- Under the positivity hypothesis `hT`, the objective set of `operatorCapacity` is bounded
-below by `0`.-/
+below by `0`.
+@isnad1 id=bddbelow.1h2v.s9.314d9f36908e from=translated src=- shape=b786e504 vocab=985b3b95
+-/
 theorem operatorCapacity_attainable_bddBelow
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef) :
@@ -82,7 +86,9 @@ theorem operatorCapacity_attainable_bddBelow
   rintro d ⟨X, hX, -, rfl⟩
   exact (Complex.nonneg_iff.mp (Matrix.PosSemidef.det_nonneg (hT X hX.posSemidef))).1
 
-/-- `operatorCapacity` is nonnegative under the positivity hypothesis `hT`.-/
+/-- `operatorCapacity` is nonnegative under the positivity hypothesis `hT`.
+@isnad1 id=le.1h2v.s8.6cd520a4ab73 from=translated src=- shape=5fad6660 vocab=9f61e695
+-/
 theorem operatorCapacity_nonneg (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef) :
     0 ≤ operatorCapacity T := by
@@ -94,7 +100,9 @@ theorem operatorCapacity_nonneg (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
 
 /-- The capacity is the infimum of the determinant-ratio objective
 `(T X).det.re / X.det.re` over positive definite `X`.  This is the equality proved in
-`NLAlib.detRatio_normalized_sInf_eq`.-/
+`NLAlib.detRatio_normalized_sInf_eq`.
+@isnad1 id=eq.1h2v.s8.0f09906666ec from=translated src=- shape=b8aec1cc vocab=a2ff20f2
+-/
 theorem operatorCapacity_eq_sInf_ratio (hN : 0 < Fintype.card n)
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     operatorCapacity T = sInf {d : ℝ | ∃ X : Matrix n n ℂ, X.PosDef ∧ d = (T X).det.re / X.det.re} := by
@@ -268,7 +276,9 @@ because the identity matrix is admissible. No attainment, injectivity, or positi
 assumption on `T` is needed, and the zero-capacity case is covered.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Proposition 2.7; this statement applies
 to all positive real-linear maps, including the completely positive maps in that source.
-atlas: operator-capacity-scaling-identities (partial)-/
+atlas: operator-capacity-scaling-identities (partial)
+@isnad1 id=eq.5h5v.s10.17fd440fa8d5 from=translated src=- shape=b04adf42 vocab=c9642324
+-/
 theorem operatorCapacity_congruence_scaling (hN : 0 < Fintype.card n)
     (T S : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef)
@@ -346,14 +356,18 @@ def krausMap {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ) :
       simp)
 
 omit [DecidableEq n] in
-/-- Evaluation of `krausMap`.-/
+/-- Evaluation of `krausMap`.
+@isnad1 id=eq.0h4v.s8.708399c54cf4 from=translated src=- shape=31c7c9ac vocab=c4c95d66
+-/
 theorem krausMap_apply {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ) (X : Matrix n n ℂ) :
     krausMap A X = ∑ i, A i * X * (A i).conjTranspose :=
   rfl
 
 omit [DecidableEq n] in
 /-- Positivity bridge for the finite Kraus form: if `X` is positive semidefinite, then so is
-`krausMap A X`.-/
+`krausMap A X`.
+@isnad1 id=possemid.1h4v.s8.2336cf14967c from=translated src=- shape=15d5f621 vocab=010a1b05
+-/
 theorem krausMap_posSemidef {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (X : Matrix n n ℂ) (hX : X.PosSemidef) :
     (krausMap A X).PosSemidef := by
@@ -362,7 +376,9 @@ theorem krausMap_posSemidef {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ
     simpa using (hX.conjTranspose_mul_mul_same (A i).conjTranspose))
 
 /-- The operator capacity of a finite Kraus map is well-defined and nonnegative: the
-positivity bridge `krausMap_posSemidef` supplies the hypothesis of `operatorCapacity_nonneg`.-/
+positivity bridge `krausMap_posSemidef` supplies the hypothesis of `operatorCapacity_nonneg`.
+@isnad1 id=le.0h3v.s5.be03df2a80f3 from=translated src=- shape=65e357a2 vocab=7129bc6a
+-/
 theorem operatorCapacity_krausMap_nonneg {ι : Type*} [Fintype ι]
     (A : ι → Matrix n n ℂ) :
     0 ≤ operatorCapacity (krausMap A) := by

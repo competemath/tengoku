@@ -21,7 +21,9 @@ variable {n k r : Type*} [Fintype n] [Fintype k] [Fintype r]
   [DecidableEq n] [DecidableEq k] [DecidableEq r]
 
 /-- Right normalization gives the exact graph of every subspace iterate.
-Source: manuscript `sa:graph`; Saad (2011), §5.1. Right inverses are explicit data.-/
+Source: manuscript `sa:graph`; Saad (2011), §5.1. Right inverses are explicit data.
+@isnad1 id=eq.5h14v.s9.3ae0cce70422 from=translated src=- shape=13755ee8 vocab=f02ee08b
+-/
 theorem subspaceIterate_eq_range_graph
     {A : Matrix n n ℝ} {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}
     {L₁ Linv : Matrix k k ℝ} {L₂ : Matrix r r ℝ}
@@ -54,7 +56,9 @@ theorem subspaceIterate_eq_range_graph
 
 /-- Graph operators contract at the exact norm-product rate.
 Source: manuscript `sa:subspace-theorem`, submultiplicativity step. The empty tail
-is included without requiring the norm of its identity to equal one.-/
+is included without requiring the norm of its identity to equal one.
+@isnad1 id=le.0h6v.s7.0455776a2168 from=translated src=- shape=285f3c30 vocab=304c2b02
+-/
 theorem specNorm_pow_mul_mul_pow_le
     (L₂ : Matrix r r ℝ) (F : Matrix r k ℝ) (Linv : Matrix k k ℝ) (t : ℕ) :
     specNorm (L₂ ^ t * F * Linv ^ t) ≤
@@ -80,7 +84,9 @@ theorem specNorm_pow_mul_mul_pow_le
 gap factor. Source: manuscript `sa:subspace-theorem`; Saad (2011), §5.1.
 For diagonal eigenvalue blocks, `specNorm L₂ * specNorm Linv` is
 `max |λ_tail| / min |λ_head|`. This form allows indefinite matrices and empty tails.
-atlas: subspace-iteration-convergence (partial)-/
+atlas: subspace-iteration-convergence (partial)
+@isnad1 id=le.8h14v.s9.1d5d194f1622 from=translated src=- shape=a08faa42 vocab=f8688837
+-/
 theorem subspaceTangent_subspaceIterate_le
     {A : Matrix n n ℝ} {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}
     (hU₁ : HasOrthonormalCols U₁) (hU₂ : HasOrthonormalCols U₂)
@@ -104,7 +110,9 @@ theorem subspaceTangent_subspaceIterate_le
 leading eigenvalues. Taking their minimum gives the manuscript's `γ = ‖Λ₂‖ / α`;
 for a sorted PSD spectrum this is the usual tail/head eigenvalue ratio.
 Source: manuscript `sa:subspace-theorem`; Saad (2011), §5.1.
-atlas: subspace-iteration-convergence (partial)-/
+atlas: subspace-iteration-convergence (partial)
+@isnad1 id=le.9h14v.s9.67de5d1a77e0 from=translated src=- shape=9df53a95 vocab=f7a40d6d
+-/
 theorem subspaceTangent_subspaceIterate_le_of_diagonal
     {A : Matrix n n ℝ} {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}
     (hU₁ : HasOrthonormalCols U₁) (hU₂ : HasOrthonormalCols U₂)
@@ -151,7 +159,9 @@ theorem subspaceTangent_subspaceIterate_le_of_diagonal
 
 /-- Each graph column contracts using its own leading eigenvalue magnitude.
 Source: manuscript `sa:subspace`, per-vector rate after `sa:subspace-theorem`.
-The initial factor is the graph-column norm, as required by the corrected statement.-/
+The initial factor is the graph-column norm, as required by the corrected statement.
+@isnad1 id=le.0h7v.s8.0c0c6bfb03a1 from=translated src=- shape=f41db340 vocab=5b7034c9
+-/
 theorem norm_graph_col_le_of_diagonal (L₂ : Matrix r r ℝ) (F : Matrix r k ℝ)
     (eig : k → ℝ) (t : ℕ) (i : k) :
     ‖WithLp.toLp 2 ((L₂ ^ t * F * (Matrix.diagonal fun j => (eig j)⁻¹) ^ t).col i)‖ ≤
@@ -182,7 +192,9 @@ theorem norm_graph_col_le_of_diagonal (L₂ : Matrix r r ℝ) (F : Matrix r k �
 to a frame containing the iterate. Source: manuscript `sa:subspace`, final per-vector
 clause; Saad (2011), §5.1. The initial constant is `‖F₀ e_i‖`, not its initial angle
 to the whole starting subspace. A frame for exactly the iterate is a special case.
-atlas: subspace-iteration-convergence (partial)-/
+atlas: subspace-iteration-convergence (partial)
+@isnad1 id=le.10h16v.s9.acbca5939c3e from=translated src=- shape=079c2f7a vocab=d188d2f2
+-/
 theorem vectorTangentToFrame_subspaceIterate_le_of_diagonal
     {l : Type*} [Fintype l] [DecidableEq l]
     {A : Matrix n n ℝ} {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}

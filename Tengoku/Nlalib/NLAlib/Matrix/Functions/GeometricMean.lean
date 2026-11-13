@@ -28,19 +28,25 @@ atlas: matrix-geometric-mean-def-/
 def matrixGeometricMean (A B : Matrix n n 𝕜) : Matrix n n 𝕜 :=
   matrixPerspective Real.sqrt A B
 
-/-- The geometric mean unfolds to the standard square-root congruence.-/
+/-- The geometric mean unfolds to the standard square-root congruence.
+@isnad1 id=eq.0h4v.s10.cd66be0ee437 from=translated src=- shape=e14d45e4 vocab=6edf48b7
+-/
 theorem matrixGeometricMean_eq (A B : Matrix n n 𝕜) :
     matrixGeometricMean A B = cfc Real.sqrt A *
       cfc Real.sqrt (cfc (fun x => (Real.sqrt x)⁻¹) A * B *
         cfc (fun x => (Real.sqrt x)⁻¹) A) * cfc Real.sqrt A := rfl
 
-/-- The real square-root functional calculus is positive semidefinite.-/
+/-- The real square-root functional calculus is positive semidefinite.
+@isnad1 id=possemid.0h3v.s7.2c98a5947218 from=translated src=- shape=415d543d vocab=8b77573c
+-/
 theorem posSemidef_cfc_sqrt (A : Matrix n n 𝕜) :
     (cfc Real.sqrt A).PosSemidef :=
   Matrix.nonneg_iff_posSemidef.mp (cfc_nonneg (fun x _ => Real.sqrt_nonneg x))
 
 /-- The geometric-mean formula is positive semidefinite. On its intended
-domain this is positivity of the positive-definite-first geometric mean.-/
+domain this is positivity of the positive-definite-first geometric mean.
+@isnad1 id=possemid.0h4v.s5.f5de2cf00980 from=translated src=- shape=08a104e9 vocab=340b3486
+-/
 theorem posSemidef_matrixGeometricMean (A B : Matrix n n 𝕜) :
     (matrixGeometricMean A B).PosSemidef := by
   have hS : (cfc Real.sqrt A).IsHermitian := cfc_predicate _ _
@@ -49,7 +55,9 @@ theorem posSemidef_matrixGeometricMean (A B : Matrix n n 𝕜) :
     (cfc Real.sqrt A)
 
 /-- Whitening a positive-definite matrix by its inverse square root gives
-the identity.-/
+the identity.
+@isnad1 id=eq.1h3v.s9.1129fdcbe955 from=translated src=- shape=c30ec2ad vocab=f970e051
+-/
 theorem cfc_inv_sqrt_mul_self_mul_inv_sqrt {A : Matrix n n 𝕜} (hA : A.PosDef) :
     cfc (fun x => (Real.sqrt x)⁻¹) A * A *
       cfc (fun x => (Real.sqrt x)⁻¹) A = 1 := by
@@ -62,7 +70,9 @@ theorem cfc_inv_sqrt_mul_self_mul_inv_sqrt {A : Matrix n n 𝕜} (hA : A.PosDef)
       rw [← Matrix.mul_assoc, cfc_inv_sqrt_mul_sqrt hA, one_mul,
         cfc_sqrt_mul_inv_sqrt hA]
 
-/-- The positive-definite geometric mean of a matrix with itself is itself.-/
+/-- The positive-definite geometric mean of a matrix with itself is itself.
+@isnad1 id=eq.1h3v.s5.bde69579e3c3 from=translated src=- shape=78b5f090 vocab=abe2c497
+-/
 @[simp] theorem matrixGeometricMean_self {A : Matrix n n 𝕜} (hA : A.PosDef) :
     matrixGeometricMean A A = A := by
   rw [matrixGeometricMean_eq, cfc_inv_sqrt_mul_self_mul_inv_sqrt hA]

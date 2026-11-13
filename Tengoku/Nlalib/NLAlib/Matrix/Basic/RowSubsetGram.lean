@@ -26,7 +26,9 @@ def rowSubsetGram (X : Matrix n d 𝕜) (S : Finset n) : Matrix d d 𝕜 :=
   Xᴴ * (coordinateSelector S : Matrix n n 𝕜) * X
 
 omit [Fintype d] [DecidableEq d] in
-/-- Padded row restriction has the same Gram matrix as literal restriction.-/
+/-- Padded row restriction has the same Gram matrix as literal restriction.
+@isnad1 id=eq.0h5v.s7.54cb661b585e from=translated src=- shape=a517b9e6 vocab=bfcc4ffc
+-/
 theorem rowSubsetGram_eq_conjTranspose_mul_self (X : Matrix n d 𝕜) (S : Finset n) :
     rowSubsetGram X S = ((coordinateSelector S : Matrix n n 𝕜) * X)ᴴ *
       ((coordinateSelector S : Matrix n n 𝕜) * X) := by
@@ -37,7 +39,9 @@ theorem rowSubsetGram_eq_conjTranspose_mul_self (X : Matrix n d 𝕜) (S : Finse
 
 omit [DecidableEq d] in
 /-- Every row-subset Gram matrix is positive semidefinite, including
-singular and empty restrictions.-/
+singular and empty restrictions.
+@isnad1 id=possemid.0h5v.s5.f08cb4e7528d from=translated src=- shape=32bb3846 vocab=698bab1d
+-/
 theorem rowSubsetGram_posSemidef (X : Matrix n d 𝕜) (S : Finset n) :
     (rowSubsetGram X S).PosSemidef := by
   rw [rowSubsetGram_eq_conjTranspose_mul_self]
@@ -45,7 +49,9 @@ theorem rowSubsetGram_posSemidef (X : Matrix n d 𝕜) (S : Finset n) :
 
 set_option backward.isDefEq.respectTransparency false in
 omit [Fintype d] [DecidableEq d] in
-/-- A row-subset Gram matrix is the sum of the selected row outer products.-/
+/-- A row-subset Gram matrix is the sum of the selected row outer products.
+@isnad1 id=eq.0h5v.s7.601f67d5b0db from=translated src=- shape=6c3ce991 vocab=4779b793
+-/
 theorem rowSubsetGram_eq_sum (X : Matrix n d 𝕜) (S : Finset n) :
     rowSubsetGram X S = ∑ i ∈ S, Matrix.vecMulVec (star (X i)) (X i) := by
   classical
@@ -60,7 +66,9 @@ theorem rowSubsetGram_eq_sum (X : Matrix n d 𝕜) (S : Finset n) :
   ext i
   simp
 
-/-- Removing a row subtracts precisely its rank-one Gram contribution.-/
+/-- Removing a row subtracts precisely its rank-one Gram contribution.
+@isnad1 id=eq.1h6v.s7.4dde4dcd33ff from=translated src=- shape=f36c2f3f vocab=7c3c6eac
+-/
 theorem rowSubsetGram_erase (X : Matrix n d 𝕜) (T : Finset n) {i : n} (hi : i ∈ T) :
     rowSubsetGram X (T.erase i) = rowSubsetGram X T - Matrix.vecMulVec (star (X i)) (X i) := by
   rw [rowSubsetGram_eq_sum, rowSubsetGram_eq_sum, eq_sub_iff_add_eq]
@@ -70,20 +78,26 @@ theorem rowSubsetGram_erase (X : Matrix n d 𝕜) (T : Finset n) {i : n} (hi : i
 def rowSubsetVolume (X : Matrix n d 𝕜) (S : Finset n) : ℝ :=
   RCLike.re (rowSubsetGram X S).det
 
-/-- Every row-volume weight is nonnegative.-/
+/-- Every row-volume weight is nonnegative.
+@isnad1 id=le.0h5v.s5.62bdd9afa70f from=translated src=- shape=7af109d0 vocab=b1f45cb9
+-/
 theorem rowSubsetVolume_nonneg (X : Matrix n d 𝕜) (S : Finset n) :
     0 ≤ rowSubsetVolume X S :=
   (RCLike.nonneg_iff.mp (rowSubsetGram_posSemidef X S).det_nonneg).1
 
 /-- The determinant of a Gram matrix equals the scalar embedding of its
-row-volume weight.-/
+row-volume weight.
+@isnad1 id=eq.0h5v.s6.bce7f37f44fa from=translated src=- shape=4539cd16 vocab=0b6d550d
+-/
 theorem ofReal_rowSubsetVolume (X : Matrix n d 𝕜) (S : Finset n) :
     (rowSubsetVolume X S : 𝕜) = (rowSubsetGram X S).det := by
   exact RCLike.ext (by simp [rowSubsetVolume])
     (by simpa using (RCLike.nonneg_iff.mp (rowSubsetGram_posSemidef X S).det_nonneg).2.symm)
 
 /-- Positive row volume is exactly nonsingularity of the restricted column
-Gram matrix, so it is the usual full-column-rank support condition.-/
+Gram matrix, so it is the usual full-column-rank support condition.
+@isnad1 id=iff.0h5v.s6.e51336f6b0e8 from=translated src=- shape=8194496d vocab=3f919db8
+-/
 theorem rowSubsetVolume_pos_iff_isUnit (X : Matrix n d 𝕜) (S : Finset n) :
     0 < rowSubsetVolume X S ↔ IsUnit (rowSubsetGram X S) := by
   rw [Matrix.isUnit_iff_isUnit_det, isUnit_iff_ne_zero, ← ofReal_rowSubsetVolume]
@@ -99,7 +113,9 @@ theorem rowSubsetVolume_pos_iff_isUnit (X : Matrix n d 𝕜) (S : Finset n) :
     rw [← hz, RCLike.ofReal_zero]
 
 /-- A selected full-column minor survives padded row restriction exactly
-when every one of its row labels belongs to the selected set.-/
+when every one of its row labels belongs to the selected set.
+@isnad1 id=eq.0h6v.s7.af06327c3a07 from=translated src=- shape=ebe0b579 vocab=908903d4
+-/
 theorem det_coordinateSelector_mul_submatrix (X : Matrix n d 𝕜)
     (S : Finset n) (J : SizedSubset n d) :
     (((coordinateSelector S : Matrix n n 𝕜) * X).submatrix (sizedSubsetIndex J) id).det =
@@ -123,7 +139,9 @@ theorem det_coordinateSelector_mul_submatrix (X : Matrix n d 𝕜)
 
 /-- Cauchy–Binet expands each row-volume weight over all full-column minors
 contained in its row set. No rank or nonempty-dimension premise is used.
-Dereziński–Warmuth 2018, proof of Theorem 2.-/
+Dereziński–Warmuth 2018, proof of Theorem 2.
+@isnad1 id=eq.0h5v.s7.1efab5498fa0 from=translated src=- shape=3670bf23 vocab=43059852
+-/
 theorem rowSubsetVolume_eq_sum_minors (X : Matrix n d 𝕜) (S : Finset n) :
     rowSubsetVolume X S = ∑ J : SizedSubset n d,
       if J.val ⊆ S then ‖(X.submatrix (sizedSubsetIndex J) id).det‖ ^ 2 else 0 := by
@@ -135,7 +153,9 @@ theorem rowSubsetVolume_eq_sum_minors (X : Matrix n d 𝕜) (S : Finset n) :
   rw [det_coordinateSelector_mul_submatrix]
   split_ifs <;> simp
 
-/-- Adding rows cannot decrease their nonnegative Gram determinant.-/
+/-- Adding rows cannot decrease their nonnegative Gram determinant.
+@isnad1 id=le.1h6v.s6.30aded951653 from=translated src=- shape=8d125a8e vocab=b1f45cb9
+-/
 theorem rowSubsetVolume_mono (X : Matrix n d 𝕜) {S T : Finset n} (hST : S ⊆ T) :
     rowSubsetVolume X S ≤ rowSubsetVolume X T := by
   rw [rowSubsetVolume_eq_sum_minors, rowSubsetVolume_eq_sum_minors]
@@ -149,7 +169,9 @@ theorem rowSubsetVolume_mono (X : Matrix n d 𝕜) {S T : Finset n} (hST : S ⊆
     · exact le_rfl
 
 /-- The same normalizer identity holds inside an arbitrary ambient row set.
-This is the conditional law used after each reverse-deletion step.-/
+This is the conditional law used after each reverse-deletion step.
+@isnad1 id=eq.1h6v.s6.3172700923b7 from=translated src=- shape=2a364530 vocab=c6e20e2a
+-/
 theorem sum_rowSubsetVolume_powersetCard (X : Matrix n d 𝕜) (T : Finset n) (s : ℕ)
     (hds : Fintype.card d ≤ s) :
     (∑ S ∈ T.powersetCard s, rowSubsetVolume X S) =
@@ -171,7 +193,9 @@ theorem sum_rowSubsetVolume_powersetCard (X : Matrix n d 𝕜) (T : Finset n) (s
 /-- The total size-`s` row-volume weight is the binomial multiplicity times
 the full Gram determinant. This identity also holds for deficient matrices.
 Dereziński–Warmuth 2018, Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.1h5v.s8.28e31ac186b9 from=translated src=- shape=ed4de84f vocab=ad4cade5
+-/
 theorem sum_rowSubsetVolume_eq_choose_mul (X : Matrix n d 𝕜) (s : ℕ)
     (hds : Fintype.card d ≤ s) :
     (∑ S ∈ (Finset.univ : Finset n).powersetCard s, rowSubsetVolume X S) =
@@ -192,7 +216,9 @@ theorem sum_rowSubsetVolume_eq_choose_mul (X : Matrix n d 𝕜) (s : ℕ)
 
 omit [DecidableEq n] in
 /-- The full Gram determinant has positive real part when the columns are
-independent. The hypothesis uses the native full-column Gram certificate.-/
+independent. The hypothesis uses the native full-column Gram certificate.
+@isnad1 id=lt.1h4v.s8.a11d2e0b1d96 from=translated src=- shape=2e86c403 vocab=5674e7c3
+-/
 theorem re_det_conjTranspose_mul_self_pos (X : Matrix n d 𝕜)
     (hX : IsUnit (Xᴴ * X)) : 0 < RCLike.re (Xᴴ * X).det := by
   have hnonneg := (RCLike.nonneg_iff.mp
@@ -206,7 +232,9 @@ theorem re_det_conjTranspose_mul_self_pos (X : Matrix n d 𝕜)
 
 /-- The row-volume normalizer is positive at every admissible sample size
 for a full-column-rank matrix.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=lt.3h5v.s7.52138c736616 from=translated src=- shape=d81c2f9b vocab=439bd0cd
+-/
 theorem sum_rowSubsetVolume_pos (X : Matrix n d 𝕜) (s : ℕ)
     (hX : IsUnit (Xᴴ * X)) (hds : Fintype.card d ≤ s) (hsn : s ≤ Fintype.card n) :
     0 < ∑ S ∈ (Finset.univ : Finset n).powersetCard s, rowSubsetVolume X S := by

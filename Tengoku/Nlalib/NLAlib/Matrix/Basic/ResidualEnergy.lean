@@ -16,7 +16,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m n : Type*} [Fintype m] [Fintype n]
 def residualEnergy (A : Matrix m n 𝕜) (b : m → 𝕜) (x : n → 𝕜) : ℝ :=
   ‖WithLp.toLp 2 (A *ᵥ x - b)‖ ^ 2
 
-/-- Exact midpoint convexity, with the entire strictness defect shown.-/
+/-- Exact midpoint convexity, with the entire strictness defect shown.
+@isnad1 id=eq.0h7v.s8.5b25a1659936 from=translated src=- shape=888a24fc vocab=48250c2d
+-/
 theorem residualEnergy_midpoint (A : Matrix m n 𝕜) (b : m → 𝕜) (x y : n → 𝕜) :
     4 * residualEnergy A b ((1 / 2 : 𝕜) • (x + y)) +
       ‖WithLp.toLp 2 (A *ᵥ (x - y))‖ ^ 2 =
@@ -34,7 +36,9 @@ theorem residualEnergy_midpoint (A : Matrix m n 𝕜) (b : m → 𝕜) (x y : n 
   rw [← WithLp.toLp_add, ← WithLp.toLp_sub] at he
   nlinarith [he]
 
-/-- Equal globally minimal residual energies have exactly the same fit.-/
+/-- Equal globally minimal residual energies have exactly the same fit.
+@isnad1 id=eq.2h7v.s7.dbc2a0dc3569 from=translated src=- shape=1fe12a54 vocab=5cbffd23
+-/
 theorem mulVec_eq_of_residualEnergy_minimizers (A : Matrix m n 𝕜) (b : m → 𝕜)
     (x y : n → 𝕜) (hx : ∀ z, residualEnergy A b x ≤ residualEnergy A b z)
     (hy : residualEnergy A b y ≤ residualEnergy A b x) : A *ᵥ (x - y) = 0 := by

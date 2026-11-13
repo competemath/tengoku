@@ -47,7 +47,9 @@ spectra, and the functional calculus acts blockwise.
 Tropp 2015, proof of Thm 8.5.2. Atlas: `operator-monotone-convex`. Ported from the Prove2me
 mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
 
-Auxiliary; not a numbered result in the source.-/
+Auxiliary; not a numbered result in the source.
+@isnad1 id=and.2h6v.s10.310ef17c5964 from=translated src=- shape=1d8279e0 vocab=7942b33a
+-/
 theorem NLAlib.cfc_fromBlocks
     {𝕜 : Type*} [RCLike 𝕜]
     {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]

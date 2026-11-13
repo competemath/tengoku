@@ -105,7 +105,9 @@ private theorem isometry_reflection_identities
 `f (Kᴴ A K) ≼ Kᴴ f(A) K`.
 
 Tropp 2015, Thm 8.5.2 (single-isometry form). Atlas: `operator-monotone-convex`. Ported from the
-Prove2me mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.-/
+Prove2me mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
+@isnad1 id=le.4h6v.s9.096919699a29 from=translated src=- shape=256b6e6e vocab=bf3bf598
+-/
 theorem NLAlib.OperatorConvexOn.cfc_conjTranspose_mul_mul_le
     {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
     [Fintype κ] [DecidableEq κ] [Nonempty κ]

@@ -58,7 +58,9 @@ def discreteStieltjesState (t w : n → ℝ) (j : ℕ) : LanczosState n :=
 
 omit [DecidableEq n] in
 /-- Each actual Stieltjes state is obtained by applying its weighted three-term step.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.0h4v.s5.b4df25c852f8 from=translated src=- shape=67d47292 vocab=ee8901d1
+-/
 theorem discreteStieltjesState_succ (t w : n → ℝ) (j : ℕ) :
     discreteStieltjesState t w (j + 1) = discreteStieltjesStep t w (discreteStieltjesState t w j) :=
   Function.iterate_succ_apply' _ _ _
@@ -171,7 +173,9 @@ private theorem weightState_discreteStieltjesState (t w : n → ℝ) (hw : ∀ r
 /-- The actual Stieltjes values and actual Lanczos vectors satisfy the weighted evaluation
 identity `qⱼ(r) = sqrt(wᵣ) pⱼ(tᵣ)` at every step, including termination.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.1h5v.s6.ba15cd7b5f7d from=translated src=- shape=00c63d0c vocab=b1e43fd7
+-/
 theorem lanczosRecurrence_diagonal_sqrt_eq_mul_discreteStieltjesValues
     (t w : n → ℝ) (hw : ∀ r, 0 ≤ w r) (j : ℕ) (r : n) :
     lanczosRecurrence (diagonal t) (fun r => Real.sqrt (w r)) j r =
@@ -180,7 +184,9 @@ theorem lanczosRecurrence_diagonal_sqrt_eq_mul_discreteStieltjesValues
 
 /-- The literal weighted Stieltjes diagonal coefficient equals the coefficient computed by
 the actual diagonal Lanczos algorithm. Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.1h4v.s5.d4d75ca998cc from=translated src=- shape=699e4d7e vocab=71a54b1e
+-/
 theorem discreteStieltjesAlpha_eq_lanczosAlpha (t w : n → ℝ) (hw : ∀ r, 0 ≤ w r) (j : ℕ) :
     discreteStieltjesAlpha t w j = lanczosAlpha (diagonal t) (fun r => Real.sqrt (w r)) j := by
   unfold discreteStieltjesAlpha lanczosAlpha
@@ -192,7 +198,9 @@ theorem discreteStieltjesAlpha_eq_lanczosAlpha (t w : n → ℝ) (hw : ∀ r, 0 
 
 /-- The normalized Stieltjes coupling equals the actual Lanczos coupling at every step.
 Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.1h4v.s5.3c98a9cdb37b from=translated src=- shape=699e4d7e vocab=7e6720ea
+-/
 theorem discreteStieltjesBeta_eq_lanczosBeta (t w : n → ℝ) (hw : ∀ r, 0 ≤ w r) (j : ℕ) :
     discreteStieltjesBeta t w j = lanczosBeta (diagonal t) (fun r => Real.sqrt (w r)) j := by
   have h := congrArg LanczosState.beta (weightState_discreteStieltjesState t w hw j)
@@ -200,14 +208,18 @@ theorem discreteStieltjesBeta_eq_lanczosBeta (t w : n → ℝ) (hw : ∀ r, 0 �
 
 omit [DecidableEq n] in
 /-- Normalized Stieltjes has zero boundary coupling, before any residual is formed.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.0h3v.s4.f97781f18c3c from=translated src=- shape=01bd86d9 vocab=dc293c03
+-/
 @[simp] theorem discreteStieltjesBeta_zero (t w : n → ℝ) :
     discreteStieltjesBeta t w 0 = 0 := rfl
 
 omit [DecidableEq n] in
 /-- The monic beta-zero convention is the total atomic mass, independently of the normalized
 zero Jacobi boundary coupling. Source: Gautschi (2004), §2.2.3.1.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.0h3v.s5.3733c8f3602c from=translated src=- shape=066169f3 vocab=87a52e7f
+-/
 @[simp] theorem discreteStieltjesMonicBeta_zero (t w : n → ℝ) :
     discreteStieltjesMonicBeta t w 0 = ∑ r, w r := by
   simp [discreteStieltjesMonicBeta]

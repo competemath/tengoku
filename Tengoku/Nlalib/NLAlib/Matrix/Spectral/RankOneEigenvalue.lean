@@ -22,7 +22,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {K : Type*} [Field K]
 
 /-- The determinant lemma in outer-product notation. Source: Horn–Johnson
 (2013), §0.8.5; this is Mathlib's matrix determinant lemma specialized to
-one-column updates.-/
+one-column updates.
+@isnad1 id=eq.1h5v.s7.5f159003b95e from=translated src=- shape=6592c3b8 vocab=50512c54
+-/
 theorem det_add_vecMulVec {M : Matrix n n K} (hM : IsUnit M.det) (u v : n → K) :
     (M + Matrix.vecMulVec u v).det = M.det * (1 + v ⬝ᵥ (M⁻¹ *ᵥ u)) := by
   have hfactor : M + Matrix.vecMulVec u v =
@@ -34,7 +36,9 @@ theorem det_add_vecMulVec {M : Matrix n n K} (hM : IsUnit M.det) (u v : n → K)
 
 /-- A nonzero eigenvector forces its eigenvalue to be a characteristic root.
 Source: Horn–Johnson (2013), Definition 1.4.6; includes no diagonalizability
-assumption.-/
+assumption.
+@isnad1 id=isroot.2h5v.s7.930617603ca8 from=translated src=- shape=998ac7e7 vocab=d118eab4
+-/
 theorem isRoot_charpoly_of_mulVec_eq_smul {A : Matrix n n K} {x : n → K}
     {μ : K} (hx : x ≠ 0) (hAx : A *ᵥ x = μ • x) : A.charpoly.IsRoot μ := by
   rw [Polynomial.IsRoot, Matrix.eval_charpoly, Matrix.scalar_apply,
@@ -45,7 +49,9 @@ theorem isRoot_charpoly_of_mulVec_eq_smul {A : Matrix n n K} {x : n → K}
 
 /-- Away from the old spectrum, the characteristic-polynomial shift follows
 from the determinant lemma and the inverse action on the eigenvector.
-Source: Horn–Johnson (2013), Theorem 2.4.10.1.-/
+Source: Horn–Johnson (2013), Theorem 2.4.10.1.
+@isnad1 id=eq.3h7v.s8.05630ace1278 from=translated src=- shape=a2a5f64f vocab=48e17b87
+-/
 theorem eval_charpoly_add_vecMulVec_mul_sub {A : Matrix n n K} {x : n → K}
     {μ : K} (hx : x ≠ 0) (hAx : A *ᵥ x = μ • x) (y : n → K) {z : K}
     (hz : A.charpoly.eval z ≠ 0) :
@@ -83,7 +89,9 @@ theorem eval_charpoly_add_vecMulVec_mul_sub {A : Matrix n n K} {x : n → K}
 /-- The rank-one eigenvalue update satisfies a polynomial cross-product
 identity, including every value of the polynomial variable.
 Horn–Johnson (2013), Theorem 2.4.10.1; the infinite-field proof extends the
-determinant-lemma computation across the finite old spectrum.-/
+determinant-lemma computation across the finite old spectrum.
+@isnad1 id=eq.2h6v.s9.8b7cd3020a9d from=translated src=- shape=9384bcc8 vocab=d89155bc
+-/
 theorem charpoly_add_vecMulVec_mul_X_sub_C [Infinite K] {A : Matrix n n K}
     {x : n → K} {μ : K} (hx : x ≠ 0) (hAx : A *ᵥ x = μ • x) (y : n → K) :
     (X - C μ) * (A + Matrix.vecMulVec x y).charpoly =
@@ -103,7 +111,9 @@ the old and updated characteristic polynomials. Source: Horn–Johnson (2013),
 Exercise 1.2.8 and Theorem 2.4.10.1. Over the complex field take `y = star v`
 for the update `x v*`. Repeated eigenvalues and zero shifts are included;
 the quotient is polynomial division, with no pointwise division at `μ`.
-atlas: rank-one-eigenvalue-update-/
+atlas: rank-one-eigenvalue-update
+@isnad1 id=ex.2h6v.s9.7e1a3f2e1ee0 from=translated src=- shape=f9658475 vocab=d89155bc
+-/
 theorem exists_charpoly_factor_add_vecMulVec [Infinite K] {A : Matrix n n K}
     {x : n → K} {μ : K} (hx : x ≠ 0) (hAx : A *ᵥ x = μ • x) (y : n → K) :
     ∃ q : K[X], A.charpoly = (X - C μ) * q ∧

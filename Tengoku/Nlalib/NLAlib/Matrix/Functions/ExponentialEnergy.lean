@@ -21,7 +21,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Each Euclidean orbit of a matrix exponential solves the associated
-constant-coefficient differential equation.-/
+constant-coefficient differential equation.
+@isnad1 id=hasderiv.0h4v.s13.963b898f346a from=translated src=- shape=2be8a64e vocab=619a1c30
+-/
 theorem hasDerivAt_matrixExp_orbit (A : Matrix n n ℂ) (x : EuclideanSpace ℂ n) (t : ℝ) :
     HasDerivAt (fun s : ℝ => (matrixExp (s • A)).toEuclideanLin x)
       (A.toEuclideanLin ((matrixExp (t • A)).toEuclideanLin x)) t := by
@@ -35,7 +37,9 @@ theorem hasDerivAt_matrixExp_orbit (A : Matrix n n ℂ) (x : EuclideanSpace ℂ 
   rw [Matrix.mulVec_mulVec]
 
 /-- The exponential inherits every uniform upper bound on the real
-quadratic form of its generator. The constant may be negative.-/
+quadratic form of its generator. The constant may be negative.
+@isnad1 id=le.2h4v.s12.53c2ead3082d from=translated src=- shape=07b28755 vocab=54a669d1
+-/
 theorem specNorm_matrixExp_smul_le_of_energy_bound (A : Matrix n n ℂ) (c : ℝ)
     (hA : ∀ x : EuclideanSpace ℂ n,
       inner ℝ x (A.toEuclideanLin x) ≤ c * ‖x‖ ^ 2)

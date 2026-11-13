@@ -27,7 +27,9 @@ def coordinateReflection (k : ι) : Matrix ι ι ℂ :=
 
 omit [Fintype ι] in
 /-- A coordinate reflection is self-adjoint.
-Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).
+@isnad1 id=eq.0h2v.s5.93a86a62892c from=translated src=- shape=00230246 vocab=0214d21b
+-/
 theorem conjTranspose_coordinateReflection (k : ι) :
     (coordinateReflection k)ᴴ = coordinateReflection k := by
   simp only [coordinateReflection, diagonal_conjTranspose]
@@ -36,7 +38,9 @@ theorem conjTranspose_coordinateReflection (k : ι) :
   by_cases h : i = k <;> simp [h]
 
 /-- A coordinate reflection squares to the identity.
-Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).
+@isnad1 id=eq.0h2v.s5.7845b3b2051d from=translated src=- shape=ab95f3ef vocab=0f35b498
+-/
 theorem coordinateReflection_mul_self (k : ι) :
     coordinateReflection k * coordinateReflection k = 1 := by
   rw [coordinateReflection, diagonal_mul_diagonal]
@@ -44,7 +48,9 @@ theorem coordinateReflection_mul_self (k : ι) :
   by_cases h : i = k <;> simp [diagonal, h, one_apply]
 
 /-- A coordinate reflection fixes every diagonal matrix by conjugation.
-Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (pinching helper).
+@isnad1 id=eq.0h3v.s6.deae3eb03923 from=translated src=- shape=9453ded3 vocab=020b645d
+-/
 theorem coordinateReflection_mul_diagonal_mul (k : ι) (a : ι → ℂ) :
     coordinateReflection k * diagonal a * coordinateReflection k = diagonal a := by
   rw [coordinateReflection, diagonal_mul_diagonal, diagonal_mul_diagonal]
@@ -60,7 +66,9 @@ def coordinatePinch (k : ι) (X : Matrix ι ι ℂ) : Matrix ι ι ℂ :=
 
 /-- A coordinate pinch keeps the diagonal and the untouched block, and kills
 the other entries in its row and column. Bhatia 1997, IX.3;
-atlas `golden-thompson` (entrywise pinching formula).-/
+atlas `golden-thompson` (entrywise pinching formula).
+@isnad1 id=eq.0h5v.s6.7db8da599197 from=translated src=- shape=40b6c8da vocab=235ae59d
+-/
 theorem coordinatePinch_apply (k : ι) (X : Matrix ι ι ℂ) (i j : ι) :
     coordinatePinch k X i j = if i = j ∨ i ≠ k ∧ j ≠ k then X i j else 0 := by
   simp only [coordinatePinch, coordinateReflection, Matrix.add_apply, Matrix.smul_apply,
@@ -79,14 +87,18 @@ def coordinatePinched (s : Finset ι) (X : Matrix ι ι ℂ) : Matrix ι ι ℂ 
 
 omit [Fintype ι] in
 /-- Pinching no coordinates leaves a matrix unchanged.
-Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching helper).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching helper).
+@isnad1 id=eq.0h2v.s4.f83b58869ae4 from=translated src=- shape=982ae113 vocab=3bfb7190
+-/
 @[simp] theorem coordinatePinched_empty (X : Matrix ι ι ℂ) :
     coordinatePinched ∅ X = X := by
   ext i j
   simp [coordinatePinched]
 
 /-- Adding a coordinate to the pinched set is exactly one more midpoint pinch.
-Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching induction).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching induction).
+@isnad1 id=eq.0h4v.s5.815c02becf72 from=translated src=- shape=c1133304 vocab=77e69c48
+-/
 theorem coordinatePinched_insert (s : Finset ι) (k : ι) (X : Matrix ι ι ℂ) :
     coordinatePinched (insert k s) X = coordinatePinch k (coordinatePinched s X) := by
   ext i j
@@ -98,7 +110,9 @@ theorem coordinatePinched_insert (s : Finset ι) (k : ι) (X : Matrix ι ι ℂ)
       simp_all [coordinatePinched, eq_comm]
 
 /-- Pinching every coordinate leaves the original diagonal.
-Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching endpoint).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching endpoint).
+@isnad1 id=eq.0h2v.s5.412db12868a4 from=translated src=- shape=a051b8e5 vocab=75f16628
+-/
 @[simp] theorem coordinatePinched_univ (X : Matrix ι ι ℂ) :
     coordinatePinched Finset.univ X = diagonal (fun i => X i i) := by
   ext i j
@@ -108,7 +122,9 @@ Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching endpoint).-/
 
 omit [Fintype ι] in
 /-- Pinching any coordinates preserves every diagonal entry.
-Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching helper).-/
+Bhatia 1997, IX.3; atlas `golden-thompson` (finite pinching helper).
+@isnad1 id=eq.0h4v.s4.d9929ece54ef from=translated src=- shape=395c4c7c vocab=bc6b80ab
+-/
 @[simp] theorem coordinatePinched_apply_self (s : Finset ι) (X : Matrix ι ι ℂ) (i : ι) :
     coordinatePinched s X i i = X i i := by
   simp [coordinatePinched]

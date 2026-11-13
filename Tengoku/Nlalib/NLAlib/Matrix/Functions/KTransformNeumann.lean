@@ -16,7 +16,9 @@ preserves the PSD cone, and its value on the identity is a positive
 supersolution dominating the identity with exactly unit gap. The inverse is
 also the convergent Neumann series by `hermitianNeumannInverse_eq_inverse`.
 Source: user derivations (F23).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=other.5h4v.s12.f3e386421cc1 from=translated src=- shape=6b21d11e vocab=750dbad5
+-/
 theorem matrixKTransform_neumann_of_norm_lt_one
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsProbabilityMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)

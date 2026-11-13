@@ -17,7 +17,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 local notation "M" => Matrix n n ℂ
 
 /-- A genuine K denominator and a genuine matrix unit give the actual
-inverse-variable denominator unit, without a positivity premise.-/
+inverse-variable denominator unit, without a positivity premise.
+@isnad1 id=isunit.2h3v.s7.e4237c4fe9d7 from=translated src=- shape=722ac8a6 vocab=e6e20b5c
+-/
 theorem isUnit_inverse_add_of_isUnit_matrixKDenominator
     (S T : M) (hS : IsUnit S) (hD : IsUnit (1+S*T)) : IsUnit (S⁻¹+T) := by
   have he : S⁻¹*(1+S*T)=S⁻¹+T := by
@@ -28,7 +30,9 @@ theorem isUnit_inverse_add_of_isUnit_matrixKDenominator
 
 /-- The actual native K defect is exactly the inverse-variable
 resolvent sandwich. Singular and indefinite samples are included;
-only the genuinely used denominators must be units.-/
+only the genuinely used denominators must be units.
+@isnad1 id=eq.2h3v.s7.af63f42efc82 from=translated src=- shape=12c9c199 vocab=20ce4e58
+-/
 theorem matrixKResolvent_defect_eq_inverse_sandwich
     (S T : M) (hS : IsUnit S) (hD : IsUnit (1+S*T)) :
     T-matrixKResolvent S T=T*(S⁻¹+T)⁻¹*T := by

@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Real continuous functional calculus of a real diagonal matrix is entrywise.
-No global continuity assumption is needed on its finite spectrum.-/
+No global continuity assumption is needed on its finite spectrum.
+@isnad1 id=eq.0h3v.s7.d5bdf1df1017 from=translated src=- shape=e5db23e9 vocab=5bad6f8c
+-/
 theorem cfc_diagonal (f : ℝ → ℝ) (x : n → ℝ) :
     cfc f (Matrix.diagonal x) = Matrix.diagonal (fun i => f (x i)) := by
   classical
@@ -41,7 +43,9 @@ theorem cfc_diagonal (f : ℝ → ℝ) (x : n → ℝ) :
   funext i
   exact hp (x i) ⟨i, rfl⟩
 
-/-- Powers of a diagonal matrix are the diagonal of scalar powers.-/
+/-- Powers of a diagonal matrix are the diagonal of scalar powers.
+@isnad1 id=eq.0h3v.s6.b46e480572cd from=translated src=- shape=048a3c68 vocab=aba0ce71
+-/
 theorem diagonal_pow (x : n → ℝ) (k : ℕ) :
     (Matrix.diagonal x) ^ k = Matrix.diagonal (fun i => x i ^ k) := by
   simpa using aeval_diagonal x (X ^ k)

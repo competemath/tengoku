@@ -19,7 +19,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 omit [Fintype n] [DecidableEq n] in
 /-- The cone of positive definite real matrices is convex, including the
 zero-dimensional singleton cone. Horn--Johnson (2013), Section 7.6;
-helper for determinant and inverse convexity.-/
+helper for determinant and inverse convexity.
+@isnad1 id=convex.0h1v.s5.9850c7a41ea6 from=translated src=- shape=9d1790a6 vocab=ad1c7529
+-/
 theorem convex_setOf_posDef : Convex ℝ {A : Matrix n n ℝ | A.PosDef} := by
   intro A hA B hB a b ha hb hab
   rcases lt_or_eq_of_le ha with ha | ha
@@ -32,7 +34,9 @@ theorem convex_setOf_posDef : Convex ℝ {A : Matrix n n ℝ | A.PosDef} := by
 This includes the empty-dimensional cone, where the strict condition is
 vacuous because there are no distinct matrices. Horn--Johnson (2013),
 Theorem 7.6.6.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=strictco.0h1v.s6.f297e4a47537 from=translated src=- shape=dd8d6145 vocab=646ae8e8
+-/
 theorem strictConcaveOn_log_det :
     StrictConcaveOn ℝ {A : Matrix n n ℝ | A.PosDef} (fun A => Real.log A.det) := by
   refine ⟨convex_setOf_posDef, ?_⟩
@@ -71,7 +75,9 @@ theorem strictConcaveOn_log_det :
 
 /-- The log-determinant Jensen inequality holds at both endpoints as well
 as in the interior. Horn--Johnson (2013), Theorem 7.6.6.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=le.5h5v.s7.62b885cb5197 from=translated src=- shape=80f284aa vocab=7c4279fd
+-/
 theorem log_det_smul_add_ge {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.PosDef)
     {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hab : a + b = 1) :
     a * Real.log A.det + b * Real.log B.det ≤ Real.log (a • A + b • B).det :=
@@ -79,7 +85,9 @@ theorem log_det_smul_add_ge {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.PosDe
 
 /-- Interior equality in log-determinant Jensen holds exactly for equal
 positive definite matrices. Horn--Johnson (2013), Theorem 7.6.6.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=iff.5h5v.s7.4991aeb98561 from=translated src=- shape=e9a64711 vocab=251a4c43
+-/
 theorem log_det_smul_add_eq_iff {A B : Matrix n n ℝ} (hA : A.PosDef) (hB : B.PosDef)
     {a b : ℝ} (ha : 0 < a) (hb : 0 < b) (hab : a + b = 1) :
     Real.log (a • A + b • B).det = a * Real.log A.det + b * Real.log B.det ↔ A = B := by
@@ -113,7 +121,9 @@ private theorem det_smul_add_ge_rpow_mul_and_eq_iff_aux {A B : Matrix n n ℝ}
     exact log_det_smul_add_eq_iff hA hB ha hb hab
 
 /-- **Multiplicative determinant Jensen inequality.** `det(A)^a det(B)^b ≤ det(aA + bB)` for positive definite `A`, `B` and `a + b = 1`, `a, b > 0`. Horn–Johnson 2013, Theorem 7.6.6.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=le.5h5v.s7.87e80d614c9e from=translated src=- shape=1f842fe7 vocab=38ad2464
+-/
 theorem det_rpow_mul_le_det_smul_add {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) {a b : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hab : a + b = 1) :
@@ -121,7 +131,9 @@ theorem det_rpow_mul_le_det_smul_add {A B : Matrix n n ℝ}
   (det_smul_add_ge_rpow_mul_and_eq_iff_aux hA hB ha hb hab).1
 
 /-- Equality in the multiplicative determinant Jensen inequality holds exactly for `A = B`. Horn–Johnson 2013, Theorem 7.6.6.
-atlas: log-det-concavity (partial)-/
+atlas: log-det-concavity (partial)
+@isnad1 id=iff.5h5v.s7.b9f2ab7ad3f7 from=translated src=- shape=f27673ac vocab=1556d59e
+-/
 theorem det_smul_add_eq_rpow_mul_iff {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) {a b : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hab : a + b = 1) :

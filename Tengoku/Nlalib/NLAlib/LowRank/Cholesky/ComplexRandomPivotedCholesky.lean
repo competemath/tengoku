@@ -34,7 +34,9 @@ def complexRelativeSpectralTraceTail (A : Matrix n n ℂ) (hA : A.IsHermitian) (
 /-- The actual adaptive expected trace obeys the source's nonlinear relative-tail
 recursion. Source: manuscript `sa:rp-recursion`; CETW (2025).
 All matrix and probability inequalities are derived from the input PSD matrix.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=le.2h4v.s6.33ff94064dee from=translated src=- shape=f4a75612 vocab=f219d018
+-/
 theorem complexCholeskyExpectedTrace_succ_le_traceExcessDrift
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r : ℕ} (hr : 1 ≤ r) (t : ℕ) :
     complexCholeskyExpectedTrace A (t + 1) ≤ complexCholeskyExpectedTrace A t -
@@ -83,7 +85,9 @@ theorem complexCholeskyExpectedTrace_succ_le_traceExcessDrift
 /-- The actual RPCholesky expected trace reaches the precise relative-error target
 under the manuscript's logarithmic pivot budget. Source: manuscript `sa:rp-theorem`;
 CETW (2025). This is the positive-tail complex-matrix branch, with all positive tolerances.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.4c21ee463849 from=translated src=- shape=4e177929 vocab=a1352cc9
+-/
 theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
     (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
@@ -97,7 +101,9 @@ theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail
 /-- The relative parameter is exactly `eta = tau_*/tr A`, with the source's budget
 `r/epsilon + r log(1/(epsilon eta))`. Source: manuscript `sa:rp-theorem`; CETW (2025).
 It is not interpreted as an additive error tolerance.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.372c3a37ce61 from=translated src=- shape=911f6bd0 vocab=cde23db9
+-/
 theorem complexCholeskyExpectedTrace_le_of_complexRelativeSpectralTraceTail
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
     (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε : ℝ} (hε : 0 < ε)
@@ -113,7 +119,9 @@ theorem complexCholeskyExpectedTrace_le_of_complexRelativeSpectralTraceTail
 
 /-- An additive tolerance has its own scale-correct pivot budget, distinct from the
 relative optimal tail parameter. Source: manuscript `sa:rp-theorem`, additive corollary.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=le.6h6v.s7.c15253c90828 from=translated src=- shape=53be3560 vocab=a1352cc9
+-/
 theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail_add
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
     (hτ : 0 < spectralTraceTail A hA.isHermitian r) {ε h : ℝ} (hε : 0 < ε) (hh : 0 < h)
@@ -142,7 +150,9 @@ theorem complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail_add
 omit [Nonempty n] in
 /-- A zero optimal trace tail yields exact RPCholesky expected trace after at most
 the target rank pivots, including a rank-zero input. Source: manuscript `sa:rp-theorem`.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=eq.3h4v.s5.7e631c9e91d7 from=translated src=- shape=d1b22c73 vocab=205ff3dd
+-/
 theorem complexCholeskyExpectedTrace_eq_zero_of_complexSpectralTraceTail_eq_zero
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ}
     (ht : spectralTraceTail A hA.isHermitian r = 0) (hk : r ≤ k) :
@@ -151,7 +161,9 @@ theorem complexCholeskyExpectedTrace_eq_zero_of_complexSpectralTraceTail_eq_zero
 
 omit [Nonempty n] [DecidableEq n] in
 /-- The expected trace of the actual approximation error equals the expected residual
-trace used in the bounds. Source: manuscript `sa:rp-update`, definition of `Ahat_t`.-/
+trace used in the bounds. Source: manuscript `sa:rp-update`, definition of `Ahat_t`.
+@isnad1 id=eq.0h3v.s6.3d2aaae50984 from=translated src=- shape=fc02cf91 vocab=819a44a3
+-/
 theorem sum_complexCholeskyHistoryWeight_mul_trace_sub_approximation_eq
     (A : Matrix n n ℂ) (t : ℕ) :
     (∑ h : Fin t → n, complexCholeskyHistoryWeight A t h *
@@ -168,7 +180,9 @@ budget and the exact zero-tail endpoint. The relative parameter is exactly
 `eta = tail/re(tr A)`, and every positive tolerance is allowed. Source: manuscript
 `sa:rp-theorem`; audit Part VII; CETW (2025), the eta-dependent branch of Theorem 5.1.
 No eta-independent alternative from the full paper is asserted here.
-Atlas: `rpcholesky` (finite weighted formula).-/
+Atlas: `rpcholesky` (finite weighted formula).
+@isnad1 id=le.4h5v.s7.060261879688 from=translated src=- shape=c21d7f0c vocab=cde23db9
+-/
 theorem complexCholeskyExpectedTrace_le_of_relative_budget_or_zero_tail
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
     {ε : ℝ} (hε : 0 < ε)
@@ -184,7 +198,9 @@ theorem complexCholeskyExpectedTrace_le_of_relative_budget_or_zero_tail
 
 /-- RPCholesky's residual-trace integral reaches the relative spectral-tail target.
 Source: CETW (2025), Theorem 5.1, relative-tail budget.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=le.5h5v.s7.257416b29b42 from=translated src=- shape=772bc9c7 vocab=e7f6ce4b
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
@@ -197,7 +213,9 @@ theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail
   exact complexCholeskyExpectedTrace_le_mul_complexSpectralTraceTail hA hr hτ hε hbudget
 
 /-- The relative-tail guarantee applies to a random adaptive pivot history on any space.
-Source: CETW (2025), Theorem 5.1, relative-tail budget.-/
+Source: CETW (2025), Theorem 5.1, relative-tail budget.
+@isnad1 id=le.6h8v.s8.190df3dd0de4 from=translated src=- shape=63cc6c3d vocab=db861471
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail_of_hasLaw
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
@@ -212,7 +230,9 @@ theorem integral_trace_complexCholeskyHistoryLaw_le_mul_spectralTraceTail_of_has
 
 /-- Zero spectral tail gives zero expected residual trace after the target rank.
 Source: CETW (2025), rank termination endpoint.
-atlas: rpcholesky (partial)-/
+atlas: rpcholesky (partial)
+@isnad1 id=eq.3h4v.s6.186837abdc48 from=translated src=- shape=159c08c3 vocab=87b78afe
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_eq_zero_of_spectralTraceTail_eq_zero
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ}
@@ -224,7 +244,9 @@ theorem integral_trace_complexCholeskyHistoryLaw_eq_zero_of_spectralTraceTail_eq
 /-- The adaptive complex RPCholesky law satisfies the relative-tail guarantee,
 including the exact zero-tail endpoint.
 Source: CETW (2025), Theorem 5.1, relative-tail branch and rank termination.
-atlas: rpcholesky-/
+atlas: rpcholesky
+@isnad1 id=le.4h5v.s8.ab8780e7e0c9 from=translated src=- shape=49517280 vocab=a68724d8
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_tail
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {r k : ℕ} (hr : 1 ≤ r)
@@ -240,7 +262,9 @@ theorem integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_t
   exact complexCholeskyExpectedTrace_le_of_relative_budget_or_zero_tail hA hr hε hbudget
 
 /-- The relative-tail and zero-tail guarantees transport to a random adaptive history.
-Source: CETW (2025), Theorem 5.1, relative-tail branch and rank termination.-/
+Source: CETW (2025), Theorem 5.1, relative-tail branch and rank termination.
+@isnad1 id=le.5h8v.s8.c1f713b8fcd7 from=translated src=- shape=3149b076 vocab=750fe7cc
+-/
 theorem integral_trace_complexCholeskyHistoryLaw_le_of_relative_budget_or_zero_tail_of_hasLaw
     [MeasurableSpace n] [MeasurableSingletonClass n]
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}

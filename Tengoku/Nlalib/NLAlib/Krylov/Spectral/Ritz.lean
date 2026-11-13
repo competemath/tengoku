@@ -62,7 +62,9 @@ private lemma dotProduct_self_eq_one {u : n → ℝ} (hu : ‖WithLp.toLp 2 u‖
   rw [← norm_toLp_sq_eq_dotProduct_self, hu, one_pow]
 
 omit [DecidableEq n] in
-/-- Cauchy–Schwarz for the dot product: `(u ⬝ v)² ≤ (u ⬝ u)(v ⬝ v)`.-/
+/-- Cauchy–Schwarz for the dot product: `(u ⬝ v)² ≤ (u ⬝ u)(v ⬝ v)`.
+@isnad1 id=le.0h3v.s6.e79fe1ce5260 from=translated src=- shape=24fa5af1 vocab=fe4a296c
+-/
 theorem sq_dotProduct_le_dotProduct_mul_dotProduct (u v : n → ℝ) :
     (u ⬝ᵥ v) ^ 2 ≤ (u ⬝ᵥ u) * (v ⬝ᵥ v) := by
   have h := real_inner_mul_inner_self_le (WithLp.toLp 2 u : EuclideanSpace ℝ n)
@@ -72,14 +74,18 @@ theorem sq_dotProduct_le_dotProduct_mul_dotProduct (u v : n → ℝ) :
 
 /-- The eigenvalue at sorted position `i₀` is the eigenvalue of the label
 `Fintype.equivOfCardEq (Fintype.card_fin _) i₀` (the bridge between `eigenvalues₀` and
-`eigenvalues`). Helper.-/
+`eigenvalues`). Helper.
+@isnad1 id=eq.1h3v.s6.ea91d55369aa from=translated src=- shape=57eb4316 vocab=edf7408d
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues_equivOfCardEq {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (i₀ : Fin (Fintype.card n)) :
     hA.eigenvalues (Fintype.equivOfCardEq (Fintype.card_fin _) i₀) = hA.eigenvalues₀ i₀ := by
   unfold Matrix.IsHermitian.eigenvalues
   rw [Equiv.symm_apply_apply]
 
-/-- Every eigenvalue is at most the one at sorted position `0`. Helper.-/
+/-- Every eigenvalue is at most the one at sorted position `0`. Helper.
+@isnad1 id=le.1h3v.s6.d07c2ee66d1a from=translated src=- shape=cc05e4d3 vocab=7b896720
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues_le_eigenvalues₀_zero [Nonempty n]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (i : n) :
     hA.eigenvalues i ≤ hA.eigenvalues₀ 0 :=
@@ -90,7 +96,9 @@ section EigenvectorCoordinates
 variable {A : Matrix n n ℝ} (hA : A.IsHermitian)
 
 /-- Eigen-coordinates of an eigenvector: `(λᵢ − L)(uᵢ ⬝ u) = 0` when `A u = L u`. Helper for
-`krylov-eigenvector-angle`.-/
+`krylov-eigenvector-angle`.
+@isnad1 id=eq.2h5v.s8.1c4998455c3e from=translated src=- shape=0b045c54 vocab=693b7f03
+-/
 theorem eigenvalues_sub_mul_eigenvectorBasis_dotProduct_eq_zero {u : n → ℝ} {L : ℝ}
     (hu : A *ᵥ u = L • u) (i : n) :
     (hA.eigenvalues i - L) * ((hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ u) = 0 := by
@@ -98,7 +106,9 @@ theorem eigenvalues_sub_mul_eigenvectorBasis_dotProduct_eq_zero {u : n → ℝ} 
   rw [aeval_X, hu, dotProduct_smul, eval_X, smul_eq_mul] at h
   rw [sub_mul]; linarith
 
-/-- Parseval for a pair: `v ⬝ w = ∑ᵢ (uᵢ ⬝ v)(uᵢ ⬝ w)`. Helper.-/
+/-- Parseval for a pair: `v ⬝ w = ∑ᵢ (uᵢ ⬝ v)(uᵢ ⬝ w)`. Helper.
+@isnad1 id=eq.1h4v.s8.27ddd78e5ec2 from=translated src=- shape=4f04f018 vocab=f9307aaa
+-/
 theorem dotProduct_eq_sum_eigenvectorBasis_dotProduct_mul (v w : n → ℝ) :
     v ⬝ᵥ w = ∑ i, ((hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ v) *
       ((hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ w) := by
@@ -115,7 +125,9 @@ theorem dotProduct_eq_sum_eigenvectorBasis_dotProduct_mul (v w : n → ℝ) :
   linarith
 
 /-- For an eigenvector `u` with `A u = L u`, `uᵢ ⬝ u` vanishes unless `λᵢ = L`, so any `g` acts
-as `g(L)` on these coordinates: `(uᵢ ⬝ u) g(λᵢ) = (uᵢ ⬝ u) g(L)`. Helper.-/
+as `g(L)` on these coordinates: `(uᵢ ⬝ u) g(λᵢ) = (uᵢ ⬝ u) g(L)`. Helper.
+@isnad1 id=eq.2h6v.s8.335b63c5aa93 from=translated src=- shape=e6b0424f vocab=6309e027
+-/
 theorem eigenvectorBasis_dotProduct_mul_eq {u : n → ℝ} {L : ℝ} (hu : A *ᵥ u = L • u)
     (g : ℝ → ℝ) (i : n) :
     ((hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ u) * g (hA.eigenvalues i) =
@@ -127,7 +139,9 @@ theorem eigenvectorBasis_dotProduct_mul_eq {u : n → ℝ} {L : ℝ} (hu : A *�
 
 /-- **A spectral multiplier commutes with an eigenvector**: if `uᵢ ⬝ w = g(λᵢ)(uᵢ ⬝ v)` for
 every `i` (e.g. `w = g(A) v`) and `A u = L u`, then `u ⬝ w = g(L)(u ⬝ v)`. Helper for
-`krylov-eigenvector-angle`, `power-iteration`.-/
+`krylov-eigenvector-angle`, `power-iteration`.
+@isnad1 id=eq.3h7v.s9.1fa2679a7162 from=translated src=- shape=8c653423 vocab=6309e027
+-/
 theorem dotProduct_eq_mul_dotProduct_of_forall_eigenvectorBasis_dotProduct_eq {u v w : n → ℝ}
     {L : ℝ} (hu : A *ᵥ u = L • u) {g : ℝ → ℝ}
     (hw : ∀ i, (hA.eigenvectorBasis i : n → ℝ) ⬝ᵥ w =
@@ -144,7 +158,9 @@ eigenvector for the eigenvalue at sorted position `i₀`, let `|g| ≤ M` at eve
 position, and let `uᵢ ⬝ w = g(λᵢ)(uᵢ ⬝ v)` for every `i`. Then the component of `w`
 orthogonal to `u` is at most `M` times that of `v`: `‖w‖² − (u ⬝ w)² ≤ M² (‖v‖² − (u ⬝ v)²)`.
 Source: Trefethen–Bau (1997) [`tb97`], proof of Thm 27.1; Saad (2011) [`saad11`], §6.6.1.
-Helper for `krylov-eigenvector-angle`, `power-iteration`, `inverse-iteration`.-/
+Helper for `krylov-eigenvector-angle`, `power-iteration`, `inverse-iteration`.
+@isnad1 id=le.5h8v.s9.c3d855fbc5b8 from=translated src=- shape=5e1bffd6 vocab=e3708950
+-/
 theorem sub_sq_dotProduct_le_of_forall_eigenvectorBasis_dotProduct_eq
     {i₀ : Fin (Fintype.card n)} {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {g : ℝ → ℝ} {M : ℝ}
@@ -243,22 +259,30 @@ Source: Saad (2011), §6.6.1. The overlap premise excludes the orthogonal and ze
 def tanSqAngle (u x : n → ℝ) (_hux : u ⬝ᵥ x ≠ 0) : ℝ := overlapTangentSq u x
 
 omit [DecidableEq n] in
-/-- The geometric squared tangent agrees with its quadratic quotient on the valid domain.-/
+/-- The geometric squared tangent agrees with its quadratic quotient on the valid domain.
+@isnad1 id=eq.1h3v.s5.158d46cb5b55 from=translated src=- shape=7d87e415 vocab=52e9313b
+-/
 theorem tanSqAngle_eq_overlapTangentSq (u x : n → ℝ) (hux : u ⬝ᵥ x ≠ 0) :
     tanSqAngle u x hux = overlapTangentSq u x := rfl
 
 omit [DecidableEq n] in
-/-- `tan² ∠(u, x) ≥ 0` (Cauchy–Schwarz). Helper for `krylov-eigenvector-angle`.-/
+/-- `tan² ∠(u, x) ≥ 0` (Cauchy–Schwarz). Helper for `krylov-eigenvector-angle`.
+@isnad1 id=le.0h3v.s4.52fa259774c7 from=translated src=- shape=7325c23d vocab=c9e0e945
+-/
 theorem overlapTangentSq_nonneg (u x : n → ℝ) : 0 ≤ overlapTangentSq u x :=
   div_nonneg (sub_nonneg.2 (sq_dotProduct_le_dotProduct_mul_dotProduct u x)) (sq_nonneg _)
 
 omit [DecidableEq n] in
-/-- The squared tangent on its nonzero-overlap domain is nonnegative.-/
+/-- The squared tangent on its nonzero-overlap domain is nonnegative.
+@isnad1 id=le.1h3v.s5.121e04e91cfd from=translated src=- shape=ba8544d3 vocab=def542ab
+-/
 theorem tanSqAngle_nonneg (u x : n → ℝ) (hux : u ⬝ᵥ x ≠ 0) :
     0 ≤ tanSqAngle u x hux := overlapTangentSq_nonneg u x
 
 omit [DecidableEq n] in
-/-- For a unit vector `u`, `tan² ∠(u, x) = (‖x‖² − (u ⬝ x)²)/(u ⬝ x)²`. Helper.-/
+/-- For a unit vector `u`, `tan² ∠(u, x) = (‖x‖² − (u ⬝ x)²)/(u ⬝ x)²`. Helper.
+@isnad1 id=eq.1h3v.s7.d0eb3efeba8e from=translated src=- shape=e794957a vocab=a8cfbcfa
+-/
 theorem overlapTangentSq_of_norm_eq_one {u : n → ℝ} (hu : ‖WithLp.toLp 2 u‖ = 1) (x : n → ℝ) :
     overlapTangentSq u x = (x ⬝ᵥ x - (u ⬝ᵥ x) ^ 2) / (u ⬝ᵥ x) ^ 2 := by
   classical
@@ -266,7 +290,9 @@ theorem overlapTangentSq_of_norm_eq_one {u : n → ℝ} (hu : ‖WithLp.toLp 2 u
 
 omit [DecidableEq n] in
 /-- For a unit reference vector and nonzero overlap, the squared tangent is the orthogonal
-energy divided by squared overlap. Source: Saad (2011), §6.6.1.-/
+energy divided by squared overlap. Source: Saad (2011), §6.6.1.
+@isnad1 id=eq.2h3v.s7.bc5447ae63ce from=translated src=- shape=1e285572 vocab=f741d99a
+-/
 theorem tanSqAngle_of_norm_eq_one {u : n → ℝ} (hu : ‖WithLp.toLp 2 u‖ = 1)
     (x : n → ℝ) (hux : u ⬝ᵥ x ≠ 0) :
     tanSqAngle u x hux = (x ⬝ᵥ x - (u ⬝ᵥ x) ^ 2) / (u ⬝ᵥ x) ^ 2 :=
@@ -276,7 +302,9 @@ theorem tanSqAngle_of_norm_eq_one {u : n → ℝ} (hu : ‖WithLp.toLp 2 u‖ = 
 eigenvalue at sorted position `i₀`, `|g| ≤ M` at every other sorted position, and
 `uᵢ ⬝ w = g(λᵢ)(uᵢ ⬝ v)` for every `i` (e.g. `w = p(A) v`, `w = (A − μI)⁻¹ v`). Then
 `tan² ∠(u, w) ≤ (M/g(λ_{i₀}))² tan² ∠(u, v)`. Source: Trefethen–Bau (1997) [`tb97`], proof of
-Thm 27.1. Helper for `krylov-eigenvector-angle`, `power-iteration`, `inverse-iteration`.-/
+Thm 27.1. Helper for `krylov-eigenvector-angle`, `power-iteration`, `inverse-iteration`.
+@isnad1 id=le.5h8v.s9.c33ea0c265a9 from=translated src=- shape=34a0795b vocab=abc0142e
+-/
 theorem overlapTangentSq_le_of_forall_eigenvectorBasis_dotProduct_eq {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {i₀ : Fin (Fintype.card n)} {u : n → ℝ}
     (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u) (hu1 : ‖WithLp.toLp 2 u‖ = 1) {g : ℝ → ℝ} {M : ℝ}
@@ -298,7 +326,9 @@ position. Then `tan² ∠(u, p(A) b) ≤ (M/p(λ_{i₀}))² tan² ∠(u, b)`. Wi
 `p(A) b ∈ K_q(A, b)`. This algebraic quotient identity uses zero at vanishing overlap; its geometric form
 `tanSqAngle_aeval_mulVec_le` requires nonzero starting overlap and nonzero `p(λ_{i₀})`. Source: Saad (2011) [`saad11`], §6.6.1, proof of the angle bound
 (`i = 1`).
-atlas: krylov-eigenvector-angle (partial)-/
+atlas: krylov-eigenvector-angle (partial)
+@isnad1 id=le.4h7v.s8.e31dd6d97e36 from=translated src=- shape=7b8f9d06 vocab=32dfff62
+-/
 theorem overlapTangentSq_aeval_mulVec_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {i₀ : Fin (Fintype.card n)} {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {p : ℝ[X]} {M : ℝ}
@@ -309,7 +339,9 @@ theorem overlapTangentSq_aeval_mulVec_le {A : Matrix n n ℝ} (hA : A.IsHermitia
     (fun i => eigenvectorBasis_dotProduct_aeval_mulVec hA p b i)
 
 /-- An eigenvector pairs with `p(A) b` through `p(λ)`: `u ⬝ p(A) b = p(λ)(u ⬝ b)` when
-`A u = λ u`. Helper for `krylov-eigenvector-angle`, `ritz-value-bounds`.-/
+`A u = λ u`. Helper for `krylov-eigenvector-angle`, `ritz-value-bounds`.
+@isnad1 id=eq.2h6v.s8.a5b2b7d6ab98 from=translated src=- shape=43c7aaa3 vocab=ec414c19
+-/
 theorem dotProduct_aeval_mulVec_of_mulVec_eq_smul {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {u : n → ℝ} {L : ℝ} (hu : A *ᵥ u = L • u) (p : ℝ[X]) (b : n → ℝ) :
     u ⬝ᵥ (aeval A p *ᵥ b) = p.eval L * (u ⬝ᵥ b) :=
@@ -317,7 +349,9 @@ theorem dotProduct_aeval_mulVec_of_mulVec_eq_smul {A : Matrix n n ℝ} (hA : A.I
     (g := fun x => p.eval x) (fun i => eigenvectorBasis_dotProduct_aeval_mulVec hA p b i)
 
 /-- A polynomial preserves nonzero eigenvector overlap when its value at the eigenvalue
-is nonzero. Source: Saad (2011), §6.6.1.-/
+is nonzero. Source: Saad (2011), §6.6.1.
+@isnad1 id=ne.4h6v.s8.e9ecfe0977ea from=translated src=- shape=ed8b57d0 vocab=8e1004d2
+-/
 theorem dotProduct_aeval_mulVec_ne_zero {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {u : n → ℝ} {L : ℝ} (hu : A *ᵥ u = L • u) (p : ℝ[X]) (b : n → ℝ)
     (hb : u ⬝ᵥ b ≠ 0) (hp : p.eval L ≠ 0) : u ⬝ᵥ (aeval A p *ᵥ b) ≠ 0 := by
@@ -325,7 +359,9 @@ theorem dotProduct_aeval_mulVec_ne_zero {A : Matrix n n ℝ} (hA : A.IsHermitian
   exact mul_ne_zero hp hb
 
 /-- Polynomial contraction of the geometric squared tangent on its nonzero-overlap domain.
-Source: Saad (2011), §6.6.1.-/
+Source: Saad (2011), §6.6.1.
+@isnad1 id=le.6h7v.s8.9e64f80648bc from=translated src=- shape=bfb96ceb vocab=6043e7fc
+-/
 theorem tanSqAngle_aeval_mulVec_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {i₀ : Fin (Fintype.card n)} {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {p : ℝ[X]} {M : ℝ}
@@ -343,7 +379,9 @@ semidefinite with top eigenvalue `λ₁ = λ₀(A)` and unit eigenvector `u`, le
 `λ₁ ‖y‖² − yᵀAy ≤ (ε λ₁ + λ₁ (2/(1 + √(2γ)))^{2q} ‖b‖²/(u ⬝ b)²) ‖y‖²`, `γ = ε/(1 − ε)`.
 Source: Musco–Musco (2015) [`mm15`], Lem. 4–5 and proof of Thm 1 (single-vector case).
 Deviation: `K_{q+1}` and the exponent `q` (the source counts the Krylov dimension).
-atlas: ritz-value-bounds-/
+atlas: ritz-value-bounds
+@isnad1 id=ex.6h6v.s9.ce7c1a323047 from=translated src=- shape=6466f12f vocab=104f9f20
+-/
 theorem exists_mem_krylovSpace_sub_rayleigh_le [Nonempty n] {A : Matrix n n ℝ}
     (hA : A.PosSemidef) {u : n → ℝ} (hu : A *ᵥ u = hA.isHermitian.eigenvalues₀ 0 • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1) {b : n → ℝ}
@@ -442,7 +480,9 @@ variable {k : Type*} [Fintype k] [DecidableEq k]
 omit [DecidableEq n] in
 /-- Rayleigh quotients over `range Q` are bounded by any upper bound `θ` on the eigenvalues of
 `QᵀAQ` (the Ritz values), for `Q` with orthonormal columns: `yᵀAy ≤ θ ‖y‖²` for `y ∈ range Q`.
-Source: Parlett (1998), Thm 11.4.1 (Rayleigh–Ritz). Atlas: `ritz-value-bounds` (helper).-/
+Source: Parlett (1998), Thm 11.4.1 (Rayleigh–Ritz). Atlas: `ritz-value-bounds` (helper).
+@isnad1 id=le.4h6v.s8.3fa2ff039d61 from=translated src=- shape=3022eaaf vocab=36e1bbac
+-/
 theorem dotProduct_mulVec_le_of_mem_range {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) {θ : ℝ}
     (hθ : ∀ j, (Matrix.isHermitian_conjTranspose_mul_mul Q hA).eigenvalues j ≤ θ) {y : n → ℝ}
@@ -469,7 +509,9 @@ Source: Musco–Musco (2015) [`mm15`], Thm 1 (single-vector, gap-free); Kuczyńs
 (1992) [`kw92`] for the random-start analysis. The gap-dependent bound of Saad (2011), Thm 6.4,
 is `eigenvalues_sub_eigenvalues_transpose_mul_mul_le` (`kaniel-paige-saad`).
 Deviation: `K_{q+1}` and the exponent `q` (the source counts the Krylov dimension).
-atlas: ritz-value-bounds-/
+atlas: ritz-value-bounds
+@isnad1 id=ex.8h8v.s9.bc3bd924713a from=translated src=- shape=772309dc vocab=3d03c36b
+-/
 theorem exists_eigenvalues_transpose_mul_mul_ge [Nonempty n] {A : Matrix n n ℝ}
     (hA : A.PosSemidef) {u : n → ℝ} (hu : A *ᵥ u = hA.isHermitian.eigenvalues₀ 0 • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {ε : ℝ} (hε0 : 0 < ε) (hε1 : ε < 1) {b : n → ℝ}
@@ -509,7 +551,9 @@ theorem exists_eigenvalues_transpose_mul_mul_ge [Nonempty n] {A : Matrix n n ℝ
 `γ = (L − c)/(c − a)`: namely `p(x) = T_q((2x − c − a)/(c − a))/T_q(1 + 2γ)`, the
 `chebyshevAmplifier` with `α = (c − a)/2`, `γ' = 2γ`, shifted by `(c + a)/2`.
 Source: Saad (2011) [`saad11`], §6.6.1. Helper for `krylov-eigenvector-angle` (belongs in
-`NLAlib.Polynomial.FunctionApproximation.Approximation` next to `chebyshev-amplifier`).-/
+`NLAlib.Polynomial.FunctionApproximation.Approximation` next to `chebyshev-amplifier`).
+@isnad1 id=ex.2h4v.s7.b2efa14980d1 from=translated src=- shape=45e55dcc vocab=70d10bb3
+-/
 theorem exists_degree_le_eval_eq_one_abs_eval_le {a c L : ℝ} (hac : a < c) (hcL : c < L)
     (q : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ q ∧ p.eval L = 1 ∧ ∀ x ∈ Set.Icc a c,
@@ -547,7 +591,9 @@ The witness is `x = T_q((2A − (c + a)I)/(c − a)) b`, written through `chebys
 Source: Saad (2011) [`saad11`], §6.6.1 (case `i = 1`); Saad (2003), §6.11.
 Deviation: squared tangents; Krylov dimension `q + 1` (Saad's `m`) so that the degree is `q`;
 an arbitrary enclosure `[a, c]` of the other eigenvalues instead of `[λₙ, λ₂]`.
-atlas: krylov-eigenvector-angle-/
+atlas: krylov-eigenvector-angle
+@isnad1 id=ex.7h7v.s9.e5a61340c0cc from=translated src=- shape=7ccf503d vocab=c1d70733
+-/
 theorem exists_mem_krylovSpace_overlapTangentSq_le [Nonempty n] {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ 0 • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {a c : ℝ} (hac : a < c) (hc : c < hA.eigenvalues₀ 0)
@@ -567,7 +613,9 @@ theorem exists_mem_krylovSpace_overlapTangentSq_le [Nonempty n] {A : Matrix n n 
 /-- The growth of `T_q` in gap form: for `γ ≥ 0`,
 `(1 + 2γ + 2√(γ + γ²))^q / 2 ≤ T_q(1 + 2γ)`. Source: Saad (2011) [`saad11`], §6.6.1 (after
 Thm 6.3). Helper for `krylov-eigenvector-angle`; an instance of `chebyshev-growth` (belongs in
-`NLAlib.Polynomial.Chebyshev.Growth`).-/
+`NLAlib.Polynomial.Chebyshev.Growth`).
+@isnad1 id=le.1h2v.s7.59906b51a40b from=translated src=- shape=4338773d vocab=709fbfb2
+-/
 theorem pow_div_two_le_eval_T_real_one_add_two_mul {γ : ℝ} (hγ : 0 ≤ γ) (q : ℕ) :
     (1 + 2 * γ + 2 * √(γ + γ ^ 2)) ^ q / 2 ≤ (Chebyshev.T ℝ q).eval (1 + 2 * γ) := by
   have h := pow_div_two_le_eval_T_real (by linarith : (1 : ℝ) ≤ 1 + 2 * γ) q
@@ -580,7 +628,9 @@ theorem pow_div_two_le_eval_T_real_one_add_two_mul {γ : ℝ} (hγ : 0 ≤ γ) (
 `exists_mem_krylovSpace_overlapTangentSq_le`, `K_{q+1}(A, b)` contains `x` with `u ⬝ x ≠ 0` and
 `tan² ∠(u, x) ≤ (2/(1 + 2γ + 2√(γ + γ²))^q)² tan² ∠(u, b)`, `γ = (λ₁ − c)/(c − a)`.
 Source: Saad (2011) [`saad11`], §6.6.1.
-atlas: krylov-eigenvector-angle-/
+atlas: krylov-eigenvector-angle
+@isnad1 id=ex.7h7v.s9.38d70f5b4552 from=translated src=- shape=f95a3dcb vocab=2772fd21
+-/
 theorem exists_mem_krylovSpace_overlapTangentSq_le_two_div_pow [Nonempty n] {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ 0 • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {a c : ℝ} (hac : a < c) (hc : c < hA.eigenvalues₀ 0)
@@ -609,7 +659,9 @@ theorem exists_mem_krylovSpace_overlapTangentSq_le_two_div_pow [Nonempty n] {A :
 `Qᵀ A Q`, `Q` with orthonormal columns. This is the lower half `0 ≤ λ₁ − θ₁` of the
 Kaniel–Paige–Saad bound. Source: Saad (2011) [`saad11`], Thm 6.4 (left inequality; Cauchy
 interlacing).
-atlas: kaniel-paige-saad (partial)-/
+atlas: kaniel-paige-saad (partial)
+@isnad1 id=le.2h5v.s7.6efe2dc54064 from=translated src=- shape=b976bc8e vocab=60c799ae
+-/
 theorem eigenvalues_transpose_mul_mul_le [Nonempty n] {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (j : k) :
     (Matrix.isHermitian_conjTranspose_mul_mul Q hA).eigenvalues j ≤ hA.eigenvalues₀ 0 := by
@@ -625,7 +677,9 @@ eigenvalue `≥ a`, `u` a unit eigenvector for the eigenvalue `λ` at sorted pos
 with orthonormal columns, `θ₁ = θ_{j₁}` the largest eigenvalue of `Qᵀ A Q`, and `x ∈ range Q`
 with `u ⬝ x ≠ 0`. Then `λ − θ₁ ≤ (λ − a) tan² ∠(u, x)` (from
 `λ − xᵀAx/xᵀx ≤ (λ − a) sin² ∠(u, x)`). Source: Saad (2011) [`saad11`], proof of Thm 6.4.
-Helper for `kaniel-paige-saad`.-/
+Helper for `kaniel-paige-saad`.
+@isnad1 id=le.8h9v.s9.1fcf448eda61 from=translated src=- shape=0875b99e vocab=b213e795
+-/
 theorem eigenvalues_sub_eigenvalues_le_mul_overlapTangentSq {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {i₀ : Fin (Fintype.card n)} {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {a : ℝ} (ha : ∀ i, a ≤ hA.eigenvalues i)
@@ -684,7 +738,9 @@ with orthonormal columns and `K_q(A, b) ⊆ range Q`, and `θ₁` the largest ei
 For every polynomial `p` with `deg p < q`, `p(λ) ≠ 0` and `|p| ≤ M` at every other sorted
 position: `λ − θ₁ ≤ (λ − a) (M/p(λ))² tan² ∠(u, b)`.
 Source: Saad (2011) [`saad11`], proof of Thm 6.4 (`i = 1`).
-atlas: kaniel-paige-saad (partial)-/
+atlas: kaniel-paige-saad (partial)
+@isnad1 id=le.11h12v.s10.fc698f33c278 from=translated src=- shape=d65088a7 vocab=74792626
+-/
 theorem eigenvalues_sub_eigenvalues_transpose_mul_mul_le_of_poly {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {i₀ : Fin (Fintype.card n)} {u : n → ℝ}
     (hu : A *ᵥ u = hA.eigenvalues₀ i₀ • u) (hu1 : ‖WithLp.toLp 2 u‖ = 1) {a : ℝ}
@@ -720,7 +776,9 @@ Source: Saad (2011) [`saad11`], Thm 6.4 (`i = 1`); Golub–Meurant (2010) [`gm10
 Deviation: Krylov dimension `q + 1` (Saad's `m`, so `T_{m−1} = T_q`); `[a, c]` any enclosure
 of the other eigenvalues (Saad: `a = λₙ`, `c = λ₂`, factor `λ₁ − λₙ`); any orthonormal `Q`
 whose range contains the Krylov space.
-atlas: kaniel-paige-saad-/
+atlas: kaniel-paige-saad
+@isnad1 id=le.10h10v.s10.52e2931b51cd from=translated src=- shape=c26ddd70 vocab=91efca48
+-/
 theorem eigenvalues_sub_eigenvalues_transpose_mul_mul_le [Nonempty n] {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {u : n → ℝ} (hu : A *ᵥ u = hA.eigenvalues₀ 0 • u)
     (hu1 : ‖WithLp.toLp 2 u‖ = 1) {a c : ℝ} (hac : a < c) (hc : c < hA.eigenvalues₀ 0)

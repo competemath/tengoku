@@ -23,7 +23,9 @@ variable {n k : Type*} [Fintype n] [DecidableEq n] [Fintype k] [DecidableEq k]
 an interval containing the spectrum of the symmetric `A`, `Q` has orthonormal columns and
 `K_q(A, v) ⊆ range Q` (`q ≥ 1`), then `|vᵀ f(A) v − (Qᵀv)ᵀ f(QᵀAQ) (Qᵀv)| ≤ πL(c − a)/(4q) ‖v‖²`.
 Source: Golub–Meurant (2010) [`gm10`], §6.2, with Jackson's theorem (Cheney (1966), §4.6).
-atlas: lanczos-quadrature-lipschitz-error-/
+atlas: lanczos-quadrature-lipschitz-error
+@isnad1 id=le.7h10v.s9.f2d3f2958edd from=translated src=- shape=34528d0c vocab=d2653700
+-/
 theorem abs_dotProduct_cfc_mulVec_sub_le_of_lipschitzOnWith
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q)
     (v : n → ℝ) {q : ℕ} (hq : 0 < q)

@@ -26,7 +26,9 @@ variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- Every Lanczos diagonal lies in every interval containing the ambient
 Hermitian spectrum. Source: Gautschi (2004), Theorem 1.28.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=mem.3h8v.s6.de5fd467abf2 from=translated src=- shape=a34ab06c vocab=42a98c7a
+-/
 theorem alpha_mem_Icc_of_eigenvalues (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {a c : ℝ} (hs : ∀ i, hA.eigenvalues i ∈ Icc a c) {j : ℕ} (hj : j < q) :
     D.alpha j ∈ Icc a c := by
@@ -45,7 +47,9 @@ theorem alpha_mem_Icc_of_eigenvalues (D : LanczosDecomp A b q) (hA : A.IsHermiti
 /-- Every Lanczos diagonal lies between the smallest and largest ambient
 Hermitian eigenvalues. The existence of its column supplies nonempty dimension.
 Source: Gautschi (2004), Theorem 1.28.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=mem.2h6v.s6.4642ac8823d1 from=translated src=- shape=2c5f404c vocab=48a2fd94
+-/
 theorem alpha_mem_Icc_lambdaMin_lambdaMax (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {j : ℕ} (hj : j < q) : D.alpha j ∈ Icc (lambdaMin A) (lambdaMax A) := by
   apply D.alpha_mem_Icc_of_eigenvalues hA _ hj
@@ -57,7 +61,9 @@ theorem alpha_mem_Icc_lambdaMin_lambdaMax (D : LanczosDecomp A b q) (hA : A.IsHe
 /-- Every signed Lanczos off-diagonal has magnitude at most the ambient spectral
 norm. It applies to arbitrary basis signs and to the zero boundary coefficients.
 Source: Gautschi (2004), Theorem 1.28.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=le.0h6v.s5.b0ba96469590 from=translated src=- shape=777662af vocab=64d9e80b
+-/
 theorem abs_beta_le_specNorm (D : LanczosDecomp A b q) (j : ℕ) : |D.beta j| ≤ specNorm A := by
   have hT : specNorm D.T ≤ specNorm A := by
     change specNorm (D.Qᵀ * A * D.Q) ≤ specNorm A
@@ -72,7 +78,9 @@ end LanczosDecomp
 
 /-- The canonical positive Lanczos off-diagonal is positive and at most the
 ambient spectral norm below breakdown. Source: Gautschi (2004), Theorem 1.28.
-atlas: recurrence-coefficient-bounds (partial)-/
+atlas: recurrence-coefficient-bounds (partial)
+@isnad1 id=and.3h5v.s6.4fd7b9aa89a2 from=translated src=- shape=1f3cf67c vocab=cdcb1b3f
+-/
 theorem beta_arnoldiDecomp_pos_and_le_specNorm (A : Matrix n n ℝ) (b : n → ℝ)
     {q : ℕ} (hq : q ≤ krylovGrade A b) {j : ℕ} (hj0 : 0 < j) (hj : j < q) :
     0 < LanczosDecomp.beta (arnoldiDecomp A b q hq) j ∧

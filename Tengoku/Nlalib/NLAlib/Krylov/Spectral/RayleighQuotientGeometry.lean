@@ -21,7 +21,9 @@ namespace NLAlib.RayleighQuotientIteration
 variable {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
 variable {A : Matrix n n 𝕜}
 
-/-- The off-axis coordinate energy is exactly the squared orthogonal-residual norm.-/
+/-- The off-axis coordinate energy is exactly the squared orthogonal-residual norm.
+@isnad1 id=eq.1h5v.s8.c223058785ad from=translated src=- shape=bd47a883 vocab=39d9b464
+-/
 theorem sum_sq_coordinates_erase_eq_norm_sub_sq (hA : A.IsHermitian) (i : n) (x : n → 𝕜) :
     (∑ j ∈ Finset.univ.erase i, ‖hA.eigenvectorCoordinates x j‖ ^ 2) =
       ‖WithLp.toLp 2 (x - hA.eigenvectorCoordinates x i • ⇑(hA.eigenvectorBasis i))‖ ^ 2 := by
@@ -36,7 +38,9 @@ theorem sum_sq_coordinates_erase_eq_norm_sub_sq (hA : A.IsHermitian) (i : n) (x 
   simp [(Finset.mem_erase.mp hj).1]
 
 /-- The coordinate tangent is the standard geometric tangent to the selected eigenvector
-line. Both totalized expressions are zero at zero overlap; convergence uses nonzero overlap.-/
+line. Both totalized expressions are zero at zero overlap; convergence uses nonzero overlap.
+@isnad1 id=eq.1h5v.s9.a69fce0a6514 from=translated src=- shape=b9d3fbf1 vocab=89510c33
+-/
 theorem tangent_eq_norm_sub_div (hA : A.IsHermitian) (i : n) (x : n → 𝕜) :
     tangent hA i x =
       ‖WithLp.toLp 2 (x - (star ⇑(hA.eigenvectorBasis i) ⬝ᵥ x) •
@@ -69,7 +73,9 @@ theorem eq_coordinate_smul_eigenvectorBasis (hA : A.IsHermitian) {i : n}
 
 /-- The geometric RQI tangent agrees for every choice of unit vector on the simple
 eigenvector line, including arbitrary complex phase choices.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=eq.4h6v.s9.6aaf278ab988 from=translated src=- shape=69c9f342 vocab=47572fae
+-/
 theorem tangent_eq_norm_sub_div_of_eigenvector (hA : A.IsHermitian) {i : n}
     (hsimple : ∀ j, j ≠ i → hA.eigenvalues j ≠ hA.eigenvalues i)
     {u : n → 𝕜} (hu : A *ᵥ u = hA.eigenvalues i • u)
@@ -95,7 +101,9 @@ theorem tangent_eq_norm_sub_div_of_eigenvector (hA : A.IsHermitian) {i : n}
   exact tangent_eq_norm_sub_div hA i x
 
 /-- Nonzero overlap with any unit target eigenvector is equivalent to a nonzero selected
-eigenbasis coordinate. This transfers the native convergence domain to the atlas domain.-/
+eigenbasis coordinate. This transfers the native convergence domain to the atlas domain.
+@isnad1 id=iff.4h6v.s8.49f11125c087 from=translated src=- shape=b5442dea vocab=213c3ddf
+-/
 theorem coordinate_ne_zero_iff_overlap_ne_zero (hA : A.IsHermitian) {i : n}
     (hsimple : ∀ j, j ≠ i → hA.eigenvalues j ≠ hA.eigenvalues i)
     {u : n → 𝕜} (hu : A *ᵥ u = hA.eigenvalues i • u)
@@ -112,7 +120,9 @@ theorem coordinate_ne_zero_iff_overlap_ne_zero (hA : A.IsHermitian) {i : n}
   simp only [ne_eq, mul_eq_zero, star_eq_zero, hc, false_or]
 
 /-- Zero off-axis tangent with nonzero overlap is an exact eigenvector for the target
-eigenvalue, and its Rayleigh quotient is that eigenvalue.-/
+eigenvalue, and its Rayleigh quotient is that eigenvalue.
+@isnad1 id=and.3h5v.s7.ad29c7b12fa2 from=translated src=- shape=1794634d vocab=2ffb55f3
+-/
 theorem exact_eigenvector_of_tangentSq_eq_zero (hA : A.IsHermitian) {i : n} {x : n → 𝕜}
     (hx : hA.eigenvectorCoordinates x i ≠ 0) (hq : tangentSq hA i x = 0) :
     A *ᵥ x = hA.eigenvalues i • x ∧ rayleighQuotient A x = hA.eigenvalues i := by
@@ -144,7 +154,9 @@ theorem exact_eigenvector_of_tangentSq_eq_zero (hA : A.IsHermitian) {i : n} {x :
     rw [hA.rayleighQuotient_eq_sum_eigenvectorCoordinates, hnum, hden,
       mul_div_cancel_right₀ _ (pow_ne_zero _ (norm_ne_zero_iff.mpr hx))]
 
-/-- A nonterminal state with nonzero target overlap has positive off-axis tangent.-/
+/-- A nonterminal state with nonzero target overlap has positive off-axis tangent.
+@isnad1 id=lt.3h5v.s7.6f0528f145f6 from=translated src=- shape=294b5e86 vocab=b5c39bf8
+-/
 theorem tangentSq_pos_of_not_eigenvector (hA : A.IsHermitian) {i : n} {x : n → 𝕜}
     (hx : hA.eigenvectorCoordinates x i ≠ 0)
     (hnot : A *ᵥ x ≠ rayleighQuotient A x • x) : 0 < tangentSq hA i x := by
@@ -154,7 +166,9 @@ theorem tangentSq_pos_of_not_eigenvector (hA : A.IsHermitian) {i : n} {x : n →
   exact hnot (by rw [he.2]; exact he.1)
 
 /-- In dimension one every unit vector is already an exact Rayleigh eigenvector.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=eq.2h4v.s7.1b797a398ae3 from=translated src=- shape=209bada9 vocab=ed7f2959
+-/
 theorem mulVec_eq_rayleighQuotient_smul_of_unique [Unique n] (hA : A.IsHermitian)
     {x : n → 𝕜} (hx : ‖WithLp.toLp 2 x‖ = 1) :
     A *ᵥ x = rayleighQuotient A x • x := by

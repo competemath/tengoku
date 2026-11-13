@@ -19,7 +19,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m n r : Type*}
   [Fintype m] [Fintype n] [Fintype r] [DecidableEq m] [DecidableEq n] [DecidableEq r]
 
 /-- Completing the square needs stationarity only in the chosen feasible
-directions.-/
+directions.
+@isnad1 id=eq.2h8v.s8.4d4cd632f667 from=translated src=- shape=dfc879e5 vocab=1914d4ec
+-/
 theorem quadraticObjective_add_kernel_of_stationary {H : Matrix n n 𝕜}
     (hH : H.IsHermitian) (Z : Matrix n r 𝕜) (f x : n → 𝕜)
     (hstat : Zᴴ *ᵥ (f - H *ᵥ x) = 0) (y : r → 𝕜) :
@@ -42,7 +44,9 @@ theorem quadraticObjective_add_kernel_of_stationary {H : Matrix n n 𝕜}
 
 /-- Reduced positive definiteness makes any stationary feasible point the
 unique global constrained minimum, even for an indefinite ambient Hessian.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=and.4h9v.s8.1d85b4e5f9bd from=translated src=- shape=d52a7c76 vocab=cb1c6e10
+-/
 theorem IsKernelFrame.quadratic_minimizer_of_reduced_posDef
     {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜} (hZ : IsKernelFrame B Z)
     {H : Matrix n n 𝕜} (hH : H.IsHermitian) (hG : (reducedHessian H Z).PosDef)
@@ -82,7 +86,9 @@ def IsUniqueConstrainedQuadraticMinimum (H : Matrix n n 𝕜) (B : Matrix m n �
     ∀ y, B *ᵥ y = g → quadraticObjective H f y ≤ quadraticObjective H f x → y = x
 
 /-- The null-space inverse formula yields the unique constrained minimum.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=ex.4h9v.s8.41ddfbdd47aa from=translated src=- shape=14f52e07 vocab=aff22249
+-/
 theorem IsKernelFrame.exists_unique_constrained_quadratic_minimum
     {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜} (hZ : IsKernelFrame B Z)
     (hB : IsUnit (B * Bᴴ)) {H : Matrix n n 𝕜} (hH : H.IsHermitian)
@@ -108,7 +114,9 @@ theorem IsKernelFrame.exists_unique_constrained_quadratic_minimum
 
 /-- Necessity already follows from the homogeneous constrained problem:
 a unique minimum rules out both negative and flat feasible directions.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=posdef.3h7v.s7.a7942bec8157 from=translated src=- shape=4775bae6 vocab=4aef6ae9
+-/
 theorem IsKernelFrame.reduced_posDef_of_unique_constrained_minimum_zero
     {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜} (hZ : IsKernelFrame B Z)
     {H : Matrix n n 𝕜} (hH : H.IsHermitian)
@@ -157,7 +165,9 @@ theorem IsKernelFrame.reduced_posDef_of_unique_constrained_minimum_zero
 
 /-- Reduced positive definiteness is equivalent to unique constrained
 quadratic minimization for every pair of right hand sides.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=iff.3h7v.s8.38cc3d4078ad from=translated src=- shape=a9183cb4 vocab=aff22249
+-/
 theorem IsKernelFrame.reduced_posDef_iff_unique_constrained_minimum
     {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜} (hZ : IsKernelFrame B Z)
     (hB : IsUnit (B * Bᴴ)) {H : Matrix n n 𝕜} (hH : H.IsHermitian) :

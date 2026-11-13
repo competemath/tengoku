@@ -25,7 +25,9 @@ namespace LanczosDecomp
 variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- The compressed polynomial vector is the corresponding coordinate vector.
-This holds for each actual Lanczos polynomial, without choosing its sign.-/
+This holds for each actual Lanczos polynomial, without choosing its sign.
+@isnad1 id=eq.0h6v.s8.d744fec312b6 from=translated src=- shape=41f89ff7 vocab=49499504
+-/
 theorem aeval_poly_T_mulVec_transpose_Q_eq_single (D : LanczosDecomp A b q)
     (j : Fin q) : aeval D.T (D.poly j.val) *ᵥ (D.Qᵀ *ᵥ b) = Pi.single j 1 := by
   have hc := transpose_mulVec_aeval_mulVec_eq D.hasOrthonormalCols b D.range_Q.ge
@@ -41,7 +43,9 @@ theorem aeval_poly_T_mulVec_transpose_Q_eq_single (D : LanczosDecomp A b q)
 /-- Each Jacobi eigenvector coordinate is a polynomial evaluation times its first
 coordinate and the signed starting-vector normalization. Source: Gautschi
 (2004), Theorem 1.31.
-atlas: gauss-christoffel-numbers (partial)-/
+atlas: gauss-christoffel-numbers (partial)
+@isnad1 id=eq.2h7v.s9.cef21923e4f7 from=translated src=- shape=841b8310 vocab=69b7cb86
+-/
 theorem eigenvectorBasis_T_apply_eq_eval_poly_mul (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (i j : Fin q) :
     (D.isHermitian_T hA).eigenvectorBasis i j =
@@ -71,7 +75,9 @@ private theorem startingCoordinate_ne_zero (D : LanczosDecomp A b q)
 /-- The polynomial-evaluation vector at a Gauss node is an eigenvector of the
 Jacobi matrix. It remains valid at finite-support termination, without a
 degree-`q` normalized polynomial. Source: Gautschi (2004), Theorem 1.31.
-atlas: gauss-christoffel-numbers (partial)-/
+atlas: gauss-christoffel-numbers (partial)
+@isnad1 id=eq.2h6v.s7.e36480ef6941 from=translated src=- shape=e66712aa vocab=20fec03c
+-/
 theorem T_mulVec_eval_poly_eq_smul (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (i : Fin q) :
     D.T *ᵥ (fun j : Fin q => (D.poly j.val).eval ((D.isHermitian_T hA).eigenvalues i)) =
@@ -92,7 +98,9 @@ theorem T_mulVec_eval_poly_eq_smul (D : LanczosDecomp A b q)
 /-- A Jacobi unit eigenvector is the normalized polynomial-evaluation vector,
 up to a real sign. The sign accommodates arbitrary orientations of the Lanczos
 basis. Source: Gautschi (2004), Theorem 1.31.
-atlas: gauss-christoffel-numbers (partial)-/
+atlas: gauss-christoffel-numbers (partial)
+@isnad1 id=ex.2h6v.s8.b5a172d3dc09 from=translated src=- shape=c3639923 vocab=5113b511
+-/
 theorem exists_eigenvectorBasis_T_eq_sign_smul_eval_poly (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (i : Fin q) :
     ∃ ε : ℝ, ε ^ 2 = 1 ∧
@@ -125,7 +133,9 @@ theorem exists_eigenvectorBasis_T_eq_sign_smul_eval_poly (D : LanczosDecomp A b 
 
 /-- The Christoffel kernel has reciprocal equal to the mass-scaled first
 eigenvector square. Source: Gautschi (2004), Corollary to Theorem 1.31.
-atlas: gauss-christoffel-numbers (partial)-/
+atlas: gauss-christoffel-numbers (partial)
+@isnad1 id=eq.2h6v.s8.89418b629be2 from=translated src=- shape=8acc3f02 vocab=b3d5a5fe
+-/
 theorem mul_sq_eigenvectorBasis_T_apply_zero_eq_inv_sum_sq_eval_poly
     (D : LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q) (i : Fin q) :
     (b ⬝ᵥ b) * ((D.isHermitian_T hA).eigenvectorBasis i ⟨0, hq⟩) ^ 2 =
@@ -157,7 +167,9 @@ theorem mul_sq_eigenvectorBasis_T_apply_zero_eq_inv_sum_sq_eval_poly
 /-- The first `q` actual Lanczos polynomials are orthonormal for the Gauss rule,
 with weights for the original spectral measure rather than a probability
 normalization. Source: Gautschi (2004), Theorem 1.22.
-atlas: gauss-christoffel-numbers (partial)-/
+atlas: gauss-christoffel-numbers (partial)
+@isnad1 id=eq.2h7v.s9.07139199f580 from=translated src=- shape=f8579b45 vocab=dbc68d0f
+-/
 theorem sum_weight_mul_eval_poly_mul_eval_poly (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) (j k : Fin q) :
     (∑ i : Fin q, (b ⬝ᵥ b) * ((D.isHermitian_T hA).eigenvectorBasis i ⟨0, hq⟩) ^ 2 *

@@ -32,12 +32,16 @@ def resolventSquareSecondDifference (ζ : ℂ) (A B C H K : Matrix n n ℂ) : Ma
     resolvent A ζ * H * (resolvent B ζ)^2 * K * resolvent C ζ +
     resolvent A ζ * H * resolvent B ζ * K * (resolvent C ζ)^2
 
-/-- The scalar rational expression `1/(ζ-x)` evaluates to the native resolvent.-/
+/-- The scalar rational expression `1/(ζ-x)` evaluates to the native resolvent.
+@isnad1 id=eq.0h3v.s7.6d24d295b351 from=translated src=- shape=ab80f816 vocab=7661af27
+-/
 theorem rationalMatrixEval_resolvent (ζ : ℂ) (A : Matrix n n ℂ) :
     rationalMatrixEval 1 (C ζ-X) A = resolvent A ζ := by
   simp [rationalMatrixEval,resolvent_matrix_eq_inv,Algebra.algebraMap_eq_smul_one]
 
-/-- The rational expression `1/(ζ-x)^2` evaluates to the squared resolvent.-/
+/-- The rational expression `1/(ζ-x)^2` evaluates to the squared resolvent.
+@isnad1 id=eq.0h3v.s7.54f1eb15d0c1 from=translated src=- shape=ea1cb26d vocab=882bb9ff
+-/
 theorem rationalMatrixEval_resolvent_sq (ζ : ℂ) (A : Matrix n n ℂ) :
     rationalMatrixEval 1 ((C ζ-X)^2) A = (resolvent A ζ)^2 := by
   calc
@@ -49,7 +53,9 @@ theorem rationalMatrixEval_resolvent_sq (ζ : ℂ) (A : Matrix n n ℂ) :
     _ = (resolvent A ζ)^2 := (pow_two _).symm
 
 /-- First rational block differences of the resolvent are its usual ordered
-single-direction insertion.-/
+single-direction insertion.
+@isnad1 id=eq.0h5v.s7.e5b5190b1d79 from=translated src=- shape=44c03815 vocab=aec1dab6
+-/
 theorem rationalBlockDifference_resolvent (ζ : ℂ) (A B H : Matrix n n ℂ) :
     rationalBlockDifference 1 (C ζ-X) A B H = resolvent A ζ * H * resolvent B ζ := by
   simp [rationalBlockDifference_one,polynomialBlockDifference_sub,
@@ -61,7 +67,9 @@ private theorem isUnit_aeval_shift {A : Matrix n n ℂ} (hA : A.IsHermitian)
     hA.isUnit_smul_one_sub_of_im_ne_zero hζ
 
 /-- The explicit first squared-resolvent difference is exactly the corresponding
-rational block difference on its Hermitian nonreal domain.-/
+rational block difference on its Hermitian nonreal domain.
+@isnad1 id=eq.3h5v.s7.273c60987e07 from=translated src=- shape=3833ccf7 vocab=29db2e4b
+-/
 theorem rationalBlockDifference_resolvent_sq (ζ : ℂ) (A B H : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hζ : ζ.im ≠ 0) :
     rationalBlockDifference 1 ((C ζ-X)^2) A B H = resolventSquareDifference ζ A B H := by
@@ -75,7 +83,9 @@ theorem rationalBlockDifference_resolvent_sq (ζ : ℂ) (A B H : Matrix n n ℂ)
   noncomm_ring
 
 /-- The explicit ordered second squared-resolvent difference is the corresponding
-second rational block difference, with both directions in their original order.-/
+second rational block difference, with both directions in their original order.
+@isnad1 id=eq.4h7v.s8.ab695aad8a9f from=translated src=- shape=15bddd34 vocab=6d464ede
+-/
 theorem rationalSecondBlockDifference_resolvent_sq (ζ : ℂ) (A B C H K : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hC : C.IsHermitian) (hζ : ζ.im ≠ 0) :
     rationalSecondBlockDifference 1 ((Polynomial.C ζ-X)^2) A B C H K =
@@ -92,7 +102,9 @@ theorem rationalSecondBlockDifference_resolvent_sq (ζ : ℂ) (A B C H K : Matri
   noncomm_ring
 
 /-- The squared resolvent's exact increment is its first insertion difference.
-Source: supplied Cauchy-transform reroute, (comparison-L).-/
+Source: supplied Cauchy-transform reroute, (comparison-L).
+@isnad1 id=eq.3h4v.s8.b071e6d42456 from=translated src=- shape=b855d889 vocab=7cced6a5
+-/
 theorem resolvent_sq_sub_resolvent_sq (ζ : ℂ) (A B : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hζ : ζ.im ≠ 0) :
     (resolvent A ζ)^2-(resolvent B ζ)^2 = resolventSquareDifference ζ A B (A-B) := by
@@ -103,7 +115,9 @@ theorem resolvent_sq_sub_resolvent_sq (ζ : ℂ) (A B : Matrix n n ℂ)
     rationalBlockDifference_resolvent_sq ζ A B (A-B) hA hB hζ] using h
 
 /-- The first insertion minus the derivative at a third base point is the
-sum of the two ordered second differences. Source: supplied reroute (comparison-T).-/
+sum of the two ordered second differences. Source: supplied reroute (comparison-T).
+@isnad1 id=eq.4h6v.s8.1ccd17b965ee from=translated src=- shape=6ef52fd2 vocab=925ea73e
+-/
 theorem resolventSquareDifference_sub_self (ζ : ℂ) (A B C H : Matrix n n ℂ)
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hC : C.IsHermitian) (hζ : ζ.im ≠ 0) :
     resolventSquareDifference ζ A B H-resolventSquareDifference ζ C C H =
@@ -125,25 +139,33 @@ theorem resolventSquareDifference_sub_self (ζ : ℂ) (A B C H : Matrix n n ℂ)
   rw [←hr,←hl]
   abel
 
-/-- The first squared-resolvent insertion is real-linear in its direction.-/
+/-- The first squared-resolvent insertion is real-linear in its direction.
+@isnad1 id=eq.0h6v.s7.502c6557d4cf from=translated src=- shape=a919f985 vocab=e6a1ac96
+-/
 theorem resolventSquareDifference_smul (ζ : ℂ) (A B H : Matrix n n ℂ) (a : ℝ) :
     resolventSquareDifference ζ A B (a • H) = a • resolventSquareDifference ζ A B H := by
   simp only [resolventSquareDifference,Matrix.mul_smul,Matrix.smul_mul,smul_add]
 
-/-- The ordered second insertion is real-linear in its first direction.-/
+/-- The ordered second insertion is real-linear in its first direction.
+@isnad1 id=eq.0h8v.s7.b9083b608b6a from=translated src=- shape=b9856d1c vocab=9c4d1208
+-/
 theorem resolventSquareSecondDifference_smul_left (ζ : ℂ) (A B C H K : Matrix n n ℂ) (a : ℝ) :
     resolventSquareSecondDifference ζ A B C (a • H) K =
       a • resolventSquareSecondDifference ζ A B C H K := by
   simp only [resolventSquareSecondDifference,Matrix.mul_smul,Matrix.smul_mul,smul_add]
 
-/-- The ordered second insertion is real-linear in its second direction.-/
+/-- The ordered second insertion is real-linear in its second direction.
+@isnad1 id=eq.0h8v.s7.98cdd8a7ae04 from=translated src=- shape=025dc8d3 vocab=9c4d1208
+-/
 theorem resolventSquareSecondDifference_smul_right (ζ : ℂ) (A B C H K : Matrix n n ℂ) (a : ℝ) :
     resolventSquareSecondDifference ζ A B C H (a • K) =
       a • resolventSquareSecondDifference ζ A B C H K := by
   simp only [resolventSquareSecondDifference,Matrix.mul_smul,Matrix.smul_mul,smul_add]
 
 /-- An affine increment extracts its actual scalar coefficient from the first
-squared-resolvent difference.-/
+squared-resolvent difference.
+@isnad1 id=eq.4h6v.s8.95d267a55dec from=translated src=- shape=2b3dd65f vocab=f8675853
+-/
 theorem resolvent_sq_sub_resolvent_sq_of_sub_eq_smul
     (ζ : ℂ) (A B H : Matrix n n ℂ) (hA : A.IsHermitian) (hB : B.IsHermitian)
     (hζ : ζ.im ≠ 0) (a : ℝ) (hAB : A-B = a • H) :
@@ -153,7 +175,9 @@ theorem resolvent_sq_sub_resolvent_sq_of_sub_eq_smul
 /-- Exact ordered second remainder for affine base-point increments. No
 commutation or mixed-Hessian symmetrization is used.
 Source: the supplied Cauchy-transform reroute (comparison-T).
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.6h9v.s8.e2a5c0cff593 from=translated src=- shape=2bba680d vocab=63b3a01e
+-/
 theorem resolventSquareDifference_sub_self_of_sub_eq_smul
     (ζ : ℂ) (A B C H E F : Matrix n n ℂ) (hA : A.IsHermitian)
     (hB : B.IsHermitian) (hC : C.IsHermitian) (hζ : ζ.im ≠ 0)

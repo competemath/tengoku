@@ -40,12 +40,16 @@ def deimResidual (U : Matrix n (Fin r) 𝕜) (k : ℕ) (hk : k < r)
 def deimPivot [Nonempty n] (v : n → 𝕜) : n :=
   (Finset.exists_max_image univ (fun i => ‖v i‖) univ_nonempty).choose
 
-/-- The chosen coordinate maximizes residual magnitude.-/
+/-- The chosen coordinate maximizes residual magnitude.
+@isnad1 id=le.0h4v.s5.fe0e617b7723 from=translated src=- shape=06bbdbd7 vocab=265dcb30
+-/
 theorem norm_le_norm_deimPivot [Nonempty n] (v : n → 𝕜) (i : n) :
     ‖v i‖ ≤ ‖v (deimPivot v)‖ :=
   (Finset.exists_max_image univ (fun i => ‖v i‖) univ_nonempty).choose_spec.2 i (mem_univ i)
 
-/-- A nonzero residual has a nonzero pivot.-/
+/-- A nonzero residual has a nonzero pivot.
+@isnad1 id=ne.1h3v.s6.c9ad79b44aee from=translated src=- shape=a6120c34 vocab=a716d3c1
+-/
 theorem deimPivot_ne_zero [Nonempty n] {v : n → 𝕜} (hv : v ≠ 0) :
     v (deimPivot v) ≠ 0 := by
   intro hz
@@ -55,7 +59,9 @@ theorem deimPivot_ne_zero [Nonempty n] {v : n → 𝕜} (hv : v ≠ 0) :
   rw [hz, norm_zero] at hi
   exact norm_eq_zero.mp (le_antisymm hi (norm_nonneg _))
 
-/-- DEIM's residual vanishes at all earlier sampled coordinates.-/
+/-- DEIM's residual vanishes at all earlier sampled coordinates.
+@isnad1 id=eq.2h7v.s6.6ada41da37ab from=translated src=- shape=3d6e6fce vocab=6ee5e9b5
+-/
 theorem deimResidual_apply_indices {U : Matrix n (Fin r) 𝕜} {k : ℕ} (hk : k < r)
     (indices : Fin k → n) (hM : IsUnit (deimSampleMatrix U k hk.le indices)) (i : Fin k) :
     deimResidual U k hk indices (indices i) = 0 := by
@@ -67,7 +73,9 @@ theorem deimResidual_apply_indices {U : Matrix n (Fin r) 𝕜} {k : ℕ} (hk : k
   change U (indices i) ⟨k, hk⟩ - _ = 0
   exact sub_eq_zero.mpr he.symm
 
-/-- Orthonormal columns prevent the next residual from being zero.-/
+/-- Orthonormal columns prevent the next residual from being zero.
+@isnad1 id=ne.2h6v.s6.72c9eb1ffdaa from=translated src=- shape=bcac0dfa vocab=cf7e0ab6
+-/
 theorem deimResidual_ne_zero {U : Matrix n (Fin r) 𝕜} (hU : HasOrthonormalCols U)
     {k : ℕ} (hk : k < r) (indices : Fin k → n) : deimResidual U k hk indices ≠ 0 := by
   intro hz
@@ -89,7 +97,9 @@ theorem deimResidual_ne_zero {U : Matrix n (Fin r) 𝕜} (hU : HasOrthonormalCol
   omega
 
 /-- Extending the selected rows by a nonzero DEIM residual preserves
-nonsingularity. The scalar Schur complement is precisely that residual.-/
+nonsingularity. The scalar Schur complement is precisely that residual.
+@isnad1 id=isunit.3h7v.s8.81c380917104 from=translated src=- shape=f7168966 vocab=78314ac1
+-/
 theorem isUnit_deimSampleMatrix_snoc {U : Matrix n (Fin r) 𝕜}
     {k : ℕ} (hk : k < r) (indices : Fin k → n)
     (hM : IsUnit (deimSampleMatrix U k hk.le indices)) (pivot : n)
@@ -145,7 +155,9 @@ def deimIndices [Nonempty n] (U : Matrix n (Fin r) 𝕜) :
 
 /-- The actual greedy DEIM recursion never breaks down; every reached
 sampled leading basis is nonsingular.
-atlas: deim-greedy-interpolation (partial)-/
+atlas: deim-greedy-interpolation (partial)
+@isnad1 id=isunit.2h5v.s6.7b717d38214a from=translated src=- shape=3d384996 vocab=95acf4d7
+-/
 theorem isUnit_deimSampleMatrix_deimIndices [Nonempty n]
     {U : Matrix n (Fin r) 𝕜} (hU : HasOrthonormalCols U) (k : ℕ) (hk : k ≤ r) :
     IsUnit (deimSampleMatrix U k hk (deimIndices U k hk)) := by
@@ -161,7 +173,9 @@ theorem isUnit_deimSampleMatrix_deimIndices [Nonempty n]
 
 /-- DEIM chooses distinct coordinates at every stage, since the current
 residual is zero on all previous choices and nonzero at its new pivot.
-atlas: deim-greedy-interpolation (partial)-/
+atlas: deim-greedy-interpolation (partial)
+@isnad1 id=injectiv.2h5v.s5.463f848f6425 from=translated src=- shape=7b9f2bfe vocab=330bfcdf
+-/
 theorem deimIndices_injective [Nonempty n] {U : Matrix n (Fin r) 𝕜}
     (hU : HasOrthonormalCols U) (k : ℕ) (hk : k ≤ r) :
     Function.Injective (deimIndices U k hk) := by

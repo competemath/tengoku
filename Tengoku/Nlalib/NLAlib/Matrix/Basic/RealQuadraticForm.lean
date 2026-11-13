@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n]
 
 /-- Complexifying a real matrix splits the real part of each quadratic form
-into the real- and imaginary-vector quadratic forms. Symmetry is unnecessary.-/
+into the real- and imaginary-vector quadratic forms. Symmetry is unnecessary.
+@isnad1 id=eq.0h3v.s5.2a404d0c2ad3 from=translated src=- shape=bf85d681 vocab=b73e8a3b
+-/
 theorem re_quadForm_map_ofReal (A : Matrix n n ℝ) (u : n → ℂ) :
     (quadForm (A.map Complex.ofReal) u).re =
       quadForm A (fun i => (u i).re) + quadForm A (fun i => (u i).im) := by
@@ -35,7 +37,9 @@ theorem re_quadForm_map_ofReal (A : Matrix n n ℝ) (u : n → ℂ) :
   ring
 
 /-- The squared real- and imaginary-part Euclidean norms add to the squared
-complex Euclidean norm.-/
+complex Euclidean norm.
+@isnad1 id=eq.0h2v.s7.996c42d7823f from=translated src=- shape=a6797fba vocab=8621d1fe
+-/
 theorem norm_toLp_re_sq_add_norm_toLp_im_sq (u : n → ℂ) :
     ‖WithLp.toLp 2 (fun i => (u i).re)‖ ^ 2 +
       ‖WithLp.toLp 2 (fun i => (u i).im)‖ ^ 2 = ‖WithLp.toLp 2 u‖ ^ 2 := by

@@ -20,7 +20,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- A rank bound is equivalent to a factorization through the requested number
-of columns; unused coordinates are permitted.-/
+of columns; unused coordinates are permitted.
+@isnad1 id=iff.0h5v.s6.7004635ecd01 from=translated src=- shape=91b924f9 vocab=f741bca4
+-/
 theorem rank_le_iff_exists_mul {K m n : Type*} [Field K]
     [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (A : Matrix m n K) (r : ℕ) :
@@ -47,7 +49,9 @@ theorem rank_le_iff_exists_mul {K m n : Type*} [Field K]
 
 /-- Complex or real generators use a conjugate transpose on the right.
 Source: the low-rank generator characterization of Sylvester displacement.
-atlas: displacement-rank-def (partial)-/
+atlas: displacement-rank-def (partial)
+@isnad1 id=iff.0h5v.s7.36b1b126f5bf from=translated src=- shape=79e86c5b vocab=8d2e5260
+-/
 theorem rank_le_iff_exists_mul_conjTranspose {K m n : Type*} [RCLike K]
     [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
     (A : Matrix m n K) (r : ℕ) :

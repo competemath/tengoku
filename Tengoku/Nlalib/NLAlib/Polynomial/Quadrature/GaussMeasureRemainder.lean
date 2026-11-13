@@ -19,7 +19,9 @@ has the order-`2n` derivative remainder at one point in the open interval. Termi
 finite support is included: its monic norm and error both vanish. Differentiability is
 needed only on the open interval, with continuity of the top derivative there.
 Source: Gautschi (2004), Theorem 1.48; operator derivations, (AQ3)–(AQ6).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=other.7h5v.s8.17f1c1fac3f2 from=translated src=- shape=4bb9c5c8 vocab=e31d6e69
+-/
 theorem exists_integral_sub_gaussRule_eq_iteratedDeriv_mul_norm
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ} (hab : a < b)
     (hμ : ∀ᵐ x ∂μ, x ∈ Icc a b) {n : ℕ} (hn0 : 0 < n)

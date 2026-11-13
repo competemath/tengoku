@@ -25,7 +25,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The Jacobi matrix assembled from the actual Lanczos recursion's coefficients is the
 actual compression at every valid order. Source: Gautschi (2004), §2.2.3.2.
-atlas: discrete-measure-jacobi-matrix (partial)-/
+atlas: discrete-measure-jacobi-matrix (partial)
+@isnad1 id=eq.2h4v.s6.99508dd93fd8 from=translated src=- shape=a3220c8d vocab=b97002c3
+-/
 theorem jacobiMatrix_lanczosAlpha_lanczosBeta_eq_T
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (b : n → ℝ) {q : ℕ}
     (hq : q ≤ krylovGrade A b) :

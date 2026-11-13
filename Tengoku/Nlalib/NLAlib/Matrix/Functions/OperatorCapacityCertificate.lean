@@ -28,7 +28,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Every normalized positive definite test matrix bounds operator capacity
-from above, for a positive real-linear map.-/
+from above, for a positive real-linear map.
+@isnad1 id=le.3h3v.s9.2b1ba4475092 from=translated src=- shape=3776c673 vocab=41261c1a
+-/
 theorem operatorCapacity_le_det_apply
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef)
@@ -36,7 +38,9 @@ theorem operatorCapacity_le_det_apply
     operatorCapacity T ≤ (T X).det.re := by
   exact csInf_le (operatorCapacity_attainable_bddBelow T hT) ⟨X, hX, hdet, rfl⟩
 
-/-- The identity matrix supplies an upper bound on operator capacity.-/
+/-- The identity matrix supplies an upper bound on operator capacity.
+@isnad1 id=le.1h2v.s9.05e39a083b2e from=translated src=- shape=6ecb08f5 vocab=622e3ea1
+-/
 theorem operatorCapacity_le_det_apply_one
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef) :
@@ -45,7 +49,9 @@ theorem operatorCapacity_le_det_apply_one
 
 /-- A positive map whose image of the identity has normalized trace and whose
 capacity is at least `exp (-eps)` has squared Frobenius imbalance at most
-`6 * eps`, provided `eps ≤ 1 / 6`.-/
+`6 * eps`, provided `eps ≤ 1 / 6`.
+@isnad1 id=le.4h3v.s9.7e25e1c463aa from=translated src=- shape=0a18e7b7 vocab=a7cbab13
+-/
 theorem frobSq_apply_one_sub_one_le_of_exp_neg_le_operatorCapacity
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef)
@@ -64,7 +70,9 @@ theorem frobSq_apply_one_sub_one_le_of_exp_neg_le_operatorCapacity
   exact hpos.frobSq_sub_one_le_six_mul_of_exp_neg_le_det eps htr heps hdet
 
 /-- Adjoint normalization of a finite Kraus family implies trace preservation
-of its actual Kraus map.-/
+of its actual Kraus map.
+@isnad1 id=eq.1h4v.s9.6402b9613182 from=translated src=- shape=c0eac7e4 vocab=b929857f
+-/
 theorem trace_krausMap_eq_of_adjoint_normalized
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (hA : krausMap (fun i => (A i)ᴴ) 1 = 1) (X : Matrix n n ℂ) :
@@ -85,7 +93,9 @@ theorem trace_krausMap_eq_of_adjoint_normalized
 Both terms of the double-stochasticity defect are explicit; the adjoint term
 vanishes by normalization. This is the trace-preserving branch of
 Garg--Gurvits--Oliveira--Wigderson (2015), Lemma 3.6.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.3h4v.s9.80ea6f2f28d7 from=translated src=- shape=b8a4d904 vocab=7449649d
+-/
 theorem frobSq_krausMap_defect_le_of_exp_neg_le_operatorCapacity
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (hA : krausMap (fun i => (A i)ᴴ) 1 = 1)
@@ -102,7 +112,9 @@ theorem frobSq_krausMap_defect_le_of_exp_neg_le_operatorCapacity
 /-- A positive map whose image of the identity has trace equal to the matrix
 dimension has capacity at most one. The proof uses the identity trial point
 and the PSD arithmetic-geometric mean inequality.
-Source: Garg--Gurvits--Oliveira--Wigderson (2015), Proposition 2.8.-/
+Source: Garg--Gurvits--Oliveira--Wigderson (2015), Proposition 2.8.
+@isnad1 id=le.3h2v.s9.d2e63e12ec5a from=translated src=- shape=61ba64e0 vocab=246a1152
+-/
 theorem operatorCapacity_le_one_of_trace_apply_one
     (hN : 0 < Fintype.card n)
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
@@ -119,7 +131,9 @@ theorem operatorCapacity_le_one_of_trace_apply_one
 /-- A unital Kraus family has capacity at most one, since the identity is
 an admissible test matrix. Source: Garg--Gurvits--Oliveira--Wigderson (2015),
 Proposition 2.8.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.1h3v.s8.5b0564a845fb from=translated src=- shape=26e44ed6 vocab=a79913a3
+-/
 theorem operatorCapacity_krausMap_le_one_of_unital
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (hA : krausMap A 1 = 1) :
@@ -129,7 +143,9 @@ theorem operatorCapacity_krausMap_le_one_of_unital
 
 /-- An adjoint-normalized Kraus family has capacity at most one.
 Source: Garg--Gurvits--Oliveira--Wigderson (2015), Proposition 2.8.
-atlas: operator-capacity-near-balanced-certificate (partial)-/
+atlas: operator-capacity-near-balanced-certificate (partial)
+@isnad1 id=le.2h3v.s8.b3266a0563c0 from=translated src=- shape=95725432 vocab=9701bd6d
+-/
 theorem operatorCapacity_krausMap_le_one_of_adjoint_normalized
     (hN : 0 < Fintype.card n)
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)

@@ -21,7 +21,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- A word with one insertion has the cyclic trace of that insertion
-times the full ordinary power.-/
+times the full ordinary power.
+@isnad1 id=eq.1h4v.s7.565678b29e0d from=translated src=- shape=2030f509 vocab=c423d955
+-/
 theorem trace_insertionWord_of_count_true_eq_one (A X : Matrix ι ι ℝ)
     (w : List Bool) (hw : w.count true = 1) :
     (insertionWord A X w).trace = (A ^ w.count false * X).trace := by
@@ -32,7 +34,9 @@ theorem trace_insertionWord_of_count_true_eq_one (A X : Matrix ι ι ℝ)
   simpa only [List.map_singleton, List.prod_singleton, hs] using ht
 
 /-- Complexification carries the two-insertion trace AM--GM inequality
-back to real symmetric matrices.-/
+back to real symmetric matrices.
+@isnad1 id=le.4h5v.s8.a733faf9fb0c from=translated src=- shape=f996cab6 vocab=b20c4f9d
+-/
 theorem trace_mul_pow_mul_le_trace_sq_mul_pow
     (C A : Matrix ι ι ℝ) (hC : C.IsHermitian) (hA : A.IsHermitian)
     {n l : ℕ} (hn : Even n) (hl : l ≤ n) :
@@ -47,7 +51,9 @@ theorem trace_mul_pow_mul_le_trace_sq_mul_pow
   exact hb
 
 /-- Two insertions in an even trace word are bounded by the quadratic
-variance trace, with no absolute-moment replacement of the variance.-/
+variance trace, with no absolute-moment replacement of the variance.
+@isnad1 id=le.4h4v.s7.d3176d898076 from=translated src=- shape=bc8266b7 vocab=46ebba1c
+-/
 theorem trace_insertionWord_le_of_count_true_eq_two
     (A X : Matrix ι ι ℝ) (hA : A.IsHermitian) (hX : X.IsHermitian)
     (w : List Bool) (hw : w.count true = 2) (hn : Even (w.count false)) :
@@ -76,7 +82,9 @@ private theorem trace_neg_one_pow_mul (B : Matrix ι ι ℝ) (n : ℕ) :
       pow_succ, mul_neg_one, neg_mul]
 
 /-- Expanding a centered rank-one word and taking absolute values keeps
-the absolute spectral factor and every rank-one moment.-/
+the absolute spectral factor and every rank-one moment.
+@isnad1 id=le.1h4v.s8.5af1232cc167 from=translated src=- shape=3e22555b vocab=cffc6244
+-/
 theorem abs_trace_insertionWord_vecMulVec_sub_one_le_sum
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (y : ι → ℝ) (w : List Bool) :
     |(insertionWord A (vecMulVec y y - 1) w).trace| ≤

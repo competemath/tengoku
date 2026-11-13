@@ -26,7 +26,9 @@ variable {R n ι : Type*} [CommRing R] [Fintype n] [DecidableEq n]
 
 omit [Fintype n] in
 /-- An injective ordered selection has the same determinant as its image
-principal block. The signs of the row and column permutations cancel.-/
+principal block. The signs of the row and column permutations cancel.
+@isnad1 id=eq.1h5v.s7.cf8e20770579 from=translated src=- shape=9be3118f vocab=b029498a
+-/
 theorem det_submatrix_eq_det_image_of_injective (A : Matrix n n R)
     (h : ι → n) (hh : Function.Injective h) :
     (A.submatrix h h).det =
@@ -43,7 +45,9 @@ theorem det_submatrix_eq_det_image_of_injective (A : Matrix n n R)
     (A.submatrix (Subtype.val : (Finset.univ.image h) → n) Subtype.val))
 
 omit [Fintype n] [DecidableEq n] in
-/-- Repeated indices force a selected principal determinant to vanish.-/
+/-- Repeated indices force a selected principal determinant to vanish.
+@isnad1 id=eq.1h5v.s5.4c64d9e4dce3 from=translated src=- shape=7421a119 vocab=66ee256a
+-/
 theorem det_submatrix_eq_zero_of_not_injective (A : Matrix n n R)
     (h : ι → n) (hh : ¬Function.Injective h) : (A.submatrix h h).det = 0 := by
   rw [Function.Injective] at hh
@@ -56,7 +60,9 @@ theorem det_submatrix_eq_zero_of_not_injective (A : Matrix n n R)
 
 /-- Summing over every length-`k` ordered history counts each principal minor
 `k!` times. Noninjective histories contribute zero, and all endpoint dimensions
-are included.-/
+are included.
+@isnad1 id=eq.0h4v.s8.dc28dc306bdb from=translated src=- shape=8d1727c7 vocab=d1d4f5f0
+-/
 theorem sum_det_submatrix_eq_factorial_mul_sum_principalMinors (A : Matrix n n R) (k : ℕ) :
     (∑ h : Fin k → n, (A.submatrix h h).det) =
       (k.factorial : R) * ∑ S ∈ (Finset.univ : Finset n).powersetCard k,

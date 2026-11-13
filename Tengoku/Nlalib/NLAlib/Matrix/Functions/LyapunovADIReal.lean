@@ -11,7 +11,9 @@ open scoped Matrix MatrixOrder ComplexOrder Matrix.Norms.L2Operator Topology
 namespace NLAlib
 variable {n s : Type*} [Fintype n] [Fintype s] [DecidableEq n]
 
-/-- Positive shifts also make the actual real solves nonsingular.-/
+/-- Positive shifts also make the actual real solves nonsingular.
+@isnad1 id=isunit.2h3v.s8.dd60f7d3286c from=translated src=- shape=77bd320f vocab=4ccd7952
+-/
 theorem isUnit_real_sub_pos_of_hurwitz_complexification (A : Matrix n n ℝ)
     (hA : IsHurwitz (realMatrixComplexification A : Matrix n n ℂ))
     (p : ℝ) (hp : 0 < p) : IsUnit (A - p • 1) := by
@@ -24,7 +26,9 @@ theorem isUnit_real_sub_pos_of_hurwitz_complexification (A : Matrix n n ℝ)
   rw [he]
   exact h
 
-/-- The actual real Cayley matrix extends to the actual complex Cayley matrix.-/
+/-- The actual real Cayley matrix extends to the actual complex Cayley matrix.
+@isnad1 id=eq.1h3v.s9.329c3e0933f5 from=translated src=- shape=92620f7a vocab=0c64039a
+-/
 theorem realMatrixComplexification_cayleyTransform (A : Matrix n n ℝ) (p : ℝ)
     (hP : IsUnit (A - p • 1)) :
     (realMatrixComplexification (cayleyTransform A p) : Matrix n n ℂ) =
@@ -36,7 +40,9 @@ theorem realMatrixComplexification_cayleyTransform (A : Matrix n n ℝ) (p : ℝ
   rw [RCLike.real_smul_eq_coe_smul (K := ℂ)]
 
 /-- Real Cayley powers genuinely decay for every positive shift of a real
-matrix with Hurwitz complexified spectrum.-/
+matrix with Hurwitz complexified spectrum.
+@isnad1 id=tendsto.2h3v.s8.1f8959af742e from=translated src=- shape=842c58fd vocab=d1384702
+-/
 theorem tendsto_real_cayleyTransform_pow_zero (A : Matrix n n ℝ)
     (hA : IsHurwitz (realMatrixComplexification A : Matrix n n ℂ))
     (p : ℝ) (hp : 0 < p) :

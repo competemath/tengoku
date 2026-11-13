@@ -20,7 +20,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The real Euclidean energy form equals the real part of the matrix
-quadratic form, with the library's standard vector identification.-/
+quadratic form, with the library's standard vector identification.
+@isnad1 id=eq.0h3v.s12.2eb00d44880c from=translated src=- shape=f7296fd4 vocab=84f681d9
+-/
 theorem real_inner_toEuclideanLin (A : Matrix n n ℂ) (x : EuclideanSpace ℂ n) :
     inner ℝ x (A.toEuclideanLin x) = (quadForm A x.ofLp).re := by
   simp only [PiLp.inner_apply, quadForm, dotProduct, Complex.re_sum]
@@ -31,7 +33,9 @@ theorem real_inner_toEuclideanLin (A : Matrix n n ℂ) (x : EuclideanSpace ℂ n
   rfl
 
 /-- A Loewner upper bound on the Hermitian part gives the same energy
-bound in the underlying real Hilbert space.-/
+bound in the underlying real Hilbert space.
+@isnad1 id=le.1h4v.s12.d5eab4780416 from=translated src=- shape=adfcc777 vocab=f51d3872
+-/
 theorem real_inner_le_of_selfAdjointPart_le {A : Matrix n n ℂ} {c : ℝ}
     (hA : (selfAdjointPart ℝ A : Matrix n n ℂ) ≤ c • 1)
     (x : EuclideanSpace ℂ n) :
@@ -55,7 +59,9 @@ theorem real_inner_le_of_selfAdjointPart_le {A : Matrix n n ℂ} {c : ℝ}
 
 /-- Every Hermitian-part upper bound is an exponential semigroup bound,
 including negative constants and nonnormal matrices.
-atlas: matrix-exponential-logarithmic-norm (partial)-/
+atlas: matrix-exponential-logarithmic-norm (partial)
+@isnad1 id=le.2h4v.s10.413ed05b96a3 from=translated src=- shape=d4cf4c14 vocab=711087ac
+-/
 theorem specNorm_matrixExp_smul_le_of_selfAdjointPart_le
     {A : Matrix n n ℂ} {c : ℝ}
     (hA : (selfAdjointPart ℝ A : Matrix n n ℂ) ≤ c • 1)
@@ -68,7 +74,9 @@ using the library's existing extremal-eigenvalue function.-/
 def matrixLogarithmicNorm (A : Matrix n n ℂ) : ℝ :=
   lambdaMax (selfAdjointPart ℝ A : Matrix n n ℂ)
 
-/-- The Hermitian part is bounded above by its largest eigenvalue.-/
+/-- The Hermitian part is bounded above by its largest eigenvalue.
+@isnad1 id=le.0h2v.s10.4125e9ca5337 from=translated src=- shape=873ef0e2 vocab=67e84b2b
+-/
 theorem selfAdjointPart_le_matrixLogarithmicNorm (A : Matrix n n ℂ) :
     (selfAdjointPart ℝ A : Matrix n n ℂ) ≤ matrixLogarithmicNorm A • 1 := by
   have hH : (selfAdjointPart ℝ A : Matrix n n ℂ).IsHermitian :=
@@ -80,7 +88,9 @@ theorem selfAdjointPart_le_matrixLogarithmicNorm (A : Matrix n n ℂ) :
   simpa only [Algebra.algebraMap_eq_smul_one, ← Complex.coe_smul] using h
 
 /-- The matrix logarithmic norm bounds the exponential semigroup.
-atlas: matrix-exponential-logarithmic-norm (partial)-/
+atlas: matrix-exponential-logarithmic-norm (partial)
+@isnad1 id=le.1h3v.s6.2b13ce65ed82 from=translated src=- shape=f28d1313 vocab=89eafd4f
+-/
 theorem specNorm_matrixExp_smul_le_exp_logarithmicNorm (A : Matrix n n ℂ)
     {t : ℝ} (ht : 0 ≤ t) :
     specNorm (matrixExp (t • A)) ≤ Real.exp (t * matrixLogarithmicNorm A) :=

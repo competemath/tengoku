@@ -21,7 +21,9 @@ def frobInnerCLM (A : Matrix n n ℂ) : Matrix n n ℂ →L[ℝ] ℝ :=
       map_smul' := fun r B => frobInner_smul_right r A B }).toContinuousLinearMap
 
 /-- The actual stability map preserves the PSD cone. Coefficients may be
-indefinite; each sandwich still preserves the cone. Source (F22).-/
+indefinite; each sandwich still preserves the cone. Source (F22).
+@isnad1 id=possemid.5h5v.s10.bc9042f7e2d8 from=translated src=- shape=2c7a0b80 vocab=dfc2a3af
+-/
 theorem posSemidef_matrixKStabilityMap
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 ≤ α)
@@ -39,7 +41,9 @@ theorem posSemidef_matrixKStabilityMap
   rw [sub_zero]
   simpa only [hC.eq] using hP.mul_mul_conjTranspose_same (matrixKCoefficient S T.val)
 
-/-- The actual stability operator preserves the real Hermitian vector space.-/
+/-- The actual stability operator preserves the real Hermitian vector space.
+@isnad1 id=ishermit.5h5v.s10.a8efcb024cee from=translated src=- shape=3b61eaac vocab=7af1f7a1
+-/
 theorem isHermitian_matrixKStabilityMap
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 ≤ α)
@@ -54,7 +58,9 @@ theorem isHermitian_matrixKStabilityMap
 
 /-- The actual averaged stability operator is symmetric for the real
 Frobenius pairing, including for indefinite rational coefficients. Source (F22).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=eq.3h6v.s10.2a915d2caecf from=translated src=- shape=a83e8400 vocab=72450eeb
+-/
 theorem frobInner_matrixKStabilityMap_comm
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ)

@@ -24,7 +24,9 @@ private theorem matrixKTransformDeriv_apply_resolvent
   rw [integral_neg]
   abel
 
-/-- Evaluation of the genuine stability CLM is the actual source integral.-/
+/-- Evaluation of the genuine stability CLM is the actual source integral.
+@isnad1 id=eq.3h5v.s11.24e166fa24b5 from=translated src=- shape=ebc1bf2b vocab=2eee36f9
+-/
 theorem matrixKStabilityMap_apply (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (α : ℝ) (S : Matrix n n ℂ)
     (hS : S.PosDef) (hgap : ∀ T ∈ ν.support, (S⁻¹ + T.val).PosDef) (H : Matrix n n ℂ) :
@@ -35,7 +37,9 @@ theorem matrixKStabilityMap_apply (ν : Measure (selfAdjoint (Matrix n n ℂ)))
 
 /-- The actual derivative is the inverse-square-root congruence of the actual
 averaged stability operator. Source: user derivations, equation (F21).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=other.4h5v.s11.3c8b5e2e5697 from=translated src=- shape=6c637bef vocab=ff5cdb06
+-/
 theorem matrixKTransformDeriv_eq_congruence (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (α : ℝ) (hα : α ≠ 0)
     (S : Matrix n n ℂ) (hS : S.PosDef) (hgap : ∀ T ∈ ν.support, (S⁻¹ + T.val).PosDef)
@@ -71,7 +75,9 @@ theorem matrixKTransformDeriv_eq_congruence (ν : Measure (selfAdjoint (Matrix n
 
 omit [DecidableEq n] in
 /-- Inverse-square-root congruence is self-adjoint for the actual real
-Frobenius pairing.-/
+Frobenius pairing.
+@isnad1 id=eq.1h4v.s7.ff036b9cbcf3 from=translated src=- shape=6730e063 vocab=f8f5a952
+-/
 theorem frobInner_hermitian_congruence (R A B : Matrix n n ℂ) (hR : R.IsHermitian) :
     frobInner A (R * B * R) = frobInner (R * A * R) B := by
   rw [frobInner_eq_trace,frobInner_eq_trace,Matrix.conjTranspose_mul,
@@ -81,7 +87,9 @@ theorem frobInner_hermitian_congruence (R A B : Matrix n n ℂ) (hR : R.IsHermit
 
 /-- The source's actual Frobenius quadratic identity follows from the actual
 derivative congruence, without changing the derivative or inner product.
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=other.4h5v.s11.254fd1a35bba from=translated src=- shape=a91a23b2 vocab=5280ccea
+-/
 theorem frobInner_matrixKTransformDeriv (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (α : ℝ) (hα : α ≠ 0)
     (S : Matrix n n ℂ) (hS : S.PosDef) (hgap : ∀ T ∈ ν.support, (S⁻¹ + T.val).PosDef)

@@ -31,17 +31,23 @@ def affineStationaryIterate (H : Matrix n n 𝕜) (d x₀ : n → 𝕜) : ℕ �
   | k + 1 => H *ᵥ affineStationaryIterate H d x₀ k + d
 
 omit [DecidableEq n] in
-/-- The affine stationary iteration starts at the specified initializer.-/
+/-- The affine stationary iteration starts at the specified initializer.
+@isnad1 id=eq.0h5v.s5.801342aa2c15 from=translated src=- shape=d134aed4 vocab=bc059bd5
+-/
 @[simp] theorem affineStationaryIterate_zero (H : Matrix n n 𝕜) (d x₀ : n → 𝕜) :
     affineStationaryIterate H d x₀ 0 = x₀ := rfl
 
 omit [DecidableEq n] in
-/-- The stationary recursion applies the iteration matrix and adds its fixed forcing.-/
+/-- The stationary recursion applies the iteration matrix and adds its fixed forcing.
+@isnad1 id=eq.0h6v.s6.76bace3b3463 from=translated src=- shape=62787fc3 vocab=6a0b3a33
+-/
 theorem affineStationaryIterate_succ (H : Matrix n n 𝕜) (d x₀ : n → 𝕜) (k : ℕ) :
     affineStationaryIterate H d x₀ (k + 1) = H *ᵥ affineStationaryIterate H d x₀ k + d := rfl
 
 /-- Error about any fixed point is exactly the iteration-matrix power applied to initial error.
-Source: Darve, *Splitting Methods and Convergence Theory*, error recursion.-/
+Source: Darve, *Splitting Methods and Convergence Theory*, error recursion.
+@isnad1 id=eq.1h7v.s8.2e94ee0d056c from=translated src=- shape=32ed50c6 vocab=51a19e4c
+-/
 theorem affineStationaryIterate_sub_eq_pow_mulVec {H : Matrix n n 𝕜} {d xs : n → 𝕜}
     (hxs : H *ᵥ xs + d = xs) (x₀ : n → 𝕜) (k : ℕ) :
     affineStationaryIterate H d x₀ k - xs = (H ^ k) *ᵥ (x₀ - xs) := by
@@ -58,18 +64,24 @@ atlas: stationary-splitting-convergence (partial)-/
 def splittingIterate (M N : Matrix n n 𝕜) (b x₀ : n → 𝕜) : ℕ → n → 𝕜 :=
   affineStationaryIterate (M⁻¹ * N) (M⁻¹ *ᵥ b) x₀
 
-/-- A splitting iteration starts at its specified initializer.-/
+/-- A splitting iteration starts at its specified initializer.
+@isnad1 id=eq.0h6v.s5.639406c021ac from=translated src=- shape=52d75d78 vocab=1bc2d334
+-/
 @[simp] theorem splittingIterate_zero (M N : Matrix n n 𝕜) (b x₀ : n → 𝕜) :
     splittingIterate M N b x₀ 0 = x₀ := rfl
 
 /-- The actual splitting iteration uses the prescribed affine update.
 Source: Darve, *Splitting Methods and Convergence Theory*.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=eq.0h7v.s7.9a0061d13f03 from=translated src=- shape=10441951 vocab=79bc2455
+-/
 theorem splittingIterate_succ (M N : Matrix n n 𝕜) (b x₀ : n → 𝕜) (k : ℕ) :
     splittingIterate M N b x₀ (k + 1) = (M⁻¹ * N) *ᵥ splittingIterate M N b x₀ k +
       M⁻¹ *ᵥ b := rfl
 
-/-- With invertible `M`, the splitting fixed-point equation is the original linear system.-/
+/-- With invertible `M`, the splitting fixed-point equation is the original linear system.
+@isnad1 id=iff.1h6v.s8.9d3873d997fb from=translated src=- shape=3b205ef6 vocab=573e56e8
+-/
 theorem splitting_fixedPoint_iff {M N : Matrix n n 𝕜} (hM : IsUnit M) (b xs : n → 𝕜) :
     (M⁻¹ * N) *ᵥ xs + M⁻¹ *ᵥ b = xs ↔ (M - N) *ᵥ xs = b := by
   have hd := (Matrix.isUnit_iff_isUnit_det M).mp hM
@@ -89,7 +101,9 @@ theorem splitting_fixedPoint_iff {M N : Matrix n n 𝕜} (hM : IsUnit M) (b xs :
     simpa only [add_comm] using (sub_eq_iff_eq_add.mp h).symm
 
 /-- A splitting factors as `M (I - M⁻¹N)` when `M` is invertible.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=eq.1h4v.s8.1c9ee3aa0ec0 from=translated src=- shape=716d063b vocab=97f819a3
+-/
 theorem sub_eq_mul_one_sub_inv_mul {M N : Matrix n n 𝕜} (hM : IsUnit M) :
     M - N = M * (1 - M⁻¹ * N) := by
   rw [Matrix.mul_sub, Matrix.mul_one, ← Matrix.mul_assoc,
@@ -97,7 +111,9 @@ theorem sub_eq_mul_one_sub_inv_mul {M N : Matrix n n 𝕜} (hM : IsUnit M) :
 
 /-- The splitting iteration has the exact advertised error-power identity at every step.
 Source: Darve, *Splitting Methods and Convergence Theory*, error recursion.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=eq.2h8v.s8.12e3a2ce5ccf from=translated src=- shape=72203105 vocab=0f5ae806
+-/
 theorem splittingIterate_sub_eq_pow_mulVec {M N : Matrix n n 𝕜} (hM : IsUnit M)
     {b xs : n → 𝕜} (hxs : (M - N) *ᵥ xs = b) (x₀ : n → 𝕜) (k : ℕ) :
     splittingIterate M N b x₀ k - xs = ((M⁻¹ * N) ^ k) *ᵥ (x₀ - xs) :=
@@ -114,7 +130,9 @@ def SplittingConverges (M N : Matrix n n 𝕜) : Prop :=
 
 /-- Decaying splitting powers make the original matrix invertible; no existence hypothesis
 on a solution is required.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=isunit.2h4v.s8.0c0482a17d33 from=translated src=- shape=1c20e075 vocab=510e4ea1
+-/
 theorem isUnit_sub_of_tendsto_splitting_pow_zero {M N : Matrix n n 𝕜} (hM : IsUnit M)
     (hpow : Tendsto (fun k : ℕ => (M⁻¹ * N) ^ k) atTop (𝓝 0)) : IsUnit (M - N) := by
   rw [sub_eq_mul_one_sub_inv_mul hM]
@@ -122,7 +140,9 @@ theorem isUnit_sub_of_tendsto_splitting_pow_zero {M N : Matrix n n 𝕜} (hM : I
 
 /-- The complete all-right-hand-sides splitting convergence contract is equivalent to matrix
 power decay. Source: Darve, *Splitting Methods and Convergence Theory*.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=iff.1h4v.s7.d2218bad5359 from=translated src=- shape=d8b15ccb vocab=1ebf8f6a
+-/
 theorem splittingConverges_iff_tendsto_pow_zero {M N : Matrix n n 𝕜} (hM : IsUnit M) :
     SplittingConverges M N ↔ Tendsto (fun k : ℕ => (M⁻¹ * N) ^ k) atTop (𝓝 0) := by
   constructor
@@ -155,7 +175,9 @@ theorem splittingConverges_iff_tendsto_pow_zero {M N : Matrix n n 𝕜} (hM : Is
 /-- Complex stationary splitting converges for every system and start exactly when its
 iteration matrix has spectral radius below one.
 Source: Darve, *Splitting Methods and Convergence Theory*, convergence theorem.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=iff.1h3v.s7.29d35d407034 from=translated src=- shape=993543fa vocab=56192681
+-/
 theorem splittingConverges_iff_spectralRadius_lt_one {M N : Matrix n n ℂ} (hM : IsUnit M) :
     SplittingConverges M N ↔ spectralRadius ℂ (M⁻¹ * N) < 1 := by
   rw [splittingConverges_iff_tendsto_pow_zero hM,
@@ -163,7 +185,9 @@ theorem splittingConverges_iff_spectralRadius_lt_one {M N : Matrix n n ℂ} (hM 
 
 /-- For real matrices the exact convergence criterion uses the complexified spectral radius,
 so nonreal eigenvalues are covered. Source: Darve, convergence theorem.
-atlas: stationary-splitting-convergence (partial)-/
+atlas: stationary-splitting-convergence (partial)
+@isnad1 id=iff.1h3v.s7.caea0ab4c523 from=translated src=- shape=c35bafcd vocab=2a961362
+-/
 theorem splittingConverges_iff_complex_spectralRadius_lt_one
     {M N : Matrix n n ℝ} (hM : IsUnit M) :
     SplittingConverges M N ↔ spectralRadius ℂ ((M⁻¹ * N).map Complex.ofReal) < 1 := by

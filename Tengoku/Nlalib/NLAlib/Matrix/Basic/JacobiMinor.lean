@@ -16,7 +16,9 @@ open scoped Matrix
 namespace NLAlib
 /-- Two coordinate bijections change a determinant by their relative
 permutation sign. This is the cofactor orientation convention for Jacobi's
-identity. Horn–Johnson 2013, §0.8.4.-/
+identity. Horn–Johnson 2013, §0.8.4.
+@isnad1 id=eq.0h5v.s7.3787428cb19d from=translated src=- shape=0db3c239 vocab=57ae2ca2
+-/
 theorem det_submatrix_equiv_eq_sign_mul {n r : Type*}
     [Fintype n] [Fintype r] [DecidableEq n] [DecidableEq r]
     (A : Matrix n n ℝ) (er ec : r ≃ n) :

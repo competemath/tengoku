@@ -41,7 +41,9 @@ recursion (Trefethen–Bau 1997, Lect. 23). Total: for `a = 0` it is the trailin
 def pivotSchur (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) : Matrix (Fin n) (Fin n) ℝ :=
   A.submatrix Fin.succ Fin.succ - (A 0 0)⁻¹ • vecMulVec (fun i => A i.succ 0) fun j => A 0 j.succ
 
-/-- Entrywise form of the pivot Schur complement: `Cᵢⱼ − cᵢ rⱼ / a`.-/
+/-- Entrywise form of the pivot Schur complement: `Cᵢⱼ − cᵢ rⱼ / a`.
+@isnad1 id=eq.0h4v.s7.eb51a56a848a from=translated src=- shape=361fd7a4 vocab=10e96ba0
+-/
 @[simp]
 theorem pivotSchur_apply (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (i j : Fin n) :
     pivotSchur A i j = A i.succ j.succ - (A 0 0)⁻¹ * (A i.succ 0 * A 0 j.succ) := by
@@ -52,18 +54,24 @@ used to transport Mathlib's `fromBlocks` lemmas to the bordered splitting.-/
 def finOneSumEquiv (n : ℕ) : Fin 1 ⊕ Fin n ≃ Fin (n + 1) :=
   finSumFinEquiv.trans (finCongr (Nat.add_comm 1 n))
 
-/-- `finOneSumEquiv` sends the `Fin 1` block to the pivot index `0`.-/
+/-- `finOneSumEquiv` sends the `Fin 1` block to the pivot index `0`.
+@isnad1 id=eq.0h2v.s7.0478e24652f9 from=translated src=- shape=50296121 vocab=6fe97ca4
+-/
 @[simp]
 theorem finOneSumEquiv_inl (i : Fin 1) : finOneSumEquiv n (Sum.inl i) = 0 := by
   ext; simp [finOneSumEquiv]
 
-/-- `finOneSumEquiv` sends `inr i` to `i.succ`.-/
+/-- `finOneSumEquiv` sends `inr i` to `i.succ`.
+@isnad1 id=eq.0h2v.s7.fa42ce5a62da from=translated src=- shape=71b0ecfe vocab=27d914cd
+-/
 @[simp]
 theorem finOneSumEquiv_inr (i : Fin n) : finOneSumEquiv n (Sum.inr i) = i.succ := by
   ext; simp [finOneSumEquiv]
 
 /-- Bridge from the bordered (`Fin.cons`) splitting to Mathlib's `Matrix.fromBlocks` over
-`Fin 1 ⊕ Fin n`: `[[a, rᵀ], [c, M]]` is the reindexed block matrix.-/
+`Fin 1 ⊕ Fin n`: `[[a, rᵀ], [c, M]]` is the reindexed block matrix.
+@isnad1 id=eq.0h5v.s9.f625f17604df from=translated src=- shape=4a337e0c vocab=cfbe613d
+-/
 theorem borderedMatrix_eq_reindex_fromBlocks (a : ℝ) (r c : Fin n → ℝ)
     (M : Matrix (Fin n) (Fin n) ℝ) :
     borderedMatrix a r c M =
@@ -106,14 +114,18 @@ theorem eq_borderedMatrix_mul_borderedMatrix_pivotSchur
   · ext i j; simp [pivotSchur, vecMulVec_apply]
 
 /-- The determinant factors through the pivot: `det A = A₀₀ · det (pivotSchur A)` for a nonzero
-pivot. Golub–Van Loan 2013, §3.2.10; Horn–Johnson 2013, §0.8.5.-/
+pivot. Golub–Van Loan 2013, §3.2.10; Horn–Johnson 2013, §0.8.5.
+@isnad1 id=eq.1h2v.s7.45acee83bdff from=translated src=- shape=21f77018 vocab=4d5c8f95
+-/
 theorem det_eq_mul_det_pivotSchur (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (ha : A 0 0 ≠ 0) :
     A.det = A 0 0 * (pivotSchur A).det := by
   conv_lhs => rw [eq_borderedMatrix_mul_borderedMatrix_pivotSchur A ha]
   rw [det_mul, det_borderedMatrix_of_top_eq_zero, det_borderedMatrix_of_left_eq_zero]
   simp
 
-/-- The pivot Schur complement of a symmetric matrix is symmetric.-/
+/-- The pivot Schur complement of a symmetric matrix is symmetric.
+@isnad1 id=ishermit.1h2v.s6.60900ef94f40 from=translated src=- shape=54224c59 vocab=899e631f
+-/
 theorem isHermitian_pivotSchur {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ} (hA : A.IsHermitian) :
     (pivotSchur A).IsHermitian := by
   rw [Matrix.isHermitian_iff_isSymm] at hA ⊢
@@ -125,7 +137,9 @@ theorem isHermitian_pivotSchur {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ} (hA 
   ring
 
 /-- The quadratic form of a matrix on `Fin (n + 1)` at `(x₀, y)`, expanded over the bordered
-splitting.-/
+splitting.
+@isnad1 id=eq.0h4v.s8.c3ad52fc496b from=translated src=- shape=1885a216 vocab=07dcefae
+-/
 theorem dotProduct_mulVec_vecCons (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (x₀ : ℝ)
     (y : Fin n → ℝ) :
     vecCons x₀ y ⬝ᵥ A *ᵥ vecCons x₀ y =
@@ -136,7 +150,9 @@ theorem dotProduct_mulVec_vecCons (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (
   ring_nf
 
 /-- The quadratic form of the pivot Schur complement:
-`yᵀ (C − c rᵀ / a) y = yᵀ C y − (yᵀ c)(rᵀ y) / a`.-/
+`yᵀ (C − c rᵀ / a) y = yᵀ C y − (yᵀ c)(rᵀ y) / a`.
+@isnad1 id=eq.0h3v.s8.8b615656436d from=translated src=- shape=dc936baa vocab=68bb79ed
+-/
 theorem dotProduct_pivotSchur_mulVec (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (y : Fin n → ℝ) :
     y ⬝ᵥ pivotSchur A *ᵥ y = y ⬝ᵥ A.submatrix Fin.succ Fin.succ *ᵥ y -
@@ -153,7 +169,9 @@ definite iff its pivot is positive and its pivot Schur complement is positive de
 Proof: complete the square, `xᵀAx = a (x₀ + cᵀy / a)² + yᵀ (pivotSchur A) y` for
 `x = (x₀, y)`. Golub–Van Loan 2013, §4.2.5 (proof of Thm 4.2.7); Trefethen–Bau 1997,
 Lect. 23 (proof of Thm 23.1); Horn–Johnson 2013, Thm 7.7.7. This is the step of the Cholesky
-recursion (atlas `cholesky-algorithm`); special case of `generalized-schur-complement-psd`.-/
+recursion (atlas `cholesky-algorithm`); special case of `generalized-schur-complement-psd`.
+@isnad1 id=iff.1h2v.s7.5f0b2064c850 from=translated src=- shape=c7e7a558 vocab=838810c3
+-/
 theorem posDef_iff_pivotSchur {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ}
     (hA : A.IsHermitian) : A.PosDef ↔ 0 < A 0 0 ∧ (pivotSchur A).PosDef := by
   have hSh := isHermitian_pivotSchur hA
@@ -200,7 +218,9 @@ theorem posDef_iff_pivotSchur {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ}
 no condition on the pivot (for `A₀₀ = 0` the first column vanishes and `pivotSchur A` is the
 trailing block). Proof: `yᵀ (pivotSchur A) y = xᵀ A x` at `x = (−cᵀy / a, y)` (valid also for
 `a = 0` with `0⁻¹ = 0`). Golub–Van Loan 2013, §4.2.8 (semidefinite case); special case of
-Albert 1969, Thm 1 (atlas `generalized-schur-complement-psd`).-/
+Albert 1969, Thm 1 (atlas `generalized-schur-complement-psd`).
+@isnad1 id=possemid.1h2v.s6.e44b5ea4dedd from=translated src=- shape=e65e2c8d vocab=cc38e33e
+-/
 theorem posSemidef_pivotSchur {A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ}
     (hA : A.PosSemidef) : (pivotSchur A).PosSemidef := by
   have hAs := Matrix.isHermitian_iff_isSymm.mp hA.isHermitian

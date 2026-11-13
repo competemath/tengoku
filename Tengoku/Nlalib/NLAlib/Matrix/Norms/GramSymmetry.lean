@@ -11,7 +11,9 @@ variable {K m n : Type*} [RCLike K] [Fintype m] [Fintype n]
 
 /-- The row and column Gram matrices have equal Frobenius norm, including
 rectangular and empty matrices. The identity permits a residual Gram norm
-to be evaluated in the smaller column space. Source: the trace cycle identity.-/
+to be evaluated in the smaller column space. Source: the trace cycle identity.
+@isnad1 id=eq.0h4v.s7.da13a945d70b from=translated src=- shape=20cd0c77 vocab=afcb4bbe
+-/
 theorem frobNorm_mul_conjTranspose_eq_conjTranspose_mul (W : Matrix m n K) :
     frobNorm (W * Wᴴ) = frobNorm (Wᴴ * W) := by
   have ht : Matrix.trace ((W * Wᴴ)ᴴ * (W * Wᴴ)) =

@@ -37,7 +37,9 @@ private theorem minpoly_adjoinRoot_eq (hp : p.Monic) :
   rw [AdjoinRoot.minpoly_root hp.ne_zero, hp.leadingCoeff, inv_one, C_1, mul_one]
 
 /-- The concrete companion matrix represents multiplication by `X` in the quotient's
-power basis. Source: operator derivations, (S2).-/
+power basis. Source: operator derivations, (S2).
+@isnad1 id=eq.1h2v.s10.e088ee75e035 from=translated src=- shape=ce919275 vocab=44b47dd9
+-/
 theorem leftMulMatrix_adjoinRoot_eq_companionMatrix (hp : p.Monic) :
     Algebra.leftMulMatrix (AdjoinRoot.powerBasis' hp).basis (AdjoinRoot.root p) =
       companionMatrix p := by
@@ -52,7 +54,9 @@ theorem leftMulMatrix_adjoinRoot_eq_companionMatrix (hp : p.Monic) :
 /-- A monic polynomial is exactly the characteristic polynomial of its companion matrix,
 including the constant monic polynomial one and the empty companion matrix.
 Source: Horn–Johnson (2013), Theorem 3.2.4.2.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=eq.1h2v.s6.31743fe0b059 from=translated src=- shape=6986388a vocab=0f0cb1ee
+-/
 theorem charpoly_companionMatrix (hp : p.Monic) :
     (companionMatrix p).charpoly = p := by
   rw [← leftMulMatrix_adjoinRoot_eq_companionMatrix hp]
@@ -60,7 +64,9 @@ theorem charpoly_companionMatrix (hp : p.Monic) :
 
 /-- A monic polynomial is exactly the minimal polynomial of its companion matrix,
 with no nonzero degree assumption. Source: Horn–Johnson (2013), Theorem 3.2.4.2.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=eq.1h2v.s7.f90e2f034575 from=translated src=- shape=06887597 vocab=d7a987da
+-/
 theorem minpoly_companionMatrix (hp : p.Monic) :
     minpoly K (companionMatrix p) = p := by
   rw [← leftMulMatrix_adjoinRoot_eq_companionMatrix hp]

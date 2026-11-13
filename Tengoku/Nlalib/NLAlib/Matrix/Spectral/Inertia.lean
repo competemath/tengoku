@@ -56,14 +56,18 @@ atlas: sylvester-inertia-/
 def inertiaNeg (A : Matrix n n ℝ) : ℕ := sigNeg A.toQuadraticForm'
 
 /-- The quadratic form of a matrix: `A.toQuadraticForm' x = xᵀAx`. Helper for
-`sylvester-inertia`.-/
+`sylvester-inertia`.
+@isnad1 id=eq.0h3v.s7.e0079f5b8c2a from=translated src=- shape=399193ae vocab=46ec75a4
+-/
 theorem toQuadraticForm'_apply (A : Matrix n n ℝ) (x : n → ℝ) :
     A.toQuadraticForm' x = quadForm A x := by
   simp [Matrix.toQuadraticForm', Matrix.toLinearMap₂'_apply', quadForm]
 
 /-- Congruent matrices have equivalent quadratic forms: for invertible `X`,
 `x ↦ xᵀ(XᵀAX)x` and `x ↦ xᵀAx` are related by the change of variables `x ↦ Xx`. Helper for
-`sylvester-inertia`.-/
+`sylvester-inertia`.
+@isnad1 id=equivale.1h3v.s7.c3f7fc486af4 from=translated src=- shape=d0960eb0 vocab=d9c32d98
+-/
 theorem equivalent_toQuadraticForm'_transpose_mul_mul (A : Matrix n n ℝ) {X : Matrix n n ℝ}
     (hX : IsUnit X) :
     QuadraticMap.Equivalent (Xᵀ * A * X).toQuadraticForm' A.toQuadraticForm' := by
@@ -82,20 +86,26 @@ theorem equivalent_toQuadraticForm'_transpose_mul_mul (A : Matrix n n ℝ) {X : 
 invertible `X`. Source: Horn–Johnson (2013) [`hj13`], Thm 4.5.8; Golub–Van Loan (2013)
 [`gvl13`], Thm 8.1.17. Uniqueness of the signature is Mathlib's
 `QuadraticMap.Equivalent.sigPos_eq`.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h3v.s6.b6b5f133cf42 from=translated src=- shape=46792b7a vocab=038d6cab
+-/
 theorem inertiaPos_transpose_mul_mul (A : Matrix n n ℝ) {X : Matrix n n ℝ} (hX : IsUnit X) :
     inertiaPos (Xᵀ * A * X) = inertiaPos A :=
   (equivalent_toQuadraticForm'_transpose_mul_mul A hX).sigPos_eq
 
 /-- **Sylvester's law of inertia (negative index).** `inertiaNeg (XᵀAX) = inertiaNeg A` for
 invertible `X`. Source: Horn–Johnson (2013) [`hj13`], Thm 4.5.8.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h3v.s6.3199c3e7c8fb from=translated src=- shape=46792b7a vocab=0f133163
+-/
 theorem inertiaNeg_transpose_mul_mul (A : Matrix n n ℝ) {X : Matrix n n ℝ} (hX : IsUnit X) :
     inertiaNeg (Xᵀ * A * X) = inertiaNeg A :=
   (equivalent_toQuadraticForm'_transpose_mul_mul A hX).sigNeg_eq
 
 /-- The quadratic form of `diag(d)` is the weighted sum of squares with weights `d`. Helper for
-`sylvester-inertia`.-/
+`sylvester-inertia`.
+@isnad1 id=eq.0h2v.s6.2e063c87d64d from=translated src=- shape=55b2dc83 vocab=4886afb9
+-/
 theorem toQuadraticForm'_diagonal (d : n → ℝ) :
     (diagonal d).toQuadraticForm' = QuadraticMap.weightedSumSquares ℝ d := by
   ext x
@@ -106,7 +116,9 @@ theorem toQuadraticForm'_diagonal (d : n → ℝ) :
 
 /-- The positive index of a diagonal matrix is the number of positive diagonal entries.
 Horn–Johnson (2013) [`hj13`], §4.5.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.0h2v.s5.4e7e8da7af73 from=translated src=- shape=89e19dd2 vocab=93839f51
+-/
 theorem inertiaPos_diagonal (d : n → ℝ) :
     inertiaPos (diagonal d) = (Finset.univ.filter fun i => 0 < d i).card := by
   rw [inertiaPos, toQuadraticForm'_diagonal, QuadraticForm.sigPos_weightedSumSquares,
@@ -117,7 +129,9 @@ theorem inertiaPos_diagonal (d : n → ℝ) :
 
 /-- The negative index of a diagonal matrix is the number of negative diagonal entries.
 Horn–Johnson (2013) [`hj13`], §4.5.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.0h2v.s5.29c6e1d53de3 from=translated src=- shape=3038380f vocab=301366a0
+-/
 theorem inertiaNeg_diagonal (d : n → ℝ) :
     inertiaNeg (diagonal d) = (Finset.univ.filter fun i => d i < 0).card := by
   rw [inertiaNeg, toQuadraticForm'_diagonal, QuadraticForm.sigNeg_weightedSumSquares,
@@ -128,7 +142,9 @@ theorem inertiaNeg_diagonal (d : n → ℝ) :
 
 /-- A real symmetric matrix shifted by `x` is congruent to a diagonal matrix:
 `A − xI = (Uᵀ)ᵀ diag(λ − x) Uᵀ` with `U = hA.eigenvectorUnitary`. Helper for
-`sylvester-inertia`.-/
+`sylvester-inertia`.
+@isnad1 id=eq.1h3v.s8.f93d8ccfbaa2 from=translated src=- shape=d7f44989 vocab=c76ca8cd
+-/
 theorem sub_smul_one_eq_transpose_mul_diagonal_mul {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (x : ℝ) :
     A - x • (1 : Matrix n n ℝ) =
@@ -142,7 +158,9 @@ theorem sub_smul_one_eq_transpose_mul_diagonal_mul {A : Matrix n n ℝ} (hA : A.
     Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_smul, Matrix.mul_one, Matrix.smul_mul, hUU,
     ← eq_eigenvectorUnitary_mul_diagonal_mul_transpose hA]
 
-/-- The transposed eigenvector matrix is invertible. Helper for `sylvester-inertia`.-/
+/-- The transposed eigenvector matrix is invertible. Helper for `sylvester-inertia`.
+@isnad1 id=isunit.1h2v.s7.1669575eff03 from=translated src=- shape=2d78c231 vocab=c130d6f6
+-/
 theorem isUnit_transpose_eigenvectorUnitary {A : Matrix n n ℝ} (hA : A.IsHermitian) :
     IsUnit ((hA.eigenvectorUnitary : Matrix n n ℝ)ᵀ) :=
   (Matrix.isUnit_iff_isUnit_det _).2
@@ -151,7 +169,9 @@ theorem isUnit_transpose_eigenvectorUnitary {A : Matrix n n ℝ} (hA : A.IsHermi
 /-- **Inertia from the spectrum (positive index).** For real symmetric `A` and any `x`,
 `inertiaPos (A − xI) = #{i : λᵢ > x}`; with `x = 0`, the number of positive eigenvalues.
 Source: Horn–Johnson (2013) [`hj13`], Thm 4.5.8 (with the spectral theorem).
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h3v.s7.774a2ece41ec from=translated src=- shape=8f979c72 vocab=1b74a4fa
+-/
 theorem inertiaPos_sub_smul_one_eq_card {A : Matrix n n ℝ} (hA : A.IsHermitian) (x : ℝ) :
     inertiaPos (A - x • (1 : Matrix n n ℝ)) =
       (Finset.univ.filter fun i => x < hA.eigenvalues i).card := by
@@ -162,7 +182,9 @@ theorem inertiaPos_sub_smul_one_eq_card {A : Matrix n n ℝ} (hA : A.IsHermitian
 /-- **Inertia from the spectrum (negative index).** For real symmetric `A` and any `x`,
 `inertiaNeg (A − xI) = #{i : λᵢ < x}`. Source: Horn–Johnson (2013) [`hj13`], Thm 4.5.8;
 Golub–Van Loan (2013) [`gvl13`], §8.4.1.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h3v.s7.c677c1762fdf from=translated src=- shape=092f170d vocab=cd2bac61
+-/
 theorem inertiaNeg_sub_smul_one_eq_card {A : Matrix n n ℝ} (hA : A.IsHermitian) (x : ℝ) :
     inertiaNeg (A - x • (1 : Matrix n n ℝ)) =
       (Finset.univ.filter fun i => hA.eigenvalues i < x).card := by
@@ -172,14 +194,18 @@ theorem inertiaNeg_sub_smul_one_eq_card {A : Matrix n n ℝ} (hA : A.IsHermitian
 
 /-- For real symmetric `A`, `inertiaPos A` is the number of positive eigenvalues.
 Horn–Johnson (2013) [`hj13`], §4.5.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h2v.s6.7db8a8a7e6a1 from=translated src=- shape=3ae98517 vocab=35930771
+-/
 theorem inertiaPos_eq_card_eigenvalues_pos {A : Matrix n n ℝ} (hA : A.IsHermitian) :
     inertiaPos A = (Finset.univ.filter fun i => 0 < hA.eigenvalues i).card := by
   simpa using inertiaPos_sub_smul_one_eq_card hA 0
 
 /-- For real symmetric `A`, `inertiaNeg A` is the number of negative eigenvalues.
 Horn–Johnson (2013) [`hj13`], §4.5.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.1h2v.s6.42993fb9fc67 from=translated src=- shape=28ec2000 vocab=0c2e54f1
+-/
 theorem inertiaNeg_eq_card_eigenvalues_neg {A : Matrix n n ℝ} (hA : A.IsHermitian) :
     inertiaNeg A = (Finset.univ.filter fun i => hA.eigenvalues i < 0).card := by
   simpa using inertiaNeg_sub_smul_one_eq_card hA 0
@@ -191,7 +217,9 @@ invertible (e.g. unit lower triangular, from symmetric Gaussian elimination) and
 `D = diag(d)`, then the number of eigenvalues of `A` below `x` is the number of negative `dᵢ`.
 Source: Golub–Van Loan (2013) [`gvl13`], §8.4.1 (Sylvester's law and `LDLᵀ`); Parlett (1998)
 [`parlett98`], Ch. 3. Deviation: any invertible `L`.
-atlas: sylvester-inertia-/
+atlas: sylvester-inertia
+@isnad1 id=eq.3h5v.s8.60c82bedfb6a from=translated src=- shape=58ca3887 vocab=88ab5377
+-/
 theorem card_eigenvalues_lt_eq_card_neg_of_eq_mul_diagonal_mul {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {x : ℝ} {L : Matrix n n ℝ} (hL : IsUnit L) {d : n → ℝ}
     (h : A - x • (1 : Matrix n n ℝ) = L * diagonal d * Lᵀ) :

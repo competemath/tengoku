@@ -30,7 +30,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Trace is invariant under unitary conjugation, over any commutative star ring (in particular
-`ℝ` and `ℂ`), including empty matrices.TracePowerConvexity.trace_conjStarAlgAut`).-/
+`ℝ` and `ℂ`), including empty matrices.TracePowerConvexity.trace_conjStarAlgAut`).
+@isnad1 id=eq.0h4v.s12.8ca3fbf16440 from=translated src=- shape=46c8e024 vocab=56ef303d
+-/
 theorem trace_conjStarAlgAut {R : Type*} [CommRing R] [StarRing R]
     (U : Matrix.unitaryGroup ι R) (A : Matrix ι ι R) :
     Matrix.trace (Unitary.conjStarAlgAut R _ U A) = Matrix.trace A := by
@@ -38,7 +40,9 @@ theorem trace_conjStarAlgAut {R : Type*} [CommRing R] [StarRing R]
     Unitary.coe_star_mul_self, one_mul]
 
 /-- Natural trace powers of a Hermitian real matrix are the power sums of
-its eigenvalues.MatrixTail.trace_pow_eq_sum_eigenvalues` (`sparse-ose`).-/
+its eigenvalues.MatrixTail.trace_pow_eq_sum_eigenvalues` (`sparse-ose`).
+@isnad1 id=eq.1h3v.s6.c5185bd0c710 from=translated src=- shape=af9c1907 vocab=98c4dbf0
+-/
 theorem trace_pow_eq_sum_eigenvalues {R : Matrix ι ι ℝ} (hR : R.IsHermitian) (n : ℕ) :
     Matrix.trace (R ^ n) = ∑ i, hR.eigenvalues i ^ n := by
   conv_lhs => rw [hR.spectral_theorem, ← map_pow]
@@ -48,7 +52,9 @@ theorem trace_pow_eq_sum_eigenvalues {R : Matrix ι ι ℝ} (hR : R.IsHermitian)
 
 /-- A symmetric matrix quadratic trace in a diagonal basis is a weighted
 sum of squares.trace_mul_diagonal_pow_mul_mul_diagonal_pow`;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=eq.1h5v.s8.8da562b4a31c from=translated src=- shape=72c405dd vocab=965ef787
+-/
 theorem trace_mul_diagonal_pow_mul_mul_diagonal_pow (B : Matrix ι ι ℝ)
     (hB : Bᵀ = B) (ev : ι → ℝ) (a c : ℕ) :
     Matrix.trace (B * (Matrix.diagonal ev) ^ a * B * (Matrix.diagonal ev) ^ c) =

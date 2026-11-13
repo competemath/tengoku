@@ -29,7 +29,9 @@ def reducedHessian (H : Matrix n n 𝕜) (Z : Matrix n r 𝕜) : Matrix r r 𝕜
 
 /-- The explicit null-space solver and multiplier formula satisfy both KKT
 equations whenever their reduced equation is satisfied.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=other.4h11v.s9.2fba59ed5ba8 from=translated src=- shape=d0d489e1 vocab=e3e71af4
+-/
 theorem IsKernelFrame.kkt_solution {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) (hB : IsUnit (B * Bᴴ)) (H : Matrix n n 𝕜)
     (f : n → 𝕜) (g : m → 𝕜) (xp : n → 𝕜) (hxp : B *ᵥ xp = g)
@@ -50,7 +52,9 @@ theorem IsKernelFrame.kkt_solution {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
   linear_combination -he
 
 /-- The reduced equation obtained by applying null-space coordinates to
-the first KKT equation.-/
+the first KKT equation.
+@isnad1 id=eq.2h11v.s8.53bc7e00558a from=translated src=- shape=506e42a7 vocab=e6bd9c46
+-/
 theorem IsKernelFrame.reduced_equation {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) (H : Matrix n n 𝕜) (f xp : n → 𝕜)
     (y : r → 𝕜) (l : m → 𝕜)
@@ -66,7 +70,9 @@ theorem IsKernelFrame.reduced_equation {B : Matrix m n 𝕜} {Z : Matrix n r �
 
 /-- The full saddle-point matrix is nonsingular exactly when its reduced
 Hessian is nonsingular. No definiteness of the ambient Hessian is required.
-atlas: kkt-reduced-hessian (partial)-/
+atlas: kkt-reduced-hessian (partial)
+@isnad1 id=iff.2h7v.s8.f97629a589ff from=translated src=- shape=7fb46c59 vocab=e0e09b39
+-/
 theorem IsKernelFrame.isUnit_kktMatrix_iff {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) (hB : IsUnit (B * Bᴴ)) (H : Matrix n n 𝕜) :
     IsUnit (kktMatrix H B) ↔ IsUnit (reducedHessian H Z) := by

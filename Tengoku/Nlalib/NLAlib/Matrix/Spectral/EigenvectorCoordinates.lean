@@ -25,17 +25,23 @@ variable {A : Matrix n n 𝕜} (hA : A.IsHermitian)
 def eigenvectorCoordinates (x : n → 𝕜) : n → 𝕜 :=
   fun i => ⟪hA.eigenvectorBasis i, WithLp.toLp 2 x⟫_𝕜
 
-/-- Eigenvector coordinates are the usual conjugate dot products.-/
+/-- Eigenvector coordinates are the usual conjugate dot products.
+@isnad1 id=eq.1h5v.s8.c496c9127f51 from=translated src=- shape=432c8b23 vocab=c93d0c5b
+-/
 theorem eigenvectorCoordinates_apply (x : n → 𝕜) (i : n) :
     hA.eigenvectorCoordinates x i = star ⇑(hA.eigenvectorBasis i) ⬝ᵥ x := by
   rw [eigenvectorCoordinates, EuclideanSpace.inner_eq_star_dotProduct, dotProduct_comm]
 
-/-- Parseval's identity in the Hermitian eigenbasis.-/
+/-- Parseval's identity in the Hermitian eigenbasis.
+@isnad1 id=eq.1h4v.s7.a4ed8ed44193 from=translated src=- shape=26d00dd3 vocab=f288684a
+-/
 theorem sum_sq_norm_eigenvectorCoordinates (x : n → 𝕜) :
     ∑ i, ‖hA.eigenvectorCoordinates x i‖ ^ 2 = ‖WithLp.toLp 2 x‖ ^ 2 :=
   hA.eigenvectorBasis.sum_sq_norm_inner_right _
 
-/-- Eigenvector coordinates determine the vector.-/
+/-- Eigenvector coordinates determine the vector.
+@isnad1 id=injectiv.1h3v.s6.7446f1e57759 from=translated src=- shape=5ce7bae8 vocab=f26e9b2f
+-/
 theorem eigenvectorCoordinates_injective : Function.Injective hA.eigenvectorCoordinates := by
   intro x y h
   apply WithLp.toLp_injective (p := 2)
@@ -43,25 +49,33 @@ theorem eigenvectorCoordinates_injective : Function.Injective hA.eigenvectorCoor
   ext i
   simpa [eigenvectorCoordinates, OrthonormalBasis.repr_apply_apply] using congrFun h i
 
-/-- Eigenvector coordinates are linear in the input vector.-/
+/-- Eigenvector coordinates are linear in the input vector.
+@isnad1 id=eq.1h5v.s7.dceddc380e31 from=translated src=- shape=6dc7605c vocab=5a07a776
+-/
 theorem eigenvectorCoordinates_smul (c : 𝕜) (x : n → 𝕜) :
     hA.eigenvectorCoordinates (c • x) = c • hA.eigenvectorCoordinates x := by
   ext i
   simp [eigenvectorCoordinates, WithLp.toLp_smul, inner_smul_right]
 
-/-- Subtraction in eigenvector coordinates.-/
+/-- Subtraction in eigenvector coordinates.
+@isnad1 id=eq.1h5v.s7.e20fa1efc10d from=translated src=- shape=e0097ab1 vocab=77585b51
+-/
 theorem eigenvectorCoordinates_sub (x y : n → 𝕜) :
     hA.eigenvectorCoordinates (x - y) =
       hA.eigenvectorCoordinates x - hA.eigenvectorCoordinates y := by
   ext i
   simp [eigenvectorCoordinates, WithLp.toLp_sub, inner_sub_right]
 
-/-- The eigenbasis vectors have the standard coordinate vectors as coordinates.-/
+/-- The eigenbasis vectors have the standard coordinate vectors as coordinates.
+@isnad1 id=eq.1h5v.s8.049bafa671bc from=translated src=- shape=ae79b72d vocab=48901d38
+-/
 theorem eigenvectorCoordinates_eigenvectorBasis (i j : n) :
     hA.eigenvectorCoordinates ⇑(hA.eigenvectorBasis i) j = if j = i then 1 else 0 := by
   exact hA.eigenvectorBasis.inner_eq_ite j i
 
-/-- Matrix multiplication multiplies each eigenvector coordinate by its real eigenvalue.-/
+/-- Matrix multiplication multiplies each eigenvector coordinate by its real eigenvalue.
+@isnad1 id=eq.1h5v.s7.7aa3ddf7e057 from=translated src=- shape=04253ea5 vocab=5f50e4e0
+-/
 theorem eigenvectorCoordinates_mulVec (x : n → 𝕜) (i : n) :
     hA.eigenvectorCoordinates (A *ᵥ x) i =
       (hA.eigenvalues i : 𝕜) * hA.eigenvectorCoordinates x i := by
@@ -76,7 +90,9 @@ theorem eigenvectorCoordinates_mulVec (x : n → 𝕜) (i : n) :
   rw [← hs, he, RCLike.real_smul_eq_coe_smul (K := 𝕜), inner_smul_left]
   simp [eigenvectorCoordinates]
 
-/-- A scalar shift subtracts the shift from every eigenvalue in coordinates.-/
+/-- A scalar shift subtracts the shift from every eigenvalue in coordinates.
+@isnad1 id=eq.1h6v.s8.7b4ee7b45e73 from=translated src=- shape=d41450e7 vocab=066b4b59
+-/
 theorem eigenvectorCoordinates_sub_smul_mulVec (μ : ℝ) (x : n → 𝕜) (i : n) :
     hA.eigenvectorCoordinates ((A - μ • (1 : Matrix n n 𝕜)) *ᵥ x) i =
       ((hA.eigenvalues i - μ : ℝ) : 𝕜) * hA.eigenvectorCoordinates x i := by
@@ -87,7 +103,9 @@ theorem eigenvectorCoordinates_sub_smul_mulVec (μ : ℝ) (x : n → 𝕜) (i : 
   simp only [eigenvectorCoordinates, RCLike.ofReal_sub]
   ring
 
-/-- A real shift avoiding every eigenvalue of a Hermitian matrix is invertible.-/
+/-- A real shift avoiding every eigenvalue of a Hermitian matrix is invertible.
+@isnad1 id=isunit.2h4v.s8.1f6026144892 from=translated src=- shape=26c7355a vocab=7daa45fe
+-/
 theorem isUnit_sub_smul_one_of_eigenvalues_ne {μ : ℝ}
     (hμ : ∀ i, hA.eigenvalues i ≠ μ) : IsUnit (A - μ • (1 : Matrix n n 𝕜)) := by
   apply Matrix.mulVec_injective_iff_isUnit.mp
@@ -98,7 +116,9 @@ theorem isUnit_sub_smul_one_of_eigenvalues_ne {μ : ℝ}
   simp only [hA.eigenvectorCoordinates_sub_smul_mulVec] at h
   exact mul_left_cancel₀ (RCLike.ofReal_ne_zero.mpr (sub_ne_zero.mpr (hμ i))) h
 
-/-- Invertibility of a real Hermitian shift is equivalent to avoiding every eigenvalue.-/
+/-- Invertibility of a real Hermitian shift is equivalent to avoiding every eigenvalue.
+@isnad1 id=iff.1h4v.s8.5adb89e0a16e from=translated src=- shape=02e5df6c vocab=7daa45fe
+-/
 theorem isUnit_sub_smul_one_iff_eigenvalues_ne (μ : ℝ) :
     IsUnit (A - μ • (1 : Matrix n n 𝕜)) ↔ ∀ i, hA.eigenvalues i ≠ μ := by
   refine ⟨?_, hA.isUnit_sub_smul_one_of_eigenvalues_ne⟩
@@ -114,7 +134,9 @@ theorem isUnit_sub_smul_one_iff_eigenvalues_ne (μ : ℝ) :
   exact zero_ne_one hn
 
 /-- The coordinates of a shifted inverse are the original coordinates divided by the
-shifted eigenvalues. This includes both real symmetric and complex Hermitian matrices.-/
+shifted eigenvalues. This includes both real symmetric and complex Hermitian matrices.
+@isnad1 id=eq.2h6v.s8.98cd6016a7ca from=translated src=- shape=52547176 vocab=00a43fcd
+-/
 theorem eigenvectorCoordinates_inv_sub_smul_mulVec {μ : ℝ}
     (hμ : ∀ i, hA.eigenvalues i ≠ μ) (x : n → 𝕜) (i : n) :
     hA.eigenvectorCoordinates ((A - μ • (1 : Matrix n n 𝕜))⁻¹ *ᵥ x) i =
@@ -129,7 +151,9 @@ theorem eigenvectorCoordinates_inv_sub_smul_mulVec {μ : ℝ}
   rw [h, ← mul_assoc, inv_mul_cancel₀
     (RCLike.ofReal_ne_zero.mpr (sub_ne_zero.mpr (hμ i))), one_mul]
 
-/-- The real quadratic form is the eigenvalue-weighted sum of squared coordinates.-/
+/-- The real quadratic form is the eigenvalue-weighted sum of squared coordinates.
+@isnad1 id=eq.1h4v.s7.5c39c5171d61 from=translated src=- shape=39e7904f vocab=a38f55c9
+-/
 theorem re_quadForm_eq_sum_eigenvectorCoordinates (x : n → 𝕜) :
     RCLike.re (NLAlib.quadForm A x) =
       ∑ i, hA.eigenvalues i * ‖hA.eigenvectorCoordinates x i‖ ^ 2 := by
@@ -147,7 +171,9 @@ theorem re_quadForm_eq_sum_eigenvectorCoordinates (x : n → 𝕜) :
   rw [mul_left_comm, RCLike.re_ofReal_mul, RCLike.star_def, RCLike.conj_mul,
     ← RCLike.ofReal_pow, RCLike.ofReal_re]
 
-/-- The Rayleigh quotient is the eigenvalue-weighted average of squared coordinates.-/
+/-- The Rayleigh quotient is the eigenvalue-weighted average of squared coordinates.
+@isnad1 id=eq.1h4v.s7.3b06f79a29c5 from=translated src=- shape=85d36e61 vocab=add42166
+-/
 theorem rayleighQuotient_eq_sum_eigenvectorCoordinates (x : n → 𝕜) :
     NLAlib.rayleighQuotient A x =
       (∑ i, hA.eigenvalues i * ‖hA.eigenvectorCoordinates x i‖ ^ 2) /

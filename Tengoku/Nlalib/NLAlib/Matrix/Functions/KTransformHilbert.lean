@@ -23,7 +23,9 @@ def matrixKStabilityFrobenius
   hermitianFrobeniusMap (matrixKStabilityMap ν α S).toLinearMap
     (fun _ h => isHermitian_matrixKStabilityMap ν hν α hα S hS hgap h)
 
-/-- Realization is exactly the source integral operator.-/
+/-- Realization is exactly the source integral operator.
+@isnad1 id=eq.4h5v.s10.b769e09886ff from=translated src=- shape=a1a12541 vocab=25c16dc0
+-/
 @[simp] theorem matrixKStabilityFrobenius_apply
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 ≤ α)
@@ -32,7 +34,9 @@ def matrixKStabilityFrobenius
     hermitianFrobeniusMatrix ℂ n (matrixKStabilityFrobenius ν hν α hα S hS hgap x) =
       matrixKStabilityMap ν α S (hermitianFrobeniusMatrix ℂ n x) := rfl
 
-/-- The actual Frobenius operator is symmetric.-/
+/-- The actual Frobenius operator is symmetric.
+@isnad1 id=issymmet.4h4v.s10.c704b9e32d38 from=translated src=- shape=38493d54 vocab=b5b5acf3
+-/
 theorem isSymmetric_matrixKStabilityFrobenius
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 ≤ α)
@@ -45,7 +49,9 @@ theorem isSymmetric_matrixKStabilityFrobenius
     (matrixKStabilityMap ν α S (hermitianFrobeniusMatrix ℂ n y))
   exact (frobInner_matrixKStabilityMap_comm ν hν α S hS hgap _ _).symm
 
-/-- The actual Frobenius operator preserves the source PSD cone.-/
+/-- The actual Frobenius operator preserves the source PSD cone.
+@isnad1 id=possemid.5h5v.s10.ddbb0d227b86 from=translated src=- shape=e0d209af vocab=65f549df
+-/
 theorem posSemidef_matrixKStabilityFrobenius
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 ≤ α)
@@ -56,7 +62,9 @@ theorem posSemidef_matrixKStabilityFrobenius
   rw [matrixKStabilityFrobenius_apply]
   exact posSemidef_matrixKStabilityMap ν hν α hα S hS hgap hx
 
-/-- The actual derivative restricts to the real Hermitian space.-/
+/-- The actual derivative restricts to the real Hermitian space.
+@isnad1 id=ishermit.5h5v.s10.63143bd85528 from=translated src=- shape=3b61eaac vocab=530fd5dc
+-/
 theorem isHermitian_matrixKTransformDeriv
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0 < α)

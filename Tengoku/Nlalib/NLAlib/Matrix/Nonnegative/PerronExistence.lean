@@ -27,7 +27,9 @@ variable {ι : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 a nonnegative unit-sum right eigenvector at its complex spectral radius.
 No irreducibility, invertibility, or positive-radius hypothesis is needed.
 Source: Horn–Johnson, Theorem 8.3.1.
-atlas: nonnegative-perron-eigenpair (partial)-/
+atlas: nonnegative-perron-eigenpair (partial)
+@isnad1 id=ex.1h2v.s8.4ae82306f576 from=translated src=- shape=d45f6bde vocab=fe7cdde9
+-/
 theorem exists_nonnegative_perron_eigenvector_and_comparison {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) :
     ∃ p : ι → ℝ, (∀ i, 0 ≤ p i) ∧ (∑ i, p i = 1) ∧
@@ -134,7 +136,9 @@ theorem exists_nonnegative_perron_eigenvector_and_comparison {A : Matrix ι ι �
 /-- Every nonnegative finite real matrix has a nonnegative unit-sum Perron
 eigenvector, including reducible matrices and zero spectral radius.
 Source: Horn–Johnson, Theorem 8.3.1.
-atlas: nonnegative-perron-eigenpair (partial)-/
+atlas: nonnegative-perron-eigenpair (partial)
+@isnad1 id=ex.1h2v.s7.9ca875761782 from=translated src=- shape=2e97ddef vocab=9ffd2054
+-/
 theorem exists_nonnegative_perron_eigenvector {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 ≤ A i j) :
     ∃ p : ι → ℝ, (∀ i, 0 ≤ p i) ∧ (∑ i, p i = 1) ∧
@@ -145,7 +149,9 @@ theorem exists_nonnegative_perron_eigenvector {A : Matrix ι ι ℝ}
 /-- Complex entrywise domination by a nonnegative real matrix implies spectral
 radius domination. Reducibility and zero spectral radius are included.
 Source: Horn–Johnson, Chapter 8.
-atlas: nonnegative-spectral-radius-comparison (partial)-/
+atlas: nonnegative-spectral-radius-comparison (partial)
+@isnad1 id=le.2h3v.s7.27d27026dbd8 from=translated src=- shape=bc53aef9 vocab=92434c64
+-/
 theorem spectralRadius_le_of_abs_le_nonnegative {A : Matrix ι ι ℝ} {B : Matrix ι ι ℂ}
     (hA : ∀ i j, 0 ≤ A i j) (hBA : ∀ i j, norm (B i j) ≤ A i j) :
     spectralRadius ℂ B ≤ spectralRadius ℂ (A.map Complex.ofReal) := by
@@ -156,7 +162,9 @@ theorem spectralRadius_le_of_abs_le_nonnegative {A : Matrix ι ι ℝ} {B : Matr
 subsolution, even when the Perron eigenvector itself has zero coordinates.
 This gives the unattained infimum case of Collatz–Wielandt.
 Source: Horn–Johnson, Chapter 8.
-atlas: collatz-wielandt-certificates (partial)-/
+atlas: collatz-wielandt-certificates (partial)
+@isnad1 id=ex.2h3v.s7.17f8435b30de from=translated src=- shape=6d5afb8a vocab=0ac8675b
+-/
 theorem exists_positive_strict_subsolution_of_spectralRadius_lt
     {A : Matrix ι ι ℝ} (hA : ∀ i j, 0 ≤ A i j) {t : ℝ}
     (ht : (spectralRadius ℂ (A.map Complex.ofReal)).toReal < t) :
@@ -165,7 +173,9 @@ theorem exists_positive_strict_subsolution_of_spectralRadius_lt
   exact hsub t ht
 
 omit [Nonempty ι] in
-/-- The complex spectral radius of a real matrix is unchanged by transposition.-/
+/-- The complex spectral radius of a real matrix is unchanged by transposition.
+@isnad1 id=eq.0h2v.s6.549c18b05cac from=translated src=- shape=51435c76 vocab=ea42fb88
+-/
 theorem spectralRadius_complexification_transpose (A : Matrix ι ι ℝ) :
     spectralRadius ℂ (Aᵀ.map Complex.ofReal) = spectralRadius ℂ (A.map Complex.ofReal) := by
   have hspec : spectrum ℂ (Aᵀ.map Complex.ofReal) = spectrum ℂ (A.map Complex.ofReal) := by
@@ -177,7 +187,9 @@ theorem spectralRadius_complexification_transpose (A : Matrix ι ι ℝ) :
 /-- Every nonnegative real matrix has both normalized nonnegative right and
 left Perron eigenvectors, at the same complex spectral radius.
 Source: Horn–Johnson, Theorem 8.3.1.
-atlas: nonnegative-perron-eigenpair (partial)-/
+atlas: nonnegative-perron-eigenpair (partial)
+@isnad1 id=ex.1h2v.s8.f464e736c3ea from=translated src=- shape=6383cad1 vocab=b72aa979
+-/
 theorem exists_nonnegative_perron_pair {A : Matrix ι ι ℝ} (hA : ∀ i j, 0 ≤ A i j) :
     ∃ p q : ι → ℝ, (∀ i, 0 ≤ p i) ∧ (∀ i, 0 ≤ q i) ∧
       (∑ i, p i = 1) ∧ (∑ i, q i = 1) ∧

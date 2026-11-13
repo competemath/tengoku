@@ -20,7 +20,9 @@ namespace Matrix
 
 variable {𝕜 n : Type*} [RCLike 𝕜] [Fintype n] [DecidableEq n]
 
-/-- In finite dimensions, matrix powers decay exactly when they decay on every vector.-/
+/-- In finite dimensions, matrix powers decay exactly when they decay on every vector.
+@isnad1 id=iff.0h3v.s8.51a3fe2c0d3e from=translated src=- shape=0ce3c216 vocab=20b1243d
+-/
 theorem tendsto_pow_zero_iff_forall_mulVec (H : Matrix n n 𝕜) :
     Tendsto (fun k : ℕ => H ^ k) atTop (𝓝 0) ↔
       ∀ v : n → 𝕜, Tendsto (fun k : ℕ => (H ^ k) *ᵥ v) atTop (𝓝 0) := by
@@ -36,7 +38,9 @@ theorem tendsto_pow_zero_iff_forall_mulVec (H : Matrix n n 𝕜) :
     have hj := (tendsto_pi_nhds.mp (h (Pi.single j 1))) i
     simpa only [mulVec_single_one, col_apply, Pi.zero_apply, Matrix.zero_apply] using hj
 
-/-- Decaying matrix powers exclude eigenvalue one, so `1 - H` is invertible.-/
+/-- Decaying matrix powers exclude eigenvalue one, so `1 - H` is invertible.
+@isnad1 id=isunit.1h3v.s8.d16e26c7c08f from=translated src=- shape=92bb6b36 vocab=59b7d786
+-/
 theorem isUnit_one_sub_of_tendsto_pow_zero {H : Matrix n n 𝕜}
     (hH : Tendsto (fun k : ℕ => H ^ k) atTop (𝓝 0)) : IsUnit (1 - H) := by
   apply mulVec_injective_iff_isUnit.mp

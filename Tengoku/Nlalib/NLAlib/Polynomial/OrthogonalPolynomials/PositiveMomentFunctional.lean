@@ -15,7 +15,9 @@ open Polynomial Finset Matrix
 namespace NLAlib
 
 /-- A real Hankel matrix is positive definite exactly when its polynomial
-squared form is positive on every nonzero polynomial below its order.-/
+squared form is positive on every nonzero polynomial below its order.
+@isnad1 id=iff.0h2v.s7.2f6481f30b00 from=translated src=- shape=a36bb222 vocab=7039bbd9
+-/
 theorem posDef_hankelMomentMatrix_iff_functional_sq_pos (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) :
     (hankelMomentMatrix L n).PosDef ↔
       ∀ p : ℝ[X], p.degree < n → p ≠ 0 → 0 < L (p ^ 2) := by
@@ -42,7 +44,9 @@ theorem posDef_hankelMomentMatrix_iff_functional_sq_pos (L : ℝ[X] →ₗ[ℝ] 
       ((sum_monomial_fin_eq_zero_iff c).not.mpr hc)
 
 /-- Positive definiteness of a finite real moment form passes to every lower
-order, including the empty order-zero system.-/
+order, including the empty order-zero system.
+@isnad1 id=posdef.2h3v.s6.a488e151d1ff from=translated src=- shape=7df2bb2c vocab=6a1c1819
+-/
 theorem posDef_hankelMomentMatrix_of_le {L : ℝ[X] →ₗ[ℝ] ℝ} {n k : ℕ}
     (hL : (hankelMomentMatrix L n).PosDef) (hk : k ≤ n) :
     (hankelMomentMatrix L k).PosDef := by
@@ -51,7 +55,9 @@ theorem posDef_hankelMomentMatrix_of_le {L : ℝ[X] →ₗ[ℝ] ℝ} {n k : ℕ}
   exact hL p (hp.trans_le (by exact_mod_cast hk)) hp0
 
 /-- Each lower-order Hankel system of a positive finite moment form is
-nonsingular.-/
+nonsingular.
+@isnad1 id=ne.2h3v.s6.af8f02cb322e from=translated src=- shape=314ec1d9 vocab=13cbd191
+-/
 theorem hankelMomentDet_ne_zero_of_posDef_of_le {L : ℝ[X] →ₗ[ℝ] ℝ} {n k : ℕ}
     (hL : (hankelMomentMatrix L n).PosDef) (hk : k ≤ n) :
     hankelMomentDet L k ≠ 0 := by
@@ -59,7 +65,9 @@ theorem hankelMomentDet_ne_zero_of_posDef_of_le {L : ℝ[X] →ₗ[ℝ] ℝ} {n 
     (posDef_hankelMomentMatrix_of_le hL hk).isUnit)
 
 /-- All included canonical monic polynomial norms are positive in a positive
-finite moment form. No representing measure is assumed.-/
+finite moment form. No representing measure is assumed.
+@isnad1 id=lt.2h3v.s6.8219a846fe84 from=translated src=- shape=0079f4c4 vocab=81c9adf2
+-/
 theorem orthogonalPolynomialNorm_pos_of_posDef {L : ℝ[X] →ₗ[ℝ] ℝ} {n k : ℕ}
     (hL : (hankelMomentMatrix L n).PosDef) (hk : k < n) :
     0 < orthogonalPolynomialNorm L k := by

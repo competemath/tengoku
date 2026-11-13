@@ -28,7 +28,9 @@ def toEuclideanSubmodule (S : Submodule 𝕜 (m → 𝕜)) :
   S.map (WithLp.linearEquiv 2 𝕜 (m → 𝕜)).symm.toLinearMap
 
 omit [Fintype m] in
-/-- Euclidean transport preserves the dimension of a coordinate subspace.-/
+/-- Euclidean transport preserves the dimension of a coordinate subspace.
+@isnad1 id=eq.0h3v.s10.30db12f7f23d from=translated src=- shape=a575596e vocab=b3546ffa
+-/
 theorem finrank_toEuclideanSubmodule (S : Submodule 𝕜 (m → 𝕜)) :
     Module.finrank 𝕜 (toEuclideanSubmodule S) = Module.finrank 𝕜 S :=
   LinearEquiv.finrank_map_eq _ _
@@ -40,13 +42,17 @@ def toCoordinateSubmodule (S : Submodule 𝕜 (EuclideanSpace 𝕜 m)) :
   S.map (WithLp.linearEquiv 2 𝕜 (m → 𝕜)).toLinearMap
 
 omit [Fintype m] in
-/-- Coordinate transport preserves the dimension of a Hilbert subspace.-/
+/-- Coordinate transport preserves the dimension of a Hilbert subspace.
+@isnad1 id=eq.0h3v.s10.1fd2fc17efe9 from=translated src=- shape=4238e603 vocab=28e59dee
+-/
 theorem finrank_toCoordinateSubmodule (S : Submodule 𝕜 (EuclideanSpace 𝕜 m)) :
     Module.finrank 𝕜 (toCoordinateSubmodule S) = Module.finrank 𝕜 S :=
   LinearEquiv.finrank_map_eq _ _
 
 omit [Fintype m] in
-/-- Transporting a coordinate subspace to Euclidean space and back recovers it.-/
+/-- Transporting a coordinate subspace to Euclidean space and back recovers it.
+@isnad1 id=eq.0h3v.s7.55e1affe5c75 from=translated src=- shape=64459a3c vocab=c37c4667
+-/
 @[simp] theorem toCoordinateSubmodule_toEuclideanSubmodule
     (S : Submodule 𝕜 (m → 𝕜)) :
     toCoordinateSubmodule (toEuclideanSubmodule S) = S := by
@@ -54,7 +60,9 @@ omit [Fintype m] in
   simp
 
 omit [Fintype m] in
-/-- Transporting a Hilbert subspace to coordinates and back recovers it.-/
+/-- Transporting a Hilbert subspace to coordinates and back recovers it.
+@isnad1 id=eq.0h3v.s8.5bd08df5fc9c from=translated src=- shape=98ac9ac0 vocab=c582b3a8
+-/
 @[simp] theorem toEuclideanSubmodule_toCoordinateSubmodule
     (S : Submodule 𝕜 (EuclideanSpace 𝕜 m)) :
     toEuclideanSubmodule (toCoordinateSubmodule S) = S := by
@@ -62,7 +70,9 @@ omit [Fintype m] in
   simp
 
 /-- Euclidean transport of a matrix's coordinate range is its Hilbert column
-space, so the coordinate and projector APIs compose directly.-/
+space, so the coordinate and projector APIs compose directly.
+@isnad1 id=eq.0h4v.s8.a55260c6f446 from=translated src=- shape=bd410002 vocab=93164cf0
+-/
 theorem toEuclideanSubmodule_range_mulVecLin {n : Type*} [Fintype n] [DecidableEq n]
     (B : Matrix m n 𝕜) :
     toEuclideanSubmodule (LinearMap.range B.mulVecLin) = columnSpace B := by
@@ -87,7 +97,9 @@ def orthonormalBasisMatrix (S : Submodule 𝕜 (m → 𝕜)) : Matrix m (Fin (Mo
   Matrix.of fun i j => (euclideanBasis S j : EuclideanSpace 𝕜 m).ofLp i
 
 /-- `orthonormalBasisMatrix S` has orthonormal columns. Golub–Van Loan 2013, §5.4.
-atlas: orthonormal-basis-matrix-/
+atlas: orthonormal-basis-matrix
+@isnad1 id=hasortho.0h3v.s10.1180ee2cb960 from=translated src=- shape=d9a55a55 vocab=5fc6af52
+-/
 theorem hasOrthonormalCols_orthonormalBasisMatrix (S : Submodule 𝕜 (m → 𝕜)) :
     HasOrthonormalCols (orthonormalBasisMatrix S) := by
   ext j k
@@ -101,7 +113,9 @@ theorem hasOrthonormalCols_orthonormalBasisMatrix (S : Submodule 𝕜 (m → �
   simp [dotProduct, mul_comm]
 
 /-- The columns of `orthonormalBasisMatrix S` span `S`: `range Q = S`. Golub–Van Loan 2013, §5.4.
-atlas: orthonormal-basis-matrix-/
+atlas: orthonormal-basis-matrix
+@isnad1 id=eq.0h3v.s11.04e73f70ff80 from=translated src=- shape=06a9393b vocab=9a3a3e56
+-/
 theorem range_orthonormalBasisMatrix (S : Submodule 𝕜 (m → 𝕜)) :
     LinearMap.range (orthonormalBasisMatrix S).mulVecLin = S := by
   rw [Matrix.range_mulVecLin]
@@ -120,7 +134,9 @@ def orthonormalBasisMatrixOfEuclideanSubspace (S : Submodule 𝕜 (EuclideanSpac
     Matrix m (Fin (Module.finrank 𝕜 S)) 𝕜 :=
   Matrix.of fun i j => ((stdOrthonormalBasis 𝕜 S) j : EuclideanSpace 𝕜 m).ofLp i
 
-/-- The Hilbert-subspace basis matrix has orthonormal columns.-/
+/-- The Hilbert-subspace basis matrix has orthonormal columns.
+@isnad1 id=hasortho.0h3v.s10.8ae6044e2c4d from=translated src=- shape=b0a885a4 vocab=278c1488
+-/
 theorem hasOrthonormalCols_orthonormalBasisMatrixOfEuclideanSubspace
     (S : Submodule 𝕜 (EuclideanSpace 𝕜 m)) :
     HasOrthonormalCols (orthonormalBasisMatrixOfEuclideanSubspace S) := by
@@ -134,7 +150,9 @@ theorem hasOrthonormalCols_orthonormalBasisMatrixOfEuclideanSubspace
   rw [← hh]
   simp [dotProduct, mul_comm]
 
-/-- The Hilbert-subspace basis matrix spans precisely the input subspace.-/
+/-- The Hilbert-subspace basis matrix spans precisely the input subspace.
+@isnad1 id=eq.0h3v.s11.9b8d543cf3fe from=translated src=- shape=c7a707d5 vocab=ca92afc2
+-/
 theorem columnSpace_orthonormalBasisMatrixOfEuclideanSubspace
     (S : Submodule 𝕜 (EuclideanSpace 𝕜 m)) :
     columnSpace (orthonormalBasisMatrixOfEuclideanSubspace S) = S := by

@@ -19,10 +19,15 @@ def matrixRealPart : Matrix n n ℂ →L[ℝ] Matrix n n ℝ :=
       map_add' := by intro A B; ext i j; simp
       map_smul' := by intro c A; ext i j; simp }
 
+/--
+@isnad1 id=eq.0h2v.s9.c6320dfd41c2 from=translated src=- shape=690ee7cb vocab=1b96e1b3
+-/
 @[simp] theorem matrixRealPart_complexification (A : Matrix n n ℝ) :
     matrixRealPart (realMatrixComplexification A) = A := by ext i j; rfl
 
-/-- Complexification commutes with the actual real matrix exponential.-/
+/-- Complexification commutes with the actual real matrix exponential.
+@isnad1 id=eq.0h2v.s9.234f57098586 from=translated src=- shape=c7a0dbb8 vocab=ea4235bd
+-/
 theorem realMatrixComplexification_matrixExp (A : Matrix n n ℝ) :
     (realMatrixComplexification (matrixExp A) : Matrix n n ℂ) =
       matrixExp (realMatrixComplexification A) := by
@@ -39,7 +44,9 @@ def realLyapunovIntegrand (A Q : Matrix n n ℝ) (t : ℝ) : Matrix n n ℝ :=
 def realLyapunovGramian (A Q : Matrix n n ℝ) : Matrix n n ℝ :=
   ∫ t in Ioi (0 : ℝ), realLyapunovIntegrand A Q t
 
-/-- The actual integrands commute with scalar extension.-/
+/-- The actual integrands commute with scalar extension.
+@isnad1 id=eq.0h4v.s10.5082c4441a16 from=translated src=- shape=0efec609 vocab=b5938893
+-/
 theorem realMatrixComplexification_lyapunovIntegrand (A Q : Matrix n n ℝ) (t : ℝ) :
     (realMatrixComplexification (realLyapunovIntegrand A Q t) : Matrix n n ℂ) =
       lyapunovIntegrand (realMatrixComplexification A) (realMatrixComplexification Q) t := by

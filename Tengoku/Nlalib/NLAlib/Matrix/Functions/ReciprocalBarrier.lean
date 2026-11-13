@@ -40,7 +40,9 @@ open scoped Matrix BigOperators
 namespace NLAlib
 
 /-- A positive definite matrix shifted up by a positive multiple of the identity
-remains positive definite.-/
+remains positive definite.
+@isnad1 id=posdef.2h3v.s6.db8b89121b15 from=translated src=- shape=cd16763b vocab=def672a4
+-/
 theorem _root_.Matrix.PosDef.add_smul_one_posDef {n : Type*} [DecidableEq n]
     {A : Matrix n n ℝ} (hA : A.PosDef) {δ : ℝ} (hδ : 0 < δ) :
     (A + δ • (1 : Matrix n n ℝ)).PosDef := by
@@ -138,7 +140,9 @@ private lemma diagonal_sub_smul_one_diagonal_inv_eq_one {A : Matrix n n ℝ}
   · simp [hij]
 
 /-- The trace of the inverse of a real positive definite matrix is the sum of
-the reciprocals of its eigenvalues.-/
+the reciprocals of its eigenvalues.
+@isnad1 id=eq.1h2v.s6.06b891880a8a from=translated src=- shape=9e3dd126 vocab=1df712f5
+-/
 theorem _root_.Matrix.PosDef.trace_inv_eq_sum_inv_eigenvalues
     {A : Matrix n n ℝ} (hA : A.PosDef) :
     A⁻¹.trace = ∑ i, 1 / hA.isHermitian.eigenvalues i := by
@@ -166,7 +170,9 @@ theorem _root_.Matrix.PosDef.trace_inv_eq_sum_inv_eigenvalues
   simp [hU2, Matrix.trace_diagonal, one_div]
 
 /-- For positive `δ`, the trace of `(A + δ•1)⁻¹` is the sum of
-`1/(λ i + δ)` over the eigenvalues `λ i` of a positive definite `A`.-/
+`1/(λ i + δ)` over the eigenvalues `λ i` of a positive definite `A`.
+@isnad1 id=eq.2h3v.s7.e95422007206 from=translated src=- shape=26651ff7 vocab=494c2afe
+-/
 theorem _root_.Matrix.PosDef.trace_add_smul_one_inv_eq_sum_inv_add
     {A : Matrix n n ℝ} (hA : A.PosDef)
     {δ : ℝ} (hδ : 0 < δ) :
@@ -189,7 +195,9 @@ theorem _root_.Matrix.PosDef.trace_add_smul_one_inv_eq_sum_inv_add
   simp [hU2, Matrix.trace_diagonal, one_div]
 
 /-- For positive `δ`, the trace of `((A + δ•1)⁻¹)²` is the sum of
-`(1/(λ i + δ))²` over the eigenvalues `λ i` of a positive definite `A`.-/
+`(1/(λ i + δ))²` over the eigenvalues `λ i` of a positive definite `A`.
+@isnad1 id=eq.2h3v.s7.0fd519e27d82 from=translated src=- shape=6cbf951b vocab=1746c9b7
+-/
 theorem _root_.Matrix.PosDef.trace_add_smul_one_inv_sq_eq_sum_inv_sq_add
     {A : Matrix n n ℝ}
     (hA : A.PosDef) {δ : ℝ} (hδ : 0 < δ) :
@@ -212,7 +220,9 @@ theorem _root_.Matrix.PosDef.trace_add_smul_one_inv_sq_eq_sum_inv_sq_add
   simp [hU2, Matrix.diagonal_pow, Matrix.trace_diagonal, one_div]
 
 /-- If every eigenvalue of a positive definite `A` exceeds `δ`, then the trace
-of `(A - δ•1)⁻¹` is the sum of `1/(λ i - δ)` over the eigenvalues `λ i`.-/
+of `(A - δ•1)⁻¹` is the sum of `1/(λ i - δ)` over the eigenvalues `λ i`.
+@isnad1 id=eq.2h3v.s7.10e705154f14 from=translated src=- shape=7a19973b vocab=3729d1e8
+-/
 theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_eq_sum_inv_sub
     {A : Matrix n n ℝ} (hA : A.PosDef)
     {δ : ℝ} (hδlt : ∀ i, δ < hA.isHermitian.eigenvalues i) :
@@ -236,7 +246,9 @@ theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_eq_sum_inv_sub
 
 /-- If every eigenvalue of a positive definite `A` exceeds `δ`, then the trace
 of `((A - δ•1)⁻¹)²` is the sum of `(1/(λ i - δ))²` over the eigenvalues
-`λ i` of `A`.-/
+`λ i` of `A`.
+@isnad1 id=eq.2h3v.s7.80a500ecbffa from=translated src=- shape=d2eab18d vocab=56035255
+-/
 theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_sq_eq_sum_inv_sq_sub
     {A : Matrix n n ℝ}
     (hA : A.PosDef) {δ : ℝ} (hδlt : ∀ i, δ < hA.isHermitian.eigenvalues i) :
@@ -260,7 +272,9 @@ theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_sq_eq_sum_inv_sq_sub
 
 /-- A positive definite matrix shifted down by `δ•1` is positive definite as
 soon as every eigenvalue exceeds `δ` (the actual shifted positivity derived from
-the spectral representation).-/
+the spectral representation).
+@isnad1 id=posdef.2h3v.s6.347a2ae6e560 from=translated src=- shape=8204cd8b vocab=72f227b3
+-/
 theorem _root_.Matrix.PosDef.sub_smul_one_posDef_of_eigenvalues_gt {A : Matrix n n ℝ}
     (hA : A.PosDef) {δ : ℝ} (hδlt : ∀ i, δ < hA.isHermitian.eigenvalues i) :
     (A - δ • (1 : Matrix n n ℝ)).PosDef := by
@@ -274,7 +288,9 @@ theorem _root_.Matrix.PosDef.sub_smul_one_posDef_of_eigenvalues_gt {A : Matrix n
       (x := Matrix.diagonal (fun i => hA.isHermitian.eigenvalues i - δ))).mpr hpos
 
 /-- A strict reciprocal-potential cap puts the shift below every eigenvalue.
-This includes empty matrix shapes, where the conclusion is vacuous.-/
+This includes empty matrix shapes, where the conclusion is vacuous.
+@isnad1 id=lt.3h4v.s6.c07dfc89a8ad from=translated src=- shape=f955c6ee vocab=365406a5
+-/
 theorem _root_.Matrix.PosDef.lt_eigenvalues_of_mul_trace_inv_lt_one
     {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * M⁻¹.trace < 1) :
@@ -294,7 +310,9 @@ theorem _root_.Matrix.PosDef.lt_eigenvalues_of_mul_trace_inv_lt_one
     inv_mul_cancel₀ (ne_of_gt (hM.eigenvalues_pos i))] using h
 
 /-- The strict reciprocal-potential cap guarantees positivity after shifting
-down, so the shifted matrix and its inverse are positive definite.-/
+down, so the shifted matrix and its inverse are positive definite.
+@isnad1 id=posdef.3h3v.s7.69b9f028bdf5 from=translated src=- shape=6ad5cc75 vocab=40856a41
+-/
 theorem _root_.Matrix.PosDef.sub_smul_one_posDef_of_mul_trace_inv_lt_one
     {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * M⁻¹.trace < 1) :
@@ -303,7 +321,9 @@ theorem _root_.Matrix.PosDef.sub_smul_one_posDef_of_mul_trace_inv_lt_one
     (hM.lt_eigenvalues_of_mul_trace_inv_lt_one hδ hcap)
 
 /-- The upper reciprocal-barrier gap `tr(M⁻¹) - tr((M + δ•1)⁻¹)` of a
-positive definite matrix is strictly positive.-/
+positive definite matrix is strictly positive.
+@isnad1 id=lt.2h3v.s7.d478df0c52e7 from=translated src=- shape=1c7c6b5d vocab=8f87832b
+-/
 theorem _root_.Matrix.PosDef.trace_inv_sub_trace_add_smul_one_inv_pos
     [Nonempty n] {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) :
@@ -315,7 +335,9 @@ theorem _root_.Matrix.PosDef.trace_inv_sub_trace_add_smul_one_inv_pos
 
 /-- The lower reciprocal-barrier gap
 `tr((M - δ•1)⁻¹) - tr(M⁻¹)` of a positive definite matrix is strictly
-positive under the strict potential bound `δ * tr(M⁻¹) < 1`.-/
+positive under the strict potential bound `δ * tr(M⁻¹) < 1`.
+@isnad1 id=lt.3h3v.s7.2c7b90aff387 from=translated src=- shape=c3101a4e vocab=beab66b6
+-/
 theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_sub_trace_inv_pos
     [Nonempty n] {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * M⁻¹.trace < 1) :
@@ -335,7 +357,9 @@ theorem _root_.Matrix.PosDef.trace_sub_smul_one_inv_sub_trace_inv_pos
 /-- Matrix upper reciprocal-barrier averaging inequality (BSS upper step) for
 a real symmetric positive definite `M`: with `RU = (M + δ•1)⁻¹` and
 `DU = tr(M⁻¹) - tr(RU) > 0`,
-`tr(RU²)/DU + tr(RU) ≤ 1/δ + tr(M⁻¹)`.-/
+`tr(RU²)/DU + tr(RU) ≤ 1/δ + tr(M⁻¹)`.
+@isnad1 id=le.2h3v.s8.cd31cb1f0df1 from=translated src=- shape=0b017158 vocab=ce9d851d
+-/
 theorem _root_.Matrix.PosDef.reciprocal_barrier_upper_le
     [Nonempty n] {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) :
@@ -352,7 +376,9 @@ theorem _root_.Matrix.PosDef.reciprocal_barrier_upper_le
 a real symmetric positive definite `M` satisfying the strict potential bound
 `δ * tr(M⁻¹) < 1`: with
 `RL = (M - δ•1)⁻¹` and `DL = tr(RL) - tr(M⁻¹) > 0`,
-`1/δ - tr(M⁻¹) ≤ tr(RL²)/DL - tr(RL)`.-/
+`1/δ - tr(M⁻¹) ≤ tr(RL²)/DL - tr(RL)`.
+@isnad1 id=le.3h3v.s8.7f7c40400f25 from=translated src=- shape=25107c89 vocab=28a00f74
+-/
 theorem _root_.Matrix.PosDef.reciprocal_barrier_lower_le
     [Nonempty n] {M : Matrix n n ℝ} (hM : M.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * M⁻¹.trace < 1) :

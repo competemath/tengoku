@@ -22,7 +22,9 @@ variable {n k : Type*} [Fintype n] [DecidableEq n] [Fintype k] [DecidableEq k]
 /-- **Gauss quadrature error for `x^s`**: for a symmetric `A` with spectrum in `[−1, 1]` and a
 degree cutoff `d < 2q`, `|vᵀ Aˢ v − (Qᵀv)ᵀ (QᵀAQ)ˢ (Qᵀv)| ≤ 4 exp(−d²/(2s)) ‖v‖²`.
 Source: Sachdeva–Vishnoi (2014) [`sv14`], Thm 3.3; Golub–Meurant (2010) [`gm10`], §6.2.
-Atlas: `lanczos-gauss-quadrature` (monomial rate).-/
+Atlas: `lanczos-gauss-quadrature` (monomial rate).
+@isnad1 id=le.6h8v.s9.02dfaa0ed17f from=translated src=- shape=028e148e vocab=523de771
+-/
 theorem abs_dotProduct_cfc_pow_mulVec_sub_le_of_degree_cutoff {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {Q : Matrix n k ℝ} (hQ : HasOrthonormalCols Q) (v : n → ℝ)
     {q s d : ℕ} (hs : 0 < s) (hd : d < 2 * q)
@@ -41,7 +43,9 @@ theorem abs_dotProduct_cfc_pow_mulVec_sub_le_of_degree_cutoff {A : Matrix n n �
 `2q` above the approximation degree `exponentialApproxDegree b δ`,
 `|vᵀ exp(−A) v − (Qᵀv)ᵀ exp(−QᵀAQ) (Qᵀv)| ≤ 2δ ‖v‖²`.
 Source: Sachdeva–Vishnoi (2014) [`sv14`], Thm 4.1; Golub–Meurant (2010) [`gm10`], §6.2.
-Atlas: `lanczos-gauss-quadrature` (exponential rate).-/
+Atlas: `lanczos-gauss-quadrature` (exponential rate).
+@isnad1 id=le.8h8v.s9.e1b78c2d0ec3 from=translated src=- shape=6889f2c6 vocab=c2c16f88
+-/
 theorem abs_dotProduct_cfc_exp_neg_mulVec_sub_le {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {b δ : ℝ} (hb : 0 < b) (hδ : 0 < δ) (hδ1 : δ ≤ 1)
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc (0 : ℝ) b)
@@ -58,7 +62,9 @@ theorem abs_dotProduct_cfc_exp_neg_mulVec_sub_le {A : Matrix n n ℝ}
 /-- **Lanczos-FA error for `exp(−x)`**: for a symmetric `A` with spectrum in `[0, b]` and
 `q` above the approximation degree, `‖exp(−A) v − Q exp(−QᵀAQ) Qᵀ v‖² ≤ (2δ)² ‖v‖²`.
 Source: Sachdeva–Vishnoi (2014) [`sv14`], Thm 4.1; Saad (1992) [`saad92`], Thm 3.4.
-Atlas: `lanczos-fa-error` (exponential rate).-/
+Atlas: `lanczos-fa-error` (exponential rate).
+@isnad1 id=le.8h8v.s9.7b80b4664969 from=translated src=- shape=f0b8a8e4 vocab=2a0a4abb
+-/
 theorem dotProduct_cfc_exp_neg_mulVec_sub_krylovFunApprox_self_le {A : Matrix n n ℝ}
     (hA : A.IsHermitian) {b δ : ℝ} (hb : 0 < b) (hδ : 0 < δ) (hδ1 : δ ≤ 1)
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc (0 : ℝ) b)

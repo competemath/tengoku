@@ -10,7 +10,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A genuine positive definite Lyapunov certificate forces all complex
-eigenvalues into the strict left half-plane, without normality.-/
+eigenvalues into the strict left half-plane, without normality.
+@isnad1 id=ishurwit.2h3v.s7.5cbe38079f98 from=translated src=- shape=77022a49 vocab=245da403
+-/
 theorem isHurwitz_of_posDef_lyapunov (A X : Matrix n n ℂ) (hX : X.PosDef)
     (hR : (-(A * X + X * Aᴴ)).PosDef) : IsHurwitz A := by
   intro μ hμ
@@ -48,7 +50,9 @@ theorem isHurwitz_of_posDef_lyapunov (A X : Matrix n n ℂ) (hX : X.PosDef)
 
 /-- Strict continuous stability is equivalent to a strict positive definite
 Lyapunov certificate. Source: user derivations, continuous Lyapunov stability.
-atlas: lyapunov-stability-gramian (partial)-/
+atlas: lyapunov-stability-gramian (partial)
+@isnad1 id=iff.0h2v.s7.079afdc6f36c from=translated src=- shape=817c684c vocab=245da403
+-/
 theorem isHurwitz_iff_exists_posDef_lyapunov (A : Matrix n n ℂ) :
     IsHurwitz A ↔ ∃ X : Matrix n n ℂ, X.PosDef ∧ (-(A * X + X * Aᴴ)).PosDef := by
   constructor

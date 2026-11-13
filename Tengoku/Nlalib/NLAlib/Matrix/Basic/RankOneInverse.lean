@@ -28,7 +28,9 @@ variable {K : Type*} [Field K]
 
 /-- The inverse of a rank-one update: Sherman–Morrison.
 Source: standard Sherman–Morrison formula, `u = 0` / `v = 0` / empty index
-cases included because only `1 + q ≠ 0` is required (`q` itself may vanish).-/
+cases included because only `1 + q ≠ 0` is required (`q` itself may vanish).
+@isnad1 id=eq.2h5v.s9.45e660a99ebc from=translated src=- shape=0f3d05c5 vocab=64587a23
+-/
 theorem inv_add_vecMulVec (M : Matrix n n K) (u v : n → K)
     (hM : IsUnit M.det) (hd : 1 + v ⬝ᵥ (M⁻¹ *ᵥ u) ≠ 0) :
     (M + vecMulVec u v)⁻¹ =
@@ -79,7 +81,9 @@ theorem inv_add_vecMulVec (M : Matrix n n K) (u v : n → K)
 
 /-- The `t`-weighted rank-one inverse, `u = t • v`.
 Source: weighted Sherman–Morrison used in BSS/stable-rank restricted
-invertibility arguments; `q = v ⬝ᵥ (M⁻¹ *ᵥ v)` may vanish.-/
+invertibility arguments; `q = v ⬝ᵥ (M⁻¹ *ᵥ v)` may vanish.
+@isnad1 id=eq.2h5v.s9.2f7d94af6655 from=translated src=- shape=dcc2d8e5 vocab=50a1fb3e
+-/
 theorem inv_add_smul_vecMulVec_self (M : Matrix n n K) (v : n → K) (t : K)
     (hM : IsUnit M.det)
     (hd : 1 + t * (v ⬝ᵥ (M⁻¹ *ᵥ v)) ≠ 0) :
@@ -111,7 +115,9 @@ theorem inv_add_smul_vecMulVec_self (M : Matrix n n K) (v : n → K) (t : K)
 
 /-- Trace of `H` times the `t`-weighted rank-one inverse.
 No symmetry or positivity of `M` or `H` is required; the identity is purely
-algebraic.  Source: BSS/stable-rank restricted invertibility trace step.-/
+algebraic.  Source: BSS/stable-rank restricted invertibility trace step.
+@isnad1 id=eq.2h6v.s9.a96f8ba150e4 from=translated src=- shape=c7280810 vocab=1760a172
+-/
 theorem trace_mul_inv_add_smul_vecMulVec_self (M H : Matrix n n K)
     (v : n → K) (t : K) (hM : IsUnit M.det)
     (hd : 1 + t * (v ⬝ᵥ (M⁻¹ *ᵥ v)) ≠ 0) :

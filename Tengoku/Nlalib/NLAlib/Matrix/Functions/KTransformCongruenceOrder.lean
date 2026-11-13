@@ -11,33 +11,43 @@ set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 400000
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Square-root congruence undoes inverse-square-root congruence.-/
+/-- Square-root congruence undoes inverse-square-root congruence.
+@isnad1 id=eq.1h3v.s9.d53cfb42addb from=translated src=- shape=bd493bc1 vocab=b54f4301
+-/
 theorem sqrt_invSqrt_congruence (S : Matrix n n ℂ) (hS : S.PosDef) (X : Matrix n n ℂ) :
     cfc Real.sqrt S * (cfc (fun x => (Real.sqrt x)⁻¹) S * X *
       cfc (fun x => (Real.sqrt x)⁻¹) S) * cfc Real.sqrt S = X := by
   rw [← Matrix.mul_assoc,← Matrix.mul_assoc,cfc_sqrt_mul_inv_sqrt hS,Matrix.one_mul,
     Matrix.mul_assoc,cfc_inv_sqrt_mul_sqrt hS,Matrix.mul_one]
 
-/-- Inverse-square-root congruence undoes square-root congruence.-/
+/-- Inverse-square-root congruence undoes square-root congruence.
+@isnad1 id=eq.1h3v.s9.2bf7be366104 from=translated src=- shape=7d035b26 vocab=b54f4301
+-/
 theorem invSqrt_sqrt_congruence (S : Matrix n n ℂ) (hS : S.PosDef) (X : Matrix n n ℂ) :
     cfc (fun x => (Real.sqrt x)⁻¹) S * (cfc Real.sqrt S * X * cfc Real.sqrt S) *
       cfc (fun x => (Real.sqrt x)⁻¹) S = X := by
   rw [← Matrix.mul_assoc,← Matrix.mul_assoc,cfc_inv_sqrt_mul_sqrt hS,Matrix.one_mul,
     Matrix.mul_assoc,cfc_sqrt_mul_inv_sqrt hS,Matrix.mul_one]
 
-/-- The inverse square root is an actual invertible Hermitian matrix.-/
+/-- The inverse square root is an actual invertible Hermitian matrix.
+@isnad1 id=isunit.1h2v.s7.df948d1edb10 from=translated src=- shape=9de39e5b vocab=c741a4e1
+-/
 theorem isUnit_cfc_invSqrt (S : Matrix n n ℂ) (hS : S.PosDef) :
     IsUnit (cfc (fun x => (Real.sqrt x)⁻¹) S) :=
   ⟨⟨_,cfc Real.sqrt S,cfc_inv_sqrt_mul_sqrt hS,cfc_sqrt_mul_inv_sqrt hS⟩,rfl⟩
 
-/-- Strict matrix positivity is unchanged by inverse-square-root congruence.-/
+/-- Strict matrix positivity is unchanged by inverse-square-root congruence.
+@isnad1 id=iff.1h3v.s8.d3af50653a72 from=translated src=- shape=086a352f vocab=b54f4301
+-/
 theorem posDef_invSqrt_congruence_iff (S : Matrix n n ℂ) (hS : S.PosDef) (X : Matrix n n ℂ) :
     (cfc (fun x => (Real.sqrt x)⁻¹) S * X * cfc (fun x => (Real.sqrt x)⁻¹) S).PosDef ↔ X.PosDef := by
   have hR : (cfc (fun x => (Real.sqrt x)⁻¹) S).IsHermitian := cfc_predicate _ _
   simpa only [Matrix.star_eq_conjTranspose,hR.eq] using
     Matrix.IsUnit.posDef_star_right_conjugate_iff (isUnit_cfc_invSqrt S hS) (x:=X)
 
-/-- Strict matrix positivity is unchanged by square-root congruence.-/
+/-- Strict matrix positivity is unchanged by square-root congruence.
+@isnad1 id=iff.1h3v.s8.4e73353918dc from=translated src=- shape=81e02ae2 vocab=634158fd
+-/
 theorem posDef_sqrt_congruence_iff (S : Matrix n n ℂ) (hS : S.PosDef) (X : Matrix n n ℂ) :
     (cfc Real.sqrt S * X * cfc Real.sqrt S).PosDef ↔ X.PosDef := by
   have hQ : (cfc Real.sqrt S).IsHermitian := cfc_predicate _ _
@@ -47,7 +57,9 @@ theorem posDef_sqrt_congruence_iff (S : Matrix n n ℂ) (hS : S.PosDef) (X : Mat
     Matrix.IsUnit.posDef_star_right_conjugate_iff hi (x:=X)
 
 omit [Fintype n] [DecidableEq n] in
-/-- Positive scalar multiplication preserves and reflects strict positivity.-/
+/-- Positive scalar multiplication preserves and reflects strict positivity.
+@isnad1 id=iff.1h3v.s6.f08041f44044 from=translated src=- shape=9a7b0e13 vocab=3f7bb43b
+-/
 theorem posDef_real_smul_iff (a : ℝ) (ha : 0<a) (X : Matrix n n ℂ) :
     (a•X).PosDef ↔ X.PosDef := by
   constructor
@@ -57,7 +69,9 @@ theorem posDef_real_smul_iff (a : ℝ) (ha : 0<a) (X : Matrix n n ℂ) :
   · exact fun h => h.smul ha
 
 /-- The derivative's strict-positive output condition is exactly the strict
-supersolution gap after invertible whitening.-/
+supersolution gap after invertible whitening.
+@isnad1 id=iff.4h5v.s11.53c0d87e0988 from=translated src=- shape=b61943f1 vocab=2118be88
+-/
 theorem posDef_matrixKTransformDeriv_iff
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (hα : 0<α)

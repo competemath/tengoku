@@ -41,7 +41,9 @@ omit [DecidableEq n] in
 `y ⬝ y ≤ 1` and `s ≥ 1`, `(yᵀMy)^s ≤ yᵀM^s y`. With `y = Σᵢ cᵢuᵢ` in an eigenbasis this is
 `(Σᵢ cᵢ²λᵢ)^s ≤ Σᵢ cᵢ²λᵢ^s`, convexity of `t ↦ t^s` on `t ≥ 0` with total weight `Σᵢ cᵢ² ≤ 1`.
 HMT 2011, proof of Prop 8.6. Atlas `power-iteration-deterministic` (helper; belongs in
-`Matrix/PolynomialCalculus.lean`).-/
+`Matrix/PolynomialCalculus.lean`).
+@isnad1 id=le.3h4v.s7.1459290a07ce from=translated src=- shape=c3214b63 vocab=5b7e391e
+-/
 theorem dotProduct_mulVec_pow_le_dotProduct_pow_mulVec {M : Matrix m m ℝ} (hM : M.PosSemidef)
     {y : m → ℝ} (hy : y ⬝ᵥ y ≤ 1) {s : ℕ} (hs : 1 ≤ s) :
     (y ⬝ᵥ (M *ᵥ y)) ^ s ≤ y ⬝ᵥ ((M ^ s) *ᵥ y) := by
@@ -95,7 +97,9 @@ theorem dotProduct_mulVec_pow_le_dotProduct_pow_mulVec {M : Matrix m m ℝ} (hM 
 (`Pᵀ = P`, `P² = P`), any real `A` and `q ≥ 0`, `‖PA‖^{2q+1} ≤ ‖P(AAᵀ)^q A‖`.
 Deviation: none (HMT state it for any orthogonal projector and any `A`; `q = 0` is equality).
 Atlas `power-iteration-deterministic` (core lemma; audit G2 A2).
-atlas: power-iteration-deterministic-/
+atlas: power-iteration-deterministic
+@isnad1 id=le.2h5v.s7.aa8c393e50cc from=translated src=- shape=bcd823a1 vocab=0744126e
+-/
 theorem specNorm_mul_pow_le_specNorm_mul_gram_pow_mul (P : Matrix m m ℝ) (hPs : Pᵀ = P)
     (hPi : IsIdempotentElem P) (A : Matrix m n ℝ) (q : ℕ) :
     specNorm (P * A) ^ (2 * q + 1) ≤ specNorm (P * (A * Aᵀ) ^ q * A) := by
@@ -158,7 +162,9 @@ theorem specNorm_mul_pow_le_specNorm_mul_gram_pow_mul (P : Matrix m m ℝ) (hPs 
 orthonormal columns and `q ≥ 0`, `‖(I − QQᵀ)A‖^{2q+1} ≤ ‖(I − QQᵀ)(AAᵀ)^q A‖`.
 Deviation: the source takes `Q = orth((AAᵀ)^q AΩ)`; the inequality holds for every `Q` with
 orthonormal columns, so that hypothesis is dropped. Atlas `power-iteration-deterministic`.
-atlas: power-iteration-deterministic-/
+atlas: power-iteration-deterministic
+@isnad1 id=le.1h6v.s7.358f51eaed07 from=translated src=- shape=d2d314ab vocab=164e0928
+-/
 theorem specNorm_residual_pow_le {q' : Type*} [Fintype q'] [DecidableEq q']
     {Q : Matrix m q' ℝ} (hQ : HasOrthonormalCols Q) (A : Matrix m n ℝ) (q : ℕ) :
     specNorm (projResidual Q A) ^ (2 * q + 1) ≤ specNorm (projResidual Q ((A * Aᵀ) ^ q * A)) := by
@@ -174,7 +180,9 @@ theorem specNorm_residual_pow_le {q' : Type*} [Fintype q'] [DecidableEq q']
 `‖(I − QQᵀ)A‖ ≤ ‖(I − QQᵀ)(AAᵀ)^q A‖^{1/(2q+1)}` for any `Q` with orthonormal columns.
 Deviation: no `Q = orth((AAᵀ)^q AΩ)` hypothesis (see `specNorm_residual_pow_le`).
 Atlas `power-iteration-deterministic`.
-atlas: power-iteration-deterministic-/
+atlas: power-iteration-deterministic
+@isnad1 id=le.1h6v.s7.8ac2cce69e0d from=translated src=- shape=ce98375e vocab=1e10bd73
+-/
 theorem specNorm_residual_le_rpow {q' : Type*} [Fintype q'] [DecidableEq q']
     {Q : Matrix m q' ℝ} (hQ : HasOrthonormalCols Q) (A : Matrix m n ℝ) (q : ℕ) :
     specNorm (projResidual Q A) ≤

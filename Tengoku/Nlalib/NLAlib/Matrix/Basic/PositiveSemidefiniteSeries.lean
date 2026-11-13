@@ -19,7 +19,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n]
 
 /-- A limit of PSD real matrices along a nontrivial filter is PSD.
-Horn--Johnson (2013), Section 7.1; helper for entrywise series.-/
+Horn--Johnson (2013), Section 7.1; helper for entrywise series.
+@isnad1 id=possemid.2h5v.s6.a082e3fb22c0 from=translated src=- shape=e60715cd vocab=bdd11873
+-/
 theorem posSemidef_of_tendsto {ι : Type*} {l : Filter ι} [l.NeBot]
     {F : ι → Matrix n n ℝ} {A : Matrix n n ℝ}
     (hF : ∀ i, (F i).PosSemidef) (hlim : Tendsto F l (𝓝 A)) : A.PosSemidef := by
@@ -44,14 +46,18 @@ theorem posSemidef_of_tendsto {ι : Type*} {l : Filter ι} [l.NeBot]
 
 /-- Every convergent sum of PSD real matrices is PSD. No countability
 assumption is needed on the summation index. Horn--Johnson (2013),
-Section 7.5; helper for positive-coefficient series.-/
+Section 7.5; helper for positive-coefficient series.
+@isnad1 id=possemid.2h4v.s5.b82b25b31a03 from=translated src=- shape=1a5b287e vocab=516f0224
+-/
 theorem posSemidef_of_hasSum {ι : Type*} {F : ι → Matrix n n ℝ} {A : Matrix n n ℝ}
     (hF : ∀ i, (F i).PosSemidef) (h : HasSum F A) : A.PosSemidef := by
   exact posSemidef_of_tendsto (fun S : Finset ι => Matrix.posSemidef_sum S (fun i _ => hF i)) h
 
 /-- Every finite initial sum of a convergent PSD matrix series lies below
 the full sum in Loewner order. Horn--Johnson (2013), Section 7.5;
-helper for strict positive-definiteness certificates.-/
+helper for strict positive-definiteness certificates.
+@isnad1 id=le.2h4v.s6.99e4665e585a from=translated src=- shape=6abee936 vocab=f93685ba
+-/
 theorem sum_range_le_of_hasSum_posSemidef {F : ℕ → Matrix n n ℝ} {A : Matrix n n ℝ}
     (hF : ∀ i, (F i).PosSemidef) (h : HasSum F A) (k : ℕ) :
     (∑ i ∈ Finset.range k, F i) ≤ A := by

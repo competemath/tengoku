@@ -19,7 +19,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The sine square wave is the alternating constant on every uniform grid cell.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.1h3v.s6.df1a14297564 from=translated src=- shape=ac857044 vocab=7254746b
+-/
 theorem sign_sin_mul_eq_neg_one_pow_of_between_grid (n j : ℕ) {t : ℝ}
     (ht : t ∈ Set.Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
     Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) = (-1 : ℝ) ^ j := by
@@ -43,7 +45,9 @@ theorem sign_sin_mul_eq_neg_one_pow_of_between_grid (n j : ℕ) {t : ℝ}
 
 /-- The absolute sawtooth error equals its sine-square-wave signed value on the positive
 half-period cells.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.2h3v.s6.a680cc2b3c21 from=translated src=- shape=510b6e30 vocab=09859629
+-/
 theorem abs_sawtoothError_eq_sign_sin_mul_on_grid_cell (n j : ℕ) (hj : j ≤ n) {t : ℝ}
     (ht : t ∈ Set.Ioo (sawtoothGridAngle n j) (sawtoothGridAngle n (j + 1))) :
     |sawtoothError n t| = Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothError n t := by
@@ -51,13 +55,17 @@ theorem abs_sawtoothError_eq_sign_sin_mul_on_grid_cell (n j : ℕ) (hj : j ≤ n
   exact abs_sawtoothError_eq_mul_on_grid_cell n j hj ht
 
 /-- The sine square wave changes sign under full-period reflection.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h2v.s5.48f836c9dbf9 from=translated src=- shape=2d568ec1 vocab=4eda1ec9
+-/
 theorem sign_sin_nat_two_pi_sub (N : ℕ) (t : ℝ) :
     Real.sign (sin ((N : ℝ) * (2 * Real.pi - t))) = -Real.sign (sin ((N : ℝ) * t)) := by
   rw [mul_sub, sin_nat_mul_two_pi_sub, Real.sign_neg]
 
 /-- A bounded sine times the sine square wave is interval integrable on a full period.
-Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.-/
+Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.
+@isnad1 id=interval.0h2v.s6.3b64ca922de8 from=translated src=- shape=075a8ec6 vocab=294611d5
+-/
 theorem intervalIntegrable_sign_sin_mul_sin (N k : ℕ) :
     IntervalIntegrable (fun t : ℝ => Real.sign (sin ((N : ℝ) * t)) * sin ((k : ℝ) * t))
       volume 0 (2 * Real.pi) := by
@@ -84,7 +92,9 @@ theorem intervalIntegrable_sign_sin_mul_sin (N k : ℕ) :
 
 /-- The sawtooth sine interpolant is orthogonal to the sine square wave of its
 next frequency. Its finite sine expansion is proved, not assumed.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.0h1v.s6.b0f8b0076d64 from=translated src=- shape=fe536e6b vocab=e129acd4
+-/
 theorem integral_sign_sin_mul_sawtoothApprox_eq_zero (n : ℕ) :
     (∫ t : ℝ in 0..2 * Real.pi, Real.sign (sin (((n + 1 : ℕ) : ℝ) * t)) * sawtoothApprox n t) = 0 := by
   obtain ⟨c, hc⟩ := exists_sine_expansion_sawtoothApprox n

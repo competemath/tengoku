@@ -15,7 +15,9 @@ namespace NLAlib.RayleighQuotientIteration
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The error of a weighted spectral average is controlled by the weight away from a
-distinguished eigenvalue. Helper for the Hermitian RQI estimate.-/
+distinguished eigenvalue. Helper for the Hermitian RQI estimate.
+@isnad1 id=le.3h5v.s7.06a45e519870 from=translated src=- shape=5353f7c7 vocab=cf190513
+-/
 theorem abs_weighted_average_sub_le {lam w : n → ℝ} {i : n} {M : ℝ}
     (hw : ∀ j, 0 ≤ w j) (hi : 0 < w i)
     (hM : ∀ j, j ≠ i → |lam j - lam i| ≤ M) :
@@ -57,7 +59,9 @@ theorem abs_weighted_average_sub_le {lam w : n → ℝ} {i : n} {M : ℝ}
 
 /-- In an extremal spectrum the Rayleigh error also controls the off-axis spectral
 weight from below. The lower-spectrum version suffices; negating the eigenvalues gives
-the upper-spectrum version.-/
+the upper-spectrum version.
+@isnad1 id=le.3h5v.s7.532d6825ff2b from=translated src=- shape=c1fecb7d vocab=50a8a506
+-/
 theorem gap_mul_weight_ratio_le_weighted_average_sub {lam w : n → ℝ} {i : n} {g : ℝ}
     (hw : ∀ j, 0 ≤ w j) (hi : 0 < w i)
     (hg : ∀ j, j ≠ i → g ≤ lam j - lam i) :
@@ -92,7 +96,9 @@ theorem gap_mul_weight_ratio_le_weighted_average_sub {lam w : n → ℝ} {i : n}
     _ = _ := by field_simp
 
 /-- Reweighting by reciprocal squared shifted eigenvalues contracts the ratio of
-off-axis to target weight by the squared spectral separation ratio.-/
+off-axis to target weight by the squared spectral separation ratio.
+@isnad1 id=le.5h5v.s7.1f5b4b28f95b from=translated src=- shape=b54296ff vocab=1d802d61
+-/
 theorem inverse_weight_ratio_le {w a : n → ℝ} {i : n} {d : ℝ}
     (hw : ∀ j, 0 ≤ w j) (hi : 0 < w i) (hai : a i ≠ 0) (hd : 0 < d)
     (ha : ∀ j, j ≠ i → d ≤ |a j|) :

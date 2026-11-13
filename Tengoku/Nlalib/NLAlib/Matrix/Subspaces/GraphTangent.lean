@@ -33,7 +33,9 @@ def subspaceTangent (U₁ : Matrix n k ℝ) (U₂ : Matrix n r ℝ)
 omit [DecidableEq n] in
 /-- The principal-angle tangent of a transverse orthogonal graph is the norm of its
 graph operator. Source: manuscript `sa:graph` and the following tangent identity;
-Saad (2011), §5.1. The empty tail and empty head both have tangent zero.-/
+Saad (2011), §5.1. The empty tail and empty head both have tangent zero.
+@isnad1 id=eq.3h6v.s7.73e86bca44f3 from=translated src=- shape=44fff552 vocab=654cba32
+-/
 theorem subspaceTangent_range_graph_eq_specNorm
     {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}
     (hU₁ : HasOrthonormalCols U₁) (hU₂ : HasOrthonormalCols U₂)
@@ -91,14 +93,18 @@ def vectorTangentToFrameENNReal {l : Type*} [Fintype l]
     ENNReal.ofReal ‖WithLp.toLp 2 (Qᵀ *ᵥ u)‖
 
 omit [DecidableEq n] in
-/-- The zero vector has extended tangent zero.-/
+/-- The zero vector has extended tangent zero.
+@isnad1 id=eq.0h3v.s5.8c785ac661f5 from=translated src=- shape=6b2f421a vocab=57cca364
+-/
 @[simp] theorem vectorTangentToFrameENNReal_zero {l : Type*} [Fintype l]
     (Q : Matrix n l ℝ) : vectorTangentToFrameENNReal Q 0 = 0 := by
   simp [vectorTangentToFrameENNReal]
 
 omit [DecidableEq n] in
 /-- A nonzero orthogonal vector has infinite tangent, rather than the zero
-produced by total real division. No orthonormality is needed for this degeneracy.-/
+produced by total real division. No orthonormality is needed for this degeneracy.
+@isnad1 id=eq.2h4v.s6.46b41ac04245 from=translated src=- shape=dbce1bee vocab=8df4f22c
+-/
 theorem vectorTangentToFrameENNReal_eq_top_of_projection_eq_zero
     {l : Type*} [Fintype l] (Q : Matrix n l ℝ) {u : n → ℝ}
     (hu : u ≠ 0) (hp : Qᵀ *ᵥ u = 0) :
@@ -113,7 +119,9 @@ theorem vectorTangentToFrameENNReal_eq_top_of_projection_eq_zero
 
 omit [DecidableEq n] in
 /-- With nonzero projection, the extended tangent is the embedding of the
-finite real quotient. The hypothesis explicitly excludes a right angle.-/
+finite real quotient. The hypothesis explicitly excludes a right angle.
+@isnad1 id=eq.1h4v.s6.f6ae8e4d6424 from=translated src=- shape=0b75d3d3 vocab=bfa2661a
+-/
 theorem vectorTangentToFrameENNReal_eq_ofReal {l : Type*} [Fintype l]
     (Q : Matrix n l ℝ) {u : n → ℝ} (hp : Qᵀ *ᵥ u ≠ 0) :
     vectorTangentToFrameENNReal Q u = ENNReal.ofReal (vectorTangentToFrame Q u) := by
@@ -124,14 +132,18 @@ theorem vectorTangentToFrameENNReal_eq_ofReal {l : Type*} [Fintype l]
   exact (ENNReal.ofReal_div_of_pos hn).symm
 
 /-- Zero projection makes the total real quotient zero. This lemma exposes its
-invalid-angle convention; use the extended tangent for geometric diagnostics.-/
+invalid-angle convention; use the extended tangent for geometric diagnostics.
+@isnad1 id=eq.1h4v.s6.52c8ddf8eac9 from=translated src=- shape=07eef141 vocab=f97037ba
+-/
 theorem vectorTangentToFrame_eq_zero_of_projection_eq_zero
     {l : Type*} [Fintype l] (Q : Matrix n l ℝ) {u : n → ℝ}
     (hp : Qᵀ *ᵥ u = 0) : vectorTangentToFrame Q u = 0 := by
   simp [vectorTangentToFrame, hp]
 
 /-- An unbounded defining set makes the real supremum helper zero. A finite
-geometric interpretation therefore requires an explicit boundedness domain.-/
+geometric interpretation therefore requires an explicit boundedness domain.
+@isnad1 id=eq.1h6v.s8.4564c41abecf from=translated src=- shape=aeec4773 vocab=d6f2fda5
+-/
 theorem subspaceTangent_eq_zero_of_not_bddAbove
     (U₁ : Matrix n k ℝ) (U₂ : Matrix n r ℝ) (S : Submodule ℝ (n → ℝ))
     (h : ¬ BddAbove ((fun x : n → ℝ => ‖WithLp.toLp 2 (U₂ᵀ *ᵥ x)‖) ''
@@ -140,7 +152,9 @@ theorem subspaceTangent_eq_zero_of_not_bddAbove
 
 omit [DecidableEq n] [DecidableEq k] [DecidableEq r] in
 /-- On its bounded domain the real subspace-tangent supremum is nonnegative,
-since its feasible set contains the zero vector.-/
+since its feasible set contains the zero vector.
+@isnad1 id=le.1h6v.s8.45260650ecba from=translated src=- shape=32a67805 vocab=6396fbd3
+-/
 theorem subspaceTangent_nonneg_of_bddAbove
     (U₁ : Matrix n k ℝ) (U₂ : Matrix n r ℝ) (S : Submodule ℝ (n → ℝ))
     (h : BddAbove ((fun x : n → ℝ => ‖WithLp.toLp 2 (U₂ᵀ *ᵥ x)‖) ''
@@ -154,7 +168,9 @@ theorem subspaceTangent_nonneg_of_bddAbove
 omit [DecidableEq n] in
 /-- Comparing a unit vector with any orthogonal graph competitor bounds its angle
 to the containing frame. Source: manuscript `sa:subspace`, per-vector comparison.
-This is an actual vector-to-subspace tangent, not the initial graph-column norm.-/
+This is an actual vector-to-subspace tangent, not the initial graph-column norm.
+@isnad1 id=le.4h5v.s8.c9e5c9e76248 from=translated src=- shape=a2aa36eb vocab=b6507e78
+-/
 theorem vectorTangentToFrame_le_of_orthogonal_competitor
     {l : Type*} [Fintype l] [DecidableEq l] {Q : Matrix n l ℝ}
     (hQ : HasOrthonormalCols Q) {u w : n → ℝ} (huNorm : ‖WithLp.toLp 2 u‖ = 1)
@@ -217,7 +233,9 @@ theorem vectorTangentToFrame_le_of_orthogonal_competitor
 omit [DecidableEq n] in
 /-- An orthogonal graph competitor bounds the geometric extended tangent.
 The competitor forces a nonzero projection, so the result excludes the
-infinite right-angle case through its mathematical hypotheses. Source: Saad (2011), §5.1.-/
+infinite right-angle case through its mathematical hypotheses. Source: Saad (2011), §5.1.
+@isnad1 id=le.4h5v.s8.f8f04131e4ca from=translated src=- shape=78b56f2c vocab=20116a0f
+-/
 theorem vectorTangentToFrameENNReal_le_of_orthogonal_competitor
     {l : Type*} [Fintype l] [DecidableEq l] {Q : Matrix n l ℝ}
     (hQ : HasOrthonormalCols Q) {u w : n → ℝ} (huNorm : ‖WithLp.toLp 2 u‖ = 1)
@@ -241,7 +259,9 @@ theorem vectorTangentToFrameENNReal_le_of_orthogonal_competitor
 
 omit [DecidableEq n] in
 /-- Each leading graph column has angle to any containing orthonormal frame at most
-its tail-column norm. Source: manuscript `sa:subspace`, the per-vector competitor.-/
+its tail-column norm. Source: manuscript `sa:subspace`, the per-vector competitor.
+@isnad1 id=le.5h9v.s9.aa26acae1afe from=translated src=- shape=ef9235ae vocab=ebd7040e
+-/
 theorem vectorTangentToFrame_graph_col_le
     {l : Type*} [Fintype l] [DecidableEq l] {Q : Matrix n l ℝ}
     (hQ : HasOrthonormalCols Q) {U₁ : Matrix n k ℝ} {U₂ : Matrix n r ℝ}

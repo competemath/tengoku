@@ -56,7 +56,9 @@ structure IsLU (A L U : Matrix n n ℝ) : Prop where
   /-- `A = L U`.-/
   eq_mul : A = L * U
 
-/-- For an LU factorization, `det A = ∏ᵢ uᵢᵢ`. Golub–Van Loan 2013, §3.2.-/
+/-- For an LU factorization, `det A = ∏ᵢ uᵢᵢ`. Golub–Van Loan 2013, §3.2.
+@isnad1 id=eq.1h4v.s5.bb4b0a17b139 from=translated src=- shape=4e93a713 vocab=e50f49cf
+-/
 theorem IsLU.det_eq_prod {A L U : Matrix n n ℝ} (h : IsLU A L U) : A.det = ∏ i, U i i := by
   rw [h.eq_mul, det_mul, h.isUnitLowerTriangular.det_eq_one, one_mul,
     det_of_isUpperTriangular h.isUpperTriangular]
@@ -64,7 +66,9 @@ theorem IsLU.det_eq_prod {A L U : Matrix n n ℝ} (h : IsLU A L U) : A.det = ∏
 /-- **Uniqueness of the LU factorization** of an invertible matrix. Proof: `L'⁻¹ L = U' U⁻¹` is
 unit lower and upper triangular, hence the identity. Golub–Van Loan 2013, Thm 3.2.1;
 Horn–Johnson 2013, Cor. 3.5.6; Trefethen–Bau 1997, Lect. 20.
-atlas: lu-decomposition-/
+atlas: lu-decomposition
+@isnad1 id=and.3h6v.s6.09f536ac3c58 from=translated src=- shape=2ca80aac vocab=7a70893c
+-/
 theorem IsLU.unique {A L U L' U' : Matrix n n ℝ} (hA : IsUnit A.det) (h₁ : IsLU A L U)
     (h₂ : IsLU A L' U') : L = L' ∧ U = U' := by
   have hU : IsUnit U.det := by
@@ -101,7 +105,9 @@ variable {n : ℕ}
 
 /-- Leading blocks of an LU factorization form an LU factorization of the leading block:
 `A(1:k,1:k) = L(1:k,1:k) U(1:k,1:k)`, since `L` vanishes above and `U` below the diagonal.
-Golub–Van Loan 2013, proof of Thm 3.2.1.-/
+Golub–Van Loan 2013, proof of Thm 3.2.1.
+@isnad1 id=islu.2h5v.s6.7fff43596eac from=translated src=- shape=33209ab6 vocab=9c40c608
+-/
 theorem IsLU.leadingSubmatrix {A L U : Matrix (Fin n) (Fin n) ℝ} (h : IsLU A L U) (k : ℕ)
     (hk : k ≤ n) :
     IsLU (leadingSubmatrix A k) (leadingSubmatrix L k) (leadingSubmatrix U k) := by
@@ -126,7 +132,9 @@ theorem IsLU.leadingSubmatrix {A L U : Matrix (Fin n) (Fin n) ℝ} (h : IsLU A L
   rw [hL _ _ (by simp only [Fin.lt_def, Fin.val_castLE]; omega), zero_mul]
 
 /-- For an LU factorization the leading principal minors are the partial products of the
-pivots: `det A(1:k,1:k) = ∏_{i<k} uᵢᵢ`. Golub–Van Loan 2013, proof of Thm 3.2.1.-/
+pivots: `det A(1:k,1:k) = ∏_{i<k} uᵢᵢ`. Golub–Van Loan 2013, proof of Thm 3.2.1.
+@isnad1 id=eq.2h5v.s6.cb1b02d20698 from=translated src=- shape=37cdfe45 vocab=2606c26e
+-/
 theorem IsLU.leadingMinor_eq_prod {A L U : Matrix (Fin n) (Fin n) ℝ} (h : IsLU A L U) (k : ℕ)
     (hk : k ≤ n) :
     leadingMinor A k = ∏ i : Fin k, U (Fin.castLE hk i) (Fin.castLE hk i) := by
@@ -134,7 +142,9 @@ theorem IsLU.leadingMinor_eq_prod {A L U : Matrix (Fin n) (Fin n) ℝ} (h : IsLU
   rwa [leadingSubmatrix_fin U hk] at this
 
 /-- The pivot Schur complement commutes with taking leading blocks:
-`pivotSchur (A(1:k+1, 1:k+1)) = (pivotSchur A)(1:k, 1:k)`.-/
+`pivotSchur (A(1:k+1, 1:k+1)) = (pivotSchur A)(1:k, 1:k)`.
+@isnad1 id=eq.1h3v.s7.2ec422c1a68e from=translated src=- shape=76ef225a vocab=535dab39
+-/
 theorem pivotSchur_leadingSubmatrix (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) {k : ℕ}
     (hk : k + 1 ≤ n + 1) :
     pivotSchur (leadingSubmatrix A (k + 1)) = leadingSubmatrix (pivotSchur A) k := by
@@ -145,14 +155,18 @@ theorem pivotSchur_leadingSubmatrix (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
   ext i j
   simp [h0, hs]
 
-/-- The `1 × 1` leading minor is the pivot.-/
+/-- The `1 × 1` leading minor is the pivot.
+@isnad1 id=eq.0h2v.s7.79c992166b24 from=translated src=- shape=950345e0 vocab=99f34109
+-/
 theorem leadingMinor_one (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) :
     leadingMinor A 1 = A 0 0 := by
   rw [leadingMinor_fin A (Nat.succ_le_succ (Nat.zero_le n)), det_fin_one]; rfl
 
 /-- A first-pivot Schur step factors every larger leading minor by the pivot:
 `det A(1:k+1,1:k+1) = a₁₁ · det (pivotSchur A)(1:k,1:k)`. Horn–Johnson 2013, proof of
-Thm 7.2.5; Golub–Van Loan 2013, Thm 3.2.1 (proof).-/
+Thm 7.2.5; Golub–Van Loan 2013, Thm 3.2.1 (proof).
+@isnad1 id=eq.2h3v.s8.b49535ecd45a from=translated src=- shape=ffbe8d88 vocab=fe9a80a3
+-/
 theorem leadingMinor_succ_eq_mul_leadingMinor_pivotSchur
     (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) (ha : A 0 0 ≠ 0) {k : ℕ} (hk : k + 1 ≤ n + 1) :
     leadingMinor A (k + 1) = A 0 0 * leadingMinor (pivotSchur A) k := by
@@ -187,7 +201,9 @@ def LUSucceeds : {n : ℕ} → Matrix (Fin n) (Fin n) ℝ → Prop
   | _ + 1, A => A 0 0 ≠ 0 ∧ LUSucceeds (pivotSchur A)
 
 /-- The `L` factor of `lu` is unit lower triangular, with no hypothesis on `A`.
-Trefethen–Bau 1997, Alg. 20.1.-/
+Trefethen–Bau 1997, Alg. 20.1.
+@isnad1 id=isunitlo.0h2v.s4.cb65b4e86315 from=translated src=- shape=34b98ea7 vocab=c5f7357f
+-/
 theorem isUnitLowerTriangular_lu_fst {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     IsUnitLowerTriangular (lu A).1 := by
   induction n with
@@ -200,7 +216,9 @@ theorem isUnitLowerTriangular_lu_fst {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) 
     · simpa [lu] using h.apply_self i
 
 /-- The `U` factor of `lu` is upper triangular, with no hypothesis on `A`.
-Trefethen–Bau 1997, Alg. 20.1.-/
+Trefethen–Bau 1997, Alg. 20.1.
+@isnad1 id=isuppert.0h2v.s5.9100c2e67626 from=translated src=- shape=a972e0a6 vocab=a991dbb3
+-/
 theorem isUpperTriangular_lu_snd {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     (lu A).2.IsUpperTriangular := by
   induction n with
@@ -209,7 +227,9 @@ theorem isUpperTriangular_lu_snd {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     exact isUpperTriangular_borderedMatrix_iff.2 ⟨rfl, ih (pivotSchur A)⟩
 
 /-- The pivots are the diagonal of `U`: elimination succeeds iff `(lu A).2` has nonzero
-diagonal. Trefethen–Bau 1997, Lect. 20.-/
+diagonal. Trefethen–Bau 1997, Lect. 20.
+@isnad1 id=iff.0h2v.s5.14e9ebe0af6d from=translated src=- shape=7e3f48ac vocab=48a38dbc
+-/
 theorem luSucceeds_iff_forall_lu_snd_apply_self_ne_zero {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) : LUSucceeds A ↔ ∀ i, (lu A).2 i i ≠ 0 := by
   induction n with
@@ -223,7 +243,9 @@ factorization. Proof: induction on `n`; the step is
 `eq_borderedMatrix_mul_borderedMatrix_pivotSchur` with the factorization of the Schur
 complement in the trailing blocks. Trefethen–Bau 1997, Alg. 20.1; Golub–Van Loan 2013,
 Alg. 3.2.1.
-atlas: lu-algorithm-/
+atlas: lu-algorithm
+@isnad1 id=islu.1h2v.s5.ca2e6c96e05b from=translated src=- shape=9458038c vocab=0030c608
+-/
 theorem isLU_lu {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (h : LUSucceeds A) :
     IsLU A (lu A).1 (lu A).2 := by
   induction n with
@@ -247,7 +269,9 @@ leading principal minor `det A(1:k,1:k)`, `k = 1, …, n`, is nonzero. Proof: in
 with `det A(1:k+1,1:k+1) = a₁₁ det (pivotSchur A)(1:k,1:k)` (`det_eq_mul_det_pivotSchur`,
 `leadingMinor_succ_eq_mul_leadingMinor_pivotSchur`); the case `k = 1` gives `a₁₁ ≠ 0`.
 Trefethen–Bau 1997, Lect. 20 (Ex. 20.1); Golub–Van Loan 2013, Thm 3.2.1.
-atlas: lu-algorithm-/
+atlas: lu-algorithm
+@isnad1 id=iff.0h2v.s5.472b1739e293 from=translated src=- shape=ce892258 vocab=a3652db2
+-/
 theorem luSucceeds_iff_forall_leadingMinor_ne_zero {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     LUSucceeds A ↔ ∀ k ≤ n, leadingMinor A k ≠ 0 := by
   induction n with
@@ -279,7 +303,9 @@ pivot is never divided by, so `det A` may vanish). Proof: induction on `n`; the 
 trivial, otherwise the pivot is `det A(1:1,1:1) ≠ 0` and the Schur complement inherits the
 hypothesis through `leadingMinor_succ_eq_mul_leadingMinor_pivotSchur`.
 Golub–Van Loan 2013, Thm 3.2.1; Trefethen–Bau 1997, Alg. 20.1.
-atlas: lu-algorithm-/
+atlas: lu-algorithm
+@isnad1 id=islu.1h2v.s6.f5ccc880b638 from=translated src=- shape=62dffd72 vocab=6a0a0450
+-/
 theorem isLU_lu_of_forall_leadingMinor_ne_zero {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (h : ∀ k < n, leadingMinor A k ≠ 0) :
     IsLU A (lu A).1 (lu A).2 := by
@@ -319,7 +345,9 @@ section Existence
 
 variable {m n : Type*} [Fintype m] [LinearOrder m] [Fintype n] [LinearOrder n]
 
-/-- An LU factorization transports along an order isomorphism of the index type.-/
+/-- An LU factorization transports along an order isomorphism of the index type.
+@isnad1 id=islu.1h6v.s8.595e5c336eec from=translated src=- shape=5f409079 vocab=a8a580ce
+-/
 theorem IsLU.submatrix {A L U : Matrix n n ℝ} (h : IsLU A L U) (e : m ≃o n) :
     IsLU (A.submatrix e e) (L.submatrix e e) (U.submatrix e e) where
   isUnitLowerTriangular :=
@@ -331,7 +359,9 @@ theorem IsLU.submatrix {A L U : Matrix n n ℝ} (h : IsLU A L U) (e : m ≃o n) 
   eq_mul := by rw [h.eq_mul]; exact (Matrix.submatrix_mul_equiv L U e e.toEquiv e).symm
 
 /-- The leading minors of `A` are those of its reindexing along the sorting isomorphism
-`Fin (card n) ≃o n`.-/
+`Fin (card n) ≃o n`.
+@isnad1 id=eq.0h3v.s7.2ade8f5cb364 from=translated src=- shape=f05be611 vocab=6c962979
+-/
 theorem leadingMinor_submatrix_monoEquivOfFin (A : Matrix n n ℝ) (k : ℕ) :
     leadingMinor (A.submatrix (monoEquivOfFin n rfl) (monoEquivOfFin n rfl)) k =
       leadingMinor A k := by
@@ -355,7 +385,9 @@ theorem leadingMinor_submatrix_monoEquivOfFin (A : Matrix n n ℝ) (k : ℕ) :
 condition on `det A` itself), on any linearly ordered finite index; on `Fin n` the witness is
 `lu A` (`isLU_lu_of_forall_leadingMinor_ne_zero`). Golub–Van Loan 2013, Thm 3.2.1;
 Horn–Johnson 2013, Cor. 3.5.6.
-atlas: lu-decomposition-/
+atlas: lu-decomposition
+@isnad1 id=ex.1h2v.s6.8c00c898ccf5 from=translated src=- shape=8e10ef0c vocab=79c04f45
+-/
 theorem exists_isLU_of_forall_leadingMinor_ne_zero (A : Matrix n n ℝ)
     (h : ∀ k < Fintype.card n, leadingMinor A k ≠ 0) : ∃ L U, IsLU A L U := by
   let e := monoEquivOfFin n rfl
@@ -369,7 +401,9 @@ theorem exists_isLU_of_forall_leadingMinor_ne_zero (A : Matrix n n ℝ)
 /-- **Existence of LU for invertible matrices**: an invertible `A` has an LU factorization iff
 all its leading principal minors are nonzero (and it is then unique, `IsLU.unique`).
 Trefethen–Bau 1997, Lect. 20; Golub–Van Loan 2013, Thm 3.2.1; Horn–Johnson 2013, Cor. 3.5.6.
-atlas: lu-decomposition-/
+atlas: lu-decomposition
+@isnad1 id=iff.1h2v.s6.0c27257551ec from=translated src=- shape=52af1a8d vocab=8888df8e
+-/
 theorem exists_isLU_iff_forall_leadingMinor_ne_zero {A : Matrix n n ℝ} (hA : IsUnit A.det) :
     (∃ L U, IsLU A L U) ↔ ∀ k ≤ Fintype.card n, leadingMinor A k ≠ 0 := by
   constructor
@@ -398,7 +432,9 @@ def IsPLU {n : Type*} [Fintype n] [LinearOrder n] (A : Matrix n n ℝ) (σ : Equ
     (L U : Matrix n n ℝ) : Prop :=
   IsLU (A.submatrix σ id) L U
 
-/-- The permutation-matrix form of `IsPLU`: `P A = L U` with `P = σ.permMatrix ℝ`.-/
+/-- The permutation-matrix form of `IsPLU`: `P A = L U` with `P = σ.permMatrix ℝ`.
+@isnad1 id=eq.1h5v.s6.c966f66def88 from=translated src=- shape=89849b09 vocab=d1978697
+-/
 theorem IsPLU.permMatrix_mul_eq {n : Type*} [Fintype n] [LinearOrder n] {A L U : Matrix n n ℝ}
     {σ : Equiv.Perm n} (h : IsPLU A σ L U) : Equiv.Perm.permMatrix ℝ σ * A = L * U := by
   rw [Equiv.Perm.permMatrix, PEquiv.toMatrix_toPEquiv_mul]; exact h.eq_mul
@@ -410,7 +446,9 @@ def absArgmax : {n : ℕ} → (Fin (n + 1) → ℝ) → Fin (n + 1)
   | _ + 1, v =>
     if |v (absArgmax fun i => v i.succ).succ| ≤ |v 0| then 0 else (absArgmax fun i => v i.succ).succ
 
-/-- `absArgmax v` maximises `|vᵢ|`.-/
+/-- `absArgmax v` maximises `|vᵢ|`.
+@isnad1 id=le.0h3v.s5.d175c1af2b94 from=translated src=- shape=09b8a0cb vocab=7e6e86c0
+-/
 theorem abs_le_abs_absArgmax {n : ℕ} (v : Fin (n + 1) → ℝ) (i : Fin (n + 1)) :
     |v i| ≤ |v (absArgmax v)| := by
   induction n with
@@ -429,14 +467,18 @@ def partialPivotSwap {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ) :
     Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ :=
   A.submatrix (Equiv.swap 0 (absArgmax fun i => A i 0)) id
 
-/-- After the partial-pivoting swap the pivot dominates its column.-/
+/-- After the partial-pivoting swap the pivot dominates its column.
+@isnad1 id=le.0h3v.s7.d50da2fb4227 from=translated src=- shape=4e8ab4c3 vocab=77576c5f
+-/
 theorem abs_partialPivotSwap_le {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (i : Fin (n + 1)) : |partialPivotSwap A i 0| ≤ |partialPivotSwap A 0 0| := by
   simp only [partialPivotSwap, submatrix_apply, id, Equiv.swap_apply_left]
   exact abs_le_abs_absArgmax (fun i => A i 0) _
 
 /-- Rows of `A` permuted by `decomposeFin⁻¹ (p, τ)` (row `p` first, then the rows of the swapped
-matrix in the order `τ`), as a bordered matrix.-/
+matrix in the order `τ`), as a bordered matrix.
+@isnad1 id=eq.0h4v.s9.0bb6ae04a4a4 from=translated src=- shape=2cc61801 vocab=8253d8d6
+-/
 theorem submatrix_decomposeFin_symm {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (p : Fin (n + 1)) (τ : Equiv.Perm (Fin n)) :
     A.submatrix (Equiv.Perm.decomposeFin.symm (p, τ)) id =
@@ -483,7 +525,9 @@ zero and the junk multipliers `0⁻¹ · 0 = 0` give a valid step. Proof: induct
 is the elimination identity for `partialPivotSwap A` conjugated by the permutation of the
 trailing rows. Trefethen–Bau 1997, Lect. 21; Golub–Van Loan 2013, Thm 3.4.1 (existence for
 singular `A` as in the atlas note).
-atlas: lu-partial-pivoting-/
+atlas: lu-partial-pivoting
+@isnad1 id=isplu.0h2v.s6.132520e318d3 from=translated src=- shape=68dd1813 vocab=cff48520
+-/
 theorem isPLU_luPartialPivot {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     IsPLU A (luPartialPivot A).1 (luPartialPivot A).2.1 (luPartialPivot A).2.2 := by
   induction n with
@@ -516,7 +560,9 @@ theorem isPLU_luPartialPivot {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
 
 /-- **Bounded multipliers**: partial pivoting gives `|lᵢⱼ| ≤ 1`, for every `A`.
 Trefethen–Bau 1997, Lect. 21; Golub–Van Loan 2013, §3.4.
-atlas: lu-partial-pivoting-/
+atlas: lu-partial-pivoting
+@isnad1 id=le.0h4v.s5.4f608fb130bc from=translated src=- shape=173319ca vocab=a56c395c
+-/
 theorem abs_luPartialPivot_lower_le_one {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (i j : Fin n) :
     |(luPartialPivot A).2.1 i j| ≤ 1 := by
   induction n with
@@ -535,7 +581,9 @@ theorem abs_luPartialPivot_lower_le_one {n : ℕ} (A : Matrix (Fin n) (Fin n) �
 /-- Partial pivoting succeeds iff `A` is invertible. Proof: `det A = ± ∏ᵢ uᵢᵢ` from
 `isPLU_luPartialPivot` (`Matrix.det_permute`), and the pivots are the diagonal of `U`.
 Trefethen–Bau 1997, Lect. 21; Golub–Van Loan 2013, Thm 3.4.1.
-atlas: lu-partial-pivoting-/
+atlas: lu-partial-pivoting
+@isnad1 id=iff.0h2v.s4.fea0e1f26e34 from=translated src=- shape=bdb846b5 vocab=17526653
+-/
 theorem luPartialPivotSucceeds_iff_isUnit_det {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     LUPartialPivotSucceeds A ↔ IsUnit A.det := by
   have hdiag : ∀ {m : ℕ} (A : Matrix (Fin m) (Fin m) ℝ),
@@ -561,7 +609,9 @@ theorem luPartialPivotSucceeds_iff_isUnit_det {n : ℕ} (A : Matrix (Fin n) (Fin
 
 /-- Every square matrix has a factorization `PA = LU` with `|lᵢⱼ| ≤ 1`.
 Trefethen–Bau 1997, Lect. 21; Golub–Van Loan 2013, Thm 3.4.1.
-atlas: lu-partial-pivoting-/
+atlas: lu-partial-pivoting
+@isnad1 id=ex.0h2v.s6.81e46fa6a9e6 from=translated src=- shape=f0c0c174 vocab=6092b2ff
+-/
 theorem exists_isPLU_abs_le_one {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     ∃ σ L U, IsPLU A σ L U ∧ ∀ i j, |L i j| ≤ 1 :=
   ⟨_, _, _, isPLU_luPartialPivot A, abs_luPartialPivot_lower_le_one A⟩
@@ -570,7 +620,9 @@ theorem exists_isPLU_abs_le_one {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
 `i` of `U` satisfies `|uᵢⱼ| ≤ 2^i M` (each elimination step at most doubles the entries, since
 the multipliers are bounded by one). Trefethen–Bau 1997, Lect. 22; Higham 2002, §9.3,
 eq. (9.13) (Wilkinson's bound). Exact arithmetic.
-atlas: lu-growth-factor (partial)-/
+atlas: lu-growth-factor (partial)
+@isnad1 id=le.1h5v.s6.3a18e4213a9e from=translated src=- shape=58863d61 vocab=2e7441ef
+-/
 theorem abs_luPartialPivot_upper_le {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {M : ℝ}
     (hM : ∀ i j, |A i j| ≤ M) (i j : Fin n) :
     |(luPartialPivot A).2.2 i j| ≤ 2 ^ (i : ℕ) * M := by
@@ -604,7 +656,9 @@ theorem abs_luPartialPivot_upper_le {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {
 entrywise bound `M` on `A`. Wilkinson attainment is proved by
 `exists_luPartialPivot_growth_eq_two_pow` in `LUGrowthSharpness`.
 Trefethen–Bau 1997, Lect. 22, eq. (22.4); Higham 2002, §9.3, eq. (9.13).
-atlas: lu-growth-factor (partial)-/
+atlas: lu-growth-factor (partial)
+@isnad1 id=le.1h5v.s6.d8f92b980db0 from=translated src=- shape=43e129e5 vocab=c8934e58
+-/
 theorem abs_luPartialPivot_upper_le_two_pow {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} {M : ℝ}
     (hM : ∀ i j, |A i j| ≤ M) (i j : Fin n) :
     |(luPartialPivot A).2.2 i j| ≤ 2 ^ (n - 1) * M := by

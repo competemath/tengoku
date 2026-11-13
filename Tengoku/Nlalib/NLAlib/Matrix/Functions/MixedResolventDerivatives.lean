@@ -52,7 +52,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Actual two matrix curves with sandwich derivatives and commuting values
 have the cyclic mixed-power trace derivative. The derivative matrices need
 not commute with the values; no invertibility is part of this purely
-calculus-and-trace identity.-/
+calculus-and-trace identity.
+@isnad1 id=hasderiv.3h7v.s9.4171b9a4c1cb from=translated src=- shape=1091b509 vocab=ee24ef19
+-/
 theorem hasDerivAt_trace_mixed_powers_of_sandwich
     {R S : ℝ → M} {t : ℝ} (H : M)
     (hR : HasDerivAt R (R t*H*R t) t)
@@ -92,7 +94,9 @@ normalized mixed-resolvent trace derivative has its two exact cyclic terms.
 Only the base point is required to be Hermitian, since the nonreal inverse
 is differentiable on its genuine open unit neighborhood.
 Source: arXiv:2108.06312v2, Lemma 6.2;
-atlas: gaussian-free-spectrum-two-sided (partial).-/
+atlas: gaussian-free-spectrum-two-sided (partial).
+@isnad1 id=hasderiv.4h8v.s9.29b32da84ea8 from=translated src=- shape=5b9a38fb vocab=5e37ea5d
+-/
 theorem hasDerivAt_normalizedTrace_mixed_resolvent_curve
     {X : ℝ → M} {H : M} {t : ℝ} (hX : HasDerivAt X H t)
     (hXt : (X t).IsHermitian) (ζ ω : ℂ) (hζ : ζ.im≠0) (hω : ω.im≠0)
@@ -118,7 +122,9 @@ theorem hasDerivAt_normalizedTrace_mixed_resolvent_curve
 open scoped Matrix.Norms.L2Operator in
 /-- The actual mixed matrix-power derivative consists of its two positive
 inverse-arc insertion sums. The inserted direction is not assumed to commute
-with either curve, and commutation between the curves is unnecessary.-/
+with either curve, and commutation between the curves is unnecessary.
+@isnad1 id=hasderiv.2h7v.s9.04cf9168ab6c from=translated src=- shape=169fbc47 vocab=61a4ade6
+-/
 theorem hasDerivAt_mixed_powers_of_sandwich
     {R S : ℝ → M} {t : ℝ} (H : M)
     (hR : HasDerivAt R (R t*H*R t) t)

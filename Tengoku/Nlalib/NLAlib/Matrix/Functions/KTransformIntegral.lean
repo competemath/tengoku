@@ -20,7 +20,9 @@ def matrixKStabilityMap (ν : Measure (selfAdjoint (Matrix n n ℂ))) (α : ℝ)
     (matrixKCoefficient S T.val) (matrixKCoefficient S T.val) ∂ν
 
 /-- The rational coefficient is the square-root congruence of the actual
-resolvent, a useful continuity identity on the support.-/
+resolvent, a useful continuity identity on the support.
+@isnad1 id=eq.1h3v.s8.8f8e517dceb8 from=translated src=- shape=c99010d0 vocab=6b90ed28
+-/
 theorem matrixKCoefficient_eq_sqrt_congruence (S T : Matrix n n ℂ) (hS : S.PosDef) :
     matrixKCoefficient S T = cfc Real.sqrt S * matrixKResolvent S T * cfc Real.sqrt S := by
   let Q := cfc Real.sqrt S
@@ -42,7 +44,9 @@ private theorem continuousOn_kResolvent_support (ν : Measure (selfAdjoint (Matr
       (continuous_const.prodMk continuous_subtype_val).continuousAt
   exact hc.continuousWithinAt
 
-/-- Both actual CLM integrands are integrable from the source hypotheses alone.-/
+/-- Both actual CLM integrands are integrable from the source hypotheses alone.
+@isnad1 id=and.3h3v.s14.b6f19d3419f4 from=translated src=- shape=b2efa514 vocab=b1506515
+-/
 theorem integrable_matrixK_kernels (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (S : Matrix n n ℂ) (hS : S.PosDef)
     (hgap : ∀ T ∈ ν.support, (S⁻¹ + T.val).PosDef) :
@@ -64,7 +68,9 @@ theorem integrable_matrixK_kernels (ν : Measure (selfAdjoint (Matrix n n ℂ)))
 
 /-- Evaluation of the actual derivative integral yields the exact source
 formula, with the left and right resolvents written as in equation (F20).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=eq.3h5v.s11.b1fe600ce81a from=translated src=- shape=b2b09a6b vocab=e4ab5b1b
+-/
 theorem matrixKTransformDeriv_apply (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (α : ℝ) (S : Matrix n n ℂ)
     (hS : S.PosDef) (hgap : ∀ T ∈ ν.support, (S⁻¹ + T.val).PosDef) (Δ : Matrix n n ℂ) :

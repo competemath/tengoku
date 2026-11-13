@@ -27,7 +27,9 @@ def quadFormLinearMap (u : n → 𝕜) : Matrix n n 𝕜 →ₗ[𝕜] 𝕜 where
   map_smul' r A := by
     simp only [quadForm, Matrix.smul_mulVec, dotProduct_smul, smul_eq_mul, RingHom.id_apply]
 
-/-- The fixed-vector matrix linear functional evaluates to the genuine quadratic form.-/
+/-- The fixed-vector matrix linear functional evaluates to the genuine quadratic form.
+@isnad1 id=eq.0h4v.s8.27462a9edbd9 from=translated src=- shape=57024353 vocab=c4e5dd32
+-/
 @[simp] theorem quadFormLinearMap_apply (u : n → 𝕜) (A : Matrix n n 𝕜) :
     quadFormLinearMap u A = quadForm A u := rfl
 
@@ -37,7 +39,9 @@ def quadFormContinuousLinearMap [DecidableEq n] (u : n → 𝕜) : Matrix n n �
   (quadFormLinearMap u).toContinuousLinearMap
 
 open scoped Matrix.Norms.L2Operator in
-/-- The continuous functional is exactly the quadratic observable.-/
+/-- The continuous functional is exactly the quadratic observable.
+@isnad1 id=eq.0h4v.s8.059109cea49e from=translated src=- shape=f120e392 vocab=f2f90f47
+-/
 @[simp] theorem quadFormContinuousLinearMap_apply [DecidableEq n]
     (u : n → 𝕜) (A : Matrix n n 𝕜) :
     quadFormContinuousLinearMap u A = quadForm A u := rfl

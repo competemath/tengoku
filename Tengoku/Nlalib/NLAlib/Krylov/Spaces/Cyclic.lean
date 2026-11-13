@@ -26,7 +26,9 @@ variable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
 vector-relative minimal polynomial. This realizes the ideal clause of the
 grade contract without adding a second annihilator definition.
 Source: operator derivations, (S1).
-atlas: krylov-grade (partial)-/
+atlas: krylov-grade (partial)
+@isnad1 id=eq.0h4v.s15.e0000ec95c6e from=translated src=- shape=cf2a38bb vocab=61389db5
+-/
 theorem ker_toSpanSingleton_aeval_eq_span_vectorMinpoly
     (A : Matrix n n K) (b : n → K) :
     LinearMap.ker (LinearMap.toSpanSingleton K[X]
@@ -48,7 +50,9 @@ theorem ker_toSpanSingleton_aeval_eq_span_vectorMinpoly
 /-- Every finite matrix over a field has a vector realizing its operator
 minimal polynomial, including empty matrices. Native polynomial-module
 annihilators supply the witness. Source: operator derivations, Section 6.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=ex.0h3v.s6.7510d00679c5 from=translated src=- shape=c6bd0490 vocab=322c2a3f
+-/
 theorem exists_vectorMinpoly_eq_minpoly (A : Matrix n n K) :
     ∃ b : n → K, vectorMinpoly A b = minpoly K A := by
   let f : Module.End K (n → K) := Matrix.toLin' A
@@ -82,7 +86,9 @@ theorem exists_vectorMinpoly_eq_minpoly (A : Matrix n n K) :
 /-- Full degree of the operator minimal polynomial is equivalent to existence
 of a full-grade vector over any scalar field. Source: Horn–Johnson (2013),
 Theorem 3.3.14; operator derivations, (S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.0h3v.s6.2db103d4b779 from=translated src=- shape=d42eb89d vocab=51d87ea7
+-/
 theorem natDegree_minpoly_eq_card_iff_exists_krylovGrade_eq_card (A : Matrix n n K) :
     (minpoly K A).natDegree = Fintype.card n ↔
       ∃ b : n → K, krylovGrade A b = Fintype.card n := by
@@ -97,7 +103,9 @@ theorem natDegree_minpoly_eq_card_iff_exists_krylovGrade_eq_card (A : Matrix n n
 /-- A finite matrix has minimal polynomial equal to characteristic polynomial
 exactly when its minimal polynomial has full degree.
 Source: Horn–Johnson (2013), Theorem 3.3.14; operator derivations, (S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.0h3v.s7.370c92acdbf3 from=translated src=- shape=81ecad01 vocab=1580c0e2
+-/
 theorem minpoly_eq_charpoly_iff_natDegree_eq_card (A : Matrix n n K) :
     minpoly K A = A.charpoly ↔ (minpoly K A).natDegree = Fintype.card n := by
   constructor
@@ -109,7 +117,9 @@ theorem minpoly_eq_charpoly_iff_natDegree_eq_card (A : Matrix n n K) :
     rw [Matrix.charpoly_natDegree_eq_dim, h]
 
 /-- A full-grade Krylov space is the entire finite vector space.
-Source: the field-general Krylov dimension formula.-/
+Source: the field-general Krylov dimension formula.
+@isnad1 id=eq.1h4v.s7.4626cf488dc5 from=translated src=- shape=1a168ef3 vocab=7cc1285d
+-/
 theorem krylovSpace_eq_top_of_krylovGrade_eq_card {A : Matrix n n K} {b : n → K}
     (hb : krylovGrade A b = Fintype.card n) :
     krylovSpace A b (Fintype.card n) = ⊤ := by
@@ -119,7 +129,9 @@ theorem krylovSpace_eq_top_of_krylovGrade_eq_card {A : Matrix n n K} {b : n → 
 /-- For a full-grade vector, each commuting matrix is represented by a unique
 polynomial of degree below the dimension, including the zero polynomial in
 dimension zero. Source: Horn–Johnson (2013), Theorem 3.3.15.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=existsun.2h5v.s8.abe086db43e4 from=translated src=- shape=859acf7e vocab=710cd819
+-/
 theorem existsUnique_degree_lt_aeval_eq_of_krylovGrade_eq_card
     {A : Matrix n n K} {b : n → K} (hb : krylovGrade A b = Fintype.card n)
     (B : Matrix n n K) (hAB : A * B = B * A) :

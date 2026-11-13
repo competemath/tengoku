@@ -27,7 +27,9 @@ variable [Fintype n] [DecidableEq n]
 /-- Extending the scalar field preserves the degree of a finite matrix's minimal
 polynomial. No infinitude, characteristic or nonempty dimension assumption is
 needed. Source: operator derivations, Section 6.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=eq.0h4v.s7.79c31de261fa from=translated src=- shape=579a8cd1 vocab=1ee73ecb
+-/
 theorem natDegree_minpoly_map_algebraMap (A : Matrix n n K) :
     (minpoly L (A.map (algebraMap K L))).natDegree = (minpoly K A).natDegree := by
   let σ : K →+* L := algebraMap K L
@@ -71,7 +73,9 @@ theorem natDegree_minpoly_map_algebraMap (A : Matrix n n K) :
 minimal polynomial has full degree over a splitting field. Non-eigenvalues have
 zero eigenspaces, so the preceding at-most-one interface is equivalent.
 Source: Horn–Johnson (2013), Theorem 3.3.14.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.1h3v.s12.78886a29253f from=translated src=- shape=74e58370 vocab=580c346e
+-/
 theorem natDegree_minpoly_eq_card_iff_eigenvalue_finrank_eq_one
     (A : Matrix n n K) (hsplit : A.charpoly.Splits) :
     (minpoly K A).natDegree = Fintype.card n ↔
@@ -94,7 +98,9 @@ theorem natDegree_minpoly_eq_card_iff_eigenvalue_finrank_eq_one
 /-- For a real matrix, geometric nonderogatoriness uses the eigenspaces of its
 complexification, including repeated nonreal eigenvalues. Real eigenspaces alone
 would give an incorrect criterion. Source: operator derivations, Section 6.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.0h2v.s12.95eaef64d67c from=translated src=- shape=3e0a8a98 vocab=81c1d7af
+-/
 theorem natDegree_minpoly_real_eq_card_iff_complex_eigenvalue_finrank_eq_one
     (A : Matrix n n ℝ) :
     (minpoly ℝ A).natDegree = Fintype.card n ↔

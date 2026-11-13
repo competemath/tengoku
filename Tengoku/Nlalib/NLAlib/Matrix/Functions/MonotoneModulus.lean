@@ -17,7 +17,9 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder
 namespace NLAlib
 
 /-- Concavity on the nonnegative half-line and a zero boundary value
-imply scalar subadditivity.-/
+imply scalar subadditivity.
+@isnad1 id=le.4h3v.s6.ce39756cc75b from=translated src=- shape=20ed500c vocab=f623f37e
+-/
 theorem _root_.ConcaveOn.apply_add_le_of_nonneg {f : ℝ → ℝ}
     (hf : ConcaveOn ℝ (Ici 0) f) (hf0 : f 0 = 0)
     {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) : f (x+y) ≤ f x + f y := by
@@ -43,7 +45,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 private local instance : NormedAlgebra ℝ (Matrix n n 𝕜) := normedAlgebraRealMatrix
 
 /-- A Hermitian matrix is below its norm times the identity over both
-real and complex fields, including empty dimensions.-/
+real and complex fields, including empty dimensions.
+@isnad1 id=le.1h3v.s7.6b5b6b06b96c from=translated src=- shape=d5a0bbc2 vocab=674fb9e6
+-/
 theorem le_algebraMap_norm_of_isHermitian {H : Matrix n n 𝕜} (hH : H.IsHermitian) :
     H ≤ algebraMap ℝ (Matrix n n 𝕜) ‖H‖ := by
   cases isEmpty_or_nonempty n with
@@ -53,7 +57,9 @@ theorem le_algebraMap_norm_of_isHermitian {H : Matrix n n 𝕜} (hH : H.IsHermit
     intro x hx
     exact (le_abs_self x).trans (spectrum.norm_le_norm_of_mem hx)
 
-/-- Hermitian norm/order equivalence, with both scalar bounds supplied.-/
+/-- Hermitian norm/order equivalence, with both scalar bounds supplied.
+@isnad1 id=le.4h4v.s8.5feb9fc71a74 from=translated src=- shape=b3bab4fd vocab=1353f811
+-/
 theorem norm_le_of_isHermitian_of_order_bounds {H : Matrix n n 𝕜} (hH : H.IsHermitian)
     {c : ℝ} (hc : 0 ≤ c)
     (hl : algebraMap ℝ (Matrix n n 𝕜) (-c) ≤ H)
@@ -113,7 +119,9 @@ private theorem norm_cfc_sub_le_of_monotone_concave {f : ℝ → ℝ}
 
 /-- The sharp operator-monotone modulus for complex PSD matrices.
 The scalar assumptions hold only on the nonnegative half-line.
-atlas: operator-monotone-modulus-continuity (partial)-/
+atlas: operator-monotone-modulus-continuity (partial)
+@isnad1 id=le.6h4v.s8.fe6c019023b2 from=translated src=- shape=35740be8 vocab=bdcda69f
+-/
 theorem specNorm_cfc_sub_le_of_operatorMonotoneOn_nonneg {f : ℝ → ℝ}
     (hm : OperatorMonotoneOn (Ici 0) f) (hf : ContinuousOn f (Ici 0))
     (hf0 : f 0=0) (hfn : ∀ t, 0 ≤ t → 0 ≤ f t)
@@ -130,7 +138,9 @@ theorem specNorm_cfc_sub_le_of_operatorMonotoneOn_nonneg {f : ℝ → ℝ}
 
 /-- The same sharp modulus for real PSD matrices, transported through
 the library's canonical real matrix embedding.
-atlas: operator-monotone-modulus-continuity (partial)-/
+atlas: operator-monotone-modulus-continuity (partial)
+@isnad1 id=le.6h4v.s8.a674f1bf2921 from=translated src=- shape=8854dd97 vocab=09f92c1f
+-/
 theorem specNorm_cfc_sub_le_of_operatorMonotoneOn_nonneg_real {f : ℝ → ℝ}
     (hm : OperatorMonotoneOn (Ici 0) f) (hf : ContinuousOn f (Ici 0))
     (hf0 : f 0=0) (hfn : ∀ t, 0 ≤ t → 0 ≤ f t)

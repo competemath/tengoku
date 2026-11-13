@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- The scalar exponential is the sum of its factorial power series.
 Mathlib's general Banach-algebra theorem, specialized to reals; used by
-Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).-/
+Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).
+@isnad1 id=hassum.0h1v.s5.2478f7ade1d5 from=translated src=- shape=63bf745d vocab=827d1423
+-/
 theorem hasSum_pow_div_factorial_exp (x : ℝ) :
     HasSum (fun i : ℕ => x ^ i / (i.factorial : ℝ)) (exp x) := by
   rw [Real.exp_eq_exp_ℝ]
@@ -25,7 +27,9 @@ theorem hasSum_pow_div_factorial_exp (x : ℝ) :
 
 /-- A nonnegative exponential-series tail is at most the full series.
 Source: exponential power series, used by Sachdeva–Vishnoi, Theorem 4.1
-(`exp-polynomial-approx`).-/
+(`exp-polynomial-approx`).
+@isnad1 id=le.1h2v.s6.7d7f96c5cde2 from=translated src=- shape=c8835fdd vocab=449959c2
+-/
 theorem tsum_pow_div_factorial_nat_add_le_exp {x : ℝ} (hx : 0 ≤ x) (t : ℕ) :
     (∑' i : ℕ, x ^ (i + t) / ((i + t).factorial : ℝ)) ≤ exp x := by
   have hsum := hasSum_pow_div_factorial_exp x
@@ -39,7 +43,9 @@ theorem tsum_pow_div_factorial_nat_add_le_exp {x : ℝ} (hx : 0 ≤ x) (t : ℕ)
 when `t ≥ exp(2) ℓ`; this avoids any probability-space construction.
 Source: Sachdeva–Vishnoi, Theorem 4.1.
 The displayed bound is the second inequality of that lemma.
-Atlas `exp-polynomial-approx` (helper).-/
+Atlas `exp-polynomial-approx` (helper).
+@isnad1 id=le.2h2v.s6.d18ee946a2cb from=translated src=- shape=350ddd0c vocab=404d8cf0
+-/
 theorem exp_neg_mul_tsum_pow_div_factorial_nat_add_le {ℓ : ℝ} (hℓ : 0 ≤ ℓ)
     (t : ℕ) (ht : exp 2 * ℓ ≤ (t : ℝ)) :
     exp (-ℓ) * (∑' i : ℕ, ℓ ^ (i + t) / ((i + t).factorial : ℝ)) ≤ exp (-(t : ℝ)) := by
@@ -77,7 +83,9 @@ theorem exp_neg_mul_tsum_pow_div_factorial_nat_add_le {ℓ : ℝ} (hℓ : 0 ≤ 
   nlinarith
 
 /-- Absolute error of an exponential-series truncation, bounded by a nonnegative factorial
-tail on `|u| ≤ ℓ`. Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).-/
+tail on `|u| ≤ ℓ`. Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).
+@isnad1 id=le.2h3v.s7.0343c8788c19 from=translated src=- shape=0fcdeda1 vocab=c68f9386
+-/
 theorem abs_exp_sub_sum_pow_div_factorial_le {ℓ u : ℝ} (_hℓ : 0 ≤ ℓ) (hu : |u| ≤ ℓ)
     (t : ℕ) :
     |exp u - ∑ i ∈ range t, u ^ i / (i.factorial : ℝ)| ≤
@@ -106,7 +114,9 @@ def exponentialChebyshevApprox (ℓ : ℝ) (t d : ℕ) : ℝ[X] :=
     C ((-ℓ) ^ i / (i.factorial : ℝ)) * monomialChebyshevApprox i d
 
 /-- The compressed exponential-series polynomial has degree at most `d`.
-Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).
+@isnad1 id=le.0h3v.s4.ac5f12be61e8 from=translated src=- shape=0e7edf07 vocab=e010bdf8
+-/
 theorem degree_exponentialChebyshevApprox_le (ℓ : ℝ) (t d : ℕ) :
     (exponentialChebyshevApprox ℓ t d).degree ≤ d := by
   unfold exponentialChebyshevApprox
@@ -119,7 +129,9 @@ theorem degree_exponentialChebyshevApprox_le (ℓ : ℝ) (t d : ℕ) :
 /-- The Chebyshev-compressed exponential has error at most the factorial tail plus the
 uniform monomial-compression error.
 Source: Sachdeva–Vishnoi, Theorem 4.1.
-Atlas `exp-polynomial-approx` (helper).-/
+Atlas `exp-polynomial-approx` (helper).
+@isnad1 id=le.4h4v.s7.2dd3fe0ff062 from=translated src=- shape=12c05c89 vocab=3f4d6d6f
+-/
 theorem abs_exp_sub_eval_exponentialChebyshevApprox_le {ℓ : ℝ} (hℓ : 0 ≤ ℓ)
     {t : ℕ} (_ht0 : 0 < t) (ht : exp 2 * ℓ ≤ (t : ℝ)) (d : ℕ) {y : ℝ}
     (hy : y ∈ Set.Icc (-1 : ℝ) 1) :
@@ -197,7 +209,9 @@ def exponentialApprox (b δ : ℝ) : ℝ[X] :=
     (exponentialApproxDegree b δ)).comp (C (2 / b) * X - 1)
 
 /-- Affine rescaling preserves the compressed degree upper bound.
-Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 4.1 (`exp-polynomial-approx`).
+@isnad1 id=le.0h2v.s4.df1bf50a1979 from=translated src=- shape=6fdd43cb vocab=4cf5dfd2
+-/
 theorem degree_exponentialApprox_le (b δ : ℝ) :
     (exponentialApprox b δ).degree ≤ exponentialApproxDegree b δ := by
   apply degree_le_of_natDegree_le
@@ -217,7 +231,9 @@ within `δ` on `[0,b]`, for `b>0` and `0<δ≤1`.
 Source: Sachdeva–Vishnoi, Theorem 4.1 supplies the
 displayed ceilings. Its proof uses only the finite monomial approximation and
 factorial exponential series, with no assumed approximation or coefficient-decay premise.
-atlas: exp-polynomial-approx-/
+atlas: exp-polynomial-approx
+@isnad1 id=le.4h3v.s6.b99bf46fb758 from=translated src=- shape=5377db1e vocab=c3e991a6
+-/
 theorem abs_exp_neg_sub_eval_exponentialApprox_le {b δ : ℝ} (hb : 0 < b)
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) {x : ℝ} (hx : x ∈ Set.Icc (0 : ℝ) b) :
     |exp (-x) - (exponentialApprox b δ).eval x| ≤ δ := by
@@ -272,7 +288,9 @@ theorem abs_exp_neg_sub_eval_exponentialApprox_le {b δ : ℝ} (hb : 0 < b)
 /-- Exponential approximation in the existential polynomial interface, with the exact source
 degree `ceil(sqrt(2t log(4/δ)))` and `t=ceil(max(e²b/2,log(2/δ)))`.
 Source: Sachdeva–Vishnoi, Theorem 4.1.
-atlas: exp-polynomial-approx-/
+atlas: exp-polynomial-approx
+@isnad1 id=ex.3h2v.s6.c1b746d94670 from=translated src=- shape=54203e13 vocab=b9d1cab7
+-/
 theorem exists_degree_le_abs_exp_neg_sub_eval_le {b δ : ℝ} (hb : 0 < b)
     (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     ∃ p : ℝ[X], p.degree ≤ exponentialApproxDegree b δ ∧

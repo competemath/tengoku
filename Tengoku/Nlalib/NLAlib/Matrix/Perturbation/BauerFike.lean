@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- Every entry of a diagonalized spectrum is a spectral point of the
 original matrix. Source: Horn–Johnson (2013), Theorem 1.3.7; invertibility
-ensures that the corresponding eigenvector column is nonzero.-/
+ensures that the corresponding eigenvector column is nonzero.
+@isnad1 id=mem.2h5v.s7.054675ec362a from=translated src=- shape=069558b4 vocab=8756ff20
+-/
 theorem mem_spectrum_of_diagonal_intertwining {A V : Matrix n n ℂ} {d : n → ℂ}
     (hV : IsUnit V) (hA : A * V = V * Matrix.diagonal d) (i : n) :
     d i ∈ spectrum ℂ A := by
@@ -40,7 +42,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The Euclidean projResidual Bauer–Fike bound in a form without division.
 Source: Horn–Johnson (2013), Corollary 6.3.4; the norm on matrices is the
 Euclidean operator norm, and the vector norm is explicitly Euclidean.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.3h6v.s8.4f9764cb9b22 from=translated src=- shape=22ba2063 vocab=b8cb0687
+-/
 theorem exists_eigenvalue_distance_mul_euclidean_norm_le_residual
     {A V : Matrix n n ℂ} {d : n → ℂ} (hV : IsUnit V)
     (hA : A * V = V * Matrix.diagonal d) (x : n → ℂ) (hx : x ≠ 0) (μ : ℂ) :
@@ -77,7 +81,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Euclidean Bauer–Fike residual inclusion in quotient form.
 Horn–Johnson (2013), Corollary 6.3.4; nonzero vectors make the denominator
 strictly positive.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.3h6v.s8.7af03e3ea769 from=translated src=- shape=1257bc69 vocab=2f311960
+-/
 theorem exists_eigenvalue_distance_le_euclidean_residual_div
     {A V : Matrix n n ℂ} {d : n → ℂ} (hV : IsUnit V)
     (hA : A * V = V * Matrix.diagonal d) (x : n → ℂ) (hx : x ≠ 0) (μ : ℂ) :
@@ -95,7 +101,9 @@ open scoped Matrix.Norms.L2Operator in
 constant one. Source: Horn–Johnson (2013), Theorem 6.3.14; this is valid for
 every nonzero approximate eigenvector and arbitrary complex approximate
 eigenvalue, without a Hermitian or real-spectrum restriction.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.2h4v.s8.8bbc77672ddb from=translated src=- shape=9a6a018f vocab=f55f9637
+-/
 theorem exists_mem_spectrum_distance_le_euclidean_residual_div_of_normal
     {A : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A) (x : n → ℂ) (hx : x ≠ 0) (μ : ℂ) :
     ∃ ν ∈ spectrum ℂ A, ‖ν - μ‖ ≤
@@ -120,7 +128,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every perturbed eigenvalue of a complex normal matrix is within its
 perturbation's spectral norm of the original spectrum. Source: Horn–Johnson
 (2013), Theorem 6.3.14; the perturbed matrix may be nonnormal.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.2h4v.s7.7863950c4504 from=translated src=- shape=dcb3ef48 vocab=4adac1bf
+-/
 theorem exists_mem_spectrum_distance_le_norm_perturbation_of_normal
     {A E : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A) {μ : ℂ}
     (hμ : μ ∈ spectrum ℂ (A + E)) :

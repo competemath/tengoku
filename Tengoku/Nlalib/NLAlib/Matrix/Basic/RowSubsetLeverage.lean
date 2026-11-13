@@ -26,14 +26,18 @@ def rowSubsetLeverage (X : Matrix n d 𝕜) (T : Finset n) (i : n) : ℝ :=
   RCLike.re (quadForm (rowSubsetGram X T)⁻¹ (star (X i)))
 
 /-- Every row leverage score is nonnegative on a Gram matrix.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=le.0h6v.s5.1bff133e7665 from=translated src=- shape=d69bf85a vocab=43c883a7
+-/
 theorem rowSubsetLeverage_nonneg (X : Matrix n d 𝕜) (T : Finset n) (i : n) :
     0 ≤ rowSubsetLeverage X T i :=
   (rowSubsetGram_posSemidef X T).inv.re_quadForm_nonneg _
 
 /-- The determinant after removing a row is the original determinant times
 one minus its leverage. Singular destinations are included.
-Dereziński–Warmuth 2018, Theorem 2.-/
+Dereziński–Warmuth 2018, Theorem 2.
+@isnad1 id=eq.2h6v.s6.a11de5c1dd16 from=translated src=- shape=3a592090 vocab=d2a8e84d
+-/
 theorem rowSubsetVolume_erase_eq (X : Matrix n d 𝕜) (T : Finset n) {i : n}
     (hi : i ∈ T) (hT : 0 < rowSubsetVolume X T) :
     rowSubsetVolume X (T.erase i) = rowSubsetVolume X T * (1 - rowSubsetLeverage X T i) := by
@@ -51,7 +55,9 @@ theorem rowSubsetVolume_erase_eq (X : Matrix n d 𝕜) (T : Finset n) {i : n}
 
 /-- A selected row has leverage at most one, including rank-destroying
 deletions for which its leverage is exactly one.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=le.2h6v.s6.d8b9c9af7a7c from=translated src=- shape=be88f9af vocab=153f6992
+-/
 theorem rowSubsetLeverage_le_one (X : Matrix n d 𝕜) (T : Finset n) {i : n}
     (hi : i ∈ T) (hT : 0 < rowSubsetVolume X T) : rowSubsetLeverage X T i ≤ 1 := by
   have h := rowSubsetVolume_nonneg X (T.erase i)
@@ -60,7 +66,9 @@ theorem rowSubsetLeverage_le_one (X : Matrix n d 𝕜) (T : Finset n) {i : n}
 
 /-- Full-rank leverage scores over the selected rows sum to the number of
 columns. Dereziński–Warmuth 2018, proof of Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.1h5v.s6.2901cb622ee7 from=translated src=- shape=97c6b2fc vocab=86b87880
+-/
 theorem sum_rowSubsetLeverage (X : Matrix n d 𝕜) (T : Finset n)
     (hT : 0 < rowSubsetVolume X T) :
     (∑ i ∈ T, rowSubsetLeverage X T i) = Fintype.card d := by

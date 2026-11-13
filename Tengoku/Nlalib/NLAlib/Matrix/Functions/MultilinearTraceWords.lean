@@ -35,6 +35,9 @@ def traceWordMultilinear {n : Type*} [Fintype n] [DecidableEq n]
       (fun j => ContinuousLinearMap.mul ℂ (Matrix n n ℂ) (Z j)))
 
 open scoped Matrix.Norms.L2Operator in
+/--
+@isnad1 id=eq.0h4v.s7.41ab52317abd from=translated src=- shape=3ff3ee58 vocab=92b42a54
+-/
 @[simp]
 theorem traceWordMultilinear_apply {n : Type*} [Fintype n] [DecidableEq n]
     {k : ℕ} (Z Y : Fin k → Matrix n n ℂ) :
@@ -54,6 +57,9 @@ def traceWordMultilinearCoefficients {n : Type*} [Fintype n] [DecidableEq n]
     (fun _ => ContinuousLinearMap.mul ℂ (Matrix n n ℂ))
 
 open scoped Matrix.Norms.L2Operator in
+/--
+@isnad1 id=eq.0h3v.s9.d00d5d61b6d4 from=translated src=- shape=d116185d vocab=2a1d1952
+-/
 @[simp]
 theorem traceWordMultilinearCoefficients_apply {n : Type*} [Fintype n] [DecidableEq n]
     {k : ℕ} (Z : Fin k → Matrix n n ℂ) :
@@ -64,7 +70,9 @@ theorem traceWordMultilinearCoefficients_apply {n : Type*} [Fintype n] [Decidabl
 open scoped Matrix.Norms.L2Operator in
 /-- A uniform coefficient bound gives a bound on the actual trace-word
 functional. Its auxiliary operator norm is used only to prove integrability;
-it does not occur in the sharp common-marginal endpoint.-/
+it does not occur in the sharp common-marginal endpoint.
+@isnad1 id=le.1h4v.s9.92a01118ac1b from=translated src=- shape=090fb470 vocab=af840c54
+-/
 theorem norm_traceWordMultilinear_le_of_bound {n : Type*} [Fintype n] [DecidableEq n]
     {k : ℕ} (Z : Fin k → Matrix n n ℂ) {R : ℝ}
     (hZ : ∀ j, specNorm (Z j) ≤ R) :

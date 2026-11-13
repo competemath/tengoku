@@ -19,14 +19,18 @@ open scoped Matrix.Norms.L2Operator MatrixOrder ComplexOrder
 namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- PSD matrices have nonnegative real Frobenius pairing.-/
+/-- PSD matrices have nonnegative real Frobenius pairing.
+@isnad1 id=le.2h3v.s5.8b3f851289f2 from=translated src=- shape=17c45aa5 vocab=794eb700
+-/
 theorem frobInner_nonneg_of_posSemidef {P Q : Matrix n n ℂ}
     (hP : P.PosSemidef) (hQ : Q.PosSemidef) : 0 ≤ frobInner P Q := by
   rw [frobInner_eq_trace, hP.isHermitian.eq]
   exact Complex.nonneg_iff.mp (trace_mul_nonneg_of_posSemidef hP hQ) |>.1
 
 /-- Every Hermitian matrix splits as two orthogonal positive spectral
-parts. Their sum and difference have the same Frobenius norm.-/
+parts. Their sum and difference have the same Frobenius norm.
+@isnad1 id=ex.1h2v.s7.5c40c28964b8 from=translated src=- shape=29829e54 vocab=abd71995
+-/
 theorem exists_posSemidef_parts {H : Matrix n n ℂ} (hH : H.IsHermitian) :
     ∃ P N : Matrix n n ℂ, P.PosSemidef ∧ N.PosSemidef ∧
       H=P-N ∧ frobInner P N=0 ∧ frobSq (P+N)=frobSq H := by
@@ -65,7 +69,9 @@ theorem exists_posSemidef_parts {H : Matrix n n ℂ} (hH : H.IsHermitian) :
   ring
 
 /-- A cone-positive real-linear map has a PSD Rayleigh majorant for
-every Hermitian test, with exactly the same Frobenius norm.-/
+every Hermitian test, with exactly the same Frobenius norm.
+@isnad1 id=ex.2h3v.s9.46baa51556f4 from=translated src=- shape=09987447 vocab=3a9af12f
+-/
 theorem exists_posSemidef_rayleigh_majorant
     (L : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hL : ∀ P : Matrix n n ℂ, P.PosSemidef → (L P).PosSemidef)

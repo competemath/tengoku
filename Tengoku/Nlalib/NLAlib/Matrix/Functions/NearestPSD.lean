@@ -27,14 +27,18 @@ def matrixHermitianPart (A : Matrix n n 𝕜) : Matrix n n 𝕜 := (1 / 2 : ℝ)
 /-- The complementary skew-Hermitian part.-/
 def matrixSkewHermitianPart (A : Matrix n n 𝕜) : Matrix n n 𝕜 := A - matrixHermitianPart A
 
-/-- The Hermitian part is Hermitian over either scalar field.-/
+/-- The Hermitian part is Hermitian over either scalar field.
+@isnad1 id=ishermit.0h3v.s6.792c0959831d from=translated src=- shape=7ed14127 vocab=24bc9a3b
+-/
 theorem isHermitian_matrixHermitianPart (A : Matrix n n 𝕜) :
     (matrixHermitianPart A).IsHermitian := by
   ext i j
   simp [matrixHermitianPart, Matrix.conjTranspose_apply, RCLike.real_smul_eq_coe_mul,
     mul_add, add_comm]
 
-/-- The complementary part changes sign under the adjoint.-/
+/-- The complementary part changes sign under the adjoint.
+@isnad1 id=eq.0h3v.s6.f8513922f578 from=translated src=- shape=7e6218c5 vocab=515b31b6
+-/
 theorem matrixSkewHermitianPart_conjTranspose (A : Matrix n n 𝕜) :
     (matrixSkewHermitianPart A)ᴴ = -matrixSkewHermitianPart A := by
   ext i j
@@ -44,7 +48,9 @@ theorem matrixSkewHermitianPart_conjTranspose (A : Matrix n n 𝕜) :
   norm_num only [RCLike.ofReal_ofNat]
   ring
 
-/-- Skew-Hermitian and Hermitian matrices are Frobenius orthogonal.-/
+/-- Skew-Hermitian and Hermitian matrices are Frobenius orthogonal.
+@isnad1 id=eq.2h4v.s7.1d7c990c2cfe from=translated src=- shape=3049f880 vocab=616541a7
+-/
 theorem frobInner_eq_zero_of_skewHermitian_of_isHermitian {K X : Matrix n n 𝕜}
     (hK : Kᴴ = -K) (hX : X.IsHermitian) : frobInner K X = 0 := by
   have he := frobInner_conjTranspose K X
@@ -60,7 +66,9 @@ def nearestPSD (A : Matrix n n 𝕜) (δ : ℝ) : Matrix n n 𝕜 :=
   (isHermitian_matrixHermitianPart A).spectralClip δ
 
 /-- Clipping is feasible, its outward correction is PSD, and the correction
-is complementary to the part strictly above the floor.-/
+is complementary to the part strictly above the floor.
+@isnad1 id=and.1h4v.s9.0eda5b8edca3 from=translated src=- shape=9e154ebb vocab=73c249b8
+-/
 theorem _root_.Matrix.IsHermitian.spectralClip_properties {H : Matrix n n 𝕜}
     (hH : H.IsHermitian) (δ : ℝ) :
     (hH.spectralClip δ - δ • 1).PosSemidef ∧
@@ -110,7 +118,9 @@ theorem _root_.Matrix.IsHermitian.spectralClip_properties {H : Matrix n n 𝕜}
         · simp [hij]
       rw [hz, Matrix.mul_zero, Matrix.zero_mul]
 
-/-- The spectral clip is Hermitian.-/
+/-- The spectral clip is Hermitian.
+@isnad1 id=ishermit.1h4v.s7.243426bbc44f from=translated src=- shape=9af34abc vocab=0df6a441
+-/
 theorem _root_.Matrix.IsHermitian.isHermitian_spectralClip {H : Matrix n n 𝕜}
     (hH : H.IsHermitian) (δ : ℝ) : (hH.spectralClip δ).IsHermitian := by
   have hp := (hH.spectralClip_properties δ).2.1.isHermitian
@@ -119,7 +129,9 @@ theorem _root_.Matrix.IsHermitian.isHermitian_spectralClip {H : Matrix n n 𝕜}
   exact hp.add hH
 
 /-- The normal-cone variational inequality characterizing the clipped
-projection, for arbitrary input matrices and real PSD floor.-/
+projection, for arbitrary input matrices and real PSD floor.
+@isnad1 id=le.2h5v.s8.c42c7db83e7c from=translated src=- shape=e8d8f75e vocab=d0b5e050
+-/
 theorem frobInner_sub_nearestPSD_le_zero (A : Matrix n n 𝕜) (δ : ℝ)
     {X : Matrix n n 𝕜} (hX : X.IsHermitian) (hfloor : (X - δ • 1).PosSemidef) :
     frobInner (A - nearestPSD A δ) (X - nearestPSD A δ) ≤ 0 := by
@@ -150,7 +162,9 @@ theorem frobInner_sub_nearestPSD_le_zero (A : Matrix n n 𝕜) (δ : ℝ)
 
 /-- Spectral clipping is the unique Frobenius nearest feasible matrix.
 The strict comparison includes arbitrary non-Hermitian inputs.
-atlas: nearest-psd-frobenius (partial)-/
+atlas: nearest-psd-frobenius (partial)
+@isnad1 id=and.0h4v.s9.2055f7f015ae from=translated src=- shape=186ba500 vocab=7c449fbf
+-/
 theorem nearestPSD_unique_minimizer (A : Matrix n n 𝕜) (δ : ℝ) :
     (nearestPSD A δ).IsHermitian ∧ (nearestPSD A δ - δ • 1).PosSemidef ∧
       ∀ X : Matrix n n 𝕜, X.IsHermitian → (X - δ • 1).PosSemidef →
@@ -174,7 +188,9 @@ theorem nearestPSD_unique_minimizer (A : Matrix n n 𝕜) (δ : ℝ) :
 /-- Spectral clipping is nonexpansive in Frobenius norm. The proof uses
 the normal inequalities at both inputs, so no spectral-norm assertion or
 commutativity between the two input matrices is needed.
-atlas: nearest-psd-frobenius (partial)-/
+atlas: nearest-psd-frobenius (partial)
+@isnad1 id=le.0h5v.s7.bafce1874c78 from=translated src=- shape=8ae8ceb3 vocab=dae1f646
+-/
 theorem frobNorm_nearestPSD_sub_le (A B : Matrix n n 𝕜) (δ : ℝ) :
     frobNorm (nearestPSD A δ - nearestPSD B δ) ≤ frobNorm (A - B) := by
   let P := nearestPSD A δ
@@ -201,7 +217,9 @@ theorem frobNorm_nearestPSD_sub_le (A B : Matrix n n 𝕜) (δ : ℝ) :
   nlinarith
 
 /-- The squared size of the clipping correction is the sum of squared
-eigenvalue deficits below the floor.-/
+eigenvalue deficits below the floor.
+@isnad1 id=eq.1h4v.s7.923000f2e500 from=translated src=- shape=7878fc7e vocab=c34ebf36
+-/
 theorem _root_.Matrix.IsHermitian.frobSq_spectralClip_sub {H : Matrix n n 𝕜}
     (hH : H.IsHermitian) (δ : ℝ) :
     frobSq (hH.spectralClip δ - H) =
@@ -236,7 +254,9 @@ theorem _root_.Matrix.IsHermitian.frobSq_spectralClip_sub {H : Matrix n n 𝕜}
 energy plus the squared deficits of Hermitian eigenvalues below the floor.
 Together with uniqueness and nonexpansiveness, this is the full nearest-PSD
 formula for arbitrary input matrices.
-atlas: nearest-psd-frobenius (partial)-/
+atlas: nearest-psd-frobenius (partial)
+@isnad1 id=eq.0h4v.s7.c59e730cc55f from=translated src=- shape=0e1cd164 vocab=95915f50
+-/
 theorem frobSq_sub_nearestPSD_eq (A : Matrix n n 𝕜) (δ : ℝ) :
     frobSq (A - nearestPSD A δ) = frobSq (matrixSkewHermitianPart A) +
       ∑ i, max (δ - (isHermitian_matrixHermitianPart A).eigenvalues i) 0 ^ 2 := by

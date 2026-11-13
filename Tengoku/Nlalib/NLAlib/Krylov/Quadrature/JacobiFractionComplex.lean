@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {A : Matrix n n ℝ} {b : n →
 
 /-- Every actual signed Lanczos compression has the literal complex continued
 fraction at every nonreal argument. Source: operator derivations (OF25).
-atlas: jacobi-matrix-identities (partial)-/
+atlas: jacobi-matrix-identities (partial)
+@isnad1 id=eq.3h6v.s8.6946928cc3bd from=translated src=- shape=6df3deb4 vocab=3cf1ae47
+-/
 theorem inv_smul_one_sub_map_T_apply_zero_zero (D : LanczosDecomp A b q)
     (hA : A.IsHermitian) (hq : 0 < q) {z : ℂ} (hz : z.im ≠ 0) :
     (z • (1 : Matrix (Fin q) (Fin q) ℂ) - D.T.map Complex.ofRealHom)⁻¹

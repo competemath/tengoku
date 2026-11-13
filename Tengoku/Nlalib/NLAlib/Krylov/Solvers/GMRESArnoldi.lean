@@ -48,7 +48,9 @@ namespace ArnoldiDecomp
 variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- `Q_q Q_qᵀ b = b` for the starting vector (`b ∈ K_q`, `q ≥ 1`). Source: Saad (2011)
-[`saad11`], §6.5.3 (`r₀ = β v₁`). Atlas: `gmres-arnoldi-form`.-/
+[`saad11`], §6.5.3 (`r₀ = β v₁`). Atlas: `gmres-arnoldi-form`.
+@isnad1 id=eq.1h5v.s6.7e73f3e1f1de from=translated src=- shape=81249f60 vocab=97d208d4
+-/
 theorem mulVec_transpose_Q_mulVec_self (D : ArnoldiDecomp A b q) (hq : 0 < q) :
     D.Q *ᵥ (D.Qᵀ *ᵥ b) = b := by
   refine mulVec_conjTranspose_mulVec_of_mem_range D.hasOrthonormalCols ?_
@@ -56,7 +58,9 @@ theorem mulVec_transpose_Q_mulVec_self (D : ArnoldiDecomp A b q) (hq : 0 < q) :
   simpa using pow_mulVec_mem_krylovSpace A b (i := 0) hq
 
 /-- `Q_qᵀ b = (q₁ᵀ b) e₁`: the starting vector has a single nonzero Arnoldi coordinate.
-Source: Saad (2011) [`saad11`], §6.5.3 (`r₀ = β v₁`). Atlas: `gmres-arnoldi-form`.-/
+Source: Saad (2011) [`saad11`], §6.5.3 (`r₀ = β v₁`). Atlas: `gmres-arnoldi-form`.
+@isnad1 id=eq.1h5v.s7.00453643b791 from=translated src=- shape=9d2ae74b vocab=90ae4481
+-/
 theorem transpose_Q_mulVec_eq_smul_single (D : ArnoldiDecomp A b q) (hq : 0 < q) :
     D.Qᵀ *ᵥ b = (D.Q.col ⟨0, hq⟩ ⬝ᵥ b) • Pi.single (⟨0, hq⟩ : Fin q) 1 := by
   ext i
@@ -69,7 +73,9 @@ theorem transpose_Q_mulVec_eq_smul_single (D : ArnoldiDecomp A b q) (hq : 0 < q)
 
 /-- **The textbook right-hand side** `Q_qᵀ b = ‖b‖ e₁` when `q₁ᵀ b > 0` (the sign convention of
 `arnoldiDecomp`, `arnoldiBasis_zero_dotProduct_pos`). Source: Trefethen–Bau (1997) [`tb97`],
-Lect. 35; Saad (2011) [`saad11`], §6.5.3. Atlas: `gmres-arnoldi-form`.-/
+Lect. 35; Saad (2011) [`saad11`], §6.5.3. Atlas: `gmres-arnoldi-form`.
+@isnad1 id=eq.2h5v.s7.d87ff7878c65 from=translated src=- shape=75edbe20 vocab=2871ffc2
+-/
 theorem transpose_Q_mulVec_eq_sqrt_smul_single (D : ArnoldiDecomp A b q) (hq : 0 < q)
     (hD : 0 < D.Q.col ⟨0, hq⟩ ⬝ᵥ b) :
     D.Qᵀ *ᵥ b = ‖WithLp.toLp 2 b‖ • Pi.single (⟨0, hq⟩ : Fin q) 1 := by
@@ -88,7 +94,9 @@ every `y`, `‖c − A (x₀ + Q_q y)‖² = ‖Q_{q+1}ᵀ r₀ − H̲_q y‖²
 Source: Trefethen–Bau (1997) [`tb97`], Lect. 35 (eq. (35.3)–(35.4)); Saad (2011) [`saad11`],
 §6.5.3, eq. (6.27). Proof: `r₀ = Q_{q+1} Q_{q+1}ᵀ r₀`, `A Q_q = Q_{q+1} H̲_q`, and `Q_{q+1}`
 preserves norms.
-atlas: gmres-arnoldi-form-/
+atlas: gmres-arnoldi-form
+@isnad1 id=eq.0h7v.s10.f17261d11c8a from=translated src=- shape=b8843305 vocab=807b44ef
+-/
 theorem dotProduct_sub_mulVec_add_mulVec_eq (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1))
     (y : Fin q → ℝ) :
     (c - A *ᵥ (x₀ + (D.restrict q.le_succ).Q *ᵥ y)) ⬝ᵥ
@@ -105,7 +113,9 @@ theorem dotProduct_sub_mulVec_add_mulVec_eq (D : ArnoldiDecomp A (c - A *ᵥ x�
     star_mulVec_dotProduct_mulVec_self_of_hasOrthonormalCols D.hasOrthonormalCols _
 
 /-- Every vector of `K_q(A, b)` is `Q_q y` for some `y` (`range Q_q = K_q`). Source:
-Trefethen–Bau (1997) [`tb97`], Lect. 35. Atlas: `gmres-arnoldi-form`.-/
+Trefethen–Bau (1997) [`tb97`], Lect. 35. Atlas: `gmres-arnoldi-form`.
+@isnad1 id=ex.1h6v.s8.cf035d452690 from=translated src=- shape=df04cacf vocab=d4cc120b
+-/
 theorem exists_eq_mulVec_of_mem (D : ArnoldiDecomp A b (q + 1)) {z : n → ℝ}
     (hz : z ∈ krylovSpace A b q) : ∃ y, z = (D.restrict q.le_succ).Q *ᵥ y := by
   rw [← (D.restrict q.le_succ).range_Q] at hz
@@ -113,7 +123,9 @@ theorem exists_eq_mulVec_of_mem (D : ArnoldiDecomp A b (q + 1)) {z : n → ℝ}
   exact ⟨y, rfl⟩
 
 /-- `Q_q y ∈ K_q(A, b)`. Source: Trefethen–Bau (1997) [`tb97`], Lect. 35.
-Atlas: `gmres-arnoldi-form`.-/
+Atlas: `gmres-arnoldi-form`.
+@isnad1 id=mem.0h6v.s8.deb4ca8a1a28 from=translated src=- shape=6b065406 vocab=d4cc120b
+-/
 theorem restrict_Q_mulVec_mem (D : ArnoldiDecomp A b (q + 1)) (y : Fin q → ℝ) :
     (D.restrict q.le_succ).Q *ᵥ y ∈ krylovSpace A b q := by
   rw [← (D.restrict q.le_succ).range_Q]
@@ -126,7 +138,9 @@ Saad (2011) [`saad11`], §6.5.3, Prop. 6.9; Saad–Schultz (1986) [`ss86`], §3.
 right-hand side is `Q_{q+1}ᵀ r₀` (`= ±‖r₀‖ e₁` for any decomposition,
 `transpose_Q_mulVec_eq_smul_single`); the `‖r₀‖ e₁` form is
 `isGMRESIterate_add_mulVec_iff_of_pos`. Uses atlas `gmres-def`, `arnoldi-relation`.
-atlas: gmres-arnoldi-form-/
+atlas: gmres-arnoldi-form
+@isnad1 id=iff.0h7v.s10.6379236ee69a from=translated src=- shape=a88814c9 vocab=5bc226ef
+-/
 theorem isGMRESIterate_add_mulVec_iff (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1))
     (y : Fin q → ℝ) :
     IsGMRESIterate A c x₀ q (x₀ + (D.restrict q.le_succ).Q *ᵥ y) ↔
@@ -148,7 +162,9 @@ theorem isGMRESIterate_add_mulVec_iff (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q 
 a decomposition with `q₁ᵀ r₀ > 0` (e.g. the canonical `arnoldiDecomp`), `x₀ + Q_q y` is a GMRES
 iterate iff `y` minimises `‖ ‖r₀‖ e₁ − H̲_q y ‖²`. Source: Trefethen–Bau (1997) [`tb97`],
 Lect. 35, Alg. 35.1; Saad (2011) [`saad11`], Prop. 6.9.
-atlas: gmres-arnoldi-form-/
+atlas: gmres-arnoldi-form
+@isnad1 id=iff.1h7v.s11.a17d76158c2b from=translated src=- shape=592f0796 vocab=392bd565
+-/
 theorem isGMRESIterate_add_mulVec_iff_of_pos (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1))
     (hD : 0 < D.Q.col 0 ⬝ᵥ (c - A *ᵥ x₀)) (y : Fin q → ℝ) :
     IsGMRESIterate A c x₀ q (x₀ + (D.restrict q.le_succ).Q *ᵥ y) ↔
@@ -164,7 +180,9 @@ theorem isGMRESIterate_add_mulVec_iff_of_pos (D : ArnoldiDecomp A (c - A *ᵥ x�
 
 /-- **Every GMRES iterate is of Arnoldi form**: if `x` is a GMRES iterate then
 `x = x₀ + Q_q y` for some `y`. Source: Trefethen–Bau (1997) [`tb97`], Lect. 35.
-Atlas: `gmres-arnoldi-form`.-/
+Atlas: `gmres-arnoldi-form`.
+@isnad1 id=ex.1h7v.s8.d09b9bbe46a8 from=translated src=- shape=366d8a5c vocab=51c48f32
+-/
 theorem exists_eq_add_mulVec_of_isGMRESIterate (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1))
     {x : n → ℝ} (hx : IsGMRESIterate A c x₀ q x) :
     ∃ y, x = x₀ + (D.restrict q.le_succ).Q *ᵥ y := by
@@ -175,7 +193,9 @@ theorem exists_eq_add_mulVec_of_isGMRESIterate (D : ArnoldiDecomp A (c - A *ᵥ 
 `‖c − A x‖² = min_y ‖Q_{q+1}ᵀ r₀ − H̲_q y‖²` (as `IsLeast`). Source: Trefethen–Bau (1997)
 [`tb97`], Lect. 35; Saad (2011) [`saad11`], Prop. 6.9 (the residual norm is computed without
 forming `x_q`).
-atlas: gmres-arnoldi-form-/
+atlas: gmres-arnoldi-form
+@isnad1 id=isleast.1h7v.s9.606b69d4be40 from=translated src=- shape=7eddee09 vocab=43e5b078
+-/
 theorem isLeast_dotProduct_of_isGMRESIterate (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1))
     {x : n → ℝ} (hx : IsGMRESIterate A c x₀ q x) :
     IsLeast (Set.range fun y : Fin q → ℝ =>
@@ -195,7 +215,9 @@ No hypothesis on `A`. Source: Saad (2011) [`saad11`], §6.4.1 (Alg. 6.4, `y_m = 
 Saad (2003) [`saad03`], §6.4.1. This identity states the Galerkin condition directly;
 the full FOM predicate and its inverse and residual formulas are in
 `NLAlib.Krylov.Solvers.FOM`.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iff.0h7v.s9.ae01aec0e04b from=translated src=- shape=c5c5e1cd vocab=3951f613
+-/
 theorem forall_dotProduct_sub_mulVec_eq_zero_iff (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     (y : Fin q → ℝ) :
     (∀ z ∈ krylovSpace A (c - A *ᵥ x₀) q, z ⬝ᵥ (c - A *ᵥ (x₀ + D.Q *ᵥ y)) = 0) ↔
@@ -218,7 +240,9 @@ theorem forall_dotProduct_sub_mulVec_eq_zero_iff (D : ArnoldiDecomp A (c - A *�
 /-- **For SPD `A` the FOM iterate is the CG iterate**: if `H_q y = Q_qᵀ r₀` then `x₀ + Q_q y`
 satisfies `IsCGIterate A c x₀ q`. Source: Saad (2003) [`saad03`], §6.7 (CG as the symmetric
 FOM / Lanczos method); Saad (2011) [`saad11`], §6.7.1. Uses atlas `cg-convergence`.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iscgiter.2h7v.s8.1376c921c287 from=translated src=- shape=5fc35a0a vocab=bdecf08a
+-/
 theorem isCGIterate_add_mulVec_of_mulVec_eq (hA : A.PosDef) (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     {y : Fin q → ℝ} (hy : D.H *ᵥ y = D.Qᵀ *ᵥ (c - A *ᵥ x₀)) :
     IsCGIterate A c x₀ q (x₀ + D.Q *ᵥ y) := by

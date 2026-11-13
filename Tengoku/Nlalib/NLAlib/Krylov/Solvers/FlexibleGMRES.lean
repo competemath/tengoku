@@ -28,7 +28,9 @@ variable {H : Matrix q p 𝕜} {b x₀ : n → 𝕜} {g : q → 𝕜}
 omit [DecidableEq q] in
 /-- A realized flexible Arnoldi relation gives the full vector residual.
 Source: Saad (2003), §9.4.1; helper for
-`flexible-gmres-residual-minimization`.-/
+`flexible-gmres-residual-minimization`.
+@isnad1 id=eq.2h12v.s8.8606b101c4ad from=translated src=- shape=16950308 vocab=ac1df43a
+-/
 theorem sub_mulVec_add_mulVec_eq_mulVec_sub_of_mul_eq_mul
     (hAZ : A * Z = V * H) (hr : b - A *ᵥ x₀ = V *ᵥ g) (y : p → 𝕜) :
     b - A *ᵥ (x₀ + Z *ᵥ y) = V *ᵥ (g - H *ᵥ y) := by
@@ -38,7 +40,9 @@ theorem sub_mulVec_add_mulVec_eq_mulVec_sub_of_mul_eq_mul
 /-- Orthonormal flexible Arnoldi coordinates preserve the exact residual
 2-norm. No independence of `Z` or invertibility of `A` is required.
 Source: Saad (2003), equations (9.22)--(9.26), Proposition 9.2.
-atlas: flexible-gmres-residual-minimization (partial)-/
+atlas: flexible-gmres-residual-minimization (partial)
+@isnad1 id=eq.3h12v.s9.8882f8476a27 from=translated src=- shape=2c023810 vocab=cd973342
+-/
 theorem HasOrthonormalCols.norm_sub_mulVec_add_mulVec_eq_of_mul_eq_mul
     (hV : HasOrthonormalCols V) (hAZ : A * Z = V * H)
     (hr : b - A *ᵥ x₀ = V *ᵥ g) (y : p → 𝕜) :
@@ -55,7 +59,9 @@ minimization on the affine trial space `x₀ + range Z`.
 Source: Saad (2003), Proposition 9.2; the theorem applies equally to
 varying, nonlinear or inexact preconditioners once their realized
 Arnoldi relation is supplied.
-atlas: flexible-gmres-residual-minimization (partial)-/
+atlas: flexible-gmres-residual-minimization (partial)
+@isnad1 id=iff.3h12v.s10.5b9e4aa5cadd from=translated src=- shape=b32284fd vocab=e2423d4e
+-/
 theorem HasOrthonormalCols.forall_norm_sub_mulVec_add_mulVec_le_iff
     (hV : HasOrthonormalCols V) (hAZ : A * Z = V * H)
     (hr : b - A *ᵥ x₀ = V *ᵥ g) (y : p → 𝕜) :
@@ -80,7 +86,9 @@ minimum, so a realized flexible Arnoldi relation has a full residual
 minimizer on its affine trial space. Empty and rank-deficient reduced
 systems are included. Source: Saad (2003), Proposition 9.2, with
 finite-dimensional orthogonal projection providing attainment.
-atlas: flexible-gmres-residual-minimization (partial)-/
+atlas: flexible-gmres-residual-minimization (partial)
+@isnad1 id=ex.3h11v.s10.52e76b8f5779 from=translated src=- shape=de920cf2 vocab=e2423d4e
+-/
 theorem HasOrthonormalCols.exists_norm_sub_mulVec_add_mulVec_le
     (hV : HasOrthonormalCols V) (hAZ : A * Z = V * H)
     (hr : b - A *ᵥ x₀ = V *ᵥ g) :

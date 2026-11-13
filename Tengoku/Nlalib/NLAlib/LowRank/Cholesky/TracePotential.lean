@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- The scalar trace potential advances by one reciprocal-rank unit under a Cholesky
 trace-recursion step. Source: manuscript `sa:rp-theorem`; CETW (2025), scalar completion.
-The supporting-line inequality is proved by scalar reciprocal algebra and `log x ≤ x-1`.-/
+The supporting-line inequality is proved by scalar reciprocal algebra and `log x ≤ x-1`.
+@isnad1 id=le.4h3v.s7.bdacce8c5c7d from=translated src=- shape=712062ed vocab=f350735e
+-/
 theorem one_div_le_inv_sub_log_sub_of_step_le
     {a b r : ℝ} (ha : 0 < a) (hb : 0 < b) (hr : 0 < r)
     (hstep : b ≤ a - a ^ 2 / (r * (a + 1))) :
@@ -43,7 +45,9 @@ theorem one_div_le_inv_sub_log_sub_of_step_le
   linarith
 
 /-- The scalar trace potential is strictly decreasing on the positive half-line.
-Source: manuscript `sa:rp-theorem`, potential comparison.-/
+Source: manuscript `sa:rp-theorem`, potential comparison.
+@isnad1 id=lt.2h2v.s5.8cd85aff3229 from=translated src=- shape=9071b9f8 vocab=7f2e634c
+-/
 theorem inv_sub_log_lt_inv_sub_log {a b : ℝ} (ha : 0 < a) (hab : a < b) :
     b⁻¹ - Real.log b < a⁻¹ - Real.log a := by
   have hb : 0 < b := ha.trans hab
@@ -54,7 +58,9 @@ theorem inv_sub_log_lt_inv_sub_log {a b : ℝ} (ha : 0 < a) (hab : a < b) :
 /-- The normalized relative-trace recursion gives the exact logarithmic pivot budget.
 Source: manuscript `sa:rp-theorem`; CETW (2025), scalar completion. This reusable
 scalar theorem includes all positive tolerances and negative budget expressions.
-The adaptive matrix process supplies its recursion separately.-/
+The adaptive matrix process supplies its recursion separately.
+@isnad1 id=le.6h5v.s7.eaf18de5acd8 from=translated src=- shape=ede9deb7 vocab=7c84fd0d
+-/
 theorem le_mul_tail_of_traceExcessDrift_recursion
     (u : ℕ → ℝ) (hmono : Antitone u) {τ r ε : ℝ} (hτ : 0 < τ) (hr : 0 < r)
     (hε : 0 < ε) (hrec : ∀ t, u (t + 1) ≤ u t - traceExcessDrift τ (u t) / r)

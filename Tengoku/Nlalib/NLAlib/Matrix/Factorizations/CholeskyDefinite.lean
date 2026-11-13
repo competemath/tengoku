@@ -17,7 +17,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [LinearOrder n]
 
 /-- A square factor of a positive-definite Gram matrix is invertible.
-Higham, Theorem 10.1; supports `cholesky-decomposition`.-/
+Higham, Theorem 10.1; supports `cholesky-decomposition`.
+@isnad1 id=isunit.2h3v.s6.e88371e38342 from=translated src=- shape=55ed64a4 vocab=b25a067c
+-/
 theorem isUnit_of_mul_transpose_eq_posDef {A L : Matrix n n ℝ}
     (hA : A.PosDef) (hFactor : L * Lᵀ = A) : IsUnit L := by
   have hDet := congrArg Matrix.det hFactor
@@ -31,7 +33,9 @@ theorem isUnit_of_mul_transpose_eq_posDef {A L : Matrix n n ℝ}
 
 /-- Every diagonal entry of an invertible lower-triangular real matrix is
 nonzero; a nonnegative diagonal is therefore positive. Higham, Theorem 10.1;
-supports `cholesky-decomposition`.-/
+supports `cholesky-decomposition`.
+@isnad1 id=lt.3h3v.s6.d86ae10ae8ee from=translated src=- shape=f6627d0c vocab=9fd060d0
+-/
 theorem diag_pos_of_isLowerTriangular_of_isUnit {L : Matrix n n ℝ}
     (hLower : L.IsLowerTriangular) (hUnit : IsUnit L) (hDiag : ∀ i, 0 ≤ L i i) :
     ∀ i, 0 < L i i := by
@@ -44,7 +48,9 @@ theorem diag_pos_of_isLowerTriangular_of_isUnit {L : Matrix n n ℝ}
 /-- Positive-definite real matrices have a unique positive-diagonal triangular
 Cholesky factor, on every finite linearly ordered index type. Higham,
 Theorem 10.1; Trefethen--Bau, Theorem 23.1.
-atlas: cholesky-decomposition (partial)-/
+atlas: cholesky-decomposition (partial)
+@isnad1 id=existsun.1h2v.s6.29e05a52cab6 from=translated src=- shape=3d05270a vocab=55536bf8
+-/
 theorem existsUnique_cholesky_of_posDef (A : Matrix n n ℝ) (hA : A.PosDef) :
     ∃! L : Matrix n n ℝ, L.IsLowerTriangular ∧ (∀ i, 0 < L i i) ∧ L * Lᵀ = A := by
   obtain ⟨L, hLower, hDiag, hFactor'⟩ := exists_eq_mul_transpose_of_posSemidef hA.posSemidef
@@ -58,7 +64,9 @@ theorem existsUnique_cholesky_of_posDef (A : Matrix n n ℝ) (hA : A.PosDef) :
 /-- The determinant of a triangular Cholesky factorization is the product of
 the squared factor diagonals, including an empty product; no positivity of the diagonal is
 needed. Higham, Theorem 10.1; Trefethen–Bau 1997, Lect. 23; Golub–Van Loan 2013, §4.2.
-atlas: cholesky-decomposition (partial)-/
+atlas: cholesky-decomposition (partial)
+@isnad1 id=eq.2h3v.s6.36b6f9a37ab9 from=translated src=- shape=5868e6b5 vocab=f0afd209
+-/
 theorem det_eq_prod_sq_diag_of_cholesky (A L : Matrix n n ℝ)
     (hLower : L.IsLowerTriangular) (hFactor : L * Lᵀ = A) : A.det = ∏ i, L i i ^ 2 := by
   rw [← hFactor, Matrix.det_mul, Matrix.det_transpose, Matrix.det_of_isLowerTriangular L hLower]

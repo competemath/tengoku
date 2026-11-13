@@ -91,7 +91,9 @@ private theorem traceExp_add_matrixLog_diagonal_endpoint
 
 /-- In an eigenbasis of the Hermitian parameter, finite midpoint pinching bounds
 the Lieb trace function by its diagonal trace pairing. Source: Bhatia 1997,
-IX.3; operator derivations §7. Atlas `golden-thompson` (diagonal helper).-/
+IX.3; operator derivations §7. Atlas `golden-thompson` (diagonal helper).
+@isnad1 id=le.1h3v.s7.1022250b5d57 from=translated src=- shape=b052f7a7 vocab=c75cff62
+-/
 theorem traceExp_add_matrixLog_diagonal_le {d : ℕ} [NeZero d]
     (h : Fin d → ℝ) (X : Matrix (Fin d) (Fin d) ℂ) (hX : X.PosDef) :
     traceExp (diagonal (fun i => (h i : ℂ)) + matrixLog X) ≤
@@ -130,7 +132,9 @@ private theorem golden_thompson_fin {d : ℕ} [NeZero d]
 matrices with any finite index type, including the empty matrix. The ordered
 scalar traces are represented by their real parts. Source: Bhatia 1997, IX.3;
 finite pinching proof in operator derivations §7.
-atlas: golden-thompson-/
+atlas: golden-thompson
+@isnad1 id=le.2h3v.s7.4ba69e3460ec from=translated src=- shape=8a1c361e vocab=711f3b20
+-/
 theorem golden_thompson {ι : Type*} [Fintype ι] [DecidableEq ι]
     (H K : Matrix ι ι ℂ) (hH : H.IsHermitian) (hK : K.IsHermitian) :
     traceExp (H + K) ≤ (Matrix.trace (matrixExp H * matrixExp K)).re := by
@@ -162,7 +166,9 @@ private theorem trace_mul_im_eq_zero_of_isHermitian {ι : Type*} [Fintype ι]
 /-- Golden–Thompson stated directly with the complex traces. Both traces are
 real; `ComplexOrder` compares their real values and retains equality of their
 imaginary parts. Source: Bhatia 1997, IX.3; operator derivations §7.
-atlas: golden-thompson-/
+atlas: golden-thompson
+@isnad1 id=le.2h3v.s7.ed1287892d08 from=translated src=- shape=3de7a03d vocab=bd5fd1fe
+-/
 theorem golden_thompson_trace {ι : Type*} [Fintype ι] [DecidableEq ι]
     (H K : Matrix ι ι ℂ) (hH : H.IsHermitian) (hK : K.IsHermitian) :
     Matrix.trace (matrixExp (H + K)) ≤ Matrix.trace (matrixExp H * matrixExp K) := by
@@ -180,7 +186,9 @@ theorem golden_thompson_trace {ι : Type*} [Fintype ι] [DecidableEq ι]
 types: `tr exp(H + log X) ≤ tr(exp H · X)`. Only `H` is Hermitian and `X` is
 positive definite; empty matrices are included. Source: Bhatia 1997, IX.3;
 operator derivations §7 (equivalent variant).
-atlas: golden-thompson-/
+atlas: golden-thompson
+@isnad1 id=le.2h3v.s7.c675eb785466 from=translated src=- shape=89e338d2 vocab=9511851a
+-/
 theorem traceExp_add_matrixLog_le {ι : Type*} [Fintype ι] [DecidableEq ι]
     (H X : Matrix ι ι ℂ) (hH : H.IsHermitian) (hX : X.PosDef) :
     traceExp (H + matrixLog X) ≤ (Matrix.trace (matrixExp H * X)).re := by

@@ -47,7 +47,9 @@ private theorem jacobiLDLPivot_succ (a b : ℕ → ℝ) (k : ℕ) :
 /-- Every pivot of an actual positive definite finite symmetric Jacobi matrix
 is strictly positive. The scalar recurrence therefore has no zero denominator
 before termination; no pivot positivity is assumed separately.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=lt.2h4v.s5.7cab4e609892 from=translated src=- shape=8b61d2c0 vocab=bee527ab
+-/
 theorem jacobiLDLPivot_pos_of_posDef {a b : ℕ → ℝ} {n : ℕ}
     (hJ : (jacobiMatrix a b n).PosDef) {k : ℕ} (hk : k < n) :
     0 < jacobiLDLPivot a b k := by
@@ -68,7 +70,9 @@ def jacobiLDLLower (a b : ℕ → ℝ) (n : ℕ) : Matrix (Fin n) (Fin n) ℝ :=
 
 /-- Positive definiteness makes the recursively defined bidiagonal LDL product
 equal the actual finite symmetric Jacobi matrix, including dimension zero.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.1h3v.s7.202a2063f420 from=translated src=- shape=0c1da336 vocab=f4b5a57c
+-/
 theorem jacobiMatrix_eq_ldl_of_posDef {a b : ℕ → ℝ} {n : ℕ}
     (hJ : (jacobiMatrix a b n).PosDef) :
     jacobiMatrix a b n = jacobiLDLLower a b n *

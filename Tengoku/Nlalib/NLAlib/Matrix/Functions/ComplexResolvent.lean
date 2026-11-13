@@ -20,7 +20,9 @@ namespace NLAlib
 variable {ι 𝕜 : Type*} [Fintype ι] [DecidableEq ι] [Field 𝕜]
 
 /-- The resolvent of a scalar-extended real Hermitian matrix is obtained by
-inverting its scalar spectral differences.-/
+inverting its scalar spectral differences.
+@isnad1 id=eq.2h5v.s9.585a74d9de78 from=translated src=- shape=9594d73c vocab=1f24680a
+-/
 theorem inv_smul_one_sub_map_eq_eigenvector_mul_diagonal
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (f : ℝ →+* 𝕜) {z : 𝕜}
     (hz : ∀ i, z ≠ f (hA.eigenvalues i)) :
@@ -72,7 +74,9 @@ theorem inv_smul_one_sub_map_eq_eigenvector_mul_diagonal
 partial fraction at every point outside the actual spectrum. In particular
 the first diagonal entry gives the Jacobi spectral weights over complex
 shifts. Source: operator derivations (OF27), (AQ18).
-atlas: jacobi-fraction-second-kind (partial), jacobi-matrix-identities (partial)-/
+atlas: jacobi-fraction-second-kind (partial), jacobi-matrix-identities (partial)
+@isnad1 id=eq.2h7v.s9.2893e63578c1 from=translated src=- shape=fa8c4f76 vocab=e88bf541
+-/
 theorem inv_smul_one_sub_map_apply_eq_sum {A : Matrix ι ι ℝ} (hA : A.IsHermitian)
     (f : ℝ →+* 𝕜) {z : 𝕜} (hz : ∀ i, z ≠ f (hA.eigenvalues i)) (r s : ι) :
     (z • (1 : Matrix ι ι 𝕜) - A.map f)⁻¹ r s =

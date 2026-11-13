@@ -27,7 +27,9 @@ variable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
 dimension at most one force the operator minimal polynomial to have full degree.
 Repeated eigenvalues and empty matrices are included.
 Source: operator derivations, geometric criterion following (S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=eq.2h3v.s12.830585c3a775 from=translated src=- shape=dfd68f96 vocab=eea55bab
+-/
 theorem natDegree_minpoly_eq_card_of_finrank_eigenspace_le_one
     (A : Matrix n n K) (hsplit : A.charpoly.Splits)
     (hgeom : ∀ μ : K, Module.finrank K (Module.End.eigenspace (Matrix.toLin' A) μ) ≤ 1) :
@@ -68,7 +70,9 @@ theorem natDegree_minpoly_eq_card_of_finrank_eigenspace_le_one
 /-- A full-grade vector makes every eigenspace at most one-dimensional,
 without requiring a splitting field or a simple algebraic spectrum.
 Source: operator derivations, geometric criterion following (S3).
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=le.1h5v.s12.ab5dc0a1bcf2 from=translated src=- shape=a6da6564 vocab=76d70e60
+-/
 theorem finrank_eigenspace_le_one_of_krylovGrade_eq_card
     {A : Matrix n n K} {b : n → K} (hb : krylovGrade A b = Fintype.card n) (μ : K) :
     Module.finrank K (Module.End.eigenspace (Matrix.toLin' A) μ) ≤ 1 := by
@@ -121,7 +125,9 @@ theorem finrank_eigenspace_le_one_of_krylovGrade_eq_card
 to geometric simplicity of every eigenvalue, including repeated eigenvalues.
 The empty-dimensional statement is vacuous on the geometric side.
 Source: Horn–Johnson (2013), Theorem 3.3.14; operator derivations, Section 6.
-atlas: companion-matrix (partial)-/
+atlas: companion-matrix (partial)
+@isnad1 id=iff.1h3v.s12.74e0f5b0c890 from=translated src=- shape=74435ec2 vocab=eea55bab
+-/
 theorem natDegree_minpoly_eq_card_iff_finrank_eigenspace_le_one
     (A : Matrix n n K) (hsplit : A.charpoly.Splits) :
     (minpoly K A).natDegree = Fintype.card n ↔

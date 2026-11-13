@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- Nonterminal Gauss nodes lie between the support infimum and supremum
 whenever the support is bounded. Source: Gautschi (2004), Theorem 1.19.
-atlas: orthogonal-polynomial-zeros (partial)-/
+atlas: orthogonal-polynomial-zeros (partial)
+@isnad1 id=mem.4h3v.s6.660533109883 from=translated src=- shape=5905cae9 vocab=f669beec
+-/
 theorem gaussNodes_mem_Ioo_sInf_sSup_support {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     {n : ℕ} (hn : (n + 1 : ℕ∞) ≤ μ.support.encard)
     (hlo : BddBelow μ.support) (hhi : BddAbove μ.support) (i : Fin n) :

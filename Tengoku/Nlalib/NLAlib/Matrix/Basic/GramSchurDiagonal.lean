@@ -22,7 +22,9 @@ def gramRowResidual {n k : ℕ} (H : Matrix (Fin n) (Fin k) 𝕜) (g : Fin k →
   star g ⬝ᵥ g - star (H*ᵥg) ⬝ᵥ ((H*Hᴴ)⁻¹*ᵥ(H*ᵥg))
 
 /-- A diagonal inverse Hermitian-Gram entry is the reciprocal squared
-residual of the corresponding conjugated row against the other rows.-/
+residual of the corresponding conjugated row against the other rows.
+@isnad1 id=eq.1h5v.s9.929d2a1f1886 from=translated src=- shape=c45e8f34 vocab=8fd08486
+-/
 theorem inv_self_mul_conjTranspose_apply_self {n k : ℕ}
     (G : Matrix (Fin (n+1)) (Fin k) 𝕜) (i : Fin (n+1))
     (hH : IsUnit (G.submatrix i.succAbove id * (G.submatrix i.succAbove id)ᴴ)) :

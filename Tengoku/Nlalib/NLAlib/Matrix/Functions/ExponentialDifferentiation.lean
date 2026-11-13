@@ -25,12 +25,16 @@ private local instance : NormedAlgebra ℝ (Matrix n n 𝕜) := normedAlgebraRea
 private local instance : NormedAlgebra ℚ (Matrix n n 𝕜) := NormedAlgebra.restrictScalars ℚ ℝ _
 
 /-- The matrix exponential is Fréchet differentiable on its full algebra,
-over either the real or complex scalar field.-/
+over either the real or complex scalar field.
+@isnad1 id=hasfderi.0h3v.s8.f12dec587147 from=translated src=- shape=1627b57d vocab=13049c79
+-/
 theorem hasFDerivAt_matrixExp (A : Matrix n n 𝕜) :
     HasFDerivAt matrixExp (fderiv 𝕜 matrixExp A) A := by
   exact (NormedSpace.exp_analytic (𝕂 := 𝕜) A).differentiableAt.hasFDerivAt
 
-/-- The exact Duhamel difference formula for arbitrary square matrices.-/
+/-- The exact Duhamel difference formula for arbitrary square matrices.
+@isnad1 id=eq.0h4v.s8.6b50929a9abc from=translated src=- shape=f1510372 vocab=385b57ec
+-/
 theorem matrixExp_sub_matrixExp_eq_integral (A B : Matrix n n 𝕜) :
     matrixExp A - matrixExp B =
       ∫ t : ℝ in 0..1, matrixExp ((1-t) • A) * (A-B) * matrixExp (t • B) := by
@@ -57,7 +61,9 @@ theorem matrixExp_sub_matrixExp_eq_integral (A B : Matrix n n 𝕜) :
 /-- The full Fréchet derivative of the matrix exponential is the
 noncommutative insertion integral. Both real and complex matrices and
 empty dimensions are covered.
-atlas: matrix-exponential-frechet-integral-/
+atlas: matrix-exponential-frechet-integral
+@isnad1 id=eq.0h4v.s10.86ade341d77e from=translated src=- shape=0ffaa7f5 vocab=644f9247
+-/
 theorem fderiv_matrixExp_apply (A E : Matrix n n 𝕜) :
     fderiv 𝕜 matrixExp A E =
       ∫ s : ℝ in 0..1, matrixExp ((1-s) • A) * E * matrixExp (s • A) := by

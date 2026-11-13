@@ -26,13 +26,17 @@ def matrixPositiveMap (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
     Matrix n n ℂ →ₚ[ℂ] Matrix n n ℂ :=
   PositiveLinearMap.mk₀ S.toLinearMap hS
 
-/-- Positivity forces a complex-linear matrix map to preserve imaginary parts.-/
+/-- Positivity forces a complex-linear matrix map to preserve imaginary parts.
+@isnad1 id=eq.1h3v.s11.62bcb89b39d6 from=translated src=- shape=06819f38 vocab=c0e7f91a
+-/
 theorem matrix_map_imaginaryPart (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
     (hS : ∀ X : Matrix n n ℂ, 0 ≤ X → 0 ≤ S X) (X : Matrix n n ℂ) :
     S (imaginaryPart X : Matrix n n ℂ) = (imaginaryPart (S X) : Matrix n n ℂ) :=
   map_imaginaryPart (matrixPositiveMap S hS) X
 
-/-- The imaginary part of the coefficient in the Dyson identity.-/
+/-- The imaginary part of the coefficient in the Dyson identity.
+@isnad1 id=eq.2h5v.s11.6174fcd46772 from=translated src=- shape=b799d8d0 vocab=31d4adb7
+-/
 theorem imaginaryPart_matrixDysonCoefficient
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -47,7 +51,9 @@ theorem imaginaryPart_matrixDysonCoefficient
 
 /-- A positive-imaginary Dyson solution has the exact `1 / Im z` norm bound.
 The proof uses the genuine Euclidean operator norm and allows nonnormal matrices.
-atlas: matrix-dyson-stieltjes-representation (partial)-/
+atlas: matrix-dyson-stieltjes-representation (partial)
+@isnad1 id=le.5h5v.s10.9295c7d4cbf9 from=translated src=- shape=3f9f9da6 vocab=b71810ec
+-/
 theorem specNorm_le_inv_im_of_matrixDyson
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)
@@ -59,7 +65,9 @@ theorem specNorm_le_inv_im_of_matrixDyson
   rw [imaginaryPart_matrixDysonCoefficient A hA S hS]
   exact le_add_of_nonneg_right (hS _ hpos)
 
-/-- The imaginary Dyson identity is a genuine matrix congruence identity.-/
+/-- The imaginary Dyson identity is a genuine matrix congruence identity.
+@isnad1 id=eq.3h5v.s11.9f0a436a2040 from=translated src=- shape=93eb5e3a vocab=5f7aeffc
+-/
 theorem imaginaryPart_eq_matrixDyson_congruence
     (A : Matrix n n ℂ) (hA : A.IsHermitian)
     (S : Matrix n n ℂ →L[ℂ] Matrix n n ℂ)

@@ -18,7 +18,9 @@ variable {𝕜 s r q : Type*} [RCLike 𝕜] [Fintype s] [Fintype r] [Fintype q]
   [DecidableEq s] [DecidableEq r]
 
 omit [DecidableEq s] in
-/-- The full-column-rank pseudoinverse has inverse Gram as its row Gram.-/
+/-- The full-column-rank pseudoinverse has inverse Gram as its row Gram.
+@isnad1 id=eq.1h4v.s8.555fd0efe3a0 from=translated src=- shape=5b8854a5 vocab=b5760890
+-/
 theorem pinvL_mul_conjTranspose_eq_inv_gram (F : Matrix s r 𝕜) (hF : IsUnit (Fᴴ*F)) :
     pinvL F*(pinvL F)ᴴ=(Fᴴ*F)⁻¹ := by
   rw [pinvL_conjTranspose, pinvL, pinvR, Matrix.conjTranspose_conjTranspose]
@@ -26,7 +28,9 @@ theorem pinvL_mul_conjTranspose_eq_inv_gram (F : Matrix s r 𝕜) (hF : IsUnit (
     _ = ((Fᴴ*F)⁻¹*(Fᴴ*F))*(Fᴴ*F)⁻¹ := by simp only [Matrix.mul_assoc]
     _ = _ := by rw [Matrix.nonsing_inv_mul _ ((Matrix.isUnit_iff_isUnit_det _).mp hF), Matrix.one_mul]
 
-/-- The true lower-block noise Gram is inverse top Gram minus identity.-/
+/-- The true lower-block noise Gram is inverse top Gram minus identity.
+@isnad1 id=eq.2h6v.s9.91c5cdecaf3e from=translated src=- shape=3afed62c vocab=d7e50abf
+-/
 theorem pinvL_blockNoise_mul_conjTranspose (F : Matrix s r 𝕜) (H : Matrix s q 𝕜)
     (hF : IsUnit (Fᴴ*F)) (hrow : F*Fᴴ+H*Hᴴ=1) :
     (pinvL F*H)*(pinvL F*H)ᴴ=(Fᴴ*F)⁻¹-1 := by
@@ -41,7 +45,9 @@ theorem pinvL_blockNoise_mul_conjTranspose (F : Matrix s r 𝕜) (H : Matrix s q
       rw [pinvL_mul_conjTranspose_eq_inv_gram F hF, pinvL_mul hF,
         Matrix.conjTranspose_one, Matrix.one_mul]
 
-/-- Exact deterministic scalar trace of the actual block noise.-/
+/-- Exact deterministic scalar trace of the actual block noise.
+@isnad1 id=eq.2h6v.s9.687cc2ea5da1 from=translated src=- shape=029b1e93 vocab=f010cc46
+-/
 theorem frobSq_pinvL_blockNoise_eq_trace_inv_sub_card (F : Matrix s r 𝕜) (H : Matrix s q 𝕜)
     (hF : IsUnit (Fᴴ*F)) (hrow : F*Fᴴ+H*Hᴴ=1) :
     frobSq (pinvL F*H)=RCLike.re ((Fᴴ*F)⁻¹).trace-Fintype.card r := by
@@ -51,7 +57,9 @@ theorem frobSq_pinvL_blockNoise_eq_trace_inv_sub_card (F : Matrix s r 𝕜) (H :
 
 omit [Fintype s] [DecidableEq r] in
 /-- Splitting a complete fixed frame inside an orthonormal sketch produces the
-exact row-block identity, with no probabilistic or rank hypotheses.-/
+exact row-block identity, with no probabilistic or rank hypotheses.
+@isnad1 id=eq.2h8v.s10.17f25835d74b from=translated src=- shape=fc525b7d vocab=c92df3b4
+-/
 theorem rowGram_sketch_blocks_eq_one {m : Type*} [Fintype m] [DecidableEq m]
     (Ω : Matrix m s 𝕜) (U : Matrix m r 𝕜) (V : Matrix m q 𝕜)
     (hΩ : HasOrthonormalCols Ω) (hcomp : U*Uᴴ+V*Vᴴ=1) :

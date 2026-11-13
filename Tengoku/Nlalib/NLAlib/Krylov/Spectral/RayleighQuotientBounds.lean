@@ -17,7 +17,9 @@ estimate in the accompanying RQI card.
 namespace NLAlib.RayleighQuotientIteration
 
 /-- In the stated local neighborhood the Rayleigh error is at most one quarter of the gap.
-This scalar estimate is a helper for `rayleigh-quotient-iteration`.-/
+This scalar estimate is a helper for `rayleigh-quotient-iteration`.
+@isnad1 id=le.5h4v.s7.0befca3c6b20 from=translated src=- shape=5d41cc78 vocab=70d00927
+-/
 theorem error_le_gap_div_four {g M q e : ℝ} (_hg : 0 < g) (hM : 0 < M)
     (hq : 0 ≤ q) (hlocal : q ≤ g / (4 * M))
     (he : e ≤ M * q / (1 + q)) : e ≤ g / 4 := by
@@ -31,7 +33,9 @@ theorem error_le_gap_div_four {g M q e : ℝ} (_hg : 0 < g) (hM : 0 < M)
   exact he.trans (hfrac.trans hMq)
 
 /-- The one-step spectral fraction is at most `2 e / g` in the local neighborhood.
-Helper for `rayleigh-quotient-iteration`.-/
+Helper for `rayleigh-quotient-iteration`.
+@isnad1 id=le.3h2v.s6.8fa29d98795e from=translated src=- shape=b95cd1fd vocab=103e99f5
+-/
 theorem error_div_gap_sub_le {g e : ℝ} (hg : 0 < g) (he : 0 ≤ e)
     (heg : e ≤ g / 4) : e / (g - e) ≤ 2 * e / g := by
   have hge : 0 < g - e := by linarith
@@ -39,7 +43,9 @@ theorem error_div_gap_sub_le {g e : ℝ} (hg : 0 < g) (he : 0 ≤ e)
   nlinarith [mul_nonneg he (show 0 ≤ g - 2 * e by linarith)]
 
 /-- Cubic contraction of the squared tangent, with the stated explicit constants, from
-the finite spectral estimate. Helper for `rayleigh-quotient-iteration`.-/
+the finite spectral estimate. Helper for `rayleigh-quotient-iteration`.
+@isnad1 id=and.7h5v.s8.c6f9685b1b87 from=translated src=- shape=d28df98f vocab=762a6581
+-/
 theorem tangent_sq_cubic_le {g M q e q' : ℝ} (hg : 0 < g) (hM : 0 < M)
     (hq : 0 ≤ q) (he : 0 ≤ e) (hlocal : q ≤ g / (4 * M))
     (herr : e ≤ M * q / (1 + q))
@@ -78,7 +84,9 @@ theorem tangent_sq_cubic_le {g M q e q' : ℝ} (hg : 0 < g) (hM : 0 < M)
     _ = q / 4 := by ring
 
 /-- The Rayleigh error after a step is sixth order in the incoming tangent.
-Helper for `rayleigh-quotient-iteration`.-/
+Helper for `rayleigh-quotient-iteration`.
+@isnad1 id=le.3h5v.s7.c40e6ca64326 from=translated src=- shape=d4651b47 vocab=d46e17f2
+-/
 theorem error_le_tangent_sq_cube {g M q q' e' : ℝ} (hM : 0 ≤ M)
     (hstep : q' ≤ (2 * M / g) ^ 2 * q ^ 3) (herr : e' ≤ M * q') :
     e' ≤ (4 * M ^ 3 / g ^ 2) * q ^ 3 := by
@@ -89,7 +97,9 @@ theorem error_le_tangent_sq_cube {g M q q' e' : ℝ} (hM : 0 ≤ M)
 
 /-- At an extremal eigenvalue the lower Rayleigh error bound turns the angle contraction
 into scalar cubic convergence with constant `8 M / g³`. This is a scalar helper; the
-matrix theorem must establish the extremal spectral lower bound.-/
+matrix theorem must establish the extremal spectral lower bound.
+@isnad1 id=le.9h6v.s8.c8e21b6cdee9 from=translated src=- shape=ae4a9565 vocab=762a6581
+-/
 theorem error_step_le_cube {g M q e q' e' : ℝ} (hg : 0 < g) (hM : 0 ≤ M)
     (hq : 0 ≤ q) (he : 0 ≤ e) (hqone : q ≤ 1) (heg : e ≤ g / 4)
     (hlower : g * q / (1 + q) ≤ e)

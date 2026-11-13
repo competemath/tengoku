@@ -28,7 +28,9 @@ def choleskyPivotProbability (R : Matrix n n 𝕜) (i : n) : ℝ :=
   if RCLike.re R.trace = 0 then 1 / (Fintype.card n : ℝ)
   else RCLike.re (R i i) / RCLike.re R.trace
 
-/-- The pivot law sums to one, including the absorbing zero state. CETW 2023, Alg. 1.-/
+/-- The pivot law sums to one, including the absorbing zero state. CETW 2023, Alg. 1.
+@isnad1 id=eq.0h3v.s5.43cef8de81de from=translated src=- shape=065a4c23 vocab=9d9fc411
+-/
 theorem sum_choleskyPivotProbability [Nonempty n] (R : Matrix n n 𝕜) :
     ∑ i, choleskyPivotProbability R i = 1 := by
   by_cases ht : RCLike.re R.trace = 0
@@ -39,7 +41,9 @@ theorem sum_choleskyPivotProbability [Nonempty n] (R : Matrix n n 𝕜) :
     rw [show (∑ i, RCLike.re (R i i)) = RCLike.re R.trace by simp [Matrix.trace, map_sum]]
     exact div_self ht
 
-/-- A PSD residual gives a nonnegative pivot law. CETW 2023, Alg. 1.-/
+/-- A PSD residual gives a nonnegative pivot law. CETW 2023, Alg. 1.
+@isnad1 id=le.1h4v.s5.070bfd54a6b9 from=translated src=- shape=6e3d4adb vocab=5dfaadd7
+-/
 theorem choleskyPivotProbability_nonneg {R : Matrix n n 𝕜} (hR : R.PosSemidef) (i : n) :
     0 ≤ choleskyPivotProbability R i := by
   unfold choleskyPivotProbability
@@ -51,7 +55,9 @@ variable [DecidableEq n]
 
 omit [DecidableEq n] in
 /-- Multiplying the diagonal-over-trace pivot probability by the residual trace
-recovers its diagonal, including the absorbing zero state. CETW 2023, Alg. 1.-/
+recovers its diagonal, including the absorbing zero state. CETW 2023, Alg. 1.
+@isnad1 id=eq.1h4v.s8.693dca9446d9 from=translated src=- shape=6bf00f32 vocab=3aa57ba2
+-/
 theorem choleskyPivotProbability_mul_re_trace {R : Matrix n n 𝕜}
     (hR : R.PosSemidef) (i : n) :
     choleskyPivotProbability R i * RCLike.re R.trace = RCLike.re (R i i) := by
@@ -61,7 +67,9 @@ theorem choleskyPivotProbability_mul_re_trace {R : Matrix n n 𝕜}
   · simp [choleskyPivotProbability, ht]
 
 /-- **One-step mean of RPCholesky**: for a PSD residual with `tr R ≠ 0`, the pivot-law average of
-the elimination step is `R − R² / tr R`. CETW 2023, Lemma 5.3.-/
+the elimination step is `R − R² / tr R`. CETW 2023, Lemma 5.3.
+@isnad1 id=eq.2h3v.s9.84cf94242cb8 from=translated src=- shape=f1e6f9fc vocab=5a8e25af
+-/
 theorem sum_choleskyPivotProbability_smul_eliminationStep_eq [Nonempty n]
     {R : Matrix n n 𝕜} (hR : R.PosSemidef) (ht : RCLike.re R.trace ≠ 0) :
     (∑ i, choleskyPivotProbability R i • eliminationStep R i) =
@@ -86,7 +94,9 @@ theorem sum_choleskyPivotProbability_smul_eliminationStep_eq [Nonempty n]
   simp only [choleskyPivotProbability, ite_eq_right ht, hc, ← Finset.smul_sum, Matrix.mul_apply]
 
 /-- **Expected trace after one RPCholesky step**: `tr R − tr(R²)/tr R` (real parts), also at the
-absorbing zero state. CETW 2023, Lemma 5.3.-/
+absorbing zero state. CETW 2023, Lemma 5.3.
+@isnad1 id=eq.1h3v.s9.3332e91f1024 from=translated src=- shape=26b8fbd6 vocab=a3bb58a5
+-/
 theorem sum_choleskyPivotProbability_mul_re_trace_eliminationStep_eq [Nonempty n]
     {R : Matrix n n 𝕜} (hR : R.PosSemidef) :
     (∑ i, choleskyPivotProbability R i * RCLike.re (eliminationStep R i).trace) =

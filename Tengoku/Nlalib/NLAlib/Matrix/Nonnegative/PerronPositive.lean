@@ -124,7 +124,9 @@ omit [DecidableEq ι] in
 eigenvector with a strictly positive eigenvalue. The eigenpair is constructed
 by compact minimization, without an eigenpair hypothesis.
 Source: Horn–Johnson, Chapter 8.
-atlas: nonnegative-perron-eigenpair (partial)-/
+atlas: nonnegative-perron-eigenpair (partial)
+@isnad1 id=ex.1h2v.s7.34e97fa510a7 from=translated src=- shape=fe7de415 vocab=30da49a8
+-/
 theorem exists_positive_eigenpair_of_pos {A : Matrix ι ι ℝ}
     (hA : ∀ i j, 0 < A i j) :
     ∃ (r : ℝ) (p : ι → ℝ), 0 < r ∧ (∀ i, 0 < p i) ∧

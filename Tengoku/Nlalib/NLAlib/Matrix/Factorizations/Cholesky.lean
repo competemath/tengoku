@@ -50,13 +50,17 @@ structure IsCholesky (A L : Matrix n n ℝ) : Prop where
   /-- `A = L Lᵀ`.-/
   eq_mul_transpose : A = L * Lᵀ
 
-/-- A Cholesky factor is invertible.-/
+/-- A Cholesky factor is invertible.
+@isnad1 id=isunit.1h3v.s5.6562aa8f8b3a from=translated src=- shape=f92f8610 vocab=49363778
+-/
 theorem IsCholesky.isUnit_det {A L : Matrix n n ℝ} (h : IsCholesky A L) : IsUnit L.det :=
   (isUnit_det_iff_of_isLowerTriangular h.isLowerTriangular).2 fun i => (h.apply_self_pos i).ne'
 
 /-- A matrix with a Cholesky factorization is positive definite (`L` invertible, so
 `xᵀ A x = ‖Lᵀ x‖² > 0` for `x ≠ 0`). Trefethen–Bau 1997, Thm 23.1 (converse direction).
-atlas: cholesky-decomposition (partial)-/
+atlas: cholesky-decomposition (partial)
+@isnad1 id=posdef.1h3v.s5.951a579a42d1 from=translated src=- shape=7ae0de42 vocab=6f3ebb2c
+-/
 theorem IsCholesky.posDef {A L : Matrix n n ℝ} (h : IsCholesky A L) : A.PosDef := by
   have hL : IsUnit L := (Matrix.isUnit_iff_isUnit_det L).2 h.isUnit_det
   have := PosDef.mul_conjTranspose_self L (vecMul_injective_iff_isUnit.2 hL)
@@ -65,7 +69,9 @@ theorem IsCholesky.posDef {A L : Matrix n n ℝ} (h : IsCholesky A L) : A.PosDef
 /-- **Uniqueness of the Cholesky factor**. Proof: `D = L'⁻¹ L = L'ᵀ L⁻ᵀ` is lower and upper
 triangular, hence diagonal with positive diagonal, and `D Dᵀ = 1`, so `D = 1`.
 Trefethen–Bau 1997, Thm 23.1; Golub–Van Loan 2013, Thm 4.2.7; Higham 2002, Thm 10.1.
-atlas: cholesky-decomposition (partial)-/
+atlas: cholesky-decomposition (partial)
+@isnad1 id=eq.2h4v.s5.aa7b9acdcbc2 from=translated src=- shape=bef4a725 vocab=e5a52e71
+-/
 theorem IsCholesky.unique {A L L' : Matrix n n ℝ} (h : IsCholesky A L) (h' : IsCholesky A L') :
     L = L' := by
   have hL := h.isUnit_det
@@ -134,14 +140,18 @@ def CholeskySucceeds : {n : ℕ} → Matrix (Fin n) (Fin n) ℝ → Prop
   | 0, _ => True
   | _ + 1, A => 0 < A 0 0 ∧ CholeskySucceeds (pivotSchur A)
 
-/-- The Cholesky recursion always returns a lower triangular matrix.-/
+/-- The Cholesky recursion always returns a lower triangular matrix.
+@isnad1 id=islowert.0h2v.s4.f611a08e3fc1 from=translated src=- shape=e91b6013 vocab=2e5397fa
+-/
 theorem isLowerTriangular_cholesky {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) :
     (cholesky A).IsLowerTriangular := by
   induction n with
   | zero => exact fun i => i.elim0
   | succ n ih => exact isLowerTriangular_borderedMatrix_iff.2 ⟨rfl, ih _⟩
 
-/-- The diagonal of the Cholesky recursion is nonnegative (square roots).-/
+/-- The diagonal of the Cholesky recursion is nonnegative (square roots).
+@isnad1 id=le.0h3v.s4.3b402f1c0926 from=translated src=- shape=14c2e0f5 vocab=6b515729
+-/
 theorem cholesky_apply_self_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (i : Fin n) :
     0 ≤ cholesky A i i := by
   induction n with
@@ -152,7 +162,9 @@ theorem cholesky_apply_self_nonneg {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (i
     · simpa [cholesky] using ih _ i
 
 /-- The pivots are the squares of the diagonal: the recursion succeeds iff the diagonal of
-`cholesky A` is positive.-/
+`cholesky A` is positive.
+@isnad1 id=iff.0h2v.s4.3bd0c88a4722 from=translated src=- shape=eff72aba vocab=57076bef
+-/
 theorem choleskySucceeds_iff_forall_cholesky_apply_self_pos {n : ℕ}
     (A : Matrix (Fin n) (Fin n) ℝ) : CholeskySucceeds A ↔ ∀ i, 0 < cholesky A i i := by
   induction n with
@@ -198,7 +210,9 @@ theorem eq_cholesky_mul_transpose_of_pivotSchur {n : ℕ}
 `cholesky A` is the Cholesky factor. Proof: induction on `n` with
 `eq_cholesky_mul_transpose_of_pivotSchur`; the Schur complement stays symmetric
 (`isHermitian_pivotSchur`). Trefethen–Bau 1997, Alg. 23.1; Golub–Van Loan 2013, §4.2.5.
-atlas: cholesky-algorithm-/
+atlas: cholesky-algorithm
+@isnad1 id=ischoles.2h2v.s5.720424428ec9 from=translated src=- shape=c640df13 vocab=b5fe67d5
+-/
 theorem isCholesky_cholesky {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.IsHermitian)
     (h : CholeskySucceeds A) : IsCholesky A (cholesky A) := by
   refine ⟨isLowerTriangular_cholesky A,
@@ -214,7 +228,9 @@ theorem isCholesky_cholesky {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.I
 is positive definite (Cholesky is the test for positive definiteness). Proof: induction on `n`
 with `posDef_iff_pivotSchur`. Trefethen–Bau 1997, Thm 23.1; Golub–Van Loan 2013, §4.2.5;
 Horn–Johnson 2013, Cor. 7.2.9.
-atlas: cholesky-algorithm-/
+atlas: cholesky-algorithm
+@isnad1 id=iff.1h2v.s5.fa49cd17aeea from=translated src=- shape=f77cffd1 vocab=acbefcc1
+-/
 theorem choleskySucceeds_iff_posDef {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.IsHermitian) :
     CholeskySucceeds A ↔ A.PosDef := by
   induction n with
@@ -226,7 +242,9 @@ theorem choleskySucceeds_iff_posDef {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (
     rw [CholeskySucceeds, ih (isHermitian_pivotSchur hA), posDef_iff_pivotSchur hA]
 
 /-- **Realisation on `Fin n`**: a positive definite matrix on `Fin n` has the Cholesky factor
-`cholesky A`. Trefethen–Bau 1997, Thm 23.1; Golub–Van Loan 2013, Thm 4.2.7.-/
+`cholesky A`. Trefethen–Bau 1997, Thm 23.1; Golub–Van Loan 2013, Thm 4.2.7.
+@isnad1 id=ischoles.1h2v.s4.bdca48a11684 from=translated src=- shape=c4230245 vocab=e9575ce6
+-/
 theorem isCholesky_cholesky_of_posDef {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ} (hA : A.PosDef) :
     IsCholesky A (cholesky A) :=
   isCholesky_cholesky hA.isHermitian ((choleskySucceeds_iff_posDef hA.isHermitian).2 hA)
@@ -257,7 +275,9 @@ section Existence
 variable {m n : Type*} [Fintype m] [LinearOrder m] [Fintype n] [LinearOrder n]
 
 /-- A lower-triangular factorization `A = L Lᵀ` transports along an order isomorphism of the
-index type (with any predicate `P` on the diagonal).-/
+index type (with any predicate `P` on the diagonal).
+@isnad1 id=ex.2h7v.s8.bb4bed1d2fb4 from=translated src=- shape=5be3acf8 vocab=aa63aace
+-/
 theorem exists_eq_mul_transpose_submatrix {A L : Matrix n n ℝ} (P : ℝ → Prop)
     (hL : L.IsLowerTriangular) (hP : ∀ i, P (L i i)) (hA : A = L * Lᵀ) (e : m ≃o n) :
     ∃ L' : Matrix m m ℝ, L'.IsLowerTriangular ∧ (∀ i, P (L' i i)) ∧
@@ -268,7 +288,9 @@ theorem exists_eq_mul_transpose_submatrix {A L : Matrix n n ℝ} (P : ℝ → Pr
       rw [hA, Matrix.transpose_submatrix]
       exact (Matrix.submatrix_mul_equiv L Lᵀ e e.toEquiv e).symm⟩
 
-/-- The sorting isomorphism `Fin (card n) ≃o n` and its inverse undo each other on matrices.-/
+/-- The sorting isomorphism `Fin (card n) ≃o n` and its inverse undo each other on matrices.
+@isnad1 id=eq.0h2v.s8.3cbb043be6d7 from=translated src=- shape=fae0369a vocab=2c280e8e
+-/
 theorem submatrix_monoEquivOfFin_symm (A : Matrix n n ℝ) :
     (A.submatrix (monoEquivOfFin n rfl) (monoEquivOfFin n rfl)).submatrix
       (monoEquivOfFin n rfl).symm (monoEquivOfFin n rfl).symm = A := by
@@ -278,7 +300,9 @@ theorem submatrix_monoEquivOfFin_symm (A : Matrix n n ℝ) :
 has a Cholesky factorization iff it is positive definite; on `Fin n` the factor is `cholesky A`
 (`isCholesky_cholesky_of_posDef`), and it is unique (`IsCholesky.unique`). Trefethen–Bau 1997,
 Thm 23.1; Golub–Van Loan 2013, Thm 4.2.7; Higham 2002, Thm 10.1.
-atlas: cholesky-decomposition-/
+atlas: cholesky-decomposition
+@isnad1 id=iff.0h2v.s5.86ae9db13d67 from=translated src=- shape=670aa92e vocab=6f3ebb2c
+-/
 theorem exists_isCholesky_iff_posDef (A : Matrix n n ℝ) : (∃ L, IsCholesky A L) ↔ A.PosDef := by
   refine ⟨fun ⟨_, h⟩ => h.posDef, fun hA => ?_⟩
   let e := monoEquivOfFin n rfl
@@ -292,7 +316,9 @@ theorem exists_isCholesky_iff_posDef (A : Matrix n n ℝ) : (∃ L, IsCholesky A
 finite index is `L Lᵀ` with `L` lower triangular with nonnegative diagonal (not unique in
 general; on `Fin n` the witness is `cholesky A`, `eq_cholesky_mul_transpose_of_posSemidef`).
 Golub–Van Loan 2013, §4.2.8; Higham 2002, Thm 10.9.
-atlas: cholesky-decomposition-/
+atlas: cholesky-decomposition
+@isnad1 id=ex.1h2v.s6.4a73a34cb011 from=translated src=- shape=364b0036 vocab=b0d1fa5d
+-/
 theorem exists_eq_mul_transpose_of_posSemidef {A : Matrix n n ℝ} (hA : A.PosSemidef) :
     ∃ L : Matrix n n ℝ, L.IsLowerTriangular ∧ (∀ i, 0 ≤ L i i) ∧ A = L * Lᵀ := by
   let e := monoEquivOfFin n rfl
@@ -348,7 +374,9 @@ def choleskyPivoted : {n : ℕ} → Matrix (Fin n) (Fin n) ℝ →
         (choleskyPivoted (pivotSchur (diagPivotSwap A))).2)
 
 /-- Rows and columns of `A` permuted symmetrically by `decomposeFin⁻¹ (p, τ)`, as a bordered
-matrix.-/
+matrix.
+@isnad1 id=eq.0h4v.s10.c2bbd9407e41 from=translated src=- shape=db6dc24a vocab=d3e2a3e9
+-/
 theorem submatrix_decomposeFin_symm_self {n : ℕ} (A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (p : Fin (n + 1)) (τ : Equiv.Perm (Fin n)) :
     A.submatrix (Equiv.Perm.decomposeFin.symm (p, τ)) (Equiv.Perm.decomposeFin.symm (p, τ)) =
@@ -368,7 +396,9 @@ complement stay PSD (`posSemidef_pivotSchur`), a zero pivot has a zero column
 (`apply_eq_zero_of_posSemidef_of_apply_self_eq_zero`), and the step is the computation of
 `eq_cholesky_mul_transpose_of_pivotSchur` conjugated by the trailing permutation.
 Golub–Van Loan 2013, §4.2.9; Higham 2002, Thm 10.9.
-atlas: cholesky-algorithm-/
+atlas: cholesky-algorithm
+@isnad1 id=ispivote.1h2v.s5.1dc7e3636932 from=translated src=- shape=d992920e vocab=6b2444f0
+-/
 theorem isPivotedCholesky_choleskyPivoted {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosSemidef) :
     IsPivotedCholesky A (choleskyPivoted A).1 (choleskyPivoted A).2 := by
@@ -415,7 +445,9 @@ theorem isPivotedCholesky_choleskyPivoted {n : ℕ} {A : Matrix (Fin n) (Fin n) 
 
 /-- Pivoted Cholesky has a positive diagonal prefix and entirely zero trailing columns.
 Source: matrix toolkit rederivations, `lem:prefix`, the rank-free recursion invariant.
-atlas: cholesky-algorithm (partial)-/
+atlas: cholesky-algorithm (partial)
+@isnad1 id=ex.1h2v.s6.ef31ebe89029 from=translated src=- shape=5853ca8f vocab=05922b8d
+-/
 theorem exists_choleskyPivoted_positive_prefix {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosSemidef) :
     ∃ r ≤ n, (∀ i : Fin n, i.val < r → 0 < (choleskyPivoted A).2 i i) ∧
@@ -469,7 +501,9 @@ theorem exists_choleskyPivoted_positive_prefix {n : ℕ} {A : Matrix (Fin n) (Fi
       rfl
 
 /-- The positive prefix length of the pivoted Cholesky recursion is the input matrix rank.
-Source: its triangular-prefix rank certificate and exact permuted Gram factorization.-/
+Source: its triangular-prefix rank certificate and exact permuted Gram factorization.
+@isnad1 id=eq.4h3v.s6.437616775790 from=translated src=- shape=462e68df vocab=97308d3c
+-/
 theorem rank_choleskyPivoted_eq_prefix {n r : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosSemidef) (hr : r ≤ n)
     (hpos : ∀ i : Fin n, i.val < r → 0 < (choleskyPivoted A).2 i i)
@@ -484,7 +518,9 @@ theorem rank_choleskyPivoted_eq_prefix {n r : ℕ} {A : Matrix (Fin n) (Fin n) �
 /-- **Pivoted Cholesky stops at the rank**: its diagonal is positive exactly in the first
 `rank A` positions for every positive semidefinite input.
 Source: Golub–Van Loan 2013, §4.2.9; Higham 2002, §10.3; matrix toolkit rederivations, `lem:prefix`.
-atlas: cholesky-algorithm-/
+atlas: cholesky-algorithm
+@isnad1 id=iff.1h3v.s5.4564893bbdbe from=translated src=- shape=29caa961 vocab=c4688476
+-/
 theorem choleskyPivoted_apply_self_pos_iff_lt_rank {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosSemidef) (i : Fin n) : 0 < (choleskyPivoted A).2 i i ↔ (i : ℕ) < A.rank := by
   obtain ⟨r, hr, hpos, hzero⟩ := exists_choleskyPivoted_positive_prefix hA
@@ -500,7 +536,9 @@ theorem choleskyPivoted_apply_self_pos_iff_lt_rank {n : ℕ} {A : Matrix (Fin n)
 /-- **Pivoted Cholesky terminates at the rank**: all columns with index at least `rank A`
 vanish for every positive semidefinite input.
 Source: Golub–Van Loan 2013, §4.2.9; Higham 2002, §10.3; matrix toolkit rederivations, `lem:rankL`.
-atlas: cholesky-algorithm-/
+atlas: cholesky-algorithm
+@isnad1 id=eq.2h4v.s6.73a00631d7fb from=translated src=- shape=1f94f835 vocab=8bf49465
+-/
 theorem choleskyPivoted_apply_eq_zero_of_rank_le {n : ℕ} {A : Matrix (Fin n) (Fin n) ℝ}
     (hA : A.PosSemidef) (i j : Fin n) (hj : A.rank ≤ (j : ℕ)) : (choleskyPivoted A).2 i j = 0 := by
   obtain ⟨r, hr, hpos, hzero⟩ := exists_choleskyPivoted_positive_prefix hA

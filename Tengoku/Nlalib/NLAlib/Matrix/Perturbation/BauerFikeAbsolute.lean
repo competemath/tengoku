@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- An absolute vector norm expands under a diagonal residual by its
 smallest diagonal distance. Source: Horn–Johnson (2013), proof of
 Theorem 6.3.2; monotonicity in coordinate magnitudes is the absolute-norm
-property used by the proof.-/
+property used by the proof.
+@isnad1 id=le.4h6v.s8.31c171fd6ee6 from=translated src=- shape=651532fa vocab=33892519
+-/
 theorem mul_addGroupNorm_le_diagonal_residual (N : AddGroupNorm (n → ℂ))
     (hhom : ∀ (c : ℂ) (x : n → ℂ), N (c • x) = ‖c‖ * N x)
     (habs : ∀ (x y : n → ℂ), (∀ i, ‖x i‖ ≤ ‖y i‖) → N x ≤ N y)
@@ -45,7 +47,9 @@ theorem mul_addGroupNorm_le_diagonal_residual (N : AddGroupNorm (n → ℂ))
 Source: Horn–Johnson (2013), Corollary 6.3.4; the matrix-action assumption
 also permits any larger compatible norm bound. The nonzero approximate
 eigenvector premise handles the denominator exactly.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.7h8v.s9.d8ac531aafd1 from=translated src=- shape=d2dcfef3 vocab=4aa22452
+-/
 theorem exists_eigenvalue_distance_mul_norm_le_residual_of_absolute_norm
     (N : AddGroupNorm (n → ℂ))
     (hhom : ∀ (c : ℂ) (x : n → ℂ), N (c • x) = ‖c‖ * N x)
@@ -94,7 +98,9 @@ theorem exists_eigenvalue_distance_mul_norm_le_residual_of_absolute_norm
 
 /-- The residual inclusion in the source's quotient form, for every induced
 absolute norm. Source: Horn–Johnson (2013), Corollary 6.3.4.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.7h8v.s9.a815943421f2 from=translated src=- shape=ee172fd5 vocab=d76430e3
+-/
 theorem exists_eigenvalue_distance_le_residual_div_of_absolute_norm
     (N : AddGroupNorm (n → ℂ))
     (hhom : ∀ (c : ℂ) (x : n → ℂ), N (c • x) = ‖c‖ * N x)
@@ -111,7 +117,9 @@ theorem exists_eigenvalue_distance_le_residual_div_of_absolute_norm
 /-- Every perturbed spectral point lies in the Bauer–Fike disks for any
 induced absolute norm. Source: Horn–Johnson (2013), Theorem 6.3.2; neither
 the original nor perturbed matrix needs a simple spectrum.
-atlas: bauer-fike (partial)-/
+atlas: bauer-fike (partial)
+@isnad1 id=ex.7h8v.s9.cef6b79312ef from=translated src=- shape=5adff601 vocab=f6adbd08
+-/
 theorem exists_eigenvalue_distance_le_perturbation_of_absolute_norm
     (N : AddGroupNorm (n → ℂ))
     (hhom : ∀ (c : ℂ) (x : n → ℂ), N (c • x) = ‖c‖ * N x)

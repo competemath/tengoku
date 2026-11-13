@@ -29,7 +29,9 @@ local notation "M" => Matrix n n ℂ
 finite ordered insertion sum. Directions may be arbitrary complex matrices;
 only the base point is Hermitian. Order zero and empty matrix dimensions
 are included.
-Source: Brailovskaya–van Handel, arXiv:2201.05142v3, Lemma 6.9.-/
+Source: Brailovskaya–van Handel, arXiv:2201.05142v3, Lemma 6.9.
+@isnad1 id=eq.2h5v.s9.4844daa1c79e from=translated src=- shape=3ca6f7b6 vocab=739e807d
+-/
 theorem _root_.Matrix.IsHermitian.iteratedFDeriv_resolvent_apply
     {A : M} (hA : A.IsHermitian) {ζ : ℂ} (hζ : ζ.im ≠ 0)
     {k : ℕ} (H : Fin k → M) :
@@ -48,7 +50,9 @@ private theorem isUnit_aeval_shift (ζ : ℂ) (A : M) (hA : A.IsHermitian)
 
 /-- The actual resolvent has the single-insertion Fréchet derivative on the
 nonreal Hermitian domain. Source: the supplied Cauchy-transform reroute.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=hasfderi.2h3v.s8.83db381d7fd5 from=translated src=- shape=37bca8c3 vocab=a78229b1
+-/
 theorem hasFDerivAt_resolvent_of_isHermitian (ζ : ℂ) (A : M)
     (hA : A.IsHermitian) (hζ : ζ.im ≠ 0) :
     HasFDerivAt (fun B : M => resolvent B ζ) (rationalBlockMap 1 (C ζ-X) A A) A := by
@@ -59,7 +63,9 @@ theorem hasFDerivAt_resolvent_of_isHermitian (ζ : ℂ) (A : M)
 
 /-- The squared resolvent's actual Fréchet derivative is its diagonal first
 insertion map. Source: the supplied Cauchy-transform reroute (comparison-L).
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=hasfderi.2h3v.s8.a37afb17820c from=translated src=- shape=ec681f24 vocab=019d658c
+-/
 theorem hasFDerivAt_resolvent_sq_of_isHermitian (ζ : ℂ) (A : M)
     (hA : A.IsHermitian) (hζ : ζ.im ≠ 0) :
     HasFDerivAt (fun B : M => (resolvent B ζ)^2)
@@ -72,7 +78,9 @@ theorem hasFDerivAt_resolvent_sq_of_isHermitian (ζ : ℂ) (A : M)
   rwa [he] at h
 
 /-- Applying the squared resolvent derivative gives exactly the two ordered
-three-resolvent words.-/
+three-resolvent words.
+@isnad1 id=eq.2h4v.s9.4ed937f7e9bd from=translated src=- shape=7eefd687 vocab=0369fcc3
+-/
 theorem fderiv_resolvent_sq_apply (ζ : ℂ) (A H : M)
     (hA : A.IsHermitian) (hζ : ζ.im ≠ 0) :
     fderiv ℂ (fun B : M => (resolvent B ζ)^2) A H =
@@ -85,7 +93,9 @@ def traceResolventDerivative (ζ : ℂ) (A : M) : M →L[ℂ] ℂ :=
   (normalizedTraceLinearMap : M →ₗ[ℂ] ℂ).toContinuousLinearMap.comp
     (rationalBlockMap 1 (C ζ-X) A A)
 
-/-- Cyclicity puts the insertion direction in front of the squared resolvent.-/
+/-- Cyclicity puts the insertion direction in front of the squared resolvent.
+@isnad1 id=eq.0h4v.s8.d9f1ac4cad58 from=translated src=- shape=673415e5 vocab=66734691
+-/
 theorem traceResolventDerivative_apply (ζ : ℂ) (A H : M) :
     traceResolventDerivative ζ A H = normalizedTrace (H * (resolvent A ζ)^2) := by
   simp only [traceResolventDerivative,ContinuousLinearMap.comp_apply,
@@ -96,7 +106,9 @@ theorem traceResolventDerivative_apply (ζ : ℂ) (A H : M) :
 
 /-- The actual normalized trace resolvent has the advertised cyclic derivative.
 Source: the supplied Cauchy-transform interpolation.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=hasfderi.2h3v.s7.9bfa4b596e6f from=translated src=- shape=3210a4b5 vocab=0e75ce55
+-/
 theorem hasFDerivAt_normalizedTrace_resolvent (ζ : ℂ) (A : M)
     (hA : A.IsHermitian) (hζ : ζ.im ≠ 0) :
     HasFDerivAt (fun B : M => normalizedTrace (resolvent B ζ))
@@ -105,7 +117,9 @@ theorem hasFDerivAt_normalizedTrace_resolvent (ζ : ℂ) (A : M)
     (hasFDerivAt_resolvent_of_isHermitian ζ A hA hζ)
 
 /-- Restricting scalars yields the real derivative required by real Gaussian
-coordinates, without changing the actual trace-resolvent function.-/
+coordinates, without changing the actual trace-resolvent function.
+@isnad1 id=hasfderi.2h3v.s8.883493e9c526 from=translated src=- shape=76002fc4 vocab=3e19351e
+-/
 theorem hasFDerivAt_normalizedTrace_resolvent_real (ζ : ℂ) (A : M)
     (hA : A.IsHermitian) (hζ : ζ.im ≠ 0) :
     HasFDerivAt (fun B : M => normalizedTrace (resolvent B ζ))

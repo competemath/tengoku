@@ -18,7 +18,9 @@ def matrixKWhitened (S T : Matrix n n ℂ) : Matrix n n ℂ :=
 def matrixKCoefficient (S T : Matrix n n ℂ) : Matrix n n ℂ :=
   matrixKWhitened S T * (1 + matrixKWhitened S T)⁻¹
 
-/-- The strict source gap makes the actual solved denominator invertible.-/
+/-- The strict source gap makes the actual solved denominator invertible.
+@isnad1 id=isunit.2h3v.s7.edf09ea43ef3 from=translated src=- shape=2990a827 vocab=1979c629
+-/
 theorem isUnit_matrixKDenominator (S T : Matrix n n ℂ) (hS : S.PosDef)
     (hgap : (S⁻¹ + T).PosDef) : IsUnit (1 + S * T) := by
   have he : 1 + S * T = S * (S⁻¹ + T) := by
@@ -26,7 +28,9 @@ theorem isUnit_matrixKDenominator (S T : Matrix n n ℂ) (hS : S.PosDef)
   rw [he]
   exact hS.isUnit.mul hgap.isUnit
 
-/-- Whitening turns the support gap into positivity of the actual `I+Z`.-/
+/-- Whitening turns the support gap into positivity of the actual `I+Z`.
+@isnad1 id=posdef.2h3v.s6.2d2963b54a33 from=translated src=- shape=bced5433 vocab=b97aef73
+-/
 theorem posDef_one_add_matrixKWhitened (S T : Matrix n n ℂ) (hS : S.PosDef)
     (hgap : (S⁻¹ + T).PosDef) : (1 + matrixKWhitened S T).PosDef := by
   let Q := cfc Real.sqrt S
@@ -44,7 +48,9 @@ theorem posDef_one_add_matrixKWhitened (S T : Matrix n n ℂ) (hS : S.PosDef)
   exact (Matrix.IsUnit.posDef_star_right_conjugate_iff hQi).mpr hgap
 
 /-- The actual coefficient is Hermitian at every source-admissible Hermitian
-sample, even when the sample is indefinite.-/
+sample, even when the sample is indefinite.
+@isnad1 id=ishermit.3h3v.s7.d6488771418c from=translated src=- shape=fe9201f3 vocab=02c9cac0
+-/
 theorem isHermitian_matrixKCoefficient (S T : Matrix n n ℂ) (hS : S.PosDef)
     (hT : T.IsHermitian) (hgap : (S⁻¹ + T).PosDef) : (matrixKCoefficient S T).IsHermitian := by
   have hZ : (matrixKWhitened S T).IsHermitian := by
@@ -64,7 +70,9 @@ theorem isHermitian_matrixKCoefficient (S T : Matrix n n ℂ) (hS : S.PosDef)
 
 /-- The genuine resolvent equals the inverse-square-root congruence of the
 source's actual coefficient. Source: user derivations, equation (F21).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=eq.1h3v.s8.1848c89c3a31 from=translated src=- shape=6728ba4c vocab=a7b95707
+-/
 theorem matrixKResolvent_eq_inv_sqrt_congruence (S T : Matrix n n ℂ) (hS : S.PosDef) :
     matrixKResolvent S T = cfc (fun x => (Real.sqrt x)⁻¹) S * matrixKCoefficient S T *
       cfc (fun x => (Real.sqrt x)⁻¹) S := by
@@ -95,7 +103,9 @@ theorem matrixKResolvent_eq_inv_sqrt_congruence (S T : Matrix n n ℂ) (hS : S.P
   simp only [Matrix.mul_assoc]
 
 /-- The actual resolvent is Hermitian under precisely the source's support
-gap, so its two push-through expressions agree.-/
+gap, so its two push-through expressions agree.
+@isnad1 id=ishermit.3h3v.s7.d774d9f05a65 from=translated src=- shape=fe9201f3 vocab=5d5aaae9
+-/
 theorem isHermitian_matrixKResolvent (S T : Matrix n n ℂ) (hS : S.PosDef)
     (hT : T.IsHermitian) (hgap : (S⁻¹ + T).PosDef) : (matrixKResolvent S T).IsHermitian := by
   rw [matrixKResolvent_eq_inv_sqrt_congruence S T hS]
@@ -103,7 +113,9 @@ theorem isHermitian_matrixKResolvent (S T : Matrix n n ℂ) (hS : S.PosDef)
   have hC := isHermitian_matrixKCoefficient S T hS hT hgap
   simp only [Matrix.IsHermitian, Matrix.conjTranspose_mul, hR.eq,hC.eq,Matrix.mul_assoc]
 
-/-- The right inverse expression in the source is the same actual resolvent.-/
+/-- The right inverse expression in the source is the same actual resolvent.
+@isnad1 id=eq.3h3v.s7.762466ef9c2a from=translated src=- shape=38bba381 vocab=cda5e6cd
+-/
 theorem matrixKResolvent_eq_right (S T : Matrix n n ℂ) (hS : S.PosDef)
     (hT : T.IsHermitian) (hgap : (S⁻¹ + T).PosDef) :
     matrixKResolvent S T = (1 + T * S)⁻¹ * T := by
@@ -114,7 +126,9 @@ theorem matrixKResolvent_eq_right (S T : Matrix n n ℂ) (hS : S.PosDef)
 /-- The source's compactly supported Hermitian law and strict support-only
 gaps give the actual Fréchet derivative. Uniform neighbourhood and domination
 are proved from compactness, not added as hypotheses.
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=hasfderi.3h4v.s10.9a3ee8f329c1 from=translated src=- shape=c707aa22 vocab=a5be8868
+-/
 theorem hasFDerivAt_matrixKTransform_of_posDef
     (ν : MeasureTheory.Measure (selfAdjoint (Matrix n n ℂ))) [MeasureTheory.IsProbabilityMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) (S : selfAdjoint (Matrix n n ℂ))

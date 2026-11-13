@@ -56,7 +56,9 @@ private theorem sum_dot_mulVec_eq_trace_of_frame (v : I → n → ℝ)
     _ = R.trace := by
       rw [hframe, Matrix.mul_one]
 
-/-- Sum of quadratic forms under an isotropic frame equals the trace.-/
+/-- Sum of quadratic forms under an isotropic frame equals the trace.
+@isnad1 id=eq.1h4v.s6.8cac45bdf701 from=translated src=- shape=9bcd061f vocab=9053a451
+-/
 theorem sum_quadForm_eq_trace_of_frame (v : I → n → ℝ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1)
     (A : Matrix n n ℝ) :
@@ -108,35 +110,45 @@ def upperScore (RU : Matrix n n ℝ) (DU : ℝ) (v : n → ℝ) : ℝ :=
 def lowerScore (RL : Matrix n n ℝ) (DL : ℝ) (v : n → ℝ) : ℝ :=
   quadForm (RL ^ 2) v / DL - quadForm RL v
 
-/-- The upper shifted matrix is positive definite.-/
+/-- The upper shifted matrix is positive definite.
+@isnad1 id=posdef.2h3v.s5.ec9b07cb6396 from=translated src=- shape=fb2cd42f vocab=16d3fe62
+-/
 theorem upperMatrix_posDef (MU : Matrix n n ℝ) (hMU : MU.PosDef)
     {δ : ℝ} (hδ : 0 < δ) : (upperMatrix MU δ).PosDef := by
   unfold upperMatrix
   exact (hMU.add_smul_one_posDef hδ).inv
 
 /-- The lower shifted matrix is positive definite under the strict potential
-cap `δ * tr(ML⁻¹) < 1`.-/
+cap `δ * tr(ML⁻¹) < 1`.
+@isnad1 id=posdef.3h3v.s6.f1aa43c64738 from=translated src=- shape=1b5468d5 vocab=8d4bce6c
+-/
 theorem lowerMatrix_posDef (ML : Matrix n n ℝ) (hML : ML.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * ML⁻¹.trace < 1) :
     (lowerMatrix ML δ).PosDef := by
   unfold lowerMatrix
   exact (hML.sub_smul_one_posDef_of_mul_trace_inv_lt_one hδ hcap).inv
 
-/-- The upper reciprocal-barrier gap is positive on a nonempty index type.-/
+/-- The upper reciprocal-barrier gap is positive on a nonempty index type.
+@isnad1 id=lt.2h3v.s5.3bee8e0819d1 from=translated src=- shape=7ff2261a vocab=565601bc
+-/
 theorem upperGap_pos [Nonempty n] (MU : Matrix n n ℝ) (hMU : MU.PosDef)
     {δ : ℝ} (hδ : 0 < δ) : 0 < upperGap MU δ := by
   unfold upperGap upperMatrix
   exact hMU.trace_inv_sub_trace_add_smul_one_inv_pos hδ
 
 /-- The lower reciprocal-barrier gap is positive under the strict potential
-cap on a nonempty index type.-/
+cap on a nonempty index type.
+@isnad1 id=lt.3h3v.s6.27d7f68c0f30 from=translated src=- shape=15010da8 vocab=8996297e
+-/
 theorem lowerGap_pos [Nonempty n] (ML : Matrix n n ℝ) (hML : ML.PosDef)
     {δ : ℝ} (hδ : 0 < δ) (hcap : δ * ML⁻¹.trace < 1) :
     0 < lowerGap ML δ := by
   unfold lowerGap lowerMatrix
   exact hML.trace_sub_smul_one_inv_sub_trace_inv_pos hδ hcap
 
-/-- The upper candidate score is positive at a nonzero vector.-/
+/-- The upper candidate score is positive at a nonzero vector.
+@isnad1 id=lt.3h4v.s6.3bfdc99b0502 from=translated src=- shape=7d7b7cd2 vocab=f2ca9085
+-/
 theorem upperScore_pos_of_ne_zero {RU : Matrix n n ℝ} (hRU : RU.PosDef)
     {DU : ℝ} (hDU : 0 < DU) {v : n → ℝ} (hv : v ≠ 0) :
     0 < upperScore RU DU v := by
@@ -147,17 +159,23 @@ theorem upperScore_pos_of_ne_zero {RU : Matrix n n ℝ} (hRU : RU.PosDef)
   have hdiv : 0 ≤ quadForm (RU ^ 2) v / DU := div_nonneg hq2 hDU.le
   linarith
 
-/-- The upper candidate score of the zero vector is zero, for every gap.-/
+/-- The upper candidate score of the zero vector is zero, for every gap.
+@isnad1 id=eq.0h3v.s5.e9c2c9042963 from=translated src=- shape=d657857d vocab=ba9979d9
+-/
 @[simp] theorem upperScore_zero (RU : Matrix n n ℝ) (DU : ℝ) :
     upperScore RU DU 0 = 0 := by
   simp [upperScore]
 
-/-- The lower candidate score of the zero vector is zero, for every gap.-/
+/-- The lower candidate score of the zero vector is zero, for every gap.
+@isnad1 id=eq.0h3v.s5.49155a3aba3a from=translated src=- shape=d657857d vocab=ca207238
+-/
 @[simp] theorem lowerScore_zero (RL : Matrix n n ℝ) (DL : ℝ) :
     lowerScore RL DL 0 = 0 := by
   simp [lowerScore]
 
-/-- Sum of the upper candidate scores over an isotropic frame.-/
+/-- Sum of the upper candidate scores over an isotropic frame.
+@isnad1 id=eq.1h5v.s7.40e293cbebf9 from=translated src=- shape=6f195f95 vocab=b051695e
+-/
 theorem sum_upperScore_eq (v : I → n → ℝ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1)
     (RU : Matrix n n ℝ) (DU : ℝ) :
@@ -176,7 +194,9 @@ theorem sum_upperScore_eq (v : I → n → ℝ)
           rw [sum_quadForm_eq_trace_of_frame v hframe (RU ^ 2),
             sum_quadForm_eq_trace_of_frame v hframe RU]
 
-/-- Sum of the lower candidate scores over an isotropic frame.-/
+/-- Sum of the lower candidate scores over an isotropic frame.
+@isnad1 id=eq.1h5v.s7.6b36a405e16d from=translated src=- shape=6f195f95 vocab=d93cb22a
+-/
 theorem sum_lowerScore_eq (v : I → n → ℝ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1)
     (RL : Matrix n n ℝ) (DL : ℝ) :
@@ -198,7 +218,9 @@ theorem sum_lowerScore_eq (v : I → n → ℝ)
 /-- **Candidate selection.** For an isotropic frame and two positive definite
 barriers with shifts satisfying the reciprocal-potential and potential cap
 hypotheses, some nonzero frame vector has upper score positive and no larger
-than its lower score.-/
+than its lower score.
+@isnad1 id=ex.7h7v.s8.17a387548969 from=translated src=- shape=8698776f vocab=cb3bf6d4
+-/
 theorem exists_candidate [Nonempty n] (v : I → n → ℝ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1)
     (MU : Matrix n n ℝ) (hMU : MU.PosDef)
@@ -272,7 +294,9 @@ theorem exists_candidate [Nonempty n] (v : I → n → ℝ)
 /-- **Candidate step.** Under the hypotheses of `exists_candidate` there is a
 nonzero frame vector `v i` and a positive `t` with the upper score at most
 `1 / t` and `1 / t` at most the lower score.  Taking `t = 1 / U_i` realises
-the reciprocal bridging step used by the BSS rank-one potential update.-/
+the reciprocal bridging step used by the BSS rank-one potential update.
+@isnad1 id=ex.7h7v.s8.5d5a424bc5b7 from=translated src=- shape=db0b3900 vocab=cb3bf6d4
+-/
 theorem exists_candidate_inverse [Nonempty n] (v : I → n → ℝ)
     (hframe : ∑ i, Matrix.vecMulVec (v i) (v i) = 1)
     (MU : Matrix n n ℝ) (hMU : MU.PosDef)

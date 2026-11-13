@@ -31,7 +31,9 @@ def loewnerDerivative (f : ℝ → ℝ) (ev : n → ℝ) (U : unitary (Matrix n 
       map_smul' c H := by
         simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.hadamard_smul, RingHom.id_apply] }
 
-/-- Evaluation of the real linear Hadamard derivative operator.-/
+/-- Evaluation of the real linear Hadamard derivative operator.
+@isnad1 id=eq.0h5v.s10.fa67d0a3a38c from=translated src=- shape=a62b0e6e vocab=907a38a9
+-/
 theorem loewnerDerivative_apply (f : ℝ → ℝ) (ev : n → ℝ)
     (U : unitary (Matrix n n ℂ)) (H : Matrix n n ℂ) :
     loewnerDerivative f ev U H = (U : Matrix n n ℂ) *
@@ -39,7 +41,9 @@ theorem loewnerDerivative_apply (f : ℝ → ℝ) (ev : n → ℝ)
         ((U : Matrix n n ℂ).conjTranspose * H * U)) * (U : Matrix n n ℂ).conjTranspose := rfl
 
 /-- Polynomial derivatives equal their divided-difference operators in
-every unitary eigenbasis, including repeated nodes.-/
+every unitary eigenbasis, including repeated nodes.
+@isnad1 id=eq.1h5v.s9.58f2e6415b3d from=translated src=- shape=d656e0c4 vocab=750f47a8
+-/
 theorem frechetDerivative_eq_loewnerDerivative (p : ℝ[X]) (ev : n → ℝ)
     (U : unitary (Matrix n n ℂ)) {A : Matrix n n ℂ}
     (hA : A = (U : Matrix n n ℂ) * diagonal (fun i => (ev i : ℂ)) *
@@ -78,7 +82,9 @@ theorem frechetDerivative_eq_loewnerDerivative (p : ℝ[X]) (ev : n → ℝ)
       rfl
 
 /-- Matching scalar values and derivatives at the nodes gives the same
-divided-difference operator, including confluent entries.-/
+divided-difference operator, including confluent entries.
+@isnad1 id=eq.2h5v.s8.f377f571b1ad from=translated src=- shape=43225a3d vocab=e09c6e9f
+-/
 theorem loewnerDerivative_eq_of_values_deriv (p : ℝ[X]) (f : ℝ → ℝ) (ev : n → ℝ)
     (U : unitary (Matrix n n ℂ)) (hv : ∀ i, p.eval (ev i) = f (ev i))
     (hd : ∀ i, p.derivative.eval (ev i) = deriv f (ev i)) :

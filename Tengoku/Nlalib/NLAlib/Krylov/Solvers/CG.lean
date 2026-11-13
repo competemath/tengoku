@@ -64,7 +64,9 @@ def IsCGIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) (x : n → �
   IsAffineMinimizer (cgObjective A c) x₀ (krylovSpace A (c - A *ᵥ x₀) q) x
 
 /-- Unfolding `IsCGIterate`: `x − x₀ ∈ K_q` and `φ(x) ≤ φ(x₀ + y)` for every `y ∈ K_q`.
-Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2.-/
+Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2.
+@isnad1 id=iff.0h6v.s9.53116df97e3f from=translated src=- shape=89c1aa7e vocab=09806e01
+-/
 theorem isCGIterate_iff {A : Matrix n n ℝ} {c x₀ : n → ℝ} {q : ℕ} {x : n → ℝ} :
     IsCGIterate A c x₀ q x ↔
       x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q ∧
@@ -81,7 +83,9 @@ private lemma dotProduct_mulVec_comm_of_isHermitian {A : Matrix n n ℝ} (hA : A
 omit [DecidableEq n] in
 /-- Expansion of the CG objective along a direction: for symmetric `A`,
 `φ(u + d) = φ(u) + dᵀ (A u − c) + ½ dᵀ A d`. Source: Trefethen–Bau (1997) [`tb97`], proof of
-Thm 38.2. Atlas: `cg-convergence`.-/
+Thm 38.2. Atlas: `cg-convergence`.
+@isnad1 id=eq.1h5v.s7.276dfe29024e from=translated src=- shape=cd8c0e72 vocab=9b3e3109
+-/
 theorem cgObjective_add {A : Matrix n n ℝ} (hA : A.IsHermitian) (c u d : n → ℝ) :
     cgObjective A c (u + d) =
       cgObjective A c u + d ⬝ᵥ (A *ᵥ u - c) + quadForm A d / 2 := by
@@ -94,7 +98,9 @@ theorem cgObjective_add {A : Matrix n n ℝ} (hA : A.IsHermitian) (c u d : n →
 omit [DecidableEq n] in
 /-- The CG objective measures the `A`-norm error: if `A x⋆ = c` then
 `φ(z) = φ(x⋆) + ½ ‖z − x⋆‖_A²`. Source: Trefethen–Bau (1997) [`tb97`], eq. (38.7).
-Atlas: `cg-convergence`.-/
+Atlas: `cg-convergence`.
+@isnad1 id=eq.2h5v.s7.b49e7b72a1bd from=translated src=- shape=47d5c8d7 vocab=045e80f5
+-/
 theorem cgObjective_eq_add_quadForm_sub {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (z : n → ℝ) :
     cgObjective A c z = cgObjective A c xs + quadForm A (z - xs) / 2 := by
@@ -104,7 +110,9 @@ theorem cgObjective_eq_add_quadForm_sub {A : Matrix n n ℝ} (hA : A.IsHermitian
 
 /-- **CG minimises the `A`-norm error.** For symmetric `A` with `A x⋆ = c`, `x` is a `q`-th CG
 iterate iff it minimises `‖· − x⋆‖_A² = quadForm A (· − x⋆)` over `x₀ + K_q(A, r₀)`.
-Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2.-/
+Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2.
+@isnad1 id=iff.2h7v.s7.828c6b65dc1a from=translated src=- shape=e39f19eb vocab=b4b26e97
+-/
 theorem isCGIterate_iff_isAffineMinimizer_quadForm_sub {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {c x₀ xs x : n → ℝ} (hxs : A *ᵥ xs = c) {q : ℕ} :
     IsCGIterate A c x₀ q x ↔
@@ -117,7 +125,9 @@ theorem isCGIterate_iff_isAffineMinimizer_quadForm_sub {A : Matrix n n ℝ} (hA 
 /-- **Galerkin orthogonality implies the CG minimality.** For symmetric positive semidefinite
 `A`, if `x − x₀ ∈ K_q` and the residual `c − A x` is orthogonal to `K_q`, then `x` is a `q`-th CG
 iterate. Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1–38.2; Saad (2003), Prop. 5.2
-(Petrov–Galerkin with `L = K`). Atlas: `cg-convergence`.-/
+(Petrov–Galerkin with `L = K`). Atlas: `cg-convergence`.
+@isnad1 id=iscgiter.4h6v.s9.08d76f7d5d78 from=translated src=- shape=5dbfbd47 vocab=c868f2aa
+-/
 theorem isCGIterate_of_forall_dotProduct_eq_zero {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (hpsd : ∀ i, 0 ≤ hA.eigenvalues i) {c x₀ x : n → ℝ} {q : ℕ}
     (hx : x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q)
@@ -138,7 +148,9 @@ is a `q`-th CG iterate. It is the Galerkin solution: the bilinear form `(y, z) �
 is nondegenerate, hence `y ↦ (z ↦ zᵀ A y)` is a bijection `K_q → K_q*`.
 Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2 (uniqueness and existence of the minimiser).
 Atlas: `cg-convergence`.
-atlas: cg-convergence-/
+atlas: cg-convergence
+@isnad1 id=ex.1h5v.s5.db345e1e7806 from=translated src=- shape=a13caf46 vocab=b28a2f2c
+-/
 theorem exists_isCGIterate {A : Matrix n n ℝ} (hA : A.PosDef) (c x₀ : n → ℝ) (q : ℕ) :
     ∃ x, IsCGIterate A c x₀ q x := by
   have hH : A.IsHermitian := hA.isHermitian
@@ -192,7 +204,9 @@ theorem exists_isCGIterate {A : Matrix n n ℝ} (hA : A.PosDef) (c x₀ : n → 
 Source: Trefethen–Bau (1997) [`tb97`], Thm 38.3 (and the inequality (38.10)); Saad (2003),
 Thm 6.29. Atlas: `cg-convergence`; uses `polynomial-spectral-bound`, `krylov-subspace`,
 `residual-polynomial` (the case `g = X` of `quadForm_sub_le_of_isAffineMinimizer`).
-atlas: cg-convergence-/
+atlas: cg-convergence
+@isnad1 id=le.7h9v.s8.ecca8ee14c92 from=translated src=- shape=f41a02c1 vocab=f299284d
+-/
 theorem quadForm_sub_le_of_isCGIterate_of_poly {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (hpsd : ∀ i, 0 ≤ hA.eigenvalues i) {c x₀ xs x : n → ℝ} (hxs : A *ᵥ xs = c) {q : ℕ}
     (hx : IsCGIterate A c x₀ q x) {p : ℝ[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1) {M : ℝ}
@@ -212,7 +226,9 @@ Source: Trefethen–Bau (1997) [`tb97`], Thm 38.5; Golub–Meurant (2010) [`gm10
 Atlas: `cg-convergence`; uses `chebyshev-minimax`, `polynomial-spectral-bound`,
 `krylov-subspace`. Deviation: squared `A`-norms (the source states the unsquared form); the
 degenerate case `a = b` is included.
-atlas: cg-convergence-/
+atlas: cg-convergence
+@isnad1 id=le.6h9v.s8.1d4fe799883b from=translated src=- shape=7c70cea5 vocab=dca435a0
+-/
 theorem quadForm_sub_le_of_isCGIterate {A : Matrix n n ℝ} (hA : A.IsHermitian) {a b : ℝ}
     (ha : 0 < a) (hab : a ≤ b) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b)
     {c x₀ xs x : n → ℝ} (hxs : A *ᵥ xs = c) {q : ℕ} (hx : IsCGIterate A c x₀ q x) :
@@ -267,7 +283,9 @@ theorem eq_of_isCGIterate_of_krylovGrade_le {A : Matrix n n ℝ} (hA : A.PosDef)
 iterate exists and is unique (the `A`-norm error is strictly convex on `x₀ + K_q`: two
 minimisers have a midpoint with a strictly smaller value unless they coincide).
 Source: Trefethen–Bau (1997) [`tb97`], Thm 38.2.
-atlas: cg-convergence-/
+atlas: cg-convergence
+@isnad1 id=existsun.1h5v.s5.01fc32d9a863 from=translated src=- shape=a13caf46 vocab=3f744532
+-/
 theorem existsUnique_isCGIterate {A : Matrix n n ℝ} (hA : A.PosDef) (c x₀ : n → ℝ) (q : ℕ) :
     ∃! x, IsCGIterate A c x₀ q x := by
   obtain ⟨x, hx⟩ := exists_isCGIterate hA c x₀ q

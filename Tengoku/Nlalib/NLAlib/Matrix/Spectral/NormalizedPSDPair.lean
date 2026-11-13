@@ -16,7 +16,9 @@ open scoped Matrix MatrixOrder ComplexOrder
 namespace NLAlib
 variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- PSD summands of a real diagonal projection commute, over either field.-/
+/-- PSD summands of a real diagonal projection commute, over either field.
+@isnad1 id=commute.4h5v.s7.e95b4aae8867 from=translated src=- shape=72af027a vocab=7a38419b
+-/
 theorem commute_of_posSemidef_add_eq_diagonal_projection_ofReal
     {A B : Matrix n n 𝕜} {p : n → ℝ} (hA : A.PosSemidef) (hB : B.PosSemidef)
     (hAB : A + B = diagonal (fun i => (p i : 𝕜)))
@@ -46,7 +48,9 @@ theorem commute_of_posSemidef_add_eq_diagonal_projection_ofReal
 open scoped Matrix.Norms.L2Operator in
 /-- Every PSD pair has an invertible normalized diagonal congruence, with
 diagonal sums exactly zero or one. Zero sums are precisely the common
-kernel coordinates. Horn–Johnson (2013), §7.6; supports arbitrary-rank GSVD.-/
+kernel coordinates. Horn–Johnson (2013), §7.6; supports arbitrary-rank GSVD.
+@isnad1 id=ex.2h4v.s9.62b648f8da98 from=translated src=- shape=94e46326 vocab=0f3b5070
+-/
 theorem exists_normalized_psd_pair_congruence {A B : Matrix n n 𝕜}
     (hA : A.PosSemidef) (hB : B.PosSemidef) :
     ∃ (X : Matrix n n 𝕜) (a b : n → ℝ), IsUnit X ∧

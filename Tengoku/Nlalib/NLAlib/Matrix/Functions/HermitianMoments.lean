@@ -20,7 +20,9 @@ namespace NLAlib
 
 /-- An absolute spectral trace power is bounded by the geometric mean of its two neighboring
 even trace powers. Source: spectral Cauchy–Schwarz, used in Appendix `closed:thm:moment` of
-the Khatri–Rao embedding manuscript.-/
+the Khatri–Rao embedding manuscript.
+@isnad1 id=le.1h3v.s8.3942a353c0a8 from=translated src=- shape=68ea16cf vocab=2aefc9b3
+-/
 theorem trace_cfc_abs_pow_le_sqrt_trace_even_pow {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (k : ℕ) :
     (cfc (fun x : ℝ => |x| ^ k) A).trace ≤
@@ -43,7 +45,9 @@ theorem trace_cfc_abs_pow_le_sqrt_trace_even_pow {ι : Type*} [Fintype ι] [Deci
     (fun i => |hA.eigenvalues i| ^ ((k + 1) / 2))
 
 /-- Dividing all trace moments by the same positive mass preserves spectral
-Cauchy–Schwarz interpolation.-/
+Cauchy–Schwarz interpolation.
+@isnad1 id=le.2h4v.s8.b447b3bfee55 from=translated src=- shape=a6331630 vocab=4f8b56c0
+-/
 theorem div_trace_cfc_abs_pow_le_sqrt_div_trace_even_pow {ι : Type*} [Fintype ι]
     [DecidableEq ι] {A : Matrix ι ι ℝ} (hA : A.IsHermitian) (k : ℕ)
     {c : ℝ} (hc : 0 < c) :

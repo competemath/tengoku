@@ -87,12 +87,16 @@ def cgRecurrence (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) : CGState n
 variable {A : Matrix n n ℝ} {c x₀ : n → ℝ}
 
 omit [DecidableEq n] in
-/-- The recursion starts at `(x₀, r₀, r₀)`. Atlas: `cg-recurrence`.-/
+/-- The recursion starts at `(x₀, r₀, r₀)`. Atlas: `cg-recurrence`.
+@isnad1 id=eq.0h4v.s5.e1e532a31289 from=translated src=- shape=9c6f94d6 vocab=41e1062e
+-/
 @[simp] theorem cgRecurrence_zero (A : Matrix n n ℝ) (c x₀ : n → ℝ) :
     cgRecurrence A c x₀ 0 = cgInit A c x₀ := rfl
 
 omit [DecidableEq n] in
-/-- One more step of the recursion. Atlas: `cg-recurrence`.-/
+/-- One more step of the recursion. Atlas: `cg-recurrence`.
+@isnad1 id=eq.0h5v.s5.92340d5d528c from=translated src=- shape=06b11cb5 vocab=6dbb70d7
+-/
 theorem cgRecurrence_succ (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
     cgRecurrence A c x₀ (k + 1) = cgStep A (cgRecurrence A c x₀ k) :=
   Function.iterate_succ_apply' _ _ _
@@ -100,7 +104,9 @@ theorem cgRecurrence_succ (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
 omit [DecidableEq n] in
 /-- **The residual identity** `r_k = c − A x_k`, for every `A` and every `k` (no hypothesis).
 Source: Trefethen–Bau (1997) [`tb97`], Alg. 38.1 (the update of `r` is the update of
-`c − A x`). Helper for `cg-recurrence`.-/
+`c − A x`). Helper for `cg-recurrence`.
+@isnad1 id=eq.0h5v.s6.c21e905e24e5 from=translated src=- shape=c204a9ae vocab=3b47ecb0
+-/
 theorem cgRecurrence_r_eq (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
     (cgRecurrence A c x₀ k).r = c - A *ᵥ (cgRecurrence A c x₀ k).x := by
   induction k with
@@ -113,7 +119,9 @@ theorem cgRecurrence_r_eq (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
 /-- **Krylov memberships**, for every `A` (no hypothesis): `x_k − x₀ ∈ K_k(A, r₀)` and
 `r_k, p_k ∈ K_{k+1}(A, r₀)`. Induction on `k` with `mulVec_mem_krylovSpace_succ`.
 Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1 (the inclusion half).
-Helper for `cg-recurrence`.-/
+Helper for `cg-recurrence`.
+@isnad1 id=and.0h5v.s9.0725d93ff1f5 from=translated src=- shape=9be6f69f vocab=0ff7bf88
+-/
 theorem cgRecurrence_mem_krylovSpace (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
     (cgRecurrence A c x₀ k).x - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) k ∧
       (cgRecurrence A c x₀ k).r ∈ krylovSpace A (c - A *ᵥ x₀) (k + 1) ∧
@@ -140,14 +148,18 @@ theorem cgRecurrence_mem_krylovSpace (A : Matrix n n ℝ) (c x₀ : n → ℝ) (
 
 omit [DecidableEq n] in
 /-- **A zero residual freezes the state**: if `r = 0` then `cgStep A s = (x, 0, 0)` (`α = 0`
-and `β = 0/0 = 0`). Atlas: `cg-recurrence` (totality).-/
+and `β = 0/0 = 0`). Atlas: `cg-recurrence` (totality).
+@isnad1 id=eq.1h3v.s6.b4275734b37f from=translated src=- shape=351a58c6 vocab=95261a62
+-/
 theorem cgStep_of_r_eq_zero (A : Matrix n n ℝ) {s : CGState n} (hs : s.r = 0) :
     cgStep A s = ⟨s.x, 0, 0⟩ := by
   simp [cgStep, hs]
 
 omit [DecidableEq n] in
 /-- After a zero residual the recursion is constant: if `r_k = 0` then for every `m ≥ 1` the
-state `k + m` is `(x_k, 0, 0)`. Atlas: `cg-recurrence` (totality).-/
+state `k + m` is `(x_k, 0, 0)`. Atlas: `cg-recurrence` (totality).
+@isnad1 id=eq.1h6v.s7.616e0db8c026 from=translated src=- shape=ebb9dfbe vocab=88b09e7f
+-/
 theorem cgRecurrence_add_of_r_eq_zero (A : Matrix n n ℝ) (c x₀ : n → ℝ) {k : ℕ}
     (hk : (cgRecurrence A c x₀ k).r = 0) (m : ℕ) :
     cgRecurrence A c x₀ (k + (m + 1)) = ⟨(cgRecurrence A c x₀ k).x, 0, 0⟩ := by
@@ -159,7 +171,9 @@ theorem cgRecurrence_add_of_r_eq_zero (A : Matrix n n ℝ) (c x₀ : n → ℝ) 
 
 omit [DecidableEq n] in
 /-- A zero residual forces a zero search direction: `r_k = 0 → p_k = 0` (for `k = 0`, `p_0 = r_0`;
-otherwise `β_{k−1} = 0`). No hypothesis on `A`. Atlas: `cg-recurrence` (totality).-/
+otherwise `β_{k−1} = 0`). No hypothesis on `A`. Atlas: `cg-recurrence` (totality).
+@isnad1 id=eq.1h5v.s6.68b6177f439b from=translated src=- shape=b66270ce vocab=b564067b
+-/
 theorem cgRecurrence_p_eq_zero_of_r_eq_zero (A : Matrix n n ℝ) (c x₀ : n → ℝ) {k : ℕ}
     (hk : (cgRecurrence A c x₀ k).r = 0) : (cgRecurrence A c x₀ k).p = 0 := by
   cases k with
@@ -177,7 +191,9 @@ the recursion stops (`r_k = 0`, the only case in which a denominator vanishes, s
 hypothesis "`r_{k−1} ≠ 0`" is automatic below the grade); Saad (2003) [`saad03`], Prop. 6.3.
 Proof: if `r_k = 0` then `r₀ = A (x_k − x₀) ∈ A K_k`, so `K_{k+1} ≤ A K_k` and
 `min (k+1) ν ≤ min k ν` (`finrank_krylovSpace`), forcing `ν ≤ k`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=ne.1h5v.s6.9fbdc67c9edf from=translated src=- shape=63fcb056 vocab=25368910
+-/
 theorem cgRecurrence_r_ne_zero_of_lt_krylovGrade (A : Matrix n n ℝ) (c x₀ : n → ℝ) {k : ℕ}
     (hk : k < krylovGrade A (c - A *ᵥ x₀)) : (cgRecurrence A c x₀ k).r ≠ 0 := by
   intro h0
@@ -374,7 +390,9 @@ private lemma cgRecurrence_orthogonality (hA : A.PosDef) (c x₀ : n → ℝ) (k
 `r_iᵀ r_j = 0` for distinct indices, including after finite termination.
 Source: Trefethen--Bau (1997), Theorem 38.1; Saad (2011), Proposition 6.19.
 The invariant proof is ported from NLA-lib/NLAlib commit `6a845a2ec27f37c1a98118c107a06a13ce45273d`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.2h6v.s6.343d2e349aa0 from=translated src=- shape=aa1cf215 vocab=e33cedfd
+-/
 theorem dotProduct_cgRecurrence_r_eq_zero (hA : A.PosDef) {i j : ℕ} (hij : i ≠ j) :
     (cgRecurrence A c x₀ i).r ⬝ᵥ (cgRecurrence A c x₀ j).r = 0 := by
   rcases lt_or_gt_of_ne hij with h | h
@@ -390,7 +408,9 @@ theorem dotProduct_cgRecurrence_r_eq_zero (hA : A.PosDef) {i j : ℕ} (hij : i �
 `p_iᵀ A p_j = 0` for distinct indices, including after finite termination.
 Source: Trefethen--Bau (1997), Theorem 38.1; Saad (2011), Proposition 6.20.
 The invariant proof is ported from NLA-lib/NLAlib commit `6a845a2ec27f37c1a98118c107a06a13ce45273d`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.2h6v.s6.28c27ef42db5 from=translated src=- shape=2dda3bda vocab=bb10bcc9
+-/
 theorem dotProduct_cgRecurrence_p_mulVec_eq_zero (hA : A.PosDef) {i j : ℕ} (hij : i ≠ j) :
     (cgRecurrence A c x₀ i).p ⬝ᵥ (A *ᵥ (cgRecurrence A c x₀ j).p) = 0 := by
   rcases lt_or_gt_of_ne hij with h | h
@@ -409,7 +429,9 @@ for `k ≤ ν` the residuals are nonzero (`cgRecurrence_r_ne_zero_of_lt_krylovGr
 orthogonal (`dotProduct_cgRecurrence_r_eq_zero`), hence independent, and both sides have
 dimension `k` (`finrank_krylovSpace`); for `k ≥ ν`, `K_k = K_ν`
 (`krylovSpace_eq_of_krylovGrade_le`). Deviation: stated for every `k`, not only while `r_k ≠ 0`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.1h5v.s7.21f5d8b334c1 from=translated src=- shape=eccaddd9 vocab=e1b51717
+-/
 theorem span_cgRecurrence_r (hA : A.PosDef) (k : ℕ) :
     Submodule.span ℝ (Set.range fun i : Fin k => (cgRecurrence A c x₀ i).r) =
       krylovSpace A (c - A *ᵥ x₀) k := by
@@ -470,7 +492,9 @@ omit [DecidableEq n] in
 /-- **Search directions and residuals span the same spaces**: `span (p_0, …, p_{k−1}) =
 span (r_0, …, r_{k−1})` for every `A` and `k` (no hypothesis). Induction on `k` with
 `p_k − r_k = β_{k−1} p_{k−1}`. Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1, eq. (38.2).
-Helper for `cg-recurrence`.-/
+Helper for `cg-recurrence`.
+@isnad1 id=eq.0h5v.s7.b92b5f22adb1 from=translated src=- shape=ce393c6c vocab=4908b2d9
+-/
 theorem span_cgRecurrence_p_eq_span_r (A : Matrix n n ℝ) (c x₀ : n → ℝ) (k : ℕ) :
     Submodule.span ℝ (Set.range fun i : Fin k => (cgRecurrence A c x₀ i).p) =
       Submodule.span ℝ (Set.range fun i : Fin k => (cgRecurrence A c x₀ i).r) := by
@@ -492,7 +516,9 @@ theorem span_cgRecurrence_p_eq_span_r (A : Matrix n n ℝ) (c x₀ : n → ℝ) 
 /-- **The search directions span the Krylov space**: for `A ≻ 0` and every `k`,
 `span (p_0, …, p_{k−1}) = K_k(A, r₀)`. Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1,
 eq. (38.2). Proof: `span_cgRecurrence_p_eq_span_r` and `span_cgRecurrence_r`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.1h5v.s7.d0154bec9bfd from=translated src=- shape=eccaddd9 vocab=7bdba534
+-/
 theorem span_cgRecurrence_p (hA : A.PosDef) (k : ℕ) :
     Submodule.span ℝ (Set.range fun i : Fin k => (cgRecurrence A c x₀ i).p) =
       krylovSpace A (c - A *ᵥ x₀) k := by
@@ -501,7 +527,9 @@ theorem span_cgRecurrence_p (hA : A.PosDef) (k : ℕ) :
 /-- **Galerkin orthogonality of the recursion**: for `A ≻ 0`, `r_k ⟂ K_k(A, r₀)`.
 Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1; Saad (2011) [`saad11`], Prop. 6.19.
 Proof: `K_k = span r_{<k}` (`span_cgRecurrence_r`) and `r_k ⟂ r_j` for `j < k`
-(`dotProduct_cgRecurrence_r_eq_zero`). Helper for `cg-recurrence`.-/
+(`dotProduct_cgRecurrence_r_eq_zero`). Helper for `cg-recurrence`.
+@isnad1 id=eq.2h6v.s8.38c95e32fd04 from=translated src=- shape=c4c42ea0 vocab=1bdfd6d9
+-/
 theorem dotProduct_cgRecurrence_r_eq_zero_of_mem (hA : A.PosDef) {k : ℕ} {z : n → ℝ}
     (hz : z ∈ krylovSpace A (c - A *ᵥ x₀) k) : z ⬝ᵥ (cgRecurrence A c x₀ k).r = 0 := by
   rw [← span_cgRecurrence_r hA k] at hz
@@ -521,7 +549,9 @@ KRYLOV_DEFINITIONS §3.6. Proof: `cgRecurrence_mem_krylovSpace`, `cgRecurrence_r
 Galerkin orthogonality `dotProduct_cgRecurrence_r_eq_zero_of_mem`, then
 `isCGIterate_of_forall_dotProduct_eq_zero`. Uses atlas `cg-convergence` (the predicate).
 Deviation: the brief's form had `k ≤ krylovGrade A r₀`; the statement holds for all `k`.
-atlas: cg-recurrence-/
+atlas: cg-recurrence
+@isnad1 id=iscgiter.1h5v.s5.2eada18dd0f7 from=translated src=- shape=a3398aa2 vocab=ee2381cf
+-/
 theorem isCGIterate_cgRecurrence (hA : A.PosDef) (c x₀ : n → ℝ) (k : ℕ) :
     IsCGIterate A c x₀ k (cgRecurrence A c x₀ k).x := by
   refine isCGIterate_of_forall_dotProduct_eq_zero hA.isHermitian
@@ -534,7 +564,9 @@ theorem isCGIterate_cgRecurrence (hA : A.PosDef) (c x₀ : n → ℝ) (k : ℕ) 
 `k ≥ ν(A, r₀)`. Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1 (CG converges in at most `n`
 steps); Saad (2003) [`saad03`], §6.7. Proof: `isCGIterate_cgRecurrence` and
 `eq_of_isCGIterate_of_krylovGrade_le` (atlas `cg-finite-termination`).
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.3h6v.s6.774c58928b05 from=translated src=- shape=205784ea vocab=35469909
+-/
 theorem cgRecurrence_x_eq_of_krylovGrade_le (hA : A.PosDef) {xs : n → ℝ} (hxs : A *ᵥ xs = c)
     {k : ℕ} (hk : krylovGrade A (c - A *ᵥ x₀) ≤ k) : (cgRecurrence A c x₀ k).x = xs :=
   eq_of_isCGIterate_of_krylovGrade_le hA hxs hk (isCGIterate_cgRecurrence hA c x₀ k)
@@ -542,7 +574,9 @@ theorem cgRecurrence_x_eq_of_krylovGrade_le (hA : A.PosDef) {xs : n → ℝ} (hx
 /-- **The residual vanishes from the grade on**: for `A ≻ 0`, `r_k = 0` when
 `k ≥ ν(A, r₀)`. Source: Trefethen–Bau (1997) [`tb97`], Thm 38.1. Proof:
 `cgRecurrence_x_eq_of_krylovGrade_le` with `x⋆ = A⁻¹ c` and `cgRecurrence_r_eq`.
-atlas: cg-recurrence (partial)-/
+atlas: cg-recurrence (partial)
+@isnad1 id=eq.2h5v.s6.944a48ef26f5 from=translated src=- shape=39b20bbb vocab=561cbfc4
+-/
 theorem cgRecurrence_r_eq_zero_of_krylovGrade_le (hA : A.PosDef) {k : ℕ}
     (hk : krylovGrade A (c - A *ᵥ x₀) ≤ k) : (cgRecurrence A c x₀ k).r = 0 := by
   have hU : IsUnit A := hA.isUnit

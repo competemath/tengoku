@@ -30,13 +30,17 @@ def preconditionedRichardsonIterate (ω : ℝ) (A P : Matrix n n ℝ) (c x₀ : 
     ℕ → n → ℝ :=
   affineStationaryIterate (1 - ω • (P⁻¹ * A)) (ω • (P⁻¹ *ᵥ c)) x₀
 
-/-- Preconditioned Richardson starts at the specified initializer.-/
+/-- Preconditioned Richardson starts at the specified initializer.
+@isnad1 id=eq.0h6v.s5.52e76b76f8c9 from=translated src=- shape=cef2ac97 vocab=60197625
+-/
 @[simp] theorem preconditionedRichardsonIterate_zero (ω : ℝ) (A P : Matrix n n ℝ)
     (c x₀ : n → ℝ) : preconditionedRichardsonIterate ω A P c x₀ 0 = x₀ := rfl
 
 /-- The implemented update is `xₖ₊₁ = xₖ + ω P⁻¹(c - A xₖ)`.
 Source: Saad (2003), §4.2.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=eq.0h7v.s7.cf842d9fb64e from=translated src=- shape=83256adf vocab=ef28fa5d
+-/
 theorem preconditionedRichardsonIterate_succ (ω : ℝ) (A P : Matrix n n ℝ)
     (c x₀ : n → ℝ) (k : ℕ) :
     preconditionedRichardsonIterate ω A P c x₀ (k + 1) =
@@ -49,7 +53,9 @@ theorem preconditionedRichardsonIterate_succ (ω : ℝ) (A P : Matrix n n ℝ)
 
 /-- Exact error powers for the actual preconditioned Richardson recursion.
 Source: Greenbaum (1997), §2.1.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=eq.1h8v.s8.81f44876e7ab from=translated src=- shape=30297795 vocab=f913f377
+-/
 theorem preconditionedRichardsonIterate_sub_eq_pow_mulVec (ω : ℝ) (A P : Matrix n n ℝ)
     {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (x₀ : n → ℝ) (k : ℕ) :
     preconditionedRichardsonIterate ω A P c x₀ k - xs =
@@ -61,7 +67,9 @@ theorem preconditionedRichardsonIterate_sub_eq_pow_mulVec (ω : ℝ) (A P : Matr
 
 /-- Splitting `P⁻¹ = W Wᵀ` turns the actual preconditioned Richardson recursion into ordinary
 Richardson on `Wᵀ A W`. Source: Saad (2003), split preconditioning.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=eq.1h8v.s7.13de13e24eb9 from=translated src=- shape=afde3a72 vocab=8500af5d
+-/
 theorem preconditionedRichardsonIterate_eq_mulVec_richardsonIterate
     {A P W : Matrix n n ℝ} (hW : Wᵀ * P * W = 1) (ω : ℝ) (c x₀ : n → ℝ) (k : ℕ) :
     preconditionedRichardsonIterate ω A P c x₀ k =
@@ -149,7 +157,9 @@ private theorem preconditionedRichardson_energy_bounds {A P : Matrix n n ℝ}
 /-- The preconditioned Richardson error contracts in the original `A` energy, with the exact
 endpoint factor `max(|1-ωa|, |1-ωb|)`. Squared energy forms avoid choosing a square-root norm.
 Source: Greenbaum (1997), §2.1; Saad (2003), §4.2.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.6h10v.s8.9f6269ff3d39 from=translated src=- shape=39d8bc96 vocab=5685144d
+-/
 theorem quadForm_preconditionedRichardsonIterate_sub_le {A P : Matrix n n ℝ}
     (hP : P.PosDef) {a b ω : ℝ} (ha : 0 < a) (hω : 0 ≤ ω)
     (hlow : a • P ≤ A) (hup : A ≤ b • P) {c xs : n → ℝ}
@@ -160,7 +170,9 @@ theorem quadForm_preconditionedRichardsonIterate_sub_le {A P : Matrix n n ℝ}
 
 /-- The same sharp endpoint contraction holds in the preconditioner `P` energy.
 Source: Greenbaum (1997), §2.1; Saad (2003), §4.2.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.6h10v.s8.6083a1e89b8d from=translated src=- shape=86ce129b vocab=5685144d
+-/
 theorem quadForm_preconditionedRichardsonIterate_sub_le_preconditioner
     {A P : Matrix n n ℝ} (hP : P.PosDef) {a b ω : ℝ} (ha : 0 < a) (hω : 0 ≤ ω)
     (hlow : a • P ≤ A) (hup : A ≤ b • P) {c xs : n → ℝ}
@@ -181,7 +193,9 @@ private theorem max_abs_one_sub_optimal_mul_eq {a b : ℝ} (ha : 0 < a) (hab : a
 
 /-- The optimal preconditioned Richardson step gives the claimed ratio in `A` energy.
 Source: Saad (2003), §4.2.1.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.6h9v.s8.7cfd0fc55f2b from=translated src=- shape=c85e3e58 vocab=c88624a3
+-/
 theorem quadForm_preconditionedRichardsonIterate_sub_le_of_optimal
     {A P : Matrix n n ℝ} (hP : P.PosDef) {a b : ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hlow : a • P ≤ A) (hup : A ≤ b • P) {c xs : n → ℝ}
@@ -196,7 +210,9 @@ theorem quadForm_preconditionedRichardsonIterate_sub_le_of_optimal
 
 /-- The optimal preconditioned Richardson step has the same ratio in `P` energy.
 Source: Saad (2003), §4.2.1.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.6h9v.s8.07794a1b7556 from=translated src=- shape=f178f5ae vocab=c88624a3
+-/
 theorem quadForm_preconditionedRichardsonIterate_sub_le_preconditioner_of_optimal
     {A P : Matrix n n ℝ} (hP : P.PosDef) {a b : ℝ} (ha : 0 < a) (hab : a ≤ b)
     (hlow : a • P ≤ A) (hup : A ≤ b • P) {c xs : n → ℝ}

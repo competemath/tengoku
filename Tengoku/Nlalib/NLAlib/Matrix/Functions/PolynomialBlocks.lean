@@ -30,6 +30,9 @@ def monomialBlockDifference (A : Matrix m m 𝕜) (B : Matrix n n 𝕜)
     (H : Matrix m n 𝕜) (k : ℕ) : Matrix m n 𝕜 :=
   ∑ j ∈ Finset.range k, A ^ (k.pred - j) * H * B ^ j
 
+/--
+@isnad1 id=eq.0h7v.s7.642568b56515 from=translated src=- shape=3e487f99 vocab=16d0444f
+-/
 theorem monomialBlockDifference_succ (A : Matrix m m 𝕜) (B : Matrix n n 𝕜)
     (H : Matrix m n 𝕜) (k : ℕ) :
     monomialBlockDifference A B H (k + 1) =
@@ -45,7 +48,9 @@ theorem monomialBlockDifference_succ (A : Matrix m m 𝕜) (B : Matrix n n 𝕜)
   rw [he, pow_succ]
   simp only [Matrix.mul_assoc]
 
-/-- Actual powers of triangular matrices have the insertion sum as their upper block.-/
+/-- Actual powers of triangular matrices have the insertion sum as their upper block.
+@isnad1 id=eq.0h7v.s8.9b5047bb53a8 from=translated src=- shape=f880fa1c vocab=380c124b
+-/
 theorem upperBlockTwo_pow (A : Matrix m m 𝕜) (H : Matrix m n 𝕜)
     (B : Matrix n n 𝕜) (k : ℕ) :
     upperBlockTwo A H B ^ k =
@@ -62,7 +67,9 @@ def polynomialBlockDifference (p : 𝕜[X]) (A : Matrix m m 𝕜) (B : Matrix n 
     (H : Matrix m n 𝕜) : Matrix m n 𝕜 :=
   ∑ k ∈ Finset.range (p.natDegree + 1), p.coeff k • monomialBlockDifference A B H k
 
-/-- Polynomial evaluation on an actual triangular matrix.-/
+/-- Polynomial evaluation on an actual triangular matrix.
+@isnad1 id=eq.0h7v.s9.b6eb2d0b662b from=translated src=- shape=6a6c3c4e vocab=5d8ab886
+-/
 theorem aeval_upperBlockTwo (p : 𝕜[X]) (A : Matrix m m 𝕜) (H : Matrix m n 𝕜)
     (B : Matrix n n 𝕜) :
     aeval (upperBlockTwo A H B) p =
@@ -84,6 +91,9 @@ def upperBlockThree (A : Matrix m m 𝕜) (G : Matrix m n 𝕜) (B : Matrix n n 
     (H : Matrix n o 𝕜) (C : Matrix o o 𝕜) : Matrix ((m ⊕ n) ⊕ o) ((m ⊕ n) ⊕ o) 𝕜 :=
   upperBlockTwo (upperBlockTwo A G B) (Matrix.fromRows 0 H) C
 
+/--
+@isnad1 id=eq.0h10v.s7.207ac8bcf72a from=translated src=- shape=fb495fe2 vocab=b56faf5c
+-/
 theorem polynomialBlockDifference_upperBlockTwo (p : 𝕜[X])
     (A : Matrix m m 𝕜) (G : Matrix m n 𝕜) (B : Matrix n n 𝕜)
     (H : Matrix n o 𝕜) (C : Matrix o o 𝕜) :
@@ -100,7 +110,9 @@ theorem polynomialBlockDifference_upperBlockTwo (p : 𝕜[X])
       Matrix.fromRows_apply_inr, smul_eq_mul]
 
 /-- The ordered second difference is the actual first-to-third block of the
-polynomial of a three-block triangular matrix.-/
+polynomial of a three-block triangular matrix.
+@isnad1 id=eq.0h10v.s10.afb596413861 from=translated src=- shape=fd793800 vocab=3c0b512a
+-/
 theorem aeval_upperBlockThree (p : 𝕜[X])
     (A : Matrix m m 𝕜) (G : Matrix m n 𝕜) (B : Matrix n n 𝕜)
     (H : Matrix n o 𝕜) (C : Matrix o o 𝕜) :

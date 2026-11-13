@@ -22,14 +22,18 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Adjoint reflection of a Hermitian matrix's native total resolvent, over
-any real or complex scalar field and at every spectral parameter.-/
+any real or complex scalar field and at every spectral parameter.
+@isnad1 id=eq.1h4v.s8.119f1f495b01 from=translated src=- shape=97caf022 vocab=32a39552
+-/
 theorem _root_.Matrix.IsHermitian.conjTranspose_resolvent
     {𝕜 : Type*} [RCLike 𝕜] {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (ζ : 𝕜) :
     (resolvent A ζ)ᴴ = resolvent A (star ζ) := by
   simpa only [Matrix.star_eq_conjTranspose, hA.eq] using star_resolvent A ζ
 
-/-- Mathlib's native resolvent is the inverse of the shifted matrix.-/
+/-- Mathlib's native resolvent is the inverse of the shifted matrix.
+@isnad1 id=eq.0h3v.s6.7e02345120d6 from=translated src=- shape=7c044fc5 vocab=7b6bcdef
+-/
 theorem resolvent_matrix_eq_inv (A : Matrix n n ℂ) (ζ : ℂ) :
     resolvent A ζ = (ζ • (1 : Matrix n n ℂ)-A)⁻¹ := by
   rw [resolvent,←Matrix.nonsing_inv_eq_ringInverse,Algebra.algebraMap_eq_smul_one]
@@ -51,7 +55,9 @@ private theorem shifted_eigenvalue_ne_zero {A : Matrix n n ℂ} (hA : A.IsHermit
   exact hζ (by simpa using hi)
 
 /-- A nonreal shift of a Hermitian matrix is invertible, including empty
-matrix dimensions.-/
+matrix dimensions.
+@isnad1 id=isunit.2h3v.s7.dd8ecaaa69de from=translated src=- shape=1f9dc613 vocab=ff07c3a9
+-/
 theorem _root_.Matrix.IsHermitian.isUnit_smul_one_sub_of_im_ne_zero {A : Matrix n n ℂ}
     (hA : A.IsHermitian) {ζ : ℂ} (hζ : ζ.im ≠ 0) :
     IsUnit (ζ • (1 : Matrix n n ℂ)-A) := by
@@ -60,7 +66,9 @@ theorem _root_.Matrix.IsHermitian.isUnit_smul_one_sub_of_im_ne_zero {A : Matrix 
   rw [Matrix.isUnit_diagonal,Pi.isUnit_iff]
   exact fun i => isUnit_iff_ne_zero.mpr (shifted_eigenvalue_ne_zero hA hζ i)
 
-/-- A Hermitian resolvent is the unitary conjugate of its scalar resolvents.-/
+/-- A Hermitian resolvent is the unitary conjugate of its scalar resolvents.
+@isnad1 id=eq.2h3v.s12.dad408a68161 from=translated src=- shape=a818c1c2 vocab=bf3d6420
+-/
 theorem resolvent_eq_eigenvectorUnitary_conj_diagonal {A : Matrix n n ℂ}
     (hA : A.IsHermitian) {ζ : ℂ} (hζ : ζ.im ≠ 0) :
     resolvent A ζ = Unitary.conjStarAlgAut ℂ _ hA.eigenvectorUnitary
@@ -75,7 +83,9 @@ theorem resolvent_eq_eigenvectorUnitary_conj_diagonal {A : Matrix n n ℂ}
   rw [hd,map_one]
 
 /-- The spectral norm of a Hermitian matrix's nonreal resolvent is at most
-`1/|Im ζ|`. The empty matrix has norm zero and is included.-/
+`1/|Im ζ|`. The empty matrix has norm zero and is included.
+@isnad1 id=le.2h3v.s6.7a5bd23bb1a5 from=translated src=- shape=b0c9bc05 vocab=8c6e2457
+-/
 theorem _root_.Matrix.IsHermitian.specNorm_resolvent_le {A : Matrix n n ℂ}
     (hA : A.IsHermitian) {ζ : ℂ} (hζ : ζ.im ≠ 0) :
     NLAlib.specNorm (resolvent A ζ) ≤ |ζ.im|⁻¹ := by

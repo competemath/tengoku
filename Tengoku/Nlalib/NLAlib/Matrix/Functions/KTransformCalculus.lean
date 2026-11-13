@@ -18,6 +18,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 /-- Hermitian matrices carry their canonical Borel sigma algebra.-/
 instance selfAdjointMatrixMeasurableSpace : MeasurableSpace (selfAdjoint (Matrix n n ℂ)) := borel _
 
+/--
+@isnad1 id=borelspa.0h1v.s7.3552f8a3cb72 from=translated src=- shape=69b08264 vocab=bd2b49a2
+-/
 instance selfAdjointMatrixBorelSpace : BorelSpace (selfAdjoint (Matrix n n ℂ)) := ⟨rfl⟩
 
 /-- The genuine matrix resolvent kernel, defined with the ordinary total
@@ -40,7 +43,9 @@ def matrixKTransformDeriv (ν : Measure (selfAdjoint (Matrix n n ℂ))) (α : �
     α⁻¹ • ContinuousLinearMap.mulLeftRight ℝ (Matrix n n ℂ) S⁻¹ S⁻¹
 
 /-- Ordinary nonsingular matrix inversion has the actual real Fréchet
-inverse derivative.-/
+inverse derivative.
+@isnad1 id=hasfderi.1h2v.s14.022c35ed1f35 from=translated src=- shape=cffda28a vocab=e6047961
+-/
 theorem hasFDerivAt_matrixInverse (S : Matrix n n ℂ) (hS : IsUnit S) :
     HasFDerivAt (fun X : Matrix n n ℂ => X⁻¹)
       (-ContinuousLinearMap.mulLeftRight ℝ (Matrix n n ℂ) S⁻¹ S⁻¹) S := by
@@ -53,7 +58,9 @@ theorem hasFDerivAt_matrixInverse (S : Matrix n n ℂ) (hS : IsUnit S) :
   · rw [← hu, Matrix.nonsing_inv_eq_ringInverse, Ring.inverse_unit]
 
 /-- The resolvent kernel's genuine Fréchet derivative requires only its
-actual solved denominator to be invertible.-/
+actual solved denominator to be invertible.
+@isnad1 id=hasfderi.1h3v.s7.c6ceb9cc9be1 from=translated src=- shape=54c3bcfc vocab=5382ccc7
+-/
 theorem hasFDerivAt_matrixKResolvent (S T : Matrix n n ℂ)
     (h : IsUnit (1 + S * T)) :
     HasFDerivAt (fun X => matrixKResolvent X T) (matrixKResolventDeriv S T) S := by
@@ -68,7 +75,9 @@ theorem hasFDerivAt_matrixKResolvent (S T : Matrix n n ℂ)
     ContinuousLinearMap.id_apply, smul_eq_mul, MulOpposite.smul_eq_mul_unop,
     MulOpposite.unop_op, matrixKResolvent, Matrix.mul_assoc, Matrix.mul_neg]
 
-/-- Joint continuity of the kernel holds at every genuinely admissible pair.-/
+/-- Joint continuity of the kernel holds at every genuinely admissible pair.
+@isnad1 id=continuo.1h3v.s7.cc317fb64d3e from=translated src=- shape=f3b62f5b vocab=2eb254da
+-/
 theorem continuousAt_matrixKResolvent (S T : Matrix n n ℂ)
     (h : IsUnit (1 + S * T)) :
     ContinuousAt (fun p : Matrix n n ℂ × Matrix n n ℂ => matrixKResolvent p.1 p.2) (S,T) := by
@@ -80,7 +89,9 @@ theorem continuousAt_matrixKResolvent (S T : Matrix n n ℂ)
   simpa only [matrixKResolvent] using hmul
 
 /-- The actual derivative kernel is jointly continuous wherever the solved
-resolvent denominator is invertible.-/
+resolvent denominator is invertible.
+@isnad1 id=continuo.1h3v.s8.c506e69a2f52 from=translated src=- shape=0b7c6226 vocab=830d65c3
+-/
 theorem continuousAt_matrixKResolventDeriv (S T : Matrix n n ℂ)
     (h : IsUnit (1 + S * T)) :
     ContinuousAt (fun p : Matrix n n ℂ × Matrix n n ℂ => matrixKResolventDeriv p.1 p.2) (S,T) := by
@@ -91,7 +102,9 @@ theorem continuousAt_matrixKResolventDeriv (S T : Matrix n n ℂ)
 /-- Compact support and actual solved denominators give the genuine Fréchet
 derivative under the integral. All inverse assumptions are on the support
 only. Source: user derivations, equation (F20).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=hasfderi.3h4v.s10.bafb67352068 from=translated src=- shape=e6c2288c vocab=ef076d42
+-/
 theorem hasFDerivAt_matrixKTransform (ν : Measure (selfAdjoint (Matrix n n ℂ)))
     [IsFiniteMeasure ν] (hν : IsCompact ν.support) (α : ℝ) (S : Matrix n n ℂ)
     (hS : IsUnit S) (hden : ∀ T ∈ ν.support, IsUnit (1 + S * T.val)) :

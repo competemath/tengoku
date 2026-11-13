@@ -25,13 +25,17 @@ def jacksonSquareWaveCircle (N : ℕ) (t : AddCircle (2 * Real.pi)) : ℝ :=
   Real.sign ((fourier (N : ℤ) t).im)
 
 /-- At a real angle the square wave is exactly `sign(sin(Nt))`.
-Helper for `jackson-lipschitz`.-/
+Helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h2v.s5.a52a72151722 from=translated src=- shape=037161e6 vocab=67cbcaeb
+-/
 theorem jacksonSquareWaveCircle_coe_eq (N : ℕ) (t : ℝ) :
     jacksonSquareWaveCircle N (t : AddCircle (2 * Real.pi)) = Real.sign (Real.sin ((N : ℝ) * t)) := by
   rw [jacksonSquareWaveCircle, im_fourier_nat_coe_eq_sin]
 
 /-- The square wave is measurable.
-Source: the piecewise real sign function; helper for sharp `jackson-lipschitz`.-/
+Source: the piecewise real sign function; helper for sharp `jackson-lipschitz`.
+@isnad1 id=measurab.0h1v.s5.5e84038382bd from=translated src=- shape=9d667129 vocab=5108a422
+-/
 theorem measurable_jacksonSquareWaveCircle (N : ℕ) : Measurable (jacksonSquareWaveCircle N) := by
   have hm : Measurable (fun t : AddCircle (2 * Real.pi) => (fourier (N : ℤ) t).im) :=
     Complex.continuous_im.measurable.comp (fourier (N : ℤ)).continuous.measurable
@@ -40,7 +44,9 @@ theorem measurable_jacksonSquareWaveCircle (N : ℕ) : Measurable (jacksonSquare
     (Measurable.ite (measurableSet_lt measurable_const hm) measurable_const measurable_const)
 
 /-- The square-wave modulus is bounded by one.
-Source: the piecewise real sign function; helper for sharp `jackson-lipschitz`.-/
+Source: the piecewise real sign function; helper for sharp `jackson-lipschitz`.
+@isnad1 id=le.0h2v.s5.f4d5e2e89ce7 from=translated src=- shape=e673a689 vocab=049338d8
+-/
 theorem abs_jacksonSquareWaveCircle_le_one (N : ℕ) (t : AddCircle (2 * Real.pi)) :
     |jacksonSquareWaveCircle N t| ≤ 1 := by
   unfold jacksonSquareWaveCircle
@@ -48,7 +54,9 @@ theorem abs_jacksonSquareWaveCircle_le_one (N : ℕ) (t : AddCircle (2 * Real.pi
     rw [h] <;> norm_num
 
 /-- The square wave is integrable under normalized circle Haar measure.
-Source: bounded measurable functions on a probability space; helper for sharp `jackson-lipschitz`.-/
+Source: bounded measurable functions on a probability space; helper for sharp `jackson-lipschitz`.
+@isnad1 id=integrab.0h1v.s6.dab766ba02a4 from=translated src=- shape=3fef9d8a vocab=4303768b
+-/
 theorem integrable_jacksonSquareWaveCircle (N : ℕ) :
     Integrable (jacksonSquareWaveCircle N) AddCircle.haarAddCircle := by
   have hm : MemLp (jacksonSquareWaveCircle N) 1 AddCircle.haarAddCircle :=
@@ -57,7 +65,9 @@ theorem integrable_jacksonSquareWaveCircle (N : ℕ) :
   exact hm.integrable le_rfl
 
 /-- A uniform `N`-grid shift leaves the square wave unchanged.
-Helper for `jackson-lipschitz`.-/
+Helper for `jackson-lipschitz`.
+@isnad1 id=eq.1h2v.s8.c25fc9dd4526 from=translated src=- shape=ca6722ff vocab=3aa06f05
+-/
 theorem jacksonSquareWaveCircle_add_div_period (N : ℕ) (hN : 0 < N)
     (t : AddCircle (2 * Real.pi)) :
     jacksonSquareWaveCircle N (t + ((2 * Real.pi / N : ℝ) : AddCircle (2 * Real.pi))) =
@@ -67,7 +77,9 @@ theorem jacksonSquareWaveCircle_add_div_period (N : ℕ) (hN : 0 < N)
 
 /-- Low nonzero Fourier coefficients of the square wave vanish exactly.
 Haar shift invariance and roots of unity.
-Atlas `jackson-lipschitz` (orthogonality helper).-/
+Atlas `jackson-lipschitz` (orthogonality helper).
+@isnad1 id=eq.2h2v.s6.97729e649f5e from=translated src=- shape=1718c986 vocab=681875de
+-/
 theorem fourierCoeff_jacksonSquareWaveCircle_eq_zero {N k : ℕ} (hk : 0 < k) (hkN : k < N) :
     fourierCoeff (fun t : AddCircle (2 * Real.pi) => (jacksonSquareWaveCircle N t : ℂ)) (k : ℤ) = 0 := by
   let a : AddCircle (2 * Real.pi) := (2 * Real.pi / N : ℝ)
@@ -96,7 +108,9 @@ theorem fourierCoeff_jacksonSquareWaveCircle_eq_zero {N k : ℕ} (hk : 0 < k) (h
   exact (mul_eq_zero.mp hzero).resolve_left (sub_ne_zero.mpr hc)
 
 /-- The bounded measurable Fourier character times the square wave is interval integrable.
-Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.-/
+Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.
+@isnad1 id=interval.0h2v.s8.19b8db153c5a from=translated src=- shape=b13362bf vocab=7f0ba53b
+-/
 theorem intervalIntegrable_fourier_mul_jacksonSquareWaveCircle (N : ℕ) (k : ℤ) :
     IntervalIntegrable (fun t : ℝ => fourier k (t : AddCircle (2 * Real.pi)) *
       (jacksonSquareWaveCircle N (t : AddCircle (2 * Real.pi)) : ℂ)) volume 0 (2 * Real.pi) := by
@@ -114,7 +128,9 @@ theorem intervalIntegrable_fourier_mul_jacksonSquareWaveCircle (N : ℕ) (k : �
       abs_jacksonSquareWaveCircle_le_one N (t : AddCircle (2 * Real.pi))
 
 /-- The real sine square wave is interval integrable over a full period.
-Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.-/
+Source: bounded measurable functions on a finite interval; helper for sharp `jackson-lipschitz`.
+@isnad1 id=interval.0h1v.s5.ec4f9c92cb7b from=translated src=- shape=3b61e463 vocab=294611d5
+-/
 theorem intervalIntegrable_sign_sin (N : ℕ) :
     IntervalIntegrable (fun t : ℝ => Real.sign (Real.sin ((N : ℝ) * t))) volume 0 (2 * Real.pi) := by
   have h := intervalIntegrable_fourier_mul_jacksonSquareWaveCircle N 0
@@ -128,7 +144,9 @@ theorem intervalIntegrable_sign_sin (N : ℕ) :
 /-- The sine square wave is orthogonal on a full period to every positive sine
 frequency below `N`. The proof transports the proved Fourier cancellation through its
 normalized interval integral and imaginary-part projection.
-Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).-/
+Helper for `jackson-lipschitz` (Jackson's theorem through the sawtooth function).
+@isnad1 id=eq.2h2v.s6.7ef6382c8e88 from=translated src=- shape=c2cecf3e vocab=5d13733f
+-/
 theorem integral_sign_sin_mul_sin_eq_zero {N k : ℕ} (hk : 0 < k) (hkN : k < N) :
     (∫ t : ℝ in 0..2 * Real.pi, Real.sign (Real.sin ((N : ℝ) * t)) * Real.sin ((k : ℝ) * t)) = 0 := by
   let f : ℝ → ℂ := fun t => fourier (-(k : ℤ)) (t : AddCircle (2 * Real.pi)) *

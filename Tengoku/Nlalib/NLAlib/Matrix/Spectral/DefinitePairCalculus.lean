@@ -18,7 +18,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- Two positive definite real matrices admit simultaneous congruence to
 identity and a strictly positive diagonal. Horn--Johnson (2013),
-Theorem 7.6.1; helper for determinant and inverse convexity.-/
+Theorem 7.6.1; helper for determinant and inverse convexity.
+@isnad1 id=ex.2h3v.s7.fdc9db8ce03e from=translated src=- shape=02896a56 vocab=169247e4
+-/
 theorem exists_positive_definite_pair_congruence {A B : Matrix n n ℝ}
     (hA : A.PosDef) (hB : B.PosDef) :
     ∃ (S : Matrix n n ℝ) (d : n → ℝ), IsUnit S ∧ A = S * Sᵀ ∧
@@ -32,7 +34,9 @@ theorem exists_positive_definite_pair_congruence {A B : Matrix n n ℝ}
 open scoped Matrix.Norms.L2Operator in
 /-- A linear combination of a simultaneous definite pair has the same
 congruence factor and the affine diagonal combination. Horn--Johnson (2013),
-Section 7.6; helper for determinant and inverse convexity.-/
+Section 7.6; helper for determinant and inverse convexity.
+@isnad1 id=eq.2h7v.s8.4532e0224f68 from=translated src=- shape=e847afca vocab=59e074b2
+-/
 theorem smul_add_smul_eq_congruence_diagonal {A B S : Matrix n n ℝ} {d : n → ℝ}
     (hA : A = S * Sᵀ) (hB : B = S * diagonal d * Sᵀ) (a b : ℝ) :
     a • A + b • B = S * diagonal (fun i => a + b * d i) * Sᵀ := by
@@ -46,7 +50,9 @@ theorem smul_add_smul_eq_congruence_diagonal {A B S : Matrix n n ℝ} {d : n →
 open scoped Matrix.Norms.L2Operator in
 /-- The determinant of a diagonal congruence is the factor determinant
 squared times the diagonal product. Horn--Johnson (2013), Section 7.6;
-helper for determinant inequalities.-/
+helper for determinant inequalities.
+@isnad1 id=eq.0h3v.s6.90b682a16a4b from=translated src=- shape=d50127e5 vocab=9f8e5e52
+-/
 theorem det_congruence_diagonal (S : Matrix n n ℝ) (d : n → ℝ) :
     (S * diagonal d * Sᵀ).det = S.det ^ 2 * ∏ i, d i := by
   rw [Matrix.det_mul, Matrix.det_mul, Matrix.det_transpose, Matrix.det_diagonal]
@@ -55,7 +61,9 @@ theorem det_congruence_diagonal (S : Matrix n n ℝ) (d : n → ℝ) :
 open scoped Matrix.Norms.L2Operator in
 /-- Log determinant of a positive diagonal congruence separates into a
 constant factor and scalar logarithms. Horn--Johnson (2013), Section 7.6;
-helper for strict log-determinant concavity.-/
+helper for strict log-determinant concavity.
+@isnad1 id=eq.2h3v.s7.08a0d8298a93 from=translated src=- shape=271a6ffc vocab=608c6af7
+-/
 theorem log_det_congruence_diagonal {S : Matrix n n ℝ} (hS : IsUnit S)
     (d : n → ℝ) (hd : ∀ i, 0 < d i) :
     Real.log (S * diagonal d * Sᵀ).det = Real.log (S.det ^ 2) + ∑ i, Real.log (d i) := by
@@ -66,7 +74,9 @@ theorem log_det_congruence_diagonal {S : Matrix n n ℝ} (hS : IsUnit S)
 open scoped Matrix.Norms.L2Operator in
 /-- Inverting a nonsingular diagonal congruence inverts the diagonal entries
 and reverses the factors. Horn--Johnson (2013), Section 7.6;
-helper for strict inverse-trace convexity.-/
+helper for strict inverse-trace convexity.
+@isnad1 id=eq.1h3v.s7.3a3b813abc2e from=translated src=- shape=216774c5 vocab=eb103c72
+-/
 theorem inv_congruence_diagonal (S : Matrix n n ℝ) (d : n → ℝ) (hd : ∀ i, d i ≠ 0) :
     (S * diagonal d * Sᵀ)⁻¹ = Sᵀ⁻¹ * diagonal (fun i => (d i)⁻¹) * S⁻¹ := by
   have hD : (diagonal d)⁻¹ = diagonal (fun i => (d i)⁻¹) := by
@@ -81,7 +91,9 @@ theorem inv_congruence_diagonal (S : Matrix n n ℝ) (d : n → ℝ) (hd : ∀ i
 open scoped Matrix.Norms.L2Operator in
 /-- Trace of a diagonal congruence is a weighted sum of the diagonal
 entries, with column-Gram diagonal weights. Horn--Johnson (2013),
-Section 7.6; helper for strict inverse-trace convexity.-/
+Section 7.6; helper for strict inverse-trace convexity.
+@isnad1 id=eq.0h3v.s6.e3200c9c3208 from=translated src=- shape=3a1a7b31 vocab=0e52cbf2
+-/
 theorem trace_congruence_diagonal (S : Matrix n n ℝ) (d : n → ℝ) :
     (S * diagonal d * Sᵀ).trace = ∑ i, d i * (Sᵀ * S) i i := by
   rw [Matrix.trace_mul_cycle]

@@ -24,7 +24,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The actual K resolvents satisfy their exact two-point identity whenever
-the two genuine solved denominators are invertible.-/
+the two genuine solved denominators are invertible.
+@isnad1 id=eq.2h4v.s8.4ee01aedc5d6 from=translated src=- shape=66f609ac vocab=c24cf84b
+-/
 theorem matrixKResolvent_sub_matrixKResolvent
     (S Q T : Matrix n n ℂ) (hS : IsUnit (1 + S * T)) (hQ : IsUnit (1 + Q * T)) :
     matrixKResolvent S T - matrixKResolvent Q T =
@@ -36,7 +38,9 @@ theorem matrixKResolvent_sub_matrixKResolvent
   simp only [Matrix.mul_neg, Matrix.neg_mul, Matrix.mul_assoc]
 
 /-- The actual K resolvent is integrable throughout the true inverse
-domain, by compact support. No regularity off the support is needed.-/
+domain, by compact support. No regularity off the support is needed.
+@isnad1 id=integrab.2h3v.s9.a06eab8a7aa7 from=translated src=- shape=7679ed1d vocab=0c4656a5
+-/
 theorem integrable_matrixKResolvent_of_mem_domain
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) {S : Matrix n n ℂ}
@@ -54,7 +58,9 @@ theorem integrable_matrixKResolvent_of_mem_domain
 
 /-- The difference of actual K-transforms is the genuine mixed-resolvent
 integral plus the inverse difference pairing. All integrability is derived
-from compact support and actual denominator invertibility.-/
+from compact support and actual denominator invertibility.
+@isnad1 id=eq.3h5v.s10.d022761baf0b from=translated src=- shape=802a1e1c vocab=f44e790e
+-/
 theorem matrixKTransform_sub_matrixKTransform
     (ν : Measure (selfAdjoint (Matrix n n ℂ))) [IsFiniteMeasure ν]
     (hν : IsCompact ν.support) (α : ℝ) {S Q : Matrix n n ℂ}

@@ -46,7 +46,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Monotonicity of the completion factor (Chen–Persson, proof of `thm:GN`): `q ↦ q/(s−q−1)`
 is increasing for `q < s − 1`, so the factor of `lem:completion` for dimension `q ≤ k` is at
-most that for `k`. Helper for atlas `gn-expected-error`.-/
+most that for `k`. Helper for atlas `gn-expected-error`.
+@isnad1 id=le.3h3v.s6.0e6d8125e852 from=translated src=- shape=7270f779 vocab=8f0440a5
+-/
 theorem completion_factor_mono {q k s : ℝ} (hq : 0 ≤ q) (hqk : q ≤ k) (hks : k < s - 1) :
     q / (s - q - 1) ≤ k / (s - k - 1) := by
   rw [div_le_div_iff₀ (by linarith) (by linarith)]
@@ -59,7 +61,9 @@ theorem completion_factor_mono {q k s : ℝ} (hq : 0 ≤ q) (hqk : q ≤ k) (hks
 * `hX` is `prop:hmt-struct` (deterministic; `NLAlib.frobSq_residual_le_of_range_subset`).
 * `hZ` encodes `lem:moments` + `lem:invmom` after the tower property:
   `E ‖Σ₂ Ω₂ Ω₁†‖_F² = ‖Σ₂‖_F² · k/(t−k−1)`; here with a general constant `c`.
-Atlas `rsvd-expected-error`.-/
+Atlas `rsvd-expected-error`.
+@isnad1 id=le.4h6v.s7.6b340ee1481a from=translated src=- shape=493f4799 vocab=49f2b99d
+-/
 theorem rsvd_assembly [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq c : ℝ}
     (hX : ∀ ω, X ω ≤ OPTsq + Zsq ω) (hZ : ∫ ω, Zsq ω ∂μ = c * OPTsq)
     (hXi : Integrable X μ) (hZi : Integrable Zsq μ) :
@@ -72,7 +76,9 @@ theorem rsvd_assembly [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq c : 
 
 /-- Chen–Persson, Theorem `thm:RSVD` (HMT 2011, Thm 10.5, Frobenius case), expectation level,
 with the paper's constant `c = k/(t−k−1)`. Atlas `rsvd-expected-error`.
-atlas: rsvd-expected-error-/
+atlas: rsvd-expected-error
+@isnad1 id=le.4h7v.s7.69a892e8d195 from=translated src=- shape=044b51f6 vocab=d7dfa6fe
+-/
 theorem rsvd_explicit [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq k t : ℝ}
     (hX : ∀ ω, X ω ≤ OPTsq + Zsq ω) (hZ : ∫ ω, Zsq ω ∂μ = k / (t - k - 1) * OPTsq)
     (hXi : Integrable X μ) (hZi : Integrable Zsq μ) :
@@ -89,7 +95,9 @@ theorem rsvd_explicit [IsProbabilityMeasure μ] {X Zsq : Ω → ℝ} {OPTsq k t 
 * `hc` is the deterministic bound `q ≤ t` and monotonicity of `q ↦ q/(s−q−1)`
   (`completion_factor_mono`).
 * `hYbound` is the range-finder theorem (`thm:RSVD`).
-Atlas `gn-expected-error`.-/
+Atlas `gn-expected-error`.
+@isnad1 id=le.7h7v.s7.34a2c56632a5 from=translated src=- shape=527f2201 vocab=87c5e1ad
+-/
 theorem gn_assembly {X Y cfac : Ω → ℝ} {cmax B : ℝ} (hY : 0 ≤ Y) (hcmax : 0 ≤ cmax)
     (hc : ∀ ω, cfac ω ≤ cmax) (hcond : ∫ ω, X ω ∂μ = ∫ ω, cfac ω * Y ω ∂μ)
     (hYbound : ∫ ω, Y ω ∂μ ≤ B)
@@ -109,7 +117,9 @@ Hypotheses: `hc` (`lem:completion`'s factor with `q = rank(AΩ) ≤ t`), `hcond`
 `Y = ‖(I−QQᵀ)A‖_F²`), `hZ` (`lem:moments` + `lem:invmom`, as in the proof of `thm:RSVD`).
 The hypothesis `hk` is not used by the arithmetic; it is kept for fidelity.
 Atlas `gn-expected-error` (uses `rsvd-expected-error`).
-atlas: gn-expected-error-/
+atlas: gn-expected-error
+@isnad1 id=le.11h10v.s9.dc77cf617cef from=translated src=- shape=35729662 vocab=93cf992b
+-/
 theorem gn_explicit [IsProbabilityMeasure μ] {X Y cfac Zsq : Ω → ℝ} {k t s OPTsq : ℝ}
     (hk : 0 ≤ k) (hkt : k + 2 ≤ t) (hts : t + 2 ≤ s)
     (hY : 0 ≤ Y) (hc : ∀ ω, cfac ω ≤ 1 + t / (s - t - 1))

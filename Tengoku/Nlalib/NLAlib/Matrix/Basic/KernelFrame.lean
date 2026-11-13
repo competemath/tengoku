@@ -20,7 +20,9 @@ structure IsKernelFrame (B : Matrix m n 𝕜) (Z : Matrix n r 𝕜) : Prop where
   orth : HasOrthonormalCols Z
   range_eq : LinearMap.range Z.mulVecLin = LinearMap.ker B.mulVecLin
 
-/-- A kernel frame is annihilated by the constraint matrix.-/
+/-- A kernel frame is annihilated by the constraint matrix.
+@isnad1 id=eq.1h6v.s7.7bffbbe2358c from=translated src=- shape=221787b4 vocab=5d6e15c5
+-/
 theorem IsKernelFrame.mul_eq_zero {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) : B * Z = 0 := by
   apply Matrix.ext_iff_mulVec.mpr
@@ -31,7 +33,9 @@ theorem IsKernelFrame.mul_eq_zero {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
   change B *ᵥ (Z *ᵥ v) = 0 at h
   simpa only [Matrix.mulVec_mulVec, Matrix.zero_mulVec] using h
 
-/-- Exact coordinates of every feasible direction.-/
+/-- Exact coordinates of every feasible direction.
+@isnad1 id=eq.2h7v.s7.77a8aaddbf06 from=translated src=- shape=ed99b48c vocab=4decd16b
+-/
 theorem IsKernelFrame.mulVec_conjTranspose_mulVec {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) {v : n → 𝕜} (hv : B *ᵥ v = 0) :
     Z *ᵥ (Zᴴ *ᵥ v) = v := by
@@ -43,7 +47,9 @@ theorem IsKernelFrame.mulVec_conjTranspose_mulVec {B : Matrix m n 𝕜} {Z : Mat
   rw [Matrix.mulVec_mulVec w Zᴴ Z, hZ.orth.conjTranspose_mul_self, Matrix.one_mulVec]
 
 /-- Constraint-space and null-space projections give an exact decomposition.
-The full-row-rank hypothesis justifies the ordinary inverse in the formula.-/
+The full-row-rank hypothesis justifies the ordinary inverse in the formula.
+@isnad1 id=eq.2h7v.s9.a6eabc2c1dd9 from=translated src=- shape=99271d7d vocab=f52436a4
+-/
 theorem IsKernelFrame.decomposition {B : Matrix m n 𝕜} {Z : Matrix n r 𝕜}
     (hZ : IsKernelFrame B Z) (hB : IsUnit (B * Bᴴ)) (v : n → 𝕜) :
     v = Z *ᵥ (Zᴴ *ᵥ v) + Bᴴ *ᵥ ((B * Bᴴ)⁻¹ *ᵥ (B *ᵥ v)) := by

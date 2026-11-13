@@ -19,7 +19,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Every real diagonal node in a unitary diagonalization is a real
-spectral value of the original matrix.-/
+spectral value of the original matrix.
+@isnad1 id=mem.1h5v.s8.b8d9ed2093e5 from=translated src=- shape=21f90214 vocab=b0fb3cf9
+-/
 theorem mem_real_spectrum_of_unitary_diagonalization (ev : n → ℝ)
     (U : unitary (Matrix n n ℂ)) {A : Matrix n n ℂ}
     (hA : A = (U : Matrix n n ℂ) * diagonal (fun i => (ev i : ℂ)) *
@@ -33,7 +35,9 @@ theorem mem_real_spectrum_of_unitary_diagonalization (ev : n → ℝ)
   exact (spectrum.algebraMap_mem_iff ℂ).mp hc
 
 /-- The CFC has its divided-difference derivative along the Hermitian
-subspace. Differentiability at just the finite spectrum is sufficient.-/
+subspace. Differentiability at just the finite spectrum is sufficient.
+@isnad1 id=hasfderi.3h5v.s9.41346950fdd4 from=translated src=- shape=881ef15b vocab=dc4d041e
+-/
 theorem hasFDerivWithinAt_cfc_loewner {A : Matrix n n ℂ} (hA : A.IsHermitian)
     {f : ℝ → ℝ} (hf : ∀ i, DifferentiableAt ℝ f (hA.eigenvalues i))
     (ev : n → ℝ) (U : unitary (Matrix n n ℂ))
@@ -62,7 +66,9 @@ matrix space is the conjugated divided-difference Hadamard operator.
 Differentiability at each eigenvalue is enough, hence in particular the
 source's `C¹` hypothesis on any open spectral interval is sufficient.
 The supplied unitary basis need not order or separate repeated eigenvalues.
-atlas: matrix-function-frechet-divided-difference-/
+atlas: matrix-function-frechet-divided-difference
+@isnad1 id=hasfderi.2h5v.s12.9967e3c8baf9 from=translated src=- shape=77fa6151 vocab=f12d5cb4
+-/
 theorem hasFDerivAt_cfc_hermitian_loewner
     (A : selfAdjoint.submodule ℝ (Matrix n n ℂ)) {f : ℝ → ℝ}
     (hf : ∀ i, DifferentiableAt ℝ f ((show (A : Matrix n n ℂ).IsHermitian from A.property).eigenvalues i))

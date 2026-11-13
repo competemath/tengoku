@@ -21,7 +21,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {A : Matrix n n ℝ} {b : n →
 Christoffel–Darboux kernel in every normalized positive-order range. At the terminal
 order use the monic norm-divided formula instead of a nonexistent normalized polynomial.
 Source: Gautschi (2004), Corollary to Theorem 1.32; operator derivations (OF11).
-atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)-/
+atlas: monic-orthogonal-recurrence (partial), jacobi-matrix-identities (partial)
+@isnad1 id=and.3h7v.s8.f86b25d89ee3 from=translated src=- shape=eecea09e vocab=96538702
+-/
 theorem sum_sq_eval_poly_eq_confluent_and_pos (D : LanczosDecomp A b q) (hA : A.IsHermitian)
     {m : ℕ} (hm0 : 0 < m) (hm : m < q) (x : ℝ) :
     (∑ j ∈ range m, (D.poly j).eval x ^ 2) =

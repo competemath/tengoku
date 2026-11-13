@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A nonnegative finite sequence has squared energy at least the squared excess
 above its complementary tail divided by the head size (scalar Cauchy–Schwarz step of
-Chen–Epperly–Tropp–Webber 2023, Thm 3.1).-/
+Chen–Epperly–Tropp–Webber 2023, Thm 3.1).
+@isnad1 id=le.3h5v.s7.a76e045d3479 from=translated src=- shape=1430beb4 vocab=d0a0bc06
+-/
 theorem sq_max_sum_sub_tail_le_card_mul_sum_sq {ι : Type*} [Fintype ι] [DecidableEq ι]
     (d : ι → ℝ) (_hd : ∀ i, 0 ≤ d i) (S : Finset ι) {r : ℕ} (hcard : S.card ≤ r)
     {τ : ℝ} (htail : (∑ i, if i ∉ S then d i else 0) ≤ τ) :
@@ -50,7 +52,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] {𝕜 : Type*} [RCLike 𝕜]
 
 /-- Summing a function of the sorted eigenvalues gives the same spectral sum as the
 matrix-labelled eigenvalues, for real symmetric and complex Hermitian matrices alike
-(`[RCLike 𝕜]`); Mathlib's sorted-eigenvalue convention.-/
+(`[RCLike 𝕜]`); Mathlib's sorted-eigenvalue convention.
+@isnad1 id=eq.1h4v.s7.7e070fab8ed1 from=translated src=- shape=4cc18324 vocab=70cebea5
+-/
 theorem sum_eigenvalues_eq_sum_sorted {A : Matrix n n 𝕜} (hA : A.IsHermitian) (f : ℝ → ℝ) :
     (∑ i : n, f (hA.eigenvalues i)) = ∑ i : Fin (Fintype.card n), f (hA.eigenvalues₀ i) := by
   let e : Fin (Fintype.card n) ≃ n := Fintype.equivOfCardEq (Fintype.card_fin _)
@@ -63,7 +67,9 @@ Chen–Epperly–Tropp–Webber 2023, §1 (`τ_r`).-/
 def spectralTraceTail (A : Matrix n n 𝕜) (hA : A.IsHermitian) (r : ℕ) : ℝ :=
   ∑ i : Fin (Fintype.card n), if r ≤ (i : ℕ) then hA.eigenvalues₀ i else 0
 
-/-- Sorted eigenvalues of a positive semidefinite matrix are nonnegative.-/
+/-- Sorted eigenvalues of a positive semidefinite matrix are nonnegative.
+@isnad1 id=le.1h4v.s5.4df4169138aa from=translated src=- shape=22334b21 vocab=63bebb8b
+-/
 theorem eigenvalues₀_nonneg_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (i : Fin (Fintype.card n)) : 0 ≤ hA.isHermitian.eigenvalues₀ i := by
   have h := hA.eigenvalues_nonneg (Fintype.equivOfCardEq (Fintype.card_fin _) i)
@@ -85,7 +91,9 @@ private theorem re_trace_mul_self_eq_sum_eigenvalues₀_sq {A : Matrix n n 𝕜}
   simp only [Pi.pow_apply, Function.comp_apply, ← RCLike.ofReal_pow, RCLike.ofReal_re]
   exact sum_eigenvalues_eq_sum_sorted hA (fun x => x ^ 2)
 
-/-- The spectral trace tail of a positive semidefinite matrix is nonnegative.-/
+/-- The spectral trace tail of a positive semidefinite matrix is nonnegative.
+@isnad1 id=le.1h4v.s5.af549e739911 from=translated src=- shape=dd0d0dfc vocab=33979379
+-/
 theorem spectralTraceTail_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef) (r : ℕ) :
     0 ≤ spectralTraceTail A hA.isHermitian r := by
   apply Finset.sum_nonneg
@@ -95,7 +103,9 @@ theorem spectralTraceTail_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef) (r : 
   · exact le_rfl
 
 /-- The sorted tail is bounded by the (real part of the) full trace of a positive
-semidefinite matrix; over `ℝ`, `RCLike.re A.trace` is `A.trace` by `RCLike.re_to_real`.-/
+semidefinite matrix; over `ℝ`, `RCLike.re A.trace` is `A.trace` by `RCLike.re_to_real`.
+@isnad1 id=le.1h4v.s7.5b626f92e776 from=translated src=- shape=b67af8ab vocab=c1cb5bd8
+-/
 theorem spectralTraceTail_le_trace {A : Matrix n n 𝕜} (hA : A.PosSemidef) (r : ℕ) :
     spectralTraceTail A hA.isHermitian r ≤ RCLike.re A.trace := by
   rw [re_trace_eq_sum_eigenvalues₀ hA.isHermitian]
@@ -110,7 +120,9 @@ positive semidefinite `A`, then `R` has enough trace-square energy to pay the re
 trace drift above the spectral tail of `A`. The field-independent core of
 `sq_max_trace_sub_spectralTraceTail_le_mul_trace_sq` (ℝ); over any `𝕜` the domination is
 `Matrix.IsHermitian.eigenvalues₀_le_eigenvalues₀_of_le` (Loewner monotonicity of eigenvalues).
-Chen–Epperly–Tropp–Webber 2023, proof of Thm 3.1: eigenvalue monotonicity and Cauchy–Schwarz.-/
+Chen–Epperly–Tropp–Webber 2023, proof of Thm 3.1: eigenvalue monotonicity and Cauchy–Schwarz.
+@isnad1 id=le.3h5v.s8.41b4d32966cd from=translated src=- shape=4a36e59d vocab=d2c09840
+-/
 theorem sq_max_re_trace_sub_spectralTraceTail_le_of_eigenvalues₀_le
     {A R : Matrix n n 𝕜} (hA : A.PosSemidef) (hR : R.PosSemidef)
     (hle : ∀ i, hR.isHermitian.eigenvalues₀ i ≤ hA.isHermitian.eigenvalues₀ i) (r : ℕ) :
@@ -141,7 +153,9 @@ theorem sq_max_re_trace_sub_spectralTraceTail_le_of_eigenvalues₀_le
 /-- For PSD `R ≤ A` (Loewner), `(tr R − τ_r(A))₊² ≤ r · tr(R²)`, where `τ_r(A)` is the trace
 tail after the `r` largest eigenvalues (real case of
 `sq_max_re_trace_sub_spectralTraceTail_le_of_eigenvalues₀_le`). Chen–Epperly–Tropp–Webber
-2023 (RPCholesky), proof of Thm 3.1: eigenvalue monotonicity and Cauchy–Schwarz.-/
+2023 (RPCholesky), proof of Thm 3.1: eigenvalue monotonicity and Cauchy–Schwarz.
+@isnad1 id=le.3h4v.s7.b448026fd4e8 from=translated src=- shape=1d22fe1b vocab=f08c9dad
+-/
 theorem sq_max_trace_sub_spectralTraceTail_le_mul_trace_sq
     {A R : Matrix n n ℝ} (hA : A.PosSemidef) (hR : R.PosSemidef)
     (hRA : R ≤ A) (r : ℕ) :
@@ -152,7 +166,9 @@ theorem sq_max_trace_sub_spectralTraceTail_le_mul_trace_sq
 
 /-- A zero optimal trace tail of a positive semidefinite matrix implies rank at most
 the requested head size (the rank is the number of nonzero eigenvalues).
-Chen–Epperly–Tropp–Webber 2023, Thm 3.1, exact-rank case.-/
+Chen–Epperly–Tropp–Webber 2023, Thm 3.1, exact-rank case.
+@isnad1 id=le.2h4v.s6.35e60bd60089 from=translated src=- shape=8b7460bd vocab=ac38e479
+-/
 theorem rank_le_of_spectralTraceTail_eq_zero {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     {r : ℕ} (ht : spectralTraceTail A hA.isHermitian r = 0) : A.rank ≤ r := by
   have hzero : ∀ j : Fin (Fintype.card n), r ≤ (j : ℕ) → hA.isHermitian.eigenvalues₀ j = 0 := by

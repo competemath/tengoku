@@ -26,7 +26,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m n p : Type*}
 
 /-- Orthonormal coordinates preserve squared Frobenius norm for every matrix whose columns
 lie in the frame's range. This applies to any residual, rather than only a chosen projection
-residual; it supplies the range-isometry clause of `sketched-regression`.-/
+residual; it supplies the range-isometry clause of `sketched-regression`.
+@isnad1 id=eq.2h6v.s9.5d416a7fb02e from=translated src=- shape=477a865e vocab=7db90093
+-/
 theorem frobSq_conjTranspose_mul_of_range_le {Q : Matrix m n 𝕜} {E : Matrix m p 𝕜}
     (hQ : HasOrthonormalCols Q)
     (hE : LinearMap.range E.mulVecLin ≤ LinearMap.range Q.mulVecLin) :
@@ -39,7 +41,9 @@ theorem frobSq_conjTranspose_mul_of_range_le {Q : Matrix m n 𝕜} {E : Matrix m
 
 /-- Orthonormal coordinates preserve Frobenius norm on the frame's range. This is the
 arbitrary-residual Frobenius isometry used in `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.2h6v.s9.585732a029f9 from=translated src=- shape=477a865e vocab=86ac5732
+-/
 theorem frobNorm_conjTranspose_mul_of_range_le {Q : Matrix m n 𝕜} {E : Matrix m p 𝕜}
     (hQ : HasOrthonormalCols Q)
     (hE : LinearMap.range E.mulVecLin ≤ LinearMap.range Q.mulVecLin) :
@@ -48,7 +52,9 @@ theorem frobNorm_conjTranspose_mul_of_range_le {Q : Matrix m n 𝕜} {E : Matrix
 
 /-- Orthonormal coordinates preserve spectral norm on the frame's range. This is the
 arbitrary-residual spectral isometry used in `sketched-regression`.
-atlas: sketched-regression (partial)-/
+atlas: sketched-regression (partial)
+@isnad1 id=eq.2h6v.s9.3aba092c9a8b from=translated src=- shape=87ae9065 vocab=e918e3fc
+-/
 theorem specNorm_conjTranspose_mul_of_range_le [DecidableEq p]
     {Q : Matrix m n 𝕜} {E : Matrix m p 𝕜} (hQ : HasOrthonormalCols Q)
     (hE : LinearMap.range E.mulVecLin ≤ LinearMap.range Q.mulVecLin) :

@@ -19,7 +19,9 @@ open NLAlib
 
 Tropp 2015, Prop. 8.4.8. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
 Introduction to Matrix Concentration Inequalities, Ch 8*.
-atlas: operator-monotone-convex-/
+atlas: operator-monotone-convex
+@isnad1 id=operator.0h0v.s4.73a7b6eea54a from=translated src=- shape=31dc8f20 vocab=eab80394
+-/
 theorem NLAlib.operatorConvexOn_neg_log :
     OperatorConvexOn (Set.Ioi 0) (fun x => -Real.log x) := by
   refine ⟨convex_Ioi 0, ?_⟩

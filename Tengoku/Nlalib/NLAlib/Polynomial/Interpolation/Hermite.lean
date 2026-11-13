@@ -36,7 +36,9 @@ def hermiteInterpolate (s : Finset ι) (v y d : ι → ℝ) : ℝ[X] :=
   ∑ i ∈ s, (C (y i) * hermiteValueBasis s v i + C (d i) * hermiteDerivativeBasis s v i)
 
 /-- Every term in the finite Hermite formula has degree at most twice the number of
-nodes minus one. Source: operator derivations, (AQ3).-/
+nodes minus one. Source: operator derivations, (AQ3).
+@isnad1 id=le.2h6v.s7.f1a9636ddaa2 from=translated src=- shape=05743c2f vocab=470ea911
+-/
 theorem natDegree_hermite_term_le {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     (y d : ι → ℝ) {i : ι} (hi : i ∈ s) :
     (C (y i) * hermiteValueBasis s v i + C (d i) * hermiteDerivativeBasis s v i).natDegree ≤
@@ -58,7 +60,9 @@ theorem natDegree_hermite_term_le {s : Finset ι} {v : ι → ℝ} (hv : InjOn v
     omega
 
 /-- A finite Hermite interpolant on a nonempty distinct-node family has degree strictly
-below twice the number of nodes. Source: operator derivations, (AQ3).-/
+below twice the number of nodes. Source: operator derivations, (AQ3).
+@isnad1 id=lt.2h5v.s6.df3bb3610f14 from=translated src=- shape=13633061 vocab=54af496c
+-/
 theorem degree_hermiteInterpolate_lt {s : Finset ι} (hs : s.Nonempty) {v : ι → ℝ}
     (hv : InjOn v s) (y d : ι → ℝ) :
     (hermiteInterpolate s v y d).degree < (2 * s.card : ℕ) := by
@@ -70,7 +74,9 @@ theorem degree_hermiteInterpolate_lt {s : Finset ι} (hs : s.Nonempty) {v : ι �
   exact_mod_cast (lt_of_le_of_lt (natDegree_hermite_term_le hv y d hi)
     (by have := hs.card_pos; omega : 2 * s.card - 1 < 2 * s.card))
 
-/-- A Hermite value cardinal polynomial is one at its own node and zero at the others.-/
+/-- A Hermite value cardinal polynomial is one at its own node and zero at the others.
+@isnad1 id=eq.3h5v.s6.0aec907a9f81 from=translated src=- shape=84ce08bc vocab=1b4ab2fb
+-/
 theorem eval_hermiteValueBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     {i j : ι} (hi : i ∈ s) (hj : j ∈ s) :
     (hermiteValueBasis s v i).eval (v j) = if i = j then 1 else 0 := by
@@ -79,7 +85,9 @@ theorem eval_hermiteValueBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     simp [hermiteValueBasis, eval_basis_self hv hi]
   · simp [hermiteValueBasis, hij, eval_basis_of_ne hij hj]
 
-/-- A Hermite derivative cardinal polynomial vanishes at every node.-/
+/-- A Hermite derivative cardinal polynomial vanishes at every node.
+@isnad1 id=eq.3h5v.s6.91ea879776c8 from=translated src=- shape=bd14d99d vocab=875d32c0
+-/
 theorem eval_hermiteDerivativeBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     {i j : ι} (hi : i ∈ s) (hj : j ∈ s) :
     (hermiteDerivativeBasis s v i).eval (v j) = 0 := by
@@ -88,7 +96,9 @@ theorem eval_hermiteDerivativeBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn
     simp [hermiteDerivativeBasis, eval_basis_self hv hi]
   · simp [hermiteDerivativeBasis, eval_basis_of_ne hij hj]
 
-/-- The derivative of a Hermite value cardinal polynomial vanishes at every node.-/
+/-- The derivative of a Hermite value cardinal polynomial vanishes at every node.
+@isnad1 id=eq.3h5v.s7.b216aa8bdd3d from=translated src=- shape=37ef9c2f vocab=9c1a64a0
+-/
 theorem eval_derivative_hermiteValueBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     {i j : ι} (hi : i ∈ s) (hj : j ∈ s) :
     (hermiteValueBasis s v i).derivative.eval (v j) = 0 := by
@@ -100,7 +110,9 @@ theorem eval_derivative_hermiteValueBasis {s : Finset ι} {v : ι → ℝ} (hv :
       eval_basis_of_ne hij hj]
 
 /-- A Hermite derivative cardinal polynomial has derivative one at its own node and
-zero at every other node.-/
+zero at every other node.
+@isnad1 id=eq.3h5v.s7.541e93671e9f from=translated src=- shape=a6b82157 vocab=b3108d7c
+-/
 theorem eval_derivative_hermiteDerivativeBasis {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     {i j : ι} (hi : i ∈ s) (hj : j ∈ s) :
     (hermiteDerivativeBasis s v i).derivative.eval (v j) = if i = j then 1 else 0 := by
@@ -111,7 +123,9 @@ theorem eval_derivative_hermiteDerivativeBasis {s : Finset ι} {v : ι → ℝ} 
   · simp [hermiteDerivativeBasis, derivative_mul, derivative_sub, derivative_pow,
       hij, eval_basis_of_ne hij hj]
 
-/-- The explicit finite Hermite interpolant matches all specified function values.-/
+/-- The explicit finite Hermite interpolant matches all specified function values.
+@isnad1 id=eq.2h6v.s6.dd4d7fe7726f from=translated src=- shape=ff9fc099 vocab=48b857bd
+-/
 theorem eval_hermiteInterpolate_at_node {s : Finset ι} {v : ι → ℝ} (hv : InjOn v s)
     (y d : ι → ℝ) {j : ι} (hj : j ∈ s) :
     (hermiteInterpolate s v y d).eval (v j) = y j := by
@@ -124,7 +138,9 @@ theorem eval_hermiteInterpolate_at_node {s : Finset ι} {v : ι → ℝ} (hv : I
     simp
   · exact fun h => (h hj).elim
 
-/-- The explicit finite Hermite interpolant matches all specified first derivatives.-/
+/-- The explicit finite Hermite interpolant matches all specified first derivatives.
+@isnad1 id=eq.2h6v.s7.a86e794230b4 from=translated src=- shape=eb485766 vocab=d35a557a
+-/
 theorem eval_derivative_hermiteInterpolate_at_node {s : Finset ι} {v : ι → ℝ}
     (hv : InjOn v s) (y d : ι → ℝ) {j : ι} (hj : j ∈ s) :
     (hermiteInterpolate s v y d).derivative.eval (v j) = d j := by

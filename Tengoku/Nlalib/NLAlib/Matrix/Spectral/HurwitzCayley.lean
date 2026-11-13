@@ -23,7 +23,9 @@ open scoped Matrix.Norms.L2Operator in
 def IsHurwitz (A : Matrix n n ℂ) : Prop := ∀ z ∈ spectrum ℂ A, z.re < 0
 
 open scoped Matrix.Norms.L2Operator in
-/-- Positive real shifts are outside the spectrum of a Hurwitz matrix.-/
+/-- Positive real shifts are outside the spectrum of a Hurwitz matrix.
+@isnad1 id=isunit.2h3v.s6.49e4a969c904 from=translated src=- shape=dbf9cba9 vocab=d6a5aab6
+-/
 theorem IsHurwitz.isUnit_sub_pos_smul_one {A : Matrix n n ℂ} (hA : IsHurwitz A)
     (p : ℝ) (hp : 0 < p) : IsUnit (A - (p : ℂ) • 1) := by
   have hnot : (p : ℂ) ∉ spectrum ℂ A := by
@@ -41,7 +43,9 @@ def cayleyTransform {K : Type*} [RCLike K] (A : Matrix n n K) (p : ℝ) : Matrix
 
 open scoped Matrix.Norms.L2Operator in
 /-- The Cayley matrix has its resolvent form whenever the solved denominator
-is invertible.-/
+is invertible.
+@isnad1 id=eq.1h4v.s9.7c0a2a628776 from=translated src=- shape=c9a886c6 vocab=64f0175b
+-/
 theorem cayleyTransform_eq_one_add {K : Type*} [RCLike K] (A : Matrix n n K) (p : ℝ)
     (h : IsUnit (A - (p : K) • 1).det) :
     cayleyTransform A p = 1 + (2 * (p : K)) • (A - (p : K) • 1)⁻¹ := by
@@ -52,7 +56,9 @@ theorem cayleyTransform_eq_one_add {K : Type*} [RCLike K] (A : Matrix n n K) (p 
 
 open scoped Matrix.Norms.L2Operator in
 /-- The scalar Cayley quotient maps the strict left half-plane into the
-open unit disk.-/
+open unit disk.
+@isnad1 id=lt.2h2v.s6.770bf0c520c8 from=translated src=- shape=80d5ec36 vocab=d1ca5914
+-/
 theorem norm_cayley_lt_one {z : ℂ} (hz : z.re < 0) (p : ℝ) (hp : 0 < p) :
     ‖(z + (p : ℂ)) / (z - (p : ℂ))‖ < 1 := by
   have hd : z - (p : ℂ) ≠ 0 := by
@@ -70,7 +76,9 @@ theorem norm_cayley_lt_one {z : ℂ} (hz : z.re < 0) (p : ℝ) (hp : 0 < p) :
 
 open scoped Matrix.Norms.L2Operator in
 /-- The actual Cayley spectrum is the image of the original spectrum under
-its scalar fractional linear function.-/
+its scalar fractional linear function.
+@isnad1 id=eq.2h3v.s7.34299a5ec7b8 from=translated src=- shape=12125851 vocab=0834ffc0
+-/
 theorem spectrum_cayleyTransform (A : Matrix n n ℂ) (p : ℝ) (hp : p ≠ 0)
     (h : IsUnit (A - (p : ℂ) • 1)) :
     spectrum ℂ (cayleyTransform A p) =
@@ -122,7 +130,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every fixed positive-shift Cayley transform of a Hurwitz matrix is
 strictly discretely stable, including nonnormal and defective matrices.
 Source: user derivations, Lyapunov ADI fixed-shift convergence.
-atlas: lyapunov-adi-residual-factor (partial), lyapunov-stability-gramian (partial)-/
+atlas: lyapunov-adi-residual-factor (partial), lyapunov-stability-gramian (partial)
+@isnad1 id=lt.2h3v.s6.b1691a2e4672 from=translated src=- shape=702f4c00 vocab=aab1620a
+-/
 theorem IsHurwitz.spectralRadius_cayleyTransform_lt_one {A : Matrix n n ℂ}
     (hA : IsHurwitz A) (p : ℝ) (hp : 0 < p) : spectralRadius ℂ (cayleyTransform A p) < 1 := by
   cases isEmpty_or_nonempty n with

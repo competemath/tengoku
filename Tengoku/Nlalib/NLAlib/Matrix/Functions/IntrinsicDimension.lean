@@ -45,7 +45,9 @@ def traceFunction {d : Type*} [Fintype d] [DecidableEq d]
     (φ : ℝ → ℝ) (A : Matrix d d ℂ) : ℝ := (Matrix.trace (cfc φ A)).re
 
 /-- The trace function of a Hermitian matrix is the sum of `φ` over its eigenvalues:
-`traceFunction φ A = ∑ᵢ φ (λᵢ A)`. Tropp 2015, §7.4. Atlas: `intrinsic-dimension` (helper).-/
+`traceFunction φ A = ∑ᵢ φ (λᵢ A)`. Tropp 2015, §7.4. Atlas: `intrinsic-dimension` (helper).
+@isnad1 id=eq.1h3v.s6.45bf0a71bfd0 from=translated src=- shape=5f43b293 vocab=5a8c632f
+-/
 theorem traceFunction_eq_sum {d : Type*} [Fintype d] [DecidableEq d] (φ : ℝ → ℝ)
     (A : Matrix d d ℂ) (hA : A.IsHermitian) :
     traceFunction φ A = ∑ i, φ (hA.eigenvalues i) := by
@@ -109,7 +111,9 @@ open NLAlib
 /-- For convex `φ` on `[0, ∞)` with `φ 0 = 0` and PSD `A`, `tr φ(A) ≤ intdim A · φ ‖A‖`.
 
 Tropp 2015, Lemma 7.5.1. Atlas: `intrinsic-dimension`. Ported from the Prove2me mission *An
-Introduction to Matrix Concentration Inequalities, Ch 7*.-/
+Introduction to Matrix Concentration Inequalities, Ch 7*.
+@isnad1 id=le.3h3v.s6.f0cec5a2869b from=translated src=- shape=bf34d931 vocab=1e47927a
+-/
 theorem NLAlib.traceFunction_le_intrinsicDimension_mul {d : ℕ} [NeZero d]
     (φ : ℝ → ℝ) (hConvex : ConvexOn ℝ (Set.Ici 0) φ) (hZero : φ 0 = 0)
     (A : Matrix (Fin d) (Fin d) ℂ) (hPSD : A.PosSemidef) :
@@ -149,7 +153,9 @@ semidefinite, `‖V‖ = max ‖V₁‖ ‖V₂‖`, and `intdim V` lies between
 `intdim V₁ + intdim V₂`.
 
 Tropp 2015, eq. (7.3.4) and §7.7.3. Atlas: `intrinsic-dimension`. Ported from the Prove2me mission
-*An Introduction to Matrix Concentration Inequalities, Ch 7*.-/
+*An Introduction to Matrix Concentration Inequalities, Ch 7*.
+@isnad1 id=other.2h4v.s8.7a5973b15abd from=translated src=- shape=6719e349 vocab=73b59a27
+-/
 theorem NLAlib.intrinsicDimension_fromBlocks {m n : ℕ} [NeZero m] [NeZero n]
     (V₁ : Matrix (Fin m) (Fin m) ℂ) (V₂ : Matrix (Fin n) (Fin n) ℂ)
     (hV₁ : V₁.PosSemidef) (hV₂ : V₂.PosSemidef) :

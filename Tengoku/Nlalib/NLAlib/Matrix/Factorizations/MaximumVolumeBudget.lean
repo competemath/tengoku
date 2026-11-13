@@ -23,7 +23,9 @@ the interpolation Frobenius square plus the inverse-Gram trace times the
 projResidual Frobenius square. The columns of `D` are perpendicular to `C` and
 `C T + D` are the columns offered for exchange. Gu–Eisenstat 1996,
 Theorem 3.2; derivations equations alg:swap and alg:rrqr-budget.
-Supports `rank-revealing-qr`.-/
+Supports `rank-revealing-qr`.
+@isnad1 id=and.3h6v.s8.731e0db6f50d from=translated src=- shape=ae7ef221 vocab=83982add
+-/
 theorem frobSq_add_trace_inv_gram_mul_frobSq_le_of_maximum_volume
     {m p q : Type*} [Fintype m] [Fintype p] [Fintype q]
     [DecidableEq m] [DecidableEq p] [DecidableEq q]

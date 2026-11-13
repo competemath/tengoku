@@ -17,7 +17,9 @@ variable {𝕜 n : Type*} [Field 𝕜] [Fintype n] [DecidableEq n]
 
 /-- The exact first finite-difference formula for a rational matrix function.
 Source: F18.
-atlas: matrix-function-block-divided-differences (partial)-/
+atlas: matrix-function-block-divided-differences (partial)
+@isnad1 id=eq.2h6v.s9.7400f79a0a25 from=translated src=- shape=5a2aaa83 vocab=add3dbbd
+-/
 theorem rationalMatrixEval_sub (P Q : 𝕜[X]) (A B : Matrix n n 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) :
     rationalMatrixEval P Q A - rationalMatrixEval P Q B =
@@ -36,7 +38,9 @@ theorem rationalMatrixEval_sub (P Q : 𝕜[X]) (A B : Matrix n n 𝕜)
 
 /-- Changing the right base point produces the ordered second block difference.
 Source: F18.
-atlas: matrix-function-block-divided-differences (partial)-/
+atlas: matrix-function-block-divided-differences (partial)
+@isnad1 id=eq.3h8v.s9.9fd9f20deb39 from=translated src=- shape=475a4958 vocab=c2d82aa2
+-/
 theorem rationalBlockDifference_sub_right (P Q : 𝕜[X]) (A B C H : Matrix n n 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) (hC : IsUnit (aeval C Q)) :
     rationalBlockDifference P Q A B H - rationalBlockDifference P Q A C H =
@@ -71,7 +75,9 @@ theorem rationalBlockDifference_sub_right (P Q : 𝕜[X]) (A B C H : Matrix n n 
 
 /-- Changing the left base point produces the other ordered second difference.
 Source: F18.
-atlas: matrix-function-block-divided-differences (partial)-/
+atlas: matrix-function-block-divided-differences (partial)
+@isnad1 id=eq.3h8v.s9.2d92af8e10ca from=translated src=- shape=2ccb5913 vocab=c2d82aa2
+-/
 theorem rationalBlockDifference_sub_left (P Q : 𝕜[X]) (A B C H : Matrix n n 𝕜)
     (hA : IsUnit (aeval A Q)) (hB : IsUnit (aeval B Q)) (hC : IsUnit (aeval C Q)) :
     rationalBlockDifference P Q A C H - rationalBlockDifference P Q B C H =

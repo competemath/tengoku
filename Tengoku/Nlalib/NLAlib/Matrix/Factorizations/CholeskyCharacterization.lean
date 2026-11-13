@@ -18,7 +18,9 @@ set_option backward.isDefEq.respectTransparency false
 
 /-- The first entry of every nonnegative-diagonal lower-triangular Cholesky
 factor is the nonnegative square root of the first matrix diagonal.
-Higham, Theorem 10.1; supports `cholesky-decomposition`.-/
+Higham, Theorem 10.1; supports `cholesky-decomposition`.
+@isnad1 id=eq.3h3v.s9.75996898e307 from=translated src=- shape=2374363c vocab=74e8dd4e
+-/
 theorem cholesky_first_diag_eq_sqrt {n : ℕ}
     (A L : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hLower : L.IsLowerTriangular) (hDiag : 0 ≤ L 0 0) (hFactor : L * Lᵀ = A) :
@@ -34,7 +36,9 @@ theorem cholesky_first_diag_eq_sqrt {n : ℕ}
 
 /-- First-column entries of a triangular factor are determined by the matrix
 entries when the leading factor diagonal is positive. Higham, Theorem 10.1;
-supports `cholesky-decomposition`.-/
+supports `cholesky-decomposition`.
+@isnad1 id=eq.3h4v.s9.06034c60d3d8 from=translated src=- shape=de8a913b vocab=6ae6a03b
+-/
 theorem cholesky_first_col_eq_div {n : ℕ}
     (A L : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hLower : L.IsLowerTriangular) (hDiag : 0 < L 0 0) (hFactor : L * Lᵀ = A)
@@ -50,7 +54,9 @@ theorem cholesky_first_col_eq_div {n : ℕ}
 
 /-- The trailing block of a positive-diagonal factor is the Cholesky factor
 of the Schur complement. Higham, Theorem 10.1; supports
-`cholesky-decomposition`.-/
+`cholesky-decomposition`.
+@isnad1 id=eq.3h3v.s9.f0fe8fd506be from=translated src=- shape=3fa1fc59 vocab=f68cca72
+-/
 theorem cholesky_trailing_mul_transpose {n : ℕ}
     (A L : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ)
     (hLower : L.IsLowerTriangular) (hDiag : 0 < L 0 0) (hFactor : L * Lᵀ = A) :

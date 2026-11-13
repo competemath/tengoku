@@ -16,7 +16,9 @@ namespace NLAlib
 
 variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- The square root squares back to any PSD matrix, including singular inputs.-/
+/-- The square root squares back to any PSD matrix, including singular inputs.
+@isnad1 id=eq.1h3v.s8.b89b3105cee1 from=translated src=- shape=7cf556b2 vocab=5aee8726
+-/
 theorem cfc_sqrt_mul_self_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef) :
     cfc Real.sqrt A * cfc Real.sqrt A = A := by
   have hc (f : ℝ → ℝ) : ContinuousOn f (spectrum ℝ A) := by
@@ -33,7 +35,9 @@ theorem cfc_sqrt_mul_self_of_posSemidef {A : Matrix n n 𝕜} (hA : A.PosSemidef
     _ = A := cfc_id' ℝ A hA.isHermitian
 
 /-- The ordinary inverse of a positive-definite matrix is the square of
-its inverse square root.-/
+its inverse square root.
+@isnad1 id=eq.1h3v.s8.b99d2725a495 from=translated src=- shape=d3fb6d1a vocab=f970e051
+-/
 theorem inv_eq_cfc_inv_sqrt_mul_self {A : Matrix n n 𝕜} (hA : A.PosDef) :
     A⁻¹ = cfc (fun x => (Real.sqrt x)⁻¹) A * cfc (fun x => (Real.sqrt x)⁻¹) A := by
   apply Matrix.inv_eq_right_inv
@@ -46,7 +50,9 @@ theorem inv_eq_cfc_inv_sqrt_mul_self {A : Matrix n n 𝕜} (hA : A.PosDef) :
     _ = 1 := by rw [cfc_sqrt_mul_inv_sqrt hA, Matrix.mul_one, cfc_sqrt_mul_inv_sqrt hA]
 
 /-- The positive-definite-first geometric mean solves the Riccati identity,
-even when the second argument is singular.-/
+even when the second argument is singular.
+@isnad1 id=eq.2h4v.s7.087437459745 from=translated src=- shape=6fd0b9d9 vocab=0d82aa15
+-/
 theorem matrixGeometricMean_mul_inv_mul {A B : Matrix n n 𝕜}
     (hA : A.PosDef) (hB : B.PosSemidef) :
     matrixGeometricMean A B * A⁻¹ * matrixGeometricMean A B = B := by

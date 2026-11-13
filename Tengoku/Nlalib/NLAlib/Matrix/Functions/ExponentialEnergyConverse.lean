@@ -19,7 +19,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- An exponential semigroup bound forces the corresponding real
-quadratic-form bound on its generator.-/
+quadratic-form bound on its generator.
+@isnad1 id=le.1h4v.s12.1c41d71fb6a8 from=translated src=- shape=8d2941ff vocab=54a669d1
+-/
 theorem energy_bound_of_specNorm_matrixExp_smul_le (A : Matrix n n ℂ) (c : ℝ)
     (hA : ∀ t : ℝ, 0 ≤ t → specNorm (matrixExp (t • A)) ≤ Real.exp (t * c))
     (x : EuclideanSpace ℂ n) :
@@ -53,7 +55,9 @@ theorem energy_bound_of_specNorm_matrixExp_smul_le (A : Matrix n n ℂ) (c : ℝ
 variable [Nonempty n]
 
 /-- Testing the largest Hermitian-part eigenvector shows that every
-energy bound is at least the logarithmic norm.-/
+energy bound is at least the logarithmic norm.
+@isnad1 id=le.1h3v.s12.9a6502574cea from=translated src=- shape=91ea43d9 vocab=945de859
+-/
 theorem matrixLogarithmicNorm_le_of_energy_bound {A : Matrix n n ℂ} {c : ℝ}
     (hA : ∀ x : EuclideanSpace ℂ n,
       inner ℝ x (A.toEuclideanLin x) ≤ c * ‖x‖ ^ 2) : matrixLogarithmicNorm A ≤ c := by
@@ -79,7 +83,9 @@ theorem matrixLogarithmicNorm_le_of_energy_bound {A : Matrix n n ℂ} {c : ℝ}
 
 /-- The logarithmic norm is the least exponent in an all-time spectral
 norm bound for the exponential semigroup.
-atlas: matrix-exponential-logarithmic-norm (partial)-/
+atlas: matrix-exponential-logarithmic-norm (partial)
+@isnad1 id=isleast.0h2v.s6.316fd2d9e0bd from=translated src=- shape=b015af83 vocab=3abb4c5f
+-/
 theorem isLeast_matrixLogarithmicNorm (A : Matrix n n ℂ) :
     IsLeast {c : ℝ | ∀ t : ℝ, 0 ≤ t →
       specNorm (matrixExp (t • A)) ≤ Real.exp (t * c)} (matrixLogarithmicNorm A) := by
@@ -88,7 +94,9 @@ theorem isLeast_matrixLogarithmicNorm (A : Matrix n n ℂ) :
   exact matrixLogarithmicNorm_le_of_energy_bound (energy_bound_of_specNorm_matrixExp_smul_le A c hc)
 
 /-- A matrix exponential is contractive for every nonnegative time
-exactly when the Hermitian part of its generator is nonpositive.-/
+exactly when the Hermitian part of its generator is nonpositive.
+@isnad1 id=iff.0h2v.s10.46c6698b0f4e from=translated src=- shape=a01b5985 vocab=3ff67694
+-/
 theorem specNorm_matrixExp_smul_le_one_iff_selfAdjointPart_nonpos (A : Matrix n n ℂ) :
     (∀ t : ℝ, 0 ≤ t → specNorm (matrixExp (t • A)) ≤ 1) ↔
       (selfAdjointPart ℝ A : Matrix n n ℂ) ≤ 0 := by
@@ -110,7 +118,9 @@ theorem specNorm_matrixExp_smul_le_one_iff_selfAdjointPart_nonpos (A : Matrix n 
 /-- Full logarithmic-norm contract: the Hermitian-part extremal eigenvalue
 is the least possible all-time exponential bound, with the exact
 contractivity criterion. Nonnormal and defective generators are included.
-atlas: matrix-exponential-logarithmic-norm-/
+atlas: matrix-exponential-logarithmic-norm
+@isnad1 id=and.0h2v.s10.5b28496c95c7 from=translated src=- shape=92c6f4c8 vocab=81e805f9
+-/
 theorem matrix_exponential_logarithmic_norm (A : Matrix n n ℂ) :
     IsLeast {c : ℝ | ∀ t : ℝ, 0 ≤ t →
       specNorm (matrixExp (t • A)) ≤ Real.exp (t * c)} (matrixLogarithmicNorm A) ∧

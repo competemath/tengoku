@@ -32,7 +32,9 @@ def HasColumnInclusion {K : Type*} [Field K] (A : Matrix n n K) : Prop := HasRow
 /-- Row inclusion produces a unit lower elimination matrix with an upper
 triangular product, without divisions or nonzero pivot assumptions.
 Horn–Johnson 2013, Theorem 3.5.3.
-atlas: lu-row-inclusion (partial)-/
+atlas: lu-row-inclusion (partial)
+@isnad1 id=ex.1h2v.s6.fa35fbf58660 from=translated src=- shape=e25aa3ba vocab=f9ec441a
+-/
 theorem exists_unitLower_mul_upper_of_rowInclusion {A : Matrix n n ℝ}
     (hA : HasRowInclusion A) :
     ∃ H : Matrix n n ℝ, IsUnitLowerTriangular H ∧ (H * A).IsUpperTriangular := by
@@ -59,7 +61,9 @@ theorem exists_unitLower_mul_upper_of_rowInclusion {A : Matrix n n ℝ}
 /-- A singular real matrix admits a unit-lower LU factorization exactly when
 it has row inclusion. Arbitrary finite ordered labels and empty matrices are
 included. Horn–Johnson 2013, Theorem 3.5.3.
-atlas: lu-row-inclusion (partial)-/
+atlas: lu-row-inclusion (partial)
+@isnad1 id=iff.0h2v.s5.abc2d1f428e8 from=translated src=- shape=2ee77565 vocab=4d8482a7
+-/
 theorem exists_isLU_iff_rowInclusion (A : Matrix n n ℝ) :
     (∃ L U : Matrix n n ℝ, IsLU A L U) ↔ HasRowInclusion A := by
   constructor
@@ -97,7 +101,9 @@ theorem exists_isLU_iff_rowInclusion (A : Matrix n n ℝ) :
 
 /-- Column inclusion is equivalent to an LU factorization with a unit upper
 factor, independently of row inclusion. Horn–Johnson 2013, Theorem 3.5.3.
-atlas: lu-row-inclusion (partial)-/
+atlas: lu-row-inclusion (partial)
+@isnad1 id=iff.0h2v.s6.cfb34d9d222c from=translated src=- shape=7599003b vocab=fb3633c4
+-/
 theorem exists_lower_unitUpper_iff_columnInclusion (A : Matrix n n ℝ) :
     (∃ L U : Matrix n n ℝ, L.IsLowerTriangular ∧ IsUnitUpperTriangular U ∧ A = L * U) ↔
       HasColumnInclusion A := by

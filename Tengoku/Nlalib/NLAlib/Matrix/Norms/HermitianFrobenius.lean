@@ -58,12 +58,16 @@ instance : NormedAddCommGroup (HermitianFrobenius 𝕜 n) :=
 instance : InnerProductSpace ℝ (HermitianFrobenius 𝕜 n) :=
   InnerProductSpace.ofCore hermitianFrobeniusCore.toCore
 
-/-- The Hilbert inner product is exactly the library's real Frobenius pairing.-/
+/-- The Hilbert inner product is exactly the library's real Frobenius pairing.
+@isnad1 id=eq.0h4v.s6.80d87eee6c27 from=translated src=- shape=b9b34976 vocab=7f7b0456
+-/
 theorem inner_hermitianFrobenius (x y : HermitianFrobenius 𝕜 n) :
     inner ℝ x y = frobInner (hermitianFrobeniusMatrix 𝕜 n x)
       (hermitianFrobeniusMatrix 𝕜 n y) := rfl
 
-/-- The Hilbert norm is exactly the named Frobenius matrix norm.-/
+/-- The Hilbert norm is exactly the named Frobenius matrix norm.
+@isnad1 id=eq.0h3v.s5.a021a19190b5 from=translated src=- shape=d86c2040 vocab=b201bcb1
+-/
 theorem norm_hermitianFrobenius (x : HermitianFrobenius 𝕜 n) :
     ‖x‖ = frobNorm (hermitianFrobeniusMatrix 𝕜 n x) := rfl
 
@@ -74,7 +78,9 @@ instance : FiniteDimensional ℝ (HermitianFrobenius 𝕜 n) :=
 instance : CompleteSpace (HermitianFrobenius 𝕜 n) := FiniteDimensional.complete ℝ _
 
 omit [Fintype n] in
-/-- Every realized vector is an actual Hermitian matrix.-/
+/-- Every realized vector is an actual Hermitian matrix.
+@isnad1 id=ishermit.0h3v.s6.f87d1f8027c5 from=translated src=- shape=d158e713 vocab=35c38db5
+-/
 theorem isHermitian_hermitianFrobeniusMatrix (x : HermitianFrobenius 𝕜 n) :
     (hermitianFrobeniusMatrix 𝕜 n x).IsHermitian :=
   (hermitianFrobeniusEquiv 𝕜 n x).property
@@ -84,7 +90,9 @@ def toHermitianFrobenius {H : Matrix n n 𝕜} (hH : H.IsHermitian) :
     HermitianFrobenius 𝕜 n := (hermitianFrobeniusEquiv 𝕜 n).symm ⟨H,hH⟩
 
 omit [Fintype n] in
-/-- Matrix realization of the canonical Hermitian inclusion.-/
+/-- Matrix realization of the canonical Hermitian inclusion.
+@isnad1 id=eq.1h3v.s6.afa71dd0f023 from=translated src=- shape=eba16582 vocab=67a0827f
+-/
 @[simp] theorem hermitianFrobeniusMatrix_toHermitianFrobenius
     {H : Matrix n n 𝕜} (hH : H.IsHermitian) :
     hermitianFrobeniusMatrix 𝕜 n (toHermitianFrobenius hH)=H := rfl
@@ -105,7 +113,9 @@ def hermitianFrobeniusMap (L : Matrix n n 𝕜 →ₗ[ℝ] Matrix n n 𝕜)
       apply Subtype.ext
       exact L.map_smul r _ }
 
-/-- The lifted map has exactly the original matrix action.-/
+/-- The lifted map has exactly the original matrix action.
+@isnad1 id=eq.1h4v.s10.acfbf31ee63a from=translated src=- shape=763edd9f vocab=34668d21
+-/
 @[simp] theorem hermitianFrobeniusMatrix_map
     (L : Matrix n n 𝕜 →ₗ[ℝ] Matrix n n 𝕜)
     (hL : ∀ A : Matrix n n 𝕜, A.IsHermitian → (L A).IsHermitian)

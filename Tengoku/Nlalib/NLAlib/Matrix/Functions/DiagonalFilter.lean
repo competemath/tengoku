@@ -24,7 +24,9 @@ namespace NLAlib
 variable {𝕜 : Type*} [RCLike 𝕜]
 
 /-- A real polynomial of a real diagonal matrix cast to `𝕜` is the diagonal of the values:
-`p(diag (d : 𝕜)) = diag (p(d) : 𝕜)`.-/
+`p(diag (d : 𝕜)) = diag (p(d) : 𝕜)`.
+@isnad1 id=eq.0h4v.s8.93cb7179d46d from=translated src=- shape=0f6f9d5d vocab=65046f86
+-/
 theorem aeval_diagonal_ofReal {ι : Type*} [Fintype ι] [DecidableEq ι] (d : ι → ℝ) (p : ℝ[X]) :
     aeval (Matrix.diagonal fun i => (d i : 𝕜)) p =
       Matrix.diagonal fun i => ((p.eval (d i) : ℝ) : 𝕜) := by
@@ -37,7 +39,9 @@ theorem aeval_diagonal_ofReal {ι : Type*} [Fintype ι] [DecidableEq ι] (d : ι
   by_cases hij : i = j <;> simp [hij, Algebra.ofId_apply, Algebra.algebraMap_eq_smul_one]
 
 /-- **Spectral norm of a rectangular diagonal matrix** is at most any bound on the absolute
-values of its diagonal entries (empty blocks included). Halko–Martinsson–Tropp 2011, §2.1.-/
+values of its diagonal entries (empty blocks included). Halko–Martinsson–Tropp 2011, §2.1.
+@isnad1 id=le.2h5v.s6.a8475db29e84 from=translated src=- shape=174c0268 vocab=890779d8
+-/
 theorem specNorm_rectDiag_le {m n : ℕ} {s : ℕ → ℝ} {b : ℝ} (hb : 0 ≤ b)
     (hs : ∀ i, i < min m n → |s i| ≤ b) :
     specNorm (rectDiag s : Matrix (Fin m) (Fin n) 𝕜) ≤ b := by
@@ -53,7 +57,9 @@ theorem specNorm_rectDiag_le {m n : ℕ} {s : ℕ → ℝ} {b : ℝ} (hb : 0 ≤
   · simpa using sq_nonneg b
 
 /-- **Filtering a rectangular diagonal by a polynomial of its Gram matrix** acts on the diagonal:
-`Σ p(Σᴴ Σ) = rectDiag (s i · p(s i²))`. Halko–Martinsson–Tropp 2011, §10 (the power scheme).-/
+`Σ p(Σᴴ Σ) = rectDiag (s i · p(s i²))`. Halko–Martinsson–Tropp 2011, §10 (the power scheme).
+@isnad1 id=eq.0h5v.s9.52265dcd39d3 from=translated src=- shape=4cdad4f9 vocab=14471f7e
+-/
 theorem rectDiag_mul_aeval_gram (s : ℕ → ℝ) (p : ℝ[X]) {m n : ℕ} :
     (rectDiag s : Matrix (Fin m) (Fin n) 𝕜) *
       aeval ((rectDiag s : Matrix (Fin m) (Fin n) 𝕜)ᴴ *
@@ -73,7 +79,9 @@ theorem rectDiag_mul_aeval_gram (s : ℕ → ℝ) (p : ℝ[X]) {m n : ℕ} :
 
 /-- The polynomial filter of the Gram matrix of a square diagonal is invertible by the diagonal
 of reciprocals: `p(Sᴴ S) · diag (p(s i²)⁻¹) = 1` when `p` does not vanish on the squared
-entries. Halko–Martinsson–Tropp 2011, §10.-/
+entries. Halko–Martinsson–Tropp 2011, §10.
+@isnad1 id=eq.1h4v.s9.a20620e59993 from=translated src=- shape=eabb3b93 vocab=9917a48b
+-/
 theorem aeval_gram_diagonal_mul_diagonal_inv_eq_one {k : Type*} [Fintype k] [DecidableEq k]
     (s : k → ℝ) (p : ℝ[X]) (hne : ∀ i, p.eval (s i ^ 2) ≠ 0) :
     aeval ((Matrix.diagonal fun i => (s i : 𝕜))ᴴ * Matrix.diagonal fun i => (s i : 𝕜)) p *
@@ -91,7 +99,9 @@ theorem aeval_gram_diagonal_mul_diagonal_inv_eq_one {k : Type*} [Fintype k] [Dec
 
 /-- The diagonal of reciprocals of a filter has spectral norm at most the reciprocal of a positive
 lower envelope on the filter values: `c ≤ |p(s i²)|` for all `i` gives
-`‖diag (p(s i²)⁻¹)‖₂ ≤ 1 / c`. Halko–Martinsson–Tropp 2011, §10.-/
+`‖diag (p(s i²)⁻¹)‖₂ ≤ 1 / c`. Halko–Martinsson–Tropp 2011, §10.
+@isnad1 id=le.2h5v.s7.99380dc0959f from=translated src=- shape=c09aeba9 vocab=5ef558f5
+-/
 theorem specNorm_diagonal_inv_le {k : Type*} [Fintype k] [DecidableEq k]
     (s : k → ℝ) (p : ℝ[X]) {c : ℝ} (hc : 0 < c) (hmin : ∀ i, c ≤ |p.eval (s i ^ 2)|) :
     specNorm (Matrix.diagonal fun i => (((p.eval (s i ^ 2))⁻¹ : ℝ) : 𝕜)) ≤ 1 / c := by

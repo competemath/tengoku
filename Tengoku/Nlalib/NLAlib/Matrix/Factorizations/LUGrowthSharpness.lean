@@ -21,7 +21,9 @@ def wilkinsonMatrix (n : ℕ) (t : ℝ) : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ
   fun i j => if (j : ℕ) = n then t else if i = j then 1 else if j < i then -1 else 0
 
 /-- The first-index pivot rule selects the first entry whenever it has
-largest modulus, including ties.-/
+largest modulus, including ties.
+@isnad1 id=eq.1h2v.s7.07715b542134 from=translated src=- shape=d7879e7d vocab=7e6e86c0
+-/
 theorem absArgmax_eq_zero_of_forall {n : ℕ} (v : Fin (n + 1) → ℝ)
     (h : ∀ i, |v i| ≤ |v 0|) : absArgmax v = 0 := by
   cases n with
@@ -64,7 +66,9 @@ private theorem pivotSchur_wilkinsonMatrix (n : ℕ) (t : ℝ) :
 /-- The actual partial-pivoting recursion attains Wilkinson's exponential
 growth, with its implemented tie rule. The last pivot in dimension `n+1`
 is `2^n t`. Trefethen–Bau, Lecture 22.
-atlas: lu-growth-factor (partial)-/
+atlas: lu-growth-factor (partial)
+@isnad1 id=eq.0h2v.s7.e2bbee8b2080 from=translated src=- shape=7c9279cd vocab=29006ddf
+-/
 theorem luPartialPivot_wilkinsonMatrix_last (n : ℕ) (t : ℝ) :
     (luPartialPivot (wilkinsonMatrix n t)).2.2 (Fin.last n) (Fin.last n) = 2 ^ n * t := by
   induction n generalizing t with
@@ -75,7 +79,9 @@ theorem luPartialPivot_wilkinsonMatrix_last (n : ℕ) (t : ℝ) :
     rw [ih, pow_succ]
     ring
 
-/-- Every entry of the initial Wilkinson matrix has magnitude at most one.-/
+/-- Every entry of the initial Wilkinson matrix has magnitude at most one.
+@isnad1 id=le.0h3v.s5.f6122b3fac5a from=translated src=- shape=5b3d3471 vocab=a3240b76
+-/
 theorem abs_wilkinsonMatrix_one_le (n : ℕ) (i j : Fin (n + 1)) :
     |wilkinsonMatrix n 1 i j| ≤ 1 := by
   simp only [wilkinsonMatrix]
@@ -85,7 +91,9 @@ theorem abs_wilkinsonMatrix_one_le (n : ℕ) (i j : Fin (n + 1)) :
 whose computed upper factor contains an entry of magnitude `2^(N-1)`.
 Together with `abs_luPartialPivot_upper_le_two_pow`, this proves sharpness of
 the worst-case partial-pivoting growth bound.
-atlas: lu-growth-factor (partial)-/
+atlas: lu-growth-factor (partial)
+@isnad1 id=ex.0h1v.s8.3479bdff5641 from=translated src=- shape=c58b4aeb vocab=a746c5a7
+-/
 theorem exists_luPartialPivot_growth_eq_two_pow (n : ℕ) :
     ∃ A : Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ,
       (∀ i j, |A i j| ≤ 1) ∧

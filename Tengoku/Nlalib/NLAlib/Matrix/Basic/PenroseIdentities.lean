@@ -51,7 +51,9 @@ variable {𝕜 : Type*} [RCLike 𝕜] {m n p q : Type*} [Fintype m] [Fintype n] 
 
 /-- The Moore–Penrose inverse is unique, also for zero-rank and empty matrices.
 Horn–Johnson §7.3; atlas `pseudoinverse`.
-atlas: pseudoinverse-/
+atlas: pseudoinverse
+@isnad1 id=eq.2h6v.s5.a45b8b2db950 from=translated src=- shape=83b2282f vocab=aeca7c0c
+-/
 theorem unique (hB : IsMoorePenroseInverse A B) (hC : IsMoorePenroseInverse A C) :
     B = C := by
   have hBA : (B * A) * (C * A) = B * A := by
@@ -91,12 +93,16 @@ theorem unique (hB : IsMoorePenroseInverse A B) (hC : IsMoorePenroseInverse A C)
     _ = C := hC.inv_mul_inv_eq
 
 /-- Exchanging a matrix and its Moore–Penrose inverse preserves the four
-identities. Horn–Johnson §7.3; atlas `pseudoinverse`.-/
+identities. Horn–Johnson §7.3; atlas `pseudoinverse`.
+@isnad1 id=ismoorep.1h5v.s5.714ef8fb0886 from=translated src=- shape=4a855aff vocab=aeca7c0c
+-/
 theorem swap (h : IsMoorePenroseInverse A B) : IsMoorePenroseInverse B A :=
   ⟨h.inv_mul_inv_eq, h.mul_mul_eq, h.conjTranspose_inv_mul_eq, h.conjTranspose_mul_eq⟩
 
 /-- Conjugate-transposing both matrices preserves the Penrose identities.
-Horn–Johnson §7.3; atlas `pseudoinverse`.-/
+Horn–Johnson §7.3; atlas `pseudoinverse`.
+@isnad1 id=ismoorep.1h5v.s7.7e643b66eb66 from=translated src=- shape=1fee02a5 vocab=f817febd
+-/
 theorem conjTranspose (h : IsMoorePenroseInverse A B) :
     IsMoorePenroseInverse Aᴴ Bᴴ := by
   constructor
@@ -110,7 +116,9 @@ theorem conjTranspose (h : IsMoorePenroseInverse A B) :
       h.conjTranspose_mul_eq.symm
 
 /-- Transposing both matrices preserves the Penrose identities (over `ℂ` too: the transpose
-of a Hermitian matrix is Hermitian). Horn–Johnson §7.3; atlas `pseudoinverse`.-/
+of a Hermitian matrix is Hermitian). Horn–Johnson §7.3; atlas `pseudoinverse`.
+@isnad1 id=ismoorep.1h5v.s5.5881f1aa417e from=translated src=- shape=1fee02a5 vocab=0155922e
+-/
 theorem transpose (h : IsMoorePenroseInverse A B) :
     IsMoorePenroseInverse Aᵀ Bᵀ := by
   constructor
@@ -124,7 +132,9 @@ theorem transpose (h : IsMoorePenroseInverse A B) :
       h.conjTranspose_mul_eq]
 
 /-- Equivalent row and column indexing preserves the Penrose identities.
-This transports the SVD construction to arbitrary finite index types.-/
+This transports the SVD construction to arbitrary finite index types.
+@isnad1 id=ismoorep.1h9v.s7.996ff20dbdc7 from=translated src=- shape=22fea451 vocab=da061a83
+-/
 theorem submatrix (h : IsMoorePenroseInverse A B) (em : p ≃ m) (en : q ≃ n) :
     IsMoorePenroseInverse (A.submatrix em en) (B.submatrix en em) := by
   constructor
@@ -139,7 +149,9 @@ theorem submatrix (h : IsMoorePenroseInverse A B) (em : p ≃ m) (en : q ≃ n) 
 
 /-- Changes of row and column coordinates with orthonormal columns (`HasOrthonormalCols U`,
 `HasOrthonormalCols V`; `U : Matrix p m 𝕜`, `V : Matrix q n 𝕜`, e.g. unitary) transport a
-Moore–Penrose inverse by the reversed changes. Horn–Johnson §7.3; atlas `pseudoinverse`.-/
+Moore–Penrose inverse by the reversed changes. Horn–Johnson §7.3; atlas `pseudoinverse`.
+@isnad1 id=ismoorep.3h9v.s8.72aad4c7cb7b from=translated src=- shape=d3a9c935 vocab=38b01a5a
+-/
 theorem unitary_transform [DecidableEq m] [DecidableEq n]
     (h : IsMoorePenroseInverse A B) (U : Matrix p m 𝕜) (V : Matrix q n 𝕜)
     (hU : HasOrthonormalCols U) (hV : HasOrthonormalCols V) :
@@ -181,7 +193,9 @@ theorem unitary_transform [DecidableEq m] [DecidableEq n]
       _ = V * (B * A) * Vᴴ := by rw [h.conjTranspose_inv_mul_eq]
 
 /-- `A B` is an idempotent image-space projector. Together with the third
-Penrose identity this is an orthogonal projector.-/
+Penrose identity this is an orthogonal projector.
+@isnad1 id=isidempo.1h5v.s7.1d64695fe082 from=translated src=- shape=0e368ed1 vocab=4854bb1f
+-/
 theorem mul_isIdempotentElem (h : IsMoorePenroseInverse A B) :
     IsIdempotentElem (A * B) := by
   change (A * B) * (A * B) = A * B
@@ -189,12 +203,16 @@ theorem mul_isIdempotentElem (h : IsMoorePenroseInverse A B) :
     _ = (A * B * A) * B := by simp only [Matrix.mul_assoc]
     _ = A * B := by rw [h.mul_mul_eq]
 
-/-- `B A` is an idempotent row-space projector.-/
+/-- `B A` is an idempotent row-space projector.
+@isnad1 id=isidempo.1h5v.s7.e5347ec6926c from=translated src=- shape=8bbce98c vocab=4854bb1f
+-/
 theorem inv_mul_isIdempotentElem (h : IsMoorePenroseInverse A B) :
     IsIdempotentElem (B * A) := h.swap.mul_isIdempotentElem
 
 /-- The fixed vectors of the image-space projector are exactly the image of
-the original matrix, including rank-deficient and empty matrices.-/
+the original matrix, including rank-deficient and empty matrices.
+@isnad1 id=iff.1h6v.s7.64f561d27884 from=translated src=- shape=e4ed58e1 vocab=869a6011
+-/
 theorem mulVec_eq_self_iff (h : IsMoorePenroseInverse A B) (x : m → 𝕜) :
     (A * B) *ᵥ x = x ↔ ∃ y : n → 𝕜, A *ᵥ y = x := by
   constructor
@@ -204,7 +222,9 @@ theorem mulVec_eq_self_iff (h : IsMoorePenroseInverse A B) (x : m → 𝕜) :
     rw [Matrix.mulVec_mulVec, h.mul_mul_eq]
 
 /-- The image of `A B` equals the image of `A`: the Hermitian idempotent
-`A B` is the orthogonal projector onto the original column space.-/
+`A B` is the orthogonal projector onto the original column space.
+@isnad1 id=eq.1h5v.s9.0c99c28fd6fc from=translated src=- shape=af71a797 vocab=90f542a8
+-/
 theorem range_mul_eq (h : IsMoorePenroseInverse A B) :
     LinearMap.range (A * B).mulVecLin = LinearMap.range A.mulVecLin := by
   ext x
@@ -217,7 +237,9 @@ theorem range_mul_eq (h : IsMoorePenroseInverse A B) :
 
 /-- The Moore–Penrose inverse of a column Gram matrix is the corresponding
 Gram matrix of the inverse: `(AᴴA)⁺ = A⁺A⁺ᴴ`. This identity holds at every rank.
-Horn–Johnson §7.3; atlas `pseudoinverse`.-/
+Horn–Johnson §7.3; atlas `pseudoinverse`.
+@isnad1 id=ismoorep.1h5v.s7.ac0c601dc3a4 from=translated src=- shape=184a7551 vocab=30b72f53
+-/
 theorem conjTranspose_mul_self (h : IsMoorePenroseInverse A B) :
     IsMoorePenroseInverse (Aᴴ * A) (B * Bᴴ) := by
   have hCG : (B * Bᴴ) * (Aᴴ * A) = B * A := by

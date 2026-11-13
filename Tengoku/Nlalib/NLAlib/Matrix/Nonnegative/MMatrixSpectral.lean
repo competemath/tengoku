@@ -30,7 +30,9 @@ private theorem dotProduct_pos_of_nonnegative_sum_one {q x : ι → ℝ}
 
 omit [Nonempty ι] in
 /-- Every Z-matrix can be written as `s I - B`, with `s > 0` and `B ≥ 0`.
-The scalar is explicitly chosen above all diagonal entries.-/
+The scalar is explicitly chosen above all diagonal entries.
+@isnad1 id=ex.1h2v.s7.ea8059583304 from=translated src=- shape=4f885186 vocab=9a15ff84
+-/
 theorem IsZMatrix.exists_positive_shift_nonnegative {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) :
     ∃ (s : ℝ) (B : Matrix ι ι ℝ), 0 < s ∧ (∀ i j, 0 ≤ B i j) ∧ A = s • 1 - B := by
   let s : ℝ := 1 + ∑ i, max (A i i) 0
@@ -56,7 +58,9 @@ theorem IsZMatrix.exists_positive_shift_nonnegative {A : Matrix ι ι ℝ} (hA :
 /-- The shift-above-Perron-root characterization of nonsingular M-matrices.
 The spectral radius is explicitly that of the complexification.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=iff.1h2v.s7.6048de5ffd13 from=translated src=- shape=3407310e vocab=be155cc7
+-/
 theorem isNonsingularMMatrix_iff_exists_shift_above_spectralRadius
     {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) : A.IsNonsingularMMatrix ↔
       ∃ (s : ℝ) (B : Matrix ι ι ℝ), (∀ i j, 0 ≤ B i j) ∧
@@ -94,7 +98,9 @@ private theorem norm_le_spectralRadius_toReal {B : Matrix ι ι ℂ} {μ : ℂ}
 
 /-- A nonsingular M-matrix has every complex eigenvalue in the open right half-plane.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=lt.2h3v.s6.0bd6fbfddf75 from=translated src=- shape=a8bfc158 vocab=df549928
+-/
 theorem IsNonsingularMMatrix.re_pos_of_mem_spectrum {A : Matrix ι ι ℝ}
     (hA : A.IsNonsingularMMatrix) {μ : ℂ} (hμ : μ ∈ spectrum ℂ (A.map Complex.ofReal)) :
     0 < μ.re := by
@@ -116,7 +122,9 @@ theorem IsNonsingularMMatrix.re_pos_of_mem_spectrum {A : Matrix ι ι ℝ}
 /-- For a Z-matrix, open-right-half-plane spectrum is equivalent to being a
 nonsingular M-matrix. The converse tests the real Perron root of a nonnegative shift.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=iff.1h2v.s6.844933832458 from=translated src=- shape=84fed768 vocab=22a215a0
+-/
 theorem isNonsingularMMatrix_iff_spectrum_re_pos {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) :
     A.IsNonsingularMMatrix ↔ ∀ μ ∈ spectrum ℂ (A.map Complex.ofReal), 0 < μ.re := by
   refine ⟨fun hM μ hμ => hM.re_pos_of_mem_spectrum hμ, fun hspec => ?_⟩

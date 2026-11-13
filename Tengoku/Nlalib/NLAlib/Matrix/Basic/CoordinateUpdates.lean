@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- A flattened coordinate update is a scalar move along one matrix unit.
 Source: finite matrix coordinate algebra in the operator hard-edge proof;
-atlas wishart-lambda-min-tail (calculus bridge).-/
+atlas wishart-lambda-min-tail (calculus bridge).
+@isnad1 id=eq.0h7v.s8.4cac6b4568f2 from=translated src=- shape=2cf19df9 vocab=fa792ef4
+-/
 theorem matrixOf_curry_update_eq_add_single {ι κ R : Type*} [DecidableEq ι]
     [DecidableEq κ] [CommRing R] (x : ι × κ → R) (i : ι) (j : κ) (t : R) :
     Matrix.of (fun a b => Function.update x (i, j) t (a, b)) =

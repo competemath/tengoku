@@ -20,7 +20,9 @@ omit [Fintype n] in
 /-- A continuous real-valued inequality valid on the positive definite cone
 extends to every PSD matrix by adding a positive scalar identity and taking
 the right-hand limit. Empty dimensions are included.
-Horn--Johnson (2013), Section 7.8; helper for determinant boundary cases.-/
+Horn--Johnson (2013), Section 7.8; helper for determinant boundary cases.
+@isnad1 id=le.4h4v.s6.b184f54ea1f6 from=translated src=- shape=f1b6d17b vocab=984c5533
+-/
 theorem le_of_posSemidef_of_continuous_of_forall_posDef
     {f g : Matrix n n ℝ → ℝ} (hf : Continuous f) (hg : Continuous g)
     (h : ∀ M : Matrix n n ℝ, M.PosDef → f M ≤ g M)

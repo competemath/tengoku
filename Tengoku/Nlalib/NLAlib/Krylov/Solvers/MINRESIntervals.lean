@@ -24,7 +24,9 @@ variable {A : Matrix n n ℝ} {c x₀ x : n → ℝ} {q : ℕ}
 
 /-- The symmetric spectral GMRES estimate in the native vector 2-norm.
 Source: Greenbaum (1997), §3.1.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.6h8v.s8.c37e55b647d5 from=translated src=- shape=642ebe33 vocab=ddf17e9e
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_isHermitian
     (hx : IsGMRESIterate A c x₀ q x) (hA : A.IsHermitian)
     {p : ℝ[X]} (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1)
@@ -38,7 +40,9 @@ theorem IsGMRESIterate.norm_sub_mulVec_le_of_isHermitian
 
 /-- The definite MINRES Chebyshev rate in the vector 2-norm.
 Source: Greenbaum (1997), §3.1; Liesen--Strakoš (2013), §5.6.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.5h8v.s8.6cfbe78dee80 from=translated src=- shape=0723c637 vocab=12533411
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_Icc
     (hx : IsGMRESIterate A c x₀ q x) (hA : A.IsHermitian)
     {a b : ℝ} (ha : 0 < a) (hab : a < b)
@@ -56,7 +60,9 @@ theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_Icc
 Source: Greenbaum (1997), §3.1; Liesen--Strakoš (2013), §5.6. The
 polynomial argument needs no separate invertibility hypothesis: the
 spectral containment already excludes zero in a nonempty dimension.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.8h10v.s8.6d2c096cccc2 from=translated src=- shape=ba593c60 vocab=2e2a3841
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_two_intervals
     {a b c₁ d : ℝ} (hA : A.IsHermitian)
     (hab : a < b) (hb : b < 0) (hc : 0 < c₁) (hcd : c₁ < d)
@@ -76,7 +82,9 @@ theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_two_intervals
 /-- For spectrum in `[-d,-c] ∪ [c,d]`, MINRES contracts at the
 explicit rate `2 ((d-c)/(d+c))^k` every `2k` steps.
 Source: Greenbaum (1997), §3.1; Liesen--Strakoš (2013), §5.6.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.5h8v.s8.9012e1c0d923 from=translated src=- shape=992e5448 vocab=78768f6b
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_symmetric_intervals
     {c₁ d : ℝ} (hA : A.IsHermitian) (hc : 0 < c₁) (hcd : c₁ < d) (k : ℕ)
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc (-d) (-c₁) ∪ Set.Icc c₁ d)
@@ -90,7 +98,9 @@ theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_symmetric_intervals
 
 /-- The symmetric two-interval rate expressed using `κ = d/c`.
 Source: Greenbaum (1997), §3.1; Liesen--Strakoš (2013), §5.6.
-atlas: minres-bound (partial)-/
+atlas: minres-bound (partial)
+@isnad1 id=le.5h8v.s8.d099d1b4bc42 from=translated src=- shape=61bd0ebf vocab=78768f6b
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_eigenvalues_mem_symmetric_intervals_ratio
     {c₁ d : ℝ} (hA : A.IsHermitian) (hc : 0 < c₁) (hcd : c₁ < d) (k : ℕ)
     (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc (-d) (-c₁) ∪ Set.Icc c₁ d)

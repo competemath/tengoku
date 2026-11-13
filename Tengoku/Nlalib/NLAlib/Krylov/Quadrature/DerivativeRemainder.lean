@@ -24,7 +24,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 the squared norm of `χ_q(A)b`, including a terminal Krylov space. The characteristic
 polynomial is monic `χ_q(t)=det(tI−T_q)`.
 Source: Gautschi (2004), Theorem 1.48 and its matrix corollary; operator derivations (AQ6).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=ex.7h8v.s9.ac9c0672d03e from=translated src=- shape=917b119d vocab=b58bf33c
+-/
 theorem exists_quadForm_sub_cfc_T_eq_iteratedDeriv_mul_norm
     (D : NLAlib.LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q)
     {a c : ℝ} (hac : a < c) (hspec : ∀ i, hA.eigenvalues i ∈ Icc a c)
@@ -84,7 +86,9 @@ theorem exists_quadForm_sub_cfc_T_eq_iteratedDeriv_mul_norm
 /-- A nonnegative even derivative makes actual Lanczos Gauss quadrature a lower bound
 for the matrix quadratic form. This includes zero error at Krylov termination.
 Source: Gautschi (2004), corollary to Theorem 1.48; operator derivations after (AQ6).
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=le.8h8v.s9.550a05842783 from=translated src=- shape=ba0598b3 vocab=cfc2115a
+-/
 theorem norm_sq_mul_cfc_T_le_quadForm_of_iteratedDeriv_nonneg
     (D : NLAlib.LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q)
     {a c : ℝ} (hac : a < c) (hspec : ∀ i, hA.eigenvalues i ∈ Icc a c)
@@ -102,7 +106,9 @@ theorem norm_sq_mul_cfc_T_le_quadForm_of_iteratedDeriv_nonneg
 
 /-- A nonpositive even derivative makes actual Lanczos Gauss quadrature an upper bound
 for the matrix quadratic form. Source: Gautschi (2004), corollary to Theorem 1.48.
-atlas: gauss-quadrature-derivative-remainder (partial)-/
+atlas: gauss-quadrature-derivative-remainder (partial)
+@isnad1 id=le.8h8v.s9.d5c0d1c687f6 from=translated src=- shape=d98e3290 vocab=cfc2115a
+-/
 theorem quadForm_le_norm_sq_mul_cfc_T_of_iteratedDeriv_nonpos
     (D : NLAlib.LanczosDecomp A b q) (hA : A.IsHermitian) (hq : 0 < q)
     {a c : ℝ} (hac : a < c) (hspec : ∀ i, hA.eigenvalues i ∈ Icc a c)

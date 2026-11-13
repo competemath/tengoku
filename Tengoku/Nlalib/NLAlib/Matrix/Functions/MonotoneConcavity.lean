@@ -44,7 +44,9 @@ private theorem diagonal_completion_posSemidef (D : Matrix (Fin 2) (Fin 2) ℝ)
   rwa [← he] at hv
 
 /-- A continuous operator-monotone function on the nonnegative half-line
-is scalar concave, including combinations whose value is zero.-/
+is scalar concave, including combinations whose value is zero.
+@isnad1 id=concaveo.2h1v.s6.f10d3f2912dc from=translated src=- shape=98c443aa vocab=b6542a46
+-/
 theorem OperatorMonotoneOn.concaveOn_nonneg {f : ℝ → ℝ}
     (hm : OperatorMonotoneOn (Ici 0) f) (hf : ContinuousOn f (Ici 0)) :
     ConcaveOn ℝ (Ici 0) f := by

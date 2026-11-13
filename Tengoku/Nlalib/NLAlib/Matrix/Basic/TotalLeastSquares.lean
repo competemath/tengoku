@@ -39,7 +39,9 @@ def tlsSolutionOfVector (v : n ⊕ Unit → 𝕜) : n → 𝕜 :=
 def unitNormalize {ι : Type*} [Fintype ι] (v : ι → 𝕜) : ι → 𝕜 :=
   ((‖WithLp.toLp 2 v‖ : 𝕜)⁻¹) • v
 
-/-- A normalized nonzero vector has Euclidean norm one.-/
+/-- A normalized nonzero vector has Euclidean norm one.
+@isnad1 id=eq.1h3v.s6.b58ac67c121a from=translated src=- shape=a85c183a vocab=c54ffcc8
+-/
 theorem norm_unitNormalize {ι : Type*} [Fintype ι] (v : ι → 𝕜) (hv : v ≠ 0) :
     ‖WithLp.toLp 2 (unitNormalize v)‖ = 1 := by
   have hn : ‖WithLp.toLp 2 v‖ ≠ 0 := by
@@ -48,7 +50,9 @@ theorem norm_unitNormalize {ι : Type*} [Fintype ι] (v : ι → 𝕜) (hv : v �
   simp [unitNormalize, WithLp.toLp_smul, norm_smul, norm_inv, RCLike.norm_ofReal,
     abs_of_nonneg (norm_nonneg _), inv_mul_cancel₀ hn]
 
-/-- Normalization preserves any nonzero coordinate.-/
+/-- Normalization preserves any nonzero coordinate.
+@isnad1 id=ne.1h4v.s6.f59539e979b5 from=translated src=- shape=b4b92ed7 vocab=beb49326
+-/
 theorem unitNormalize_apply_ne_zero {ι : Type*} [Fintype ι] (v : ι → 𝕜)
     (i : ι) (hi : v i ≠ 0) : unitNormalize v i ≠ 0 := by
   have hv : v ≠ 0 := fun hh => hi (congrFun hh i)
@@ -58,14 +62,18 @@ theorem unitNormalize_apply_ne_zero {ι : Type*} [Fintype ι] (v : ι → 𝕜)
     exact_mod_cast hnorm
   exact mul_ne_zero (inv_ne_zero hn) hi
 
-/-- Multiplication of a direction by a nonzero scalar preserves its chart point.-/
+/-- Multiplication of a direction by a nonzero scalar preserves its chart point.
+@isnad1 id=eq.1h4v.s6.ef424da8f512 from=translated src=- shape=056ec6e5 vocab=2b8e1120
+-/
 theorem tlsSolutionOfVector_smul (v : n ⊕ Unit → 𝕜) (a : 𝕜) (ha : a ≠ 0) :
     tlsSolutionOfVector (a • v) = tlsSolutionOfVector v := by
   ext i
   simp only [tlsSolutionOfVector, Pi.smul_apply, smul_eq_mul]
   field_simp
 
-/-- A nonzero last coordinate gives precisely the finite chart direction.-/
+/-- A nonzero last coordinate gives precisely the finite chart direction.
+@isnad1 id=eq.1h3v.s7.0a5801a8de96 from=translated src=- shape=64d91ae1 vocab=02718cb5
+-/
 theorem tlsDirection_solutionOfVector (v : n ⊕ Unit → 𝕜) (hv : v (Sum.inr ()) ≠ 0) :
     tlsDirection (tlsSolutionOfVector v) = -(v (Sum.inr ()))⁻¹ • v := by
   ext i
@@ -73,7 +81,9 @@ theorem tlsDirection_solutionOfVector (v : n ⊕ Unit → 𝕜) (hv : v (Sum.inr
   | inl i => simp [tlsDirection, tlsSolutionOfVector, div_eq_mul_inv, mul_comm]
   | inr i => cases i; simp [tlsDirection, hv]
 
-/-- Normalizing a finite chart direction returns the same finite solution.-/
+/-- Normalizing a finite chart direction returns the same finite solution.
+@isnad1 id=eq.0h3v.s5.c8e9c64a8a73 from=translated src=- shape=23cc11af vocab=9ca1c6c4
+-/
 theorem tlsSolutionOfVector_unitNormalize_direction (x : n → 𝕜) :
     tlsSolutionOfVector (unitNormalize (tlsDirection x)) = x := by
   have hv : tlsDirection x ≠ 0 := by
@@ -93,7 +103,9 @@ def IsTLSFeasible (A : Matrix m n 𝕜) (b : m → 𝕜) (x : n → 𝕜)
     (D : Matrix m (n ⊕ Unit) 𝕜) : Prop :=
   (tlsDataMatrix A b + D) *ᵥ tlsDirection x = 0
 
-/-- The augmented constraint is exactly `(A+E)x=b+f`.-/
+/-- The augmented constraint is exactly `(A+E)x=b+f`.
+@isnad1 id=iff.0h8v.s7.2f251039de12 from=translated src=- shape=a49d8ca1 vocab=f36aa408
+-/
 theorem isTLSFeasible_fromCols_iff (A E : Matrix m n 𝕜) (b f : m → 𝕜) (x : n → 𝕜) :
     IsTLSFeasible A b x (Matrix.fromCols E (Matrix.replicateCol Unit f)) ↔
       (A + E) *ᵥ x = b + f := by
@@ -107,7 +119,9 @@ theorem isTLSFeasible_fromCols_iff (A E : Matrix m n 𝕜) (b f : m → 𝕜) (x
   constructor <;> intro hh <;> linear_combination hh
 
 /-- A unit nonzero-last-coordinate direction produces an actually feasible
-finite solution using the rank-one correction.-/
+finite solution using the rank-one correction.
+@isnad1 id=istlsfea.2h6v.s7.507b5e8900d4 from=translated src=- shape=d8d25d96 vocab=63ac3662
+-/
 theorem isTLSFeasible_rankOneCancel (A : Matrix m n 𝕜) (b : m → 𝕜)
     (v : n ⊕ Unit → 𝕜) (hv : ‖WithLp.toLp 2 v‖ = 1) (hlast : v (Sum.inr ()) ≠ 0) :
     IsTLSFeasible A b (tlsSolutionOfVector v) (rankOneCancel (tlsDataMatrix A b) v) := by
@@ -116,7 +130,9 @@ theorem isTLSFeasible_rankOneCancel (A : Matrix m n 𝕜) (b : m → 𝕜)
 
 /-- Every finite feasible correction costs at least the full-domain
 smallest Gram eigenvalue.
-atlas: total-least-squares-svd (partial)-/
+atlas: total-least-squares-svd (partial)
+@isnad1 id=le.1h7v.s6.4edfe96278e2 from=translated src=- shape=6e445316 vocab=15cf31ae
+-/
 theorem tlsValue_le_frobSq_of_feasible (A : Matrix m n 𝕜) (b : m → 𝕜)
     (x : n → 𝕜) (D : Matrix m (n ⊕ Unit) 𝕜) (hD : IsTLSFeasible A b x D) :
     tlsValue A b ≤ frobSq D := by
@@ -140,7 +156,9 @@ def IsTLSOptimal (A : Matrix m n 𝕜) (b : m → 𝕜) (x : n → 𝕜) : Prop 
 /-- All finite TLS optima are precisely the nonzero-last-coordinate
 vectors in the entire minimum eigenspace. Repeated minimum eigenvalues
 are included, and no division by a zero last coordinate is used.
-atlas: total-least-squares-svd (partial)-/
+atlas: total-least-squares-svd (partial)
+@isnad1 id=iff.0h6v.s8.3777417aee30 from=translated src=- shape=72d57485 vocab=d9e74674
+-/
 theorem isTLSOptimal_iff_minimum_eigenvector_chart (A : Matrix m n 𝕜) (b : m → 𝕜)
     (x : n → 𝕜) : IsTLSOptimal A b x ↔
     ∃ v : n ⊕ Unit → 𝕜, ‖WithLp.toLp 2 v‖ = 1 ∧ v (Sum.inr ()) ≠ 0 ∧
@@ -170,7 +188,9 @@ theorem isTLSOptimal_iff_minimum_eigenvector_chart (A : Matrix m n 𝕜) (b : m 
 
 /-- TLS attainment is equivalent to the minimum eigenspace meeting the
 finite-solution chart. This remains valid when the minimum is repeated.
-atlas: total-least-squares-svd (partial)-/
+atlas: total-least-squares-svd (partial)
+@isnad1 id=iff.0h5v.s8.20d7a1a320d4 from=translated src=- shape=704c9395 vocab=8de087ff
+-/
 theorem exists_isTLSOptimal_iff_minimum_eigenvector_last_ne_zero (A : Matrix m n 𝕜) (b : m → 𝕜) :
     (∃ x, IsTLSOptimal A b x) ↔
       ∃ v : n ⊕ Unit → 𝕜, ‖WithLp.toLp 2 v‖ = 1 ∧ v (Sum.inr ()) ≠ 0 ∧

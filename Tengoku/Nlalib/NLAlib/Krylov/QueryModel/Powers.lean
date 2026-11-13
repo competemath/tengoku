@@ -29,19 +29,25 @@ private theorem iterate_mulVec_eq_pow (A : Matrix n n K) (b : n → K) (q : ℕ)
   | zero => simp
   | succ q ih => rw [Function.iterate_succ_apply', ih, Matrix.mulVec_mulVec, ← pow_succ']
 
-/-- Exactly `q` successive query rounds produce `A^q b`.-/
+/-- Exactly `q` successive query rounds produce `A^q b`.
+@isnad1 id=eq.0h5v.s7.a401478b251e from=translated src=- shape=2df014d9 vocab=79e77b7e
+-/
 theorem run_powerQueryAlgorithm (A : Matrix n n K) (b : n → K) (q : ℕ) :
     (powerQueryAlgorithm b q).run (A *ᵥ ·) = A ^ q *ᵥ b := by
   rw [powerQueryAlgorithm, QueryAlgorithm.run_ofState]
   exact iterate_mulVec_eq_pow A b q
 
-/-- The next queried vector is the corresponding Krylov power.-/
+/-- The next queried vector is the corresponding Krylov power.
+@isnad1 id=eq.0h6v.s7.b507f3cbd1e9 from=translated src=- shape=09cf8c4c vocab=321ac88a
+-/
 theorem queryAt_powerQueryAlgorithm (A : Matrix n n K) (b : n → K) (q i : ℕ) :
     (powerQueryAlgorithm b q).queryAt (A *ᵥ ·) i = A ^ i *ᵥ b := by
   rw [powerQueryAlgorithm, QueryAlgorithm.queryAt_ofState]
   exact iterate_mulVec_eq_pow A b i
 
-/-- The transcript consists of the powers `A b` through `A^q b`.-/
+/-- The transcript consists of the powers `A b` through `A^q b`.
+@isnad1 id=eq.0h6v.s7.0687bb6e0d27 from=translated src=- shape=aaeec7bb vocab=af5d65fe
+-/
 theorem transcript_powerQueryAlgorithm (A : Matrix n n K) (b : n → K)
     (q : ℕ) (j : Fin q) :
     (powerQueryAlgorithm b q).transcript (A *ᵥ ·) j = A ^ ((j : ℕ) + 1) *ᵥ b := by
@@ -53,7 +59,9 @@ def krylovMatrixFromTranscript (b : n → K) {q : ℕ} (h : Fin q → n → K) :
     Matrix n (Fin q) K := fun i j =>
   if hj : (j : ℕ) = 0 then b i else h ⟨(j : ℕ) - 1, by omega⟩ i
 
-/-- Reconstructing generators from the actual transcript gives the native Krylov matrix.-/
+/-- Reconstructing generators from the actual transcript gives the native Krylov matrix.
+@isnad1 id=eq.0h5v.s6.b1b53ef9efa1 from=translated src=- shape=9d99f647 vocab=32192a5f
+-/
 theorem krylovMatrixFromTranscript_eq (A : Matrix n n K) (b : n → K) (q : ℕ) :
     krylovMatrixFromTranscript b ((powerQueryAlgorithm b q).transcript (A *ᵥ ·)) =
       krylovMatrix A b q := by
@@ -65,7 +73,9 @@ theorem krylovMatrixFromTranscript_eq (A : Matrix n n K) (b : n → K) (q : ℕ)
     congr 3
     exact Nat.sub_add_cancel (by omega)
 
-/-- The response matrix is exactly `A` times the Krylov generator matrix.-/
+/-- The response matrix is exactly `A` times the Krylov generator matrix.
+@isnad1 id=eq.0h5v.s7.a6fd8d7fe06e from=translated src=- shape=fedd73f6 vocab=caafeaee
+-/
 theorem responseMatrix_powerQueryAlgorithm (A : Matrix n n K) (b : n → K) (q : ℕ) :
     (fun i j => (powerQueryAlgorithm b q).transcript (A *ᵥ ·) j i) =
       A * krylovMatrix A b q := by

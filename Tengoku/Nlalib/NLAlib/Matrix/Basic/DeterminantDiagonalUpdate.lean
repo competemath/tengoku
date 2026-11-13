@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- A diagonal cofactor depends only on entries outside its deleted row and
 column. This permutation proof includes one-dimensional matrices, whose
-complementary determinant is empty. Supports `rank-revealing-qr`.-/
+complementary determinant is empty. Supports `rank-revealing-qr`.
+@isnad1 id=eq.1h4v.s6.065b6eb81fb3 from=translated src=- shape=7431d053 vocab=8d34e2ce
+-/
 theorem det_updateCol_single_eq_of_complement_eq {p : Type*}
     [Fintype p] [DecidableEq p] (A B : Matrix p p ℝ) (i : p)
     (h : ∀ a b, a ≠ i → b ≠ i → A a b = B a b) :
@@ -43,7 +45,9 @@ theorem det_updateCol_single_eq_of_complement_eq {p : Type*}
 
 /-- Adding a scalar to one diagonal entry changes the determinant by that
 scalar times its diagonal cofactor, with no invertibility hypothesis.
-Supports the exact Gu–Eisenstat maximum-volume exchange identity.-/
+Supports the exact Gu–Eisenstat maximum-volume exchange identity.
+@isnad1 id=eq.0h4v.s6.702122b3101c from=translated src=- shape=6f81be0c vocab=3a367583
+-/
 theorem det_add_single_diagonal {p : Type*} [Fintype p] [DecidableEq p]
     (A : Matrix p p ℝ) (i : p) (a : ℝ) :
     (A + Matrix.single i i a).det = A.det + a * (A.updateCol i (Pi.single i 1)).det := by
@@ -58,7 +62,9 @@ theorem det_add_single_diagonal {p : Type*} [Fintype p] [DecidableEq p]
   exact congrArg Matrix.det (Matrix.updateCol_eq_self A i)
 
 /-- At an invertible matrix, the diagonal cofactor is determinant times the
-corresponding inverse diagonal entry. Supports `rank-revealing-qr`.-/
+corresponding inverse diagonal entry. Supports `rank-revealing-qr`.
+@isnad1 id=eq.1h3v.s6.680d6767cfc1 from=translated src=- shape=3dedc022 vocab=f88520f8
+-/
 theorem det_updateCol_single_eq_det_mul_inv {p : Type*} [Fintype p] [DecidableEq p]
     (A : Matrix p p ℝ) (hA : IsUnit A.det) (i : p) :
     (A.updateCol i (Pi.single i 1)).det = A.det * A⁻¹ i i := by

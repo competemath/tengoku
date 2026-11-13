@@ -48,7 +48,9 @@ def polyIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (s : ℝ[X]) : n → �
 
 /-- The residual of a polynomial method is `(1 − X s)(A) r₀`. Source: Saad (2003) [`saad03`],
 §12.1.
-atlas: polynomial-method-def-/
+atlas: polynomial-method-def
+@isnad1 id=eq.0h5v.s8.1923adaa12e7 from=translated src=- shape=ee9d1ccd vocab=dcd42918
+-/
 theorem sub_mulVec_polyIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (s : ℝ[X]) :
     c - A *ᵥ polyIterate A c x₀ s = aeval A (1 - X * s) *ᵥ (c - A *ᵥ x₀) := by
   rw [polyIterate, map_sub, map_one, map_mul, aeval_X, Matrix.sub_mulVec, Matrix.one_mulVec,
@@ -57,7 +59,9 @@ theorem sub_mulVec_polyIterate (A : Matrix n n ℝ) (c x₀ : n → ℝ) (s : �
 
 /-- The error of a polynomial method is `(1 − X s)(A)(x₀ − x⋆)` when `A x⋆ = c`.
 Source: Saad (2003) [`saad03`], §12.1.
-atlas: polynomial-method-def-/
+atlas: polynomial-method-def
+@isnad1 id=eq.1h6v.s8.f42eaac9403d from=translated src=- shape=8b0cc0b1 vocab=dcd42918
+-/
 theorem polyIterate_sub {A : Matrix n n ℝ} {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (x₀ : n → ℝ)
     (s : ℝ[X]) : polyIterate A c x₀ s - xs = aeval A (1 - X * s) *ᵥ (x₀ - xs) := by
   have hr : c - A *ᵥ x₀ = -(A *ᵥ (x₀ - xs)) := by rw [Matrix.mulVec_sub, hxs]; abel
@@ -66,7 +70,9 @@ theorem polyIterate_sub {A : Matrix n n ℝ} {c xs : n → ℝ} (hxs : A *ᵥ xs
   abel
 
 /-- A polynomial method with `deg s < q` stays in the affine Krylov space `x₀ + K_q(A, r₀)`.
-Source: Saad (2003) [`saad03`], §12.1.-/
+Source: Saad (2003) [`saad03`], §12.1.
+@isnad1 id=mem.1h6v.s8.c2ce676c9ee2 from=translated src=- shape=56dc0b89 vocab=daf95192
+-/
 theorem polyIterate_sub_mem_krylovSpace (A : Matrix n n ℝ) (c x₀ : n → ℝ) {s : ℝ[X]} {q : ℕ}
     (hs : s.degree < q) : polyIterate A c x₀ s - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q :=
   (mem_krylovSpace_iff _ _ _ _).2 ⟨s, hs, by rw [polyIterate, add_sub_cancel_left]⟩
@@ -75,7 +81,9 @@ theorem polyIterate_sub_mem_krylovSpace (A : Matrix n n ℝ) (c x₀ : n → ℝ
 `S`, a weight `g ≥ 0` on `S` and `|1 − x s(x)| ≤ M` on `S`,
 `‖x − x⋆‖²_{g(A)} ≤ M² ‖x₀ − x⋆‖²_{g(A)}`. Source: Saad (2003) [`saad03`], §12.1;
 Greenbaum (1997) [`greenbaum97`], §2.1.
-atlas: polynomial-method-def-/
+atlas: polynomial-method-def
+@isnad1 id=le.5h9v.s9.9aae709df11e from=translated src=- shape=803ea8cf vocab=120d2981
+-/
 theorem quadForm_polyIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {g s : ℝ[X]}
     {S : Set ℝ} {M : ℝ} (hspec : ∀ i, hA.eigenvalues i ∈ S) (hg : ∀ x ∈ S, 0 ≤ g.eval x)
     (hM : ∀ x ∈ S, |(1 - X * s).eval x| ≤ M) {c xs : n → ℝ} (hxs : A *ᵥ xs = c)
@@ -86,7 +94,9 @@ theorem quadForm_polyIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {g
 
 /-- **Residual bound for a polynomial method.** For symmetric `A` with spectrum in `S` and
 `|1 − x s(x)| ≤ M` on `S`, `‖c − A x‖² ≤ M² ‖r₀‖²`. No solution is needed.
-Source: Saad (2003) [`saad03`], §12.1.-/
+Source: Saad (2003) [`saad03`], §12.1.
+@isnad1 id=le.3h7v.s8.4fe8b703512c from=translated src=- shape=7af7b57e vocab=72b00d0c
+-/
 theorem dotProduct_self_sub_mulVec_polyIterate_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {s : ℝ[X]} {S : Set ℝ} {M : ℝ} (hspec : ∀ i, hA.eigenvalues i ∈ S)
     (hM : ∀ x ∈ S, |(1 - X * s).eval x| ≤ M) (c x₀ : n → ℝ) :
@@ -111,7 +121,9 @@ private lemma one_sub_X_mul_richardson (ω : ℝ) (q : ℕ) :
   linear_combination geom_sum_mul (1 - C ω * X) q
 
 /-- **Richardson recurrence.** `x_{q+1} = x_q + ω (c − A x_q)`, `x_0 = x₀`.
-Source: Saad (2003) [`saad03`], §4.2.-/
+Source: Saad (2003) [`saad03`], §4.2.
+@isnad1 id=eq.0h6v.s7.c787c152b075 from=translated src=- shape=4b4d1aa0 vocab=9c83bc6b
+-/
 theorem richardsonIterate_succ (ω : ℝ) (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) :
     richardsonIterate ω A c x₀ (q + 1) =
       richardsonIterate ω A c x₀ q + ω • (c - A *ᵥ richardsonIterate ω A c x₀ q) := by
@@ -123,7 +135,9 @@ theorem richardsonIterate_succ (ω : ℝ) (A : Matrix n n ℝ) (c x₀ : n → �
     Algebra.algebraMap_eq_smul_one, Matrix.smul_mul, Matrix.one_mul, Matrix.smul_mulVec,
     add_assoc]
 
-/-- `richardsonIterate` at `q = 0` is the starting point.-/
+/-- `richardsonIterate` at `q = 0` is the starting point.
+@isnad1 id=eq.0h5v.s5.651927a198bf from=translated src=- shape=f87e91cf vocab=8a7440f8
+-/
 @[simp] theorem richardsonIterate_zero (ω : ℝ) (A : Matrix n n ℝ) (c x₀ : n → ℝ) :
     richardsonIterate ω A c x₀ 0 = x₀ := by
   simp [richardsonIterate, polyIterate]
@@ -143,7 +157,9 @@ step `ω ≥ 0`, `A x⋆ = c` and a weight `g ≥ 0` on `[a, b]`,
 `g = X` (`0 ≤ a`) this is the `A`-norm bound of the atlas, with `g = 1` the Euclidean error.
 Source: Greenbaum (1997) [`greenbaum97`], §2.1; Saad (2003) [`saad03`], §4.2.
 Deviation: unpreconditioned (`P = I`), squared norms.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.5h10v.s9.718337771243 from=translated src=- shape=34277b54 vocab=ab3238c9
+-/
 theorem quadForm_richardsonIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {a b ω : ℝ}
     (hω : 0 ≤ ω) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b) {g : ℝ[X]}
     (hg : ∀ x ∈ Set.Icc a b, 0 ≤ g.eval x) {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (x₀ : n → ℝ)
@@ -157,7 +173,9 @@ theorem quadForm_richardsonIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermiti
 /-- **Richardson contraction, residual norm.** For symmetric `A` with spectrum in `[a, b]` and
 step `ω ≥ 0`, `‖c − A x_q‖² ≤ ρ^{2q} ‖r₀‖²`, `ρ = max(|1 − ωa|, |1 − ωb|)`.
 Source: Saad (2003) [`saad03`], §4.2. Deviation: unpreconditioned (`P = I`), squared norms.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.3h8v.s8.30f43321d85d from=translated src=- shape=2cfdb931 vocab=3d6b2d9f
+-/
 theorem dotProduct_self_sub_mulVec_richardsonIterate_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {a b ω : ℝ} (hω : 0 ≤ ω) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b) (c x₀ : n → ℝ)
     (q : ℕ) :
@@ -171,7 +189,9 @@ theorem dotProduct_self_sub_mulVec_richardsonIterate_le {A : Matrix n n ℝ} (hA
 with spectrum in `[a, b]`, `0 < a ≤ b`, `‖x_q − x⋆‖²_A ≤ ((b − a)/(b + a))^{2q} ‖x₀ − x⋆‖²_A`.
 Source: Saad (2003) [`saad03`], §4.2.1; Greenbaum (1997) [`greenbaum97`], §2.1.
 Deviation: unpreconditioned (`P = I`), squared norms.
-atlas: richardson-iteration (partial)-/
+atlas: richardson-iteration (partial)
+@isnad1 id=le.5h8v.s8.c03e5cebba69 from=translated src=- shape=3275bc8e vocab=71c2cbec
+-/
 theorem quadForm_richardsonIterate_sub_le_of_optimal {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b)
     {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (x₀ : n → ℝ) (q : ℕ) :
@@ -210,7 +230,9 @@ private lemma one_sub_X_mul_divByMonic {p : ℝ[X]} (hp0 : p.eval 0 = 1) :
 
 /-- The polynomial Chebyshev iterate has exactly the normalized Chebyshev residual.
 Source: Saad (2003), §12.3; this bridge is also used by the coupled recurrence realization.
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=eq.2h7v.s8.8e64149c0375 from=translated src=- shape=f86c037e vocab=3e46ce66
+-/
 theorem sub_mulVec_chebyshevIterate {a b : ℝ} (ha : 0 < a) (hab : a < b)
     (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) :
     c - A *ᵥ chebyshevIterate a b A c x₀ q =
@@ -220,7 +242,9 @@ theorem sub_mulVec_chebyshevIterate {a b : ℝ} (ha : 0 < a) (hab : a < b)
 
 /-- About an exact solution, the Chebyshev iterate has the normalized residual polynomial
 as its exact error polynomial. Source: Saad (2003), §12.3.
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=eq.3h8v.s8.dbff1a9ae359 from=translated src=- shape=a2f2181e vocab=3e46ce66
+-/
 theorem chebyshevIterate_sub {a b : ℝ} (ha : 0 < a) (hab : a < b)
     {A : Matrix n n ℝ} {c xs : n → ℝ} (hxs : A *ᵥ xs = c) (x₀ : n → ℝ) (q : ℕ) :
     chebyshevIterate a b A c x₀ q - xs =
@@ -229,7 +253,9 @@ theorem chebyshevIterate_sub {a b : ℝ} (ha : 0 < a) (hab : a < b)
     one_sub_X_mul_divByMonic (eval_chebyshevResidual_zero ha hab)]
 
 /-- The Chebyshev iterate lies in `x₀ + K_q(A, r₀)` (its iteration polynomial has degree
-`< q`). Source: Saad (2003) [`saad03`], §12.3.-/
+`< q`). Source: Saad (2003) [`saad03`], §12.3.
+@isnad1 id=mem.2h7v.s8.f77f3393cbfe from=translated src=- shape=5686f3ce vocab=8312208d
+-/
 theorem chebyshevIterate_sub_mem_krylovSpace {a b : ℝ} (ha : 0 < a) (hab : a < b)
     (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) :
     chebyshevIterate a b A c x₀ q - x₀ ∈ krylovSpace A (c - A *ᵥ x₀) q := by
@@ -245,7 +271,9 @@ theorem chebyshevIterate_sub_mem_krylovSpace {a b : ℝ} (ha : 0 < a) (hab : a <
 `‖x_q − x⋆‖²_A ≤ (2((√b − √a)/(√b + √a))^q)² ‖x₀ − x⋆‖²_A`.
 Source: Saad (2003) [`saad03`], §12.3; Golub–Varga (1961) [`gv61`]. Deviation: squared norms;
 the iterate is defined by its residual polynomial (no recurrence).
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=le.5h8v.s8.e9e1e3283bec from=translated src=- shape=4515aa54 vocab=f0524e44
+-/
 theorem quadForm_chebyshevIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermitian) {a b : ℝ}
     (ha : 0 < a) (hab : a < b) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b) {c xs : n → ℝ}
     (hxs : A *ᵥ xs = c) (x₀ : n → ℝ) (q : ℕ) :
@@ -261,7 +289,9 @@ theorem quadForm_chebyshevIterate_sub_le {A : Matrix n n ℝ} (hA : A.IsHermitia
 /-- **Chebyshev iteration, residual rate.** For symmetric `A` with spectrum in `[a, b]`,
 `0 < a < b`, `‖c − A x_q‖² ≤ (2((√b − √a)/(√b + √a))^q)² ‖r₀‖²`.
 Source: Saad (2003) [`saad03`], §12.3. Deviation: squared norms.
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=le.4h7v.s8.16c7d83f25da from=translated src=- shape=03a4637e vocab=72b83b6b
+-/
 theorem dotProduct_self_sub_mulVec_chebyshevIterate_le {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {a b : ℝ} (ha : 0 < a) (hab : a < b) (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a b)
     (c x₀ : n → ℝ) (q : ℕ) :
@@ -337,14 +367,18 @@ private lemma eval_T_add_two_center {a b : ℝ} (hab : a < b) (q : ℕ) :
   ring
 
 /-- `chebyshevIterate` at `q = 0` is the starting point. Source: Saad (2003) [`saad03`],
-Alg. 12.1. Atlas: `chebyshev-iteration`.-/
+Alg. 12.1. Atlas: `chebyshev-iteration`.
+@isnad1 id=eq.0h6v.s5.62a31580e93a from=translated src=- shape=72e42c2c vocab=74b194d5
+-/
 @[simp] theorem chebyshevIterate_zero (a b : ℝ) (A : Matrix n n ℝ) (c x₀ : n → ℝ) :
     chebyshevIterate a b A c x₀ 0 = x₀ := by
   simp [chebyshevIterate, polyIterate, chebyshevResidual]
 
 /-- **First Chebyshev step**: `x_1 = x₀ + r₀/θ`, `θ = (b + a)/2`, for `0 < a < b`.
 Source: Saad (2003) [`saad03`], Alg. 12.1 (`d_0 = r_0/θ`).
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=eq.2h6v.s7.acd18d9953db from=translated src=- shape=63d25fb1 vocab=be708eae
+-/
 theorem chebyshevIterate_one {a b : ℝ} (ha : 0 < a) (hab : a < b) (A : Matrix n n ℝ)
     (c x₀ : n → ℝ) :
     chebyshevIterate a b A c x₀ 1 = x₀ + (2 / (b + a)) • (c - A *ᵥ x₀) := by
@@ -372,7 +406,9 @@ Saad's two-term form with `ρ_k = τ_k/τ_{k+1}` and `d_k = x_{k+1} − x_k`
 `τ_{q+2} = 2σ τ_{q+1} − τ_q`. Proof: `Polynomial.funext` after cancelling `X`, using
 `Chebyshev.T_add_two` at `σ − 2t/(b − a)` and at `σ`.
 Source: Saad (2003) [`saad03`], §12.3, Alg. 12.1; Golub–Varga (1961) [`gv61`].
-atlas: chebyshev-iteration (partial)-/
+atlas: chebyshev-iteration (partial)
+@isnad1 id=eq.2h7v.s8.270416189bca from=translated src=- shape=8c5b7c6d vocab=1a5a81c4
+-/
 theorem chebyshevIterate_add_two {a b : ℝ} (ha : 0 < a) (hab : a < b) (A : Matrix n n ℝ)
     (c x₀ : n → ℝ) (q : ℕ) :
     chebyshevIterate a b A c x₀ (q + 2) =

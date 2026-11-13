@@ -39,16 +39,22 @@ def step (A : Matrix n n 𝕜) (x : n → 𝕜) : n → 𝕜 :=
   let y := (A - rayleighQuotient A x • (1 : Matrix n n 𝕜))⁻¹ *ᵥ x
   ((‖WithLp.toLp 2 y‖⁻¹ : ℝ) : 𝕜) • y
 
-/-- Squared tangents are nonnegative.-/
+/-- Squared tangents are nonnegative.
+@isnad1 id=le.1h5v.s6.0b5cec598d18 from=translated src=- shape=33a84ea8 vocab=345f214e
+-/
 theorem tangentSq_nonneg (hA : A.IsHermitian) (i : n) (x : n → 𝕜) :
     0 ≤ tangentSq hA i x := by unfold tangentSq; positivity
 
-/-- The squared tangent is the square of the nonnegative tangent.-/
+/-- The squared tangent is the square of the nonnegative tangent.
+@isnad1 id=eq.1h5v.s6.fbfa51d1cad7 from=translated src=- shape=ed8381da vocab=9e1feb29
+-/
 theorem tangent_sq (hA : A.IsHermitian) (i : n) (x : n → 𝕜) :
     tangent hA i x ^ 2 = tangentSq hA i x :=
   Real.sq_sqrt (tangentSq_nonneg hA i x)
 
-/-- Nonzero scalar multiplication preserves the eigenvector line angle.-/
+/-- Nonzero scalar multiplication preserves the eigenvector line angle.
+@isnad1 id=eq.2h6v.s7.b7c55c098f94 from=translated src=- shape=0d769686 vocab=342ea9d3
+-/
 theorem tangentSq_smul (hA : A.IsHermitian) (i : n) (x : n → 𝕜)
     {c : 𝕜} (hc : c ≠ 0) : tangentSq hA i (c • x) = tangentSq hA i x := by
   simp only [tangentSq, hA.eigenvectorCoordinates_smul, Pi.smul_apply, norm_smul,
@@ -57,7 +63,9 @@ theorem tangentSq_smul (hA : A.IsHermitian) (i : n) (x : n → 𝕜)
 
 /-- The exact quadratic Rayleigh error bound, with denominator `1 + tan² θ`, for real
 symmetric or complex Hermitian matrices. The selected spectral coordinate must be nonzero.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=le.3h6v.s7.1e49f049768d from=translated src=- shape=cde44c18 vocab=324f4794
+-/
 theorem abs_rayleighQuotient_sub_le (hA : A.IsHermitian) {i : n} {M : ℝ}
     (hM : ∀ j, j ≠ i → |hA.eigenvalues j - hA.eigenvalues i| ≤ M)
     {x : n → 𝕜} (hx : hA.eigenvectorCoordinates x i ≠ 0) :
@@ -67,7 +75,9 @@ theorem abs_rayleighQuotient_sub_le (hA : A.IsHermitian) {i : n} {M : ℝ}
   exact abs_weighted_average_sub_le (fun _ => sq_nonneg _)
     (sq_pos_of_pos (norm_pos_iff.mpr hx)) hM
 
-/-- A nonzero selected coordinate stays nonzero under a nonsingular shifted inverse.-/
+/-- A nonzero selected coordinate stays nonzero under a nonsingular shifted inverse.
+@isnad1 id=ne.3h6v.s8.5a45ce5cc318 from=translated src=- shape=1dfb7943 vocab=fa2dd899
+-/
 theorem eigenvectorCoordinates_inverse_ne_zero (hA : A.IsHermitian) {i : n} {μ : ℝ}
     (hμ : ∀ j, hA.eigenvalues j ≠ μ) {x : n → 𝕜}
     (hx : hA.eigenvectorCoordinates x i ≠ 0) :
@@ -76,7 +86,9 @@ theorem eigenvectorCoordinates_inverse_ne_zero (hA : A.IsHermitian) {i : n} {μ 
   exact mul_ne_zero (inv_ne_zero (RCLike.ofReal_ne_zero.mpr (sub_ne_zero.mpr (hμ i)))) hx
 
 /-- The finite spectral estimate for the squared tangent under an actual shifted inverse.
-The lower separation `d` may be chosen as the spectral gap minus the shift error.-/
+The lower separation `d` may be chosen as the spectral gap minus the shift error.
+@isnad1 id=le.5h7v.s8.419294c31dd5 from=translated src=- shape=c288b70b vocab=5f6c918b
+-/
 theorem tangentSq_inverse_le (hA : A.IsHermitian) {i : n} {μ d : ℝ}
     (hμ : ∀ j, hA.eigenvalues j ≠ μ) (hd : 0 < d)
     (hsep : ∀ j, j ≠ i → d ≤ |hA.eigenvalues j - μ|)
@@ -95,7 +107,9 @@ theorem tangentSq_inverse_le (hA : A.IsHermitian) {i : n} {μ d : ℝ}
 
 /-- Normalizing a valid inverse step gives a unit vector with nonzero target overlap and
 does not change the tangent. This establishes that the actual RQI step is well-defined.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.3h5v.s8.675e62da607c from=translated src=- shape=1a7adffb vocab=9a6b98ef
+-/
 theorem step_norm_and_coordinates_ne_zero (hA : A.IsHermitian) {i : n} {x : n → 𝕜}
     (hx : hA.eigenvectorCoordinates x i ≠ 0)
     (hμ : ∀ j, hA.eigenvalues j ≠ rayleighQuotient A x) :
@@ -128,7 +142,9 @@ theorem step_norm_and_coordinates_ne_zero (hA : A.IsHermitian) {i : n} {x : n �
 /-- Local cubic contraction for the squared angle of the actual normalized inverse step.
 The constants use any positive lower gap and upper spectral spread; hence apply to the
 minimum and maximum spectral distances in the atlas card.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.8h7v.s8.d98324c14b26 from=translated src=- shape=3bed5fb3 vocab=26707db2
+-/
 theorem tangentSq_step_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -155,7 +171,9 @@ theorem tangentSq_step_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
 
 /-- Local cubic convergence of the eigenvector-line angle, and the explicit one-half
 contraction, for the actual real or complex Hermitian RQI step.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=and.8h7v.s8.47d7e28cedbc from=translated src=- shape=5b93e286 vocab=f8c73b38
+-/
 theorem tangent_step_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -178,7 +196,9 @@ theorem tangent_step_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
   · nlinarith [hs.2]
 
 /-- The local angle neighborhood is invariant under every valid normalized step.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=le.8h7v.s8.ba4b67aab6f8 from=translated src=- shape=1a4fa314 vocab=80cea3a5
+-/
 theorem tangentSq_step_le_neighborhood (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)
@@ -192,7 +212,9 @@ theorem tangentSq_step_le_neighborhood (hA : A.IsHermitian) {i : n} {g M : ℝ}
   linarith
 
 /-- Sixth-order Rayleigh quotient error from the incoming angle in one normalized RQI step.
-atlas: rayleigh-quotient-iteration (partial)-/
+atlas: rayleigh-quotient-iteration (partial)
+@isnad1 id=le.8h7v.s8.4767b91d7c14 from=translated src=- shape=47c0ab50 vocab=f8c73b38
+-/
 theorem abs_rayleighQuotient_step_sub_le (hA : A.IsHermitian) {i : n} {g M : ℝ}
     (hg : 0 < g) (hM : 0 < M)
     (hgap : ∀ j, j ≠ i → g ≤ |hA.eigenvalues j - hA.eigenvalues i|)

@@ -47,7 +47,9 @@ private theorem dotProduct_pos_of_nonneg_sum_one {q x : n → ℝ}
 
 /-- An inverse-positive regular splitting has iteration spectral radius strictly below one.
 The spectral radius is taken after complexification, so nonreal eigenvalues are included.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=lt.5h3v.s8.1974ce41c94e from=translated src=- shape=d5942f55 vocab=546654d7
+-/
 theorem complex_spectralRadius_inv_mul_lt_one_of_inverse_nonneg [Nonempty n]
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j) (hA : IsUnit (M - N))
@@ -78,7 +80,9 @@ theorem complex_spectralRadius_inv_mul_lt_one_of_inverse_nonneg [Nonempty n]
   exact (ENNReal.toReal_lt_toReal (matrix_spectralRadius_ne_top _) ENNReal.one_ne_top).mp hr
 
 /-- A convergent regular splitting is invertible and inverse-positive.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=and.4h3v.s8.74cd4f3f0be8 from=translated src=- shape=a8e5d569 vocab=546654d7
+-/
 theorem inverse_nonneg_of_complex_spectralRadius_inv_mul_lt_one [Nonempty n]
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j)
@@ -109,7 +113,9 @@ theorem inverse_nonneg_of_complex_spectralRadius_inv_mul_lt_one [Nonempty n]
 
 /-- The inverse-positive and spectral-radius criteria for a regular splitting are equivalent.
 Both regularity assumptions are explicit; no Z-matrix condition on `M - N` is imposed.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=iff.3h3v.s8.d07a2bd036b3 from=translated src=- shape=fc66fab3 vocab=546654d7
+-/
 theorem inverse_nonneg_iff_complex_spectralRadius_inv_mul_lt_one [Nonempty n]
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j) :
@@ -120,7 +126,9 @@ theorem inverse_nonneg_iff_complex_spectralRadius_inv_mul_lt_one [Nonempty n]
 
 /-- Every regular splitting of an inverse-positive matrix converges to the actual solution
 `(M - N)⁻¹ b`, for every right-hand side and starting vector.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=tendsto.5h5v.s8.357f06f5f0f5 from=translated src=- shape=08af2a0d vocab=4917fd70
+-/
 theorem tendsto_splittingIterate_of_inverse_nonneg [Nonempty n]
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j) (hA : IsUnit (M - N))
@@ -137,7 +145,9 @@ theorem tendsto_splittingIterate_of_inverse_nonneg [Nonempty n]
 
 /-- Nonnegative data produce nonnegative, increasing iterates bounded by the true solution,
 when a regular inverse-positive splitting starts from zero.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=and.6h6v.s8.54b7cacf6e65 from=translated src=- shape=efa5ada9 vocab=5813b4f2
+-/
 theorem splittingIterate_zero_nonneg_mono_le_of_inverse_nonneg
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j) (hA : IsUnit (M - N))
@@ -191,7 +201,9 @@ theorem splittingIterate_zero_nonneg_mono_le_of_inverse_nonneg
   exact ⟨hnonneg k i, hinc k i, hupper (k + 1) i⟩
 
 /-- Every regular splitting of a nonsingular M-matrix converges.
-atlas: regular-splitting-inverse-positivity (partial)-/
+atlas: regular-splitting-inverse-positivity (partial)
+@isnad1 id=splittin.4h3v.s6.850a765a9af6 from=translated src=- shape=6f694469 vocab=00d1df61
+-/
 theorem splittingConverges_of_isNonsingularMMatrix [Nonempty n]
     {M N : Matrix n n ℝ} (hM : IsUnit M) (hMinv : ∀ i j, 0 ≤ M⁻¹ i j)
     (hN : ∀ i j, 0 ≤ N i j) (hA : (M - N).IsNonsingularMMatrix) :

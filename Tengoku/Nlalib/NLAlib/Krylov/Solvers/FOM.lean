@@ -46,7 +46,9 @@ def fomIterate (D : ArnoldiDecomp A b q) (x₀ : n → ℝ) : n → ℝ :=
 /-- FOM in an actual Arnoldi basis is exactly the square Galerkin system.
 The affine-space membership follows from the basis range identity.
 Saad (2003), §6.4.1.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iff.0h7v.s8.52626a82b2c5 from=translated src=- shape=5e420cb2 vocab=12f745d2
+-/
 theorem isFOMIterate_add_mulVec_iff (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     (y : Fin q → ℝ) :
     IsFOMIterate A c x₀ q (x₀ + D.Q *ᵥ y) ↔
@@ -60,7 +62,9 @@ theorem isFOMIterate_add_mulVec_iff (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     exact ⟨y, rfl⟩
 
 /-- Every FOM iterate has coordinates in the actual Arnoldi basis.
-This includes the zero-dimensional Krylov space. Saad (2003), §6.4.1.-/
+This includes the zero-dimensional Krylov space. Saad (2003), §6.4.1.
+@isnad1 id=ex.1h7v.s7.99316c682f82 from=translated src=- shape=66cbe42e vocab=06038614
+-/
 theorem exists_eq_add_mulVec_of_isFOMIterate
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) q) {x : n → ℝ}
     (hx : IsFOMIterate A c x₀ q x) : ∃ y, x = x₀ + D.Q *ᵥ y := by
@@ -73,7 +77,9 @@ theorem exists_eq_add_mulVec_of_isFOMIterate
 
 /-- The explicit inverse formula satisfies the FOM Galerkin equations when
 the small Hessenberg matrix is invertible. Saad (2003), Algorithm 6.4.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=isfomite.1h6v.s7.0f6a3ee3d8cd from=translated src=- shape=4c79984a vocab=da634afb
+-/
 theorem isFOMIterate_fomIterate (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     (hH : IsUnit D.H) : IsFOMIterate A c x₀ q (D.fomIterate x₀) := by
   apply (D.isFOMIterate_add_mulVec_iff _).2
@@ -83,7 +89,9 @@ theorem isFOMIterate_fomIterate (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
 /-- A FOM iterate exists uniquely exactly when the actual Hessenberg
 compression is invertible. Uniqueness for one right-hand side already forces
 injectivity of its linear system. Saad (2003), §6.4.1.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iff.0h6v.s7.07234cf850b1 from=translated src=- shape=47e60988 vocab=6c942898
+-/
 theorem existsUnique_isFOMIterate_iff_isUnit
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) q) :
     (∃! x, IsFOMIterate A c x₀ q x) ↔ IsUnit D.H := by
@@ -114,7 +122,9 @@ theorem existsUnique_isFOMIterate_iff_isUnit
 
 /-- The FOM existence-and-uniqueness criterion in determinant form.
 Saad (2003), §6.4.1.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iff.0h6v.s7.a8aa5998cb6f from=translated src=- shape=7621c2de vocab=d9d247e3
+-/
 theorem existsUnique_isFOMIterate_iff_det_ne_zero
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) q) :
     (∃! x, IsFOMIterate A c x₀ q x) ↔ D.H.det ≠ 0 := by
@@ -132,7 +142,9 @@ theorem eq_fomIterate_of_isFOMIterate (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
 
 /-- Under the positive initial Arnoldi orientation, the inverse formula uses
 the textbook right-hand side `‖r₀‖ e₁`. Saad (2003), Algorithm 6.4.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=eq.2h6v.s8.7ee4f842b83a from=translated src=- shape=306f9eeb vocab=206cf465
+-/
 theorem fomIterate_eq_of_pos (D : ArnoldiDecomp A b q) (hq : 0 < q)
     (hD : 0 < D.Q.col ⟨0, hq⟩ ⬝ᵥ b) (x₀ : n → ℝ) :
     D.fomIterate x₀ = x₀ + ‖WithLp.toLp 2 b‖ •
@@ -142,7 +154,9 @@ theorem fomIterate_eq_of_pos (D : ArnoldiDecomp A b q) (hq : 0 < q)
 
 /-- A solved Arnoldi Galerkin system has residual in the next basis direction,
 with the signed last Hessenberg coefficient. Saad (2003), Proposition 6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=eq.2h7v.s9.f36127b7c696 from=translated src=- shape=93892238 vocab=199f0c2a
+-/
 theorem sub_mulVec_add_mulVec_eq_neg_smul
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1)) (hq : 0 < q)
     {y : Fin q → ℝ}
@@ -176,7 +190,9 @@ theorem sub_mulVec_add_mulVec_eq_neg_smul
 /-- The FOM residual vector in the textbook positive initial orientation.
 The next Arnoldi coefficient is signed here; its nonnegative orientation is
 used only when taking the norm. Saad (2003), Proposition 6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=eq.3h6v.s9.06e4f869ff48 from=translated src=- shape=a1770ab0 vocab=c1cc1469
+-/
 theorem sub_mulVec_fomIterate_eq_neg_smul_of_pos
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1)) (hq : 0 < q)
     (hD : 0 < (D.restrict q.le_succ).Q.col ⟨0, hq⟩ ⬝ᵥ (c - A *ᵥ x₀))
@@ -198,7 +214,9 @@ theorem sub_mulVec_fomIterate_eq_neg_smul_of_pos
 last inverse-Hessenberg coordinate and the initial residual norm. The sign
 conditions are exactly the positive Arnoldi orientation. Saad (2003),
 Proposition 6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=eq.4h6v.s10.23d818b11244 from=translated src=- shape=8b720192 vocab=9be9c674
+-/
 theorem norm_sub_mulVec_fomIterate_eq_of_pos
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) (q + 1)) (hq : 0 < q)
     (hD : 0 < (D.restrict q.le_succ).Q.col ⟨0, hq⟩ ⬝ᵥ (c - A *ᵥ x₀))
@@ -219,7 +237,9 @@ theorem norm_sub_mulVec_fomIterate_eq_of_pos
 in the FOM residual norm formula. Thus only the native dimension and small
 Hessenberg invertibility hypotheses remain. Saad (2003), Algorithm 6.4 and
 Proposition 6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=other.3h5v.s9.83db65fc9336 from=translated src=- shape=6cfbb3bb vocab=2116d797
+-/
 theorem norm_sub_mulVec_fomIterate_eq_arnoldiDecomp
     (A : Matrix n n ℝ) (c x₀ : n → ℝ) {q : ℕ} (hq : 0 < q)
     (hgrade : q + 1 ≤ krylovGrade A (c - A *ᵥ x₀))
@@ -242,7 +262,9 @@ theorem norm_sub_mulVec_fomIterate_eq_arnoldiDecomp
 
 /-- At the terminal grade, every solvable FOM square system gives the exact
 linear-system solution. No symmetry assumption is needed. Saad (2003), §6.4.1.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=eq.3h6v.s8.672821f27e16 from=translated src=- shape=66f4736f vocab=baf98a02
+-/
 theorem sub_mulVec_fomIterate_eq_zero_of_krylovGrade_le
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) q) (hq : 0 < q)
     (hgrade : krylovGrade A (c - A *ᵥ x₀) ≤ q) (hH : IsUnit D.H) :
@@ -261,7 +283,9 @@ theorem sub_mulVec_fomIterate_eq_zero_of_krylovGrade_le
 /-- Every SPD system has a unique FOM iterate in each actual Arnoldi space,
 since orthonormal compression preserves positive definiteness.
 Saad (2003), §6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=existsun.1h6v.s6.73b2e10bb171 from=translated src=- shape=6fc98e08 vocab=e2189cdc
+-/
 theorem existsUnique_isFOMIterate_of_posDef
     (D : ArnoldiDecomp A (c - A *ᵥ x₀) q) (hA : A.PosDef) :
     ∃! x, IsFOMIterate A c x₀ q x := by
@@ -277,7 +301,9 @@ end ArnoldiDecomp
 
 /-- On SPD systems, the FOM Galerkin condition is the native CG variational
 condition. Saad (2003), §6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iscgiter.2h6v.s5.6002e28ed790 from=translated src=- shape=0804c87c vocab=00e4f5a9
+-/
 theorem IsFOMIterate.isCGIterate {A : Matrix n n ℝ} {c x₀ x : n → ℝ} {q : ℕ}
     (hx : IsFOMIterate A c x₀ q x) (hA : A.PosDef) : IsCGIterate A c x₀ q x :=
   isCGIterate_of_forall_dotProduct_eq_zero hA.isHermitian
@@ -286,7 +312,9 @@ theorem IsFOMIterate.isCGIterate {A : Matrix n n ℝ} {c x₀ x : n → ℝ} {q 
 /-- The concrete inverse-Hessenberg FOM formula is the native CG iterate
 for every SPD system. Its small compression is automatically invertible.
 Saad (2003), §6.7.
-atlas: fom-def (partial)-/
+atlas: fom-def (partial)
+@isnad1 id=iscgiter.1h6v.s7.ba1758a4c2bc from=translated src=- shape=df4be40f vocab=22daacae
+-/
 theorem ArnoldiDecomp.isCGIterate_fomIterate {A : Matrix n n ℝ}
     {c x₀ : n → ℝ} {q : ℕ} (D : ArnoldiDecomp A (c - A *ᵥ x₀) q)
     (hA : A.PosDef) : IsCGIterate A c x₀ q (D.fomIterate x₀) := by

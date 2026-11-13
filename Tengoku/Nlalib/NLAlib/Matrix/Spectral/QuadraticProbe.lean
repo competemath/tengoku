@@ -26,7 +26,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The spectral norm of a real symmetric matrix is the supremum norm of
 its eigenvalue list. Source: Mathlib's spectral theorem and unitary norm
 invariance. Atlas: `inverse-wishart-spectral-moment` (helper).
-atlas: quadratic-probe-spectral-detection-/
+atlas: quadratic-probe-spectral-detection
+@isnad1 id=eq.1h2v.s6.25a248b0179a from=translated src=- shape=d410b61f vocab=134d9287
+-/
 theorem specNorm_eq_norm_eigenvalues {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Matrix ι ι ℝ} (hA : A.IsHermitian) : specNorm A = ‖hA.eigenvalues‖ := by
   unfold specNorm
@@ -38,7 +40,9 @@ theorem specNorm_eq_norm_eigenvalues {ι : Type*} [Fintype ι] [DecidableEq ι]
 open scoped Matrix.Norms.L2Operator in
 /-- The spectral norm of a positive semidefinite matrix is bounded by
 its trace. Source: nonnegative eigenvalues and the spectral theorem;
-atlas `norms-frob-spec` (helper).-/
+atlas `norms-frob-spec` (helper).
+@isnad1 id=le.1h2v.s5.6b606e4400a8 from=translated src=- shape=c29d7f60 vocab=2ac6828b
+-/
 theorem specNorm_le_trace_of_posSemidef {ι : Type*} [Fintype ι] [DecidableEq ι]
     {A : Matrix ι ι ℝ} (hA : A.PosSemidef) : specNorm A ≤ Matrix.trace A := by
   cases isEmpty_or_nonempty ι with
@@ -56,7 +60,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- A positive semidefinite real matrix has a unit eigenvector with
 eigenvalue equal to its spectral norm. Source: finite-dimensional spectral
 theorem. Atlas: `inverse-wishart-spectral-moment` (helper).
-atlas: quadratic-probe-spectral-detection-/
+atlas: quadratic-probe-spectral-detection
+@isnad1 id=ex.1h2v.s6.f48e7b55dcb1 from=translated src=- shape=371a9ff7 vocab=fa0de779
+-/
 theorem exists_unit_mulVec_eq_specNorm_smul {ι : Type*} [Fintype ι] [DecidableEq ι]
     [Nonempty ι] {A : Matrix ι ι ℝ} (hA : A.PosSemidef) :
     ∃ v : ι → ℝ, v ⬝ᵥ v = 1 ∧ A *ᵥ v = specNorm A • v := by
@@ -79,7 +85,9 @@ open scoped Matrix.Norms.L2Operator in
 unit rank-one probe scaled by its spectral norm. Source: direct
 quadratic-probe proof; expand positivity at `z - (v ⋅ z) v` for a top
 eigenvector. Atlas: `inverse-wishart-spectral-moment` (helper).
-atlas: quadratic-probe-spectral-detection-/
+atlas: quadratic-probe-spectral-detection
+@isnad1 id=ex.1h2v.s6.f051220cf97f from=translated src=- shape=11e3ca38 vocab=5ad03f49
+-/
 theorem exists_unit_specNorm_mul_dotProduct_sq_le {ι : Type*} [Fintype ι]
     [DecidableEq ι] [Nonempty ι] {A : Matrix ι ι ℝ} (hA : A.PosSemidef) :
     ∃ v : ι → ℝ, v ⬝ᵥ v = 1 ∧

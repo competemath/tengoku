@@ -20,12 +20,16 @@ def hermitianNeumannInverse (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFro
 omit [DecidableEq n] in
 /-- The geometric series is exactly the ring inverse, with no alternate operator.
 Source: user derivations (F23).
-atlas: matrix-k-transform-stability (partial)-/
+atlas: matrix-k-transform-stability (partial)
+@isnad1 id=eq.1h2v.s10.de62c84b555d from=translated src=- shape=67a2810e vocab=6e909ccf
+-/
 theorem hermitianNeumannInverse_eq_inverse
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n) (hL : ‖L‖<1) :
     hermitianNeumannInverse L = Ring.inverse (1-L) := geom_series_eq_inverse L hL
 
-/-- The actual Neumann inverse preserves the PSD cone.-/
+/-- The actual Neumann inverse preserves the PSD cone.
+@isnad1 id=possemid.3h3v.s9.1b92ddbcdd4f from=translated src=- shape=ae791f83 vocab=73128452
+-/
 theorem posSemidef_hermitianNeumannInverse
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n)
     (hL : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →
@@ -51,7 +55,9 @@ theorem posSemidef_hermitianNeumannInverse
   exact Filter.Eventually.of_forall fun j => Matrix.posSemidef_sum _ (fun i _ => hp i)
 
 omit [DecidableEq n] in
-/-- Applying the Neumann inverse solves the actual equation `(I-L)Y=X`.-/
+/-- Applying the Neumann inverse solves the actual equation `(I-L)Y=X`.
+@isnad1 id=eq.1h3v.s9.7ddb8d959e9b from=translated src=- shape=b0b0da09 vocab=fd5b84f7
+-/
 theorem hermitianNeumannInverse_sub_map
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n) (hnorm : ‖L‖<1)
     (x : HermitianFrobenius ℂ n) :
@@ -60,7 +66,9 @@ theorem hermitianNeumannInverse_sub_map
     (mul_neg_geom_series L hnorm)
 
 /-- The canonical identity supersolution obtained by the actual Neumann
-inverse dominates the identity in Loewner order.-/
+inverse dominates the identity in Loewner order.
+@isnad1 id=other.2h2v.s9.02b724bef6b7 from=translated src=- shape=81f84969 vocab=d9c7bca3
+-/
 theorem one_le_hermitianNeumannInverse_one
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n)
     (hL : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →
@@ -80,7 +88,9 @@ theorem one_le_hermitianNeumannInverse_one
   exact hL Y hY
 
 /-- Norm below one supplies an actual strictly positive supersolution.
-The canonical choice is the Neumann inverse applied to the identity.-/
+The canonical choice is the Neumann inverse applied to the identity.
+@isnad1 id=ex.2h2v.s9.603032003487 from=translated src=- shape=710cc50a vocab=5bfbbf02
+-/
 theorem exists_posDef_supersolution_of_norm_lt_one
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n)
     (hL : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →

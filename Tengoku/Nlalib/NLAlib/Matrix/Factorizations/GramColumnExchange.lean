@@ -19,7 +19,9 @@ set_option backward.isDefEq.respectTransparency false
 component in the selected column range and `d` is perpendicular to that range.
 The inverse-Gram diagonal is the squared norm of the corresponding inverse
 triangular-factor row in QR coordinates. No approximation or relaxed constant
-is used. Gu–Eisenstat 1996, Theorem 3.2. Supports `rank-revealing-qr`.-/
+is used. Gu–Eisenstat 1996, Theorem 3.2. Supports `rank-revealing-qr`.
+@isnad1 id=eq.2h6v.s8.700e17717be2 from=translated src=- shape=952ed3ae vocab=f62b48da
+-/
 theorem det_gram_updateCol_eq_det_mul {m p : Type*}
     [Fintype m] [Fintype p] [DecidableEq m] [DecidableEq p]
     (C : Matrix m p ℝ) (hC : IsUnit (Cᵀ * C).det) (i : p) (t : p → ℝ) (d : m → ℝ)

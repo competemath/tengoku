@@ -33,7 +33,9 @@ structure IsNormalizedGSVD (A : Matrix m n 𝕜) (L : Matrix p n 𝕜)
 
 /-- Every real or complex matrix pair has a normalized GSVD, including
 arbitrary rank deficiency and an arbitrary common kernel.
-atlas: gsvd-normalized-pair (partial)-/
+atlas: gsvd-normalized-pair (partial)
+@isnad1 id=ex.0h6v.s6.1e2d25287d32 from=translated src=- shape=bb392d3d vocab=3aa1008a
+-/
 theorem exists_isNormalizedGSVD (A : Matrix m n 𝕜) (L : Matrix p n 𝕜) :
     ∃ X c s, IsNormalizedGSVD A L X c s := by
   obtain ⟨X, a, b, hX, hA, hL, ha, hb, hab⟩ :=
@@ -45,7 +47,9 @@ theorem exists_isNormalizedGSVD (A : Matrix m n 𝕜) (L : Matrix p n 𝕜) :
   · simpa only [← RCLike.ofReal_pow, Real.sq_sqrt (hb _)] using hL
   · simpa only [Real.sq_sqrt (ha _), Real.sq_sqrt (hb _)] using hab
 
-/-- The stacked Gram matrix in normalized GSVD coordinates.-/
+/-- The stacked Gram matrix in normalized GSVD coordinates.
+@isnad1 id=eq.1h9v.s8.8b8431bd578f from=translated src=- shape=5808ea25 vocab=c12262f9
+-/
 theorem IsNormalizedGSVD.stack_gram {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s) :
     Xᴴ * ((Matrix.fromRows A L)ᴴ * Matrix.fromRows A L) * X =
@@ -56,7 +60,9 @@ theorem IsNormalizedGSVD.stack_gram {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
 
 /-- The number of active generalized singular pairs equals the actual
 stacked rank; all zero and empty block endpoints are included.
-atlas: gsvd-normalized-pair (partial)-/
+atlas: gsvd-normalized-pair (partial)
+@isnad1 id=eq.1h9v.s8.e0833b128bfd from=translated src=- shape=98bee8d4 vocab=10c3ed4d
+-/
 theorem IsNormalizedGSVD.rank_stack_eq_card_active {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s) :
     (Matrix.fromRows A L).rank = Fintype.card {i // c i ^ 2 + s i ^ 2 = 1} := by
@@ -74,7 +80,9 @@ theorem IsNormalizedGSVD.rank_stack_eq_card_active {A : Matrix m n 𝕜} {L : Ma
 
 /-- Normalized coordinates describe the entire common kernel: exactly
 the active coordinates must vanish. This identifies the zero-column block.
-atlas: gsvd-normalized-pair (partial)-/
+atlas: gsvd-normalized-pair (partial)
+@isnad1 id=iff.1h10v.s8.f8bc6d32789e from=translated src=- shape=03f95fd2 vocab=80d58154
+-/
 theorem IsNormalizedGSVD.common_kernel_iff {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s) (y : n → 𝕜) :
     (A *ᵥ (X *ᵥ y) = 0 ∧ L *ᵥ (X *ᵥ y) = 0) ↔
@@ -106,7 +114,9 @@ theorem IsNormalizedGSVD.common_kernel_iff {A : Matrix m n 𝕜} {L : Matrix p n
     · rw [hi, RCLike.ofReal_one, one_mul, hh i hi]
 
 /-- The nonzero left generalized singular columns are orthonormal after
-division by their generalized singular values.-/
+division by their generalized singular values.
+@isnad1 id=hasortho.1h9v.s8.151e9ccbe77f from=translated src=- shape=a882bb16 vocab=d3441d52
+-/
 theorem IsNormalizedGSVD.left_orthonormal {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s) :
     HasOrthonormalCols (Matrix.of (fun i (j : {j // 0 < c j}) =>
@@ -134,7 +144,9 @@ theorem IsNormalizedGSVD.left_orthonormal {A : Matrix m n 𝕜} {L : Matrix p n 
     simp [he]
 
 /-- The right generalized singular columns have the analogous orthonormal
-normalization, with zero columns omitted.-/
+normalization, with zero columns omitted.
+@isnad1 id=hasortho.1h9v.s8.82295b87ccf3 from=translated src=- shape=0a02ded0 vocab=d3441d52
+-/
 theorem IsNormalizedGSVD.right_orthonormal {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s) :
     HasOrthonormalCols (Matrix.of (fun i (j : {j // 0 < s j}) =>
@@ -145,7 +157,9 @@ theorem IsNormalizedGSVD.right_orthonormal {A : Matrix m n 𝕜} {L : Matrix p n
   exact hs.left_orthonormal
 
 /-- A zero generalized singular value really means a zero transformed
-data column, not just a zero entry in the Gram matrix.-/
+data column, not just a zero entry in the Gram matrix.
+@isnad1 id=eq.2h10v.s7.361bf58fe7ca from=translated src=- shape=1dfabd89 vocab=5bc90fed
+-/
 theorem IsNormalizedGSVD.left_col_eq_zero {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s)
     (i : n) (hi : c i = 0) : (A * X).col i = 0 := by
@@ -157,7 +171,9 @@ theorem IsNormalizedGSVD.left_col_eq_zero {A : Matrix m n 𝕜} {L : Matrix p n 
   have hh := (Matrix.conjTranspose_mul_self_mulVec_eq_zero (A * X) (Pi.single i 1)).mp he
   simpa only [Matrix.mulVec_single, MulOpposite.op_one, one_smul] using hh
 
-/-- The analogous zero-penalty-column property.-/
+/-- The analogous zero-penalty-column property.
+@isnad1 id=eq.2h10v.s7.a265f2b7d108 from=translated src=- shape=a66be03d vocab=5bc90fed
+-/
 theorem IsNormalizedGSVD.right_col_eq_zero {A : Matrix m n 𝕜} {L : Matrix p n 𝕜}
     {X : Matrix n n 𝕜} {c s : n → ℝ} (h : IsNormalizedGSVD A L X c s)
     (i : n) (hi : s i = 0) : (L * X).col i = 0 := by

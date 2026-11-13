@@ -20,7 +20,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 variable {A : Matrix n n ℝ} {b : n → ℝ} {q : ℕ}
 
 /-- Positive definiteness passes to the actual Lanczos compression, including
-the empty compression, by injectivity of its orthonormal columns.-/
+the empty compression, by injectivity of its orthonormal columns.
+@isnad1 id=posdef.1h5v.s5.0a72c3e97427 from=translated src=- shape=a58b0a64 vocab=97edd786
+-/
 theorem posDef_T (D : LanczosDecomp A b q) (hA : A.PosDef) : D.T.PosDef := by
   have hQ : Function.Injective D.Q.mulVec :=
     Matrix.mulVec_injective_iff.mpr D.hasOrthonormalCols.linearIndependent_col
@@ -29,7 +31,9 @@ theorem posDef_T (D : LanczosDecomp A b q) (hA : A.PosDef) : D.T.PosDef := by
 
 /-- Every scalar LDL pivot of an actual SPD Lanczos compression is positive.
 The signed off-diagonal is squared in the recurrence.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=lt.2h6v.s6.a23e49c8c632 from=translated src=- shape=89ab0340 vocab=4172af0f
+-/
 theorem jacobiLDLPivot_pos (D : LanczosDecomp A b q) (hA : A.PosDef)
     {k : ℕ} (hk : k < q) : 0 < jacobiLDLPivot D.alpha D.beta k := by
   have hT := D.posDef_T hA
@@ -38,7 +42,9 @@ theorem jacobiLDLPivot_pos (D : LanczosDecomp A b q) (hA : A.PosDef)
 
 /-- The actual symmetric SPD Lanczos Jacobi matrix equals its explicit
 positive-pivot unit lower bidiagonal LDL transpose product.
-atlas: kernel-polynomials-christoffel (partial)-/
+atlas: kernel-polynomials-christoffel (partial)
+@isnad1 id=eq.1h5v.s7.0fdeda5a2a15 from=translated src=- shape=5a20bd69 vocab=5a189baa
+-/
 theorem T_eq_ldl (D : LanczosDecomp A b q) (hA : A.PosDef) :
     D.T = jacobiLDLLower D.alpha D.beta q *
       diagonal (fun i : Fin q => jacobiLDLPivot D.alpha D.beta i.val) *

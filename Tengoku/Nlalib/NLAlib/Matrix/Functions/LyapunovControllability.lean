@@ -21,7 +21,9 @@ set_option backward.isDefEq.respectTransparency false
 variable {n s : Type*} [Fintype n] [Fintype s] [DecidableEq n] [DecidableEq s]
 
 omit [Fintype s] [DecidableEq s] in
-/-- Cayley–Hamilton reduces finite-dimensional annihilation to powers below the dimension.-/
+/-- Cayley–Hamilton reduces finite-dimensional annihilation to powers below the dimension.
+@isnad1 id=eq.1h7v.s8.0e572c4956cb from=translated src=- shape=7fe5e1e2 vocab=4b767689
+-/
 theorem mulVec_pow_zero_of_lt_card {K : Type*} [RCLike K] (A : Matrix n n K) (L : Matrix s n K)
     (v : n → K) (h : ∀ j < Fintype.card n, L *ᵥ (A ^ j *ᵥ v) = 0) (j : ℕ) :
     L *ᵥ (A ^ j *ᵥ v) = 0 := by
@@ -45,7 +47,9 @@ theorem mulVec_pow_zero_of_lt_card {K : Type*} [RCLike K] (A : Matrix n n K) (L 
     rw [Matrix.smul_mulVec, Matrix.mulVec_smul, h i (Finset.mem_range.mp hi), smul_zero]
 
 omit [Fintype s] [DecidableEq s] in
-/-- Annihilation of every power annihilates the actual exponential series.-/
+/-- Annihilation of every power annihilates the actual exponential series.
+@isnad1 id=eq.1h7v.s8.49518506bab5 from=translated src=- shape=1862ce46 vocab=c96f1cff
+-/
 theorem mulVec_matrixExp_zero_of_pow_zero {K : Type*} [RCLike K] (A : Matrix n n K) (L : Matrix s n K)
     (v : n → K) (h : ∀ j : ℕ, L *ᵥ (A ^ j *ᵥ v) = 0) (t : ℝ) :
     L *ᵥ (matrixExp (t • A) *ᵥ v) = 0 := by
@@ -64,7 +68,9 @@ theorem mulVec_matrixExp_zero_of_pow_zero {K : Type*} [RCLike K] (A : Matrix n n
   exact hs.unique hasSum_zero
 
 omit [DecidableEq n] [DecidableEq s] in
-/-- The kernel of a PSD Lyapunov solution is invariant and unobserved by the forcing factor.-/
+/-- The kernel of a PSD Lyapunov solution is invariant and unobserved by the forcing factor.
+@isnad1 id=and.3h7v.s9.b00edd52eff6 from=translated src=- shape=301dc23f vocab=91baa2fd
+-/
 theorem kernel_lyapunov_invariant {K : Type*} [RCLike K] (A : Matrix n n K) (B : Matrix n s K)
     (X : Matrix n n K) (hX : X.PosSemidef) (heq : A * X + X * Aᴴ + B * Bᴴ = 0)
     (v : n → K) (hv : X *ᵥ v = 0) : Bᴴ *ᵥ v = 0 ∧ X *ᵥ (Aᴴ *ᵥ v) = 0 := by

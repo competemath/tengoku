@@ -27,7 +27,9 @@ private lemma cfc_continuousOn (f : ℝ → ℝ) : ContinuousOn f (spectrum ℝ 
 private lemma spectrum_pos' {x : ℝ} (hx : x ∈ spectrum ℝ A) : 0 < x :=
   hA.isStrictlyPositive.spectrum_pos hx
 
-/-- `√A √A = A` for positive definite `A`. Tropp 2015, Def. 8.6.1.-/
+/-- `√A √A = A` for positive definite `A`. Tropp 2015, Def. 8.6.1.
+@isnad1 id=eq.1h3v.s8.e93bef7fb7d9 from=translated src=- shape=7cf556b2 vocab=79fdb4b9
+-/
 theorem cfc_sqrt_mul_self : cfc Real.sqrt A * cfc Real.sqrt A = A := by
   rw [← cfc_mul _ _ A (cfc_continuousOn hA _) (cfc_continuousOn hA _)]
   calc
@@ -35,7 +37,9 @@ theorem cfc_sqrt_mul_self : cfc Real.sqrt A * cfc Real.sqrt A = A := by
       cfc_congr fun x hx => Real.mul_self_sqrt (spectrum_pos' hA hx).le
     _ = A := cfc_id' ℝ A hA.isHermitian
 
-/-- `A^{-1/2} √A = 1` for positive definite `A`. Tropp 2015, proof of Thm 8.6.2.-/
+/-- `A^{-1/2} √A = 1` for positive definite `A`. Tropp 2015, proof of Thm 8.6.2.
+@isnad1 id=eq.1h3v.s8.da3f2287ba3c from=translated src=- shape=ac6a0522 vocab=f970e051
+-/
 theorem cfc_inv_sqrt_mul_sqrt : cfc (fun x => (Real.sqrt x)⁻¹) A * cfc Real.sqrt A = 1 := by
   rw [← cfc_mul _ _ A (cfc_continuousOn hA _) (cfc_continuousOn hA _)]
   calc
@@ -43,7 +47,9 @@ theorem cfc_inv_sqrt_mul_sqrt : cfc (fun x => (Real.sqrt x)⁻¹) A * cfc Real.s
       cfc_congr fun x hx => inv_mul_cancel₀ (Real.sqrt_pos.mpr (spectrum_pos' hA hx)).ne'
     _ = 1 := cfc_one ℝ A hA.isHermitian
 
-/-- `√A A^{-1/2} = 1` for positive definite `A`. Tropp 2015, proof of Thm 8.6.2.-/
+/-- `√A A^{-1/2} = 1` for positive definite `A`. Tropp 2015, proof of Thm 8.6.2.
+@isnad1 id=eq.1h3v.s8.9c9b9d6d040e from=translated src=- shape=cdc3c4c7 vocab=f970e051
+-/
 theorem cfc_sqrt_mul_inv_sqrt : cfc Real.sqrt A * cfc (fun x => (Real.sqrt x)⁻¹) A = 1 := by
   rw [← cfc_mul _ _ A (cfc_continuousOn hA _) (cfc_continuousOn hA _)]
   calc

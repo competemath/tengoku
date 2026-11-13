@@ -11,7 +11,9 @@ set_option backward.isDefEq.respectTransparency false
 set_option maxHeartbeats 400000
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- A nonzero PSD matrix pairs strictly positively with every PD matrix.-/
+/-- A nonzero PSD matrix pairs strictly positively with every PD matrix.
+@isnad1 id=lt.3h3v.s6.0a7d8938692f from=translated src=- shape=2d844da6 vocab=c0069c38
+-/
 theorem frobInner_pos_of_posSemidef_posDef {P Y : Matrix n n ℂ}
     (hP : P.PosSemidef) (hP0 : P≠0) (hY : Y.PosDef) : 0 < frobInner P Y := by
   have hn := frobInner_nonneg_of_posSemidef hP hY.posSemidef
@@ -29,7 +31,9 @@ theorem frobInner_pos_of_posSemidef_posDef {P Y : Matrix n n ℂ}
     P = P*(Y*Y⁻¹) := by rw [Matrix.mul_nonsing_inv _ ((Matrix.isUnit_iff_isUnit_det _).mp hY.isUnit)]; simp
     _ = 0 := by rw [← Matrix.mul_assoc,hPY,Matrix.zero_mul]
 
-/-- Norm below one makes `I-L` strictly positive for the Hilbert pairing.-/
+/-- Norm below one makes `I-L` strictly positive for the Hilbert pairing.
+@isnad1 id=lt.2h3v.s8.ed1d2d94be30 from=translated src=- shape=7b37c2ad vocab=7dcf1f6d
+-/
 theorem inner_sub_map_pos_of_norm_lt_one
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     (L : E→L[ℝ]E) (hL : ‖L‖<1) {x : E} (hx : x≠0) :
@@ -44,7 +48,9 @@ theorem inner_sub_map_pos_of_norm_lt_one
   nlinarith
 
 /-- For symmetric PSD-cone maps the strict Hilbert test is precisely the
-Frobenius operator norm bound. Source (F22); cone positivity alone is used.-/
+Frobenius operator norm bound. Source (F22); cone positivity alone is used.
+@isnad1 id=iff.2h2v.s9.bc5f94c865da from=translated src=- shape=1e5dc128 vocab=4e3413a5
+-/
 theorem inner_sub_map_pos_iff_norm_lt_one [Nonempty n]
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n) (hsym : L.IsSymmetric)
     (hcone : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →
@@ -59,7 +65,9 @@ theorem inner_sub_map_pos_iff_norm_lt_one [Nonempty n]
     nlinarith
   · exact fun h x hx => inner_sub_map_pos_of_norm_lt_one L h hx
 
-/-- A strict PSD supersolution forces the norm below one.-/
+/-- A strict PSD supersolution forces the norm below one.
+@isnad1 id=lt.4h3v.s9.82cdf69d0999 from=translated src=- shape=45bd93f7 vocab=9ed16bce
+-/
 theorem norm_lt_one_of_posDef_supersolution [Nonempty n]
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n) (hsym : L.IsSymmetric)
     (hcone : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →
@@ -84,7 +92,9 @@ theorem norm_lt_one_of_posDef_supersolution [Nonempty n]
   nlinarith
 
 /-- The strict Hilbert test, Frobenius norm test and existence of a strict
-positive supersolution are equivalent.-/
+positive supersolution are equivalent.
+@isnad1 id=and.2h2v.s10.fb8bfea36bb8 from=translated src=- shape=ad486c37 vocab=8bdb099b
+-/
 theorem positiveCone_stability_iff [Nonempty n]
     (L : HermitianFrobenius ℂ n →L[ℝ] HermitianFrobenius ℂ n) (hsym : L.IsSymmetric)
     (hcone : ∀ x, (hermitianFrobeniusMatrix ℂ n x).PosSemidef →

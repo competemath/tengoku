@@ -37,13 +37,17 @@ def lanczosQueryAlgorithm (b : n → ℝ) (q : ℕ) :
 /-- The adaptive query implementation equals the native Lanczos recurrence for every
 matrix, including nonsymmetric matrices and zero vectors. Symmetry is needed only for
 the subsequent orthogonality and grade conclusions.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h4v.s5.1d5222769e05 from=translated src=- shape=2cbc234d vocab=5e7921d5
+-/
 theorem run_lanczosQueryAlgorithm (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     (lanczosQueryAlgorithm b q).run (A *ᵥ ·) = lanczosState A b q := by
   rw [lanczosQueryAlgorithm, QueryAlgorithm.run_ofState]
   rfl
 
-/-- The actual query at step `i` is the native Lanczos vector `q_i`.-/
+/-- The actual query at step `i` is the native Lanczos vector `q_i`.
+@isnad1 id=eq.0h5v.s6.2d5d952d7ac6 from=translated src=- shape=d7ec6b47 vocab=ee29c465
+-/
 theorem queryAt_lanczosQueryAlgorithm (A : Matrix n n ℝ) (b : n → ℝ) (q i : ℕ) :
     (lanczosQueryAlgorithm b q).queryAt (A *ᵥ ·) i = lanczosRecurrence A b i := by
   rw [lanczosQueryAlgorithm, QueryAlgorithm.queryAt_ofState]
@@ -64,7 +68,9 @@ def cgQueryAlgorithm (x₀ r₀ : n → ℝ) (q : ℕ) :
 
 /-- With the correct supplied initial residual, the query algorithm computes precisely
 the library's CG state. No positive-definiteness hypothesis is required for realization.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.1h6v.s6.70caa65ea723 from=translated src=- shape=01fbbf57 vocab=2285a8cb
+-/
 theorem run_cgQueryAlgorithm (A : Matrix n n ℝ) (c x₀ r₀ : n → ℝ)
     (hr : r₀ = c - A *ᵥ x₀) (q : ℕ) :
     (cgQueryAlgorithm x₀ r₀ q).run (A *ᵥ ·) = cgRecurrence A c x₀ q := by
@@ -74,7 +80,9 @@ theorem run_cgQueryAlgorithm (A : Matrix n n ℝ) (c x₀ r₀ : n → ℝ)
 
 /-- Starting from zero, `q` matrix-vector queries compute the native `q`-step CG state.
 The algorithm is fixed before the matrix is supplied.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h4v.s6.7702b960b2a9 from=translated src=- shape=c8031407 vocab=3320c9b2
+-/
 theorem run_cgQueryAlgorithm_zero (A : Matrix n n ℝ) (c : n → ℝ) (q : ℕ) :
     (cgQueryAlgorithm 0 c q).run (A *ᵥ ·) = cgRecurrence A c 0 q :=
   run_cgQueryAlgorithm A c 0 c (by simp) q
@@ -87,7 +95,9 @@ def cgInitializedQueryAlgorithm (c x₀ : n → ℝ) (q : ℕ) :
 
 /-- The full CG recurrence, including computation of its initial residual, has an
 implementation with `q + 1` queries.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h5v.s6.86788f33d6b8 from=translated src=- shape=72e76777 vocab=ed861067
+-/
 theorem run_cgInitializedQueryAlgorithm (A : Matrix n n ℝ) (c x₀ : n → ℝ) (q : ℕ) :
     (cgInitializedQueryAlgorithm c x₀ q).run (A *ᵥ ·) = cgRecurrence A c x₀ q := by
   rw [cgInitializedQueryAlgorithm, QueryAlgorithm.run_prependQuery]

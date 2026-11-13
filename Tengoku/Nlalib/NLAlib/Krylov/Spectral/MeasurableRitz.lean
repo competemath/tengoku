@@ -51,26 +51,34 @@ def lanczosRitzValue (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) : ℝ :=
 def krylovCoefficientVector {K : Type*} [Field K] (A : Matrix n n K) (b : n → K) {q : ℕ}
     (c : Fin q → K) : n → K := ∑ j : Fin q, c j • ((A ^ (j : ℕ)) *ᵥ b)
 
-/-- The coefficient representation of a Krylov space, including zero generators.-/
+/-- The coefficient representation of a Krylov space, including zero generators.
+@isnad1 id=iff.0h6v.s7.997cac32c714 from=translated src=- shape=6d14ef3f vocab=e107c2b8
+-/
 theorem mem_krylovSpace_iff_exists_coefficients {K : Type*} [Field K]
     (A : Matrix n n K) (b : n → K) (q : ℕ) (y : n → K) :
     y ∈ krylovSpace A b q ↔ ∃ c : Fin q → K, krylovCoefficientVector A b c = y := by
   exact Submodule.mem_span_range_iff_exists_fun K
 
-/-- Every linear combination of Krylov generators lies in the Krylov space.-/
+/-- Every linear combination of Krylov generators lies in the Krylov space.
+@isnad1 id=mem.0h6v.s7.992c941c5f24 from=translated src=- shape=6ffab31e vocab=e107c2b8
+-/
 theorem krylovCoefficientVector_mem {K : Type*} [Field K] (A : Matrix n n K)
     (b : n → K) {q : ℕ} (c : Fin q → K) :
     krylovCoefficientVector A b c ∈ krylovSpace A b q :=
   (mem_krylovSpace_iff_exists_coefficients A b q _).mpr ⟨c, rfl⟩
 
 omit [DecidableEq n] in
-/-- The real Rayleigh quotient as a quotient of dot products. Helper.-/
+/-- The real Rayleigh quotient as a quotient of dot products. Helper.
+@isnad1 id=eq.0h3v.s5.b9989dcc8a26 from=translated src=- shape=bbb4b735 vocab=b2a359f2
+-/
 theorem rayleighQuotient_eq_div (A : Matrix n n ℝ) (x : n → ℝ) :
     rayleighQuotient A x = x ⬝ᵥ (A *ᵥ x) / (x ⬝ᵥ x) := by
   rw [rayleighQuotient_def, quadForm_def, star_trivial, RCLike.re_to_real, RCLike.re_to_real]
 
 /-- A Rayleigh quotient is at most the spectral norm: `xᵀAx/xᵀx ≤ ‖A‖₂` (any real `A`, including
-`x = 0`). Helper for `random-start-lanczos`.-/
+`x = 0`). Helper for `random-start-lanczos`.
+@isnad1 id=le.0h3v.s5.7dd3c2586a8a from=translated src=- shape=e46564fc vocab=39c0c7ee
+-/
 theorem rayleighQuotient_le_specNorm (A : Matrix n n ℝ) (x : n → ℝ) :
     rayleighQuotient A x ≤ specNorm A := by
   rw [rayleighQuotient_eq_div]
@@ -87,7 +95,9 @@ private lemma dotProduct_self_pos_of_ne_zero {r : Type*} [Fintype r]
     (Ne.symm fun h => hz (dotProduct_self_eq_zero.mp h))
 
 omit [DecidableEq n] in
-/-- Rayleigh quotients are preserved by an orthonormal compression.-/
+/-- Rayleigh quotients are preserved by an orthonormal compression.
+@isnad1 id=eq.1h5v.s7.3d138128fe42 from=translated src=- shape=a275aef4 vocab=108e7a01
+-/
 theorem rayleighQuotient_compression {r : Type*} [Fintype r] [DecidableEq r]
     (A : Matrix n n ℝ) {Q : Matrix n r ℝ} (hQ : HasOrthonormalCols Q) (z : r → ℝ) :
     rayleighQuotient (Qᴴ * A * Q) z = rayleighQuotient A (Q *ᵥ z) := by
@@ -102,7 +112,9 @@ theorem rayleighQuotient_compression {r : Type*} [Fintype r] [DecidableEq r]
 
 /-- The largest compression eigenvalue is the supremum over nonzero trial vectors.
 The empty frame gives the supremum of the empty set, namely zero.
-Source: Parlett (1998), Thm 11.4.1.-/
+Source: Parlett (1998), Thm 11.4.1.
+@isnad1 id=eq.2h4v.s8.1d89c460e284 from=translated src=- shape=70e7acdb vocab=204daa4f
+-/
 theorem lambdaMax_compression_eq_sSup_rayleigh {r : Type*} [Fintype r] [DecidableEq r]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) {Q : Matrix n r ℝ}
     (hQ : HasOrthonormalCols Q) :
@@ -162,7 +174,9 @@ theorem lambdaMax_compression_eq_sSup_rayleigh {r : Type*} [Fintype r] [Decidabl
 
 omit [DecidableEq n] in
 /-- Changing the orthonormal basis of a trial space preserves the entire ordered Ritz
-spectrum, including multiplicities and empty spaces. Source: Parlett (1998), Thm 11.4.1.-/
+spectrum, including multiplicities and empty spaces. Source: Parlett (1998), Thm 11.4.1.
+@isnad1 id=eq.4h6v.s9.81d143fef7c9 from=translated src=- shape=9ac8ab76 vocab=e0ef20f2
+-/
 theorem ritzValues_eq_of_range_eq {𝕜 : Type*} [RCLike 𝕜] {r : Type*} [Fintype r] [DecidableEq r]
     {A : Matrix n n 𝕜} (hA : A.IsHermitian) {Q P : Matrix n r 𝕜}
     (hQ : HasOrthonormalCols Q) (hP : HasOrthonormalCols P)
@@ -184,7 +198,9 @@ theorem ritzValues_eq_of_range_eq {𝕜 : Type*} [RCLike 𝕜] {r : Type*} [Fint
   rw [hc, Matrix.charpoly_mul_comm, ← Matrix.mul_assoc U Uᴴ, hUt, Matrix.one_mul]
 
 /-- The largest Ritz value depends only on the spanned space, not the chosen orthonormal basis.
-Source: Parlett (1998), Thm 11.4.1.-/
+Source: Parlett (1998), Thm 11.4.1.
+@isnad1 id=eq.4h6v.s8.9a63b7889099 from=translated src=- shape=9aaf9fc1 vocab=842b7ef9
+-/
 theorem lambdaMax_compression_eq_of_range_eq {r s : Type*} [Fintype r] [Fintype s]
     [DecidableEq r] [DecidableEq s] {A : Matrix n n ℝ} (hA : A.IsHermitian)
     {Q : Matrix n r ℝ} {P : Matrix n s ℝ} (hQ : HasOrthonormalCols Q)
@@ -193,7 +209,9 @@ theorem lambdaMax_compression_eq_of_range_eq {r s : Type*} [Fintype r] [Fintype 
   rw [lambdaMax_compression_eq_sSup_rayleigh hA hQ,
     lambdaMax_compression_eq_sSup_rayleigh hA hP, hspan]
 
-/-- The canonical largest Krylov Ritz value is the extreme eigenvalue of its compression.-/
+/-- The canonical largest Krylov Ritz value is the extreme eigenvalue of its compression.
+@isnad1 id=eq.1h4v.s12.293d46122a73 from=translated src=- shape=a450ba9d vocab=6d33aabf
+-/
 theorem lanczosRitzValue_eq_lambdaMax {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (b : n → ℝ) (q : ℕ) :
     lanczosRitzValue A b q = lambdaMax
@@ -210,7 +228,9 @@ theorem lanczosRitzValue_eq_lambdaMax {A : Matrix n n ℝ} (hA : A.IsHermitian)
     simp only [Set.range_eq_empty, Real.sSup_empty]
 
 /-- The variational bridge for the largest Krylov Ritz value excludes the zero vector.
-Source: Parlett (1998), Thm 11.4.1.-/
+Source: Parlett (1998), Thm 11.4.1.
+@isnad1 id=eq.1h4v.s8.a7d06ae74a80 from=translated src=- shape=61fda496 vocab=2dfdb5d0
+-/
 theorem lanczosRitzValue_eq_sSup_rayleigh {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (b : n → ℝ) (q : ℕ) :
     lanczosRitzValue A b q = sSup
@@ -220,7 +240,9 @@ theorem lanczosRitzValue_eq_sSup_rayleigh {A : Matrix n n ℝ} (hA : A.IsHermiti
 
 /-- Any orthonormal basis spanning the Krylov space gives its largest Ritz value.
 The nonempty frame condition ensures there is a largest eigenvalue.
-Source: Parlett (1998), Thm 11.4.1.-/
+Source: Parlett (1998), Thm 11.4.1.
+@isnad1 id=eq.3h6v.s7.0a9e73f1032c from=translated src=- shape=3853d7e8 vocab=fcebc44c
+-/
 theorem lanczosRitzValue_eq_ritzValues {r : Type*} [Fintype r] [DecidableEq r] [Nonempty r]
     {A : Matrix n n ℝ} (hA : A.IsHermitian) (b : n → ℝ) (q : ℕ)
     {Q : Matrix n r ℝ} (hQ : HasOrthonormalCols Q)
@@ -236,7 +258,9 @@ private lemma bddAbove_image (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     BddAbove (rayleighQuotient A '' {x | x ∈ krylovSpace A b q ∧ x ≠ 0}) :=
   ⟨specNorm A, by rintro _ ⟨y, _, rfl⟩; exact rayleighQuotient_le_specNorm A y⟩
 
-/-- Every nonzero Krylov vector has quotient at most the largest compression eigenvalue.-/
+/-- Every nonzero Krylov vector has quotient at most the largest compression eigenvalue.
+@isnad1 id=le.3h5v.s8.efc3ac68a572 from=translated src=- shape=fe3cbb9c vocab=d1138e12
+-/
 theorem rayleighQuotient_le_lanczosRitzValue_of_mem_ne_zero {A : Matrix n n ℝ}
     (hA : A.IsHermitian) (b : n → ℝ) (q : ℕ) {y : n → ℝ}
     (hy : y ∈ krylovSpace A b q) (hy0 : y ≠ 0) :
@@ -244,7 +268,9 @@ theorem rayleighQuotient_le_lanczosRitzValue_of_mem_ne_zero {A : Matrix n n ℝ}
   rw [lanczosRitzValue_eq_sSup_rayleigh hA]
   exact le_csSup (bddAbove_image A b q) ⟨y, ⟨hy, hy0⟩, rfl⟩
 
-/-- The largest Krylov Ritz value of a PSD matrix is nonnegative.-/
+/-- The largest Krylov Ritz value of a PSD matrix is nonnegative.
+@isnad1 id=le.1h4v.s5.22c08ed5b595 from=translated src=- shape=6697f748 vocab=f080aa8b
+-/
 theorem lanczosRitzValue_nonneg {A : Matrix n n ℝ} (hA : A.PosSemidef)
     (b : n → ℝ) (q : ℕ) : 0 ≤ lanczosRitzValue A b q := by
   rw [lanczosRitzValue_eq_sSup_rayleigh hA.isHermitian]
@@ -254,7 +280,9 @@ theorem lanczosRitzValue_nonneg {A : Matrix n n ℝ} (hA : A.PosSemidef)
   exact div_nonneg (by simpa only [star_trivial] using hA.dotProduct_mulVec_nonneg x)
     (dotProduct_self_nonneg _)
 
-/-- For PSD matrices, the quotient inequality also holds at the zero vector.-/
+/-- For PSD matrices, the quotient inequality also holds at the zero vector.
+@isnad1 id=le.2h5v.s7.14ab08327fd2 from=translated src=- shape=686da0be vocab=3d315e09
+-/
 theorem rayleighQuotient_le_lanczosRitzValue_of_mem {A : Matrix n n ℝ}
     (hA : A.PosSemidef) (b : n → ℝ) (q : ℕ) {y : n → ℝ}
     (hy : y ∈ krylovSpace A b q) : rayleighQuotient A y ≤ lanczosRitzValue A b q := by
@@ -262,7 +290,9 @@ theorem rayleighQuotient_le_lanczosRitzValue_of_mem {A : Matrix n n ℝ}
   · simpa [hy0, rayleighQuotient_eq_div] using lanczosRitzValue_nonneg hA b q
   · exact rayleighQuotient_le_lanczosRitzValue_of_mem_ne_zero hA.isHermitian b q hy hy0
 
-/-- The largest Krylov Ritz value is bounded by the spectral norm.-/
+/-- The largest Krylov Ritz value is bounded by the spectral norm.
+@isnad1 id=le.0h4v.s5.3f0d87a0cb92 from=translated src=- shape=f4aad8a4 vocab=1a6c9892
+-/
 theorem lanczosRitzValue_le_specNorm (A : Matrix n n ℝ) (b : n → ℝ) (q : ℕ) :
     lanczosRitzValue A b q ≤ specNorm A := by
   by_cases hA : A.IsHermitian
@@ -274,7 +304,9 @@ theorem lanczosRitzValue_le_specNorm (A : Matrix n n ℝ) (b : n → ℝ) (q : �
     rw [dite_eq_right hA]
     exact specNorm_nonneg A
 
-/-- The trivial Krylov space has largest Ritz value zero.-/
+/-- The trivial Krylov space has largest Ritz value zero.
+@isnad1 id=eq.1h4v.s7.5d73cf5012fc from=translated src=- shape=6f0e72e4 vocab=f19e57d2
+-/
 theorem lanczosRitzValue_eq_zero_of_space_eq_bot (A : Matrix n n ℝ) (b : n → ℝ)
     (q : ℕ) (h : krylovSpace A b q = ⊥) : lanczosRitzValue A b q = 0 := by
   simp [lanczosRitzValue, h]
@@ -282,7 +314,9 @@ theorem lanczosRitzValue_eq_zero_of_space_eq_bot (A : Matrix n n ℝ) (b : n →
 /-- A rational-coefficient expression for the largest Ritz value. Zero coefficient images are
 replaced by the starting quotient, which belongs to the same nonzero domain when the start is
 nonzero and `q > 0`. Thus negative Ritz values are retained.
-Source: Kuczyński–Woźniakowski (1992), §2 (variational form) and rational density.-/
+Source: Kuczyński–Woźniakowski (1992), §2 (variational form) and rational density.
+@isnad1 id=eq.1h4v.s7.d396394979ab from=translated src=- shape=30e11ed0 vocab=2ce7b25b
+-/
 theorem lanczosRitzValue_eq_iSup_rat {A : Matrix n n ℝ} (hA : A.IsHermitian)
     (b : n → ℝ) (q : ℕ) :
     lanczosRitzValue A b q = if q = 0 then 0 else ⨆ c : Fin q → ℚ,
@@ -349,7 +383,9 @@ theorem lanczosRitzValue_eq_iSup_rat {A : Matrix n n ℝ} (hA : A.IsHermitian)
       · exact rayleighQuotient_le_lanczosRitzValue_of_mem_ne_zero hA b _
           (krylovCoefficientVector_mem A b _) hv
 
-/-- The largest Hermitian Krylov compression eigenvalue is measurable in the start.-/
+/-- The largest Hermitian Krylov compression eigenvalue is measurable in the start.
+@isnad1 id=measurab.1h3v.s6.75f313e9c836 from=translated src=- shape=982c5575 vocab=48e6a9c4
+-/
 theorem measurable_lanczosRitzValue {A : Matrix n n ℝ} (hA : A.IsHermitian) (q : ℕ) :
     Measurable (fun b : n → ℝ => lanczosRitzValue A b q) := by
   simp_rw [lanczosRitzValue_eq_iSup_rat hA]

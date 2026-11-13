@@ -17,7 +17,9 @@ open Polynomial Polynomial.Chebyshev Finset Real
 namespace NLAlib
 
 /-- Pascal's rule for a two-sided binomial walk, used in the proof of
-Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=eq.0h3v.s8.168a24dfcaf9 from=translated src=- shape=dcd1b808 vocab=fc021f68
+-/
 theorem sum_choose_int_sub_two_mul_succ {R : Type*} [CommRing R]
     (f : ℤ → R) (s : ℕ) :
     (∑ j ∈ range (s + 2), ((s + 1).choose j : R) * f ((s + 1 : ℕ) - 2 * (j : ℤ))) =
@@ -47,7 +49,9 @@ theorem sum_choose_int_sub_two_mul_succ {R : Type*} [CommRing R]
   rw [add_assoc, hshift, add_comm]
 
 /-- Exact Chebyshev expansion of a monomial, before truncation.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=eq.0h1v.s7.01cfa72ffa2f from=translated src=- shape=bb588c4b vocab=3d6381dd
+-/
 theorem sum_choose_mul_chebyshev_eq_two_mul_X_pow (s : ℕ) :
     (∑ j ∈ range (s + 1), C (s.choose j : ℝ) * T ℝ ((s : ℤ) - 2 * (j : ℤ))) =
       (2 * X : ℝ[X]) ^ s := by
@@ -76,7 +80,9 @@ def monomialChebyshevApprox (s d : ℕ) : ℝ[X] :=
       C (s.choose j : ℝ) * T ℝ ((s : ℤ) - 2 * (j : ℤ))
 
 /-- The compressed monomial has degree at most the retained frequency cutoff.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=le.0h2v.s4.b4598d64b63a from=translated src=- shape=57e44d16 vocab=e3c0ea8d
+-/
 theorem degree_monomialChebyshevApprox_le (s d : ℕ) :
     (monomialChebyshevApprox s d).degree ≤ d := by
   unfold monomialChebyshevApprox
@@ -88,7 +94,9 @@ theorem degree_monomialChebyshevApprox_le (s d : ℕ) :
   exact (degree_smul_le _ _).trans (by rw [degree_T]; exact_mod_cast hd)
 
 /-- Exact generating function of the finite binomial walk.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`), Chernoff proof.-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`), Chernoff proof.
+@isnad1 id=eq.0h2v.s6.372f35c7ac6c from=translated src=- shape=56346974 vocab=b4433ca1
+-/
 theorem sum_choose_mul_exp_int_sub_two_mul (s : ℕ) (θ : ℝ) :
     (∑ j ∈ range (s + 1), (s.choose j : ℝ) * exp (θ * (((s : ℤ) - 2 * (j : ℤ) : ℤ) : ℝ))) =
       (exp θ + exp (-θ)) ^ s := by
@@ -113,7 +121,9 @@ theorem sum_choose_mul_exp_int_sub_two_mul (s : ℕ) (θ : ℝ) :
     rw [← mul_sum, ih, pow_succ']
 
 /-- Normalized generating function bound for the finite binomial walk.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=le.0h2v.s7.da9864acd783 from=translated src=- shape=a4206ecb vocab=b0fd6fb3
+-/
 theorem inv_two_pow_mul_sum_choose_mul_exp_le (s : ℕ) (θ : ℝ) :
     ((2 : ℝ) ^ s)⁻¹ *
       (∑ j ∈ range (s + 1), (s.choose j : ℝ) * exp (θ * (((s : ℤ) - 2 * (j : ℤ) : ℤ) : ℝ))) ≤
@@ -129,7 +139,9 @@ theorem inv_two_pow_mul_sum_choose_mul_exp_le (s : ℕ) (θ : ℝ) :
 
 /-- Exponential Markov bound for the absolute tail of a finite binomial walk.
 Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`); no probability
-or measure-theoretic hypothesis is involved.-/
+or measure-theoretic hypothesis is involved.
+@isnad1 id=le.1h3v.s7.74c245943101 from=translated src=- shape=c21dcfe6 vocab=f5cc3524
+-/
 theorem inv_two_pow_mul_sum_choose_abs_tail_le (s : ℕ) {d θ : ℝ}
     (hθ : 0 ≤ θ) :
     ((2 : ℝ) ^ s)⁻¹ *
@@ -181,7 +193,9 @@ theorem inv_two_pow_mul_sum_choose_abs_tail_le (s : ℕ) {d θ : ℝ}
   ring
 
 /-- Optimized finite binomial tail with the exact constant used by the monomial approximant.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=le.1h2v.s7.d2afbab3e08e from=translated src=- shape=73b423cf vocab=81dde4b1
+-/
 theorem inv_two_pow_mul_sum_choose_natAbs_tail_le {s : ℕ} (hs : 0 < s) (d : ℕ) :
     ((2 : ℝ) ^ s)⁻¹ *
       (∑ j ∈ (range (s + 1)).filter
@@ -201,7 +215,9 @@ theorem inv_two_pow_mul_sum_choose_natAbs_tail_le {s : ℕ} (hs : 0 < s) (d : �
   ring
 
 /-- Evaluation of the untruncated finite Chebyshev expansion.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=eq.0h2v.s6.c001f2588242 from=translated src=- shape=46a3fa6a vocab=7b799d3a
+-/
 theorem pow_eq_inv_two_pow_mul_sum_choose_eval_T (s : ℕ) (x : ℝ) :
     x ^ s = ((2 : ℝ) ^ s)⁻¹ *
       (∑ j ∈ range (s + 1), (s.choose j : ℝ) * (T ℝ ((s : ℤ) - 2 * (j : ℤ))).eval x) := by
@@ -210,7 +226,9 @@ theorem pow_eq_inv_two_pow_mul_sum_choose_eval_T (s : ℕ) (x : ℝ) :
   rw [h, mul_pow, ← mul_assoc, inv_mul_cancel₀ (by positivity), one_mul]
 
 /-- The error of a truncated monomial is bounded by the omitted finite binomial mass.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`).
+@isnad1 id=le.1h3v.s7.69d0c33630f0 from=translated src=- shape=d436cdcd vocab=8a73d600
+-/
 theorem abs_pow_sub_eval_monomialChebyshevApprox_le_sum (s d : ℕ) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     |x ^ s - (monomialChebyshevApprox s d).eval x| ≤ ((2 : ℝ) ^ s)⁻¹ *
@@ -234,7 +252,9 @@ theorem abs_pow_sub_eval_monomialChebyshevApprox_le_sum (s d : ℕ) {x : ℝ}
 with the exact error `2 exp(-d²/(2s))`.
 Source: Sachdeva–Vishnoi, Theorem 3.3. The approximation is a finite binomial sum;
 the exponential tail is proved without probability or any assumed approximation theorem.
-atlas: monomial-chebyshev-approx-/
+atlas: monomial-chebyshev-approx
+@isnad1 id=le.2h3v.s7.ac604c3c7162 from=translated src=- shape=fb8cb776 vocab=868ec0b2
+-/
 theorem abs_pow_sub_eval_monomialChebyshevApprox_le {s : ℕ} (hs : 0 < s) (d : ℕ)
     {x : ℝ} (hx : x ∈ Set.Icc (-1 : ℝ) 1) :
     |x ^ s - (monomialChebyshevApprox s d).eval x| ≤
@@ -243,12 +263,16 @@ theorem abs_pow_sub_eval_monomialChebyshevApprox_le {s : ℕ} (hs : 0 < s) (d : 
     (inv_two_pow_mul_sum_choose_natAbs_tail_le hs d)
 
 /-- The zero monomial is represented exactly by the constant polynomial `1`.
-Source: Sachdeva–Vishnoi, Theorem 3.3, degenerate case (`monomial-chebyshev-approx`).-/
+Source: Sachdeva–Vishnoi, Theorem 3.3, degenerate case (`monomial-chebyshev-approx`).
+@isnad1 id=eq.0h1v.s4.cb62732123e5 from=translated src=- shape=159d91da vocab=127f5898
+-/
 @[simp] theorem monomialChebyshevApprox_zero (d : ℕ) : monomialChebyshevApprox 0 d = 1 := by
   simp [monomialChebyshevApprox, Finset.sum_filter]
 
 /-- Retaining all possible walk frequencies recovers the monomial exactly.
-Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`), degenerate case.-/
+Source: Sachdeva–Vishnoi, Theorem 3.3 (`monomial-chebyshev-approx`), degenerate case.
+@isnad1 id=eq.1h2v.s5.0de2d57a3171 from=translated src=- shape=1cafb8e5 vocab=836695ee
+-/
 theorem monomialChebyshevApprox_eq_X_pow {s d : ℕ} (hsd : s ≤ d) :
     monomialChebyshevApprox s d = X ^ s := by
   have hfilter : (range (s + 1)).filter
@@ -268,7 +292,9 @@ theorem monomialChebyshevApprox_eq_X_pow {s d : ℕ} (hsd : s ≤ d) :
 
 /-- Monomial approximation in the existential polynomial interface used by Krylov proofs.
 Source: Sachdeva–Vishnoi, Theorem 3.3.
-atlas: monomial-chebyshev-approx-/
+atlas: monomial-chebyshev-approx
+@isnad1 id=ex.1h2v.s7.da1d84b5211f from=translated src=- shape=d39c342f vocab=bb2c5272
+-/
 theorem exists_degree_le_abs_pow_sub_eval_le {s : ℕ} (hs : 0 < s) (d : ℕ) :
     ∃ p : ℝ[X], p.degree ≤ d ∧ ∀ x ∈ Set.Icc (-1 : ℝ) 1,
       |x ^ s - p.eval x| ≤ 2 * exp (- (d : ℝ) ^ 2 / (2 * s)) :=

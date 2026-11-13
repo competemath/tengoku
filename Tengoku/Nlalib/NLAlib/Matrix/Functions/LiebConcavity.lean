@@ -59,7 +59,9 @@ Tropp 2015, Thm 8.1.1 (= Thm 3.4.1); the source states it for `d × d` matrices,
 type is obtained by reindexing (`posDef_reindex_iff`, `matrixLog_reindex_of_isHermitian`,
 `traceExp_reindex`). Ported from the Prove2me mission *An Introduction to Matrix Concentration
 Inequalities, Ch 8*.
-atlas: operator-monotone-convex, matrix-freedman (partial)-/
+atlas: operator-monotone-convex, matrix-freedman (partial)
+@isnad1 id=concaveo.1h2v.s7.2f11270f0d41 from=translated src=- shape=0a1a9d73 vocab=59328113
+-/
 theorem lieb_concavity {n : Type*} [Fintype n] [DecidableEq n]
     (H : Matrix n n ℂ) (hH : H.IsHermitian) :
     ConcaveOn ℝ {A : Matrix n n ℂ | A.PosDef} (fun A => traceExp (H + matrixLog A)) := by

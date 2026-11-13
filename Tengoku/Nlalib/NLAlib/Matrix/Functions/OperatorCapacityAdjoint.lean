@@ -29,7 +29,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- In the empty matrix dimension, every real-linear map has operator capacity
-`1`. No positivity assumption is needed.-/
+`1`. No positivity assumption is needed.
+@isnad1 id=eq.0h2v.s7.42fd5fc4c1af from=translated src=- shape=7bceb014 vocab=3503da7f
+-/
 theorem operatorCapacity_eq_one_of_isEmpty [IsEmpty n]
     (T : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ) :
     operatorCapacity T = 1 := by
@@ -52,7 +54,9 @@ theorem operatorCapacity_eq_one_of_isEmpty [IsEmpty n]
 
 omit [DecidableEq n] in
 /-- Exact trace duality between a finite Kraus family and its
-conjugate-transposed family. The test matrices need not be Hermitian.-/
+conjugate-transposed family. The test matrices need not be Hermitian.
+@isnad1 id=eq.0h5v.s9.636d7e56370d from=translated src=- shape=c61bc0e1 vocab=3f473a82
+-/
 theorem trace_mul_krausMap_eq_trace_mul_krausMap_conjTranspose
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ)
     (X Y : Matrix n n ℂ) :
@@ -103,7 +107,9 @@ and PSD `M`, `re M.det` is the greatest lower bound of the determinant-trace
 objective set of `M` (`Matrix.PosSemidef.isGLB_determinantTraceObjectiveSet`),
 and the trace identity converts the objective of `S Y` at `X` into the objective
 of `T X` at `Y`.  The empty dimension is handled separately by
-`operatorCapacity_eq_one_of_isEmpty`.-/
+`operatorCapacity_eq_one_of_isEmpty`.
+@isnad1 id=eq.3h3v.s10.aa9af2d6c727 from=translated src=- shape=7343faec vocab=c5f199e6
+-/
 theorem operatorCapacity_eq_of_trace_eq
     (T S : Matrix n n ℂ →ₗ[ℝ] Matrix n n ℂ)
     (hT : ∀ X, X.PosSemidef → (T X).PosSemidef)
@@ -122,7 +128,9 @@ theorem operatorCapacity_eq_of_trace_eq
 /-- Operator capacity is invariant under taking the adjoint of a finite Kraus
 family: `operatorCapacity (krausMap A) = operatorCapacity (krausMap A†)`.
 This covers all finite dimensions, including the empty one, and singular or
-zero-capacity maps.-/
+zero-capacity maps.
+@isnad1 id=eq.0h3v.s6.73e84c3e5c37 from=translated src=- shape=81cd2603 vocab=ca6f2c46
+-/
 theorem operatorCapacity_krausMap_conjTranspose
     {ι : Type*} [Fintype ι] (A : ι → Matrix n n ℂ) :
     operatorCapacity (krausMap A) = operatorCapacity (krausMap (fun i => (A i).conjTranspose)) := by

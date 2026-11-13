@@ -20,7 +20,9 @@ namespace NLAlib
 variable {𝕜 : Type*} [Field 𝕜]
 
 /-- Reflection and the degree sign preserve monic orthogonality for a symmetric
-moment functional. No positive measure or complex conjugation is needed.-/
+moment functional. No positive measure or complex conjugation is needed.
+@isnad1 id=ismonico.2h4v.s9.b4824291d261 from=translated src=- shape=930543ed vocab=b7e65c0f
+-/
 theorem IsMonicOrthogonalPolynomial.neg_one_pow_mul_comp_neg_X
     {L : 𝕜[X] →ₗ[𝕜] 𝕜} {n : ℕ} {p : 𝕜[X]}
     (hp : IsMonicOrthogonalPolynomial L n p)
@@ -38,7 +40,9 @@ theorem IsMonicOrthogonalPolynomial.neg_one_pow_mul_comp_neg_X
 
 /-- For nonsingular symmetric moments, the monic polynomial has the parity of
 its degree. Source: Gautschi (2004), Theorem 1.17.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.2h3v.s9.af119f08fff0 from=translated src=- shape=1998a3c0 vocab=cd3e770a
+-/
 theorem neg_one_pow_mul_comp_neg_X_monicOrthogonalPolynomial
     (L : 𝕜[X] →ₗ[𝕜] 𝕜) (n : ℕ) (hL : hankelMomentDet L n ≠ 0)
     (hs : ∀ r : 𝕜[X], L (r.comp (-X)) = L r) :
@@ -48,7 +52,9 @@ theorem neg_one_pow_mul_comp_neg_X_monicOrthogonalPolynomial
   exact (hp.neg_one_pow_mul_comp_neg_X hs).eq_of_hankelMomentDet_ne_zero hp hL
 
 /-- A real measure invariant under negation gives a reflection-invariant moment
-functional. This is the native measure-to-polynomial symmetry bridge.-/
+functional. This is the native measure-to-polynomial symmetry bridge.
+@isnad1 id=eq.2h2v.s7.2063ba1b704a from=translated src=- shape=312a462d vocab=885fa25f
+-/
 theorem polynomialIntegral_comp_neg_X {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     (hs : Measure.map (fun x : ℝ => -x) μ = μ) (p : ℝ[X]) :
     polynomialIntegral μ hμ (p.comp (-X)) = polynomialIntegral μ hμ p := by
@@ -57,7 +63,9 @@ theorem polynomialIntegral_comp_neg_X {μ : Measure ℝ} (hμ : HasPolynomialMom
 
 /-- The monic polynomial of a symmetric positive measure has its degree parity,
 including the last finite-support polynomial. Source: Gautschi (2004), Theorem 1.17.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.3h2v.s7.a7abbd97af84 from=translated src=- shape=82503b7f vocab=f8e7b2b7
+-/
 theorem neg_one_pow_mul_comp_neg_X_monicOrthogonalPolynomial_polynomialIntegral
     {μ : Measure ℝ} (hμ : HasPolynomialMoments μ)
     (hs : Measure.map (fun x : ℝ => -x) μ = μ) {n : ℕ}
@@ -71,7 +79,9 @@ theorem neg_one_pow_mul_comp_neg_X_monicOrthogonalPolynomial_polynomialIntegral
 /-- Each real monic recurrence diagonal is zero for reflection-invariant moments,
 including the boundary where its squared norm vanishes.
 Source: Gautschi (2004), Theorem 1.17.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.2h2v.s7.07babbe1bb4e from=translated src=- shape=e57335bc vocab=47cd1177
+-/
 theorem orthogonalRecurrenceAlpha_eq_zero_of_comp_neg_X
     (L : ℝ[X] →ₗ[ℝ] ℝ) (n : ℕ) (hL : hankelMomentDet L n ≠ 0)
     (hs : ∀ r : ℝ[X], L (r.comp (-X)) = L r) : orthogonalRecurrenceAlpha L n = 0 := by
@@ -93,7 +103,9 @@ theorem orthogonalRecurrenceAlpha_eq_zero_of_comp_neg_X
 /-- All real recurrence diagonal coefficients of a symmetric positive measure
 vanish before and at finite-support termination.
 Source: Gautschi (2004), Theorem 1.17.
-atlas: symmetric-measure-even-odd-reduction (partial)-/
+atlas: symmetric-measure-even-odd-reduction (partial)
+@isnad1 id=eq.3h2v.s5.a30fa353ba9e from=translated src=- shape=1905dfb2 vocab=48a0da1e
+-/
 theorem orthogonalRecurrenceAlpha_polynomialIntegral_eq_zero {μ : Measure ℝ}
     (hμ : HasPolynomialMoments μ) (hs : Measure.map (fun x : ℝ => -x) μ = μ) {n : ℕ}
     (hn : (n : ℕ∞) ≤ μ.support.encard) :

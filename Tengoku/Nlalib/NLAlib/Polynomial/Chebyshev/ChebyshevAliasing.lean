@@ -22,7 +22,9 @@ Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
 def chebyshevAliasIndex (N k : ℕ) : ℕ := min (k % (2 * N)) (2 * N - k % (2 * N))
 
 /-- Every folded frequency has degree at most the grid cutoff.
-Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.1h2v.s4.0d0d1181fbf3 from=translated src=- shape=c1a183fd vocab=dddcf333
+-/
 theorem chebyshevAliasIndex_le {N : ℕ} (hN : 0 < N) (k : ℕ) : chebyshevAliasIndex N k ≤ N := by
   have hmod := Nat.mod_lt k (show 0 < 2 * N by omega)
   unfold chebyshevAliasIndex
@@ -31,7 +33,9 @@ theorem chebyshevAliasIndex_le {N : ℕ} (hN : 0 < N) (k : ℕ) : chebyshevAlias
 /-- The high-frequency and folded Chebyshev polynomials have equal values at every
 canonical extrema node.
 Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
-atlas: chebyshev-aliasing (partial)-/
+atlas: chebyshev-aliasing (partial)
+@isnad1 id=eq.1h3v.s5.62e1dbc4961e from=translated src=- shape=16ae716f vocab=143552d0
+-/
 theorem eval_T_node_eq_eval_T_alias {N : ℕ} (hN : 0 < N) (k j : ℕ) :
     (T ℝ (k : ℤ)).eval (node N j) =
       (T ℝ (chebyshevAliasIndex N k : ℤ)).eval (node N j) := by
@@ -67,13 +71,17 @@ theorem eval_T_node_eq_eval_T_alias {N : ℕ} (hN : 0 < N) (k j : ℕ) :
     rw [hangle', cos_nat_mul_two_pi_sub]
 
 /-- Canonical Chebyshev grid nodes are injective on their index range.
-Source: Mathlib `strictAntiOn_node`; helper for `chebyshev-approx-analytic`.-/
+Source: Mathlib `strictAntiOn_node`; helper for `chebyshev-approx-analytic`.
+@isnad1 id=injon.0h1v.s4.1921297e4365 from=translated src=- shape=90bc7482 vocab=0fe6d3ae
+-/
 theorem chebyshev_node_injOn (N : ℕ) : Set.InjOn (node N) (Finset.range (N + 1) : Set ℕ) :=
   (strictAntiOn_node N).injOn
 
 /-- Interpolating a high Chebyshev frequency on the canonical extrema grid gives precisely
 its folded Chebyshev polynomial.
-Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.1h2v.s8.64c7db9101a2 from=translated src=- shape=87f34675 vocab=941b411e
+-/
 theorem interpolate_eval_T_node_eq_T_alias {N : ℕ} (hN : 0 < N) (k : ℕ) :
     Lagrange.interpolate (range (N + 1)) (node N)
       (fun j => (T ℝ (k : ℤ)).eval (node N j)) = T ℝ (chebyshevAliasIndex N k : ℤ) := by
@@ -85,7 +93,9 @@ theorem interpolate_eval_T_node_eq_T_alias {N : ℕ} (hN : 0 < N) (k : ℕ) :
     exact (eval_T_node_eq_eval_T_alias hN k j).symm
 
 /-- Every interpolated Chebyshev frequency remains bounded by one on `[-1,1]`.
-Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 4.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.2h3v.s8.2fb7d2512f2d from=translated src=- shape=ff277c68 vocab=71edf8ed
+-/
 theorem abs_eval_interpolate_eval_T_node_le_one {N : ℕ} (hN : 0 < N) (k : ℕ)
     {x : ℝ} (hx : x ∈ Icc (-1 : ℝ) 1) :
     |(Lagrange.interpolate (range (N + 1)) (node N)

@@ -41,7 +41,9 @@ private theorem coeff_card_det_one_add_X_smul (M : Matrix r r R) :
 /-- Cauchy–Binet for a square product of rectangular matrices, over every
 commutative ring and arbitrary finite labels. All middle minors, including
 empty and rank-deficient ones, are included. Horn–Johnson 2013, §0.8.1.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h5v.s7.982f110593cc from=translated src=- shape=edb1fa15 vocab=d4e6e249
+-/
 theorem det_mul_eq_sum_det_submatrix_mul_det_submatrix (A : Matrix r k R) (B : Matrix k r R) :
     (A * B).det = ∑ S : SizedSubset k r,
       (A.submatrix id (sizedSubsetIndex S)).det *
@@ -84,7 +86,9 @@ def compoundMatrix (r : Type*) [Fintype r] [DecidableEq r] (A : Matrix m n R) :
 /-- Cauchy–Binet for every selected minor of a rectangular product. Repeated
 outer labels are also allowed, and yield the usual zero determinant.
 Horn–Johnson 2013, §0.8.1.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h9v.s7.b12733ad4f62 from=translated src=- shape=ce264a75 vocab=34bdd08c
+-/
 theorem det_submatrix_mul_eq_sum_minors (A : Matrix m k R) (B : Matrix k n R)
     (α : r → m) (β : r → n) :
     ((A * B).submatrix α β).det = ∑ S : SizedSubset k r,
@@ -99,7 +103,9 @@ theorem det_submatrix_mul_eq_sum_minors (A : Matrix m k R) (B : Matrix k n R)
 
 /-- Compounds are multiplicative in every size, with the shared subset
 orientation occurring twice and hence cancelling. Horn–Johnson 2013, §0.8.7.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h7v.s7.fe1e4c81c321 from=translated src=- shape=cf6ec6b4 vocab=8a5d587e
+-/
 theorem compoundMatrix_mul (A : Matrix m k R) (B : Matrix k n R) :
     compoundMatrix r (A * B) = compoundMatrix r A * compoundMatrix r B := by
   ext S T
@@ -108,7 +114,9 @@ theorem compoundMatrix_mul (A : Matrix m k R) (B : Matrix k n R) :
 /-- A real column-Gram determinant is the sum of squares of all full-column
 minors, including the empty determinant and matrices with too few rows.
 Horn–Johnson 2013, §0.8.1.
-atlas: cauchy-binet (partial)-/
+atlas: cauchy-binet (partial)
+@isnad1 id=eq.0h3v.s7.f47dfd6fcfbd from=translated src=- shape=fb7602f0 vocab=3c139598
+-/
 theorem det_transpose_mul_self_eq_sum_det_sq [Fintype m] [DecidableEq m] (A : Matrix m r ℝ) :
     (Aᵀ * A).det = ∑ S : SizedSubset m r,
       (A.submatrix (sizedSubsetIndex S) id).det ^ 2 := by
@@ -121,7 +129,9 @@ theorem det_transpose_mul_self_eq_sum_det_sq [Fintype m] [DecidableEq m] (A : Ma
 multiplicativity, and the real Gram sum of squared full-column minors.
 All coordinate types are finite; no nonempty, rank or distinctness premise is
 required. Horn–Johnson 2013, §§0.8.1 and 0.8.7.
-atlas: cauchy-binet-/
+atlas: cauchy-binet
+@isnad1 id=and.0h5v.s8.1aa0b3d1df19 from=translated src=- shape=ba7c017a vocab=7d722f8b
+-/
 theorem cauchy_binet_properties [Fintype m] [DecidableEq m] :
     (∀ (A : Matrix m k R) (B : Matrix k n R) (α : r → m) (β : r → n),
       ((A * B).submatrix α β).det = ∑ S : SizedSubset k r,

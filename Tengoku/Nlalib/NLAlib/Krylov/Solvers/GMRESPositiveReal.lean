@@ -144,7 +144,9 @@ private theorem norm_residual_le_sqrt_pow {α : ℝ} (hα : 0 < α)
 GMRES estimate, with the square-root factor raised to the step count.
 Source: Eisenstat--Elman--Schultz (1983), Theorem 3.3; Saad (2003),
 §6.11.4. Empty dimensions and step zero are included.
-atlas: gmres-elman (partial)-/
+atlas: gmres-elman (partial)
+@isnad1 id=le.2h6v.s8.60149498e544 from=translated src=- shape=76d5e639 vocab=7b6bed99
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_sqrt_pow_of_posDef_hermitianPart
     {c x₀ x : n → ℝ} {k : ℕ} (hx : IsGMRESIterate A c x₀ k x)
     (hM : (matrixHermitianPart A).PosDef) :
@@ -167,7 +169,9 @@ private theorem sqrt_pow_eq_rpow_half {δ : ℝ} (hδ : 0 ≤ δ) (k : ℕ) :
 /-- The positive-real GMRES estimate with the exact half-step exponent
 of the standard statement. Source: Eisenstat--Elman--Schultz (1983),
 Theorem 3.3; Saad (2003), §6.11.4.
-atlas: gmres-elman (partial)-/
+atlas: gmres-elman (partial)
+@isnad1 id=le.2h6v.s8.c57b4479197a from=translated src=- shape=3948c0c4 vocab=a622fc4b
+-/
 theorem IsGMRESIterate.norm_sub_mulVec_le_of_posDef_hermitianPart
     {c x₀ x : n → ℝ} {k : ℕ} (hx : IsGMRESIterate A c x₀ k x)
     (hM : (matrixHermitianPart A).PosDef) :
@@ -190,7 +194,9 @@ theorem IsGMRESIterate.norm_sub_mulVec_le_of_posDef_hermitianPart
 count to the positive-real contraction exponent. The cycle hypotheses
 refer to the native GMRES minimizer at every restart, rather than to an
 assumed norm contraction. Source: Saad (2003), §6.11.4.
-atlas: gmres-elman (partial)-/
+atlas: gmres-elman (partial)
+@isnad1 id=le.2h6v.s8.20e87eb21994 from=translated src=- shape=f1e5761e vocab=b5a87eb8
+-/
 theorem norm_sub_mulVec_le_sqrt_pow_of_restarted_gmres
     {c : n → ℝ} (hM : (matrixHermitianPart A).PosDef)
     (xs : ℕ → n → ℝ) (m : ℕ)
@@ -216,7 +222,9 @@ theorem norm_sub_mulVec_le_sqrt_pow_of_restarted_gmres
 /-- Restarted GMRES with cycle length `m` satisfies the positive-real
 bound after `j*m` total steps. This includes zero cycles and cycle
 length zero. Source: Saad (2003), §6.11.4.
-atlas: gmres-elman (partial)-/
+atlas: gmres-elman (partial)
+@isnad1 id=le.2h6v.s8.d6d76969ab37 from=translated src=- shape=650aa5dc vocab=c094a446
+-/
 theorem norm_sub_mulVec_le_of_restarted_gmres
     {c : n → ℝ} (hM : (matrixHermitianPart A).PosDef)
     (xs : ℕ → n → ℝ) (m : ℕ)

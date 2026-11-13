@@ -26,7 +26,9 @@ def OperatorMonotoneOn (I : Set ℝ) (f : ℝ → ℝ) : Prop :=
 
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
-/-- Operator monotonicity is independent of the chosen finite index type.-/
+/-- Operator monotonicity is independent of the chosen finite index type.
+@isnad1 id=le.6h5v.s8.36cdee39a513 from=translated src=- shape=e52678f1 vocab=5939d6d0
+-/
 theorem OperatorMonotoneOn.cfc_le {I : Set ℝ} {f : ℝ → ℝ}
     (hf : OperatorMonotoneOn I f) {A B : Matrix n n ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian)
@@ -44,7 +46,9 @@ theorem OperatorMonotoneOn.cfc_le {I : Set ℝ} {f : ℝ → ℝ}
   simpa [R, Matrix.reindex_apply, Matrix.le_iff, Matrix.submatrix_submatrix,
     Matrix.submatrix_sub] using h.submatrix e
 
-/-- Matrices whose real spectrum lies in an open set form an open set.-/
+/-- Matrices whose real spectrum lies in an open set form an open set.
+@isnad1 id=isopen.1h2v.s6.712691d67ef7 from=translated src=- shape=a07e04dc vocab=0457f29d
+-/
 theorem isOpen_setOf_real_spectrum_subset {I : Set ℝ} (hI : IsOpen I) :
     IsOpen {A : Matrix n n ℂ | spectrum ℝ A ⊆ I} := by
   rw [isOpen_iff_mem_nhds]
@@ -52,7 +56,9 @@ theorem isOpen_setOf_real_spectrum_subset {I : Set ℝ} (hI : IsOpen I) :
   exact (upperHemicontinuous_spectrum ℝ (Matrix n n ℂ)).forall_isOpen A I hI hA
 
 /-- A Hermitian matrix between two endpoints with spectra in a convex
-scalar set also has its spectrum in that set.-/
+scalar set also has its spectrum in that set.
+@isnad1 id=le.8h5v.s8.0c5df4900dc7 from=translated src=- shape=319507d3 vocab=cc86f99e
+-/
 theorem spectrum_subset_of_order_interval [Nonempty n] {I : Set ℝ}
     (hI : Convex ℝ I) {A B C : Matrix n n ℂ}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (hC : C.IsHermitian)

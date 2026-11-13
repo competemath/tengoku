@@ -33,7 +33,9 @@ def IsNonsingularMMatrix (A : Matrix ι ι ℝ) : Prop :=
 /-- Discrete minimum principle: a positive supersolution of a Z-matrix forces
 every vector with nonnegative image to be nonnegative.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=le.4h5v.s6.20ef2d6241c5 from=translated src=- shape=6bd8e12d vocab=ebbce129
+-/
 theorem IsZMatrix.nonneg_of_mulVec_nonneg_of_positive_certificate
     {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) {x : ι → ℝ}
     (hx : ∀ i, 0 < x i) (hAx : ∀ i, 0 < (A *ᵥ x) i)
@@ -70,7 +72,9 @@ theorem IsZMatrix.nonneg_of_mulVec_nonneg_of_positive_certificate
 /-- A Z-matrix with a positive vector of strictly positive image is invertible
 and inverse-positive. No nonempty-dimension assumption is necessary.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=isnonsin.3h3v.s6.8ccc91630e06 from=translated src=- shape=494091a7 vocab=e47d29fd
+-/
 theorem IsZMatrix.isNonsingularMMatrix_of_positive_certificate
     {A : Matrix ι ι ℝ} (hA : A.IsZMatrix) {x : ι → ℝ}
     (hx : ∀ i, 0 < x i) (hAx : ∀ i, 0 < (A *ᵥ x) i) :
@@ -98,7 +102,9 @@ theorem IsZMatrix.isNonsingularMMatrix_of_positive_certificate
 
 /-- Inverse-positive matrices obey the componentwise monotonicity principle.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=le.2h4v.s6.2f3335507edf from=translated src=- shape=2c172135 vocab=f168368a
+-/
 theorem IsNonsingularMMatrix.nonneg_of_mulVec_nonneg
     {A : Matrix ι ι ℝ} (hA : A.IsNonsingularMMatrix) {u : ι → ℝ}
     (hu : ∀ i, 0 ≤ (A *ᵥ u) i) : ∀ i, 0 ≤ u i := by
@@ -112,7 +118,9 @@ theorem IsNonsingularMMatrix.nonneg_of_mulVec_nonneg
 /-- An inverse-positive matrix has a strictly positive vector with strictly
 positive image: its inverse applied to the all-ones vector.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=ex.1h2v.s6.37fdd1554b24 from=translated src=- shape=eb3e2fce vocab=a06e0a1f
+-/
 theorem IsNonsingularMMatrix.exists_positive_certificate
     {A : Matrix ι ι ℝ} (hA : A.IsNonsingularMMatrix) :
     ∃ x : ι → ℝ, (∀ i, 0 < x i) ∧ ∀ i, 0 < (A *ᵥ x) i := by
@@ -138,7 +146,9 @@ theorem IsNonsingularMMatrix.exists_positive_certificate
 
 /-- Positive-vector certification is equivalent to inverse positivity for Z-matrices.
 Source: Berman–Plemmons, Chapter 6.
-atlas: nonsingular-m-matrix-characterizations (partial)-/
+atlas: nonsingular-m-matrix-characterizations (partial)
+@isnad1 id=iff.1h2v.s6.e2e9772f9990 from=translated src=- shape=12142ef4 vocab=e47d29fd
+-/
 theorem isNonsingularMMatrix_iff_positive_certificate {A : Matrix ι ι ℝ}
     (hA : A.IsZMatrix) : A.IsNonsingularMMatrix ↔
       ∃ x : ι → ℝ, (∀ i, 0 < x i) ∧ ∀ i, 0 < (A *ᵥ x) i :=
