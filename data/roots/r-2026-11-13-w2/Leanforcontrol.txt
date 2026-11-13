@@ -1,0 +1,16 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 0 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 1 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 14 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: limsup_add_tendsto_zero
+root: diniDerivRight
+root: antitoneOn_halfWindow_average
+root: hasDerivAt_integral
+root: diniDerivRight_const_mul_pos
+root: diniDerivRight_le_iff
+root: neg_diniDerivRight_neg_le
+root: diniDerivRight_add_linear
+root: diniDerivRight_add_le
+root: le_diniDerivRight_iff
+root: diniDerivRight_add_differentiable
+root: sSup_mem_of_isClosed
+root: continuousOn_integral_Icc
+root: «termD⁺»

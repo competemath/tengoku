@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.Pfr end Tengoku.Pfr open Tengoku.Pfr 
 open MeasureTheory ProbabilityMeasure Topology Metric Filter Set ENNReal NNReal
 open scoped BoundedContinuousFunction Topology ENNReal NNReal
 
@@ -12,7 +12,7 @@ attribute [fun_prop] continuous_map
 variable {ι X : Type*} [MeasurableSpace X] [TopologicalSpace X]
 
 /-- The measure of any connected component depends continuously on the `FiniteMeasure`. -/
-lemma continuous_finiteMeasure_apply_of_isClopen [OpensMeasurableSpace X]
+lemma _root_.Tengoku.Pfr.continuous_finiteMeasure_apply_of_isClopen [OpensMeasurableSpace X]
     {s : Set X} (s_clopen : IsClopen s) :
     Continuous fun μ : FiniteMeasure X ↦ (μ : Measure X).real s := by
   convert FiniteMeasure.continuous_integral_boundedContinuousFunction
@@ -21,7 +21,7 @@ lemma continuous_finiteMeasure_apply_of_isClopen [OpensMeasurableSpace X]
   simp [integral_indicator, s_mble, Measure.real]
 
 /-- The probability of any connected component depends continuously on the `ProbabilityMeasure`. -/
-lemma continuous_probabilityMeasure_apply_of_isClopen [OpensMeasurableSpace X]
+lemma _root_.Tengoku.Pfr.continuous_probabilityMeasure_apply_of_isClopen [OpensMeasurableSpace X]
     {s : Set X} (s_clopen : IsClopen s) :
     Continuous fun μ : ProbabilityMeasure X ↦ (μ : Measure X).real s := by
   convert ProbabilityMeasure.continuous_integral_boundedContinuousFunction
@@ -31,11 +31,11 @@ lemma continuous_probabilityMeasure_apply_of_isClopen [OpensMeasurableSpace X]
 
 variable [DiscreteTopology X] [BorelSpace X]
 
-lemma continuous_pmf_apply' (i : X) :
+lemma _root_.Tengoku.Pfr.continuous_pmf_apply' (i : X) :
     Continuous fun μ : ProbabilityMeasure X ↦ (μ : Measure X).real {i} :=
   continuous_probabilityMeasure_apply_of_isClopen (s := {i}) <| isClopen_discrete _
 
-lemma continuous_pmf_apply (i : X) : Continuous fun μ : ProbabilityMeasure X ↦ μ {i} := by
+lemma _root_.Tengoku.Pfr.continuous_pmf_apply (i : X) : Continuous fun μ : ProbabilityMeasure X ↦ μ {i} := by
   -- KK: The coercion fight here is one reason why I now prefer ℝ-valued and not ℝ≥0-valued probas.
   convert continuous_real_toNNReal.comp (continuous_pmf_apply' i)
   ext
@@ -43,7 +43,7 @@ lemma continuous_pmf_apply (i : X) : Continuous fun μ : ProbabilityMeasure X �
   rfl
 
 open Filter in
-lemma tendsto_lintegral_of_forall_of_finite [Finite X] {L : Filter ι} (μs : ι → Measure X)
+lemma _root_.Tengoku.Pfr.tendsto_lintegral_of_forall_of_finite [Finite X] {L : Filter ι} (μs : ι → Measure X)
     (μ : Measure X) (f : X →ᵇ ℝ≥0) (h : ∀ x, Tendsto (fun i ↦ μs i {x}) L (𝓝 (μ {x}))) :
     Tendsto (fun i ↦ ∫⁻ x, f x ∂(μs i)) L (𝓝 (∫⁻ x, f x ∂μ)) := by
   cases nonempty_fintype X
@@ -75,3 +75,4 @@ lemma ProbabilityMeasure.tendsto_iff_forall_apply_tendsto_ennreal {L : Filter ι
       (𝓝 ((μ : Measure X) {a})) := by
   rw [ProbabilityMeasure.tendsto_iff_forall_apply_tendsto]
   simp [← ennreal_coeFn_eq_coeFn_toMeasure, ENNReal.tendsto_coe]
+-- Tengoku: root names of this library moved to Tengoku.Pfr so they do not collide with other libraries (generated)

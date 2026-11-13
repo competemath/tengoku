@@ -14,12 +14,12 @@ finite extension `L ⊇ B` inside `Ω` (`exists_algEquiv_coordRing`).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal IntermediateField IntermediateField.algebraAdjoinAdjoin Polynomial
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k Ω : Type u} [Field k] [Field Ω] [Algebra k Ω] (t : Ω)
 
@@ -52,4 +52,5 @@ lemma isIntegral_A₀_of_coordRing {x : Ω} (h : IsIntegral (coordRing k t B) x)
 
 end Embed
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

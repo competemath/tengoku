@@ -24,10 +24,10 @@ an object `V.X` of `EquivEtale R A`, the cover of `[Spec R / A]` corresponding t
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
-open CategoryTheory AffOrbicurve IntermediateField.algebraAdjoinAdjoin
+open CategoryTheory Tengoku.LanaPi1.AffOrbicurve IntermediateField.algebraAdjoinAdjoin
 
 namespace Pi1.Orbifold
 
@@ -211,3 +211,4 @@ end GaloisData
 end
 
 end Pi1.Orbifold
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

@@ -1,7 +1,7 @@
 import Tengoku
 
 /-! # Auxiliary lemmas for `gamma_eq_inv_sqrt_min_eigenvalue` -/
-
+namespace Tengoku.QrcpBoundedCoherence end Tengoku.QrcpBoundedCoherence open Tengoku.QrcpBoundedCoherence
 open Matrix Real
 open scoped Matrix.Norms.L2Operator
 
@@ -65,7 +65,7 @@ private lemma iSup_inv_eq_inv_iInf {k : ℕ} [Nonempty (Fin k)] (f : Fin k → �
 
 /-- For an invertible real square matrix M, the L2 operator norm satisfies
   ‖(toEuclideanCLM M)⁻¹‖ = 1 / √(⨅ i, (MᴴM).eigenvalues i) -/
-lemma norm_inv_eq_inv_sqrt_min_eigenvalue {k : ℕ} [DecidableEq (Fin k)] [Nonempty (Fin k)]
+lemma _root_.Tengoku.QrcpBoundedCoherence.norm_inv_eq_inv_sqrt_min_eigenvalue {k : ℕ} [DecidableEq (Fin k)] [Nonempty (Fin k)]
     (M : Matrix (Fin k) (Fin k) ℝ) [Invertible M] :
     ‖(Matrix.toEuclideanCLM.toFun M⁻¹)‖ =
       1 / Real.sqrt (⨅ (i : Fin k),
@@ -138,3 +138,4 @@ lemma norm_inv_eq_inv_sqrt_min_eigenvalue {k : ℕ} [DecidableEq (Fin k)] [Nonem
     exact hpos i₀
   rw [one_div, ← Real.sqrt_inv, ← Real.sqrt_sq (norm_nonneg _), hM_inv_sq, hMHM_inv_norm,
       one_div, Real.sqrt_inv]
+-- Tengoku: root names of this library moved to Tengoku.QrcpBoundedCoherence so they do not collide with other libraries (generated)

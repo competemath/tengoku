@@ -1,0 +1,25 @@
+leakscan: 5 global instances (2 can fire outside the library), 0 scoped; 33 global simp lemmas (13 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 8 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp ProbabilityTheory.indepFun_zero_measure registered in Tengoku.Pfr.PFR.Mathlib.Probability.Independence.Basic (declared at line 136)
+leak: simp Set.inter_eq_left' registered in Tengoku.Pfr.PFR.Mathlib.Data.Set.Basic (declared at line 11)
+leak: simp Set.inter_eq_right' registered in Tengoku.Pfr.PFR.Mathlib.Data.Set.Basic (declared at line 12)
+leak: simp Set.ne_empty_iff_nonempty registered in Tengoku.Pfr.PFR.Mathlib.Data.Set.Basic (declared at line 14)
+leak: simp Set.inter_singleton_eq_empty' registered in Tengoku.Pfr.PFR.Mathlib.Data.Set.Insert (declared at line 11)
+leak: simp Set.singleton_inter_eq_empty' registered in Tengoku.Pfr.PFR.Mathlib.Data.Set.Insert (declared at line 14)
+leak: instance ProbabilityTheory.uniformOn.instIsProbabilityMeasure registered in Tengoku.Pfr.PFR.Mathlib.Probability.UniformOn (declared at line 53)
+leak: simp Finset.ne_empty_iff_nonempty registered in Tengoku.Pfr.PFR.Mathlib.Data.Finset.Basic (declared at line 10)
+leak: instance MeasureTheory.Measure.instIsProbabilityMeasureForallPi registered in Tengoku.Pfr.PFR.Mathlib.MeasureTheory.Constructions.Pi (declared at line 13)
+leak: simp MeasureTheory.Measure.pi_pi_set registered in Tengoku.Pfr.PFR.Mathlib.MeasureTheory.Constructions.Pi (declared at line 16)
+leak: simp MeasureTheory.Measure.pi_eval_preimage registered in Tengoku.Pfr.PFR.Mathlib.MeasureTheory.Constructions.Pi (declared at line 24)
+leak: simp MeasureTheory.Measure.dirac_real_apply' registered in Tengoku.Pfr.PFR.Mathlib.MeasureTheory.Measure.Dirac.Def (declared at line 10)
+leak: simp Measurable.aemeasurable registered in Tengoku.Pfr.PFR.Mathlib.MeasureTheory.Measure.MeasureSpaceDef (declared in Tengoku.Seed.MeasureTheory.Measure.MeasureSpaceDef: an `attribute` command of the library turns it on)
+leak: simp Finset.Ici_one registered in Tengoku.Pfr.PFR.Mathlib.Order.Interval.Finset.Defs (declared at line 10)
+leak: simp Finset.Ici_zero registered in Tengoku.Pfr.PFR.Mathlib.Order.Interval.Finset.Defs (declared at line 10)
+root: instFiniteRangeOfFinite
+root: continuous_finiteMeasure_apply_of_isClopen
+root: FiniteRange
+root: finiteRange_of_finset
+root: continuous_probabilityMeasure_apply_of_isClopen
+root: continuous_pmf_apply
+root: tendsto_lintegral_of_forall_of_finite
+root: continuous_pmf_apply'

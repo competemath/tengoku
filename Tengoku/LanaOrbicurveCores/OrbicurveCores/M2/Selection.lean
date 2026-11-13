@@ -15,7 +15,7 @@ import Tengoku
 * `exists_measurable_heavy_selection`: if on `S` a Markov kernel has an atom of mass `> 1/2`,
   that atom depends measurably on the point.
 -/
-
+namespace Tengoku.LanaOrbicurveCores end Tengoku.LanaOrbicurveCores open Tengoku.LanaOrbicurveCores
 open MeasureTheory ProbabilityTheory Set
 open scoped ENNReal
 
@@ -25,7 +25,7 @@ variable {X Z : Type*} [MeasurableSpace X] [TopologicalSpace Z] [MeasurableSpace
 omit [TopologicalSpace Z] [BorelSpace Z] [Nonempty Z] in
 /-- If a probability measure has an atom of mass `> 1/2`, then that atom lies in a set `U`
 iff `U` has measure `> 1/2`. -/
-lemma mem_iff_of_heavy [MeasurableSingletonClass Z] {μ : Measure Z} [IsProbabilityMeasure μ]
+lemma _root_.Tengoku.LanaOrbicurveCores.mem_iff_of_heavy [MeasurableSingletonClass Z] {μ : Measure Z} [IsProbabilityMeasure μ]
     {z : Z} (hz : 1 / 2 < μ {z}) (U : Set Z) : z ∈ U ↔ 1 / 2 < μ U := by
   constructor
   · intro h; exact hz.trans_le (measure_mono (singleton_subset_iff.2 h))
@@ -40,7 +40,7 @@ lemma mem_iff_of_heavy [MeasurableSingletonClass Z] {μ : Measure Z} [IsProbabil
     exact lt_irrefl _ this
 
 /-- **Heavy-atom selection.** -/
-theorem exists_measurable_heavy_selection [MeasurableSingletonClass Z] (κ : Kernel X Z)
+theorem _root_.Tengoku.LanaOrbicurveCores.exists_measurable_heavy_selection [MeasurableSingletonClass Z] (κ : Kernel X Z)
     [IsMarkovKernel κ] {S : Set X}
     (hS : MeasurableSet S) (hκ : ∀ x ∈ S, ∃ z, 1 / 2 < κ x {z}) :
     ∃ f : X → Z, Measurable f ∧ ∀ x ∈ S, 1 / 2 < κ x {f x} := by
@@ -59,3 +59,4 @@ theorem exists_measurable_heavy_selection [MeasurableSingletonClass Z] (κ : Ker
   rw [e]
   exact (hS.inter (measurableSet_lt measurable_const
     (Kernel.measurable_coe κ hU.measurableSet))).union (hS.compl.inter (MeasurableSet.const _))
+-- Tengoku: root names of this library moved to Tengoku.LanaOrbicurveCores so they do not collide with other libraries (generated)

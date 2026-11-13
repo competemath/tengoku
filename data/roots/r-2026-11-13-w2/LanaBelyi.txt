@@ -1,0 +1,9 @@
+leakscan: 39 global instances (5 can fire outside the library), 3 scoped; 102 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 2 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Belyi.instSubsingletonCarrierCarrierCommRingCatSpecOf registered in Tengoku.LanaBelyi.Belyi.Curve.Basic (declared at line 49)
+leak: instance Belyi.CurveField.instIsDedekindDomainSubtypeMemSubalgebraRatAdjoinSingletonSetOfFactTranscendental registered in Tengoku.LanaBelyi.Belyi.CurveField.Chart (declared at line 86)
+leak: instance Belyi.CurveField.instIsDiscreteValuationRingSubtypeMemValuationSubringValuationSubringAtPrime registered in Tengoku.LanaBelyi.Belyi.CurveField.Place (declared at line 117)
+leak: instance AlgebraicGeometry.LocallyQuasiFinite.descendsAlong_surjective_inf_flat_inf_quasicompact registered in Tengoku.LanaBelyi.Belyi.QuasiFiniteDescent (declared at line 92)
+leak: instance Belyi.finite_monoidHom_of_fg registered in Tengoku.LanaBelyi.Belyi.RigidityGroupTheory (declared at line 58)
+root: instNormalRatAlgebraicClosure
+root: instIsAlgebraicRatAlgebraicClosure

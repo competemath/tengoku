@@ -1,0 +1,19 @@
+leakscan: 9 global instances (0 can fire outside the library), 0 scoped; 3 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 17 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: comonad_comp_map
+root: map_extract_duplicate_eq_id
+root: Extend
+root: extract_duplicate_eq_id
+root: duplicate
+root: Coapplicative
+root: CoseqRight
+root: Extract
+root: CoseqLeft
+root: LawfulComonad
+root: extract_map
+root: LawfulCoapplicative
+root: Coseq
+root: Comonad
+root: extend_eq_map_duplicate
+root: comonad_id_map
+root: duplicate_duplicate_eq_map_duplicate

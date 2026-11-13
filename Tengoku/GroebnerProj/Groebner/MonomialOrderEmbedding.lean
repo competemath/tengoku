@@ -6,7 +6,7 @@ public import Tengoku.GroebnerProj.Groebner.ToMathlib.Finsupp
 public import Tengoku.GroebnerProj.Groebner.ToMathlib.WithBot
 public import Tengoku.GroebnerProj.Groebner.MonomialOrder
 
-@[expose] public section
+@[expose] public section namespace Tengoku.GroebnerProj end Tengoku.GroebnerProj open Tengoku.GroebnerProj
 attribute [local simp] and_imp_iff_and imp_and_iff_and
 
 
@@ -327,3 +327,4 @@ end Embedding
 
 end MonomialOrder
 -- Tengoku: 1 registration(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.GroebnerProj so they do not collide with other libraries (generated)

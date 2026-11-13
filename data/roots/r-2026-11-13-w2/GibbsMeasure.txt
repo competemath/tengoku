@@ -1,0 +1,17 @@
+leakscan: 3 global instances (0 can fire outside the library), 0 scoped; 18 global simp lemmas (3 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 2 scoped
+roots: 12 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp ENNReal.ofReal_indicator_one registered in Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.Basic.ENNReal.Basic (declared at line 10)
+leak: simp MeasureTheory.Integrable.fun_mul_of_top_right registered in Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.MeasureTheory.Function.L1Space.Integrable (declared at line 15)
+leak: simp MeasureTheory.memLp_top_one registered in Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.MeasureTheory.Function.LpSeminorm.Basic (declared at line 17)
+root: juxt
+root: juxt_apply_of_mem
+root: integrableOn_toReal
+root: Specification
+root: isConsistentKernel_cylinderEventsCompl
+root: preimage_juxt_pi
+root: mem_congr_of_measurableSet_cylinderEvents
+root: map_juxt_pi
+root: IsConsistent
+root: measurable_map_juxt_pi
+root: preimage_juxt_pi_eq_empty
+root: juxt_apply_of_not_mem

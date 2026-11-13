@@ -93,7 +93,7 @@ hypotheses.
 
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.GroebnerProj end Tengoku.GroebnerProj open Tengoku.GroebnerProj
 attribute [local instance] IsWellFounded.onFun
 attribute [local simp] and_imp_iff_and imp_and_iff_and
 
@@ -830,3 +830,4 @@ end Field
 end IsRemainder
 
 end MonomialOrder
+-- Tengoku: root names of this library moved to Tengoku.GroebnerProj so they do not collide with other libraries (generated)

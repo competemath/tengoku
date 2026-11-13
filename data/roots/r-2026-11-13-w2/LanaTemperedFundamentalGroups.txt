@@ -1,0 +1,7 @@
+leakscan: 22 global instances (4 can fire outside the library), 0 scoped; 48 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 1 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance TemperedFundamentalGroups.instIsIsoSchemeMapOfHomSubtypeMvPolynomialFinHAddNatOfNatMemSubmoduleHomogeneousSubmoduleAlgebraMap registered in Tengoku.LanaTemperedFundamentalGroups.TemperedFundamentalGroups.Models.Projective (declared at line 55)
+leak: instance TemperedFundamentalGroups.Orbicurve.instFinitePolynomialCoordinateRingToAffine registered in Tengoku.LanaTemperedFundamentalGroups.TemperedFundamentalGroups.Orbicurve.GenericPoint (declared at line 243)
+leak: instance TemperedFundamentalGroups.Orbicurve.decidableEqAlgebraicClosure registered in Tengoku.LanaTemperedFundamentalGroups.TemperedFundamentalGroups.Orbicurve.ZeroSet (declared at line 43)
+leak: instance TemperedFundamentalGroups.Orbicurve.instFiniteTypeCoordinateRingToAffine registered in Tengoku.LanaTemperedFundamentalGroups.TemperedFundamentalGroups.Orbicurve.Exact (declared at line 105)
+root: countable_inter_of_isPreconnected

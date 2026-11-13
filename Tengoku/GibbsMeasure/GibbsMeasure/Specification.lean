@@ -20,7 +20,7 @@ public import Tengoku
 This file defines Gibbs measures.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.GibbsMeasure end Tengoku.GibbsMeasure open Tengoku.GibbsMeasure
 attribute [local simp] ENNReal.ofReal_indicator_one ENNReal.tOReal_indicator_one
 
 
@@ -32,13 +32,13 @@ variable {S E : Type*} {mE : MeasurableSpace E} {Λ₁ Λ₂ : Finset S}
 
 Morally, the LHS should be thought of as discovering `Λ₁` then `Λ₂`, while the RHS should be
 thought of as discovering `Λ₂` straight away. -/
-def IsConsistent (γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)) : Prop :=
+def _root_.Tengoku.GibbsMeasure.IsConsistent (γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)) : Prop :=
   ∀ ⦃Λ₁ Λ₂⦄, Λ₁ ⊆ Λ₂ → (γ Λ₁).comap id (by exact cylinderEvents_le_pi) ∘ₖ γ Λ₂ = γ Λ₂
 
 /--
 @isnad1 id=iff.0h4v.s6.8e27b4ef4ce3 from=translated src=- shape=2a7d81a5 vocab=7919f73c
 -/
-lemma isConsistentKernel_cylinderEventsCompl
+lemma _root_.Tengoku.GibbsMeasure.isConsistentKernel_cylinderEventsCompl
     {γ : ∀ Λ : Finset S, Kernel[cylinderEvents Λᶜ] (S → E) (S → E)} :
     Filtration.cylinderEventsCompl.IsConsistentKernel (fun Λ ↦ γ (OrderDual.ofDual Λ)) ↔
       IsConsistent γ := forall_comm
@@ -51,7 +51,7 @@ The term "boundary condition kernels" is chosen because for a Gibbs measure asso
 a specification, the kernels of the specification are precisely the regular conditional
 probabilities of the Gibbs measure conditionally on the configurations in the complements of
 finite sets (which serve as "boundary conditions"). -/
-structure Specification [MeasurableSpace E] where
+structure _root_.Tengoku.GibbsMeasure.Specification [MeasurableSpace E] where
   /-- The boundary condition kernels of a specification.
 
   DO NOT USE. Instead use the coercion to function `⇑γ`. Lean should insert it automatically in most
@@ -62,7 +62,7 @@ structure Specification [MeasurableSpace E] where
   DO NOT USE. Instead use `Specification.isConsistent`. -/
   isConsistent' : IsConsistent toFun
 
-namespace Specification
+namespace Tengoku.GibbsMeasure.Specification
 
 instance instDFunLike :
     DFunLike (Specification S E) (Finset S) fun Λ ↦ Kernel[cylinderEvents Λᶜ] (S → E) (S → E)
@@ -466,4 +466,5 @@ structure IsPremodifier [MeasurableSpace E] (ρ : Finset S → (S → E) → ℝ
     (hrestrict : ∀ s ∉ Λ₁, ζ s = η s) : ρ Λ₂ ζ * ρ Λ₁ η = ρ Λ₁ ζ * ρ Λ₂ η
 
 end Modifier
-end Specification
+end Tengoku.GibbsMeasure.Specification
+-- Tengoku: root names of this library moved to Tengoku.GibbsMeasure so they do not collide with other libraries (generated)

@@ -1,7 +1,7 @@
 import Tengoku.LanaFormalSchemes.FormalSchemes.FormalSpectrum
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.LanaFormalSchemes end Tengoku.LanaFormalSchemes open Tengoku.LanaFormalSchemes
 set_option linter.style.header false
 
 /-!
@@ -99,3 +99,4 @@ theorem toPrimeSpectrum_homeomorphFormalSpectrum (hI : IsAdic I) (hJ : IsAdic J)
   rfl
 
 end IsAdic
+-- Tengoku: root names of this library moved to Tengoku.LanaFormalSchemes so they do not collide with other libraries (generated)

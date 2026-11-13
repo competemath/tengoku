@@ -4,7 +4,7 @@ public import Tengoku.GibbsMeasure.GibbsMeasure.Mathlib.MeasureTheory.Integral.I
 public import Tengoku
 
 public section
-
+namespace Tengoku.GibbsMeasure end Tengoku.GibbsMeasure open Tengoku.GibbsMeasure 
 open scoped ENNReal
 
 namespace MeasureTheory
@@ -57,3 +57,4 @@ theorem toReal_ae_eq_indicator_condExp_of_forall_setLIntegral_eq (hm : m ≤ m0)
 --     (fun s hs hs_fin ↦ integrable_toReal_of_lintegral_ne_top _ _) _ _
 
 end MeasureTheory
+-- Tengoku: root names of this library moved to Tengoku.GibbsMeasure so they do not collide with other libraries (generated)

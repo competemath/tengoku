@@ -1,7 +1,7 @@
 module
 
 public import Tengoku
-
+namespace Tengoku.GibbsMeasure end Tengoku.GibbsMeasure open Tengoku.GibbsMeasure
 open ENNReal MeasureTheory Integrable
 
 attribute [fun_prop] MeasureTheory.IntegrableOn
@@ -13,8 +13,9 @@ variable {α : Type*} {m m0 : MeasurableSpace α} {μ : Measure α} [IsFiniteMea
 @isnad1 id=integrab.3h6v.s6.72a3069cb2b6 from=translated src=- shape=4d00df2c vocab=d670377c
 -/
 @[fun_prop]
-public lemma integrableOn_toReal (t : Set α) (hm : m ≤ m0) (hgm : AEStronglyMeasurable[m] g μ)
+public lemma _root_.Tengoku.GibbsMeasure.integrableOn_toReal (t : Set α) (hm : m ≤ m0) (hgm : AEStronglyMeasurable[m] g μ)
    (hg_int_finite : ∀ t, MeasurableSet[m] t → μ t < ∞ → ∫⁻ a in t, g a ∂μ ≠ ⊤) :
   IntegrableOn (fun x ↦ (g x).toReal) t μ :=
     integrableOn (s := t) <| integrable_toReal_of_lintegral_ne_top (hgm.mono hm).aemeasurable <|
       by simpa using hg_int_finite Set.univ (by simp) (by simp)
+-- Tengoku: root names of this library moved to Tengoku.GibbsMeasure so they do not collide with other libraries (generated)

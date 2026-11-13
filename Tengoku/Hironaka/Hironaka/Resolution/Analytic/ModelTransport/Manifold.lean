@@ -46,7 +46,7 @@ fails; every statement therefore goes through the identities with their declared
 -/
 
 @[expose] public section
-
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
 noncomputable section
 
 open TopologicalSpace Set
@@ -62,7 +62,7 @@ variable {𝕜 : Type} [NontriviallyNormedField 𝕜] {E E' : Type*} [NormedAddC
 /-- **The charts of `M` composed with the linear isomorphism `ψ`**: the charted-space structure on
 the points of `M` modelled on `E'`, `chartAt x := (chartAt E x) ≫ₕ ψ`.-/
 @[instance_reducible]
-def _root_.AnalyticManifold.transportChartedSpace
+def _root_.Tengoku.Hironaka.AnalyticManifold.transportChartedSpace
     (M : AnalyticManifold.{u} 𝕜 E)
     (ψ : E ≃L[𝕜] E') : ChartedSpace E' M where
   atlas := (fun e : OpenPartialHomeomorph M E =>
@@ -103,26 +103,26 @@ compacts and opens), the charts composed with `ψ`. The analytic main theorems c
 `M : AnalyticManifold ℝ E` to `Fin (finrank ℝ E) → ℝ` along `ContinuousLinearEquiv.ofFinrankEq`,
 run the resolution there, and carry the family back
 (`Hironaka/Resolution/Analytic/ModelTransport/Family.lean`).-/
-def _root_.AnalyticManifold.transport : AnalyticManifold.{u} 𝕜 E' :=
+def _root_.Tengoku.Hironaka.AnalyticManifold.transport : AnalyticManifold.{u} 𝕜 E' :=
   letI := M.transportChartedSpace ψ
   haveI : IsManifold 𝓘(𝕜, E') ω M := isManifold_transportChartedSpace M ψ
   { carrier := M }
 
 /-- The identity `M → M.transport ψ` with its declared type (a type ascription on `x : M` is
 dropped when the two carriers are definitionally equal, and instance search then fails).-/
-def _root_.AnalyticManifold.toTransport : M → M.transport ψ := fun x => x
+def _root_.Tengoku.Hironaka.AnalyticManifold.toTransport : M → M.transport ψ := fun x => x
 
 /-- The identity `M.transport ψ → M` with its declared type.-/
-def _root_.AnalyticManifold.ofTransport : M.transport ψ → M := fun x => x
+def _root_.Tengoku.Hironaka.AnalyticManifold.ofTransport : M.transport ψ → M := fun x => x
 
 /-- The chart of the re-modelled manifold at a point.-/
-theorem _root_.AnalyticManifold.chartAt_transport (x : M) :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.chartAt_transport (x : M) :
     chartAt E' (M.toTransport ψ x) = (chartAt E x).trans ψ.toHomeomorph.toOpenPartialHomeomorph :=
   rfl
 
 /-- The identity `M → M.transport ψ` is analytic: in the charts it is `ψ` (`contMDiffWithinAt_iff'`,
 the chart representative agrees with `ψ` on the chart's target).-/
-theorem _root_.AnalyticManifold.contMDiff_toTransport :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.contMDiff_toTransport :
     ContMDiff 𝓘(𝕜, E) 𝓘(𝕜, E') ω (M.toTransport ψ) := by
   intro x
   refine contMDiffWithinAt_iff'.2 ⟨continuousWithinAt_id, ?_⟩
@@ -137,7 +137,7 @@ theorem _root_.AnalyticManifold.contMDiff_toTransport :
     exact mem_extChartAt_source _
 
 /-- The identity `M.transport ψ → M` is analytic: in the charts it is `ψ⁻¹`.-/
-theorem _root_.AnalyticManifold.contMDiff_ofTransport :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.contMDiff_ofTransport :
     ContMDiff 𝓘(𝕜, E') 𝓘(𝕜, E) ω (M.ofTransport ψ) := by
   intro x
   refine contMDiffWithinAt_iff'.2 ⟨continuousWithinAt_id, ?_⟩
@@ -159,7 +159,7 @@ theorem _root_.AnalyticManifold.contMDiff_ofTransport :
 /-- **The identity `M → M.transport ψ` as an analytic isomorphism across the two models**
 (Mathlib's `Diffeomorph` takes two models with corners). Every transport of this directory is a
 transport along such an isomorphism.-/
-def _root_.AnalyticManifold.transportDiffeomorph :
+def _root_.Tengoku.Hironaka.AnalyticManifold.transportDiffeomorph :
     Diffeomorph 𝓘(𝕜, E) 𝓘(𝕜, E') M (M.transport ψ) ω where
   toFun := M.toTransport ψ
   invFun := M.ofTransport ψ
@@ -169,11 +169,11 @@ def _root_.AnalyticManifold.transportDiffeomorph :
   contMDiff_invFun := M.contMDiff_ofTransport ψ
 
 /-- The isomorphism is the identity on points.-/
-theorem _root_.AnalyticManifold.coe_transportDiffeomorph :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.coe_transportDiffeomorph :
     ⇑(M.transportDiffeomorph ψ) = M.toTransport ψ := rfl
 
 /-- Its inverse is the identity on points.-/
-theorem _root_.AnalyticManifold.coe_transportDiffeomorph_symm :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.coe_transportDiffeomorph_symm :
     ⇑(M.transportDiffeomorph ψ).symm = M.ofTransport ψ := rfl
 
 variable {M ψ} {H F : Type*} [TopologicalSpace H] [NormedAddCommGroup F] [NormedSpace 𝕜 F]
@@ -264,30 +264,30 @@ theorem exists_trans_of_mem_maximalAtlas_transport (φ' : OpenPartialHomeomorph 
 
 /-- An open set of `M` as an open set of the re-modelled `M` (the same set, the same topology),
 with its declared type, so that the instances of the re-modelled manifold are found.-/
-abbrev _root_.AnalyticManifold.transportOpens (U : Opens M) :
+abbrev _root_.Tengoku.Hironaka.AnalyticManifold.transportOpens (U : Opens M) :
     Opens (M.transport ψ) :=
   ⟨(U : Set M), U.isOpen⟩
 
 /-- The identity of `U`, from the restriction of `M` to the restriction of the re-modelled `M`.-/
-def _root_.AnalyticManifold.restrictToTransport (U : Opens M) :
+def _root_.Tengoku.Hironaka.AnalyticManifold.restrictToTransport (U : Opens M) :
     M.restrict U → (M.transport ψ).restrict (M.transportOpens ψ U) :=
   fun q => ⟨M.toTransport ψ q.1, q.2⟩
 
 /-- The identity of `U`, back.-/
-def _root_.AnalyticManifold.restrictOfTransport (U : Opens M) :
+def _root_.Tengoku.Hironaka.AnalyticManifold.restrictOfTransport (U : Opens M) :
     (M.transport ψ).restrict (M.transportOpens ψ U) → M.restrict U :=
   fun q => ⟨M.ofTransport ψ q.1, q.2⟩
 
 /-- The identity of `U` is analytic into the re-modelled restriction (Mathlib's
 `liftPropWithinAt_subtypeVal_comp_iff`).-/
-theorem _root_.AnalyticManifold.contMDiff_restrictToTransport (U : Opens M) :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.contMDiff_restrictToTransport (U : Opens M) :
     ContMDiff 𝓘(𝕜, E) 𝓘(𝕜, E') ω (M.restrictToTransport ψ U) := fun q =>
   (ChartedSpace.liftPropWithinAt_subtypeVal_comp_iff (U := M.transportOpens ψ U)
     (M.restrictToTransport ψ U) Set.univ q).mp
     (((M.contMDiff_toTransport ψ).comp contMDiff_subtype_val) q)
 
 /-- The identity of `U`, back, is analytic.-/
-theorem _root_.AnalyticManifold.contMDiff_restrictOfTransport (U : Opens M) :
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.contMDiff_restrictOfTransport (U : Opens M) :
     ContMDiff 𝓘(𝕜, E') 𝓘(𝕜, E) ω (M.restrictOfTransport ψ U) := fun q =>
   (ChartedSpace.liftPropWithinAt_subtypeVal_comp_iff (U := U) (M.restrictOfTransport ψ U)
     Set.univ q).mp
@@ -296,7 +296,7 @@ theorem _root_.AnalyticManifold.contMDiff_restrictOfTransport (U : Opens M) :
 /-- **The identity of the open subset `U`, between the restriction of `M` and the restriction of
 the re-modelled `M`**, as an analytic isomorphism across the models: the stage-`0` identification
 of the transported successions (`Hironaka/Resolution/Analytic/ModelTransport/Succession.lean`).-/
-def _root_.AnalyticManifold.restrictTransportDiffeomorph (U : Opens M) :
+def _root_.Tengoku.Hironaka.AnalyticManifold.restrictTransportDiffeomorph (U : Opens M) :
     Diffeomorph 𝓘(𝕜, E) 𝓘(𝕜, E') (M.restrict U) ((M.transport ψ).restrict (M.transportOpens ψ U))
       ω where
   toFun := M.restrictToTransport ψ U
@@ -307,12 +307,12 @@ def _root_.AnalyticManifold.restrictTransportDiffeomorph (U : Opens M) :
   contMDiff_invFun := M.contMDiff_restrictOfTransport ψ U
 
 /-- The isomorphism is the identity on points.-/
-theorem _root_.AnalyticManifold.coe_restrictTransportDiffeomorph
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.coe_restrictTransportDiffeomorph
     (U : Opens M) :
     ⇑(M.restrictTransportDiffeomorph ψ U) = M.restrictToTransport ψ U := rfl
 
 /-- The point of `M.transport ψ` under the isomorphism.-/
-theorem _root_.AnalyticManifold.restrictTransportDiffeomorph_apply_val
+theorem _root_.Tengoku.Hironaka.AnalyticManifold.restrictTransportDiffeomorph_apply_val
     (U : Opens M)
     (q : M.restrict U) :
     ((M.restrictTransportDiffeomorph ψ U q).1 : M.transport ψ) = M.toTransport ψ q.1 := rfl
@@ -320,3 +320,4 @@ theorem _root_.AnalyticManifold.restrictTransportDiffeomorph_apply_val
 end Hironaka.Manifold
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

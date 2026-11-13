@@ -38,19 +38,19 @@ discrepancy.
 - [mochizuki2010] S. Mochizuki, *Arithmetic elliptic curves in general position*,
   Math. J. Okayama Univ. **52** (2010), 1–28.
 -/
-
+namespace Tengoku.LanaGenl end Tengoku.LanaGenl open Tengoku.LanaGenl
 variable {α β : Type*}
 
 /-- `DiscrepancyLE f g s`, denoted `f ≲[s] g`, means that `f` is bounded above by `g` up
 to a bounded discrepancy on `s`, i.e. there exists a constant `C` such that
 `f x ≤ g x + C` for all `x ∈ s`. -/
-def DiscrepancyLE (f g : α → ℝ) (s : Set α) : Prop :=
+def _root_.Tengoku.LanaGenl.DiscrepancyLE (f g : α → ℝ) (s : Set α) : Prop :=
   ∃ C : ℝ, ∀ x ∈ s, f x ≤ g x + C
 
 /-- `DiscrepancyEquiv f g s`, denoted `f ≈[s] g`, means that `f` and `g` agree up to a
 bounded discrepancy on `s`, i.e. `|f x - g x|` is bounded on `s`. The equivalence classes
 of this relation are called *BD-classes*. -/
-def DiscrepancyEquiv (f g : α → ℝ) (s : Set α) : Prop :=
+def _root_.Tengoku.LanaGenl.DiscrepancyEquiv (f g : α → ℝ) (s : Set α) : Prop :=
   DiscrepancyLE f g s ∧ DiscrepancyLE g f s
 
 @[inherit_doc]
@@ -59,7 +59,7 @@ local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
 @[inherit_doc]
 local notation:50 f:51 " ≈[" s "] " g:51 => DiscrepancyEquiv f g s
 
-namespace DiscrepancyLE
+namespace Tengoku.LanaGenl.DiscrepancyLE
 
 variable {f f₁ f₂ g g₁ g₂ h : α → ℝ} {s t : Set α}
 
@@ -132,9 +132,9 @@ theorem of_comp_surjOn {φ : β → α} {t : Set β} (hφ : Set.SurjOn φ t s)
   obtain ⟨y, hy, rfl⟩ := hφ hx
   exact hC y hy
 
-end DiscrepancyLE
+end Tengoku.LanaGenl.DiscrepancyLE
 
-namespace DiscrepancyEquiv
+namespace Tengoku.LanaGenl.DiscrepancyEquiv
 
 variable {f f₁ f₂ g g₁ g₂ h : α → ℝ} {s t : Set α}
 
@@ -167,9 +167,9 @@ theorem comp (hfg : f ≈[s] g) (φ : β → α) {t : Set β} (hφ : Set.MapsTo 
     f ∘ φ ≈[t] g ∘ φ :=
   ⟨hfg.le.comp φ hφ, hfg.ge.comp φ hφ⟩
 
-end DiscrepancyEquiv
+end Tengoku.LanaGenl.DiscrepancyEquiv
 
-namespace DiscrepancyLE
+namespace Tengoku.LanaGenl.DiscrepancyLE
 
 variable {f g h : α → ℝ} {s : Set α}
 
@@ -179,5 +179,6 @@ theorem trans_equiv (h₁ : f ≲[s] g) (h₂ : g ≈[s] h) : f ≲[s] h :=
 theorem equiv_trans (h₁ : f ≈[s] g) (h₂ : g ≲[s] h) : f ≲[s] h :=
   h₁.le.trans h₂
 
-end DiscrepancyLE
+end Tengoku.LanaGenl.DiscrepancyLE
 -- Tengoku: 2 notation(s) of this module made local so they do not change other libraries (generated)
+-- Tengoku: root names of this library moved to Tengoku.LanaGenl so they do not collide with other libraries (generated)

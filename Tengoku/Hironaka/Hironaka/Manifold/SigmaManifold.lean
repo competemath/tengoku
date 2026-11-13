@@ -27,7 +27,7 @@ pieces.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
 open Topology Set
 open scoped Manifold ContDiff
 
@@ -107,3 +107,4 @@ theorem sigmaMk_apply (i : ι) (x : M i) : sigmaMk M i x = Sigma.mk i x :=
   rfl
 
 end Manifold
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

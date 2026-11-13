@@ -12,10 +12,10 @@ public import Tengoku.Seed.RingTheory.AlgebraicIndependent.Adjoin
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 open Cardinal
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 /-- **Every countable field of characteristic `0` embeds into `ℂ`.**
 @isnad1 id=nonempty.0h1v.s5.58a6b128ff9d from=translated src=- shape=c1134c5c vocab=2db8b981
@@ -50,4 +50,5 @@ theorem nonempty_ringHom_complex (L : Type) [Field L] [CharZero L] [Countable L]
     rw [Module.isTorsionFree_iff_algebraMap_injective]; exact Subtype.val_injective
   exact ⟨(IsAlgClosed.lift (M := ℂ) (R := R) (S := L)).toRingHom⟩
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

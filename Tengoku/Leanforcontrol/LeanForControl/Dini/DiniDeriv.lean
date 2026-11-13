@@ -22,7 +22,7 @@ quotients are unbounded above the filter, `Filter.limsup` returns the `sInf` of 
 empty set, which in `ℝ` is `0` by convention — callers should keep this edge case in
 mind when `f` is not locally bounded.
 -/
-
+namespace Tengoku.Leanforcontrol end Tengoku.Leanforcontrol open Tengoku.Leanforcontrol
 open Filter Set Topology
 
 noncomputable section
@@ -30,7 +30,7 @@ noncomputable section
 /-- The upper right Dini derivative of `f` at `t`:
 $$D^+ f(t) \;=\; \limsup_{h \to 0^+} \frac{f(t+h) - f(t)}{h}$$
 -/
-def diniDerivRight (f : ℝ → ℝ) (t : ℝ) : ℝ :=
+def _root_.Tengoku.Leanforcontrol.diniDerivRight (f : ℝ → ℝ) (t : ℝ) : ℝ :=
   limsup (fun h => (f (t + h) - f t) / h) (𝓝[Ioi 0] 0)
 
 /-- Notation `D⁺ f` for the upper right Dini derivative of `f`. -/
@@ -52,7 +52,7 @@ and frequently bounded below (`hcobdd`). This rules out degenerate cases (like t
 shooting to `-∞`) where Lean's empty infimum would default to a mathematically false `0`.
 @isnad1 id=iff.2h3v.s7.3a7b398f7b79 from=translated src=- shape=2a7f2b38 vocab=c9c170b8
 -/
-theorem diniDerivRight_le_iff {f : ℝ → ℝ} {t L : ℝ}
+theorem _root_.Tengoku.Leanforcontrol.diniDerivRight_le_iff {f : ℝ → ℝ} {t L : ℝ}
     (hbdd : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hcobdd : IsCoboundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h)) :
     D⁺ f t ≤ L ↔
@@ -78,7 +78,7 @@ theorem diniDerivRight_le_iff {f : ℝ → ℝ} {t L : ℝ}
 on some set in the filter (frequently).
 @isnad1 id=iff.2h3v.s7.c80039650062 from=translated src=- shape=7227aa42 vocab=09452798
 -/
-theorem le_diniDerivRight_iff {f : ℝ → ℝ} {t L : ℝ}
+theorem _root_.Tengoku.Leanforcontrol.le_diniDerivRight_iff {f : ℝ → ℝ} {t L : ℝ}
     (hbdd : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hcobdd : IsCoboundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h)) :
     L ≤ D⁺ f t ↔
@@ -112,7 +112,7 @@ theorem le_diniDerivRight_iff {f : ℝ → ℝ} {t L : ℝ}
 Requires both difference quotients to be bounded above to avoid empty infimums in `ℝ`.
 @isnad1 id=le.4h3v.s8.7f280e6d947a from=translated src=- shape=c55f47e5 vocab=84acf730
 -/
-theorem diniDerivRight_add_le {f g : ℝ → ℝ} {t : ℝ}
+theorem _root_.Tengoku.Leanforcontrol.diniDerivRight_add_le {f g : ℝ → ℝ} {t : ℝ}
     (hf_bdd_below : IsBoundedUnder (· ≥ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hf_bdd_above : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hg_cobdd_below : IsCoboundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (g (t + h) - g t) / h))
@@ -134,7 +134,7 @@ theorem diniDerivRight_add_le {f g : ℝ → ℝ} {t : ℝ}
 /--
 @isnad1 id=eq.3h4v.s6.d667e3389139 from=translated src=- shape=740f11d6 vocab=cd2ab431
 -/
-lemma limsup_add_tendsto_zero {ι : Type*} {f g : ι → ℝ} {l : Filter ι} [l.NeBot]
+lemma _root_.Tengoku.Leanforcontrol.limsup_add_tendsto_zero {ι : Type*} {f g : ι → ℝ} {l : Filter ι} [l.NeBot]
     (hbdd_below : IsBoundedUnder (· ≥ ·) l f)
     (hbdd_above : IsBoundedUnder (· ≤ ·) l f)
     (hg : Tendsto g l (𝓝 0)) :
@@ -175,7 +175,7 @@ lemma limsup_add_tendsto_zero {ι : Type*} {f g : ι → ℝ} {l : Filter ι} [l
 Requires bounds on `f` to avoid empty infimum contradictions in `ℝ`.
 @isnad1 id=eq.3h3v.s8.e62d3b740b88 from=translated src=- shape=44a06006 vocab=15cc1c60
 -/
-theorem diniDerivRight_add_differentiable {f g : ℝ → ℝ} {t : ℝ}
+theorem _root_.Tengoku.Leanforcontrol.diniDerivRight_add_differentiable {f g : ℝ → ℝ} {t : ℝ}
     (hf_bdd_below : IsBoundedUnder (· ≥ ·) (𝓝[>] 0)
       (fun h => (f (t + h) - f t) / h))
     (hf_bdd_above : IsBoundedUnder (· ≤ ·) (𝓝[>] 0)
@@ -248,7 +248,7 @@ theorem diniDerivRight_add_differentiable {f g : ℝ → ℝ} {t : ℝ}
 `D⁺(f + c·id)(t) = D⁺f(t) + c`.
 @isnad1 id=eq.2h3v.s7.d2b5a5e68cf8 from=translated src=- shape=b3ae57f5 vocab=90e24fe1
 -/
-theorem diniDerivRight_add_linear (f : ℝ → ℝ) (c t : ℝ)
+theorem _root_.Tengoku.Leanforcontrol.diniDerivRight_add_linear (f : ℝ → ℝ) (c t : ℝ)
     (hf_bdd_below : IsBoundedUnder (· ≥ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hf_bdd_above : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h)) :
     D⁺ (fun s => f s + c * s) t = D⁺ f t + c := by
@@ -267,7 +267,7 @@ theorem diniDerivRight_add_linear (f : ℝ → ℝ) (c t : ℝ)
 /-- Scaling by a positive constant: `D⁺(c·f)(t) = c · D⁺f(t)` for `c > 0`.
 @isnad1 id=eq.3h3v.s7.f45e288f1811 from=translated src=- shape=a1c2f3ef vocab=3f014610
 -/
-theorem diniDerivRight_const_mul_pos {f : ℝ → ℝ} {c : ℝ} (hc : 0 < c) (t : ℝ)
+theorem _root_.Tengoku.Leanforcontrol.diniDerivRight_const_mul_pos {f : ℝ → ℝ} {c : ℝ} (hc : 0 < c) (t : ℝ)
     (hbdd : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hcobdd : IsCoboundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h)) :
     D⁺ (fun s => c * f s) t = c * D⁺ f t := by
@@ -333,7 +333,7 @@ theorem diniDerivRight_const_mul_pos {f : ℝ → ℝ} {c : ℝ} (hc : 0 < c) (t
 Requires the quotient to be bounded above and below to avoid junk values.
 @isnad1 id=le.2h2v.s7.d22030b34e8d from=translated src=- shape=a068aaf8 vocab=8cc6b937
 -/
-theorem neg_diniDerivRight_neg_le (f : ℝ → ℝ) (t : ℝ)
+theorem _root_.Tengoku.Leanforcontrol.neg_diniDerivRight_neg_le (f : ℝ → ℝ) (t : ℝ)
     (hbdd_above : IsBoundedUnder (· ≤ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h))
     (hbdd_below : IsBoundedUnder (· ≥ ·) (𝓝[>] 0) (fun h => (f (t + h) - f t) / h)) :
     -(D⁺ (fun s => -f s) t) ≤ D⁺ f t := by
@@ -377,3 +377,4 @@ theorem neg_diniDerivRight_neg_le (f : ℝ → ℝ) (t : ℝ)
     linarith
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Leanforcontrol so they do not collide with other libraries (generated)

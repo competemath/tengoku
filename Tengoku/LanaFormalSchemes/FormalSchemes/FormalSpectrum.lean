@@ -4,7 +4,7 @@ import Tengoku.Seed.RingTheory.Spectrum.Prime.Topology
 import Tengoku.Seed.Topology.Spectral.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.LanaFormalSchemes end Tengoku.LanaFormalSchemes open Tengoku.LanaFormalSchemes
 set_option linter.style.header false
 
 /-!
@@ -60,9 +60,9 @@ variable {R : Type*} [CommRing R] [TopologicalSpace R] (I : Ideal R) [IsAdicRing
 /-- The **formal spectrum** `Spf R` of an adic ring `R` with ideal of definition `I`, as a
 topological space. It is defined as `Spec (R ⧸ I)`, which parametrizes exactly the open primes
 of `R`, i.e. those primes containing `I`; see `FormalSpectrum.range_toPrimeSpectrum`. -/
-def FormalSpectrum : Type _ := PrimeSpectrum (R ⧸ I)
+def _root_.Tengoku.LanaFormalSchemes.FormalSpectrum : Type _ := PrimeSpectrum (R ⧸ I)
 
-namespace FormalSpectrum
+namespace Tengoku.LanaFormalSchemes.FormalSpectrum
 
 noncomputable instance : TopologicalSpace (FormalSpectrum I) :=
   inferInstanceAs (TopologicalSpace (PrimeSpectrum (R ⧸ I)))
@@ -306,4 +306,5 @@ theorem toThickening_image_basicOpen (n : ℕ) (hn : n ≠ 0) (f : R) :
 
 end Thickenings
 
-end FormalSpectrum
+end Tengoku.LanaFormalSchemes.FormalSpectrum
+-- Tengoku: root names of this library moved to Tengoku.LanaFormalSchemes so they do not collide with other libraries (generated)

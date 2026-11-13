@@ -15,7 +15,7 @@ public import Tengoku.Seed.Data.Vector.Basic
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Comp/Oracle.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -29,17 +29,17 @@ for some number of steps.  The final bit is the result.
 -/
 
 open Classical
-open Prob
+open Tengoku.AisafetyAtlas.Prob
 open Option (some none)
 open scoped Real
 noncomputable section
 
 /-- A stochastic oracle-/
-def Oracle := (n : ℕ) → List.Vector Bool n → Prob Bool
+def _root_.Tengoku.AisafetyAtlas.Oracle := (n : ℕ) → List.Vector Bool n → Prob Bool
 
 /-- n random bits from an oracle, each given by feeding the oracle the previous result.
     This models an arbitrary computation, as o can behave differently based on input length.-/
-def Oracle.fold (o : Oracle) : (n : ℕ) → Prob (List.Vector Bool n)
+def Tengoku.AisafetyAtlas.Oracle.fold (o : Oracle) : (n : ℕ) → Prob (List.Vector Bool n)
 | 0 => pure List.Vector.nil
 | n+1 => do
   let y ← o.fold n
@@ -47,7 +47,7 @@ def Oracle.fold (o : Oracle) : (n : ℕ) → Prob (List.Vector Bool n)
   return y.cons x
 
 /-- The (n+1)th bit of o.fold-/
-def Oracle.final (o : Oracle) (t : ℕ) : Prob Bool := do
+def Tengoku.AisafetyAtlas.Oracle.final (o : Oracle) (t : ℕ) : Prob Bool := do
   let x ← o.fold (t+1)
   return x.head
 
@@ -57,6 +57,7 @@ instance : Dist Oracle where
 
 /-- An oracle computation is k-Lipschitz if the final probability differs by ≤ k * oracle dist.
     We define this asymmetrically, as we want the neighborhood of a particular oracle.-/
-structure Oracle.lipschitz (o : Oracle) (t : ℕ) (k : ℝ) : Prop where
+structure Tengoku.AisafetyAtlas.Oracle.lipschitz (o : Oracle) (t : ℕ) (k : ℝ) : Prop where
   k0 : 0 ≤ k
   le : ∀ o' : Oracle, |(o.final t).prob true - (o'.final t).prob true| ≤ k * dist o o'
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)
