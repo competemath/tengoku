@@ -176,7 +176,14 @@
     "https://github.com/miosync-masa/ck-hopf-formalization",
     "https://github.com/tchen-research/NLAlib",
     "https://github.com/KitaKen1/lean-eval-pi-succ-sphere-n-mulequiv-zmod-two",
-    "https://github.com/ericlisg/RankAmplificationTotient"
+    "https://github.com/ericlisg/RankAmplificationTotient",
+    "https://github.com/FurinaManifold/sandrones-library",
+    "https://github.com/uda-lab/tda-lib",
+    "https://github.com/KitaKen1/finite-simple-groups-lean",
+    "https://github.com/WuProver/lean-commutator",
+    "https://github.com/xiangyazi24/palomar-qseries-row-factorization",
+    "https://github.com/frenzymath/PiIrrationalityMeasure",
+    "https://github.com/andrew-tawfeek/twinprime"
   ],
   "licences": {
     "https://github.com/leanprover-community/mathlib4": "Apache-2.0",
@@ -365,7 +372,14 @@
     "https://github.com/miosync-masa/ck-hopf-formalization": "MIT",
     "https://github.com/tchen-research/NLAlib": "Apache-2.0",
     "https://github.com/KitaKen1/lean-eval-pi-succ-sphere-n-mulequiv-zmod-two": "Apache-2.0",
-    "https://github.com/ericlisg/RankAmplificationTotient": "Apache-2.0"
+    "https://github.com/ericlisg/RankAmplificationTotient": "Apache-2.0",
+    "https://github.com/FurinaManifold/sandrones-library": "Apache-2.0",
+    "https://github.com/uda-lab/tda-lib": "Apache-2.0",
+    "https://github.com/KitaKen1/finite-simple-groups-lean": "Apache-2.0",
+    "https://github.com/WuProver/lean-commutator": "Apache-2.0",
+    "https://github.com/xiangyazi24/palomar-qseries-row-factorization": "Apache-2.0",
+    "https://github.com/frenzymath/PiIrrationalityMeasure": "Apache-2.0",
+    "https://github.com/andrew-tawfeek/twinprime": "Apache-2.0"
   },
   "corpora": {
     "equational-theories": {
@@ -1541,6 +1555,62 @@
       "commit": "5f06df5c7d745e0cfb7718556159a8f3d704f6c9",
       "roots": [
         "RankAmplification"
+      ]
+    },
+    "sandrones-library": {
+      "repo": "https://github.com/FurinaManifold/sandrones-library",
+      "commit": "6bce6404b264cabe0d553188f60ad2d2174f80db",
+      "roots": [
+        "SandronesLibrary"
+      ]
+    },
+    "tda-lib": {
+      "repo": "https://github.com/uda-lab/tda-lib",
+      "commit": "6880b1ef1fcfebae0b8064d3c26223f3b952964a",
+      "roots": [
+        "TDA"
+      ]
+    },
+    "finite-simple-groups-lean": {
+      "repo": "https://github.com/KitaKen1/finite-simple-groups-lean",
+      "commit": "7f09e33a9ceef6b59ce03e34cd4f0558c763e325",
+      "roots": [
+        "FiniteSimpleGroups"
+      ]
+    },
+    "lean-commutator": {
+      "repo": "https://github.com/WuProver/lean-commutator",
+      "commit": "2f197491d436faa274133f9b72b2e8e8fe6c19c0",
+      "roots": [
+        "CommutatorTheorem",
+        "KadisonSinger",
+        "PavingSeparation"
+      ]
+    },
+    "palomar-qseries-row-factorization": {
+      "repo": "https://github.com/xiangyazi24/palomar-qseries-row-factorization",
+      "commit": "702c524cd8bc70867c918c23039680e7adf48bf8",
+      "roots": [
+        "Challenge",
+        "PalomarQseriesRowFactorization",
+        "QseriesFormalization",
+        "Solution"
+      ]
+    },
+    "piirrationalitymeasure": {
+      "repo": "https://github.com/frenzymath/PiIrrationalityMeasure",
+      "commit": "3ee5d4d080b440469d331a2fb3862aee88c23ca0",
+      "roots": [
+        "Challenge",
+        "Formalization",
+        "Solution"
+      ]
+    },
+    "twinprime": {
+      "repo": "https://github.com/andrew-tawfeek/twinprime",
+      "commit": "9932182b26b61e4a87c89fdb31e533f1a4b8dc7a",
+      "roots": [
+        "TwinPrime"
       ]
     }
   },
