@@ -58,6 +58,9 @@ An internal edge is supported on a vertex set if both endpoints lie in it.-/
 def SupportedOn (e : FeynmanEdge) (V : Finset VertexId) : Prop :=
   e.source ∈ V ∧ e.target ∈ V
 
+/--
+@isnad1 id=eq.0h2v.s5.e80c24b97cfa from=translated src=- shape=0c5f3b73 vocab=bf1e1b9e
+-/
 @[simp] theorem supportedOn_def (e : FeynmanEdge) (V : Finset VertexId) :
     e.SupportedOn V = (e.source ∈ V ∧ e.target ∈ V) := by
   rfl
@@ -67,6 +70,9 @@ A self-loop edge.-/
 def IsSelfLoop (e : FeynmanEdge) : Prop :=
   e.source = e.target
 
+/--
+@isnad1 id=eq.0h1v.s3.2c4c050469f2 from=translated src=- shape=606ddb7f vocab=3b9eb09c
+-/
 @[simp] theorem isSelfLoop_def (e : FeynmanEdge) :
     e.IsSelfLoop = (e.source = e.target) := by
   rfl
@@ -76,12 +82,17 @@ An edge is incident to vertex `v` if `v` is one of its endpoints.-/
 def Incident (e : FeynmanEdge) (v : VertexId) : Prop :=
   e.source = v ∨ e.target = v
 
+/--
+@isnad1 id=eq.0h2v.s4.9fd19d0b0436 from=translated src=- shape=870ebe1d vocab=41d5ee04
+-/
 @[simp] theorem incident_def (e : FeynmanEdge) (v : VertexId) :
     e.Incident v = (e.source = v ∨ e.target = v) := by
   rfl
 
 /--
-For a self-loop edge, incidence collapses to matching the single endpoint.-/
+For a self-loop edge, incidence collapses to matching the single endpoint.
+@isnad1 id=iff.1h2v.s4.f51a4815ce28 from=translated src=- shape=5ed3f0be vocab=203a6ddd
+-/
 theorem isSelfLoop_incident_iff
     {e : FeynmanEdge} (h : e.IsSelfLoop) (v : VertexId) :
     e.Incident v ↔ e.source = v := by
@@ -108,19 +119,30 @@ def retarget (γ : Finset VertexId) (star : VertexId) (e : FeynmanEdge) :
   target := if e.target ∈ γ then star else e.target
   sector := e.sector
 
+/--
+@isnad1 id=eq.0h3v.s5.01629feb34e2 from=translated src=- shape=762eb989 vocab=cb42ba3c
+-/
 @[simp] theorem retarget_source (γ : Finset VertexId) (star : VertexId)
     (e : FeynmanEdge) :
     (e.retarget γ star).source = if e.source ∈ γ then star else e.source := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e0096bdc9434 from=translated src=- shape=762eb989 vocab=f4f90aca
+-/
 @[simp] theorem retarget_target (γ : Finset VertexId) (star : VertexId)
     (e : FeynmanEdge) :
     (e.retarget γ star).target = if e.target ∈ γ then star else e.target := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f67da2de6e72 from=translated src=- shape=6a2138cb vocab=06190e05
+-/
 @[simp] theorem retarget_sector (γ : Finset VertexId) (star : VertexId)
     (e : FeynmanEdge) :
     (e.retarget γ star).sector = e.sector := rfl
 
-/-- If neither endpoint of `e` lies in `γ`, retargeting leaves `e` unchanged.-/
+/-- If neither endpoint of `e` lies in `γ`, retargeting leaves `e` unchanged.
+@isnad1 id=eq.2h3v.s5.576319043a5a from=translated src=- shape=8cc8c0db vocab=da5da82c
+-/
 theorem retarget_of_not_mem {γ : Finset VertexId} {star : VertexId}
     {e : FeynmanEdge}
     (hs : e.source ∉ γ) (ht : e.target ∉ γ) :
@@ -137,6 +159,9 @@ An external leg is supported on a vertex set if its attachment vertex lies in it
 def SupportedOn (ℓ : ExternalLeg) (V : Finset VertexId) : Prop :=
   ℓ.attachedTo ∈ V
 
+/--
+@isnad1 id=eq.0h2v.s4.c2dd31be344a from=translated src=- shape=d9f07f58 vocab=5e83cf54
+-/
 @[simp] theorem supportedOn_def (ℓ : ExternalLeg) (V : Finset VertexId) :
     ℓ.SupportedOn V = (ℓ.attachedTo ∈ V) := by
   rfl
@@ -152,16 +177,24 @@ def retarget (γ : Finset VertexId) (star : VertexId) (ℓ : ExternalLeg) :
   attachedTo := if ℓ.attachedTo ∈ γ then star else ℓ.attachedTo
   sector := ℓ.sector
 
+/--
+@isnad1 id=eq.0h3v.s5.e194c2c0b27c from=translated src=- shape=762eb989 vocab=07d71d49
+-/
 @[simp] theorem retarget_attachedTo (γ : Finset VertexId) (star : VertexId)
     (ℓ : ExternalLeg) :
     (ℓ.retarget γ star).attachedTo =
       if ℓ.attachedTo ∈ γ then star else ℓ.attachedTo := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f8d59ed0ff6f from=translated src=- shape=6a2138cb vocab=06e71936
+-/
 @[simp] theorem retarget_sector (γ : Finset VertexId) (star : VertexId)
     (ℓ : ExternalLeg) :
     (ℓ.retarget γ star).sector = ℓ.sector := rfl
 
-/-- If `ℓ`'s attachment is outside `γ`, retargeting leaves `ℓ` unchanged.-/
+/-- If `ℓ`'s attachment is outside `γ`, retargeting leaves `ℓ` unchanged.
+@isnad1 id=eq.1h3v.s4.a8c1ce9be3dd from=translated src=- shape=c1d2b8a0 vocab=333f1b52
+-/
 theorem retarget_of_not_mem {γ : Finset VertexId} {star : VertexId}
     {ℓ : ExternalLeg} (h : ℓ.attachedTo ∉ γ) :
     ℓ.retarget γ star = ℓ := by
@@ -202,30 +235,51 @@ def emptyGraph : FeynmanGraph where
   internalEdges := 0
   externalLegs := 0
 
+/--
+@isnad1 id=eq.0h0v.s3.1391bf1123fc from=translated src=- shape=72bba4e3 vocab=8b1eff10
+-/
 @[simp] theorem emptyGraph_vertices :
     emptyGraph.vertices = ∅ := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.7d53cd27b677 from=translated src=- shape=8c4e12ea vocab=ba4c743d
+-/
 @[simp] theorem emptyGraph_internalEdges :
     emptyGraph.internalEdges = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.b2b4f7907c9b from=translated src=- shape=8c4e12ea vocab=b3ca2600
+-/
 @[simp] theorem emptyGraph_externalLegs :
     emptyGraph.externalLegs = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5f0ff7b629fe from=translated src=- shape=b0ae1d2b vocab=730bc431
+-/
 @[simp] theorem emptyGraph_vertexCount :
     emptyGraph.vertexCount = 0 := by
   simp [vertexCount]
 
+/--
+@isnad1 id=eq.0h0v.s3.a857dee16a43 from=translated src=- shape=b0ae1d2b vocab=18884210
+-/
 @[simp] theorem emptyGraph_internalEdgeCount :
     emptyGraph.internalEdgeCount = 0 := by
   rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.58afec4d8bc4 from=translated src=- shape=b0ae1d2b vocab=32f9aca7
+-/
 @[simp] theorem emptyGraph_externalLegCount :
     emptyGraph.externalLegCount = 0 := by
   rfl
 
+/--
+@isnad1 id=wellform.0h0v.s1.65cc592f0869 from=translated src=- shape=49959d42 vocab=43a2639c
+-/
 theorem emptyGraph_wellFormed :
     emptyGraph.WellFormed := by
   constructor
@@ -234,18 +288,27 @@ theorem emptyGraph_wellFormed :
   · intro ℓ hℓ
     simp at hℓ
 
+/--
+@isnad1 id=supporte.2h2v.s4.7b60e9d55baa from=translated src=- shape=e5cbcf4c vocab=ce50e861
+-/
 theorem wellFormed_internal
     {G : FeynmanGraph} (hG : G.WellFormed)
     {e : FeynmanEdge} (he : e ∈ G.internalEdges) :
     e.SupportedOn G.vertices := by
   exact hG.1 e he
 
+/--
+@isnad1 id=supporte.2h2v.s4.9fda9322afc7 from=translated src=- shape=e5cbcf4c vocab=601588ee
+-/
 theorem wellFormed_external
     {G : FeynmanGraph} (hG : G.WellFormed)
     {ℓ : ExternalLeg} (hℓ : ℓ ∈ G.externalLegs) :
     ℓ.SupportedOn G.vertices := by
   exact hG.2 ℓ hℓ
 
+/--
+@isnad1 id=eq.0h1v.s3.7718e7fb1792 from=translated src=- shape=5fd9464a vocab=992e8e21
+-/
 @[simp] theorem FeynmanGraph_eta (G : FeynmanGraph) :
     FeynmanGraph.mk G.vertices G.internalEdges G.externalLegs = G := by
   cases G
@@ -289,7 +352,9 @@ def externalLegCountBy (G : FeynmanGraph) (s : GaugeSector) : Nat :=
 /--
 Sector-wise decomposition of the total internal-edge count:
 summing the sector-indexed counts over the three canonical sectors
-reconstructs `internalEdgeCount`.-/
+reconstructs `internalEdgeCount`.
+@isnad1 id=eq.0h1v.s4.a1073626421f from=translated src=- shape=47c8de03 vocab=1539ea11
+-/
 theorem internalEdgeCount_eq_sum_sectors (G : FeynmanGraph) :
     G.internalEdgeCount =
       G.internalEdgeCountBy GaugeGeometry.Core.GaugeSector.hypercharge
@@ -307,7 +372,9 @@ theorem internalEdgeCount_eq_sum_sectors (G : FeynmanGraph) :
 /--
 Sector-wise decomposition of the total external-leg count:
 summing the sector-indexed counts over the three canonical sectors
-reconstructs `externalLegCount`.-/
+reconstructs `externalLegCount`.
+@isnad1 id=eq.0h1v.s4.512384074091 from=translated src=- shape=47c8de03 vocab=94949904
+-/
 theorem externalLegCount_eq_sum_sectors (G : FeynmanGraph) :
     G.externalLegCount =
       G.externalLegCountBy GaugeGeometry.Core.GaugeSector.hypercharge
@@ -346,12 +413,21 @@ def eraseInternalEdge (G : FeynmanGraph) (e : FeynmanEdge) : FeynmanGraph where
   internalEdges := G.internalEdges.erase e
   externalLegs := G.externalLegs
 
+/--
+@isnad1 id=eq.0h2v.s3.9fc402d8626b from=translated src=- shape=46ddd87a vocab=3f79b23c
+-/
 @[simp] theorem eraseInternalEdge_vertices (G : FeynmanGraph) (e : FeynmanEdge) :
     (G.eraseInternalEdge e).vertices = G.vertices := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.1cc7173ddf7f from=translated src=- shape=391ae6e9 vocab=a11a4bb5
+-/
 @[simp] theorem eraseInternalEdge_internalEdges (G : FeynmanGraph) (e : FeynmanEdge) :
     (G.eraseInternalEdge e).internalEdges = G.internalEdges.erase e := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.f9c316ebc809 from=translated src=- shape=46ddd87a vocab=192f6b9e
+-/
 @[simp] theorem eraseInternalEdge_externalLegs (G : FeynmanGraph) (e : FeynmanEdge) :
     (G.eraseInternalEdge e).externalLegs = G.externalLegs := rfl
 
@@ -360,7 +436,9 @@ H0.2 — Erasing an internal edge that is actually present strictly
 decreases the internal-edge count.
 
 This is the key termination fact underlying bridge elimination and the
-well-founded recursion on `loopNumber` used by the coproduct.-/
+well-founded recursion on `loopNumber` used by the coproduct.
+@isnad1 id=lt.1h2v.s4.53ef70748f3e from=translated src=- shape=7aa246d3 vocab=f1968ad7
+-/
 theorem eraseInternalEdge_internalEdgeCount_lt
     {G : FeynmanGraph} {e : FeynmanEdge} (he : e ∈ G.internalEdges) :
     (G.eraseInternalEdge e).internalEdgeCount < G.internalEdgeCount := by
@@ -393,7 +471,9 @@ def freshVertex (V : Finset VertexId) : VertexId :=
 /--
 H1.2 — `freshVertex V` never belongs to `V`: every element of `V` is
 bounded above by `V.sup id`, so the successor `V.sup id + 1` is strictly
-greater than all of them.-/
+greater than all of them.
+@isnad1 id=not.0h1v.s4.d344a721a06b from=translated src=- shape=c3bcf915 vocab=d098e712
+-/
 theorem freshVertex_not_mem (V : Finset VertexId) :
     freshVertex V ∉ V := by
   intro hmem
