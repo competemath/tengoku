@@ -1,0 +1,163 @@
+import Tengoku.Seed.LinearAlgebra.Dimension.Constructions
+import Tengoku.Seed.Algebra.Polynomial.AlgebraMap
+import Tengoku.Seed.LinearAlgebra.Matrix.ToLin
+import Tengoku.Nlalib.NLAlib.Krylov.Spaces.Basic
+import Tengoku.Nlalib.NLAlib.Matrix.Functions.PolynomialIntertwining
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+/-!
+# Krylov subspaces: polynomial characterisation and basic structure
+
+Facts about `NLAlib.krylovSpace A b q = span {b, A b, …, A^(q−1) b}`:
+
+* `mem_krylovSpace_iff`: `K_q(A,b) = {p(A) b : deg p < q}` (no hypothesis on `q`);
+* `pow_mulVec_mem_krylovSpace`, `self_mem_krylovSpace_succ`: the generators lie in it;
+* `krylovSpace_zero`, `krylovSpace_succ`: `K_0 = 0` and `K_{q+1} = K_q ⊔ span {A^q b}`;
+* `krylovSpace_mono`: monotonicity in `q`;
+* `mulVec_mem_krylovSpace_succ`: `A K_q ⊆ K_{q+1}`;
+* `finrank_krylovSpace_le`: `dim K_q ≤ q`;
+* `krylovSpace_mulVec_le_succ`: `K_q(A, A b) ⊆ K_{q+1}(A, b)`;
+* `mulVec_mem_krylovSpace_of_mul_eq`: `C B = B' C` implies `C K_q(B, b) ⊆ K_q(B', C b)`.
+
+Source: Golub–Meurant (2010) [`gm10`], Ch. 4; Martinsson–Tropp (2020) [`mt20`], §11.7.
+Atlas: `krylov-subspace`.
+-/
+
+noncomputable section
+
+open scoped Matrix Polynomial
+
+namespace NLAlib
+
+variable {K : Type*} [Field K] {n : Type*} [Fintype n] [DecidableEq n]
+
+/-- The generators `A^i b` (`i < q`) lie in `K_q(A,b)`. Atlas: `krylov-subspace`.-/
+theorem pow_mulVec_mem_krylovSpace (A : Matrix n n K) (b : n → K) {q i : ℕ} (hi : i < q) :
+    (A ^ i) *ᵥ b ∈ krylovSpace A b q :=
+  Submodule.subset_span ⟨⟨i, hi⟩, rfl⟩
+
+/-- `p(A) b` for a polynomial written in the monomial basis with coefficients `c : Fin q → K`.-/
+private lemma aeval_sum_fin_mulVec (A : Matrix n n K) (b : n → K) {q : ℕ} (c : Fin q → K) :
+    Polynomial.aeval A (∑ i : Fin q, Polynomial.C (c i) * Polynomial.X ^ (i : ℕ)) *ᵥ b =
+      ∑ i : Fin q, c i • ((A ^ (i : ℕ)) *ᵥ b) := by
+  simp [map_sum, Matrix.sum_mulVec, Algebra.algebraMap_eq_smul_one, Matrix.smul_mulVec]
+
+/-- Polynomial characterisation of the Krylov space (valid for every `q`, including `q = 0`
+where both sides are `{0}`): `x ∈ K_q(A,b) ↔ x = p(A) b` for some `p` with `deg p < q`, i.e.
+`K_q` is spanned by `q − 1` matvecs.
+Source: Golub–Meurant (2010) [`gm10`], Ch. 4; Martinsson–Tropp (2020) [`mt20`], §11.7.
+atlas: krylov-subspace-/
+theorem mem_krylovSpace_iff (A : Matrix n n K) (b : n → K) (q : ℕ) (x : n → K) :
+    x ∈ krylovSpace A b q ↔
+      ∃ p : K[X], p.degree < q ∧ x = Polynomial.aeval A p *ᵥ b := by
+  constructor
+  · intro hx
+    obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun K).1 hx
+    exact ⟨_, Polynomial.degree_sum_fin_lt c, (aeval_sum_fin_mulVec A b c).symm⟩
+  · rintro ⟨p, hp, rfl⟩
+    by_cases hp0 : p = 0
+    · subst hp0; simp
+    have hnat : p.natDegree < q := (Polynomial.natDegree_lt_iff_degree_lt hp0).2 hp
+    rw [p.as_sum_range' q hnat]
+    simp_rw [← Polynomial.C_mul_X_pow_eq_monomial]
+    rw [← Fin.sum_univ_eq_sum_range
+      (fun i => Polynomial.C (p.coeff i) * Polynomial.X ^ i), aeval_sum_fin_mulVec]
+    exact Submodule.sum_mem _ fun i _ =>
+      Submodule.smul_mem _ _ (pow_mulVec_mem_krylovSpace A b i.isLt)
+
+/-- The zeroth Krylov space is trivial: `K_0(A,b) = 0`. Atlas: `krylov-subspace`.-/
+@[simp] theorem krylovSpace_zero (A : Matrix n n K) (b : n → K) : krylovSpace A b 0 = ⊥ := by
+  rw [krylovSpace, Set.range_eq_empty, Submodule.span_empty]
+
+/-- Zero generators produce the trivial Krylov space.-/
+@[simp] theorem krylovSpace_start_zero (A : Matrix n n K) (q : ℕ) :
+    krylovSpace A 0 q = ⊥ := by
+  apply le_antisymm _ bot_le
+  apply Submodule.span_le.mpr
+  rintro _ ⟨i, rfl⟩
+  simp
+
+/-- One Krylov step adds one generator: `K_{q+1}(A,b) = K_q(A,b) ⊔ span {A^q b}`.
+Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.-/
+theorem krylovSpace_succ (A : Matrix n n K) (b : n → K) (q : ℕ) :
+    krylovSpace A b (q + 1) = krylovSpace A b q ⊔ Submodule.span K {(A ^ q) *ᵥ b} := by
+  rw [krylovSpace, krylovSpace, ← Submodule.span_union]
+  congr 1
+  ext x
+  simp only [Set.mem_range, Set.mem_union, Set.mem_singleton_iff]
+  constructor
+  · rintro ⟨i, rfl⟩
+    rcases Fin.eq_castSucc_or_eq_last i with ⟨j, rfl⟩ | rfl
+    · exact Or.inl ⟨j, rfl⟩
+    · exact Or.inr rfl
+  · rintro (⟨i, rfl⟩ | rfl)
+    · exact ⟨i.castSucc, rfl⟩
+    · exact ⟨Fin.last q, rfl⟩
+
+/-- Krylov spaces are nested: `q ≤ q' → K_q(A,b) ≤ K_{q'}(A,b)`. Source: [`gm10`], Ch. 4.
+Atlas: `krylov-subspace`.
+atlas: krylov-subspace-/
+theorem krylovSpace_mono (A : Matrix n n K) (b : n → K) {q q' : ℕ} (h : q ≤ q') :
+    krylovSpace A b q ≤ krylovSpace A b q' :=
+  Submodule.span_le.2 <| by
+    rintro _ ⟨i, rfl⟩
+    exact pow_mulVec_mem_krylovSpace A b (lt_of_lt_of_le i.isLt h)
+
+/-- `A K_q(A,b) ⊆ K_{q+1}(A,b)`. Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
+atlas: krylov-subspace-/
+theorem mulVec_mem_krylovSpace_succ (A : Matrix n n K) (b : n → K) {q : ℕ} {x : n → K}
+    (hx : x ∈ krylovSpace A b q) : A *ᵥ x ∈ krylovSpace A b (q + 1) := by
+  have hle : krylovSpace A b q ≤ (krylovSpace A b (q + 1)).comap (Matrix.mulVecLin A) := by
+    refine Submodule.span_le.2 ?_
+    rintro _ ⟨i, rfl⟩
+    change A *ᵥ ((A ^ (i : ℕ)) *ᵥ b) ∈ krylovSpace A b (q + 1)
+    rw [Matrix.mulVec_mulVec, ← pow_succ']
+    exact pow_mulVec_mem_krylovSpace A b (Nat.succ_lt_succ i.isLt)
+  exact hle hx
+
+/-- The starting vector lies in every nontrivial Krylov space: `b ∈ K_{q+1}(A,b)`.
+Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.-/
+theorem self_mem_krylovSpace_succ (A : Matrix n n K) (b : n → K) (q : ℕ) :
+    b ∈ krylovSpace A b (q + 1) := by
+  simpa using pow_mulVec_mem_krylovSpace A b (Nat.succ_pos q)
+
+/-- `dim K_q(A,b) ≤ q`. Source: [`gm10`], Ch. 4. Atlas: `krylov-subspace`.
+atlas: krylov-subspace-/
+theorem finrank_krylovSpace_le (A : Matrix n n K) (b : n → K) (q : ℕ) :
+    Module.finrank K (krylovSpace A b q) ≤ q := by
+  exact (finrank_range_le_card (R := K) (fun i : Fin q => (A ^ (i : ℕ)) *ᵥ b)).trans
+    (by simp)
+
+/-! ### Shifted and intertwined Krylov spaces -/
+
+/-- `K_q(B, B b) ⊆ K_{q+1}(B, b)`. Helper for `golub-kahan-bidiagonalization`.-/
+theorem krylovSpace_mulVec_le_succ (B : Matrix n n K) (b : n → K) (q : ℕ) :
+    krylovSpace B (B *ᵥ b) q ≤ krylovSpace B b (q + 1) := by
+  refine Submodule.span_le.2 ?_
+  rintro _ ⟨i, rfl⟩
+  change (B ^ (i : ℕ)) *ᵥ (B *ᵥ b) ∈ _
+  rw [Matrix.mulVec_mulVec, ← pow_succ]
+  exact pow_mulVec_mem_krylovSpace _ _ (Nat.succ_lt_succ i.isLt)
+
+section Intertwining
+
+variable {m : Type*} [Fintype m] [DecidableEq m]
+
+/-- Krylov spaces are carried along an intertwining map: if `C B = B' C` then
+`C K_q(B, b) ⊆ K_q(B', C b)`. Source: Golub–Van Loan (2013) [`gvl13`], §10.4.1. Helper for
+`golub-kahan-bidiagonalization`.-/
+theorem mulVec_mem_krylovSpace_of_mul_eq {C : Matrix m n K} {B : Matrix n n K}
+    {B' : Matrix m m K} (hC : C * B = B' * C) {b x : n → K} {q : ℕ}
+    (hx : x ∈ krylovSpace B b q) : C *ᵥ x ∈ krylovSpace B' (C *ᵥ b) q := by
+  have hle : krylovSpace B b q ≤ (krylovSpace B' (C *ᵥ b) q).comap C.mulVecLin := by
+    refine Submodule.span_le.2 ?_
+    rintro _ ⟨i, rfl⟩
+    change C *ᵥ ((B ^ (i : ℕ)) *ᵥ b) ∈ krylovSpace B' (C *ᵥ b) q
+    rw [Matrix.mulVec_mulVec, (pow_mul_eq_mul_pow_of_mul_eq hC.symm i).symm,
+      ← Matrix.mulVec_mulVec]
+    exact pow_mulVec_mem_krylovSpace _ _ i.isLt
+  exact hle hx
+
+end Intertwining
+
+end NLAlib
