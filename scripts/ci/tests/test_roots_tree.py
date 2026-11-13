@@ -276,5 +276,30 @@ class ExplicitRoot(unittest.TestCase):
         self.assertEqual(once, twice)
 
 
+class DocComment(unittest.TestCase):
+    """The inserted commands must not stand between a doc comment and its declaration (found by the merge queue on PadicLFunctions: `unexpected token 'namespace'; expected 'lemma'`)"""
+
+    TEXT = "module\n\nimport Tengoku\n\n/-! module doc -/\n\n/-- the zeta value. -/\ndef zeta (k : Nat) : Nat := k\n\ntheorem zeta_zero : zeta 0 = 0 := rfl\n"
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": "roots: 1 declarations\nroot: zeta\n"})
+        return changed.get("Tengoku/Foo/A.lean", text)
+
+    def test_the_prelude_goes_in_front_of_the_doc_comment(self):
+        out = self.run_text(self.TEXT)
+        self.assertIn("namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo /-- the zeta value. -/\ndef Tengoku.Foo.zeta", out)
+
+    def test_a_module_doc_and_a_plain_comment_stay_header(self):
+        out = self.run_text(self.TEXT.replace("/-- the zeta", "/- the zeta"))
+        self.assertIn("/- the zeta value. -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def Tengoku.Foo.zeta", out)
+
+    def test_no_line_moves_and_it_is_idempotent(self):
+        once = self.run_text(self.TEXT)
+        self.assertEqual(
+            len(once.split("\n")), len(self.TEXT.split("\n")) + 1
+        )  # the one footer line the pass appends; none of the module's own lines moves
+        self.assertEqual(once, self.run_text(once))
+
+
 if __name__ == "__main__":
     unittest.main()
