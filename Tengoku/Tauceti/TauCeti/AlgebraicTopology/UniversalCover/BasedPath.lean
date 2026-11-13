@@ -16,16 +16,16 @@ machinery of `endpoint ⁻¹' U` used in the universal-cover construction. It is
 [#38292](https://github.com/leanprover-community/mathlib4/pull/38292) by Kim Morrison.
 -/
 
-open scoped unitInterval
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti open scoped unitInterval
 open Topology TauCeti
 
 variable {X : Type*} [TopologicalSpace X]
 
 /-- The compact-open based-path space out of `x₀`. -/
-@[expose] public def BasedPath (x₀ : X) :=
+@[expose] public def Tengoku.Tauceti.BasedPath (x₀ : X) :=
   { γ : C(I, X) // γ 0 = x₀ }
 
-namespace BasedPath
+namespace Tengoku.Tauceti.BasedPath
 
 variable {x₀ : X}
 
@@ -835,4 +835,5 @@ public theorem pathComponentIn_ofPath_eq_of_homotopic {U : Set X} {y : X} (hy : 
       pathComponentIn (endpoint (x₀ := x₀) ⁻¹' U) (ofPath q) :=
   pathComponentIn_congr (joinedIn_endpoint_preimage_of_homotopic x₀ hy h).symm
 
-end BasedPath
+end Tengoku.Tauceti.BasedPath
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -79,7 +79,7 @@ re-founded slash action with built-in character) and their names. The Hecke pair
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane
 
 open scoped MatrixGroups ModularForm Pointwise
@@ -126,7 +126,7 @@ private noncomputable def diamondOpAux (k : ℤ) (g : ↥(Gamma0 N)) :
 /-- Slash-transport for `Γ₁(N)`-invariant functions: if `f` is invariant under
 `(Gamma1 N).map (mapGL ℝ)` and `Gamma0Map N g₁ = Gamma0Map N g₂`, then
 `f ∣[k] g₁ = f ∣[k] g₂`. -/
-lemma slash_eq_of_Gamma0Map_eq {k : ℤ} {f : UpperHalfPlane → ℂ}
+lemma Tengoku.Tauceti.slash_eq_of_Gamma0Map_eq {k : ℤ} {f : UpperHalfPlane → ℂ}
     (hf : ∀ γ ∈ (Gamma1 N).map (mapGL ℝ), f ∣[k] γ = f)
     (g₁ g₂ : ↥(Gamma0 N)) (heq : Gamma0Map N g₁ = Gamma0Map N g₂) :
     f ∣[k] mapGL ℝ (g₁ : SL(2, ℤ)) = f ∣[k] mapGL ℝ (g₂ : SL(2, ℤ)) := by
@@ -144,7 +144,7 @@ private theorem diamondOpAux_eq_of_Gamma0Map_eq (k : ℤ) (g₁ g₂ : ↥(Gamma
 
 /-- The diamond operator `⟨d⟩` on modular forms for `Gamma1 N`, indexed by
 `d : (ZMod N)ˣ`. -/
-noncomputable def diamondOp (k : ℤ) (d : (ZMod N)ˣ) :
+noncomputable def Tengoku.Tauceti.diamondOp (k : ℤ) (d : (ZMod N)ˣ) :
     ModularForm ((Gamma1 N).map (mapGL ℝ)) k →ₗ[ℂ] ModularForm ((Gamma1 N).map (mapGL ℝ)) k :=
   diamondOpAux k (Gamma0Map_toHomUnits_surjective d).choose
 
@@ -156,7 +156,7 @@ private theorem diamondOp_eq_diamondOpAux (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Ga
 
 /-- Evaluation of the diamond operator: at any representative `g ∈ Γ₀(N)` with lower-right
 entry `d`, the diamond operator `⟨d⟩` is slashing by `g`. -/
-theorem coe_diamondOp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
+theorem Tengoku.Tauceti.coe_diamondOp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
     (hg : (Gamma0Map N).toHomUnits g = d) (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑(diamondOp k d f) = ⇑f ∣[k] mapGL ℝ (g : SL(2, ℤ)) := by
   rw [diamondOp_eq_diamondOpAux k d g hg]
@@ -164,7 +164,7 @@ theorem coe_diamondOp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
 
 /-- The diamond operator at `1` is the identity. -/
 @[simp]
-theorem diamondOp_one (k : ℤ) : diamondOp (N := N) k 1 = LinearMap.id := by
+theorem Tengoku.Tauceti.diamondOp_one (k : ℤ) : diamondOp (N := N) k 1 = LinearMap.id := by
   rw [diamondOp_eq_diamondOpAux k 1 1 (map_one _)]
   ext f z
   -- state the unfolded slash of the coercion so `slash_one` applies
@@ -172,7 +172,7 @@ theorem diamondOp_one (k : ℤ) : diamondOp (N := N) k 1 = LinearMap.id := by
   simp only [map_one, SlashAction.slash_one]
 
 /-- Diamond operators compose: `⟨d₁ * d₂⟩ = ⟨d₁⟩ ∘ ⟨d₂⟩`. -/
-theorem diamondOp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
+theorem Tengoku.Tauceti.diamondOp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
     diamondOp k (d₁ * d₂) = (diamondOp k d₁).comp (diamondOp k d₂) := by
   obtain ⟨g₁, hg₁⟩ := Gamma0Map_toHomUnits_surjective (N := N) d₁
   obtain ⟨g₂, hg₂⟩ := Gamma0Map_toHomUnits_surjective (N := N) d₂
@@ -185,14 +185,14 @@ theorem diamondOp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
   rw [map_mul, SlashAction.slash_mul]
 
 /-- The diamond operator as a monoid homomorphism `(ZMod N)ˣ →* Module.End ℂ (...)`. -/
-noncomputable def diamondOpHom (k : ℤ) :
+noncomputable def Tengoku.Tauceti.diamondOpHom (k : ℤ) :
     (ZMod N)ˣ →* Module.End ℂ (ModularForm ((Gamma1 N).map (mapGL ℝ)) k) where
   toFun := diamondOp k
   map_one' := diamondOp_one k
   map_mul' := diamondOp_mul k
 
 @[simp]
-lemma diamondOpHom_apply (k : ℤ) (d : (ZMod N)ˣ) :
+lemma Tengoku.Tauceti.diamondOpHom_apply (k : ℤ) (d : (ZMod N)ˣ) :
     diamondOpHom k d = diamondOp k d := (rfl)
 
 -- Auxiliary form of the cusp-form diamond operator: translation by a fixed
@@ -220,7 +220,7 @@ private theorem diamondOpCuspAux_eq_of_Gamma0Map_eq (k : ℤ) (g₁ g₂ : ↥(G
     (fun _ hγ ↦ SlashInvariantFormClass.slash_action_eq f _ hγ) g₁ g₂ heq) z
 
 /-- The cusp-form diamond operator indexed by `d : (ZMod N)ˣ`. -/
-noncomputable def diamondOpCusp (k : ℤ) (d : (ZMod N)ˣ) :
+noncomputable def Tengoku.Tauceti.diamondOpCusp (k : ℤ) (d : (ZMod N)ˣ) :
     CuspForm ((Gamma1 N).map (mapGL ℝ)) k →ₗ[ℂ] CuspForm ((Gamma1 N).map (mapGL ℝ)) k :=
   diamondOpCuspAux k (Gamma0Map_toHomUnits_surjective d).choose
 
@@ -233,7 +233,7 @@ private theorem diamondOpCusp_eq_diamondOpCuspAux (k : ℤ) (d : (ZMod N)ˣ) (g 
 
 /-- Evaluation of the cusp-form diamond operator: at any representative `g ∈ Γ₀(N)` with
 lower-right entry `d`, the diamond operator `⟨d⟩` is slashing by `g`. -/
-theorem coe_diamondOpCusp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
+theorem Tengoku.Tauceti.coe_diamondOpCusp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
     (hg : (Gamma0Map N).toHomUnits g = d) (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑(diamondOpCusp k d f) = ⇑f ∣[k] mapGL ℝ (g : SL(2, ℤ)) := by
   rw [diamondOpCusp_eq_diamondOpCuspAux k d g hg]
@@ -241,7 +241,7 @@ theorem coe_diamondOpCusp (k : ℤ) (d : (ZMod N)ˣ) (g : ↥(Gamma0 N))
 
 /-- The cusp diamond operator at `1` is the identity. -/
 @[simp]
-theorem diamondOpCusp_one (k : ℤ) : diamondOpCusp (N := N) k 1 = LinearMap.id := by
+theorem Tengoku.Tauceti.diamondOpCusp_one (k : ℤ) : diamondOpCusp (N := N) k 1 = LinearMap.id := by
   rw [diamondOpCusp_eq_diamondOpCuspAux k 1 1 (map_one _)]
   ext f z
   -- state the unfolded slash of the coercion so `slash_one` applies
@@ -249,7 +249,7 @@ theorem diamondOpCusp_one (k : ℤ) : diamondOpCusp (N := N) k 1 = LinearMap.id 
   simp only [map_one, SlashAction.slash_one]
 
 /-- Cusp diamond operators compose multiplicatively. -/
-theorem diamondOpCusp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
+theorem Tengoku.Tauceti.diamondOpCusp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
     diamondOpCusp k (d₁ * d₂) = (diamondOpCusp k d₁).comp (diamondOpCusp k d₂) := by
   obtain ⟨g₁, hg₁⟩ := Gamma0Map_toHomUnits_surjective (N := N) d₁
   obtain ⟨g₂, hg₂⟩ := Gamma0Map_toHomUnits_surjective (N := N) d₂
@@ -263,39 +263,39 @@ theorem diamondOpCusp_mul (k : ℤ) (d₁ d₂ : (ZMod N)ˣ) :
   rw [map_mul, SlashAction.slash_mul]
 
 /-- The cusp-form diamond operator as a monoid homomorphism. -/
-noncomputable def diamondOpCuspHom (k : ℤ) :
+noncomputable def Tengoku.Tauceti.diamondOpCuspHom (k : ℤ) :
     (ZMod N)ˣ →* Module.End ℂ (CuspForm ((Gamma1 N).map (mapGL ℝ)) k) where
   toFun := diamondOpCusp k
   map_one' := diamondOpCusp_one k
   map_mul' := diamondOpCusp_mul k
 
 @[simp]
-lemma diamondOpCuspHom_apply (k : ℤ) (d : (ZMod N)ˣ) :
+lemma Tengoku.Tauceti.diamondOpCuspHom_apply (k : ℤ) (d : (ZMod N)ˣ) :
     diamondOpCuspHom k d = diamondOpCusp k d := (rfl)
 
 /-- The nebentypus character space `S_k(Γ₁(N), χ)`: cusp forms on which every
 diamond operator `⟨d⟩` acts by the scalar `χ(d)`. -/
-noncomputable def cuspFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+noncomputable def Tengoku.Tauceti.cuspFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     Submodule ℂ (CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :=
   ⨅ d : (ZMod N)ˣ, Module.End.eigenspace (diamondOpCuspHom k d) (↑(χ d))
 
 /-- Defining equation for the sealed `cuspFormCharSpace`: it is the joint eigenspace of the
 diamond operators. -/
-lemma cuspFormCharSpace_def (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+lemma Tengoku.Tauceti.cuspFormCharSpace_def (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     cuspFormCharSpace k χ =
       ⨅ d : (ZMod N)ˣ, Module.End.eigenspace (diamondOpCuspHom k d) (↑(χ d)) := (rfl)
 
 /-- Membership in `S_k(Γ₁(N), χ)`: `f` is in the `χ`-eigenspace iff
 `⟨d⟩ f = χ(d) • f` for every `d ∈ (ZMod N)ˣ`. -/
 @[simp]
-theorem mem_cuspFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.mem_cuspFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) : f ∈ cuspFormCharSpace k χ ↔
     ∀ d : (ZMod N)ˣ, diamondOpCuspHom k d f = (↑(χ d) : ℂ) • f := by
   simp only [cuspFormCharSpace, Submodule.mem_iInf, Module.End.mem_eigenspace_iff]
 
 /-- Diamond operators act by `χ(d)` on elements of `S_k(Γ₁(N), χ)`. Not `@[simp]`: `χ`
 occurs only in the hypothesis and the right-hand side, so `simp` cannot infer it. -/
-theorem diamondOpCusp_apply_of_mem_cuspFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.diamondOpCusp_apply_of_mem_cuspFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
     (d : (ZMod N)ˣ) {f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k}
     (hf : f ∈ cuspFormCharSpace k χ) :
     diamondOpCusp k d f = (↑(χ d) : ℂ) • f :=
@@ -303,7 +303,7 @@ theorem diamondOpCusp_apply_of_mem_cuspFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ 
 
 /-- **A nonzero cusp form determines its nebentypus**: the character spaces of two distinct
 characters meet only in `0`, since `⟨d⟩ f = χ(d) • f = χ'(d) • f` forces `χ(d) = χ'(d)`. -/
-theorem eq_of_mem_cuspFormCharSpace_of_ne_zero {k : ℤ} {χ χ' : (ZMod N)ˣ →* ℂˣ}
+theorem Tengoku.Tauceti.eq_of_mem_cuspFormCharSpace_of_ne_zero {k : ℤ} {χ χ' : (ZMod N)ˣ →* ℂˣ}
     {f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k} (hf : f ∈ cuspFormCharSpace k χ)
     (hf' : f ∈ cuspFormCharSpace k χ') (h0 : f ≠ 0) : χ = χ' :=
   MonoidHom.ext fun d ↦ Units.ext <| smul_left_injective ℂ h0 <|
@@ -311,27 +311,27 @@ theorem eq_of_mem_cuspFormCharSpace_of_ne_zero {k : ℤ} {χ χ' : (ZMod N)ˣ �
       (diamondOpCusp_apply_of_mem_cuspFormCharSpace k χ' d hf')
 
 /-- The modular-form nebentypus character space `M_k(Γ₁(N), χ)`. -/
-noncomputable def modFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+noncomputable def Tengoku.Tauceti.modFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     Submodule ℂ (ModularForm ((Gamma1 N).map (mapGL ℝ)) k) :=
   ⨅ d : (ZMod N)ˣ, Module.End.eigenspace (diamondOpHom k d) (↑(χ d))
 
 /-- Defining equation for the sealed `modFormCharSpace`: it is the joint eigenspace of the
 diamond operators. -/
-lemma modFormCharSpace_def (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+lemma Tengoku.Tauceti.modFormCharSpace_def (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     modFormCharSpace k χ =
       ⨅ d : (ZMod N)ˣ, Module.End.eigenspace (diamondOpHom k d) (↑(χ d)) := (rfl)
 
 /-- Membership in `M_k(Γ₁(N), χ)`: `f` is in the `χ`-eigenspace iff `⟨d⟩ f = χ(d) • f`
 for every `d ∈ (ZMod N)ˣ`. -/
 @[simp]
-theorem mem_modFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.mem_modFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
     (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) : f ∈ modFormCharSpace k χ ↔
     ∀ d : (ZMod N)ˣ, diamondOpHom k d f = (↑(χ d) : ℂ) • f := by
   simp only [modFormCharSpace, Submodule.mem_iInf, Module.End.mem_eigenspace_iff]
 
 /-- Diamond operators act by `χ(d)` on elements of `M_k(Γ₁(N), χ)`. Not `@[simp]`: `χ`
 occurs only in the hypothesis and the right-hand side, so `simp` cannot infer it. -/
-theorem diamondOp_apply_of_mem_modFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.diamondOp_apply_of_mem_modFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
     (d : (ZMod N)ˣ) {f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k}
     (hf : f ∈ modFormCharSpace k χ) :
     diamondOp k d f = (↑(χ d) : ℂ) • f :=
@@ -340,7 +340,7 @@ theorem diamondOp_apply_of_mem_modFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* 
 /-- **Bridge**: for a `Gamma1`-invariant modular form `f`, membership in the
 diamond-eigenspace `modFormCharSpace k χ₀` is equivalent to the classical nebentypus
 relation `f ∣[k] g = χ₀(d_g) • f` for all `g ∈ Γ₀(N)`. -/
-theorem mem_modFormCharSpace_iff_nebentypus (k : ℤ) (χ₀ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.mem_modFormCharSpace_iff_nebentypus (k : ℤ) (χ₀ : (ZMod N)ˣ →* ℂˣ)
     (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) : f ∈ modFormCharSpace k χ₀ ↔
     ∀ g : ↥(Gamma0 N),
       (⇑f) ∣[k] mapGL ℝ (g : SL(2, ℤ)) = (↑(χ₀ ((Gamma0Map N).toHomUnits g)) : ℂ) • ⇑f := by
@@ -356,7 +356,7 @@ theorem mem_modFormCharSpace_iff_nebentypus (k : ℤ) (χ₀ : (ZMod N)ˣ →* �
 /-- **A matrix of `Γ₀(N)` whose lower-right entry is `1` modulo a divisor `M` acts trivially on
 `M_k(Γ₁(N), χ)` when `χ` is pulled back from a character modulo `M`**: its nebentypus value is
 `χ₀` of the lower-right entry modulo `M`, which is `χ₀ 1 = 1`. -/
-theorem slash_mapGL_eq_self_of_comp_of_mem_modFormCharSpace {M N : ℕ} (hMN : M ∣ N)
+theorem Tengoku.Tauceti.slash_mapGL_eq_self_of_comp_of_mem_modFormCharSpace {M N : ℕ} (hMN : M ∣ N)
     {χ : (ZMod N)ˣ →* ℂˣ} {χ₀ : (ZMod M)ˣ →* ℂˣ} (hcomp : χ = χ₀.comp (ZMod.unitsMap hMN))
     {f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k} (hf : f ∈ modFormCharSpace k χ)
     {β : SL(2, ℤ)} (hβ : β ∈ Gamma0 N) (hβ11 : ((β 1 1 : ℤ) : ZMod M) = 1) :
@@ -372,7 +372,7 @@ theorem slash_mapGL_eq_self_of_comp_of_mem_modFormCharSpace {M N : ℕ} (hMN : M
 /-- **Bridge (cusp forms)**: for a `Gamma1`-invariant cusp form `f`, membership in the
 diamond-eigenspace `cuspFormCharSpace k χ₀` is equivalent to the classical nebentypus
 relation `f ∣[k] g = χ₀(d_g) • f` for all `g ∈ Γ₀(N)`. -/
-theorem mem_cuspFormCharSpace_iff_nebentypus (k : ℤ) (χ₀ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.mem_cuspFormCharSpace_iff_nebentypus (k : ℤ) (χ₀ : (ZMod N)ˣ →* ℂˣ)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) : f ∈ cuspFormCharSpace k χ₀ ↔
     ∀ g : ↥(Gamma0 N),
       (⇑f) ∣[k] mapGL ℝ (g : SL(2, ℤ)) = (↑(χ₀ ((Gamma0Map N).toHomUnits g)) : ℂ) • ⇑f := by
@@ -397,7 +397,7 @@ Follows `diamondOp_n` of the AINTLIB `LeanModularForms` project
 `ce76186b5f61c846d770d2f87eb76ba5b9c9117a`, Apache-2.0). -/
 -- The statement is that project's; the proofs below are re-derived against the current Mathlib
 -- pin, where `dif_pos`/`dif_neg` are deprecated and the coprime lemma cannot carry `@[simp]`.
-noncomputable def diamondOpNat (k : ℤ) (n : ℕ) :
+noncomputable def Tengoku.Tauceti.diamondOpNat (k : ℤ) (n : ℕ) :
     ModularForm ((Gamma1 N).map (mapGL ℝ)) k →ₗ[ℂ] ModularForm ((Gamma1 N).map (mapGL ℝ)) k :=
   if h : Nat.Coprime n N then diamondOp k (ZMod.unitOfCoprime n h) else 0
 
@@ -405,14 +405,14 @@ noncomputable def diamondOpNat (k : ℤ) (n : ℕ) :
 -- Not a `simp` lemma: the right-hand side mentions the coprimality proof `h`, which `simp`
 -- cannot recover from the left-hand side, so it could never apply. Its negative counterpart is
 -- `simp`-able because that right-hand side is just `0`.
-lemma diamondOpNat_of_coprime (k : ℤ) {n : ℕ} (h : Nat.Coprime n N) :
+lemma Tengoku.Tauceti.diamondOpNat_of_coprime (k : ℤ) {n : ℕ} (h : Nat.Coprime n N) :
     diamondOpNat k n = diamondOp k (ZMod.unitOfCoprime n h) :=
   dite_eq_left_of_eq_true (by simpa using h)
 
 /-- When `n` is not coprime to `N`, `⟨n⟩` vanishes. This is the case that lets the prime-power
 Hecke recurrence be stated without splitting on whether `p` divides the level. -/
 @[simp]
-lemma diamondOpNat_of_not_coprime (k : ℤ) {n : ℕ} (h : ¬ Nat.Coprime n N) :
+lemma Tengoku.Tauceti.diamondOpNat_of_not_coprime (k : ℤ) {n : ℕ} (h : ¬ Nat.Coprime n N) :
     diamondOpNat (N := N) k n = 0 :=
   dite_eq_right_of_eq_false (by simpa using h)
 
@@ -420,32 +420,32 @@ lemma diamondOpNat_of_not_coprime (k : ℤ) {n : ℕ} (h : ¬ Nat.Coprime n N) :
 unit `n mod N` when `n` is coprime to `N`, and `0` otherwise — the cusp-form counterpart of
 `diamondOpNat`, and the reason the prime Hecke operator on `S_k(Γ₁(N))` has one formula at every
 prime rather than one per divisibility case. -/
-noncomputable def diamondOpCuspNat (k : ℤ) (n : ℕ) :
+noncomputable def Tengoku.Tauceti.diamondOpCuspNat (k : ℤ) (n : ℕ) :
     CuspForm ((Gamma1 N).map (mapGL ℝ)) k →ₗ[ℂ] CuspForm ((Gamma1 N).map (mapGL ℝ)) k :=
   if h : Nat.Coprime n N then diamondOpCusp k (ZMod.unitOfCoprime n h) else 0
 
 /-- When `n` is coprime to `N`, `⟨n⟩` is the cusp diamond operator at the unit `n mod N`. -/
 -- Not a `simp` lemma, for the reason given at `diamondOpNat_of_coprime`.
-lemma diamondOpCuspNat_of_coprime (k : ℤ) {n : ℕ} (h : Nat.Coprime n N) :
+lemma Tengoku.Tauceti.diamondOpCuspNat_of_coprime (k : ℤ) {n : ℕ} (h : Nat.Coprime n N) :
     diamondOpCuspNat k n = diamondOpCusp k (ZMod.unitOfCoprime n h) :=
   dite_eq_left_of_eq_true (by simpa using h)
 
 /-- When `n` is not coprime to `N`, `⟨n⟩` vanishes on cusp forms. -/
 @[simp]
-lemma diamondOpCuspNat_of_not_coprime (k : ℤ) {n : ℕ} (h : ¬ Nat.Coprime n N) :
+lemma Tengoku.Tauceti.diamondOpCuspNat_of_not_coprime (k : ℤ) {n : ℕ} (h : ¬ Nat.Coprime n N) :
     diamondOpCuspNat (N := N) k n = 0 :=
   dite_eq_right_of_eq_false (by simpa using h)
 
 /-- Slashing by a `Γ₀(N)` representative with lower-right unit `n` is the zero-extended
 diamond operator `⟨n⟩` on modular forms. -/
-theorem slash_mapGL_eq_diamondOpNat {n : ℕ} (k : ℤ) (h : Nat.Coprime n N)
+theorem Tengoku.Tauceti.slash_mapGL_eq_diamondOpNat {n : ℕ} (k : ℤ) (h : Nat.Coprime n N)
     (g : ↥(Gamma0 N)) (hg : (Gamma0Map N).toHomUnits g = ZMod.unitOfCoprime n h)
     (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑f ∣[k] (mapGL ℚ (g : SL(2, ℤ)) : GL (Fin 2) ℚ) = ⇑(diamondOpNat k n f) := by
   rw [ModularForm.rat_slash_mapGL, diamondOpNat_of_coprime k h, coe_diamondOp k _ g hg f]
 
 /-- The cusp-form counterpart of `slash_mapGL_eq_diamondOpNat`. -/
-theorem slash_mapGL_eq_diamondOpCuspNat {n : ℕ} (k : ℤ) (h : Nat.Coprime n N)
+theorem Tengoku.Tauceti.slash_mapGL_eq_diamondOpCuspNat {n : ℕ} (k : ℤ) (h : Nat.Coprime n N)
     (g : ↥(Gamma0 N)) (hg : (Gamma0Map N).toHomUnits g = ZMod.unitOfCoprime n h)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑f ∣[k] (mapGL ℚ (g : SL(2, ℤ)) : GL (Fin 2) ℚ) = ⇑(diamondOpCuspNat k n f) := by
@@ -455,14 +455,14 @@ theorem slash_mapGL_eq_diamondOpCuspNat {n : ℕ} (k : ℤ) (h : Nat.Coprime n N
 /-- **Slashing by the Bézout twist is the diamond operator `⟨p⟩`.** The twist is the `Γ₀(N)`
 element of lower-right entry `p`, so this is `coe_diamondOp` at that representative, transported
 across the `ℚ`/`ℝ` bridge. -/
-theorem slash_mapGL_gamma0Twist_eq_diamondOpNat {p : ℕ} (k : ℤ) (h : Nat.Coprime p N)
+theorem Tengoku.Tauceti.slash_mapGL_gamma0Twist_eq_diamondOpNat {p : ℕ} (k : ℤ) (h : Nat.Coprime p N)
     (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑f ∣[k] (mapGL ℚ (gamma0Twist N p h) : GL (Fin 2) ℚ) = ⇑(diamondOpNat k p f) :=
   slash_mapGL_eq_diamondOpNat k h ⟨gamma0Twist N p h, gamma0Twist_mem_Gamma0 h⟩
     (Gamma0Map_toHomUnits_gamma0Twist h) f
 
 /-- **Slashing by the Bézout twist is the diamond operator `⟨p⟩`**, on cusp forms. -/
-theorem slash_mapGL_gamma0Twist_eq_diamondOpCuspNat {p : ℕ} (k : ℤ) (h : Nat.Coprime p N)
+theorem Tengoku.Tauceti.slash_mapGL_gamma0Twist_eq_diamondOpCuspNat {p : ℕ} (k : ℤ) (h : Nat.Coprime p N)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
     ⇑f ∣[k] (mapGL ℚ (gamma0Twist N p h) : GL (Fin 2) ℚ) = ⇑(diamondOpCuspNat k p f) :=
   slash_mapGL_eq_diamondOpCuspNat k h ⟨gamma0Twist N p h, gamma0Twist_mem_Gamma0 h⟩
@@ -473,7 +473,7 @@ theorem slash_mapGL_gamma0Twist_eq_diamondOpCuspNat {p : ℕ} (k : ℤ) (h : Nat
 /-- The diamond operator commutes with the coercion `S_k(Γ) → M_k(Γ)`: `⟨d⟩` slashes by a
 representative of `d`, which does not see whether a form vanishes at the cusps. -/
 @[simp]
-theorem diamondOp_coe_cuspForm (k : ℤ) (d : (ZMod N)ˣ)
+theorem Tengoku.Tauceti.diamondOp_coe_cuspForm (k : ℤ) (d : (ZMod N)ˣ)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
     diamondOp k d (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) =
       (diamondOpCusp k d f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) := by
@@ -490,7 +490,7 @@ Not `@[simp]`: the left-hand side is itself simp-reducible — `mem_modFormCharS
 `@[simp]` and rewrites it to the diamond eigenvalue equations — so this lemma could never fire
 as a rewrite rule, and tagging it makes the `simpNF` linter fail. Use it explicitly, as
 `Parity.lean` does. -/
-theorem coe_mem_modFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
+theorem Tengoku.Tauceti.coe_mem_modFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
     (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
     (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) ∈ modFormCharSpace k χ ↔
       f ∈ cuspFormCharSpace k χ := by
@@ -503,7 +503,7 @@ theorem coe_mem_modFormCharSpace_iff (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ)
 /-- **A matrix of `Γ₀(N)` whose lower-right entry is `1` modulo a divisor `M` acts trivially on
 `S_k(Γ₁(N), χ)` when `χ` is pulled back from a character modulo `M`**: its nebentypus value is
 `χ₀` of the lower-right entry modulo `M`, which is `χ₀ 1 = 1`. -/
-theorem slash_mapGL_eq_self_of_comp_of_mem_cuspFormCharSpace {M N : ℕ} (hMN : M ∣ N)
+theorem Tengoku.Tauceti.slash_mapGL_eq_self_of_comp_of_mem_cuspFormCharSpace {M N : ℕ} (hMN : M ∣ N)
     {χ : (ZMod N)ˣ →* ℂˣ} {χ₀ : (ZMod M)ˣ →* ℂˣ} (hcomp : χ = χ₀.comp (ZMod.unitsMap hMN))
     {f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k} (hf : f ∈ cuspFormCharSpace k χ) {β : SL(2, ℤ)}
     (hβ : β ∈ Gamma0 N) (hβ11 : ((β 1 1 : ℤ) : ZMod M) = 1) : ⇑f ∣[k] mapGL ℝ β = ⇑f :=
@@ -515,20 +515,21 @@ theorem slash_mapGL_eq_self_of_comp_of_mem_cuspFormCharSpace {M N : ℕ} (hMN : 
 (`coe_mem_modFormCharSpace_iff`), so Mathlib's `CuspForm.toModularFormₗ` restricts to a map
 between the character spaces. This is the map along which a statement about `modFormCharSpace`
 specialises to `cuspFormCharSpace`. -/
-noncomputable def cuspToModFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+noncomputable def Tengoku.Tauceti.cuspToModFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     cuspFormCharSpace k χ →ₗ[ℂ] modFormCharSpace k χ :=
   LinearMap.codRestrict (modFormCharSpace k χ)
     (CuspForm.toModularFormₗ.comp (cuspFormCharSpace k χ).subtype)
     fun f ↦ (coe_mem_modFormCharSpace_iff k χ _).mpr f.2
 
 @[simp]
-theorem coe_cuspToModFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) (f : cuspFormCharSpace k χ) :
+theorem Tengoku.Tauceti.coe_cuspToModFormCharSpace (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) (f : cuspFormCharSpace k χ) :
     (cuspToModFormCharSpace k χ f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k) =
       ((f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k) :
         ModularForm ((Gamma1 N).map (mapGL ℝ)) k) := (rfl)
 
 /-- The inclusion of character spaces is injective: it restricts Mathlib's injective
 `CuspForm.toModularFormₗ`. -/
-theorem cuspToModFormCharSpace_injective (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
+theorem Tengoku.Tauceti.cuspToModFormCharSpace_injective (k : ℤ) (χ : (ZMod N)ˣ →* ℂˣ) :
     Function.Injective (cuspToModFormCharSpace k χ) := fun _ _ h ↦
   Subtype.ext (CuspForm.toModularFormₗ_injective (congrArg Subtype.val h))
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

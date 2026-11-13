@@ -31,7 +31,7 @@ manifold differential of a function to tangent vectors whose base point varies.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Bundle Manifold Set
 open scoped ContDiff Manifold
 
@@ -49,13 +49,13 @@ variable {E' : Type*} [NormedAddCommGroup E'] [NormedSpace 𝕜 E']
   {N : Type*} [TopologicalSpace N] [ChartedSpace H' N]
 
 /-- The zero tangent vector over a smoothly varying manifold point varies smoothly. -/
-theorem contMDiff_tangentBundle_mk_zero {f : N → M} (hf : ContMDiff J I n f) :
+theorem Tengoku.Tauceti.contMDiff_tangentBundle_mk_zero {f : N → M} (hf : ContMDiff J I n f) :
     ContMDiff J I.tangent n
       (fun p => TotalSpace.mk' E (f p) 0 : N → TangentBundle I M) :=
   (contMDiff_zeroSection 𝕜 (TangentSpace I : M → Type _)).comp hf
 
 /-- A model-space vector placed in the tangent fiber over a fixed point varies smoothly. -/
-theorem contMDiff_tangentBundle_mk_constBase {v : N → E}
+theorem Tengoku.Tauceti.contMDiff_tangentBundle_mk_constBase {v : N → E}
     (hv : ContMDiff J 𝓘(𝕜, E) n v) (x : M) :
     ContMDiff J I.tangent n
       (fun p => TotalSpace.mk' E x (v p) : N → TangentBundle I M) := by
@@ -80,7 +80,7 @@ end TangentBundleInputs
 omit [IsManifold I 1 M] in
 /-- For a normed vector-space target, the tangent-space identification in `mvfderiv` is the
 canonical one, so evaluating it agrees with evaluating `mfderiv`. -/
-@[simp] theorem mvfderiv_apply_eq_mfderiv_apply (f : M → F) (x : M) (v : TangentSpace I x) :
+@[simp] theorem Tengoku.Tauceti.mvfderiv_apply_eq_mfderiv_apply (f : M → F) (x : M) (v : TangentSpace I x) :
     mvfderiv I f x v = mfderiv I 𝓘(𝕜, F) f x v := by
   rw [mvfderiv, ContinuousLinearMap.comp_apply]
   -- `fromTangentSpace` is Mathlib's explicit interface for this canonical identification.
@@ -135,3 +135,4 @@ theorem ContMDiffOn.contMDiffOn_mvfderiv_apply {f : M → F} {s : Set M}
       = mfderivWithin I 𝓘(𝕜, F) f s y (A y) := by
     exact tangentMapWithin_snd
   rw [hval, mfderivWithin_of_isOpen hs hy, mvfderiv_apply_eq_mfderiv_apply]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

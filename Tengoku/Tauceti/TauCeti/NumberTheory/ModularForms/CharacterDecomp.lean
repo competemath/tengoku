@@ -56,7 +56,7 @@ Layer 0 of the ModularForms roadmap.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup CongruenceSubgroup
 
 open scoped MatrixGroups DirectSum
@@ -83,7 +83,7 @@ If `p ⊆ M_k(Γ₁(N))` is stable under every diamond operator `⟨d⟩` for
 `d ∈ (ZMod N)ˣ`, then `p` equals the supremum of its intersections with the
 nebentypus character subspaces `modFormCharSpace k χ`. Specializing `p = ⊤`
 recovers `iSup_modFormCharSpace_eq_top`. -/
-theorem iSup_inf_modFormCharSpace_of_invariant
+theorem Tengoku.Tauceti.iSup_inf_modFormCharSpace_of_invariant
     (k : ℤ) (p : Submodule ℂ (ModularForm ((Gamma1 N).map (mapGL ℝ)) k))
     (hp : ∀ d : (ZMod N)ˣ, ∀ f ∈ p, diamondOpHom k d f ∈ p) :
     (⨆ χ : (ZMod N)ˣ →* ℂˣ, p ⊓ modFormCharSpace k χ) = p := by
@@ -95,7 +95,7 @@ theorem iSup_inf_modFormCharSpace_of_invariant
 
 /-- **Character decomposition of a diamond-invariant submodule of `S_k(Γ₁(N))`.**
 The cusp-form analogue of `iSup_inf_modFormCharSpace_of_invariant`. -/
-theorem iSup_inf_cuspFormCharSpace_of_invariant
+theorem Tengoku.Tauceti.iSup_inf_cuspFormCharSpace_of_invariant
     (k : ℤ) (p : Submodule ℂ (CuspForm ((Gamma1 N).map (mapGL ℝ)) k))
     (hp : ∀ d : (ZMod N)ˣ, ∀ f ∈ p, diamondOpCuspHom k d f ∈ p) :
     (⨆ χ : (ZMod N)ˣ →* ℂˣ, p ⊓ cuspFormCharSpace k χ) = p := by
@@ -109,14 +109,14 @@ theorem iSup_inf_cuspFormCharSpace_of_invariant
 modular forms for `Γ₁(N)` decompose into the span of nebentypus character
 spaces, one for each character `(ZMod N)ˣ →* ℂˣ`. -/
 @[simp]
-theorem iSup_modFormCharSpace_eq_top (k : ℤ) :
+theorem Tengoku.Tauceti.iSup_modFormCharSpace_eq_top (k : ℤ) :
     (⨆ χ : (ZMod N)ˣ →* ℂˣ, modFormCharSpace k χ) =
     (⊤ : Submodule ℂ (ModularForm ((Gamma1 N).map (mapGL ℝ)) k)) := by
   simpa only [top_inf_eq] using
     iSup_inf_modFormCharSpace_of_invariant k ⊤ fun _ _ _ ↦ Submodule.mem_top
 
 /-- **The character subspaces form an independent family.** -/
-theorem iSupIndep_modFormCharSpace (k : ℤ) :
+theorem Tengoku.Tauceti.iSupIndep_modFormCharSpace (k : ℤ) :
     iSupIndep (fun χ : (ZMod N)ˣ →* ℂˣ ↦ modFormCharSpace (N := N) k χ) := by
   have h : iSupIndep (fun χ₀ : (ZMod N)ˣ →* ℂˣ ↦
       ⨅ d : (ZMod N)ˣ, (diamondOpHom k d).eigenspace ((χ₀ d : ℂ))) :=
@@ -125,13 +125,13 @@ theorem iSupIndep_modFormCharSpace (k : ℤ) :
 
 /-- **Internal direct sum decomposition**: `M_k(Γ₁(N))` decomposes as the direct
 sum of the nebentypus character spaces `modFormCharSpace k χ`. -/
-theorem isInternal_modFormCharSpace (k : ℤ) [DecidableEq ((ZMod N)ˣ →* ℂˣ)] :
+theorem Tengoku.Tauceti.isInternal_modFormCharSpace (k : ℤ) [DecidableEq ((ZMod N)ˣ →* ℂˣ)] :
     DirectSum.IsInternal (fun χ : (ZMod N)ˣ →* ℂˣ ↦ modFormCharSpace k χ) :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
     (iSupIndep_modFormCharSpace k) (iSup_modFormCharSpace_eq_top k)
 
 /-- **The cusp-form character subspaces form an independent family.** -/
-theorem iSupIndep_cuspFormCharSpace (k : ℤ) :
+theorem Tengoku.Tauceti.iSupIndep_cuspFormCharSpace (k : ℤ) :
     iSupIndep (fun χ : (ZMod N)ˣ →* ℂˣ ↦ cuspFormCharSpace (N := N) k χ) := by
   have h : iSupIndep (fun χ₀ : (ZMod N)ˣ →* ℂˣ ↦
       ⨅ d : (ZMod N)ˣ, (diamondOpCuspHom k d).eigenspace ((χ₀ d : ℂ))) :=
@@ -140,7 +140,7 @@ theorem iSupIndep_cuspFormCharSpace (k : ℤ) :
 
 /-- **The cusp-form character subspaces span the whole space.** -/
 @[simp]
-theorem iSup_cuspFormCharSpace_eq_top (k : ℤ) :
+theorem Tengoku.Tauceti.iSup_cuspFormCharSpace_eq_top (k : ℤ) :
     (⨆ χ : (ZMod N)ˣ →* ℂˣ, cuspFormCharSpace k χ) =
     (⊤ : Submodule ℂ (CuspForm ((Gamma1 N).map (mapGL ℝ)) k)) := by
   simpa only [top_inf_eq] using
@@ -148,7 +148,7 @@ theorem iSup_cuspFormCharSpace_eq_top (k : ℤ) :
 
 /-- **Internal direct sum decomposition of cusp forms**: `S_k(Γ₁(N))` decomposes as the
 direct sum of the nebentypus character spaces `cuspFormCharSpace k χ`. -/
-theorem isInternal_cuspFormCharSpace (k : ℤ) [DecidableEq ((ZMod N)ˣ →* ℂˣ)] :
+theorem Tengoku.Tauceti.isInternal_cuspFormCharSpace (k : ℤ) [DecidableEq ((ZMod N)ˣ →* ℂˣ)] :
     DirectSum.IsInternal (fun χ : (ZMod N)ˣ →* ℂˣ ↦ cuspFormCharSpace k χ) :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
     (iSupIndep_cuspFormCharSpace k) (iSup_cuspFormCharSpace_eq_top k)
@@ -160,7 +160,7 @@ diamond-invariant submodule.** Consumer-facing corollary of
 `iSup_inf_modFormCharSpace_of_invariant`: any element of a diamond-invariant
 submodule `p ⊆ M_k(Γ₁(N))` is a finitely-supported sum of nebentypus-character
 components, each landing simultaneously in `p` and in its character subspace. -/
-theorem exists_finsupp_of_diamondOp_invariant
+theorem Tengoku.Tauceti.exists_finsupp_of_diamondOp_invariant
     (k : ℤ) (p : Submodule ℂ (ModularForm ((Gamma1 N).map (mapGL ℝ)) k))
     (hp : ∀ d : (ZMod N)ˣ, ∀ f ∈ p, diamondOpHom k d f ∈ p)
     {f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k} (hf : f ∈ p) :
@@ -173,7 +173,7 @@ theorem exists_finsupp_of_diamondOp_invariant
 /-- **Finsupp-indexed character decomposition of a cusp form in a
 diamond-invariant submodule.** Cusp-form analogue of
 `exists_finsupp_of_diamondOp_invariant`. -/
-theorem exists_finsupp_of_diamondOpCusp_invariant
+theorem Tengoku.Tauceti.exists_finsupp_of_diamondOpCusp_invariant
     (k : ℤ) (p : Submodule ℂ (CuspForm ((Gamma1 N).map (mapGL ℝ)) k))
     (hp : ∀ d : (ZMod N)ˣ, ∀ f ∈ p, diamondOpCuspHom k d f ∈ p)
     {f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k} (hf : f ∈ p) :
@@ -189,7 +189,7 @@ end InvariantSubmodule
 `M_k(Γ₁(N))` that agree on every nebentypus subspace `modFormCharSpace k χ` are equal.
 This is the gluing principle by which identities of Hecke operators proven per character
 space extend to the whole space of modular forms. -/
-theorem linearMap_ext_of_mem_modFormCharSpace
+theorem Tengoku.Tauceti.linearMap_ext_of_mem_modFormCharSpace
     {W : Type*} [AddCommMonoid W] [Module ℂ W]
     {S T : (ModularForm ((Gamma1 N).map (mapGL ℝ)) k) →ₗ[ℂ] W}
     (h : ∀ (χ : (ZMod N)ˣ →* ℂˣ) (f : ModularForm ((Gamma1 N).map (mapGL ℝ)) k),
@@ -203,7 +203,7 @@ theorem linearMap_ext_of_mem_modFormCharSpace
 /-- **Extensionality along the cusp-form character decomposition**: two `ℂ`-linear maps out of
 `S_k(Γ₁(N))` that agree on every nebentypus subspace
 `cuspFormCharSpace k χ` are equal. -/
-theorem linearMap_ext_of_mem_cuspFormCharSpace
+theorem Tengoku.Tauceti.linearMap_ext_of_mem_cuspFormCharSpace
     {W : Type*} [AddCommMonoid W] [Module ℂ W]
     {S T : (CuspForm ((Gamma1 N).map (mapGL ℝ)) k) →ₗ[ℂ] W}
     (h : ∀ (χ : (ZMod N)ˣ →* ℂˣ) (f : CuspForm ((Gamma1 N).map (mapGL ℝ)) k),
@@ -215,3 +215,4 @@ theorem linearMap_ext_of_mem_cuspFormCharSpace
     fun x y hx hy ↦ by simp only [map_add, hx, hy]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

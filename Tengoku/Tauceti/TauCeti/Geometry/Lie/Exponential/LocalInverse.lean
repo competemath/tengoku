@@ -36,7 +36,7 @@ tangent-space exponential.
   Deliverable A, Layer 0, "The exponential map".
 -/
 public section
-open Filter Function Manifold
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti open Filter Function Manifold
 open scoped ContDiff Manifold Topology
 noncomputable section
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -47,7 +47,7 @@ attribute [local instance] LieGroup.minSmoothnessThree
 
 /-- The tangent-space exponential with both domain and codomain expressed in identity-chart
 coordinates. -/
-noncomputable def mulInvariantExpChart [FiniteDimensional ℝ E] [LieGroup I ∞ G]
+noncomputable def Tengoku.Tauceti.mulInvariantExpChart [FiniteDimensional ℝ E] [LieGroup I ∞ G]
     [T2Space G] [BoundarylessManifold I G] (v : E) : E := by
   let _ : CompleteSpace E := FiniteDimensional.complete ℝ E
   exact extChartAt I (1 : G)
@@ -55,7 +55,7 @@ noncomputable def mulInvariantExpChart [FiniteDimensional ℝ E] [LieGroup I ∞
 
 /-- The fully charted exponential is the identity chart applied to the tangent-space
 exponential. -/
-theorem mulInvariantExpChart_apply [FiniteDimensional ℝ E] [LieGroup I ∞ G]
+theorem Tengoku.Tauceti.mulInvariantExpChart_apply [FiniteDimensional ℝ E] [LieGroup I ∞ G]
     [T2Space G] [BoundarylessManifold I G] (v : E) :
     mulInvariantExpChart (I := I) (G := G) v =
       extChartAt I (1 : G)
@@ -64,7 +64,7 @@ theorem mulInvariantExpChart_apply [FiniteDimensional ℝ E] [LieGroup I ∞ G]
 
 /-- The coordinate exponential sends zero to the identity coordinate. -/
 @[simp]
-theorem mulInvariantExpChart_zero [FiniteDimensional ℝ E] [LieGroup I ∞ G]
+theorem Tengoku.Tauceti.mulInvariantExpChart_zero [FiniteDimensional ℝ E] [LieGroup I ∞ G]
     [T2Space G] [BoundarylessManifold I G] :
     mulInvariantExpChart (I := I) (G := G) 0 =
       extChartAt I (1 : G) (1 : G) := by
@@ -73,3 +73,4 @@ theorem mulInvariantExpChart_zero [FiniteDimensional ℝ E] [LieGroup I ∞ G]
   change extChartAt I (1 : G)
     (mulInvariantExp (I := I) (G := G) (0 : GroupLieAlgebra I G)) = _
   rw [mulInvariantExp_zero]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

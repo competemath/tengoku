@@ -61,7 +61,7 @@ inside their callers because they carry no content beyond `rename`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace MvPowerSeries
 
 open Filter Finsupp
@@ -291,3 +291,4 @@ theorem aeval_rename (e : σ → τ) [TendstoCofinite e] {a : τ → S} {b : σ 
 end Eval
 
 end MvPowerSeries
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -45,7 +45,7 @@ full-weight representative per pair.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Complex Set UpperHalfPlane Function
 
 open scoped ModularForm MatrixGroups Modular
@@ -352,3 +352,4 @@ theorem sum_orderOfVanishingAt_nonEllipticBoundary_eq_two_mul [SlashInvariantFor
 end ModularForm
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

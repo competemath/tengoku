@@ -38,7 +38,7 @@ character explicit.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix.SpecialLinearGroup UpperHalfPlane CongruenceSubgroup
 
 open scoped MatrixGroups ModularForm
@@ -90,3 +90,4 @@ theorem exists_mem_cuspFormCharSpace_qExpansion_coeff_eq_ite_dvd_of_qExpansionSu
     simp only [map_zero, ite_self]
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

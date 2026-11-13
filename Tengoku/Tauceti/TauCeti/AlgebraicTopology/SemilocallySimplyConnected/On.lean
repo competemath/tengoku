@@ -22,7 +22,7 @@ work in [#42](https://github.com/TauCetiProject/TauCeti/pull/42).
 -/
 
 noncomputable section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open CategoryTheory Filter FundamentalGroupoid Set Topology TauCeti
 
 variable {X : Type*} [TopologicalSpace X]
@@ -32,13 +32,13 @@ variable {X : Type*} [TopologicalSpace X]
 /-- A space is semilocally simply connected at `x` if `x` has a neighborhood `U` such that
 the map from `π₁(U, base)` to `π₁(X, base)` induced by the inclusion is trivial for all
 basepoints in `U`. Equivalently, every loop in `U` is nullhomotopic in `X`. -/
-public def SemilocallySimplyConnectedAt (x : X) : Prop :=
+public def Tengoku.Tauceti.SemilocallySimplyConnectedAt (x : X) : Prop :=
   ∃ U ∈ 𝓝 x, ∀ (base : U),
     (FundamentalGroup.map (⟨Subtype.val, continuous_subtype_val⟩ : C(U, X)) base).range = ⊥
 
 /-- Characterization of `SemilocallySimplyConnectedAt x` by open neighborhoods whose loops are
 nullhomotopic in the ambient space. -/
-public theorem semilocallySimplyConnectedAt_iff {x : X} :
+public theorem Tengoku.Tauceti.semilocallySimplyConnectedAt_iff {x : X} :
     SemilocallySimplyConnectedAt x ↔
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧
       ∀ {u : X} (γ : Path u u) (_ : range γ ⊆ U),
@@ -63,7 +63,7 @@ public theorem semilocallySimplyConnectedAt_iff {x : X} :
 
 /-- Characterization of semilocally simply connected at a point: any two paths in U between
 the same endpoints are homotopic. -/
-public theorem semilocallySimplyConnectedAt_iff_paths {x : X} :
+public theorem Tengoku.Tauceti.semilocallySimplyConnectedAt_iff_paths {x : X} :
     SemilocallySimplyConnectedAt x ↔
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧
       ∀ {u u' : X} (γ γ' : Path u u'),
@@ -94,12 +94,12 @@ variable {s t : Set X} {x : X}
 
 /-- A space is semilocally simply connected on `s` if it is semilocally simply connected
 at every point of `s`. -/
-public def SemilocallySimplyConnectedOn (s : Set X) : Prop :=
+public def Tengoku.Tauceti.SemilocallySimplyConnectedOn (s : Set X) : Prop :=
   ∀ x ∈ s, SemilocallySimplyConnectedAt x
 
 /-- Extract the pointwise `SemilocallySimplyConnectedAt x` statement from
 `SemilocallySimplyConnectedOn s` and `x ∈ s`. -/
-public theorem SemilocallySimplyConnectedOn.at (h : SemilocallySimplyConnectedOn s) (hx : x ∈ s) :
+public theorem Tengoku.Tauceti.SemilocallySimplyConnectedOn.at (h : SemilocallySimplyConnectedOn s) (hx : x ∈ s) :
     SemilocallySimplyConnectedAt x :=
   h x hx
 
@@ -108,12 +108,12 @@ in `X` whose images lie in `U` and which share endpoints are homotopic in `X`.
 This is the form of "`U` is simply connected" used in the universal-cover
 construction: it is weaker than `IsSimplyConnected U` because the homotopy is not required
 to lie inside `U`. -/
-public def IsPathHomotopyTrivial (U : Set X) : Prop :=
+public def Tengoku.Tauceti.IsPathHomotopyTrivial (U : Set X) : Prop :=
   ∀ ⦃a b : X⦄ (p q : Path a b), range p ⊆ U → range q ⊆ U → Path.Homotopic p q
 
 /-- Apply path-homotopy triviality of `U` to compare two same-endpoint paths in `X` whose
 ranges both lie in `U`. -/
-public theorem IsPathHomotopyTrivial.apply {U : Set X} (hU : IsPathHomotopyTrivial U)
+public theorem Tengoku.Tauceti.IsPathHomotopyTrivial.apply {U : Set X} (hU : IsPathHomotopyTrivial U)
     ⦃a b : X⦄ (p q : Path a b) (hp : range p ⊆ U) (hq : range q ⊆ U) :
     Path.Homotopic p q :=
   hU p q hp hq
@@ -131,7 +131,7 @@ covering-space theory, so the bridge below is stated under `[LocallyPathConnecte
 /-- On a locally path-connected space, the based class
 `TauCeti.SemilocallySimplyConnectedSpace` implies the unbased pointwise predicate
 `SemilocallySimplyConnectedAt` at every point. -/
-public theorem SemilocallySimplyConnectedAt.of_semilocallySimplyConnectedSpace
+public theorem Tengoku.Tauceti.SemilocallySimplyConnectedAt.of_semilocallySimplyConnectedSpace
     [LocallyPathConnectedSpace X] [SemilocallySimplyConnectedSpace X] (x : X) :
     SemilocallySimplyConnectedAt x := by
   obtain ⟨U, hUopen, hxU, hloop⟩ :=
@@ -172,7 +172,7 @@ public theorem TauCeti.SemilocallySimplyConnectedSpace.of_forall_semilocallySimp
 
 /-- On a locally path-connected semilocally simply connected space, every subset is pointwise
 semilocally simply connected. -/
-public theorem SemilocallySimplyConnectedOn.of_semilocallySimplyConnectedSpace
+public theorem Tengoku.Tauceti.SemilocallySimplyConnectedOn.of_semilocallySimplyConnectedSpace
     [LocallyPathConnectedSpace X] [SemilocallySimplyConnectedSpace X] (s : Set X) :
     SemilocallySimplyConnectedOn s :=
   fun x _ ↦ .of_semilocallySimplyConnectedSpace x
@@ -185,14 +185,14 @@ homotopic (so path homotopy classes are determined by endpoints).
 
 This is `semilocallySimplyConnectedAt_iff_paths.mp` repackaged with the
 `IsPathHomotopyTrivial` abstraction, which is the form most downstream users consume. -/
-public theorem SemilocallySimplyConnectedAt.exists_isOpen_mem_isPathHomotopyTrivial {x : X}
+public theorem Tengoku.Tauceti.SemilocallySimplyConnectedAt.exists_isOpen_mem_isPathHomotopyTrivial {x : X}
     (h : SemilocallySimplyConnectedAt x) :
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsPathHomotopyTrivial U :=
   semilocallySimplyConnectedAt_iff_paths.mp h
 
 /-- In a locally path-connected semilocally simply connected space, every point has an open
 path-homotopy-trivial neighborhood. -/
-public theorem exists_isOpen_mem_isPathHomotopyTrivial
+public theorem Tengoku.Tauceti.exists_isOpen_mem_isPathHomotopyTrivial
     [LocallyPathConnectedSpace X] [SemilocallySimplyConnectedSpace X] (x : X) :
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsPathHomotopyTrivial U := by
   have hx := SemilocallySimplyConnectedAt.of_semilocallySimplyConnectedSpace x
@@ -201,7 +201,7 @@ public theorem exists_isOpen_mem_isPathHomotopyTrivial
 /-- An SLSC neighborhood can be chosen to be path-connected. In a locally path-connected space,
 we can use the path component of x in an SLSC neighborhood V to get a neighborhood that is both
 open, path-connected, and has the SLSC property (paths with same endpoints in U are homotopic). -/
-public theorem SemilocallySimplyConnectedAt.exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
+public theorem Tengoku.Tauceti.SemilocallySimplyConnectedAt.exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
     [LocallyPathConnectedSpace X] {x : X} (h : SemilocallySimplyConnectedAt x) :
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsPathConnected U ∧ IsPathHomotopyTrivial U := by
   -- Take the path component of `x` in any SLSC neighborhood `V`. It is open by local
@@ -214,10 +214,11 @@ public theorem SemilocallySimplyConnectedAt.exists_isOpen_mem_isPathConnected_is
 
 /-- In a locally path-connected semilocally simply connected space, every point has an open,
 path-connected, path-homotopy-trivial neighborhood. -/
-public theorem exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
+public theorem Tengoku.Tauceti.exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
     [SemilocallySimplyConnectedSpace X] [LocallyPathConnectedSpace X] (x : X) :
     ∃ U : Set X, IsOpen U ∧ x ∈ U ∧ IsPathConnected U ∧ IsPathHomotopyTrivial U := by
   have hx := SemilocallySimplyConnectedAt.of_semilocallySimplyConnectedSpace x
   exact hx.exists_isOpen_mem_isPathConnected_isPathHomotopyTrivial
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -30,7 +30,7 @@ This file is adapted from Kim Morrison's
 -/
 
 public section
-noncomputable section
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti noncomputable section
 
 open scoped unitInterval
 open Topology
@@ -242,3 +242,4 @@ theorem existsUnique_continuousMap_lifts {A : Type*} [TopologicalSpace A]
   (isCoveringMap x₀).existsUnique_continuousMap_lifts f a₀ e₀ he
 
 end TauCeti.UniversalCover
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

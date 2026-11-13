@@ -26,7 +26,7 @@ chart coordinates and the self-model of the product model space.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped Manifold
 
 variable {𝕜 E₁ E₂ E' H' M : Type*} [NontriviallyNormedField 𝕜]
@@ -39,14 +39,15 @@ variable {𝕜 E₁ E₂ E' H' M : Type*} [NontriviallyNormedField 𝕜]
 
 /-- A map from a product of model vector spaces is `C^n` for the product of the self-models if and
 only if it is `C^n` for the self-model of the product. -/
-theorem contMDiff_prod_modelWithCornersSelf_iff :
+theorem Tengoku.Tauceti.contMDiff_prod_modelWithCornersSelf_iff :
     ContMDiff (𝓘(𝕜, E₁).prod 𝓘(𝕜, E₂)) I' n f ↔
       ContMDiff 𝓘(𝕜, E₁ × E₂) I' n f := by
   rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod]
 
 /-- A map from a product of model vector spaces is `C^n` on a set for the product of the
 self-models if and only if it is `C^n` on that set for the self-model of the product. -/
-theorem contMDiffOn_prod_modelWithCornersSelf_iff :
+theorem Tengoku.Tauceti.contMDiffOn_prod_modelWithCornersSelf_iff :
     ContMDiffOn (𝓘(𝕜, E₁).prod 𝓘(𝕜, E₂)) I' n f s ↔
       ContMDiffOn 𝓘(𝕜, E₁ × E₂) I' n f s := by
   rw [modelWithCornersSelf_prod, ← chartedSpaceSelf_prod]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

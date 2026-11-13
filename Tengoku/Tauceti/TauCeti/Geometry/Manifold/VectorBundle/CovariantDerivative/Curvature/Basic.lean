@@ -49,7 +49,7 @@ of a connection on the tangent bundle.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Bundle FiberBundle Module NormedSpace VectorField
 open scoped ContDiff Manifold Topology
 
@@ -503,3 +503,4 @@ theorem curvatureOperator_congr
 end Smooth
 
 end CovariantDerivative
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

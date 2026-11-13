@@ -54,7 +54,7 @@ empty. The generic orbit facts it rides live in `TauCeti.NumberTheory.Modular.Or
 -/
 
 public noncomputable section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open UpperHalfPlane
 
 open scoped ModularForm MatrixGroups Modular
@@ -317,3 +317,4 @@ end ModularForm
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

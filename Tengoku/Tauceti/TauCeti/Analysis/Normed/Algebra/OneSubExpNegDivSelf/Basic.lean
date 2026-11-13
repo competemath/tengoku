@@ -33,7 +33,7 @@ map.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open NormedSpace
 
 noncomputable section
@@ -45,25 +45,25 @@ variable {𝕂 A : Type*} [Field 𝕂] [Ring A] [Algebra 𝕂 A] [TopologicalSpa
 
 /-- The value of `(1 - exp (-a)) / a` with its removable singularity filled in, defined by a power
 series. The series is summable everywhere in the complete normed-algebra setting below. -/
-noncomputable def oneSubExpNegDivSelf (𝕂 : Type*) [Field 𝕂] {A : Type*} [Ring A]
+noncomputable def Tengoku.Tauceti.oneSubExpNegDivSelf (𝕂 : Type*) [Field 𝕂] {A : Type*} [Ring A]
     [Algebra 𝕂 A] [TopologicalSpace A] [IsTopologicalRing A] (a : A) : A :=
   FormalMultilinearSeries.ofScalarsSum
     (E := A) (fun n ↦ ((n + 1).factorial⁻¹ : 𝕂)) (-a)
 
 /-- The defining series for `oneSubExpNegDivSelf`. -/
-theorem oneSubExpNegDivSelf_eq_tsum (a : A) :
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_eq_tsum (a : A) :
     oneSubExpNegDivSelf 𝕂 a = ∑' n : ℕ, (((n + 1).factorial)⁻¹ : 𝕂) • (-a) ^ n := by
   exact FormalMultilinearSeries.ofScalars_sum_eq _ _
 
 /-- The quotient with its removable singularity filled in takes the value `1` at zero. -/
 @[simp]
-theorem oneSubExpNegDivSelf_zero : oneSubExpNegDivSelf 𝕂 (0 : A) = 1 := by
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_zero : oneSubExpNegDivSelf 𝕂 (0 : A) = 1 := by
   simp [oneSubExpNegDivSelf]
 
 variable [T2Space A]
 
 /-- The filled-in quotient commutes with its argument. -/
-theorem commute_oneSubExpNegDivSelf (a : A) : Commute a (oneSubExpNegDivSelf 𝕂 a) := by
+theorem Tengoku.Tauceti.commute_oneSubExpNegDivSelf (a : A) : Commute a (oneSubExpNegDivSelf 𝕂 a) := by
   rw [oneSubExpNegDivSelf_eq_tsum]
   exact Commute.tsum_right _ fun n ↦ ((Commute.refl a).neg_right.pow_right n).smul_right _
 
@@ -75,7 +75,7 @@ variable {𝕂 A : Type*} [NontriviallyNormedField 𝕂] [CharZero 𝕂] [Contin
   [NormedRing A] [NormedAlgebra 𝕂 A] [CompleteSpace A]
 
 /-- The series defining `oneSubExpNegDivSelf` is summable in a complete normed algebra. -/
-theorem summable_oneSubExpNegDivSelf (a : A) :
+theorem Tengoku.Tauceti.summable_oneSubExpNegDivSelf (a : A) :
     Summable fun n : ℕ ↦ ((n + 1).factorial⁻¹ : 𝕂) • (-a) ^ n := by
   let c : ℕ → 𝕂 := fun n ↦ ((n + 1).factorial⁻¹ : 𝕂)
   have hc : (FormalMultilinearSeries.ofScalars A c).radius = ⊤ := by
@@ -104,7 +104,7 @@ theorem summable_oneSubExpNegDivSelf (a : A) :
 
 /-- Multiplying the filled-in quotient on the left by its argument recovers its numerator. -/
 @[simp]
-theorem mul_oneSubExpNegDivSelf (a : A) :
+theorem Tengoku.Tauceti.mul_oneSubExpNegDivSelf (a : A) :
     a * oneSubExpNegDivSelf 𝕂 a = 1 - exp (-a) := by
   have hmul :
       (∑' n : ℕ, ((n + 1).factorial⁻¹ : 𝕂) • (-a) ^ (n + 1)) =
@@ -119,17 +119,17 @@ theorem mul_oneSubExpNegDivSelf (a : A) :
 
 /-- Multiplying the filled-in quotient on the right by its argument recovers its numerator. -/
 @[simp]
-theorem oneSubExpNegDivSelf_mul (a : A) :
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_mul (a : A) :
     oneSubExpNegDivSelf 𝕂 a * a = 1 - exp (-a) := by
   rw [← (commute_oneSubExpNegDivSelf a).eq, mul_oneSubExpNegDivSelf]
 
 /-- At an invertible argument, the filled-in quotient is left division by that argument. -/
-theorem oneSubExpNegDivSelf_eq_invOf_mul (a : A) [Invertible a] :
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_eq_invOf_mul (a : A) [Invertible a] :
     oneSubExpNegDivSelf 𝕂 a = ⅟ a * (1 - exp (-a)) := by
   rw [← mul_oneSubExpNegDivSelf (𝕂 := 𝕂), ← mul_assoc, invOf_mul_self, one_mul]
 
 /-- At an invertible argument, the filled-in quotient is right division by that argument. -/
-theorem oneSubExpNegDivSelf_eq_mul_invOf (a : A) [Invertible a] :
+theorem Tengoku.Tauceti.oneSubExpNegDivSelf_eq_mul_invOf (a : A) [Invertible a] :
     oneSubExpNegDivSelf 𝕂 a = (1 - exp (-a)) * ⅟ a := by
   rw [← oneSubExpNegDivSelf_mul (𝕂 := 𝕂), mul_assoc, mul_invOf_self, mul_one]
 
@@ -142,7 +142,7 @@ variable {𝕂 A B : Type*} [NontriviallyNormedField 𝕂] [CharZero 𝕂]
   [Ring B] [Algebra 𝕂 B] [TopologicalSpace B] [IsTopologicalRing B] [T2Space B]
 
 /-- Any continuous ring homomorphism commutes with `oneSubExpNegDivSelf`. -/
-theorem map_oneSubExpNegDivSelf {F : Type*} [FunLike F A B] [RingHomClass F A B]
+theorem Tengoku.Tauceti.map_oneSubExpNegDivSelf {F : Type*} [FunLike F A B] [RingHomClass F A B]
     (f : F) (hf : Continuous f) (a : A) :
     f (oneSubExpNegDivSelf 𝕂 a) = oneSubExpNegDivSelf 𝕂 (f a) := by
   rw [oneSubExpNegDivSelf_eq_tsum, oneSubExpNegDivSelf_eq_tsum]
@@ -154,3 +154,4 @@ theorem map_oneSubExpNegDivSelf {F : Type*} [FunLike F A B] [RingHomClass F A B]
   simp
 
 end Map
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

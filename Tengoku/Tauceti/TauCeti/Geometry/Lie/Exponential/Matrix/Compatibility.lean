@@ -32,7 +32,7 @@ series, but consumers using another scoped matrix norm must transport across the
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Manifold NormedSpace
 open scoped ContDiff Manifold Matrix Matrix.Norms.Operator
 
@@ -42,7 +42,7 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Coercing the abstract exponential on `GL(n, ℝ)` to matrices gives the matrix exponential. -/
 @[simp]
-theorem lieExp_generalLinearGroup_coe (A : Matrix n n ℝ) :
+theorem Tengoku.Tauceti.lieExp_generalLinearGroup_coe (A : Matrix n n ℝ) :
     ((lieExp
         ((unitsLieAlgebraEquiv (R := Matrix n n ℝ)).symm A) :
           Matrix.GeneralLinearGroup n ℝ) : Matrix n n ℝ) = exp A := by
@@ -53,7 +53,7 @@ theorem lieExp_generalLinearGroup_coe (A : Matrix n n ℝ) :
 
 /-- The abstract exponential on `GL(n, ℝ)` sends diagonal matrices to the diagonal of the scalar
 exponentials. -/
-theorem lieExp_generalLinearGroup_diagonal (v : n → ℝ) :
+theorem Tengoku.Tauceti.lieExp_generalLinearGroup_diagonal (v : n → ℝ) :
     ((lieExp
         ((unitsLieAlgebraEquiv (R := Matrix n n ℝ)).symm (Matrix.diagonal v)) :
           Matrix.GeneralLinearGroup n ℝ) : Matrix n n ℝ) =
@@ -62,7 +62,7 @@ theorem lieExp_generalLinearGroup_diagonal (v : n → ℝ) :
   rw [Pi.exp_def]
 
 /-- The abstract exponential on `GL(n, ℝ)`, expressed in matrices, commutes with transpose. -/
-theorem lieExp_generalLinearGroup_transpose (A : Matrix n n ℝ) :
+theorem Tengoku.Tauceti.lieExp_generalLinearGroup_transpose (A : Matrix n n ℝ) :
     ((lieExp
         ((unitsLieAlgebraEquiv (R := Matrix n n ℝ)).symm A.transpose) :
           Matrix.GeneralLinearGroup n ℝ) : Matrix n n ℝ) =
@@ -73,7 +73,7 @@ theorem lieExp_generalLinearGroup_transpose (A : Matrix n n ℝ) :
 
 /-- The abstract exponential on `GL(n, ℝ)`, expressed in matrices, respects conjugation by a
 unit. -/
-theorem lieExp_generalLinearGroup_units_conj
+theorem Tengoku.Tauceti.lieExp_generalLinearGroup_units_conj
     (U : Matrix.GeneralLinearGroup n ℝ) (A : Matrix n n ℝ) :
     ((lieExp
         ((unitsLieAlgebraEquiv (R := Matrix n n ℝ)).symm (U * A * U⁻¹)) :
@@ -83,3 +83,4 @@ theorem lieExp_generalLinearGroup_units_conj
           ((unitsLieAlgebraEquiv (R := Matrix n n ℝ)).symm A) :
             Matrix.GeneralLinearGroup n ℝ) : Matrix n n ℝ) * U⁻¹ := by
   rw [lieExp_generalLinearGroup_coe, lieExp_generalLinearGroup_coe, Matrix.exp_units_conj]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

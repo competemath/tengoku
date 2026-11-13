@@ -39,7 +39,7 @@ be false. The results below always carry the precise membership hypotheses.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Function Manifold Set
 open scoped ContDiff Manifold Topology
 
@@ -386,3 +386,4 @@ theorem contMDiffOn_maximalIntegralCurve [FiniteDimensional ℝ E] {n : ℕ∞} 
     hp).2.contMDiffWithinAt.of_le (by exact_mod_cast hmk)
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

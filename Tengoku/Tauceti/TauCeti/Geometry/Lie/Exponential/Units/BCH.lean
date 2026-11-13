@@ -31,7 +31,7 @@ local group law directly in the derivation model of the Lie algebra.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Filter Topology
 
 noncomputable section
@@ -284,3 +284,4 @@ theorem eq_unitsLocalBCH_of_tendsto_of_map_lieExp_eq
       simpa only [gR, e, e.symm_apply_apply, e.apply_symm_apply] using congrArg e.symm hp
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

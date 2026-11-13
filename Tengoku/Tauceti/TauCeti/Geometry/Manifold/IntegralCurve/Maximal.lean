@@ -87,7 +87,7 @@ arbitrary initial time is recovered by translating the parameter with
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Filter Function Manifold Set
 open scoped ContDiff Manifold Topology
 
@@ -104,7 +104,7 @@ It is open and order-connected (`isOpen_maximalIntegralCurveInterval`,
 `ordConnected_maximalIntegralCurveInterval`). Under the local-existence hypotheses of
 `zero_mem_maximalIntegralCurveInterval`, it contains `0`, and `maximalIntegralCurve v x` is an
 integral curve of `v` on it. -/
-def maximalIntegralCurveInterval (v : (x : M) → TangentSpace I x) (x : M) : Set ℝ :=
+def Tengoku.Tauceti.maximalIntegralCurveInterval (v : (x : M) → TangentSpace I x) (x : M) : Set ℝ :=
   {t | ∃ γ : ℝ → M, ∃ a b : ℝ,
     IsMIntegralCurveOn γ v (Ioo a b) ∧ γ 0 = x ∧ 0 ∈ Ioo a b ∧ t ∈ Ioo a b}
 
@@ -116,7 +116,7 @@ theorem IsMIntegralCurveOn.subset_maximalIntegralCurveInterval
   fun _ ht ↦ ⟨γ, a, b, hγ, hx, h0, ht⟩
 
 /-- The maximal interval of existence is open. -/
-theorem isOpen_maximalIntegralCurveInterval : IsOpen (maximalIntegralCurveInterval v x) := by
+theorem Tengoku.Tauceti.isOpen_maximalIntegralCurveInterval : IsOpen (maximalIntegralCurveInterval v x) := by
   rw [isOpen_iff_forall_mem_open]
   rintro t ⟨γ, a, b, hγ, hx, h0, ht⟩
   exact ⟨Ioo a b, hγ.subset_maximalIntegralCurveInterval h0 hx, isOpen_Ioo, ht⟩
@@ -124,7 +124,7 @@ theorem isOpen_maximalIntegralCurveInterval : IsOpen (maximalIntegralCurveInterv
 /-- The maximal interval of existence is order-connected: it is an interval. Every witness interval
 straddles `0`, so a time between two of its elements lies in the witness interval of whichever of
 them is on the same side of `0`. -/
-theorem ordConnected_maximalIntegralCurveInterval :
+theorem Tengoku.Tauceti.ordConnected_maximalIntegralCurveInterval :
     (maximalIntegralCurveInterval v x).OrdConnected := by
   refine ⟨fun p hp q hq u hu ↦ ?_⟩
   rcases le_or_gt 0 u with h | h
@@ -137,13 +137,13 @@ theorem ordConnected_maximalIntegralCurveInterval :
 
 /-- The maximal interval of existence is preconnected. This is the hypothesis under which a
 constant-speed statement for the curves defined on it can be read. -/
-theorem isPreconnected_maximalIntegralCurveInterval :
+theorem Tengoku.Tauceti.isPreconnected_maximalIntegralCurveInterval :
     IsPreconnected (maximalIntegralCurveInterval v x) :=
   ordConnected_maximalIntegralCurveInterval.isPreconnected
 
 /-- The maximal interval of existence contains an open interval with the same right endpoint and a
 negative left endpoint. In particular a finite least upper bound of the interval is positive. -/
-theorem exists_Ioo_subset_maximalIntegralCurveInterval_of_isLUB
+theorem Tengoku.Tauceti.exists_Ioo_subset_maximalIntegralCurveInterval_of_isLUB
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (hb : IsLUB (maximalIntegralCurveInterval v x) b) :
     ∃ a < (0 : ℝ), 0 < b ∧ Ioo a b ⊆ maximalIntegralCurveInterval v x := by
@@ -160,7 +160,7 @@ theorem exists_Ioo_subset_maximalIntegralCurveInterval_of_isLUB
 /-- The maximal interval of existence contains an open interval with the same left endpoint and a
 positive right endpoint. In particular a finite greatest lower bound of the interval is
 negative. -/
-theorem exists_Ioo_subset_maximalIntegralCurveInterval_of_isGLB
+theorem Tengoku.Tauceti.exists_Ioo_subset_maximalIntegralCurveInterval_of_isGLB
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (ha : IsGLB (maximalIntegralCurveInterval v x) a) :
     ∃ b > (0 : ℝ), a < 0 ∧ Ioo a b ⊆ maximalIntegralCurveInterval v x := by
@@ -175,7 +175,7 @@ theorem exists_Ioo_subset_maximalIntegralCurveInterval_of_isGLB
   · exact hball ⟨by linarith, by linarith [ht.2]⟩
 
 /-- Local existence puts the initial time in the maximal interval of existence. -/
-theorem zero_mem_maximalIntegralCurveInterval [CompleteSpace E] [IsManifold I 1 M]
+theorem Tengoku.Tauceti.zero_mem_maximalIntegralCurveInterval [CompleteSpace E] [IsManifold I 1 M]
     [BoundarylessManifold I M]
     (hv : CMDiffAt 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)) x) :
     (0 : ℝ) ∈ maximalIntegralCurveInterval v x := by
@@ -212,7 +212,7 @@ value of some witness. Under the hypotheses of `IsMIntegralCurveOn.eqOn_maximalI
 separated, boundaryless and `C^1`, and `v` a `C^1` field — uniqueness of integral curves makes the
 value independent of the witness, and that theorem, rather than this definition, is what all the
 results below use. -/
-noncomputable def maximalIntegralCurve (v : (x : M) → TangentSpace I x) (x : M) (t : ℝ) : M :=
+noncomputable def Tengoku.Tauceti.maximalIntegralCurve (v : (x : M) → TangentSpace I x) (x : M) (t : ℝ) : M :=
   letI := Classical.dec (t ∈ maximalIntegralCurveInterval v x)
   if h : t ∈ maximalIntegralCurveInterval v x then
     h.choose t
@@ -221,13 +221,13 @@ noncomputable def maximalIntegralCurve (v : (x : M) → TangentSpace I x) (x : M
 /-- Outside the maximal interval of existence, the junk value of the maximal integral curve is its
 initial point. -/
 @[simp]
-theorem maximalIntegralCurve_eq_of_not_mem (h : t ∉ maximalIntegralCurveInterval v x) :
+theorem Tengoku.Tauceti.maximalIntegralCurve_eq_of_not_mem (h : t ∉ maximalIntegralCurveInterval v x) :
     maximalIntegralCurve v x t = x := by
   simp [maximalIntegralCurve, h]
 
 /-- At a time of the maximal interval of existence, the maximal integral curve takes the value of
 some integral curve of `v` through `x`. -/
-theorem exists_isMIntegralCurveOn_maximalIntegralCurve_eq
+theorem Tengoku.Tauceti.exists_isMIntegralCurveOn_maximalIntegralCurve_eq
     (h : t ∈ maximalIntegralCurveInterval v x) :
     ∃ γ : ℝ → M, ∃ a b : ℝ, IsMIntegralCurveOn γ v (Ioo a b) ∧ γ 0 = x ∧ (0 : ℝ) ∈ Ioo a b ∧
       t ∈ Ioo a b ∧ maximalIntegralCurve v x t = γ t := by
@@ -236,7 +236,7 @@ theorem exists_isMIntegralCurveOn_maximalIntegralCurve_eq
 
 /-- At the initial time, the maximal integral curve takes its prescribed initial value. -/
 @[simp]
-theorem maximalIntegralCurve_zero (h : (0 : ℝ) ∈ maximalIntegralCurveInterval v x) :
+theorem Tengoku.Tauceti.maximalIntegralCurve_zero (h : (0 : ℝ) ∈ maximalIntegralCurveInterval v x) :
     maximalIntegralCurve v x 0 = x := by
   obtain ⟨γ, _, _, _, hx, _, _, heq⟩ := exists_isMIntegralCurveOn_maximalIntegralCurve_eq h
   rw [heq, hx]
@@ -266,7 +266,7 @@ theorem IsMIntegralCurveOn.eqOn_maximalIntegralCurve
 
 /-- **The maximal integral curve is an integral curve** of `v` on the maximal interval of
 existence. -/
-theorem isMIntegralCurveOn_maximalIntegralCurve
+theorem Tengoku.Tauceti.isMIntegralCurveOn_maximalIntegralCurve
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M))) :
     IsMIntegralCurveOn (maximalIntegralCurve v x) v (maximalIntegralCurveInterval v x) := by
   apply IsMIntegralCurveAt.isMIntegralCurveOn
@@ -282,7 +282,7 @@ The finite-endpoint extension criterion would otherwise extend the curve past `b
 would put times beyond `b` in the maximal interval. This is the form in which metric completeness
 is turned into completeness of the field: a limit of the curve at a finite endpoint is exactly what
 the criterion forbids. -/
-theorem not_mapClusterPt_nhdsLT_maximalIntegralCurve [CompleteSpace E]
+theorem Tengoku.Tauceti.not_mapClusterPt_nhdsLT_maximalIntegralCurve [CompleteSpace E]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)))
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (hb : IsLUB (maximalIntegralCurveInterval v x) b) (y : M) :
@@ -300,7 +300,7 @@ theorem not_mapClusterPt_nhdsLT_maximalIntegralCurve [CompleteSpace E]
 /-- **The escape lemma for the maximal integral curve at a finite right endpoint.** If the maximal
 interval of existence is bounded above, with least upper bound `b`, the maximal integral curve
 leaves every compact set as `t → b⁻`. -/
-theorem eventually_notMem_nhdsLT_maximalIntegralCurve [CompleteSpace E]
+theorem Tengoku.Tauceti.eventually_notMem_nhdsLT_maximalIntegralCurve [CompleteSpace E]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)))
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (hb : IsLUB (maximalIntegralCurveInterval v x) b) {K : Set M} (hK : IsCompact K) :
@@ -314,7 +314,7 @@ theorem eventually_notMem_nhdsLT_maximalIntegralCurve [CompleteSpace E]
 /-- **A maximal integral curve has no cluster point at a finite left endpoint.** If the maximal
 interval of existence is bounded below, with greatest lower bound `a`, then
 `maximalIntegralCurve v x` does not accumulate at any point of `M` as `t → a⁺`. -/
-theorem not_mapClusterPt_nhdsGT_maximalIntegralCurve [CompleteSpace E]
+theorem Tengoku.Tauceti.not_mapClusterPt_nhdsGT_maximalIntegralCurve [CompleteSpace E]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)))
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (ha : IsGLB (maximalIntegralCurveInterval v x) a) (y : M) :
@@ -332,7 +332,7 @@ theorem not_mapClusterPt_nhdsGT_maximalIntegralCurve [CompleteSpace E]
 /-- **The escape lemma for the maximal integral curve at a finite left endpoint.** If the maximal
 interval of existence is bounded below, with greatest lower bound `a`, the maximal integral curve
 leaves every compact set as `t → a⁺`. -/
-theorem eventually_notMem_nhdsGT_maximalIntegralCurve [CompleteSpace E]
+theorem Tengoku.Tauceti.eventually_notMem_nhdsGT_maximalIntegralCurve [CompleteSpace E]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)))
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (ha : IsGLB (maximalIntegralCurveInterval v x) a) {K : Set M} (hK : IsCompact K) :
@@ -346,7 +346,7 @@ theorem eventually_notMem_nhdsGT_maximalIntegralCurve [CompleteSpace E]
 omit [T2Space M] [IsManifold I 1 M] [BoundarylessManifold I M] in
 /-- **The maximal interval of existence is all of `ℝ` once it is unbounded on both sides.** It is
 an interval containing `0`, so unboundedness in both directions leaves no time out. -/
-theorem maximalIntegralCurveInterval_eq_univ_of_not_bddAbove_not_bddBelow
+theorem Tengoku.Tauceti.maximalIntegralCurveInterval_eq_univ_of_not_bddAbove_not_bddBelow
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x)
     (hup : ¬ BddAbove (maximalIntegralCurveInterval v x))
     (hlow : ¬ BddBelow (maximalIntegralCurveInterval v x)) :
@@ -361,7 +361,7 @@ theorem maximalIntegralCurveInterval_eq_univ_of_not_bddAbove_not_bddBelow
 /-- **A maximal integral curve confined to a compact set is defined for all time.** Neither
 endpoint of the maximal interval can be finite, since the escape lemma would force the curve out of
 the compact set there. -/
-theorem maximalIntegralCurveInterval_eq_univ_of_isCompact_of_mapsTo [CompleteSpace E]
+theorem Tengoku.Tauceti.maximalIntegralCurveInterval_eq_univ_of_isCompact_of_mapsTo [CompleteSpace E]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M)))
     (h0 : (0 : ℝ) ∈ maximalIntegralCurveInterval v x) {K : Set M} (hK : IsCompact K)
     (hmem : MapsTo (maximalIntegralCurve v x) (maximalIntegralCurveInterval v x) K) :
@@ -388,7 +388,7 @@ theorem maximalIntegralCurveInterval_eq_univ_of_isCompact_of_mapsTo [CompleteSpa
 
 /-- **A `C^1` vector field on a compact boundaryless manifold is complete**: its maximal integral
 curve through any point is defined for all time. -/
-theorem isMIntegralCurve_maximalIntegralCurve [CompleteSpace E] [CompactSpace M]
+theorem Tengoku.Tauceti.isMIntegralCurve_maximalIntegralCurve [CompleteSpace E] [CompactSpace M]
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M))) :
     IsMIntegralCurve (maximalIntegralCurve v x) v := by
   have h0 := zero_mem_maximalIntegralCurveInterval (v := v) (x := x) hv.contMDiffAt
@@ -400,7 +400,7 @@ theorem isMIntegralCurve_maximalIntegralCurve [CompleteSpace E] [CompactSpace M]
 /-- The maximal interval of existence is all of `ℝ` exactly when a global integral curve of `v`
 passes through `x` at time `0`. This is the form in which completeness of the field at a point is
 stated. -/
-theorem maximalIntegralCurveInterval_eq_univ_iff
+theorem Tengoku.Tauceti.maximalIntegralCurveInterval_eq_univ_iff
     (hv : CMDiff 1 (fun y ↦ (⟨y, v y⟩ : TangentBundle I M))) :
     maximalIntegralCurveInterval v x = univ ↔ ∃ γ : ℝ → M, γ 0 = x ∧ IsMIntegralCurve γ v := by
   refine ⟨fun h ↦ ⟨maximalIntegralCurve v x, maximalIntegralCurve_zero (h ▸ mem_univ 0), ?_⟩,
@@ -410,3 +410,4 @@ theorem maximalIntegralCurveInterval_eq_univ_iff
   · have habs := abs_nonneg t
     refine (hγ.isMIntegralCurveOn (Ioo (-(|t| + 1)) (|t| + 1))).subset_maximalIntegralCurveInterval
       ⟨by linarith, by linarith⟩ hx ⟨by linarith [neg_abs_le t], by linarith [le_abs_self t]⟩
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

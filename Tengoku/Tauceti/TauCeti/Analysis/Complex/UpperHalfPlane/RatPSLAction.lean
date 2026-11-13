@@ -47,7 +47,7 @@ needed by any consumer and is not claimed.)
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix UpperHalfPlane
 
 open scoped MatrixGroups
@@ -90,3 +90,4 @@ theorem _root_.UpperHalfPlane.ratPosToPSL2R_smul (g : GL(2, ℚ)⁺) (τ : ℍ) 
   exact congrArg (fun m : GL (Fin 2) ℝ ↦ m • τ) (coe_ratPosToRealPos g)
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

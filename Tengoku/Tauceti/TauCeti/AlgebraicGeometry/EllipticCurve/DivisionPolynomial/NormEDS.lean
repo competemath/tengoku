@@ -48,7 +48,7 @@ module system rejects across file boundaries, so the identification is a named `
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Polynomial
 
 namespace WeierstrassCurve
@@ -68,3 +68,4 @@ theorem isEllipticNet_ψ : IsEllipticNet W.ψ := by
   exact isEllipticNet_normEDS _ _ _
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

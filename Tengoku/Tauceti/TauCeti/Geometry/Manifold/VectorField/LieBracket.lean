@@ -36,7 +36,7 @@ prerequisite for Deliverable A, Layer 1 of the Lie-groups roadmap.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open Bundle Filter Manifold VectorField
@@ -209,7 +209,7 @@ private theorem mdifferentiableAt_mvfderiv_apply
 `W` be differentiable vector fields there. Then the differential of `f` on the manifold bracket is
 the commutator of its directional derivatives. This is the manifold counterpart of Mathlib's
 `fderivWithin_apply_lieBracket`. -/
-theorem mvfderiv_mlieBracket {f : M → F} {V W : ∀ x : M, TangentSpace I x} {x : M}
+theorem Tengoku.Tauceti.mvfderiv_mlieBracket {f : M → F} {V W : ∀ x : M, TangentSpace I x} {x : M}
     (hf : CMDiffAt n f x) (hn : minSmoothness 𝕜 2 ≤ n)
     (hV : MDiffAt (fun y ↦ (V y : TangentBundle I M)) x)
     (hW : MDiffAt (fun y ↦ (W y : TangentBundle I M)) x) :
@@ -299,3 +299,4 @@ theorem mvfderiv_mlieBracket {f : M → F} {V W : ∀ x : M, TangentSpace I x} {
     (Set.mem_range_self (f := I) _) hWcoord hVcoord]
   rw [hcoordW, hcoordV]
   exact congrArg₂ (· - ·) houterW houterV
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

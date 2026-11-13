@@ -34,7 +34,7 @@ factor in the differential of a Lie-group exponential.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 namespace TauCeti.Lie
@@ -104,3 +104,4 @@ theorem banachDexpFactor_continuousCommutator_apply (x y : R) :
   exact continuousCommutator_banachDexpFactor_apply x y
 
 end TauCeti.Lie
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

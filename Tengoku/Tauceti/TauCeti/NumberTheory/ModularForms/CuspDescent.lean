@@ -87,7 +87,7 @@ with. The source also carries its character as a `DirichletCharacter ℂ N` and 
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane CongruenceSubgroup OnePoint
 
 open scoped MatrixGroups ModularForm
@@ -238,3 +238,4 @@ lemma coe_cuspFormOfSmulSlashScaleGL (l N : ℕ) [NeZero l] [NeZero N] (hlN : l 
 end TauCeti
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

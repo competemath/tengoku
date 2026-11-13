@@ -40,7 +40,7 @@ roadmap-facing Lie-group exponential.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Function Manifold VectorField
 open scoped ContDiff Manifold
 
@@ -52,14 +52,14 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- The tangent-space exponential obtained by evaluating the canonical invariant curve at time
 one. This is the tangent-vector precursor of the roadmap's derivation-based `lieExp`. -/
-noncomputable def mulInvariantExp [CompleteSpace E]
+noncomputable def Tengoku.Tauceti.mulInvariantExp [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) : G :=
   mulInvariantOneParameterSubgroup v (Multiplicative.ofAdd 1)
 
 /-- The tangent-space exponential is the canonical invariant integral curve evaluated at time
 one. -/
-theorem mulInvariantExp_eq_mulInvariantIntegralCurve [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_eq_mulInvariantIntegralCurve [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) :
     mulInvariantExp v = mulInvariantIntegralCurve v 1 1 := by
@@ -67,7 +67,7 @@ theorem mulInvariantExp_eq_mulInvariantIntegralCurve [CompleteSpace E]
 
 /-- Scaling a tangent vector corresponds to evaluating its invariant integral curve at the scale
 factor. -/
-theorem mulInvariantExp_smul [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_smul [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) (t : ℝ) :
     mulInvariantExp (t • v) = mulInvariantIntegralCurve v 1 t := by
@@ -75,7 +75,7 @@ theorem mulInvariantExp_smul [CompleteSpace E]
 
 /-- The canonical one-parameter subgroup is the tangent-space exponential along its generating
 line. -/
-theorem mulInvariantOneParameterSubgroup_eq_mulInvariantExp_smul [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantOneParameterSubgroup_eq_mulInvariantExp_smul [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) (t : ℝ) :
     mulInvariantOneParameterSubgroup v (Multiplicative.ofAdd t) = mulInvariantExp (t • v) := by
@@ -83,7 +83,7 @@ theorem mulInvariantOneParameterSubgroup_eq_mulInvariantExp_smul [CompleteSpace 
 
 /-- The exponential along a line satisfies the one-parameter subgroup law. -/
 @[simp]
-theorem mulInvariantExp_add_smul [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_add_smul [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) (s t : ℝ) :
     mulInvariantExp ((s + t) • v) = mulInvariantExp (s • v) * mulInvariantExp (t • v) := by
@@ -92,7 +92,7 @@ theorem mulInvariantExp_add_smul [CompleteSpace E]
 
 /-- Scaling a tangent vector by a natural number corresponds to taking the associated group
 element to that power. -/
-theorem mulInvariantExp_nsmul [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_nsmul [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) (m : ℕ) :
     mulInvariantExp (I := I) (G := G) (m • v) = mulInvariantExp v ^ m := by
@@ -104,14 +104,14 @@ theorem mulInvariantExp_nsmul [CompleteSpace E]
 
 /-- The tangent-space exponential sends zero to the group identity. -/
 @[simp]
-theorem mulInvariantExp_zero [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_zero [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] : mulInvariantExp (0 : GroupLieAlgebra I G) = 1 := by
   simpa using mulInvariantExp_smul (0 : GroupLieAlgebra I G) 0
 
 /-- The tangent-space exponential sends negation to inversion. -/
 @[simp]
-theorem mulInvariantExp_neg [CompleteSpace E]
+theorem Tengoku.Tauceti.mulInvariantExp_neg [CompleteSpace E]
     [LieGroup I (minSmoothness ℝ 3) G] [IsManifold I 1 G] [T2Space G]
     [BoundarylessManifold I G] (v : GroupLieAlgebra I G) :
     mulInvariantExp (-v) = (mulInvariantExp v)⁻¹ := by
@@ -136,14 +136,14 @@ attribute [local instance] LieGroup.minSmoothnessThree
 /-- The exponential map of a finite-dimensional smooth real Lie group, obtained by evaluating at
 time one the invariant integral curve whose tangent vector corresponds to a left-invariant
 derivation. -/
-noncomputable def lieExp (X : LeftInvariantDerivation I G) : G :=
+noncomputable def Tengoku.Tauceti.lieExp (X : LeftInvariantDerivation I G) : G :=
   mulInvariantExp
     (leftInvariantDerivationEquivGroupLieAlgebra (I := I) (G := G)
       BoundarylessManifold.isInteriorPoint X)
 
 /-- The derivation-based exponential is the tangent-space exponential transported through the
 canonical equivalence at the identity. -/
-theorem lieExp_eq_mulInvariantExp (X : LeftInvariantDerivation I G) :
+theorem Tengoku.Tauceti.lieExp_eq_mulInvariantExp (X : LeftInvariantDerivation I G) :
     lieExp X =
       mulInvariantExp
         (leftInvariantDerivationEquivGroupLieAlgebra (I := I) (G := G)
@@ -152,17 +152,17 @@ theorem lieExp_eq_mulInvariantExp (X : LeftInvariantDerivation I G) :
 
 /-- The Lie-group exponential sends the zero derivation to the group identity. -/
 @[simp]
-theorem lieExp_zero : lieExp (0 : LeftInvariantDerivation I G) = 1 := by
+theorem Tengoku.Tauceti.lieExp_zero : lieExp (0 : LeftInvariantDerivation I G) = 1 := by
   simp [lieExp]
 
 /-- The Lie-group exponential sends negation to inversion. -/
 @[simp]
-theorem lieExp_neg (X : LeftInvariantDerivation I G) : lieExp (-X) = (lieExp X)⁻¹ := by
+theorem Tengoku.Tauceti.lieExp_neg (X : LeftInvariantDerivation I G) : lieExp (-X) = (lieExp X)⁻¹ := by
   simp [lieExp]
 
 /-- The exponential along a fixed derivation satisfies the one-parameter subgroup law. -/
 @[simp]
-theorem lieExp_add_smul (X : LeftInvariantDerivation I G) (s t : ℝ) :
+theorem Tengoku.Tauceti.lieExp_add_smul (X : LeftInvariantDerivation I G) (s t : ℝ) :
     lieExp ((s + t) • X) = lieExp (s • X) * lieExp (t • X) := by
   simpa only [lieExp, map_smul] using
     mulInvariantExp_add_smul
@@ -171,13 +171,13 @@ theorem lieExp_add_smul (X : LeftInvariantDerivation I G) (s t : ℝ) :
 
 /-- Scaling a derivation by a natural number corresponds to taking its exponential to that
 power. -/
-theorem lieExp_nsmul (X : LeftInvariantDerivation I G) (m : ℕ) :
+theorem Tengoku.Tauceti.lieExp_nsmul (X : LeftInvariantDerivation I G) (m : ℕ) :
     lieExp (m • X) = lieExp X ^ m := by
   rw [lieExp_eq_mulInvariantExp, lieExp_eq_mulInvariantExp, map_nsmul,
     mulInvariantExp_nsmul]
 
 /-- The continuous one-parameter subgroup generated by a left-invariant derivation. -/
-noncomputable def oneParameterSubgroup (X : LeftInvariantDerivation I G) :
+noncomputable def Tengoku.Tauceti.oneParameterSubgroup (X : LeftInvariantDerivation I G) :
     ContinuousMonoidHom (Multiplicative ℝ) G :=
   mulInvariantOneParameterSubgroup
     (leftInvariantDerivationEquivGroupLieAlgebra (I := I) (G := G)
@@ -186,7 +186,7 @@ noncomputable def oneParameterSubgroup (X : LeftInvariantDerivation I G) :
 /-- The derivation-based one-parameter subgroup is the invariant tangent-space subgroup after
 transporting its generator through evaluation at the identity. This theorem exposes the defining
 equation across the module boundary, where the definition body itself is not reducible. -/
-theorem oneParameterSubgroup_eq_mulInvariantOneParameterSubgroup
+theorem Tengoku.Tauceti.oneParameterSubgroup_eq_mulInvariantOneParameterSubgroup
     (X : LeftInvariantDerivation I G) :
     oneParameterSubgroup X =
       mulInvariantOneParameterSubgroup
@@ -197,14 +197,14 @@ theorem oneParameterSubgroup_eq_mulInvariantOneParameterSubgroup
 /-- Evaluating the one-parameter subgroup generated by `X` at time `t` gives
 `lieExp (t • X)`. -/
 @[simp]
-theorem oneParameterSubgroup_apply (X : LeftInvariantDerivation I G) (t : ℝ) :
+theorem Tengoku.Tauceti.oneParameterSubgroup_apply (X : LeftInvariantDerivation I G) (t : ℝ) :
     oneParameterSubgroup X (Multiplicative.ofAdd t) = lieExp (t • X) := by
   rw [oneParameterSubgroup, mulInvariantOneParameterSubgroup_eq_mulInvariantExp_smul,
     lieExp, map_smul]
 
 /-- The one-parameter subgroup generated by a left-invariant derivation is smooth in its additive
 real parameter. -/
-theorem contMDiff_oneParameterSubgroup (X : LeftInvariantDerivation I G) :
+theorem Tengoku.Tauceti.contMDiff_oneParameterSubgroup (X : LeftInvariantDerivation I G) :
     ContMDiff 𝓘(ℝ, ℝ) I ∞
       (fun t : ℝ ↦ oneParameterSubgroup X (Multiplicative.ofAdd t)) := by
   simpa only [oneParameterSubgroup] using
@@ -213,3 +213,4 @@ theorem contMDiff_oneParameterSubgroup (X : LeftInvariantDerivation I G) :
         BoundarylessManifold.isInteriorPoint X)
 
 end LieAlgebra
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

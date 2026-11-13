@@ -78,7 +78,7 @@ Birkbeck--Brasca).
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace AddChar
 
 variable {F : Type*} [Field F] [Fintype F]
@@ -120,7 +120,7 @@ Mathlib registers only `Finite (G →* Mˣ)`, so a character sum written by a co
 `Finset` to range over without this; it mirrors `AddChar.instFintype`. Neither commutativity nor
 invertibility is needed: `Finite (G →* Mˣ)` already holds at `LeftCancelMonoid`, which is where
 this is stated. -/
-noncomputable instance instFintypeMonoidHomUnits [LeftCancelMonoid G] : Fintype (G →* Mˣ) :=
+noncomputable instance Tengoku.Tauceti.instFintypeMonoidHomUnits [LeftCancelMonoid G] : Fintype (G →* Mˣ) :=
   Fintype.ofFinite _
 
 namespace CommGroup
@@ -170,3 +170,4 @@ theorem sum_inv_mul_monoidHom_apply_eq_ite [DecidableEq G] (σ g : G) :
   simp only [key, sum_monoidHom_apply_eq_ite, inv_mul_eq_one, eq_comm]
 
 end CommGroup
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

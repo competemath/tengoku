@@ -60,7 +60,7 @@ space of forms, not an equality of types.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane CongruenceSubgroup
 
 open scoped MatrixGroups ModularForm
@@ -223,3 +223,4 @@ theorem coe_cuspFormCharSpaceOneEquiv_symm_apply [NeZero N]
   (rfl)
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

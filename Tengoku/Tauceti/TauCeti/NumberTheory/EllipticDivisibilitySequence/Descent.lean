@@ -110,7 +110,7 @@ appears here.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace IsEllipticNet
 
 variable {R : Type*} [CommRing R] (W : ℤ → R)
@@ -443,7 +443,7 @@ Under these hypotheses, therefore, being an elliptic net and being an elliptic s
 same condition. They are not the same condition in general: `normEDS b c d` at arbitrary
 parameters need not have `W 2 = b` a nonzerodivisor, and `NormEDS.lean` obtains the net there
 without this equivalence. -/
-theorem isEllipticNet_iff {R : Type*} [CommRing R] {W : ℤ → R} (odd : W.Odd) (zero : W 0 = 0)
+theorem Tengoku.Tauceti.isEllipticNet_iff {R : Type*} [CommRing R] {W : ℤ → R} (odd : W.Odd) (zero : W 0 = 0)
     (one : W 1 ∈ nonZeroDivisors R) (two : W 2 ∈ nonZeroDivisors R) :
     IsEllipticNet W ↔
       (∀ m : ℤ, 2 ≤ m → W (2 * m + 1) * W 1 ^ 3 = W (m + 2) * W m ^ 3 - W (m - 1) * W (m + 1) ^ 3)
@@ -464,7 +464,7 @@ three-index relation is equivalent to the odd recurrence from `m = 2` and the ev
 
 This is the classical statement, about the predicate `IsEllipticSequence`; `isEllipticNet_iff`
 is its four-index strengthening. -/
-theorem isEllipticSequence_iff {R : Type*} [CommRing R] {W : ℤ → R} (odd : W.Odd) (zero : W 0 = 0)
+theorem Tengoku.Tauceti.isEllipticSequence_iff {R : Type*} [CommRing R] {W : ℤ → R} (odd : W.Odd) (zero : W 0 = 0)
     (one : W 1 ∈ nonZeroDivisors R) (two : W 2 ∈ nonZeroDivisors R) :
     IsEllipticSequence W ↔
       (∀ m : ℤ, 2 ≤ m → W (2 * m + 1) * W 1 ^ 3 = W (m + 2) * W m ^ 3 - W (m - 1) * W (m + 1) ^ 3)
@@ -472,3 +472,4 @@ theorem isEllipticSequence_iff {R : Type*} [CommRing R] {W : ℤ → R} (odd : W
             W m * (W (m - 1) ^ 2 * W (m + 2) - W (m - 2) * W (m + 1) ^ 2) :=
   ⟨fun h ↦ ⟨fun m _ ↦ h.rel_odd m, fun m _ ↦ h.rel_even m⟩,
     fun h ↦ ((isEllipticNet_iff odd zero one two).mpr h).isEllipticSequence⟩
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

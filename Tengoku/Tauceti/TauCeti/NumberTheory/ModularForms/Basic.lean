@@ -67,7 +67,7 @@ AINTLIB `LeanModularForms` project
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane
 
 open scoped MatrixGroups ModularForm Pointwise
@@ -82,7 +82,7 @@ it the same way. Keying it on membership in `𝒮ℒ` rather than on
 `Matrix.SpecialLinearGroup.mapGL` covers both shapes the call sites come in: a direct image
 `mapGL ℝ γ` (via `MonoidHom.mem_range.mpr ⟨γ, rfl⟩`) and an element of the image of a subgroup
 `Γ ≤ SL(2, ℤ)` (via `Subgroup.map_le_range`). -/
-theorem det_pos_of_mem_slGL {g : GL (Fin 2) ℝ} (hg : g ∈ 𝒮ℒ) :
+theorem Tengoku.Tauceti.det_pos_of_mem_slGL {g : GL (Fin 2) ℝ} (hg : g ∈ 𝒮ℒ) :
     0 < (g : Matrix (Fin 2) (Fin 2) ℝ).det := by
   obtain ⟨γ, rfl⟩ := hg
   rw [← Matrix.GeneralLinearGroup.val_det_apply, Matrix.SpecialLinearGroup.det_mapGL]
@@ -96,7 +96,7 @@ one is conditional, and `simp` cannot discharge `0 < (↑(mapGL ℝ s)).det` on 
 determinant of a mapped `SL(2, ℤ)` matrix reduces through `GeneralLinearGroup.det`, not through
 `Matrix.det` of the entrywise map. So the two do not overlap in practice. -/
 @[simp]
-lemma σ_mapGL_real_eq_refl (s : SL(2, ℤ)) :
+lemma Tengoku.Tauceti.σ_mapGL_real_eq_refl (s : SL(2, ℤ)) :
     UpperHalfPlane.σ (mapGL ℝ s) = ContinuousAlgEquiv.refl ℝ ℂ :=
   σ_eq_refl_of_det_pos (det_pos_of_mem_slGL (MonoidHom.mem_range.mpr ⟨s, rfl⟩))
 
@@ -122,7 +122,7 @@ private noncomputable def slashMulAction (k : ℤ) : MulAction (GL (Fin 2) ℝ)�
 /-- **Slash invariance passes to every integer power.** If `f ∣[k] A = f` then
 `f ∣[k] A ^ j = f` for every `j : ℤ`: `f` is a fixed point of the slash action of `A`, and
 `MulAction.mem_fixedBy_zpow` carries a fixed point along every integer power. -/
-lemma slash_zpow_eq_self_of_slash_eq (k : ℤ) (f : ℍ → ℂ) {A : GL (Fin 2) ℝ}
+lemma Tengoku.Tauceti.slash_zpow_eq_self_of_slash_eq (k : ℤ) (f : ℍ → ℂ) {A : GL (Fin 2) ℝ}
     (hf : f ∣[k] A = f) (j : ℤ) : f ∣[k] (A ^ j) = f := by
   let _inst := slashMulAction k
   exact MulAction.mem_fixedBy_zpow (g := MulOpposite.op A) hf j
@@ -139,7 +139,7 @@ hypothesis is `det_pos_of_mem_slGL`.
 
 The level-lowering step of the conductor theorem is the case `δ = T`, with `γ` the conjugate
 `conjScale l γ' c` supplied by the `T`-factorisation of `Γ₀(N / l)`. -/
-lemma slash_zpow_mul_mul_zpow_eq_smul (k : ℤ) (f : ℍ → ℂ) {δ γ : GL (Fin 2) ℝ}
+lemma Tengoku.Tauceti.slash_zpow_mul_mul_zpow_eq_smul (k : ℤ) (f : ℍ → ℂ) {δ γ : GL (Fin 2) ℝ}
     (hδdet : 0 < (δ : Matrix (Fin 2) (Fin 2) ℝ).det) (hδ : f ∣[k] δ = f) {z : ℂ}
     (hγ : f ∣[k] γ = z • f) (i j : ℤ) :
     f ∣[k] (δ ^ i * γ * δ ^ j) = z • f := by
@@ -365,3 +365,4 @@ lemma mem_range_ofLeₗ_iff [Γ.HasDetOne] [Γ'.HasDetOne] (h : Γ' ≤ Γ)
 end CuspForm
 
 end OfLe
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

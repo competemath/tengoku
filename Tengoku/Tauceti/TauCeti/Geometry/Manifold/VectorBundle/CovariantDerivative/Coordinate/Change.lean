@@ -30,7 +30,7 @@ arguments, so its diagonal specialization is available for the geodesic spray.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open Bundle CovariantDerivative Module Set
 open scoped Manifold
 
@@ -209,3 +209,4 @@ theorem christoffelMap_coordChange [Fintype ι] [IsManifold I 2 M]
 end CoordinateChange
 
 end TauCeti.Manifold
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

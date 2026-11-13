@@ -33,7 +33,7 @@ declarations are pure matrix-group algebra with no dependence on `ℍ`.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open scoped MatrixGroups
@@ -42,11 +42,11 @@ open Matrix.SpecialLinearGroup
 
 /-- The lift `SL(2, ℤ) →* PSL(2, ℝ)`: cast `SL(2, ℤ)` entries to `ℝ` via
 `SpecialLinearGroup.map (Int.castRingHom ℝ)`, then project to the `±I`-quotient. -/
-def sl2zToPSL2R : SL(2, ℤ) →* PSL(2, ℝ) :=
+def Tengoku.Tauceti.sl2zToPSL2R : SL(2, ℤ) →* PSL(2, ℝ) :=
   (QuotientGroup.mk' (Subgroup.center SL(2, ℝ))).comp
     (Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ))
 
-@[simp] theorem sl2zToPSL2R_apply (g : SL(2, ℤ)) :
+@[simp] theorem Tengoku.Tauceti.sl2zToPSL2R_apply (g : SL(2, ℤ)) :
     sl2zToPSL2R g =
       (↑(Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ) g) : PSL(2, ℝ)) := (rfl)
 
@@ -111,7 +111,7 @@ private lemma map_intCast_mem_center_of_g_mem_center (g : SL(2, ℤ))
 
 /-- The kernel of `sl2zToPSL2R` is the center of `SL(2, ℤ)`: an integer matrix
 casts to a real scalar matrix iff it is itself a scalar matrix. -/
-theorem sl2zToPSL2R_ker : sl2zToPSL2R.ker = Subgroup.center SL(2, ℤ) := by
+theorem Tengoku.Tauceti.sl2zToPSL2R_ker : sl2zToPSL2R.ker = Subgroup.center SL(2, ℤ) := by
   ext g
   simp only [MonoidHom.mem_ker, sl2zToPSL2R_apply, QuotientGroup.eq_one_iff]
   exact ⟨g_mem_center_of_map_intCast_mem_center g, map_intCast_mem_center_of_g_mem_center g⟩
@@ -119,23 +119,23 @@ theorem sl2zToPSL2R_ker : sl2zToPSL2R.ker = Subgroup.center SL(2, ℤ) := by
 /-- The descended hom `PSL(2, ℤ) →* PSL(2, ℝ)`. `sl2zToPSL2R` factors through
 `PSL(2, ℤ) = SL(2, ℤ) ⧸ center SL(2, ℤ)` since integer scalar matrices map into
 `center SL(2, ℝ)`. -/
-def psl2zToPSL2R : PSL(2, ℤ) →* PSL(2, ℝ) :=
+def Tengoku.Tauceti.psl2zToPSL2R : PSL(2, ℤ) →* PSL(2, ℝ) :=
   QuotientGroup.lift (Subgroup.center SL(2, ℤ)) sl2zToPSL2R fun x hx ↦ by
     rwa [sl2zToPSL2R_ker]
 
-@[simp] theorem psl2zToPSL2R_mk (g : SL(2, ℤ)) :
+@[simp] theorem Tengoku.Tauceti.psl2zToPSL2R_mk (g : SL(2, ℤ)) :
     psl2zToPSL2R (↑g : PSL(2, ℤ)) = sl2zToPSL2R g :=
   QuotientGroup.lift_mk' _ _ g
 
 /-- `psl2zToPSL2R` is injective: its kernel is the image of
 `sl2zToPSL2R.ker = center SL(2, ℤ)` under the `PSL(2, ℤ)`-projection, which is `⊥`. -/
-theorem psl2zToPSL2R_injective : Function.Injective psl2zToPSL2R :=
+theorem Tengoku.Tauceti.psl2zToPSL2R_injective : Function.Injective psl2zToPSL2R :=
   QuotientGroup.injective_lift_iff _ _ _ |>.2 sl2zToPSL2R_ker.symm
 
 /-- The det-normalized `SL(2, ℝ)` representative of a `GL(2, ℝ)⁺` element, as a monoid
 homomorphism: the matrix `(√ det g)⁻¹ • g` has determinant `1`, and normalization is
 multiplicative because positive scalars are central and `√` is multiplicative on them. -/
-def glPosToSL2R : GL(2, ℝ)⁺ →* SL(2, ℝ) where
+def Tengoku.Tauceti.glPosToSL2R : GL(2, ℝ)⁺ →* SL(2, ℝ) where
   toFun g :=
     ⟨(Real.sqrt ((g : GL (Fin 2) ℝ).det.val))⁻¹ •
         ((g : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ), by
@@ -169,16 +169,17 @@ def glPosToSL2R : GL(2, ℝ)⁺ →* SL(2, ℝ) where
     rfl
 
 /-- The matrix of the det-normalized representative: `(√det g)⁻¹ • g`. -/
-@[simp] theorem glPosToSL2R_coe_matrix (g : GL(2, ℝ)⁺) :
+@[simp] theorem Tengoku.Tauceti.glPosToSL2R_coe_matrix (g : GL(2, ℝ)⁺) :
     ((glPosToSL2R g : SL(2, ℝ)) : Matrix (Fin 2) (Fin 2) ℝ) =
       (Real.sqrt ((g : GL (Fin 2) ℝ).det.val))⁻¹ •
         ((g : GL (Fin 2) ℝ) : Matrix (Fin 2) (Fin 2) ℝ) := (rfl)
 
 /-- The projective representative of a `GL(2, ℝ)⁺` element: the composition of
 `glPosToSL2R` with the projection to `PSL(2, ℝ)`, a monoid homomorphism. -/
-def glPosToPSL2R : GL(2, ℝ)⁺ →* PSL(2, ℝ) :=
+def Tengoku.Tauceti.glPosToPSL2R : GL(2, ℝ)⁺ →* PSL(2, ℝ) :=
   (QuotientGroup.mk' (Subgroup.center SL(2, ℝ))).comp glPosToSL2R
 
 /-- `glPosToPSL2R` is the class of the det-normalized representative. -/
-@[simp] theorem glPosToPSL2R_apply (g : GL(2, ℝ)⁺) :
+@[simp] theorem Tengoku.Tauceti.glPosToPSL2R_apply (g : GL(2, ℝ)⁺) :
     glPosToPSL2R g = (↑(glPosToSL2R g) : PSL(2, ℝ)) := (rfl)
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -96,18 +96,18 @@ nor `NormEDS.lean`, so it is not what fixes the direction.)
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open MvPolynomial
 
 /-- A three-element index type for the parameters `b`, `c`, `d` of a normalised elliptic
 divisibility sequence. It indexes the variables of `MvPolynomial NormEDSParam ℤ = ℤ[B, C, D]`,
 the ring the universal normalised EDS is defined over; the constructors are uppercase as names
 of indeterminates. -/
-inductive NormEDSParam : Type | B : NormEDSParam | C : NormEDSParam | D : NormEDSParam
+inductive Tengoku.Tauceti.NormEDSParam : Type | B : NormEDSParam | C : NormEDSParam | D : NormEDSParam
 
-namespace NormEDSParam
+namespace Tengoku.Tauceti.NormEDSParam
 
-open NormEDSParam
+open Tengoku.Tauceti.NormEDSParam
 
 variable {R : Type*} [CommRing R] (b c d : R)
 
@@ -153,4 +153,5 @@ theorem complEDS_eq_aeval :
       fun k n ↦ aeval (NormEDSParam.rec b c d) (complEDS (X (R := ℤ) B) (X C) (X D) k n) := by
   simp_rw [map_complEDS, aeval_X]
 
-end NormEDSParam
+end Tengoku.Tauceti.NormEDSParam
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

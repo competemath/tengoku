@@ -40,7 +40,7 @@ equivalence and embedding interfaces needed by the declaration types are public.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace Function.Embedding
 
 /-- An embedding `s : α ↪ Fin n` extends to an equivalence from `α` together with a finite
@@ -60,21 +60,21 @@ end Function.Embedding
 An `Equiv` rather than a bare `Function.Embedding`: injectivity is what turns a coefficient under
 a reindexing into an equality rather than a sum over a fibre, but surjectivity is what lets a
 statement about *every* `Fin 2` index be pulled back, and both directions are wanted downstream. -/
-def unitSumUnitEquivFinTwo : (Unit ⊕ Unit) ≃ Fin 2 :=
+def Tengoku.Tauceti.unitSumUnitEquivFinTwo : (Unit ⊕ Unit) ≃ Fin 2 :=
   (Equiv.sumCongr finOneEquiv.symm finOneEquiv.symm).trans finSumFinEquiv
 
 @[simp]
-theorem unitSumUnitEquivFinTwo_inl : unitSumUnitEquivFinTwo (Sum.inl ()) = 0 := by decide
+theorem Tengoku.Tauceti.unitSumUnitEquivFinTwo_inl : unitSumUnitEquivFinTwo (Sum.inl ()) = 0 := by decide
 
 @[simp]
-theorem unitSumUnitEquivFinTwo_inr : unitSumUnitEquivFinTwo (Sum.inr ()) = 1 := by decide
+theorem Tengoku.Tauceti.unitSumUnitEquivFinTwo_inr : unitSumUnitEquivFinTwo (Sum.inr ()) = 1 := by decide
 
 @[simp]
-theorem unitSumUnitEquivFinTwo_symm_zero :
+theorem Tengoku.Tauceti.unitSumUnitEquivFinTwo_symm_zero :
     unitSumUnitEquivFinTwo.symm 0 = Sum.inl () := by decide
 
 @[simp]
-theorem unitSumUnitEquivFinTwo_symm_one :
+theorem Tengoku.Tauceti.unitSumUnitEquivFinTwo_symm_one :
     unitSumUnitEquivFinTwo.symm 1 = Sum.inr () := by decide
 
 /-- The equivalence `Unit ⊕ Unit ≃ Fin 2` iterated on the right, `Unit ⊕ Unit ⊕ Unit ≃ Fin 3`,
@@ -82,29 +82,30 @@ sending the outer left summand to `0` and the two inner summands to `1` and `2`.
 
 The nesting is the one a three-variable identity meets: an outer variable together with a pair of
 inner ones, matching the shape in which an associativity law names its three slots. -/
-def unitSumUnitSumUnitEquivFinThree : (Unit ⊕ Unit ⊕ Unit) ≃ Fin 3 :=
+def Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree : (Unit ⊕ Unit ⊕ Unit) ≃ Fin 3 :=
   (Equiv.sumCongr finOneEquiv.symm unitSumUnitEquivFinTwo).trans finSumFinEquiv
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_inl :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_inl :
     unitSumUnitSumUnitEquivFinThree (Sum.inl ()) = 0 := by decide
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_inr_inl :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_inr_inl :
     unitSumUnitSumUnitEquivFinThree (Sum.inr (Sum.inl ())) = 1 := by decide
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_inr_inr :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_inr_inr :
     unitSumUnitSumUnitEquivFinThree (Sum.inr (Sum.inr ())) = 2 := by decide
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_symm_zero :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_symm_zero :
     unitSumUnitSumUnitEquivFinThree.symm 0 = Sum.inl () := by decide
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_symm_one :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_symm_one :
     unitSumUnitSumUnitEquivFinThree.symm 1 = Sum.inr (Sum.inl ()) := by decide
 
 @[simp]
-theorem unitSumUnitSumUnitEquivFinThree_symm_two :
+theorem Tengoku.Tauceti.unitSumUnitSumUnitEquivFinThree_symm_two :
     unitSumUnitSumUnitEquivFinThree.symm 2 = Sum.inr (Sum.inr ()) := by decide
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

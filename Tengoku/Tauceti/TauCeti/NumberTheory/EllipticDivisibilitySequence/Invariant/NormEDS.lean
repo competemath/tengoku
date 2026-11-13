@@ -85,8 +85,8 @@ somewhere to go.
 -/
 
 public section
-
-open MvPolynomial NormEDSParam
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
+open MvPolynomial Tengoku.Tauceti.NormEDSParam
 
 open scoped nonZeroDivisors
 
@@ -137,3 +137,4 @@ theorem invarNum_normEDS_one_mul_eq_invarDenom_mul (b c d : R) (m : ℤ) :
   simpa only [map_mul, map_add, map_pow, aeval_X] using key
 
 end IsEllipticNet
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

@@ -91,8 +91,8 @@ bookkeeping disappears and the even step is four rewrites.
 -/
 
 public section
-
-open MvPolynomial NormEDSParam
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
+open MvPolynomial Tengoku.Tauceti.NormEDSParam
 
 open scoped nonZeroDivisors
 
@@ -139,7 +139,7 @@ private theorem normEDS_mul_complEDS_of_mem_nonZeroDivisors {k : ℤ} (hk : norm
 /-- **The complement of a normalised EDS witnesses divisibility at every multiple**, with no
 hypothesis at all. -/
 @[simp]
-theorem normEDS_mul_complEDS (b c d : R) (k n : ℤ) :
+theorem Tengoku.Tauceti.normEDS_mul_complEDS (b c d : R) (k n : ℤ) :
     normEDS b c d k * complEDS b c d k n = normEDS b c d (n * k) := by
   -- The previous result's nonzerodivisor hypothesis is discharged over `ℤ[B, C, D]`, where
   -- `universalNormEDS k` is a nonzerodivisor for every `k ≠ 0`, and specialised along `aeval`.
@@ -159,14 +159,14 @@ theorem normEDS_mul_complEDS (b c d : R) (k n : ℤ) :
 /-- **A normalised EDS divides itself at every multiple of the index.** This is Mathlib's
 `normEDS_dvd_normEDS_two_mul` with the doubling replaced by an arbitrary multiplier, the
 complement supplying the cofactor. -/
-theorem normEDS_dvd_normEDS_mul (b c d : R) (k n : ℤ) :
+theorem Tengoku.Tauceti.normEDS_dvd_normEDS_mul (b c d : R) (k n : ℤ) :
     normEDS b c d k ∣ normEDS b c d (n * k) :=
   ⟨_, (normEDS_mul_complEDS b c d k n).symm⟩
 
 /-- **A normalised EDS is a divisibility sequence.** This is the second conjunct of the TODO
 Mathlib records for `normEDS`, in the predicate form the TODO states it in; the first conjunct is
 `isEllipticSequence_normEDS`. -/
-theorem isDvdSequence_normEDS (b c d : R) : IsDvdSequence (normEDS b c d) := by
+theorem Tengoku.Tauceti.isDvdSequence_normEDS (b c d : R) : IsDvdSequence (normEDS b c d) := by
   rintro k _ ⟨n, rfl⟩
   rw [mul_comm]
   exact normEDS_dvd_normEDS_mul b c d k n
@@ -178,6 +178,7 @@ what converts between the two. Unconditional, like the identity it rests on.
 
 Its one consumer is `IsEllipticNet.invarDenom_normEDS_one_eq_reducedInvarDenom_mul`; the module
 docstring records how often each of its residue branches goes through this. -/
-theorem normEDS_mul_complEDS_div (k n : ℤ) (hn : k ∣ n) :
+theorem Tengoku.Tauceti.normEDS_mul_complEDS_div (k n : ℤ) (hn : k ∣ n) :
     normEDS b c d k * complEDS b c d k (n / k) = normEDS b c d n := by
   rw [normEDS_mul_complEDS, Int.ediv_mul_cancel hn]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

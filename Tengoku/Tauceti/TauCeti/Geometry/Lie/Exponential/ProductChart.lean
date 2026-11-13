@@ -45,7 +45,7 @@ of any subgroup.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 namespace Submodule
@@ -97,3 +97,4 @@ theorem lieExpMulLieExp_zero (p q : Submodule ℝ (LeftInvariantDerivation I G))
   simp
 
 end Submodule
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

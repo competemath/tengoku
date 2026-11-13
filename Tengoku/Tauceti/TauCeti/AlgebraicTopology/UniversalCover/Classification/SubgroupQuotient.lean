@@ -45,7 +45,7 @@ and Mathlib's quotient-covering-map interface due to Junyan Xu.
 -/
 
 public section
-noncomputable section
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti noncomputable section
 
 open scoped unitInterval
 open Topology
@@ -228,3 +228,4 @@ theorem coe_subgroupQuotientBotHomeomorph [LocallyPathConnectedSpace X]
   (rfl)
 
 end TauCeti.UniversalCover
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

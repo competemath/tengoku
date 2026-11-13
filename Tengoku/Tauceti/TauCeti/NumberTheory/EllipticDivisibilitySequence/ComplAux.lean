@@ -76,38 +76,38 @@ holds the elliptic-net material (`atom`, `atomRel`, `rel`) and closes well befor
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 variable {R S : Type*} [CommRing R] [CommRing S] (b c d : R) (m : ℤ)
 
 /-- The subtracted summand of Mathlib's `complEDS₂`, named so that the decomposition of the second
 complement into its two terms is available as an identity. -/
-def complEDS₂Aux : R :=
+def Tengoku.Tauceti.complEDS₂Aux : R :=
   preNormEDS (b ^ 4) c d (m - 2) * preNormEDS (b ^ 4) c d (m + 1) ^ 2 * if Even m then 1 else b
 
 /-- The defining formula for `complEDS₂Aux`. The definition body is not exposed, so this equation
 lemma is how a consumer computes with it. It is deliberately **not** `@[simp]`: tagging it would
 have `simp` unfold `complEDS₂Aux` everywhere and defeat the point of naming the term. Rewrite with
 `complEDS₂_eq_sub_complEDS₂Aux` instead when the decomposition is what is wanted. -/
-theorem complEDS₂Aux_def : complEDS₂Aux b c d m =
+theorem Tengoku.Tauceti.complEDS₂Aux_def : complEDS₂Aux b c d m =
     preNormEDS (b ^ 4) c d (m - 2) * preNormEDS (b ^ 4) c d (m + 1) ^ 2 *
       if Even m then 1 else b := (rfl)
 
 /-- The auxiliary term at `0` is `-1`. -/
 @[simp]
-theorem complEDS₂Aux_zero : complEDS₂Aux b c d 0 = -1 := by simp [complEDS₂Aux_def]
+theorem Tengoku.Tauceti.complEDS₂Aux_zero : complEDS₂Aux b c d 0 = -1 := by simp [complEDS₂Aux_def]
 
 /-- The auxiliary term at `1` is `-b`. -/
 @[simp]
-theorem complEDS₂Aux_one : complEDS₂Aux b c d 1 = -b := by simp [complEDS₂Aux_def]
+theorem Tengoku.Tauceti.complEDS₂Aux_one : complEDS₂Aux b c d 1 = -b := by simp [complEDS₂Aux_def]
 
 /-- The auxiliary term vanishes at `2`: its first factor is `preNormEDS _ _ _ 0`. -/
 @[simp]
-theorem complEDS₂Aux_two : complEDS₂Aux b c d 2 = 0 := by simp [complEDS₂Aux_def]
+theorem Tengoku.Tauceti.complEDS₂Aux_two : complEDS₂Aux b c d 2 = 0 := by simp [complEDS₂Aux_def]
 
 /-- **The decomposition `complEDS₂` was named for.** Mathlib writes the second complement as a
 difference with both summands inline; this states it with the subtracted one abstracted, so that
 consumers can rewrite rather than re-expand. -/
-theorem complEDS₂_eq_sub_complEDS₂Aux :
+theorem Tengoku.Tauceti.complEDS₂_eq_sub_complEDS₂Aux :
     complEDS₂ b c d m =
       preNormEDS (b ^ 4) c d (m - 1) ^ 2 * preNormEDS (b ^ 4) c d (m + 2) *
         (if Even m then 1 else b) - complEDS₂Aux b c d m := by
@@ -119,7 +119,7 @@ converts the auxiliary term's own parity factor into the two that `normEDS` carr
 `m + 1`: each side contributes `b` for even `m` and `b ^ 2` for odd `m`. The `b ^ 4` rescaling of
 `preNormEDS` is not affected, since `normEDS` is defined with the identical one. Companion of
 Mathlib's `complEDS₂_mul_b`. -/
-theorem complEDS₂Aux_mul_b :
+theorem Tengoku.Tauceti.complEDS₂Aux_mul_b :
     complEDS₂Aux b c d m * b = normEDS b c d (m - 2) * normEDS b c d (m + 1) ^ 2 := by
   simp_rw [complEDS₂Aux, normEDS, Int.even_add, Int.even_sub, Int.not_even_one, even_two,
     iff_false, iff_true]
@@ -129,6 +129,7 @@ variable {F : Type*} [FunLike F R S] [RingHomClass F R S] (f : F)
 
 /-- The auxiliary term is natural in the coefficient ring. -/
 @[simp]
-theorem map_complEDS₂Aux :
+theorem Tengoku.Tauceti.map_complEDS₂Aux :
     f (complEDS₂Aux b c d m) = complEDS₂Aux (f b) (f c) (f d) m := by
   simp [complEDS₂Aux_def, apply_ite f, map_preNormEDS]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

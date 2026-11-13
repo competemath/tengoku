@@ -48,7 +48,7 @@ induction in the Lie--Kolchin theorem.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 namespace TauCeti
 
 open Set
@@ -222,3 +222,4 @@ theorem exists_unitHom_submodule_finrank_eq_one_of_pairwise_commute_of_isAlgClos
 end
 
 end TauCeti
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

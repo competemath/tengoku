@@ -42,7 +42,7 @@ satisfies this criterion automatically.
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 open scoped Function
 
 namespace TauCeti.Multiquadratic
@@ -287,3 +287,4 @@ theorem finrank_adjoin_roots_primeDiscriminantRadicands_of_forall_isEvenPrimeDis
     hroot
 
 end TauCeti.Multiquadratic
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

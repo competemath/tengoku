@@ -77,12 +77,12 @@ being the stronger of the two. The balanced remainder it needed is Mathlib's `ro
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 /-- A binary quadratic form with positive leading coefficient and non-positive discriminant is
 non-negative. This is the implication opposite to Mathlib's `discrim_le_zero`, stated for the
 homogeneous two-variable form and over a linearly ordered commutative ring rather than a field.
 The hypothesis `0 < a` cannot be dropped: `discrim 0 0 (-1) = 0`, while `- y ^ 2` is negative. -/
-theorem nonneg_of_discrim_le_zero {R : Type*} [CommRing R] [LinearOrder R]
+theorem Tengoku.Tauceti.nonneg_of_discrim_le_zero {R : Type*} [CommRing R] [LinearOrder R]
     [IsStrictOrderedRing R] {a b c : R} (ha : 0 < a) (hd : discrim a b c ≤ 0) (x y : R) :
     0 ≤ a * x ^ 2 + b * x * y + c * y ^ 2 := by
   -- The completed square `4a·Q = (2ax + by)² + (4ac − b²)y²` uses no division.
@@ -91,7 +91,7 @@ theorem nonneg_of_discrim_le_zero {R : Type*} [CommRing R] [LinearOrder R]
 
 /-- A quadratic of negative discriminant with a non-negative leading coefficient has a positive
 one: at `a = 0` the discriminant is `b ^ 2`, which is not negative. -/
-theorem pos_of_nonneg_of_discrim_lt_zero {R : Type*} [CommRing R] [LinearOrder R]
+theorem Tengoku.Tauceti.pos_of_nonneg_of_discrim_lt_zero {R : Type*} [CommRing R] [LinearOrder R]
     [IsStrictOrderedRing R] {a b c : R} (ha : 0 ≤ a) (hd : discrim a b c < 0) : 0 < a :=
   ha.lt_of_ne' fun ha ↦ hd.not_ge <| by simp [discrim, ha, sq_nonneg]
 
@@ -297,3 +297,4 @@ division by `4`, so it is `0` or `1` modulo `4`. -/
 @[simp]
 theorem Int.discrim_emod_four (a b c : ℤ) : discrim a b c % 4 = b % 2 := by
   rw [discrim, mul_assoc, Int.sub_mul_emod_self_left, Int.sq_emod_four]
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)

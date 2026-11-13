@@ -36,7 +36,7 @@ This advances Deliverable A, Layer 1 of
 -/
 
 public section
-
+namespace Tengoku.Tauceti end Tengoku.Tauceti open Tengoku.Tauceti 
 noncomputable section
 
 open Manifold VectorField
@@ -52,7 +52,7 @@ attribute [local instance] LieGroup.minSmoothnessThree
 /-- The map sending a tangent vector at the identity to its left-invariant derivation preserves the
 Lie bracket. -/
 @[simp]
-theorem tangentToLeftInvariantDerivation_lie [CompleteSpace E]
+theorem Tengoku.Tauceti.tangentToLeftInvariantDerivation_lie [CompleteSpace E]
     (v w : GroupLieAlgebra I G) :
     tangentToLeftInvariantDerivation (I := I) (G := G) ⁅v, w⁆ =
       ⁅tangentToLeftInvariantDerivation (I := I) (G := G) v,
@@ -100,7 +100,7 @@ theorem tangentToLeftInvariantDerivation_lie [CompleteSpace E]
 
 /-- Evaluation at the identity identifies left-invariant derivations with the tangent Lie algebra as
 Lie algebras. -/
-noncomputable def leftInvariantDerivationLieEquivGroupLieAlgebra
+noncomputable def Tengoku.Tauceti.leftInvariantDerivationLieEquivGroupLieAlgebra
     [FiniteDimensional ℝ E] (h₁ : I.IsInteriorPoint (1 : G)) :
     LeftInvariantDerivation I G ≃ₗ⁅ℝ⁆ GroupLieAlgebra I G :=
   let _ : T2Space G := t2Space_of_lieGroup (I := I) (n := ∞)
@@ -121,7 +121,7 @@ noncomputable def leftInvariantDerivationLieEquivGroupLieAlgebra
 /-- The Lie equivalence acts as the underlying linear equivalence given by evaluation at the
 identity. -/
 @[simp]
-theorem leftInvariantDerivationLieEquivGroupLieAlgebra_apply
+theorem Tengoku.Tauceti.leftInvariantDerivationLieEquivGroupLieAlgebra_apply
     [FiniteDimensional ℝ E] [T2Space G] (h₁ : I.IsInteriorPoint (1 : G))
     (D : LeftInvariantDerivation I G) :
     leftInvariantDerivationLieEquivGroupLieAlgebra h₁ D =
@@ -133,7 +133,7 @@ theorem leftInvariantDerivationLieEquivGroupLieAlgebra_apply
 
 /-- The inverse Lie equivalence sends a tangent vector to its left-invariant derivation. -/
 @[simp]
-theorem leftInvariantDerivationLieEquivGroupLieAlgebra_symm_apply
+theorem Tengoku.Tauceti.leftInvariantDerivationLieEquivGroupLieAlgebra_symm_apply
     [FiniteDimensional ℝ E] (h₁ : I.IsInteriorPoint (1 : G))
     (v : GroupLieAlgebra I G) :
     (leftInvariantDerivationLieEquivGroupLieAlgebra h₁).symm v =
@@ -153,7 +153,7 @@ section CanonicalModelBridges
 
 /-- The canonical isometric and Lie equivalences agree after viewing the tangent Lie algebra as
 the model vector space. -/
-theorem leftInvariantDerivationLinearIsometryEquivModelVectorSpace_apply_eq_lieEquiv_apply
+theorem Tengoku.Tauceti.leftInvariantDerivationLinearIsometryEquivModelVectorSpace_apply_eq_lieEquiv_apply
     [FiniteDimensional ℝ E] (D : LeftInvariantDerivation I G) :
     let _ : T2Space G := t2Space_of_lieGroup (I := I) (n := ∞)
     let _ : BoundarylessManifold I G := ContMDiffMul.boundarylessManifold
@@ -171,7 +171,7 @@ end CanonicalModelBridges
 
 /-- Evaluation at the identity preserves the Lie bracket. -/
 @[simp]
-theorem leftInvariantDerivationEquivGroupLieAlgebra_lie
+theorem Tengoku.Tauceti.leftInvariantDerivationEquivGroupLieAlgebra_lie
     [FiniteDimensional ℝ E] [T2Space G] (h₁ : I.IsInteriorPoint (1 : G))
     (D D' : LeftInvariantDerivation I G) :
     pointDerivationEquivTangentSpace (I := I) 1 h₁
@@ -185,3 +185,4 @@ theorem leftInvariantDerivationEquivGroupLieAlgebra_lie
     ← leftInvariantDerivationEquivGroupLieAlgebra_apply]
   simpa only [leftInvariantDerivationLieEquivGroupLieAlgebra_apply] using
     (leftInvariantDerivationLieEquivGroupLieAlgebra h₁).map_lie D D'
+-- Tengoku: root names of this library moved to Tengoku.Tauceti so they do not collide with other libraries (generated)
