@@ -1,6 +1,19 @@
 # Releases
 
-A release is a version of the library you can pin, verify and build on. It is cut by
+There are three kinds of release on the repository's Releases page. Know which one you are looking at:
+
+| Kind | Tag | Made by | What it holds |
+| --- | --- | --- | --- |
+| **Dataset snapshot** | `vX.Y.Z` (today: `v1.0.0`) | `.github/workflows/snapshot.yml`, monthly and on demand; a month with no change publishes nothing | `tengoku-dataset.jsonl.gz` (every trusted record), `snapshot.json` (commit, toolchain, counts, the dataset's sha256) and `CITATION.cff`. Cited by DOI. |
+| **Nightly cache** | `cache-<timestamp>`, `cache-latest` (pointer) | `.github/workflows/build.yml` | The compiled tree in parts, for `scripts/cache.sh get`. Not a version of the library: it is `main` on a given night. |
+| **Cache deltas** | `lake-deltas-cache-<timestamp>` (pre-release, one per nightly cache) | the merge queue ([the delta store](testing.md#the-delta-store)) | One small attested file per merge, `d-<commit>.tar.zst`: what changed since that nightly cache. (`cache-topups` is the retired [top-up](topups.md) design.) |
+
+The rest of this page describes the **source release** that `.github/workflows/release.yml` cuts (source archive, bill of
+materials, cache manifest, axiom report, changelog). As of 2026-11-13 that workflow has not been run, so no published release
+carries those assets and the commands below have not been tried against a real one. Until one exists, pin a commit
+(the `commit` in `snapshot.json` or in `cache-latest.json`), not a version.
+
+A source release is a version of the library you can pin, verify and build on. It is cut by
 `.github/workflows/release.yml` from a commit of `main` that the nightly build has already compiled and
 published, so every release comes with a compiled cache built from exactly its commit. The commit must also
 have passed the independent check (`.github/workflows/independent-check.yml`, nightly and on demand): every
