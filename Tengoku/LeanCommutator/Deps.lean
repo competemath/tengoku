@@ -1,0 +1,1 @@
+-- LeanCommutator: a factory bundle (data/intake/lean-commutator). This file only marks the library for Tengoku/All.lean.
