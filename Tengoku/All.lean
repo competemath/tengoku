@@ -96,6 +96,7 @@ import Tengoku.Apap
 import Tengoku.Sendov
 import Tengoku.DgLean
 import Tengoku.LeanEvalPiSuccSphereNMulequivZmodTwo
+import Tengoku.LeanCommutator
 import Tengoku.Leancert
 import Tengoku.QuotientSubmoduleEquidistribution
 import Tengoku.ChandraFurstLipton

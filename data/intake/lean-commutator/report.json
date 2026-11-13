@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "91d310451e62aaa19c8a3dbcb038b735dcd6f8f50a488322ea3ab3f3b128cc41",
+ "factory_changes": {
+  "inert lines removed": 69,
+  "modules changed": 10
+ },
+ "gate2_unjudged": [],
+ "library": "lean-commutator",
+ "lint_mode": "proposed",
+ "modules": 80,
+ "part": 1,
+ "theorems": 441
+}
