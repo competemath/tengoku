@@ -29,7 +29,7 @@ failed and what to do:
 
 | Check | What it looks at |
 |---|---|
-| [classify](../scripts/ci/classify.py) | What kind of PR this is (theorems, a retraction, tooling, docs), from the files it touches. It labels the PR, and the kind decides which checks run. One kind per PR; docs may come along with any. |
+| [classify](../scripts/ci/classify.py) | What kind of PR this is (theorems, a retraction, tooling, docs; and, mostly from bots, a library bundle, tags, a raze, a restructure, a scope-fix, studied theorems or a roots rename: see [PR classes](pr-classes.md)), from the files it touches. It labels the PR, and the kind decides which checks run. One kind per PR; docs may come along with any. |
 | [records](../scripts/ci/validate_records.py) | Each record is well formed, comes from an allowed source, declares the name it claims, and is not already in the library; at most ten headlines, each credited. |
 | [append-only](../scripts/ci/append_only.py) | Data files only grow: nothing already there is changed. |
 | [content-lint](../scripts/ci/lint_banked.py) | No construct that runs code (`#eval`, `unsafe`, `native_decide`, new `axiom`s …). |
