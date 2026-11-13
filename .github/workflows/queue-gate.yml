@@ -31,7 +31,7 @@ defaults:
 jobs:
   queue-build:
     runs-on: ubuntu-latest
-    timeout-minutes: 115   # a pipeline staging group can carry dozens of candidate modules; the queue's own check timeout (ruleset) is 120; the time-budget test pins the sum of the steps under this
+    timeout-minutes: 300   # a roots PR on a whole library rebuilds every module of it (LeanPool: 12,378 modules, 101 to 115 min of candidates alone, 2026-11-13), a pipeline staging group can carry dozens of candidate modules; the verdict job after it may wait for a runner (up to 24 min seen) and runs 10, all inside the queue's own check timeout (ruleset: 340); the time-budget test pins the sum of the steps and the verdict under this
     permissions: { contents: read, pull-requests: read, actions: read }   # actions: read — to see a running cache build. No write permission: this job runs the group's Lean code
     outputs:
       delta: ${{ steps.delta.outputs.state }}
