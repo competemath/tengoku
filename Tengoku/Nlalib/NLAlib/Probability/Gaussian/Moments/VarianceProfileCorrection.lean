@@ -24,7 +24,9 @@ open scoped BigOperators NNReal
 namespace NLAlib
 
 /-- A finite linear form of independent standard Gaussian coordinates is
-sub-Gaussian with its exact coefficient-square variance proxy.-/
+sub-Gaussian with its exact coefficient-square variance proxy.
+@isnad1 id=hassubga.0h2v.s6.7ef2bbff8429 from=translated src=- shape=800bde5f vocab=ea444df5
+-/
 theorem hasSubgaussianMGF_sum_mul_gaussianVector {ι : Type*} [Fintype ι] (a : ι → ℝ) :
     HasSubgaussianMGF (fun g : ι → ℝ => ∑ i, a i * g i)
       ⟨∑ i, a i ^ 2, Finset.sum_nonneg fun _i _ => sq_nonneg _⟩ (gaussianVector ι) := by
@@ -39,7 +41,9 @@ theorem hasSubgaussianMGF_sum_mul_gaussianVector {ι : Type*} [Fintype ι] (a : 
   exact h
 
 /-- The actual Gaussian spectral correction has expected maximum at most
-sixteen times any logarithmic envelope of its computed row variances.-/
+sixteen times any logarithmic envelope of its computed row variances.
+@isnad1 id=le.3h3v.s8.8286b2590e9a from=translated src=- shape=f9a1c847 vocab=6807ac50
+-/
 theorem integral_norm_spectralAbsoluteFactor_mul_gaussianVector_le
     {n : ℕ} (B : Matrix (Fin n) (Fin n) ℝ) (hB : B.IsHermitian)
     (D : ℝ) (hD : 0 < D)

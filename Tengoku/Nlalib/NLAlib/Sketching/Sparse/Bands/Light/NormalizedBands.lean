@@ -26,7 +26,9 @@ variable {d m n : ℕ}
 
 /-- Transposing the light raising band gives the light lowering band.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.a174d7fc7548 from=translated src=- shape=cb9a6f5f vocab=8d5814d8
+-/
 theorem Lplus_transpose_eq_Lminus (F : Frame n d) :
     (Lplus m (Frame.rows F)).transpose =
       Lminus m (Frame.rows F) := by
@@ -36,7 +38,9 @@ theorem Lplus_transpose_eq_Lminus (F : Frame n d) :
 
 /-- Transposing the light lowering band gives the light raising band.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.66c3d157528f from=translated src=- shape=cb9a6f5f vocab=8d5814d8
+-/
 theorem Lminus_transpose_eq_Lplus (F : Frame n d) :
     (Lminus m (Frame.rows F)).transpose =
       Lplus m (Frame.rows F) := by
@@ -45,7 +49,9 @@ theorem Lminus_transpose_eq_Lplus (F : Frame n d) :
 
 /-- The light raising band has grade shift two.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.eadf7817ee6e from=translated src=- shape=22f4b803 vocab=81b4c300
+-/
 theorem Lplus_homogeneous (F : Frame n d) :
     IsFullGradeShift 2
       (Lplus m (Frame.rows F)) := by
@@ -55,7 +61,9 @@ theorem Lplus_homogeneous (F : Frame n d) :
 
 /-- The light lowering band has grade shift minus two.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.12f537adf1bb from=translated src=- shape=d9805cfa vocab=5171ff9a
+-/
 theorem Lminus_homogeneous (F : Frame n d) :
     IsFullGradeShift (-2)
       (Lminus m (Frame.rows F)) := by
@@ -65,7 +73,9 @@ theorem Lminus_homogeneous (F : Frame n d) :
 
 /-- The light-band envelope increases when its natural grade parameter increases.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s6.dfdb391776ca from=translated src=- shape=f644a3c6 vocab=68482ed7
+-/
 theorem aTerm_add_bTerm_mono_nat {k nu m : ℕ} (d : ℕ)
     (hknu : k ≤ nu) (hm : 1 ≤ m) :
     aTerm d k m + bTerm d k m ≤
@@ -85,7 +95,9 @@ theorem aTerm_add_bTerm_mono_nat {k nu m : ℕ} (d : ℕ)
 /-- Raw restricted norm of the concrete light-light raising band.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.407d25a33255 from=translated src=- shape=7cdb6f4b vocab=844e7fe6
+-/
 theorem Lplus_gradeProjection_norm_le (F : Frame n d) (nu : ℕ) :
     ‖Lplus m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤
@@ -120,7 +132,9 @@ theorem Lplus_gradeProjection_norm_le (F : Frame n d) (nu : ℕ) :
 /-- Exact normalized light raising estimate before its scalar envelope.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.398f54a22ba6 from=translated src=- shape=7ed76c74 vocab=4e9c6240
+-/
 theorem normalized_Lplus_gradeProjection_norm_le
     (F : Frame n d) (nu : ℕ) (hm : 1 ≤ m) :
     ‖((1 / (m : ℝ)) • Lplus m (Frame.rows F)) *
@@ -146,7 +160,9 @@ theorem normalized_Lplus_gradeProjection_norm_le
 right-hand side consumed by `ConcreteBandAssembly`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.2f9059bb4a07 from=translated src=- shape=56d82fc3 vocab=f48995f0
+-/
 theorem normalized_Lplus_gradeProjection_norm_le_envelope
     (F : Frame n d) (nu : ℕ) (hm : 1 ≤ m) :
     ‖((1 / (m : ℝ)) • Lplus m (Frame.rows F)) *
@@ -160,7 +176,9 @@ theorem normalized_Lplus_gradeProjection_norm_le_envelope
 /-- Raw restricted norm of the concrete grade-preserving light-light band.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.783cad4d39b7 from=translated src=- shape=3ec23d6f vocab=6b4e770e
+-/
 theorem Lzero_gradeProjection_norm_le (F : Frame n d) (nu : ℕ) :
     ‖Lzero m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤
@@ -196,7 +214,9 @@ theorem Lzero_gradeProjection_norm_le (F : Frame n d) (nu : ℕ) :
 envelope.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.e36422d245c3 from=translated src=- shape=b988ce1f vocab=47a1bef3
+-/
 theorem normalized_Lzero_gradeProjection_norm_le
     (F : Frame n d) (nu : ℕ) (hm : 1 ≤ m) :
     ‖((1 / (m : ℝ)) • Lzero m (Frame.rows F)) *
@@ -219,7 +239,9 @@ theorem normalized_Lzero_gradeProjection_norm_le
 `3*bTerm` right-hand side consumed by `ConcreteBandAssembly`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.80b85ec91b25 from=translated src=- shape=e6bc777b vocab=95ec073f
+-/
 theorem normalized_Lzero_gradeProjection_norm_le_envelope
     (F : Frame n d) (nu : ℕ) (hm : 1 ≤ m) :
     ‖((1 / (m : ℝ)) • Lzero m (Frame.rows F)) *
@@ -240,7 +262,9 @@ theorem normalized_Lzero_gradeProjection_norm_le_envelope
 
 /-- The light lowering band vanishes on grade-zero input.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.d02fac98a156 from=translated src=- shape=46730bc3 vocab=dc9f655a
+-/
 theorem Lminus_gradeProjection_zero (F : Frame n d) :
     Lminus m (Frame.rows F) *
       gradeProjection (d := d) (m := m) (n := n) 0 = 0 := by
@@ -251,7 +275,9 @@ theorem Lminus_gradeProjection_zero (F : Frame n d) :
 
 /-- The light lowering band vanishes on grade-one input.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.33662f473f84 from=translated src=- shape=46730bc3 vocab=dc9f655a
+-/
 theorem Lminus_gradeProjection_one (F : Frame n d) :
     Lminus m (Frame.rows F) *
       gradeProjection (d := d) (m := m) (n := n) 1 = 0 := by
@@ -263,7 +289,9 @@ theorem Lminus_gradeProjection_one (F : Frame n d) :
 /-- Exact adjoint-grade transfer, including the normalized scalar.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.f65ce5018955 from=translated src=- shape=0043cdea vocab=e67b9d5c
+-/
 theorem normalized_Lminus_gradeProjection_norm_eq_shift
     (F : Frame n d) (k : ℕ) :
     ‖((1 / (m : ℝ)) • Lminus m (Frame.rows F)) *
@@ -291,7 +319,9 @@ theorem normalized_Lminus_gradeProjection_norm_eq_shift
 all higher grades transfer exactly to the raising estimate two grades below.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.1f00c5a83739 from=translated src=- shape=56d82fc3 vocab=114250f9
+-/
 theorem normalized_Lminus_gradeProjection_norm_le_envelope
     (F : Frame n d) (nu : ℕ) (hm : 1 ≤ m) :
     ‖((1 / (m : ℝ)) • Lminus m (Frame.rows F)) *

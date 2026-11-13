@@ -21,7 +21,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι]
 
 /-- Finite-dimensional Gaussian polynomial majorants are integrable.
-Source: Gaussian moments; atlas `gaussian-integration-by-parts`.-/
+Source: Gaussian moments; atlas `gaussian-integration-by-parts`.
+@isnad1 id=integrab.0h2v.s6.f8a58c0d5ad5 from=translated src=- shape=88251b41 vocab=ceffb59f
+-/
 theorem integrable_one_add_norm_pow_gaussianVector (d : ℕ) :
     Integrable (fun x : ι → ℝ => (1 + ‖x‖) ^ d)
       (gaussianVector ι) := by
@@ -35,7 +37,9 @@ theorem integrable_one_add_norm_pow_gaussianVector (d : ℕ) :
   rw [abs_of_nonneg (by positivity : 0 ≤ 1 + ‖x‖)]
 
 /-- Polynomial growth provides integrability under any finite standard
-Gaussian product. Source: Gaussian moments; atlas `gaussian-integration-by-parts`.-/
+Gaussian product. Source: Gaussian moments; atlas `gaussian-integration-by-parts`.
+@isnad1 id=integrab.2h4v.s7.6f46277b53c1 from=translated src=- shape=97073aa1 vocab=ac7bc256
+-/
 theorem integrable_gaussianVector_of_polynomial_growth
     {f : (ι → ℝ) → ℝ}
     (hf : AEMeasurable f (gaussianVector ι))
@@ -46,7 +50,9 @@ theorem integrable_gaussianVector_of_polynomial_growth
   exact ae_of_all _ fun x => by simpa only [Real.norm_eq_abs] using hBound x
 
 /-- Polynomial-growth scalar functions on Gaussian space have finite second
-moments. Source: Gaussian moments; atlas `gaussian-integration-by-parts`.-/
+moments. Source: Gaussian moments; atlas `gaussian-integration-by-parts`.
+@isnad1 id=memlp.2h4v.s7.2bb99ca83da1 from=translated src=- shape=a15c6e6f vocab=66217a11
+-/
 theorem memLp_two_gaussianVector_of_polynomial_growth
     {f : (ι → ℝ) → ℝ}
     (hf : AEMeasurable f (gaussianVector ι))
@@ -63,7 +69,9 @@ theorem memLp_two_gaussianVector_of_polynomial_growth
 variable [DecidableEq ι]
 
 /-- A coordinate section derivative is the corresponding Frechet derivative
-evaluation. Source: coordinate calculus; atlas `gaussian-integration-by-parts`.-/
+evaluation. Source: coordinate calculus; atlas `gaussian-integration-by-parts`.
+@isnad1 id=eq.1h5v.s9.e90605b4020f from=translated src=- shape=4317308c vocab=957b33ea
+-/
 theorem deriv_update_eq_fderiv_single {f : (ι → ℝ) → ℝ}
     (hf : ContDiff ℝ 1 f) (x : ι → ℝ) (i : ι) (t : ℝ) :
     deriv (fun u => f (Function.update x i u)) t =
@@ -101,7 +109,9 @@ of polynomial growth, with polynomial-growth partial derivatives.
 All moments and integrability needed for Fubini and the derivative identity
 are proved. Source: Vershynin 2018, Lemma 7.2.3;
 atlas `gaussian-integration-by-parts`.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.3h7v.s10.aa0f8d71190e from=translated src=- shape=52ab7ff3 vocab=28eaff58
+-/
 theorem integral_coord_mul_eq_integral_fderiv_gaussianVector
     (f : (ι → ℝ) → ℝ) (hf : ContDiff ℝ 1 f)
     (C D : ℝ) (d e : ℕ)

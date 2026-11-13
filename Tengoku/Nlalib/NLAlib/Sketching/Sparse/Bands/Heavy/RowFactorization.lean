@@ -51,7 +51,9 @@ def BUpStack (F : Frame n d) :
 
 /-- Transposing the heavy synthesis block row gives the annihilation analysis block column.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.f1ea4b2364e0 from=translated src=- shape=81e5df9c vocab=bb7166cb
+-/
 @[simp] theorem BUpStack_transpose (F : Frame n d) :
     (BUpStack (m := m) F).transpose = ADownStack (m := m) F := by
   ext out inp
@@ -66,7 +68,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Creating heavy occupation twice at the same site gives the zero operator.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.359b9d6e2951 from=translated src=- shape=56ec4603 vocab=130781b8
+-/
 theorem rUpAt_sq_zero (r : Fin m) (i : Fin n) :
     rUpAt r i * rUpAt r i = 0 := by
   classical
@@ -97,7 +101,9 @@ def AUpOne (F : Frame n d) (r : Fin m) (i : Fin n) :
 
 /-- The heavy synthesis matrix is the sum of its one-site summands.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.ed8e65d32b73 from=translated src=- shape=e1ce354a vocab=9fb23410
+-/
 theorem BUpMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
     BUpMatrix F r = ∑ i, BUpOne F r i := by
   ext out p
@@ -105,7 +111,9 @@ theorem BUpMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
 
 /-- The heavy creation analysis matrix is the sum of its one-site summands.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.14064c525bfa from=translated src=- shape=ef96dedd vocab=bc299a31
+-/
 theorem AUpMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
     AUpMatrix F r = ∑ i, AUpOne F r i := by
   ext p inp
@@ -113,7 +121,9 @@ theorem AUpMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
 
 /-- Heavy creation on distinct sites is the corresponding two-leg word kernel.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.242fb6edcfc5 from=translated src=- shape=286eeec5 vocab=f5466430
+-/
 theorem rUpAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
     rUpAt r i * rUpAt r j = wordKernel (r, i) (r, j) (.rUp, .rUp) := by
   simpa [rUpAt, wordKernel, Leg.op] using
@@ -124,7 +134,9 @@ theorem rUpAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
 
 /-- Distinct-site heavy synthesis-analysis products are the external heavy raising word terms.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.dabf93ed53dd from=translated src=- shape=9fd6e66a vocab=4b89c4a3
+-/
 theorem BUpOne_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     BUpOne F r i * AUpOne F r j =
@@ -151,7 +163,9 @@ theorem BUpOne_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
 
 /-- A same-site heavy synthesis-analysis product vanishes by nilpotence.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.3782b57cfacb from=translated src=- shape=053ef1b7 vocab=80fdc2e5
+-/
 theorem BUpOne_mul_AUpOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
     BUpOne F r i * AUpOne F r i = 0 := by
   classical
@@ -176,7 +190,9 @@ theorem BUpOne_mul_AUpOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
 The diagonal terms disappear because `R² = 0`, leaving precisely `i ≠ j`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.56d5bc2c57e6 from=translated src=- shape=ed61852c vocab=e1b1d1ee
+-/
 theorem BUpMatrix_mul_AUpMatrix (F : Frame n d) (r : Fin m) :
     BUpMatrix F r * AUpMatrix F r =
       ∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -197,7 +213,9 @@ theorem BUpMatrix_mul_AUpMatrix (F : Frame n d) (r : Fin m) :
 synthesis and analysis matrices.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.8edd59b393bd from=translated src=- shape=d7923146 vocab=b032f510
+-/
 theorem Hplus_eq_BUpStack_mul_AUpStack (F : Frame n d) :
     Hplus m (Frame.rows F) = BUpStack (m := m) F * AUpStack (m := m) F := by
   classical
@@ -213,7 +231,9 @@ theorem Hplus_eq_BUpStack_mul_AUpStack (F : Frame n d) :
 
 /-- Every nonzero heavy creation analysis entry raises the pattern grade by one.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s6.0f5be935ebc1 from=translated src=- shape=3c079a10 vocab=2ed7ab4a
+-/
 theorem AUpMatrix_grade_relation (F : Frame n d) (r : Fin m)
     {out : Pattern m n} {inp : Fin d × Pattern m n}
     (hentry : AUpMatrix F r out inp ≠ 0) :
@@ -226,7 +246,9 @@ theorem AUpMatrix_grade_relation (F : Frame n d) (r : Fin m)
 
 /-- Every nonzero heavy annihilation analysis entry lowers the pattern grade by one.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s6.798bffd2f034 from=translated src=- shape=14ebcbc5 vocab=cd501c07
+-/
 theorem ADownMatrix_grade_relation (F : Frame n d) (r : Fin m)
     {out : Pattern m n} {inp : Fin d × Pattern m n}
     (hentry : ADownMatrix F r out inp ≠ 0) :

@@ -25,7 +25,9 @@ variable {d m n : ℕ}
 
 /-- Light annihilation and creation at distinct sites form the corresponding word kernel.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.422b61bcc8b2 from=translated src=- shape=0470bfdf vocab=65cf5cff
+-/
 theorem pAt_mul_pDagAt_of_ne (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) :
     pAt r i * pDagAt r j =
@@ -38,7 +40,9 @@ theorem pAt_mul_pDagAt_of_ne (r : Fin m) {i j : Fin n}
 
 /-- Distinct-site light creation-analysis Gram terms are physical preserving-word terms.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.cbdd42ff9a5d from=translated src=- shape=0a167239 vocab=271fab66
+-/
 theorem cOne_transpose_mul_cOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     (cOne F r i).transpose * cOne F r j =
@@ -83,7 +87,9 @@ def D0 (F : Frame n d) : FullOp d m n :=
 
 /-- A light creation-analysis Gram matrix splits into hopping and same-site diagonal terms.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.60d243418741 from=translated src=- shape=9eb4b6ff vocab=53e5ae4a
+-/
 theorem cMatrix_transpose_mul_cMatrix (F : Frame n d) (r : Fin m) :
     (cMatrix F r).transpose * cMatrix F r =
       D0Row F r +
@@ -117,7 +123,9 @@ theorem cMatrix_transpose_mul_cMatrix (F : Frame n d) (r : Fin m) :
 light transpose hop `H'`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.b2a2f64ac857 from=translated src=- shape=703172ab vocab=3f67bdcc
+-/
 theorem CreateAnalysisStack_transpose_mul_self (F : Frame n d) :
     (CreateAnalysisStack (m := m) F).transpose * CreateAnalysisStack F =
       D0 F + Hprime m (Frame.rows F) := by
@@ -138,7 +146,9 @@ theorem CreateAnalysisStack_transpose_mul_self (F : Frame n d) :
 its scalar Gram.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.0b1107e12bfc from=translated src=- shape=dba89682 vocab=a333d9a7
+-/
 theorem pDagAt_column_inner (r : Fin m) (i : Fin n)
     (a b : Pattern m n) :
     (∑ p, pDagAt r i p a * pDagAt r i p b) =
@@ -184,7 +194,9 @@ theorem pDagAt_column_inner (r : Fin m) (i : Fin n)
 is precisely the partial frame operator over the currently fresh columns.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.4aaaab1ff31f from=translated src=- shape=9dd539a8 vocab=0eb204bc
+-/
 theorem D0Row_apply (F : Frame n d) (r : Fin m)
     (out inp : Fin d × Pattern m n) :
     D0Row F r out inp =
@@ -218,7 +230,9 @@ theorem D0Row_apply (F : Frame n d) (r : Fin m)
 
 /-- The row fresh-site diagonal correction acts through its selected frame-fiber contributions.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.9140803d57e6 from=translated src=- shape=67fbb518 vocab=9348607e
+-/
 theorem D0Row_fullFiber (F : Frame n d) (r : Fin m)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     fiber (Matrix.mulVec (D0Row F r) x) p =
@@ -235,7 +249,9 @@ theorem D0Row_fullFiber (F : Frame n d) (r : Fin m)
 /-- One row's fresh-site diagonal is a Euclidean contraction.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.322eb9bbf67b from=translated src=- shape=f8b6e2a7 vocab=427ce804
+-/
 theorem D0Row_norm_le_one (F : Frame n d) (r : Fin m) :
     ‖D0Row F r‖ ≤ 1 := by
   apply norm_le_of_normSq_mulVec_le (by norm_num)
@@ -261,7 +277,9 @@ theorem D0Row_norm_le_one (F : Frame n d) (r : Fin m) :
 /-- Summing the row contractions gives the exact paper bound `D₀ ≼ m I`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s7.d8187a445675 from=translated src=- shape=2a713538 vocab=d132abbd
+-/
 theorem D0_norm_le (F : Frame n d) :
     ‖D0 (m := m) F‖ ≤ (m : ℝ) := by
   rw [D0]
@@ -277,7 +295,9 @@ theorem D0_norm_le (F : Frame n d) :
 index type is genuine and may differ from both endpoint types.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.843994048d32 from=translated src=- shape=51b66433 vocab=ebbdbe97
+-/
 theorem matrix_typed_block_cs
     {I J K : Type*} [Fintype I] [Fintype J] [Fintype K]
     [DecidableEq I] [DecidableEq J] [DecidableEq K]
@@ -308,7 +328,9 @@ theorem matrix_typed_block_cs
 
 /-- The light creation stack's restricted Gram matrix splits into the projected diagonal and light-band terms.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.5263c2e29de3 from=translated src=- shape=5ae1d31c vocab=675d24d6
+-/
 theorem CreateAnalysisStack_restricted_gram (F : Frame n d) (nu : ℕ) :
     (CreateAnalysisStack (m := m) F *
         gradeProjection (d := d) (m := m) (n := n) nu).transpose *
@@ -333,7 +355,9 @@ theorem CreateAnalysisStack_restricted_gram (F : Frame n d) (nu : ℕ) :
 concrete directional estimate for `H'`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.5992d841f809 from=translated src=- shape=dfc8c53c vocab=44c4b72f
+-/
 theorem CreateAnalysisStack_gradeProjection_norm
     (F : Frame n d) (nu : ℕ) :
     ‖CreateAnalysisStack (m := m) F *

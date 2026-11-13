@@ -29,7 +29,9 @@ def domainLSlice (k l : Fin ell) (hkl : k ≠ l)
 
 /-- A fiber slice evaluates the original vector at the reconstructed second domain.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s6.bdf9be010b52 from=translated src=- shape=d3483c9f vocab=7dee3310
+-/
 @[simp] theorem domainLSlice_apply (k l : Fin ell) (hkl : k ≠ l)
     (y : ParticleDomainIndex m n ell l → ℝ)
     (fiber : CrossFiberIndex m n ell k l) (j : Fin n) :
@@ -39,7 +41,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 /-- Pointwise, the typed cross map is exactly `U Uᵀ` on one column slice.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h10v.s7.e88baf08567b from=translated src=- shape=518f5acb vocab=e33261e7
+-/
 theorem crossMatrix_mulVec_fiber (F : Frame n d)
     (k l : Fin ell) (hkl : k ≠ l)
     (y : ParticleDomainIndex m n ell l → ℝ)
@@ -72,7 +76,9 @@ energy.  Row transfer and all spectator coordinates are accounted for by the
 two proved equivalences above.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h8v.s8.df7974cea35b from=translated src=- shape=53b3b276 vocab=168b03f4
+-/
 theorem crossMatrix_energy_le (F : Frame n d)
     (k l : Fin ell) (hkl : k ≠ l)
     (y : ParticleDomainIndex m n ell l → ℝ) :
@@ -130,7 +136,9 @@ def wordOfCross (k l : Fin ell) (_hkl : k ≠ l)
 
 /-- The cross word inserts the second column into its first distinguished slot.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s6.53530280ad1f from=translated src=- shape=6cf1ec0e vocab=71913afc
+-/
 @[simp] theorem wordOfCross_at_k (k l : Fin ell) (hkl : k ≠ l)
     (fiber : CrossFiberIndex m n ell k l) (i j : Fin n) :
     wordOfCross k l hkl fiber i j k = (fiber.1.1, j) := by
@@ -138,7 +146,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The cross word inserts the first column into its second distinguished slot.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s6.40886d5db929 from=translated src=- shape=d65c60d7 vocab=3e3d70c5
+-/
 @[simp] theorem wordOfCross_at_l (k l : Fin ell) (hkl : k ≠ l)
     (fiber : CrossFiberIndex m n ell k l) (i j : Fin n) :
     wordOfCross k l hkl fiber i j l = (fiber.1.2, i) := by
@@ -146,7 +156,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The cross word retains every common spectator site.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.3h9v.s6.cfde667ee9b3 from=translated src=- shape=dcb5cab5 vocab=1747ecaf
+-/
 theorem wordOfCross_off (k l : Fin ell) (hkl : k ≠ l)
     (fiber : CrossFiberIndex m n ell k l) (i j : Fin n)
     (t : Fin ell) (htk : t ≠ k) (htl : t ≠ l) :
@@ -192,7 +204,9 @@ def labelledCrossEquiv (k l : Fin ell) (hkl : k ≠ l) :
 
 /-- The first domain of a cross word has its stated fiber and column coordinates.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s6.634dd4d4613f from=translated src=- shape=c26c4a4b vocab=8fbfc006
+-/
 @[simp] theorem domainKToFiber_domainOf_crossWord
     (k l : Fin ell) (hkl : k ≠ l)
     (fiber : CrossFiberIndex m n ell k l) (i j : Fin n) :
@@ -211,7 +225,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The second domain of a cross word has its stated fiber and column coordinates.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s6.753ce5dca8de from=translated src=- shape=7a38ce47 vocab=d002c3c7
+-/
 @[simp] theorem domainLToFiber_domainOf_crossWord
     (k l : Fin ell) (hkl : k ≠ l)
     (fiber : CrossFiberIndex m n ell k l) (i j : Fin n) :
@@ -273,7 +289,9 @@ set_option maxHeartbeats 1000000 in
 typed row-transfer/column-projection cross map.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.454df3b8fbc6 from=translated src=- shape=0026898c vocab=7d74d93e
+-/
 theorem transpose_VMatrix_mul_cross (F : Frame n d)
     (k l : Fin ell) (hkl : k ≠ l) :
     (VMatrix (m := m) F k).transpose * VMatrix (m := m) F l =

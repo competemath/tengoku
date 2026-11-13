@@ -540,7 +540,9 @@ section Main
 `𝔼 (Y_{u,t} - Y_{v,s})² ≤ 𝔼 (X_{u,t} - X_{v,s})²` for `u ≠ v`. Then
 `𝔼 minᵤ maxₜ X_{u,t} ≤ 𝔼 minᵤ maxₜ Y_{u,t}`. No equal-variance assumption is needed in the
 expectation form. Source: Gordon 1985; Vershynin 2018, Exercise 7.2.14. Atlas: `gordon-minimax`.
-atlas: gordon-minimax-/
+atlas: gordon-minimax
+@isnad1 id=le.6h8v.s9.79dee896b8a7 from=translated src=- shape=d36afdba vocab=a2bc989d
+-/
 theorem gordon_minimax_inequality {U T Ω Ω' : Type*} [Fintype U] [Fintype T] [MeasurableSpace Ω]
     [MeasurableSpace Ω'] {P : Measure Ω} {Q : Measure Ω'}
     (X : U → T → Ω → ℝ) (Y : U → T → Ω' → ℝ)

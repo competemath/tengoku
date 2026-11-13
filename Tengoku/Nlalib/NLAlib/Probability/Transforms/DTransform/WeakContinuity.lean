@@ -18,7 +18,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- Weak convergence together with convergence of support bounds gives
-convergence of each actual inverse-denominator moment above the limit edge.-/
+convergence of each actual inverse-denominator moment above the limit edge.
+@isnad1 id=tendsto.6h8v.s7.c4b222156921 from=translated src=- shape=ecad09e0 vocab=cc67a152
+-/
 theorem tendsto_dTransformMoment_of_weak_convergence
     {I : Type*} {l : Filter I} {μs : I → ProbabilityMeasure ℝ} {μ : ProbabilityMeasure ℝ}
     (hweak : Tendsto μs l (𝓝 μ)) {bs : I → ℝ} {b y : ℝ}
@@ -43,7 +45,9 @@ theorem tendsto_dTransformMoment_of_weak_convergence
 /-- The actual derivative-defined D-transform root function is continuous
 under weak convergence and convergence of the upper support edge, at every
 fixed point strictly above the limiting edge. No derivative-convergence
-assumption is supplied. Source: ScreeNOT, Lemma 3, Supplement Appendix D.1.-/
+assumption is supplied. Source: ScreeNOT, Lemma 3, Supplement Appendix D.1.
+@isnad1 id=tendsto.10h9v.s7.68091799b1a4 from=translated src=- shape=89859f2a vocab=62573fe6
+-/
 theorem tendsto_singularValuePsi_of_weak_convergence
     {I : Type*} {l : Filter I} {μs : I → ProbabilityMeasure ℝ} {μ : ProbabilityMeasure ℝ}
     (hweak : Tendsto μs l (𝓝 μ)) {bs γs : I → ℝ} {b γ y : ℝ}

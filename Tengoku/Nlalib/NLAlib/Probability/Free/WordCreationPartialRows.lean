@@ -27,13 +27,17 @@ def wordCreationRowAlong (m : ℕ) (e : List.Vector ι m ↪ D) : K →L[ℂ] W 
   ∑ w, (wordCreationProduct w.toList).comp (PiLp.proj 2 (fun _ : D => W) (e w))
 
 omit [Fintype D] in
-/-- The finite column formula for a partial creation row.-/
+/-- The finite column formula for a partial creation row.
+@isnad1 id=eq.0h5v.s13.a6921b0d7fc8 from=translated src=- shape=681f6efd vocab=74fb84ba
+-/
 @[simp]
 theorem wordCreationRowAlong_apply (m : ℕ) (e : List.Vector ι m ↪ D) (x : K) :
     wordCreationRowAlong m e x = ∑ w, wordCreationProduct w.toList (x (e w)) := by
   simp [wordCreationRowAlong, ContinuousLinearMap.comp_apply]
 
-/-- Every partial creation row is contractive, including an empty row.-/
+/-- Every partial creation row is contractive, including an empty row.
+@isnad1 id=le.0h4v.s12.5c735f6d2cc3 from=translated src=- shape=07965827 vocab=bac88bfe
+-/
 theorem norm_wordCreationRowAlong_le_one (m : ℕ) (e : List.Vector ι m ↪ D) :
     ‖wordCreationRowAlong m e‖ ≤ 1 := by
   apply ContinuousLinearMap.opNorm_le_bound _ zero_le_one
@@ -53,7 +57,9 @@ theorem norm_wordCreationRowAlong_le_one (m : ℕ) (e : List.Vector ι m ↪ D) 
   nlinarith [norm_nonneg (wordCreationRowAlong m e x), norm_nonneg x]
 
 omit [Fintype D] in
-/-- A single injected coordinate recovers its whole-word creation operator.-/
+/-- A single injected coordinate recovers its whole-word creation operator.
+@isnad1 id=eq.0h6v.s13.44e65e5dfaf6 from=translated src=- shape=16751bd3 vocab=3b913578
+-/
 theorem wordCreationRowAlong_apply_single (m : ℕ) (e : List.Vector ι m ↪ D)
     (w : List.Vector ι m) (x : W) :
     wordCreationRowAlong m e (PiLp.single 2 (e w) x) = wordCreationProduct w.toList x := by
@@ -64,7 +70,9 @@ theorem wordCreationRowAlong_apply_single (m : ℕ) (e : List.Vector ι m ↪ D)
   · simp
 
 /-- The native adjoint of a partial row recovers annihilation in each
-injected coordinate. This is an identity of the actual Hilbert operators.-/
+injected coordinate. This is an identity of the actual Hilbert operators.
+@isnad1 id=eq.0h6v.s16.e95551c33e87 from=translated src=- shape=da140889 vocab=013d592b
+-/
 theorem wordCreationRowAlong_adjoint_apply (m : ℕ) (e : List.Vector ι m ↪ D)
     (x : W) (w : List.Vector ι m) :
     (wordCreationRowAlong m e).adjoint x (e w) = star (wordCreationProduct w.toList) x := by

@@ -41,7 +41,9 @@ def wordMatrixVacuumExpectation : M →ₗ[ℂ] ℂ where
     simp [CStarMatrix.smul_apply, map_smul, Finset.mul_sum, mul_left_comm]
 
 omit [DecidableEq D] in
-/-- The defining normalized diagonal formula.-/
+/-- The defining normalized diagonal formula.
+@isnad1 id=eq.0h3v.s15.8e278cbce417 from=translated src=- shape=6371e906 vocab=e35ae6ea
+-/
 @[simp]
 theorem wordMatrixVacuumExpectation_apply (T : M) :
     wordMatrixVacuumExpectation (D := D) (ι := ι) T =
@@ -49,7 +51,9 @@ theorem wordMatrixVacuumExpectation_apply (T : M) :
 
 /-- The diagonal formula is exactly the normalized sum of actual vector
 states on the native `PiLp 2` block representation, using one vacuum in each
-coordinate. This is an identity of concrete operator expectations.-/
+coordinate. This is an identity of concrete operator expectations.
+@isnad1 id=eq.0h3v.s17.5c0e342ebee0 from=translated src=- shape=380a83f3 vocab=cbab6cc3
+-/
 theorem wordMatrixVacuumExpectation_eq_sum_block_vector_states (T : M) :
     wordMatrixVacuumExpectation (D := D) (ι := ι) T =
       (Fintype.card D : ℂ)⁻¹ * ∑ j,
@@ -72,7 +76,9 @@ theorem wordMatrixVacuumExpectation_eq_sum_block_vector_states (T : M) :
 
 omit [DecidableEq D] in
 /-- The actual amplified star-square expectation is the normalized sum of
-squared Hilbert norms of all entrywise vacuum vectors. Empty D is included.-/
+squared Hilbert norms of all entrywise vacuum vectors. Empty D is included.
+@isnad1 id=eq.0h3v.s15.4acf545d586d from=translated src=- shape=1ac5715c vocab=20663e93
+-/
 theorem wordMatrixVacuumExpectation_star_mul (T : M) :
     wordMatrixVacuumExpectation (D := D) (ι := ι) (star T * T) =
       (((Fintype.card D : ℝ)⁻¹ *
@@ -83,7 +89,9 @@ theorem wordMatrixVacuumExpectation_star_mul (T : M) :
   rfl
 
 /-- The actual amplified vacuum is normalized in positive matrix dimension.
-No nonempty-alphabet assumption is needed.-/
+No nonempty-alphabet assumption is needed.
+@isnad1 id=eq.0h2v.s15.3fe0aca28ce1 from=translated src=- shape=148fc903 vocab=98d0daad
+-/
 @[simp]
 theorem wordMatrixVacuumExpectation_one [Nonempty D] :
     wordMatrixVacuumExpectation (D := D) (ι := ι) (1 : M) = 1 := by
@@ -93,7 +101,9 @@ theorem wordMatrixVacuumExpectation_one [Nonempty D] :
 
 omit [DecidableEq D] in
 /-- The actual amplified vacuum is tracial on matrices whose entries belong
-to the concrete closed left-field algebra. Both factors have genuine membership.-/
+to the concrete closed left-field algebra. Both factors have genuine membership.
+@isnad1 id=eq.2h4v.s16.d999116e4b14 from=translated src=- shape=e621c71e vocab=4054c6fb
+-/
 theorem wordMatrixVacuumExpectation_mul_comm (S T : M)
     (hS : ∀ i j, S i j ∈ wordFieldAlgebra ι)
     (hT : ∀ i j, T i j ∈ wordFieldAlgebra ι) :
@@ -138,7 +148,9 @@ theorem eq_zero_of_entries_mem_wordFieldAlgebra_of_wordMatrixVacuumExpectation_s
 omit [DecidableEq D] in
 /-- The actual squared L2 mass of every matrix entry is bounded by dimension
 times the actual normalized amplified L2 mass. This is the squared native
-form of the second inequality in source Lemma 4.6, with no norm premise.-/
+form of the second inequality in source Lemma 4.6, with no norm premise.
+@isnad1 id=le.0h5v.s15.93c46101b8e6 from=translated src=- shape=1846e772 vocab=9bb85324
+-/
 theorem norm_entry_wordVacuum_sq_le_card_mul_wordMatrixVacuumExpectation_star_mul_re
     (T : M) (i j : D) :
     ‖T i j (wordVacuum ι)‖ ^ 2 ≤ (Fintype.card D : ℝ) *

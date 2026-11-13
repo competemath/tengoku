@@ -19,7 +19,9 @@ local notation "E" => κ → ℝ
 /-- Stein's exact covariance contraction permits a bounded continuous
 bilinear map depending on an independently sampled parameter. The two
 actual laws form their product measure, and every integrability premise
-is proved from the displayed native bounds and Gaussian first moments.-/
+is proved from the displayed native bounds and Gaussian first moments.
+@isnad1 id=eq.7h12v.s12.c466e0d4ef46 from=translated src=- shape=74c2e17e vocab=5415d617
+-/
 theorem integral_parameter_bilin_gaussian_affine
     (P : Measure E) [IsProbabilityMeasure P]
     (γ : Measure E) [IsGaussian γ] (hmean : (∫ z : E, z ∂γ)=0)

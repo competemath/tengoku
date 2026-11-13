@@ -25,7 +25,9 @@ namespace NLAlib
 /-- Coordinate Stein identity on a finite product of standard Gaussian laws.
 Source: scalar Gaussian integration by parts and one-coordinate resampling;
 atlas gaussian-integration-by-parts and wishart-lambda-min-tail.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.4h4v.s8.850ab2f4eec0 from=translated src=- shape=5d45b6d5 vocab=797903ac
+-/
 theorem integral_coordinate_mul_eq_integral_gaussian_of_hasDerivAt_update
     {ι : Type*} [Fintype ι] [DecidableEq ι] (f : (ι → ℝ) → ℝ)
     (df : (ι → ℝ) → ℝ) (i : ι)
@@ -82,7 +84,9 @@ theorem integral_coordinate_mul_eq_integral_gaussian_of_hasDerivAt_update
 /-- The coordinate Stein identity written using the Fréchet derivative of a
 differentiable function. Source: scalar Gaussian integration by parts and
 coordinate resampling; atlas gaussian-integration-by-parts.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.4h3v.s10.16a599d8efa6 from=translated src=- shape=b2a4314b vocab=cdcb1936
+-/
 theorem integral_coordinate_mul_eq_integral_fderiv_gaussian
     {ι : Type*} [Fintype ι] [DecidableEq ι] (f : (ι → ℝ) → ℝ)
     (hf : Differentiable ℝ f) (i : ι)

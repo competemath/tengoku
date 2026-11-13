@@ -29,7 +29,9 @@ variable {d m n : ℕ}
 /-- The paper's named `Y₊†` is literally the matrix transpose of `Y₊`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.f6565a79ad78 from=translated src=- shape=f73be4a9 vocab=fa4befdb
+-/
 @[simp] theorem transpose_Yplus (u : Fin n → Fin d → ℝ) :
     (Yplus m u).transpose = YplusAdj m u := by
   simpa [Yplus, YplusAdj, wordSum, Word.orderedAdjoint, Leg.adjoint] using
@@ -37,7 +39,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Transposing the directional mixed raising adjoint gives the raising band.
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.eb35f5ebe46b from=translated src=- shape=f73be4a9 vocab=fa4befdb
+-/
 @[simp] theorem transpose_YplusAdj (u : Fin n → Fin d → ℝ) :
     (YplusAdj m u).transpose = Yplus m u := by
   rw [← transpose_Yplus (m := m) u, Matrix.transpose_transpose]
@@ -45,7 +49,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- The paper's named `Y₀†` is literally the matrix transpose of `Y₀`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.fa4d3d7fe3bf from=translated src=- shape=f73be4a9 vocab=38b69211
+-/
 @[simp] theorem transpose_Yzero (u : Fin n → Fin d → ℝ) :
     (Yzero m u).transpose = YzeroAdj m u := by
   simpa [Yzero, YzeroAdj, wordSum, Word.orderedAdjoint, Leg.adjoint] using
@@ -53,14 +59,18 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Transposing the directional mixed preserving adjoint gives the preserving band.
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.5a5f27f94a41 from=translated src=- shape=f73be4a9 vocab=38b69211
+-/
 @[simp] theorem transpose_YzeroAdj (u : Fin n → Fin d → ℝ) :
     (YzeroAdj m u).transpose = Yzero m u := by
   rw [← transpose_Yzero (m := m) u, Matrix.transpose_transpose]
 
 /-- The directional mixed raising adjoint has grade shift minus two.
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.6f47bba2e4b4 from=translated src=- shape=d9805cfa vocab=f1517fe2
+-/
 theorem YplusAdj_homogeneous (F : Frame n d) :
     IsFullGradeShift (-2) (YplusAdj m (Frame.rows F)) := by
   simpa [YplusAdj, wordSum, Word.degree, Leg.degree] using
@@ -68,7 +78,9 @@ theorem YplusAdj_homogeneous (F : Frame n d) :
 
 /-- The directional mixed preserving adjoint has grade shift zero.
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.1fb6955195f9 from=translated src=- shape=22f4b803 vocab=107ba7a9
+-/
 theorem YzeroAdj_homogeneous (F : Frame n d) :
     IsFullGradeShift 0 (YzeroAdj m (Frame.rows F)) := by
   simpa [YzeroAdj, wordSum, Word.degree, Leg.degree] using
@@ -79,7 +91,9 @@ projections.  This is stronger than merely inserting an output projection
 after an already restricted operator.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h7v.s7.72d43b304987 from=translated src=- shape=95be8c5b vocab=7d51840c
+-/
 theorem gradeProjection_mul_eq_mul_gradeProjection_of_homogeneous
     {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A) (mu nu : ℕ)
@@ -112,7 +126,9 @@ theorem gradeProjection_mul_eq_mul_gradeProjection_of_homogeneous
 `Y₊` on grade `nu`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.4464eb60883d from=translated src=- shape=151f7750 vocab=e5ed9d09
+-/
 theorem norm_YplusAdj_restricted_add_two_le (F : Frame n d) (nu : ℕ) :
     ‖YplusAdj m (Frame.rows F) * gradeProjection (d := d) (nu + 2)‖ ≤
       (nu : ℝ) := by
@@ -136,7 +152,9 @@ theorem norm_YplusAdj_restricted_add_two_le (F : Frame n d) (nu : ℕ) :
 vanish; above them the exact shifted estimate is even smaller than `nu`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.968f2c1be907 from=translated src=- shape=ec2b5777 vocab=5ced1dba
+-/
 theorem norm_YplusAdj_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖YplusAdj m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤
       (nu : ℝ) := by
@@ -165,7 +183,9 @@ theorem norm_YplusAdj_restricted_le (F : Frame n d) (nu : ℕ) :
 restricted norm for its named adjoint.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.20298ee99753 from=translated src=- shape=3a966061 vocab=1bfa9870
+-/
 theorem norm_YzeroAdj_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖YzeroAdj m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤
       (nu : ℝ) / Real.sqrt 2 := by
@@ -187,7 +207,9 @@ theorem norm_YzeroAdj_restricted_le (F : Frame n d) (nu : ℕ) :
 /-- Exact L2-norm scaling for the normalized heavy-light coefficient.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s9.8b0093ffa371 from=translated src=- shape=de7eae87 vocab=7b90ecf2
+-/
 theorem norm_normalized_directional_term_eq {s b : ℕ}
     (A : FullOp d m n) (P : FullOp d m n) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -202,7 +224,9 @@ theorem norm_normalized_directional_term_eq {s b : ℕ}
 /-- Normalized `Y₊` contribution at exactly the paper constant `nu/s`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.39d9658d637c from=translated src=- shape=f1e4d97a vocab=c634ef08
+-/
 theorem norm_normalized_Yplus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -222,7 +246,9 @@ theorem norm_normalized_Yplus_restricted_le (F : Frame n d)
 /-- Normalized `Y₊†` contribution, with the same uniform paper constant.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.c6e51c5e867b from=translated src=- shape=f1e4d97a vocab=b2adfd23
+-/
 theorem norm_normalized_YplusAdj_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -243,7 +269,9 @@ theorem norm_normalized_YplusAdj_restricted_le (F : Frame n d)
 `(nu/s)/sqrt 2`.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.41bf68825ba4 from=translated src=- shape=adf07b4c vocab=a69afa75
+-/
 theorem norm_normalized_Yzero_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -268,7 +296,9 @@ theorem norm_normalized_Yzero_restricted_le (F : Frame n d)
 /-- The named normalized `Y₀†` orientation has the identical constant.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.db008eec0469 from=translated src=- shape=adf07b4c vocab=d484d1da
+-/
 theorem norm_normalized_YzeroAdj_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -294,7 +324,9 @@ theorem norm_normalized_YzeroAdj_restricted_le (F : Frame n d)
 paper's `sqrt 2 * nu/s` allowance.
 
 Source: ported from `SparseFockFormal.DirectionalNormalized`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.5658e4a53830 from=translated src=- shape=87c753d4 vocab=f5516492
+-/
 theorem norm_normalized_Yzero_pair_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •

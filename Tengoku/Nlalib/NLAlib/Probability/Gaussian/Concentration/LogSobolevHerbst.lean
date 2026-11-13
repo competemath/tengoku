@@ -59,7 +59,9 @@ private theorem integrable_exp_mul_of_abs_bound {Ω : Type*} [MeasurableSpace Ω
 /-- A LSI gives the exponential-entropy bound for a bounded smooth Lipschitz
 observable, by the chain rule applied to `g=exp(s f/2)`. All three LSI integrability
 requirements are proved from boundedness. Ledoux 2001, proof of Theorem 5.3;
-atlas `herbst`.-/
+atlas `herbst`.
+@isnad1 id=le.4h7v.s8.ca3538a5fc62 from=translated src=- shape=20b68ffe vocab=2226f5fb
+-/
 theorem entropy_exp_mul_le_of_logSobolev_of_bounded
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -148,7 +150,9 @@ theorem entropy_exp_mul_le_of_logSobolev_of_bounded
 
 /-- A bounded smooth Lipschitz observable under a measure satisfying a LSI has
 the centered sub-Gaussian MGF with variance proxy `cL²`. Exponential integrability is
-derived from boundedness. Ledoux 2001, Theorem 5.3; atlas `herbst`.-/
+derived from boundedness. Ledoux 2001, Theorem 5.3; atlas `herbst`.
+@isnad1 id=hassubga.4h6v.s8.253169ab5f42 from=translated src=- shape=9b262a7c vocab=8b88b1ba
+-/
 theorem hasSubgaussianMGF_of_logSobolev_of_bounded
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -247,7 +251,9 @@ private theorem clipValue_abs_le {a : ℝ} (ha : 0 ≤ a) (u : ℝ) : |clipValue
 /-- Every Euclidean Lipschitz function admits bounded smooth approximants preserving its
 Lipschitz constant. They converge pointwise and satisfy `|fₙ|≤|f|+1`, so once `f` is
 integrable the means converge by dominated convergence. Clamping is performed before
-mollification. Ledoux 2001, proof of Theorem 5.3; atlas `herbst` (approximation helper).-/
+mollification. Ledoux 2001, proof of Theorem 5.3; atlas `herbst` (approximation helper).
+@isnad1 id=ex.1h3v.s8.ebe4b9f28a0c from=translated src=- shape=1898d17d vocab=3c717891
+-/
 theorem exists_bounded_contDiff_lipschitz_approx {ι : Type*} [Fintype ι]
     (f : (ι → ℝ) → ℝ) (L : ℝ)
     (hLip : ∀ x y, |f x - f y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2)) :
@@ -315,7 +321,9 @@ private theorem lintegral_ofReal_le_of_tendsto_integral_bound
   exact hle.trans_eq (ENNReal.tendsto_ofReal hb).liminf_eq
 
 /-- The uncentered MGF estimate corresponding to the bounded smooth LSI theorem.
-Ledoux 2001, Theorem 5.3; atlas `herbst` (bounded approximation endpoint).-/
+Ledoux 2001, Theorem 5.3; atlas `herbst` (bounded approximation endpoint).
+@isnad1 id=le.4h7v.s8.fdf9715eedc2 from=translated src=- shape=149d4c5c vocab=28365dbe
+-/
 theorem integral_exp_mul_le_of_logSobolev_of_bounded
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -381,7 +389,9 @@ private theorem abs_le_exp_add_exp_neg (u : ℝ) : |u| ≤ Real.exp u + Real.exp
 /-- A Euclidean LSI already forces integrability of every Lipschitz observable.
 No moment or exponential-integrability hypothesis is assumed. Bounded approximants have
 uniformly bounded means, using any positive-mass bounded-value event; Fatou then bounds
-the first absolute moment. Ledoux 2001, proof of Theorem 5.3; atlas `herbst`.-/
+the first absolute moment. Ledoux 2001, proof of Theorem 5.3; atlas `herbst`.
+@isnad1 id=integrab.3h5v.s7.812375ddf07a from=translated src=- shape=a1750f72 vocab=5b4ff716
+-/
 theorem integrable_of_logSobolev_of_lipschitz
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -450,7 +460,9 @@ centred MGF of every `L`-Lipschitz observable is sub-Gaussian with variance prox
 smoothness, finite-moment or exponential-integrability assumption is imposed on the observable
 (integrability is `integrable_of_logSobolev_of_lipschitz`).
 Ledoux 2001, Theorem 5.3.
-atlas: herbst-/
+atlas: herbst
+@isnad1 id=hassubga.3h5v.s7.9b716b231941 from=translated src=- shape=ff83a05f vocab=8d293954
+-/
 theorem hasSubgaussianMGF_of_logSobolev
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -524,7 +536,9 @@ theorem hasSubgaussianMGF_of_logSobolev
 `P(f≥Ef+t)≤exp(-t²/(2cL²))` for every nonnegative threshold. Observable integrability
 and all exponential moments are proved by the preceding theorem.
 Ledoux 2001, Theorem 5.3; atlas `herbst`.
-atlas: herbst-/
+atlas: herbst
+@isnad1 id=le.4h6v.s8.34cb5dc039b9 from=translated src=- shape=91b13e10 vocab=8e38e009
+-/
 theorem measureReal_ge_le_of_logSobolev
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -544,7 +558,9 @@ theorem measureReal_ge_le_of_logSobolev
 with constant one. This bridge uses the already proved Dirichlet inequality; the generic
 Herbst proof above does not use Gaussian exponential-integrability facts.
 Gross 1975; Ledoux 2001, Theorem 5.1; atlas `gaussian-log-sobolev`, `herbst`.
-atlas: herbst-/
+atlas: herbst
+@isnad1 id=haseucli.0h1v.s4.e5e5e8f78262 from=translated src=- shape=09afe286 vocab=8a51d674
+-/
 theorem hasEuclideanLogSobolev_gaussianVector {ι : Type*} [Fintype ι] [DecidableEq ι] :
     HasEuclideanLogSobolev (gaussianVector ι) 1 := by
   refine ⟨by norm_num, ?_⟩
@@ -555,7 +571,9 @@ theorem hasEuclideanLogSobolev_gaussianVector {ι : Type*} [Fintype ι] [Decidab
 /-- A Euclidean LSI forces entropy integrability whenever the square and
 Dirichlet energy are integrable. Thus the finite-entropy testing convention in the
 premise loses no `C¹` functions of finite energy. The proof uses bounded sine value
-truncations and Fatou. Ledoux 2001, Theorem 5.1; atlas `gaussian-log-sobolev`, `herbst`.-/
+truncations and Fatou. Ledoux 2001, Theorem 5.1; atlas `gaussian-log-sobolev`, `herbst`.
+@isnad1 id=integrab.4h4v.s9.ddb47f30d304 from=translated src=- shape=2f2352a8 vocab=b049d451
+-/
 theorem HasEuclideanLogSobolev.integrable_sq_mul_log_sq
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)
@@ -568,7 +586,9 @@ theorem HasEuclideanLogSobolev.integrable_sq_mul_log_sq
 
 /-- The Euclidean LSI inequality for every `C¹` function of finite square and Dirichlet
 energy, with entropy integrability automatically discharged.
-Ledoux 2001, Theorem 5.1; atlas `gaussian-log-sobolev`, `herbst`.-/
+Ledoux 2001, Theorem 5.1; atlas `gaussian-log-sobolev`, `herbst`.
+@isnad1 id=le.4h4v.s10.fa8371139f77 from=translated src=- shape=45049d02 vocab=35951285
+-/
 theorem HasEuclideanLogSobolev.inequality_of_integrable
     {ι : Type*} [Fintype ι] [DecidableEq ι] {μ : Measure (ι → ℝ)}
     [IsProbabilityMeasure μ] {c : ℝ} (hLSI : HasEuclideanLogSobolev μ c)

@@ -79,7 +79,9 @@ private theorem normalizedBand_minus_mul_projection
 /-- Exact operator-level assembly for the positive band.
 
 Source: ported from `SparseFockFormal.ConcreteBandAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h8v.s10.73d3d5a48cea from=translated src=- shape=c9d30643 vocab=d3ef56cc
+-/
 theorem plus_band_envelope_of_components
     (F : Frame n d) (nu : ℕ) {a c : ℝ}
     (ha : 0 ≤ a) (hc : 0 ≤ c)
@@ -116,7 +118,9 @@ theorem plus_band_envelope_of_components
 /-- Exact operator-level assembly for the grade-preserving band.
 
 Source: ported from `SparseFockFormal.ConcreteBandAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h7v.s10.ba4f04547fa3 from=translated src=- shape=ad19f694 vocab=5ac4dd48
+-/
 theorem zero_band_envelope_of_components
     (F : Frame n d) (nu : ℕ) {c : ℝ}
     (hc : 0 ≤ c)
@@ -154,7 +158,9 @@ theorem zero_band_envelope_of_components
 /-- Exact operator-level assembly for the negative band.
 
 Source: ported from `SparseFockFormal.ConcreteBandAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h8v.s10.36e4bafd1d5f from=translated src=- shape=c9d30643 vocab=4b62d9ab
+-/
 theorem minus_band_envelope_of_components
     (F : Frame n d) (nu : ℕ) {a c : ℝ}
     (ha : 0 ≤ a) (hc : 0 ≤ c)

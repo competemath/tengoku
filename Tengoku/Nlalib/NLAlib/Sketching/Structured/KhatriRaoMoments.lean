@@ -27,7 +27,9 @@ namespace NLAlib
 /-- Independent vector factors multiply homogeneous directional even-moment
 budgets. Arbitrary coordinate dependence within each factor is allowed.
 Finite Jensen keeps the Euclidean tensor coefficient norm exactly.
-Source: Heidary, Lemma 2.2, tensor induction.-/
+Source: Heidary, Lemma 2.2, tensor induction.
+@isnad1 id=and.3h6v.s9.acab545da903 from=translated src=- shape=0bcda10c vocab=a0cb72c5
+-/
 theorem integrable_and_integral_pow_two_mul_dotProduct_khatriRaoProbe_le
     {d : ℕ} {n : Fin d → ℕ}
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
@@ -147,7 +149,9 @@ theorem integrable_and_integral_pow_two_mul_dotProduct_khatriRaoProbe_le
 tensor moments with factorial growth. Only the directional square-exponential
 bound is needed here; neither centered factors nor coordinate independence is
 assumed. Source: Heidary, Lemma 2.2, with the unoptimized scalar budget
-`2 p! K^(2p)` in place of the isotropy-anchored improvement.-/
+`2 p! K^(2p)` in place of the isotropy-anchored improvement.
+@isnad1 id=and.3h6v.s9.951476e6033a from=translated src=- shape=68e6bd67 vocab=3a7ef81e
+-/
 theorem integrable_and_integral_pow_two_mul_dotProduct_khatriRaoProbe_le_of_exp_sq
     {d : ℕ} {n : Fin d → ℕ}
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
@@ -165,7 +169,9 @@ theorem integrable_and_integral_pow_two_mul_dotProduct_khatriRaoProbe_le_of_exp_
 
 /-- Restricting independent square-exponentially bounded tensor factors to
 an orthonormal subspace keeps the same homogeneous directional moment
-budget. Source: Heidary, Lemma 2.2, applied to the projected probe.-/
+budget. Source: Heidary, Lemma 2.2, applied to the projected probe.
+@isnad1 id=and.4h8v.s9.5ca11102e332 from=translated src=- shape=9786a9fb vocab=eb6ab119
+-/
 theorem integrable_and_integral_pow_two_mul_dotProduct_projected_khatriRaoProbe_le
     {d : ℕ} {n : Fin d → ℕ}
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))

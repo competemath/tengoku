@@ -21,7 +21,9 @@ namespace NLAlib
 
 variable {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {P : Measure Ω}
 
-/-- A bounded continuous complex test of a Gaussian vector is integrable.-/
+/-- A bounded continuous complex test of a Gaussian vector is integrable.
+@isnad1 id=integrab.3h6v.s7.09f0842f52f6 from=translated src=- shape=c77fb267 vocab=7cf7d56c
+-/
 theorem integrable_complex_comp_of_hasGaussianLaw
     (V : Ω → ι → ℝ) (hV : HasGaussianLaw V P)
     (G : (ι → ℝ) → ℂ) (hGc : Continuous G) (C : ℝ) (hGb : ∀ x, ‖G x‖ ≤ C) :
@@ -32,7 +34,9 @@ theorem integrable_complex_comp_of_hasGaussianLaw
     (Filter.Eventually.of_forall (fun ω => hGb _))
 
 /-- A real Gaussian coordinate times a bounded continuous complex test of a
-jointly Gaussian vector is integrable.-/
+jointly Gaussian vector is integrable.
+@isnad1 id=integrab.3h7v.s8.fd3731d635f9 from=translated src=- shape=522f764f vocab=13d1e39f
+-/
 theorem integrable_smul_complex_comp_of_hasGaussianLaw
     (U : Ω → ℝ) (V : ι → Ω → ℝ)
     (hUV : HasGaussianLaw (fun ω => (U ω, fun j => V j ω)) P)
@@ -52,7 +56,9 @@ continuous complex partial derivatives. The Gaussian coordinates are real and
 their actual joint law may be singular; only the first coordinate must be
 centered. All Bochner integrability follows from the stated bounds.
 Source: the real multivariate Gaussian Stein identity, applied to both parts.
-atlas: gaussian-integration-by-parts (partial)-/
+atlas: gaussian-integration-by-parts (partial)
+@isnad1 id=eq.6h9v.s9.47bb5807ce24 from=translated src=- shape=a06f9b53 vocab=d24d89e7
+-/
 theorem integral_smul_eq_sum_covariance_smul_integral_complex
     (U : Ω → ℝ) (V : ι → Ω → ℝ)
     (hUV : HasGaussianLaw (fun ω => (U ω, fun j => V j ω)) P)

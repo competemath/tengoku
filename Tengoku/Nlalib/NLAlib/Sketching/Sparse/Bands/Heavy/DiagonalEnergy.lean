@@ -25,7 +25,9 @@ variable {d m n : ℕ}
 including the actual same-site correction.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s8.52f13b34129a from=translated src=- shape=37f108a9 vocab=0d4f59e3
+-/
 theorem Hzero_gram_sub_diagonal (F : Frame n d) :
     Hzero m (Frame.rows F) =
       (AUpStack (m := m) F).transpose * AUpStack (m := m) F +
@@ -37,7 +39,9 @@ theorem Hzero_gram_sub_diagonal (F : Frame n d) :
 
 /-- One-site creation analysis evaluates the selected transitioned fiber's frame coefficient.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s7.99a0a8be09ab from=translated src=- shape=abd50263 vocab=e7fd7b32
+-/
 theorem AUpOne_mulVec (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (i : Fin n)
     (σ : Pattern m n) :
@@ -49,7 +53,9 @@ theorem AUpOne_mulVec (F : Frame n d)
 
 /-- One-site annihilation analysis evaluates the selected transitioned fiber's frame coefficient.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s7.f394769da7ca from=translated src=- shape=abd50263 vocab=67ed0732
+-/
 theorem ADownOne_mulVec (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (i : Fin n)
     (σ : Pattern m n) :
@@ -61,7 +67,9 @@ theorem ADownOne_mulVec (F : Frame n d)
 
 /-- Frame analysis restricted to a finite subset has energy bounded by its cardinality times input energy.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.3c8585bf670b from=translated src=- shape=2b652646 vocab=80b45716
+-/
 theorem subset_analysis_le_card_mul (F : Frame n d) (S : Finset (Fin n))
     (v : EVec d) :
     (∑ i ∈ S, (analyze F v i) ^ 2) ≤
@@ -78,7 +86,9 @@ theorem subset_analysis_le_card_mul (F : Frame n d) (S : Finset (Fin n))
 /-- Exact same-site creation energy, bounded by the occupation number.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.62ff28413c9c from=translated src=- shape=e88b5652 vocab=5b590265
+-/
 theorem DUp_energy_le_weighted (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, ∑ i, sumSq (Matrix.mulVec (AUpOne F r i) x)) ≤
@@ -154,7 +164,9 @@ theorem DUp_energy_le_weighted (F : Frame n d)
 /-- Exact same-site demotion energy, with the same occupation bound.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.1fbd9f9d9b1a from=translated src=- shape=e88b5652 vocab=7f09984e
+-/
 theorem DDown_energy_le_weighted (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, ∑ i, sumSq (Matrix.mulVec (ADownOne F r i) x)) ≤

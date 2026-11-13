@@ -31,7 +31,9 @@ def rowGradeProjection (mu : ℕ) : Matrix (RowFock m n) (RowFock m n) ℝ :=
 
 /-- The exact middle-grade projection on the row-pattern space is symmetric.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.2110b1ad5425 from=translated src=- shape=00a962f4 vocab=5e752000
+-/
 @[simp] theorem rowGradeProjection_transpose (mu : ℕ) :
     (rowGradeProjection (m := m) (n := n) mu).transpose = rowGradeProjection mu := by
   ext out inp
@@ -43,7 +45,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The exact middle-grade projection is an operator contraction.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s7.8f0393abfa67 from=translated src=- shape=638db21e vocab=de6017f5
+-/
 theorem rowGradeProjection_norm_le_one (mu : ℕ) :
     ‖rowGradeProjection (m := m) (n := n) mu‖ ≤ 1 := by
   rw [rowGradeProjection, Matrix.l2_opNorm_diagonal]
@@ -54,7 +58,9 @@ theorem rowGradeProjection_norm_le_one (mu : ℕ) :
 /-- Insertion of the exact middle grade after the `A_r` block column.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.3d4d3fb1d604 from=translated src=- shape=b484e12f vocab=f93f42bd
+-/
 theorem rowProjection_AUpStack_gradeProjection (F : Frame n d) (nu : ℕ) :
     rowGradeProjection (m := m) (n := n) (nu + 1) * AUpStack (m := m) F *
         gradeProjection (d := d) nu =
@@ -76,7 +82,9 @@ theorem rowProjection_AUpStack_gradeProjection (F : Frame n d) (nu : ℕ) :
 /-- Selecting demotion output grade `mu` forces input grade `mu+1`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.f008270c3b1f from=translated src=- shape=225f5b93 vocab=b4f44063
+-/
 theorem rowProjection_ADownStack_input (F : Frame n d) (mu : ℕ) :
     rowGradeProjection (m := m) (n := n) mu * ADownStack (m := m) F *
         gradeProjection (d := d) (mu + 1) =
@@ -99,7 +107,9 @@ theorem rowProjection_ADownStack_input (F : Frame n d) (mu : ℕ) :
 input to have grade `k`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.87be6fc88e0f from=translated src=- shape=eaab3fa0 vocab=f93f42bd
+-/
 theorem rowProjection_AUpStack_input (F : Frame n d) (k : ℕ) :
     rowGradeProjection (m := m) (n := n) (k + 1) * AUpStack (m := m) F *
         gradeProjection (d := d) k =
@@ -124,7 +134,9 @@ theorem rowProjection_AUpStack_input (F : Frame n d) (k : ℕ) :
 in middle grade `mu`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.3ae7fcffc672 from=translated src=- shape=463c36ac vocab=b4f44063
+-/
 theorem rowProjection_ADownStack_output (F : Frame n d) (mu : ℕ) :
     rowGradeProjection (m := m) (n := n) mu * ADownStack (m := m) F *
         gradeProjection (d := d) (mu + 1) =
@@ -147,7 +159,9 @@ theorem rowProjection_ADownStack_output (F : Frame n d) (mu : ℕ) :
 
 /-- Heavy creation analysis cannot produce a grade-zero middle state.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.4a473c56d24b from=translated src=- shape=785d1c23 vocab=708aefdd
+-/
 theorem rowProjection_zero_AUpStack (F : Frame n d) :
     rowGradeProjection (m := m) (n := n) 0 * AUpStack (m := m) F = 0 := by
   classical
@@ -164,7 +178,9 @@ theorem rowProjection_zero_AUpStack (F : Frame n d) :
 
 /-- Heavy annihilation analysis vanishes on grade-zero input.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.e6febe904736 from=translated src=- shape=72dd5495 vocab=0f64b565
+-/
 theorem ADownStack_gradeProjection_zero (F : Frame n d) :
     ADownStack (m := m) F * gradeProjection (d := d) (m := m) (n := n) 0 = 0 := by
   classical

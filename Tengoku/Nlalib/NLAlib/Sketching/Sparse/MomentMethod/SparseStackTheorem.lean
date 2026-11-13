@@ -29,7 +29,9 @@ parameters.  This is the last operator input formerly present in the
 conditional endgame.
 
 Source: ported from `SparseFockFormal.MainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s8.4ab8b724d12d from=translated src=- shape=d4d144cf vocab=1545a3b4
+-/
 theorem rounded_band_bound
     {n d : ℕ} {delta eps : ℝ}
     (heps0 : 0 < eps) (heps1 : eps ≤ 1) (F : Frame n d)
@@ -55,7 +57,9 @@ theorem rounded_band_bound
 /-- Hypothesis-free fixed-frame form of the full theorem.
 
 Source: ported from `SparseFockFormal.MainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=mainconc.5h5v.s6.c00c24bf1365 from=translated src=- shape=f1ae3445 vocab=24806494
+-/
 theorem fully_independent_sparseStack
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -108,7 +112,9 @@ structure MatrixMainConclusions {n d : ℕ} (delta eps : ℝ)
 /-- Literal matrix form of the explicit theorem.
 
 Source: ported from `SparseFockFormal.MainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=matrixma.6h5v.s7.9d96526bbd50 from=translated src=- shape=863b3ea1 vocab=bdd72dca
+-/
 theorem fully_independent_sparseStack_matrix
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -135,7 +141,9 @@ theorem fully_independent_sparseStack_matrix
 of the fully independent SparseStack sample.
 
 Source: ported from `SparseFockFormal.MainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h7v.s9.15a127f70301 from=translated src=- shape=74d5b5ef vocab=1a129621
+-/
 theorem fully_independent_sparseStack_independent_frame
     {Omega : Type*} [Fintype Omega]
     {n d : ℕ} {delta eps : ℝ}

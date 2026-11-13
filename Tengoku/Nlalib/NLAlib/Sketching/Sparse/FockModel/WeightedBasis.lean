@@ -67,7 +67,9 @@ noncomputable def coeff (i : I) (f : Omega → ℝ) : ℝ :=
 
 /-- Pairing two weighted orthonormal basis vectors gives their coordinate delta.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.1287a943c441 from=translated src=- shape=30c9b7d2 vocab=e022bc05
+-/
 theorem coeff_basis (i j : I) :
     B.coeff i (B.basis j) = if i = j then 1 else 0 := by
   by_cases h : i = j
@@ -78,20 +80,26 @@ theorem coeff_basis (i j : I) :
 
 omit [DecidableEq I] in
 /-- Reconstruction in the complete weighted finite basis. Source: pinned
-sparse-Fock `FiniteL2`, `WeightedONBasis.reconstruct`; supports `sparse-ose`.-/
+sparse-Fock `FiniteL2`, `WeightedONBasis.reconstruct`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.be7df04848c0 from=translated src=- shape=eb9cc04d vocab=d593cbf7
+-/
 theorem reconstruct (f : Omega → ℝ) (x : Omega) :
     f x = ∑ i, B.coeff i f * B.basis i x := by
   simpa [coeff] using B.reconstruction f x
 
 omit [DecidableEq I] in
 /-- The weighted finite expectation of one is one. Source: pinned
-sparse-Fock `FiniteL2`, `expect_one`; supports `sparse-ose`.-/
+sparse-Fock `FiniteL2`, `expect_one`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.ada78c3ac475 from=translated src=- shape=b8d91d42 vocab=d5b93342
+-/
 theorem expect_one : B.expect (fun _ => 1) = 1 := by
   simpa [WeightedONBasis.expect] using B.sum_weight
 
 omit [DecidableEq I] in
 /-- Coefficients distribute over the finite basis sum. Source: pinned
-sparse-Fock `FiniteL2`, `coeff_mul_sum`; supports `sparse-ose`.-/
+sparse-Fock `FiniteL2`, `coeff_mul_sum`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.c78f9d41f600 from=translated src=- shape=b09bbd1f vocab=d593cbf7
+-/
 theorem coeff_mul_sum (i : I) (a : Omega → ℝ) (c : I → ℝ) :
     B.coeff i (fun x => a x * ∑ j, c j * B.basis j x) =
       ∑ j, c j * B.coeff i (fun x => a x * B.basis j x) := by
@@ -105,7 +113,9 @@ theorem coeff_mul_sum (i : I) (a : Omega → ℝ) (c : I → ℝ) :
 
 omit [DecidableEq I] in
 /-- Coefficients are additive over finite sums. Source: pinned
-sparse-Fock `FiniteL2`, `coeff_sum`; supports `sparse-ose`.-/
+sparse-Fock `FiniteL2`, `coeff_sum`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.4d3c43ad3168 from=translated src=- shape=809ab41a vocab=b77d443d
+-/
 theorem coeff_sum {K : Type*} [Fintype K] (i : I) (f : K → Omega → ℝ) :
     B.coeff i (fun x => ∑ k, f k x) = ∑ k, B.coeff i (f k) := by
   simp only [coeff, Finset.mul_sum]
@@ -120,7 +130,9 @@ noncomputable def mulOp (a : Omega → ℝ) : Matrix I I ℝ :=
 
 omit [DecidableEq I] in
 /-- Finite multiplication operators compose as multiplication of their
-observables. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.-/
+observables. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.ca678ca87402 from=translated src=- shape=af407d61 vocab=a7b0bce5
+-/
 theorem mulOp_mul (a b : Omega → ℝ) :
     B.mulOp a * B.mulOp b = B.mulOp (fun x => a x * b x) := by
   classical
@@ -165,7 +177,9 @@ noncomputable def matrixMulOp (M : Omega → Matrix A A ℝ) :
 
 omit [Fintype A] in
 /-- Multiplication by the constant identity has the identity matrix in the
-complete basis. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.-/
+complete basis. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.50141d66e335 from=translated src=- shape=faf32a15 vocab=8d21b5b2
+-/
 theorem matrixMulOp_one :
     B.matrixMulOp (fun _ => (1 : Matrix A A ℝ)) = 1 := by
   classical
@@ -179,7 +193,9 @@ theorem matrixMulOp_one :
 
 omit [DecidableEq A] [DecidableEq I] in
 /-- Composition of matrix-valued multiplication operators computes the
-pointwise product. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.-/
+pointwise product. Source: pinned sparse-Fock `FiniteL2`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.29b2923f7a0a from=translated src=- shape=beddd6db vocab=d4ef42ca
+-/
 theorem matrixMulOp_mul (M N : Omega → Matrix A A ℝ) :
     B.matrixMulOp M * B.matrixMulOp N =
       B.matrixMulOp (fun x => M x * N x) := by
@@ -225,7 +241,9 @@ theorem matrixMulOp_mul (M N : Omega → Matrix A A ℝ) :
 
 /-- The matrix-valued coefficient multiplication operator preserves pointwise matrix powers.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.52d3782cfc0d from=translated src=- shape=1a98dd19 vocab=a6dedc22
+-/
 theorem matrixMulOp_pow (M : Omega → Matrix A A ℝ) (k : ℕ) :
     B.matrixMulOp M ^ k = B.matrixMulOp (fun x => M x ^ k) := by
   classical
@@ -237,7 +255,9 @@ theorem matrixMulOp_pow (M : Omega → Matrix A A ℝ) (k : ℕ) :
 
 /-- A matrix-valued multiplication-operator vacuum entry is its weighted matrix-power moment.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.a801655e312c from=translated src=- shape=a50f459a vocab=ea2c561e
+-/
 theorem matrix_vacuum_moment (M : Omega → Matrix A A ℝ) (k : ℕ) :
     (∑ a, (B.matrixMulOp M ^ k) (a, B.vacuum) (a, B.vacuum)) =
       B.expect (fun x => Matrix.trace (M x ^ k)) := by

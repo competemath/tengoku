@@ -23,7 +23,9 @@ variable {k m d : Type*} [Fintype k] [Fintype m] [Fintype d] [DecidableEq d]
 /-- An embedding on an orthonormal frame controls its Gram error in spectral
 norm. Atlas: `ose-def` (the previously missing converse). The distortion is
 explicitly nonnegative, including for an empty frame.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=le.3h6v.s7.02860cde7a33 from=translated src=- shape=b6e22941 vocab=a6bd9457
+-/
 theorem specNorm_transpose_mul_self_sub_one_le_of_isSubspaceEmbedding
     {S : Matrix k m ℝ} {U : Matrix m d ℝ} (hU : HasOrthonormalCols U)
     {ε : ℝ} (hε : 0 ≤ ε) (h : IsSubspaceEmbedding S U ε) :
@@ -45,7 +47,9 @@ theorem specNorm_transpose_mul_self_sub_one_le_of_isSubspaceEmbedding
 
 /-- Complete Gram-form equivalence for an orthonormal frame, valid also in
 empty dimensions. Atlas: `ose-def`.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=iff.2h6v.s7.fba29da12bac from=translated src=- shape=bf61b05d vocab=a6bd9457
+-/
 theorem isSubspaceEmbedding_iff_specNorm_transpose_mul_self_sub_one_le
     {S : Matrix k m ℝ} {U : Matrix m d ℝ} (hU : HasOrthonormalCols U)
     {ε : ℝ} (hε : 0 ≤ ε) :

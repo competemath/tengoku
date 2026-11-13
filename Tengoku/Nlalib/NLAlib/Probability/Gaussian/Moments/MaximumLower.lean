@@ -25,7 +25,9 @@ coordinate maxima. Its exact value is immaterial to dimension-free bounds.-/
 def gaussianMaximumLowerConstant : ℝ :=
   1 - Real.exp (-(Real.exp (-1) / Real.sqrt (2 * Real.pi)) / 2)
 
-/-- The universal Gaussian maximum lower constant is strictly positive.-/
+/-- The universal Gaussian maximum lower constant is strictly positive.
+@isnad1 id=lt.0h0v.s3.1f494ac09b62 from=translated src=- shape=ff3a10fc vocab=9f98f4eb
+-/
 theorem gaussianMaximumLowerConstant_pos : 0 < gaussianMaximumLowerConstant := by
   unfold gaussianMaximumLowerConstant
   have hc : 0 < Real.exp (-1) / Real.sqrt (2 * Real.pi) := by positivity

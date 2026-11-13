@@ -23,7 +23,9 @@ variable {D ι A : Type*} [Fintype D] [DecidableEq D] [Fintype ι]
 local notation "B" => WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι
 local notation "M" => CStarMatrix D D B
 
-/-- The native word-field linear combination is the actual entrywise affine matrix evaluation.-/
+/-- The native word-field linear combination is the actual entrywise affine matrix evaluation.
+@isnad1 id=eq.0h4v.s12.8b222dadc79e from=translated src=- shape=0e40dbe4 vocab=35fec275
+-/
 theorem wordNativeMatrixLinearCombination_eq_affineCombination
     (A₀ : Matrix D D ℂ) (C : ι → Matrix D D ℂ) :
     wordNativeMatrixLinearCombination A₀ C=CStarMatrix.affineCombination ℂ A₀ C wordField := by
@@ -41,7 +43,9 @@ theorem wordNativeMatrixLinearCombination_eq_affineCombination
   change (A₀ i j)•(1 : B)+(∑ k,F k) i j=algebraMap ℂ B (A₀ i j)+∑ k,C k i j•wordField k
   rw [hs,Algebra.algebraMap_eq_smul_one]
 
-/-- The actual matrix linear polynomial evaluates to the native word-field affine model.-/
+/-- The actual matrix linear polynomial evaluates to the native word-field affine model.
+@isnad1 id=eq.0h4v.s11.5cb449452552 from=translated src=- shape=9ec6f87d vocab=72b77881
+-/
 theorem wordMatrixPolynomialEvaluation_matrixLinearPolynomial
     (A₀ : Matrix D D ℂ) (C : ι → Matrix D D ℂ) :
     wordMatrixPolynomialEvaluation (FreeAlgebra.matrixLinearPolynomial A₀ C)=

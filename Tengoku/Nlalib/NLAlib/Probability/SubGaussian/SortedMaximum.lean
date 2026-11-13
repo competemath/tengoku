@@ -53,7 +53,9 @@ private theorem sq_le_rank_weighted_exponential (x D l : ℝ) (hD : 0 < D) (hl :
 
 /-- A finite family of actual sub-Gaussian variables has a dimension-free
 expected maximum whenever its variance proxies obey a logarithmic rank
-envelope. No independence is required, and zero proxies are allowed.-/
+envelope. No independence is required, and zero proxies are allowed.
+@isnad1 id=le.3h6v.s7.e5d9e04ab9e0 from=translated src=- shape=9263cba0 vocab=057100fa
+-/
 theorem integral_norm_pi_le_sixteen_of_hasSubgaussianMGF_log_envelope
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {n : ℕ} (X : Fin n → Ω → ℝ) (c : Fin n → ℝ≥0)

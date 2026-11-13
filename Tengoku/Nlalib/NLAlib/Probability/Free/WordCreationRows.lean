@@ -27,7 +27,9 @@ local notation "B" => W →L[ℂ] W
 def wordPrefixIsometry (w : List ι) : W →ₗᵢ[ℂ] W :=
   lp.embeddingLinearIsometry ⟨(w ++ ·), List.append_right_injective w⟩
 
-/-- The whole-word isometry is exactly the ordered creation product.-/
+/-- The whole-word isometry is exactly the ordered creation product.
+@isnad1 id=eq.0h2v.s11.e9a62ea87611 from=translated src=- shape=650a6945 vocab=bcec23a2
+-/
 theorem wordPrefixIsometry_toContinuousLinearMap (w : List ι) :
     (wordPrefixIsometry w).toContinuousLinearMap = wordCreationProduct w := by
   apply lp.ext_continuousLinearMap (by norm_num : (2 : ℝ≥0∞) ≠ ⊤)
@@ -47,13 +49,17 @@ theorem wordPrefixIsometry_toContinuousLinearMap (w : List ι) :
         by_cases hq : q = w ++ v <;> simp [lp.single_apply, hq]
     _ = _ := (wordCreationProduct_apply_single w v z).symm
 
-/-- The prefix isometry has the actual ordered-operator action.-/
+/-- The prefix isometry has the actual ordered-operator action.
+@isnad1 id=eq.0h3v.s12.817ea630284b from=translated src=- shape=e15bd0f3 vocab=44a69d57
+-/
 theorem wordPrefixIsometry_apply (w : List ι) (x : W) :
     wordPrefixIsometry w x = wordCreationProduct w x :=
   congrArg (fun T : B => T x) (wordPrefixIsometry_toContinuousLinearMap w)
 
 /-- Fixed-length creation words have mutually orthogonal ranges; their
-actual adjoint products are the Kronecker identity.-/
+actual adjoint products are the Kronecker identity.
+@isnad1 id=eq.1h3v.s14.e960bd5a2815 from=translated src=- shape=8f67cede vocab=55b0ba28
+-/
 theorem star_wordCreationProduct_mul_of_length_eq (u v : List ι)
     (hlen : u.length = v.length) :
     star (wordCreationProduct u) * wordCreationProduct v = if u = v then 1 else 0 := by
@@ -81,7 +87,9 @@ theorem star_wordCreationProduct_mul_of_length_eq (u v : List ι)
           · simp [hij]
 
 /-- The actual creation isometries belonging to distinct words of one
-fixed length form a native orthogonal family.-/
+fixed length form a native orthogonal family.
+@isnad1 id=orthogon.0h2v.s9.ebe69f41b313 from=translated src=- shape=78b4e767 vocab=6f05a4e8
+-/
 theorem orthogonalFamily_wordPrefixIsometry (m : ℕ) :
     OrthogonalFamily ℂ (fun _ : List.Vector ι m => W)
       (fun w => wordPrefixIsometry w.toList) := by
@@ -104,7 +112,9 @@ def wordCreationRow [Fintype ι] (m : ℕ) :
   (orthogonalFamily_wordPrefixIsometry (ι := ι) m).linearIsometry.comp
     (lpPiLpₗᵢ (fun _ : List.Vector ι m => W) ℂ).symm.toLinearIsometry
 
-/-- A fixed-length row acts by the literal finite sum of prefix creations.-/
+/-- A fixed-length row acts by the literal finite sum of prefix creations.
+@isnad1 id=eq.0h3v.s13.1c4b819d5988 from=translated src=- shape=d3039865 vocab=c8f95292
+-/
 theorem wordCreationRow_apply [Fintype ι] (m : ℕ)
     (x : PiLp 2 (fun _ : List.Vector ι m => W)) :
     wordCreationRow m x = ∑ w, wordCreationProduct w.toList (x w) := by
@@ -116,7 +126,9 @@ theorem wordCreationRow_apply [Fintype ι] (m : ℕ)
   change wordPrefixIsometry w.toList (x w) = wordCreationProduct w.toList (x w)
   exact congrArg (fun T : B => T (x w)) (wordPrefixIsometry_toContinuousLinearMap w.toList)
 
-/-- The native creation row has norm at most one, including empty rows.-/
+/-- The native creation row has norm at most one, including empty rows.
+@isnad1 id=le.0h2v.s12.ee3191093e5b from=translated src=- shape=da24d6ec vocab=40c6f406
+-/
 theorem norm_wordCreationRow_le_one [Fintype ι] (m : ℕ) :
     ‖(wordCreationRow (ι := ι) m).toContinuousLinearMap‖ ≤ 1 :=
   (wordCreationRow m).norm_toContinuousLinearMap_le

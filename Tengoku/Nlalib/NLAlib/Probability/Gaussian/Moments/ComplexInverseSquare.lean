@@ -17,7 +17,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- Realification expresses a complex squared norm as the sum of all real and
-imaginary coordinate squares.-/
+imaginary coordinate squares.
+@isnad1 id=eq.0h2v.s6.6e8ebdc2e47c from=translated src=- shape=b95b3adb vocab=57267698
+-/
 theorem sum_sq_realifyVector {n : Type*} [Fintype n] (z : n → ℂ) :
     (∑ i : n ⊕ n, realifyVector z i ^ 2) = ∑ i, Complex.normSq (z i) := by
   simp only [Fintype.sum_sum_type, realifyVector, Complex.normSq_apply,
@@ -27,7 +29,9 @@ theorem sum_sq_realifyVector {n : Type*} [Fintype n] (z : n → ℂ) :
   ring
 
 /-- The exact reciprocal squared norm is integrable for at least two complex
-coordinates and has mean `1/(2d-2)` under the actual circular product law.-/
+coordinates and has mean `1/(2d-2)` under the actual circular product law.
+@isnad1 id=and.1h1v.s7.030efe2dd066 from=translated src=- shape=cfe4082d vocab=b38b5ff9
+-/
 theorem integrable_and_integral_inv_sum_normSq_circularComplexGaussianVector
     {n : Type*} [Fintype n] (hn : 2 ≤ Fintype.card n) :
     Integrable (fun z : n → ℂ => (∑ i, Complex.normSq (z i))⁻¹)
@@ -54,7 +58,9 @@ theorem integrable_and_integral_inv_sum_normSq_circularComplexGaussianVector
     ring
 
 /-- The same exact inverse-norm moment holds after any complex coisometry,
-with its native Gaussian product law and without assumed covariance data.-/
+with its native Gaussian product law and without assumed covariance data.
+@isnad1 id=and.2h3v.s8.c0a5ce9dc1f3 from=translated src=- shape=c0261569 vocab=b733a475
+-/
 theorem integrable_and_integral_inv_sum_normSq_mulVec_circularComplexGaussianVector
     {n d : Type*} [Fintype n] [Fintype d] [DecidableEq d] [DecidableEq n]
     (U : Matrix d n ℂ) (hU : HasOrthonormalCols Uᴴ) (hd : 2 ≤ Fintype.card d) :

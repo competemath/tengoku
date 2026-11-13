@@ -31,12 +31,16 @@ namespace NLAlib
 
 variable {n : Type*} [Fintype n]
 
-/-- The standard Gaussian vector pushed to `EuclideanSpace ℝ n` is Mathlib's `stdGaussian`.-/
+/-- The standard Gaussian vector pushed to `EuclideanSpace ℝ n` is Mathlib's `stdGaussian`.
+@isnad1 id=eq.0h1v.s7.7d1f260e783d from=translated src=- shape=ed0636ac vocab=5ac4788e
+-/
 theorem gaussianVector_map_toLp_eq_stdGaussian :
     (gaussianVector n).map (WithLp.toLp 2) = stdGaussian (EuclideanSpace ℝ n) :=
   map_pi_eq_stdGaussian
 
-/-- `WithLp.toLp 2` carries `gaussianVector n` to `stdGaussian (EuclideanSpace ℝ n)`.-/
+/-- `WithLp.toLp 2` carries `gaussianVector n` to `stdGaussian (EuclideanSpace ℝ n)`.
+@isnad1 id=haslaw.0h1v.s7.a31794aa68b1 from=translated src=- shape=30208433 vocab=1ebad4ca
+-/
 theorem hasLaw_toLp_gaussianVector :
     HasLaw (WithLp.toLp 2) (stdGaussian (EuclideanSpace ℝ n)) (gaussianVector n) where
   aemeasurable := (by fun_prop : Measurable (WithLp.toLp 2 : (n → ℝ) → _)).aemeasurable
@@ -44,7 +48,9 @@ theorem hasLaw_toLp_gaussianVector :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- A unit linear form of a standard Gaussian vector is a standard Gaussian: `v ⬝ g ~ N(0, 1)`
-when `‖v‖ = 1`. Vershynin 2018, Prop 3.3.2 (rotation invariance).-/
+when `‖v‖ = 1`. Vershynin 2018, Prop 3.3.2 (rotation invariance).
+@isnad1 id=haslaw.1h2v.s6.b65089265ebf from=translated src=- shape=1a3f6056 vocab=27c0a24d
+-/
 theorem hasLaw_dotProduct_gaussianVector (v : n → ℝ) (hv : ‖WithLp.toLp 2 v‖ = 1) :
     HasLaw (fun z => v ⬝ᵥ z) (gaussianReal 0 1) (gaussianVector n) := by
   let w : EuclideanSpace ℝ n := WithLp.toLp 2 v
@@ -60,7 +66,9 @@ theorem hasLaw_dotProduct_gaussianVector (v : n → ℝ) (hv : ‖WithLp.toLp 2 
     variance_dual_stdGaussian, hLsq]
   simp
 
-/-- A product of two coordinates of a standard Gaussian vector is integrable.-/
+/-- A product of two coordinates of a standard Gaussian vector is integrable.
+@isnad1 id=integrab.0h3v.s5.be30999a7b7e from=translated src=- shape=3350bb94 vocab=d5a6edbd
+-/
 theorem integrable_mul_apply_gaussianVector (a b : n) :
     Integrable (fun g : n → ℝ => g a * g b) (gaussianVector n) := by
   classical
@@ -74,7 +82,9 @@ theorem integrable_mul_apply_gaussianVector (a b : n) :
     (fun c => integrable_pow_gaussianReal _)
 
 /-- The coordinates of a standard Gaussian vector are orthonormal in `L²`:
-`E[g a g b] = δ_{ab}`.-/
+`E[g a g b] = δ_{ab}`.
+@isnad1 id=eq.0h3v.s6.8ef79fa054c0 from=translated src=- shape=8dc0fcc7 vocab=cb73787b
+-/
 theorem integral_mul_apply_gaussianVector [DecidableEq n] (a b : n) :
     ∫ g, g a * g b ∂(gaussianVector n) = if a = b then 1 else 0 := by
   have hmono : ∀ g : n → ℝ,
@@ -98,7 +108,9 @@ theorem integral_mul_apply_gaussianVector [DecidableEq n] (a b : n) :
   · rw [ite_eq_right h]
     exact Finset.prod_eq_zero (Finset.mem_univ a) (by simp [Ne.symm h])
 
-/-- The square of a linear form of a standard Gaussian vector is integrable.-/
+/-- The square of a linear form of a standard Gaussian vector is integrable.
+@isnad1 id=integrab.0h2v.s6.8922f4dbaf8d from=translated src=- shape=717944b4 vocab=e8194150
+-/
 theorem integrable_dotProduct_sq_gaussianVector (w : n → ℝ) :
     Integrable (fun g : n → ℝ => (w ⬝ᵥ g) ^ 2) (gaussianVector n) := by
   have hexp : (fun g : n → ℝ => (w ⬝ᵥ g) ^ 2)
@@ -112,7 +124,9 @@ theorem integrable_dotProduct_sq_gaussianVector (w : n → ℝ) :
     (integrable_mul_apply_gaussianVector a b).const_mul _
 
 /-- **Second moment of a linear form of a standard Gaussian vector**: `E[(w ⬝ g)²] = ‖w‖²`.
-Vershynin 2018, Prop 3.3.2.-/
+Vershynin 2018, Prop 3.3.2.
+@isnad1 id=eq.0h2v.s7.cd1e74d523fc from=translated src=- shape=d4ded8a8 vocab=15bfc18a
+-/
 theorem integral_dotProduct_sq_gaussianVector (w : n → ℝ) :
     ∫ g, (w ⬝ᵥ g) ^ 2 ∂(gaussianVector n) = ‖WithLp.toLp 2 w‖ ^ 2 := by
   classical
@@ -129,7 +143,9 @@ theorem integral_dotProduct_sq_gaussianVector (w : n → ℝ) :
   rw [EuclideanSpace.real_norm_sq_eq]
   simp [sq]
 
-/-- A vector of independent standard normals has a Gaussian law. Vershynin 2018, §3.3.1.-/
+/-- A vector of independent standard normals has a Gaussian law. Vershynin 2018, §3.3.1.
+@isnad1 id=hasgauss.0h1v.s6.d6a434e0a6dc from=translated src=- shape=9565c076 vocab=afded360
+-/
 theorem hasGaussianLaw_id_gaussianVector (κ : Type*) [Fintype κ] :
     HasGaussianLaw (fun x : κ → ℝ => x) (gaussianVector κ) := by
   have h := iIndepFun.hasGaussianLaw (P := gaussianVector κ)

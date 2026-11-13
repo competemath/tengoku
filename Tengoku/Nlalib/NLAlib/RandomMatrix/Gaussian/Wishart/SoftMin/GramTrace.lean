@@ -23,7 +23,9 @@ variable {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq
 
 /-- A coordinate Gram derivative pairs with a symmetric matrix as twice
 the corresponding matrix product entry. Source: trace cyclicity; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h6v.s7.2b408815a3cd from=translated src=- shape=6dfc5139 vocab=eeb530ab
+-/
 theorem trace_mul_gram_direction (X : Matrix ι ι ℝ) (hX : Xᵀ = X)
     (G : Matrix ι κ ℝ) (i : ι) (j : κ) :
     let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -44,7 +46,9 @@ theorem trace_mul_gram_direction (X : Matrix ι ι ℝ) (hX : Xᵀ = X)
   ring
 
 /-- The squared coordinate trace pairings sum to a single Gram trace.
-Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.1h4v.s8.8ae24e5e6810 from=translated src=- shape=f714dc22 vocab=1d23cdb7
+-/
 theorem sum_trace_mul_gram_direction_sq (X : Matrix ι ι ℝ) (hX : Xᵀ = X)
     (G : Matrix ι κ ℝ) :
     (∑ i, ∑ j, let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -70,7 +74,9 @@ theorem sum_trace_mul_gram_direction_sq (X : Matrix ι ι ℝ) (hX : Xᵀ = X)
 
 /-- The trace contraction of two coordinate Gram directions has three
 explicit terms. Source: operator Gram chain rule and single-matrix algebra;
-atlas `wishart-lambda-min-tail` (helper).-/
+atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.2h7v.s9.21c153997b41 from=translated src=- shape=3683dcbd vocab=eeb530ab
+-/
 theorem trace_mul_gram_direction_mul_gram_direction (X Y : Matrix ι ι ℝ)
     (hX : Xᵀ = X) (hY : Yᵀ = Y) (G : Matrix ι κ ℝ) (i : ι) (j : κ) :
     let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -125,7 +131,9 @@ theorem trace_mul_gram_direction_mul_gram_direction (X Y : Matrix ι ι ℝ)
 
 /-- Summing all coordinate Gram directions contracts the trace Hessian
 to three trace products. Source: operator Gram chain rule; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.2h5v.s9.36f0e454fa44 from=translated src=- shape=9f1faa83 vocab=43f689ef
+-/
 theorem sum_trace_mul_gram_direction_mul_gram_direction (X Y : Matrix ι ι ℝ)
     (hX : Xᵀ = X) (hY : Yᵀ = Y) (G : Matrix ι κ ℝ) :
     (∑ i, ∑ j, let E : Matrix ι κ ℝ := Matrix.single i j 1

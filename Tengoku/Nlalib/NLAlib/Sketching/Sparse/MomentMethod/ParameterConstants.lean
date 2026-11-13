@@ -98,31 +98,41 @@ noncomputable def momentBase (d q : ℕ) (epsilon : ℝ) : ℝ :=
 
 /-- The rounded row count is exactly the product of rounded sparsity and block size.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.b66d262aab1a from=translated src=- shape=602dbe4e vocab=34b5f4f4
+-/
 @[simp] theorem sparseRows_eq_s_mul_b (d q : ℕ) (epsilon : ℝ) :
     sparseRows d q epsilon = sparseColumnSparsity q epsilon * sparseBlockRows d q epsilon := rfl
 
 /-- The nonzero-support comparison gap one minus exp minus one is positive.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s5.1e301c484c7d from=translated src=- shape=ee80012c vocab=6080affd
+-/
 theorem expGap_pos : 0 < 1 - Real.exp (-1) := by
   linarith [Real.exp_neg_one_lt_half]
 
 /-- The nonzero-support comparison gap is strictly below one.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s5.47dfe7551ee2 from=translated src=- shape=c4a0e2fd vocab=6080affd
+-/
 theorem expGap_lt_one : 1 - Real.exp (-1) < 1 := by
   linarith [Real.exp_pos (-1)]
 
 /-- The reciprocal support-gap comparison constant is positive.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.7cb7b0e87cd1 from=translated src=- shape=ff3a10fc vocab=b17f1306
+-/
 theorem convexOrderConstant_pos : 0 < convexOrderConstant := by
   exact inv_pos.mpr expGap_pos
 
 /-- The support-gap comparison constant exceeds one.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.f6153d9d8d50 from=translated src=- shape=ff3a10fc vocab=b17f1306
+-/
 theorem one_lt_convexOrderConstant : 1 < convexOrderConstant := by
   rw [convexOrderConstant]
   exact (one_lt_inv₀ expGap_pos).2 expGap_lt_one
@@ -130,21 +140,27 @@ theorem one_lt_convexOrderConstant : 1 < convexOrderConstant := by
 /-- Certified decimal bound from the paper: `convexOrderConstant < 1.582`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s4.a0830472d6a9 from=translated src=- shape=0efb1284 vocab=b2f289ad
+-/
 theorem convexOrderConstant_lt_1582 : convexOrderConstant < (791 : ℝ) / 500 := by
   rw [convexOrderConstant, inv_lt_iff_one_lt_mul₀ expGap_pos]
   nlinarith [Real.exp_neg_one_lt_d9]
 
 /-- The explicit sparsity constant is positive.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.85d05b88cc55 from=translated src=- shape=ff3a10fc vocab=fa1ca4ca
+-/
 theorem scaleConstant_pos : 0 < scaleConstant := by
   rw [scaleConstant]
   exact mul_pos (by norm_num) (sq_pos_of_pos convexOrderConstant_pos)
 
 /-- The explicit sparsity constant exceeds ninety.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.c6c25bd68658 from=translated src=- shape=ff3a10fc vocab=1144e236
+-/
 theorem ninety_lt_scaleConstant : (90 : ℝ) < scaleConstant := by
   have hsq : (1 : ℝ) < convexOrderConstant ^ 2 := by
     nlinarith [one_lt_convexOrderConstant, convexOrderConstant_pos]
@@ -154,7 +170,9 @@ theorem ninety_lt_scaleConstant : (90 : ℝ) < scaleConstant := by
 /-- Certified global-constant bound from the paper: `scaleConstant < 226`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.8f79c5a3a8e4 from=translated src=- shape=ffdda526 vocab=1144e236
+-/
 theorem scaleConstant_lt_226 : scaleConstant < (226 : ℝ) := by
   have hsq : convexOrderConstant ^ 2 < ((791 : ℝ) / 500) ^ 2 := by
     simpa [pow_two] using
@@ -164,34 +182,44 @@ theorem scaleConstant_lt_226 : scaleConstant < (226 : ℝ) := by
 
 /-- The square root of two is strictly below 71/50.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s5.6feefd108450 from=translated src=- shape=d4f6e56f vocab=01c0b07d
+-/
 theorem sqrt_two_lt_142 : Real.sqrt 2 < (71 : ℝ) / 50 := by
   exact (Real.sqrt_lt' (by norm_num : (0 : ℝ) < 71 / 50)).2 (by norm_num)
 
 /-- The numerical moment base in the v1.4 report.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s5.8cb0ca22d874 from=translated src=- shape=14143cbe vocab=9aa4add5
+-/
 theorem bandConstant_div_ten_lt_442 : bandConstant / 10 < (221 : ℝ) / 500 := by
   rw [bandConstant]
   nlinarith [sqrt_two_lt_142]
 
 /-- The band constant divided by ten is strictly below one half.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s5.cbf452b3fecd from=translated src=- shape=14143cbe vocab=9aa4add5
+-/
 theorem bandConstant_div_ten_lt_half : bandConstant / 10 < (1 : ℝ) / 2 := by
   exact bandConstant_div_ten_lt_442.trans (by norm_num)
 
 /-- The band constant is positive.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.0h0v.s3.914d8a48714e from=translated src=- shape=ff3a10fc vocab=a4fd16d3
+-/
 theorem bandConstant_pos : 0 < bandConstant := by
   rw [bandConstant]
   positivity
 
 /-- The total band envelope is nonnegative at positive row count and sparsity.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s5.265c21abe35b from=translated src=- shape=497f1997 vocab=8bc5ce55
+-/
 theorem bandEnvelope_nonneg {d q : ℕ} {m s : ℝ}
     (hm : 0 < m) (hs : 0 < s) :
     0 ≤ bandEnvelope d q m s := by

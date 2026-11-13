@@ -34,7 +34,9 @@ abbrev CrossFiberIndex (m n ell : ℕ) (k l : Fin ell) :=
 
 /-- A sum over three product coordinates is the corresponding iterated finite sum.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.4c9d38a11b04 from=translated src=- shape=75622886 vocab=85b536f4
+-/
 theorem sum_prod3 {A B C : Type*} [Fintype A] [Fintype B] [Fintype C]
     (f : A × B × C → ℝ) :
     (∑ t, f t) = ∑ a, ∑ b, ∑ c, f (a, b, c) := by
@@ -92,7 +94,9 @@ def domainKEquiv (k l : Fin ell) (hkl : k ≠ l) :
 
 /-- Extracting the common fiber after reconstruction recovers its original coordinates.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.7f0651e8051e from=translated src=- shape=7ee57252 vocab=d515e27a
+-/
 @[simp] theorem domainKToFiber_fiberToDomainK (k l : Fin ell)
     (hkl : k ≠ l) (z : CrossFiberIndex m n ell k l × Fin n) :
     domainKToFiber k l hkl (fiberToDomainK k l hkl z) = z :=
@@ -147,7 +151,9 @@ def domainLEquiv (k l : Fin ell) (hkl : k ≠ l) :
 
 /-- Extracting the second common fiber after reconstruction recovers its original coordinates.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.4fd707a3344f from=translated src=- shape=7ee57252 vocab=f745276e
+-/
 @[simp] theorem domainLToFiber_fiberToDomainL (k l : Fin ell)
     (hkl : k ≠ l) (z : CrossFiberIndex m n ell k l × Fin n) :
     domainLToFiber k l hkl (fiberToDomainL k l hkl z) = z :=
@@ -168,7 +174,9 @@ def crossMatrix (F : Frame n d) (k l : Fin ell) (hkl : k ≠ l) :
 
 /-- Euclidean squared norm agrees with the sum of squared coordinate entries.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.53cf2aaf7909 from=translated src=- shape=d8ef99e1 vocab=9b97af16
+-/
 theorem normSq_eq_coordinateEnergy (x : EVec n) :
     euclideanNormSq x = sumSq (fun i ↦ x i) := by
   rw [euclideanNormSq_eq_norm_sq, EuclideanSpace.norm_sq_eq]

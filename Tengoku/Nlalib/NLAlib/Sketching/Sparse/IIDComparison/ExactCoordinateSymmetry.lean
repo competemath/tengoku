@@ -28,13 +28,17 @@ def flipMask {m : ℕ} (q : Fin m) : Fin m → Sign := fun r =>
 
 /-- A one-coordinate sign mask is negative at its marked coordinate.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s3.83d22fed22e0 from=translated src=- shape=1f992b10 vocab=a0ebed7b
+-/
 @[simp] theorem flipMask_same {m : ℕ} (q : Fin m) :
     flipMask q q = .minus := by simp [flipMask]
 
 /-- A one-coordinate sign mask is positive at every other coordinate.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s4.dd1ec7a7d155 from=translated src=- shape=f8cd9c40 vocab=bd07d366
+-/
 theorem flipMask_of_ne {m : ℕ} {q r : Fin m} (hrq : r ≠ q) :
     flipMask q r = .plus := by simp [flipMask, hrq]
 
@@ -53,7 +57,9 @@ def flipYAtEquiv {b s : ℕ} (q : Fin (s * b)) :
 
 /-- A single-coordinate flip negates that flattened coordinate value.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.54a3bd9db350 from=translated src=- shape=14893275 vocab=82fb62c3
+-/
 @[simp] theorem flatYValue_flipYAt_same {b s : ℕ}
     (q : Fin (s * b)) (y : NestedY b s) :
     flatYValue (flipYAt q y) q = -flatYValue y q := by
@@ -61,7 +67,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Flipping outside exact support leaves all active column values unchanged.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=and.1h4v.s9.bca0257acdb7 from=translated src=- shape=971e043d vocab=eee1520c
+-/
 theorem transformColumn_flip_off_sameActive {b s : ℕ}
     (x : UniformSparseColumn (s * b) s) (q : Fin (s * b))
     (hq : q ∉ (x.1 : Finset (Fin (s * b)))) :
@@ -82,7 +90,9 @@ theorem transformColumn_flip_off_sameActive {b s : ℕ}
 
 /-- Flipping an iid coordinate outside the exact-column support preserves joint-law mass.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h5v.s9.cddaab11d7a1 from=translated src=- shape=ee5f55c3 vocab=fc67ab33
+-/
 theorem jointColumnLaw_weight_flipYAt_off {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (q : Fin (s * b))
@@ -109,7 +119,9 @@ def coordinateFiberMoment {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- Every coordinate outside exact-column support has zero signed joint fiber moment.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h4v.s7.7847e890d1cb from=translated src=- shape=7defb2c4 vocab=e0993cb8
+-/
 theorem coordinateFiberMoment_off {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (q : Fin (s * b))
@@ -146,7 +158,9 @@ def stabilizerMask {m s : ℕ} (x : UniformSparseColumn m s)
 
 /-- The compensating signed permutation stabilizes the original exact column.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.f590a9726773 from=translated src=- shape=221a3494 vocab=c3228e70
+-/
 theorem transformColumn_stabilizer {m s : ℕ}
     (x : UniformSparseColumn m s) (pi : Equiv.Perm (Fin m))
     (hsupport : (x.1 : Finset (Fin m)).map pi.toEmbedding =
@@ -160,7 +174,9 @@ theorem transformColumn_stabilizer {m s : ℕ}
 
 /-- Swapping two selected support coordinates preserves the support set.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s7.e84d29cf0c22 from=translated src=- shape=5f55ab06 vocab=5116ce3d
+-/
 theorem swap_maps_support_self {m s : ℕ} (x : UniformSparseColumn m s)
     (r t : Fin m) (hr : r ∈ (x.1 : Finset (Fin m)))
     (ht : t ∈ (x.1 : Finset (Fin m))) :
@@ -181,7 +197,9 @@ theorem swap_maps_support_self {m s : ℕ} (x : UniformSparseColumn m s)
 
 /-- The compensated swap of two active coordinates leaves the exact column unchanged.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s7.07c0364b9171 from=translated src=- shape=44bb8041 vocab=2c617f6e
+-/
 theorem transformColumn_swap_eq {m s : ℕ} (x : UniformSparseColumn m s)
     (r t : Fin m) (hr : r ∈ (x.1 : Finset (Fin m)))
     (ht : t ∈ (x.1 : Finset (Fin m))) :
@@ -192,7 +210,9 @@ theorem transformColumn_swap_eq {m s : ℕ} (x : UniformSparseColumn m s)
 
 /-- A signed permutation transforms the flattened real iid values by the same coordinate action.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.fa59393344f1 from=translated src=- shape=de318402 vocab=f96f35c2
+-/
 @[simp] theorem flatYValue_transformY {b s : ℕ}
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) (r : Fin (s * b)) :
@@ -202,7 +222,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Active coordinate fiber moments transform under the compensated support swap.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.4h5v.s8.9ac80f516c05 from=translated src=- shape=759011f4 vocab=138352eb
+-/
 theorem coordinateFiberMoment_swap {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r t : Fin (s * b))
@@ -240,7 +262,9 @@ theorem coordinateFiberMoment_swap {b s : ℕ}
 
 /-- Sign-aligned active coordinate fiber moments are equal.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.4h5v.s8.73b2072df50a from=translated src=- shape=76e0b824 vocab=1c4ddd48
+-/
 theorem aligned_coordinateFiberMoment_eq {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r t : Fin (s * b))

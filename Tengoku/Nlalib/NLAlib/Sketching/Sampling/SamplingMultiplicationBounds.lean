@@ -18,7 +18,9 @@ namespace NLAlib
 mean-square upper bound. Zero-mass support is derived from domination;
 the estimator is the actual rescaled sampled column/row product.
 Source: operator re-derivation `sa:amm-theorem`, approximate-law variant.
-atlas: amm-sampling-/
+atlas: amm-sampling
+@isnad1 id=le.5h8v.s8.ac6db8229905 from=translated src=- shape=694b4d35 vocab=5b6dd731
+-/
 theorem integral_frobenius_sampled_mul_sub_sq_le_of_probability_domination
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     [MeasurableSpace n] [MeasurableSingletonClass n]
@@ -67,7 +69,9 @@ theorem integral_frobenius_sampled_mul_sub_sq_le_of_probability_domination
 
 /-- The approximate-law multiplication bound for literal real sampled
 columns and rows, stated with the existing real `frobSq` definition.
-Source: `sa:amm-theorem`; atlas `amm-sampling`.-/
+Source: `sa:amm-theorem`; atlas `amm-sampling`.
+@isnad1 id=le.5h8v.s8.cf296a1773d8 from=translated src=- shape=746bba38 vocab=e23b272d
+-/
 theorem integral_frobSq_sampled_mul_sub_le_of_probability_domination
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     [MeasurableSpace n] [MeasurableSingletonClass n]

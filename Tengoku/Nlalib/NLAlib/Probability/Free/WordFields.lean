@@ -35,18 +35,24 @@ def wordVacuumExpectation (ι : Type*) :
   (innerSL ℂ (wordVacuum ι)).comp
     (ContinuousLinearMap.apply ℂ (WordHilbertSpace ι) (wordVacuum ι))
 
-/-- Evaluating the vacuum functional is the actual vacuum matrix coefficient.-/
+/-- Evaluating the vacuum functional is the actual vacuum matrix coefficient.
+@isnad1 id=eq.0h2v.s14.07e2b4382c2e from=translated src=- shape=8cf9df3f vocab=572a8fc7
+-/
 @[simp]
 theorem wordVacuumExpectation_apply
     (T : WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι) :
     wordVacuumExpectation ι T = inner ℂ (wordVacuum ι) (T (wordVacuum ι)) := rfl
 
-/-- Creation plus its native adjoint is self-adjoint.-/
+/-- Creation plus its native adjoint is self-adjoint.
+@isnad1 id=isselfad.0h2v.s11.9b2841a6e7bd from=translated src=- shape=31fe4a21 vocab=1c177e3c
+-/
 theorem isSelfAdjoint_wordField (i : ι) : IsSelfAdjoint (wordField i) := by
   simpa only [wordField, wordAnnihilation, ← ContinuousLinearMap.star_eq_adjoint] using
     IsSelfAdjoint.add_star_self (wordCreation i).toContinuousLinearMap
 
-/-- The concrete fields have operator norm at most two, uniformly over the alphabet.-/
+/-- The concrete fields have operator norm at most two, uniformly over the alphabet.
+@isnad1 id=le.0h2v.s11.3c370ce9303f from=translated src=- shape=ed5bbac1 vocab=42ce45d7
+-/
 theorem norm_wordField_le_two (i : ι) : ‖wordField i‖ ≤ 2 := by
   have hC : ‖(wordCreation i).toContinuousLinearMap‖ ≤ 1 :=
     (wordCreation i).norm_toContinuousLinearMap_le
@@ -55,19 +61,25 @@ theorem norm_wordField_le_two (i : ι) : ‖wordField i‖ ≤ 2 := by
     simpa only [ContinuousLinearMap.adjoint.norm_map] using hC
   exact (norm_add_le _ _).trans (by linarith)
 
-/-- A field creates its one-letter unit vector from the concrete vacuum.-/
+/-- A field creates its one-letter unit vector from the concrete vacuum.
+@isnad1 id=eq.0h2v.s12.6d26dc0252e4 from=translated src=- shape=45dc42a4 vocab=75730d0d
+-/
 @[simp]
 theorem wordField_wordVacuum (i : ι) :
     wordField i (wordVacuum ι) = lp.single 2 [i] 1 := by
   simp [wordField, wordVacuum, LinearIsometry.coe_toContinuousLinearMap]
 
-/-- The vacuum functional is normalized, including an empty alphabet.-/
+/-- The vacuum functional is normalized, including an empty alphabet.
+@isnad1 id=eq.0h1v.s14.5bd85f5ab4a7 from=translated src=- shape=dea4a9a1 vocab=cccf1a1c
+-/
 @[simp]
 theorem wordVacuumExpectation_one :
     wordVacuumExpectation ι (1 : WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι) = 1 := by
   simp [wordVacuumExpectation_apply, wordVacuum]
 
-/-- Every concrete field has vacuum mean zero.-/
+/-- Every concrete field has vacuum mean zero.
+@isnad1 id=eq.0h2v.s14.2556e177ccdc from=translated src=- shape=82730233 vocab=d645514b
+-/
 @[simp]
 theorem wordVacuumExpectation_wordField (i : ι) :
     wordVacuumExpectation ι (wordField i) = 0 := by
@@ -76,7 +88,9 @@ theorem wordVacuumExpectation_wordField (i : ι) :
 
 open scoped Classical in
 /-- The raw second vacuum moments of the actual self-adjoint fields are
-the Kronecker delta, hence each field has variance one.-/
+the Kronecker delta, hence each field has variance one.
+@isnad1 id=eq.0h3v.s14.7d2930508cb5 from=translated src=- shape=5e7362e4 vocab=c5d6c4e6
+-/
 @[simp]
 theorem wordVacuumExpectation_wordField_mul_wordField (i j : ι) :
     wordVacuumExpectation ι (wordField i * wordField j) = if i = j then 1 else 0 := by

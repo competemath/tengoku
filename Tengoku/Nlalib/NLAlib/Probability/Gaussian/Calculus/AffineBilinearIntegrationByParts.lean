@@ -20,7 +20,9 @@ variable {κ F : Type*} [Fintype κ] [DecidableEq κ]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- The Gaussian affine bilinear test is integrable from its global bound and
-the actual Gaussian first moment.-/
+the actual Gaussian first moment.
+@isnad1 id=integrab.3h10v.s10.8c4f6c834e27 from=translated src=- shape=4e969a6a vocab=0e32b077
+-/
 theorem integrable_bilin_gaussian_affine
     (γ : Measure (κ → ℝ)) (hγ : HasGaussianLaw (id : (κ → ℝ) → κ → ℝ) γ)
     (μ x : κ → ℝ) (a b : ℝ) (f : (κ → ℝ) → F)
@@ -34,7 +36,9 @@ theorem integrable_bilin_gaussian_affine
 /-- The affine Gaussian Stein identity with the actual full real-coordinate
 covariance. Centering is required only of the Gaussian vector. Boundedness of
 the test and of its continuous derivative supplies every integral.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.6h12v.s11.8afdc964c12b from=translated src=- shape=40d471a8 vocab=1db500cc
+-/
 theorem integral_bilin_gaussian_affine
     (γ : Measure (κ → ℝ)) (hγ : HasGaussianLaw (id : (κ → ℝ) → κ → ℝ) γ)
     (hmean : ∀ i, ∫ z, z i ∂γ = 0)

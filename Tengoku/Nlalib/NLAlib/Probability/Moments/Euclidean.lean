@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- A homogeneous directional even-moment bound controls every linear image
 by its Frobenius norm, with the same constant. No coordinate independence
-is needed.-/
+is needed.
+@isnad1 id=and.4h8v.s9.af52a7987326 from=translated src=- shape=85d89b9a vocab=5383184d
+-/
 theorem integrable_and_integral_norm_mulVec_pow_two_mul_le
     {Ω α β : Type*} [MeasurableSpace Ω] [Fintype α] [Fintype β]
     {μ : Measure Ω} (z : Ω → α → ℝ) (hz : AEMeasurable z μ)

@@ -81,7 +81,9 @@ def fullIndexBlockEquiv :
 
 /-- The inverse block decomposition reconstructs the full coordinate from its block coordinate.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.f73820d7ca30 from=translated src=- shape=bb936f24 vocab=bef2c740
+-/
 @[simp] theorem fullIndexBlockEquiv_symm_apply
     (q : FockBlockKey m n) (z : BlockIndex d q.1 q.2.1) :
     (fullIndexBlockEquiv (d := d) (m := m) (n := n)).symm ⟨q, z⟩ =
@@ -96,7 +98,9 @@ def blockFiber (x : Fin d × Pattern m n → ℝ) (q : FockBlockKey m n) :
 
 /-- Full squared norm is the sum of coordinate energies of the exact block fibers.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s8.b06d1418d8bc from=translated src=- shape=90cd8088 vocab=73ae47e8
+-/
 theorem normSq_eq_sum_blockFiber (x : Fin d × Pattern m n → ℝ) :
     sumSq x =
       ∑ q : FockBlockKey m n, sumSq (blockFiber x q) := by
@@ -114,7 +118,9 @@ def blockGrade (q : FockBlockKey m n) : ℕ := q.2.1 + 2 * q.1.card
 
 /-- Every pattern in an exact block has that block's grade.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.aab7778ff0cc from=translated src=- shape=721be917 vocab=0f50aa53
+-/
 theorem grade_eq_blockGrade {q : FockBlockKey m n}
     (p : BlockPattern q.1 q.2.1) : p.1.grade = blockGrade q := by
   rw [Pattern.grade_eq_card_light_add_two_mul_card_heavy]
@@ -122,7 +128,9 @@ theorem grade_eq_blockGrade {q : FockBlockKey m n}
 
 /-- Right grade projection retains precisely the shared-leg entries with the selected input grade.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.8df29d463e3c from=translated src=- shape=a93ec944 vocab=510e2ef5
+-/
 theorem ghat_mul_gradeProjection_apply
     (F : Frame n d) (nu : ℕ)
     (out inp : Fin d × Pattern m n) :
@@ -135,7 +143,9 @@ theorem ghat_mul_gradeProjection_apply
 
 /-- The shared-leg operator has zero entries between distinct pattern block keys.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s8.98e57d646ca0 from=translated src=- shape=dcca5c1f vocab=da60a8c1
+-/
 theorem ghat_apply_eq_zero_of_key_ne
     (F : Frame n d) {q q' : FockBlockKey m n}
     (out : BlockIndex d q.1 q.2.1)
@@ -153,7 +163,9 @@ theorem ghat_apply_eq_zero_of_key_ne
 set_option maxHeartbeats 1000000 in
 /-- The grade-restricted shared-leg operator acts on each block fiber by its actual block matrix.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s9.21fe1bf3026e from=translated src=- shape=bc26ef2b vocab=c0ebda29
+-/
 theorem blockFiber_ghat_gradeProjection_mulVec
     (F : Frame n d) (nu : ℕ) (x : Fin d × Pattern m n → ℝ)
     (q : FockBlockKey m n) :
@@ -230,7 +242,9 @@ theorem blockFiber_ghat_gradeProjection_mulVec
 
 /-- The shared-leg block with no light particles is the zero matrix.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.39cfbb8deab6 from=translated src=- shape=171047e5 vocab=27eefd9d
+-/
 theorem ghatBlock_zero_light
     (F : Frame n d) (T : Finset (Site m n)) :
     ghatBlock F T 0 = 0 := by

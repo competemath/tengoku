@@ -16,7 +16,9 @@ open MeasureTheory Set
 open scoped Topology
 namespace NLAlib
 
-/-- The companion mixture is an actual probability measure.-/
+/-- The companion mixture is an actual probability measure.
+@isnad1 id=isprobab.2h2v.s5.b0b9bfc3cf7b from=translated src=- shape=d65bd42a vocab=1941cf9a
+-/
 theorem isProbabilityMeasure_dTransformCompanionMeasure (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1) :
     IsProbabilityMeasure (dTransformCompanionMeasure μ γ) := by
@@ -26,7 +28,9 @@ theorem isProbabilityMeasure_dTransformCompanionMeasure (μ : Measure ℝ) [IsPr
     ← ENNReal.ofReal_add hγ (sub_nonneg.mpr hγ1)]
   simp
 
-/-- The rectangular companion law has the same nonnegative support bound.-/
+/-- The rectangular companion law has the same nonnegative support bound.
+@isnad1 id=le.2h3v.s6.04dc6a1a2d38 from=translated src=- shape=e6481af0 vocab=80a665d3
+-/
 theorem support_dTransformCompanionMeasure_subset (μ : Measure ℝ) {γ b : ℝ}
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) :
     (dTransformCompanionMeasure μ γ).support ⊆ Icc 0 b := by
@@ -37,7 +41,9 @@ theorem support_dTransformCompanionMeasure_subset (μ : Measure ℝ) {γ b : ℝ
   · exact Measure.ae_smul_measure ((ae_dirac_iff measurableSet_Icc).mpr ⟨le_rfl, hb⟩) _
 
 /-- A positive mixture weight preserves the actual positive upper support
-point, so strict elasticity monotonicity remains available.-/
+point, so strict elasticity monotonicity remains available.
+@isnad1 id=mem.2h3v.s5.9c4b99d9b6b1 from=translated src=- shape=e67015de vocab=c2d7def5
+-/
 theorem mem_support_dTransformCompanionMeasure (μ : Measure ℝ) {γ b : ℝ}
     (hγ : 0 < γ) (hbmem : b ∈ μ.support) :
     b ∈ (dTransformCompanionMeasure μ γ).support := by
@@ -52,7 +58,9 @@ theorem mem_support_dTransformCompanionMeasure (μ : Measure ℝ) {γ b : ℝ}
   exact le_add_of_nonneg_right bot_le
 
 /-- Above the support, the actual zero-atom mixture transform is exactly the
-rectangular companion transform, including the endpoint mixture weights.-/
+rectangular companion transform, including the endpoint mixture weights.
+@isnad1 id=eq.5h4v.s6.bdf2c74778bf from=translated src=- shape=1600557f vocab=e5e5c756
+-/
 theorem singularValuePhi_dTransformCompanionMeasure (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b y : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :

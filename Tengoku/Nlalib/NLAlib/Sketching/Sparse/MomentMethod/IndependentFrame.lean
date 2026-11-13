@@ -29,7 +29,9 @@ variable {Omega : Type*} [Fintype Omega]
 literal independent product of an arbitrary finite frame law and SparseStack.
 
 Source: ported from `SparseFockFormal.IndependentFrameAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h7v.s9.edc0c02d364f from=translated src=- shape=59d441b1 vocab=19e261b0
+-/
 theorem independent_frame_ose_success_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -59,7 +61,9 @@ theorem independent_frame_ose_success_of_band_bounds
 Parseval frame.
 
 Source: ported from `SparseFockFormal.IndependentFrameAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h7v.s9.f0551984f909 from=translated src=- shape=89f56da1 vocab=d117d68b
+-/
 theorem independent_frame_operator_failure_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- The weak derivative sign gives domination by a finite multiple of volume
 on every smaller positive half-line. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.2h3v.s7.327ede158019 from=translated src=- shape=82a86dec vocab=5ab05fb5
+-/
 theorem exists_measure_restrict_le_smul_volume_of_weak_deriv_nonneg
     (μ : Measure ℝ) [μ.Regular] (ℓ a : ℝ) (ha : ℓ < a)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
@@ -38,7 +40,9 @@ theorem exists_measure_restrict_le_smul_volume_of_weak_deriv_nonneg
 /-- A positive Radon measure with nonpositive weak derivative is absolutely
 continuous on the original open half-line. Absolute continuity is a proved
 consequence, not a premise of the density argument.
-Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).-/
+Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=absolute.1h2v.s7.b23c5d69aa07 from=translated src=- shape=3b953d18 vocab=577a0f22
+-/
 theorem measure_restrict_absolutelyContinuous_of_weak_deriv_nonneg
     (μ : Measure ℝ) [μ.Regular] (ℓ : ℝ)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
@@ -73,7 +77,9 @@ theorem measure_restrict_absolutelyContinuous_of_weak_deriv_nonneg
   simpa [Measure.restrict_apply' measurableSet_Ioi] using hzero
 
 /-- A locally integrable density satisfying the weak derivative sign has antitone
-smooth regularizations on every interior half-line. Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).-/
+smooth regularizations on every interior half-line. Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=antitone.6h4v.s8.1b2e34d51659 from=translated src=- shape=e8a8da78 vocab=7891baa1
+-/
 theorem antitoneOn_convolution_of_integral_deriv_mul_nonneg
     (f : ℝ → ℝ) (hf : LocallyIntegrable f volume)
     (ℓ R : ℝ) (ρ : ℝ → ℝ) (hρ : ContDiff ℝ ∞ ρ)
@@ -119,7 +125,9 @@ theorem antitoneOn_convolution_of_integral_deriv_mul_nonneg
 an antitone representative on an open half-line. The representative is obtained
 from almost-everywhere convergence of normalized smooth bumps, without assuming
 any prior monotonicity of the function. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.3h2v.s8.ce755a57ed4b from=translated src=- shape=95aeac06 vocab=06275619
+-/
 theorem exists_antitoneOn_ae_eq_of_integral_deriv_mul_nonneg
     (f : ℝ → ℝ) (hf : LocallyIntegrable f volume) (hf0 : ∀ x, 0 ≤ f x)
     (ℓ : ℝ)
@@ -200,7 +208,9 @@ nonnegative density on an open half-line. The proof establishes absolute continu
 constructs the Radon--Nikodym density, and then derives its antitone representative
 from normalized smooth convolution. Source: Edelman 1988;
 atlas wishart-lambda-min-tail (helper).
-atlas: weak-derivative-antitone-density-/
+atlas: weak-derivative-antitone-density
+@isnad1 id=ex.1h2v.s7.32be681b1b78 from=translated src=- shape=d47dfd32 vocab=8c9062e5
+-/
 theorem exists_antitoneOn_withDensity_eq_of_weak_deriv_nonneg
     (μ : Measure ℝ) [μ.Regular] (ℓ : ℝ)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →

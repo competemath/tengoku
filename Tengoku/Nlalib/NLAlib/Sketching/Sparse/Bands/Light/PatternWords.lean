@@ -51,7 +51,9 @@ def canonicalLightWord (T : Finset (Site m n)) (ell : ℕ)
 
 /-- Every site in a canonical light word belongs to the pattern's light support.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=mem.0h6v.s6.6da28ac3daeb from=translated src=- shape=6ede6580 vocab=bc1926bc
+-/
 @[simp] theorem canonicalLightWord_mem (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (k : Fin ell) :
     canonicalLightWord T ell p k ∈ p.1.light :=
@@ -59,7 +61,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The canonical enumeration of light sites is injective.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=injectiv.0h5v.s4.6ef2dd502af5 from=translated src=- shape=34db83d2 vocab=997caa15
+-/
 theorem canonicalLightWord_injective (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) :
     Function.Injective (canonicalLightWord T ell p) := by
@@ -68,7 +72,9 @@ theorem canonicalLightWord_injective (T : Finset (Site m n)) (ell : ℕ)
 
 /-- A site is light exactly when it occurs in the canonical light word.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s6.dbbd3f22fe6b from=translated src=- shape=0563dcf1 vocab=bc1926bc
+-/
 theorem canonicalLightWord_surjective (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (s : Site m n) :
     s ∈ p.1.light ↔ ∃ k, canonicalLightWord T ell p k = s := by
@@ -90,7 +96,9 @@ def permutedLightWord (T : Finset (Site m n)) (ell : ℕ)
 
 /-- The identity permutation leaves each canonical light-word entry unchanged.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.7e178c79c7dd from=translated src=- shape=a3499dba vocab=7d1a1950
+-/
 @[simp] theorem permutedLightWord_refl (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (k : Fin ell) :
     permutedLightWord T ell p (Equiv.refl (Fin ell)) k =
@@ -98,7 +106,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The identity-permuted light word is the canonical light word.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.8cb0d39358d2 from=translated src=- shape=d1747bc4 vocab=7d1a1950
+-/
 @[simp] theorem permutedLightWord_refl_fun
     (T : Finset (Site m n)) (ell : ℕ) (p : BlockPattern T ell) :
     permutedLightWord T ell p (Equiv.refl (Fin ell)) =
@@ -106,7 +116,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Permuting the canonical light enumeration preserves injectivity.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=injectiv.0h6v.s5.f0f34303f723 from=translated src=- shape=89c5b783 vocab=f939bae2
+-/
 theorem permutedLightWord_injective (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (pi : Equiv.Perm (Fin ell)) :
     Function.Injective (permutedLightWord T ell p pi) :=
@@ -114,7 +126,9 @@ theorem permutedLightWord_injective (T : Finset (Site m n)) (ell : ℕ)
 
 /-- Every site of a permuted light word remains in the light support.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=mem.0h7v.s6.33279ad04207 from=translated src=- shape=d9dace73 vocab=353fea0e
+-/
 @[simp] theorem permutedLightWord_mem (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (pi : Equiv.Perm (Fin ell)) (k : Fin ell) :
     permutedLightWord T ell p pi k ∈ p.1.light :=
@@ -122,7 +136,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Every light site occurs in every permuted light enumeration.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=iff.0h7v.s6.a2e0e656e94d from=translated src=- shape=6d6bc52e vocab=353fea0e
+-/
 theorem permutedLightWord_surjective (T : Finset (Site m n)) (ell : ℕ)
     (p : BlockPattern T ell) (pi : Equiv.Perm (Fin ell)) (s : Site m n) :
     s ∈ p.1.light ↔ ∃ k, permutedLightWord T ell p pi k = s := by
@@ -158,7 +174,9 @@ noncomputable def permutationOfLightWord
 
 /-- The permutation recovered from an injective light enumeration reconstructs that enumeration.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.57f100e9aca1 from=translated src=- shape=69d88bd5 vocab=2aa75af6
+-/
 @[simp] theorem permutedLightWord_permutationOfLightWord
     (T : Finset (Site m n)) (ell : ℕ) (p : BlockPattern T ell)
     (w : Fin ell → Site m n)
@@ -171,7 +189,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 /-- A pattern is determined by its light and heavy supports.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s5.74315661237f from=translated src=- shape=cd52a3fb vocab=d14a28d0
+-/
 theorem pattern_eq_of_light_heavy_eq {p q : Pattern m n}
     (hlight : p.light = q.light) (hheavy : p.heavy = q.heavy) : p = q := by
   funext s
@@ -185,7 +205,9 @@ theorem pattern_eq_of_light_heavy_eq {p q : Pattern m n}
 pattern and the permutation separately.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h8v.s6.dda4f5eebb4d from=translated src=- shape=a908b887 vocab=1747cb0e
+-/
 theorem permutedLightWord_eq_iff
     (T : Finset (Site m n)) (ell : ℕ)
     (p q : BlockPattern T ell)
@@ -232,7 +254,9 @@ def blockLabel (T : Finset (Site m n)) (ell : ℕ)
 
 /-- Relabelling a block label composes its enumeration permutation.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s6.67a73fb21121 from=translated src=- shape=9b3c1375 vocab=26b4833c
+-/
 @[simp] theorem relabelSlots_blockLabel
     (T : Finset (Site m n)) (ell : ℕ)
     (rho pi : Equiv.Perm (Fin ell)) (x : BlockIndex d T ell) :
@@ -242,7 +266,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Block labels agree exactly when their block coordinates and permutations agree.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=iff.0h9v.s6.74c77bccf7ce from=translated src=- shape=bd8dc260 vocab=f34eaf8d
+-/
 theorem blockLabel_eq_iff (T : Finset (Site m n)) (ell : ℕ)
     (x y : BlockIndex d T ell) (pi sigma : Equiv.Perm (Fin ell)) :
     blockLabel T ell x pi = blockLabel T ell y sigma ↔
@@ -267,7 +293,9 @@ def permutationCount (ell : ℕ) : ℕ :=
 
 /-- The slot-permutation count is strictly positive, also for zero slots.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=lt.0h1v.s3.217ab3b6006b from=translated src=- shape=8a62b088 vocab=cbf1c039
+-/
 theorem permutationCount_pos (ell : ℕ) : 0 < permutationCount ell := by
   exact Fintype.card_pos
 
@@ -289,7 +317,9 @@ def relativePermEquiv (pi : Equiv.Perm (Fin ell)) :
 
 /-- A two-permutation labelled matrix entry depends only on the relative permutation.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h10v.s6.7722d8e91543 from=translated src=- shape=1203126d vocab=74adfb7c
+-/
 theorem labelledG_blockLabel_relative
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ)
     (x y : BlockIndex d T ell)
@@ -308,7 +338,9 @@ theorem labelledG_blockLabel_relative
 
 /-- Summing over both label permutations gives the permutation count times the relative-permutation sum.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s7.ced03cf0bf59 from=translated src=- shape=d1b5cc07 vocab=d0950eee
+-/
 theorem sum_sum_labelledG_blockLabel
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ)
     (x y : BlockIndex d T ell) :
@@ -350,7 +382,9 @@ def coordinateDelta {I : Type*} [DecidableEq I] (x y : I) : ℝ :=
 
 /-- Summing a product of coordinate deltas contracts to one coordinate delta.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.85f13846f353 from=translated src=- shape=c2aea7c6 vocab=31a342c0
+-/
 theorem sum_coordinateDelta_mul_coordinateDelta
     {I : Type*} [Fintype I] [DecidableEq I] (x y : I) :
     (∑ z, coordinateDelta z x * coordinateDelta z y) =

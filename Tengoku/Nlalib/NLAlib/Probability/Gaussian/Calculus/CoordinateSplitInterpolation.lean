@@ -162,7 +162,9 @@ private theorem integral_split_laws (a b : ℝ) (f : E → F) (hf : Continuous f
 the exact covariance-difference derivative for its two variance-weighted
 coordinate blocks. All law, mean, covariance, and independence properties
 are derived from the native product law. Empty blocks are included.
-Source: arXiv:2108.06312v2, Lemma 4.11, disjoint-coordinate specialization.-/
+Source: arXiv:2108.06312v2, Lemma 4.11, disjoint-coordinate specialization.
+@isnad1 id=hasderiv.8h10v.s12.61e5fc097910 from=translated src=- shape=3f94d31b vocab=7c24fef7
+-/
 theorem hasDerivAt_integral_gaussianCoordinateSplit
     (f : E → F) (df : E → E →L[ℝ] F) (ddf : E → E →L[ℝ] E →L[ℝ] F)
     (hf : ∀ x, HasFDerivAt f (df x) x)

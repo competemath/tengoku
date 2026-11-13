@@ -23,16 +23,23 @@ namespace NLAlib.Kaczmarz
 noncomputable def tailInitialWeight (q : ℝ) (N : ℕ) : ℝ :=
   ∑ t ∈ Finset.range N, (2 * (t : ℝ) + 1) * q ^ t
 
+/--
+@isnad1 id=eq.0h1v.s4.4a4dfbb23584 from=translated src=- shape=0e0c2bda vocab=5a151623
+-/
 @[simp] theorem tailInitialWeight_zero (q : ℝ) : tailInitialWeight q 0 = 0 := by
   simp [tailInitialWeight]
 
-/-- Nonnegativity of the finite initial-error weight.-/
+/-- Nonnegativity of the finite initial-error weight.
+@isnad1 id=le.1h2v.s4.8d2fca6838c9 from=translated src=- shape=9141f3a7 vocab=9fff0678
+-/
 theorem tailInitialWeight_nonneg {q : ℝ} (hq : 0 ≤ q) (N : ℕ) :
     0 ≤ tailInitialWeight q N := by
   unfold tailInitialWeight
   exact Finset.sum_nonneg fun t _ => mul_nonneg (by positivity) (pow_nonneg hq t)
 
-/-- First-step decomposition of the finite initial-error weight.-/
+/-- First-step decomposition of the finite initial-error weight.
+@isnad1 id=eq.0h2v.s6.407ccee5681a from=translated src=- shape=7a891019 vocab=8bdd17c4
+-/
 theorem tailInitialWeight_succ (q : ℝ) (N : ℕ) :
     tailInitialWeight q (N + 1) =
       1 + 2 * (∑ t ∈ Finset.range N, q ^ (t + 1)) + q * tailInitialWeight q N := by
@@ -46,7 +53,9 @@ theorem tailInitialWeight_succ (q : ℝ) (N : ℕ) :
   simp only [Nat.cast_add, Nat.cast_one, pow_succ]
   ring
 
-/-- The diagonal plus twice the finite positive-lag sum is at most `(1+q)/(1-q)`.-/
+/-- The diagonal plus twice the finite positive-lag sum is at most `(1+q)/(1-q)`.
+@isnad1 id=le.2h2v.s7.b80ccac7f6fd from=translated src=- shape=ed4d4181 vocab=c3b6af6b
+-/
 theorem one_add_two_mul_sum_pow_succ_le {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (N : ℕ) :
     1 + 2 * (∑ t ∈ Finset.range N, q ^ (t + 1)) ≤ (1 + q) / (1 - q) := by
   have hg := geom_sum_Ico_le_of_lt_one (m := 0) (n := N) hq0 hq1
@@ -58,7 +67,9 @@ theorem one_add_two_mul_sum_pow_succ_le {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) 
     _ ≤ 1 + 2 * (q * (1 / (1 - q))) := by gcongr
     _ = _ := by field_simp [ne_of_gt (sub_pos.mpr hq1)]; ring
 
-/-- The initial-error weight never exceeds the square of the averaging length.-/
+/-- The initial-error weight never exceeds the square of the averaging length.
+@isnad1 id=le.2h2v.s5.b7889e729c1a from=translated src=- shape=5c143d70 vocab=817d7b6a
+-/
 theorem tailInitialWeight_le_sq {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (N : ℕ) :
     tailInitialWeight q N ≤ (N : ℝ) ^ 2 := by
   induction N with
@@ -72,7 +83,9 @@ theorem tailInitialWeight_le_sq {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (N : �
     nlinarith
 
 /-- The initial-error weight is at most the averaging length times the geometric
-correlation factor.-/
+correlation factor.
+@isnad1 id=le.2h2v.s6.cca0625c4cdc from=translated src=- shape=87168e38 vocab=3a35e12c
+-/
 theorem tailInitialWeight_le_mul {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (N : ℕ) :
     tailInitialWeight q N ≤ ((1 + q) / (1 - q)) * N := by
   induction N with
@@ -84,7 +97,9 @@ theorem tailInitialWeight_le_mul {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (N : �
     simp only [Nat.cast_add, Nat.cast_one]
     nlinarith
 
-/-- The uniform initial-error coefficient is `(1+q)/(1-q)^2`.-/
+/-- The uniform initial-error coefficient is `(1+q)/(1-q)^2`.
+@isnad1 id=le.2h2v.s6.212703df2a7c from=translated src=- shape=44a3b286 vocab=93cf7e14
+-/
 theorem tailInitialWeight_le_div {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) (N : ℕ) :
     tailInitialWeight q N ≤ ((1 + q) / (1 - q)) / (1 - q) := by
   induction N with

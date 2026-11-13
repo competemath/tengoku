@@ -56,7 +56,9 @@ def inversePowerSoftMinWeight (n : ℕ) (A : Matrix ι ι ℝ) : Matrix ι ι �
 
 /-- The first directional derivative is the trace pairing with the
 resolvent gradient weight. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=eq.0h4v.s5.ea72868882f1 from=translated src=- shape=28e09def vocab=56326b53
+-/
 theorem inversePowerSoftMinFirst_eq_trace_weight_mul (n : ℕ)
     (A B : Matrix ι ι ℝ) :
     inversePowerSoftMinFirst n A B = Matrix.trace (inversePowerSoftMinWeight n A * B) := by
@@ -65,7 +67,9 @@ theorem inversePowerSoftMinFirst_eq_trace_weight_mul (n : ℕ)
 
 /-- The resolvent gradient weight is positive semidefinite at a positive
 semidefinite matrix. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=possemid.1h3v.s5.06e6a435d5ab from=translated src=- shape=18ebd1c0 vocab=a34a8941
+-/
 theorem inversePowerSoftMinWeight_posSemidef (n : ℕ) {A : Matrix ι ι ℝ}
     (hA : A.PosSemidef) : (inversePowerSoftMinWeight n A).PosSemidef := by
   exact (hA.inv.pow (n + 1)).smul (Real.rpow_nonneg
@@ -81,7 +85,9 @@ def inversePowerSoftMinSecond (n : ℕ) (A B : Matrix ι ι ℝ) : ℝ :=
 
 /-- The resolvent approximation has its explicit first derivative along
 any differentiable invertible matrix curve with positive inverse-power trace. Source:
-operator tail proof; atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+operator tail proof; atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.4h5v.s7.e0b5c83887a2 from=translated src=- shape=d3549ba6 vocab=7cb5cb3d
+-/
 theorem hasDerivAt_inversePowerSoftMin_curve (n : ℕ) (hn : 0 < n)
     {A : ℝ → Matrix ι ι ℝ} {A' : Matrix ι ι ℝ} {t : ℝ}
     (hA : HasDerivAt A A' t) (hunit : IsUnit (A t))
@@ -97,7 +103,9 @@ theorem hasDerivAt_inversePowerSoftMin_curve (n : ℕ) (hn : 0 < n)
 
 /-- The resolvent approximation has its explicit first derivative along
 an affine matrix line. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.3h5v.s8.e9c47ffe2df3 from=translated src=- shape=311f754a vocab=1d66c6e9
+-/
 theorem hasDerivAt_inversePowerSoftMin (n : ℕ) (hn : 0 < n)
     (A B : Matrix ι ι ℝ) (t : ℝ) (hunit : IsUnit (A + t • B))
     (hT : 0 < Matrix.trace ((A + t • B)⁻¹ ^ n)) :
@@ -110,7 +118,9 @@ theorem hasDerivAt_inversePowerSoftMin (n : ℕ) (hn : 0 < n)
 /-- Along a twice differentiable matrix curve, the derivative of the
 resolvent first derivative is its directional Hessian plus the trace
 pairing with the second curve derivative. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (operator calculus helper).-/
+atlas `wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.5h6v.s8.ca72a8ae024f from=translated src=- shape=272e57a4 vocab=66f86bc8
+-/
 theorem hasDerivAt_inversePowerSoftMinFirst_curve (n : ℕ) (hn : 0 < n)
     {A D : ℝ → Matrix ι ι ℝ} {D' : Matrix ι ι ℝ} {t : ℝ}
     (hA : HasDerivAt A (D t) t) (hD : HasDerivAt D D' t)
@@ -131,7 +141,9 @@ theorem hasDerivAt_inversePowerSoftMinFirst_curve (n : ℕ) (hn : 0 < n)
 
 /-- The derivative of the resolvent approximation's first directional
 derivative is its explicit Hessian. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (operator calculus helper).-/
+`wishart-lambda-min-tail` (operator calculus helper).
+@isnad1 id=hasderiv.3h5v.s8.fd649111ff3d from=translated src=- shape=66bcc721 vocab=ee618693
+-/
 theorem hasDerivAt_inversePowerSoftMinFirst (n : ℕ) (hn : 0 < n)
     (A B : Matrix ι ι ℝ) (t : ℝ) (hunit : IsUnit (A + t • B))
     (hT : 0 < Matrix.trace ((A + t • B)⁻¹ ^ n)) :

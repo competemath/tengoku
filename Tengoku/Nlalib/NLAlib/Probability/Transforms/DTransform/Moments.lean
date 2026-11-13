@@ -16,7 +16,9 @@ set_option backward.isDefEq.respectTransparency false
 open MeasureTheory Set
 namespace NLAlib
 
-/-- Inverse-denominator moments are nonnegative above a nonnegative support.-/
+/-- Inverse-denominator moments are nonnegative above a nonnegative support.
+@isnad1 id=le.3h4v.s6.5b5cae589e8d from=translated src=- shape=e0404984 vocab=59ef7f7c
+-/
 theorem dTransformMoment_nonneg (μ : Measure ℝ) {b y : ℝ}
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) (k : ℕ) :
     0 ≤ dTransformMoment μ k y := by
@@ -25,7 +27,9 @@ theorem dTransformMoment_nonneg (μ : Measure ℝ) {b y : ℝ}
   exact (pow_pos (inv_pos.mpr (dTransform_denominator_pos hb hy hz)) (k + 1)).le
 
 /-- Every inverse-denominator moment of an actual probability law is strictly
-positive above its support.-/
+positive above its support.
+@isnad1 id=lt.3h4v.s6.0275ae7f5184 from=translated src=- shape=3d86cf29 vocab=fee50e6e
+-/
 theorem dTransformMoment_pos (μ : Measure ℝ) [IsProbabilityMeasure μ] {b y : ℝ}
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) (k : ℕ) :
     0 < dTransformMoment μ k y := by
@@ -42,7 +46,9 @@ theorem dTransformMoment_pos (μ : Measure ℝ) [IsProbabilityMeasure μ] {b y :
   change ((y ^ 2 - z ^ 2)⁻¹) ^ (k + 1) = 0 at hzz
   linarith
 
-/-- Cauchy--Schwarz for three successive actual inverse-denominator moments.-/
+/-- Cauchy--Schwarz for three successive actual inverse-denominator moments.
+@isnad1 id=le.3h3v.s6.492d3ad9f657 from=translated src=- shape=6fef1aa3 vocab=ce5a61b1
+-/
 theorem dTransformMoment_one_sq_le_zero_mul_two (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     dTransformMoment μ 1 y ^ 2 ≤ dTransformMoment μ 0 y * dTransformMoment μ 2 y := by
@@ -59,7 +65,9 @@ theorem dTransformMoment_one_sq_le_zero_mul_two (μ : Measure ℝ) [IsFiniteMeas
     sq_integral_sq_le_integral_mul_integral_cube hp h1 h2 h3
 
 /-- Nonzero positive support makes the moment defect strictly positive.
-This is the strict part of logarithmic elasticity monotonicity.-/
+This is the strict part of logarithmic elasticity monotonicity.
+@isnad1 id=lt.4h3v.s7.cb67c118a059 from=translated src=- shape=b7d7d56e vocab=825789a5
+-/
 theorem sq_mul_dTransformMoment_one_sub_zero_pos
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {b y : ℝ}
     (hb : 0 < b) (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support) (hy : b < y) :

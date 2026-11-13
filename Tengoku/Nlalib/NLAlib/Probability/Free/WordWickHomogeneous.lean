@@ -77,7 +77,9 @@ private theorem norm_sum_wordWick_normal_cut_le [Fintype ι] (m j : ℕ) (hj : j
 
 /-- The genuine homogeneous Wick estimate: the actual operator norm is
 at most degree plus one times the actual Euclidean coefficient norm. The
-alphabet may be empty; degree zero includes the unique empty word.-/
+alphabet may be empty; degree zero includes the unique empty word.
+@isnad1 id=le.0h3v.s13.fbe761f56c8f from=translated src=- shape=cd7c642c vocab=0ca6b339
+-/
 theorem norm_sum_wordWickOperator_le [Fintype ι] (m : ℕ)
     (a : List.Vector ι m → ℂ) :
     ‖∑ w, a w • wordWickOperator w.toList‖ ≤

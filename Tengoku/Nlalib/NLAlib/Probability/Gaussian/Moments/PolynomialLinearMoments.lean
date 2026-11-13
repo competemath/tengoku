@@ -17,7 +17,9 @@ open scoped Matrix ENNReal
 namespace NLAlib
 
 /-- A finite linear form has an explicit polynomial-growth bound.
-Source: finite coordinate norm comparison; supports `isserlis`.-/
+Source: finite coordinate norm comparison; supports `isserlis`.
+@isnad1 id=le.0h3v.s6.66b2660af3c2 from=translated src=- shape=4ddb69c6 vocab=3f81d429
+-/
 theorem abs_dotProduct_le_sum_abs_mul_one_add_norm {n : ℕ} (a x : Fin n → ℝ) :
     |a ⬝ᵥ x| ≤ (∑ i, |a i|) * (1 + ‖x‖) := by
   rw [dotProduct, Finset.sum_mul]
@@ -32,7 +34,9 @@ theorem abs_dotProduct_le_sum_abs_mul_one_add_norm {n : ℕ} (a x : Fin n → �
       linarith
 
 /-- A finite product of linear forms is explicitly bounded by a polynomial
-in the ambient coordinate norm. Source: Stein 1981 (Gaussian integration by parts).-/
+in the ambient coordinate norm. Source: Stein 1981 (Gaussian integration by parts).
+@isnad1 id=le.0h5v.s7.a7a9144eed8f from=translated src=- shape=d53cf2af vocab=a47a8c6e
+-/
 theorem abs_prod_dotProduct_le_polynomial
     {ι : Type*} {n : ℕ} (s : Finset ι) (a : ι → Fin n → ℝ) (x : Fin n → ℝ) :
     |∏ j ∈ s, a j ⬝ᵥ x| ≤ (∏ j ∈ s, ∑ i, |a j i|) * (1 + ‖x‖) ^ s.card := by
@@ -45,7 +49,9 @@ theorem abs_prod_dotProduct_le_polynomial
     _ = _ := (Finset.prod_mul_pow_card).symm
 
 /-- Every finite product of Gaussian linear forms has finite absolute first
-moment. Source: Stein 1981 (Gaussian integration by parts); supports `isserlis`.-/
+moment. Source: Stein 1981 (Gaussian integration by parts); supports `isserlis`.
+@isnad1 id=integrab.0h4v.s6.bc1635d28541 from=translated src=- shape=16ab6e05 vocab=b5a3dc95
+-/
 theorem integrable_prod_dotProduct_gaussianVector
     {ι : Type*} {n : ℕ} (s : Finset ι) (a : ι → Fin n → ℝ) :
     Integrable (fun x : Fin n → ℝ => ∏ j ∈ s, a j ⬝ᵥ x)
@@ -55,7 +61,9 @@ theorem integrable_prod_dotProduct_gaussianVector
   exact abs_prod_dotProduct_le_polynomial s a
 
 /-- Multiplying such a product by any one linear form remains integrable.
-Source: Stein 1981 (Gaussian integration by parts); supports `isserlis`.-/
+Source: Stein 1981 (Gaussian integration by parts); supports `isserlis`.
+@isnad1 id=integrab.0h5v.s6.1fdcfc98f9b5 from=translated src=- shape=1d8fc03b vocab=1381e0f7
+-/
 theorem integrable_dotProduct_mul_prod_gaussianVector
     {ι : Type*} {n : ℕ} (s : Finset ι) (a : ι → Fin n → ℝ) (b : Fin n → ℝ) :
     Integrable (fun x : Fin n → ℝ => (b ⬝ᵥ x) * ∏ j ∈ s, a j ⬝ᵥ x)
@@ -73,7 +81,9 @@ theorem integrable_dotProduct_mul_prod_gaussianVector
     _ = _ := by ring
 
 /-- Updating one Gaussian coordinate differentiates a linear form by its
-coefficient in that coordinate. Source: Stein 1981 (Gaussian integration by parts).-/
+coefficient in that coordinate. Source: Stein 1981 (Gaussian integration by parts).
+@isnad1 id=hasderiv.0h5v.s6.eb6085a461d9 from=translated src=- shape=90935e8f vocab=a07d6235
+-/
 theorem hasDerivAt_dotProduct_update {n : ℕ} (a x : Fin n → ℝ) (i : Fin n) (t : ℝ) :
     HasDerivAt (fun y => a ⬝ᵥ Function.update x i y) (a i) t := by
   let L : (Fin n → ℝ) →L[ℝ] ℝ := ∑ j, (a j) • ContinuousLinearMap.proj j
@@ -86,7 +96,9 @@ theorem hasDerivAt_dotProduct_update {n : ℕ} (a x : Fin n → ℝ) (i : Fin n)
 
 /-- Coordinate Stein for an arbitrary product of linear forms. All derivatives
 and Gaussian products are proved integrable; repeated factors are counted by
-their separate positions. Source: Stein 1981 (Gaussian integration by parts).-/
+their separate positions. Source: Stein 1981 (Gaussian integration by parts).
+@isnad1 id=eq.0h5v.s7.a6c1677708fd from=translated src=- shape=eaaa0648 vocab=d5e6db1e
+-/
 theorem integral_coordinate_mul_prod_dotProduct_gaussianVector
     {ι : Type*} [DecidableEq ι] {n : ℕ} (s : Finset ι)
     (a : ι → Fin n → ℝ) (i : Fin n) :
@@ -125,7 +137,9 @@ theorem integral_coordinate_mul_prod_dotProduct_gaussianVector
 
 /-- Covariance Stein recursion for products of arbitrary standard-Gaussian
 linear forms. It includes repeated coefficient vectors and every finite
-product length. Source: Janson 1997, Thm 1.28 (the Wick recursion); supports `isserlis`.-/
+product length. Source: Janson 1997, Thm 1.28 (the Wick recursion); supports `isserlis`.
+@isnad1 id=eq.0h5v.s7.b02f5fa83366 from=translated src=- shape=7b7e86e3 vocab=d5e6db1e
+-/
 theorem integral_dotProduct_mul_prod_gaussianVector
     {ι : Type*} [DecidableEq ι] {n : ℕ} (s : Finset ι)
     (a : ι → Fin n → ℝ) (b : Fin n → ℝ) :

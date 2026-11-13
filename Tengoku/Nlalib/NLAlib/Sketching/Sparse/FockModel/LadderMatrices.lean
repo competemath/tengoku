@@ -32,7 +32,9 @@ def ketBra (out inp : Level) : LevelOp := fun i j =>
 
 /-- A local matrix unit has coefficient one precisely at its specified output and input levels.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.8313c56e9fdb from=translated src=- shape=ef39a52c vocab=c5fbf284
+-/
 @[simp] theorem ketBra_apply (out inp i j : Level) :
     ketBra out inp i j = if i = out ∧ j = inp then 1 else 0 := rfl
 
@@ -62,7 +64,9 @@ def jacobi (ρ : ℝ) : LevelOp :=
 
 /-- Transposing a local matrix unit exchanges its output and input levels.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.3a450433281e from=translated src=- shape=3d6ec6c8 vocab=9cce01f3
+-/
 @[simp] theorem transpose_ketBra (out inp : Level) :
     (ketBra out inp).transpose = ketBra inp out := by
   ext i j
@@ -70,31 +74,41 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The transpose of light creation is light annihilation.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.6c340514b32a from=translated src=- shape=a7fa1216 vocab=c7d711e9
+-/
 @[simp] theorem transpose_pCreate : pCreate.transpose = pDestroy := by
   simp [pCreate, pDestroy]
 
 /-- The transpose of light annihilation is light creation.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.2ca78e27d041 from=translated src=- shape=a7fa1216 vocab=c7d711e9
+-/
 @[simp] theorem transpose_pDestroy : pDestroy.transpose = pCreate := by
   simp [pCreate, pDestroy]
 
 /-- The transpose of heavy promotion is heavy demotion.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.3638cd8e735d from=translated src=- shape=a7fa1216 vocab=c6b38e99
+-/
 @[simp] theorem transpose_rPromote : rPromote.transpose = rDemote := by
   simp [rPromote, rDemote]
 
 /-- The transpose of heavy demotion is heavy promotion.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.faafdeaa9732 from=translated src=- shape=a7fa1216 vocab=c6b38e99
+-/
 @[simp] theorem transpose_rDemote : rDemote.transpose = rPromote := by
   simp [rPromote, rDemote]
 
 /-- The local Jacobi multiplication matrix is symmetric.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s3.b8f1e0bf656b from=translated src=- shape=123b2981 vocab=c6cdf82e
+-/
 @[simp] theorem transpose_jacobi (ρ : ℝ) : (jacobi ρ).transpose = jacobi ρ := by
   ext i j
   cases i <;> cases j <;>
@@ -104,7 +118,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Entrywise verification of the local multiplication matrix.
 
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.bab18e523d5d from=translated src=- shape=d9579161 vocab=dc53ea85
+-/
 theorem jacobi_apply (ρ : ℝ) (i j : Level) :
     jacobi ρ i j =
       match i, j with
@@ -118,7 +134,9 @@ theorem jacobi_apply (ρ : ℝ) (i j : Level) :
 
 /-- Light creation is nilpotent of order two.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s5.63e906b68706 from=translated src=- shape=a44de0d1 vocab=ebfa6071
+-/
 @[simp] theorem pCreate_sq : pCreate * pCreate = 0 := by
   ext i j
   cases i <;> cases j <;>
@@ -126,7 +144,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Heavy promotion is nilpotent of order two.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s5.40e31b476cc3 from=translated src=- shape=a44de0d1 vocab=771bbe3a
+-/
 @[simp] theorem rPromote_sq : rPromote * rPromote = 0 := by
   ext i j
   cases i <;> cases j <;>
@@ -135,7 +155,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- The same-site product used by the `C A` factorization vanishes.
 
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s5.b0601cce488c from=translated src=- shape=269d41d9 vocab=3137e9cf
+-/
 @[simp] theorem pCreate_mul_rPromote : pCreate * rPromote = 0 := by
   ext i j
   cases i <;> cases j <;>
@@ -144,7 +166,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- The same-site product used by the grade-zero `C Ã` factorization vanishes.
 
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s5.ef6c1db31135 from=translated src=- shape=269d41d9 vocab=c505d2ca
+-/
 @[simp] theorem pCreate_mul_rDemote : pCreate * rDemote = 0 := by
   ext i j
   cases i <;> cases j <;>
@@ -153,7 +177,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Reversing the first mixed product produces the artificial direct jump.
 
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s4.4780b2e7eec3 from=translated src=- shape=0d7b82b4 vocab=dda7a51f
+-/
 @[simp] theorem rPromote_mul_pCreate :
     rPromote * pCreate = ketBra .two .zero := by
   ext i j
@@ -174,7 +200,9 @@ def IsLevelGradeShift (δ : ℤ) (A : LevelOp) : Prop :=
 
 /-- Light creation raises occupation grade by one.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=islevelg.0h0v.s2.3c48538ea19b from=translated src=- shape=cef8a6bf vocab=619a21b2
+-/
 theorem pCreate_homogeneous : IsLevelGradeShift 1 pCreate := by
   intro out inp h
   cases out <;> cases inp <;>
@@ -182,7 +210,9 @@ theorem pCreate_homogeneous : IsLevelGradeShift 1 pCreate := by
 
 /-- Light annihilation lowers occupation grade by one.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=islevelg.0h0v.s3.57e26a60d86f from=translated src=- shape=6b3f1a68 vocab=6938e208
+-/
 theorem pDestroy_homogeneous : IsLevelGradeShift (-1) pDestroy := by
   intro out inp h
   cases out <;> cases inp <;>
@@ -190,7 +220,9 @@ theorem pDestroy_homogeneous : IsLevelGradeShift (-1) pDestroy := by
 
 /-- Heavy promotion raises occupation grade by one.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=islevelg.0h0v.s2.7f2ec86290f7 from=translated src=- shape=cef8a6bf vocab=31a11d6f
+-/
 theorem rPromote_homogeneous : IsLevelGradeShift 1 rPromote := by
   intro out inp h
   cases out <;> cases inp <;>
@@ -198,7 +230,9 @@ theorem rPromote_homogeneous : IsLevelGradeShift 1 rPromote := by
 
 /-- Heavy demotion lowers occupation grade by one.
 Source: ported from `SparseFockFormal.LocalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=islevelg.0h0v.s3.5708ef06a45d from=translated src=- shape=6b3f1a68 vocab=7a6da5d7
+-/
 theorem rDemote_homogeneous : IsLevelGradeShift (-1) rDemote := by
   intro out inp h
   cases out <;> cases inp <;>

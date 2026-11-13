@@ -29,7 +29,9 @@ variable {b s n d : ℕ}
 law.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s9.54a20042aee8 from=translated src=- shape=c4980750 vocab=fca6241c
+-/
 theorem matrix_markov_tail
     (hb : 0 < b) (F : Frame n d) (q : ℕ) (hq : 0 < q)
     (eps : ℝ) (heps : 0 < eps) :
@@ -47,7 +49,9 @@ theorem matrix_markov_tail
 tail.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s9.7e2f9edc9f11 from=translated src=- shape=5953ad57 vocab=f083f21c
+-/
 theorem ose_failure_tail
     (hb : 0 < b) (F : Frame n d) (q : ℕ) (hq : 0 < q)
     (eps : ℝ) (heps : 0 < eps) :
@@ -78,7 +82,9 @@ theorem ose_failure_tail
 estimate, with the genuine coupling scale in place of `cB`.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h7v.s9.82c23ed194a4 from=translated src=- shape=5e0f9e21 vocab=1a82a3b4
+-/
 theorem trace_moment_le_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} {beta : ℝ} (hbeta : 0 ≤ beta)
@@ -127,7 +133,9 @@ theorem trace_moment_le_of_band_bounds
 /-- Markov tail after the concrete band estimate.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h8v.s9.574e38cd22da from=translated src=- shape=c6390a7f vocab=0955b626
+-/
 theorem failure_tail_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} (hq : 0 < q) {beta : ℝ} (hbeta : 0 ≤ beta)

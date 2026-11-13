@@ -31,7 +31,9 @@ def SupportedOnBlock (T : Finset (Site m n)) (ell : ℕ)
 
 /-- A nonzero annihilation entry requires an occupied input site.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.93973aefb0f7 from=translated src=- shape=1b8d707c vocab=7f333348
+-/
 theorem pAt_ne_zero_input_one (r : Fin m) (i : Fin n)
     (out inp : Pattern m n) (h : pAt r i out inp ≠ 0) :
     inp (r, i) = .one := by
@@ -45,7 +47,9 @@ theorem pAt_ne_zero_input_one (r : Fin m) (i : Fin n)
 
 /-- A zero-light block contains no occupied light site.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=ne.1h5v.s5.15eeff94b833 from=translated src=- shape=c25efa93 vocab=4d83598a
+-/
 theorem no_light_site_of_block_zero {T : Finset (Site m n)}
     {p : Pattern m n} (hp : InBlock T 0 p) (s : Site m n) :
     p s ≠ .one := by
@@ -57,7 +61,9 @@ theorem no_light_site_of_block_zero {T : Finset (Site m n)}
 /-- Every annihilation map kills a vector supported on a zero-light block.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.e5cb289cb159 from=translated src=- shape=0985a7ba vocab=58842484
+-/
 theorem Ctranspose_mulVec_eq_zero_of_zeroLight
     (F : Frame n d) (T : Finset (Site m n))
     (x : Fin d × Pattern m n → ℝ) (hx : SupportedOnBlock T 0 x)
@@ -84,7 +90,9 @@ theorem Ctranspose_mulVec_eq_zero_of_zeroLight
 no light sites, including all same-site terms.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s7.bc5835de4150 from=translated src=- shape=ff05e058 vocab=ad2eef38
+-/
 theorem ghat_mulVec_eq_zero_of_zeroLight
     (F : Frame n d) (T : Finset (Site m n))
     (x : Fin d × Pattern m n → ℝ) (hx : SupportedOnBlock T 0 x) :
@@ -100,7 +108,9 @@ theorem ghat_mulVec_eq_zero_of_zeroLight
 
 /-- The shared-leg quadratic form vanishes on vectors supported on a zero-light block.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.5a009d8e6aa9 from=translated src=- shape=7f06f88f vocab=75529729
+-/
 theorem ghat_quadratic_eq_zero_of_zeroLight
     (F : Frame n d) (T : Finset (Site m n))
     (x : Fin d × Pattern m n → ℝ) (hx : SupportedOnBlock T 0 x) :

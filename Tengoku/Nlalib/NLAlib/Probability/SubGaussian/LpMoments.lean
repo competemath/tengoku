@@ -23,7 +23,9 @@ namespace NLAlib
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 /-- A sub-Gaussian fluctuation has the scale-normalized strict Gaussian
-tail, including a zero variance proxy.-/
+tail, including a zero variance proxy.
+@isnad1 id=le.2h5v.s6.27adba7c732c from=translated src=- shape=f90941bb vocab=c861bbd1
+-/
 theorem measureReal_sqrt_mul_lt_abs_le_of_hasSubgaussianMGF
     {X : Ω → ℝ} {c : ℝ≥0} (h : HasSubgaussianMGF X c μ)
     {t : ℝ} (ht : 0 ≤ t) :

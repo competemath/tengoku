@@ -35,7 +35,9 @@ def independentProduct (μ : ι → FiniteLaw α) : FiniteLaw (ι → α) where
 
 /-- The mass of an independent finite product outcome is the product of its coordinate masses.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.d02e05de715a from=translated src=- shape=fccdc0a2 vocab=cbb34f21
+-/
 @[simp] theorem independentProduct_weight (μ : ι → FiniteLaw α) (x : ι → α) :
     (independentProduct μ).weight x = ∏ i, (μ i).weight (x i) := rfl
 
@@ -43,7 +45,9 @@ Source: pinned sparse-Fock finite-law/basis proof, commit
 observables.  This is the principal independence theorem.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.4b8cb9cea76b from=translated src=- shape=81248d87 vocab=b66e76ce
+-/
 theorem expect_independentProduct_factorizes
     (μ : ι → FiniteLaw α) (f : ι → α → ℝ) :
     (independentProduct μ).expect (fun x => ∏ i, f i (x i)) =
@@ -65,7 +69,9 @@ theorem expect_independentProduct_factorizes
 of coordinates.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.541613e082f4 from=translated src=- shape=6be0594d vocab=1077dcf4
+-/
 theorem expect_independentProduct_factorizes_on
     (μ : ι → FiniteLaw α) (s : Finset ι) (f : ι → α → ℝ) :
     (independentProduct μ).expect (fun x => ∏ i ∈ s, f i (x i)) =
@@ -94,7 +100,9 @@ theorem expect_independentProduct_factorizes_on
 /-- Every coordinate of the product law has its prescribed expectation.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.54898aa6a4d6 from=translated src=- shape=bc8c899e vocab=e5e59b0f
+-/
 theorem expect_independentProduct_apply
     (μ : ι → FiniteLaw α) (i : ι) (f : α → ℝ) :
     (independentProduct μ).expect (fun x => f (x i)) = (μ i).expect f := by
@@ -104,7 +112,9 @@ theorem expect_independentProduct_apply
 /-- Every coordinate event has its prescribed marginal probability.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.33c139775795 from=translated src=- shape=91781527 vocab=965dc1bc
+-/
 theorem prob_independentProduct_apply
     (μ : ι → FiniteLaw α) (i : ι) (s : Set α) :
     (independentProduct μ).prob {x | x i ∈ s} = (μ i).prob s := by
@@ -124,7 +134,9 @@ theorem prob_independentProduct_apply
 coordinate mass.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.69513b80770f from=translated src=- shape=ae399c04 vocab=b40402b2
+-/
 theorem prob_independentProduct_eq
     [DecidableEq α] (μ : ι → FiniteLaw α) (i : ι) (a : α) :
     (independentProduct μ).prob {x | x i = a} = (μ i).weight a := by
@@ -145,7 +157,9 @@ def cylinder (s : ι → Set α) : Set (ι → α) :=
 omit [DecidableEq ι] [Fintype α] in
 /-- The indicator of a cylinder event is the product of its coordinate indicators.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.4a07e9fecb50 from=translated src=- shape=6ed75d68 vocab=3594a092
+-/
 theorem indicator_cylinder (s : ι → Set α) (x : ι → α) :
     indicator (cylinder s) x = ∏ i, indicator (s i) (x i) := by
   classical
@@ -166,7 +180,9 @@ theorem indicator_cylinder (s : ι → Set α) (x : ι → α) :
 event-level statement of mutual independence.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.528edf8c39b9 from=translated src=- shape=4408c9c9 vocab=9a14edbf
+-/
 theorem prob_independentProduct_cylinder
     (μ : ι → FiniteLaw α) (s : ι → Set α) :
     (independentProduct μ).prob (cylinder s) = ∏ i, (μ i).prob (s i) := by

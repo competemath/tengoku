@@ -26,7 +26,9 @@ their independent coupling is their literal product, and every covariance
 entry is the actual real-coordinate covariance. Singular laws and empty
 coordinate types are included. The formula holds at every interior time;
 bounded tests also have continuous expectations at both endpoints.
-Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Lemma 4.11.-/
+Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Lemma 4.11.
+@isnad1 id=hasderiv.10h11v.s11.d48b038513b7 from=translated src=- shape=8ef27e4a vocab=d8918262
+-/
 theorem hasDerivAt_integral_gaussian_sqrt_interpolation
     (γY γZ : Measure E) [IsGaussian γY] [IsGaussian γZ]
     (hYmean : (∫ y : E, y ∂γY)=0) (hZmean : (∫ z : E, z ∂γZ)=0)
@@ -113,7 +115,9 @@ theorem hasDerivAt_integral_gaussian_sqrt_interpolation
 actual difference of the endpoint expectations. Every integrability and
 endpoint continuity premise follows from the bounded C² test, including
 degenerate Gaussian laws. Source: Bandeira--Boedihardjo--van Handel,
-arXiv:2108.06312v2, Lemma 4.11.-/
+arXiv:2108.06312v2, Lemma 4.11.
+@isnad1 id=eq.8h10v.s11.f0466494212e from=translated src=- shape=139ee0a1 vocab=dc829e89
+-/
 theorem integral_sub_integral_eq_gaussian_covariance_difference_integral
     (γY γZ : Measure E) [IsGaussian γY] [IsGaussian γZ]
     (hYmean : (∫ y : E, y ∂γY)=0) (hZmean : (∫ z : E, z ∂γZ)=0)

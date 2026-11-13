@@ -78,11 +78,15 @@ def run (A : Matrix m n ℝ) (b : m → ℝ) : (k : ℕ) → (Fin k → m) → (
   | 0, _, x => x
   | k + 1, ω, x => run A b k (Fin.tail ω) (step A b x (ω 0))
 
-/-- Selection probabilities are nonnegative. Atlas `randomized-kaczmarz`.-/
+/-- Selection probabilities are nonnegative. Atlas `randomized-kaczmarz`.
+@isnad1 id=le.0h4v.s5.2b371eaf41c8 from=translated src=- shape=344b1e68 vocab=bc5d02ac
+-/
 theorem prob_nonneg (A : Matrix m n ℝ) (i : m) : 0 ≤ prob A i :=
   div_nonneg (dotProduct_self_nonneg _) (frobSq_nonneg A)
 
-/-- The selection probabilities sum to one when `A ≠ 0`. Atlas `randomized-kaczmarz`.-/
+/-- The selection probabilities sum to one when `A ≠ 0`. Atlas `randomized-kaczmarz`.
+@isnad1 id=eq.1h3v.s5.96334b7662e4 from=translated src=- shape=3de1bac2 vocab=9ea221ac
+-/
 theorem sum_prob (A : Matrix m n ℝ) (hA : A ≠ 0) : ∑ i, prob A i = 1 := by
   have hF : frobSq A ≠ 0 := (frobSq_eq_zero_iff A).not.mpr hA
   have hS := frobSq_eq_sum_re_star_dotProduct_self A
@@ -93,7 +97,9 @@ theorem sum_prob (A : Matrix m n ℝ) (hA : A ≠ 0) : ∑ i, prob A i = 1 := by
 omit [Fintype m] in
 /-- Error recursion of one Kaczmarz step when `A *ᵥ xs = b`:
 `step A b x i - xs = (x - xs) - ((A i ⬝ᵥ (x - xs)) / ‖A i‖²) • A i`.
-Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.-/
+Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.
+@isnad1 id=eq.1h7v.s7.adf2971547d5 from=translated src=- shape=fa16dc24 vocab=c5f386a9
+-/
 theorem step_sub_solution (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) (hxs : A *ᵥ xs = b)
     (i : m) :
     step A b x i - xs = (x - xs) - ((A i ⬝ᵥ (x - xs)) / (A i ⬝ᵥ A i)) • A i := by
@@ -105,7 +111,9 @@ omit [Fintype m] in
 /-- Pythagoras for one Kaczmarz step (the step is an orthogonal projection onto a hyperplane
 containing `xs`): `‖step A b x i - xs‖² = ‖x - xs‖² - (A i ⬝ᵥ (x - xs))² / ‖A i‖²`.
 Holds for every row; for a zero row both sides equal `‖x - xs‖²`.
-Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.-/
+Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.
+@isnad1 id=eq.1h7v.s7.7307100facb7 from=translated src=- shape=61e90fe2 vocab=600405bf
+-/
 theorem sqErr_step (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) (hxs : A *ᵥ xs = b) (i : m) :
     (step A b x i - xs) ⬝ᵥ (step A b x i - xs) =
       (x - xs) ⬝ᵥ (x - xs) - (A i ⬝ᵥ (x - xs)) ^ 2 / (A i ⬝ᵥ A i) := by
@@ -123,7 +131,9 @@ theorem sqErr_step (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) (hxs 
 
 /-- One-step expected error identity:
 `∑ i, prob A i * ‖step A b x i - xs‖² = ‖x - xs‖² - ‖A (x - xs)‖² / ‖A‖_F²` for `A ≠ 0`.
-Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.-/
+Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.
+@isnad1 id=eq.2h6v.s8.20b5f209ef0d from=translated src=- shape=bf978b24 vocab=ae23ad93
+-/
 theorem expected_sqErr_step_eq (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ)
     (hxs : A *ᵥ xs = b) (hA : A ≠ 0) :
     ∑ i, prob A i * ((step A b x i - xs) ⬝ᵥ (step A b x i - xs)) =
@@ -142,7 +152,9 @@ theorem expected_sqErr_step_eq (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n �
 (`σ` a lower bound on the smallest singular value, atlas `courant-fischer`), then
 `∑ i, prob A i * ‖step A b x i - xs‖² ≤ (1 - σ² / ‖A‖_F²) ‖x - xs‖²`.
 No hypothesis on `A` (for `A = 0` the left side is `0` and the rate is `1`).
-Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.-/
+Strohmer–Vershynin 2009, proof of Thm 2; atlas `randomized-kaczmarz`.
+@isnad1 id=le.2h7v.s8.53cf04719fad from=translated src=- shape=0c843528 vocab=159c214a
+-/
 theorem expected_sqErr_step_le (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ)
     (hxs : A *ᵥ xs = b) (σ : ℝ) (hσ : ∀ v : n → ℝ, σ ^ 2 * (v ⬝ᵥ v) ≤ (A *ᵥ v) ⬝ᵥ (A *ᵥ v)) :
     ∑ i, prob A i * ((step A b x i - xs) ⬝ᵥ (step A b x i - xs)) ≤
@@ -161,7 +173,9 @@ theorem expected_sqErr_step_le (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n �
 /-- A lower singular bound on the row space makes the Kaczmarz contraction
 factor nonnegative, including a zero matrix and empty index types.
 Zouzias–Freris 2013, equation (5); atlas `kaczmarz-inconsistent`, `randomized-kaczmarz` (rate
-helper).-/
+helper).
+@isnad1 id=le.1h4v.s8.0fc4afdd6cb2 from=translated src=- shape=b4e79740 vocab=7a7622d5
+-/
 theorem rate_nonneg_of_lower_bound_on_range [DecidableEq m]
     (A : Matrix m n ℝ) (σ : ℝ)
     (hσ : ∀ v ∈ LinearMap.range Aᵀ.mulVecLin,
@@ -187,11 +201,15 @@ theorem rate_nonneg_of_lower_bound_on_range [DecidableEq m]
   rw [sub_nonneg, div_le_one hF]
   exact hbound
 
-/-- Unfolding `expErr` at `0` steps. Atlas `randomized-kaczmarz`.-/
+/-- Unfolding `expErr` at `0` steps. Atlas `randomized-kaczmarz`.
+@isnad1 id=eq.0h6v.s6.3d50b3f57a3a from=translated src=- shape=4968bb4d vocab=172c73db
+-/
 theorem expErr_zero (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) :
     expErr A b xs x 0 = (x - xs) ⬝ᵥ (x - xs) := rfl
 
-/-- Unfolding `expErr` at `k + 1` steps (first-step analysis). Atlas `randomized-kaczmarz`.-/
+/-- Unfolding `expErr` at `k + 1` steps (first-step analysis). Atlas `randomized-kaczmarz`.
+@isnad1 id=eq.0h7v.s6.371fbaf86e5f from=translated src=- shape=6bc6fd4e vocab=7b817dbc
+-/
 theorem expErr_succ (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) (k : ℕ) :
     expErr A b xs x (k + 1) = ∑ i, prob A i * expErr A b xs (step A b x i) k := rfl
 
@@ -203,7 +221,9 @@ i.i.d. with probability `‖A i‖² / ‖A‖_F²`,
 Deviations from the printed statement: SV09 take `A` of full column rank and `σ = ‖A⁻¹‖⁻¹`
 (rate `1 - κ(A)⁻²`); here `σ` is any constant satisfying `hσ` (the sharp choice is
 `σ_min(A)`, atlas `courant-fischer`), and no rank or nonzero-row assumption is needed.
-atlas: randomized-kaczmarz-/
+atlas: randomized-kaczmarz
+@isnad1 id=le.2h8v.s8.73c2549419ce from=translated src=- shape=dc2e27b3 vocab=ff1bb8d8
+-/
 theorem expErr_le (A : Matrix m n ℝ) (b : m → ℝ) (xs : n → ℝ) (hxs : A *ᵥ xs = b) (σ : ℝ)
     (hσ : ∀ v : n → ℝ, σ ^ 2 * (v ⬝ᵥ v) ≤ (A *ᵥ v) ⬝ᵥ (A *ᵥ v)) (x : n → ℝ) (k : ℕ) :
     expErr A b xs x k ≤ (1 - σ ^ 2 / frobSq A) ^ k * ((x - xs) ⬝ᵥ (x - xs)) := by
@@ -236,7 +256,9 @@ theorem expErr_le (A : Matrix m n ℝ) (b : m → ℝ) (xs : n → ℝ) (hxs : A
         _ = (1 - σ ^ 2 / frobSq A) ^ (k + 1) * ((x - xs) ⬝ᵥ (x - xs)) := by ring
 
 /-- `expErr` is the expectation over i.i.d. row sequences: the sum over all `ω : Fin k → m` of
-`(∏ j, prob A (ω j)) * ‖run A b k ω x - xs‖²`. Atlas `randomized-kaczmarz`.-/
+`(∏ j, prob A (ω j)) * ‖run A b k ω x - xs‖²`. Atlas `randomized-kaczmarz`.
+@isnad1 id=eq.0h7v.s7.bcee0e1f498a from=translated src=- shape=af3145e8 vocab=97e3c997
+-/
 theorem expErr_eq_sum_paths (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → ℝ) (k : ℕ) :
     expErr A b xs x k = ∑ ω : Fin k → m,
       (∏ j, prob A (ω j)) * ((run A b k ω x - xs) ⬝ᵥ (run A b k ω x - xs)) := by
@@ -251,7 +273,9 @@ theorem expErr_eq_sum_paths (A : Matrix m n ℝ) (b : m → ℝ) (xs x : n → �
 
 /-- Path-sum form of SV09 Thm 2: the weighted average over all row sequences of length `k` of
 the squared error is at most `(1 - σ² / ‖A‖_F²)^k ‖x - xs‖²`.
-Strohmer–Vershynin 2009, Thm 2; atlas `randomized-kaczmarz`.-/
+Strohmer–Vershynin 2009, Thm 2; atlas `randomized-kaczmarz`.
+@isnad1 id=le.2h8v.s8.1938a93d26b3 from=translated src=- shape=aac6e823 vocab=748de84b
+-/
 theorem sum_paths_le (A : Matrix m n ℝ) (b : m → ℝ) (xs : n → ℝ) (hxs : A *ᵥ xs = b) (σ : ℝ)
     (hσ : ∀ v : n → ℝ, σ ^ 2 * (v ⬝ᵥ v) ≤ (A *ᵥ v) ⬝ᵥ (A *ᵥ v)) (x : n → ℝ) (k : ℕ) :
     ∑ ω : Fin k → m,

@@ -26,14 +26,18 @@ noncomputable section
 
 /-- The canonical chosen sparsity parameter is positive.
 Source: ported from `SparseFockFormal.MainTheoremAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h3v.s4.c6af46c0942a from=translated src=- shape=c470319f vocab=4d65749a
+-/
 theorem canonicalS_pos {d : ℕ} {delta eps : ℝ} (heps : 0 < eps) :
     0 < sparseColumnSparsity (sparseMomentOrder d delta) eps :=
   sparseColumnSparsity_pos heps
 
 /-- The canonical chosen block size is positive.
 Source: ported from `SparseFockFormal.MainTheoremAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s5.491c6ca49436 from=translated src=- shape=9199e3bc vocab=dab8e19a
+-/
 theorem canonicalB_pos {d : ℕ} {delta eps : ℝ}
     (heps0 : 0 < eps) (heps1 : eps ≤ 1) :
     0 < sparseBlockRows d (sparseMomentOrder d delta) eps := by
@@ -89,7 +93,9 @@ structure MainConclusions {n d : ℕ} (delta eps : ℝ) (F : Frame n d)
 uniform concrete band estimate is supplied.
 
 Source: ported from `SparseFockFormal.MainTheoremAssembly`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=mainconc.6h5v.s9.a4c370bc1c6c from=translated src=- shape=afc4c680 vocab=c56bf25b
+-/
 theorem main_conclusions_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

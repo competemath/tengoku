@@ -20,7 +20,9 @@ namespace Light
 /-- The first-index contribution to an ordered off-diagonal sum.
 
 Source: ported from `SparseFockFormal.LightSectorAbstract`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.6ba4a7a72403 from=translated src=- shape=01b39e52 vocab=c7a89723
+-/
 theorem sum_offDiagonal_left {ell : ℕ} (hell : 1 ≤ ell)
     (energy : Fin ell → ℝ) :
     (∑ i, ∑ _j ∈ (Finset.univ.erase i), energy i) =
@@ -42,7 +44,9 @@ theorem sum_offDiagonal_left {ell : ℕ} (hell : 1 ≤ ell)
 /-- The second-index contribution to an ordered off-diagonal sum.
 
 Source: ported from `SparseFockFormal.LightSectorAbstract`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.58a0e23f380e from=translated src=- shape=33270059 vocab=c7a89723
+-/
 theorem sum_offDiagonal_right {ell : ℕ} (_hell : 1 ≤ ell)
     (energy : Fin ell → ℝ) :
     (∑ i, ∑ j ∈ (Finset.univ.erase i), energy j) =
@@ -67,7 +71,9 @@ The premise is exactly the operator Cauchy--Schwarz estimate after
 `2ab ≤ a²+b²`; no operator fact is hidden here.
 
 Source: ported from `SparseFockFormal.LightSectorAbstract`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h3v.s7.7fa0893ec4dd from=translated src=- shape=b74f7662 vocab=3cec1352
+-/
 theorem offDiagonal_sum_le {ell : ℕ} (hell : 1 ≤ ell)
     (energy : Fin ell → ℝ) (cross : Fin ell → Fin ell → ℝ)
     (hcross : ∀ i j, i ≠ j →
@@ -105,7 +111,9 @@ exactly the facts that still have to be supplied by an operator formalization:
 The conclusion is the `d + ell - 1` light-sector constant.
 
 Source: ported from `SparseFockFormal.LightSectorAbstract`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h6v.s7.16b2c3f4d942 from=translated src=- shape=732ea8a8 vocab=3cec1352
+-/
 theorem blockGram_of_pairwise_certificate {ell : ℕ} (hell : 1 ≤ ell)
     {d quadratic : ℝ}
     (energy diagonal : Fin ell → ℝ)
@@ -139,7 +147,9 @@ In the sparse-Fock proof that premise is supplied by the positive bosonic dilati
 formalizing the Fock-space isometry and positivity is outside this module.
 
 Source: ported from `SparseFockFormal.LightSectorAbstract`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h5v.s6.03ccf2dffd99 from=translated src=- shape=35971c5e vocab=6bfb30e3
+-/
 theorem compressed_lightSector_bound
     {d ell hard bosonic energy : ℝ}
     (hcompression : hard ≤ bosonic)

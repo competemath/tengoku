@@ -43,7 +43,9 @@ private theorem wordAnnihilation_apply_single_eq_zero_of_head?_ne
 
 /-- A native rescaled Chebyshev polynomial in an actual word field creates
 exactly its degree many copies of that letter on every different-head word.
-The empty input word and degree zero are included.-/
+The empty input word and degree zero are included.
+@isnad1 id=eq.1h5v.s14.99e6d98bb34a from=translated src=- shape=a07eab84 vocab=22443045
+-/
 theorem aeval_chebyshevS_wordField_apply_single
     (i : ι) (w : List ι) (hhead : w.head? ≠ some i) (n : ℕ) (z : ℂ) :
     (Polynomial.aeval (wordField i) (Polynomial.Chebyshev.S ℂ (n : ℤ)))
@@ -65,7 +67,9 @@ theorem aeval_chebyshevS_wordField_apply_single
       List.replicate_succ, List.cons_append]
 
 /-- The native Chebyshev polynomial of a concrete field sends the actual
-vacuum to its repeated-letter unit basis vector.-/
+vacuum to its repeated-letter unit basis vector.
+@isnad1 id=eq.0h3v.s14.5f255b7aeb36 from=translated src=- shape=38f55953 vocab=4641f2b9
+-/
 theorem aeval_chebyshevS_wordField_apply_wordVacuum (i : ι) (n : ℕ) :
     (Polynomial.aeval (wordField i) (Polynomial.Chebyshev.S ℂ (n : ℤ))) (wordVacuum ι) =
       lp.single 2 (List.replicate n i) 1 := by
@@ -73,7 +77,9 @@ theorem aeval_chebyshevS_wordField_apply_wordVacuum (i : ι) (n : ℕ) :
     aeval_chebyshevS_wordField_apply_single i [] (by simp) n 1
 
 /-- Every positive-degree native Chebyshev block is actually centered under
-the concrete vacuum functional; degree zero has expectation one.-/
+the concrete vacuum functional; degree zero has expectation one.
+@isnad1 id=eq.0h3v.s15.0c44b315f3b3 from=translated src=- shape=3c8cf20e vocab=af13c4cd
+-/
 theorem wordVacuumExpectation_aeval_chebyshevS_wordField (i : ι) (n : ℕ) :
     wordVacuumExpectation ι
         (Polynomial.aeval (wordField i) (Polynomial.Chebyshev.S ℂ (n : ℤ))) =
@@ -85,7 +91,9 @@ theorem wordVacuumExpectation_aeval_chebyshevS_wordField (i : ι) (n : ℕ) :
 
 /-- An alternating list of positive-degree actual Chebyshev blocks sends
 the vacuum to the unit word formed by concatenating the repeated letters.
-This exact operator identity includes the empty block list.-/
+This exact operator identity includes the empty block list.
+@isnad1 id=eq.2h2v.s14.0dbe1f7a75cf from=translated src=- shape=cc0eeed1 vocab=4d595da5
+-/
 theorem list_prod_aeval_chebyshevS_wordField_apply_wordVacuum
     (blocks : List (ι × ℕ)) (hpos : ∀ b ∈ blocks, 0 < b.2)
     (hchain : blocks.IsChain (fun b c => b.1 ≠ c.1)) :
@@ -115,7 +123,9 @@ theorem list_prod_aeval_chebyshevS_wordField_apply_wordVacuum
 
 /-- Every nonempty alternating product of positive-degree native Chebyshev
 blocks has zero actual vacuum expectation. This proves the centered alternating
-moment identity for the concrete Chebyshev basis, with no independence premise.-/
+moment identity for the concrete Chebyshev basis, with no independence premise.
+@isnad1 id=eq.3h2v.s15.9a500239ca3c from=translated src=- shape=b483ed40 vocab=ec3bfcf3
+-/
 theorem wordVacuumExpectation_list_prod_aeval_chebyshevS_wordField_eq_zero
     (blocks : List (ι × ℕ)) (hne : blocks ≠ [])
     (hpos : ∀ b ∈ blocks, 0 < b.2)

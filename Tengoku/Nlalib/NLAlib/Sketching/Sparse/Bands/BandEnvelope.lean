@@ -28,7 +28,9 @@ variable {n d : ℕ}
 `(3 + sqrt 2)` envelope.
 
 Source: ported from `SparseFockFormal.ConcreteBandEnvelope`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h7v.s9.7a48eff7eaff from=translated src=- shape=f74543d4 vocab=d8748d08
+-/
 theorem concrete_band_envelope
     (F : Frame n d) (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b)
     (shift : Shift) :
@@ -92,7 +94,9 @@ theorem concrete_band_envelope
 of length `2q`.
 
 Source: ported from `SparseFockFormal.ConcreteBandEnvelope`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h8v.s9.e031a0e588fd from=translated src=- shape=4c2bbc36 vocab=22c7de6e
+-/
 theorem concrete_band_bound_le_beta
     (F : Frame n d) (s b q nu : ℕ) (hs : 0 < s) (hb : 1 < b)
     (hnu : nu ≤ 2 * q) (shift : Shift) :

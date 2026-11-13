@@ -12,7 +12,9 @@ set_option autoImplicit false
 open MeasureTheory ProbabilityTheory
 namespace NLAlib
 
-/-- A true half-probability sublevel bound for a Euclidean Gaussian Lipschitz function controls its actual mean by the sublevel plus four Lipschitz constants.-/
+/-- A true half-probability sublevel bound for a Euclidean Gaussian Lipschitz function controls its actual mean by the sublevel plus four Lipschitz constants.
+@isnad1 id=le.3h4v.s7.0f93dd5e5ff2 from=translated src=- shape=c5cf789c vocab=10e201de
+-/
 theorem integral_le_of_half_measure_sublevel_gaussianVector
     {ι : Type*} [Fintype ι] (f : (ι → ℝ) → ℝ) {L a : ℝ}
     (hL : 0 < L)
@@ -41,7 +43,9 @@ theorem integral_le_of_half_measure_sublevel_gaussianVector
 
 /-- A genuine Gaussian half-probability sublevel bound yields the explicit source-scale all-height tail.
 Source: Ledoux Gaussian concentration, applied in arXiv:2406.11453v2, Theorem 2.2.
-atlas: gaussian-free-spectrum-two-sided (partial)-/
+atlas: gaussian-free-spectrum-two-sided (partial)
+@isnad1 id=le.4h5v.s8.eac8116cde4c from=translated src=- shape=8521023f vocab=6ae43433
+-/
 theorem measureReal_gt_sublevel_add_le_gaussianVector
     {ι : Type*} [Fintype ι] (f : (ι → ℝ) → ℝ) {L a : ℝ}
     (hL : 0 < L)

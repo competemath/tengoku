@@ -43,7 +43,9 @@ variable {s b n d : ℕ}
 the two combined selectors indexed by `(g,i)` and `(g,j)`.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.0h6v.s7.62bdf39726b9 from=translated src=- shape=bd564a07 vocab=52eea628
+-/
 theorem signedBasis_inner_hasLocalDegree_two
     (g : Fin s) (i j : Fin n) :
     HasLocalDegree (ι := Fin s × Fin n) (α := SignedHash b) 2
@@ -74,7 +76,9 @@ interaction degree at most two.  The proof uses the exact hollow identity,
 so no independence is involved.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h7v.s6.22e5319dbe71 from=translated src=- shape=e1f723e1 vocab=61ba3332
+-/
 theorem gramError_entry_hasLocalDegree_two
     (hs : 0 < s) (F : Frame n d) (a c : Fin d) :
     HasLocalDegree (ι := Fin s × Fin n) (α := SignedHash b) 2
@@ -118,7 +122,9 @@ theorem gramError_entry_hasLocalDegree_two
 `2r`.  This recursive noncommutative expansion is the formal word count.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h8v.s7.7cf176c4e74b from=translated src=- shape=4c6b864f vocab=e53bbcc8
+-/
 theorem gramError_pow_entry_hasLocalDegree
     (hs : 0 < s) (F : Frame n d) (r : ℕ) (a c : Fin d) :
     HasLocalDegree (ι := Fin s × Fin n) (α := SignedHash b) (2 * r)
@@ -156,7 +162,9 @@ theorem gramError_pow_entry_hasLocalDegree
 /-- The `r`-th trace-power observable also has local degree at most `2r`.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h6v.s7.fe863898b870 from=translated src=- shape=15db06b8 vocab=dea7bbaf
+-/
 theorem trace_power_hasLocalDegree
     (hs : 0 < s) (F : Frame n d) (r : ℕ) :
     HasLocalDegree (ι := Fin s × Fin n) (α := SignedHash b) (2 * r)
@@ -179,7 +187,9 @@ the fully independent law, then its `2q` trace moment is identical to the
 fully independent trace moment.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h7v.s8.99f8829a6a7a from=translated src=- shape=64213b32 vocab=c439b268
+-/
 theorem trace_even_moment_eq_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d) (q : ℕ)
     (μ : FiniteLaw (SparseStackSelectors s b n))
@@ -196,7 +206,9 @@ theorem trace_even_moment_eq_of_matchesUpTo_four_mul
 exactly by the corresponding fully independent trace moment.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h8v.s9.b1154a0164ac from=translated src=- shape=ede397f1 vocab=ed3b889c
+-/
 theorem matrix_markov_tail_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d)
     (q : ℕ) (hq : 0 < q) (eps : ℝ) (heps : 0 < eps)
@@ -216,7 +228,9 @@ theorem matrix_markov_tail_of_matchesUpTo_four_mul
 /-- OSE-failure form of the limited-independence Markov endpoint.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h8v.s9.8ae9cb2af411 from=translated src=- shape=05c995e4 vocab=cc588023
+-/
 theorem ose_failure_tail_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d)
     (q : ℕ) (hq : 0 < q) (eps : ℝ) (heps : 0 < eps)
@@ -246,7 +260,9 @@ any `4q`-wise matching law.  This is the reusable limited-independence
 endpoint before the report's separate generator/seed instantiation.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.7h9v.s9.2014fbdaeb58 from=translated src=- shape=7a9dba58 vocab=a8113fe8
+-/
 theorem limited_failure_tail_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} (hq : 0 < q) {beta : ℝ} (hbeta : 0 ≤ beta)
@@ -282,7 +298,9 @@ probability `≤ delta`.  All constants and the band estimate are imported from
 the already proved fully independent sparse-Fock argument.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h6v.s9.c4d9676e1d2e from=translated src=- shape=d11a6f27 vocab=456c5c7e
+-/
 theorem rounded_ose_failure_le_delta_of_matchesUpTo
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -355,7 +373,9 @@ theorem rounded_ose_failure_le_delta_of_matchesUpTo
 /-- Equivalent operator-norm statement of the canonical endpoint.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h6v.s9.79714fa93336 from=translated src=- shape=c2d75faa vocab=2e1241a4
+-/
 theorem rounded_operator_norm_failure_le_delta_of_matchesUpTo
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -385,7 +405,9 @@ theorem rounded_operator_norm_failure_le_delta_of_matchesUpTo
 /-- Success-probability form of the canonical limited-independence theorem.
 
 Source: ported from `SparseFockFormal.SparseStackLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h6v.s9.c962993a6807 from=translated src=- shape=79a1b433 vocab=d75ad9cd
+-/
 theorem rounded_ose_success_probability_of_matchesUpTo
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

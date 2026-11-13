@@ -25,7 +25,9 @@ variable {d m n : ℕ}
 quadratic form, on the literal pattern basis.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.993f499d2458 from=translated src=- shape=ea933238 vocab=97d349b6
+-/
 theorem AUp_energy_le_weighted (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, sumSq (Matrix.mulVec (AUpMatrix F r) x)) ≤

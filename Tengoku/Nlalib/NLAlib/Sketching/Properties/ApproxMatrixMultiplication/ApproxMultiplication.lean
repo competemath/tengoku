@@ -36,7 +36,9 @@ namespace NLAlib
 `a, b ≥ 0` (written with `ENNReal.ofReal`), then `∫⁻ (X − Y)² ≤ (a + b)²`. Proof: the pointwise
 bound `(X − Y)² ≤ (1 + b/a)X² + (1 + a/b)Y²` for `a, b > 0`, and the a.e.-zero cases.
 Standard (Minkowski's inequality); atlas `amm-ose` (helper; belongs in
-`ForMathlib/MeasureTheory/Integral.lean`).-/
+`ForMathlib/MeasureTheory/Integral.lean`).
+@isnad1 id=le.6h6v.s7.5b8fb786ad10 from=translated src=- shape=ec9b964c vocab=e50cd0d9
+-/
 theorem lintegral_ofReal_sq_sub_le {α : Type*} [MeasurableSpace α] {μ : Measure α}
     {X Y : α → ℝ} (hX : Measurable X) (hY : Measurable Y) {a b : ℝ} (ha : 0 ≤ a)
     (hb : 0 ≤ b) (hXa : ∫⁻ ω, ENNReal.ofReal (X ω ^ 2) ∂μ ≤ ENNReal.ofReal (a ^ 2))
@@ -119,7 +121,9 @@ private theorem measurable_mulVec_dotProduct [Fintype k] {S : Ωs → Matrix k n
     exact Finset.measurable_sum _ fun j _ => (hS i j).mul measurable_const
 
 /-- Polarization for a sketch: with `Z(x) = ‖Sx‖² − ‖x‖²`, `p = (u + v)/2`, `q = (u − v)/2`,
-`Z(p) − Z(q) = ⟨Su, Sv⟩ − ⟨u, v⟩`. Atlas `amm-ose` (helper).-/
+`Z(p) − Z(q) = ⟨Su, Sv⟩ − ⟨u, v⟩`. Atlas `amm-ose` (helper).
+@isnad1 id=eq.0h5v.s9.87b5aba46900 from=translated src=- shape=70c96478 vocab=226deb9b
+-/
 theorem sub_eq_mulVec_dotProduct_sub_of_polarization (S : Matrix k n ℝ) (u v : n → ℝ) :
     ((S *ᵥ ((1 / 2 : ℝ) • (u + v))) ⬝ᵥ (S *ᵥ ((1 / 2 : ℝ) • (u + v))) -
         ((1 / 2 : ℝ) • (u + v)) ⬝ᵥ ((1 / 2 : ℝ) • (u + v))) -
@@ -133,7 +137,9 @@ theorem sub_eq_mulVec_dotProduct_sub_of_polarization (S : Matrix k n ℝ) (u v :
 
 /-- **Entrywise AMM bound.** Under the JL second-moment property with parameter `ε ≥ 0`, for
 fixed vectors `a`, `b`, `E(⟨Sa, Sb⟩ − ⟨a, b⟩)² ≤ ε² ‖a‖² ‖b‖²`. Woodruff 2014, proof of
-Thm 2.8; Kane–Nelson 2014. Atlas `amm-ose`.-/
+Thm 2.8; Kane–Nelson 2014. Atlas `amm-ose`.
+@isnad1 id=le.3h8v.s8.e7c8a20d127d from=translated src=- shape=3ed04d0c vocab=17feb304
+-/
 theorem lintegral_mulVec_dotProduct_sub_sq_le {S : Ωs → Matrix k n ℝ}
     (hS : ∀ i j, Measurable fun ω => S ω i j) {ε : ℝ} (hε : 0 ≤ ε)
     (hmom : ∀ x : n → ℝ, ∫⁻ ω, ENNReal.ofReal (((S ω *ᵥ x) ⬝ᵥ (S ω *ᵥ x) - x ⬝ᵥ x) ^ 2) ∂μ
@@ -212,7 +218,9 @@ Woodruff 2014, Thm 2.8 (the `ℓ = 2` case of the `(ε, δ, ℓ)`-JL moment prop
 2014); Sarlós 2006, Lem 6. Atlas `amm-ose`. Deviations: stated with lower Lebesgue integrals
 (no integrability hypothesis); the hypothesis is the second-moment property itself, not a tail
 bound; constant `1`.
-atlas: amm-ose-/
+atlas: amm-ose
+@isnad1 id=le.3h10v.s8.f02452bc2aee from=translated src=- shape=975aeabb vocab=0cdb307f
+-/
 theorem lintegral_frobSq_transpose_mul_sketch_sub_le {d₁ d₂ : Type*} [Fintype d₁]
     [Fintype d₂] (S : Ωs → Matrix k n ℝ) (hS : ∀ i j, Measurable fun ω => S ω i j) {ε : ℝ}
     (hε : 0 ≤ ε)

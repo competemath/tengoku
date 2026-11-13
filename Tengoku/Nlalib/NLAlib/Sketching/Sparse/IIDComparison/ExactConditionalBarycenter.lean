@@ -23,7 +23,9 @@ noncomputable section
 support-size overlap moment.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s7.3e4ac1497a13 from=translated src=- shape=67b4d0e3 vocab=a90eb39f
+-/
 theorem weighted_coordinateFiberMoment_eq_minFiber {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) :
@@ -57,7 +59,9 @@ theorem weighted_coordinateFiberMoment_eq_minFiber {b s : ℕ}
 
 /-- Weighted active coordinate fiber moments have the stated support-fiber identity.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s8.84cb0b268b8c from=translated src=- shape=ae3ab95b vocab=6705ee22
+-/
 theorem weighted_coordinateFiberMoment_eq {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) :
@@ -73,7 +77,9 @@ theorem weighted_coordinateFiberMoment_eq {b s : ℕ}
 
 /-- The support-weighted coordinate moment equals sparsity times one sign-aligned active moment.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h4v.s8.869c8dd07841 from=translated src=- shape=4e27c3fd vocab=8176c235
+-/
 theorem weighted_coordinateFiberMoment_eq_s_mul_active {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r : Fin (s * b))
@@ -111,7 +117,9 @@ theorem weighted_coordinateFiberMoment_eq_s_mul_active {b s : ℕ}
 
 /-- A sign-aligned active coordinate moment equals uniform column mass times the coupling normalization.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h4v.s8.dfb07251d711 from=translated src=- shape=54f242e5 vocab=86155075
+-/
 theorem active_aligned_moment_value {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r : Fin (s * b))
@@ -127,7 +135,9 @@ theorem active_aligned_moment_value {b s : ℕ}
 
 /-- Every coordinate fiber moment is the coupling normalization times column mass and signed column value.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s7.088e8d88a680 from=translated src=- shape=f2333c4c vocab=f04d257b
+-/
 theorem coordinateFiberMoment_eq {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r : Fin (s * b)) :
@@ -157,7 +167,9 @@ theorem coordinateFiberMoment_eq {b s : ℕ}
 /-- Unscaled coordinate barycenter of the iid ternary column.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s6.fa10ab3a76c8 from=translated src=- shape=553d3fe6 vocab=1a9594fc
+-/
 theorem conditional_barycenter_coordinate {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r : Fin (s * b)) :
@@ -176,7 +188,9 @@ theorem conditional_barycenter_coordinate {b s : ℕ}
 the signed exact-s column.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s6.31226806e340 from=translated src=- shape=1befb501 vocab=01e4feb4
+-/
 theorem conditional_scaled_barycenter_coordinate {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) (r : Fin (s * b)) :

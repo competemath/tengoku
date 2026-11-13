@@ -65,7 +65,9 @@ gradient bound, with the sharp scalar constant one. Continuous uniformly
 bounded Frechet derivatives supply all integrability conditions. Empty
 coordinate types and a zero gradient budget are included.
 Source: the Gaussian Poincare consequence of Bandeira--Boedihardjo--van Handel,
-arXiv:2108.06312v2, Corollary 4.12.-/
+arXiv:2108.06312v2, Corollary 4.12.
+@isnad1 id=le.5h6v.s9.519f6688b7b9 from=translated src=- shape=492b4fb9 vocab=d4260e74
+-/
 theorem integral_norm_sub_integral_sq_le_gaussian_gradient_bound
     (f : E → ℂ) (df : E → E →L[ℝ] ℂ)
     (hf : ∀ x, HasFDerivAt f (df x) x) (hdfc : Continuous df)

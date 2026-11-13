@@ -27,7 +27,9 @@ variable {d m n : ℕ}
 finite marked-output sum.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.368e6201efc1 from=translated src=- shape=1874ce77 vocab=ad2f8028
+-/
 theorem Yplus_output_coeff_energy_eq (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -59,7 +61,9 @@ theorem Yplus_output_coeff_energy_eq (F : Frame n d)
 /-- The corresponding exact marked-output identity for `Y₀`.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.d8aac9bf3ac3 from=translated src=- shape=cb6c543f vocab=e8661b02
+-/
 theorem Yzero_output_coeff_energy_eq (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -85,7 +89,9 @@ theorem Yzero_output_coeff_energy_eq (F : Frame n d)
 /-- The corresponding exact marked-output identity for the transpose hop.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.e0c279c0b892 from=translated src=- shape=c9459e78 vocab=1af493d6
+-/
 theorem Hprime_output_coeff_energy_eq (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -116,7 +122,9 @@ theorem Hprime_output_coeff_energy_eq (F : Frame n d)
 
 /-- Mixed raising synthesis energy is bounded by the finite marked-pair contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.883580a1aaaa from=translated src=- shape=1890fde7 vocab=86ddba0e
+-/
 theorem Yplus_marked_synthesis_energy_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -144,7 +152,9 @@ theorem Yplus_marked_synthesis_energy_le (F : Frame n d)
 
 /-- Mixed preserving synthesis energy is bounded by the finite marked-pair contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.577a0068ac2c from=translated src=- shape=1890fde7 vocab=2f64966b
+-/
 theorem Yzero_marked_synthesis_energy_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -172,7 +182,9 @@ theorem Yzero_marked_synthesis_energy_le (F : Frame n d)
 
 /-- Heavy correction synthesis energy is bounded by the finite marked-pair contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.29c2602ecafa from=translated src=- shape=1890fde7 vocab=91068bb9
+-/
 theorem Hprime_marked_synthesis_energy_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, ∑ r, ∑ c ∈ p.lightInRow r,
@@ -200,7 +212,9 @@ theorem Hprime_marked_synthesis_energy_le (F : Frame n d)
 
 /-- A mixed raising output fiber has energy bounded by its admissible marked contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h7v.s7.586062e2836f from=translated src=- shape=d41076cf vocab=1236b5cf
+-/
 theorem Yplus_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x)
     (p : Pattern m n) :
@@ -277,7 +291,9 @@ theorem Yplus_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
 
 /-- A mixed preserving output fiber has energy bounded by its admissible marked contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h7v.s7.6c1383d57d45 from=translated src=- shape=d41076cf vocab=5a2cd13c
+-/
 theorem Yzero_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x)
     (p : Pattern m n) :
@@ -324,7 +340,9 @@ theorem Yzero_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
 
 /-- A heavy correction output fiber has energy bounded by its admissible marked contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h7v.s7.181358dd36cd from=translated src=- shape=d41076cf vocab=3d02f97d
+-/
 theorem Hprime_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x)
     (p : Pattern m n) :
@@ -371,7 +389,9 @@ theorem Hprime_output_fiber_le_marked (F : Frame n d) {nu : ℕ}
 
 /-- The total mixed raising output energy is bounded by its marked-pair energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.40a19aaa26ed from=translated src=- shape=6b67cc30 vocab=1619ba5c
+-/
 theorem Yplus_output_energy_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     sumSq
@@ -393,7 +413,9 @@ theorem Yplus_output_energy_le_marked (F : Frame n d) {nu : ℕ}
 
 /-- The total mixed preserving output energy is bounded by its marked-pair energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.744fd857121b from=translated src=- shape=6b67cc30 vocab=ed10f9a2
+-/
 theorem Yzero_output_energy_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     sumSq
@@ -415,7 +437,9 @@ theorem Yzero_output_energy_le_marked (F : Frame n d) {nu : ℕ}
 
 /-- The total heavy correction output energy is bounded by its marked-pair energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.b170f414e966 from=translated src=- shape=6b67cc30 vocab=afc74955
+-/
 theorem Hprime_output_energy_le_marked (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     sumSq

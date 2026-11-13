@@ -25,7 +25,9 @@ variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 /-- The L-ensemble marginal kernel of a scaled row Gram matrix is exactly
 the inverse-Gram ridge kernel. No rank assumption on `A` is used.
 Dereziński–Mahoney 2020, §4.1.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h4v.s6.d0632fda8d64 from=translated src=- shape=4b31f14b vocab=9a4c2a90
+-/
 theorem lEnsembleKernel_scaled_rowGram (A : Matrix m n ℝ) {ρ : ℝ} (hρ : 0 < ρ) :
     lEnsembleKernel (ρ⁻¹ • (A * Aᵀ)) = ridgeKernel A ρ := by
   have hL : (ρ⁻¹ • (A * Aᵀ)).PosSemidef := by
@@ -52,7 +54,9 @@ def lEnsembleRidgeLaw (A : Matrix m n ℝ) (ρ : ℝ) (hρ : 0 < ρ) : Measure (
 
 /-- A row's ridge leverage score is its singleton inclusion probability in
 the corresponding variable-size DPP. Dereziński–Mahoney 2020, §4.1.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h5v.s6.c8e809ab99dd from=translated src=- shape=3acfdfea vocab=5ced9d0b
+-/
 theorem measureReal_mem_lEnsembleRidgeLaw (A : Matrix m n ℝ) (ρ : ℝ)
     (hρ : 0 < ρ) (i : m) :
     (lEnsembleRidgeLaw A ρ hρ).real {S | i ∈ S} = ridgeLeverageScore A ρ i := by
@@ -63,7 +67,9 @@ theorem measureReal_mem_lEnsembleRidgeLaw (A : Matrix m n ℝ) (ρ : ℝ)
 /-- The expected size of the ridge L-ensemble is the native effective
 dimension, defined as the sum of the actual row scores.
 Dereziński–Mahoney 2020, §4.3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h4v.s6.c084dfc81a2d from=translated src=- shape=cf783745 vocab=b8379b7b
+-/
 theorem integral_card_lEnsembleRidgeLaw (A : Matrix m n ℝ) (ρ : ℝ) (hρ : 0 < ρ) :
     ∫ S, (S.card : ℝ) ∂lEnsembleRidgeLaw A ρ hρ = ridgeEffectiveDimension A ρ := by
   unfold lEnsembleRidgeLaw

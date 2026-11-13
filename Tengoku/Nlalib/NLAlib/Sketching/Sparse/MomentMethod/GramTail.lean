@@ -34,7 +34,9 @@ method.  The sample space is literal and finite, and symmetry is assumed
 pointwise only to invoke the proved operator-norm/trace inequality above.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h6v.s7.e2011eb4a4b6 from=translated src=- shape=dd65b498 vocab=926500d7
+-/
 theorem FiniteLaw.prob_le_norm_le_expect_trace_pow_div {Ω : Type*} [Fintype Ω]
     (μ : FiniteLaw Ω) (A : Ω → Matrix ι ι ℝ)
     (hA : ∀ ω, (A ω).IsHermitian) (q : ℕ) (hq : 0 < q)
@@ -62,7 +64,9 @@ theorem FiniteLaw.prob_le_norm_le_expect_trace_pow_div {Ω : Type*} [Fintype Ω]
 signed-hash SparseStack distribution.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s8.f5af92e0499a from=translated src=- shape=4caf822b vocab=347c73c1
+-/
 theorem sparseStack_matrix_markov_tail {s b n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (q : ℕ) (hq : 0 < q) (ε : ℝ) (hε : 0 < ε) :
     (sparseStackSelectorLaw s b n hb).prob
@@ -78,7 +82,9 @@ theorem sparseStack_matrix_markov_tail {s b n d : ℕ} (hb : 0 < b)
 event, so it obeys the same trace-moment bound.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s8.a64164799320 from=translated src=- shape=ce84f698 vocab=df8be1ed
+-/
 theorem sparseStack_ose_failure_tail {s b n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (q : ℕ) (hq : 0 < q) (ε : ℝ) (hε : 0 < ε) :
     (sparseStackSelectorLaw s b n hb).prob
@@ -105,7 +111,9 @@ theorem sparseStack_ose_failure_tail {s b n d : ℕ} (hb : 0 < b)
 bound on the OSE success probability under the exact SparseStack law.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h8v.s8.1f4125f526b4 from=translated src=- shape=da178a8f vocab=48aeec53
+-/
 theorem sparseStack_ose_success_probability {s b n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (q : ℕ) (hq : 0 < q) (ε : ℝ) (hε : 0 < ε)
     (δ : ℝ)

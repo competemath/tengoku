@@ -37,7 +37,9 @@ variable {k : Type*} [Fintype k] {n d : ℕ}
 library predicate `HasOrthonormalCols`.
 
 Source: ported from `SparseFockFormal.ParsevalFrame` (`transpose_mul_rowMatrix`),
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=hasortho.0h3v.s4.972eeda5d06e from=translated src=- shape=f9f61217 vocab=cfa25066
+-/
 theorem Frame.hasOrthonormalCols (F : Frame n d) :
     HasOrthonormalCols (rowMatrix F.u) :=
   transpose_mul_rowMatrix F
@@ -66,7 +68,9 @@ def gramError (F : Frame n d) (S : Matrix k (Fin n) ℝ) : Matrix (Fin d) (Fin d
 /-- The embedded Gram matrix is the Gram matrix `(SU)ᵀ(SU)` of the sketched frame.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.18c3fd588512 from=translated src=- shape=53a721e8 vocab=9960d6f0
+-/
 theorem embeddedGram_eq_transpose_mul_self (F : Frame n d) (S : Matrix k (Fin n) ℝ) :
     embeddedGram F S = (S * rowMatrix F.u)ᵀ * (S * rowMatrix F.u) := by
   simp [embeddedGram, sketchGram, Matrix.transpose_mul, Matrix.mul_assoc]
@@ -74,7 +78,9 @@ theorem embeddedGram_eq_transpose_mul_self (F : Frame n d) (S : Matrix k (Fin n)
 /-- The embedded Gram matrix is real symmetric.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ishermit.0h5v.s5.d1ce858f3a50 from=translated src=- shape=4a044bd9 vocab=042712e4
+-/
 theorem embeddedGram_isHermitian (F : Frame n d) (S : Matrix k (Fin n) ℝ) :
     (embeddedGram F S).IsHermitian := by
   rw [Matrix.isHermitian_iff_isSymm]
@@ -84,7 +90,9 @@ theorem embeddedGram_isHermitian (F : Frame n d) (S : Matrix k (Fin n) ℝ) :
 /-- The Gram error is real symmetric.
 
 Source: ported from `SparseFockFormal.MatrixTail`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ishermit.0h5v.s5.aa39eb0bdb5f from=translated src=- shape=4a044bd9 vocab=7802eb54
+-/
 theorem gramError_isHermitian (F : Frame n d) (S : Matrix k (Fin n) ℝ) :
     (gramError F S).IsHermitian :=
   (embeddedGram_isHermitian F S).sub Matrix.isHermitian_one
@@ -94,7 +102,9 @@ theorem gramError_isHermitian (F : Frame n d) (S : Matrix k (Fin n) ℝ) :
 
 Source: ported from `SparseFockFormal.MatrixTail`
 (`sparseStack_gramError_norm_le_iff_vector_ose`),
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.1h6v.s6.44f8fd267539 from=translated src=- shape=07c57607 vocab=3c3f93f4
+-/
 theorem norm_gramError_le_iff_isSubspaceEmbedding (F : Frame n d)
     (S : Matrix k (Fin n) ℝ) {ε : ℝ} (hε : 0 ≤ ε) :
     ‖gramError F S‖ ≤ ε ↔ IsSubspaceEmbedding S (rowMatrix F.u) ε := by

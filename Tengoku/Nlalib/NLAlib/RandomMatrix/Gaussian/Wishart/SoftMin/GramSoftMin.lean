@@ -31,7 +31,9 @@ def regularizedGram (ε : ℝ) (G : Matrix ι κ ℝ) : Matrix ι ι ℝ := G * 
 
 omit [DecidableEq κ] in
 /-- Positive regularization makes every real Gram matrix positive definite.
-Source: Gram positivity; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram positivity; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=posdef.1h4v.s5.2734980df447 from=translated src=- shape=103fd8f6 vocab=0dd9a850
+-/
 theorem regularizedGram_posDef {ε : ℝ} (hε : 0 < ε) (G : Matrix ι κ ℝ) :
     (regularizedGram ε G).PosDef := by
   have hG : (G * Gᵀ).PosSemidef := by
@@ -40,7 +42,9 @@ theorem regularizedGram_posDef {ε : ℝ} (hε : 0 < ε) (G : Matrix ι κ ℝ) 
 
 omit [Fintype ι] [DecidableEq κ] in
 /-- The exact quadratic expansion of the Gram curve in one matrix direction.
-Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.0h6v.s8.d0717ebdf263 from=translated src=- shape=fbb98f4c vocab=27c533d6
+-/
 theorem regularizedGram_add_smul (ε t : ℝ) (G E : Matrix ι κ ℝ) :
     regularizedGram ε (G + t • E) = regularizedGram ε G +
       t • (E * Gᵀ + G * Eᵀ) + t ^ 2 • (E * Eᵀ) := by
@@ -50,7 +54,9 @@ theorem regularizedGram_add_smul (ε t : ℝ) (G E : Matrix ι κ ℝ) :
 
 omit [DecidableEq κ] in
 /-- The first derivative of the regularized Gram curve.
-Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=hasderiv.0h6v.s8.88796b04ffb5 from=translated src=- shape=020cbf07 vocab=9f79a274
+-/
 theorem hasDerivAt_regularizedGram_add_smul (ε : ℝ) (G E : Matrix ι κ ℝ) (t : ℝ) :
     HasDerivAt (fun x : ℝ => regularizedGram ε (G + x • E))
       (E * Gᵀ + G * Eᵀ + (2 * t) • (E * Eᵀ)) t := by
@@ -63,7 +69,9 @@ theorem hasDerivAt_regularizedGram_add_smul (ε : ℝ) (G E : Matrix ι κ ℝ) 
 
 omit [DecidableEq κ] in
 /-- The first Gram derivative has constant derivative `2EEᵀ`.
-Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram chain rule; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=hasderiv.0h5v.s8.25ea09fbf74b from=translated src=- shape=ef0cd31b vocab=4d20e4cf
+-/
 theorem hasDerivAt_regularizedGram_first (G E : Matrix ι κ ℝ) (t : ℝ) :
     HasDerivAt (fun x : ℝ => E * Gᵀ + G * Eᵀ + (2 * x) • (E * Eᵀ))
       ((2 : ℝ) • (E * Eᵀ)) t := by
@@ -86,7 +94,9 @@ def gramSoftMinGradient (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ) : Matrix ι 
 
 omit [DecidableEq κ] in
 /-- The Euler gradient contraction is a trace pairing with the Gram
-matrix. Source: operator tail proof; atlas `wishart-lambda-min-tail` (helper).-/
+matrix. Source: operator tail proof; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.0h5v.s6.47778fc47ace from=translated src=- shape=dcf9ce20 vocab=55c33783
+-/
 theorem frobInner_gramSoftMinGradient_eq_trace (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ) :
     frobInner G (gramSoftMinGradient n ε G) =
       2 * Matrix.trace (inversePowerSoftMinWeight n (regularizedGram ε G) * (G * Gᵀ)) := by
@@ -104,7 +114,9 @@ theorem frobInner_gramSoftMinGradient_eq_trace (n : ℕ) (ε : ℝ) (G : Matrix 
 
 omit [DecidableEq κ] in
 /-- The squared gradient is four times the quadratic gradient-weight
-Gram trace. Source: operator tail proof; atlas `wishart-lambda-min-tail` (helper).-/
+Gram trace. Source: operator tail proof; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.1h5v.s7.07af340f2e41 from=translated src=- shape=78088bc4 vocab=c0a1b0f9
+-/
 theorem frobSq_gramSoftMinGradient_eq_trace (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     frobSq (gramSoftMinGradient n ε G) = 4 *
@@ -126,7 +138,9 @@ theorem frobSq_gramSoftMinGradient_eq_trace (n : ℕ) (ε : ℝ) (G : Matrix ι 
 
 /-- The first Gram chain coefficient along a coordinate line equals the
 corresponding actual gradient entry at every point. Source: operator tail
-proof; atlas `wishart-lambda-min-tail` (helper).-/
+proof; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h8v.s8.b8840a1211a5 from=translated src=- shape=48847329 vocab=059884d7
+-/
 theorem inversePowerSoftMinFirst_gram_single_eq_gradient (n : ℕ) {ε : ℝ}
     (hε : 0 < ε) (G : Matrix ι κ ℝ) (i : ι) (j : κ) (t : ℝ) :
     let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -156,7 +170,9 @@ def gramSoftMinLaplacian (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ) : ℝ :=
 
 /-- Contracting the inverse-power Hessian over all Gram coordinates gives
 an exact finite sum of trace products. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (helper).-/
+atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.1h5v.s9.d55de8edaae0 from=translated src=- shape=6ded691a vocab=b86c31f4
+-/
 theorem sum_inversePowerHessianKernel_gram_direction_eq
     (R : Matrix ι ι ℝ) (hR : R.PosSemidef) (G : Matrix ι κ ℝ) (n : ℕ) :
     (∑ i, ∑ j, let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -192,7 +208,9 @@ theorem sum_inversePowerHessianKernel_gram_direction_eq
 /-- The exact finite resolvent Gram Laplacian in trace-power form. This
 identity exposes the cancellations needed for the sharper limiting
 Laplacian bound. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s9.b226e7be1eea from=translated src=- shape=d3dbbdeb vocab=4d2f8ae2
+-/
 theorem gramSoftMinLaplacian_eq (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let R := (regularizedGram ε G)⁻¹

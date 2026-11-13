@@ -18,7 +18,9 @@ open MeasureTheory Set Filter
 open scoped Topology
 namespace NLAlib
 
-/-- The companion transform is strictly positive above the common support.-/
+/-- The companion transform is strictly positive above the common support.
+@isnad1 id=lt.5h4v.s6.7158b8c22891 from=translated src=- shape=185d7c0d vocab=85f3ef1b
+-/
 theorem singularValueCompanionPhi_pos (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b y : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
@@ -29,7 +31,9 @@ theorem singularValueCompanionPhi_pos (μ : Measure ℝ) [IsProbabilityMeasure �
   exact singularValuePhi_pos _ hb (support_dTransformCompanionMeasure_subset μ hb hsupport) hy
 
 /-- The actual derivative-based D-transform root function equals the sum of
-the two actual logarithmic elasticities.-/
+the two actual logarithmic elasticities.
+@isnad1 id=eq.5h4v.s6.f41291095789 from=translated src=- shape=abd951b7 vocab=f16da413
+-/
 theorem singularValuePsi_eq_add_elasticity (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b y : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
@@ -58,7 +62,9 @@ theorem singularValuePsi_eq_add_elasticity (μ : Measure ℝ) [IsProbabilityMeas
 
 /-- The actual D-transform root function is continuous above the compact
 nonnegative support. Source: ScreeNOT, Lemma 8(1).
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=continuo.4h3v.s6.645a70d1524a from=translated src=- shape=d61e433b vocab=c6e26c13
+-/
 theorem continuousOn_singularValuePsi (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) :
@@ -76,7 +82,9 @@ theorem continuousOn_singularValuePsi (μ : Measure ℝ) [IsProbabilityMeasure �
 
 /-- The native D-transform logarithmic derivative is strictly increasing
 above a positive upper support edge. Source: ScreeNOT, Lemma 8(1).
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=strictmo.5h3v.s6.54ae9de2195f from=translated src=- shape=74e22ed6 vocab=c3a8cf7f
+-/
 theorem strictMonoOn_singularValuePsi (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b : ℝ} (hγ : 0 < γ) (hγ1 : γ ≤ 1)
     (hb : 0 < b) (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support) :

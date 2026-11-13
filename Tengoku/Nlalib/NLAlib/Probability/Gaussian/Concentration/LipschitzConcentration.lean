@@ -35,7 +35,9 @@ namespace NLAlib
 /-! ### Concentration -/
 
 /-- A Lipschitz function of a standard Gaussian vector is integrable.
-Ledoux 2001, Thm 5.3; Boucheron–Lugosi–Massart 2013, Thm 5.6.-/
+Ledoux 2001, Thm 5.3; Boucheron–Lugosi–Massart 2013, Thm 5.6.
+@isnad1 id=integrab.2h3v.s7.ac9048816275 from=translated src=- shape=053c6b2e vocab=15d6ec02
+-/
 theorem integrable_of_lipschitz_gaussianVector {ι : Type*} [Fintype ι] (f : (ι → ℝ) → ℝ) (L : ℝ)
     (hL : 0 ≤ L) (hLip : ∀ x y, |f x - f y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2)) :
     Integrable f (gaussianVector ι) := by
@@ -47,7 +49,9 @@ theorem integrable_of_lipschitz_gaussianVector {ι : Type*} [Fintype ι] (f : (�
 `γₙ{x | 𝔼 f + L t ≤ f x} ≤ e^{-t²/2}`. The hypothesis `0 < L` is needed: at `L = 0` the event
 is everything.
 Ledoux 2001, Thm 5.3 / (2.35); Boucheron–Lugosi–Massart 2013, Thm 5.6; Vershynin 2018, Thm 5.2.2.
-atlas: gaussian-concentration-/
+atlas: gaussian-concentration
+@isnad1 id=le.3h4v.s7.a6783423ebb7 from=translated src=- shape=00c1eb0d vocab=2806e9f9
+-/
 theorem measureReal_ge_le_of_lipschitz_gaussianVector {ι : Type*} [Fintype ι]
     (f : (ι → ℝ) → ℝ) (L : ℝ)
     (hL : 0 < L) (hLip : ∀ x y, |f x - f y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2))

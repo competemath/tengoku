@@ -23,7 +23,9 @@ probability laws together with convergence of their actual positive support
 edges and aspect ratios. All roots and transform continuity are derived from
 the native law hypotheses. Source: ScreeNOT, Lemma 3 and Supplement Appendix
 D.1.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=tendsto.15h8v.s8.52c5bba2465d from=translated src=- shape=c960cb28 vocab=abbff43f
+-/
 theorem tendsto_screeThreshold_of_weak_convergence
     {I : Type*} {l : Filter I} {μs : I → ProbabilityMeasure ℝ} {μ : ProbabilityMeasure ℝ}
     (hweak : Tendsto μs l (𝓝 μ)) {bs γs : I → ℝ} {b γ : ℝ}

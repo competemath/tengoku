@@ -44,21 +44,27 @@ def agreesOutsidePair (s t : Site m n) (out inp : Pattern m n) : Prop :=
 
 /-- Agreement outside one site is symmetric.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h5v.s4.e869b978101c from=translated src=- shape=70d6e989 vocab=d2ac23bf
+-/
 theorem agreesOutsideSite_symm {s : Site m n} {out inp : Pattern m n} :
     agreesOutsideSite s out inp ↔ agreesOutsideSite s inp out := by
   constructor <;> intro h x hx <;> exact (h x hx).symm
 
 /-- Agreement outside a site pair is symmetric.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s5.27b0437bf2d6 from=translated src=- shape=ba2094fb vocab=95da22d1
+-/
 theorem agreesOutsidePair_symm {s t : Site m n} {out inp : Pattern m n} :
     agreesOutsidePair s t out inp ↔ agreesOutsidePair s t inp out := by
   constructor <;> intro h x hxs hxt <;> exact (h x hxs hxt).symm
 
 /-- Swapping the marked pair leaves outside agreement unchanged.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s5.0c0e49054a1f from=translated src=- shape=a38e8da2 vocab=95da22d1
+-/
 theorem agreesOutsidePair_swap {s t : Site m n} {out inp : Pattern m n} :
     agreesOutsidePair s t out inp ↔ agreesOutsidePair t s out inp := by
   constructor <;> intro h x hxt hxs <;> exact h x hxs hxt
@@ -83,7 +89,9 @@ noncomputable def pairKernel (s t : Site m n) (A B : LevelOp) : FockOp m n := by
 
 /-- Transposing a one-site lifted kernel transposes its local matrix.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.9d12830a9d44 from=translated src=- shape=d776f423 vocab=3148798a
+-/
 theorem transpose_siteKernel (s : Site m n) (A : LevelOp) :
     (siteKernel s A).transpose = siteKernel s A.transpose := by
   ext out inp
@@ -98,7 +106,9 @@ theorem transpose_siteKernel (s : Site m n) (A : LevelOp) :
 
 /-- Transposing a two-site lifted kernel transposes its two local matrices.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.74e9b587bec4 from=translated src=- shape=e2b5f775 vocab=e3d89a78
+-/
 theorem transpose_pairKernel (s t : Site m n) (A B : LevelOp) :
     (pairKernel s t A B).transpose = pairKernel s t A.transpose B.transpose := by
   ext out inp
@@ -113,7 +123,9 @@ theorem transpose_pairKernel (s t : Site m n) (A B : LevelOp) :
 
 /-- Swapping the two marked sites and local factors preserves their lifted pair kernel.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.1b724d320717 from=translated src=- shape=d3336b2f vocab=f8560e6f
+-/
 theorem pairKernel_swap (s t : Site m n) (A B : LevelOp) :
     pairKernel s t A B = pairKernel t s B A := by
   ext out inp
@@ -127,7 +139,9 @@ theorem pairKernel_swap (s t : Site m n) (A B : LevelOp) :
 
 /-- Patterns agreeing outside one site differ in grade exactly by that site's occupation change.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s5.ef2e88b74d1e from=translated src=- shape=c695c5c5 vocab=883b6788
+-/
 theorem gradeZ_sub_eq_site {s : Site m n} {out inp : Pattern m n}
     (h : agreesOutsideSite s out inp) :
     Pattern.gradeZ out - Pattern.gradeZ inp = weightZ (out s) - weightZ (inp s) := by
@@ -147,7 +161,9 @@ theorem gradeZ_sub_eq_site {s : Site m n} {out inp : Pattern m n}
 
 /-- Patterns agreeing outside a distinct pair differ in grade by the two site occupation changes.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.4751c54c9401 from=translated src=- shape=7af7dc6d vocab=0448f5a2
+-/
 theorem gradeZ_sub_eq_pair {s t : Site m n} {out inp : Pattern m n}
     (hst : s ≠ t) (h : agreesOutsidePair s t out inp) :
     Pattern.gradeZ out - Pattern.gradeZ inp =
@@ -192,7 +208,9 @@ def IsGradeShift (δ : ℤ) (K : FockOp m n) : Prop :=
 
 /-- A one-site lifted kernel inherits its local matrix's grade shift.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isgrades.1h5v.s4.6eab95c13e2a from=translated src=- shape=89ed6797 vocab=c5f42356
+-/
 theorem siteKernel_homogeneous {δ : ℤ} {A : LevelOp}
     (hA : IsLevelGradeShift δ A) (s : Site m n) :
     IsGradeShift δ (siteKernel s A) := by
@@ -207,7 +225,9 @@ theorem siteKernel_homogeneous {δ : ℤ} {A : LevelOp}
 
 /-- A distinct-pair lifted kernel has the sum of its local factors' grade shifts.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isgrades.3h8v.s5.facd84c605ad from=translated src=- shape=9e6b53a2 vocab=04b9907c
+-/
 theorem pairKernel_homogeneous {δ ε : ℤ} {A B : LevelOp}
     (hA : IsLevelGradeShift δ A)
     (hB : IsLevelGradeShift ε B)
@@ -233,7 +253,9 @@ noncomputable def wordKernel (s t : Site m n) (w : Word) : FockOp m n :=
 
 /-- A distinct-site word kernel has its recorded total word degree.
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isgrades.1h5v.s5.972056aa7708 from=translated src=- shape=9f34c050 vocab=f72f8781
+-/
 theorem wordKernel_homogeneous (w : Word) {s t : Site m n} (hst : s ≠ t) :
     IsGradeShift w.degree (wordKernel s t w) := by
   simpa [wordKernel, Word.degree] using
@@ -242,7 +264,9 @@ theorem wordKernel_homogeneous (w : Word) {s t : Site m n} (hst : s ≠ t) :
 /-- Matrix transpose agrees with the adjoint word after swapping the ordered sites.
 
 Source: ported from `SparseFockFormal.FiniteSiteOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.91d8bc3c848c from=translated src=- shape=d75b95f5 vocab=3b7037bc
+-/
 theorem transpose_wordKernel (s t : Site m n) (w : Word) :
     (wordKernel s t w).transpose = wordKernel t s w.orderedAdjoint := by
   rw [wordKernel, transpose_pairKernel, pairKernel_swap]

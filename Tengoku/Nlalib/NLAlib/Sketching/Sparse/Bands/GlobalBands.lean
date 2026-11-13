@@ -22,7 +22,9 @@ variable {d m n : ℕ}
 
 /-- Summing over all ladder legs is the four-term creation/destruction sum.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s6.f73f6c37cea7 from=translated src=- shape=e8049a09 vocab=b353f7a3
+-/
 theorem sum_leg {A : Type*} [AddCommMonoid A] (f : Leg → A) :
     ∑ a, f a = f .pUp + f .pDown + f .rUp + f .rDown := by
   rw [show (Finset.univ : Finset Leg) = {.pUp, .pDown, .rUp, .rDown} by decide]
@@ -30,7 +32,9 @@ theorem sum_leg {A : Type*} [AddCommMonoid A] (f : Leg → A) :
 
 /-- Summing over grade shifts is the raising, preserving, and lowering sum.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.04c0a04ae312 from=translated src=- shape=b0b727d9 vocab=6101656a
+-/
 theorem sum_shift {A : Type*} [AddCommMonoid A] (f : Shift → A) :
     ∑ δ, f δ = f .plus + f .zero + f .minus := by
   rw [show (Finset.univ : Finset Shift) = {.plus, .zero, .minus} by decide]
@@ -38,7 +42,9 @@ theorem sum_shift {A : Type*} [AddCommMonoid A] (f : Shift → A) :
 
 /-- Summing over heaviness has exactly the light, mixed, and heavy terms.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.a72346829f3c from=translated src=- shape=b0b727d9 vocab=6a4be296
+-/
 theorem sum_heaviness {A : Type*} [AddCommMonoid A] (f : Heaviness → A) :
     ∑ h, f h = f .lightLight + f .lightHeavy + f .heavyHeavy := by
   rw [show (Finset.univ : Finset Heaviness) =
@@ -49,7 +55,9 @@ theorem sum_heaviness {A : Type*} [AddCommMonoid A] (f : Heaviness → A) :
 sum to the local Jacobi multiplication matrix.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s5.a89d26d8d678 from=translated src=- shape=afc0ddf0 vocab=6fa44df5
+-/
 theorem jacobi_eq_weighted_legs (ρ : ℝ) :
     jacobi ρ = ∑ a : Leg, ρ ^ a.heavy • a.op := by
   ext out inp
@@ -61,7 +69,9 @@ theorem jacobi_eq_weighted_legs (ρ : ℝ) :
 exactly the weighted sum of all sixteen oriented words.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.22a308ee0f91 from=translated src=- shape=1a1b816f vocab=bfa09f7b
+-/
 theorem pairKernel_jacobi_eq_all_words
     (ρ : ℝ) (s t : Site m n) :
     pairKernel s t (jacobi ρ) (jacobi ρ) =
@@ -89,7 +99,9 @@ def orderedJacobiTerm
 
 /-- An external Jacobi pair equals its weighted sum of typed word operators.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s6.24fb81448b77 from=translated src=- shape=e660c3f7 vocab=1fbd668a
+-/
 theorem orderedJacobiTerm_eq_all_words
     (u : Fin n → Fin d → ℝ) (ρ : ℝ)
     (r : Fin m) (i j : Fin n) :
@@ -125,7 +137,9 @@ def physicalWordSum
 physical word sum.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.aa80a27020f1 from=translated src=- shape=7b0e01a7 vocab=4b9bdaab
+-/
 theorem sum_ordered_pairs_comm {A : Type*} [AddCommMonoid A] [Module ℝ A]
     (c : Word → ℝ) (f : Fin m → Fin n → Fin n → Word → A) :
     (∑ r, ∑ i, ∑ j ∈ Finset.univ.erase i, ∑ w, c w • f r i j w) =
@@ -154,7 +168,9 @@ theorem sum_ordered_pairs_comm {A : Type*} [AddCommMonoid A] [Module ℝ A]
 
 /-- The physical multiplication operator is the sum of all weighted words.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.3427c934b246 from=translated src=- shape=0acca9d2 vocab=64efaf09
+-/
 theorem rawMultiplication_eq_all_words
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
     rawMultiplication m u ρ =
@@ -187,7 +203,9 @@ def band
 exactly one inventory cell.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.1703ce8d6341 from=translated src=- shape=3a492415 vocab=5fda0b3f
+-/
 theorem sum_all_cells {A : Type*} [AddCommMonoid A] (f : Word → A) :
     (∑ δ : Shift, ∑ h : Heaviness, ∑ w ∈ wordsIn δ h, f w) =
       ∑ w : Word, f w := by
@@ -202,7 +220,9 @@ theorem sum_all_cells {A : Type*} [AddCommMonoid A] (f : Word → A) :
 bands.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.034e361fa41b from=translated src=- shape=3917048a vocab=c4efccab
+-/
 theorem rawMultiplication_eq_sum_bands
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
     rawMultiplication m u ρ = ∑ δ : Shift, band m u ρ δ := by
@@ -222,7 +242,9 @@ def family
 
 /-- A light-light cell has unit weight and equals its unweighted family.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.0f466e8cd72c from=translated src=- shape=90c3e547 vocab=55033e17
+-/
 theorem cell_lightLight
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) (δ : Shift) :
     cell m u ρ δ .lightLight = family m u δ .lightLight := by
@@ -237,7 +259,9 @@ theorem cell_lightLight
 
 /-- A mixed cell is its unweighted family scaled by the heavy parameter.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.e951e6873c41 from=translated src=- shape=eb759b53 vocab=16e2fa11
+-/
 theorem cell_lightHeavy
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) (δ : Shift) :
     cell m u ρ δ .lightHeavy = ρ • family m u δ .lightHeavy := by
@@ -253,7 +277,9 @@ theorem cell_lightHeavy
 
 /-- A heavy-heavy cell scales its unweighted family by the squared parameter.
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.da8f7e760c1f from=translated src=- shape=8b361e7c vocab=52c70aaf
+-/
 theorem cell_heavyHeavy
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) (δ : Shift) :
     cell m u ρ δ .heavyHeavy = ρ ^ 2 • family m u δ .heavyHeavy := by
@@ -271,7 +297,9 @@ theorem cell_heavyHeavy
 `ρ = sqrt (b-1)` gives coefficients `1`, `sqrt (b-1)`, and `b-1`.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.a99ce1313be6 from=translated src=- shape=3119613c vocab=09a8893d
+-/
 theorem band_eq_three_families
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) (δ : Shift) :
     band m u ρ δ =
@@ -283,7 +311,9 @@ theorem band_eq_three_families
 /-- Each concrete band has precisely its advertised grade change.
 
 Source: ported from `SparseFockFormal.GlobalBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h6v.s4.eff845ad4ab8 from=translated src=- shape=a185e62e vocab=0571ce44
+-/
 theorem band_homogeneous
     (u : Fin n → Fin d → ℝ) (ρ : ℝ) (δ : Shift) :
     IsFullGradeShift δ.degree (band m u ρ δ) := by

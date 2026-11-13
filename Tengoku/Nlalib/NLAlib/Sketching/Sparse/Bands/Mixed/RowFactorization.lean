@@ -29,7 +29,9 @@ variable {d m n : ℕ}
 coordinates.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.346679e09667 from=translated src=- shape=2d22607e vocab=7c06a8d4
+-/
 theorem pDagAt_mul_rUpAt_self (r : Fin m) (i : Fin n) :
     pDagAt r i * rUpAt r i = 0 := by
   classical
@@ -47,7 +49,9 @@ theorem pDagAt_mul_rUpAt_self (r : Fin m) (i : Fin n) :
 /-- The lifted same-site product `P† R†` also vanishes.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.4ad2a32ac0d3 from=translated src=- shape=2d22607e vocab=38b48639
+-/
 theorem pDagAt_mul_rDownAt_self (r : Fin m) (i : Fin n) :
     pDagAt r i * rDownAt r i = 0 := by
   classical
@@ -64,7 +68,9 @@ theorem pDagAt_mul_rDownAt_self (r : Fin m) (i : Fin n) :
 
 /-- Light creation and heavy creation at distinct sites form their mixed word kernel.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.a39d2bf5b37c from=translated src=- shape=0470bfdf vocab=6c48481e
+-/
 theorem pDagAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
     pDagAt r i * rUpAt r j =
       wordKernel (r, i) (r, j) (.pUp, .rUp) := by
@@ -76,7 +82,9 @@ theorem pDagAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
 
 /-- Light creation and heavy annihilation at distinct sites form their mixed word kernel.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.6b2b4c5bfc0e from=translated src=- shape=0470bfdf vocab=7a3766b0
+-/
 theorem pDagAt_mul_rDownAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
     pDagAt r i * rDownAt r j =
       wordKernel (r, i) (r, j) (.pUp, .rDown) := by
@@ -88,7 +96,9 @@ theorem pDagAt_mul_rDownAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
 
 /-- Distinct-site light synthesis/heavy creation analysis equals the physical mixed raising term.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.26e6e71b69bb from=translated src=- shape=9fd6e66a vocab=f3a08fb6
+-/
 theorem COne_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     COne F r i * AUpOne F r j =
@@ -117,7 +127,9 @@ theorem COne_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
 
 /-- Same-site light synthesis/heavy creation analysis has zero product.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.a69dc206e354 from=translated src=- shape=053ef1b7 vocab=ea68647e
+-/
 theorem COne_mul_AUpOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
     COne F r i * AUpOne F r i = 0 := by
   classical
@@ -142,7 +154,9 @@ theorem COne_mul_AUpOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
 
 /-- Distinct-site light synthesis/heavy annihilation analysis equals the physical mixed preserving term.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.a2076841854a from=translated src=- shape=9fd6e66a vocab=f4ff6fb7
+-/
 theorem COne_mul_ADownOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     COne F r i * ADownOne F r j =
@@ -171,7 +185,9 @@ theorem COne_mul_ADownOne_of_ne (F : Frame n d) (r : Fin m)
 
 /-- Same-site light synthesis/heavy annihilation analysis has zero product.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.e973a9964aec from=translated src=- shape=053ef1b7 vocab=461aa026
+-/
 theorem COne_mul_ADownOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
     COne F r i * ADownOne F r i = 0 := by
   classical
@@ -197,7 +213,9 @@ theorem COne_mul_ADownOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
 /-- Exact row-local mixed raising factorization; the diagonal terms vanish.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.bd998d41eb30 from=translated src=- shape=ed61852c vocab=6b73b3ea
+-/
 theorem CMatrix_mul_AUpMatrix (F : Frame n d) (r : Fin m) :
     CMatrix F r * AUpMatrix F r =
       ∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -218,7 +236,9 @@ theorem CMatrix_mul_AUpMatrix (F : Frame n d) (r : Fin m) :
 /-- Exact row-local grade-preserving mixed factorization.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.1cdab199d503 from=translated src=- shape=ed61852c vocab=035a3fdd
+-/
 theorem CMatrix_mul_ADownMatrix (F : Frame n d) (r : Fin m) :
     CMatrix F r * ADownMatrix F r =
       ∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -239,7 +259,9 @@ theorem CMatrix_mul_ADownMatrix (F : Frame n d) (r : Fin m) :
 /-- The physical `X₊` word sum is literally `CStack * AUpStack`.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.b6ebe58d33ca from=translated src=- shape=d7923146 vocab=194b2e40
+-/
 theorem Xplus_eq_CStack_mul_AUpStack (F : Frame n d) :
     Xplus m (Frame.rows F) =
       CStack (m := m) F *
@@ -259,7 +281,9 @@ theorem Xplus_eq_CStack_mul_AUpStack (F : Frame n d) :
 /-- The physical `X₀` word sum is literally `CStack * ADownStack`.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.1a57b26afa07 from=translated src=- shape=d7923146 vocab=ef980eaa
+-/
 theorem Xzero_eq_CStack_mul_ADownStack (F : Frame n d) :
     Xzero m (Frame.rows F) =
       CStack (m := m) F *
@@ -279,7 +303,9 @@ theorem Xzero_eq_CStack_mul_ADownStack (F : Frame n d) :
 /-- Fully projected typed factorization of `X₊` on input grade `nu`.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.8a42184c620a from=translated src=- shape=cd729a43 vocab=c034dd6f
+-/
 theorem Xplus_grade_factor (F : Frame n d) (nu : ℕ) :
     Xplus m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu =
@@ -319,7 +345,9 @@ theorem Xplus_grade_factor (F : Frame n d) (nu : ℕ) :
 /-- Fully projected typed factorization of `X₀` on positive input grade.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.258d31f0ba37 from=translated src=- shape=275cccde vocab=ac95ad22
+-/
 theorem Xzero_grade_factor_add_one (F : Frame n d) (k : ℕ) :
     Xzero m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) (k + 1) =
@@ -355,7 +383,9 @@ theorem Xzero_grade_factor_add_one (F : Frame n d) (k : ℕ) :
 
 /-- The mixed preserving analysis band vanishes on grade-zero input.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.7439bc7089ba from=translated src=- shape=46730bc3 vocab=879ee681
+-/
 theorem Xzero_gradeProjection_zero (F : Frame n d) :
     Xzero m (Frame.rows F) *
       gradeProjection (d := d) (m := m) (n := n) 0 = 0 := by
@@ -364,7 +394,9 @@ theorem Xzero_gradeProjection_zero (F : Frame n d) :
 
 /-- Transposing the mixed raising band gives its named adjoint band.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.18ff865e04b0 from=translated src=- shape=f73be4a9 vocab=25858592
+-/
 @[simp] theorem transpose_Xplus (u : Fin n → Fin d → ℝ) :
     (Xplus m u).transpose = XplusAdj m u := by
   simpa [Xplus, XplusAdj, wordSum, Word.orderedAdjoint,
@@ -373,14 +405,18 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Transposing the named mixed raising adjoint returns the raising band.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.2f23d348208b from=translated src=- shape=f73be4a9 vocab=25858592
+-/
 @[simp] theorem transpose_XplusAdj (u : Fin n → Fin d → ℝ) :
     (XplusAdj m u).transpose = Xplus m u := by
   rw [← transpose_Xplus (m := m) u, Matrix.transpose_transpose]
 
 /-- Transposing the mixed preserving band gives its named adjoint band.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.62ee8a36560b from=translated src=- shape=f73be4a9 vocab=555cf51a
+-/
 @[simp] theorem transpose_Xzero (u : Fin n → Fin d → ℝ) :
     (Xzero m u).transpose = XzeroAdj m u := by
   simpa [Xzero, XzeroAdj, wordSum, Word.orderedAdjoint,
@@ -389,14 +425,18 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Transposing the named mixed preserving adjoint returns the preserving band.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.5eda7de47ee8 from=translated src=- shape=f73be4a9 vocab=555cf51a
+-/
 @[simp] theorem transpose_XzeroAdj (u : Fin n → Fin d → ℝ) :
     (XzeroAdj m u).transpose = Xzero m u := by
   rw [← transpose_Xzero (m := m) u, Matrix.transpose_transpose]
 
 /-- The mixed raising band has grade shift two.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.49f467ef6950 from=translated src=- shape=22f4b803 vocab=6e7af5d8
+-/
 theorem Xplus_homogeneous (F : Frame n d) :
     IsFullGradeShift 2
       (Xplus m (Frame.rows F)) := by
@@ -406,7 +446,9 @@ theorem Xplus_homogeneous (F : Frame n d) :
 
 /-- The mixed preserving band has grade shift zero.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.4a98144b00a3 from=translated src=- shape=22f4b803 vocab=79048526
+-/
 theorem Xzero_homogeneous (F : Frame n d) :
     IsFullGradeShift 0
       (Xzero m (Frame.rows F)) := by
@@ -416,7 +458,9 @@ theorem Xzero_homogeneous (F : Frame n d) :
 
 /-- The mixed raising adjoint has grade shift minus two.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.877fbbd225a3 from=translated src=- shape=d9805cfa vocab=89fcf91f
+-/
 theorem XplusAdj_homogeneous (F : Frame n d) :
     IsFullGradeShift (-2)
       (XplusAdj m (Frame.rows F)) := by
@@ -426,7 +470,9 @@ theorem XplusAdj_homogeneous (F : Frame n d) :
 
 /-- The mixed preserving adjoint has grade shift zero.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.b62845560790 from=translated src=- shape=22f4b803 vocab=eb1ed6c9
+-/
 theorem XzeroAdj_homogeneous (F : Frame n d) :
     IsFullGradeShift 0
       (XzeroAdj m (Frame.rows F)) := by

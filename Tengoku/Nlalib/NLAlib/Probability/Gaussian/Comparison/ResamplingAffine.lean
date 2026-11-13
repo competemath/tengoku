@@ -28,7 +28,9 @@ variable {ι E F : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
 /-- Both bilinear terms in the resampling cancellation are integrable under
 the actual triple times independent perturbation law. Only summand second
-moments and the continuous test's global bound are used.-/
+moments and the continuous test's global bound are used.
+@isnad1 id=other.3h10v.s11.0ff8abf43c7c from=translated src=- shape=f140d13b vocab=a9a61687
+-/
 theorem integrable_bilin_resamplingAffine
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i))
@@ -77,7 +79,9 @@ theorem integrable_bilin_resamplingAffine
 probability law. The exact coefficient is `N/2`, and the independent additive
 perturbation may have any probability law. The displayed integrals are
 integrable as a consequence of the bounded test and summand second moments.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=other.3h10v.s11.c72798fe364e from=translated src=- shape=76c146b7 vocab=9a2c3f6a
+-/
 theorem integral_bilin_resamplingAffine
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i))

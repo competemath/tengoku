@@ -27,7 +27,9 @@ atlas: gaussian-log-sobolev-/
 def sineTruncation (c y : ℝ) : ℝ := c * Real.sin (c⁻¹ * y)
 
 /-- The sine truncation is a sinc multiplier, including at zero. Source:
-Mathlib's `Real.sinc_of_ne_zero`. Atlas: `gaussian-log-sobolev`.-/
+Mathlib's `Real.sinc_of_ne_zero`. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=eq.1h2v.s5.262c22ec7832 from=translated src=- shape=aa310286 vocab=98efc94d
+-/
 theorem sineTruncation_eq_mul_sinc {c : ℝ} (hc : c ≠ 0) (y : ℝ) :
     sineTruncation c y = y * Real.sinc (c⁻¹ * y) := by
   by_cases hy : y = 0
@@ -36,7 +38,9 @@ theorem sineTruncation_eq_mul_sinc {c : ℝ} (hc : c ≠ 0) (y : ℝ) :
     field_simp
 
 /-- Smooth sine truncation does not increase absolute value. Source:
-Mathlib's `Real.abs_sinc_le_one`. Atlas: `gaussian-log-sobolev`.-/
+Mathlib's `Real.abs_sinc_le_one`. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=le.1h2v.s4.78d1e106ed80 from=translated src=- shape=c97db15d vocab=a1431442
+-/
 theorem abs_sineTruncation_le {c : ℝ} (hc : c ≠ 0) (y : ℝ) :
     |sineTruncation c y| ≤ |y| := by
   rw [sineTruncation_eq_mul_sinc hc, abs_mul]
@@ -44,14 +48,18 @@ theorem abs_sineTruncation_le {c : ℝ} (hc : c ≠ 0) (y : ℝ) :
     (mul_one _)
 
 /-- Sine truncation is bounded by its positive scale. Source: Mathlib's
-`Real.abs_sin_le_one`. Atlas: `gaussian-log-sobolev`.-/
+`Real.abs_sin_le_one`. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=le.1h2v.s4.a13f326280df from=translated src=- shape=e3f9897a vocab=bbed9e72
+-/
 theorem abs_sineTruncation_le_scale {c : ℝ} (hc : 0 < c) (y : ℝ) :
     |sineTruncation c y| ≤ c := by
   rw [sineTruncation, abs_mul, abs_of_pos hc]
   exact (mul_le_mul_of_nonneg_left (Real.abs_sin_le_one _) hc.le).trans_eq (mul_one _)
 
 /-- Sine truncation preserves C1 smoothness. Source: Mathlib's
-`ContDiff.sin`. Atlas: `gaussian-log-sobolev`.-/
+`ContDiff.sin`. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=contdiff.1h3v.s6.0b54f5f0d29a from=translated src=- shape=2216b2b6 vocab=90f81d3f
+-/
 theorem contDiff_sineTruncation_comp {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {f : E → ℝ} (hf : ContDiff ℝ 1 f) (c : ℝ) :
     ContDiff ℝ 1 (fun x => sineTruncation c (f x)) := by
@@ -60,7 +68,9 @@ theorem contDiff_sineTruncation_comp {E : Type*} [NormedAddCommGroup E]
 
 /-- The derivative multiplier of the smooth truncation has absolute value
 at most one. Source: Mathlib's `HasFDerivAt.sin`.
-Atlas: `gaussian-log-sobolev`.-/
+Atlas: `gaussian-log-sobolev`.
+@isnad1 id=eq.2h4v.s9.2b7cbcb4c336 from=translated src=- shape=c18a2750 vocab=71405536
+-/
 theorem fderiv_sineTruncation_comp {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] {f : E → ℝ} {x : E} (hf : DifferentiableAt ℝ f x)
     {c : ℝ} (hc : c ≠ 0) :
@@ -73,7 +83,9 @@ theorem fderiv_sineTruncation_comp {E : Type*} [NormedAddCommGroup E]
 
 /-- Smooth bounded sine truncations converge pointwise to the original
 value as the scales tend to infinity. Source: continuity of `Real.sinc`
-at zero. Atlas: `gaussian-log-sobolev`.-/
+at zero. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=tendsto.0h1v.s5.0acd7ee408ca from=translated src=- shape=873ace35 vocab=210da5d9
+-/
 theorem tendsto_sineTruncation_nat (y : ℝ) :
     Tendsto (fun n : ℕ => sineTruncation ((n : ℝ) + 1) y) atTop (nhds y) := by
   have hscale : Tendsto (fun n : ℕ => ((n : ℝ) + 1)⁻¹ * y) atTop (nhds 0) := by
@@ -90,7 +102,9 @@ entropy entails entropy integrability for every C1 function with finite
 square and gradient energy. This closure lemma assumes the displayed LSI
 as an explicit premise; the Gaussian corollaries below discharge it with
 the existing proved Gaussian inequalities. Source: bounded smooth
-truncation and Fatou's lemma. Atlas: `gaussian-log-sobolev`.-/
+truncation and Fatou's lemma. Atlas: `gaussian-log-sobolev`.
+@isnad1 id=integrab.5h6v.s10.89e5e178f2bd from=translated src=- shape=a7e92c0b vocab=9cd17d9d
+-/
 theorem integrable_sq_mul_log_sq_of_logSobolev_bound
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [MeasurableSpace E]
     [BorelSpace E] {ν : Measure E} [IsProbabilityMeasure ν]
@@ -211,7 +225,9 @@ theorem integrable_sq_mul_log_sq_of_logSobolev_bound
 under the whole finite product standard Gaussian law. Source: Gross 1975,
 Thm. 5, via the bounded-test closure proved above.
 Atlas: `gaussian-log-sobolev`.
-atlas: gaussian-log-sobolev-/
+atlas: gaussian-log-sobolev
+@isnad1 id=integrab.3h2v.s9.cd959eaff5ab from=translated src=- shape=2124883f vocab=05cde2b0
+-/
 theorem integrable_sq_mul_log_sq_gaussian {ι : Type*} [Fintype ι] [DecidableEq ι]
     (f : (ι → ℝ) → ℝ) (hf : ContDiff ℝ 1 f)
     (hf2 : Integrable (fun x => f x ^ 2) (gaussianVector ι))
@@ -227,7 +243,9 @@ theorem integrable_sq_mul_log_sq_gaussian {ι : Type*} [Fintype ι] [DecidableEq
 gradient-energy assumptions only; entropy integrability is proved rather
 than assumed. Source: Gross 1975, Thm. 5; Ledoux, Thm. 5.1.
 Atlas: `gaussian-log-sobolev`. Constant `2`, including empty dimensions.
-atlas: gaussian-log-sobolev-/
+atlas: gaussian-log-sobolev
+@isnad1 id=le.3h2v.s10.3f5f2391bab3 from=translated src=- shape=155b51ce vocab=33124e83
+-/
 theorem entropy_sq_le_two_mul_integral_sum_sq_fderiv_gaussian_of_integrable
     {ι : Type*} [Fintype ι] [DecidableEq ι] (f : (ι → ℝ) → ℝ) (hf : ContDiff ℝ 1 f)
     (hf2 : Integrable (fun x => f x ^ 2) (gaussianVector ι))
@@ -243,7 +261,9 @@ theorem entropy_sq_le_two_mul_integral_sum_sq_fderiv_gaussian_of_integrable
 
 /-- In dimension one, square and derivative-square integrability suffice
 for entropy integrability. Source: Gross 1975, Thm. 5; Ledoux, Thm. 5.1.
-Atlas: `gaussian-log-sobolev`.-/
+Atlas: `gaussian-log-sobolev`.
+@isnad1 id=integrab.3h1v.s8.37b7c9d71cfa from=translated src=- shape=c2eec1bf vocab=63821f7b
+-/
 theorem integrable_sq_mul_log_sq_gaussianReal (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f)
     (hf2 : Integrable (fun x => f x ^ 2) (gaussianReal 0 1))
     (hdf : Integrable (fun x => deriv f x ^ 2) (gaussianReal 0 1)) :
@@ -260,7 +280,9 @@ theorem integrable_sq_mul_log_sq_gaussianReal (f : ℝ → ℝ) (hf : ContDiff �
 /-- One-dimensional Gaussian LSI with no entropy-integrability premise.
 Source: Gross 1975, Thm. 5; Ledoux, Thm. 5.1.
 Atlas: `gaussian-log-sobolev`. Constant `2`.
-atlas: gaussian-log-sobolev-/
+atlas: gaussian-log-sobolev
+@isnad1 id=le.3h1v.s8.abb561b7747a from=translated src=- shape=b0bed7ce vocab=7b471841
+-/
 theorem entropy_sq_le_two_mul_integral_sq_deriv_gaussianReal_of_integrable
     (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f)
     (hf2 : Integrable (fun x => f x ^ 2) (gaussianReal 0 1))

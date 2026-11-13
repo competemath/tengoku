@@ -14,7 +14,9 @@ open MeasureTheory ProbabilityTheory
 namespace NLAlib
 
 /-- Entrywise conjugation preserves the actual circular complex Gaussian
-vector product law, including independence of its coordinates.-/
+vector product law, including independence of its coordinates.
+@isnad1 id=haslaw.0h1v.s6.514c7c42e474 from=translated src=- shape=bd4dd827 vocab=77ba269f
+-/
 theorem hasLaw_star_circularComplexGaussianVector {n : Type*} [Fintype n] :
     HasLaw (fun z : n → ℂ => star z) (circularComplexGaussianVector n)
       (circularComplexGaussianVector n) := by

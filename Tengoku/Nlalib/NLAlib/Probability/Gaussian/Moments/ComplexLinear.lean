@@ -18,7 +18,9 @@ open scoped Matrix
 namespace NLAlib
 
 /-- The squared modulus of an actual circular complex Gaussian linear form
-has expectation twice the squared coefficient norm and is integrable.-/
+has expectation twice the squared coefficient norm and is integrable.
+@isnad1 id=and.0h2v.s7.3d0bfb847464 from=translated src=- shape=28d13f17 vocab=9138e6ec
+-/
 theorem integrable_and_integral_normSq_dotProduct_circularComplexGaussianVector
     {n : Type*} [Fintype n] (c : n → ℂ) :
     Integrable (fun z : n → ℂ => Complex.normSq (c ⬝ᵥ z)) (circularComplexGaussianVector n) ∧
@@ -58,7 +60,9 @@ theorem integrable_and_integral_normSq_dotProduct_circularComplexGaussianVector
   ring
 
 /-- Actual circular complex Gaussian linear forms are integrable and have
-zero complex mean. The proof preserves the full joint product law.-/
+zero complex mean. The proof preserves the full joint product law.
+@isnad1 id=and.0h2v.s6.e789a5b7951f from=translated src=- shape=2d2f6759 vocab=1e370654
+-/
 theorem integrable_and_integral_dotProduct_circularComplexGaussianVector
     {n : Type*} [Fintype n] (c : n → ℂ) :
     Integrable (fun z : n → ℂ => c ⬝ᵥ z) (circularComplexGaussianVector n) ∧

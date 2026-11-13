@@ -15,7 +15,9 @@ open MeasureTheory Set
 namespace NLAlib
 
 /-- The companion transform differentiates as its defining affine combination
-of the actual Cauchy transform and the reciprocal evaluation point.-/
+of the actual Cauchy transform and the reciprocal evaluation point.
+@isnad1 id=hasderiv.3h4v.s7.6e08f3b0a1a4 from=translated src=- shape=6b45f6f4 vocab=547d2148
+-/
 theorem hasDerivAt_singularValueCompanionPhi (μ : Measure ℝ) [IsFiniteMeasure μ]
     {γ b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     HasDerivAt (singularValueCompanionPhi μ γ)
@@ -27,7 +29,9 @@ theorem hasDerivAt_singularValueCompanionPhi (μ : Measure ℝ) [IsFiniteMeasure
   ring
 
 /-- Express the actual D-transform root function entirely in terms of its
-first two inverse-denominator moments and the actual transforms.-/
+first two inverse-denominator moments and the actual transforms.
+@isnad1 id=eq.3h4v.s8.ee47add57289 from=translated src=- shape=3f247470 vocab=d7207754
+-/
 theorem singularValuePsi_eq_moments (μ : Measure ℝ) [IsFiniteMeasure μ]
     {γ b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     singularValuePsi μ γ y =

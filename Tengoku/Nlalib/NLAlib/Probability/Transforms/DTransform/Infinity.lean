@@ -18,7 +18,9 @@ namespace NLAlib
 /-- The actual D-transform root function tends to `-2` at positive infinity.
 Only compact support and the probability normalization are needed.
 Source: ScreeNOT, Lemma 8.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=tendsto.4h3v.s6.2081a5120dcf from=translated src=- shape=7aacaf79 vocab=3e31f1d7
+-/
 theorem tendsto_singularValuePsi_atTop (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1) (hb : 0 ≤ b)
     (hsupport : μ.support ⊆ Icc 0 b) :

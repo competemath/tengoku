@@ -28,7 +28,9 @@ variable {d m n : ℕ}
 grade `mu`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.727c35259a06 from=translated src=- shape=5996b1cf vocab=e19ad594
+-/
 theorem rowProjection_CStackTranspose_gradeProjection
     (F : Frame n d) (mu : ℕ) :
     Heavy.rowGradeProjection (m := m) (n := n) mu *
@@ -59,7 +61,9 @@ theorem rowProjection_CStackTranspose_gradeProjection
 /-- Exact cogram of the projected synthesis factor.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=other.0h5v.s9.962d8c9c9a6b from=translated src=- shape=4bbccb8c vocab=4c6c5d34
+-/
 theorem CStack_restricted_cogram (F : Frame n d) (mu : ℕ) :
     let P := gradeProjection (d := d) (m := m) (n := n) (mu + 1)
     let R := Heavy.rowGradeProjection (m := m) (n := n) mu
@@ -112,7 +116,9 @@ grade above the row input projection, exactly as required by the light and
 mixed factorizations.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.0845e3459f01 from=translated src=- shape=3530b7a1 vocab=54eb4dea
+-/
 theorem CStack_restricted_norm (F : Frame n d) (mu : ℕ) :
     ‖gradeProjection (d := d) (m := m) (n := n) (mu + 1) *
         CStack (m := m) F *

@@ -430,7 +430,9 @@ private lemma ouB_ball_bounds {s₀ s : ℝ} (hs₀ : 0 < s₀) (hs : s ∈ Metr
 `d/dt ∫ P_t f log P_t f dγ = -∫ ((P_t f)')² / P_t f dγ`, `P_t = ornsteinUhlenbeck t`.
 Source: Bakry–Gentil–Ledoux 2014, §5.7; Ledoux, *Concentration of Measure*, §5.1. Atlas:
 `ornstein-uhlenbeck`.
-atlas: ornstein-uhlenbeck-/
+atlas: ornstein-uhlenbeck
+@isnad1 id=hasderiv.6h4v.s8.8ab84a89ca40 from=translated src=- shape=6f5b3acb vocab=4befbe9b
+-/
 theorem hasDerivAt_integral_ornsteinUhlenbeck_mul_log (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f)
     (δ C : ℝ) (hδ : 0 < δ) (hlow : ∀ x, δ ≤ f x) (hup : ∀ x, f x ≤ C)
     (hdf : ∀ x, |deriv f x| ≤ C) (t : ℝ) (ht : 0 < t) :

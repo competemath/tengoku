@@ -75,7 +75,9 @@ private lemma sum_sq_ofLp {m : ℕ} (y : EuclideanSpace ℝ (Fin m)) :
 /-- Polar coordinates for a scalar radial test of a standard Gaussian vector.
 Source: Gaussian polar integration; atlas `gaussian-positive-moments`.
 This is only a scalar Gaussian identity, with no matrix eigenvalue density.
-atlas: gaussian-positive-moments-/
+atlas: gaussian-positive-moments
+@isnad1 id=eq.1h2v.s9.7ac4b03b89c9 from=translated src=- shape=448a75c1 vocab=705adcc8
+-/
 theorem integral_radial_gaussianVector (m : ℕ) (hm : 1 ≤ m) (φ : ℝ → ℝ) :
     ∫ x, φ (Real.sqrt (∑ i, x i ^ 2)) ∂(gaussianVector (Fin m))
       = m * (volume : Measure (EuclideanSpace ℝ (Fin m))).real (Metric.ball 0 1)
@@ -104,7 +106,9 @@ theorem integral_radial_gaussianVector (m : ℕ) (hm : 1 ≤ m) (φ : ℝ → �
 /-- The half-line Gaussian moment `∫₀^∞ yˢ e^{-y²/2} dy = 2^{(s+1)/2} · ½ · Γ((s+1)/2)` for
 `s > -1`. Source: Euler's Gamma integral (`integral_rpow_mul_exp_neg_mul_rpow` with `p = 2`,
 `b = 1/2`); atlas `gaussian-positive-moments`.
-atlas: gaussian-positive-moments-/
+atlas: gaussian-positive-moments
+@isnad1 id=eq.1h1v.s7.a51630c8c4b1 from=translated src=- shape=3f467c80 vocab=64ba4f1a
+-/
 theorem integral_rpow_mul_exp_neg_sq_div_two (s : ℝ) (hs : -1 < s) :
     ∫ y in Ioi (0 : ℝ), y ^ s * Real.exp (-y ^ 2 / 2)
       = 2 ^ ((s + 1) / 2) * (1 / 2) * Real.Gamma ((s + 1) / 2) := by
@@ -123,7 +127,9 @@ theorem integral_rpow_mul_exp_neg_sq_div_two (s : ℝ) (hs : -1 < s) :
 
 /-- Every nonnegative real power of the squared Gaussian radius is integrable.
 Source: Gaussian finite moments; atlas `gaussian-positive-moments`.
-atlas: gaussian-positive-moments-/
+atlas: gaussian-positive-moments
+@isnad1 id=integrab.1h2v.s6.a065f184e414 from=translated src=- shape=ef69f33e vocab=2214d18e
+-/
 theorem integrable_rpow_sum_sq_gaussianVector (m : ℕ) (q : ℝ) (hq : 0 ≤ q) :
     Integrable (fun x : Fin m → ℝ => (∑ i, x i ^ 2) ^ q)
       (gaussianVector (Fin m)) := by
@@ -149,7 +155,9 @@ theorem integrable_rpow_sum_sq_gaussianVector (m : ℕ) (q : ℝ) (hq : 0 ≤ q)
 /-- Exact positive real moments of the squared Gaussian radius.
 Source: scalar Gaussian radial integration; atlas `gaussian-positive-moments`.
 This identity is the radial input to the operator inverse-Wishart probe bound.
-atlas: gaussian-positive-moments-/
+atlas: gaussian-positive-moments
+@isnad1 id=eq.2h2v.s7.ce1b58726bbb from=translated src=- shape=cd61a5cc vocab=8561d805
+-/
 theorem integral_rpow_sum_sq_gaussianVector (m : ℕ) (hm : 1 ≤ m)
     (q : ℝ) (hq : 0 ≤ q) :
     ∫ x : Fin m → ℝ, (∑ i, x i ^ 2) ^ q
@@ -212,7 +220,9 @@ theorem integral_rpow_sum_sq_gaussianVector (m : ℕ) (hm : 1 ≤ m)
 /-- The absolute scalar Gaussian moment at every nonnegative real order.
 Source: scalar Gaussian Gamma integral; atlas `gaussian-positive-moments`.
 This supplies the normalization of the operator quadratic probe.
-atlas: gaussian-positive-moments-/
+atlas: gaussian-positive-moments
+@isnad1 id=eq.1h1v.s7.6543bce0547c from=translated src=- shape=eb1a48b4 vocab=49b0b874
+-/
 theorem integral_abs_rpow_gaussianReal (q : ℝ) (hq : 0 ≤ q) :
     (∫ z : ℝ, |z| ^ (2 * q) ∂(gaussianReal 0 1))
       = 2 ^ q * Real.Gamma (q + 1 / 2) / Real.sqrt Real.pi := by

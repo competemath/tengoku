@@ -35,7 +35,9 @@ variable [Fintype ι] [Fintype m] [Fintype n] [DecidableEq ι]
   [DecidableEq m] [DecidableEq n] [RCLike 𝕜]
 
 /-- A mode relabeling is an ordinary row/column relabeling of every variance
-flattening.-/
+flattening.
+@isnad1 id=eq.0h9v.s10.5aff1b53e60d from=translated src=- shape=32d2c62d vocab=4f3dfd94
+-/
 theorem specNorm_chaosFlattening_reindexModes (e : σ ≃ τ)
     (A : (τ → ι) → Matrix m n 𝕜) (S : Finset σ) :
     specNorm (chaosFlattening (chaosReindexModes e A) S) =
@@ -58,7 +60,9 @@ theorem specNorm_chaosFlattening_reindexModes (e : σ ≃ τ)
         chaosAssemble, Finset.mem_map_equiv, ht, Finset.equivMap]
   rw [← he, specNorm_reindex]
 
-/-- Covariance flattenings are likewise unchanged by mode relabeling.-/
+/-- Covariance flattenings are likewise unchanged by mode relabeling.
+@isnad1 id=eq.0h9v.s10.169f640b6586 from=translated src=- shape=4ebbfb5d vocab=775715ee
+-/
 theorem specNorm_chaosCovarianceFlattening_reindexModes (e : σ ≃ τ)
     (A : (τ → ι) → Matrix m n 𝕜) (S : Finset σ) :
     specNorm (chaosCovarianceFlattening (chaosReindexModes e A) S) =
@@ -81,7 +85,9 @@ theorem specNorm_chaosCovarianceFlattening_reindexModes (e : σ ≃ τ)
         chaosAssemble, Finset.mem_map_equiv, ht, Finset.equivMap]
   rw [← he, specNorm_reindex]
 
-/-- The variance parameter is unchanged by relabeling the chaos modes.-/
+/-- The variance parameter is unchanged by relabeling the chaos modes.
+@isnad1 id=eq.0h8v.s6.7863eccbdfb0 from=translated src=- shape=7e21d4f3 vocab=6c9f2056
+-/
 theorem chaosSigma_reindexModes (e : σ ≃ τ) (A : (τ → ι) → Matrix m n 𝕜) :
     chaosSigma (chaosReindexModes e A) = chaosSigma A := by
   apply le_antisymm
@@ -99,7 +105,9 @@ theorem chaosSigma_reindexModes (e : σ ≃ τ) (A : (τ → ι) → Matrix m n 
     rw [hT] at h
     exact h
 
-/-- The covariance parameter is unchanged by relabeling the chaos modes.-/
+/-- The covariance parameter is unchanged by relabeling the chaos modes.
+@isnad1 id=eq.0h8v.s6.a078e9d3b18f from=translated src=- shape=7e21d4f3 vocab=6fb1ce97
+-/
 theorem chaosCovariance_reindexModes (e : σ ≃ τ) (A : (τ → ι) → Matrix m n 𝕜) :
     chaosCovariance (chaosReindexModes e A) = chaosCovariance A := by
   apply le_antisymm
@@ -119,7 +127,9 @@ theorem chaosCovariance_reindexModes (e : σ ≃ τ) (A : (τ → ι) → Matrix
     exact h
 
 /-- Relabeling coefficient modes and coordinate groups together leaves the
-actual decoupled multilinear polynomial unchanged.-/
+actual decoupled multilinear polynomial unchanged.
+@isnad1 id=eq.0h9v.s7.90b98c273609 from=translated src=- shape=3c8dda41 vocab=19edf47a
+-/
 theorem decoupledMatrixChaos_reindexModes (e : σ ≃ τ)
     (A : (τ → ι) → Matrix m n 𝕜) (h : τ → ι → ℝ) :
     decoupledMatrixChaos (chaosReindexModes e A) (fun t => h (e t)) =

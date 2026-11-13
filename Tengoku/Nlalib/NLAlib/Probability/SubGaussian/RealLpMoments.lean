@@ -17,7 +17,9 @@ open scoped ENNReal NNReal
 namespace NLAlib
 
 /-- A centered sub-Gaussian observable belongs to every finite `L^q`; the
-uncentered mean is the actual Bochner integral.-/
+uncentered mean is the actual Bochner integral.
+@isnad1 id=memlp.1h5v.s6.6a34632f6f4e from=translated src=- shape=fe19e5ff vocab=399a3030
+-/
 theorem memLp_of_centered_hasSubgaussianMGF
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} {c : ℝ≥0}

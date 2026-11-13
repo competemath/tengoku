@@ -50,12 +50,16 @@ instance bandWordDecidableEq (N : ℕ) : DecidableEq (BandWord N) := by
 
 /-- There are exactly three grade-shift labels.
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.ba80faf5e211 from=translated src=- shape=b0ae1d2b vocab=a079c536
+-/
 @[simp] theorem card_shift : Fintype.card Shift = 3 := by decide
 
 /-- There are exactly three to the sequence length many band words.
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.68090242eca6 from=translated src=- shape=5b09d1d5 vocab=1f994eea
+-/
 @[simp] theorem card_bandWord (N : ℕ) : Fintype.card (BandWord N) = 3 ^ N := by
   induction N with
   | zero => simp [BandWord]
@@ -83,7 +87,9 @@ def walkGradeFrom : {N : ℕ} → ℕ → BandWord N → Option ℕ
 ordered band words.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.8d0b72bdb39e from=translated src=- shape=aca1330f vocab=2f69062c
+-/
 theorem sum_wordOperator_eq_pow (B : Shift → FullOp d m n) (N : ℕ) :
     (∑ w : BandWord N, wordOperator B w) = (∑ delta : Shift, B delta) ^ N := by
   induction N with
@@ -104,7 +110,9 @@ theorem sum_wordOperator_eq_pow (B : Shift → FullOp d m n) (N : ℕ) :
 
 /-- One admissible band step raises the natural grade by at most two.
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s5.af5e33a66295 from=translated src=- shape=1145c0a2 vocab=378643c4
+-/
 theorem nextGrade_forward_le {delta : Shift} {nu mu : ℕ}
     (h : nextGrade delta nu = some mu) : mu ≤ nu + 2 := by
   cases delta with
@@ -118,7 +126,9 @@ theorem nextGrade_forward_le {delta : Shift} {nu mu : ℕ}
 
 /-- One admissible band step lowers the natural grade by at most two.
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s5.921a6d51c501 from=translated src=- shape=ca7bdeb7 vocab=378643c4
+-/
 theorem nextGrade_backward_le {delta : Shift} {nu mu : ℕ}
     (h : nextGrade delta nu = some mu) : nu ≤ mu + 2 := by
   cases delta with
@@ -134,7 +144,9 @@ theorem nextGrade_backward_le {delta : Shift} {nu mu : ℕ}
 most twice the number of remaining factors.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s5.f9d05bd4118e from=translated src=- shape=00e09137 vocab=a516b280
+-/
 theorem startGrade_le_twice_length_of_walk_to_zero
     {N nu : ℕ} (w : BandWord N)
     (h : walkGradeFrom nu w = some 0) : nu ≤ 2 * N := by
@@ -156,7 +168,9 @@ theorem startGrade_le_twice_length_of_walk_to_zero
 vacuum-output block.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h8v.s8.278b0d3b5b5c from=translated src=- shape=d83a006d vocab=6d58ceea
+-/
 theorem projected_word_eq_zero_of_walk_ne_zero
     (_F : Frame n d) (B : Shift → FullOp d m n)
     (hhom : ∀ delta, IsFullGradeShift delta.degree (B delta))
@@ -216,7 +230,9 @@ grade, has norm at most `beta^(2q)` whenever all bands up to grade `2q` obey
 the common bound.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h11v.s9.311ca61af9c6 from=translated src=- shape=fcceed9e vocab=6c6954d6
+-/
 theorem closed_projected_word_norm_le
     (_F : Frame n d) (B : Shift → FullOp d m n)
     (hhom : ∀ delta, IsFullGradeShift delta.degree (B delta))
@@ -286,7 +302,9 @@ theorem closed_projected_word_norm_le
 /-- Uniform projected-word bound, including invalid and nonclosed words.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h8v.s9.322841807cbe from=translated src=- shape=f8cc6ab3 vocab=a92b3ea5
+-/
 theorem projected_word_norm_le
     (F : Frame n d) (B : Shift → FullOp d m n)
     (hhom : ∀ delta, IsFullGradeShift delta.degree (B delta))
@@ -306,7 +324,9 @@ theorem projected_word_norm_le
 estimate.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s9.92e7f52e2ee7 from=translated src=- shape=cb32b0ba vocab=182db73e
+-/
 theorem projected_power_norm_le
     (F : Frame n d) (B : Shift → FullOp d m n)
     (hhom : ∀ delta, IsFullGradeShift delta.degree (B delta))
@@ -339,7 +359,9 @@ theorem projected_power_norm_le
 diagonal matrix elements.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s9.91a226ce980d from=translated src=- shape=f1f3c7fc vocab=27dfa1d8
+-/
 theorem vacuum_diagonal_sum_le
     (F : Frame n d) (B : Shift → FullOp d m n)
     (hhom : ∀ delta, IsFullGradeShift delta.degree (B delta))
@@ -388,7 +410,9 @@ theorem vacuum_diagonal_sum_le
 /-- Concrete iid trace-moment estimate from actual restricted band bounds.
 
 Source: ported from `SparseFockFormal.ConcreteLadderIteration`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s8.9f719459702c from=translated src=- shape=3383c9e7 vocab=5d7cb8b0
+-/
 theorem iid_trace_moment_le_of_band_bounds
     (hb : 1 < b) (F : Frame n d) {q : ℕ} {beta : ℝ}
     (hbeta : 0 ≤ beta)

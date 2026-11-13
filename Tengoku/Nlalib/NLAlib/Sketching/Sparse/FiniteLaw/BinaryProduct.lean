@@ -39,7 +39,9 @@ def product (mu : FiniteLaw alpha) (nu : FiniteLaw beta) :
 
 /-- A point in the independent finite product has the product of its marginal masses.
 Source: ported from `SparseFockFormal.FiniteProductLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.81e39e9e8dd0 from=translated src=- shape=625b4265 vocab=7c5b510c
+-/
 @[simp] theorem product_weight (mu : FiniteLaw alpha) (nu : FiniteLaw beta)
     (a : alpha) (b : beta) :
     (product mu nu).weight (a, b) = mu.weight a * nu.weight b := rfl
@@ -47,7 +49,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Fubini's identity for the explicit product weights.
 
 Source: ported from `SparseFockFormal.FiniteProductLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.9b80bc77e242 from=translated src=- shape=0915b322 vocab=4f649105
+-/
 theorem product_expect_eq_iterated (mu : FiniteLaw alpha) (nu : FiniteLaw beta)
     (f : alpha × beta → ℝ) :
     (product mu nu).expect f =
@@ -62,7 +66,9 @@ theorem product_expect_eq_iterated (mu : FiniteLaw alpha) (nu : FiniteLaw beta)
 /-- Event form of heterogeneous Fubini.
 
 Source: ported from `SparseFockFormal.FiniteProductLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.f7a0b1f3f6b1 from=translated src=- shape=816216a2 vocab=8fae6f02
+-/
 theorem product_prob_eq_iterated (mu : FiniteLaw alpha) (nu : FiniteLaw beta)
     (event : Set (alpha × beta)) :
     (product mu nu).prob event =
@@ -78,7 +84,9 @@ theorem product_prob_eq_iterated (mu : FiniteLaw alpha) (nu : FiniteLaw beta)
 /-- Uniform conditional upper bounds pass to an independent product law.
 
 Source: ported from `SparseFockFormal.FiniteProductLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s6.6c2581b40a69 from=translated src=- shape=f2189395 vocab=cbf4905e
+-/
 theorem product_prob_le {mu : FiniteLaw alpha} {nu : FiniteLaw beta}
     {event : Set (alpha × beta)} {delta : ℝ}
     (h : ∀ a, nu.prob {b | (a, b) ∈ event} ≤ delta) :
@@ -93,7 +101,9 @@ theorem product_prob_le {mu : FiniteLaw alpha} {nu : FiniteLaw beta}
 law.
 
 Source: ported from `SparseFockFormal.FiniteProductLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s6.d6498e846e94 from=translated src=- shape=a062ebcd vocab=cbf4905e
+-/
 theorem le_product_prob {mu : FiniteLaw alpha} {nu : FiniteLaw beta}
     {event : Set (alpha × beta)} {p : ℝ}
     (h : ∀ a, p ≤ nu.prob {b | (a, b) ∈ event}) :

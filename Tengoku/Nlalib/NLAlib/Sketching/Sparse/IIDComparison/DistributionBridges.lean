@@ -29,7 +29,9 @@ variable {s b n d : ℕ}
 definitionally the same product type, and so are their laws.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.31beb51c7983 from=translated src=- shape=bd43db18 vocab=a9d103a7
+-/
 theorem selectorArrayLaw_eq_rawSampleLaw (hb : 0 < b) :
     selectorArrayLaw hb s n = sparseStackSelectorLaw s b n hb :=
   rfl
@@ -38,7 +40,9 @@ theorem selectorArrayLaw_eq_rawSampleLaw (hb : 0 < b) :
 the deterministic SparseStack model.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.90ada0880581 from=translated src=- shape=dd09d951 vocab=ed8a3bd6
+-/
 theorem selectorVector_eq_signedBasis (x : XArray b s n)
     (g : Fin s) (i : Fin n) :
     selectorVector (x (g, i)) = signedBasis (toSample x) g i := by
@@ -52,7 +56,9 @@ theorem selectorVector_eq_signedBasis (x : XArray b s n)
 SparseStack Gram error.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.7fe84586e7f3 from=translated src=- shape=fdee22d3 vocab=e96d6f48
+-/
 theorem sparseVectorError_eq_gramError (hs : 0 < s)
     (F : Frame n d) (x : XArray b s n) :
     sparseVectorError F x = gramError F (sparseStackMatrix (toSample x)) := by
@@ -127,7 +133,9 @@ def flattenYEquiv (s b n : ℕ) :
 
 /-- Flattening the nested iid outcome reads the original block-column coordinate.
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.15d4f5c3151a from=translated src=- shape=27a64bc1 vocab=7e11624c
+-/
 @[simp] theorem flattenY_apply_pair (y : YArray b s n)
     (g : Fin s) (a : Fin b) (i : Fin n) :
     flattenY y (finProdFinEquiv (g, a), i) = y (g, i) a := by
@@ -136,7 +144,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Pointwise probability masses are preserved by flattening.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.3de85e450074 from=translated src=- shape=91867ed5 vocab=1f2fed18
+-/
 theorem iidArrayLaw_weight_eq_iidLaw_weight (hb : 1 < b)
     (y : YArray b s n) :
     (iidArrayLaw (lt_trans Nat.zero_lt_one hb) s n).weight y =
@@ -155,7 +165,9 @@ theorem iidArrayLaw_weight_eq_iidLaw_weight (hb : 1 < b)
 array law and the flattened product-Fock law.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.a126c7c719cf from=translated src=- shape=bf78712d vocab=e185dfe1
+-/
 theorem iidArrayLaw_expect_flatten_eq_iidLaw_expect (hb : 1 < b)
     (f : Configuration (s * b) n → ℝ) :
     (iidArrayLaw (lt_trans Nat.zero_lt_one hb) s n).expect
@@ -171,7 +183,9 @@ theorem iidArrayLaw_expect_flatten_eq_iidLaw_expect (hb : 1 < b)
 coordinate.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.629f1d2a1937 from=translated src=- shape=886f6d24 vocab=f660ea5e
+-/
 theorem eta_eq_sqrt_mul_yValue (z : TernaryOutcome) :
     eta b z = Real.sqrt b * yValue z := by
   cases z <;> simp [eta, yValue]
@@ -180,7 +194,9 @@ theorem eta_eq_sqrt_mul_yValue (z : TernaryOutcome) :
 their corresponding flattened normalized coordinates, divided by `b`.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s8.c437dcaa9e1e from=translated src=- shape=87e04a12 vocab=623af398
+-/
 theorem sum_eta_flatten_product (_hb : 0 < b) (y : YArray b s n)
     (g : Fin s) (i j : Fin n) :
     (∑ a : Fin b,
@@ -206,7 +222,9 @@ theorem sum_eta_flatten_product (_hb : 0 < b) (y : YArray b s n)
 product-Fock iid Gram error.
 
 Source: ported from `SparseFockFormal.DistributionBridges`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.0f9346392477 from=translated src=- shape=0039dc47 vocab=e5bd7a90
+-/
 theorem iidVectorError_eq_flattened_iidGramError
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d) (y : YArray b s n) :
     iidVectorError F y = iidGramError b F (flattenY y) := by

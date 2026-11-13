@@ -24,7 +24,9 @@ variable {ι κ F : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 
 /-- The first exact source cancellation, with the actual triple and independent
 noise law. The bounded continuous test needs no derivative hypothesis here.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=other.3h10v.s11.97021224cd67 from=translated src=- shape=9609d397 vocab=6de05db4
+-/
 theorem integral_bilin_resamplingStein_first
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))
@@ -46,7 +48,9 @@ theorem integral_bilin_resamplingStein_first
 actual original sum's full covariance contracts into the genuine resampling
 difference and the independent second-replacement derivative test. Both sides
 are genuine integrals; boundedness and second moments supply integrability.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=other.8h12v.s12.846355bc9b27 from=translated src=- shape=779a1ce4 vocab=782d70eb
+-/
 theorem integral_bilin_resamplingStein_gaussian
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))

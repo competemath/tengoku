@@ -24,7 +24,9 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι]
 
 /-- A unit directional projection of independent signs has sub-Gaussian
-MGF variance proxy one.-/
+MGF variance proxy one.
+@isnad1 id=hassubga.1h2v.s6.b69fd748ef7c from=translated src=- shape=57d5eb74 vocab=a1c767a4
+-/
 theorem hasSubgaussianMGF_dotProduct_rademacherVector
     (u : ι → ℝ) (hu : ‖WithLp.toLp 2 u‖ = 1) :
     HasSubgaussianMGF (fun x : ι → ℝ => u ⬝ᵥ x) 1 (rademacherVector ι) := by
@@ -46,7 +48,9 @@ theorem hasSubgaussianMGF_dotProduct_rademacherVector
 /-- Independent sign vectors satisfy the manuscript's directional
 exponential-square factor hypothesis with the fixed parameter `10`.
 This parameter is sufficient and is not claimed optimal.
-atlas: khatri-rao-sharp-growth (partial)-/
+atlas: khatri-rao-sharp-growth (partial)
+@isnad1 id=le.1h2v.s7.9c2bfee906ba from=translated src=- shape=00da30ac vocab=16738eed
+-/
 theorem lintegral_exp_sq_dotProduct_rademacherVector_le_two
     (u : ι → ℝ) (hu : ‖WithLp.toLp 2 u‖ = 1) :
     (∫⁻ x : ι → ℝ, ENNReal.ofReal (Real.exp ((u ⬝ᵥ x) ^ 2 / (10 : ℝ) ^ 2))

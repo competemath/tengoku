@@ -33,7 +33,9 @@ def SupportedAtGrade (nu : ℕ) (x : Fin d × Pattern m n → ℝ) : Prop :=
 
 /-- An exact-grade projected vector is supported at that grade.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=supporte.0h5v.s6.a852cd11147c from=translated src=- shape=4dd7a273 vocab=10bb1b88
+-/
 theorem gradeProjection_supported (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     SupportedAtGrade nu
@@ -44,7 +46,9 @@ theorem gradeProjection_supported (nu : ℕ)
 
 /-- A grade-supported vector has zero external fiber outside its grade.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.2dc1ba08368a from=translated src=- shape=c8603aaf vocab=b8c23024
+-/
 theorem fiber_eq_zero_of_not_grade {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x)
     {p : Pattern m n} (hp : p.grade ≠ nu) :
@@ -54,7 +58,9 @@ theorem fiber_eq_zero_of_not_grade {nu : ℕ}
 
 /-- A grade-supported vector has zero frame contraction outside its grade.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h8v.s5.66add07f41a4 from=translated src=- shape=08f859fb vocab=0ddd31de
+-/
 theorem contract_eq_zero_of_not_grade {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x)
     (F : Frame n d) (c : Fin n) {p : Pattern m n}
@@ -67,7 +73,9 @@ theorem contract_eq_zero_of_not_grade {nu : ℕ}
 shift.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h5v.s4.7c7f67855383 from=translated src=- shape=65ce45d0 vocab=ec1323b6
+-/
 theorem physicalWordSum_homogeneous (u : Fin n → Fin d → ℝ) (w : Word) :
     IsFullGradeShift w.degree (physicalWordSum m u w) := by
   intro out inp hnonzero
@@ -88,7 +96,9 @@ theorem physicalWordSum_homogeneous (u : Fin n → Fin d → ℝ) (w : Word) :
 
 /-- The directional mixed raising band has grade shift two.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.c11d03880481 from=translated src=- shape=22f4b803 vocab=a1d76d54
+-/
 theorem Yplus_homogeneous (F : Frame n d) :
     IsFullGradeShift 2 (Yplus m (Frame.rows F)) := by
   simpa [Yplus, wordSum, Word.degree, Leg.degree] using
@@ -96,7 +106,9 @@ theorem Yplus_homogeneous (F : Frame n d) :
 
 /-- The directional mixed preserving band has grade shift zero.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.4afce07476c6 from=translated src=- shape=22f4b803 vocab=09a7f729
+-/
 theorem Yzero_homogeneous (F : Frame n d) :
     IsFullGradeShift 0 (Yzero m (Frame.rows F)) := by
   simpa [Yzero, wordSum, Word.degree, Leg.degree] using
@@ -104,7 +116,9 @@ theorem Yzero_homogeneous (F : Frame n d) :
 
 /-- The heavy correction band has grade shift zero.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h4v.s4.5e8130e8c638 from=translated src=- shape=22f4b803 vocab=864beffa
+-/
 theorem Hprime_homogeneous (F : Frame n d) :
     IsFullGradeShift 0 (Hprime m (Frame.rows F)) := by
   simpa [Hprime, wordSum, Word.degree, Leg.degree] using
@@ -114,7 +128,9 @@ theorem Hprime_homogeneous (F : Frame n d) :
 identically zero.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h8v.s7.5216cb9ac5db from=translated src=- shape=a274a6b5 vocab=d8ef9d57
+-/
 theorem fullFiber_mulVec_eq_zero_of_grade {delta : ℤ}
     {A : FullOp d m n} (hA : IsFullGradeShift delta A)
     {nu : ℕ} {x : Fin d × Pattern m n → ℝ}
@@ -144,7 +160,9 @@ def markedEnergy (a b : Level) (F : Frame n d)
 
 /-- Marked-pair energy equals the literal nested sum over patterns, rows, and admissible sites.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.6e53f07ee4d5 from=translated src=- shape=d5a68178 vocab=94f2a294
+-/
 theorem markedEnergy_eq_nested (a b : Level) (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     markedEnergy a b F x =
@@ -158,7 +176,9 @@ theorem markedEnergy_eq_nested (a b : Level) (F : Frame n d)
 light site.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s6.0147b9c44c6f from=translated src=- shape=84fb00e3 vocab=5370849c
+-/
 theorem light_fresh_energy_at_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     (∑ r, ∑ a ∈ p.lightInRow r,
@@ -187,7 +207,9 @@ theorem light_fresh_energy_at_le (F : Frame n d)
 heavy site.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s6.7f6c421ff75a from=translated src=- shape=84fb00e3 vocab=f55f96a2
+-/
 theorem heavy_fresh_energy_at_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     (∑ r, ∑ a ∈ p.heavyInRow r,
@@ -215,7 +237,9 @@ theorem heavy_fresh_energy_at_le (F : Frame n d)
 /-- Fully concrete input-side resummation for light marks.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s6.69beb513f044 from=translated src=- shape=acc6e7c4 vocab=ee1e8134
+-/
 theorem markedEnergy_one_zero_le (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     markedEnergy .one .zero F x ≤
@@ -259,7 +283,9 @@ theorem markedEnergy_one_zero_le (F : Frame n d) {nu : ℕ}
 kept denominator-free.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s6.09d949381709 from=translated src=- shape=a91a8636 vocab=fb50c124
+-/
 theorem two_mul_markedEnergy_two_zero_le (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     2 * markedEnergy .two .zero F x ≤

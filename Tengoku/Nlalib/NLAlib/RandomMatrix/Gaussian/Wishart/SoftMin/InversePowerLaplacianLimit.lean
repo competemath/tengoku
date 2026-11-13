@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- The symmetric off-diagonal form of the normalized Gram Laplacian has
 the exact inverse-eigenvalue gap limit. Source: resolvent operator
-hard-edge proof; atlas `wishart-lambda-min-tail` (Laplacian limit helper).-/
+hard-edge proof; atlas `wishart-lambda-min-tail` (Laplacian limit helper).
+@isnad1 id=tendsto.3h6v.s9.faba8917f8bc from=translated src=- shape=375bed27 vocab=c36384b1
+-/
 theorem tendsto_normalized_inverse_power_laplacian_symmetric
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -60,7 +62,9 @@ theorem tendsto_normalized_inverse_power_laplacian_symmetric
 
 /-- Symmetry combines the ordered off-diagonal gap terms into twice one
 directed sum. Source: scalar divided differences of the inverse-power
-Hessian; atlas `wishart-lambda-min-tail` (limit constant helper).-/
+Hessian; atlas `wishart-lambda-min-tail` (limit constant helper).
+@isnad1 id=eq.0h4v.s8.de3d9a2806ca from=translated src=- shape=f41611ac vocab=2bfbf4dc
+-/
 theorem sum_erase_symmetric_inverse_power_limit_eq
     {ι : Type*} [Fintype ι] [DecidableEq ι] (ρ w : ι → ℝ) (i₀ : ι) :
     (∑ i, ∑ j ∈ Finset.univ.erase i, (w i + w j) * ρ i * ρ j *
@@ -105,7 +109,9 @@ theorem sum_erase_symmetric_inverse_power_limit_eq
 
 /-- The symmetric limiting Gram Laplacian is bounded by the exact
 hard-edge coefficient. Source: inverse spectral gap correction; atlas
-`wishart-lambda-min-tail` (sharp limiting bound helper).-/
+`wishart-lambda-min-tail` (sharp limiting bound helper).
+@isnad1 id=le.5h6v.s8.916429bf5e66 from=translated src=- shape=1a2010f0 vocab=a0f6223c
+-/
 theorem normalized_inverse_power_laplacian_symmetric_limit_le
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)

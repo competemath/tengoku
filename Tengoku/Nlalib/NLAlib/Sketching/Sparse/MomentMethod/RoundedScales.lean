@@ -17,14 +17,18 @@ namespace NLAlib.SparseSketch
 
 /-- The auxiliary dimension parameter dominates the moment order.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s3.75b65c9fcd8a from=translated src=- shape=86c6c8ca vocab=300c02c2
+-/
 theorem q_le_momentDim (d q : ℕ) : q ≤ momentDim d q := by
   simp [momentDim]
   omega
 
 /-- The auxiliary dimension parameter is bounded by twice the sum of dimension and moment order.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h2v.s5.13c88b2c570b from=translated src=- shape=f6222803 vocab=ebe54998
+-/
 theorem momentDim_le_two_mul_add {d q : ℕ} (hd : 1 ≤ d) :
     momentDim d q ≤ 2 * (d + q) := by
   simp [momentDim]
@@ -32,7 +36,9 @@ theorem momentDim_le_two_mul_add {d q : ℕ} (hd : 1 ≤ d) :
 
 /-- Rounded sparsity dominates its unrounded ceiling argument.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s5.f0c8a917aec0 from=translated src=- shape=86820813 vocab=4a9325f3
+-/
 theorem sparseColumnSparsity_lower (q : ℕ) (epsilon : ℝ) :
     scaleConstant * ((2 * q + 1 : ℕ) : ℝ) / epsilon ≤ (sparseColumnSparsity q epsilon : ℝ) := by
   simpa [sparseColumnSparsity] using
@@ -40,7 +46,9 @@ theorem sparseColumnSparsity_lower (q : ℕ) (epsilon : ℝ) :
 
 /-- Rounded sparsity is positive at positive distortion tolerance.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h2v.s4.dae9382c884d from=translated src=- shape=134f88d4 vocab=27c7b40b
+-/
 theorem sparseColumnSparsity_pos {q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     0 < sparseColumnSparsity q epsilon := by
   have htarget : 0 < scaleConstant * ((2 * q + 1 : ℕ) : ℝ) / epsilon := by
@@ -51,7 +59,9 @@ theorem sparseColumnSparsity_pos {q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsil
 
 /-- Rounded sparsity is below its unrounded value plus one.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h2v.s6.0fed765911ac from=translated src=- shape=3bceca7b vocab=5a0ef6ff
+-/
 theorem sparseColumnSparsity_lt_add_one {q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     (sparseColumnSparsity q epsilon : ℝ) <
       scaleConstant * ((2 * q + 1 : ℕ) : ℝ) / epsilon + 1 := by
@@ -62,7 +72,9 @@ theorem sparseColumnSparsity_lt_add_one {q : ℕ} {epsilon : ℝ} (hepsilon : 0 
 /-- The intermediate sparsity estimate used in line 1474 of the report.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.3h2v.s6.4aeca8af9912 from=translated src=- shape=a9325c84 vocab=2f069643
+-/
 theorem sparseColumnSparsity_lt_six_scaleConstant_mul_q_div
     {q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -96,7 +108,9 @@ theorem sparseColumnSparsity_lt_six_scaleConstant_mul_q_div
 /-- Certified explicit sparsity bound from line 1475: `s < 1356 q / epsilon`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.3h2v.s6.6ce2a76b00aa from=translated src=- shape=9a089cbd vocab=aa39059e
+-/
 theorem sparseColumnSparsity_lt_1356
     {q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -111,7 +125,9 @@ theorem sparseColumnSparsity_lt_1356
 
 /-- The unrounded target row scale is positive at positive distortion tolerance.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h3v.s4.c62b23a1588d from=translated src=- shape=5f0becbc vocab=084b5bb5
+-/
 theorem rowTarget_pos {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     0 < rowTarget d q epsilon := by
   have hDqNat : 0 < momentDim d q := by simp [momentDim]
@@ -122,7 +138,9 @@ theorem rowTarget_pos {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
 
 /-- Rounded block size dominates its unrounded ceiling argument.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s5.28789c77aa16 from=translated src=- shape=885b8cac vocab=f798a586
+-/
 theorem sparseBlockRows_lower (d q : ℕ) (epsilon : ℝ) :
     rowTarget d q epsilon / (sparseColumnSparsity q epsilon : ℝ) ≤
       (sparseBlockRows d q epsilon : ℝ) := by
@@ -132,7 +150,9 @@ theorem sparseBlockRows_lower (d q : ℕ) (epsilon : ℝ) :
 /-- The first scale condition in line 1432: the rounded row count is at least `rowTarget`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s4.ea82158826d7 from=translated src=- shape=7f56d990 vocab=ee131265
+-/
 theorem sparseRows_lower
     {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     rowTarget d q epsilon ≤ (sparseRows d q epsilon : ℝ) := by
@@ -151,7 +171,9 @@ theorem sparseRows_lower
 /-- The first scale condition in the literal form displayed in line 1432.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s6.a0ae98bfa2a8 from=translated src=- shape=6d4cb851 vocab=44bfc8f4
+-/
 theorem sparseRows_scale_condition
     {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     scaleConstant ^ 2 * (momentDim d q : ℝ) / epsilon ^ 2 ≤
@@ -161,7 +183,9 @@ theorem sparseRows_scale_condition
 /-- The exact ceiling estimate `m < rowTarget + s`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h3v.s5.4116ebd4a20a from=translated src=- shape=627324a9 vocab=2df9ad30
+-/
 theorem sparseRows_lt_rowTarget_add_s
     {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     (sparseRows d q epsilon : ℝ) <
@@ -184,7 +208,9 @@ theorem sparseRows_lt_rowTarget_add_s
 /-- A coarse comparison showing that the rounded sparsity is below `rowTarget`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.3h3v.s5.adf2c077e1b2 from=translated src=- shape=fee56818 vocab=0738ea57
+-/
 theorem sparseColumnSparsity_lt_rowTarget
     {d q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -217,7 +243,9 @@ theorem sparseColumnSparsity_lt_rowTarget
 /-- The main rounded parameters always have at least two rows per stack.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h3v.s5.ab8cc1b91790 from=translated src=- shape=bbca8d1a vocab=a0362b1d
+-/
 theorem two_le_sparseBlockRows
     {d q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -235,7 +263,9 @@ theorem two_le_sparseBlockRows
 
 /-- The main rounded block size is at least two under the stated parameter hypotheses.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h3v.s5.3d31c6b358a8 from=translated src=- shape=27122344 vocab=dab8e19a
+-/
 theorem two_le_main_sparseBlockRows
     {d : ℕ} {delta epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -245,7 +275,9 @@ theorem two_le_main_sparseBlockRows
 /-- The paper's `m < 2 rowTarget` rounding estimate.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.3h3v.s6.34d84df9e6fc from=translated src=- shape=c9dfd6a4 vocab=330d08fa
+-/
 theorem sparseRows_lt_two_rowTarget
     {d q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -256,7 +288,9 @@ theorem sparseRows_lt_two_rowTarget
 
 /-- The rounded row count is below three times the unrounded row scale.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.3h3v.s6.85eeaf3d727f from=translated src=- shape=c9dfd6a4 vocab=330d08fa
+-/
 theorem sparseRows_lt_three_rowTarget
     {d q : ℕ} {epsilon : ℝ}
     (hq : 1 ≤ q) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -267,7 +301,9 @@ theorem sparseRows_lt_three_rowTarget
 /-- The numerical upper bound for `3 rowTarget` used in lines 1492--1498.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s6.b701adf0f71c from=translated src=- shape=c4ba7fd5 vocab=4c572850
+-/
 theorem three_rowTarget_lt_306456
     {d q : ℕ} {epsilon : ℝ}
     (hd : 1 ≤ d) (hepsilon : 0 < epsilon) :
@@ -303,7 +339,9 @@ theorem three_rowTarget_lt_306456
 /-- Certified explicit row bound from line 1497.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.4h3v.s6.542147ba6a9c from=translated src=- shape=c233388d vocab=4b7917c2
+-/
 theorem sparseRows_lt_306456
     {d q : ℕ} {epsilon : ℝ}
     (hd : 1 ≤ d) (hq : 1 ≤ q)

@@ -40,7 +40,9 @@ def wordCreation (i : ι) : WordHilbertSpace ι →ₗᵢ[ℂ] WordHilbertSpace 
 def wordAnnihilation (i : ι) : WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι :=
   (wordCreation i).toContinuousLinearMap.adjoint
 
-/-- Creation prepends one letter to the support of a word basis vector.-/
+/-- Creation prepends one letter to the support of a word basis vector.
+@isnad1 id=eq.0h4v.s11.a016f37897c9 from=translated src=- shape=1fbb805f vocab=06fa271b
+-/
 @[simp]
 theorem wordCreation_apply_single (i : ι) (w : List ι) (z : ℂ) :
     wordCreation i (lp.single 2 w z) = lp.single 2 (i :: w) z := by
@@ -54,13 +56,17 @@ theorem wordCreation_apply_single (i : ι) (w : List ι) (z : ℂ) :
     by_cases hv : v = i :: w <;> simp [lp.single_apply, hv]
 
 /-- Annihilation restricts a word-coordinate function to words with the
-given initial letter.-/
+given initial letter.
+@isnad1 id=eq.0h4v.s12.505b978bea0a from=translated src=- shape=47b4465e vocab=d3e7904d
+-/
 @[simp]
 theorem wordAnnihilation_apply (i : ι) (f : WordHilbertSpace ι) (w : List ι) :
     wordAnnihilation i f w = f (i :: w) :=
   lp.embeddingLinearIsometry_adjoint_apply _ f w
 
-/-- Annihilation kills every basis vector supported at the empty word.-/
+/-- Annihilation kills every basis vector supported at the empty word.
+@isnad1 id=eq.0h3v.s12.3073d0defadc from=translated src=- shape=96c7ce86 vocab=0352316a
+-/
 @[simp]
 theorem wordAnnihilation_apply_single_nil (i : ι) (z : ℂ) :
     wordAnnihilation i (lp.single 2 [] z) = 0 := by
@@ -70,7 +76,9 @@ theorem wordAnnihilation_apply_single_nil (i : ι) (z : ℂ) :
 
 open scoped Classical in
 /-- On a nonempty word basis vector, annihilation removes a matching initial
-letter and kills a vector with a different initial letter.-/
+letter and kills a vector with a different initial letter.
+@isnad1 id=eq.0h5v.s12.97c27c6995cf from=translated src=- shape=3edd6378 vocab=c1fc2134
+-/
 @[simp]
 theorem wordAnnihilation_apply_single_cons (i j : ι) (w : List ι) (z : ℂ) :
     wordAnnihilation i (lp.single 2 (j :: w) z) =
@@ -84,7 +92,9 @@ theorem wordAnnihilation_apply_single_cons (i j : ι) (w : List ι) (z : ℂ) :
 
 open scoped Classical in
 /-- The native annihilation/creation composition is identity at equal
-letters and zero at different letters. No law or moment assumption is used.-/
+letters and zero at different letters. No law or moment assumption is used.
+@isnad1 id=eq.0h3v.s14.7d20b4a3f2c6 from=translated src=- shape=9b70d7f3 vocab=f480de23
+-/
 theorem wordAnnihilation_comp_wordCreation (i j : ι) :
     wordAnnihilation i ∘L (wordCreation j).toContinuousLinearMap =
       if i = j then 1 else 0 := by
@@ -101,7 +111,9 @@ theorem wordAnnihilation_comp_wordCreation (i j : ι) :
 
 open scoped Classical in
 /-- The concrete bounded word-prefix operators satisfy the native star-ring
-relation `ell_i* ell_j = delta_ij I`.-/
+relation `ell_i* ell_j = delta_ij I`.
+@isnad1 id=eq.0h3v.s15.3ebd853fe99d from=translated src=- shape=a35d21fe vocab=e92230d7
+-/
 theorem star_wordCreation_mul_wordCreation (i j : ι) :
     star (wordCreation i).toContinuousLinearMap * (wordCreation j).toContinuousLinearMap =
       if i = j then 1 else 0 := by
@@ -112,12 +124,16 @@ theorem star_wordCreation_mul_wordCreation (i j : ι) :
 def wordVacuum (ι : Type*) : WordHilbertSpace ι :=
   lp.single 2 [] 1
 
-/-- The concrete vacuum has norm one even when the alphabet is empty.-/
+/-- The concrete vacuum has norm one even when the alphabet is empty.
+@isnad1 id=eq.0h1v.s7.6b36ee9a5995 from=translated src=- shape=06d60e9e vocab=a567885e
+-/
 @[simp]
 theorem norm_wordVacuum : ‖wordVacuum ι‖ = 1 := by
   simp [wordVacuum, lp.norm_single (by norm_num : (0 : ℝ≥0∞) < 2)]
 
-/-- Every actual annihilation operator kills the vacuum.-/
+/-- Every actual annihilation operator kills the vacuum.
+@isnad1 id=eq.0h2v.s12.2e450202f665 from=translated src=- shape=551cf11c vocab=8db0f565
+-/
 @[simp]
 theorem wordAnnihilation_wordVacuum (i : ι) : wordAnnihilation i (wordVacuum ι) = 0 :=
   wordAnnihilation_apply_single_nil i 1

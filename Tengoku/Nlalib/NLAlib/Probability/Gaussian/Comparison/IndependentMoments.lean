@@ -104,7 +104,9 @@ private lemma integral_pow_eq_zero_of_odd_of_symm {X : Ω → ℝ}
 
 /-- Symmetric variables with even moments dominated by the Gaussian even moments
 have every natural moment nonnegative and at most the matching standard Gaussian
-moment.-/
+moment.
+@isnad1 id=and.2h4v.s8.3999cc0d67f1 from=translated src=- shape=bab230c0 vocab=c68bc3ae
+-/
 theorem integral_pow_nonneg_and_le_gaussianReal [IsProbabilityMeasure μ] {X : Ω → ℝ}
     (hsym : IdentDistrib X (fun w => -X w) μ μ)
     (h2 : ∀ p, 0 < p →
@@ -155,7 +157,9 @@ private theorem hasFiniteNatMoments_of_symm_even [IsFiniteMeasure μ] {X : Ω �
 
 variable {E : Type*} [Fintype E] {X : E → Ω → ℝ}
 
-/-- A coordinate of the standard Gaussian vector has finite natural moments.-/
+/-- A coordinate of the standard Gaussian vector has finite natural moments.
+@isnad1 id=hasfinit.0h2v.s4.10eed2ebba07 from=translated src=- shape=645ac9d2 vocab=5656ef98
+-/
 lemma hasFiniteNatMoments_eval_gaussianVector (e : E) :
     HasFiniteNatMoments (fun x : E → ℝ => x e) (gaussianVector E) := by
   intro p
@@ -177,7 +181,9 @@ private theorem integrable_prod_pow_of_symm_even [IsFiniteMeasure μ]
     (hasFiniteNatMoments_of_symm_even (hsym e) (h2 e)).pow (k e)
   exact (HasFiniteNatMoments.prod (Finset.univ) hf).integrable
 
-/-- Monomial products of standard Gaussian vector coordinates are integrable.-/
+/-- Monomial products of standard Gaussian vector coordinates are integrable.
+@isnad1 id=integrab.0h2v.s6.2d3566a93fe8 from=translated src=- shape=1070781f vocab=ea551b92
+-/
 theorem integrable_prod_pow_gaussianVector (k : E → ℕ) :
     Integrable (fun x : E → ℝ => ∏ e, x e ^ (k e)) (gaussianVector E) := by
   have hf : ∀ e ∈ (Finset.univ : Finset E),
@@ -207,7 +213,9 @@ symmetric entries whose even moments are dominated by the Gaussian even moments,
 the integral of every monomial product is at most the matching standard Gaussian
 vector monomial moment. The comparison is obtained after factoring both sides
 into products of scalar moments by independence; it is not eventwise stochastic
-domination.-/
+domination.
+@isnad1 id=le.3h5v.s8.516460d4e702 from=translated src=- shape=5a4187cd vocab=be4f1023
+-/
 theorem integral_prod_pow_le_integral_prod_pow_gaussianVector [IsProbabilityMeasure μ]
     (hX : iIndepFun X μ)
     (hsym : ∀ e, IdentDistrib (X e) (fun w => -X e w) μ μ)
@@ -243,7 +251,9 @@ theorem integral_prod_pow_le_integral_prod_pow_gaussianVector [IsProbabilityMeas
 
 /-- **Independent-entry moment domination, weighted-sum form**: with nonnegative
 weights the moment comparison extends from monomial products to finite weighted
-sums of monomial products (at the level of integrals, not eventwise).-/
+sums of monomial products (at the level of integrals, not eventwise).
+@isnad1 id=le.4h7v.s8.6ccbd28b4597 from=translated src=- shape=739bc06c vocab=89ea8af9
+-/
 theorem integral_sum_mul_prod_pow_le_integral_sum_mul_prod_pow_gaussianVector
     [IsProbabilityMeasure μ]
     (hX : iIndepFun X μ)

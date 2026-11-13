@@ -37,7 +37,9 @@ for `U` with orthonormal columns, `S` is an `ε`-subspace embedding for `range U
 `(1 - ε)‖x‖² ≤ ‖SUx‖² ≤ (1 + ε)‖x‖²` for every coefficient vector `x`.
 
 Atlas: `ose-def`.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=iff.1h6v.s8.40f6e7cc078a from=translated src=- shape=636e2d19 vocab=737d32a3
+-/
 theorem isSubspaceEmbedding_iff_of_hasOrthonormalCols [DecidableEq d] {S : Matrix k m ℝ}
     {U : Matrix m d ℝ} (hU : HasOrthonormalCols U) {ε : ℝ} :
     IsSubspaceEmbedding S U ε ↔ ∀ x : d → ℝ,
@@ -51,7 +53,9 @@ theorem isSubspaceEmbedding_iff_of_hasOrthonormalCols [DecidableEq d] {S : Matri
 /-- Basis independence, easy direction: an embedding for `range U` is an embedding for
 `range (U C)` for any `C` (since `range (U C) ⊆ range U`).
 
-Atlas: `ose-def`.-/
+Atlas: `ose-def`.
+@isnad1 id=issubspa.1h8v.s6.b3db5abd9697 from=translated src=- shape=3e6f6e9a vocab=dd0eccf5
+-/
 theorem IsSubspaceEmbedding.mul_right {S : Matrix k m ℝ} {U : Matrix m d ℝ} {ε : ℝ}
     (h : IsSubspaceEmbedding S U ε) (C : Matrix d e ℝ) : IsSubspaceEmbedding S (U * C) ε := by
   intro x
@@ -60,7 +64,9 @@ theorem IsSubspaceEmbedding.mul_right {S : Matrix k m ℝ} {U : Matrix m d ℝ} 
 /-- Basis independence, converse direction: if `C` has a right inverse `D` (`C D = 1`, so
 `range (U C) = range U`) then an embedding for `range (U C)` is an embedding for `range U`.
 
-Atlas: `ose-def`.-/
+Atlas: `ose-def`.
+@isnad1 id=issubspa.2h9v.s7.c6d7f620cf95 from=translated src=- shape=5f06849c vocab=76fc599a
+-/
 theorem IsSubspaceEmbedding.of_mul_right [DecidableEq d] {S : Matrix k m ℝ} {U : Matrix m d ℝ}
     {ε : ℝ} {C : Matrix d e ℝ} {D : Matrix e d ℝ} (hCD : C * D = 1)
     (h : IsSubspaceEmbedding S (U * C) ε) : IsSubspaceEmbedding S U ε := by
@@ -72,7 +78,9 @@ embedding for `range U` iff it is one for `range (U C)`. The property depends on
 only.
 
 Atlas: `ose-def`.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=iff.1h7v.s6.6a1b79a9c528 from=translated src=- shape=5eb50db2 vocab=363c9d69
+-/
 theorem isSubspaceEmbedding_mul_right_iff [DecidableEq d] {S : Matrix k m ℝ} {U : Matrix m d ℝ}
     {ε : ℝ} {C : Matrix d d ℝ} (hC : IsUnit C.det) :
     IsSubspaceEmbedding S (U * C) ε ↔ IsSubspaceEmbedding S U ε :=
@@ -81,7 +89,9 @@ theorem isSubspaceEmbedding_mul_right_iff [DecidableEq d] {S : Matrix k m ℝ} {
 /-- Monotonicity in the distortion: an `ε`-embedding is an `ε'`-embedding for `ε ≤ ε'`.
 
 Atlas: `ose-def`.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=issubspa.2h7v.s5.65095738e6b2 from=translated src=- shape=7d8929bf vocab=a445ff35
+-/
 theorem IsSubspaceEmbedding.mono {S : Matrix k m ℝ} {U : Matrix m d ℝ} {ε ε' : ℝ}
     (h : IsSubspaceEmbedding S U ε) (hεε' : ε ≤ ε') : IsSubspaceEmbedding S U ε' := by
   intro x
@@ -95,7 +105,9 @@ that `S` is an `ε`-subspace embedding for `range U`. The converse is proved in
 `NLAlib.Sketching.Properties.SubspaceEmbedding.Gram`.
 
 Atlas: `ose-def`.
-atlas: ose-def-/
+atlas: ose-def
+@isnad1 id=issubspa.2h6v.s7.14bf7a881842 from=translated src=- shape=73addb75 vocab=a6bd9457
+-/
 theorem isSubspaceEmbedding_of_specNorm_transpose_mul_self_sub_one_le [DecidableEq d]
     {S : Matrix k m ℝ} {U : Matrix m d ℝ} (hU : HasOrthonormalCols U) {ε : ℝ}
     (h : specNorm ((S * U)ᵀ * (S * U) - 1) ≤ ε) : IsSubspaceEmbedding S U ε := by

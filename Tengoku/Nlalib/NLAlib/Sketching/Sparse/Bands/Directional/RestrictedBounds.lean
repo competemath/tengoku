@@ -27,7 +27,9 @@ variable {d m n : ℕ}
 /-- Sharp squared-energy estimate for `Y₊` on an exactly supported vector.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.034272a293f4 from=translated src=- shape=60c4fca7 vocab=681a9d6b
+-/
 theorem Yplus_energy_of_supported (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     sumSq
@@ -42,7 +44,9 @@ theorem Yplus_energy_of_supported (F : Frame n d) {nu : ℕ}
 supported vector.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.a1c3e315c5c2 from=translated src=- shape=9b0dd85b vocab=d7c3ded0
+-/
 theorem Yzero_two_mul_energy_of_supported (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     2 * sumSq
@@ -56,7 +60,9 @@ theorem Yzero_two_mul_energy_of_supported (F : Frame n d) {nu : ℕ}
 supported vector.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.f72ca0995dac from=translated src=- shape=60c4fca7 vocab=3cf91638
+-/
 theorem Hprime_energy_of_supported (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ} (hx : SupportedAtGrade nu x) :
     sumSq
@@ -70,7 +76,9 @@ theorem Hprime_energy_of_supported (F : Frame n d) {nu : ℕ}
 /-- Coordinate energy of the genuine restricted `Y₊` matrix.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.04bda9f463f5 from=translated src=- shape=be3ecdcc vocab=5531c8a2
+-/
 theorem Yplus_restricted_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq
@@ -94,7 +102,9 @@ theorem Yplus_restricted_energy (F : Frame n d) (nu : ℕ)
 matrix.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.0aa38035c543 from=translated src=- shape=7b520c23 vocab=8ea1c00e
+-/
 theorem Yzero_restricted_two_mul_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     2 * sumSq
@@ -117,7 +127,9 @@ theorem Yzero_restricted_two_mul_energy (F : Frame n d) (nu : ℕ)
 /-- Coordinate energy of the genuine restricted transpose-hop matrix.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.f91689d1582a from=translated src=- shape=be3ecdcc vocab=f446291d
+-/
 theorem Hprime_restricted_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq
@@ -139,7 +151,9 @@ theorem Hprime_restricted_energy (F : Frame n d) (nu : ℕ)
 
 /-- Restricting the mixed preserving band to one grade gives its occupation-energy estimate.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.71e7f6a5acad from=translated src=- shape=b3bf47e5 vocab=f57bd7c6
+-/
 theorem Yzero_restricted_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq
@@ -161,7 +175,9 @@ theorem Yzero_restricted_energy (F : Frame n d) (nu : ℕ)
 matrix operator norm.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.c0d00d820233 from=translated src=- shape=ec2b5777 vocab=932b6876
+-/
 theorem norm_Yplus_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖Yplus m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤ (nu : ℝ) := by
   exact norm_le_of_normSq_mulVec_le (Nat.cast_nonneg nu)
@@ -171,7 +187,9 @@ theorem norm_Yplus_restricted_le (F : Frame n d) (nu : ℕ) :
 denominator.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.0c7219591034 from=translated src=- shape=3a966061 vocab=04f1556d
+-/
 theorem norm_Yzero_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖Yzero m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤
       (nu : ℝ) / Real.sqrt 2 := by
@@ -183,7 +201,9 @@ theorem norm_Yzero_restricted_le (F : Frame n d) (nu : ℕ) :
 matrix operator norm.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.f7f6aaec530c from=translated src=- shape=ec2b5777 vocab=6a18becc
+-/
 theorem norm_Hprime_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖Hprime m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤ (nu : ℝ) := by
   exact norm_le_of_normSq_mulVec_le (Nat.cast_nonneg nu)

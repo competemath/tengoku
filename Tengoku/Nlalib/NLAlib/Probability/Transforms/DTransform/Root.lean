@@ -28,7 +28,9 @@ def screeThreshold (μ : Measure ℝ) (γ b : ℝ) : ℝ :=
 /-- The actual D-transform equation has exactly one solution above its edge,
 and that solution lies in the universal bracket.
 Source: ScreeNOT, Lemma 8.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=existsun.6h3v.s7.f9fad0d62882 from=translated src=- shape=2e1a8e68 vocab=5950cf26
+-/
 theorem existsUnique_singularValuePsi_eq_neg_four
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b : ℝ}
     (hγ : 0 < γ) (hγ1 : γ ≤ 1) (hb : 0 < b)
@@ -54,7 +56,9 @@ theorem existsUnique_singularValuePsi_eq_neg_four
   exact (strictMonoOn_singularValuePsi μ hγ hγ1 hb hsupport hbmem).injOn
     hy.1 (ha.trans_le hr.1) (hy.2.2.trans hre.symm)
 
-/-- A genuine crossing identifies the infimum definition of the threshold.-/
+/-- A genuine crossing identifies the infimum definition of the threshold.
+@isnad1 id=eq.7h4v.s6.3a6d8fa6e3e9 from=translated src=- shape=3effedcb vocab=05b9765f
+-/
 theorem screeThreshold_eq_of_root (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b r : ℝ} (hγ : 0 < γ) (hγ1 : γ ≤ 1) (hb : 0 < b)
     (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support)
@@ -73,7 +77,9 @@ theorem screeThreshold_eq_of_root (μ : Measure ℝ) [IsProbabilityMeasure μ]
 
 /-- The defined threshold satisfies the native equation and universal bracket.
 Source: ScreeNOT, Lemma 8.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=and.6h3v.s7.4af125f699d6 from=translated src=- shape=a2128ac8 vocab=91818929
+-/
 theorem screeThreshold_spec (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b : ℝ}
     (hγ : 0 < γ) (hγ1 : γ ≤ 1) (hb : 0 < b)
     (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support)
@@ -86,7 +92,9 @@ theorem screeThreshold_spec (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b :
 /-- Above the support edge, the threshold equation holds precisely at the
 defined threshold. This also excludes any further crossing beyond the upper
 bracket. Source: ScreeNOT, Lemma 8.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=iff.7h4v.s7.f82b80917b1c from=translated src=- shape=f8e38791 vocab=cf69fc74
+-/
 theorem singularValuePsi_eq_neg_four_iff_eq_screeThreshold
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b y : ℝ}
     (hγ : 0 < γ) (hγ1 : γ ≤ 1) (hb : 0 < b)
@@ -102,7 +110,9 @@ theorem singularValuePsi_eq_neg_four_iff_eq_screeThreshold
 /-- Midpoint bisection of the actual threshold equation retains the threshold
 and has the exact width `(sqrt 3 - 1) * b / 2^j`. The singular edge is never
 evaluated. Source: ScreeNOT, Supplement Appendix A.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=other.6h4v.s8.0a353f76debd from=translated src=- shape=c38250c9 vocab=6133b0a1
+-/
 theorem bisectionInterval_screeThreshold (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b : ℝ} (hγ : 0 < γ) (hγ1 : γ ≤ 1) (hb : 0 < b)
     (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support)

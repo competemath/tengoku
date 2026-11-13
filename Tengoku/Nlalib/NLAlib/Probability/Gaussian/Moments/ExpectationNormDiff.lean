@@ -322,7 +322,9 @@ private theorem en_props :
 /-- For standard Gaussian vectors `g_N ∈ ℝ^N`, `g_n ∈ ℝ^n` with `1 ≤ n ≤ N`,
 `√N - √n ≤ 𝔼‖g_N‖₂ - 𝔼‖g_n‖₂`. Source: Vershynin 2012, proof of Thm 5.32 (Gordon's lower bound
 `𝔼 σ_min ≥ √N - √n` reduces to this comparison); Davidson–Szarek 2001, Thm II.13. Atlas: helper
-of `gordon`.-/
+of `gordon`.
+@isnad1 id=le.2h2v.s7.28606e1cf478 from=translated src=- shape=3f91d3da vocab=d6f75f2e
+-/
 theorem sqrt_sub_sqrt_le_integral_sqrt_sum_sq_sub {N n : ℕ} (hn : 1 ≤ n) (hnN : n ≤ N) :
     Real.sqrt N - Real.sqrt n ≤
       ∫ x, Real.sqrt (∑ i, x i ^ 2) ∂(gaussianVector (Fin N))

@@ -28,7 +28,9 @@ variable {d m n : ℕ}
 /-- The nested row/light sum is exactly a sum over the global light-site set.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.fbd344d2b07f from=translated src=- shape=62683898 vocab=228ebb41
+-/
 theorem sum_rows_light_eq_sum_light (σ : Pattern m n)
     {A : Type*} [AddCommMonoid A] (f : Site m n → A) :
     (∑ r, ∑ c ∈ σ.lightInRow r, f (r, c)) =
@@ -41,7 +43,9 @@ theorem sum_rows_light_eq_sum_light (σ : Pattern m n)
 `euclideanNormSq` form of `norm_sum_sq_le_card_mul_sum_norm_sq` (it goes away with D9).
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s6.90e392663d40 from=translated src=- shape=6ef460e0 vocab=0b3c0c31
+-/
 theorem normSq_sum_le_card {α : Type*} [DecidableEq α]
     (s : Finset α) (z : α → EVec d) :
     euclideanNormSq (∑ a ∈ s, z a) ≤
@@ -50,7 +54,9 @@ theorem normSq_sum_le_card {α : Type*} [DecidableEq α]
 
 /-- The full finite coordinate energy is the sum of its external-fiber energies.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.a7ba566b826f from=translated src=- shape=41bb46fd vocab=89d75085
+-/
 theorem full_normSq_eq_sum_fiber (v : Fin d × Pattern m n → ℝ) :
     sumSq v =
       ∑ σ, euclideanNormSq (fiber v σ) := by
@@ -66,7 +72,9 @@ theorem full_normSq_eq_sum_fiber (v : Fin d × Pattern m n → ℝ) :
 
 /-- The mixed raising output fiber is its finite sum of marked frame-vector contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.f3aaf9dd473e from=translated src=- shape=8aa5a1b0 vocab=aa62ee74
+-/
 theorem Yplus_fullFiber (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n) :
     fiber (Matrix.mulVec (Yplus m (Frame.rows F)) x) σ =
@@ -81,7 +89,9 @@ theorem Yplus_fullFiber (F : Frame n d)
 
 /-- The mixed preserving output fiber is its finite sum of marked frame-vector contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.86e242e62ecf from=translated src=- shape=8aa5a1b0 vocab=76be4208
+-/
 theorem Yzero_fullFiber (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n) :
     fiber (Matrix.mulVec (Yzero m (Frame.rows F)) x) σ =
@@ -96,7 +106,9 @@ theorem Yzero_fullFiber (F : Frame n d)
 
 /-- The heavy correction output fiber is its finite sum of marked frame-vector contributions.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.803728759450 from=translated src=- shape=8aa5a1b0 vocab=b07a815c
+-/
 theorem Hprime_fullFiber (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n) :
     fiber (Matrix.mulVec (Hprime m (Frame.rows F)) x) σ =
@@ -135,7 +147,9 @@ def levelInRow (p : Pattern m n) (r : Fin m) (a : Level) : Finset (Fin n) :=
 
 /-- A column belongs to a row-level set precisely when that site has the specified level.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s5.ec7dcc16902a from=translated src=- shape=592e501a vocab=c36aeed5
+-/
 @[simp] theorem mem_levelInRow {p : Pattern m n} {r : Fin m}
     {a : Level} {i : Fin n} :
     i ∈ levelInRow p r a ↔ p (r, i) = a := by
@@ -143,7 +157,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The row-level-zero set is exactly the fresh-site set.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.db2eca0e997b from=translated src=- shape=9bff641a vocab=30b606fd
+-/
 @[simp] theorem levelInRow_zero (p : Pattern m n) (r : Fin m) :
     levelInRow p r .zero = p.freshInRow r := by
   ext i
@@ -151,7 +167,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The row-level-one set is exactly the light-site set.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.f1857372a89d from=translated src=- shape=9bff641a vocab=0c3f61d5
+-/
 @[simp] theorem levelInRow_one (p : Pattern m n) (r : Fin m) :
     levelInRow p r .one = p.lightInRow r := by
   ext i
@@ -159,7 +177,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The row-level-two set is exactly the heavy-site set.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.9a6ed9afff40 from=translated src=- shape=9bff641a vocab=85822f2b
+-/
 @[simp] theorem levelInRow_two (p : Pattern m n) (r : Fin m) :
     levelInRow p r .two = p.heavyInRow r := by
   ext i
@@ -200,7 +220,9 @@ def rowMarkNestedEquiv (a b : Level) :
 
 /-- Summing over a finite predicate subtype equals summing over the corresponding filter.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s6.2f235a3cfd2f from=translated src=- shape=ac305ffc vocab=da87199c
+-/
 theorem sum_subtype_eq_filter {α : Type*} [Fintype α]
     (p : α → Prop) [DecidablePred p] (g : α → ℝ) :
     (∑ x : {x // p x}, g x.1) = ∑ x ∈ Finset.univ.filter p, g x := by
@@ -211,7 +233,9 @@ theorem sum_subtype_eq_filter {α : Type*} [Fintype α]
 sum.  The `erase` is exactly the ordered distinctness condition.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.6e04e8ad3a8c from=translated src=- shape=630d5452 vocab=35780d34
+-/
 theorem sum_rowMark_eq_nested (a b : Level)
     (g : Pattern m n → Fin m → Fin n → Fin n → ℝ) :
     (∑ z : RowMark m n a b, g z.pattern z.row z.left z.right) =
@@ -242,7 +266,9 @@ theorem sum_rowMark_eq_nested (a b : Level)
 
 /-- A row-pair mark is determined by its pattern, row, and ordered site labels.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.4h6v.s6.b03a7134bec7 from=translated src=- shape=28dd6324 vocab=7b476715
+-/
 @[ext]
 theorem rowMark_ext {a b : Level} {x y : RowMark m n a b}
     (hpattern : x.pattern = y.pattern)
@@ -261,7 +287,9 @@ theorem rowMark_ext {a b : Level} {x y : RowMark m n a b}
 
 /-- Restoring the marked pair's original levels undoes a two-site update.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h9v.s6.d50a8e941693 from=translated src=- shape=a5d2c604 vocab=4d6a0642
+-/
 theorem setPair_restore (p : Pattern m n) {s t : Site m n}
     (hst : s ≠ t) {oa ob ia ib : Level}
     (hs : p s = oa) (ht : p t = ob) :
@@ -330,7 +358,9 @@ def rowMarkTransition (oa ob ia ib : Level) :
 transition.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.b591b5dcbd8a from=translated src=- shape=eb5397c9 vocab=4f94b308
+-/
 theorem sum_rowMarkTransition (oa ob ia ib : Level)
     (f : RowMark m n ia ib → ℝ) :
     (∑ z : RowMark m n oa ob, f (rowMarkTransition oa ob ia ib z)) =
@@ -339,7 +369,9 @@ theorem sum_rowMarkTransition (oa ob ia ib : Level)
 
 /-- A row-mark transition updates exactly the recorded pair of pattern sites.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.a79d6caac9ca from=translated src=- shape=b742050c vocab=ac163e60
+-/
 @[simp] theorem rowMarkTransition_pattern (oa ob ia ib : Level)
     (z : RowMark m n oa ob) :
     (rowMarkTransition oa ob ia ib z).pattern =
@@ -347,7 +379,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- A row-mark transition retains the second site label.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.83a0681a1fef from=translated src=- shape=abf0e7a2 vocab=d3ecd7a9
+-/
 @[simp] theorem rowMarkTransition_right (oa ob ia ib : Level)
     (z : RowMark m n oa ob) :
     (rowMarkTransition oa ob ia ib z).right = z.right := rfl
@@ -356,7 +390,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 duplicated.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.fef9753bcc21 from=translated src=- shape=75e5866f vocab=c93359d7
+-/
 theorem Yplus_marked_reindex (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ z : RowMark m n .two .one,
@@ -372,7 +408,9 @@ theorem Yplus_marked_reindex (F : Frame n d)
 /-- Exact coefficient-square reindexing for `Y₀`.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.0dba2645d297 from=translated src=- shape=030bf3fa vocab=c93359d7
+-/
 theorem Yzero_marked_reindex (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ z : RowMark m n .one .one,
@@ -388,7 +426,9 @@ theorem Yzero_marked_reindex (F : Frame n d)
 /-- Exact coefficient-square reindexing for the transpose light hop.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.851f41923231 from=translated src=- shape=b6c6f210 vocab=b9e9524d
+-/
 theorem Hprime_marked_reindex (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ z : RowMark m n .zero .one,

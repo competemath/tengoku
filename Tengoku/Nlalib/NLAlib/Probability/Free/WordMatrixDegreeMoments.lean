@@ -30,7 +30,9 @@ local notation "B" => W →L[ℂ] W
 local notation "M" => CStarMatrix D D B
 
 /-- Native scalar free-algebra evaluation genuinely lies in the bounded
-word degree space, derived from its canonical coefficient support.-/
+word degree space, derived from its canonical coefficient support.
+@isnad1 id=mem.1h3v.s16.99a751748cad from=translated src=- shape=5a986eb5 vocab=4e9a9692
+-/
 theorem freeAlgebra_lift_wordField_mem_wordWickDegreeSpan (k : ℕ) (P : FreeAlgebra ℂ ι)
     (hdeg : ∀ w ∈ (FreeAlgebra.equivMonoidAlgebraFreeMonoid (R := ℂ) (X := ι) P).coeff.support,
       w.toList.length ≤ k) :
@@ -48,7 +50,9 @@ theorem freeAlgebra_lift_wordField_mem_wordWickDegreeSpan (k : ℕ) (P : FreeAlg
   exact wordWickDegreeSpan_mono (hdeg w hw) (list_prod_wordField_mem_wordWickDegreeSpan w.toList)
 
 omit [Fintype D] [DecidableEq D] in
-/-- Native matrix-polynomial entries genuinely have the claimed degree.-/
+/-- Native matrix-polynomial entries genuinely have the claimed degree.
+@isnad1 id=mem.1h6v.s14.57abd5c46553 from=translated src=- shape=545a00a9 vocab=9a8c038e
+-/
 theorem wordMatrixPolynomialEvaluation_mem_wordWickDegreeSpan (k : ℕ)
     (P : Matrix D D (FreeAlgebra ℂ ι))
     (hdeg : ∀ i j, ∀ w ∈
@@ -59,7 +63,9 @@ theorem wordMatrixPolynomialEvaluation_mem_wordWickDegreeSpan (k : ℕ)
 
 omit [DecidableEq D] in
 /-- Matrix multiplication adds actual entry degrees, by the literal
-finite entry product formula.-/
+finite entry product formula.
+@isnad1 id=mem.2h8v.s16.b4b95b650a5d from=translated src=- shape=1d82f1de vocab=2fc0251a
+-/
 theorem mul_entries_mem_wordWickDegreeSpan {j k : ℕ} {S T : M}
     (hS : ∀ i l, S i l ∈ wordWickDegreeSpan (ι := ι) j)
     (hT : ∀ l i, T l i ∈ wordWickDegreeSpan (ι := ι) k) :
@@ -69,7 +75,9 @@ theorem mul_entries_mem_wordWickDegreeSpan {j k : ℕ} {S T : M}
   exact Submodule.sum_mem _ (fun a _ => mul_mem_wordWickDegreeSpan (hS i a) (hT a l))
 
 omit [Fintype D] [DecidableEq D] in
-/-- Actual matrix adjoint preserves actual entry degree.-/
+/-- Actual matrix adjoint preserves actual entry degree.
+@isnad1 id=mem.1h6v.s15.f9cf69f0db27 from=translated src=- shape=7cb6d028 vocab=8be4be89
+-/
 theorem star_entries_mem_wordWickDegreeSpan {k : ℕ} {T : M}
     (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) :
     ∀ i j, star T i j ∈ wordWickDegreeSpan (ι := ι) k := by
@@ -78,7 +86,9 @@ theorem star_entries_mem_wordWickDegreeSpan {k : ℕ} {T : M}
   exact star_mem_wordWickDegreeSpan (hT j i)
 
 /-- Actual matrix powers multiply actual entry degree by their exponent,
-including the genuine degree-zero identity matrix.-/
+including the genuine degree-zero identity matrix.
+@isnad1 id=mem.1h7v.s15.f6eb38cae054 from=translated src=- shape=d8711a17 vocab=990f3579
+-/
 theorem pow_entries_mem_wordWickDegreeSpan {k : ℕ} {T : M}
     (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) (q : ℕ) :
     ∀ i j, (T ^ q) i j ∈ wordWickDegreeSpan (ι := ι) (q * k) := by
@@ -96,7 +106,9 @@ theorem pow_entries_mem_wordWickDegreeSpan {k : ℕ} {T : M}
     simpa only [pow_succ, Nat.succ_mul] using mul_entries_mem_wordWickDegreeSpan hq hT
 
 /-- The actual matrix L² estimate applies to genuine bounded-degree
-operators, with actual entry membership and no norm-comparison premise.-/
+operators, with actual entry membership and no norm-comparison premise.
+@isnad1 id=le.1h4v.s16.0afefd638a42 from=translated src=- shape=6cac1815 vocab=77dd13cb
+-/
 theorem norm_le_wordMatrixVacuumL2_of_entries_mem_wordWickDegreeSpan [Fintype ι]
     (k : ℕ) (T : M) (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) :
     ‖T‖ ≤ ((Fintype.card D : ℝ) * Real.sqrt (Fintype.card D)) *
@@ -115,7 +127,9 @@ theorem norm_le_wordMatrixVacuumL2_of_entries_mem_wordWickDegreeSpan [Fintype ι
   ring
 
 /-- The unrooted high even vacuum-moment bound obtained by applying the
-actual degree estimate to `(T* T)^q`. Positive q retains empty matrix dimension.-/
+actual degree estimate to `(T* T)^q`. Positive q retains empty matrix dimension.
+@isnad1 id=le.2h5v.s16.caed7c961e00 from=translated src=- shape=41c50baf vocab=6bee6f07
+-/
 theorem norm_pow_le_wordMatrixVacuum_evenMoment [Fintype ι] (k q : ℕ) (hq : 0 < q)
     (T : M) (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) :
     ‖T‖ ^ (2 * q) ≤ ((Fintype.card D : ℝ) * Real.sqrt (Fintype.card D)) *
@@ -159,7 +173,9 @@ private theorem rpow_inv_two_mul_sqrt {x q : ℝ} (hx : 0 ≤ x) (hq : 0 < q) :
 
 /-- The source high-moment ultracontractive bound for actual amplified
 operators of genuine degree at most k. The normalized even moment is the
-actual amplified vacuum value. Empty dimension and zero operators are included.-/
+actual amplified vacuum value. Empty dimension and zero operators are included.
+@isnad1 id=le.2h5v.s16.4b86b541eff1 from=translated src=- shape=6a5afba9 vocab=2fab9ae7
+-/
 theorem norm_le_wordMatrixVacuum_evenMoment_rpow [Fintype ι] (k q : ℕ) (hq : 0 < q)
     (T : M) (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) :
     ‖T‖ ≤ (Fintype.card D : ℝ) ^ (3 / (4 * q : ℝ)) *
@@ -189,7 +205,9 @@ theorem norm_le_wordMatrixVacuum_evenMoment_rpow [Fintype ι] (k q : ℕ) (hq : 
 literal source high-moment bound. Degree comes only from the original
 canonical coefficient supports; all powered entry degrees are derived.
 
-Source: Theorem 4.1 of arXiv:2406.11453v2.-/
+Source: Theorem 4.1 of arXiv:2406.11453v2.
+@isnad1 id=le.2h5v.s16.39a527470809 from=translated src=- shape=58b8e695 vocab=4d581ec5
+-/
 theorem norm_wordMatrixPolynomialEvaluation_le_evenMoment_rpow [Fintype ι]
     (k q : ℕ) (hq : 0 < q) (P : Matrix D D (FreeAlgebra ℂ ι))
     (hdeg : ∀ i j, ∀ w ∈

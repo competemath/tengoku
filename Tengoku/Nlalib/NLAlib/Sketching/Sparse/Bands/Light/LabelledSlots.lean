@@ -48,7 +48,9 @@ def domainOfWord {ell : ℕ} (k : Fin ell) (w : Fin ell → Site m n) :
 
 /-- Two particle domains agree exactly when their retained row and spectator sites agree.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s6.4af15f6476f0 from=translated src=- shape=7edb1fe8 vocab=7a5c85ab
+-/
 theorem domainOfWord_eq_iff {ell : ℕ} (k : Fin ell)
     (w v : Fin ell → Site m n) :
     domainOfWord k w = domainOfWord k v ↔
@@ -79,7 +81,9 @@ def wordOfDomain {ell : ℕ} (k : Fin ell)
 
 /-- Reconstructing a word inserts the selected column into its distinguished slot.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.78b8b46b3d68 from=translated src=- shape=ded93564 vocab=cae37d70
+-/
 @[simp] theorem wordOfDomain_at {ell : ℕ} (k : Fin ell)
     (z : ParticleDomainIndex m n ell k) (i : Fin n) :
     wordOfDomain k z i k = (z.1, i) := by
@@ -87,7 +91,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Reconstructing a word retains every spectator site.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s5.3b15fc5733e8 from=translated src=- shape=207d28a9 vocab=2ef773a4
+-/
 theorem wordOfDomain_off {ell : ℕ} (k : Fin ell)
     (z : ParticleDomainIndex m n ell k) (i : Fin n)
     (j : Fin ell) (hjk : j ≠ k) :
@@ -96,7 +102,9 @@ theorem wordOfDomain_off {ell : ℕ} (k : Fin ell)
 
 /-- Extracting the domain of a reconstructed word recovers the original domain.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.3774e687f8cd from=translated src=- shape=1efc2ec8 vocab=2b6db22b
+-/
 @[simp] theorem domainOfWord_wordOfDomain {ell : ℕ} (k : Fin ell)
     (z : ParticleDomainIndex m n ell k) (i : Fin n) :
     domainOfWord k (wordOfDomain k z i) = z := by
@@ -107,7 +115,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Reconstructing a word with its original distinguished column recovers the word.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.ae49cd8b0652 from=translated src=- shape=12d716b8 vocab=24a3b5be
+-/
 @[simp] theorem wordOfDomain_domainOfWord {ell : ℕ} (k : Fin ell)
     (w : Fin ell → Site m n) :
     wordOfDomain k (domainOfWord k w) (w k).2 = w := by
@@ -166,7 +176,9 @@ def relabelSlots (pi : Equiv.Perm (Fin ell))
 
 /-- Relabelling slots moves the one-slot operator to the permuted slot.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h9v.s6.0397d5eed4ae from=translated src=- shape=9f41470d vocab=0f5db5bb
+-/
 theorem qSlot_relabelSlots (F : Frame n d) (k : Fin ell)
     (pi : Equiv.Perm (Fin ell))
     (out inp : LabelledIndex d m n ell) :
@@ -198,7 +210,9 @@ theorem qSlot_relabelSlots (F : Frame n d) (k : Fin ell)
 
 /-- A particle synthesis matrix times its transpose is the one-slot shared-leg operator.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.3f7897d96d94 from=translated src=- shape=2d00790c vocab=7ce1becb
+-/
 theorem VMatrix_mul_transpose (F : Frame n d) (k : Fin ell) :
     VMatrix (m := m) F k * (VMatrix (m := m) F k).transpose =
       qSlot (m := m) F k := by
@@ -224,7 +238,9 @@ theorem VMatrix_mul_transpose (F : Frame n d) (k : Fin ell) :
 /-- Exact diagonal block `V_kᵀ V_k = d I`, evaluated in coordinates.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s8.08a3f4b80a17 from=translated src=- shape=b45ae408 vocab=44ea3840
+-/
 theorem transpose_VMatrix_mul_apply (F : Frame n d) (k : Fin ell)
     (z z' : ParticleDomainIndex m n ell k) :
     ((VMatrix (m := m) F k).transpose * VMatrix (m := m) F k) z z' =
@@ -267,7 +283,9 @@ theorem transpose_VMatrix_mul_apply (F : Frame n d) (k : Fin ell)
 
 /-- The reverse particle Gram matrix is the retained-row identity times the frame column Gram.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.dbf1e1c19560 from=translated src=- shape=1ff1449b vocab=75c02642
+-/
 theorem transpose_VMatrix_mul (F : Frame n d) (k : Fin ell) :
     (VMatrix (m := m) F k).transpose * VMatrix (m := m) F k =
       (d : ℝ) • (1 : Matrix (ParticleDomainIndex m n ell k)

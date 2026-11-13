@@ -171,7 +171,9 @@ private lemma ent_delta_le {ι : Type*} [Fintype ι] [DecidableEq ι] (g : (ι �
 `|∇g(x)|² = ∑ i, fderiv ℝ g x (Pi.single i 1) ^ 2`.
 Source: Gross 1975, Thm 5; Ledoux, *The Concentration of Measure Phenomenon*, Thm 5.1;
 Boucheron–Lugosi–Massart 2013, Thm 5.4. Atlas: `gaussian-log-sobolev`.
-atlas: gaussian-log-sobolev-/
+atlas: gaussian-log-sobolev
+@isnad1 id=le.4h2v.s10.cfffd19dd4bb from=translated src=- shape=651cc97b vocab=33124e83
+-/
 theorem entropy_sq_le_two_mul_integral_sum_sq_fderiv_gaussian {ι : Type*} [Fintype ι]
     [DecidableEq ι] (g : (ι → ℝ) → ℝ) (hg : ContDiff ℝ 1 g)
     (hg2 : Integrable (fun x => g x ^ 2) (gaussianVector ι))

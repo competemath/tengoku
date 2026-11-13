@@ -18,7 +18,9 @@ namespace NLAlib.SparseSketch
 /-- Scalar parameter substitution behind lines 1437--1446.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s7.61a09a9dfbf3 from=translated src=- shape=3fda0f41 vocab=6ef62959
+-/
 theorem bandEnvelope_le_three_bandConstant
     {d q : ℕ} {m s epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1)
@@ -58,7 +60,9 @@ theorem bandEnvelope_le_three_bandConstant
 /-- The rounded parameters satisfy the exact beta-envelope substitution.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h3v.s6.43a41ce400f0 from=translated src=- shape=3e6f0914 vocab=66359323
+-/
 theorem rounded_bandEnvelope_le
     {d q : ℕ} {epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -85,7 +89,9 @@ theorem rounded_bandEnvelope_le
 `(3 + sqrt 2)/10`, hence below `0.442` and `1/2`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s6.b43c95413dc3 from=translated src=- shape=f52398a7 vocab=5f72766a
+-/
 theorem rounded_moment_base_lt_442
     {d q : ℕ} {epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -111,7 +117,9 @@ theorem rounded_moment_base_lt_442
 
 /-- The rounded moment-base estimate is strictly below one half.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s6.7ee6d721edd9 from=translated src=- shape=f52398a7 vocab=5f72766a
+-/
 theorem rounded_moment_base_lt_half
     {d q : ℕ} {epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -122,7 +130,9 @@ theorem rounded_moment_base_lt_half
 
 /-- The defined rounded moment base is strictly below 221/500.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s5.bfcc929f2713 from=translated src=- shape=ec99aa02 vocab=853a1bc3
+-/
 theorem momentBase_lt_442
     {d q : ℕ} {epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -132,7 +142,9 @@ theorem momentBase_lt_442
 
 /-- The defined rounded moment base is strictly below one half.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h3v.s5.bdfcf4d9b836 from=translated src=- shape=ec99aa02 vocab=853a1bc3
+-/
 theorem momentBase_lt_half
     {d q : ℕ} {epsilon : ℝ}
     (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :
@@ -142,7 +154,9 @@ theorem momentBase_lt_half
 
 /-- The defined rounded moment base is nonnegative.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s4.a5455cd7bf66 from=translated src=- shape=13ebf4df vocab=5c4325f4
+-/
 theorem momentBase_nonneg
     {d q : ℕ} {epsilon : ℝ} (hepsilon : 0 < epsilon) :
     0 ≤ momentBase d q epsilon := by
@@ -167,7 +181,9 @@ The remaining probabilistic task is to prove that the actual failure
 probability is bounded by this scalar expression.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h3v.s6.7f75f42aee94 from=translated src=- shape=7773aa36 vocab=c097b66e
+-/
 theorem rounded_scalar_failure_le_delta
     {d : ℕ} {delta epsilon : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -202,7 +218,9 @@ theorem rounded_scalar_failure_le_delta
 base-two failure order selected by the paper.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=and.3h3v.s7.1436c81e8722 from=translated src=- shape=ce79c246 vocab=5cdfc007
+-/
 theorem main_parameter_package
     {d : ℕ} {delta epsilon : ℝ}
     (hd : 1 ≤ d) (hepsilon0 : 0 < epsilon) (hepsilon1 : epsilon ≤ 1) :

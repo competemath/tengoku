@@ -21,7 +21,9 @@ variable {ι E F : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- The original and both replacement sums in the actual resampling triple
-are square-integrable whenever the individual summands are.-/
+are square-integrable whenever the individual summands are.
+@isnad1 id=and.1h3v.s8.a72816b9da88 from=translated src=- shape=390fd6b6 vocab=f5df72f8
+-/
 theorem memLp_resamplingTriple_sums
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i)) :
@@ -37,7 +39,9 @@ theorem memLp_resamplingTriple_sums
   have hXpp := (identDistrib_resamplingTripleSecond_original ν).symm.memLp_snd hX
   exact ⟨hX, hXp, hXpp⟩
 
-/-- The actual triple original has the canonical independent sum's mean.-/
+/-- The actual triple original has the canonical independent sum's mean.
+@isnad1 id=eq.0h3v.s7.1093c19247c6 from=translated src=- shape=48c53257 vocab=14c2592c
+-/
 theorem integral_resamplingTripleOriginal_eq_canonical
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     (∫ p, resamplingTripleOriginal p ∂resamplingTripleMeasure ν) =
@@ -48,7 +52,9 @@ theorem integral_resamplingTripleOriginal_eq_canonical
 parts for every bounded continuous test, with the exact coefficient `N/2`.
 All required moments are derived from the individual summands' second moments.
 The test codomain may be any real normed space.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.3h7v.s11.d43be4facf62 from=translated src=- shape=2144e378 vocab=e75dc805
+-/
 theorem integral_bilin_resamplingTriple
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i))
@@ -97,7 +103,9 @@ theorem integral_bilin_resamplingTriple
 
 /-- The genuine resampling difference realizes the entire bilinear covariance
 tensor, with factor `N/2`, for any two real continuous linear coordinates.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.1h5v.s10.6f1fa35230d8 from=translated src=- shape=ddd66d8f vocab=936bbaf6
+-/
 theorem integral_coordinate_covariance_resamplingTriple
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : E → E) 2 (ν i)) (u v : E →L[ℝ] ℝ) :
@@ -138,7 +146,9 @@ theorem integral_coordinate_covariance_resamplingTriple
 
 /-- Every pair of actual finite real coordinates of the original sum has
 covariance exactly `N/2` times the resampling difference's second moment.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.1h5v.s9.51ec91100d9f from=translated src=- shape=5a4885b0 vocab=c11e67dc
+-/
 theorem covariance_resamplingTripleOriginal_eval
     {κ : Type*} [Fintype κ]
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]

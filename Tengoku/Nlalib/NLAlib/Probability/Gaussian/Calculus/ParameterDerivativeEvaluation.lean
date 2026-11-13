@@ -19,7 +19,9 @@ against a Banach-valued derivative field. Scalar Gaussian Stein and the
 separating continuous dual give the exact vector identity; the displayed
 native bounds imply every Bochner integrability requirement.
 Source: the Stein contraction in Bandeira--Boedihardjo--van Handel,
-arXiv:2108.06312v2, Lemma 4.11.-/
+arXiv:2108.06312v2, Lemma 4.11.
+@isnad1 id=eq.5h10v.s11.45d6a096ac32 from=translated src=- shape=d536a31c vocab=a7f34ba4
+-/
 theorem integral_apply_gaussian_affine
     (P : Measure E) [IsProbabilityMeasure P]
     (γ : Measure E) [IsGaussian γ] (hmean : (∫ z : E, z ∂γ)=0)

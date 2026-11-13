@@ -26,7 +26,9 @@ local notation "B" => W →L[ℂ] W
 local notation "M" => CStarMatrix D D B
 
 omit [Fintype ι] in
-/-- The actual right-annihilation/left-field commutator is the vacuum projection defect.-/
+/-- The actual right-annihilation/left-field commutator is the vacuum projection defect.
+@isnad1 id=eq.0h3v.s15.c78c9594f922 from=translated src=- shape=88f94bea vocab=c93eed74
+-/
 theorem wordRightAnnihilation_mul_wordField_sub (i j : ι) :
     wordRightAnnihilation i*wordField j-wordField j*wordRightAnnihilation i=
       if i=j then wordVacuumProjection ι else 0 := by
@@ -59,7 +61,9 @@ def wordMatrixRightAnnihilation (i : ι) : M :=
   CStarMatrix.ofMatrix (Matrix.diagonal (fun _ => wordRightAnnihilation i))
 
 omit [Fintype ι] in
-/-- Left multiplication by the amplified right annihilator acts entrywise.-/
+/-- Left multiplication by the amplified right annihilator acts entrywise.
+@isnad1 id=eq.0h6v.s14.69eaafddff99 from=translated src=- shape=3c87e09c vocab=74e5c405
+-/
 theorem wordMatrixRightAnnihilation_mul_apply (i : ι) (t : M) (a b : D) :
     (wordMatrixRightAnnihilation (D := D) i*t) a b=wordRightAnnihilation i*t a b := by
   change (Matrix.diagonal (fun _ : D => wordRightAnnihilation i)*CStarMatrix.ofMatrix.symm t) a b=_
@@ -67,7 +71,9 @@ theorem wordMatrixRightAnnihilation_mul_apply (i : ι) (t : M) (a b : D) :
   rfl
 
 omit [Fintype ι] in
-/-- Right multiplication by the amplified right annihilator acts entrywise.-/
+/-- Right multiplication by the amplified right annihilator acts entrywise.
+@isnad1 id=eq.0h6v.s14.caa9e7303589 from=translated src=- shape=b61978c5 vocab=74e5c405
+-/
 theorem mul_wordMatrixRightAnnihilation_apply (i : ι) (t : M) (a b : D) :
     (t*wordMatrixRightAnnihilation (D := D) i) a b=t a b*wordRightAnnihilation i := by
   change (CStarMatrix.ofMatrix.symm t*Matrix.diagonal (fun _ : D => wordRightAnnihilation i)) a b=_
@@ -84,7 +90,9 @@ private theorem sum_entry (f : ι → M) (a b : D) :
       rw [Finset.sum_insert hi,Finset.sum_insert hi,CStarMatrix.add_apply,ih]
   exact hs Finset.univ
 
-/-- The native free model has its actual coefficientwise linear-combination entries.-/
+/-- The native free model has its actual coefficientwise linear-combination entries.
+@isnad1 id=eq.0h6v.s15.feaa2077ba3d from=translated src=- shape=3f79364b vocab=1d47ba08
+-/
 theorem wordNativeMatrixLinearCombination_apply (A₀ : Matrix D D ℂ)
     (A : ι → Matrix D D ℂ) (a b : D) :
     wordNativeMatrixLinearCombination A₀ A a b=
@@ -93,7 +101,9 @@ theorem wordNativeMatrixLinearCombination_apply (A₀ : Matrix D D ℂ)
   rw [CStarMatrix.add_apply,sum_entry]
   rfl
 
-/-- The amplified commutator with the actual free model is the coefficient vacuum sandwich.-/
+/-- The amplified commutator with the actual free model is the coefficient vacuum sandwich.
+@isnad1 id=eq.0h5v.s15.4a1211819ef8 from=translated src=- shape=31e61a76 vocab=140b11d5
+-/
 theorem wordMatrixRightAnnihilation_mul_linearCombination_sub
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (i : ι) :
     wordMatrixRightAnnihilation i*wordNativeMatrixLinearCombination A₀ A-
@@ -112,7 +122,9 @@ theorem wordMatrixRightAnnihilation_mul_linearCombination_sub
       abel
     _ = _ := by simp [wordRightAnnihilation_mul_wordField_sub]
 
-/-- The actual annihilator/resolvent compression factors into two native compressed resolvents.-/
+/-- The actual annihilator/resolvent compression factors into two native compressed resolvents.
+@isnad1 id=eq.1h6v.s17.d316b2c8e743 from=translated src=- shape=a4b851ee vocab=e592241d
+-/
 theorem wordMatrixVacuumCompression_rightAnnihilation_resolvent
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (i : ι)
     {z : ℂ} (hz : z∈resolventSet ℂ (wordNativeMatrixLinearCombination A₀ A)) :
@@ -134,7 +146,9 @@ theorem wordMatrixVacuumCompression_rightAnnihilation_resolvent
     rfl
   rwa [hz0,sub_zero] at hc
 
-/-- The genuine model multiplication has its coefficientwise compressed identity.-/
+/-- The genuine model multiplication has its coefficientwise compressed identity.
+@isnad1 id=eq.0h5v.s16.55639dce5df1 from=translated src=- shape=1312a565 vocab=ce392082
+-/
 theorem wordMatrixVacuumCompression_linearCombination_mul
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (t : M) :
     wordMatrixVacuumCompression (wordNativeMatrixLinearCombination A₀ A*t)=
@@ -151,7 +165,9 @@ theorem wordMatrixVacuumCompression_linearCombination_mul
   exact Finset.sum_comm
 
 /-- The actual native free resolvent compression satisfies the matrix Dyson equation. Source: arXiv:2108.06312v2, Theorem 6.2 endpoint. This is an endpoint prerequisite, not the spectral comparison.
-atlas: gaussian-free-spectrum-two-sided (partial)-/
+atlas: gaussian-free-spectrum-two-sided (partial)
+@isnad1 id=eq.1h5v.s16.4cc55aafe166 from=translated src=- shape=62818e34 vocab=a65d7723
+-/
 theorem wordMatrixVacuumCompression_resolvent_dyson
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ)
     {z : ℂ} (hz : z∈resolventSet ℂ (wordNativeMatrixLinearCombination A₀ A)) :

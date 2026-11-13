@@ -20,7 +20,9 @@ variable {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq
 
 /-- A trace power-product with two copies of the same direction is bounded by
 spectral powers times the squared Frobenius direction size. Source: Frobenius
-Cauchy--Schwarz; atlas wishart-lambda-min-tail (Hessian growth helper).-/
+Cauchy--Schwarz; atlas wishart-lambda-min-tail (Hessian growth helper).
+@isnad1 id=le.0h5v.s7.11f599990766 from=translated src=- shape=a31bf931 vocab=c5ab3bec
+-/
 theorem abs_trace_pow_mul_mul_pow_mul_le (R B : Matrix ι ι ℝ) (p q : ℕ) :
     |Matrix.trace (R ^ p * B * R ^ q * B)| ≤
       specNorm R ^ (p + q) * frobSq B := by
@@ -56,7 +58,9 @@ theorem abs_trace_pow_mul_mul_pow_mul_le (R B : Matrix ι ι ℝ) (p q : ℕ) :
 
 /-- The inverse-power Hessian kernel has an explicit spectral/Frobenius norm bound.
 Source: summing the trace product bound; atlas wishart-lambda-min-tail
-(Hessian growth helper).-/
+(Hessian growth helper).
+@isnad1 id=le.0h4v.s6.3f2d5b961935 from=translated src=- shape=3804edba vocab=865f320d
+-/
 theorem abs_inversePowerHessianKernel_le (R B : Matrix ι ι ℝ) (n : ℕ) :
     |inversePowerHessianKernel R B n| ≤
       ((n : ℝ) + 1) * specNorm R ^ (n + 2) * frobSq B := by
@@ -77,7 +81,9 @@ theorem abs_inversePowerHessianKernel_le (R B : Matrix ι ι ℝ) (n : ℕ) :
 omit [DecidableEq κ] in
 /-- Positive Gram regularization bounds the inverse spectral norm by its scalar
 regularization reciprocal. Source: a top inverse eigenvector and the regularized
-Gram quadratic form; atlas wishart-lambda-min-tail (growth helper).-/
+Gram quadratic form; atlas wishart-lambda-min-tail (growth helper).
+@isnad1 id=le.1h4v.s6.cc829121b224 from=translated src=- shape=d85c08c6 vocab=67a81810
+-/
 theorem specNorm_inv_regularizedGram_le [Nonempty ι] (ε : ℝ) (hε : 0 < ε)
     (G : Matrix ι κ ℝ) :
     specNorm (regularizedGram ε G)⁻¹ ≤ ε⁻¹ := by
@@ -111,7 +117,9 @@ theorem specNorm_inv_regularizedGram_le [Nonempty ι] (ε : ℝ) (hε : 0 < ε)
 
 /-- A coordinate Gram direction has squared Frobenius size at most four times the
 input size. Source: the Frobenius triangle and product inequalities;
-atlas wishart-lambda-min-tail (growth helper).-/
+atlas wishart-lambda-min-tail (growth helper).
+@isnad1 id=other.0h5v.s7.6fb62d59c098 from=translated src=- shape=931194ad vocab=dad6bc5d
+-/
 theorem frobSq_single_gram_direction_le (G : Matrix ι κ ℝ) (i : ι) (j : κ) :
     let E : Matrix ι κ ℝ := Matrix.single i j 1
     frobSq (E * Gᵀ + G * Eᵀ) ≤ 4 * frobSq G := by
@@ -133,7 +141,9 @@ theorem frobSq_single_gram_direction_le (G : Matrix ι κ ℝ) (i : ι) (j : κ)
 omit [DecidableEq κ] in
 /-- The trace of a regularized Gram matrix is its squared Frobenius size plus
 the scalar regularization times the row dimension. Source: trace cyclicity;
-atlas wishart-lambda-min-tail (growth helper).-/
+atlas wishart-lambda-min-tail (growth helper).
+@isnad1 id=eq.0h4v.s5.ec3e3892ca0e from=translated src=- shape=81fffb74 vocab=3401bf4b
+-/
 theorem trace_regularizedGram_eq (ε : ℝ) (G : Matrix ι κ ℝ) :
     Matrix.trace (regularizedGram ε G) = frobSq G + ε * Fintype.card ι := by
   unfold regularizedGram

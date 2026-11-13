@@ -17,7 +17,9 @@ open scoped Matrix MatrixOrder
 namespace NLAlib
 
 /-- For a centered Gaussian vector, covariance entries are exactly its
-coordinate product expectations. Source: Vershynin 2018, §3.3.2; supports `isserlis`.-/
+coordinate product expectations. Source: Vershynin 2018, §3.3.2; supports `isserlis`.
+@isnad1 id=eq.1h4v.s9.fa18c49abd2c from=translated src=- shape=79368dbf vocab=bad020e7
+-/
 theorem gaussianCovarianceMatrix_apply_eq_integral_mul_of_centered {n : ℕ}
     (μ : Measure (EuclideanSpace ℝ (Fin n))) [IsGaussian μ]
     (hmean : ∫ x, x ∂μ = 0) (i j : Fin n) :
@@ -39,7 +41,9 @@ The covariance can be correlated or singular, and index positions may repeat.
 The canonical finite pairing type matches each first remaining position with
 one partner and covers every position exactly once.
 Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
-atlas: isserlis-/
+atlas: isserlis
+@isnad1 id=eq.1h4v.s9.4f9a050cbac8 from=translated src=- shape=ded73ddd vocab=13c67da2
+-/
 theorem integral_prod_eval_gaussian_eq_sum_pairings {n m : ℕ}
     (μ : Measure (EuclideanSpace ℝ (Fin n))) [IsGaussian μ]
     (hmean : ∫ x, x ∂μ = 0) (idx : Fin m → Fin n) :
@@ -69,7 +73,9 @@ theorem integral_prod_eval_gaussian_eq_sum_pairings {n m : ℕ}
 /-- The Isserlis formula with covariance spelled directly as coordinate product
 expectations, including singular laws and repeated indices.
 Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
-atlas: isserlis-/
+atlas: isserlis
+@isnad1 id=eq.1h4v.s9.6fda1c207834 from=translated src=- shape=e4ed413b vocab=156ef277
+-/
 theorem integral_prod_eval_gaussian_eq_sum_integral_mul_pairings {n m : ℕ}
     (μ : Measure (EuclideanSpace ℝ (Fin n))) [IsGaussian μ]
     (hmean : ∫ x, x ∂μ = 0) (idx : Fin m → Fin n) :
@@ -81,7 +87,9 @@ theorem integral_prod_eval_gaussian_eq_sum_integral_mul_pairings {n m : ℕ}
 
 /-- Every odd product of coordinates of any centered Gaussian vector has
 expectation zero. Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
-atlas: isserlis-/
+atlas: isserlis
+@isnad1 id=eq.2h4v.s9.0b811f9e10f0 from=translated src=- shape=731c8198 vocab=042e2361
+-/
 theorem integral_prod_eval_gaussian_eq_zero_of_odd {n m : ℕ}
     (μ : Measure (EuclideanSpace ℝ (Fin n))) [IsGaussian μ]
     (hmean : ∫ x, x ∂μ = 0) (idx : Fin m → Fin n) (hm : Odd m) :
@@ -93,7 +101,9 @@ theorem integral_prod_eval_gaussian_eq_zero_of_odd {n m : ℕ}
 
 /-- Every product in the general centered Gaussian Wick formula is absolutely
 integrable, including correlated and singular covariance and repeated indices.
-Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.-/
+Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
+@isnad1 id=integrab.1h4v.s8.c7e522a28b93 from=translated src=- shape=5630ff62 vocab=1cf58487
+-/
 theorem integrable_prod_eval_gaussian_of_centered {n m : ℕ}
     (μ : Measure (EuclideanSpace ℝ (Fin n))) [IsGaussian μ]
     (hmean : ∫ x, x ∂μ = 0) (idx : Fin m → Fin n) :
@@ -107,7 +117,9 @@ theorem integrable_prod_eval_gaussian_of_centered {n m : ℕ}
 probability space, with covariance written as its coordinate product
 expectations. Correlated/singular laws and repeated coordinate positions are
 included. Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
-atlas: isserlis-/
+atlas: isserlis
+@isnad1 id=eq.2h6v.s9.588d0d3b27ca from=translated src=- shape=41ecad7b vocab=b64b1ff0
+-/
 theorem integral_prod_gaussianVector_eq_sum_pairings
     {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
     {n m : ℕ} (G : Ω → EuclideanSpace ℝ (Fin n)) (hG : HasGaussianLaw G P)
@@ -130,7 +142,9 @@ theorem integral_prod_gaussianVector_eq_sum_pairings
   simpa only [hout, hcov] using hh
 
 /-- Abstract centered Gaussian-vector product moments are absolutely integrable.
-Source: Isserlis 1918; Janson 1997, Thm 1.28 (transport of the canonical Gaussian law).-/
+Source: Isserlis 1918; Janson 1997, Thm 1.28 (transport of the canonical Gaussian law).
+@isnad1 id=integrab.2h6v.s8.1a8edd5ad172 from=translated src=- shape=59490f50 vocab=de2159a7
+-/
 theorem integrable_prod_gaussianVector_of_centered
     {Ω : Type*} [MeasurableSpace Ω] {P : Measure Ω} [IsProbabilityMeasure P]
     {n m : ℕ} (G : Ω → EuclideanSpace ℝ (Fin n)) (hG : HasGaussianLaw G P)

@@ -52,19 +52,25 @@ def dTransformCompanionMeasure (μ : Measure ℝ) (γ : ℝ) : Measure ℝ :=
   ENNReal.ofReal γ • μ + ENNReal.ofReal (1 - γ) • Measure.dirac 0
 
 /-- The singular-value transform is the first inverse-denominator moment
-multiplied by the evaluation point.-/
+multiplied by the evaluation point.
+@isnad1 id=eq.0h2v.s4.9184d23f765b from=translated src=- shape=d84d1437 vocab=1da5d008
+-/
 theorem singularValuePhi_eq_mul_moment (μ : Measure ℝ) (y : ℝ) :
     singularValuePhi μ y = y * dTransformMoment μ 0 y := by
   simp only [singularValuePhi, dTransformMoment, zero_add, pow_one, div_eq_mul_inv,
     integral_const_mul]
 
-/-- The denominator is strictly positive above a nonnegative support bound.-/
+/-- The denominator is strictly positive above a nonnegative support bound.
+@isnad1 id=lt.3h3v.s6.5ef37fd5dfb0 from=translated src=- shape=3825d644 vocab=27934fab
+-/
 theorem dTransform_denominator_pos {b y z : ℝ} (hb : 0 ≤ b) (hy : b < y)
     (hz : z ∈ Icc 0 b) : 0 < y ^ 2 - z ^ 2 := by
   have hy0 : 0 ≤ y := le_trans hb hy.le
   exact sub_pos.mpr ((sq_lt_sq₀ hz.1 hy0).mpr (lt_of_le_of_lt hz.2 hy))
 
-/-- Every inverse-denominator moment is integrable above the compact support.-/
+/-- Every inverse-denominator moment is integrable above the compact support.
+@isnad1 id=integrab.3h4v.s7.bb5759db7b73 from=translated src=- shape=af6406f9 vocab=4db9740e
+-/
 theorem integrable_dTransformMoment_kernel (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) (k : ℕ) :
     Integrable (fun z => ((y ^ 2 - z ^ 2)⁻¹) ^ (k + 1)) μ := by

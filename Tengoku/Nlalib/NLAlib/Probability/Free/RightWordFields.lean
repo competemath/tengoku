@@ -31,7 +31,9 @@ def wordRightAnnihilation (i : ι) : WordHilbertSpace ι →L[ℂ] WordHilbertSp
 def wordRightField (i : ι) : WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι :=
   (wordRightCreation i).toContinuousLinearMap + wordRightAnnihilation i
 
-/-- Suffix creation preserves a basis coefficient and appends its letter.-/
+/-- Suffix creation preserves a basis coefficient and appends its letter.
+@isnad1 id=eq.0h4v.s11.6061f4e32319 from=translated src=- shape=fce95501 vocab=53b20902
+-/
 @[simp]
 theorem wordRightCreation_apply_single (i : ι) (w : List ι) (z : ℂ) :
     wordRightCreation i (lp.single 2 w z) = lp.single 2 (w ++ [i]) z := by
@@ -44,13 +46,17 @@ theorem wordRightCreation_apply_single (i : ι) (w : List ι) (z : ℂ) :
   · ext v
     by_cases hv : v = w ++ [i] <;> simp [lp.single_apply, hv]
 
-/-- Right annihilation restricts coordinates to words ending in its letter.-/
+/-- Right annihilation restricts coordinates to words ending in its letter.
+@isnad1 id=eq.0h4v.s12.2fc14a3920cc from=translated src=- shape=90d4acad vocab=2b3f75cd
+-/
 @[simp]
 theorem wordRightAnnihilation_apply (i : ι) (f : WordHilbertSpace ι) (w : List ι) :
     wordRightAnnihilation i f w = f (w ++ [i]) :=
   lp.embeddingLinearIsometry_adjoint_apply _ f w
 
-/-- Right annihilation kills basis vectors at the empty word.-/
+/-- Right annihilation kills basis vectors at the empty word.
+@isnad1 id=eq.0h3v.s12.207eb4ea3afb from=translated src=- shape=96c7ce86 vocab=7242a87c
+-/
 @[simp]
 theorem wordRightAnnihilation_apply_single_nil (i : ι) (z : ℂ) :
     wordRightAnnihilation i (lp.single 2 [] z) = 0 := by
@@ -58,7 +64,9 @@ theorem wordRightAnnihilation_apply_single_nil (i : ι) (z : ℂ) :
   simp [wordRightAnnihilation_apply, lp.single_apply]
 
 /-- Right annihilation removes a matching final letter and kills a basis
-vector whose final letter is different.-/
+vector whose final letter is different.
+@isnad1 id=eq.0h5v.s12.21dc388a16b1 from=translated src=- shape=055b7c40 vocab=9b0645f6
+-/
 @[simp]
 theorem wordRightAnnihilation_apply_single_append (i j : ι) (w : List ι) (z : ℂ) :
     wordRightAnnihilation i (lp.single 2 (w ++ [j]) z) =
@@ -70,14 +78,18 @@ theorem wordRightAnnihilation_apply_single_append (i j : ι) (w : List ι) (z : 
   · simp [wordRightAnnihilation_apply, lp.single_apply,
       List.append_singleton_inj, hij]
 
-/-- The concrete right fields are self-adjoint.-/
+/-- The concrete right fields are self-adjoint.
+@isnad1 id=isselfad.0h2v.s11.ca47435d422f from=translated src=- shape=31fe4a21 vocab=ba7cb07c
+-/
 theorem isSelfAdjoint_wordRightField (i : ι) : IsSelfAdjoint (wordRightField i) := by
   simpa only [wordRightField, wordRightAnnihilation,
     ← ContinuousLinearMap.star_eq_adjoint] using
     IsSelfAdjoint.add_star_self (wordRightCreation i).toContinuousLinearMap
 
 /-- The right field applied to the actual vacuum is the corresponding
-one-letter basis vector.-/
+one-letter basis vector.
+@isnad1 id=eq.0h2v.s12.bb7a056a80c6 from=translated src=- shape=45dc42a4 vocab=6e13186d
+-/
 @[simp]
 theorem wordRightField_wordVacuum (i : ι) :
     wordRightField i (wordVacuum ι) = lp.single 2 [i] 1 := by

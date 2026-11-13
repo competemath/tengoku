@@ -23,7 +23,9 @@ namespace NLAlib
 def singularValueEdgeMoment (μ : Measure ℝ) (y : ℝ) : ℝ :=
   ∫ z, ((y - z)⁻¹) ^ 2 ∂μ
 
-/-- The edge resolvent has every finite second moment above compact support.-/
+/-- The edge resolvent has every finite second moment above compact support.
+@isnad1 id=memlp.2h3v.s6.c52ec2aaf6a7 from=translated src=- shape=04db8566 vocab=47832f83
+-/
 theorem memLp_two_inv_sub_of_support_subset_Icc (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     MemLp (fun z => (y - z)⁻¹) 2 μ := by
@@ -34,7 +36,9 @@ theorem memLp_two_inv_sub_of_support_subset_Icc (μ : Measure ℝ) [IsFiniteMeas
   rw [Real.norm_eq_abs, abs_of_pos (inv_pos.mpr hyz)]
   exact (inv_le_inv₀ hyz hyb).mpr (by linarith [hz.2])
 
-/-- The singular-value transform is bounded by the first edge resolvent.-/
+/-- The singular-value transform is bounded by the first edge resolvent.
+@isnad1 id=le.3h3v.s6.3230526310c7 from=translated src=- shape=475338a0 vocab=f0ef1474
+-/
 theorem singularValuePhi_le_integral_inv_sub (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     singularValuePhi μ y ≤ ∫ z, (y - z)⁻¹ ∂μ := by
@@ -54,7 +58,9 @@ theorem singularValuePhi_le_integral_inv_sub (μ : Measure ℝ) [IsProbabilityMe
   simpa only [one_mul] using mul_le_mul_of_nonneg_right hcoeff (inv_nonneg.mpr hyz.le)
 
 /-- The magnitude of the negative transform derivative dominates half the
-actual second edge-resolvent moment.-/
+actual second edge-resolvent moment.
+@isnad1 id=le.3h3v.s6.61e78f359f1a from=translated src=- shape=989966e6 vocab=e916ef83
+-/
 theorem div_two_edgeMoment_le_neg_deriv_singularValuePhi
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {b y : ℝ}
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
@@ -89,7 +95,9 @@ theorem div_two_edgeMoment_le_neg_deriv_singularValuePhi
   rw [integral_const_mul] at hle
   simpa only [singularValueEdgeMoment, div_eq_mul_inv, one_mul, mul_comm] using hle
 
-/-- Edge thickness controls the actual negative logarithmic derivative.-/
+/-- Edge thickness controls the actual negative logarithmic derivative.
+@isnad1 id=le.3h3v.s6.673e53c55e59 from=translated src=- shape=9dabc40e vocab=7286b14e
+-/
 theorem sqrt_edgeMoment_div_two_le_neg_deriv_div_singularValuePhi
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {b y : ℝ}
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
@@ -110,7 +118,9 @@ theorem sqrt_edgeMoment_div_two_le_neg_deriv_div_singularValuePhi
   apply (le_div_iff₀ (singularValuePhi_pos μ hb hsupport hy)).mpr
   nlinarith
 
-/-- The actual root function has an explicit negative edge-thickness bound.-/
+/-- The actual root function has an explicit negative edge-thickness bound.
+@isnad1 id=le.5h4v.s7.3035940f8909 from=translated src=- shape=182786f6 vocab=d6a3be66
+-/
 theorem singularValuePsi_le_neg_sqrt_edgeMoment
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b y : ℝ}
     (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
@@ -138,7 +148,9 @@ theorem singularValuePsi_le_neg_sqrt_edgeMoment
 /-- The thickness condition forces the actual D-transform root function to
 tend to negative infinity at the right support edge.
 Source: ScreeNOT, Lemma 8(2), Supplement Appendix A.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=tendsto.5h3v.s6.7ecf828d74aa from=translated src=- shape=23068b75 vocab=9f751049
+-/
 theorem tendsto_singularValuePsi_atBot_of_edge_thickness
     (μ : Measure ℝ) [IsProbabilityMeasure μ] {γ b : ℝ}
     (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1) (hb : 0 < b)

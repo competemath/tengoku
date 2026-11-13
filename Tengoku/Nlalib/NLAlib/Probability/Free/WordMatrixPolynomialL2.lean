@@ -32,7 +32,9 @@ local notation "M" => CStarMatrix D D B
 
 omit [DecidableEq D] in
 /-- The actual state-defined amplified L² quantity is nonnegative before
-taking a square root. This follows from the literal finite Gram identity.-/
+taking a square root. This follows from the literal finite Gram identity.
+@isnad1 id=le.0h3v.s15.5660ba0f2b24 from=translated src=- shape=70fe4f13 vocab=860dbd1a
+-/
 theorem wordMatrixVacuumExpectation_star_mul_re_nonneg (T : M) :
     0 ≤ (wordMatrixVacuumExpectation (D := D) (ι := ι) (star T * T)).re := by
   rw [wordMatrixVacuumExpectation_star_mul, Complex.ofReal_re]
@@ -40,7 +42,9 @@ theorem wordMatrixVacuumExpectation_star_mul_re_nonneg (T : M) :
 
 omit [DecidableEq D] in
 /-- Every actual entry's vacuum norm is bounded by the square root of
-dimension times the actual normalized amplified L² norm. Empty D is included.-/
+dimension times the actual normalized amplified L² norm. Empty D is included.
+@isnad1 id=le.0h5v.s15.240adfce855c from=translated src=- shape=2d3a0fdd vocab=9733fde8
+-/
 theorem norm_entry_wordVacuum_le_sqrt_card_mul (T : M) (i j : D) :
     ‖T i j (wordVacuum ι)‖ ≤ Real.sqrt (Fintype.card D) *
       Real.sqrt ((wordMatrixVacuumExpectation (D := D) (ι := ι) (star T * T)).re) := by
@@ -62,14 +66,18 @@ def wordMatrixPolynomialEvaluation (P : Matrix D D (FreeAlgebra ℂ ι)) : M :=
   CStarMatrix.ofMatrix (fun i j => FreeAlgebra.lift ℂ (wordField : ι → B) (P i j))
 
 omit [Fintype D] [DecidableEq D] in
-/-- Entry evaluation is the genuine native free-algebra lift.-/
+/-- Entry evaluation is the genuine native free-algebra lift.
+@isnad1 id=eq.0h5v.s15.30f6e503c6a3 from=translated src=- shape=5f5cb064 vocab=c1a983fb
+-/
 @[simp]
 theorem wordMatrixPolynomialEvaluation_apply (P : Matrix D D (FreeAlgebra ℂ ι)) (i j : D) :
     wordMatrixPolynomialEvaluation P i j = FreeAlgebra.lift ℂ (wordField : ι → B) (P i j) := rfl
 
 /-- The actual matrix-polynomial L² estimate with exact source dimension
 and degree factors. No entrywise operator-norm or Wick-degree conclusion is
-a premise. The zero polynomial, empty dimension and empty alphabet are included.-/
+a premise. The zero polynomial, empty dimension and empty alphabet are included.
+@isnad1 id=le.1h4v.s15.4f3428a56952 from=translated src=- shape=6425f9cb vocab=c49134ba
+-/
 theorem norm_wordMatrixPolynomialEvaluation_le [Fintype ι] (k : ℕ)
     (P : Matrix D D (FreeAlgebra ℂ ι))
     (hdeg : ∀ i j, ∀ w ∈

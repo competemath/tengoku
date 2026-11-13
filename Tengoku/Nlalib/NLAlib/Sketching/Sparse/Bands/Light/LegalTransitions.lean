@@ -49,7 +49,9 @@ theorem eq_update_iff (s : Site m n) (v : Level)
 
 /-- An annihilation entry is one exactly for its legal occupied-to-empty transition.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.6983aacbd256 from=translated src=- shape=83dd9098 vocab=658046c8
+-/
 theorem pAt_apply_characterization (r : Fin m) (i : Fin n)
     (out inp : Pattern m n) :
     pAt r i out inp =
@@ -81,7 +83,9 @@ theorem pAt_apply_characterization (r : Fin m) (i : Fin n)
 
 /-- A creation entry is one exactly for its legal empty-to-occupied transition.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.6ad1644fbaa4 from=translated src=- shape=83dd9098 vocab=1269bc0c
+-/
 theorem pDagAt_apply_characterization (r : Fin m) (i : Fin n)
     (out inp : Pattern m n) :
     pDagAt r i out inp =
@@ -119,7 +123,9 @@ def lightMove (inp : Pattern m n) (source target : Site m n) : Pattern m n :=
 
 /-- A source-clearing update is zero at the target exactly when the target is the source or was already empty.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=iff.0h5v.s6.1e8dc021aec9 from=translated src=- shape=4cb13999 vocab=276da3c1
+-/
 theorem update_source_zero_apply_eq_zero_iff
     (inp : Pattern m n) (source target : Site m n) :
     Function.update inp source .zero target = .zero ↔
@@ -131,7 +137,9 @@ theorem update_source_zero_apply_eq_zero_iff
 
 /-- A creation-after-annihilation entry is the indicator of a legal light move.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s8.b12bf9f22abc from=translated src=- shape=fc95ba7b vocab=7cf53749
+-/
 theorem pDagAt_mul_pAt_apply (r : Fin m) (i j : Fin n)
     (out inp : Pattern m n) :
     (pDagAt r i * pAt r j) out inp =
@@ -150,7 +158,9 @@ theorem pDagAt_mul_pAt_apply (r : Fin m) (i j : Fin n)
 
 /-- A legal light move preserves the heavy support.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s5.ab00aa0ef0ba from=translated src=- shape=dc617db8 vocab=bfd04669
+-/
 theorem heavy_lightMove_of_legal (inp : Pattern m n) (source target : Site m n)
     (hsource : inp source = .one)
     (havailable : target = source ∨ inp target = .zero) :
@@ -174,7 +184,9 @@ theorem heavy_lightMove_of_legal (inp : Pattern m n) (source target : Site m n)
 
 /-- A legal light move replaces its source in the light support by its target.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s6.5544909ae54c from=translated src=- shape=fae793b3 vocab=a55b7b54
+-/
 theorem light_lightMove_of_legal (inp : Pattern m n) (source target : Site m n)
     (_hsource : inp source = .one)
     (_havailable : target = source ∨ inp target = .zero) :
@@ -192,7 +204,9 @@ theorem light_lightMove_of_legal (inp : Pattern m n) (source target : Site m n)
 
 /-- A legal light move preserves the number of light sites.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s5.0dbb3f763dd6 from=translated src=- shape=a5f45a40 vocab=679916aa
+-/
 theorem card_light_lightMove_of_legal
     (inp : Pattern m n) (source target : Site m n)
     (hsource : inp source = .one)
@@ -214,7 +228,9 @@ theorem card_light_lightMove_of_legal
 blocks.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.f57c02a223d1 from=translated src=- shape=b2739fa2 vocab=547c73ab
+-/
 theorem ghat_apply_eq_zero_of_block_ne
     (F : Frame n d) (out inp : Fin d × Pattern m n)
     (hne : out.2.heavy ≠ inp.2.heavy ∨

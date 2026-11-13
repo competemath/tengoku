@@ -34,7 +34,9 @@ def gaussianPairingEdges : {m : ℕ} → GaussianPairings m → List (Fin m × F
 
 /-- The flattened endpoints of the edge list of a canonical pairing are exactly
 its `gaussianPairingPositions`, in the same interleaved order: each edge's first
-endpoint is immediately followed by its second endpoint.-/
+endpoint is immediately followed by its second endpoint.
+@isnad1 id=eq.0h2v.s5.44e9cfdbe39a from=translated src=- shape=535016a4 vocab=53857c39
+-/
 theorem gaussianPairingEdges_flatMap_eq_gaussianPairingPositions {m : ℕ}
     (π : GaussianPairings m) :
     (gaussianPairingEdges π).flatMap (fun e => [e.1, e.2]) =
@@ -59,7 +61,9 @@ theorem gaussianPairingEdges_flatMap_eq_gaussianPairingPositions {m : ℕ}
       rfl
 
 /-- The weight of a canonical pairing is the product of the covariance entries
-over its edges, with no symmetry assumption on `C`.-/
+over its edges, with no symmetry assumption on `C`.
+@isnad1 id=eq.0h3v.s5.b3260efff121 from=translated src=- shape=29345497 vocab=5119de3b
+-/
 theorem gaussianPairingWeight_eq_prod_gaussianPairingEdges {m : ℕ}
     (C : Fin m → Fin m → ℝ) (π : GaussianPairings m) :
     gaussianPairingWeight C π =
@@ -75,7 +79,9 @@ theorem gaussianPairingWeight_eq_prod_gaussianPairingEdges {m : ℕ}
       rfl
 
 /-- Twice the number of edges of a canonical complete pairing is the number of
-labelled positions.-/
+labelled positions.
+@isnad1 id=eq.0h2v.s4.5a4c03f02d23 from=translated src=- shape=83996267 vocab=f3c30810
+-/
 theorem two_mul_gaussianPairingEdges_length {m : ℕ} (π : GaussianPairings m) :
     2 * (gaussianPairingEdges π).length = m := by
   induction m using Nat.twoStepInduction with
@@ -88,7 +94,9 @@ theorem two_mul_gaussianPairingEdges_length {m : ℕ} (π : GaussianPairings m) 
       omega
 
 /-- A canonical complete pairing on `2 * p` labelled positions has exactly `p`
-edges.-/
+edges.
+@isnad1 id=eq.0h2v.s6.3b2284e0f45a from=translated src=- shape=720bd69e vocab=f3c30810
+-/
 theorem gaussianPairingEdges_length_two_mul {p : ℕ}
     (π : GaussianPairings (2 * p)) :
     (gaussianPairingEdges π).length = p := by
@@ -96,7 +104,9 @@ theorem gaussianPairingEdges_length_two_mul {p : ℕ}
   omega
 
 /-- The flattened edge endpoints of a canonical pairing use every position at
-most once.-/
+most once.
+@isnad1 id=nodup.0h2v.s5.1c990eb3b3c5 from=translated src=- shape=09d0d551 vocab=85a1ee3c
+-/
 theorem gaussianPairingEdges_flatten_nodup {m : ℕ} (π : GaussianPairings m) :
     ((gaussianPairingEdges π).flatMap (fun e => [e.1, e.2])).Nodup := by
   rw [gaussianPairingEdges_flatMap_eq_gaussianPairingPositions]
@@ -104,7 +114,9 @@ theorem gaussianPairingEdges_flatten_nodup {m : ℕ} (π : GaussianPairings m) :
 
 /-- The flattened edge endpoints of a canonical pairing cover every labelled
 position. Together with `gaussianPairingEdges_flatten_nodup` this says each
-endpoint appears exactly once.-/
+endpoint appears exactly once.
+@isnad1 id=eq.0h2v.s5.8fafaf9a6147 from=translated src=- shape=da6e3f67 vocab=12a08bcb
+-/
 theorem gaussianPairingEdges_flatten_toFinset {m : ℕ}
     (π : GaussianPairings m) :
     ((gaussianPairingEdges π).flatMap (fun e => [e.1, e.2])).toFinset =
@@ -115,7 +127,9 @@ theorem gaussianPairingEdges_flatten_toFinset {m : ℕ}
 /-- The endpoints of the edge list of a canonical pairing form a bijection from
 the disjoint union of the left and right endpoint copies to the labelled
 positions: the `Sum.inl`-side is the first endpoint of every edge (in edge
-order) and the `Sum.inr`-side is the second endpoint of every edge.-/
+order) and the `Sum.inr`-side is the second endpoint of every edge.
+@isnad1 id=bijectiv.0h2v.s6.7d476125ec36 from=translated src=- shape=902a648a vocab=eb415c89
+-/
 theorem gaussianPairingEdges_endpoints_bijective {m : ℕ}
     (π : GaussianPairings m) :
     Function.Bijective

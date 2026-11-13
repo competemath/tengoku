@@ -28,7 +28,9 @@ values and first derivatives have polynomial growth. Both source upper
 bounds are removed; all Gaussian integrability and limiting dominators
 are proved. Source: Bakry--Gentil--Ledoux 2014, §5.7; Ledoux, §5.1.
 Atlas: `ornstein-uhlenbeck`. This theorem concerns the standard Gaussian
-line and a common explicit polynomial majorant for `f` and `f'`.-/
+line and a common explicit polynomial majorant for `f` and `f'`.
+@isnad1 id=hasderiv.6h5v.s8.5041a6cac41c from=translated src=- shape=a19e429a vocab=d6e1e558
+-/
 theorem hasDerivAt_integral_ornsteinUhlenbeck_mul_log_of_polynomial_growth
     (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) (δ C : ℝ) (d : ℕ)
     (hδ : 0 < δ) (hlow : ∀ x, δ ≤ f x)
@@ -255,7 +257,9 @@ term, is minus the Fisher information on the positive polynomial-growth
 domain. Gaussian invariance makes the normalization term constant in
 time. Source: Bakry--Gentil--Ledoux 2014, §5.7; Ledoux, §5.1.
 Atlas: `ornstein-uhlenbeck`.
-atlas: ornstein-uhlenbeck-/
+atlas: ornstein-uhlenbeck
+@isnad1 id=hasderiv.6h5v.s8.713ffd0c5a67 from=translated src=- shape=e271cf45 vocab=a76163aa
+-/
 theorem hasDerivAt_entropy_ornsteinUhlenbeck_of_polynomial_growth
     (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) (δ C : ℝ) (d : ℕ)
     (hδ : 0 < δ) (hlow : ∀ x, δ ≤ f x)

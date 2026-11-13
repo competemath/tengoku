@@ -112,7 +112,9 @@ private theorem wordFieldDegreeSpan_eq_wordWickDegreeSpan (k : ℕ) :
     exact Nat.le_of_lt_succ m.isLt
 
 /-- Genuine bounded-degree word operators are closed under their actual
-Hilbert adjoint; scalar coefficients are conjugated by the native star.-/
+Hilbert adjoint; scalar coefficients are conjugated by the native star.
+@isnad1 id=mem.1h3v.s15.df139d866db6 from=translated src=- shape=86871ee2 vocab=8b97f560
+-/
 theorem star_mem_wordWickDegreeSpan {k : ℕ} {T : B}
     (hT : T ∈ wordWickDegreeSpan (ι := ι) k) :
     star T ∈ wordWickDegreeSpan (ι := ι) k := by
@@ -120,7 +122,9 @@ theorem star_mem_wordWickDegreeSpan {k : ℕ} {T : B}
   exact star_mem_wordFieldDegreeSpan hT
 
 /-- Multiplication adds genuine word degree, proved by actual ordered-word
-concatenation and equality with the Wick span.-/
+concatenation and equality with the Wick span.
+@isnad1 id=mem.2h5v.s16.f0b604024b24 from=translated src=- shape=b7dc37aa vocab=fad13277
+-/
 theorem mul_mem_wordWickDegreeSpan {j k : ℕ} {S T : B}
     (hS : S ∈ wordWickDegreeSpan (ι := ι) j)
     (hT : T ∈ wordWickDegreeSpan (ι := ι) k) :

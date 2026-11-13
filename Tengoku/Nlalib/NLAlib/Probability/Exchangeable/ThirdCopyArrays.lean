@@ -26,7 +26,9 @@ local notation "C" => (ι × Fin 3) → E
 
 /-- Each complete fixed-slot array in the actual three-copy construction
 has the original joint product law. The selected index and independent
-noise remain present in the source probability space.-/
+noise remain present in the source probability space.
+@isnad1 id=haslaw.0h6v.s8.cf560e17fd70 from=translated src=- shape=906f8067 vocab=8c712df4
+-/
 theorem hasLaw_resamplingTriple_prod_full_copy
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)]
     (γ : Measure Z) [IsProbabilityMeasure γ] (a : Fin 3) :

@@ -27,7 +27,9 @@ variable {m n d b : ℕ}
 two-site kernel.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.a675c61c5fec from=translated src=- shape=a6115260 vocab=089d52f5
+-/
 theorem siteKernel_mul_siteKernel_of_ne
     (s t : Site m n) (hst : s ≠ t) (A B : LevelOp) :
     siteKernel s A * siteKernel t B = pairKernel s t A B := by
@@ -81,7 +83,9 @@ theorem siteKernel_mul_siteKernel_of_ne
 model is exactly the physical pair kernel used by the band inventory.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s7.94983d0fc459 from=translated src=- shape=d2167687 vocab=2d905d15
+-/
 theorem siteJacobiProduct_eq_pairKernel
     (r : Fin m) (i j : Fin n) (hij : i ≠ j) (ρ : ℝ) :
     siteKernel (r, i) (jacobi ρ) * siteKernel (r, j) (jacobi ρ) =
@@ -94,7 +98,9 @@ theorem siteJacobiProduct_eq_pairKernel
 physical multiplication matrix from `GlobalBands`.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.4a8d76f37275 from=translated src=- shape=f1c144cf vocab=7c38a1e0
+-/
 theorem globalJacobiOperator_eq_smul_rawMultiplication
     (F : Frame n d) :
     globalJacobiOperator (m := m) b F =
@@ -125,7 +131,9 @@ def normalizedBand (m : ℕ) (F : Frame n d) (b : ℕ)
 
 /-- The normalized physical band retains its advertised grade shift.
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.0h6v.s4.cbc0732d92f8 from=translated src=- shape=375f5d9a vocab=c5ff6139
+-/
 theorem normalizedBand_homogeneous (F : Frame n d) (b : ℕ)
     (δ : Shift) :
   IsFullGradeShift δ.degree (normalizedBand m F b δ) := by
@@ -135,7 +143,9 @@ theorem normalizedBand_homogeneous (F : Frame n d) (b : ℕ)
 
 /-- The all-zero vacuum pattern has occupation grade zero.
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.516c2e4115bc from=translated src=- shape=515d1a8c vocab=a2057d64
+-/
 @[simp] theorem vacuumPattern_grade :
     (vacuumPattern m n).grade = 0 := by
   classical
@@ -153,7 +163,9 @@ def nextGrade : Shift → ℕ → Option ℕ
 
 /-- A successful next-grade computation has the band's integer grade change.
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.f71afa328768 from=translated src=- shape=af4509ef vocab=b45ab189
+-/
 theorem nextGrade_compatible {delta : Shift} {nu mu : ℕ}
     (hnext : nextGrade delta nu = some mu) :
     (mu : ℤ) = (nu : ℤ) + delta.degree := by
@@ -178,7 +190,9 @@ theorem nextGrade_compatible {delta : Shift} {nu mu : ℕ}
 
 /-- A failed next-grade computation admits no compatible natural output grade.
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ne.1h3v.s5.b66f4fcc8eb8 from=translated src=- shape=3ec11045 vocab=e8b3ff1f
+-/
 theorem nextGrade_none_impossible {delta : Shift} {nu : ℕ}
     (hnext : nextGrade delta nu = none) :
     ∀ mu : ℕ, (mu : ℤ) ≠ (nu : ℤ) + delta.degree := by
@@ -197,7 +211,9 @@ theorem nextGrade_none_impossible {delta : Shift} {nu : ℕ}
 /-- Exact projection insertion for one concrete band step.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s8.f5833600c8c5 from=translated src=- shape=f262edab vocab=861444f4
+-/
 theorem normalizedBand_output_projection
     (F : Frame n d) (b : ℕ) (delta : Shift)
     (nu mu : ℕ) (hnext : nextGrade delta nu = some mu) :
@@ -211,7 +227,9 @@ theorem normalizedBand_output_projection
 /-- An impossible downward band vanishes on the input grade.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.402668e32022 from=translated src=- shape=1626a931 vocab=5a3dbf79
+-/
 theorem normalizedBand_vanishes_of_nextGrade_none
     (F : Frame n d) (b : ℕ) (delta : Shift)
     (nu : ℕ) (hnext : nextGrade delta nu = none) :
@@ -224,7 +242,9 @@ theorem normalizedBand_vanishes_of_nextGrade_none
 the sum of its three normalized physical grade bands.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.8bc04ce2ba30 from=translated src=- shape=9b66c32c vocab=ac94ff5e
+-/
 theorem multiplicationOperator_eq_sum_normalizedBands
     (hb : 1 < b) (F : Frame n d) :
     multiplicationOperator (m := m) b hb F =
@@ -237,7 +257,9 @@ theorem multiplicationOperator_eq_sum_normalizedBands
 /-- Exact vacuum identity with the concrete three-band sum substituted.
 
 Source: ported from `SparseFockFormal.ConcreteLadder`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.90b94801ecf3 from=translated src=- shape=e67a453b vocab=62689256
+-/
 theorem vacuum_moment_identity_bands
     (hb : 1 < b) (F : Frame n d) (k : ℕ) :
     (∑ a : Fin d,

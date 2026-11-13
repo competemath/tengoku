@@ -27,7 +27,9 @@ variable {ι E : Type*} [Fintype ι] [DecidableEq ι] [Nonempty ι]
 def resamplingTripleMeasure (ν : ι → Measure E) : Measure (ι × ((ι × Fin 3) → E)) :=
   (PMF.uniformOfFintype ι).toMeasure.prod (Measure.pi fun k : ι × Fin 3 => ν k.1)
 
-/-- The genuine three-copy resampling construction is a probability measure.-/
+/-- The genuine three-copy resampling construction is a probability measure.
+@isnad1 id=isprobab.0h3v.s6.1dcf3341c447 from=translated src=- shape=d26de969 vocab=a4e298a4
+-/
 instance isProbabilityMeasure_resamplingTripleMeasure
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     IsProbabilityMeasure (resamplingTripleMeasure ν) := by
@@ -85,7 +87,9 @@ private theorem hasLaw_third_section
   exact hs.comp hsel
 
 /-- The second replacement has the original independent sum's law. This is
-true for each fixed index before averaging. Source: Tropp (2026), §6.3.-/
+true for each fixed index before averaging. Source: Tropp (2026), §6.3.
+@isnad1 id=haslaw.0h3v.s7.58754b6c573e from=translated src=- shape=5485cc83 vocab=14a77c59
+-/
 theorem hasLaw_resamplingTripleSecond
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     HasLaw resamplingTripleSecond ((Measure.pi ν).map (fun x : ι → E => ∑ j, x j))
@@ -98,7 +102,9 @@ theorem hasLaw_resamplingTripleSecond
   exact hasLaw_prod_of_sections hg (fun i => hasLaw_third_section ν i)
 
 /-- The first resampling difference uses only the selected original and its
-first independent copy.-/
+first independent copy.
+@isnad1 id=eq.0h3v.s7.5dfec8580193 from=translated src=- shape=e7444e0f vocab=c080530e
+-/
 theorem resamplingTriple_difference (p : ι × ((ι × Fin 3) → E)) :
     resamplingTripleOriginal p - resamplingTripleFirst p = p.2 (p.1, 0) - p.2 (p.1, 1) := by
   unfold resamplingTripleOriginal resamplingTripleFirst
@@ -110,7 +116,9 @@ theorem resamplingTriple_difference (p : ι × ((ι × Fin 3) → E)) :
 /-- In the genuine same-index resampling triple, the second replacement is
 independent of the difference between the original sum and first replacement.
 This includes independent nonidentical summands. Source: Tropp (2026), §6.3;
-supports the Cauchy-transform universality card.-/
+supports the Cauchy-transform universality card.
+@isnad1 id=indepfun.0h3v.s8.3e86b03a6b22 from=translated src=- shape=e6d49725 vocab=0b8e1ce4
+-/
 theorem indepFun_resamplingTriple_difference_second
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     IndepFun (resamplingTripleOriginal - resamplingTripleFirst)

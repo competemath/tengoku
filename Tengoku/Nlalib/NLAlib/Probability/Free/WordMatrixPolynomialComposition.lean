@@ -25,7 +25,9 @@ local notation "B" => W →L[ℂ] W
 local notation "M" => CStarMatrix D D B
 
 /-- Native real polynomial evaluation multiplies the actual entry degree
-by at most its polynomial degree. Constants and empty dimensions are included.-/
+by at most its polynomial degree. Constants and empty dimensions are included.
+@isnad1 id=mem.2h8v.s16.5c7244ec87f5 from=translated src=- shape=13560385 vocab=c86f85f4
+-/
 theorem aeval_entries_mem_wordWickDegreeSpan {k r : ℕ} {T : M}
     (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k)
     (Q : Polynomial ℝ) (hQ : Q.natDegree ≤ r) :

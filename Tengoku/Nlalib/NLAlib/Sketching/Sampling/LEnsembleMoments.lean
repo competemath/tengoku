@@ -35,7 +35,9 @@ private theorem memLp_inclusionIndicator (L : Matrix n n ℝ) (hL : L.PosSemidef
 
 /-- The singleton inclusion probability is the marginal-kernel diagonal.
 Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h3v.s5.75dee2fa5f71 from=translated src=- shape=6f0d2944 vocab=60530d9a
+-/
 theorem measureReal_mem_lEnsembleLaw (L : Matrix n n ℝ) (hL : L.PosSemidef) (i : n) :
     (lEnsembleLaw L hL).real {S | i ∈ S} = lEnsembleKernel L i i := by
   have h := measureReal_subset_lEnsembleLaw L hL {i}
@@ -70,7 +72,9 @@ private theorem integral_inclusionIndicator_mul (L : Matrix n n ℝ) (hL : L.Pos
 
 /-- Distinct L-ensemble inclusion indicators have covariance `-Kᵢⱼ²`.
 Dereziński–Mahoney 2020, §3, negative-correlation identity.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.2h4v.s7.539c683b5809 from=translated src=- shape=09e6ba13 vocab=a0b521c9
+-/
 theorem covariance_mem_lEnsembleLaw (L : Matrix n n ℝ) (hL : L.PosSemidef)
     {i j : n} (hij : i ≠ j) :
     covariance (fun S : Finset n => if i ∈ S then (1 : ℝ) else 0)
@@ -92,7 +96,9 @@ private theorem card_eq_sum_inclusionIndicator (S : Finset n) :
 /-- The expected cardinality of the variable-size L-ensemble is `tr K`.
 This is not an identity for a law conditioned on a fixed cardinality.
 Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h2v.s6.ac5d926a97fe from=translated src=- shape=84409ad8 vocab=c067f634
+-/
 theorem integral_card_lEnsembleLaw (L : Matrix n n ℝ) (hL : L.PosSemidef) :
     ∫ S, (S.card : ℝ) ∂lEnsembleLaw L hL = (lEnsembleKernel L).trace := by
   simp_rw [card_eq_sum_inclusionIndicator]
@@ -101,7 +107,9 @@ theorem integral_card_lEnsembleLaw (L : Matrix n n ℝ) (hL : L.PosSemidef) :
 
 /-- The cardinality variance is `tr (K - K²)`, including singular kernels
 and an empty ambient index set. Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h2v.s6.406b458e3e34 from=translated src=- shape=53b322cb vocab=08cdf151
+-/
 theorem variance_card_lEnsembleLaw (L : Matrix n n ℝ) (hL : L.PosSemidef) :
     variance (fun S : Finset n => (S.card : ℝ)) (lEnsembleLaw L hL) =
       (lEnsembleKernel L - lEnsembleKernel L * lEnsembleKernel L).trace := by

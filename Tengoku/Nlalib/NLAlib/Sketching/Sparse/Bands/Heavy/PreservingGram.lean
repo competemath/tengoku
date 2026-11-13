@@ -30,7 +30,9 @@ def ADownOne (F : Frame n d) (r : Fin m) (i : Fin n) :
 
 /-- The heavy annihilation analysis matrix is the sum of its one-site summands.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.2ff8f9514fad from=translated src=- shape=ef96dedd vocab=d281edf4
+-/
 theorem ADownMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
     ADownMatrix F r = ∑ i, ADownOne F r i := by
   ext p inp
@@ -38,7 +40,9 @@ theorem ADownMatrix_eq_sum_one (F : Frame n d) (r : Fin m) :
 
 /-- Annihilation followed by creation at distinct sites is its two-leg word kernel.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.5ed49304d5a6 from=translated src=- shape=0470bfdf vocab=f59c1906
+-/
 theorem rDownAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
     rDownAt r i * rUpAt r j = wordKernel (r, i) (r, j) (.rDown, .rUp) := by
   simpa [rDownAt, rUpAt, wordKernel, Leg.op] using
@@ -49,7 +53,9 @@ theorem rDownAt_mul_rUpAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
 
 /-- Creation followed by annihilation at distinct sites is its two-leg word kernel.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.4fef0c73178e from=translated src=- shape=0470bfdf vocab=f59c1906
+-/
 theorem rUpAt_mul_rDownAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
     rUpAt r i * rDownAt r j = wordKernel (r, i) (r, j) (.rUp, .rDown) := by
   simpa [rDownAt, rUpAt, wordKernel, Leg.op] using
@@ -60,7 +66,9 @@ theorem rUpAt_mul_rDownAt_of_ne (r : Fin m) {i j : Fin n} (hij : i ≠ j) :
 
 /-- Distinct creation-analysis Gram terms equal the corresponding physical heavy hopping word.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.c41c092612ec from=translated src=- shape=0a167239 vocab=15586550
+-/
 theorem AUpOne_transpose_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     (AUpOne F r i).transpose * AUpOne F r j =
@@ -91,7 +99,9 @@ theorem AUpOne_transpose_mul_AUpOne_of_ne (F : Frame n d) (r : Fin m)
 
 /-- Distinct annihilation-analysis Gram terms equal the corresponding physical heavy hopping word.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.b95015d9fe2c from=translated src=- shape=0a167239 vocab=44f4522b
+-/
 theorem ADownOne_transpose_mul_ADownOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     (ADownOne F r i).transpose * ADownOne F r j =
@@ -134,7 +144,9 @@ def DDown (F : Frame n d) : FullOp d m n :=
 
 /-- A row creation Gram matrix splits into distinct-site words and its same-site diagonal correction.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.f78250dc23e9 from=translated src=- shape=4b705004 vocab=608c00c8
+-/
 theorem AUpMatrix_gram_row (F : Frame n d) (r : Fin m) :
     (AUpMatrix F r).transpose * AUpMatrix F r =
       (∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -166,7 +178,9 @@ theorem AUpMatrix_gram_row (F : Frame n d) (r : Fin m) :
 
 /-- A row annihilation Gram matrix splits into distinct-site words and its same-site diagonal correction.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.f1246f54c46e from=translated src=- shape=4b705004 vocab=a956e687
+-/
 theorem ADownMatrix_gram_row (F : Frame n d) (r : Fin m) :
     (ADownMatrix F r).transpose * ADownMatrix F r =
       (∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -198,7 +212,9 @@ theorem ADownMatrix_gram_row (F : Frame n d) (r : Fin m) :
 
 /-- The creation stack Gram matrix splits into its heavy hopping word and diagonal correction.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.ca5b2fdf1066 from=translated src=- shape=17673e2e vocab=c47461fe
+-/
 theorem AUpStack_gram (F : Frame n d) :
     (AUpStack (m := m) F).transpose * AUpStack (m := m) F =
       wordSum m (Frame.rows F) .rDown .rUp + DUp (m := m) F := by
@@ -225,7 +241,9 @@ theorem AUpStack_gram (F : Frame n d) :
 
 /-- The annihilation stack Gram matrix splits into its heavy hopping word and diagonal correction.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.f349b967c830 from=translated src=- shape=17673e2e vocab=7caed410
+-/
 theorem ADownStack_gram (F : Frame n d) :
     (ADownStack (m := m) F).transpose * ADownStack (m := m) F =
       wordSum m (Frame.rows F) .rUp .rDown + DDown (m := m) F := by

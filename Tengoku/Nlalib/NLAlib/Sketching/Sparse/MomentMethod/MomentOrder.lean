@@ -17,14 +17,18 @@ namespace NLAlib.SparseSketch
 
 /-- The chosen failure-moment order is at least one.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s3.2eb8d4f02cf5 from=translated src=- shape=25b8bdde vocab=f3113d74
+-/
 theorem one_le_sparseMomentOrder (d : ℕ) (delta : ℝ) :
     1 ≤ sparseMomentOrder d delta := by
   exact Nat.le_max_left _ _
 
 /-- The chosen failure-moment order dominates the base-two dimension-to-failure logarithm.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s5.2c10643dcf20 from=translated src=- shape=b0326335 vocab=e8eb2cba
+-/
 theorem log2_ratio_le_sparseMomentOrder (d : ℕ) (delta : ℝ) :
     Real.logb 2 ((d : ℝ) / delta) ≤ (sparseMomentOrder d delta : ℝ) := by
   calc
@@ -36,7 +40,9 @@ theorem log2_ratio_le_sparseMomentOrder (d : ℕ) (delta : ℝ) :
 /-- The base-two ceiling gives `d/delta ≤ 2^q`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s6.f5bf6fdfe00a from=translated src=- shape=578273bb vocab=3f3b697e
+-/
 theorem ratio_le_two_pow_sparseMomentOrder
     {d : ℕ} {delta : ℝ} (hd : 1 ≤ d) (hdelta : 0 < delta) :
     (d : ℝ) / delta ≤ (2 : ℝ) ^ sparseMomentOrder d delta := by
@@ -50,7 +56,9 @@ theorem ratio_le_two_pow_sparseMomentOrder
 /-- Equivalently, `2⁻q ≤ delta/d`.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s6.67f10df023a3 from=translated src=- shape=e3d5ff40 vocab=3f3b697e
+-/
 theorem half_pow_sparseMomentOrder_le
     {d : ℕ} {delta : ℝ} (hd : 1 ≤ d) (hdelta : 0 < delta) :
     ((1 : ℝ) / 2) ^ sparseMomentOrder d delta ≤ delta / d := by
@@ -68,7 +76,9 @@ theorem half_pow_sparseMomentOrder_le
 /-- The failure-order arithmetic in lines 1457--1464.
 
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h2v.s6.843213124622 from=translated src=- shape=3565e0b6 vocab=bee77ce9
+-/
 theorem four_pow_sparseMomentOrder_le
     {d : ℕ} {delta : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1) :
@@ -101,7 +111,9 @@ theorem four_pow_sparseMomentOrder_le
 
 /-- The auxiliary natural dimension parameter casts to its explicit real formula.
 Source: ported from `SparseFockFormal.PaperParameters`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.de03c5e11585 from=translated src=- shape=b9396cc9 vocab=9feb936a
+-/
 @[simp] theorem cast_momentDim (d q : ℕ) :
     (momentDim d q : ℝ) = (d : ℝ) + 2 * (q : ℝ) + 1 := by
   simp [momentDim]

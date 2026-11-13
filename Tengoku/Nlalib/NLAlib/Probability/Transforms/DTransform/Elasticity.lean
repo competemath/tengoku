@@ -19,7 +19,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The singular-value transform is positive above a nonnegative compact
-probability-law support.-/
+probability-law support.
+@isnad1 id=lt.3h3v.s6.a3201cb7e7ee from=translated src=- shape=d3ce7d2d vocab=da5eedb9
+-/
 theorem singularValuePhi_pos (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     0 < singularValuePhi μ y := by
@@ -27,7 +29,9 @@ theorem singularValuePhi_pos (μ : Measure ℝ) [IsProbabilityMeasure μ]
   exact mul_pos (lt_of_le_of_lt hb hy) (dTransformMoment_pos μ hb hsupport hy 0)
 
 /-- The actual logarithmic derivative of the singular-value transform is
-expressed by its first two inverse-denominator moments.-/
+expressed by its first two inverse-denominator moments.
+@isnad1 id=eq.3h3v.s7.d30427ba00ab from=translated src=- shape=fbff53d4 vocab=b4457622
+-/
 theorem singularValueElasticity_eq_moments (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     singularValueElasticity μ y =
@@ -37,7 +41,9 @@ theorem singularValueElasticity_eq_moments (μ : Measure ℝ) [IsProbabilityMeas
   field_simp [(dTransformMoment_pos μ hb hsupport hy 0).ne', (lt_of_le_of_lt hb hy).ne']
 
 /-- Differentiating the actual logarithmic derivative involves only three
-inverse-denominator moments.-/
+inverse-denominator moments.
+@isnad1 id=hasderiv.3h3v.s8.96ffba592d7d from=translated src=- shape=37ff772b vocab=b45d1262
+-/
 theorem hasDerivAt_singularValueElasticity (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     HasDerivAt (singularValueElasticity μ)
@@ -59,7 +65,9 @@ theorem hasDerivAt_singularValueElasticity (μ : Measure ℝ) [IsProbabilityMeas
   ring
 
 /-- A positive upper support point makes the actual elasticity derivative
-strictly positive throughout the interval above the support.-/
+strictly positive throughout the interval above the support.
+@isnad1 id=lt.4h3v.s6.4515c3be1c92 from=translated src=- shape=063feadb vocab=802738e0
+-/
 theorem deriv_singularValueElasticity_pos (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 < b) (hsupport : μ.support ⊆ Icc 0 b)
     (hbmem : b ∈ μ.support) (hy : b < y) :
@@ -77,7 +85,9 @@ theorem deriv_singularValueElasticity_pos (μ : Measure ℝ) [IsProbabilityMeasu
   exact div_pos (mul_pos (mul_pos (by norm_num) (hb.trans hy)) hn) (sq_pos_of_pos h0)
 
 /-- The actual logarithmic elasticity is strictly increasing above every
-positive compact-support upper edge.-/
+positive compact-support upper edge.
+@isnad1 id=strictmo.3h2v.s6.cbc3d497aff3 from=translated src=- shape=640c3cd2 vocab=86c1bb9a
+-/
 theorem strictMonoOn_singularValueElasticity (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b : ℝ} (hb : 0 < b) (hsupport : μ.support ⊆ Icc 0 b) (hbmem : b ∈ μ.support) :
     StrictMonoOn (singularValueElasticity μ) (Ioi b) := by

@@ -53,7 +53,9 @@ def FiniteLaw.MatchesUpTo [Fintype ι] [DecidableEq ι] [Fintype α]
 
 /-- Every finite law agrees with itself on all local marginals.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=matchesu.0h4v.s5.af0011c56521 from=translated src=- shape=89c2011b vocab=8cdd6d71
+-/
 theorem FiniteLaw.MatchesUpTo.refl [Fintype ι] [DecidableEq ι] [Fintype α]
     (μ : FiniteLaw (ι → α)) (k : ℕ) : FiniteLaw.MatchesUpTo μ μ k := by
   intro S hS f hf
@@ -61,7 +63,9 @@ theorem FiniteLaw.MatchesUpTo.refl [Fintype ι] [DecidableEq ι] [Fintype α]
 
 /-- Matching local marginals through a larger order implies matching through every smaller order.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=matchesu.2h6v.s6.dbc8cdc6e2d9 from=translated src=- shape=45bcabd4 vocab=8dcf7a1b
+-/
 theorem FiniteLaw.MatchesUpTo.mono [Fintype ι] [DecidableEq ι] [Fintype α]
     {μ ν : FiniteLaw (ι → α)} {k l : ℕ}
     (h : FiniteLaw.MatchesUpTo μ ν l) (hkl : k ≤ l) : FiniteLaw.MatchesUpTo μ ν k := by
@@ -73,7 +77,9 @@ probability involving at most `k` coordinates.  This makes the connection to
 the usual event-level definition of `k`-wise independence explicit.
 
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h7v.s7.b4687a29a63c from=translated src=- shape=31276add vocab=f345cc78
+-/
 theorem FiniteLaw.MatchesUpTo.prob_cylinder_eq
     [Fintype ι] [DecidableEq ι] [Fintype α]
     {μ ν : FiniteLaw (ι → α)} {k : ℕ}
@@ -118,7 +124,9 @@ variable [DecidableEq ι]
 
 /-- Replacing an observable by an equal function preserves its local-degree bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.2h5v.s5.ae008ba59ce9 from=translated src=- shape=f51ce77e vocab=3a63cc8a
+-/
 theorem congr {k : ℕ} {f g : (ι → α) → ℝ}
     (hf : HasLocalDegree k f) (hfg : f = g) : HasLocalDegree k g := by
   subst g
@@ -126,7 +134,9 @@ theorem congr {k : ℕ} {f g : (ι → α) → ℝ}
 
 /-- Constant observables satisfy every nonnegative local-degree bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.0h4v.s4.1a10d06f6615 from=translated src=- shape=729146ac vocab=3a63cc8a
+-/
 theorem constant (k : ℕ) (c : ℝ) :
     HasLocalDegree (ι := ι) (α := α) k (fun _ => c) := by
   apply atom ∅ (fun _ => c)
@@ -136,7 +146,9 @@ theorem constant (k : ℕ) (c : ℝ) :
 
 /-- Negating an observable preserves its local-degree bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h4v.s5.480899aff124 from=translated src=- shape=81ccebaf vocab=aae0a374
+-/
 theorem neg {k : ℕ} {f : (ι → α) → ℝ}
     (hf : HasLocalDegree k f) :
     HasLocalDegree k (fun x => -f x) := by
@@ -144,7 +156,9 @@ theorem neg {k : ℕ} {f : (ι → α) → ℝ}
 
 /-- Subtracting observables with the same local-degree bound preserves that bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.2h5v.s5.bad4fbf57223 from=translated src=- shape=0ba09b86 vocab=3fcf1b2b
+-/
 theorem sub {k : ℕ} {f g : (ι → α) → ℝ}
     (hf : HasLocalDegree k f) (hg : HasLocalDegree k g) :
     HasLocalDegree k (fun x => f x - g x) := by
@@ -152,7 +166,9 @@ theorem sub {k : ℕ} {f g : (ι → α) → ℝ}
 
 /-- An observable's local-degree bound can be increased.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.2h5v.s5.755ffa9b1ab2 from=translated src=- shape=ec75728c vocab=e38fa520
+-/
 theorem mono {k l : ℕ} {f : (ι → α) → ℝ}
     (hf : HasLocalDegree k f) (hkl : k ≤ l) : HasLocalDegree l f := by
   induction hf with
@@ -164,7 +180,9 @@ theorem mono {k l : ℕ} {f : (ι → α) → ℝ}
 
 /-- A finite sum of observables with the same local-degree bound retains that bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h6v.s6.1876383f1f1e from=translated src=- shape=2c40aa31 vocab=c75815db
+-/
 theorem sum_finset {β : Type*} {k : ℕ} (T : Finset β)
     (f : β → (ι → α) → ℝ)
     (hf : ∀ t ∈ T, HasLocalDegree k (f t)) :
@@ -181,7 +199,9 @@ theorem sum_finset {β : Type*} {k : ℕ} (T : Finset β)
 
 /-- A sum over a finite index type retains the common local-degree bound.
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h5v.s5.acc05c4ce576 from=translated src=- shape=07cb36ef vocab=816c2bb4
+-/
 theorem sum_fintype {β : Type*} [Fintype β] {k : ℕ}
     (f : β → (ι → α) → ℝ)
     (hf : ∀ t, HasLocalDegree k (f t)) :
@@ -220,7 +240,9 @@ finite-coordinate analogue of the elementary fact that degrees add when
 polynomials are multiplied.
 
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.2h6v.s6.b5d66194ba20 from=translated src=- shape=1201b207 vocab=f1aa383f
+-/
 theorem mul {k l : ℕ} {f g : (ι → α) → ℝ}
     (hf : HasLocalDegree k f) (hg : HasLocalDegree l g) :
     HasLocalDegree (k + l) (fun x => f x * g x) := by
@@ -240,7 +262,9 @@ theorem mul {k l : ℕ} {f g : (ι → α) → ℝ}
 local interaction degree.
 
 Source: ported from `SparseFockFormal.FiniteLocalMoments`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.c076bfd23a81 from=translated src=- shape=2e58e69f vocab=2d17dc64
+-/
 theorem expect_eq_of_matchesUpTo [Fintype ι] [Fintype α]
     {μ ν : FiniteLaw (ι → α)} {k : ℕ} {f : (ι → α) → ℝ}
     (hmatch : FiniteLaw.MatchesUpTo μ ν k) (hf : HasLocalDegree k f) :

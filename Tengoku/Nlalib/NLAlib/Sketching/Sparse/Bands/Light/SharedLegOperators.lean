@@ -52,7 +52,9 @@ def ghat (F : Frame n d) : FullOp d m n :=
 
 /-- The transposed creation matrix has the corresponding annihilation entry formula.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.977ebd9b952e from=translated src=- shape=4b0bc239 vocab=93b77c85
+-/
 @[simp] theorem CMatrix_transpose_apply (F : Frame n d) (r : Fin m)
     (p : Pattern m n) (out : Fin d × Pattern m n) :
     (CMatrix F r).transpose p out =
@@ -68,7 +70,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 The same-site terms are retained; no hollow-pair convention is used here.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.0170b78ccff2 from=translated src=- shape=21f7a5c3 vocab=512852d9
+-/
 theorem ghat_apply (F : Frame n d)
     (out inp : Fin d × Pattern m n) :
     ghat (m := m) F out inp =
@@ -94,7 +98,9 @@ theorem ghat_apply (F : Frame n d)
 
 /-- The shared-leg operator is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.88c3d6886f79 from=translated src=- shape=cfd23346 vocab=6f074226
+-/
 @[simp] theorem ghat_transpose (F : Frame n d) :
     (ghat (m := m) F).transpose = ghat F := by
   rw [ghat]
@@ -128,7 +134,9 @@ def blockProjection (T : Finset (Site m n)) (ell : ℕ) : FullOp d m n :=
 
 /-- The block projection is the diagonal indicator of block membership.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.a31064676ce5 from=translated src=- shape=1ea3a6de vocab=b892a279
+-/
 @[simp] theorem blockProjection_apply (T : Finset (Site m n)) (ell : ℕ)
     (out inp : Fin d × Pattern m n) :
     blockProjection (d := d) T ell out inp =
@@ -142,7 +150,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The pattern block projection is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.8a6af4c35be2 from=translated src=- shape=7a48b37a vocab=8972813b
+-/
 @[simp] theorem blockProjection_transpose (T : Finset (Site m n)) (ell : ℕ) :
     (blockProjection (d := d) T ell).transpose = blockProjection T ell := by
   ext out inp
@@ -154,7 +164,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The pattern block projection is idempotent.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.43bb057c734f from=translated src=- shape=8a555c95 vocab=396f620b
+-/
 @[simp] theorem blockProjection_mul_self (T : Finset (Site m n)) (ell : ℕ) :
     blockProjection (d := d) T ell * blockProjection T ell =
       blockProjection T ell := by
@@ -177,14 +189,18 @@ def columnGramApply (F : Frame n d) (x : EVec n) : EVec n :=
 
 /-- Applying the column Gram operator is its matrix-vector product.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.d8f65ed09601 from=translated src=- shape=b4588120 vocab=5330c16b
+-/
 @[simp] theorem columnGramApply_apply (F : Frame n d) (x : EVec n) (i : Fin n) :
     columnGramApply F x i = ∑ j, columnGram F i j * x j := rfl
 
 /-- `U Uᵀ` is analysis after synthesis.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.98a191ec0f0f from=translated src=- shape=f6615c5e vocab=cef8853c
+-/
 theorem columnGramApply_eq_analyze_synthesize (F : Frame n d) (x : EVec n)
     (i : Fin n) :
     columnGramApply F x i =
@@ -204,7 +220,9 @@ theorem columnGramApply_eq_analyze_synthesize (F : Frame n d) (x : EVec n)
 This proves, rather than assumes, the analytic input `‖P_(l←k)‖ ≤ 1`.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s4.dc3f25f3276a from=translated src=- shape=4dbca3e8 vocab=c5255ca9
+-/
 theorem columnGram_energy_le (F : Frame n d) (x : EVec n) :
     euclideanNormSq (columnGramApply F x) ≤
       euclideanNormSq x := by
@@ -228,7 +246,9 @@ theorem columnGram_energy_le (F : Frame n d) (x : EVec n) :
 /-- Quadratic two-vector form of the concrete cross-map contraction.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.f5d1d5d6c961 from=translated src=- shape=ee423952 vocab=3bd7f4bb
+-/
 theorem two_columnGram_pairing_le (F : Frame n d) (x y : EVec n) :
     2 * inner ℝ (columnGramApply F x) y ≤
       euclideanNormSq x + euclideanNormSq y := by
@@ -248,7 +268,9 @@ theorem two_columnGram_pairing_le (F : Frame n d) (x y : EVec n) :
 /-- Coordinate form of trace Parseval.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s6.6a8e7905b5b0 from=translated src=- shape=603938c5 vocab=b83d3ea4
+-/
 theorem sum_frame_coordinate_sq_eq_dim (F : Frame n d) :
     (∑ a, ∑ i, F.u i a * F.u i a) = (d : ℝ) := by
   have hdiag (a : Fin d) : ∑ i, F.u i a * F.u i a = 1 := by
@@ -260,7 +282,9 @@ theorem sum_frame_coordinate_sq_eq_dim (F : Frame n d) :
 /-- Trace Parseval: the total squared length of all frame rows is exactly `d`.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.741754b41e19 from=translated src=- shape=eb9aba0a vocab=ac296984
+-/
 theorem sum_frame_normSq_eq_dim (F : Frame n d) :
     (∑ i, euclideanNormSq (F.u i)) = (d : ℝ) := by
   calc
@@ -281,14 +305,18 @@ def sharedVector (F : Frame n d) (r : Fin m) :
 
 /-- The shared vector is supported on its selected row register.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.eb68e8b11ec2 from=translated src=- shape=0e79e990 vocab=4fad6f53
+-/
 @[simp] theorem sharedVector_apply (F : Frame n d) (r : Fin m)
     (a : Fin d) (s : Site m n) :
     sharedVector F r (a, s) = if s.1 = r then F.u s.2 a else 0 := rfl
 
 /-- The shared vector entry is a frame coordinate when row registers match.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.270d666e4f6a from=translated src=- shape=e76944ba vocab=9b893921
+-/
 @[simp] theorem sharedVector_apply_index (F : Frame n d) (r : Fin m)
     (z : Fin d × Site m n) :
     sharedVector F r z =
@@ -298,7 +326,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 exactly `d`.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.e1e05c7bebe6 from=translated src=- shape=72ca2a3f vocab=87f39d6f
+-/
 theorem sharedVector_inner (F : Frame n d) (r q : Fin m) :
     inner ℝ (sharedVector F r) (sharedVector F q) =
       if r = q then (d : ℝ) else 0 := by
@@ -316,7 +346,9 @@ theorem sharedVector_inner (F : Frame n d) (r q : Fin m) :
 
 /-- The shared vector has squared norm equal to the frame dimension.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.c137fb77747d from=translated src=- shape=13b5a4fc vocab=e92594af
+-/
 theorem sharedVector_normSq (F : Frame n d) (r : Fin m) :
     inner ℝ (sharedVector F r) (sharedVector F r) = (d : ℝ) := by
   simpa using sharedVector_inner F r r
@@ -339,7 +371,9 @@ def sharedQ (F : Frame n d) :
 
 /-- The one-particle operator has entries given by the frame outer product in each row register.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.75adc451191a from=translated src=- shape=04db2f0f vocab=d9536e05
+-/
 theorem sharedQ_apply (F : Frame n d)
     (out inp : Fin d × Site m n) :
     sharedQ F out inp =

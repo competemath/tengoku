@@ -19,7 +19,9 @@ namespace NLAlib
 /-- The sample size with constant 26 controls all three error terms in the
 fourth-moment covariance argument. Source: Tropp (2026), Section 3.3.1.
 The squared fourth-moment parameter is written as `v`.
-atlas: sample-covariance-fourth-moment-lower (partial)-/
+atlas: sample-covariance-fourth-moment-lower (partial)
+@isnad1 id=le.7h5v.s8.51dc859950eb from=translated src=- shape=3e8a82e0 vocab=6a272f3c
+-/
 theorem sqrt_add_sqrt_add_div_le_of_sample_size
     {v d s n ε : ℝ} (hv : 1 ≤ v) (hd : 0 ≤ d) (hs : 0 ≤ s)
     (hn : 0 < n) (hε : 0 < ε) (hε1 : ε ≤ 1)

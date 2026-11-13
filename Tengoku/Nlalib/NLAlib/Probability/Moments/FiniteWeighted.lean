@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- A convex combination of squares preserves a common even-moment budget.
 This is finite Jensen followed by integration, with integrability deduced
-from the same pointwise domination.-/
+from the same pointwise domination.
+@isnad1 id=and.5h7v.s8.863be7b30ebb from=translated src=- shape=e5c0edd4 vocab=c35b8c91
+-/
 theorem integrable_and_integral_weighted_sq_pow_le
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] {μ : Measure Ω}
     (w : ι → ℝ) (hw : ∀ i, 0 ≤ w i) (hsum : ∑ i, w i = 1)
@@ -56,7 +58,9 @@ theorem integrable_and_integral_weighted_sq_pow_le
 
 /-- A finite Euclidean sum of scalar variables with a common even-moment
 budget is bounded by the squared coefficient norm to the matching power.
-The scalar variables may be arbitrarily dependent.-/
+The scalar variables may be arbitrarily dependent.
+@isnad1 id=and.4h7v.s8.c3853fcd8468 from=translated src=- shape=a5b000d6 vocab=27ea0542
+-/
 theorem integrable_and_integral_sum_mul_sq_pow_le
     {Ω ι : Type*} [MeasurableSpace Ω] [Fintype ι] {μ : Measure Ω}
     (c : ι → ℝ) (X : ι → Ω → ℝ) (hX : ∀ i, AEMeasurable (X i) μ)

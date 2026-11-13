@@ -21,7 +21,9 @@ noncomputable section
 
 /-- The joint selector/iid law is iid mass times conditional selector weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.194aa5a41fd6 from=translated src=- shape=50aaa13a vocab=fe205675
+-/
 @[simp] theorem jointColumnLaw_weight {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) :
     (jointColumnLaw hb).weight (y, x) =
@@ -31,7 +33,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Negating a ternary outcome preserves its coordinate mass.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s3.2c541e299abd from=translated src=- shape=2793bf2c vocab=b38ca63e
+-/
 theorem mass_negateOutcome (b : ℕ) (z : TernaryOutcome) :
     mass b (negateOutcome z) = mass b z := by
   cases z <;> rfl
@@ -45,7 +49,9 @@ def negateY {b : ℕ} (y : YVector b) : YVector b :=
 
 /-- Negating every iid vector coordinate twice returns the original vector.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s3.d0f732f2ec9b from=translated src=- shape=6ddf6d3e vocab=a9fb74c6
+-/
 @[simp] theorem negateY_involutive {b : ℕ} (y : YVector b) :
     negateY (negateY y) = y := by
   funext a
@@ -62,7 +68,9 @@ def negateYEquiv (b : ℕ) : YVector b ≃ YVector b where
 
 /-- The iid vector law is invariant under coordinatewise negation.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s5.af4014ee9a55 from=translated src=- shape=7538c5fb vocab=ebe9a801
+-/
 theorem yVectorLaw_weight_negateY {b : ℕ} (hb : 0 < b) (y : YVector b) :
     (yVectorLaw b hb).weight (negateY y) = (yVectorLaw b hb).weight y := by
   simp only [yVectorLaw_weight, negateY]
@@ -72,7 +80,9 @@ theorem yVectorLaw_weight_negateY {b : ℕ} (hb : 0 < b) (y : YVector b) :
 
 /-- Coordinatewise negation retains the iid support set.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.b9c97add9902 from=translated src=- shape=edd86e2b vocab=44108a7e
+-/
 theorem support_negateY {b : ℕ} (y : YVector b) : support (negateY y) = support y := by
   ext a
   rw [mem_support, mem_support]
@@ -80,14 +90,18 @@ theorem support_negateY {b : ℕ} (y : YVector b) : support (negateY y) = suppor
 
 /-- Coordinatewise negation retains the iid support cardinality.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s3.0e67a82331ae from=translated src=- shape=6046d1bd vocab=1fb2b5d2
+-/
 @[simp] theorem supportSize_negateY {b : ℕ} (y : YVector b) :
     supportSize (negateY y) = supportSize y := by
   simp [supportSize, support_negateY]
 
 /-- Simultaneously negating the iid vector and selector sign preserves the selection weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s5.1101e1f06184 from=translated src=- shape=bf9447f5 vocab=3121c57e
+-/
 theorem kernelWeight_negateY {b : ℕ} (hb : 0 < b)
     (y : YVector b) (a : Fin b) (e : Sign) :
     kernelWeight hb (negateY y) (a, flipSign e) = kernelWeight hb y (a, e) := by
@@ -105,7 +119,9 @@ def swapY {b : ℕ} (a c : Fin b) (y : YVector b) : YVector b :=
 
 /-- Swapping two iid coordinates twice returns the original vector.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.8e1410838578 from=translated src=- shape=ced7cac4 vocab=66cf5a49
+-/
 @[simp] theorem swapY_involutive {b : ℕ} (a c : Fin b) (y : YVector b) :
     swapY a c (swapY a c y) = y := by
   funext k
@@ -122,7 +138,9 @@ def swapYEquiv {b : ℕ} (a c : Fin b) : YVector b ≃ YVector b where
 
 /-- The iid vector law is invariant under coordinate swaps.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.34ce0998c52a from=translated src=- shape=64e36247 vocab=53af7181
+-/
 theorem yVectorLaw_weight_swapY {b : ℕ} (hb : 0 < b)
     (a c : Fin b) (y : YVector b) :
     (yVectorLaw b hb).weight (swapY a c y) = (yVectorLaw b hb).weight y := by
@@ -132,7 +150,9 @@ theorem yVectorLaw_weight_swapY {b : ℕ} (hb : 0 < b)
 
 /-- The iid support cardinality is the sum of nonzero-coordinate indicators.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.6c693b9d359a from=translated src=- shape=9a75487d vocab=c2deae12
+-/
 theorem supportSize_eq_sum {b : ℕ} (y : YVector b) :
     supportSize y = ∑ a, if y a = .zero then 0 else 1 := by
   classical
@@ -143,7 +163,9 @@ theorem supportSize_eq_sum {b : ℕ} (y : YVector b) :
 
 /-- Swapping coordinates preserves iid support cardinality.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.eb0bfd1b608b from=translated src=- shape=ccfa3b7e vocab=76abc74a
+-/
 @[simp] theorem supportSize_swapY {b : ℕ} (a c : Fin b) (y : YVector b) :
     supportSize (swapY a c y) = supportSize y := by
   rw [supportSize_eq_sum, supportSize_eq_sum]
@@ -154,7 +176,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Swapping iid coordinates and the selector label preserves the selection weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s5.413a31821f99 from=translated src=- shape=dacf9244 vocab=8ea63167
+-/
 theorem kernelWeight_swapY {b : ℕ} (hb : 0 < b)
     (y : YVector b) (a c : Fin b) (e : Sign) :
     kernelWeight hb (swapY a c y) (c, e) = kernelWeight hb y (a, e) := by
@@ -172,7 +196,9 @@ def xMarginal {b : ℕ} (hb : 0 < b) (x : SignedHash b) : ℝ :=
 
 /-- The selector marginal is invariant under coordinate swaps.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s5.1a4109ac886e from=translated src=- shape=ee44f709 vocab=c3f0d6ad
+-/
 theorem xMarginal_swap {b : ℕ} (hb : 0 < b)
     (a c : Fin b) (e : Sign) :
     xMarginal hb (c, e) = xMarginal hb (a, e) := by
@@ -190,7 +216,9 @@ theorem xMarginal_swap {b : ℕ} (hb : 0 < b)
 
 /-- The selector marginal is invariant under sign reversal.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.f19d405e91d9 from=translated src=- shape=4a76f02b vocab=a1eee081
+-/
 theorem xMarginal_flip {b : ℕ} (hb : 0 < b) (a : Fin b) (e : Sign) :
     xMarginal hb (a, flipSign e) = xMarginal hb (a, e) := by
   calc
@@ -208,7 +236,9 @@ theorem xMarginal_flip {b : ℕ} (hb : 0 < b) (a : Fin b) (e : Sign) :
 
 /-- Every signed selector label has the same marginal mass.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s4.b43130ab9d07 from=translated src=- shape=3205c740 vocab=d805874b
+-/
 theorem xMarginal_constant {b : ℕ} (hb : 0 < b) (x z : SignedHash b) :
     xMarginal hb x = xMarginal hb z := by
   rcases x with ⟨a, e⟩
@@ -223,7 +253,9 @@ theorem xMarginal_constant {b : ℕ} (hb : 0 < b) (x z : SignedHash b) :
 
 /-- The selector marginal masses sum to one.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.ff3e694607ff from=translated src=- shape=d55d8b33 vocab=361fb965
+-/
 theorem sum_xMarginal {b : ℕ} (hb : 0 < b) :
     ∑ x, xMarginal hb x = 1 := by
   calc
@@ -238,7 +270,9 @@ theorem sum_xMarginal {b : ℕ} (hb : 0 < b) :
 /-- The selected signed coordinate is exactly uniform on the `2b` selectors.
 
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s5.d50d1f52ec14 from=translated src=- shape=e9eccc8c vocab=37d23fd9
+-/
 theorem xMarginal_eq_selectorWeight {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     xMarginal hb x = (selectorLaw b hb).weight x := by
   have hconst : ∀ z : SignedHash b, xMarginal hb z = xMarginal hb x :=

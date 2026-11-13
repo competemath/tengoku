@@ -47,7 +47,9 @@ private theorem orthonormal_wordWickDegreeBasis (k : ℕ) :
     (wordWickDegreeIndex_toList_injective (ι := ι) k).eq_iff]
 
 /-- The actual vacuum squared norm is exactly the coefficient ℓ² mass
-for a bounded-degree Wick sum, with no distribution premise.-/
+for a bounded-degree Wick sum, with no distribution premise.
+@isnad1 id=eq.0h3v.s14.f33c8417afe1 from=translated src=- shape=1254c057 vocab=24271a28
+-/
 theorem norm_sum_wordWickOperator_wordVacuum_sq [Fintype ι] (k : ℕ)
     (a : WordWickDegreeIndex ι k → ℂ) :
     ‖(∑ w, a w • wordWickOperator w.2.toList) (wordVacuum ι)‖ ^ 2 =
@@ -58,7 +60,9 @@ theorem norm_sum_wordWickOperator_wordVacuum_sq [Fintype ι] (k : ℕ)
     LinearIsometry.toSpanSingleton_apply] using h
 
 /-- The genuine bounded-degree Wick estimate in terms of actual vacuum L².
-Degree zero and an empty alphabet are both included.-/
+Degree zero and an empty alphabet are both included.
+@isnad1 id=le.0h3v.s15.962f08c36cd1 from=translated src=- shape=6f4df5cf vocab=207d0a53
+-/
 theorem norm_sum_wordWickOperator_le_mul_sqrt_vacuum [Fintype ι] (k : ℕ)
     (a : WordWickDegreeIndex ι k → ℂ) :
     ‖∑ w, a w • wordWickOperator w.2.toList‖ ≤
@@ -108,7 +112,9 @@ def wordWickDegreeSpan (k : ℕ) : Submodule ℂ B :=
   Submodule.span ℂ (Set.range (fun w : WordWickDegreeIndex ι k => wordWickOperator w.2.toList))
 
 /-- Every actual bounded-degree Wick polynomial has the source scalar
-ultracontractive bound; the right side is its genuine vacuum Hilbert norm.-/
+ultracontractive bound; the right side is its genuine vacuum Hilbert norm.
+@isnad1 id=le.1h3v.s15.fdcca33b8540 from=translated src=- shape=70e6e1eb vocab=5147827c
+-/
 theorem norm_le_mul_sqrt_vacuum_of_mem_wordWickDegreeSpan [Fintype ι]
     {k : ℕ} {T : B} (hT : T ∈ wordWickDegreeSpan (ι := ι) k) :
     ‖T‖ ≤ (k + 1 : ℝ) * Real.sqrt (k + 1) * ‖T (wordVacuum ι)‖ := by

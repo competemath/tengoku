@@ -22,7 +22,9 @@ noncomputable section
 most `1 / s`.
 
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s6.775fb253a6c7 from=translated src=- shape=c78acd62 vocab=e4969b2c
+-/
 theorem rho_sq_div_stack_le_inv_s {s b : ℕ} (hs : 0 < s) (hb : 1 < b) :
     Real.sqrt ((b : ℝ) - 1) ^ 2 / (((s * b : ℕ) : ℝ)) ≤ 1 / (s : ℝ) := by
   have hsR : (0 : ℝ) < s := by exact_mod_cast hs
@@ -35,7 +37,9 @@ theorem rho_sq_div_stack_le_inv_s {s b : ℕ} (hs : 0 < s) (hb : 1 < b) :
 most `1 / s`.
 
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s6.9330a8d1fcc8 from=translated src=- shape=f732ce08 vocab=64cadf4a
+-/
 theorem rho_div_stack_le_inv_s {s b : ℕ} (hs : 0 < s) (hb : 1 < b) :
     Real.sqrt ((b : ℝ) - 1) / (((s * b : ℕ) : ℝ)) ≤ 1 / (s : ℝ) := by
   have hsR : (0 : ℝ) < s := by exact_mod_cast hs
@@ -51,14 +55,18 @@ theorem rho_div_stack_le_inv_s {s b : ℕ} (hs : 0 < s) (hb : 1 < b) :
 
 /-- The normalized mixed-band heavy coefficient is nonnegative.
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s5.e429f53ac4ed from=translated src=- shape=b4641611 vocab=c3a5d388
+-/
 theorem rho_div_stack_nonneg {s b : ℕ} :
     0 ≤ Real.sqrt ((b : ℝ) - 1) / (((s * b : ℕ) : ℝ)) := by
   positivity
 
 /-- The normalized heavy-heavy coefficient is nonnegative.
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s6.87503c28bb48 from=translated src=- shape=7fff48bb vocab=077beb62
+-/
 theorem rho_sq_div_stack_nonneg {s b : ℕ} :
     0 ≤ Real.sqrt ((b : ℝ) - 1) ^ 2 / (((s * b : ℕ) : ℝ)) := by
   positivity
@@ -66,7 +74,9 @@ theorem rho_sq_div_stack_nonneg {s b : ℕ} :
 /-- The exact AM--GM absorption used for the `X_+` mixed band.
 
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s7.deffba395108 from=translated src=- shape=b3fbf804 vocab=ea4a17c7
+-/
 theorem mixed_plus_absorb {s b d nu : ℕ} (hs : 0 < s) (hb : 1 < b) :
     (Real.sqrt ((b : ℝ) - 1) / (((s * b : ℕ) : ℝ)) *
       Real.sqrt ((nu : ℝ) * ((d : ℝ) + nu + 1))) ≤
@@ -133,7 +143,9 @@ theorem mixed_plus_absorb {s b d nu : ℕ} (hs : 0 < s) (hb : 1 < b) :
 term, exactly as in the grade-zero mixed row of the paper.
 
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s7.9faaa36f54f5 from=translated src=- shape=2e6dabd1 vocab=ea4a17c7
+-/
 theorem mixed_zero_absorb {s b d nu : ℕ} (hs : 0 < s) (hb : 1 < b) :
     2 * (Real.sqrt ((b : ℝ) - 1) / (((s * b : ℕ) : ℝ)) *
       Real.sqrt ((nu : ℝ) * ((d : ℝ) + nu))) ≤
@@ -184,7 +196,9 @@ theorem mixed_zero_absorb {s b d nu : ℕ} (hs : 0 < s) (hb : 1 < b) :
 /-- A directional bound `rho * nu / (s*b)` is absorbed by `nu / s`.
 
 Source: ported from `SparseFockFormal.BandCoefficientBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h3v.s6.d18fd0c0d9d8 from=translated src=- shape=6f7ae96b vocab=64cadf4a
+-/
 theorem directional_absorb {s b nu : ℕ} (hs : 0 < s) (hb : 1 < b) :
     Real.sqrt ((b : ℝ) - 1) / (((s * b : ℕ) : ℝ)) * (nu : ℝ) ≤
       (nu : ℝ) / s := by

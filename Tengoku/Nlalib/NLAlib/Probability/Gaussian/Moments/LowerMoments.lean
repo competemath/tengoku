@@ -22,7 +22,9 @@ open MeasureTheory ProbabilityTheory
 namespace NLAlib
 
 /-- Every nonnegative real absolute power of a scalar standard Gaussian is
-integrable. This follows from the actual Gaussian `MemLp` theorem.-/
+integrable. This follows from the actual Gaussian `MemLp` theorem.
+@isnad1 id=integrab.1h1v.s6.85e47b1fa5a9 from=translated src=- shape=f22eeb5a vocab=aabe03f1
+-/
 theorem integrable_abs_rpow_gaussianReal (p : ℝ) (hp : 0 ≤ p) :
     Integrable (fun z : ℝ => |z| ^ p) (gaussianReal 0 1) := by
   have hh := (memLp_id_gaussianReal' (μ := 0) (v := 1)
@@ -65,7 +67,9 @@ private theorem sqrt_div_four_le_even_moment_root (m : ℕ) (hm : 1 ≤ m) :
 /-- For every real exponent at least two, the standard Gaussian rooted
 absolute moment is at least `sqrt(p)/4`. The proof uses its actual even
 moments, Stirling's explicit lower bound, and monotonicity of rooted moments
-on a probability space.-/
+on a probability space.
+@isnad1 id=le.1h1v.s6.4b34e385a873 from=translated src=- shape=1fc16667 vocab=1cd0c4dc
+-/
 theorem sqrt_div_four_le_integral_abs_rpow_root_gaussianReal
     {p : ℝ} (hp : 2 ≤ p) :
     Real.sqrt p / 4 ≤ (∫ z : ℝ, |z| ^ p ∂gaussianReal 0 1) ^ p⁻¹ := by

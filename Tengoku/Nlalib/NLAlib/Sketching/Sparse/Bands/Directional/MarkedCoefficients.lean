@@ -27,7 +27,9 @@ variable {d m n : ℕ}
 the product of the two corresponding row-local occupation sets.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.89f0691c927d from=translated src=- shape=d0899599 vocab=c87892d5
+-/
 theorem sum_distinct_level_pairs (σ : Pattern m n) (r : Fin m)
     {a b : Level} (hab : a ≠ b) (f : Fin n → Fin n → ℝ) :
     (∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -70,7 +72,9 @@ theorem sum_distinct_level_pairs (σ : Pattern m n) (r : Fin m)
 erase of the marked source from the same row-local set.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.51a5ff88b660 from=translated src=- shape=d1aa43e6 vocab=c87892d5
+-/
 theorem sum_same_level_pairs (σ : Pattern m n) (r : Fin m)
     (a : Level) (f : Fin n → Fin n → ℝ) :
     (∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -89,7 +93,9 @@ theorem sum_same_level_pairs (σ : Pattern m n) (r : Fin m)
 /-- Exact coefficient formula for the concrete named `Y₊` matrix.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s8.1a9e1026d863 from=translated src=- shape=a299e368 vocab=2c895ba0
+-/
 theorem Yplus_mulVec_coeff (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Yplus m (Frame.rows F)) x (k, σ) =
@@ -126,7 +132,9 @@ theorem Yplus_mulVec_coeff (F : Frame n d)
 /-- Exact coefficient formula for the concrete named `Y₀` matrix.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s8.352c5a09799a from=translated src=- shape=4478b1ee vocab=0ea203ad
+-/
 theorem Yzero_mulVec_coeff (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Yzero m (Frame.rows F)) x (k, σ) =
@@ -165,7 +173,9 @@ theorem Yzero_mulVec_coeff (F : Frame n d)
 /-- Exact coefficient formula for the transpose light hop `H'`.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s8.b95882f4217a from=translated src=- shape=a299e368 vocab=76250571
+-/
 theorem Hprime_mulVec_coeff (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Hprime m (Frame.rows F)) x (k, σ) =
@@ -208,7 +218,9 @@ def fiber (x : Fin d × Pattern m n → ℝ) (τ : Pattern m n) : EVec d :=
 
 /-- An external fiber reads the vector coordinates at its chosen Fock pattern.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.3f904e4cc475 from=translated src=- shape=5952abdf vocab=a010c671
+-/
 @[simp] theorem fiber_apply (x : Fin d × Pattern m n → ℝ)
     (τ : Pattern m n) (k : Fin d) : fiber x τ k = x (k, τ) := rfl
 
@@ -222,7 +234,9 @@ def contract (F : Frame n d) (c : Fin n)
 
 /-- Contracting a fiber with a frame vector equals the corresponding Parseval analysis coefficient.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s5.23a3f91d1624 from=translated src=- shape=329a398b vocab=dd5a3238
+-/
 theorem contract_eq_analyze (F : Frame n d) (c : Fin n)
     (x : Fin d × Pattern m n → ℝ) (τ : Pattern m n) :
     contract F c x τ = analyze F (fiber x τ) c := by
@@ -257,7 +271,9 @@ def hprimeMarked (F : Frame n d) (x : Fin d × Pattern m n → ℝ)
 
 /-- The marked mixed raising coefficient evaluates its transitioned input fiber.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h9v.s7.fbcedea051ed from=translated src=- shape=d9c907b5 vocab=c68bdd27
+-/
 @[simp] theorem yPlusMarked_apply (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) (k : Fin d) :
@@ -268,7 +284,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The marked mixed preserving coefficient evaluates its transitioned input fiber.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h9v.s7.6ee0f6cf16bd from=translated src=- shape=8d2921b4 vocab=928036a0
+-/
 @[simp] theorem yZeroMarked_apply (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) (k : Fin d) :
@@ -279,7 +297,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The marked heavy correction coefficient evaluates its transitioned input fiber.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h9v.s7.05344cbb66c7 from=translated src=- shape=d9c907b5 vocab=7eac2aa6
+-/
 @[simp] theorem hprimeMarked_apply (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) (k : Fin d) :
@@ -291,7 +311,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Paper equation `(Yplus-coeff)` on the actual finite pattern basis.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.421e31a1f489 from=translated src=- shape=656594a2 vocab=1fd72df6
+-/
 theorem Yplus_mulVec_marked (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Yplus m (Frame.rows F)) x (k, σ) =
@@ -314,7 +336,9 @@ theorem Yplus_mulVec_marked (F : Frame n d)
 /-- Paper equation `(Yzero-coeff)` on the actual finite pattern basis.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.0fbba50f5682 from=translated src=- shape=656594a2 vocab=5e6315f9
+-/
 theorem Yzero_mulVec_marked (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Yzero m (Frame.rows F)) x (k, σ) =
@@ -337,7 +361,9 @@ theorem Yzero_mulVec_marked (F : Frame n d)
 /-- Paper equation `(Hprime-coeff)` on the actual finite pattern basis.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.c9198b0e9ee5 from=translated src=- shape=656594a2 vocab=1a0c7e22
+-/
 theorem Hprime_mulVec_marked (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (k : Fin d) (σ : Pattern m n) :
     Matrix.mulVec (Hprime m (Frame.rows F)) x (k, σ) =
@@ -359,7 +385,9 @@ theorem Hprime_mulVec_marked (F : Frame n d)
 
 /-- The marked mixed raising energy is bounded by its input contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h8v.s6.531352977ff7 from=translated src=- shape=823c5fad vocab=d7f177ac
+-/
 theorem yPlusMarked_normSq_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) :
@@ -376,7 +404,9 @@ theorem yPlusMarked_normSq_le (F : Frame n d)
 
 /-- The marked mixed preserving energy is bounded by its input contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h8v.s6.7d8cf859cb34 from=translated src=- shape=7564271f vocab=40e80d77
+-/
 theorem yZeroMarked_normSq_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) :
@@ -393,7 +423,9 @@ theorem yZeroMarked_normSq_le (F : Frame n d)
 
 /-- The marked heavy correction energy is bounded by its input contraction energy.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h8v.s6.96e0c2d147e4 from=translated src=- shape=823c5fad vocab=58123005
+-/
 theorem hprimeMarked_normSq_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (σ : Pattern m n)
     (r : Fin m) (c : Fin n) :

@@ -33,7 +33,9 @@ def hardCoreLift (T : Finset (Site m n)) (ell : ℕ) :
 exactly `permutationCount ell` elements.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.990259faba33 from=translated src=- shape=29f8a3e3 vocab=281d8a11
+-/
 theorem hardCoreLift_transpose_mul (T : Finset (Site m n)) (ell : ℕ) :
     (hardCoreLift (d := d) T ell).transpose * hardCoreLift T ell =
       (permutationCount ell : ℝ) •
@@ -68,7 +70,9 @@ theorem hardCoreLift_transpose_mul (T : Finset (Site m n)) (ell : ℕ) :
 
 /-- Four finite sums can be reordered by exchanging the first and second pairs of indices.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.abb2266dfa58 from=translated src=- shape=add7e9af vocab=a665cfee
+-/
 theorem sum_comm_four
     {A B C D : Type*} [Fintype A] [Fintype B] [Fintype C] [Fintype D]
     (f : A → B → C → D → ℝ) :
@@ -96,7 +100,9 @@ theorem sum_comm_four
 
 /-- A hard-core compression entry is the sum over its two labelled orbits.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s8.0d8b5dcd7d67 from=translated src=- shape=26e35162 vocab=5a482ed3
+-/
 theorem hardCoreLift_compression_apply
     (T : Finset (Site m n)) (ell : ℕ)
     (A : Matrix (LabelledIndex d m n ell) (LabelledIndex d m n ell) ℝ)
@@ -127,7 +133,9 @@ def hardCoreEmbedding (T : Finset (Site m n)) (ell : ℕ) :
 /-- The normalization is exact: the hard-core embedding is an isometry.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.185d3cc34dd4 from=translated src=- shape=b2828994 vocab=9380762e
+-/
 theorem hardCoreEmbedding_transpose_mul
     (T : Finset (Site m n)) (ell : ℕ) :
     (hardCoreEmbedding (d := d) T ell).transpose *
@@ -150,7 +158,9 @@ theorem hardCoreEmbedding_transpose_mul
 
 /-- The normalized hard-core embedding preserves coordinate energy.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.529b0591622c from=translated src=- shape=7c94a134 vocab=6526e3db
+-/
 theorem hardCoreEmbedding_energy (T : Finset (Site m n)) (ell : ℕ)
     (x : BlockIndex d T ell → ℝ) :
     sumSq ((hardCoreEmbedding (d := d) T ell).mulVec x) =
@@ -172,7 +182,9 @@ def hardCoreCompressedG (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
 
 /-- The normalized hard-core compression is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.74eea1eadad2 from=translated src=- shape=9e6a39ec vocab=8a5ff9ed
+-/
 @[simp] theorem hardCoreCompressedG_transpose
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     (hardCoreCompressedG F T ell).transpose = hardCoreCompressedG F T ell := by
@@ -180,7 +192,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The normalized hard-core compression has nonnegative coordinate quadratic form.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.0h7v.s6.a65b4a28df59 from=translated src=- shape=9472341a vocab=6c8a4380
+-/
 theorem hardCoreCompressedG_coordinateQuadratic_nonneg
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ)
     (x : BlockIndex d T ell → ℝ) :
@@ -194,7 +208,9 @@ theorem hardCoreCompressedG_coordinateQuadratic_nonneg
 compression.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h7v.s7.30840446937b from=translated src=- shape=dcc1e97c vocab=51bfbcd6
+-/
 theorem hardCoreCompressedG_coordinateQuadratic_le
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ)
     (x : BlockIndex d T ell → ℝ) (hell : 1 ≤ ell) :
@@ -208,7 +224,9 @@ theorem hardCoreCompressedG_coordinateQuadratic_le
 
 /-- The normalized hard-core compression is Hermitian.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=ishermit.0h6v.s5.8533694a09dd from=translated src=- shape=4c84dceb vocab=6fe2ba77
+-/
 theorem hardCoreCompressedG_isHermitian
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     (hardCoreCompressedG F T ell).IsHermitian := by
@@ -218,7 +236,9 @@ theorem hardCoreCompressedG_isHermitian
 /-- L2 operator-norm form of the sharp concrete hard-core compression bound.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.d7617c7b5743 from=translated src=- shape=24a6e614 vocab=c6be7131
+-/
 theorem hardCoreCompressedG_norm_le
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) (hell : 1 ≤ ell) :
     ‖hardCoreCompressedG F T ell‖ ≤ (d : ℝ) + (ell : ℝ) - 1 := by
@@ -237,7 +257,9 @@ theorem hardCoreCompressedG_norm_le
 
 /-- The hard-core compression norm is bounded by dimension plus a dominating grade.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.2h7v.s7.c5a23f627b6f from=translated src=- shape=89616d5e vocab=42d213ca
+-/
 theorem hardCoreCompressedG_norm_le_grade
     (F : Frame n d) (T : Finset (Site m n)) (ell nu : ℕ)
     (hell : 1 ≤ ell) (hle : ell ≤ nu) :

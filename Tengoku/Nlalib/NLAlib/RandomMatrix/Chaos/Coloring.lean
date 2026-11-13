@@ -32,7 +32,9 @@ def HasDistinctIndexSupport (A : (τ → ι) → Matrix m n ℝ) : Prop :=
 the number of colorings times the original chaos. This is a pointwise identity,
 before any probabilistic argument.
 Source: the finite coloring proof of matrix-chaos decoupling.
-atlas: matrix-chaos-decoupling-upper (partial)-/
+atlas: matrix-chaos-decoupling-upper (partial)
+@isnad1 id=eq.1h6v.s7.39fdbcab4eb4 from=translated src=- shape=91c1fcca vocab=77444fc9
+-/
 theorem card_pow_smul_sum_coloredMatrixChaos
     (A : (τ → ι) → Matrix m n ℝ) (hA : HasDistinctIndexSupport A) (h : ι → ℝ) :
     ((Fintype.card τ : ℝ) ^ Fintype.card τ) •
@@ -63,7 +65,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- The coloring identity and triangle inequality give the first Jensen step of
 one-sided decoupling, with the exact constant `q^q`.
 Source: the finite coloring proof of matrix-chaos decoupling.
-atlas: matrix-chaos-decoupling-upper (partial)-/
+atlas: matrix-chaos-decoupling-upper (partial)
+@isnad1 id=le.1h6v.s7.77883a11de22 from=translated src=- shape=3190d107 vocab=89dcbdda
+-/
 theorem specNorm_coupledMatrixChaos_le_coloring_average
     (A : (τ → ι) → Matrix m n ℝ) (hA : HasDistinctIndexSupport A) (h : ι → ℝ) :
     specNorm (coupledMatrixChaos A h) ≤

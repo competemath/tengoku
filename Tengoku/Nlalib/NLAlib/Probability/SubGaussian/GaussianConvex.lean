@@ -71,7 +71,9 @@ private theorem integrable_affineNormProfile {Ω : Type*} [MeasurableSpace Ω]
   simpa only [affineNormProfile, Pi.add_apply, Pi.neg_apply, neg_smul, sub_eq_add_neg] using (hp.add hn).div_const 2
 
 /-- The mean absolute standard Gaussian is at least two thirds. This coarse
-explicit bound is enough for the tenfold scalar contraction constant.-/
+explicit bound is enough for the tenfold scalar contraction constant.
+@isnad1 id=le.0h0v.s5.8faf4cbeb6db from=translated src=- shape=6ca021c0 vocab=b53a7101
+-/
 theorem two_thirds_le_integral_abs_gaussianReal :
     (2 / 3 : ℝ) ≤ ∫ g : ℝ, |g| ∂gaussianReal 0 1 := by
   have h := integral_abs_rpow_gaussianReal (1 / 2) (by norm_num)
@@ -204,7 +206,9 @@ private theorem integral_shifted_gaussian_profile_le (z a : E) {K : ℝ} (hK : 0
 /-- A centered scalar coefficient with square-exponential parameter `K` can be
 replaced by a Gaussian coefficient of scale `10K` inside any affine norm.
 All integrability follows from the actual nonnegative exponential moment.
-Source: the scalar domination reroute, finite convex contraction argument.-/
+Source: the scalar domination reroute, finite convex contraction argument.
+@isnad1 id=le.3h5v.s8.39616a8895bb from=translated src=- shape=0dc43120 vocab=44a13a93
+-/
 theorem integral_norm_add_smul_le_gaussian_of_lintegral_exp_sq
     {ν : Measure ℝ} [IsProbabilityMeasure ν] (K : ℝ) (hK : 0 < K)
     (hmean : ∫ x : ℝ, x ∂ν = 0)

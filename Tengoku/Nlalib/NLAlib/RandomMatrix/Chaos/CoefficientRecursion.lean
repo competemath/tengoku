@@ -42,7 +42,9 @@ variable [Fintype ι] [Fintype m] [Fintype n] [DecidableEq ι]
   [DecidableEq m] [DecidableEq n] [RCLike 𝕜]
 
 /-- A horizontal-branch variance flattening is exactly an original flattening
-with the last chaos mode on its column side.-/
+with the last chaos mode on its column side.
+@isnad1 id=eq.0h7v.s11.186c45f35357 from=translated src=- shape=ed2ded26 vocab=8d47a986
+-/
 theorem specNorm_chaosFlattening_rowCoefficients
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosFlattening (chaosRowCoefficients A) S) =
@@ -87,7 +89,9 @@ private def columnCovarianceShuffle {x : Type*} :
   right_inv _ := rfl
 
 /-- A horizontal-branch covariance flattening keeps the last chaos mode on its
-column side along with both original matrix coordinates.-/
+column side along with both original matrix coordinates.
+@isnad1 id=eq.0h7v.s11.5bdd5cf0553e from=translated src=- shape=f002b278 vocab=e68c1f2b
+-/
 theorem specNorm_chaosCovarianceFlattening_rowCoefficients
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosCovarianceFlattening (chaosRowCoefficients A) S) =
@@ -119,7 +123,9 @@ theorem specNorm_chaosCovarianceFlattening_rowCoefficients
   rw [← he, specNorm_reindex]
 
 /-- A vertical-branch covariance flattening also keeps the frozen last mode on
-its column side, together with the new matrix row and column.-/
+its column side, together with the new matrix row and column.
+@isnad1 id=eq.0h7v.s11.94b3f8ad99a4 from=translated src=- shape=de161a02 vocab=5795da55
+-/
 theorem specNorm_chaosCovarianceFlattening_columnCoefficients
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosCovarianceFlattening (chaosColumnCoefficients A) S) =
@@ -151,7 +157,9 @@ theorem specNorm_chaosCovarianceFlattening_columnCoefficients
   rw [← he, specNorm_reindex]
 
 /-- A vertical-branch variance flattening is an original flattening with the
-last chaos mode on its row side.-/
+last chaos mode on its row side.
+@isnad1 id=eq.0h7v.s11.e0ba13650376 from=translated src=- shape=c34e228e vocab=864d8655
+-/
 theorem specNorm_chaosFlattening_columnCoefficients
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosFlattening (chaosColumnCoefficients A) S) =
@@ -181,7 +189,9 @@ theorem specNorm_chaosFlattening_columnCoefficients
   rw [← he, specNorm_reindex]
 
 /-- Every variance flattening of the vectorization branch is an original
-covariance flattening with a nonempty row subset containing the last mode.-/
+covariance flattening with a nonempty row subset containing the last mode.
+@isnad1 id=eq.0h7v.s11.f740f4def5f3 from=translated src=- shape=ed5fb122 vocab=860e094e
+-/
 theorem specNorm_chaosFlattening_entryCoefficients
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosFlattening (chaosEntryCoefficients A) S) =
@@ -207,7 +217,9 @@ theorem specNorm_chaosFlattening_entryCoefficients
         Equiv.finsetSumOneComplementCoordinates, chaosAssemble, chaosAppendTuple]
   rw [← he, specNorm_reindex]
 
-/-- Moving the last mode into a column cannot increase the variance parameter.-/
+/-- Moving the last mode into a column cannot increase the variance parameter.
+@isnad1 id=le.0h6v.s6.245102af7b74 from=translated src=- shape=69d98c21 vocab=b8c28370
+-/
 theorem chaosSigma_rowCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) :
     chaosSigma (chaosRowCoefficients A) ≤ chaosSigma A := by
   apply chaosSigma_le
@@ -215,7 +227,9 @@ theorem chaosSigma_rowCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix m n
   rw [specNorm_chaosFlattening_rowCoefficients]
   exact specNorm_chaosFlattening_le _ _
 
-/-- Moving the last mode into a row cannot increase the variance parameter.-/
+/-- Moving the last mode into a row cannot increase the variance parameter.
+@isnad1 id=le.0h6v.s6.44f6b6a67a89 from=translated src=- shape=aba60639 vocab=358811b9
+-/
 theorem chaosSigma_columnCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) :
     chaosSigma (chaosColumnCoefficients A) ≤ chaosSigma A := by
   apply chaosSigma_le
@@ -224,7 +238,9 @@ theorem chaosSigma_columnCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix 
   exact specNorm_chaosFlattening_le _ _
 
 /-- Moving the last mode into a row while vectorizing the original matrix turns
-every variance flattening into a nonempty-row covariance flattening.-/
+every variance flattening into a nonempty-row covariance flattening.
+@isnad1 id=le.0h6v.s7.97afe5745168 from=translated src=- shape=4dc29e37 vocab=a61fb154
+-/
 theorem chaosSigma_entryCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) :
     chaosSigma (chaosEntryCoefficients A) ≤ chaosCovariance A := by
   apply chaosSigma_le
@@ -233,7 +249,9 @@ theorem chaosSigma_entryCoefficients_le (A : ((τ ⊕ Unit) → ι) → Matrix m
   apply specNorm_chaosCovarianceFlattening_le
   exact ⟨Sum.inr (), by simp⟩
 
-/-- The covariance parameter does not increase in the horizontal branch.-/
+/-- The covariance parameter does not increase in the horizontal branch.
+@isnad1 id=le.0h6v.s7.7752825ba930 from=translated src=- shape=69d98c21 vocab=a44595f5
+-/
 theorem chaosCovariance_rowCoefficients_le
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) :
     chaosCovariance (chaosRowCoefficients A) ≤ chaosCovariance A := by
@@ -244,7 +262,9 @@ theorem chaosCovariance_rowCoefficients_le
   obtain ⟨t, ht⟩ := hS
   exact ⟨Sum.inl t, by simpa using ht⟩
 
-/-- The covariance parameter does not increase in the vertical branch.-/
+/-- The covariance parameter does not increase in the vertical branch.
+@isnad1 id=le.0h6v.s7.dc8646ea99a3 from=translated src=- shape=aba60639 vocab=247da651
+-/
 theorem chaosCovariance_columnCoefficients_le
     (A : ((τ ⊕ Unit) → ι) → Matrix m n 𝕜) :
     chaosCovariance (chaosColumnCoefficients A) ≤ chaosCovariance A := by

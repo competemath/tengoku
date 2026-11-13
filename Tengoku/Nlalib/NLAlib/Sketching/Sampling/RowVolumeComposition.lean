@@ -29,7 +29,9 @@ def rowVolumeKernel (X : Matrix n d 𝕜) (s : ℕ) (T : Finset n) : PMF (Finset
     else pure T
   else pure T
 
-/-- On a valid state the total kernel is the intended conditional law.-/
+/-- On a valid state the total kernel is the intended conditional law.
+@isnad1 id=eq.3h6v.s6.6e95585d631d from=translated src=- shape=7cec8bf8 vocab=694bb64f
+-/
 theorem rowVolumeKernel_eq (X : Matrix n d 𝕜) (T : Finset n) (s : ℕ)
     (hT : 0 < rowSubsetVolume X T) (hds : Fintype.card d ≤ s) (hst : s ≤ T.card) :
     rowVolumeKernel X s T = rowVolumePMF X T s hT hds hst := by
@@ -69,7 +71,9 @@ private theorem mass_mul_kernel (X : Matrix n d 𝕜) (T R S : Finset n) (s t : 
 size-`s` row-volume distribution. Singular intermediate states have zero
 outer mass, so the total kernel's fallback cannot change this identity.
 Dereziński–Warmuth 2018, Corollary 3.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.4h7v.s6.da8df23da54b from=translated src=- shape=50fef729 vocab=3fb63f18
+-/
 theorem rowVolumePMF_bind_kernel (X : Matrix n d 𝕜) (T : Finset n) (s t : ℕ)
     (hT : 0 < rowSubsetVolume X T) (hds : Fintype.card d ≤ s)
     (hst : s ≤ t) (htt : t ≤ T.card) :

@@ -21,7 +21,9 @@ noncomputable section
 
 /-- The joint iid/exact-column law is invariant under joint signed coordinate permutations.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.897b28901a65 from=translated src=- shape=13a51dfd vocab=33ae1e27
+-/
 theorem jointColumnLaw_weight_transform {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
@@ -40,7 +42,9 @@ theorem jointColumnLaw_weight_transform {b s : ℕ}
 
 /-- Positive block size ensures exact sparsity does not exceed total row count.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h2v.s4.365835f3a4ff from=translated src=- shape=c2423dff vocab=af1afdf8
+-/
 theorem le_rows {b s : ℕ} (hb : 0 < b) : s ≤ s * b := by
   nlinarith [Nat.one_le_iff_ne_zero.mpr (Nat.ne_of_gt hb)]
 
@@ -48,7 +52,9 @@ theorem le_rows {b s : ℕ} (hb : 0 < b) : s ≤ s * b := by
 including their redundant off-support signs.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ex.0h4v.s5.c4ae241d2bef from=translated src=- shape=20cf7bf5 vocab=2edbdc79
+-/
 theorem exists_transformColumn_eq {m s : ℕ}
     (x z : UniformSparseColumn m s) :
     ∃ (pi : Equiv.Perm (Fin m)) (eps : Fin m → Sign),
@@ -75,7 +81,9 @@ def xMarginal {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- The exact-column marginal is invariant under signed coordinate permutations.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s6.e65f12284ef9 from=translated src=- shape=5b44d6f1 vocab=4546f75e
+-/
 theorem xMarginal_transform {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (x : UniformSparseColumn (s * b) s) :
@@ -97,7 +105,9 @@ theorem xMarginal_transform {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- Every exactly-s signed column has the same joint marginal mass.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s5.67a4b3c2ecaf from=translated src=- shape=5a61834f vocab=27f92b1c
+-/
 theorem xMarginal_constant {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
     (x z : UniformSparseColumn (s * b) s) :
     UniformSparse.xMarginal hb hs x = UniformSparse.xMarginal hb hs z := by
@@ -106,7 +116,9 @@ theorem xMarginal_constant {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- The exactly-s column marginal masses sum to one.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h2v.s7.616ea9fd5b9f from=translated src=- shape=ea16012c vocab=97ff293e
+-/
 theorem sum_xMarginal {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
     ∑ x, UniformSparse.xMarginal hb hs x = 1 := by
   calc
@@ -122,7 +134,9 @@ theorem sum_xMarginal {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
 /-- The fill/thin coupling has the literal uniform signed exact-s marginal.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s7.9c96a2261aa2 from=translated src=- shape=92686fa4 vocab=b9d49f0e
+-/
 theorem xMarginal_eq_exactColumnWeight {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (x : UniformSparseColumn (s * b) s) :
     UniformSparse.xMarginal hb hs x =
@@ -153,7 +167,9 @@ theorem xMarginal_eq_exactColumnWeight {b s : ℕ}
 fact that every selection kernel has total mass one.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s8.297da8a2f0bd from=translated src=- shape=fc249f28 vocab=565aaf5e
+-/
 theorem jointColumn_y_marginal {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (y : NestedY b s) :
     (∑ x, (UniformSparse.jointColumnLaw hb hs).weight (y, x)) =

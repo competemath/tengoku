@@ -51,7 +51,9 @@ private theorem integrable_signed_sup_fixed
 
 /-- The actual joint sample/sign supremum is integrable. The sample
 tests are continuous and bounded, while the coefficient vector has the
-genuine product Rademacher law. The parameter class can be uncountable.-/
+genuine product Rademacher law. The parameter class can be uncountable.
+@isnad1 id=integrab.2h6v.s7.0cff9a159d6f from=translated src=- shape=ce957361 vocab=1042b147
+-/
 theorem integrable_ciSup_sum_mul_prod_rademacherVector_of_continuous
     {S : Type*} [TopologicalSpace S] [SecondCountableTopology S]
     [MeasurableSpace S] [BorelSpace S] (μ : Measure S) [IsProbabilityMeasure μ]
@@ -197,7 +199,9 @@ private theorem integral_signed_copy_sub_le_add
 
 /-- Actual independent-copy differences are bounded by twice the expected
 one-sided Rademacher supremum. This uses coordinate-copy swaps, not an
-outer-absolute contraction principle or any countability of the class.-/
+outer-absolute contraction principle or any countability of the class.
+@isnad1 id=le.2h6v.s8.eb8a28f75f22 from=translated src=- shape=3e3c951d vocab=748c6af2
+-/
 theorem integral_ciSup_sum_copy_sub_le_two_mul_integral_rademacherVector
     (X : ι → Ω → T → ℝ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))
     {R : ℝ} (hX : ∀ i ω t, |X i ω t| ≤ R) :
@@ -302,7 +306,9 @@ private theorem ciSup_sum_neg_eq_of_sign_closed
 
 /-- For centered coordinate tests and a genuinely sign-closed parameter
 class, the expected one-sided Rademacher supremum is bounded by twice the
-actual empirical supremum. Means and signs are native scalar operations.-/
+actual empirical supremum. Means and signs are native scalar operations.
+@isnad1 id=le.4h6v.s8.a410e386fe46 from=translated src=- shape=5df812c4 vocab=8bdb8eb0
+-/
 theorem integral_ciSup_sum_mul_rademacherVector_le_two_mul_of_centered
     (X : ι → Ω → T → ℝ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))
     {R : ℝ} (hX : ∀ i ω t, |X i ω t| ≤ R)
@@ -366,7 +372,9 @@ theorem integral_ciSup_sum_mul_rademacherVector_le_two_mul_of_centered
 estimate with coefficient `8 * R`. The proof combines copy centering,
 actual symmetrization, the checked `2 * R` square contraction, and the
 reverse symmetrization for a sign-closed class. No outer absolute value,
-countability assumption, or supplied expectation comparison is used.-/
+countability assumption, or supplied expectation comparison is used.
+@isnad1 id=le.6h7v.s8.ad75746dfe68 from=translated src=- shape=466e123b vocab=2b97616c
+-/
 theorem integral_ciSup_sum_sq_le_mean_add_eight_mul_of_centered
     (X : ι → Ω → T → ℝ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))
     {R v : ℝ} (hR : 0 ≤ R) (hX : ∀ i ω t, |X i ω t| ≤ R)

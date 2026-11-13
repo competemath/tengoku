@@ -26,7 +26,9 @@ private theorem normSq_complexVector (z : n → ℂ) :
   rw [PiLp.norm_sq_eq_of_L2]
   simp only [Complex.normSq_eq_norm_sq]
 
-/-- Radial normalization divides the diagonal quadratic form by the squared norm.-/
+/-- Radial normalization divides the diagonal quadratic form by the squared norm.
+@isnad1 id=eq.0h3v.s6.85bd230c8c7c from=translated src=- shape=272a29d8 vocab=a8cdda98
+-/
 theorem sphereDiagonalForm_normalize (d : n → ℝ) (z : n → ℂ) :
     sphereDiagonalForm d (normalizeComplexVector z) =
       sphereDiagonalForm d z / ‖WithLp.toLp 2 z‖^2 := by
@@ -39,7 +41,9 @@ theorem sphereDiagonalForm_normalize (d : n → ℝ) (z : n → ℂ) :
   intro i _
   ring
 
-/-- Exact upper-tail Chernoff estimate for the unnormalized comparison form.-/
+/-- Exact upper-tail Chernoff estimate for the unnormalized comparison form.
+@isnad1 id=le.6h4v.s8.e736384ca36e from=translated src=- shape=301606f3 vocab=104368b1
+-/
 theorem measureReal_sum_sub_mul_normSq_nonneg_le
     (d : n → ℝ) {m x : ℝ} (hm : -1 < m) (hm1 : m < 1)
     (hmx : m < x) (hx : x < 1) (hd : ∀ i, d i ∈ Set.Icc (-1 : ℝ) 1)
@@ -81,7 +85,9 @@ theorem measureReal_sum_sub_mul_normSq_nonneg_le
   linarith
 
 /-- The native normalized law inherits the comparison estimate at every interior
-upper-tail threshold.-/
+upper-tail threshold.
+@isnad1 id=le.6h4v.s7.44cc3bd2c030 from=translated src=- shape=c2320e58 vocab=f976c823
+-/
 theorem measureReal_sphereDiagonalForm_ge_le_of_interior
     (d : n → ℝ) {m x : ℝ} (hm : -1 < m) (hm1 : m < 1)
     (hmx : m < x) (hx : x < 1) (hd : ∀ i, d i ∈ Set.Icc (-1 : ℝ) 1)
@@ -109,7 +115,9 @@ theorem measureReal_sphereDiagonalForm_ge_le_of_interior
   rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
   exact sub_nonneg.mpr hmul
 
-/-- A bounded diagonal form is bounded by the squared Euclidean vector norm.-/
+/-- A bounded diagonal form is bounded by the squared Euclidean vector norm.
+@isnad1 id=le.1h3v.s6.e473248fc842 from=translated src=- shape=22549d48 vocab=1f6994d1
+-/
 theorem sphereDiagonalForm_le_norm_sq (d : n → ℝ)
     (hd : ∀ i, d i ≤ 1) (b : n → ℂ) :
     sphereDiagonalForm d b ≤ ‖WithLp.toLp 2 b‖^2 := by
@@ -118,13 +126,17 @@ theorem sphereDiagonalForm_le_norm_sq (d : n → ℝ)
   intro i _
   exact (mul_le_mul_of_nonneg_right (hd i) (Complex.normSq_nonneg (b i))).trans_eq (one_mul _)
 
-/-- Constant diagonal forms are precisely a scalar times the squared vector norm.-/
+/-- Constant diagonal forms are precisely a scalar times the squared vector norm.
+@isnad1 id=eq.0h3v.s6.24a2f660bb50 from=translated src=- shape=295838ce vocab=867e1ec1
+-/
 theorem sphereDiagonalForm_const (c : ℝ) (b : n → ℂ) :
     sphereDiagonalForm (fun _ => c) b = c*‖WithLp.toLp 2 b‖^2 := by
   rw [sphereDiagonalForm, normSq_complexVector, Finset.mul_sum]
 
 /-- One-sided native sphere concentration, including every endpoint mean and
-every positive deviation size.-/
+every positive deviation size.
+@isnad1 id=le.4h4v.s7.4d111f075249 from=translated src=- shape=301ad324 vocab=ea3937da
+-/
 theorem measureReal_sphereDiagonalForm_sub_mean_gt_le [Nonempty n]
     (d : n → ℝ) {m r : ℝ} (hm : m ∈ Set.Icc (-1 : ℝ) 1) (hr : 0 < r)
     (hd : ∀ i, d i ∈ Set.Icc (-1 : ℝ) 1)
@@ -165,7 +177,9 @@ theorem measureReal_sphereDiagonalForm_sub_mean_gt_le [Nonempty n]
     exact (exp_pos _).le
 
 /-- Two-sided concentration for actual complex unit-sphere quadratic forms.
-The exponent is stronger than the sphere-Lipschitz estimate used in the atlas.-/
+The exponent is stronger than the sphere-Lipschitz estimate used in the atlas.
+@isnad1 id=le.4h4v.s7.d7fbfe58ef72 from=translated src=- shape=462084c0 vocab=a86377b5
+-/
 theorem measureReal_abs_sphereDiagonalForm_sub_mean_gt_le [Nonempty n]
     (d : n → ℝ) {m r : ℝ} (hm : m ∈ Set.Icc (-1 : ℝ) 1) (hr : 0 < r)
     (hd : ∀ i, d i ∈ Set.Icc (-1 : ℝ) 1)

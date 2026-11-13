@@ -44,7 +44,9 @@ def exactScaledIIDSymmetricError (hb : 0 < b) (F : Frame n d)
 /-- The symmetric-matrix barycenter coerces to the matrix barycenter.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.11a749e519e7 from=translated src=- shape=ba43b0cb vocab=99218d15
+-/
 theorem coe_barycenter_exactScaledIID
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (X : UniformSparseSample (s * b) s n) :
@@ -62,7 +64,9 @@ theorem coe_barycenter_exactScaledIID
 error.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.886a2c18f548 from=translated src=- shape=30c11396 vocab=867ef285
+-/
 theorem barycenter_exactScaledIID_eq_exact
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (X : UniformSparseSample (s * b) s n) :
@@ -76,7 +80,9 @@ theorem barycenter_exactScaledIID_eq_exact
 matrices.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h7v.s9.78837dccc126 from=translated src=- shape=4260c9c8 vocab=2fd35a90
+-/
 theorem conditional_convex_order
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (X : UniformSparseSample (s * b) s n)
@@ -92,7 +98,9 @@ theorem conditional_convex_order
 columns to independent iid ternary columns.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h6v.s9.e6733f9d14c6 from=translated src=- shape=809e1f76 vocab=e821cee0
+-/
 theorem unconditional_convex_order
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (Phi : symmetricMatrices d → ℝ) (hPhi : ConvexOn ℝ Set.univ Phi) :
@@ -124,7 +132,9 @@ theorem unconditional_convex_order
 `exactScale^(4q)` to the `2q` trace power.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.22adc7ffd94a from=translated src=- shape=90d39203 vocab=67d99adb
+-/
 theorem exactScaledIIDError_trace_even (hb : 0 < b) (F : Frame n d)
     (Y : IidColumnSample b s n) (q : ℕ) :
     ((exactScaledIIDError hb F Y) ^ (2 * q)).trace =
@@ -140,7 +150,9 @@ theorem exactScaledIIDError_trace_even (hb : 0 < b) (F : Frame n d)
 product-Fock trace moment.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.a4e005d70f5d from=translated src=- shape=0f9daccf vocab=c5775f83
+-/
 theorem iidColumn_trace_moment_eq_product
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d) (q : ℕ) :
     (iidColumnSampleLaw (lt_trans Nat.zero_lt_one hb) s n).expect
@@ -163,7 +175,9 @@ theorem iidColumn_trace_moment_eq_product
 genuine fill/thin coefficient.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.388e659d5b00 from=translated src=- shape=116519b0 vocab=c5599f2c
+-/
 theorem exactScaledIID_trace_moment_eq_product
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d) (q : ℕ) :
     (iidColumnSampleLaw (lt_trans Nat.zero_lt_one hb) s n).expect
@@ -196,7 +210,9 @@ theorem exactScaledIID_trace_moment_eq_product
 convex order.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s8.88742e26c54d from=translated src=- shape=3a64510a vocab=656967de
+-/
 theorem unconditional_trace_moment_order
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d) (q : ℕ) :
     (uniformSparseSampleLaw (n := n) (le_rows (s := s) hb)).expect
@@ -213,7 +229,9 @@ theorem unconditional_trace_moment_order
 law.  The premise is only `s>0`, `b>1`; all laws and independence are explicit.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.ac2fdd3779fd from=translated src=- shape=ba3c1363 vocab=05e56a95
+-/
 theorem trace_moment_le_scaled_product
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d) (q : ℕ) :
     (uniformSparseSampleLaw (n := n)

@@ -21,6 +21,9 @@ variable {κ F G : Type*} [Fintype κ] [DecidableEq κ]
   [NormedAddCommGroup G] [NormedSpace ℝ G] [CompleteSpace G]
 local notation "E" => κ → ℝ
 
+/--
+@isnad1 id=isgaussi.0h1v.s5.fcef9763c710 from=translated src=- shape=8a0813a3 vocab=ecc3c58a
+-/
 local instance standard_isGaussian : IsGaussian (gaussianVector κ) := by
   have h := (hasGaussianLaw_id_gaussianVector κ).isGaussian_map
   change IsGaussian ((gaussianVector κ).map id) at h
@@ -47,7 +50,9 @@ private theorem standard_covariance (i j : κ) :
 omit [DecidableEq κ] in
 /-- The literal Gaussian correlation path has its genuine common marginal.
 This is proved by an actual orthogonal rotation of two independent canonical
-Gaussian vectors, including the endpoint correlations and empty dimensions.-/
+Gaussian vectors, including the endpoint correlations and empty dimensions.
+@isnad1 id=measurep.2h2v.s7.1e07227bc31f from=translated src=- shape=d92ad622 vocab=5f30bf1a
+-/
 theorem measurePreserving_standardGaussianCorrelation (t : ℝ)
     (ht : -1 ≤ t) (ht1 : t ≤ 1) :
     MeasurePreserving (fun q : E × E => t • q.1 + Real.sqrt (1 - t ^ 2) • q.2)
@@ -66,7 +71,9 @@ theorem measurePreserving_standardGaussianCorrelation (t : ℝ)
 Gaussian coordinates. Its covariance contraction is the literal single
 coordinate-gradient sum, including an empty coordinate family. All Gaussian
 law, centering, and covariance identities are proved from the canonical law.
-Source: arXiv:2108.06312v2, Corollary 4.12.-/
+Source: arXiv:2108.06312v2, Corollary 4.12.
+@isnad1 id=eq.8h12v.s12.6444b70ba8ea from=translated src=- shape=5158e1e4 vocab=22605106
+-/
 theorem integral_bilin_sub_bilin_integrals_eq_standard_gaussian_gradient_integral
     (f : E → F) (df : E → E →L[ℝ] F)
     (g : E → G) (dg : E → E →L[ℝ] G)

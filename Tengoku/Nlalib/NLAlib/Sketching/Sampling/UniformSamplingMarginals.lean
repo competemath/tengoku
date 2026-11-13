@@ -32,7 +32,9 @@ def iidSubsetPairAct {α : Type*} [Fintype α] {k : ℕ} (σ : Equiv.Perm α) :
   Equiv.prodCongr (permuteSequenceEquiv σ) (permuteExactRowSubsetEquiv σ)
 
 /-- The literal joint coupling is equivariant under every label permutation.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h4v.s7.1283025ea5f5 from=translated src=- shape=7f818f1c vocab=097bd09b
+-/
 theorem iidSubsetOutcome_act {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (σ : Equiv.Perm α) (z : (Fin k → α) × Equiv.Perm α) :
     iidSubsetOutcome hk (iidSubsetSourceAct σ z) = iidSubsetPairAct σ (iidSubsetOutcome hk z) := by
@@ -46,7 +48,9 @@ theorem iidSubsetOutcome_act {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ
     rfl
 
 /-- Joint coupling probability masses are invariant under joint label permutations.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h5v.s7.1ae6da4c2f00 from=translated src=- shape=2c8b88b3 vocab=0712e46e
+-/
 theorem iidSubsetJointPMF_toReal_invariant
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (σ : Equiv.Perm α)
@@ -59,7 +63,9 @@ theorem iidSubsetJointPMF_toReal_invariant
 
 /-- The sequence marginal of the explicit joint coupling is iid uniform,
 with mass `1/n^k` for every sequence.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s7.6cf0f122f649 from=translated src=- shape=d1af5300 vocab=774776d0
+-/
 theorem iidSubsetJointPMF_toReal_first_marginal
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (I : Fin k → α) :
@@ -114,7 +120,9 @@ def iidSubsetMarginal {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {
   ∑ I : Fin k → α, (iidSubsetJointPMF hk (I, T)).toReal
 
 /-- The subset marginal is invariant under label permutations.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h4v.s5.7c75c8de6405 from=translated src=- shape=aeb1baab vocab=3f05384d
+-/
 theorem iidSubsetMarginal_invariant
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (σ : Equiv.Perm α) (T : ExactRowSubset α k) :
@@ -125,7 +133,9 @@ theorem iidSubsetMarginal_invariant
   simp_rw [iidSubsetJointPMF_toReal_invariant]
 
 /-- Transitivity makes all exact-size subset marginal masses equal.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h4v.s5.8536df42ac83 from=translated src=- shape=65182d15 vocab=a44abb8e
+-/
 theorem iidSubsetMarginal_eq
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T U : ExactRowSubset α k) :
@@ -134,7 +144,9 @@ theorem iidSubsetMarginal_eq
   rw [← hσ, iidSubsetMarginal_invariant]
 
 /-- The exact-size subset marginal is uniform, with the exact
-finite uniform mass. Source: Hoeffding 1963, Theorem 4.-/
+finite uniform mass. Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s6.6dceb4f7dfd1 from=translated src=- shape=c032dedc vocab=e35482c1
+-/
 theorem iidSubsetMarginal_eq_uniform
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) :

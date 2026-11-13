@@ -28,7 +28,9 @@ def gaussianCovarianceMatrix {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- The covariance matrix is positive semidefinite, allowing zero eigenvalues.
 Source: covariance is a nonnegative symmetric bilinear form; operator
-re-derivation `pg:gaussian-linear-image`.-/
+re-derivation `pg:gaussian-linear-image`.
+@isnad1 id=possemid.0h2v.s5.4a594a3e3951 from=translated src=- shape=376090c8 vocab=6d28e576
+-/
 theorem gaussianCovarianceMatrix_posSemidef {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : Measure (EuclideanSpace ℝ ι)) : (gaussianCovarianceMatrix μ).PosSemidef := by
   exact (LinearMap.isPosSemidef_iff_posSemidef_toMatrix
@@ -36,7 +38,9 @@ theorem gaussianCovarianceMatrix_posSemidef {ι : Type*} [Fintype ι] [Decidable
       (LinearMap.BilinForm.isPosSemidef_iff.mp isPosSemidef_covarianceBilin)
 
 /-- Covariance matrix entries are covariances of the coordinate maps.
-Source: Vershynin 2018, §3.3.2.-/
+Source: Vershynin 2018, §3.3.2.
+@isnad1 id=eq.1h4v.s8.3eb51548ab4b from=translated src=- shape=f3a8c095 vocab=958a54c9
+-/
 theorem gaussianCovarianceMatrix_apply {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : Measure (EuclideanSpace ℝ ι)) [IsProbabilityMeasure μ]
     (hμ : MemLp id 2 μ) (i j : ι) :
@@ -47,7 +51,9 @@ theorem gaussianCovarianceMatrix_apply {ι : Type*} [Fintype ι] [DecidableEq ι
 
 /-- An arbitrary centered Gaussian law is its canonical covariance law.
 No inverse covariance or nonsingularity assumption is used.
-Source: Vershynin 2018, §3.3.2 (a Gaussian law is determined by mean and covariance).-/
+Source: Vershynin 2018, §3.3.2 (a Gaussian law is determined by mean and covariance).
+@isnad1 id=eq.1h2v.s8.441ffe7d132e from=translated src=- shape=4ecf0210 vocab=a657a175
+-/
 theorem gaussian_eq_multivariateGaussian_covariance_of_centered
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : Measure (EuclideanSpace ℝ ι)) [IsGaussian μ]
@@ -65,7 +71,9 @@ theorem gaussian_eq_multivariateGaussian_covariance_of_centered
 
 /-- A general centered Gaussian law is the image of independent standard
 coordinates under the positive covariance square root, including singular
-and zero-dimensional laws. Source: Vershynin 2018, §3.3.2.-/
+and zero-dimensional laws. Source: Vershynin 2018, §3.3.2.
+@isnad1 id=eq.1h2v.s9.1ccb8aaccd0a from=translated src=- shape=d3d249d6 vocab=d54af011
+-/
 theorem gaussian_eq_map_gaussianVector_sqrt_covariance_of_centered
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (μ : Measure (EuclideanSpace ℝ ι)) [IsGaussian μ]

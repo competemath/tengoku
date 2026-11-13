@@ -20,7 +20,9 @@ def sequenceLabelCount {α : Type*} [DecidableEq α] {k : ℕ} (I : Fin k → α
   ∑ a, if I a = j then 1 else 0
 
 /-- Summing the label multiplicities gives the sequence length.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.0h3v.s5.f3202ca7b9aa from=translated src=- shape=543edffb vocab=7a74634e
+-/
 theorem sum_sequenceLabelCount {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (I : Fin k → α) : ∑ j, sequenceLabelCount I j = k := by
   unfold sequenceLabelCount
@@ -28,7 +30,9 @@ theorem sum_sequenceLabelCount {α : Type*} [Fintype α] [DecidableEq α] {k : �
   simp
 
 /-- Simultaneously relabeling a sequence and a label preserves its count.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.0h5v.s6.b7eaf2aa7af2 from=translated src=- shape=4193904b vocab=e73aefd5
+-/
 theorem sequenceLabelCount_permute {α : Type*} [DecidableEq α] {k : ℕ}
     (σ : Equiv.Perm α) (I : Fin k → α) (j : α) :
     sequenceLabelCount (σ ∘ I) (σ j) = sequenceLabelCount I j := by
@@ -42,7 +46,9 @@ def iidSubsetConditionalWeight
   (Fintype.card (ExactRowSubset α k) : ℝ) * (iidSubsetJointPMF hk (I, T)).toReal
 
 /-- Conditional weights are nonnegative probability masses.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.1h4v.s5.c26ed12ecce9 from=translated src=- shape=311b9b7f vocab=b704fb08
+-/
 theorem iidSubsetConditionalWeight_nonneg
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) (I : Fin k → α) :
@@ -51,7 +57,9 @@ theorem iidSubsetConditionalWeight_nonneg
   positivity
 
 /-- The derived conditional weights sum to one.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s6.ff731c125965 from=translated src=- shape=3ef0a2bc vocab=408bf1ff
+-/
 theorem sum_iidSubsetConditionalWeight
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) :
@@ -65,7 +73,9 @@ theorem sum_iidSubsetConditionalWeight
   field_simp
 
 /-- Conditional weights are equivariant under joint label permutations.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h5v.s6.09b901ee40ba from=translated src=- shape=6feb6f1e vocab=24aa7d71
+-/
 theorem iidSubsetConditionalWeight_invariant
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (σ : Equiv.Perm α)
@@ -82,7 +92,9 @@ def iidSubsetExpectedCount
   ∑ I, iidSubsetConditionalWeight hk T I * sequenceLabelCount I j
 
 /-- Expected multiplicities are invariant under relabeling.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h5v.s6.502416b32823 from=translated src=- shape=97450f9d vocab=f64d00ae
+-/
 theorem iidSubsetExpectedCount_invariant
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (σ : Equiv.Perm α) (T : ExactRowSubset α k) (j : α) :
@@ -95,7 +107,9 @@ theorem iidSubsetExpectedCount_invariant
   simp_rw [iidSubsetConditionalWeight_invariant, sequenceLabelCount_permute]
 
 /-- Swapping labels in the same membership region fixes an exact subset.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h5v.s6.07e2301a4d57 from=translated src=- shape=06321d4b vocab=22b0c37b
+-/
 theorem permuteExactRowSubset_swap_eq
     {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (T : ExactRowSubset α k) (i j : α) (hij : i ∈ T.val ↔ j ∈ T.val) :
@@ -110,7 +124,9 @@ theorem permuteExactRowSubset_swap_eq
     · simp [Equiv.swap_apply_of_ne_of_ne hai haj]
 
 /-- Every label inside the selected subset has the same expected count.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.3h5v.s6.18219a4efd13 from=translated src=- shape=0b18a377 vocab=e9a8f5d2
+-/
 theorem iidSubsetExpectedCount_eq_of_mem
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) {i j : α}
@@ -122,7 +138,9 @@ theorem iidSubsetExpectedCount_eq_of_mem
 
 /-- Outside the selected subset, the conditional count is zero because the
 literal coupling always contains the sequence support.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.2h4v.s6.ff4bd9580c48 from=translated src=- shape=5dcdb2f5 vocab=e9a8f5d2
+-/
 theorem iidSubsetExpectedCount_eq_zero_of_not_mem
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) {j : α} (hj : j ∉ T.val) :
@@ -148,7 +166,9 @@ theorem iidSubsetExpectedCount_eq_zero_of_not_mem
   rw [hc, mul_zero]
 
 /-- The conditional count sum still equals the sequence length.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s5.9995e920fea3 from=translated src=- shape=7bcb0b33 vocab=c793e777
+-/
 theorem sum_iidSubsetExpectedCount
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) :
@@ -160,7 +180,9 @@ theorem sum_iidSubsetExpectedCount
 
 /-- Each selected label has exact conditional expected count one. This is
 proved by exchangeability and the fixed size, rather than assumed.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.3h4v.s6.15ec2264a741 from=translated src=- shape=32257d85 vocab=a3e8509d
+-/
 theorem iidSubsetExpectedCount_eq_one_of_mem
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ} (hk0 : 0 < k)
     (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) {i : α} (hi : i ∈ T.val) :
@@ -181,7 +203,9 @@ theorem iidSubsetExpectedCount_eq_one_of_mem
   simpa only [mul_one] using heq
 
 /-- A sequence sum is the multiplicity-weighted sum over population labels.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.0h5v.s7.3beb3a1b42d1 from=translated src=- shape=dfa36c93 vocab=784a48d2
+-/
 theorem sum_sequence_eq_sum_count_smul
     {α E : Type*} [Fintype α] [DecidableEq α] [AddCommGroup E] [Module ℝ E]
     {k : ℕ} (I : Fin k → α) (A : α → E) :
@@ -193,7 +217,9 @@ theorem sum_sequence_eq_sum_count_smul
 
 /-- The conditional barycenter of the literal iid sequence sum equals the
 unweighted sum over the selected subset.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.2h5v.s7.e7d2da3c00ac from=translated src=- shape=4bf12d30 vocab=39cfd07d
+-/
 theorem sum_conditionalWeight_smul_sequence_sum
     {α E : Type*} [Fintype α] [DecidableEq α] [Nonempty α] [AddCommGroup E] [Module ℝ E]
     {k : ℕ} (hk0 : 0 < k) (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) (A : α → E) :

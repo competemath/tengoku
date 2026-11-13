@@ -26,7 +26,9 @@ def iidGramError {m n d : ℕ} (b : ℕ) (F : Frame n d)
 
 /-- An iid hollow Gram-error entry is the explicit off-diagonal ternary-coordinate sum.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s7.6459cef4ad8e from=translated src=- shape=4f862491 vocab=70297513
+-/
 theorem iidGramError_apply {m n d : ℕ} (b : ℕ) (F : Frame n d)
     (omega : Configuration m n) (a c : Fin d) :
     iidGramError b F omega a c = (1 / (m : ℝ)) *
@@ -56,7 +58,9 @@ def multiplicationOperator {m n d : ℕ} (b : ℕ) (hb : 1 < b) (F : Frame n d) 
 /-- The exact vacuum-moment identity, for every natural power `k`.
 
 Source: ported from `SparseFockFormal.VacuumMoment`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.fbc320c50b75 from=translated src=- shape=5c38d362 vocab=07e3c0c6
+-/
 theorem vacuum_moment_identity {m n d b : ℕ} (hb : 1 < b) (F : Frame n d)
     (k : ℕ) :
     (∑ a : Fin d,
@@ -77,7 +81,9 @@ variable {Omega I A K : Type*}
 omit [DecidableEq I] [Fintype A] [DecidableEq A] in
 /-- The matrix multiplication operator commutes with scalar multiplication of its matrix-valued input.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.a3d2e8a0b724 from=translated src=- shape=00f8cf8d vocab=e6a9ef09
+-/
 theorem matrixMulOp_smul (B : WeightedONBasis Omega I) (c : ℝ)
     (M : Omega → Matrix A A ℝ) :
     B.matrixMulOp (fun omega ↦ c • M omega) = c • B.matrixMulOp M := by
@@ -92,7 +98,9 @@ theorem matrixMulOp_smul (B : WeightedONBasis Omega I) (c : ℝ)
 omit [DecidableEq I] [Fintype A] [DecidableEq A] in
 /-- The matrix multiplication operator commutes with a finite sum of matrix-valued inputs.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.50dee793cae6 from=translated src=- shape=a6e27d7b vocab=cf56caa5
+-/
 theorem matrixMulOp_fintype_sum (B : WeightedONBasis Omega I)
     (M : K → Omega → Matrix A A ℝ) :
     B.matrixMulOp (fun omega ↦ ∑ k, M k omega) =
@@ -106,7 +114,9 @@ theorem matrixMulOp_fintype_sum (B : WeightedONBasis Omega I)
 omit [DecidableEq I] [Fintype A] [DecidableEq A] [Fintype K] in
 /-- The matrix multiplication operator commutes with a finset-indexed sum of matrix-valued inputs.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.0a9b7fe80b7f from=translated src=- shape=e9e19083 vocab=d6d16ff1
+-/
 theorem matrixMulOp_finset_sum (B : WeightedONBasis Omega I)
     (S : Finset K) (M : K → Omega → Matrix A A ℝ) :
     B.matrixMulOp (fun omega ↦ ∑ k ∈ S, M k omega) =
@@ -123,7 +133,9 @@ end MatrixMulOpLinearity
 external tensor product with its scalar multiplication matrix.
 
 Source: ported from `SparseFockFormal.VacuumMoment`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.35e8b4886af1 from=translated src=- shape=7a58e056 vocab=5b2fbbc1
+-/
 theorem matrixMulOp_scalar_external {m n d b : ℕ} (hb : 1 < b)
     (a : Configuration m n → ℝ) (M : Matrix (Fin d) (Fin d) ℝ) :
     (productONBasis b hb m n).matrixMulOp (fun omega ↦ a omega • M) =
@@ -153,7 +165,9 @@ def globalJacobiOperator {m n d : ℕ} (b : ℕ) (F : Frame n d) :
 sum of external rank-one terms tensored with the two lifted Jacobi matrices.
 
 Source: ported from `SparseFockFormal.VacuumMoment`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s5.3917c722251c from=translated src=- shape=7584b97e vocab=4c35311e
+-/
 theorem multiplicationOperator_eq_globalJacobi {m n d b : ℕ} (hb : 1 < b)
     (F : Frame n d) :
     multiplicationOperator (m := m) b hb F = globalJacobiOperator (m := m) b F := by

@@ -27,7 +27,9 @@ variable {d m n : ℕ}
 used verbatim in the concrete band assembly.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s9.2bc10a3c3e77 from=translated src=- shape=cce0281c vocab=bcddc28a
+-/
 theorem norm_normalized_heavy_term_eq {s b : ℕ}
     (A : FullOp d m n) (P : FullOp d m n) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -43,7 +45,9 @@ theorem norm_normalized_heavy_term_eq {s b : ℕ}
 scalar shape consumed by `ConcreteBandAssembly`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.556bfd102d6a from=translated src=- shape=d3b7b501 vocab=fa4f121f
+-/
 theorem norm_normalized_Hplus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -71,7 +75,9 @@ theorem norm_normalized_Hplus_restricted_le (F : Frame n d)
 scalar shape consumed by `ConcreteBandAssembly`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.e34d897c506d from=translated src=- shape=564c7056 vocab=42353bba
+-/
 theorem norm_normalized_Hzero_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -104,7 +110,9 @@ theorem norm_normalized_Hzero_restricted_le (F : Frame n d)
 scalar shape consumed by `ConcreteBandAssembly`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.f9b04105959f from=translated src=- shape=d3b7b501 vocab=90e67536
+-/
 theorem norm_normalized_Hminus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •

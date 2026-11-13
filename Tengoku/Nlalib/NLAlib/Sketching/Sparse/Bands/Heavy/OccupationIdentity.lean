@@ -23,7 +23,9 @@ variable {d m n : ℕ}
 
 /-- The same-site creation correction has exactly the summed light-site frame-coefficient energy.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.1dfb751926a3 from=translated src=- shape=a15c92da vocab=703e8289
+-/
 theorem DUp_energy_eq_light (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, ∑ i, sumSq (Matrix.mulVec (AUpOne F r i) x)) =
@@ -81,7 +83,9 @@ theorem DUp_energy_eq_light (F : Frame n d)
 
 /-- The same-site annihilation correction has exactly the summed heavy-site frame-coefficient energy.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.9e09db8293a2 from=translated src=- shape=a15c92da vocab=c87846c6
+-/
 theorem DDown_energy_eq_heavy (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, ∑ i, sumSq (Matrix.mulVec (ADownOne F r i) x)) =
@@ -139,7 +143,9 @@ theorem DDown_energy_eq_heavy (F : Frame n d)
 
 /-- The combined diagonal correction energy is bounded by total occupation-weighted fiber energy.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.08fe4fdf91f4 from=translated src=- shape=e494ac3e vocab=221deb7b
+-/
 theorem Dcombined_energy_le_weighted (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, ∑ i, sumSq (Matrix.mulVec (AUpOne F r i) x)) +

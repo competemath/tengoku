@@ -29,7 +29,9 @@ namespace NLAlib
 /-- A compact subset of an open real set can be bounded in measure using integral
 comparison only for nonnegative smooth compact tests in that open set.
 Source: the smooth-cutoff version of Mathlib's Riesz--Markov measure comparison;
-Edelman 1988, atlas wishart-lambda-min-tail (helper).-/
+Edelman 1988, atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.4h4v.s7.9825803aace0 from=translated src=- shape=e56c965d vocab=e715afd6
+-/
 theorem measure_isCompact_le_of_integral_contDiff_le
     (μ ν : Measure ℝ) [μ.Regular] [ν.Regular] {U K : Set ℝ}
     (hU : IsOpen U) (hK : IsCompact K) (hKU : K ⊆ U)
@@ -96,7 +98,9 @@ theorem measure_isCompact_le_of_integral_contDiff_le
 restriction to that set. This proves measure domination, and hence absolute
 continuity when the comparison measure is a multiple of Lebesgue measure.
 Source: Edelman 1988, interval alternative;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.2h3v.s7.c6c0be7fd940 from=translated src=- shape=a0afdf32 vocab=a32081c1
+-/
 theorem measure_restrict_le_of_integral_contDiff_le
     (μ ν : Measure ℝ) [μ.Regular] [ν.Regular] {U : Set ℝ} (hU : IsOpen U)
     (hbound : ∀ f : ℝ → ℝ, ContDiff ℝ ∞ f → HasCompactSupport f →

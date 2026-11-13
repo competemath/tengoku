@@ -81,21 +81,27 @@ def prob (μ : FiniteLaw α) (s : Set α) : ℝ :=
 
 /-- The finite expectation of the zero function is zero.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.2cd349601ce7 from=translated src=- shape=b28031c9 vocab=e215a014
+-/
 @[simp] theorem expect_zero (μ : FiniteLaw α) :
     μ.expect (fun _ => 0) = 0 := by
   simp [FiniteLaw.expect]
 
 /-- The finite expectation of one is one.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.3e6da9eadea5 from=translated src=- shape=b28031c9 vocab=e215a014
+-/
 @[simp] theorem expect_one (μ : FiniteLaw α) :
     μ.expect (fun _ => 1) = 1 := by
   simpa [FiniteLaw.expect] using μ.sum_weight
 
 /-- The finite expectation of a constant is that constant.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.ea01cdfb3d59 from=translated src=- shape=46664767 vocab=e215a014
+-/
 @[simp] theorem expect_const (μ : FiniteLaw α) (c : ℝ) :
     μ.expect (fun _ => c) = c := by
   calc
@@ -105,21 +111,27 @@ Source: pinned sparse-Fock finite-law/basis proof, commit
 
 /-- Finite expectation preserves addition of observables.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.e5b2c3481715 from=translated src=- shape=4e012137 vocab=0b5076b5
+-/
 theorem expect_add (μ : FiniteLaw α) (f g : α → ℝ) :
     μ.expect (fun x => f x + g x) = μ.expect f + μ.expect g := by
   simp only [FiniteLaw.expect, mul_add, Finset.sum_add_distrib]
 
 /-- Finite expectation preserves subtraction of observables.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.60739828b135 from=translated src=- shape=4e012137 vocab=e7b00e8a
+-/
 theorem expect_sub (μ : FiniteLaw α) (f g : α → ℝ) :
     μ.expect (fun x => f x - g x) = μ.expect f - μ.expect g := by
   simp only [FiniteLaw.expect, mul_sub, Finset.sum_sub_distrib]
 
 /-- A real scalar factors out of finite expectation.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.4939fecb8803 from=translated src=- shape=55282c94 vocab=8847f0a1
+-/
 theorem expect_smul (μ : FiniteLaw α) (c : ℝ) (f : α → ℝ) :
     μ.expect (fun x => c * f x) = c * μ.expect f := by
   simp only [FiniteLaw.expect, Finset.mul_sum]
@@ -129,7 +141,9 @@ theorem expect_smul (μ : FiniteLaw α) (c : ℝ) (f : α → ℝ) :
 
 /-- Pointwise equal observables have equal finite expectations.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s5.12c6c4417d65 from=translated src=- shape=77e73f20 vocab=e215a014
+-/
 theorem expect_congr (μ : FiniteLaw α) {f g : α → ℝ}
     (h : ∀ x, f x = g x) : μ.expect f = μ.expect g := by
   apply Finset.sum_congr rfl
@@ -138,14 +152,18 @@ theorem expect_congr (μ : FiniteLaw α) {f g : α → ℝ}
 
 /-- A pointwise nonnegative observable has nonnegative finite expectation.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s5.aa995bbadef2 from=translated src=- shape=f996a2b1 vocab=68ca1db5
+-/
 theorem expect_nonneg (μ : FiniteLaw α) {f : α → ℝ}
     (hf : ∀ x, 0 ≤ f x) : 0 ≤ μ.expect f := by
   exact Finset.sum_nonneg fun x _hx => mul_nonneg (μ.weight_nonneg x) (hf x)
 
 /-- Finite expectation preserves pointwise order.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h4v.s5.0641965e9235 from=translated src=- shape=77e73f20 vocab=68ca1db5
+-/
 theorem expect_mono (μ : FiniteLaw α) {f g : α → ℝ}
     (hfg : ∀ x, f x ≤ g x) : μ.expect f ≤ μ.expect g := by
   apply Finset.sum_le_sum
@@ -154,7 +172,9 @@ theorem expect_mono (μ : FiniteLaw α) {f g : α → ℝ}
 
 /-- The empty event has probability zero.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.fca24541dd7a from=translated src=- shape=fa71c1ef vocab=907fc478
+-/
 @[simp] theorem prob_empty (μ : FiniteLaw α) : μ.prob ∅ = 0 := by
   classical
   calc
@@ -168,7 +188,9 @@ Source: pinned sparse-Fock finite-law/basis proof, commit
 
 /-- The whole finite outcome space has probability one.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.3e146093e664 from=translated src=- shape=addd58e9 vocab=c8b53154
+-/
 @[simp] theorem prob_univ (μ : FiniteLaw α) : μ.prob Set.univ = 1 := by
   classical
   calc
@@ -182,7 +204,9 @@ Source: pinned sparse-Fock finite-law/basis proof, commit
 
 /-- Every finite-law event probability is nonnegative.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s4.c6756049f95a from=translated src=- shape=77ca7cfb vocab=d5deb0d2
+-/
 theorem prob_nonneg (μ : FiniteLaw α) (s : Set α) : 0 ≤ μ.prob s := by
   classical
   apply μ.expect_nonneg
@@ -192,7 +216,9 @@ theorem prob_nonneg (μ : FiniteLaw α) (s : Set α) : 0 ≤ μ.prob s := by
 
 /-- Every finite-law event probability is at most one.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s4.ccdda75ad28f from=translated src=- shape=6180dde5 vocab=d5deb0d2
+-/
 theorem prob_le_one (μ : FiniteLaw α) (s : Set α) : μ.prob s ≤ 1 := by
   classical
   calc
@@ -205,7 +231,9 @@ theorem prob_le_one (μ : FiniteLaw α) (s : Set α) : μ.prob s ≤ 1 := by
 
 /-- Finite-law probability is monotone under event inclusion.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h4v.s5.56accbbe2c49 from=translated src=- shape=d7de5d8b vocab=d5deb0d2
+-/
 theorem prob_mono (μ : FiniteLaw α) {s t : Set α} (hst : s ⊆ t) :
     μ.prob s ≤ μ.prob t := by
   classical
@@ -220,7 +248,9 @@ theorem prob_mono (μ : FiniteLaw α) {s t : Set α} (hst : s ⊆ t) :
 
 /-- The probability of the complementary event is one minus the original probability.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.a0c055e6b4f5 from=translated src=- shape=9233dc27 vocab=86e3820b
+-/
 theorem prob_compl (μ : FiniteLaw α) (s : Set α) :
     μ.prob sᶜ = 1 - μ.prob s := by
   classical
@@ -235,7 +265,9 @@ theorem prob_compl (μ : FiniteLaw α) (s : Set α) :
 
 /-- The probability of a singleton is its assigned weight.
 Source: pinned sparse-Fock finite-law/basis proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.bcc21c2f7385 from=translated src=- shape=42f3f400 vocab=84d451bb
+-/
 theorem prob_singleton [DecidableEq α] (μ : FiniteLaw α) (a : α) :
     μ.prob {a} = μ.weight a := by
   classical
@@ -244,7 +276,9 @@ theorem prob_singleton [DecidableEq α] (μ : FiniteLaw α) (a : α) :
 /-- Finite Markov inequality in multiplication form.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h4v.s5.825a69f965ca from=translated src=- shape=d53908da vocab=0dcb2252
+-/
 theorem markov_mul (μ : FiniteLaw α) {f : α → ℝ} (hf : ∀ x, 0 ≤ f x)
     (threshold : ℝ) :
     threshold * μ.prob {x | threshold ≤ f x} ≤ μ.expect f := by
@@ -264,7 +298,9 @@ theorem markov_mul (μ : FiniteLaw α) {f : α → ℝ} (hf : ∀ x, 0 ≤ f x)
 /-- Standard divided form of finite Markov's inequality.
 
 Source: ported from `SparseFockFormal.FiniteProbability`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s6.a8e6a14c846c from=translated src=- shape=596c32f5 vocab=7a49cb1b
+-/
 theorem markov (μ : FiniteLaw α) {f : α → ℝ} (hf : ∀ x, 0 ≤ f x)
     {threshold : ℝ} (hthreshold : 0 < threshold) :
     μ.prob {x | threshold ≤ f x} ≤ μ.expect f / threshold := by

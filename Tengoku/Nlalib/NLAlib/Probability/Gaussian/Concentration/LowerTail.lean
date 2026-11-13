@@ -20,7 +20,9 @@ open MeasureTheory ProbabilityTheory Set
 namespace NLAlib
 
 /-- The mass of a unit interval beginning at a nonnegative threshold has
-a dimension-free lower bound obtained from the actual Gaussian density.-/
+a dimension-free lower bound obtained from the actual Gaussian density.
+@isnad1 id=le.1h1v.s6.981979131aef from=translated src=- shape=189a6632 vocab=13398552
+-/
 theorem exp_neg_sq_div_sqrt_two_pi_le_gaussianReal_unit_interval
     (t : ℝ) (ht : 0 ≤ t) :
     Real.exp (-1) / Real.sqrt (2 * Real.pi) * Real.exp (-t ^ 2) ≤
@@ -53,7 +55,9 @@ theorem exp_neg_sq_div_sqrt_two_pi_le_gaussianReal_unit_interval
   exact hmono
 
 /-- A scalar standard Gaussian has a uniform lower absolute tail. The
-positive constant is explicit and the event includes its threshold.-/
+positive constant is explicit and the event includes its threshold.
+@isnad1 id=le.1h1v.s6.ec9c6e920dec from=translated src=- shape=e1d26dca vocab=cf95cf41
+-/
 theorem exp_neg_sq_div_sqrt_two_pi_le_gaussianReal_abs_tail
     (t : ℝ) (ht : 0 ≤ t) :
     Real.exp (-1) / Real.sqrt (2 * Real.pi) * Real.exp (-t ^ 2) ≤

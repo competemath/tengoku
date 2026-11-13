@@ -40,7 +40,9 @@ def rowGrade (p : Pattern m n) (r : Fin m) : ℕ :=
 
 /-- Summing the row occupation grades gives the total pattern grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.26f6840178c7 from=translated src=- shape=108befa6 vocab=3bab3f11
+-/
 theorem sum_rowGrade (p : Pattern m n) :
     (∑ r, rowGrade p r) = p.grade := by
   classical
@@ -58,14 +60,18 @@ def setSite (p : Pattern m n) (s : Site m n) (a : Level) : Pattern m n :=
 
 /-- Replacing one site gives the specified level at that site.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s4.3659ad7119d3 from=translated src=- shape=38b27972 vocab=1fa654a2
+-/
 @[simp] theorem setSite_apply_self (p : Pattern m n) (s : Site m n) (a : Level) :
     setSite p s a s = a := by
   simp [setSite]
 
 /-- Replacing one site leaves every distinct site unchanged.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.0f745ed82448 from=translated src=- shape=0630dba7 vocab=1fa654a2
+-/
 theorem setSite_apply_of_ne (p : Pattern m n) {s t : Site m n}
     (hst : t ≠ s) (a : Level) :
     setSite p s a t = p t := by
@@ -73,7 +79,9 @@ theorem setSite_apply_of_ne (p : Pattern m n) {s t : Site m n}
 
 /-- Restoring the original level undoes a marked-site replacement.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.008d3b27cdee from=translated src=- shape=e4508587 vocab=1fa654a2
+-/
 theorem setSite_restore (p : Pattern m n) (s : Site m n) {a b : Level}
     (hs : p s = a) : setSite (setSite p s b) s a = p := by
   funext t
@@ -84,7 +92,9 @@ theorem setSite_restore (p : Pattern m n) (s : Site m n) {a b : Level}
 
 /-- A marked-site replacement agrees with the original pattern outside that site.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=agreesou.0h5v.s4.810b6e765da3 from=translated src=- shape=e9d35714 vocab=54f1400e
+-/
 theorem agreesOutsideSite_setSite (p : Pattern m n) (s : Site m n) (a : Level) :
     agreesOutsideSite s p (setSite p s a) := by
   intro t hts
@@ -110,7 +120,9 @@ theorem eq_setSite_iff {out inp : Pattern m n} {s : Site m n} (a : Level) :
 /-- Exact coefficient of a lifted one-site rank-one transition.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.b49dc83d051b from=translated src=- shape=390b63ff vocab=509d703a
+-/
 theorem siteKernel_ketBra_apply (s : Site m n) (outLevel inpLevel : Level)
     (out inp : Pattern m n) :
     siteKernel s (ketBra outLevel inpLevel) out inp =
@@ -151,7 +163,9 @@ structure MarkedSite (m n : ℕ) (a : Level) where
 
 /-- A marked-site record is determined by its pattern, row, and column.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h5v.s6.63b89739978f from=translated src=- shape=416fd63b vocab=efb42f04
+-/
 theorem MarkedSite.ext' {a : Level} {x y : MarkedSite m n a}
     (hp : x.pattern = y.pattern) (hr : x.row = y.row) (hc : x.col = y.col) :
     x = y := by
@@ -178,7 +192,9 @@ def markedSiteEquivSigma (a : Level) :
 sum.  This is the bookkeeping bridge used by both marked reindexings.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.a3de10b1077b from=translated src=- shape=46e8b68a vocab=26bcba0a
+-/
 theorem sum_markedSite (a : Level) (f : Pattern m n → Fin m → Fin n → ℝ) :
     (∑ p, ∑ r, ∑ i ∈ Finset.univ.filter (fun i ↦ p (r, i) = a), f p r i) =
       ∑ z : MarkedSite m n a, f z.pattern z.row z.col := by
@@ -236,7 +252,9 @@ def markedTransition (a b : Level) :
 /-- A marked-site sum may be reindexed without multiplicity loss.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.42adeef7653b from=translated src=- shape=5d89e6e7 vocab=580b21b0
+-/
 theorem sum_markedTransition (a b : Level)
     (f : MarkedSite m n b → ℝ) :
     (∑ z : MarkedSite m n a, f (markedTransition a b z)) =
@@ -245,7 +263,9 @@ theorem sum_markedTransition (a b : Level)
 
 /-- The marked-level transition reindexes a finite marked-site sum exactly.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.c6c7cd39df99 from=translated src=- shape=82f309c4 vocab=acae4be7
+-/
 theorem sum_marked_reindex (a b : Level) (f : MarkedSite m n a → ℝ) :
     (∑ z : MarkedSite m n a, f z) =
       ∑ z : MarkedSite m n b, f ((markedTransition a b).symm z) := by
@@ -254,7 +274,9 @@ theorem sum_marked_reindex (a b : Level) (f : MarkedSite m n a → ℝ) :
 
 /-- Promoting a non-heavy marked site inserts that column into its row's heavy sites.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.e8591e07e550 from=translated src=- shape=8c557f84 vocab=b36f620b
+-/
 theorem heavyInRow_setSite_two {p : Pattern m n} {r : Fin m} {i : Fin n}
     (_hi : p (r, i) ≠ .two) :
     (setSite p (r, i) .two).heavyInRow r = insert i (p.heavyInRow r) := by
@@ -272,7 +294,9 @@ theorem heavyInRow_setSite_two {p : Pattern m n} {r : Fin m} {i : Fin n}
 
 /-- Setting a non-light marked site to level one inserts it into the row's light sites.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.e26dc217ef2c from=translated src=- shape=8c557f84 vocab=a2e3836f
+-/
 theorem lightInRow_setSite_one {p : Pattern m n} {r : Fin m} {i : Fin n}
     (_hi : p (r, i) ≠ .one) :
     (setSite p (r, i) .one).lightInRow r = insert i (p.lightInRow r) := by
@@ -290,7 +314,9 @@ theorem lightInRow_setSite_one {p : Pattern m n} {r : Fin m} {i : Fin n}
 
 /-- Promoting a light marked site increases the row's heavy-site count by one.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.035164f05af0 from=translated src=- shape=64873825 vocab=2ac4847e
+-/
 theorem card_heavyInRow_setSite_two {p : Pattern m n} {r : Fin m} {i : Fin n}
     (hi : p (r, i) = .one) :
     ((setSite p (r, i) .two).heavyInRow r).card =
@@ -301,7 +327,9 @@ theorem card_heavyInRow_setSite_two {p : Pattern m n} {r : Fin m} {i : Fin n}
 
 /-- Demoting a heavy marked site increases the row's light-site count by one.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.1f1998abede2 from=translated src=- shape=64873825 vocab=2f781a09
+-/
 theorem card_lightInRow_setSite_one {p : Pattern m n} {r : Fin m} {i : Fin n}
     (hi : p (r, i) = .two) :
     ((setSite p (r, i) .one).lightInRow r).card =
@@ -312,7 +340,9 @@ theorem card_lightInRow_setSite_one {p : Pattern m n} {r : Fin m} {i : Fin n}
 
 /-- The heavy-site count after promotion is bounded by the initial row occupation grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s5.abb9388f3114 from=translated src=- shape=a45d0780 vocab=2b661c51
+-/
 theorem card_heavy_after_promote_le_rowGrade
     {p : Pattern m n} {r : Fin m} {i : Fin n}
     (hi : p (r, i) = .one) :
@@ -325,7 +355,9 @@ theorem card_heavy_after_promote_le_rowGrade
 
 /-- The light-site count after demotion is bounded by the initial row occupation grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s5.1738985e2829 from=translated src=- shape=a45d0780 vocab=fea5c1e6
+-/
 theorem card_light_after_demote_le_rowGrade
     {p : Pattern m n} {r : Fin m} {i : Fin n}
     (hi : p (r, i) = .two) :

@@ -34,7 +34,9 @@ def resamplingInterpolation (ν : ι → Measure (κ → ℝ)) (γ : Measure (κ
 omit [DecidableEq κ] in
 /-- A bounded continuous primitive gives a continuous interpolation on all
 real times, in particular at both endpoints of the unit interval.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=continuo.3h7v.s8.e0f2ad705821 from=translated src=- shape=7467e8d2 vocab=9bf66cd3
+-/
 theorem continuous_resamplingInterpolation
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))
@@ -57,7 +59,9 @@ theorem continuous_resamplingInterpolation
 omit [DecidableEq ι] [MeasurableSingletonClass ι] [DecidableEq κ] [CompleteSpace K] in
 /-- At time zero the actual interpolation is the centered Gaussian law
 translated by the original sum's mean.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.1h6v.s8.c0bdeac9da8c from=translated src=- shape=9ee2b585 vocab=b722bf6b
+-/
 theorem resamplingInterpolation_zero
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (γ : Measure (κ → ℝ)) [IsProbabilityMeasure γ]
@@ -75,7 +79,9 @@ theorem resamplingInterpolation_zero
 
 omit [DecidableEq ι] [MeasurableSingletonClass ι] [DecidableEq κ] [CompleteSpace K] in
 /-- At time one the actual interpolation is precisely the original sum law.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.1h6v.s8.363b9de798e1 from=translated src=- shape=2a4495d0 vocab=0ea299a5
+-/
 theorem resamplingInterpolation_one
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (γ : Measure (κ → ℝ)) [IsProbabilityMeasure γ]
@@ -101,7 +107,9 @@ theorem resamplingInterpolation_one
 /-- The actual interpolation derivative follows from differentiation under the
 integral, genuine discrete resampling, and genuine Gaussian integration by
 parts. The exact coefficients are `N/(4 sqrt t)` and `N/4`.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=other.12h13v.s12.cff991b72ee5 from=translated src=- shape=6d8ce1e9 vocab=a2c36aad
+-/
 theorem hasDerivAt_resamplingInterpolation
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))

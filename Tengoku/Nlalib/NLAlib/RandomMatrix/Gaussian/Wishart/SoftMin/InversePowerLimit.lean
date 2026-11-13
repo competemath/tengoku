@@ -22,7 +22,9 @@ namespace NLAlib
 
 /-- A weighted finite power sum with a unique unit ratio converges to the
 weight of that ratio. Source: normalized inverse-eigenvalue powers in the
-operator hard-edge proof; atlas `wishart-lambda-min-tail` (limit helper).-/
+operator hard-edge proof; atlas `wishart-lambda-min-tail` (limit helper).
+@isnad1 id=tendsto.2h4v.s6.48286ef6ba80 from=translated src=- shape=fff8a119 vocab=2aff835a
+-/
 theorem tendsto_sum_mul_pow_of_unique_one {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
     (hρ : ∀ i, i ≠ i₀ → 0 ≤ ρ i ∧ ρ i < 1) :
@@ -38,7 +40,9 @@ theorem tendsto_sum_mul_pow_of_unique_one {ι : Type*} [Fintype ι] [DecidableEq
 
 /-- The remainder of a unique-top weighted power sum decays faster than the
 reciprocal moment order. Source: exponential decay of normalized inverse
-eigenvalues; atlas `wishart-lambda-min-tail` (Hessian limit helper).-/
+eigenvalues; atlas `wishart-lambda-min-tail` (Hessian limit helper).
+@isnad1 id=tendsto.2h4v.s7.2d4fa42e08e3 from=translated src=- shape=b9962d6e vocab=fdd89807
+-/
 theorem tendsto_natCast_mul_sub_sum_mul_pow_of_unique_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -62,7 +66,9 @@ theorem tendsto_natCast_mul_sub_sum_mul_pow_of_unique_one
 
 /-- Every bounded real inverse power of a unique-top normalized power sum
 converges to one, including the inverse-root factor. Source: continuity
-at the limiting base one; atlas `wishart-lambda-min-tail` (limit helper).-/
+at the limiting base one; atlas `wishart-lambda-min-tail` (limit helper).
+@isnad1 id=tendsto.2h4v.s7.160d70c7b83d from=translated src=- shape=02042f1b vocab=3a88a7c0
+-/
 theorem tendsto_sum_pow_rpow_neg_inv_sub_of_unique_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -77,7 +83,9 @@ theorem tendsto_sum_pow_rpow_neg_inv_sub_of_unique_one
 
 /-- Normalized inverse-power weights converge to the unique top projector
 coordinate. Source: inverse-power soft minimum gradient; atlas
-`wishart-lambda-min-tail` (limit helper).-/
+`wishart-lambda-min-tail` (limit helper).
+@isnad1 id=tendsto.2h4v.s7.012b6c22c4dc from=translated src=- shape=577bc0ed vocab=d5a360d0
+-/
 theorem tendsto_sum_pow_rpow_mul_pow_succ_of_unique_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -103,7 +111,9 @@ private lemma sum_pow_eq_mul_sum_div_pow {ι : Type*} [Fintype ι]
 
 /-- The inverse-root of a positive finite power sum tends to the reciprocal
 of its unique maximal base. Source: inverse-power soft minimum; atlas
-`wishart-lambda-min-tail` (value limit helper).-/
+`wishart-lambda-min-tail` (value limit helper).
+@isnad1 id=tendsto.3h3v.s6.18e9a280f99c from=translated src=- shape=2e6a5408 vocab=408ecfd3
+-/
 theorem tendsto_sum_pow_rpow_neg_inv_of_unique_max
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (b : ι → ℝ) (i₀ : ι) (hb₀ : 0 < b i₀) (hb : ∀ i, 0 ≤ b i)
@@ -159,7 +169,9 @@ private lemma sum_pow_rpow_mul_pow_succ_eq_normalized {ι : Type*} [Fintype ι]
 
 /-- Each inverse-power spectral gradient weight converges to the unique
 maximal inverse-eigenvalue coordinate. Source: operator soft minimum;
-atlas `wishart-lambda-min-tail` (projector limit helper).-/
+atlas `wishart-lambda-min-tail` (projector limit helper).
+@isnad1 id=tendsto.3h4v.s7.389fc392c31f from=translated src=- shape=c8da79ff vocab=d5a360d0
+-/
 theorem tendsto_sum_pow_rpow_mul_pow_succ_of_unique_max
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (b : ι → ℝ) (i₀ : ι) (hb₀ : 0 < b i₀) (hb : ∀ i, 0 ≤ b i)
@@ -177,7 +189,9 @@ theorem tendsto_sum_pow_rpow_mul_pow_succ_of_unique_max
 
 /-- A finite mixed geometric power sum has its exact divided-difference
 formula. Source: inverse-power Hessian kernel; atlas
-`wishart-lambda-min-tail` (off-diagonal limit helper).-/
+`wishart-lambda-min-tail` (off-diagonal limit helper).
+@isnad1 id=eq.1h3v.s7.bdc745b43c9d from=translated src=- shape=e3abeb4a vocab=0607e9cc
+-/
 theorem sum_range_pow_mul_pow_eq_div (x y : ℝ) (hxy : x ≠ y) (n : ℕ) :
     (∑ a ∈ Finset.range (n + 1), x ^ (n - a + 1) * y ^ (a + 1))
       = x * y * ((y ^ (n + 1) - x ^ (n + 1)) / (y - x)) := by
@@ -190,7 +204,9 @@ theorem sum_range_pow_mul_pow_eq_div (x y : ℝ) (hxy : x ≠ y) (n : ℕ) :
 
 /-- Off-diagonal mixed inverse-power sums converge to the exact spectral
 gap coefficients. Source: geometric Hessian kernel; atlas
-`wishart-lambda-min-tail` (off-diagonal limit helper).-/
+`wishart-lambda-min-tail` (off-diagonal limit helper).
+@isnad1 id=tendsto.3h5v.s8.1147e2db57bf from=translated src=- shape=a2fb5e68 vocab=a3927cde
+-/
 theorem tendsto_sum_range_pow_mul_pow_of_unique_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -212,7 +228,9 @@ theorem tendsto_sum_range_pow_mul_pow_of_unique_one
 
 /-- The diagonal cancellation in the inverse-power Hessian vanishes after
 multiplication by the moment order. Source: exponentially small normalized
-power remainders; atlas `wishart-lambda-min-tail` (Hessian limit helper).-/
+power remainders; atlas `wishart-lambda-min-tail` (Hessian limit helper).
+@isnad1 id=tendsto.2h4v.s7.63201971f908 from=translated src=- shape=bd3fd721 vocab=35277d45
+-/
 theorem tendsto_natCast_add_one_mul_power_sum_difference_of_unique_one
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -286,7 +304,9 @@ theorem tendsto_natCast_add_one_mul_power_sum_difference_of_unique_one
 /-- The normalized closed Gram Laplacian converges with the diagonal
 Hessian cancellation and exact off-diagonal gap terms. Source: operator
 hard-edge proof; atlas `wishart-lambda-min-tail` (Laplacian limit helper).
-The coefficients `w` are the unregularized Gram eigenvalues.-/
+The coefficients `w` are the unregularized Gram eigenvalues.
+@isnad1 id=tendsto.3h6v.s9.2c98bdad243f from=translated src=- shape=43243ce5 vocab=5d907672
+-/
 theorem tendsto_normalized_inverse_power_laplacian
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)
@@ -330,7 +350,9 @@ theorem tendsto_normalized_inverse_power_laplacian
 
 /-- The limiting double off-diagonal kernel reduces to the pairs involving
 the unique top coordinate. Source: operator soft minimum Hessian limit;
-atlas `wishart-lambda-min-tail` (exact gap sum helper).-/
+atlas `wishart-lambda-min-tail` (exact gap sum helper).
+@isnad1 id=eq.1h4v.s7.f21b9986c418 from=translated src=- shape=689d59d0 vocab=c99d7964
+-/
 theorem sum_offDiagonal_inverse_power_limit_eq
     {ι : Type*} [Fintype ι] [DecidableEq ι] (ρ w : ι → ℝ) (i₀ : ι)
     (hρ₀ : ρ i₀ = 1) :
@@ -378,7 +400,9 @@ theorem sum_offDiagonal_inverse_power_limit_eq
 `2(k-r+1)`. Source: operator soft minimum gap correction; atlas
 `wishart-lambda-min-tail` (sharp limiting coefficient helper).
 The algebraic ratio identity holds for `ρj=(λmin+ε)/(λj+ε)` and
-`b₀=1/(λmin+ε)`, with `w` the Gram eigenvalues.-/
+`b₀=1/(λmin+ε)`, with `w` the Gram eigenvalues.
+@isnad1 id=le.5h6v.s8.01905f60a3d4 from=translated src=- shape=1d35a993 vocab=3a7ac32a
+-/
 theorem normalized_inverse_power_laplacian_limit_le
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (ρ w : ι → ℝ) (i₀ : ι) (hρ₀ : ρ i₀ = 1)

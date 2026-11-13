@@ -27,7 +27,9 @@ variable {d m n : ℕ}
 /-- Raw restricted norm of the concrete `X₊` factorization.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.8978ce8bce84 from=translated src=- shape=79f1d342 vocab=b9231f9b
+-/
 theorem norm_Xplus_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖Xplus m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤
@@ -65,7 +67,9 @@ theorem norm_Xplus_restricted_le (F : Frame n d) (nu : ℕ) :
 /-- Raw restricted norm of the concrete grade-preserving `X₀` band.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.c0a6ebfe3470 from=translated src=- shape=c8978ea0 vocab=37a5ced4
+-/
 theorem norm_Xzero_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖Xzero m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤
@@ -111,7 +115,9 @@ theorem norm_Xzero_restricted_le (F : Frame n d) (nu : ℕ) :
 /-- Exact shifted adjoint estimate for `X₊†`.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.77f1994cbb4f from=translated src=- shape=890e7d71 vocab=0f49a03c
+-/
 theorem norm_XplusAdj_restricted_add_two_le (F : Frame n d) (k : ℕ) :
     ‖XplusAdj m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) (k + 2)‖ ≤
@@ -131,7 +137,9 @@ theorem norm_XplusAdj_restricted_add_two_le (F : Frame n d) (k : ℕ) :
 
 /-- The mixed lowering adjoint vanishes on grade-zero input.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.a3dca3103861 from=translated src=- shape=46730bc3 vocab=784e82d7
+-/
 theorem XplusAdj_gradeProjection_zero (F : Frame n d) :
     XplusAdj m (Frame.rows F) *
       gradeProjection (d := d) (m := m) (n := n) 0 = 0 := by
@@ -142,7 +150,9 @@ theorem XplusAdj_gradeProjection_zero (F : Frame n d) :
 
 /-- The mixed lowering adjoint vanishes on grade-one input.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.795e9e811ba3 from=translated src=- shape=46730bc3 vocab=784e82d7
+-/
 theorem XplusAdj_gradeProjection_one (F : Frame n d) :
     XplusAdj m (Frame.rows F) *
       gradeProjection (d := d) (m := m) (n := n) 1 = 0 := by
@@ -154,7 +164,9 @@ theorem XplusAdj_gradeProjection_one (F : Frame n d) :
 /-- Uniform same-grade form of the transpose mixed raising bound.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.a907bfd97dc2 from=translated src=- shape=79f1d342 vocab=0f49a03c
+-/
 theorem norm_XplusAdj_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖XplusAdj m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤
@@ -177,7 +189,9 @@ theorem norm_XplusAdj_restricted_le (F : Frame n d) (nu : ℕ) :
 /-- The grade-preserving adjoint has exactly the same restricted norm.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.6d20c866951e from=translated src=- shape=c8978ea0 vocab=944f5336
+-/
 theorem norm_XzeroAdj_restricted_le (F : Frame n d) (nu : ℕ) :
     ‖XzeroAdj m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu‖ ≤

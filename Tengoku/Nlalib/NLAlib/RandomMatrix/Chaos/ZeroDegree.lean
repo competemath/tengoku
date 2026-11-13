@@ -20,7 +20,9 @@ variable {τ ι m n 𝕜 : Type*} [Fintype τ] [IsEmpty τ] [DecidableEq τ]
   [DecidableEq m] [DecidableEq n] [RCLike 𝕜]
 
 /-- Every zero-degree variance flattening is just the deterministic matrix up
-to its unique empty-coordinate row and column factors.-/
+to its unique empty-coordinate row and column factors.
+@isnad1 id=eq.0h7v.s9.ea9746029d17 from=translated src=- shape=7e6013b7 vocab=229d3024
+-/
 theorem specNorm_chaosFlattening_of_isEmpty
     (A : (τ → ι) → Matrix m n 𝕜) (S : Finset τ) :
     specNorm (chaosFlattening A S) = specNorm (A default) := by
@@ -33,7 +35,9 @@ theorem specNorm_chaosFlattening_of_isEmpty
     exact Subsingleton.elim _ _
   rw [← he, specNorm_reindex]
 
-/-- At degree zero the variance parameter is the deterministic spectral norm.-/
+/-- At degree zero the variance parameter is the deterministic spectral norm.
+@isnad1 id=eq.0h6v.s6.63f8a18370fb from=translated src=- shape=01b21a64 vocab=b015e19a
+-/
 theorem chaosSigma_of_isEmpty (A : (τ → ι) → Matrix m n 𝕜) :
     chaosSigma A = specNorm (A default) := by
   apply le_antisymm
@@ -41,7 +45,9 @@ theorem chaosSigma_of_isEmpty (A : (τ → ι) → Matrix m n 𝕜) :
   · rw [← specNorm_chaosFlattening_of_isEmpty A ∅]
     exact specNorm_chaosFlattening_le _ _
 
-/-- There is no nonempty covariance row subset at degree zero.-/
+/-- There is no nonempty covariance row subset at degree zero.
+@isnad1 id=eq.0h6v.s6.e979ff69b986 from=translated src=- shape=f5515e5f vocab=785ce824
+-/
 theorem chaosCovariance_of_isEmpty (A : (τ → ι) → Matrix m n 𝕜) :
     chaosCovariance A = 0 := by
   apply le_antisymm
@@ -51,7 +57,9 @@ theorem chaosCovariance_of_isEmpty (A : (τ → ι) → Matrix m n 𝕜) :
     exact isEmptyElim t
   · exact chaosCovariance_nonneg _
 
-/-- A degree-zero chaos is exactly its unique deterministic coefficient.-/
+/-- A degree-zero chaos is exactly its unique deterministic coefficient.
+@isnad1 id=eq.0h7v.s7.66ab9acc9141 from=translated src=- shape=d898da4f vocab=82f977cb
+-/
 theorem decoupledMatrixChaos_of_isEmpty
     (A : (τ → ι) → Matrix m n 𝕜) (h : τ → ι → ℝ) :
     decoupledMatrixChaos A h = A default := by

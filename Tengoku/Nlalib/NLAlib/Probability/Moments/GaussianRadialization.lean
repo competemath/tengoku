@@ -22,7 +22,9 @@ namespace NLAlib
 /-- Gaussian averaging converts a homogeneous directional even-moment budget
 into a radial budget, retaining its exact scalar Gaussian divisor.
 Source: Heidary, equation `variance:eq:row-moment`.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.5h6v.s8.03fa64d40c70 from=translated src=- shape=bbcf0b5c vocab=7178bf22
+-/
 theorem integrable_and_gaussianEvenMoment_mul_integral_dotProduct_self_pow_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {r p : ℕ} (hr : 1 ≤ r) (hp : 1 ≤ p) (y : Ω → Fin r → ℝ)

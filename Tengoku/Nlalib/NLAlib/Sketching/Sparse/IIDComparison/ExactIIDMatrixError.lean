@@ -40,7 +40,9 @@ def iidColumnSampleLaw {b : ℕ} (hb : 0 < b) (s n : ℕ) :
 
 /-- The iid column-sample law weight is the product of its iid column masses.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.788d8e18d1cf from=translated src=- shape=97aba209 vocab=7d857a47
+-/
 @[simp] theorem iidColumnSampleLaw_weight {b : ℕ} (hb : 0 < b)
     (s n : ℕ) (Y : IidColumnSample b s n) :
     (iidColumnSampleLaw hb s n).weight Y =
@@ -63,7 +65,9 @@ def ofYArray (y : YArray b s n) : IidColumnSample b s n :=
 
 /-- Converting an iid array to column samples and back recovers the array.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.a8746f0e67a5 from=translated src=- shape=17a9dd6c vocab=c039c24b
+-/
 @[simp] theorem toYArray_ofYArray (y : YArray b s n) :
     toYArray (ofYArray y) = y := by
   funext z
@@ -72,7 +76,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Converting column samples to an iid array and back recovers the column samples.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.3af55d774280 from=translated src=- shape=17a9dd6c vocab=3eb3c974
+-/
 @[simp] theorem ofYArray_toYArray (Y : IidColumnSample b s n) :
     ofYArray (toYArray Y) = Y := by
   funext i g
@@ -91,7 +97,9 @@ def iidColumnSampleEquiv : IidColumnSample b s n ≃ YArray b s n where
 /-- Reindexing preserves the point mass of the iid law.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.e14babaa707a from=translated src=- shape=a096fe56 vocab=3264ae3b
+-/
 theorem iidColumnSampleLaw_weight_eq_iidArrayLaw_weight
     (hb : 0 < b) (Y : IidColumnSample b s n) :
     (iidColumnSampleLaw hb s n).weight Y =
@@ -109,7 +117,9 @@ theorem iidColumnSampleLaw_weight_eq_iidArrayLaw_weight
 the two iid presentations.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.48bb08659784 from=translated src=- shape=1dfcc8c7 vocab=38de8f41
+-/
 theorem iidColumnSampleLaw_expect_toYArray_eq_iidArrayLaw_expect
     (hb : 0 < b) (f : YArray b s n → ℝ) :
     (iidColumnSampleLaw hb s n).expect (fun Y => f (toYArray Y)) =
@@ -139,13 +149,17 @@ def exactScaledFlatYVector (hb : 0 < b) (Y : NestedY b s) : EVec (s * b) :=
 
 /-- The flattened Euclidean iid vector reads the flattened ternary coordinate value.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.3d2d75de7a0e from=translated src=- shape=a3a6e799 vocab=a874766d
+-/
 @[simp] theorem flatYVector_apply (Y : NestedY b s) (r : Fin (s * b)) :
     flatYVector Y r = flatYValue Y r := rfl
 
 /-- The corrected flattened iid vector scales its ternary coordinate by the exact-s normalization.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.87ecc3f4110c from=translated src=- shape=7faedab0 vocab=fb53b0ed
+-/
 @[simp] theorem exactScaledFlatYVector_apply (hb : 0 < b)
     (Y : NestedY b s) (r : Fin (s * b)) :
     exactScaledFlatYVector hb Y r =
@@ -164,7 +178,9 @@ def exactScaledIIDError (hb : 0 < b) (F : Frame n d)
 /-- A flattened inner product is the sum of its block inner products.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.e9cd28abdc95 from=translated src=- shape=c367b324 vocab=f0222ea8
+-/
 theorem flatYVector_inner_eq_sum_blocks (Y Z : NestedY b s) :
     inner ℝ (flatYVector Y) (flatYVector Z) =
       ∑ g, inner ℝ (unscaledYVector (Y g)) (unscaledYVector (Z g)) := by
@@ -186,7 +202,9 @@ theorem flatYVector_inner_eq_sum_blocks (Y Z : NestedY b s) :
 /-- Scaling both flattened columns contributes `exactScale²`.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s8.1cc96ee110d7 from=translated src=- shape=61f5aa78 vocab=c5a75dea
+-/
 theorem exactScaledFlatYVector_inner (hb : 0 < b)
     (Y Z : NestedY b s) :
     inner ℝ (exactScaledFlatYVector hb Y) (exactScaledFlatYVector hb Z) =
@@ -202,7 +220,9 @@ theorem exactScaledFlatYVector_inner (hb : 0 < b)
 block-first iid error.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.da018701e94a from=translated src=- shape=8d231f9f vocab=2cc66196
+-/
 theorem exactScaledIIDError_eq_smul (hb : 0 < b) (F : Frame n d)
     (Y : IidColumnSample b s n) :
     exactScaledIIDError hb F Y =
@@ -212,7 +232,9 @@ theorem exactScaledIIDError_eq_smul (hb : 0 < b) (F : Frame n d)
 /-- The scaled iid comparison error is real symmetric.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.e26fcd862ca3 from=translated src=- shape=846ca211 vocab=861bb8e4
+-/
 theorem exactScaledIIDError_symmetric (hb : 0 < b) (F : Frame n d)
     (Y : IidColumnSample b s n) :
     (exactScaledIIDError hb F Y).transpose = exactScaledIIDError hb F Y := by
@@ -239,7 +261,9 @@ def groupedExactError (F : Frame n d) (X : UniformSparseSample (s * b) s n) :
 /-- Grouping physical rows into blocks changes no matrix entry.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.0b55ba1e75c0 from=translated src=- shape=13547b03 vocab=86233613
+-/
 theorem groupedExactError_eq_hollow (F : Frame n d)
     (X : UniformSparseSample (s * b) s n) :
     groupedExactError F X = UniformSparse.hollowGram F X := by
@@ -275,7 +299,9 @@ theorem groupedExactError_eq_hollow (F : Frame n d)
 /-- Entrywise block-grouped expansion of the scaled iid error.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s8.25cd207cba5d from=translated src=- shape=1b87add9 vocab=97c108ad
+-/
 theorem exactScaledIIDError_apply_grouped (hb : 0 < b) (F : Frame n d)
     (Y : IidColumnSample b s n) (a c : Fin d) :
     exactScaledIIDError hb F Y a c =

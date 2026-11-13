@@ -114,7 +114,9 @@ def YzeroAdj (m : ℕ) (u : Fin n → Fin d → ℝ) : FullOp d m n :=
 
 /-- The raising lightLight inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.1fb97ae8b523 from=translated src=- shape=5512b903 vocab=991d62e5
+-/
 theorem family_plus_lightLight (u : Fin n → Fin d → ℝ) :
     family m u .plus .lightLight = Lplus m u := by
   rw [family, show wordsIn .plus .lightLight = {(.pUp, .pUp)} by decide]
@@ -122,7 +124,9 @@ theorem family_plus_lightLight (u : Fin n → Fin d → ℝ) :
 
 /-- The raising lightHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.a81054d75a31 from=translated src=- shape=eb66925e vocab=4fb91601
+-/
 theorem family_plus_lightHeavy (u : Fin n → Fin d → ℝ) :
     family m u .plus .lightHeavy = Xplus m u + Yplus m u := by
   rw [family, show wordsIn .plus .lightHeavy = {(.pUp, .rUp), (.rUp, .pUp)} by decide]
@@ -130,7 +134,9 @@ theorem family_plus_lightHeavy (u : Fin n → Fin d → ℝ) :
 
 /-- The raising heavyHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.02414e364c36 from=translated src=- shape=5512b903 vocab=3b443a3e
+-/
 theorem family_plus_heavyHeavy (u : Fin n → Fin d → ℝ) :
     family m u .plus .heavyHeavy = Hplus m u := by
   rw [family, show wordsIn .plus .heavyHeavy = {(.rUp, .rUp)} by decide]
@@ -138,7 +144,9 @@ theorem family_plus_heavyHeavy (u : Fin n → Fin d → ℝ) :
 
 /-- The preserving lightLight inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.e7987569903b from=translated src=- shape=5512b903 vocab=18d1a7fe
+-/
 theorem family_zero_lightLight (u : Fin n → Fin d → ℝ) :
     family m u .zero .lightLight = Lzero m u := by
   rw [family, show wordsIn .zero .lightLight =
@@ -147,7 +155,9 @@ theorem family_zero_lightLight (u : Fin n → Fin d → ℝ) :
 
 /-- The preserving lightHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.189346315de6 from=translated src=- shape=ec47e8e0 vocab=f49ece8d
+-/
 theorem family_zero_lightHeavy (u : Fin n → Fin d → ℝ) :
     family m u .zero .lightHeavy =
       Xzero m u + XzeroAdj m u + Yzero m u + YzeroAdj m u := by
@@ -158,7 +168,9 @@ theorem family_zero_lightHeavy (u : Fin n → Fin d → ℝ) :
 
 /-- The preserving heavyHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.eed315ef77de from=translated src=- shape=5512b903 vocab=1648e946
+-/
 theorem family_zero_heavyHeavy (u : Fin n → Fin d → ℝ) :
     family m u .zero .heavyHeavy = Hzero m u := by
   rw [family, show wordsIn .zero .heavyHeavy =
@@ -167,7 +179,9 @@ theorem family_zero_heavyHeavy (u : Fin n → Fin d → ℝ) :
 
 /-- The lowering lightLight inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.3b200414de81 from=translated src=- shape=5512b903 vocab=6a06f2f2
+-/
 theorem family_minus_lightLight (u : Fin n → Fin d → ℝ) :
     family m u .minus .lightLight = Lminus m u := by
   rw [family, show wordsIn .minus .lightLight = {(.pDown, .pDown)} by decide]
@@ -175,7 +189,9 @@ theorem family_minus_lightLight (u : Fin n → Fin d → ℝ) :
 
 /-- The lowering lightHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.79b33a8689e4 from=translated src=- shape=eb66925e vocab=11e5e455
+-/
 theorem family_minus_lightHeavy (u : Fin n → Fin d → ℝ) :
     family m u .minus .lightHeavy = XplusAdj m u + YplusAdj m u := by
   rw [family, show wordsIn .minus .lightHeavy =
@@ -184,7 +200,9 @@ theorem family_minus_lightHeavy (u : Fin n → Fin d → ℝ) :
 
 /-- The lowering heavyHeavy inventory cell equals its named physical band family.
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.7bc8652e4cc6 from=translated src=- shape=5512b903 vocab=3c4266c0
+-/
 theorem family_minus_heavyHeavy (u : Fin n → Fin d → ℝ) :
     family m u .minus .heavyHeavy = Hminus m u := by
   rw [family, show wordsIn .minus .heavyHeavy = {(.rDown, .rDown)} by decide]
@@ -193,7 +211,9 @@ theorem family_minus_heavyHeavy (u : Fin n → Fin d → ℝ) :
 /-- The paper's displayed `+2` inventory formula.
 
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.20d418ad1fbb from=translated src=- shape=8829df47 vocab=292e1e1f
+-/
 theorem band_plus_named (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
     band m u ρ .plus =
       Lplus m u + ρ • (Xplus m u + Yplus m u) + ρ ^ 2 • Hplus m u := by
@@ -203,7 +223,9 @@ theorem band_plus_named (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
 /-- The paper's displayed grade-zero inventory formula.
 
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.217602a2a65a from=translated src=- shape=8f5a078f vocab=53830561
+-/
 theorem band_zero_named (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
     band m u ρ .zero = Lzero m u +
       ρ • (Xzero m u + XzeroAdj m u + Yzero m u + YzeroAdj m u) +
@@ -214,7 +236,9 @@ theorem band_zero_named (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
 /-- The paper's displayed `-2` inventory formula.
 
 Source: ported from `SparseFockFormal.NamedBands`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.21e98bb85f4c from=translated src=- shape=8829df47 vocab=4d2739e7
+-/
 theorem band_minus_named (u : Fin n → Fin d → ℝ) (ρ : ℝ) :
     band m u ρ .minus =
       Lminus m u + ρ • (XplusAdj m u + YplusAdj m u) +

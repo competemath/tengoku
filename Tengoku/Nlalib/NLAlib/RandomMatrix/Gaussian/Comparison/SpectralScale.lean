@@ -24,7 +24,9 @@ def independentSumSpectralScale (R s σ t : ℝ) : ℝ :=
   s*Real.sqrt t+(R*σ^2*t^2)^(1/3 : ℝ)+R*t
 
 /-- The grouped cube root is exactly the source's product of fractional
-powers, including zero radius, variance or time.-/
+powers, including zero radius, variance or time.
+@isnad1 id=eq.3h4v.s7.a77b5826008b from=translated src=- shape=dde66ee5 vocab=5669c8d3
+-/
 theorem independentSumSpectralScale_eq {R s σ t : ℝ}
     (hR : 0≤R) (hσ : 0≤σ) (ht : 0≤t) :
     independentSumSpectralScale R s σ t =
@@ -36,21 +38,27 @@ theorem independentSumSpectralScale_eq {R s σ t : ℝ}
     ← Real.rpow_natCast_mul ht 2 (1/3 : ℝ)]
   norm_num
 
-/-- The actual source scale is nonnegative.-/
+/-- The actual source scale is nonnegative.
+@isnad1 id=le.3h4v.s5.04f8c97fee5a from=translated src=- shape=4b588aca vocab=58e2d873
+-/
 theorem independentSumSpectralScale_nonneg {R s σ t : ℝ}
     (hR : 0≤R) (hs : 0≤s) (ht : 0≤t) :
     0 ≤ independentSumSpectralScale R s σ t := by
   unfold independentSumSpectralScale
   positivity
 
-/-- The linear and square-root components fit in the source scale.-/
+/-- The linear and square-root components fit in the source scale.
+@isnad1 id=le.1h4v.s5.4b07d1e4c3fb from=translated src=- shape=b3e8e749 vocab=d2f15716
+-/
 theorem sqrt_add_linear_le_independentSumSpectralScale {R s σ t : ℝ} (hR : 0≤R) :
     s*Real.sqrt t+R*t ≤ independentSumSpectralScale R s σ t := by
   have hh := Real.rpow_nonneg (show 0≤R*σ^2*t^2 by positivity) (1/3 : ℝ)
   dsimp [independentSumSpectralScale]
   linarith only [hh]
 
-/-- Cubing the source scale dominates the literal mixed variance monomial.-/
+/-- Cubing the source scale dominates the literal mixed variance monomial.
+@isnad1 id=le.3h4v.s6.9a355b9e286c from=translated src=- shape=5d212089 vocab=4e06168c
+-/
 theorem mixed_variance_le_independentSumSpectralScale_cube {R s σ t : ℝ}
     (hR : 0≤R) (hs : 0≤s) (ht : 0≤t) :
     R*σ^2*t^2≤(independentSumSpectralScale R s σ t)^3 := by
@@ -66,7 +74,9 @@ theorem mixed_variance_le_independentSumSpectralScale_cube {R s σ t : ℝ}
   simpa only [hroot] using pow_le_pow_left₀ (Real.rpow_nonneg hx _) hle 3
 
 /-- An integer moment order bounded by `22*t` satisfies the exact linear
-and cubic source-scale inequalities with scale `22*Δ(t)`.-/
+and cubic source-scale inequalities with scale `22*Δ(t)`.
+@isnad1 id=and.5h5v.s7.a02826b33745 from=translated src=- shape=f7995d0f vocab=d052c924
+-/
 theorem sqrt_add_linear_and_mixed_variance_le_twenty_two_spectralScale {R s σ t p : ℝ}
     (hR : 0≤R) (hs : 0≤s) (ht : 0≤t) (hp : 0≤p) (hpt : p≤22*t) :
     s*Real.sqrt p+R*p≤22*independentSumSpectralScale R s σ t ∧
@@ -92,7 +102,9 @@ end NLAlib
 namespace Real
 
 /-- A logarithmic moment order absorbs the full quadratic grid prefactor
-into the source `d*exp(-t)` tail, uniformly in `d≥2`.-/
+into the source `d*exp(-t)` tail, uniformly in `d≥2`.
+@isnad1 id=le.3h3v.s6.f19a14d604f5 from=translated src=- shape=fe56c6e5 vocab=3be69ad4
+-/
 theorem sixty_mul_sq_mul_exp_neg_le_of_log_le {d t p : ℝ}
     (hd : 2≤d) (ht : log d≤t) (hp : 20*t≤p) :
     60*d^2*exp (-p)≤d*exp (-t) := by

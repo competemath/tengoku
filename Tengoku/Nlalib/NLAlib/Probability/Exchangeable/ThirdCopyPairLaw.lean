@@ -27,7 +27,9 @@ def resamplingTripleToIndependent (p : ι × ((ι × Fin 3) → E)) :
   (fun j => p.2 (j, 0), p.1, fun j => p.2 (j, 1))
 
 /-- Discarding the unused third copy gives precisely the canonical resampling
-probability measure, including the independent uniform index.-/
+probability measure, including the independent uniform index.
+@isnad1 id=measurep.0h3v.s7.dc890af11ed1 from=translated src=- shape=17ebf565 vocab=4bd3d3b6
+-/
 theorem measurePreserving_resamplingTripleToIndependent
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     MeasurePreserving resamplingTripleToIndependent
@@ -80,7 +82,9 @@ private theorem measurable_independentResampling_pair :
 equals that of the canonical independent-resampling pair. No moment or
 identical-distribution hypothesis is needed.
 Source: the same-index third-copy construction, Tropp (2026), §6.3.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=haslaw.0h3v.s8.cae8b4206396 from=translated src=- shape=e76409e1 vocab=6afb89df
+-/
 theorem hasLaw_resamplingTriple_original_first
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     HasLaw (fun p => (resamplingTripleOriginal p, resamplingTripleFirst p))
@@ -111,7 +115,9 @@ theorem hasLaw_resamplingTriple_original_first
 
 /-- The canonical resampling pair and the original/first coordinates of the
 actual triple have identical joint distributions.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=identdis.0h3v.s8.4d2bd6dc6ffe from=translated src=- shape=b06eb8cd vocab=a6e82b4a
+-/
 theorem identDistrib_resamplingTriple_original_first
     (ν : ι → Measure E) [∀ i, IsProbabilityMeasure (ν i)] :
     IdentDistrib (fun p => (resamplingTripleOriginal p, resamplingTripleFirst p))

@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- The genuine source parameter inequalities imply all three fixed-grid
 budgets at `Δ = sqrt(sigma*v) q^(3/4)`, including its exact fourth power
-and positivity whenever the actual weak scale is positive.-/
+and positivity whenever the actual weak scale is positive.
+@isnad1 id=other.7h5v.s8.c2bdd192e53f from=translated src=- shape=b6e84347 vocab=97fa0fb3
+-/
 theorem gaussian_free_delta_budgets {q d : ℕ} (hq : 0 < q) (hd : 0 < d)
     {V W s : ℝ} (hV : 0 ≤ V) (hW : 0 ≤ W) (_hs : 0 ≤ s)
     (hweak : s ≤ Real.sqrt (Real.sqrt V * Real.sqrt W))
@@ -74,7 +76,9 @@ theorem gaussian_free_delta_budgets {q d : ℕ} (hq : 0 < q) (hd : 0 < d)
     exact mul_pos (hspos.trans_le hweak) hqp
 
 /-- The concrete natural ceiling order has logarithmic size and leaves
-strictly less than one half total localization and grid failure.-/
+strictly less than one half total localization and grid failure.
+@isnad1 id=other.1h1v.s7.11cabdd68a6c from=translated src=- shape=41b5fa0b vocab=539aab43
+-/
 theorem gaussian_free_logarithmic_order_budgets {d : ℕ} (hd : 2 ≤ d) :
     let q : ℕ := ⌈10 * Real.log (d : ℝ) + 100⌉₊
     0 < q ∧ Real.log (d : ℝ) ≤ q ∧ (q : ℝ) ≤ 212 * Real.log (d : ℝ) ∧

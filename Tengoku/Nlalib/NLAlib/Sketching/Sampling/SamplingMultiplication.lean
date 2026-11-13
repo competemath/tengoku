@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- A complex outer product has Frobenius norm squared equal to the product of
 the two squared Euclidean norms. Source: operator re-derivation `sa:amm-variance`.
-(Moved from the deleted `NLAlib.Matrix.Norms.ComplexFrobenius`, foundation change F1.)-/
+(Moved from the deleted `NLAlib.Matrix.Norms.ComplexFrobenius`, foundation change F1.)
+@isnad1 id=eq.0h4v.s7.83602ec70730 from=translated src=- shape=55c874a0 vocab=3fd79901
+-/
 theorem frobenius_norm_sq_vecMulVec {m n : Type*} [Fintype m] [Fintype n]
     (a : m → ℂ) (b : n → ℂ) :
     ‖Matrix.vecMulVec a b‖ ^ 2 = (∑ i, ‖a i‖ ^ 2) * ∑ j, ‖b j‖ ^ 2 := by
@@ -28,7 +30,9 @@ theorem frobenius_norm_sq_vecMulVec {m n : Type*} [Fintype m] [Fintype n]
 
 /-- Embedding a real matrix into complex entries identifies its complex
 Frobenius norm squared with `frobSq`. Source: operator re-derivation `sa:amm`.
-(Moved from the deleted `NLAlib.Matrix.Norms.ComplexFrobenius`, foundation change F1.)-/
+(Moved from the deleted `NLAlib.Matrix.Norms.ComplexFrobenius`, foundation change F1.)
+@isnad1 id=eq.0h3v.s6.c24350232c5e from=translated src=- shape=27475c3c vocab=4f2e46ae
+-/
 theorem frobenius_norm_sq_map_ofReal_eq_frobSq {m n : Type*} [Fintype m] [Fintype n]
     (A : Matrix m n ℝ) : ‖A.map Complex.ofReal‖ ^ 2 = frobSq A := by
   rw [frobenius_norm_sq_eq_sum_norm_sq, frobSq_eq_sum_sq]
@@ -37,7 +41,9 @@ theorem frobenius_norm_sq_map_ofReal_eq_frobSq {m n : Type*} [Fintype m] [Fintyp
 /-- The squared Frobenius error of a finite matrix sample average is exactly
 the one-sample variance divided by the sample count. Every expectation is
 under the genuine independent product sampling law. Source: operator
-re-derivation `sa:amm-variance`; helper for `amm-sampling`.-/
+re-derivation `sa:amm-variance`; helper for `amm-sampling`.
+@isnad1 id=eq.2h6v.s9.91b0da7340ea from=translated src=- shape=c52a7e39 vocab=61bceeaa
+-/
 theorem integral_frobenius_average_sub_mean_sq
     {ι m n : Type*} [Fintype ι] [Fintype m] [Fintype n]
     [MeasurableSpace ι] [MeasurableSingletonClass ι]
@@ -99,7 +105,9 @@ def sampledRowMatrix {𝕜 : Type*} [RCLike 𝕜] {n t : Type*} (B : Matrix n t 
   fun j b => (Real.sqrt ((c : ℝ) * p (ω j)))⁻¹ • B (ω j) b
 
 /-- Selecting and rescaling rows commutes with a deterministic linear map on columns.
-This identity applies to the literal inverse-probability sampling algorithm.-/
+This identity applies to the literal inverse-probability sampling algorithm.
+@isnad1 id=eq.0h9v.s7.30cec5aefeb2 from=translated src=- shape=dcb50dc9 vocab=71dff690
+-/
 theorem sampledRowMatrix_mul {𝕜 : Type*} [RCLike 𝕜] {m n q : Type*} [Fintype n]
     (A : Matrix m n 𝕜) (D : Matrix n q 𝕜) (p : m → ℝ≥0) {s : ℕ} (ω : Fin s → m) :
     sampledRowMatrix (A * D) p ω = sampledRowMatrix A p ω * D := by
@@ -108,7 +116,9 @@ theorem sampledRowMatrix_mul {𝕜 : Type*} [RCLike 𝕜] {m n q : Type*} [Finty
 
 /-- The product of the literally sampled and rescaled columns and rows is
 the average of the inverse-probability outer products, even for zero-mass
-indices. Source: operator re-derivation `sa:amm-theorem`.-/
+indices. Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=eq.0h8v.s7.de3af9301540 from=translated src=- shape=46e8b45f vocab=a906dcd5
+-/
 theorem sampledColumnMatrix_mul_sampledRowMatrix
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) (p : n → ℝ≥0)
@@ -130,7 +140,9 @@ theorem sampledColumnMatrix_mul_sampledRowMatrix
 
 /-- The inverse-probability column/row sample is unbiased under the actual
 finite law. Zero-probability indices are allowed when their outer product is
-zero. Source: operator re-derivation `sa:amm`.-/
+zero. Source: operator re-derivation `sa:amm`.
+@isnad1 id=eq.1h6v.s7.03081ee7d367 from=translated src=- shape=5bc887d6 vocab=110a0978
+-/
 theorem sum_probability_smul_columnRowSample
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) (p : n → ℝ≥0)
@@ -150,7 +162,9 @@ theorem sum_probability_smul_columnRowSample
 
 /-- The second moment of the inverse-probability column/row sample is the
 finite sum of squared column and row norms divided by their probabilities.
-Source: operator re-derivation `sa:amm`.-/
+Source: operator re-derivation `sa:amm`.
+@isnad1 id=eq.0h6v.s7.39826f479f53 from=translated src=- shape=1124f938 vocab=6fb30475
+-/
 theorem sum_probability_mul_frobenius_columnRowSample_sq
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) (p : n → ℝ≥0) :
@@ -170,7 +184,9 @@ rescaled columns and rows, with arbitrary admissible probabilities and
 possibly zero probability on zero outer products. This includes complex
 matrices and correlated entries of the deterministic factors.
 Source: operator re-derivation `sa:amm-variance` and `sa:amm-theorem`.
-atlas: amm-sampling (partial)-/
+atlas: amm-sampling (partial)
+@isnad1 id=eq.3h7v.s8.895a188f4c0f from=translated src=- shape=5113dbce vocab=55ecb67e
+-/
 theorem integral_frobenius_sampled_mul_sub_sq
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     [MeasurableSpace n] [MeasurableSingletonClass n]
@@ -195,14 +211,18 @@ def columnRowWeight {m n t 𝕜 : Type*} [Fintype m] [Fintype t] [NormedAddCommG
   Real.sqrt (∑ a, ‖A a i‖ ^ 2) * Real.sqrt (∑ b, ‖B i b‖ ^ 2)
 
 /-- Column/row weights are nonnegative.
-Source: operator re-derivation `sa:amm-theorem`.-/
+Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=le.0h7v.s5.da08725c05f7 from=translated src=- shape=ec49d41d vocab=24b0f62e
+-/
 theorem columnRowWeight_nonneg {m n t 𝕜 : Type*} [Fintype m] [Fintype t] [NormedAddCommGroup 𝕜]
     (A : Matrix m n 𝕜) (B : Matrix n t 𝕜) (i : n) : 0 ≤ columnRowWeight A B i := by
   unfold columnRowWeight
   positivity
 
 /-- The square of a column/row weight is the outer product's squared Frobenius
-norm. Source: operator re-derivation `sa:amm-variance`.-/
+norm. Source: operator re-derivation `sa:amm-variance`.
+@isnad1 id=eq.0h7v.s7.5d63b7a97286 from=translated src=- shape=da1cb557 vocab=8c224d40
+-/
 theorem columnRowWeight_sq {m n t 𝕜 : Type*} [Fintype m] [Fintype t] [NormedAddCommGroup 𝕜]
     (A : Matrix m n 𝕜) (B : Matrix n t 𝕜) (i : n) :
     columnRowWeight A B i ^ 2 = (∑ a, ‖A a i‖ ^ 2) * ∑ b, ‖B i b‖ ^ 2 := by
@@ -210,7 +230,9 @@ theorem columnRowWeight_sq {m n t 𝕜 : Type*} [Fintype m] [Fintype t] [NormedA
     Real.sq_sqrt (Finset.sum_nonneg fun _ _ => sq_nonneg _)]
 
 /-- A zero column/row weight means that its literal outer product is zero.
-Source: operator re-derivation `sa:amm-theorem`.-/
+Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=eq.1h6v.s6.16ec99b374f5 from=translated src=- shape=fad10231 vocab=449149e5
+-/
 theorem vecMulVec_eq_zero_of_columnRowWeight_eq_zero
     {m n t : Type*} [Fintype m] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) (i : n)
@@ -228,7 +250,9 @@ def columnRowProbabilities {m n t 𝕜 : Type*} [Fintype m] [Fintype n] [Fintype
   Real.toNNReal (columnRowWeight A B i / ∑ j, columnRowWeight A B j)
 
 /-- Positive total weight makes the normalized sampling probabilities sum to one.
-Source: operator re-derivation `sa:amm-theorem`.-/
+Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=eq.1h6v.s6.3341d72c52ca from=translated src=- shape=c0f5d0da vocab=32b5c76e
+-/
 theorem sum_columnRowProbabilities {m n t 𝕜 : Type*} [Fintype m] [Fintype n] [Fintype t]
     [NormedAddCommGroup 𝕜] (A : Matrix m n 𝕜) (B : Matrix n t 𝕜)
     (hW : 0 < ∑ i, columnRowWeight A B i) : ∑ i, columnRowProbabilities A B i = 1 := by
@@ -239,7 +263,9 @@ theorem sum_columnRowProbabilities {m n t 𝕜 : Type*} [Fintype m] [Fintype n] 
   rw [← Finset.sum_div, div_self hW.ne']
 
 /-- Cauchy–Schwarz bounds the squared total column/row weight by the product
-of the factor Frobenius norms squared. Source: operator re-derivation `sa:amm-theorem`.-/
+of the factor Frobenius norms squared. Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=le.0h5v.s7.1fbc2d097a7b from=translated src=- shape=2555febb vocab=46423ccd
+-/
 theorem sum_columnRowWeight_sq_le
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) :
@@ -257,7 +283,9 @@ product has exact mean-square error `(W² − ‖AB‖F²)/c`, bounded by
 `‖A‖F² ‖B‖F²/c`. Complex matrices, zero-weight support, and repeated draws
 are included; the sample count is positive as in the source.
 Source: operator re-derivation `sa:amm-theorem`; Drineas–Kannan–Mahoney 2006.
-atlas: amm-sampling-/
+atlas: amm-sampling
+@isnad1 id=and.2h6v.s9.958beff9ead5 from=translated src=- shape=4a168d66 vocab=efda6c53
+-/
 theorem integral_frobenius_sampled_mul_sub_sq_of_columnRowProbabilities
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     [MeasurableSpace n] [MeasurableSingletonClass n]
@@ -309,7 +337,9 @@ theorem integral_frobenius_sampled_mul_sub_sq_of_columnRowProbabilities
 /-- If all column/row weights vanish, then the product itself is zero and the
 zero output is exact without normalizing a zero law. This includes an empty
 shared index type. Source: operator re-derivation `sa:amm-theorem`.
-atlas: amm-sampling-/
+atlas: amm-sampling
+@isnad1 id=eq.1h5v.s6.b7d5f9b86edd from=translated src=- shape=6e61dcdc vocab=ec8ef2fc
+-/
 theorem mul_eq_zero_of_sum_columnRowWeight_eq_zero
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     (A : Matrix m n ℂ) (B : Matrix n t ℂ) (hW : ∑ i, columnRowWeight A B i = 0) :
@@ -323,7 +353,9 @@ theorem mul_eq_zero_of_sum_columnRowWeight_eq_zero
   simpa using h.symm
 
 /-- Real column sampling embeds into the complex sampling construction.
-Source: operator re-derivation `sa:amm-theorem`.-/
+Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=eq.0h6v.s5.6fa1f75a86f2 from=translated src=- shape=84f697c5 vocab=d9cababb
+-/
 theorem sampledColumnMatrix_map_ofReal {m n : Type*}
     (A : Matrix m n ℝ) (p : n → ℝ≥0) {c : ℕ} (ω : Fin c → n) :
     sampledColumnMatrix (A.map Complex.ofReal) p ω =
@@ -332,7 +364,9 @@ theorem sampledColumnMatrix_map_ofReal {m n : Type*}
   simp [sampledColumnMatrix, Matrix.map_apply, Complex.real_smul]
 
 /-- Real row sampling embeds into the complex sampling construction.
-Source: operator re-derivation `sa:amm-theorem`.-/
+Source: operator re-derivation `sa:amm-theorem`.
+@isnad1 id=eq.0h6v.s5.02cbd01f10c6 from=translated src=- shape=114e5a02 vocab=98a239c5
+-/
 theorem sampledRowMatrix_map_ofReal {n t : Type*}
     (B : Matrix n t ℝ) (p : n → ℝ≥0) {c : ℕ} (ω : Fin c → n) :
     sampledRowMatrix (B.map Complex.ofReal) p ω =
@@ -343,7 +377,9 @@ theorem sampledRowMatrix_map_ofReal {n t : Type*}
 /-- The real normalized column/row sampling law has the same exact error
 identity and Frobenius upper bound, stated using NLAlib's `frobSq`.
 Source: operator re-derivation `sa:amm-theorem`.
-atlas: amm-sampling-/
+atlas: amm-sampling
+@isnad1 id=and.2h6v.s9.d36710e38e40 from=translated src=- shape=edc2ccc2 vocab=3872e3ba
+-/
 theorem integral_frobSq_sampled_mul_sub_of_columnRowProbabilities
     {m n t : Type*} [Fintype m] [Fintype n] [Fintype t]
     [MeasurableSpace n] [MeasurableSingletonClass n]
@@ -384,7 +420,9 @@ theorem integral_frobSq_sampled_mul_sub_of_columnRowProbabilities
   rwa [hAB, frobenius_norm_sq_map_ofReal_eq_frobSq] at h
 
 /-- With zero samples the literal sampled product is zero; no positive-count
-variance formula is asserted. Source: the boundary convention of `sa:amm-theorem`.-/
+variance formula is asserted. Source: the boundary convention of `sa:amm-theorem`.
+@isnad1 id=eq.0h7v.s6.e10484bf888a from=translated src=- shape=18a5f097 vocab=3214c678
+-/
 theorem sampledColumnMatrix_mul_sampledRowMatrix_zero_samples
     {m n t : Type*} (A : Matrix m n ℂ) (B : Matrix n t ℂ) (p : n → ℝ≥0)
     (ω : Fin 0 → n) : sampledColumnMatrix A p ω * sampledRowMatrix B p ω = 0 := by

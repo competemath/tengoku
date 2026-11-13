@@ -31,7 +31,9 @@ variable {d m n : ℕ}
 
 /-- The exposed frame-row coordinates are the original Euclidean frame coordinates.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.dccc56c931e2 from=translated src=- shape=1e7a46d1 vocab=c897f58f
+-/
 @[simp] theorem frameRows_apply (F : Frame n d) (i : Fin n) (k : Fin d) :
     Frame.rows F i k = F.u i k := rfl
 
@@ -46,7 +48,9 @@ def setPair (p : Pattern m n) (s : Site m n) (a : Level)
 
 /-- Updating two distinct sites assigns the first specified level at the first site.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s5.09a05d0e3647 from=translated src=- shape=5c4f1611 vocab=4d6a0642
+-/
 @[simp] theorem setPair_apply_left (p : Pattern m n) {s t : Site m n}
     (hst : s ≠ t) (a b : Level) :
     setPair p s a t b s = a := by
@@ -54,7 +58,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- A two-site update assigns the second specified level at the second site.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s5.066477cef617 from=translated src=- shape=0abf3548 vocab=4d6a0642
+-/
 @[simp] theorem setPair_apply_right (p : Pattern m n) (s t : Site m n)
     (a b : Level) :
     setPair p s a t b t = b := by
@@ -62,7 +68,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- A two-site update leaves every other site unchanged.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h8v.s5.9298d06ef6f5 from=translated src=- shape=1b68330b vocab=4d6a0642
+-/
 theorem setPair_apply_of_ne (p : Pattern m n) {s t x : Site m n}
     (hxs : x ≠ s) (hxt : x ≠ t) (a b : Level) :
     setPair p s a t b x = p x := by
@@ -70,7 +78,9 @@ theorem setPair_apply_of_ne (p : Pattern m n) {s t x : Site m n}
 
 /-- A two-site update agrees with the original pattern outside the marked pair.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=agreesou.0h7v.s5.896d78e93a1b from=translated src=- shape=7b879394 vocab=575a3184
+-/
 theorem agreesOutsidePair_setPair (p : Pattern m n) (s t : Site m n)
     (a b : Level) :
     agreesOutsidePair s t p (setPair p s a t b) := by
@@ -105,7 +115,9 @@ theorem eq_setPair_iff {out inp : Pattern m n} {s t : Site m n}
 /-- Exact matrix entry of a lifted pair of local rank-one transitions.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h10v.s7.e0ea513d3f65 from=translated src=- shape=7d90a51b vocab=a27aa665
+-/
 theorem pairKernel_ketBra_apply {s t : Site m n} (hst : s ≠ t)
     (os is ot it : Level) (out inp : Pattern m n) :
     pairKernel s t (ketBra os is) (ketBra ot it) out inp =
@@ -153,7 +165,9 @@ def Hprime (m : ℕ) (u : Fin n → Fin d → ℝ) : FullOp d m n :=
 /-- Transposition of a physical word sum is its ordered adjoint word sum.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.9a6e97cff3ff from=translated src=- shape=de78fc0e vocab=a2f2e9d4
+-/
 theorem transpose_physicalWordSum (u : Fin n → Fin d → ℝ) (w : Word) :
     (physicalWordSum m u w).transpose =
       physicalWordSum m u w.orderedAdjoint := by
@@ -176,7 +190,9 @@ theorem transpose_physicalWordSum (u : Fin n → Fin d → ℝ) (w : Word) :
 /-- Ordered-index relabeling makes the transpose light hop symmetric.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.6696c08b7425 from=translated src=- shape=f73be4a9 vocab=da85c64b
+-/
 theorem Hprime_transpose (u : Fin n → Fin d → ℝ) :
     (Hprime m u).transpose = Hprime m u := by
   rw [Hprime, wordSum, transpose_physicalWordSum]
@@ -184,7 +200,9 @@ theorem Hprime_transpose (u : Fin n → Fin d → ℝ) :
 
 /-- The mixed directional raising word kernel has exactly the prescribed pair-transition coefficient.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s8.1f519041521c from=translated src=- shape=cb19f5ce vocab=94fc1f12
+-/
 theorem yPlus_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
     (out inp : Pattern m n) :
     wordKernel (r, i) (r, j) (.rUp, .pUp) out inp =
@@ -198,7 +216,9 @@ theorem yPlus_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
 
 /-- The mixed directional preserving word kernel has exactly the prescribed pair-transition coefficient.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s8.a761d2f79b3f from=translated src=- shape=5d255b2f vocab=0bbb2fb0
+-/
 theorem yZero_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
     (out inp : Pattern m n) :
     wordKernel (r, i) (r, j) (.rDown, .pUp) out inp =
@@ -212,7 +232,9 @@ theorem yZero_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
 
 /-- The heavy correction word kernel has exactly the prescribed pair-transition coefficient.
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s8.daa4a00fae38 from=translated src=- shape=e9c8c5a1 vocab=8444466f
+-/
 theorem hprime_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
     (out inp : Pattern m n) :
     wordKernel (r, i) (r, j) (.pDown, .pUp) out inp =
@@ -228,7 +250,9 @@ theorem hprime_wordKernel_apply {r : Fin m} {i j : Fin n} (hij : i ≠ j)
 in the paper.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h10v.s8.0c5a71be969e from=translated src=- shape=1706db06 vocab=71810909
+-/
 theorem orderedYplus_mulVec (u : Fin n → Fin d → ℝ)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) (k : Fin d) (σ : Pattern m n) :
@@ -254,7 +278,9 @@ theorem orderedYplus_mulVec (u : Fin n → Fin d → ℝ)
 /-- One ordered `Y₀` word has exactly its marked-pattern coefficient.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h10v.s8.09211c1525bd from=translated src=- shape=12388bf3 vocab=1bebdb41
+-/
 theorem orderedYzero_mulVec (u : Fin n → Fin d → ℝ)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) (k : Fin d) (σ : Pattern m n) :
@@ -280,7 +306,9 @@ theorem orderedYzero_mulVec (u : Fin n → Fin d → ℝ)
 /-- One ordered transpose-light-hop word has exactly its marked coefficient.
 
 Source: ported from `SparseFockFormal.DirectionalConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h10v.s8.ccd7c1e04dd5 from=translated src=- shape=eb4157e5 vocab=78608c05
+-/
 theorem orderedHprime_mulVec (u : Fin n → Fin d → ℝ)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) (k : Fin d) (σ : Pattern m n) :

@@ -27,7 +27,9 @@ namespace NLAlib
 
 variable {n : ℕ}
 
-/-- A weighted Gaussian row radius belongs to `L²`, including zero weights.-/
+/-- A weighted Gaussian row radius belongs to `L²`, including zero weights.
+@isnad1 id=memlp.1h3v.s6.5d1190f19656 from=translated src=- shape=2e2ee266 vocab=ead04c0d
+-/
 theorem memLp_varianceProfileRadius_gaussianVector
     (B : Matrix (Fin n) (Fin n) ℝ) (hB : ∀ i j, 0 ≤ B i j) (i : Fin n) :
     MemLp (fun g => varianceProfileRadius B g i) 2 (gaussianVector (Fin n)) := by
@@ -40,7 +42,9 @@ theorem memLp_varianceProfileRadius_gaussianVector
   simpa only [varianceProfileRadius_eq_norm B hB] using hV.norm
 
 /-- The second moment of a weighted Gaussian row radius is its row
-variance sum, with every coordinate variance equal to one.-/
+variance sum, with every coordinate variance equal to one.
+@isnad1 id=eq.1h3v.s6.aa069adbe372 from=translated src=- shape=c7d972f8 vocab=d26e4319
+-/
 theorem integral_varianceProfileRadius_sq_gaussianVector
     (B : Matrix (Fin n) (Fin n) ℝ) (hB : ∀ i j, 0 ≤ B i j) (i : Fin n) :
     (∫ g, varianceProfileRadius B g i ^ 2 ∂gaussianVector (Fin n)) = ∑ j, B i j := by
@@ -53,7 +57,9 @@ theorem integral_varianceProfileRadius_sq_gaussianVector
 
 /-- The expected maximum of the actual weighted Gaussian row radii is
 bounded by their maximum root second moment and a universal logarithmic
-Lipschitz envelope. Independence between different rows is unnecessary.-/
+Lipschitz envelope. Independence between different rows is unnecessary.
+@isnad1 id=le.7h5v.s8.e69c026e0f17 from=translated src=- shape=739defaf vocab=4680131f
+-/
 theorem integral_norm_varianceProfileRadius_gaussianVector_le
     (B : Matrix (Fin n) (Fin n) ℝ) (hB : ∀ i j, 0 ≤ B i j)
     (L : Fin n → ℝ) (hL : ∀ i, 0 ≤ L i) (hLip : ∀ i j, B i j ≤ L i ^ 2)

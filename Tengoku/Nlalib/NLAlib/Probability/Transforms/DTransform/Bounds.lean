@@ -17,7 +17,9 @@ open MeasureTheory Set
 namespace NLAlib
 
 /-- Multiplying the second inverse moment by the squared evaluation point
-dominates the first inverse moment.-/
+dominates the first inverse moment.
+@isnad1 id=le.3h3v.s6.a47edce83a3b from=translated src=- shape=2db63009 vocab=ce5a61b1
+-/
 theorem dTransformMoment_zero_le_sq_mul_one (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     dTransformMoment μ 0 y ≤ y ^ 2 * dTransformMoment μ 1 y := by
@@ -35,7 +37,9 @@ theorem dTransformMoment_zero_le_sq_mul_one (μ : Measure ℝ) [IsFiniteMeasure 
     linarith)
   simpa only [integral_const_mul, dTransformMoment, zero_add, pow_one] using he
 
-/-- The positive distance to the support controls the next inverse moment.-/
+/-- The positive distance to the support controls the next inverse moment.
+@isnad1 id=le.3h3v.s6.d5c43e83ca44 from=translated src=- shape=b7009f4a vocab=5e5af032
+-/
 theorem dTransformMoment_one_le_inv_gap_mul_zero (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     dTransformMoment μ 1 y ≤ (y ^ 2 - b ^ 2)⁻¹ * dTransformMoment μ 0 y := by
@@ -56,7 +60,9 @@ theorem dTransformMoment_one_le_inv_gap_mul_zero (μ : Measure ℝ) [IsFiniteMea
   simpa only [integral_const_mul, dTransformMoment, zero_add, pow_one] using he
 
 /-- The actual logarithmic elasticity lies between two explicit support
-bounds. The upper bound is attained by an atom at zero.-/
+bounds. The upper bound is attained by an atom at zero.
+@isnad1 id=and.3h3v.s7.2eafa29e21cc from=translated src=- shape=399e24a5 vocab=426840ea
+-/
 theorem singularValueElasticity_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     -1 - 2 * b ^ 2 / (y ^ 2 - b ^ 2) ≤ singularValueElasticity μ y ∧
@@ -82,7 +88,9 @@ theorem singularValueElasticity_bounds (μ : Measure ℝ) [IsProbabilityMeasure 
   rw [he2]
   constructor <;> linarith
 
-/-- Uniform elementary bounds for the actual D-transform root function.-/
+/-- Uniform elementary bounds for the actual D-transform root function.
+@isnad1 id=and.5h4v.s7.07a7bbb20a67 from=translated src=- shape=83f8407d vocab=043b74ee
+-/
 theorem singularValuePsi_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b y : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
@@ -102,7 +110,9 @@ theorem singularValuePsi_bounds (μ : Measure ℝ) [IsProbabilityMeasure μ]
 
 /-- The universal right endpoint already lies beyond the `-4` crossing.
 Source: compact-support kernel bound for the ScreeNOT threshold.
-atlas: scree-threshold-root (partial)-/
+atlas: scree-threshold-root (partial)
+@isnad1 id=le.4h3v.s6.f75bc047b5e1 from=translated src=- shape=d29ce474 vocab=3de55913
+-/
 theorem neg_four_le_singularValuePsi_sqrt_three_mul (μ : Measure ℝ) [IsProbabilityMeasure μ]
     {γ b : ℝ} (hγ : 0 ≤ γ) (hγ1 : γ ≤ 1)
     (hb : 0 < b) (hsupport : μ.support ⊆ Icc 0 b) :

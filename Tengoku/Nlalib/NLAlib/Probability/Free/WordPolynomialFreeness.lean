@@ -64,7 +64,9 @@ private noncomputable def wordPolynomialMoment {m : ℕ} (color : Fin m → ι) 
 
 /-- Every genuine nonempty alternating product of arbitrary centered
 one-variable polynomials in the concrete fields has zero vacuum expectation.
-Centering is with the actual vacuum functional; no freeness premise is supplied.-/
+Centering is with the actual vacuum functional; no freeness premise is supplied.
+@isnad1 id=eq.3h4v.s16.6e7915dd05a5 from=translated src=- shape=196af9a6 vocab=b1b3da68
+-/
 theorem wordVacuumExpectation_ofFn_prod_aeval_eq_zero
     {m : ℕ} (hm : 0 < m) (color : Fin m → ι)
     (hchain : (List.ofFn color).IsChain (· ≠ ·)) (P : Fin m → Polynomial ℂ)

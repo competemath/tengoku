@@ -22,7 +22,9 @@ which is at least `κ` times the entry scale.-/
 def gaussianHalfMeanProbability (κ : ℝ) : ℝ := 1 - Real.exp (-(κ ^ 2 / 16))
 
 /-- A strictly positive mean-to-scale ratio gives a strictly positive
-universal half-mean probability.-/
+universal half-mean probability.
+@isnad1 id=lt.1h1v.s4.6ce96ef02d02 from=translated src=- shape=35bd48ee vocab=429f9e8b
+-/
 theorem gaussianHalfMeanProbability_pos {κ : ℝ} (hκ : 0 < κ) :
     0 < gaussianHalfMeanProbability κ := by
   unfold gaussianHalfMeanProbability
@@ -36,7 +38,9 @@ def gaussianTailComparisonConstant (A κ c : ℝ) : ℝ :=
   4 * A + 4 + (gaussianHalfMeanProbability κ)⁻¹ + c⁻¹
 
 /-- The tail-comparison constant also dominates the expectation-comparison
-constant whenever the latter is at least one.-/
+constant whenever the latter is at least one.
+@isnad1 id=le.3h3v.s5.c46aa9f6bc99 from=translated src=- shape=b6c2d22b vocab=2c12a541
+-/
 theorem le_gaussianTailComparisonConstant {A κ c : ℝ} (hA : 1 ≤ A)
     (hκ : 0 < κ) (hc : 0 < c) : A ≤ gaussianTailComparisonConstant A κ c := by
   have hδ := inv_nonneg.mpr (gaussianHalfMeanProbability_pos hκ).le
@@ -47,7 +51,9 @@ theorem le_gaussianTailComparisonConstant {A κ c : ℝ} (hA : 1 ≤ A)
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
 /-- Concentration gives a positive probability of exceeding half the
-actual mean, uniformly when the mean dominates the Gaussian scale.-/
+actual mean, uniformly when the mean dominates the Gaussian scale.
+@isnad1 id=le.4h5v.s7.9e9e3688f0bd from=translated src=- shape=f8b36db5 vocab=1478785e
+-/
 theorem gaussianHalfMeanProbability_le_measure_ge_half_mean
     {Y : Ω → ℝ} {m κ : ℝ} (hm : 0 < m) (hκ : 0 < κ)
     (h : HasSubgaussianMGF (fun ω => Y ω - ∫ y, Y y ∂μ)
@@ -85,7 +91,9 @@ theorem gaussianHalfMeanProbability_le_measure_ge_half_mean
 
 /-- Comparable means and a scalar Gaussian lower tail transfer all upper
 tails between two observables with the same centered Gaussian proxy.
-The conclusion has one constant at every nonnegative threshold.-/
+The conclusion has one constant at every nonnegative threshold.
+@isnad1 id=le.10h9v.s8.c17ce5ff3d07 from=translated src=- shape=e3c089cb vocab=434edda0
+-/
 theorem measure_ge_le_mul_measure_ge_div_of_gaussian_concentration
     {X Y : Ω → ℝ} {A κ c m : ℝ} (hA : 1 ≤ A) (hκ : 0 < κ)
     (hc : 0 < c) (hm : 0 < m)

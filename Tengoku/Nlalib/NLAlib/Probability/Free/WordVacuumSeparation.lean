@@ -27,7 +27,9 @@ variable {ι : Type*}
 local notation "B" => WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι
 
 /-- Positivity of the actual vacuum functional is the Hilbert-space square
-norm identity for the vector obtained by applying the operator to the vacuum.-/
+norm identity for the vector obtained by applying the operator to the vacuum.
+@isnad1 id=eq.0h2v.s15.1ac3397442a5 from=translated src=- shape=8b19003c vocab=2f4a5073
+-/
 theorem wordVacuumExpectation_star_mul (T : B) :
     wordVacuumExpectation ι (star T * T) = (‖T (wordVacuum ι)‖ : ℂ) ^ 2 := by
   simp only [wordVacuumExpectation_apply, ContinuousLinearMap.star_eq_adjoint,
@@ -82,7 +84,9 @@ def wordFieldAlgebra (ι : Type*) :
   (StarAlgebra.adjoin ℂ (Set.range (wordField : ι → _))).topologicalClosure
 
 /-- Every operator in the concrete closed left-field algebra commutes with
-every actual right field. Native closed-adjoin centralizers provide closure.-/
+every actual right field. Native closed-adjoin centralizers provide closure.
+@isnad1 id=commute.1h3v.s14.6b592cb47a8a from=translated src=- shape=2e0a7729 vocab=4e1918fc
+-/
 theorem commute_wordRightField_of_mem_wordFieldAlgebra {T : B}
     (hT : T ∈ wordFieldAlgebra ι) (j : ι) : Commute T (wordRightField j) := by
   have hRight : wordRightField j ∈ StarSubalgebra.centralizer ℂ

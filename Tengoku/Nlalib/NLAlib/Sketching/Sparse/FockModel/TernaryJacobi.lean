@@ -39,7 +39,9 @@ instance : Fintype TernaryOutcome where
 
 /-- The ternary outcome enumeration consists exactly of negative, zero, and positive.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s4.98e9ab61865e from=translated src=- shape=fdd5f290 vocab=7ce579ad
+-/
 @[simp] theorem univ_ternaryOutcome :
     (Finset.univ : Finset TernaryOutcome) = {.neg, .zero, .pos} := by
   ext x
@@ -47,7 +49,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The local Jacobi level enumeration consists exactly of zero, one, and two.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s4.c1e6f4fc26e6 from=translated src=- shape=fdd5f290 vocab=e1b9e7d8
+-/
 @[simp] theorem univ_level :
     (Finset.univ : Finset Level) = {.zero, .one, .two} := by
   ext x
@@ -73,7 +77,9 @@ noncomputable def mass (b : ℕ) : TernaryOutcome → ℝ
 
 /-- The ternary sparse-coordinate masses sum to one at positive block size.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.1cd3416d3a85 from=translated src=- shape=5c2a1d8b vocab=0cb28419
+-/
 theorem sum_mass {b : ℕ} (hb : 0 < b) :
     ∑ x, mass b x = 1 := by
   have hbR : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)
@@ -83,7 +89,9 @@ theorem sum_mass {b : ℕ} (hb : 0 < b) :
 
 /-- Every ternary sparse-coordinate mass is nonnegative at positive block size.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h2v.s4.715017da05af from=translated src=- shape=d42fdadd vocab=f421fa98
+-/
 theorem mass_nonneg {b : ℕ} (hb : 0 < b) (x : TernaryOutcome) :
     0 ≤ mass b x := by
   have hbR : (0 : ℝ) < b := by exact_mod_cast hb
@@ -106,7 +114,9 @@ noncomputable def ternaryLaw (b : ℕ) (hb : 0 < b) : FiniteLaw TernaryOutcome w
 
 /-- The ternary law has exactly the prescribed masses `1/(2b), 1-1/b, 1/(2b)`.
 Source: ported from `SparseFockFormal.SparseIIDCoupling` (`coordinateLaw_weight`),
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s4.b5754e3a9aca from=translated src=- shape=885d76d9 vocab=7aab8232
+-/
 @[simp] theorem ternaryLaw_weight (b : ℕ) (hb : 0 < b) (z : TernaryOutcome) :
     (ternaryLaw b hb).weight z = mass b z := rfl
 
@@ -119,18 +129,24 @@ noncomputable def expect (b : ℕ) (f : TernaryOutcome → ℝ) : ℝ :=
 
 /-- The zero ternary outcome has zero coordinate value.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s3.6c7127f790d1 from=translated src=- shape=8d9dc71e vocab=aba6e817
+-/
 @[simp] theorem eta_zero (b : ℕ) : eta b .zero = 0 := rfl
 
 /-- The square of the square root of a natural block size is its real value.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.dbcddab3582f from=translated src=- shape=7fbeadc7 vocab=1942a102
+-/
 theorem sq_sqrt_nat (b : ℕ) : (Real.sqrt b) ^ 2 = (b : ℝ) := by
   exact Real.sq_sqrt (Nat.cast_nonneg b : (0 : ℝ) ≤ b)
 
 /-- Cubing a ternary sparse coordinate multiplies it by the block size.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.ff837aa567df from=translated src=- shape=c759868c vocab=2b21d946
+-/
 theorem eta_cube {b : ℕ} (x : TernaryOutcome) :
     eta b x ^ 3 = (b : ℝ) * eta b x := by
   have hs := sq_sqrt_nat b
@@ -138,14 +154,18 @@ theorem eta_cube {b : ℕ} (x : TernaryOutcome) :
 
 /-- A ternary sparse coordinate is centered.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s4.6b73593aa030 from=translated src=- shape=051c8a84 vocab=35e526e1
+-/
 theorem expect_eta {b : ℕ} (hb : 0 < b) : expect b (eta b) = 0 := by
   have hbR : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)
   simp [expect, mass, eta, univ_ternaryOutcome]
 
 /-- A ternary sparse coordinate has second moment one.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.720ac53920fc from=translated src=- shape=743345e4 vocab=8c96bc1c
+-/
 theorem expect_eta_sq {b : ℕ} (hb : 0 < b) :
     expect b (fun x => eta b x ^ 2) = 1 := by
   have hbR : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)
@@ -156,7 +176,9 @@ theorem expect_eta_sq {b : ℕ} (hb : 0 < b) :
 
 /-- The literal finite ternary law has zero coordinate mean.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s4.53da5a31e70d from=translated src=- shape=9e710a0e vocab=55c03305
+-/
 theorem law_expect_eta {b : ℕ} (hb : 0 < b) :
     (ternaryLaw b hb).expect (eta b) = 0 := by
   change expect b (eta b) = 0
@@ -164,7 +186,9 @@ theorem law_expect_eta {b : ℕ} (hb : 0 < b) :
 
 /-- The literal finite ternary law has coordinate second moment one.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.959b893be0fc from=translated src=- shape=286ceb41 vocab=fe2afa6a
+-/
 theorem law_expect_eta_sq {b : ℕ} (hb : 0 < b) :
     (ternaryLaw b hb).expect (fun x => eta b x ^ 2) = 1 := by
   change expect b (fun x => eta b x ^ 2) = 1
@@ -188,7 +212,9 @@ noncomputable def ternaryWeightedInner (b : ℕ) (f g : TernaryOutcome → ℝ) 
 
 /-- The heavy Jacobi coefficient is positive when the block size exceeds one.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h1v.s5.249f58ab741b from=translated src=- shape=bc3f4e17 vocab=660cf39e
+-/
 theorem sqrt_b_sub_one_pos {b : ℕ} (hb : 1 < b) :
     0 < Real.sqrt ((b : ℝ) - 1) := by
   rw [Real.sqrt_pos]
@@ -196,7 +222,9 @@ theorem sqrt_b_sub_one_pos {b : ℕ} (hb : 1 < b) :
 
 /-- The squared heavy Jacobi coefficient is the block size minus one.
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s6.7fa4b24fd15e from=translated src=- shape=6245b175 vocab=ee43a282
+-/
 theorem sq_sqrt_b_sub_one {b : ℕ} (hb : 1 < b) :
     (Real.sqrt ((b : ℝ) - 1)) ^ 2 = (b : ℝ) - 1 := by
   apply Real.sq_sqrt
@@ -206,7 +234,9 @@ theorem sq_sqrt_b_sub_one {b : ℕ} (hb : 1 < b) :
 `L₂` inner product of the ternary law.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.a12101db2b25 from=translated src=- shape=e64a0584 vocab=96d66ef6
+-/
 theorem basis_orthonormal {b : ℕ} (hb : 1 < b) (i j : Level) :
     ternaryWeightedInner b (basisFun b i) (basisFun b j) =
       if i = j then 1 else 0 := by
@@ -224,7 +254,9 @@ theorem basis_orthonormal {b : ℕ} (hb : 1 < b) (i j : Level) :
 reconstruction formula on the three-point space.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.7adb2d97cdcd from=translated src=- shape=601784d4 vocab=9a475ba5
+-/
 theorem basis_reconstruction {b : ℕ} (hb : 1 < b)
     (f : TernaryOutcome → ℝ) (x : TernaryOutcome) :
     f x = ∑ i, ternaryWeightedInner b (basisFun b i) f * basisFun b i x := by
@@ -244,7 +276,9 @@ theorem basis_reconstruction {b : ℕ} (hb : 1 < b)
 /-- Pointwise recurrence `eta * e_0 = e_1`.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.8750a46fb529 from=translated src=- shape=b5f2c583 vocab=f5229e7a
+-/
 theorem mul_e0 {b : ℕ} (x : TernaryOutcome) :
     eta b x * basisFun b .zero x = basisFun b .one x := by
   simp [basisFun]
@@ -252,7 +286,9 @@ theorem mul_e0 {b : ℕ} (x : TernaryOutcome) :
 /-- Pointwise recurrence `eta * e_1 = e_0 + sqrt(b-1) e_2`.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.d544a2824a1e from=translated src=- shape=3a3bd18c vocab=28422cec
+-/
 theorem mul_e1 {b : ℕ} (hb : 1 < b) (x : TernaryOutcome) :
     eta b x * basisFun b .one x =
       basisFun b .zero x + Real.sqrt ((b : ℝ) - 1) * basisFun b .two x := by
@@ -265,7 +301,9 @@ theorem mul_e1 {b : ℕ} (hb : 1 < b) (x : TernaryOutcome) :
 /-- Pointwise recurrence `eta * e_2 = sqrt(b-1) e_1`.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s5.1ab96abbb0d9 from=translated src=- shape=78dae658 vocab=fc195ecc
+-/
 theorem mul_e2 {b : ℕ} (hb : 1 < b) (x : TernaryOutcome) :
     eta b x * basisFun b .two x =
       Real.sqrt ((b : ℝ) - 1) * basisFun b .one x := by
@@ -277,7 +315,9 @@ theorem mul_e2 {b : ℕ} (hb : 1 < b) (x : TernaryOutcome) :
 exactly the Jacobi matrix from (3.5).
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.95bb3e442c18 from=translated src=- shape=39b6a5fc vocab=3adc9c2f
+-/
 theorem multiplication_recurrence {b : ℕ} (hb : 1 < b)
     (j : Level) (x : TernaryOutcome) :
     eta b x * basisFun b j x =
@@ -291,7 +331,9 @@ theorem multiplication_recurrence {b : ℕ} (hb : 1 < b)
 This is the precise finite `L₂(eta)` semantics of `jacobi`.
 
 Source: ported from `SparseFockFormal.TernaryJacobi`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.66fbc67ae0f0 from=translated src=- shape=3c440278 vocab=5d4c0f3c
+-/
 theorem multiplication_matrix {b : ℕ} (hb : 1 < b) (i j : Level) :
     ternaryWeightedInner b (basisFun b i)
         (fun x => eta b x * basisFun b j x) =

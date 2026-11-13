@@ -23,7 +23,9 @@ variable [MeasurableSpace ρ] [MeasurableSingletonClass ρ] [DecidableEq ρ]
 
 /-- A fixed alphabet symbol has reciprocal-cardinality mass under the
 uniform finite law. Source: the native uniform PMF; supports the CountSketch
-hash average in `sparse-ose`.-/
+hash average in `sparse-ose`.
+@isnad1 id=eq.0h2v.s6.3acb62dfb339 from=translated src=- shape=1fb81252 vocab=dd0ba3f9
+-/
 theorem integral_ite_eq_uniformOfFintype (r : ρ) :
     (∫ a : ρ, (if a = r then (1 : ℝ) else 0) ∂(PMF.uniformOfFintype ρ).toMeasure) =
       (Fintype.card ρ : ℝ)⁻¹ := by
@@ -33,7 +35,9 @@ theorem integral_ite_eq_uniformOfFintype (r : ρ) :
 
 /-- Distinct coordinates in the product uniform law collide with
 probability exactly the reciprocal alphabet cardinality. Source: independent
-uniform hashes (Nelson–Nguyen 2013); supports `sparse-ose`.-/
+uniform hashes (Nelson–Nguyen 2013); supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.7acfc72dba04 from=translated src=- shape=fb1eba43 vocab=109c88a4
+-/
 theorem integral_ite_coordinate_eq_coordinate_pi_uniformOfFintype
     (i j : ι) (hij : i ≠ j) :
     (∫ h : ι → ρ, (if h i = h j then (1 : ℝ) else 0)

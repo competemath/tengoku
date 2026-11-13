@@ -105,7 +105,9 @@ omit [DecidableEq κ] in
 /-- In the inverse regularized Gram eigenbasis, the unregularized Gram
 eigenvalues are the reciprocal inverse eigenvalues minus the regularizer.
 Source: simultaneous diagonalization by the inverse relation; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h4v.s12.fe48bc708830 from=translated src=- shape=05b9a019 vocab=c0094cc9
+-/
 theorem regularizedGram_inv_basis_conj_eq (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let hR := hpd.inv.isHermitian
@@ -147,7 +149,9 @@ theorem regularizedGram_inv_basis_conj_eq (ε : ℝ) (G : Matrix ι κ ℝ)
 omit [DecidableEq κ] in
 /-- The resolvent gradient weight is diagonal in the inverse Gram
 eigenbasis, with explicit scalar entries. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (helper).-/
+atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s12.622c209c3159 from=translated src=- shape=1cf60a0c vocab=863cbcce
+-/
 theorem regularizedGram_inv_basis_conj_weight_eq (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let hR := hpd.inv.isHermitian
@@ -176,7 +180,9 @@ theorem regularizedGram_inv_basis_conj_weight_eq (n : ℕ) (ε : ℝ) (G : Matri
 omit [DecidableEq κ] in
 /-- The Euler contraction of the Gram gradient is twice the weighted
 Gram-eigenvalue sum. Source: operator tail proof; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s7.96489b131ad9 from=translated src=- shape=645c2177 vocab=d29715b2
+-/
 theorem frobInner_gramSoftMinGradient_eq_spectral (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let b := hpd.inv.isHermitian.eigenvalues
@@ -201,7 +207,9 @@ theorem frobInner_gramSoftMinGradient_eq_spectral (n : ℕ) (ε : ℝ) (G : Matr
 omit [DecidableEq κ] in
 /-- The squared Gram gradient is four times the Gram-eigenvalue sum
 weighted by squared resolvent weights. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (helper).-/
+atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s7.54cb1019b054 from=translated src=- shape=b1ca2898 vocab=21de9b66
+-/
 theorem frobSq_gramSoftMinGradient_eq_spectral (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let b := hpd.inv.isHermitian.eigenvalues
@@ -228,7 +236,9 @@ theorem frobSq_gramSoftMinGradient_eq_spectral (n : ℕ) (ε : ℝ) (G : Matrix 
 /-- The Gram resolvent Laplacian is exactly a finite scalar expression
 in the inverse eigenvalues and the corresponding Gram eigenvalues.
 Source: spectral form of the operator tail proof; atlas
-`wishart-lambda-min-tail` (helper).-/
+`wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s9.b951348aed9a from=translated src=- shape=e1680467 vocab=d6e7b1e8
+-/
 theorem gramSoftMinLaplacian_eq_spectral (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let b := hpd.inv.isHermitian.eigenvalues
@@ -274,7 +284,9 @@ theorem gramSoftMinLaplacian_eq_spectral (n : ℕ) (ε : ℝ) (G : Matrix ι κ 
 
 /-- The scalar spectral Laplacian separates the diagonal cancellation
 from the off-diagonal geometric power kernel. Source: operator tail proof;
-atlas `wishart-lambda-min-tail` (helper).-/
+atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.1h5v.s9.cde384381bc2 from=translated src=- shape=c8fab918 vocab=d2373f18
+-/
 theorem gramSoftMinLaplacian_eq_spectral_offDiag (n : ℕ) (ε : ℝ) (G : Matrix ι κ ℝ)
     (hpd : (regularizedGram ε G).PosDef) :
     let b := hpd.inv.isHermitian.eigenvalues
@@ -298,7 +310,9 @@ theorem gramSoftMinLaplacian_eq_spectral_offDiag (n : ℕ) (ε : ℝ) (G : Matri
 
 /-- Factoring any positive reference inverse eigenvalue normalizes the
 resolvent Gram Laplacian into power sums and a geometric kernel. Source:
-operator tail proof; atlas `wishart-lambda-min-tail` (helper).-/
+operator tail proof; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.3h6v.s9.91d864b43451 from=translated src=- shape=cb8a3c30 vocab=0a5efa42
+-/
 theorem gramSoftMinLaplacian_eq_normalized [Nonempty ι] (n : ℕ) (hn : 0 < n)
     (ε : ℝ) (G : Matrix ι κ ℝ) (hpd : (regularizedGram ε G).PosDef)
     (b₀ : ℝ) (hb₀ : 0 < b₀) :

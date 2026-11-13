@@ -53,13 +53,17 @@ def canonicalSupport {m s : ℕ} (hsm : s ≤ m) : UniformSparseSupport m s :=
 
 /-- A support subset of the requested cardinality exists whenever sparsity does not exceed row count.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=nonempty.1h2v.s4.966854fe9a10 from=translated src=- shape=8e3c2f29 vocab=ef670cb4
+-/
 theorem exactSupportNonempty {m s : ℕ} (hsm : s ≤ m) :
     Nonempty (UniformSparseSupport m s) := ⟨canonicalSupport hsm⟩
 
 /-- An exactly-s signed column exists whenever sparsity does not exceed row count.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=nonempty.1h2v.s3.7033b995a01e from=translated src=- shape=95cd07c6 vocab=04651bde
+-/
 theorem exactColumnNonempty {m s : ℕ} (hsm : s ≤ m) :
     Nonempty (UniformSparseColumn m s) :=
   ⟨(canonicalSupport hsm, fun _ => .plus)⟩
@@ -93,21 +97,27 @@ def _root_.NLAlib.UniformSparseColumn.value {m s : ℕ} (x : UniformSparseColumn
 
 /-- A selected column coordinate equals its recorded sign value.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.04cf2679cb39 from=translated src=- shape=d384cab7 vocab=b87c5db4
+-/
 @[simp] theorem columnValue_of_mem {m s : ℕ} (x : UniformSparseColumn m s)
     {r : Fin m} (hr : r ∈ x.1) : UniformSparseColumn.value x r = (x.2 r).val := by
   simp [UniformSparseColumn.value, hr]
 
 /-- An unselected column coordinate is zero.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.5cc5a0e114c4 from=translated src=- shape=7e6f3724 vocab=2ba899de
+-/
 @[simp] theorem columnValue_of_notMem {m s : ℕ} (x : UniformSparseColumn m s)
     {r : Fin m} (hr : r ∉ x.1) : UniformSparseColumn.value x r = 0 := by
   simp [UniformSparseColumn.value, hr]
 
 /-- A signed column coordinate is nonzero precisely on its selected support.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h4v.s5.ae8cc8e376ad from=translated src=- shape=9fb85a09 vocab=2ba899de
+-/
 theorem columnValue_ne_zero_iff {m s : ℕ} (x : UniformSparseColumn m s) (r : Fin m) :
     UniformSparseColumn.value x r ≠ 0 ↔ r ∈ x.1 := by
   by_cases hr : r ∈ x.1
@@ -124,7 +134,9 @@ def supportIndicator {m s : ℕ} (x : UniformSparseColumn m s) (r : Fin m) : ℝ
 
 /-- A signed column coordinate square is the indicator of selected support.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.54ffe40ef675 from=translated src=- shape=e0a40a14 vocab=0bac2356
+-/
 @[simp] theorem columnValue_sq {m s : ℕ} (x : UniformSparseColumn m s) (r : Fin m) :
     UniformSparseColumn.value x r ^ 2 = supportIndicator x r := by
   classical
@@ -134,7 +146,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- An exactly-s signed column has squared coordinate energy equal to sparsity.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.3db985514cc0 from=translated src=- shape=5ff1fba9 vocab=9468faf2
+-/
 theorem sum_columnValue_sq {m s : ℕ} (x : UniformSparseColumn m s) :
     ∑ r, UniformSparseColumn.value x r ^ 2 = (s : ℝ) := by
   classical
@@ -162,7 +176,9 @@ def _root_.NLAlib.uniformSparseMatrix {m s n : ℕ} (X : UniformSparseSample m s
 
 /-- At positive sparsity, a normalized sketch entry is nonzero precisely on selected support.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.1h6v.s6.2132900cda41 from=translated src=- shape=64252e62 vocab=94ce89bb
+-/
 theorem _root_.NLAlib.uniformSparseMatrix_ne_zero_iff {m s n : ℕ} (X : UniformSparseSample m s n)
     (hs : 0 < s) (r : Fin m) (i : Fin n) :
     uniformSparseMatrix X r i ≠ 0 ↔ r ∈ (X i).1 := by
@@ -183,7 +199,9 @@ def matrixColumnSupportEquiv {m s n : ℕ} (X : UniformSparseSample m s n)
 
 /-- Each actual normalized sketch column has exactly the requested number of nonzero entries.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.13dac4c15a09 from=translated src=- shape=ab9d2198 vocab=d2956178
+-/
 theorem _root_.NLAlib.card_filter_uniformSparseMatrix_ne_zero {m s n : ℕ}
     (X : UniformSparseSample m s n)
     (hs : 0 < s) (i : Fin n) :
@@ -197,7 +215,9 @@ theorem _root_.NLAlib.card_filter_uniformSparseMatrix_ne_zero {m s n : ℕ}
 
 /-- The exact-s sketch Gram entry is its reciprocal-sparsity weighted signed-support inner product.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.456a7915395b from=translated src=- shape=8c1610e6 vocab=82ae9c63
+-/
 theorem sketchGram_apply {m s n : ℕ} (X : UniformSparseSample m s n)
     (hs : 0 < s) (i j : Fin n) :
     sketchGram (uniformSparseMatrix X) i j =
@@ -220,7 +240,9 @@ theorem sketchGram_apply {m s n : ℕ} (X : UniformSparseSample m s n)
 
 /-- Every exact-s sketch column has unit diagonal Gram entry at positive sparsity.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s5.794fff3c55a5 from=translated src=- shape=8ac8bd1f vocab=4bbc3868
+-/
 @[simp] theorem sketchGram_diag {m s n : ℕ} (X : UniformSparseSample m s n)
     (hs : 0 < s) (i : Fin n) : sketchGram (uniformSparseMatrix X) i i = 1 := by
   rw [UniformSparse.sketchGram_apply X hs]
@@ -241,7 +263,9 @@ def hollowGram {m s n d : ℕ} (F : Frame n d) (X : UniformSparseSample m s n) :
 
 /-- The embedded exact-s Gram entry is the literal frame-weighted sketch Gram sum.
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s7.f18107ebd415 from=translated src=- shape=cbab1adc vocab=79443e1d
+-/
 theorem embeddedGram_apply {m s n d : ℕ} (F : Frame n d)
     (X : UniformSparseSample m s n) (hs : 0 < s) (a c : Fin d) :
     embeddedGram F (uniformSparseMatrix X) a c =
@@ -274,7 +298,9 @@ theorem embeddedGram_apply {m s n d : ℕ} (F : Frame n d)
 /-- Exact pointwise hollowness; no independence premise is used.
 
 Source: ported from `SparseFockFormal.UniformExactSModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.82c1df2fa40e from=translated src=- shape=87525cfe vocab=b8aa16bd
+-/
 theorem gramError_eq_hollow {m s n d : ℕ} (F : Frame n d)
     (X : UniformSparseSample m s n) (hs : 0 < s) :
     gramError F (uniformSparseMatrix X) = UniformSparse.hollowGram F X := by

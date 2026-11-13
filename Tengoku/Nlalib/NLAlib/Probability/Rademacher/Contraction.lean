@@ -29,7 +29,9 @@ variable {ι T : Type*} [Fintype ι] [DecidableEq ι] [Nonempty T]
 
 omit [DecidableEq ι] in
 /-- Uniformly bounded finite linear tests have an integrable supremum under
-the actual independent sign law; the parameter class need not be countable.-/
+the actual independent sign law; the parameter class need not be countable.
+@isnad1 id=integrab.1h4v.s6.05533b8f695c from=translated src=- shape=785cead0 vocab=10096208
+-/
 theorem integrable_ciSup_sum_mul_rademacherVector_of_bounded
     (X : ι → T → ℝ) {R : ℝ} (hX : ∀ i t, |X i t| ≤ R) :
     Integrable (fun r : ι → ℝ => ⨆ t, ∑ i, r i * X i t) (rademacherVector ι) := by
@@ -53,7 +55,9 @@ theorem integrable_ciSup_sum_mul_rademacherVector_of_bounded
 expected supremum under the actual finite product Rademacher measure.
 There is no finiteness, countability, or measurability requirement on the
 parameter class itself; uniform bounds imply measurability of the suprema.
-This is the elementary Rademacher contraction principle.-/
+This is the elementary Rademacher contraction principle.
+@isnad1 id=le.3h6v.s7.97b175136a64 from=translated src=- shape=41a29deb vocab=e3eb0335
+-/
 theorem integral_ciSup_sum_mul_rademacherVector_le_of_abs_sub_le
     (X Y : ι → T → ℝ) {R S : ℝ}
     (hX : ∀ i t, |X i t| ≤ R) (hY : ∀ i t, |Y i t| ≤ S)
@@ -137,7 +141,9 @@ theorem integral_ciSup_sum_mul_rademacherVector_le_of_abs_sub_le
 
 /-- Squaring bounded tests costs exactly twice their uniform radius in the
 expected Rademacher supremum. The parameter class can be uncountable, and
-the empty coordinate family and zero radius are included.-/
+the empty coordinate family and zero radius are included.
+@isnad1 id=le.2h4v.s7.5514af707bfc from=translated src=- shape=0e1c2355 vocab=c66fb7c3
+-/
 theorem integral_ciSup_sum_mul_sq_rademacherVector_le
     (X : ι → T → ℝ) {R : ℝ} (hR : 0 ≤ R) (hX : ∀ i t, |X i t| ≤ R) :
     (∫ r : ι → ℝ, ⨆ t, ∑ i, r i * X i t ^ 2 ∂rademacherVector ι) ≤

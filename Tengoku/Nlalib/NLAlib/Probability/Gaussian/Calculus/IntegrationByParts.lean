@@ -32,13 +32,17 @@ namespace NLAlib
 /-! ### Integrability under the standard Gaussian -/
 
 /-- `|y|` is integrable for the standard Gaussian. Atlas: `gaussian-integration-by-parts`
-(helper).-/
+(helper).
+@isnad1 id=integrab.0h0v.s5.280db5968d7c from=translated src=- shape=9b8c0618 vocab=eb1336ec
+-/
 theorem integrable_abs_gaussianReal : Integrable (fun y : ℝ => |y|) (gaussianReal 0 1) :=
   (memLp_one_iff_integrable.1 (memLp_id_gaussianReal 1)).abs
 
 /-- Integrability under the standard Gaussian is equivalent to Lebesgue
 integrability after multiplication by its scalar density. Source: the Gaussian
-density formula; atlas gaussian-integration-by-parts (helper).-/
+density formula; atlas gaussian-integration-by-parts (helper).
+@isnad1 id=iff.0h1v.s6.d583cd3e367d from=translated src=- shape=6ca4052d vocab=cdce8be0
+-/
 theorem integrable_gaussianReal_iff (g : ℝ → ℝ) :
     Integrable g (gaussianReal 0 1) ↔ Integrable (fun x => gaussianPDFReal 0 1 x * g x) := by
   rw [gaussianReal_of_var_ne_zero _ one_ne_zero,
@@ -47,7 +51,9 @@ theorem integrable_gaussianReal_iff (g : ℝ → ℝ) :
   simp [smul_eq_mul]
 
 /-- The derivative of the centred Gaussian density: `φ_v'(x) = -(x / v) φ_v(x)`.
-Atlas: `gaussian-integration-by-parts` (helper).-/
+Atlas: `gaussian-integration-by-parts` (helper).
+@isnad1 id=hasderiv.1h2v.s6.e707e5353a95 from=translated src=- shape=edaf181a vocab=d9fffaca
+-/
 theorem hasDerivAt_gaussianPDFReal_zero (v : NNReal) (hv : v ≠ 0) (x : ℝ) :
     HasDerivAt (gaussianPDFReal 0 v) (-(x / v) * gaussianPDFReal 0 v x) x := by
   have h1 : HasDerivAt (fun x : ℝ => -(x - 0) ^ 2 / (2 * v)) (-(2 * (x - 0)) / (2 * v)) x := by
@@ -64,7 +70,9 @@ theorem hasDerivAt_gaussianPDFReal_zero (v : NNReal) (hv : v ≠ 0) (x : ℝ) :
 /-- Gaussian integration by parts for an unbounded differentiable function whose
 value, coordinate product, and derivative are integrable. Source: Stein 1981,
 Lemma 1; atlas gaussian-integration-by-parts (operator hard-edge helper).
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.4h1v.s8.9c6633a012bb from=translated src=- shape=e3b2a4a3 vocab=83426284
+-/
 theorem integral_mul_eq_integral_deriv_gaussianReal_of_integrable
     (h : ℝ → ℝ) (hh : Differentiable ℝ h)
     (hhi : Integrable h (gaussianReal 0 1))
@@ -104,7 +112,9 @@ theorem integral_mul_eq_integral_deriv_gaussianReal_of_integrable
 differentiable with `|h'| ≤ C`, `∫ x h(x) dγ(x) = ∫ h'(x) dγ(x)` with `γ = N(0,1)`.
 Source: Stein 1981, Lemma 1; Vershynin 2018, Lemma 7.2.3 (one-dimensional case). Atlas:
 `gaussian-integration-by-parts`.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.2h2v.s7.6625a6b3c577 from=translated src=- shape=4d551c26 vocab=ac106b1b
+-/
 theorem integral_mul_eq_integral_deriv_gaussianReal (h : ℝ → ℝ) (hh : Differentiable ℝ h)
     (C : ℝ) (hdh : ∀ x, |deriv h x| ≤ C) :
     ∫ x, x * h x ∂(gaussianReal 0 1) = ∫ x, deriv h x ∂(gaussianReal 0 1) := by
@@ -132,7 +142,9 @@ theorem integral_mul_eq_integral_deriv_gaussianReal (h : ℝ → ℝ) (hh : Diff
 
 /-- Stein's identity for a centred Gaussian of variance `v`: for `h` bounded with bounded
 continuous derivative `h'`, `∫ x h(x) dN(0,v) = v ∫ h'(x) dN(0,v)` (both sides vanish when
-`v = 0`). Source: Stein 1981, Lemma 1. Atlas: `gaussian-integration-by-parts`.-/
+`v = 0`). Source: Stein 1981, Lemma 1. Atlas: `gaussian-integration-by-parts`.
+@isnad1 id=eq.4h5v.s7.6b9a98f6dbda from=translated src=- shape=53a19038 vocab=459a6331
+-/
 theorem integral_mul_eq_mul_integral_deriv_gaussianReal (v : NNReal) (h h' : ℝ → ℝ)
     (hh : ∀ x, HasDerivAt h (h' x) x) (hc : Continuous h') (M M' : ℝ) (hb : ∀ x, |h x| ≤ M)
     (hb' : ∀ x, |h' x| ≤ M') :
@@ -188,7 +200,9 @@ theorem integral_mul_eq_mul_integral_deriv_gaussianReal (v : NNReal) (h h' : ℝ
 
 /-- For a jointly Gaussian pair `(U, W)` with `U` real and `W` vector-valued, if `U` is
 uncorrelated with every coordinate of `W` then `U` and `W` are independent. Atlas:
-`gaussian-integration-by-parts` (helper).-/
+`gaussian-integration-by-parts` (helper).
+@isnad1 id=indepfun.2h5v.s7.46c37082ce08 from=translated src=- shape=6367ead5 vocab=3b3a79bd
+-/
 theorem indepFun_of_hasGaussianLaw_of_covariance_eq_zero {ι Ω : Type*} [Fintype ι]
     [MeasurableSpace Ω] {P : Measure Ω} (U : Ω → ℝ) (W : ι → Ω → ℝ)
     (hUW : HasGaussianLaw (fun ω => (U ω, fun j => W j ω)) P)
@@ -210,7 +224,9 @@ derivatives `G' j = ∂ⱼG`,
 Source: Vershynin 2018, Lemma 7.2.3; Talagrand, *Mean Field Models for Spin Glasses*, Lemma
 1.3.1. Proof: regress `V` on `U` (`V = c U + W` with `W ⫫ U`), apply the one-dimensional
 identity in `U` and integrate over `W`. Atlas: `gaussian-integration-by-parts`.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.6h8v.s9.6a8040de2e79 from=translated src=- shape=377bd0be vocab=8155ecef
+-/
 theorem integral_mul_eq_sum_covariance_mul_integral {ι Ω : Type*} [Fintype ι]
     [MeasurableSpace Ω] {P : Measure Ω} (U : Ω → ℝ) (V : ι → Ω → ℝ)
     (hUV : HasGaussianLaw (fun ω => (U ω, fun j => V j ω)) P) (hU0 : ∫ ω, U ω ∂P = 0)

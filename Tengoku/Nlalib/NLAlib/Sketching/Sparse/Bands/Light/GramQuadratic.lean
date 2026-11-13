@@ -46,7 +46,9 @@ def crossPairing (F : Frame n d) (z : DomainFamily m n ell)
 the already-proved `U Uᵀ` contraction.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h8v.s6.6a9a88e71d97 from=translated src=- shape=8522410a vocab=497e530c
+-/
 theorem two_crossPairing_le (F : Frame n d) (z : DomainFamily m n ell)
     (k l : Fin ell) (hkl : k ≠ l) :
     2 * crossPairing F z k l hkl ≤
@@ -75,7 +77,9 @@ theorem two_crossPairing_le (F : Frame n d) (z : DomainFamily m n ell)
 
 /-- An off-diagonal cross pairing is bounded by half the sum of the two component energies.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h8v.s6.961703670e6e from=translated src=- shape=c7e02923 vocab=9ffbd291
+-/
 theorem crossPairing_le_half (F : Frame n d) (z : DomainFamily m n ell)
     (k l : Fin ell) (hkl : k ≠ l) :
     crossPairing F z k l hkl ≤
@@ -91,7 +95,9 @@ def crossPairingTotal (F : Frame n d) (z : DomainFamily m n ell)
 
 /-- Every total cross pairing is bounded by half the two component energies.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h8v.s6.554c9a3eb433 from=translated src=- shape=8c38c216 vocab=7b48f055
+-/
 theorem crossPairingTotal_le_half (F : Frame n d) (z : DomainFamily m n ell)
     (k l : Fin ell) (hkl : k ≠ l) :
     crossPairingTotal F z k l ≤
@@ -115,7 +121,9 @@ cross-map estimate: every cross term invokes `crossMatrix_energy_le`, already
 proved from Parseval above.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s6.1c3892c0560e from=translated src=- shape=cf1e0898 vocab=56c974fe
+-/
 theorem sharedLegGramQuadratic_le (F : Frame n d) (z : DomainFamily m n ell)
     (hell : 1 ≤ ell) :
     sharedLegGramQuadratic F z ≤

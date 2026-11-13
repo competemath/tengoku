@@ -34,7 +34,9 @@ def transformColumnEquiv {m s : ℕ} (pi : Equiv.Perm (Fin m))
 
 /-- The nested iid law weight equals its product over flattened coordinate labels.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.80793b31a03d from=translated src=- shape=6c23d757 vocab=af515450
+-/
 theorem nestedYLaw_weight_eq_flat_prod {b s : ℕ} (hb : 0 < b)
     (y : NestedY b s) :
     (nestedYLaw hb s).weight y =
@@ -57,7 +59,9 @@ theorem nestedYLaw_weight_eq_flat_prod {b s : ℕ} (hb : 0 < b)
 
 /-- The nested iid law is invariant under signed coordinate permutations.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.e138809cf154 from=translated src=- shape=61479bcb vocab=5afce330
+-/
 theorem nestedYLaw_weight_transformY {b s : ℕ} (hb : 0 < b)
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) :
@@ -70,7 +74,9 @@ theorem nestedYLaw_weight_transformY {b s : ℕ} (hb : 0 < b)
 
 /-- The flattened support transforms by the recorded coordinate permutation.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.781e772feff1 from=translated src=- shape=1bbd534e vocab=41797f88
+-/
 theorem flatSupport_transformY {b s : ℕ}
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) :
@@ -81,7 +87,9 @@ theorem flatSupport_transformY {b s : ℕ}
 
 /-- Signed coordinate permutations preserve total support cardinality.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.39e0e96470f8 from=translated src=- shape=b16d81ea vocab=1d3841d6
+-/
 @[simp] theorem totalSupport_transformY {b s : ℕ}
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) :
@@ -92,7 +100,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Compatibility is invariant under simultaneous signed permutations.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h6v.s6.243c5a1929f6 from=translated src=- shape=a6562243 vocab=9e9c2f6d
+-/
 theorem compatible_transform_iff {b s : ℕ}
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) (x : UniformSparseColumn (s * b) s) :
@@ -164,7 +174,9 @@ theorem compatible_transform_iff {b s : ℕ}
 has exactly one preimage at a compatible column.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h4v.s7.acece2e0e0ab from=translated src=- shape=6e22b4fe vocab=4a675008
+-/
 theorem selectionKernel_weight_of_compatible {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (y : NestedY b s) (x : UniformSparseColumn (s * b) s)
@@ -192,7 +204,9 @@ theorem selectionKernel_weight_of_compatible {b s : ℕ}
 /-- An incompatible column has no preimage under the compatible-choice map.
 
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h4v.s7.9e15d1679c66 from=translated src=- shape=96d69752 vocab=25c2c718
+-/
 theorem selectionKernel_weight_of_not_compatible {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (y : NestedY b s) (x : UniformSparseColumn (s * b) s)
@@ -233,7 +247,9 @@ def transformChoiceEquiv {b s : ℕ}
 
 /-- Signed coordinate permutations preserve the number of compatible exactly-s selector columns.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.55a14e039ece from=translated src=- shape=6c8e2b43 vocab=8f9a93b6
+-/
 theorem choiceColumn_card_transform {b s : ℕ}
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
     (y : NestedY b s) :
@@ -243,7 +259,9 @@ theorem choiceColumn_card_transform {b s : ℕ}
 
 /-- Jointly transforming iid outcomes and exact columns preserves selection-kernel mass.
 Source: ported from `SparseFockFormal.UniformExactSSymmetry`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.4635f06c7b8d from=translated src=- shape=cd63d98e vocab=4dc46f41
+-/
 theorem selectionKernel_weight_transform {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)

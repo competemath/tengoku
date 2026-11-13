@@ -22,7 +22,9 @@ namespace NLAlib
 equal coordinate variances and dominated increments, `P(max X ≥ τ) ≤ Q(max Y ≥ τ)`.
 Degenerate Gaussian laws are included. Slepian 1962; Vershynin 2018, Theorem 7.2.1;
 atlas `slepian`.
-atlas: slepian-/
+atlas: slepian
+@isnad1 id=le.6h8v.s8.2dccd7f5448f from=translated src=- shape=69e4bffb vocab=49bd6338
+-/
 theorem slepian_inequality_ge {ι Ω Ω' : Type*} [Fintype ι] [MeasurableSpace Ω]
     [MeasurableSpace Ω'] {P : Measure Ω} {Q : Measure Ω'}
     (X : ι → Ω → ℝ) (Y : ι → Ω' → ℝ)

@@ -22,7 +22,9 @@ namespace NLAlib
 variable {κ : Type*} [Fintype κ]
 
 /-- Negating any selected finite collection of independent standard real
-Gaussian coordinates preserves their actual product measure.-/
+Gaussian coordinates preserves their actual product measure.
+@isnad1 id=measurep.0h2v.s6.8a2dc4c394f9 from=translated src=- shape=261c6bfd vocab=bf89a754
+-/
 theorem measurePreserving_gaussianVector_coordinate_negate
     (p : κ → Prop) [DecidablePred p] :
     MeasurePreserving (fun x : κ → ℝ => fun k => if p k then -x k else x k)
@@ -38,7 +40,9 @@ theorem measurePreserving_gaussianVector_coordinate_negate
     exact MeasurePreserving.id (gaussianReal (0 : ℝ) 1)
 
 /-- Reindexing by any finite permutation preserves the true independent
-standard Gaussian product measure.-/
+standard Gaussian product measure.
+@isnad1 id=measurep.0h2v.s5.447fdfbdcf14 from=translated src=- shape=a22d7853 vocab=3dcd479a
+-/
 theorem measurePreserving_gaussianVector_coordinate_permute (σ : Equiv.Perm κ) :
     MeasurePreserving (fun x : κ → ℝ => fun k => x (σ k))
       (gaussianVector κ) (gaussianVector κ) := by

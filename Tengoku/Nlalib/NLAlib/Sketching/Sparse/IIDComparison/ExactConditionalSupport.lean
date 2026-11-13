@@ -22,7 +22,9 @@ noncomputable section
 
 /-- Every exactly-s signed column has positive uniform mass.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h3v.s7.7eb1c699d8f5 from=translated src=- shape=4a2db390 vocab=2ee8a0f7
+-/
 theorem exactColumnWeight_pos {b s : ℕ} (hb : 0 < b)
     (x : UniformSparseColumn (s * b) s) :
     0 < (uniformSparseColumnLaw (le_rows (s := s) hb)).weight x := by
@@ -53,7 +55,9 @@ def conditionalYLaw {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- The iid law conditional on one exact column is its joint mass divided by the column mass.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s8.1527dafa0e51 from=translated src=- shape=b16f7cf9 vocab=43f1e762
+-/
 @[simp] theorem conditionalYLaw_weight {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (x : UniformSparseColumn (s * b) s)
     (y : NestedY b s) :
@@ -64,7 +68,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Bayes identity for one exact-s column.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s8.3e0216974eb9 from=translated src=- shape=03e04392 vocab=dec12e13
+-/
 theorem jointColumn_disintegrates {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (y : NestedY b s) (x : UniformSparseColumn (s * b) s) :
@@ -78,7 +84,9 @@ theorem jointColumn_disintegrates {b s : ℕ}
 ternary law exactly.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s8.b28c3cde0ffd from=translated src=- shape=e58f8e2b vocab=d54b6e78
+-/
 theorem conditionalYLaw_mixture {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (y : NestedY b s) :
     (∑ x, (uniformSparseColumnLaw (le_rows (s := s) hb)).weight x *
@@ -100,7 +108,9 @@ def supportFiberMoment {b s : ℕ} (hb : 0 < b) (hs : 0 < s)
 
 /-- The support fiber moment is invariant under transforming its exact-column label.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s6.ee164593389f from=translated src=- shape=9c246830 vocab=fb41a459
+-/
 theorem supportFiberMoment_transform {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (phi : ℕ → ℝ)
     (pi : Equiv.Perm (Fin (s * b))) (eps : Fin (s * b) → Sign)
@@ -126,7 +136,9 @@ theorem supportFiberMoment_transform {b s : ℕ}
 
 /-- The support fiber moment is constant across exact-column labels.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s6.f9ebb01768e4 from=translated src=- shape=43fd36e7 vocab=147ea213
+-/
 theorem supportFiberMoment_constant {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (phi : ℕ → ℝ)
     (x z : UniformSparseColumn (s * b) s) :
@@ -136,7 +148,9 @@ theorem supportFiberMoment_constant {b s : ℕ}
 
 /-- Summing support fiber moments recovers the unconditional support observable expectation.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s7.bfdd0cbce281 from=translated src=- shape=10728fb2 vocab=087f13c3
+-/
 theorem sum_supportFiberMoment {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (phi : ℕ → ℝ) :
     (∑ x, supportFiberMoment hb hs phi x) =
@@ -155,7 +169,9 @@ theorem sum_supportFiberMoment {b s : ℕ}
 
 /-- Each support fiber moment is uniform column mass times the unconditional support expectation.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s7.21c1d665b560 from=translated src=- shape=80a43ab0 vocab=bb7eafe1
+-/
 theorem supportFiberMoment_eq_weight_mul_expect {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (phi : ℕ → ℝ)
     (x : UniformSparseColumn (s * b) s) :
@@ -198,7 +214,9 @@ theorem supportFiberMoment_eq_weight_mul_expect {b s : ℕ}
 
 /-- The conditional mean of a support-cardinality observable equals its unconditional mean.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s7.4a2ffd7243d9 from=translated src=- shape=7b907071 vocab=c0716f06
+-/
 theorem conditional_expect_supportFunction {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (phi : ℕ → ℝ)
     (x : UniformSparseColumn (s * b) s) :
@@ -215,7 +233,9 @@ theorem conditional_expect_supportFunction {b s : ℕ}
 
 /-- The conditional mean of support cardinality capped at sparsity equals its unconditional mean.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s6.a8bf669c214d from=translated src=- shape=a2fa0d00 vocab=fbc1a706
+-/
 theorem conditional_expect_minSupport {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s)
     (x : UniformSparseColumn (s * b) s) :
@@ -240,7 +260,9 @@ theorem conditional_expect_minSupport {b s : ℕ}
 indistinguishable to the fill/thin compatibility relation.
 
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.2h5v.s9.79e0f6289836 from=translated src=- shape=eb4c9f42 vocab=e329a031
+-/
 theorem compatible_congr_column {b s : ℕ} (y : NestedY b s)
     (x z : UniformSparseColumn (s * b) s)
     (hsupport : (x.1 : Finset (Fin (s * b))) =
@@ -283,7 +305,9 @@ theorem compatible_congr_column {b s : ℕ} (y : NestedY b s)
 
 /-- Selection weight depends on an exact column only through its signed coordinate values.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.4h5v.s9.f4c3f315983c from=translated src=- shape=7e654530 vocab=370cb06c
+-/
 theorem selectionKernel_weight_congr_column {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (y : NestedY b s)
     (x z : UniformSparseColumn (s * b) s)
@@ -303,7 +327,9 @@ theorem selectionKernel_weight_congr_column {b s : ℕ}
 
 /-- Joint-law mass is unchanged when exact columns have equal signed coordinate values.
 Source: ported from `SparseFockFormal.UniformExactSBarycenter`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.4h5v.s9.f02283492d9b from=translated src=- shape=437ef7c7 vocab=22f841a3
+-/
 theorem jointColumnLaw_weight_congr_column {b s : ℕ}
     (hb : 0 < b) (hs : 0 < s) (y : NestedY b s)
     (x z : UniformSparseColumn (s * b) s)

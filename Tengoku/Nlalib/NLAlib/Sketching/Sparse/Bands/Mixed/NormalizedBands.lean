@@ -26,7 +26,9 @@ variable {d m n : ℕ}
 
 /-- The normalized mixed raising band satisfies its explicit exact-grade norm bound.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.a1ca749ade3a from=translated src=- shape=e43226d7 vocab=a99cf682
+-/
 theorem norm_normalized_Xplus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -53,7 +55,9 @@ theorem norm_normalized_Xplus_restricted_le (F : Frame n d)
 
 /-- The normalized mixed lowering adjoint satisfies its explicit exact-grade norm bound.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.5ddd8e9baa13 from=translated src=- shape=e43226d7 vocab=f043a65b
+-/
 theorem norm_normalized_XplusAdj_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -80,7 +84,9 @@ theorem norm_normalized_XplusAdj_restricted_le (F : Frame n d)
 
 /-- The normalized mixed preserving band satisfies its explicit exact-grade norm bound.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s9.b2a283e02216 from=translated src=- shape=886c34a6 vocab=e4552506
+-/
 theorem norm_normalized_Xzero_restricted_le (F : Frame n d)
     (s b nu : ℕ) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -96,7 +102,9 @@ theorem norm_normalized_Xzero_restricted_le (F : Frame n d)
 
 /-- The normalized mixed preserving adjoint satisfies its explicit exact-grade norm bound.
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s9.4863f8c267e6 from=translated src=- shape=886c34a6 vocab=a88f1447
+-/
 theorem norm_normalized_XzeroAdj_restricted_le (F : Frame n d)
     (s b nu : ℕ) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -113,7 +121,9 @@ theorem norm_normalized_XzeroAdj_restricted_le (F : Frame n d)
 /-- The two normalized `X₀` orientations satisfy the exact TeX allowance.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.f82374155d4e from=translated src=- shape=1f87b62b vocab=9440704e
+-/
 theorem norm_normalized_Xzero_pair_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -164,7 +174,9 @@ private theorem nu_div_s_le_cTerm {s nu : ℕ} (hs : 0 < s) :
 term `(nu+1)/s`.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.de1e760780c2 from=translated src=- shape=5da23844 vocab=bb2c66fd
+-/
 theorem norm_normalized_mixed_plus_restricted_le_tex (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -215,7 +227,9 @@ theorem norm_normalized_mixed_plus_restricted_le_tex (F : Frame n d)
 /-- Assembly-shaped normalized mixed `+2` estimate.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.3a5e95bc77e9 from=translated src=- shape=4e375aee vocab=47987d66
+-/
 theorem norm_normalized_mixed_plus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -236,7 +250,9 @@ theorem norm_normalized_mixed_plus_restricted_le (F : Frame n d)
 /-- Assembly-shaped normalized mixed `-2` estimate.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.f36d64ef1b31 from=translated src=- shape=4e375aee vocab=9cb7dad9
+-/
 theorem norm_normalized_mixed_minus_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -287,7 +303,9 @@ theorem norm_normalized_mixed_minus_restricted_le (F : Frame n d)
 /-- Equation (mixed-zero), before the uniform-envelope relaxation.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s10.148d00f479d7 from=translated src=- shape=da33569f vocab=964eb9eb
+-/
 theorem norm_normalized_mixed_zero_restricted_le_tex (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •
@@ -342,7 +360,9 @@ theorem norm_normalized_mixed_zero_restricted_le_tex (F : Frame n d)
 /-- Assembly-shaped normalized four-orientation grade-zero mixed bound.
 
 Source: ported from `SparseFockFormal.MixedBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s10.24aea66eb828 from=translated src=- shape=3ca74baf vocab=9249ab7d
+-/
 theorem norm_normalized_mixed_zero_restricted_le (F : Frame n d)
     (s b nu : ℕ) (hs : 0 < s) (hb : 1 < b) :
     ‖((1 / (((s * b : ℕ) : ℝ))) •

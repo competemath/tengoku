@@ -23,7 +23,9 @@ namespace NLAlib
 
 open scoped Matrix.Norms.L2Operator in
 /-- A fixed full-row-rank complex matrix has an orthonormal complementary
-frame representing its exact squared residual.-/
+frame representing its exact squared residual.
+@isnad1 id=ex.1h3v.s8.890e16f57252 from=translated src=- shape=c970c37e vocab=3692a37e
+-/
 theorem exists_orthonormal_complement_gramRowResidual {n k : ℕ}
     (H : Matrix (Fin n) (Fin k) ℂ) (hH : IsUnit (H*Hᴴ)) :
     ∃ V : Matrix (Fin k) (Fin (k-n)) ℂ, HasOrthonormalCols V ∧
@@ -73,7 +75,9 @@ theorem exists_orthonormal_complement_gramRowResidual {n k : ℕ}
   simp only [Pi.star_apply, RCLike.star_def, ← Complex.normSq_eq_conj_mul_self, Complex.ofReal_sum]
 
 /-- The exact inverse squared row-residual moment under the actual complex
-Gaussian vector law. No residual-distribution hypothesis is assumed.-/
+Gaussian vector law. No residual-distribution hypothesis is assumed.
+@isnad1 id=and.2h3v.s8.112dc40317c9 from=translated src=- shape=0835ca15 vocab=8625227a
+-/
 theorem integrable_and_integral_inv_re_gramRowResidual_circularComplexGaussianVector
     {n k : ℕ} (hnk : n+2 ≤ k) (H : Matrix (Fin n) (Fin k) ℂ)
     (hH : IsUnit (H*Hᴴ)) :
@@ -94,7 +98,9 @@ theorem integrable_and_integral_inv_re_gramRowResidual_circularComplexGaussianVe
   congr 1
   ring
 
-/-- A full-rank row residual is real, including zero residuals.-/
+/-- A full-rank row residual is real, including zero residuals.
+@isnad1 id=eq.1h4v.s6.cd3b35175308 from=translated src=- shape=439cd0f5 vocab=c74660fb
+-/
 theorem gramRowResidual_ofReal_re {n k : ℕ} (H : Matrix (Fin n) (Fin k) ℂ)
     (hH : IsUnit (H*Hᴴ)) (g : Fin k → ℂ) :
     ((gramRowResidual H g).re : ℂ)=gramRowResidual H g := by
@@ -102,7 +108,9 @@ theorem gramRowResidual_ofReal_re {n k : ℕ} (H : Matrix (Fin n) (Fin k) ℂ)
   rw [hr,Complex.ofReal_re]
 
 /-- The same native inverse-residual moment applies to a conjugated Gaussian
-row, as needed by the Hermitian Schur-complement identity.-/
+row, as needed by the Hermitian Schur-complement identity.
+@isnad1 id=and.2h3v.s8.03179783c6f9 from=translated src=- shape=33dbbd12 vocab=ad9dd9ff
+-/
 theorem integrable_and_integral_inv_re_gramRowResidual_star_circularComplexGaussianVector
     {n k : ℕ} (hnk : n+2 ≤ k) (H : Matrix (Fin n) (Fin k) ℂ)
     (hH : IsUnit (H*Hᴴ)) :

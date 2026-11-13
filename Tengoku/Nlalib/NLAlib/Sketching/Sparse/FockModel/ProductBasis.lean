@@ -38,7 +38,9 @@ def iidLaw (b : ℕ) (hb : 1 < b) (m n : ℕ) : FiniteLaw (Configuration m n) :=
 
 /-- The iid finite Fock-law weight is the product of its coordinate weights.
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.0d56a370cb54 from=translated src=- shape=0d3f6442 vocab=2889c899
+-/
 @[simp]
 theorem iidLaw_weight (b : ℕ) (hb : 1 < b) (m n : ℕ)
     (omega : Configuration m n) :
@@ -46,7 +48,9 @@ theorem iidLaw_weight (b : ℕ) (hb : 1 < b) (m n : ℕ)
 
 /-- The finite ternary-law expectation equals the explicit three-outcome expectation.
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s4.c321c11dc250 from=translated src=- shape=0d7c6a42 vocab=50e6d888
+-/
 theorem ternaryLaw_expect_eq {b : ℕ} (hb : 0 < b) (g : TernaryOutcome → ℝ) :
     (ternaryLaw b hb).expect g = expect b g := rfl
 
@@ -69,7 +73,9 @@ def productWeightedInner {m n : ℕ} (b : ℕ) (hb : 1 < b)
 /-- The product polynomials are exactly orthonormal.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.c8b3fb3cbe68 from=translated src=- shape=11304b17 vocab=1592198c
+-/
 theorem productBasis_orthonormal {m n b : ℕ} (hb : 1 < b)
     (p q : Pattern m n) :
     productWeightedInner b hb (productBasis b p) (productBasis b q) =
@@ -117,7 +123,9 @@ theorem productBasis_orthonormal {m n b : ℕ} (hb : 1 < b)
 completeness formula.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.e5a5e05d2442 from=translated src=- shape=7e4f4625 vocab=d16a7aa1
+-/
 theorem local_reproducing {b : ℕ} (hb : 1 < b) (y x : TernaryOutcome) :
     mass b y *
         (∑ i, basisFun b i y * basisFun b i x) =
@@ -132,7 +140,9 @@ theorem local_reproducing {b : ℕ} (hb : 1 < b) (y x : TernaryOutcome) :
 /-- The sum over all product patterns factors into one local kernel per site.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.d9c2e4e1040b from=translated src=- shape=7c2285d0 vocab=ef93ab32
+-/
 theorem product_kernel_factor {m n b : ℕ} (omega x : Configuration m n) :
     (∑ p : Pattern m n, productBasis b p omega * productBasis b p x) =
       ∏ s, ∑ i, basisFun b i (omega s) *
@@ -155,7 +165,9 @@ theorem product_kernel_factor {m n b : ℕ} (omega x : Configuration m n) :
 Kronecker delta of configurations.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.fd1b54f37bf0 from=translated src=- shape=7618599f vocab=0d3c2a0c
+-/
 theorem weighted_product_kernel {m n b : ℕ} (hb : 1 < b)
     (omega x : Configuration m n) :
     (iidLaw b hb m n).weight omega *
@@ -171,7 +183,9 @@ theorem weighted_product_kernel {m n b : ℕ} (hb : 1 < b)
 than inherited from an assumed tensor-product interface.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.cce530215947 from=translated src=- shape=f6ba3ba7 vocab=a247fcac
+-/
 theorem productBasis_reconstruction {m n b : ℕ} (hb : 1 < b)
     (f : Configuration m n → ℝ) (x : Configuration m n) :
     f x = ∑ p : Pattern m n,
@@ -272,7 +286,9 @@ def coordinateFactor {m n : ℕ} (b : ℕ) (s : Site m n)
 
 /-- The iid expectation of a product of coordinate observables factors into coordinate expectations.
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.368c79c88db7 from=translated src=- shape=9e348505 vocab=6b093f16
+-/
 theorem coordinate_product_factorization {m n b : ℕ} (s : Site m n)
     (out inp : Pattern m n) (omega : Configuration m n) :
     productBasis b out omega *
@@ -287,7 +303,9 @@ theorem coordinate_product_factorization {m n b : ℕ} (s : Site m n)
 that site of the concrete product basis.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.2101af0c2e47 from=translated src=- shape=1a84da72 vocab=a37ef019
+-/
 theorem mulOp_etaCoordinate {m n b : ℕ} (hb : 1 < b) (s : Site m n) :
     (productONBasis b hb m n).mulOp (etaCoordinate b s) =
       siteKernel s (jacobi (Real.sqrt ((b : ℝ) - 1))) := by
@@ -369,7 +387,9 @@ theorem mulOp_etaCoordinate {m n b : ℕ} (hb : 1 < b) (s : Site m n) :
 concrete lifted Jacobi matrices.
 
 Source: ported from `SparseFockFormal.ProductFock`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s8.64deda5eafcc from=translated src=- shape=423fd12b vocab=9adcc08a
+-/
 theorem mulOp_etaCoordinate_mul {m n b : ℕ} (hb : 1 < b)
     (s t : Site m n) :
     (productONBasis b hb m n).mulOp

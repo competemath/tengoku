@@ -56,6 +56,9 @@ def wordMatrixFieldAlgebra : StarSubalgebra ℂ M where
     intro i j
     exact star_mem (hT j i)
 
+/--
+@isnad1 id=iff.0h3v.s16.9afebeb0e6fc from=translated src=- shape=85f40370 vocab=bd7f552e
+-/
 @[simp]
 theorem mem_wordMatrixFieldAlgebra (T : M) :
     T ∈ wordMatrixFieldAlgebra (D := D) (ι := ι) ↔
@@ -63,7 +66,9 @@ theorem mem_wordMatrixFieldAlgebra (T : M) :
 
 /-- The native matrix field algebra is actually norm closed, by continuity
 of the finitely many native coordinate maps and closedness of the scalar
-field algebra.-/
+field algebra.
+@isnad1 id=isclosed.0h2v.s15.7ea1e23c3970 from=translated src=- shape=9bb6d0f7 vocab=88c0d00d
+-/
 theorem isClosed_wordMatrixFieldAlgebra :
     IsClosed (wordMatrixFieldAlgebra (D := D) (ι := ι) : Set M) := by
   have hclosed : IsClosed (wordFieldAlgebra ι : Set B) :=
@@ -79,7 +84,9 @@ theorem isClosed_wordMatrixFieldAlgebra :
   exact hclosed.preimage he
 
 /-- The actual bounded Wick degree spaces lie in the actual closed field
-algebra; no formal-polynomial surrogate is used.-/
+algebra; no formal-polynomial surrogate is used.
+@isnad1 id=le.0h2v.s17.5c7553ec6bec from=translated src=- shape=cc02a6cb vocab=03958641
+-/
 theorem wordWickDegreeSpan_le_wordFieldAlgebra (k : ℕ) :
     wordWickDegreeSpan (ι := ι) k ≤ (wordFieldAlgebra ι).toSubalgebra.toSubmodule := by
   apply Submodule.span_le.mpr
@@ -87,14 +94,18 @@ theorem wordWickDegreeSpan_le_wordFieldAlgebra (k : ℕ) :
   exact wordWickOperator_mem_wordFieldAlgebra w.toList
 
 /-- Any actual bounded-degree amplified operator belongs to the genuine
-closed matrix field algebra.-/
+closed matrix field algebra.
+@isnad1 id=mem.1h4v.s16.10812a9c5c86 from=translated src=- shape=14196ab1 vocab=8db12214
+-/
 theorem mem_wordMatrixFieldAlgebra_of_entries_degree {T : M} {k : ℕ}
     (hT : ∀ i j, T i j ∈ wordWickDegreeSpan (ι := ι) k) :
     T ∈ wordMatrixFieldAlgebra (D := D) (ι := ι) :=
   fun i j => wordWickDegreeSpan_le_wordFieldAlgebra k (hT i j)
 
 /-- Native continuous functional calculus preserves the actual closed
-matrix word algebra. This includes resolvents and positive roots.-/
+matrix word algebra. This includes resolvents and positive roots.
+@isnad1 id=mem.1h4v.s17.5cd045354edd from=translated src=- shape=6b1363e4 vocab=011d4d9a
+-/
 theorem cfc_mem_wordMatrixFieldAlgebra (f : ℂ → ℂ) {T : M}
     (hT : T ∈ wordMatrixFieldAlgebra (D := D) (ι := ι)) :
     cfc f T ∈ wordMatrixFieldAlgebra (D := D) (ι := ι) := by

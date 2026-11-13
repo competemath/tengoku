@@ -21,7 +21,9 @@ namespace NLAlib
 /-- The Gaussian coordinate Stein identity summed over a differentiable scalar
 function's first and second coordinate derivatives. All integrability premises
 refer to actual derivative expressions, allowing polynomial growth.
-Source: operator rederivations, Section 5; atlas wishart-lambda-min-tail (helper).-/
+Source: operator rederivations, Section 5; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=eq.7h5v.s9.8cac4866a8b1 from=translated src=- shape=3c07940a vocab=b8618b4f
+-/
 theorem integral_stein_energy_eq
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (F : (ι → ℝ) → ℝ) (D DD : ι → (ι → ℝ) → ℝ)
@@ -76,7 +78,9 @@ theorem integral_stein_energy_eq
 
 /-- The coordinate Stein identity in the shifted form used by the one-sided
 hard-edge limit. Source: operator rederivations, Section 5;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=eq.8h6v.s9.e53f22810282 from=translated src=- shape=03bb9aec vocab=59a5a262
+-/
 theorem integral_stein_shift_eq
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (F : (ι → ℝ) → ℝ) (D DD : ι → (ι → ℝ) → ℝ)
@@ -155,7 +159,9 @@ theorem integral_stein_shift_eq
 limit imply the weak inequality. This assembles the Stein identity and the Fatou
 step; the derivative, growth, and limit hypotheses are the reusable concrete
 matrix-calculus obligations. Source: operator rederivations, Section 5;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.19h13v.s10.16aacbf16ec7 from=translated src=- shape=bd52d952 vocab=26661e4a
+-/
 theorem integral_nonneg_of_gaussian_coordinate_approximation
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (F : ℕ → (ι → ℝ) → ℝ) (D DD : ℕ → ι → (ι → ℝ) → ℝ)

@@ -23,14 +23,18 @@ def uniformExactRowSubsetPMF {α : Type*} [Fintype α] {k : ℕ}
   exact PMF.uniformOfFintype _
 
 /-- Every exact-size subset has exactly the finite uniform probability mass.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s6.bf96bf537475 from=translated src=- shape=88cfefe5 vocab=8dcd6b4a
+-/
 theorem uniformExactRowSubsetPMF_toReal_apply
     {α : Type*} [Fintype α] {k : ℕ} (hk : k ≤ Fintype.card α) (T : ExactRowSubset α k) :
     (uniformExactRowSubsetPMF hk T).toReal = 1 / (Fintype.card (ExactRowSubset α k) : ℝ) := by
   simp [uniformExactRowSubsetPMF, PMF.uniformOfFintype_apply, one_div]
 
 /-- The coupling conditional weights average to the iid uniform
-sequence masses. Source: Hoeffding 1963, Theorem 4.-/
+sequence masses. Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.1h3v.s7.5ed8d204a430 from=translated src=- shape=a9a6b1ef vocab=a37b85a6
+-/
 theorem sum_uniformSubset_mul_conditionalWeight
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (I : Fin k → α) :
@@ -47,7 +51,9 @@ theorem sum_uniformSubset_mul_conditionalWeight
 sum in convex order. All probability masses and conditional barycenters are
 derived from the explicit support-extension coupling; repeated population
 values are permitted because their labels remain distinct.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.3h5v.s8.bcdca0c3e0c1 from=translated src=- shape=31419d82 vocab=27bd350a
+-/
 theorem uniform_subset_average_convex_le_iid
     {α E : Type*} [Fintype α] [DecidableEq α] [Nonempty α] [AddCommGroup E] [Module ℝ E]
     {k : ℕ} (hk0 : 0 < k) (hk : k ≤ Fintype.card α) (A : α → E) (f : E → ℝ)
@@ -80,7 +86,9 @@ theorem uniform_subset_average_convex_le_iid
 
 /-- Uniform probability measures satisfy the finite convex-order
 comparison for iid sampling and sampling without replacement.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.3h5v.s8.a262189ae178 from=translated src=- shape=e4664c75 vocab=aa63f3b5
+-/
 theorem integral_uniform_subset_convex_le_iid
     {α E : Type*} [Fintype α] [DecidableEq α] [Nonempty α]
     [MeasurableSpace α] [MeasurableSingletonClass α]

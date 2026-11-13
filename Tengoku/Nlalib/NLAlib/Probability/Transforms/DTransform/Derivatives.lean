@@ -20,7 +20,9 @@ open MeasureTheory Set
 open scoped Topology
 namespace NLAlib
 
-/-- The derivative of an inverse-denominator moment kernel.-/
+/-- The derivative of an inverse-denominator moment kernel.
+@isnad1 id=hasderiv.1h3v.s8.2b4f437480e7 from=translated src=- shape=bc6a1414 vocab=39db9102
+-/
 theorem hasDerivAt_dTransformMoment_kernel (k : ℕ) (y z : ℝ)
     (hden : y ^ 2 - z ^ 2 ≠ 0) :
     HasDerivAt (fun t : ℝ => ((t ^ 2 - z ^ 2)⁻¹) ^ (k + 1))
@@ -32,7 +34,9 @@ theorem hasDerivAt_dTransformMoment_kernel (k : ℕ) (y z : ℝ)
   ring
 
 /-- Every inverse-denominator moment differentiates under the actual compact
-law. No kernel assumptions outside its support are imposed.-/
+law. No kernel assumptions outside its support are imposed.
+@isnad1 id=hasderiv.3h4v.s7.df786c376cc4 from=translated src=- shape=0da4f496 vocab=79b23ee1
+-/
 theorem hasDerivAt_dTransformMoment (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) (k : ℕ) :
     HasDerivAt (dTransformMoment μ k)
@@ -69,7 +73,9 @@ theorem hasDerivAt_dTransformMoment (μ : Measure ℝ) [IsFiniteMeasure μ]
   simp only [dTransformMoment, smul_apply, one_apply_eq_self, smul_eq_mul, mul_one]
 
 /-- Above the nonnegative support, the actual singular-value transform has
-the expected integral derivative.-/
+the expected integral derivative.
+@isnad1 id=hasderiv.3h3v.s7.e08e516e6800 from=translated src=- shape=d0328779 vocab=caea785d
+-/
 theorem hasDerivAt_singularValuePhi (μ : Measure ℝ) [IsFiniteMeasure μ]
     {b y : ℝ} (hb : 0 ≤ b) (hsupport : μ.support ⊆ Icc 0 b) (hy : b < y) :
     HasDerivAt (singularValuePhi μ)

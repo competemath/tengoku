@@ -29,7 +29,9 @@ variable {s b n d : ℕ}
 `c_b^(4q)`.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.729965169a83 from=translated src=- shape=1caad8d7 vocab=1125447f
+-/
 theorem scaledIIDVectorError_trace_even (F : Frame n d)
     (y : YArray b s n) (q : ℕ) :
     ((scaledIIDVectorError F y) ^ (2 * q)).trace =
@@ -44,7 +46,9 @@ theorem scaledIIDVectorError_trace_even (F : Frame n d)
 moment under the identical finite law.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.ef7248696de5 from=translated src=- shape=b6e1134c vocab=1b510f90
+-/
 theorem selector_trace_moment_eq_raw (hs : 0 < s) (hb : 0 < b)
     (F : Frame n d) (q : ℕ) :
     (selectorArrayLaw hb s n).expect
@@ -60,7 +64,9 @@ theorem selector_trace_moment_eq_raw (hs : 0 < s) (hb : 0 < b)
 moment after the proved finite-coordinate flattening.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.63448368c8bc from=translated src=- shape=474889a7 vocab=08dca12d
+-/
 theorem iid_trace_moment_eq_product (hs : 0 < s) (hb : 1 < b)
     (F : Frame n d) (q : ℕ) :
     (iidArrayLaw (lt_trans Nat.zero_lt_one hb) s n).expect
@@ -84,7 +90,9 @@ theorem iid_trace_moment_eq_product (hs : 0 < s) (hb : 1 < b)
 /-- Full algebraic factor in the iid side of the convex-order transfer.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s8.a9647ef13ed3 from=translated src=- shape=f3eafca2 vocab=b4af4cbc
+-/
 theorem scaled_iid_trace_moment_eq_product (hs : 0 < s) (hb : 1 < b)
     (F : Frame n d) (q : ℕ) :
     (iidArrayLaw (lt_trans Nat.zero_lt_one hb) s n).expect
@@ -114,7 +122,9 @@ theorem scaled_iid_trace_moment_eq_product (hs : 0 < s) (hb : 1 < b)
 unconditional sparse--iid convex order.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.8683c173aa74 from=translated src=- shape=5afb38d7 vocab=03ecc2e0
+-/
 theorem unconditional_trace_moment_order (hb : 0 < b)
     (F : Frame n d) (q : ℕ) :
     (selectorArrayLaw hb s n).expect
@@ -131,7 +141,9 @@ theorem unconditional_trace_moment_order (hb : 0 < b)
 SparseStack law to the product-Fock iid law.
 
 Source: ported from `SparseFockFormal.MomentTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s8.d6af837253cb from=translated src=- shape=b869ddf0 vocab=65df5f81
+-/
 theorem raw_trace_moment_le_scaled_product (hs : 0 < s) (hb : 1 < b)
     (F : Frame n d) (q : ℕ) :
     (sparseStackSelectorLaw s b n (lt_trans Nat.zero_lt_one hb)).expect
@@ -157,7 +169,9 @@ theorem raw_trace_moment_le_scaled_product (hs : 0 < s) (hb : 1 < b)
 conditional barycenter identity.
 
 Source: ported from `SparseFockFormal.TracePowerConvexity.conditional_traceEvenPower_order`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h7v.s6.6b37de2ccc8b from=translated src=- shape=5004e75f vocab=59ed3c10
+-/
 theorem conditional_traceEvenPower_order {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (x : XArray b s n) (q : ℕ) :
     traceEvenPower q (sparseSymmetricError F x) ≤

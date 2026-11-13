@@ -27,7 +27,9 @@ variable {ι κ : Type*} [Fintype ι] [Fintype κ] [DecidableEq ι] [DecidableEq
 
 omit [Fintype ι] [DecidableEq κ] in
 /-- Zero regularization is the original Gram matrix. Source: the Gram
-definition; atlas `wishart-lambda-min-tail` (helper).-/
+definition; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=eq.0h3v.s5.bd6c87248ac1 from=translated src=- shape=dfd8fa06 vocab=409fbcac
+-/
 @[simp] theorem regularizedGram_zero (G : Matrix ι κ ℝ) : regularizedGram 0 G = G * Gᵀ := by
   simp only [regularizedGram, zero_smul, add_zero]
 
@@ -35,7 +37,9 @@ omit [Fintype κ] [DecidableEq κ] in
 /-- Products of positive semidefinite trace powers dominate the trace
 power of their product. Source: nonnegative eigenvalue cross terms;
 atlas `wishart-lambda-min-tail` (finite defect helper).
-atlas: inverse-power-gram-laplacian-/
+atlas: inverse-power-gram-laplacian
+@isnad1 id=le.1h4v.s7.c679b3ee7b8f from=translated src=- shape=b3b868db vocab=9c6b94ed
+-/
 theorem trace_pow_le_trace_pow_mul_trace_pow {R : Matrix ι ι ℝ}
     (hR : R.PosSemidef) (a b : ℕ) :
     Matrix.trace (R ^ (a + b)) ≤ Matrix.trace (R ^ a) * Matrix.trace (R ^ b) := by
@@ -52,7 +56,9 @@ theorem trace_pow_le_trace_pow_mul_trace_pow {R : Matrix ι ι ℝ}
 omit [DecidableEq κ] in
 /-- At an invertible Gram matrix, its inverse trace power contracts with
 the Gram matrix by lowering the exponent by one. Source: inverse identity;
-atlas `wishart-lambda-min-tail` (finite calculus helper).-/
+atlas `wishart-lambda-min-tail` (finite calculus helper).
+@isnad1 id=eq.1h4v.s8.6675bebc914e from=translated src=- shape=0d566068 vocab=fa988646
+-/
 theorem trace_inv_gram_pow_succ_mul_gram (G : Matrix ι κ ℝ)
     (hpd : (G * Gᵀ).PosDef) (a : ℕ) :
     Matrix.trace ((G * Gᵀ)⁻¹ ^ (a + 1) * (G * Gᵀ)) =
@@ -64,7 +70,9 @@ omit [DecidableEq κ] in
 /-- The unshifted Gram gradient energy has an exact inverse trace-power
 formula. Source: the user's finite operator refinement; atlas
 `wishart-lambda-min-tail` (helper).
-atlas: inverse-power-gram-gradient-energy-/
+atlas: inverse-power-gram-gradient-energy
+@isnad1 id=other.1h4v.s8.56a99564313c from=translated src=- shape=8c509275 vocab=1e5ac15c
+-/
 theorem frobSq_gramSoftMinGradient_unshifted_eq (n : ℕ)
     (G : Matrix ι κ ℝ) (hpd : (G * Gᵀ).PosDef) :
     let R := (G * Gᵀ)⁻¹
@@ -82,7 +90,9 @@ theorem frobSq_gramSoftMinGradient_unshifted_eq (n : ℕ)
 omit [Fintype κ] [DecidableEq κ] in
 /-- The inverse-power minimum is below the reciprocal of every inverse
 eigenvalue. Source: one summand of the positive trace power;
-atlas `wishart-lambda-min-tail` (cutoff helper).-/
+atlas `wishart-lambda-min-tail` (cutoff helper).
+@isnad1 id=le.2h4v.s6.cfcede89ce50 from=translated src=- shape=68161158 vocab=88eb243e
+-/
 theorem inversePowerSoftMin_le_inv_inverse_eigenvalue [Nonempty ι]
     (n : ℕ) (hn : 0 < n) (A : Matrix ι ι ℝ) (hA : A.PosDef) (i : ι) :
     inversePowerSoftMin n A ≤ (hA.inv.isHermitian.eigenvalues i)⁻¹ := by
@@ -101,7 +111,9 @@ theorem inversePowerSoftMin_le_inv_inverse_eigenvalue [Nonempty ι]
 omit [DecidableEq κ] in
 /-- A Gram matrix outside the positive definite domain has zero total
 inverse. Source: Gram positivity and the singular inverse convention;
-atlas `wishart-lambda-min-tail` (cutoff helper).-/
+atlas `wishart-lambda-min-tail` (cutoff helper).
+@isnad1 id=eq.1h3v.s6.22db06bcbb30 from=translated src=- shape=df55e06e vocab=50e7146b
+-/
 theorem inv_gram_eq_zero_of_not_posDef (G : Matrix ι κ ℝ)
     (hnot : ¬(G * Gᵀ).PosDef) : (G * Gᵀ)⁻¹ = 0 := by
   have hPSD : (G * Gᵀ).PosSemidef := by
@@ -114,7 +126,9 @@ theorem inv_gram_eq_zero_of_not_posDef (G : Matrix ι κ ℝ)
 omit [DecidableEq κ] in
 /-- The unshifted inverse-power minimum is zero outside the positive
 definite Gram domain, using the total inverse convention. Source: singular
-Gram inverse; atlas `wishart-lambda-min-tail` (cutoff helper).-/
+Gram inverse; atlas `wishart-lambda-min-tail` (cutoff helper).
+@isnad1 id=eq.2h4v.s6.3a3223bd6f01 from=translated src=- shape=85811d8e vocab=d45a6b06
+-/
 theorem inversePowerSoftMin_gram_eq_zero_of_not_posDef (n : ℕ) (hn : 0 < n)
     (G : Matrix ι κ ℝ) (hnot : ¬(G * Gᵀ).PosDef) :
     inversePowerSoftMin n (G * Gᵀ) = 0 := by
@@ -125,7 +139,9 @@ theorem inversePowerSoftMin_gram_eq_zero_of_not_posDef (n : ℕ) (hn : 0 < n)
 omit [DecidableEq κ] in
 /-- The unshifted Gram gradient is zero outside the positive definite
 Gram domain. Source: the total singular inverse convention; atlas
-`wishart-lambda-min-tail` (cutoff helper).-/
+`wishart-lambda-min-tail` (cutoff helper).
+@isnad1 id=eq.1h4v.s6.90aa920e5997 from=translated src=- shape=9b690882 vocab=0e409433
+-/
 theorem gramSoftMinGradient_unshifted_eq_zero_of_not_posDef (n : ℕ)
     (G : Matrix ι κ ℝ) (hnot : ¬(G * Gᵀ).PosDef) : gramSoftMinGradient n 0 G = 0 := by
   rw [gramSoftMinGradient, regularizedGram_zero, inversePowerSoftMinWeight,
@@ -134,7 +150,9 @@ theorem gramSoftMinGradient_unshifted_eq_zero_of_not_posDef (n : ℕ)
 
 /-- The unshifted first Gram chain coefficient equals the corresponding
 gradient entry along every coordinate line, including singular points.
-Source: trace pairing and Gram positivity; atlas `wishart-lambda-min-tail` (helper).-/
+Source: trace pairing and Gram positivity; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=other.0h7v.s8.bb7495c589a1 from=translated src=- shape=ba23898b vocab=183d361c
+-/
 theorem inversePowerSoftMinFirst_unshifted_gram_single_eq_gradient (n : ℕ)
     (G : Matrix ι κ ℝ) (i : ι) (j : κ) (t : ℝ) :
     let E : Matrix ι κ ℝ := Matrix.single i j 1
@@ -161,7 +179,9 @@ theorem inversePowerSoftMinFirst_unshifted_gram_single_eq_gradient (n : ℕ)
 
 omit [DecidableEq κ] in
 /-- The total unshifted inverse-power minimum is nonnegative everywhere.
-Source: Gram inverse positivity; atlas `wishart-lambda-min-tail` (helper).-/
+Source: Gram inverse positivity; atlas `wishart-lambda-min-tail` (helper).
+@isnad1 id=le.0h4v.s5.e8776d8c6c0c from=translated src=- shape=60458e9d vocab=13dbbe53
+-/
 theorem inversePowerSoftMin_gram_nonneg (n : ℕ) (G : Matrix ι κ ℝ) :
     0 ≤ inversePowerSoftMin n (G * Gᵀ) := by
   have hPSD : (G * Gᵀ).PosSemidef := by

@@ -19,7 +19,9 @@ variable {κ Ω F : Type*} [Fintype κ] [DecidableEq κ] [MeasurableSpace Ω]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- The Gaussian-affine bilinear test and every covariance-contraction
-coefficient are integrable on the actual independent product space.-/
+coefficient are integrable on the actual independent product space.
+@isnad1 id=and.6h14v.s11.d12b163876d3 from=translated src=- shape=5b4fd967 vocab=d88d93a3
+-/
 theorem integrable_bilin_gaussian_affine_product
     (P : Measure Ω) [IsProbabilityMeasure P] (X : Ω → κ → ℝ) (hX : AEMeasurable X P)
     (γ : Measure (κ → ℝ)) (hγ : HasGaussianLaw (id : (κ → ℝ) → κ → ℝ) γ)
@@ -59,7 +61,9 @@ theorem integrable_bilin_gaussian_affine_product
 /-- The exact affine Gaussian Stein identity after adjoining an arbitrary
 independent parameter. The full coordinate covariance and the chain-rule
 factor `b` are retained, and all product integrability is derived.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.7h14v.s11.0ee3ea477c12 from=translated src=- shape=aecdb5e5 vocab=425bce65
+-/
 theorem integral_bilin_gaussian_affine_product
     (P : Measure Ω) [IsProbabilityMeasure P] (X : Ω → κ → ℝ) (hX : AEMeasurable X P)
     (γ : Measure (κ → ℝ)) (hγ : HasGaussianLaw (id : (κ → ℝ) → κ → ℝ) γ)

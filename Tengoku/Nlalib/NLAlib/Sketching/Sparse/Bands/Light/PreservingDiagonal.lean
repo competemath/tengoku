@@ -25,7 +25,9 @@ variable {d m n : ℕ}
 
 /-- Light creation and annihilation at distinct sites form the corresponding word kernel.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.969003bd9815 from=translated src=- shape=0470bfdf vocab=65cf5cff
+-/
 theorem pDagAt_mul_pAt_of_ne (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) :
     pDagAt r i * pAt r j =
@@ -38,7 +40,9 @@ theorem pDagAt_mul_pAt_of_ne (r : Fin m) {i j : Fin n}
 
 /-- Distinct-site light synthesis co-Gram terms are physical light hopping terms.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.bc9a730ac6c6 from=translated src=- shape=adb7432e vocab=a0560ecc
+-/
 theorem COne_mul_COne_transpose_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     COne F r i * (COne F r j).transpose =
@@ -84,7 +88,9 @@ def D1 (F : Frame n d) : FullOp d m n :=
 
 /-- A light synthesis co-Gram matrix splits into hopping and same-site diagonal corrections.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.a53b4eb1250f from=translated src=- shape=54d0ba5d vocab=dfe30284
+-/
 theorem CMatrix_mul_transpose_decomposition (F : Frame n d) (r : Fin m) :
     CMatrix F r * (CMatrix F r).transpose =
       D1Row F r +
@@ -115,7 +121,9 @@ theorem CMatrix_mul_transpose_decomposition (F : Frame n d) (r : Fin m) :
 
 /-- The light-sector comparison operator is its diagonal correction plus light hopping.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.03a4ec2ce07c from=translated src=- shape=646b7349 vocab=67c67a2a
+-/
 theorem ghat_eq_D1_add_lightHop (F : Frame n d) :
     ghat (m := m) F = D1 F +
       wordSum m (Frame.rows F) .pUp .pDown := by
@@ -130,7 +138,9 @@ theorem ghat_eq_D1_add_lightHop (F : Frame n d) :
 /-- Exact grade-zero light-band identity from the two diagonal/cross Grams.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.c88034f5c993 from=translated src=- shape=3ed13a07 vocab=d813a3dd
+-/
 theorem Lzero_eq_ghat_sub_D1_add_Hprime (F : Frame n d) :
     Lzero m (Frame.rows F) =
       (ghat F - D1 F) + Hprime m (Frame.rows F) := by
@@ -142,7 +152,9 @@ theorem Lzero_eq_ghat_sub_D1_add_Hprime (F : Frame n d) :
 /-- The scalar row kernel `P†P` is exactly the indicator of a light site.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.6b1eded58d6d from=translated src=- shape=36438db2 vocab=1cc83685
+-/
 theorem pDagAt_row_inner (r : Fin m) (i : Fin n)
     (a b : Pattern m n) :
     (∑ p, pDagAt r i a p * pDagAt r i b p) =
@@ -196,7 +208,9 @@ theorem pDagAt_row_inner (r : Fin m) (i : Fin n)
 
 /-- The occupied-site row diagonal correction is supported on identical patterns with light marked sites.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.e2b837411f36 from=translated src=- shape=9dd539a8 vocab=832ad7a3
+-/
 theorem D1Row_apply (F : Frame n d) (r : Fin m)
     (out inp : Fin d × Pattern m n) :
     D1Row F r out inp =
@@ -230,7 +244,9 @@ theorem D1Row_apply (F : Frame n d) (r : Fin m)
 
 /-- The total occupied-site diagonal correction sums the row corrections.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.29a409fbf33d from=translated src=- shape=d71869e1 vocab=f63189e8
+-/
 theorem D1_apply (F : Frame n d) (out inp : Fin d × Pattern m n) :
     D1 (m := m) F out inp =
       if out.2 = inp.2 then
@@ -244,7 +260,9 @@ theorem D1_apply (F : Frame n d) (out inp : Fin d × Pattern m n) :
 
 /-- The occupied-site diagonal correction acts on each fiber as a sum over rows.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.8d0c9e53740c from=translated src=- shape=df67db76 vocab=4dd95015
+-/
 theorem D1_fullFiber_rows (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     fiber (Matrix.mulVec (D1 (m := m) F) x) p =
@@ -278,7 +296,9 @@ theorem D1_fullFiber_rows (F : Frame n d)
 
 /-- The occupied-site diagonal correction acts on each fiber as a sum over occupied sites.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.1c2a0c373016 from=translated src=- shape=8c6a5e05 vocab=6c164b22
+-/
 theorem D1_fullFiber_sites (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     fiber (Matrix.mulVec (D1 (m := m) F) x) p =
@@ -294,7 +314,9 @@ theorem D1_fullFiber_sites (F : Frame n d)
 
 /-- A scaled frame-vector analysis energy is bounded by its scalar energy.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s6.73f352732938 from=translated src=- shape=85dc55cb vocab=49dd20a5
+-/
 theorem analyze_smul_frame_normSq_le (F : Frame n d)
     (v : EVec d) (i : Fin n) :
     euclideanNormSq ((analyze F v i) • F.u i) ≤
@@ -321,7 +343,9 @@ theorem analyze_smul_frame_normSq_le (F : Frame n d)
 
 /-- Occupied-site diagonal output-fiber energy is controlled by the light occupation count.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s7.11525958e019 from=translated src=- shape=c534c59b vocab=56c0e764
+-/
 theorem D1_output_fiber_energy_le (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     euclideanNormSq
@@ -350,7 +374,9 @@ theorem D1_output_fiber_energy_le (F : Frame n d)
 
 /-- The occupied-site diagonal correction obeys the stated exact-grade energy bound on supported vectors.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.466194192b86 from=translated src=- shape=1a6d979e vocab=d0d8f6ac
+-/
 theorem D1_supported_energy_le (F : Frame n d) {nu : ℕ}
     {x : Fin d × Pattern m n → ℝ}
     (hx : SupportedAtGrade nu x) :
@@ -386,7 +412,9 @@ theorem D1_supported_energy_le (F : Frame n d) {nu : ℕ}
 
 /-- The occupied-site diagonal correction obeys the stated energy bound after grade projection.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.2a21ba8b662e from=translated src=- shape=52c8573a vocab=0c72ee77
+-/
 theorem D1_restricted_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq
@@ -408,7 +436,9 @@ theorem D1_restricted_energy (F : Frame n d) (nu : ℕ)
 /-- The light-occupancy diagonal has restricted norm at most the input grade.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.840f5d7b0d92 from=translated src=- shape=02a770a3 vocab=c85eac36
+-/
 theorem D1_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
     ‖D1 (m := m) F * gradeProjection (d := d) nu‖ ≤ (nu : ℝ) := by
   exact norm_le_of_normSq_mulVec_le (Nat.cast_nonneg nu)

@@ -34,7 +34,9 @@ def externalTensor (M : Matrix (Fin d) (Fin d) ℝ) (K : FockOp m n) :
 
 /-- Transposing an external tensor transposes both its external and Fock factors.
 Source: ported from `SparseFockFormal.ExternalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.e01437896b83 from=translated src=- shape=290ce130 vocab=775fc559
+-/
 theorem transpose_externalTensor
     (M : Matrix (Fin d) (Fin d) ℝ) (K : FockOp m n) :
     (externalTensor M K).transpose = externalTensor M.transpose K.transpose := by
@@ -54,7 +56,9 @@ noncomputable def orderedWordTerm
 local arrows.  This is the precise ordered-word adjoint convention.
 
 Source: ported from `SparseFockFormal.ExternalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s6.7632dc8759ff from=translated src=- shape=b972098f vocab=f3254783
+-/
 theorem transpose_orderedWordTerm
     (u : Fin n → Fin d → ℝ) (r : Fin m) (i j : Fin n) (w : Word) :
     (orderedWordTerm u r i j w).transpose =
@@ -78,7 +82,9 @@ def IsFullGradeShift (delta : ℤ) (T : FullOp d m n) : Prop :=
 
 /-- An external tensor inherits its Fock factor's grade shift.
 Source: ported from `SparseFockFormal.ExternalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.1h6v.s5.b0e3a6e605e0 from=translated src=- shape=16f8f98a vocab=09a92a88
+-/
 theorem externalTensor_homogeneous {delta : ℤ}
     {M : Matrix (Fin d) (Fin d) ℝ} {K : FockOp m n}
     (hK : IsGradeShift delta K) :
@@ -89,7 +95,9 @@ theorem externalTensor_homogeneous {delta : ℤ}
 
 /-- A physical distinct-site word term has its two-leg word's grade shift.
 Source: ported from `SparseFockFormal.ExternalOperators`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.1h8v.s5.dab4d1845668 from=translated src=- shape=0eae739b vocab=f820190e
+-/
 theorem orderedWordTerm_homogeneous
     (u : Fin n → Fin d → ℝ) (r : Fin m) {i j : Fin n} (hij : i ≠ j)
     (w : Word) :

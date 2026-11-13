@@ -26,7 +26,9 @@ variable {ι T Ω : Type*} [Fintype ι] [Nonempty T]
     [MeasurableSpace Ω] [BorelSpace Ω]
 
 /-- Bounded continuous complex tests have an integrable squared supremum
-under the literal finite product of their coordinate laws.-/
+under the literal finite product of their coordinate laws.
+@isnad1 id=integrab.3h6v.s7.28e1fd1f77ed from=translated src=- shape=34ac0e28 vocab=9b8bc443
+-/
 theorem integrable_ciSup_sum_norm_sq_of_continuous
     (ν : ι → Measure Ω) [∀ i, IsProbabilityMeasure (ν i)]
     (X : ι → Ω → T → ℂ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))
@@ -44,7 +46,9 @@ theorem integrable_ciSup_sum_norm_sq_of_continuous
 
 /-- Actual bounded centered complex tests in a sign-closed class satisfy
 the square-supremum estimate with coefficient `16 * R`. No expectation
-comparison is supplied as a premise.-/
+comparison is supplied as a premise.
+@isnad1 id=le.6h7v.s8.abc4f2b13277 from=translated src=- shape=32137da1 vocab=d4629640
+-/
 theorem integral_ciSup_sum_norm_sq_le_mean_add_sixteen_mul_of_centered
     (ν : ι → Measure Ω) [∀ i, IsProbabilityMeasure (ν i)]
     (X : ι → Ω → T → ℂ) (hXc : ∀ i t, Continuous (fun ω => X i ω t))

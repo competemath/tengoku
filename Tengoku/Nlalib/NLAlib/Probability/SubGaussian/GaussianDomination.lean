@@ -25,7 +25,9 @@ open scoped ENNReal
 namespace NLAlib
 
 /-- A unit interval to the right of `x` provides a lower Gaussian absolute tail.
-The coarse denominator three avoids special-function tail estimates.-/
+The coarse denominator three avoids special-function tail estimates.
+@isnad1 id=le.1h1v.s7.f901a491684e from=translated src=- shape=36cf8c35 vocab=5560c4f3
+-/
 theorem ofReal_exp_neg_sq_le_gaussianReal_abs_gt {x : ℝ} (hx : 0 ≤ x) :
     ENNReal.ofReal ((1 / 3 : ℝ) * Real.exp (-(x + 1) ^ 2 / 2)) ≤
       gaussianReal 0 1 {g : ℝ | x < |g|} := by
@@ -75,7 +77,9 @@ private theorem two_mul_exp_neg_four_sq_le {x : ℝ} (hx : 0 ≤ x) :
   nlinarith [Real.exp_pos (-4 * (x + 1) ^ 2)]
 
 /-- An exponential-square moment controls every absolute tail, with no
-integrability assumption hidden in a totalized Bochner integral.-/
+integrability assumption hidden in a totalized Bochner integral.
+@isnad1 id=le.4h5v.s7.6c2de5297910 from=translated src=- shape=888b0213 vocab=dce860e5
+-/
 theorem measure_abs_gt_le_of_lintegral_exp_sq {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} {X : Ω → ℝ} (hX : AEMeasurable X μ) {K : ℝ} (hK : 0 < K)
     (hpsi : ∫⁻ ω, ENNReal.ofReal (Real.exp ((X ω / K) ^ 2)) ∂μ ≤ 2)
@@ -104,7 +108,9 @@ theorem measure_abs_gt_le_of_lintegral_exp_sq {Ω : Type*} [MeasurableSpace Ω]
         div_eq_mul_inv, ← Real.exp_neg]
 
 /-- A symmetric difference with square-exponential parameter `2K` has absolute
-tails dominated by the actual random variable `4K(1+|g|)`.-/
+tails dominated by the actual random variable `4K(1+|g|)`.
+@isnad1 id=le.3h5v.s7.1bcbb5799d75 from=translated src=- shape=8b54e563 vocab=f9a70791
+-/
 theorem measure_abs_gt_le_gaussian_shift_of_lintegral_exp_sq
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {X : Ω → ℝ} (hX : AEMeasurable X μ) {K : ℝ} (hK : 0 < K)
@@ -145,7 +151,9 @@ theorem measure_abs_gt_le_gaussian_shift_of_lintegral_exp_sq
       _ = _ := congrArg (gaussianReal 0 1) he
 
 /-- Taking an independent difference doubles the square-exponential parameter.
-The pointwise convexity bound in fact needs only the two marginal moments.-/
+The pointwise convexity bound in fact needs only the two marginal moments.
+@isnad1 id=le.2h2v.s7.d27af9c00b7e from=translated src=- shape=225d479b vocab=0497c743
+-/
 theorem lintegral_exp_sub_sq_le_two {ν : Measure ℝ} [IsProbabilityMeasure ν]
     {K : ℝ} (hK : 0 < K)
     (hpsi : ∫⁻ x, ENNReal.ofReal (Real.exp ((x / K) ^ 2)) ∂ν ≤ 2) :

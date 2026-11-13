@@ -31,7 +31,9 @@ def selectorArrayLaw {b : ℕ} (hb : 0 < b) (s n : ℕ) :
 
 /-- The selector-array law is the product of its coordinate selector masses.
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.f9cc31d8a54e from=translated src=- shape=2ba1bc32 vocab=7bd3ffba
+-/
 @[simp] theorem selectorArrayLaw_weight {b : ℕ} (hb : 0 < b)
     (s n : ℕ) (x : XArray b s n) :
     (selectorArrayLaw hb s n).weight x =
@@ -49,7 +51,9 @@ def iidArrayLaw {b : ℕ} (hb : 0 < b) (s n : ℕ) :
 
 /-- The iid-array law is the product of its coordinate vector masses.
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.a55a8cf53c89 from=translated src=- shape=2ba1bc32 vocab=2ddca477
+-/
 @[simp] theorem iidArrayLaw_weight {b : ℕ} (hb : 0 < b)
     (s n : ℕ) (y : YArray b s n) :
     (iidArrayLaw hb s n).weight y =
@@ -74,7 +78,9 @@ def conditionalMixtureLaw {b : ℕ} (hb : 0 < b) (s n : ℕ) :
 
 /-- The conditional array mixture has the explicitly weighted finite-kernel mass.
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s8.4329008e3b61 from=translated src=- shape=c140cf1d vocab=cc2399a7
+-/
 @[simp] theorem conditionalMixtureLaw_weight {b : ℕ} (hb : 0 < b)
     (s n : ℕ) (y : YArray b s n) :
     (conditionalMixtureLaw hb s n).weight y =
@@ -84,7 +90,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- One-column disintegration recovers the original iid ternary-vector mass.
 
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.80ac0ce6937a from=translated src=- shape=a9748f96 vocab=936c9dc5
+-/
 theorem oneColumn_mixture_weight {b : ℕ} (hb : 0 < b) (y : YVector b) :
     (∑ x : SignedHash b, (selectorLaw b hb).weight x *
         (conditionalYLaw hb x).weight y) =
@@ -97,7 +105,9 @@ mass.  This is the full finite-array marginal identity, not merely equality of
 selected moments.
 
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.1c05a22769aa from=translated src=- shape=8a051a82 vocab=3dd7eb3a
+-/
 theorem conditionalMixtureLaw_weight_eq_iidArrayLaw_weight
     {b : ℕ} (hb : 0 < b) (s n : ℕ) (y : YArray b s n) :
     (conditionalMixtureLaw hb s n).weight y =
@@ -126,7 +136,9 @@ theorem conditionalMixtureLaw_weight_eq_iidArrayLaw_weight
 conditional mixture and under the iid ternary-array law.
 
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.76107faa6037 from=translated src=- shape=7225ad90 vocab=c57865c1
+-/
 theorem conditionalMixtureLaw_expect_eq_iidArrayLaw_expect
     {b : ℕ} (hb : 0 < b) (s n : ℕ) (f : YArray b s n → ℝ) :
     (conditionalMixtureLaw hb s n).expect f =
@@ -140,7 +152,9 @@ theorem conditionalMixtureLaw_expect_eq_iidArrayLaw_expect
 first over the selector array, then over its conditional ternary array.
 
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.e017276816fa from=translated src=- shape=cd5a473e vocab=eb4e29c0
+-/
 theorem conditionalMixtureLaw_expect_eq_iterated
     {b : ℕ} (hb : 0 < b) (s n : ℕ) (f : YArray b s n → ℝ) :
     (conditionalMixtureLaw hb s n).expect f =
@@ -161,7 +175,9 @@ the chosen observable `Phi`; every probability law and independence claim is
 the explicit finite law defined above.
 
 Source: ported from `SparseFockFormal.SparseIIDUnconditional`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s9.71e0902f4151 from=translated src=- shape=9529bda4 vocab=b8850e43
+-/
 theorem unconditional_convex_order {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (Phi : symmetricMatrices d → ℝ)
     (hPhi : ConvexOn ℝ Set.univ Phi) :

@@ -23,7 +23,9 @@ variable {α β : Type*}
 /-- Two explicit finite laws are equal when their point masses agree.
 
 Source: ported from `SparseFockFormal.UniformExactSFiniteLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.7a9a0ce2e84f from=translated src=- shape=a80bbef2 vocab=a0fe0d61
+-/
 theorem ext_weight [Fintype α] {μ ν : FiniteLaw α}
     (h : μ.weight = ν.weight) : μ = ν := by
   cases μ with
@@ -48,7 +50,9 @@ def uniform [Fintype α] [Nonempty α] : FiniteLaw α where
 
 /-- A uniform law on a nonempty finite type assigns reciprocal-cardinality mass to each point.
 Source: ported from `SparseFockFormal.UniformExactSFiniteLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.a3bb153f103c from=translated src=- shape=80854307 vocab=50a025f4
+-/
 @[simp] theorem uniform_weight [Fintype α] [Nonempty α] (x : α) :
     (uniform : FiniteLaw α).weight x = 1 / (Fintype.card α : ℝ) := rfl
 
@@ -70,7 +74,9 @@ def map [Fintype α] [Fintype β] [DecidableEq β]
 
 /-- A mapped finite law assigns the sum of masses over each point's preimage fiber.
 Source: ported from `SparseFockFormal.UniformExactSFiniteLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.d0fd3cd5346c from=translated src=- shape=86a9dadd vocab=3c83ac79
+-/
 @[simp] theorem map_weight [Fintype α] [Fintype β] [DecidableEq β]
     (μ : FiniteLaw α) (f : α → β) (y : β) :
     (map μ f).weight y = ∑ x, if f x = y then μ.weight x else 0 := rfl
@@ -78,7 +84,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Expectations under a pushforward are expectations after composition.
 
 Source: ported from `SparseFockFormal.UniformExactSFiniteLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.ef983038b96c from=translated src=- shape=c179edf5 vocab=81344eb1
+-/
 theorem map_expect [Fintype α] [Fintype β] [DecidableEq β]
     (μ : FiniteLaw α) (f : α → β) (g : β → ℝ) :
     (map μ f).expect g = μ.expect (fun x => g (f x)) := by
@@ -97,7 +105,9 @@ theorem map_expect [Fintype α] [Fintype β] [DecidableEq β]
 /-- A bijection sends a uniform finite law to a uniform finite law.
 
 Source: ported from `SparseFockFormal.UniformExactSFiniteLaw`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.894c322b8f4a from=translated src=- shape=d4c77871 vocab=ee208935
+-/
 theorem map_uniform_equiv [Fintype α] [Fintype β] [DecidableEq β]
     [Nonempty α] [Nonempty β]
     (e : α ≃ β) :

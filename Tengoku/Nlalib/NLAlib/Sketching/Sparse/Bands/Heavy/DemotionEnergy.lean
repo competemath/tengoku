@@ -25,7 +25,9 @@ variable {d m n : ℕ}
 `Ã_r`.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.ae3dd2dc8851 from=translated src=- shape=ea933238 vocab=8655e390
+-/
 theorem ADown_energy_le_weighted (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, sumSq (Matrix.mulVec (ADownMatrix F r) x)) ≤
@@ -115,7 +117,9 @@ theorem ADown_energy_le_weighted (F : Frame n d)
 /-- First concrete heavy-leg inequality, restricted to exact total grade.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.f47e9abe604a from=translated src=- shape=6fea9774 vocab=aeabe751
+-/
 theorem AUp_grade_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, sumSq (Matrix.mulVec (AUpMatrix F r)
@@ -135,7 +139,9 @@ theorem AUp_grade_energy (F : Frame n d) (nu : ℕ)
 /-- Second concrete heavy-leg inequality, for the demotion legs.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s8.5d03a2633f3d from=translated src=- shape=6fea9774 vocab=e4a81a32
+-/
 theorem ADown_grade_energy (F : Frame n d) (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ r, sumSq (Matrix.mulVec (ADownMatrix F r)

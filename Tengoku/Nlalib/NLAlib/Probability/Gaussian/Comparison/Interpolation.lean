@@ -40,7 +40,9 @@ variable {ι Ω : Type*} [Fintype ι] [MeasurableSpace Ω] {P : Measure Ω}
 process `Z(θ) = cos θ X + sin θ Y`, for jointly Gaussian centred `X, Y` with vanishing cross
 moments: `Cov(Z'(θ)ᵢ, Z(θ)ⱼ) = sin θ cos θ (𝔼 YᵢYⱼ - 𝔼 XᵢXⱼ)`. Standard step of the
 interpolation proofs (Vershynin 2018, proof of Thm 7.2.1). Atlas: helper of `slepian`,
-`sudakov-fernique`, `gordon-minimax`.-/
+`sudakov-fernique`, `gordon-minimax`.
+@isnad1 id=eq.4h8v.s8.82c996e7732d from=translated src=- shape=7ea26758 vocab=6baa53af
+-/
 theorem covariance_rotation_eq (X Y : ι → Ω → ℝ)
     (hXY : HasGaussianLaw (fun ω => (fun t => X t ω, fun t => Y t ω)) P)
     (hX0 : ∀ t, ∫ ω, X t ω ∂P = 0) (hY0 : ∀ t, ∫ ω, Y t ω ∂P = 0)
@@ -82,7 +84,9 @@ theorem covariance_rotation_eq (X Y : ι → Ω → ℝ)
 
 omit [Fintype ι] in
 /-- Expansion of the squared increment: `𝔼 (Xᵢ - Xⱼ)² = 𝔼 XᵢXᵢ + 𝔼 XⱼXⱼ - 𝔼 XᵢXⱼ - 𝔼 XⱼXᵢ` for
-square-integrable `X`. Atlas: helper of `slepian`, `sudakov-fernique`, `gordon-minimax`.-/
+square-integrable `X`. Atlas: helper of `slepian`, `sudakov-fernique`, `gordon-minimax`.
+@isnad1 id=eq.1h6v.s8.cc765ae74c9a from=translated src=- shape=7545fc57 vocab=e3e03985
+-/
 theorem integral_sub_sq_eq (X : ι → Ω → ℝ) (hXm : ∀ t, MemLp (X t) 2 P) (i j : ι) :
     ∫ ω, (X i ω - X j ω) ^ 2 ∂P = ∫ ω, X i ω * X i ω ∂P + ∫ ω, X j ω * X j ω ∂P
       - ∫ ω, X i ω * X j ω ∂P - ∫ ω, X j ω * X i ω ∂P := by
@@ -105,7 +109,9 @@ centred vectors on one probability space with vanishing cross moments `𝔼 Xₛ
 `|F x| ≤ ∑ₜ |xₜ| + K`. If `∑ᵢⱼ (𝔼 YᵢYⱼ - 𝔼 XᵢXⱼ) Hᵢⱼ(x) ≥ 0` for all `x`, then
 `𝔼 F(X) ≤ 𝔼 F(Y)`. Source: Kahane 1986; Vershynin 2018, §7.2 (proof of Thm 7.2.1). Atlas: helper
 of `gordon-minimax`.
-atlas: gordon-minimax-/
+atlas: gordon-minimax
+@isnad1 id=le.11h10v.s10.ecf3d44a0c8c from=translated src=- shape=e1851dab vocab=353426ab
+-/
 theorem integral_le_integral_of_covariance_hessian_nonneg {ι Ω : Type*} [Fintype ι]
     [MeasurableSpace Ω] {P : Measure Ω}
     (X Y : ι → Ω → ℝ)

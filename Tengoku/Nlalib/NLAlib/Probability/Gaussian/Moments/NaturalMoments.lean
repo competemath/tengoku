@@ -28,13 +28,17 @@ Source: the chi-square Gamma integral. Atlas: `khatri-rao-sharp-growth`.-/
 def gaussianRadialMoment (r p : ℕ) : ℝ := ∏ k ∈ range p, ((r : ℝ) + 2 * k)
 
 /-- Scalar Gaussian even moments are positive.
-Source: their product form. Atlas: `khatri-rao-sharp-growth`.-/
+Source: their product form. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=lt.0h1v.s3.681abc67ec0a from=translated src=- shape=b9369acb vocab=9c475ada
+-/
 theorem gaussianEvenMoment_pos (p : ℕ) : 0 < gaussianEvenMoment p := by
   unfold gaussianEvenMoment
   exact prod_pos fun k _ => by positivity
 
 /-- The scalar Gaussian even moment has the Gamma closed form.
-Source: the Gaussian Gamma recurrence. Atlas: `khatri-rao-sharp-growth`.-/
+Source: the Gaussian Gamma recurrence. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=eq.0h1v.s6.a1dd00f5afbf from=translated src=- shape=60415c97 vocab=a78ea9ae
+-/
 theorem gaussianEvenMoment_eq_gamma (p : ℕ) :
     gaussianEvenMoment p = 2 ^ p * Real.Gamma ((p : ℝ) + 1 / 2) / Real.sqrt Real.pi := by
   induction p with
@@ -51,7 +55,9 @@ theorem gaussianEvenMoment_eq_gamma (p : ℕ) :
     ring
 
 /-- The Gaussian radial moment has the Gamma closed form.
-Source: the chi-square Gamma recurrence. Atlas: `khatri-rao-sharp-growth`.-/
+Source: the chi-square Gamma recurrence. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=eq.1h2v.s6.9ba8ce7afffa from=translated src=- shape=cb0117ae vocab=1ea77b33
+-/
 theorem gaussianRadialMoment_eq_gamma {r : ℕ} (hr : 1 ≤ r) (p : ℕ) :
     gaussianRadialMoment r p =
       2 ^ p * Real.Gamma ((r : ℝ) / 2 + p) / Real.Gamma ((r : ℝ) / 2) := by
@@ -68,13 +74,17 @@ theorem gaussianRadialMoment_eq_gamma {r : ℕ} (hr : 1 ≤ r) (p : ℕ) :
     ring
 
 /-- Scalar Gaussian even moments dominate the ordinary factorial.
-Source: comparison of the product factors. Atlas: `khatri-rao-sharp-growth`.-/
+Source: comparison of the product factors. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.0h1v.s3.6ee19733426d from=translated src=- shape=0a9af14d vocab=d3eddf1e
+-/
 theorem factorial_le_gaussianEvenMoment (p : ℕ) : (p.factorial : ℝ) ≤ gaussianEvenMoment p := by
   rw [Nat.factorial_eq_prod_range_add_one, Nat.cast_prod]
   exact prod_le_prod (fun _ _ => by positivity) fun k _ => by push_cast; linarith
 
 /-- The squared Gaussian radius has its exact natural product moment.
-Source: Gaussian polar integration. Atlas: `khatri-rao-sharp-growth`.-/
+Source: Gaussian polar integration. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=eq.1h2v.s6.3dc0e1f0b05e from=translated src=- shape=713ce844 vocab=b24b3323
+-/
 theorem integral_pow_sum_sq_gaussianVector {r : ℕ} (hr : 1 ≤ r) (p : ℕ) :
     (∫ z : Fin r → ℝ, (∑ i, z i ^ 2) ^ p ∂gaussianVector (Fin r)) =
       gaussianRadialMoment r p := by
@@ -83,7 +93,9 @@ theorem integral_pow_sum_sq_gaussianVector {r : ℕ} (hr : 1 ≤ r) (p : ℕ) :
     integral_rpow_sum_sq_gaussianVector r hr (p : ℝ) (by positivity)
 
 /-- The scalar Gaussian has its exact even natural moment.
-Source: the scalar Gaussian Gamma integral. Atlas: `khatri-rao-sharp-growth`.-/
+Source: the scalar Gaussian Gamma integral. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=eq.0h1v.s5.bf15818fbc5f from=translated src=- shape=68e61da5 vocab=07ef2531
+-/
 theorem integral_pow_two_mul_gaussianReal (p : ℕ) :
     (∫ z : ℝ, z ^ (2 * p) ∂gaussianReal 0 1) = gaussianEvenMoment p := by
   rw [gaussianEvenMoment_eq_gamma]
@@ -93,7 +105,9 @@ theorem integral_pow_two_mul_gaussianReal (p : ℕ) :
   simpa only [abs_pow, even_two_mul, Even.pow_abs] using h
 
 /-- A radial Gaussian product moment is bounded by its largest possible factor.
-Source: monotonicity of finite products. Atlas: `khatri-rao-sharp-growth`.-/
+Source: monotonicity of finite products. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.0h2v.s5.fbe5feed2f35 from=translated src=- shape=d1095286 vocab=9ef81f0d
+-/
 theorem gaussianRadialMoment_le_pow (r p : ℕ) :
     gaussianRadialMoment r p ≤ ((r : ℝ) + 2 * p) ^ p := by
   unfold gaussianRadialMoment
@@ -108,7 +122,9 @@ theorem gaussianRadialMoment_le_pow (r p : ℕ) :
 
 /-- Every linear form of a Gaussian vector has its exact even natural moment.
 Source: Gaussian rotational invariance and the scalar moment formula.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.0h3v.s7.0e322f83b074 from=translated src=- shape=79e58bf7 vocab=edae8b57
+-/
 theorem integrable_and_integral_dotProduct_pow_two_mul_gaussianVector
     {α : Type*} [Fintype α] (w : α → ℝ) (p : ℕ) :
     Integrable (fun z => (w ⬝ᵥ z) ^ (2 * p)) (gaussianVector α) ∧

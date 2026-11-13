@@ -62,7 +62,9 @@ private theorem measurable_resamplingTriple_second_coords :
 /-- The genuine quadratic resampling integrand is integrable for every bounded
 continuous derivative field and an arbitrary independent probability sample.
 Only individual summand second moments are needed.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=integrab.3h11v.s11.197a3cda6062 from=translated src=- shape=c1ffae5e vocab=aa38f45c
+-/
 theorem integrable_bilin_quadratic_resamplingTriple_affine
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))
@@ -94,7 +96,9 @@ theorem integrable_bilin_quadratic_resamplingTriple_affine
 resampling second-moment tensor and the original-sum affine derivative test.
 The extra sample law is arbitrary; no Gaussian or matching-covariance
 assumption is used in this exact transport identity.
-atlas: cauchy-transform-gaussian-universality (partial)-/
+atlas: cauchy-transform-gaussian-universality (partial)
+@isnad1 id=eq.3h11v.s12.160a4d7e9e68 from=translated src=- shape=54812c3d vocab=43e13fdd
+-/
 theorem integral_bilin_quadratic_resamplingTriple_affine
     (ν : ι → Measure (κ → ℝ)) [∀ i, IsProbabilityMeasure (ν i)]
     (hν : ∀ i, MemLp (id : (κ → ℝ) → κ → ℝ) 2 (ν i))

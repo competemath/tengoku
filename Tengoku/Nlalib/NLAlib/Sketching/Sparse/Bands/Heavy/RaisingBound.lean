@@ -23,7 +23,9 @@ variable {d m n : ℕ}
 
 /-- Creation block-column energy is the sum of physical-row creation energies.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.b56de4ea8608 from=translated src=- shape=9f37c47b vocab=6e6259ff
+-/
 theorem coordNormSq_AUpStack (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq (Matrix.mulVec (AUpStack F) x) =
@@ -33,7 +35,9 @@ theorem coordNormSq_AUpStack (F : Frame n d)
 
 /-- Annihilation block-column energy is the sum of physical-row annihilation energies.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.9dd1bc57e42e from=translated src=- shape=9f37c47b vocab=f3de3988
+-/
 theorem coordNormSq_ADownStack (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq (Matrix.mulVec (ADownStack F) x) =
@@ -44,7 +48,9 @@ theorem coordNormSq_ADownStack (F : Frame n d)
 /-- Operator form of the first heavy-leg Loewner/energy estimate.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.8a1958636d06 from=translated src=- shape=841ee90f vocab=2e16deaa
+-/
 theorem AUpStack_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
     ‖AUpStack (m := m) F * gradeProjection (d := d) (m := m) nu‖ ≤
       Real.sqrt nu := by
@@ -59,7 +65,9 @@ theorem AUpStack_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
 /-- Operator form of the second heavy-leg Loewner/energy estimate.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.c3b5d035f09d from=translated src=- shape=841ee90f vocab=88c6b31c
+-/
 theorem ADownStack_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
     ‖ADownStack (m := m) F * gradeProjection (d := d) (m := m) nu‖ ≤
       Real.sqrt nu := by
@@ -73,7 +81,9 @@ theorem ADownStack_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
 
 /-- The transpose of a heavy synthesis row is the matching annihilation analysis column.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.fe65473c7333 from=translated src=- shape=643d17ed vocab=2922b17e
+-/
 @[simp] theorem BUpMatrix_transpose (F : Frame n d) (r : Fin m) :
     (BUpMatrix F r).transpose = ADownMatrix F r := by
   ext σ inp
@@ -88,7 +98,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 most `√(mu+1)`.  This is the concrete `B_r B_r†` estimate.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.d813c5e817dd from=translated src=- shape=22272eb6 vocab=7dfa6bbd
+-/
 theorem BUpStack_rowGradeProjection_norm (F : Frame n d) (mu : ℕ) :
     ‖BUpStack (m := m) F * rowGradeProjection (m := m) (n := n) mu‖ ≤
       Real.sqrt (mu + 1) := by
@@ -117,7 +129,9 @@ theorem BUpStack_rowGradeProjection_norm (F : Frame n d) (mu : ℕ) :
 
 /-- The raising heavy band factors through the exact intermediate grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.b08a4454a4f0 from=translated src=- shape=bdc5b260 vocab=3dc6210c
+-/
 theorem Hplus_grade_factor (F : Frame n d) (nu : ℕ) :
     Hplus m (Frame.rows F) * gradeProjection (d := d) nu =
       (BUpStack (m := m) F * rowGradeProjection (m := m) (n := n) (nu + 1)) *
@@ -137,7 +151,9 @@ theorem Hplus_grade_factor (F : Frame n d) (nu : ℕ) :
 
 /-- The square-root product of grades separated by two is bounded by the intervening grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h1v.s5.0f17923da0a3 from=translated src=- shape=a31de6e0 vocab=c342d629
+-/
 theorem sqrt_mul_sqrt_add_two_le (nu : ℕ) :
     Real.sqrt (nu + 2) * Real.sqrt nu ≤ (nu : ℝ) + 1 := by
   have hnu : 0 ≤ (nu : ℝ) := Nat.cast_nonneg _
@@ -156,7 +172,9 @@ theorem sqrt_mul_sqrt_add_two_le (nu : ℕ) :
 table.  No abstract component-bound premise occurs in the statement.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.ad15c880314f from=translated src=- shape=af8779bc vocab=7fa24668
+-/
 theorem Hplus_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
     ‖Hplus m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤ (nu : ℝ) + 1 := by
   rw [Hplus_grade_factor]

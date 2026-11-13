@@ -23,7 +23,9 @@ light move on the underlying Pattern block.  This is the pointwise
 combinatorial content of the bosonic compression.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=other.1h9v.s7.509065c47df6 from=translated src=- shape=96a64984 vocab=10dc9511
+-/
 theorem lightMove_legal_of_domain_eq
     (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockPattern T ell)
@@ -153,7 +155,9 @@ theorem lightMove_legal_of_domain_eq
 ordering whose spectators coincide with the canonical output ordering.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ex.4h10v.s7.f406a96609c1 from=translated src=- shape=b49be1bc vocab=64b05a9a
+-/
 theorem exists_permutation_of_legal_move
     (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockPattern T ell) (k : Fin ell)

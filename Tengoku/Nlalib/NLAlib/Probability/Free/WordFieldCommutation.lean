@@ -25,13 +25,17 @@ local notation "B" => WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι
 def wordVacuumProjection (ι : Type*) : WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι :=
   InnerProductSpace.rankOne ℂ (wordVacuum ι) (wordVacuum ι)
 
-/-- The vacuum projection is self-adjoint under the native operator star.-/
+/-- The vacuum projection is self-adjoint under the native operator star.
+@isnad1 id=eq.0h1v.s12.6d32519627b6 from=translated src=- shape=de9ff057 vocab=d3b1aa7d
+-/
 @[simp]
 theorem star_wordVacuumProjection : star (wordVacuumProjection ι) = wordVacuumProjection ι := by
   simp [wordVacuumProjection, ContinuousLinearMap.star_eq_adjoint]
 
 /-- The vacuum projection preserves the empty-word coordinate and kills
-every nonempty word basis vector.-/
+every nonempty word basis vector.
+@isnad1 id=eq.0h3v.s12.5ddb450f42b9 from=translated src=- shape=ae43ed21 vocab=60765eca
+-/
 @[simp]
 theorem wordVacuumProjection_apply_single (w : List ι) (z : ℂ) :
     wordVacuumProjection ι (lp.single 2 w z) =
@@ -44,7 +48,9 @@ theorem wordVacuumProjection_apply_single (w : List ι) (z : ℂ) :
   · simp [wordVacuumProjection, InnerProductSpace.rankOne_apply, wordVacuum,
       lp.inner_single_left, lp.single_apply, hw, Ne.symm hw]
 
-/-- Prefix and suffix creation commute as actual bounded operators.-/
+/-- Prefix and suffix creation commute as actual bounded operators.
+@isnad1 id=commute.0h3v.s12.3f99746d8d32 from=translated src=- shape=1d946874 vocab=957889b6
+-/
 theorem commute_wordCreation_wordRightCreation (i j : ι) :
     Commute (wordCreation i).toContinuousLinearMap (wordRightCreation j).toContinuousLinearMap := by
   change _ * _ = _ * _
@@ -56,7 +62,9 @@ theorem commute_wordCreation_wordRightCreation (i j : ι) :
     LinearIsometry.coe_toContinuousLinearMap]
 
 /-- The mixed left-annihilation/right-creation commutator is exactly its
-Kronecker coefficient times the genuine rank-one vacuum projection.-/
+Kronecker coefficient times the genuine rank-one vacuum projection.
+@isnad1 id=eq.0h3v.s15.7dc1a037e7f5 from=translated src=- shape=e6a53af0 vocab=e1227a79
+-/
 theorem wordAnnihilation_mul_wordRightCreation_sub (i j : ι) :
     wordAnnihilation i * (wordRightCreation j).toContinuousLinearMap -
         (wordRightCreation j).toContinuousLinearMap * wordAnnihilation i =
@@ -75,7 +83,9 @@ theorem wordAnnihilation_mul_wordRightCreation_sub (i j : ι) :
         lp.singleContinuousLinearMap_apply, LinearIsometry.coe_toContinuousLinearMap]
 
 /-- The actual left and right self-adjoint fields commute. The two mixed
-vacuum defects cancel; they are not individually assumed to vanish.-/
+vacuum defects cancel; they are not individually assumed to vanish.
+@isnad1 id=commute.0h3v.s11.8aacafcfc907 from=translated src=- shape=43e82653 vocab=d53ef627
+-/
 theorem commute_wordField_wordRightField (i j : ι) :
     Commute (wordField i) (wordRightField j) := by
   let C : B := (wordCreation i).toContinuousLinearMap

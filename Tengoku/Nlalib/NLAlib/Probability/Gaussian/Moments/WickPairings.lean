@@ -54,7 +54,9 @@ def gaussianPairingPositions : {m : ℕ} → GaussianPairings m → List (Fin m)
       (gaussianPairingPositions π).map (fun a => (j.succAbove a).succ)
 
 /-- A complete pairing covers exactly its number of labelled positions.
-Source: Janson 1997, *Gaussian Hilbert Spaces*, §1.5 (Feynman diagrams / pairings).-/
+Source: Janson 1997, *Gaussian Hilbert Spaces*, §1.5 (Feynman diagrams / pairings).
+@isnad1 id=eq.0h2v.s3.1e99f2e29ca9 from=translated src=- shape=5f0b8119 vocab=50bdbe35
+-/
 theorem gaussianPairingPositions_length {m : ℕ} (π : GaussianPairings m) :
     (gaussianPairingPositions π).length = m := by
   induction m using Nat.twoStepInduction with
@@ -66,7 +68,9 @@ theorem gaussianPairingPositions_length {m : ℕ} (π : GaussianPairings m) :
 
 /-- Every position appears in a canonical complete pairing. Together with the
 exact length, this says each position appears once.
-Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.-/
+Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
+@isnad1 id=eq.0h2v.s4.34263145915f from=translated src=- shape=915f20c5 vocab=27567211
+-/
 theorem gaussianPairingPositions_toFinset {m : ℕ} (π : GaussianPairings m) :
     (gaussianPairingPositions π).toFinset = Finset.univ := by
   induction m using Nat.twoStepInduction with
@@ -92,7 +96,9 @@ theorem gaussianPairingPositions_toFinset {m : ℕ} (π : GaussianPairings m) :
             exact Or.inr (Or.inr ⟨a, htail a, rfl⟩)
 
 /-- A complete pairing uses every labelled position exactly once.
-Source: Janson 1997, §1.5; this rules out reused positions.-/
+Source: Janson 1997, §1.5; this rules out reused positions.
+@isnad1 id=nodup.0h2v.s3.a9a439b1d138 from=translated src=- shape=71337308 vocab=49c9f488
+-/
 theorem gaussianPairingPositions_nodup {m : ℕ} (π : GaussianPairings m) :
     (gaussianPairingPositions π).Nodup := by
   apply (Multiset.toFinset_card_eq_card_iff_nodup
@@ -104,7 +110,9 @@ theorem gaussianPairingPositions_nodup {m : ℕ} (π : GaussianPairings m) :
 /-- Gaussian Wick's finite pairing sum for arbitrary products of linear forms
 under independent standard coordinates, including singular images and repeated
 coefficient vectors. Source: Isserlis 1918; Janson 1997, *Gaussian Hilbert Spaces*, Thm 1.28.
-atlas: isserlis (partial)-/
+atlas: isserlis (partial)
+@isnad1 id=eq.0h3v.s6.9eaf703d6832 from=translated src=- shape=6a4a5a9a vocab=d894a4dd
+-/
 theorem integral_prod_dotProduct_eq_sum_gaussianPairingWeight
     {n m : ℕ} (a : Fin m → Fin n → ℝ) :
     ∫ x : Fin n → ℝ, ∏ j, a j ⬝ᵥ x ∂(gaussianVector _) =
@@ -151,7 +159,9 @@ theorem integral_prod_dotProduct_eq_sum_gaussianPairingWeight
 /-- Every odd centered standard-Gaussian linear product has expectation zero,
 without distinctness or nonsingularity assumptions. Source: operator
 re-derivation `pg:wick`.
-atlas: isserlis (partial)-/
+atlas: isserlis (partial)
+@isnad1 id=eq.1h3v.s6.ec63a2790010 from=translated src=- shape=cde4f662 vocab=67c98b60
+-/
 theorem integral_prod_dotProduct_eq_zero_of_odd
     {n m : ℕ} (hm : Odd m) (a : Fin m → Fin n → ℝ) :
     ∫ x : Fin n → ℝ, ∏ j, a j ⬝ᵥ x ∂(gaussianVector _) = 0 := by

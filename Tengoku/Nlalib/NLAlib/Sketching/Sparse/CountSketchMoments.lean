@@ -22,7 +22,9 @@ variable [DecidableEq ι] [DecidableEq ρ] [DecidableEq d]
 omit [Fintype d] in
 /-- Under the actual sign law, every embedded CountSketch Gram-error entry
 is the corresponding hollow sign quadratic form almost everywhere.
-Source: manuscript `sh:count-hollow`; supports `sparse-ose`.-/
+Source: manuscript `sh:count-hollow`; supports `sparse-ose`.
+@isnad1 id=eventual.1h7v.s7.4f31b2ab3796 from=translated src=- shape=35da499a vocab=60780a8f
+-/
 theorem ae_countSketch_gram_error_apply_eq_quadForm
     (h : ι → ρ) (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) (a b : d) :
     (fun σ : ι → ℝ =>
@@ -42,7 +44,9 @@ theorem ae_countSketch_gram_error_apply_eq_quadForm
 omit [Fintype d] in
 /-- Every squared CountSketch Gram-error entry is genuinely integrable
 under the actual sign law for each fixed hash. Source: the hollow quadratic
-form and absolute Rademacher moments; supports `sparse-ose`.-/
+form and absolute Rademacher moments; supports `sparse-ose`.
+@isnad1 id=integrab.1h7v.s7.8f4bdb779d9f from=translated src=- shape=d7c66644 vocab=cce0c099
+-/
 theorem integrable_countSketch_gram_error_apply_sq
     (h : ι → ρ) (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) (a b : d) :
     Integrable (fun σ : ι → ℝ =>
@@ -55,7 +59,9 @@ theorem integrable_countSketch_gram_error_apply_sq
 omit [Fintype d] in
 /-- The exact entrywise conditional CountSketch second moment consists of
 the two surviving off-diagonal sign contractions. Source: manuscript
-`sh:count-second`; supports `sparse-ose`.-/
+`sh:count-second`; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s8.ca143b090fcd from=translated src=- shape=1078a2bb vocab=bef6911a
+-/
 theorem integral_countSketch_gram_error_apply_sq
     (h : ι → ρ) (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) (a b : d) :
     (∫ σ : ι → ℝ,
@@ -83,7 +89,9 @@ theorem integral_countSketch_gram_error_apply_sq
 
 /-- The actual sign law's conditional squared Frobenius Gram-error moment
 is the finite sum of the exact entrywise contractions. Source: manuscript
-`sh:count-second`; supports `sparse-ose`.-/
+`sh:count-second`; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s8.3b6acad85f52 from=translated src=- shape=d3c5c5f3 vocab=426ecb52
+-/
 theorem integral_frobSq_countSketch_gram_error
     (h : ι → ρ) (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) :
     (∫ σ : ι → ℝ,

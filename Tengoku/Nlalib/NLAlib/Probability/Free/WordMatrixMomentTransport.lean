@@ -29,12 +29,16 @@ variable {D ι A : Type*} [Fintype D] [DecidableEq D]
   [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 local notation "B" => WordHilbertSpace ι →L[ℂ] WordHilbertSpace ι
 
-/-- Generic actual matrix evaluation specializes exactly to the existing native matrix word-polynomial evaluation.-/
+/-- Generic actual matrix evaluation specializes exactly to the existing native matrix word-polynomial evaluation.
+@isnad1 id=eq.0h3v.s14.9701b2e48700 from=translated src=- shape=7642e15c vocab=ca468644
+-/
 @[simp] theorem freeAlgebraEvaluation_wordField
     (P : Matrix D D (FreeAlgebra ℂ ι)) :
     CStarMatrix.freeAlgebraEvaluation ℂ (wordField : ι → B) P=wordMatrixPolynomialEvaluation P := rfl
 
-/-- The genuine amplified expectation of a normalized free semicircular family equals the actual native word-matrix vacuum expectation.-/
+/-- The genuine amplified expectation of a normalized free semicircular family equals the actual native word-matrix vacuum expectation.
+@isnad1 id=eq.3h6v.s14.cc48b923f66f from=translated src=- shape=3b456704 vocab=248bd69c
+-/
 theorem normalizedPositiveFunctional_freeAlgebraEvaluation_eq_wordMatrix
     (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1=1) (X : ι → A)
     (hFree : NoncommutativeProbability.IsFreeFamily φ.toLinearMap X)
@@ -48,7 +52,9 @@ theorem normalizedPositiveFunctional_freeAlgebraEvaluation_eq_wordMatrix
   exact Finset.sum_congr rfl fun j _ =>
     freeAlgebra_lift_moment_eq_wordField_of_semicircular φ.toLinearMap hφ X hFree hLaw (P j j)
 
-/-- All actual amplified matrix-polynomial power moments agree with the corresponding genuine native word-model moments.-/
+/-- All actual amplified matrix-polynomial power moments agree with the corresponding genuine native word-model moments.
+@isnad1 id=eq.3h7v.s15.9dfe691f6994 from=translated src=- shape=17eb0bc4 vocab=248bd69c
+-/
 theorem normalizedPositiveFunctional_freeAlgebraEvaluation_pow_eq_wordMatrix
     (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1=1) (X : ι → A)
     (hFree : NoncommutativeProbability.IsFreeFamily φ.toLinearMap X)

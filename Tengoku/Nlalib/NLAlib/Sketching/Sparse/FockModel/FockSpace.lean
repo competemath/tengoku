@@ -42,7 +42,9 @@ def asOperator (A : FullOp d m n) :
 
 /-- The represented Euclidean operator acts by the concrete matrix-vector product.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.5077a26aa541 from=translated src=- shape=3f840a96 vocab=f5114a96
+-/
 @[simp] theorem asOperator_apply (A : FullOp d m n)
     (x : Fin d × Pattern m n → ℝ) :
     asOperator A (WithLp.toLp 2 x) =
@@ -53,7 +55,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 of its represented Euclidean operator.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s9.3ea962b7eb18 from=translated src=- shape=1caa79e2 vocab=5372fad1
+-/
 theorem norm_asOperator (A : FullOp d m n) : ‖asOperator A‖ = ‖A‖ :=
   Matrix.l2_opNorm_toEuclideanCLM A
 
@@ -61,7 +65,9 @@ theorem norm_asOperator (A : FullOp d m n) : ‖asOperator A‖ = ‖A‖ :=
 occupation grade.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.5f82dec3680c from=translated src=- shape=55a22ace vocab=758b09e4
+-/
 theorem gradeZ_eq_cast_grade (p : Pattern m n) :
     Pattern.gradeZ p = (p.grade : ℤ) := by
   classical
@@ -70,7 +76,9 @@ theorem gradeZ_eq_cast_grade (p : Pattern m n) :
 
 /-- The external-coordinate grade is the integer cast of its Fock-pattern grade.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.e30f5972e8a0 from=translated src=- shape=0c60719c vocab=79f7995a
+-/
 theorem fullGradeZ_eq_cast_grade (x : Fin d × Pattern m n) :
     fullGradeZ x = (x.2.grade : ℤ) :=
   gradeZ_eq_cast_grade x.2
@@ -84,7 +92,9 @@ def gradeProjection (nu : ℕ) : FullOp d m n :=
 
 /-- An exact-grade projection has unit diagonal precisely on the selected grade.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.e520ef0e5cd2 from=translated src=- shape=730d42a2 vocab=eb09ef7b
+-/
 @[simp] theorem gradeProjection_apply (nu : ℕ)
     (out inp : Fin d × Pattern m n) :
     gradeProjection (d := d) nu out inp =
@@ -98,7 +108,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Each exact-grade projection is symmetric.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.c9c0ba0be84f from=translated src=- shape=b4a58625 vocab=a7eb1070
+-/
 @[simp] theorem gradeProjection_transpose (nu : ℕ) :
     (gradeProjection (d := d) (m := m) (n := n) nu).transpose =
       gradeProjection nu := by
@@ -112,7 +124,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Each exact-grade projection is idempotent.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.30edc863976f from=translated src=- shape=af293580 vocab=7b7e78ed
+-/
 @[simp] theorem gradeProjection_mul_self (nu : ℕ) :
     gradeProjection (d := d) (m := m) (n := n) nu * gradeProjection nu =
       gradeProjection nu := by
@@ -127,7 +141,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Every exact-grade projection has Euclidean operator norm at most one.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s7.7db9a091f8c1 from=translated src=- shape=6a8f25cd vocab=d90820ee
+-/
 theorem gradeProjection_norm_le_one (nu : ℕ) :
     ‖gradeProjection (d := d) (m := m) (n := n) nu‖ ≤ 1 := by
   rw [gradeProjection, Matrix.l2_opNorm_diagonal]
@@ -137,7 +153,9 @@ theorem gradeProjection_norm_le_one (nu : ℕ) :
 
 /-- Projections onto distinct exact grades have zero product.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.da4c13d6a849 from=translated src=- shape=28c40c9a vocab=7b7e78ed
+-/
 @[simp] theorem gradeProjection_mul_gradeProjection
     {mu nu : ℕ} (h : mu ≠ nu) :
     gradeProjection (d := d) (m := m) (n := n) mu * gradeProjection nu = 0 := by
@@ -158,7 +176,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 specified grade.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.4b792879bf9a from=translated src=- shape=a15cc700 vocab=ca3c539b
+-/
 theorem gradeProjection_mulVec (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) (a : Fin d × Pattern m n) :
     Matrix.mulVec (gradeProjection (d := d) nu) x a =
@@ -181,20 +201,26 @@ def sumSq {I : Type*} [Fintype I] (x : I → ℝ) : ℝ :=
 
 /-- The finite coordinate squared energy is nonnegative.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h2v.s4.64c550372c8d from=translated src=- shape=c8b3cbfd vocab=51f202f3
+-/
 theorem sumSq_nonneg {I : Type*} [Fintype I] (x : I → ℝ) :
     0 ≤ sumSq x := by
   exact Finset.sum_nonneg fun _ _ ↦ sq_nonneg _
 
 /-- The interim sum of squares is the self dot product.
-Source: decision D9 of `docs/SPARSE_INTEGRATION.md`; supports `sparse-ose`.-/
+Source: decision D9 of `docs/SPARSE_INTEGRATION.md`; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s4.63599b07df5f from=translated src=- shape=09d07411 vocab=2015807d
+-/
 theorem sumSq_eq_dotProduct {I : Type*} [Fintype I] (x : I → ℝ) :
     sumSq x = dotProduct x x := by
   simp [sumSq, dotProduct, pow_two]
 
 /-- The Euclidean norm squared equals the explicit finite coordinate energy.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s6.d2ffb219c69c from=translated src=- shape=2711de83 vocab=a355fec2
+-/
 theorem norm_toLp_sq {I : Type*} [Fintype I] (x : I → ℝ) :
     ‖WithLp.toLp 2 x‖ ^ 2 = sumSq x := by
   rw [EuclideanSpace.norm_sq_eq]
@@ -202,7 +228,9 @@ theorem norm_toLp_sq {I : Type*} [Fintype I] (x : I → ℝ) :
 
 /-- Projecting to one grade retains exactly the energy in that grade.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.f5b7ae435a2e from=translated src=- shape=53be4900 vocab=02bcedc4
+-/
 theorem gradeProjection_normSq (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq (Matrix.mulVec (gradeProjection (d := d) nu) x) =
@@ -218,7 +246,9 @@ theorem gradeProjection_normSq (nu : ℕ)
 energy form.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.c9d0ed8c06cb from=translated src=- shape=56520f40 vocab=a36af21c
+-/
 theorem gradeProjection_normSq_le (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     sumSq (Matrix.mulVec (gradeProjection (d := d) nu) x) ≤ sumSq x := by
@@ -233,7 +263,9 @@ theorem gradeProjection_normSq_le (nu : ℕ)
 operator-norm bound for the concrete finite matrix.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s6.fadaac647016 from=translated src=- shape=541d48a6 vocab=6c1785bd
+-/
 theorem norm_le_of_normSq_mulVec_le {I J : Type*} [Fintype I] [Fintype J] [DecidableEq J]
     {A : Matrix I J ℝ} {C : ℝ} (hC : 0 ≤ C)
     (henergy : ∀ x : J → ℝ,
@@ -258,7 +290,9 @@ advertised casted occupation shift.  This is a convenient natural-grade form
 of `IsFullGradeShift`.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h7v.s6.1a00227eda46 from=translated src=- shape=05fcefb4 vocab=8b072208
+-/
 theorem homogeneous_grade_relation {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A)
     {out inp : Fin d × Pattern m n} (hentry : A out inp ≠ 0) :
@@ -267,7 +301,9 @@ theorem homogeneous_grade_relation {delta : ℤ} {A : FullOp d m n}
 
 /-- Scalar multiplication preserves a matrix's grade shift.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.1h6v.s5.e8ede388e684 from=translated src=- shape=2bd2c61a vocab=29a0834d
+-/
 theorem homogeneous_smul {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A) (c : ℝ) :
     IsFullGradeShift delta (c • A) := by
@@ -280,7 +316,9 @@ theorem homogeneous_smul {delta : ℤ} {A : FullOp d m n}
 
 /-- Adding matrices with the same grade shift preserves that shift.
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=isfullgr.2h6v.s6.a59097c2c53f from=translated src=- shape=b7839b00 vocab=d9998b60
+-/
 theorem homogeneous_add {delta : ℤ} {A B : FullOp d m n}
     (hA : IsFullGradeShift delta A)
     (hB : IsFullGradeShift delta B) :
@@ -298,7 +336,9 @@ the output-grade projection can be inserted without changing the restricted
 operator.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h7v.s8.e7f13e9c4315 from=translated src=- shape=0bcc02cd vocab=7d51840c
+-/
 theorem output_projection_of_homogeneous {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A) (mu nu : ℕ)
     (hcompatible : (mu : ℤ) = (nu : ℤ) + delta) :
@@ -321,7 +361,9 @@ theorem output_projection_of_homogeneous {delta : ℤ} {A : FullOp d m n}
 output grade, the operator vanishes on the stated input grade.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s7.aca3f010b42f from=translated src=- shape=6cacb091 vocab=7d51840c
+-/
 theorem input_grade_vanishes_of_no_output {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A) (nu : ℕ)
     (himpossible : ∀ mu : ℕ, (mu : ℤ) ≠ (nu : ℤ) + delta) :
@@ -341,7 +383,9 @@ theorem input_grade_vanishes_of_no_output {delta : ℤ} {A : FullOp d m n}
 its action on one fixed input grade.
 
 Source: ported from `SparseFockFormal.FiniteHilbert`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h7v.s7.7a3e05f4c6cd from=translated src=- shape=d9471026 vocab=7d51840c
+-/
 theorem incompatible_grade_block_zero {delta : ℤ} {A : FullOp d m n}
     (hA : IsFullGradeShift delta A) (mu nu : ℕ)
     (hincompatible : (mu : ℤ) ≠ (nu : ℤ) + delta) :

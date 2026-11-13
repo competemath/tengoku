@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n]
 /-- Radial normalization of a complex vector, with value zero at zero.-/
 def normalizeComplexVector (z : n → ℂ) : n → ℂ := ‖WithLp.toLp 2 z‖⁻¹ • z
 
-/-- Radial normalization is measurable, including its zero-input convention.-/
+/-- Radial normalization is measurable, including its zero-input convention.
+@isnad1 id=measurab.0h1v.s4.b623c7709061 from=translated src=- shape=ac3aec90 vocab=b82df8eb
+-/
 @[fun_prop] theorem measurable_normalizeComplexVector :
     Measurable (normalizeComplexVector : (n → ℂ) → n → ℂ) := by
   unfold normalizeComplexVector
@@ -34,18 +36,25 @@ standard Gaussian coordinates by radial normalization.-/
 def complexSphereVector (n : Type*) [Fintype n] : Measure (n → ℂ) :=
   (circularComplexGaussianVector n).map normalizeComplexVector
 
+/--
+@isnad1 id=isprobab.0h1v.s4.71cf764b6e6a from=translated src=- shape=8a0813a3 vocab=4ab4d5b7
+-/
 instance isProbabilityMeasure_complexSphereVector :
     IsProbabilityMeasure (complexSphereVector n) := by
   unfold complexSphereVector
   exact Measure.isProbabilityMeasure_map measurable_normalizeComplexVector.aemeasurable
 
-/-- The actual Gaussian normalization has the sphere law by definition.-/
+/-- The actual Gaussian normalization has the sphere law by definition.
+@isnad1 id=haslaw.0h1v.s5.b78912a5d374 from=translated src=- shape=5c7f2bca vocab=a5c164c0
+-/
 theorem hasLaw_normalizeComplexVector_circularComplexGaussianVector :
     HasLaw (normalizeComplexVector : (n → ℂ) → n → ℂ)
       (complexSphereVector n) (circularComplexGaussianVector n) :=
   ⟨measurable_normalizeComplexVector.aemeasurable, rfl⟩
 
-/-- A nonzero input normalizes to a unit vector.-/
+/-- A nonzero input normalizes to a unit vector.
+@isnad1 id=eq.1h2v.s6.16b0f69809a9 from=translated src=- shape=85f07822 vocab=3ea206fb
+-/
 theorem norm_normalizeComplexVector {z : n → ℂ} (hz : z ≠ 0) :
     ‖WithLp.toLp 2 (normalizeComplexVector z)‖ = 1 := by
   have hn : ‖WithLp.toLp 2 z‖ ≠ 0 := by
@@ -55,7 +64,9 @@ theorem norm_normalizeComplexVector {z : n → ℂ} (hz : z ≠ 0) :
   rw [norm_smul, Real.norm_of_nonneg (inv_nonneg.mpr (norm_nonneg _)), inv_mul_cancel₀ hn]
 
 /-- In positive dimension a Gaussian vector is almost surely nonzero, already
-because a single real coordinate has a nonatomic Gaussian law.-/
+because a single real coordinate has a nonatomic Gaussian law.
+@isnad1 id=eventual.0h1v.s6.4ad1980c6052 from=translated src=- shape=cfb21c3f vocab=efa2ee2d
+-/
 theorem ae_ne_zero_circularComplexGaussianVector [Nonempty n] :
     ∀ᵐ z ∂circularComplexGaussianVector n, z ≠ 0 := by
   let i : n := Classical.arbitrary n
@@ -74,7 +85,9 @@ theorem ae_ne_zero_circularComplexGaussianVector [Nonempty n] :
   have he : z = 0 := not_not.mp h
   simp [he]
 
-/-- The complex-sphere law is supported on actual unit vectors.-/
+/-- The complex-sphere law is supported on actual unit vectors.
+@isnad1 id=eventual.0h1v.s6.79deae5ced37 from=translated src=- shape=4ac3b076 vocab=577056e3
+-/
 theorem ae_norm_eq_one_complexSphereVector [Nonempty n] :
     ∀ᵐ b ∂complexSphereVector n, ‖WithLp.toLp 2 b‖ = 1 := by
   unfold complexSphereVector
@@ -89,7 +102,9 @@ theorem ae_norm_eq_one_complexSphereVector [Nonempty n] :
 
 variable [DecidableEq n]
 
-/-- Unitary changes of coordinates preserve the Euclidean normalization.-/
+/-- Unitary changes of coordinates preserve the Euclidean normalization.
+@isnad1 id=eq.1h3v.s6.c9aa803dbd13 from=translated src=- shape=3cae9e81 vocab=ea436d0f
+-/
 theorem normalizeComplexVector_mulVec {U : Matrix n n ℂ} (hU : HasOrthonormalCols U)
     (z : n → ℂ) :
     normalizeComplexVector (U *ᵥ z) = U *ᵥ normalizeComplexVector z := by
@@ -97,7 +112,9 @@ theorem normalizeComplexVector_mulVec {U : Matrix n n ℂ} (hU : HasOrthonormalC
     hU.toLinearIsometry.norm_map (WithLp.toLp 2 z)
   rw [normalizeComplexVector, hn, normalizeComplexVector, Matrix.mulVec_smul]
 
-/-- Every unitary preserves the actual normalized Gaussian sphere law.-/
+/-- Every unitary preserves the actual normalized Gaussian sphere law.
+@isnad1 id=haslaw.1h2v.s6.39135f03564e from=translated src=- shape=2f44b095 vocab=63155222
+-/
 theorem hasLaw_mulVec_complexSphereVector_unitary (U : Matrix n n ℂ)
     (hU : HasOrthonormalCols U) :
     HasLaw (fun b => U *ᵥ b) (complexSphereVector n) (complexSphereVector n) := by

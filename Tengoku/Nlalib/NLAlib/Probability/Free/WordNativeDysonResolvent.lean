@@ -37,7 +37,9 @@ def wordNativeDysonResolvent (A₀ : Matrix D D ℂ)
   wordMatrixVacuumCompression (resolvent (wordNativeMatrixLinearCombination A₀ A) z)
 
 open scoped Matrix.Norms.L2Operator in
-/-- The native compressed free resolvent has a reciprocal-height norm bound independent of the deterministic mean.-/
+/-- The native compressed free resolvent has a reciprocal-height norm bound independent of the deterministic mean.
+@isnad1 id=le.3h5v.s7.93358184d7cd from=translated src=- shape=1d2b154e vocab=adc8a07a
+-/
 theorem specNorm_wordNativeDysonResolvent_le
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian)
@@ -48,7 +50,9 @@ theorem specNorm_wordNativeDysonResolvent_le
       ((isSelfAdjoint_wordNativeMatrixLinearCombination hA₀ hA).norm_resolvent_le hz)
       (Nat.cast_nonneg _))
 
-/-- The actual compressed free resolvent satisfies the native Dyson equation at every nonreal parameter.-/
+/-- The actual compressed free resolvent satisfies the native Dyson equation at every nonreal parameter.
+@isnad1 id=eq.3h5v.s8.352112fa2560 from=translated src=- shape=b11b8f78 vocab=c5b6f119
+-/
 theorem wordNativeDysonResolvent_dyson
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian)
@@ -59,7 +63,9 @@ theorem wordNativeDysonResolvent_dyson
     ((isSelfAdjoint_wordNativeMatrixLinearCombination hA₀ hA).isUnit_algebraMap_sub_of_im_ne_zero hz)
 
 open scoped Matrix.Norms.L2Operator in
-/-- The nonreal derivative of the genuine compressed free resolvent is its compressed negative square.-/
+/-- The nonreal derivative of the genuine compressed free resolvent is its compressed negative square.
+@isnad1 id=hasderiv.3h5v.s15.4676b4e6843d from=translated src=- shape=19600aa5 vocab=d2a12d42
+-/
 theorem hasDerivAt_wordNativeDysonResolvent
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian)
@@ -72,7 +78,9 @@ theorem hasDerivAt_wordNativeDysonResolvent
   exact (wordMatrixVacuumCompressionCLM (D := D) (ι := ι)).hasFDerivAt.comp_hasDerivAt z hr
 
 open scoped Matrix.Norms.L2Operator in
-/-- The actual native compressed free resolvent is differentiable off the real axis.-/
+/-- The actual native compressed free resolvent is differentiable off the real axis.
+@isnad1 id=differen.2h4v.s7.ea63c9a41558 from=translated src=- shape=0ba64b55 vocab=b0a2ff70
+-/
 theorem differentiableOn_wordNativeDysonResolvent
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian) :
@@ -81,7 +89,9 @@ theorem differentiableOn_wordNativeDysonResolvent
   exact (hasDerivAt_wordNativeDysonResolvent hA₀ hA hz).differentiableAt.differentiableWithinAt
 
 open scoped Matrix.Norms.L2Operator in
-/-- The actual native compressed free resolvent is holomorphic off the real axis.-/
+/-- The actual native compressed free resolvent is holomorphic off the real axis.
+@isnad1 id=analytic.2h4v.s7.bfd01e1db375 from=translated src=- shape=0ba64b55 vocab=daa153a0
+-/
 theorem analyticOnNhd_wordNativeDysonResolvent
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian) :
@@ -91,7 +101,9 @@ theorem analyticOnNhd_wordNativeDysonResolvent
       (differentiableOn_wordNativeDysonResolvent hA₀ hA)
 
 open scoped Matrix in
-/-- The actual native free resolvent compression respects Schwarz reflection.-/
+/-- The actual native free resolvent compression respects Schwarz reflection.
+@isnad1 id=eq.2h5v.s7.614b3e13320b from=translated src=- shape=e1430f5f vocab=04e65121
+-/
 theorem wordNativeDysonResolvent_star
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian)
     {A : ι → Matrix D D ℂ} (hA : ∀ i, (A i).IsHermitian) (z : ℂ) :

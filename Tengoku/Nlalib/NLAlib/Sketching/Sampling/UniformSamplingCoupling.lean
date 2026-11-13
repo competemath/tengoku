@@ -46,7 +46,9 @@ open scoped ENNReal NNReal Classical
 namespace NLAlib
 
 /-- Real weights of a mapped finite PMF are ordinary fiber sums.
-Source: Mathlib PMF map.-/
+Source: Mathlib PMF map.
+@isnad1 id=eq.0h5v.s6.714f4a84e361 from=translated src=- shape=ca0915da vocab=8011b10b
+-/
 theorem toReal_map_pmf_apply {α β : Type*} [Fintype α] (p : PMF α) (f : α → β) (b : β) :
     ((p.map f) b).toReal = ∑ a, if f a = b then (p a).toReal else 0 := by
   rw [PMF.map_apply, tsum_fintype, ENNReal.toReal_sum]
@@ -61,14 +63,18 @@ theorem toReal_map_pmf_apply {α β : Type*} [Fintype α] (p : PMF α) (f : α �
     · simp
 
 /-- Real weights of every finite PMF sum to one.
-Source: Mathlib PMF normalization.-/
+Source: Mathlib PMF normalization.
+@isnad1 id=eq.0h2v.s5.860e80102d13 from=translated src=- shape=821dc207 vocab=947d49fd
+-/
 theorem sum_toReal_pmf {α : Type*} [Fintype α] (p : PMF α) : ∑ a, (p a).toReal = 1 := by
   have hh : ∑ a, p a = 1 := by simpa only [tsum_fintype] using p.tsum_coe
   have hr := congrArg ENNReal.toReal hh
   rwa [ENNReal.toReal_sum (fun a _ => p.apply_ne_top a), ENNReal.toReal_one] at hr
 
 /-- Equivariant mapping preserves invariance of the finite probability masses.
-Source: the support-extension coupling architecture.-/
+Source: the support-extension coupling architecture.
+@isnad1 id=eq.2h7v.s7.5ed1f1b4fad7 from=translated src=- shape=1d3c7e00 vocab=756e0199
+-/
 theorem toReal_map_pmf_invariant {α β : Type*} [Fintype α]
     (p : PMF α) (f : α → β) (e : α ≃ α) (g : β ≃ β)
     (hp : ∀ a, (p (e a)).toReal = (p a).toReal)
@@ -79,7 +85,9 @@ theorem toReal_map_pmf_invariant {α β : Type*} [Fintype α]
   simp_rw [hf, hp, g.injective.eq_iff]
 
 /-- A sequence's distinct support has cardinality at most its length.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.0h3v.s4.693becef2697 from=translated src=- shape=8dba070a vocab=855a811a
+-/
 theorem card_image_univ_sequence_le {α : Type*} [DecidableEq α] {k : ℕ} (I : Fin k → α) :
     (Finset.univ.image I).card ≤ k := by
   exact Finset.card_image_le.trans (by simp)
@@ -94,7 +102,9 @@ def sequenceSupportExtension {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ
       (card_image_univ_sequence_le I) hk)).2⟩
 
 /-- The extension contains every label that actually appears in the sequence.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.1h3v.s6.74050b041f88 from=translated src=- shape=04c63473 vocab=21728cef
+-/
 theorem image_univ_subset_sequenceSupportExtension
     {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (I : Fin k → α) :
@@ -118,7 +128,9 @@ def permuteExactRowSubsetEquiv {α : Type*} [Fintype α] {k : ℕ}
   right_inv T := by apply Subtype.ext; simp [permuteExactRowSubset, Finset.map_map]
 
 /-- Label permutations act transitively on literal subsets of a fixed size.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=ex.0h4v.s5.25117584781a from=translated src=- shape=092c4e06 vocab=02e754ee
+-/
 theorem exists_perm_exactRowSubset {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (T U : ExactRowSubset α k) : ∃ σ : Equiv.Perm α, permuteExactRowSubset σ T = U := by
   obtain ⟨σ, hσ⟩ := Equiv.Perm.exists_map_finset_eq T.val U.val
@@ -140,7 +152,9 @@ def iidSubsetJointPMF {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {
   (PMF.uniformOfFintype ((Fin k → α) × Equiv.Perm α)).map (iidSubsetOutcome hk)
 
 /-- The permutation coupling always places the sequence support inside
-the selected subset. Source: Hoeffding 1963, Theorem 4.-/
+the selected subset. Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=le.1h3v.s6.0f8dcb255d9f from=translated src=- shape=9915efb9 vocab=4b10d3b2
+-/
 theorem iidSubsetOutcome_support_subset {α : Type*} [Fintype α] [DecidableEq α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (z : (Fin k → α) × Equiv.Perm α) :
     Finset.univ.image (iidSubsetOutcome hk z).1 ⊆ (iidSubsetOutcome hk z).2.val := by
@@ -152,7 +166,9 @@ theorem iidSubsetOutcome_support_subset {α : Type*} [Fintype α] [DecidableEq �
     (Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩)
 
 /-- Pairs outside the literal support-extension relation have zero joint mass.
-Source: Hoeffding 1963, Theorem 4.-/
+Source: Hoeffding 1963, Theorem 4.
+@isnad1 id=eq.2h4v.s7.d10555169eff from=translated src=- shape=0f8bcb1d vocab=741dc5db
+-/
 theorem iidSubsetJointPMF_toReal_eq_zero_of_not_subset
     {α : Type*} [Fintype α] [DecidableEq α] [Nonempty α] {k : ℕ}
     (hk : k ≤ Fintype.card α) (I : Fin k → α) (T : ExactRowSubset α k)

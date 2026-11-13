@@ -37,7 +37,9 @@ def euclideanNormSq {d : ℕ} (x : EVec d) : ℝ := ⟪x, x⟫_ℝ
 
 /-- The explicit frame-vector energy equals the Euclidean norm squared.
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.b3d9cc55dacd from=translated src=- shape=45925050 vocab=a4bdccfe
+-/
 theorem euclideanNormSq_eq_norm_sq {d : ℕ} (x : EVec d) : euclideanNormSq x = ‖x‖ ^ 2 := by
   exact real_inner_self_eq_norm_sq x
 
@@ -81,7 +83,9 @@ def applyMatrix {d : ℕ} (A : Matrix (Fin d) (Fin d) ℝ) (x : EVec d) : EVec d
 
 /-- The identity matrix fixes every Euclidean external vector.
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h2v.s5.ce9b2bc47e18 from=translated src=- shape=f9a4d246 vocab=b9fde3ed
+-/
 @[simp]
 theorem applyMatrix_one {d : ℕ} (x : EVec d) :
     applyMatrix (1 : Matrix (Fin d) (Fin d) ℝ) x = x := by
@@ -91,7 +95,9 @@ theorem applyMatrix_one {d : ℕ} (x : EVec d) :
 /-- The matrix Parseval identity is exactly the usual orthonormal-column identity `UᵀU = I`.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h3v.s6.c9fc4c6ec922 from=translated src=- shape=12b4e9fd vocab=9e819da0
+-/
 theorem parseval_iff_transpose_mul {n d : ℕ} (u : Fin n → EVec d) :
     frameOperator u = (1 : Matrix (Fin d) (Fin d) ℝ) ↔
       (rowMatrix u).transpose * rowMatrix u = (1 : Matrix (Fin d) (Fin d) ℝ) := by
@@ -107,7 +113,9 @@ theorem parseval_iff_transpose_mul {n d : ℕ} (u : Fin n → EVec d) :
 
 /-- The row matrix of a Parseval frame has identity column Gram matrix.
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s6.7ff8663a985a from=translated src=- shape=9f6703b0 vocab=42cec1ee
+-/
 theorem transpose_mul_rowMatrix {n d : ℕ} (F : Frame n d) :
     (rowMatrix F.u).transpose * rowMatrix F.u =
       (1 : Matrix (Fin d) (Fin d) ℝ) :=
@@ -138,7 +146,9 @@ def partialFrameOperator {n d : ℕ} (F : Frame n d) (S : Finset (Fin n)) :
 
 /-- Pairing a frame synthesis with a vector gives the sum of its weighted analysis coefficients.
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.a249e7fa104a from=translated src=- shape=d85cc2a0 vocab=6998f088
+-/
 theorem synthesize_inner {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
     (a : Fin n → ℝ) (x : EVec d) :
     ⟪synthesize F S a, x⟫_ℝ = ∑ i ∈ S, a i * ⟪F.u i, x⟫_ℝ := by
@@ -147,7 +157,9 @@ theorem synthesize_inner {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
 /-- The partial frame operator applied to `x` is synthesis of its analysis coefficients.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.a2a7ebc8c1b6 from=translated src=- shape=f1a71b81 vocab=d22e6518
+-/
 theorem partialFrameOperator_mulVec {n d : ℕ} (F : Frame n d)
     (S : Finset (Fin n)) (x : EVec d) :
     applyMatrix (partialFrameOperator F S) x = synthesize F S (analyze F x) := by
@@ -166,7 +178,9 @@ theorem partialFrameOperator_mulVec {n d : ℕ} (F : Frame n d)
 /-- Exact reconstruction by a Parseval frame.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s4.31333516be8c from=translated src=- shape=6c588c5b vocab=07497dc8
+-/
 theorem reconstruct {n d : ℕ} (F : Frame n d) (x : EVec d) :
     synthesize F Finset.univ (analyze F x) = x := by
   rw [← partialFrameOperator_mulVec]
@@ -181,7 +195,9 @@ theorem reconstruct {n d : ℕ} (F : Frame n d) (x : EVec d) :
 /-- Parseval's exact energy identity.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.1340d56980e0 from=translated src=- shape=5ee143e0 vocab=d5a3c235
+-/
 theorem analysis_energy_eq {n d : ℕ} (F : Frame n d) (x : EVec d) :
     (∑ i, (analyze F x i) ^ 2) = euclideanNormSq x := by
   have hrec := reconstruct F x
@@ -199,7 +215,9 @@ theorem analysis_energy_eq {n d : ℕ} (F : Frame n d) (x : EVec d) :
 `Σ_{i∈S} (uᵢᵀx)² ≤ ‖x‖²`.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s5.e5808d27cf92 from=translated src=- shape=e9289efe vocab=a755b542
+-/
 theorem subset_analysis {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
     (x : EVec d) :
     (∑ i ∈ S, (analyze F x i) ^ 2) ≤ euclideanNormSq x := by
@@ -213,7 +231,9 @@ theorem subset_analysis {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
 `‖Σ_{i∈S} uᵢaᵢ‖² ≤ Σ_{i∈S}|aᵢ|²`.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s5.378571558583 from=translated src=- shape=0927ef8b vocab=33c9f859
+-/
 theorem subset_synthesis {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
     (a : Fin n → ℝ) :
     euclideanNormSq (synthesize F S a) ≤ ∑ i ∈ S, |a i| ^ 2 := by
@@ -244,7 +264,9 @@ theorem subset_synthesis {n d : ℕ} (F : Frame n d) (S : Finset (Fin n))
 /-- Every vector in a Parseval frame has squared norm at most one.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s4.4b960f90291d from=translated src=- shape=bff6a86e vocab=9a37ef6c
+-/
 theorem vector_normSq_le_one {n d : ℕ} (F : Frame n d) (i : Fin n) :
     euclideanNormSq (F.u i) ≤ 1 := by
   have h := subset_analysis F {i} (F.u i)
@@ -257,7 +279,9 @@ theorem vector_normSq_le_one {n d : ℕ} (F : Frame n d) (i : Fin n) :
 /-- Every Parseval-frame vector has Euclidean norm at most one.
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s5.2c087a5ffea0 from=translated src=- shape=1c45d300 vocab=6403c3b1
+-/
 theorem vector_norm_le_one {n d : ℕ} (F : Frame n d) (i : Fin n) :
     ‖F.u i‖ ≤ 1 := by
   have h := vector_normSq_le_one F i
@@ -268,7 +292,9 @@ theorem vector_norm_le_one {n d : ℕ} (F : Frame n d) (i : Fin n) :
 squared-norm form of `‖Σ_{i∈S}uᵢuᵢᵀ‖ ≤ 1` in (4.16).
 
 Source: ported from `SparseFockFormal.ParsevalFrame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s4.439eb83546d6 from=translated src=- shape=3b3be771 vocab=ac94994b
+-/
 theorem partialFrameOperator_contraction {n d : ℕ} (F : Frame n d)
     (S : Finset (Fin n)) (x : EVec d) :
     euclideanNormSq (applyMatrix (partialFrameOperator F S) x) ≤ euclideanNormSq x := by

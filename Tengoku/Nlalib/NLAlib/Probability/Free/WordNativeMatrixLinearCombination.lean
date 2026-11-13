@@ -32,7 +32,9 @@ def wordNativeMatrixLinearCombination (A₀ : Matrix D D ℂ)
     ∑ k, CStarMatrix.ofMatrix (fun i j => A k i j • wordField k)
 
 /-- The native free model has exactly the previously constructed actual
-Hilbert-space operator as its faithful block representation.-/
+Hilbert-space operator as its faithful block representation.
+@isnad1 id=eq.0h4v.s16.eddd3e9bd810 from=translated src=- shape=cfbeddd0 vocab=64a560fd
+-/
 theorem toPiLp_wordNativeMatrixLinearCombination (A₀ : Matrix D D ℂ)
     (A : ι → Matrix D D ℂ) :
     CStarMatrix.toPiLpStarAlgHom (D := D) (H := W)
@@ -42,7 +44,9 @@ theorem toPiLp_wordNativeMatrixLinearCombination (A₀ : Matrix D D ℂ)
   rfl
 
 /-- The actual native linear matrix has degree at most one in every
-operator entry.-/
+operator entry.
+@isnad1 id=mem.0h6v.s14.2333ac5e17f6 from=translated src=- shape=577d780c vocab=5f560c2b
+-/
 theorem wordNativeMatrixLinearCombination_mem_wordWickDegreeSpan
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (i j : D) :
     wordNativeMatrixLinearCombination A₀ A i j ∈ wordWickDegreeSpan (ι := ι) 1 := by
@@ -68,7 +72,9 @@ theorem wordNativeMatrixLinearCombination_mem_wordWickDegreeSpan
   exact Submodule.sum_mem _ fun k _ => Submodule.smul_mem _ _ (hf k)
 
 /-- Hermitian coefficients give the actual self-adjoint native model,
-transported through the faithful representation of the same operator.-/
+transported through the faithful representation of the same operator.
+@isnad1 id=isselfad.2h4v.s12.f0c9a0b8130f from=translated src=- shape=eef09223 vocab=b439cfd3
+-/
 theorem isSelfAdjoint_wordNativeMatrixLinearCombination
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian) {A : ι → Matrix D D ℂ}
     (hA : ∀ k, (A k).IsHermitian) : IsSelfAdjoint (wordNativeMatrixLinearCombination A₀ A) := by
@@ -77,7 +83,9 @@ theorem isSelfAdjoint_wordNativeMatrixLinearCombination
   exact isSelfAdjoint_wordMatrixLinearCombination hA₀ hA
 
 /-- Centering the native free model leaves precisely the source free-series
-norm bound, with no dimension factor or assumed moment comparison.-/
+norm bound, with no dimension factor or assumed moment comparison.
+@isnad1 id=le.1h4v.s16.3b59b4674d4d from=translated src=- shape=469742a5 vocab=9b86da58
+-/
 theorem norm_wordNativeMatrixLinearCombination_sub_mean_le
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (hA : ∀ k, (A k).IsHermitian) :
     ‖wordNativeMatrixLinearCombination A₀ A-

@@ -38,7 +38,9 @@ def kernelWeight {b : ℕ} (hb : 0 < b) (y : YVector b) (x : SignedHash b) : ℝ
 
 /-- Every support-selection kernel weight is nonnegative.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h3v.s5.1ad6b42da095 from=translated src=- shape=46d9a53c vocab=9fa8324d
+-/
 theorem kernelWeight_nonneg {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) : 0 ≤ kernelWeight hb y x := by
   classical
@@ -50,7 +52,9 @@ theorem kernelWeight_nonneg {b : ℕ} (hb : 0 < b)
 
 /-- The support-selection kernel weights sum to one for each iid outcome.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s5.9d5e12074f2a from=translated src=- shape=a6237ab2 vocab=c86799cd
+-/
 theorem sum_kernelWeight {b : ℕ} (hb : 0 < b) (y : YVector b) :
     ∑ x, kernelWeight hb y x = 1 := by
   classical
@@ -93,7 +97,9 @@ def selectionKernel {b : ℕ} (hb : 0 < b) (y : YVector b) :
 
 /-- The finite selection kernel has its defined normalized support weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s5.81b7971823c3 from=translated src=- shape=fee8cacc vocab=39f5e410
+-/
 @[simp] theorem selectionKernel_weight {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) :
     (selectionKernel hb y).weight x = kernelWeight hb y x := rfl

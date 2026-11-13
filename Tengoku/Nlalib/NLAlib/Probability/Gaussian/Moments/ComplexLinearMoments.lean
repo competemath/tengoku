@@ -33,21 +33,27 @@ def complexGaussianLinearFormCLM {κ : Type*} [Fintype κ] (a : κ → ℂ) :
   classical
   exact ∑ k, (ContinuousLinearMap.proj (R := ℝ) (φ := fun _ : κ => ℝ) k).smulRight (a k)
 
-/-- Evaluate the continuous linear map as its actual finite Gaussian linear form.-/
+/-- Evaluate the continuous linear map as its actual finite Gaussian linear form.
+@isnad1 id=eq.0h3v.s7.a1f0ced6727a from=translated src=- shape=574830ba vocab=039acbfb
+-/
 @[simp] theorem complexGaussianLinearFormCLM_apply
     {κ : Type*} [Fintype κ] (a : κ → ℂ) (x : κ → ℝ) :
     complexGaussianLinearFormCLM a x = complexGaussianLinearForm a x := by
   classical
   simp [complexGaussianLinearFormCLM, complexGaussianLinearForm, mul_comm]
 
-/-- Every complex linear form has an actual Gaussian law as a real vector.-/
+/-- Every complex linear form has an actual Gaussian law as a real vector.
+@isnad1 id=hasgauss.0h2v.s6.ee4b776f2916 from=translated src=- shape=0ede9071 vocab=91755bc9
+-/
 theorem hasGaussianLaw_complexGaussianLinearForm
     {κ : Type*} [Fintype κ] (a : κ → ℂ) :
     HasGaussianLaw (complexGaussianLinearForm a) (gaussianVector κ) := by
   simpa only [complexGaussianLinearFormCLM_apply] using
     (hasGaussianLaw_id_gaussianVector κ).map_fun (complexGaussianLinearFormCLM a)
 
-/-- The actual mean of a complex linear form of centered standard coordinates is zero.-/
+/-- The actual mean of a complex linear form of centered standard coordinates is zero.
+@isnad1 id=eq.0h2v.s5.5a8d8539713b from=translated src=- shape=8e182816 vocab=e263f255
+-/
 theorem integral_complexGaussianLinearForm_eq_zero
     {κ : Type*} [Fintype κ] (a : κ → ℂ) :
     (∫ x : κ → ℝ, complexGaussianLinearForm a x ∂gaussianVector κ) = 0 := by
@@ -61,7 +67,9 @@ theorem integral_complexGaussianLinearForm_eq_zero
   simp only [integral_const_mul, integral_complex_ofReal, hzero,
     Complex.ofReal_zero, mul_zero, Finset.sum_const_zero]
 
-/-- Products of two actual complex Gaussian linear forms are integrable.-/
+/-- Products of two actual complex Gaussian linear forms are integrable.
+@isnad1 id=integrab.0h3v.s6.08588ceb3742 from=translated src=- shape=09b82f34 vocab=3e8923a8
+-/
 theorem integrable_complexGaussianLinearForm_mul
     {κ : Type*} [Fintype κ] (a b : κ → ℂ) :
     Integrable (fun x : κ → ℝ =>
@@ -84,7 +92,9 @@ theorem integrable_complexGaussianLinearForm_mul
     (integrable_mul_apply_gaussianVector i j).ofReal.const_mul (a i * b j)
 
 /-- Exact complex bilinear covariance of two linear forms of actual standard
-real Gaussian coordinates. This is the normalization input for GUE Wick.-/
+real Gaussian coordinates. This is the normalization input for GUE Wick.
+@isnad1 id=eq.0h3v.s6.40e90ff41a82 from=translated src=- shape=2f8c2b72 vocab=30024700
+-/
 theorem integral_complexGaussianLinearForm_mul
     {κ : Type*} [Fintype κ] [DecidableEq κ] (a b : κ → ℂ) :
     (∫ x : κ → ℝ, complexGaussianLinearForm a x * complexGaussianLinearForm b x

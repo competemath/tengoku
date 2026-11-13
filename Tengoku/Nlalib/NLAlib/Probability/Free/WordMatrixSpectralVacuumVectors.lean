@@ -26,7 +26,9 @@ local notation "K" => WordMatrixHilbertSpace D ι
 
 omit [Fintype ι] in
 /-- A genuine coefficient eigenvector remains an actual eigenvector of its
-matrix mean after embedding into the existing vacuum subspace.-/
+matrix mean after embedding into the existing vacuum subspace.
+@isnad1 id=eq.1h4v.s15.ce806314f11e from=translated src=- shape=43ddfcb6 vocab=c4e5bf4e
+-/
 theorem wordMatrixCoefficientHom_wordMatrixVacuumEmbedding_eigenvector
     {A₀ : Matrix D D ℂ} (hA₀ : A₀.IsHermitian) (k : D) :
     wordMatrixCoefficientHom A₀ (wordMatrixVacuumEmbedding (ι := ι) (hA₀.eigenvectorBasis k)) =

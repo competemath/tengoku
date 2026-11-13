@@ -24,7 +24,9 @@ namespace NLAlib
 
 /-- The derivative of a power times an exponential, expressed using its logarithmic
 derivative. Source: Edelman 1988 (integrating factor);
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=hasderiv.1h3v.s7.339c584a552d from=translated src=- shape=471d83fe vocab=5e672c5b
+-/
 theorem hasDerivAt_rpow_mul_exp (a b x : ℝ) (hx : 0 < x) :
     HasDerivAt (fun y : ℝ => y ^ a * Real.exp (b * y))
       ((a / x + b) * (x ^ a * Real.exp (b * x))) x := by
@@ -37,7 +39,9 @@ theorem hasDerivAt_rpow_mul_exp (a b x : ℝ) (hx : 0 < x) :
 
 /-- Multiplication by the Gamma integrating factor cancels the zeroth-order
 coefficient of the scalar Wishart weak inequality. Source: Edelman 1988, the weighted-density substitution; atlas wishart-lambda-min-tail
-(helper).-/
+(helper).
+@isnad1 id=eq.2h3v.s8.db650a21bb9c from=translated src=- shape=ebdb4630 vocab=acb0a077
+-/
 theorem weighted_deriv_mul_rpow_exp_eq (m x : ℝ) (hx : 0 < x)
     (η : ℝ → ℝ) (hη : DifferentiableAt ℝ η x) :
     4 * x * deriv (fun y => η y * (y ^ (-m / 2) * Real.exp (y / 2))) x +
@@ -65,7 +69,9 @@ theorem weighted_deriv_mul_rpow_exp_eq (m x : ℝ) (hx : 0 < x)
 
 /-- A multiplier smooth on an open neighborhood of the support preserves global
 smoothness. This is the support-localization needed for the Gamma integrating factor.
-Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).-/
+Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=contdiff.4h4v.s7.0ed2744c89c1 from=translated src=- shape=a49657fd vocab=11a31e51
+-/
 theorem contDiff_mul_of_tsupport_subset {n : WithTop ℕ∞} {η g : ℝ → ℝ}
     {U : Set ℝ} (hU : IsOpen U) (hη : ContDiff ℝ n η)
     (hg : ContDiffOn ℝ n g U) (hsub : tsupport η ⊆ U) :
@@ -84,7 +90,9 @@ theorem contDiff_mul_of_tsupport_subset {n : WithTop ℕ∞} {η g : ℝ → ℝ
 the weak sign condition for a density divided by its Gamma weight. The original
 hypothesis is tested only against smooth nonnegative functions compactly supported
 in the positive half-line. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.5h3v.s8.0afa791a086f from=translated src=- shape=12d69955 vocab=09538126
+-/
 theorem integral_rpow_exp_mul_deriv_nonneg_of_weak_gamma
     (μ : Measure ℝ) (m : ℝ)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
@@ -128,7 +136,9 @@ theorem integral_rpow_exp_mul_deriv_nonneg_of_weak_gamma
 mass admit a nonnegative smooth compactly supported primitive of their difference.
 This turns a weak derivative inequality into local integral domination.
 Source: Edelman 1988, interval alternative to mollification;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.11h5v.s8.8f10b080274b from=translated src=- shape=97a8b977 vocab=bee6e2ed
+-/
 theorem exists_nonneg_primitive_of_ordered_supports
     (c a b : ℝ) (hca : c < a) (hab : a < b)
     (f g : ℝ → ℝ) (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
@@ -231,7 +241,9 @@ theorem exists_nonneg_primitive_of_ordered_supports
 interval by its Lebesgue integral and one fixed normalized test to its left.
 This is a local domination consequence and does not assume a density.
 Source: Edelman 1988, interval alternative to mollification;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=le.13h7v.s8.09abeedfff4a from=translated src=- shape=46569caa vocab=2249a2c2
+-/
 theorem integral_le_integral_mul_of_weak_deriv_nonneg
     (μ : Measure ℝ) [IsFiniteMeasureOnCompacts μ]
     (ℓ c a b : ℝ) (hc : ℓ < c) (hca : c < a) (hab : a < b)
@@ -264,7 +276,9 @@ theorem integral_le_integral_mul_of_weak_deriv_nonneg
 
 /-- A nonempty real interval contains a nonnegative smooth compactly supported
 function of Lebesgue integral one. Source: Edelman 1988,
-local integral domination; atlas wishart-lambda-min-tail (helper).-/
+local integral domination; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.1h2v.s7.be97c9e97ed1 from=translated src=- shape=79aa1ffa vocab=b90da6e3
+-/
 theorem exists_contDiff_nonneg_integral_eq_one_tsupport_Ioo
     (a b : ℝ) (hab : a < b) :
     ∃ g : ℝ → ℝ, ContDiff ℝ ∞ g ∧ HasCompactSupport g ∧
@@ -287,7 +301,9 @@ theorem exists_contDiff_nonneg_integral_eq_one_tsupport_Ioo
 uniform integral domination bound to the right of every interior point. The
 constant is finite because it is the integral of one fixed compactly supported
 test. Source: Edelman 1988, interval alternative;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.2h3v.s8.1d0501093850 from=translated src=- shape=3fb9b8b1 vocab=77bd5b79
+-/
 theorem exists_integral_domination_Ioi_of_weak_deriv_nonneg
     (μ : Measure ℝ) [IsFiniteMeasureOnCompacts μ] (ℓ a : ℝ) (ha : ℓ < a)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
@@ -318,7 +334,9 @@ theorem exists_integral_domination_Ioi_of_weak_deriv_nonneg
 an antitone nonnegative representative on the whole half-line. Density is supplied
 as explicit left and right witnesses, which can be obtained from an almost-everywhere
 set. Source: Edelman 1988, monotone density representative;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.5h3v.s7.5309a045c3a5 from=translated src=- shape=afade188 vocab=54d04a37
+-/
 theorem exists_antitoneOn_nonneg_extension_Ioi
     (ℓ : ℝ) (D : Set ℝ) (f : ℝ → ℝ) (hD : D ⊆ Ioi ℓ)
     (hf : AntitoneOn f D) (hf0 : ∀ x ∈ D, 0 ≤ f x)

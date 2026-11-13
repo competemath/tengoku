@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- Locally antitone almost-everywhere representatives patch to a single antitone
 representative on an open half-line. Source: Edelman 1988;
-atlas wishart-lambda-min-tail (helper).-/
+atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.2h2v.s7.1f4b78125d69 from=translated src=- shape=54c788da vocab=a5bb7761
+-/
 theorem exists_antitoneOn_ae_eq_of_locally_antitoneOn_ae_eq
     (ℓ : ℝ) (f : ℝ → ℝ) (hf0 : ∀ x, 0 ≤ f x)
     (hlocal : ∀ a : ℝ, ℓ < a → ∃ h : ℝ → ℝ, AntitoneOn h (Ioi a) ∧
@@ -76,7 +78,9 @@ theorem exists_antitoneOn_ae_eq_of_locally_antitoneOn_ae_eq
 only Radon after restriction to smaller half-lines. This includes weights with
 infinite mass near the excluded boundary. Source: Edelman 1988;
 atlas wishart-lambda-min-tail (helper).
-atlas: weak-derivative-antitone-density-/
+atlas: weak-derivative-antitone-density
+@isnad1 id=ex.2h2v.s8.347a15925e3c from=translated src=- shape=0f4ed124 vocab=f53f9e6f
+-/
 theorem exists_antitoneOn_withDensity_eq_of_locally_regular_weak_deriv_nonneg
     (μ : Measure ℝ) (ℓ : ℝ) [SigmaFinite (μ.restrict (Ioi ℓ))]
     (hloc : ∀ a : ℝ, ℓ < a → (μ.restrict (Ioi a)).Regular)

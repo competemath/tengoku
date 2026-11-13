@@ -70,7 +70,9 @@ def CreateAnalysisStack (F : Frame n d) :
 
 /-- The row light creation synthesis matrix is the sum of its one-site summands.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.5b4120a034e6 from=translated src=- shape=e1ce354a vocab=7f53375e
+-/
 @[simp] theorem CMatrix_eq_sum_COne (F : Frame n d) (r : Fin m) :
     CMatrix F r = ∑ i, COne F r i := by
   ext out inp
@@ -78,7 +80,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- The row light creation analysis matrix is the sum of its one-site summands.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.33ccf7a33a1c from=translated src=- shape=ef96dedd vocab=9188c0db
+-/
 @[simp] theorem cMatrix_eq_sum_cOne (F : Frame n d) (r : Fin m) :
     cMatrix F r = ∑ i, cOne F r i := by
   rfl
@@ -86,7 +90,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- The stacked synthesis cogram is exactly the concrete shared-leg operator.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.0c1d39e25ac2 from=translated src=- shape=6bd38ab2 vocab=35263973
+-/
 theorem CStack_mul_transpose (F : Frame n d) :
     CStack (m := m) F * (CStack (m := m) F).transpose = ghat F := by
   classical
@@ -97,7 +103,9 @@ theorem CStack_mul_transpose (F : Frame n d) :
 
 /-- The transposed light synthesis stack evaluates the corresponding row matrix coefficient.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.6db58d72425d from=translated src=- shape=2550bdc8 vocab=0dd076a0
+-/
 @[simp] theorem CStack_transpose_apply (F : Frame n d)
     (out : Heavy.RowFock m n) (inp : Fin d × Pattern m n) :
     (CStack F).transpose out inp = (CMatrix F out.1).transpose out.2 inp := by
@@ -106,7 +114,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- The row-local creation synthesis is grade `+1`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s6.18c539c45882 from=translated src=- shape=ee2171e1 vocab=2837497b
+-/
 theorem CMatrix_grade_relation (F : Frame n d) (r : Fin m)
     {out : Fin d × Pattern m n} {inp : Pattern m n}
     (hentry : CMatrix F r out inp ≠ 0) :
@@ -120,7 +130,9 @@ theorem CMatrix_grade_relation (F : Frame n d) (r : Fin m)
 /-- The row-local creation analysis is also grade `+1`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s6.6925988eadd5 from=translated src=- shape=3c079a10 vocab=13f1c9d9
+-/
 theorem cMatrix_grade_relation (F : Frame n d) (r : Fin m)
     {out : Pattern m n} {inp : Fin d × Pattern m n}
     (hentry : cMatrix F r out inp ≠ 0) :
@@ -135,7 +147,9 @@ theorem cMatrix_grade_relation (F : Frame n d) (r : Fin m)
 
 /-- One-site light creation has coefficient one precisely at the matching marked transition.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.71d5588fa683 from=translated src=- shape=33aed30b vocab=da6db2d2
+-/
 theorem pDagAt_apply (r : Fin m) (i : Fin n)
     (out inp : Pattern m n) :
     pDagAt r i out inp =
@@ -147,7 +161,9 @@ theorem pDagAt_apply (r : Fin m) (i : Fin n)
 
 /-- Two light creation steps at the same site give the zero matrix.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.31911045868e from=translated src=- shape=56ec4603 vocab=13b96604
+-/
 theorem pDagAt_sq_zero (r : Fin m) (i : Fin n) :
     pDagAt r i * pDagAt r i = 0 := by
   classical
@@ -164,7 +180,9 @@ theorem pDagAt_sq_zero (r : Fin m) (i : Fin n) :
 
 /-- Light creation at distinct sites is the associated two-leg word kernel.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.5eeaa3ae722d from=translated src=- shape=286eeec5 vocab=878cde75
+-/
 theorem pDagAt_mul_pDagAt_of_ne (r : Fin m) {i j : Fin n}
     (hij : i ≠ j) :
     pDagAt r i * pDagAt r j =
@@ -177,7 +195,9 @@ theorem pDagAt_mul_pDagAt_of_ne (r : Fin m) {i j : Fin n}
 
 /-- Distinct-site light synthesis-analysis products are the physical light raising terms.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s7.4f244f37ccf6 from=translated src=- shape=9fd6e66a vocab=ef22a046
+-/
 theorem COne_mul_cOne_of_ne (F : Frame n d) (r : Fin m)
     {i j : Fin n} (hij : i ≠ j) :
     COne F r i * cOne F r j =
@@ -204,7 +224,9 @@ theorem COne_mul_cOne_of_ne (F : Frame n d) (r : Fin m)
 
 /-- Same-site light synthesis-analysis products vanish by creation nilpotence.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.d0bbd469eab1 from=translated src=- shape=053ef1b7 vocab=dc81877f
+-/
 theorem COne_mul_cOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
     COne F r i * cOne F r i = 0 := by
   classical
@@ -228,7 +250,9 @@ theorem COne_mul_cOne_self (F : Frame n d) (r : Fin m) (i : Fin n) :
 /-- Exact row-local factorization: the diagonal terms vanish by `P†²=0`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.5d6a2ba6216e from=translated src=- shape=ed61852c vocab=50f6b9a5
+-/
 theorem CMatrix_mul_cMatrix (F : Frame n d) (r : Fin m) :
     CMatrix F r * cMatrix F r =
       ∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -248,7 +272,9 @@ theorem CMatrix_mul_cMatrix (F : Frame n d) (r : Fin m) :
 /-- The named light raising band is the row synthesis times row analysis.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.33a1eabac600 from=translated src=- shape=d7923146 vocab=0ce00598
+-/
 theorem Lplus_eq_CStack_mul_CreateAnalysisStack (F : Frame n d) :
     Lplus m (Frame.rows F) =
       CStack (m := m) F * CreateAnalysisStack (m := m) F := by
@@ -267,7 +293,9 @@ theorem Lplus_eq_CStack_mul_CreateAnalysisStack (F : Frame n d) :
 in row grade `nu+1`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.2d60fb3a547e from=translated src=- shape=b484e12f vocab=3a1a393e
+-/
 theorem rowProjection_CreateAnalysisStack_gradeProjection
     (F : Frame n d) (nu : ℕ) :
     Heavy.rowGradeProjection (m := m) (n := n) (nu + 1) *
@@ -292,7 +320,9 @@ theorem rowProjection_CreateAnalysisStack_gradeProjection
 /-- On row grade `mu`, the synthesis stack lands at full grade `mu+1`.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.ed218d70e675 from=translated src=- shape=50da2d20 vocab=dbdd99f3
+-/
 theorem gradeProjection_CStack_rowProjection (F : Frame n d) (mu : ℕ) :
     gradeProjection (d := d) (m := m) (n := n) (mu + 1) *
         CStack (m := m) F *
@@ -316,7 +346,9 @@ theorem gradeProjection_CStack_rowProjection (F : Frame n d) (mu : ℕ) :
 /-- Fully typed projected factorization of the light `+2` band.
 
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.e5e7f0919d96 from=translated src=- shape=cd729a43 vocab=faa7ca10
+-/
 theorem Lplus_grade_factor (F : Frame n d) (nu : ℕ) :
     Lplus m (Frame.rows F) *
         gradeProjection (d := d) (m := m) (n := n) nu =
@@ -349,7 +381,9 @@ theorem Lplus_grade_factor (F : Frame n d) (nu : ℕ) :
 
 /-- The transpose of one-site light creation is light annihilation.
 Source: ported from `SparseFockFormal.LightBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.00f421ab6374 from=translated src=- shape=5ae36e3e vocab=ac6e2776
+-/
 @[simp] theorem pDagAt_transpose (r : Fin m) (i : Fin n) :
     (pDagAt r i).transpose = pAt r i := by
   simp [pDagAt, pAt, transpose_siteKernel]

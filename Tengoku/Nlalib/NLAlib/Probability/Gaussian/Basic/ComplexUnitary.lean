@@ -22,7 +22,9 @@ namespace NLAlib
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- Multiplication by an actual complex matrix agrees with multiplication by
-its realification in the real and imaginary coordinate copies.-/
+its realification in the real and imaginary coordinate copies.
+@isnad1 id=eq.0h4v.s6.4426df0b482a from=translated src=- shape=2a6040a4 vocab=01de8f62
+-/
 theorem complexifyVector_mulVec_realification (U : Matrix m n ℂ) (x : n ⊕ n → ℝ) :
     complexifyVector (matrixRealification U *ᵥ x) = U *ᵥ complexifyVector x := by
   funext i
@@ -35,7 +37,9 @@ theorem complexifyVector_mulVec_realification (U : Matrix m n ℂ) (x : n ⊕ n 
 Gaussian product law to the corresponding target product law. The independent
 real and imaginary coordinates all have variance one. This statement includes
 rectangular coisometries and empty coordinate types.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=haslaw.1h3v.s6.860804e0b882 from=translated src=- shape=ed4e1f31 vocab=d869a2a5
+-/
 theorem hasLaw_mulVec_circularComplexGaussianVector_orthonormalRows
     (U : Matrix m n ℂ) (hU : HasOrthonormalCols Uᴴ) :
     HasLaw (fun z => U *ᵥ z) (circularComplexGaussianVector m)
@@ -57,7 +61,9 @@ theorem hasLaw_mulVec_circularComplexGaussianVector_orthonormalRows
 
 /-- A square unitary matrix preserves the full circular complex Gaussian
 product law. Both real components of every coordinate are standard normals.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=haslaw.1h2v.s6.14f8caf094bd from=translated src=- shape=2f44b095 vocab=5a7e1620
+-/
 theorem hasLaw_mulVec_circularComplexGaussianVector_unitary
     (U : Matrix n n ℂ) (hU : HasOrthonormalCols U) :
     HasLaw (fun z => U *ᵥ z) (circularComplexGaussianVector n)
@@ -69,7 +75,9 @@ theorem hasLaw_mulVec_circularComplexGaussianVector_unitary
 
 /-- The orthonormal-row complex Gaussian transform applies to a random vector
 on any sample space using its actual joint circular complex Gaussian law.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=haslaw.2h6v.s7.9342350e0ab2 from=translated src=- shape=78269da6 vocab=c3764398
+-/
 theorem hasLaw_mulVec_circularComplexGaussianVector_of_hasLaw
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {Z : Ω → n → ℂ}
     (hZ : HasLaw Z (circularComplexGaussianVector n) μ)
@@ -78,7 +86,9 @@ theorem hasLaw_mulVec_circularComplexGaussianVector_of_hasLaw
   (hasLaw_mulVec_circularComplexGaussianVector_orthonormalRows U hU).comp hZ
 
 /-- Coordinates after a rectangular complex coisometry are independent
-complex random variables, with the full circular complex Gaussian law.-/
+complex random variables, with the full circular complex Gaussian law.
+@isnad1 id=iindepfu.2h6v.s6.34bf609b6fb8 from=translated src=- shape=fada4317 vocab=59353d41
+-/
 theorem iIndepFun_mulVec_circularComplexGaussianVector_of_hasLaw
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {Z : Ω → n → ℂ}
     (hZ : HasLaw Z (circularComplexGaussianVector n) μ)
@@ -88,7 +98,9 @@ theorem iIndepFun_mulVec_circularComplexGaussianVector_of_hasLaw
 
 /-- All transformed real and imaginary entries together have the full product
 standard-real-Gaussian law, including independence between the two parts.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=haslaw.2h6v.s7.711579172a9f from=translated src=- shape=fe9fc457 vocab=82a73493
+-/
 theorem hasLaw_realify_mulVec_circularComplexGaussianVector_of_hasLaw
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {Z : Ω → n → ℂ}
     (hZ : HasLaw Z (circularComplexGaussianVector n) μ)
@@ -99,7 +111,9 @@ theorem hasLaw_realify_mulVec_circularComplexGaussianVector_of_hasLaw
 
 /-- Every transformed real and imaginary coordinate is independent of all the
 others, under the actual sample-space law.
-atlas: gaussian-cayley-fourier-block-law (partial)-/
+atlas: gaussian-cayley-fourier-block-law (partial)
+@isnad1 id=iindepfu.2h6v.s7.62efc8783319 from=translated src=- shape=bebb56f3 vocab=e97a6891
+-/
 theorem iIndepFun_realify_mulVec_circularComplexGaussianVector_of_hasLaw
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {Z : Ω → n → ℂ}
     (hZ : HasLaw Z (circularComplexGaussianVector n) μ)

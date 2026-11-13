@@ -22,7 +22,9 @@ variable {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq
 open scoped Matrix.Norms.L2Operator in
 /-- Every polynomial trace product of a finite Gaussian matrix series is
 absolutely integrable. Source: polynomial growth and Gaussian moments;
-supports `noncommutative-khintchine`.-/
+supports `noncommutative-khintchine`.
+@isnad1 id=integrab.0h7v.s8.8000aa311bdd from=translated src=- shape=73e7e74e vocab=a66314c0
+-/
 theorem integrable_re_trace_gaussianSeries_product
     (A : κ → Matrix ι ι ℂ) (B C : Matrix ι ι ℂ) (r s : ℕ) :
     Integrable (fun x : κ → ℝ =>
@@ -35,7 +37,9 @@ theorem integrable_re_trace_gaussianSeries_product
 open scoped Matrix.Norms.L2Operator in
 /-- A coordinate times a Gaussian-series polynomial trace is absolutely
 integrable. Source: polynomial growth and Gaussian absolute moments;
-supports the coordinate Stein step for `noncommutative-khintchine`.-/
+supports the coordinate Stein step for `noncommutative-khintchine`.
+@isnad1 id=integrab.0h8v.s8.43787a6f4b64 from=translated src=- shape=5f35c5dd vocab=a66314c0
+-/
 theorem integrable_coordinate_mul_re_trace_gaussianSeries_product
     (A : κ → Matrix ι ι ℂ) (B C : Matrix ι ι ℂ) (r s : ℕ) (i : κ) :
     Integrable (fun x : κ → ℝ => x i *
@@ -61,7 +65,9 @@ theorem integrable_coordinate_mul_re_trace_gaussianSeries_product
 open scoped Matrix.Norms.L2Operator in
 /-- A single matrix-series power inside real trace is absolutely integrable.
 Source: the preceding polynomial-growth theorem; supports
-`noncommutative-khintchine`.-/
+`noncommutative-khintchine`.
+@isnad1 id=integrab.0h5v.s7.16f35a30977b from=translated src=- shape=d39ea768 vocab=a66314c0
+-/
 theorem integrable_re_trace_mul_gaussianSeries_pow
     (A : κ → Matrix ι ι ℂ) (B : Matrix ι ι ℂ) (q : ℕ) :
     Integrable (fun x : κ → ℝ => (B * (∑ i, x i • A i) ^ q).trace.re)
@@ -71,7 +77,9 @@ theorem integrable_re_trace_mul_gaussianSeries_pow
 
 open scoped Matrix.Norms.L2Operator in
 /-- A Gaussian coordinate times a one-power trace is absolutely integrable.
-Source: polynomial Gaussian moments; supports `noncommutative-khintchine`.-/
+Source: polynomial Gaussian moments; supports `noncommutative-khintchine`.
+@isnad1 id=integrab.0h6v.s7.b1b13ecd8fbf from=translated src=- shape=16388446 vocab=a66314c0
+-/
 theorem integrable_coordinate_mul_re_trace_mul_gaussianSeries_pow
     (A : κ → Matrix ι ι ℂ) (B : Matrix ι ι ℂ) (q : ℕ) (i : κ) :
     Integrable (fun x : κ → ℝ => x i * (B * (∑ j, x j • A j) ^ q).trace.re)
@@ -83,7 +91,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Coordinate Stein for complex matrix-series powers. The derivative uses
 the genuine noncommutative product rule and all integrability is discharged.
 Source: manuscript Gaussian `eq:recursion`; supports
-`noncommutative-khintchine`.-/
+`noncommutative-khintchine`.
+@isnad1 id=eq.0h6v.s9.f8a71736bd64 from=translated src=- shape=772419b6 vocab=0b7c03b6
+-/
 theorem integral_coordinate_mul_re_trace_mul_gaussianSeries_pow
     (A : κ → Matrix ι ι ℂ) (B : Matrix ι ι ℂ) (q : ℕ) (i : κ) :
     (∫ x : κ → ℝ, x i * (B * (∑ j, x j • A j) ^ q).trace.re

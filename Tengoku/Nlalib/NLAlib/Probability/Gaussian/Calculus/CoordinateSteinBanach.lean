@@ -20,7 +20,9 @@ variable {κ F : Type*} [Fintype κ] [DecidableEq κ]
 
 /-- Coordinate Stein integration by parts under the actual standard product
 Gaussian law, with a native Banach-valued integrand. Every term is a genuine
-Bochner integral; no Gaussian covariance or derivative identity is assumed.-/
+Bochner integral; no Gaussian covariance or derivative identity is assumed.
+@isnad1 id=eq.4h4v.s10.658b2f9b6fc8 from=translated src=- shape=87838fe8 vocab=e2b4fe4a
+-/
 theorem integral_coordinate_smul_eq_integral_fderiv_gaussian
     (f : (κ → ℝ) → F) (hf : Differentiable ℝ f) (i : κ)
     (hfi : Integrable f (gaussianVector κ))

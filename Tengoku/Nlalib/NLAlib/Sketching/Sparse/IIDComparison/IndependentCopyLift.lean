@@ -23,7 +23,9 @@ noncomputable section
 
 /-- Finite-law expectation commutes with a finite-type sum.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.ed6139c4b575 from=translated src=- shape=4a393e12 vocab=6c152d74
+-/
 theorem FiniteLaw.expect_sum {Omega K : Type*} [Fintype Omega] [Fintype K]
     (mu : FiniteLaw Omega) (f : K → Omega → ℝ) :
     mu.expect (fun omega ↦ ∑ k, f k omega) = ∑ k, mu.expect (f k) := by
@@ -34,7 +36,9 @@ theorem FiniteLaw.expect_sum {Omega K : Type*} [Fintype Omega] [Fintype K]
 
 /-- Finite-law expectation commutes with a finite-set sum.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.4bce3b131f11 from=translated src=- shape=aff0bcc2 vocab=0eaa105e
+-/
 theorem FiniteLaw.expect_finset_sum {Omega K : Type*} [Fintype Omega]
     (mu : FiniteLaw Omega) (S : Finset K) (f : K → Omega → ℝ) :
     mu.expect (fun omega ↦ ∑ k ∈ S, f k omega) = ∑ k ∈ S, mu.expect (f k) := by
@@ -45,7 +49,9 @@ theorem FiniteLaw.expect_finset_sum {Omega K : Type*} [Fintype Omega]
 
 /-- A constant scalar factor may be taken outside finite-law expectation.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.e01a18c4b894 from=translated src=- shape=e399dc76 vocab=8847f0a1
+-/
 theorem FiniteLaw.expect_mul_const {Omega : Type*} [Fintype Omega]
     (mu : FiniteLaw Omega) (f : Omega → ℝ) (c : ℝ) :
     mu.expect (fun omega ↦ f omega * c) = mu.expect f * c := by
@@ -58,7 +64,9 @@ theorem FiniteLaw.expect_mul_const {Omega : Type*} [Fintype Omega]
 /-- Two distinct coordinates of a literal finite product law factorize.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h7v.s6.17130db32fd7 from=translated src=- shape=4d93df4b vocab=1c94901e
+-/
 theorem expect_two_coordinates
     {I A : Type*} [Fintype I] [DecidableEq I] [Fintype A]
     (mu : I → FiniteLaw A) {i j : I} (hij : i ≠ j) (f g : A → ℝ) :
@@ -104,19 +112,25 @@ def scaledYVector {b : ℕ} (y : YVector b) : EVec b :=
 
 /-- The unscaled iid block vector reads its ternary coordinate value.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.2d3613ef0726 from=translated src=- shape=192ef4af vocab=25be6420
+-/
 @[simp] theorem unscaledYVector_apply {b : ℕ} (y : YVector b) (a : Fin b) :
     unscaledYVector y a = yValue (y a) := rfl
 
 /-- The scaled iid block vector reads its corrected ternary coordinate value.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.11a091c6a94d from=translated src=- shape=2e692519 vocab=bee719f1
+-/
 @[simp] theorem scaledYVector_apply {b : ℕ} (y : YVector b) (a : Fin b) :
     scaledYVector y a = cB b * yValue (y a) := rfl
 
 /-- The inner product of corrected iid vectors is the squared correction times the unscaled inner product.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s7.f7dac46be770 from=translated src=- shape=471828d3 vocab=9a5b384b
+-/
 theorem scaled_inner_eq {b : ℕ} (y z : YVector b) :
     inner ℝ (scaledYVector y) (scaledYVector z) =
       cB b ^ 2 * inner ℝ (unscaledYVector y) (unscaledYVector z) := by
@@ -131,7 +145,9 @@ theorem scaled_inner_eq {b : ℕ} (y z : YVector b) :
 cross-inner-product identity at distinct array sites.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s7.1e4655fcb1a0 from=translated src=- shape=19c19abb vocab=75c601f1
+-/
 theorem conditional_cross_inner
     {b s n : ℕ} (hb : 0 < b) (x : XArray b s n)
     {z z' : ArraySite s n} (hzz : z ≠ z') :
@@ -194,7 +210,9 @@ def scaledIIDVectorError {b s n d : ℕ} (F : Frame n d) (y : YArray b s n) :
 
 /-- The corrected iid Gram error is the squared scalar correction times the unscaled error.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.5709abaa9fe1 from=translated src=- shape=9a64edf7 vocab=dc09ff90
+-/
 theorem scaledIIDVectorError_eq_smul {b s n d : ℕ}
     (F : Frame n d) (y : YArray b s n) :
     scaledIIDVectorError F y = cB b ^ 2 • iidVectorError F y := by
@@ -216,7 +234,9 @@ def FiniteLaw.barycenter {Omega E : Type*} [Fintype Omega]
 
 /-- A matrix-valued barycenter is the entrywise finite expectation.
 Source: ported from `SparseFockFormal.SparseIIDTransfer` (`matrixExpectation`),
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.3f17c7a2c673 from=translated src=- shape=fc3e123e vocab=089ce741
+-/
 theorem FiniteLaw.barycenter_apply {Omega A : Type*} [Fintype Omega]
     (mu : FiniteLaw Omega) (M : Omega → Matrix A A ℝ) (a c : A) :
     FiniteLaw.barycenter mu M a c = mu.expect (fun omega ↦ M omega a c) := by
@@ -226,7 +246,9 @@ theorem FiniteLaw.barycenter_apply {Omega A : Type*} [Fintype Omega]
 and the proof uses `i ≠ j` to invoke independence at two distinct sites.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s7.bf7470cbab6d from=translated src=- shape=9ef991af vocab=278f351f
+-/
 theorem conditional_matrix_transfer {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (x : XArray b s n) :
     FiniteLaw.barycenter (conditionalArrayLaw hb x) (scaledIIDVectorError F) =
@@ -252,7 +274,9 @@ theorem conditional_matrix_transfer {b s n d : ℕ} (hb : 0 < b)
 
 /-- The literal selector-vector Gram error is symmetric.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.82e3adc1b21d from=translated src=- shape=96ec25d8 vocab=8c9a34a8
+-/
 theorem sparseVectorError_symmetric {b s n d : ℕ}
     (F : Frame n d) (x : XArray b s n) :
     (sparseVectorError F x).transpose = sparseVectorError F x := by
@@ -272,7 +296,9 @@ theorem sparseVectorError_symmetric {b s n d : ℕ}
 
 /-- The literal iid-vector Gram error is symmetric.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.f8f06c2de93f from=translated src=- shape=96ec25d8 vocab=9e1bc210
+-/
 theorem iidVectorError_symmetric {b s n d : ℕ}
     (F : Frame n d) (y : YArray b s n) :
     (iidVectorError F y).transpose = iidVectorError F y := by
@@ -292,7 +318,9 @@ theorem iidVectorError_symmetric {b s n d : ℕ}
 
 /-- The corrected iid-vector Gram error is symmetric.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.e3e8da69c9ba from=translated src=- shape=96ec25d8 vocab=9269aeee
+-/
 theorem scaledIIDVectorError_symmetric {b s n d : ℕ}
     (F : Frame n d) (y : YArray b s n) :
     (scaledIIDVectorError F y).transpose = scaledIIDVectorError F y := by
@@ -320,7 +348,9 @@ def scaledIIDSymmetricError {b s n d : ℕ}
 /-- Finite Jensen inequality for the project's explicit normalized weights.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s6.b8fc68c10742 from=translated src=- shape=78e1807f vocab=420f933e
+-/
 theorem FiniteLaw.map_barycenter_le_expect {Omega E : Type*} [Fintype Omega]
     [AddCommGroup E] [Module ℝ E]
     (mu : FiniteLaw Omega) (p : Omega → E) (Phi : E → ℝ)
@@ -333,7 +363,9 @@ theorem FiniteLaw.map_barycenter_le_expect {Omega E : Type*} [Fintype Omega]
 /-- The symmetric-matrix barycenter coerces to the matrix barycenter.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.79733766ee3e from=translated src=- shape=ba586de2 vocab=219915a9
+-/
 theorem coe_barycenter_scaledIID {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (x : XArray b s n) :
     ((FiniteLaw.barycenter (conditionalArrayLaw hb x) (scaledIIDSymmetricError F) :
@@ -346,7 +378,9 @@ theorem coe_barycenter_scaledIID {b s n d : ℕ} (hb : 0 < b)
 
 /-- The conditional corrected iid matrix barycenter equals the literal selector-vector error.
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.b8ad9ab68d17 from=translated src=- shape=15dee5ec vocab=aaa72a64
+-/
 theorem barycenter_scaledIID_eq_sparse {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (x : XArray b s n) :
     FiniteLaw.barycenter (conditionalArrayLaw hb x) (scaledIIDSymmetricError F) =
@@ -359,7 +393,9 @@ theorem barycenter_scaledIID_eq_sparse {b s n d : ℕ} (hb : 0 < b)
 symmetric matrices.
 
 Source: ported from `SparseFockFormal.SparseIIDTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h7v.s9.df0a03c2f77b from=translated src=- shape=13d2e39c vocab=b603dda3
+-/
 theorem conditional_convex_order {b s n d : ℕ} (hb : 0 < b)
     (F : Frame n d) (x : XArray b s n)
     (Phi : symmetricMatrices d → ℝ) (hPhi : ConvexOn ℝ Set.univ Phi) :

@@ -36,7 +36,9 @@ variable {b s n d : ℕ}
 `i` and `j`.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.0h5v.s7.fe6808001416 from=translated src=- shape=62902329 vocab=0618ae79
+-/
 theorem columnInner_hasLocalDegree_two
     (i j : Fin n) :
     HasLocalDegree (ι := Fin n) (α := UniformSparseColumn (s * b) s) 2
@@ -55,7 +57,9 @@ theorem columnInner_hasLocalDegree_two
 interaction degree at most two.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h7v.s6.7a321694f7f0 from=translated src=- shape=bcc206ac vocab=8aef6f58
+-/
 theorem gramError_entry_hasLocalDegree_two
     (hs : 0 < s) (F : Frame n d) (a c : Fin d) :
     HasLocalDegree (ι := Fin n) (α := UniformSparseColumn (s * b) s) 2
@@ -95,7 +99,9 @@ theorem gramError_entry_hasLocalDegree_two
 interaction degree at most `2r`.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h8v.s7.5f850b35a6bb from=translated src=- shape=4d43038c vocab=5f4e0859
+-/
 theorem gramError_pow_entry_hasLocalDegree
     (hs : 0 < s) (F : Frame n d) (r : ℕ) (a c : Fin d) :
     HasLocalDegree (ι := Fin n) (α := UniformSparseColumn (s * b) s) (2 * r)
@@ -135,7 +141,9 @@ theorem gramError_pow_entry_hasLocalDegree
 most `2r`.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=haslocal.1h6v.s7.a33a29b23233 from=translated src=- shape=f57c31aa vocab=4aa1a508
+-/
 theorem trace_power_hasLocalDegree
     (hs : 0 < s) (F : Frame n d) (r : ℕ) :
     HasLocalDegree (ι := Fin n) (α := UniformSparseColumn (s * b) s) (2 * r)
@@ -157,7 +165,9 @@ through `4q` complete exact-`s` columns preserves the `2q` trace moment
 exactly.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h7v.s9.8362d9f77fb3 from=translated src=- shape=e56e0c8d vocab=efba516f
+-/
 theorem trace_even_moment_eq_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d) (q : ℕ)
     (μ : FiniteLaw (UniformSparseSample (s * b) s n))
@@ -175,7 +185,9 @@ theorem trace_even_moment_eq_of_matchesUpTo_four_mul
 right-hand side replaced by the fully independent exact-`s` moment.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h8v.s9.550343180b04 from=translated src=- shape=d04d600a vocab=11822e2d
+-/
 theorem matrix_markov_tail_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d)
     (q : ℕ) (hq : 0 < q) (eps : ℝ) (heps : 0 < eps)
@@ -196,7 +208,9 @@ theorem matrix_markov_tail_of_matchesUpTo_four_mul
 endpoint.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h8v.s9.efe5ad955c04 from=translated src=- shape=52d2985b vocab=68bca0ae
+-/
 theorem ose_failure_tail_of_matchesUpTo_four_mul
     (hs : 0 < s) (hb : 0 < b) (F : Frame n d)
     (q : ℕ) (hq : 0 < q) (eps : ℝ) (heps : 0 < eps)
@@ -228,7 +242,9 @@ theorem ose_failure_tail_of_matchesUpTo_four_mul
 unchanged to a law matching whole-column marginals through `4q`.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.7h9v.s10.705d963e5d82 from=translated src=- shape=a7635a14 vocab=331d2f7f
+-/
 theorem limited_failure_tail_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} (hq : 0 < q) {beta : ℝ} (hbeta : 0 ≤ beta)
@@ -270,7 +286,9 @@ the rounded Nelson--Nguyen parameters, matching every marginal of at most
 bound `≤ delta` as fully independent exact-`s` columns.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h6v.s10.50d3c1d56af4 from=translated src=- shape=750140ff vocab=a15d5b5c
+-/
 theorem rounded_ose_failure_le_delta_of_matchesUpTo
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -348,7 +366,9 @@ theorem rounded_ose_failure_le_delta_of_matchesUpTo
 theorem.
 
 Source: ported from `SparseFockFormal.UniformExactSLimitedIndependence`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h6v.s10.ecf4f65b9e95 from=translated src=- shape=11151f41 vocab=18d0ac5e
+-/
 theorem rounded_operator_norm_failure_le_delta_of_matchesUpTo
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

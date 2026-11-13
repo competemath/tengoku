@@ -33,14 +33,18 @@ private theorem isUnit_det_one_add {L : Matrix n n ℝ} (hL : L.PosSemidef) :
     (hL.one_le_det_one_add)))
 
 /-- The marginal kernel solves the regularized linear equation without
-requiring an inverse of the kernel `L` itself.-/
+requiring an inverse of the kernel `L` itself.
+@isnad1 id=eq.1h2v.s6.37ca40dbdb41 from=translated src=- shape=b0dfa269 vocab=3c3ff22d
+-/
 theorem lEnsembleKernel_mul_one_add {L : Matrix n n ℝ} (hL : L.PosSemidef) :
     lEnsembleKernel L * (1 + L) = L := by
   rw [lEnsembleKernel, Matrix.mul_assoc,
     Matrix.nonsing_inv_mul _ (isUnit_det_one_add hL), Matrix.mul_one]
 
 /-- The L-ensemble kernel is the identity minus the inverse regularized
-matrix. This identity is valid for every PSD kernel, including zero.-/
+matrix. This identity is valid for every PSD kernel, including zero.
+@isnad1 id=eq.1h2v.s6.78e950ce6c43 from=translated src=- shape=a6316585 vocab=e9fef303
+-/
 theorem lEnsembleKernel_eq_one_sub_inv {L : Matrix n n ℝ} (hL : L.PosSemidef) :
     lEnsembleKernel L = 1 - (1 + L)⁻¹ := by
   have h := Matrix.mul_nonsing_inv (1 + L) (isUnit_det_one_add hL)
@@ -49,7 +53,9 @@ theorem lEnsembleKernel_eq_one_sub_inv {L : Matrix n n ℝ} (hL : L.PosSemidef) 
   apply eq_sub_iff_add_eq.mpr
   simpa only [add_comm] using h
 
-/-- A real PSD L-ensemble has a symmetric marginal kernel.-/
+/-- A real PSD L-ensemble has a symmetric marginal kernel.
+@isnad1 id=ishermit.1h2v.s5.700fe5cbb058 from=translated src=- shape=e193b522 vocab=d3a4cc12
+-/
 theorem lEnsembleKernel_isHermitian {L : Matrix n n ℝ} (hL : L.PosSemidef) :
     (lEnsembleKernel L).IsHermitian := by
   rw [lEnsembleKernel_eq_one_sub_inv hL]
@@ -58,7 +64,9 @@ theorem lEnsembleKernel_isHermitian {L : Matrix n n ℝ} (hL : L.PosSemidef) :
 /-- Integrating the indicator that a fixed set is included gives the
 corresponding principal minor of the marginal kernel. This keeps the finite
 indicator as an ordinary real function. Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h3v.s6.a4fb0e0a909b from=translated src=- shape=697e2825 vocab=71eac1bf
+-/
 theorem integral_subset_indicator_lEnsembleLaw (L : Matrix n n ℝ)
     (hL : L.PosSemidef) (J : Finset n) :
     ∫ S, (if J ⊆ S then (1 : ℝ) else 0) ∂lEnsembleLaw L hL =
@@ -81,7 +89,9 @@ theorem integral_subset_indicator_lEnsembleLaw (L : Matrix n n ℝ)
 /-- Every prescribed inclusion event has the determinant of the matching
 principal marginal-kernel block as its probability. The empty event and
 singular kernels are included. Dereziński–Mahoney 2020, §3.
-atlas: l-ensemble-marginals (partial)-/
+atlas: l-ensemble-marginals (partial)
+@isnad1 id=eq.1h3v.s6.5fb624cfba43 from=translated src=- shape=473715e7 vocab=efa72ca4
+-/
 theorem measureReal_subset_lEnsembleLaw (L : Matrix n n ℝ)
     (hL : L.PosSemidef) (J : Finset n) :
     (lEnsembleLaw L hL).real {S | J ⊆ S} = principalMinor (lEnsembleKernel L) J := by
@@ -95,7 +105,9 @@ theorem measureReal_subset_lEnsembleLaw (L : Matrix n n ℝ)
   exact integral_subset_indicator_lEnsembleLaw L hL J
 
 /-- Inclusion probabilities transport to any random subset with the
-L-ensemble law.-/
+L-ensemble law.
+@isnad1 id=eq.2h6v.s6.a39d158fe337 from=translated src=- shape=8f70b2d1 vocab=24c737ce
+-/
 theorem measureReal_subset_lEnsembleLaw_of_hasLaw {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} (L : Matrix n n ℝ) (hL : L.PosSemidef)
     {S : Ω → Finset n} (hS : HasLaw S (lEnsembleLaw L hL) μ) (J : Finset n) :

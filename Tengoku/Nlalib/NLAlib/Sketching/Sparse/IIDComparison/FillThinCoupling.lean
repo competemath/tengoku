@@ -42,7 +42,9 @@ def nestedYLaw {b : ℕ} (hb : 0 < b) (s : ℕ) : FiniteLaw (NestedY b s) :=
 
 /-- The nested iid block-vector law weight is its product mass.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.85cc44702789 from=translated src=- shape=04908ecf vocab=6f7d3943
+-/
 @[simp] theorem nestedYLaw_weight {b : ℕ} (hb : 0 < b) (s : ℕ)
     (y : NestedY b s) :
     (nestedYLaw hb s).weight y = ∏ g, (yVectorLaw b hb).weight (y g) := rfl
@@ -57,7 +59,9 @@ def flatOutcome {b s : ℕ} (y : NestedY b s) (r : Fin (s * b)) : TernaryOutcome
 
 /-- Flattening a nested iid vector recovers its specified block and within-block outcome.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s6.1c0b7670a5cc from=translated src=- shape=e44a6fbf vocab=cdd92509
+-/
 @[simp] theorem flatOutcome_pair {b s : ℕ} (y : NestedY b s)
     (g : Fin s) (a : Fin b) :
     flatOutcome y (finProdFinEquiv (g, a)) = y g a := by
@@ -72,7 +76,9 @@ def flatSupport {b s : ℕ} (y : NestedY b s) : Finset (Fin (s * b)) :=
 
 /-- A flattened coordinate belongs to support precisely when its outcome is nonzero.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.0h4v.s6.a3c54f37002b from=translated src=- shape=295f1e12 vocab=e4d70289
+-/
 @[simp] theorem mem_flatSupport {b s : ℕ} (y : NestedY b s)
     (r : Fin (s * b)) : r ∈ flatSupport y ↔ flatOutcome y r ≠ .zero := by
   simp [flatSupport]
@@ -86,7 +92,9 @@ def totalSupport {b s : ℕ} (y : NestedY b s) : ℕ :=
 
 /-- Total flattened support is the sum of within-block support cardinalities.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s5.6d313857b108 from=translated src=- shape=8fab67be vocab=12bec5ad
+-/
 theorem totalSupport_eq_sum {b s : ℕ} (y : NestedY b s) :
     totalSupport y = ∑ g, supportSize (y g) := by
   classical
@@ -125,7 +133,9 @@ def activeBlockCount (y : NestedY b s) : ℕ := ∑ g, blockActive y g
 
 /-- The number of active blocks is bounded by total support cardinality.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s4.8359babf8c74 from=translated src=- shape=fb0951f5 vocab=9f701ec9
+-/
 theorem activeBlockCount_le_totalSupport (y : NestedY b s) :
     activeBlockCount y ≤ totalSupport y := by
   rw [activeBlockCount, totalSupport_eq_sum]
@@ -138,7 +148,9 @@ theorem activeBlockCount_le_totalSupport (y : NestedY b s) :
 
 /-- The number of active blocks is bounded by the number of blocks.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s4.1fc92aefc766 from=translated src=- shape=b8c5f4b1 vocab=d8a42edb
+-/
 theorem activeBlockCount_le_s (y : NestedY b s) : activeBlockCount y ≤ s := by
   rw [activeBlockCount]
   calc
@@ -151,7 +163,9 @@ theorem activeBlockCount_le_s (y : NestedY b s) : activeBlockCount y ≤ s := by
 
 /-- The active-block count is bounded by the minimum of total support and block count.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s4.bf56dfe0b463 from=translated src=- shape=ee72773e vocab=913f43ff
+-/
 theorem activeBlockCount_le_min (y : NestedY b s) :
     activeBlockCount y ≤ min (totalSupport y) s := by
   rw [Nat.le_min]
@@ -166,7 +180,9 @@ def vectorActiveIndicator {b : ℕ} (y : YVector b) : ℝ :=
 
 /-- The mean active-vector indicator equals the nonempty-block probability.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.f3f4335494d0 from=translated src=- shape=488f7d80 vocab=68f97297
+-/
 theorem expect_vectorActiveIndicator {b : ℕ} (hb : 0 < b) :
     (yVectorLaw b hb).expect vectorActiveIndicator = 1 - p0 b := by
   have hzero : {y : YVector b | supportSize y = 0} = {zeroY b} := by
@@ -192,7 +208,9 @@ theorem expect_vectorActiveIndicator {b : ℕ} (hb : 0 < b) :
 
 /-- The expected active-block count is the block count times nonempty-block probability.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.450a8435c0ec from=translated src=- shape=c0b56fbb vocab=69cc61c9
+-/
 theorem expect_activeBlockCount {b s : ℕ} (hb : 0 < b) :
     (nestedYLaw hb s).expect (fun y => (activeBlockCount y : ℝ)) =
       (s : ℝ) * (1 - p0 b) := by
@@ -226,7 +244,9 @@ def couplingA {b s : ℕ} (hb : 0 < b) : ℝ :=
 /-- The sharp block lower bound `a ≥ 1-p0(b)`.
 
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s5.f1c4b8a46772 from=translated src=- shape=7ca3a19e vocab=622c3513
+-/
 theorem one_sub_p0_le_couplingA {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
     1 - p0 b ≤ couplingA (s := s) hb := by
   have hsR : (0 : ℝ) < s := by exact_mod_cast hs
@@ -241,7 +261,9 @@ theorem one_sub_p0_le_couplingA {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
 
 /-- The exact-s coupling normalization is positive at positive block count and block size.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.2h2v.s5.e521e67937dc from=translated src=- shape=0ae3edf6 vocab=bd059443
+-/
 theorem couplingA_pos {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
     0 < couplingA (s := s) hb :=
   (one_sub_p0_pos hb).trans_le (one_sub_p0_le_couplingA hb hs)
@@ -255,7 +277,9 @@ def exactScale {b s : ℕ} (hb : 0 < b) : ℝ :=
 
 /-- The exact-s correction scale is bounded by the single-block support correction.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s5.43716e5eead8 from=translated src=- shape=422d225a vocab=74700e7f
+-/
 theorem exactScale_le_cB {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
     exactScale (s := s) hb ≤ cB b := by
   rw [exactScale, cB]
@@ -263,7 +287,9 @@ theorem exactScale_le_cB {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
 
 /-- The exact-s correction scale is bounded by the universal support-gap constant.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s5.cfa643d240bd from=translated src=- shape=3333e50b vocab=4188237a
+-/
 theorem exactScale_le_cStar {b s : ℕ} (hb : 0 < b) (hs : 0 < s) :
     exactScale (s := s) hb ≤ convexOrderConstant :=
   (exactScale_le_cB hb hs).trans (cB_le_cStar hb)
@@ -281,7 +307,9 @@ def signOfOutcome : TernaryOutcome → Sign
 
 /-- Recovering and re-embedding the sign of a nonzero ternary outcome returns that outcome.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s3.cf5a204160a5 from=translated src=- shape=c8beee5b vocab=83d12015
+-/
 @[simp] theorem outcomeOfSign_signOfOutcome_of_ne_zero
     {z : TernaryOutcome} (hz : z ≠ .zero) : outcomeOfSign (signOfOutcome z) = z := by
   cases z <;> simp_all [signOfOutcome, outcomeOfSign]
@@ -309,7 +337,9 @@ def flatYValue {b s : ℕ} (y : NestedY b s) (r : Fin (s * b)) : ℝ :=
 /-- Every compatible fill/thin choice has overlap exactly `min(K,s)`.
 
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s6.f79510f277e9 from=translated src=- shape=113948f2 vocab=da7e7007
+-/
 theorem compatible_inner_eq_min {b s : ℕ} {y : NestedY b s}
     {x : UniformSparseColumn (s * b) s} (hxy : Compatible y x) :
     (∑ r, UniformSparseColumn.value x r * flatYValue y r) =
@@ -382,7 +412,9 @@ abbrev ChoiceColumn {b s : ℕ} (y : NestedY b s) :=
 
 /-- Every iid outcome admits a compatible exactly-s selector column.
 Source: ported from `SparseFockFormal.UniformExactSCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=nonempty.2h3v.s5.8e72ac0edd15 from=translated src=- shape=e80cc427 vocab=7e39b882
+-/
 theorem choiceColumn_nonempty {b s : ℕ} (hb : 0 < b) (_hs : 0 < s)
     (y : NestedY b s) : Nonempty (ChoiceColumn y) := by
   classical

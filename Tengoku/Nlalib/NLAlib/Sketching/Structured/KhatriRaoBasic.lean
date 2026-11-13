@@ -29,19 +29,25 @@ product of the corresponding factor coordinates.-/
 def khatriRaoProbe (g : ∀ j : Fin d, Fin (n j) → ℝ) :
     (∀ j : Fin d, Fin (n j)) → ℝ := fun a => ∏ j, g j (a j)
 
-/-- Each tensor-product coordinate is a continuous polynomial in the factors.-/
+/-- Each tensor-product coordinate is a continuous polynomial in the factors.
+@isnad1 id=continuo.0h2v.s6.06aceaa73b47 from=translated src=- shape=0150200e vocab=8f741fa1
+-/
 theorem continuous_khatriRaoProbe :
     Continuous (khatriRaoProbe (n := n)) := by
   unfold khatriRaoProbe
   fun_prop
 
-/-- The tensor-product probe is measurable for the product Borel structures.-/
+/-- The tensor-product probe is measurable for the product Borel structures.
+@isnad1 id=measurab.0h2v.s6.df3057bc3553 from=translated src=- shape=0150200e vocab=fecd3aac
+-/
 theorem measurable_khatriRaoProbe :
     Measurable (khatriRaoProbe (n := n)) :=
   continuous_khatriRaoProbe.measurable
 
 /-- Splitting off the first mode turns a tensor contraction into a linear
-form in its first vector factor.-/
+form in its first vector factor.
+@isnad1 id=eq.0h5v.s8.926fab07e0b3 from=translated src=- shape=61b3cfcf vocab=b501dcd4
+-/
 theorem dotProduct_khatriRaoProbe_cons {d : ℕ} {n : Fin (d + 1) → ℕ}
     (a : (∀ j : Fin (d + 1), Fin (n j)) → ℝ)
     (g₀ : Fin (n 0) → ℝ) (g : ∀ j : Fin d, Fin (n j.succ) → ℝ) :
@@ -62,7 +68,9 @@ theorem dotProduct_khatriRaoProbe_cons {d : ℕ} {n : Fin (d + 1) → ℕ}
   simp only [khatriRaoProbe, Fin.prod_univ_succ, Fin.cons_zero, Fin.cons_succ]
   ring
 
-/-- Splitting the first tensor index preserves the squared coefficient norm.-/
+/-- Splitting the first tensor index preserves the squared coefficient norm.
+@isnad1 id=eq.0h3v.s8.abe43db6c4c1 from=translated src=- shape=40aa0486 vocab=b64cec44
+-/
 theorem sum_norm_sq_tensor_slices {d : ℕ} {n : Fin (d + 1) → ℕ}
     (a : (∀ j : Fin (d + 1), Fin (n j)) → ℝ) :
     (∑ i : Fin (n 0), ∑ b : ∀ j : Fin d, Fin (n j.succ), a (Fin.cons i b) ^ 2) =
@@ -73,7 +81,9 @@ theorem sum_norm_sq_tensor_slices {d : ℕ} {n : Fin (d + 1) → ℕ}
   rw [Fintype.sum_prod_type]
 
 /-- Independent isotropic factor laws have isotropic tensor-product probes.
-No independence among coordinates of a single factor is needed.-/
+No independence among coordinates of a single factor is needed.
+@isnad1 id=eq.1h5v.s8.141512f74780 from=translated src=- shape=5c5afd57 vocab=41573cef
+-/
 theorem integral_khatriRaoProbe_mul_khatriRaoProbe
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
     [∀ j, IsProbabilityMeasure (ν j)]
@@ -95,7 +105,9 @@ theorem integral_khatriRaoProbe_mul_khatriRaoProbe
     exact Finset.prod_eq_zero (Finset.mem_univ j) (ite_eq_right hj)
 
 /-- Every pair of tensor-product coordinates is integrable under isotropic
-factor laws. Diagonal second moments equal to one force square integrability.-/
+factor laws. Diagonal second moments equal to one force square integrability.
+@isnad1 id=integrab.1h5v.s8.a371a1b75e66 from=translated src=- shape=f696d778 vocab=ff857b40
+-/
 theorem integrable_khatriRaoProbe_mul_khatriRaoProbe
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
     [∀ j, IsProbabilityMeasure (ν j)]
@@ -112,7 +124,9 @@ theorem integrable_khatriRaoProbe_mul_khatriRaoProbe
   exact (hL2 a).integrable_mul (hL2 b)
 
 /-- Quadratic forms of tensor-product probes have the expected trace whenever
-the independent factors are isotropic.-/
+the independent factors are isotropic.
+@isnad1 id=eq.1h4v.s8.2dc723dcd503 from=translated src=- shape=a3fe13eb vocab=0bff5913
+-/
 theorem integral_quadForm_khatriRaoProbe_eq_trace
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
     [∀ j, IsProbabilityMeasure (ν j)]
@@ -125,7 +139,9 @@ theorem integral_quadForm_khatriRaoProbe_eq_trace
     (integral_khatriRaoProbe_mul_khatriRaoProbe ν hsecond)
 
 /-- Restricting independent isotropic tensor probes to an orthonormal
-subspace preserves their identity second-moment matrix.-/
+subspace preserves their identity second-moment matrix.
+@isnad1 id=eq.2h7v.s8.6ef319e76a37 from=translated src=- shape=950e29e6 vocab=39c8fff0
+-/
 theorem integral_projected_khatriRaoProbe_mul_projected_khatriRaoProbe
     (ν : ∀ j : Fin d, Measure (Fin (n j) → ℝ))
     [∀ j, IsProbabilityMeasure (ν j)]

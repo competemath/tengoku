@@ -26,7 +26,9 @@ local notation "W" => WordHilbertSpace ι
 local notation "K" => WordMatrixHilbertSpace D ι
 local notation "B" => W →L[ℂ] W
 
-/-- Amplified coefficient blocks preserve addition in the operator factor.-/
+/-- Amplified coefficient blocks preserve addition in the operator factor.
+@isnad1 id=eq.0h5v.s15.dc446c91748b from=translated src=- shape=32132822 vocab=688aad0b
+-/
 theorem wordMatrixTensor_add (A : Matrix D D ℂ) (T U : B) :
     wordMatrixTensor A (T + U) = wordMatrixTensor A T + wordMatrixTensor A U := by
   unfold wordMatrixTensor
@@ -37,7 +39,9 @@ theorem wordMatrixTensor_add (A : Matrix D D ℂ) (T U : B) :
   change A i j • (T + U) = A i j • T + A i j • U
   exact smul_add _ _ _
 
-/-- A zero word operator gives a zero native coefficient block.-/
+/-- A zero word operator gives a zero native coefficient block.
+@isnad1 id=eq.0h3v.s14.6ed6f1ae1a4c from=translated src=- shape=ce1815da vocab=f0b0a335
+-/
 @[simp]
 theorem wordMatrixTensor_zero (A : Matrix D D ℂ) :
     wordMatrixTensor A (0 : B) = 0 := by
@@ -49,7 +53,9 @@ theorem wordMatrixTensor_zero (A : Matrix D D ℂ) :
   change A i j • (0 : B) = 0
   exact smul_zero _
 
-/-- Native adjoints act on both the scalar coefficient and word operator.-/
+/-- Native adjoints act on both the scalar coefficient and word operator.
+@isnad1 id=eq.0h4v.s13.8708790ed656 from=translated src=- shape=9ff8a512 vocab=1bc3dead
+-/
 theorem star_wordMatrixTensor (A : Matrix D D ℂ) (T : B) :
     star (wordMatrixTensor A T) = wordMatrixTensor Aᴴ (star T) := by
   unfold wordMatrixTensor
@@ -61,7 +67,9 @@ theorem star_wordMatrixTensor (A : Matrix D D ℂ) (T : B) :
   exact star_smul _ _
 
 /-- The genuine block action multiplies coefficient tensors in their actual
-operator order.-/
+operator order.
+@isnad1 id=eq.0h6v.s15.35fff323f93f from=translated src=- shape=31d403ba vocab=91f6ab34
+-/
 theorem wordMatrixTensor_mul (A E : Matrix D D ℂ) (T U : B) :
     wordMatrixTensor A T * wordMatrixTensor E U = wordMatrixTensor (A * E) (T * U) := by
   unfold wordMatrixTensor
@@ -73,7 +81,9 @@ theorem wordMatrixTensor_mul (A E : Matrix D D ℂ) (T U : B) :
   simp only [Finset.sum_smul, smul_mul_assoc, mul_smul_comm, smul_smul, mul_comm]
 
 /-- Tensoring with the identity word operator is the actual faithful scalar
-coefficient embedding.-/
+coefficient embedding.
+@isnad1 id=eq.0h3v.s14.174fb3afe20d from=translated src=- shape=268a7b45 vocab=dcb07d1e
+-/
 theorem wordMatrixTensor_one (A : Matrix D D ℂ) :
     wordMatrixTensor A (1 : B) = wordMatrixCoefficientHom A := by
   apply ContinuousLinearMap.ext
@@ -95,7 +105,9 @@ private theorem star_sum_wordMatrixOperator [Fintype ι] (f : ι → K →L[ℂ]
 
 /-- Orthogonality of prefix creation gives the exact coefficient Gram
 operator for the actual amplified creation sum. Empty families and empty
-matrix dimension are included.-/
+matrix dimension are included.
+@isnad1 id=eq.0h3v.s15.cf18123b009a from=translated src=- shape=1746d475 vocab=56b6c738
+-/
 theorem star_wordMatrixCreationSum_mul [Fintype ι] (A : ι → Matrix D D ℂ) :
     star (wordMatrixCreationSum A) * wordMatrixCreationSum A =
       wordMatrixCoefficientHom (∑ i, (A i)ᴴ * A i) := by
@@ -113,7 +125,9 @@ theorem star_wordMatrixCreationSum_mul [Fintype ι] (A : ι → Matrix D D ℂ) 
   · simp
 
 /-- The squared norm of the actual matrix-coefficient creation sum equals
-the native spectral norm of the coefficient Gram sum, with no dimension loss.-/
+the native spectral norm of the coefficient Gram sum, with no dimension loss.
+@isnad1 id=eq.0h3v.s12.7c7117733935 from=translated src=- shape=241f573e vocab=f4cdde94
+-/
 theorem norm_wordMatrixCreationSum_sq [Fintype ι] (A : ι → Matrix D D ℂ) :
     ‖wordMatrixCreationSum A‖ ^ 2 = specNorm (∑ i, (A i)ᴴ * A i) := by
   have hnorm := CStarRing.norm_star_mul_self (x := wordMatrixCreationSum A)
@@ -121,13 +135,17 @@ theorem norm_wordMatrixCreationSum_sq [Fintype ι] (A : ι → Matrix D D ℂ) :
   simpa only [pow_two] using hnorm.symm
 
 /-- The exact creation norm is the square root of the actual coefficient
-Gram spectral norm. In particular it is valid in zero matrix dimension.-/
+Gram spectral norm. In particular it is valid in zero matrix dimension.
+@isnad1 id=eq.0h3v.s12.ff43c57990e8 from=translated src=- shape=c5bbad91 vocab=24de97c1
+-/
 theorem norm_wordMatrixCreationSum [Fintype ι] (A : ι → Matrix D D ℂ) :
     ‖wordMatrixCreationSum A‖ = Real.sqrt (specNorm (∑ i, (A i)ᴴ * A i)) := by
   rw [← norm_wordMatrixCreationSum_sq, Real.sqrt_sq (norm_nonneg _)]
 
 /-- For Hermitian coefficients, the concrete centered free linear field is
-the actual amplified creation sum plus its native adjoint.-/
+the actual amplified creation sum plus its native adjoint.
+@isnad1 id=eq.1h3v.s15.554baf59b137 from=translated src=- shape=4ac75a16 vocab=e6fa4811
+-/
 theorem sum_wordMatrixTensor_wordField_eq [Fintype ι]
     (A : ι → Matrix D D ℂ) (hA : ∀ i, (A i).IsHermitian) :
     (∑ i, wordMatrixTensor (A i) (wordField i)) =
@@ -144,7 +162,9 @@ theorem sum_wordMatrixTensor_wordField_eq [Fintype ι]
 /-- Actual Hermitian matrix-coefficient free fields have the dimension-free
 factor two norm bound. The variance mass is the genuine sum of coefficient
 squares, including the zero and empty-family cases.
-Source: arXiv:2406.11453v2, the centered norm input to Lemma 4.7.-/
+Source: arXiv:2406.11453v2, the centered norm input to Lemma 4.7.
+@isnad1 id=le.1h3v.s13.234576d018c4 from=translated src=- shape=b3aea187 vocab=ec260f9b
+-/
 theorem norm_sum_wordMatrixTensor_wordField_le [Fintype ι]
     (A : ι → Matrix D D ℂ) (hA : ∀ i, (A i).IsHermitian) :
     ‖∑ i, wordMatrixTensor (A i) (wordField i)‖ ≤
@@ -159,7 +179,9 @@ theorem norm_sum_wordMatrixTensor_wordField_le [Fintype ι]
       ring
 
 /-- Centering the actual amplified linear reference removes its full mean
-exactly and leaves the dimension-free free-series norm bound.-/
+exactly and leaves the dimension-free free-series norm bound.
+@isnad1 id=le.1h4v.s15.4fcf67aaa798 from=translated src=- shape=15d26d6b vocab=c4e7b09a
+-/
 theorem norm_wordMatrixLinearCombination_sub_mean_le [Fintype ι]
     (A₀ : Matrix D D ℂ) (A : ι → Matrix D D ℂ) (hA : ∀ i, (A i).IsHermitian) :
     ‖wordMatrixLinearCombination A₀ A - wordMatrixCoefficientHom A₀‖ ≤

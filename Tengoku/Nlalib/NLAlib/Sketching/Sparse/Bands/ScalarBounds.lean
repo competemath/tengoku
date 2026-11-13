@@ -21,7 +21,9 @@ The operator-specific hypotheses (diagonal block at most `d`, each off-diagonal
 block at most `1`) are deliberately represented as scalar premises here.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h5v.s6.f18b4b29aa74 from=translated src=- shape=c5078c82 vocab=6bfb30e3
+-/
 theorem blockGram_row_bound
     {d ell energy diagonal cross : ℝ}
     (_henergy : 0 ≤ energy)
@@ -37,7 +39,9 @@ One distinguished diagonal entry is bounded by `d * energy`; each of the other
 in this lemma.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h5v.s6.2d714f4eb31e from=translated src=- shape=b1a8f5db vocab=e8736be7
+-/
 theorem blockGram_finite_row_bound
     {ell : ℕ} (diagonalIndex : Fin ell) (entry : Fin ell → ℝ)
     {d energy : ℝ}
@@ -71,7 +75,9 @@ theorem blockGram_finite_row_bound
 /-- A joint mixed-band product estimate fits the corrected ladder envelope.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s6.ba9ee5e7ed4c from=translated src=- shape=3c26972e vocab=23d532ce
+-/
 theorem mixed_product_into_envelope
     {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
     Real.sqrt x * Real.sqrt y ≤ (x + y) / 2 := by
@@ -87,7 +93,9 @@ The hypotheses are the squared/denominator-cleared forms delivered by choices
 `m ≥ (d+2q)/ε²` and `s ≥ (2q+1)/ε`.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h4v.s6.b95b47c6bde8 from=translated src=- shape=b3ada46b vocab=cef4cf1d
+-/
 theorem parameter_envelope
     {rootTerm linearTerm sparseTerm ε : ℝ}
     (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1)
@@ -101,7 +109,9 @@ theorem parameter_envelope
 `s ≥ (2q+1)/ε` imply `(ν+1)/s ≤ ε`.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h4v.s7.f05a7dbdc7da from=translated src=- shape=9eb6cad1 vocab=70d00927
+-/
 theorem sparsity_parameter_arithmetic
     {ν q s ε : ℝ}
     (hν : ν + 1 ≤ 2 * q + 1)
@@ -115,7 +125,9 @@ theorem sparsity_parameter_arithmetic
 /-- Squared arithmetic for the dense term, before applying monotonicity of sqrt.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s6.05a53c83c661 from=translated src=- shape=4b2cf085 vocab=5c9d27ef
+-/
 theorem dense_parameter_arithmetic
     {d ν m ε : ℝ}
     (hm : 0 < m)
@@ -126,7 +138,9 @@ theorem dense_parameter_arithmetic
 /-- Dense-scale arithmetic after taking the square root.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h4v.s6.c232c0bfb1c6 from=translated src=- shape=119d1172 vocab=d44e7500
+-/
 theorem dense_sqrt_parameter_arithmetic
     {d ν m ε : ℝ}
     (hε : 0 ≤ ε)
@@ -140,7 +154,9 @@ theorem dense_sqrt_parameter_arithmetic
 `sqrt ((d+ν)/m) + (d+ν)/m + (ν+1)/s`.
 
 Source: ported from `SparseFockFormal.ScalarBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.7h6v.s7.b3fd1eac536e from=translated src=- shape=10ce33e2 vocab=d44e7500
+-/
 theorem final_parameter_envelope
     {d ν q m s ε : ℝ}
     (hν : ν ≤ 2 * q)

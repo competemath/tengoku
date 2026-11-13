@@ -37,7 +37,9 @@ private theorem bilin_pi_expansion [DecidableEq κ]
 /-- A continuous real bilinear map applied to a Gaussian vector and a bounded
 continuous test is integrable. This proves the product integrability needed by
 Gaussian Stein contraction, including singular Gaussian laws.
-atlas: gaussian-integration-by-parts (partial)-/
+atlas: gaussian-integration-by-parts (partial)
+@isnad1 id=integrab.3h8v.s10.60fa2df90c88 from=translated src=- shape=3c41d72d vocab=8044f309
+-/
 theorem integrable_bilin_comp_of_hasGaussianLaw
     (Z : Ω → κ → ℝ) (hZ : HasGaussianLaw Z P)
     (f : (κ → ℝ) → F) (hfc : Continuous f) (C : ℝ) (hfb : ∀ x, ‖f x‖ ≤ C)
@@ -60,7 +62,9 @@ map. The full actual coordinate covariance appears on the right. The bounded
 C¹ test and bounded continuous partial derivatives imply all integrability;
 no matrix-specific assumption, covariance matching, or interpolation conclusion
 is supplied as a hypothesis.
-atlas: gaussian-integration-by-parts (partial)-/
+atlas: gaussian-integration-by-parts (partial)
+@isnad1 id=eq.6h10v.s11.5b1fd2673b63 from=translated src=- shape=98ecc947 vocab=99defe35
+-/
 theorem integral_bilin_eq_sum_covariance_smul_integral_of_hasGaussianLaw
     [DecidableEq κ]
     (Z : Ω → κ → ℝ) (hZ : HasGaussianLaw Z P)

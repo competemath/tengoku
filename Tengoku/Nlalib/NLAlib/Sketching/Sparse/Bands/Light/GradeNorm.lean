@@ -20,7 +20,9 @@ variable {d m n ell : ℕ}
 
 /-- An operator-norm bound gives the corresponding squared coordinate-energy bound.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.2h4v.s6.f24f304f4a7e from=translated src=- shape=555f1a94 vocab=f16664b9
+-/
 theorem coordinateEnergy_mulVec_le_of_norm_le
     {I : Type*} [Fintype I] [DecidableEq I]
     (A : Matrix I I ℝ) (z : I → ℝ) (C : ℝ)
@@ -48,7 +50,9 @@ theorem coordinateEnergy_mulVec_le_of_norm_le
 set_option maxHeartbeats 1000000 in
 /-- The grade-restricted shared-leg operator has the dimension-plus-grade squared-energy bound.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.50a25013988d from=translated src=- shape=53b38640 vocab=26ea5711
+-/
 theorem ghat_gradeProjection_normSq_le
     (F : Frame n d) (nu : ℕ) (hnu : 1 ≤ nu)
     (x : Fin d × Pattern m n → ℝ) :
@@ -115,7 +119,9 @@ theorem ghat_gradeProjection_normSq_le
 operator.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s8.f6e176a33343 from=translated src=- shape=be4dc782 vocab=25629295
+-/
 theorem ghat_gradeProjection_norm_le
     (F : Frame n d) (nu : ℕ) (hnu : 1 ≤ nu) :
     ‖ghat (m := m) F *
@@ -130,7 +136,9 @@ theorem ghat_gradeProjection_norm_le
 
 /-- The shared-leg operator vanishes on an input pattern with no light sites.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.be71bb6ece2a from=translated src=- shape=0d75c684 vocab=82570822
+-/
 theorem ghat_apply_eq_zero_of_input_light_card_zero
     (F : Frame n d) (out inp : Fin d × Pattern m n)
     (hzero : inp.2.light.card = 0) :
@@ -156,7 +164,9 @@ theorem ghat_apply_eq_zero_of_input_light_card_zero
 
 /-- The shared-leg operator has zero entries between different grades.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s5.7913ceeb1742 from=translated src=- shape=e41dfb3f vocab=714e69fb
+-/
 theorem ghat_apply_eq_zero_of_grade_ne
     (F : Frame n d) (out inp : Fin d × Pattern m n)
     (hne : out.2.grade ≠ inp.2.grade) :
@@ -171,7 +181,9 @@ theorem ghat_apply_eq_zero_of_grade_ne
 
 /-- Left grade projection retains precisely the shared-leg entries with the selected output grade.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.2628c1c6314b from=translated src=- shape=ad3173e0 vocab=510e2ef5
+-/
 theorem gradeProjection_mul_ghat_apply
     (F : Frame n d) (nu : ℕ)
     (out inp : Fin d × Pattern m n) :
@@ -186,7 +198,9 @@ theorem gradeProjection_mul_ghat_apply
 orthogonal grade projection.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.8dadcfc02b81 from=translated src=- shape=e9a405e5 vocab=940195c5
+-/
 theorem gradeProjection_mul_ghat_eq_ghat_mul_gradeProjection
     (F : Frame n d) (nu : ℕ) :
     gradeProjection (d := d) (m := m) (n := n) nu * ghat F =
@@ -209,7 +223,9 @@ theorem gradeProjection_mul_ghat_eq_ghat_mul_gradeProjection
 
 /-- The grade-restricted shared-leg operator is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.7358aa50ab4f from=translated src=- shape=4cc2a2b9 vocab=bf1b4769
+-/
 @[simp] theorem ghat_gradeProjection_transpose
     (F : Frame n d) (nu : ℕ) :
     (ghat (m := m) F *
@@ -220,7 +236,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The grade-restricted shared-leg operator is Hermitian.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=ishermit.0h5v.s7.c3fe01db342e from=translated src=- shape=37cf58f5 vocab=2d1c6e53
+-/
 theorem ghat_gradeProjection_isHermitian
     (F : Frame n d) (nu : ℕ) :
     (ghat (m := m) F *
@@ -232,7 +250,9 @@ theorem ghat_gradeProjection_isHermitian
 light site before recreating one.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.3d16d9a1afca from=translated src=- shape=786ad73c vocab=f4433dde
+-/
 theorem ghat_gradeProjection_zero
     (F : Frame n d) :
     ghat (m := m) F *
@@ -249,7 +269,9 @@ theorem ghat_gradeProjection_zero
 /-- All-grade envelope used by downstream C-stack estimates.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.bdafc48825ad from=translated src=- shape=03eca394 vocab=cc8613c5
+-/
 theorem ghat_gradeProjection_norm_le_all
     (F : Frame n d) (nu : ℕ) :
     ‖ghat (m := m) F *
@@ -269,7 +291,9 @@ theorem ghat_gradeProjection_norm_le_all
 
 /-- Every physical shared-leg block is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.099d9bf46f9c from=translated src=- shape=9e6a39ec vocab=5ab31e4a
+-/
 @[simp] theorem ghatBlock_transpose
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     (ghatBlock F T ell).transpose = ghatBlock F T ell := by
@@ -280,7 +304,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- Every physical shared-leg block is Hermitian.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=ishermit.0h6v.s5.7025c67fe1ce from=translated src=- shape=4c84dceb vocab=0409db69
+-/
 theorem ghatBlock_isHermitian
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     (ghatBlock F T ell).IsHermitian := by

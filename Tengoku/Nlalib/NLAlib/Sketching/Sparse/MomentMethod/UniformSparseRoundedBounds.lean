@@ -28,7 +28,9 @@ available.  The sharp inequality `exactScale ≤ cB ≤ convexOrderConstant` giv
 same final scalar bound as in the SparseStack theorem.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.f768c1ab4952 from=translated src=- shape=ed084f63 vocab=15679e82
+-/
 theorem rounded_failure_le_delta_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -108,7 +110,9 @@ theorem rounded_failure_le_delta_of_band_bounds
 envelope.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.fedfba087946 from=translated src=- shape=17dc07b6 vocab=19a4f1a8
+-/
 theorem rounded_operator_norm_failure_le_delta_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -144,7 +148,9 @@ theorem rounded_operator_norm_failure_le_delta_of_band_bounds
 envelope.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.8cae0e8c95de from=translated src=- shape=c8a39983 vocab=5720f94a
+-/
 theorem rounded_success_probability_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -185,7 +191,9 @@ theorem rounded_success_probability_of_band_bounds
 /-- Hypothesis-free canonical operator-norm tail.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h5v.s9.2b4638fff94c from=translated src=- shape=1ee773fd vocab=4804b262
+-/
 theorem rounded_operator_norm_failure_le_delta
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -203,7 +211,9 @@ theorem rounded_operator_norm_failure_le_delta
 /-- Hypothesis-free canonical exact-`s` OSE success probability.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.5h5v.s9.cde25c2d1998 from=translated src=- shape=94d19c3a vocab=fb7602a6
+-/
 theorem rounded_ose_success
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

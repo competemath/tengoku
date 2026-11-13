@@ -21,7 +21,9 @@ variable {ι E : Type*} [Fintype ι] [NormedAddCommGroup E] [NormedSpace ℝ E]
 /-- Independent centered scalar product laws with exponential-square parameter
 `K` are dominated by scaled Gaussian coordinates inside an affine series norm.
 The laws may differ across coordinates. Source: the scalar domination reroute.
-atlas: subgaussian-gaussian-series-comparison (partial)-/
+atlas: subgaussian-gaussian-series-comparison (partial)
+@isnad1 id=le.3h6v.s9.c0c12b460f2a from=translated src=- shape=959771cc vocab=19a2de96
+-/
 theorem integral_norm_add_sum_smul_pi_le_gaussian_of_lintegral_exp_sq
     (ν : ι → Measure ℝ) [∀ i, IsProbabilityMeasure (ν i)] (K : ℝ) (hK : 0 < K)
     (hmean : ∀ i, ∫ x : ℝ, x ∂ν i = 0)
@@ -68,7 +70,9 @@ theorem integral_norm_add_sum_smul_pi_le_gaussian_of_lintegral_exp_sq
 `10K` times the Gaussian-series expectation, under actual exponential-square
 moment bounds. Source: the scalar domination reroute; supports the matrix-chaos
 Khintchine cards without a general subgaussian-process theorem.
-atlas: subgaussian-gaussian-series-comparison (partial)-/
+atlas: subgaussian-gaussian-series-comparison (partial)
+@isnad1 id=le.3h5v.s8.7037acf7490b from=translated src=- shape=0588b248 vocab=972a416e
+-/
 theorem integral_norm_sum_smul_pi_le_gaussian_of_lintegral_exp_sq
     (ν : ι → Measure ℝ) [∀ i, IsProbabilityMeasure (ν i)] (K : ℝ) (hK : 0 < K)
     (hmean : ∀ i, ∫ x : ℝ, x ∂ν i = 0)

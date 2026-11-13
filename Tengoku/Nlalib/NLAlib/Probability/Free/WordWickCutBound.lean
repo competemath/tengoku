@@ -53,7 +53,9 @@ private theorem wordWickCutOperator_eq_row_matrix_row_adjoint (j k : ℕ)
 
 /-- Every actual Wick cut has norm at most the Euclidean norm of its
 coefficient array. The bound has no dimension factor and includes zero
-coefficients and empty row or column types.-/
+coefficients and empty row or column types.
+@isnad1 id=le.0h4v.s11.a36d337c6dce from=translated src=- shape=dc7cd65d vocab=74ccabb0
+-/
 theorem norm_wordWickCutOperator_le (j k : ℕ)
     (a : List.Vector ι j → List.Vector ι k → ℂ) :
     ‖wordWickCutOperator j k a‖ ≤ Real.sqrt (∑ u, ∑ v, ‖a u v‖ ^ 2) := by

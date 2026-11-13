@@ -43,29 +43,39 @@ def Sign.val : Sign → ℝ
 
 /-- The positive sign has real value one.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.3d68a41c1418 from=translated src=- shape=b0ae1d2b vocab=80f085a3
+-/
 @[simp] theorem Sign.val_plus : Sign.plus.val = 1 := rfl
 /-- The negative sign has real value minus one.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.5c175b995ba1 from=translated src=- shape=f7285ee8 vocab=4a0060f6
+-/
 @[simp] theorem Sign.val_minus : Sign.minus.val = -1 := rfl
 
 /-- Every sign value has square one.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.18ead7350700 from=translated src=- shape=d9ef4337 vocab=06e39a54
+-/
 @[simp]
 theorem Sign.val_sq (z : Sign) : z.val ^ 2 = 1 := by
   cases z <;> norm_num [Sign.val]
 
 /-- Every sign value is nonzero.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ne.0h1v.s3.48ff1bf9e535 from=translated src=- shape=a311c14d vocab=6327a47b
+-/
 theorem Sign.val_ne_zero (z : Sign) : z.val ≠ 0 := by
   cases z <;> norm_num [Sign.val]
 
 /-- Every sign value has absolute value one.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.3cbd8ec0582b from=translated src=- shape=562e4a6d vocab=51f8d39d
+-/
 @[simp]
 theorem Sign.abs_val (z : Sign) : |z.val| = 1 := by
   cases z <;> norm_num [Sign.val]
@@ -103,7 +113,9 @@ def signedBasis {s b n : ℕ} (Z : SparseStackSample s b n) (g : Fin s) (i : Fin
 
 /-- A signed basis vector has its sign value at the selected hash coordinate and zero elsewhere.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.0c70029cbff3 from=translated src=- shape=01786245 vocab=cbec3896
+-/
 @[simp]
 theorem signedBasis_apply {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (i : Fin n) (a : Fin b) :
@@ -112,7 +124,9 @@ theorem signedBasis_apply {s b n : ℕ} (Z : SparseStackSample s b n)
 /-- Exact collision formula for the signed basis vectors.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.a28264de1255 from=translated src=- shape=f26eceef vocab=df0e8484
+-/
 theorem inner_signedBasis {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (i j : Fin n) :
     ⟪signedBasis Z g i, signedBasis Z g j⟫_ℝ =
@@ -138,7 +152,9 @@ theorem inner_signedBasis {s b n : ℕ} (Z : SparseStackSample s b n)
 /-- `‖X_{g i}‖² = 1` exactly, not merely almost surely.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.3f17aff2dedb from=translated src=- shape=75f982be vocab=82271a7d
+-/
 @[simp]
 theorem signedBasis_normSq {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (i : Fin n) :
@@ -148,7 +164,9 @@ theorem signedBasis_normSq {s b n : ℕ} (Z : SparseStackSample s b n)
 
 /-- Every signed basis vector has unit Euclidean squared norm.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.2fc3b94d5f69 from=translated src=- shape=170ed4ec vocab=ca9ee029
+-/
 @[simp]
 theorem inner_signedBasis_self {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (i : Fin n) :
@@ -172,7 +190,9 @@ def _root_.NLAlib.sparseStackMatrix {s b n : ℕ} (Z : SparseStackSample s b n) 
 
 /-- A SparseStack matrix entry is the normalized signed hash indicator.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s6.9cfb6eb70327 from=translated src=- shape=33e36eb2 vocab=eb842dea
+-/
 @[simp]
 theorem _root_.NLAlib.sparseStackMatrix_apply {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (a : Fin b) (i : Fin n) :
@@ -181,14 +201,18 @@ theorem _root_.NLAlib.sparseStackMatrix_apply {s b n : ℕ} (Z : SparseStackSamp
 
 /-- The inverse square-root sparsity normalization is nonzero at positive sparsity.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=ne.1h1v.s4.2e5759b6fa99 from=translated src=- shape=aa240375 vocab=4e17cc24
+-/
 theorem invSqrt_ne_zero {s : ℕ} (hs : 0 < s) : invSqrt s ≠ 0 := by
   apply inv_ne_zero
   exact ne_of_gt (Real.sqrt_pos.2 (Nat.cast_pos.2 hs))
 
 /-- The squared inverse square-root normalization is the reciprocal sparsity.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.d15afabd6383 from=translated src=- shape=7fb9cb5c vocab=4ade7570
+-/
 theorem invSqrt_sq {s : ℕ} (_hs : 0 < s) :
     invSqrt s ^ 2 = 1 / (s : ℝ) := by
   rw [invSqrt, inv_pow, Real.sq_sqrt (Nat.cast_nonneg s)]
@@ -197,7 +221,9 @@ theorem invSqrt_sq {s : ℕ} (_hs : 0 < s) :
 /-- A matrix entry is nonzero exactly at the sampled hash location.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=iff.1h7v.s5.58b7d69e4dc5 from=translated src=- shape=75019cd1 vocab=51793801
+-/
 theorem _root_.NLAlib.sparseStackMatrix_ne_zero_iff {s b n : ℕ} (Z : SparseStackSample s b n)
     (hs : 0 < s)
     (g : Fin s) (a : Fin b) (i : Fin n) :
@@ -209,7 +235,9 @@ theorem _root_.NLAlib.sparseStackMatrix_ne_zero_iff {s b n : ℕ} (Z : SparseSta
 /-- In each block and column there is exactly one nonzero entry.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=existsun.1h6v.s5.dbba95376f66 from=translated src=- shape=0718551c vocab=0d3ea777
+-/
 theorem exactly_one_nonzero_in_block {s b n : ℕ} (Z : SparseStackSample s b n) (hs : 0 < s)
     (g : Fin s) (i : Fin n) :
     ∃! a : Fin b, sparseStackMatrix Z (g, a) i ≠ 0 := by
@@ -239,7 +267,9 @@ def columnSupportEquiv {s b n : ℕ} (Z : SparseStackSample s b n) (hs : 0 < s) 
 /-- Consequently every column has exactly `s` nonzero entries.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s6.9e4b3bb90683 from=translated src=- shape=5bdbfbaa vocab=8c592f6b
+-/
 theorem _root_.NLAlib.card_filter_sparseStackMatrix_ne_zero {s b n : ℕ}
     (Z : SparseStackSample s b n) (hs : 0 < s)
     (i : Fin n) :
@@ -249,7 +279,9 @@ theorem _root_.NLAlib.card_filter_sparseStackMatrix_ne_zero {s b n : ℕ}
 
 /-- One block Gram entry is its normalization squared times the signed-basis inner product.
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.be03d5006490 from=translated src=- shape=e6471d33 vocab=ddc37755
+-/
 theorem block_gram_apply {s b n : ℕ} (Z : SparseStackSample s b n)
     (g : Fin s) (i j : Fin n) :
     (∑ a : Fin b, sparseStackMatrix Z (g, a) i * sparseStackMatrix Z (g, a) j) =
@@ -264,7 +296,9 @@ theorem block_gram_apply {s b n : ℕ} (Z : SparseStackSample s b n)
 /-- Exact entrywise Gram formula for the normalized stacked sketch.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s7.419fdf9fab76 from=translated src=- shape=2b3e078e vocab=e8d34667
+-/
 theorem sketchGram_apply {s b n : ℕ} (Z : SparseStackSample s b n) (hs : 0 < s)
     (i j : Fin n) :
     sketchGram (sparseStackMatrix Z) i j =
@@ -298,7 +332,9 @@ def hollowGram {s b n d : ℕ} (F : Frame n d) (Z : SparseStackSample s b n) :
 /-- Expanding the matrix products gives the full three-index sum.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.b58d364729a6 from=translated src=- shape=0d74ae2e vocab=8d125e2b
+-/
 theorem embeddedGram_eq_fullExpansion {s b n d : ℕ} (F : Frame n d)
     (Z : SparseStackSample s b n) (hs : 0 < s) :
     embeddedGram F (sparseStackMatrix Z) = fullGramExpansion F Z := by
@@ -319,7 +355,9 @@ theorem embeddedGram_eq_fullExpansion {s b n d : ℕ} (F : Frame n d)
 /-- The diagonal part of the full expansion is exactly `I_d`.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.8c6c2d019a09 from=translated src=- shape=a2001aae vocab=896b720a
+-/
 theorem fullExpansion_eq_one_add_hollow {s b n d : ℕ} (F : Frame n d)
     (Z : SparseStackSample s b n) (hs : 0 < s) :
     fullGramExpansion F Z = 1 + hollowGram F Z := by
@@ -369,7 +407,9 @@ theorem fullExpansion_eq_one_add_hollow {s b n d : ℕ} (F : Frame n d)
 `UᵀΠᵀΠU-I`, leaving only ordered pairs `i ≠ j`.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s6.6829ef1f0461 from=translated src=- shape=0d74ae2e vocab=8f0ad46d
+-/
 theorem gramError_eq_hollow {s b n d : ℕ} (F : Frame n d)
     (Z : SparseStackSample s b n) (hs : 0 < s) :
     gramError F (sparseStackMatrix Z) = hollowGram F Z := by
@@ -381,7 +421,9 @@ theorem gramError_eq_hollow {s b n d : ℕ} (F : Frame n d)
 literal order `Σ_g Σ_{i≠j}`.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.6e4566a0edb1 from=translated src=- shape=9ed05ec8 vocab=807b2c8f
+-/
 theorem hollowGram_block_first {s b n d : ℕ} (F : Frame n d) (Z : SparseStackSample s b n) :
     hollowGram F Z = fun a c ↦ (1 / (s : ℝ)) *
       ∑ g, ∑ i, ∑ j ∈ Finset.univ.erase i,
@@ -411,7 +453,9 @@ theorem hollowGram_block_first {s b n d : ℕ} (F : Frame n d) (Z : SparseStackS
 /-- Paper-form statement of the hollow identity, with the block sum outermost.
 
 Source: ported from `SparseFockFormal.SparseStackModel`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.75191bbb1d4a from=translated src=- shape=881df95e vocab=eceeffc8
+-/
 theorem gramError_eq_block_first {s b n d : ℕ} (F : Frame n d)
     (Z : SparseStackSample s b n) (hs : 0 < s) :
     gramError F (sparseStackMatrix Z) = fun a c ↦ (1 / (s : ℝ)) *

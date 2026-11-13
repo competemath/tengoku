@@ -71,7 +71,9 @@ structure UniformExactSMainConclusions
 columns.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=uniforme.5h5v.s6.d5667eaca6c8 from=translated src=- shape=f1ae3445 vocab=506395bf
+-/
 theorem main_conclusions
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -102,7 +104,9 @@ theorem main_conclusions
 /-- Literal source-matrix operator-norm tail.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.4a861ebbffb7 from=translated src=- shape=d34bdca2 vocab=bb2b1c56
+-/
 theorem matrix_operator_failure
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -123,7 +127,9 @@ theorem matrix_operator_failure
 /-- Literal source-matrix vector OSE success probability.
 
 Source: ported from `SparseFockFormal.UniformExactSMainTheorem`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.133eed5243de from=translated src=- shape=b971a069 vocab=56926537
+-/
 theorem matrix_ose_success
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

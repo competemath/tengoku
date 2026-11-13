@@ -25,7 +25,9 @@ private theorem gaussianPDFReal_mul_exp_sq (t x : ℝ) :
   congr 2
   ring
 
-/-- The exact quadratic exponential is integrable throughout its natural domain.-/
+/-- The exact quadratic exponential is integrable throughout its natural domain.
+@isnad1 id=integrab.1h1v.s6.a1236e2bd82b from=translated src=- shape=52fc444e vocab=9b2ef096
+-/
 theorem integrable_exp_mul_sq_gaussianReal {t : ℝ} (ht : t < 1 / 2) :
     Integrable (fun x : ℝ => exp (t * x ^ 2)) (gaussianReal 0 1) := by
   rw [gaussianReal_of_var_ne_zero 0 (by norm_num)]
@@ -34,7 +36,9 @@ theorem integrable_exp_mul_sq_gaussianReal {t : ℝ} (ht : t < 1 / 2) :
   simp_rw [smul_eq_mul, toReal_gaussianPDF, gaussianPDFReal_mul_exp_sq]
   exact (integrable_exp_neg_mul_sq (by linarith : 0 < 1 / 2 - t)).const_mul _
 
-/-- Squaring the real quadratic Laplace transform removes all square roots.-/
+/-- Squaring the real quadratic Laplace transform removes all square roots.
+@isnad1 id=eq.1h1v.s7.027a6b2b06f4 from=translated src=- shape=ea3d8ada vocab=ed6a29dd
+-/
 theorem integral_exp_mul_sq_gaussianReal_sq {t : ℝ} (ht : t < 1 / 2) :
     (∫ x : ℝ, exp (t * x ^ 2) ∂gaussianReal 0 1) ^ 2 = (1 - 2 * t)⁻¹ := by
   rw [integral_gaussianReal_eq_integral_smul (by norm_num)]
@@ -51,7 +55,9 @@ private theorem exp_normSq_mk (t x y : ℝ) :
   change t * (x * x + y * y) = _
   ring
 
-/-- Squared-modulus exponential moments are integrable for the actual complex law.-/
+/-- Squared-modulus exponential moments are integrable for the actual complex law.
+@isnad1 id=integrab.1h1v.s6.6d656d397045 from=translated src=- shape=a341fd80 vocab=8a6118ec
+-/
 theorem integrable_exp_mul_normSq_circularComplexGaussian {t : ℝ} (ht : t < 1 / 2) :
     Integrable (fun z : ℂ => exp (t * Complex.normSq z)) circularComplexGaussian := by
   unfold circularComplexGaussian
@@ -61,7 +67,9 @@ theorem integrable_exp_mul_normSq_circularComplexGaussian {t : ℝ} (ht : t < 1 
   simpa only [Function.comp_def, exp_normSq_mk] using
     (integrable_exp_mul_sq_gaussianReal ht).mul_prod (integrable_exp_mul_sq_gaussianReal ht)
 
-/-- The exact squared-modulus Laplace transform of the circular complex Gaussian.-/
+/-- The exact squared-modulus Laplace transform of the circular complex Gaussian.
+@isnad1 id=eq.1h1v.s6.4e545d005787 from=translated src=- shape=87836665 vocab=31d220b8
+-/
 theorem integral_exp_mul_normSq_circularComplexGaussian {t : ℝ} (ht : t < 1 / 2) :
     ∫ z : ℂ, exp (t * Complex.normSq z) ∂circularComplexGaussian = (1 - 2 * t)⁻¹ := by
   have hm : Measurable (fun p : ℝ × ℝ => (⟨p.1, p.2⟩ : ℂ)) :=
@@ -71,7 +79,9 @@ theorem integral_exp_mul_normSq_circularComplexGaussian {t : ℝ} (ht : t < 1 / 
   rw [integral_prod_mul (fun x : ℝ => exp (t * x ^ 2)) (fun x : ℝ => exp (t * x ^ 2)), ← pow_two]
   exact integral_exp_mul_sq_gaussianReal_sq ht
 
-/-- A finite diagonal quadratic exponential is integrable on its exact product-law domain.-/
+/-- A finite diagonal quadratic exponential is integrable on its exact product-law domain.
+@isnad1 id=integrab.1h2v.s6.391b2cdcd510 from=translated src=- shape=18335f41 vocab=244911b2
+-/
 theorem integrable_exp_sum_mul_normSq_circularComplexGaussianVector
     {n : Type*} [Fintype n] (t : n → ℝ) (ht : ∀ i, t i < 1 / 2) :
     Integrable (fun z : n → ℂ => exp (∑ i, t i * Complex.normSq (z i)))
@@ -79,7 +89,9 @@ theorem integrable_exp_sum_mul_normSq_circularComplexGaussianVector
   simp_rw [exp_sum]
   exact Integrable.fintype_prod (fun i => integrable_exp_mul_normSq_circularComplexGaussian (ht i))
 
-/-- Exact finite-product Laplace transform, with arbitrary signed diagonal coefficients.-/
+/-- Exact finite-product Laplace transform, with arbitrary signed diagonal coefficients.
+@isnad1 id=eq.1h2v.s7.1eb64ee4fe12 from=translated src=- shape=eb250570 vocab=a8ef104c
+-/
 theorem integral_exp_sum_mul_normSq_circularComplexGaussianVector
     {n : Type*} [Fintype n] (t : n → ℝ) (ht : ∀ i, t i < 1 / 2) :
     ∫ z : n → ℂ, exp (∑ i, t i * Complex.normSq (z i)) ∂circularComplexGaussianVector n =

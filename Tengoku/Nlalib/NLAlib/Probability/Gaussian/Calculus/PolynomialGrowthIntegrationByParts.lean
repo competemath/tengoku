@@ -18,7 +18,9 @@ open scoped ENNReal
 namespace NLAlib
 
 /-- Every polynomial growth majorant is integrable under a standard Gaussian.
-Source: finiteness of all Gaussian moments; atlas `gaussian-integration-by-parts`.-/
+Source: finiteness of all Gaussian moments; atlas `gaussian-integration-by-parts`.
+@isnad1 id=integrab.0h1v.s6.77da4a87a661 from=translated src=- shape=5a301fe2 vocab=433d0138
+-/
 theorem integrable_one_add_abs_pow_gaussianReal (d : ℕ) :
     Integrable (fun x : ℝ => (1 + |x|) ^ d) (gaussianReal 0 1) := by
   have hX := (memLp_id_gaussianReal (μ := 0) (v := 1) (d : NNReal)).norm
@@ -29,7 +31,9 @@ theorem integrable_one_add_abs_pow_gaussianReal (d : ℕ) :
   rw [abs_of_nonneg (by positivity : 0 ≤ 1 + |x|)]
 
 /-- Measurable functions of polynomial growth have finite Gaussian first moments.
-Source: Gaussian moments; atlas `gaussian-integration-by-parts`.-/
+Source: Gaussian moments; atlas `gaussian-integration-by-parts`.
+@isnad1 id=integrab.2h3v.s6.0f4f547bc367 from=translated src=- shape=c6a1d3f8 vocab=61efa462
+-/
 theorem integrable_gaussianReal_of_polynomial_growth
     {f : ℝ → ℝ} (hf : AEMeasurable f (gaussianReal 0 1))
     (C : ℝ) (d : ℕ) (hBound : ∀ x, |f x| ≤ C * (1 + |x|) ^ d) :
@@ -41,7 +45,9 @@ theorem integrable_gaussianReal_of_polynomial_growth
 /-- Stein's identity for differentiable functions whose values and derivatives
 have polynomial growth. All integrability premises are derived from the growth
 bounds. Source: Stein's identity; atlas `gaussian-integration-by-parts`.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.3h5v.s8.0b209e3f0b8a from=translated src=- shape=8fc3bd7c vocab=7980c759
+-/
 theorem integral_mul_eq_integral_deriv_gaussianReal_of_polynomial_growth
     (f : ℝ → ℝ) (hf : Differentiable ℝ f)
     (C D : ℝ) (d e : ℕ)
@@ -72,7 +78,9 @@ theorem integral_mul_eq_integral_deriv_gaussianReal_of_polynomial_growth
 minus differentiation: `⟨Df,g⟩γ = ⟨f,(M-D)g⟩γ`. All four pairings are genuinely
 integrable. Source: Gaussian operator integration by parts;
 atlas `gaussian-integration-by-parts`.
-atlas: gaussian-integration-by-parts-/
+atlas: gaussian-integration-by-parts
+@isnad1 id=eq.6h2v.s9.e57ccee8f185 from=translated src=- shape=038eb17c vocab=229258e0
+-/
 theorem integral_deriv_mul_eq_integral_mul_mul_sub_deriv_gaussianReal
     (f g : ℝ → ℝ) (hf : Differentiable ℝ f) (hg : Differentiable ℝ g)
     (hfg : Integrable (fun x => f x * g x) (gaussianReal 0 1))

@@ -27,7 +27,9 @@ open MeasureTheory ProbabilityTheory
 namespace NLAlib
 
 /-- The image of `γ ⊗ γ` under `(x, y) ↦ a x + b y` is `γ = N(0,1)` when `a² + b² = 1`.
-Atlas: `ornstein-uhlenbeck` (helper).-/
+Atlas: `ornstein-uhlenbeck` (helper).
+@isnad1 id=eq.1h2v.s7.f033b376b6a3 from=translated src=- shape=d42c94fb vocab=779a9a26
+-/
 theorem map_add_mul_prod_gaussianReal (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
     ((gaussianReal 0 1).prod (gaussianReal 0 1)).map (fun p : ℝ × ℝ => a * p.1 + b * p.2)
       = gaussianReal 0 1 := by
@@ -43,7 +45,9 @@ theorem map_add_mul_prod_gaussianReal (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
   · apply NNReal.eq; simp [hab]
 
 /-- For `h ∈ L¹(γ)` and `a² + b² = 1`, `∫∫ h(a x + b y) dγ(y) dγ(x) = ∫ h dγ`.
-Atlas: `ornstein-uhlenbeck` (helper).-/
+Atlas: `ornstein-uhlenbeck` (helper).
+@isnad1 id=eq.2h3v.s7.2fec7843a5b3 from=translated src=- shape=cf40cc2d vocab=d259bdd3
+-/
 theorem integral_integral_comp_add_mul_gaussianReal (h : ℝ → ℝ)
     (hh : Integrable h (gaussianReal 0 1)) (a b : ℝ) (hab : a ^ 2 + b ^ 2 = 1) :
     ∫ x, (∫ y, h (a * x + b * y) ∂(gaussianReal 0 1)) ∂(gaussianReal 0 1)
@@ -69,7 +73,9 @@ def ornsteinUhlenbeck (t : ℝ) (h : ℝ → ℝ) (x : ℝ) : ℝ :=
 /-- **Invariance of the Gaussian measure** under the Ornstein–Uhlenbeck semigroup:
 `∫ P_t h dγ = ∫ h dγ` for `h ∈ L¹(γ)` and `t ≥ 0`. Source: Bakry–Gentil–Ledoux 2014, §2.7.1;
 Ledoux, *Concentration of Measure*, §5.1. Atlas: `ornstein-uhlenbeck`.
-atlas: ornstein-uhlenbeck-/
+atlas: ornstein-uhlenbeck
+@isnad1 id=eq.2h2v.s6.cc4c498baa86 from=translated src=- shape=50921d61 vocab=01e3f74f
+-/
 theorem integral_ornsteinUhlenbeck (h : ℝ → ℝ) (hh : Integrable h (gaussianReal 0 1)) (t : ℝ)
     (ht : 0 ≤ t) :
     ∫ x, ornsteinUhlenbeck t h x ∂(gaussianReal 0 1) = ∫ x, h x ∂(gaussianReal 0 1) := by
@@ -79,7 +85,9 @@ theorem integral_ornsteinUhlenbeck (h : ℝ → ℝ) (hh : Integrable h (gaussia
   ring_nf
 
 /-- A `C¹`-function with bounded derivative composed with an affine map is `γ`-integrable.
-Atlas: `ornstein-uhlenbeck` (helper).-/
+Atlas: `ornstein-uhlenbeck` (helper).
+@isnad1 id=integrab.2h4v.s7.ede1711d6d21 from=translated src=- shape=1cf66f31 vocab=e85b1a6e
+-/
 theorem integrable_comp_add_mul_of_abs_deriv_le (f : ℝ → ℝ) (hf : Differentiable ℝ f) (C : ℝ)
     (hdf : ∀ x, |deriv f x| ≤ C) (c d : ℝ) :
     Integrable (fun y => f (c + d * y)) (gaussianReal 0 1) := by
@@ -98,7 +106,9 @@ theorem integrable_comp_add_mul_of_abs_deriv_le (f : ℝ → ℝ) (hf : Differen
 /-- **Commutation relation** of the Ornstein–Uhlenbeck semigroup: for `f ∈ C¹` with
 `|f'| ≤ C`, `(P_t f)'(x) = e^{-t} P_t f'(x)`. Source: Bakry–Gentil–Ledoux 2014, §2.7.1
 (`∇P_t = e^{-t} P_t ∇`). Atlas: `ornstein-uhlenbeck`.
-atlas: ornstein-uhlenbeck-/
+atlas: ornstein-uhlenbeck
+@isnad1 id=hasderiv.2h4v.s7.10d34150bccd from=translated src=- shape=4644c59b vocab=449edd94
+-/
 theorem hasDerivAt_ornsteinUhlenbeck (f : ℝ → ℝ) (hf : ContDiff ℝ 1 f) (C : ℝ)
     (hdf : ∀ x, |deriv f x| ≤ C) (t x : ℝ) :
     HasDerivAt (ornsteinUhlenbeck t f) (Real.exp (-t) * ornsteinUhlenbeck t (deriv f) x) x := by

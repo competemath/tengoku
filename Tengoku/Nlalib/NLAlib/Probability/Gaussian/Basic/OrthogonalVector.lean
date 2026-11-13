@@ -22,7 +22,9 @@ namespace NLAlib
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- A real square matrix with orthonormal columns preserves the actual finite
-product standard Gaussian law, for arbitrary finite coordinate types.-/
+product standard Gaussian law, for arbitrary finite coordinate types.
+@isnad1 id=haslaw.1h2v.s6.9ef096d8bd57 from=translated src=- shape=2f44b095 vocab=0d94307b
+-/
 theorem hasLaw_mulVec_gaussianVector_orthogonal
     (U : Matrix n n ℝ) (hU : HasOrthonormalCols U) :
     HasLaw (fun x => U *ᵥ x) (gaussianVector n) (gaussianVector n) := by
@@ -48,7 +50,9 @@ theorem hasLaw_mulVec_gaussianVector_orthogonal
 /-- An actual real matrix with orthonormal rows maps a finite standard Gaussian
 vector to a vector of independent standard Gaussians. The result allows a
 smaller target coordinate family and derives its joint law by orthogonal
-completion and injective coordinate selection.-/
+completion and injective coordinate selection.
+@isnad1 id=haslaw.1h3v.s6.695b164001b7 from=translated src=- shape=ed4e1f31 vocab=177210d5
+-/
 theorem hasLaw_mulVec_gaussianVector_orthonormalRows
     (U : Matrix m n ℝ) (hU : HasOrthonormalCols Uᵀ) :
     HasLaw (fun x => U *ᵥ x) (gaussianVector m) (gaussianVector n) := by

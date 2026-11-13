@@ -26,13 +26,17 @@ variable {ι : Type*}
 local notation "W" => WordHilbertSpace ι
 local notation "B" => W →L[ℂ] W
 
-/-- Every actual Wick word is in the actual degree span up to its length.-/
+/-- Every actual Wick word is in the actual degree span up to its length.
+@isnad1 id=mem.1h3v.s14.b08e3469fd30 from=translated src=- shape=7d7587d1 vocab=d236f0f1
+-/
 theorem wordWickOperator_mem_wordWickDegreeSpan (w : List ι) {k : ℕ}
     (hlen : w.length ≤ k) : wordWickOperator w ∈ wordWickDegreeSpan (ι := ι) k := by
   apply Submodule.subset_span
   exact ⟨⟨⟨w.length, Nat.lt_succ_of_le hlen⟩, ⟨w, rfl⟩⟩, rfl⟩
 
-/-- Genuine degree spans are nested.-/
+/-- Genuine degree spans are nested.
+@isnad1 id=le.1h3v.s14.de622401ea6a from=translated src=- shape=bcdafc09 vocab=d8eaea14
+-/
 theorem wordWickDegreeSpan_mono {j k : ℕ} (hjk : j ≤ k) :
     wordWickDegreeSpan (ι := ι) j ≤ wordWickDegreeSpan (ι := ι) k := by
   apply Submodule.span_le.mpr
@@ -43,7 +47,9 @@ theorem wordWickDegreeSpan_mono {j k : ℕ} (hjk : j ≤ k) :
   exact (Nat.le_of_lt_succ m.isLt).trans hjk
 
 /-- The actual field times a nonempty Wick word has precisely one possible
-initial-letter contraction. This is a literal operator identity.-/
+initial-letter contraction. This is a literal operator identity.
+@isnad1 id=eq.0h4v.s14.c54a21beaf72 from=translated src=- shape=0f5c0cb2 vocab=634fd31e
+-/
 theorem wordField_mul_wordWickOperator_cons (i j : ι) (w : List ι) :
     wordField i * wordWickOperator (j :: w) =
       wordWickOperator (i :: j :: w) + if i = j then wordWickOperator w else 0 := by
@@ -70,7 +76,9 @@ private theorem wordField_mul_wordWickOperator_mem (i : ι) (w : List ι) :
         exact Submodule.zero_mem _
 
 /-- Multiplication by an actual field raises genuine Wick degree by at
-most one. This conclusion is proved from the literal contraction identity.-/
+most one. This conclusion is proved from the literal contraction identity.
+@isnad1 id=mem.1h4v.s15.fc13e838ac80 from=translated src=- shape=61b07760 vocab=567b1b33
+-/
 theorem wordField_mul_mem_wordWickDegreeSpan (i : ι) {k : ℕ} {T : B}
     (hT : T ∈ wordWickDegreeSpan (ι := ι) k) :
     wordField i * T ∈ wordWickDegreeSpan (ι := ι) (k + 1) := by
@@ -90,7 +98,9 @@ theorem wordField_mul_mem_wordWickDegreeSpan (i : ι) {k : ℕ} {T : B}
   exact hspan hT
 
 /-- An actual ordered product of fields has genuine Wick degree at most
-its number of factors. No expansion or norm conclusion is a premise.-/
+its number of factors. No expansion or norm conclusion is a premise.
+@isnad1 id=mem.0h2v.s14.7d552925bf08 from=translated src=- shape=9bbcd85e vocab=796f874c
+-/
 theorem list_prod_wordField_mem_wordWickDegreeSpan (w : List ι) :
     (w.map wordField).prod ∈ wordWickDegreeSpan (ι := ι) w.length := by
   induction w with
@@ -103,7 +113,9 @@ theorem list_prod_wordField_mem_wordWickDegreeSpan (w : List ι) :
       wordField_mul_mem_wordWickDegreeSpan i hw
 
 /-- Actual finite word-polynomial evaluation obeys the source scalar
-ultracontractive estimate, with degree read from the genuine finite support.-/
+ultracontractive estimate, with degree read from the genuine finite support.
+@isnad1 id=le.1h3v.s15.cc9ad72402ec from=translated src=- shape=9c5e05d3 vocab=e38bb5e8
+-/
 theorem norm_finsupp_sum_list_prod_wordField_le [Fintype ι] (k : ℕ)
     (a : List ι →₀ ℂ) (hdeg : ∀ w ∈ a.support, w.length ≤ k) :
     ‖a.sum (fun w z => z • (w.map wordField).prod)‖ ≤
@@ -116,7 +128,9 @@ theorem norm_finsupp_sum_list_prod_wordField_le [Fintype ι] (k : ℕ)
   exact wordWickDegreeSpan_mono (hdeg w hw) (list_prod_wordField_mem_wordWickDegreeSpan w)
 
 /-- Native free-monoid algebra evaluation has the scalar degree-dependent
-bound, with its actual canonical finite coefficient support.-/
+bound, with its actual canonical finite coefficient support.
+@isnad1 id=le.1h3v.s18.3789f47f1ae1 from=translated src=- shape=136d423f vocab=00bcfa92
+-/
 theorem norm_monoidAlgebra_lift_wordField_le [Fintype ι] (k : ℕ)
     (P : MonoidAlgebra ℂ (FreeMonoid ι))
     (hdeg : ∀ w ∈ P.coeff.support, w.toList.length ≤ k) :
@@ -132,7 +146,9 @@ theorem norm_monoidAlgebra_lift_wordField_le [Fintype ι] (k : ℕ)
 
 /-- Genuine native free-algebra evaluation satisfies the scalar source
 degree-`k` ultracontractive estimate. The degree premise is exactly a bound
-on the lengths in the canonical free-monoid coefficient support.-/
+on the lengths in the canonical free-monoid coefficient support.
+@isnad1 id=le.1h3v.s16.1245aee3d2d5 from=translated src=- shape=79aa671e vocab=125ebc19
+-/
 theorem norm_freeAlgebra_lift_wordField_le [Fintype ι] (k : ℕ) (P : FreeAlgebra ℂ ι)
     (hdeg : ∀ w ∈ (FreeAlgebra.equivMonoidAlgebraFreeMonoid (R := ℂ) (X := ι) P).coeff.support,
       w.toList.length ≤ k) :

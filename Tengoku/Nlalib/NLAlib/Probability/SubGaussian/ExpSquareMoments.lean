@@ -20,7 +20,9 @@ namespace NLAlib
 
 /-- A square-exponential bound gives finite even moments with the factorial
 budget `2 p! K^(2p)`. The variable need not have mean zero. The nonnegative
-integral hypothesis also proves integrability of each moment.-/
+integral hypothesis also proves integrability of each moment.
+@isnad1 id=and.3h5v.s7.b2143e0f1e5b from=translated src=- shape=d6497ed2 vocab=d6fd3191
+-/
 theorem integrable_and_integral_pow_two_mul_le_of_lintegral_exp_sq_le_two
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} {X : Ω → ℝ}
     (hX : AEMeasurable X μ) {K : ℝ} (hK : 0 < K)
@@ -64,7 +66,9 @@ theorem integrable_and_integral_pow_two_mul_le_of_lintegral_exp_sq_le_two
 
 /-- A directional square-exponential bound implies the homogeneous even
 moment budget `2 p! K^(2p) ‖a‖^(2p)`, also for noncentered vector laws.
-This is the unoptimized factorial form of Heidary, Lemma 2.2.-/
+This is the unoptimized factorial form of Heidary, Lemma 2.2.
+@isnad1 id=and.2h5v.s8.a3e01a410bfc from=translated src=- shape=ca1ed91b vocab=e6b799e6
+-/
 theorem integrable_and_integral_pow_two_mul_dotProduct_le_of_directional_exp_sq
     {α : Type*} [Fintype α] (ν : Measure (α → ℝ)) [IsProbabilityMeasure ν]
     {K : ℝ} (hK : 0 < K)

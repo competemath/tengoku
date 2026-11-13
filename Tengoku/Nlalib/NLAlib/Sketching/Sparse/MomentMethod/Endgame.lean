@@ -31,7 +31,9 @@ variable {s b n d : ℕ}
 ladder estimate, including the exact coupling factor `c_b^(4q)`.
 
 Source: ported from `SparseFockFormal.ConcreteMomentEndgame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h7v.s9.bab4b0d40030 from=translated src=- shape=127d1e3f vocab=c4d91cdc
+-/
 theorem raw_trace_moment_le_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} {beta : ℝ} (hbeta : 0 ≤ beta)
@@ -79,7 +81,9 @@ theorem raw_trace_moment_le_of_band_bounds
 estimate.
 
 Source: ported from `SparseFockFormal.ConcreteMomentEndgame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h8v.s9.1a2b1f6a3582 from=translated src=- shape=8dfb41b3 vocab=02c4b7c9
+-/
 theorem sparseStack_failure_tail_of_band_bounds
     (hs : 0 < s) (hb : 1 < b) (F : Frame n d)
     {q : ℕ} (hq : 0 < q) {beta : ℝ} (hbeta : 0 ≤ beta)
@@ -111,7 +115,9 @@ discharged.  Supplying the actual rounded band envelope gives the paper's
 failure probability `≤ delta`.
 
 Source: ported from `SparseFockFormal.ConcreteMomentEndgame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.4b38dc450d26 from=translated src=- shape=6b1b8234 vocab=623eb5bf
+-/
 theorem rounded_failure_le_delta_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -194,7 +200,9 @@ theorem rounded_failure_le_delta_of_band_bounds
 in the main theorem of the paper.
 
 Source: ported from `SparseFockFormal.ConcreteMomentEndgame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.f45ee4655354 from=translated src=- shape=c849d368 vocab=61c280aa
+-/
 theorem rounded_operator_norm_failure_le_delta_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)
@@ -230,7 +238,9 @@ theorem rounded_operator_norm_failure_le_delta_of_band_bounds
 /-- Equivalent success-probability form of the rounded theorem.
 
 Source: ported from `SparseFockFormal.ConcreteMomentEndgame`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h5v.s9.d247d5260155 from=translated src=- shape=2b4559bb vocab=3b6ec362
+-/
 theorem rounded_success_probability_of_band_bounds
     {n d : ℕ} {delta eps : ℝ}
     (hd : 1 ≤ d) (hdelta0 : 0 < delta) (hdelta1 : delta ≤ 1)

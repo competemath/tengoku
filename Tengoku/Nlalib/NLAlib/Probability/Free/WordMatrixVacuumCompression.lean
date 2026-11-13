@@ -39,12 +39,16 @@ def wordMatrixVacuumCompression : M →ₗ[ℂ] Matrix D D ℂ where
     exact map_smul _ _ _
 
 omit [Fintype D] [DecidableEq D] in
-/-- The compression is the genuine vacuum matrix coefficient in each entry.-/
+/-- The compression is the genuine vacuum matrix coefficient in each entry.
+@isnad1 id=eq.0h5v.s15.3b22e37cd9fd from=translated src=- shape=2fda5945 vocab=acf7e9aa
+-/
 @[simp] theorem wordMatrixVacuumCompression_apply (T : M) (i j : D) :
     wordMatrixVacuumCompression T i j=wordVacuumExpectation ι (T i j) := rfl
 
 omit [DecidableEq D] in
-/-- Each vacuum matrix coefficient is bounded by the native matrix operator norm.-/
+/-- Each vacuum matrix coefficient is bounded by the native matrix operator norm.
+@isnad1 id=le.0h5v.s14.1654033f8364 from=translated src=- shape=4b37c943 vocab=b158b1c0
+-/
 theorem norm_wordVacuumExpectation_entry_le (T : M) (i j : D) :
     ‖wordVacuumExpectation ι (T i j)‖≤‖T‖ := by
   calc
@@ -55,7 +59,9 @@ theorem norm_wordVacuumExpectation_entry_le (T : M) (i j : D) :
       (show ‖T i j‖≤‖T‖ from CStarMatrix.norm_entry_le_norm)
 
 open scoped Matrix.Norms.L2Operator in
-/-- A dimension bound for the actual compressed matrix spectral norm.-/
+/-- A dimension bound for the actual compressed matrix spectral norm.
+@isnad1 id=le.0h3v.s15.80e91862172f from=translated src=- shape=58e7fb3e vocab=854c597f
+-/
 theorem specNorm_wordMatrixVacuumCompression_le (T : M) :
     specNorm (wordMatrixVacuumCompression T)≤(Fintype.card D : ℝ)*‖T‖ := by
   have hf : frobSq (wordMatrixVacuumCompression T)≤(Fintype.card D : ℝ)^2*‖T‖^2 := by
@@ -75,7 +81,9 @@ def wordMatrixVacuumSandwich (A : Matrix D D ℂ) : M :=
   CStarMatrix.ofMatrix (fun i j => A i j•wordVacuumProjection ι)
 
 omit [DecidableEq D] in
-/-- Actual rank-one insertion factors the compressed operator product into a matrix product.-/
+/-- Actual rank-one insertion factors the compressed operator product into a matrix product.
+@isnad1 id=eq.0h5v.s16.d795e31a600e from=translated src=- shape=64b5ad94 vocab=c589a6ed
+-/
 theorem wordMatrixVacuumCompression_mul_sandwich_mul (S T : M) (A : Matrix D D ℂ) :
     wordMatrixVacuumCompression (S*wordMatrixVacuumSandwich A*T)=
       wordMatrixVacuumCompression S*A*wordMatrixVacuumCompression T := by
@@ -92,7 +100,9 @@ theorem wordMatrixVacuumCompression_mul_sandwich_mul (S T : M) (A : Matrix D D �
   simp only [smul_eq_mul]
   ring
 
-/-- Left and right annihilation give the same vacuum row functional.-/
+/-- Left and right annihilation give the same vacuum row functional.
+@isnad1 id=eq.0h3v.s15.439121245c37 from=translated src=- shape=ae5ec0f0 vocab=bb4c6dc7
+-/
 theorem wordVacuumExpectation_annihilation_eq_right (i : ι) (T : B) :
     wordVacuumExpectation ι (wordAnnihilation i*T)=
       wordVacuumExpectation ι (wordRightAnnihilation i*T) := by
@@ -103,7 +113,9 @@ theorem wordVacuumExpectation_annihilation_eq_right (i : ι) (T : B) :
   simp [wordVacuum,LinearIsometry.coe_toContinuousLinearMap]
 
 omit [Fintype D] [DecidableEq D] in
-/-- The left field vacuum row equals the actual right annihilator vacuum row.-/
+/-- The left field vacuum row equals the actual right annihilator vacuum row.
+@isnad1 id=eq.0h3v.s15.c0d081c27ac1 from=translated src=- shape=ae5ec0f0 vocab=1472bec5
+-/
 theorem wordVacuumExpectation_wordField_mul_eq_rightAnnihilation (i : ι) (t : B) :
     wordVacuumExpectation ι (wordField i*t)=
       wordVacuumExpectation ι (wordRightAnnihilation i*t) := by
@@ -116,21 +128,27 @@ theorem wordVacuumExpectation_wordField_mul_eq_rightAnnihilation (i : ι) (t : B
   rw [wordField,add_mul,map_add,hc,zero_add,wordVacuumExpectation_annihilation_eq_right]
 
 omit [Fintype D] [DecidableEq D] in
-/-- A right annihilator on the vacuum column gives expectation zero.-/
+/-- A right annihilator on the vacuum column gives expectation zero.
+@isnad1 id=eq.0h3v.s14.1a75fcd968cc from=translated src=- shape=c6de61e2 vocab=5bfeeda3
+-/
 theorem wordVacuumExpectation_mul_rightAnnihilation (i : ι) (t : B) :
     wordVacuumExpectation ι (t*wordRightAnnihilation i)=0 := by
   simp [wordVacuumExpectation_apply,ContinuousLinearMap.mul_def,
     ContinuousLinearMap.comp_apply,wordVacuum]
 
 omit [Fintype D] in
-/-- Compression preserves the actual identity matrix, including empty dimension.-/
+/-- Compression preserves the actual identity matrix, including empty dimension.
+@isnad1 id=eq.0h2v.s15.29c2cc00a9f1 from=translated src=- shape=e8c403fa vocab=40e14297
+-/
 @[simp] theorem wordMatrixVacuumCompression_one :
     wordMatrixVacuumCompression (1 : M)=1 := by
   ext i j
   by_cases hij : i=j <;> simp [wordMatrixVacuumCompression_apply,
     Matrix.one_apply,hij]
 
-/-- Scalar matrix multiplication on the left passes through actual vacuum compression.-/
+/-- Scalar matrix multiplication on the left passes through actual vacuum compression.
+@isnad1 id=eq.0h4v.s17.435f4b47dd19 from=translated src=- shape=f0d1387a vocab=8072e086
+-/
 theorem wordMatrixVacuumCompression_scalar_mul (A : Matrix D D ℂ) (t : M) :
     wordMatrixVacuumCompression
       (CStarMatrix.mapStarAlgHom (StarAlgHom.ofId ℂ B) (CStarMatrix.ofMatrix A)*t)=
@@ -143,7 +161,9 @@ theorem wordMatrixVacuumCompression_scalar_mul (A : Matrix D D ℂ) (t : M) :
   rw [smul_mul_assoc,one_mul,map_smul]
   rfl
 
-/-- Scalar matrix multiplication on the right passes through actual vacuum compression.-/
+/-- Scalar matrix multiplication on the right passes through actual vacuum compression.
+@isnad1 id=eq.0h4v.s17.f9b299c516b0 from=translated src=- shape=500b2f39 vocab=8072e086
+-/
 theorem wordMatrixVacuumCompression_mul_scalar (t : M) (A : Matrix D D ℂ) :
     wordMatrixVacuumCompression
       (t*CStarMatrix.mapStarAlgHom (StarAlgHom.ofId ℂ B) (CStarMatrix.ofMatrix A))=
@@ -158,7 +178,9 @@ theorem wordMatrixVacuumCompression_mul_scalar (t : M) (A : Matrix D D ℂ) :
   exact mul_comm _ _
 
 omit [Fintype D] [DecidableEq D] in
-/-- Actual vacuum compression commutes with the adjoint.-/
+/-- Actual vacuum compression commutes with the adjoint.
+@isnad1 id=eq.0h3v.s15.671245d4f13a from=translated src=- shape=85814c29 vocab=202d095c
+-/
 theorem wordMatrixVacuumCompression_star (T : M) :
     wordMatrixVacuumCompression (star T)=(wordMatrixVacuumCompression T)ᴴ := by
   ext a b
@@ -166,7 +188,9 @@ theorem wordMatrixVacuumCompression_star (T : M) :
     wordVacuumExpectation_star,Matrix.conjTranspose_apply]
 
 omit [DecidableEq D] in
-/-- Normalized trace of the actual vacuum compression is exactly the native normalized matrix vacuum, including empty dimension.-/
+/-- Normalized trace of the actual vacuum compression is exactly the native normalized matrix vacuum, including empty dimension.
+@isnad1 id=eq.0h3v.s15.d7d4f8fa6bac from=translated src=- shape=33ec13d3 vocab=73a8cac3
+-/
 theorem normalizedTrace_wordMatrixVacuumCompression (T : M) :
     normalizedTrace (wordMatrixVacuumCompression T)=wordMatrixVacuumExpectation T := rfl
 

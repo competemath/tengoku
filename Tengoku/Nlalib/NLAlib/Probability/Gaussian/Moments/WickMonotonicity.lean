@@ -17,7 +17,9 @@ open scoped BigOperators
 
 namespace NLAlib
 
-/-- A Wick pairing weight is nonnegative when all its covariance entries are.-/
+/-- A Wick pairing weight is nonnegative when all its covariance entries are.
+@isnad1 id=le.1h3v.s5.b6dbe2f693ad from=translated src=- shape=534aac3e vocab=8560664b
+-/
 theorem gaussianPairingWeight_nonneg {m : ℕ} (C : Fin m → Fin m → ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (π : GaussianPairings m) : 0 ≤ gaussianPairingWeight C π := by
   induction m using Nat.twoStepInduction with
@@ -28,7 +30,9 @@ theorem gaussianPairingWeight_nonneg {m : ℕ} (C : Fin m → Fin m → ℝ)
     exact mul_nonneg (hC _ _) (ih _ (fun _ _ => hC _ _) π)
 
 /-- Increasing a nonnegative covariance array increases every Wick pairing
-weight, including the empty diagram.-/
+weight, including the empty diagram.
+@isnad1 id=le.2h4v.s6.826cb0e8972a from=translated src=- shape=6debce9e vocab=8560664b
+-/
 theorem gaussianPairingWeight_le_gaussianPairingWeight {m : ℕ}
     (C D : Fin m → Fin m → ℝ) (hC : ∀ i j, 0 ≤ C i j)
     (hCD : ∀ i j, C i j ≤ D i j) (π : GaussianPairings m) :
@@ -44,7 +48,9 @@ theorem gaussianPairingWeight_le_gaussianPairingWeight {m : ℕ}
 
 /-- Splitting a covariance into two terms expands its pairing weight into
 the sum over all binary choices on the actual pairs. This algebraic identity
-keeps every orientation, including both contributions at diagonal entries.-/
+keeps every orientation, including both contributions at diagonal entries.
+@isnad1 id=eq.0h4v.s8.efcfc8274ab2 from=translated src=- shape=98b4d515 vocab=94afd7da
+-/
 theorem gaussianPairingWeight_add_eq_sum_orientations {m : ℕ}
     (C D : Fin m → Fin m → ℝ) (π : GaussianPairings m) :
     gaussianPairingWeight (fun i j => C i j + D i j) π =

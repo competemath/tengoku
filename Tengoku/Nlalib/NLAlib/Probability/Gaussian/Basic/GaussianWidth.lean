@@ -29,7 +29,9 @@ def gaussianWidth (T : Set E) : ℝ :=
 
 /-- The support function of a nonempty compact set is integrable against the
 standard Gaussian measure. Source: supplied reroute W3.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=integrab.2h2v.s6.432ccafc01e4 from=translated src=- shape=b81758e4 vocab=819f37bb
+-/
 theorem integrable_realSupportFunction_stdGaussian {T : Set E} (hT : IsCompact T)
     (hne : T.Nonempty) : Integrable (realSupportFunction T) (stdGaussian E) := by
   obtain ⟨R,hR,hbound⟩ := hT.isBounded.exists_pos_norm_le
@@ -51,7 +53,9 @@ private theorem integral_inner_right (a : E) :
     integral_strongDual_stdGaussian (innerSL ℝ a)
 
 /-- Reflecting the argument of a compact support function leaves its
-standard Gaussian expectation unchanged.-/
+standard Gaussian expectation unchanged.
+@isnad1 id=eq.2h2v.s6.b1ee3b2c1b4a from=translated src=- shape=3d9926c1 vocab=ca40b311
+-/
 theorem integral_realSupportFunction_neg_stdGaussian {T : Set E}
     (hT : IsCompact T) (hne : T.Nonempty) :
     (∫ z : E, realSupportFunction T (-z) ∂stdGaussian E) = gaussianWidth T := by
@@ -62,7 +66,9 @@ theorem integral_realSupportFunction_neg_stdGaussian {T : Set E}
 
 /-- Every nonempty compact set has nonnegative ordinary Gaussian width.
 Source: centering of Gaussian linear functionals and supplied reroute W3.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=le.2h2v.s6.a220509c1082 from=translated src=- shape=009424af vocab=2708ecb4
+-/
 theorem gaussianWidth_nonneg {T : Set E} (hT : IsCompact T) (hne : T.Nonempty) :
     0 ≤ gaussianWidth T := by
   obtain ⟨a,ha⟩ := hne
@@ -73,7 +79,9 @@ theorem gaussianWidth_nonneg {T : Set E} (hT : IsCompact T) (hne : T.Nonempty) :
 
 /-- Translation leaves ordinary Gaussian width unchanged.
 Source: Tropp 2020, Example 6.5; supplied reroute W4.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.2h3v.s6.219f8f452f42 from=translated src=- shape=17210c91 vocab=9b1e7c08
+-/
 theorem gaussianWidth_image_add {T : Set E} (hT : IsCompact T) (hne : T.Nonempty) (a : E) :
     gaussianWidth ((fun x => x+a) '' T) = gaussianWidth T := by
   unfold gaussianWidth
@@ -83,13 +91,17 @@ theorem gaussianWidth_image_add {T : Set E} (hT : IsCompact T) (hne : T.Nonempty
 
 /-- A singleton has zero ordinary Gaussian width, irrespective of its location.
 Source: Tropp 2020, Example 6.5.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.0h2v.s6.ea3a49271267 from=translated src=- shape=a1635534 vocab=f6a2993a
+-/
 @[simp] theorem gaussianWidth_singleton (a : E) : gaussianWidth ({a} : Set E) = 0 := by
   simp only [gaussianWidth, realSupportFunction_singleton, integral_inner_right]
 
 /-- Orthogonal changes of coordinates preserve ordinary Gaussian width.
 Source: rotation invariance of the native standard Gaussian measure; reroute W4.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.2h3v.s8.bc767544623e from=translated src=- shape=a5117986 vocab=032ecb90
+-/
 theorem gaussianWidth_image_linearIsometryEquiv {T : Set E} (hT : IsCompact T)
     (hne : T.Nonempty) (U : E ≃ₗᵢ[ℝ] E) : gaussianWidth (U '' T) = gaussianWidth T := by
   unfold gaussianWidth
@@ -100,7 +112,9 @@ theorem gaussianWidth_image_linearIsometryEquiv {T : Set E} (hT : IsCompact T)
 
 /-- Convexification leaves the support function and Gaussian width unchanged.
 Source: Tropp 2020, Example 6.5; supplied reroute W4.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.2h2v.s7.b2ee22fbe5a3 from=translated src=- shape=cf9c2e85 vocab=923c82cc
+-/
 theorem gaussianWidth_convexHull {T : Set E} (hT : IsCompact T) (hne : T.Nonempty) :
     gaussianWidth (convexHull ℝ T) = gaussianWidth T := by
   unfold gaussianWidth
@@ -108,7 +122,9 @@ theorem gaussianWidth_convexHull {T : Set E} (hT : IsCompact T) (hne : T.Nonempt
 
 /-- Taking the closed convex hull also leaves Gaussian width unchanged.
 Source: supplied reroute W4 and continuity of the defining linear functional.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.2h2v.s7.8e1b94119a19 from=translated src=- shape=b800f874 vocab=bf3f2ab1
+-/
 theorem gaussianWidth_closure_convexHull {T : Set E} (hT : IsCompact T) (hne : T.Nonempty) :
     gaussianWidth (closure (convexHull ℝ T)) = gaussianWidth T := by
   unfold gaussianWidth
@@ -116,7 +132,9 @@ theorem gaussianWidth_closure_convexHull {T : Set E} (hT : IsCompact T) (hne : T
 
 /-- Gaussian width is positively homogeneous, including zero scaling.
 Source: homogeneity of support functions, supplied Gaussian-width route.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=eq.3h3v.s7.bee1916e073f from=translated src=- shape=ccf72d2a vocab=bd00b7f0
+-/
 theorem gaussianWidth_image_smul {T : Set E} (hT : IsCompact T) (hne : T.Nonempty)
     {c : ℝ} (hc : 0 ≤ c) : gaussianWidth ((fun x => c • x) '' T) = c * gaussianWidth T := by
   unfold gaussianWidth
@@ -125,7 +143,9 @@ theorem gaussianWidth_image_smul {T : Set E} (hT : IsCompact T) (hne : T.Nonempt
 
 /-- Inclusion increases the Gaussian width of compact nonempty sets.
 Source: monotonicity of the support function.
-atlas: gaussian-width-def (partial)-/
+atlas: gaussian-width-def (partial)
+@isnad1 id=le.4h3v.s6.c9bd260cbab3 from=translated src=- shape=efd42139 vocab=2708ecb4
+-/
 theorem gaussianWidth_mono {S T : Set E} (hS : IsCompact S) (hne : S.Nonempty)
     (hT : IsCompact T) (hst : S ⊆ T) : gaussianWidth S ≤ gaussianWidth T := by
   exact integral_mono (integrable_realSupportFunction_stdGaussian hS hne)

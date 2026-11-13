@@ -38,7 +38,9 @@ variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω}
 
 /-- Two-sided sub-Gaussian tail: `P(t < |X|) ≤ 2 e^{-t²/(2c)}` for `t ≥ 0`.
 Vershynin 2018, Prop 2.5.2 (i).
-atlas: subgaussian-max-/
+atlas: subgaussian-max
+@isnad1 id=le.2h5v.s6.cf23ab5bba1b from=translated src=- shape=65dfaf86 vocab=f26b071b
+-/
 theorem measureReal_lt_abs_le_of_hasSubgaussianMGF [IsProbabilityMeasure μ] {X : Ω → ℝ}
     {c : ℝ≥0} (h : HasSubgaussianMGF X c μ) {t : ℝ} (ht : 0 ≤ t) :
     μ.real {ω | t < |X ω|} ≤ 2 * exp (-t ^ 2 / (2 * c)) := by
@@ -59,7 +61,9 @@ theorem measureReal_lt_abs_le_of_hasSubgaussianMGF [IsProbabilityMeasure μ] {X 
 /-- A Rademacher series `∑ᵢ aᵢ εᵢ` (`ε` a Rademacher vector) is sub-Gaussian with proxy
 `‖a‖₂² = ∑ᵢ aᵢ²`. Vershynin 2018, Prop 2.6.1 with Example 2.5.8(ii). For independent signs given
 as a family, build the vector law with `hasLaw_rademacherVector_of_iIndepFun`.
-atlas: rademacher-khintchine-/
+atlas: rademacher-khintchine
+@isnad1 id=hassubga.1h5v.s7.2f7be9c6af47 from=translated src=- shape=b4066367 vocab=8c464820
+-/
 theorem hasSubgaussianMGF_sum_mul_rademacher {ι : Type*} [Fintype ι] (a : ι → ℝ)
     {ε : Ω → ι → ℝ} (hε : HasLaw ε (rademacherVector ι) μ) :
     HasSubgaussianMGF (fun ω => ∑ i, a i * ε ω i) (‖WithLp.toLp 2 a‖₊ ^ 2) μ := by
@@ -127,14 +131,18 @@ private lemma integral_iSup_le_aux [IsProbabilityMeasure μ] {ι κ : Type*} [Fi
     _ = Fintype.card κ * b := by simp
 
 /-- The maximum of finitely many sub-Gaussian variables is integrable (no independence needed).
-Boucheron–Lugosi–Massart 2013, Thm 2.5.-/
+Boucheron–Lugosi–Massart 2013, Thm 2.5.
+@isnad1 id=integrab.1h5v.s6.e6804c795da9 from=translated src=- shape=38d212df vocab=719e9dd1
+-/
 theorem integrable_iSup_of_hasSubgaussianMGF {ι : Type*} [Fintype ι] [Nonempty ι]
     (X : ι → Ω → ℝ) (c : ℝ≥0) (h : ∀ i, HasSubgaussianMGF (X i) c μ) :
     Integrable (fun ω => ⨆ i, X i ω) μ :=
   integrable_iSup_of_integrable X fun i => (h i).integrable
 
 /-- The maximum of the absolute values of finitely many sub-Gaussian variables is integrable.
-Boucheron–Lugosi–Massart 2013, Thm 2.5.-/
+Boucheron–Lugosi–Massart 2013, Thm 2.5.
+@isnad1 id=integrab.1h5v.s6.30f15838b1dc from=translated src=- shape=01cd966e vocab=f9f81d4c
+-/
 theorem integrable_iSup_abs_of_hasSubgaussianMGF {ι : Type*} [Fintype ι] [Nonempty ι]
     (X : ι → Ω → ℝ) (c : ℝ≥0) (h : ∀ i, HasSubgaussianMGF (X i) c μ) :
     Integrable (fun ω => ⨆ i, |X i ω|) μ :=
@@ -145,7 +153,9 @@ is sub-Gaussian with proxy `c`, then for every `s > 0`,
 `𝔼 maxᵢ Xᵢ ≤ log N / s + c s / 2` with `N = card ι` (integrability:
 `integrable_iSup_of_hasSubgaussianMGF`).
 Boucheron–Lugosi–Massart 2013, Thm 2.5 (proof); Vershynin 2018, Ex 2.5.10.
-Atlas `subgaussian-max`.-/
+Atlas `subgaussian-max`.
+@isnad1 id=le.2h6v.s7.045c34d31404 from=translated src=- shape=6786124f vocab=75d97a41
+-/
 theorem integral_iSup_le_of_hasSubgaussianMGF [IsProbabilityMeasure μ]
     {ι : Type*} [Fintype ι] [Nonempty ι] (X : ι → Ω → ℝ) (c : ℝ≥0)
     (h : ∀ i, HasSubgaussianMGF (X i) c μ) {s : ℝ} (hs : 0 < s) :
@@ -169,7 +179,9 @@ theorem integral_iSup_le_of_hasSubgaussianMGF [IsProbabilityMeasure μ]
 `integral_iSup_le_of_hasSubgaussianMGF`, for every `s > 0`,
 `𝔼 maxᵢ |Xᵢ| ≤ log (2N) / s + c s / 2` (integrability:
 `integrable_iSup_abs_of_hasSubgaussianMGF`). Boucheron–Lugosi–Massart 2013, Thm 2.5 (applied to
-`±Xᵢ`); Vershynin 2018, Ex 2.5.10. Atlas `subgaussian-max`.-/
+`±Xᵢ`); Vershynin 2018, Ex 2.5.10. Atlas `subgaussian-max`.
+@isnad1 id=le.2h6v.s7.997d58ca4c72 from=translated src=- shape=9d8a9fbf vocab=ce814fc4
+-/
 theorem integral_iSup_abs_le_of_hasSubgaussianMGF [IsProbabilityMeasure μ]
     {ι : Type*} [Fintype ι] [Nonempty ι] (X : ι → Ω → ℝ) (c : ℝ≥0)
     (h : ∀ i, HasSubgaussianMGF (X i) c μ) {s : ℝ} (hs : 0 < s) :
@@ -236,7 +248,9 @@ private lemma le_sqrt_of_forall_le_div_add {x L c : ℝ} (hL : 0 ≤ L) (hc : 0 
 `N = card ι ≥ 1` sub-Gaussian variables with proxy `c` (no independence needed).
 Boucheron–Lugosi–Massart 2013, Thm 2.5; Vershynin 2018, Ex 2.5.10.
 Atlas `subgaussian-max`.
-atlas: subgaussian-max-/
+atlas: subgaussian-max
+@isnad1 id=le.1h5v.s6.a5161f971959 from=translated src=- shape=b8b3cf95 vocab=7fb627c1
+-/
 theorem integral_iSup_le_sqrt_of_hasSubgaussianMGF [IsProbabilityMeasure μ] {ι : Type*}
     [Fintype ι] [Nonempty ι] (X : ι → Ω → ℝ) (c : ℝ≥0) (h : ∀ i, HasSubgaussianMGF (X i) c μ) :
     ∫ ω, ⨆ i, X i ω ∂μ ≤ √(2 * c * log (Fintype.card ι)) :=
@@ -246,7 +260,9 @@ theorem integral_iSup_le_sqrt_of_hasSubgaussianMGF [IsProbabilityMeasure μ] {ι
 /-- **Sub-Gaussian maximal inequality, absolute values, optimised form**:
 `𝔼 maxᵢ |Xᵢ| ≤ √(2 c log (2N))`. Boucheron–Lugosi–Massart 2013, Thm 2.5; Vershynin 2018,
 Ex 2.5.10. Atlas `subgaussian-max`.
-atlas: subgaussian-max-/
+atlas: subgaussian-max
+@isnad1 id=le.1h5v.s6.43165aef971d from=translated src=- shape=a4031191 vocab=5d76cf0b
+-/
 theorem integral_iSup_abs_le_sqrt_of_hasSubgaussianMGF [IsProbabilityMeasure μ] {ι : Type*}
     [Fintype ι] [Nonempty ι] (X : ι → Ω → ℝ) (c : ℝ≥0) (h : ∀ i, HasSubgaussianMGF (X i) c μ) :
     ∫ ω, ⨆ i, |X i ω| ∂μ ≤ √(2 * c * log (2 * Fintype.card ι)) :=

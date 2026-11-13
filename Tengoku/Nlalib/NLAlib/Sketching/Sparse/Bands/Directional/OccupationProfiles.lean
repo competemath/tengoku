@@ -60,34 +60,46 @@ def lightHop (p : Profile) : Profile := p
 
 /-- The directional raising profile retains the light count.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s3.4adb95c100d4 from=translated src=- shape=8d4cac31 vocab=afdc5f30
+-/
 @[simp] theorem yPlus_light (p : Profile) : p.yPlus.light = p.light := rfl
 
 /-- The directional raising profile increases the heavy count by one.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.168467de3870 from=translated src=- shape=ac0b5851 vocab=45f043f0
+-/
 @[simp] theorem yPlus_heavy (p : Profile) : p.yPlus.heavy = p.heavy + 1 := rfl
 
 /-- The directional raising profile increases the total grade by two.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.23c9d1263fbe from=translated src=- shape=ac0b5851 vocab=ae808e60
+-/
 @[simp] theorem yPlus_grade (p : Profile) : p.yPlus.grade = p.grade + 2 := by
   simp [yPlus, grade]
   omega
 
 /-- The directional preserving profile increases the light count by two.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.67f8019c2b8d from=translated src=- shape=ac0b5851 vocab=a74fc0ed
+-/
 @[simp] theorem yZero_light (p : Profile) : p.yZero.light = p.light + 2 := rfl
 
 /-- The directional preserving profile decreases the heavy count by one.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s4.39a0722c421a from=translated src=- shape=ac0b5851 vocab=3f526348
+-/
 @[simp] theorem yZero_heavy (p : Profile) : p.yZero.heavy = p.heavy - 1 := rfl
 
 /-- With a heavy particle available, the directional preserving profile keeps the total grade.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s4.c3e90259c3b4 from=translated src=- shape=812eb910 vocab=cea62356
+-/
 theorem yZero_grade (p : Profile) (hheavy : 1 ≤ p.heavy) :
     p.yZero.grade = p.grade := by
   simp [yZero, grade]
@@ -95,23 +107,31 @@ theorem yZero_grade (p : Profile) (hheavy : 1 ≤ p.heavy) :
 
 /-- A light hop preserves the profile grade.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s3.a591564f01fc from=translated src=- shape=8d4cac31 vocab=8690d3c1
+-/
 @[simp] theorem lightHop_grade (p : Profile) : p.lightHop.grade = p.grade := rfl
 
 /-- A light hop preserves the profile light count.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h1v.s3.414461794aaf from=translated src=- shape=8d4cac31 vocab=a2be6792
+-/
 @[simp] theorem lightHop_light (p : Profile) : p.lightHop.light = p.light := rfl
 
 /-- The light count is bounded by the total occupation grade.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h1v.s3.aa94787db429 from=translated src=- shape=b70c6bb1 vocab=6b5144b4
+-/
 theorem light_le_grade (p : Profile) : p.light ≤ p.grade := by
   simp [grade]
 
 /-- Twice the heavy count is bounded by the total occupation grade.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h1v.s4.3c684c6c90b7 from=translated src=- shape=856694a9 vocab=84337725
+-/
 theorem two_mul_heavy_le_grade (p : Profile) : 2 * p.heavy ≤ p.grade := by
   simp [grade]
 
@@ -126,19 +146,25 @@ def profile {m n : ℕ} (p : Pattern m n) : Profile :=
 
 /-- The concrete profile light count is the pattern's light-site cardinality.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.ed4cd8152e4e from=translated src=- shape=eccf05b8 vocab=418e4937
+-/
 @[simp] theorem profile_light {m n : ℕ} (p : Pattern m n) :
     (profile p).light = p.light.card := rfl
 
 /-- The concrete profile heavy count is the pattern's heavy-site cardinality.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.d8d8be7276d8 from=translated src=- shape=eccf05b8 vocab=9c8a5d54
+-/
 @[simp] theorem profile_heavy {m n : ℕ} (p : Pattern m n) :
     (profile p).heavy = p.heavy.card := rfl
 
 /-- The concrete profile grade equals the pattern occupation grade.
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.060232527bcd from=translated src=- shape=6eedec9e vocab=81bd717d
+-/
 theorem profile_grade {m n : ℕ} (p : Pattern m n) :
     (profile p).grade = p.grade := by
   simp [profile, Profile.grade, Pattern.grade_eq_card_light_add_two_mul_card_heavy]
@@ -146,7 +172,9 @@ theorem profile_grade {m n : ℕ} (p : Pattern m n) :
 /-- The total number of row-local light indices is bounded by the grade.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s5.880851af920c from=translated src=- shape=913b75a9 vocab=65b4a413
+-/
 theorem sum_card_lightInRow_le_grade {m n : ℕ} (p : Pattern m n) :
     (∑ r, (p.lightInRow r).card) ≤ p.grade := by
   rw [← Pattern.card_light_eq_sum_card_lightInRow]
@@ -155,7 +183,9 @@ theorem sum_card_lightInRow_le_grade {m n : ℕ} (p : Pattern m n) :
 /-- Twice the total number of row-local heavy indices is bounded by the grade.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s5.54a203dd4954 from=translated src=- shape=1ad35375 vocab=c212d3df
+-/
 theorem two_mul_sum_card_heavyInRow_le_grade {m n : ℕ} (p : Pattern m n) :
     2 * (∑ r, (p.heavyInRow r).card) ≤ p.grade := by
   rw [← Pattern.card_heavy_eq_sum_card_heavyInRow]
@@ -166,7 +196,9 @@ at most the grade.  This is the exact combinatorial premise used after the
 row-local Gram/Parseval resummation.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h4v.s5.93af2fc1b8d0 from=translated src=- shape=f6dc4326 vocab=65b4a413
+-/
 theorem rowLocal_light_multiplicity_le_grade {m n : ℕ}
     (p : Pattern m n) (multiplicity : Fin m → ℕ)
     (hlocal : ∀ r, multiplicity r ≤ (p.lightInRow r).card) :
@@ -182,7 +214,9 @@ theorem rowLocal_light_multiplicity_le_grade {m n : ℕ}
 multiplicity at most the grade.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h4v.s6.4d1feced9050 from=translated src=- shape=09ab0310 vocab=c212d3df
+-/
 theorem two_mul_rowLocal_heavy_multiplicity_le_grade {m n : ℕ}
     (p : Pattern m n) (multiplicity : Fin m → ℕ)
     (hlocal : ∀ r, multiplicity r ≤ (p.heavyInRow r).card) :
@@ -198,7 +232,9 @@ theorem two_mul_rowLocal_heavy_multiplicity_le_grade {m n : ℕ}
 the move preserves the light count, so both occupation factors are at most `ν`.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h2v.s5.781a8c1dc5e6 from=translated src=- shape=22f29256 vocab=27057391
+-/
 theorem yPlus_count_sharp {ν : ℕ} (input : Profile)
     (hgrade : input.grade = ν) :
     input.yPlus.light * input.light ≤ ν * ν := by
@@ -210,7 +246,9 @@ theorem yPlus_count_sharp {ν : ℕ} (input : Profile)
 /-- Denominator-cleared occupation product for `Y₀`.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h2v.s5.d742d910ce7e from=translated src=- shape=dd42ab92 vocab=edd13779
+-/
 theorem yZero_count {ν : ℕ} (input : Profile) (hheavy : 1 ≤ input.heavy)
     (hgrade : input.grade = ν) :
     2 * (input.yZero.light * input.heavy) ≤ ν * ν := by
@@ -225,7 +263,9 @@ theorem yZero_count {ν : ℕ} (input : Profile) (hheavy : 1 ≤ input.heavy)
 /-- Occupation product for the transpose light hop.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h2v.s5.c70df730069d from=translated src=- shape=22f29256 vocab=01a64a9b
+-/
 theorem lightHop_count {ν : ℕ} (input : Profile)
     (hgrade : input.grade = ν) :
     input.lightHop.light * input.light ≤ ν * ν := by
@@ -241,7 +281,9 @@ theorem lightHop_count {ν : ℕ} (input : Profile)
 named hypotheses because this module does not define the Hilbert-space operators.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.4h4v.s6.632e87804146 from=translated src=- shape=516099d7 vocab=150e4428
+-/
 theorem directional_energy_sq_bound
     {ν inputEnergy reindexedEnergy outputEnergy : ℝ}
     (hν : 0 ≤ ν) (_hinput : 0 ≤ inputEnergy)
@@ -260,7 +302,9 @@ The second premise records that twice the reindexed heavy contribution is at
 most `ν` times the input energy.
 
 Source: ported from `SparseFockFormal.DirectionalBounds`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.3h4v.s6.1dda5dfa6dc8 from=translated src=- shape=d917af44 vocab=150e4428
+-/
 theorem directional_energy_half_sq_bound
     {ν inputEnergy reindexedEnergy outputEnergy : ℝ}
     (hν : 0 ≤ ν)

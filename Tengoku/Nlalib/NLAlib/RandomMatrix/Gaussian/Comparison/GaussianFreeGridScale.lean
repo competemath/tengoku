@@ -17,7 +17,9 @@ set_option autoImplicit false
 namespace NLAlib
 
 /-- The actual interpolation coefficient at order `2q` is bounded by a
-universal cubic in the positive integer order.-/
+universal cubic in the positive integer order.
+@isnad1 id=le.1h1v.s7.893afbef9ee0 from=translated src=- shape=ae2ab4f9 vocab=5092686c
+-/
 theorem gaussian_free_even_order_prefactor_le {q : ℕ} (hq : 0 < q) :
     (((2 * (2 * q) + 1) * (2 * (2 * q) + 2) ^ 2 : ℕ) : ℝ) ≤
       180 * (q : ℝ) ^ 3 := by
@@ -29,7 +31,9 @@ theorem gaussian_free_even_order_prefactor_le {q : ℕ} (hq : 0 < q) :
   nlinarith
 
 /-- The true Markov dimension factor is bounded uniformly at logarithmic
-moment order.-/
+moment order.
+@isnad1 id=le.2h2v.s6.007840d36e2e from=translated src=- shape=1cd5c80e vocab=5fba044d
+-/
 theorem gaussian_free_markov_factor_le {q d : ℕ} (hq : 0 < q)
     (hlog : Real.log (d : ℝ) ≤ q) :
     Real.exp 1 * (d : ℝ) ^ (1 / (4 * (q : ℝ))) ≤ (1000000 : ℝ) := by
@@ -41,7 +45,9 @@ theorem gaussian_free_markov_factor_le {q d : ℕ} (hq : 0 < q)
   exact h.trans (by norm_num)
 
 /-- The actual native free moment multiplier is below the fixed universal
-comparison constant.-/
+comparison constant.
+@isnad1 id=le.0h0v.s5.4ab8536e012f from=translated src=- shape=bdb6c026 vocab=639180de
+-/
 theorem gaussian_free_ultracontractive_factor_le :
     438 * Real.exp 5 ≤ (1000000 : ℝ) := by
   have he : Real.exp 5 = (Real.exp 1) ^ 5 := by
@@ -53,7 +59,9 @@ theorem gaussian_free_ultracontractive_factor_le :
   nlinarith
 
 /-- At the fixed large height the genuine interpolation budget is at most
-one elementary reciprocal-height term.-/
+one elementary reciprocal-height term.
+@isnad1 id=other.5h4v.s8.cc654dc8b0ee from=translated src=- shape=6970072b vocab=d78568b7
+-/
 theorem gaussian_free_interpolation_budget_le {q : ℕ} (hq : 0 < q)
     {V W Δ : ℝ} (hV : 0 ≤ V) (hW : 0 ≤ W) (hΔ : 0 < Δ)
     (hbudget : (q : ℝ) ^ 3 * (V * W) ≤ Δ ^ 4) :
@@ -79,7 +87,9 @@ theorem gaussian_free_interpolation_budget_le {q : ℕ} (hq : 0 < q)
   nlinarith [pow_nonneg hΔ.le 6]
 
 /-- Gaussian resolvent fluctuation terms at order `2q` cost at most five
-copies of the source weak radius.-/
+copies of the source weak radius.
+@isnad1 id=other.3h3v.s7.8889aa7a87bc from=translated src=- shape=1701c81f vocab=3d761e98
+-/
 theorem gaussian_free_fluctuation_sqrt_le {q : ℕ} (hq : 0 < q)
     {s η : ℝ} (hs : 0 ≤ s) (hη : 0 < η) :
     let c : ℝ := s ^ 2 * (η⁻¹) ^ 4
@@ -107,7 +117,9 @@ theorem gaussian_free_fluctuation_sqrt_le {q : ℕ} (hq : 0 < q)
     _ = _ := by dsimp [L]; ring
 
 /-- The forward Markov interpolation budget is absorbed by the actual
-fixed comparison error.-/
+fixed comparison error.
+@isnad1 id=le.4h5v.s7.18157dba4519 from=translated src=- shape=801e96d6 vocab=68a6443b
+-/
 theorem gaussian_free_forward_error_le {q d : ℕ} (hq : 0 < q)
     (hlog : Real.log (d : ℝ) ≤ q) {B Δ η : ℝ} (hB : 0 ≤ B) (hΔ : 0 ≤ Δ) :
     (Real.exp 1 * (d : ℝ) ^ (1 / (4 * (q : ℝ)))) * B ≤
@@ -118,7 +130,9 @@ theorem gaussian_free_forward_error_le {q d : ℕ} (hq : 0 < q)
 
 /-- The actual reverse free/Gaussian resolvent error is absorbed by the
 fixed interpolation error, with the literal original weak and variance
-budgets.-/
+budgets.
+@isnad1 id=other.7h7v.s8.0ba3953713d0 from=translated src=- shape=06cc56e6 vocab=ba54ee9d
+-/
 theorem gaussian_free_reverse_error_le {q d : ℕ} (hq : 0 < q)
     {s σ B Δ η : ℝ} (hs : 0 ≤ s) (hσ : 0 ≤ σ) (hB : 0 ≤ B)
     (hη : 0 < η) (hweak : s * Real.sqrt (q : ℝ) ≤ Δ)
@@ -142,7 +156,9 @@ theorem gaussian_free_reverse_error_le {q d : ℕ} (hq : 0 < q)
   linarith only [h, hfluc, hfluc', hvar]
 
 /-- The complete interpolation, free resolvent fluctuation, and grid mesh
-budget is absorbed by half the reciprocal height.-/
+budget is absorbed by half the reciprocal height.
+@isnad1 id=other.6h5v.s8.0661e09300ae from=translated src=- shape=ee3451d2 vocab=3d761e98
+-/
 theorem gaussian_free_grid_error_budget_le {q : ℕ} (hq : 0 < q)
     {V W s Δ : ℝ} (hV : 0 ≤ V) (hW : 0 ≤ W)
     (hΔ : 0 < Δ) (hweak : s * Real.sqrt (q : ℝ) ≤ Δ)
@@ -176,7 +192,9 @@ theorem gaussian_free_grid_error_budget_le {q : ℕ} (hq : 0 < q)
   nlinarith [sq_nonneg Δ]
 
 /-- With a positive weak scale the literal Gaussian fluctuation tail at
-`2 sqrt(cq)` is exactly `2 exp(-2q)`.-/
+`2 sqrt(cq)` is exactly `2 exp(-2q)`.
+@isnad1 id=other.3h3v.s7.6b820e848ed0 from=translated src=- shape=c6c7c5e1 vocab=3ba082ed
+-/
 theorem gaussian_free_fluctuation_tail_eq {q : ℕ} (hq : 0 < q)
     {s η : ℝ} (hs : 0 < s) (hη : 0 < η) :
     let c : ℝ := s ^ 2 * (η⁻¹) ^ 4

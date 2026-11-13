@@ -34,7 +34,9 @@ def conditionalSampleLaw (hb : 0 < b) (hs : 0 < s)
 
 /-- The iid sample law conditional on an exact sample is the product of conditional column weights.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h5v.s7.f2bc97e19654 from=translated src=- shape=4931977c vocab=816c66ec
+-/
 @[simp] theorem conditionalSampleLaw_weight (hb : 0 < b) (hs : 0 < s)
     (X : UniformSparseSample (s * b) s n) (Y : IidColumnSample b s n) :
     (conditionalSampleLaw hb hs X).weight Y =
@@ -62,7 +64,9 @@ def conditionalSampleMixtureLaw (hb : 0 < b) (hs : 0 < s) :
 
 /-- The conditional iid sample mixture has its explicit exact-sample weighted mass.
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s8.e25eb8ff7919 from=translated src=- shape=c4b217ac vocab=d2e44bca
+-/
 @[simp] theorem conditionalSampleMixtureLaw_weight
     (hb : 0 < b) (hs : 0 < s) (Y : IidColumnSample b s n) :
     (conditionalSampleMixtureLaw (n := n) hb hs).weight Y =
@@ -73,7 +77,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 column law.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s7.7af019940b02 from=translated src=- shape=f381c731 vocab=7e088050
+-/
 theorem conditionalSampleMixtureLaw_weight_eq_iidColumnSampleLaw_weight
     (hb : 0 < b) (hs : 0 < s) (Y : IidColumnSample b s n) :
     (conditionalSampleMixtureLaw (n := n) hb hs).weight Y =
@@ -102,7 +108,9 @@ theorem conditionalSampleMixtureLaw_weight_eq_iidColumnSampleLaw_weight
 and then their conditional iid partners.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s8.b809c9576f07 from=translated src=- shape=f4b63a81 vocab=78731573
+-/
 theorem conditionalSampleMixtureLaw_expect_eq_iterated
     (hb : 0 < b) (hs : 0 < s) (f : IidColumnSample b s n → ℝ) :
     (conditionalSampleMixtureLaw (n := n) hb hs).expect f =
@@ -121,7 +129,9 @@ theorem conditionalSampleMixtureLaw_expect_eq_iterated
 mixture.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s7.63cd5971c464 from=translated src=- shape=dc996caf vocab=9d02979a
+-/
 theorem conditionalSampleMixtureLaw_expect_eq_iidColumnSampleLaw_expect
     (hb : 0 < b) (hs : 0 < s) (f : IidColumnSample b s n → ℝ) :
     (conditionalSampleMixtureLaw (n := n) hb hs).expect f =
@@ -137,7 +147,9 @@ theorem conditionalSampleMixtureLaw_expect_eq_iidColumnSampleLaw_expect
 barycenter identity recover the exact blockwise cross inner product.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.3h7v.s8.ef72473441c8 from=translated src=- shape=94d9318f vocab=a5f5c190
+-/
 theorem conditional_cross_inner_block
     (hb : 0 < b) (hs : 0 < s) (X : UniformSparseSample (s * b) s n)
     {i j : Fin n} (hij : i ≠ j) (g : Fin s) :
@@ -194,7 +206,9 @@ theorem conditional_cross_inner_block
 the grouped exact hollow error.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s7.ececc06ebaf1 from=translated src=- shape=bdfd7cd1 vocab=a4cd83f8
+-/
 theorem conditional_matrix_transfer
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (X : UniformSparseSample (s * b) s n) :
@@ -224,7 +238,9 @@ theorem conditional_matrix_transfer
 Gram error, using pointwise hollowness of the exact-s sketch.
 
 Source: ported from `SparseFockFormal.UniformExactSTransfer`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h6v.s7.91c7ab8f427b from=translated src=- shape=6ff2c542 vocab=6d672004
+-/
 theorem conditional_matrix_transfer_gramError
     (hb : 0 < b) (hs : 0 < s) (F : Frame n d)
     (X : UniformSparseSample (s * b) s n) :

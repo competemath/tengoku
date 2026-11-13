@@ -81,7 +81,9 @@ def orbitToLegalMove (T : Finset (Site m n)) (ell : ℕ)
 
 /-- Forgetting the labels of a compatible move is injective.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=injectiv.0h6v.s6.5fad400339b7 from=translated src=- shape=01996e2e vocab=ea5a9630
+-/
 theorem orbitToLegalMove_injective
     (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockPattern T ell) :
@@ -127,7 +129,9 @@ theorem orbitToLegalMove_injective
 
 /-- Every legal physical light move is represented by a compatible labelled move.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=surjecti.0h6v.s6.bd31acaaad3a from=translated src=- shape=01996e2e vocab=f903db26
+-/
 theorem orbitToLegalMove_surjective
     (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockPattern T ell) :
@@ -160,7 +164,9 @@ weights depend only on the target and source columns, as in the frame Gram
 entry.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s8.ac20e7791ada from=translated src=- shape=00071fef vocab=8f745fce
+-/
 theorem orbit_legal_weighted_sum
     (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockPattern T ell) (a b : Fin n → ℝ) :
@@ -247,7 +253,9 @@ theorem orbit_legal_weighted_sum
 set_option maxHeartbeats 1000000 in
 /-- The labelled orbit sum is exactly the physical shared-leg block entry.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s6.e6ef2822d5a0 from=translated src=- shape=1422cef0 vocab=125ac6d9
+-/
 theorem orbit_sum_labelledG_eq_ghatBlock
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ)
     (out inp : BlockIndex d T ell) :
@@ -277,7 +285,9 @@ theorem orbit_sum_labelledG_eq_ghatBlock
 the literal fixed-heavy/fixed-light `G-hat` block.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.8c7df1c2f756 from=translated src=- shape=4f058f5c vocab=e0a29d68
+-/
 theorem hardCoreLift_labelledG_compression
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     (hardCoreLift (d := d) T ell).transpose * labelledG F ell *
@@ -294,7 +304,9 @@ symmetrization of the labelled Gram matrix is the actual Pattern/Fock
 `G-hat` block, with no relaxation or comparison premise.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.2be52fcd3bdc from=translated src=- shape=c05c79aa vocab=d4f39afc
+-/
 theorem hardCoreCompressedG_eq_ghatBlock
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) :
     hardCoreCompressedG F T ell = ghatBlock F T ell := by
@@ -317,7 +329,9 @@ theorem hardCoreCompressedG_eq_ghatBlock
 Pattern block.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.c80ae89ba770 from=translated src=- shape=24a6e614 vocab=85f8e38d
+-/
 theorem ghatBlock_norm_le
     (F : Frame n d) (T : Finset (Site m n)) (ell : ℕ) (hell : 1 ≤ ell) :
     ‖ghatBlock F T ell‖ ≤ (d : ℝ) + (ell : ℝ) - 1 := by
@@ -326,7 +340,9 @@ theorem ghatBlock_norm_le
 
 /-- A positive-light shared-leg block has norm at most dimension plus grade minus one.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=le.2h7v.s8.f92e3550bba3 from=translated src=- shape=6ae69026 vocab=85f8e38d
+-/
 theorem ghatBlock_norm_le_grade
     (F : Frame n d) (T : Finset (Site m n)) (ell nu : ℕ)
     (hell : 1 ≤ ell) (hle : ell ≤ nu) :

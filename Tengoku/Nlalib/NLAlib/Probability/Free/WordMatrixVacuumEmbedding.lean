@@ -48,14 +48,18 @@ def wordMatrixVacuumEmbedding : EuclideanSpace ℂ D →ₗᵢ[ℂ] K where
     rw [norm_smul,norm_wordVacuum,mul_one]
 
 omit [DecidableEq D] in
-/-- Coordinates of the actual amplified vacuum embedding.-/
+/-- Coordinates of the actual amplified vacuum embedding.
+@isnad1 id=eq.0h4v.s12.4eb19c785b72 from=translated src=- shape=66c376b2 vocab=f4292a38
+-/
 @[simp]
 theorem wordMatrixVacuumEmbedding_apply (v : EuclideanSpace ℂ D) (j : D) :
     wordMatrixVacuumEmbedding (ι := ι) v j=v j•wordVacuum ι := rfl
 
 /-- Every actual embedded vacuum vector is controlled by the actual sum of
 native vacuum column energies. This is finite Cauchy--Schwarz, with no
-faithfulness or traciality premise and with empty dimensions included.-/
+faithfulness or traciality premise and with empty dimensions included.
+@isnad1 id=le.0h4v.s17.5d7f5601dfd8 from=translated src=- shape=e23bc6f1 vocab=5a34ed7e
+-/
 theorem norm_toPiLp_wordMatrixVacuumEmbedding_sq_le (T : M) (v : EuclideanSpace ℂ D) :
     ‖CStarMatrix.toPiLpStarAlgHom (D := D) (H := W) T
       (wordMatrixVacuumEmbedding (ι := ι) v)‖^2 ≤
@@ -91,7 +95,9 @@ theorem norm_toPiLp_wordMatrixVacuumEmbedding_sq_le (T : M) (v : EuclideanSpace 
 
 /-- On every positive native matrix, each actual amplified vacuum vector
 state is bounded by the genuine sum of the native diagonal vacuum states.
-This derives the dimension factor used for the high-height moment bound.-/
+This derives the dimension factor used for the high-height moment bound.
+@isnad1 id=le.1h4v.s17.81c2da01091d from=translated src=- shape=72488272 vocab=337ee413
+-/
 theorem re_inner_wordMatrixVacuumEmbedding_le_card_mul_expectation
     {T : M} (hT : 0≤T) (v : EuclideanSpace ℂ D) :
     (inner ℂ (wordMatrixVacuumEmbedding (ι := ι) v)

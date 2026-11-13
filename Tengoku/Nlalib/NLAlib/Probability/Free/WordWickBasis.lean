@@ -40,7 +40,9 @@ private theorem wordField_apply_single_cons (i j : ι) (w : List ι) (z : ℂ) :
     wordCreation_apply_single, wordAnnihilation_apply_single_cons]
 
 /-- Applying an actual Wick polynomial to the actual vacuum creates exactly
-its word basis vector. There is no law or moment premise.-/
+its word basis vector. There is no law or moment premise.
+@isnad1 id=eq.0h2v.s12.0d1a99b2707d from=translated src=- shape=de4e6caf vocab=f04c9442
+-/
 @[simp]
 theorem wordWickOperator_wordVacuum (w : List ι) :
     wordWickOperator w (wordVacuum ι) = lp.single 2 w 1 := by
@@ -60,7 +62,9 @@ private theorem wordField_mem_wordFieldAlgebra (i : ι) :
     (StarAlgebra.subset_adjoin ℂ _ (Set.mem_range_self i))
 
 /-- Every Wick polynomial belongs to the genuine closed algebra generated
-only by the self-adjoint fields.-/
+only by the self-adjoint fields.
+@isnad1 id=mem.0h2v.s14.f63a1533607a from=translated src=- shape=63c6f9f8 vocab=aad2e5a0
+-/
 theorem wordWickOperator_mem_wordFieldAlgebra (w : List ι) :
     wordWickOperator w ∈ wordFieldAlgebra ι := by
   induction w using List.twoStepInduction with
@@ -73,7 +77,9 @@ theorem wordWickOperator_mem_wordFieldAlgebra (w : List ι) :
     · exact zero_mem _
 
 /-- The exact Wick Gram matrix for the actual vacuum is the Kronecker delta,
-derived from the actual word-basis action and the native Hilbert adjoint.-/
+derived from the actual word-basis action and the native Hilbert adjoint.
+@isnad1 id=eq.0h3v.s14.803607395fba from=translated src=- shape=c143839d vocab=c272b1f8
+-/
 theorem wordVacuumExpectation_star_wordWickOperator_mul (w v : List ι) :
     wordVacuumExpectation ι (star (wordWickOperator w) * wordWickOperator v) =
       if w = v then 1 else 0 := by

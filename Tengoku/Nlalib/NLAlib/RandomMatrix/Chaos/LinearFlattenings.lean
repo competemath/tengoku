@@ -42,7 +42,9 @@ variable {τ ι m n 𝕜 : Type*} [Fintype τ] [Unique τ] [DecidableEq τ]
 
 /-- In degree one, the empty-subset flattening is the horizontal coefficient
 block up to relabeling its singleton row-coordinate factor.
-atlas: matrix-chaos-flattenings-def (partial)-/
+atlas: matrix-chaos-flattenings-def (partial)
+@isnad1 id=eq.0h6v.s9.6c8a44ffda0e from=translated src=- shape=d23f86fc vocab=10e4cfcb
+-/
 theorem specNorm_chaosFlattening_empty_of_unique (A : (τ → ι) → Matrix m n 𝕜) :
     specNorm (chaosFlattening A ∅) =
       specNorm (coefficientRow (fun j => A (fun _ => j))) := by
@@ -60,7 +62,9 @@ theorem specNorm_chaosFlattening_empty_of_unique (A : (τ → ι) → Matrix m n
   rw [← he, specNorm_reindex]
 
 /-- In degree one, the full-subset flattening is the vertical coefficient block.
-atlas: matrix-chaos-flattenings-def (partial)-/
+atlas: matrix-chaos-flattenings-def (partial)
+@isnad1 id=eq.0h6v.s9.91a2bbc46c9d from=translated src=- shape=f26819cb vocab=99257cc2
+-/
 theorem specNorm_chaosFlattening_univ_of_unique (A : (τ → ι) → Matrix m n 𝕜) :
     specNorm (chaosFlattening A Finset.univ) =
       specNorm (coefficientColumn (fun j => A (fun _ => j))) := by
@@ -82,7 +86,9 @@ theorem specNorm_chaosFlattening_univ_of_unique (A : (τ → ι) → Matrix m n 
 
 /-- The empty-subset degree-one flattening squares to the row-variance norm.
 Source: finite block multiplication.
-atlas: matrix-chaos-flattenings-def (partial)-/
+atlas: matrix-chaos-flattenings-def (partial)
+@isnad1 id=eq.0h6v.s9.5745b0c99ba2 from=translated src=- shape=ed22ee3b vocab=c76bd800
+-/
 theorem specNorm_chaosFlattening_empty_sq (A : (τ → ι) → Matrix m n 𝕜) :
     specNorm (chaosFlattening A ∅) ^ 2 =
       specNorm (∑ j, A (fun _ => j) * (A (fun _ => j))ᴴ) := by
@@ -90,7 +96,9 @@ theorem specNorm_chaosFlattening_empty_sq (A : (τ → ι) → Matrix m n 𝕜) 
 
 /-- The full-subset degree-one flattening squares to the column-variance norm.
 Source: finite block multiplication.
-atlas: matrix-chaos-flattenings-def (partial)-/
+atlas: matrix-chaos-flattenings-def (partial)
+@isnad1 id=eq.0h6v.s9.4f22ceeb1e1c from=translated src=- shape=432c84bf vocab=f4f74ad6
+-/
 theorem specNorm_chaosFlattening_univ_sq (A : (τ → ι) → Matrix m n 𝕜) :
     specNorm (chaosFlattening A Finset.univ) ^ 2 =
       specNorm (∑ j, (A (fun _ => j))ᴴ * A (fun _ => j)) := by

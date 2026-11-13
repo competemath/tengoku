@@ -23,7 +23,9 @@ variable {d m n : ℕ}
 
 /-- Transposing the heavy raising band gives the heavy lowering band.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.6b747e746705 from=translated src=- shape=cb9a6f5f vocab=bff9aca0
+-/
 theorem Hplus_transpose_eq_Hminus (F : Frame n d) :
     (Hplus m (Frame.rows F)).transpose = Hminus m (Frame.rows F) := by
   rw [Hplus, Hminus, wordSum, wordSum,
@@ -33,7 +35,9 @@ theorem Hplus_transpose_eq_Hminus (F : Frame n d) :
 /-- The lowering band is the literal transpose row-leg product.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.b75f197e9d5f from=translated src=- shape=d87a20bc vocab=a8bc21ae
+-/
 theorem Hminus_eq_AUpStackTranspose_mul_ADownStack (F : Frame n d) :
     Hminus m (Frame.rows F) =
       (AUpStack (m := m) F).transpose * ADownStack (m := m) F := by
@@ -42,7 +46,9 @@ theorem Hminus_eq_AUpStackTranspose_mul_ADownStack (F : Frame n d) :
 
 /-- The transposed creation stack restricted to its middle grade has norm at most the square root of the input grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s8.7c853592162a from=translated src=- shape=d9d19a70 vocab=1c8624b9
+-/
 theorem AUpStackTranspose_rowGradeProjection_norm
     (F : Frame n d) (k : ℕ) :
     ‖(AUpStack (m := m) F).transpose *
@@ -70,7 +76,9 @@ theorem AUpStackTranspose_rowGradeProjection_norm
 
 /-- The lowering heavy band factors through its exact intermediate grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.9191e5cac29c from=translated src=- shape=fb93cf76 vocab=274dda10
+-/
 theorem Hminus_grade_factor_add_two (F : Frame n d) (k : ℕ) :
     Hminus m (Frame.rows F) * gradeProjection (d := d) (k + 2) =
       ((AUpStack (m := m) F).transpose *
@@ -97,7 +105,9 @@ theorem Hminus_grade_factor_add_two (F : Frame n d) (k : ℕ) :
 
 /-- The heavy lowering band vanishes on grade zero.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.c19f7e397e0e from=translated src=- shape=928d6744 vocab=45cf4f3c
+-/
 theorem Hminus_gradeProjection_zero (F : Frame n d) :
     Hminus m (Frame.rows F) * gradeProjection (d := d) 0 = 0 := by
   rw [Hminus_eq_AUpStackTranspose_mul_ADownStack, Matrix.mul_assoc,
@@ -105,7 +115,9 @@ theorem Hminus_gradeProjection_zero (F : Frame n d) :
 
 /-- The heavy lowering band vanishes on grade one.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.35b9c583959c from=translated src=- shape=928d6744 vocab=45cf4f3c
+-/
 theorem Hminus_gradeProjection_one (F : Frame n d) :
     Hminus m (Frame.rows F) * gradeProjection (d := d) 1 = 0 := by
   rw [Hminus_eq_AUpStackTranspose_mul_ADownStack]
@@ -138,7 +150,9 @@ theorem Hminus_gradeProjection_one (F : Frame n d) :
 component table.
 
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h5v.s7.bdf2c8ddfeef from=translated src=- shape=af8779bc vocab=881415c5
+-/
 theorem Hminus_gradeProjection_norm (F : Frame n d) (nu : ℕ) :
     ‖Hminus m (Frame.rows F) * gradeProjection (d := d) nu‖ ≤ (nu : ℝ) + 1 := by
   rcases nu with (_ | _ | k)

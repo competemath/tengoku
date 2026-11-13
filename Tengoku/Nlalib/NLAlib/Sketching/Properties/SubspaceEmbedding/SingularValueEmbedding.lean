@@ -22,7 +22,9 @@ variable {m n p : Type*} [Fintype m] [Fintype n] [Fintype p] [DecidableEq n]
 
 omit [Fintype n] in
 /-- Equivalent labels preserve Gram error as an exact matrix identity.
-Horn–Johnson §5.6; atlas `ose-def`, `svd`.-/
+Horn–Johnson §5.6; atlas `ose-def`, `svd`.
+@isnad1 id=eq.0h7v.s8.1ab67e820f67 from=translated src=- shape=d8eb1ec5 vocab=bc2dad90
+-/
 theorem transpose_mul_self_sub_one_reindex {q : Type*} [Fintype q] [DecidableEq q]
     (A : Matrix m n ℝ) (em : m ≃ p) (en : n ≃ q) :
     (A.reindex em en)ᵀ * (A.reindex em en) - 1 = (Aᵀ * A - 1).reindex en en := by

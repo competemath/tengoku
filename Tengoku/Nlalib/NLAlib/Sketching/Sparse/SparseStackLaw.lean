@@ -31,7 +31,9 @@ instance : Fintype Sign where
 
 /-- There are exactly two signed-basis sign values.
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h0v.s3.8cd06e737cd1 from=translated src=- shape=b0ae1d2b vocab=48f19d04
+-/
 @[simp] theorem card_sign : Fintype.card Sign = 2 := by decide
 
 /-- One primitive, fully independent signed-hash selector.
@@ -81,7 +83,9 @@ def _root_.NLAlib.SparseStackSelectors.toSample {s b n : ℕ} (z : SparseStackSe
 
 /-- Transporting a coordinate outcome to a SparseStack sample retains its hash coordinate.
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.73ba7f30df62 from=translated src=- shape=e8209e58 vocab=efa44488
+-/
 @[simp] theorem _root_.NLAlib.SparseStackSelectors.toSample_hash {s b n : ℕ}
     (z : SparseStackSelectors s b n)
     (g : Fin s) (i : Fin n) :
@@ -89,7 +93,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Transporting a coordinate outcome to a SparseStack sample retains its sign coordinate.
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.a1f1af1f3ca2 from=translated src=- shape=aee927e9 vocab=ac7a909c
+-/
 @[simp] theorem _root_.NLAlib.SparseStackSelectors.toSample_sign {s b n : ℕ}
     (z : SparseStackSelectors s b n)
     (g : Fin s) (i : Fin n) :
@@ -98,7 +104,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Each signed row choice has probability exactly `1/(2b)`.
 
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.612ebffe016a from=translated src=- shape=80a85099 vocab=501ff689
+-/
 theorem selector_singleton {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     (selectorLaw b hb).prob {x} = 1 / (2 * (b : ℝ)) := by
   rw [FiniteLaw.prob_singleton]
@@ -107,7 +115,9 @@ theorem selector_singleton {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
 /-- Each primitive selector in the full sample has the prescribed marginal.
 
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h5v.s7.32335c830c77 from=translated src=- shape=849bd635 vocab=e65e8921
+-/
 theorem _root_.NLAlib.sparseStackSelectorLaw_coordinate_singleton {s b n : ℕ} (hb : 0 < b)
     (p : Fin s × Fin n) (x : SignedHash b) :
     (sparseStackSelectorLaw s b n hb).prob {z | z p = x} = 1 / (2 * (b : ℝ)) := by
@@ -119,7 +129,9 @@ theorem _root_.NLAlib.sparseStackSelectorLaw_coordinate_singleton {s b n : ℕ} 
 primitive sample.
 
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s7.43842592bfe3 from=translated src=- shape=2000476c vocab=4f888f52
+-/
 theorem _root_.NLAlib.sparseStackSelectorLaw_cylinder {s b n : ℕ} (hb : 0 < b)
     (events : (Fin s × Fin n) → Set (SignedHash b)) :
     (sparseStackSelectorLaw s b n hb).prob (FiniteLaw.cylinder events) =
@@ -130,7 +142,9 @@ theorem _root_.NLAlib.sparseStackSelectorLaw_cylinder {s b n : ℕ} (hb : 0 < b)
 /-- The hash marginal is uniform.
 
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.2977db4a4dfb from=translated src=- shape=bf84d774 vocab=2c004480
+-/
 theorem selector_hash_uniform {b : ℕ} (hb : 0 < b) (a : Fin b) :
     (selectorLaw b hb).prob {x | x.1 = a} = 1 / (b : ℝ) := by
   have hb0 : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)
@@ -143,7 +157,9 @@ theorem selector_hash_uniform {b : ℕ} (hb : 0 < b) (a : Fin b) :
 /-- The sign marginal is Rademacher.
 
 Source: ported from `SparseFockFormal.SparseStackDistribution`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.12afd49c8735 from=translated src=- shape=6dca5b1f vocab=e17d63f3
+-/
 theorem selector_sign_uniform {b : ℕ} (hb : 0 < b) (e : Sign) :
     (selectorLaw b hb).prob {x | x.2 = e} = 1 / 2 := by
   have hb0 : (b : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hb)

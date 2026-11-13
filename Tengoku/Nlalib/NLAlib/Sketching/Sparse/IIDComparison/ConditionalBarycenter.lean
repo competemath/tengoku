@@ -22,7 +22,9 @@ noncomputable section
 /-- The second marginal of the joint law is precisely `selectorLaw`.
 
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.f77f61715fd5 from=translated src=- shape=95b80949 vocab=f52effb7
+-/
 theorem jointColumn_x_marginal {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     (jointColumnLaw hb).prob {z | z.2 = x} = (selectorLaw b hb).weight x := by
   classical
@@ -41,7 +43,9 @@ theorem jointColumn_x_marginal {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
 
 /-- Every selector label has positive mass at positive block size.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=lt.1h2v.s5.e137292dd44a from=translated src=- shape=415f94ca vocab=58395428
+-/
 theorem selectorWeight_pos {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     0 < (selectorLaw b hb).weight x := by
   rw [selectorLaw]
@@ -66,7 +70,9 @@ def conditionalYLaw {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
 
 /-- The conditional iid-vector law is the joint mass divided by positive selector mass.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.f0e17b1a68a8 from=translated src=- shape=d3d5044c vocab=aa3101a6
+-/
 @[simp] theorem conditionalYLaw_weight {b : ℕ} (hb : 0 < b)
     (x : SignedHash b) (y : YVector b) :
     (conditionalYLaw hb x).weight y =
@@ -75,7 +81,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 /-- Bayes/disintegration identity for the one-column joint law.
 
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.7c93324989ea from=translated src=- shape=d123802d vocab=5e29d653
+-/
 theorem jointColumn_disintegrates {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) :
     (jointColumnLaw hb).weight (y, x) =
@@ -94,21 +102,27 @@ def flipAt {b : ℕ} (a : Fin b) (y : YVector b) : YVector b :=
 
 /-- Flipping one iid coordinate negates the outcome at that coordinate.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.372be9aa50f9 from=translated src=- shape=e26a806d vocab=04019ab4
+-/
 @[simp] theorem flipAt_apply_same {b : ℕ} (a : Fin b) (y : YVector b) :
     flipAt a y a = negateOutcome (y a) := by
   simp [flipAt]
 
 /-- Flipping one iid coordinate leaves each distinct coordinate unchanged.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h4v.s4.04dc2e2fb939 from=translated src=- shape=4fea3695 vocab=42819ce3
+-/
 theorem flipAt_apply_of_ne {b : ℕ} {a k : Fin b} (hka : k ≠ a) (y : YVector b) :
     flipAt a y k = y k := by
   simp [flipAt, hka]
 
 /-- Flipping one iid coordinate twice returns the original vector.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.aff116e02bd0 from=translated src=- shape=c2334928 vocab=3671135b
+-/
 @[simp] theorem flipAt_involutive {b : ℕ} (a : Fin b) (y : YVector b) :
     flipAt a (flipAt a y) = y := by
   classical
@@ -129,7 +143,9 @@ def flipAtEquiv {b : ℕ} (a : Fin b) : YVector b ≃ YVector b where
 
 /-- A single-coordinate sign flip preserves the iid law weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.bcd6b2f006fe from=translated src=- shape=ae6af370 vocab=503628a2
+-/
 theorem yVectorLaw_weight_flipAt {b : ℕ} (hb : 0 < b)
     (a : Fin b) (y : YVector b) :
     (yVectorLaw b hb).weight (flipAt a y) = (yVectorLaw b hb).weight y := by
@@ -143,7 +159,9 @@ theorem yVectorLaw_weight_flipAt {b : ℕ} (hb : 0 < b)
 
 /-- A single-coordinate sign flip preserves support cardinality.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s4.fb928ed11fbc from=translated src=- shape=db53096d vocab=b663ffaa
+-/
 @[simp] theorem supportSize_flipAt {b : ℕ} (a : Fin b) (y : YVector b) :
     supportSize (flipAt a y) = supportSize y := by
   rw [supportSize_eq_sum, supportSize_eq_sum]
@@ -156,7 +174,9 @@ b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
 
 /-- Flipping an unselected iid coordinate preserves the selector kernel weight.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h4v.s5.ebc7a37dba43 from=translated src=- shape=066c54fb vocab=610e2865
+-/
 theorem kernelWeight_flipAt_of_ne {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) (a : Fin b) (ha : a ≠ x.1) :
     kernelWeight hb (flipAt a y) x = kernelWeight hb y x := by
@@ -174,7 +194,9 @@ def fiberMoment {b : ℕ} (hb : 0 < b) (x : SignedHash b) (a : Fin b) : ℝ :=
 
 /-- Every coordinate different from the selector has zero signed joint fiber moment.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.2h3v.s5.afdbd455210e from=translated src=- shape=53c0a55e vocab=d482293f
+-/
 theorem fiberMoment_off {b : ℕ} (hb : 0 < b)
     (x : SignedHash b) (a : Fin b) (ha : a ≠ x.1) :
     fiberMoment hb x a = 0 := by
@@ -198,7 +220,9 @@ theorem fiberMoment_off {b : ℕ} (hb : 0 < b)
 
 /-- The joint mass of zero-support iid outcomes equals the zero-support probability.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s6.5b076d143f4c from=translated src=- shape=2f39d0b4 vocab=b7b7f83a
+-/
 theorem zeroSupportMass {b : ℕ} (hb : 0 < b) :
     (∑ y, (yVectorLaw b hb).weight y *
       (if supportSize y = 0 then (1 : ℝ) else 0)) = p0 b := by
@@ -222,7 +246,9 @@ theorem zeroSupportMass {b : ℕ} (hb : 0 < b) :
 
 /-- Selection weight times its chosen coordinate value has the stated signed support-average formula.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s7.a0ecf799a3b9 from=translated src=- shape=04228448 vocab=99e5f695
+-/
 theorem kernelWeight_mul_selectedValue {b : ℕ} (hb : 0 < b)
     (y : YVector b) (x : SignedHash b) :
     kernelWeight hb y x * yValue (y x.1) =
@@ -242,7 +268,9 @@ theorem kernelWeight_mul_selectedValue {b : ℕ} (hb : 0 < b)
 
 /-- The selected coordinate joint fiber moment equals its explicit nonempty-support expression.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s6.d997a5fa580b from=translated src=- shape=b9668bfb vocab=bf91c6b9
+-/
 theorem fiberMoment_selected {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     fiberMoment hb x x.1 =
       x.2.val * (selectorLaw b hb).weight x * (1 - p0 b) := by
@@ -282,7 +310,9 @@ theorem fiberMoment_selected {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
 
 /-- The reciprocal support correction times nonempty-support probability is one.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h1v.s5.3a4da4643346 from=translated src=- shape=da8c2b46 vocab=2e9f589f
+-/
 theorem cB_mul_one_sub_p0 {b : ℕ} (hb : 0 < b) :
     cB b * (1 - p0 b) = 1 := by
   rw [cB]
@@ -290,7 +320,9 @@ theorem cB_mul_one_sub_p0 {b : ℕ} (hb : 0 < b) :
 
 /-- The conditional iid coordinate mean is the support-corrected signed selector indicator.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.22132b58a6f3 from=translated src=- shape=4de97797 vocab=efadd847
+-/
 theorem conditional_expect_yValue {b : ℕ} (hb : 0 < b)
     (x : SignedHash b) (a : Fin b) :
     (conditionalYLaw hb x).expect (fun y => yValue (y a)) =
@@ -314,7 +346,9 @@ theorem conditional_expect_yValue {b : ℕ} (hb : 0 < b)
 /-- Coordinatewise martingale identity `E[c_b Y | X=x] = X`.
 
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h3v.s6.9ad8eb02cd7c from=translated src=- shape=d3fd06d7 vocab=d5761be7
+-/
 theorem conditional_barycenter_coordinate {b : ℕ} (hb : 0 < b)
     (x : SignedHash b) (a : Fin b) :
     (conditionalYLaw hb x).expect (fun y => cB b * yValue (y a)) =
@@ -344,7 +378,9 @@ def conditionalBarycenter {b : ℕ} (hb : 0 < b) (x : SignedHash b) : EVec b :=
 
 /-- The conditional Euclidean iid barycenter equals the corrected signed selector vector.
 Source: ported from `SparseFockFormal.SparseIIDCoupling`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h2v.s4.9e8464973e3b from=translated src=- shape=eab0181c vocab=61798bea
+-/
 theorem conditional_barycenter {b : ℕ} (hb : 0 < b) (x : SignedHash b) :
     conditionalBarycenter hb x = selectorVector x := by
   ext a

@@ -24,7 +24,9 @@ variable {d m n ell : ℕ}
 /-- Elementary rectangular Gram identity in exact finite coordinates.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s6.0ae5779c5881 from=translated src=- shape=120371af vocab=eba68d8e
+-/
 theorem coordinateEnergy_mulVec_eq_gram
     {I J : Type*} [Fintype I] [Fintype J]
     (A : Matrix I J ℝ) (x : J → ℝ) :
@@ -59,7 +61,9 @@ def sigmaToFamily (z : AllDomainIndex m n ell → ℝ) :
 dependent component energies.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s7.bf102025a3da from=translated src=- shape=6ba12e03 vocab=c718bc61
+-/
 theorem coordinateEnergy_sigma (z : AllDomainIndex m n ell → ℝ) :
     sumSq z = ∑ k, componentEnergy (sigmaToFamily z) k := by
   simp only [sumSq, componentEnergy, sigmaToFamily]
@@ -79,7 +83,9 @@ def blockGramPairing (F : Frame n d) (ell : ℕ)
 the sum of its literal typed blocks.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s8.b66253ebc242 from=translated src=- shape=354d1ab9 vocab=8ce77e33
+-/
 theorem coordinateQuadratic_VAll_gram_eq_sum_blocks
     (F : Frame n d) (ell : ℕ) (z : AllDomainIndex m n ell → ℝ) :
     quadForm
@@ -99,7 +105,9 @@ theorem coordinateQuadratic_VAll_gram_eq_sum_blocks
 /-- A diagonal block contributes exactly `d` times its component energy.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s5.5229a96e7fd8 from=translated src=- shape=5babb6b0 vocab=52bcdffc
+-/
 theorem blockGramPairing_self (F : Frame n d) (ell : ℕ)
     (z : AllDomainIndex m n ell → ℝ) (k : Fin ell) :
     blockGramPairing F ell z k k =
@@ -116,7 +124,9 @@ theorem blockGramPairing_self (F : Frame n d) (ell : ℕ)
 /-- An off-diagonal literal Gram block is exactly the concrete cross pairing.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.1h8v.s5.af278012f5c6 from=translated src=- shape=f23f82ec vocab=66c333b9
+-/
 theorem blockGramPairing_cross (F : Frame n d) (ell : ℕ)
     (z : AllDomainIndex m n ell → ℝ) (k l : Fin ell) (hkl : k ≠ l) :
     blockGramPairing F ell z k l =
@@ -128,7 +138,9 @@ theorem blockGramPairing_cross (F : Frame n d) (ell : ℕ)
 shared-leg block form.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.37bf44ac3168 from=translated src=- shape=5d85713b vocab=0918bd10
+-/
 theorem sum_blockGramPairing_eq_sharedLeg (F : Frame n d) (ell : ℕ)
     (z : AllDomainIndex m n ell → ℝ) :
     (∑ k, ∑ l, blockGramPairing F ell z k l) =
@@ -164,7 +176,9 @@ theorem sum_blockGramPairing_eq_sharedLeg (F : Frame n d) (ell : ℕ)
 
 /-- The combined synthesis Gram quadratic form equals the shared-leg Gram quadratic form.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.d4113f6c460a from=translated src=- shape=381aea86 vocab=592062d5
+-/
 theorem coordinateQuadratic_VAll_gram_eq_sharedLeg
     (F : Frame n d) (ell : ℕ) (z : AllDomainIndex m n ell → ℝ) :
     quadForm
@@ -177,7 +191,9 @@ theorem coordinateQuadratic_VAll_gram_eq_sharedLeg
 Euclidean energy bound.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s8.ce10cc63a5f7 from=translated src=- shape=97797adc vocab=98579fea
+-/
 theorem VAllMatrix_energy_le (F : Frame n d) (ell : ℕ)
     (z : AllDomainIndex m n ell → ℝ) (hell : 1 ≤ ell) :
     sumSq ((VAllMatrix (m := m) F ell).mulVec z) ≤
@@ -190,7 +206,9 @@ theorem VAllMatrix_energy_le (F : Frame n d) (ell : ℕ)
 /-- Finite-coordinate Cauchy--Schwarz in the exact normalization used here.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h3v.s6.91c03c418821 from=translated src=- shape=250e06d4 vocab=63d9c9f1
+-/
 theorem coordinate_dot_sq_le {I : Type*} [Fintype I]
     (x y : I → ℝ) :
     (∑ i, x i * y i) ^ 2 ≤ sumSq x * sumSq y := by
@@ -202,7 +220,9 @@ its positive row Gram matrix.  The cancellation is proved directly from
 finite-coordinate Cauchy--Schwarz.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h5v.s6.5a5c0a52edef from=translated src=- shape=aa634767 vocab=0e086df0
+-/
 theorem gramQuadratic_le_of_energy_le
     {I J : Type*} [Fintype I] [Fintype J]
     (A : Matrix I J ℝ) (c : ℝ) (hc : 0 ≤ c)
@@ -249,7 +269,9 @@ def labelledG (F : Frame n d) (ell : ℕ) :
 
 /-- The labelled shared-leg operator is invariant under simultaneous slot relabelling.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s5.d0a611735db9 from=translated src=- shape=95462bce vocab=c10b11f7
+-/
 theorem labelledG_relabelSlots (F : Frame n d) (ell : ℕ)
     (pi : Equiv.Perm (Fin ell))
     (out inp : LabelledIndex d m n ell) :
@@ -261,7 +283,9 @@ theorem labelledG_relabelSlots (F : Frame n d) (ell : ℕ)
 
 /-- Each one-slot shared-leg operator is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s5.46c5016ff74e from=translated src=- shape=39c89f44 vocab=7a89eef0
+-/
 @[simp] theorem qSlot_transpose (F : Frame n d) (k : Fin ell) :
     (qSlot (m := m) F k).transpose = qSlot F k := by
   ext out inp
@@ -275,7 +299,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 
 /-- The labelled shared-leg operator is symmetric.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s5.cb25beee2b17 from=translated src=- shape=5faa2fab vocab=85960e33
+-/
 @[simp] theorem labelledG_transpose (F : Frame n d) (ell : ℕ) :
     (labelledG (m := m) F ell).transpose = labelledG F ell := by
   rw [labelledG, Matrix.transpose_sum]
@@ -287,7 +313,9 @@ Source: ported sparse-Fock shared-leg/vacuum proof, commit
 equivalent to it.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s7.fa62dea46a1f from=translated src=- shape=603edc28 vocab=29247b8a
+-/
 theorem VAllMatrix_mul_transpose (F : Frame n d) (ell : ℕ) :
     VAllMatrix (m := m) F ell * (VAllMatrix F ell).transpose =
       labelledG F ell := by
@@ -303,7 +331,9 @@ theorem VAllMatrix_mul_transpose (F : Frame n d) (ell : ℕ) :
 
 /-- The labelled shared-leg operator is Hermitian.
 Source: ported sparse-Fock shared-leg/vacuum proof, commit
-`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.-/
+`b9da2b5d96e5fd70252e9c6551aefc92643e7d0b`; supports `sparse-ose`.
+@isnad1 id=ishermit.0h5v.s5.4e8da751641d from=translated src=- shape=8f7a3c09 vocab=fb31168c
+-/
 theorem labelledG_isHermitian (F : Frame n d) (ell : ℕ) :
     (labelledG (m := m) F ell).IsHermitian := by
   rw [Matrix.isHermitian_iff_isSymm]
@@ -313,7 +343,9 @@ theorem labelledG_isHermitian (F : Frame n d) (ell : ℕ) :
 /-- Positivity of the labelled shared-leg matrix, in literal coordinates.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s6.c0fb6fbe0500 from=translated src=- shape=0293b76e vocab=f0fa1777
+-/
 theorem labelledG_coordinateQuadratic_nonneg (F : Frame n d) (ell : ℕ)
     (x : LabelledIndex d m n ell → ℝ) :
     0 ≤ quadForm (labelledG F ell) x := by
@@ -333,7 +365,9 @@ theorem labelledG_coordinateQuadratic_nonneg (F : Frame n d) (ell : ℕ)
 constant `d + ell - 1` as an actual coordinate quadratic-form estimate.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h6v.s7.b71cf449a6ef from=translated src=- shape=49a72d3e vocab=27e9f64f
+-/
 theorem labelledG_coordinateQuadratic_le (F : Frame n d) (ell : ℕ)
     (x : LabelledIndex d m n ell → ℝ) (hell : 1 ≤ ell) :
     quadForm (labelledG F ell) x ≤
@@ -351,7 +385,9 @@ theorem labelledG_coordinateQuadratic_le (F : Frame n d) (ell : ℕ)
 /-- Final L2 operator-norm form of the concrete labelled shared-leg bound.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.1h5v.s7.a1162e22740d from=translated src=- shape=8d62f84b vocab=e0e90523
+-/
 theorem labelledG_norm_le (F : Frame n d) (ell : ℕ) (hell : 1 ≤ ell) :
     ‖labelledG (m := m) F ell‖ ≤ (d : ℝ) + (ell : ℝ) - 1 := by
   have hellR : (1 : ℝ) ≤ (ell : ℝ) := by exact_mod_cast hell
@@ -370,7 +406,9 @@ theorem labelledG_norm_le (F : Frame n d) (ell : ℕ) (hell : 1 ≤ ell) :
 total grade `nu`, the labelled shared-leg operator is bounded by `d + nu`.
 
 Source: ported from `SparseFockFormal.LightSectorConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.2h6v.s7.9360c531010d from=translated src=- shape=c9c0b556 vocab=ec0d5c22
+-/
 theorem labelledG_norm_le_grade (F : Frame n d) (ell nu : ℕ)
     (hell : 1 ≤ ell) (hle : ell ≤ nu) :
     ‖labelledG (m := m) F ell‖ ≤ (d : ℝ) + (nu : ℝ) := by

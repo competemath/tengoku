@@ -30,7 +30,9 @@ def countSketchMatrix (h : ι → ρ) (σ : ι → ℝ) : Matrix ρ ι ℝ :=
 omit [DecidableEq d] [Fintype d] [Fintype ι] [DecidableEq ι] in
 /-- The Gram entry of a CountSketch is the sign product times the actual
 hash-collision indicator. Source: manuscript `sh:count-hollow`;
-supports `sparse-ose`.-/
+supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s6.af838c52fa78 from=translated src=- shape=3028639e vocab=a1ae10c2
+-/
 theorem transpose_countSketchMatrix_mul_apply
     (h : ι → ρ) (σ : ι → ℝ) (i j : ι) :
     ((countSketchMatrix h σ)ᵀ * countSketchMatrix h σ) i j =
@@ -62,7 +64,9 @@ def countSketchHollowCoefficient (h : ι → ρ) (U : Matrix ι d ℝ) (a b : d)
 
 omit [MeasurableSpace ρ] [Nonempty ρ] [Fintype ι] [Fintype ρ] [Fintype d] [DecidableEq d] in
 /-- The coefficient matrix has zero diagonal by construction. Source:
-manuscript `sh:count-hollow`; supports `sparse-ose`.-/
+manuscript `sh:count-hollow`; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s5.30e9a62539f5 from=translated src=- shape=b94cb5cd vocab=b8020abf
+-/
 @[simp] theorem countSketchHollowCoefficient_diag
     (h : ι → ρ) (U : Matrix ι d ℝ) (a b : d) (i : ι) :
     countSketchHollowCoefficient h U a b i i = 0 := by
@@ -71,7 +75,9 @@ manuscript `sh:count-hollow`; supports `sparse-ose`.-/
 omit [MeasurableSpace ρ] [Nonempty ρ] [Fintype d] [DecidableEq d] in
 /-- Unit-squared signs give the exact hollow sign quadratic form for every
 entry of the embedded CountSketch Gram error. Source: manuscript
-`sh:count-hollow`; supports `sparse-ose`. No random-data premise is added.-/
+`sh:count-hollow`; supports `sparse-ose`. No random-data premise is added.
+@isnad1 id=eq.1h8v.s7.23ab20aee891 from=translated src=- shape=623db5a5 vocab=03474405
+-/
 theorem mul_countSketchGram_sub_one_mul_apply_eq_quadForm
     (h : ι → ρ) (σ : ι → ℝ) (hσ : ∀ i, σ i ^ 2 = 1)
     (U : Matrix ι d ℝ) (a b : d) :
@@ -94,7 +100,9 @@ theorem mul_countSketchGram_sub_one_mul_apply_eq_quadForm
 
 omit [MeasurableSpace ρ] [Nonempty ρ] [Fintype d] in
 /-- An orthonormal frame removes the identity contribution from the embedded
-Gram matrix. Source: manuscript `sh:count-hollow`; supports `sparse-ose`.-/
+Gram matrix. Source: manuscript `sh:count-hollow`; supports `sparse-ose`.
+@isnad1 id=eq.1h6v.s8.1fa3e73ef351 from=translated src=- shape=2917080b vocab=0a1f7a0e
+-/
 theorem countSketch_gram_error_eq
     (h : ι → ρ) (σ : ι → ℝ) (U : Matrix ι d ℝ) (hU : HasOrthonormalCols U) :
     (countSketchMatrix h σ * U)ᵀ * (countSketchMatrix h σ * U) - 1 =

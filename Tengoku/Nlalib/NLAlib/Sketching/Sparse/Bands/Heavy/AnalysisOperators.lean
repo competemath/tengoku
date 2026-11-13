@@ -36,14 +36,18 @@ def rDownAt (r : Fin m) (i : Fin n) : FockOp m n :=
 
 /-- The transpose of one-site heavy creation is one-site heavy annihilation.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.89da357f1458 from=translated src=- shape=5ae36e3e vocab=b0c89cf4
+-/
 @[simp] theorem rUpAt_transpose (r : Fin m) (i : Fin n) :
     (rUpAt r i).transpose = rDownAt r i := by
   simp [rUpAt, rDownAt, transpose_siteKernel]
 
 /-- The transpose of one-site heavy annihilation is one-site heavy creation.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s5.9d6a5a437ee1 from=translated src=- shape=5ae36e3e vocab=b0c89cf4
+-/
 @[simp] theorem rDownAt_transpose (r : Fin m) (i : Fin n) :
     (rDownAt r i).transpose = rUpAt r i := by
   simp [rUpAt, rDownAt, transpose_siteKernel]
@@ -74,7 +78,9 @@ def BUpMatrix (F : Frame n d) (r : Fin m) :
 
 /-- One-site heavy creation has coefficient one precisely at the matching marked transition.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.fd34b77429f8 from=translated src=- shape=33aed30b vocab=d0e3d31f
+-/
 theorem rUpAt_apply (r : Fin m) (i : Fin n) (out inp : Pattern m n) :
     rUpAt r i out inp =
       if out (r, i) = .two ∧ inp = setSite out (r, i) .one then 1 else 0 := by
@@ -83,7 +89,9 @@ theorem rUpAt_apply (r : Fin m) (i : Fin n) (out inp : Pattern m n) :
 
 /-- One-site heavy annihilation has coefficient one precisely at the matching marked transition.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.8182235ccacb from=translated src=- shape=33aed30b vocab=a2700e3b
+-/
 theorem rDownAt_apply (r : Fin m) (i : Fin n) (out inp : Pattern m n) :
     rDownAt r i out inp =
       if out (r, i) = .one ∧ inp = setSite out (r, i) .two then 1 else 0 := by
@@ -92,7 +100,9 @@ theorem rDownAt_apply (r : Fin m) (i : Fin n) (out inp : Pattern m n) :
 
 /-- Analyzing one heavy creation leg gives the frame coefficient of the transitioned external fiber.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s8.363e5b0cffef from=translated src=- shape=23c2be60 vocab=4b17bba2
+-/
 theorem one_rUp_analysis (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (i : Fin n)
     (σ : Pattern m n) :
@@ -112,7 +122,9 @@ theorem one_rUp_analysis (F : Frame n d)
 
 /-- Analyzing one heavy annihilation leg gives the frame coefficient of the transitioned external fiber.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h8v.s8.0594ccf44438 from=translated src=- shape=23c2be60 vocab=f8d05c2f
+-/
 theorem one_rDown_analysis (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (i : Fin n)
     (σ : Pattern m n) :
@@ -132,7 +144,9 @@ theorem one_rDown_analysis (F : Frame n d)
 
 /-- A heavy creation analysis matrix acts by summing its admissible marked frame coefficients.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.9b66650c7490 from=translated src=- shape=b5d2eaf1 vocab=9b6d3759
+-/
 theorem AUpMatrix_mulVec (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (σ : Pattern m n) :
     Matrix.mulVec (AUpMatrix F r) x σ =
@@ -147,7 +161,9 @@ theorem AUpMatrix_mulVec (F : Frame n d)
 
 /-- A heavy annihilation analysis matrix acts by summing its admissible marked frame coefficients.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h7v.s7.1fb32120e2d4 from=translated src=- shape=b5d2eaf1 vocab=0566bbfd
+-/
 theorem ADownMatrix_mulVec (F : Frame n d)
     (x : Fin d × Pattern m n → ℝ) (r : Fin m) (σ : Pattern m n) :
     Matrix.mulVec (ADownMatrix F r) x σ =
@@ -162,7 +178,9 @@ theorem ADownMatrix_mulVec (F : Frame n d)
 
 /-- The fiber of an exact-grade projection is retained precisely on that pattern grade.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s7.90cc526a9a12 from=translated src=- shape=7cc94e95 vocab=8935cc59
+-/
 theorem fiber_gradeProjection (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) (p : Pattern m n) :
     Directional.fiber (Matrix.mulVec (gradeProjection (d := d) nu) x) p =
@@ -173,7 +191,9 @@ theorem fiber_gradeProjection (nu : ℕ)
 
 /-- On an exact grade, occupation-weighted energy is the grade times the projected energy.
 Source: ported from `SparseFockFormal.HeavyBandsConcrete`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s8.d7108ddb3b46 from=translated src=- shape=47083a7c vocab=e92bf4e4
+-/
 theorem weighted_gradeProjection (nu : ℕ)
     (x : Fin d × Pattern m n → ℝ) :
     (∑ p, (p.grade : ℝ) * euclideanNormSq

@@ -24,7 +24,9 @@ rank-one covariance moment. The returned scalar expression is the quadratic
 form of the expected matrix power `E[(y yᵀ)^p]`.
 Source: the radialization route of Heidary, Appendix `appendix:factorial`,
 with a coarser higher-moment Cauchy--Schwarz bound.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.7h8v.s9.1b22f7461a6e from=translated src=- shape=aaddc5a9 vocab=02542dac
+-/
 theorem integrable_and_sq_integral_rankOneProbe_le
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {r p : ℕ} (hr : 1 ≤ r) (hp : 2 ≤ p) (y : Ω → Fin r → ℝ)
@@ -67,7 +69,9 @@ theorem integrable_and_sq_integral_rankOneProbe_le
 
 /-- The square-root form of the direction-preserving raw matrix moment bound.
 Source: Cauchy--Schwarz and Gaussian radialization.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.7h8v.s9.cb154a52268e from=translated src=- shape=ee8992cd vocab=c28713e5
+-/
 theorem integrable_and_integral_rankOneProbe_le_sqrt
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {r p : ℕ} (hr : 1 ≤ r) (hp : 2 ≤ p) (y : Ω → Fin r → ℝ)
@@ -103,7 +107,9 @@ theorem integrable_and_integral_rankOneProbe_le_sqrt
 
 /-- The Gaussian divisor saves one factorial order in a radial covariance budget.
 Source: Gaussian averaging and the central binomial estimate.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.1h3v.s8.d066709cc0ab from=translated src=- shape=288f2d81 vocab=9e66fcfb
+-/
 theorem factorial_mul_gaussianRadialMoment_div_gaussianEvenMoment_le_sq
     {r k d : ℕ} (hd : 1 ≤ d) :
     (4 : ℝ) ^ d * (2 * ((2 * k).factorial : ℝ)) ^ d * gaussianRadialMoment r (2 * k) /
@@ -185,7 +191,9 @@ def khatriRaoMomentRadius (d : ℕ) (K : ℝ) (r p : ℕ) : ℝ :=
 
 /-- The explicit raw covariance radius increases with the moment order.
 Source: monotonicity of nonnegative natural powers.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=monotone.1h3v.s4.59cc67016b60 from=translated src=- shape=dd299aea vocab=1bd54683
+-/
 theorem khatriRaoMomentRadius_mono {d r : ℕ} {K : ℝ} (hK : 0 ≤ K) :
     Monotone (khatriRaoMomentRadius d K r) := by
   intro a b hab
@@ -195,7 +203,9 @@ theorem khatriRaoMomentRadius_mono {d r : ℕ} {K : ℝ} (hK : 0 ≤ K) :
 
 /-- The explicit raw covariance variance is positive in positive rank and scale.
 Source: the explicit factorial envelope.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=lt.2h3v.s5.0939ae69e3a1 from=translated src=- shape=2499eb8c vocab=00da7048
+-/
 theorem khatriRaoVarianceBudget_pos {d r : ℕ} {K : ℝ} (hr : 1 ≤ r) (hK : 0 < K) :
     0 < khatriRaoVarianceBudget d K r := by
   unfold khatriRaoVarianceBudget
@@ -204,7 +214,9 @@ theorem khatriRaoVarianceBudget_pos {d r : ℕ} {K : ℝ} (hr : 1 ≤ r) (hK : 0
 
 /-- Capping the scale below by one makes the raw variance at least two.
 Source: the explicit factorial envelope.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.2h3v.s5.bc536979440b from=translated src=- shape=657c8781 vocab=785faf8a
+-/
 theorem two_le_khatriRaoVarianceBudget {d r : ℕ} {K : ℝ} (hr : 1 ≤ r) (hK : 1 ≤ K) :
     2 ≤ khatriRaoVarianceBudget d K r := by
   unfold khatriRaoVarianceBudget
@@ -219,7 +231,9 @@ theorem two_le_khatriRaoVarianceBudget {d r : ℕ} {K : ℝ} (hr : 1 ≤ r) (hK 
 
 /-- Positive rank and a capped sub-Gaussian scale give a radius of at least one.
 Source: the explicit factorial envelope.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.2h4v.s5.850e76bdbdfe from=translated src=- shape=d40a5c49 vocab=671c520e
+-/
 theorem one_le_khatriRaoMomentRadius {d r p : ℕ} {K : ℝ}
     (hp : 1 ≤ p) (hK : 1 ≤ K) : 1 ≤ khatriRaoMomentRadius d K r p := by
   unfold khatriRaoMomentRadius
@@ -238,7 +252,9 @@ budget retaining each test direction. This is the finite-moment input needed
 for the sharp Khatri--Rao rank logarithm.
 Source: Heidary, Appendix `appendix:factorial`; all numerical constants here
 are explicit and coarser than the optimized manuscript constants.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=and.6h8v.s9.f4b57fc88c91 from=translated src=- shape=5058cdc6 vocab=ae30d9ad
+-/
 theorem integrable_and_integral_rankOneProbe_le_factorial
     {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
     {r p d : ℕ} (hr : 1 ≤ r) (hp : 2 ≤ p) (hd : 2 ≤ d)

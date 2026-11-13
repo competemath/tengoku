@@ -61,7 +61,9 @@ expectation into its full native covariance contraction. Only bounded C¹
 tests with bounded continuous derivatives are needed. Gaussian rotation
 invariance and Stein in the independent rotated noise supply the identity;
 no covariance cancellation is assumed.
-Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Corollary 4.12.-/
+Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Corollary 4.12.
+@isnad1 id=hasderiv.9h14v.s12.ddf22a89bdb5 from=translated src=- shape=25cdf5f4 vocab=de344a41
+-/
 theorem hasDerivAt_integral_bilin_gaussian_rotation
     (γ : Measure E) [IsGaussian γ] (hmean : (∫ z : E, z ∂γ)=0)
     (f : E → F) (df : E → E →L[ℝ] F)
@@ -150,7 +152,9 @@ tests and a continuous real bilinear complex-valued observation. The
 independent copy is the literal product law, and the interpolation is
 the source correlation path `t*y+sqrt(1-t²)*z` on the closed unit interval.
 Singular Gaussian covariance and empty coordinate types are included.
-Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Corollary 4.12.-/
+Source: Bandeira--Boedihardjo--van Handel, arXiv:2108.06312v2, Corollary 4.12.
+@isnad1 id=eq.9h13v.s12.16eaa4a3d108 from=translated src=- shape=8c56d475 vocab=ffd84316
+-/
 theorem integral_bilin_sub_bilin_integrals_eq_gaussian_covariance_integral
     [CompleteSpace F] [CompleteSpace G]
     (γ : Measure E) [IsGaussian γ] (hmean : (∫ z : E, z ∂γ)=0)

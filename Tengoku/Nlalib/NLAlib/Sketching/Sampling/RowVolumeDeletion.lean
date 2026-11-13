@@ -33,7 +33,9 @@ def rowVolumeDeletionPMF (X : Matrix n d 𝕜) : ℕ → Finset n → PMF (Finse
 /-- The actual one-row deletion mass is `(1-h_i)/(|T|-d)`, including
 zero-probability deletions that would destroy column rank.
 Dereziński–Warmuth 2018, Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.3h6v.s7.7abf646a845e from=translated src=- shape=210f5d60 vocab=4ac2a8a4
+-/
 theorem rowVolumeDeletionStep_toReal_erase (X : Matrix n d 𝕜) (T : Finset n) {i : n}
     (hi : i ∈ T) (hT : 0 < rowSubsetVolume X T) (hdt : Fintype.card d < T.card) :
     (rowVolumeDeletionStep X T (T.erase i)).toReal =
@@ -91,7 +93,9 @@ private theorem bind_deletionStep (X : Matrix n d 𝕜) (T : Finset n) (t : ℕ)
 row-volume law. Rank-destroying deletions have zero probability, so every
 intermediate state is supported and the absorbing fallback is harmless.
 Dereziński–Warmuth 2018, Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.2h6v.s6.15f492d8bbc8 from=translated src=- shape=41255730 vocab=b53ede4b
+-/
 theorem rowVolumeDeletionPMF_eq (X : Matrix n d 𝕜) (T : Finset n) (q : ℕ)
     (hT : 0 < rowSubsetVolume X T) (hq : q + Fintype.card d ≤ T.card) :
     rowVolumeDeletionPMF X q T =
@@ -107,7 +111,9 @@ theorem rowVolumeDeletionPMF_eq (X : Matrix n d 𝕜) (T : Finset n) (q : ℕ)
 /-- Stopping after exactly `|T|-s` one-row deletions produces the requested
 size-`s` row-volume PMF, including the empty-path case `s=|T|`.
 Dereziński–Warmuth 2018, Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.3h6v.s6.ebcb726c0428 from=translated src=- shape=4db6f9f1 vocab=be3821f0
+-/
 theorem rowVolumeDeletionPMF_sub_eq (X : Matrix n d 𝕜) (T : Finset n) (s : ℕ)
     (hT : 0 < rowSubsetVolume X T) (hds : Fintype.card d ≤ s) (hst : s ≤ T.card) :
     rowVolumeDeletionPMF X (T.card - s) T = rowVolumePMF X T s hT hds hst := by
@@ -122,7 +128,9 @@ def rowVolumeDeletionLaw (X : Matrix n d 𝕜) (T : Finset n) (q : ℕ) : Measur
 /-- The measure produced by the actual reverse-deletion process is the
 fixed-size row-volume measure, without any general-position assumption.
 Dereziński–Warmuth 2018, Theorem 2.
-atlas: row-volume-sampling-deletion-law (partial)-/
+atlas: row-volume-sampling-deletion-law (partial)
+@isnad1 id=eq.3h6v.s6.1d1f75728338 from=translated src=- shape=3d23cf97 vocab=66d2382b
+-/
 theorem rowVolumeDeletionLaw_sub_eq (X : Matrix n d 𝕜) (T : Finset n) (s : ℕ)
     (hT : 0 < rowSubsetVolume X T) (hds : Fintype.card d ≤ s) (hst : s ≤ T.card) :
     rowVolumeDeletionLaw X T (T.card - s) = rowVolumeLaw X T s hT hds hst := by

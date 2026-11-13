@@ -20,7 +20,9 @@ namespace NLAlib
 /-- A density continuous on a half-line gives a Radon reweighted measure after
 restriction to every smaller half-line. Clamping the weight at the smaller endpoint
 reduces the statement to Mathlib's continuous-density local finiteness theorem.
-Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).-/
+Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=regular.2h4v.s6.50e8a9507e92 from=translated src=- shape=2d1545ac vocab=c75d5dbe
+-/
 theorem withDensity_restrict_regular_of_continuousOn_Ioi
     (μ : Measure ℝ) [IsLocallyFiniteMeasure μ] (g : ℝ → ℝ)
     (ℓ a : ℝ) (ha : ℓ < a) (hg : ContinuousOn g (Ioi ℓ)) :
@@ -44,7 +46,9 @@ theorem withDensity_restrict_regular_of_continuousOn_Ioi
   exact heq ▸ hν
 
 /-- An antitone representative on a real half-line has a globally measurable
-extension agreeing with it on that half-line. Source: Edelman 1988, density API; atlas wishart-lambda-min-tail (helper).-/
+extension agreeing with it on that half-line. Source: Edelman 1988, density API; atlas wishart-lambda-min-tail (helper).
+@isnad1 id=ex.1h2v.s5.ead143633ec9 from=translated src=- shape=ac89acd4 vocab=5ffaccb1
+-/
 theorem exists_measurable_extension_of_antitoneOn_Ioi
     (ℓ : ℝ) (h : ℝ → ℝ) (hh : AntitoneOn h (Ioi ℓ)) :
     ∃ h' : ℝ → ℝ, Measurable h' ∧ EqOn h' h (Ioi ℓ) := by
@@ -61,7 +65,9 @@ with a nonnegative antitone measurable factor. No density premise is assumed.
 The original finite measure may have an atom at zero, which is removed by the
 explicit restriction to the positive half-line.
 Source: Edelman 1988; atlas wishart-lambda-min-tail (helper).
-atlas: gamma-weighted-antitone-density-/
+atlas: gamma-weighted-antitone-density
+@isnad1 id=ex.1h2v.s8.0410c2807514 from=translated src=- shape=f4e02932 vocab=165dc9ce
+-/
 theorem exists_gamma_weighted_antitone_density_of_weak_inequality
     (μ : Measure ℝ) [IsFiniteMeasure μ] (m : ℝ)
     (hweak : ∀ ψ : ℝ → ℝ, ContDiff ℝ ∞ ψ → HasCompactSupport ψ →
