@@ -120,7 +120,10 @@ OPEN_NOTE = re.compile(r"^-- Tengoku: opens Tengoku\.[A-Za-z0-9_.]+: .*\n", re.M
 
 def only_opens(path: str) -> bool:
     """Whether the group's change to this module is nothing but the generated `namespace X end X open X` and its note: without them, the module is what it was at the base."""
-    return OPEN_NOTE.sub("", OPEN_MARK.sub("", run("show", f"{head}:{path}", check=False))) == run("show", f"{base}:{path}", check=False)
+    after = OPEN_NOTE.sub("", OPEN_MARK.sub("", run("show", f"{head}:{path}", check=False)))
+    return after.rstrip("\n") == run("show", f"{base}:{path}", check=False).rstrip(
+        "\n"
+    )  # roots_tree ends a module with a newline before its note (Gitar on #823)
 
 
 # In a group that adds a ROOTS report, an intake library the group changes only in place is not regenerated (see tengoku#821, #823): the libraries of the reports (their modules are the roots

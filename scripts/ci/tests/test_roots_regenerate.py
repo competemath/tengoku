@@ -148,6 +148,22 @@ class RootsRegenerate(unittest.TestCase):
         self.assertEqual(rc, 0, out)
         self.assertIn("--libraries dep-lib", generated)
 
+    def test_a_dependent_whose_base_has_no_final_newline_is_still_skipped(self):
+        # Gitar on #823: roots_tree adds the newline before its note
+        r = self.repo()
+        r.write("Tengoku/DepLib/Basic.lean", DEP.rstrip("\n"))  # the base module without a final newline
+        r.commit("a dependent without a final newline")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write("Tengoku/DepLib/Basic.lean", DEP_OPEN)  # roots_tree's output: the newline, the open, the note
+        r.commit("roots with a dependent")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated, "")
+
 
 if __name__ == "__main__":
     unittest.main()
