@@ -40,7 +40,7 @@ the easiest way to do each thing.
 
 ## Retract a theorem
 
-No record is ever deleted. Append a tombstone line to
+A trusted record is never deleted or edited. Append a tombstone line to
 `data/trusted/<library>.jsonl`:
 
 ```
@@ -103,7 +103,7 @@ send; each is recognised by the files it touches and judged by its own check ([P
 | intake, extend | A library's verified bundle from the translation factory (`tengoku-intake[bot]`), whole or in parts. Most new modules arrive this way. | 6 |
 | tag | isnad tags written into the docstrings of modules already in the tree. | 7 |
 | restructure | A move of files, recomputed from a script (the seed moved into `Tengoku/Seed/` this way). | 5 |
-| raze | Takes modules of an intake library **out** of the tree, with their dependents, and leaves a marker in `data/raze/`. It is the one operation that removes modules; it is not a retraction of a record. | 8 |
+| raze | Takes modules of an intake library **out** of the tree, with their dependents, and leaves a marker in `data/raze/`. It is the one operation that removes modules, and with them their records from the manifest; a retraction of a trusted record is a tombstone instead. | 8 |
 | scope-fix | Makes a library's global instance, simp lemma or notation `scoped` or `local`, checked line by line (`scripts/ci/scope_fix_check.py`). | none yet |
 | studied | Theorems Leak runs proved and rated four stars or more. | 9 |
 | roots | Moves a library's root-namespace declarations into `Tengoku.<Library>`, recomputed from a script. | 11 |
