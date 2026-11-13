@@ -1,3 +1,6 @@
+> [!NOTE]
+> **Tengoku is changing fast.** If you are planning a serious project on it, wait for the v2 release. Releases after v2 will come with migration support and stable environments.
+
 <p align="center"><img src="logo.png" alt="Tengoku" width="200"></p>
 <h1 align="center">Tengoku (天国)</h1>
 <p align="center"><em>Formal mathematics from many Lean projects, translated onto one Lean version and machine-checked.</em></p>
