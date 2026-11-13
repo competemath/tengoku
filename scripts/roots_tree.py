@@ -220,7 +220,7 @@ def qualify_explicit_roots(f: Lines, heads: set[str], ns: str) -> dict:
     return done
 
 
-def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = True) -> dict:
+def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = True, keep_body_namespace: bool = True) -> dict:
     """The edits of one module: a declaration whose name is a root of the library, a `namespace R` block of a root R (with its `end`), and a dotted `R.x` declaration get `<ns>.`
     in front; the first body line gets `namespace NS end NS open NS` when the module declares or still uses a root. All of it goes INSIDE existing lines (no line moves)."""
     done: dict = {
@@ -254,9 +254,14 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
             continue
         name = m.group("name")
         if head_of(name) in roots:
-            f.insert(i, m.start("name"), ns + ".")
+            dotted = len(re.findall(rf"{QUOTED}|[^.«»]+", name)) > 1  # a dot inside «quotes» is part of one component
+            # `def NS.x` makes NS the namespace of the body, and a bare name there resolves to `NS.name` ONLY: it stops competing with an opened `Other.name` (overload), which the
+            # root declaration did (merge queue, LeanPool OS3MixedRepInfra: `integral_const_mul` against MeasureTheory's). `def _root_.NS.x` keeps the body where it was. A dotted
+            # `R.x` keeps the plain form: its body was in namespace R and its siblings are named from there.
+            keep = keep_body_namespace and not dotted
+            f.insert(i, m.start("name"), ("_root_." if keep else "") + ns + ".")
             done["heads"].add(head_of(name))
-            if len(re.findall(rf"{QUOTED}|[^.«»]+", name)) > 1:  # a dot inside «quotes» is part of one component
+            if dotted:
                 done["dotted"] += 1
             else:
                 done["declared"].append(name)
@@ -288,7 +293,9 @@ def qualify_manifest_text(text: str, roots: set[str], ns: str) -> tuple[str, int
         rec = json.loads(line) if line.strip() else None
         if rec and head_of(rec.get("name", "")) in roots:
             f = Lines(rec["statement"])
-            qualify_roots_in_file(f, roots, ns, mark_open=False)  # a record's statement is the declaration alone: no header, no `open`
+            qualify_roots_in_file(
+                f, roots, ns, mark_open=False, keep_body_namespace=False
+            )  # a record's statement is the declaration alone: no header, no `open`, and no `_root_.` (the name is the whole declaration)
             rec["statement"] = "\n".join(f.text)
             rec["name"] = f"{ns}.{rec['name']}"
             line = json.dumps(rec, ensure_ascii=False) + "\n"
