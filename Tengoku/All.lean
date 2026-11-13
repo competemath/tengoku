@@ -115,6 +115,7 @@ import Tengoku.LanaOka
 import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
 import Tengoku.AbelFormalization
+import Tengoku.Rankamplificationtotient
 import Tengoku.EquationalTheories
 import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix
