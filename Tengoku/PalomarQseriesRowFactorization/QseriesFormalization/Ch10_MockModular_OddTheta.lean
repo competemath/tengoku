@@ -25,26 +25,44 @@ namespace Ch10
 
 def thetaInvol (x : Int) : Int := -(x + 1)
 
+/--
+@isnad1 id=eq.0h1v.s3.036eb4e7118a from=translated src=- shape=47dcad53 vocab=802d9820
+-/
 theorem thetaInvol_involutive (x : Int) : thetaInvol (thetaInvol x) = x := by
   unfold thetaInvol; ring
 
+/--
+@isnad1 id=ne.0h1v.s2.775e90fa9787 from=translated src=- shape=a365602c vocab=802d9820
+-/
 theorem thetaInvol_no_fixed_point (x : Int) : thetaInvol x ≠ x := by
   unfold thetaInvol; omega
 
+/--
+@isnad1 id=eq.0h1v.s5.0778d6d25a02 from=translated src=- shape=fbbc103f vocab=8e951561
+-/
 theorem thetaInvol_preserves_product (x : Int) :
     thetaInvol x * (thetaInvol x + 1) = x * (x + 1) := by
   unfold thetaInvol; ring
 
+/--
+@isnad1 id=ne.0h1v.s4.3bda45d5299f from=translated src=- shape=86ba219f vocab=a5264068
+-/
 theorem thetaInvol_flips_parity (x : Int) :
     (thetaInvol x) % 2 ≠ x % 2 := by
   unfold thetaInvol; omega
 
 /-! ## Sign cancellation -/
 
+/--
+@isnad1 id=eq.0h1v.s3.6fdf7fd72992 from=translated src=- shape=93da5753 vocab=6ba7a2cd
+-/
 theorem negOnePowInt_thetaInvol (x : Int) :
     negOnePowInt (thetaInvol x) = -negOnePowInt x := by
   unfold negOnePowInt thetaInvol; split_ifs <;> omega
 
+/--
+@isnad1 id=eq.0h1v.s4.1f2f4207d28a from=translated src=- shape=bfc0b8a4 vocab=65719ba7
+-/
 theorem odd_theta_fiber_cancel (x : Int) :
     negOnePowInt x + negOnePowInt (thetaInvol x) = 0 := by
   rw [negOnePowInt_thetaInvol]; omega
@@ -55,6 +73,9 @@ For any m : ℕ, the set {x : ℤ | x*(x+1) = m} is either empty or
 consists of exactly two elements {x₀, -(x₀+1)} with opposite parity.
 -/
 
+/--
+@isnad1 id=or.1h2v.s5.7e06153fe766 from=translated src=- shape=43b87194 vocab=8e951561
+-/
 theorem fiber_pair (x y : Int) (hx : x * (x + 1) = y * (y + 1)) :
     x = y ∨ x = thetaInvol y := by
   unfold thetaInvol

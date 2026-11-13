@@ -29,6 +29,9 @@ def Qout (u v : ℤ) : ℤ :=
 /-- The integer value of Mathlib's unit-valued `Int.negOnePow`.-/
 def mkSign (n : ℤ) : ℤ := (Int.negOnePow n : ℤ)
 
+/--
+@isnad1 id=eq.0h1v.s3.7dcc34458827 from=translated src=- shape=0fc427d2 vocab=51bfd007
+-/
 theorem mkSign_eq_negOnePowInt (n : ℤ) :
     mkSign n = negOnePowInt n := by
   rcases Int.even_or_odd n with hn | hn
@@ -41,11 +44,17 @@ theorem mkSign_eq_negOnePowInt (n : ℤ) :
 
 /-! ## The two positive-definite theta legs -/
 
+/--
+@isnad1 id=le.1h2v.s6.ad06a6dcbbe4 from=translated src=- shape=8c03b7a4 vocab=35ae5b9f
+-/
 theorem abs_u_le_of_thetaU (u a : ℤ)
     (h : 5 * u ^ 2 - 3 * u = a) : u ^ 2 ≤ a + 2 := by
   rw [← h]
   nlinarith [sq_nonneg (8 * u - 3)]
 
+/--
+@isnad1 id=le.1h2v.s6.df857e107a96 from=translated src=- shape=8c03b7a4 vocab=35ae5b9f
+-/
 theorem abs_v_le_of_thetaV (v a : ℤ)
     (h : 5 * v ^ 2 - 7 * v = a) : v ^ 2 ≤ a + 3 := by
   rw [← h]
@@ -60,6 +69,9 @@ def thetaUBound (a : ℤ) : ℤ := |a| + 3
 
 def thetaVBound (a : ℤ) : ℤ := |a| + 4
 
+/--
+@isnad1 id=mem.1h2v.s6.f47f25bb1df0 from=translated src=- shape=448bbeda vocab=9eb9bdcf
+-/
 theorem thetaU_solution_mem_window (u a : ℤ)
     (h : 5 * u ^ 2 - 3 * u = a) :
     u ∈ Finset.Icc (-thetaUBound a) (thetaUBound a) := by
@@ -69,6 +81,9 @@ theorem thetaU_solution_mem_window (u a : ℤ)
   constructor <;> unfold thetaUBound <;>
     nlinarith [sq_nonneg (2 * u - 1), sq_nonneg (2 * u + 1)]
 
+/--
+@isnad1 id=mem.1h2v.s6.bbfd312e0c9d from=translated src=- shape=448bbeda vocab=55e0b19e
+-/
 theorem thetaV_solution_mem_window (v a : ℤ)
     (h : 5 * v ^ 2 - 7 * v = a) :
     v ∈ Finset.Icc (-thetaVBound a) (thetaVBound a) := by
@@ -95,6 +110,9 @@ def QoutCoeff (a : ℤ) : ℤ :=
 def rowDisc (k m : ℤ) : ℤ :=
   4 * m - (16 * k ^ 2 + 8 * k) + (6 * k + 1) ^ 2
 
+/--
+@isnad1 id=eq.1h3v.s6.c2b8e5064fe4 from=translated src=- shape=eebb03cc vocab=f6e2dd45
+-/
 theorem row_square_identity (k r m : ℤ) (h : Hq k r = m) :
     (2 * r + 6 * k + 1) ^ 2 = rowDisc k m := by
   unfold Hq Q at h
@@ -104,6 +122,9 @@ theorem row_square_identity (k r m : ℤ) (h : Hq k r = m) :
 def rowRBound (k m : ℤ) : ℤ :=
   |rowDisc k m| + |6 * k + 1| + 2
 
+/--
+@isnad1 id=mem.1h3v.s5.a8055129887a from=translated src=- shape=f3ddb44f vocab=179f6a8b
+-/
 theorem row_root_mem_window (k r m : ℤ) (h : Hq k r = m) :
     r ∈ Finset.Icc (-rowRBound k m) (rowRBound k m) := by
   rw [Finset.mem_Icc]

@@ -36,8 +36,14 @@ def jacobiProductTrunc (q z : R) : Nat → R
         (1 + z * q ^ n) *
         (1 + (q ^ (Nat.succ n)) / z)
 
+/--
+@isnad1 id=eq.0h3v.s5.68f5dc41a449 from=translated src=- shape=9c02e61a vocab=019d7dd4
+-/
 @[simp] theorem jacobiProductTrunc_zero (q z : R) : jacobiProductTrunc q z 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.385cb4f30f91 from=translated src=- shape=9af2c951 vocab=34c5d82e
+-/
 @[simp] theorem jacobiProductTrunc_succ (q z : R) (n : Nat) :
     jacobiProductTrunc q z (Nat.succ n) =
       jacobiProductTrunc q z n *
@@ -45,6 +51,9 @@ def jacobiProductTrunc (q z : R) : Nat → R
         (1 + z * q ^ n) *
         (1 + (q ^ (Nat.succ n)) / z) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.e1e20b33227b from=translated src=- shape=038120ba vocab=1b998cb0
+-/
 theorem jacobiProductTrunc_one (q z : R) :
     jacobiProductTrunc q z 1 =
       (1 - q) * (1 + z) * (1 + q / z) := by
@@ -58,14 +67,23 @@ def jacobiSeriesTrunc (q z : R) : Nat → R
         z ^ (Nat.succ n) * q ^ (triangular (Nat.succ n)) +
         (Inv.inv z) ^ (Nat.succ n) * q ^ (triangular (Nat.succ n))
 
+/--
+@isnad1 id=eq.0h3v.s5.bb8da9aa9c17 from=translated src=- shape=9c02e61a vocab=665a4512
+-/
 @[simp] theorem jacobiSeriesTrunc_zero (q z : R) : jacobiSeriesTrunc q z 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.a7f5b7e00118 from=translated src=- shape=2dc666c7 vocab=a67d1d19
+-/
 @[simp] theorem jacobiSeriesTrunc_succ (q z : R) (n : Nat) :
     jacobiSeriesTrunc q z (Nat.succ n) =
       jacobiSeriesTrunc q z n +
         z ^ (Nat.succ n) * q ^ (triangular (Nat.succ n)) +
         (Inv.inv z) ^ (Nat.succ n) * q ^ (triangular (Nat.succ n)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.6aabfd79f0d4 from=translated src=- shape=32b34f69 vocab=6734dfad
+-/
 theorem jacobiSeriesTrunc_one (q z : R) :
     jacobiSeriesTrunc q z 1 =
       1 + z * q + z⁻¹ * q := by
@@ -109,7 +127,9 @@ noncomputable def jacobiProductNatFactor (q z : ℂ) (n : ℕ) : ℂ :=
 noncomputable def jacobiProductPartial (q z : ℂ) (N : ℕ) : ℂ :=
   ∏ n ∈ Finset.range N, jacobiProductNatFactor q z n
 
-/-- N=0 sanity for `jacobiProductPartial`.-/
+/-- N=0 sanity for `jacobiProductPartial`.
+@isnad1 id=eq.0h2v.s4.d47224ce7d55 from=translated src=- shape=4f096759 vocab=22f60a61
+-/
 @[simp] theorem jacobiProductPartial_zero (q z : ℂ) :
     jacobiProductPartial q z 0 = 1 := by
   simp [jacobiProductPartial]
@@ -117,14 +137,18 @@ noncomputable def jacobiProductPartial (q z : ℂ) (N : ℕ) : ℂ :=
 /-- Recursion: `jacobiProductPartial q z (N+1) =
 jacobiProductPartial q z N * jacobiProductNatFactor q z N`.
 Pulls the `Finset.prod_range_succ` step out so downstream truncation
-work can recurse on `N` without re-expanding the product.-/
+work can recurse on `N` without re-expanding the product.
+@isnad1 id=eq.0h3v.s5.5db65d662837 from=translated src=- shape=065909a1 vocab=ba49afdc
+-/
 theorem jacobiProductPartial_succ (q z : ℂ) (N : ℕ) :
     jacobiProductPartial q z (N + 1) =
       jacobiProductPartial q z N * jacobiProductNatFactor q z N := by
   rw [jacobiProductPartial, Finset.prod_range_succ]
   rfl
 
-/-- The zero-based finite product is the expected product of three q-Pochhammer factors.-/
+/-- The zero-based finite product is the expected product of three q-Pochhammer factors.
+@isnad1 id=eq.0h3v.s7.fe508ba758e9 from=translated src=- shape=7a6fa945 vocab=14398ef2
+-/
 theorem jacobiProductPartial_eq_qPoch (q z : ℂ) (N : ℕ) :
     jacobiProductPartial q z N =
       qPoch (q ^ 2) (q ^ 2) N * qPoch (-(z * q)) (q ^ 2) N *
@@ -159,7 +183,9 @@ theorem jacobiProductPartial_eq_qPoch (q z : ℂ) (N : ℕ) :
         heven, hodd, hoddInv]
       ring
 
-/-- The product-side definition can be read as a Nat-indexed product starting at `n = 0`.-/
+/-- The product-side definition can be read as a Nat-indexed product starting at `n = 0`.
+@isnad1 id=eq.0h2v.s5.05d4f29740c0 from=translated src=- shape=25c142fc vocab=ad598c77
+-/
 theorem jacobiInfiniteProduct_eq_tprod_natFactor (q z : ℂ) :
     jacobiInfiniteProduct q z = ∏' n : ℕ, jacobiProductNatFactor q z n := by
   rw [jacobiInfiniteProduct]
@@ -189,6 +215,9 @@ noncomputable def jacobiSeriesSymmetricPairNormMajorant (q z : ℂ) (n : ℕ) : 
 noncomputable def jacobiSeriesSymmetricPairPartial (q z : ℂ) (N : ℕ) : ℂ :=
   ∑ n ∈ Finset.range N, jacobiSeriesSymmetricPairTerm q z n
 
+/--
+@isnad1 id=eq.0h2v.s4.00f59cb3b8ca from=translated src=- shape=4f096759 vocab=f44400f9
+-/
 @[simp] theorem jacobiSeriesSymmetricPairPartial_zero (q z : ℂ) :
     jacobiSeriesSymmetricPairPartial q z 0 = 0 := by
   simp [jacobiSeriesSymmetricPairPartial]
@@ -197,11 +226,16 @@ noncomputable def jacobiSeriesSymmetricPairPartial (q z : ℂ) (N : ℕ) : ℂ :
 noncomputable def jacobiSeriesSymmetricPairTail (q z : ℂ) (M K : ℕ) : ℂ :=
   ∑ n ∈ Finset.Ico M K, jacobiSeriesSymmetricPairTerm q z n
 
+/--
+@isnad1 id=eq.0h2v.s4.d63d4292ebbb from=translated src=- shape=4f096759 vocab=688a2ed8
+-/
 @[simp] theorem jacobiSeriesSymmetricPartial_zero (q z : ℂ) :
     jacobiSeriesSymmetricPartial q z 0 = 1 := by
   simp [jacobiSeriesSymmetricPartial]
 
-/-- Symmetric partial sums grow by adding the next negative and positive exponent terms.-/
+/-- Symmetric partial sums grow by adding the next negative and positive exponent terms.
+@isnad1 id=eq.0h3v.s5.e27990f45f27 from=translated src=- shape=57e7fe67 vocab=bd832f26
+-/
 theorem jacobiSeriesSymmetricPartial_succ (q z : ℂ) (N : ℕ) :
     jacobiSeriesSymmetricPartial q z (N + 1) =
       jacobiSeriesSymmetricPartial q z N + jacobiSeriesSymmetricPairTerm q z N := by
@@ -217,7 +251,9 @@ theorem jacobiSeriesSymmetricPartial_succ (q z : ℂ) (N : ℕ) :
   rw [Finset.sum_union hdisj]
   rw [Finset.sum_pair (by omega)]
 
-/-- A symmetric partial sum is the zero term plus the first `N` nonzero symmetric pairs.-/
+/-- A symmetric partial sum is the zero term plus the first `N` nonzero symmetric pairs.
+@isnad1 id=eq.0h3v.s4.b76fd2ab4457 from=translated src=- shape=24ca8c63 vocab=8dc1d83f
+-/
 theorem jacobiSeriesSymmetricPartial_eq_one_add_pairPartial (q z : ℂ) (N : ℕ) :
     jacobiSeriesSymmetricPartial q z N =
       1 + jacobiSeriesSymmetricPairPartial q z N := by
@@ -232,7 +268,9 @@ theorem jacobiSeriesSymmetricPartial_eq_one_add_pairPartial (q z : ℂ) (N : ℕ
 /--
 The one-sided Jacobi series is summable for `‖q‖ < 1`.
 The proof uses the quadratic exponent to dominate the terms by a geometric
-series: eventually `‖z‖ * ‖q‖^n ≤ 1/2`.-/
+series: eventually `‖z‖ * ‖q‖^n ≤ 1/2`.
+@isnad1 id=summable.1h2v.s6.85ce6d8a9751 from=translated src=- shape=6757ab6d vocab=86b45335
+-/
 theorem summable_jacobiSeries_nat (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℕ => z ^ n * q ^ (n * n) := by
   refine Summable.of_norm_bounded_eventually (g := fun n : ℕ => ((1 / 2 : ℝ) ^ n))
@@ -261,7 +299,9 @@ theorem summable_jacobiSeries_nat (q z : ℂ) (hq : ‖q‖ < 1) :
     rw [hnorm]
     exact pow_le_pow_left₀ hbase_nonneg hn n
 
-/-- The bilateral Jacobi series defining `jacobiInfiniteSeries` is summable for `‖q‖ < 1`.-/
+/-- The bilateral Jacobi series defining `jacobiInfiniteSeries` is summable for `‖q‖ < 1`.
+@isnad1 id=summable.1h2v.s6.05bb4c99ca57 from=translated src=- shape=b06bad65 vocab=06d3d4cd
+-/
 theorem summable_jacobiInfiniteSeries_terms (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℤ => z ^ n * q ^ (n ^ 2) := by
   rw [summable_int_iff_summable_nat_and_neg]
@@ -276,7 +316,9 @@ theorem summable_jacobiInfiniteSeries_terms (q z : ℂ) (hq : ‖q‖ < 1) :
       rw [hsq, zpow_natCast]
       simp [zpow_neg, zpow_natCast, inv_pow]
 
-/-- A constant multiple of a geometric sequence has summable norms.-/
+/-- A constant multiple of a geometric sequence has summable norms.
+@isnad1 id=summable.1h2v.s5.93e364479b55 from=translated src=- shape=61e051d3 vocab=86b45335
+-/
 theorem summable_norm_mul_geometric_complex (c r : ℂ) (hr : ‖r‖ < 1) :
     Summable fun n : ℕ => ‖c * r ^ n‖ := by
   exact summable_norm_iff.mpr ((summable_geometric_of_norm_lt_one hr).mul_left c)
@@ -311,13 +353,17 @@ private theorem summable_norm_jacobiProduct_odd_tail (q c : ℂ) (hq : ‖q‖ <
       simp
     rw [show c * q * (q ^ 2) ^ k = c * (q * (q ^ 2) ^ k) by ring, hqpow]]
 
-/-- The even `ℕ`-indexed product component is multipliable for `‖q‖ < 1`.-/
+/-- The even `ℕ`-indexed product component is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h1v.s5.a868d25340e0 from=translated src=- shape=16505d70 vocab=91b42c27
+-/
 theorem multipliable_jacobiProductEvenFactor (q : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => jacobiProductEvenFactor q n := by
   have h := multipliable_one_add_of_summable (summable_norm_jacobiProduct_first_tail q hq)
   simpa [jacobiProductEvenFactor, sub_eq_add_neg] using h
 
-/-- No even product factor vanishes when `‖q‖ < 1`.-/
+/-- No even product factor vanishes when `‖q‖ < 1`.
+@isnad1 id=ne.1h2v.s4.feccc7740ba0 from=translated src=- shape=4d629d87 vocab=a4be0017
+-/
 theorem jacobiProductEvenFactor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (n : ℕ) :
     jacobiProductEvenFactor q n ≠ 0 := by
   intro hzero
@@ -331,7 +377,9 @@ theorem jacobiProductEvenFactor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (n : ℕ) :
   rw [h_eq, norm_one] at hqpow_lt
   norm_num at hqpow_lt
 
-/-- The finite even-factor product is the q-Pochhammer `(q²; q²)_N`.-/
+/-- The finite even-factor product is the q-Pochhammer `(q²; q²)_N`.
+@isnad1 id=eq.0h2v.s5.ea771cc979d9 from=translated src=- shape=09055528 vocab=7a4a5ad5
+-/
 theorem qPochhammer_qsq_eq_jacobiProductEvenPartial (q : ℂ) (N : ℕ) :
     qPochhammer (q ^ 2) N =
       ∏ n ∈ Finset.range N, jacobiProductEvenFactor q n := by
@@ -344,14 +392,18 @@ theorem qPochhammer_qsq_eq_jacobiProductEvenPartial (q : ℂ) (N : ℕ) :
       simp [jacobiProductEvenFactor]
       rw [pow_mul]
 
-/-- The finite q-Pochhammer `(q²; q²)_N` tends to the even-factor product.-/
+/-- The finite q-Pochhammer `(q²; q²)_N` tends to the even-factor product.
+@isnad1 id=tendsto.1h1v.s6.a10732401dc4 from=translated src=- shape=803550d4 vocab=e8e0b052
+-/
 theorem tendsto_qPoch_qsq (q : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => qPoch (q ^ 2) (q ^ 2) N) atTop
       (𝓝 (∏' n : ℕ, jacobiProductEvenFactor q n)) := by
   have h := (multipliable_jacobiProductEvenFactor q hq).tendsto_prod_tprod_nat
   simpa [qPochhammer_qsq_eq_jacobiProductEvenPartial] using h
 
-/-- The even-factor infinite product is nonzero for `‖q‖ < 1`.-/
+/-- The even-factor infinite product is nonzero for `‖q‖ < 1`.
+@isnad1 id=ne.1h1v.s5.1fdd6e9a1efb from=translated src=- shape=4af82f89 vocab=b087935c
+-/
 theorem tprod_jacobiProductEvenFactor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) :
     (∏' n : ℕ, jacobiProductEvenFactor q n) ≠ 0 := by
   refine tprod_one_add_ne_zero_of_summable (f := fun n : ℕ => -q ^ (2 * (n + 1))) ?_ ?_
@@ -360,13 +412,17 @@ theorem tprod_jacobiProductEvenFactor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) :
       jacobiProductEvenFactor_ne_zero q hq n
   · simpa using summable_norm_jacobiProduct_first_tail q hq
 
-/-- Each odd `ℕ`-indexed product component is multipliable for `‖q‖ < 1`.-/
+/-- Each odd `ℕ`-indexed product component is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h2v.s5.10f4a75d0b58 from=translated src=- shape=b3a194db vocab=4a003d0a
+-/
 theorem multipliable_jacobiProductOddFactor (q c : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => jacobiProductOddFactor q c n := by
   have h := multipliable_one_add_of_summable (summable_norm_jacobiProduct_odd_tail q c hq)
   simpa [jacobiProductOddFactor] using h
 
-/-- The full Nat-indexed product factor is multipliable for `‖q‖ < 1`.-/
+/-- The full Nat-indexed product factor is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h2v.s5.52acd20342a3 from=translated src=- shape=b3a194db vocab=0347aa6d
+-/
 theorem multipliable_jacobiProductNatFactor (q z : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => jacobiProductNatFactor q z n := by
   have h0 := multipliable_jacobiProductEvenFactor q hq
@@ -375,26 +431,34 @@ theorem multipliable_jacobiProductNatFactor (q z : ℂ) (hq : ‖q‖ < 1) :
   exact ((h0.mul h1).mul h2).congr fun n => by
     simp [jacobiProductNatFactor, mul_assoc]
 
-/-- The Nat-indexed product factors have product `jacobiInfiniteProduct`.-/
+/-- The Nat-indexed product factors have product `jacobiInfiniteProduct`.
+@isnad1 id=hasprod.1h2v.s5.17e0e5a1aced from=translated src=- shape=9053a6db vocab=3942791c
+-/
 theorem hasProd_jacobiProductNatFactor (q z : ℂ) (hq : ‖q‖ < 1) :
     HasProd (fun n : ℕ => jacobiProductNatFactor q z n) (jacobiInfiniteProduct q z) := by
   have h := (multipliable_jacobiProductNatFactor q z hq).hasProd
   rw [jacobiInfiniteProduct_eq_tprod_natFactor q z]
   exact h
 
-/-- The zero-based finite products converge to the infinite product side.-/
+/-- The zero-based finite products converge to the infinite product side.
+@isnad1 id=tendsto.1h2v.s5.906e490c292d from=translated src=- shape=06ca52cc vocab=b9e8a820
+-/
 theorem tendsto_jacobiProductPartial (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => jacobiProductPartial q z N) atTop
       (𝓝 (jacobiInfiniteProduct q z)) := by
   have h := (hasProd_jacobiProductNatFactor q z hq).tendsto_prod_nat
   simpa [jacobiProductPartial] using h
 
-/-- The series-side definition is the sum of a genuinely summable family.-/
+/-- The series-side definition is the sum of a genuinely summable family.
+@isnad1 id=hassum.1h2v.s6.b9ed3d947377 from=translated src=- shape=465ac76d vocab=c1012038
+-/
 theorem hasSum_jacobiInfiniteSeries_terms (q z : ℂ) (hq : ‖q‖ < 1) :
     HasSum (fun n : ℤ => z ^ n * q ^ (n ^ 2)) (jacobiInfiniteSeries q z) :=
   (summable_jacobiInfiniteSeries_terms q z hq).hasSum
 
-/-- The symmetric finite partial sums converge to the bilateral series side.-/
+/-- The symmetric finite partial sums converge to the bilateral series side.
+@isnad1 id=tendsto.1h2v.s5.5210cde52bdf from=translated src=- shape=06ca52cc vocab=69db5966
+-/
 theorem tendsto_jacobiSeriesSymmetricPartial (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => jacobiSeriesSymmetricPartial q z N) atTop
       (𝓝 (jacobiInfiniteSeries q z)) := by
@@ -405,7 +469,9 @@ theorem tendsto_jacobiSeriesSymmetricPartial (q z : ℂ) (hq : ‖q‖ < 1) :
   simpa [jacobiSeriesSymmetricPartial] using
     (SummationFilter.hasSum_symmetricIcc_iff.mp hsym)
 
-/-- The nonzero symmetric term pairs converge to the bilateral series with the zero term removed.-/
+/-- The nonzero symmetric term pairs converge to the bilateral series with the zero term removed.
+@isnad1 id=tendsto.1h2v.s5.15189cbd49d3 from=translated src=- shape=96b782ec vocab=9f9605e9
+-/
 theorem tendsto_jacobiSeriesSymmetricPairPartial (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => jacobiSeriesSymmetricPairPartial q z N) atTop
       (𝓝 (jacobiInfiniteSeries q z - 1)) := by
@@ -419,7 +485,9 @@ theorem tendsto_jacobiSeriesSymmetricPairPartial (q z : ℂ) (hq : ‖q‖ < 1) 
     ring
   simpa [hcongr] using h
 
-/-- The negative-index half of the symmetric nonzero pair terms is summable for `‖q‖ < 1`.-/
+/-- The negative-index half of the symmetric nonzero pair terms is summable for `‖q‖ < 1`.
+@isnad1 id=summable.1h2v.s6.b71d8cb6f803 from=translated src=- shape=1a0a8d3d vocab=7aec973f
+-/
 theorem summable_jacobiSeriesSymmetricPairTerm_neg (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℕ =>
       z ^ (-(((n + 1 : ℕ) : ℤ))) * q ^ ((-(((n + 1 : ℕ) : ℤ))) ^ 2) := by
@@ -432,7 +500,9 @@ theorem summable_jacobiSeriesSymmetricPairTerm_neg (q z : ℂ) (hq : ‖q‖ < 1
     norm_num [sq, Int.natCast_mul]
     ring]
 
-/-- The positive-index half of the symmetric nonzero pair terms is summable for `‖q‖ < 1`.-/
+/-- The positive-index half of the symmetric nonzero pair terms is summable for `‖q‖ < 1`.
+@isnad1 id=summable.1h2v.s6.fabc25ef84fb from=translated src=- shape=96faa459 vocab=52e409df
+-/
 theorem summable_jacobiSeriesSymmetricPairTerm_pos (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℕ =>
       z ^ (((n + 1 : ℕ) : ℤ)) * q ^ ((((n + 1 : ℕ) : ℤ)) ^ 2) := by
@@ -444,21 +514,27 @@ theorem summable_jacobiSeriesSymmetricPairTerm_pos (q z : ℂ) (hq : ‖q‖ < 1
   rw [show ((((n + 1 : ℕ) : ℤ)) ^ 2) = (((n + 1) ^ 2 : ℕ) : ℤ) by
     norm_num [sq, Int.natCast_mul]]
 
-/-- The sequence of symmetric nonzero Jacobi series pairs is summable for `‖q‖ < 1`.-/
+/-- The sequence of symmetric nonzero Jacobi series pairs is summable for `‖q‖ < 1`.
+@isnad1 id=summable.1h2v.s5.be0f43e302dc from=translated src=- shape=b3a194db vocab=b98c7109
+-/
 theorem summable_jacobiSeriesSymmetricPairTerm (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℕ => jacobiSeriesSymmetricPairTerm q z n := by
   have hneg := summable_jacobiSeriesSymmetricPairTerm_neg q z hq
   have hpos := summable_jacobiSeriesSymmetricPairTerm_pos q z hq
   simpa [jacobiSeriesSymmetricPairTerm] using hneg.add hpos
 
-/-- The norm majorant of the symmetric pair terms is summable for `‖q‖ < 1`.-/
+/-- The norm majorant of the symmetric pair terms is summable for `‖q‖ < 1`.
+@isnad1 id=summable.1h2v.s5.f36acee5112f from=translated src=- shape=6861bfd4 vocab=0b4ecf23
+-/
 theorem summable_jacobiSeriesSymmetricPairNormMajorant (q z : ℂ) (hq : ‖q‖ < 1) :
     Summable fun n : ℕ => jacobiSeriesSymmetricPairNormMajorant q z n := by
   have hneg := (summable_jacobiSeriesSymmetricPairTerm_neg q z hq).norm
   have hpos := (summable_jacobiSeriesSymmetricPairTerm_pos q z hq).norm
   simpa [jacobiSeriesSymmetricPairNormMajorant] using hneg.add hpos
 
-/-- The infinite sum of symmetric nonzero pairs is the bilateral series with the zero term removed.-/
+/-- The infinite sum of symmetric nonzero pairs is the bilateral series with the zero term removed.
+@isnad1 id=hassum.1h2v.s5.4dfd10d520d3 from=translated src=- shape=7e9e6eae vocab=3e4ca0dd
+-/
 theorem hasSum_jacobiSeriesSymmetricPairTerm (q z : ℂ) (hq : ‖q‖ < 1) :
     HasSum (fun n : ℕ => jacobiSeriesSymmetricPairTerm q z n)
       (jacobiInfiniteSeries q z - 1) := by
@@ -469,7 +545,9 @@ theorem hasSum_jacobiSeriesSymmetricPairTerm (q z : ℂ) (hq : ‖q‖ < 1) :
 
 /--
 The symmetric pair tail beginning at pair index `M` is exactly the bilateral
-series tail outside the symmetric partial `[-M, M]`.-/
+series tail outside the symmetric partial `[-M, M]`.
+@isnad1 id=hassum.1h3v.s6.778b51120059 from=translated src=- shape=ee5699f9 vocab=b6b626d6
+-/
 theorem hasSum_jacobiSeriesSymmetricPairTerm_tail (q z : ℂ) (hq : ‖q‖ < 1) (M : ℕ) :
     HasSum (fun n : ℕ => jacobiSeriesSymmetricPairTerm q z (n + M))
       (jacobiInfiniteSeries q z - jacobiSeriesSymmetricPartial q z M) := by
@@ -484,7 +562,9 @@ theorem hasSum_jacobiSeriesSymmetricPairTerm_tail (q z : ℂ) (hq : ‖q‖ < 1)
   simp [jacobiSeriesSymmetricPairPartial]
   ring
 
-/-- Tsum form of the symmetric pair tail outside `[-M, M]`.-/
+/-- Tsum form of the symmetric pair tail outside `[-M, M]`.
+@isnad1 id=eq.1h3v.s6.36dfea63b8a1 from=translated src=- shape=4e8676ab vocab=976f0057
+-/
 theorem tsum_jacobiSeriesSymmetricPairTerm_tail (q z : ℂ) (hq : ‖q‖ < 1) (M : ℕ) :
     (∑' n : ℕ, jacobiSeriesSymmetricPairTerm q z (n + M)) =
       jacobiInfiniteSeries q z - jacobiSeriesSymmetricPartial q z M :=
@@ -503,7 +583,9 @@ private theorem jacobiInfiniteProduct_zero_factor (z : ℂ) (n : ℕ+) :
   have hodd : 2 * n.val - 1 ≠ 0 := by omega
   simp [heven, hodd]
 
-/-- At `q = 0`, the product side of Jacobi's triple product is identically `1`.-/
+/-- At `q = 0`, the product side of Jacobi's triple product is identically `1`.
+@isnad1 id=eq.0h1v.s4.cf7761d10be1 from=translated src=- shape=fe2c2146 vocab=094fd298
+-/
 theorem jacobiInfiniteProduct_zero (z : ℂ) : jacobiInfiniteProduct 0 z = 1 := by
   rw [jacobiInfiniteProduct]
   rw [show (fun n : ℕ+ => (1 - (0 : ℂ) ^ (2 * n.val)) *
@@ -513,7 +595,9 @@ theorem jacobiInfiniteProduct_zero (z : ℂ) : jacobiInfiniteProduct 0 z = 1 := 
     exact jacobiInfiniteProduct_zero_factor z n]
   exact tprod_one
 
-/-- At `q = 0`, the bilateral series side of Jacobi's triple product is `1`.-/
+/-- At `q = 0`, the bilateral series side of Jacobi's triple product is `1`.
+@isnad1 id=eq.0h1v.s4.a40f97312b9f from=translated src=- shape=fe2c2146 vocab=34159227
+-/
 theorem jacobiInfiniteSeries_zero (z : ℂ) : jacobiInfiniteSeries 0 z = 1 := by
   rw [jacobiInfiniteSeries]
   rw [tsum_eq_single (0 : ℤ)]
@@ -523,7 +607,9 @@ theorem jacobiInfiniteSeries_zero (z : ℂ) : jacobiInfiniteSeries 0 z = 1 := by
     rw [zero_zpow (n ^ 2) hs]
     simp
 
-/-- The Jacobi triple product identity is closed in the degenerate case `q = 0`.-/
+/-- The Jacobi triple product identity is closed in the degenerate case `q = 0`.
+@isnad1 id=eq.0h1v.s4.a103f37b01be from=translated src=- shape=77071b92 vocab=73240c87
+-/
 theorem jacobiTripleProduct_q_zero (z : ℂ) :
     jacobiInfiniteProduct 0 z = jacobiInfiniteSeries 0 z := by
   rw [jacobiInfiniteProduct_zero, jacobiInfiniteSeries_zero]

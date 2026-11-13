@@ -44,6 +44,9 @@ def slabCoeff (N : Nat) : Int := slabPlusCoeff N + slabMinusCoeff N
 
 /-! ## Slab decomposition proof -/
 
+/--
+@isnad1 id=eq.0h1v.s3.6ad768268a01 from=translated src=- shape=b70c6bb1 vocab=55e98ab6
+-/
 theorem ACoeff_eq_slabPlusCoeff (N : Nat) : ACoeff N = slabPlusCoeff N := by
   unfold ACoeff slabPlusCoeff
   apply Finset.sum_congr rfl
@@ -52,6 +55,9 @@ theorem ACoeff_eq_slabPlusCoeff (N : Nat) : ACoeff N = slabPlusCoeff N := by
   have := sigma_flips_sign (↑p.1) (↑p.2)
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.2450ede97b59 from=translated src=- shape=b70c6bb1 vocab=f3c9af52
+-/
 theorem DCoeff_eq_slabMinusCoeff (N : Nat) : DCoeff N = slabMinusCoeff N := by
   unfold DCoeff slabMinusCoeff
   apply Finset.sum_congr rfl
@@ -60,6 +66,9 @@ theorem DCoeff_eq_slabMinusCoeff (N : Nat) : DCoeff N = slabMinusCoeff N := by
   have := sigma_flips_sign (-(↑p.1 + 1)) (-(↑p.2 + 1))
   omega
 
+/--
+@isnad1 id=eq.0h1v.s3.d93f6a2ff19e from=translated src=- shape=b70c6bb1 vocab=48124412
+-/
 theorem BCoeff_eq_slabCoeff (N : Nat) : BCoeff N = slabCoeff N := by
   unfold BCoeff slabCoeff
   rw [ACoeff_eq_slabPlusCoeff, DCoeff_eq_slabMinusCoeff]
@@ -85,6 +94,9 @@ structure MockCertificate : Prop where
 
 /-! ## Inhabiting the certificate -/
 
+/--
+@isnad1 id=mockcert.0h0v.s0.74721e54f308 from=translated src=- shape=45709ebd vocab=74721e54
+-/
 theorem chanTheta10_mock_certificate : MockCertificate where
   slab_decomp := BCoeff_eq_slabCoeff
   cone_indicator := two_mul_slabInd_eq_sign_diff

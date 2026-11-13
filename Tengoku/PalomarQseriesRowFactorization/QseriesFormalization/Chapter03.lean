@@ -44,21 +44,38 @@ def qBinomialTerm (q x : R) (n k : Nat) : R :=
 def qBinomialRHS (q x : R) (n : Nat) : R :=
   natSum (fun k => qBinomialTerm q x n k) n
 
+/--
+@isnad1 id=eq.0h3v.s5.820364ae8d90 from=translated src=- shape=9c02e61a vocab=71e5aaaa
+-/
 @[simp] theorem qBinomialLHS_zero (q x : R) : qBinomialLHS q x 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0d8f45163242 from=translated src=- shape=9c02e61a vocab=3be53d9e
+-/
 @[simp] theorem qBinomialRHS_zero (q x : R) : qBinomialRHS q x 0 = 1 := by
   simp [qBinomialRHS, qBinomialTerm]
 
+/--
+@isnad1 id=eq.0h3v.s5.e01bad894bb7 from=translated src=- shape=9706cd55 vocab=9648096b
+-/
 @[simp] theorem qBinomialLHS_one (q x : R) : qBinomialLHS q x 1 = 1 + x := by
   simp [qBinomialLHS]
 
+/--
+@isnad1 id=eq.0h3v.s5.7e8da56ad573 from=translated src=- shape=9706cd55 vocab=f0fd6dda
+-/
 @[simp] theorem qBinomialRHS_one (q x : R) : qBinomialRHS q x 1 = 1 + x := by
   simp [qBinomialRHS, qBinomialTerm, gaussianBinom, natSum]
 
-/-- The `n = 1` case is fully proved and serves as a first Lean exercise.-/
+/-- The `n = 1` case is fully proved and serves as a first Lean exercise.
+@isnad1 id=eq.0h3v.s4.cace13be88e1 from=translated src=- shape=70f6db3a vocab=3264bc55
+-/
 theorem qBinomial_one (q x : R) : qBinomialLHS q x 1 = qBinomialRHS q x 1 := by
   exact Eq.trans (qBinomialLHS_one q x) (Eq.symm (qBinomialRHS_one q x))
 
+/--
+@isnad1 id=eq.1h4v.s5.f937677cc3d0 from=translated src=- shape=d1d652df vocab=7a2634c4
+-/
 lemma natSum_congr_le {f g : Nat → R} :
     ∀ n, (∀ k, k ≤ n → f k = g k) → natSum f n = natSum g n
   | 0, h => by simp [h 0 (by omega)]
@@ -67,6 +84,9 @@ lemma natSum_congr_le {f g : Nat → R} :
       rw [natSum_congr_le n (fun k hk => h k (by omega))]
       rw [h (Nat.succ n) (by omega)]
 
+/--
+@isnad1 id=eq.0h4v.s6.0f843b86aaa6 from=translated src=- shape=76731732 vocab=f728d10e
+-/
 lemma natSum_add (f g : Nat → R) :
     ∀ n, natSum (fun k => f k + g k) n = natSum f n + natSum g n
   | 0 => by simp
@@ -74,6 +94,9 @@ lemma natSum_add (f g : Nat → R) :
       rw [natSum_succ, natSum_succ, natSum_succ, natSum_add f g n]
       ring
 
+/--
+@isnad1 id=eq.0h4v.s5.b4642867b785 from=translated src=- shape=1eae7d7b vocab=065c60bb
+-/
 lemma natSum_mul_right (f : Nat → R) (a : R) :
     ∀ n, natSum (fun k => f k * a) n = natSum f n * a
   | 0 => by simp
@@ -81,6 +104,9 @@ lemma natSum_mul_right (f : Nat → R) (a : R) :
       rw [natSum_succ, natSum_succ, natSum_mul_right f a n]
       ring
 
+/--
+@isnad1 id=eq.0h4v.s5.6afe964c2f07 from=translated src=- shape=c30b0914 vocab=065c60bb
+-/
 lemma natSum_mul_left (a : R) (f : Nat → R) :
     ∀ n, natSum (fun k => a * f k) n = a * natSum f n
   | 0 => by simp
@@ -88,7 +114,9 @@ lemma natSum_mul_left (a : R) (f : Nat → R) :
       rw [natSum_succ, natSum_succ, natSum_mul_left a f n]
       ring
 
-/-- The repository's inclusive `natSum` agrees with the usual Finset range sum.-/
+/-- The repository's inclusive `natSum` agrees with the usual Finset range sum.
+@isnad1 id=eq.0h3v.s5.cd66b7e5d359 from=translated src=- shape=4a95f298 vocab=2fd182e0
+-/
 theorem natSum_eq_sum_range (f : ℕ → R) (N : ℕ) :
     natSum f N = ∑ n ∈ Finset.range (N + 1), f n := by
   induction N with
@@ -98,6 +126,9 @@ theorem natSum_eq_sum_range (f : ℕ → R) (N : ℕ) :
       rw [natSum_succ, ih]
       simp [Finset.sum_range_succ, Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h3v.s5.12efcee88e70 from=translated src=- shape=518fdf96 vocab=ca6825aa
+-/
 lemma natSum_succ_shift (f : Nat → R) :
     ∀ n, natSum f (Nat.succ n) = f 0 + natSum (fun k => f (Nat.succ k)) n
   | 0 => by simp
@@ -105,6 +136,9 @@ lemma natSum_succ_shift (f : Nat → R) :
       rw [natSum_succ, natSum_succ_shift f n, natSum_succ]
       ring
 
+/--
+@isnad1 id=eq.1h4v.s5.5c7214ebd9dc from=translated src=- shape=add6247f vocab=50196843
+-/
 @[simp] lemma gaussianBinom_eq_zero_of_lt (q : R) :
     ∀ {n k : Nat}, n < k → gaussianBinom q n k = 0
   | 0, 0, h => by omega
@@ -114,12 +148,18 @@ lemma natSum_succ_shift (f : Nat → R) :
       simp [gaussianBinom, gaussianBinom_eq_zero_of_lt q (n := n) (k := Nat.succ k) (by omega),
         gaussianBinom_eq_zero_of_lt q (n := n) (k := k) (by omega)]
 
+/--
+@isnad1 id=eq.0h3v.s5.16a998d6a818 from=translated src=- shape=82da11a8 vocab=2f82dd73
+-/
 @[simp] lemma gaussianBinom_self (q : R) :
     ∀ n : Nat, gaussianBinom q n n = 1
   | 0 => by simp
   | Nat.succ n => by
       simp [gaussianBinom, gaussianBinom_self q n]
 
+/--
+@isnad1 id=eq.1h4v.s6.db6dec66d21b from=translated src=- shape=c6a68a64 vocab=60f6a682
+-/
 lemma gaussianBinom_pascal_alt (q : R) :
     ∀ (n k : Nat), k ≤ n →
       gaussianBinom q (Nat.succ n) (Nat.succ k) =
@@ -190,6 +230,9 @@ lemma gaussianBinom_pascal_alt (q : R) :
                     gaussianBinom q (Nat.succ n) (Nat.succ j) := by
                 simp [gaussianBinom]
 
+/--
+@isnad1 id=eq.1h4v.s5.c1584c746c0b from=translated src=- shape=b347f4f1 vocab=57666bf1
+-/
 lemma gaussianBinom_symm (q : R) :
     ∀ n k, k ≤ n → gaussianBinom q n k = gaussianBinom q n (n - k)
   | 0, 0, _ => by simp
@@ -221,10 +264,16 @@ lemma gaussianBinom_symm (q : R) :
             rw [pow_succ]
             ring
 
+/--
+@isnad1 id=eq.0h4v.s5.1afe309a0571 from=translated src=- shape=6d85ee18 vocab=f713d64d
+-/
 lemma qBinomialTerm_zero (q x : R) (n : Nat) :
     qBinomialTerm q x n 0 = 1 := by
   simp [qBinomialTerm]
 
+/--
+@isnad1 id=eq.0h5v.s8.998c3f3cb3ad from=translated src=- shape=b97ca02b vocab=a8077fbc
+-/
 lemma qBinomialTerm_succ_row_succ (q x : R) (n k : Nat) :
     qBinomialTerm q x (Nat.succ n) (Nat.succ k) =
       gaussianBinom q n (Nat.succ k) * q ^ ((Nat.succ k) * k / 2) * x ^ Nat.succ k +
@@ -233,11 +282,17 @@ lemma qBinomialTerm_succ_row_succ (q x : R) (n k : Nat) :
   simp [qBinomialTerm, gaussianBinom, Nat.succ_eq_add_one]
   ring
 
+/--
+@isnad1 id=eq.0h5v.s6.65640af3cbc5 from=translated src=- shape=469c63d3 vocab=8156531e
+-/
 lemma qBinomialTerm_succ_eq_shift_part (q x : R) (n k : Nat) :
     gaussianBinom q n (Nat.succ k) * q ^ ((Nat.succ k) * k / 2) * x ^ Nat.succ k =
       qBinomialTerm q x n (Nat.succ k) := by
   simp [qBinomialTerm]
 
+/--
+@isnad1 id=eq.1h5v.s7.891e686cc2a7 from=translated src=- shape=8cf3824b vocab=49e9452c
+-/
 lemma qBinomialTerm_mul_part (q x : R) (n k : Nat) (hk : k ≤ n) :
     (q ^ (n - k) * gaussianBinom q n k) * q ^ ((Nat.succ k) * k / 2) * x ^ Nat.succ k =
       qBinomialTerm q x n k * (x * q ^ n) := by
@@ -255,6 +310,9 @@ lemma qBinomialTerm_mul_part (q x : R) (n k : Nat) (hk : k ≤ n) :
     _ = gaussianBinom q n k * q ^ (k * (k - 1) / 2) * x ^ k * (x * q ^ n) := by
       rw [← pow_add, hn]
 
+/--
+@isnad1 id=eq.0h4v.s5.695b99bf1dea from=translated src=- shape=a692ead2 vocab=e95d341b
+-/
 lemma qBinomialRHS_eq_one_add_shift (q x : R) :
     ∀ n : Nat,
       qBinomialRHS q x n =
@@ -265,18 +323,27 @@ lemma qBinomialRHS_eq_one_add_shift (q x : R) :
       rw [qBinomialRHS, natSum_succ_shift]
       simp [qBinomialTerm]
 
+/--
+@isnad1 id=eq.0h4v.s6.bac4a5566a30 from=translated src=- shape=86dd315a vocab=e95d341b
+-/
 lemma qBinomialRHS_succ_eq_one_add_shift (q x : R) (n : Nat) :
     qBinomialRHS q x (Nat.succ n) =
       1 + natSum (fun k => qBinomialTerm q x (Nat.succ n) (Nat.succ k)) n := by
   rw [qBinomialRHS, natSum_succ_shift]
   simp [qBinomialTerm_zero]
 
+/--
+@isnad1 id=eq.0h4v.s6.d18190407032 from=translated src=- shape=007d4e83 vocab=9d6c66a3
+-/
 lemma natSum_shift_qBinomialTerm_eq_tail (q x : R) (n : Nat) :
     natSum (fun k => qBinomialTerm q x n (Nat.succ k)) n =
       natSum (fun k =>
         gaussianBinom q n (Nat.succ k) * q ^ ((Nat.succ k) * k / 2) * x ^ Nat.succ k) n := by
   exact natSum_congr_le n (fun k _ => by rw [qBinomialTerm_succ_eq_shift_part])
 
+/--
+@isnad1 id=eq.0h4v.s6.2c993fe820e2 from=translated src=- shape=da7ab3fd vocab=7915bb83
+-/
 lemma qBinomialRHS_succ (q x : R) (n : Nat) :
     qBinomialRHS q x (Nat.succ n) = qBinomialRHS q x n * (1 + x * q ^ n) := by
   rw [qBinomialRHS_succ_eq_one_add_shift q x n]
@@ -294,7 +361,9 @@ lemma qBinomialRHS_succ (q x : R) (n : Nat) :
 
 /--
 The finite q-binomial theorem:
-`∏_{k=0}^{n-1} (1 + x q^k) = ∑_{k=0}^n [n choose k]_q q^{k(k-1)/2} x^k`.-/
+`∏_{k=0}^{n-1} (1 + x q^k) = ∑_{k=0}^n [n choose k]_q q^{k(k-1)/2} x^k`.
+@isnad1 id=eq.0h4v.s4.c6eea3b05afb from=translated src=- shape=b2942a79 vocab=3264bc55
+-/
 theorem finiteQBinomialTheorem (q x : R) (n : Nat) :
     qBinomialLHS q x n = qBinomialRHS q x n := by
   induction n with
@@ -309,6 +378,9 @@ section CommRing
 
 variable {R : Type*} [CommRing R]
 
+/--
+@isnad1 id=eq.1h3v.s6.365bcaf2e1e3 from=translated src=- shape=5245ca65 vocab=484680f7
+-/
 lemma qPochhammer_eq_pred_mul (q : R) {n : Nat} (hn : 0 < n) :
     qPochhammer q n = qPochhammer q (n - 1) * (1 - q ^ n) := by
   cases n with
@@ -317,7 +389,9 @@ lemma qPochhammer_eq_pred_mul (q : R) {n : Nat} (hn : 0 < n) :
       simp
 
 /-- Gaussian binomial closed form in product form:
-`[n,m]_q (q;q)_m (q;q)_{n-m} = (q;q)_n`.-/
+`[n,m]_q (q;q)_m (q;q)_{n-m} = (q;q)_n`.
+@isnad1 id=eq.1h4v.s6.604e13b565b8 from=translated src=- shape=149859df vocab=6a81a553
+-/
 theorem gaussianBinom_mul_qPochhammer_eq (q : R) :
     ∀ n m, m ≤ n →
       gaussianBinom q n m * qPochhammer q m * qPochhammer q (n - m) =
@@ -375,7 +449,9 @@ theorem gaussianBinom_mul_qPochhammer_eq (q : R) :
           _ = qPochhammer q (Nat.succ n) := by
             rw [qPochhammer_succ]
 
-/-- Centered product form for the Gaussian coefficient `[2n, n+r]_q`.-/
+/-- Centered product form for the Gaussian coefficient `[2n, n+r]_q`.
+@isnad1 id=eq.1h4v.s6.3af8f2008d67 from=translated src=- shape=12665f68 vocab=90967aad
+-/
 theorem gaussianBinom_center_add_mul_qPochhammer_eq (q : R) (n r : Nat) (hr : r ≤ n) :
     gaussianBinom q (2 * n) (n + r) * qPochhammer q (n + r) *
         qPochhammer q (n - r) =
@@ -383,7 +459,9 @@ theorem gaussianBinom_center_add_mul_qPochhammer_eq (q : R) (n r : Nat) (hr : r 
   have h := gaussianBinom_mul_qPochhammer_eq q (2 * n) (n + r) (by omega)
   simpa [show 2 * n - (n + r) = n - r by omega] using h
 
-/-- Centered product form for the Gaussian coefficient `[2n, n-r]_q`.-/
+/-- Centered product form for the Gaussian coefficient `[2n, n-r]_q`.
+@isnad1 id=eq.1h4v.s6.02f1110cd131 from=translated src=- shape=12665f68 vocab=90967aad
+-/
 theorem gaussianBinom_center_sub_mul_qPochhammer_eq (q : R) (n r : Nat) (hr : r ≤ n) :
     gaussianBinom q (2 * n) (n - r) * qPochhammer q (n - r) *
         qPochhammer q (n + r) =
@@ -392,7 +470,9 @@ theorem gaussianBinom_center_sub_mul_qPochhammer_eq (q : R) (n r : Nat) (hr : r 
   simpa [show 2 * n - (n - r) = n + r by omega] using h
 
 /-- Multiplicative splitting of the finite q-Pochhammer symbol:
-`(a; q)_{m+n} = (a; q)_m (a q^m; q)_n`.-/
+`(a; q)_{m+n} = (a; q)_m (a q^m; q)_n`.
+@isnad1 id=eq.0h5v.s6.e7dc7676669c from=translated src=- shape=4c42f306 vocab=0fcc0ab7
+-/
 theorem qPoch_add (q a : R) (m n : Nat) :
     qPoch a q (m + n) = qPoch a q m * qPoch (a * q ^ m) q n := by
   induction n with
@@ -403,17 +483,24 @@ theorem qPoch_add (q a : R) (m n : Nat) :
       rw [pow_add]
       ring
 
-/-- Split `(a; q)_n` at an intermediate index `k ≤ n`.-/
+/-- Split `(a; q)_n` at an intermediate index `k ≤ n`.
+@isnad1 id=eq.1h5v.s6.c28041d1bd52 from=translated src=- shape=bb463bda vocab=8dcf878c
+-/
 theorem qPoch_split (q a : R) (n k : Nat) (hk : k ≤ n) :
     qPoch a q n = qPoch a q k * qPoch (a * q ^ k) q (n - k) := by
   have hsum : k + (n - k) = n := by omega
   simpa [hsum] using qPoch_add q a k (n - k)
 
-/-- Split `(q; q)_n`, stated for `qPochhammer`.-/
+/-- Split `(q; q)_n`, stated for `qPochhammer`.
+@isnad1 id=eq.1h4v.s6.b71b8ecbbad0 from=translated src=- shape=872570ab vocab=f96e13f2
+-/
 theorem qPochhammer_split (q : R) (n k : Nat) (hk : k ≤ n) :
     qPochhammer q n = qPochhammer q k * qPoch (q * q ^ k) q (n - k) := by
   simpa using qPoch_split q q n k hk
 
+/--
+@isnad1 id=eq.0h4v.s5.aa1b74691755 from=translated src=- shape=261c89ae vocab=e50f3efc
+-/
 lemma qBinomialLHS_neg_eq_qPoch (q z : R) :
     ∀ n : Nat, qBinomialLHS q (-z) n = qPoch z q n
   | 0 => by
@@ -423,7 +510,9 @@ lemma qBinomialLHS_neg_eq_qPoch (q z : R) :
       ring
 
 /-- Chan's q-binomial theorem (Theorem 3.2):
-`(z; q)_n = ∑ [n,k]_q (-1)^k q^{k(k-1)/2} z^k`.-/
+`(z; q)_n = ∑ [n,k]_q (-1)^k q^{k(k-1)/2} z^k`.
+@isnad1 id=eq.0h4v.s7.00603b3a4be1 from=translated src=- shape=5142e68c vocab=5e52a589
+-/
 theorem qBinomialTheorem_chanForm (q z : R) (n : Nat) :
     qPoch z q n =
       natSum (fun k => gaussianBinom q n k * q ^ (k * (k - 1) / 2) * (-1 : R) ^ k * z ^ k) n := by
@@ -447,7 +536,9 @@ section ComplexLimits
 open Filter
 open scoped Topology
 
-/-- Finite `(q²;q²)_N` factors are nonzero for `‖q‖ < 1`.-/
+/-- Finite `(q²;q²)_N` factors are nonzero for `‖q‖ < 1`.
+@isnad1 id=ne.1h2v.s5.995d9c0a13f3 from=translated src=- shape=93edda09 vocab=68d27171
+-/
 theorem qPochhammer_qsq_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (N : ℕ) :
     qPochhammer (q ^ 2) N ≠ 0 := by
   rw [Ch02.qPochhammer_qsq_eq_jacobiProductEvenPartial]
@@ -455,7 +546,9 @@ theorem qPochhammer_qsq_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (N : ℕ) :
 
 /--
 Ratio form for the centered coefficient `[2N, N+r]_{q²}`, after multiplying by
-the finite even q-Pochhammer factor.-/
+the finite even q-Pochhammer factor.
+@isnad1 id=eq.2h3v.s8.f560c173f8b5 from=translated src=- shape=1830f0f5 vocab=05be3eb5
+-/
 theorem qPoch_mul_gaussian_center_add_eq_ratio (q : ℂ) (hq : ‖q‖ < 1)
     (N r : ℕ) (hr : r ≤ N) :
     qPoch (q ^ 2) (q ^ 2) N * gaussianBinom (q ^ 2) (2 * N) (N + r) =
@@ -477,7 +570,9 @@ theorem qPoch_mul_gaussian_center_add_eq_ratio (q : ℂ) (hq : ‖q‖ < 1)
 
 /--
 Ratio form for the centered coefficient `[2N, N-r]_{q²}`, after multiplying by
-the finite even q-Pochhammer factor.-/
+the finite even q-Pochhammer factor.
+@isnad1 id=eq.2h3v.s8.890d8999d8a5 from=translated src=- shape=1830f0f5 vocab=05be3eb5
+-/
 theorem qPoch_mul_gaussian_center_sub_eq_ratio (q : ℂ) (hq : ‖q‖ < 1)
     (N r : ℕ) (hr : r ≤ N) :
     qPoch (q ^ 2) (q ^ 2) N * gaussianBinom (q ^ 2) (2 * N) (N - r) =
@@ -523,7 +618,9 @@ private theorem exists_qPoch_qsq_inv_norm_bound (q : ℂ) (hq : ‖q‖ < 1) :
 
 /--
 The centered Gaussian coefficients, after multiplication by `(q²;q²)_N`, are
-uniformly bounded in both `N` and the centered offset `r`.-/
+uniformly bounded in both `N` and the centered offset `r`.
+@isnad1 id=ex.1h1v.s7.e508db0bb4aa from=translated src=- shape=21e69577 vocab=5adbb9d7
+-/
 theorem exists_qPoch_mul_gaussian_center_norm_bound (q : ℂ) (hq : ‖q‖ < 1) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ N r : ℕ, r ≤ N →
       ‖qPoch (q ^ 2) (q ^ 2) N * gaussianBinom (q ^ 2) (2 * N) (N + r)‖ ≤ C ∧
@@ -563,7 +660,9 @@ theorem exists_qPoch_mul_gaussian_center_norm_bound (q : ℂ) (hq : ‖q‖ < 1)
         mul_le_mul hnum hden_sub (norm_nonneg _) hnum_nonneg
       _ = B * B * D * D := by ring
 
-/-- The subsequence `(q²;q²)_{2N}` tends to the even infinite product.-/
+/-- The subsequence `(q²;q²)_{2N}` tends to the even infinite product.
+@isnad1 id=tendsto.1h1v.s6.98aaba9999a8 from=translated src=- shape=4f9e95e4 vocab=8eef6c4d
+-/
 theorem tendsto_qPoch_qsq_two_mul (q : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => qPoch (q ^ 2) (q ^ 2) (2 * N)) atTop
       (𝓝 (∏' n : ℕ, Ch02.jacobiProductEvenFactor q n)) := by
@@ -574,7 +673,9 @@ theorem tendsto_qPoch_qsq_two_mul (q : ℂ) (hq : ‖q‖ < 1) :
 
 /--
 For fixed `r`, the centered positive coefficient in the finite JTP limit has
-coefficient limit `1`.-/
+coefficient limit `1`.
+@isnad1 id=tendsto.1h2v.s7.cdc45b29bb66 from=translated src=- shape=96d88b71 vocab=000cec04
+-/
 theorem tendsto_qPoch_mul_gaussian_center_add (q : ℂ) (hq : ‖q‖ < 1) (r : ℕ) :
     Tendsto (fun N : ℕ =>
       qPoch (q ^ 2) (q ^ 2) N * gaussianBinom (q ^ 2) (2 * N) (N + r)) atTop
@@ -613,7 +714,9 @@ theorem tendsto_qPoch_mul_gaussian_center_add (q : ℂ) (hq : ‖q‖ < 1) (r : 
 
 /--
 For fixed `r`, the centered negative coefficient in the finite JTP limit has
-coefficient limit `1`.-/
+coefficient limit `1`.
+@isnad1 id=tendsto.1h2v.s7.271a10c25cbe from=translated src=- shape=96d88b71 vocab=357bf765
+-/
 theorem tendsto_qPoch_mul_gaussian_center_sub (q : ℂ) (hq : ‖q‖ < 1) (r : ℕ) :
     Tendsto (fun N : ℕ =>
       qPoch (q ^ 2) (q ^ 2) N * gaussianBinom (q ^ 2) (2 * N) (N - r)) atTop
@@ -652,7 +755,9 @@ theorem tendsto_qPoch_mul_gaussian_center_sub (q : ℂ) (hq : ‖q‖ < 1) (r : 
 
 /--
 For a fixed nonzero symmetric pair height `r + 1`, the Gaussian-weighted finite
-JTP pair converges to Chapter 2's symmetric series pair term.-/
+JTP pair converges to Chapter 2's symmetric series pair term.
+@isnad1 id=tendsto.1h3v.s8.266a391641be from=translated src=- shape=97446746 vocab=5c4976dd
+-/
 theorem tendsto_qPoch_mul_gaussian_center_pair (q z : ℂ) (hq : ‖q‖ < 1) (r : ℕ) :
     Tendsto (fun N : ℕ =>
       qPoch (q ^ 2) (q ^ 2) N *
@@ -677,7 +782,9 @@ noncomputable def gaussianWeightedPairTerm (q z : ℂ) (N r : ℕ) : ℂ :=
     gaussianBinom (q ^ 2) (2 * N) (N + (r + 1)) *
       z ^ (((r + 1 : ℕ) : ℤ)) * q ^ ((((r + 1 : ℕ) : ℤ)) ^ 2)
 
-/-- Wrapped form of the fixed Gaussian-weighted pair limit.-/
+/-- Wrapped form of the fixed Gaussian-weighted pair limit.
+@isnad1 id=tendsto.1h3v.s6.ef24a4fade09 from=translated src=- shape=a78f8af9 vocab=f958cc16
+-/
 theorem tendsto_qPoch_mul_gaussianWeightedPairTerm (q z : ℂ) (hq : ‖q‖ < 1)
     (r : ℕ) :
     Tendsto (fun N : ℕ =>
@@ -689,6 +796,9 @@ theorem tendsto_qPoch_mul_gaussianWeightedPairTerm (q z : ℂ) (hq : ‖q‖ < 1
 noncomputable def gaussianWeightedPairPartial (q z : ℂ) (N M : ℕ) : ℂ :=
   ∑ r ∈ Finset.range M, gaussianWeightedPairTerm q z N r
 
+/--
+@isnad1 id=eq.0h3v.s4.8b07c89b76d4 from=translated src=- shape=b99ec26b vocab=99ba63fc
+-/
 @[simp] theorem gaussianWeightedPairPartial_zero (q z : ℂ) (N : ℕ) :
     gaussianWeightedPairPartial q z N 0 = 0 := by
   simp [gaussianWeightedPairPartial]
@@ -709,7 +819,9 @@ noncomputable def gaussianWeightedTailSummand (q z : ℂ) (N M k : ℕ) : ℂ :=
 
 /--
 Uniform domination of the zero-extended Gaussian tail summands by Chapter 2's
-two-term symmetric-pair norm majorant.-/
+two-term symmetric-pair norm majorant.
+@isnad1 id=ex.1h3v.s6.9230b216cb83 from=translated src=- shape=ec2bb7c6 vocab=bdeaa0be
+-/
 theorem exists_gaussianWeightedTailSummand_pairMajorant_bound (q z : ℂ)
     (hq : ‖q‖ < 1) (M : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧
@@ -760,7 +872,9 @@ theorem exists_gaussianWeightedTailSummand_pairMajorant_bound (q z : ℂ)
       rw [Ch02.jacobiSeriesSymmetricPairNormMajorant]
       positivity)
 
-/-- Pointwise limit of each zero-extended shifted Gaussian tail summand.-/
+/-- Pointwise limit of each zero-extended shifted Gaussian tail summand.
+@isnad1 id=tendsto.1h4v.s5.b6e1f91a2da4 from=translated src=- shape=dcb35644 vocab=f7f78368
+-/
 theorem tendsto_gaussianWeightedTailSummand (q z : ℂ) (hq : ‖q‖ < 1)
     (M k : ℕ) :
     Tendsto (fun N : ℕ => gaussianWeightedTailSummand q z N M k) atTop
@@ -770,7 +884,9 @@ theorem tendsto_gaussianWeightedTailSummand (q z : ℂ) (hq : ‖q‖ < 1)
   filter_upwards [eventually_gt_atTop (M + k)] with N hN
   simp [gaussianWeightedTailSummand, hN]
 
-/-- The moving Gaussian tail as a shifted range sum.-/
+/-- The moving Gaussian tail as a shifted range sum.
+@isnad1 id=eq.0h4v.s7.55396930e016 from=translated src=- shape=b6d923cd vocab=3443c3ae
+-/
 theorem qPoch_mul_gaussianWeightedPairTail_eq_shiftedRange_sum (q z : ℂ)
     (N M : ℕ) :
     qPoch (q ^ 2) (q ^ 2) N * gaussianWeightedPairTail q z N M N =
@@ -779,7 +895,9 @@ theorem qPoch_mul_gaussianWeightedPairTail_eq_shiftedRange_sum (q z : ℂ)
   simp only [gaussianWeightedPairTail, Finset.mul_sum]
   rw [Finset.sum_Ico_eq_sum_range]
 
-/-- The moving Gaussian tail as a shifted range sum of zero-extended summands.-/
+/-- The moving Gaussian tail as a shifted range sum of zero-extended summands.
+@isnad1 id=eq.0h4v.s6.63ac964e753e from=translated src=- shape=4b0b1c55 vocab=f70b0321
+-/
 theorem qPoch_mul_gaussianWeightedPairTail_eq_shiftedTailSummand_sum (q z : ℂ)
     (N M : ℕ) :
     qPoch (q ^ 2) (q ^ 2) N * gaussianWeightedPairTail q z N M N =
@@ -791,7 +909,9 @@ theorem qPoch_mul_gaussianWeightedPairTail_eq_shiftedTailSummand_sum (q z : ℂ)
   have hMN : M + k < N := by omega
   simp [gaussianWeightedTailSummand, hMN]
 
-/-- Tsum form of the zero-extended shifted Gaussian tail summands.-/
+/-- Tsum form of the zero-extended shifted Gaussian tail summands.
+@isnad1 id=eq.0h4v.s6.550b1c7ba354 from=translated src=- shape=0fb73869 vocab=101ddaf3
+-/
 theorem tsum_gaussianWeightedTailSummand (q z : ℂ) (N M : ℕ) :
     (∑' k : ℕ, gaussianWeightedTailSummand q z N M k) =
       qPoch (q ^ 2) (q ^ 2) N * gaussianWeightedPairTail q z N M N := by
@@ -804,7 +924,9 @@ theorem tsum_gaussianWeightedTailSummand (q z : ℂ) (N M : ℕ) :
 
 /--
 Splitting the full `N`-pair Gaussian block into its first `M` pairs and the
-remaining finite tail.-/
+remaining finite tail.
+@isnad1 id=eq.1h4v.s5.6280a79e9af3 from=translated src=- shape=ffa05503 vocab=e20c3fc0
+-/
 theorem gaussianWeightedPairPartial_eq_add_tail (q z : ℂ) {N M : ℕ} (hMN : M ≤ N) :
     gaussianWeightedPairPartial q z N N =
       gaussianWeightedPairPartial q z N M + gaussianWeightedPairTail q z N M N := by
@@ -813,7 +935,9 @@ theorem gaussianWeightedPairPartial_eq_add_tail (q z : ℂ) {N M : ℕ} (hMN : M
 
 /--
 For fixed `M`, the first `M` Gaussian-weighted finite-JTP pairs converge to
-Chapter 2's symmetric pair partial after multiplication by `(q²;q²)_N`.-/
+Chapter 2's symmetric pair partial after multiplication by `(q²;q²)_N`.
+@isnad1 id=tendsto.1h3v.s6.12cdfb0fc45d from=translated src=- shape=a78f8af9 vocab=27cadc72
+-/
 theorem tendsto_qPoch_mul_gaussianWeightedPairPartial (q z : ℂ) (hq : ‖q‖ < 1)
     (M : ℕ) :
     Tendsto (fun N : ℕ =>
@@ -830,7 +954,9 @@ noncomputable def gaussianWeightedSymmetricPartial (q z : ℂ) (N M : ℕ) : ℂ
 
 /--
 Splitting the full centered Gaussian block into a fixed symmetric core and its
-remaining finite nonzero-pair tail.-/
+remaining finite nonzero-pair tail.
+@isnad1 id=eq.1h4v.s5.3bb536f4ee13 from=translated src=- shape=ffa05503 vocab=25b61eb4
+-/
 theorem gaussianWeightedSymmetricPartial_eq_add_tail (q z : ℂ) {N M : ℕ} (hMN : M ≤ N) :
     gaussianWeightedSymmetricPartial q z N N =
       gaussianWeightedSymmetricPartial q z N M + gaussianWeightedPairTail q z N M N := by
@@ -840,7 +966,9 @@ theorem gaussianWeightedSymmetricPartial_eq_add_tail (q z : ℂ) {N M : ℕ} (hM
 
 /--
 For fixed `M`, the centered Gaussian-weighted finite-JTP block converges to
-Chapter 2's symmetric series partial after multiplication by `(q²;q²)_N`.-/
+Chapter 2's symmetric series partial after multiplication by `(q²;q²)_N`.
+@isnad1 id=tendsto.1h3v.s6.593bd8d03bfa from=translated src=- shape=a78f8af9 vocab=99dc9e9a
+-/
 theorem tendsto_qPoch_mul_gaussianWeightedSymmetricPartial (q z : ℂ)
     (hq : ‖q‖ < 1) (M : ℕ) :
     Tendsto (fun N : ℕ =>
@@ -861,7 +989,9 @@ noncomputable def gaussianWeightedLaurentSummand (q z : ℂ) (N k : ℕ) : ℂ :
 
 /--
 The full centered symmetric Gaussian block is exactly the weighted Laurent
-`natSum` over `k = 0, ..., 2N`, just reordered into symmetric pairs.-/
+`natSum` over `k = 0, ..., 2N`, just reordered into symmetric pairs.
+@isnad1 id=eq.0h3v.s5.21e633ab0f2b from=translated src=- shape=1215dfd9 vocab=a374b2ac
+-/
 theorem gaussianWeightedSymmetricPartial_eq_weightedLaurentNatSum (q z : ℂ) (N : ℕ) :
     gaussianWeightedSymmetricPartial q z N N =
       natSum (gaussianWeightedLaurentSummand q z N) (2 * N) := by
@@ -931,21 +1061,27 @@ sum over `k = 0, ..., 2n` after the change of variables `l = k - n`.-/
 def finiteJTPRHS (q z : R) (n : Nat) : R :=
   natSum (fun k => finiteJTPSummand q z n k) (2 * n)
 
-/-- The `n = 0` finite Jacobi triple product check.-/
+/-- The `n = 0` finite Jacobi triple product check.
+@isnad1 id=eq.0h3v.s6.518d7dfbdc22 from=translated src=- shape=c815c268 vocab=e309e9aa
+-/
 theorem finite_jacobi_triple_product_zero (q z : R) :
     qPoch z q 0 * qPoch (z⁻¹ * q) q 0 = finiteJTPRHS q z 0 := by
   simp [finiteJTPRHS, finiteJTPSummand]
 
 /--
 The `n = 1` finite Jacobi triple product check:
-`(1 - z) (1 - z^{-1} q) = -q z^{-1} + (1 + q) - z`.-/
+`(1 - z) (1 - z^{-1} q) = -q z^{-1} + (1 + q) - z`.
+@isnad1 id=eq.1h3v.s6.65e2c7fb8038 from=translated src=- shape=48520e40 vocab=e309e9aa
+-/
 theorem finite_jacobi_triple_product_one (q z : R) (hz : z ≠ 0) :
     qPoch z q 1 * qPoch (z⁻¹ * q) q 1 = finiteJTPRHS q z 1 := by
   norm_num [finiteJTPRHS, finiteJTPSummand, qPoch, gaussianBinom, natSum]
   field_simp [hz]
   ring_nf
 
-/-- The `n = 2` finite Jacobi triple product check.-/
+/-- The `n = 2` finite Jacobi triple product check.
+@isnad1 id=eq.1h3v.s6.f7b1b0ed709e from=translated src=- shape=48520e40 vocab=e309e9aa
+-/
 theorem finite_jacobi_triple_product_two (q z : R) (hz : z ≠ 0) :
     qPoch z q 2 * qPoch (z⁻¹ * q) q 2 = finiteJTPRHS q z 2 := by
   norm_num [finiteJTPRHS, finiteJTPSummand, qPoch, gaussianBinom, natSum]
@@ -953,7 +1089,9 @@ theorem finite_jacobi_triple_product_two (q z : R) (hz : z ≠ 0) :
   rw [show Int.toNat (3 : Int) = 3 by rfl]
   ring_nf
 
-/-- The `n = 3` finite Jacobi triple product check.-/
+/-- The `n = 3` finite Jacobi triple product check.
+@isnad1 id=eq.1h3v.s6.73ab8c4ca6ea from=translated src=- shape=48520e40 vocab=e309e9aa
+-/
 theorem finite_jacobi_triple_product_three (q z : R) (hz : z ≠ 0) :
     qPoch z q 3 * qPoch (z⁻¹ * q) q 3 = finiteJTPRHS q z 3 := by
   norm_num [finiteJTPRHS, finiteJTPSummand, qPoch, gaussianBinom, natSum]
@@ -962,16 +1100,25 @@ theorem finite_jacobi_triple_product_three (q z : R) (hz : z ≠ 0) :
   rw [show Int.toNat (6 : Int) = 6 by rfl]
   ring_nf
 
+/--
+@isnad1 id=eq.0h1v.s4.1d6286d51462 from=translated src=- shape=a0ed7b26 vocab=58e96b90
+-/
 lemma triangular_succ_add (n : Nat) :
     triangular (Nat.succ n) = triangular n + Nat.succ n := by
   simpa [triangular, Nat.succ_eq_add_one, Nat.mul_comm, Nat.mul_left_comm,
     Nat.mul_assoc] using Nat.triangle_succ (Nat.succ n)
 
+/--
+@isnad1 id=eq.0h4v.s6.7b966f5f2522 from=translated src=- shape=64f3124d vocab=355782a3
+-/
 lemma qPoch_succ_front (a q : R) (n : Nat) :
     qPoch a q (Nat.succ n) = (1 - a) * qPoch (a * q) q n := by
   have h := qPoch_add q a 1 n
   simpa [qPoch, Nat.one_add, pow_one, mul_comm, mul_left_comm, mul_assoc] using h
 
+/--
+@isnad1 id=eq.2h4v.s8.a7d9744a1f9e from=translated src=- shape=704be3d4 vocab=c4aa4290
+-/
 lemma one_sub_div_qpow_succ (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) (n : Nat) :
     1 - z / q ^ Nat.succ n =
       (-z) * (q ^ Nat.succ n)⁻¹ * (1 - z⁻¹ * q ^ Nat.succ n) := by
@@ -979,6 +1126,9 @@ lemma one_sub_div_qpow_succ (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) (n : Nat) :
   field_simp [hz, hqpow]
   ring
 
+/--
+@isnad1 id=eq.2h4v.s7.ddf34fbbcec3 from=translated src=- shape=812100a9 vocab=b39e3c35
+-/
 lemma qPoch_substitute_div_qpow (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) :
     ∀ n : Nat,
       qPoch (z / q ^ n) q n =
@@ -1012,6 +1162,9 @@ lemma qPoch_substitute_div_qpow (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) :
               rw [pow_succ (-z) n, pow_succ q n]
               ring_nf
 
+/--
+@isnad1 id=eq.2h4v.s8.68220667ee13 from=translated src=- shape=38f56c09 vocab=b39e3c35
+-/
 lemma qPoch_substitute_div_qpow_two_mul (q z : R) (hz : z ≠ 0) (hq : q ≠ 0)
     (n : Nat) :
     qPoch (z / q ^ n) q (2 * n) =
@@ -1037,7 +1190,9 @@ lemma qPoch_substitute_div_qpow_two_mul (q z : R) (hz : z ≠ 0) (hq : q ≠ 0)
 /--
 Rearranged finite reflection identity for the centered product
 `(z / q^n; q)_{2n}`.  This is the division-free form of
-`qPoch_substitute_div_qpow_two_mul`.-/
+`qPoch_substitute_div_qpow_two_mul`.
+@isnad1 id=eq.2h4v.s8.c69b100887a1 from=translated src=- shape=670823b2 vocab=b39e3c35
+-/
 theorem qPoch_reflection_two_mul_shifted (q z : R) (hq : q ≠ 0) (hz : z ≠ 0)
     (n : Nat) :
     qPoch (z / q ^ n) q (2 * n) * q ^ triangular n =
@@ -1162,7 +1317,9 @@ private lemma summand_shift (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) (n k : Nat) 
 /--
 After the substitution `q ↦ q²`, `z ↦ -zq`, a finite-JTP summand is exactly
 the Laurent monomial `z^l q^{l²}` times the finite Gaussian factor, where
-`l = k - n`.-/
+`l = k - n`.
+@isnad1 id=eq.1h4v.s7.7f517a0e5a8e from=translated src=- shape=4e35153c vocab=831bb017
+-/
 theorem finiteJTPSummand_qsq_neg_zq (q z : ℂ) (hq : q ≠ 0) (n k : Nat) :
     finiteJTPSummand (q ^ 2) (-(z * q)) n k =
       gaussianBinom (q ^ 2) (2 * n) k * z ^ ((k : Int) - (n : Int)) *
@@ -1191,7 +1348,9 @@ theorem finiteJTPSummand_qsq_neg_zq (q z : ℂ) (hq : q ≠ 0) (n k : Nat) :
   congr 2
   ring
 
-/-- The finite-JTP RHS after `q ↦ q²`, `z ↦ -zq` as a weighted symmetric Laurent sum.-/
+/-- The finite-JTP RHS after `q ↦ q²`, `z ↦ -zq` as a weighted symmetric Laurent sum.
+@isnad1 id=eq.1h3v.s7.3e309d040c4a from=translated src=- shape=e96ee33d vocab=d5b65e20
+-/
 theorem finiteJTPRHS_qsq_neg_zq (q z : ℂ) (hq : q ≠ 0) (n : Nat) :
     finiteJTPRHS (q ^ 2) (-(z * q)) n =
       natSum (fun k =>
@@ -1216,7 +1375,9 @@ private lemma finiteJTPRHS_mul_neg_z_pow (q z : R) (hz : z ≠ 0) (hq : q ≠ 0)
 
 /--
 **The finite Jacobi triple product** (Chan, Theorem 3.3):
-`(z; q)_n (z⁻¹ q; q)_n = ∑_{k=0}^{2n} [2n, k]_q  q^{(k−n)(k−n−1)/2} (−z)^{k−n}`.-/
+`(z; q)_n (z⁻¹ q; q)_n = ∑_{k=0}^{2n} [2n, k]_q  q^{(k−n)(k−n−1)/2} (−z)^{k−n}`.
+@isnad1 id=eq.2h4v.s6.e00736c3935b from=translated src=- shape=0f2e617e vocab=e309e9aa
+-/
 theorem finite_jacobi_triple_product (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) (n : Nat) :
     qPoch z q n * qPoch (z⁻¹ * q) q n = finiteJTPRHS q z n := by
   have hnz : (-z) ^ n ≠ 0 := pow_ne_zero _ (neg_ne_zero.mpr hz)
@@ -1232,7 +1393,9 @@ theorem finite_jacobi_triple_product (q z : R) (hz : z ≠ 0) (hq : q ≠ 0) (n 
 
 /--
 Chapter 2's zero-based finite product is the even q-Pochhammer factor times
-Chapter 3's finite JTP RHS after the substitution `q ↦ q²`, `z ↦ -zq`.-/
+Chapter 3's finite JTP RHS after the substitution `q ↦ q²`, `z ↦ -zq`.
+@isnad1 id=eq.2h3v.s6.8bf6b4c1dd91 from=translated src=- shape=ebbc2622 vocab=76808742
+-/
 theorem jacobiProductPartial_eq_qPoch_mul_finiteJTPRHS (q z : ℂ)
     (hq : q ≠ 0) (hz : z ≠ 0) (n : Nat) :
     Ch02.jacobiProductPartial q z n =
@@ -1249,7 +1412,9 @@ theorem jacobiProductPartial_eq_qPoch_mul_finiteJTPRHS (q z : ℂ)
 /--
 Chapter 2's finite product partial as the even q-Pochhammer factor times a
 Gaussian-weighted symmetric Laurent sum. This is the finite-limit form needed
-to pass from Chapter 3's finite JTP to Chapter 2's infinite JTP.-/
+to pass from Chapter 3's finite JTP to Chapter 2's infinite JTP.
+@isnad1 id=eq.2h3v.s7.bf44dd6479b7 from=translated src=- shape=8a9d0ee0 vocab=66dab43d
+-/
 theorem jacobiProductPartial_eq_qPoch_mul_weightedLaurentSum (q z : ℂ)
     (hq : q ≠ 0) (hz : z ≠ 0) (n : Nat) :
     Ch02.jacobiProductPartial q z n =
@@ -1262,7 +1427,9 @@ theorem jacobiProductPartial_eq_qPoch_mul_weightedLaurentSum (q z : ℂ)
 
 /--
 Chapter 2's finite product partial in the centered symmetric-block form that
-matches the fixed symmetric partial convergence interface.-/
+matches the fixed symmetric partial convergence interface.
+@isnad1 id=eq.2h3v.s6.a5739ff210ba from=translated src=- shape=c9afeace vocab=55a24d80
+-/
 theorem jacobiProductPartial_eq_qPoch_mul_gaussianWeightedSymmetricPartial (q z : ℂ)
     (hq : q ≠ 0) (hz : z ≠ 0) (N : Nat) :
     Ch02.jacobiProductPartial q z N =
@@ -1273,7 +1440,9 @@ theorem jacobiProductPartial_eq_qPoch_mul_gaussianWeightedSymmetricPartial (q z 
 
 /--
 Finite-JTP limit form split into a fixed centered symmetric block and the
-remaining finite nonzero-pair tail.-/
+remaining finite nonzero-pair tail.
+@isnad1 id=eq.3h4v.s7.8cd539321c4d from=translated src=- shape=f99f6807 vocab=598ae361
+-/
 theorem jacobiProductPartial_eq_qPoch_mul_fixedSymmetricPartial_add_tail (q z : ℂ)
     (hq : q ≠ 0) (hz : z ≠ 0) {N M : Nat} (hMN : M ≤ N) :
     Ch02.jacobiProductPartial q z N =
@@ -1285,7 +1454,9 @@ theorem jacobiProductPartial_eq_qPoch_mul_fixedSymmetricPartial_add_tail (q z : 
 
 /--
 Reduction of the nonzero-`q` Jacobi triple product to the remaining Gaussian
-tail limit from the finite-JTP approach.-/
+tail limit from the finite-JTP approach.
+@isnad1 id=eq.4h3v.s7.7afdad193d34 from=translated src=- shape=a85e7d44 vocab=5af4746d
+-/
 theorem jacobiTripleProduct_of_gaussianWeightedTail_tendsto (q z : ℂ)
     (hq_norm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) (M : Nat)
     (htail :
@@ -1316,7 +1487,9 @@ theorem jacobiTripleProduct_of_gaussianWeightedTail_tendsto (q z : ℂ)
 
 /--
 Equivalent finite-JTP reduction where the remaining Gaussian tail is required
-to converge to the `tsum` of Chapter 2's symmetric pair tail.-/
+to converge to the `tsum` of Chapter 2's symmetric pair tail.
+@isnad1 id=eq.4h3v.s7.fcef5ac2e9f0 from=translated src=- shape=27b4f95e vocab=563d5ef8
+-/
 theorem jacobiTripleProduct_of_gaussianWeightedTail_tendsto_tsum (q z : ℂ)
     (hq_norm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) (M : Nat)
     (htail :
@@ -1329,7 +1502,9 @@ theorem jacobiTripleProduct_of_gaussianWeightedTail_tendsto_tsum (q z : ℂ)
 
 /--
 Dominated-convergence reduction for the finite-JTP Gaussian tail. It remains
-to provide a summable bound for the zero-extended shifted tail summands.-/
+to provide a summable bound for the zero-extended shifted tail summands.
+@isnad1 id=eq.5h4v.s6.7096e6338675 from=translated src=- shape=28ae71f4 vocab=88bc538b
+-/
 theorem jacobiTripleProduct_of_gaussianWeightedTail_dominated (q z : ℂ)
     (hq_norm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) (M : Nat)
     (bound : ℕ → ℝ) (h_sum : Summable bound)
@@ -1356,7 +1531,9 @@ theorem jacobiTripleProduct_of_gaussianWeightedTail_dominated (q z : ℂ)
 /--
 Cancellation-free domination reduction: it is enough to bound the zero-extended
 Gaussian tail summand by a constant multiple of the sum of the two norms in
-the corresponding Chapter 2 symmetric pair.-/
+the corresponding Chapter 2 symmetric pair.
+@isnad1 id=eq.4h4v.s6.52891805f085 from=translated src=- shape=14d2c11e vocab=9e8efd8d
+-/
 theorem jacobiTripleProduct_of_gaussianWeightedTail_norm_le_pairMajorant (q z : ℂ)
     (hq_norm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) (M : Nat) (C : ℝ)
     (h_bound :
@@ -1376,7 +1553,9 @@ theorem jacobiTripleProduct_of_gaussianWeightedTail_norm_le_pairMajorant (q z : 
 
 /--
 Jacobi's triple product, proved in Chapter 3 from the finite JTP and the
-uniform Gaussian-tail domination package.-/
+uniform Gaussian-tail domination package.
+@isnad1 id=eq.2h2v.s5.bd42f4873d7e from=translated src=- shape=80feee63 vocab=61280040
+-/
 theorem jacobiTripleProduct_via_finiteJTP (q z : ℂ) (hq_norm : ‖q‖ < 1) (hz : z ≠ 0) :
     Ch02.jacobiInfiniteProduct q z = Ch02.jacobiInfiniteSeries q z := by
   by_cases hq : q = 0
@@ -1395,7 +1574,9 @@ namespace Ch02
 
 /--
 Jacobi's triple product identity (Chan Theorem 2.1, Eq. 2.1), proved via the
-finite Jacobi triple product and Gaussian-tail domination from Chapter 3.-/
+finite Jacobi triple product and Gaussian-tail domination from Chapter 3.
+@isnad1 id=eq.2h2v.s5.bd42f4873d7e from=translated src=- shape=80feee63 vocab=61280040
+-/
 theorem jacobiTripleProduct (q z : ℂ) (hq : ‖q‖ < 1) (hz : z ≠ 0) :
     jacobiInfiniteProduct q z = jacobiInfiniteSeries q z :=
   Ch03.jacobiTripleProduct_via_finiteJTP q z hq hz

@@ -54,7 +54,9 @@ def paper2GTerm (j n : ℤ) (τ : ℂ) : ℂ :=
 /-! ## Absolute convergence on the upper half-plane -/
 
 /-- The transverse residue component is absolutely summable whenever
-`Im τ > 0`.-/
+`Im τ > 0`.
+@isnad1 id=summable.1h2v.s5.7d619402ab5e from=translated src=- shape=5f73f289 vocab=7eb3bdae
+-/
 theorem summable_paper2ThetaTerm (j : ℤ) {τ : ℂ} (hτ : 0 < τ.im) :
     Summable (fun T : ℤ => paper2ThetaTerm j T τ) := by
   have hquarter : 0 < (τ / 4).im := by
@@ -71,7 +73,9 @@ theorem summable_paper2ThetaTerm (j : ℤ) {τ : ℂ} (hτ : 0 < τ.im) :
 
 /-- The longitudinal residue component is absolutely summable whenever
 `Im τ > 0`; the linear factor is absorbed by the standard polynomial-Gaussian
-majorant for the Jacobi theta derivative.-/
+majorant for the Jacobi theta derivative.
+@isnad1 id=summable.1h2v.s5.ef31ab09a9ee from=translated src=- shape=5f73f289 vocab=fb3af797
+-/
 theorem summable_paper2GTerm (j : ℤ) {τ : ℂ} (hτ : 0 < τ.im) :
     Summable (fun n : ℤ => paper2GTerm j n τ) := by
   let T0 : ℝ := τ.im / 20
@@ -116,7 +120,9 @@ def paper2GComponent (j : ℤ) (τ : ℂ) : ℂ :=
   ∑' n : ℤ, paper2GTerm j n τ
 
 /-- The components depend only on `j mod 4`, as required by the four-coset
-decomposition.-/
+decomposition.
+@isnad1 id=eq.0h2v.s4.e6bc968f5245 from=translated src=- shape=9896c420 vocab=79dcbd0b
+-/
 theorem paper2ThetaComponent_add_four (j : ℤ) (τ : ℂ) :
     paper2ThetaComponent (j + 4) τ = paper2ThetaComponent j τ := by
   apply tsum_congr
@@ -124,7 +130,9 @@ theorem paper2ThetaComponent_add_four (j : ℤ) (τ : ℂ) :
   have hmod : (3 * (j + 4) + 2) % 4 = (3 * j + 2) % 4 := by omega
   simp [paper2ThetaTerm, paper2ThetaResidue, hmod]
 
-/-- The longitudinal components likewise depend only on `j mod 4`.-/
+/-- The longitudinal components likewise depend only on `j mod 4`.
+@isnad1 id=eq.0h2v.s4.cc35eed56343 from=translated src=- shape=9896c420 vocab=d6570748
+-/
 theorem paper2GComponent_add_four (j : ℤ) (τ : ℂ) :
     paper2GComponent (j + 4) τ = paper2GComponent j τ := by
   apply tsum_congr
@@ -134,7 +142,9 @@ theorem paper2GComponent_add_four (j : ℤ) (τ : ℂ) :
 
 /-! ## The odd transverse theta at the `c₁` boundary -/
 
-/-- The sign `(-1)^n` written as a complex exponential.-/
+/-- The sign `(-1)^n` written as a complex exponential.
+@isnad1 id=eq.0h1v.s5.672610368cc0 from=translated src=- shape=443e233c vocab=f8110fcb
+-/
 theorem neg_one_zpow_eq_exp_pi_I (n : ℤ) :
     ((-1 : ℂ) ^ n) = Complex.exp ((n : ℂ) * (Real.pi * Complex.I)) := by
   rw [← Complex.exp_pi_mul_I, ← Complex.exp_int_mul]
@@ -147,7 +157,9 @@ def paper2OddThetaTerm (a : ℝ) (τ : ℂ) (n : ℤ) : ℂ :=
       ((n : ℂ) + 1 / 2) ^ 2)
 
 /-- After completing the square, the odd-theta summand is a constant multiple
-of a standard Jacobi theta summand at the half-period.-/
+of a standard Jacobi theta summand at the half-period.
+@isnad1 id=eq.0h3v.s7.4399ad0d2fdc from=translated src=- shape=d7d4927b vocab=7c1e9b29
+-/
 theorem paper2OddThetaTerm_eq_jacobi (a : ℝ) (τ : ℂ) (n : ℤ) :
     paper2OddThetaTerm a τ n =
       Complex.exp (Real.pi * Complex.I * (a : ℂ) * τ / 2) *
@@ -158,7 +170,9 @@ theorem paper2OddThetaTerm_eq_jacobi (a : ℝ) (τ : ℂ) (n : ℤ) :
   ring
 
 /-- Absolute convergence of the odd transverse series for `a>0` and
-`Im τ>0`, inherited from the ordinary Jacobi theta series.-/
+`Im τ>0`, inherited from the ordinary Jacobi theta series.
+@isnad1 id=summable.2h2v.s5.0b5ed9ba7e86 from=translated src=- shape=4c93d462 vocab=5d905b61
+-/
 theorem summable_paper2OddThetaTerm {a : ℝ} (ha : 0 < a) {τ : ℂ}
     (hτ : 0 < τ.im) :
     Summable (paper2OddThetaTerm a τ) := by
@@ -175,7 +189,9 @@ theorem summable_paper2OddThetaTerm {a : ℝ} (ha : 0 < a) {τ : ℂ}
 
 /-- Jacobi's theta series vanishes at the odd half-period
 `z=(τ+1)/2`.  This is the analytic form of the fixed-point-free pairing
-`n ↦ -1-n`.-/
+`n ↦ -1-n`.
+@isnad1 id=eq.0h1v.s5.2efe8a6cc597 from=translated src=- shape=5e339455 vocab=0d39e252
+-/
 theorem jacobiTheta₂_half_period_zero (τ : ℂ) :
     jacobiTheta₂ ((τ + 1) / 2) τ = 0 := by
   let w : ℂ := (τ + 1) / 2
@@ -202,7 +218,9 @@ theorem jacobiTheta₂_half_period_zero (τ : ℂ) :
   exact (mul_eq_zero.mp htwo).resolve_left (by norm_num)
 
 /-- Analytic odd-theta cancellation from Paper 2, Lemma `Odd-theta
-cancellation`.-/
+cancellation`.
+@isnad1 id=eq.2h2v.s5.e4269c4c0adc from=translated src=- shape=cc62d107 vocab=5e470abd
+-/
 theorem paper2OddTheta_tsum_eq_zero {a : ℝ} (ha : 0 < a) {τ : ℂ}
     (hτ : 0 < τ.im) :
     ∑' n : ℤ, paper2OddThetaTerm a τ n = 0 := by

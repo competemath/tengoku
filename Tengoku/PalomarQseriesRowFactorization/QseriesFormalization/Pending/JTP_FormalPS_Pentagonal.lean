@@ -26,6 +26,9 @@ open scoped Topology PowerSeries PowerSeries.WithPiTopology
 noncomputable def apFactorPS (R : Type*) [CommRing R] (r m n : ℕ) : R⟦X⟧ :=
   (1 : R⟦X⟧) - PowerSeries.X ^ (r + m * n)
 
+/--
+@isnad1 id=eq.0h4v.s6.b42bdd96f890 from=translated src=- shape=d2d5151e vocab=021e45be
+-/
 @[simp] theorem apFactorPS_def (R : Type*) [CommRing R] (r m n : ℕ) :
     apFactorPS R r m n = (1 : R⟦X⟧) - PowerSeries.X ^ (r + m * n) := rfl
 
@@ -34,7 +37,9 @@ noncomputable def qPochAPPS (R : Type*) [CommRing R] [TopologicalSpace R]
     (r m : ℕ) : R⟦X⟧ :=
   ∏' n : ℕ, apFactorPS R r m n
 
-/-- The AP product is multipliable when the step is positive.-/
+/-- The AP product is multipliable when the step is positive.
+@isnad1 id=multipli.1h3v.s5.175152c945b3 from=translated src=- shape=8008d52d vocab=94d5e224
+-/
 theorem multipliable_apFactorPS (R : Type*) [CommRing R] [TopologicalSpace R]
     (r m : ℕ) (hm : 0 < m) :
     Multipliable fun n : ℕ => apFactorPS R r m n := by
@@ -52,7 +57,9 @@ theorem multipliable_apFactorPS (R : Type*) [CommRing R] [TopologicalSpace R]
     _ ≤ m * n := Nat.le_mul_of_pos_left n hm1
     _ ≤ r + m * n := Nat.le_add_left _ _
 
-/-- HasProd form of `qPochAPPS`.-/
+/-- HasProd form of `qPochAPPS`.
+@isnad1 id=hasprod.1h3v.s5.be768beeffd2 from=translated src=- shape=33f0ca45 vocab=89397029
+-/
 theorem hasProd_qPochAPPS (R : Type*) [CommRing R] [TopologicalSpace R]
     (r m : ℕ) (hm : 0 < m) :
     HasProd (fun n : ℕ => apFactorPS R r m n) (qPochAPPS R r m) :=
@@ -76,7 +83,9 @@ noncomputable def pentagonalTripleFactor014PS (R : Type*) [CommRing R] (n : ℕ)
 noncomputable def pentagonalTripleFactor023PS (R : Type*) [CommRing R] (n : ℕ) : R⟦X⟧ :=
   apFactorPS R 2 5 n * apFactorPS R 3 5 n * apFactorPS R 5 5 n
 
-/-- HasProd form of the first mod-5 triple product.-/
+/-- HasProd form of the first mod-5 triple product.
+@isnad1 id=hasprod.0h1v.s5.b7477ab2bf96 from=translated src=- shape=3a3ee85b vocab=8f8f840a
+-/
 theorem hasProd_pentagonalTripleFactor014PS
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] :
     HasProd (fun n : ℕ => pentagonalTripleFactor014PS R n)
@@ -86,7 +95,9 @@ theorem hasProd_pentagonalTripleFactor014PS
     (hasProd_qPochAPPS R 4 5 (by norm_num))).mul
     (hasProd_qPochAPPS R 5 5 (by norm_num))
 
-/-- HasProd form of the second mod-5 triple product.-/
+/-- HasProd form of the second mod-5 triple product.
+@isnad1 id=hasprod.0h1v.s5.ff5fb13c2051 from=translated src=- shape=3a3ee85b vocab=062d8507
+-/
 theorem hasProd_pentagonalTripleFactor023PS
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] :
     HasProd (fun n : ℕ => pentagonalTripleFactor023PS R n)
@@ -96,13 +107,17 @@ theorem hasProd_pentagonalTripleFactor023PS
     (hasProd_qPochAPPS R 3 5 (by norm_num))).mul
     (hasProd_qPochAPPS R 5 5 (by norm_num))
 
-/-- Tprod form of the first mod-5 triple product.-/
+/-- Tprod form of the first mod-5 triple product.
+@isnad1 id=eq.0h1v.s5.97233515b83f from=translated src=- shape=b4dc0957 vocab=70cb8435
+-/
 theorem pentagonalProduct014PS_eq_tprod
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     pentagonalProduct014PS R = ∏' n : ℕ, pentagonalTripleFactor014PS R n :=
   (hasProd_pentagonalTripleFactor014PS R).tprod_eq.symm
 
-/-- Tprod form of the second mod-5 triple product.-/
+/-- Tprod form of the second mod-5 triple product.
+@isnad1 id=eq.0h1v.s5.06890a278dd9 from=translated src=- shape=b4dc0957 vocab=1b7a1242
+-/
 theorem pentagonalProduct023PS_eq_tprod
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] :
     pentagonalProduct023PS R = ∏' n : ℕ, pentagonalTripleFactor023PS R n :=
@@ -140,12 +155,18 @@ noncomputable def pentagonal014SeriesPS (R : Type*) [CommRing R] : R⟦X⟧ :=
 noncomputable def pentagonal023SeriesPS (R : Type*) [CommRing R] : R⟦X⟧ :=
   PowerSeries.mk (pentagonal023Coeff R)
 
+/--
+@isnad1 id=eq.0h2v.s7.cfb0c6d61627 from=translated src=- shape=0b039adb vocab=a71cfef9
+-/
 @[simp] theorem coeff_pentagonal014SeriesPS
     (R : Type*) [CommRing R] (n : ℕ) :
     (pentagonal014SeriesPS R).coeff n = pentagonal014Coeff R n := by
   unfold pentagonal014SeriesPS
   rw [PowerSeries.coeff_mk]
 
+/--
+@isnad1 id=eq.0h2v.s7.e666751ad08f from=translated src=- shape=0b039adb vocab=cb2c1a0e
+-/
 @[simp] theorem coeff_pentagonal023SeriesPS
     (R : Type*) [CommRing R] (n : ℕ) :
     (pentagonal023SeriesPS R).coeff n = pentagonal023Coeff R n := by
@@ -154,6 +175,9 @@ noncomputable def pentagonal023SeriesPS (R : Type*) [CommRing R] : R⟦X⟧ :=
 
 /-! ## Bilateral theta analytic-to-formal bridge -/
 
+/--
+@isnad1 id=le.0h1v.s5.7e4e6605ee88 from=translated src=- shape=81d07cb0 vocab=cf232d13
+-/
 lemma pentagonal014Exp_nonneg_int (k : ℤ) :
     0 ≤ k * (5 * k - 3) / 2 := by
   have hnum : 0 ≤ k * (5 * k - 3) := by
@@ -168,6 +192,9 @@ lemma pentagonal014Exp_nonneg_int (k : ℤ) :
       exact mul_nonneg_of_nonpos_of_nonpos hk_nonpos hfac
   exact Int.ediv_nonneg hnum (by norm_num)
 
+/--
+@isnad1 id=le.0h1v.s5.6b3e61732d1a from=translated src=- shape=81d07cb0 vocab=cf232d13
+-/
 lemma pentagonal023Exp_nonneg_int (k : ℤ) :
     0 ≤ k * (5 * k - 1) / 2 := by
   have hnum : 0 ≤ k * (5 * k - 1) := by
@@ -182,16 +209,25 @@ lemma pentagonal023Exp_nonneg_int (k : ℤ) :
       exact mul_nonneg_of_nonpos_of_nonpos hk_nonpos hfac
   exact Int.ediv_nonneg hnum (by norm_num)
 
+/--
+@isnad1 id=eq.0h1v.s5.b50ea09c6895 from=translated src=- shape=d128f69b vocab=f78def84
+-/
 lemma int_coe_pentagonal014Exp (k : ℤ) :
     (pentagonal014Exp k : ℤ) = k * (5 * k - 3) / 2 := by
   unfold pentagonal014Exp
   exact Int.toNat_of_nonneg (pentagonal014Exp_nonneg_int k)
 
+/--
+@isnad1 id=eq.0h1v.s5.799b97ead51e from=translated src=- shape=d128f69b vocab=4c5d5b45
+-/
 lemma int_coe_pentagonal023Exp (k : ℤ) :
     (pentagonal023Exp k : ℤ) = k * (5 * k - 1) / 2 := by
   unfold pentagonal023Exp
   exact Int.toNat_of_nonneg (pentagonal023Exp_nonneg_int k)
 
+/--
+@isnad1 id=le.1h1v.s5.213f062cb170 from=translated src=- shape=b14928e1 vocab=cf232d13
+-/
 lemma pentagonal014Exp_bound_pos (k : ℤ) (hk : 0 ≤ k) :
     k ≤ k * (5 * k - 3) / 2 := by
   rw [Int.le_ediv_iff_mul_le (by norm_num : (0 : ℤ) < 2)]
@@ -200,11 +236,17 @@ lemma pentagonal014Exp_bound_pos (k : ℤ) (hk : 0 ≤ k) :
   · have hkpos : 1 ≤ k := by omega
     nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.24e908f3feb6 from=translated src=- shape=c6ac9fd9 vocab=c68a68f0
+-/
 lemma pentagonal014Exp_bound_neg (k : ℤ) (hk : k ≤ 0) :
     -k ≤ k * (5 * k - 3) / 2 := by
   rw [Int.le_ediv_iff_mul_le (by norm_num : (0 : ℤ) < 2)]
   nlinarith
 
+/--
+@isnad1 id=le.1h1v.s5.cee95be60b9f from=translated src=- shape=b14928e1 vocab=cf232d13
+-/
 lemma pentagonal023Exp_bound_pos (k : ℤ) (hk : 0 ≤ k) :
     k ≤ k * (5 * k - 1) / 2 := by
   rw [Int.le_ediv_iff_mul_le (by norm_num : (0 : ℤ) < 2)]
@@ -213,6 +255,9 @@ lemma pentagonal023Exp_bound_pos (k : ℤ) (hk : 0 ≤ k) :
   · have hkpos : 1 ≤ k := by omega
     nlinarith
 
+/--
+@isnad1 id=le.1h1v.s6.4d7e7ae7de53 from=translated src=- shape=c6ac9fd9 vocab=c68a68f0
+-/
 lemma pentagonal023Exp_bound_neg (k : ℤ) (hk : k ≤ 0) :
     -k ≤ k * (5 * k - 1) / 2 := by
   rw [Int.le_ediv_iff_mul_le (by norm_num : (0 : ℤ) < 2)]
@@ -261,6 +306,9 @@ noncomputable def pentagonal023ProductAnalytic (q : ℂ) : ℂ :=
     (∏' n : ℕ, PartI.Ch04.rrMod5Factor q 3 n) *
     (∏' n : ℕ, PartI.Ch04.rrMod5Factor q 2 n)
 
+/--
+@isnad1 id=lt.1h1v.s4.0cdaffe50f68 from=translated src=- shape=c87724ab vocab=d9c78bcd
+-/
 lemma pentagonal014Exp_pos_of_ne_zero {k : ℤ} (hk : k ≠ 0) :
     0 < pentagonal014Exp k := by
   by_cases hk_nonneg : 0 ≤ k
@@ -278,6 +326,9 @@ lemma pentagonal014Exp_pos_of_ne_zero {k : ℤ} (hk : k ≠ 0) :
     have hle_nat : 1 ≤ pentagonal014Exp k := by exact_mod_cast hle_int
     omega
 
+/--
+@isnad1 id=lt.1h1v.s4.352f8e5f877f from=translated src=- shape=c87724ab vocab=1f3e556d
+-/
 lemma pentagonal023Exp_pos_of_ne_zero {k : ℤ} (hk : k ≠ 0) :
     0 < pentagonal023Exp k := by
   by_cases hk_nonneg : 0 ≤ k
@@ -305,6 +356,9 @@ noncomputable def pentagonal023ProductCoeffFMLS : FormalMultilinearSeries ℂ �
 
 /-! ### Product-coefficient finite partial bridges -/
 
+/--
+@isnad1 id=eq.1h6v.s8.1d7a04883373 from=translated src=- shape=1eaa2abd vocab=3ca5dc1c
+-/
 lemma coeff_mul_apFactorPS_eq_of_lt
     (R : Type*) [CommRing R] (P : R⟦X⟧) (k r m N : ℕ)
     (hk : k < r + m * N) :
@@ -312,6 +366,9 @@ lemma coeff_mul_apFactorPS_eq_of_lt
   rw [apFactorPS, mul_sub, mul_one, map_sub, PowerSeries.coeff_mul_X_pow']
   simp [Nat.not_le_of_gt hk]
 
+/--
+@isnad1 id=eq.1h3v.s8.9b224fc8e608 from=translated src=- shape=df1fdf2e vocab=57aa158b
+-/
 theorem partial_prod_pentagonalTripleFactor014PS_coeff_stable
     (R : Type*) [CommRing R] (k N : ℕ) (hN : k ≤ N) :
     PowerSeries.coeff k
@@ -340,6 +397,9 @@ theorem partial_prod_pentagonalTripleFactor014PS_coeff_stable
     _ = PowerSeries.coeff k P :=
           coeff_mul_apFactorPS_eq_of_lt R P k 1 5 N (by omega)
 
+/--
+@isnad1 id=eq.1h3v.s8.bae9f6ed615b from=translated src=- shape=df1fdf2e vocab=61de5827
+-/
 theorem partial_prod_pentagonalTripleFactor023PS_coeff_stable
     (R : Type*) [CommRing R] (k N : ℕ) (hN : k ≤ N) :
     PowerSeries.coeff k
@@ -368,6 +428,9 @@ theorem partial_prod_pentagonalTripleFactor023PS_coeff_stable
     _ = PowerSeries.coeff k P :=
           coeff_mul_apFactorPS_eq_of_lt R P k 2 5 N (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s8.28b729679c06 from=translated src=- shape=6f1d1426 vocab=49078ff1
+-/
 theorem partial_prod_pentagonalTripleFactor014PS_coeff_eq
     (R : Type*) [CommRing R] (k N M : ℕ) (hkN : k ≤ N) (hNM : N ≤ M) :
     PowerSeries.coeff k
@@ -379,6 +442,9 @@ theorem partial_prod_pentagonalTripleFactor014PS_coeff_eq
   | succ M _ ih =>
       rw [partial_prod_pentagonalTripleFactor014PS_coeff_stable R k M (by omega), ih]
 
+/--
+@isnad1 id=eq.2h4v.s8.7ac24fc01d2b from=translated src=- shape=6f1d1426 vocab=3bf6143e
+-/
 theorem partial_prod_pentagonalTripleFactor023PS_coeff_eq
     (R : Type*) [CommRing R] (k N M : ℕ) (hkN : k ≤ N) (hNM : N ≤ M) :
     PowerSeries.coeff k
@@ -390,6 +456,9 @@ theorem partial_prod_pentagonalTripleFactor023PS_coeff_eq
   | succ M _ ih =>
       rw [partial_prod_pentagonalTripleFactor023PS_coeff_stable R k M (by omega), ih]
 
+/--
+@isnad1 id=eq.0h2v.s8.5631c1b82374 from=translated src=- shape=9fe041cf vocab=1d4c8780
+-/
 theorem coeff_pentagonalProduct014PS_eq_coeff_partial
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
     (k : ℕ) :
@@ -415,6 +484,9 @@ theorem coeff_pentagonalProduct014PS_eq_coeff_partial
       (partial_prod_pentagonalTripleFactor014PS_coeff_eq R k (k + 1) N (by omega) hN).symm⟩
   exact tendsto_nhds_unique h_coeff_tendsto h_const_tendsto
 
+/--
+@isnad1 id=eq.0h2v.s8.cd73947f7894 from=translated src=- shape=9fe041cf vocab=8952faeb
+-/
 theorem coeff_pentagonalProduct023PS_eq_coeff_partial
     (R : Type*) [CommRing R] [TopologicalSpace R] [IsTopologicalRing R] [T2Space R]
     (k : ℕ) :
@@ -440,6 +512,9 @@ theorem coeff_pentagonalProduct023PS_eq_coeff_partial
       (partial_prod_pentagonalTripleFactor023PS_coeff_eq R k (k + 1) N (by omega) hN).symm⟩
   exact tendsto_nhds_unique h_coeff_tendsto h_const_tendsto
 
+/--
+@isnad1 id=le.2h6v.s7.0ccf94e6f149 from=translated src=- shape=33256cef vocab=0f9f0d41
+-/
 lemma norm_coeff_mul_apFactorPS_complex_le
     (P : ℂ⟦X⟧) (B : ℝ) (hB : 0 ≤ B)
     (hP : ∀ k : ℕ, ‖P.coeff k‖ ≤ B) (k r m N : ℕ) :
@@ -455,6 +530,9 @@ lemma norm_coeff_mul_apFactorPS_complex_le
   · rw [ite_eq_right hle, sub_zero]
     linarith [hP k]
 
+/--
+@isnad1 id=le.2h4v.s7.35d047ad0393 from=translated src=- shape=2f263e74 vocab=51a59f8b
+-/
 lemma norm_coeff_mul_pentagonalTripleFactor014PS_complex_le
     (P : ℂ⟦X⟧) (B : ℝ) (hB : 0 ≤ B)
     (hP : ∀ k : ℕ, ‖P.coeff k‖ ≤ B) (k N : ℕ) :
@@ -479,6 +557,9 @@ lemma norm_coeff_mul_pentagonalTripleFactor014PS_complex_le
           (2 * (2 * B)) (by nlinarith) hP2 k 5 5 N
     _ = 8 * B := by ring
 
+/--
+@isnad1 id=le.2h4v.s7.223e06874126 from=translated src=- shape=2f263e74 vocab=eee85d25
+-/
 lemma norm_coeff_mul_pentagonalTripleFactor023PS_complex_le
     (P : ℂ⟦X⟧) (B : ℝ) (hB : 0 ≤ B)
     (hP : ∀ k : ℕ, ‖P.coeff k‖ ≤ B) (k N : ℕ) :

@@ -315,7 +315,9 @@ end Helpers
 /-! ### Key properties of franklinInv -/
 
 open Finset in
-/-- franklinInv preserves the sum (weight) of the partition.-/
+/-- franklinInv preserves the sum (weight) of the partition.
+@isnad1 id=eq.1h1v.s5.b39799fa81b3 from=translated src=- shape=efde7050 vocab=d7b84371
+-/
 theorem franklinInv_sum (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
     (franklinInv S).sum id = S.sum id := by
   unfold franklinInv; split
@@ -412,7 +414,9 @@ theorem franklinInv_sum (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
   · rfl
 
 open Finset in
-/-- franklinInv preserves positivity of all elements.-/
+/-- franklinInv preserves positivity of all elements.
+@isnad1 id=lt.2h2v.s5.d7e17828df90 from=translated src=- shape=1aa06e9e vocab=313e2f87
+-/
 theorem franklinInv_pos (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
     ∀ x ∈ franklinInv S, 0 < x := by
   unfold franklinInv; split
@@ -445,7 +449,9 @@ theorem franklinInv_pos (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
         · exact topStaircase_pos hne
   · exact hpos
 
-/-- franklinInv maps StrictPartitionSet to itself.-/
+/-- franklinInv maps StrictPartitionSet to itself.
+@isnad1 id=mem.1h2v.s5.8d8d54990336 from=translated src=- shape=743b4f94 vocab=e300b64c
+-/
 theorem franklinInv_mem_StrictPartitionSet {n : Nat} {S : Finset Nat}
     (hS : S ∈ StrictPartitionSet n) :
     franklinInv S ∈ StrictPartitionSet n := by
@@ -499,7 +505,9 @@ private theorem all_gt_sigma (S : Finset Nat) (hne : S.Nonempty) (hpos : ∀ x �
 end InvolutiveHelpers
 
 open Finset in
-/-- franklinInv is an involution.-/
+/-- franklinInv is an involution.
+@isnad1 id=eq.1h1v.s5.db5db1b41c43 from=translated src=- shape=61a564a9 vocab=313e2f87
+-/
 theorem franklinInv_involutive (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
     franklinInv (franklinInv S) = S := by
   by_cases hne : S.Nonempty
@@ -730,7 +738,9 @@ theorem franklinInv_involutive (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x) :
 -- Verified: involution on all strict partitions of weight ≤ 7
 
 open Finset in
-/-- Non-fixed elements have card differing by 1 (sign reversal).-/
+/-- Non-fixed elements have card differing by 1 (sign reversal).
+@isnad1 id=or.2h1v.s6.c9dd2eac5c9e from=translated src=- shape=69986c73 vocab=51a93d48
+-/
 theorem franklinInv_card (S : Finset Nat) (hpos : ∀ x ∈ S, 0 < x)
     (hne_inv : franklinInv S ≠ S) :
     (franklinInv S).card + 1 = S.card ∨ S.card + 1 = (franklinInv S).card := by

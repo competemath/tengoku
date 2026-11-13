@@ -69,7 +69,9 @@ vanishes, so `(jacobiInfiniteProduct Q)' (-Q) = ((1 + z⁻¹ Q))' (-Q) · P_mod 
 * `P_mod (-Q) = (q;q)_∞ ^ 3`  (uses partial-product limit + Ch02 multipliability).
 -/
 
-/-- Derivative of the vanishing factor `z ↦ 1 + z⁻¹ Q` at `z = -Q` is `-Q⁻¹`.-/
+/-- Derivative of the vanishing factor `z ↦ 1 + z⁻¹ Q` at `z = -Q` is `-Q⁻¹`.
+@isnad1 id=hasderiv.1h1v.s6.83a6daca4494 from=translated src=- shape=41e5c866 vocab=e704c812
+-/
 theorem hasDerivAt_oneAddInvMul_negQ {Q : ℂ} (hQ_ne : Q ≠ 0) :
     HasDerivAt (fun z : ℂ => 1 + z⁻¹ * Q) (-Q⁻¹) (-Q) := by
   have hnegQ_ne : (-Q : ℂ) ≠ 0 := neg_ne_zero.mpr hQ_ne
@@ -91,7 +93,9 @@ theorem hasDerivAt_oneAddInvMul_negQ {Q : ℂ} (hQ_ne : Q ≠ 0) :
 provided only that `R` is continuous at `x` (no derivative needed for `R`).
 
 Proof via the slope characterization of `HasDerivAt`:
-`(g(y)·R(y) - 0) / (y - x) = (g(y) - g(x))/(y-x) · R(y) → g'(x) · R(x)`.-/
+`(g(y)·R(y) - 0) / (y - x) = (g(y) - g(x))/(y-x) · R(y) → g'(x) · R(x)`.
+@isnad1 id=hasderiv.3h4v.s7.ed33972e8b58 from=translated src=- shape=69fdea9b vocab=2e9809dc
+-/
 theorem hasDerivAt_mul_of_left_vanish {g R : ℂ → ℂ} {g' x : ℂ}
     (hg : HasDerivAt g g' x) (hg0 : g x = 0) (hR : ContinuousAt R x) :
     HasDerivAt (fun z => g z * R z) (g' * R x) x := by

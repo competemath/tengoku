@@ -27,11 +27,20 @@ def partitionWeight : List Nat → Nat
   | [] => 0
   | n :: l => n + partitionWeight l
 
+/--
+@isnad1 id=eq.0h0v.s3.2149de86df34 from=translated src=- shape=c15d4c7a vocab=84b53204
+-/
 @[simp] theorem partitionWeight_nil : partitionWeight [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.4034d757586e from=translated src=- shape=fcb3fea8 vocab=02983570
+-/
 @[simp] theorem partitionWeight_cons (n : Nat) (l : List Nat) :
     partitionWeight (n :: l) = n + partitionWeight l := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.50ff9aeb44c5 from=translated src=- shape=22876443 vocab=94732b43
+-/
 theorem partitionWeight_append (l1 l2 : List Nat) :
     partitionWeight (l1 ++ l2) = partitionWeight l1 + partitionWeight l2 := by
   induction l1 with
@@ -46,17 +55,27 @@ theorem partitionWeight_append (l1 l2 : List Nat) :
 def triangular (n : Nat) : Nat :=
   n * (n + 1) / 2
 
+/--
+@isnad1 id=eq.0h0v.s3.2e264d2910ff from=translated src=- shape=3c26ae4f vocab=8c612d63
+-/
 @[simp] theorem triangular_zero : triangular 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.d05c9351d1a4 from=translated src=- shape=3c26ae4f vocab=8c612d63
+-/
 @[simp] theorem triangular_one : triangular 1 = 1 := by
   simp [triangular]
 
-/-- `triangular` recursion: T(n+1) = T(n) + (n+1).-/
+/-- `triangular` recursion: T(n+1) = T(n) + (n+1).
+@isnad1 id=eq.0h1v.s4.1d6286d51462 from=translated src=- shape=a0ed7b26 vocab=58e96b90
+-/
 theorem triangular_succ (n : Nat) :
     triangular (Nat.succ n) = triangular n + Nat.succ n := by
   simpa [triangular, Nat.succ_eq_add_one, Nat.mul_comm] using Nat.triangle_succ (Nat.succ n)
 
-/-- `triangular` doubled is n(n+1).-/
+/-- `triangular` doubled is n(n+1).
+@isnad1 id=eq.0h1v.s5.7e30b39f0953 from=translated src=- shape=e492614d vocab=6101bfc5
+-/
 theorem two_mul_triangular (n : Nat) :
     2 * triangular n = n * (n + 1) := by
   have hchoose : Nat.choose (n + 1) 2 = triangular n := by
@@ -71,12 +90,20 @@ theorem two_mul_triangular (n : Nat) :
 def pentagonalNumber (k : Nat) : Nat :=
   k * (3 * k - 1) / 2
 
+/--
+@isnad1 id=eq.0h0v.s3.299a1f3f79f0 from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 @[simp] theorem pentagonalNumber_zero : pentagonalNumber 0 = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.5d0a26ad8e3b from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 @[simp] theorem pentagonalNumber_one : pentagonalNumber 1 = 1 := by
   simp [pentagonalNumber]
 
-/-- pentagonalNumber recursion: P(k+1) = P(k) + (3k+1).-/
+/-- pentagonalNumber recursion: P(k+1) = P(k) + (3k+1).
+@isnad1 id=eq.0h1v.s5.64a806b39726 from=translated src=- shape=0450d5a3 vocab=f7b42bac
+-/
 theorem pentagonalNumber_succ (k : Nat) :
     pentagonalNumber (Nat.succ k) = pentagonalNumber k + (3 * k + 1) := by
   have hp : ∀ k : Nat, pentagonalNumber k = Nat.choose k 2 + k * k := by
@@ -101,19 +128,27 @@ theorem pentagonalNumber_succ (k : Nat) :
   rw [hchoose, Nat.succ_eq_add_one]
   ring
 
-/-- Concrete value of the second pentagonal number.-/
+/-- Concrete value of the second pentagonal number.
+@isnad1 id=eq.0h0v.s3.5804e7e6c87a from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 theorem pentagonalNumber_two : pentagonalNumber 2 = 5 := by
   norm_num [pentagonalNumber]
 
-/-- Concrete value of the third pentagonal number.-/
+/-- Concrete value of the third pentagonal number.
+@isnad1 id=eq.0h0v.s3.d9642e3a53c1 from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 theorem pentagonalNumber_three : pentagonalNumber 3 = 12 := by
   norm_num [pentagonalNumber]
 
-/-- Concrete value of the fourth pentagonal number.-/
+/-- Concrete value of the fourth pentagonal number.
+@isnad1 id=eq.0h0v.s3.cefa01a8047c from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 theorem pentagonalNumber_four : pentagonalNumber 4 = 22 := by
   norm_num [pentagonalNumber]
 
-/-- Concrete value of the fifth pentagonal number.-/
+/-- Concrete value of the fifth pentagonal number.
+@isnad1 id=eq.0h0v.s3.a36882d24431 from=translated src=- shape=3c26ae4f vocab=99f44db7
+-/
 theorem pentagonalNumber_five : pentagonalNumber 5 = 35 := by
   norm_num [pentagonalNumber]
 
@@ -133,16 +168,31 @@ def qPoch (a q : R) : Nat → R
   | 0 => 1
   | Nat.succ n => qPoch a q n * (1 - a * q ^ n)
 
+/--
+@isnad1 id=eq.0h2v.s5.7bec67c1a413 from=translated src=- shape=4e114734 vocab=837bc2b2
+-/
 @[simp] theorem qPochhammer_zero (q : R) : qPochhammer q 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.e986434bb6c4 from=translated src=- shape=e6b43771 vocab=2b823de8
+-/
 @[simp] theorem qPochhammer_succ (q : R) (n : Nat) :
     qPochhammer q (Nat.succ n) = qPochhammer q n * (1 - q ^ (Nat.succ n)) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.813ea7e96ead from=translated src=- shape=9c02e61a vocab=5d70eb9c
+-/
 @[simp] theorem qPoch_zero (a q : R) : qPoch a q 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.18bc8df2ff69 from=translated src=- shape=d2b755f8 vocab=dc7b58c6
+-/
 @[simp] theorem qPoch_succ (a q : R) (n : Nat) :
     qPoch a q (Nat.succ n) = qPoch a q n * (1 - a * q ^ n) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.3bce17cdddc1 from=translated src=- shape=e5128f7a vocab=0c944108
+-/
 @[simp] theorem qPoch_q_eq_qPochhammer (q : R) (n : Nat) : qPoch q q n = qPochhammer q n := by
   induction n with
   | zero =>
@@ -151,10 +201,16 @@ def qPoch (a q : R) : Nat → R
       rw [qPoch_succ, qPochhammer_succ, ih, pow_succ]
       ring
 
+/--
+@isnad1 id=eq.0h2v.s5.3cdc1b8a5c43 from=translated src=- shape=dbaa1b2b vocab=c1c0b7f8
+-/
 @[simp] theorem qPochhammer_one_succ (n : Nat) :
     qPochhammer (R := R) 1 (Nat.succ n) = 0 := by
   simp [qPochhammer]
 
+/--
+@isnad1 id=eq.0h2v.s5.d2e979d670f6 from=translated src=- shape=003ae1f3 vocab=5b3c95eb
+-/
 theorem qPochhammer_one (q : R) :
     qPochhammer q 1 = 1 - q := by
   simp [qPochhammer]
@@ -172,8 +228,14 @@ def natSum (f : Nat → R) : Nat → R
   | 0 => f 0
   | Nat.succ n => natSum f n + f (Nat.succ n)
 
+/--
+@isnad1 id=eq.0h2v.s4.ef8dafac4191 from=translated src=- shape=72df634b vocab=c0959463
+-/
 @[simp] theorem natSum_zero (f : Nat → R) : natSum f 0 = f 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a70207a873e8 from=translated src=- shape=3a1dc862 vocab=ca6825aa
+-/
 @[simp] theorem natSum_succ (f : Nat → R) (n : Nat) :
     natSum f (Nat.succ n) = natSum f n + f (Nat.succ n) := rfl
 
@@ -183,12 +245,21 @@ def bilateralSum (f : Int → R) : Nat → R
   | 0 => f 0
   | Nat.succ n => bilateralSum f n + (f (n + 1 : Int) + f (-(n + 1 : Int)))
 
+/--
+@isnad1 id=eq.0h2v.s4.bda11de97351 from=translated src=- shape=e7af9fd2 vocab=8aa9e8ac
+-/
 @[simp] theorem bilateralSum_zero (f : Int → R) : bilateralSum f 0 = f 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.14da643c27f9 from=translated src=- shape=b19d82bf vocab=556e68aa
+-/
 @[simp] theorem bilateralSum_succ (f : Int → R) (n : Nat) :
     bilateralSum f (Nat.succ n) =
       bilateralSum f n + (f (n + 1 : Int) + f (-(n + 1 : Int))) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.0c6ea0df05f2 from=translated src=- shape=2314f591 vocab=323cff0c
+-/
 theorem bilateralSum_congr {f g : Int → R} :
     ∀ n : Nat, (∀ j : Int, -(n : Int) ≤ j ∧ j ≤ (n : Int) → f j = g j) →
       bilateralSum f n = bilateralSum g n := by
@@ -208,6 +279,9 @@ theorem bilateralSum_congr {f g : Int → R} :
       have hneg : f (-(n + 1 : Int)) = g (-(n + 1 : Int)) := h (-(n + 1 : Int)) (by omega)
       rw [hprev, hpos, hneg]
 
+/--
+@isnad1 id=eq.0h3v.s4.8f1f5187471e from=translated src=- shape=b3673c03 vocab=1f4171bf
+-/
 theorem bilateralSum_neg (f : Int → R) (n : Nat) :
     bilateralSum (fun j => f (-j)) n = bilateralSum f n := by
   induction n with
@@ -227,9 +301,15 @@ def gaussianBinom (q : R) : Nat → Nat → R
   | Nat.succ n, Nat.succ k =>
       gaussianBinom q n (Nat.succ k) + q ^ (n - k) * gaussianBinom q n k
 
+/--
+@isnad1 id=eq.0h3v.s5.25d761c0ad80 from=translated src=- shape=0fc5a075 vocab=2f82dd73
+-/
 @[simp] theorem gaussianBinom_zero_right (q : R) (n : Nat) : gaussianBinom q n 0 = 1 := by
   cases n <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.d616a10b4e33 from=translated src=- shape=d9fbf27c vocab=ce4d630c
+-/
 @[simp] theorem gaussianBinom_zero_left_succ (q : R) (k : Nat) :
     gaussianBinom q 0 (Nat.succ k) = 0 := rfl
 

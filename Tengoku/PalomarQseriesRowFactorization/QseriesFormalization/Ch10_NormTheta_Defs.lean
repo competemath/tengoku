@@ -44,19 +44,61 @@ instance : Mul PhiInt :=
     ⟨x.a * y.a + x.b * y.b,
      x.a * y.b + x.b * y.a + x.b * y.b⟩⟩
 
+/--
+@isnad1 id=eq.0h0v.s3.ffdee22b88ef from=translated src=- shape=1ac31801 vocab=859fd8de
+-/
 @[simp] theorem zero_a : (0 : PhiInt).a = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.155af70fe1c3 from=translated src=- shape=1ac31801 vocab=c35951d0
+-/
 @[simp] theorem zero_b : (0 : PhiInt).b = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.45e97c80fb28 from=translated src=- shape=1ac31801 vocab=859fd8de
+-/
 @[simp] theorem one_a : (1 : PhiInt).a = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.3456da666f35 from=translated src=- shape=1ac31801 vocab=c35951d0
+-/
 @[simp] theorem one_b : (1 : PhiInt).b = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.3bc4806e5067 from=translated src=- shape=0438c7a3 vocab=70384cb8
+-/
 @[simp] theorem add_a (x y : PhiInt) : (x + y).a = x.a + y.a := rfl
+/--
+@isnad1 id=eq.0h2v.s4.3768b23e5d8d from=translated src=- shape=0438c7a3 vocab=8779439e
+-/
 @[simp] theorem add_b (x y : PhiInt) : (x + y).b = x.b + y.b := rfl
+/--
+@isnad1 id=eq.0h1v.s3.77f548f341b1 from=translated src=- shape=5a02da31 vocab=f7be6e95
+-/
 @[simp] theorem neg_a (x : PhiInt) : (-x).a = -x.a := rfl
+/--
+@isnad1 id=eq.0h1v.s3.1af64fc3db1a from=translated src=- shape=5a02da31 vocab=16a0c133
+-/
 @[simp] theorem neg_b (x : PhiInt) : (-x).b = -x.b := rfl
+/--
+@isnad1 id=eq.0h2v.s4.8c7dc6e150a3 from=translated src=- shape=0438c7a3 vocab=6a3d787d
+-/
 @[simp] theorem sub_a (x y : PhiInt) : (x - y).a = x.a - y.a := rfl
+/--
+@isnad1 id=eq.0h2v.s4.f624849855a6 from=translated src=- shape=0438c7a3 vocab=f13e3c9c
+-/
 @[simp] theorem sub_b (x y : PhiInt) : (x - y).b = x.b - y.b := rfl
+/--
+@isnad1 id=eq.0h2v.s5.045b47bab76d from=translated src=- shape=0e491b5a vocab=d9674138
+-/
 @[simp] theorem mul_a (x y : PhiInt) : (x * y).a = x.a * y.a + x.b * y.b := rfl
+/--
+@isnad1 id=eq.0h2v.s5.2efc6fd1e731 from=translated src=- shape=933b54ab vocab=d9674138
+-/
 @[simp] theorem mul_b (x y : PhiInt) : (x * y).b = x.a * y.b + x.b * y.a + x.b * y.b := rfl
+/--
+@isnad1 id=eq.0h2v.s3.4592393af686 from=translated src=- shape=a92ce29b vocab=8354eb6b
+-/
 @[simp] theorem mk_a (a b : Int) : (PhiInt.mk a b).a = a := rfl
+/--
+@isnad1 id=eq.0h2v.s3.c43e8b9e7d78 from=translated src=- shape=bed1e912 vocab=954a13b0
+-/
 @[simp] theorem mk_b (a b : Int) : (PhiInt.mk a b).b = b := rfl
 
 def norm (x : PhiInt) : Int := x.a ^ 2 + x.a * x.b - x.b ^ 2
@@ -108,9 +150,15 @@ instance (k r : Int) : Decidable (InDCone k r) :=
 def negOnePowInt (n : Int) : Int :=
   if n % 2 = 0 then 1 else -1
 
+/--
+@isnad1 id=eq.1h1v.s5.3d810e5473ef from=translated src=- shape=2157008b vocab=f432fe9c
+-/
 @[simp] theorem negOnePowInt_even {n : Int} (h : n % 2 = 0) :
     negOnePowInt n = 1 := by simp [negOnePowInt, h]
 
+/--
+@isnad1 id=eq.1h1v.s5.a0d29ec34e26 from=translated src=- shape=7f1c4854 vocab=4f7e2327
+-/
 @[simp] theorem negOnePowInt_odd {n : Int} (h : n % 2 ≠ 0) :
     negOnePowInt n = -1 := by simp [negOnePowInt, h]
 

@@ -21,13 +21,22 @@ namespace Ch10
 
 def sgnZ (n : Int) : Int := if 0 < n then 1 else -1
 
+/--
+@isnad1 id=eq.1h1v.s4.c9917c324a62 from=translated src=- shape=97c35add vocab=9d823021
+-/
 @[simp] theorem sgnZ_pos {n : Int} (h : 0 < n) : sgnZ n = 1 := by
   simp [sgnZ, h]
 
+/--
+@isnad1 id=eq.1h1v.s4.7c64fbba4057 from=translated src=- shape=539d01fc vocab=902257b7
+-/
 @[simp] theorem sgnZ_neg {n : Int} (h : n < 0) : sgnZ n = -1 := by
   have : ¬ (0 < n) := by omega
   simp [sgnZ, this]
 
+/--
+@isnad1 id=eq.2h1v.s5.a92912237d2e from=translated src=- shape=35383a47 vocab=1c56581c
+-/
 @[simp] theorem sgnZ_neg' {n : Int} (h : n ≤ 0) (h2 : n ≠ 0) : sgnZ n = -1 := by
   have : n < 0 := by omega
   exact sgnZ_neg this
@@ -41,6 +50,9 @@ def slabInd (k r : Int) : Int :=
 
 /-! ## The doubled cone-indicator identity -/
 
+/--
+@isnad1 id=eq.0h2v.s5.f54226e255aa from=translated src=- shape=6d99f70e vocab=bb46c3bf
+-/
 theorem two_mul_slabInd_eq_sign_diff (k r : Int) :
     2 * slabInd k r =
       sgnZ (BAff (pellCoord k r) c1) -

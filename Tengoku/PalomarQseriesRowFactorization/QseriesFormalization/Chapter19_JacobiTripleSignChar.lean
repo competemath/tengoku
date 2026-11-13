@@ -26,7 +26,9 @@ namespace QseriesFormalization
 namespace PartIV
 namespace Ch19
 
-/-- `n * (n + 1)` is divisible by 2.-/
+/-- `n * (n + 1)` is divisible by 2.
+@isnad1 id=dvd.0h1v.s4.ae62efd9ab39 from=translated src=- shape=bd967a0d vocab=e4d01d9c
+-/
 theorem two_dvd_mul_succ (n : ℕ) : 2 ∣ n * (n + 1) := by
   rcases Nat.even_or_odd n with he | ho
   · obtain ⟨m, hm⟩ := he
@@ -35,12 +37,16 @@ theorem two_dvd_mul_succ (n : ℕ) : 2 ∣ n * (n + 1) := by
     refine ⟨n * (m + 1), ?_⟩
     rw [hm]; ring
 
-/-- `2 * T_n = n * (n + 1)`.-/
+/-- `2 * T_n = n * (n + 1)`.
+@isnad1 id=eq.0h1v.s6.8056b931979f from=translated src=- shape=9aa85e9c vocab=b2811563
+-/
 theorem two_mul_triangular (n : ℕ) :
     2 * (n * (n + 1) / 2) = n * (n + 1) := by
   rw [Nat.mul_div_cancel' (two_dvd_mul_succ n)]
 
-/-- Triangular numbers strictly increase on ℕ.-/
+/-- Triangular numbers strictly increase on ℕ.
+@isnad1 id=strictmo.0h0v.s5.64fba1346641 from=translated src=- shape=eded6ce0 vocab=cf800477
+-/
 theorem triangular_strictMono :
     StrictMono (fun k : ℕ => k * (k + 1) / 2) := by
   intro a b hab
@@ -50,7 +56,9 @@ theorem triangular_strictMono :
   have hb := two_mul_triangular b
   omega
 
-/-- `k ≤ T_k = k*(k+1)/2`.-/
+/-- `k ≤ T_k = k*(k+1)/2`.
+@isnad1 id=le.0h1v.s5.b863a8f2b424 from=translated src=- shape=b5234730 vocab=196b2b5a
+-/
 theorem k_le_triangular (k : ℕ) :
     k ≤ k * (k + 1) / 2 := by
   rcases k with _ | k
@@ -78,7 +86,9 @@ to the `ℕ`-indexed formal-Taylor form needed for the cube argument. -/
 /-- The pentagonal index function `ℤ → ℕ`: `j ↦ j*(3j+1)/2` (as Nat).-/
 noncomputable def pentagonalIndex (j : ℤ) : ℕ := (j * (3 * j + 1) / 2).toNat
 
-/-- `j * (3 * j + 1)` is non-negative for any integer `j`.-/
+/-- `j * (3 * j + 1)` is non-negative for any integer `j`.
+@isnad1 id=le.0h1v.s5.04cd48c94018 from=translated src=- shape=26a0f200 vocab=f92a5456
+-/
 theorem int_j_three_j_plus_one_nonneg (j : ℤ) : 0 ≤ j * (3 * j + 1) := by
   by_cases hj : 0 ≤ j
   · have h1 : 0 ≤ 3 * j + 1 := by linarith
@@ -87,7 +97,9 @@ theorem int_j_three_j_plus_one_nonneg (j : ℤ) : 0 ≤ j * (3 * j + 1) := by
     have h1 : 3 * j + 1 ≤ -2 := by linarith
     nlinarith
 
-/-- `j * (3 * j + 1)` is divisible by 2.-/
+/-- `j * (3 * j + 1)` is divisible by 2.
+@isnad1 id=dvd.0h1v.s5.df98cd3b7924 from=translated src=- shape=26a0f200 vocab=a56bc09a
+-/
 theorem int_two_dvd_j_three_j_plus_one (j : ℤ) : (2 : ℤ) ∣ j * (3 * j + 1) := by
   rcases Int.even_or_odd j with ⟨m, hm⟩ | ⟨m, hm⟩
   · exact ⟨m * (3 * j + 1), by rw [hm]; ring⟩
@@ -98,7 +110,9 @@ theorem int_two_dvd_j_three_j_plus_one (j : ℤ) : (2 : ℤ) ∣ j * (3 * j + 1)
 
 Proof: from `pentagonalIndex j1 = pentagonalIndex j2`, multiply through
 to get `j1*(3*j1+1) = j2*(3*j2+1)`, factor as `(j1-j2)(3(j1+j2)+1) = 0`,
-and observe `3(j1+j2)+1 = 0` has no integer solution (omega).-/
+and observe `3(j1+j2)+1 = 0` has no integer solution (omega).
+@isnad1 id=injectiv.0h0v.s2.8640cddc0d61 from=translated src=- shape=54c8eceb vocab=3f3dbfa8
+-/
 theorem pentagonalIndex_injective : Function.Injective pentagonalIndex := by
   intro j1 j2 h
   unfold pentagonalIndex at h
@@ -131,14 +145,18 @@ theorem pentagonalIndex_injective : Function.Injective pentagonalIndex := by
   · linarith
   · omega
 
-/-- `(pentagonalIndex j : ℤ) = j * (3*j+1) / 2` (lifting `.toNat`).-/
+/-- `(pentagonalIndex j : ℤ) = j * (3*j+1) / 2` (lifting `.toNat`).
+@isnad1 id=eq.0h1v.s5.4f660e6211e4 from=translated src=- shape=d128f69b vocab=bfb7efac
+-/
 theorem pentagonalIndex_cast (j : ℤ) :
     (pentagonalIndex j : ℤ) = j * (3 * j + 1) / 2 := by
   unfold pentagonalIndex
   rw [Int.toNat_of_nonneg]
   exact Int.ediv_nonneg (int_j_three_j_plus_one_nonneg j) (by norm_num)
 
-/-- For `j < 0`, the pentagonal index has the "negative" form `(-j)*(3*(-j)-1)/2`.-/
+/-- For `j < 0`, the pentagonal index has the "negative" form `(-j)*(3*(-j)-1)/2`.
+@isnad1 id=eq.0h1v.s5.c80c0ebb3a69 from=translated src=- shape=6e61badb vocab=9088fbb2
+-/
 theorem pentagonalIndex_neg_form (j : ℤ) :
     (pentagonalIndex j : ℤ) = (-j) * (3 * (-j) - 1) / 2 := by
   rw [pentagonalIndex_cast]
@@ -146,7 +164,9 @@ theorem pentagonalIndex_neg_form (j : ℤ) :
   ring
 
 /-- For `j ≥ 0`, the pentagonal index equals `j.toNat * (3 * j.toNat + 1) / 2`
-as a Nat (the "+ pentagonal" form).-/
+as a Nat (the "+ pentagonal" form).
+@isnad1 id=eq.1h1v.s5.0fbf99d0939a from=translated src=- shape=6ed294ec vocab=76319b36
+-/
 theorem pentagonalIndex_of_nonneg (j : ℤ) (hj : 0 ≤ j) :
     pentagonalIndex j = j.toNat * (3 * j.toNat + 1) / 2 := by
   unfold pentagonalIndex
@@ -156,7 +176,9 @@ theorem pentagonalIndex_of_nonneg (j : ℤ) (hj : 0 ≤ j) :
   rfl
 
 /-- For `j < 0`, the pentagonal index equals `(-j).toNat * (3 * (-j).toNat - 1) / 2`
-as a Nat (the "- pentagonal" form).-/
+as a Nat (the "- pentagonal" form).
+@isnad1 id=eq.1h1v.s6.c4b40444298e from=translated src=- shape=42482ada vocab=23d38602
+-/
 theorem pentagonalIndex_of_neg (j : ℤ) (hj : j < 0) :
     pentagonalIndex j = (-j).toNat * (3 * (-j).toNat - 1) / 2 := by
   unfold pentagonalIndex
@@ -175,7 +197,9 @@ theorem pentagonalIndex_of_neg (j : ℤ) (hj : j < 0) :
   rw [h3m1]
   rfl
 
-/-- "Plus pentagonal" `k(3k+1)/2` is strictly increasing in `k : ℕ`.-/
+/-- "Plus pentagonal" `k(3k+1)/2` is strictly increasing in `k : ℕ`.
+@isnad1 id=strictmo.0h0v.s5.6716db90fa17 from=translated src=- shape=3a0db4e1 vocab=cf800477
+-/
 theorem plus_pentagonal_strict_mono :
     StrictMono (fun k : ℕ => k * (3 * k + 1) / 2) := by
   intro a b hab
@@ -237,7 +261,9 @@ private theorem minus_pentagonal_strict_mono_pos {a b : ℕ}
   have h_eq_b : 2 * (b * (3 * b - 1) / 2) = b * (3 * b - 1) := Nat.mul_div_cancel' hdb
   omega
 
-/-- "Minus pentagonal" `k(3k-1)/2` is strictly increasing in `k : ℕ`.-/
+/-- "Minus pentagonal" `k(3k-1)/2` is strictly increasing in `k : ℕ`.
+@isnad1 id=strictmo.0h0v.s5.48dda2ff2fb5 from=translated src=- shape=3a0db4e1 vocab=57c2fa6a
+-/
 theorem minus_pentagonal_strict_mono :
     StrictMono (fun k : ℕ => k * (3 * k - 1) / 2) := by
   intro a b hab
@@ -261,7 +287,9 @@ The algebraic fact: if `k(3k-1)/2 = j(3j+1)/2` with `j > 0`, then
 positive `j`) or `3(k-j) = 1` (no integer solution).
 
 Used to show `pentagonalSign`'s first `find?` branch returns `none` when
-the index is a strict "+ pentagonal" number.-/
+the index is a strict "+ pentagonal" number.
+@isnad1 id=ne.1h2v.s6.e4332e7cd3df from=translated src=- shape=eeb8ea69 vocab=10106a83
+-/
 theorem no_minus_pentagonal_eq_plus_pentagonal (j : ℕ) (hj : 0 < j) :
     ∀ k : ℕ, k * (3 * k - 1) / 2 ≠ j * (3 * j + 1) / 2 := by
   intro k heq
@@ -318,21 +346,27 @@ theorem no_minus_pentagonal_eq_plus_pentagonal (j : ℕ) (hj : 0 < j) :
       omega
     · omega
 
-/-- For `j ≥ 0`, `j.toNat = j.natAbs`.-/
+/-- For `j ≥ 0`, `j.toNat = j.natAbs`.
+@isnad1 id=eq.1h1v.s4.8d0e3e8aad66 from=translated src=- shape=e8ad9c19 vocab=962c1897
+-/
 theorem toNat_eq_natAbs_of_nonneg (j : ℤ) (hj : 0 ≤ j) :
     j.toNat = j.natAbs := by
   have h_eq : (j.toNat : ℤ) = (j.natAbs : ℤ) := by
     rw [Int.toNat_of_nonneg hj, Int.natAbs_of_nonneg hj]
   exact_mod_cast h_eq
 
-/-- For `j ≤ 0`, `(-j).toNat = j.natAbs`.-/
+/-- For `j ≤ 0`, `(-j).toNat = j.natAbs`.
+@isnad1 id=eq.1h1v.s4.add1810a34e8 from=translated src=- shape=3eb7d1b2 vocab=af81db74
+-/
 theorem neg_toNat_eq_natAbs_of_nonpos (j : ℤ) (hj : j ≤ 0) :
     (-j).toNat = j.natAbs := by
   have h_nn : 0 ≤ -j := by linarith
   rw [Int.natAbs_neg j |>.symm]
   exact toNat_eq_natAbs_of_nonneg (-j) h_nn
 
-/-- `pentagonalIndex (-k) = k * (3*k - 1) / 2` for `k : ℕ`.-/
+/-- `pentagonalIndex (-k) = k * (3*k - 1) / 2` for `k : ℕ`.
+@isnad1 id=eq.0h1v.s5.75e11a992c02 from=translated src=- shape=e2457aa0 vocab=2e0ef4f2
+-/
 theorem pentagonalIndex_neg_natCast (k : ℕ) :
     pentagonalIndex (-(k : ℤ)) = k * (3 * k - 1) / 2 := by
   rcases Nat.eq_zero_or_pos k with hk | hk
@@ -344,7 +378,9 @@ theorem pentagonalIndex_neg_natCast (k : ℕ) :
     have : -(-(k : ℤ)) = k := by ring
     rw [this, Int.toNat_natCast]
 
-/-- `pentagonalIndex (k : ℤ) = k * (3*k + 1) / 2` for `k : ℕ`.-/
+/-- `pentagonalIndex (k : ℤ) = k * (3*k + 1) / 2` for `k : ℕ`.
+@isnad1 id=eq.0h1v.s5.6c67d400f845 from=translated src=- shape=3cef1a47 vocab=7a3442bd
+-/
 theorem pentagonalIndex_natCast (k : ℕ) :
     pentagonalIndex (k : ℤ) = k * (3 * k + 1) / 2 := by
   rw [pentagonalIndex_of_nonneg _ (Int.natCast_nonneg k)]

@@ -34,6 +34,9 @@ variable {R : Type*} [Field R]
 def eulerProductTrunc (q : R) (n : Nat) : R :=
   qPochhammer q n
 
+/--
+@isnad1 id=eq.0h3v.s6.22f5f99f17d9 from=translated src=- shape=e6b43771 vocab=739f19f0
+-/
 @[simp] theorem eulerProductTrunc_succ (q : R) (n : Nat) :
     eulerProductTrunc q (Nat.succ n) =
       eulerProductTrunc q n * (1 - q ^ (Nat.succ n)) := by
@@ -87,7 +90,9 @@ noncomputable def eulerPentagonalJacobiProductFactor (q : ℂ) (n : ℕ) : ℂ :
 noncomputable def eulerPentagonalJacobiSeries (q : ℂ) : ℂ :=
   jacobiInfiniteSeries q (-1)
 
-/-- The `z = -1` Jacobi triple product specialization used in Chapter 4.-/
+/-- The `z = -1` Jacobi triple product specialization used in Chapter 4.
+@isnad1 id=eq.1h1v.s4.d51bc95c781a from=translated src=- shape=1e000bbb vocab=41e5e8d8
+-/
 theorem eulerPentagonalProduct_eq_jacobiSeries (q : ℂ) (hq : ‖q‖ < 1) :
     eulerPentagonalProduct q = eulerPentagonalJacobiSeries q := by
   exact jacobiTripleProduct q (-1) hq (by norm_num)
@@ -116,6 +121,9 @@ Each factor `(q^k;q^5)_∞` = `∏'_n (1 - q^(k + 5n))` for `n ≥ 0`. -/
 def rrMod5Factor (q : ℂ) (k : ℕ) (n : ℕ) : ℂ :=
   1 - q ^ (k + 5 * n)
 
+/--
+@isnad1 id=eq.0h3v.s5.b83b3f92a554 from=translated src=- shape=3cc1bba9 vocab=201ec7b4
+-/
 @[simp] theorem rrMod5Factor_def (q : ℂ) (k n : ℕ) :
     rrMod5Factor q k n = 1 - q ^ (k + 5 * n) := rfl
 
@@ -127,7 +135,9 @@ private theorem summable_norm_rrMod5_tail (q : ℂ) (hq : ‖q‖ < 1) (k : ℕ)
     exact pow_lt_one₀ (norm_nonneg q) hq (by norm_num)
   exact Ch02.summable_norm_mul_geometric_complex (-(q ^ k)) (q ^ 5) hq5
 
-/-- The k-th mod-5 residue factor family is multipliable for ‖q‖ < 1.-/
+/-- The k-th mod-5 residue factor family is multipliable for ‖q‖ < 1.
+@isnad1 id=multipli.1h2v.s5.fbd27b39f890 from=translated src=- shape=b51d030d vocab=cb1c78db
+-/
 theorem multipliable_rrMod5Factor (q : ℂ) (hq : ‖q‖ < 1) (k : ℕ) :
     Multipliable fun n : ℕ => rrMod5Factor q k n := by
   have h := multipliable_one_add_of_summable (summable_norm_rrMod5_tail q hq k)
@@ -137,7 +147,9 @@ theorem multipliable_rrMod5Factor (q : ℂ) (hq : ‖q‖ < 1) (k : ℕ) :
     rw [pow_add, pow_mul]]
   ring
 
-/-- Each rrMod5Factor is nonzero for `‖q‖ < 1` and `k ≥ 1`.-/
+/-- Each rrMod5Factor is nonzero for `‖q‖ < 1` and `k ≥ 1`.
+@isnad1 id=ne.2h3v.s5.8458301276a6 from=translated src=- shape=bd8a2856 vocab=ac92cf45
+-/
 theorem rrMod5Factor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (k : ℕ) (hk : 1 ≤ k) (n : ℕ) :
     rrMod5Factor q k n ≠ 0 := by
   intro hzero
@@ -158,7 +170,9 @@ S₁(q) := ∑'_{j : ℤ} (-1)^j · q^(j(5j+1)/2) — JTP series at Q := Y^5, z 
 S₂(q) := ∑'_{j : ℤ} (-1)^j · q^(j(5j+3)/2) — JTP series at Q := Y^5, z := -Y^3 (Y² = q).
 -/
 
-/-- The infinite product of the k-th mod-5 residue factor is nonzero for `‖q‖ < 1`, `k ≥ 1`.-/
+/-- The infinite product of the k-th mod-5 residue factor is nonzero for `‖q‖ < 1`, `k ≥ 1`.
+@isnad1 id=ne.2h2v.s5.176f13c680d3 from=translated src=- shape=ebc8e80c vocab=44717e89
+-/
 theorem tprod_rrMod5Factor_ne_zero (q : ℂ) (hq : ‖q‖ < 1) (k : ℕ) (hk : 1 ≤ k) :
     (∏' n : ℕ, rrMod5Factor q k n) ≠ 0 := by
   have h_eq_form : (∏' n : ℕ, rrMod5Factor q k n) =
@@ -231,13 +245,17 @@ private theorem summable_norm_eulerPentagonalProduct_tail (q : ℂ) (hq : ‖q�
     rw [pow_succ']
     ring]
 
-/-- The Nat-indexed Euler product is multipliable for `‖q‖ < 1`.-/
+/-- The Nat-indexed Euler product is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h1v.s5.aa3c51105a2a from=translated src=- shape=16505d70 vocab=d99b1674
+-/
 theorem multipliable_eulerPentagonalProductFactor (q : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => eulerPentagonalProductFactor q n := by
   have h := multipliable_one_add_of_summable (summable_norm_eulerPentagonalProduct_tail q hq)
   simpa [eulerPentagonalProductFactor, sub_eq_add_neg] using h
 
-/-- Finite partial products of the Nat-indexed Euler product are q-Pochhammer symbols.-/
+/-- Finite partial products of the Nat-indexed Euler product are q-Pochhammer symbols.
+@isnad1 id=eq.0h2v.s4.3c7b98f6b4cb from=translated src=- shape=42b0b6bd vocab=6fb5130f
+-/
 theorem eulerPentagonalProductFactor_partial_eq_qPochhammer (q : ℂ) (N : ℕ) :
     (∏ n ∈ Finset.range N, eulerPentagonalProductFactor q n) = qPochhammer q N := by
   induction N with
@@ -247,7 +265,9 @@ theorem eulerPentagonalProductFactor_partial_eq_qPochhammer (q : ℂ) (N : ℕ) 
       rw [Finset.prod_range_succ, ih, qPochhammer_succ]
       simp [eulerPentagonalProductFactor]
 
-/-- The finite q-Pochhammer products tend to Euler's infinite product.-/
+/-- The finite q-Pochhammer products tend to Euler's infinite product.
+@isnad1 id=tendsto.1h1v.s5.01509fa0dc60 from=translated src=- shape=fd26aeda vocab=6459c455
+-/
 theorem tendsto_eulerPentagonalProductTrunc (q : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => qPochhammer q N) atTop
       (𝓝 (eulerPentagonalInfiniteProduct q)) := by
@@ -255,7 +275,9 @@ theorem tendsto_eulerPentagonalProductTrunc (q : ℂ) (hq : ‖q‖ < 1) :
   simpa [eulerPentagonalInfiniteProduct,
     eulerPentagonalProductFactor_partial_eq_qPochhammer] using h
 
-/-- The partial qPochhammer at `5N` converges to `(q;q)_∞`.-/
+/-- The partial qPochhammer at `5N` converges to `(q;q)_∞`.
+@isnad1 id=tendsto.1h1v.s5.8b20757d2040 from=translated src=- shape=08db7156 vocab=9e2ad7b4
+-/
 theorem tendsto_qPochhammer_5N (q : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => qPochhammer q (5 * N)) atTop
       (𝓝 (eulerPentagonalInfiniteProduct q)) := by
@@ -266,7 +288,9 @@ theorem tendsto_qPochhammer_5N (q : ℂ) (hq : ‖q‖ < 1) :
     omega
   exact h_main.comp h_5N
 
-/-- Euler's infinite product equals the mod-5 regrouped product.-/
+/-- Euler's infinite product equals the mod-5 regrouped product.
+@isnad1 id=eq.1h1v.s7.e52800872881 from=translated src=- shape=44374e7b vocab=82508549
+-/
 theorem eulerPentagonalInfiniteProduct_eq_mod5_regroup (q : ℂ) (hq : ‖q‖ < 1) :
     eulerPentagonalInfiniteProduct q =
       (∏' n : ℕ, rrMod5Factor q 1 n) * (∏' n : ℕ, rrMod5Factor q 2 n) *
@@ -322,7 +346,9 @@ theorem eulerPentagonalInfiniteProduct_eq_mod5_regroup (q : ℂ) (hq : ‖q‖ <
     exact (h_partial_eq N).symm
   exact tendsto_nhds_unique hLHS_tendsto hRHS_alt
 
-/-- `(q;q)_∞ ≠ 0` for `‖q‖ < 1` (via the mod-5 regrouping, each factor nonzero).-/
+/-- `(q;q)_∞ ≠ 0` for `‖q‖ < 1` (via the mod-5 regrouping, each factor nonzero).
+@isnad1 id=ne.1h1v.s4.9a20f1f536fc from=translated src=- shape=ccb3be71 vocab=74850de2
+-/
 theorem eulerPentagonalInfiniteProduct_ne_zero (q : ℂ) (hq : ‖q‖ < 1) :
     eulerPentagonalInfiniteProduct q ≠ 0 := by
   rw [eulerPentagonalInfiniteProduct_eq_mod5_regroup q hq]
@@ -345,7 +371,9 @@ def pentagonalIndex (j : Int) : Nat :=
 noncomputable def eulerPentagonalSeriesTrunc (q : R) (N : Nat) : R :=
   bilateralSum (fun j : Int => (-1 : R) ^ j.toNat * q ^ pentagonalIndex j) N
 
-/-- The first nontrivial Euler product truncation is `1 - q`.-/
+/-- The first nontrivial Euler product truncation is `1 - q`.
+@isnad1 id=eq.0h2v.s5.5244a620fa0f from=translated src=- shape=003ae1f3 vocab=a1cc9b04
+-/
 theorem eulerPentagonalProductTrunc_one (q : R) :
     eulerPentagonalProductTrunc q 1 = 1 - q := by
   simp [eulerPentagonalProductTrunc, qPochhammer]
@@ -397,7 +425,9 @@ noncomputable def quintupleProductFactor (q z : ℂ) (n : ℕ) : ℂ :=
 noncomputable def quintupleProductLHS (q z : ℂ) : ℂ :=
   ∏' n : ℕ, quintupleProductFactor q z n
 
-/-- Finite products of the Nat-indexed quintuple factors match the recursive truncation.-/
+/-- Finite products of the Nat-indexed quintuple factors match the recursive truncation.
+@isnad1 id=eq.0h3v.s4.70db91b60678 from=translated src=- shape=f0558f03 vocab=919a6300
+-/
 theorem quintupleProductFactor_partial_eq_trunc (q z : ℂ) (N : ℕ) :
     (∏ n ∈ Finset.range N, quintupleProductFactor q z n) =
       quintupleProductLHSTrunc q z N := by
@@ -478,7 +508,9 @@ private theorem summable_norm_quintupleProduct_tail4 (q z : ℂ) (hq : ‖q‖ <
     rw [pow_add]
     ring]
 
-/-- The quintuple product side is multipliable for `‖q‖ < 1`.-/
+/-- The quintuple product side is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h2v.s5.1cf0761d2f48 from=translated src=- shape=b3a194db vocab=953ac638
+-/
 theorem multipliable_quintupleProductFactor (q z : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => quintupleProductFactor q z n := by
   have h0 : Multipliable fun n : ℕ => 1 - q ^ (2 * n + 2) := by
@@ -499,7 +531,9 @@ theorem multipliable_quintupleProductFactor (q z : ℂ) (hq : ‖q‖ < 1) :
   exact ((((h0.mul h1).mul h2).mul h3).mul h4).congr fun n => by
     simp [quintupleProductFactor, mul_assoc]
 
-/-- The recursive quintuple product truncations tend to the infinite product side.-/
+/-- The recursive quintuple product truncations tend to the infinite product side.
+@isnad1 id=tendsto.1h2v.s5.f1f39975ce9c from=translated src=- shape=68d7b6b4 vocab=ae25c258
+-/
 theorem tendsto_quintupleProductLHSTrunc (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => quintupleProductLHSTrunc q z N) atTop
       (𝓝 (quintupleProductLHS q z)) := by
@@ -543,7 +577,9 @@ def theorem44DoubleSumSixExponent (m n : Int) : Int :=
 def theorem44CoeffSixExponent (k l : Int) : Int :=
   k * (k + 1) + 2 * l * (l - 1)
 
-/-- The coefficient-side sixfold exponent is always nonnegative.-/
+/-- The coefficient-side sixfold exponent is always nonnegative.
+@isnad1 id=le.0h2v.s3.65f00345abe4 from=translated src=- shape=a120b2a8 vocab=230ebc79
+-/
 theorem theorem44CoeffSixExponent_nonneg (k l : Int) :
     0 ≤ theorem44CoeffSixExponent k l := by
   have hk : 0 ≤ k * (k + 1) := by
@@ -557,7 +593,9 @@ theorem theorem44CoeffSixExponent_nonneg (k l : Int) :
   unfold theorem44CoeffSixExponent
   nlinarith
 
-/-- The coefficient-side sixfold exponent is always even.-/
+/-- The coefficient-side sixfold exponent is always even.
+@isnad1 id=dvd.0h2v.s3.bf4770ea63e9 from=translated src=- shape=a120b2a8 vocab=42a1a6a5
+-/
 theorem two_dvd_theorem44CoeffSixExponent (k l : Int) :
     (2 : Int) ∣ theorem44CoeffSixExponent k l := by
   rcases int_two_dvd_mul_succ k with ⟨a, ha⟩
@@ -568,7 +606,9 @@ theorem two_dvd_theorem44CoeffSixExponent (k l : Int) :
 
 /--
 Under Chan's residue condition `3 ∣ l+k`, the coefficient-side sixfold
-exponent is divisible by `6`, so it represents an honest integer exponent.-/
+exponent is divisible by `6`, so it represents an honest integer exponent.
+@isnad1 id=dvd.1h2v.s5.9364ac17c543 from=translated src=- shape=210aa0fa vocab=0dd78aa1
+-/
 theorem six_dvd_theorem44CoeffSixExponent_of_residue
     (k l : Int) (h : (3 : Int) ∣ l + k) :
     (6 : Int) ∣ theorem44CoeffSixExponent k l := by
@@ -590,7 +630,9 @@ theorem six_dvd_theorem44CoeffSixExponent_of_residue
 def theorem44CoeffExponentIndex (k l : Int) : Nat :=
   Int.toNat (theorem44CoeffSixExponent k l / 6)
 
-/-- The natural coefficient exponent recovers the sixfold exponent under the residue condition.-/
+/-- The natural coefficient exponent recovers the sixfold exponent under the residue condition.
+@isnad1 id=eq.1h2v.s5.b457bf1caffc from=translated src=- shape=1644dc79 vocab=2faf7d7c
+-/
 theorem theorem44CoeffExponentIndex_spec
     (k l : Int) (h : (3 : Int) ∣ l + k) :
     6 * ((theorem44CoeffExponentIndex k l : Nat) : Int) =
@@ -607,64 +649,84 @@ theorem theorem44CoeffExponentIndex_spec
       (theorem44CoeffSixExponent k l / 6) * 6 by ring]
   exact Int.ediv_mul_cancel hdiv
 
-/-- Substituting `m = 2n - k` makes the product term contribute to `z^k`.-/
+/-- Substituting `m = 2n - k` makes the product term contribute to `z^k`.
+@isnad1 id=eq.0h2v.s4.77a480462fd4 from=translated src=- shape=7c02320f vocab=6ab9998a
+-/
 theorem theorem44DoubleSumZIndex_reindex (k n : Int) :
     theorem44DoubleSumZIndex (2 * n - k) n = k := by
   unfold theorem44DoubleSumZIndex
   ring
 
-/-- Under `m = 2n-k`, the sign exponent is `l = 3n-k`.-/
+/-- Under `m = 2n-k`, the sign exponent is `l = 3n-k`.
+@isnad1 id=eq.0h2v.s5.b65ce6b2bf23 from=translated src=- shape=427d96f7 vocab=44653a75
+-/
 theorem theorem44DoubleSumSignIndex_reindex (k n : Int) :
     theorem44DoubleSumSignIndex (2 * n - k) n = 3 * n - k := by
   unfold theorem44DoubleSumSignIndex
   ring
 
-/-- The reindexed coefficient variable `l = 3n-k` satisfies Chan's residue constraint.-/
+/-- The reindexed coefficient variable `l = 3n-k` satisfies Chan's residue constraint.
+@isnad1 id=dvd.0h2v.s5.eb92577c2ac1 from=translated src=- shape=902509b7 vocab=ec041f02
+-/
 theorem theorem44CoeffResidueCondition_reindex (k n : Int) :
     (3 : Int) ∣ (3 * n - k) + k := by
   use n
   ring
 
-/-- Coefficient sixfold exponent in the `k = 3r`, `l = 3j` residue class.-/
+/-- Coefficient sixfold exponent in the `k = 3r`, `l = 3j` residue class.
+@isnad1 id=eq.0h2v.s7.23366862519a from=translated src=- shape=92497bdf vocab=b17e2e54
+-/
 theorem theorem44CoeffSixExponent_residue_zero (r j : Int) :
     theorem44CoeffSixExponent (3 * r) (3 * j) =
       3 * r * (3 * r + 1) + 6 * j * (3 * j - 1) := by
   unfold theorem44CoeffSixExponent
   ring
 
-/-- Coefficient sixfold exponent in the `k = -3r-1`, `l = 3j+1` residue class.-/
+/-- Coefficient sixfold exponent in the `k = -3r-1`, `l = 3j+1` residue class.
+@isnad1 id=eq.0h2v.s7.b3eeb8fdc940 from=translated src=- shape=383735d1 vocab=1c1c64c6
+-/
 theorem theorem44CoeffSixExponent_residue_one (r j : Int) :
     theorem44CoeffSixExponent (-(3 * r) - 1) (3 * j + 1) =
       3 * r * (3 * r + 1) + 6 * j * (3 * j + 1) := by
   unfold theorem44CoeffSixExponent
   ring
 
-/-- Coefficient sixfold exponent in the `k = 3r-2`, `l = 3j+2` residue class.-/
+/-- Coefficient sixfold exponent in the `k = 3r-2`, `l = 3j+2` residue class.
+@isnad1 id=eq.0h2v.s7.74a49090f7c9 from=translated src=- shape=0b270f76 vocab=b17e2e54
+-/
 theorem theorem44CoeffSixExponent_residue_two (r j : Int) :
     theorem44CoeffSixExponent (3 * r - 2) (3 * j + 2) =
       (3 * r - 2) * (3 * r - 1) + 2 * (3 * j + 2) * (3 * j + 1) := by
   unfold theorem44CoeffSixExponent
   ring
 
-/-- The `k = 3r`, `l = 3j` class satisfies the coefficient residue constraint.-/
+/-- The `k = 3r`, `l = 3j` class satisfies the coefficient residue constraint.
+@isnad1 id=dvd.0h2v.s5.e126d6e0ef26 from=translated src=- shape=62d66fee vocab=a56bc09a
+-/
 theorem theorem44CoeffResidueCondition_zero (r j : Int) :
     (3 : Int) ∣ (3 * j) + (3 * r) := by
   use j + r
   ring
 
-/-- The `k = -3r-1`, `l = 3j+1` class satisfies the coefficient residue constraint.-/
+/-- The `k = -3r-1`, `l = 3j+1` class satisfies the coefficient residue constraint.
+@isnad1 id=dvd.0h2v.s6.7845489ed68e from=translated src=- shape=bd458c90 vocab=a5585f6b
+-/
 theorem theorem44CoeffResidueCondition_one (r j : Int) :
     (3 : Int) ∣ (3 * j + 1) + (-(3 * r) - 1) := by
   use j - r
   ring
 
-/-- The `k = 3r-2`, `l = 3j+2` class satisfies the coefficient residue constraint.-/
+/-- The `k = 3r-2`, `l = 3j+2` class satisfies the coefficient residue constraint.
+@isnad1 id=dvd.0h2v.s6.4bb098ba009d from=translated src=- shape=376f8cba vocab=ec041f02
+-/
 theorem theorem44CoeffResidueCondition_two (r j : Int) :
     (3 : Int) ∣ (3 * j + 2) + (3 * r - 2) := by
   use j + r
   ring
 
-/-- For `k = 3r`, Chan's residue constraint forces `l = 3j`.-/
+/-- For `k = 3r`, Chan's residue constraint forces `l = 3j`.
+@isnad1 id=iff.0h2v.s5.7909f4f49e2e from=translated src=- shape=bc13ba13 vocab=a56bc09a
+-/
 theorem theorem44CoeffResidueCondition_zero_iff (r l : Int) :
     ((3 : Int) ∣ l + 3 * r) ↔ ∃ j : Int, l = 3 * j := by
   constructor
@@ -676,7 +738,9 @@ theorem theorem44CoeffResidueCondition_zero_iff (r l : Int) :
     use j + r
     ring
 
-/-- For `k = -3r-1`, Chan's residue constraint forces `l = 3j+1`.-/
+/-- For `k = -3r-1`, Chan's residue constraint forces `l = 3j+1`.
+@isnad1 id=iff.0h2v.s6.dfcae8eccfc8 from=translated src=- shape=28fba4e3 vocab=a5585f6b
+-/
 theorem theorem44CoeffResidueCondition_one_iff (r l : Int) :
     ((3 : Int) ∣ l + (-(3 * r) - 1)) ↔ ∃ j : Int, l = 3 * j + 1 := by
   constructor
@@ -688,7 +752,9 @@ theorem theorem44CoeffResidueCondition_one_iff (r l : Int) :
     use j - r
     ring
 
-/-- For `k = 3r-2`, Chan's residue constraint forces `l = 3j+2`.-/
+/-- For `k = 3r-2`, Chan's residue constraint forces `l = 3j+2`.
+@isnad1 id=iff.0h2v.s6.1553de848248 from=translated src=- shape=996d4566 vocab=ec041f02
+-/
 theorem theorem44CoeffResidueCondition_two_iff (r l : Int) :
     ((3 : Int) ∣ l + (3 * r - 2)) ↔ ∃ j : Int, l = 3 * j + 2 := by
   constructor
@@ -700,7 +766,9 @@ theorem theorem44CoeffResidueCondition_two_iff (r l : Int) :
     use j + r
     ring
 
-/-- Natural coefficient exponent in the `k = 3r`, `l = 3j` residue class.-/
+/-- Natural coefficient exponent in the `k = 3r`, `l = 3j` residue class.
+@isnad1 id=eq.0h2v.s7.10e7f75da85b from=translated src=- shape=3b9c2e46 vocab=21a79fd2
+-/
 theorem theorem44CoeffExponentIndex_residue_zero_spec (r j : Int) :
     6 * ((theorem44CoeffExponentIndex (3 * r) (3 * j) : Nat) : Int) =
       3 * r * (3 * r + 1) + 6 * j * (3 * j - 1) := by
@@ -708,7 +776,9 @@ theorem theorem44CoeffExponentIndex_residue_zero_spec (r j : Int) :
     (theorem44CoeffResidueCondition_zero r j)]
   exact theorem44CoeffSixExponent_residue_zero r j
 
-/-- Natural coefficient exponent in the `k = -3r-1`, `l = 3j+1` residue class.-/
+/-- Natural coefficient exponent in the `k = -3r-1`, `l = 3j+1` residue class.
+@isnad1 id=eq.0h2v.s7.18b1e548f591 from=translated src=- shape=0c69f6ea vocab=3ff2dca1
+-/
 theorem theorem44CoeffExponentIndex_residue_one_spec (r j : Int) :
     6 * ((theorem44CoeffExponentIndex (-(3 * r) - 1) (3 * j + 1) : Nat) : Int) =
       3 * r * (3 * r + 1) + 6 * j * (3 * j + 1) := by
@@ -716,7 +786,9 @@ theorem theorem44CoeffExponentIndex_residue_one_spec (r j : Int) :
     (theorem44CoeffResidueCondition_one r j)]
   exact theorem44CoeffSixExponent_residue_one r j
 
-/-- Natural coefficient exponent in the `k = 3r-2`, `l = 3j+2` residue class.-/
+/-- Natural coefficient exponent in the `k = 3r-2`, `l = 3j+2` residue class.
+@isnad1 id=eq.0h2v.s7.a3fbd90f5196 from=translated src=- shape=059250db vocab=21a79fd2
+-/
 theorem theorem44CoeffExponentIndex_residue_two_spec (r j : Int) :
     6 * ((theorem44CoeffExponentIndex (3 * r - 2) (3 * j + 2) : Nat) : Int) =
       (3 * r - 2) * (3 * r - 1) + 2 * (3 * j + 2) * (3 * j + 1) := by
@@ -733,7 +805,9 @@ private theorem int_two_dvd_mul_three_add_one (r : Int) :
     _ = 2 * a + 2 * r ^ 2 := by rw [show r * (r + 1) = 2 * a by simpa [mul_comm] using ha]
     _ = 2 * (a + r ^ 2) := by ring
 
-/-- The `k = 3r`, `l = 3j` natural exponent in Chan's divided form.-/
+/-- The `k = 3r`, `l = 3j` natural exponent in Chan's divided form.
+@isnad1 id=eq.0h2v.s6.79e14806676f from=translated src=- shape=34a04ed6 vocab=44303556
+-/
 theorem theorem44CoeffExponentIndex_residue_zero_eq (r j : Int) :
     ((theorem44CoeffExponentIndex (3 * r) (3 * j) : Nat) : Int) =
       r * (3 * r + 1) / 2 + j * (3 * j - 1) := by
@@ -754,7 +828,9 @@ theorem theorem44CoeffExponentIndex_residue_zero_eq (r j : Int) :
       rw [hhalf]
       ring
 
-/-- The `k = -3r-1`, `l = 3j+1` natural exponent in Chan's divided form.-/
+/-- The `k = -3r-1`, `l = 3j+1` natural exponent in Chan's divided form.
+@isnad1 id=eq.0h2v.s7.5f5bd6b7f075 from=translated src=- shape=d6e89583 vocab=c757109f
+-/
 theorem theorem44CoeffExponentIndex_residue_one_eq (r j : Int) :
     ((theorem44CoeffExponentIndex (-(3 * r) - 1) (3 * j + 1) : Nat) : Int) =
       r * (3 * r + 1) / 2 + j * (3 * j + 1) := by
@@ -896,7 +972,9 @@ private theorem summable_norm_theorem44Product_tail4 (q z : ℂ) (hq : ‖q‖ <
     rw [pow_add]
     ring]
 
-/-- Chan Theorem 4.4's product side is multipliable for `‖q‖ < 1`.-/
+/-- Chan Theorem 4.4's product side is multipliable for `‖q‖ < 1`.
+@isnad1 id=multipli.1h2v.s5.60a02b87268e from=translated src=- shape=b3a194db vocab=d25a8aa6
+-/
 theorem multipliable_theorem44ProductFactor (q z : ℂ) (hq : ‖q‖ < 1) :
     Multipliable fun n : ℕ => theorem44ProductFactor q z n := by
   have h0 : Multipliable fun n : ℕ => 1 - q ^ (n + 1) := by
@@ -917,7 +995,9 @@ theorem multipliable_theorem44ProductFactor (q z : ℂ) (hq : ‖q‖ < 1) :
   exact ((((h0.mul h1).mul h2).mul h3).mul h4).congr fun n => by
     simp [theorem44ProductFactor, mul_assoc]
 
-/-- The finite Theorem 4.4 product partials tend to the infinite product side.-/
+/-- The finite Theorem 4.4 product partials tend to the infinite product side.
+@isnad1 id=tendsto.1h2v.s5.29a45f7c3e02 from=translated src=- shape=06ca52cc vocab=6daf84e3
+-/
 theorem tendsto_theorem44ProductPartial (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => theorem44ProductPartial q z N) atTop
       (𝓝 (theorem44ProductLHS q z)) := by
@@ -977,7 +1057,9 @@ noncomputable def quintupleJacobiRightFactor (q z : ℂ) (n : ℕ) : ℂ :=
     (1 + q ^ (6 * n + 7) / z ^ 3) *
     (1 + z ^ 3 * q ^ (6 * n + 3) / q ^ 4)
 
-/-- First product-side JTP factor after the quintuple substitution.-/
+/-- First product-side JTP factor after the quintuple substitution.
+@isnad1 id=eq.2h3v.s6.22374ec31740 from=translated src=- shape=3665fa89 vocab=978d72ca
+-/
 theorem jacobiProductNatFactor_quintuple_left_substitution
     (q z : ℂ) (hq : q ≠ 0) (hz : z ≠ 0) (n : ℕ) :
     Ch02.jacobiProductNatFactor (q ^ 3) (z ^ 3 / q ^ 2) n =
@@ -1008,7 +1090,9 @@ theorem jacobiProductNatFactor_quintuple_left_substitution
     ring
   rw [heven, hodd1, hodd2]
 
-/-- Second product-side JTP factor after the quintuple substitution.-/
+/-- Second product-side JTP factor after the quintuple substitution.
+@isnad1 id=eq.0h3v.s6.a68bbb0bfe1d from=translated src=- shape=ccc1bba2 vocab=0b7c004c
+-/
 theorem jacobiProductNatFactor_quintuple_right_substitution (q z : ℂ) (n : ℕ) :
     Ch02.jacobiProductNatFactor (q ^ 3) (q ^ 4 / z ^ 3) n =
       quintupleJacobiRightFactor q z n := by
@@ -1095,7 +1179,9 @@ noncomputable def quintupleFiniteJTPCombinedMonomialSummand (q z : ℂ) (N k : �
 noncomputable def quintupleFiniteJTPCombinedMonomialSum (q z : ℂ) (N : ℕ) : ℂ :=
   natSum (quintupleFiniteJTPCombinedMonomialSummand q z N) (2 * N)
 
-/-- The first weighted Laurent monomial split into separate `z` and `q` powers.-/
+/-- The first weighted Laurent monomial split into separate `z` and `q` powers.
+@isnad1 id=eq.1h3v.s7.5a1921a4bf0c from=translated src=- shape=2f03d267 vocab=52705b58
+-/
 theorem quintupleFiniteJTPLeftMonomial_eq_zpow_qpow
     (q z : ℂ) (hq : q ≠ 0) (l : Int) :
     (z ^ 3 / q ^ 2) ^ l * (q ^ 3) ^ (l ^ 2) =
@@ -1112,7 +1198,9 @@ theorem quintupleFiniteJTPLeftMonomial_eq_zpow_qpow
   congr 1
   ring_nf
 
-/-- The scaled second weighted Laurent monomial split into separate `z` and `q` powers.-/
+/-- The scaled second weighted Laurent monomial split into separate `z` and `q` powers.
+@isnad1 id=eq.2h3v.s8.3bccee235044 from=translated src=- shape=61cdf852 vocab=4788fbd3
+-/
 theorem quintupleFiniteJTPRightScaledMonomial_eq_zpow_qpow
     (q z : ℂ) (hq : q ≠ 0) (hz : z ≠ 0) (l : Int) :
     (q / z) * ((q ^ 4 / z ^ 3) ^ l * (q ^ 3) ^ (l ^ 2)) =
@@ -1168,7 +1256,9 @@ noncomputable def quintupleFiniteJTPCombinedMonomialSymmetricPartial
   quintupleFiniteJTPCombinedMonomialSummand q z N N +
     quintupleFiniteJTPCombinedMonomialPairPartial q z N M
 
-/-- The weighted Laurent difference combines into a single inclusive `natSum`.-/
+/-- The weighted Laurent difference combines into a single inclusive `natSum`.
+@isnad1 id=eq.0h3v.s5.73986bd9473a from=translated src=- shape=ae01e814 vocab=ed27c215
+-/
 theorem quintupleFiniteJTPWeightedSum_sub_eq_combined
     (q z : ℂ) (N : ℕ) :
     quintupleFiniteJTPLeftWeightedSum q z N -
@@ -1184,7 +1274,9 @@ theorem quintupleFiniteJTPWeightedSum_sub_eq_combined
       simp [quintupleFiniteJTPCombinedWeightedSummand]
       ring_nf
 
-/-- The combined weighted Laurent summand equals the monomial-split summand.-/
+/-- The combined weighted Laurent summand equals the monomial-split summand.
+@isnad1 id=eq.2h4v.s5.e55128ba792e from=translated src=- shape=d2bc7810 vocab=d0c2e919
+-/
 theorem quintupleFiniteJTPCombinedWeightedSummand_eq_monomialSummand
     (q z : ℂ) (hq : q ≠ 0) (hz : z ≠ 0) (N k : ℕ) :
     quintupleFiniteJTPCombinedWeightedSummand q z N k =
@@ -1211,7 +1303,9 @@ theorem quintupleFiniteJTPCombinedWeightedSummand_eq_monomialSummand
         (z ^ (3 * l) * q ^ (3 * l ^ 2 - 2 * l) -
           z ^ (-(3 * l) - 1) * q ^ (3 * l ^ 2 + 4 * l + 1)) := by ring
 
-/-- The combined weighted Laurent sum equals its monomial-split form.-/
+/-- The combined weighted Laurent sum equals its monomial-split form.
+@isnad1 id=eq.2h3v.s5.ba9f81a82084 from=translated src=- shape=40a02e31 vocab=559dc074
+-/
 theorem quintupleFiniteJTPCombinedWeightedSum_eq_monomialSum
     (q z : ℂ) (hq : q ≠ 0) (hz : z ≠ 0) (N : ℕ) :
     quintupleFiniteJTPCombinedWeightedSum q z N =
@@ -1220,7 +1314,9 @@ theorem quintupleFiniteJTPCombinedWeightedSum_eq_monomialSum
   exact Ch03.natSum_congr_le (2 * N) fun k _ =>
     quintupleFiniteJTPCombinedWeightedSummand_eq_monomialSummand q z hq hz N k
 
-/-- The first explicit JTP factor family is multipliable.-/
+/-- The first explicit JTP factor family is multipliable.
+@isnad1 id=multipli.3h2v.s6.4b7faa34a4d7 from=translated src=- shape=5d40c8c0 vocab=a2b0b635
+-/
 theorem multipliable_quintupleJacobiLeftFactor
     (q z : ℂ) (hqnorm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) :
     Multipliable fun n : ℕ => quintupleJacobiLeftFactor q z n := by
@@ -1230,7 +1326,9 @@ theorem multipliable_quintupleJacobiLeftFactor
   exact (Ch02.multipliable_jacobiProductNatFactor (q ^ 3) (z ^ 3 / q ^ 2) hq3norm).congr
     fun n => jacobiProductNatFactor_quintuple_left_substitution q z hq hz n
 
-/-- The second explicit JTP factor family is multipliable.-/
+/-- The second explicit JTP factor family is multipliable.
+@isnad1 id=multipli.1h2v.s5.352d1e17f85a from=translated src=- shape=b3a194db vocab=87239914
+-/
 theorem multipliable_quintupleJacobiRightFactor (q z : ℂ) (hqnorm : ‖q‖ < 1) :
     Multipliable fun n : ℕ => quintupleJacobiRightFactor q z n := by
   have hq3norm : ‖q ^ 3‖ < 1 := by
@@ -1239,7 +1337,9 @@ theorem multipliable_quintupleJacobiRightFactor (q z : ℂ) (hqnorm : ‖q‖ < 
   exact (Ch02.multipliable_jacobiProductNatFactor (q ^ 3) (q ^ 4 / z ^ 3) hq3norm).congr
     fun n => jacobiProductNatFactor_quintuple_right_substitution q z n
 
-/-- The first explicit JTP partial products tend to their infinite product.-/
+/-- The first explicit JTP partial products tend to their infinite product.
+@isnad1 id=tendsto.3h2v.s6.51d49ad86a95 from=translated src=- shape=c66bace0 vocab=9e53f6fb
+-/
 theorem tendsto_quintupleJacobiLeftPartial
     (q z : ℂ) (hqnorm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) :
     Tendsto (fun N : ℕ => quintupleJacobiLeftPartial q z N) atTop
@@ -1247,14 +1347,18 @@ theorem tendsto_quintupleJacobiLeftPartial
   have h := (multipliable_quintupleJacobiLeftFactor q z hqnorm hq hz).tendsto_prod_tprod_nat
   simpa [quintupleJacobiLeftPartial] using h
 
-/-- The second explicit JTP partial products tend to their infinite product.-/
+/-- The second explicit JTP partial products tend to their infinite product.
+@isnad1 id=tendsto.1h2v.s6.8ba81d89916a from=translated src=- shape=64456f22 vocab=f4a1fe99
+-/
 theorem tendsto_quintupleJacobiRightPartial (q z : ℂ) (hqnorm : ‖q‖ < 1) :
     Tendsto (fun N : ℕ => quintupleJacobiRightPartial q z N) atTop
       (𝓝 (∏' n : ℕ, quintupleJacobiRightFactor q z n)) := by
   have h := (multipliable_quintupleJacobiRightFactor q z hqnorm).tendsto_prod_tprod_nat
   simpa [quintupleJacobiRightPartial] using h
 
-/-- The explicit RHS finite product-difference partials tend to the explicit RHS.-/
+/-- The explicit RHS finite product-difference partials tend to the explicit RHS.
+@isnad1 id=tendsto.3h2v.s6.2205dc1d8b53 from=translated src=- shape=eff83584 vocab=ee2c67da
+-/
 theorem tendsto_quintupleProductExplicitRHSPartial
     (q z : ℂ) (hqnorm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0) :
     Tendsto (fun N : ℕ => quintupleProductExplicitRHSPartial q z N) atTop
@@ -1270,7 +1374,9 @@ theorem tendsto_quintupleProductExplicitRHSPartial
 
 /--
 If the finite difference between the quintuple LHS truncation and the explicit
-product RHS partial tends to zero, then the explicit product identity follows.-/
+product RHS partial tends to zero, then the explicit product identity follows.
+@isnad1 id=eq.4h2v.s6.5cb8e3bad000 from=translated src=- shape=048bf4eb vocab=c2498ed2
+-/
 theorem quintupleProduct_explicitProduct_of_tendsto_trunc_sub_explicit
     (q z : ℂ) (hqnorm : ‖q‖ < 1) (hq : q ≠ 0) (hz : z ≠ 0)
     (h :
@@ -1294,7 +1400,9 @@ theorem quintupleProduct_explicitProduct_of_tendsto_trunc_sub_explicit
 noncomputable def quintupleProductRHSTrunc (q z : R) (N : Nat) : R :=
   bilateralSum (quintupleProductTerm q z) N
 
-/-- Sanity: the zero truncations unfold to the expected first terms.-/
+/-- Sanity: the zero truncations unfold to the expected first terms.
+@isnad1 id=and.0h3v.s6.e1d1a90a7eb1 from=translated src=- shape=2cdc2e9c vocab=553bafc5
+-/
 theorem quintupleProduct_truncated_zero (q z : R) :
     quintupleProductLHSTrunc q z 0 = 1 ∧
       quintupleProductRHSTrunc q z 0 = 1 - q / z := by
@@ -1313,7 +1421,9 @@ Specializing the finite Jacobi triple product at `z = 1`:
 `(1; q)_n * (q; q)_n = finiteJTPRHS q 1 n`.
 
 When `z = 1`, the factor `z⁻¹ * q = q`, so the LHS becomes
-`qPoch 1 q n * qPoch q q n`.-/
+`qPoch 1 q n * qPoch q q n`.
+@isnad1 id=eq.1h3v.s6.4527f738f107 from=translated src=- shape=6100f924 vocab=cf9709c4
+-/
 theorem finite_jtp_at_z_one (q : R) (hq : q ≠ 0) (n : Nat) :
     qPoch 1 q n * qPoch q q n = finiteJTPRHS q 1 n := by
   have h := finite_jacobi_triple_product q 1 one_ne_zero hq n
@@ -1321,7 +1431,9 @@ theorem finite_jtp_at_z_one (q : R) (hq : q ≠ 0) (n : Nat) :
 
 /--
 `qPoch 1 q n = 0` for any `n ≥ 1`: the first factor `(1 - 1 * q^0) = 0`
-kills the entire product.-/
+kills the entire product.
+@isnad1 id=eq.1h3v.s5.04feb5b72413 from=translated src=- shape=f058290e vocab=f84f0a30
+-/
 theorem qPoch_one_eq_zero (q : R) (n : Nat) (hn : 1 ≤ n) :
     qPoch (1 : R) q n = 0 := by
   cases n with
@@ -1335,7 +1447,9 @@ theorem qPoch_one_eq_zero (q : R) (n : Nat) (hn : 1 ≤ n) :
       rw [this]
       simp
 
-/-- Succ-indexed form of `qPoch_one_eq_zero`, convenient for finite truncations.-/
+/-- Succ-indexed form of `qPoch_one_eq_zero`, convenient for finite truncations.
+@isnad1 id=eq.0h3v.s5.85612daf01fd from=translated src=- shape=6edd2a16 vocab=8c53096b
+-/
 theorem qPoch_one_succ_eq_zero (q : R) (n : Nat) :
     qPoch (1 : R) q (n + 1) = 0 :=
   qPoch_one_eq_zero q (n + 1) (by omega)
@@ -1344,7 +1458,9 @@ theorem qPoch_one_succ_eq_zero (q : R) (n : Nat) :
 The finite JTP RHS vanishes at `z = 1` for all `n ≥ 1`.  This is the
 general truncated pentagonal vanishing identity: the bilateral sum
 `∑_{k=0}^{2n} [2n choose k]_q · q^{(k-n)(k-n-1)/2} · (-1)^{k-n}`
-equals zero for every `n ≥ 1`.-/
+equals zero for every `n ≥ 1`.
+@isnad1 id=eq.2h3v.s6.ae5d4f10e560 from=translated src=- shape=355dd46e vocab=b17f9208
+-/
 theorem finiteJTPRHS_at_z_one_eq_zero (q : R) (hq : q ≠ 0) (n : Nat) (hn : 1 ≤ n) :
     finiteJTPRHS q 1 n = 0 := by
   have h := finite_jtp_at_z_one q hq n
@@ -1353,14 +1469,18 @@ theorem finiteJTPRHS_at_z_one_eq_zero (q : R) (hq : q ≠ 0) (n : Nat) (hn : 1 �
 
 /--
 `qPoch q q n = qPochhammer q n` restated in Chapter 4 context
-(already in Basic as `qPoch_q_eq_qPochhammer`).-/
+(already in Basic as `qPoch_q_eq_qPochhammer`).
+@isnad1 id=eq.0h3v.s4.d4682b266cbb from=translated src=- shape=e5128f7a vocab=aa68661a
+-/
 theorem qPoch_q_eq_eulerProduct (q : R) (n : Nat) :
     qPoch q q n = eulerPentagonalProductTrunc q n := by
   simp [eulerPentagonalProductTrunc, qPoch_q_eq_qPochhammer]
 
 /--
 Restatement using the Chapter 4 Euler product notation:
-`finiteJTPRHS q 1 n = 0` for `n ≥ 1`, connecting to `eulerPentagonalProductTrunc`.-/
+`finiteJTPRHS q 1 n = 0` for `n ≥ 1`, connecting to `eulerPentagonalProductTrunc`.
+@isnad1 id=eq.2h3v.s6.ae5d4f10e560 from=translated src=- shape=355dd46e vocab=b17f9208
+-/
 theorem euler_pentagonal_jtp_connection (q : R) (hq : q ≠ 0) (n : Nat) (hn : 1 ≤ n) :
     finiteJTPRHS q 1 n = 0 :=
   finiteJTPRHS_at_z_one_eq_zero q hq n hn
@@ -1381,7 +1501,9 @@ open Filter
 
 /-- Generic diagonal-convergence lemma: if `C N M → P M` for fixed M,
 `P M → L`, and the tail `S N - C N M` is uniformly small for large M,
-then `S N → L`.-/
+then `S N → L`.
+@isnad1 id=tendsto.3h4v.s7.021392538835 from=translated src=- shape=9218f8d6 vocab=04f4dac8
+-/
 theorem tendsto_of_fixed_core_and_uniform_tail
     {S : ℕ → ℂ} {C : ℕ → ℕ → ℂ} {P : ℕ → ℂ} {L : ℂ}
     (hfixed : ∀ M : ℕ, Tendsto (fun N : ℕ => C N M) atTop (𝓝 (P M)))
@@ -1430,7 +1552,9 @@ noncomputable def quintupleSplitNormMajorantTail (q z : ℂ) (M : ℕ) : ℝ :=
   ∑' r : ℕ, (‖quintupleProductSeriesTerm q z (-(↑(M + r) + 1 : ℤ))‖ +
     ‖quintupleProductSeriesTerm q z ((↑(M + r) : ℤ) + 1)‖)
 
-/-- Split-norm majorant tails tend to zero.-/
+/-- Split-norm majorant tails tend to zero.
+@isnad1 id=tendsto.1h2v.s5.28ece984213d from=translated src=- shape=2cb040ad vocab=084dded1
+-/
 theorem tendsto_quintupleSplitNormMajorantTail_zero (q z : ℂ) (hq : ‖q‖ < 1) :
     Tendsto (quintupleSplitNormMajorantTail q z) atTop (𝓝 0) := by
   set g := fun r : ℕ =>

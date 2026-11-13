@@ -18,6 +18,9 @@ vanishing proofs.
 namespace QseriesFormalization
 namespace Ch10
 
+/--
+@isnad1 id=eq.4h4v.s7.ade19b877a69 from=translated src=- shape=2b3ba13b vocab=cc64a505
+-/
 theorem finset_sum_cancel_invol
     {α : Type} [DecidableEq α]
     (s : Finset α) (ι : α → α) (w : α → Int)

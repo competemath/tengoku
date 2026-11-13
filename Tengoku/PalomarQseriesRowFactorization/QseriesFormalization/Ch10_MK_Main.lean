@@ -18,6 +18,9 @@ set_option maxHeartbeats 400000
 
 /-! ## Finite separation -/
 
+/--
+@isnad1 id=eq.0h1v.s5.64e7fe165a84 from=translated src=- shape=f895bc11 vocab=c1e7254b
+-/
 theorem mk_factorization (T : ℤ) :
     MKcoeff T =
       ∑ a ∈ Finset.Icc (-2) T,
@@ -395,6 +398,9 @@ private theorem sum_relevant_split (N : ℕ) (f : ℤ → ℤ) :
 
 /-! ## Bridge to the existing `BCoeff` atoms -/
 
+/--
+@isnad1 id=eq.0h1v.s4.c68adef166f6 from=translated src=- shape=0331995a vocab=85bd1e45
+-/
 theorem coneDiffH_two_mul (N : ℕ) :
     coneDiffH (2 * (N : ℤ)) = BCoeff N := by
   rw [coneDiffH_two_mul_truncate]
@@ -403,6 +409,9 @@ theorem coneDiffH_two_mul (N : ℕ) :
   unfold BCoeff
   ring
 
+/--
+@isnad1 id=eq.1h2v.s4.ca434c8ad3f3 from=translated src=- shape=06c2f6e5 vocab=de98ee18
+-/
 theorem rowConeCoeff_vanish_odd {k m : ℤ} (hm : ¬ 2 ∣ m) :
     rowConeCoeff k m = 0 := by
   unfold rowConeCoeff
@@ -414,6 +423,9 @@ theorem rowConeCoeff_vanish_odd {k m : ℤ} (hm : ¬ 2 ∣ m) :
   rw [← hr.1.2]
   exact Q_even k r
 
+/--
+@isnad1 id=eq.1h1v.s4.0644d1b044aa from=translated src=- shape=c8846937 vocab=ccf6abc9
+-/
 theorem coneDiffH_odd {m : ℤ} (hm : ¬ 2 ∣ m) :
     coneDiffH m = 0 := by
   unfold coneDiffH coneSignedCoeff

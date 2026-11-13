@@ -71,15 +71,24 @@ variable {d : Type*} [Fintype d]
 def paper2LatticeVec (n : d → ℤ) : d → ℝ := fun i => (n i : ℝ)
 
 omit [Fintype d] in
+/--
+@isnad1 id=eq.0h3v.s4.14912e4781ba from=translated src=- shape=3f7ff62a vocab=7343d48a
+-/
 @[simp]
 theorem paper2LatticeVec_apply (n : d → ℤ) (i : d) : paper2LatticeVec n i = (n i : ℝ) := rfl
 
 omit [Fintype d] in
+/--
+@isnad1 id=eq.0h1v.s5.e5347a4427e3 from=translated src=- shape=29f67fd4 vocab=5dbba5b0
+-/
 @[simp]
 theorem paper2LatticeVec_zero : paper2LatticeVec (0 : d → ℤ) = 0 := by
   funext i; simp [paper2LatticeVec]
 
 omit [Fintype d] in
+/--
+@isnad1 id=eq.0h3v.s6.7751e507b363 from=translated src=- shape=ddcc2256 vocab=921197fe
+-/
 theorem paper2LatticeVec_add (n m : d → ℤ) :
     paper2LatticeVec (n + m) = paper2LatticeVec n + paper2LatticeVec m := by
   funext i; simp [paper2LatticeVec]
@@ -91,6 +100,9 @@ def Paper2LocallySummable2 (f : C(Fin 2 → ℝ, ℂ)) : Prop :=
   ∀ K : TopologicalSpace.Compacts (Fin 2 → ℝ), Summable fun n : Fin 2 → ℤ =>
     ‖(f.comp (ContinuousMap.addRight (paper2LatticeVec n))).restrict K‖
 
+/--
+@isnad1 id=summable.1h2v.s9.bdbda0a8d392 from=translated src=- shape=197acb37 vocab=fe6c7b22
+-/
 theorem Paper2LocallySummable2.apply {f : C(Fin 2 → ℝ, ℂ)}
     (hf : Paper2LocallySummable2 f) (K : TopologicalSpace.Compacts (Fin 2 → ℝ)) :
     Summable fun n : Fin 2 → ℤ =>
@@ -106,15 +118,24 @@ omit [Fintype d] in theorem paper2Box_eq_pi (a : d → ℝ) :
   ext x
   simp only [paper2Box, Set.mem_ofPred_eq, Set.mem_pi, Set.mem_univ, forall_const]
 
+/--
+@isnad1 id=measurab.0h2v.s4.51f2c698efba from=translated src=- shape=9d5e3200 vocab=c2981e24
+-/
 theorem measurableSet_paper2Box (a : d → ℝ) : MeasurableSet (paper2Box a) := by
   rw [paper2Box_eq_pi, Set.univ_pi_eq_iInter]
   exact MeasurableSet.iInter fun i =>
     measurableSet_Ioc.preimage (measurable_pi_apply i)
 
+/--
+@isnad1 id=eq.0h2v.s6.231a3c209848 from=translated src=- shape=38f25436 vocab=14c5bab9
+-/
 theorem volume_paper2Box (a : d → ℝ) : volume (paper2Box a) = 1 := by
   rw [paper2Box_eq_pi, volume_pi_pi]
   simp [Real.volume_Ioc]
 
+/--
+@isnad1 id=pairwise.0h1v.s6.ba01680ce3fb from=translated src=- shape=95d9a974 vocab=9c1d4570
+-/
 theorem paper2_pairwise_disjoint_box (d : Type*) [Fintype d] :
     Pairwise fun n m : d → ℤ =>
       Disjoint (paper2Box (paper2LatticeVec n)) (paper2Box (paper2LatticeVec m)) := by
@@ -127,6 +148,9 @@ theorem paper2_pairwise_disjoint_box (d : Type*) [Fintype d] :
     simpa using hxm i
   exact Set.disjoint_left.1 (Set.pairwise_disjoint_Ioc_add_intCast (0 : ℝ) hi) h1 h2
 
+/--
+@isnad1 id=eq.0h1v.s4.b83620489fbb from=translated src=- shape=28fd4009 vocab=628db020
+-/
 theorem paper2_iUnion_box (d : Type*) [Fintype d] :
     (⋃ n : d → ℤ, paper2Box (paper2LatticeVec n)) = Set.univ := by
   refine Set.eq_univ_of_forall fun x => ?_
@@ -154,17 +178,26 @@ omit [Fintype d] in theorem paper2Box_subset_closedBox (a : d → ℝ) :
   rw [paper2_mem_closedBox]
   exact fun i => Set.Ioc_subset_Icc_self (hx i)
 
+/--
+@isnad1 id=eq.0h2v.s6.1113e8ef24d4 from=translated src=- shape=c1852095 vocab=35554299
+-/
 theorem volume_paper2ClosedBox (a : d → ℝ) :
     volume ((paper2ClosedBox a : Set (d → ℝ))) = 1 := by
   show volume (Set.univ.pi fun i => Set.Icc (a i) (a i + 1)) = 1
   rw [volume_pi_pi]
   simp [Real.volume_Icc]
 
+/--
+@isnad1 id=eq.0h2v.s6.781150b7f1aa from=translated src=- shape=fd953816 vocab=9a88a2d7
+-/
 theorem measureReal_paper2ClosedBox (a : d → ℝ) :
     (volume : Measure (d → ℝ)).real ((paper2ClosedBox a : Set (d → ℝ))) = 1 := by
   rw [measureReal_def, volume_paper2ClosedBox]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s6.7e5d7717853d from=translated src=- shape=50710dbd vocab=4e034cce
+-/
 theorem paper2_iUnion_closedBox (d : Type*) [Fintype d] :
     (⋃ n : d → ℤ, (paper2ClosedBox (paper2LatticeVec n) : Set (d → ℝ))) = Set.univ := by
   refine Set.eq_univ_of_univ_subset ?_
@@ -175,7 +208,9 @@ theorem paper2_iUnion_closedBox (d : Type*) [Fintype d] :
 
 /-- The multivariate analogue of `MeasureTheory.Integrable.hasSum_intervalIntegral_comp_add_int`:
 the integrals of the lattice translates of `g` over the fundamental box sum to the integral of
-`g` over `ℝᵈ`.-/
+`g` over `ℝᵈ`.
+@isnad1 id=hassum.1h2v.s7.2e3ad792e3ec from=translated src=- shape=159d194a vocab=8e011e30
+-/
 theorem paper2_hasSum_setIntegral_box {g : (d → ℝ) → ℂ} (hg : Integrable g) :
     HasSum (fun n : d → ℤ => ∫ x in paper2Box (0 : d → ℝ), g (x + paper2LatticeVec n))
       (∫ x, g x) := by
@@ -212,7 +247,9 @@ theorem paper2_hasSum_setIntegral_box {g : (d → ℝ) → ℂ} (hg : Integrable
     (paper2_pairwise_disjoint_box d) hint
   rwa [hcover, setIntegral_univ] at h
 
-/-- The multivariate analogue of `Real.integrable_of_summable_norm_Icc`.-/
+/-- The multivariate analogue of `Real.integrable_of_summable_norm_Icc`.
+@isnad1 id=integrab.1h2v.s9.061408c02937 from=translated src=- shape=6c83571a vocab=efd0d9d0
+-/
 theorem paper2_integrable_of_summable_norm_box {g : C(d → ℝ, ℂ)}
     (hg : Summable fun n : d → ℤ =>
       ‖(g.comp (ContinuousMap.addRight (paper2LatticeVec n))).restrict
@@ -258,7 +295,9 @@ def paper2BoxIntegral2 (g : (Fin 2 → ℝ) → ℂ) : ℂ :=
   ∫ x in paper2Box (0 : Fin 2 → ℝ), g x
 
 /-- The general-measure analogue of
-`intervalIntegral.hasSum_intervalIntegral_of_summable_norm`, on the fundamental box.-/
+`intervalIntegral.hasSum_intervalIntegral_of_summable_norm`, on the fundamental box.
+@isnad1 id=hassum.1h1v.s10.e02f57d0d364 from=translated src=- shape=c8fe61be vocab=e817b9d6
+-/
 theorem paper2_hasSum_setIntegral_of_summable_norm
     (F : (Fin 2 → ℤ) → C(Fin 2 → ℝ, ℂ))
     (hF : Summable fun i : Fin 2 → ℤ =>
@@ -302,10 +341,16 @@ def paper2TorusProj (d : Type*) [Fintype d] : C(d → ℝ, UnitAddTorus d) where
   toFun x := fun i => ((x i : ℝ) : UnitAddCircle)
   continuous_toFun := continuous_pi fun i => continuous_quotient_mk'.comp (continuous_apply i)
 
+/--
+@isnad1 id=eq.0h3v.s7.85006b835bf4 from=translated src=- shape=fd134a5f vocab=8d5cae4c
+-/
 @[simp]
 theorem paper2TorusProj_apply (x : d → ℝ) (i : d) :
     paper2TorusProj d x i = ((x i : ℝ) : UnitAddCircle) := rfl
 
+/--
+@isnad1 id=isopenqu.0h1v.s7.2a935e2f9e58 from=translated src=- shape=dad12828 vocab=212f3c1c
+-/
 theorem paper2_isOpenQuotientMap_torusProj (d : Type*) [Fintype d] :
     IsOpenQuotientMap (paper2TorusProj d) := by
   have h : IsOpenQuotientMap
@@ -313,6 +358,9 @@ theorem paper2_isOpenQuotientMap_torusProj (d : Type*) [Fintype d] :
     IsOpenQuotientMap.piMap fun _ => QuotientAddGroup.isOpenQuotientMap_mk
   exact h
 
+/--
+@isnad1 id=iff.0h2v.s6.6a0c8792bdb3 from=translated src=- shape=e03f2c55 vocab=603dee49
+-/
 theorem paper2_coe_eq_coe_iff {a b : ℝ} :
     ((a : ℝ) : UnitAddCircle) = ((b : ℝ) : UnitAddCircle) ↔ ∃ k : ℤ, a = b + k := by
   rw [← sub_eq_zero, ← AddCircle.coe_sub, AddCircle.coe_eq_zero_iff (p := (1 : ℝ))]
@@ -325,6 +373,9 @@ theorem paper2_coe_eq_coe_iff {a b : ℝ} :
     rw [zsmul_eq_mul, mul_one, hk]
     ring
 
+/--
+@isnad1 id=iff.0h3v.s8.532ac8c40efc from=translated src=- shape=1f65d2e8 vocab=1e0a524a
+-/
 theorem paper2_torusProj_eq_iff {x y : d → ℝ} :
     paper2TorusProj d x = paper2TorusProj d y ↔ ∃ m : d → ℤ, x = y + paper2LatticeVec m := by
   constructor
@@ -337,6 +388,9 @@ theorem paper2_torusProj_eq_iff {x y : d → ℝ} :
     funext i
     exact paper2_coe_eq_coe_iff.mpr ⟨m i, rfl⟩
 
+/--
+@isnad1 id=surjecti.0h1v.s6.6b74cebbf810 from=translated src=- shape=dad12828 vocab=994ff274
+-/
 theorem paper2_torusProj_surjective (d : Type*) [Fintype d] :
     Function.Surjective (paper2TorusProj d) :=
   (paper2_isOpenQuotientMap_torusProj d).surjective
@@ -345,6 +399,9 @@ theorem paper2_torusProj_surjective (d : Type*) [Fintype d] :
 def paper2Rep (z : UnitAddTorus d) : d → ℝ :=
   Function.surjInv (paper2_torusProj_surjective d) z
 
+/--
+@isnad1 id=eq.0h2v.s6.eef943701512 from=translated src=- shape=7e44f73c vocab=70b8c3f3
+-/
 theorem paper2_torusProj_rep (z : UnitAddTorus d) : paper2TorusProj d (paper2Rep z) = z :=
   Function.surjInv_eq _ z
 
@@ -352,6 +409,9 @@ theorem paper2_torusProj_rep (z : UnitAddTorus d) : paper2TorusProj d (paper2Rep
 genuine descent exactly when the function is lattice-invariant; see `paper2_descend_comp`.-/
 def paper2Descend (P : (d → ℝ) → ℂ) : UnitAddTorus d → ℂ := fun z => P (paper2Rep z)
 
+/--
+@isnad1 id=eq.1h3v.s7.a115c3ac2ca8 from=translated src=- shape=272e949f vocab=eff7ccea
+-/
 theorem paper2_descend_comp {P : (d → ℝ) → ℂ}
     (hP : ∀ (m : d → ℤ) (x : d → ℝ), P (x + paper2LatticeVec m) = P x) (x : d → ℝ) :
     paper2Descend P (paper2TorusProj d x) = P x := by
@@ -371,6 +431,9 @@ def paper2DescendC (P : C(d → ℝ, ℂ))
     rw [h]
     exact P.continuous
 
+/--
+@isnad1 id=eq.1h3v.s8.b224e95b3aa1 from=translated src=- shape=f3ac9383 vocab=29b2d4f5
+-/
 @[simp]
 theorem paper2DescendC_apply (P : C(d → ℝ, ℂ))
     (hP : ∀ (m : d → ℤ) (x : d → ℝ), P (x + paper2LatticeVec m) = P x) (z : UnitAddTorus d) :
@@ -382,12 +445,18 @@ theorem paper2DescendC_apply (P : C(d → ℝ, ℂ))
 def paper2Periodization (f : C(d → ℝ, ℂ)) : C(d → ℝ, ℂ) :=
   ∑' n : d → ℤ, f.comp (ContinuousMap.addRight (paper2LatticeVec n))
 
+/--
+@isnad1 id=summable.1h2v.s9.d7fcb348caf0 from=translated src=- shape=edb923ba vocab=74b17d68
+-/
 theorem paper2_summable_comp_addRight {f : C(d → ℝ, ℂ)}
     (hf : ∀ K : TopologicalSpace.Compacts (d → ℝ), Summable fun n : d → ℤ =>
       ‖(f.comp (ContinuousMap.addRight (paper2LatticeVec n))).restrict K‖) :
     Summable fun n : d → ℤ => f.comp (ContinuousMap.addRight (paper2LatticeVec n)) :=
   ContinuousMap.summable_of_locally_summable_norm hf
 
+/--
+@isnad1 id=eq.1h3v.s9.23721e14c708 from=translated src=- shape=9881da77 vocab=3e68e8b0
+-/
 theorem paper2_periodization_apply {f : C(d → ℝ, ℂ)}
     (hf : ∀ K : TopologicalSpace.Compacts (d → ℝ), Summable fun n : d → ℤ =>
       ‖(f.comp (ContinuousMap.addRight (paper2LatticeVec n))).restrict K‖) (x : d → ℝ) :
@@ -395,6 +464,9 @@ theorem paper2_periodization_apply {f : C(d → ℝ, ℂ)}
   rw [paper2Periodization, ← ContinuousMap.tsum_apply (paper2_summable_comp_addRight hf) x]
   exact tsum_congr fun _ => rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.f2e8f9c25e67 from=translated src=- shape=005e9f60 vocab=55dfac15
+-/
 theorem paper2_periodization_add_lattice {f : C(d → ℝ, ℂ)}
     (hf : ∀ K : TopologicalSpace.Compacts (d → ℝ), Summable fun n : d → ℤ =>
       ‖(f.comp (ContinuousMap.addRight (paper2LatticeVec n))).restrict K‖)
@@ -414,6 +486,9 @@ projection to the torus.-/
 def paper2Char (n : d → ℤ) : C(d → ℝ, ℂ) :=
   (UnitAddTorus.mFourier (-n)).comp (paper2TorusProj d)
 
+/--
+@isnad1 id=eq.0h3v.s7.7c7650274a94 from=translated src=- shape=30401663 vocab=9c6d2a88
+-/
 theorem paper2Char_apply (n : d → ℤ) (x : d → ℝ) :
     paper2Char n x
       = Complex.exp (-(2 * (Real.pi : ℂ) * Complex.I) * ∑ i : d, (n i : ℂ) * (x i : ℂ)) := by
@@ -429,14 +504,23 @@ theorem paper2Char_apply (n : d → ℤ) (x : d → ℝ) :
     paper2TorusProj_apply, hfac]
   rw [← Complex.exp_sum, Finset.mul_sum]
 
+/--
+@isnad1 id=eq.0h3v.s6.a5db94a746e4 from=translated src=- shape=cbd25048 vocab=b931cfce
+-/
 theorem norm_paper2Char (n : d → ℤ) (x : d → ℝ) : ‖paper2Char n x‖ = 1 := by
   simp only [paper2Char, ContinuousMap.comp_apply, UnitAddTorus.mFourier, ContinuousMap.coe_mk,
     norm_prod, fourier_apply, Circle.norm_coe, Finset.prod_const_one]
 
+/--
+@isnad1 id=eq.0h3v.s7.cc682437d337 from=translated src=- shape=6babeda8 vocab=1e0a524a
+-/
 theorem paper2_torusProj_add_lattice (m : d → ℤ) (x : d → ℝ) :
     paper2TorusProj d (x + paper2LatticeVec m) = paper2TorusProj d x :=
   paper2_torusProj_eq_iff.mpr ⟨m, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.a9ac9cb8f80c from=translated src=- shape=04774cfc vocab=494ac150
+-/
 theorem paper2Char_comp_addRight (n m : d → ℤ) :
     (paper2Char n).comp (ContinuousMap.addRight (paper2LatticeVec m)) = paper2Char n := by
   ext x
@@ -444,6 +528,9 @@ theorem paper2Char_comp_addRight (n m : d → ℤ) :
     = UnitAddTorus.mFourier (-n) (paper2TorusProj d x)
   rw [paper2_torusProj_add_lattice]
 
+/--
+@isnad1 id=eq.0h4v.s9.031b2c10dfc4 from=translated src=- shape=b5c6fad4 vocab=25e0c189
+-/
 theorem norm_restrict_paper2Char_mul (n : d → ℤ) (K : TopologicalSpace.Compacts (d → ℝ))
     (g : C(d → ℝ, ℂ)) : ‖(paper2Char n * g).restrict K‖ = ‖g.restrict K‖ := by
   simp_rw [ContinuousMap.norm_eq_iSup_norm, ContinuousMap.restrict_apply,
@@ -469,6 +556,9 @@ def paper2PeriodizationTorus2 (f : C(Fin 2 → ℝ, ℂ))
   paper2DescendC (paper2Periodization f)
     (paper2_periodization_add_lattice fun K => hf.apply K)
 
+/--
+@isnad1 id=summable.1h2v.s10.26b8badf38d7 from=translated src=- shape=765abe89 vocab=ba82b009
+-/
 theorem paper2_summable_char_translates (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) : Summable fun m : Fin 2 → ℤ =>
@@ -482,12 +572,18 @@ theorem paper2_summable_char_translates (f : C(Fin 2 → ℝ, ℂ))
   simp_rw [hrw, norm_restrict_paper2Char_mul]
   exact hf.apply (paper2ClosedBox (0 : Fin 2 → ℝ))
 
+/--
+@isnad1 id=integrab.1h2v.s9.0865f7f2b84e from=translated src=- shape=2ad401eb vocab=051f3977
+-/
 theorem paper2_integrable_char_mul (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) : Integrable ((paper2Char n * f : C(Fin 2 → ℝ, ℂ)) :
       (Fin 2 → ℝ) → ℂ) :=
   paper2_integrable_of_summable_norm_box (paper2_summable_char_translates f hf n)
 
+/--
+@isnad1 id=eq.1h2v.s9.38c6fb6c2b98 from=translated src=- shape=868221ce vocab=ebfe2f94
+-/
 theorem paper2_mFourierCoeff_periodization_box (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) :
@@ -506,6 +602,9 @@ theorem paper2_mFourierCoeff_periodization_box (f : C(Fin 2 → ℝ, ℂ))
     smul_eq_mul]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s10.a734e7f4eca9 from=translated src=- shape=98f903e9 vocab=b0732d97
+-/
 theorem paper2_integral_char_periodization_eq_tsum (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) :
@@ -519,6 +618,9 @@ theorem paper2_integral_char_periodization_eq_tsum (f : C(Fin 2 → ℝ, ℂ))
     ← tsum_mul_left]
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s10.34799b9fad18 from=translated src=- shape=ad819536 vocab=3c507ca3
+-/
 theorem paper2_integral_tsum_char_eq_tsum_integrals (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) :
@@ -531,6 +633,9 @@ theorem paper2_integral_tsum_char_eq_tsum_integrals (f : C(Fin 2 → ℝ, ℂ))
   simp_rw [norm_restrict_paper2Char_mul]
   exact hf.apply (paper2ClosedBox (0 : Fin 2 → ℝ))
 
+/--
+@isnad1 id=eq.0h2v.s10.b4b6bf4b9e24 from=translated src=- shape=af4c2046 vocab=1b0de1bd
+-/
 theorem paper2_tsum_char_integrals_eq_translates (f : C(Fin 2 → ℝ, ℂ))
     (n : Fin 2 → ℤ) :
     (∑' m : Fin 2 → ℤ, ∫ x in paper2Box (0 : Fin 2 → ℝ),
@@ -546,6 +651,9 @@ theorem paper2_tsum_char_integrals_eq_translates (f : C(Fin 2 → ℝ, ℂ))
   exact congrFun
     (congrArg (fun g : C(Fin 2 → ℝ, ℂ) => (g : (Fin 2 → ℝ) → ℂ)) h.symm) x
 
+/--
+@isnad1 id=eq.1h2v.s10.c5b29feb1599 from=translated src=- shape=91144e6e vocab=f63da966
+-/
 theorem paper2_tsum_char_translates_eq_integral (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) :
@@ -554,6 +662,9 @@ theorem paper2_tsum_char_translates_eq_integral (f : C(Fin 2 → ℝ, ℂ))
       ∫ x : Fin 2 → ℝ, paper2Char n x * f x :=
   (paper2_hasSum_setIntegral_box (paper2_integrable_char_mul f hf n)).tsum_eq
 
+/--
+@isnad1 id=eq.1h2v.s9.4d02f4ce7543 from=translated src=- shape=b21ae284 vocab=283d9747
+-/
 theorem paper2_mFourierCoeff_periodization (f : C(Fin 2 → ℝ, ℂ))
     (hf : Paper2LocallySummable2 f)
     (n : Fin 2 → ℤ) :
@@ -569,7 +680,9 @@ theorem paper2_mFourierCoeff_periodization (f : C(Fin 2 → ℝ, ℂ))
 
 /-- **Poisson summation on the square lattice `ℤ²`**.  If the translates of `f` are
 locally normally summable and the Fourier transform of `f` is summable along the lattice, then
-the periodization of `f` is the sum of its multivariate Fourier series.-/
+the periodization of `f` is the sum of its multivariate Fourier series.
+@isnad1 id=eq.2h2v.s10.adc691035307 from=translated src=- shape=ecdd72d9 vocab=7a26d211
+-/
 theorem paper2_tsum_lattice_eq_tsum_fourier
     {f : C(Fin 2 → ℝ, ℂ)}
     (hf : Paper2LocallySummable2 f)
@@ -611,11 +724,16 @@ def paper2DotL (d : Type*) [Fintype d] : (d → ℝ) →ₗ[ℝ] (d → ℝ) →
     (fun c x y => by
       simp only [Pi.smul_apply, smul_eq_mul, Finset.mul_sum, mul_left_comm])
 
+/--
+@isnad1 id=eq.0h3v.s8.d03e00a39d98 from=translated src=- shape=047215df vocab=30695216
+-/
 @[simp]
 theorem paper2DotL_apply (x y : d → ℝ) : paper2DotL d x y = ∑ i : d, x i * y i := rfl
 
 /-- The integral against `paper2Char n` is the Fourier transform of `f` at the lattice point
-`n`, in mathlib's `VectorFourier.fourierIntegral` form for the standard dot pairing.-/
+`n`, in mathlib's `VectorFourier.fourierIntegral` form for the standard dot pairing.
+@isnad1 id=eq.0h3v.s8.c6b457b170da from=translated src=- shape=0e0f817d vocab=4748ce9d
+-/
 theorem paper2_integral_char_mul_eq_fourierIntegral (f : C(d → ℝ, ℂ)) (n : d → ℤ) :
     (∫ x : d → ℝ, paper2Char n x * f x)
       = VectorFourier.fourierIntegral Real.fourierChar (volume : Measure (d → ℝ))

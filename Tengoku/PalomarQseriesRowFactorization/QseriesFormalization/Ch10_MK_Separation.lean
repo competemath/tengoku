@@ -15,6 +15,9 @@ namespace Ch10
 
 set_option maxHeartbeats 400000
 
+/--
+@isnad1 id=le.0h1v.s3.d70d323aed0c from=translated src=- shape=8a62b088 vocab=c6f23c63
+-/
 theorem rowMin_nonneg (k : ℤ) : 0 ≤ rowMin k := by
   unfold rowMin
   split_ifs with hk
@@ -22,6 +25,9 @@ theorem rowMin_nonneg (k : ℤ) : 0 ≤ rowMin k := by
   · have hk' : k ≤ -1 := by omega
     nlinarith [sq_nonneg k]
 
+/--
+@isnad1 id=le.0h1v.s3.606d709394af from=translated src=- shape=5e17aa0a vocab=62d8f942
+-/
 theorem abs_k_le_rowMin (k : ℤ) : |k| ≤ rowMin k := by
   unfold rowMin
   split_ifs with hk
@@ -31,6 +37,9 @@ theorem abs_k_le_rowMin (k : ℤ) : |k| ≤ rowMin k := by
     rw [abs_of_nonpos (by omega)]
     nlinarith [sq_nonneg k]
 
+/--
+@isnad1 id=le.1h2v.s4.8f0155f65def from=translated src=- shape=ae0a97bf vocab=9c32bd74
+-/
 theorem Hq_ge_rowMin_of_cone {k r : ℤ} (hcone : coneSide k r) :
     rowMin k ≤ Hq k r := by
   rcases hcone with hA | hD
@@ -44,6 +53,9 @@ theorem Hq_ge_rowMin_of_cone {k r : ℤ} (hcone : coneSide k r) :
     simp only [rowMin, ite_eq_right hk, Hq, Q]
     nlinarith
 
+/--
+@isnad1 id=eq.1h2v.s4.7f1c4f765f43 from=translated src=- shape=4bb27f63 vocab=0234cd16
+-/
 theorem rowConeCoeff_vanish_below {k m : ℤ} (hm : m < rowMin k) :
     rowConeCoeff k m = 0 := by
   unfold rowConeCoeff
@@ -54,15 +66,24 @@ theorem rowConeCoeff_vanish_below {k m : ℤ} (hm : m < rowMin k) :
   have hmin := Hq_ge_rowMin_of_cone hr.2
   omega
 
+/--
+@isnad1 id=eq.1h2v.s4.5242d234c4a0 from=translated src=- shape=4bb27f63 vocab=6e09c11c
+-/
 theorem rowMixed_vanish_below {k m : ℤ} (hm : m < rowMin k) :
     rowMixedCoeff k m = 0 := by
   rw [row_transport_all, rowConeCoeff_vanish_below hm, neg_zero]
 
+/--
+@isnad1 id=eq.1h2v.s4.16890d676af3 from=translated src=- shape=4bb27f63 vocab=fec119a3
+-/
 theorem coneSignedCoeff_vanish_below {k m : ℤ} (hm : m < rowMin k) :
     coneSignedCoeff k m = 0 := by
   unfold coneSignedCoeff
   rw [rowConeCoeff_vanish_below hm, mul_zero]
 
+/--
+@isnad1 id=eq.1h1v.s4.cf3270a13361 from=translated src=- shape=278e0375 vocab=05d60d2c
+-/
 theorem coneDiffH_vanish_below_zero {m : ℤ} (hm : m < 0) :
     coneDiffH m = 0 := by
   unfold coneDiffH
@@ -77,6 +98,9 @@ theorem coneDiffH_vanish_below_zero {m : ℤ} (hm : m < 0) :
 noncomputable def mkGlobalRowCoeff (k T : ℤ) : ℤ :=
   ∑ a ∈ Finset.Icc (-2) T, QoutCoeff a * rowMixedCoeff k (T - a)
 
+/--
+@isnad1 id=eq.0h2v.s3.0a611c4f8cce from=translated src=- shape=6c8684e5 vocab=f317e67a
+-/
 theorem mkRowCoeff_eq_global (k T : ℤ) :
     mkRowCoeff k T = mkGlobalRowCoeff k T := by
   unfold mkRowCoeff mkGlobalRowCoeff
@@ -96,6 +120,9 @@ theorem mkRowCoeff_eq_global (k T : ℤ) :
 
 /-! ## Comparing the `m`-window with the global `T`-window -/
 
+/--
+@isnad1 id=eq.1h2v.s6.e58585a5c5d3 from=translated src=- shape=b2d9ce30 vocab=a81334e8
+-/
 theorem coneDiffH_eq_sum_mk_window {T a : ℤ}
     (ha : a ∈ Finset.Icc (-2) T) :
     coneDiffH (T - a) =

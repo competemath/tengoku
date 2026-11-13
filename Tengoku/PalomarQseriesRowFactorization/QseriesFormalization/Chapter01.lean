@@ -6417,15 +6417,21 @@ private lemma partition_eleven_mem (p : Nat.Partition 11) : p ∈ partitionEleve
   · rw [h]
     simp [partitionElevenSet]
 
-/-- `p(0) = 1`.-/
+/-- `p(0) = 1`.
+@isnad1 id=eq.0h0v.s3.f8c59d0a0825 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_zero : partitionCount 0 = 1 := by
   simp [partitionCount]
 
-/-- `p(1) = 1`.-/
+/-- `p(1) = 1`.
+@isnad1 id=eq.0h0v.s3.f28713f2c7d0 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_one : partitionCount 1 = 1 := by
   simp [partitionCount]
 
-/-- `p(2) = 2`.-/
+/-- `p(2) = 2`.
+@isnad1 id=eq.0h0v.s3.993b64e4fb7e from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_two : partitionCount 2 = 2 := by
   classical
   have huniv :
@@ -6435,7 +6441,9 @@ theorem partitionCount_two : partitionCount 2 = 2 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(3) = 3`.-/
+/-- `p(3) = 3`.
+@isnad1 id=eq.0h0v.s3.dedb7d6c8206 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_three : partitionCount 3 = 3 := by
   classical
   have huniv :
@@ -6446,7 +6454,9 @@ theorem partitionCount_three : partitionCount 3 = 3 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(4) = 5` (Chan Example 1.1).-/
+/-- `p(4) = 5` (Chan Example 1.1).
+@isnad1 id=eq.0h0v.s3.91b7f55df8e2 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_four : partitionCount 4 = 5 := by
   classical
   have huniv :
@@ -6458,7 +6468,9 @@ theorem partitionCount_four : partitionCount 4 = 5 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(5) = 7`.-/
+/-- `p(5) = 7`.
+@isnad1 id=eq.0h0v.s3.3986cfdaebea from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_five : partitionCount 5 = 7 := by
   classical
   have huniv :
@@ -6470,7 +6482,9 @@ theorem partitionCount_five : partitionCount 5 = 7 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(6) = 11`.-/
+/-- `p(6) = 11`.
+@isnad1 id=eq.0h0v.s3.5e9c6852ade3 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_six : partitionCount 6 = 11 := by
   classical
   have huniv :
@@ -6484,7 +6498,9 @@ theorem partitionCount_six : partitionCount 6 = 11 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(7) = 15`.-/
+/-- `p(7) = 15`.
+@isnad1 id=eq.0h0v.s3.5f1a2f72acfa from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_seven : partitionCount 7 = 15 := by
   classical
   have huniv :
@@ -6495,7 +6511,9 @@ theorem partitionCount_seven : partitionCount 7 = 15 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(8) = 22`.-/
+/-- `p(8) = 22`.
+@isnad1 id=eq.0h0v.s3.dc4a937cca2a from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_eight : partitionCount 8 = 22 := by
   classical
   have huniv :
@@ -6506,7 +6524,9 @@ theorem partitionCount_eight : partitionCount 8 = 22 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(9) = 30`.-/
+/-- `p(9) = 30`.
+@isnad1 id=eq.0h0v.s3.7645c1a7fc29 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_nine : partitionCount 9 = 30 := by
   classical
   have huniv :
@@ -6517,7 +6537,9 @@ theorem partitionCount_nine : partitionCount 9 = 30 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- `p(10) = 42`.-/
+/-- `p(10) = 42`.
+@isnad1 id=eq.0h0v.s3.9f7af08a2658 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_ten : partitionCount 10 = 42 := by
   classical
   have huniv :
@@ -6530,7 +6552,9 @@ theorem partitionCount_ten : partitionCount 10 = 42 := by
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 5000000 in
-/-- `p(11) = 56`.-/
+/-- `p(11) = 56`.
+@isnad1 id=eq.0h0v.s3.3af830e7bd54 from=translated src=- shape=3c26ae4f vocab=d775a47a
+-/
 theorem partitionCount_eleven : partitionCount 11 = 56 := by
   classical
   have huniv :
@@ -6544,62 +6568,86 @@ theorem partitionCount_eleven : partitionCount 11 = 56 := by
   rw [partitionCount, Fintype.card, huniv]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `0`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `0`.
+@isnad1 id=eq.0h0v.s3.714e62801dc4 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_zero : partitionCountRec 0 = partitionCount 0 := by
   rw [partitionCount_zero]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `1`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `1`.
+@isnad1 id=eq.0h0v.s3.d0b1c57c9ecc from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_one : partitionCountRec 1 = partitionCount 1 := by
   rw [partitionCount_one]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `2`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `2`.
+@isnad1 id=eq.0h0v.s3.12c29268b0dc from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_two : partitionCountRec 2 = partitionCount 2 := by
   rw [partitionCount_two]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `3`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `3`.
+@isnad1 id=eq.0h0v.s3.9aed215d83a2 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_three : partitionCountRec 3 = partitionCount 3 := by
   rw [partitionCount_three]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `4`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `4`.
+@isnad1 id=eq.0h0v.s3.fa9c7c839f09 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_four : partitionCountRec 4 = partitionCount 4 := by
   rw [partitionCount_four]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `5`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `5`.
+@isnad1 id=eq.0h0v.s3.65f210e2c4ea from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_five : partitionCountRec 5 = partitionCount 5 := by
   rw [partitionCount_five]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `6`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `6`.
+@isnad1 id=eq.0h0v.s3.9ea3cd9307ea from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_six : partitionCountRec 6 = partitionCount 6 := by
   rw [partitionCount_six]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `7`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `7`.
+@isnad1 id=eq.0h0v.s3.9cb3e2734518 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_seven : partitionCountRec 7 = partitionCount 7 := by
   rw [partitionCount_seven]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `8`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `8`.
+@isnad1 id=eq.0h0v.s3.8760f44f2a3c from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_eight : partitionCountRec 8 = partitionCount 8 := by
   rw [partitionCount_eight]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `9`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `9`.
+@isnad1 id=eq.0h0v.s3.065c59c69102 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_nine : partitionCountRec 9 = partitionCount 9 := by
   rw [partitionCount_nine]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `10`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `10`.
+@isnad1 id=eq.0h0v.s3.326420a1f1a9 from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_ten : partitionCountRec 10 = partitionCount 10 := by
   rw [partitionCount_ten]
   decide
 
-/-- The pentagonal recurrence agrees with `partitionCount` at `11`.-/
+/-- The pentagonal recurrence agrees with `partitionCount` at `11`.
+@isnad1 id=eq.0h0v.s3.633a73bb0b1a from=translated src=- shape=32c7c386 vocab=e5e5b323
+-/
 theorem partitionCountRec_eq_partitionCount_eleven : partitionCountRec 11 = partitionCount 11 := by
   rw [partitionCount_eleven]
   decide
