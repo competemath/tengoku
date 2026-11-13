@@ -3,6 +3,7 @@
 
 import importlib.util
 import json
+import random
 import re
 import sys
 import tempfile
@@ -124,6 +125,10 @@ class Fixture(unittest.TestCase):
             if name in NOT_TAGGED:
                 continue
             p = tag.offset_of(FIXTURE, v["range"][0], v["range"][1])
+            if name.rsplit(".", 1)[0] in RANGES:
+                # a `where` lemma: Lean's range starts at its name, after its docstring (#780)
+                self.assertTrue(FIXTURE.startswith(name.rsplit(".", 1)[1], p), (name, FIXTURE[p : p + 20]))
+                continue
             self.assertTrue(
                 FIXTURE.startswith(("/--", "@[", "theorem", "protected theorem"), p),
                 (name, FIXTURE[p : p + 20]),
@@ -134,14 +139,15 @@ class Tagging(unittest.TestCase):
     def setUp(self):
         self.new, self.counts, self.skipped = tag.tag_text(FIXTURE, items())
 
-    def test_the_twelve_are_tagged_and_the_five_left_alone_with_a_reason_each(self):
+    def test_the_sixteen_are_tagged_and_the_five_left_alone_with_a_reason_each(self):
         self.assertEqual({n for n, _ in self.skipped}, NOT_TAGGED)
         why = dict(self.skipped)
         self.assertIn("generated", why["Fx.Pt.ext_iff"])
         for name in NOT_TAGGED - {"Fx.Pt.ext_iff"}:
             self.assertIn("range is only its name", why[name], name)
-        self.assertEqual(self.counts, {"added": 5, "replaced": 1, "same": 0, "created": 6})
-        self.assertEqual(self.new.count("@isnad1 id="), 12)
+        # the two `where` cases (#780): `with_where` and its lemma `aux` get the tag in their docstrings, `with_where_nodoc` and `aux2` get one created
+        self.assertEqual(self.counts, {"added": 7, "replaced": 1, "same": 0, "created": 8})
+        self.assertEqual(self.new.count("@isnad1 id="), 16)
 
     def test_one_line_doc(self):
         self.assertIn(f"/-- one line\n{TAG}\n-/\ntheorem one_line", self.new)
@@ -601,6 +607,86 @@ class Cli(unittest.TestCase):
             (Path(other) / "IsnadFixture.lean").write_bytes(FIXTURE.encode("utf-8"))
             isnad.tag_files(plan, Path(other), write=True)
             self.assertEqual((Path(other) / "IsnadFixture.lean").read_bytes().decode("utf-8"), self.file())
+
+
+WHERE_780 = (Path(__file__).resolve().parent / "fixtures" / "isnad_where_lean_operads_780.lean").read_text(encoding="utf-8")
+
+
+def where_items(text: str, tag_line: str = TAG) -> list:
+    """the items Lean gives for `theorem P ... where Q ...` (the ranges as in tools/isnad/tagger/ranges.json): the theorem's range from its docstring (or keyword) to
+    the end of the command, the `where` lemma's from its name to its end; each name's selection is the name itself"""
+    lines = text.split("\n")
+    out, top = [], None
+    for i, ln in enumerate(lines, 1):
+        if ln.startswith("theorem "):
+            name = ln.split()[1]
+            start = i - 1 if i > 1 and lines[i - 2].rstrip().endswith("-/") and lines[i - 2].lstrip().startswith("/--") else i
+            top = (name, start, i)
+        elif top and re.match(
+            r"^  [A-Za-z_][\w']* [(:]", ln
+        ):  # the `where` lemma's own line (not its docstring, a tag line or a match arm)
+            aux = ln.split()[0]
+            end = next((j for j in range(i, len(lines)) if lines[j].strip() == "" or lines[j].startswith("theorem ")), len(lines))
+            out.append(tag.Item(f"{top[0]}.{aux}", (i, 2, end, len(lines[end - 1])), (i, 2, i, 2 + len(aux)), tag_line))
+            out.append(tag.Item(top[0], (top[1], 0, end, len(lines[end - 1])), (top[2], 8, top[2], 8 + len(top[0])), tag_line))
+            top = None
+    return out
+
+
+class WhereLemmas(unittest.TestCase):
+    """lean-operads part 1 (#780, 12 Nov 2026): `theorem graft_cutAt_subAt ... where /-- ... -/ posAt_lt_arity_cutAt ...`. Lean's range for the `where` lemma starts at
+    its name, after its docstring; the tagger saw no docstring there, created one, and left two docstrings in a row: `unexpected token '/--'` (ShuffleTree.lean:379,
+    SymTreeConv.lean:189) and the tag PR's rebuild failed. A docstring directly before a command is its docstring: the tag goes into it."""
+
+    def test_the_real_lemma(self):
+        its = where_items(WHERE_780)
+        self.assertEqual(sorted(i.name for i in its), ["graft_cutAt_subAt", "graft_cutAt_subAt.posAt_lt_arity_cutAt"])
+        new, counts, skipped = tag.tag_text(WHERE_780, its)
+        self.assertEqual(skipped, [])
+        self.assertEqual(counts, {"added": 2, "replaced": 0, "same": 0, "created": 0})
+        self.assertIn(f"  /-- The cut-off leaf is a leaf of the cut tree.\n  {TAG}\n  -/\n  posAt_lt_arity_cutAt", new)
+        self.assertIsNone(re.search(r"-/\s*/--", new))
+        self.assertTrue(tag.equivalent(WHERE_780, new))
+        again, counts2, _ = tag.tag_text(new, where_items(new))
+        self.assertEqual((again, counts2["same"]), (new, 2))
+
+    def test_mutant_the_tagger_as_it_was_makes_two_docstrings(self):
+        real = tag.write_tag
+        try:
+            tag.write_tag = lambda text, p, it, docs=None: real(text, p, it, None)  # no look before the command: the behaviour #780 met
+            new, counts, _ = tag.tag_text(WHERE_780, where_items(WHERE_780))
+        finally:
+            tag.write_tag = real
+        self.assertEqual(counts["created"], 1)
+        self.assertIsNotNone(re.search(r"-/\s*/--", new))
+
+    def test_generated(self):
+        rng = random.Random(780)
+        n = 0
+        for _ in range(2000):
+            parts = []
+            for k in range(rng.randint(1, 6)):
+                doc = rng.choice(["", f"/-- theorem {k} -/\n", f"/-- theorem {k}\nover two lines -/\n"])
+                aux_doc = rng.choice(["", f"  /-- lemma {k} -/\n", f"  /-- lemma {k}\n  more -/\n"]) if rng.random() < 0.7 else None
+                body = f"{doc}theorem t{k} (n : Nat) : n + 0 = n := a{k} n\n"
+                if aux_doc is not None:
+                    body += f"where\n{aux_doc}  a{k} (m : Nat) : m + 0 = m := by simp\n"
+                parts.append(body)
+            text = "\n".join(parts)
+            its = [i for i in where_items(text)]
+            if not its:
+                continue
+            new, counts, skipped = tag.tag_text(text, its)
+            self.assertEqual(skipped, [], text)
+            self.assertEqual(sum(counts.values()), len(its))
+            self.assertEqual(new.count("@isnad1 id="), len(its))
+            self.assertIsNone(re.search(r"-/\s*/--", new), text)
+            self.assertTrue(tag.equivalent(text, new))
+            self.assertTrue(tag.equivalent(text, tag.strip_text(new)))
+            again, counts2, _ = tag.tag_text(new, where_items(new))
+            self.assertEqual((again, counts2["same"]), (new, len(its)))
+            n += 1
+        self.assertGreater(n, 1500)
 
 
 if __name__ == "__main__":

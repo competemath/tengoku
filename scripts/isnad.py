@@ -511,8 +511,15 @@ def tagtest(exe: str | None = None) -> int:
         compile_fixture(d)
         recs, ranges = fixture_facts(d, exe)
         fresh = {name: [list(r), list(s)] for name, _, r, s in map(parse_range_line, ranges)}
-        if fresh != {n: [v["range"], v["sel"]] for n, v in pinned.items()}:
+        want = {n: [v["range"], v["sel"]] for n, v in pinned.items()}
+        if fresh != want:
             problems.append("Lean's ranges for the fixture are not the ones in tools/isnad/tagger/ranges.json")
+            # what Lean says, for each name that differs: what to pin after a change to the fixture (the job's log is the only place a fresh compile is seen)
+            for n in sorted(set(fresh) | set(want)):
+                if fresh.get(n) != want.get(n):
+                    print(
+                        f"ranges: {n}: Lean {json.dumps({'range': fresh[n][0], 'sel': fresh[n][1]}) if n in fresh else 'none'}; pinned {json.dumps({'range': want[n][0], 'sel': want[n][1]}) if n in want else 'none'}"
+                    )
         before = identities(recs)
 
         plan, skipped = plan_tags(recs, ranges, "seed")
