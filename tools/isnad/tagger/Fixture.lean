@@ -49,4 +49,15 @@ structure Cancel where
   /-- a documented field -/
   both (a : Nat) : a * 1 = a
 
+/-- a theorem with a `where` lemma that has a docstring of its own: Lean's range for the lemma starts at its name, after its docstring
+(lean-operads part 1, #780: the tagger made a second docstring there and the module stopped parsing) -/
+theorem with_where (n : Nat) : n + 0 = n := aux n
+where
+  /-- the `where` lemma's own docstring -/
+  aux (m : Nat) : m + 0 = m := by simp
+
+theorem with_where_nodoc (n : Nat) : 0 + n = n := aux2 n
+where
+  aux2 (m : Nat) : 0 + m = m := by simp
+
 end Fx
