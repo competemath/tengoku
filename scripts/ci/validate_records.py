@@ -5,7 +5,7 @@ tier (schemas/record.schema.json), status matches the tier, library matches
 the file, source on the allowlist (schemas/sources.json), no duplicate names
 in the PR or against trusted, tombstones point at existing names and carry a fixed category, a note on
 where to look instead points at a tombstoned name, a credit correction names a trusted record and links its
-evidence, a statement correction names a tentative record of the file and only moves text between its two fields or drops it from the end,
+evidence, a statement correction names a tentative record of the file and only moves the seam between its two fields later or cuts the end of its proof,
 file ≤ 50 MB, at most ten headline records per PR, each crediting its author."""
 
 from __future__ import annotations
@@ -187,9 +187,10 @@ def check_statement_correction(p: str, no: int, r: dict, t: str) -> list[str]:
         out.append(
             f"{p}:{no}: the corrected text of {n} must be the current statement and proof with the seam between them moved, or the end cut off: the same characters, whitespace differing only at the seam"
         )
-    a, b = stmt.rstrip(), old_stmt.rstrip()
-    if not (a.startswith(b) or b.startswith(a)):
-        out.append(f"{p}:{no}: the corrected statement of {n} and the current one must be one a prefix of the other")
+    if not stmt.rstrip().startswith(old_stmt.rstrip()):
+        out.append(
+            f"{p}:{no}: the corrected statement of {n} must start with the current statement: the seam moves later, a correction never shortens what a statement claims (retract the record instead)"
+        )
     if not re.search(r"(?<![\w'])" + re.escape(n.rsplit(".", 1)[-1]) + r"(?![\w'])", stmt):
         out.append(f"{p}:{no}: statement does not declare {n} (its last component must appear; namespaces may come from context)")
     return out

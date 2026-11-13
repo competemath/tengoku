@@ -118,7 +118,9 @@ class StatementCorrection(unittest.TestCase):
         for lib, xs in by.items():
             r.append(f"data/tentative/{lib}.jsonl", lines(*(corr(x["name"], x["statement"], x["proof"] + " extra") for x in xs)))
         r.commit("add a word")
-        rc, out = r.gate("validate_records.py")
+        rc, out = r.gate(
+            "validate_records.py", env={"GITHUB_ACTIONS": ""}
+        )  # under Actions the gate also prints each error as an annotation, which would double the count
         self.assertNotEqual(rc, 0)
         shown = out.count("with the seam between them moved")
         more = re.search(r"… (\d+) more", out)
@@ -149,12 +151,35 @@ class StatementCorrection(unittest.TestCase):
             "space made a newline in the statement": (s[:i] + "\n" + s[i + 1 :], p),
             "joined tokens in the proof": (s, p[:j] + p[j + 1 :]),
             "space made a newline in the proof": (s, p[:j] + "\n" + p[j + 1 :]),
-            "whitespace between a comment and the next line": (s.replace(" ", " -- c ", 1), p),
         }
         for what, (cs, cp) in edits.items():
             rc, out = self.run_gate(self.repo([x]), lines(corr(x["name"], cs, cp)))
             self.assertNotEqual(rc, 0, what)
             self.assertIn("with the seam between them moved", out, what)
+
+    def test_a_newline_after_a_comment_is_text(self):
+        """Gitar on #815: `-- note` ends at its newline; with the newline made a space the next line is commented out. A real record's proof with a comment line, corrected to join the comment and the line after it: refused."""
+        x = self.one()
+        old = x["proof"] + "\n  -- note\n  exact foo"
+        base = {**x, "proof": old}
+        s, p = base["statement"], old
+        rc, out = self.run_gate(self.repo([base]), lines(corr(x["name"], s, p.replace("-- note\n  exact", "-- note exact"))))
+        self.assertNotEqual(rc, 0)
+        self.assertIn("with the seam between them moved", out)
+        rc, out = self.run_gate(self.repo([base]), lines(corr(x["name"], s, p[: -len("\n  exact foo")])))  # cutting the end is fine
+        self.assertEqual(rc, 0, out)
+
+    def test_a_correction_never_shortens_the_statement(self):
+        """Gitar on #815: a new statement that is a prefix of the old one (the seam moved earlier, or the statement cut) changes what the record claims."""
+        x = next(r for r in movable() if len(r["statement"].split()) > 6)
+        old_s, old_p = x["statement"], x["proof"]
+        words = old_s.split(" ")
+        cut_at = len(" ".join(words[: len(words) // 2]))
+        short, moved = old_s[:cut_at], old_s[cut_at:].lstrip() + " " + old_p
+        for what, (cs, cp) in {"the seam moved earlier": (short, moved), "the statement cut": (short, "")}.items():
+            rc, out = self.run_gate(self.repo([x]), lines(corr(x["name"], cs, cp)))
+            self.assertNotEqual(rc, 0, what)
+            self.assertIn("must start with the current statement", out, what)
 
     def test_a_record_already_trusted_is_refused(self):
         x = self.one()
@@ -180,13 +205,13 @@ class StatementCorrection(unittest.TestCase):
         self.assertNotEqual(rc, 0)
         self.assertIn("with the seam between them moved", out)
 
-    def test_a_statement_that_is_not_a_prefix_of_the_old_nor_the_old_of_it_is_refused(self):
+    def test_a_statement_that_does_not_start_with_the_old_one_is_refused(self):
         x = self.one()
         rc, out = self.run_gate(
             self.repo([x]), lines(corr(x["name"], x["name"].rsplit(".", 1)[-1] + " :=", x["statement"] + " " + x["proof"]))
         )
         self.assertNotEqual(rc, 0)
-        self.assertIn("one a prefix of the other", out)
+        self.assertIn("must start with the current statement", out)
 
     def test_an_unknown_name_is_refused(self):
         x = self.one()
@@ -399,9 +424,9 @@ class Mutants(unittest.TestCase):
 
     def test_without_the_statement_prefix_rule_a_rewritten_statement_passes(self):
         r = self.case(lambda x: lines(corr(x["name"], x["name"].rsplit(".", 1)[-1] + " :=", x["statement"] + " " + x["proof"])))
-        self.assertIn("one a prefix of the other", r.gate("validate_records.py")[1])
-        m = self.mutated("if not (a.startswith(b) or b.startswith(a)):", "if False:")
-        self.assertNotIn("one a prefix of the other", self.run_with(m, r)[1])
+        self.assertIn("must start with the current statement", r.gate("validate_records.py")[1])
+        m = self.mutated("if not stmt.rstrip().startswith(old_stmt.rstrip()):", "if False:")
+        self.assertNotIn("must start with the current statement", self.run_with(m, r)[1])
 
 
 class CampaignScenarios(unittest.TestCase):
