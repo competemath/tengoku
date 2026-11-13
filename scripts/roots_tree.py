@@ -306,25 +306,32 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
                     f.insert(i, column + t.start(), ns + ".")
                     done["opens"] = done.get("opens", 0) + 1
     touched = bool(done["declared"] or done["namespaces"] or done["dotted"] or done.get("opens"))
-    first = body_start(f.text)
     mark = OPEN_MARK.format(ns=ns)
-    if mark_open and (touched or _uses_roots(f, roots)) and first < len(f.text) and mark.strip() not in "\n".join(f.text):
-        # On the blank line in front of the first body line when there is one: Lean keeps the column where a declaration starts (a doc comment, or `def`) and an application on a
-        # LATER line must stand to the right of it, so `namespace … open … def x` / `… /-- doc -/` on one line breaks `(-1) ^ k * bernoulli (k + 1)` in a term body (merge queue,
-        # PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: same line fails, own line passes). Tactic blocks restart the column, which is why most modules never noticed.
-        spot = _blank_before(f.text, first)
-        if spot is not None:
-            f.insert(spot, 0, mark.rstrip())
-        elif not f.text[first].strip():
-            f.insert(first, 0, mark)  # the line after a `section` that opens the body is blank: its own line
-        elif _ends_code_line(f.text, first - 1):
-            # No blank line: the end of the line before (`@[expose] public section`, an `open …`), so that the declaration stays where it is (merge queue, wave 4: FormalConjectures
-            # …/Additive/Coset.lean:23, `public section` straight above `noncomputable def`, `sSup {…}` on the next line).
-            f.insert(first - 1, len(f.text[first - 1]), " " + mark.rstrip())
-        else:
-            f.insert(first, 0, mark)
+    if mark_open and (touched or _uses_roots(f, roots)) and place_mark(f, mark):
         done["opened"] = True
     return done
+
+
+def place_mark(f: Lines, mark: str) -> bool:
+    """Put `mark` (`namespace NS end NS open NS`) at the place of the first body line that keeps the declaration's column; False when the module has no body or already has it."""
+    first = body_start(f.text)
+    if first >= len(f.text) or mark.strip() in "\n".join(f.text):
+        return False
+    # On the blank line in front of the first body line when there is one: Lean keeps the column where a declaration starts (a doc comment, or `def`) and an application on a
+    # LATER line must stand to the right of it, so `namespace … open … def x` / `… /-- doc -/` on one line breaks `(-1) ^ k * bernoulli (k + 1)` in a term body (merge queue,
+    # PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: same line fails, own line passes). Tactic blocks restart the column, which is why most modules never noticed.
+    spot = _blank_before(f.text, first)
+    if spot is not None:
+        f.insert(spot, 0, mark.rstrip())
+    elif not f.text[first].strip():
+        f.insert(first, 0, mark)  # the line after a `section` that opens the body is blank: its own line
+    elif _ends_code_line(f.text, first - 1):
+        # No blank line: the end of the line before (`@[expose] public section`, an `open …`), so that the declaration stays where it is (merge queue, wave 4: FormalConjectures
+        # …/Additive/Coset.lean:23, `public section` straight above `noncomputable def`, `sSup {…}` on the next line).
+        f.insert(first - 1, len(f.text[first - 1]), " " + mark.rstrip())
+    else:
+        f.insert(first, 0, mark)
+    return True
 
 
 def qualify_manifest_text(text: str, roots: set[str], ns: str) -> tuple[str, int]:
@@ -368,12 +375,67 @@ def manifest_namespace_text(text: str) -> str | None:
     return None
 
 
+IMPORT_LINE = re.compile(r"^[ \t]*(?:(?:public|meta)[ \t]+)*import[ \t]+(\S+)", re.M)
+IDENT_HEAD = re.compile(r"(?<![\w.'«])(«[^»]*»|[^\W\d][\w'!?]*)")
+ANY_MODULE = re.compile(r"Tengoku/([A-Za-z][A-Za-z0-9]*)(?:/.+)?\.lean")
+NOTE_OPEN = "-- Tengoku: opens {ns}: its root names moved there, and this module uses them (generated)\n"
+
+
+def dependents(files: dict[str, str], renamed_by_lib: dict[str, set[str]]) -> dict[str, list[str]]:
+    """The modules of OTHER libraries that import (transitively) a module of a library whose roots were renamed and that mention one of those names: path -> the libraries to open. The
+    old environment showed them those names as root names; after the rename they need `open Tengoku.<Library>` to see the same (merge queue, wave 3: LeanPool's FltRegular/…/UnitLemmas.lean
+    uses `quotient_zero_sub_one_comp_aut`, a root name of the FltRegular library; 4 modules of LeanPool and 62 of NavierStokesEuler in the tree today). A library whose roots no text renamed
+    has no dependents."""
+    libs = sorted(lib for lib, names in renamed_by_lib.items() if names)
+    if not libs:
+        return {}
+    bit = {lib: 1 << i for i, lib in enumerate(libs)}
+    modules: dict[str, tuple[str, str]] = {}  # module name -> (path, library)
+    for path in files:
+        if m := ANY_MODULE.fullmatch(path):
+            modules[path[:-5].replace("/", ".")] = (path, m.group(1))
+    reach: dict[str, int] = {}
+
+    def reaches(start: str) -> int:
+        stack = [start]
+        while stack:  # a post-order walk, with no recursion: the import graph is a DAG, a cycle only stops the walk
+            n = stack[-1]
+            if n in reach and reach[n] >= 0:
+                stack.pop()
+                continue
+            if n not in reach:
+                reach[n] = -1
+                stack.extend(i for i in IMPORT_LINE.findall(files[modules[n][0]]) if i in modules and i not in reach)
+                continue
+            value = bit.get(modules[n][1], 0)
+            for i in IMPORT_LINE.findall(files[modules[n][0]]):
+                if i in modules and reach.get(i, 0) > 0:
+                    value |= reach[i]
+            reach[n] = value
+            stack.pop()
+        return reach[start]
+
+    out: dict[str, list[str]] = {}
+    for name in sorted(modules):
+        path, lib = modules[name]
+        value = reaches(name)
+        wanted = [other for other in libs if other != lib and value & bit[other]]
+        if not wanted:
+            continue
+        tokens = set(IDENT_HEAD.findall(mask(files[path])))
+        need = [other for other in wanted if tokens & renamed_by_lib[other]]
+        if need:
+            out[path] = need
+    return out
+
+
 def qualify_files(files: dict[str, str], reports: dict[str, str]) -> tuple[dict[str, str], dict]:
     """The whole transformation on text, with no file system: `files` maps a repository path (`Tengoku/<Library>/….lean`, `data/intake/<key>/manifest.jsonl`) to its text, `reports` a library
     to its root report. Returns the files that change (path -> new text) and, per library, what was done."""
     changed: dict[str, str] = {}
     done: dict = {}
     manifests = sorted(p for p in files if MANIFEST_PATH.fullmatch(p))
+    renamed_by_lib: dict[str, set[str]] = {}
     for lib in sorted(reports):
         roots = parse_roots(reports[lib]) if LIBRARY.fullmatch(lib) else set()
         modules = sorted(p for p in files if re.fullmatch(MODULE_PATH.format(lib=lib), p)) if roots else []
@@ -414,17 +476,30 @@ def qualify_files(files: dict[str, str], reports: dict[str, str]) -> tuple[dict[
                 if count:
                     changed[path] = new
         done[lib] = rep
+        renamed_by_lib[lib] = renamed
+    for path, wanted in dependents(files, renamed_by_lib).items():  # the modules of other libraries that use the renamed names
+        text = changed.get(path, files[path])
+        f = Lines(text)
+        opened = [lib for lib in wanted if place_mark(f, OPEN_MARK.format(ns=f"Tengoku.{lib}"))]
+        if opened:
+            new = "\n".join(f.text)
+            if not new.endswith("\n"):
+                new += "\n"
+            changed[path] = new + "".join(NOTE_OPEN.format(ns=f"Tengoku.{lib}") for lib in opened)
+            for lib in opened:
+                done[lib]["dependents_opened"] = done[lib].get("dependents_opened", 0) + 1
     return changed, done
 
 
 def apply(tree: Path, roots_dir: Path) -> dict:
-    """qualify_files on a checkout: reads the reports of `roots_dir` and the files of their libraries under `tree`, writes the files that change"""
+    """qualify_files on a checkout: reads the reports of `roots_dir` and every module of the tree, writes the files that change"""
     reports = {rep.stem: rep.read_text(encoding="utf-8", errors="replace") for rep in sorted(roots_dir.glob("*.txt"))}
     files: dict[str, str] = {}
-    for lib in reports:
-        if LIBRARY.fullmatch(lib):
-            for path in sorted((tree / "Tengoku" / lib).rglob("*.lean")):
-                files[path.relative_to(tree).as_posix()] = path.read_text(encoding="utf-8")
+    if any(
+        LIBRARY.fullmatch(lib) for lib in reports
+    ):  # every module of the tree: the modules of other libraries that use the renamed names open them too (dependents)
+        for path in sorted((tree / "Tengoku").rglob("*.lean")):
+            files[path.relative_to(tree).as_posix()] = path.read_text(encoding="utf-8")
     for path in sorted((tree / "data" / "intake").glob("*/manifest.jsonl")):
         files[path.relative_to(tree).as_posix()] = path.read_text(encoding="utf-8")
     changed, done = qualify_files(files, reports)

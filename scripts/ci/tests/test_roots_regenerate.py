@@ -22,6 +22,13 @@ TOOLCHAIN = "leanprover/lean4:v4.34.0-rc2"
 GENERATOR_STUB = "import pathlib, sys\n\nwith pathlib.Path('generated.txt').open('a') as f:\n    f.write(' '.join(sys.argv[1:]) + '\\n')\n"
 BASIC = "import Tengoku\n\ntheorem good : 1 + 1 = 2 := rfl\n"
 RENAMED = "import Tengoku\n\ntheorem _root_.Tengoku.FxLib.good : 1 + 1 = 2 := rfl\n"
+DEP = "import Tengoku.FxLib.Fx.Basic\n\ntheorem d : good = good := rfl\n"
+DEP_OPEN = (
+    "import Tengoku.FxLib.Fx.Basic\n"
+    "namespace Tengoku.FxLib end Tengoku.FxLib open Tengoku.FxLib\n"
+    "theorem d : good = good := rfl\n"
+    "-- Tengoku: opens Tengoku.FxLib: its root names moved there, and this module uses them (generated)\n"
+)
 REPORT = "roots: 1 declarations of the library are in the root namespace (x)\nroot: good\n"
 
 
@@ -31,7 +38,7 @@ class RootsRegenerate(unittest.TestCase):
         r.write("lean-toolchain", TOOLCHAIN + "\n")
         r.write(
             "schemas/sources.json",
-            json.dumps({"corpora": {lib: {"repo": "x", "commit": "c"} for lib in ("fx-lib", "other-lib")}}),
+            json.dumps({"corpora": {lib: {"repo": "x", "commit": "c"} for lib in ("fx-lib", "other-lib", "dep-lib")}}),
         )
         r.write("scripts/generate.py", GENERATOR_STUB)
         r.write("Tengoku/FxLib/Fx/Basic.lean", BASIC)
@@ -40,14 +47,19 @@ class RootsRegenerate(unittest.TestCase):
             "data/intake/fx-lib/manifest.jsonl", json.dumps({"name": "other", "library": "fx-lib"}) + "\n"
         )  # no record starts with the root
         r.write("Tengoku/OtherLib/Basic.lean", "import Tengoku\n\ntheorem o : True := trivial\n")
-        r.commit("two libraries")
+        r.write(
+            "Tengoku/DepLib/Basic.lean", "import Tengoku.FxLib.Fx.Basic\n\ntheorem d : good = good := rfl\n"
+        )  # an intake library whose module uses the root name
+        r.write("Tengoku/DepLib.lean", "import Tengoku.DepLib.Basic\n")
+        r.write("data/intake/dep-lib/manifest.jsonl", json.dumps({"name": "d", "library": "dep-lib"}) + "\n")
+        r.commit("three libraries")
         r.git("checkout", "-q", "main")
         r.git("merge", "-q", "--ff-only", "pr")
         r.git("checkout", "-q", "pr")
         return r
 
     def regenerated(self, r):
-        for lib in ("fx-lib", "other-lib"):
+        for lib in ("fx-lib", "other-lib", "dep-lib"):
             (r.dir / "corpora" / lib / ".git").mkdir(parents=True)  # the corpus is already 'cloned'
         rc, out = r.gate("queue_targets.py", "main", "pr", "--regenerate")
         gen = r.dir / "generated.txt"
@@ -96,6 +108,61 @@ class RootsRegenerate(unittest.TestCase):
             rc, out, generated = self.regenerated(r)
             self.assertEqual(rc, 0, out)
             self.assertIn("--libraries fx-lib", generated, f"{extra[0]}: the library was not regenerated")
+
+    def test_a_dependent_library_that_a_roots_pr_edits_in_place_is_not_regenerated(self):
+        # roots_tree.dependents: the modules of other libraries that use the renamed names open them (62 modules of NavierStokesEuler for LeanPool)
+        r = self.repo()
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write(
+            "Tengoku/DepLib/Basic.lean",
+            DEP_OPEN,
+        )
+        r.commit("roots with a dependent")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated, "", "the generator ran for a library a roots PR edited in place")
+
+    def test_a_dependent_library_with_a_module_added_is_regenerated(self):
+        r = self.repo()
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write(
+            "Tengoku/DepLib/Basic.lean",
+            DEP_OPEN,
+        )
+        r.write("Tengoku/DepLib/Extra.lean", "import Tengoku\n\ntheorem e : True := trivial\n")
+        r.commit("roots, a dependent and another change to it")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("--libraries dep-lib", generated)
+
+    def test_a_dependent_module_with_any_other_change_is_regenerated(self):
+        # Gitar on #823: only the generated `open` and its note are excused in a library that has no report
+        r = self.repo()
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write("Tengoku/DepLib/Basic.lean", DEP_OPEN.replace("rfl", "by rfl"))  # the open AND a hand edit
+        r.commit("roots with a dependent that is also edited by hand")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertIn("--libraries dep-lib", generated)
+
+    def test_a_dependent_whose_base_has_no_final_newline_is_still_skipped(self):
+        # Gitar on #823: roots_tree adds the newline before its note
+        r = self.repo()
+        r.write("Tengoku/DepLib/Basic.lean", DEP.rstrip("\n"))  # the base module without a final newline
+        r.commit("a dependent without a final newline")
+        r.git("checkout", "-q", "main")
+        r.git("merge", "-q", "--ff-only", "pr")
+        r.git("checkout", "-q", "pr")
+        r.write("data/roots/r-1/FxLib.txt", REPORT)
+        r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+        r.write("Tengoku/DepLib/Basic.lean", DEP_OPEN)  # roots_tree's output: the newline, the open, the note
+        r.commit("roots with a dependent")
+        rc, out, generated = self.regenerated(r)
+        self.assertEqual(rc, 0, out)
+        self.assertEqual(generated, "")
 
 
 if __name__ == "__main__":

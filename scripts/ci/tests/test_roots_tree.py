@@ -444,5 +444,80 @@ class WithoutABlankLine(unittest.TestCase):
         self.assertEqual("\n".join(once), "\n".join(self.run_text("\n".join(once))))
 
 
+class Dependents(unittest.TestCase):
+    """A module of ANOTHER library that imports a renamed library and uses one of its root names needs `open Tengoku.<Library>`: the old environment showed it the name as a root name (merge queue,
+    wave 3: LeanPool's FltRegular/NumberTheory/Cyclotomic/UnitLemmas.lean uses `quotient_zero_sub_one_comp_aut`, a root name of the FltRegular library)."""
+
+    DECL = "module\n\npublic section\n\ntheorem quotient_zero : 1 = 1 := rfl\n"
+    USER = "module\n\nimport Tengoku.FltRegular.A\n\npublic section\n\ntheorem use : 1 = 1 := quotient_zero\n"
+    REPORT = "roots: 1 declarations\nroot: quotient_zero\n"
+    MARK = "namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular"
+
+    def run_files(self, files, reports=None):
+        changed, done = rt.qualify_files(files, reports or {"FltRegular": self.REPORT})
+        return {p: changed.get(p, t) for p, t in files.items()}, done
+
+    def test_a_foreign_module_that_imports_and_uses_the_name_opens_the_namespace(self):
+        files = {"Tengoku/FltRegular/A.lean": self.DECL, "Tengoku/LeanPool/B.lean": self.USER}
+        out, done = self.run_files(files)
+        self.assertIn(self.MARK, out["Tengoku/LeanPool/B.lean"])
+        self.assertIn("theorem use : 1 = 1 := quotient_zero", out["Tengoku/LeanPool/B.lean"])  # its use is untouched
+        self.assertEqual(done["FltRegular"]["dependents_opened"], 1)
+
+    def test_a_module_that_does_not_import_the_library_is_left_alone(self):
+        files = {
+            "Tengoku/FltRegular/A.lean": self.DECL,
+            "Tengoku/Other/B.lean": self.USER.replace("import Tengoku.FltRegular.A", "import Tengoku.Seed.X"),
+        }
+        out, _ = self.run_files(files)
+        self.assertEqual(
+            out["Tengoku/Other/B.lean"], files["Tengoku/Other/B.lean"]
+        )  # a local `quotient_zero` of a module that sees no such root name
+
+    def test_a_module_that_imports_but_does_not_use_a_name_is_left_alone(self):
+        files = {"Tengoku/FltRegular/A.lean": self.DECL, "Tengoku/LeanPool/B.lean": self.USER.replace("quotient_zero", "other_name")}
+        out, _ = self.run_files(files)
+        self.assertEqual(out["Tengoku/LeanPool/B.lean"], files["Tengoku/LeanPool/B.lean"])
+
+    def test_the_import_may_be_transitive_through_an_umbrella(self):
+        files = {
+            "Tengoku/FltRegular/A.lean": self.DECL,
+            "Tengoku/FltRegular.lean": "import Tengoku.FltRegular.A\n",
+            "Tengoku/LeanPool/B.lean": self.USER.replace("import Tengoku.FltRegular.A", "import Tengoku.FltRegular"),
+        }
+        out, _ = self.run_files(files)
+        self.assertIn(self.MARK, out["Tengoku/LeanPool/B.lean"])
+
+    def test_a_name_in_a_comment_or_a_string_does_not_count(self):
+        files = {
+            "Tengoku/FltRegular/A.lean": self.DECL,
+            "Tengoku/LeanPool/B.lean": 'module\n\nimport Tengoku.FltRegular.A\n\n-- quotient_zero\ndef s := "quotient_zero"\n',
+        }
+        out, _ = self.run_files(files)
+        self.assertEqual(out["Tengoku/LeanPool/B.lean"], files["Tengoku/LeanPool/B.lean"])
+
+    def test_two_libraries_in_one_pass_each_get_their_own_open_in_a_third(self):
+        files = {
+            "Tengoku/FltRegular/A.lean": self.DECL,
+            "Tengoku/Pfr/P.lean": "module\n\npublic section\n\ntheorem pfr_root : 1 = 1 := rfl\n",
+            "Tengoku/LeanPool/B.lean": "module\n\nimport Tengoku.FltRegular.A\nimport Tengoku.Pfr.P\n\npublic section\n\ntheorem use : 1 = 1 := quotient_zero.trans pfr_root\n",
+        }
+        out, _ = self.run_files(files, {"FltRegular": self.REPORT, "Pfr": "roots: 1 declarations\nroot: pfr_root\n"})
+        text = out["Tengoku/LeanPool/B.lean"]
+        self.assertIn(self.MARK, text)
+        self.assertIn("namespace Tengoku.Pfr end Tengoku.Pfr open Tengoku.Pfr", text)
+
+    def test_it_is_idempotent(self):
+        files = {"Tengoku/FltRegular/A.lean": self.DECL, "Tengoku/LeanPool/B.lean": self.USER}
+        once, _ = self.run_files(files)
+        twice, _ = self.run_files(once)
+        self.assertEqual(once, twice)
+
+    def test_a_root_no_text_declares_has_no_dependents(self):
+        files = {"Tengoku/FltRegular/A.lean": "module\n\npublic section\n\ndef other : Nat := 1\n", "Tengoku/LeanPool/B.lean": self.USER}
+        out, _ = self.run_files(files)
+        self.assertEqual(out["Tengoku/LeanPool/B.lean"], files["Tengoku/LeanPool/B.lean"])
+
+
 if __name__ == "__main__":
     unittest.main()

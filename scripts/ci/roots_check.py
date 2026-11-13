@@ -41,12 +41,13 @@ def base_manifests(base: str) -> list[str]:
     return [p for p in run("ls-tree", "-r", "--name-only", base, "data/intake").splitlines() if MANIFEST.fullmatch(p)]
 
 
-def listing(rev: str, libs: list[str], manifests: list[str]) -> dict[str, str]:
-    """path -> mode of the files of the libraries and of the manifests, at a revision"""
+def listing(rev: str, manifests: list[str]) -> dict[str, str]:
+    """path -> mode of every module of the tree (the modules of other libraries that use the renamed names open them too) and of the manifests, at a revision"""
     state = {}
-    for entry in filter(None, run("ls-tree", "-r", "-z", rev, "--", *(f"Tengoku/{lib}" for lib in libs), *manifests).split("\0")):
+    for entry in filter(None, run("ls-tree", "-r", "-z", rev, "--", "Tengoku", *manifests).split("\0")):
         meta, path = entry.split("\t", 1)
-        state[path] = meta.split()[0]
+        if path.endswith(".lean") or MANIFEST.fullmatch(path):
+            state[path] = meta.split()[0]
     return state
 
 
@@ -92,24 +93,22 @@ def main(base: str, head: str) -> None:
     for status, path in changed_files(base, head):
         if path in allowed_report and status == "A":
             continue
-        if status == "M" and (MANIFEST.fullmatch(path) or any(path.startswith(f"Tengoku/{lib}/") for lib in libs)):
-            continue
+        if status == "M" and (MANIFEST.fullmatch(path) or (path.startswith("Tengoku/") and path.endswith(".lean"))):
+            continue  # exactly which modules is judged below, against the script's output
         stray.append(f"{path} ({status})")
     if stray:
-        fail(
-            f"a roots PR adds its reports and modifies modules of their libraries and the intake manifests, nothing else; also: {', '.join(stray[:10])}"
-        )
-    base_modes = listing(base, libs, manifests)
+        fail(f"a roots PR adds its reports and modifies modules and the intake manifests, nothing else; also: {', '.join(stray[:10])}")
+    base_modes = listing(base, manifests)
     missing = [lib for lib in libs if not any(p.startswith(f"Tengoku/{lib}/") for p in base_modes)]
     if missing:
         fail(f"no such library at the base: {', '.join(missing)}")
-    # the base's files of the libraries and the manifests, as text, and the transformation of the BASE's script on them
+    # the base's modules and manifests, as text, and the transformation of the BASE's script on them
     base_blobs = read_blobs(base, sorted(base_modes))
     files = {p: b.decode("utf-8", errors="surrogateescape") for p, b in base_blobs.items()}
     texts = {lib: run("show", f"{head}:{path}") for lib, path in reports.items()}
     changed, done = roots_tree.qualify_files(files, texts)
     expected = {p: changed[p].encode("utf-8", errors="surrogateescape") if p in changed else b for p, b in base_blobs.items()}
-    head_modes = listing(head, libs, manifests)
+    head_modes = listing(head, manifests)
     head_blobs = read_blobs(head, sorted(head_modes))
     errors = differences(expected, head_blobs)
     errors += [f"{p}: its mode changed" for p in sorted(base_modes.keys() & head_modes.keys()) if base_modes[p] != head_modes[p]]
