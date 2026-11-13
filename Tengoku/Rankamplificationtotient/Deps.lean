@@ -1,0 +1,1 @@
+-- Rankamplificationtotient: a factory bundle (data/intake/rankamplificationtotient). This file only marks the library for Tengoku/All.lean.

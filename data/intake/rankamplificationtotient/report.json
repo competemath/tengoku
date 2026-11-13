@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "e0c9834241400e45ab80f913af51eddbcc62dc94d5a0fe57ecf5fe54ca713fcc",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "rankamplificationtotient",
+ "lint_mode": "proposed",
+ "modules": 70,
+ "part": 1,
+ "theorems": 1557
+}
