@@ -38,7 +38,7 @@ the fields of Hironaka's real and complex statements), and the main theorems ins
 -/
 
 @[expose] public section
-
+namespace Tengoku.Hironaka end Tengoku.Hironaka open Tengoku.Hironaka 
 universe u
 
 open scoped Manifold ContDiff
@@ -46,7 +46,7 @@ open scoped Manifold ContDiff
 /-- A bundled analytic manifold over `𝕜` modelled on `E`: Hausdorff, second countable, without
 boundary, with analytic (`C^ω`) chart changes — for `E` finite-dimensional, Hironaka's
 non-singular analytic `𝕜`-space [Hir64, pp. 119–121].-/
-structure AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*)
+structure _root_.Tengoku.Hironaka.AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Type*)
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] where
   /-- The underlying type of points.-/
   carrier : Type u
@@ -56,7 +56,7 @@ structure AnalyticManifold (𝕜 : Type*) [NontriviallyNormedField 𝕜] (E : Ty
   [t2 : T2Space carrier]
   [secondCountable : SecondCountableTopology carrier]
 
-namespace AnalyticManifold
+namespace Tengoku.Hironaka.AnalyticManifold
 
 attribute [instance] AnalyticManifold.top AnalyticManifold.charted AnalyticManifold.manifold
   AnalyticManifold.t2 AnalyticManifold.secondCountable
@@ -72,14 +72,14 @@ variable {𝕜 : Type} [NontriviallyNormedField 𝕜] {E : Type*} [NormedAddComm
 instance : CoeSort (AnalyticManifold.{u} 𝕜 E) (Type u) := ⟨AnalyticManifold.carrier⟩
 
 /-- Analytic maps between analytic manifolds: Mathlib's bundled `C^ω` maps.-/
-abbrev _root_.AnalyticMap (M N : AnalyticManifold.{u} 𝕜 E) : Type u :=
+abbrev _root_.Tengoku.Hironaka.AnalyticMap (M N : AnalyticManifold.{u} 𝕜 E) : Type u :=
   C^ω⟮𝓘(𝕜, E), M; 𝓘(𝕜, E), N⟯
 
 /-- `f` restricts to an analytic isomorphism `f⁻¹(U) → U` over the open set `U`: `f` is a local
 diffeomorphism on `f⁻¹(U)` and a bijection `f⁻¹(U) → U` — condition (1) of Bierstone–Milman's
 blowing-up [BM88, Definition 4.1], off the centre; the clause "`σ` is an isomorphism off the
 cosupport of `I`" of the principalization theorem.-/
-def _root_.AnalyticMap.IsIsoOver {M M' : AnalyticManifold.{u} 𝕜 E} (f : AnalyticMap M' M)
+def _root_.Tengoku.Hironaka.AnalyticMap.IsIsoOver {M M' : AnalyticManifold.{u} 𝕜 E} (f : AnalyticMap M' M)
     (U : Set M) : Prop :=
   IsLocalDiffeomorphOn 𝓘(𝕜, E) 𝓘(𝕜, E) ω f (f ⁻¹' U) ∧ Set.BijOn f (f ⁻¹' U) U
 
@@ -125,4 +125,5 @@ noncomputable def sigmaOpens {ι : Type u} [Countable ι]
 
 end SigmaOpens
 
-end AnalyticManifold
+end Tengoku.Hironaka.AnalyticManifold
+-- Tengoku: root names of this library moved to Tengoku.Hironaka so they do not collide with other libraries (generated)

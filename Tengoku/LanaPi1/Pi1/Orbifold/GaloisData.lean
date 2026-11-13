@@ -29,10 +29,10 @@ their image in `Ω` (`CoordRing.ext`), and a subgroup of `Gal` stabilizing `F` a
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
-open AffOrbicurve IntermediateField.algebraAdjoinAdjoin
+open Tengoku.LanaPi1.AffOrbicurve IntermediateField.algebraAdjoinAdjoin
 
 namespace Pi1.Orbifold
 
@@ -293,3 +293,4 @@ end Galois
 end GaloisData
 
 end Pi1.Orbifold
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

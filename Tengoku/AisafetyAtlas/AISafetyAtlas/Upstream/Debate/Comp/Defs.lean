@@ -15,7 +15,7 @@ public import Tengoku.Seed.Data.Vector.Basic
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Comp/Defs.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -28,7 +28,7 @@ oracle `o ∈ s`, and produces a distribution over results and calls to each ora
 -/
 
 open Classical
-open Prob
+open Tengoku.AisafetyAtlas.Prob
 open Option (some none)
 open scoped Real
 open Set
@@ -42,7 +42,7 @@ variable {α β γ : Type}
     Importantly, the computation does not know the oracle, so we can model query complexity.
     The `Comp` constructors are not very user friendly due to kernel restrictions on inductive,
     but we replace them with clean ones below.-/
-inductive Comp {I : Type} (s : Set I) (α : Type) : Type 1 where
+inductive _root_.Tengoku.AisafetyAtlas.Comp {I : Type} (s : Set I) (α : Type) : Type 1 where
   /-- Return a result with no computation-/
   | pure' : α → Comp s α
   /-- Sample a value with some probability distribution, then continue-/
@@ -50,7 +50,7 @@ inductive Comp {I : Type} (s : Set I) (α : Type) : Type 1 where
   /-- Query an oracle `o ∈ s`, and branch on the result-/
   | query' : (o : I) → o ∈ s → (n : ℕ) → List.Vector Bool n → Comp s α → Comp s α → Comp s α
 
-namespace Comp
+namespace Tengoku.AisafetyAtlas.Comp
 
 /-- Bind two `Comp`s together-/
 def bind' (f : Comp s α) (g : α → Comp s β) : Comp s β := match f with
@@ -108,4 +108,5 @@ def allow (f : Comp s α) (st : s ⊆ t) : Comp t α := match f with
 def allow_all (f : Comp s α) : Comp (@univ I) α :=
   f.allow (subset_univ s)
 
-end Comp
+end Tengoku.AisafetyAtlas.Comp
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)

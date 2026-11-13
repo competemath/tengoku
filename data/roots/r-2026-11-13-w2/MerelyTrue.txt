@@ -1,0 +1,8 @@
+leakscan: 1 global instances (0 can fire outside the library), 0 scoped; 6 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 6 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: mem_Ico_Nat_floor_div
+root: piecewiseLinear
+root: locallyFinite_Icc_grid
+root: piecewiseConst
+root: piecewiseConst_eq_on_Ico
+root: RoutingProblem

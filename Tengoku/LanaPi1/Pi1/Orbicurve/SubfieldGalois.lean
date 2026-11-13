@@ -22,13 +22,13 @@ so `e(w | v) = 1` if and only if the inertia group `I_u(N / F)` fixes `L`
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal IntermediateField IntermediateField.algebraAdjoinAdjoin Polynomial
 open scoped Pointwise
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k Ω : Type u} [Field k] [Field Ω] [Algebra k Ω] (t : Ω)
 
@@ -330,4 +330,5 @@ end Ramification
 
 end Galois
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

@@ -59,7 +59,7 @@ regime only the equilibrium link *costs* are determined, which is exactly
 Existence of an equilibrium is a deeper fact requiring fixed-point /
 convex-optimization machinery and is not addressed here.
 -/
-
+namespace Tengoku.MerelyTrue end Tengoku.MerelyTrue open Tengoku.MerelyTrue
 open Finset
 
 namespace Wardrop
@@ -94,7 +94,7 @@ end Wardrop
 /-- A network routing problem with series–parallel structure: a finite set of
 `links` `L` and a finite set of `routes` `R`, where each route is composed of a
 set of links and each link has a usage-dependent cost. -/
-structure RoutingProblem (L R : Type*) where
+structure _root_.Tengoku.MerelyTrue.RoutingProblem (L R : Type*) where
   /-- Total amount of traffic that must be routed across the network. -/
   demand : ℝ
   /-- `route r` is the set of links that make up route `r` (traversed in series). -/
@@ -102,7 +102,7 @@ structure RoutingProblem (L R : Type*) where
   /-- `linkCost ℓ x` is the cost incurred on link `ℓ` when its usage equals `x`. -/
   linkCost : L → ℝ → ℝ
 
-namespace RoutingProblem
+namespace Tengoku.MerelyTrue.RoutingProblem
 
 variable {L R : Type*} [Fintype L] [Fintype R] [DecidableEq L] [Nonempty R]
   (P : RoutingProblem L R)
@@ -277,4 +277,5 @@ theorem wardrop_linkCost_unique (hmono : ∀ ℓ, Monotone (P.linkCost ℓ)) {f 
     P.linkCost ℓ (P.linkFlow f ℓ) = P.linkCost ℓ (P.linkFlow g ℓ) :=
   Wardrop.eq_of_mul_sub_eq_zero (P.wardrop_term_zero hmono hf hg ℓ)
 
-end RoutingProblem
+end Tengoku.MerelyTrue.RoutingProblem
+-- Tengoku: root names of this library moved to Tengoku.MerelyTrue so they do not collide with other libraries (generated)

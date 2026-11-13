@@ -43,7 +43,7 @@ The proof of (ii) ⇒ (i) proceeds in two steps, exactly as in loc. cit.:
 - [mochizuki2010] S. Mochizuki, *Arithmetic elliptic curves in general position*,
   Math. J. Okayama Univ. **52** (2010), 1–28.
 -/
-
+namespace Tengoku.LanaGenl end Tengoku.LanaGenl open Tengoku.LanaGenl
 local notation:50 f:51 " ≲[" s "] " g:51 => DiscrepancyLE f g s
 local notation:50 f:51 " ≈[" s "] " g:51 => DiscrepancyEquiv f g s
 
@@ -186,3 +186,4 @@ theorem statementI_iff_statementII (A : T.ProofPackage) :
 end HeightTheory
 
 end Genl
+-- Tengoku: root names of this library moved to Tengoku.LanaGenl so they do not collide with other libraries (generated)

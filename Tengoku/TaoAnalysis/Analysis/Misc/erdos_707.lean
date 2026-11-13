@@ -1,15 +1,15 @@
 import Tengoku
 
 /-! Formalizing a proof (the prime case of) Erdos problem \#707 recently proven by Alexeev, ChatGPT, Lean, and Mixon at https://borisalexeev.com/papers/erdos707.html, following Theorem 8 proven on page 5 -/
-
+namespace Tengoku.TaoAnalysis end Tengoku.TaoAnalysis open Tengoku.TaoAnalysis
 /-- A perfect difference set is a set where every nonzero element is uniquely representable as a difference of two elements of the set. -/
-def IsPerfectDifferenceSet {N: ℕ} (B: Finset (ZMod N)) := ∀ d: ZMod N, d ≠ 0 → ∃! b: B × B, b.1.val - b.2.val = d
+def _root_.Tengoku.TaoAnalysis.IsPerfectDifferenceSet {N: ℕ} (B: Finset (ZMod N)) := ∀ d: ZMod N, d ≠ 0 → ∃! b: B × B, b.1.val - b.2.val = d
 
-def IsPerfectDifferenceSet.map {N: ℕ} (B: Finset (ZMod N)) (p: (B × B) ⊕ Unit) : ZMod N ⊕ B := match p with
+def Tengoku.TaoAnalysis.IsPerfectDifferenceSet.map {N: ℕ} (B: Finset (ZMod N)) (p: (B × B) ⊕ Unit) : ZMod N ⊕ B := match p with
 | Sum.inl p => if p.1 = p.2 then Sum.inr p.1 else Sum.inl (p.1.val - p.2.val)
 | Sum.inr _ => Sum.inl 0
 
-lemma IsPerfectDifferenceSet.card {N: ℕ} [NeZero N] {B: Finset (ZMod N)} (hdiff: IsPerfectDifferenceSet B) : B.card * B.card + 1 = N + B.card := by
+lemma Tengoku.TaoAnalysis.IsPerfectDifferenceSet.card {N: ℕ} [NeZero N] {B: Finset (ZMod N)} (hdiff: IsPerfectDifferenceSet B) : B.card * B.card + 1 = N + B.card := by
   have he : Function.Bijective (IsPerfectDifferenceSet.map B) := by
     constructor
     . intro p p' hpp'
@@ -251,3 +251,4 @@ lemma bd_ident (x:B) : 2 * (b x).val = 2 * (x.val - 1) + (d x).val := by
     convert (second_fixed hx).choose_spec.2
 
 end Mainstep
+-- Tengoku: root names of this library moved to Tengoku.TaoAnalysis so they do not collide with other libraries (generated)

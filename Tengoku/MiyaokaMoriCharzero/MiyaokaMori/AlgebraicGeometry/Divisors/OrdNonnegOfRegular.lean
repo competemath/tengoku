@@ -8,7 +8,7 @@ A regular section has nonnegative order of vanishing: `ord 1 = 0`, `a • 1` is 
 the function field, and `0 ≤ ord_z a`. This packages the three facts used to bound the weighted
 order (3.3) in the proof of Lemma 3.1 of the paper.
 -/
-
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero
 set_option autoImplicit false
 set_option maxHeartbeats 400000
 
@@ -25,7 +25,7 @@ open scoped AlgebraicGeometry
 the function field, and its order at `z` is nonnegative.
 @isnad1 id=and.2h4v.s11.07aaace76d65 from=translated src=- shape=9e11b76e vocab=64ce5907
 -/
-theorem bridge_ord_nonneg {X : AlgebraicGeometry.Scheme.{u}}
+theorem _root_.Tengoku.MiyaokaMoriCharzero.bridge_ord_nonneg {X : AlgebraicGeometry.Scheme.{u}}
     [AlgebraicGeometry.IsIntegral X] [AlgebraicGeometry.IsLocallyNoetherian X]
     {U : X.Opens} [Nonempty U] {z : X} (hzU : z ∈ U) {a : Γ(X, U)} (ha : a ≠ 0) :
     X.ord (1 : X.functionField) z = 0 ∧
@@ -37,3 +37,4 @@ theorem bridge_ord_nonneg {X : AlgebraicGeometry.Scheme.{u}}
   simp [Algebra.smul_def, RingHom.algebraMap_toAlgebra]
 
 end
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

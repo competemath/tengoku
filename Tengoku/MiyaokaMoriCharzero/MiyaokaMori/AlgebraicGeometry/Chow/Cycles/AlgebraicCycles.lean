@@ -25,7 +25,7 @@ Sources: Stacks Project, Tags 02QR, 02QT and 02QU.
 -/
 
 noncomputable section
-
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero 
 open AlgebraicGeometry CategoryTheory TopologicalSpace
 open scoped BigOperators Classical
 
@@ -58,7 +58,7 @@ can convert. Proof: `C = closure {x}` is closed, hence quasi-sober and T0, so
 `IrreducibleCloseds C ≃o C` (`irreducibleSetEquivPoints`); as an ordered set `C = Set.Iic x`
 (`y ∈ closure {x} ↔ x ⤳ y ↔ y ≤ x`), and `Order.height_eq_krullDim_Iic`. -/
 
-theorem _root_.topologicalKrullDim_closure_singleton_eq_height {α : Type*} [TopologicalSpace α]
+theorem _root_.Tengoku.MiyaokaMoriCharzero.topologicalKrullDim_closure_singleton_eq_height {α : Type*} [TopologicalSpace α]
     [QuasiSober α] [T0Space α] (x : α) :
     topologicalKrullDim (closure ({x} : Set α))
       = ((@Order.height α (specializationPreorder α) x : ℕ∞) : WithBot ℕ∞) := by
@@ -295,3 +295,4 @@ theorem IsIntegralCycleLift.unique {X : Scheme.{u}} {β : AlgebraicCycle X ℕ�
   simpa only [Int.toNat_of_nonneg (hα x).1, Int.toNat_of_nonneg (hγ x).1] using hint
 
 end AlgebraicGeometry.Intersection
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

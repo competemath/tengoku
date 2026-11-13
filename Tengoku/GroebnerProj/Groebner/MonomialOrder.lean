@@ -3,7 +3,7 @@ module
 public import Tengoku
 public import Tengoku.GroebnerProj.Groebner.ToMathlib.PropLemma
 public import Tengoku.GroebnerProj.Groebner.ToMathlib.MvPolynomial
-
+namespace Tengoku.GroebnerProj end Tengoku.GroebnerProj open Tengoku.GroebnerProj
 attribute [local simp] and_imp_iff_and imp_and_iff_and
 
 open MvPolynomial
@@ -211,3 +211,4 @@ end WithBotDegree
 end
 
 end MonomialOrder
+-- Tengoku: root names of this library moved to Tengoku.GroebnerProj so they do not collide with other libraries (generated)

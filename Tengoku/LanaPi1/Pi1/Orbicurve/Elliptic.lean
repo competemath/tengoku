@@ -42,12 +42,12 @@ These two statements are not proved here.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Polynomial
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k : Type u} [Field k] [CharZero k] (E : WeierstrassCurve k) [E.IsElliptic]
 
@@ -130,4 +130,5 @@ def CanLift27Arith : Prop :=
   ∀ (k : Type u) [Field k] [CharZero k] (E : WeierstrassCurve k) [E.IsElliptic],
     (∃ c ∈ excJ, E.j = (c : k)) → IsArithmetic (punctured E)
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

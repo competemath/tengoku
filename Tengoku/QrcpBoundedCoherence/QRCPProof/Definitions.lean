@@ -40,7 +40,7 @@ This file formalizes the exact residual-projector QRCP definitions from the blue
 -/
 
 noncomputable section QRCPDefinitions
-
+namespace Tengoku.QrcpBoundedCoherence end Tengoku.QrcpBoundedCoherence open Tengoku.QrcpBoundedCoherence 
 -- ============================================================
 -- Section 1: Matrix Setup
 -- ============================================================
@@ -51,20 +51,20 @@ variable {n k : ℕ}
 
 The columns of `A` are denoted `a_i ∈ ℝ^k` for `i = 1, ..., n`.
 Equivalently, `a_i` is the transpose of row `i` of `Q`. -/
-def AMatrix (Q : Matrix (Fin n) (Fin k) ℝ) : Matrix (Fin k) (Fin n) ℝ :=
+def _root_.Tengoku.QrcpBoundedCoherence.AMatrix (Q : Matrix (Fin n) (Fin k) ℝ) : Matrix (Fin k) (Fin n) ℝ :=
   Q.transpose
 
 /-- Column `a_i` of `A = Qᵀ`, which is row `i` of `Q` transposed.
 
 Returns a vector in `ℝ^k` (as `Fin k → ℝ`). -/
-def columnA (Q : Matrix (Fin n) (Fin k) ℝ) (i : Fin n) : Fin k → ℝ :=
+def _root_.Tengoku.QrcpBoundedCoherence.columnA (Q : Matrix (Fin n) (Fin k) ℝ) (i : Fin n) : Fin k → ℝ :=
   (AMatrix Q).col i
 
 /-- Convert a column vector (`Fin k → ℝ`) to `EuclideanSpace ℝ (Fin k)`.
 
 This gives the vector the `l²` inner product structure needed for
 orthogonal projection. `EuclideanSpace ℝ (Fin k)` is `WithLp 2 (Fin k → ℝ)`. -/
-def colToEuclidean {k : ℕ} (v : Fin k → ℝ) : EuclideanSpace ℝ (Fin k) :=
+def _root_.Tengoku.QrcpBoundedCoherence.colToEuclidean {k : ℕ} (v : Fin k → ℝ) : EuclideanSpace ℝ (Fin k) :=
   (WithLp.equiv 2 (Fin k → ℝ)).symm v
 
 -- ============================================================
@@ -75,7 +75,7 @@ def colToEuclidean {k : ℕ} (v : Fin k → ℝ) : EuclideanSpace ℝ (Fin k) :=
 
 `S` is an ordered prefix of selected labels. The span is taken in
 `EuclideanSpace ℝ (Fin k)` so that orthogonal projection is well-defined. -/
-def prefixSpan (Q : Matrix (Fin n) (Fin k) ℝ) (S : List (Fin n)) :
+def _root_.Tengoku.QrcpBoundedCoherence.prefixSpan (Q : Matrix (Fin n) (Fin k) ℝ) (S : List (Fin n)) :
     Submodule ℝ (EuclideanSpace ℝ (Fin k)) :=
   Submodule.span ℝ {colToEuclidean (columnA Q s) | s ∈ S}
 
@@ -87,7 +87,7 @@ composed with the subtype inclusion back into the ambient space.
 
 In finite dimensions, every submodule of a complete inner product space has
 an orthogonal projection (instance `Submodule.HasOrthogonalProjection.ofCompleteSpace`). -/
-def orthogonalProjector (Q : Matrix (Fin n) (Fin k) ℝ) (S : List (Fin n)) :
+def _root_.Tengoku.QrcpBoundedCoherence.orthogonalProjector (Q : Matrix (Fin n) (Fin k) ℝ) (S : List (Fin n)) :
     EuclideanSpace ℝ (Fin k) →ₗ[ℝ] EuclideanSpace ℝ (Fin k) :=
   if _h : S = [] then
     0
@@ -105,7 +105,7 @@ def orthogonalProjector (Q : Matrix (Fin n) (Fin k) ℝ) (S : List (Fin n)) :
 
 For an unselected label `i`, this is the squared Euclidean norm of the
 residual after orthogonally projecting `a_i` onto the span of selected columns. -/
-def residualScore (Q : Matrix (Fin n) (Fin k) ℝ) (i : Fin n) (S : List (Fin n)) : ℝ :=
+def _root_.Tengoku.QrcpBoundedCoherence.residualScore (Q : Matrix (Fin n) (Fin k) ℝ) (i : Fin n) (S : List (Fin n)) : ℝ :=
   let a_i := colToEuclidean (columnA Q i)
   let P_S := orthogonalProjector Q S
   let residual := a_i - P_S a_i
@@ -119,7 +119,7 @@ def residualScore (Q : Matrix (Fin n) (Fin k) ℝ) (i : Fin n) (S : List (Fin n)
 
 That is, `[pivots[0], pivots[1], ..., pivots[t-1]]`.
 For `t > k`, the list is truncated at `k` elements. -/
-def pivotPrefix (pivots : Fin k → Fin n) : ℕ → List (Fin n)
+def _root_.Tengoku.QrcpBoundedCoherence.pivotPrefix (pivots : Fin k → Fin n) : ℕ → List (Fin n)
   | 0 => []
   | t+1 =>
     if h : t < k then
@@ -135,7 +135,7 @@ def pivotPrefix (pivots : Fin k → Fin n) : ℕ → List (Fin n)
 
 The blueprint notes: "The construction below actually proves strict inequalities
 at every pivot step, so tie-breaking is not needed for the chosen pivots." -/
-def IsQRCPPivotSequence (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n) : Prop :=
+def _root_.Tengoku.QrcpBoundedCoherence.IsQRCPPivotSequence (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n) : Prop :=
   ∀ (t : Fin k),
     let S_t := pivotPrefix pivots t.val
     ¬(pivots t ∈ S_t) ∧
@@ -151,7 +151,7 @@ def IsQRCPPivotSequence (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin
 
 Extracts rows of `Q` at the pivot indices. If `pivots : Fin k → Fin n`
 maps step index to original label, then `M(Q)_{t,j} = Q_{pivots[t], j}`. -/
-def selectedMatrix (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n) :
+def _root_.Tengoku.QrcpBoundedCoherence.selectedMatrix (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n) :
     Matrix (Fin k) (Fin k) ℝ :=
   Matrix.submatrix Q pivots id
 
@@ -162,7 +162,7 @@ Computed as the operator norm of the corresponding continuous linear map
 (via `Matrix.toEuclideanCLM`).
 
 Requires `M(Q)` to be nonsingular (provided by the `Invertible` instance). -/
-noncomputable def gamma (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n)
+noncomputable def _root_.Tengoku.QrcpBoundedCoherence.gamma (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n)
     [DecidableEq (Fin k)] (_hNonsingular : Invertible (selectedMatrix Q pivots)) : ℝ :=
   ‖(Matrix.toEuclideanCLM.toFun (selectedMatrix Q pivots)⁻¹)‖
 
@@ -179,7 +179,7 @@ Mathematical proof sketch:
   gives ‖M⁻¹‖² = 1 / λ_min(G), hence ‖M⁻¹‖ = 1 / √(λ_min(G)).
 
   Proved via `norm_inv_eq_inv_sqrt_min_eigenvalue` from GammaAux.lean. -/
-theorem gamma_eq_inv_sqrt_min_eigenvalue
+theorem _root_.Tengoku.QrcpBoundedCoherence.gamma_eq_inv_sqrt_min_eigenvalue
     (Q : Matrix (Fin n) (Fin k) ℝ) (pivots : Fin k → Fin n)
     [DecidableEq (Fin k)] [Nonempty (Fin k)] (hNonsingular : Invertible (selectedMatrix Q pivots)) :
     gamma Q pivots hNonsingular =
@@ -203,7 +203,7 @@ theorem gamma_eq_inv_sqrt_min_eigenvalue
 
 Equivalently `(n/k) * max_i ‖a_i‖₂²` since rows of `Q` are columns of `A`.
 Computed directly from matrix entries as `(n/k) * sup_i ∑_j (Q i j)²`. -/
-def mu (Q : Matrix (Fin n) (Fin k) ℝ) : ℝ :=
+def _root_.Tengoku.QrcpBoundedCoherence.mu (Q : Matrix (Fin n) (Fin k) ℝ) : ℝ :=
   (n / k : ℝ) * ⨆ (i : Fin n), ∑ (j : Fin k), (Q i j) ^ 2
 
 -- ============================================================
@@ -211,3 +211,4 @@ def mu (Q : Matrix (Fin n) (Fin k) ℝ) : ℝ :=
 -- ============================================================
 
 end QRCPDefinitions
+-- Tengoku: root names of this library moved to Tengoku.QrcpBoundedCoherence so they do not collide with other libraries (generated)

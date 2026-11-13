@@ -1,7 +1,7 @@
 import Tengoku.Seed.RingTheory.AdicCompletion.Topology
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.LanaFormalSchemes end Tengoku.LanaFormalSchemes open Tengoku.LanaFormalSchemes
 set_option linter.style.header false
 
 /-!
@@ -38,10 +38,10 @@ variable {R : Type*} [CommRing R]
 /-- `R` is an **adic ring** with ideal of definition `I` if the topology on `R` is the
 `I`-adic topology and `R` is `I`-adically complete, i.e. complete and Hausdorff for that
 topology. Formal schemes are glued from formal spectra of such rings. -/
-class IsAdicRing [TopologicalSpace R] (I : Ideal R) : Prop extends IsAdicComplete I R where
+class _root_.Tengoku.LanaFormalSchemes.IsAdicRing [TopologicalSpace R] (I : Ideal R) : Prop extends IsAdicComplete I R where
   isAdic : IsAdic I
 
-theorem isAdicRing_iff_completeSpace_and_t2Space [UniformSpace R] [IsUniformAddGroup R]
+theorem _root_.Tengoku.LanaFormalSchemes.isAdicRing_iff_completeSpace_and_t2Space [UniformSpace R] [IsUniformAddGroup R]
     {I : Ideal R} (hI : IsAdic I) :
     IsAdicRing I ↔ CompleteSpace R ∧ T2Space R := by
   constructor
@@ -54,3 +54,4 @@ theorem isAdicRing_iff_completeSpace_and_t2Space [UniformSpace R] [IsUniformAddG
         toIsAdicComplete :=
           { toIsHausdorff := hI.isHausdorff_iff.mpr ht
             toIsPrecomplete := hI.isPrecomplete_iff.mpr hc } }
+-- Tengoku: root names of this library moved to Tengoku.LanaFormalSchemes so they do not collide with other libraries (generated)

@@ -13,7 +13,7 @@ public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Debate.Prob.Defs
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Prob/Basics.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -22,14 +22,14 @@ public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Debate.Prob.Defs
 -/
 
 open Classical
-open Prob
+open Tengoku.AisafetyAtlas.Prob
 open Set
 open scoped Real
 noncomputable section
 
 variable {α β γ : Type}
 
-namespace Prob
+namespace Tengoku.AisafetyAtlas.Prob
 
 -- Monad details
 /--
@@ -270,4 +270,5 @@ lemma le_prob_bind_of_cut {f : Prob α} {g : α → Prob β} (x : α) {y : β} :
     simp only [m, zero_mul]
     exact Finset.sum_nonneg (λ _ _ ↦ p _)
 
-end Prob
+end Tengoku.AisafetyAtlas.Prob
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)

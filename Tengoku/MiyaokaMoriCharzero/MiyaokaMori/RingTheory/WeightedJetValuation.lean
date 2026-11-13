@@ -30,7 +30,7 @@ the top-level `jetWeight k = lcm(1..k)` (module `JetWeightLcm`).
 -/
 
 noncomputable section
-
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero 
 open scoped Classical BigOperators
 
 namespace MiyaokaMori.WeightedJets
@@ -484,3 +484,4 @@ theorem weightedOrder_has_jetDenominatorBoundary {n T : ℕ}
     _ = (b : WithTop ℚ) := by rw [hb_eq]
 
 end MiyaokaMori.WeightedJets
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

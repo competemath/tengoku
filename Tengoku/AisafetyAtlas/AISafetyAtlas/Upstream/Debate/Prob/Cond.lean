@@ -13,7 +13,7 @@ public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Debate.Prob.Arith
 /-! Tengoku change notice: this file was changed by the Tengoku factory from https://github.com/mbrcic/ai-safety-formalization-atlas@a65e32f80475, `AISafetyAtlas/Upstream/Debate/Prob/Cond.lean`: removed 7 `#adaptation_note` / `set_option linter` line(s) (notes and linter settings: no declaration depends on them). What every declaration states is unchanged, and every proof is checked again by the kernel and by the tree's own build. -/
 
 @[expose] public section
-
+namespace Tengoku.AisafetyAtlas end Tengoku.AisafetyAtlas open Tengoku.AisafetyAtlas 
 -- Linters off per `vendor/debate/PROVENANCE.md`; no correctness linter is
 -- touched and incomplete proofs stay errors.
 
@@ -22,12 +22,12 @@ Conditional probabilities
 -/
 
 open Classical
-open Prob
+open Tengoku.AisafetyAtlas.Prob
 open Set
 open scoped Real
 noncomputable section
 
-namespace Prob
+namespace Tengoku.AisafetyAtlas.Prob
 
 variable {α β γ : Type}
 variable {f g : Prob α}
@@ -435,4 +435,5 @@ lemma cexp_le_of_forall {b : ℝ} (h : ∀ x, f.prob x ≠ 0 → q x → u x ≤
   · simp only [qx, ite_true, mul_one, h _ m qx]
   · simp only [qx, ite_false, mul_zero, le_refl]
 
-end Prob
+end Tengoku.AisafetyAtlas.Prob
+-- Tengoku: root names of this library moved to Tengoku.AisafetyAtlas so they do not collide with other libraries (generated)

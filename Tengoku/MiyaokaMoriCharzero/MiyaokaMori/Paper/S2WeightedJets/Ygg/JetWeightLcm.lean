@@ -11,12 +11,13 @@ used in the Veronese polarization of the weighted projectivization
 
 This file imports only Mathlib, so that it can be used below the project's prelude.
 -/
-
+namespace Tengoku.MiyaokaMoriCharzero end Tengoku.MiyaokaMoriCharzero open Tengoku.MiyaokaMoriCharzero
 set_option autoImplicit false
 
 noncomputable section
 
 /-- The common multiple `w_k = lcm(1, …, k)` of the jet weights of order `≤ k`.-/
-def jetWeight (k : ℕ) : ℕ := (Finset.Icc 1 k).lcm id
+def _root_.Tengoku.MiyaokaMoriCharzero.jetWeight (k : ℕ) : ℕ := (Finset.Icc 1 k).lcm id
 
 end
+-- Tengoku: root names of this library moved to Tengoku.MiyaokaMoriCharzero so they do not collide with other libraries (generated)

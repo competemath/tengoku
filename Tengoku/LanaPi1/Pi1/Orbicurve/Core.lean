@@ -68,7 +68,7 @@ characteristic zero, to which [CanLift] restricts.
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal
@@ -79,7 +79,7 @@ coarse moduli space is affine): the coordinate ring `A` of the coarse moduli spa
 Dedekind domain of finite type over `k` which is not a field, together with the orders
 `mult v ≥ 1` of the stabilizers at the maximal ideals `v` of `A`, finitely many of which are
 `≠ 1`. (The values of `mult` at non-maximal ideals play no role.)-/
-structure AffOrbicurve (k : Type u) [Field k] : Type (u + 1) where
+structure _root_.Tengoku.LanaPi1.AffOrbicurve (k : Type u) [Field k] : Type (u + 1) where
   /-- The coordinate ring of the coarse moduli space.-/
   A : Type u
   [commRing : CommRing A]
@@ -96,7 +96,7 @@ structure AffOrbicurve (k : Type u) [Field k] : Type (u + 1) where
   /-- Only finitely many closed points have a nontrivial stabilizer.-/
   finite_mult : {v : Ideal A | v.IsMaximal ∧ mult v ≠ 1}.Finite
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 attribute [instance] commRing isDomain algebra isDedekindDomain finiteType
 
@@ -142,4 +142,5 @@ def IsCore (X : AffOrbicurve k) : Prop := IsCoreOf X X
 `\overline{Loc}_k(X)` has no terminal object.-/
 def IsArithmetic (X : AffOrbicurve k) : Prop := ¬ ∃ C : AffOrbicurve k, IsCoreOf X C
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

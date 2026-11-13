@@ -1,0 +1,11 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 0 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 9 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: p1009
+root: pMersenne
+root: cast_apply
+root: cast_snd
+root: snd_cast
+root: fst_cast
+root: pBabybear
+root: cast_fst
+root: cast_apply'

@@ -19,12 +19,12 @@ from the different ideal).
 -/
 
 @[expose] public section
-
+namespace Tengoku.LanaPi1 end Tengoku.LanaPi1 open Tengoku.LanaPi1 
 universe u
 
 open Ideal
 
-namespace AffOrbicurve
+namespace Tengoku.LanaPi1.AffOrbicurve
 
 variable {k : Type u} [Field k]
 
@@ -175,4 +175,5 @@ lemma finite_setOf_ramificationIdxIn_ne_one :
 
 end Ramified
 
-end AffOrbicurve
+end Tengoku.LanaPi1.AffOrbicurve
+-- Tengoku: root names of this library moved to Tengoku.LanaPi1 so they do not collide with other libraries (generated)

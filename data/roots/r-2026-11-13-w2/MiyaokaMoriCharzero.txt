@@ -1,0 +1,15 @@
+leakscan: 43 global instances (1 can fire outside the library), 0 scoped; 181 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 12 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance AlgebraicGeometry.Scheme.Modules.module_toSheaf_preservesZeroMorphisms registered in Tengoku.MiyaokaMoriCharzero.MiyaokaMori.AlgebraicGeometry.Modules.Basic.ModuleSheafExactness (declared at line 36)
+root: normalizedOrdTop
+root: jetWeight
+root: weightedOrderTop_def
+root: weightedOrderTop_le
+root: normalizedOrdTop_eq_top_iff
+root: topologicalKrullDim_closure_singleton_eq_height
+root: weightedOrderTop_ne_top
+root: bridge_ord_nonneg
+root: choose_jet_order
+root: weightedOrderTop
+root: normalizedOrdTop_of_ne_zero
+root: weightedOrderTop_attained
