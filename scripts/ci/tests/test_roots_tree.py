@@ -61,7 +61,7 @@ class RootsTree(unittest.TestCase):
     def test_a_root_declaration_is_qualified_and_its_use_still_resolves(self):
         report = rt.apply(self.tree, self.roots)
         text = self.bar.read_text(encoding="utf-8")
-        self.assertIn("def Tengoku.Foo.X : Nat := 1", text)
+        self.assertIn("def _root_.Tengoku.Foo.X : Nat := 1", text)
         self.assertIn(
             "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo ", text
         )  # the bare `X` of the theorem now means the library's own
@@ -228,7 +228,7 @@ class ExplicitRoot(unittest.TestCase):
     def test_a_declaration_spelled_from_the_root_follows_its_structure(self):
         text = "module\n\npublic section\n\nstructure Mfd where\n  x : Nat\n\ndef _root_.Mfd.transport (M : Mfd) : Nat := M.x\n"
         out, rep = self.run_text(text, ["Mfd"])
-        self.assertIn("structure Tengoku.Foo.Mfd where", out)
+        self.assertIn("structure _root_.Tengoku.Foo.Mfd where", out)
         self.assertIn("def _root_.Tengoku.Foo.Mfd.transport", out)
         self.assertEqual(rep["Foo"]["renamed"], ["Mfd"])
 
@@ -287,17 +287,56 @@ class DocComment(unittest.TestCase):
 
     def test_the_prelude_goes_in_front_of_the_doc_comment(self):
         out = self.run_text(self.TEXT)
-        self.assertIn("namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo /-- the zeta value. -/\ndef Tengoku.Foo.zeta", out)
+        self.assertIn("namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo /-- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta", out)
 
     def test_a_module_doc_and_a_plain_comment_stay_header(self):
         out = self.run_text(self.TEXT.replace("/-- the zeta", "/- the zeta"))
-        self.assertIn("/- the zeta value. -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def Tengoku.Foo.zeta", out)
+        self.assertIn("/- the zeta value. -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta", out)
 
     def test_no_line_moves_and_it_is_idempotent(self):
         once = self.run_text(self.TEXT)
         self.assertEqual(
             len(once.split("\n")), len(self.TEXT.split("\n")) + 1
         )  # the one footer line the pass appends; none of the module's own lines moves
+        self.assertEqual(once, self.run_text(once))
+
+
+class BodyNamespace(unittest.TestCase):
+    """`def NS.x` makes NS the namespace of its body: a bare `integral_add` there means `NS.integral_add` ONLY, no longer competing with an opened `MeasureTheory.integral_add` (the overload the root declaration took part in). The merge queue found it on LeanPool/OSforGFF/OS/OS3MixedRepInfra.lean (`integral_const_mul`); Leak IV reproduced it (`theorem Tq.useA` fails, `theorem _root_.Tq.useB` passes). A plain root declaration therefore keeps its body where it was, with `_root_.`."""
+
+    TEXT = "module\n\npublic section\n\nopen MeasureTheory\n\ntheorem integral_add (n m : Nat) : n + m = m + n := Nat.add_comm n m\n\ntheorem use_it (n : Nat) : n + 0 = 0 + n := integral_add n 0\n"
+
+    def run_text(self, text, roots=("integral_add",)):
+        report = f"roots: {len(roots)} declarations\n" + "".join(f"root: {r}\n" for r in roots)
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": report})
+        return changed.get("Tengoku/Foo/A.lean", text)
+
+    def test_a_plain_root_declaration_keeps_the_body_namespace(self):
+        out = self.run_text(self.TEXT)
+        self.assertIn("theorem _root_.Tengoku.Foo.integral_add (n m : Nat)", out)
+        self.assertNotIn("theorem Tengoku.Foo.integral_add", out)
+
+    def test_a_dotted_declaration_keeps_the_plain_form(self):
+        text = "module\n\npublic section\n\nstructure Mfd where\n  x : Nat\n\ndef Mfd.double (M : Mfd) : Nat := 2 * M.x\n"
+        out = self.run_text(text, ("Mfd",))
+        self.assertIn("structure _root_.Tengoku.Foo.Mfd where", out)
+        self.assertIn("def Tengoku.Foo.Mfd.double (M", out)  # its siblings are named from namespace Mfd: not `_root_`
+        self.assertNotIn("_root_.Tengoku.Foo.Mfd.double", out)
+
+    def test_a_manifest_statement_is_the_declaration_alone(self):
+        text = (
+            json.dumps({"name": "integral_add", "statement": "theorem integral_add (n m : Nat) : n = n := rfl", "module": "Tengoku.Foo.A"})
+            + "\n"
+        )
+        out, n = rt.qualify_manifest_text(text, {"integral_add"}, "Tengoku.Foo")
+        rec = json.loads(out)
+        self.assertEqual(n, 1)
+        self.assertEqual(rec["name"], "Tengoku.Foo.integral_add")
+        self.assertTrue(rec["statement"].startswith("theorem Tengoku.Foo.integral_add"))
+        self.assertNotIn("_root_", rec["statement"])
+
+    def test_it_is_idempotent(self):
+        once = self.run_text(self.TEXT)
         self.assertEqual(once, self.run_text(once))
 
 
