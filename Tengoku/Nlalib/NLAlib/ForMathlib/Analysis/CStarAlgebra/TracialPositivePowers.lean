@@ -1,0 +1,90 @@
+import Tengoku.Seed.Analysis.CStarAlgebra.PositiveLinearMap
+import Tengoku.Seed.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
+import Tengoku.Seed.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
+import Tengoku.Seed.Analysis.Calculus.Deriv.Pow
+import Tengoku.Seed.Analysis.Calculus.Deriv.MeanValue
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Monotonicity of actual positive trace powers
+
+Integer powers need not preserve the operator order. A genuine positive
+tracial functional does preserve their numerical order on the positive
+cone: differentiate along the positive affine path and use trace cyclicity.
+This is the first ingredient for native tracial Gram-moment perturbation,
+used in arXiv:2406.11453v2, Theorems 4.3 and 4.4.
+-/
+
+noncomputable section
+set_option autoImplicit false
+set_option backward.isDefEq.respectTransparency false
+
+open scoped ComplexOrder ContinuousFunctionalCalculus
+
+variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+
+omit [PartialOrder A] [StarOrderedRing A] in
+private theorem realTraceCFC : ContinuousFunctionalCalculus ℝ A IsSelfAdjoint :=
+  (IsSelfAdjoint.instIsometricContinuousFunctionalCalculus (A := A)).toContinuousFunctionalCalculus
+
+attribute [local instance] realTraceCFC
+
+/-- A genuine positive tracial functional is nonnegative on a product of
+positive elements, although that product need not itself be self-adjoint.
+@isnad1 id=le.3h4v.s8.603d5738f6e7 from=translated src=- shape=4834ce07 vocab=1b0fc5e0
+-/
+theorem PositiveLinearMap.re_mul_nonneg_of_tracial (φ : A →ₚ[ℂ] ℂ)
+    (htrace : ∀ x y : A, φ (x * y) = φ (y * x)) {a b : A}
+    (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ (φ (a * b)).re := by
+  let c := CFC.sqrt b
+  have hc : IsSelfAdjoint c := (CFC.sqrt_nonneg b).isSelfAdjoint
+  have hcc : c * c = b := CFC.sqrt_mul_sqrt_self b hb
+  have he : φ (a * b) = φ (c * a * c) := by
+    calc
+      _ = φ (c * (a * c)) := by rw [← hcc, ← mul_assoc, htrace]
+      _ = _ := by rw [mul_assoc]
+  rw [he]
+  exact (Complex.nonneg_iff.mp (φ.map_nonneg (hc.conjugate_nonneg ha))).1
+
+/-- Exact cyclic differentiation of the actual positive functional along
+an arbitrary affine matrix-free C*-algebra path.
+@isnad1 id=hasderiv.1h6v.s9.ca1c46b02028 from=translated src=- shape=6aa048f0 vocab=80e1ec05
+-/
+theorem PositiveLinearMap.hasDerivAt_re_pow_affine_of_tracial (φ : A →ₚ[ℂ] ℂ)
+    (htrace : ∀ x y : A, φ (x * y) = φ (y * x)) (a h : A) (m : ℕ) (t : ℝ) :
+    HasDerivAt (fun v : ℝ => (φ ((a + v • h) ^ m)).re)
+      ((m : ℝ) * (φ (h * (a + t • h) ^ (m - 1))).re) t := by
+  let L : A →L[ℝ] ℝ :=
+    { toLinearMap := Complex.reCLM.toLinearMap.comp (φ.toLinearMap.restrictScalars ℝ)
+      cont := Complex.continuous_re.comp (map_continuous φ) }
+  have haff : HasDerivAt (fun v : ℝ => a + v • h) h t := by
+    simpa using ((hasDerivAt_id t).smul_const h).const_add a
+  have hd := L.hasFDerivAt.comp_hasDerivAt t (haff.fun_pow' m)
+  change HasDerivAt (fun v : ℝ => (φ ((a + v • h) ^ m)).re)
+    ((φ (∑ i ∈ Finset.range m,
+      (a + t • h) ^ (m.pred - i) * h * (a + t • h) ^ i)).re) t at hd
+  have he (i : ℕ) (hi : i ∈ Finset.range m) :
+      φ ((a + t • h) ^ (m.pred - i) * h * (a + t • h) ^ i) =
+        φ (h * (a + t • h) ^ (m - 1)) := by
+    have hsum : i + (m.pred - i) = m - 1 := by
+      have := Finset.mem_range.mp hi
+      simp only [Nat.pred_eq_sub_one]
+      omega
+    calc
+      _ = φ ((h * (a + t • h) ^ i) * (a + t • h) ^ (m.pred - i)) := by
+        rw [mul_assoc, htrace]
+      _ = _ := by rw [mul_assoc, ← pow_add, hsum]
+  have hs : (φ (∑ i ∈ Finset.range m,
+      (a + t • h) ^ (m.pred - i) * h * (a + t • h) ^ i)).re =
+      (m : ℝ) * (φ (h * (a + t • h) ^ (m - 1))).re := by
+    rw [map_sum, Complex.re_sum]
+    calc
+      _ = ∑ _i ∈ Finset.range m, (φ (h * (a + t • h) ^ (m - 1))).re := by
+        apply Finset.sum_congr rfl
+        intro i hi
+        exact congrArg Complex.re (he i hi)
+      _ = _ := by simp
+  rwa [hs] at hd
+
+end

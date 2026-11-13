@@ -1,0 +1,195 @@
+import Tengoku.Seed.MeasureTheory.Integral.CurveIntegral.Basic
+import Tengoku.Seed.MeasureTheory.Integral.CircleIntegral
+import Tengoku.Seed.Analysis.Complex.CauchyIntegral
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Circles as native paths
+
+The unit-interval parametrization of a circle defines a native closed path.
+Its native curve integral is exactly the existing circle integral, with the
+usual counterclockwise orientation. This bridge permits geometric homotopy
+arguments to be used with the circle integral API.
+-/
+
+noncomputable section
+
+open Set Metric MeasureTheory Complex
+open scoped unitInterval
+
+namespace Path
+
+/-- Restricting a globally continuously differentiable parametrization to the
+unit interval computes its native curve integral by the ordinary derivative.
+@isnad1 id=eq.3h4v.s8.eed5f0f5f613 from=translated src=- shape=4e80554c vocab=f9e6daa0
+-/
+theorem curveIntegral_ofLine_eq_intervalIntegral
+    {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℂ}
+    (h₀ : γ 0 = a) (h₁ : γ 1 = b) (f : ℂ → ℂ) :
+    curveIntegral (fun z => f z • ContinuousLinearMap.id ℂ ℂ)
+        (Path.ofLine hγ.continuous.continuousOn h₀ h₁) =
+      ∫ t in (0 : ℝ)..1, deriv γ t * f (γ t) := by
+  let p := Path.ofLine hγ.continuous.continuousOn h₀ h₁
+  have heq : EqOn p.extend γ I := by
+    intro t ht
+    rw [p.extend_apply ht]
+    rfl
+  rw [curveIntegral_def]
+  apply intervalIntegral.integral_congr
+  intro t ht
+  have ht' : t ∈ I := by simpa only [uIcc_of_le zero_le_one] using ht
+  rw [curveIntegralFun_def]
+  simp only [smul_apply, ContinuousLinearMap.id_apply, smul_eq_mul]
+  change f (p.extend t) * derivWithin p.extend I t = deriv γ t * f (γ t)
+  rw [heq ht', derivWithin_congr heq (heq ht'),
+    (hγ.differentiable (by norm_num) t).derivWithin (uniqueDiffOn_Icc_zero_one t ht')]
+  exact mul_comm _ _
+
+end Path
+
+namespace Complex
+
+/-- The positively oriented circle, parametrized once on the unit interval.
+For a negative signed radius the starting point is rotated by half a turn;
+the traversal still has the same counterclockwise orientation.-/
+def circlePath (c : ℂ) (r : ℝ) : Path (c + (r : ℂ)) (c + (r : ℂ)) :=
+  Path.ofLine (f := fun t : ℝ => circleMap c r (2 * Real.pi * t))
+    (((continuous_circleMap c r).comp (continuous_const.mul continuous_id)).continuousOn)
+    (by simp [circleMap])
+    (by simp [circleMap])
+
+/-- The native circle path agrees with the usual angular parametrization
+through angle `2πt` on its entire closed parameter interval.
+@isnad1 id=eq.1h3v.s7.899a8086f81b from=translated src=- shape=4f007142 vocab=c16b4342
+-/
+theorem circlePath_extend_apply {c : ℂ} {r t : ℝ} (ht : t ∈ I) :
+    (circlePath c r).extend t = circleMap c r (2 * Real.pi * t) := by
+  rw [Path.extend_apply _ ht]
+  rfl
+
+/-- The native circle path is continuously differentiable up to both
+endpoints of the unit interval.
+@isnad1 id=contdiff.0h2v.s6.21f4f45e2d8b from=translated src=- shape=930649a9 vocab=11cbed25
+-/
+theorem contDiffOn_circlePath_extend (c : ℂ) (r : ℝ) :
+    ContDiffOn ℝ 1 (circlePath c r).extend I := by
+  have h : ContDiff ℝ 1 (fun t : ℝ => circleMap c r (2 * Real.pi * t)) :=
+    (contDiff_circleMap c r).comp (contDiff_const.mul contDiff_id)
+  exact h.contDiffOn.congr (fun t ht => circlePath_extend_apply ht)
+
+/-- The native circle path integral is exactly the existing circle integral,
+including its normalization and orientation.
+@isnad1 id=eq.0h3v.s8.7a461775483a from=translated src=- shape=366ed1ab vocab=d6c57303
+-/
+theorem curveIntegral_circlePath_eq_circleIntegral (f : ℂ → ℂ) (c : ℂ) (r : ℝ) :
+    curveIntegral (fun z => f z • ContinuousLinearMap.id ℂ ℂ) (circlePath c r) =
+      ∮ z in C(c, r), f z := by
+  have hγ : ContDiff ℝ 1 (fun t : ℝ => circleMap c r (2 * Real.pi * t)) :=
+    (contDiff_circleMap c r).comp (contDiff_const.mul contDiff_id)
+  unfold circlePath
+  rw [Path.curveIntegral_ofLine_eq_intervalIntegral hγ]
+  have hder (t : ℝ) : deriv (fun t : ℝ => circleMap c r (2 * Real.pi * t)) t =
+      (2 * Real.pi) • deriv (circleMap c r) (2 * Real.pi * t) := by
+    simpa only [Function.comp_def, mul_one, deriv_circleMap] using
+      ((hasDerivAt_circleMap c r (2 * Real.pi * t)).scomp t
+        ((hasDerivAt_id t).const_mul (2 * Real.pi))).deriv
+  simp_rw [hder, smul_mul_assoc]
+  rw [intervalIntegral.integral_smul]
+  have hscale := intervalIntegral.smul_integral_comp_mul_left
+    (fun t : ℝ => deriv (circleMap c r) t * f (circleMap c r t)) (2 * Real.pi)
+    (a := (0 : ℝ)) (b := 1)
+  simpa only [mul_zero, mul_one, circleIntegral, smul_eq_mul] using hscale
+
+/-- A holomorphic image of the circle path is continuously differentiable
+up to both endpoints of its parameter interval.
+@isnad1 id=contdiff.4h4v.s8.f4273d6becfc from=translated src=- shape=3bb8acfd vocab=8ae3fb89
+-/
+theorem contDiffOn_circlePath_map_extend
+    {g : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
+    (hU : IsOpen U) (hg : DifferentiableOn ℂ g U)
+    (hc : sphere c |r| ⊆ U)
+    (hgc : ContinuousOn g (range (circlePath c r))) :
+    ContDiffOn ℝ 1 ((circlePath c r).map' hgc).extend I := by
+  have hγ : ContDiff ℝ 1 (fun t : ℝ => g (circleMap c r (2 * Real.pi * t))) :=
+    ((hg.contDiffOn hU).restrict_scalars ℝ).comp_contDiff
+      ((contDiff_circleMap c r).comp (contDiff_const.mul contDiff_id))
+      (fun t => hc (circleMap_mem_sphere' c r _))
+  apply hγ.contDiffOn.congr
+  intro t ht
+  rw [Path.extend_apply _ ht]
+  rfl
+
+/-- Integrating over a holomorphic image of a circle gives the circle
+integral of the ordinary derivative pullback. This is an actual change of
+parametrization, without an assumed contour-integral identity.
+@isnad1 id=eq.4h5v.s9.6ed37d59fe67 from=translated src=- shape=cc34b292 vocab=448de06e
+-/
+theorem curveIntegral_circlePath_map_eq_circleIntegral_mul_deriv
+    (f : ℂ → ℂ) {g : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
+    (hU : IsOpen U) (hg : DifferentiableOn ℂ g U)
+    (hc : sphere c |r| ⊆ U)
+    (hgc : ContinuousOn g (range (circlePath c r))) :
+    curveIntegral (fun z => f z • ContinuousLinearMap.id ℂ ℂ)
+        ((circlePath c r).map' hgc) =
+      ∮ z in C(c, r), f (g z) * deriv g z := by
+  have hγ : ContDiff ℝ 1 (fun t : ℝ => g (circleMap c r (2 * Real.pi * t))) :=
+    ((hg.contDiffOn hU).restrict_scalars ℝ).comp_contDiff
+      ((contDiff_circleMap c r).comp (contDiff_const.mul contDiff_id))
+      (fun t => hc (circleMap_mem_sphere' c r _))
+  let p : Path (g (c + (r : ℂ))) (g (c + (r : ℂ))) :=
+    Path.ofLine hγ.continuous.continuousOn
+    (by simp [circleMap]) (by simp [circleMap])
+  have hp : p = (circlePath c r).map' hgc := by
+    ext t
+    rfl
+  rw [← hp, Path.curveIntegral_ofLine_eq_intervalIntegral hγ]
+  have hder (t : ℝ) : deriv (fun t : ℝ => g (circleMap c r (2 * Real.pi * t))) t =
+      (2 * Real.pi) •
+        (deriv (circleMap c r) (2 * Real.pi * t) * deriv g (circleMap c r (2 * Real.pi * t))) := by
+    have hg' := (hg.differentiableAt
+      (hU.mem_nhds (hc (circleMap_mem_sphere' c r (2 * Real.pi * t))))).hasDerivAt
+    have hc' := (hasDerivAt_circleMap c r (2 * Real.pi * t)).scomp t
+      ((hasDerivAt_id t).const_mul (2 * Real.pi))
+    have hh := (hg'.scomp t hc').deriv
+    simpa only [Function.comp_def, mul_one, deriv_circleMap, smul_eq_mul,
+      Complex.real_smul, mul_assoc] using hh
+  simp_rw [hder, smul_mul_assoc]
+  rw [intervalIntegral.integral_smul]
+  have hscale := intervalIntegral.smul_integral_comp_mul_left
+    (fun t : ℝ => deriv (circleMap c r) t *
+      (f (g (circleMap c r t)) * deriv g (circleMap c r t))) (2 * Real.pi)
+    (a := (0 : ℝ)) (b := 1)
+  simp only [mul_zero, mul_one] at hscale
+  simpa only [circleIntegral, smul_eq_mul, mul_assoc, mul_left_comm,
+    mul_comm] using hscale
+
+end Complex
+
+namespace circleIntegral
+
+/-- Negating the signed radius rotates the circle's starting point by half a
+turn and preserves its integral and counterclockwise orientation.
+@isnad1 id=eq.0h3v.s5.d7e5dbb93498 from=translated src=- shape=230b236c vocab=d311d2bb
+-/
+theorem integral_neg_radius_eq (f : ℂ → ℂ) (c : ℂ) (r : ℝ) :
+    (∮ z in C(c, -r), f z) = ∮ z in C(c, r), f z := by
+  unfold circleIntegral
+  let F : ℝ → ℂ := fun θ => deriv (circleMap c r) θ * f (circleMap c r θ)
+  have hperiod : Function.Periodic F (2 * Real.pi) := by
+    intro θ
+    simp only [F, deriv_circleMap, (periodic_circleMap c r) θ,
+      (periodic_circleMap 0 r) θ]
+  calc
+    (∫ θ in (0 : ℝ)..2 * Real.pi, deriv (circleMap c (-r)) θ • f (circleMap c (-r) θ)) =
+        ∫ θ in (0 : ℝ)..2 * Real.pi, F (θ + Real.pi) := by
+      apply intervalIntegral.integral_congr
+      intro θ _
+      simp only [F, deriv_circleMap, circleMap_neg_radius, smul_eq_mul]
+    _ = ∫ θ in Real.pi..2 * Real.pi + Real.pi, F θ := by
+      simpa only [zero_add] using intervalIntegral.integral_comp_add_right F Real.pi
+        (a := (0 : ℝ)) (b := 2 * Real.pi)
+    _ = ∫ θ in (0 : ℝ)..2 * Real.pi, F θ := by
+      simpa only [zero_add, add_comm] using hperiod.intervalIntegral_add_eq Real.pi 0
+
+end circleIntegral

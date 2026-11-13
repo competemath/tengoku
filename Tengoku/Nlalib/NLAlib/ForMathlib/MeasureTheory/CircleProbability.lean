@@ -1,0 +1,61 @@
+import Tengoku.Seed.Analysis.Fourier.AddCircle
+import Tengoku.Seed.MeasureTheory.Integral.CircleAverage
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Probability measure on the unit circle
+
+Transport normalized Haar measure from the additive angle circle to the
+complex unit circle. Its integrals are exactly the native circle averages.
+This supplies the radial positive measures in the Herglotz representation
+used by Ajanki--Erdos--Kruger (2019), Proposition 2.1.
+-/
+
+noncomputable section
+
+open MeasureTheory Real Complex
+
+namespace Circle
+
+/-- The unit circle carries its Borel measurable space.-/
+instance instMeasurableSpace : MeasurableSpace Circle := borel Circle
+
+/-- The canonical measurable space of the unit circle is its Borel space.
+@isnad1 id=borelspa.0h0v.s2.7a750251552a from=translated src=- shape=49959d42 vocab=d3c19cca
+-/
+instance instBorelSpace : BorelSpace Circle := ⟨rfl⟩
+
+private local instance : Fact (0 < 2 * π) := ⟨by positivity⟩
+
+/-- Normalized angle measure on the complex unit circle.-/
+def probabilityMeasure : Measure Circle :=
+  AddCircle.haarAddCircle.map AddCircle.homeomorphCircle'
+
+/-- Integrating over the complex unit circle is ordinary normalized angle
+integration, including for total Bochner integrals.
+@isnad1 id=eq.0h2v.s7.d94970951233 from=translated src=- shape=0bb4a93e vocab=655fe040
+-/
+theorem integral_probabilityMeasure {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+    (f : Circle → E) :
+    (∫ z, f z ∂probabilityMeasure) =
+      (2 * π)⁻¹ • ∫ θ in 0..2 * π, f (Circle.exp θ) := by
+  change (∫ z, f z ∂(AddCircle.haarAddCircle.map
+    AddCircle.homeomorphCircle'.toMeasurableEquiv)) = _
+  rw [integral_map_equiv AddCircle.homeomorphCircle'.toMeasurableEquiv]
+  rw [AddCircle.integral_haarAddCircle]
+  change (2 * π)⁻¹ • (∫ t : AddCircle (2 * π), (f ∘ AddCircle.homeomorphCircle') t) = _
+  rw [← AddCircle.intervalIntegral_preimage (2 * π) 0 (f ∘ AddCircle.homeomorphCircle')]
+  simp only [zero_add, Function.comp_apply, AddCircle.homeomorphCircle'_apply_mk]
+
+/-- A continuous complex-plane test has the same integral under normalized
+unit-circle measure and under the native unit circle average.
+@isnad1 id=eq.0h2v.s6.4bb28bdb6f4d from=translated src=- shape=b98d53ef vocab=2f09f629
+-/
+theorem integral_probabilityMeasure_eq_circleAverage
+    {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (f : ℂ → E) :
+    (∫ z : Circle, f z ∂probabilityMeasure) = Real.circleAverage f 0 1 := by
+  rw [integral_probabilityMeasure, Real.circleAverage_def]
+  simp only [circleMap, Complex.ofReal_one, one_mul, zero_add, Circle.coe_exp]
+
+end Circle
