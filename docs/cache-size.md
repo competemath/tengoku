@@ -1,5 +1,7 @@
 # What is in the compiled tree, and what the cache leaves out
 
+> **Status.** This page records the 2026-10-14 incident and its measurements. The cumulative top-up it mentions (`scripts/topup.py`) is retired ([top-ups](topups.md)); the merge queue now publishes per-merge deltas ([the delta store](testing.md#the-delta-store)). Sizes have changed since (the tree has grown, and the cache is staged on the runner's work disk, #669), so read the figures as of 14 October.
+
 The nightly cache is `.lake/build` of the whole tree, packed. On 2026-10-14 it unpacked to **102 GB** on a runner whose disk is 145 GB with about 20 GB used by the
 image after the usual clean-up, and the merge queue failed every group with "No space left on device" (the isnad tag PR #555). Where the 102 GB were
 (runner measurement, `cache-20261014T0523Z`):

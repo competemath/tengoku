@@ -100,13 +100,15 @@ tentative or staging file whose records all come from a source no longer on the 
   promotion.
 - `TENGOKU_INTAKE_BOT` (default `tengoku-intake[bot]`) is the intake App, which the factory's `intake-open.yml` opens pull requests as. Its account may send an **intake** or an **extend**
   PR (the factory's bundles, judged by `intake_check.py`, which rebuilds the archive and checks its attestation) and no other class: promotion, tag, scope-fix, restructure and native stay `TENGOKU_BOT`'s.
-- `.github/CODEOWNERS` assigns `@mikael-bashir` to the tooling paths of rule 4 and to `data/trusted/`, with one
-  exception. CODEOWNERS patterns follow gitignore rules, where `*` does not cross `/`, so `/Tengoku/*.lean`
-  covers only files directly under `Tengoku/`. The seeded modules in its subfolders have no code owner.
-- A library key whose PascalCase form equals a seeded top-level directory would make that directory
-  derived; `topology` would claim `Tengoku/Topology/`. Do not register such keys. Once the seed has moved into `Tengoku/Seed/`
-  (section 5) the topic directories are no longer at the top, and the keys `seed` and `native` are refused by the gates
-  (`check_key` in `scripts/ci/_git.py`): those two folders are not a library's.
+- `.github/CODEOWNERS` (default since 2026-10-10): everything is owned by both of the maintainer's accounts (`@mikael-bashir`, `@mikaelbashir14096545`) unless a later line says
+  otherwise. The exceptions are the **content lane**, which has no owner: the library folders `/Tengoku/*/` and their umbrella files `/Tengoku/*.lean`, `Tengoku/Native/`,
+  `Tengoku/All.lean`, `data/intake/`, `data/studied/`, `data/staging/`, `data/tentative/`, `data/stats.json`, `data/cache-latest.json`, `/docs/` and the root `README.md`. `Tengoku/Seed/`, `data/trusted/`, `data/raze/` and `data/roots/` are
+  owned. CI configuration and every test (workflows, `scripts/ci/`, `scripts/tests/`, the vacuity and isnad tools, the lint allow-list) are owned by the second account only (#304), so the
+  first account's approval does not count for them. CODEOWNERS patterns follow gitignore rules, where `*` does not cross `/`, so `/Tengoku/*.lean`
+  covers only files directly under `Tengoku/`.
+- A library key whose PascalCase form equals a seeded top-level directory would once have made that directory
+  derived (`topology` would claim `Tengoku/Topology/`). The seed has since moved into `Tengoku/Seed/` (section 5, 2026-10-05), so the topic directories are no longer at the top, and the keys `seed` and `native` are
+  refused by the gates (`check_key` in `scripts/ci/_git.py`): those two folders are not a library's.
 - A library too big for one file is sharded as a folder: `data/<tier>/<library>/<file>.jsonl`. The validator,
   generator and promoter all read that layout. 58 flat numbered files predate the gates
   (`flt-anthropic-NNN`, `leanbridge-NNN`, `prove2me-NNN` in `data/tentative/`). Their records name the library
