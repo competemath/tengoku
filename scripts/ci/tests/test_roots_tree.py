@@ -293,7 +293,10 @@ class DocComment(unittest.TestCase):
 
     def test_a_module_doc_and_a_plain_comment_stay_header(self):
         out = self.run_text(self.TEXT.replace("/-- the zeta", "/- the zeta"))
-        self.assertIn("/- the zeta value. -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta", out)
+        self.assertIn(
+            "/-! module doc -/\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo\n/- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta",
+            out,
+        )  # on the blank line before the comment
 
     def test_no_line_moves_and_it_is_idempotent(self):
         once = self.run_text(self.TEXT)
@@ -375,6 +378,38 @@ class OwnLine(unittest.TestCase):
     def test_it_is_idempotent(self):
         once = self.run_text("module\n\nimport Tengoku\n\n" + self.BODY)
         self.assertEqual(once, self.run_text(once))
+
+
+class WhereThePreludeGoes(unittest.TestCase):
+    """The blank line it takes is the nearest one in front of the first body line that is after the imports and outside a block comment (Gitar on #814: a `--` comment line above the first declaration)."""
+
+    DEF = "def zeta (k : Nat) : Nat :=\n  (-1 : Int).natAbs * zeta (k + 1)\n"
+    MARK = "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo"
+
+    def run_text(self, text):
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": "roots: 1 declarations\nroot: zeta\n"})
+        return changed.get("Tengoku/Foo/A.lean", text).split("\n")
+
+    def test_a_line_comment_above_the_declaration_does_not_pull_the_prelude_onto_it(self):
+        out = self.run_text("module\n\nimport Tengoku\n\n-- note\n" + self.DEF)
+        self.assertEqual(out[3].rstrip(), self.MARK)
+        self.assertEqual(out[4], "-- note")
+        self.assertTrue(out[5].startswith("def _root_.Tengoku.Foo.zeta"))
+
+    def test_a_blank_line_inside_a_block_comment_is_not_used(self):
+        out = self.run_text("module\n\nimport Tengoku\n\n/- one\n\ntwo -/\n" + self.DEF)
+        self.assertEqual(out[3].rstrip(), self.MARK)  # not the blank line inside the comment (line 5)
+        self.assertEqual(out[5], "")
+
+    def test_the_prelude_never_goes_in_front_of_an_import(self):
+        out = self.run_text("module\n\nimport Tengoku\nimport Mathlib\n\n" + self.DEF)
+        self.assertEqual(out[4].rstrip(), self.MARK)
+        self.assertEqual(out[2:4], ["import Tengoku", "import Mathlib"])
+
+    def test_it_stays_inside_the_section_that_opens_the_body(self):
+        out = self.run_text("module\n\nimport Tengoku\n\npublic section\n\n" + self.DEF)
+        self.assertEqual(out[4], "public section")
+        self.assertEqual(out[5].rstrip(), self.MARK)
 
 
 if __name__ == "__main__":
