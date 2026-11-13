@@ -82,6 +82,21 @@ class RootsRegenerate(unittest.TestCase):
         self.assertEqual(rc, 0, out)
         self.assertIn("--libraries fx-lib", generated)
 
+    def test_a_module_added_beside_the_report_is_regenerated(self):
+        # Gitar on tengoku#821: the group is the diff of every PR in it; only a library changed in place is skipped
+        for extra in (
+            ("Tengoku/FxLib/Fx/Extra.lean", "import Tengoku\n\ntheorem e : True := trivial\n"),  # a module ADDED
+            ("Tengoku/FxLib/NOTES.md", "a file that is no module\n"),
+        ):
+            r = self.repo()
+            r.write("data/roots/r-1/FxLib.txt", REPORT)
+            r.write("Tengoku/FxLib/Fx/Basic.lean", RENAMED)
+            r.write(*extra)
+            r.commit("roots and another change to the same library")
+            rc, out, generated = self.regenerated(r)
+            self.assertEqual(rc, 0, out)
+            self.assertIn("--libraries fx-lib", generated, f"{extra[0]}: the library was not regenerated")
+
 
 if __name__ == "__main__":
     unittest.main()

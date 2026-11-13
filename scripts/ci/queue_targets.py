@@ -111,9 +111,14 @@ group = changed_files(base, head)
 if group and all(st == "M" and (m := re.fullmatch(r"Tengoku/([^/]+)/.+\.lean", p)) and m.group(1) in intake_at_base for st, p in group):
     gone_ns |= intake_at_base
 # A ROOTS PR (scripts/ci/roots_check.py) edits the modules of intake libraries in place, and a manifest only when a record's name starts with a root. A library whose roots have no
-# record has no manifest in the group, so it was regenerated from its corpus and came out deleted (2026-11-13, tengoku#797 wave 2: Toric/Hopf/GrpAlg.lean, 50 deletions). The libraries
-# of the reports the group adds are skipped; every other library of the group is regenerated as before.
-gone_ns |= set(added_reports(base, head)) & intake_at_base
+# record has no manifest in the group, so it was regenerated from its corpus and came out deleted (2026-11-13, tengoku#797 wave 2: Toric/Hopf/GrpAlg.lean, 50 deletions). The libraries of
+# the reports the group adds are skipped, but only while every change the group makes under the library is an existing `.lean` module modified in place (the shape of a roots PR; Gitar on
+# tengoku#821: the group is the diff of all the PRs in it, and a module added or a file that is no module beside the report is regenerated as before). Every other library is regenerated.
+roots_libs = set(added_reports(base, head)) & intake_at_base
+for lib in roots_libs:
+    mine = [(st, p) for st, p in group if p == f"Tengoku/{lib}.lean" or p.startswith(f"Tengoku/{lib}/")]
+    if mine and all(st == "M" and p.endswith(".lean") for st, p in mine):
+        gone_ns.add(lib)
 work: dict[str, dict[str, set[str]]] = {}  # library -> source path -> names this group adds to staging
 left_out: dict[str, set[str]] = {}  # library -> garbled records the generator leaves out (they stay in staging)
 touched: set[str] = set()  # libraries with any data change (staging or trusted)
