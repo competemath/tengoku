@@ -1,0 +1,1 @@
+-- CkHopfFormalization: a factory bundle (data/intake/ck-hopf-formalization). This file only marks the library for Tengoku/All.lean.
