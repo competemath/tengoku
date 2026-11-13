@@ -48,12 +48,16 @@ def mapStarAlgHom (φ : A →⋆ₐ[ℂ] C) : CStarMatrix D D A →⋆ₐ[ℂ] C
     · simp [map_apply, algebraMap_apply, hij]
   map_star' M := by ext; simp only [map_apply, star_apply, map_star]
 
-/-- Coordinates of the unital native entrywise star-algebra map.-/
+/-- Coordinates of the unital native entrywise star-algebra map.
+@isnad1 id=eq.0h7v.s7.613d56bc7fe6 from=translated src=- shape=badf2b9b vocab=f63ea19e
+-/
 @[simp]
 theorem mapStarAlgHom_apply (φ : A →⋆ₐ[ℂ] C) (M : CStarMatrix D D A) (i j : D) :
     mapStarAlgHom φ M i j = φ (M i j) := rfl
 
-/-- An injective entry map induces an injective native C*-matrix map.-/
+/-- An injective entry map induces an injective native C*-matrix map.
+@isnad1 id=injectiv.1h4v.s7.b5f10a4fba40 from=translated src=- shape=302b33a2 vocab=dc911700
+-/
 theorem mapStarAlgHom_injective (φ : A →⋆ₐ[ℂ] C) (hφ : Function.Injective φ) :
     Function.Injective (mapStarAlgHom (D := D) φ) := map_injective hφ
 
@@ -73,14 +77,18 @@ def toPiLpCLM (M : CStarMatrix D D B) : K →L[ℂ] K :=
 
 omit [DecidableEq D] [CompleteSpace H] in
 /-- Coordinates of the actual bounded block operator are the usual finite
-sums of operator entries applied to vector coordinates.-/
+sums of operator entries applied to vector coordinates.
+@isnad1 id=eq.0h5v.s9.99a6d3beeb45 from=translated src=- shape=557972fc vocab=86a631fb
+-/
 @[simp]
 theorem toPiLpCLM_apply (M : CStarMatrix D D B) (v : K) (i : D) :
     toPiLpCLM M v i = ∑ j, M i j (v j) := by
   simp [toPiLpCLM, ContinuousLinearMap.comp_apply]
 
 omit [CompleteSpace H] in
-/-- A single-coordinate test vector recovers any chosen operator entry.-/
+/-- A single-coordinate test vector recovers any chosen operator entry.
+@isnad1 id=eq.0h6v.s9.016aa9565bca from=translated src=- shape=dbf015dd vocab=4f5cd411
+-/
 @[simp]
 theorem toPiLpCLM_apply_single (M : CStarMatrix D D B) (j : D) (x : H) (i : D) :
     toPiLpCLM M (PiLp.single 2 j x) i = M i j x := by
@@ -131,7 +139,9 @@ def toPiLpStarAlgHom : CStarMatrix D D B →⋆ₐ[ℂ] (K →L[ℂ] K) where
     · simp
   map_star' := toPiLpCLM_star
 
-/-- Evaluating the bundled representation gives the actual column-sum action.-/
+/-- Evaluating the bundled representation gives the actual column-sum action.
+@isnad1 id=eq.0h5v.s11.fcc1c04707db from=translated src=- shape=7a4d5078 vocab=2a49df6f
+-/
 @[simp]
 theorem toPiLpStarAlgHom_apply (M : CStarMatrix D D B) (v : K) (i : D) :
     toPiLpStarAlgHom (D := D) (H := H) M v i = ∑ j, M i j (v j) :=
@@ -139,7 +149,9 @@ theorem toPiLpStarAlgHom_apply (M : CStarMatrix D D B) (v : K) (i : D) :
 
 /-- The block representation is faithful: its values on actual single
 coordinates recover every bounded-operator entry. No nonempty-dimension or
-nontrivial-Hilbert-space assumption is needed.-/
+nontrivial-Hilbert-space assumption is needed.
+@isnad1 id=injectiv.0h2v.s11.cf16f5a141ee from=translated src=- shape=c57ce92a vocab=78b2beca
+-/
 theorem toPiLpStarAlgHom_injective :
     Function.Injective (toPiLpStarAlgHom (D := D) (H := H)) := by
   intro M N hMN
@@ -152,18 +164,24 @@ theorem toPiLpStarAlgHom_injective :
     (h.trans (toPiLpCLM_apply_single N j x i))
 
 /-- The native C*-matrix norm is exactly the operator norm of its actual
-Hilbert block representation. This uses the canonical existing C*-norm.-/
+Hilbert block representation. This uses the canonical existing C*-norm.
+@isnad1 id=eq.0h3v.s11.4f2c81bf7b1f from=translated src=- shape=39eab106 vocab=f77e7263
+-/
 theorem norm_toPiLpStarAlgHom (M : CStarMatrix D D B) :
     ‖toPiLpStarAlgHom (D := D) (H := H) M‖ = ‖M‖ :=
   NonUnitalStarAlgHom.norm_map (toPiLpStarAlgHom (D := D) (H := H))
     toPiLpStarAlgHom_injective M
 
-/-- The faithful block representation is isometric for the native norms.-/
+/-- The faithful block representation is isometric for the native norms.
+@isnad1 id=isometry.0h2v.s12.0f549f0c68d5 from=translated src=- shape=c57ce92a vocab=a8560778
+-/
 theorem isometry_toPiLpStarAlgHom : Isometry (toPiLpStarAlgHom (D := D) (H := H)) :=
   NonUnitalStarAlgHom.isometry toPiLpStarAlgHom toPiLpStarAlgHom_injective
 
 /-- Self-adjointness of the actual block operator is equivalent to native
-self-adjointness of the C*-matrix of bounded-operator entries.-/
+self-adjointness of the C*-matrix of bounded-operator entries.
+@isnad1 id=iff.0h3v.s11.9ee3443e8f13 from=translated src=- shape=ea5a8485 vocab=e6fb2060
+-/
 theorem isSelfAdjoint_toPiLpStarAlgHom_iff (M : CStarMatrix D D B) :
     IsSelfAdjoint (toPiLpStarAlgHom (D := D) (H := H) M) ↔ IsSelfAdjoint M := by
   constructor
@@ -174,7 +192,9 @@ theorem isSelfAdjoint_toPiLpStarAlgHom_iff (M : CStarMatrix D D B) :
 
 open scoped ComplexOrder Matrix.Norms.L2Operator in
 /-- For actual scalar complex matrices, the canonical native C*-matrix
-norm agrees with the existing scalar ℓ² operator norm.-/
+norm agrees with the existing scalar ℓ² operator norm.
+@isnad1 id=eq.0h2v.s6.4479d5cf8352 from=translated src=- shape=daba73b2 vocab=b6039a6f
+-/
 theorem norm_ofMatrix_complex (M : Matrix D D ℂ) :
     ‖CStarMatrix.ofMatrix M‖ = ‖M‖ :=
   StarAlgEquiv.norm_map (CStarMatrix.ofMatrixStarAlgEquiv (n := D) (A := ℂ)) M

@@ -18,7 +18,9 @@ open scoped Topology
 namespace Real
 
 /-- Every bounded measurable real observable is integrable against the
-explicit normalized Stein--Hirschman density.-/
+explicit normalized Stein--Hirschman density.
+@isnad1 id=integrab.3h3v.s6.394a206567b2 from=translated src=- shape=9c47f2dd vocab=2ea88a1c
+-/
 theorem integrable_hirschmanDensity_mul_of_bounded {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1)
     {f : ℝ → ℝ} (hf : Measurable f) {B : ℝ} (hbound : ∀ t, |f t| ≤ B) :
     Integrable (fun t => hirschmanDensity r t * f t) := by
@@ -34,7 +36,9 @@ end Real
 namespace Complex
 
 /-- Exponential majorants retain a lower bound even as regularization tends
-to zero, so negative logarithmic parts are controlled honestly.-/
+to zero, so negative logarithmic parts are controlled honestly.
+@isnad1 id=and.2h3v.s6.de3213e93583 from=translated src=- shape=f88d5e3f vocab=5b81dddd
+-/
 theorem regularizedLogNorm_exp_bounds {ε H x : ℝ} (hε : ε ∈ Icc (0 : ℝ) 1)
     (hx : |x| ≤ H) :
     -H ≤ regularizedLogNorm ε ((Real.exp x : ℝ) : ℂ) ∧
@@ -59,7 +63,9 @@ theorem regularizedLogNorm_exp_bounds {ε H x : ℝ} (hε : ε ∈ Icc (0 : ℝ)
     apply sqrt_le_sqrt
     nlinarith [Real.exp_pos x, Real.exp_pos H, hε.1, hε.2]
 
-/-- A uniform absolute bound for all regularizations between zero and one.-/
+/-- A uniform absolute bound for all regularizations between zero and one.
+@isnad1 id=le.3h3v.s6.73cb37e75d00 from=translated src=- shape=10800099 vocab=59603d89
+-/
 theorem abs_regularizedLogNorm_exp_le {ε H x : ℝ} (hε : ε ∈ Icc (0 : ℝ) 1)
     (hH : 0 ≤ H) (hx : |x| ≤ H) :
     |regularizedLogNorm ε ((Real.exp x : ℝ) : ℂ)| ≤
@@ -71,7 +77,9 @@ theorem abs_regularizedLogNorm_exp_le {ε H x : ℝ} (hε : ε ∈ Icc (0 : ℝ)
   · linarith [le_abs_self (Real.log (sqrt ((Real.exp H) ^ 2 + 1)))]
 
 /-- At every real majorant value the regularized logarithm converges to that
-same value, since its unregularized exponential is strictly positive.-/
+same value, since its unregularized exponential is strictly positive.
+@isnad1 id=tendsto.1h2v.s5.056300674f33 from=translated src=- shape=714ec587 vocab=5e93b5d9
+-/
 theorem tendsto_regularizedLogNorm_exp {ε : ℕ → ℝ}
     (hε : Tendsto ε atTop (𝓝 0)) (x : ℝ) :
     Tendsto (fun n => regularizedLogNorm (ε n) ((Real.exp x : ℝ) : ℂ)) atTop (𝓝 x) := by
@@ -82,7 +90,9 @@ theorem tendsto_regularizedLogNorm_exp {ε : ℕ → ℝ}
     Real.log_exp] using hl
 
 /-- Dominated convergence removes logarithmic regularization under the exact
-Stein--Hirschman probability density.-/
+Stein--Hirschman probability density.
+@isnad1 id=tendsto.6h4v.s7.c336528cd229 from=translated src=- shape=f4bfd06a vocab=c77d6c79
+-/
 theorem tendsto_integral_hirschman_regularizedLogNorm_exp {r H : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) {h : ℝ → ℝ} (hh : Measurable h)
     (hH : 0 ≤ H) (hbound : ∀ t, |h t| ≤ H)
@@ -107,7 +117,9 @@ theorem tendsto_integral_hirschman_regularizedLogNorm_exp {r H : ℝ}
   · exact ae_of_all _ fun t => (tendsto_regularizedLogNorm_exp hεlim (h t)).const_mul _
 
 /-- An exponential bound on the actual norm gives the same bound after
-positive logarithmic regularization.-/
+positive logarithmic regularization.
+@isnad1 id=le.2h3v.s5.3c1ba58ae882 from=translated src=- shape=04844295 vocab=9315c4f7
+-/
 theorem regularizedLogNorm_le_exp_of_norm_le {ε x : ℝ} (hε : 0 < ε)
     {z : ℂ} (hz : ‖z‖ ≤ Real.exp x) :
     regularizedLogNorm ε z ≤ regularizedLogNorm ε ((Real.exp x : ℝ) : ℂ) := by

@@ -14,14 +14,18 @@ matrix-series dimension encountered by the recursion.
 
 namespace Real
 
-/-- Four times a positive dimension product has logarithm greater than one.-/
+/-- Four times a positive dimension product has logarithm greater than one.
+@isnad1 id=lt.1h1v.s5.37d01af14217 from=translated src=- shape=ceaa50d0 vocab=3f88a965
+-/
 theorem one_lt_log_four_mul {D : ℝ} (hD : 1 ≤ D) :
     1 < log (4 * D) := by
   apply (lt_log_iff_exp_lt (by positivity)).mpr
   linarith [exp_one_lt_three]
 
 /-- A matrix with positive row and column dimensions uses no more logarithmic
-budget than four times any upper bound on their product.-/
+budget than four times any upper bound on their product.
+@isnad1 id=le.3h3v.s6.e7788631fa62 from=translated src=- shape=a96b6f4d vocab=7c657f89
+-/
 theorem log_two_mul_add_le_log_four_mul {r c D : ℝ}
     (hr : 1 ≤ r) (hc : 1 ≤ c) (hD : r * c ≤ D) :
     log (2 * (r + c)) ≤ log (4 * D) := by
@@ -32,7 +36,9 @@ theorem log_two_mul_add_le_log_four_mul {r c D : ℝ}
   nlinarith
 
 /-- The coefficient-array product logarithm is bounded by a degree-dependent
-multiple of the final `log(max(rows,cols)+coordinates)` expression.-/
+multiple of the final `log(max(rows,cols)+coordinates)` expression.
+@isnad1 id=le.3h4v.s7.e09e12a016ca from=translated src=- shape=b1adbea3 vocab=04b9bc8d
+-/
 theorem log_four_mul_mul_mul_pow_le {a b m : ℝ} (ha : 1 ≤ a) (hb : 1 ≤ b)
     (hm : 1 ≤ m) (q : ℕ) :
     log (4 * a * b * m ^ q) ≤ (q + 4 : ℝ) * log (max a b + m) := by

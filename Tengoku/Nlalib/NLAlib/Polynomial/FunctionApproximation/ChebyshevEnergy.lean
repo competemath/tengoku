@@ -27,7 +27,9 @@ open scoped Topology
 
 namespace NLAlib
 
-/-- A Lipschitz interval function has an absolutely continuous cosine pullback.-/
+/-- A Lipschitz interval function has an absolutely continuous cosine pullback.
+@isnad1 id=absolute.1h2v.s5.00df1a06fd40 from=translated src=- shape=ee36c551 vocab=3766f386
+-/
 theorem absolutelyContinuousOnInterval_comp_cos_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     AbsolutelyContinuousOnInterval (f ∘ cos) 0 π := by
@@ -37,7 +39,9 @@ theorem absolutelyContinuousOnInterval_comp_cos_of_lipschitzOnWith
   exact hg.absolutelyContinuousOnInterval
 
 /-- The cosine pullback of a Lipschitz function has pointwise speed bounded by
-`L |sin θ|`; a nonexistent derivative is zero by Mathlib's convention.-/
+`L |sin θ|`; a nonexistent derivative is zero by Mathlib's convention.
+@isnad1 id=le.1h3v.s6.fb858588a8c9 from=translated src=- shape=7a527aec vocab=29397c4b
+-/
 theorem abs_deriv_comp_cos_le_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) (θ : ℝ) :
     |deriv (f ∘ cos) θ| ≤ L * |sin θ| := by
@@ -46,7 +50,9 @@ theorem abs_deriv_comp_cos_le_of_lipschitzOnWith
       (Filter.Eventually.of_forall (fun x => ⟨neg_one_le_cos x, cos_le_one x⟩))
 
 /-- The derivative of the cosine pullback has square integral at most `π L²/2`.
-Source: the Lipschitz extension of MMRS Lemma 13.-/
+Source: the Lipschitz extension of MMRS Lemma 13.
+@isnad1 id=le.1h2v.s7.5eb03449b89a from=translated src=- shape=a1e1abc1 vocab=85e9feb8
+-/
 theorem integral_sq_deriv_comp_cos_le_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     (∫ θ in (0 : ℝ)..π, deriv (f ∘ cos) θ ^ 2) ≤ π * (L : ℝ) ^ 2 / 2 := by
@@ -68,7 +74,9 @@ theorem integral_sq_deriv_comp_cos_le_of_lipschitzOnWith
 
 /-- Integration by parts identifies the positive-frequency Chebyshev coefficient
 with the sine coefficient of the negative cosine-pullback derivative.
-Source: MMRS Lemma 13, justified for Lipschitz inputs by absolute continuity.-/
+Source: MMRS Lemma 13, justified for Lipschitz inputs by absolute continuity.
+@isnad1 id=eq.2h3v.s7.1b8414550a60 from=translated src=- shape=36862efd vocab=74f79987
+-/
 theorem integral_neg_deriv_comp_cos_mul_sin_eq
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1))
     {j : ℕ} (hj : 0 < j) :
@@ -98,7 +106,9 @@ theorem integral_neg_deriv_comp_cos_mul_sin_eq
 /-- Any finite set of positive Chebyshev frequencies has weighted energy at most
 the squared Lipschitz constant. The constant is sharp already for linear functions.
 Source: MMRS Lemma 13, with the standard unnormalized Chebyshev coefficients.
-atlas: chebyshev-lipschitz-coefficient-energy (partial)-/
+atlas: chebyshev-lipschitz-coefficient-energy (partial)
+@isnad1 id=le.2h3v.s7.46e35470d436 from=translated src=- shape=c278d8c5 vocab=f23d2a35
+-/
 theorem sum_mul_sq_chebyshevCoeff_le_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1))
     (s : Finset ℕ) (hs : ∀ j ∈ s, 0 < j) :
@@ -125,7 +135,9 @@ theorem sum_mul_sq_chebyshevCoeff_le_of_lipschitzOnWith
   field_simp
 
 /-- The positive-frequency weighted Chebyshev energy is summable for every
-Lipschitz interval function. Source: finite Bessel bounds, MMRS Lemma 13.-/
+Lipschitz interval function. Source: finite Bessel bounds, MMRS Lemma 13.
+@isnad1 id=summable.1h2v.s6.e9d381ed4b50 from=translated src=- shape=f6610af9 vocab=f5ada8dc
+-/
 theorem summable_mul_sq_chebyshevCoeff_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     Summable (fun j : ℕ => ((j + 1 : ℕ) : ℝ) ^ 2 * chebyshevCoeff f (j + 1) ^ 2) := by
@@ -140,7 +152,9 @@ theorem summable_mul_sq_chebyshevCoeff_of_lipschitzOnWith
 /-- The full positive-frequency weighted Chebyshev energy is at most `L²`.
 Source: MMRS Lemma 13, extended to Lipschitz functions by an AC pullback.
 The tensor assertion on the same atlas card is a separate theorem.
-atlas: chebyshev-lipschitz-coefficient-energy (partial)-/
+atlas: chebyshev-lipschitz-coefficient-energy (partial)
+@isnad1 id=le.1h2v.s7.96ca1121bd8d from=translated src=- shape=a082eb18 vocab=3ac7441f
+-/
 theorem tsum_mul_sq_chebyshevCoeff_le_of_lipschitzOnWith
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1)) :
     (∑' j : ℕ, ((j + 1 : ℕ) : ℝ) ^ 2 * chebyshevCoeff f (j + 1) ^ 2) ≤ (L : ℝ) ^ 2 := by
@@ -154,7 +168,9 @@ theorem tsum_mul_sq_chebyshevCoeff_le_of_lipschitzOnWith
 
 /-- The sharp energy bound is attained by every affine function `c + a x`.
 Source: the equality example in MMRS Lemma 13, in standard coefficients.
-atlas: chebyshev-lipschitz-coefficient-energy (partial)-/
+atlas: chebyshev-lipschitz-coefficient-energy (partial)
+@isnad1 id=eq.0h2v.s6.aa79138b9ad8 from=translated src=- shape=b0993bed vocab=b51543b4
+-/
 theorem tsum_mul_sq_chebyshevCoeff_affine (c a : ℝ) :
     (∑' j : ℕ, ((j + 1 : ℕ) : ℝ) ^ 2 *
       chebyshevCoeff (fun x : ℝ => c + a * x) (j + 1) ^ 2) = a ^ 2 := by

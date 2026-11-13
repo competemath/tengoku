@@ -18,7 +18,9 @@ open scoped Topology
 
 /-- A Lipschitz outer function bounds the derivative of its composition with a
 real differentiable curve, even if the outer function has no derivative there.
-The total derivative is zero when the composition is not differentiable.-/
+The total derivative is zero when the composition is not differentiable.
+@isnad1 id=le.3h5v.s7.9d60c056ab1b from=translated src=- shape=ef7b543c vocab=12445032
+-/
 theorem LipschitzOnWith.norm_deriv_comp_le {f g : ℝ → ℝ} {s : Set ℝ} {L : NNReal} {x : ℝ}
     (hf : LipschitzOnWith L f s) (hg : DifferentiableAt ℝ g x)
     (hgs : ∀ᶠ y in 𝓝 x, g y ∈ s) :

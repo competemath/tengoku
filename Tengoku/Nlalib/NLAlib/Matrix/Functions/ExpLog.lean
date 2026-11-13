@@ -38,7 +38,9 @@ def matrixLog (A : Matrix d d 𝕜) : Matrix d d 𝕜 := cfc Real.log A
 
 /-- `matrixLog` is Mathlib's `CFC.log` (both are `cfc Real.log`), by `rfl`. Mathlib's `CFC.log`
 API (`CFC.log_exp`, `CFC.log_le_log`, `CFC.log_monotoneOn`, `CFC.log_smul`, …) applies to
-`matrixLog` through this bridge (stated over `ℂ`, where `Matrix d d ℂ` is a C*-algebra).-/
+`matrixLog` through this bridge (stated over `ℂ`, where `Matrix d d ℂ` is a C*-algebra).
+@isnad1 id=eq.0h2v.s6.7fcb541e3215 from=translated src=- shape=baa56aa7 vocab=2cfa0f26
+-/
 theorem matrixLog_eq_log (A : Matrix d d ℂ) : matrixLog A = CFC.log A :=
   rfl
 
@@ -46,7 +48,9 @@ theorem matrixLog_eq_log (A : Matrix d d ℂ) : matrixLog A = CFC.log A :=
 atlas: matrix-calculus-def-/
 def traceExp (A : Matrix d d 𝕜) : ℝ := RCLike.re (Matrix.trace (matrixExp A))
 
-/-- Over `ℂ` the trace exponential is the real part of the trace, as a `Complex.re`.-/
+/-- Over `ℂ` the trace exponential is the real part of the trace, as a `Complex.re`.
+@isnad1 id=eq.0h2v.s5.8c878eaf0b78 from=translated src=- shape=f089ea9b vocab=8ab08988
+-/
 theorem traceExp_complex (A : Matrix d d ℂ) :
     traceExp A = (Matrix.trace (matrixExp A)).re :=
   rfl

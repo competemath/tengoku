@@ -10,7 +10,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- Enlarging the matrix dimension from `d` to `3d` changes the source
-logarithmic factor by at most a universal factor three.-/
+logarithmic factor by at most a universal factor three.
+@isnad1 id=le.1h1v.s6.88fa424c9952 from=translated src=- shape=8451e694 vocab=3f4f6c65
+-/
 theorem log_three_mul_rpow_three_quarters_le {d : ℕ} (hd : 2 ≤ d) :
     (Real.log (3 * (d : ℝ))) ^ (3 / 4 : ℝ) ≤
       3 * (Real.log (d : ℝ)) ^ (3 / 4 : ℝ) := by

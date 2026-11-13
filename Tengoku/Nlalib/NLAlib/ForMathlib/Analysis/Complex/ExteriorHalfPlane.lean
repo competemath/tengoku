@@ -72,7 +72,9 @@ has positive imaginary part exactly when its nonzero real affine asymptotic slop
 is positive. The conclusion holds on the whole exterior upper half-plane, including
 points arbitrarily close to the real axis.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=iff.6h5v.s7.b1ad3921263e from=translated src=- shape=04a807dd vocab=56d88f3a
+-/
 theorem im_pos_iff_slope_pos_of_tendsto_affine {f : ℂ → ℂ} {R d : ℝ} {c z : ℂ}
     (hcont : ContinuousOn f {u | R < ‖u‖})
     (hreal : ∀ u, R < ‖u‖ → 0 < u.im → (f u).im ≠ 0)

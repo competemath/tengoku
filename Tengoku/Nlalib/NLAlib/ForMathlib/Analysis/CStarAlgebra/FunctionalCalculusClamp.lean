@@ -30,12 +30,16 @@ the symmetric interval. The total calculus gives zero on other elements.-/
 def cfcSymmetricClamp (L : ℝ) (a : A) : A :=
   cfc (fun x : ℝ => max (-L) (min L x)) a
 
-/-- The actual clipped element is self-adjoint.-/
+/-- The actual clipped element is self-adjoint.
+@isnad1 id=isselfad.0h3v.s5.4111633cc2af from=translated src=- shape=57a614d6 vocab=6319aeb6
+-/
 theorem isSelfAdjoint_cfcSymmetricClamp (L : ℝ) (a : A) :
     IsSelfAdjoint (cfcSymmetricClamp L a) := IsSelfAdjoint.cfc
 
 /-- The native actual clipped reference has norm at most the clip radius,
-including zero radius and the trivial algebra.-/
+including zero radius and the trivial algebra.
+@isnad1 id=le.1h3v.s5.a2f6c059987f from=translated src=- shape=13c0ee38 vocab=c8f454a9
+-/
 theorem norm_cfcSymmetricClamp_le (L : ℝ) (hL : 0≤L) (a : A) :
     ‖cfcSymmetricClamp L a‖ ≤ L := by
   apply norm_cfc_le hL
@@ -45,7 +49,9 @@ theorem norm_cfcSymmetricClamp_le (L : ℝ) (hL : 0≤L) (a : A) :
 
 /-- At purely imaginary height, changing an arbitrary self-adjoint
 deterministic reference to its actual clipped version changes its native
-resolvent by at most the reciprocal clip radius.-/
+resolvent by at most the reciprocal clip radius.
+@isnad1 id=le.4h4v.s7.364e71a12f8d from=translated src=- shape=5d93135b vocab=516fd416
+-/
 theorem IsSelfAdjoint.norm_resolvent_sub_cfcSymmetricClamp_le {a : A}
     (ha : IsSelfAdjoint a) {z : ℂ} (hre : z.re=0) (hz : 0<z.im)
     {L : ℝ} (hL : 0<L) :

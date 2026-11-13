@@ -22,7 +22,9 @@ namespace Complex
 /-- A Schwarz-symmetric holomorphic function off a compact real segment, with
 nonnegative upper-half-plane imaginary part and a uniform bound, has a
 nonnegative exponential circle moment. All contour deformations and the thin
-limit are proved; neither a positive measure nor real-axis limits are assumed.-/
+limit are proved; neither a positive measure nor real-axis limits are assumed.
+@isnad1 id=le.6h4v.s8.298346600561 from=translated src=- shape=128e0f54 vocab=ae28d2c4
+-/
 theorem neg_normalized_exp_circleIntegral_re_nonneg
     {h : ℂ → ℂ} {R M C : ℝ} (hM : 0 < M) (hRM : R < M)
     (hh : DifferentiableOn ℂ h {z | z.im ≠ 0 ∨ R < ‖z‖})

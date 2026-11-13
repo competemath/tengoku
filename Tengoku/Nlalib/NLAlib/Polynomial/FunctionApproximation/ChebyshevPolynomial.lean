@@ -16,12 +16,16 @@ namespace NLAlib
 def normalizedChebyshevPolynomial (j : ℕ) : ℝ[X] :=
   C (normalizedChebyshevWeight j) * Chebyshev.T ℝ (j : ℤ)
 
-/-- Evaluation recovers the native normalized Chebyshev function.-/
+/-- Evaluation recovers the native normalized Chebyshev function.
+@isnad1 id=eq.0h2v.s3.2136b488f852 from=translated src=- shape=275493bf vocab=0510bfa8
+-/
 @[simp] theorem eval_normalizedChebyshevPolynomial (j : ℕ) (x : ℝ) :
     (normalizedChebyshevPolynomial j).eval x = normalizedChebyshev j x := by
   simp [normalizedChebyshevPolynomial, normalizedChebyshev]
 
-/-- Complex evaluation on the real line retains exactly the real normalization.-/
+/-- Complex evaluation on the real line retains exactly the real normalization.
+@isnad1 id=eq.0h2v.s4.8f7dda344bd5 from=translated src=- shape=de958dc7 vocab=3313cbd1
+-/
 @[simp] theorem eval_map_normalizedChebyshevPolynomial (j : ℕ) (x : ℝ) :
     ((normalizedChebyshevPolynomial j).map Complex.ofRealHom).eval (x : ℂ) =
       (normalizedChebyshev j x : ℂ) := by

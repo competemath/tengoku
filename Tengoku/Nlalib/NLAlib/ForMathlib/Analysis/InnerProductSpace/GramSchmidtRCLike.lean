@@ -15,7 +15,9 @@ open MeasureTheory InnerProductSpace
 namespace NLAlib
 variable (𝕜 : Type*) [RCLike 𝕜]
 
-/-- The actual Gram--Schmidt residuals commute with scalar-linear isometries.-/
+/-- The actual Gram--Schmidt residuals commute with scalar-linear isometries.
+@isnad1 id=eq.0h7v.s9.751825d06f86 from=translated src=- shape=0051c86c vocab=c0c9d4bf
+-/
 theorem gramSchmidt_map_linearIsometry_rclike
     {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [NormedAddCommGroup F] [InnerProductSpace 𝕜 F] {k : ℕ}
@@ -31,7 +33,9 @@ theorem gramSchmidt_map_linearIsometry_rclike
   intro i hi
   rw [ih i (Finset.mem_Iio.mp hi),map_smul,L.inner_map_map,L.norm_map]
 
-/-- Positive normalized Gram--Schmidt commutes with every unitary isometry.-/
+/-- Positive normalized Gram--Schmidt commutes with every unitary isometry.
+@isnad1 id=eq.0h7v.s9.c56a2422f50d from=translated src=- shape=0051c86c vocab=edfcb858
+-/
 theorem gramSchmidtNormed_map_linearIsometry_rclike
     {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [NormedAddCommGroup F] [InnerProductSpace 𝕜 F] {k : ℕ}
@@ -40,7 +44,9 @@ theorem gramSchmidtNormed_map_linearIsometry_rclike
   rw [gramSchmidtNormed,gramSchmidtNormed,gramSchmidt_map_linearIsometry_rclike,
     L.norm_map,map_smul]
 
-/-- A measurable input family has measurable Hermitian Gram--Schmidt residuals.-/
+/-- A measurable input family has measurable Hermitian Gram--Schmidt residuals.
+@isnad1 id=measurab.1h6v.s6.4cfe0624bd2c from=translated src=- shape=36b860c0 vocab=1cb9739f
+-/
 theorem measurable_gramSchmidt_rclike
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] {k : ℕ}
@@ -63,7 +69,9 @@ theorem measurable_gramSchmidt_rclike
     RCLike.continuous_ofReal.measurable.comp hg.norm
   exact ((hg.inner (𝕜 := 𝕜) (hf j)).div (hnorm.pow_const 2)).smul hg
 
-/-- Normalized Hermitian Gram--Schmidt is measurable, including zero residuals.-/
+/-- Normalized Hermitian Gram--Schmidt is measurable, including zero residuals.
+@isnad1 id=measurab.1h6v.s6.53136ed75d9d from=translated src=- shape=36b860c0 vocab=c71bf4b9
+-/
 theorem measurable_gramSchmidtNormed_rclike
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] {k : ℕ}

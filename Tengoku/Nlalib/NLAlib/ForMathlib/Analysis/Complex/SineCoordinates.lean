@@ -21,7 +21,9 @@ open Set
 namespace Real
 
 /-- In the interval of radius one half, inverse sine increases absolute value by
-at most a factor of two.-/
+at most a factor of two.
+@isnad1 id=le.1h1v.s5.c68d51067c06 from=translated src=- shape=6588dfba vocab=99770580
+-/
 theorem abs_arcsin_le_two_mul_abs {x : ℝ} (hx : |x| ≤ 1 / 2) :
     |arcsin x| ≤ 2 * |x| := by
   have hd (y : ℝ) (hy : y ∈ Icc (-(1 / 2 : ℝ)) (1 / 2)) :
@@ -40,7 +42,9 @@ theorem abs_arcsin_le_two_mul_abs {x : ℝ} (hx : |x| ≤ 1 / 2) :
     (x := 0) (y := x) hd hb (by constructor <;> norm_num) (abs_le.mp hx)
   simpa only [arcsin_zero, sub_zero, norm_eq_abs] using h
 
-/-- Inverse hyperbolic sine is bounded above by its nonnegative argument.-/
+/-- Inverse hyperbolic sine is bounded above by its nonnegative argument.
+@isnad1 id=le.1h1v.s4.c2e01b48bc46 from=translated src=- shape=71fa8a4a vocab=e00c788d
+-/
 theorem arsinh_le_self {x : ℝ} (hx : 0 ≤ x) : arsinh x ≤ x := by
   calc
     arsinh x ≤ sinh (arsinh x) := self_le_sinh_iff.mpr (arsinh_nonneg_iff.mpr hx)
@@ -137,7 +141,9 @@ private theorem exists_small_sin_coordinates_upper {x y r : ℝ}
 /-- A complex point in the disk of radius one half has a sine preimage of norm
 at most twice its norm, whose imaginary part is controlled by the point's
 imaginary part. The construction uses real inverse functions.
-Source: the focused polynomial Bernstein reroute, sine-coordinate lemma.-/
+Source: the focused polynomial Bernstein reroute, sine-coordinate lemma.
+@isnad1 id=ex.1h1v.s7.cff625df3be2 from=translated src=- shape=b8c27e80 vocab=ec4a6d07
+-/
 theorem exists_sin_eq_of_norm_le_half {z : ℂ} (hz : ‖z‖ ≤ 1 / 2) :
     ∃ u : ℂ, sin u = z ∧ ‖u‖ ≤ 2 * ‖z‖ ∧
       |u.im| ≤ |z.im| / Real.sqrt (1 - ‖z‖^2) := by

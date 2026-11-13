@@ -42,7 +42,9 @@ private theorem sub_ne_zero_of_mem_selfAdjoint_spectrum {a : A}
   exact im_eq_zero_of_mem_selfAdjoint_spectrum ha hx
 
 /-- Every nonreal scalar shift of a self-adjoint element is a unit, without
-assuming the ambient algebra is nontrivial.-/
+assuming the ambient algebra is nontrivial.
+@isnad1 id=isunit.2h3v.s7.d454906f8042 from=translated src=- shape=b227b5d8 vocab=6a409668
+-/
 theorem IsSelfAdjoint.isUnit_algebraMap_sub_of_im_ne_zero {a : A}
     (ha : IsSelfAdjoint a) {z : ℂ} (hz : z.im ≠ 0) :
     IsUnit (algebraMap ℂ A z - a) := by
@@ -57,7 +59,9 @@ theorem IsSelfAdjoint.isUnit_algebraMap_sub_of_im_ne_zero {a : A}
     using hunit
 
 /-- The native total `resolvent`, whose inverse is `Ring.inverse`, agrees
-exactly with complex continuous functional calculus at nonreal height.-/
+exactly with complex continuous functional calculus at nonreal height.
+@isnad1 id=eq.2h3v.s7.9060d0b57f61 from=translated src=- shape=ddf01110 vocab=46edb908
+-/
 theorem IsSelfAdjoint.resolvent_eq_cfc_of_im_ne_zero {a : A}
     (ha : IsSelfAdjoint a) {z : ℂ} (hz : z.im ≠ 0) :
     resolvent a z = cfc (fun x : ℂ => (z - x)⁻¹) a := by
@@ -82,7 +86,9 @@ variable {A : Type*} [NormedRing A] [StarRing A] [NormedAlgebra ℂ A]
 /-- A self-adjoint element's native nonreal resolvent has norm at most the
 reciprocal absolute imaginary height. The statement includes the trivial
 algebra and hence the zero Hilbert space; no `NormOneClass` or nontriviality
-premise is imposed.-/
+premise is imposed.
+@isnad1 id=le.2h3v.s7.ab531ca70535 from=translated src=- shape=be098a5f vocab=9bb15036
+-/
 theorem IsSelfAdjoint.norm_resolvent_le {a : A} (ha : IsSelfAdjoint a)
     {z : ℂ} (hz : z.im ≠ 0) : ‖resolvent a z‖ ≤ |z.im|⁻¹ := by
   rw [ha.resolvent_eq_cfc_of_im_ne_zero hz]

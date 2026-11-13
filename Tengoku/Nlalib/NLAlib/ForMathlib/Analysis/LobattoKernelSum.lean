@@ -23,7 +23,9 @@ def lobattoKernelSum (n : ℕ) (t : ℝ) : ℝ :=
   ∑ j ∈ range (2 * n), |lobattoKernel n (t - j * π / n)|
 
 /-- The translated kernel sum can be paired on the two sides of the evaluation point.
-Source: finite reflection of the `2n`-angle grid.-/
+Source: finite reflection of the `2n`-angle grid.
+@isnad1 id=eq.1h2v.s7.da26f4eb3219 from=translated src=- shape=16070bd9 vocab=a2b2d5e2
+-/
 theorem lobattoKernelSum_eq_paired {n : ℕ} (hn : 0 < n) (t : ℝ) :
     lobattoKernelSum n t =
       (∑ j ∈ range n, |lobattoKernel n (t + j * π / n)|) +
@@ -76,7 +78,9 @@ theorem lobattoKernelSum_eq_paired {n : ℕ} (hn : 0 < n) (t : ℝ) :
   ring
 
 /-- Translation by one grid step permutes the absolute-cardinal sum.
-Source: finite cyclic reindexing.-/
+Source: finite cyclic reindexing.
+@isnad1 id=periodic.1h1v.s5.66fa2115e333 from=translated src=- shape=1e0b5642 vocab=eaf8eedf
+-/
 theorem lobattoKernelSum_periodic {n : ℕ} (hn : 0 < n) :
     Function.Periodic (lobattoKernelSum n) (π / n) := by
   intro t
@@ -109,7 +113,9 @@ theorem lobattoKernelSum_periodic {n : ℕ} (hn : 0 < n) :
   rw [hsum]
 
 /-- At grid points, the translated kernel sum is one.
-Source: exact finite cardinality.-/
+Source: exact finite cardinality.
+@isnad1 id=eq.1h1v.s4.4cf2ef394fb4 from=translated src=- shape=41c8c002 vocab=dbfdfd6a
+-/
 @[simp] theorem lobattoKernelSum_zero {n : ℕ} (hn : 0 < n) : lobattoKernelSum n 0 = 1 := by
   dsimp [lobattoKernelSum]
   rw [Finset.sum_eq_single 0]
@@ -121,7 +127,9 @@ Source: exact finite cardinality.-/
     exact False.elim (h (by simp; omega))
 
 /-- In an open grid cell, the positive-angle kernel has the cotangent magnitude.
-Source: its closed form and sine antiperiodicity.-/
+Source: its closed form and sine antiperiodicity.
+@isnad1 id=eq.3h3v.s7.42959d6dc4f7 from=translated src=- shape=a3d49524 vocab=80ef0554
+-/
 theorem abs_lobattoKernel_phase_add {n j : ℕ} (hn : 0 < n) (hj : j < n)
     {α : ℝ} (hα : α ∈ Ioo (0 : ℝ) 1) :
     |lobattoKernel n (α * π / n + j * π / n)| =
@@ -148,7 +156,9 @@ theorem abs_lobattoKernel_phase_add {n j : ℕ} (hn : 0 < n) (hj : j < n)
   ring
 
 /-- In an open grid cell the translated absolute-cardinal sum is the paired cotangent sum.
-Source: focused rederivations, equation `eq:cotpair`.-/
+Source: focused rederivations, equation `eq:cotpair`.
+@isnad1 id=eq.2h2v.s7.8550209237b1 from=translated src=- shape=86759e59 vocab=192b08e2
+-/
 theorem lobattoKernelSum_phase {n : ℕ} (hn : 0 < n) {α : ℝ}
     (hα : α ∈ Ioo (0 : ℝ) 1) :
     lobattoKernelSum n (α * π / n) = sin (π * α) / (2 * n) *

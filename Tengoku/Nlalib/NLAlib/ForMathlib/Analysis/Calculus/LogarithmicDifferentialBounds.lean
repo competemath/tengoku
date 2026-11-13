@@ -24,7 +24,9 @@ open scoped Topology
 namespace Real
 
 /-- Integrating the self-bounding differential inequality. The transformed
-function `(1-a*t)*H(t)/t` is antitone, with limit `H'(0)` at zero.-/
+function `(1-a*t)*H(t)/t` is antitone, with limit `H'(0)` at zero.
+@isnad1 id=le.6h4v.s7.c37270e61952 from=translated src=- shape=3625d940 vocab=b8fa143d
+-/
 theorem le_div_one_sub_mul_of_hasDerivAt_self_bound
     (H D : ℝ → ℝ) (hH : ∀ u, HasDerivAt H (D u) u)
     (hzero : H 0 = 0) {a : ℝ} (ha : 0 ≤ a)
@@ -72,7 +74,9 @@ theorem le_div_one_sub_mul_of_hasDerivAt_self_bound
   nlinarith
 
 /-- A rational Herbst integration lemma. It turns the entropy-type derivative
-bound into the actual sub-gamma cumulant bound, including zero scale.-/
+bound into the actual sub-gamma cumulant bound, including zero scale.
+@isnad1 id=le.6h5v.s8.77bfdf256736 from=translated src=- shape=0afda4e5 vocab=415442b9
+-/
 theorem le_affine_add_div_of_hasDerivAt_bound
     (H D : ℝ → ℝ) (hH : ∀ u, HasDerivAt H (D u) u)
     (hzero : H 0 = 0) {c C : ℝ} (hc : 0 ≤ c)

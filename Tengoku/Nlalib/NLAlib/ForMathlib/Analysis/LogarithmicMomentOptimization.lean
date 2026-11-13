@@ -19,7 +19,9 @@ open scoped Topology
 
 namespace Real
 
-/-- A positive dimension's reciprocal even powers tend to one.-/
+/-- A positive dimension's reciprocal even powers tend to one.
+@isnad1 id=tendsto.1h1v.s6.205d09e2318b from=translated src=- shape=539e49bf vocab=5acf0322
+-/
 theorem tendsto_const_rpow_inv_two_nat {d : ℝ} (hd : 0 < d) :
     Tendsto (fun p : ℕ => d ^ (1 / (2 * (p : ℝ)))) atTop (𝓝 1) := by
   have hden : Tendsto (fun p : ℕ => 2 * (p : ℝ)) atTop atTop :=
@@ -30,7 +32,9 @@ theorem tendsto_const_rpow_inv_two_nat {d : ℝ} (hd : 0 < d) :
     (Real.continuousAt_const_rpow hd.ne').tendsto.comp hexp
 
 /-- The zero correction-scale endpoint of an even-moment estimate keeps
-the exact factor two leading constant.-/
+the exact factor two leading constant.
+@isnad1 id=le.2h3v.s6.a3f3a3efbb29 from=translated src=- shape=fd6f0972 vocab=bbfbc6af
+-/
 theorem le_two_mul_of_even_moments_zero {E σ d : ℝ} (hd : 0 < d)
     (hM : ∀ p : ℕ, 1 ≤ p → E ≤ 2 * d ^ (1 / (2 * (p : ℝ))) * σ) :
     E ≤ 2 * σ := by
@@ -42,7 +46,9 @@ theorem le_two_mul_of_even_moments_zero {E σ d : ℝ} (hd : 0 < d)
 
 /-- Ceiling optimization of the exact even moment bound. Keeping `p - 1`
 yields correction constant four, which also implies the usual constant six.
-This scalar theorem has no probabilistic assumptions.-/
+This scalar theorem has no probabilistic assumptions.
+@isnad1 id=le.4h4v.s7.b81c09d77e9f from=translated src=- shape=7a9a0824 vocab=1729ec62
+-/
 theorem le_two_mul_add_four_mul_sqrt_log_of_even_moments
     {E σ κ d : ℝ} (hσ : 0 ≤ σ) (hκ : 0 ≤ κ) (hd : 1 < d)
     (hM : ∀ p : ℕ, 1 ≤ p → E ≤

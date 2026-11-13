@@ -16,7 +16,9 @@ open ComplexConjugate
 namespace Complex
 variable {ι : Type*} [Fintype ι]
 
-/-- Finite complex variance decomposition for real weights of total mass one.-/
+/-- Finite complex variance decomposition for real weights of total mass one.
+@isnad1 id=other.1h3v.s7.fb9dbc2f11bf from=translated src=- shape=df325b1c vocab=999c0bff
+-/
 theorem sum_weight_normSq_sub_average (w : ι → ℝ) (z : ι → ℂ)
     (hw : ∑ i, w i = 1) :
     let a : ℂ := ∑ i, (w i : ℂ) * z i

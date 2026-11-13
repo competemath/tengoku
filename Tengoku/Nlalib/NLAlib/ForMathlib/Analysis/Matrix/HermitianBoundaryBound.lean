@@ -20,7 +20,9 @@ local notation "M" => Matrix n n ℂ
 
 /-- A genuine analytic matrix germ with Hermitian real values has
 imaginary part O(height) near the real point. No boundary estimate or
-derivative sign is supplied.-/
+derivative sign is supplied.
+@isnad1 id=ex.2h3v.s10.3284a5e0e861 from=translated src=- shape=d48168c7 vocab=e0f68296
+-/
 theorem exists_eventually_norm_imaginaryPart_le_height_of_real_analytic
     (G : ℂ → M) (u : ℝ) (hGa : AnalyticAt ℂ G (u : ℂ))
     (hreal : ∀ᶠ x : ℝ in 𝓝 u, (G x).IsHermitian) :

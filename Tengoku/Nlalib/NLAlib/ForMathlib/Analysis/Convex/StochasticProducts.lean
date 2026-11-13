@@ -26,7 +26,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- A doubly stochastic matrix increases the product of positive
 coordinates, by rowwise weighted AM--GM and the column-sum identity.
-This is the scalar product inequality used in GGOW, Lemma 3.2.-/
+This is the scalar product inequality used in GGOW, Lemma 3.2.
+@isnad1 id=le.2h3v.s7.afe53263e1ae from=translated src=- shape=bbd06494 vocab=878067af
+-/
 theorem prod_le_prod_mulVec_of_mem_doublyStochastic {B : Matrix n n ℝ}
     (hB : B ∈ doublyStochastic ℝ n) (x : n → ℝ) (hx : ∀ j, 0 < x j) :
     (∏ j, x j) ≤ ∏ i, (B *ᵥ x) i := by
@@ -47,7 +49,9 @@ theorem prod_le_prod_mulVec_of_mem_doublyStochastic {B : Matrix n n ℝ}
 
 /-- If a nonnegative matrix dominates a nonnegative multiple of a doubly
 stochastic matrix, its coordinate product dominates the corresponding
-power of that multiple times the original product.-/
+power of that multiple times the original product.
+@isnad1 id=le.4h5v.s7.d990350c0fcc from=translated src=- shape=96313717 vocab=ffb22821
+-/
 theorem mul_prod_le_prod_mulVec_of_doublyStochastic_le {C B : Matrix n n ℝ}
     (hB : B ∈ doublyStochastic ℝ n) {a : ℝ} (ha : 0 ≤ a)
     (hBC : ∀ i j, a * B i j ≤ C i j) (x : n → ℝ) (hx : ∀ j, 0 < x j) :
@@ -72,7 +76,9 @@ theorem mul_prod_le_prod_mulVec_of_doublyStochastic_le {C B : Matrix n n ℝ}
 /-- A column-stochastic nonnegative matrix with squared row-sum defect
 at most `ε ≤ 1/(card n + 1)` has the product lower bound
 `(1 - sqrt (card n * ε)) ^ card n`. This is GGOW, arXiv:1511.03730v4,
-Lemma 3.2 in the orientation used by Lemma 3.4.-/
+Lemma 3.2 in the orientation used by Lemma 3.4.
+@isnad1 id=le.5h4v.s8.5042dfd7e617 from=translated src=- shape=51f06214 vocab=69fd76b5
+-/
 theorem mul_prod_le_prod_mulVec_of_col_sum_one (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (hcol : ∀ j, ∑ i, C i j = 1)
     {ε : ℝ} (hε : ∑ i, ((∑ j, C i j) - 1) ^ 2 ≤ ε)

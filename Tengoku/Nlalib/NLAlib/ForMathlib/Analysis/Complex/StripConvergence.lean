@@ -20,7 +20,9 @@ variable {E ι : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- A uniform upper-boundary error propagates into a bounded holomorphic
 strip with its exact positive Hadamard exponent. The lower edge of the
-target substrip is strictly above the original lower boundary.-/
+target substrip is strictly above the original lower boundary.
+@isnad1 id=le.9h8v.s7.2f1f107f0e37 from=translated src=- shape=486d1857 vocab=a2cfefc0
+-/
 theorem norm_le_mul_boundary_error_rpow
     {f : ℂ → E} {l h u B ε : ℝ} (hlh : l<h) (hhu : h≤u)
     (hd : DiffContOnCl ℂ f (verticalStrip l u))
@@ -57,7 +59,9 @@ theorem norm_le_mul_boundary_error_rpow
 
 /-- A family bounded on one closed holomorphic strip converges uniformly
 to zero on every closed interior substrip if its uniform error on the
-upper boundary tends to zero. The indexing filter is arbitrary.-/
+upper boundary tends to zero. The indexing filter is arbitrary.
+@isnad1 id=tendstou.8h9v.s7.72961fd1cc44 from=translated src=- shape=ff15e225 vocab=0e6c5c04
+-/
 theorem tendstoUniformlyOn_zero_of_upper_boundary_error
     (F : ι → ℂ → E) (p : Filter ι) {l h u B : ℝ} (hlh : l<h) (hhu : h≤u)
     (hd : ∀ i, DiffContOnCl ℂ (F i) (verticalStrip l u))

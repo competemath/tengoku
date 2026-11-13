@@ -13,7 +13,9 @@ open Real Set Finset
 namespace NLAlib
 
 /-- The universal logarithmic interpolation lower constant for one node is below one.
-Source: focused reroutes, the degenerate one-node case; Mathlib's Euler-constant bound.-/
+Source: focused reroutes, the degenerate one-node case; Mathlib's Euler-constant bound.
+@isnad1 id=lt.0h0v.s6.4acdd9d77aca from=translated src=- shape=070d3244 vocab=d062e44b
+-/
 theorem logarithmic_interpolation_lower_one_lt_one :
     (2 / π) * (log (1 : ℝ) + eulerMascheroniConstant + log (4 / π)) < 1 := by
   have hp : 0 < π := pi_pos
@@ -25,7 +27,9 @@ theorem logarithmic_interpolation_lower_one_lt_one :
   nlinarith [eulerMascheroniConstant_lt_two_thirds, pi_gt_three]
 
 /-- The cotangent midpoint bound written with its exact logarithmic remainder.
-Source: focused reroutes, equation `polyretry:midpoint-bound`.-/
+Source: focused reroutes, equation `polyretry:midpoint-bound`.
+@isnad1 id=le.3h2v.s8.9f4ed9f85fba from=translated src=- shape=30d69b16 vocab=97e3176b
+-/
 theorem logarithmic_remainder_le_cotangent_sum {m N : ℕ} (hm : 0 < m) (hN : 0 < N)
     (hmN : 2 * m ≤ N) :
     (2 / π) * (log (N : ℝ) + eulerMascheroniConstant + log (4 / π)) +
@@ -67,7 +71,9 @@ theorem logarithmic_remainder_le_cotangent_sum {m N : ℕ} (hm : 0 < m) (hN : 0 
   field_simp
 
 /-- The odd central correction is strictly smaller than its harmonic remainder.
-Source: focused reroutes, the exact odd-case correction estimate.-/
+Source: focused reroutes, the exact odd-case correction estimate.
+@isnad1 id=lt.1h1v.s7.1f5a28868e82 from=translated src=- shape=a7d9e9fa vocab=b7efb140
+-/
 theorem neg_log_cos_sub_mul_tan_half_lt_harmonicMidpointRemainder {m : ℕ} (hm : 1 ≤ m) :
     -log (cos (π / (2 * (2 * (m : ℝ) + 1)))) -
       (π / (2 * (2 * (m : ℝ) + 1))) * tan (π / (4 * (2 * (m : ℝ) + 1))) <
@@ -105,7 +111,9 @@ theorem neg_log_cos_sub_mul_tan_half_lt_harmonicMidpointRemainder {m : ℕ} (hm 
 /-- The central cotangent sample, including its odd tangent correction, exceeds
 the universal logarithmic constant for every number of nodes at least two.
 Source: focused reroutes, equations `polyretry:central-cot` and `polyretry:midpoint-bound`.
-This is a scalar helper; the interpolation sample identity is proved separately.-/
+This is a scalar helper; the interpolation sample identity is proved separately.
+@isnad1 id=lt.1h1v.s8.b748d3b1346b from=translated src=- shape=de4eb1f2 vocab=91fd0e3d
+-/
 theorem logarithmic_lower_lt_central_cotangent_sum {N : ℕ} (hN : 2 ≤ N) :
     (2 / π) * (log (N : ℝ) + eulerMascheroniConstant + log (4 / π)) <
       (2 / (N : ℝ)) * ∑ j ∈ range (N / 2), Real.cot (((j : ℝ) + 1 / 2) * π / N) +
@@ -146,7 +154,9 @@ theorem logarithmic_lower_lt_central_cotangent_sum {N : ℕ} (hN : 2 ≤ N) :
     linarith
 
 /-- The universal logarithmic interpolation lower constant for two nodes is below one.
-Source: focused reroutes, the central cotangent sample at `N=2`.-/
+Source: focused reroutes, the central cotangent sample at `N=2`.
+@isnad1 id=lt.0h0v.s6.04a0228cf588 from=translated src=- shape=070d3244 vocab=d062e44b
+-/
 theorem logarithmic_interpolation_lower_two_lt_one :
     (2 / π) * (log (2 : ℝ) + eulerMascheroniConstant + log (4 / π)) < 1 := by
   have h := logarithmic_lower_lt_central_cotangent_sum (N := 2) (by decide)

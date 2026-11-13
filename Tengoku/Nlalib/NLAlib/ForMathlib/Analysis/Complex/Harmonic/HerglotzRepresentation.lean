@@ -24,7 +24,9 @@ open scoped Topology
 
 namespace Complex
 
-/-- A unit-circle point differs from every point inside the open unit disk.-/
+/-- A unit-circle point differs from every point inside the open unit disk.
+@isnad1 id=ne.1h2v.s6.f211c754f61b from=translated src=- shape=73a37c94 vocab=e17e933a
+-/
 theorem circle_coe_sub_ne_zero {w : ℂ} (hw : w ∈ ball 0 1) (ξ : Circle) :
     (ξ : ℂ) - w ≠ 0 := by
   intro h
@@ -33,14 +35,18 @@ theorem circle_coe_sub_ne_zero {w : ℂ} (hw : w ∈ ball 0 1) (ξ : Circle) :
   have hh : ‖w‖ < 1 := by simpa only [mem_ball, dist_zero_right] using hw
   linarith
 
-/-- The complex Herglotz kernel is continuous on the actual unit circle.-/
+/-- The complex Herglotz kernel is continuous on the actual unit circle.
+@isnad1 id=continuo.1h1v.s7.8652b45701a8 from=translated src=- shape=c9c3ee6e vocab=164e935b
+-/
 theorem continuous_herglotzRieszKernel_circle {w : ℂ} (hw : w ∈ ball 0 1) :
     Continuous (fun ξ : Circle => herglotzRieszKernel 0 w ξ) := by
   simp only [herglotzRieszKernel_def, sub_zero]
   exact (continuous_subtype_val.add continuous_const).div
     (continuous_subtype_val.sub continuous_const) (circle_coe_sub_ne_zero hw)
 
-/-- Differentiation of the Herglotz kernel in its interior pole.-/
+/-- Differentiation of the Herglotz kernel in its interior pole.
+@isnad1 id=hasderiv.1h2v.s8.4dc1c2419725 from=translated src=- shape=8f62b3da vocab=f8e327d2
+-/
 theorem hasDerivAt_herglotzRieszKernel_pole {w : ℂ} (hw : w ∈ ball 0 1) (ξ : Circle) :
     HasDerivAt (fun z => herglotzRieszKernel 0 z ξ)
       (2 * (ξ : ℂ) / ((ξ : ℂ) - w) ^ 2) w := by
@@ -56,7 +62,9 @@ theorem hasDerivAt_herglotzRieszKernel_pole {w : ℂ} (hw : w ∈ ball 0 1) (ξ 
 
 /-- The actual Herglotz integral of any positive finite circle measure is
 complex differentiable at each point of the disk. A compact neighborhood
-constructs the common domination bound required under the integral.-/
+constructs the common domination bound required under the integral.
+@isnad1 id=hasderiv.1h2v.s8.b7540852d691 from=translated src=- shape=1ef2625a vocab=304a9914
+-/
 theorem hasDerivAt_integral_herglotzRieszKernel (μ : Measure Circle) [IsFiniteMeasure μ]
     {w : ℂ} (hw : w ∈ ball 0 1) :
     HasDerivAt (fun z => ∫ ξ : Circle, herglotzRieszKernel 0 z ξ ∂μ)

@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- The reciprocal Jensen gap with one endpoint normalized to one is the
 positive square expression. Horn--Johnson (2013), Section 7.8;
-helper for strict inverse-trace convexity.-/
+helper for strict inverse-trace convexity.
+@isnad1 id=eq.4h3v.s7.50d3dc009998 from=translated src=- shape=a421ef8a vocab=956acf9c
+-/
 theorem affine_inv_sub_inv_affine_eq {a b t : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hab : a + b = 1) (ht : 0 < t) :
     a + b * t⁻¹ - (a + b * t)⁻¹ = a * b * (t - 1) ^ 2 / (t * (a + b * t)) := by
@@ -30,7 +32,9 @@ theorem affine_inv_sub_inv_affine_eq {a b t : ℝ} (ha : 0 < a) (hb : 0 < b)
 
 /-- Reciprocal Jensen is weak for every positive scalar endpoint and strict
 unless that endpoint equals one. Horn--Johnson (2013), Section 7.8;
-helper for strict inverse-trace convexity.-/
+helper for strict inverse-trace convexity.
+@isnad1 id=and.4h3v.s7.ab53632573ca from=translated src=- shape=17358c17 vocab=d6924286
+-/
 theorem inv_affine_le_affine_inv_and_lt_of_ne {a b t : ℝ} (ha : 0 < a) (hb : 0 < b)
     (hab : a + b = 1) (ht : 0 < t) :
     (a + b * t)⁻¹ ≤ a + b * t⁻¹ ∧ (t ≠ 1 → (a + b * t)⁻¹ < a + b * t⁻¹) := by

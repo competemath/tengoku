@@ -36,7 +36,9 @@ private lemma sqrt_sum_sq_sub_le_card_mul_dist {ι : Type*} [Fintype ι] (x y : 
 
 /-- A function that is `L`-Lipschitz for the Euclidean distance on `ι → ℝ` is continuous. Atlas:
 `gaussian-concentration` (helper). Ported from Prove2me solution
-`GaussianMatrix.gaussian_lipschitz_entropy_bound`.-/
+`GaussianMatrix.gaussian_lipschitz_entropy_bound`.
+@isnad1 id=continuo.2h3v.s6.ec73ac42cc6d from=translated src=- shape=74632007 vocab=7a283d62
+-/
 theorem continuous_of_abs_sub_le_mul_sqrt_sum_sq {ι : Type*} [Fintype ι] (f : (ι → ℝ) → ℝ) (L : ℝ)
     (hL : 0 ≤ L)
     (hLip : ∀ x y, |f x - f y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2)) : Continuous f := by
@@ -55,7 +57,9 @@ theorem continuous_of_abs_sub_le_mul_sqrt_sum_sq {ι : Type*} [Fintype ι] (f : 
 
 /-- The gradient of a differentiable `L`-Lipschitz (Euclidean) function on `ι → ℝ` has squared norm
 at most `L²`: `∑ᵢ (∂ᵢ g)² ≤ L²`. Atlas: `gaussian-concentration` (helper). Ported from Prove2me
-solution `GaussianMatrix.gaussian_lipschitz_entropy_bound`.-/
+solution `GaussianMatrix.gaussian_lipschitz_entropy_bound`.
+@isnad1 id=le.2h4v.s9.ceba2049f25f from=translated src=- shape=14c47c9b vocab=89d1d7e8
+-/
 theorem sum_sq_fderiv_le_sq_of_lipschitz {ι : Type*} [Fintype ι] [DecidableEq ι] (g : (ι → ℝ) → ℝ)
     (hg : Differentiable ℝ g) (L : ℝ)
     (hLip : ∀ x y, |g x - g y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2)) (x : ι → ℝ) :
@@ -112,7 +116,9 @@ theorem sum_sq_fderiv_le_sq_of_lipschitz {ι : Type*} [Fintype ι] [DecidableEq 
 `f : (ι → ℝ) → ℝ` is within `ε` of a `C^∞` function that is again `L`-Lipschitz (mollify with a
 normed bump of small support). Source: standard; Ledoux, *Concentration of Measure*, §5.1.
 Atlas: `gaussian-concentration` (helper). Ported from Prove2me solution
-`GaussianMatrix.lipschitz_smooth_approx`.-/
+`GaussianMatrix.lipschitz_smooth_approx`.
+@isnad1 id=ex.2h4v.s8.1328fbd7c0a3 from=translated src=- shape=1cb00b94 vocab=6920c15d
+-/
 theorem exists_contDiff_abs_sub_le_of_lipschitz {ι : Type*} [Fintype ι] (f : (ι → ℝ) → ℝ)
     (L : ℝ) (hLip : ∀ x y, |f x - f y| ≤ L * Real.sqrt (∑ i, (x i - y i) ^ 2)) (ε : ℝ)
     (hε : 0 < ε) :

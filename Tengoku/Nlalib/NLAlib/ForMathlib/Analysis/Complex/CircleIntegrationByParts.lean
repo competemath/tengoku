@@ -20,7 +20,9 @@ namespace circleIntegral
 
 /-- Contour integration by parts on a circle follows from the product
 primitive. Both functions need only be holomorphic on a neighborhood of the
-circle; the disk interior need not belong to their domain.-/
+circle; the disk interior need not belong to their domain.
+@isnad1 id=eq.5h5v.s8.172fd8a7dc24 from=translated src=- shape=e1919f54 vocab=87c25c0b
+-/
 theorem integral_mul_deriv_eq_neg_integral_deriv_mul
     {f g : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
     (hr : 0 ≤ r) (hU : IsOpen U) (hc : sphere c r ⊆ U)
@@ -43,7 +45,9 @@ theorem integral_mul_deriv_eq_neg_integral_deriv_mul
 
 /-- Moving the derivative from a holomorphic factor to the exponential
 changes the sign of the circle integral. This applies on exterior domains
-and therefore does not assume holomorphy inside the circle.-/
+and therefore does not assume holomorphy inside the circle.
+@isnad1 id=eq.4h4v.s7.f5db62233a5f from=translated src=- shape=1d9c36c7 vocab=7c997bdc
+-/
 theorem integral_exp_mul_deriv_eq_neg_integral_exp_mul
     {h : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
     (hr : 0 ≤ r) (hU : IsOpen U) (hc : sphere c r ⊆ U)

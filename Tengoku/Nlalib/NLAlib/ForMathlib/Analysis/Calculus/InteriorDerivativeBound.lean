@@ -15,7 +15,9 @@ open Set
 open scoped NNReal
 
 /-- A continuous path on the unit interval with uniformly bounded interior
-derivative moves its endpoints by at most that bound.-/
+derivative moves its endpoints by at most that bound.
+@isnad1 id=le.4h4v.s7.2272c144de20 from=translated src=- shape=41fe0e86 vocab=951a6fdc
+-/
 theorem norm_sub_endpoints_le_of_hasDerivAt_Ioo
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f f' : ℝ → E} {C : ℝ} (hC : 0 ≤ C)

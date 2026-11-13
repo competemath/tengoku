@@ -19,7 +19,9 @@ namespace Complex.HadamardThreeLines
 variable {E ι : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Vanishing high-line errors and a common reciprocal-real-part bound
-give locally uniform convergence throughout the right half-plane.-/
+give locally uniform convergence throughout the right half-plane.
+@isnad1 id=tendstol.4h6v.s8.5458de76fddb from=translated src=- shape=2843b781 vocab=895bbc80
+-/
 theorem tendstoLocallyUniformlyOn_zero_of_right_boundary_error
     (F : ι → ℂ → E) (p : Filter ι) (C u₀ : ℝ) (hC : 0≤C)
     (hd : ∀ i, DifferentiableOn ℂ (F i) {z : ℂ | 0<z.re})
@@ -65,7 +67,9 @@ namespace Complex
 variable {E ι : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
 /-- Vanishing high horizontal-line errors and a common reciprocal-height bound
-give locally uniform convergence throughout the upper half-plane.-/
+give locally uniform convergence throughout the upper half-plane.
+@isnad1 id=tendstol.4h6v.s8.769f72c0e3e1 from=translated src=- shape=2843b781 vocab=f132963a
+-/
 theorem tendstoLocallyUniformlyOn_zero_of_upper_boundary_error
     (F : ι → ℂ → E) (p : Filter ι) (C u₀ : ℝ) (hC : 0≤C)
     (hd : ∀ i, DifferentiableOn ℂ (F i) {z : ℂ | 0<z.im})

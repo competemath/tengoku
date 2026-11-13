@@ -19,7 +19,9 @@ namespace NLAlib
 /-- Pairing consecutive signs sums an affine sequence exactly:
 `∑_{j<2N} (-1)^j(α-(j+1/2)β)=Nβ`.
 Source: the finite calculation in operator rederivations `rt:sawtooth`;
-general finite-sum helper for `jackson-lipschitz`.-/
+general finite-sum helper for `jackson-lipschitz`.
+@isnad1 id=eq.0h4v.s8.1ae84faccd06 from=translated src=- shape=2135d365 vocab=a22e1d92
+-/
 theorem sum_alternating_affine_two_mul {R : Type*} [Field R] (N : ℕ) (α β : R) :
     (∑ j ∈ range (2 * N), (-1 : R) ^ j * (α - ((j : R) + 1 / 2) * β)) = (N : R) * β := by
   induction N with

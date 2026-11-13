@@ -29,7 +29,9 @@ def chebyshevCircleFunction (F : ℂ → ℂ) (θ : AddCircle (2 * Real.pi)) : �
   F (joukowski (fourier 1 θ))
 
 /-- The pullback of a function continuous on the filled Bernstein ellipse is continuous.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=continuo.2h2v.s6.227787128816 from=translated src=- shape=305816eb vocab=a75096b7
+-/
 theorem continuous_chebyshevCircleFunction {F : ℂ → ℂ} {ρ : ℝ} (hρ : 1 ≤ ρ)
     (hFc : ContinuousOn F (filledBernsteinEllipse ρ)) : Continuous (chebyshevCircleFunction F) := by
   have hnorm : ∀ θ : AddCircle (2 * Real.pi), ‖fourier 1 θ‖ = 1 :=
@@ -44,7 +46,9 @@ theorem continuous_chebyshevCircleFunction {F : ℂ → ℂ} {ρ : ℝ} (hρ : 1
     joukowski_mem_filledBernsteinEllipse (by rw [hnorm]; exact ⟨le_rfl, hρ⟩))
 
 /-- The circle pullback evaluated at a real angle is exactly `F(cos θ)`.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.0h2v.s5.caa7503ef371 from=translated src=- shape=3b0bafaa vocab=43579d28
+-/
 theorem chebyshevCircleFunction_coe_eq_cos (F : ℂ → ℂ) (θ : ℝ) :
     chebyshevCircleFunction F (θ : AddCircle (2 * Real.pi)) = F (Real.cos θ) := by
   rw [chebyshevCircleFunction, fourier_one_eq_circleMap]
@@ -55,7 +59,9 @@ theorem chebyshevCircleFunction_coe_eq_cos (F : ℂ → ℂ) (θ : ℝ) :
 
 /-- The nonnegative Fourier coefficient of the circle pullback equals its normalized
 Joukowski contour coefficient, with the zeroth Chebyshev normalization not yet doubled.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.0h2v.s7.0cfff62ae6f9 from=translated src=- shape=d084290f vocab=924ed146
+-/
 theorem fourierCoeff_chebyshevCircleFunction_eq_circleIntegral (F : ℂ → ℂ) (k : ℕ) :
     fourierCoeff (chebyshevCircleFunction F) (k : ℤ) =
       (2 * Real.pi * I : ℂ)⁻¹ *
@@ -84,7 +90,9 @@ theorem fourierCoeff_chebyshevCircleFunction_eq_circleIntegral (F : ℂ → ℂ)
 
 /-- The contour definition agrees exactly with the standard Fourier definition of the
 Chebyshev coefficients, including the distinct zeroth normalization.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=eq.0h2v.s6.952e9d993711 from=translated src=- shape=b3d41100 vocab=20e927ed
+-/
 theorem chebyshevComplexCoeff_eq_fourierCoeff (F : ℂ → ℂ) (k : ℕ) :
     chebyshevComplexCoeff F k = (if k = 0 then (1 : ℂ) else 2) *
       fourierCoeff (chebyshevCircleFunction F) (k : ℤ) := by
@@ -95,7 +103,9 @@ sharp decay constant under the original bounded holomorphic open-ellipse hypothe
 The circle/contour bridge and the radius-limit theorem discharge both identification and
 boundary issues.
 Source: Trefethen, ATAP, Theorem 8.1.
-atlas: chebyshev-coeff-analytic-decay-/
+atlas: chebyshev-coeff-analytic-decay
+@isnad1 id=le.4h4v.s7.d6e99c3b4c50 from=translated src=- shape=1d4b788e vocab=efbe0d39
+-/
 theorem abs_two_mul_re_fourierCoeff_chebyshevCircleFunction_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -106,14 +116,18 @@ theorem abs_two_mul_re_fourierCoeff_chebyshevCircleFunction_le_of_open_ellipse
     Nat.ne_of_gt hk, Complex.mul_re] using h
 
 /-- The circle pullback is even, by the inversion symmetry of the Joukowski transform.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.0h2v.s7.7cdaf3efc346 from=translated src=- shape=f4b35deb vocab=70808eb4
+-/
 theorem chebyshevCircleFunction_neg (F : ℂ → ℂ) (θ : AddCircle (2 * Real.pi)) :
     chebyshevCircleFunction F (-θ) = chebyshevCircleFunction F θ := by
   simp only [chebyshevCircleFunction, fourier_one, AddCircle.toCircle_neg, Circle.coe_inv,
     joukowski_inv]
 
 /-- The Fourier coefficients of the even Joukowski pullback are even.
-Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Chapters 3 and 8 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=eq.0h2v.s6.c52596531dff from=translated src=- shape=586bcda4 vocab=1621f73f
+-/
 theorem fourierCoeff_chebyshevCircleFunction_neg (F : ℂ → ℂ) (k : ℤ) :
     fourierCoeff (chebyshevCircleFunction F) (-k) =
       fourierCoeff (chebyshevCircleFunction F) k := by
@@ -125,7 +139,9 @@ theorem fourierCoeff_chebyshevCircleFunction_neg (F : ℂ → ℂ) (k : ℤ) :
   exact h
 
 /-- The nonnegative Fourier coefficients decay as `M/ρ^k`, including the zeroth coefficient.
-Source: Trefethen, ATAP, Theorem 8.1 (`chebyshev-approx-analytic`, helper).-/
+Source: Trefethen, ATAP, Theorem 8.1 (`chebyshev-approx-analytic`, helper).
+@isnad1 id=le.3h4v.s7.3e38376fd28b from=translated src=- shape=9b3386e2 vocab=7aa78a74
+-/
 theorem norm_fourierCoeff_chebyshevCircleFunction_nat_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -147,7 +163,9 @@ theorem norm_fourierCoeff_chebyshevCircleFunction_nat_le_of_open_ellipse
 /-- The zeroth Chebyshev coefficient has the sharp norm bound on the original
 open Bernstein ellipse, without any outer-boundary continuity premise.
 Source: Trefethen, ATAP, Theorem 8.1.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.3h3v.s6.7685c9a965a6 from=translated src=- shape=e58556c7 vocab=5a85419c
+-/
 theorem norm_chebyshevComplexCoeff_zero_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -159,7 +177,9 @@ theorem norm_chebyshevComplexCoeff_zero_le_of_open_ellipse
 /-- The real zeroth Chebyshev coefficient has absolute value at most the
 open-ellipse function bound.
 Source: Trefethen, ATAP, Theorem 8.1.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.3h3v.s6.a59aacf33126 from=translated src=- shape=d55dcd87 vocab=1f9e3be7
+-/
 theorem abs_chebyshevAnalyticCoeff_zero_le_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -169,7 +189,9 @@ theorem abs_chebyshevAnalyticCoeff_zero_le_of_open_ellipse
     (norm_chebyshevComplexCoeff_zero_le_of_open_ellipse hρ hFd hM)
 
 /-- Analytic decay makes the full two-sided Fourier coefficient sequence summable.
-Source: Trefethen, ATAP, Theorems 8.1 and 3.1(a); helper for `chebyshev-approx-analytic`.-/
+Source: Trefethen, ATAP, Theorems 8.1 and 3.1(a); helper for `chebyshev-approx-analytic`.
+@isnad1 id=summable.3h3v.s7.c2f7b1ab2fd9 from=translated src=- shape=86ee9ae7 vocab=ebd572e0
+-/
 theorem summable_fourierCoeff_chebyshevCircleFunction_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
@@ -195,7 +217,9 @@ theorem summable_fourierCoeff_chebyshevCircleFunction_of_open_ellipse
 /-- The Fourier series of the circle pullback reconstructs the original function pointwise,
 under the open-ellipse analytic assumptions.
 Source: Trefethen, ATAP, Theorems 8.1 and 3.1(a); Mathlib's uniform Fourier reconstruction.
-Atlas `chebyshev-approx-analytic` (helper).-/
+Atlas `chebyshev-approx-analytic` (helper).
+@isnad1 id=hassum.3h4v.s8.953d43f01ea8 from=translated src=- shape=c7b654d7 vocab=652fdf02
+-/
 theorem hasSum_fourier_chebyshevCircleFunction_of_open_ellipse
     {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))

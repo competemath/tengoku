@@ -30,7 +30,9 @@ Source: Trefethen, ATAP, Chapter 8, Theorem 8.1 (`chebyshev-coeff-analytic-decay
 def chebyshevAnalyticCoeff (F : ℂ → ℂ) (k : ℕ) : ℝ := (chebyshevComplexCoeff F k).re
 
 /-- A open-ellipse bound is necessarily nonnegative, since the ellipse contains zero.
-Source: Trefethen, ATAP, Chapter 8; helper for analytic coefficient and SLQ rates.-/
+Source: Trefethen, ATAP, Chapter 8; helper for analytic coefficient and SLQ rates.
+@isnad1 id=le.2h3v.s5.4ce67e6c6030 from=translated src=- shape=b51884ef vocab=b4bb0b34
+-/
 theorem nonneg_of_norm_le_on_open_bernsteinEllipse {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hM : ∀ z ∈ openBernsteinEllipse ρ, ‖F z‖ ≤ M) : 0 ≤ M := by
   have hz : (0 : ℂ) ∈ openBernsteinEllipse ρ :=
@@ -40,7 +42,9 @@ theorem nonneg_of_norm_le_on_open_bernsteinEllipse {F : ℂ → ℂ} {ρ M : ℝ
 
 /-- Cauchy–Goursat moves a Chebyshev coefficient contour to the Bernstein parameter radius.
 Source: Trefethen, ATAP, Chapter 8, proof of Theorem 8.1.
-Atlas `chebyshev-coeff-analytic-decay` (helper).-/
+Atlas `chebyshev-coeff-analytic-decay` (helper).
+@isnad1 id=eq.3h3v.s8.79308f6cc010 from=translated src=- shape=6742347d vocab=94f613e0
+-/
 theorem circleIntegral_chebyshevCoeff_eq_radius {F : ℂ → ℂ} {ρ : ℝ} (hρ : 1 < ρ)
     (hFc : ContinuousOn F (filledBernsteinEllipse ρ))
     (hFd : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ))) (k : ℕ) :
@@ -69,7 +73,9 @@ theorem circleIntegral_chebyshevCoeff_eq_radius {F : ℂ → ℂ} {ρ : ℝ} (h�
 /-- The normalized nonnegative Laurent coefficient is at most `M/ρ^k` on a holomorphic
 Bernstein ellipse of parameter `ρ>1`.
 Source: Trefethen, ATAP, Chapter 8, proof of Theorem 8.1.
-Atlas `chebyshev-coeff-analytic-decay` (helper).-/
+Atlas `chebyshev-coeff-analytic-decay` (helper).
+@isnad1 id=le.4h4v.s8.f7a18b07c6f1 from=translated src=- shape=44ca47a6 vocab=4e8b064f
+-/
 theorem norm_normalized_circleIntegral_chebyshevCoeff_le {F : ℂ → ℂ} {ρ M : ℝ}
     (hρ : 1 < ρ) (hFc : ContinuousOn F (filledBernsteinEllipse ρ))
     (hFd : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ)))
@@ -95,7 +101,9 @@ theorem norm_normalized_circleIntegral_chebyshevCoeff_le {F : ℂ → ℂ} {ρ M
 ellipse interior and continuous on its closure decay as `2M/ρ^k`.
 Source: Trefethen, ATAP, Chapter 8, Theorem 8.1. The contour coefficients are explicitly defined and no decay bound
 or polynomial-approximation property is assumed.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.5h4v.s7.c801886ffb21 from=translated src=- shape=fa567294 vocab=1ee923a7
+-/
 theorem norm_chebyshevComplexCoeff_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFc : ContinuousOn F (filledBernsteinEllipse ρ))
     (hFd : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ)))
@@ -110,7 +118,9 @@ theorem norm_chebyshevComplexCoeff_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < 
 
 /-- The zeroth Chebyshev coefficient has norm at most the function bound `M`.
 Source: Trefethen, ATAP, Chapter 8, Theorem 8.1.
-Atlas `chebyshev-coeff-analytic-decay` (zeroth-coefficient endpoint).-/
+Atlas `chebyshev-coeff-analytic-decay` (zeroth-coefficient endpoint).
+@isnad1 id=le.4h3v.s7.11d27ac68709 from=translated src=- shape=b3a0434e vocab=aa1a5881
+-/
 theorem norm_chebyshevComplexCoeff_zero_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFc : ContinuousOn F (filledBernsteinEllipse ρ))
     (hFd : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ)))
@@ -121,7 +131,9 @@ theorem norm_chebyshevComplexCoeff_zero_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ :
 
 /-- Real Chebyshev coefficients obey the exact Bernstein ellipse decay constant.
 Source: Trefethen, ATAP, Chapter 8, Theorem 8.1. This real-part version also applies to complex-valued extensions.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.5h4v.s7.c24eaab05545 from=translated src=- shape=51ae99a5 vocab=21744418
+-/
 theorem abs_chebyshevAnalyticCoeff_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFc : ContinuousOn F (filledBernsteinEllipse ρ))
     (hFd : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ)))
@@ -133,7 +145,9 @@ theorem abs_chebyshevAnalyticCoeff_le {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < 
 positive coefficients obey the exact bound `2M/ρ^k`. No continuous extension to the outer
 boundary is assumed: apply the closed-radius estimate at every `1<r<ρ` and take `r↑ρ`.
 Source: Trefethen, ATAP, Chapter 8, Theorem 8.1.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.4h4v.s7.b75a406907d1 from=translated src=- shape=e3153b21 vocab=81fb7c88
+-/
 theorem norm_chebyshevComplexCoeff_le_of_open_ellipse {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
     (hM : ∀ z ∈ openBernsteinEllipse ρ, ‖F z‖ ≤ M) {k : ℕ} (hk : 0 < k) :
@@ -153,7 +167,9 @@ theorem norm_chebyshevComplexCoeff_le_of_open_ellipse {F : ℂ → ℂ} {ρ M : 
 /-- The original open-ellipse assumption gives the exact real Chebyshev coefficient bound,
 without continuity on the ellipse boundary.
 Source: Trefethen, ATAP, Chapter 8, Theorem 8.1.
-atlas: chebyshev-coeff-analytic-decay (partial)-/
+atlas: chebyshev-coeff-analytic-decay (partial)
+@isnad1 id=le.4h4v.s7.61c86eb6d2be from=translated src=- shape=028cb05c vocab=3a175e8b
+-/
 theorem abs_chebyshevAnalyticCoeff_le_of_open_ellipse {F : ℂ → ℂ} {ρ M : ℝ} (hρ : 1 < ρ)
     (hFd : DifferentiableOn ℂ F (openBernsteinEllipse ρ))
     (hM : ∀ z ∈ openBernsteinEllipse ρ, ‖F z‖ ≤ M) {k : ℕ} (hk : 0 < k) :

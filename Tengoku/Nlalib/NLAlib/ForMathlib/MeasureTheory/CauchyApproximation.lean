@@ -19,7 +19,9 @@ open MeasureTheory MeasureTheory.Measure ProbabilityTheory Filter Set
 open scoped Topology BoundedContinuousFunction
 namespace ProbabilityTheory
 
-/-- Translation and positive rescaling of the standard Cauchy density.-/
+/-- Translation and positive rescaling of the standard Cauchy density.
+@isnad1 id=eq.1h3v.s5.6ca2c9461ca7 from=translated src=- shape=e073fd50 vocab=a6d53d27
+-/
 theorem cauchyPDFReal_affine (x t : ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     cauchyPDFReal 0 1 t = (γ : ℝ) * cauchyPDFReal x γ (x + γ * t) := by
   simp only [cauchyPDFReal, NNReal.coe_one, sub_zero, one_pow, mul_one]
@@ -27,7 +29,9 @@ theorem cauchyPDFReal_affine (x t : ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
   ring
 
 /-- Integration against a location-scale Cauchy density is integration
-of the corresponding affine argument against the standard Cauchy law.-/
+of the corresponding affine argument against the standard Cauchy law.
+@isnad1 id=eq.1h3v.s6.1bae7cef0d73 from=translated src=- shape=5e1fda27 vocab=c66f2f9f
+-/
 theorem integral_mul_cauchyPDFReal_eq_integral_affine (f : ℝ → ℝ)
     (x : ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     (∫ y : ℝ, f y * cauchyPDFReal x γ y) =
@@ -49,7 +53,9 @@ theorem integral_mul_cauchyPDFReal_eq_integral_affine (f : ℝ → ℝ)
   field_simp [NNReal.coe_ne_zero.mpr hγ]
 
 /-- Vanishing positive Cauchy scale recovers a bounded continuous test
-at every location. No moment assumptions on the Cauchy law are needed.-/
+at every location. No moment assumptions on the Cauchy law are needed.
+@isnad1 id=tendsto.1h3v.s7.cbfc60e80af2 from=translated src=- shape=b7f37374 vocab=411b73c3
+-/
 theorem tendsto_integral_affine_cauchy (f : BoundedContinuousFunction ℝ ℝ) (x : ℝ)
     {γ : ℕ → NNReal} (hγ : Tendsto (fun n => (γ n : ℝ)) atTop (𝓝 0)) :
     Tendsto (fun n => ∫ t : ℝ, f (x + γ n * t) ∂cauchyMeasure 0 1)

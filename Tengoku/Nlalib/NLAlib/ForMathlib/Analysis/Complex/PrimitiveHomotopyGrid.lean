@@ -62,7 +62,9 @@ private theorem node_le_next {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ}
   div_le_div_of_nonneg_right (by linarith) (Nat.cast_nonneg D.size)
 
 /-- Two adjacent horizontal edges agree because their different primitives
-have the same derivative along the actual continuous shared edge.-/
+have the same derivative along the actual continuous shared edge.
+@isnad1 id=eq.3h5v.s6.db4ff4c7d2b5 from=translated src=- shape=53caffab vocab=828a09d0
+-/
 theorem bottom_succ_eq_top {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ}
     (D : PrimitiveHomotopyGrid g ψ) (hψ : Continuous ψ) {i j : ℕ}
     (hi : i < D.size) (hj : j + 1 < D.size) : D.bottom i (j + 1) = D.top i j := by
@@ -78,7 +80,9 @@ theorem bottom_succ_eq_top {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ}
   simpa only [bottom, top, Nat.cast_add, Nat.cast_one] using h
 
 /-- Two adjacent vertical edges agree for the same continuous-path primitive
-reason, without any differentiability of the square map.-/
+reason, without any differentiability of the square map.
+@isnad1 id=eq.3h5v.s6.bb13370adea8 from=translated src=- shape=829cce88 vocab=9aadd27f
+-/
 theorem left_succ_eq_right {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ}
     (D : PrimitiveHomotopyGrid g ψ) (hψ : Continuous ψ) {i j : ℕ}
     (hi : i + 1 < D.size) (hj : j < D.size) : D.left (i + 1) j = D.right i j := by
@@ -94,7 +98,9 @@ theorem left_succ_eq_right {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ}
   simpa only [left, right, Nat.cast_add, Nat.cast_one] using h
 
 /-- All actual interior edge increments cancel, leaving precisely the outer
-boundary transport of a continuous primitive-charted square.-/
+boundary transport of a continuous primitive-charted square.
+@isnad1 id=eq.1h3v.s7.54309cf30786 from=translated src=- shape=33892f3c vocab=e103a867
+-/
 theorem sum_right_sub_sum_left_eq_sum_top_sub_sum_bottom
     {g : ℂ → ℂ} {ψ : ℝ × ℝ → ℂ} (D : PrimitiveHomotopyGrid g ψ) (hψ : Continuous ψ) :
     (∑ j ∈ range D.size, D.right (D.size - 1) j) - (∑ j ∈ range D.size, D.left 0 j) =
@@ -110,7 +116,9 @@ end PrimitiveHomotopyGrid
 
 /-- Every compact continuous square inside an open holomorphy domain has an
 actual finite primitive grid. Its mesh and primitives are derived by compact
-Lebesgue subdivision and local convex primitives.-/
+Lebesgue subdivision and local convex primitives.
+@isnad1 id=nonempty.4h3v.s7.3a231baddc5d from=translated src=- shape=5d4e841c vocab=286ac7cd
+-/
 theorem nonempty_primitiveHomotopyGrid_of_differentiableOn
     {ψ : ℝ × ℝ → ℂ} (hψ : Continuous ψ) {Ω : Set ℂ} {g : ℂ → ℂ}
     (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω)

@@ -23,7 +23,9 @@ variable {A ι : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
   [Fintype ι]
 
 /-- Operator Cauchy--Schwarz for a finite sum of products retains the norms
-of the two aggregate Gram matrices.-/
+of the two aggregate Gram matrices.
+@isnad1 id=le.0h4v.s8.d2ca3bd39364 from=translated src=- shape=a901360f vocab=a1ff3fda
+-/
 theorem norm_sum_mul_sq_le (a b : ι → A) :
     ‖∑ i, a i * b i‖ ^ 2 ≤
       ‖∑ i, a i * star (a i)‖ * ‖∑ i, star (b i) * b i‖ := by
@@ -38,7 +40,9 @@ theorem norm_sum_mul_sq_le (a b : ι → A) :
     star_star, mul_comm (‖∑ i, star (b i) * b i‖)] using hsq
 
 /-- The Gram matrix of a sum is at most twice the sum of its two Gram
-matrices in the positive order.-/
+matrices in the positive order.
+@isnad1 id=le.0h3v.s8.6824f847a042 from=translated src=- shape=6afd0666 vocab=017bed24
+-/
 theorem add_mul_star_add_le (a b : A) :
     (a + b) * star (a + b) ≤
       (2 : ℝ) • (a * star a) + (2 : ℝ) • (b * star b) := by

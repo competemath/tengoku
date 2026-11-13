@@ -20,7 +20,9 @@ open Real Set
 namespace NLAlib
 
 /-- A rational lower estimate for the logarithm on `[1,∞)`.
-Source: differentiation of `log x - 2(x-1)/(x+1)`.-/
+Source: differentiation of `log x - 2(x-1)/(x+1)`.
+@isnad1 id=le.1h1v.s6.1b799ceee48a from=translated src=- shape=22d4c504 vocab=e91c4dce
+-/
 theorem two_mul_sub_div_add_le_log {x : ℝ} (hx : 1 ≤ x) :
     2 * (x - 1) / (x + 1) ≤ log x := by
   let f := fun x : ℝ => log x - 2 * (x - 1) / (x + 1)
@@ -47,7 +49,9 @@ theorem two_mul_sub_div_add_le_log {x : ℝ} (hx : 1 ≤ x) :
   linarith
 
 /-- The constant remainder in the midpoint-cotangent logarithmic estimate is at most one.
-Source: focused rederivations, the numerical inequality following `thm:lobatto`.-/
+Source: focused rederivations, the numerical inequality following `thm:lobatto`.
+@isnad1 id=le.0h0v.s6.e34fd7c9b42b from=translated src=- shape=73da33b7 vocab=c905e679
+-/
 theorem cotangent_log_remainder_le_one : (2 / π) * (2 + log (2 / π)) ≤ 1 := by
   have hp : 0 < π := pi_pos
   have hlo := two_mul_sub_div_add_le_log (x := π / 2) (by linarith [pi_gt_three])

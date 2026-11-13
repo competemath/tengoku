@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- An inverse descending factorial is the difference of two adjacent inverse
 shorter descending factorials, divided by their order. Source: focused BV reroute,
-exact tail telescope.-/
+exact tail telescope.
+@isnad1 id=eq.2h2v.s6.4cf27854ee7d from=translated src=- shape=0458ade7 vocab=f3c91564
+-/
 theorem inv_cast_descFactorial_eq_sub {ν k : ℕ} (hν : 0 < ν) (hk : ν < k) :
     (k.descFactorial (ν + 1) : ℝ)⁻¹ =
       (((k - 1).descFactorial ν : ℝ)⁻¹ - (k.descFactorial ν : ℝ)⁻¹) / ν := by
@@ -37,7 +39,9 @@ theorem inv_cast_descFactorial_eq_sub {ν k : ℕ} (hν : 0 < ν) (hk : ν < k) 
   linear_combination -(k.descFactorial ν : ℝ) * hleft + ((k - 1).descFactorial ν : ℝ) * hright
 
 /-- A finite descending-factorial tail has an exact positive remainder.
-Source: focused BV reroute, exact tail telescope.-/
+Source: focused BV reroute, exact tail telescope.
+@isnad1 id=eq.2h3v.s6.c4e2d7549350 from=translated src=- shape=de18fa6c vocab=ca9917f6
+-/
 theorem sum_inv_cast_descFactorial_tail {ν n : ℕ} (hν : 0 < ν) (hn : ν ≤ n) (m : ℕ) :
     (∑ j ∈ range m, ((n + 1 + j).descFactorial (ν + 1) : ℝ)⁻¹) =
       (((n.descFactorial ν : ℝ)⁻¹ - ((n + m).descFactorial ν : ℝ)⁻¹) / ν) := by
@@ -50,7 +54,9 @@ theorem sum_inv_cast_descFactorial_tail {ν n : ℕ} (hν : 0 < ν) (hn : ν ≤
   simp
 
 /-- The inverse descending-factorial tail is summable, with bound
-`1/(ν n(n−1)⋯(n−ν+1))`. Source: focused BV reroute, exact tail telescope.-/
+`1/(ν n(n−1)⋯(n−ν+1))`. Source: focused BV reroute, exact tail telescope.
+@isnad1 id=summable.2h2v.s6.bc8dc65a549b from=translated src=- shape=c668c60f vocab=2a27465a
+-/
 theorem summable_inv_cast_descFactorial_tail {ν n : ℕ} (hν : 0 < ν) (hn : ν ≤ n) :
     Summable (fun j => ((n + 1 + j).descFactorial (ν + 1) : ℝ)⁻¹) := by
   apply summable_of_sum_range_le (c := (n.descFactorial ν : ℝ)⁻¹ / ν)
@@ -60,7 +66,9 @@ theorem summable_inv_cast_descFactorial_tail {ν n : ℕ} (hν : 0 < ν) (hn : �
   exact div_le_div_of_nonneg_right (sub_le_self _ (by positivity)) (Nat.cast_nonneg ν)
 
 /-- The summed inverse descending-factorial tail has the same explicit bound as
-its finite partial sums. Source: focused BV reroute, exact tail telescope.-/
+its finite partial sums. Source: focused BV reroute, exact tail telescope.
+@isnad1 id=le.2h2v.s6.80d7ba11cf09 from=translated src=- shape=462e99e0 vocab=e6aba5e5
+-/
 theorem tsum_inv_cast_descFactorial_tail_le {ν n : ℕ} (hν : 0 < ν) (hn : ν ≤ n) :
     (∑' j, ((n + 1 + j).descFactorial (ν + 1) : ℝ)⁻¹) ≤ (n.descFactorial ν : ℝ)⁻¹ / ν := by
   apply (summable_inv_cast_descFactorial_tail hν hn).tsum_le_of_sum_range_le
@@ -69,7 +77,9 @@ theorem tsum_inv_cast_descFactorial_tail_le {ν n : ℕ} (hν : 0 < ν) (hn : ν
   exact div_le_div_of_nonneg_right (sub_le_self _ (by positivity)) (Nat.cast_nonneg ν)
 
 /-- Inverse descending factorials are discretely convex above all their poles.
-Source: finite midpoint form of the focused BV quadrature tail estimate.-/
+Source: finite midpoint form of the focused BV quadrature tail estimate.
+@isnad1 id=le.1h2v.s7.00cb842905ff from=translated src=- shape=e45c4175 vocab=35228a9f
+-/
 theorem two_mul_inv_cast_descFactorial_le_adjacent {ν k : ℕ} (hk : ν + 1 < k) :
     2 * (k.descFactorial (ν + 1) : ℝ)⁻¹ ≤
       ((k - 1).descFactorial (ν + 1) : ℝ)⁻¹ + ((k + 1).descFactorial (ν + 1) : ℝ)⁻¹ := by
@@ -121,7 +131,9 @@ theorem two_mul_inv_cast_descFactorial_le_adjacent {ν k : ℕ} (hk : ν + 1 < k
   exact mul_le_mul_of_nonneg_right hrat (by positivity)
 
 /-- Inverse descending factorials of order at least two are summable; their finitely
-many zero-denominator terms are totalized to zero. Source: exact tail telescope.-/
+many zero-denominator terms are totalized to zero. Source: exact tail telescope.
+@isnad1 id=summable.1h1v.s5.d967a1a48e4b from=translated src=- shape=80d91ed2 vocab=da9148a9
+-/
 theorem summable_inv_cast_descFactorial {ν : ℕ} (hν : 0 < ν) :
     Summable (fun k : ℕ => (k.descFactorial (ν + 1) : ℝ)⁻¹) := by
   rw [← summable_nat_add_iff (ν + 1)]

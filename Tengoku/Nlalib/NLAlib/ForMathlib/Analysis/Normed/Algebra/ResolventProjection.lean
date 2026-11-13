@@ -22,7 +22,9 @@ section Algebra
 variable {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
 
 /-- A reference resolvent on the right controls a projected resolvent by an
-exact factorization, without any commutation or smallness hypothesis.-/
+exact factorization, without any commutation or smallness hypothesis.
+@isnad1 id=eq.2h6v.s7.038c1217ce93 from=translated src=- shape=b251bc22 vocab=3e933c6e
+-/
 theorem resolvent_mul_eq_one_add_mul_resolvent_mul {a d : A} {z : R}
     (ha : z ∈ resolventSet R a) (hd : z ∈ resolventSet R d) (p : A) :
     resolvent a z * p =
@@ -44,7 +46,9 @@ theorem resolvent_mul_eq_one_add_mul_resolvent_mul {a d : A} {z : R}
         _ = 1 + resolvent a z * (a - d) := by rw [mul_add, hi]
 
 /-- The analogous left projection factorization retains the reference
-resolvent on the left. No spectral projection of `a` is needed.-/
+resolvent on the left. No spectral projection of `a` is needed.
+@isnad1 id=eq.2h6v.s7.032b905743be from=translated src=- shape=97c4a68a vocab=3e933c6e
+-/
 theorem mul_resolvent_eq_mul_resolvent_mul_one_add {a d : A} {z : R}
     (ha : z ∈ resolventSet R a) (hd : z ∈ resolventSet R d) (p : A) :
     p * resolvent a z =
@@ -72,7 +76,9 @@ section Norm
 variable {R A : Type*} [NormedField R] [NormedRing A] [NormedAlgebra R A]
 
 /-- A right projected resolvent is controlled by the corresponding reference
-resolvent and the actual perturbation norm.-/
+resolvent and the actual perturbation norm.
+@isnad1 id=le.2h6v.s8.bf774db3bc42 from=translated src=- shape=8943977b vocab=8378491f
+-/
 theorem norm_resolvent_mul_le_reference {a d : A} {z : R}
     (ha : z ∈ resolventSet R a) (hd : z ∈ resolventSet R d) (p : A) :
     ‖resolvent a z * p‖ ≤
@@ -83,7 +89,9 @@ theorem norm_resolvent_mul_le_reference {a d : A} {z : R}
       ((norm_add_le _ _).trans (add_le_add le_rfl (norm_mul_le _ _))) (norm_nonneg _))
 
 /-- The left projected resolvent obeys the symmetric reference estimate,
-with the factor order preserved.-/
+with the factor order preserved.
+@isnad1 id=le.2h6v.s8.5369c58c4811 from=translated src=- shape=7af95b12 vocab=8378491f
+-/
 theorem norm_mul_resolvent_le_reference {a d : A} {z : R}
     (ha : z ∈ resolventSet R a) (hd : z ∈ resolventSet R d) (p : A) :
     ‖p * resolvent a z‖ ≤
@@ -94,7 +102,9 @@ theorem norm_mul_resolvent_le_reference {a d : A} {z : R}
       ((norm_add_le _ _).trans (add_le_add le_rfl (norm_mul_le _ _))) (norm_nonneg _))
 
 /-- The supported second-resolvent identity bounds the difference by the two
-projected endpoint resolvents. The projection need only be idempotent.-/
+projected endpoint resolvents. The projection need only be idempotent.
+@isnad1 id=le.4h7v.s8.aea7e17b707a from=translated src=- shape=2dd972cb vocab=95328525
+-/
 theorem norm_resolvent_sub_resolvent_le_projected {a b p : A} {z : R}
     (ha : z ∈ resolventSet R a) (hb : z ∈ resolventSet R b)
     (hp : p * p = p) {c : R}

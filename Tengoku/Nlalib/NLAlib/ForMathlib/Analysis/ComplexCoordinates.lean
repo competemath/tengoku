@@ -24,9 +24,15 @@ def realCoordinates (ι : Type*) : (ι → ℂ) ≃ₗ[ℝ] (ι ⊕ ι → ℝ) 
   map_add' z w := by funext s; cases s <;> simp
   map_smul' c z := by funext s; cases s <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s8.37534ec5a4ce from=translated src=- shape=a3b87602 vocab=c2367543
+-/
 @[simp] theorem realCoordinates_inl {ι : Type*} (z : ι → ℂ) (i : ι) :
     realCoordinates ι z (Sum.inl i) = (z i).re := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.16c738f900d9 from=translated src=- shape=a3b87602 vocab=3ab29059
+-/
 @[simp] theorem realCoordinates_inr {ι : Type*} (z : ι → ℂ) (i : ι) :
     realCoordinates ι z (Sum.inr i) = (z i).im := rfl
 

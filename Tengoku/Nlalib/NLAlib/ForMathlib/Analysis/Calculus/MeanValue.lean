@@ -15,7 +15,9 @@ namespace NLAlib
 
 /-- A function with derivative bounded by `C` grows at most linearly:
 `|f z| ≤ |f 0| + C |z|`. Atlas: `gaussian-integration-by-parts` (helper). Ported from Prove2me
-solution `GaussianMatrix.gaussian_ibp_one_dim`.-/
+solution `GaussianMatrix.gaussian_ibp_one_dim`.
+@isnad1 id=le.2h3v.s7.e0e635f3a12c from=translated src=- shape=cd1ff9c9 vocab=dfe425d1
+-/
 theorem abs_le_abs_add_mul_abs_of_abs_deriv_le (f : ℝ → ℝ) (hf : Differentiable ℝ f) (C : ℝ)
     (hdf : ∀ x, |deriv f x| ≤ C) (z : ℝ) : |f z| ≤ |f 0| + C * |z| := by
   have := Convex.norm_image_sub_le_of_norm_deriv_le (f := f) (s := Set.univ) (C := C)

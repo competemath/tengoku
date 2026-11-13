@@ -20,7 +20,9 @@ namespace Complex
 
 /-- Exact weighted scalar strip interpolation with bounded measurable
 logarithmic boundary majorants. Positive regularization is actually removed;
-no nonvanishing hypothesis on `g` or unspecified harmonic measure is used.-/
+no nonvanishing hypothesis on `g` or unspecified harmonic measure is used.
+@isnad1 id=le.9h6v.s8.0f32cb1365c7 from=translated src=- shape=b70e443e vocab=97db448f
+-/
 theorem norm_le_exp_hirschman_boundary_majorants {r B H : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) {g : ℂ → ℂ}
     (hg : DiffContOnCl ℂ g (HadamardThreeLines.verticalStrip 0 1))

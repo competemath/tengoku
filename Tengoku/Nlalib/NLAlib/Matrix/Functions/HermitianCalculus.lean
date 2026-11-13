@@ -57,7 +57,9 @@ abbrev normedAlgebraRealMatrix : NormedAlgebra ℝ (Matrix d d 𝕜) where
     simpa using norm_smul_le (r : 𝕜) A
 
 /-- For Hermitian `A`, `matrixExp (s • A)` is the functional calculus of `x ↦ exp (s x)` at `A`.
-Tropp 2015, §2.1.11.-/
+Tropp 2015, §2.1.11.
+@isnad1 id=eq.1h4v.s8.019abd9c3347 from=translated src=- shape=7db56946 vocab=fd6e35cd
+-/
 theorem matrixExp_smul_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitian) (s : ℝ) :
     matrixExp (s • A) = cfc (fun x => Real.exp (s * x)) A := by
   letI := normedAlgebraRealMatrix (𝕜 := 𝕜) (d := d)
@@ -66,7 +68,9 @@ theorem matrixExp_smul_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitian) (s : �
     ← cfc_comp_const_mul s Real.exp A (by fun_prop) hA.isSelfAdjoint]
 
 /-- For Hermitian `A`, `traceExp (θ • A) = ∑ i, exp (θ λᵢ)` over the eigenvalues of `A`. Tropp
-2015, §3.1.-/
+2015, §3.1.
+@isnad1 id=eq.1h4v.s7.d67c7be12238 from=translated src=- shape=d8a83de0 vocab=72b10eea
+-/
 theorem traceExp_smul_eq_sum (A : Matrix d d 𝕜) (hA : A.IsHermitian) (θ : ℝ) :
     traceExp (θ • A) = ∑ i, Real.exp (θ * hA.eigenvalues i) := by
   letI := normedAlgebraRealMatrix (𝕜 := 𝕜) (d := d)
@@ -78,7 +82,9 @@ theorem traceExp_smul_eq_sum (A : Matrix d d 𝕜) (hA : A.IsHermitian) (θ : �
   simp
 
 /-- For Hermitian `A` with `lambdaMax A ≤ L`, every real spectral value of `A` is at most `L`.
-Tropp 2015, §2.1.-/
+Tropp 2015, §2.1.
+@isnad1 id=le.3h5v.s7.183007c92211 from=translated src=- shape=68e3f821 vocab=975a2c0c
+-/
 theorem le_of_mem_spectrum_of_lambdaMax_le (A : Matrix d d 𝕜) (hA : A.IsHermitian) {L : ℝ}
     (hb : lambdaMax A ≤ L) : ∀ x ∈ spectrum ℝ A, x ≤ L := by
   intro x hx
@@ -87,7 +93,9 @@ theorem le_of_mem_spectrum_of_lambdaMax_le (A : Matrix d d 𝕜) (hA : A.IsHermi
   exact (le_csSup hfin.bddAbove hx).trans hb
 
 /-- A real spectral value of a square matrix is bounded in absolute value by its ℓ₂
-operator norm. Tropp 2015, §2.1.-/
+operator norm. Tropp 2015, §2.1.
+@isnad1 id=le.1h4v.s6.07181a897775 from=translated src=- shape=e4297b31 vocab=dddf3353
+-/
 theorem abs_le_norm_of_mem_spectrum [Nonempty d] (B : Matrix d d 𝕜) {x : ℝ}
     (hx : x ∈ spectrum ℝ B) : |x| ≤ ‖B‖ := by
   have h : algebraMap ℝ 𝕜 x ∈ spectrum 𝕜 B := (spectrum.algebraMap_mem_iff 𝕜).mpr hx
@@ -95,7 +103,9 @@ theorem abs_le_norm_of_mem_spectrum [Nonempty d] (B : Matrix d d 𝕜) {x : ℝ}
   simpa using this
 
 /-- `1 + θ A + c A² = cfc (x ↦ 1 + θ x + c x²) A` for Hermitian `A`. Tropp 2015, §2.1.11;
-helper for `matrix-bernstein` and `matrix-freedman`.-/
+helper for `matrix-bernstein` and `matrix-freedman`.
+@isnad1 id=eq.1h5v.s9.26241297a061 from=translated src=- shape=43c8e984 vocab=2a07c13f
+-/
 theorem one_add_smul_add_smul_sq_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitian) (θ c : ℝ) :
     1 + θ • A + c • A ^ 2 = cfc (fun x => 1 + θ * x + c * x ^ 2) A := by
   have e1 := cfc_add A (fun x => 1 + θ * x) (fun x => c * x ^ 2)
@@ -105,7 +115,9 @@ theorem one_add_smul_add_smul_sq_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitia
 
 /-- If `exp (θ x) ≤ 1 + θ x + c x²` on the spectrum of a Hermitian `A`, then
 `exp (θ A) ≼ 1 + θ A + c A²`. Tropp 2015, Lemma 6.6.2; helper for `matrix-bernstein` and
-`matrix-freedman`.-/
+`matrix-freedman`.
+@isnad1 id=le.2h5v.s9.23b2e21e5725 from=translated src=- shape=86fba578 vocab=ebe5858c
+-/
 theorem matrixExp_smul_le_one_add_smul_add_smul_sq_of_spectrum_le
     (A : Matrix d d 𝕜) (hA : A.IsHermitian) {θ c : ℝ}
     (hb : ∀ x ∈ spectrum ℝ A, Real.exp (θ * x) ≤ 1 + θ * x + c * x ^ 2) :
@@ -114,7 +126,9 @@ theorem matrixExp_smul_le_one_add_smul_add_smul_sq_of_spectrum_le
   exact cfc_mono hb
 
 /-- `I + B ≼ exp B` for every Hermitian `B` (the tangent inequality `1 + x ≤ exp x` through the
-functional calculus). Tropp 2015, §2.1.11; helper for `matrix-bernstein` and `matrix-freedman`.-/
+functional calculus). Tropp 2015, §2.1.11; helper for `matrix-bernstein` and `matrix-freedman`.
+@isnad1 id=le.1h3v.s7.4ac7b18870f1 from=translated src=- shape=895f60ae vocab=0ee88cbf
+-/
 theorem one_add_le_matrixExp_of_isHermitian (B : Matrix d d 𝕜) (hB : B.IsHermitian) :
     1 + B ≤ matrixExp B := by
   letI := normedAlgebraRealMatrix (𝕜 := 𝕜) (d := d)
@@ -135,17 +149,23 @@ def reindexStarAlgEquiv (e : ι ≃ κ) : Matrix ι ι 𝕜 ≃⋆ₐ[𝕜] Matr
     map_star' := by intro A; rfl
     map_smul' := by intro r A; rfl }
 
-/-- Reindexing preserves the ℓ₂ operator norm.-/
+/-- Reindexing preserves the ℓ₂ operator norm.
+@isnad1 id=eq.0h5v.s6.3951a83a2f30 from=translated src=- shape=66caaf96 vocab=7992f1a6
+-/
 theorem norm_reindex (e : ι ≃ κ) (A : Matrix ι ι 𝕜) : ‖Matrix.reindex e e A‖ = ‖A‖ := by
   rw [← specNorm_eq_norm, ← specNorm_eq_norm, specNorm_reindex]
 
-/-- Reindexing preserves the real spectrum: `spectrum ℝ (reindex e e A) = spectrum ℝ A`.-/
+/-- Reindexing preserves the real spectrum: `spectrum ℝ (reindex e e A) = spectrum ℝ A`.
+@isnad1 id=eq.0h5v.s7.4e8aa4963cad from=translated src=- shape=75713ffc vocab=03f91619
+-/
 theorem spectrum_reindex (e : ι ≃ κ) (A : Matrix ι ι 𝕜) :
     spectrum ℝ (Matrix.reindex e e A) = spectrum ℝ A := by
   have h := AlgEquiv.spectrum_eq (Matrix.reindexAlgEquiv ℝ 𝕜 e) A
   rwa [Matrix.coe_reindexAlgEquiv] at h
 
-/-- Reindexing preserves the real spectrum, hence `lambdaMax`.-/
+/-- Reindexing preserves the real spectrum, hence `lambdaMax`.
+@isnad1 id=eq.0h5v.s6.3c3f56f440e4 from=translated src=- shape=2992681d vocab=48ae8754
+-/
 theorem lambdaMax_reindex (e : ι ≃ κ) (A : Matrix ι ι 𝕜) :
     lambdaMax (Matrix.reindex e e A) = lambdaMax A := by
   unfold lambdaMax
@@ -166,7 +186,9 @@ def dilationLinearMap (m n : Type*) : Matrix m n 𝕜 →ₗ[ℝ] Matrix (m ⊕ 
   map_smul' c X := by
     simp [dilation, Matrix.fromBlocks_smul, Matrix.conjTranspose_smul]
 
-/-- `dilationLinearMap` applies `dilation`.-/
+/-- `dilationLinearMap` applies `dilation`.
+@isnad1 id=eq.0h4v.s8.bd5c1f1c4946 from=translated src=- shape=6c7be1b5 vocab=0002c1b1
+-/
 @[simp]
 theorem dilationLinearMap_apply {m n : Type*} (X : Matrix m n 𝕜) :
     dilationLinearMap m n X = dilation X := rfl
@@ -174,7 +196,9 @@ theorem dilationLinearMap_apply {m n : Type*} (X : Matrix m n 𝕜) :
 variable {m n : Type*} [Fintype m] [Fintype n] [DecidableEq m] [DecidableEq n]
 
 /-- The square of the Hermitian dilation is block diagonal: `(dilation X)² =
-fromBlocks (X Xᴴ) 0 0 (Xᴴ X)`. Tropp 2015, eq. (2.1.28). Atlas: `hermitian-dilation`.-/
+fromBlocks (X Xᴴ) 0 0 (Xᴴ X)`. Tropp 2015, eq. (2.1.28). Atlas: `hermitian-dilation`.
+@isnad1 id=eq.0h4v.s8.8fab59740946 from=translated src=- shape=07da72ba vocab=4d0acc37
+-/
 theorem dilation_sq (X : Matrix m n 𝕜) :
     dilation X ^ 2 = fromBlocks (X * Xᴴ) 0 0 (Xᴴ * X) := by
   simp [dilation, sq, fromBlocks_multiply]
@@ -196,13 +220,17 @@ def fromBlocks₂₂CLM : Matrix n n 𝕜 →L[𝕜] Matrix (m ⊕ n) (m ⊕ n) 
       map_smul' := fun c Q => by rw [fromBlocks_smul]; simp }
 
 omit [Fintype n] [DecidableEq m] [DecidableEq n] in
-/-- `fromBlocks₁₁CLM` puts its argument in the upper-left block.-/
+/-- `fromBlocks₁₁CLM` puts its argument in the upper-left block.
+@isnad1 id=eq.0h4v.s9.08b095637ad4 from=translated src=- shape=9b6bfa9e vocab=61ec5cb9
+-/
 @[simp]
 theorem fromBlocks₁₁CLM_apply (P : Matrix m m 𝕜) :
     fromBlocks₁₁CLM n P = fromBlocks P 0 0 0 := rfl
 
 omit [Fintype m] [DecidableEq m] [DecidableEq n] in
-/-- `fromBlocks₂₂CLM` puts its argument in the lower-right block.-/
+/-- `fromBlocks₂₂CLM` puts its argument in the lower-right block.
+@isnad1 id=eq.0h4v.s9.96b100a45264 from=translated src=- shape=a8a81c8b vocab=16601c90
+-/
 @[simp]
 theorem fromBlocks₂₂CLM_apply (Q : Matrix n n 𝕜) :
     fromBlocks₂₂CLM m Q = fromBlocks 0 0 0 Q := rfl
@@ -219,7 +247,9 @@ variable {m n : Type*} [Fintype m] [Fintype n]
 
 /-- A block-diagonal matrix `fromBlocks P 0 0 Q` with positive semidefinite diagonal blocks is
 positive semidefinite (over any star-ordered commutative ring, in particular `ℝ` and `ℂ`).
-Tropp 2015, §2.1.16 and §7.3; helper for `intrinsic-dimension`.-/
+Tropp 2015, §2.1.16 and §7.3; helper for `intrinsic-dimension`.
+@isnad1 id=possemid.2h5v.s7.b727f24288df from=translated src=- shape=04e0e1d6 vocab=359852c7
+-/
 theorem posSemidef_fromBlocks_diag {R : Type*} [CommRing R] [PartialOrder R] [StarRing R]
     [StarOrderedRing R] {P : Matrix m m R} {Q : Matrix n n R}
     (hP : P.PosSemidef) (hQ : Q.PosSemidef) : (fromBlocks P 0 0 Q).PosSemidef := by
@@ -237,7 +267,9 @@ variable [DecidableEq m] [DecidableEq n]
 
 /-- Compression by a matrix with orthonormal columns does not increase the L2 operator norm:
 `‖Eᴴ M E‖ ≤ ‖M‖`. Tropp 2015, §2.1.16; helper for `hermitian-dilation` and
-`intrinsic-dimension`.-/
+`intrinsic-dimension`.
+@isnad1 id=le.1h5v.s7.dd6aca3cfd70 from=translated src=- shape=d977f77b vocab=1b25981c
+-/
 theorem norm_conjTranspose_mul_mul_le {k : Type*} [Fintype k] [DecidableEq k]
     {E : Matrix k m 𝕜} (hE : HasOrthonormalCols E) (M : Matrix k k 𝕜) :
     ‖Eᴴ * M * E‖ ≤ ‖M‖ := by
@@ -256,7 +288,9 @@ theorem norm_conjTranspose_mul_mul_le {k : Type*} [Fintype k] [DecidableEq k]
 
 /-- The L2 operator norm of a block-diagonal matrix is the larger of the block norms:
 `‖fromBlocks P 0 0 Q‖ = max ‖P‖ ‖Q‖`. Tropp 2015, eq. (2.2.10) and (7.3.4); helper for
-`hermitian-dilation` and `intrinsic-dimension`.-/
+`hermitian-dilation` and `intrinsic-dimension`.
+@isnad1 id=eq.0h5v.s7.c2a0354c2af9 from=translated src=- shape=65b96277 vocab=c10a2100
+-/
 theorem norm_fromBlocks_diag (P : Matrix m m 𝕜) (Q : Matrix n n 𝕜) :
     ‖fromBlocks P 0 0 Q‖ = max ‖P‖ ‖Q‖ := by
   apply le_antisymm
@@ -316,7 +350,9 @@ noncomputable def eigenvectorProjector {A : Matrix d d 𝕜} (hA : A.IsHermitian
     star (hA.eigenvectorUnitary : Matrix d d 𝕜)
 
 /-- **Spectral decomposition of the functional calculus**:
-`cfc f A = ∑ᵢ f (λᵢ) • eigenvectorProjector hA i`. Tropp 2015, §2.1.6.-/
+`cfc f A = ∑ᵢ f (λᵢ) • eigenvectorProjector hA i`. Tropp 2015, §2.1.6.
+@isnad1 id=eq.1h4v.s8.db6471f2fa69 from=translated src=- shape=4f6659a0 vocab=4352ff88
+-/
 theorem cfc_eq_sum_smul_eigenvectorProjector {A : Matrix d d 𝕜} (hA : A.IsHermitian)
     (f : ℝ → ℝ) :
     cfc f A = ∑ i, f (hA.eigenvalues i) • eigenvectorProjector hA i := by
@@ -328,12 +364,16 @@ theorem cfc_eq_sum_smul_eigenvectorProjector {A : Matrix d d 𝕜} (hA : A.IsHer
     rw [Matrix.smul_single]; simp [RCLike.real_smul_eq_coe_mul]
   rw [this, eigenvectorProjector, Matrix.mul_smul, Matrix.smul_mul]
 
-/-- `c • A² = cfc (x ↦ c x²) A` for Hermitian `A`. Tropp 2015, §4.6 (helper).-/
+/-- `c • A² = cfc (x ↦ c x²) A` for Hermitian `A`. Tropp 2015, §4.6 (helper).
+@isnad1 id=eq.1h4v.s8.ec31e6e63f8e from=translated src=- shape=3e2d2b86 vocab=2c90695e
+-/
 theorem smul_sq_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitian) (c : ℝ) :
     c • A ^ 2 = cfc (fun x => c * x ^ 2) A := by
   rw [cfc_const_mul c (fun x : ℝ => x ^ 2) A, cfc_pow_id A 2 hA.isSelfAdjoint]
 
-/-- `matrixExp (c • A²) = cfc (x ↦ exp (c x²)) A` for Hermitian `A`. Tropp 2015, §4.6 (helper).-/
+/-- `matrixExp (c • A²) = cfc (x ↦ exp (c x²)) A` for Hermitian `A`. Tropp 2015, §4.6 (helper).
+@isnad1 id=eq.1h4v.s8.906b6a1d4265 from=translated src=- shape=37a27b8a vocab=689340db
+-/
 theorem matrixExp_smul_sq_eq_cfc (A : Matrix d d 𝕜) (hA : A.IsHermitian) (c : ℝ) :
     matrixExp (c • A ^ 2) = cfc (fun x => Real.exp (c * x ^ 2)) A := by
   rw [matrixExp_smul_eq_cfc (A ^ 2) (hA.pow 2) c,

@@ -16,7 +16,9 @@ open scoped unitInterval
 namespace Cubical.RectangularGrid
 variable {m n : ℕ}
 
-/-- Horizontal canonical edges have one affine and one constant coordinate.-/
+/-- Horizontal canonical edges have one affine and one constant coordinate.
+@isnad1 id=eq.0h7v.s8.37c502e61365 from=translated src=- shape=d6706b06 vocab=7a576653
+-/
 theorem horizontal_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin m) (j : Fin (n + 1)) (t : I) :
     Grid.horizontal (vertex x y) i j t =
@@ -25,7 +27,9 @@ theorem horizontal_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     simp [Grid.horizontal, vertex, Path.segment_apply, lineMap_apply_module]
   ring
 
-/-- Vertical canonical edges have one constant and one affine coordinate.-/
+/-- Vertical canonical edges have one constant and one affine coordinate.
+@isnad1 id=eq.0h7v.s8.f28bbe64e5e1 from=translated src=- shape=515bd11e vocab=8d32f156
+-/
 theorem vertical_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin (m + 1)) (j : Fin n) (t : I) :
     Grid.vertical (vertex x y) i j t =
@@ -35,7 +39,9 @@ theorem vertical_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
   ring
 
 /-- A horizontal edge active in the L-shaped walk stays in its actual
-endpoint coordinate rectangle.-/
+endpoint coordinate rectangle.
+@isnad1 id=and.2h9v.s9.785567991c1c from=translated src=- shape=ce4087f5 vocab=2168af28
+-/
 theorem horizontal_mem_rectangle_of_walkCoefficient_ne_zero
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x)
     (p q : Fin (m + 1) × Fin (n + 1)) (i : Fin m) (j : Fin (n + 1))
@@ -65,7 +71,9 @@ theorem horizontal_mem_rectangle_of_walkCoefficient_ne_zero
     left_mem_uIcc⟩
 
 /-- A vertical edge active in the L-shaped walk stays in its actual
-endpoint coordinate rectangle.-/
+endpoint coordinate rectangle.
+@isnad1 id=and.2h9v.s9.7ae876a23d16 from=translated src=- shape=a467c258 vocab=ba132851
+-/
 theorem vertical_mem_rectangle_of_walkCoefficient_ne_zero
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hy : Monotone y)
     (p q : Fin (m + 1) × Fin (n + 1)) (i : Fin (m + 1)) (j : Fin n)
@@ -95,7 +103,9 @@ theorem vertical_mem_rectangle_of_walkCoefficient_ne_zero
     (convex_Icc _ _).lineMap_mem ⟨hl, hm.trans hh⟩ ⟨hl.trans hm, hh⟩ t.property⟩
 
 /-- Every active edge of the actual finite L-shaped walk stays in the
-coordinate rectangle between its two specified endpoint vertices.-/
+coordinate rectangle between its two specified endpoint vertices.
+@isnad1 id=and.3h8v.s9.4d5ecab3a4ff from=translated src=- shape=c8b3e5b5 vocab=a43758f1
+-/
 theorem walkChain_mem_rectangle
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x) (hy : Monotone y)
     (p q : Fin (m + 1) × Fin (n + 1)) :
@@ -113,7 +123,9 @@ namespace Complex
 
 /-- A coordinate rectangle spanned by two points within distance `r` of a
 point lies within distance `2r` of that point. No assertion about a straight
-line parameterization or smoothness is needed.-/
+line parameterization or smoothness is needed.
+@isnad1 id=lt.4h5v.s6.70c76e73ced8 from=translated src=- shape=6496646f vocab=f8aecd28
+-/
 theorem norm_sub_lt_two_mul_of_mem_coordinate_rectangle
     {a b c z : ℂ} {r : ℝ} (ha : ‖a - z‖ < r) (hb : ‖b - z‖ < r)
     (hr : c.re ∈ Set.uIcc a.re b.re) (hi : c.im ∈ Set.uIcc a.im b.im) :
@@ -140,7 +152,9 @@ end Complex
 namespace Cubical.RectangularGrid
 
 /-- Uniform endpoint distance control bounds every point on every active
-canonical edge of the actual finite grid walk.-/
+canonical edge of the actual finite grid walk.
+@isnad1 id=lt.5h10v.s9.c858e2b1e34d from=translated src=- shape=be10b455 vocab=d6656387
+-/
 theorem walkChain_norm_sub_lt
     {m n : ℕ} (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : Monotone x) (hy : Monotone y) (p q : Fin (m + 1) × Fin (n + 1))

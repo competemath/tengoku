@@ -29,7 +29,9 @@ namespace NLAlib
 representatives and the endpoint terms retained. Only the open interval needs
 two-sided derivatives; this permits applications to pieces with corners.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.6h6v.s8.ed0da6fcc78b from=translated src=- shape=d23c6db3 vocab=aa193515
+-/
 theorem integral_exp_mul_deriv_eq_sub
     {u η u' η' : ℝ → ℝ} {a b : ℝ}
     (hu : ContinuousOn u [[a, b]]) (hη : ContinuousOn η [[a, b]])
@@ -50,7 +52,9 @@ theorem integral_exp_mul_deriv_eq_sub
 /-- If the height function vanishes at both endpoints, the negative exponential
 boundary integral equals an integral with no derivative on the height. This is
 the integration-by-parts calculation in Eremenko (2014), pp. 6–7, used in the
-positivity argument for atlas `trace-exponential-stahl`.-/
+positivity argument for atlas `trace-exponential-stahl`.
+@isnad1 id=eq.8h6v.s8.94f471ee3e51 from=translated src=- shape=deac679f vocab=d5d10416
+-/
 theorem neg_integral_exp_mul_deriv_eq_of_endpoints_eq_zero
     {u η u' η' : ℝ → ℝ} {a b : ℝ}
     (hu : ContinuousOn u [[a, b]]) (hη : ContinuousOn η [[a, b]])
@@ -67,7 +71,9 @@ theorem neg_integral_exp_mul_deriv_eq_of_endpoints_eq_zero
 /-- A nonnegative height and nondecreasing phase give a nonnegative negative
 boundary integral when the height is zero at the endpoints. The hypotheses
 record derivatives; positivity of the integral is proved, not assumed.
-Source: Eremenko (2014), pp. 6–7; helper for atlas `trace-exponential-stahl`.-/
+Source: Eremenko (2014), pp. 6–7; helper for atlas `trace-exponential-stahl`.
+@isnad1 id=le.11h6v.s8.07710f186522 from=translated src=- shape=5e8bce54 vocab=bc2880a2
+-/
 theorem neg_integral_exp_mul_deriv_nonneg
     {u η u' η' : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hu : ContinuousOn u [[a, b]]) (hη : ContinuousOn η [[a, b]])
@@ -89,7 +95,9 @@ pieces. Interior endpoint terms cancel even when the height is nonzero at the
 corners. The derivative representatives may differ on successive pieces, and
 no derivative hypothesis is imposed at a corner. Source: the piecewise-smooth
 boundary calculation in Eremenko (2014), pp. 6–7; helper for atlas
-`trace-exponential-stahl`.-/
+`trace-exponential-stahl`.
+@isnad1 id=eq.8h6v.s9.f00cef5a4029 from=translated src=- shape=d2f0e28f vocab=f9439d6d
+-/
 theorem neg_sum_integral_exp_mul_deriv_eq_of_endpoints_eq_zero
     {u η : ℝ → ℝ} {u' η' : ℕ → ℝ → ℝ} {v : ℕ → ℝ} {n : ℕ}
     (hu : ∀ k < n, ContinuousOn u [[v k, v (k + 1)]])
@@ -117,7 +125,9 @@ theorem neg_sum_integral_exp_mul_deriv_eq_of_endpoints_eq_zero
 the height and phase derivative are nonnegative on each piece and only the
 two outer heights vanish. This allows corners with nonzero height.
 Source: Eremenko (2014), pp. 6–7; helper for atlas `trace-exponential-stahl`.
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=le.11h6v.s9.c4290030e308 from=translated src=- shape=0f91d752 vocab=508fa30c
+-/
 theorem neg_sum_integral_exp_mul_deriv_nonneg
     {u η : ℝ → ℝ} {u' η' : ℕ → ℝ → ℝ} {v : ℕ → ℝ} {n : ℕ}
     (hv : ∀ k < n, v k ≤ v (k + 1))
@@ -144,7 +154,9 @@ theorem neg_sum_integral_exp_mul_deriv_nonneg
 
 /-- The normalized real boundary contribution in the Stahl–Eremenko sign
 calculation equals a manifestly nonnegative integral for `C¹` functions.
-Source: Eremenko (2014), pp. 6–7; helper for atlas `trace-exponential-stahl`.-/
+Source: Eremenko (2014), pp. 6–7; helper for atlas `trace-exponential-stahl`.
+@isnad1 id=and.7h4v.s8.fcaba8eff432 from=translated src=- shape=ef51b288 vocab=7cb03529
+-/
 theorem neg_inv_pi_mul_integral_exp_mul_deriv_eq_and_nonneg
     {u η : ℝ → ℝ} {a b : ℝ} (hab : a ≤ b)
     (hu : ContDiff ℝ 1 u) (hη : ContDiff ℝ 1 η)

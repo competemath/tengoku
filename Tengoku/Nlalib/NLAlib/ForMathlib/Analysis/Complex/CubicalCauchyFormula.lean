@@ -51,7 +51,9 @@ private theorem curveIntegral_div_sub_eq_add_dslope
 
 /-- The raw Cauchy factorization for an actual finite null-homologous C1
 cycle in an arbitrary open planar domain. A continuous singular cubical
-filling supplies null homology, and the actual Cauchy equality is proved.-/
+filling supplies null homology, and the actual Cauchy equality is proved.
+@isnad1 id=eq.6h4v.s11.dc70378afb39 from=translated src=- shape=258b5bac vocab=c8b2a5bd
+-/
 theorem cubicalCurveIntegral_div_sub_eq_mul_inv_sub_of_isNullHomologous
     {Ω : Set ℂ} {f : ℂ → ℂ} {t : ℂ}
     (hΩ : IsOpen Ω) (hf : DifferentiableOn ℂ f Ω) (ht : t ∈ Ω)
@@ -90,7 +92,9 @@ theorem cubicalCurveIntegral_div_sub_eq_mul_inv_sub_of_isNullHomologous
 /-- A finite null-homologous C1 cycle with actual winding one satisfies the
 usual scalar Cauchy formula, including in multiply connected domains. Every
 analytic cancellation is derived from the continuous cubical filling.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.7h4v.s10.1a47c01de8cf from=translated src=- shape=b07bbbe1 vocab=c1823d55
+-/
 theorem two_pi_i_inv_mul_cubicalCurveIntegral_div_sub_eq_of_isNullHomologous
     {Ω : Set ℂ} {f : ℂ → ℂ} {t : ℂ}
     (hΩ : IsOpen Ω) (hf : DifferentiableOn ℂ f Ω) (ht : t ∈ Ω)

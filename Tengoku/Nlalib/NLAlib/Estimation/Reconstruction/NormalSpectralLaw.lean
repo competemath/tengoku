@@ -27,12 +27,17 @@ is the squared norm of `b`; in particular it is a probability law for unit `b`.-
 def diagonalSpectralLaw (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ) (b : n → ℂ) : Measure ℂ :=
   ∑ i, (‖((U : Matrix n n ℂ)ᴴ *ᵥ b) i‖₊ ^ 2) • Measure.dirac (d i)
 
+/--
+@isnad1 id=isfinite.0h4v.s7.cd8174265f58 from=translated src=- shape=c3c88d8b vocab=b445e477
+-/
 instance diagonalSpectralLaw_isFiniteMeasure (U : Matrix.unitaryGroup n ℂ)
     (d : n → ℂ) (b : n → ℂ) : IsFiniteMeasure (diagonalSpectralLaw U d b) := by
   unfold diagonalSpectralLaw
   infer_instance
 
-/-- The actual spectral-law integral is the finite coordinate-weighted sum.-/
+/-- The actual spectral-law integral is the finite coordinate-weighted sum.
+@isnad1 id=eq.0h5v.s8.eeebf283a324 from=translated src=- shape=89d4d82f vocab=bb10ed73
+-/
 theorem integral_diagonalSpectralLaw (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ)
     (b : n → ℂ) (f : ℂ → ℂ) :
     ∫ z, f z ∂diagonalSpectralLaw U d b =
@@ -56,7 +61,9 @@ private theorem quadForm_diagonal_eq_sum (d : n → ℂ) (c : n → ℂ) :
 open scoped Matrix.Norms.L2Operator in
 /-- Spectral-law integrals agree with the quadratic form of native complex
 functional calculus, for every test function on the finite spectrum.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h6v.s9.1a27b8a293d6 from=translated src=- shape=302eb96c vocab=226ac258
+-/
 theorem integral_diagonalSpectralLaw_eq_quadForm_cfc
     {A : Matrix n n ℂ} (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ)
     (hA : A = (U : Matrix n n ℂ) * Matrix.diagonal d * (U : Matrix n n ℂ)ᴴ)
@@ -76,7 +83,9 @@ theorem integral_diagonalSpectralLaw_eq_quadForm_cfc
     funext i
     exact mul_comm _ _
 
-/-- Unitary coordinates preserve the squared norm appearing in the total mass.-/
+/-- Unitary coordinates preserve the squared norm appearing in the total mass.
+@isnad1 id=eq.0h3v.s8.a6b4e100901a from=translated src=- shape=016e5650 vocab=bc385098
+-/
 theorem sum_norm_sq_unitary_coordinates (U : Matrix.unitaryGroup n ℂ) (b : n → ℂ) :
     ∑ i, ‖((U : Matrix n n ℂ)ᴴ *ᵥ b) i‖ ^ 2 = ‖WithLp.toLp 2 b‖ ^ 2 := by
   have h := quadForm_conjTranspose_mul_mul (1 : Matrix n n ℂ) (U : Matrix n n ℂ)ᴴ b
@@ -90,7 +99,9 @@ theorem sum_norm_sq_unitary_coordinates (U : Matrix.unitaryGroup n ℂ) (b : n �
   rw [hh]
   exact (EuclideanSpace.norm_sq_eq (WithLp.toLp 2 ((U : Matrix n n ℂ)ᴴ *ᵥ b))).symm
 
-/-- Unit starting vectors give an actual probability law.-/
+/-- Unit starting vectors give an actual probability law.
+@isnad1 id=isprobab.1h4v.s7.0dc48d11f638 from=translated src=- shape=e5587814 vocab=30275958
+-/
 theorem isProbabilityMeasure_diagonalSpectralLaw (U : Matrix.unitaryGroup n ℂ)
     (d : n → ℂ) (b : n → ℂ) (hb : ‖WithLp.toLp 2 b‖ = 1) :
     IsProbabilityMeasure (diagonalSpectralLaw U d b) := by
@@ -107,7 +118,9 @@ theorem isProbabilityMeasure_diagonalSpectralLaw (U : Matrix.unitaryGroup n ℂ)
 open scoped Matrix.Norms.L2Operator in
 /-- Different unitary eigenbases of the same normal matrix give the same actual
 measure, including arbitrary rotations inside repeated eigenspaces.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.2h7v.s9.fbadb5ca1b5e from=translated src=- shape=f30f6bd8 vocab=4b6bb8fc
+-/
 theorem diagonalSpectralLaw_eq_of_diagonalizations {A : Matrix n n ℂ}
     (U V : Matrix.unitaryGroup n ℂ) (d e : n → ℂ)
     (hU : A = (U : Matrix n n ℂ) * Matrix.diagonal d * (U : Matrix n n ℂ)ᴴ)
@@ -127,7 +140,9 @@ def normalSpectralLaw {A : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A) (b : n →
   let d := (exists_unitary_diagonalization_of_normal hA).choose_spec.choose
   diagonalSpectralLaw U d b
 
-/-- The canonical law equals the source formula in every unitary eigenbasis.-/
+/-- The canonical law equals the source formula in every unitary eigenbasis.
+@isnad1 id=eq.2h5v.s9.ee825a7ab25f from=translated src=- shape=b9cfc3ae vocab=114628df
+-/
 theorem normalSpectralLaw_eq_diagonalSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ)
     (hU : A = (U : Matrix n n ℂ) * Matrix.diagonal d * (U : Matrix n n ℂ)ᴴ) (b : n → ℂ) :
@@ -136,7 +151,9 @@ theorem normalSpectralLaw_eq_diagonalSpectralLaw {A : Matrix n n ℂ}
     (exists_unitary_diagonalization_of_normal hA).choose_spec.choose_spec hU b
 
 /-- The eigenbasis-independent law is a probability law for every unit start.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=isprobab.2h3v.s7.7efc925e545a from=translated src=- shape=e3d4cb43 vocab=0684066d
+-/
 theorem isProbabilityMeasure_normalSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (hb : ‖WithLp.toLp 2 b‖ = 1) :
     IsProbabilityMeasure (normalSpectralLaw hA b) := by
@@ -145,7 +162,9 @@ theorem isProbabilityMeasure_normalSpectralLaw {A : Matrix n n ℂ}
 
 open scoped Matrix.Norms.L2Operator in
 /-- Canonical spectral-law integration is the native functional-calculus
-quadratic form for every function on the finite normal spectrum.-/
+quadratic form for every function on the finite normal spectrum.
+@isnad1 id=eq.1h4v.s8.d4261508963e from=translated src=- shape=4112c7e2 vocab=4e18a19d
+-/
 theorem integral_normalSpectralLaw_eq_quadForm_cfc {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (f : ℂ → ℂ) :
     ∫ z, f z ∂normalSpectralLaw hA b = quadForm (cfc f A) b := by

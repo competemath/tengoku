@@ -20,7 +20,9 @@ namespace NLAlib
 /-- A nonnegative spectral power ratio with one eigenvalue equal to one has error
 at most the logarithmic inverse leading overlap divided by `2q+1`.
 Source: manuscript `rt:power`; finite scalar power-mean Jensen. The statement
-includes `q=0` and needs no gap or upper bound on the other spectral values.-/
+includes `q=0` and needs no gap or upper bound on the other spectral values.
+@isnad1 id=le.3h5v.s8.e79d1b7461e7 from=translated src=- shape=c6fde3b3 vocab=8bf16c8e
+-/
 theorem one_sub_sum_pow_div_sum_pow_le_log_div {ι : Type*} [Fintype ι] [DecidableEq ι]
     (d g : ι → ℝ) (hd : ∀ i, 0 ≤ d i) (i₀ : ι) (h₀ : d i₀ = 1) (hg : g i₀ ≠ 0) (q : ℕ) :
     1 - (∑ i, g i ^ 2 * d i ^ (2 * q + 1)) / (∑ i, g i ^ 2 * d i ^ (2 * q)) ≤

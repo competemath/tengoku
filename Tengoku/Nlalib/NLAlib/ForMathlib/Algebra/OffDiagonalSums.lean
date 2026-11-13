@@ -21,7 +21,9 @@ namespace NLAlib
 
 Source: ported from `SparseFockFormal.DirectionalConcrete.sum_erase_comm` (generalised from `ℝ`
 to an additive commutative monoid), b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports
-`sparse-ose`.-/
+`sparse-ose`.
+@isnad1 id=eq.0h4v.s6.966fc17e4481 from=translated src=- shape=cf17dbff vocab=3cfbac15
+-/
 theorem sum_sum_erase_comm {α M : Type*} [DecidableEq α] [AddCommMonoid M]
     (s : Finset α) (f : α → α → M) :
     (∑ a ∈ s, ∑ c ∈ s.erase a, f a c) = ∑ c ∈ s, ∑ a ∈ s.erase c, f a c := by

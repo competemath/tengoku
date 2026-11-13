@@ -36,7 +36,9 @@ def transport {g : ℂ → ℂ} {γ : ℝ → ℂ} (D : PrimitivePathSubdivision
   primitiveSubdivisionTransport γ (fun i => (i : ℝ) / D.size) D.primitive D.size
 
 /-- Every admissible uniform subdivision of the same continuous path gives
-the same integral. The common refinement is derived, rather than assumed.-/
+the same integral. The common refinement is derived, rather than assumed.
+@isnad1 id=eq.1h4v.s5.63445377c45a from=translated src=- shape=12a32588 vocab=068f2547
+-/
 theorem transport_eq {g : ℂ → ℂ} {γ : ℝ → ℂ} (hγ : Continuous γ)
     (D E : PrimitivePathSubdivision g γ) : D.transport = E.transport :=
   primitiveSubdivisionTransport_uniform_eq hγ D.size_pos E.size_pos
@@ -45,7 +47,9 @@ theorem transport_eq {g : ℂ → ℂ} {γ : ℝ → ℂ} (hγ : Continuous γ)
 
 /-- On a C¹ native path, this subdivision integral equals the existing native
 curve integral. Speed integrability and local FTC are proved by the transport
-agreement theorem.-/
+agreement theorem.
+@isnad1 id=eq.1h5v.s9.ced01493ab9d from=translated src=- shape=bca47ea4 vocab=21863da5
+-/
 theorem transport_eq_curveIntegral {a b : ℂ} {g : ℂ → ℂ} (γ : Path a b)
     (D : PrimitivePathSubdivision g γ.extend) (hγ : ContDiffOn ℝ 1 γ.extend I) :
     D.transport = curveIntegral (fun z => g z • ContinuousLinearMap.id ℂ ℂ) γ := by
@@ -61,7 +65,9 @@ theorem transport_eq_curveIntegral {a b : ℂ} {g : ℂ → ℂ} (γ : Path a b)
 end PrimitivePathSubdivision
 
 /-- A finite primitive subdivision is automatically available on every
-continuous path in an open holomorphy domain.-/
+continuous path in an open holomorphy domain.
+@isnad1 id=nonempty.3h5v.s7.2469d5523a4d from=translated src=- shape=b74d4a90 vocab=eaa8eb0e
+-/
 theorem nonempty_primitivePathSubdivision_of_differentiableOn
     {a b : ℂ} (γ : Path a b) {Ω : Set ℂ} {g : ℂ → ℂ}
     (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (hγΩ : ∀ t, γ t ∈ Ω) :
@@ -79,14 +85,18 @@ def primitivePathIntegral {a b : ℂ} (g : ℂ → ℂ) (γ : Path a b)
   (Classical.choice h).transport
 
 /-- Any actual local primitive subdivision computes the intrinsic continuous
-path integral.-/
+path integral.
+@isnad1 id=eq.1h5v.s7.7e51a561fa9c from=translated src=- shape=21f1f1d6 vocab=0af24c65
+-/
 theorem primitivePathIntegral_eq_transport {a b : ℂ} {g : ℂ → ℂ} (γ : Path a b)
     (h : Nonempty (PrimitivePathSubdivision g γ.extend))
     (D : PrimitivePathSubdivision g γ.extend) : primitivePathIntegral g γ h = D.transport :=
   PrimitivePathSubdivision.transport_eq γ.continuous_extend (Classical.choice h) D
 
 /-- The intrinsic continuous-path integral agrees with the native curve
-integral on all C¹ paths. This is a proved extension, not a Cauchy certificate.-/
+integral on all C¹ paths. This is a proved extension, not a Cauchy certificate.
+@isnad1 id=eq.2h4v.s8.090f5d9ef76b from=translated src=- shape=57622d39 vocab=4e64b5a1
+-/
 theorem primitivePathIntegral_eq_curveIntegral {a b : ℂ} {g : ℂ → ℂ} (γ : Path a b)
     (h : Nonempty (PrimitivePathSubdivision g γ.extend))
     (hγ : ContDiffOn ℝ 1 γ.extend I) :
@@ -94,7 +104,9 @@ theorem primitivePathIntegral_eq_curveIntegral {a b : ℂ} {g : ℂ → ℂ} (γ
   PrimitivePathSubdivision.transport_eq_curveIntegral γ (Classical.choice h) hγ
 
 /-- A constant path has zero intrinsic local-primitive transport. This is the
-degenerate one-cube relation in normalized singular cubical homology.-/
+degenerate one-cube relation in normalized singular cubical homology.
+@isnad1 id=eq.1h2v.s6.15f208f042da from=translated src=- shape=1c399d15 vocab=1775b59e
+-/
 theorem primitivePathIntegral_refl {a : ℂ} {g : ℂ → ℂ}
     (h : Nonempty (PrimitivePathSubdivision g (Path.refl a).extend)) :
     primitivePathIntegral g (Path.refl a) h = 0 := by

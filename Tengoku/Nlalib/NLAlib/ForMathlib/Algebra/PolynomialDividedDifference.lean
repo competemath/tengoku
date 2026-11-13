@@ -20,7 +20,9 @@ variable {𝕜 : Type*} [Field 𝕜]
 def dividedDifference (p : 𝕜[X]) (z : 𝕜) : 𝕜[X] :=
   (p - C (p.eval z)) /ₘ (X - C z)
 
-/-- Multiplication by the argument difference recovers the numerator.-/
+/-- Multiplication by the argument difference recovers the numerator.
+@isnad1 id=eq.0h3v.s8.614aa45ed2dd from=translated src=- shape=4d3b18ea vocab=a64388c3
+-/
 theorem X_sub_C_mul_dividedDifference (p : 𝕜[X]) (z : 𝕜) :
     (X - C z) * p.dividedDifference z = p - C (p.eval z) := by
   have hmod : (p - C (p.eval z)) %ₘ (X - C z) = 0 := by
@@ -30,13 +32,17 @@ theorem X_sub_C_mul_dividedDifference (p : 𝕜[X]) (z : 𝕜) :
   rw [hmod, zero_add] at h
   exact h
 
-/-- Constants have zero divided difference.-/
+/-- Constants have zero divided difference.
+@isnad1 id=eq.0h3v.s7.f651a00cfe67 from=translated src=- shape=d184a063 vocab=bea2f388
+-/
 @[simp] theorem dividedDifference_C (a z : 𝕜) : (C a).dividedDifference z = 0 := by
   apply mul_left_cancel₀ (monic_X_sub_C z).ne_zero
   rw [X_sub_C_mul_dividedDifference]
   simp
 
-/-- Divided differences preserve polynomial addition.-/
+/-- Divided differences preserve polynomial addition.
+@isnad1 id=eq.0h4v.s7.7de32184ae57 from=translated src=- shape=5852e890 vocab=2586827a
+-/
 @[simp] theorem dividedDifference_add (p q : 𝕜[X]) (z : 𝕜) :
     (p + q).dividedDifference z = p.dividedDifference z + q.dividedDifference z := by
   apply mul_left_cancel₀ (monic_X_sub_C z).ne_zero
@@ -44,7 +50,9 @@ theorem X_sub_C_mul_dividedDifference (p : 𝕜[X]) (z : 𝕜) :
     X_sub_C_mul_dividedDifference, eval_add, map_add]
   ring
 
-/-- Divided differences preserve multiplication by scalar constants.-/
+/-- Divided differences preserve multiplication by scalar constants.
+@isnad1 id=eq.0h4v.s8.11a26bef2b01 from=translated src=- shape=180da7f9 vocab=74548589
+-/
 @[simp] theorem dividedDifference_C_mul (a : 𝕜) (p : 𝕜[X]) (z : 𝕜) :
     (C a * p).dividedDifference z = C a * p.dividedDifference z := by
   apply mul_left_cancel₀ (monic_X_sub_C z).ne_zero
@@ -52,7 +60,9 @@ theorem X_sub_C_mul_dividedDifference (p : 𝕜[X]) (z : 𝕜) :
     eval_mul, eval_C, map_mul]
   ring
 
-/-- Divided differences preserve polynomial subtraction.-/
+/-- Divided differences preserve polynomial subtraction.
+@isnad1 id=eq.0h4v.s7.885c9221aeed from=translated src=- shape=5852e890 vocab=74cad13e
+-/
 @[simp] theorem dividedDifference_sub (p q : 𝕜[X]) (z : 𝕜) :
     (p - q).dividedDifference z = p.dividedDifference z - q.dividedDifference z := by
   apply mul_left_cancel₀ (monic_X_sub_C z).ne_zero
@@ -60,7 +70,9 @@ theorem X_sub_C_mul_dividedDifference (p : 𝕜[X]) (z : 𝕜) :
     X_sub_C_mul_dividedDifference, eval_sub, map_sub]
   ring
 
-/-- The product by `X` contributes its evaluation as a constant term.-/
+/-- The product by `X` contributes its evaluation as a constant term.
+@isnad1 id=eq.0h3v.s8.4fbdb226363c from=translated src=- shape=6d3d2a87 vocab=e350d09b
+-/
 theorem dividedDifference_X_mul (p : 𝕜[X]) (z : 𝕜) :
     (X * p).dividedDifference z = X * p.dividedDifference z + C (p.eval z) := by
   apply mul_left_cancel₀ (monic_X_sub_C z).ne_zero
@@ -68,16 +80,22 @@ theorem dividedDifference_X_mul (p : 𝕜[X]) (z : 𝕜) :
     X_sub_C_mul_dividedDifference, eval_mul, eval_X, map_mul]
   ring
 
-/-- The divided difference of the constant one is zero.-/
+/-- The divided difference of the constant one is zero.
+@isnad1 id=eq.0h2v.s6.63df28a9be7f from=translated src=- shape=08dc7e38 vocab=3e3b0080
+-/
 @[simp] theorem dividedDifference_one (z : 𝕜) : (1 : 𝕜[X]).dividedDifference z = 0 := by
   simpa only [C_1] using dividedDifference_C (1 : 𝕜) z
 
-/-- The divided difference of `X` is one.-/
+/-- The divided difference of `X` is one.
+@isnad1 id=eq.0h2v.s5.368a376e81b3 from=translated src=- shape=d9dc0814 vocab=a3086d49
+-/
 @[simp] theorem dividedDifference_X (z : 𝕜) : (X : 𝕜[X]).dividedDifference z = 1 := by
   simpa only [mul_one, dividedDifference_one, mul_zero, zero_add, eval_one, C_1] using
     dividedDifference_X_mul (1 : 𝕜[X]) z
 
-/-- A positive degree bound drops by at least one under divided differences.-/
+/-- A positive degree bound drops by at least one under divided differences.
+@isnad1 id=lt.2h4v.s6.e1faea98941b from=translated src=- shape=e0efc987 vocab=2acd1d4c
+-/
 theorem degree_dividedDifference_lt {p : 𝕜[X]} {n : ℕ} (hn : 0 < n)
     (hp : p.natDegree ≤ n) (z : 𝕜) : (p.dividedDifference z).degree < n := by
   by_cases hq : p.dividedDifference z = 0
@@ -89,7 +107,9 @@ theorem degree_dividedDifference_lt {p : 𝕜[X]} {n : ℕ} (hn : 0 < n)
   rw [dividedDifference, natDegree_divByMonic _ (monic_X_sub_C z), natDegree_X_sub_C]
   omega
 
-/-- The diagonal quotient value is the ordinary polynomial derivative.-/
+/-- The diagonal quotient value is the ordinary polynomial derivative.
+@isnad1 id=eq.0h3v.s8.41e98541d250 from=translated src=- shape=93ea2979 vocab=88250280
+-/
 theorem eval_dividedDifference_self (p : 𝕜[X]) (z : 𝕜) :
     (p.dividedDifference z).eval z = p.derivative.eval z := by
   have h := congrArg (fun q : 𝕜[X] => q.derivative.eval z)
@@ -98,7 +118,9 @@ theorem eval_dividedDifference_self (p : 𝕜[X]) (z : 𝕜) :
     sub_zero, one_mul, eval_add, eval_mul, eval_sub, eval_X, eval_C,
     sub_self, zero_mul, add_zero] using h
 
-/-- Exact evaluation of the quotient at distinct arguments.-/
+/-- Exact evaluation of the quotient at distinct arguments.
+@isnad1 id=eq.1h4v.s6.5f89373372db from=translated src=- shape=8fb71eac vocab=5217726d
+-/
 theorem eval_dividedDifference_of_ne (p : 𝕜[X]) {x z : 𝕜} (hx : x ≠ z) :
     (p.dividedDifference z).eval x = (p.eval x - p.eval z) / (x - z) := by
   apply (eq_div_iff (sub_ne_zero.mpr hx)).mpr
@@ -106,7 +128,9 @@ theorem eval_dividedDifference_of_ne (p : 𝕜[X]) {x z : 𝕜} (hx : x ≠ z) :
   simpa only [eval_mul, eval_sub, eval_X, eval_C, mul_comm] using h
 
 /-- The polynomial divided difference is symmetric in its two evaluations,
-including equal arguments.-/
+including equal arguments.
+@isnad1 id=eq.0h4v.s5.e13c78b7513a from=translated src=- shape=f602a825 vocab=1f7862a6
+-/
 theorem eval_dividedDifference_comm (p : 𝕜[X]) (x y : 𝕜) :
     (p.dividedDifference x).eval y = (p.dividedDifference y).eval x := by
   by_cases hxy : x = y

@@ -14,7 +14,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The quartic Taylor polynomial bounds cosine above on the positive real axis.
-Source: direct differentiation and the cubic sine lower bound.-/
+Source: direct differentiation and the cubic sine lower bound.
+@isnad1 id=le.1h1v.s6.7935ecf96ebb from=translated src=- shape=51336ca9 vocab=115fffdc
+-/
 theorem cos_le_one_sub_sq_add_quartic {x : ℝ} (hx : 0 ≤ x) :
     cos x ≤ 1 - x ^ 2 / 2 + x ^ 4 / 24 := by
   let f := fun x : ℝ => 1 - x ^ 2 / 2 + x ^ 4 / 24 - cos x
@@ -34,7 +36,9 @@ theorem cos_le_one_sub_sq_add_quartic {x : ℝ} (hx : 0 ≤ x) :
 
 /-- On the positive half quadrant, `sin³x≥x³ cos x`.
 Source: focused reroutes, the regularized-cotangent concavity calculation.
-Cubic sine and quartic cosine bounds replace the logarithmic differentiation argument.-/
+Cubic sine and quartic cosine bounds replace the logarithmic differentiation argument.
+@isnad1 id=le.2h1v.s6.5b421f731327 from=translated src=- shape=1d27a3fe vocab=397a691b
+-/
 theorem mul_cos_le_sin_cube {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 2) :
     x ^ 3 * cos x ≤ sin x ^ 3 := by
   have hx2 : x ≤ 2 := by linarith [pi_lt_four]
@@ -52,7 +56,9 @@ theorem mul_cos_le_sin_cube {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 2) :
   linarith
 
 /-- The regularized cotangent has a linear absolute bound near its removable zero.
-Source: the cubic-scale numerator bound and Jordan's sine lower bound.-/
+Source: the cubic-scale numerator bound and Jordan's sine lower bound.
+@isnad1 id=le.2h1v.s6.5425087e8e22 from=translated src=- shape=587be171 vocab=99ba01e6
+-/
 theorem abs_cot_sub_one_div_le {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 2) :
     |Real.cot x - 1 / x| ≤ π * x / 4 := by
   by_cases hx0 : x = 0
@@ -77,7 +83,9 @@ theorem abs_cot_sub_one_div_le {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 2) :
   linarith
 
 /-- Cotangent minus the reciprocal is continuous on the closed positive half quadrant.
-Source: the removable zero bound and the ordinary quotient rule away from zero.-/
+Source: the removable zero bound and the ordinary quotient rule away from zero.
+@isnad1 id=continuo.0h0v.s6.b95b8693d4fd from=translated src=- shape=32e7a1ec vocab=3f832235
+-/
 theorem continuousOn_cot_sub_one_div :
     ContinuousOn (fun x : ℝ => Real.cot x - 1 / x) (Icc 0 (π / 2)) := by
   intro x hx
@@ -101,7 +109,9 @@ theorem continuousOn_cot_sub_one_div :
     exact ((hasDerivAt_cot hs).continuousAt.sub (continuousAt_const.div continuousAt_id hx0)).continuousWithinAt
 
 /-- Cotangent minus the reciprocal is concave, including its removable value zero.
-Source: focused reroutes, the sharp logarithmic lower-constant midpoint argument.-/
+Source: focused reroutes, the sharp logarithmic lower-constant midpoint argument.
+@isnad1 id=concaveo.0h0v.s6.2389c3dd5ded from=translated src=- shape=e1b05cfb vocab=27f84e3d
+-/
 theorem concaveOn_cot_sub_one_div :
     ConcaveOn ℝ (Icc 0 (π / 2)) (fun x : ℝ => Real.cot x - 1 / x) := by
   let f' := fun x : ℝ => -1 / sin x ^ 2 + 1 / x ^ 2
@@ -136,7 +146,9 @@ theorem concaveOn_cot_sub_one_div :
     nlinarith
 
 /-- The midpoint value of the regularized cotangent bounds its integral above.
-Source: focused reroutes, midpoint concavity in the sharp lower-constant proof.-/
+Source: focused reroutes, midpoint concavity in the sharp lower-constant proof.
+@isnad1 id=le.3h2v.s7.de83f0a02d82 from=translated src=- shape=2f133f12 vocab=d6398694
+-/
 theorem integral_cot_sub_one_div_le_mul_midpoint {a b : ℝ} (ha : 0 ≤ a)
     (hab : a ≤ b) (hb : b ≤ π / 2) :
     (∫ x in a..b, Real.cot x - 1 / x) ≤

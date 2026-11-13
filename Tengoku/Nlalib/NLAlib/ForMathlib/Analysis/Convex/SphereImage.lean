@@ -20,7 +20,9 @@ variable [AddCommGroup F] [Module ℝ F]
 
 /-- A real linear map with nontrivial kernel sends the unit sphere onto the
 same set as the closed unit ball. A continuous norm along a kernel ray
-supplies a unit preimage without an inner-product assumption.-/
+supplies a unit preimage without an inner-product assumption.
+@isnad1 id=eq.1h3v.s8.c7b1fdb96430 from=translated src=- shape=1ad7c7ff vocab=b7a7f315
+-/
 theorem image_sphere_eq_image_closedBall_of_ker_ne_bot (L : E →ₗ[ℝ] F)
     (hker : LinearMap.ker L ≠ ⊥) :
     L '' Metric.sphere 0 1 = L '' Metric.closedBall 0 1 := by
@@ -49,7 +51,9 @@ theorem image_sphere_eq_image_closedBall_of_ker_ne_bot (L : E →ₗ[ℝ] F)
   · rw [map_add, map_smul, hLu, smul_zero, add_zero]
 
 /-- A real linear map with nontrivial kernel has a convex unit-sphere image,
-because that image equals the linear image of the closed unit ball.-/
+because that image equals the linear image of the closed unit ball.
+@isnad1 id=convex.1h3v.s8.e89413c4440e from=translated src=- shape=81bd796c vocab=4dda0dc7
+-/
 theorem convex_image_sphere_of_ker_ne_bot (L : E →ₗ[ℝ] F)
     (hker : LinearMap.ker L ≠ ⊥) : Convex ℝ (L '' Metric.sphere 0 1) := by
   rw [L.image_sphere_eq_image_closedBall_of_ker_ne_bot hker]

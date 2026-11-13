@@ -34,7 +34,9 @@ def embeddingLinearIsometry (e : ι ↪ κ) : ℓ²(ι, 𝕜) →ₗᵢ[𝕜] �
   exact (orthonormal_single_embedding (𝕜 := 𝕜) e).orthogonalFamily.linearIsometry
 
 /-- Zero extension sends a single coordinate to the corresponding injected
-coordinate, with the same coefficient.-/
+coordinate, with the same coefficient.
+@isnad1 id=eq.0h6v.s12.f0d5e196b2f1 from=translated src=- shape=75bdc57f vocab=8f1e5b40
+-/
 @[simp]
 theorem embeddingLinearIsometry_apply_single (e : ι ↪ κ) (i : ι) (z : 𝕜) :
     embeddingLinearIsometry (𝕜 := 𝕜) e (lp.single 2 i z) = lp.single 2 (e i) z := by
@@ -45,7 +47,9 @@ theorem embeddingLinearIsometry_apply_single (e : ι ↪ κ) (i : ι) (z : 𝕜)
   by_cases hk : k = e i <;> simp [lp.single_apply, hk]
 
 /-- The native Hilbert adjoint of zero extension restricts the coordinate
-function along the original index injection.-/
+function along the original index injection.
+@isnad1 id=eq.0h6v.s17.424027a441d5 from=translated src=- shape=9cb5e23a vocab=4221958a
+-/
 @[simp]
 theorem embeddingLinearIsometry_adjoint_apply (e : ι ↪ κ) (f : ℓ²(κ, 𝕜)) (i : ι) :
     ((embeddingLinearIsometry (𝕜 := 𝕜) e).toContinuousLinearMap.adjoint f) i = f (e i) := by

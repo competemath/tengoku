@@ -48,7 +48,9 @@ def innerProductScalarProgram {K : Type*} [Zero K] :
   | _k+1, x, y => .add (.mul (.conjugate (.input (x 0))) (.input (y 0)))
       (innerProductScalarProgram (Fin.tail x) (Fin.tail y))
 
-/-- The finite scalar program evaluates to the native Hermitian pairing.-/
+/-- The finite scalar program evaluates to the native Hermitian pairing.
+@isnad1 id=eq.0h4v.s6.f04676053f81 from=translated src=- shape=9f44f76f vocab=eafb6fd1
+-/
 theorem run_innerProductScalarProgram {K : Type*} [Ring K] [Star K]
     {k : ℕ} (x y : Fin k → K) :
     (innerProductScalarProgram x y).run = star x ⬝ᵥ y := by
@@ -59,7 +61,9 @@ theorem run_innerProductScalarProgram {K : Type*} [Ring K] [Star K]
     rw [Fin.sum_univ_succ]
     rfl
 
-/-- The native inner-product evaluation uses exactly three operations per coordinate.-/
+/-- The native inner-product evaluation uses exactly three operations per coordinate.
+@isnad1 id=eq.0h4v.s5.de1d093eb08c from=translated src=- shape=7c614b6c vocab=4797770d
+-/
 theorem cost_innerProductScalarProgram {K : Type*} [Zero K] {k : ℕ} (x y : Fin k → K) :
     (innerProductScalarProgram x y).cost = 3*k := by
   induction k with

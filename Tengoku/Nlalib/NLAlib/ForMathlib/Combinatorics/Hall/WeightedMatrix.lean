@@ -34,7 +34,9 @@ variable {n : Type u}
 /-- If a nonnegative matrix with common row sum `t ≥ 0` has no supported
 permutation, its squared column deviations satisfy this dimension-multiplied
 lower bound. Source: the residual step of GGOW, arXiv:1511.03730v4, Claim 3.3,
-proved here using Hall's theorem and finite Cauchy–Schwarz.-/
+proved here using Hall's theorem and finite Cauchy–Schwarz.
+@isnad1 id=le.4h3v.s7.1e04bdbceb11 from=translated src=- shape=7a1f2503 vocab=ebba646c
+-/
 theorem sq_le_card_mul_sum_sq_column_sub_of_no_perm_pos [Fintype n] [DecidableEq n]
     (C : Matrix n n ℝ) (t : ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (ht : 0 ≤ t)
@@ -153,7 +155,9 @@ theorem sq_le_card_mul_sum_sq_column_sub_of_no_perm_pos [Fintype n] [DecidableEq
 
 /-- A nonnegative row-stochastic matrix whose dimension-multiplied squared
 column defect is less than one has a permutation selecting positive entries
-in every row. This is the contrapositive of the weighted Hall bound at `t = 1`.-/
+in every row. This is the contrapositive of the weighted Hall bound at `t = 1`.
+@isnad1 id=ex.3h2v.s7.b3d5888c18d2 from=translated src=- shape=d40485e2 vocab=ebba646c
+-/
 theorem exists_perm_pos_of_card_mul_sum_sq_column_sub_lt_one [Fintype n] [DecidableEq n]
     (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j)
@@ -171,7 +175,9 @@ theorem exists_perm_pos_of_card_mul_sum_sq_column_sub_lt_one [Fintype n] [Decida
 /-- A nonnegative column-stochastic matrix whose dimension-multiplied squared
 row defect is less than one has a permutation selecting positive entries
 in every row. Apply the row-stochastic result to the transpose and invert
-its supported permutation.-/
+its supported permutation.
+@isnad1 id=ex.3h2v.s7.468b7cfe43e6 from=translated src=- shape=c71fc60b vocab=ebba646c
+-/
 theorem exists_perm_pos_of_card_mul_sum_sq_row_sub_lt_one [Fintype n] [DecidableEq n]
     (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j)

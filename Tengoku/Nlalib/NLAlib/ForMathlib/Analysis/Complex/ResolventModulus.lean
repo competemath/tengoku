@@ -20,7 +20,9 @@ noncomputable section
 set_option autoImplicit false
 
 /-- The scalar resolvent modulus on the real line has Lipschitz constant
-equal to the reciprocal square of the positive imaginary height.-/
+equal to the reciprocal square of the positive imaginary height.
+@isnad1 id=lipschit.1h1v.s6.4bd68b85f97c from=translated src=- shape=3125c234 vocab=84b0eee8
+-/
 theorem Complex.lipschitzWith_norm_inv_sub_of_im_pos {z : ℂ} (hz : 0 < z.im) :
     LipschitzWith ⟨z.im⁻¹ ^ 2, by positivity⟩
       (fun x : ℝ => ‖(z - (x : ℂ))⁻¹‖) := by

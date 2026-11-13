@@ -34,7 +34,9 @@ def rectangleBoundaryIntegral (f : ℂ → ℂ) (a b c d : ℝ) : ℂ :=
 
 /-- Rotating a complex number with nonnegative imaginary part through an
 angle whose cosine is nonnegative gives an imaginary part bounded below by
-`-|sin θ|` times its norm.-/
+`-|sin θ|` times its norm.
+@isnad1 id=le.2h2v.s6.347d1a9d430f from=translated src=- shape=6bce6ff8 vocab=6e18b83d
+-/
 theorem neg_abs_sin_mul_norm_le_im_exp_mul {θ : ℝ} {z : ℂ}
     (hcos : 0 ≤ Real.cos θ) (hz : 0 ≤ z.im) :
     -(|Real.sin θ| * ‖z‖) ≤ (exp (θ * I) * z).im := by
@@ -56,7 +58,9 @@ private theorem neg_normalized_re (z : ℂ) :
 
 /-- Schwarz symmetry pairs the horizontal edges of a thin rectangle.
 The real part of the negatively normalized boundary integral is the upper
-horizontal imaginary integral, divided by `π`, minus the vertical real error.-/
+horizontal imaginary integral, divided by `π`, minus the vertical real error.
+@isnad1 id=eq.3h4v.s8.c53cc5f40aad from=translated src=- shape=92191259 vocab=827e6c61
+-/
 theorem neg_normalized_rectangleBoundaryIntegral_re_eq
     {f : ℂ → ℂ} {a b ε : ℝ}
     (hf : IntervalIntegrable (fun x : ℝ => f (x + ε * I)) volume a b)
@@ -114,7 +118,9 @@ private theorem neg_exp_mul_le_im_exp_add_mul {x b ε C : ℝ} {z : ℂ}
 part on the upper edge has a negatively normalized exponential contour moment
 bounded below by an explicit quantity tending to zero with the rectangle's
 height. The vertical estimate uses actual edge integrals and no boundary limits.
-This is the scalar error bound in the planar route to `trace-exponential-stahl`.-/
+This is the scalar error bound in the planar route to `trace-exponential-stahl`.
+@isnad1 id=le.9h5v.s9.0bcfa2583086 from=translated src=- shape=924f107b vocab=4060871f
+-/
 theorem neg_normalized_exp_rectangleBoundaryIntegral_re_ge
     {h : ℂ → ℂ} {a b ε C : ℝ} (hab : a ≤ b)
     (hε : 0 ≤ ε) (hε' : ε ≤ 1)
@@ -176,7 +182,9 @@ nonnegative when the upper-half-plane function has nonnegative imaginary part,
 is uniformly bounded near the real segment, and satisfies Schwarz reflection
 on the horizontal edges. The contour-identification premise is explicit: this
 theorem supplies the scalar positivity step, independently of its matrix bridge.
-No real-axis root limits or boundary value theorem are required.-/
+No real-axis root limits or boundary value theorem are required.
+@isnad1 id=le.7h6v.s8.8e54ae289c3f from=translated src=- shape=540970a8 vocab=0dbaafc1
+-/
 theorem nonneg_of_neg_normalized_exp_rectangleBoundaryIntegral_re_eq
     {h : ℂ → ℂ} {a b C δ w : ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     (hcont : ∀ ε ∈ Ioo 0 δ,
@@ -219,7 +227,9 @@ theorem nonneg_of_neg_normalized_exp_rectangleBoundaryIntegral_re_eq
 the integrand is holomorphic off the real axis and continuous along the two
 vertical edges. The real segment inside the rectangle may contain a jump or
 branch cut. This is a direct planar Cauchy deformation, with no boundary values
-on that segment assumed.-/
+on that segment assumed.
+@isnad1 id=eq.5h5v.s7.ef14631b7c2b from=translated src=- shape=a90e48cc vocab=d9a7c0c0
+-/
 theorem rectangleBoundaryIntegral_eq_of_differentiableOn_off_real
     {f : ℂ → ℂ} {a b ε η : ℝ} (hε : 0 < ε) (hεη : ε ≤ η)
     (hf : DifferentiableOn ℂ f {z | z.im ≠ 0})
@@ -287,7 +297,9 @@ Only the vertical sides need continuity across the real axis. Cauchy deformation
 to thin rectangles and the vanishing quantitative error are proved here.
 This supplies the complete scalar thin-rectangle positivity step for the planar
 root-sum route to atlas `trace-exponential-stahl`; the matrix-to-contour bridge
-remains independent.-/
+remains independent.
+@isnad1 id=le.8h5v.s8.3a7fc161ede7 from=translated src=- shape=c2526275 vocab=f0bf97b2
+-/
 theorem neg_normalized_exp_rectangleBoundaryIntegral_re_nonneg
     {h : ℂ → ℂ} {a b C δ : ℝ} (hab : a ≤ b) (hδ : 0 < δ)
     (hh : DifferentiableOn ℂ h {z | z.im ≠ 0})

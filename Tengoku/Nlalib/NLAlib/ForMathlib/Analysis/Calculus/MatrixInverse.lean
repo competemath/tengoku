@@ -19,7 +19,9 @@ variable {𝕜 E ι : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup E] [NormedSpace 𝕜 E] [Fintype ι] [DecidableEq ι]
   {r : WithTop ℕ∞} {x : E} {A : E → Matrix ι ι 𝕜}
 
-/-- The determinant of a smooth entrywise matrix family is smooth.-/
+/-- The determinant of a smooth entrywise matrix family is smooth.
+@isnad1 id=contdiff.1h6v.s6.db9b71c55931 from=translated src=- shape=3ad830d2 vocab=06590bd1
+-/
 theorem ContDiffAt.matrix_det (hA : ∀ i j, ContDiffAt 𝕜 r (fun y => A y i j) x) :
     ContDiffAt 𝕜 r (fun y => (A y).det) x := by
   simp_rw [Matrix.det_apply]
@@ -28,7 +30,9 @@ theorem ContDiffAt.matrix_det (hA : ∀ i j, ContDiffAt 𝕜 r (fun y => A y i j
   apply ContDiffAt.const_smul
   exact contDiffAt_prod (fun i _ => hA (σ i) i)
 
-/-- Each entry of a smooth matrix family's adjugate is smooth.-/
+/-- Each entry of a smooth matrix family's adjugate is smooth.
+@isnad1 id=contdiff.1h8v.s6.50b99a4a070a from=translated src=- shape=22588910 vocab=5590be06
+-/
 theorem ContDiffAt.matrix_adjugate_apply
     (hA : ∀ i j, ContDiffAt 𝕜 r (fun y => A y i j) x) (i j : ι) :
     ContDiffAt 𝕜 r (fun y => (A y).adjugate i j) x := by
@@ -40,7 +44,9 @@ theorem ContDiffAt.matrix_adjugate_apply
   · exact contDiffAt_const
   · exact hA k l
 
-/-- Each entry of the inverse is smooth wherever the determinant is nonzero.-/
+/-- Each entry of the inverse is smooth wherever the determinant is nonzero.
+@isnad1 id=contdiff.2h8v.s7.8f68964b9a21 from=translated src=- shape=522c0594 vocab=3da4044b
+-/
 theorem ContDiffAt.matrix_inv_apply
     (hA : ∀ i j, ContDiffAt 𝕜 r (fun y => A y i j) x)
     (hx : (A x).det ≠ 0) (i j : ι) :

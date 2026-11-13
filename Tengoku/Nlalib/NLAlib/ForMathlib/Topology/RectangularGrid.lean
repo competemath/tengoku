@@ -26,17 +26,25 @@ def vertex (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin (m + 1)) (j : Fin (n + 1)) : ℂ :=
   x i + y j * Complex.I
 
+/--
+@isnad1 id=eq.0h6v.s6.604847ec985b from=translated src=- shape=48c33457 vocab=81de42c6
+-/
 @[simp]
 theorem vertex_re (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin (m + 1)) (j : Fin (n + 1)) : (vertex x y i j).re = x i := by
   simp [vertex]
 
+/--
+@isnad1 id=eq.0h6v.s6.80bdd36f876b from=translated src=- shape=f1c7bfef vocab=0e4a02d7
+-/
 @[simp]
 theorem vertex_im (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin (m + 1)) (j : Fin (n + 1)) : (vertex x y i j).im = y j := by
   simp [vertex]
 
-/-- Strict coordinate arrays give genuinely distinct grid vertices.-/
+/-- Strict coordinate arrays give genuinely distinct grid vertices.
+@isnad1 id=injectiv.2h4v.s8.046b7622ff55 from=translated src=- shape=ceaff0dd vocab=a12d1fe7
+-/
 theorem vertex_injective (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : StrictMono x) (hy : StrictMono y) :
     Function.Injective (fun p : Fin (m + 1) × Fin (n + 1) => vertex x y p.1 p.2) := by
@@ -48,7 +56,9 @@ theorem vertex_injective (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     simpa only [vertex_im] using congrArg Complex.im h
 
 /-- A bilinear cell in a rectangular complex grid has the expected two
-independent affine coordinates.-/
+independent affine coordinates.
+@isnad1 id=eq.0h7v.s8.50626fa71161 from=translated src=- shape=a0454325 vocab=32b65842
+-/
 theorem cell_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin m) (j : Fin n) (p : I × I) :
     Grid.cell (vertex x y) i j p =
@@ -57,7 +67,9 @@ theorem cell_apply (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
   apply Complex.ext <;>
     simp [Grid.cell, vertex, lineMap_apply_module] <;> ring
 
-/-- Every point of the actual filled cell lies in its closed coordinate rectangle.-/
+/-- Every point of the actual filled cell lies in its closed coordinate rectangle.
+@isnad1 id=and.2h7v.s9.e97484cb2a31 from=translated src=- shape=cf3aa567 vocab=f0dcaf2c
+-/
 theorem cell_mem_rectangle (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : Monotone x) (hy : Monotone y) (i : Fin m) (j : Fin n) (p : I × I) :
     (Grid.cell (vertex x y) i j p).re ∈ Icc (x i.castSucc) (x i.succ) ∧
@@ -77,19 +89,27 @@ def center (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
   ((x i.castSucc + x i.succ) / 2 : ℝ) +
     ((y j.castSucc + y j.succ) / 2 : ℝ) * Complex.I
 
+/--
+@isnad1 id=eq.0h6v.s6.ae56c23f17de from=translated src=- shape=5b9cfbaa vocab=5523d65f
+-/
 @[simp]
 theorem center_re (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin m) (j : Fin n) :
     (center x y i j).re = (x i.castSucc + x i.succ) / 2 := by
   simp [center]
 
+/--
+@isnad1 id=eq.0h6v.s6.34196c673a92 from=translated src=- shape=3914ff49 vocab=19dba0ff
+-/
 @[simp]
 theorem center_im (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (i : Fin m) (j : Fin n) :
     (center x y i j).im = (y j.castSucc + y j.succ) / 2 := by
   simp [center]
 
-/-- Strict coordinates put the center strictly inside its own cell.-/
+/-- Strict coordinates put the center strictly inside its own cell.
+@isnad1 id=and.2h6v.s7.a12bd8b62749 from=translated src=- shape=a0079607 vocab=936d3f9d
+-/
 theorem center_mem_open_rectangle (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : StrictMono x) (hy : StrictMono y) (i : Fin m) (j : Fin n) :
     x i.castSucc < (center x y i j).re ∧ (center x y i j).re < x i.succ ∧
@@ -104,7 +124,9 @@ theorem center_mem_open_rectangle (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) →
   constructor <;> linarith
 
 /-- A different grid cell places the specified center strictly outside its
-closed rectangle, including cells sharing a side or a corner.-/
+closed rectangle, including cells sharing a side or a corner.
+@isnad1 id=or.3h8v.s7.a6a51ae5d0b4 from=translated src=- shape=3dd4157f vocab=0c69cae3
+-/
 theorem center_strictly_outside_other_rectangle
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : StrictMono x) (hy : StrictMono y)

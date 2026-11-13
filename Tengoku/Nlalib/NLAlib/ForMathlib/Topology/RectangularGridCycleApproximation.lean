@@ -22,7 +22,9 @@ def connectorChainMap (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
   Finsupp.linearCombination ℤ (fun z => Finsupp.single (quantizerConnector x y q z) 1)
 
 /-- The connector map of an edge boundary is exactly its final connector
-minus its initial connector.-/
+minus its initial connector.
+@isnad1 id=eq.0h8v.s10.6f60b468f8cf from=translated src=- shape=1027d0a4 vocab=0f4b2b38
+-/
 theorem connectorChainMap_boundaryOne_single
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (q : C → Fin (m + 1) × Fin (n + 1)) (γ : C(I, C)) (k : ℤ) :
@@ -34,7 +36,9 @@ theorem connectorChainMap_boundaryOne_single
 /-- A continuous finite cycle is homologous to an actual canonical grid
 cycle, through a filling lying in the small neighborhood of its trace.
 The finite integer arrays are constructed from actual uniform subdivisions
-and actual quantized endpoint walks.-/
+and actual quantized endpoint walks.
+@isnad1 id=ex.5h8v.s12.6d3a852ae651 from=translated src=- shape=ffb3faac vocab=b176b6ab
+-/
 theorem exists_isNullHomologous_mapOne_eq_cycleComparison
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : StrictMono x) (hy : StrictMono y)
@@ -86,7 +90,9 @@ theorem exists_isNullHomologous_mapOne_eq_cycleComparison
   exact hb'
 
 /-- Compactness supplies an actual finite uniform rectangular grid and a
-cycle approximation with an actual close normalized filling.-/
+cycle approximation with an actual close normalized filling.
+@isnad1 id=ex.3h3v.s12.33af71b69c61 from=translated src=- shape=51111f29 vocab=67ac7bc4
+-/
 theorem exists_uniform_grid_cycle_approximation (hC : IsCompact C) {h : ℝ} (hh : 0 < h)
     (Γ : OneChain C) (hc : boundaryOne Γ = 0) :
     ∃ N : ℕ, ∃ c : Grid.Coefficients (2 * N) (2 * N),

@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- `r + r⁻¹` is strictly increasing for `r≥1`.
 Source: elementary field algebra; operator derivations §4, helper for
-`bernstein-ellipse-def`.-/
+`bernstein-ellipse-def`.
+@isnad1 id=strictmo.0h1v.s6.2c4883554e6e from=translated src=- shape=f588e2ae vocab=3f7d9c9d
+-/
 theorem strictMonoOn_add_inv_Ici_one {𝕜 : Type*} [Field 𝕜] [LinearOrder 𝕜]
     [IsStrictOrderedRing 𝕜] :
     StrictMonoOn (fun r : 𝕜 => r + r⁻¹) (Set.Ici 1) := by

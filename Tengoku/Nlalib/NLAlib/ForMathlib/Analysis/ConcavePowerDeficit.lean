@@ -26,7 +26,9 @@ open Set
 namespace ConcaveOn
 
 /-- A nonnegative concave function lies above every chord from the nonnegative
-boundary value, retaining positive values at the origin.-/
+boundary value, retaining positive values at the origin.
+@isnad1 id=le.5h3v.s6.cdfcb194b682 from=translated src=- shape=b87b1161 vocab=227bebdb
+-/
 theorem div_mul_le_of_nonneg {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
     (hf0 : 0 ≤ f 0) {a b : ℝ} (ha : 0 < a) (hb : 0 ≤ b) (hba : b ≤ a) :
     (b / a) * f a ≤ f b := by
@@ -42,7 +44,9 @@ theorem div_mul_le_of_nonneg {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
   linarith
 
 /-- Concavity and a nonnegative boundary value make `f(x)/x` antitone on the
-positive half-line.-/
+positive half-line.
+@isnad1 id=le.4h3v.s6.628ba2364bc7 from=translated src=- shape=2c3d4d9a vocab=1181d827
+-/
 theorem div_le_div_of_nonneg {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
     (hf0 : 0 ≤ f 0) {t a : ℝ} (ht : 0 < t) (hta : t ≤ a) :
     f a / a ≤ f t / t := by
@@ -55,7 +59,9 @@ theorem div_le_div_of_nonneg {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
     _ = f t * a := mul_comm _ _
 
 /-- Every nonnegative power of a concave chord gives the lower cutoff comparison.
-The smaller argument may be zero and the function may be positive at zero.-/
+The smaller argument may be zero and the function may be positive at zero.
+@isnad1 id=le.6h4v.s7.a9b443d4dbf1 from=translated src=- shape=781108d1 vocab=ebf68b94
+-/
 theorem div_rpow_mul_rpow_le {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
     (hfn : ∀ x, 0 ≤ x → 0 ≤ f x) {a b p : ℝ} (ha : 0 < a) (hb : 0 ≤ b)
     (hba : b ≤ a) (hp : 0 ≤ p) : (f a / a) ^ p * b ^ p ≤ f b ^ p := by
@@ -66,7 +72,9 @@ theorem div_rpow_mul_rpow_le {f : ℝ → ℝ} (hf : ConcaveOn ℝ (Ici 0) f)
   convert h using 1
   ring
 
-/-- The head power deficit is controlled by the ratio at its larger argument.-/
+/-- The head power deficit is controlled by the ratio at its larger argument.
+@isnad1 id=le.6h4v.s7.72f6b2b04194 from=translated src=- shape=281bca70 vocab=919343ef
+-/
 theorem rpow_sub_rpow_le_div_rpow_mul {f : ℝ → ℝ}
     (hf : ConcaveOn ℝ (Ici 0) f) (hfn : ∀ x, 0 ≤ x → 0 ≤ f x)
     {a b p : ℝ} (ha : 0 < a) (hb : 0 ≤ b) (hba : b ≤ a) (hp : 0 ≤ p) :
@@ -80,7 +88,9 @@ theorem rpow_sub_rpow_le_div_rpow_mul {f : ℝ → ℝ}
 
 /-- A sorted nonnegative vector's relative power-deficit certificate transfers
 through every nonnegative concave function, at every positive real power. The cutoff
-may be zero, the prefix may be empty, and `f 0` may be positive.-/
+may be zero, the prefix may be empty, and `f 0` may be positive.
+@isnad1 id=le.10h7v.s8.1b444bcfe186 from=translated src=- shape=04e85687 vocab=f0dc5865
+-/
 theorem sum_rpow_sub_prefix_le {N k : ℕ} (a b : Fin N → ℝ)
     (ha : Antitone a) (ha0 : ∀ i, 0 ≤ a i) (hb0 : ∀ i, 0 ≤ b i)
     (hba : ∀ i, b i ≤ a i) (hk : k < N) {p ε : ℝ} (hp : 0 < p) (hε : 0 ≤ ε)

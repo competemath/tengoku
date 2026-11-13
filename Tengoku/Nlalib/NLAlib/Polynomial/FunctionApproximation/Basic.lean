@@ -25,7 +25,9 @@ def chebyshevCoeff (f : ℝ → ℝ) (k : ℕ) : ℝ :=
 
 /-- The arcsine-measure coefficient is the classical weighted integral on `[-1,1]`.
 Source: Trefethen, ATAP, Chapter 3.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.0h2v.s7.c950882c8962 from=translated src=- shape=5328a18c vocab=e7c872f9
+-/
 theorem chebyshevCoeff_eq_weighted_integral (f : ℝ → ℝ) (k : ℕ) :
     chebyshevCoeff f k = (if k = 0 then 1 else 2) / Real.pi *
       ∫ x in (-1 : ℝ)..1, (f x * (T ℝ (k : ℤ)).eval x) * Real.sqrt (1 - x ^ 2)⁻¹ := by
@@ -33,7 +35,9 @@ theorem chebyshevCoeff_eq_weighted_integral (f : ℝ → ℝ) (k : ℕ) :
 
 /-- The weighted coefficient is the usual cosine coefficient, including the zeroth
 normalization. Source: the cosine substitution for the Chebyshev weight.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.0h2v.s6.8e1bd1a89c15 from=translated src=- shape=94ab99d6 vocab=0e0820a6
+-/
 theorem chebyshevCoeff_eq_cosine_integral (f : ℝ → ℝ) (k : ℕ) :
     chebyshevCoeff f k = (if k = 0 then 1 else 2) / Real.pi *
       ∫ θ in 0..Real.pi, f (Real.cos θ) * Real.cos ((k : ℝ) * θ) := by

@@ -32,14 +32,22 @@ def hirschmanDensityZero (t : ℝ) : ℝ := π / (2 * (cosh (π * t) + 1))
 /-- An explicit primitive of the limiting strip density.-/
 def hirschmanPrimitiveZero (t : ℝ) : ℝ := (1 + exp (-(π * t)))⁻¹
 
+/--
+@isnad1 id=lt.0h1v.s3.86fdfff62531 from=translated src=- shape=8a62b088 vocab=ecfb3df3
+-/
 theorem hirschmanDensityZero_pos (t : ℝ) : 0 < hirschmanDensityZero t := by
   exact div_pos pi_pos (mul_pos (by norm_num) (by linarith [cosh_pos (π * t)]))
 
+/--
+@isnad1 id=eq.0h1v.s3.e98a09482e35 from=translated src=- shape=cd419dad vocab=32dafea8
+-/
 @[simp] theorem hirschmanDensityZero_neg (t : ℝ) :
     hirschmanDensityZero (-t) = hirschmanDensityZero t := by
   simp [hirschmanDensityZero]
 
-/-- The logistic primitive differentiates to precisely the displayed zero-parameter kernel.-/
+/-- The logistic primitive differentiates to precisely the displayed zero-parameter kernel.
+@isnad1 id=hasderiv.0h1v.s5.8e91d38d0cf7 from=translated src=- shape=475e04ea vocab=0791ca63
+-/
 theorem hasDerivAt_hirschmanPrimitiveZero (t : ℝ) :
     HasDerivAt hirschmanPrimitiveZero (hirschmanDensityZero t) t := by
   have hden : 1 + exp (-(π * t)) ≠ 0 := by positivity
@@ -57,6 +65,9 @@ theorem hasDerivAt_hirschmanPrimitiveZero (t : ℝ) :
   field_simp
   ring
 
+/--
+@isnad1 id=tendsto.0h0v.s4.bab277e7b421 from=translated src=- shape=95bb6042 vocab=5202a371
+-/
 theorem tendsto_hirschmanPrimitiveZero_atTop :
     Tendsto hirschmanPrimitiveZero atTop (𝓝 1) := by
   have he : Tendsto (fun t : ℝ => exp (-(π * t))) atTop (𝓝 0) :=
@@ -65,6 +76,9 @@ theorem tendsto_hirschmanPrimitiveZero_atTop :
   simpa only [add_zero, inv_one] using
     (tendsto_const_nhds.add he).inv₀ (by norm_num : (1 : ℝ) + 0 ≠ 0)
 
+/--
+@isnad1 id=tendsto.0h0v.s4.089e02b254bf from=translated src=- shape=95bb6042 vocab=5e4b8818
+-/
 theorem tendsto_hirschmanPrimitiveZero_atBot :
     Tendsto hirschmanPrimitiveZero atBot (𝓝 0) := by
   apply tendsto_inv_atTop_zero.comp
@@ -85,19 +99,25 @@ private theorem integrable_of_even_nonneg_primitive {f F : ℝ → ℝ} {l : ℝ
   rw [← integrableOn_univ, ← Iic_union_Ioi (a := (0 : ℝ))]
   exact integrableOn_union.mpr ⟨hneg, hpos⟩
 
-/-- The explicit zero-parameter kernel is genuinely Lebesgue integrable.-/
+/-- The explicit zero-parameter kernel is genuinely Lebesgue integrable.
+@isnad1 id=integrab.0h0v.s4.48e580062062 from=translated src=- shape=e14394ff vocab=7f977c1b
+-/
 theorem integrable_hirschmanDensityZero : Integrable hirschmanDensityZero :=
   integrable_of_even_nonneg_primitive hirschmanDensityZero_neg
     (fun t => (hirschmanDensityZero_pos t).le) hasDerivAt_hirschmanPrimitiveZero
     tendsto_hirschmanPrimitiveZero_atTop
 
-/-- Its actual integral is one.-/
+/-- Its actual integral is one.
+@isnad1 id=eq.0h0v.s5.29ad60e948fe from=translated src=- shape=f0e61117 vocab=47b293cf
+-/
 theorem integral_hirschmanDensityZero : (∫ t, hirschmanDensityZero t) = 1 := by
   simpa using integral_of_hasDerivAt_of_tendsto hasDerivAt_hirschmanPrimitiveZero
     integrable_hirschmanDensityZero tendsto_hirschmanPrimitiveZero_atBot
     tendsto_hirschmanPrimitiveZero_atTop
 
-/-- The denominator in the exact interior strip density stays positive.-/
+/-- The denominator in the exact interior strip density stays positive.
+@isnad1 id=lt.1h2v.s5.e3443c58023e from=translated src=- shape=1b6de2cc vocab=9d244263
+-/
 theorem hirschmanDenominator_pos {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     0 < cosh (π * t) + cos (π * r) := by
   have hangle : π * r < π := by nlinarith [pi_pos, hr.2]
@@ -107,12 +127,17 @@ theorem hirschmanDenominator_pos {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ
     nlinarith [cosh_sq (π * t), sq_nonneg (sinh (π * t)), cosh_pos (π * t)]
   linarith
 
-/-- The exact interior strip density is strictly positive.-/
+/-- The exact interior strip density is strictly positive.
+@isnad1 id=lt.1h2v.s5.fb5790f89c52 from=translated src=- shape=bb2be28a vocab=528817f4
+-/
 theorem hirschmanDensity_pos {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     0 < hirschmanDensity r t := by
   exact div_pos (sin_pos_of_pos_of_lt_pi (mul_pos pi_pos hr.1) (by nlinarith [pi_pos, hr.2]))
     (mul_pos (mul_pos (by norm_num) hr.1) (hirschmanDenominator_pos hr t))
 
+/--
+@isnad1 id=eq.0h2v.s3.0a05082797c4 from=translated src=- shape=6be742d9 vocab=9f286e46
+-/
 @[simp] theorem hirschmanDensity_neg (r t : ℝ) : hirschmanDensity r (-t) = hirschmanDensity r t := by
   simp [hirschmanDensity]
 
@@ -120,6 +145,9 @@ theorem hirschmanDensity_pos {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
 def hirschmanPrimitive (r t : ℝ) : ℝ :=
   arctan ((exp (π * t) + cos (π * r)) / sin (π * r)) / (π * r)
 
+/--
+@isnad1 id=hasderiv.1h2v.s5.e6f9ef959856 from=translated src=- shape=84f84673 vocab=1ff2f0eb
+-/
 theorem hasDerivAt_hirschmanPrimitive {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     HasDerivAt (hirschmanPrimitive r) (hirschmanDensity r t) t := by
   have hs : 0 < sin (π * r) :=
@@ -146,6 +174,9 @@ theorem hasDerivAt_hirschmanPrimitive {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t 
   apply (eq_div_iff (mul_ne_zero (ne_of_gt hr.1) (ne_of_gt hDp))).2
   field_simp [ne_of_gt hr.1]
 
+/--
+@isnad1 id=tendsto.1h1v.s6.f8e2fe66cef9 from=translated src=- shape=8173dc05 vocab=b490255a
+-/
 theorem tendsto_hirschmanPrimitive_atTop {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     Tendsto (hirschmanPrimitive r) atTop (𝓝 ((π / 2) / (π * r))) := by
   have hs : 0 < sin (π * r) :=
@@ -160,6 +191,9 @@ theorem tendsto_hirschmanPrimitive_atTop {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) 
   change Tendsto (fun t : ℝ => arctan ((exp (π * t) + cos (π * r)) / sin (π * r)) / (π * r)) _ _
   exact (((tendsto_arctan_atTop.mono_right nhdsWithin_le_nhds).comp hin).div_const (π * r))
 
+/--
+@isnad1 id=tendsto.1h1v.s6.e3c24f16e14e from=translated src=- shape=ae8914b8 vocab=d8de2736
+-/
 theorem tendsto_hirschmanPrimitive_atBot {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     Tendsto (hirschmanPrimitive r) atBot (𝓝 ((π / 2 - π * r) / (π * r))) := by
   have hs : 0 < sin (π * r) :=
@@ -175,14 +209,18 @@ theorem tendsto_hirschmanPrimitive_atBot {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) 
   change Tendsto (fun t : ℝ => arctan ((exp (π * t) + cos (π * r)) / sin (π * r)) / (π * r)) _ _
   simpa only [Function.comp_def, zero_add, hc] using hlim
 
-/-- The explicit interior strip kernel is Lebesgue integrable.-/
+/-- The explicit interior strip kernel is Lebesgue integrable.
+@isnad1 id=integrab.1h1v.s5.8e7353697588 from=translated src=- shape=7235649d vocab=2de885fe
+-/
 theorem integrable_hirschmanDensity {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     Integrable (hirschmanDensity r) :=
   integrable_of_even_nonneg_primitive (hirschmanDensity_neg r)
     (fun t => (hirschmanDensity_pos hr t).le) (hasDerivAt_hirschmanPrimitive hr)
     (tendsto_hirschmanPrimitive_atTop hr)
 
-/-- The displayed interior strip kernel has mass exactly one.-/
+/-- The displayed interior strip kernel has mass exactly one.
+@isnad1 id=eq.1h1v.s5.87c459872922 from=translated src=- shape=da1fd0ea vocab=7d1bb24f
+-/
 theorem integral_hirschmanDensity {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     (∫ t, hirschmanDensity r t) = 1 := by
   rw [integral_of_hasDerivAt_of_tendsto (hasDerivAt_hirschmanPrimitive hr)
@@ -191,7 +229,9 @@ theorem integral_hirschmanDensity {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
   field_simp [ne_of_gt hr.1]
   ring
 
-/-- The actual formula has the explicit zero-parameter density as its pointwise limit.-/
+/-- The actual formula has the explicit zero-parameter density as its pointwise limit.
+@isnad1 id=tendsto.0h1v.s5.1224152f332b from=translated src=- shape=0dcaf189 vocab=69e92f4d
+-/
 theorem tendsto_hirschmanDensity_zero (t : ℝ) :
     Tendsto (fun r => hirschmanDensity r t) (𝓝[>] 0) (𝓝 (hirschmanDensityZero t)) := by
   have heq : (fun r => hirschmanDensity r t) =ᶠ[𝓝[>] 0]
@@ -212,7 +252,9 @@ theorem tendsto_hirschmanDensity_zero (t : ℝ) :
     hcont.tendsto.mono_left nhdsWithin_le_nhds
 
 /-- A common integrable majorant for the zero-parameter limit. The constant
-is explicit, so bounded boundary logarithms admit ordinary dominated convergence.-/
+is explicit, so bounded boundary logarithms admit ordinary dominated convergence.
+@isnad1 id=le.2h2v.s6.e6186e6cdf4d from=translated src=- shape=0cb72f7e vocab=7882a8a9
+-/
 theorem hirschmanDensity_le_two_mul_zero {r : ℝ} (hr : 0 < r) (hrhalf : r ≤ 1 / 2) (t : ℝ) :
     hirschmanDensity r t ≤ 2 * hirschmanDensityZero t := by
   have hangle : 0 ≤ π * r := (mul_pos pi_pos hr).le
@@ -237,7 +279,9 @@ theorem hirschmanDensity_le_two_mul_zero {r : ℝ} (hr : 0 < r) (hrhalf : r ≤ 
           (by positivity) (by linarith)
         _ = _ := by unfold hirschmanDensityZero; field_simp
 
-/-- The explicit strip density is continuous in its integration variable.-/
+/-- The explicit strip density is continuous in its integration variable.
+@isnad1 id=continuo.1h1v.s5.bd14771068c4 from=translated src=- shape=ad25baa0 vocab=043d977c
+-/
 @[fun_prop] theorem continuous_hirschmanDensity {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     Continuous (hirschmanDensity r) := by
   unfold hirschmanDensity
@@ -248,7 +292,9 @@ theorem hirschmanDensity_le_two_mul_zero {r : ℝ} (hr : 0 < r) (hrhalf : r ≤ 
     exact ne_of_gt (mul_pos (mul_pos (by norm_num) hr.1) (hirschmanDenominator_pos hr t))
 
 /-- Bounded measurable boundary observables admit the actual weighted
-zero-parameter limit with the exact displayed kernels.-/
+zero-parameter limit with the exact displayed kernels.
+@isnad1 id=tendsto.2h3v.s8.0b02811f2902 from=translated src=- shape=1ba0ce0e vocab=fd572ef5
+-/
 theorem tendsto_integral_hirschmanDensity_smul_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {f : ℝ → E} (hf : AEStronglyMeasurable f volume) {B : ℝ}
@@ -266,7 +312,9 @@ theorem tendsto_integral_hirschmanDensity_smul_zero
   · exact integrable_hirschmanDensityZero.const_mul _
   · exact ae_of_all _ (fun t => (tendsto_hirschmanDensity_zero t).smul tendsto_const_nhds)
 
-/-- The left strip harmonic-measure density is exactly `(1-r)β_(1-r)`.-/
+/-- The left strip harmonic-measure density is exactly `(1-r)β_(1-r)`.
+@isnad1 id=eq.1h2v.s6.96bc9fccda79 from=translated src=- shape=8179892f vocab=551ddcf0
+-/
 theorem one_sub_mul_hirschmanDensity_one_sub {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     (1 - r) * hirschmanDensity (1 - r) t =
       sin (π * r) / (2 * (cosh (π * t) - cos (π * r))) := by
@@ -276,13 +324,17 @@ theorem one_sub_mul_hirschmanDensity_one_sub {r : ℝ} (hr : r ∈ Ioo (0 : ℝ)
   field_simp [hr1]
   ring
 
-/-- The right strip harmonic-measure density is exactly `rβ_r`.-/
+/-- The right strip harmonic-measure density is exactly `rβ_r`.
+@isnad1 id=eq.1h2v.s6.bf41dab9de8b from=translated src=- shape=30949746 vocab=a7a6df51
+-/
 theorem mul_hirschmanDensity {r : ℝ} (hr : r ≠ 0) (t : ℝ) :
     r * hirschmanDensity r t = sin (π * r) / (2 * (cosh (π * t) + cos (π * r))) := by
   unfold hirschmanDensity
   field_simp [hr]
 
-/-- The two explicit strip boundary weights have the required exact masses.-/
+/-- The two explicit strip boundary weights have the required exact masses.
+@isnad1 id=and.1h1v.s7.80470c11df6a from=translated src=- shape=4700f015 vocab=bf297a03
+-/
 theorem integral_boundary_weights_hirschmanDensity {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     (∫ t, (1 - r) * hirschmanDensity (1 - r) t) = 1 - r ∧
       (∫ t, r * hirschmanDensity r t) = r := by

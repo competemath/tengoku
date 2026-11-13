@@ -16,7 +16,9 @@ namespace NLAlib
 /-- Consecutive binomial exponents turn a normalized-root comparison and
 equality into the corresponding integer-power comparison and equality.
 Nonnegative bases include zero. Horn--Johnson (2013), Theorem 7.8.11;
-scalar helper for Szász's inequality.-/
+scalar helper for Szász's inequality.
+@isnad1 id=and.4h4v.s8.7fe8933b3a88 from=translated src=- shape=af1dccfd vocab=65f1efda
+-/
 theorem rpow_inv_choose_compare_iff_pow_compare {N k : ℕ} (hk : 1 ≤ k) (hkn : k < N)
     {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) :
     (y ^ (1 / ((N - 1).choose k : ℝ)) ≤ x ^ (1 / ((N - 1).choose (k - 1) : ℝ)) ↔

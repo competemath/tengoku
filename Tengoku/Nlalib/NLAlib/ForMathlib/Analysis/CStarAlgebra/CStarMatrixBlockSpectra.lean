@@ -47,7 +47,9 @@ def blockDiagonalStarAlgHom :
     ext (i | i) (j | j) <;> simp [CStarMatrix.star_apply, Matrix.fromBlocks]
 
 /-- The native block-diagonal product map is injective, with no nonempty
-coordinate assumptions.-/
+coordinate assumptions.
+@isnad1 id=injectiv.0h3v.s9.3ace0c53fb6a from=translated src=- shape=72f83518 vocab=8f48a377
+-/
 theorem blockDiagonalStarAlgHom_injective :
     Function.Injective (blockDiagonalStarAlgHom (m := m) (n := n) (A := A)) := by
   intro P Q h

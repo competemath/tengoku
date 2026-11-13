@@ -19,7 +19,9 @@ open scoped unitInterval
 namespace Cubical
 
 /-- Any actual continuous nullhomotopy supplies a normalized singular cubical
-filling of the loop. The normalization includes the necessary constant edge.-/
+filling of the loop. The normalization includes the necessary constant edge.
+@isnad1 id=isnullho.0h4v.s6.36df93571c26 from=translated src=- shape=425e263b vocab=c51b6dec
+-/
 theorem isNullHomologous_single_of_pathHomotopy
     {X : Type*} [TopologicalSpace X] {x : X} (γ : Path x x)
     (H : γ.Homotopy (Path.refl x)) :
@@ -44,7 +46,9 @@ theorem isNullHomologous_single_of_pathHomotopy
 
 /-- A concatenation and the sum of its two actual path pieces represent the
 same normalized cubical homology class. Corners and constant path pieces are
-allowed, since this is a purely continuous subdivision argument.-/
+allowed, since this is a purely continuous subdivision argument.
+@isnad1 id=isnullho.0h6v.s8.e5f5855966de from=translated src=- shape=62d2a749 vocab=cb3fdc19
+-/
 theorem isNullHomologous_single_trans_sub
     {X : Type*} [TopologicalSpace X] {a b c : X} (γ : Path a b) (δ : Path b c) :
     IsNullHomologous (Finsupp.single (γ.trans δ).toContinuousMap 1 -

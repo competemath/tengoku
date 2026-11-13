@@ -18,7 +18,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
   [FiniteDimensional ℝ E] [Nontrivial E]
 
 /-- A symmetric operator with same-norm cone majorants has a nonzero
-cone eigenvector at its nonnegative operator norm.-/
+cone eigenvector at its nonnegative operator norm.
+@isnad1 id=ex.2h3v.s9.92035aaaf652 from=translated src=- shape=ef3a343a vocab=dc20182e
+-/
 theorem exists_norm_eigenvector_of_rayleigh_majorants
     (T : E →L[ℝ] E) (hT : T.IsSymmetric) (C : E → Prop)
     (hC : ∀ x, ∃ y, C y ∧ ‖y‖=‖x‖ ∧ |T.reApplyInnerSelf x| ≤ T.reApplyInnerSelf y) :

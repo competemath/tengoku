@@ -21,7 +21,9 @@ A).PosDef ∧ matrixLog (matrixExp A) = A`, on any finite index type (including 
 The second conjunct is Mathlib's `CFC.log_exp` (`matrixLog = CFC.log`, `matrixLog_eq_log`).
 
 Tropp 2015, §2.1.11–12, eq. (2.1.17).
-atlas: matrix-calculus-def-/
+atlas: matrix-calculus-def
+@isnad1 id=and.1h2v.s6.8e41ab700ff6 from=translated src=- shape=a944eade vocab=c048a91a
+-/
 theorem NLAlib.posDef_matrixExp_and_matrixLog_matrixExp {d : Type*} [Fintype d] [DecidableEq d]
     (A : Matrix d d ℂ) (hA : A.IsHermitian) :
     (matrixExp A).PosDef ∧ matrixLog (matrixExp A) = A := by

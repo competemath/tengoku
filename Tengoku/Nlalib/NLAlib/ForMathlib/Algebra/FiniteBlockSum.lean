@@ -11,7 +11,9 @@ with their common refinements. It is a generic finite-sum identity.
 namespace Finset
 
 /-- A sum over `n * m` consecutive indices splits into `n` consecutive blocks
-of size `m`. Empty dimensions are included.-/
+of size `m`. Empty dimensions are included.
+@isnad1 id=eq.0h4v.s6.400c724a49e6 from=translated src=- shape=1bfbb172 vocab=d361aece
+-/
 theorem sum_range_mul_blocks {M : Type*} [AddCommMonoid M]
     (f : ℕ → M) (n m : ℕ) :
     ∑ k ∈ range (n * m), f k = ∑ i ∈ range n, ∑ j ∈ range m, f (i * m + j) := by

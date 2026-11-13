@@ -23,7 +23,9 @@ namespace NLAlib
 /-- Projection onto a real vector is the inner-product projection onto its
 normalized vector, including the zero vector under totalized inverse norms.
 Source: Mathlib's singleton orthogonal projection formula; supports the
-Gram–Schmidt recursion comparison in Trefethen–Bau, Algorithm 7.1.-/
+Gram–Schmidt recursion comparison in Trefethen–Bau, Algorithm 7.1.
+@isnad1 id=eq.0h3v.s9.ed1fc2abdd77 from=translated src=- shape=1a949258 vocab=4366da7d
+-/
 theorem starProjection_singleton_eq_inner_normalized_smul
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] (u w : E) :
     (ℝ ∙ u).starProjection w =
@@ -35,7 +37,9 @@ theorem starProjection_singleton_eq_inner_normalized_smul
   ring
 
 /-- Gram–Schmidt residuals commute with every real linear isometry.
-Source: operator re-derivation `sh:qr-equiv`, using the literal recursion.-/
+Source: operator re-derivation `sh:qr-equiv`, using the literal recursion.
+@isnad1 id=eq.0h6v.s8.45378c020f8d from=translated src=- shape=c75d196b vocab=5b4917f0
+-/
 theorem gramSchmidt_map_linearIsometry
     {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [NormedAddCommGroup F] [InnerProductSpace ℝ F] {k : ℕ}
@@ -53,7 +57,9 @@ theorem gramSchmidt_map_linearIsometry
     L.inner_map_map, L.norm_map]
 
 /-- Positive normalized Gram–Schmidt commutes with real linear isometries.
-Source: operator re-derivation `sh:qr-equiv`.-/
+Source: operator re-derivation `sh:qr-equiv`.
+@isnad1 id=eq.0h6v.s8.37a3fe0101a2 from=translated src=- shape=c75d196b vocab=a023ba8a
+-/
 theorem gramSchmidtNormed_map_linearIsometry
     {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [NormedAddCommGroup F] [InnerProductSpace ℝ F] {k : ℕ}
@@ -63,7 +69,9 @@ theorem gramSchmidtNormed_map_linearIsometry
     L.norm_map, map_smul]
 
 /-- A measurable family of inputs has measurable Gram–Schmidt residuals,
-including zero residuals. Source: operator re-derivation `sh:qr-equiv`.-/
+including zero residuals. Source: operator re-derivation `sh:qr-equiv`.
+@isnad1 id=measurab.1h5v.s6.5c6396498564 from=translated src=- shape=3190c836 vocab=3642210f
+-/
 theorem measurable_gramSchmidt
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] {k : ℕ}
@@ -85,7 +93,9 @@ theorem measurable_gramSchmidt
   exact ((hg.inner (𝕜 := ℝ) (hf j)).div (hg.norm.pow_const 2)).smul hg
 
 /-- A measurable input family has measurable positive normalized Gram–Schmidt
-columns. Source: operator re-derivation `sh:gaussian-qr`.-/
+columns. Source: operator re-derivation `sh:gaussian-qr`.
+@isnad1 id=measurab.1h5v.s6.c1d1b68680bf from=translated src=- shape=3190c836 vocab=d5152bc0
+-/
 theorem measurable_gramSchmidtNormed
     {Ω E : Type*} [MeasurableSpace Ω] [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [MeasurableSpace E] [BorelSpace E] [SecondCountableTopology E] {k : ℕ}
@@ -96,7 +106,9 @@ theorem measurable_gramSchmidtNormed
   exact hg.norm.inv.smul hg
 
 /-- The normalized Gram–Schmidt diagonal coefficient is the positive residual
-norm (zero precisely at breakdown). Source: operator re-derivation `sh:qr-equiv`.-/
+norm (zero precisely at breakdown). Source: operator re-derivation `sh:qr-equiv`.
+@isnad1 id=eq.0h4v.s6.3306c38e54c3 from=translated src=- shape=522c6a2c vocab=9913c11c
+-/
 theorem inner_gramSchmidtNormed_self_eq_norm_gramSchmidt
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {k : ℕ}
     (f : Fin k → E) (j : Fin k) :
@@ -123,7 +135,9 @@ theorem inner_gramSchmidtNormed_self_eq_norm_gramSchmidt
   · field_simp
 
 /-- The positive normalized Gram–Schmidt coordinate matrix is upper triangular.
-Source: operator re-derivation `sh:qr-equiv`.-/
+Source: operator re-derivation `sh:qr-equiv`.
+@isnad1 id=eq.1h5v.s6.ebafc452e558 from=translated src=- shape=9c973899 vocab=e4f82657
+-/
 theorem inner_gramSchmidtNormed_eq_zero_of_lt
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] {k : ℕ}
     (f : Fin k → E) {i j : Fin k} (hij : j < i) :

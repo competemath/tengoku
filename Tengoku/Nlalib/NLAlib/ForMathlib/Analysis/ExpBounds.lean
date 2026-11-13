@@ -29,7 +29,9 @@ open Real
 namespace NLAlib
 
 /-- Pointwise power-series expansion `exp (θ x²) = ∑ₘ θᵐ x^{2m} / m!`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h2v.s6.876b932250af from=translated src=- shape=f9357634 vocab=79ca90af
+-/
 theorem exp_mul_sq_eq_tsum (θ x : ℝ) :
     exp (θ * x ^ 2) =
       ∑' m : ℕ, θ ^ m * x ^ (2 * m) / (Nat.factorial m : ℝ) := by
@@ -39,7 +41,9 @@ theorem exp_mul_sq_eq_tsum (θ x : ℝ) :
   rw [mul_pow, ← pow_mul]
 
 /-- The factorial estimate `(2m)! / m! ≤ (2m + 1)ᵐ`, used to sum the square-exponential moment
-series. Atlas `hanson-wright` (helper).-/
+series. Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h1v.s6.558a8105761f from=translated src=- shape=d24eb0c1 vocab=975ff2ed
+-/
 theorem factorial_two_mul_div_factorial_le_succ_pow (m : ℕ) :
     (Nat.factorial (2 * m) : ℝ) / (Nat.factorial m : ℝ) ≤
       ((2 * m + 1 : ℕ) : ℝ) ^ m := by
@@ -53,7 +57,9 @@ theorem factorial_two_mul_div_factorial_le_succ_pow (m : ℕ) :
   exact_mod_cast hnat
 
 /-- Each (nonnegative) Taylor term of `cosh` is bounded by `cosh` itself:
-`y^{2m} / (2m)! ≤ cosh y`. Atlas `hanson-wright` (helper).-/
+`y^{2m} / (2m)! ≤ cosh y`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h2v.s5.88cd5907a438 from=translated src=- shape=eceb4e02 vocab=564bd2b9
+-/
 theorem cosh_taylor_term_le (y : ℝ) (m : ℕ) :
     y ^ (2 * m) / (Nat.factorial (2 * m) : ℝ) ≤ cosh y := by
   rw [Real.cosh_eq_tsum]
@@ -67,7 +73,9 @@ theorem cosh_taylor_term_le (y : ℝ) (m : ℕ) :
   simpa using hsingle
 
 /-- A global quadratic upper bound for the negative exponential on the nonnegative half-line:
-`exp (-u) ≤ 1 - u + u²` for `u ≥ 0`. Atlas `hanson-wright` (helper).-/
+`exp (-u) ≤ 1 - u + u²` for `u ≥ 0`. Atlas `hanson-wright` (helper).
+@isnad1 id=le.1h1v.s5.c7c6bbc9d82a from=translated src=- shape=776c7eda vocab=cf72a9b2
+-/
 theorem exp_neg_le_one_sub_add_sq {u : ℝ} (hu : 0 ≤ u) :
     exp (-u) ≤ 1 - u + u ^ 2 := by
   have hden_pos : 0 < 1 + u := by linarith
@@ -85,7 +93,9 @@ theorem exp_neg_le_one_sub_add_sq {u : ℝ} (hu : 0 ≤ u) :
     _ ≤ 1 - u + u ^ 2 := hrat
 
 /-- The linear Taylor term cancels after multiplying by `exp (-u)`: `exp (-u) (1 + u) ≤ 1`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h1v.s5.db8c3d9a2dc4 from=translated src=- shape=f45a4e7f vocab=3923db87
+-/
 theorem exp_neg_mul_one_add_le_one (u : ℝ) :
     exp (-u) * (1 + u) ≤ 1 := by
   have h_exp_ge : 1 + u ≤ exp u := by
@@ -99,7 +109,9 @@ theorem exp_neg_mul_one_add_le_one (u : ℝ) :
       simp
 
 /-- Midpoint convexity of `exp`: `exp (a + b) ≤ (exp (2a) + exp (2b)) / 2`.
-Atlas `hanson-wright` (helper).-/
+Atlas `hanson-wright` (helper).
+@isnad1 id=le.0h2v.s6.7eea4290d2f0 from=translated src=- shape=605ff4d7 vocab=5e246283
+-/
 theorem exp_add_le_average_exp_two (a b : ℝ) :
     exp (a + b) ≤ (exp (2 * a) + exp (2 * b)) / 2 := by
   have hconv := convexOn_exp.2 (Set.mem_univ (2 * a)) (Set.mem_univ (2 * b))
@@ -115,7 +127,9 @@ theorem exp_add_le_average_exp_two (a b : ℝ) :
 
 /-- A global first-order exponential remainder bound: `exp x ≤ 1 + x + x² exp |x|`. Used to
 recover the quadratic MGF behavior of a centered variable from an Orlicz exponential moment.
-Atlas `subgaussian-def`, `bernstein-scalar` (analytic helper).-/
+Atlas `subgaussian-def`, `bernstein-scalar` (analytic helper).
+@isnad1 id=le.0h1v.s5.338463cbbd10 from=translated src=- shape=6caf52ae vocab=0ab43161
+-/
 theorem exp_le_one_add_add_sq_mul_exp_abs (x : ℝ) :
     Real.exp x ≤ 1 + x + x ^ 2 * Real.exp |x| := by
   have he : 1 ≤ Real.exp |x| := Real.one_le_exp (abs_nonneg x)
@@ -146,7 +160,9 @@ theorem exp_le_one_add_add_sq_mul_exp_abs (x : ℝ) :
 
 /-- `-ε - (1 - ε) log(1 - ε) ≤ -ε²/2` for `0 ≤ ε < 1`. Proof: `g(ε) = (1-ε)log(1-ε) + ε - ε²/2`
 vanishes at `0` and has derivative `-log(1-ε) - ε ≥ 0`. Tropp 2012, Rem 5.3 (lower tail);
-atlas `matrix-chernoff-sampling` (helper).-/
+atlas `matrix-chernoff-sampling` (helper).
+@isnad1 id=le.2h1v.s6.eaf14d6faf4d from=translated src=- shape=c80bc840 vocab=93b70e76
+-/
 theorem neg_sub_mul_log_one_sub_le {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε < 1) :
     -ε - (1 - ε) * log (1 - ε) ≤ -(ε ^ 2 / 2) := by
   let g : ℝ → ℝ := fun t => (1 - t) * log (1 - t) + t - t ^ 2 / 2
@@ -182,7 +198,9 @@ theorem neg_sub_mul_log_one_sub_le {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε < 1) 
 
 /-- `ε - (1 + ε) log(1 + ε) ≤ -ε²/3` for `0 ≤ ε ≤ 1`. Proof: `log(1+ε) ≥ 2ε/(ε+2)` (first
 term of Mathlib's `hasSum_log_one_add`), and `(1+ε)·2ε/(ε+2) ≥ ε + ε²/3` iff `ε ≤ 1`.
-Tropp 2012, Rem 5.3 (upper tail); atlas `matrix-chernoff-sampling` (helper).-/
+Tropp 2012, Rem 5.3 (upper tail); atlas `matrix-chernoff-sampling` (helper).
+@isnad1 id=le.2h1v.s6.4150d82633d0 from=translated src=- shape=5f465c2b vocab=41da6211
+-/
 theorem sub_mul_log_one_add_le {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε ≤ 1) :
     ε - (1 + ε) * log (1 + ε) ≤ -(ε ^ 2 / 3) := by
   have h := hasSum_log_one_add hε0
@@ -264,7 +282,9 @@ private lemma gFun_nonneg (u : ℝ) : 0 ≤ gFun u := by
 /-- The scalar one-sided Bernstein exponential bound, permitting arbitrarily negative
 `x ≤ L`: `exp(θx) ≤ 1+θx+((θ²/2)/(1-θL/3))x²`.
 Source: Tropp 2015, Lemma 6.6.2; scalar Taylor comparison in operator rederivations
-`eq:scalarbernstein`. Reused by `matrix-bernstein` and `matrix-freedman` (partial).-/
+`eq:scalarbernstein`. Reused by `matrix-bernstein` and `matrix-freedman` (partial).
+@isnad1 id=le.3h3v.s7.50a4ae6e7977 from=translated src=- shape=60238ec0 vocab=8fff36d7
+-/
 theorem exp_mul_le_one_add_mul_add_sq_mul_of_le {L θ x : ℝ} (hθ : 0 < θ) (hθL : θ * L < 3) (hx : x ≤ L) :
     Real.exp (θ * x) ≤ 1 + θ * x + (θ ^ 2 / 2) / (1 - θ * L / 3) * x ^ 2 := by
   have hux : θ * x ≤ θ * L := mul_le_mul_of_nonneg_left hx hθ.le

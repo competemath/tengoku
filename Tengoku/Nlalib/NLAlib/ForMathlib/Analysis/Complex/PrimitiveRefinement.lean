@@ -43,7 +43,9 @@ private theorem mul_add_lt_mul {n m i j : ℕ} (hi : i < n) (hj : j < m) :
 
 /-- A positive-factor uniform refinement preserves the actual local primitive
 transport. The coarse and fine charts may differ, with their respective
-primitive and path-containment hypotheses proved independently.-/
+primitive and path-containment hypotheses proved independently.
+@isnad1 id=eq.9h8v.s9.2e153d471e85 from=translated src=- shape=7ad3be76 vocab=16a39149
+-/
 theorem primitiveSubdivisionTransport_uniform_refinement
     {γ : ℝ → ℂ} (hγ : Continuous γ) {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
     {G H : ℕ → ℂ → ℂ} {U V : ℕ → Set ℂ} {g : ℂ → ℂ}
@@ -92,7 +94,9 @@ theorem primitiveSubdivisionTransport_uniform_refinement
 
 /-- Two independently chosen uniform subdivisions give the same transport
 for a continuous path. A common-multiple refinement is constructed from the
-first chart family, and genuine refinement invariance compares both sums.-/
+first chart family, and genuine refinement invariance compares both sums.
+@isnad1 id=eq.9h8v.s8.158dd6d9870e from=translated src=- shape=3712d121 vocab=398907b3
+-/
 theorem primitiveSubdivisionTransport_uniform_eq
     {γ : ℝ → ℂ} (hγ : Continuous γ) {n m : ℕ} (hn : 0 < n) (hm : 0 < m)
     {G H : ℕ → ℂ → ℂ} {U V : ℕ → Set ℂ} {g : ℂ → ℂ}

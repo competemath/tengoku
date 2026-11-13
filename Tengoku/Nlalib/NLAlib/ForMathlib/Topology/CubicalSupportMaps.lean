@@ -16,7 +16,9 @@ namespace Cubical
 variable {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
 
 /-- The image of an actual active edge under an injective continuous map
-is active, and no cancellation can hide such an edge.-/
+is active, and no cancellation can hide such an edge.
+@isnad1 id=iff.1h5v.s9.2e69d543072e from=translated src=- shape=20c96156 vocab=f9b376b4
+-/
 theorem mem_support_mapOne_comp_iff (f : C(X, Y)) (hf : Function.Injective f)
     (Γ : OneChain X) (γ : C(I, X)) :
     f.comp γ ∈ (mapOne f Γ).support ↔ γ ∈ Γ.support := by
@@ -25,7 +27,9 @@ theorem mem_support_mapOne_comp_iff (f : C(X, Y)) (hf : Function.Injective f)
   rw [Finsupp.mapDomain_apply (comp_injective f hf)]
 
 /-- A continuous chain image transports every actual active-edge property
-that holds on all the images of the original active edges.-/
+that holds on all the images of the original active edges.
+@isnad1 id=mem.1h5v.s9.912cd672c290 from=translated src=- shape=09a09e9b vocab=a0761ddb
+-/
 theorem mapOne_mem_supported (f : C(X, Y)) (Γ : OneChain X) (S : Set C(I, Y))
     (hΓ : ∀ γ ∈ Γ.support, f.comp γ ∈ S) :
     mapOne f Γ ∈ Finsupp.supported ℤ ℤ S := by

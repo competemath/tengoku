@@ -25,7 +25,9 @@ specified values on the axis itself. No regularity across the axis is implicit.-
 def schwarzHalfPlaneExtension (f axis : ℂ → ℂ) (z : ℂ) : ℂ :=
   if 0 < z.im then f z else if z.im < 0 then conj (f (conj z)) else axis z
 
-/-- The reflected extension has Schwarz symmetry away from the real axis.-/
+/-- The reflected extension has Schwarz symmetry away from the real axis.
+@isnad1 id=eq.1h3v.s6.b8d13de252b1 from=translated src=- shape=c2c843ce vocab=5d3655a7
+-/
 theorem schwarzHalfPlaneExtension_conj (f axis : ℂ → ℂ) {z : ℂ}
     (hz : z.im ≠ 0) :
     schwarzHalfPlaneExtension f axis (conj z) =
@@ -35,7 +37,9 @@ theorem schwarzHalfPlaneExtension_conj (f axis : ℂ → ℂ) {z : ℂ}
   · simp [schwarzHalfPlaneExtension, hpos, not_lt_of_ge hpos.le]
 
 /-- Schwarz-symmetric axis values make the reflected extension symmetric also
-at real points. Regularity on the real axis is still a separate property.-/
+at real points. Regularity on the real axis is still a separate property.
+@isnad1 id=eq.1h3v.s7.4b9175fb4947 from=translated src=- shape=87698e10 vocab=d0c2bc4a
+-/
 theorem schwarzHalfPlaneExtension_conj_of_conj_eq_axis (f axis : ℂ → ℂ)
     (haxis : ∀ z : ℂ, axis (conj z) = conj (axis z)) (z : ℂ) :
     schwarzHalfPlaneExtension f axis (conj z) =
@@ -44,7 +48,9 @@ theorem schwarzHalfPlaneExtension_conj_of_conj_eq_axis (f axis : ℂ → ℂ)
   · simp [schwarzHalfPlaneExtension, hz, haxis]
   · exact schwarzHalfPlaneExtension_conj f axis hz
 
-/-- Reflection preserves complex differentiability off the real axis.-/
+/-- Reflection preserves complex differentiability off the real axis.
+@isnad1 id=differen.1h2v.s7.6b0bf75c5318 from=translated src=- shape=93fdede8 vocab=ed95bede
+-/
 theorem differentiableOn_schwarzHalfPlaneExtension (f axis : ℂ → ℂ)
     (hf : ∀ z : ℂ, 0 < z.im → DifferentiableAt ℂ f z) :
     DifferentiableOn ℂ (schwarzHalfPlaneExtension f axis) {z | z.im ≠ 0} := by
@@ -62,7 +68,9 @@ theorem differentiableOn_schwarzHalfPlaneExtension (f axis : ℂ → ℂ)
     simp [schwarzHalfPlaneExtension, hw]
 
 /-- Exterior agreement above the real axis and Schwarz symmetry determine the
-same extension below, while the supplied axis values handle the real points.-/
+same extension below, while the supplied axis values handle the real points.
+@isnad1 id=eq.3h4v.s7.b9bafad41bb0 from=translated src=- shape=cb7c5764 vocab=c11c7276
+-/
 theorem schwarzHalfPlaneExtension_eq_of_conj_eq
     (f g : ℂ → ℂ) {R : ℝ}
     (hupper : ∀ z : ℂ, R < ‖z‖ → 0 < z.im → f z = g z)
@@ -79,7 +87,9 @@ theorem schwarzHalfPlaneExtension_eq_of_conj_eq
 
 /-- The reflected function is holomorphic on the union of the two open
 half-planes and any exterior domain on which the supplied analytic extension
-agrees. This is an actual open domain across the exterior real rays.-/
+agrees. This is an actual open domain across the exterior real rays.
+@isnad1 id=differen.4h3v.s8.af746c1e39ab from=translated src=- shape=84f73c89 vocab=9ee6f3ce
+-/
 theorem differentiableOn_schwarzHalfPlaneExtension_union_exterior
     (f g : ℂ → ℂ) {R : ℝ}
     (hf : ∀ z : ℂ, 0 < z.im → DifferentiableAt ℂ f z)
@@ -97,7 +107,9 @@ theorem differentiableOn_schwarzHalfPlaneExtension_union_exterior
     (isOpen_lt continuous_const continuous_norm)
 
 /-- A common norm bound for the upper function and the supplied axis values
-also bounds its reflected extension on a symmetric parameter ball.-/
+also bounds its reflected extension on a symmetric parameter ball.
+@isnad1 id=le.3h5v.s6.baab27f86840 from=translated src=- shape=73689194 vocab=47df203c
+-/
 theorem norm_schwarzHalfPlaneExtension_le
     (f axis : ℂ → ℂ) {M C : ℝ}
     (hf : ∀ z : ℂ, ‖z‖ ≤ M → 0 < z.im → ‖f z‖ ≤ C)

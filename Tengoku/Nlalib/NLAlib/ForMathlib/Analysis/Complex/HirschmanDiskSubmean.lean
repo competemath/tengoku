@@ -18,7 +18,9 @@ open scoped ComplexConjugate
 
 namespace Complex
 
-/-- The scalar Jensen lower bound at a nonzero center.-/
+/-- The scalar Jensen lower bound at a nonzero center.
+@isnad1 id=le.3h3v.s6.41355657d1fd from=translated src=- shape=7f523d51 vocab=eb3828b3
+-/
 theorem _root_.AnalyticOnNhd.log_norm_center_le_circleAverage {f : ℂ → ℂ} {c : ℂ} {R : ℝ}
     (hR : 0 < R) (hf : AnalyticOnNhd ℂ f (closedBall c R)) (hc : f c ≠ 0) :
     Real.log ‖f c‖ ≤ Real.circleAverage (fun z => Real.log ‖f z‖) c R := by
@@ -45,6 +47,9 @@ theorem _root_.AnalyticOnNhd.log_norm_center_le_circleAverage {f : ℂ → ℂ} 
 def regularizedLogWitness (a : ℂ) (ε : ℝ) (z : ℂ) : ℂ :=
   (conj a * z + ((ε ^ 2 : ℝ) : ℂ)) / ((ε * sqrt (normSq a + ε ^ 2) : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h2v.s6.945506e2ff8f from=translated src=- shape=5780dc22 vocab=5af72b80
+-/
 theorem regularizedLogWitness_self (a : ℂ) {ε : ℝ} (hε : 0 < ε) :
     regularizedLogWitness a ε a = ((sqrt (normSq a + ε ^ 2) / ε : ℝ) : ℂ) := by
   have hP : 0 < normSq a + ε ^ 2 := add_pos_of_nonneg_of_pos (normSq_nonneg _) (sq_pos_of_pos hε)
@@ -57,6 +62,9 @@ theorem regularizedLogWitness_self (a : ℂ) {ε : ℝ} (hε : 0 < ε) :
     sqrt (normSq a + ε ^ 2) ^ 2 by field_simp]
   exact (sq_sqrt hP.le).symm
 
+/--
+@isnad1 id=le.0h3v.s7.cad107832d66 from=translated src=- shape=3b2298e6 vocab=7b4900b8
+-/
 theorem normSq_regularizedLogWitness_numerator_le (a z : ℂ) (ε : ℝ) :
     normSq (conj a * z + ((ε ^ 2 : ℝ) : ℂ)) ≤
       (normSq a + ε ^ 2) * (normSq z + ε ^ 2) := by
@@ -68,7 +76,9 @@ theorem normSq_regularizedLogWitness_numerator_le (a z : ℂ) (ε : ℝ) :
   have hpos := mul_nonneg (sq_nonneg ε) (normSq_nonneg (a - z))
   linarith
 
-/-- The witness's norm is bounded by the regularized norm of its input.-/
+/-- The witness's norm is bounded by the regularized norm of its input.
+@isnad1 id=le.1h3v.s6.cec2791b93cb from=translated src=- shape=ced5d272 vocab=daf69ccf
+-/
 theorem norm_regularizedLogWitness_le (a z : ℂ) {ε : ℝ} (hε : 0 < ε) :
     ‖regularizedLogWitness a ε z‖ ≤ sqrt (normSq z + ε ^ 2) / ε := by
   have hPa : 0 < normSq a + ε ^ 2 := add_pos_of_nonneg_of_pos (normSq_nonneg _) (sq_pos_of_pos hε)
@@ -87,7 +97,9 @@ theorem norm_regularizedLogWitness_le (a z : ℂ) {ε : ℝ} (hε : 0 < ε) :
   simpa only [mul_comm] using h
 
 /-- The genuine regularized logarithm has the disk submean property, including
-functions with zeros. The proof never treats `Real.log 0` as minus infinity.-/
+functions with zeros. The proof never treats `Real.log 0` as minus infinity.
+@isnad1 id=le.3h4v.s7.44001f0865eb from=translated src=- shape=7e34a1ba vocab=3f048462
+-/
 theorem _root_.AnalyticOnNhd.log_sqrt_norm_sq_add_sq_le_circleAverage
     {f : ℂ → ℂ} {c : ℂ} {R ε : ℝ} (hR : 0 < R) (hε : 0 < ε)
     (hf : AnalyticOnNhd ℂ f (closedBall c R)) :

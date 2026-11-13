@@ -38,7 +38,9 @@ def finiteMomentUpdate (ν R : ℝ) (u : ℕ → ℝ) (p : ℕ) : ℝ :=
 
 /-- A common even-power barrier bounds the interpolated odd powers as well.
 Source: Cauchy--Schwarz and monotonicity of the square root.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.4h4v.s6.6fe762396b26 from=translated src=- shape=91480e91 vocab=fe15aaca
+-/
 theorem evenMomentInterpolation_le_pow {u : ℕ → ℝ} {q k : ℕ} {x : ℝ}
     (hu : ∀ p, 0 ≤ u p) (hx : 0 ≤ x) (hk : k ≤ 2 * q)
     (hbound : ∀ p ≤ q, u p ≤ x ^ (2 * p)) :
@@ -58,7 +60,9 @@ theorem evenMomentInterpolation_le_pow {u : ℕ → ℝ} {q k : ℕ} {x : ℝ}
 
 /-- The factorial binomial coefficient is bounded using the terminal moment order.
 Source: descending factorial bounded by a power.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.1h3v.s6.b2a51d82336c from=translated src=- shape=db5ec3e5 vocab=f3a633ba
+-/
 theorem choose_mul_factorial_le_mul_pow {p q k : ℕ} (hpq : p ≤ q) :
     (2 * p).choose (k + 2) * (k + 2).factorial ≤
       (2 * p) * (2 * q) ^ (k + 1) := by
@@ -69,7 +73,9 @@ theorem choose_mul_factorial_le_mul_pow {p q k : ℕ} (hpq : p ≤ q) :
 
 /-- A positive finite geometric convolution is bounded by its infinite envelope.
 Source: the finite geometric identity.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.2h3v.s6.0afc2eaebb48 from=translated src=- shape=78335975 vocab=a7bdb361
+-/
 theorem sum_pow_mul_pow_le_div {a x : ℝ} (ha : 0 ≤ a) (hax : a < x) (n : ℕ) :
     (∑ k ∈ range n, a ^ k * x ^ (n - 1 - k)) ≤ x ^ n / (x - a) := by
   apply (le_div_iff₀ (sub_pos.mpr hax)).2
@@ -80,7 +86,9 @@ theorem sum_pow_mul_pow_le_div {a x : ℝ} (ha : 0 ≤ a) (hax : a < x) (n : ℕ
 /-- The factorial update is bounded by the derivative of a common power barrier.
 Source: Heidary, Appendix `closed:thm:moment`, using a coarser terminal-order
 barrier instead of Gaussian pairing coefficients.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.7h6v.s8.fcda041aa17c from=translated src=- shape=7ba42cb3 vocab=422a6e21
+-/
 theorem finiteMomentUpdate_le {ν R x : ℝ} {u : ℕ → ℝ} {p q : ℕ}
     (hν : 0 ≤ ν) (hR : 0 ≤ R) (hp : 1 ≤ p) (hpq : p ≤ q)
     (hx : 2 * (q : ℝ) * R < x)
@@ -132,7 +140,9 @@ def finiteMomentBarrier (q : ℕ) (ν R t : ℝ) : ℝ :=
 
 /-- The factorial recurrence barrier increases with time.
 Source: monotonicity of the square root.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=monotone.1h3v.s4.ddaf3fae879a from=translated src=- shape=b3277e92 vocab=23454a92
+-/
 theorem finiteMomentBarrier_mono {q : ℕ} {ν R : ℝ} (hν : 0 ≤ ν) :
     Monotone (finiteMomentBarrier q ν R) := by
   intro a b hab
@@ -141,7 +151,9 @@ theorem finiteMomentBarrier_mono {q : ℕ} {ν R : ℝ} (hν : 0 ≤ ν) :
 
 /-- The shifted barrier has the derivative used to compare the finite recurrence.
 Source: the chain rule.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=hasderiv.3h4v.s7.b784177af311 from=translated src=- shape=0e3235a8 vocab=eafd6bf8
+-/
 theorem hasDerivAt_finiteMomentBarrier {q : ℕ} {ν R t : ℝ}
     (hq : 1 ≤ q) (hν : 0 < ν) (ht : 0 ≤ t) :
     HasDerivAt (finiteMomentBarrier q ν R)
@@ -158,7 +170,9 @@ theorem hasDerivAt_finiteMomentBarrier {q : ℕ} {ν R t : ℝ}
 /-- A common power barrier dominates one discrete factorial moment update.
 Source: Heidary, Appendix `closed:thm:moment`, with a shifted terminal-order
 barrier and coarser explicit numerical constants.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.6h6v.s7.08b8b508b089 from=translated src=- shape=8020999e vocab=22796518
+-/
 theorem finiteMomentUpdate_le_barrier_sub {ν R : ℝ} {u : ℕ → ℝ} {p q n : ℕ}
     (hν : 0 < ν) (hR : 0 ≤ R) (hp : 1 ≤ p) (hpq : p ≤ q)
     (hu : ∀ i, 0 ≤ u i)
@@ -219,7 +233,9 @@ theorem finiteMomentUpdate_le_barrier_sub {ν R : ℝ} {u : ℕ → ℝ} {p q n 
 is bounded by an explicit square-root plus linear terminal-order barrier.
 Source: Heidary, Appendix `closed:thm:moment`; numerical constants are coarsened
 to avoid optimizing Gaussian pairing coefficients.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.8h6v.s7.cd82edbc9d4f from=translated src=- shape=ff01eee5 vocab=8b168bb9
+-/
 theorem le_finiteMomentBarrier_pow {ν R : ℝ} {q : ℕ} {M : ℕ → ℕ → ℝ}
     (hν : 0 < ν) (hR : 0 ≤ R) (hq : 1 ≤ q)
     (hM : ∀ n p, 0 ≤ M n p) (hzero : ∀ n, M n 0 = 1)
@@ -248,7 +264,9 @@ theorem le_finiteMomentBarrier_pow {ν R : ℝ} {q : ℕ} {M : ℕ → ℕ → �
 
 /-- At a positive integer time the shifted barrier has the usual
 `2 √(q ν m) + 2 q R` form. Source: the terminal-order finite recurrence comparison.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.2h4v.s6.21e2206b3228 from=translated src=- shape=064e932f vocab=953fa030
+-/
 theorem finiteMomentBarrier_le_sqrt_add_mul {ν R : ℝ} {q m : ℕ}
     (hν : 0 ≤ ν) (hm : 1 ≤ m) :
     finiteMomentBarrier q ν R m ≤
@@ -264,7 +282,9 @@ theorem finiteMomentBarrier_le_sqrt_add_mul {ν R : ℝ} {q m : ℕ}
 /-- The explicit factorial recurrence bound at the terminal moment order.
 Source: Heidary, Appendix `closed:thm:moment`; this gives the same square-root
 and linear scales with coarser explicit numerical constants.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.8h5v.s8.160068f7dbc4 from=translated src=- shape=5e54fb7b vocab=9f61cf70
+-/
 theorem le_sqrt_add_mul_pow_of_finiteMomentUpdate {ν R : ℝ} {q m : ℕ}
     {M : ℕ → ℕ → ℝ} (hν : 0 < ν) (hR : 0 ≤ R) (hq : 1 ≤ q) (hm : 1 ≤ m)
     (hM : ∀ n p, 0 ≤ M n p) (hzero : ∀ n, M n 0 = 1)

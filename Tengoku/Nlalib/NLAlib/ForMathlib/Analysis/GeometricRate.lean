@@ -18,7 +18,9 @@ namespace NLAlib
 /-- The explicit step condition `q ≥ (1+log(D/(η(ρ-1)))/logρ)/2` pays a geometric error
 `D/(ρ^(2q-1)(ρ-1)) ≤ η`, for `D,η>0`, `ρ>1`, and integer `q≥1`.
 Source: solving the geometric rate in Trefethen, ATAP, Theorem 8.2;
-operator rederivations `rt:slq` (analytic SLQ step budget).-/
+operator rederivations `rt:slq` (analytic SLQ step budget).
+@isnad1 id=le.5h4v.s7.f5b9cfce5446 from=translated src=- shape=d9d9c020 vocab=253be381
+-/
 theorem div_pow_sub_one_le_of_log_steps {D η ρ : ℝ} (hD : 0 < D) (hη : 0 < η)
     (hρ : 1 < ρ) {q : ℕ} (hq : 0 < q)
     (hsteps : (1 + log (D / (η * (ρ - 1))) / log ρ) / 2 ≤ (q : ℝ)) :

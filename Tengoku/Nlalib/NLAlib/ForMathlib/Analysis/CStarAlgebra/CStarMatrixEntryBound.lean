@@ -22,7 +22,9 @@ variable {D H : Type*} [Fintype D] [DecidableEq D]
   [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
 /-- The norm of an actual operator-valued C*-matrix is bounded by one
-dimension factor times any common nonnegative bound on its entry norms.-/
+dimension factor times any common nonnegative bound on its entry norms.
+@isnad1 id=le.2h4v.s8.020a10bcec67 from=translated src=- shape=3e6bfd6f vocab=a6b4497a
+-/
 theorem norm_le_card_mul_of_forall_norm_entry_le
     (M : CStarMatrix D D (H →L[ℂ] H)) {r : ℝ} (hr : 0 ≤ r)
     (hM : ∀ i j, ‖M i j‖ ≤ r) : ‖M‖ ≤ (Fintype.card D : ℝ) * r := by

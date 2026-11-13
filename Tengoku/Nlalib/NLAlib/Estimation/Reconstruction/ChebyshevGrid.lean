@@ -29,7 +29,9 @@ def chebyshevGridIndex (g : ℕ) (hg : 0 < g) (x : ℝ) : Fin g :=
   ⟨min ⌊(g : ℝ) * Real.arccos x / Real.pi⌋₊ (g - 1),
     lt_of_le_of_lt (Nat.min_le_right _ _) (by omega)⟩
 
-/-- The grid assignment is measurable, including both interval endpoints.-/
+/-- The grid assignment is measurable, including both interval endpoints.
+@isnad1 id=measurab.1h1v.s4.368e0b364231 from=translated src=- shape=be9399ee vocab=6b82b18d
+-/
 theorem measurable_chebyshevGridIndex (g : ℕ) (hg : 0 < g) :
     Measurable (chebyshevGridIndex g hg) := by
   have hm : Measurable (fun x => min ⌊(g : ℝ) * Real.arccos x / Real.pi⌋₊ (g - 1)) :=
@@ -39,7 +41,9 @@ theorem measurable_chebyshevGridIndex (g : ℕ) (hg : 0 < g) :
     ⟨Fin.val_injective, measurable_of_finite _, fun s _ => (Set.to_countable _).measurableSet⟩
   exact he.measurable_comp_iff.mp hm
 
-/-- The selected grid midpoint is within half an angular cell.-/
+/-- The selected grid midpoint is within half an angular cell.
+@isnad1 id=le.1h2v.s6.49d2d6fdbc0e from=translated src=- shape=0797ea59 vocab=6e4bcd74
+-/
 theorem abs_arccos_sub_chebyshevGridAngle_le (g : ℕ) (hg : 0 < g) (x : ℝ) :
     |Real.arccos x - chebyshevGridAngle g (chebyshevGridIndex g hg x)| ≤ Real.pi / (2 * g) := by
   let y : ℝ := (g : ℝ) * Real.arccos x / Real.pi
@@ -73,7 +77,9 @@ theorem abs_arccos_sub_chebyshevGridAngle_le (g : ℕ) (hg : 0 < g) (x : ℝ) :
     _ = _ := by ring
 
 /-- Angular quantization controls degree-`j` Chebyshev values by `j` times
-half the angular cell width; it avoids the quadratic endpoint derivative bound.-/
+half the angular cell width; it avoids the quadratic endpoint derivative bound.
+@isnad1 id=le.2h3v.s7.0460dc611180 from=translated src=- shape=b3efda2c vocab=5eeba016
+-/
 theorem abs_eval_chebyshev_sub_grid_le (g : ℕ) (hg : 0 < g) {x : ℝ}
     (hx : x ∈ Set.Icc (-1 : ℝ) 1) (j : ℕ) :
     |(T ℝ (j : ℤ)).eval x - (T ℝ (j : ℤ)).eval (chebyshevZero g (chebyshevGridIndex g hg x))| ≤

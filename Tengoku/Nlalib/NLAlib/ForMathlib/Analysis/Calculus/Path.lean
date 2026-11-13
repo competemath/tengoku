@@ -15,7 +15,9 @@ open Set
 open scoped unitInterval
 namespace Path
 
-/-- A straight native path is smooth within its actual parameter interval.-/
+/-- A straight native path is smooth within its actual parameter interval.
+@isnad1 id=contdiff.0h4v.s6.0c091bd0c333 from=translated src=- shape=0c40d8ee vocab=ec0f5cf8
+-/
 theorem contDiffOn_extend_segment {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (a b : E) (n : WithTop ℕ∞) : ContDiffOn ℝ n (Path.segment a b).extend I := by
   have h : ContDiff ℝ n (AffineMap.lineMap a b : ℝ → E) := by

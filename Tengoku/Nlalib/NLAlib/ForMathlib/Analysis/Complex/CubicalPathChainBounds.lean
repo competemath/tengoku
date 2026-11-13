@@ -17,7 +17,9 @@ namespace Complex
 
 /-- The actual total length of the finite path chain is the sum of the
 native lengths of its actual pieces, including repetitions and empty families.
-No smoothness at the joins is assumed.-/
+No smoothness at the joins is assumed.
+@isnad1 id=eq.0h4v.s8.4a275e68d3f6 from=translated src=- shape=31bac8e8 vocab=2ab88ce0
+-/
 theorem cubicalLength_pathChain_eq_sum {Ω : Set ℂ} {n : ℕ}
     (p : Fin (n + 1) → Ω) (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) :
     cubicalLength (Cubical.pathChain p γ) =

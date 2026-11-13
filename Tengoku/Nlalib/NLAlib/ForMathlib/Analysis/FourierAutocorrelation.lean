@@ -19,7 +19,9 @@ open scoped ComplexConjugate
 
 namespace Finset
 
-/-- Reindex a strict finite triangle by its positive diagonal displacement.-/
+/-- Reindex a strict finite triangle by its positive diagonal displacement.
+@isnad1 id=eq.0h3v.s6.6a2b0476a9ce from=translated src=- shape=58e6da37 vocab=0bc3c066
+-/
 theorem sum_range_sum_range_eq_sum_displacements {A : Type*} [AddCommMonoid A]
     (f : ℕ → ℕ → A) (n : ℕ) :
     (∑ l ∈ range n, ∑ j ∈ range l, f j l) =
@@ -59,7 +61,9 @@ namespace NLAlib
 
 open scoped NLAlib.TwoPi
 
-/-- The exact autocorrelation expansion of a finite Fourier sum with real weights.-/
+/-- The exact autocorrelation expansion of a finite Fourier sum with real weights.
+@isnad1 id=eq.0h3v.s9.12d6f981a65c from=translated src=- shape=44a5ad03 vocab=8a4acced
+-/
 theorem normSq_sum_real_mul_fourier_eq_autocorrelation
     (v : ℕ → ℝ) (n : ℕ) (t : AddCircle (2 * Real.pi)) :
     Complex.normSq (∑ j ∈ range n, (v j : ℂ) * fourier (j : ℤ) t) =

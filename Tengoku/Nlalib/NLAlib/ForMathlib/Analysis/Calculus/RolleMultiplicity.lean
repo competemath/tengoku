@@ -51,7 +51,9 @@ multiplicities, has a zero of its `(q+1)`st derivative in the outer open interva
 Repeated nodes must be interior, so only continuity of higher derivatives on that open
 interval is needed. Two distinct extreme nodes are required.
 Source: repeated Rolle argument for Hermite interpolation, operator derivations (AQ4).
-This is a general real-analysis helper for the Gauss/Radau/Lobatto remainders.-/
+This is a general real-analysis helper for the Gauss/Radau/Lobatto remainders.
+@isnad1 id=ex.7h5v.s9.9f1fc965a717 from=translated src=- shape=a5edab0c vocab=7bc9b2a1
+-/
 theorem exists_iteratedDeriv_eq_zero_of_monotone_with_multiplicities
     {q : ℕ} {f : ℝ → ℝ} {a b : ℝ} {v : Fin (q + 2) → ℝ}
     (hv : Monotone v) (hspan : v 0 < v (Fin.last _))
@@ -173,7 +175,9 @@ private theorem card_filter_ge_of_monotone_eq {N : ℕ} {w : Fin N → ℝ}
 distinct zeros occur, then the `(q+1)`st derivative vanishes in the outer open interval.
 Only repeated zeros must be interior. This directly accepts the doubled Gauss nodes
 plus a simple evaluation point, or simple prescribed Radau/Lobatto endpoints.
-Source: operator derivations, finite multiplicity Rolle argument following (AQ4).-/
+Source: operator derivations, finite multiplicity Rolle argument following (AQ4).
+@isnad1 id=ex.7h5v.s8.00af031aa96d from=translated src=- shape=d9f547a4 vocab=ebf680ca
+-/
 theorem exists_iteratedDeriv_eq_zero_of_multiset_multiplicities
     {q : ℕ} {f : ℝ → ℝ} {a b : ℝ} (m : Multiset ℝ) (hm : m.card = q + 2)
     (hdistinct : ∃ x ∈ m, ∃ y ∈ m, x ≠ y)

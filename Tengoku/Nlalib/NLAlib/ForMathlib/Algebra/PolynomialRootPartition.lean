@@ -16,7 +16,9 @@ namespace Polynomial
 variable {K : Type*} [Field K] [IsAlgClosed K]
 
 /-- A decidable partition of the roots of a monic polynomial gives coprime
-monic factors with the specified root multisets, including multiplicity.-/
+monic factors with the specified root multisets, including multiplicity.
+@isnad1 id=ex.1h3v.s7.acd2fa94d379 from=translated src=- shape=236824ea vocab=f17c1089
+-/
 theorem exists_coprime_factors_roots_partition (p : K[X]) (hp : p.Monic)
     (P : K → Prop) [DecidablePred P] :
     ∃ f g : K[X], f.Monic ∧ g.Monic ∧ f * g = p ∧ IsCoprime f g ∧

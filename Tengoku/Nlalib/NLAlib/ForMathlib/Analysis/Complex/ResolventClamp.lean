@@ -39,7 +39,9 @@ private theorem Complex.norm_inv_sub_inv_sub_real_le {z : ℂ} (hz : 0 < z.im)
     _ ≤ _ := by simpa only [one_div] using one_div_le_one_div_of_le hL hden
 
 /-- Actual scalar resolvents at purely imaginary height differ by at most
-`1/L` after projecting the real spectral parameter to `[-L,L]`.-/
+`1/L` after projecting the real spectral parameter to `[-L,L]`.
+@isnad1 id=le.3h3v.s6.bebde13bbf3f from=translated src=- shape=32cf9370 vocab=53a221f7
+-/
 theorem Complex.norm_inv_sub_real_sub_inv_sub_clamp_le {z : ℂ}
     (hre : z.re=0) (hz : 0 < z.im) {L : ℝ} (hL : 0 < L) (x : ℝ) :
     ‖(z-(x : ℂ))⁻¹-

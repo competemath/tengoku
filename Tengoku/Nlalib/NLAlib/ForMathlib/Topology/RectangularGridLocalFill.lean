@@ -37,7 +37,9 @@ def localComparisonChain (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     Finsupp.single (quantizerConnector x y q (γ 0)) 1
 
 /-- The original subpath, connectors and actual finite grid walk have
-exactly zero native endpoint boundary.-/
+exactly zero native endpoint boundary.
+@isnad1 id=eq.0h7v.s8.3fc87ee35331 from=translated src=- shape=3e2e4df7 vocab=dd935a4e
+-/
 theorem boundaryOne_localComparisonChain
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (q : C → Fin (m + 1) × Fin (n + 1)) (γ : C(I, C)) :
@@ -49,7 +51,9 @@ theorem boundaryOne_localComparisonChain
   abel
 
 /-- All active paths of the actual local comparison lie in a controlled
-ball around the original initial point. The quantizer is allowed to be discontinuous.-/
+ball around the original initial point. The quantizer is allowed to be discontinuous.
+@isnad1 id=mem.6h10v.s10.b3b30616acf1 from=translated src=- shape=5f8d485f vocab=333f718f
+-/
 theorem localComparisonChain_mapsTo_ball
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x) (hy : Monotone y)
     (q : C → Fin (m + 1) × Fin (n + 1)) {h : ℝ} (hh : 0 < h)
@@ -99,7 +103,9 @@ theorem localComparisonChain_mapsTo_ball
 
 /-- The actual comparison of a sufficiently short path with its finite
 canonical grid walk bounds a finite normalized two-chain in a small ball.
-This is a genuine local straight-line contraction, with no assumed homotopy or period.-/
+This is a genuine local straight-line contraction, with no assumed homotopy or period.
+@isnad1 id=ex.5h8v.s12.d4326168e76b from=translated src=- shape=26fca3c6 vocab=a5419a4e
+-/
 theorem exists_isNullHomologous_mapOne_eq_localComparisonChain
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x) (hy : Monotone y)
     (q : C → Fin (m + 1) × Fin (n + 1)) {h : ℝ} (hh : 0 < h)
@@ -117,7 +123,9 @@ theorem exists_isNullHomologous_mapOne_eq_localComparisonChain
 
 /-- The same explicit local filling lies in a common small neighborhood of
 the original trace. This common domain permits finite sums of the fillings
-while keeping every actual square close to that trace.-/
+while keeping every actual square close to that trace.
+@isnad1 id=ex.5h8v.s11.9ac230bed860 from=translated src=- shape=c0151e66 vocab=7ed29e1b
+-/
 theorem exists_isNullHomologous_mapOne_eq_localComparisonChain_thickening
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x) (hy : Monotone y)
     (q : C → Fin (m + 1) × Fin (n + 1)) {h : ℝ} (hh : 0 < h)

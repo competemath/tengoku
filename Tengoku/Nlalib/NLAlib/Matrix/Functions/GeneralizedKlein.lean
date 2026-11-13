@@ -48,7 +48,9 @@ private theorem re_trace_pair (U V : Matrix d d 𝕜) (a b : d → ℝ) :
 `∑ i, Re tr (f i (A) · g i (H)) ≥ 0` for Hermitian `A`, `H` with spectra in `I`.
 Tropp 2015, Prop. 8.3.5. The convexity hypothesis on `I` is not used by the proof; it is kept to
 match the source.
-atlas: operator-monotone-convex-/
+atlas: operator-monotone-convex
+@isnad1 id=le.6h8v.s9.cb8c8b95ca90 from=translated src=- shape=bdad9e8c vocab=10929f7d
+-/
 theorem generalized_klein {N : ℕ}
     (I : Set ℝ) (_hI : Convex ℝ I) (f g : Fin N → ℝ → ℝ)
     (hfg : ∀ a ∈ I, ∀ h ∈ I, 0 ≤ ∑ i, f i a * g i h)

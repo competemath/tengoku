@@ -22,7 +22,9 @@ open scoped Topology
 namespace Complex
 
 /-- A circle tangent to the real axis lies entirely in the open upper
-half-plane. The squared-norm criterion also gives an explicit enclosure test.-/
+half-plane. The squared-norm criterion also gives an explicit enclosure test.
+@isnad1 id=iff.1h2v.s6.b483fc4cc667 from=translated src=- shape=8c75b8a2 vocab=6143e9da
+-/
 theorem dist_mul_I_lt_iff {z : ℂ} {r : ℝ} (hr : 0 < r) :
     dist z ((r : ℂ) * I) < r ↔ ‖z‖ ^ 2 < 2 * r * z.im := by
   have heq : dist z ((r : ℂ) * I) ^ 2 = ‖z‖ ^ 2 + r ^ 2 - 2 * r * z.im := by
@@ -35,14 +37,18 @@ theorem dist_mul_I_lt_iff {z : ℂ} {r : ℝ} (hr : 0 < r) :
   · intro h
     nlinarith [dist_nonneg (x := z) (y := (r : ℂ) * I)]
 
-/-- Every point of a circle tangent from above has positive imaginary part.-/
+/-- Every point of a circle tangent from above has positive imaginary part.
+@isnad1 id=lt.2h2v.s5.ace2317b0a05 from=translated src=- shape=2d60faae vocab=ed10a180
+-/
 theorem im_pos_of_dist_mul_I_lt {z : ℂ} {r : ℝ} (hr : 0 < r)
     (hz : dist z ((r : ℂ) * I) < r) : 0 < z.im := by
   have h := (dist_mul_I_lt_iff hr).mp hz
   nlinarith [sq_nonneg ‖z‖]
 
 /-- One tangent circle selects exactly the upper-half-plane points of any
-finite set. The real-axis points, if present, lie outside the open circle.-/
+finite set. The real-axis points, if present, lie outside the open circle.
+@isnad1 id=ex.0h1v.s6.5cde742889e1 from=translated src=- shape=0cf7b315 vocab=fd82c3dc
+-/
 theorem exists_pos_dist_mul_I_lt_iff_im_pos (s : Finset ℂ) :
     ∃ r : ℝ, 0 < r ∧ ∀ z ∈ s, dist z ((r : ℂ) * I) < r ↔ 0 < z.im := by
   let f : ℂ → ℝ := fun z => ‖z‖ ^ 2 / (2 * |z.im|)
@@ -63,7 +69,9 @@ theorem exists_pos_dist_mul_I_lt_iff_im_pos (s : Finset ℂ) :
 
 /-- An upper hemicontinuous finite cluster avoiding the real axis has one
 locally valid circle selecting precisely its upper points. The same circle
-also avoids every nearby cluster point, including repeated spectral roots.-/
+also avoids every nearby cluster point, including repeated spectral roots.
+@isnad1 id=ex.3h3v.s7.5c4fda844d56 from=translated src=- shape=4fa3b0c8 vocab=011fd57e
+-/
 theorem exists_tangent_circle_eventually_mem_iff_im_pos
     {α : Type*} [TopologicalSpace α] {F : α → Set ℂ} {a : α}
     (hF : UpperHemicontinuousAt F a) (hfin : (F a).Finite)

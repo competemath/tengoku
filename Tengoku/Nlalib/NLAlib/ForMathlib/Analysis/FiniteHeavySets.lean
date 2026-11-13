@@ -18,7 +18,9 @@ noncomputable section
 namespace Finset
 
 /-- An energy budget permits fewer than `r` coordinates strictly above
-`a / sqrt r`. The ambient finite type may be empty.-/
+`a / sqrt r`. The ambient finite type may be empty.
+@isnad1 id=lt.3h4v.s7.9c9fe69c55b8 from=translated src=- shape=afed15eb vocab=3f670ff9
+-/
 theorem card_filter_div_sqrt_lt_of_sum_sq_le
     {ι : Type*} [Fintype ι] (f : ι → ℝ) {a : ℝ} (ha : 0 ≤ a)
     (hsum : ∑ i, f i ^ 2 ≤ a ^ 2)
@@ -47,7 +49,9 @@ theorem card_filter_div_sqrt_lt_of_sum_sq_le
   have hmul := mul_le_mul_of_nonneg_right hcard' (sq_nonneg (a / Real.sqrt r))
   nlinarith
 
-/-- A predicate supported on the first `r` positions has at most `r` members.-/
+/-- A predicate supported on the first `r` positions has at most `r` members.
+@isnad1 id=le.1h3v.s5.aaf7b24f5a9c from=translated src=- shape=ce7c1c83 vocab=30a281b7
+-/
 theorem card_filter_le_of_imp_val_lt
     {n r : ℕ} (P : Fin n → Prop) [DecidablePred P]
     (h : ∀ i, P i → i.val < r) :
@@ -62,7 +66,9 @@ theorem card_filter_le_of_imp_val_lt
   · exact (card_le_univ _).trans (by simpa using Nat.le_of_not_gt hr)
 
 /-- If all coordinates from position `r` onward are small, at most `r`
-coordinates exceed that threshold.-/
+coordinates exceed that threshold.
+@isnad1 id=le.1h4v.s5.24caf2031f17 from=translated src=- shape=ff9cd5f7 vocab=16399131
+-/
 theorem card_filter_lt_le_of_le_from
     {n r : ℕ} (f : Fin n → ℝ) {t : ℝ} (h : ∀ i, r ≤ i.val → f i ≤ t) :
     ((univ : Finset (Fin n)).filter fun i => t < f i).card ≤ r := by
@@ -74,7 +80,9 @@ theorem card_filter_lt_le_of_le_from
 
 /-- A nonnegative logarithmically weighted envelope bounds every coordinate
 past a prescribed position. Positions are zero based, and the weight is
-`sqrt (log (i+1))`, so the first coordinate is harmless.-/
+`sqrt (log (i+1))`, so the first coordinate is harmless.
+@isnad1 id=le.4h5v.s6.ed9581cd905f from=translated src=- shape=5954bf2f vocab=b3ba6458
+-/
 theorem le_div_sqrt_log_of_weighted_le
     {n : ℕ} (f : Fin n → ℝ) {b : ℝ} (hf : ∀ i, 0 ≤ f i)
     (hweight : ∀ i, f i * Real.sqrt (Real.log (i.val + 1)) ≤ b)
@@ -90,7 +98,9 @@ theorem le_div_sqrt_log_of_weighted_le
   exact_mod_cast Nat.le_trans hi (Nat.le_add_right i.val 1)
 
 /-- A logarithmic envelope implies the corresponding heavy-set counting
-bound, without requiring the coordinates to be distinct or strictly ordered.-/
+bound, without requiring the coordinates to be distinct or strictly ordered.
+@isnad1 id=le.3h4v.s7.f423d423db9d from=translated src=- shape=44db6cd5 vocab=607078d0
+-/
 theorem card_filter_div_sqrt_log_le_of_weighted_le
     {n : ℕ} (f : Fin n → ℝ) {b : ℝ} (hf : ∀ i, 0 ≤ f i)
     (hweight : ∀ i, f i * Real.sqrt (Real.log (i.val + 1)) ≤ b)

@@ -21,7 +21,9 @@ variable {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
 
 /-- If the actual endpoint change is exactly the deterministic reference
 change, the resolvent difference factors through the reference difference
-with the two genuine perturbation correction factors.-/
+with the two genuine perturbation correction factors.
+@isnad1 id=eq.5h7v.s8.d29d93e64978 from=translated src=- shape=7d6a8b8b vocab=3e933c6e
+-/
 theorem resolvent_sub_eq_reference_sub_factorization {a b d e : A} {z : R}
     (ha : z ∈ resolventSet R a) (hb : z ∈ resolventSet R b)
     (hd : z ∈ resolventSet R d) (he : z ∈ resolventSet R e)
@@ -47,7 +49,9 @@ section ScalarShift
 variable {R A : Type*} [CommRing R] [Ring A] [Algebra R A]
 
 /-- Shifting the element and spectral parameter by the same scalar leaves
-the native total resolvent unchanged, including at nonunits.-/
+the native total resolvent unchanged, including at nonunits.
+@isnad1 id=eq.0h5v.s6.521b40499ed0 from=translated src=- shape=278140a1 vocab=ee936226
+-/
 theorem resolvent_sub_smul_one_sub_eq (a : A) (t z : R) :
     resolvent (a-t•(1 : A)) (z-t)=resolvent a z := by
   dsimp only [resolvent]
@@ -68,7 +72,9 @@ private theorem norm_one_compression_le : ‖(1 : A)‖ ≤ 1 := by
 
 /-- A genuine supported reference-resolvent difference of size `1/(Kσ)`
 controls the actual perturbed resolvents by `9σ/(Kη²)`, uniformly in the
-size of the deterministic references.-/
+size of the deterministic references.
+@isnad1 id=le.11h8v.s9.d1246893ff30 from=translated src=- shape=bd761a9a vocab=86f6931a
+-/
 theorem norm_resolvent_sub_le_of_reference_difference
     {a b d e : A} (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b)
     (hd : IsSelfAdjoint d) (he : IsSelfAdjoint e) {z : ℂ} (hz : 0<z.im)

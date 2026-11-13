@@ -18,7 +18,9 @@ open scoped unitInterval
 namespace Cubical
 
 /-- The actual linearly interpolated parameter of a uniform subedge is no
-farther than one mesh width from that subedge's initial parameter.-/
+farther than one mesh width from that subedge's initial parameter.
+@isnad1 id=le.2h3v.s7.19d29e365364 from=translated src=- shape=e28f7690 vocab=974fa51c
+-/
 theorem dist_convexComb_uniformNode_le {n i : ℕ} (hn : 0 < n) (hi : i < n) (t : I) :
     dist (Set.Icc.convexComb (uniformNode n i) (uniformNode n (i + 1)) t) (uniformNode n i) ≤
       1 / (n : ℝ) := by
@@ -32,7 +34,9 @@ theorem dist_convexComb_uniformNode_le {n i : ℕ} (hn : 0 < n) (hi : i < n) (t 
   exact div_le_div_of_nonneg_right t.property.2 hn'.le
 
 /-- Every continuous path in a normed group has an actual positive uniform
-subdivision with every point of each subedge within `ε` of its initial point.-/
+subdivision with every point of each subedge within `ε` of its initial point.
+@isnad1 id=ex.1h3v.s8.a2e91a0414d8 from=translated src=- shape=680e28a4 vocab=ae1a2d86
+-/
 theorem exists_uniform_subdivision_image_small
     {E : Type*} [NormedAddCommGroup E] (γ : C(I, E)) {ε : ℝ} (hε : 0 < ε) :
     ∃ n : ℕ, 0 < n ∧ ∀ i < n, ∀ t : I,

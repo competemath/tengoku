@@ -22,7 +22,9 @@ variable {m n p q : Type*} [Fintype m] [Fintype n] [Fintype p] [Fintype q]
 variable {𝕜 : Type*} [RCLike 𝕜]
 
 /-- Relabeling rows and columns preserves the full sesquilinear trace
-pairing, including its imaginary part over `ℂ`.-/
+pairing, including its imaginary part over `ℂ`.
+@isnad1 id=eq.0h9v.s8.dc501b92d5a3 from=translated src=- shape=81a60385 vocab=6182faab
+-/
 theorem trace_conjTranspose_mul_reindex (A B : Matrix m n 𝕜)
     (em : m ≃ p) (en : n ≃ q) :
     ((A.reindex em en)ᴴ * B.reindex em en).trace = (Aᴴ * B).trace := by
@@ -35,7 +37,9 @@ theorem trace_conjTranspose_mul_reindex (A B : Matrix m n 𝕜)
     _ = ∑ j : n, ∑ i : m, star (A i j) * B i j :=
       Finset.sum_congr rfl (fun j _ => em.symm.sum_comp (fun i => star (A i j) * B i j))
 
-/-- Relabeling rows and columns preserves the Frobenius pairing, over `ℝ` or `ℂ`.-/
+/-- Relabeling rows and columns preserves the Frobenius pairing, over `ℝ` or `ℂ`.
+@isnad1 id=eq.0h9v.s7.c0cfa822f975 from=translated src=- shape=e79b5574 vocab=e8b6c3fe
+-/
 theorem frobInner_reindex (A B : Matrix m n 𝕜) (em : m ≃ p) (en : n ≃ q) :
     frobInner (A.reindex em en) (B.reindex em en) = frobInner A B := by
   simp only [frobInner, Matrix.reindex_apply, Matrix.submatrix_apply]
@@ -48,14 +52,18 @@ theorem frobInner_reindex (A B : Matrix m n 𝕜) (em : m ≃ p) (en : n ≃ q) 
       Finset.sum_congr rfl (fun i _ => en.symm.sum_comp (fun j => star (A i j) * B i j))
 
 /-- Relabeling rows and columns preserves the squared Frobenius norm, over `ℝ` or `ℂ`.
-Horn–Johnson §5.6; atlas `norms-frob-spec`. Empty indices are allowed.-/
+Horn–Johnson §5.6; atlas `norms-frob-spec`. Empty indices are allowed.
+@isnad1 id=eq.0h8v.s6.65df885e9743 from=translated src=- shape=396fe237 vocab=e5e29c31
+-/
 theorem frobSq_reindex (A : Matrix m n 𝕜) (em : m ≃ p) (en : n ≃ q) :
     frobSq (A.reindex em en) = frobSq A :=
   frobInner_reindex A A em en
 
 open scoped Matrix.Norms.L2Operator in
 /-- Relabeling rows and columns preserves the Frobenius norm, over `ℝ` or `ℂ`.
-Horn–Johnson §5.6; atlas `norms-frob-spec`.-/
+Horn–Johnson §5.6; atlas `norms-frob-spec`.
+@isnad1 id=eq.0h8v.s6.f909b3bedbae from=translated src=- shape=396fe237 vocab=8d5eef7a
+-/
 theorem frobNorm_reindex (A : Matrix m n 𝕜) (em : m ≃ p) (en : n ≃ q) :
     frobNorm (A.reindex em en) = frobNorm A := by
   rw [frobNorm, frobNorm, frobSq_reindex]
@@ -71,7 +79,9 @@ private theorem reindex_frame_orth [DecidableEq m] (em : m ≃ p) :
 
 open scoped Matrix.Norms.L2Operator in
 /-- Equivalent row and column labels preserve the spectral norm, by
-unitary permutation frames; over `ℝ` or `ℂ`. Horn–Johnson §5.6; atlas `norms-frob-spec`.-/
+unitary permutation frames; over `ℝ` or `ℂ`. Horn–Johnson §5.6; atlas `norms-frob-spec`.
+@isnad1 id=eq.0h8v.s7.e4cc27a24665 from=translated src=- shape=f6756763 vocab=18ea0bb1
+-/
 theorem specNorm_reindex [DecidableEq m] [DecidableEq n] [DecidableEq p] [DecidableEq q]
     (A : Matrix m n 𝕜) (em : m ≃ p) (en : n ≃ q) :
     specNorm (A.reindex em en) = specNorm A := by
@@ -94,7 +104,9 @@ theorem specNorm_reindex [DecidableEq m] [DecidableEq n] [DecidableEq p] [Decida
 
 /-- Equivalent row, middle, and column labels commute with rectangular matrix
 multiplication. Mathlib's submatrix multiplication transport; supports
-`wedin-sin-theta` on arbitrary finite coordinate labels.-/
+`wedin-sin-theta` on arbitrary finite coordinate labels.
+@isnad1 id=eq.0h11v.s8.eb44d3f3984a from=translated src=- shape=e32a4066 vocab=45a1dcab
+-/
 theorem mul_reindex {m n p m' n' p' : Type*} [Fintype n] [Fintype n']
     (A : Matrix m n ℝ) (B : Matrix n p ℝ)
     (em : m ≃ m') (en : n ≃ n') (ep : p ≃ p') :

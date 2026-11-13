@@ -14,7 +14,9 @@ namespace NLAlib
 
 /-- Reflection followed by translation preserves the actual Lipschitz constant.
 Source: real distance invariance; helper for operator rederivations `rt:periodic-jackson`
-and atlas `jackson-lipschitz`. Relocated unchanged from `Polynomial/JacksonPeriodic`.-/
+and atlas `jackson-lipschitz`. Relocated unchanged from `Polynomial/JacksonPeriodic`.
+@isnad1 id=lipschit.1h3v.s5.a713cecebc42 from=translated src=- shape=05287c8b vocab=12a3760c
+-/
 theorem lipschitzWith_comp_const_sub {g : ℝ → ℝ} {L : NNReal} (hg : LipschitzWith L g) (x : ℝ) :
     LipschitzWith L (fun t : ℝ => g (x - t)) := by
   have hlin : LipschitzWith 1 (fun t : ℝ => x - t) := by

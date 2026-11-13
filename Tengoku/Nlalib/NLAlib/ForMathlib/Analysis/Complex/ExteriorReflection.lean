@@ -40,7 +40,9 @@ private theorem tendsto_affine_ratio {f : ℂ → ℂ} {d c : ℂ}
 
 /-- A finite exterior family preserved as an unlabelled family by conjugation
 is eventually Schwarz-symmetric label by label when its affine slopes are real
-and pairwise distinct. The constant terms may initially be arbitrary complex numbers.-/
+and pairwise distinct. The constant terms may initially be arbitrary complex numbers.
+@isnad1 id=eventual.3h4v.s8.26347fbce694 from=translated src=- shape=8ce1dd17 vocab=f899bf8d
+-/
 theorem eventually_conj_eq_of_tendsto_affine_of_finite_matching
     {ι : Type*} [Finite ι] (f : ι → ℂ → ℂ) (d : ι → ℝ) (c : ι → ℂ)
     (hd : Function.Injective d)

@@ -17,7 +17,9 @@ open scoped unitInterval Topology
 namespace Complex
 
 /-- Exact-form FTC for an actual native C1 path. A one-cell instance of the
-proved finite primitive transport supplies all integrability hypotheses.-/
+proved finite primitive transport supplies all integrability hypotheses.
+@isnad1 id=eq.4h6v.s9.422a4c4aa5dd from=translated src=- shape=8b7fc11d vocab=3dde7ffa
+-/
 theorem curveIntegral_eq_sub_of_hasDerivAt {a b : ℂ} (γ : Path a b)
     {U : Set ℂ} {G g : ℂ → ℂ}
     (hG : ∀ z ∈ U, HasDerivAt G (g z) z) (hg : ContinuousOn g U)
@@ -39,7 +41,9 @@ theorem curveIntegral_eq_sub_of_hasDerivAt {a b : ℂ} (γ : Path a b)
   simpa [primitiveSubdivisionTransport] using h.symm
 
 /-- A nearby avoided target also avoids every point separated by the
-strict displacement bound.-/
+strict displacement bound.
+@isnad1 id=and.1h3v.s6.75de6b44a452 from=translated src=- shape=259f7f06 vocab=0fcc4b44
+-/
 theorem sub_ne_zero_and_sub_ne_zero_of_norm_sub_lt {u v z : ℂ} (h : ‖u - v‖ < ‖z - u‖) :
     z - u ≠ 0 ∧ z - v ≠ 0 := by
   constructor
@@ -53,7 +57,9 @@ theorem sub_ne_zero_and_sub_ne_zero_of_norm_sub_lt {u v z : ℂ} (h : ‖u - v�
     exact (lt_irrefl _) h
 
 /-- A principal-log quotient is an actual primitive of the difference
-of two nearby inverse kernels. The slit-plane condition is proved.-/
+of two nearby inverse kernels. The slit-plane condition is proved.
+@isnad1 id=hasderiv.1h3v.s7.92202a80b894 from=translated src=- shape=16aa3463 vocab=43010c0c
+-/
 theorem hasDerivAt_log_div_sub_of_norm_sub_lt {u v z : ℂ} (h : ‖u - v‖ < ‖z - u‖) :
     HasDerivAt (fun z => log ((z - v) / (z - u))) ((z - v)⁻¹ - (z - u)⁻¹) z := by
   obtain ⟨hu, hv⟩ := sub_ne_zero_and_sub_ne_zero_of_norm_sub_lt h

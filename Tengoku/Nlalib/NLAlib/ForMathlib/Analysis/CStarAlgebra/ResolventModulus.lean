@@ -26,7 +26,9 @@ private theorem realResolventCFC : ContinuousFunctionalCalculus ℝ A IsSelfAdjo
 attribute [local instance] realResolventCFC
 
 /-- The genuine noncommutative modulus of the native resolvent is the
-real continuous functional calculus of the scalar inverse-distance function.-/
+real continuous functional calculus of the scalar inverse-distance function.
+@isnad1 id=eq.2h3v.s8.070409b71801 from=translated src=- shape=3cb1a3fc vocab=92234cf4
+-/
 theorem IsSelfAdjoint.abs_resolvent_eq_cfc {a : A} (ha : IsSelfAdjoint a)
     {z : ℂ} (hz : z.im ≠ 0) :
     CFC.abs (resolvent a z) = cfc (fun x : ℝ => ‖(z - (x : ℂ))⁻¹‖) a := by
@@ -50,7 +52,9 @@ theorem IsSelfAdjoint.abs_resolvent_eq_cfc {a : A} (ha : IsSelfAdjoint a)
         (Complex.continuous_ofReal.comp continuous_norm |>.continuousOn) hf ha.isStarNormal).symm
     _ = _ := cfc_complex_eq_real a (fun x hx => by simp) ha
 
-/-- The scalar modulus calculus preserves the actual resolvent norm.-/
+/-- The scalar modulus calculus preserves the actual resolvent norm.
+@isnad1 id=eq.2h3v.s7.b03f6a643d34 from=translated src=- shape=c17e790b vocab=3c9e015b
+-/
 theorem IsSelfAdjoint.norm_cfc_resolvent_modulus {a : A} (ha : IsSelfAdjoint a)
     {z : ℂ} (hz : z.im ≠ 0) :
     ‖cfc (fun x : ℝ => ‖(z - (x : ℂ))⁻¹‖) a‖ = ‖resolvent a z‖ := by

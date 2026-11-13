@@ -15,7 +15,9 @@ noncomputable section
 open Finset
 namespace Fin
 
-/-- Finite prefix sums commute with subtraction.-/
+/-- Finite prefix sums commute with subtraction.
+@isnad1 id=eq.0h5v.s6.fe7ced09a658 from=translated src=- shape=8b7bc337 vocab=001890c4
+-/
 theorem partialSum_sub {A : Type*} [AddCommGroup A] {n : ℕ}
     (f g : Fin n → A) (i : Fin (n + 1)) :
     partialSum (fun j => f j - g j) i = partialSum f i - partialSum g i := by
@@ -25,7 +27,9 @@ theorem partialSum_sub {A : Type*} [AddCommGroup A] {n : ℕ}
     rw [partialSum_succ, partialSum_succ, partialSum_succ, ih]
     abel
 
-/-- The actual prefix sum of one endpoint delta is its threshold indicator.-/
+/-- The actual prefix sum of one endpoint delta is its threshold indicator.
+@isnad1 id=eq.0h3v.s6.48e88f859632 from=translated src=- shape=068b2855 vocab=98e68136
+-/
 theorem partialSum_ite_eq_one {n : ℕ} (a : Fin n) (i : Fin (n + 1)) :
     partialSum (fun j => if j = a then (1 : ℤ) else 0) i =
       if a.castSucc < i then 1 else 0 := by
@@ -52,7 +56,9 @@ def intervalCoefficients (a b : Fin (n + 1)) : Fin n → ℤ :=
   Fin.edgePrefix (fun j => (if j = a then 1 else 0) - (if j = b then 1 else 0))
 
 /-- The explicit interval coefficients equal the difference of the two
-threshold indicators. They allow either orientation and coinciding endpoints.-/
+threshold indicators. They allow either orientation and coinciding endpoints.
+@isnad1 id=eq.0h4v.s7.ecae779fd532 from=translated src=- shape=be7fe103 vocab=22acf8ab
+-/
 theorem intervalCoefficients_eq (a b : Fin (n + 1)) (i : Fin n) :
     intervalCoefficients a b i =
       (if a ≤ i.castSucc then 1 else 0) - (if b ≤ i.castSucc then 1 else 0) := by
@@ -60,7 +66,9 @@ theorem intervalCoefficients_eq (a b : Fin (n + 1)) (i : Fin n) :
     Fin.partialSum_ite_eq_one, Fin.castSucc_lt_succ_iff]
 
 /-- The finite divergence of the actual interval walk is the initial delta
-minus the final delta.-/
+minus the final delta.
+@isnad1 id=eq.0h4v.s7.3879fb1dd2a9 from=translated src=- shape=f625c106 vocab=3d86df51
+-/
 theorem edgeBoundary_intervalCoefficients (a b : Fin (n + 1)) (i : Fin (n + 1)) :
     Fin.edgeBoundary (intervalCoefficients a b) i =
       (if i = a then 1 else 0) - (if i = b then 1 else 0) := by
@@ -68,7 +76,9 @@ theorem edgeBoundary_intervalCoefficients (a b : Fin (n + 1)) (i : Fin (n + 1)) 
   simp only [sum_sub_distrib, sum_ite_eq', mem_univ, ite_true, sub_self]
 
 /-- An active edge of the actual interval walk lies between its endpoint
-vertices, for either orientation.-/
+vertices, for either orientation.
+@isnad1 id=and.1h4v.s7.1936c95a983b from=translated src=- shape=f76c0ddf vocab=4bf8bf46
+-/
 theorem intervalCoefficients_ne_zero_bounds (a b : Fin (n + 1)) (i : Fin n)
     (hi : intervalCoefficients a b i ≠ 0) :
     min a b ≤ i.castSucc ∧ i.succ ≤ max a b := by
@@ -104,7 +114,9 @@ def verticalWalk (v : Fin (m + 1) → Fin (n + 1) → E)
   ∑ j, intervalCoefficients a b j • Finsupp.single (vertical v i j) 1
 
 /-- The native boundary of the finite horizontal walk is its final vertex
-minus its initial vertex, including coinciding endpoints.-/
+minus its initial vertex, including coinciding endpoints.
+@isnad1 id=eq.0h7v.s8.d2490d5130b2 from=translated src=- shape=47fd712b vocab=9104357e
+-/
 theorem boundaryOne_horizontalWalk
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (a b : Fin (m + 1)) (j : Fin (n + 1)) :
@@ -120,7 +132,9 @@ theorem boundaryOne_horizontalWalk
   simpa only [smul_sub, sum_sub_distrib, neg_sub] using congrArg Neg.neg he.symm
 
 /-- The native boundary of the finite vertical walk is its final vertex
-minus its initial vertex, including coinciding endpoints.-/
+minus its initial vertex, including coinciding endpoints.
+@isnad1 id=eq.0h7v.s8.c4e035b03cbb from=translated src=- shape=3e67767f vocab=b4550915
+-/
 theorem boundaryOne_verticalWalk
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (i : Fin (m + 1)) (a b : Fin (n + 1)) :
@@ -151,7 +165,9 @@ def walkChain (v : Fin (m + 1) → Fin (n + 1) → E)
     (p q : Fin (m + 1) × Fin (n + 1)) : OneChain E :=
   edgeChain v (walkHorizontalCoefficients p q) (walkVerticalCoefficients p q)
 
-/-- The actual L-shaped walk is exactly its row walk plus its column walk.-/
+/-- The actual L-shaped walk is exactly its row walk plus its column walk.
+@isnad1 id=eq.0h6v.s8.1f6ab8c6d5e8 from=translated src=- shape=5fc6ca6f vocab=17d1f5f5
+-/
 theorem walkChain_eq_horizontalWalk_add_verticalWalk
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (p q : Fin (m + 1) × Fin (n + 1)) :
@@ -161,7 +177,9 @@ theorem walkChain_eq_horizontalWalk_add_verticalWalk
     horizontalWalk, verticalWalk, ite_smul]
 
 /-- The intermediate corner cancels in the native endpoint boundary of
-the actual L-shaped grid walk.-/
+the actual L-shaped grid walk.
+@isnad1 id=eq.0h6v.s9.dc6f39d83902 from=translated src=- shape=5b427f7c vocab=58a8a6e4
+-/
 theorem boundaryOne_walkChain
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (p q : Fin (m + 1) × Fin (n + 1)) :

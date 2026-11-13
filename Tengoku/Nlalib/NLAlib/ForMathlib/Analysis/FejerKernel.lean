@@ -31,7 +31,9 @@ def fejerCircleKernel (n : ℕ) (t : AddCircle (2 * Real.pi)) : ℝ :=
   (n + 1 : ℝ)⁻¹ * Complex.normSq (∑ j ∈ range (n + 1), fourier (j : ℤ) t)
 
 /-- The cross term in extending a character sum is the next finite cosine sum.
-Source: finite Fourier characters; helper for `fejer-chebyshev-means`.-/
+Source: finite Fourier characters; helper for `fejer-chebyshev-means`.
+@isnad1 id=eq.0h2v.s9.0cb0bc094ad3 from=translated src=- shape=0524974f vocab=76868501
+-/
 theorem re_sum_fourier_mul_conj_eq_sum (n : ℕ) (t : AddCircle (2 * Real.pi)) :
     ((∑ j ∈ range n, fourier (j : ℤ) t) * conj (fourier (n : ℤ) t)).re =
       ∑ j ∈ range n, (fourier ((j + 1 : ℕ) : ℤ) t).re := by
@@ -50,7 +52,9 @@ theorem re_sum_fourier_mul_conj_eq_sum (n : ℕ) (t : AddCircle (2 * Real.pi)) :
 
 /-- A squared finite Fourier sum equals the sum of successive Dirichlet kernels.
 Source: Fejér's finite kernel identity, ATAP Exercise 6.6;
-operator rederivations `polyseries:fejerkernel`.-/
+operator rederivations `polyseries:fejerkernel`.
+@isnad1 id=eq.0h2v.s8.b93e1912683a from=translated src=- shape=05592fb1 vocab=0c121ef9
+-/
 theorem normSq_sum_fourier_eq_sum_dirichletCircleKernel (n : ℕ)
     (t : AddCircle (2 * Real.pi)) :
     Complex.normSq (∑ j ∈ range n, fourier (j : ℤ) t) =
@@ -68,26 +72,34 @@ theorem normSq_sum_fourier_eq_sum_dirichletCircleKernel (n : ℕ)
     ring
 
 /-- The positive Fejér kernel is the average of the finite Dirichlet kernels.
-Source: Fejér's finite kernel identity, ATAP Exercise 6.6.-/
+Source: Fejér's finite kernel identity, ATAP Exercise 6.6.
+@isnad1 id=eq.0h2v.s6.61ee460b8c3d from=translated src=- shape=449d1160 vocab=1e9dd0a3
+-/
 theorem fejerCircleKernel_eq_avg_dirichlet (n : ℕ) (t : AddCircle (2 * Real.pi)) :
     fejerCircleKernel n t = (n + 1 : ℝ)⁻¹ * ∑ m ∈ range (n + 1), dirichletCircleKernel m t := by
   rw [fejerCircleKernel, normSq_sum_fourier_eq_sum_dirichletCircleKernel]
 
 /-- The Fejér kernel is nonnegative at every circle argument.
-Source: Fejér's squared-norm formula, ATAP Exercise 6.6.-/
+Source: Fejér's squared-norm formula, ATAP Exercise 6.6.
+@isnad1 id=le.0h2v.s5.b7923f82f133 from=translated src=- shape=20feb81d vocab=bf5badf5
+-/
 theorem fejerCircleKernel_nonneg (n : ℕ) (t : AddCircle (2 * Real.pi)) :
     0 ≤ fejerCircleKernel n t := by
   unfold fejerCircleKernel
   exact mul_nonneg (inv_nonneg.mpr (by positivity)) (Complex.normSq_nonneg _)
 
 /-- Every finite Dirichlet kernel is continuous on the circle.
-Source: finite Fourier characters; helper for `fejer-chebyshev-means`.-/
+Source: finite Fourier characters; helper for `fejer-chebyshev-means`.
+@isnad1 id=continuo.0h1v.s5.bd6896f78800 from=translated src=- shape=9d667129 vocab=c9b835fe
+-/
 theorem continuous_dirichletCircleKernel (n : ℕ) : Continuous (dirichletCircleKernel n) := by
   unfold dirichletCircleKernel
   fun_prop
 
 /-- Every Fejér kernel is continuous on the circle.
-Source: finite Fourier characters; helper for `fejer-chebyshev-means`.-/
+Source: finite Fourier characters; helper for `fejer-chebyshev-means`.
+@isnad1 id=continuo.0h1v.s5.6ec911ed428a from=translated src=- shape=9d667129 vocab=a9e8c1a4
+-/
 theorem continuous_fejerCircleKernel (n : ℕ) : Continuous (fejerCircleKernel n) := by
   have heq : fejerCircleKernel n = fun t =>
       (n + 1 : ℝ)⁻¹ * ∑ m ∈ range (n + 1), dirichletCircleKernel m t :=
@@ -96,7 +108,9 @@ theorem continuous_fejerCircleKernel (n : ℕ) : Continuous (fejerCircleKernel n
   exact continuous_const.mul (continuous_finsetSum _ (fun m hm => continuous_dirichletCircleKernel m))
 
 /-- A positive-frequency cosine character has Haar integral zero.
-Source: Mathlib Fourier orthogonality; helper for `fejer-chebyshev-means`.-/
+Source: Mathlib Fourier orthogonality; helper for `fejer-chebyshev-means`.
+@isnad1 id=eq.0h1v.s8.98f5d90c7a0c from=translated src=- shape=59e43c7c vocab=fe1637c1
+-/
 theorem integral_re_fourier_nat_succ_eq_zero (k : ℕ) :
     (∫ t : AddCircle (2 * Real.pi), (fourier ((k + 1 : ℕ) : ℤ) t).re
       ∂AddCircle.haarAddCircle) = 0 := by
@@ -119,7 +133,9 @@ theorem integral_re_fourier_nat_succ_eq_zero (k : ℕ) :
   rfl
 
 /-- Each Dirichlet kernel has normalized Haar integral one.
-Source: Fourier orthogonality; helper for `fejer-chebyshev-means`.-/
+Source: Fourier orthogonality; helper for `fejer-chebyshev-means`.
+@isnad1 id=eq.0h1v.s6.8d3064b99ff6 from=translated src=- shape=9d9788d6 vocab=b4f267be
+-/
 theorem integral_dirichletCircleKernel_eq_one (n : ℕ) :
     (∫ t : AddCircle (2 * Real.pi), dirichletCircleKernel n t ∂AddCircle.haarAddCircle) = 1 := by
   unfold dirichletCircleKernel
@@ -133,7 +149,9 @@ theorem integral_dirichletCircleKernel_eq_one (n : ℕ) :
   simp
 
 /-- The Fejér kernel has normalized Haar integral one.
-Source: Fourier orthogonality and finite Fejér identity, ATAP Exercise 6.6.-/
+Source: Fourier orthogonality and finite Fejér identity, ATAP Exercise 6.6.
+@isnad1 id=eq.0h1v.s6.32ce6c14d300 from=translated src=- shape=9d9788d6 vocab=4ea06c35
+-/
 theorem integral_fejerCircleKernel_eq_one (n : ℕ) :
     (∫ t : AddCircle (2 * Real.pi), fejerCircleKernel n t ∂AddCircle.haarAddCircle) = 1 := by
   simp_rw [fejerCircleKernel_eq_avg_dirichlet]

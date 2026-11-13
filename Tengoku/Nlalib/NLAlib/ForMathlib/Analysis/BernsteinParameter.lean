@@ -18,7 +18,9 @@ namespace NLAlib
 
 /-- The actual optimizing parameter is positive, satisfies `θL<3`, and gives the exact
 Bernstein exponent. Source: Tropp 2011, Theorem 1.2; operator rederivations
-`thm:freedman`, parameter substitution. Atlas `matrix-freedman` (partial).-/
+`thm:freedman`, parameter substitution. Atlas `matrix-freedman` (partial).
+@isnad1 id=ex.3h3v.s8.7256102f2858 from=translated src=- shape=52184ebe vocab=2fba42a9
+-/
 theorem exists_pos_mul_lt_three_bernstein_exponent_eq {t v L : ℝ}
     (ht : 0 < t) (hv : 0 < v) (hL : 0 ≤ L) :
     ∃ θ : ℝ, 0 < θ ∧ θ * L < 3 ∧

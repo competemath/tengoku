@@ -21,17 +21,23 @@ open scoped Topology
 
 namespace Complex
 
-/-- The real part of a unit-circle point is at most one.-/
+/-- The real part of a unit-circle point is at most one.
+@isnad1 id=le.0h1v.s6.80ff52d81e77 from=translated src=- shape=cfa62689 vocab=c96e9451
+-/
 theorem circle_re_le_one (ξ : Circle) : (ξ : ℂ).re ≤ 1 := by
   simpa only [Circle.norm_coe] using re_le_norm (ξ : ℂ)
 
-/-- The real part of a unit-circle point is at least negative one.-/
+/-- The real part of a unit-circle point is at least negative one.
+@isnad1 id=le.0h1v.s6.76dd1599e86c from=translated src=- shape=0f510fa2 vocab=c42ab3fa
+-/
 theorem neg_one_le_circle_re (ξ : Circle) : -1 ≤ (ξ : ℂ).re := by
   have h := abs_re_le_norm (ξ : ℂ)
   rw [Circle.norm_coe] at h
   exact (neg_le_neg h).trans (neg_abs_le _)
 
-/-- Every unit-circle point except `1` has real part strictly below one.-/
+/-- Every unit-circle point except `1` has real part strictly below one.
+@isnad1 id=lt.1h1v.s6.c5fb15ce95a9 from=translated src=- shape=046880d1 vocab=b53661e5
+-/
 theorem circle_re_lt_one_of_ne_one {ξ : Circle} (hξ : ξ ≠ 1) : (ξ : ℂ).re < 1 := by
   apply lt_of_le_of_ne (circle_re_le_one ξ)
   intro he
@@ -44,7 +50,9 @@ theorem circle_re_lt_one_of_ne_one {ξ : Circle} (hξ : ξ ≠ 1) : (ξ : ℂ).r
   · simpa only [Circle.coe_one, one_re] using he
   · simpa only [Circle.coe_one, one_im] using hi
 
-/-- On the imaginary axis the Cayley coordinate is real.-/
+/-- On the imaginary axis the Cayley coordinate is real.
+@isnad1 id=eq.1h1v.s6.3c6bd5033b33 from=translated src=- shape=ff1213f2 vocab=935706ef
+-/
 theorem cayleyTransform_mul_I (y : ℝ) (hy : y + 1 ≠ 0) :
     cayleyTransform ((y : ℂ) * I) = (((y - 1) / (y + 1) : ℝ) : ℂ) := by
   simp only [cayleyTransform, ofReal_div, ofReal_sub, ofReal_add, ofReal_one]
@@ -54,7 +62,9 @@ theorem cayleyTransform_mul_I (y : ℝ) (hy : y + 1 ≠ 0) :
   field_simp [hd, hy]
 
 /-- The scalar denominator in the vertical Poisson mass kernel is
-strictly positive.-/
+strictly positive.
+@isnad1 id=lt.1h2v.s7.d75d46722c93 from=translated src=- shape=5d3fdfbc vocab=d7d8471d
+-/
 theorem circle_mass_denominator_pos (ξ : Circle) {y : ℝ} (hy : 0 < y) :
     0 < (1 - (ξ : ℂ).re) * y ^ 2 + (1 + (ξ : ℂ).re) := by
   have ha : 0 ≤ 1 - (ξ : ℂ).re := sub_nonneg.mpr (circle_re_le_one ξ)
@@ -67,7 +77,9 @@ theorem circle_mass_denominator_pos (ξ : Circle) {y : ℝ} (hy : 0 < y) :
     exact add_pos_of_pos_of_nonneg (mul_pos hapos (sq_pos_of_pos hy)) hb
 
 /-- The imaginary-axis Poisson test has a real rational expression whose
-limit gives the Stieltjes mass.-/
+limit gives the Stieltjes mass.
+@isnad1 id=eq.1h2v.s8.108978844fc6 from=translated src=- shape=b651b9fb vocab=225ea7f4
+-/
 theorem mul_poissonKernel_cayley_mul_I (ξ : Circle) {y : ℝ} (hy : 0 < y) :
     y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) ξ =
       2 * y ^ 2 / ((1 - (ξ : ℂ).re) * y ^ 2 + (1 + (ξ : ℂ).re)) := by
@@ -96,14 +108,18 @@ theorem mul_poissonKernel_cayley_mul_I (ξ : Circle) {y : ℝ} (hy : 0 < y) :
   field_simp [hy1, hd.ne']
   ring
 
-/-- Vertical Poisson mass tests are nonnegative.-/
+/-- Vertical Poisson mass tests are nonnegative.
+@isnad1 id=le.1h2v.s6.63e0320c89a8 from=translated src=- shape=16df9af8 vocab=61a2b9f9
+-/
 theorem mul_poissonKernel_cayley_mul_I_nonneg (ξ : Circle) {y : ℝ} (hy : 0 < y) :
     0 ≤ y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) ξ := by
   rw [mul_poissonKernel_cayley_mul_I ξ hy]
   exact div_nonneg (by positivity) (circle_mass_denominator_pos ξ hy).le
 
 /-- Away from the circle point at infinity, each vertical Poisson mass
-test is bounded by the real-line Stieltjes mass weight.-/
+test is bounded by the real-line Stieltjes mass weight.
+@isnad1 id=le.2h2v.s7.bff168ed515f from=translated src=- shape=8c3012d4 vocab=b9407037
+-/
 theorem mul_poissonKernel_cayley_mul_I_le {ξ : Circle} (hξ : ξ ≠ 1)
     {y : ℝ} (hy : 0 < y) :
     y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) ξ ≤ 2 / (1 - (ξ : ℂ).re) := by
@@ -113,7 +129,9 @@ theorem mul_poissonKernel_cayley_mul_I_le {ξ : Circle} (hξ : ξ ≠ 1)
   nlinarith [neg_one_le_circle_re ξ]
 
 /-- At the missing boundary point the vertical test is `y²`, encoding
-the possible linear term of a general Herglotz function.-/
+the possible linear term of a general Herglotz function.
+@isnad1 id=eq.1h1v.s7.35751e6b9754 from=translated src=- shape=c3f695d5 vocab=c517c96d
+-/
 theorem mul_poissonKernel_cayley_mul_I_one {y : ℝ} (hy : 0 < y) :
     y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) (1 : Circle) = y ^ 2 := by
   rw [mul_poissonKernel_cayley_mul_I _ hy]
@@ -121,7 +139,9 @@ theorem mul_poissonKernel_cayley_mul_I_one {y : ℝ} (hy : 0 < y) :
   ring
 
 /-- Away from the circle point at infinity, the vertical Poisson mass
-tests converge to the real-line Stieltjes mass weight.-/
+tests converge to the real-line Stieltjes mass weight.
+@isnad1 id=tendsto.1h1v.s7.3cc060f56240 from=translated src=- shape=8860e192 vocab=48d1a6c9
+-/
 theorem tendsto_mul_poissonKernel_cayley_mul_I {ξ : Circle} (hξ : ξ ≠ 1) :
     Tendsto (fun y : ℝ => y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) ξ)
       atTop (𝓝 (2 / (1 - (ξ : ℂ).re))) := by

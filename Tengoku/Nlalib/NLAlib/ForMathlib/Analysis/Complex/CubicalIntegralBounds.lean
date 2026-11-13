@@ -23,7 +23,9 @@ def cubicalLength {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) : ℝ :=
   Γ.sum (fun γ n => |(n : ℝ)| *
     ∫ t in (0 : ℝ)..1, ‖derivWithin (cubicalPath γ).extend I t‖)
 
-/-- A finite signed smooth cycle has nonnegative actual total length.-/
+/-- A finite signed smooth cycle has nonnegative actual total length.
+@isnad1 id=le.0h2v.s5.6bcb08ff6af0 from=translated src=- shape=2692b407 vocab=7572f879
+-/
 theorem cubicalLength_nonneg {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) : 0 ≤ cubicalLength Γ := by
   apply sum_nonneg
   intro γ _
@@ -31,7 +33,9 @@ theorem cubicalLength_nonneg {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) : 0 ≤ c
     (fun _ => norm_nonneg _))
 
 /-- A uniform scalar bound along the actual contour controls its native
-integral by its actual total speed length.-/
+integral by its actual total speed length.
+@isnad1 id=le.2h4v.s10.f9c357b74c5b from=translated src=- shape=bbd99322 vocab=c3674d99
+-/
 theorem norm_cubicalCurveIntegral_le_length_mul {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (g : ℂ → ℂ) {C : ℝ}
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -57,7 +61,9 @@ theorem norm_cubicalCurveIntegral_le_length_mul {Ω : Set ℂ}
     _ = _ := by ring
 
 /-- The actual normalized integral over a finite signed smooth contour has
-the standard total-length bound, without a Cauchy or homology hypothesis.-/
+the standard total-length bound, without a Cauchy or homology hypothesis.
+@isnad1 id=le.2h4v.s10.e956e1633aa5 from=translated src=- shape=7ab0c96c vocab=c82c3d98
+-/
 theorem norm_two_pi_i_inv_mul_cubicalCurveIntegral_le_length_mul {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (g : ℂ → ℂ) {C : ℝ}
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

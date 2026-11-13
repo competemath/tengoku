@@ -8,7 +8,9 @@ import Tengoku.Seed.Algebra.Group.EvenFunction
 open Set
 
 /-- A convex even real function is nondecreasing on the nonnegative half-line.
-Writing `x` as a convex combination of `y` and `-y` gives the result.-/
+Writing `x` as a convex combination of `y` and `-y` gives the result.
+@isnad1 id=monotone.2h1v.s5.11625693f20b from=translated src=- shape=66d526ab vocab=fe68785b
+-/
 theorem ConvexOn.monotoneOn_nonneg_of_even {f : ℝ → ℝ}
     (hf : ConvexOn ℝ univ f) (he : Function.Even f) : MonotoneOn f (Ici 0) := by
   intro x hx y hy hxy

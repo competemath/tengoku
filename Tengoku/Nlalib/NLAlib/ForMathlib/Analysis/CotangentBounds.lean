@@ -22,7 +22,9 @@ open Real Set
 namespace NLAlib
 
 /-- The real cotangent has derivative `-1/sin²` away from sine zeros.
-Source: the elementary quotient rule.-/
+Source: the elementary quotient rule.
+@isnad1 id=hasderiv.1h1v.s6.f135dde1fe0b from=translated src=- shape=1af6af93 vocab=e2f161b7
+-/
 theorem hasDerivAt_cot {x : ℝ} (hx : sin x ≠ 0) :
     HasDerivAt Real.cot (-1 / (sin x) ^ 2) x := by
   have h := (Real.hasDerivAt_cos x).div (Real.hasDerivAt_sin x) hx
@@ -33,7 +35,9 @@ theorem hasDerivAt_cot {x : ℝ} (hx : sin x ≠ 0) :
     (Filter.Eventually.of_forall (fun y => Real.cot_eq_cos_div_sin y))
 
 /-- The derivative of `x cot x` in a nonsingular quadrant.
-Source: the elementary product rule.-/
+Source: the elementary product rule.
+@isnad1 id=hasderiv.1h1v.s6.7649be7ab161 from=translated src=- shape=12352186 vocab=0dab5643
+-/
 theorem hasDerivAt_mul_cot {x : ℝ} (hx : sin x ≠ 0) :
     HasDerivAt (fun t => t * Real.cot t) ((sin x * cos x - x) / (sin x) ^ 2) x := by
   have h := (hasDerivAt_id x).mul (hasDerivAt_cot hx)
@@ -43,7 +47,9 @@ theorem hasDerivAt_mul_cot {x : ℝ} (hx : sin x ≠ 0) :
   ring
 
 /-- `x cot x` decreases on the positive half quadrant, including its right endpoint.
-Source: the sharp Lobatto-kernel comparison in equation `eq:cotpair`.-/
+Source: the sharp Lobatto-kernel comparison in equation `eq:cotpair`.
+@isnad1 id=antitone.0h0v.s5.1b3dd486b36b from=translated src=- shape=25036af7 vocab=fa439685
+-/
 theorem antitoneOn_mul_cot : AntitoneOn (fun x => x * Real.cot x) (Ioc 0 (π / 2)) := by
   have hs : ∀ x ∈ Ioc (0 : ℝ) (π / 2), 0 < sin x := by
     intro x hx
@@ -59,7 +65,9 @@ theorem antitoneOn_mul_cot : AntitoneOn (fun x => x * Real.cot x) (Ioc 0 (π / 2
   linarith
 
 /-- The ratio `sin(hs)/sin(ks)` increases in `s` when `0<h≤k≤π/2`.
-Source: the scalar monotonicity argument in the sharp Lobatto-kernel comparison.-/
+Source: the scalar monotonicity argument in the sharp Lobatto-kernel comparison.
+@isnad1 id=monotone.3h2v.s6.94bf20e7498d from=translated src=- shape=314bf795 vocab=4809a2ea
+-/
 theorem monotoneOn_sin_mul_div_sin_mul {h k : ℝ} (hh : 0 < h) (hk : h ≤ k)
     (hkπ : k ≤ π / 2) :
     MonotoneOn (fun s => sin (h * s) / sin (k * s)) (Ioc 0 (1 / 2 : ℝ)) := by
@@ -104,7 +112,9 @@ theorem monotoneOn_sin_mul_div_sin_mul {h k : ℝ} (hh : 0 < h) (hk : h ≤ k)
   exact div_nonneg hnum (sq_nonneg _)
 
 /-- A normalized half-angle sine comparison, the quantitative core of the cotangent pairing.
-Source: focused rederivations, equation `eq:cotpair`.-/
+Source: focused rederivations, equation `eq:cotpair`.
+@isnad1 id=le.5h3v.s7.5b814a89f1ef from=translated src=- shape=f804c204 vocab=21bfaeb3
+-/
 theorem sin_mul_sq_le_two_mul_sin_half_sq {h u s : ℝ} (hh : 0 < h)
     (hhπ : h ≤ π / 2) (hu : h / 2 ≤ u) (huπ : u ≤ π / 2)
     (hs : s ∈ Icc (0 : ℝ) (1 / 2)) :
@@ -142,7 +152,9 @@ theorem sin_mul_sq_le_two_mul_sin_half_sq {h u s : ℝ} (hh : 0 < h)
   nlinarith [mul_le_mul_of_nonneg_right husq (sq_nonneg (sin (π * s / 2)))]
 
 /-- The sine product identity used to pair cotangents about a midpoint.
-Source: the elementary sine addition formulas.-/
+Source: the elementary sine addition formulas.
+@isnad1 id=eq.0h2v.s6.dd456aa60af2 from=translated src=- shape=30db65e3 vocab=7d186ce6
+-/
 theorem sin_add_mul_sin_sub (u v : ℝ) :
     sin (u + v) * sin (u - v) = sin u ^ 2 - sin v ^ 2 := by
   rw [sin_add, sin_sub]
@@ -150,7 +162,9 @@ theorem sin_add_mul_sin_sub (u v : ℝ) :
     mul_nonneg (sq_nonneg (sin u)) (sq_nonneg (sin v))]
 
 /-- Pairing equally spaced cotangents never exceeds the value at the central phase.
-Source: focused rederivations, equation `eq:cotpair`.-/
+Source: focused rederivations, equation `eq:cotpair`.
+@isnad1 id=le.5h3v.s7.38f85110d4cf from=translated src=- shape=a8d3ea96 vocab=8b41cabb
+-/
 theorem cos_mul_cot_pair_le {h u s : ℝ} (hh : 0 < h) (hhπ : h ≤ π / 2)
     (hu : h / 2 ≤ u) (huπ : u ≤ π / 2) (hs : s ∈ Ico (0 : ℝ) (1 / 2)) :
     cos (π * s) * (Real.cot (u + h * s) + Real.cot (u - h * s)) ≤ 2 * Real.cot u := by

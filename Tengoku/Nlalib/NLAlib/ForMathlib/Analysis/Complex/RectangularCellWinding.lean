@@ -18,7 +18,9 @@ open scoped unitInterval
 namespace Complex
 
 /-- A rotated log primitive evaluates a native straight edge whenever
-the actual rotated edge avoids the principal cut.-/
+the actual rotated edge avoids the principal cut.
+@isnad1 id=eq.2h4v.s8.fa35d5c8451b from=translated src=- shape=62e8f45d vocab=172d32c6
+-/
 theorem curveIntegral_inv_sub_segment_eq_log_mul_sub_of_slitPlane
     {a b τ r : ℂ} (hr : r ≠ 0)
     (hs : ∀ t, r * (Path.segment a b t - τ) ∈ slitPlane) :
@@ -69,7 +71,9 @@ private theorem re_segment_vertical (x c d : ℝ) (t : I) :
 edges has inverse-kernel integral exactly `2*pi*i` at every interior point.
 Source: elementary principal-log rectangle calculation, the cell-index
 step of the general-contour Gauss route.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.4h5v.s10.c023b1be9df6 from=translated src=- shape=db6ce021 vocab=e32bb8dc
+-/
 theorem curveIntegral_inv_sub_rectangle_eq_two_pi_I
     {a b c d : ℝ} {τ : ℂ}
     (ha : a < τ.re) (hb : τ.re < b) (hc : c < τ.im) (hd : τ.im < d) :
@@ -141,7 +145,9 @@ private theorem re_rotated_segment_pos {a b τ r : ℂ}
       (mul_pos (sub_pos.mpr (lt_of_le_of_ne ht1 ht)) ha) (mul_nonneg ht0 hb.le)
 
 /-- Four actual straight edges telescope to zero when their vertices share
-a rotated principal-log half-plane relative to the target.-/
+a rotated principal-log half-plane relative to the target.
+@isnad1 id=eq.5h6v.s10.5b29c269c656 from=translated src=- shape=28ad8ea1 vocab=1a23dba7
+-/
 theorem curveIntegral_inv_sub_quadrilateral_eq_zero_of_re_pos
     {v₀ v₁ v₂ v₃ τ r : ℂ} (hr : r ≠ 0)
     (h₀ : 0 < (r * (v₀ - τ)).re) (h₁ : 0 < (r * (v₁ - τ)).re)
@@ -161,7 +167,9 @@ theorem curveIntegral_inv_sub_quadrilateral_eq_zero_of_re_pos
 
 /-- The actual four-edge inverse integral vanishes at every target strictly
 outside the closed coordinate rectangle. Together with the interior period,
-this isolates individual cell coefficients in a finite grid.-/
+this isolates individual cell coefficients in a finite grid.
+@isnad1 id=eq.3h5v.s10.8afb62193b92 from=translated src=- shape=6f69056c vocab=9bba2858
+-/
 theorem curveIntegral_inv_sub_rectangle_eq_zero_of_outside
     {a b c d : ℝ} {τ : ℂ} (hab : a ≤ b) (hcd : c ≤ d)
     (hout : τ.re < a ∨ b < τ.re ∨ τ.im < c ∨ d < τ.im) :

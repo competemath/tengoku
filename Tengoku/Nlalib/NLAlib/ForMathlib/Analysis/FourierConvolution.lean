@@ -25,7 +25,9 @@ namespace NLAlib
 open scoped NLAlib.TwoPi
 
 /-- Subtracting circle arguments reverses the Fourier frequency in the second argument.
-Source: Mathlib additive-circle Fourier characters; used by sharp `jackson-lipschitz`.-/
+Source: Mathlib additive-circle Fourier characters; used by sharp `jackson-lipschitz`.
+@isnad1 id=eq.0h3v.s9.3792f5c5d899 from=translated src=- shape=c84610b7 vocab=03b1d802
+-/
 theorem fourier_apply_sub (k : ℤ) (x y : AddCircle (2 * Real.pi)) :
     fourier k (x - y) = fourier k x * fourier (-k) y := by
   rw [sub_eq_add_neg, fourier_apply_add]
@@ -33,7 +35,9 @@ theorem fourier_apply_sub (k : ℤ) (x y : AddCircle (2 * Real.pi)) :
 
 /-- Convolution with a Fourier character extracts the corresponding actual Fourier
 coefficient. Haar invariance proves the identity for arbitrary functions.
-Source: Fourier convolution identity; used by sharp `jackson-lipschitz`.-/
+Source: Fourier convolution identity; used by sharp `jackson-lipschitz`.
+@isnad1 id=eq.0h3v.s9.2783998041ee from=translated src=- shape=3bc461a5 vocab=96fd7f12
+-/
 theorem integral_fourier_mul_comp_sub_eq_fourier_mul_coeff
     (g : AddCircle (2 * Real.pi) → ℂ) (k : ℤ) (a : AddCircle (2 * Real.pi)) :
     (∫ t : AddCircle (2 * Real.pi), fourier k t * g (a - t) ∂AddCircle.haarAddCircle) =
@@ -55,7 +59,9 @@ theorem integral_fourier_mul_comp_sub_eq_fourier_mul_coeff
   simpa only [fourierCoeff, smul_eq_mul] using hmul
 
 /-- Normalized Haar integration is the normalized full-period real interval integral.
-Source: Mathlib's additive-circle Haar normalization; used by sharp `jackson-lipschitz`.-/
+Source: Mathlib's additive-circle Haar normalization; used by sharp `jackson-lipschitz`.
+@isnad1 id=eq.0h1v.s7.f6e18760a61f from=translated src=- shape=74b8d4d6 vocab=ba66cb25
+-/
 theorem integral_haarAddCircle_eq_inv_mul_intervalIntegral
     (f : AddCircle (2 * Real.pi) → ℝ) :
     (∫ t : AddCircle (2 * Real.pi), f t ∂AddCircle.haarAddCircle) =
@@ -65,7 +71,9 @@ theorem integral_haarAddCircle_eq_inv_mul_intervalIntegral
 
 /-- Fourier coefficients of an even real-valued circle function are real. Haar reflection
 and complex conjugation give this without an assumed coefficient-reality certificate.
-Source: elementary Fourier symmetry; used by sharp `jackson-lipschitz`.-/
+Source: elementary Fourier symmetry; used by sharp `jackson-lipschitz`.
+@isnad1 id=eq.1h2v.s8.742b45e3314b from=translated src=- shape=029a463a vocab=a2402f55
+-/
 theorem im_fourierCoeff_of_even_real (g : AddCircle (2 * Real.pi) → ℝ)
     (heven : ∀ t, g (-t) = g t) (k : ℤ) :
     (fourierCoeff (fun t => (g t : ℂ)) k).im = 0 := by
@@ -85,7 +93,9 @@ theorem im_fourierCoeff_of_even_real (g : AddCircle (2 * Real.pi) → ℝ)
 
 /-- Real cosine-character convolution of an even continuous function is its actual real
 Fourier coefficient times the same cosine character.
-Source: Fourier convolution and even-real symmetry; used by sharp `jackson-lipschitz`.-/
+Source: Fourier convolution and even-real symmetry; used by sharp `jackson-lipschitz`.
+@isnad1 id=eq.2h3v.s9.1df908284753 from=translated src=- shape=4edd0c01 vocab=190f31ec
+-/
 theorem integral_re_fourier_mul_comp_sub_eq_re_fourier_mul_coeff
     {g : AddCircle (2 * Real.pi) → ℝ} (hg : Continuous g)
     (heven : ∀ t, g (-t) = g t) (k : ℤ) (a : AddCircle (2 * Real.pi)) :

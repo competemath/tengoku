@@ -18,7 +18,9 @@ namespace Complex
 
 /-- The four boundary transports of an actual continuous primitive-charted
 square cancel. The edge subdivisions and their agreement with the intrinsic
-continuous-path integrals are constructed from the grid.-/
+continuous-path integrals are constructed from the grid.
+@isnad1 id=eq.9h11v.s9.d5b9c9d1bd49 from=translated src=- shape=ab9be979 vocab=2fb7df49
+-/
 theorem primitivePathIntegral_boundary_eq_zero_of_grid
     {a b c d : ℂ} {g : ℂ → ℂ}
     (L : Path a b) (R : Path c d) (B : Path a c) (T : Path b d)

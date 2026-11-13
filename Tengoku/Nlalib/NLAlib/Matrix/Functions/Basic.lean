@@ -28,7 +28,9 @@ def relativeEntropy {d : Type*} [Fintype d] [DecidableEq d]
     (A H : Matrix d d 𝕜) : ℝ :=
   RCLike.re (Matrix.trace (A * (matrixLog A - matrixLog H) - (A - H)))
 
-/-- Over `ℂ` the relative entropy is a `Complex.re`, by `rfl`.-/
+/-- Over `ℂ` the relative entropy is a `Complex.re`, by `rfl`.
+@isnad1 id=eq.0h3v.s7.8f58cf82b6e5 from=translated src=- shape=fc97bf3b vocab=bf4dddd3
+-/
 theorem relativeEntropy_complex {d : Type*} [Fintype d] [DecidableEq d] (A H : Matrix d d ℂ) :
     relativeEntropy A H = (Matrix.trace (A * (matrixLog A - matrixLog H) - (A - H))).re :=
   rfl

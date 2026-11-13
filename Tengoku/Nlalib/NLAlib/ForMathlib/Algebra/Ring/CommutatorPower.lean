@@ -15,7 +15,9 @@ noncomputable section
 set_option autoImplicit false
 
 /-- The commutator with a power is the exact sum over its possible insertion
-positions. No commutation assumption on the ring elements is used.-/
+positions. No commutation assumption on the ring elements is used.
+@isnad1 id=eq.0h4v.s7.5f55aa8829d3 from=translated src=- shape=fdbc4d52 vocab=9f2cbe03
+-/
 theorem mul_pow_sub_pow_mul_eq_sum {R : Type*} [Ring R] (a b : R) (n : ℕ) :
     a * b ^ n - b ^ n * a =
       ∑ k ∈ Finset.range n, b ^ k * (a * b - b * a) * b ^ (n - 1 - k) := by

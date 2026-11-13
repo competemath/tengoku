@@ -23,7 +23,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n]
 open scoped Matrix.Norms.L2Operator in
 /-- Every mixed polynomial moment is the cross inner product of the actual
 polynomial vectors for the Hermitian real and imaginary parts.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h5v.s11.460f777108de from=translated src=- shape=86ef072d vocab=c73d71ef
+-/
 theorem integral_normalSpectralLaw_star_poly_re_mul_poly_im
     {A : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (p q : ℂ[X]) :
     (∫ z, star (p.eval (z.re : ℂ)) * q.eval (z.im : ℂ) ∂normalSpectralLaw hA b) =
@@ -49,7 +51,9 @@ theorem integral_normalSpectralLaw_star_poly_re_mul_poly_im
 open scoped Matrix.Norms.L2Operator in
 /-- The entire rectangular array of normalized mixed moments is the literal
 cross-Gram matrix of the real- and imaginary-part polynomial vectors.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h6v.s11.f3b011740da7 from=translated src=- shape=2fb55666 vocab=2b61898c
+-/
 theorem integral_normalSpectralLaw_normalizedChebyshev_eq_crossGram
     {A : Matrix n n ℂ} (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (M : ℕ)
     (j k : Fin (M+1)) :

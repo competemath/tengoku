@@ -24,7 +24,9 @@ def freeAlgebraEvaluation (X : ι → A) :
     Matrix D D (FreeAlgebra R ι) →+* CStarMatrix D D A :=
   CStarMatrix.ofMatrixRingEquiv.toRingHom.comp (FreeAlgebra.lift R X).toRingHom.mapMatrix
 
-/-- Actual entry evaluation is the native universal free-algebra lift.-/
+/-- Actual entry evaluation is the native universal free-algebra lift.
+@isnad1 id=eq.0h8v.s8.a3c146227d00 from=translated src=- shape=1dabc615 vocab=fb614ce0
+-/
 @[simp] theorem freeAlgebraEvaluation_apply (X : ι → A)
     (P : Matrix D D (FreeAlgebra R ι)) (i j : D) :
     freeAlgebraEvaluation R X P i j=FreeAlgebra.lift R X (P i j) := rfl
@@ -48,7 +50,9 @@ namespace CStarMatrix
 variable (R : Type*) [CommRing R] {D ι A : Type*} [Fintype D] [DecidableEq D]
   [Fintype ι] [Ring A] [Algebra R A]
 
-/-- Evaluating the universal affine coefficient polynomial gives the actual affine matrix combination.-/
+/-- Evaluating the universal affine coefficient polynomial gives the actual affine matrix combination.
+@isnad1 id=eq.0h7v.s7.05525aa40201 from=translated src=- shape=d5609c13 vocab=dcd5d111
+-/
 theorem freeAlgebraEvaluation_matrixLinearPolynomial
     (A₀ : Matrix D D R) (C : ι → Matrix D D R) (X : ι → A) :
     freeAlgebraEvaluation R X (FreeAlgebra.matrixLinearPolynomial A₀ C)=affineCombination R A₀ C X := by
@@ -65,7 +69,9 @@ variable {D ι A : Type*} [Fintype D] [DecidableEq D] [Fintype ι]
   [Ring A] [StarRing A] [Algebra ℂ A] [StarModule ℂ A]
 
 omit [Fintype D] [DecidableEq D] in
-/-- Hermitian scalar coefficients and actual self-adjoint generators give a genuine self-adjoint affine matrix combination.-/
+/-- Hermitian scalar coefficients and actual self-adjoint generators give a genuine self-adjoint affine matrix combination.
+@isnad1 id=isselfad.3h6v.s7.22f9bff5728d from=translated src=- shape=55cb9ea0 vocab=765df56f
+-/
 theorem isSelfAdjoint_affineCombination
     (A₀ : Matrix D D ℂ) (hA₀ : A₀.IsHermitian) (C : ι → Matrix D D ℂ)
     (hC : ∀ i, (C i).IsHermitian) (X : ι → A) (hX : ∀ i, IsSelfAdjoint (X i)) :

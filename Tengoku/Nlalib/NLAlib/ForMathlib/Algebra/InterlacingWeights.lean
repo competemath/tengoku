@@ -18,7 +18,9 @@ namespace NLAlib
 /-- Weakly interlacing bordered targets give nonnegative interpolation
 residues when the original spectrum is strictly increasing. Target
 equalities, repeated target roots, and zero residues are allowed.
-Horn--Johnson (2013), Section 4.3; helper for bordered inverse interlacing.-/
+Horn--Johnson (2013), Section 4.3; helper for bordered inverse interlacing.
+@isnad1 id=le.3h4v.s7.e0f29efbfe27 from=translated src=- shape=e4d744a1 vocab=7e4dc51d
+-/
 theorem neg_prod_sub_div_prod_erase_nonneg_of_bordered_interlacing
     {n : ℕ} (d : Fin n → ℝ) (b : Fin (n + 1) → ℝ)
     (hd : StrictMono d) (hb : Monotone b)
@@ -52,7 +54,9 @@ theorem neg_prod_sub_div_prod_erase_nonneg_of_bordered_interlacing
 /-- Weakly interlacing positive rank-one targets give nonnegative residues
 when the original list is strictly increasing. No strictness is required
 of any target inequality. Horn--Johnson (2013), Section 4.3;
-helper for positive rank-one inverse interlacing.-/
+helper for positive rank-one inverse interlacing.
+@isnad1 id=le.4h4v.s7.e3f9a436ec7c from=translated src=- shape=30a3bd1a vocab=9b21becc
+-/
 theorem neg_prod_sub_div_prod_erase_nonneg_of_rank_one_interlacing
     {n : ℕ} (d b : Fin n → ℝ) (hd : StrictMono d) (hb : Monotone b)
     (hlo : ∀ i, d i ≤ b i)

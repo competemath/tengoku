@@ -30,7 +30,9 @@ def matrixQuadraticFormCLM (u : n → ℂ) : Matrix n n ℂ →L[ℂ] ℂ :=
 
 omit [DecidableEq n] in
 /-- The complex quadratic-form linear map evaluates the finite vector action.
-Source: the exact construction; `matrix-freedman` (partial).-/
+Source: the exact construction; `matrix-freedman` (partial).
+@isnad1 id=eq.0h3v.s7.0a45743e3759 from=translated src=- shape=5f9ee3d9 vocab=954ec149
+-/
 @[simp] theorem matrixQuadraticFormCLM_apply (u : n → ℂ) (A : Matrix n n ℂ) :
     matrixQuadraticFormCLM u A = star u ⬝ᵥ (A *ᵥ u) := rfl
 
@@ -41,13 +43,17 @@ def matrixRealQuadraticFormCLM (u : n → ℂ) : Matrix n n ℂ →L[ℝ] ℝ :=
 
 omit [DecidableEq n] in
 /-- The real quadratic-form linear map is the real part of the complex form.
-Source: the exact construction; `matrix-freedman` (partial).-/
+Source: the exact construction; `matrix-freedman` (partial).
+@isnad1 id=eq.0h3v.s8.8be867d44597 from=translated src=- shape=50a2c94b vocab=9a0a9aad
+-/
 @[simp] theorem matrixRealQuadraticFormCLM_apply (u : n → ℂ) (A : Matrix n n ℂ) :
     matrixRealQuadraticFormCLM u A = (star u ⬝ᵥ (A *ᵥ u)).re := rfl
 
 /-- The Hermitian squared quadratic form is the squared Euclidean norm of the
 matrix-vector image. Source: the Gram identity and complex scalar norm squares;
-supports `audit:local-moment`, `matrix-freedman` (partial).-/
+supports `audit:local-moment`, `matrix-freedman` (partial).
+@isnad1 id=eq.1h3v.s7.3dd6c7410cce from=translated src=- shape=3c29e479 vocab=77125c11
+-/
 theorem re_star_dotProduct_sq_mulVec_eq_sum_sq_norm_of_isHermitian
     (A : Matrix n n ℂ) (hA : A.IsHermitian) (u : n → ℂ) :
     (star u ⬝ᵥ (A ^ 2 *ᵥ u)).re = ∑ i, ‖(A *ᵥ u) i‖ ^ 2 := by
@@ -60,7 +66,9 @@ theorem re_star_dotProduct_sq_mulVec_eq_sum_sq_norm_of_isHermitian
 quadratic forms have zero imaginary part; Mathlib's complex polarization then identifies
 the associated Euclidean linear maps and hence the original matrices.
 Source: complex polarization; supplied audit `audit:combined`;
-atlas `matrix-freedman` (partial).-/
+atlas `matrix-freedman` (partial).
+@isnad1 id=eq.3h3v.s7.3026c7c49528 from=translated src=- shape=a4ea121b vocab=c7ba6e07
+-/
 theorem matrix_eq_of_isHermitian_of_re_dotProduct_mulVec_eq
     {A B : Matrix n n ℂ} (hA : A.IsHermitian) (hB : B.IsHermitian)
     (hq : ∀ u : n → ℂ, (star u ⬝ᵥ (A *ᵥ u)).re = (star u ⬝ᵥ (B *ᵥ u)).re) : A = B := by

@@ -15,7 +15,9 @@ open Finset
 namespace NLAlib
 
 /-- If each `u_i` lies in `[0,1]`, the product of `1-u_i` is at least one minus
-their sum. Source: finite union bound; product estimate in the focused BV reroute.-/
+their sum. Source: finite union bound; product estimate in the focused BV reroute.
+@isnad1 id=le.2h3v.s6.ffe3238ce153 from=translated src=- shape=77868c6c vocab=ae5e4e6e
+-/
 theorem one_sub_sum_le_prod_one_sub {ι : Type*} (s : Finset ι) (u : ι → ℝ)
     (hu0 : ∀ i ∈ s, 0 ≤ u i) (hu1 : ∀ i ∈ s, u i ≤ 1) :
     1 - ∑ i ∈ s, u i ≤ ∏ i ∈ s, (1 - u i) := by
@@ -33,7 +35,9 @@ theorem one_sub_sum_le_prod_one_sub {ι : Type*} (s : Finset ι) (u : ι → ℝ
     nlinarith
 
 /-- Casting a descending factorial gives the real product of its descending factors.
-Source: Mathlib's descending-factorial product formula; BV coefficient-denominator bridge.-/
+Source: Mathlib's descending-factorial product formula; BV coefficient-denominator bridge.
+@isnad1 id=eq.1h2v.s5.8abd7acdb580 from=translated src=- shape=18190670 vocab=8e3faf91
+-/
 theorem cast_descFactorial_eq_prod_range_sub (k m : ℕ) (hm : m ≤ k + 1) :
     (k.descFactorial m : ℝ) = ∏ j ∈ range m, ((k : ℝ) - j) := by
   rw [Nat.descFactorial_eq_prod_range, Nat.cast_prod]
@@ -42,7 +46,9 @@ theorem cast_descFactorial_eq_prod_range_sub (k m : ℕ) (hm : m ≤ k + 1) :
   exact Nat.cast_sub (by have h := mem_range.mp hj; omega)
 
 /-- A descending factorial is bounded below by the corresponding power times
-`1-ν(ν+1)/(2k)`. Source: focused BV reroute, finite-product envelope lemma.-/
+`1-ν(ν+1)/(2k)`. Source: focused BV reroute, finite-product envelope lemma.
+@isnad1 id=le.1h2v.s7.d0f81b344b31 from=translated src=- shape=cda4e36e vocab=05fe938d
+-/
 theorem pow_mul_one_sub_le_cast_descFactorial {k ν : ℕ} (hk : ν < k) :
     (k : ℝ) ^ (ν + 1) * (1 - ((ν : ℝ) * (ν + 1) / 2) / k) ≤
       (k.descFactorial (ν + 1) : ℝ) := by

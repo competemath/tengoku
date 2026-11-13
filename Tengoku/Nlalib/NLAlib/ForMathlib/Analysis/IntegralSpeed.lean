@@ -17,7 +17,9 @@ namespace NLAlib
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- A continuous path with speed at most (3/2)sqrt(t) C on (0,1) has
-endpoint displacement at most C, with no endpoint derivative assumption.-/
+endpoint displacement at most C, with no endpoint derivative assumption.
+@isnad1 id=le.3h4v.s7.0f6b17541c3d from=translated src=- shape=9f92c7fa vocab=edb62cad
+-/
 theorem norm_sub_le_of_norm_deriv_le_sqrt
     (u : ℝ → F) (v : ℝ → F) (hu : ContinuousOn u (Icc 0 1))
     (hd : ∀ t ∈ Ioo (0 : ℝ) 1, HasDerivAt u (v t) t)

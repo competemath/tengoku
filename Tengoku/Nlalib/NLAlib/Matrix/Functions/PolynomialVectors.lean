@@ -22,7 +22,9 @@ def normalizedChebyshevVectorMatrix (H : Matrix n n ℂ) (b : n → ℂ) (M : �
   ((aeval H ((normalizedChebyshevPolynomial j).map Complex.ofRealHom)) *ᵥ b) r
 
 /-- Normalized polynomial vectors are the unnormalized recurrence vectors
-multiplied by the exact mode weights.-/
+multiplied by the exact mode weights.
+@isnad1 id=eq.0h6v.s7.33c5fb7ac75c from=translated src=- shape=468da6bd vocab=b1a24ea2
+-/
 theorem normalizedChebyshevVectorMatrix_apply (H : Matrix n n ℂ) (b : n → ℂ) (M : ℕ)
     (r : n) (j : Fin (M+1)) :
     normalizedChebyshevVectorMatrix H b M r j = (normalizedChebyshevWeight j : ℂ) *

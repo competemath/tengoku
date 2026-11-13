@@ -19,7 +19,9 @@ open Finset
 namespace NLAlib
 
 /-- Geometric bounds on nonnegative dyadic blocks imply summability of the entire sequence.
-Source: elementary dyadic summation; used for `chebyshev-series-convergence`.-/
+Source: elementary dyadic summation; used for `chebyshev-series-convergence`.
+@isnad1 id=summable.5h3v.s7.316b67568326 from=translated src=- shape=8abf5e52 vocab=0942d0f4
+-/
 theorem summable_of_dyadic_block_sum_le_geometric {a : ℕ → ℝ} (ha : ∀ k, 0 ≤ a k)
     {C q : ℝ} (hC : 0 ≤ C) (hq0 : 0 ≤ q) (hq1 : q < 1)
     (hblock : ∀ j, ∑ k ∈ Ico (2 ^ j) (2 ^ (j + 1)), a k ≤ C * q ^ j) :

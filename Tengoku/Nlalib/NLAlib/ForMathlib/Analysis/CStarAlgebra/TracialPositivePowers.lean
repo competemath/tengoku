@@ -31,7 +31,9 @@ private theorem realTraceCFC : ContinuousFunctionalCalculus ℝ A IsSelfAdjoint 
 attribute [local instance] realTraceCFC
 
 /-- A genuine positive tracial functional is nonnegative on a product of
-positive elements, although that product need not itself be self-adjoint.-/
+positive elements, although that product need not itself be self-adjoint.
+@isnad1 id=le.3h4v.s8.603d5738f6e7 from=translated src=- shape=4834ce07 vocab=1b0fc5e0
+-/
 theorem PositiveLinearMap.re_mul_nonneg_of_tracial (φ : A →ₚ[ℂ] ℂ)
     (htrace : ∀ x y : A, φ (x * y) = φ (y * x)) {a b : A}
     (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ (φ (a * b)).re := by
@@ -46,7 +48,9 @@ theorem PositiveLinearMap.re_mul_nonneg_of_tracial (φ : A →ₚ[ℂ] ℂ)
   exact (Complex.nonneg_iff.mp (φ.map_nonneg (hc.conjugate_nonneg ha))).1
 
 /-- Exact cyclic differentiation of the actual positive functional along
-an arbitrary affine matrix-free C*-algebra path.-/
+an arbitrary affine matrix-free C*-algebra path.
+@isnad1 id=hasderiv.1h6v.s9.ca1c46b02028 from=translated src=- shape=6aa048f0 vocab=80e1ec05
+-/
 theorem PositiveLinearMap.hasDerivAt_re_pow_affine_of_tracial (φ : A →ₚ[ℂ] ℂ)
     (htrace : ∀ x y : A, φ (x * y) = φ (y * x)) (a h : A) (m : ℕ) (t : ℝ) :
     HasDerivAt (fun v : ℝ => (φ ((a + v • h) ^ m)).re)

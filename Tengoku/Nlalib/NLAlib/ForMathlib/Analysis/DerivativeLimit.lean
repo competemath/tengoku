@@ -23,7 +23,9 @@ namespace NLAlib
 convergence of functions, transfers differentiation on the positive time
 axis if the derivative limit is continuous. All finite-interval
 integrability is derived from measurability and the common bound. Source:
-FTC and dominated convergence. Atlas: `ornstein-uhlenbeck`.-/
+FTC and dominated convergence. Atlas: `ornstein-uhlenbeck`.
+@isnad1 id=hasderiv.8h6v.s8.2b813e29f8c4 from=translated src=- shape=cf21a6a6 vocab=ee85af6e
+-/
 theorem hasDerivAt_of_pointwise_tendsto_of_bounded_derivatives
     (F : ℕ → ℝ → ℝ) (D : ℕ → ℝ → ℝ) (f d : ℝ → ℝ) (B : ℝ)
     (hDm : ∀ n, Measurable (D n)) (hdm : Measurable d)

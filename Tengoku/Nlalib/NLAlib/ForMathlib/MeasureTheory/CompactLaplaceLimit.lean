@@ -27,7 +27,9 @@ namespace NLAlib
 space retain a single positive finite representing measure, provided the approximating
 measures have a common mass bound. The index filter is arbitrary and nontrivial.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.2h8v.s7.3c6ab49c2a41 from=translated src=- shape=57a79f04 vocab=11734b41
+-/
 theorem exists_finiteMeasure_integral_eq_of_tendsto
     {X T I : Type*} [MeasurableSpace X] [TopologicalSpace X] [T2Space X]
     [BorelSpace X] [CompactSpace X] {l : Filter I} [l.NeBot]
@@ -55,7 +57,9 @@ bound. This is the measure-compactness part of the repeated-eigenvalue reduction
 BMV theorem; the full contour representation is a separate theorem. Empty intervals and
 zero measures are included.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.2h7v.s7.961e8eafc9aa from=translated src=- shape=76577151 vocab=cd25a78b
+-/
 theorem exists_finiteMeasure_exp_mul_eq_of_tendsto_of_mass_le
     {I : Type*} {l : Filter I} [l.NeBot] (a b : ℝ) (C : ℝ≥0)
     (F : I → ℝ → ℝ) (f : ℝ → ℝ)
@@ -102,7 +106,9 @@ is the compactness reduction used to remove the simple-spectrum hypothesis from 
 BMV representation (Stahl 2013, Theorem 1). The spectral-surface positivity theorem is not
 an assumption or a conclusion here.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=ex.2h6v.s7.cb9758f4bb88 from=translated src=- shape=7e08ca07 vocab=264af59a
+-/
 theorem exists_finiteMeasure_exp_mul_eq_of_tendsto
     {I : Type*} {l : Filter I} [l.NeBot] (a b : ℝ)
     (F : I → ℝ → ℝ) (f : ℝ → ℝ)

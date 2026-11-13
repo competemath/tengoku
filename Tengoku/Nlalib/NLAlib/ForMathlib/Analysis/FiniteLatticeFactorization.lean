@@ -29,7 +29,9 @@ namespace NLAlib
 the sum of the left squares, and one common right factor below every `v_l`.
 Consequently all monotone right-endpoint lattice norms are controlled at
 once, while Euclidean left-endpoint norms add in squares. Zero coordinates
-and empty coordinate spaces are included.-/
+and empty coordinate spaces are included.
+@isnad1 id=ex.5h6v.s8.c7029ac01471 from=translated src=- shape=4c015e64 vocab=29424ce4
+-/
 theorem exists_common_power_factors_with_right_eq
     {ι κ : Type*} [Fintype ι] [Nonempty ι]
     {θ : ℝ} (hθ : θ ∈ Set.Ioo (0 : ℝ) 1)
@@ -88,7 +90,9 @@ theorem exists_common_power_factors_with_right_eq
 The left Euclidean power sums add in squares and every monotone right
 endpoint norm is preserved. The strengthened variant
 `exists_common_power_factors_with_right_eq` also gives the explicit right
-factor formula, which preserves any symmetry of the input and left factor.-/
+factor formula, which preserves any symmetry of the input and left factor.
+@isnad1 id=ex.5h6v.s8.07c9e11e1389 from=translated src=- shape=8c7d3fe1 vocab=9579f03e
+-/
 theorem exists_common_power_factors_of_power_factorizations
     {ι κ : Type*} [Fintype ι] [Nonempty ι]
     {θ : ℝ} (hθ : θ ∈ Set.Ioo (0 : ℝ) 1)
@@ -123,7 +127,9 @@ finite matrix at a target exponent `p ≥ 2`. The input `s i` is the Euclidean
 norm of row `i`. Both endpoint power sums equal exactly `∑ i, s i ^ p`,
 so applying the same construction to the transpose supplies the column
 factorization required for Gaussian profile interpolation. Zero rows are
-included, even when the right scaling has a negative exponent.-/
+included, even when the right scaling has a negative exponent.
+@isnad1 id=ex.7h7v.s8.fa338a8fb2a7 from=translated src=- shape=a7d5784a vocab=919657db
+-/
 theorem exists_row_power_factors
     {ι κ : Type*} [Fintype ι] [Fintype κ]
     {p q θ : ℝ} (hp : 2 ≤ p) (hq : 0 < q) (hθ : θ ∈ Set.Ioo (0 : ℝ) 1)
@@ -188,7 +194,9 @@ theorem exists_row_power_factors
 /-- Explicit power factors for an entrywise finite `ℓ_p` norm. Their left
 Euclidean power sum and right `ℓ_q` power sum both equal the original
 `p`th power sum. This supplies the entry endpoint alongside the row and
-column factorizations.-/
+column factorizations.
+@isnad1 id=ex.5h5v.s8.31790ec6ac68 from=translated src=- shape=b250ecce vocab=919657db
+-/
 theorem exists_scalar_power_factors
     {κ : Type*} [Fintype κ] {p q θ : ℝ}
     (hp : 0 < p) (hq : 0 < q) (hθ : θ ∈ Set.Ioo (0 : ℝ) 1)
@@ -228,7 +236,9 @@ theorem exists_scalar_power_factors
 /-- A weighted entry endpoint can share the same original coefficient
 factorization: weighting its right `ℓ_q` norm by `c` weights both endpoint
 power sums by `c^(θ p)`. This is the exact `sqrt(q)` entry factor used for
-Gaussian profile interpolation.-/
+Gaussian profile interpolation.
+@isnad1 id=ex.6h6v.s8.c64a2513b857 from=translated src=- shape=da8c57ed vocab=919657db
+-/
 theorem exists_weighted_scalar_power_factors
     {κ : Type*} [Fintype κ] {p q θ c : ℝ}
     (hp : 0 < p) (hq : 0 < q) (hθ : θ ∈ Set.Ioo (0 : ℝ) 1) (hc : 0 < c)
@@ -262,14 +272,18 @@ def powerInterpolationCoefficient (u v : ℝ) (z : ℂ) : ℂ :=
     Complex.exp ((1 - z) * (Real.log u : ℂ) + z * (Real.log v : ℂ))
   else 0
 
-/-- Every fixed pair of power factors gives an entire coefficient.-/
+/-- Every fixed pair of power factors gives an entire coefficient.
+@isnad1 id=differen.0h2v.s6.b833549aa217 from=translated src=- shape=feb27325 vocab=261e7d6c
+-/
 @[fun_prop] theorem differentiable_powerInterpolationCoefficient (u v : ℝ) :
     Differentiable ℂ (powerInterpolationCoefficient u v) := by
   unfold powerInterpolationCoefficient
   split_ifs <;> fun_prop
 
 /-- The coefficient modulus at each point is its ordinary geometric power
-interpolation when the two factors are positive.-/
+interpolation when the two factors are positive.
+@isnad1 id=eq.2h3v.s6.0f922a084f82 from=translated src=- shape=d82c94e0 vocab=3e101b99
+-/
 theorem norm_powerInterpolationCoefficient_of_pos
     {u v : ℝ} (hu : 0 < u) (hv : 0 < v) (z : ℂ) :
     ‖powerInterpolationCoefficient u v z‖ = u ^ (1 - z.re) * v ^ z.re := by
@@ -280,7 +294,9 @@ theorem norm_powerInterpolationCoefficient_of_pos
   ring
 
 /-- The two boundary coefficient moduli are bounded by the supplied power
-factors, including zero factor directions.-/
+factors, including zero factor directions.
+@isnad1 id=and.2h3v.s6.156b32abac9c from=translated src=- shape=9664fe3b vocab=36cd74c9
+-/
 theorem norm_powerInterpolationCoefficient_boundaries
     {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) (t : ℝ) :
     ‖powerInterpolationCoefficient u v ((t : ℂ) * Complex.I)‖ ≤ u ∧
@@ -290,7 +306,9 @@ theorem norm_powerInterpolationCoefficient_boundaries
   · simp [powerInterpolationCoefficient, hh, hu, hv]
 
 /-- At a real interpolation point, the coefficient is exactly the given
-nonnegative power factorization, also when either factor vanishes.-/
+nonnegative power factorization, also when either factor vanishes.
+@isnad1 id=eq.3h3v.s6.bfcf72c78980 from=translated src=- shape=20b77db5 vocab=8b3d6963
+-/
 theorem powerInterpolationCoefficient_real
     {u v θ : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) (hθ : θ ∈ Set.Ioo (0 : ℝ) 1) :
     powerInterpolationCoefficient u v (θ : ℂ) = ((u ^ (1 - θ) * v ^ θ : ℝ) : ℂ) := by
@@ -311,7 +329,9 @@ theorem powerInterpolationCoefficient_real
         Real.zero_rpow (by linarith [hθ.2] : 1 - θ ≠ 0)]
 
 /-- The entire coefficient family is uniformly bounded on the closed
-interpolation strip. This supplies actual boundedness for three-lines.-/
+interpolation strip. This supplies actual boundedness for three-lines.
+@isnad1 id=le.3h3v.s6.b6ea772e0d45 from=translated src=- shape=450657a5 vocab=2a79de75
+-/
 theorem norm_powerInterpolationCoefficient_le_max
     {u v : ℝ} (hu : 0 ≤ u) (hv : 0 ≤ v) {z : ℂ}
     (hz : z.re ∈ Set.Icc (0 : ℝ) 1) :

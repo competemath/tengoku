@@ -30,7 +30,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 /-- A common-row-sum nonnegative matrix has a balanced nonnegative part
 whose residual has no permutation of positive entries. The extracted part
 has a common row and column sum between zero and the original row sum.
-Source: GGOW, arXiv:1511.03730v4, Claim 3.3.-/
+Source: GGOW, arXiv:1511.03730v4, Claim 3.3.
+@isnad1 id=ex.3h3v.s7.ec1de566df55 from=translated src=- shape=015a2e07 vocab=61a0db39
+-/
 theorem exists_balanced_le_with_no_perm_pos (C : Matrix n n ℝ) (s : ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (hs : 0 ≤ s) (hrow : ∀ i, ∑ j, C i j = s) :
     ∃ (D : Matrix n n ℝ) (a : ℝ), 0 ≤ a ∧ a ≤ s ∧
@@ -117,7 +119,9 @@ theorem exists_balanced_le_with_no_perm_pos (C : Matrix n n ℝ) (s : ℝ)
 /-- A nonnegative row-stochastic matrix contains a scalar multiple of a
 doubly stochastic matrix. The scalar is at least one minus the square root
 of the dimension times the squared column-sum defect. This is GGOW,
-arXiv:1511.03730v4, Claim 3.3, including a possibly zero extracted part.-/
+arXiv:1511.03730v4, Claim 3.3, including a possibly zero extracted part.
+@isnad1 id=ex.2h2v.s8.e1d984517bae from=translated src=- shape=9ec8a030 vocab=147faac8
+-/
 theorem exists_smul_doublyStochastic_le_of_row_sum_one (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (hrow : ∀ i, ∑ j, C i j = 1) :
     ∃ (B : Matrix n n ℝ) (a : ℝ), B ∈ doublyStochastic ℝ n ∧
@@ -148,7 +152,9 @@ theorem exists_smul_doublyStochastic_le_of_row_sum_one (C : Matrix n n ℝ)
 
 /-- The column-stochastic version of finite balanced extraction, with the
 defect measured in the row sums. Transposition preserves double stochasticity.
-Source: GGOW, arXiv:1511.03730v4, Claim 3.3 in transposed orientation.-/
+Source: GGOW, arXiv:1511.03730v4, Claim 3.3 in transposed orientation.
+@isnad1 id=ex.2h2v.s8.117b85d1c1fe from=translated src=- shape=eb4cce47 vocab=147faac8
+-/
 theorem exists_smul_doublyStochastic_le_of_col_sum_one (C : Matrix n n ℝ)
     (hC : ∀ i j, 0 ≤ C i j) (hcol : ∀ j, ∑ i, C i j = 1) :
     ∃ (B : Matrix n n ℝ) (a : ℝ), B ∈ doublyStochastic ℝ n ∧

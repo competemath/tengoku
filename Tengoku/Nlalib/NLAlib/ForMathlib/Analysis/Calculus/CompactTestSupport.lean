@@ -21,7 +21,9 @@ namespace NLAlib
 have support in one strictly positive compact interval. No nonzero assumption is
 needed; the empty-support case is included.
 Source: compactness and derivative support containment;
-atlas wishart-lambda-min-tail (unshifted cutoff helper).-/
+atlas wishart-lambda-min-tail (unshifted cutoff helper).
+@isnad1 id=ex.2h1v.s7.5baa85d236de from=translated src=- shape=b0c1c54e vocab=8f8d3f43
+-/
 theorem exists_pos_bounds_tsupport_and_deriv (ψ : ℝ → ℝ) (hψc : HasCompactSupport ψ)
     (hψs : tsupport ψ ⊆ Ioi 0) :
     ∃ a b : ℝ, 0 < a ∧ a < b ∧ tsupport ψ ⊆ Icc a b ∧ tsupport (deriv ψ) ⊆ Icc a b := by

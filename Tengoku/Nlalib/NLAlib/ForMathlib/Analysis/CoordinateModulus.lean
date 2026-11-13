@@ -17,7 +17,9 @@ open Finset Set
 namespace Function
 
 /-- Bounds for one-coordinate changes imply the corresponding summed bound
-for arbitrary pairs in a finite Cartesian product.-/
+for arbitrary pairs in a finite Cartesian product.
+@isnad1 id=le.3h6v.s7.2003edff4820 from=translated src=- shape=a25ea527 vocab=e56480a2
+-/
 theorem abs_sub_le_sum_of_coordinate_bound {ι : Type*} [Fintype ι]
     (S : ι → Set ℝ) (f : (ι → ℝ) → ℝ) (L : ι → ℝ)
     (hf : ∀ i, ∀ x, (∀ j, x j ∈ S j) → ∀ y, (∀ j, y j ∈ S j) →

@@ -27,7 +27,9 @@ def ellipsePath (M ε : ℝ) : Path (M : ℂ) (M : ℂ) :=
     (by simp [ellipseMap]) (by simp [ellipseMap])
 
 /-- The ellipse path agrees with its angular parametrization through angle
-`2πt` on the full closed unit interval.-/
+`2πt` on the full closed unit interval.
+@isnad1 id=eq.1h3v.s6.c072dd41a4ba from=translated src=- shape=c18a2d5b vocab=f49df588
+-/
 theorem ellipsePath_extend_apply {M ε t : ℝ} (ht : t ∈ I) :
     (ellipsePath M ε).extend t = ellipseMap M ε (2 * Real.pi * t) := by
   rw [Path.extend_apply _ ht]
@@ -40,14 +42,18 @@ private theorem contDiff_ellipse_param (M ε : ℝ) :
   simpa only [ellipseMap, ofRealCLM_apply, Pi.add_apply, Function.comp_def] using!
     (ofRealCLM.contDiff.comp hr).add ((ofRealCLM.contDiff.comp hi).mul contDiff_const)
 
-/-- Native ellipse paths are continuously differentiable at both endpoints.-/
+/-- Native ellipse paths are continuously differentiable at both endpoints.
+@isnad1 id=contdiff.0h2v.s6.d72182682817 from=translated src=- shape=f8fc6880 vocab=adfe947a
+-/
 theorem contDiffOn_ellipsePath_extend (M ε : ℝ) :
     ContDiffOn ℝ 1 (ellipsePath M ε).extend I := by
   have h := contDiff_ellipse_param M ε
   exact h.contDiffOn.congr (fun t ht => ellipsePath_extend_apply ht)
 
 /-- The native ellipse path integral is its angular ellipse integral, with
-counterclockwise orientation and no change in its normalization.-/
+counterclockwise orientation and no change in its normalization.
+@isnad1 id=eq.0h3v.s8.0f16f286a766 from=translated src=- shape=774fd8f7 vocab=3ce370c7
+-/
 theorem curveIntegral_ellipsePath_eq_ellipseIntegral (f : ℂ → ℂ) (M ε : ℝ) :
     curveIntegral (fun z => f z • ContinuousLinearMap.id ℂ ℂ) (ellipsePath M ε) =
       ellipseIntegral f M ε := by
@@ -74,7 +80,9 @@ private theorem ellipseMap_self (M θ : ℝ) : ellipseMap M M θ = circleMap 0 M
 
 /-- Every point of a nondegenerate ellipse with real semiaxis outside a disk
 is either nonreal or outside that disk. Thus its flattening avoids every branch
-cut contained in the smaller real segment.-/
+cut contained in the smaller real segment.
+@isnad1 id=or.3h4v.s5.20d1c777af61 from=translated src=- shape=55fdd4b0 vocab=27bd4e99
+-/
 theorem ellipseMap_mem_off_real_or_exterior {M ε R θ : ℝ}
     (hM : 0 < M) (hε : 0 < ε) (hRM : R < M) :
     (ellipseMap M ε θ).im ≠ 0 ∨ R < ‖ellipseMap M ε θ‖ := by
@@ -93,7 +101,9 @@ theorem ellipseMap_mem_off_real_or_exterior {M ε R θ : ℝ}
 /-- A circle of radius `M` deforms through smooth ellipses to any positive
 vertical semiaxis inside the union of the nonreal plane and the exterior of a
 smaller disk. Holomorphy on that actual domain identifies the contour integrals.
-No real-axis boundary values inside the disk are assumed.-/
+No real-axis boundary values inside the disk are assumed.
+@isnad1 id=eq.4h4v.s7.3c021a0b21f0 from=translated src=- shape=1463463d vocab=bd239694
+-/
 theorem circleIntegral_eq_ellipseIntegral_of_differentiableOn_off_real_or_exterior
     {f : ℂ → ℂ} {R M ε : ℝ} (hM : 0 < M) (hε : 0 < ε) (hRM : R < M)
     (hf : DifferentiableOn ℂ f {z | z.im ≠ 0 ∨ R < ‖z‖}) :

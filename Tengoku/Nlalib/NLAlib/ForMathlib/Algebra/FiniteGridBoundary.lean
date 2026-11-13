@@ -15,7 +15,9 @@ Ported from the local deferred Jordan-contour development of 2026-10-14.
 namespace Finset
 
 /-- Adjacent end and start increments telescope even when the successive
-values were originally given by different functions.-/
+values were originally given by different functions.
+@isnad1 id=eq.2h4v.s7.7a53ee5da7ee from=translated src=- shape=5c53a0e9 vocab=1d6f465e
+-/
 theorem sum_range_sub_of_adjacent {G : Type*} [AddCommGroup G]
     (f g : ℕ → G) {n : ℕ} (hn : 0 < n)
     (h : ∀ i, i + 1 < n → f (i + 1) = g i) :
@@ -31,7 +33,9 @@ theorem sum_range_sub_of_adjacent {G : Type*} [AddCommGroup G]
   abel
 
 /-- Summing zero cell boundaries and cancelling actual shared edges leaves
-exactly the outer boundary of a finite square grid.-/
+exactly the outer boundary of a finite square grid.
+@isnad1 id=eq.4h6v.s8.336ae33f3920 from=translated src=- shape=f8b6d9b1 vocab=1d6f465e
+-/
 theorem sum_grid_boundary_eq {G : Type*} [AddCommGroup G]
     (bottom top left right : ℕ → ℕ → G) {n : ℕ} (hn : 0 < n)
     (hc : ∀ i < n, ∀ j < n, bottom i j + right i j = top i j + left i j)

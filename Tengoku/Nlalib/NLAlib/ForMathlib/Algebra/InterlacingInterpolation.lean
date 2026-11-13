@@ -20,7 +20,9 @@ open Polynomial
 namespace NLAlib
 
 /-- Equal-degree monic polynomials cancel their leading terms.
-Horn--Johnson (2013), Section 4.3; inverse interlacing helper.-/
+Horn--Johnson (2013), Section 4.3; inverse interlacing helper.
+@isnad1 id=lt.4h3v.s6.6fd55f3a9219 from=translated src=- shape=b639700d vocab=2f035234
+-/
 theorem degree_sub_lt_of_monic_natDegree_eq {p q : ℝ[X]} {n : ℕ}
     (hp : p.Monic) (hq : q.Monic) (hpn : p.natDegree = n)
     (hqn : q.natDegree = n) : (p - q).degree < n := by
@@ -30,7 +32,9 @@ theorem degree_sub_lt_of_monic_natDegree_eq {p q : ℝ[X]} {n : ℕ}
     (hp.leadingCoeff.trans hq.leadingCoeff.symm)
 
 /-- Matching the next coefficient cancels one further degree.
-Horn--Johnson (2013), Section 4.3; inverse interlacing helper.-/
+Horn--Johnson (2013), Section 4.3; inverse interlacing helper.
+@isnad1 id=lt.5h3v.s6.4a4783731fae from=translated src=- shape=84629ca6 vocab=a0705efe
+-/
 theorem degree_sub_lt_of_monic_nextCoeff_eq {p q : ℝ[X]} {n : ℕ}
     (hp : p.Monic) (hq : q.Monic) (hpn : p.natDegree = n + 1)
     (hqn : q.natDegree = n + 1) (hc : p.nextCoeff = q.nextCoeff) :
@@ -49,7 +53,9 @@ theorem degree_sub_lt_of_monic_nextCoeff_eq {p q : ℝ[X]} {n : ℕ}
 
 /-- A polynomial remainder of degree below the number of distinct nodes
 equals the sum of its simple residue numerators. Horn--Johnson (2013),
-Section 4.3; inverse interlacing helper.-/
+Section 4.3; inverse interlacing helper.
+@isnad1 id=eq.3h4v.s8.f0a8fc897e2a from=translated src=- shape=24160223 vocab=bfd7b494
+-/
 theorem polynomial_eq_base_sub_residue_sum {ι : Type*} [Fintype ι] [DecidableEq ι]
     (d : ι → ℝ) (hd : Function.Injective d) (q base : ℝ[X])
     (hdeg : (q - base).degree < Fintype.card ι)

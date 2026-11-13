@@ -23,7 +23,9 @@ open Cubical Cubical.RectangularGrid
 
 /-- A finite piecewise C1 cycle in a compact planar set has an actual
 normalized finite filling in every open neighborhood of that set and its
-bounded complementary components.-/
+bounded complementary components.
+@isnad1 id=ex.5h3v.s11.90b0b34eb36a from=translated src=- shape=dc4db51d vocab=beb34390
+-/
 theorem exists_isNullHomologous_mapOne_eq_of_boundedComplementFill_subset
     {C Ω : Set ℂ} (hC : IsCompact C) (hΩ : IsOpen Ω)
     (hfill : boundedComplementFill C ⊆ Ω)
@@ -59,7 +61,9 @@ theorem exists_isNullHomologous_mapOne_eq_of_boundedComplementFill_subset
 domain containing its compact filled trace. This supplies the missing
 topological premise of the general contour Cauchy and Gauss theorems from
 the stated geometric neighborhood hypothesis.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=isnullho.4h2v.s10.8e2fc881c412 from=translated src=- shape=c4f282ab vocab=0d37b66f
+-/
 theorem isNullHomologous_of_boundedComplementFill_cubicalTrace_subset
     {Ω : Set ℂ} (hΩ : IsOpen Ω) (Γ : OneChain Ω) (hc : boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

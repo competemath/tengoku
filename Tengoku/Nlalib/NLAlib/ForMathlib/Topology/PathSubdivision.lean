@@ -37,7 +37,9 @@ private theorem uniformSubdivision_cell_subset_ball {n i : ℕ} {δ : ℝ}
   linarith
 
 /-- Every open cover of a compact continuous path image admits a finite uniform
-subdivision whose actual closed parameter cells map into individual charts.-/
+subdivision whose actual closed parameter cells map into individual charts.
+@isnad1 id=ex.3h4v.s7.a322e18b02cc from=translated src=- shape=61b886ed vocab=d040aa0a
+-/
 theorem exists_uniform_subdivision_subordinate_open_cover
     {X : Type*} [TopologicalSpace X] {ι : Sort*} (γ : ℝ → X) (hγ : Continuous γ)
     (U : ι → Set X) (hU : ∀ j, IsOpen (U j))
@@ -59,7 +61,9 @@ theorem exists_uniform_subdivision_subordinate_open_cover
 
 /-- A compact continuous homotopy square has a uniform finite grid whose actual
 closed cells each lie in one open chart of the image cover. This is the mesh
-input for a local primitive telescoping argument, with no C² hypothesis.-/
+input for a local primitive telescoping argument, with no C² hypothesis.
+@isnad1 id=ex.3h4v.s8.4bd544d4b26a from=translated src=- shape=71ea150b vocab=412bce21
+-/
 theorem exists_uniform_grid_subordinate_open_cover
     {X : Type*} [TopologicalSpace X] {ι : Sort*} (ψ : ℝ × ℝ → X) (hψ : Continuous ψ)
     (U : ι → Set X) (hU : ∀ j, IsOpen (U j))

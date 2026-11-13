@@ -19,7 +19,9 @@ namespace NLAlib
 
 /-- Finite degree-transfer inequalities with vanishing target-degree remainder
 force the even subsequence to converge to its actual liminf.
-Source: focused Bernstein reroute, scalar closure of the finite inequality.-/
+Source: focused Bernstein reroute, scalar closure of the finite inequality.
+@isnad1 id=tendsto.3h2v.s7.51894088dc07 from=translated src=- shape=fd688508 vocab=9da22717
+-/
 theorem tendsto_even_sequence_of_degree_transfer
     (a : ℕ → ℝ) (ha : ∀ n, 0 ≤ a (2*n)) {M : ℝ} (hM : ∀ n, a (2*n) ≤ M)
     (htransfer : ∀ α : ℝ, 0 < α → α < 1 →
@@ -73,7 +75,9 @@ theorem tendsto_even_sequence_of_degree_transfer
   exact tendsto_of_le_liminf_of_limsup_le le_rfl hsup habove hbelow
 
 /-- Convergence of the even and odd subsequences gives convergence of the whole
-natural-index sequence.-/
+natural-index sequence.
+@isnad1 id=tendsto.2h2v.s6.670af6a7669f from=translated src=- shape=6fd30ccf vocab=e6d113c2
+-/
 theorem tendsto_nat_of_even_odd {a : ℕ → ℝ} {b : ℝ}
     (he : Tendsto (fun n => a (2*n)) atTop (𝓝 b))
     (ho : Tendsto (fun n => a (2*n+1)) atTop (𝓝 b)) :
@@ -97,7 +101,9 @@ theorem tendsto_nat_of_even_odd {a : ℕ → ℝ} {b : ℝ}
 
 /-- For an antitone approximation-error sequence, convergence of the scaled
 even degrees implies convergence at every degree by the two neighboring even
-degrees. No parity identity for minimizing polynomials is required.-/
+degrees. No parity identity for minimizing polynomials is required.
+@isnad1 id=tendsto.2h2v.s6.23ce3aa2ef64 from=translated src=- shape=1367cc55 vocab=9dca3406
+-/
 theorem tendsto_nat_mul_of_even_tendsto {e : ℕ → ℝ} (he : Antitone e) {b : ℝ}
     (h : Tendsto (fun n => (2*n:ℕ)*e (2*n)) atTop (𝓝 b)) :
     Tendsto (fun n : ℕ => (n:ℝ)*e n) atTop (𝓝 b) := by

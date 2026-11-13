@@ -22,7 +22,9 @@ namespace Complex
 open Cubical Cubical.RectangularGrid
 
 /-- A cycle contained in `C` has zero actual winding outside the fill of
-`C`, even when `C` contains additional points beyond its actual trace.-/
+`C`, even when `C` contains additional points beyond its actual trace.
+@isnad1 id=eq.3h3v.s10.d7cc1fe06aa5 from=translated src=- shape=827c654d vocab=55dedd12
+-/
 theorem cubicalWindingIntegral_eq_zero_of_not_mem_boundedComplementFill
     {C : Set ℂ} (Γ : OneChain C) (hc : boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -35,7 +37,9 @@ theorem cubicalWindingIntegral_eq_zero_of_not_mem_boundedComplementFill
 
 /-- Every nonzero prefix cell of an actual close grid approximation is
 inside the desired neighborhood of the compact filled trace. Its coefficient
-is obtained from actual winding; no support or period conclusion is assumed.-/
+is obtained from actual winding; no support or period conclusion is assumed.
+@isnad1 id=mem.9h11v.s12.5fc3c36a7c72 from=translated src=- shape=9627c5aa vocab=f24d1121
+-/
 theorem rectangularGrid_cell_mem_of_comparison
     {C Ω : Set ℂ} (Γ : OneChain C) (hc : boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

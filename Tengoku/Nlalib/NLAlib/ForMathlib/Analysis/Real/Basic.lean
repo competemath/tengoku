@@ -24,7 +24,9 @@ Used by the Gaussian concentration files (atlas `gaussian-log-sobolev`,
 namespace NLAlib
 
 /-- `√(∑ xᵢ²) ≤ ∑ |xᵢ|`. Atlas: `gaussian-concentration` (helper). Ported from Prove2me solution
-`GaussianMatrix.gaussian_lipschitz_entropy_bound`.-/
+`GaussianMatrix.gaussian_lipschitz_entropy_bound`.
+@isnad1 id=le.0h2v.s5.cd7a60f9797c from=translated src=- shape=0541a780 vocab=a2a53a55
+-/
 theorem sqrt_sum_sq_le_sum_abs {ι : Type*} [Fintype ι] (x : ι → ℝ) :
     Real.sqrt (∑ i, x i ^ 2) ≤ ∑ i, |x i| := by
   have h0 : 0 ≤ ∑ i, |x i| := Finset.sum_nonneg fun i _ => abs_nonneg _
@@ -34,7 +36,9 @@ theorem sqrt_sum_sq_le_sum_abs {ι : Type*} [Fintype ι] (x : ι → ℝ) :
   exact Finset.sum_sq_le_sq_sum_of_nonneg fun i _ => abs_nonneg _
 
 /-- `|s log s| ≤ s² + 1` for `s ≥ 0`. Atlas: `gaussian-log-sobolev` (helper). Ported from
-Prove2me solution `GaussianMatrix.gaussian_logsobolev_bounded_below`.-/
+Prove2me solution `GaussianMatrix.gaussian_logsobolev_bounded_below`.
+@isnad1 id=le.1h1v.s5.e525c53304ec from=translated src=- shape=d7474b49 vocab=60c5f585
+-/
 theorem abs_mul_log_le_sq_add_one (s : ℝ) (hs : 0 ≤ s) : |s * Real.log s| ≤ s ^ 2 + 1 := by
   rcases hs.eq_or_lt with h | hs'
   · subst h; simp
@@ -48,7 +52,9 @@ theorem abs_mul_log_le_sq_add_one (s : ℝ) (hs : 0 ≤ s) : |s * Real.log s| �
 
 /-- `|(a + δ) log (a + δ)| ≤ |a log a| + a + 2` for `a ≥ 0` and `0 < δ ≤ 1`. Atlas:
 `gaussian-log-sobolev` (helper). Ported from Prove2me solution
-`GaussianMatrix.gaussian_logsobolev`.-/
+`GaussianMatrix.gaussian_logsobolev`.
+@isnad1 id=le.3h2v.s6.f763302dc789 from=translated src=- shape=8e11dc67 vocab=81a4a343
+-/
 theorem abs_add_mul_log_add_le (a δ : ℝ) (ha : 0 ≤ a) (hδ : 0 < δ) (hδ1 : δ ≤ 1) :
     |(a + δ) * Real.log (a + δ)| ≤ |a * Real.log a| + a + 2 := by
   set b := a + δ with hb
@@ -82,7 +88,9 @@ theorem abs_add_mul_log_add_le (a δ : ℝ) (ha : 0 ≤ a) (hδ : 0 < δ) (hδ1 
     linarith
 
 /-- `|u e^u| ≤ e^{2u} + 1`. Atlas: `gaussian-concentration` (helper). Ported from Prove2me
-solution `GaussianMatrix.gaussian_lipschitz_entropy_bound`.-/
+solution `GaussianMatrix.gaussian_lipschitz_entropy_bound`.
+@isnad1 id=le.0h1v.s5.505775517314 from=translated src=- shape=90f08277 vocab=67aa819e
+-/
 theorem abs_mul_exp_le_exp_two_mul_add_one (u : ℝ) :
     |u * Real.exp u| ≤ Real.exp (2 * u) + 1 := by
   have e2 : Real.exp (2 * u) = Real.exp u * Real.exp u := by rw [← Real.exp_add]; ring_nf
@@ -99,7 +107,9 @@ theorem abs_mul_exp_le_exp_two_mul_add_one (u : ℝ) :
 
 /-- `log(1 + ε) ≤ ε − ε²/2 + ε³/3` for `ε ≥ 0` (the third Taylor polynomial of `log(1 + ·)` is
 an upper bound on `[0, ∞)`). Proof: the difference has derivative `ε³/(1 + ε) ≥ 0` and vanishes
-at `0`. Used in Dasgupta–Gupta 2003, proof of Lem 2.2. Atlas: `jl-distributional` (helper).-/
+at `0`. Used in Dasgupta–Gupta 2003, proof of Lem 2.2. Atlas: `jl-distributional` (helper).
+@isnad1 id=le.1h1v.s6.70137920cf17 from=translated src=- shape=44f63e00 vocab=1789be8f
+-/
 theorem log_one_add_le_sub_sq_div_two_add_pow_three_div_three {ε : ℝ} (hε : 0 ≤ ε) :
     Real.log (1 + ε) ≤ ε - ε ^ 2 / 2 + ε ^ 3 / 3 := by
   let f : ℝ → ℝ := fun t => t - t ^ 2 / 2 + t ^ 3 / 3 - Real.log (1 + t)
@@ -131,7 +141,9 @@ theorem log_one_add_le_sub_sq_div_two_add_pow_three_div_three {ε : ℝ} (hε : 
 /-- `log(1 − ε) ≤ −ε − ε²/2` for `0 ≤ ε < 1`: the first two terms of the series
 `−log(1 − ε) = ∑ εⁿ/n` (all terms nonnegative). Used in Dasgupta–Gupta 2003, proof of Lem 2.2,
 and Laurent–Massart 2000, Lem 1. Atlas: `jl-distributional`, `chi-square-lower-tail`
-(helper).-/
+(helper).
+@isnad1 id=le.2h1v.s6.17249de64659 from=translated src=- shape=02a4eaf4 vocab=8f742609
+-/
 theorem log_one_sub_le_neg_sub_sq_div_two {ε : ℝ} (hε0 : 0 ≤ ε) (hε1 : ε < 1) :
     Real.log (1 - ε) ≤ -ε - ε ^ 2 / 2 := by
   have h := Real.hasSum_pow_div_log_of_abs_lt_one (x := ε) (by rwa [abs_of_nonneg hε0])

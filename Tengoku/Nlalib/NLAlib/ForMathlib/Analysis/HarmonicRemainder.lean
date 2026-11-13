@@ -16,7 +16,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- A cubic rational lower bound for the symmetric logarithm.
-Source: focused reroutes, the harmonic-remainder calculation; direct differentiation.-/
+Source: focused reroutes, the harmonic-remainder calculation; direct differentiation.
+@isnad1 id=le.2h1v.s7.6af9557a1dae from=translated src=- shape=cb4e0273 vocab=16aef032
+-/
 theorem two_mul_add_cubic_le_log_div {t : ℝ} (ht : 0 ≤ t) (ht1 : t < 1) :
     2 * t + 2 * t ^ 3 / 3 ≤ log ((1 + t) / (1 - t)) := by
   let f := fun x : ℝ => log (1 + x) - log (1 - x) - 2 * x - 2 * x ^ 3 / 3
@@ -54,7 +56,9 @@ def harmonicMidpointRemainder (m : ℕ) : ℝ :=
   2 * (harmonic (2 * m) : ℝ) - (harmonic m : ℝ) - log m - eulerMascheroniConstant - 2 * log 2
 
 /-- Adjacent midpoint harmonic remainders have an exact logarithmic difference.
-Source: focused reroutes, finite harmonic-remainder telescope.-/
+Source: focused reroutes, finite harmonic-remainder telescope.
+@isnad1 id=eq.1h1v.s6.491176146eba from=translated src=- shape=52b75588 vocab=088ab50e
+-/
 theorem harmonicMidpointRemainder_sub_succ {k : ℕ} (hk : 0 < k) :
     harmonicMidpointRemainder k - harmonicMidpointRemainder (k + 1) =
       log (((k : ℝ) + 1) / k) - 2 / (2 * (k : ℝ) + 1) := by
@@ -70,7 +74,9 @@ theorem harmonicMidpointRemainder_sub_succ {k : ℕ} (hk : 0 < k) :
   ring
 
 /-- The adjacent remainder difference dominates an explicit cubic reciprocal.
-Source: focused reroutes, finite harmonic-remainder telescope.-/
+Source: focused reroutes, finite harmonic-remainder telescope.
+@isnad1 id=le.1h1v.s6.531dd52522f3 from=translated src=- shape=0f2f6561 vocab=f3dc468e
+-/
 theorem cubic_inv_le_harmonicMidpointRemainder_sub_succ {k : ℕ} (hk : 0 < k) :
     2 / (3 * (2 * (k : ℝ) + 1) ^ 3) ≤
       harmonicMidpointRemainder k - harmonicMidpointRemainder (k + 1) := by
@@ -91,7 +97,9 @@ theorem cubic_inv_le_harmonicMidpointRemainder_sub_succ {k : ℕ} (hk : 0 < k) :
   linarith
 
 /-- The midpoint harmonic remainder tends to zero.
-Source: the defining harmonic-log limit of the Euler–Mascheroni constant.-/
+Source: the defining harmonic-log limit of the Euler–Mascheroni constant.
+@isnad1 id=tendsto.0h0v.s4.52a350c77519 from=translated src=- shape=8e2810f0 vocab=5c7bc379
+-/
 theorem tendsto_harmonicMidpointRemainder :
     Tendsto harmonicMidpointRemainder atTop (𝓝 0) := by
   have h2 : Tendsto (fun m : ℕ => 2 * m) atTop atTop :=
@@ -110,7 +118,9 @@ theorem tendsto_harmonicMidpointRemainder :
 
 /-- The explicit midpoint harmonic remainder is at least `1/[6(2m+1)^2]`.
 Source: focused reroutes, equation `polyretry:harmonic-remainder`. A rational
-finite telescope replaces the improper integral in the printed proof.-/
+finite telescope replaces the improper integral in the printed proof.
+@isnad1 id=le.1h1v.s6.9d128125bdc2 from=translated src=- shape=8005c479 vocab=c9f13aad
+-/
 theorem inv_sq_le_harmonicMidpointRemainder {m : ℕ} (hm : 1 ≤ m) :
     1 / (6 * (2 * (m : ℝ) + 1) ^ 2) ≤ harmonicMidpointRemainder m := by
   let R := fun k : ℕ => 1 / (6 * (2 * (k : ℝ) + 1) ^ 2)

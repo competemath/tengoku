@@ -23,7 +23,9 @@ namespace Real
 /-- Generalized finite Hölder: if each nonnegative function has `N`-th
 moment at most `C i ^ N`, then a product with natural exponents summing to
 `N` has integral at most the corresponding product of powers of `C`.
-The weight may be any nonnegative finite measure and need not sum to one.-/
+The weight may be any nonnegative finite measure and need not sum to one.
+@isnad1 id=le.6h7v.s7.d81a96863483 from=translated src=- shape=77368241 vocab=6484051d
+-/
 theorem sum_mul_prod_pow_le_prod_pow
     {Ω ι : Type*} [Fintype Ω] [Fintype ι]
     (ρ : Ω → ℝ) (hρ : ∀ ω, 0 ≤ ρ ω)
@@ -93,7 +95,9 @@ end Real
 
 namespace NLAlib
 
-/-- Finite weighted Hölder, with arbitrary nonnegative weights.-/
+/-- Finite weighted Hölder, with arbitrary nonnegative weights.
+@isnad1 id=le.4h7v.s7.fcd69a3315a6 from=translated src=- shape=6c4f9545 vocab=5e0ddb1c
+-/
 theorem sum_mul_mul_le_rpow_sum_mul_rpow {ι : Type*} (s : Finset ι)
     (w f g : ι → ℝ) {p q : ℝ} (hpq : p.HolderConjugate q)
     (hw : ∀ i ∈ s, 0 ≤ w i) (hf : ∀ i ∈ s, 0 ≤ f i)

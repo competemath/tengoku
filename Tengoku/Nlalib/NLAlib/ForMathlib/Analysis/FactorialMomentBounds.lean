@@ -15,7 +15,9 @@ Atlas: `khatri-rao-sharp-growth`.
 namespace NLAlib
 
 /-- The central binomial coefficient bounds the doubled factorial.
-Source: the binomial sum at one. Atlas: `khatri-rao-sharp-growth`.-/
+Source: the binomial sum at one. Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.0h1v.s5.cd589cda715a from=translated src=- shape=bf609281 vocab=bf88f0e0
+-/
 theorem factorial_two_mul_le_four_pow_mul_factorial_sq (n : ℕ) :
     (2 * n).factorial ≤ 4 ^ n * n.factorial ^ 2 := by
   have he : (2 * n).choose n * n.factorial * n.factorial = (2 * n).factorial := by
@@ -28,7 +30,9 @@ theorem factorial_two_mul_le_four_pow_mul_factorial_sq (n : ℕ) :
 
 /-- Keeping the initial unit factor saves one power in an elementary factorial bound.
 Source: comparison of each remaining factor with `n+1`.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.0h1v.s5.9cf66f0af10c from=translated src=- shape=f34c2a4c vocab=7cf29c35
+-/
 theorem factorial_le_succ_pow_pred (n : ℕ) : n.factorial ≤ (n + 1) ^ (n - 1) := by
   induction n with
   | zero => simp
@@ -45,7 +49,9 @@ theorem factorial_le_succ_pow_pred (n : ℕ) : n.factorial ≤ (n + 1) ^ (n - 1)
 
 /-- A direction-preserving radial budget fits a factorial envelope with explicit
 geometric constants. Source: elementary factorial and binomial comparisons.
-Atlas: `khatri-rao-sharp-growth`.-/
+Atlas: `khatri-rao-sharp-growth`.
+@isnad1 id=le.3h3v.s8.f7b263148188 from=translated src=- shape=931e9728 vocab=890cc3e5
+-/
 theorem factorial_radial_coefficient_le {r p d : ℕ} (hr : 1 ≤ r) (hp : 2 ≤ p) (hd : 2 ≤ d) :
     2 * 4 ^ d * 2 ^ ((p - 1) * (d - 1)) * (p - 1).factorial ^ (d - 1) *
         (r + 4 * p) ^ (p - 1) ≤

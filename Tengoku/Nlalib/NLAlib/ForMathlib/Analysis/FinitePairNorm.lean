@@ -15,7 +15,9 @@ noncomputable section
 namespace NLAlib
 
 /-- Supremum norms of finite real lists multiply for pairwise products.
-The identity includes empty factors, whose supremum norms are zero.-/
+The identity includes empty factors, whose supremum norms are zero.
+@isnad1 id=eq.0h4v.s6.7d18bb68af86 from=translated src=- shape=3b75bbb3 vocab=65129c2e
+-/
 theorem norm_pair_mul {m n : Type*} [Fintype m] [Fintype n] (a : m → ℝ) (b : n → ℝ) :
     ‖(fun ij : m × n => a ij.1 * b ij.2)‖ = ‖a‖ * ‖b‖ := by
   classical

@@ -16,7 +16,9 @@ open scoped unitInterval
 namespace Cubical
 variable {X : Type*} [TopologicalSpace X]
 
-/-- A constant edge is degenerate in the normalized cubical chain complex.-/
+/-- A constant edge is degenerate in the normalized cubical chain complex.
+@isnad1 id=isnullho.0h3v.s6.6d601f0dc685 from=translated src=- shape=c7d0f844 vocab=e23ddfbf
+-/
 theorem isNullHomologous_single_const (x : X) (k : ℤ) :
     IsNullHomologous (Finsupp.single (ContinuousMap.const I x) k) := by
   refine ⟨0, Finsupp.single x k, ?_⟩
@@ -27,16 +29,24 @@ parameterization in the unit interval. The values may coincide or reverse.-/
 def subedge (γ : C(I, X)) (r s : I) : C(I, X) :=
   γ.comp ⟨Set.Icc.convexComb r s, Set.Icc.continuous_convexComb r s⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.fc271e144271 from=translated src=- shape=f41ab939 vocab=489a14c1
+-/
 @[simp]
 theorem subedge_zero (γ : C(I, X)) (r s : I) : subedge γ r s 0 = γ r := by
   simp [subedge]
 
+/--
+@isnad1 id=eq.0h4v.s7.9524e272e430 from=translated src=- shape=5c995c6b vocab=489a14c1
+-/
 @[simp]
 theorem subedge_one (γ : C(I, X)) (r s : I) : subedge γ r s 1 = γ s := by
   simp [subedge]
 
 /-- A single continuous fan square gives the difference between two initial
-subpaths and their intervening actual subedge. Its image stays on `γ`.-/
+subpaths and their intervening actual subedge. Its image stays on `γ`.
+@isnad1 id=isnullho.0h4v.s8.e1add5723838 from=translated src=- shape=407f67c3 vocab=59333623
+-/
 theorem isNullHomologous_initialPart_sub_initialPart_sub_subedge
     (γ : C(I, X)) (r s : I) :
     IsNullHomologous (Finsupp.single (initialPart γ s) 1 -
@@ -61,7 +71,9 @@ def subdivisionChain (γ : C(I, X)) (p : ℕ → I) (n : ℕ) : OneChain X :=
   ∑ i ∈ Finset.range n, Finsupp.single (subedge γ (p i) (p (i + 1))) 1
 
 /-- The fan-square fillings telescope for any finite sequence of parameter
-values, including repeated or unordered values.-/
+values, including repeated or unordered values.
+@isnad1 id=isnullho.0h4v.s8.419989ae7760 from=translated src=- shape=487c711d vocab=fde0dd19
+-/
 theorem isNullHomologous_initialPart_sub_subdivisionChain
     (γ : C(I, X)) (p : ℕ → I) (n : ℕ) :
     IsNullHomologous (Finsupp.single (initialPart γ (p n)) 1 -
@@ -75,7 +87,9 @@ theorem isNullHomologous_initialPart_sub_subdivisionChain
     abel
 
 /-- A subdivision beginning at zero and ending at one represents the
-original edge modulo actual normalized continuous square boundaries.-/
+original edge modulo actual normalized continuous square boundaries.
+@isnad1 id=isnullho.2h4v.s7.f20434ceb1c4 from=translated src=- shape=7c1bee3c vocab=17788dfa
+-/
 theorem isNullHomologous_single_sub_subdivisionChain
     (γ : C(I, X)) (p : ℕ → I) (n : ℕ) (hzero : p 0 = 0) (hone : p n = 1) :
     IsNullHomologous (Finsupp.single γ 1 - subdivisionChain γ p n) := by
@@ -96,7 +110,9 @@ sequence is a total function into the actual unit interval.-/
 def uniformNode (n i : ℕ) : I :=
   Set.projIcc 0 1 zero_le_one ((i : ℝ) / n)
 
-/-- Uniform nodes before the final index have their actual expected value.-/
+/-- Uniform nodes before the final index have their actual expected value.
+@isnad1 id=eq.2h2v.s5.481566f3227c from=translated src=- shape=c47082ca vocab=40f9b8a9
+-/
 theorem coe_uniformNode_of_le {n i : ℕ} (hn : 0 < n) (hi : i ≤ n) :
     (uniformNode n i : ℝ) = (i : ℝ) / n := by
   have hn' : 0 < (n : ℝ) := by exact_mod_cast hn
@@ -105,7 +121,9 @@ theorem coe_uniformNode_of_le {n i : ℕ} (hn : 0 < n) (hi : i ≤ n) :
       (div_le_one hn').mpr (by exact_mod_cast hi)⟩)
 
 /-- The actual uniformly subdivided path has the same normalized cubical
-homology class. Its constructed filling uses only points on the original edge.-/
+homology class. Its constructed filling uses only points on the original edge.
+@isnad1 id=isnullho.1h3v.s7.4b07a30dc894 from=translated src=- shape=e03e40ad vocab=e2766175
+-/
 theorem isNullHomologous_single_sub_uniform_subdivisionChain
     (γ : C(I, X)) {n : ℕ} (hn : 0 < n) :
     IsNullHomologous (Finsupp.single γ 1 - subdivisionChain γ (uniformNode n) n) := by
@@ -123,7 +141,9 @@ def uniformSubdivision (size : C(I, X) → ℕ) : OneChain X →ₗ[ℤ] OneChai
   Finsupp.linearCombination ℤ (fun γ => subdivisionChain γ (uniformNode (size γ)) (size γ))
 
 /-- Subdividing each actual edge preserves its cubical homology class, with
-an explicit finite filling supplied by the fan-square construction.-/
+an explicit finite filling supplied by the fan-square construction.
+@isnad1 id=isnullho.1h3v.s8.238a4a11b26f from=translated src=- shape=85186773 vocab=98ff1a2e
+-/
 theorem isNullHomologous_sub_uniformSubdivision (Γ : OneChain X)
     (size : C(I, X) → ℕ) (hsize : ∀ γ, 0 < size γ) :
     IsNullHomologous (Γ - uniformSubdivision size Γ) := by
@@ -139,7 +159,9 @@ theorem isNullHomologous_sub_uniformSubdivision (Γ : OneChain X)
     simpa only [uniformSubdivision, Finsupp.linearCombination_single, smul_sub,
       Finsupp.smul_single_one] using he
 
-/-- Actual subdivision preserves the native finite endpoint boundary.-/
+/-- Actual subdivision preserves the native finite endpoint boundary.
+@isnad1 id=eq.1h3v.s9.1bbaa856624c from=translated src=- shape=6c03ce76 vocab=d6696eb8
+-/
 theorem boundaryOne_uniformSubdivision (Γ : OneChain X)
     (size : C(I, X) → ℕ) (hsize : ∀ γ, 0 < size γ) :
     boundaryOne (uniformSubdivision size Γ) = boundaryOne Γ := by

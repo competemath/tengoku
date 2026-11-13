@@ -20,7 +20,9 @@ open NLAlib
 /-- Matrix relative entropy of positive definite matrices is nonnegative.
 
 Tropp 2015, Prop. 8.1.3. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
-Introduction to Matrix Concentration Inequalities, Ch 8*. Stated on any finite index type.-/
+Introduction to Matrix Concentration Inequalities, Ch 8*. Stated on any finite index type.
+@isnad1 id=le.2h3v.s5.9d62df78730b from=translated src=- shape=50c224de vocab=1df71fd2
+-/
 theorem NLAlib.relativeEntropy_nonneg {d : Type*} [Fintype d] [DecidableEq d]
     (A H : Matrix d d ℂ) (hA : A.PosDef) (hH : H.PosDef) :
     0 ≤ relativeEntropy A H := by

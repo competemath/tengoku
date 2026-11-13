@@ -31,7 +31,9 @@ theorem eq_zero_of_forall_abs_eval_le_of_nonpos {P : ℝ[X]} {M : ℝ} (hM : M �
   have h0 : |P.eval x| = 0 := le_antisymm (this.trans hM) (abs_nonneg _)
   exact abs_eq_zero.mp h0
 
-/-- The `n`-th derivative of a polynomial of degree `n` is the constant `n! · leadingCoeff`.-/
+/-- The `n`-th derivative of a polynomial of degree `n` is the constant `n! · leadingCoeff`.
+@isnad1 id=eq.0h2v.s7.b2c371875336 from=translated src=- shape=c495bf25 vocab=432db78c
+-/
 theorem eval_iterate_derivative_natDegree (p : ℝ[X]) (x : ℝ) :
     (derivative^[p.natDegree] p).eval x = p.natDegree.factorial * p.leadingCoeff := by
   have h : (derivative^[p.natDegree] p).natDegree ≤ 0 :=

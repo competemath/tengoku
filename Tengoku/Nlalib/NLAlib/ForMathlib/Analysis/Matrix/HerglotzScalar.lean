@@ -24,7 +24,9 @@ def quadraticProbeMass (v : n → ℂ) : NNReal :=
     rw [one_mulVec]
     exact (RCLike.nonneg_iff.mp (dotProduct_star_self_nonneg v)).1⟩
 
-/-- Probe mass is exactly the identity quadratic form.-/
+/-- Probe mass is exactly the identity quadratic form.
+@isnad1 id=eq.0h2v.s7.c9bd51f2015b from=translated src=- shape=fc2f05c7 vocab=ef11e899
+-/
 theorem ofReal_quadraticProbeMass (v : n → ℂ) :
     ((quadraticProbeMass v : ℝ) : ℂ) = matrixQuadraticFormCLM v 1 := by
   apply Complex.ext
@@ -32,7 +34,9 @@ theorem ofReal_quadraticProbeMass (v : n → ℂ) :
   · have hI : (1 : Matrix n n ℂ).IsHermitian := isHermitian_one
     exact (hI.im_star_dotProduct_mulVec_self v).symm
 
-/-- Matrix normalization transports through each continuous quadratic probe.-/
+/-- Matrix normalization transports through each continuous quadratic probe.
+@isnad1 id=tendsto.1h3v.s8.84adf081adcf from=translated src=- shape=7560dda8 vocab=0b0d0536
+-/
 theorem tendsto_mul_I_matrixQuadraticFormCLM
     (M : ℂ → Matrix n n ℂ)
     (hlim : Tendsto (fun y : ℝ => ((y : ℂ) * Complex.I) • M ((y : ℂ) * Complex.I))
@@ -44,7 +48,9 @@ theorem tendsto_mul_I_matrixQuadraticFormCLM
     ← ofReal_quadraticProbeMass, Complex.ofReal_neg] using h
 
 /-- Matrix exterior imaginary bounds transport to scalar probes with
-the exact same exterior radius.-/
+the exact same exterior radius.
+@isnad1 id=le.3h6v.s10.82357d9031f1 from=translated src=- shape=94d6e87d vocab=4dbffb49
+-/
 theorem im_matrixQuadraticFormCLM_le_mul_of_norm
     (M : ℂ → Matrix n n ℂ) (v : n → ℂ) (a C : ℝ)
     (hb : ∀ z : ℂ, 0 < z.im → a ≤ |z.re| →

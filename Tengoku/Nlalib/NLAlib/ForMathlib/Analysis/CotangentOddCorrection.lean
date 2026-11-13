@@ -14,7 +14,9 @@ open Real Set
 namespace NLAlib
 
 /-- Squared cosine is at least `3/4` up to angle `π/6`.
-Source: cosine monotonicity and its exact special-angle value.-/
+Source: cosine monotonicity and its exact special-angle value.
+@isnad1 id=le.2h1v.s6.aa08055d435b from=translated src=- shape=ea3d6180 vocab=cb61df22
+-/
 theorem three_div_four_le_cos_sq {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 6) :
     (3 / 4 : ℝ) ≤ cos x ^ 2 := by
   have hc := cos_le_cos_of_nonneg_of_le_pi hx (by linarith [pi_pos] : π / 6 ≤ π) hxπ
@@ -23,7 +25,9 @@ theorem three_div_four_le_cos_sq {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 6) 
   simpa only [sq_cos_pi_div_six] using h
 
 /-- The tangent excess is at most `(4/9)x³` up to angle `π/6`.
-Source: focused reroutes, the odd central-sample correction; derivative comparison.-/
+Source: focused reroutes, the odd central-sample correction; derivative comparison.
+@isnad1 id=le.2h1v.s6.2a65fcfcd42e from=translated src=- shape=c1b1490c vocab=7550695e
+-/
 theorem tan_sub_le_four_mul_cube_div_nine {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤ π / 6) :
     tan x - x ≤ 4 * x ^ 3 / 9 := by
   let f := fun x : ℝ => tan x - x - 4 * x ^ 3 / 9
@@ -54,7 +58,9 @@ theorem tan_sub_le_four_mul_cube_div_nine {x : ℝ} (hx : 0 ≤ x) (hxπ : x ≤
   linarith
 
 /-- The half-angle tangent identity that exposes the odd correction's cancellation.
-Source: focused reroutes, elementary double-angle formulas.-/
+Source: focused reroutes, elementary double-angle formulas.
+@isnad1 id=eq.2h1v.s7.b86c31676abd from=translated src=- shape=ccf88633 vocab=2eccef35
+-/
 theorem tan_sub_half_eq_div_two_cos_half_sq {a : ℝ} (ha : 0 ≤ a) (haπ : a ≤ π / 6) :
     tan a - tan (a / 2) = tan a / (2 * cos (a / 2) ^ 2) := by
   have hca : cos a ≠ 0 := (cos_pos_of_mem_Ioo ⟨by linarith [pi_pos], by linarith [pi_pos]⟩).ne'
@@ -69,7 +75,9 @@ theorem tan_sub_half_eq_div_two_cos_half_sq {a : ℝ} (ha : 0 ≤ a) (haπ : a �
   ring
 
 /-- The odd central-sample correction is at most `2a⁴/27` for `a≤π/6`.
-Source: focused reroutes, the exact odd-sample correction calculation.-/
+Source: focused reroutes, the exact odd-sample correction calculation.
+@isnad1 id=le.2h1v.s7.57a9d33f6fc6 from=translated src=- shape=3dbd2c23 vocab=d3d43f02
+-/
 theorem neg_log_cos_sub_mul_tan_half_le_quartic {a : ℝ} (ha : 0 ≤ a) (haπ : a ≤ π / 6) :
     -log (cos a) - a * tan (a / 2) ≤ 2 * a ^ 4 / 27 := by
   let E := fun x : ℝ => -log (cos x) - x * tan (x / 2)

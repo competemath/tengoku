@@ -18,7 +18,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- A reciprocal even power is at most `exp (1/2)` at logarithmic moment
-order, including a zero base.-/
+order, including a zero base.
+@isnad1 id=le.3h2v.s6.604e3459152c from=translated src=- shape=259c0a97 vocab=8e6a75c5
+-/
 theorem rpow_inv_two_mul_le_exp_half_of_log_le {d p : ℝ}
     (hd : 0 ≤ d) (hp : 0 < p) (hlog : log d ≤ p) :
     d ^ (1/(2*p)) ≤ exp (1/2) := by
@@ -32,7 +34,9 @@ theorem rpow_inv_two_mul_le_exp_half_of_log_le {d p : ℝ}
     simpa only [div_eq_mul_inv, one_mul] using hh
 
 /-- Markov's exponential factor times a dimension factor at logarithmic
-moment order is bounded by the explicit universal constant nine.-/
+moment order is bounded by the explicit universal constant nine.
+@isnad1 id=le.3h2v.s6.3185d386da35 from=translated src=- shape=3ccd7707 vocab=8e6a75c5
+-/
 theorem exp_one_mul_rpow_inv_two_mul_le_nine_of_log_le {d p : ℝ}
     (hd : 0 ≤ d) (hp : 0 < p) (hlog : log d ≤ p) :
     exp 1 * d ^ (1/(2*p)) ≤ 9 := by

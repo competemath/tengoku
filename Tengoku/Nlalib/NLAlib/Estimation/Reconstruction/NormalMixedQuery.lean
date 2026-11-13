@@ -21,7 +21,9 @@ namespace NLAlib
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Arbitrary polynomial mixed moments in the native real Euclidean coordinates.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h5v.s11.11145e269bbf from=translated src=- shape=33fd200a vocab=b2bf30e6
+-/
 theorem integral_normalCoordinateSpectralLaw_star_poly_mul_poly
     {A : Matrix n n ℂ} (hA : A*Aᴴ=Aᴴ*A) (b : n → ℂ) (p q : Polynomial ℂ) :
     (∫ x : EuclideanSpace ℝ (Fin 2), star (p.eval (x 0 : ℂ))*q.eval (x 1 : ℂ)
@@ -33,7 +35,9 @@ theorem integral_normalCoordinateSpectralLaw_star_poly_mul_poly
   exact integral_normalSpectralLaw_star_poly_re_mul_poly_im hA b p q
 
 /-- The scalar primitive program is the actual spectral mixed-moment matrix.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h6v.s8.7ef4572234c6 from=translated src=- shape=aa3ff595 vocab=7c909c56
+-/
 theorem run_normalMixedMomentProgram_eq_integral
     {A : Matrix n n ℂ} (hA : A*Aᴴ=Aᴴ*A) (b : n → ℂ) (M : ℕ)
     (j k : Fin (M+1)) :
@@ -44,7 +48,9 @@ theorem run_normalMixedMomentProgram_eq_integral
   exact (integral_normalSpectralLaw_normalizedChebyshev_eq_crossGram hA b M j k).symm
 
 /-- The same output is the actual tensor moment in real Euclidean coordinates.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.1h6v.s8.20b4e9a39ca3 from=translated src=- shape=85dd073f vocab=4d1c121e
+-/
 theorem run_normalMixedMomentProgram_eq_coordinate_integral
     {A : Matrix n n ℂ} (hA : A*Aᴴ=Aᴴ*A) (b : n → ℂ) (M : ℕ)
     (j k : Fin (M+1)) :
@@ -65,7 +71,9 @@ omit [DecidableEq n] in
 /-- Every response history of the native recurrence has the advertised
 dimension-linear, degree-quadratic scalar work, including normalization and
 every output entry. Matrix-vector products are charged separately as queries.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=le.0h7v.s7.40599cfa3aa0 from=translated src=- shape=711397b7 vocab=327778c3
+-/
 theorem normalMixedScalarWork_le (M : ℕ)
     (matrixResponse adjointResponse previous : Bool → Fin M → n → ℂ)
     (X Y : Matrix n (Fin (M+1)) ℂ) :

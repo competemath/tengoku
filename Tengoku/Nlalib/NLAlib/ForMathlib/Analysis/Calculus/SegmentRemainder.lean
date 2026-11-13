@@ -23,7 +23,9 @@ open MeasureTheory
 variable {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   [NormedAddCommGroup F] [NormedSpace ℝ F] [CompleteSpace F]
 
-/-- The actual derivative integrates to the endpoint difference on a segment.-/
+/-- The actual derivative integrates to the endpoint difference on a segment.
+@isnad1 id=eq.1h5v.s8.22d8bcdc2f3e from=translated src=- shape=7f246b1a vocab=5104c821
+-/
 theorem ContDiff.sub_eq_integral_fderiv_segment {f : E → F}
     (hf : ContDiff ℝ 1 f) (x h : E) :
     f (x + h) - f x = ∫ u in (0 : ℝ)..1, fderiv ℝ f (x + u • h) h := by
@@ -41,7 +43,9 @@ theorem ContDiff.sub_eq_integral_fderiv_segment {f : E → F}
 
 /-- Taylor cancellation at an arbitrary Hessian base is exactly a double
 segment integral of the actual second derivative. All scalar parameters,
-including zero, are retained.-/
+including zero, are retained.
+@isnad1 id=eq.1h7v.s10.0899980191ae from=translated src=- shape=b5fde899 vocab=ba6fa8b5
+-/
 theorem ContDiff.sub_sub_smul_fderiv_eq_smul_integral_iteratedFDeriv_two
     {f : E → F} (hf : ContDiff ℝ 2 f) (x z h : E) (a : ℝ) :
     f (x + a • h) - f x - a • fderiv ℝ f z h =
@@ -80,7 +84,9 @@ theorem ContDiff.sub_sub_smul_fderiv_eq_smul_integral_iteratedFDeriv_two
 
 /-- The actual gradient/Hessian cancellation is a genuine third-derivative
 integral. Its direction order is outer displacement, inner difference,
-innermost difference, matching native iterated Fréchet derivatives.-/
+innermost difference, matching native iterated Fréchet derivatives.
+@isnad1 id=eq.1h7v.s11.8876735a6540 from=translated src=- shape=eb4ba66f vocab=ffdf916d
+-/
 theorem ContDiff.fderiv_sub_sub_smul_iteratedFDeriv_two_eq_smul_sq_integral_three
     {Φ : E → F} (hΦ : ContDiff ℝ 3 Φ) (x D V : E) (a : ℝ) :
     (fderiv ℝ Φ (x + a • D) - fderiv ℝ Φ x) D -

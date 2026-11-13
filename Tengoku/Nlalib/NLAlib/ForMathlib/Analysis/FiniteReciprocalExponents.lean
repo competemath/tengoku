@@ -20,7 +20,9 @@ open scoped ENNReal
 namespace Real
 
 /-- Positive real lengths with positive total give ratios at least one and an
-exact reciprocal-sum identity. No nonempty-index assumption is needed.-/
+exact reciprocal-sum identity. No nonempty-index assumption is needed.
+@isnad1 id=and.3h3v.s6.aece4fc1cc2d from=translated src=- shape=e62271b3 vocab=ce0af1f5
+-/
 theorem one_le_div_and_sum_inv_div_eq_one
     {ι : Type*} [Fintype ι] (s : ι → ℝ) {L : ℝ}
     (hL : ∑ j, s j = L) (hLpos : 0 < L) (hs : ∀ j, 0 < s j) :
@@ -38,7 +40,9 @@ end Real
 namespace ENNReal
 
 /-- Coercing positive total/length ratios to extended exponents preserves
-both the lower bound one and the exact reciprocal-toReal sum.-/
+both the lower bound one and the exact reciprocal-toReal sum.
+@isnad1 id=and.3h3v.s6.89443640a079 from=translated src=- shape=6cf558a6 vocab=b16f543b
+-/
 theorem one_le_ofReal_div_and_sum_inv_toReal_eq_one
     {ι : Type*} [Fintype ι] (s : ι → ℝ) {L : ℝ}
     (hL : ∑ j, s j = L) (hLpos : 0 < L) (hs : ∀ j, 0 < s j) :

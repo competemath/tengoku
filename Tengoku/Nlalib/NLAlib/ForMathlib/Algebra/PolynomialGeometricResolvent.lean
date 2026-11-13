@@ -22,12 +22,16 @@ def geometricResolventPolynomial (z : 𝕜) (m : ℕ) : 𝕜[X] :=
   ∑ j : Fin m, C (z⁻¹ ^ (j.val + 1)) * X ^ j.val
 
 /-- The finite resolvent expansion has degree strictly below its length,
-including the zero polynomial at length zero.-/
+including the zero polynomial at length zero.
+@isnad1 id=lt.0h3v.s5.5d5506f93e3d from=translated src=- shape=49fd753f vocab=c64e1548
+-/
 theorem degree_geometricResolventPolynomial_lt (z : 𝕜) (m : ℕ) :
     (geometricResolventPolynomial z m).degree < m :=
   degree_sum_fin_lt _
 
-/-- Appending one term to the finite expansion appends its displayed monomial.-/
+/-- Appending one term to the finite expansion appends its displayed monomial.
+@isnad1 id=eq.0h3v.s8.7075955ccbd9 from=translated src=- shape=89a6a4d9 vocab=a4bf2b4f
+-/
 theorem geometricResolventPolynomial_succ (z : 𝕜) (m : ℕ) :
     geometricResolventPolynomial z (m+1) = geometricResolventPolynomial z m +
       C (z⁻¹ ^ (m+1)) * X ^ m := by
@@ -35,7 +39,9 @@ theorem geometricResolventPolynomial_succ (z : 𝕜) (m : ℕ) :
     Fin.val_castSucc, Fin.val_last]
 
 /-- The exact finite resolvent remainder is `t^m/(z^m*(z-t))`.
-No infinite series or convergence hypothesis is used.-/
+No infinite series or convergence hypothesis is used.
+@isnad1 id=eq.2h4v.s7.a09aab282e29 from=translated src=- shape=f938a27a vocab=c9b1b9d7
+-/
 theorem inv_sub_eval_geometricResolventPolynomial_eq {z t : 𝕜}
     (hz : z ≠ 0) (hzt : z ≠ t) (m : ℕ) :
     (z-t)⁻¹ - (geometricResolventPolynomial z m).eval t = t^m/(z^m*(z-t)) := by

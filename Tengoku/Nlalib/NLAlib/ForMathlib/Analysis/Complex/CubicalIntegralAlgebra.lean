@@ -17,7 +17,9 @@ open scoped unitInterval
 namespace Complex
 
 /-- Actual contour integration depends only on the integrand values along
-its active continuous edges.-/
+its active continuous edges.
+@isnad1 id=eq.1h4v.s10.b6084733a4e1 from=translated src=- shape=83d32ed3 vocab=94dcd3bb
+-/
 theorem cubicalCurveIntegral_congr {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
     {g h : ℂ → ℂ} (he : ∀ γ ∈ Γ.support, ∀ r, g (γ r : ℂ) = h (γ r : ℂ)) :
     cubicalCurveIntegral g Γ = cubicalCurveIntegral h Γ := by
@@ -34,7 +36,9 @@ theorem cubicalCurveIntegral_congr {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
   rw [show g ((cubicalPath γ) ⟨r, hr'⟩) = h ((cubicalPath γ) ⟨r, hr'⟩) from he γ hγ ⟨r, hr'⟩]
 
 /-- Scalar multiplication of the integrand commutes with actual finite
-contour integration, even without a regularity assumption.-/
+contour integration, even without a regularity assumption.
+@isnad1 id=eq.0h4v.s9.33ee62f79725 from=translated src=- shape=dcadfbb0 vocab=6625ca65
+-/
 theorem cubicalCurveIntegral_const_mul {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (c : ℂ) (g : ℂ → ℂ) :
     cubicalCurveIntegral (fun z => c * g z) Γ = c * cubicalCurveIntegral g Γ := by
@@ -55,7 +59,9 @@ theorem cubicalCurveIntegral_const_mul {Ω : Set ℂ}
   ring
 
 /-- Subtraction of scalar integrands commutes with actual finite contour
-integration whenever the two forms are integrable on every active edge.-/
+integration whenever the two forms are integrable on every active edge.
+@isnad1 id=eq.2h4v.s11.a1ab6458bac6 from=translated src=- shape=2e7feb02 vocab=71ebdbed
+-/
 theorem cubicalCurveIntegral_sub {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
     (g h : ℂ → ℂ)
     (hg : ∀ γ ∈ Γ.support, CurveIntegrable
@@ -77,7 +83,9 @@ theorem cubicalCurveIntegral_sub {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
   exact smul_sub (Γ γ) _ _
 
 /-- Finite sums of integrable scalar forms commute with actual finite
-contour integration.-/
+contour integration.
+@isnad1 id=eq.1h4v.s10.ed2a24d6f0ce from=translated src=- shape=2a1c97b2 vocab=fc9c24de
+-/
 theorem cubicalCurveIntegral_sum {Ω : Set ℂ} {ι : Type*} [Fintype ι]
     (Γ : Cubical.OneChain Ω) (g : ι → ℂ → ℂ)
     (hg : ∀ γ ∈ Γ.support, ∀ i, CurveIntegrable
@@ -105,7 +113,9 @@ theorem cubicalCurveIntegral_sum {Ω : Set ℂ} {ι : Type*} [Fintype ι]
     _ = _ := sum_comm
 
 /-- The actual Cauchy-kernel cycle integral is integrable against the finite
-measure's compact support. Every active edge is disjoint from that support.-/
+measure's compact support. Every active edge is disjoint from that support.
+@isnad1 id=integrab.4h6v.s10.60c795522836 from=translated src=- shape=f59b5a46 vocab=d3e47d2f
+-/
 theorem integrable_cubicalCurveIntegral_div_sub {Ω : Set ℂ}
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (Γ : Cubical.OneChain Ω)
@@ -125,7 +135,9 @@ theorem integrable_cubicalCurveIntegral_div_sub {Ω : Set ℂ}
   · exact hf.mono (by rintro z ⟨r, rfl⟩; exact (γ r).property)
 
 /-- Compact-support Fubini for an actual finite C1 contour cycle. Joint
-integrability is established separately on each active edge.-/
+integrability is established separately on each active edge.
+@isnad1 id=eq.4h6v.s11.ffb84bef5b53 from=translated src=- shape=7b98803b vocab=24ecc6b5
+-/
 theorem integral_cubicalCurveIntegral_div_sub {Ω : Set ℂ}
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) (Γ : Cubical.OneChain Ω)

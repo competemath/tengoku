@@ -16,7 +16,9 @@ namespace NLAlib
 
 /-- A finite sum of nonnegative powers is bounded by the power of the sum at
 every exponent at least one. Scalar helper for Schatten comparisons.
-Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).-/
+Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).
+@isnad1 id=le.2h4v.s6.1e1ed7965327 from=translated src=- shape=2f4539e9 vocab=21ce910a
+-/
 theorem sum_rpow_le_rpow_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ)
     (hf : ∀ i ∈ s, 0 ≤ f i) {r : ℝ} (hr : 1 ≤ r) :
     (∑ i ∈ s, f i ^ r) ≤ (∑ i ∈ s, f i) ^ r := by
@@ -31,7 +33,9 @@ theorem sum_rpow_le_rpow_sum {ι : Type*} (s : Finset ι) (f : ι → ℝ)
 
 /-- Finite nonnegative power norms decrease with their positive exponent.
 This includes the empty list.
-Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).-/
+Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).
+@isnad1 id=le.3h5v.s7.6f87e18e5b03 from=translated src=- shape=6ae4d7e3 vocab=64d606aa
+-/
 theorem sum_rpow_root_le_sum_rpow_root {ι : Type*} (s : Finset ι) (f : ι → ℝ)
     (hf : ∀ i ∈ s, 0 ≤ f i) {p q : ℝ} (hp : 0 < p) (hpq : p ≤ q) :
     (∑ i ∈ s, f i ^ q) ^ (1 / q) ≤ (∑ i ∈ s, f i ^ p) ^ (1 / p) := by
@@ -54,7 +58,9 @@ theorem sum_rpow_root_le_sum_rpow_root {ι : Type*} (s : Finset ι) (f : ι → 
 
 /-- The sharp cardinality comparison for finite nonnegative power norms.
 Zero cardinality causes no exception.
-Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).-/
+Bhatia (1997), §IV.2; matrix toolkit derivations, (10)–(12).
+@isnad1 id=le.3h5v.s7.c97fb54bb464 from=translated src=- shape=eee6f176 vocab=d4c7c0c1
+-/
 theorem sum_rpow_root_le_card_rpow_mul {ι : Type*} (s : Finset ι) (f : ι → ℝ)
     (hf : ∀ i ∈ s, 0 ≤ f i) {p q : ℝ} (hp : 0 < p) (hpq : p ≤ q) :
     (∑ i ∈ s, f i ^ p) ^ (1 / p) ≤

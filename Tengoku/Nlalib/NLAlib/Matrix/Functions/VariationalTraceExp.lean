@@ -23,7 +23,9 @@ Tropp 2015, eq. (8.1.2) with Lemma 8.1.6. Atlas: `operator-monotone-convex`. Por
 Prove2me mission *An Introduction to Matrix Concentration Inequalities, Ch 8*.
 
 The positive-definiteness hypothesis on `A` is not used by the proof; it is kept to match the
-source.-/
+source.
+@isnad1 id=isgreate.2h3v.s7.26cd60522092 from=translated src=- shape=2a7d56bc vocab=cc320ee8
+-/
 theorem NLAlib.isGreatest_variational_traceExp {d : ℕ} [NeZero d]
     (H A : Matrix (Fin d) (Fin d) ℂ) (hH : H.IsHermitian) (_hA : A.PosDef) :
     IsGreatest {r : ℝ | ∃ T : Matrix (Fin d) (Fin d) ℂ,

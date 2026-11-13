@@ -15,7 +15,9 @@ open scoped Topology
 namespace NLAlib
 
 /-- The regularized cotangent integrates from its removable zero to `log(sin L/L)`.
-Source: focused reroutes, the midpoint-concavity lower-bound calculation.-/
+Source: focused reroutes, the midpoint-concavity lower-bound calculation.
+@isnad1 id=eq.2h1v.s6.4857ece11368 from=translated src=- shape=bd8c6af1 vocab=6a335230
+-/
 theorem integral_cot_sub_one_div_eq_log_sinc {L : ℝ} (hL : 0 < L) (hLπ : L ≤ π / 2) :
     (∫ x in 0..L, Real.cot x - 1 / x) = log (sin L / L) := by
   have hs (x : ℝ) (hx : x ∈ Icc 0 L) : sinc x ≠ 0 := by
@@ -44,7 +46,9 @@ theorem integral_cot_sub_one_div_eq_log_sinc {L : ℝ} (hL : 0 < L) (hLπ : L �
   simpa only [sinc_zero, log_one, sub_zero, sinc_of_ne_zero hL.ne'] using hInt
 
 /-- The reciprocal half-index sum is exactly `2H_(2m)−H_m`.
-Source: focused reroutes, the finite odd-harmonic identity.-/
+Source: focused reroutes, the finite odd-harmonic identity.
+@isnad1 id=eq.0h1v.s6.d50d4997d1f4 from=translated src=- shape=6f2e68d4 vocab=e25765b0
+-/
 theorem sum_inv_nat_add_half (m : ℕ) :
     (∑ j ∈ range m, 1 / ((j : ℝ) + 1 / 2)) = 2 * (harmonic (2 * m) : ℝ) - (harmonic m : ℝ) := by
   induction m with
@@ -61,7 +65,9 @@ theorem sum_inv_nat_add_half (m : ℕ) :
     ring
 
 /-- A finite midpoint cotangent sum has the exact harmonic-logarithmic lower bound.
-Source: focused reroutes, equation `polyretry:midpoint-bound`.-/
+Source: focused reroutes, equation `polyretry:midpoint-bound`.
+@isnad1 id=le.3h2v.s7.33d69fd2242e from=translated src=- shape=5ad70a56 vocab=67142ce9
+-/
 theorem harmonic_add_log_sinc_le_mul_sum_cot_midpoint {m : ℕ} (hm : 0 < m)
     {h : ℝ} (hh : 0 < h) (hmh : (m : ℝ) * h ≤ π / 2) :
     2 * (harmonic (2 * m) : ℝ) - (harmonic m : ℝ) + log (sin ((m : ℝ) * h) / ((m : ℝ) * h)) ≤

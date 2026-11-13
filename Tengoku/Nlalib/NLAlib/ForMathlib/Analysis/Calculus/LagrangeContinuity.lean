@@ -15,7 +15,9 @@ noncomputable section
 open Polynomial
 namespace Lagrange
 
-/-- A cardinal polynomial's degree budget holds even for coincident nodes.-/
+/-- A cardinal polynomial's degree budget holds even for coincident nodes.
+@isnad1 id=le.1h5v.s6.148d05b16365 from=translated src=- shape=b67e2944 vocab=38a9eb65
+-/
 theorem degree_basis_le_of_mem {F ι : Type*} [Field F] [DecidableEq ι]
     {s : Finset ι} (v : ι → F) {i : ι} (hi : i ∈ s) :
     (Lagrange.basis s v i).degree ≤ ((s.card - 1 : ℕ) : WithBot ℕ) := by
@@ -34,7 +36,9 @@ theorem degree_basis_le_of_mem {F ι : Type*} [Field F] [DecidableEq ι]
 variable {𝕜 E ι : Type*} [NontriviallyNormedField 𝕜] [TopologicalSpace E]
   [DecidableEq ι] {a : E}
 
-/-- A linear cardinal factor has continuous coefficients at unequal limiting nodes.-/
+/-- A linear cardinal factor has continuous coefficients at unequal limiting nodes.
+@isnad1 id=continuo.3h6v.s6.f37f056c18e6 from=translated src=- shape=bc5f6c05 vocab=d23efd26
+-/
 theorem continuousAt_coeff_basisDivisor {u v : E → 𝕜}
     (hu : ContinuousAt u a) (hv : ContinuousAt v a) (hne : u a ≠ v a) (k : ℕ) :
     ContinuousAt (fun y => (basisDivisor (u y) (v y)).coeff k) a := by
@@ -46,7 +50,9 @@ theorem continuousAt_coeff_basisDivisor {u v : E → 𝕜}
   · exact continuousAt_const
 
 /-- Every Lagrange cardinal coefficient is continuous in its node vector at
-distinct limiting nodes.-/
+distinct limiting nodes.
+@isnad1 id=continuo.3h8v.s7.9d72b150be5d from=translated src=- shape=66ca4c64 vocab=9886255b
+-/
 theorem continuousAt_coeff_basis {s : Finset ι} {v : E → ι → 𝕜} {i : ι}
     (hv : ∀ j, ContinuousAt (fun y => v y j) a)
     (hi : i ∈ s) (hinj : Set.InjOn (v a) s) (k : ℕ) :

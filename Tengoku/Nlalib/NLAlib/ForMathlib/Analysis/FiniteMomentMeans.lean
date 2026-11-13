@@ -21,7 +21,9 @@ namespace Real
 
 /-- A finite normalized positive integer moment is bounded by the appropriate
 fractional power of any higher normalized moment. Empty indexing types are
-included using division by zero and a strictly positive outer exponent.-/
+included using division by zero and a strictly positive outer exponent.
+@isnad1 id=le.3h4v.s7.46f3ccedb95f from=translated src=- shape=2c70a424 vocab=880569ad
+-/
 theorem sum_pow_div_card_le_rpow_sum_pow_div_card
     {ι : Type*} [Fintype ι] (f : ι → ℝ) (hf : ∀ i, 0 ≤ f i)
     {k j : ℕ} (hk : 0 < k) (hkj : k ≤ j) :
@@ -55,7 +57,9 @@ theorem sum_pow_div_card_le_rpow_sum_pow_div_card
 
 /-- A uniform bound absorbs extra powers while a lower positive moment
 is controlled by a higher normalized moment. Zero bounds and empty finite
-indexing types are included.-/
+indexing types are included.
+@isnad1 id=le.6h6v.s7.49c578829a2c from=translated src=- shape=1cd93f29 vocab=064d90b3
+-/
 theorem sum_pow_div_card_le_pow_mul_rpow_sum_pow_div_card
     {ι : Type*} [Fintype ι] (f : ι → ℝ) (hf : ∀ i, 0 ≤ f i)
     {r : ℝ} (hr : 0 ≤ r) (hfr : ∀ i, f i ≤ r)

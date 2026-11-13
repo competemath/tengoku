@@ -36,7 +36,9 @@ def edgeChainMap (v : Fin (m + 1) → Fin (n + 1) → E) :
 
 /-- Every active canonical edge in a prescribed set gives an actual grid
 chain in the corresponding native supported submodule. This also transports
-edge properties, such as smoothness, independently of pointwise containment.-/
+edge properties, such as smoothness, independently of pointwise containment.
+@isnad1 id=mem.2h7v.s9.15ee3ed60100 from=translated src=- shape=66197405 vocab=57fa536b
+-/
 theorem edgeChain_mem_supported
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ)

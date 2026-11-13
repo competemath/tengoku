@@ -18,7 +18,9 @@ namespace Cubical
 variable {X : Type*} [TopologicalSpace X]
 
 /-- Every actual finite one-cycle in a contractible space has an actual
-normalized cubical filling. No regularity of its parameterized edges is needed.-/
+normalized cubical filling. No regularity of its parameterized edges is needed.
+@isnad1 id=isnullho.1h2v.s8.20a928d05a0f from=translated src=- shape=fd1e30cb vocab=f6ed093a
+-/
 theorem isNullHomologous_of_boundaryOne_eq_zero [ContractibleSpace X]
     (Γ : OneChain X) (hΓ : boundaryOne Γ = 0) : IsNullHomologous Γ := by
   obtain ⟨p, ⟨H⟩⟩ := id_nullhomotopic X
@@ -62,7 +64,9 @@ theorem isNullHomologous_of_boundaryOne_eq_zero [ContractibleSpace X]
 
 /-- A finite cycle supported in an actual contractible subset has an actual
 normalized filling in that subset. The returned lifted chain keeps the
-original edges and coefficients, so corners and stationary points are retained.-/
+original edges and coefficients, so corners and stationary points are retained.
+@isnad1 id=ex.2h3v.s10.241ef79c686c from=translated src=- shape=6144ce4b vocab=9c3ea310
+-/
 theorem exists_isNullHomologous_mapOne_subtype_val_eq (Γ : OneChain X) (S : Set X)
     [ContractibleSpace S] (hΓ : boundaryOne Γ = 0)
     (hs : ∀ γ ∈ Γ.support, ∀ t, γ t ∈ S) :

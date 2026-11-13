@@ -23,7 +23,9 @@ variable {𝕜 E F : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [NormedSpace �
 
 /-- An actual finite native chain is curve integrable whenever each of its
 pieces is curve integrable. Matching endpoints are encoded by `Path.concat`;
-no differentiability at a join is assumed.-/
+no differentiability at a join is assumed.
+@isnad1 id=curveint.1h7v.s8.f42557389b2a from=translated src=- shape=0b001044 vocab=42ffda22
+-/
 protected theorem CurveIntegrable.concat (p : Fin (n + 1) → E)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ))
     (hγ : ∀ i, CurveIntegrable ω (γ i)) : CurveIntegrable ω (Path.concat p γ) := by
@@ -36,7 +38,9 @@ protected theorem CurveIntegrable.concat (p : Fin (n + 1) → E)
 
 /-- The native integral of a finite chain is the sum of the actual native
 piece integrals, including the empty chain. This extends integration to
-piecewise C¹ paths without declaring their concatenation globally C¹.-/
+piecewise C¹ paths without declaring their concatenation globally C¹.
+@isnad1 id=eq.1h7v.s8.46f9f35564f0 from=translated src=- shape=77f679fb vocab=60876d86
+-/
 theorem curveIntegral_concat (p : Fin (n + 1) → E)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ))
     (hγ : ∀ i, CurveIntegrable ω (γ i)) :
@@ -52,7 +56,9 @@ theorem curveIntegral_concat (p : Fin (n + 1) → E)
 namespace Path
 
 /-- A finite native concatenation remains in a set whenever its initial
-point and all its pieces do. The initial point is needed for the empty chain.-/
+point and all its pieces do. The initial point is needed for the empty chain.
+@isnad1 id=mem.2h6v.s8.4f3fc9fcf0fb from=translated src=- shape=dc779a6a vocab=8db12d92
+-/
 theorem forall_mem_concat (p : Fin (n + 1) → E)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) {s : Set E}
     (hp : p 0 ∈ s) (hγ : ∀ i, ∀ r, γ i r ∈ s) : ∀ r, concat p γ r ∈ s := by

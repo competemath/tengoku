@@ -17,7 +17,9 @@ variable {κ F : Type*} [Fintype κ] [DecidableEq κ]
   [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 /-- A continuous real linear map on a finite coordinate space is the sum of
-its coordinate projections multiplied by its values on the coordinate vectors.-/
+its coordinate projections multiplied by its values on the coordinate vectors.
+@isnad1 id=eq.0h3v.s9.a8df3ee6da92 from=translated src=- shape=f72426c6 vocab=a53deac1
+-/
 theorem sum_proj_smulRight (L : (κ → ℝ) →L[ℝ] F) :
     (∑ j, (proj (R := ℝ) (φ := fun _ : κ => ℝ) j).smulRight (L (Pi.single j 1))) = L := by
   ext x

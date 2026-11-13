@@ -20,7 +20,9 @@ namespace NLAlib
 norms.
 
 Source: generalises `SparseFockFormal.DirectionalConcrete.normSq_sum_le_card`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h4v.s6.33a89e044d95 from=translated src=- shape=7a50772d vocab=8690a59d
+-/
 theorem norm_sum_sq_le_card_mul_sum_norm_sq {α E : Type*} [SeminormedAddCommGroup E]
     (s : Finset α) (z : α → E) :
     ‖∑ a ∈ s, z a‖ ^ 2 ≤ (s.card : ℝ) * ∑ a ∈ s, ‖z a‖ ^ 2 :=

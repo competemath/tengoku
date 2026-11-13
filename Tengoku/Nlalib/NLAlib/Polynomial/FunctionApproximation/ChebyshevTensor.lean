@@ -41,7 +41,9 @@ def tensorChebyshevCoeff {ι : Type*} [Fintype ι]
 def chebyshevCube (ι : Type*) [Fintype ι] : Set (EuclideanSpace ℝ ι) :=
   {x | ∀ i, x i ∈ Icc (-1 : ℝ) 1}
 
-/-- The product Chebyshev measure is supported on the actual approximation cube.-/
+/-- The product Chebyshev measure is supported on the actual approximation cube.
+@isnad1 id=eventual.0h1v.s6.39ac3805e16f from=translated src=- shape=a917ccf4 vocab=42ea30cc
+-/
 theorem ae_mem_chebyshevCube {ι : Type*} [Fintype ι] :
     ∀ᵐ x : ι → ℝ ∂Measure.pi (fun _ => measureT), WithLp.toLp 2 x ∈ chebyshevCube ι := by
   have h1 : ∀ᵐ x ∂measureT, x ∈ Icc (-1 : ℝ) 1 := by
@@ -52,7 +54,9 @@ theorem ae_mem_chebyshevCube {ι : Type*} [Fintype ι] :
   exact ae_all_iff.mpr (fun i =>
     (Measure.tendsto_eval_ae_ae (μ := fun _ : ι => measureT)).eventually h1)
 
-/-- Tensor coefficients depend only on the values of the function on the cube.-/
+/-- Tensor coefficients depend only on the values of the function on the cube.
+@isnad1 id=eq.1h4v.s5.b253268a9ea5 from=translated src=- shape=a59bdf7e vocab=3213b88e
+-/
 theorem tensorChebyshevCoeff_congr {ι : Type*} [Fintype ι]
     {f g : EuclideanSpace ℝ ι → ℝ} (hfg : EqOn f g (chebyshevCube ι)) (α : ι → ℕ) :
     tensorChebyshevCoeff f α = tensorChebyshevCoeff g α := by
@@ -63,26 +67,37 @@ theorem tensorChebyshevCoeff_congr {ι : Type*} [Fintype ι]
 /-- Lebesgue angle measure used by the Chebyshev change of variables.-/
 def chebyshevAngleMeasure : Measure ℝ := volume.restrict (Ioc (0 : ℝ) π)
 
+/--
+@isnad1 id=isfinite.0h0v.s2.ab4ac2fc3fc5 from=translated src=- shape=54c8eceb vocab=d9bd4866
+-/
 instance isFiniteMeasure_chebyshevAngleMeasure : IsFiniteMeasure chebyshevAngleMeasure :=
   inferInstanceAs (IsFiniteMeasure (volume.restrict (Ioc (0 : ℝ) π)))
 
-/-- The cosine expression for a normalized Chebyshev polynomial.-/
+/-- The cosine expression for a normalized Chebyshev polynomial.
+@isnad1 id=eq.0h2v.s5.5688a386bd88 from=translated src=- shape=ff6049bd vocab=c205f57b
+-/
 @[simp] theorem normalizedChebyshev_cos (k : ℕ) (θ : ℝ) :
     normalizedChebyshev k (cos θ) = normalizedChebyshevWeight k * cos ((k : ℝ) * θ) := by
   simp [normalizedChebyshev, T_real_cos]
 
-/-- The square of the Chebyshev normalization includes the zero-frequency case.-/
+/-- The square of the Chebyshev normalization includes the zero-frequency case.
+@isnad1 id=eq.0h1v.s6.145f38e527f4 from=translated src=- shape=e9b5e2c6 vocab=93f6d157
+-/
 theorem normalizedChebyshevWeight_sq (k : ℕ) :
     normalizedChebyshevWeight k ^ 2 = (if k = 0 then 1 else 2) / π := by
   rw [normalizedChebyshevWeight, sq_sqrt]
   split_ifs <;> positivity
 
-/-- The constant normalized polynomial has the prescribed value `1 / √π`.-/
+/-- The constant normalized polynomial has the prescribed value `1 / √π`.
+@isnad1 id=eq.0h1v.s4.be581d6eb20f from=translated src=- shape=f20771cf vocab=aac4d3fc
+-/
 @[simp] theorem normalizedChebyshev_zero (x : ℝ) :
     normalizedChebyshev 0 x = 1 / sqrt π := by
   simp [normalizedChebyshev, normalizedChebyshevWeight]
 
-/-- Every continuous function on a finite angle product is integrable there.-/
+/-- Every continuous function on a finite angle product is integrable there.
+@isnad1 id=integrab.1h2v.s6.c46f8e43b3fe from=translated src=- shape=8803c997 vocab=8091ac11
+-/
 theorem integrable_pi_chebyshevAngleMeasure_of_continuous
     {ι : Type*} [Fintype ι] {F : (ι → ℝ) → ℝ} (hF : Continuous F) :
     Integrable F (Measure.pi (fun _ => chebyshevAngleMeasure)) := by
@@ -96,7 +111,9 @@ theorem integrable_pi_chebyshevAngleMeasure_of_continuous
   have h := hi.mono_set hs
   simpa only [IntegrableOn, Measure.restrict_pi_pi, chebyshevAngleMeasure] using h
 
-/-- The normalized cosine family is orthonormal for ordinary angle integration.-/
+/-- The normalized cosine family is orthonormal for ordinary angle integration.
+@isnad1 id=eq.0h2v.s5.89a824e02cfd from=translated src=- shape=bc54742d vocab=78ae4aa6
+-/
 theorem integral_normalizedChebyshev_cos_mul (j k : ℕ) :
     (∫ θ, normalizedChebyshev j (cos θ) * normalizedChebyshev k (cos θ)
       ∂chebyshevAngleMeasure) = if j = k then 1 else 0 := by
@@ -126,7 +143,9 @@ theorem integral_normalizedChebyshev_cos_mul (j k : ℕ) :
       field_simp
   · rw [integral_eval_T_real_mul_eval_T_real_measureT_of_ne hjk, ite_eq_right hjk, mul_zero]
 
-/-- Positive normalized sine frequencies are orthonormal on the angle interval.-/
+/-- Positive normalized sine frequencies are orthonormal on the angle interval.
+@isnad1 id=eq.2h2v.s7.0d88ae1d4969 from=translated src=- shape=d6595a28 vocab=4cb4b5ef
+-/
 theorem integral_normalized_sin_mul {j k : ℕ} (hj : 0 < j) (hk : 0 < k) :
     (∫ θ, (sqrt (2 / π) * sin ((j : ℝ) * θ)) *
         (sqrt (2 / π) * sin ((k : ℝ) * θ)) ∂chebyshevAngleMeasure) =
@@ -145,7 +164,9 @@ theorem integral_normalized_sin_mul {j k : ℕ} (hj : 0 < j) (hk : 0 < k) :
   · field_simp
   · simp
 
-/-- The tensor coefficient equals its ordinary product cosine integral.-/
+/-- The tensor coefficient equals its ordinary product cosine integral.
+@isnad1 id=eq.1h3v.s7.54877c3bd637 from=translated src=- shape=7fbdb04c vocab=9adf45dc
+-/
 theorem tensorChebyshevCoeff_eq_cosine_integral
     {ι : Type*} [Fintype ι] {f : EuclideanSpace ℝ ι → ℝ} (hf : Continuous f) (α : ι → ℕ) :
     tensorChebyshevCoeff f α =
@@ -169,7 +190,9 @@ def tensorChebyshevMixedBasis {ι : Type*} [Fintype ι] [DecidableEq ι]
   ∏ j, if j = i then sqrt (2 / π) * sin ((α j : ℝ) * θ j)
     else normalizedChebyshev (α j) (cos (θ j))
 
-/-- Every mixed tensor basis function is continuous.-/
+/-- Every mixed tensor basis function is continuous.
+@isnad1 id=continuo.0h3v.s5.30d34d05ea74 from=translated src=- shape=165602ea vocab=e396bfff
+-/
 theorem continuous_tensorChebyshevMixedBasis {ι : Type*} [Fintype ι] [DecidableEq ι]
     (i : ι) (α : ι → ℕ) : Continuous (tensorChebyshevMixedBasis i α) := by
   unfold tensorChebyshevMixedBasis
@@ -180,7 +203,9 @@ theorem continuous_tensorChebyshevMixedBasis {ι : Type*} [Fintype ι] [Decidabl
   · unfold normalizedChebyshev
     fun_prop
 
-/-- The mixed tensor family is orthonormal when its sine frequencies are positive.-/
+/-- The mixed tensor family is orthonormal when its sine frequencies are positive.
+@isnad1 id=eq.2h4v.s7.9beb2b3d974d from=translated src=- shape=a7010ad6 vocab=b692a2d0
+-/
 theorem integral_tensorChebyshevMixedBasis_mul
     {ι : Type*} [Fintype ι] [DecidableEq ι] (i : ι) (α β : ι → ℕ)
     (hα : 0 < α i) (hβ : 0 < β i) :
@@ -195,7 +220,9 @@ theorem integral_tensorChebyshevMixedBasis_mul
     simpa using integral_normalized_sin_mul hα hβ
   · simpa only [ite_eq_right hj] using integral_normalizedChebyshev_cos_mul (α j) (β j)
 
-/-- Insertion of one real coordinate into a fixed Euclidean vector is an isometry.-/
+/-- Insertion of one real coordinate into a fixed Euclidean vector is an isometry.
+@isnad1 id=isometry.0h3v.s7.a0d691ea1952 from=translated src=- shape=47f3abd2 vocab=9ddd38b6
+-/
 theorem isometry_toLp_insertNth {d : ℕ} (i : Fin (d + 1)) (y : Fin d → ℝ) :
     Isometry (fun t : ℝ => (WithLp.toLp 2 (i.insertNth t y) : EuclideanSpace ℝ (Fin (d + 1)))) := by
   apply isometry_iff_dist_eq.mpr
@@ -212,7 +239,9 @@ theorem isometry_toLp_insertNth {d : ℕ} (i : Fin (d + 1)) (y : Fin d → ℝ) 
       simp [Fin.succAbove_ne]
   rw [he, PiLp.norm_single]
 
-/-- A coordinate slice of a Euclidean Lipschitz function retains the same constant.-/
+/-- A coordinate slice of a Euclidean Lipschitz function retains the same constant.
+@isnad1 id=lipschit.1h5v.s7.adc7f5bd1469 from=translated src=- shape=f9ff607f vocab=766f4f88
+-/
 theorem lipschitzWith_euclidean_insertNth {d : ℕ} {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ}
     {L : NNReal} (hf : LipschitzWith L f) (i : Fin (d + 1)) (y : Fin d → ℝ) :
     LipschitzWith L (fun t : ℝ => f (WithLp.toLp 2 (i.insertNth t y))) := by
@@ -226,7 +255,9 @@ def tensorChebyshevCosinePartial {d : ℕ}
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The coordinate cosine derivative is jointly measurable, without requiring
-differentiability of the original Lipschitz function.-/
+differentiability of the original Lipschitz function.
+@isnad1 id=measurab.1h3v.s7.22ee053a997e from=translated src=- shape=df23d039 vocab=12dade8a
+-/
 theorem measurable_tensorChebyshevCosinePartial {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} (hf : Continuous f) (i : Fin (d + 1)) :
     Measurable (tensorChebyshevCosinePartial f i) := by
@@ -254,7 +285,9 @@ theorem measurable_tensorChebyshevCosinePartial {d : ℕ}
   have hh := hm.comp (hcoords.prodMk (measurable_pi_apply i))
   exact hh
 
-/-- The coordinate cosine derivative has the sharp pointwise speed bound.-/
+/-- The coordinate cosine derivative has the sharp pointwise speed bound.
+@isnad1 id=le.1h5v.s7.c4ed6eccbe39 from=translated src=- shape=cb1c2a54 vocab=2dbae16f
+-/
 theorem abs_tensorChebyshevCosinePartial_le {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) (θ : Fin (d + 1) → ℝ) :
@@ -264,7 +297,9 @@ theorem abs_tensorChebyshevCosinePartial_le {d : ℕ}
       (lipschitzWith_euclidean_insertNth hf i (fun j => cos (θ (i.succAbove j)))).lipschitzOnWith
       (θ i)
 
-/-- The coordinate cosine derivative is globally bounded by the Lipschitz constant.-/
+/-- The coordinate cosine derivative is globally bounded by the Lipschitz constant.
+@isnad1 id=le.1h5v.s7.de57c16cd133 from=translated src=- shape=351c51f8 vocab=8be62b2b
+-/
 theorem abs_tensorChebyshevCosinePartial_le_const {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) (θ : Fin (d + 1) → ℝ) :
@@ -273,7 +308,9 @@ theorem abs_tensorChebyshevCosinePartial_le_const {d : ℕ}
     (by simpa only [mul_one] using
       mul_le_mul_of_nonneg_left (abs_sin_le_one (θ i)) L.coe_nonneg)
 
-/-- The square of a coordinate cosine derivative is integrable.-/
+/-- The square of a coordinate cosine derivative is integrable.
+@isnad1 id=integrab.1h4v.s8.d16769ffb568 from=translated src=- shape=1f2124de vocab=c35826d3
+-/
 theorem integrable_tensorChebyshevCosinePartial_sq {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) :
@@ -285,7 +322,9 @@ theorem integrable_tensorChebyshevCosinePartial_sq {d : ℕ}
   have h := mul_self_le_mul_self (abs_nonneg _) (abs_tensorChebyshevCosinePartial_le_const hf i θ)
   simpa only [Real.norm_eq_abs, abs_sq, ← sq, sq_abs] using h
 
-/-- Products needed for finite mixed Bessel coefficients are integrable.-/
+/-- Products needed for finite mixed Bessel coefficients are integrable.
+@isnad1 id=integrab.1h5v.s8.914d44b8eee3 from=translated src=- shape=d2e60c19 vocab=6ce1f03c
+-/
 theorem integrable_tensorChebyshevCosinePartial_mul_mixed {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) (α : Fin (d + 1) → ℕ) :
@@ -300,7 +339,9 @@ theorem integrable_tensorChebyshevCosinePartial_mul_mixed {d : ℕ}
   simp only [Pi.mul_apply, Real.norm_eq_abs, abs_mul]
   exact mul_le_mul_of_nonneg_right (abs_tensorChebyshevCosinePartial_le_const hf i θ) (abs_nonneg _)
 
-/-- A coordinate sine square has mass `π^(d+1)/2` under the angle product measure.-/
+/-- A coordinate sine square has mass `π^(d+1)/2` under the angle product measure.
+@isnad1 id=eq.0h2v.s7.160fc865c4e5 from=translated src=- shape=8e0842c6 vocab=329a9a63
+-/
 theorem integral_sin_sq_pi_chebyshevAngleMeasure {d : ℕ} (i : Fin (d + 1)) :
     (∫ θ : Fin (d + 1) → ℝ, sin (θ i) ^ 2
       ∂Measure.pi (fun _ => chebyshevAngleMeasure)) = π ^ (d + 1) / 2 := by
@@ -324,7 +365,9 @@ theorem integral_sin_sq_pi_chebyshevAngleMeasure {d : ℕ} (i : Fin (d + 1)) :
   rw [pow_succ]
   ring
 
-/-- Each coordinate derivative has square energy at most `π^(d+1) L²/2`.-/
+/-- Each coordinate derivative has square energy at most `π^(d+1) L²/2`.
+@isnad1 id=le.1h4v.s8.bf9ad9618b25 from=translated src=- shape=a5243d47 vocab=730ee2e8
+-/
 theorem integral_tensorChebyshevCosinePartial_sq_le {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) :
@@ -343,7 +386,9 @@ theorem integral_tensorChebyshevCosinePartial_sq_le {d : ℕ}
     _ ≤ (L : ℝ) ^ 2 * (π ^ (d + 1) / 2) := h
     _ = _ := by ring
 
-/-- Coordinatewise cosine commutes with finite coordinate insertion.-/
+/-- Coordinatewise cosine commutes with finite coordinate insertion.
+@isnad1 id=eq.0h4v.s6.31061852aced from=translated src=- shape=f5c16a2c vocab=09f06d83
+-/
 theorem cos_insertNth {d : ℕ} (i : Fin (d + 1)) (t : ℝ) (y : Fin d → ℝ) :
     (fun j => cos ((i.insertNth t y : Fin (d + 1) → ℝ) j)) =
       i.insertNth (cos t) (fun j => cos (y j)) := by
@@ -354,7 +399,9 @@ theorem cos_insertNth {d : ℕ} (i : Fin (d + 1)) (t : ℝ) (y : Fin d → ℝ) 
   · intro k
     simp
 
-/-- A mixed tensor basis factors along its sine coordinate.-/
+/-- A mixed tensor basis factors along its sine coordinate.
+@isnad1 id=eq.0h5v.s7.a65bcee7ab28 from=translated src=- shape=f187373b vocab=f98975a6
+-/
 theorem tensorChebyshevMixedBasis_insertNth {d : ℕ}
     (i : Fin (d + 1)) (α : Fin (d + 1) → ℕ) (t : ℝ) (y : Fin d → ℝ) :
     tensorChebyshevMixedBasis i α (i.insertNth t y) =
@@ -363,7 +410,9 @@ theorem tensorChebyshevMixedBasis_insertNth {d : ℕ}
   rw [tensorChebyshevMixedBasis, i.prod_univ_succAbove]
   simp [Fin.succAbove_ne]
 
-/-- The cosine tensor basis factors along any chosen coordinate.-/
+/-- The cosine tensor basis factors along any chosen coordinate.
+@isnad1 id=eq.0h5v.s7.168a0f53e46b from=translated src=- shape=49d5051a vocab=a110518b
+-/
 theorem prod_normalizedChebyshev_cos_insertNth {d : ℕ}
     (i : Fin (d + 1)) (α : Fin (d + 1) → ℕ) (t : ℝ) (y : Fin d → ℝ) :
     (∏ j, normalizedChebyshev (α j) (cos ((i.insertNth t y : Fin (d + 1) → ℝ) j))) =
@@ -372,7 +421,9 @@ theorem prod_normalizedChebyshev_cos_insertNth {d : ℕ}
   rw [i.prod_univ_succAbove]
   simp
 
-/-- A cosine coordinate derivative simplifies to the ordinary slice derivative.-/
+/-- A cosine coordinate derivative simplifies to the ordinary slice derivative.
+@isnad1 id=eq.0h5v.s7.b6faa2cb16b2 from=translated src=- shape=7b773bc4 vocab=ab0d3057
+-/
 theorem tensorChebyshevCosinePartial_insertNth {d : ℕ}
     (f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ) (i : Fin (d + 1))
     (t : ℝ) (y : Fin d → ℝ) :
@@ -382,7 +433,9 @@ theorem tensorChebyshevCosinePartial_insertNth {d : ℕ}
     Fin.insertNth_apply_succAbove, Function.comp_def]
 
 /-- Direct cosine/sine integration by parts for a Lipschitz input, with no
-coefficient normalization left in the identity.-/
+coefficient normalization left in the identity.
+@isnad1 id=eq.2h3v.s7.24a7d5668a7b from=translated src=- shape=e1998444 vocab=13dc5ec0
+-/
 theorem integral_neg_deriv_comp_cos_mul_sin_eq_mul_integral_cos
     {f : ℝ → ℝ} {L : NNReal} (hf : LipschitzOnWith L f (Icc (-1 : ℝ) 1))
     {j : ℕ} (hj : 0 < j) :
@@ -397,7 +450,9 @@ theorem integral_neg_deriv_comp_cos_mul_sin_eq_mul_integral_cos
     _ = _ := by field_simp
 
 /-- The actual tensor coefficient is the mixed sine/cosine coefficient of
-the coordinate cosine derivative, including arbitrary Lipschitz inputs.-/
+the coordinate cosine derivative, including arbitrary Lipschitz inputs.
+@isnad1 id=eq.2h5v.s8.eecf54bf090f from=translated src=- shape=49052bc8 vocab=59f148f5
+-/
 theorem integral_tensorChebyshevCosinePartial_mul_mixed_eq {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) (α : Fin (d + 1) → ℕ) (hα : 0 < α i) :
@@ -438,7 +493,9 @@ theorem integral_tensorChebyshevCosinePartial_mul_mixed_eq {d : ℕ}
   ring
 
 /-- Every finite set of tensor coefficients has bounded energy in each
-coordinate. This applies finite Bessel to the actual coordinate derivative.-/
+coordinate. This applies finite Bessel to the actual coordinate derivative.
+@isnad1 id=le.1h5v.s8.1ac8aa58847a from=translated src=- shape=096dd07d vocab=21897e71
+-/
 theorem sum_coordinate_sq_mul_tensorChebyshevCoeff_sq_le {d : ℕ}
     {f : EuclideanSpace ℝ (Fin (d + 1)) → ℝ} {L : NNReal}
     (hf : LipschitzWith L f) (i : Fin (d + 1)) (s : Finset (Fin (d + 1) → ℕ)) :
@@ -467,7 +524,9 @@ theorem sum_coordinate_sq_mul_tensorChebyshevCoeff_sq_le {d : ℕ}
   exact h.trans (integral_tensorChebyshevCosinePartial_sq_le hf i)
 
 /-- Finite normalized tensor Chebyshev energy for a Euclidean Lipschitz function.
-The zero-dimensional case is included and has zero energy.-/
+The zero-dimensional case is included and has zero energy.
+@isnad1 id=le.1h4v.s7.f19014958aab from=translated src=- shape=7f080a07 vocab=b7d30764
+-/
 theorem sum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzWith {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {L : NNReal} (hf : LipschitzWith L f)
     (s : Finset (Fin d → ℕ)) :
@@ -484,7 +543,9 @@ theorem sum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzWith {d : ℕ}
         sum_le_sum (fun i _ => sum_coordinate_sq_mul_tensorChebyshevCoeff_sq_le hf i s)
       _ = _ := by simp; ring
 
-/-- The full normalized tensor energy is summable for Euclidean Lipschitz inputs.-/
+/-- The full normalized tensor energy is summable for Euclidean Lipschitz inputs.
+@isnad1 id=summable.1h3v.s7.11a40cb88138 from=translated src=- shape=b8fc8c01 vocab=389e69d3
+-/
 theorem summable_norm_sq_mul_tensorChebyshevCoeff_sq_of_lipschitzWith {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {L : NNReal} (hf : LipschitzWith L f) :
     Summable (fun α : Fin d → ℕ => (∑ i, (α i : ℝ) ^ 2) * tensorChebyshevCoeff f α ^ 2) := by
@@ -493,7 +554,9 @@ theorem summable_norm_sq_mul_tensorChebyshevCoeff_sq_of_lipschitzWith {d : ℕ}
   exact sum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzWith hf
 
 /-- Global Lipschitz inputs satisfy the full normalized tensor coefficient
-energy bound. This is an intermediate statement for the cube-only theorem.-/
+energy bound. This is an intermediate statement for the cube-only theorem.
+@isnad1 id=le.1h3v.s7.5a27061f42f7 from=translated src=- shape=d845d262 vocab=16141949
+-/
 theorem tsum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzWith {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {L : NNReal} (hf : LipschitzWith L f) :
     (∑' α : Fin d → ℕ, (∑ i, (α i : ℝ) ^ 2) * tensorChebyshevCoeff f α ^ 2) ≤
@@ -505,7 +568,9 @@ theorem tsum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzWith {d : ℕ}
 tensor Chebyshev energy bound. The coefficient integral is for the actual
 product Chebyshev measure; no differentiability or series expansion is assumed.
 Source: MMRS Appendix A.1, Lemma 31, extended to Lipschitz inputs.
-atlas: chebyshev-lipschitz-coefficient-energy-/
+atlas: chebyshev-lipschitz-coefficient-energy
+@isnad1 id=le.1h3v.s7.514ec7370d7c from=translated src=- shape=b3301997 vocab=56c01c07
+-/
 theorem tsum_norm_sq_mul_tensorChebyshevCoeff_sq_le_of_lipschitzOnWith {d : ℕ}
     {f : EuclideanSpace ℝ (Fin d) → ℝ} {L : NNReal}
     (hf : LipschitzOnWith L f (chebyshevCube (Fin d))) :

@@ -34,7 +34,9 @@ private theorem signed_mul_neg_pow {N j : ℕ} (hj : j ≤ N) (c t : ℝ) :
 
 /-- A monic real polynomial whose coefficients have the expected
 degree-dependent signs cannot vanish at a negative real argument.
-Scalar polynomial positivity; helper for `sylvester-criterion`.-/
+Scalar polynomial positivity; helper for `sylvester-criterion`.
+@isnad1 id=lt.4h3v.s7.6a6750d5939a from=translated src=- shape=e7f10b37 vocab=5ec6d9b9
+-/
 theorem mul_eval_neg_pos_of_signed_coeff_nonneg {p : ℝ[X]} {N : ℕ}
     (hdeg : p.natDegree = N) (hp : p.Monic)
     (hcoeff : ∀ j, j ≤ N → 0 ≤ (-1 : ℝ) ^ (N - j) * p.coeff j)

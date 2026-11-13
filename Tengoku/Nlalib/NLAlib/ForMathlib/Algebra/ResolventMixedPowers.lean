@@ -15,7 +15,9 @@ noncomputable section
 set_option autoImplicit false
 namespace spectrum
 
-/-- The actual two-parameter mixed resolvent power satisfies its lower-degree recursion.-/
+/-- The actual two-parameter mixed resolvent power satisfies its lower-degree recursion.
+@isnad1 id=eq.2h7v.s8.467e56e20c08 from=translated src=- shape=8658c022 vocab=43621a01
+-/
 theorem sub_smul_resolvent_pow_mul_pow
     {R A : Type*} [CommRing R] [Ring A] [Algebra R A]
     (a : A) {z w : R} (hz : z∈resolventSet R a) (hw : w∈resolventSet R a)

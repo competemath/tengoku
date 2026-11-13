@@ -15,7 +15,9 @@ open MeasureTheory MeasureTheory.Measure ProbabilityTheory Filter Set
 open scoped Topology BoundedContinuousFunction
 namespace MeasureTheory
 
-/-- A bounded test times a Cauchy density is integrable.-/
+/-- A bounded test times a Cauchy density is integrable.
+@isnad1 id=integrab.0h3v.s6.cbfd205dabd8 from=translated src=- shape=04c5da71 vocab=3447ee35
+-/
 theorem integrable_boundedContinuousFunction_mul_cauchyPDFReal
     (f : ℝ →ᵇ ℝ) (x : ℝ) (γ : NNReal) :
     Integrable (fun y : ℝ => f y * cauchyPDFReal x γ y) :=
@@ -23,7 +25,9 @@ theorem integrable_boundedContinuousFunction_mul_cauchyPDFReal
     (Filter.Eventually.of_forall (fun y => f.norm_coe_le_norm y))
 
 /-- Norm integrals of Cauchy-averaged bounded tests remain bounded by
-the test's uniform norm.-/
+the test's uniform norm.
+@isnad1 id=le.1h3v.s6.ea756e99882d from=translated src=- shape=c279a98e vocab=a581e156
+-/
 theorem integral_norm_boundedContinuousFunction_mul_cauchyPDFReal_le
     (f : ℝ →ᵇ ℝ) (x : ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     (∫ y : ℝ, ‖f y * cauchyPDFReal x γ y‖) ≤ ‖f‖ := by
@@ -38,7 +42,9 @@ theorem integral_norm_boundedContinuousFunction_mul_cauchyPDFReal_le
     _ = _ := by rw [integral_const_mul, integral_cauchyPDFReal_eq_one x hγ, mul_one]
 
 /-- Fubini applies to Cauchy regularization of every bounded continuous
-test under an arbitrary finite source measure.-/
+test under an arbitrary finite source measure.
+@isnad1 id=integrab.1h3v.s6.f6beefe2ee22 from=translated src=- shape=e9ec5bd4 vocab=5a302613
+-/
 theorem integrable_boundedContinuousFunction_mul_cauchyPDFReal_prod
     (μ : Measure ℝ) [IsFiniteMeasure μ] (f : ℝ →ᵇ ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     Integrable (fun p : ℝ × ℝ => f p.2 * cauchyPDFReal p.1 γ p.2) (μ.prod volume) := by
@@ -56,7 +62,9 @@ theorem integrable_boundedContinuousFunction_mul_cauchyPDFReal_prod
       exact integral_norm_boundedContinuousFunction_mul_cauchyPDFReal_le f x γ hγ)
 
 /-- The integral against the regularized density is the integral of
-standard-Cauchy affine averages.-/
+standard-Cauchy affine averages.
+@isnad1 id=eq.1h3v.s7.9cb493fbe75d from=translated src=- shape=389e292b vocab=7ee31fe2
+-/
 theorem integral_cauchyRegularization_eq (μ : Measure ℝ) [IsFiniteMeasure μ]
     (f : ℝ →ᵇ ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     (∫ y : ℝ, f y * (∫ x : ℝ, cauchyPDFReal x γ y ∂μ)) =
@@ -74,7 +82,9 @@ theorem integral_cauchyRegularization_eq (μ : Measure ℝ) [IsFiniteMeasure μ]
         (fun x => integral_mul_cauchyPDFReal_eq_integral_affine f x γ hγ)
 
 /-- Cauchy density regularization recovers each bounded continuous
-integral as its positive scale tends to zero.-/
+integral as its positive scale tends to zero.
+@isnad1 id=tendsto.2h3v.s7.55b84610b5e1 from=translated src=- shape=307f3671 vocab=55fd2600
+-/
 theorem tendsto_integral_cauchyRegularization (μ : Measure ℝ) [IsFiniteMeasure μ]
     (f : ℝ →ᵇ ℝ) {γ : ℕ → NNReal} (hγne : ∀ n, γ n ≠ 0)
     (hγ : Tendsto (fun n => (γ n : ℝ)) atTop (𝓝 0)) :

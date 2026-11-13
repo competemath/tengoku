@@ -12,12 +12,16 @@ open Real Set Finset
 namespace NLAlib
 
 /-- Cotangent is odd.
-Source: the elementary sine and cosine negation identities.-/
+Source: the elementary sine and cosine negation identities.
+@isnad1 id=eq.0h1v.s3.876d84abca81 from=translated src=- shape=c7188113 vocab=a28c5b56
+-/
 theorem cot_neg (x : ℝ) : Real.cot (-x) = -Real.cot x := by
   rw [Real.cot_eq_cos_div_sin, Real.cot_eq_cos_div_sin, cos_neg, sin_neg, div_neg]
 
 /-- The sine-over-cosine-difference kernel is a sum of two half-angle cotangents.
-Source: focused reroutes, the identity preceding equation `polyretry:sample-C`.-/
+Source: focused reroutes, the identity preceding equation `polyretry:sample-C`.
+@isnad1 id=eq.2h2v.s7.53c12e99df9d from=translated src=- shape=8e49b004 vocab=1fdb813c
+-/
 theorem sin_div_cos_sub_eq_half_cot_add {θ φ : ℝ}
     (hm : sin ((θ - φ) / 2) ≠ 0) (hp : sin ((θ + φ) / 2) ≠ 0) :
     sin θ / (cos φ - cos θ) =
@@ -42,7 +46,9 @@ theorem sin_div_cos_sub_eq_half_cot_add {θ φ : ℝ}
   exact hfrac _ _ _ _ _ hm hp hnum
 
 /-- Below a sampling extremum, the absolute sine-distance kernel has a cotangent
-difference. Source: focused reroutes, finite root sample splitting.-/
+difference. Source: focused reroutes, finite root sample splitting.
+@isnad1 id=eq.3h2v.s7.016584fdf8b8 from=translated src=- shape=53beec03 vocab=a66874b4
+-/
 theorem sin_div_abs_cos_sub_of_lt {θ φ : ℝ} (hθ : θ ∈ Ioo 0 π) (hφ : φ ∈ Ioo 0 π)
     (hlt : θ < φ) :
     sin θ / |cos φ - cos θ| =
@@ -59,7 +65,9 @@ theorem sin_div_abs_cos_sub_of_lt {θ φ : ℝ} (hθ : θ ∈ Ioo 0 π) (hφ : �
   ring
 
 /-- Above a sampling extremum, the absolute sine-distance kernel has a cotangent
-sum. Source: focused reroutes, finite root sample splitting.-/
+sum. Source: focused reroutes, finite root sample splitting.
+@isnad1 id=eq.3h2v.s7.9e975e9d6b18 from=translated src=- shape=8223b08b vocab=a66874b4
+-/
 theorem sin_div_abs_cos_sub_of_gt {θ φ : ℝ} (hθ : θ ∈ Ioo 0 π) (hφ : φ ∈ Ioo 0 π)
     (hlt : φ < θ) :
     sin θ / |cos φ - cos θ| =
@@ -72,7 +80,9 @@ theorem sin_div_abs_cos_sub_of_gt {θ φ : ℝ} (hθ : θ ∈ Ioo 0 π) (hφ : �
   rw [abs_of_pos (sub_pos.mpr hcos), sin_div_cos_sub_eq_half_cot_add hm hp]
 
 /-- The finite root-grid sine-distance sum is exactly its cotangent prefix sample.
-Source: focused reroutes, equation `polyretry:sample-C`.-/
+Source: focused reroutes, equation `polyretry:sample-C`.
+@isnad1 id=eq.2h2v.s7.43befe310435 from=translated src=- shape=af963f3b vocab=290a9b41
+-/
 theorem sum_sin_div_abs_cos_sub_eq_rootCotangentSample {N k : ℕ}
     (hk0 : 0 < k) (hkN : k < N) :
     (1 / (N : ℝ)) * (∑ j ∈ range N,

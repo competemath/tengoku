@@ -28,17 +28,23 @@ Jordan curve in the plane, this is its trace together with its interior.-/
 def boundedComplementFill (s : Set X) : Set X :=
   s ∪ {x | x ∉ s ∧ IsBounded (connectedComponentIn sᶜ x)}
 
-/-- The original set is contained in its bounded-complement fill.-/
+/-- The original set is contained in its bounded-complement fill.
+@isnad1 id=le.0h2v.s4.2a0953705d8f from=translated src=- shape=530d50d6 vocab=26fc3027
+-/
 theorem subset_boundedComplementFill (s : Set X) : s ⊆ boundedComplementFill s :=
   subset_union_left
 
-/-- A point outside the fill lies in an unbounded complementary component.-/
+/-- A point outside the fill lies in an unbounded complementary component.
+@isnad1 id=iff.0h3v.s5.2b82eb026db1 from=translated src=- shape=4b489186 vocab=dccf698b
+-/
 theorem not_mem_boundedComplementFill_iff {s : Set X} {x : X} :
     x ∉ boundedComplementFill s ↔ x ∉ s ∧ ¬ IsBounded (connectedComponentIn sᶜ x) := by
   by_cases hx : x ∈ s <;> simp [boundedComplementFill, hx]
 
 /-- A complementary component through a point outside the fill stays outside
-the fill, since all of its points determine the same component.-/
+the fill, since all of its points determine the same component.
+@isnad1 id=le.1h3v.s5.53b15df35776 from=translated src=- shape=429c3b56 vocab=36aeab65
+-/
 theorem connectedComponentIn_subset_compl_boundedComplementFill {s : Set X} {x : X}
     (hx : x ∉ boundedComplementFill s) :
     connectedComponentIn sᶜ x ⊆ (boundedComplementFill s)ᶜ := by
@@ -49,7 +55,9 @@ theorem connectedComponentIn_subset_compl_boundedComplementFill {s : Set X} {x :
   exact hx
 
 /-- Filling bounded components preserves closedness in a locally connected
-space. Each complementary component left over is open.-/
+space. Each complementary component left over is open.
+@isnad1 id=isclosed.1h2v.s4.12cb908036dc from=translated src=- shape=a3830b65 vocab=44c13011
+-/
 theorem isClosed_boundedComplementFill [LocallyConnectedSpace X] {s : Set X}
     (hs : IsClosed s) : IsClosed (boundedComplementFill s) := by
   rw [← isOpen_compl_iff, isOpen_iff_mem_nhds]
@@ -65,7 +73,9 @@ section NormedSpace
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- A point beyond a ball containing a set belongs to an unbounded component
-of its complement: the entire outward ray lies in that same component.-/
+of its complement: the entire outward ray lies in that same component.
+@isnad1 id=not.3h4v.s6.4cdd25200d5c from=translated src=- shape=048324a3 vocab=8180c998
+-/
 theorem not_isBounded_connectedComponentIn_compl_of_norm_lt
     {s : Set E} {R : ℝ} (hR : 0 ≤ R) (hs : s ⊆ closedBall 0 R)
     {x : E} (hx : R < ‖x‖) : ¬ IsBounded (connectedComponentIn sᶜ x) := by
@@ -97,7 +107,9 @@ theorem not_isBounded_connectedComponentIn_compl_of_norm_lt
   linarith [le_max_left M ‖x‖]
 
 /-- Filling bounded complementary components does not enlarge a containing
-closed ball. This applies in every real normed space.-/
+closed ball. This applies in every real normed space.
+@isnad1 id=le.2h3v.s6.0aa79b81110e from=translated src=- shape=9d97ace2 vocab=8f3b6f3f
+-/
 theorem boundedComplementFill_subset_closedBall {s : Set E} {R : ℝ}
     (hR : 0 ≤ R) (hs : s ⊆ closedBall 0 R) :
     boundedComplementFill s ⊆ closedBall 0 R := by
@@ -108,7 +120,9 @@ theorem boundedComplementFill_subset_closedBall {s : Set E} {R : ℝ}
   · exact hnot (hs hx)
   · exact not_isBounded_connectedComponentIn_compl_of_norm_lt hR hs hn hcomp
 
-/-- Filling the bounded complementary components of a bounded set is bounded.-/
+/-- Filling the bounded complementary components of a bounded set is bounded.
+@isnad1 id=isbounde.1h2v.s5.43fbe6cbe189 from=translated src=- shape=b1207aaf vocab=f4d7f227
+-/
 theorem isBounded_boundedComplementFill {s : Set E} (hs : IsBounded s) :
     IsBounded (boundedComplementFill s) := by
   obtain ⟨R, hR, hb⟩ := hs.exists_pos_norm_le
@@ -117,14 +131,18 @@ theorem isBounded_boundedComplementFill {s : Set E} (hs : IsBounded s) :
       (fun x hx => mem_closedBall_zero_iff.mpr (hb x hx)))
 
 /-- The fill of a compact set in a locally connected proper real normed space
-is compact. In particular, every compact planar contour has compact fill.-/
+is compact. In particular, every compact planar contour has compact fill.
+@isnad1 id=iscompac.1h2v.s6.adf435078ae5 from=translated src=- shape=55c5bfd4 vocab=7ab3ae56
+-/
 theorem isCompact_boundedComplementFill [LocallyConnectedSpace E] [ProperSpace E]
     {s : Set E} (hs : IsCompact s) : IsCompact (boundedComplementFill s) :=
   isCompact_iff_isClosed_bounded.mpr
     ⟨isClosed_boundedComplementFill hs.isClosed, isBounded_boundedComplementFill hs.isBounded⟩
 
 /-- A holomorphy neighborhood of the compact filled trace contains an actual
-positive closed metric buffer around it.-/
+positive closed metric buffer around it.
+@isnad1 id=ex.3h3v.s7.91e8ba76abc1 from=translated src=- shape=393d9d25 vocab=e1c756a5
+-/
 theorem exists_cthickening_boundedComplementFill_subset_open
     [LocallyConnectedSpace E] [ProperSpace E] {s U : Set E}
     (hs : IsCompact s) (hU : IsOpen U) (hsub : boundedComplementFill s ⊆ U) :

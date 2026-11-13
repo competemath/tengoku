@@ -23,7 +23,9 @@ def withOutput {q : ℕ} {α β : Type*} (alg : QueryAlgorithm Q R q α)
   query := alg.query
   output := output
 
-/-- Free final processing leaves every oracle response unchanged.-/
+/-- Free final processing leaves every oracle response unchanged.
+@isnad1 id=eq.0h9v.s5.95bbf137847c from=translated src=- shape=ea25bd1d vocab=f6549cf7
+-/
 @[simp] theorem history_withOutput {q : ℕ} {α β : Type*} (alg : QueryAlgorithm Q R q α)
     (output : (Fin q → R) → β) (f : Q → R) (i : ℕ) :
     (alg.withOutput output).history f i = alg.history f i := by
@@ -31,7 +33,9 @@ def withOutput {q : ℕ} {α β : Type*} (alg : QueryAlgorithm Q R q α)
   | zero => rfl
   | succ i ih => rw [history, history, ih]; rfl
 
-/-- Final processing of a transcript is free in the matrix-vector query model.-/
+/-- Final processing of a transcript is free in the matrix-vector query model.
+@isnad1 id=eq.0h8v.s5.9c63544ae2ff from=translated src=- shape=d32c9472 vocab=27d13576
+-/
 theorem run_withOutput {q : ℕ} {α β : Type*} (alg : QueryAlgorithm Q R q α)
     (output : (Fin q → R) → β) (f : Q → R) :
     (alg.withOutput output).run f = output (alg.transcript f) := by
@@ -48,7 +52,9 @@ def prependQuery {q : ℕ} {β : Type*} (first : Q) (next : R → QueryAlgorithm
   output h := (next (h 0)).output (fun j => h j.succ)
 
 /-- The transcript after initialization is the first response followed by the remaining
-strategy's transcript.-/
+strategy's transcript.
+@isnad1 id=eq.0h8v.s6.9ea2626ec21d from=translated src=- shape=963b4b97 vocab=6e91db5d
+-/
 theorem history_prependQuery {q : ℕ} {β : Type*} (first : Q)
     (next : R → QueryAlgorithm Q R q β) (f : Q → R) (i : ℕ) :
     (prependQuery first next).history f (i + 1) =
@@ -64,7 +70,9 @@ theorem history_prependQuery {q : ℕ} {β : Type*} (first : Q)
     exact (Fin.cons_snoc_eq_snoc_cons _ _ _).symm
 
 /-- Running the initialization query and then the selected strategy charges `q + 1`
-queries and has exactly the expected semantics.-/
+queries and has exactly the expected semantics.
+@isnad1 id=eq.0h7v.s5.07b15f1f2007 from=translated src=- shape=aa17fa74 vocab=691e849a
+-/
 theorem run_prependQuery {q : ℕ} {β : Type*} (first : Q)
     (next : R → QueryAlgorithm Q R q β) (f : Q → R) :
     (prependQuery first next).run f = (next (f first)).run f := by
@@ -85,7 +93,9 @@ def ofState (initial : S) (query : S → Q) (update : S → R → S) (q : ℕ) :
   query _ h := query (replay initial update h)
   output h := replay initial update h
 
-/-- Replaying actual responses reconstructs the corresponding oracle-driven state.-/
+/-- Replaying actual responses reconstructs the corresponding oracle-driven state.
+@isnad1 id=eq.0h9v.s5.05b112e8c899 from=translated src=- shape=7ea7a372 vocab=b69a5615
+-/
 theorem replay_history_ofState (initial : S) (query : S → Q) (update : S → R → S)
     (q : ℕ) (f : Q → R) (i : ℕ) :
     replay initial update ((ofState initial query update q).history f i) =
@@ -99,14 +109,18 @@ theorem replay_history_ofState (initial : S) (query : S → Q) (update : S → R
     rw [ih, Function.iterate_succ_apply']
 
 /-- Exact realization of a finite recurrence using `q` adaptive queries, including `q = 0`.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h8v.s5.9d98b32b1c42 from=translated src=- shape=5c553daf vocab=bb7fd52e
+-/
 theorem run_ofState (initial : S) (query : S → Q) (update : S → R → S)
     (q : ℕ) (f : Q → R) :
     (ofState initial query update q).run f =
       (fun s => update s (f (query s)))^[q] initial :=
   replay_history_ofState initial query update q f q
 
-/-- The next query is the query of the current state.-/
+/-- The next query is the query of the current state.
+@isnad1 id=eq.0h9v.s5.f4a0baf42ef7 from=translated src=- shape=b8562825 vocab=ac24bdf1
+-/
 theorem queryAt_ofState (initial : S) (query : S → Q) (update : S → R → S)
     (q : ℕ) (f : Q → R) (i : ℕ) :
     (ofState initial query update q).queryAt f i =

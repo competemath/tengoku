@@ -19,18 +19,24 @@ namespace Complex
 def cubicalTrace {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) : Set ℂ :=
   ⋃ γ ∈ Γ.support, range (fun r : I => (γ r : ℂ))
 
-/-- Every point of an active edge belongs to the actual contour trace.-/
+/-- Every point of an active edge belongs to the actual contour trace.
+@isnad1 id=mem.1h4v.s9.7962f15c1b55 from=translated src=- shape=0fd03d2e vocab=3525692c
+-/
 theorem mem_cubicalTrace {Ω : Set ℂ} {Γ : Cubical.OneChain Ω}
     {γ : C(I, Ω)} (hγ : γ ∈ Γ.support) (r : I) : (γ r : ℂ) ∈ cubicalTrace Γ := by
   exact mem_iUnion.mpr ⟨γ, mem_iUnion.mpr ⟨hγ, mem_range_self r⟩⟩
 
-/-- The actual trace is compact, without any differentiability requirement.-/
+/-- The actual trace is compact, without any differentiability requirement.
+@isnad1 id=iscompac.0h2v.s5.d81ac5a479ce from=translated src=- shape=0a46c1c8 vocab=23cf46bf
+-/
 theorem isCompact_cubicalTrace {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) :
     IsCompact (cubicalTrace Γ) :=
   Γ.support.isCompact_biUnion (fun γ _ =>
     isCompact_range (continuous_subtype_val.comp γ.continuous))
 
-/-- The trace of a chain in a domain lies in that actual domain.-/
+/-- The trace of a chain in a domain lies in that actual domain.
+@isnad1 id=le.0h2v.s5.1753e7885061 from=translated src=- shape=fcde88ce vocab=c7ad73b2
+-/
 theorem cubicalTrace_subset {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) : cubicalTrace Γ ⊆ Ω := by
   intro z hz
   obtain ⟨γ, hz⟩ := mem_iUnion.mp hz
@@ -47,19 +53,25 @@ private theorem bddAbove_insert_norm_image_cubicalTrace {Ω : Set ℂ}
     BddAbove (insert 0 ((fun z => ‖f z‖) '' cubicalTrace Γ)) :=
   bddAbove_insert.mpr ((isCompact_cubicalTrace Γ).bddAbove_image hf.norm)
 
-/-- The actual maximum norm is nonnegative, including an empty contour.-/
+/-- The actual maximum norm is nonnegative, including an empty contour.
+@isnad1 id=le.1h3v.s6.a0e5854f0be0 from=translated src=- shape=3bf26a8e vocab=a5de82c3
+-/
 theorem cubicalMaxNorm_nonneg {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
     {f : ℂ → ℂ} (hf : ContinuousOn f (cubicalTrace Γ)) : 0 ≤ cubicalMaxNorm Γ f :=
   le_csSup (bddAbove_insert_norm_image_cubicalTrace Γ hf) (mem_insert 0 _)
 
-/-- The actual maximum norm bounds every integrand value on the trace.-/
+/-- The actual maximum norm bounds every integrand value on the trace.
+@isnad1 id=le.2h4v.s6.d84a57d0ff65 from=translated src=- shape=0cb6cc30 vocab=2a616aff
+-/
 theorem norm_le_cubicalMaxNorm {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
     {f : ℂ → ℂ} (hf : ContinuousOn f (cubicalTrace Γ)) {z : ℂ} (hz : z ∈ cubicalTrace Γ) :
     ‖f z‖ ≤ cubicalMaxNorm Γ f :=
   le_csSup (bddAbove_insert_norm_image_cubicalTrace Γ hf) (mem_insert_of_mem 0 (mem_image_of_mem _ hz))
 
 /-- On every nonempty contour trace the maximum norm is attained at an
-actual point of the trace.-/
+actual point of the trace.
+@isnad1 id=ex.2h3v.s6.00906976e65a from=translated src=- shape=29c9db76 vocab=07a840a0
+-/
 theorem exists_norm_eq_cubicalMaxNorm {Ω : Set ℂ} (Γ : Cubical.OneChain Ω)
     {f : ℂ → ℂ} (hf : ContinuousOn f (cubicalTrace Γ)) (hΓ : (cubicalTrace Γ).Nonempty) :
     ∃ z ∈ cubicalTrace Γ, ‖f z‖ = cubicalMaxNorm Γ f := by

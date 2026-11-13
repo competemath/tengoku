@@ -17,7 +17,9 @@ namespace NLAlib
 
 /-- Every real polynomial of degree at most `n` has a finite first-kind Chebyshev expansion.
 Source: Rivlin, Chebyshev Polynomials, Chapter 1; Mathlib polynomial-sequence spanning.
-This is the cosine-basis construction used by sharp `jackson-lipschitz`.-/
+This is the cosine-basis construction used by sharp `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s7.1d6eb92bb8ac from=translated src=- shape=3b7c4e84 vocab=cb8221d8
+-/
 theorem exists_sum_smul_T_eq_of_degree_le {p : ℝ[X]} {n : ℕ} (hp : p.degree ≤ n) :
     ∃ c : ℕ → ℝ, (∑ j ∈ range (n + 1), c j • T ℝ (j : ℤ)) = p := by
   let S := chebyshevTsequence ℝ
@@ -32,7 +34,9 @@ theorem exists_sum_smul_T_eq_of_degree_le {p : ℝ[X]} {n : ℕ} (hp : p.degree 
   exact ⟨c, hc⟩
 
 /-- Evaluating the finite first-kind expansion gives a finite cosine series.
-Source: Rivlin, Chebyshev Polynomials, Chapter 1; helper for sharp `jackson-lipschitz`.-/
+Source: Rivlin, Chebyshev Polynomials, Chapter 1; helper for sharp `jackson-lipschitz`.
+@isnad1 id=ex.1h2v.s6.628f33da7539 from=translated src=- shape=db2a5f14 vocab=cb78d2aa
+-/
 theorem exists_cosine_expansion_of_degree_le {p : ℝ[X]} {n : ℕ} (hp : p.degree ≤ n) :
     ∃ c : ℕ → ℝ, ∀ t : ℝ,
       p.eval (cos t) = ∑ j ∈ range (n + 1), c j * cos ((j : ℝ) * t) := by

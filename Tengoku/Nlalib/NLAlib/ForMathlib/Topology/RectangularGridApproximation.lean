@@ -28,7 +28,9 @@ def subdivisionWalkCoefficients (q : C → Fin (m + 1) × Fin (n + 1))
         (q (γ (uniformNode k (i + 1)))))
 
 /-- Realizing the summed arrays gives exactly the finite sum of the actual
-canonical walks between the successive quantized subdivision nodes.-/
+canonical walks between the successive quantized subdivision nodes.
+@isnad1 id=eq.0h8v.s10.6a44fa053bd4 from=translated src=- shape=c8b4c133 vocab=3e9258df
+-/
 theorem edgeChainMap_subdivisionWalkCoefficients
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (q : C → Fin (m + 1) × Fin (n + 1)) (γ : C(I, C)) (k : ℕ) :
@@ -39,7 +41,9 @@ theorem edgeChainMap_subdivisionWalkCoefficients
   rfl
 
 /-- The endpoint connectors in a finite sum of actual local comparison
-cycles telescope, leaving only the original two endpoint connectors.-/
+cycles telescope, leaving only the original two endpoint connectors.
+@isnad1 id=eq.1h8v.s11.362ab8b2f395 from=translated src=- shape=a78f21f7 vocab=ed8037e2
+-/
 theorem sum_localComparisonChain_subedge
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (q : C → Fin (m + 1) × Fin (n + 1)) (γ : C(I, C)) {k : ℕ} (hk : 0 < k) :
@@ -69,7 +73,9 @@ theorem sum_localComparisonChain_subedge
 set_option maxHeartbeats 600000 in
 /-- An actual sufficiently fine finite grid walk replaces an arbitrary
 continuous edge modulo a normalized cubical filling in the prescribed
-small neighborhood. Only the final two endpoint connectors remain.-/
+small neighborhood. Only the final two endpoint connectors remain.
+@isnad1 id=ex.4h8v.s11.f61e75a7ca57 from=translated src=- shape=73d2de76 vocab=8e5ca968
+-/
 theorem exists_isNullHomologous_mapOne_eq_edgeComparison
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ) (hx : Monotone x) (hy : Monotone y)
     (q : C → Fin (m + 1) × Fin (n + 1)) {h : ℝ} (hh : 0 < h)

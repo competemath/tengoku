@@ -31,7 +31,9 @@ def hermitianPartProductProgram (imaginary : Bool) (x : n → ℂ) :
     .pure (if imaginary then (-Complex.I / 2) • (y-z) else (1/2 : ℂ) • (y+z))
 
 omit [DecidableEq n] in
-/-- The two-query implementation is the native Hermitian component product.-/
+/-- The two-query implementation is the native Hermitian component product.
+@isnad1 id=eq.0h4v.s11.ead2aceb57d4 from=translated src=- shape=4c975154 vocab=585e1c75
+-/
 theorem run_hermitianPartProductProgram (A : Matrix n n ℂ) (imaginary : Bool) (x : n → ℂ) :
     (hermitianPartProductProgram imaginary x).run (matrixAdjointOracle A) =
       (if imaginary then (imaginaryPart A : Matrix n n ℂ) else (realPart A : Matrix n n ℂ)) *ᵥ x := by
@@ -51,7 +53,9 @@ def hermitianPartChebyshevCost : ℕ → ℕ
   | 0 => 0
   | k+1 => 2 + hermitianPartChebyshevCost k
 
-/-- Exactly two primitive queries are used for each new polynomial degree.-/
+/-- Exactly two primitive queries are used for each new polynomial degree.
+@isnad1 id=eq.0h1v.s4.000c992793e2 from=translated src=- shape=ff508864 vocab=c9293507
+-/
 theorem hermitianPartChebyshevCost_eq (M : ℕ) : hermitianPartChebyshevCost M = 2*M := by
   induction M with
   | zero => rfl
@@ -82,7 +86,9 @@ private theorem chebyshev_succ_mulVec (H : Matrix n n ℂ) (b : n → ℂ) (j : 
     Matrix.one_mul, Matrix.smul_mulVec, Matrix.mulVec_mulVec]
 
 /-- Every retained table entry is the actual polynomial vector for the native
-real or imaginary Hermitian part, including the special degree-one step.-/
+real or imaginary Hermitian part, including the special degree-one step.
+@isnad1 id=eq.1h6v.s11.01ab790175fb from=translated src=- shape=8d60ca0e vocab=22c43449
+-/
 theorem run_hermitianPartChebyshevProgram (A : Matrix n n ℂ) (imaginary : Bool)
     (b : n → ℂ) (M j : ℕ) (hj : j ≤ M) :
     (hermitianPartChebyshevProgram imaginary b M).run (matrixAdjointOracle A) j =
@@ -110,7 +116,9 @@ def hermitianPartChebyshevVectorProgram (imaginary : Bool) (b : n → ℂ) (M : 
   (hermitianPartChebyshevProgram imaginary b M).map fun V =>
     fun (r : n) (j : Fin (M+1)) => (normalizedChebyshevWeight j : ℂ) * V j.val r
 
-/-- The actual component recurrence returns the exact native normalized columns.-/
+/-- The actual component recurrence returns the exact native normalized columns.
+@isnad1 id=eq.0h5v.s11.48d1f40d538e from=translated src=- shape=8a17d883 vocab=097affb0
+-/
 theorem run_hermitianPartChebyshevVectorProgram (A : Matrix n n ℂ) (imaginary : Bool)
     (b : n → ℂ) (M : ℕ) :
     (hermitianPartChebyshevVectorProgram imaginary b M).run (matrixAdjointOracle A) =
@@ -130,7 +138,9 @@ def normalMixedVectorProgram (b : n → ℂ) (M : ℕ) :
     (hermitianPartChebyshevVectorProgram true b M).map fun Y => (X,Y)
 
 /-- Exact realization of both normalized vector matrices by the charged two-sided oracle.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.0h4v.s11.85f35355ceb2 from=translated src=- shape=18be65ec vocab=0f7abad8
+-/
 theorem run_normalMixedVectorProgram (A : Matrix n n ℂ) (b : n → ℂ) (M : ℕ) :
     (normalMixedVectorProgram b M).run (matrixAdjointOracle A) =
       (normalizedChebyshevVectorMatrix (realPart A : Matrix n n ℂ) b M,
@@ -146,7 +156,9 @@ def normalMixedMomentProgram (b : n → ℂ) (M : ℕ) :
 
 omit [Fintype n] [DecidableEq n] in
 /-- Each actual component coordinate is evaluated by its counted scalar program,
-for an arbitrary oracle, before any normal-matrix hypothesis is imposed.-/
+for an arbitrary oracle, before any normal-matrix hypothesis is imposed.
+@isnad1 id=eq.0h5v.s6.5136ddfeb333 from=translated src=- shape=1975267e vocab=d3e89084
+-/
 theorem run_hermitianPartProductProgram_eq_scalar
     (oracle : Bool × (n → ℂ) → n → ℂ) (imaginary : Bool) (x : n → ℂ) (r : n) :
     ((hermitianPartProductProgram imaginary x).run oracle) r =
@@ -154,7 +166,9 @@ theorem run_hermitianPartProductProgram_eq_scalar
   cases imaginary <;> rfl
 
 omit [Fintype n] [DecidableEq n] in
-/-- The actual next retained coordinate is exactly the counted recurrence update.-/
+/-- The actual next retained coordinate is exactly the counted recurrence update.
+@isnad1 id=other.0h6v.s7.619c9fd8bcf4 from=translated src=- shape=44ba89b5 vocab=2389bd26
+-/
 theorem run_hermitianPartChebyshevProgram_succ_eq_scalar
     (oracle : Bool × (n → ℂ) → n → ℂ) (imaginary : Bool) (b : n → ℂ) (k : ℕ) (r : n) :
     let V := (hermitianPartChebyshevProgram imaginary b k).run oracle
@@ -167,7 +181,9 @@ theorem run_hermitianPartChebyshevProgram_succ_eq_scalar
   by_cases hk : k=0 <;> simp [hk, Pi.smul_apply, Pi.sub_apply, smul_eq_mul]
 
 omit [Fintype n] [DecidableEq n] in
-/-- Every actual normalized readout has the one-multiplication scalar realization.-/
+/-- Every actual normalized readout has the one-multiplication scalar realization.
+@isnad1 id=eq.0h7v.s7.dbba60e03fe5 from=translated src=- shape=f9bb790f vocab=76aefc66
+-/
 theorem run_hermitianPartChebyshevVectorProgram_eq_scalar
     (oracle : Bool × (n → ℂ) → n → ℂ) (imaginary : Bool) (b : n → ℂ)
     (M : ℕ) (r : n) (j : Fin (M+1)) :
@@ -178,7 +194,9 @@ theorem run_hermitianPartChebyshevVectorProgram_eq_scalar
   rfl
 
 omit [DecidableEq n] in
-/-- Every output entry uses the actual finite scalar cross-Gram computation.-/
+/-- Every output entry uses the actual finite scalar cross-Gram computation.
+@isnad1 id=other.0h6v.s8.7a50f5a84584 from=translated src=- shape=ca2fe104 vocab=a5c81f64
+-/
 theorem run_normalMixedMomentProgram_eq_scalar
     (oracle : Bool × (n → ℂ) → n → ℂ) (b : n → ℂ) (M : ℕ) (j k : Fin (M+1)) :
     let XY := (normalMixedVectorProgram b M).run oracle
@@ -203,14 +221,18 @@ def normalMixedProgramScalarWork (b : n → ℂ) (M : ℕ)
 omit [DecidableEq n] in
 /-- The actual native query strategy has the stated additional scalar work for
 every oracle, including degree zero. Fixed normalized coefficients are inputs.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=le.0h4v.s6.73165c231473 from=translated src=- shape=5131cd9c vocab=d43fe305
+-/
 theorem normalMixedProgramScalarWork_le (b : n → ℂ) (M : ℕ)
     (oracle : Bool × (n → ℂ) → n → ℂ) :
     normalMixedProgramScalarWork b M oracle ≤ 13*Fintype.card n*(M+1)^2 := by
   unfold normalMixedProgramScalarWork
   exact (normalMixedScalarWork_le_budget _ _ _ _ _ _).trans (normalMixedArithmeticBudget_le _ _)
 
-/-- Native normalized polynomial cross-Gram output, with no additional queries.-/
+/-- Native normalized polynomial cross-Gram output, with no additional queries.
+@isnad1 id=eq.0h4v.s11.8e34e2af7d6f from=translated src=- shape=2e09a5dd vocab=5d480a4e
+-/
 theorem run_normalMixedMomentProgram (A : Matrix n n ℂ) (b : n → ℂ) (M : ℕ) :
     (normalMixedMomentProgram b M).run (matrixAdjointOracle A) =
       (normalizedChebyshevVectorMatrix (realPart A : Matrix n n ℂ) b M)ᴴ *
@@ -218,7 +240,9 @@ theorem run_normalMixedMomentProgram (A : Matrix n n ℂ) (b : n → ℂ) (M : �
   rw [normalMixedMomentProgram, QueryProgram.run_map, run_normalMixedVectorProgram]
 
 /-- The budget of the native two-sided recurrence is exactly `4M`, including `M=0`.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eq.0h1v.s4.02c42e6a31bb from=translated src=- shape=08a9c1e8 vocab=3e284b4e
+-/
 theorem normalMixedMomentProgram_queryCount (M : ℕ) :
     hermitianPartChebyshevCost M + hermitianPartChebyshevCost M = 4*M := by
   rw [hermitianPartChebyshevCost_eq]

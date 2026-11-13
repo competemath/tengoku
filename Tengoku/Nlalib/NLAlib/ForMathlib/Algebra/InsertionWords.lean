@@ -24,13 +24,17 @@ def insertionWords : ℕ → ℕ → List (List Bool)
   | n + 1, j + 1 => (insertionWords n (j + 1)).map (false :: ·) ++
       (insertionWords n j).map (true :: ·)
 
-/-- There are `n.choose j` insertion words.-/
+/-- There are `n.choose j` insertion words.
+@isnad1 id=eq.0h2v.s3.92ab99bee51f from=translated src=- shape=438e24eb vocab=1fed2e27
+-/
 theorem length_insertionWords (n j : ℕ) : (insertionWords n j).length = n.choose j := by
   induction n generalizing j with
   | zero => cases j <;> simp [insertionWords]
   | succ n ih => cases j <;> simp [insertionWords, ih, Nat.choose_succ_succ, Nat.add_comm]
 
-/-- Every insertion word has the specified length and number of marked positions.-/
+/-- Every insertion word has the specified length and number of marked positions.
+@isnad1 id=and.1h3v.s5.8e747ee2d1e0 from=translated src=- shape=0f1a6d99 vocab=778d5f3f
+-/
 theorem length_and_count_of_mem_insertionWords {n j : ℕ} {w : List Bool}
     (hw : w ∈ insertionWords n j) : w.length = n ∧ w.count true = j := by
   induction n generalizing j w with
@@ -53,7 +57,9 @@ theorem length_and_count_of_mem_insertionWords {n j : ℕ} {w : List Bool}
       · obtain ⟨hl, hc⟩ := ih hv
         simp [hl, hc]
 
-/-- Insertion words vanish when more positions are marked than available.-/
+/-- Insertion words vanish when more positions are marked than available.
+@isnad1 id=eq.1h2v.s4.98f13e8e21ec from=translated src=- shape=d08b37c1 vocab=93a3b1ab
+-/
 theorem insertionWords_eq_nil_of_lt {n j : ℕ} (hnj : n < j) :
     insertionWords n j = [] := by
   apply List.length_eq_zero_iff.mp
@@ -67,7 +73,9 @@ variable {R : Type*} [Semiring R]
 def insertionWord (A X : R) (w : List Bool) : R :=
   (w.map fun b => if b then X else A).prod
 
-/-- The zero-insertion binomial coefficient is the corresponding power.-/
+/-- The zero-insertion binomial coefficient is the corresponding power.
+@isnad1 id=eq.0h4v.s5.f50509caeb84 from=translated src=- shape=26e4b3a9 vocab=fc0570a3
+-/
 theorem sum_insertionWords_zero (A X : R) (n : ℕ) :
     ((insertionWords n 0).map (insertionWord A X)).sum = A ^ n := by
   induction n with
@@ -79,7 +87,9 @@ theorem sum_insertionWords_zero (A X : R) (n : ℕ) :
     change A * ((insertionWords n 0).map (insertionWord A X)).sum = _
     rw [ih, pow_succ']
 
-/-- Each noncommutative coefficient satisfies Pascal's insertion recursion.-/
+/-- Each noncommutative coefficient satisfies Pascal's insertion recursion.
+@isnad1 id=eq.0h5v.s7.b010f8421159 from=translated src=- shape=593c78ca vocab=8fa18f2c
+-/
 theorem sum_insertionWords_succ_succ (A X : R) (n j : ℕ) :
     ((insertionWords (n + 1) (j + 1)).map (insertionWord A X)).sum =
       A * ((insertionWords n (j + 1)).map (insertionWord A X)).sum +
@@ -89,7 +99,9 @@ theorem sum_insertionWords_succ_succ (A X : R) (n j : ℕ) :
     Bool.false_eq_true, ↓reduceIte, List.sum_map_mul_left]
   rfl
 
-/-- Summing all insertion coefficients gives the noncommutative binomial expansion.-/
+/-- Summing all insertion coefficients gives the noncommutative binomial expansion.
+@isnad1 id=eq.0h4v.s6.42529a383582 from=translated src=- shape=a6480390 vocab=994c1c08
+-/
 theorem sum_sum_insertionWords_eq_add_pow (A X : R) (n : ℕ) :
     (∑ j ∈ Finset.range (n + 1),
       ((insertionWords n j).map (insertionWord A X)).sum) = (A + X) ^ n := by
@@ -124,7 +136,9 @@ def subInsertionWords : List Bool → List (ℕ × List Bool)
   | true :: w => ((subInsertionWords w).map fun v => (v.1, true :: v.2)) ++
       ((subInsertionWords w).map fun v => (v.1 + 1, v.2))
 
-/-- Each marked position gives two choices in the identity expansion.-/
+/-- Each marked position gives two choices in the identity expansion.
+@isnad1 id=eq.0h1v.s5.6ea10c86a32c from=translated src=- shape=87823683 vocab=e71c8bcb
+-/
 theorem length_subInsertionWords (w : List Bool) :
     (subInsertionWords w).length = 2 ^ w.count true := by
   induction w with
@@ -135,7 +149,9 @@ theorem length_subInsertionWords (w : List Bool) :
     | true => simp [subInsertionWords, ih, pow_succ, Nat.mul_two]
 
 /-- Deleting marked positions preserves every unmarked position and
-accounts for all the original marks.-/
+accounts for all the original marks.
+@isnad1 id=and.1h2v.s6.70d3260c14e3 from=translated src=- shape=9e957a0a vocab=697ed61f
+-/
 theorem counts_of_mem_subInsertionWords {w : List Bool} {v : ℕ × List Bool}
     (hv : v ∈ subInsertionWords w) :
     v.2.count false = w.count false ∧ v.2.count true + v.1 = w.count true := by
@@ -167,7 +183,9 @@ section Ring
 variable {R : Type*} [Ring R]
 
 /-- Subtracting the identity in every marked position expands into
-signed words with some marked positions deleted. No factors commute.-/
+signed words with some marked positions deleted. No factors commute.
+@isnad1 id=eq.0h4v.s7.871420b87044 from=translated src=- shape=0a9364cd vocab=9836c88b
+-/
 theorem insertionWord_sub_one_eq_sum (A H : R) (w : List Bool) :
     insertionWord A (H - 1) w =
       ((subInsertionWords w).map fun v => (-1 : R) ^ v.1 *

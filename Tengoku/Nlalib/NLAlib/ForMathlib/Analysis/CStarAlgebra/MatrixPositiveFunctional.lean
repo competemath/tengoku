@@ -28,12 +28,16 @@ def normalizedFunctional (φ : A →ₗ[ℂ] ℂ) : CStarMatrix D D A →ₗ[ℂ
   map_smul' c T := by simp [CStarMatrix.smul_apply,map_smul,Finset.mul_sum,mul_left_comm]
 
 omit [DecidableEq D] [PartialOrder A] [StarOrderedRing A] in
-/-- The actual normalized diagonal formula.-/
+/-- The actual normalized diagonal formula.
+@isnad1 id=eq.0h4v.s8.8ae68ebc30f4 from=translated src=- shape=9a37088c vocab=648a5d8e
+-/
 @[simp] theorem normalizedFunctional_apply (φ : A →ₗ[ℂ] ℂ) (T : CStarMatrix D D A) :
     normalizedFunctional φ T=(Fintype.card D : ℂ)⁻¹*∑ j,φ (T j j) := rfl
 
 omit [DecidableEq D] [PartialOrder A] [StarOrderedRing A] in
-/-- The actual amplified star-square functional is the normalized sum of all entrywise star-square values.-/
+/-- The actual amplified star-square functional is the normalized sum of all entrywise star-square values.
+@isnad1 id=eq.0h4v.s8.da94f6d290a7 from=translated src=- shape=b810766a vocab=865a0ed7
+-/
 theorem normalizedFunctional_star_mul (φ : A →ₗ[ℂ] ℂ) (T : CStarMatrix D D A) :
     normalizedFunctional φ (star T*T)=
       (Fintype.card D : ℂ)⁻¹*∑ j,∑ i,φ (star (T i j)*T i j) := by
@@ -63,11 +67,15 @@ def normalizedPositiveFunctional (φ : A →ₚ[ℂ] ℂ) : CStarMatrix D D A �
   PositiveLinearMap.mk₀ (normalizedFunctional φ.toLinearMap) fun _ hT => normalizedFunctional_nonneg φ hT
 
 omit [DecidableEq D] in
-/-- Bundling positivity preserves the actual normalized diagonal values.-/
+/-- Bundling positivity preserves the actual normalized diagonal values.
+@isnad1 id=eq.0h4v.s8.dfa07a23d275 from=translated src=- shape=13e534db vocab=e5604afc
+-/
 @[simp] theorem normalizedPositiveFunctional_apply (φ : A →ₚ[ℂ] ℂ) (T : CStarMatrix D D A) :
     normalizedPositiveFunctional φ T=normalizedFunctional φ.toLinearMap T := rfl
 
-/-- Normalization of the original functional gives normalization of its genuine positive amplification in positive matrix dimension.-/
+/-- Normalization of the original functional gives normalization of its genuine positive amplification in positive matrix dimension.
+@isnad1 id=eq.1h3v.s8.8d89515aee04 from=translated src=- shape=389bff5d vocab=9d30cc04
+-/
 theorem normalizedPositiveFunctional_one [Nonempty D] (φ : A →ₚ[ℂ] ℂ) (hφ : φ 1=1) :
     normalizedPositiveFunctional (D := D) φ 1=1 := by
   change (Fintype.card D : ℂ)⁻¹*(∑ j : D, φ ((1 : CStarMatrix D D A) j j))=1

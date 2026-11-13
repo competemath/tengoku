@@ -19,7 +19,9 @@ namespace NLAlib
 /-- The product-domain implicit function is continuous throughout a
 neighborhood of the base parameter. This is the open partial homeomorphism
 conclusion of the implicit function theorem; helper for
-`simple-eigenvalue-perturbation`.-/
+`simple-eigenvalue-perturbation`.
+@isnad1 id=eventual.2h7v.s9.862afae22db9 from=translated src=- shape=fa5e4574 vocab=9d8dd200
+-/
 theorem eventually_continuousAt_implicitFunctionOfProdDomain
     {𝕜 E F G : Type*} [NontriviallyNormedField 𝕜]
     [NormedAddCommGroup E] [NormedSpace 𝕜 E] [CompleteSpace E]

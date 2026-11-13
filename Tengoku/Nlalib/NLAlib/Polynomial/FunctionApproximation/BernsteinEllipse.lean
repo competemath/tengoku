@@ -38,7 +38,9 @@ def openBernsteinEllipse (ρ : ℝ) : Set ℂ :=
 
 /-- Every strictly smaller closed Bernstein ellipse lies inside the larger open ellipse.
 Source: Trefethen, ATAP, Chapter 8, radius-limit proof of Theorem 8.1
-(`chebyshev-coeff-analytic-decay`, helper).-/
+(`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=le.2h2v.s4.8107e4f24ed9 from=translated src=- shape=1922b641 vocab=7d88020d
+-/
 theorem filledBernsteinEllipse_subset_openBernsteinEllipse {r ρ : ℝ}
     (hρ : 1 < ρ) (hrρ : r < ρ) :
     filledBernsteinEllipse r ⊆ openBernsteinEllipse ρ := by
@@ -47,12 +49,16 @@ theorem filledBernsteinEllipse_subset_openBernsteinEllipse {r ρ : ℝ}
   exact (inv_lt_one₀ (zero_lt_one.trans hρ)).mpr hρ |>.trans_le hw.1
 
 /-- The Joukowski transform is invariant under complex inversion.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=eq.0h1v.s3.d76ba89ca8c6 from=translated src=- shape=cd419dad vocab=4140a68a
+-/
 theorem joukowski_inv (w : ℂ) : joukowski w⁻¹ = joukowski w := by
   simp only [joukowski, inv_inv, add_comm]
 
 /-- On the unit circle the Joukowski transform equals the real part.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=eq.1h1v.s4.7a5bd2559dfc from=translated src=- shape=52be62d1 vocab=ae4f36a2
+-/
 theorem joukowski_eq_re_of_norm_eq_one {w : ℂ} (hw : ‖w‖ = 1) :
     joukowski w = (w.re : ℂ) := by
   rw [joukowski, Complex.inv_eq_conj hw, Complex.add_conj]
@@ -60,7 +66,9 @@ theorem joukowski_eq_re_of_norm_eq_one {w : ℂ} (hw : ‖w‖ = 1) :
   ring
 
 /-- The real interval `[-1,1]` is contained in every filled Bernstein ellipse with `ρ≥1`.
-Source: Trefethen, ATAP, Chapter 8 (`bernstein-ellipse-approx`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`bernstein-ellipse-approx`, helper).
+@isnad1 id=mem.2h2v.s5.80000c471107 from=translated src=- shape=89e87f48 vocab=36058c9d
+-/
 theorem ofReal_mem_filledBernsteinEllipse {ρ x : ℝ} (hρ : 1 ≤ ρ)
     (hx : x ∈ Icc (-1 : ℝ) 1) : (x : ℂ) ∈ filledBernsteinEllipse ρ := by
   let w : ℂ := ⟨x, Real.sqrt (1 - x ^ 2)⟩
@@ -78,13 +86,17 @@ theorem ofReal_mem_filledBernsteinEllipse {ρ x : ℝ} (hρ : 1 ≤ ρ)
   exact ⟨le_rfl, hρ⟩
 
 /-- A closed-annulus point maps into the filled Bernstein ellipse by definition.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=mem.1h2v.s5.8437f75cbccf from=translated src=- shape=4b96e05e vocab=259dcfcc
+-/
 theorem joukowski_mem_filledBernsteinEllipse {ρ : ℝ} {w : ℂ}
     (hw : 1 ≤ ‖w‖ ∧ ‖w‖ ≤ ρ) : joukowski w ∈ filledBernsteinEllipse ρ :=
   ⟨w, hw, rfl⟩
 
 /-- The Joukowski transform has its usual strict complex derivative away from zero.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=hasstric.1h1v.s6.aaf1d38d3ac9 from=translated src=- shape=f1a82273 vocab=e5dc7ee8
+-/
 theorem hasStrictDerivAt_joukowski {w : ℂ} (hw : w ≠ 0) :
     HasStrictDerivAt joukowski ((1 - (w ^ 2)⁻¹) / 2) w := by
   have h := ((hasStrictDerivAt_id w).add (hasStrictDerivAt_inv hw)).const_smul ((2 : ℂ)⁻¹)
@@ -96,7 +108,9 @@ theorem hasStrictDerivAt_joukowski {w : ℂ} (hw : w ≠ 0) :
     ring
 
 /-- Outside the unit disk, the Joukowski derivative does not vanish.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=ne.1h1v.s6.619e24899cb8 from=translated src=- shape=3bf0e215 vocab=8280d452
+-/
 theorem joukowski_deriv_ne_zero {w : ℂ} (hw : 1 < ‖w‖) :
     (1 - (w ^ 2)⁻¹) / 2 ≠ 0 := by
   have hw0 : w ≠ 0 := norm_ne_zero_iff.mp (ne_of_gt (zero_lt_one.trans hw))
@@ -115,7 +129,9 @@ theorem joukowski_deriv_ne_zero {w : ℂ} (hw : 1 < ‖w‖) :
 /-- A Joukowski image with `1<|w|<ρ` lies in the interior of the filled Bernstein ellipse.
 The local inverse theorem supplies the neighborhood inclusion rather than an assumed
 analyticity-domain certificate.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=mem.1h2v.s5.eb46291a6fec from=translated src=- shape=a6861703 vocab=34f96eb8
+-/
 theorem joukowski_mem_interior_filledBernsteinEllipse {ρ : ℝ} {w : ℂ}
     (hw : 1 < ‖w‖ ∧ ‖w‖ < ρ) : joukowski w ∈ interior (filledBernsteinEllipse ρ) := by
   let S := {z : ℂ | 1 < ‖z‖ ∧ ‖z‖ < ρ}
@@ -131,7 +147,9 @@ theorem joukowski_mem_interior_filledBernsteinEllipse {ρ : ℝ} {w : ℂ}
   exact joukowski_mem_filledBernsteinEllipse ⟨hu.1.le, hu.2.le⟩
 
 /-- The Joukowski transform is continuous on the closed annulus of inner radius one.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=continuo.0h1v.s6.81f95aa8dbfc from=translated src=- shape=1c1b0328 vocab=62be3f06
+-/
 theorem continuousOn_joukowski_closed_annulus (ρ : ℝ) :
     ContinuousOn joukowski (closedBall (0 : ℂ) ρ \ ball 0 1) := by
   apply ContinuousOn.div_const
@@ -144,7 +162,9 @@ theorem continuousOn_joukowski_closed_annulus (ρ : ℝ) :
 
 /-- A function holomorphic inside and continuous on the filled Bernstein ellipse pulls back
 to a continuous function on the closed Joukowski annulus.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=continuo.1h2v.s6.b1d0976f10bb from=translated src=- shape=4a213bf9 vocab=91255979
+-/
 theorem continuousOn_comp_joukowski_closed_annulus {F : ℂ → ℂ} {ρ : ℝ}
     (hF : ContinuousOn F (filledBernsteinEllipse ρ)) :
     ContinuousOn (F ∘ joukowski) (closedBall (0 : ℂ) ρ \ ball 0 1) := by
@@ -156,7 +176,9 @@ theorem continuousOn_comp_joukowski_closed_annulus {F : ℂ → ℂ} {ρ : ℝ}
 
 /-- The holomorphic-ellipse hypothesis yields complex differentiability at all
 interior points of the outer Joukowski annulus.
-Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).-/
+Source: Trefethen, ATAP, Chapter 8 (`chebyshev-coeff-analytic-decay`, helper).
+@isnad1 id=differen.2h3v.s7.0c34ab8fc8c7 from=translated src=- shape=a9a3acb5 vocab=5008781b
+-/
 theorem differentiableAt_comp_joukowski_open_annulus {F : ℂ → ℂ} {ρ : ℝ}
     (hF : DifferentiableOn ℂ F (interior (filledBernsteinEllipse ρ)))
     {w : ℂ} (hw : w ∈ ball (0 : ℂ) ρ \ closedBall 0 1) :

@@ -20,13 +20,17 @@ namespace Complex
 exceptional point `1` is assigned the harmless totalized value zero.-/
 def cayleyBoundaryReal (ξ : Circle) : ℝ := (inverseCayleyTransform (ξ : ℂ)).re
 
-/-- Boundary inverse Cayley coordinates have zero imaginary part.-/
+/-- Boundary inverse Cayley coordinates have zero imaginary part.
+@isnad1 id=eq.0h1v.s6.057931409526 from=translated src=- shape=0f27abc0 vocab=a86f80d8
+-/
 theorem im_inverseCayleyTransform_circle (ξ : Circle) :
     (inverseCayleyTransform (ξ : ℂ)).im = 0 := by
   rw [im_inverseCayleyTransform, Circle.normSq_coe]
   simp only [sub_self, zero_div]
 
-/-- The inverse Cayley coordinate of a circle point is real.-/
+/-- The inverse Cayley coordinate of a circle point is real.
+@isnad1 id=eq.0h1v.s6.99b47d89896b from=translated src=- shape=d7ea2d6c vocab=41e3d876
+-/
 theorem ofReal_cayleyBoundaryReal (ξ : Circle) :
     (cayleyBoundaryReal ξ : ℂ) = inverseCayleyTransform (ξ : ℂ) := by
   apply Complex.ext
@@ -34,12 +38,16 @@ theorem ofReal_cayleyBoundaryReal (ξ : Circle) :
   · simp only [ofReal_im, im_inverseCayleyTransform_circle]
 
 /-- Inverse Cayley is measurable on the circle, including its totalized
-value at the exceptional point.-/
+value at the exceptional point.
+@isnad1 id=measurab.0h0v.s2.f8f7661453fb from=translated src=- shape=54c8eceb vocab=db640041
+-/
 theorem measurable_cayleyBoundaryReal : Measurable cayleyBoundaryReal := by
   unfold cayleyBoundaryReal inverseCayleyTransform
   fun_prop
 
-/-- Cayley and inverse Cayley recover every finite boundary point.-/
+/-- Cayley and inverse Cayley recover every finite boundary point.
+@isnad1 id=eq.1h1v.s4.68ce90b9d346 from=translated src=- shape=b3c198eb vocab=7b726f2e
+-/
 theorem cayleyTransform_inverseCayleyTransform {w : ℂ} (hw : 1 - w ≠ 0) :
     cayleyTransform (inverseCayleyTransform w) = w := by
   have hden : inverseCayleyTransform w + I ≠ 0 := by
@@ -57,7 +65,9 @@ theorem cayleyTransform_inverseCayleyTransform {w : ℂ} (hw : 1 - w ≠ 0) :
   field_simp [hw]
   ring_nf
 
-/-- The Stieltjes kernel has no pole above the real line.-/
+/-- The Stieltjes kernel has no pole above the real line.
+@isnad1 id=ne.1h2v.s5.f006ef2868fe from=translated src=- shape=268d0601 vocab=05feb82f
+-/
 theorem ofReal_sub_ne_zero_of_im_pos (x : ℝ) {z : ℂ} (hz : 0 < z.im) :
     (x : ℂ) - z ≠ 0 := by
   intro he
@@ -66,7 +76,9 @@ theorem ofReal_sub_ne_zero_of_im_pos (x : ℝ) {z : ℂ} (hz : 0 < z.im) :
   exact (ne_of_gt hz) hi
 
 /-- The upper-half-plane Herglotz kernel becomes the weighted Cauchy
-kernel, with its affine subtraction explicitly retained.-/
+kernel, with its affine subtraction explicitly retained.
+@isnad1 id=eq.2h2v.s7.7ded46dc3680 from=translated src=- shape=a76b94eb vocab=1807cd74
+-/
 theorem I_mul_herglotzRieszKernel_cayleyTransform
     {z : ℂ} (hz : 0 < z.im) {ξ : Circle} (hξ : ξ ≠ 1) :
     I * herglotzRieszKernel 0 (cayleyTransform z) ξ =
@@ -92,7 +104,9 @@ theorem I_mul_herglotzRieszKernel_cayleyTransform
   ring_nf
   simp only [I_sq, I_pow_three]
   ring
-/-- The stereographic mass weight is `1+x²` in real Cayley coordinates.-/
+/-- The stereographic mass weight is `1+x²` in real Cayley coordinates.
+@isnad1 id=eq.1h1v.s7.12f4e555d9a6 from=translated src=- shape=0e4c7e4b vocab=43c5bd73
+-/
 theorem one_add_sq_cayleyBoundaryReal {ξ : Circle} (hξ : ξ ≠ 1) :
     1 + (cayleyBoundaryReal ξ) ^ 2 = 2 / (1 - (ξ : ℂ).re) := by
   have hs := Circle.normSq_coe ξ

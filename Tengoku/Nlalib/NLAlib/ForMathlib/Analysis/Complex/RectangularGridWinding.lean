@@ -32,7 +32,9 @@ private theorem curveIntegral_cubicalPath_univ_lift {a b : ℂ} (γ : Path a b)
 /-- At a cell center, actual winding of a native finite rectangular grid
 cycle equals its explicit integer prefix coefficient. The chain is pushed
 through the canonical continuous lift to the full-plane domain subtype.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.3h8v.s9.39488c96c52c from=translated src=- shape=76b2b796 vocab=abab8a05
+-/
 theorem cubicalWindingIntegral_rectangularGrid_eq_cellCoefficients
     {m n : ℕ} (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : StrictMono x) (hy : StrictMono y)

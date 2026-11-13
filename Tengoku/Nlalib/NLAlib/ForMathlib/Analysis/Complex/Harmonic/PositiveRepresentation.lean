@@ -25,7 +25,9 @@ open scoped Topology NNReal
 namespace Complex
 
 /-- The native Poisson kernel is a continuous test on the unit circle
-when its pole lies strictly inside the disk.-/
+when its pole lies strictly inside the disk.
+@isnad1 id=continuo.1h1v.s6.8a1e1a011130 from=translated src=- shape=21522233 vocab=f6420cc0
+-/
 theorem continuous_poissonKernel_circle {w : ℂ} (hw : w ∈ ball 0 1) :
     Continuous (fun ξ : Circle => poissonKernel 0 w ξ) := by
   rw [poissonKernel_eq_re_herglotzRieszKernel]
@@ -38,7 +40,9 @@ theorem continuous_poissonKernel_circle {w : ℂ} (hw : w ∈ ball 0 1) :
   exact Complex.continuous_re.comp hc
 
 /-- Scaling both the boundary point and the pole by a nonzero real
-number leaves the Poisson kernel unchanged.-/
+number leaves the Poisson kernel unchanged.
+@isnad1 id=eq.1h3v.s5.088115f41be0 from=translated src=- shape=6802b989 vocab=511efa70
+-/
 theorem poissonKernel_zero_mul_real (r : ℝ) (hr : r ≠ 0) (w ξ : ℂ) :
     poissonKernel 0 ((r : ℂ) * w) ((r : ℂ) * ξ) = poissonKernel 0 w ξ := by
   simp only [poissonKernel_eq_re_herglotzRieszKernel, Function.comp_apply,

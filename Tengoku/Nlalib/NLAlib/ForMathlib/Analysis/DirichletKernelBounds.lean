@@ -20,7 +20,9 @@ open scoped NLAlib.TwoPi
 namespace NLAlib
 
 /-- The circle Dirichlet kernel is the usual finite cosine sum on real angles.
-Source: finite Fourier characters; helper for `chebyshev-projection-lebesgue-constant`.-/
+Source: finite Fourier characters; helper for `chebyshev-projection-lebesgue-constant`.
+@isnad1 id=eq.0h2v.s6.8a1820030f85 from=translated src=- shape=94172aa8 vocab=77e96ec0
+-/
 theorem dirichletCircleKernel_coe (n : ℕ) (θ : ℝ) :
     dirichletCircleKernel n (θ : AddCircle (2 * π)) =
       1 + 2 * ∑ k ∈ range n, cos ((k + 1 : ℕ) * θ) := by
@@ -28,7 +30,9 @@ theorem dirichletCircleKernel_coe (n : ℕ) (θ : ℝ) :
 
 /-- Multiplication by the half-angle sine removes all singularities from the
 closed form of the Dirichlet kernel.
-Source: finite sine telescope; focused rederivations `thm:projection`.-/
+Source: finite sine telescope; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h2v.s6.50738be5c27e from=translated src=- shape=33edae7c vocab=2e3553a8
+-/
 theorem sin_half_mul_dirichletCircleKernel_coe (n : ℕ) (θ : ℝ) :
     sin (θ / 2) * dirichletCircleKernel n (θ : AddCircle (2 * π)) =
       sin (((n : ℝ) + 1 / 2) * θ) := by
@@ -52,7 +56,9 @@ theorem sin_half_mul_dirichletCircleKernel_coe (n : ℕ) (θ : ℝ) :
 
 /-- The classical sine quotient for the Dirichlet kernel away from removable
 singularities.
-Source: finite sine telescope; focused rederivations `thm:projection`.-/
+Source: finite sine telescope; focused rederivations `thm:projection`.
+@isnad1 id=eq.1h2v.s7.7defabe2bde2 from=translated src=- shape=0151ecdb vocab=2e3553a8
+-/
 theorem dirichletCircleKernel_coe_eq_sin_div (n : ℕ) (θ : ℝ)
     (hθ : sin (θ / 2) ≠ 0) :
     dirichletCircleKernel n (θ : AddCircle (2 * π)) =
@@ -62,7 +68,9 @@ theorem dirichletCircleKernel_coe_eq_sin_div (n : ℕ) (θ : ℝ)
   exact sin_half_mul_dirichletCircleKernel_coe n θ
 
 /-- The Dirichlet kernel has its finite value `2n+1` at the origin.
-Source: finite Fourier characters; focused rederivations `thm:projection`.-/
+Source: finite Fourier characters; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h1v.s7.68f5d5c700fa from=translated src=- shape=c4c89cbe vocab=ebd4ca59
+-/
 @[simp] theorem dirichletCircleKernel_zero (n : ℕ) :
     dirichletCircleKernel n 0 = 2 * (n : ℝ) + 1 := by
   have h := dirichletCircleKernel_coe n 0
@@ -70,7 +78,9 @@ Source: finite Fourier characters; focused rederivations `thm:projection`.-/
     nsmul_eq_mul, mul_one, add_comm] using h
 
 /-- A reciprocal sine bound with the correct singular coefficient at zero.
-Source: `sin u ≥ u-u³/6`; focused rederivations `thm:projection`.-/
+Source: `sin u ≥ u-u³/6`; focused rederivations `thm:projection`.
+@isnad1 id=le.2h1v.s6.12e4e94cd19e from=translated src=- shape=2c1113e8 vocab=7387b32a
+-/
 theorem one_div_sin_half_le (t : ℝ) (ht : 0 < t) (htπ : t ≤ π) :
     1 / sin (t / 2) ≤ 2 / t + t / 4 := by
   have hu : 0 < t / 2 := by positivity
@@ -93,7 +103,9 @@ theorem one_div_sin_half_le (t : ℝ) (ht : 0 < t) (htπ : t ≤ π) :
 
 /-- The pointwise Dirichlet kernel bound separates an integrable sinc term
 from a harmless linear remainder.
-Source: reciprocal sine estimate; focused rederivations `thm:projection`.-/
+Source: reciprocal sine estimate; focused rederivations `thm:projection`.
+@isnad1 id=le.2h2v.s7.f317614438a8 from=translated src=- shape=1178a8f0 vocab=5b6f3d80
+-/
 theorem abs_dirichletCircleKernel_coe_le_sinc (n : ℕ) (t : ℝ)
     (ht : 0 < t) (htπ : t ≤ π) :
     |dirichletCircleKernel n (t : AddCircle (2 * π))| ≤
@@ -118,7 +130,9 @@ theorem abs_dirichletCircleKernel_coe_le_sinc (n : ℕ) (t : ℝ)
       nlinarith
 
 /-- The absolute sine has integral two over every complete half-period.
-Source: elementary sine integration; focused rederivations `thm:projection`.-/
+Source: elementary sine integration; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h1v.s6.274cc0c49a99 from=translated src=- shape=789282c5 vocab=46dc9db9
+-/
 theorem integral_abs_sin_nat_pi (j : ℕ) :
     (∫ x in (j : ℝ) * π..(j + 1 : ℕ) * π, |sin x|) = 2 := by
   have hshift : ∀ x : ℝ, |sin (x + (j : ℝ) * π)| = |sin x| := by
@@ -139,7 +153,9 @@ theorem integral_abs_sin_nat_pi (j : ℕ) :
     _ = 2 := by rw [integral_sin]; norm_num
 
 /-- The sinc integral over the initial half-period is at most `π`.
-Source: `|sinc| ≤ 1`; focused rederivations `thm:projection`.-/
+Source: `|sinc| ≤ 1`; focused rederivations `thm:projection`.
+@isnad1 id=le.0h0v.s5.b7a595a9a040 from=translated src=- shape=ea2d905b vocab=09280ec2
+-/
 theorem integral_abs_sinc_zero_pi_le : (∫ x in 0..π, |sinc x|) ≤ π := by
   calc
     _ ≤ ∫ x in (0 : ℝ)..π, (1 : ℝ) :=
@@ -150,7 +166,9 @@ theorem integral_abs_sinc_zero_pi_le : (∫ x in 0..π, |sinc x|) ≤ π := by
 
 /-- Later complete half-periods of sinc have a harmonic upper bound.
 Source: comparison with the left endpoint reciprocal;
-focused rederivations `thm:projection`.-/
+focused rederivations `thm:projection`.
+@isnad1 id=le.1h1v.s6.7f4d15e82fe9 from=translated src=- shape=e74d6160 vocab=3f81629d
+-/
 theorem integral_abs_sinc_nat_pi_le (j : ℕ) (hj : 0 < j) :
     (∫ x in (j : ℝ) * π..(j + 1 : ℕ) * π, |sinc x|) ≤ 2 / ((j : ℝ) * π) := by
   have hlow : 0 < (j : ℝ) * π := mul_pos (by exact_mod_cast hj) pi_pos
@@ -169,7 +187,9 @@ theorem integral_abs_sinc_nat_pi_le (j : ℕ) (hj : 0 < j) :
 
 /-- The sinc integral through any number of complete half-periods has the
 sharp harmonic coefficient `2/π`.
-Source: complete-period decomposition; focused rederivations `thm:projection`.-/
+Source: complete-period decomposition; focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s6.7911907fffa2 from=translated src=- shape=739829f1 vocab=dfefcc3f
+-/
 theorem integral_abs_sinc_nat_pi_le_harmonic (n : ℕ) :
     (∫ x in 0..(n + 1 : ℕ) * π, |sinc x|) ≤ π + (2 / π) * (harmonic n : ℝ) := by
   have hsplit := intervalIntegral.sum_integral_adjacent_intervals
@@ -197,7 +217,9 @@ theorem integral_abs_sinc_nat_pi_le_harmonic (n : ℕ) :
 
 /-- The positive-angle Dirichlet integral has the sharp harmonic coefficient.
 Source: reciprocal sine and complete-period estimates;
-focused rederivations `thm:projection`.-/
+focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s7.1724cb042b64 from=translated src=- shape=4e88c625 vocab=decb4bea
+-/
 theorem integral_abs_dirichletCircleKernel_zero_pi_le_harmonic (n : ℕ) :
     (∫ t in 0..π, |dirichletCircleKernel n (t : AddCircle (2 * π))|) ≤
       2 * (π + (2 / π) * (harmonic n : ℝ)) + π ^ 2 / 8 := by
@@ -240,7 +262,9 @@ theorem integral_abs_dirichletCircleKernel_zero_pi_le_harmonic (n : ℕ) :
 /-- The normalized absolute Dirichlet kernel is at most
 `3 + (4/π²) log(n+1)`.
 Source: complete-period harmonic estimates;
-focused rederivations `thm:projection`.-/
+focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s7.6b82ef24e81d from=translated src=- shape=535825a5 vocab=0e14b0f4
+-/
 theorem integral_abs_dirichletCircleKernel_zero_pi_div_pi_le_log (n : ℕ) :
     (1 / π) * (∫ t in 0..π, |dirichletCircleKernel n (t : AddCircle (2 * π))|) ≤
       3 + (4 / π ^ 2) * log (n + 1 : ℕ) := by
@@ -270,7 +294,9 @@ theorem integral_abs_dirichletCircleKernel_zero_pi_div_pi_le_log (n : ℕ) :
 
 /-- The normalized Haar integral of an even Dirichlet kernel is its positive
 half-period integral divided by `π`.
-Source: Haar normalization and reflection; focused rederivations `thm:projection`.-/
+Source: Haar normalization and reflection; focused rederivations `thm:projection`.
+@isnad1 id=eq.0h1v.s7.b8c449166e30 from=translated src=- shape=479ce4c7 vocab=53142951
+-/
 theorem integral_abs_dirichletCircleKernel_eq_half_period (n : ℕ) :
     (∫ t : AddCircle (2 * π), |dirichletCircleKernel n t| ∂AddCircle.haarAddCircle) =
       (1 / π) * ∫ t in 0..π, |dirichletCircleKernel n (t : AddCircle (2 * π))| := by
@@ -297,7 +323,9 @@ theorem integral_abs_dirichletCircleKernel_eq_half_period (n : ℕ) :
 
 /-- The absolute Dirichlet kernel has the sharp logarithmic Haar upper bound.
 Source: complete-period harmonic estimates; focused rederivations `thm:projection`.
-Helper for `chebyshev-projection-lebesgue-constant`.-/
+Helper for `chebyshev-projection-lebesgue-constant`.
+@isnad1 id=le.0h1v.s7.2062aece3136 from=translated src=- shape=084d66e9 vocab=dbbea0ab
+-/
 theorem integral_abs_dirichletCircleKernel_le_log (n : ℕ) :
     (∫ t : AddCircle (2 * π), |dirichletCircleKernel n t| ∂AddCircle.haarAddCircle) ≤
       3 + (4 / π ^ 2) * log (n + 1 : ℕ) := by
@@ -305,7 +333,9 @@ theorem integral_abs_dirichletCircleKernel_le_log (n : ℕ) :
   exact integral_abs_dirichletCircleKernel_zero_pi_div_pi_le_log n
 
 /-- The reciprocal half-angle sine has the matching singular lower coefficient.
-Source: `sin u ≤ u`; focused rederivations `thm:projection`.-/
+Source: `sin u ≤ u`; focused rederivations `thm:projection`.
+@isnad1 id=le.2h1v.s6.d31f680d364c from=translated src=- shape=e89d966e vocab=ad211d6e
+-/
 theorem two_div_le_one_div_sin_half (t : ℝ) (ht : 0 < t) (htπ : t ≤ π) :
     2 / t ≤ 1 / sin (t / 2) := by
   have hs : 0 < sin (t / 2) := sin_pos_of_mem_Ioo ⟨by positivity, by linarith [pi_pos]⟩
@@ -316,7 +346,9 @@ theorem two_div_le_one_div_sin_half (t : ℝ) (ht : 0 < t) (htπ : t ≤ π) :
   exact h
 
 /-- The absolute Dirichlet kernel dominates its sinc singular part.
-Source: reciprocal sine lower bound; focused rederivations `thm:projection`.-/
+Source: reciprocal sine lower bound; focused rederivations `thm:projection`.
+@isnad1 id=le.2h2v.s7.1fc0e9b698f3 from=translated src=- shape=f7211bb4 vocab=5b6f3d80
+-/
 theorem sinc_le_abs_dirichletCircleKernel_coe (n : ℕ) (t : ℝ)
     (ht : 0 < t) (htπ : t ≤ π) :
     2 * ((n : ℝ) + 1 / 2) * |sinc (((n : ℝ) + 1 / 2) * t)| ≤
@@ -337,7 +369,9 @@ theorem sinc_le_abs_dirichletCircleKernel_coe (n : ℕ) (t : ℝ)
 
 /-- Each complete half-period gives a harmonic lower bound for the sinc integral.
 Source: comparison with the right endpoint reciprocal;
-focused rederivations `thm:projection`.-/
+focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s6.96ac9c883cc0 from=translated src=- shape=4b2a067a vocab=5be908c9
+-/
 theorem two_div_nat_pi_le_integral_abs_sinc (j : ℕ) :
     2 / ((j + 1 : ℕ) * π) ≤ ∫ x in (j : ℝ) * π..(j + 1 : ℕ) * π, |sinc x| := by
   have hhigh : 0 < ((j + 1 : ℕ) : ℝ) * π := by positivity
@@ -355,7 +389,9 @@ theorem two_div_nat_pi_le_integral_abs_sinc (j : ℕ) :
       exact div_le_div_of_nonneg_left (abs_nonneg _) hx0 hx.2.le
 
 /-- Complete half-periods give the sharp harmonic lower coefficient for sinc.
-Source: finite complete-period decomposition; focused rederivations `thm:projection`.-/
+Source: finite complete-period decomposition; focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s6.2ec1a78e31ac from=translated src=- shape=db969c44 vocab=fdbb2d5a
+-/
 theorem harmonic_le_integral_abs_sinc_nat_pi (n : ℕ) :
     (2 / π) * (harmonic n : ℝ) ≤ ∫ x in 0..(n : ℝ) * π, |sinc x| := by
   have hsplit := intervalIntegral.sum_integral_adjacent_intervals (μ := volume)
@@ -375,7 +411,9 @@ theorem harmonic_le_integral_abs_sinc_nat_pi (n : ℕ) :
 /-- The normalized absolute Dirichlet integral has the matching harmonic lower
 bound `4H_n/π²`, proving sharpness of the logarithmic coefficient.
 Source: reciprocal sine and complete-period lower estimates;
-focused rederivations `thm:projection`.-/
+focused rederivations `thm:projection`.
+@isnad1 id=le.0h1v.s7.831f5e6352c1 from=translated src=- shape=edec4d33 vocab=e314e16f
+-/
 theorem harmonic_le_integral_abs_dirichletCircleKernel (n : ℕ) :
     (4 / π ^ 2) * (harmonic n : ℝ) ≤
       ∫ t : AddCircle (2 * π), |dirichletCircleKernel n t| ∂AddCircle.haarAddCircle := by

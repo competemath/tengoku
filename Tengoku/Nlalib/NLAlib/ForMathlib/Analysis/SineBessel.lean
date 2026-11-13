@@ -16,14 +16,18 @@ open Real MeasureTheory Finset Set
 
 namespace Real
 
-/-- Every nonzero integral cosine frequency has zero mean on `[0, π]`.-/
+/-- Every nonzero integral cosine frequency has zero mean on `[0, π]`.
+@isnad1 id=eq.1h1v.s5.1732733e05d5 from=translated src=- shape=80b78b6f vocab=f4fc3d48
+-/
 theorem integral_cos_int_mul_zero_pi {k : ℤ} (hk : k ≠ 0) :
     (∫ x in (0 : ℝ)..π, cos ((k : ℝ) * x)) = 0 := by
   rw [intervalIntegral.integral_comp_mul_left _ (by exact_mod_cast hk), integral_cos]
   simp [sin_int_mul_pi]
 
 /-- The positive integral sine frequencies have squared norm `π/2` and are
-pairwise orthogonal for ordinary Lebesgue integration on `[0, π]`.-/
+pairwise orthogonal for ordinary Lebesgue integration on `[0, π]`.
+@isnad1 id=eq.2h2v.s6.fab7d47a8764 from=translated src=- shape=67cca630 vocab=ef87fb41
+-/
 theorem integral_sin_nat_mul_mul_sin_nat_mul {j k : ℕ} (hj : 0 < j) (hk : 0 < k) :
     (∫ x in (0 : ℝ)..π, sin ((j : ℝ) * x) * sin ((k : ℝ) * x)) =
       if j = k then π / 2 else 0 := by
@@ -50,7 +54,9 @@ namespace NLAlib
 
 /-- Finite sine Bessel inequality with the unnormalized coefficient integrals.
 Only square integrability is used analytically; the proof expands a finite
-residual square and never differentiates an infinite trigonometric series.-/
+residual square and never differentiates an infinite trigonometric series.
+@isnad1 id=le.4h3v.s8.9210b666ab8a from=translated src=- shape=52a1f9c6 vocab=ad1e788c
+-/
 theorem sum_sq_le_two_div_pi_integral_sq_of_sine_coefficients
     {v : ℝ → ℝ} (hv : IntervalIntegrable v volume 0 π)
     (hv2 : IntervalIntegrable (fun x => v x ^ 2) volume 0 π)

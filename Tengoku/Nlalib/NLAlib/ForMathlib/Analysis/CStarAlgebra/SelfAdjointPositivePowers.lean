@@ -17,7 +17,9 @@ set_option autoImplicit false
 variable {A : Type*} [NormedRing A] [StarRing A] [CStarRing A]
 
 /-- Every positive integer power of a self-adjoint element has its exact
-power norm, without a nontrivial-ring assumption.-/
+power norm, without a nontrivial-ring assumption.
+@isnad1 id=eq.2h3v.s6.94e0254935a0 from=translated src=- shape=784ecf19 vocab=c0dbe6ab
+-/
 theorem IsSelfAdjoint.norm_pow_of_pos {a : A} (ha : IsSelfAdjoint a) {n : ℕ}
     (hn : 0 < n) : ‖a ^ n‖ = ‖a‖ ^ n := by
   by_cases hzero : a = 0

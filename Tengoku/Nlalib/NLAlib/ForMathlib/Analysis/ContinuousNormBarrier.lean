@@ -16,7 +16,9 @@ open scoped Topology
 namespace ContinuousOn
 
 /-- A continuous function tending to zero stays below every positive level
-that it never attains on the positive half-line.-/
+that it never attains on the positive half-line.
+@isnad1 id=lt.5h3v.s6.d3e22ae006b9 from=translated src=- shape=3bb7a4f0 vocab=f31ea557
+-/
 theorem lt_of_tendsto_zero_of_ne {f : ℝ → ℝ}
     (hf : ContinuousOn f (Ioi 0)) (hlim : Tendsto f atTop (𝓝 0))
     {C : ℝ} (hC : 0 < C) (hne : ∀ y : ℝ, 0 < y → f y ≠ C)
@@ -30,7 +32,9 @@ theorem lt_of_tendsto_zero_of_ne {f : ℝ → ℝ}
   exact hne t (lt_of_lt_of_le hy ht.1) hft
 
 /-- The small branch of a quadratic norm inequality is selected by
-continuity and decay at infinity, with no branch-selection hypothesis.-/
+continuity and decay at infinity, with no branch-selection hypothesis.
+@isnad1 id=lt.6h4v.s7.7e3180bc0a30 from=translated src=- shape=d954d366 vocab=e7ae6455
+-/
 theorem lt_two_div_of_quadratic {f : ℝ → ℝ}
     (hf : ContinuousOn f (Ioi 0)) (hlim : Tendsto f atTop (𝓝 0))
     {δ q : ℝ} (hδ : 0 < δ) (hgap : 4 * q < δ ^ 2)

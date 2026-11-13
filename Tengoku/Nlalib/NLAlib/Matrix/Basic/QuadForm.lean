@@ -49,32 +49,44 @@ variable {𝕜 : Type*} [RCLike 𝕜] {n : Type*} [Fintype n]
 atlas: quadform-def-/
 def quadForm (A : Matrix n n 𝕜) (z : n → 𝕜) : 𝕜 := star z ⬝ᵥ (A *ᵥ z)
 
-/-- Unfolding lemma for `quadForm` (`rfl`).-/
+/-- Unfolding lemma for `quadForm` (`rfl`).
+@isnad1 id=eq.0h4v.s7.afe25179c964 from=translated src=- shape=662516a3 vocab=0ed8f441
+-/
 theorem quadForm_def (A : Matrix n n 𝕜) (z : n → 𝕜) : quadForm A z = star z ⬝ᵥ (A *ᵥ z) := rfl
 
-/-- `0ᴴ A 0 = 0` (`@[simp]`). Atlas: `hutchinson-unbiased` (helper).-/
+/-- `0ᴴ A 0 = 0` (`@[simp]`). Atlas: `hutchinson-unbiased` (helper).
+@isnad1 id=eq.0h3v.s6.fd4448199268 from=translated src=- shape=7b3011d5 vocab=b3913ab3
+-/
 @[simp] theorem quadForm_zero_right (A : Matrix n n 𝕜) : quadForm A 0 = 0 := by
   simp [quadForm]
 
-/-- The quadratic form of the zero matrix vanishes (`@[simp]`).-/
+/-- The quadratic form of the zero matrix vanishes (`@[simp]`).
+@isnad1 id=eq.0h3v.s6.1e4c0fc4f1ec from=translated src=- shape=e29d5e25 vocab=b3913ab3
+-/
 @[simp] theorem quadForm_zero_left (z : n → 𝕜) : quadForm (0 : Matrix n n 𝕜) z = 0 := by
   simp [quadForm]
 
-/-- Expansion `zᴴ A z = ∑ᵢ ∑ⱼ A_ij (conj zᵢ) zⱼ`. Atlas: `hutchinson-unbiased` (helper).-/
+/-- Expansion `zᴴ A z = ∑ᵢ ∑ⱼ A_ij (conj zᵢ) zⱼ`. Atlas: `hutchinson-unbiased` (helper).
+@isnad1 id=eq.0h4v.s7.0982345df291 from=translated src=- shape=ccce9441 vocab=dd711604
+-/
 theorem quadForm_eq_sum (A : Matrix n n 𝕜) (z : n → 𝕜) :
     quadForm A z = ∑ i, ∑ j, A i j * (star (z i) * z j) := by
   simp only [quadForm, dotProduct, Matrix.mulVec, Pi.star_apply, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- The quadratic form as the double sum `zᴴ A z = ∑ᵢ ∑ⱼ (conj zᵢ) Aᵢⱼ zⱼ` (the order of factors
-used throughout the Hanson–Wright proof). Atlas `hanson-wright` (helper).-/
+used throughout the Hanson–Wright proof). Atlas `hanson-wright` (helper).
+@isnad1 id=eq.0h4v.s7.807e7d28682a from=translated src=- shape=573913f0 vocab=dd711604
+-/
 theorem quadForm_eq_sum_mul_mul (A : Matrix n n 𝕜) (z : n → 𝕜) :
     quadForm A z = ∑ i, ∑ j, star (z i) * A i j * z j := by
   rw [quadForm_eq_sum]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
 /-- Expansion `(zᴴ A z)² = ∑ᵢⱼₖₗ A_ij A_kl (conj z_i) z_j (conj z_k) z_l`.
-Atlas: `hutchinson-variance` (helper).-/
+Atlas: `hutchinson-variance` (helper).
+@isnad1 id=eq.0h4v.s8.302a7f2f3d7e from=translated src=- shape=7e6719b9 vocab=403d9540
+-/
 theorem quadForm_sq_eq_sum (A : Matrix n n 𝕜) (z : n → 𝕜) :
     quadForm A z ^ 2 =
       ∑ i, ∑ j, ∑ k, ∑ l, A i j * A k l * (star (z i) * z j * star (z k) * z l) := by
@@ -88,7 +100,9 @@ theorem quadForm_sq_eq_sum (A : Matrix n n 𝕜) (z : n → 𝕜) :
   exact Finset.sum_congr rfl fun l _ => by ring
 
 /-- Relabelling the coordinates by an equivalence does not change the quadratic form.
-Atlas `hanson-wright` (index transport).-/
+Atlas `hanson-wright` (index transport).
+@isnad1 id=eq.0h6v.s6.93d25f66370c from=translated src=- shape=cdd9e453 vocab=f3f57d98
+-/
 theorem quadForm_reindex {ι κ : Type*} [Fintype ι] [Fintype κ] (A : Matrix ι ι 𝕜) (e : ι ≃ κ)
     (z : ι → 𝕜) : quadForm (A.reindex e e) (fun k => z (e.symm k)) = quadForm A z := by
   rw [quadForm_eq_sum, quadForm_eq_sum]
@@ -98,27 +112,35 @@ theorem quadForm_reindex {ι κ : Type*} [Fintype ι] [Fintype κ] (A : Matrix �
     e.symm.sum_comp (fun j => A i j * (star (z i) * z j))
 
 /-- Expansion of the quadratic form of a sum:
-`(x + y)ᴴ A (x + y) = xᴴAx + xᴴAy + yᴴAx + yᴴAy`.-/
+`(x + y)ᴴ A (x + y) = xᴴAx + xᴴAy + yᴴAx + yᴴAy`.
+@isnad1 id=eq.0h5v.s8.b20144add4d5 from=translated src=- shape=37e68394 vocab=d16895f4
+-/
 theorem quadForm_add (A : Matrix n n 𝕜) (x y : n → 𝕜) :
     quadForm A (x + y) =
       quadForm A x + star x ⬝ᵥ (A *ᵥ y) + star y ⬝ᵥ (A *ᵥ x) + quadForm A y := by
   simp only [quadForm, star_add, Matrix.mulVec_add, add_dotProduct, dotProduct_add]
   ring
 
-/-- Homogeneity of the quadratic form: `(c z)ᴴ A (c z) = (conj c) c · zᴴ A z`.-/
+/-- Homogeneity of the quadratic form: `(c z)ᴴ A (c z) = (conj c) c · zᴴ A z`.
+@isnad1 id=eq.0h5v.s7.92e9d782a52b from=translated src=- shape=cb59a975 vocab=eb57e9ec
+-/
 theorem quadForm_smul (A : Matrix n n 𝕜) (c : 𝕜) (z : n → 𝕜) :
     quadForm A (c • z) = star c * c * quadForm A z := by
   simp only [quadForm, star_smul, Matrix.mulVec_smul, smul_dotProduct, dotProduct_smul,
     smul_eq_mul, RCLike.star_def]
   ring
 
-/-- Conjugating the quadratic form passes to the conjugate transpose: `conj (zᴴ A z) = zᴴ Aᴴ z`.-/
+/-- Conjugating the quadratic form passes to the conjugate transpose: `conj (zᴴ A z) = zᴴ Aᴴ z`.
+@isnad1 id=eq.0h4v.s7.9f174bf79056 from=translated src=- shape=9e63bb46 vocab=ec71c723
+-/
 theorem star_quadForm (A : Matrix n n 𝕜) (z : n → 𝕜) :
     star (quadForm A z) = quadForm Aᴴ z := by
   rw [quadForm, quadForm, Matrix.star_dotProduct, Matrix.star_mulVec, star_star,
     Matrix.dotProduct_mulVec]
 
-/-- The quadratic form of a Hermitian matrix is real: `↑(re (zᴴ A z)) = zᴴ A z`.-/
+/-- The quadratic form of a Hermitian matrix is real: `↑(re (zᴴ A z)) = zᴴ A z`.
+@isnad1 id=eq.1h4v.s7.df3d8f27c031 from=translated src=- shape=7dc8e38a vocab=d41220f9
+-/
 theorem _root_.Matrix.IsHermitian.ofReal_re_quadForm {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     (z : n → 𝕜) :
     ((RCLike.re (quadForm A z) : ℝ) : 𝕜) = quadForm A z := by
@@ -126,7 +148,9 @@ theorem _root_.Matrix.IsHermitian.ofReal_re_quadForm {A : Matrix n n 𝕜} (hA :
   rw [← RCLike.star_def, star_quadForm, hA.eq]
 
 /-- For Hermitian `A`, the cross terms of the polarisation are conjugate:
-`yᴴ A x = conj (xᴴ A y)`.-/
+`yᴴ A x = conj (xᴴ A y)`.
+@isnad1 id=eq.1h5v.s8.921be63977e6 from=translated src=- shape=4741771d vocab=e723d42b
+-/
 theorem _root_.Matrix.IsHermitian.star_dotProduct_mulVec_comm {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (x y : n → 𝕜) : star y ⬝ᵥ (A *ᵥ x) = star (star x ⬝ᵥ (A *ᵥ y)) := by
   rw [← Matrix.star_dotProduct_star, Matrix.star_mulVec, star_star, ← Matrix.dotProduct_mulVec,
@@ -134,7 +158,9 @@ theorem _root_.Matrix.IsHermitian.star_dotProduct_mulVec_comm {A : Matrix n n �
 
 /-- Expanding the real part of a Hermitian quadratic form on two real-scaled vectors gives the
 diagonal energies and twice the real part of the cross term. Horn–Johnson (2013), Section
-7.4.12; helper for Wielandt's inequality.-/
+7.4.12; helper for Wielandt's inequality.
+@isnad1 id=eq.1h7v.s9.8fb354120bc9 from=translated src=- shape=f0296126 vocab=29aa4ea6
+-/
 theorem _root_.Matrix.IsHermitian.re_quadForm_smul_add_smul {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) (x y : n → 𝕜) (r s : ℝ) :
     RCLike.re (quadForm A ((r : 𝕜) • x + (s : 𝕜) • y)) =
@@ -149,14 +175,18 @@ theorem _root_.Matrix.IsHermitian.re_quadForm_smul_add_smul {A : Matrix n n 𝕜
   ring
 
 /-- The quadratic form of a rank-one Gram matrix `b bᴴ` is `|zᴴ b|²`. Horn–Johnson (2013),
-Section 7.1.-/
+Section 7.1.
+@isnad1 id=eq.0h4v.s7.afd2eb97f85f from=translated src=- shape=d58e71bb vocab=a00c66e1
+-/
 theorem quadForm_vecMulVec_star_self (b x : n → 𝕜) :
     quadForm (Matrix.vecMulVec b (star b)) x = (‖star x ⬝ᵥ b‖ : 𝕜) ^ 2 := by
   rw [quadForm, Matrix.vecMulVec_mulVec, dotProduct_smul, op_smul_eq_mul, ← RCLike.mul_conj,
     ← RCLike.star_def, ← Matrix.star_dotProduct_star, star_star]
 
 /-- Congruence: `quadForm (WᴴAW) v = quadForm A (Wv)` for a rectangular `W`. Helper for
-`preconditioned-cg` and `ostrowski-congruence-eigenvalues` (Horn–Johnson 2013, Theorem 4.5.9).-/
+`preconditioned-cg` and `ostrowski-congruence-eigenvalues` (Horn–Johnson 2013, Theorem 4.5.9).
+@isnad1 id=eq.0h6v.s7.d5ad403be9b1 from=translated src=- shape=fd25c6e3 vocab=a91c3884
+-/
 theorem quadForm_conjTranspose_mul_mul {k : Type*} [Fintype k] (A : Matrix n n 𝕜)
     (W : Matrix n k 𝕜) (v : k → 𝕜) :
     quadForm (Wᴴ * A * W) v = quadForm A (W *ᵥ v) := by
@@ -164,7 +194,9 @@ theorem quadForm_conjTranspose_mul_mul {k : Type*} [Fintype k] (A : Matrix n n �
     Matrix.dotProduct_mulVec (star v) Wᴴ, Matrix.star_mulVec]
 
 /-- `(Aᴴ A y)ᴴ y = (Ay)ᴴ (Ay)`: the quadratic form of the normal-equations matrix. Helper for
-`cgls-lsqr-bound`.-/
+`cgls-lsqr-bound`.
+@isnad1 id=eq.0h5v.s8.65b0c39a0aa6 from=translated src=- shape=1e9a6da8 vocab=90cc72a4
+-/
 theorem quadForm_conjTranspose_mul_self {m : Type*} [Fintype m] (A : Matrix m n 𝕜)
     (y : n → 𝕜) : quadForm (Aᴴ * A) y = star (A *ᵥ y) ⬝ᵥ (A *ᵥ y) := by
   rw [quadForm, ← Matrix.mulVec_mulVec, Matrix.dotProduct_mulVec, Matrix.star_mulVec,
@@ -175,20 +207,26 @@ section Order
 open scoped ComplexOrder
 
 /-- The quadratic form of a positive semidefinite matrix is nonnegative (in the `ComplexOrder`
-on `𝕜`; over `ℝ` the usual order). Mathlib's `Matrix.PosSemidef.dotProduct_mulVec_nonneg`.-/
+on `𝕜`; over `ℝ` the usual order). Mathlib's `Matrix.PosSemidef.dotProduct_mulVec_nonneg`.
+@isnad1 id=le.1h4v.s6.66ad0d613211 from=translated src=- shape=d8a346d3 vocab=299b093d
+-/
 theorem _root_.Matrix.PosSemidef.quadForm_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (z : n → 𝕜) :
     0 ≤ quadForm A z :=
   hA.dotProduct_mulVec_nonneg z
 
 /-- The quadratic form of a positive definite matrix is positive at a nonzero vector (in the
-`ComplexOrder` on `𝕜`). Mathlib's `Matrix.PosDef.dotProduct_mulVec_pos`.-/
+`ComplexOrder` on `𝕜`). Mathlib's `Matrix.PosDef.dotProduct_mulVec_pos`.
+@isnad1 id=lt.2h4v.s6.3ee6259842c4 from=translated src=- shape=c8bcd112 vocab=6ea65783
+-/
 theorem _root_.Matrix.PosDef.quadForm_pos {A : Matrix n n 𝕜} (hA : A.PosDef) {z : n → 𝕜}
     (hz : z ≠ 0) :
     0 < quadForm A z :=
   hA.dotProduct_mulVec_pos hz
 
-/-- The real part of the quadratic form of a positive semidefinite matrix is nonnegative.-/
+/-- The real part of the quadratic form of a positive semidefinite matrix is nonnegative.
+@isnad1 id=le.1h4v.s7.a31ca8b21e7b from=translated src=- shape=3fece2f2 vocab=61ef0506
+-/
 theorem _root_.Matrix.PosSemidef.re_quadForm_nonneg {A : Matrix n n 𝕜} (hA : A.PosSemidef)
     (z : n → 𝕜) : 0 ≤ RCLike.re (quadForm A z) :=
   (RCLike.nonneg_iff.mp (hA.quadForm_nonneg z)).1
@@ -206,7 +244,9 @@ RCLike.re_to_real]`). Source: Trefethen–Bau
 def rayleighQuotient (A : Matrix n n 𝕜) (x : n → 𝕜) : ℝ :=
   RCLike.re (quadForm A x) / RCLike.re (star x ⬝ᵥ x)
 
-/-- Unfolding lemma for `rayleighQuotient` (`rfl`).-/
+/-- Unfolding lemma for `rayleighQuotient` (`rfl`).
+@isnad1 id=eq.0h4v.s8.2fe77e1ec1dc from=translated src=- shape=649885cb vocab=69d0792b
+-/
 theorem rayleighQuotient_def (A : Matrix n n 𝕜) (x : n → 𝕜) :
     rayleighQuotient A x = RCLike.re (quadForm A x) / RCLike.re (star x ⬝ᵥ x) := rfl
 
@@ -218,7 +258,9 @@ variable [DecidableEq n]
 
 /-- **Rayleigh bounds.** For Hermitian `A` whose eigenvalues all lie in `[a, c]`,
 `a ‖x‖² ≤ re (xᴴ A x) ≤ c ‖x‖²` with `‖x‖² = re (xᴴ x)`. Horn–Johnson 2013, Thm 4.2.2;
-Parlett 1998, §1.4.-/
+Parlett 1998, §1.4.
+@isnad1 id=mem.2h6v.s9.70792334739e from=translated src=- shape=fc707681 vocab=76f6b730
+-/
 theorem _root_.Matrix.IsHermitian.re_quadForm_mem_Icc {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     {a c : ℝ} (hspec : ∀ i, hA.eigenvalues i ∈ Set.Icc a c) (x : n → 𝕜) :
     RCLike.re (quadForm A x) ∈
@@ -255,7 +297,9 @@ theorem _root_.Matrix.IsHermitian.re_quadForm_mem_Icc {A : Matrix n n 𝕜} (hA 
 
 /-- The eigenvalues of the compression `Qᴴ A Q` (`Q` with orthonormal columns) lie in every
 interval `[a, c]` containing the eigenvalues of `A`. Parlett 1998, Thm 10.1.1 (weak form);
-Horn–Johnson 2013, Thm 4.3.28 (Cauchy interlacing, outer bounds).-/
+Horn–Johnson 2013, Thm 4.3.28 (Cauchy interlacing, outer bounds).
+@isnad1 id=mem.3h8v.s8.414263c0368d from=translated src=- shape=55236ece vocab=583d4918
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues_conjTranspose_mul_mul_same_mem_Icc
     {k : Type*} [Fintype k] [DecidableEq k] {A : Matrix n n 𝕜} (hA : A.IsHermitian)
     {Q : Matrix n k 𝕜} (hQ : HasOrthonormalCols Q) {a c : ℝ}

@@ -125,7 +125,9 @@ def truncate (alg : QueryAlgorithm Q R q β) (i : ℕ) : QueryAlgorithm Q R i Un
   query := alg.query
   output _ := ()
 
-/-- The truncated algorithm has the same histories.-/
+/-- The truncated algorithm has the same histories.
+@isnad1 id=eq.0h8v.s5.ec9936662fdf from=translated src=- shape=fe1c71dc vocab=5b6fec13
+-/
 @[simp]
 theorem history_truncate (alg : QueryAlgorithm Q R q β) (f : Q → R) (i j : ℕ) :
     (alg.truncate i).history f j = alg.history f j := by
@@ -133,7 +135,9 @@ theorem history_truncate (alg : QueryAlgorithm Q R q β) (f : Q → R) (i j : �
   | zero => rfl
   | succ j ih => rw [history, history, ih]; rfl
 
-/-- The transcript of the truncated algorithm is the history of length `i`.-/
+/-- The transcript of the truncated algorithm is the history of length `i`.
+@isnad1 id=eq.0h7v.s5.c54fe4d389b7 from=translated src=- shape=b6a87a7a vocab=047b659d
+-/
 @[simp]
 theorem transcript_truncate (alg : QueryAlgorithm Q R q β) (f : Q → R) (i : ℕ) :
     (alg.truncate i).transcript f = alg.history f i :=
@@ -147,7 +151,9 @@ def IsNonAdaptive (alg : QueryAlgorithm Q R q β) : Prop :=
   ∀ i < q, ∀ h h' : Fin i → R, alg.query i h = alg.query i h'
 
 /-- Responses are oracle values: the `j`-th of the first `i` responses of an algorithm run
-against the oracle $f$ is $f$ at the `j`-th query, $h_j = f(x_j)$.-/
+against the oracle $f$ is $f$ at the `j`-th query, $h_j = f(x_j)$.
+@isnad1 id=eq.0h8v.s5.3a6d9c1776fd from=translated src=- shape=e5f79360 vocab=e5f2b7ff
+-/
 theorem history_apply (alg : QueryAlgorithm Q R q β) (f : Q → R) (i : ℕ) (j : Fin i) :
     alg.history f i j = f (alg.queryAt f j) := by
   induction i with
@@ -165,7 +171,9 @@ private theorem history_eq_history (alg : QueryAlgorithm Q R q β) (f : Q → R)
   rw [history_apply, history_apply]
 
 /-- The queries made are the queries of the transcript: the `j`-th query of an algorithm run
-against $f$ is `queries` evaluated at its transcript.-/
+against $f$ is `queries` evaluated at its transcript.
+@isnad1 id=eq.0h7v.s5.1eef09854403 from=translated src=- shape=30e866b0 vocab=8c334897
+-/
 theorem queryAt_eq_queries_transcript (alg : QueryAlgorithm Q R q β) (f : Q → R) (j : Fin q) :
     alg.queryAt f j = alg.queries (alg.transcript f) j := by
   unfold queryAt queries transcript
@@ -175,7 +183,9 @@ theorem queryAt_eq_queries_transcript (alg : QueryAlgorithm Q R q β) (f : Q →
 
 /-- Indistinguishability: if a second oracle $g$ agrees with $f$ at every query the algorithm
 makes against $f$, then the algorithm makes the same queries against $g$ and gets the same
-transcript. This is the deterministic half of every adversary and deferred-decision argument.-/
+transcript. This is the deterministic half of every adversary and deferred-decision argument.
+@isnad1 id=eq.1h7v.s6.bb30ccd1749b from=translated src=- shape=4e184ae6 vocab=6d05fc30
+-/
 theorem transcript_eq_of_forall_apply_queries_eq (alg : QueryAlgorithm Q R q β) {f g : Q → R}
     (h : ∀ j, g (alg.queries (alg.transcript f) j) = f (alg.queries (alg.transcript f) j)) :
     alg.transcript g = alg.transcript f := by
@@ -194,14 +204,18 @@ theorem transcript_eq_of_forall_apply_queries_eq (alg : QueryAlgorithm Q R q β)
   exact key q le_rfl
 
 /-- Indistinguishability of outputs: if $g$ agrees with $f$ at every query the algorithm makes
-against $f$, the algorithm outputs the same value against both.-/
+against $f$, the algorithm outputs the same value against both.
+@isnad1 id=eq.1h7v.s6.d8f399ac7ace from=translated src=- shape=239d27d3 vocab=d5951a2d
+-/
 theorem run_eq_of_forall_apply_queries_eq (alg : QueryAlgorithm Q R q β) {f g : Q → R}
     (h : ∀ j, g (alg.queries (alg.transcript f) j) = f (alg.queries (alg.transcript f) j)) :
     alg.run g = alg.run f :=
   congrArg alg.output (transcript_eq_of_forall_apply_queries_eq alg h)
 
 /-- Non-adaptive queries are fixed: a non-adaptive algorithm makes the same queries whatever
-the responses, so `queries` does not depend on the transcript.-/
+the responses, so `queries` does not depend on the transcript.
+@isnad1 id=eq.1h7v.s5.dda7d5d2e352 from=translated src=- shape=a8c33760 vocab=eafa8c91
+-/
 theorem IsNonAdaptive.queries_eq {alg : QueryAlgorithm Q R q β} (h : alg.IsNonAdaptive)
     (τ τ' : Fin q → R) : alg.queries τ = alg.queries τ' := by
   funext j
@@ -240,7 +254,9 @@ private lemma rank_le_ncard_of_col_eq_zero {m : Type*} (M : Matrix m (Fin q) �
     _ = S.ncard := by rw [← Nat.card_eq_fintype_card, Nat.card_coe_set_eq]
 
 /-- The right query span is bounded by the number of right products: the rank of the right
-query matrix is at most the number of rounds with a nonzero right part.-/
+query matrix is at most the number of rounds with a nonzero right part.
+@isnad1 id=le.0h8v.s6.03b433c1a279 from=translated src=- shape=17267928 vocab=8b40c029
+-/
 theorem rank_rightQueryMatrix_le_rightCount (alg : QueryAlgorithm ((n → 𝕜) × (m → 𝕜)) R q β)
     (τ : Fin q → R) : (alg.rightQueryMatrix τ).rank ≤ alg.rightCount τ :=
   rank_le_ncard_of_col_eq_zero _ _ fun j hj r => by
@@ -248,7 +264,9 @@ theorem rank_rightQueryMatrix_le_rightCount (alg : QueryAlgorithm ((n → 𝕜) 
     simp [QueryAlgorithm.rightQueryMatrix, hj]
 
 /-- The left query span is bounded by the number of left products: the rank of the left query
-matrix is at most the number of rounds with a nonzero left part.-/
+matrix is at most the number of rounds with a nonzero left part.
+@isnad1 id=le.0h8v.s6.52c3bfa0a2eb from=translated src=- shape=54fa033e vocab=712257a6
+-/
 theorem rank_leftQueryMatrix_le_leftCount (alg : QueryAlgorithm ((n → 𝕜) × (m → 𝕜)) R q β)
     (τ : Fin q → R) : (alg.leftQueryMatrix τ).rank ≤ alg.leftCount τ :=
   rank_le_ncard_of_col_eq_zero _ _ fun j hj r => by

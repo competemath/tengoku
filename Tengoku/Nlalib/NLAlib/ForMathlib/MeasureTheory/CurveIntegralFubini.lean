@@ -106,7 +106,9 @@ private theorem curveIntegrable_integrable_and_integral_curveIntegral_div_sub
 
 /-- On a `C¹` path separated from a finite measure's compact support interval,
 integration against that measure commutes with the native curve Cauchy integral.
-The joint integrability needed for Fubini is proved from compactness.-/
+The joint integrability needed for Fubini is proved from compactness.
+@isnad1 id=and.4h7v.s10.b38fa289bfea from=translated src=- shape=946d5e2d vocab=3dde080d
+-/
 theorem curveIntegrable_and_integral_curveIntegral_div_sub
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {c d : ℂ} (γ : Path c d)
@@ -126,7 +128,9 @@ theorem curveIntegrable_and_integral_curveIntegral_div_sub
 
 /-- The scalar curve Cauchy integral itself is integrable as a function of the
 finite measure's support point. This is useful when assembling the interchange
-along finitely many smooth pieces.-/
+along finitely many smooth pieces.
+@isnad1 id=integrab.4h7v.s9.b7f5aac27117 from=translated src=- shape=820f04af vocab=8a384041
+-/
 theorem integrable_curveIntegral_div_sub_of_contDiffOn
     {μ : Measure ℝ} [IsFiniteMeasure μ] {a b : ℝ}
     (hs : ∀ᵐ x ∂μ, x ∈ Icc a b) {c d : ℂ} (γ : Path c d)

@@ -14,7 +14,9 @@ namespace InnerProductSpace
 
 variable {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpace 𝕜 E]
 
-/-- Gram--Schmidt at index `j` only depends on input vectors at indices at most `j`.-/
+/-- Gram--Schmidt at index `j` only depends on input vectors at indices at most `j`.
+@isnad1 id=eq.1h5v.s6.8be9f6ab1caa from=translated src=- shape=3db47cdf vocab=182b5251
+-/
 theorem gramSchmidt_eq_of_eq_prefix {f g : ℕ → E} {j : ℕ}
     (h : ∀ i ≤ j, f i = g i) : gramSchmidt 𝕜 f j = gramSchmidt 𝕜 g j := by
   induction j using Nat.strong_induction_on with
@@ -27,7 +29,9 @@ theorem gramSchmidt_eq_of_eq_prefix {f g : ℕ → E} {j : ℕ}
     rw [ih i hij (fun k hk => h k (hk.trans hij.le))]
 
 /-- Normalized Gram--Schmidt also depends only on the input prefix, including a zero
-orthogonalized vector at breakdown.-/
+orthogonalized vector at breakdown.
+@isnad1 id=eq.1h5v.s6.5b2368f8cda0 from=translated src=- shape=3db47cdf vocab=0ffa7d25
+-/
 theorem gramSchmidtNormed_eq_of_eq_prefix {f g : ℕ → E} {j : ℕ}
     (h : ∀ i ≤ j, f i = g i) : gramSchmidtNormed 𝕜 f j = gramSchmidtNormed 𝕜 g j := by
   simp only [gramSchmidtNormed, gramSchmidt_eq_of_eq_prefix h]

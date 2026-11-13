@@ -14,7 +14,9 @@ noncomputable section
 set_option autoImplicit false
 
 /-- The commutator with a genuine resolvent is the resolvent sandwich of
-the commutator with the original algebra element.-/
+the commutator with the original algebra element.
+@isnad1 id=eq.1h5v.s7.7ca9ba89b1c6 from=translated src=- shape=7f82c8e5 vocab=63212862
+-/
 theorem spectrum.mul_resolvent_sub_resolvent_mul
     {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     (a b : A) {z : R} (hz : z ∈ resolventSet R a) :

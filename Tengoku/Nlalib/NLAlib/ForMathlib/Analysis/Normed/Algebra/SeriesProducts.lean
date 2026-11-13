@@ -58,7 +58,9 @@ private theorem summable_norm_and_hasSum_list_prod
 
 /-- A literal finite ordered product of absolutely summable normed-ring series
 is absolutely summable over its full profile space. Complete normed rings are
-sufficient; multiplicative commutativity and norm one are not required.-/
+sufficient; multiplicative commutativity and norm one are not required.
+@isnad1 id=summable.1h3v.s6.e51b6fc5f4db from=translated src=- shape=575a5fd7 vocab=9174a6a2
+-/
 theorem summable_norm_list_prod_of_summable_norm
     {R : Type*} [NormedRing R] [CompleteSpace R] {N : ℕ}
     (f : Fin N → ℕ → R) (hn : ∀ j, Summable (fun m => ‖f j m‖)) :
@@ -68,7 +70,9 @@ theorem summable_norm_list_prod_of_summable_norm
 
 /-- The sum of the actual profile series is the finite product of the actual
 individual series sums, in their original `Fin` order. This is a genuine
-`HasSum`, with joint absolute summability supplied by the preceding theorem.-/
+`HasSum`, with joint absolute summability supplied by the preceding theorem.
+@isnad1 id=hassum.2h4v.s7.7d10e9796f41 from=translated src=- shape=1e0b1cb2 vocab=e7e9f71a
+-/
 theorem hasSum_list_prod_of_summable_norm
     {R : Type*} [NormedRing R] [CompleteSpace R] {N : ℕ}
     (f : Fin N → ℕ → R) (x : Fin N → R)

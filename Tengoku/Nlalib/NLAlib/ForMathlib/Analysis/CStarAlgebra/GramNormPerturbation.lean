@@ -24,7 +24,9 @@ private theorem realGramCFC : ContinuousFunctionalCalculus ℝ A IsSelfAdjoint :
 attribute [local instance] realGramCFC
 
 /-- The genuine Gram of a sum satisfies the sharp weighted positive-square
-estimate for every positive real weight, without commutativity.-/
+estimate for every positive real weight, without commutativity.
+@isnad1 id=le.1h4v.s8.789819cf23f9 from=translated src=- shape=104614c8 vocab=9be5a4f2
+-/
 theorem star_mul_self_add_le_weighted (T E : A) {ε : ℝ} (hε : 0 < ε) :
     star (T + E) * (T + E) ≤
       (1 + ε) • (star T * T) + (1 + ε⁻¹) • (star E * E) := by
@@ -41,14 +43,18 @@ theorem star_mul_self_add_le_weighted (T E : A) {ε : ℝ} (hε : 0 < ε) :
   exact sub_nonneg.mp (he ▸ hp)
 
 /-- Every actual perturbation Gram is bounded by the square of the native
-operator norm times the algebra identity, including the trivial algebra.-/
+operator norm times the algebra identity, including the trivial algebra.
+@isnad1 id=le.0h2v.s7.57905d3194c3 from=translated src=- shape=d2a0f045 vocab=667767f9
+-/
 theorem star_mul_self_le_norm_sq (E : A) :
     star E * E ≤ algebraMap ℝ A (‖E‖ ^ 2) := by
   have h := (IsSelfAdjoint.star_mul_self E).le_algebraMap_norm_self
   simpa only [CStarRing.norm_star_mul_self, pow_two] using h
 
 /-- The genuine Gram of a perturbed element is controlled by the original
-Gram and the actual squared norm of their difference.-/
+Gram and the actual squared norm of their difference.
+@isnad1 id=le.1h4v.s8.a716a7da6d8f from=translated src=- shape=335a0749 vocab=b10b0183
+-/
 theorem star_mul_self_le_weighted_gram_add_norm (S T : A) {ε : ℝ} (hε : 0 < ε) :
     star S * S ≤ (1 + ε) • (star T * T) +
       algebraMap ℝ A ((1 + ε⁻¹) * ‖S - T‖ ^ 2) := by

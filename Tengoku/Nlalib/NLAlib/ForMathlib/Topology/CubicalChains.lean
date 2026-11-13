@@ -69,6 +69,9 @@ no analytic or integral hypotheses.-/
 def IsNullHomologous (Γ : OneChain X) : Prop :=
   ∃ S : TwoChain X, ∃ D : X →₀ ℤ, boundaryTwo S + constantChain D = Γ
 
+/--
+@isnad1 id=eq.0h2v.s8.44f766704333 from=translated src=- shape=6fe9ae62 vocab=e2e12848
+-/
 @[simp]
 theorem boundaryOne_squareBoundary (q : C(I × I, X)) :
     boundaryOne (squareBoundary q) = 0 := by
@@ -77,18 +80,25 @@ theorem boundaryOne_squareBoundary (q : C(I × I, X)) :
     ContinuousMap.comp_apply, ContinuousMap.coe_mk]
   abel
 
-/-- Every actual singular cubical boundary has zero endpoint boundary.-/
+/-- Every actual singular cubical boundary has zero endpoint boundary.
+@isnad1 id=eq.0h2v.s9.b356a7a3c474 from=translated src=- shape=eff27070 vocab=b496eca9
+-/
 theorem boundaryOne_boundaryTwo (S : TwoChain X) : boundaryOne (boundaryTwo S) = 0 := by
   rw [boundaryTwo, Finsupp.linearCombination_apply]
   simp only [Finsupp.sum, map_sum, map_smul, boundaryOne_squareBoundary, smul_zero, Finset.sum_const_zero]
 
+/--
+@isnad1 id=eq.0h2v.s8.ddfb080cc4fa from=translated src=- shape=c4af27cd vocab=cbe91bb8
+-/
 @[simp]
 theorem boundaryOne_constantChain (D : X →₀ ℤ) : boundaryOne (constantChain D) = 0 := by
   rw [constantChain, Finsupp.linearCombination_apply]
   simp only [Finsupp.sum, map_sum, map_smul, boundaryOne, Finsupp.linearCombination_single,
     ContinuousMap.const_apply, sub_self, smul_zero, Finset.sum_const_zero]
 
-/-- In particular, null-homologous one-chains are cycles.-/
+/-- In particular, null-homologous one-chains are cycles.
+@isnad1 id=eq.1h2v.s8.ca71e4caab57 from=translated src=- shape=833916a3 vocab=47d91b36
+-/
 theorem IsNullHomologous.boundaryOne_eq_zero {Γ : OneChain X} (hΓ : IsNullHomologous Γ) :
     boundaryOne Γ = 0 := by
   obtain ⟨S, D, rfl⟩ := hΓ

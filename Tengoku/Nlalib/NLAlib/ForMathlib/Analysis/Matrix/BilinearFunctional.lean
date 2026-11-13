@@ -27,7 +27,9 @@ def bilinearCLM (v : m → 𝕜) (w : n → 𝕜) : Matrix m n 𝕜 →L[𝕜] �
      map_smul' := by intro c A; simp [Matrix.smul_mulVec, dotProduct_smul] } :
     Matrix m n 𝕜 →ₗ[𝕜] 𝕜).toContinuousLinearMap
 
-/-- The bundled functional is exactly the native matrix bilinear expression.-/
+/-- The bundled functional is exactly the native matrix bilinear expression.
+@isnad1 id=eq.0h6v.s9.468f28c54771 from=translated src=- shape=30d477bb vocab=e2613b51
+-/
 @[simp] theorem bilinearCLM_apply (v : m → 𝕜) (w : n → 𝕜) (A : Matrix m n 𝕜) :
     bilinearCLM v w A = star v ⬝ᵥ (A *ᵥ w) := rfl
 

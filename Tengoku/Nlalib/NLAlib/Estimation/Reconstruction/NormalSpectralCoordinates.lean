@@ -21,7 +21,9 @@ def normalCoordinateSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) : Measure (EuclideanSpace ℝ (Fin 2)) :=
   (normalSpectralLaw hA b).map Complex.orthonormalBasisOneI.repr
 
-/-- The coordinate law is an actual probability measure for a unit start.-/
+/-- The coordinate law is an actual probability measure for a unit start.
+@isnad1 id=isprobab.2h3v.s8.224310129b87 from=translated src=- shape=1a957371 vocab=63515036
+-/
 theorem isProbabilityMeasure_normalCoordinateSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (hb : ‖WithLp.toLp 2 b‖ = 1) :
     IsProbabilityMeasure (normalCoordinateSpectralLaw hA b) := by
@@ -29,7 +31,9 @@ theorem isProbabilityMeasure_normalCoordinateSpectralLaw {A : Matrix n n ℂ}
   exact Measure.isProbabilityMeasure_map Complex.orthonormalBasisOneI.repr.continuous.measurable.aemeasurable
 
 open scoped Matrix.Norms.L2Operator in
-/-- Every normal spectral atom lies in the disk controlled by the spectral norm.-/
+/-- Every normal spectral atom lies in the disk controlled by the spectral norm.
+@isnad1 id=eventual.1h3v.s7.ea8d460a125e from=translated src=- shape=ed0059fe vocab=f4666487
+-/
 theorem ae_norm_le_normalSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) :
     ∀ᵐ z ∂normalSpectralLaw hA b, ‖z‖ ≤ specNorm A := by
@@ -49,7 +53,9 @@ theorem ae_norm_le_normalSpectralLaw {A : Matrix n n ℂ}
 
 /-- Contractive normal spectral laws have their coordinate law in the exact
 Euclidean Chebyshev square used by the tensor reconstruction.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=eventual.2h3v.s8.751da5684314 from=translated src=- shape=9263c9d4 vocab=aeaf9a75
+-/
 theorem ae_mem_chebyshevCube_normalCoordinateSpectralLaw {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) (b : n → ℂ) (hbound : specNorm A ≤ 1) :
     ∀ᵐ x ∂normalCoordinateSpectralLaw hA b, x ∈ chebyshevCube (Fin 2) := by

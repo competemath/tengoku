@@ -61,7 +61,9 @@ def blockAnalysis (a : R → X →L[ℝ] Y) :
 omit [FiniteDimensional ℝ Y] in
 /-- The analysis column evaluates to the chosen component operator.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s9.ea44ec23441a from=translated src=- shape=29e0dc6f vocab=3159ca02
+-/
 @[simp]
 theorem blockAnalysis_apply (a : R → X →L[ℝ] Y) (x : X) (r : R) :
     blockAnalysis a x r = a r x :=
@@ -91,7 +93,9 @@ def blockSynthesis (b : R → Y →L[ℝ] Z) :
 omit [FiniteDimensional ℝ Z] in
 /-- The synthesis row evaluates to the sum of its component outputs.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h5v.s9.71a02ba22567 from=translated src=- shape=9385fb1c vocab=e692d4e9
+-/
 @[simp]
 theorem blockSynthesis_apply (b : R → Y →L[ℝ] Z)
     (y : PiLp 2 (fun _ : R ↦ Y)) :
@@ -101,7 +105,9 @@ theorem blockSynthesis_apply (b : R → Y →L[ℝ] Z)
 omit [FiniteDimensional ℝ Z] in
 /-- Composing the block row and column gives the sum of component compositions.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h6v.s9.e7a046fa3eeb from=translated src=- shape=fbae34e1 vocab=b83da151
+-/
 theorem blockSynthesis_comp_blockAnalysis_eq (a : R → X →L[ℝ] Y) (b : R → Y →L[ℝ] Z) :
     blockSynthesis b ∘L blockAnalysis a = ∑ r, b r ∘L a r := by
   ext x
@@ -110,7 +116,9 @@ theorem blockSynthesis_comp_blockAnalysis_eq (a : R → X →L[ℝ] Y) (b : R �
 
 /-- The adjoint of a block analysis column is the row of component adjoints.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s13.4a958bb47e4b from=translated src=- shape=df398c48 vocab=ec0cf8bd
+-/
 theorem blockAnalysis_adjoint (a : R → X →L[ℝ] Y) :
     (blockAnalysis a)† = blockSynthesis (fun r ↦ (a r)†) := by
   symm
@@ -124,7 +132,9 @@ theorem blockAnalysis_adjoint (a : R → X →L[ℝ] Y) :
 
 /-- The adjoint of a block synthesis row is the column of component adjoints.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s13.38f48ae6dfbd from=translated src=- shape=cfb0f7df vocab=ec0cf8bd
+-/
 theorem blockSynthesis_adjoint (b : R → Y →L[ℝ] Z) :
     (blockSynthesis b)† = blockAnalysis (fun r ↦ (b r)†) := by
   symm
@@ -138,7 +148,9 @@ theorem blockSynthesis_adjoint (b : R → Y →L[ℝ] Z) :
 
 /-- The block analysis Gram operator is the sum of component Gram operators.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s13.d1b3ea9dc1d9 from=translated src=- shape=3ff2ccdb vocab=6c11b3ef
+-/
 theorem blockAnalysis_adjoint_comp_eq (a : R → X →L[ℝ] Y) :
     (blockAnalysis a)† ∘L blockAnalysis a = ∑ r, (a r)† ∘L a r := by
   rw [blockAnalysis_adjoint]
@@ -146,7 +158,9 @@ theorem blockAnalysis_adjoint_comp_eq (a : R → X →L[ℝ] Y) :
 
 /-- The block synthesis co-Gram operator is the sum of component co-Gram operators.
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=eq.0h4v.s13.ed36bd3f6472 from=translated src=- shape=a8a8718d vocab=1f8b7fca
+-/
 theorem blockSynthesis_comp_adjoint_eq (b : R → Y →L[ℝ] Z) :
     blockSynthesis b ∘L (blockSynthesis b)† = ∑ r, b r ∘L (b r)† := by
   rw [blockSynthesis_adjoint]
@@ -157,7 +171,9 @@ the maps `a r` and `b r` may already contain the domain, middle, and range
 projections.  This is the exact row/column-operator inequality.
 
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.0h6v.s12.6039683501f9 from=translated src=- shape=eb3ec360 vocab=cdce3abd
+-/
 theorem norm_sum_comp_sq_le (a : R → X →L[ℝ] Y) (b : R → Y →L[ℝ] Z) :
     ‖∑ r, b r ∘L a r‖ ^ 2 ≤
       ‖∑ r, (a r)† ∘L a r‖ * ‖∑ r, b r ∘L (b r)†‖ := by
@@ -183,7 +199,9 @@ hypotheses say exactly that `E`, `F`, and `G` are orthogonal projections:
 self-adjoint idempotents on their respective Hilbert spaces.
 
 Source: ported from `SparseFockFormal.TypedBlockCS`,
-b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.-/
+b9da2b5d96e5fd70252e9c6551aefc92643e7d0b; supports `sparse-ose`.
+@isnad1 id=le.6h9v.s14.4687f3ee5c44 from=translated src=- shape=4b0f6331 vocab=cdce3abd
+-/
 theorem norm_sum_comp_sq_le_of_projections
     (E : X →L[ℝ] X) (F : Y →L[ℝ] Y) (G : Z →L[ℝ] Z)
     (hEadj : E† = E) (hFadj : F† = F) (hGadj : G† = G)

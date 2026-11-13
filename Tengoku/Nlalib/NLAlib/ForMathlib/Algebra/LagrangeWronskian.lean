@@ -18,7 +18,9 @@ open Polynomial Finset
 namespace NLAlib
 
 /-- A Lagrange cardinal is its nodal weight times the node product omitting its node.
-Source: Mathlib's product definition of `Lagrange.basis`.-/
+Source: Mathlib's product definition of `Lagrange.basis`.
+@isnad1 id=eq.0h5v.s8.e15701f76c13 from=translated src=- shape=456e6803 vocab=5043eac5
+-/
 theorem lagrange_basis_eq_weight_mul_prod {ι : Type*} [DecidableEq ι]
     {R : Type*} [Field R] (s : Finset ι) (v : ι → R) (i : ι) :
     Lagrange.basis s v i = C (Lagrange.nodalWeight s v i) * ∏ j ∈ s.erase i, (X - C (v j)) := by
@@ -27,7 +29,9 @@ theorem lagrange_basis_eq_weight_mul_prod {ι : Type*} [DecidableEq ι]
 
 /-- The Wronskian of two distinct cardinal polynomials is exactly a weighted node-distance
  times the square of their common omitted-node product.
-Source: the finite nodal sum-of-squares identity for interval peak comparison.-/
+Source: the finite nodal sum-of-squares identity for interval peak comparison.
+@isnad1 id=eq.3h6v.s9.92ba8ac2a1c9 from=translated src=- shape=ad96bc39 vocab=efda2648
+-/
 theorem wronskian_lagrange_basis {ι : Type*} [DecidableEq ι]
     {R : Type*} [Field R] (s : Finset ι) (v : ι → R) {i j : ι}
     (hi : i ∈ s) (hj : j ∈ s) (hij : i ≠ j) :
@@ -51,14 +55,18 @@ theorem wronskian_lagrange_basis {ι : Type*} [DecidableEq ι]
   ring
 
 /-- Constant factors multiply a polynomial Wronskian by their product.
-Source: bilinearity and the derivative of a constant.-/
+Source: bilinearity and the derivative of a constant.
+@isnad1 id=eq.0h5v.s8.f6e6077362bc from=translated src=- shape=b869f25f vocab=3c26ee18
+-/
 theorem wronskian_C_mul_C_mul {R : Type*} [CommRing R] (a b : R) (p q : R[X]) :
     Polynomial.wronskian (C a * p) (C b * q) = C (a * b) * Polynomial.wronskian p q := by
   simp only [Polynomial.wronskian, derivative_mul, derivative_C, zero_mul, zero_add, map_mul]
   ring
 
 /-- A finite mixed sum of Lagrange cardinals has a cardinal-pair Wronskian expansion.
-Source: finite bilinearity of the Wronskian.-/
+Source: finite bilinearity of the Wronskian.
+@isnad1 id=eq.3h8v.s10.744a0fd51cd4 from=translated src=- shape=479ca536 vocab=51f43e0a
+-/
 theorem wronskian_lagrange_partition_expansion {ι : Type*} [DecidableEq ι]
     {R : Type*} [Field R] (s u v : Finset ι) (t : ι → R) (a b : ι → R)
     (hu : u ⊆ s) (hv : v ⊆ s) (hdis : Disjoint u v) :

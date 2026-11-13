@@ -38,24 +38,36 @@ def cell (v : Fin (m + 1) → Fin (n + 1) → E) (i : Fin m) (j : Fin n) :
       simp only [lineMap_apply_module]
       fun_prop⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.e984f65a9f0c from=translated src=- shape=ecdc986a vocab=fc41bf8b
+-/
 @[simp]
 theorem left_cell (v : Fin (m + 1) → Fin (n + 1) → E) (i : Fin m) (j : Fin n) :
     Cubical.left (cell v i j) = vertical v i.castSucc j := by
   ext t
   simp [Cubical.left, cell, vertical, Path.segment_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.86fe617e17fa from=translated src=- shape=ecdc986a vocab=b03bffa1
+-/
 @[simp]
 theorem right_cell (v : Fin (m + 1) → Fin (n + 1) → E) (i : Fin m) (j : Fin n) :
     Cubical.right (cell v i j) = vertical v i.succ j := by
   ext t
   simp [Cubical.right, cell, vertical, Path.segment_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.f7d05641fbce from=translated src=- shape=9bdc068a vocab=660cbc1c
+-/
 @[simp]
 theorem bottom_cell (v : Fin (m + 1) → Fin (n + 1) → E) (i : Fin m) (j : Fin n) :
     Cubical.bottom (cell v i j) = horizontal v i j.castSucc := by
   ext t
   simp [Cubical.bottom, cell, horizontal, Path.segment_apply]
 
+/--
+@isnad1 id=eq.0h6v.s7.ef01ea30707b from=translated src=- shape=9bdc068a vocab=29b34d9c
+-/
 @[simp]
 theorem top_cell (v : Fin (m + 1) → Fin (n + 1) → E) (i : Fin m) (j : Fin n) :
     Cubical.top (cell v i j) = horizontal v i j.succ := by
@@ -74,7 +86,9 @@ def cellChain (v : Fin (m + 1) → Fin (n + 1) → E)
   ∑ i, ∑ j, c i j • Finsupp.single (cell v i j) 1
 
 /-- Only active canonical grid edges contribute to the trace of an actual
-grid chain. No condition is required on zero-coefficient grid edges.-/
+grid chain. No condition is required on zero-coefficient grid edges.
+@isnad1 id=mem.3h9v.s9.7482aa99785b from=translated src=- shape=55bd2bcd vocab=f7b41d7f
+-/
 theorem edgeChain_mapsTo_of_nonzero_edges_mapsTo
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ) (S : Set E)
@@ -106,7 +120,9 @@ theorem edgeChain_mapsTo_of_nonzero_edges_mapsTo
   exact (Finsupp.mem_support_iff.mp hq) hz
 
 /-- Explicit prefix coefficients fill an actual grid cycle with actual
-continuous bilinear squares. No analytic formula or topological filling is assumed.-/
+continuous bilinear squares. No analytic formula or topological filling is assumed.
+@isnad1 id=eq.1h6v.s9.219af1c03e41 from=translated src=- shape=9d89cdd4 vocab=cc0bfbf5
+-/
 theorem boundaryTwo_cellChain_eq_edgeChain
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ)
@@ -128,7 +144,9 @@ theorem boundaryTwo_cellChain_eq_edgeChain
 
 /-- Every active square of a cell chain comes from a nonzero cell
 coefficient. In particular, support containment needs no condition on the
-unused grid cells.-/
+unused grid cells.
+@isnad1 id=mem.2h8v.s9.d2ed802e782b from=translated src=- shape=4fad7a82 vocab=d8c337c9
+-/
 theorem cellChain_mapsTo_of_nonzero_cell_mapsTo
     (v : Fin (m + 1) → Fin (n + 1) → E) (c : Fin m → Fin n → ℤ) (S : Set E)
     (hS : ∀ i j, c i j ≠ 0 → ∀ t, cell v i j t ∈ S) :
@@ -158,7 +176,9 @@ def vertexChain (v : Fin (m + 1) → Fin (n + 1) → E)
 omit [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [ContinuousAdd E]
   [ContinuousSMul ℝ E] in
 /-- At distinct grid vertices, the vertex-chain coefficient is exactly the
-original array entry.-/
+original array entry.
+@isnad1 id=eq.1h7v.s8.5c301fff1585 from=translated src=- shape=71364a14 vocab=999bd1ec
+-/
 theorem vertexChain_apply_vertex
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (hv : Function.Injective (fun p : Fin (m + 1) × Fin (n + 1) => v p.1 p.2))
@@ -175,7 +195,9 @@ theorem vertexChain_apply_vertex
     ite_and]
 
 /-- The native endpoint boundary is the negative finite vertex divergence.
-The signs reflect eastward and northward canonical edges.-/
+The signs reflect eastward and northward canonical edges.
+@isnad1 id=eq.0h6v.s9.7ccb7bc8234f from=translated src=- shape=969b5799 vocab=b67e2331
+-/
 theorem boundaryOne_edgeChain_eq_neg_vertexChain
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ) :
@@ -212,7 +234,9 @@ theorem boundaryOne_edgeChain_eq_neg_vertexChain
   abel
 
 /-- Native endpoint closure of an actual grid chain gives the finite
-coefficient conservation law, provided the grid vertices are distinct.-/
+coefficient conservation law, provided the grid vertices are distinct.
+@isnad1 id=iscycle.2h6v.s9.d094be291a7a from=translated src=- shape=7d1204e1 vocab=f95c9886
+-/
 theorem isCycle_of_boundaryOne_edgeChain_eq_zero
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (hv : Function.Injective (fun p : Fin (m + 1) × Fin (n + 1) => v p.1 p.2))
@@ -225,7 +249,9 @@ theorem isCycle_of_boundaryOne_edgeChain_eq_zero
 
 /-- If all cells with nonzero explicit prefix coefficient lie in a domain,
 the actual grid cycle has an actual finite cubical filling in that domain.
-No assumption is imposed on any unused cell, and no Cauchy formula is a premise.-/
+No assumption is imposed on any unused cell, and no Cauchy formula is a premise.
+@isnad1 id=ex.2h7v.s9.148e3b8166e2 from=translated src=- shape=2345adf2 vocab=23917364
+-/
 theorem exists_isNullHomologous_mapOne_eq_edgeChain
     (v : Fin (m + 1) → Fin (n + 1) → E)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ)

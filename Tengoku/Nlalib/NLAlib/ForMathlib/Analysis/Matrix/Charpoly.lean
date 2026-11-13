@@ -22,7 +22,9 @@ namespace Matrix
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- Each characteristic coefficient of an affine pencil is the evaluation of
-one fixed polynomial in the pencil parameter.-/
+one fixed polynomial in the pencil parameter.
+@isnad1 id=ex.0h4v.s6.fb3a8769bbe3 from=translated src=- shape=d6572ebf vocab=b07cb43f
+-/
 theorem exists_polynomial_charpoly_coeff_affine
     (A E : Matrix n n ℂ) (k : ℕ) :
     ∃ p : ℂ[X], ∀ t : ℂ, p.eval t = (A + t • E).charpoly.coeff k := by
@@ -37,7 +39,9 @@ theorem exists_polynomial_charpoly_coeff_affine
   simpa only [coeff_map, coe_evalRingHom] using congrArg (fun p => p.coeff k) hmap
 
 /-- Characteristic coefficients of an affine complex matrix pencil are
-analytic even at multiple roots.-/
+analytic even at multiple roots.
+@isnad1 id=analytic.0h5v.s6.b1790e4692a1 from=translated src=- shape=6c559395 vocab=a3882095
+-/
 theorem analyticAt_charpoly_coeff_affine
     (A E : Matrix n n ℂ) (k : ℕ) (t : ℂ) :
     AnalyticAt ℂ (fun u : ℂ => (A + u • E).charpoly.coeff k) t := by

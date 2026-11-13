@@ -23,7 +23,9 @@ variable {𝕜 E F : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [NormedSpace �
 /-- An arbitrary path integral is bounded by a bound for the operator norm of
 its one-form times the integral of its speed. The speed is the derivative
 within the parameter interval, so endpoint values agree with the curve-integral
-convention.-/
+convention.
+@isnad1 id=le.2h8v.s9.1a6c08d7fbad from=translated src=- shape=99c47a12 vocab=d74f4632
+-/
 theorem norm_curveIntegral_le_mul_integral_norm_derivWithin
     (ω : E → E →L[𝕜] F) (γ : Path a b) {C : ℝ}
     (hω : ∀ t ∈ Icc (0 : ℝ) 1, ‖ω (γ.extend t)‖ ≤ C)
@@ -37,7 +39,9 @@ theorem norm_curveIntegral_le_mul_integral_norm_derivWithin
   exact (ω (γ.extend t)).le_of_opNorm_le (hω t (Ioc_subset_Icc_self ht)) _
 
 /-- The integral of speed in the preceding bound is automatically finite for
-a path with a `C¹` parameterization.-/
+a path with a `C¹` parameterization.
+@isnad1 id=le.2h8v.s9.dac14c452fe3 from=translated src=- shape=51a193c8 vocab=f7faa30a
+-/
 theorem norm_curveIntegral_le_mul_integral_norm_derivWithin_of_contDiffOn
     (ω : E → E →L[𝕜] F) (γ : Path a b) {C : ℝ}
     (hω : ∀ t ∈ Icc (0 : ℝ) 1, ‖ω (γ.extend t)‖ ≤ C)
@@ -54,7 +58,9 @@ namespace Complex
 
 /-- A scalar complex contour integral, normalized by `2πi`, obeys the standard
 length bound on every path with integrable speed. This estimate alone makes no
-claim that the integral equals a value or a quadrature error.-/
+claim that the integral equals a value or a quadrature error.
+@isnad1 id=le.2h5v.s9.bf212ad71ff9 from=translated src=- shape=bc64109a vocab=e2e24dc9
+-/
 theorem norm_two_pi_i_inv_mul_curveIntegral_le_integral_speed_mul
     {a b : ℂ} (γ : Path a b) (g : ℂ → ℂ) {C : ℝ}
     (hg : ∀ t ∈ Icc (0 : ℝ) 1, ‖g (γ.extend t)‖ ≤ C)

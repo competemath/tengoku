@@ -25,7 +25,9 @@ def fullPlaneLift : C(ℂ, (univ : Set ℂ)) :=
   ⟨fun z => ⟨z, mem_univ z⟩, continuous_id.subtype_mk _⟩
 
 /-- Every active canonical grid edge is smooth in its native parameter,
-independently of cancellation or repeated grid vertices.-/
+independently of cancellation or repeated grid vertices.
+@isnad1 id=contdiff.1h6v.s10.f6508e113334 from=translated src=- shape=f7173aec vocab=1eea477a
+-/
 theorem contDiffOn_cubicalPath_grid_edgeChain
     {m n : ℕ} (v : Fin (m + 1) → Fin (n + 1) → ℂ)
     (h : Fin m → Fin (n + 1) → ℤ) (w : Fin (m + 1) → Fin n → ℤ) :
@@ -46,7 +48,9 @@ theorem contDiffOn_cubicalPath_grid_edgeChain
 
 /-- A true normalized comparison filling preserves native winding outside
 its open domain. Original and grid edges need only be piecewise C1; no
-regularity is imposed on the actual two-dimensional filling.-/
+regularity is imposed on the actual two-dimensional filling.
+@isnad1 id=eq.5h10v.s11.1c19f22c6c17 from=translated src=- shape=b6027aaf vocab=5869d821
+-/
 theorem cubicalWindingIntegral_eq_grid_of_isNullHomologous_comparison
     {C Θ : Set ℂ} (Γ : Cubical.OneChain C)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

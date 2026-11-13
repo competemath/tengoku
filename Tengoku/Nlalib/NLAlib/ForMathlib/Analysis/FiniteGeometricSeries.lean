@@ -20,7 +20,9 @@ set_option autoImplicit false
 namespace Real
 
 /-- The genuine sum of a finite geometric profile is the product of the
-individual geometric sums, including the empty profile.-/
+individual geometric sums, including the empty profile.
+@isnad1 id=hassum.2h2v.s6.26992864d8a7 from=translated src=- shape=84916d41 vocab=3e93ab14
+-/
 theorem hasSum_pow_sum_fin {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (N : ℕ) :
     HasSum (fun t : Fin N → ℕ => r ^ (∑ j, t j)) ((1 - r)⁻¹ ^ N) := by
   have hs : ∀ j : Fin N, HasSum (fun k : ℕ => r ^ k) (1 - r)⁻¹ := by
@@ -36,7 +38,9 @@ theorem hasSum_pow_sum_fin {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (N : ℕ) :
     Finset.card_univ, Fintype.card_fin] using h
 
 /-- A nonnegative geometric correction whose total linear size is at most
-two thirds has inverse-power factor at most three, including power zero.-/
+two thirds has inverse-power factor at most three, including power zero.
+@isnad1 id=le.2h2v.s6.94d2ca24265c from=translated src=- shape=a5dbc50a vocab=ad7e47f1
+-/
 theorem inv_one_sub_pow_le_three {x : ℝ} (hx : 0 ≤ x) (m : ℕ)
     (hsmall : (m : ℝ) * x ≤ 2 / 3) : (1 - x)⁻¹ ^ m ≤ 3 := by
   by_cases hm : m = 0

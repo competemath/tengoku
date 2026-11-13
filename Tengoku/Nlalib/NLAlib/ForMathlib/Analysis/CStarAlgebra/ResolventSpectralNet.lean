@@ -27,7 +27,9 @@ private theorem nonreal_sub_ne_zero {a : A} (ha : IsSelfAdjoint a)
   rw [hr] at he
   exact hz (by simpa using he)
 
-/-- An actual real spectral point attains a nonreal self-adjoint resolvent norm in any nontrivial complex C-star algebra.-/
+/-- An actual real spectral point attains a nonreal self-adjoint resolvent norm in any nontrivial complex C-star algebra.
+@isnad1 id=ex.2h3v.s7.8f3571ae3483 from=translated src=- shape=d4cc7086 vocab=a4709678
+-/
 theorem IsSelfAdjoint.exists_mem_spectrum_real_norm_resolvent_eq [Nontrivial A]
     {a : A} (ha : IsSelfAdjoint a) {z : ℂ} (hz : z.im ≠ 0) :
     ∃ β ∈ spectrum ℝ a, ‖resolvent a z‖ = ‖z - (β : ℂ)‖⁻¹ := by
@@ -41,7 +43,9 @@ theorem IsSelfAdjoint.exists_mem_spectrum_real_norm_resolvent_eq [Nontrivial A]
   change ‖(z - x)⁻¹‖ = ‖z - (x.re : ℂ)‖⁻¹
   rw [norm_inv, ← hr]
 
-/-- Directly above an actual real spectral point the native self-adjoint resolvent norm is exactly inverse height.-/
+/-- Directly above an actual real spectral point the native self-adjoint resolvent norm is exactly inverse height.
+@isnad1 id=eq.3h4v.s7.f38e2d59962e from=translated src=- shape=7e9263be vocab=94260d91
+-/
 theorem IsSelfAdjoint.norm_resolvent_eq_inv_of_mem_spectrum_real
     {a : A} (ha : IsSelfAdjoint a) {ξ η : ℝ}
     (hξ : ξ ∈ spectrum ℝ a) (hη : 0 < η) :
@@ -68,7 +72,9 @@ theorem IsSelfAdjoint.norm_resolvent_eq_inv_of_mem_spectrum_real
         Real.norm_eq_abs, abs_of_pos hη]
     rwa [he] at hb
 
-/-- A genuine resolvent comparison produces a nearby actual target spectral point, even in a different C-star algebra.-/
+/-- A genuine resolvent comparison produces a nearby actual target spectral point, even in a different C-star algebra.
+@isnad1 id=ex.6h8v.s8.f85f17108320 from=translated src=- shape=f248e8c1 vocab=2ab248af
+-/
 theorem IsSelfAdjoint.exists_mem_spectrum_real_dist_le_of_resolvent_comparison
     [Nontrivial B] {a : A} {b : B} (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b)
     {ξ η C δ : ℝ} (hξ : ξ ∈ spectrum ℝ a) (hη : 0 < η)
@@ -102,7 +108,9 @@ theorem IsSelfAdjoint.exists_mem_spectrum_real_dist_le_of_resolvent_comparison
 
 /-- A finite covering net and native resolvent comparisons give actual directed spectral inclusion across different C-star algebras.
 Source: arXiv:2201.05142v3, Lemma 7.1 and Proposition 7.7.
-atlas: gaussian-free-spectrum-two-sided (partial)-/
+atlas: gaussian-free-spectrum-two-sided (partial)
+@isnad1 id=ex.8h10v.s9.b83e72a665e1 from=translated src=- shape=a49dd8f4 vocab=237e3e1f
+-/
 theorem IsSelfAdjoint.forall_exists_mem_spectrum_real_dist_le_of_resolvent_net
     [Nontrivial B] {a : A} {b : B} (ha : IsSelfAdjoint a) (hb : IsSelfAdjoint b)
     (N : Set ℝ) {η C δ ε : ℝ} (hη : 0 < η) (hC : 0 ≤ C)

@@ -27,7 +27,9 @@ def ellipseMap (M ε : ℝ) (θ : ℝ) : ℂ :=
   (M * Real.cos θ : ℝ) + (ε * Real.sin θ : ℝ) * I
 
 /-- The ellipse's actual tangent vector is the derivative of its standard
-trigonometric parametrization.-/
+trigonometric parametrization.
+@isnad1 id=hasderiv.0h3v.s6.529e5e080c2b from=translated src=- shape=ba9631ec vocab=eac6fb78
+-/
 theorem hasDerivAt_ellipseMap (M ε θ : ℝ) :
     HasDerivAt (ellipseMap M ε)
       (((-M * Real.sin θ : ℝ) : ℂ) + (ε * Real.cos θ : ℝ) * I) θ := by
@@ -36,7 +38,9 @@ theorem hasDerivAt_ellipseMap (M ε θ : ℝ) :
       (((Real.hasDerivAt_sin θ).const_mul ε).ofReal_comp.mul_const I))
 
 /-- Every point of an ellipse is bounded in norm by the sum of its
-nonnegative semiaxes, uniformly in the angle.-/
+nonnegative semiaxes, uniformly in the angle.
+@isnad1 id=le.2h3v.s5.46f43046f832 from=translated src=- shape=c6d10e01 vocab=4543cd6f
+-/
 theorem norm_ellipseMap_le {M ε : ℝ} (hM : 0 ≤ M) (hε : 0 ≤ ε) (θ : ℝ) :
     ‖ellipseMap M ε θ‖ ≤ M + ε := by
   calc
@@ -78,7 +82,9 @@ private theorem neg_normalized_re (z : ℂ) :
 
 /-- Schwarz reflection pairs the two halves of a counterclockwise ellipse.
 The real part of the negatively normalized contour integral is an ordinary
-upper-half integral with the orientation signs displayed explicitly.-/
+upper-half integral with the orientation signs displayed explicitly.
+@isnad1 id=eq.2h3v.s8.dce2e144b456 from=translated src=- shape=1d1b518f vocab=a9efa35f
+-/
 theorem neg_normalized_ellipseIntegral_re_eq
     {f : ℂ → ℂ} {M ε : ℝ}
     (hc : ContinuousOn (fun θ => f (ellipseMap M ε θ)) (Icc 0 (2 * Real.pi)))
@@ -173,7 +179,9 @@ private theorem neg_mul_le_im_exp_mul_of_im_le {z v : ℂ} {M ε C : ℝ}
 /-- For a bounded Schwarz-symmetric function with nonnegative imaginary part
 along the upper ellipse, the negatively normalized exponential moment is
 bounded below by `-(M+1) exp(M) C ε`. Its possible negative part therefore
-vanishes with the vertical semiaxis, without boundary limits on the real segment.-/
+vanishes with the vertical semiaxis, without boundary limits on the real segment.
+@isnad1 id=le.7h4v.s8.048e088c5bfd from=translated src=- shape=41dae767 vocab=ec2f3791
+-/
 theorem neg_normalized_exp_ellipseIntegral_re_ge
     {h : ℂ → ℂ} {M ε C : ℝ} (hM : 0 ≤ M) (hε : 0 ≤ ε) (hε' : ε ≤ 1)
     (hc : ContinuousOn (fun θ => h (ellipseMap M ε θ)) (Icc 0 (2 * Real.pi)))
@@ -251,7 +259,9 @@ theorem neg_normalized_exp_ellipseIntegral_re_ge
 /-- A fixed moment represented by all sufficiently thin exponential ellipse
 integrals is nonnegative. The representation premise can be supplied by a smooth
 free-loop homotopy from one fixed exterior circle. Only upper-half-plane values
-and bounds on the ellipses occur, with no real-axis limiting values required.-/
+and bounds on the ellipses occur, with no real-axis limiting values required.
+@isnad1 id=le.7h5v.s8.1e17c6ff17bc from=translated src=- shape=9b545a38 vocab=58d564b9
+-/
 theorem nonneg_of_neg_normalized_exp_ellipseIntegral_re_eq
     {h : ℂ → ℂ} {M C δ w : ℝ} (hM : 0 ≤ M) (hδ : 0 < δ)
     (hc : ∀ ε ∈ Ioo 0 δ,

@@ -20,7 +20,9 @@ namespace NLAlib
 open scoped NLAlib.TwoPi
 
 /-- Fourier coefficients commute with a uniformly dominated absolute function series.
-Source: dominated convergence for Bochner integrals; helper for `chebyshev-series-exp-bessel`.-/
+Source: dominated convergence for Bochner integrals; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=hassum.4h5v.s8.17ac535af916 from=translated src=- shape=4cdf88ba vocab=61ea586d
+-/
 theorem hasSum_fourierCoeff_of_summable_bound {ι : Type*} [Countable ι]
     {F : ι → AddCircle (2 * Real.pi) → ℂ} {f : AddCircle (2 * Real.pi) → ℂ}
     {b : ι → ℝ} (hF : ∀ i, Continuous (F i)) (hb : Summable b)
@@ -40,7 +42,9 @@ theorem hasSum_fourierCoeff_of_summable_bound {ι : Type*} [Countable ι]
   · exact Filter.Eventually.of_forall (fun t => (hseries t).const_smul _)
 
 /-- Multiplication by a Fourier character shifts the coefficient frequency.
-Source: the character multiplication identity; helper for `chebyshev-series-exp-bessel`.-/
+Source: the character multiplication identity; helper for `chebyshev-series-exp-bessel`.
+@isnad1 id=eq.0h3v.s8.26416f401fc4 from=translated src=- shape=8c1b8601 vocab=63176958
+-/
 theorem fourierCoeff_fourier_mul (g : AddCircle (2 * Real.pi) → ℂ) (m k : ℤ) :
     fourierCoeff (fun t => fourier m t * g t) k = fourierCoeff g (k - m) := by
   unfold fourierCoeff

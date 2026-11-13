@@ -17,7 +17,9 @@ namespace NLAlib
 open Polynomial Set
 
 /-- On an open set `U` where `f, f', …, f^{(n−1)}` are differentiable, the `k`-th derivative
-(`k ≤ n`) of `f − p` for a polynomial `p` is `f^{(k)} − p^{(k)}`.-/
+(`k ≤ n`) of `f − p` for a polynomial `p` is `f^{(k)} − p^{(k)}`.
+@isnad1 id=eqon.3h5v.s8.955f043669ba from=translated src=- shape=e6d49b5f vocab=be5a7233
+-/
 theorem iteratedDeriv_sub_eval_eqOn {f : ℝ → ℝ} {U : Set ℝ} (hU : IsOpen U) (p : ℝ[X])
     {n : ℕ} (hf : ∀ k < n, DifferentiableOn ℝ (iteratedDeriv k f) U) :
     ∀ k ≤ n, EqOn (iteratedDeriv k (fun t => f t - p.eval t))

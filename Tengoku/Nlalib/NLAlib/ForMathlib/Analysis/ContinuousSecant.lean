@@ -14,7 +14,9 @@ variable {𝕜 E F : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 
 /-- If an exact increment is a continuously varying linear map applied to
-the input increment, its value on the diagonal is the full Fréchet derivative.-/
+the input increment, its value on the diagonal is the full Fréchet derivative.
+@isnad1 id=hasfderi.2h6v.s9.7ee9fede5f35 from=translated src=- shape=e0cdf663 vocab=5d431f05
+-/
 theorem hasFDerivAt_of_continuous_secant {f : E → F} {L : E → E →L[𝕜] F} {x : E}
     (hL : ContinuousAt L x)
     (hsec : ∀ᶠ y in 𝓝 x, f y - f x = L y (y - x)) :

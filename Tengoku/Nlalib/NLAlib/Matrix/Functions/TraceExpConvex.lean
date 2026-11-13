@@ -15,7 +15,9 @@ open scoped Matrix Matrix.Norms.L2Operator ComplexOrder
 namespace NLAlib
 
 /-- Hermitian matrices form a convex real set.
-Source: closure under real scalar linear combinations; supports `srht-ose`.-/
+Source: closure under real scalar linear combinations; supports `srht-ose`.
+@isnad1 id=convex.0h1v.s6.260907d0286f from=translated src=- shape=de44fefe vocab=6e15dd10
+-/
 theorem convex_set_isHermitian {d : ℕ} :
     Convex ℝ {H : Matrix (Fin d) (Fin d) ℂ | H.IsHermitian} := by
   intro H hH K hK a b ha hb _
@@ -23,7 +25,9 @@ theorem convex_set_isHermitian {d : ℕ} :
 
 /-- The Hermitian trace exponential is convex, using the actual proved
 variational formula, with no convexity hypothesis on this function.
-Source: Tropp 2015, Equation 8.1.2; operator re-derivation `sh:convex-sampling`.-/
+Source: Tropp 2015, Equation 8.1.2; operator re-derivation `sh:convex-sampling`.
+@isnad1 id=convexon.0h1v.s6.5c4a95a737d0 from=translated src=- shape=7146db68 vocab=667573b2
+-/
 theorem convexOn_traceExp_isHermitian {d : ℕ} [NeZero d] :
     ConvexOn ℝ {H : Matrix (Fin d) (Fin d) ℂ | H.IsHermitian} traceExp := by
   have hlog : matrixLog (1 : Matrix (Fin d) (Fin d) ℂ) = 0 := by

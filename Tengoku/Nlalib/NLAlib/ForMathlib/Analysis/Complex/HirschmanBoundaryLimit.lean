@@ -19,7 +19,9 @@ open scoped Topology
 namespace Complex
 
 /-- Regularized logarithmic disk averages converge to the actual boundary
-average, for a bounded function continuous only on the closed strip.-/
+average, for a bounded function continuous only on the closed strip.
+@isnad1 id=tendsto.7h5v.s8.2dcea226e5f8 from=translated src=- shape=e1daa959 vocab=80b6abcf
+-/
 theorem tendsto_circleAverage_regularizedLogNorm_hirschman {r B ε : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) {g : ℂ → ℂ}
     (hg : ContinuousOn g (HadamardThreeLines.verticalClosedStrip 0 1))
@@ -96,7 +98,9 @@ theorem tendsto_circleAverage_regularizedLogNorm_hirschman {r B ε : ℝ}
 
 /-- The actual bounded holomorphic strip function satisfies the logarithmic
 boundary inequality after positive regularization. No nonvanishing hypothesis
-on the function, on the center, or on either boundary is imposed.-/
+on the function, on the center, or on either boundary is imposed.
+@isnad1 id=le.6h4v.s8.87adcfe5e370 from=translated src=- shape=8791c113 vocab=f32cc4d4
+-/
 theorem regularizedLogNorm_le_hirschman_boundary_integrals {r B ε : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) {g : ℂ → ℂ}
     (hg : ContinuousOn g (HadamardThreeLines.verticalClosedStrip 0 1))

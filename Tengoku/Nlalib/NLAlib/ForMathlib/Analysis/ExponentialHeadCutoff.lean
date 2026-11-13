@@ -15,7 +15,9 @@ noncomputable section
 namespace Real
 
 /-- An exponential head cutoff has a uniformly bounded low-rank Schatten
-factor at every real exponent at least two.-/
+factor at every real exponent at least two.
+@isnad1 id=le.1h1v.s6.77ff3677013b from=translated src=- shape=4f3754c6 vocab=ff500d1b
+-/
 theorem two_mul_two_mul_ceil_exp_rpow_le {p : ℝ} (hp : 2 ≤ p) :
     2 * (2 * (⌈exp p⌉₊ : ℝ)) ^ (1 / p) ≤ 32 := by
   have hp0 : 0 < p := by linarith
@@ -39,7 +41,9 @@ theorem two_mul_two_mul_ceil_exp_rpow_le {p : ℝ} (hp : 2 ≤ p) :
   nlinarith
 
 /-- The logarithm of the first position after the exponential cutoff is at
-least the real exponent itself.-/
+least the real exponent itself.
+@isnad1 id=le.0h1v.s5.96d77a713e64 from=translated src=- shape=a34b51d6 vocab=2a9f4ad3
+-/
 theorem le_log_ceil_exp_add_one (p : ℝ) : p ≤ log ((⌈exp p⌉₊ : ℝ) + 1) := by
   have h : exp p ≤ (⌈exp p⌉₊ : ℝ) + 1 := (Nat.le_ceil (exp p)).trans (by linarith)
   simpa only [log_exp] using log_le_log (exp_pos p) h

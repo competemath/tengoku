@@ -16,7 +16,9 @@ noncomputable section
 
 /-- Native total resolvents of the same algebra element commute at every pair
 of scalar parameters. This follows from centrality of the scalar algebra map
-and commutation of total ring inverses.-/
+and commutation of total ring inverses.
+@isnad1 id=commute.0h5v.s5.debde67a1b80 from=translated src=- shape=fd9b4e99 vocab=9f612c2b
+-/
 theorem commute_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     (a : A) (r s : R) : Commute (resolvent a r) (resolvent a s) := by
   dsimp only [resolvent]
@@ -25,7 +27,9 @@ theorem commute_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     ((Algebra.commute_algebraMap_right s a).sub_right (Commute.refl a))
 
 /-- The star of the native total resolvent is the resolvent of the starred
-element at the starred scalar, without an invertibility assumption.-/
+element at the starred scalar, without an invertibility assumption.
+@isnad1 id=eq.0h4v.s7.bb12074d2165 from=translated src=- shape=dd59b552 vocab=e212df04
+-/
 theorem star_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     [InvolutiveStar R] [StarRing A] [StarModule R A] (a : A) (r : R) :
     star (resolvent a r) = resolvent (star a) (star r) := by
@@ -33,7 +37,9 @@ theorem star_resolvent {R A : Type*} [CommSemiring R] [Ring A] [Algebra R A]
     star_sub, star_smul, star_one]
 
 /-- The first resolvent identity at two actual resolvent-set parameters,
-including algebras with a trivial underlying ring.-/
+including algebras with a trivial underlying ring.
+@isnad1 id=eq.2h5v.s7.1e8036a28963 from=translated src=- shape=cdc5f0dd vocab=182e2b29
+-/
 theorem spectrum.resolvent_sub_resolvent_eq_sub_smul_mul
     {R A : Type*} [CommRing R] [Ring A] [Algebra R A]
     (a : A) {z w : R} (hz : z ∈ resolventSet R a) (hw : w ∈ resolventSet R a) :

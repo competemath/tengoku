@@ -28,7 +28,9 @@ private theorem freeHomotopy_node_mem_Icc {n i : ℕ} (hn : 0 < n) (hi : i ≤ n
 
 /-- A continuous free homotopy of loops in an open holomorphy domain preserves
 their native contour integrals. Opposite boundary sides are the same path;
-their primitive transports cancel even though the charts may differ.-/
+their primitive transports cancel even though the charts may differ.
+@isnad1 id=eq.9h7v.s10.bb919727b2ea from=translated src=- shape=41b3152b vocab=73c3e6ad
+-/
 theorem curveIntegral_eq_of_differentiableOn_of_freeHomotopy
     {a b : ℂ} (γ₀ : Path a a) (γ₁ : Path b b)
     {ψ : ℝ × ℝ → ℂ} (hψ : Continuous ψ) {Ω : Set ℂ} {g : ℂ → ℂ}

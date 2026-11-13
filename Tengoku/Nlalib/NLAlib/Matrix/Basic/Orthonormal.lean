@@ -33,12 +33,16 @@ atlas: residual-def-/
 def projResidual (Q : Matrix m q 𝕜) (A : Matrix m n 𝕜) : Matrix m n 𝕜 := A - Q * (Qᴴ * A)
 
 omit [Fintype q] in
-/-- Eliminator for `HasOrthonormalCols`: `Qᴴ Q = I`.-/
+/-- Eliminator for `HasOrthonormalCols`: `Qᴴ Q = I`.
+@isnad1 id=eq.1h4v.s7.15ea13cb8f1a from=translated src=- shape=9ea443d2 vocab=1105a194
+-/
 theorem HasOrthonormalCols.conjTranspose_mul_self [DecidableEq q] {Q : Matrix m q 𝕜}
     (hQ : HasOrthonormalCols Q) : Qᴴ * Q = 1 := hQ
 
 omit [Fintype q] in
-/-- `HasOrthonormalCols Q` unfolded: `Qᴴ Q = I`.-/
+/-- `HasOrthonormalCols Q` unfolded: `Qᴴ Q = I`.
+@isnad1 id=iff.0h4v.s7.f214ee771219 from=translated src=- shape=755e86ab vocab=1105a194
+-/
 theorem hasOrthonormalCols_iff_conjTranspose_mul_self [DecidableEq q] {Q : Matrix m q 𝕜} :
     HasOrthonormalCols Q ↔ Qᴴ * Q = 1 := Iff.rfl
 

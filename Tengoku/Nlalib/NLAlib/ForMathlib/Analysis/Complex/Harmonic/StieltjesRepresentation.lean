@@ -18,7 +18,9 @@ open MeasureTheory Filter Metric Set
 open scoped Topology
 namespace Complex
 
-/-- A circle Herglotz kernel is integrable at every upper-half-plane argument.-/
+/-- A circle Herglotz kernel is integrable at every upper-half-plane argument.
+@isnad1 id=integrab.1h2v.s7.d2625441accc from=translated src=- shape=9bfcbbaf vocab=243648bb
+-/
 theorem integrable_herglotzRieszKernel_cayley (μ : Measure Circle) [IsFiniteMeasure μ]
     {z : ℂ} (hz : 0 < z.im) :
     Integrable (fun ξ : Circle => herglotzRieszKernel 0 (cayleyTransform z) ξ) μ := by
@@ -27,7 +29,9 @@ theorem integrable_herglotzRieszKernel_cayley (μ : Measure Circle) [IsFiniteMea
   exact hc.integrable_of_hasCompactSupport (HasCompactSupport.of_compactSpace _)
 
 /-- Subtracting the kernel at `i` cancels the affine coordinate, without
-a first-moment assumption on the real measure.-/
+a first-moment assumption on the real measure.
+@isnad1 id=eq.2h2v.s8.49f514cfeaee from=translated src=- shape=0b8e67b4 vocab=edff12e0
+-/
 theorem sub_I_mul_herglotzRieszKernel_cayley
     {z : ℂ} (hz : 0 < z.im) {ξ : Circle} (hξ : ξ ≠ 1) :
     I * herglotzRieszKernel 0 (cayleyTransform z) ξ -
@@ -40,7 +44,9 @@ theorem sub_I_mul_herglotzRieszKernel_cayley
   ring
 
 /-- The circle representation transports to the real-line Cauchy
-transform after subtracting its value at `i`.-/
+transform after subtracting its value at `i`.
+@isnad1 id=eq.2h2v.s8.cfd2df246531 from=translated src=- shape=54067e65 vocab=fe552893
+-/
 theorem integral_sub_herglotzRieszKernel_cayley_eq
     (μ : Measure Circle) [IsFiniteMeasure μ] (hzero : μ {(1 : Circle)} = 0)
     {z : ℂ} (hz : 0 < z.im) :
@@ -67,7 +73,9 @@ theorem integral_sub_herglotzRieszKernel_cayley_eq
   exact sub_I_mul_herglotzRieszKernel_cayley hz hξ
 
 /-- Finite Stieltjes normalization forces decay of the function itself
-on the positive imaginary axis.-/
+on the positive imaginary axis.
+@isnad1 id=tendsto.1h2v.s6.e2a7cee83ce5 from=translated src=- shape=af4c20ef vocab=034f6aac
+-/
 theorem tendsto_zero_of_tendsto_mul_I {f : ℂ → ℂ} {c : ℂ}
     (hlim : Tendsto (fun y : ℝ => (y : ℂ) * I * f ((y : ℂ) * I))
       atTop (𝓝 c)) :

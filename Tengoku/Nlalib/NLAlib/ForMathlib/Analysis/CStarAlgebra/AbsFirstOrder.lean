@@ -22,7 +22,9 @@ namespace CFC
 variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 
 /-- If a rescaled perturbation of the identity converges to a self-adjoint
-element, taking the actual C⋆-algebra absolute value preserves that limit.-/
+element, taking the actual C⋆-algebra absolute value preserves that limit.
+@isnad1 id=tendsto.3h6v.s8.b87ebc297a9a from=translated src=- shape=816e1bec vocab=2db1befd
+-/
 theorem tendsto_smul_abs_sub_one_of_tendsto_smul_sub_one
     {ι : Type*} {l : Filter ι} {a : ι → A} {t : ι → ℝ} {S : A}
     (ha : Tendsto a l (𝓝 1))

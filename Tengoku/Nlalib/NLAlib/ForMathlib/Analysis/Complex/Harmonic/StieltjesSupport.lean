@@ -20,7 +20,9 @@ open scoped Topology BoundedContinuousFunction
 namespace MeasureTheory
 
 /-- A nonnegative compact test supported where the imaginary Cauchy
-transform is uniformly `O(η)` has zero integral under the source measure.-/
+transform is uniformly `O(η)` has zero integral under the source measure.
+@isnad1 id=eq.4h4v.s8.b6ecce64ee83 from=translated src=- shape=65336891 vocab=aa76dbc1
+-/
 theorem integral_eq_zero_of_im_cauchyKernel_le_mul
     (μ : Measure ℝ) [IsFiniteMeasure μ] (f : ℝ →ᵇ ℝ)
     (hfint : Integrable f) (hfnonneg : ∀ x, 0 ≤ f x) (U : Set ℝ)
@@ -60,7 +62,9 @@ theorem integral_eq_zero_of_im_cauchyKernel_le_mul
   exact le_antisymm hval (integral_nonneg hfnonneg)
 
 /-- A locally uniform imaginary-part bound of order height excludes a
-real point from the support of its representing measure.-/
+real point from the support of its representing measure.
+@isnad1 id=not.2h4v.s7.a4217c4a0895 from=translated src=- shape=672a3ec5 vocab=f26ce10f
+-/
 theorem notMem_support_of_im_cauchyKernel_le_mul
     (μ : Measure ℝ) [IsFiniteMeasure μ] (x r C : ℝ) (hr : 0 < r)
     (hb : ∀ y ∈ ball x r, ∀ γ : NNReal, γ ≠ 0 →
@@ -96,7 +100,9 @@ theorem notMem_support_of_im_cauchyKernel_le_mul
 
 /-- Uniform imaginary-part bounds of order height beyond every strictly
 larger radius force the real Stieltjes measure to have the stated compact
-spectral support. This is the support step in the matrix Dyson formula.-/
+spectral support. This is the support step in the matrix Dyson formula.
+@isnad1 id=le.1h2v.s6.af3a0aff8a30 from=translated src=- shape=f9810f87 vocab=e4274bfc
+-/
 theorem support_subset_Icc_of_im_cauchyKernel_le_mul
     (μ : Measure ℝ) [IsFiniteMeasure μ] (κ : ℝ)
     (hb : ∀ a : ℝ, κ < a → ∃ C : ℝ, ∀ z : ℂ, 0 < z.im → a ≤ |z.re| →
@@ -127,7 +133,9 @@ theorem support_subset_Icc_of_im_cauchyKernel_le_mul
     hC ((y : ℂ) + (γ : ℝ) * Complex.I) (by simpa using hγpos) (by simpa using hay)
 
 /-- The compact support conclusion also gives the almost-everywhere
-support formulation used by integral representations.-/
+support formulation used by integral representations.
+@isnad1 id=eventual.1h2v.s6.9c65e76b90a5 from=translated src=- shape=7b93fbec vocab=073561b0
+-/
 theorem ae_mem_Icc_of_im_cauchyKernel_le_mul
     (μ : Measure ℝ) [IsFiniteMeasure μ] (κ : ℝ)
     (hb : ∀ a : ℝ, κ < a → ∃ C : ℝ, ∀ z : ℂ, 0 < z.im → a ≤ |z.re| →

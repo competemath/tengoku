@@ -22,16 +22,25 @@ namespace Complex
 /-- A bijective angle parametrization of the circle with the point `1` removed.-/
 def hirschmanBoundaryAngle (q : ℝ) : ℝ := π + 2 * arctan q
 
+/--
+@isnad1 id=mem.0h1v.s5.6700de3200e5 from=translated src=- shape=0f90c99e vocab=fc6754eb
+-/
 theorem hirschmanBoundaryAngle_mem (q : ℝ) :
     hirschmanBoundaryAngle q ∈ Ioo (0 : ℝ) (2 * π) := by
   dsimp [hirschmanBoundaryAngle]
   constructor <;> linarith [arctan_mem_Ioo q |>.1, arctan_mem_Ioo q |>.2]
 
+/--
+@isnad1 id=strictmo.0h0v.s2.5fedc8fe1c00 from=translated src=- shape=e3d48bcb vocab=1906cb4a
+-/
 theorem strictMono_hirschmanBoundaryAngle : StrictMono hirschmanBoundaryAngle := by
   intro x y hxy
   dsimp [hirschmanBoundaryAngle]
   linarith [arctan_strictMono hxy]
 
+/--
+@isnad1 id=eq.0h0v.s5.40708404c9d5 from=translated src=- shape=fa2f1022 vocab=27a469f7
+-/
 theorem range_hirschmanBoundaryAngle : Set.range hirschmanBoundaryAngle = Ioo (0 : ℝ) (2 * π) := by
   ext θ
   constructor
@@ -43,13 +52,18 @@ theorem range_hirschmanBoundaryAngle : Set.range hirschmanBoundaryAngle = Ioo (0
     rw [Real.arctan_tan (by linarith [hθ.1]) (by linarith [hθ.2])]
     ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.093cb7fc680c from=translated src=- shape=1561be1d vocab=f7253c0a
+-/
 theorem hasDerivAt_hirschmanBoundaryAngle (q : ℝ) :
     HasDerivAt hirschmanBoundaryAngle (2 / (1 + q ^ 2)) q := by
   have h := ((Real.hasDerivAt_arctan q).const_mul 2).const_add π
   change HasDerivAt hirschmanBoundaryAngle (2 * (1 / (1 + q ^ 2))) q at h
   exact h.congr_deriv (by ring)
 
-/-- The rational and trigonometric parametrizations are exactly equal.-/
+/-- The rational and trigonometric parametrizations are exactly equal.
+@isnad1 id=eq.0h1v.s5.b1c8bab91405 from=translated src=- shape=f516e942 vocab=581185bc
+-/
 theorem circleMap_hirschmanBoundaryAngle (q : ℝ) :
     circleMap 0 1 (hirschmanBoundaryAngle q) = ((q : ℂ) - I) / ((q : ℂ) + I) := by
   have hcos : Real.cos (π + 2 * arctan q) = (q ^ 2 - 1) / (1 + q ^ 2) := by
@@ -77,7 +91,9 @@ theorem circleMap_hirschmanBoundaryAngle (q : ℝ) :
     rw [hsin]
     ring
 
-/-- In these boundary coordinates the prescribed half-plane map is simply affine.-/
+/-- In these boundary coordinates the prescribed half-plane map is simply affine.
+@isnad1 id=eq.0h3v.s5.01d050190802 from=translated src=- shape=96dbb94b vocab=f967e7f5
+-/
 theorem hirschmanDiskToHalfPlane_circleMap_boundary (a b q : ℝ) :
     hirschmanDiskToHalfPlane a b (circleMap 0 1 (hirschmanBoundaryAngle q)) = ((a + b * q : ℝ) : ℂ) := by
   rw [circleMap_hirschmanBoundaryAngle]
@@ -102,7 +118,9 @@ theorem hirschmanDiskToHalfPlane_circleMap_boundary (a b q : ℝ) :
   simp [I_sq]
 
 /-- The actual boundary circle average is exactly the arctangent parametrized
-integral with the standard Cauchy density.-/
+integral with the standard Cauchy density.
+@isnad1 id=eq.0h1v.s7.944d40afcd81 from=translated src=- shape=b168c3bc vocab=e03a69bc
+-/
 theorem circleAverage_eq_integral_hirschmanBoundaryAngle (F : ℂ → ℝ) :
     Real.circleAverage F 0 1 =
       ∫ q : ℝ, (1 / (π * (1 + q ^ 2))) * F (circleMap 0 1 (hirschmanBoundaryAngle q)) := by
@@ -123,7 +141,9 @@ theorem circleAverage_eq_integral_hirschmanBoundaryAngle (F : ℂ → ℝ) :
     field_simp
 
 /-- The actual boundary circle average transports to the standard Cauchy
-density and affine upper-half-plane boundary coordinates.-/
+density and affine upper-half-plane boundary coordinates.
+@isnad1 id=eq.0h3v.s7.6d5642f9ef9c from=translated src=- shape=677304a1 vocab=a816d01c
+-/
 theorem circleAverage_hirschmanDiskToHalfPlane (a b : ℝ) (F : ℂ → ℝ) :
     Real.circleAverage (fun z => F (hirschmanDiskToHalfPlane a b z)) 0 1 =
       ∫ q : ℝ, (1 / (π * (1 + q ^ 2))) * F ((a + b * q : ℝ) : ℂ) := by
@@ -131,7 +151,9 @@ theorem circleAverage_hirschmanDiskToHalfPlane (a b : ℝ) (F : ℂ → ℝ) :
   simp_rw [hirschmanDiskToHalfPlane_circleMap_boundary]
 
 /-- The circle boundary pushforward is the actual location-scale Cauchy
-density on the real line, not an unspecified boundary distribution.-/
+density on the real line, not an unspecified boundary distribution.
+@isnad1 id=eq.1h3v.s6.582b2ccebfa1 from=translated src=- shape=aca715cb vocab=5da37baf
+-/
 theorem circleAverage_hirschmanDiskToHalfPlane_eq_cauchy (a : ℝ) {b : ℝ} (hb : 0 < b)
     (F : ℂ → ℝ) :
     Real.circleAverage (fun z => F (hirschmanDiskToHalfPlane a b z)) 0 1 =

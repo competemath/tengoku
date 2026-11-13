@@ -22,7 +22,9 @@ def hirschmanMeasure (r : ℝ) : Measure ℝ :=
 
 /-- The explicit density defines a probability measure, with its mass
 computed by its proved antiderivative.
-atlas: multivariate-araki-lieb-thirring (partial)-/
+atlas: multivariate-araki-lieb-thirring (partial)
+@isnad1 id=isprobab.1h1v.s4.6f1f9d2a4027 from=translated src=- shape=13933531 vocab=73805e71
+-/
 theorem isProbabilityMeasure_hirschmanMeasure {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     IsProbabilityMeasure (hirschmanMeasure r) := by
   constructor
@@ -34,7 +36,9 @@ theorem isProbabilityMeasure_hirschmanMeasure {r : ℝ} (hr : r ∈ Ioo (0 : ℝ
 /-- Bochner integration against the actual Hirschman probability measure
 is exactly integration against the source's scalar density. No separate
 integrability premise is needed for this identity.
-atlas: multivariate-araki-lieb-thirring (partial)-/
+atlas: multivariate-araki-lieb-thirring (partial)
+@isnad1 id=eq.1h3v.s7.663b66924b58 from=translated src=- shape=388fc883 vocab=95800502
+-/
 theorem integral_hirschmanMeasure {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (f : ℝ → E) :
     ∫ t, f t ∂hirschmanMeasure r = ∫ t, hirschmanDensity r t • f t := by

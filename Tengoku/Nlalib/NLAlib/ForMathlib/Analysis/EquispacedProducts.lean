@@ -23,7 +23,9 @@ open scoped Nat
 namespace NLAlib
 
 /-- The absolute cardinal denominator on the integer grid is a pair of factorials.
-Source: the equispaced reroute, finite cardinal product formula.-/
+Source: the equispaced reroute, finite cardinal product formula.
+@isnad1 id=eq.1h2v.s6.3c976f1dc0e9 from=translated src=- shape=b5f39dbd vocab=b6bf7af4
+-/
 theorem prod_abs_natCast_sub_eq_factorial {n j : ℕ} (hj : j ≤ n) :
     (∏ k ∈ (range (n + 1)).erase j, |(j : ℝ) - k|) = (j ! : ℝ) * ((n - j)! : ℝ) := by
   induction n with
@@ -54,7 +56,9 @@ theorem prod_abs_natCast_sub_eq_factorial {n j : ℕ} (hj : j ≤ n) :
         ring
 
 /-- The normalized nodal product at the first half-grid point is at least `1/(4n)`.
-Source: equispaced reroute, the product comparison with `(k−1)/k`.-/
+Source: equispaced reroute, the product comparison with `(k−1)/k`.
+@isnad1 id=le.1h1v.s6.47aebc7aa405 from=translated src=- shape=28f251f0 vocab=a2a608c0
+-/
 theorem one_div_four_mul_nat_le_abs_half_grid_product {n : ℕ} (hn : 0 < n) :
     1 / (4 * (n : ℝ)) ≤ |∏ k ∈ range (n + 1), ((1 : ℝ) / 2 - k)| / (n ! : ℝ) := by
   induction n with

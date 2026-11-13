@@ -21,7 +21,9 @@ open scoped ContinuousFunctionalCalculus
 variable {A : Type*} [CStarAlgebra A]
 
 /-- The actual resolvent of a normal element is its continuous inverse
-function whenever the scalar lies outside the actual spectrum.-/
+function whenever the scalar lies outside the actual spectrum.
+@isnad1 id=eq.2h3v.s7.cc1dcfa057b0 from=translated src=- shape=5386dfbe vocab=7bdac537
+-/
 theorem IsStarNormal.resolvent_eq_cfc_of_notMem_spectrum {a : A}
     (ha : IsStarNormal a) {z : ℂ} (hz : z ∉ spectrum ℂ a) :
     resolvent a z = cfc (fun x : ℂ => (z - x)⁻¹) a := by
@@ -39,7 +41,9 @@ theorem IsStarNormal.resolvent_eq_cfc_of_notMem_spectrum {a : A}
 
 /-- Every spectral point of an arbitrary perturbation lies within the norm
 of that perturbation of a normal element's spectrum. This is the usual
-normal spectral stability theorem in a complex C*-algebra.-/
+normal spectral stability theorem in a complex C*-algebra.
+@isnad1 id=ex.2h4v.s7.b6a852f56c5a from=translated src=- shape=d47bb94d vocab=25f5908c
+-/
 theorem IsStarNormal.exists_mem_spectrum_dist_le_norm_sub {a b : A}
     (ha : IsStarNormal a) {z : ℂ} (hzb : z ∈ spectrum ℂ b) :
     ∃ w ∈ spectrum ℂ a, dist z w ≤ ‖a - b‖ := by
@@ -78,7 +82,9 @@ theorem IsStarNormal.exists_mem_spectrum_dist_le_norm_sub {a b : A}
   exact (spectrum.mem_iff.mp hzb) hunit
 
 /-- A real spectral point of a perturbed self-adjoint element is within the
-perturbation norm of the actual real spectrum of the original element.-/
+perturbation norm of the actual real spectrum of the original element.
+@isnad1 id=ex.2h4v.s7.548324f8d221 from=translated src=- shape=134bf1b2 vocab=70399380
+-/
 theorem IsSelfAdjoint.exists_mem_spectrum_real_dist_le_norm_sub {a b : A}
     (ha : IsSelfAdjoint a) {x : ℝ} (hxb : x ∈ spectrum ℝ b) :
     ∃ y ∈ spectrum ℝ a, dist x y ≤ ‖a - b‖ := by

@@ -13,7 +13,9 @@ namespace NLAlib
 
 /-- The off-diagonal double sum equals the full double sum minus its diagonal.
 Source: finite sum decomposition in manuscript `sh:count-second`;
-supports `sparse-ose`.-/
+supports `sparse-ose`.
+@isnad1 id=eq.0h3v.s6.0e69937b1f51 from=translated src=- shape=1c352a6d vocab=3073a310
+-/
 theorem sum_sum_ite_ne_eq_sub_diag {ι R : Type*} [Fintype ι] [DecidableEq ι]
     [AddCommGroup R] (f : ι → ι → R) :
     (∑ i, ∑ j, if i = j then 0 else f i j) =

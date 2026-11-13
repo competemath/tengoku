@@ -15,7 +15,9 @@ open scoped unitInterval
 namespace Complex
 
 /-- An inclusion of planar domain subtypes preserves the native contour
-integral of every finite signed chain, with no integrability premise needed.-/
+integral of every finite signed chain, with no integrability premise needed.
+@isnad1 id=eq.1h4v.s10.804966b379e5 from=translated src=- shape=8a3b7e07 vocab=6c7c2b9f
+-/
 theorem cubicalCurveIntegral_mapOne_inclusion {Ω Θ : Set ℂ} (h : Ω ⊆ Θ)
     (g : ℂ → ℂ) (Γ : Cubical.OneChain Ω) :
     cubicalCurveIntegral g (Cubical.mapOne (ContinuousMap.inclusion h) Γ) =
@@ -30,7 +32,9 @@ theorem cubicalCurveIntegral_mapOne_inclusion {Ω Θ : Set ℂ} (h : Ω ⊆ Θ)
   exact LinearMap.congr_fun he Γ
 
 /-- An inclusion of planar domain subtypes preserves the actual winding
-integral, including the target and normalization.-/
+integral, including the target and normalization.
+@isnad1 id=eq.1h4v.s9.4230b88c8610 from=translated src=- shape=c11749b8 vocab=9cc28d2e
+-/
 theorem cubicalWindingIntegral_mapOne_inclusion {Ω Θ : Set ℂ} (h : Ω ⊆ Θ)
     (Γ : Cubical.OneChain Ω) (τ : ℂ) :
     cubicalWindingIntegral (Cubical.mapOne (ContinuousMap.inclusion h) Γ) τ =

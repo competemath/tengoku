@@ -18,7 +18,9 @@ open scoped unitInterval
 namespace Complex
 
 /-- Nonzero actual winding forces the target into the trace or one of its
-bounded complementary components.-/
+bounded complementary components.
+@isnad1 id=mem.3h3v.s10.1caf7d5ec4fe from=translated src=- shape=81713b55 vocab=f2d7526f
+-/
 theorem mem_boundedComplementFill_cubicalTrace_of_winding_ne_zero
     {Ω : Set ℂ} (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -30,7 +32,9 @@ theorem mem_boundedComplementFill_cubicalTrace_of_winding_ne_zero
 
 /-- One actual native positive-orientation integral of a closed cornered
 path determines winding one at every point of an avoided real interval.
-The interval may be a singleton, and only the individual pieces are C1.-/
+The interval may be a singleton, and only the individual pieces are C1.
+@isnad1 id=eq.6h8v.s9.c69815e62d37 from=translated src=- shape=7dec931a vocab=3739e551
+-/
 theorem cubicalWindingIntegral_pathChain_eq_one_of_curveIntegral_eq
     {Ω : Set ℂ} {k : ℕ} (p : Fin (k + 1) → Ω)
     (γ : (i : Fin k) → Path (p i.castSucc) (p i.succ))

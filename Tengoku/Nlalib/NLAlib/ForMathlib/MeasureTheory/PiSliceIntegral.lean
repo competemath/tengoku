@@ -17,7 +17,9 @@ namespace MeasureTheory
 
 /-- An integrable function on a finite product can first be integrated along
 any chosen coordinate. The remaining coordinates use `Fin.succAbove` and the
-reconstruction map is `Fin.insertNth`.-/
+reconstruction map is `Fin.insertNth`.
+@isnad1 id=eq.1h6v.s8.63670c4bef0c from=translated src=- shape=29249368 vocab=bad0b2f7
+-/
 theorem integral_pi_fin_eq_integral_insertNth
     {n : ℕ} {X E : Type*} [MeasurableSpace X] [NormedAddCommGroup E]
     [NormedSpace ℝ E] (μ : Fin (n + 1) → Measure X) [∀ j, SigmaFinite (μ j)]

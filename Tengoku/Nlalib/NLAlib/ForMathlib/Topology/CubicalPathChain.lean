@@ -19,7 +19,9 @@ open scoped unitInterval
 
 namespace Path
 
-/-- A continuous map preserves an actual finite native path concatenation.-/
+/-- A continuous map preserves an actual finite native path concatenation.
+@isnad1 id=eq.1h6v.s7.c9ac4babacfa from=translated src=- shape=f6049a63 vocab=698bb8f0
+-/
 theorem map_concat {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     {n : ℕ} (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ))
@@ -43,7 +45,9 @@ def pathChain (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) : OneChain X :=
   ∑ i, Finsupp.single (γ i).toContinuousMap 1
 
-/-- Every active edge of the finite path chain is an actual supplied piece.-/
+/-- Every active edge of the finite path chain is an actual supplied piece.
+@isnad1 id=ex.1h5v.s8.c6364c8fd94e from=translated src=- shape=2daf959d vocab=845b1820
+-/
 theorem exists_piece_of_mem_support_pathChain (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ))
     {q : C(I, X)} (hq : q ∈ (pathChain p γ).support) :
@@ -58,7 +62,9 @@ theorem exists_piece_of_mem_support_pathChain (p : Fin (n + 1) → X)
     simp [hne]
   exact (Finsupp.mem_support_iff.mp hq) hz
 
-/-- Only the first and last endpoints survive the actual chain boundary.-/
+/-- Only the first and last endpoints survive the actual chain boundary.
+@isnad1 id=eq.0h4v.s8.83ad6fb8103a from=translated src=- shape=150889d7 vocab=49d73535
+-/
 theorem boundaryOne_pathChain (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) :
     boundaryOne (pathChain p γ) = Finsupp.single (p (Fin.last n)) 1 -
@@ -77,14 +83,18 @@ theorem boundaryOne_pathChain (p : Fin (n + 1) → X)
   rw [hs, ht]
   abel
 
-/-- Endpoint closure makes the actual finite path chain a cycle.-/
+/-- Endpoint closure makes the actual finite path chain a cycle.
+@isnad1 id=eq.1h4v.s8.2b0a8185da16 from=translated src=- shape=a425e8e1 vocab=cc2a981a
+-/
 theorem boundaryOne_pathChain_eq_zero (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) (hp : p (Fin.last n) = p 0) :
     boundaryOne (pathChain p γ) = 0 := by
   rw [boundaryOne_pathChain, hp, sub_self]
 
 /-- Finite native concatenation and the sum of its actual path pieces
-represent the same normalized cubical homology class, including empty chains.-/
+represent the same normalized cubical homology class, including empty chains.
+@isnad1 id=isnullho.0h4v.s7.1078af6b6ead from=translated src=- shape=68e38030 vocab=8dbb8b4d
+-/
 theorem isNullHomologous_single_concat_sub_pathChain (p : Fin (n + 1) → X)
     (γ : (i : Fin n) → Path (p i.castSucc) (p i.succ)) :
     IsNullHomologous (Finsupp.single (Path.concat p γ).toContinuousMap 1 - pathChain p γ) := by

@@ -18,7 +18,9 @@ open MeasureTheory ProbabilityTheory Filter Set
 open scoped Topology BoundedContinuousFunction
 namespace Complex
 
-/-- The Cauchy probability density is the imaginary Cauchy kernel divided by `π`.-/
+/-- The Cauchy probability density is the imaginary Cauchy kernel divided by `π`.
+@isnad1 id=eq.0h3v.s5.f6daf4dd7b7c from=translated src=- shape=ab78a5ce vocab=55375bd2
+-/
 theorem cauchyPDFReal_eq_inv_pi_mul_im (x y : ℝ) (γ : NNReal) :
     cauchyPDFReal x γ y = Real.pi⁻¹ *
       (((x : ℂ) - ((y : ℂ) + (γ : ℝ) * I))⁻¹).im := by
@@ -28,7 +30,9 @@ theorem cauchyPDFReal_eq_inv_pi_mul_im (x y : ℝ) (γ : NNReal) :
   ring_nf
 
 /-- Cauchy regularized density is determined pointwise by the Stieltjes
-transform's imaginary part.-/
+transform's imaginary part.
+@isnad1 id=eq.1h3v.s6.0a7e47fade36 from=translated src=- shape=c9b4f253 vocab=833e3237
+-/
 theorem integral_cauchyPDFReal_eq_inv_pi_mul_im_integral
     (μ : Measure ℝ) [IsFiniteMeasure μ] (y : ℝ) (γ : NNReal) (hγ : γ ≠ 0) :
     (∫ x : ℝ, cauchyPDFReal x γ y ∂μ) = Real.pi⁻¹ *
@@ -52,7 +56,9 @@ namespace MeasureTheory
 Stieltjes transform are equal. No support or moment premise is required.
 Source: the scalar uniqueness bridge in Ajanki--Erdos--Kruger, Proposition 2.1.
 This theorem supplies the scalar foundation component.
-atlas: matrix-dyson-stieltjes-representation (partial)-/
+atlas: matrix-dyson-stieltjes-representation (partial)
+@isnad1 id=eq.1h2v.s6.7e62eecaab45 from=translated src=- shape=f2492fbc vocab=9f8a710d
+-/
 theorem measure_eq_of_integral_real_cauchyKernel_eq (μ ν : Measure ℝ)
     [IsFiniteMeasure μ] [IsFiniteMeasure ν]
     (h : ∀ z : ℂ, 0 < z.im →

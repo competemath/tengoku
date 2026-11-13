@@ -22,7 +22,9 @@ open scoped NLAlib.TwoPi
 namespace NLAlib
 
 /-- Reflection of the cosine pullback halves its full-period integral. Source: the
-symmetry `cos (2π - θ) = cos θ` and adjacent interval additivity.-/
+symmetry `cos (2π - θ) = cos θ` and adjacent interval additivity.
+@isnad1 id=eq.1h2v.s7.49ae3ca02cc5 from=translated src=- shape=3b79d4a8 vocab=39db0073
+-/
 theorem integral_chebyshev_cosine_full_period {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1) 1)) (k : ℕ) :
     (∫ θ in 0..2 * Real.pi, f (Real.cos θ) * (T ℝ (k : ℤ)).eval (Real.cos θ)) =
@@ -47,7 +49,9 @@ theorem integral_chebyshev_cosine_full_period {f : ℝ → ℝ}
 
 /-- A continuous real restriction identifies the real contour coefficient with the
 weighted real Chebyshev coefficient. No holomorphic extension is needed for this equality.
-Source: Trefethen, ATAP, Chapters 3 and 8.-/
+Source: Trefethen, ATAP, Chapters 3 and 8.
+@isnad1 id=eq.2h3v.s6.be10091413a4 from=translated src=- shape=975f09ee vocab=26e2e1fd
+-/
 theorem chebyshevAnalyticCoeff_eq_chebyshevCoeff {F : ℂ → ℂ} {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1) 1))
     (hF : ∀ x ∈ Icc (-1 : ℝ) 1, F x = (f x : ℂ)) (k : ℕ) :
@@ -94,7 +98,9 @@ theorem chebyshevAnalyticCoeff_eq_chebyshevCoeff {F : ℂ → ℂ} {f : ℝ → 
   split_ifs <;> ring
 
 /-- The complex contour coefficient itself is the real weighted coefficient when the
-restriction is real and continuous. Source: even-real Fourier symmetry and the contour bridge.-/
+restriction is real and continuous. Source: even-real Fourier symmetry and the contour bridge.
+@isnad1 id=eq.2h3v.s6.cd35291ba994 from=translated src=- shape=7f5047d7 vocab=02dd6693
+-/
 theorem chebyshevComplexCoeff_eq_ofReal_chebyshevCoeff {F : ℂ → ℂ} {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1) 1))
     (hF : ∀ x ∈ Icc (-1 : ℝ) 1, F x = (f x : ℂ)) (k : ℕ) :
@@ -120,7 +126,9 @@ theorem chebyshevComplexCoeff_eq_ofReal_chebyshevCoeff {F : ℂ → ℂ} {f : �
 
 /-- Chebyshev coefficient functionals preserve addition of continuous functions.
 Source: Trefethen, ATAP, Chapter 3.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.2h3v.s6.697019f65e52 from=translated src=- shape=4aabd682 vocab=993434ca
+-/
 theorem chebyshevCoeff_add {f g : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (hg : ContinuousOn g (Icc (-1 : ℝ) 1))
     (k : ℕ) : chebyshevCoeff (fun x => f x + g x) k = chebyshevCoeff f k + chebyshevCoeff g k := by
@@ -132,7 +140,9 @@ theorem chebyshevCoeff_add {f g : ℝ → ℝ}
 
 /-- Chebyshev coefficient functionals preserve scalar multiplication.
 Source: Trefethen, ATAP, Chapter 3.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.0h3v.s5.ca11061fa478 from=translated src=- shape=209fee0a vocab=ae951458
+-/
 theorem chebyshevCoeff_const_mul (f : ℝ → ℝ) (c : ℝ) (k : ℕ) :
     chebyshevCoeff (fun x => c * f x) k = c * chebyshevCoeff f k := by
   simp only [chebyshevCoeff]
@@ -141,7 +151,9 @@ theorem chebyshevCoeff_const_mul (f : ℝ → ℝ) (c : ℝ) (k : ℕ) :
   ring
 
 /-- Chebyshev coefficient functionals preserve subtraction of continuous functions.
-Source: Trefethen, ATAP, Chapter 3; helper for `chebyshev-series-convergence`.-/
+Source: Trefethen, ATAP, Chapter 3; helper for `chebyshev-series-convergence`.
+@isnad1 id=eq.2h3v.s6.a0d8aa30a45f from=translated src=- shape=4aabd682 vocab=46a04a10
+-/
 theorem chebyshevCoeff_sub {f g : ℝ → ℝ}
     (hf : ContinuousOn f (Icc (-1 : ℝ) 1)) (hg : ContinuousOn g (Icc (-1 : ℝ) 1))
     (k : ℕ) : chebyshevCoeff (fun x => f x - g x) k = chebyshevCoeff f k - chebyshevCoeff g k := by
@@ -152,7 +164,9 @@ theorem chebyshevCoeff_sub {f g : ℝ → ℝ}
 
 /-- The coefficient of a Chebyshev basis polynomial is its Kronecker delta.
 Source: Trefethen, ATAP, Chapter 3; Mathlib Chebyshev orthogonality.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.0h2v.s5.ef28c4508069 from=translated src=- shape=8271d011 vocab=df80d490
+-/
 @[simp] theorem chebyshevCoeff_eval_T (j k : ℕ) :
     chebyshevCoeff (fun x => (T ℝ (j : ℤ)).eval x) k = if j = k then 1 else 0 := by
   rw [chebyshevCoeff]
@@ -169,7 +183,9 @@ atlas: chebyshev-coefficients-def (partial)-/
 
 /-- The Chebyshev coefficient of a finite Chebyshev expansion is its corresponding entry.
 Source: finite orthogonal projection, Trefethen ATAP, Chapter 3.
-Helper for `chebyshev-coefficients-def`.-/
+Helper for `chebyshev-coefficients-def`.
+@isnad1 id=eq.0h3v.s7.f8ec530f8257 from=translated src=- shape=32a99a93 vocab=9ccf20e0
+-/
 theorem chebyshevCoeff_eval_sum_smul_T (c : ℕ → ℝ) (n k : ℕ) :
     chebyshevCoeff (fun x => (∑ j ∈ range (n + 1), c j • T ℝ (j : ℤ)).eval x) k =
       if k ≤ n then c k else 0 := by
@@ -190,7 +206,9 @@ theorem chebyshevCoeff_eval_sum_smul_T (c : ℕ → ℝ) (n k : ℕ) :
 
 /-- Coefficients above the degree of a polynomial vanish.
 Source: Trefethen, ATAP, Chapter 3, finite Chebyshev basis.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.2h3v.s5.43037effe550 from=translated src=- shape=372aca7b vocab=bc6437b2
+-/
 theorem chebyshevCoeff_eval_eq_zero_of_degree_lt {p : ℝ[X]} {n k : ℕ}
     (hp : p.degree ≤ n) (hnk : n < k) : chebyshevCoeff p.eval k = 0 := by
   obtain ⟨c, hc⟩ := exists_sum_smul_T_eq_of_degree_le hp
@@ -198,7 +216,9 @@ theorem chebyshevCoeff_eval_eq_zero_of_degree_lt {p : ℝ[X]} {n k : ℕ}
 
 /-- Chebyshev truncation reproduces every polynomial of degree at most its cutoff.
 Source: Trefethen, ATAP, Chapter 3, finite Chebyshev basis.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=eq.1h2v.s5.66dd1c6a1d7d from=translated src=- shape=8d4eda36 vocab=5d4e836d
+-/
 theorem chebyshevTrunc_eval_eq_of_degree_le {p : ℝ[X]} {n : ℕ}
     (hp : p.degree ≤ n) : chebyshevTrunc p.eval n = p := by
   obtain ⟨c, hc⟩ := exists_sum_smul_T_eq_of_degree_le hp
@@ -209,7 +229,9 @@ theorem chebyshevTrunc_eval_eq_of_degree_le {p : ℝ[X]} {n : ℕ}
   rw [chebyshevCoeff_eval_sum_smul_T, ite_eq_left (Nat.le_of_lt_succ (mem_range.mp hk)), C_mul']
 
 /-- Every Chebyshev truncation has degree at most its cutoff.
-Source: Trefethen, ATAP, Chapter 3; helper for `chebyshev-coefficients-def`.-/
+Source: Trefethen, ATAP, Chapter 3; helper for `chebyshev-coefficients-def`.
+@isnad1 id=le.0h2v.s4.f37309e0cfda from=translated src=- shape=e3082467 vocab=379f4958
+-/
 theorem degree_chebyshevTrunc_le (f : ℝ → ℝ) (n : ℕ) : (chebyshevTrunc f n).degree ≤ n := by
   unfold chebyshevTrunc
   refine (degree_sum_le _ _).trans (Finset.sup_le fun k hk => ?_)
@@ -220,7 +242,9 @@ theorem degree_chebyshevTrunc_le (f : ℝ → ℝ) (n : ℕ) : (chebyshevTrunc f
 
 /-- The undoubled constant coefficient is bounded by the function bound on the interval.
 Source: Trefethen, ATAP, Chapter 3.
-atlas: chebyshev-coefficients-def (partial)-/
+atlas: chebyshev-coefficients-def (partial)
+@isnad1 id=le.1h2v.s5.d62510720dc0 from=translated src=- shape=9f1afa4b vocab=537bf94a
+-/
 theorem abs_chebyshevCoeff_zero_le {f : ℝ → ℝ} {M : ℝ}
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) : |chebyshevCoeff f 0| ≤ M := by
   have hI := intervalIntegral.norm_integral_le_of_norm_le_const
@@ -238,7 +262,9 @@ theorem abs_chebyshevCoeff_zero_le {f : ℝ → ℝ} {M : ℝ}
 
 /-- Every positive Chebyshev coefficient is bounded by twice the function bound.
 Source: Trefethen, ATAP, Chapter 3.
-atlas: chebyshev-coefficients-def-/
+atlas: chebyshev-coefficients-def
+@isnad1 id=le.2h3v.s6.1c734e6eb824 from=translated src=- shape=dddf24c6 vocab=6995d2e4
+-/
 theorem abs_chebyshevCoeff_le_two_mul {f : ℝ → ℝ} {M : ℝ}
     (hM : ∀ x ∈ Icc (-1 : ℝ) 1, |f x| ≤ M) {k : ℕ} (hk : 0 < k) :
     |chebyshevCoeff f k| ≤ 2 * M := by

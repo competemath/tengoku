@@ -30,7 +30,9 @@ variable {A B : Type*} [AddCommGroup A] [AddCommGroup B] {n : ℕ}
 def edgeBoundary (c : Fin n → A) (i : Fin (n + 1)) : A :=
   snoc (α := fun _ => A) c 0 i - cons (α := fun _ => A) 0 c i
 
-/-- Finite differences commute with additive homomorphisms.-/
+/-- Finite differences commute with additive homomorphisms.
+@isnad1 id=eq.0h6v.s7.de73cfe9319d from=translated src=- shape=a9aad43d vocab=25c796c8
+-/
 theorem map_edgeBoundary (f : A →+ B) (c : Fin n → A) (i : Fin (n + 1)) :
     f (edgeBoundary c i) = edgeBoundary (fun k => f (c k)) i := by
   have hs : f (snoc (α := fun _ => A) c 0 i) = snoc (α := fun _ => B) (fun k => f (c k)) 0 i := by
@@ -59,7 +61,9 @@ def edgeBoundaryHom (n : ℕ) : (Fin n → A) →+ (Fin (n + 1) → A) where
     simp only [edgeBoundary, Pi.add_apply, hs, hc]
     abel
 
-/-- The total of a finite boundary is zero.-/
+/-- The total of a finite boundary is zero.
+@isnad1 id=eq.0h3v.s6.aa38fe33b9e1 from=translated src=- shape=a65d9d76 vocab=7a7b6baa
+-/
 theorem sum_edgeBoundary (c : Fin n → A) : ∑ i, edgeBoundary c i = 0 := by
   simp only [edgeBoundary]
   rw [sum_sub_distrib, Fin.sum_univ_castSucc, Fin.sum_univ_succ]
@@ -83,7 +87,9 @@ theorem eq_zero_of_edgeBoundary_eq_zero (c : Fin n → A)
 def edgePrefix (h : Fin (n + 1) → A) (i : Fin n) : A :=
   partialSum h i.castSucc.succ
 
-/-- The final partial sum is the full finite sum.-/
+/-- The final partial sum is the full finite sum.
+@isnad1 id=eq.0h3v.s5.e4dee9f9cc60 from=translated src=- shape=24639f9b vocab=09b30197
+-/
 theorem partialSum_last_eq_sum (h : Fin n → A) :
     partialSum h (last n) = ∑ i, h i := by
   unfold partialSum
@@ -91,7 +97,9 @@ theorem partialSum_last_eq_sum (h : Fin n → A) :
   rw [List.take_of_length_le (by simp)]
   exact Fin.sum_ofFn h
 
-/-- Prefix sums recover a tuple of total zero as a finite boundary.-/
+/-- Prefix sums recover a tuple of total zero as a finite boundary.
+@isnad1 id=eq.1h4v.s7.150164b0a69a from=translated src=- shape=afb9ff45 vocab=cafb8098
+-/
 theorem edgeBoundary_edgePrefix (h : Fin (n + 1) → A) (hsum : ∑ i, h i = 0)
     (j : Fin (n + 1)) : edgeBoundary (edgePrefix h) j = h j := by
   have hlo : snoc (α := fun _ => A) (edgePrefix h) 0 j = partialSum h j.succ := by
@@ -122,7 +130,9 @@ def IsCycle (horizontal : Fin m → Fin (n + 1) → A)
 def cellCoefficients (horizontal : Fin m → Fin (n + 1) → A) : Fin m → Fin n → A :=
   fun i => Fin.edgePrefix (horizontal i)
 
-/-- Conservation forces the total of each horizontal column to be zero.-/
+/-- Conservation forces the total of each horizontal column to be zero.
+@isnad1 id=eq.1h6v.s7.46334d8beb7a from=translated src=- shape=827b2dd2 vocab=1771611e
+-/
 theorem sum_horizontal_eq_zero
     (horizontal : Fin m → Fin (n + 1) → A)
     (vertical : Fin (m + 1) → Fin n → A) (hcycle : IsCycle horizontal vertical)
@@ -144,7 +154,9 @@ theorem sum_horizontal_eq_zero
   exact congrFun (Fin.eq_zero_of_edgeBoundary_eq_zero _ hb) i
 
 /-- The horizontal differences of the prefix coefficients recover every
-horizontal edge, including both sides of the rectangle.-/
+horizontal edge, including both sides of the rectangle.
+@isnad1 id=eq.1h7v.s6.fd06a2ca2e00 from=translated src=- shape=1a50fd7d vocab=dacc43ec
+-/
 theorem horizontal_eq_cell_boundary
     (horizontal : Fin m → Fin (n + 1) → A)
     (vertical : Fin (m + 1) → Fin n → A) (hcycle : IsCycle horizontal vertical)
@@ -154,7 +166,9 @@ theorem horizontal_eq_cell_boundary
     (sum_horizontal_eq_zero horizontal vertical hcycle i) j).symm
 
 /-- The vertical differences of the same coefficients recover every vertical
-edge. No additional condition on interior edges is assumed.-/
+edge. No additional condition on interior edges is assumed.
+@isnad1 id=eq.1h7v.s6.191b8fd5efa7 from=translated src=- shape=6bbf807e vocab=6096a050
+-/
 theorem vertical_eq_cell_boundary
     (horizontal : Fin m → Fin (n + 1) → A)
     (vertical : Fin (m + 1) → Fin n → A) (hcycle : IsCycle horizontal vertical)
@@ -189,7 +203,9 @@ namespace Fin
 variable {R B : Type*} [Ring R] [AddCommGroup B] [Module R B] {n : ℕ}
 
 /-- Summation by parts for a finite coefficient boundary and arbitrary edge
-values. The end coefficients are padded by zero.-/
+values. The end coefficients are padded by zero.
+@isnad1 id=eq.0h5v.s8.ae486dd298eb from=translated src=- shape=ba924e8e vocab=7583c296
+-/
 theorem sum_edgeBoundary_smul (c : Fin n → R) (e : Fin (n + 1) → B) :
     (∑ j, edgeBoundary c j • e j) =
       ∑ i, c i • (e i.castSucc - e i.succ) := by
@@ -214,7 +230,9 @@ variable {R B : Type*} [Ring R] [AddCommGroup B] [Module R B] {m n : ℕ}
 
 /-- Pairing a finite signed grid cycle with arbitrary edge values equals the
 sum of its prefix coefficients times counterclockwise cell boundaries.
-In particular, this applies to integer traversal counts and complex periods.-/
+In particular, this applies to integer traversal counts and complex periods.
+@isnad1 id=eq.1h8v.s9.6a9ee87314d7 from=translated src=- shape=9885ae90 vocab=6dde723f
+-/
 theorem sum_edges_eq_sum_cell_boundaries
     (horizontal : Fin m → Fin (n + 1) → R)
     (vertical : Fin (m + 1) → Fin n → R) (hcycle : IsCycle horizontal vertical)

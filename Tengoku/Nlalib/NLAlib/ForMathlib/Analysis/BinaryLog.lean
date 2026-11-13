@@ -14,7 +14,9 @@ noncomputable section
 open Real Set
 
 /-- Binary relative entropy dominates twice the squared parameter difference
-on the upper tail. Both parameters lie strictly between zero and one.-/
+on the upper tail. Both parameters lie strictly between zero and one.
+@isnad1 id=le.4h2v.s7.296a971bd72d from=translated src=- shape=3fdf17e7 vocab=16aef032
+-/
 theorem two_mul_sub_sq_le_binary_log {p q : ℝ} (hp : 0 < p) (hp1 : p < 1)
     (hpq : p ≤ q) (hq1 : q < 1) :
     2 * (q - p) ^ 2 ≤ p * log (p / q) + (1 - p) * log ((1 - p) / (1 - q)) := by

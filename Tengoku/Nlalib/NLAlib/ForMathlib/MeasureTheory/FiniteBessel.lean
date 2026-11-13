@@ -21,7 +21,9 @@ open MeasureTheory Finset
 namespace MeasureTheory
 
 /-- Coordinate orthogonality multiplies to orthogonality of finite tensor
-products, including an empty coordinate family.-/
+products, including an empty coordinate family.
+@isnad1 id=eq.1h7v.s7.d20a42f61297 from=translated src=- shape=e64d5eae vocab=0b5c459d
+-/
 theorem integral_prod_mul_prod_eq_ite
     {ι κ X : Type*} [Fintype ι] [DecidableEq κ] [MeasurableSpace X]
     (μ : ι → Measure X) [∀ i, SigmaFinite (μ i)]
@@ -43,7 +45,9 @@ theorem integral_prod_mul_prod_eq_ite
 set_option backward.isDefEq.respectTransparency false in
 /-- A finite orthonormal family bounds its real integral coefficients by the
 square integral of the original function. Only the displayed integrability
-conditions are needed; the underlying measure need not be finite.-/
+conditions are needed; the underlying measure need not be finite.
+@isnad1 id=le.4h6v.s8.7e31f4e18ac5 from=translated src=- shape=36e41ec0 vocab=fabc96a9
+-/
 theorem sum_sq_integral_mul_le_integral_sq_of_orthonormal
     {Ω ι : Type*} [MeasurableSpace Ω] [DecidableEq ι] {μ : Measure Ω}
     (s : Finset ι) (φ : ι → Ω → ℝ) {v : Ω → ℝ}

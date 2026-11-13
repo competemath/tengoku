@@ -42,7 +42,9 @@ def cubicalPrimitiveIntegral {Ω : Set ℂ} (g : ℂ → ℂ) (hΩ : IsOpen Ω)
 
 /-- The integral of a holomorphic function around an actual continuous
 singular square boundary is zero. No smoothness of that square or its faces,
-convexity of the ambient domain, or Cauchy equality is supplied.-/
+convexity of the ambient domain, or Cauchy equality is supplied.
+@isnad1 id=eq.2h3v.s9.d3774df81fa0 from=translated src=- shape=ad31a611 vocab=09e00895
+-/
 theorem cubicalPrimitiveIntegral_squareBoundary {Ω : Set ℂ}
     {g : ℂ → ℂ} (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (q : C(I × I, Ω)) :
     cubicalPrimitiveIntegral g hΩ hg (Cubical.squareBoundary q) = 0 := by
@@ -74,7 +76,9 @@ theorem cubicalPrimitiveIntegral_squareBoundary {Ω : Set ℂ}
     simp [cubicalPath, ψ, Cubical.top, projIcc_of_mem zero_le_one ht]
 
 /-- The intrinsic holomorphic integral kills every actual finite singular
-cubical two-chain boundary, by linearity and proved square cancellation.-/
+cubical two-chain boundary, by linearity and proved square cancellation.
+@isnad1 id=eq.2h3v.s10.522bf5305be5 from=translated src=- shape=4b910e2c vocab=b47ed7e3
+-/
 theorem cubicalPrimitiveIntegral_boundaryTwo {Ω : Set ℂ}
     {g : ℂ → ℂ} (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (S : Cubical.TwoChain Ω) :
     cubicalPrimitiveIntegral g hΩ hg (Cubical.boundaryTwo S) = 0 := by
@@ -83,7 +87,9 @@ theorem cubicalPrimitiveIntegral_boundaryTwo {Ω : Set ℂ}
     smul_zero, Finset.sum_const_zero]
 
 /-- The intrinsic holomorphic integral kills every degenerate constant edge,
-so it descends to normalized cubical one-chains.-/
+so it descends to normalized cubical one-chains.
+@isnad1 id=eq.2h3v.s10.d5ff29ce9e5b from=translated src=- shape=24620b90 vocab=901ed7c8
+-/
 theorem cubicalPrimitiveIntegral_constantChain {Ω : Set ℂ}
     {g : ℂ → ℂ} (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (D : Ω →₀ ℤ) :
     cubicalPrimitiveIntegral g hΩ hg (Cubical.constantChain D) = 0 := by
@@ -96,7 +102,9 @@ theorem cubicalPrimitiveIntegral_constantChain {Ω : Set ℂ}
   simp only [Finsupp.sum, map_sum, map_smul, hz, smul_zero, Finset.sum_const_zero]
 
 /-- The intrinsic integral equals the actual native curve integral on a
-finite chain whose nonzero edges are C1.-/
+finite chain whose nonzero edges are C1.
+@isnad1 id=eq.3h3v.s10.f9972b6fb8df from=translated src=- shape=302aeef1 vocab=ec6a5c9b
+-/
 theorem cubicalPrimitiveIntegral_eq_cubicalCurveIntegral {Ω : Set ℂ}
     {g : ℂ → ℂ} (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (Γ : Cubical.OneChain Ω)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I) :
@@ -111,7 +119,9 @@ theorem cubicalPrimitiveIntegral_eq_cubicalCurveIntegral {Ω : Set ℂ}
 finite C1 cycle. Null homology is an explicit finite continuous cubical
 two-chain boundary in the holomorphy domain, with no scalar Cauchy assumption.
 The domain may be multiply connected.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.4h3v.s10.1ef0e740d0ae from=translated src=- shape=a40f2b01 vocab=12602e84
+-/
 theorem cubicalCurveIntegral_eq_zero_of_isNullHomologous {Ω : Set ℂ}
     {g : ℂ → ℂ} (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (Γ : Cubical.OneChain Ω)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

@@ -15,14 +15,18 @@ noncomputable section
 open Polynomial
 namespace Polynomial
 
-/-- Nonnegative coefficients give a nonnegative value on the positive half-line.-/
+/-- Nonnegative coefficients give a nonnegative value on the positive half-line.
+@isnad1 id=le.2h2v.s5.fa7e6d3e7c49 from=translated src=- shape=6332b743 vocab=5dc1f3eb
+-/
 theorem eval_nonneg_of_coeff_nonneg {p : ℝ[X]} (hp : ∀ k, 0 ≤ p.coeff k)
     {x : ℝ} (hx : 0 ≤ x) : 0 ≤ p.eval x := by
   rw [eval_eq_sum_range]
   exact Finset.sum_nonneg fun k _ => mul_nonneg (hp k) (pow_nonneg hx k)
 
 /-- A strictly positive constant coefficient strengthens the coefficient
-certificate to strict positivity, including at zero.-/
+certificate to strict positivity, including at zero.
+@isnad1 id=lt.3h2v.s6.b05a78286cac from=translated src=- shape=76bce43d vocab=85baeb08
+-/
 theorem eval_pos_of_coeff_nonneg_of_coeff_zero_pos {p : ℝ[X]}
     (hp : ∀ k, 0 ≤ p.coeff k) (hp0 : 0 < p.coeff 0) {x : ℝ} (hx : 0 ≤ x) :
     0 < p.eval x := by
@@ -34,13 +38,17 @@ theorem eval_pos_of_coeff_nonneg_of_coeff_zero_pos {p : ℝ[X]}
   simp only [pow_zero, mul_one] at h
   exact hp0.trans_le h
 
-/-- Nonnegative coefficients are preserved by every ordinary derivative.-/
+/-- Nonnegative coefficients are preserved by every ordinary derivative.
+@isnad1 id=le.1h3v.s7.191f97cc5ec3 from=translated src=- shape=e1ca67bb vocab=ff9d5fc1
+-/
 theorem coeff_iterate_derivative_nonneg {p : ℝ[X]} (hp : ∀ k, 0 ≤ p.coeff k)
     (r k : ℕ) : 0 ≤ ((derivative : ℝ[X] → ℝ[X])^[r] p).coeff k := by
   rw [coeff_iterate_derivative, nsmul_eq_mul]
   exact mul_nonneg (by positivity) (hp _)
 
-/-- Ordinary derivatives commute with a translation of the variable.-/
+/-- Ordinary derivatives commute with a translation of the variable.
+@isnad1 id=eq.0h3v.s8.5121b98e35a6 from=translated src=- shape=2308e377 vocab=568b8f74
+-/
 theorem iterate_derivative_comp_X_add_C (p : ℝ[X]) (a : ℝ) (r : ℕ) :
     (derivative : ℝ[X] → ℝ[X])^[r] (p.comp (X+C a)) =
       ((derivative : ℝ[X] → ℝ[X])^[r] p).comp (X+C a) := by
@@ -52,7 +60,9 @@ theorem iterate_derivative_comp_X_add_C (p : ℝ[X]) (a : ℝ) (r : ℕ) :
       Function.iterate_succ_apply']
 
 /-- A coefficient certificate after translation gives nonnegative derivatives
-throughout the entire tail, with no root-splitting assumption.-/
+throughout the entire tail, with no root-splitting assumption.
+@isnad1 id=le.2h4v.s7.e954644734ef from=translated src=- shape=7b1d90ea vocab=5999485a
+-/
 theorem iterate_derivative_eval_nonneg_of_shifted_coeff_nonneg
     {p : ℝ[X]} {a : ℝ} (hp : ∀ k, 0 ≤ (p.comp (X+C a)).coeff k)
     {x : ℝ} (hx : a ≤ x) (r : ℕ) :
@@ -64,7 +74,9 @@ theorem iterate_derivative_eval_nonneg_of_shifted_coeff_nonneg
   exact h
 
 /-- A positive constant term in the translated coefficient certificate proves
-strict positivity throughout the tail.-/
+strict positivity throughout the tail.
+@isnad1 id=lt.3h3v.s7.6cbefc81fde3 from=translated src=- shape=2312d76e vocab=fdd86da2
+-/
 theorem eval_pos_of_shifted_coeff_nonneg {p : ℝ[X]} {a : ℝ}
     (hp : ∀ k, 0 ≤ (p.comp (X+C a)).coeff k)
     (hp0 : 0 < (p.comp (X+C a)).coeff 0) {x : ℝ} (hx : a ≤ x) :
@@ -74,7 +86,9 @@ theorem eval_pos_of_shifted_coeff_nonneg {p : ℝ[X]} {a : ℝ}
   simpa only [eval_comp, eval_add, eval_X, eval_C, sub_add_cancel] using h
 
 /-- A positive linear term in the translated coefficient certificate proves
-strict positivity of the derivative throughout the tail.-/
+strict positivity of the derivative throughout the tail.
+@isnad1 id=lt.3h3v.s8.a7cc3f5cd792 from=translated src=- shape=3e71703a vocab=7c17a14d
+-/
 theorem derivative_eval_pos_of_shifted_coeff_nonneg {p : ℝ[X]} {a : ℝ}
     (hp : ∀ k, 0 ≤ (p.comp (X+C a)).coeff k)
     (hp1 : 0 < (p.comp (X+C a)).coeff 1) {x : ℝ} (hx : a ≤ x) :
@@ -93,7 +107,9 @@ theorem derivative_eval_pos_of_shifted_coeff_nonneg {p : ℝ[X]} {a : ℝ}
 
 /-- Shifted monic Laguerre recurrence polynomials have nonnegative coefficients
 and strictly positive constant and linear coefficients beyond `4N`.
-The invariant `Q_j - j Q_(j-1)` has nonnegative coefficients.-/
+The invariant `Q_j - j Q_(j-1)` has nonnegative coefficients.
+@isnad1 id=and.3h3v.s9.3c229475bef7 from=translated src=- shape=96d025a4 vocab=4a0cf2ea
+-/
 theorem shifted_laguerre_recurrence_coeff_certificate
     (P : ℕ → ℝ[X]) (hP0 : P 0 = 1)
     (hP : ∀ j, P (j+1) = (X-C (2*(j:ℝ)+1)) * P j - C ((j:ℝ)^2) * P (j-1))

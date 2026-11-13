@@ -10,7 +10,9 @@ A support-preserving reindexing of the even tail gives its sharp geometric estim
 noncomputable section
 namespace NLAlib
 /-- The even geometric tail beyond degree `n` is at most the geometric series
-starting at `n+1` with ratio `q²`. Source: scalar estimate in ATAP Theorems 19.3–19.4.-/
+starting at `n+1` with ratio `q²`. Source: scalar estimate in ATAP Theorems 19.3–19.4.
+@isnad1 id=le.2h2v.s7.b8bafbb6aad9 from=translated src=- shape=0de8d50e vocab=18d13c20
+-/
 theorem tsum_even_geometric_tail_le {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (n : ℕ) :
     (∑' k : ℕ, if n < k ∧ Even k then q ^ k else 0) ≤ q ^ (n + 1) / (1 - q ^ 2) := by
   let m := 2 * (n / 2 + 1)
@@ -41,7 +43,9 @@ theorem tsum_even_geometric_tail_le {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (n : �
   exact pow_le_pow_of_le_one hq0.le hq1.le (by omega)
 
 /-- A geometric bound on positive-index coefficients bounds the absolute even tail.
-Source: scalar coefficient-tail estimate in ATAP Theorems 19.3–19.4.-/
+Source: scalar coefficient-tail estimate in ATAP Theorems 19.3–19.4.
+@isnad1 id=le.5h4v.s8.cac414cbaa29 from=translated src=- shape=9ede8224 vocab=779c8419
+-/
 theorem tsum_even_abs_tail_le_of_geometric {c : ℕ → ℝ}
     (hs : Summable (fun k => |c k|)) {q M : ℝ} (hq0 : 0 < q) (hq1 : q < 1) (hM : 0 ≤ M)
     (hc : ∀ k, 0 < k → |c k| ≤ 2 * M * q ^ k) (n : ℕ) :

@@ -62,7 +62,9 @@ def continuousMapIntegral (c : ℂ) (r : ℝ) (hr : 0 ≤ r) : C(sphere c r, ℂ
         simpa only [extendFromSphere, dite_eq_left hz] using f.norm_coe_le_norm ⟨z, hz⟩
 
 /-- The continuous linear circle integral agrees with the ordinary circle integral
-of any function whose restriction supplies the bundled continuous map.-/
+of any function whose restriction supplies the bundled continuous map.
+@isnad1 id=eq.2h4v.s10.4e1d00cfddaf from=translated src=- shape=97e14c0c vocab=35afe257
+-/
 theorem continuousMapIntegral_eq {c : ℂ} {r : ℝ} (hr : 0 ≤ r)
     (f : C(sphere c r, ℂ)) (g : ℂ → ℂ)
     (hg : ∀ z (hz : z ∈ sphere c r), f ⟨z, hz⟩ = g z) :
@@ -79,7 +81,9 @@ private theorem inverse_apply {X : Type*} [TopologicalSpace X]
 
 /-- A contour quotient depends analytically on the parameter whenever its two
 continuous-function-valued factors do and the denominator has no zero on the fixed
-circle. The proof constructs a common nonvanishing neighborhood using openness of units.-/
+circle. The proof constructs a common nonvanishing neighborhood using openness of units.
+@isnad1 id=analytic.4h5v.s10.9afd9690b8d2 from=translated src=- shape=7f3b6745 vocab=0354dde9
+-/
 theorem analyticAt_integral_div {c : ℂ} {r : ℝ} (hr : 0 ≤ r)
     {F G : ℂ → C(sphere c r, ℂ)} {u : ℂ}
     (hF : AnalyticAt ℂ F u) (hG : AnalyticAt ℂ G u)

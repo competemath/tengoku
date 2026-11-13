@@ -19,7 +19,9 @@ open NLAlib
 (T log M - T log T + T)` over positive definite `T`.
 
 Tropp 2015, Lemma 8.1.6. Atlas: `operator-monotone-convex`. Ported from the Prove2me mission *An
-Introduction to Matrix Concentration Inequalities, Ch 8*.-/
+Introduction to Matrix Concentration Inequalities, Ch 8*.
+@isnad1 id=isgreate.1h2v.s7.f5986d7e934c from=translated src=- shape=2d0efcdf vocab=3593d456
+-/
 theorem NLAlib.isGreatest_variational_trace {d : ℕ} [NeZero d]
     (M : Matrix (Fin d) (Fin d) ℂ) (hM : M.PosDef) :
     IsGreatest {r : ℝ | ∃ T : Matrix (Fin d) (Fin d) ℂ,

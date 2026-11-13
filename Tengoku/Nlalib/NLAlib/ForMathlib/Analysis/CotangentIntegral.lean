@@ -19,7 +19,9 @@ open Real Set MeasureTheory
 namespace NLAlib
 
 /-- Cotangent is convex on the positive half quadrant.
-Source: its nonnegative second derivative.-/
+Source: its nonnegative second derivative.
+@isnad1 id=convexon.0h0v.s5.6f6d034af82d from=translated src=- shape=1ba7c696 vocab=f8bbf423
+-/
 theorem convexOn_cot : ConvexOn ℝ (Ioc 0 (π / 2)) Real.cot := by
   have hs : ∀ x ∈ Ioc (0 : ℝ) (π / 2), 0 < sin x := by
     intro x hx
@@ -40,7 +42,9 @@ theorem convexOn_cot : ConvexOn ℝ (Ioc 0 (π / 2)) Real.cot := by
       (cos_nonneg_of_mem_Icc ⟨by linarith [hx'.1, pi_pos], hx'.2⟩)) (sq_nonneg _)
 
 /-- A continuous convex function has midpoint value no larger than its integral average.
-Source: convexity paired at points reflected about the midpoint.-/
+Source: convexity paired at points reflected about the midpoint.
+@isnad1 id=le.3h3v.s6.4b88062490aa from=translated src=- shape=842a34b8 vocab=6f10225d
+-/
 theorem mul_midpoint_le_integral_of_convexOn {a b : ℝ} (hab : a ≤ b) {f : ℝ → ℝ}
     (hf : ContinuousOn f (Icc a b)) (hc : ConvexOn ℝ (Icc a b) f) :
     (b - a) * f ((a + b) / 2) ≤ ∫ x in a..b, f x := by
@@ -62,7 +66,9 @@ theorem mul_midpoint_le_integral_of_convexOn {a b : ℝ} (hab : a ≤ b) {f : �
   simpa only [smul_eq_mul, add_self_div_two] using hbound
 
 /-- The cotangent integral is the difference of log-sines, away from zero.
-Source: the elementary fundamental theorem of calculus.-/
+Source: the elementary fundamental theorem of calculus.
+@isnad1 id=eq.3h2v.s6.3a6791ebf6b4 from=translated src=- shape=12f0fe13 vocab=6a335230
+-/
 theorem integral_cot_eq_log_sin {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) (hb : b ≤ π / 2) :
     (∫ x in a..b, Real.cot x) = log (sin b) - log (sin a) := by
   have hs : ∀ x ∈ Icc a b, 0 < sin x := by
@@ -79,7 +85,9 @@ theorem integral_cot_eq_log_sin {a b : ℝ} (ha : 0 < a) (hab : a ≤ b) (hb : b
   ring
 
 /-- Cotangent is bounded by the reciprocal of its positive argument.
-Source: `x ≤ tan x` on the positive half quadrant.-/
+Source: `x ≤ tan x` on the positive half quadrant.
+@isnad1 id=le.2h1v.s5.d8f177fee914 from=translated src=- shape=72fb99db vocab=93f080c9
+-/
 theorem cot_le_one_div {x : ℝ} (hx : 0 < x) (hxπ : x ≤ π / 2) : Real.cot x ≤ 1 / x := by
   by_cases heq : x = π / 2
   · simp only [heq, Real.cot_eq_cos_div_sin, cos_pi_div_two, sin_pi_div_two, zero_div, one_div_div]; positivity

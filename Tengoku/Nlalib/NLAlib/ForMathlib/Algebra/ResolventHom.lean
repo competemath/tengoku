@@ -18,7 +18,9 @@ variable {R A B : Type*} [CommSemiring R] [Ring A] [Ring B]
   [Algebra R A] [Algebra R B]
 
 /-- A unital algebra homomorphism transports the actual resolvent at every
-parameter where the original scalar shift is a unit.-/
+parameter where the original scalar shift is a unit.
+@isnad1 id=eq.1h6v.s7.533e48905010 from=translated src=- shape=39ed5e35 vocab=4dfe4b22
+-/
 theorem AlgHom.map_resolvent (φ : A →ₐ[R] B) {a : A} {z : R}
     (hz : z ∈ resolventSet R a) :
     φ (resolvent a z) = resolvent (φ a) z := by

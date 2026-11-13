@@ -22,7 +22,9 @@ open scoped Topology
 namespace Complex
 
 /-- Every positive-height vertical Poisson mass test is integrable under
-an arbitrary finite circle measure.-/
+an arbitrary finite circle measure.
+@isnad1 id=integrab.1h2v.s7.55f2a66d9c17 from=translated src=- shape=d114f965 vocab=4ea77009
+-/
 theorem integrable_mul_poissonKernel_cayley_mul_I
     (μ : Measure Circle) [IsFiniteMeasure μ] {y : ℝ} (hy : 0 < y) :
     Integrable (fun ξ : Circle => y * poissonKernel 0 (cayleyTransform ((y : ℂ) * I)) ξ) μ := by
@@ -35,7 +37,9 @@ theorem integrable_mul_poissonKernel_cayley_mul_I
 
 /-- A finite limit of the vertical Poisson masses excludes an atom at
 the missing Cayley boundary point. This removes the linear term in the
-upper-half-plane Herglotz representation.-/
+upper-half-plane Herglotz representation.
+@isnad1 id=eq.1h2v.s7.b4da8cb482a1 from=translated src=- shape=9296c90e vocab=65c2f9a8
+-/
 theorem measure_singleton_one_eq_zero_of_tendsto_integral_poissonMass
     (μ : Measure Circle) [IsFiniteMeasure μ] {c : ℝ}
     (hlim : Tendsto (fun y : ℝ => ∫ ξ : Circle,
@@ -62,7 +66,9 @@ theorem measure_singleton_one_eq_zero_of_tendsto_integral_poissonMass
 
 /-- Finite vertical mass fixes the real-line weight and its exact total
 mass. Fatou first establishes integrability; dominated convergence then
-recovers equality, without any boundary-value assumption.-/
+recovers equality, without any boundary-value assumption.
+@isnad1 id=and.1h2v.s8.f8d6b81071b1 from=translated src=- shape=89c75037 vocab=7ca0052b
+-/
 theorem integrable_weight_and_integral_eq_of_tendsto_integral_poissonMass
     (μ : Measure Circle) [IsFiniteMeasure μ] {c : ℝ}
     (hlim : Tendsto (fun y : ℝ => ∫ ξ : Circle,

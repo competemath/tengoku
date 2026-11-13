@@ -12,7 +12,9 @@ open Finset
 namespace NLAlib
 
 /-- The positive inverse-power series of order at least two sums to at most two.
-Source: the finite inverse-square telescope used by the focused quadrature reroute.-/
+Source: the finite inverse-square telescope used by the focused quadrature reroute.
+@isnad1 id=le.1h1v.s6.53255e251f3c from=translated src=- shape=c60c0f6d vocab=50df3afe
+-/
 theorem tsum_inv_pow_nat_succ_le_two {p : ℕ} (hp : 2 ≤ p) :
     (∑' j : ℕ, (((j + 1 : ℕ) : ℝ) ^ p)⁻¹) ≤ 2 := by
   apply Real.tsum_le_of_sum_range_le (fun j => by positivity)

@@ -30,14 +30,18 @@ namespace NLAlib
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Unitary conjugation preserves Hermitian matrices. Source: unitary functional
-calculus, Tropp 2015, §2.1; atlas `golden-thompson` (helper).-/
+calculus, Tropp 2015, §2.1; atlas `golden-thompson` (helper).
+@isnad1 id=ishermit.1h3v.s8.42aaa8ff0e38 from=translated src=- shape=0f12c09e vocab=ccaf92e4
+-/
 theorem isHermitian_unitary_conj (U : unitary (Matrix ι ι ℂ))
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) :
     ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ).IsHermitian :=
   Matrix.isHermitian_mul_mul_conjTranspose (U : Matrix ι ι ℂ) hA
 
 /-- Unitary conjugation preserves the real spectrum. Source: the conjugation
-star-algebra automorphism; Tropp 2015, §2.1; atlas `golden-thompson` (helper).-/
+star-algebra automorphism; Tropp 2015, §2.1; atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h3v.s8.314aed167651 from=translated src=- shape=99fd1786 vocab=d12af6a8
+-/
 theorem spectrum_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     spectrum ℝ ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) = spectrum ℝ A := by
   exact AlgEquiv.spectrum_eq (Unitary.conjStarAlgAut ℝ (Matrix ι ι ℂ) U).toAlgEquiv A
@@ -45,7 +49,9 @@ theorem spectrum_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι
 /-- Every real function on a Hermitian matrix's finite spectrum commutes with
 unitary conjugation. No global continuity premise is needed. Source: Mathlib's
 CFC transport and Tropp 2015, Theorem 8.5.2; atlas `golden-thompson`,
-`operator-monotone-convex` (helper).-/
+`operator-monotone-convex` (helper).
+@isnad1 id=eq.1h4v.s9.eff7b6e5eaef from=translated src=- shape=1f459dca vocab=ef33e3fc
+-/
 theorem cfc_unitary_conj (U : unitary (Matrix ι ι ℂ)) (f : ℝ → ℝ)
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) :
     cfc f ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) =
@@ -65,7 +71,9 @@ theorem cfc_unitary_conj (U : unitary (Matrix ι ι ℂ)) (f : ℝ → ℝ)
 
 /-- Matrix logarithms commute with unitary conjugation of Hermitian matrices.
 Source: real logarithm functional calculus, Tropp 2015, §2.1.12;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=eq.1h3v.s9.f4611cc29d25 from=translated src=- shape=f1f9256a vocab=ae617eb0
+-/
 theorem matrixLog_unitary_conj (U : unitary (Matrix ι ι ℂ))
     (A : Matrix ι ι ℂ) (hA : A.IsHermitian) :
     matrixLog ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) =
@@ -74,7 +82,9 @@ theorem matrixLog_unitary_conj (U : unitary (Matrix ι ι ℂ))
 
 /-- Matrix exponentials commute with unitary conjugation, even without a
 Hermitian premise. Source: continuous ring-homomorphism transport of the
-exponential, Tropp 2015, §2.1.11; atlas `golden-thompson` (helper).-/
+exponential, Tropp 2015, §2.1.11; atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h3v.s9.eb391df87385 from=translated src=- shape=52397b94 vocab=c1c95c73
+-/
 theorem matrixExp_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     matrixExp ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) =
       (U : Matrix ι ι ℂ) * matrixExp A * (U : Matrix ι ι ℂ)ᴴ := by
@@ -86,7 +96,9 @@ theorem matrixExp_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι �
     ((NormedSpace.expSeries_radius_eq_top ℂ (Matrix ι ι ℂ)).symm ▸ edist_lt_top _ _)
 
 /-- The complex trace is unchanged by unitary conjugation. Source: cyclicity
-of trace, Tropp 2015, §2.1; atlas `golden-thompson` (helper).-/
+of trace, Tropp 2015, §2.1; atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h3v.s8.7ee7233cea26 from=translated src=- shape=ad33e0f7 vocab=f2d81e6b
+-/
 theorem trace_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     Matrix.trace ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) = Matrix.trace A := by
   rw [Matrix.trace_mul_cycle]
@@ -94,7 +106,9 @@ theorem trace_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι �
 
 /-- The real trace exponential is unchanged by unitary conjugation, for every
 complex square matrix. Source: exponential covariance and trace cyclicity,
-Tropp 2015, §3.1; atlas `golden-thompson` (helper).-/
+Tropp 2015, §3.1; atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h3v.s8.4b5dcb3301c1 from=translated src=- shape=b1588c05 vocab=057e3ab6
+-/
 theorem traceExp_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     traceExp ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ) = traceExp A := by
   unfold traceExp
@@ -102,21 +116,27 @@ theorem traceExp_unitary_conj (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι
 
 /-- Unitary conjugation preserves and reflects positive semidefiniteness.
 Source: invertible congruence of Hermitian quadratic forms, Tropp 2015, §2.1.5;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=iff.0h3v.s8.b0ad4092e93e from=translated src=- shape=560327fe vocab=781a5822
+-/
 theorem posSemidef_unitary_conj_iff (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ).PosSemidef ↔ A.PosSemidef :=
   Matrix.IsUnit.posSemidef_star_right_conjugate_iff (Unitary.isUnit_coe (U := U))
 
 /-- Unitary conjugation preserves and reflects positive definiteness.
 Source: invertible congruence of Hermitian quadratic forms, Tropp 2015, §2.1.5;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=iff.0h3v.s8.9a970858be0b from=translated src=- shape=560327fe vocab=95671f4c
+-/
 theorem posDef_unitary_conj_iff (U : unitary (Matrix ι ι ℂ)) (A : Matrix ι ι ℂ) :
     ((U : Matrix ι ι ℂ) * A * (U : Matrix ι ι ℂ)ᴴ).PosDef ↔ A.PosDef :=
   Matrix.IsUnit.posDef_star_right_conjugate_iff (Unitary.isUnit_coe (U := U))
 
 /-- Simultaneous unitary conjugation leaves the Lieb trace function unchanged.
 Only the logarithm's input needs to be Hermitian. Source: eigenbasis transport
-in the operator derivations §7; atlas `golden-thompson` (helper).-/
+in the operator derivations §7; atlas `golden-thompson` (helper).
+@isnad1 id=eq.1h4v.s9.90de7c6f690d from=translated src=- shape=ecbf443d vocab=4f3968a6
+-/
 theorem traceExp_add_matrixLog_unitary_conj (U : unitary (Matrix ι ι ℂ))
     (H A : Matrix ι ι ℂ) (hA : A.IsHermitian) :
     traceExp ((U : Matrix ι ι ℂ) * H * (U : Matrix ι ι ℂ)ᴴ +
@@ -131,7 +151,9 @@ theorem traceExp_add_matrixLog_unitary_conj (U : unitary (Matrix ι ι ℂ))
 /-- The complex trace pairing of a matrix exponential and another matrix is
 unchanged by simultaneous unitary conjugation. No Hermitian premises are needed.
 Source: exponential covariance and trace cyclicity, operator derivations §7;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h4v.s9.7a72c168dd78 from=translated src=- shape=77a80be4 vocab=9888c3a9
+-/
 theorem trace_matrixExp_mul_unitary_conj (U : unitary (Matrix ι ι ℂ))
     (H A : Matrix ι ι ℂ) :
     Matrix.trace (matrixExp ((U : Matrix ι ι ℂ) * H * (U : Matrix ι ι ℂ)ᴴ) *
@@ -145,7 +167,9 @@ theorem trace_matrixExp_mul_unitary_conj (U : unitary (Matrix ι ι ℂ))
 
 /-- The real part of the trace pairing of a matrix exponential and another
 matrix is invariant under simultaneous unitary conjugation. Source: operator
-derivations §7; atlas `golden-thompson` (helper).-/
+derivations §7; atlas `golden-thompson` (helper).
+@isnad1 id=eq.0h4v.s9.bf738b338b48 from=translated src=- shape=c66e49f2 vocab=9eb6626f
+-/
 theorem re_trace_matrixExp_mul_unitary_conj (U : unitary (Matrix ι ι ℂ))
     (H A : Matrix ι ι ℂ) :
     (Matrix.trace (matrixExp ((U : Matrix ι ι ℂ) * H * (U : Matrix ι ι ℂ)ᴴ) *
@@ -156,7 +180,9 @@ theorem re_trace_matrixExp_mul_unitary_conj (U : unitary (Matrix ι ι ℂ))
 /-- The Lieb trace function is invariant under a unitary conjugation that fixes
 its Hermitian parameter. Only the logarithm's input needs a Hermitian premise for
 this identity. Source: midpoint pinching, operator derivations §7;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=eq.2h4v.s9.3d7c3b2424ad from=translated src=- shape=b9679981 vocab=4f3968a6
+-/
 theorem traceExp_add_matrixLog_unitary_conj_of_conj_eq
     (U : unitary (Matrix ι ι ℂ)) (H A : Matrix ι ι ℂ) (hA : A.IsHermitian)
     (hH : (U : Matrix ι ι ℂ) * H * (U : Matrix ι ι ℂ)ᴴ = H) :
@@ -174,7 +200,9 @@ private theorem reflection_mem_unitary (R : Matrix ι ι ℂ)
 
 /-- Matrix logarithms commute with conjugation by a self-adjoint involution.
 Source: reflection pinching, Tropp 2015, Theorem 8.5.2;
-atlas `golden-thompson`, `operator-monotone-convex` (helper).-/
+atlas `golden-thompson`, `operator-monotone-convex` (helper).
+@isnad1 id=eq.3h3v.s7.73395a0190ab from=translated src=- shape=01518d73 vocab=b32bad3b
+-/
 theorem matrixLog_reflection_conj (R A : Matrix ι ι ℂ)
     (hR : Rᴴ = R) (hR2 : R * R = 1) (hA : A.IsHermitian) :
     matrixLog (R * A * R) = R * matrixLog A * R := by
@@ -183,7 +211,9 @@ theorem matrixLog_reflection_conj (R A : Matrix ι ι ℂ)
 
 /-- Matrix exponentials commute with conjugation by a self-adjoint involution.
 Source: reflection pinching, Tropp 2015, Theorem 8.5.2;
-atlas `golden-thompson`, `operator-monotone-convex` (helper).-/
+atlas `golden-thompson`, `operator-monotone-convex` (helper).
+@isnad1 id=eq.2h3v.s7.93e67f9c01f8 from=translated src=- shape=a10075a0 vocab=9ed22045
+-/
 theorem matrixExp_reflection_conj (R A : Matrix ι ι ℂ)
     (hR : Rᴴ = R) (hR2 : R * R = 1) :
     matrixExp (R * A * R) = R * matrixExp A * R := by
@@ -192,7 +222,9 @@ theorem matrixExp_reflection_conj (R A : Matrix ι ι ℂ)
 
 /-- The trace exponential is invariant under a self-adjoint involution.
 Source: trace cyclicity and reflection pinching, operator derivations §7;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=eq.2h3v.s7.c21692a1d60c from=translated src=- shape=b10eacaf vocab=356e712a
+-/
 theorem traceExp_reflection_conj (R A : Matrix ι ι ℂ)
     (hR : Rᴴ = R) (hR2 : R * R = 1) :
     traceExp (R * A * R) = traceExp A := by
@@ -201,20 +233,26 @@ theorem traceExp_reflection_conj (R A : Matrix ι ι ℂ)
 
 omit [DecidableEq ι] in
 /-- Conjugation by a self-adjoint matrix `R` preserves Hermitian matrices: `(R * A * R)ᴴ = R * A * R`.
-Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).-/
+Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).
+@isnad1 id=ishermit.2h3v.s7.d54c5f2e7546 from=translated src=- shape=febd6456 vocab=12fb8d61
+-/
 theorem isHermitian_reflection_conj (R A : Matrix ι ι ℂ) (hR : Rᴴ = R) (hA : A.IsHermitian) :
     (R * A * R).IsHermitian := by
   simpa only [hR] using Matrix.isHermitian_mul_mul_conjTranspose R hA
 
 /-- Conjugation by a self-adjoint involution preserves the real spectrum.
-Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).-/
+Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).
+@isnad1 id=eq.2h3v.s7.7fa422cd0591 from=translated src=- shape=18efe253 vocab=918e9e87
+-/
 theorem spectrum_reflection_conj (R A : Matrix ι ι ℂ) (hR : Rᴴ = R) (hR2 : R * R = 1) :
     spectrum ℝ (R * A * R) = spectrum ℝ A := by
   simpa only [hR] using spectrum_unitary_conj ⟨R, reflection_mem_unitary R hR hR2⟩ A
 
 /-- Every real function on a Hermitian matrix's finite spectrum commutes with conjugation by a
 self-adjoint involution: `cfc f (R * A * R) = R * cfc f A * R`.
-Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).-/
+Source: reflection pinching, Tropp 2015, Theorem 8.5.2; atlas `operator-monotone-convex` (helper).
+@isnad1 id=eq.3h4v.s8.60f82012b22b from=translated src=- shape=fc7c8067 vocab=c58df465
+-/
 theorem cfc_reflection_conj (R A : Matrix ι ι ℂ) (hR : Rᴴ = R) (hR2 : R * R = 1)
     (hA : A.IsHermitian) (f : ℝ → ℝ) :
     cfc f (R * A * R) = R * cfc f A * R := by
@@ -222,7 +260,9 @@ theorem cfc_reflection_conj (R A : Matrix ι ι ℂ) (hR : Rᴴ = R) (hR2 : R * 
 
 /-- Positive definiteness is preserved and reflected by a self-adjoint involution.
 Source: invertible quadratic-form congruence, Tropp 2015, §2.1.5;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=iff.2h3v.s7.d7bbe42c7087 from=translated src=- shape=fd73d76b vocab=565a1288
+-/
 theorem posDef_reflection_conj_iff (R A : Matrix ι ι ℂ)
     (hR : Rᴴ = R) (hR2 : R * R = 1) :
     (R * A * R).PosDef ↔ A.PosDef := by
@@ -231,7 +271,9 @@ theorem posDef_reflection_conj_iff (R A : Matrix ι ι ℂ)
 
 /-- A reflection fixing the Lieb parameter preserves its trace function.
 Source: the midpoint pinching argument in operator derivations §7;
-atlas `golden-thompson` (helper).-/
+atlas `golden-thompson` (helper).
+@isnad1 id=eq.4h4v.s8.7c7e79982687 from=translated src=- shape=0c806b3e vocab=15ab5a63
+-/
 theorem traceExp_add_matrixLog_reflection_conj_of_conj_eq (R H A : Matrix ι ι ℂ)
     (hR : Rᴴ = R) (hR2 : R * R = 1) (hA : A.IsHermitian)
     (hH : R * H * R = H) :
@@ -250,7 +292,9 @@ set_option backward.isDefEq.respectTransparency false in
 Arbitrary real functions are allowed because the diagonal spectrum is finite.
 Source: the private `cfc_diag` proof in `JointTensorRepresentation`, via Mathlib's
 diagonal algebra homomorphism and Pi CFC; Tropp 2015, §2.1.11;
-atlas `golden-thompson`, `operator-monotone-convex` (helper).-/
+atlas `golden-thompson`, `operator-monotone-convex` (helper).
+@isnad1 id=eq.0h3v.s7.f24f67528191 from=translated src=- shape=b31e0edd vocab=7fde7542
+-/
 theorem cfc_diagonal_real (f : ℝ → ℝ) (x : ι → ℝ) :
     cfc f (Matrix.diagonal fun i => (x i : ℂ)) =
       Matrix.diagonal fun i => (f (x i) : ℂ) := by
@@ -279,7 +323,9 @@ theorem cfc_diagonal_real (f : ℝ → ℝ) (x : ι → ℝ) :
 /-- The exponential acts entrywise on a real diagonal matrix. This reusable
 calculus lemma was previously private in `GoldenThompson`.
 Source: diagonal CFC; Stahl §1.3.1 and Tropp 2015, §2.1.11;
-atlas `trace-exponential-stahl` (partial), `golden-thompson` (partial).-/
+atlas `trace-exponential-stahl` (partial), `golden-thompson` (partial).
+@isnad1 id=eq.0h2v.s5.61782521b85c from=translated src=- shape=3dc29f9f vocab=6de1c833
+-/
 theorem matrixExp_diagonal_real (h : ι → ℝ) :
     matrixExp (Matrix.diagonal fun i => (h i : ℂ)) =
       Matrix.diagonal fun i => (Real.exp (h i) : ℂ) := by
@@ -291,7 +337,9 @@ theorem matrixExp_diagonal_real (h : ι → ℝ) :
 omit [DecidableEq ι] in
 /-- Equivalent finite labels preserve the complex trace. Source: the private
 `trace_reindex` helper in `IntrinsicBernstein`, by reindexing the diagonal sum;
-atlas `golden-thompson` (finite-index transport helper).-/
+atlas `golden-thompson` (finite-index transport helper).
+@isnad1 id=eq.0h4v.s6.2b9373f22049 from=translated src=- shape=821bd72c vocab=acfe728e
+-/
 theorem trace_reindex {κ : Type*} [Fintype κ] (e : ι ≃ κ) (A : Matrix ι ι ℂ) :
     Matrix.trace (Matrix.reindex e e A) = Matrix.trace A := by
   simp only [Matrix.trace, Matrix.reindex_apply, Matrix.diag_apply, Matrix.submatrix_apply]
@@ -299,7 +347,9 @@ theorem trace_reindex {κ : Type*} [Fintype κ] (e : ι ≃ κ) (A : Matrix ι �
 
 /-- Equivalent finite labels commute with the matrix exponential, with no
 Hermitian premise. Source: continuous algebra-isomorphism transport of the
-exponential; atlas `golden-thompson` (finite-index transport helper).-/
+exponential; atlas `golden-thompson` (finite-index transport helper).
+@isnad1 id=eq.0h4v.s7.b286903f85ea from=translated src=- shape=72a866a3 vocab=84d42753
+-/
 theorem matrixExp_reindex {κ : Type*} [Fintype κ] [DecidableEq κ]
     (e : ι ≃ κ) (A : Matrix ι ι ℂ) :
     matrixExp (Matrix.reindex e e A) = Matrix.reindex e e (matrixExp A) := by
@@ -312,7 +362,9 @@ theorem matrixExp_reindex {κ : Type*} [Fintype κ] [DecidableEq κ]
 
 /-- Equivalent finite labels preserve the trace exponential, with no Hermitian
 premise. Source: exponential transport and invariance of the diagonal sum;
-atlas `golden-thompson` (finite-index transport helper).-/
+atlas `golden-thompson` (finite-index transport helper).
+@isnad1 id=eq.0h4v.s6.bec8deb3f0fd from=translated src=- shape=aee6f8fe vocab=16b58f74
+-/
 theorem traceExp_reindex {κ : Type*} [Fintype κ] [DecidableEq κ]
     (e : ι ≃ κ) (A : Matrix ι ι ℂ) :
     traceExp (Matrix.reindex e e A) = traceExp A := by
@@ -320,7 +372,9 @@ theorem traceExp_reindex {κ : Type*} [Fintype κ] [DecidableEq κ]
   rw [matrixExp_reindex, trace_reindex]
 
 /-- Equivalent finite labels preserve positive definiteness in both directions.
-Source: transport of finite quadratic forms; helper for atlas `matrix-freedman`.-/
+Source: transport of finite quadratic forms; helper for atlas `matrix-freedman`.
+@isnad1 id=iff.0h4v.s6.0c411a16d5fc from=translated src=- shape=01101eb5 vocab=3a28c455
+-/
 theorem posDef_reindex_iff {n r : Type*} (e : n ≃ r) (A : Matrix n n ℂ) :
     (Matrix.reindex e e A).PosDef ↔ A.PosDef := by
   change (A.submatrix e.symm e.symm).PosDef ↔ A.PosDef
@@ -339,7 +393,9 @@ theorem posDef_reindex_iff {n r : Type*} (e : n ≃ r) (A : Matrix n n ℂ) :
 matrix: `cfc f (reindex e e A) = reindex e e (cfc f A)` for every `f : ℝ → ℝ` (the spectrum is
 finite, so no continuity premise is needed).
 Source: star-algebra transport of continuous functional calculus via `reindexStarAlgEquiv`;
-atlas `operator-monotone-convex` (helper).-/
+atlas `operator-monotone-convex` (helper).
+@isnad1 id=eq.1h5v.s8.f5837210e49e from=translated src=- shape=9b977b78 vocab=b9ab45cc
+-/
 theorem cfc_reindex_of_isHermitian {n : Type*} [Fintype n] [DecidableEq n] {r : Type*}
     [Fintype r] [DecidableEq r] (e : n ≃ r) (f : ℝ → ℝ) (A : Matrix n n ℂ) (hA : A.IsHermitian) :
     cfc f (Matrix.reindex e e A) = Matrix.reindex e e (cfc f A) := by
@@ -358,7 +414,9 @@ theorem cfc_reindex_of_isHermitian {n : Type*} [Fintype n] [DecidableEq n] {r : 
 
 /-- Equivalent finite labels commute with the matrix logarithm for Hermitian input.
 Source: star-algebra transport of continuous functional calculus; helper for
-operator rederivations `eq:condlieb` and atlas `matrix-freedman`.-/
+operator rederivations `eq:condlieb` and atlas `matrix-freedman`.
+@isnad1 id=eq.1h4v.s7.2b3e7c8f2522 from=translated src=- shape=6435fcce vocab=3263c4ae
+-/
 theorem matrixLog_reindex_of_isHermitian {n : Type*} [Fintype n] [DecidableEq n] {r : Type*} [Fintype r] [DecidableEq r]
     (e : n ≃ r) (A : Matrix n n ℂ) (hA : A.IsHermitian) :
     matrixLog (Matrix.reindex e e A) = Matrix.reindex e e (matrixLog A) := by
@@ -374,7 +432,9 @@ theorem matrixLog_reindex_of_isHermitian {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- The trace exponential of a real diagonal matrix is the sum of the scalar
 exponentials. Source: the diagonal exponential series; atlas
-`trace-exponential-stahl` (helper).-/
+`trace-exponential-stahl` (helper).
+@isnad1 id=eq.0h2v.s5.6908de1bafde from=translated src=- shape=a41d164d vocab=1eaa6384
+-/
 theorem traceExp_diagonal_real (a : ι → ℝ) :
     traceExp (Matrix.diagonal (fun i => (a i : ℂ))) = ∑ i, Real.exp (a i) := by
   rw [traceExp_complex, matrixExp_diagonal_real]
@@ -383,7 +443,9 @@ theorem traceExp_diagonal_real (a : ι → ℝ) :
 
 /-- Every diagonal node in a unitary congruence belongs to the original real
 spectrum. Source: similarity invariance of the spectrum; atlas
-`trace-exponential-stahl` (helper).-/
+`trace-exponential-stahl` (helper).
+@isnad1 id=mem.2h5v.s7.c12aa549bbfa from=translated src=- shape=1d04c012 vocab=3ef72505
+-/
 theorem mem_real_spectrum_of_orthonormal_congruence_diagonal
     (H U : Matrix ι ι ℂ) (b : ι → ℝ) (hU : HasOrthonormalCols U)
     (hH : Uᴴ * H * U = Matrix.diagonal (fun i => (b i : ℂ))) (i : ι) :

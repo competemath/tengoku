@@ -36,7 +36,9 @@ def map (g : α → β) : {q : ℕ} → QueryProgram Q R α q → QueryProgram Q
   | _, .pure value => .pure (g value)
   | _, .query value next => .query value (fun response => map g (next response))
 
-/-- Postprocessing has the expected oracle semantics.-/
+/-- Postprocessing has the expected oracle semantics.
+@isnad1 id=eq.0h8v.s5.4d772946636f from=translated src=- shape=e7e469e4 vocab=ba275c9e
+-/
 @[simp] theorem run_map (f : Q → R) (g : α → β) (p : QueryProgram Q R α q) :
     run f (map g p) = g (run f p) := by
   induction p with
@@ -49,7 +51,9 @@ def bind : {q : ℕ} → QueryProgram Q R α q →
   | _, .pure value, next => next value
   | _, .query value branch, next => .query value (fun response => bind (branch response) next)
 
-/-- Running a sequential composition first runs the initial tree, then its continuation.-/
+/-- Running a sequential composition first runs the initial tree, then its continuation.
+@isnad1 id=eq.0h9v.s6.d15bc1660647 from=translated src=- shape=f2a46b83 vocab=812152ab
+-/
 @[simp] theorem run_bind (f : Q → R) (p : QueryProgram Q R α q)
     (next : α → QueryProgram Q R β r) :
     run f (bind p next) = run f (next (run f p)) := by
@@ -69,7 +73,9 @@ def afterFirst {q : ℕ} (alg : QueryAlgorithm Q R (q + 1) β) (response : R) :
   query i h := alg.query (i + 1) (Fin.cons response h)
   output h := alg.output (Fin.cons response h)
 
-/-- Separating the first query from the remaining strategy preserves the strategy.-/
+/-- Separating the first query from the remaining strategy preserves the strategy.
+@isnad1 id=eq.0h5v.s6.1f8e49854332 from=translated src=- shape=069bd141 vocab=e856f85a
+-/
 theorem prependQuery_afterFirst {q : ℕ} (alg : QueryAlgorithm Q R (q + 1) β) :
     prependQuery (alg.query 0 Fin.elim0) alg.afterFirst = alg := by
   cases alg with
@@ -93,7 +99,9 @@ def toProgram : {q : ℕ} → QueryAlgorithm Q R q β → QueryProgram Q R β q
 
 /-- The interaction tree answers exactly the same queries and returns the same output
 as its finite-history strategy.
-atlas: matvec-query-model (partial)-/
+atlas: matvec-query-model (partial)
+@isnad1 id=eq.0h6v.s5.32433e9e405e from=translated src=- shape=3d6bcd6f vocab=02b3d74c
+-/
 theorem run_toProgram {q : ℕ} (alg : QueryAlgorithm Q R q β) (f : Q → R) :
     alg.toProgram.run f = alg.run f := by
   induction q with
@@ -122,11 +130,15 @@ def run {𝕜 n β : Type*} [Fintype n] [NonUnitalNonAssocSemiring 𝕜]
     (alg : MatvecAlg 𝕜 n β) (A : Matrix n n 𝕜) : β :=
   alg.2.run A.mulVec
 
-/-- Compiling a strategy preserves its charged query budget.-/
+/-- Compiling a strategy preserves its charged query budget.
+@isnad1 id=eq.0h5v.s4.0de9ee162a76 from=translated src=- shape=254c4e87 vocab=3e52a62c
+-/
 @[simp] theorem cost_ofQueryAlgorithm {𝕜 n β : Type*} {q : ℕ}
     (alg : QueryAlgorithm (n → 𝕜) (n → 𝕜) q β) : (ofQueryAlgorithm alg).cost = q := rfl
 
-/-- Compiling a strategy preserves its matrix-vector semantics.-/
+/-- Compiling a strategy preserves its matrix-vector semantics.
+@isnad1 id=eq.0h6v.s5.d3a09730d99e from=translated src=- shape=2f9406c9 vocab=e141c0da
+-/
 @[simp] theorem run_ofQueryAlgorithm {𝕜 n β : Type*} [Fintype n]
     [NonUnitalNonAssocSemiring 𝕜] {q : ℕ}
     (alg : QueryAlgorithm (n → 𝕜) (n → 𝕜) q β) (A : Matrix n n 𝕜) :

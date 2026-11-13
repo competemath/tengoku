@@ -23,17 +23,23 @@ def rootCotangentSample (N k : ℕ) : ℝ :=
   (rootCotangentPrefix N (N - k) + rootCotangentPrefix N k - rootCotangentPrefix N (2 * k)) / N
 
 /-- Cotangent changes sign under reflection around pi.
-Source: the elementary sine and cosine reflection identities.-/
+Source: the elementary sine and cosine reflection identities.
+@isnad1 id=eq.0h1v.s4.ae69c04e8c3d from=translated src=- shape=4f881984 vocab=4466579b
+-/
 theorem cot_pi_sub (x : ℝ) : Real.cot (π - x) = -Real.cot x := by
   rw [Real.cot_eq_cos_div_sin, Real.cot_eq_cos_div_sin, cos_pi_sub, sin_pi_sub, neg_div]
 
 /-- Cotangent at the complementary half-quadrant angle is tangent.
-Source: the elementary sine and cosine complement identities.-/
+Source: the elementary sine and cosine complement identities.
+@isnad1 id=eq.0h1v.s5.b1922f295387 from=translated src=- shape=3607ec33 vocab=9eab4002
+-/
 theorem cot_pi_div_two_sub (x : ℝ) : Real.cot (π / 2 - x) = tan x := by
   rw [Real.cot_eq_cos_div_sin, tan_eq_sin_div_cos, cos_pi_div_two_sub, sin_pi_div_two_sub]
 
 /-- Cotangent minus tangent is twice the doubled-angle cotangent in the open half quadrant.
-Source: focused reroutes, the central cotangent sample calculation.-/
+Source: focused reroutes, the central cotangent sample calculation.
+@isnad1 id=eq.2h1v.s6.fceee97ab7d1 from=translated src=- shape=b07fd4af vocab=57e1a81d
+-/
 theorem cot_sub_tan_eq_two_mul_cot_two_mul {x : ℝ} (hx : 0 < x) (hxπ : x < π / 2) :
     Real.cot x - tan x = 2 * Real.cot (2 * x) := by
   have hs : sin x ≠ 0 := (sin_pos_of_pos_of_lt_pi hx (by linarith [pi_pos])).ne'
@@ -43,7 +49,9 @@ theorem cot_sub_tan_eq_two_mul_cot_two_mul {x : ℝ} (hx : 0 < x) (hxπ : x < π
   nlinarith [sin_sq_add_cos_sq x]
 
 /-- Reflecting a complete half-index cotangent period reverses its signs.
-Source: focused reroutes, finite cotangent-prefix reflection.-/
+Source: focused reroutes, finite cotangent-prefix reflection.
+@isnad1 id=eq.2h2v.s7.b0ac46f98153 from=translated src=- shape=17a6d075 vocab=48cc33e1
+-/
 theorem cot_half_index_reflect {N j : ℕ} (hN : 0 < N) (hj : j < 2 * N) :
     Real.cot ((((2 * N - 1 - j : ℕ) : ℝ) + 1 / 2) * π / (2 * N)) =
       -Real.cot (((j : ℝ) + 1 / 2) * π / (2 * N)) := by
@@ -57,7 +65,9 @@ theorem cot_half_index_reflect {N j : ℕ} (hN : 0 < N) (hj : j < 2 * N) :
   rw [heq, cot_pi_sub]
 
 /-- A full cotangent prefix period sums to zero.
-Source: focused reroutes, finite cotangent-prefix reflection.-/
+Source: focused reroutes, finite cotangent-prefix reflection.
+@isnad1 id=eq.1h1v.s5.416aaa9461ff from=translated src=- shape=9709389b vocab=ad5a68d6
+-/
 theorem rootCotangentPrefix_two_mul_eq_zero {N : ℕ} (hN : 0 < N) :
     rootCotangentPrefix N (2 * N) = 0 := by
   let f := fun j : ℕ => Real.cot (((j : ℝ) + 1 / 2) * π / (2 * N))
@@ -72,7 +82,9 @@ theorem rootCotangentPrefix_two_mul_eq_zero {N : ℕ} (hN : 0 < N) :
   linarith
 
 /-- A cotangent prefix reflected around a full period has the same value.
-Source: focused reroutes, the finite identity `C_(N+r)=C_(N−r)`.-/
+Source: focused reroutes, the finite identity `C_(N+r)=C_(N−r)`.
+@isnad1 id=eq.2h2v.s5.462dd3229aba from=translated src=- shape=a4e38b96 vocab=f8cf6e61
+-/
 theorem rootCotangentPrefix_reflect {N r : ℕ} (hN : 0 < N) (hr : r ≤ 2 * N) :
     rootCotangentPrefix N (2 * N - r) = rootCotangentPrefix N r := by
   let f := fun j : ℕ => Real.cot (((j : ℝ) + 1 / 2) * π / (2 * N))
@@ -90,7 +102,9 @@ theorem rootCotangentPrefix_reflect {N r : ℕ} (hN : 0 < N) (hr : r ≤ 2 * N) 
   linarith
 
 /-- Reflection of an interior sample index preserves its cotangent-prefix expression.
-Source: focused reroutes, root-grid sample reflection.-/
+Source: focused reroutes, root-grid sample reflection.
+@isnad1 id=eq.2h2v.s5.e4da6b15f24b from=translated src=- shape=3dd7c999 vocab=07685cce
+-/
 theorem rootCotangentSample_reflect {N k : ℕ} (hN : 0 < N) (hk : k ≤ N) :
     rootCotangentSample N (N - k) = rootCotangentSample N k := by
   unfold rootCotangentSample
@@ -99,14 +113,18 @@ theorem rootCotangentSample_reflect {N k : ℕ} (hN : 0 < N) (hk : k ≤ N) :
   ring
 
 /-- Prefix values change by the next half-index cotangent.
-Source: the defining finite prefix sum.-/
+Source: the defining finite prefix sum.
+@isnad1 id=eq.0h2v.s6.1b90d1a488ca from=translated src=- shape=8d97da16 vocab=05e4acba
+-/
 theorem rootCotangentPrefix_succ (N r : ℕ) :
     rootCotangentPrefix N (r + 1) = rootCotangentPrefix N r +
       Real.cot (((r : ℝ) + 1 / 2) * π / (2 * N)) := by
   exact sum_range_succ _ _
 
 /-- Adjacent sample expressions have the finite midpoint-convexity difference.
-Source: focused reroutes, the difference after equation `polyretry:sample-C`.-/
+Source: focused reroutes, the difference after equation `polyretry:sample-C`.
+@isnad1 id=eq.2h2v.s8.7e3c37729cec from=translated src=- shape=0c3e20cb vocab=152dc1ce
+-/
 theorem rootCotangentSample_sub_succ {N k : ℕ} (hN : 0 < N) (hk : k < N / 2) :
     (N : ℝ) * (rootCotangentSample N (k + 1) - rootCotangentSample N k) =
       2 * Real.cot (((2 * k : ℕ) + 1 : ℝ) * π / (2 * N)) -
@@ -138,7 +156,9 @@ theorem rootCotangentSample_sub_succ {N k : ℕ} (hN : 0 < N) (hk : k < N / 2) :
   linear_combination hpair
 
 /-- An adjacent root sample does not increase on the first half of the grid.
-Source: focused reroutes, cotangent midpoint convexity.-/
+Source: focused reroutes, cotangent midpoint convexity.
+@isnad1 id=le.2h2v.s5.8f49e5a7dd0a from=translated src=- shape=53527179 vocab=0416c575
+-/
 theorem rootCotangentSample_succ_le {N k : ℕ} (hN : 0 < N) (hk : k < N / 2) :
     rootCotangentSample N (k + 1) ≤ rootCotangentSample N k := by
   have hNR : (0 : ℝ) < N := by exact_mod_cast hN
@@ -178,7 +198,9 @@ theorem rootCotangentSample_succ_le {N k : ℕ} (hN : 0 < N) (hk : k < N / 2) :
   exact sub_nonpos.mp hs
 
 /-- The central cotangent-prefix sample is smallest among all interior indices.
-Source: focused reroutes, sample symmetry and midpoint convexity.-/
+Source: focused reroutes, sample symmetry and midpoint convexity.
+@isnad1 id=le.3h2v.s5.9414962ae4ae from=translated src=- shape=bb2d8595 vocab=60006897
+-/
 theorem rootCotangentSample_center_le {N k : ℕ} (hN : 2 ≤ N) (hk0 : 1 ≤ k) (hkN : k < N) :
     rootCotangentSample N (N / 2) ≤ rootCotangentSample N k := by
   have hpos : 0 < N := by omega
@@ -197,7 +219,9 @@ theorem rootCotangentSample_center_le {N k : ℕ} (hN : 2 ≤ N) (hk0 : 1 ≤ k)
     exact h
 
 /-- Complementary half-index cotangents are tangent terms.
-Source: focused reroutes, the finite central-sample identity.-/
+Source: focused reroutes, the finite central-sample identity.
+@isnad1 id=eq.2h2v.s7.7807aaafdfdb from=translated src=- shape=5820589b vocab=db22a89b
+-/
 theorem cot_half_index_complement {N j : ℕ} (hN : 0 < N) (hj : j < N) :
     Real.cot ((((N - 1 - j : ℕ) : ℝ) + 1 / 2) * π / (2 * N)) =
       tan (((j : ℝ) + 1 / 2) * π / (2 * N)) := by
@@ -211,7 +235,9 @@ theorem cot_half_index_complement {N j : ℕ} (hN : 0 < N) (hj : j < N) :
   rw [heq, cot_pi_div_two_sub]
 
 /-- The last `r` terms of a half-period prefix sum to its first `r` tangent terms.
-Source: focused reroutes, finite cotangent-complement reflection.-/
+Source: focused reroutes, finite cotangent-complement reflection.
+@isnad1 id=eq.2h2v.s6.5cfa276e355a from=translated src=- shape=40af57a7 vocab=9b2faeba
+-/
 theorem rootCotangentPrefix_sub_complement {N r : ℕ} (hN : 0 < N) (hr : r ≤ N) :
     rootCotangentPrefix N N - rootCotangentPrefix N (N - r) =
       ∑ j ∈ range r, tan (((j : ℝ) + 1 / 2) * π / (2 * N)) := by
@@ -225,7 +251,9 @@ theorem rootCotangentPrefix_sub_complement {N r : ℕ} (hN : 0 < N) (hr : r ≤ 
   exact cot_half_index_complement hN ((mem_range.mp hj).trans_le hr)
 
 /-- The central cotangent-prefix sample has the finite double-angle sum and the
-odd tangent correction. Source: focused reroutes, equation `polyretry:central-cot`.-/
+odd tangent correction. Source: focused reroutes, equation `polyretry:central-cot`.
+@isnad1 id=eq.1h1v.s7.13f56409f74e from=translated src=- shape=df33c109 vocab=59eab922
+-/
 theorem rootCotangentSample_center_eq {N : ℕ} (hN : 2 ≤ N) :
     rootCotangentSample N (N / 2) =
       (2 / (N : ℝ)) * ∑ j ∈ range (N / 2), Real.cot (((j : ℝ) + 1 / 2) * π / N) +

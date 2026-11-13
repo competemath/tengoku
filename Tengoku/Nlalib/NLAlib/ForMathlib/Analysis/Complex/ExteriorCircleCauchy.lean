@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- A holomorphic function on an exterior domain has equal contour integrals
 on any two positive-radius circles in that domain. This is the radius
-independence needed to fix one density in `trace-exponential-stahl`.-/
+independence needed to fix one density in `trace-exponential-stahl`.
+@isnad1 id=eq.5h4v.s7.f32ccc260cf5 from=translated src=- shape=1b2b94a8 vocab=08a4d4c3
+-/
 theorem circleIntegral_eq_of_differentiableOn_exterior
     {f : ℂ → ℂ} {R r s : ℝ} (hf : DifferentiableOn ℂ f {z | R < ‖z‖})
     (hr : 0 < r) (hs : 0 < s) (hRr : R < r) (hRs : R < s) :
@@ -47,7 +49,9 @@ theorem circleIntegral_eq_of_differentiableOn_exterior
 /-- The normalized exterior Cauchy kernel has the same integral on two circles
 lying in an exterior holomorphy domain. Both circles are counterclockwise.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.4h4v.s7.67ba1c1a0875 from=translated src=- shape=5c8f2a93 vocab=e48b1cd8
+-/
 theorem circleIntegral_inv_mul_eq_of_differentiableOn_exterior
     {f : ℂ → ℂ} {R r s : ℝ} (hf : DifferentiableOn ℂ f {z | R < ‖z‖})
     (hr : 0 < r) (hRr : R < r) (hrs : r ≤ s) :
@@ -69,7 +73,9 @@ theorem circleIntegral_inv_mul_eq_of_differentiableOn_exterior
 circle integral against `1 / z`. This is proved by enlarging the circle and a
 uniform norm estimate, rather than by assuming a residue at infinity.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.4h3v.s7.d5f015d44a32 from=translated src=- shape=c64ef19a vocab=9bfc5451
+-/
 theorem two_pi_i_inv_mul_circleIntegral_inv_mul_eq_zero_of_tendsto
     {f : ℂ → ℂ} {R r : ℝ} (hf : DifferentiableOn ℂ f {z | R < ‖z‖})
     (hr : 0 < r) (hRr : R < r) (hlim : Tendsto f (cobounded ℂ) (𝓝 0)) :
@@ -100,7 +106,9 @@ theorem two_pi_i_inv_mul_circleIntegral_inv_mul_eq_zero_of_tendsto
 /-- The counterclockwise exterior Cauchy integral of a function holomorphic near
 infinity equals its finite limit at infinity.
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.4h4v.s7.a2809b2d6d79 from=translated src=- shape=405034a6 vocab=9bfc5451
+-/
 theorem two_pi_i_inv_mul_circleIntegral_inv_mul_eq_of_tendsto
     {f : ℂ → ℂ} {a : ℂ} {R r : ℝ}
     (hf : DifferentiableOn ℂ f {z | R < ‖z‖}) (hr : 0 < r) (hRr : R < r)
@@ -141,7 +149,9 @@ inside the circle, even if the holomorphic function is not defined there. Its
 value is the function's limit at infinity, not its value at the enclosed point.
 This is the atomic Cauchy term in Stahl's representation (Stahl 2013, Theorem 2).
 Source: Stahl (2013), Theorem 2 (supporting analysis).
-Atlas: `trace-exponential-stahl` (helper).-/
+Atlas: `trace-exponential-stahl` (helper).
+@isnad1 id=eq.5h5v.s7.cfa9557092d6 from=translated src=- shape=e46441e0 vocab=c8501ab7
+-/
 theorem two_pi_i_inv_mul_circleIntegral_div_sub_eq_of_tendsto
     {f : ℂ → ℂ} {a t : ℂ} {R r : ℝ}
     (hf : DifferentiableOn ℂ f {z | R < ‖z‖}) (hr : 0 < r) (hRr : R < r)

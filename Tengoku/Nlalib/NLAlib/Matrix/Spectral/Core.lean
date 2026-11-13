@@ -66,7 +66,9 @@ atlas: matrix-calculus-def-/
 def lambdaMin [DecidableEq n] (A : Matrix n n 𝕜) : ℝ := sInf (spectrum ℝ A)
 
 /-- The sorted eigenvalues `eigenvalues₀` and the `n`-indexed `eigenvalues` have the same
-range.-/
+range.
+@isnad1 id=eq.1h3v.s6.0bb318eae2c8 from=translated src=- shape=8187bf00 vocab=35836537
+-/
 theorem _root_.Matrix.IsHermitian.range_eigenvalues₀ [DecidableEq n] {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) : Set.range hA.eigenvalues₀ = Set.range hA.eigenvalues := by
   have h : hA.eigenvalues = hA.eigenvalues₀ ∘ (Fintype.equivOfCardEq (Fintype.card_fin _)).symm :=
@@ -74,7 +76,9 @@ theorem _root_.Matrix.IsHermitian.range_eigenvalues₀ [DecidableEq n] {A : Matr
   rw [h, (Equiv.surjective _).range_comp]
 
 /-- For a Hermitian `A` on a nonempty index type, `lambdaMax A` is the first (largest) of
-Mathlib's decreasingly sorted eigenvalues. Horn–Johnson 2013, Thm 4.2.2.-/
+Mathlib's decreasingly sorted eigenvalues. Horn–Johnson 2013, Thm 4.2.2.
+@isnad1 id=eq.1h3v.s6.57c370b90116 from=translated src=- shape=c469c9d4 vocab=4b2dd724
+-/
 theorem lambdaMax_eq_eigenvalues₀_zero [DecidableEq n] [Nonempty n] {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) : lambdaMax A = hA.eigenvalues₀ ⟨0, Fintype.card_pos⟩ := by
   rw [lambdaMax, hA.spectrum_real_eq_range_eigenvalues, ← hA.range_eigenvalues₀]
@@ -83,7 +87,9 @@ theorem lambdaMax_eq_eigenvalues₀_zero [DecidableEq n] [Nonempty n] {A : Matri
   exact hA.eigenvalues₀_antitone (Nat.zero_le (i : ℕ))
 
 /-- For a Hermitian `A` on a nonempty index type, `lambdaMin A` is the last (smallest) of
-Mathlib's decreasingly sorted eigenvalues. Horn–Johnson 2013, Thm 4.2.2.-/
+Mathlib's decreasingly sorted eigenvalues. Horn–Johnson 2013, Thm 4.2.2.
+@isnad1 id=eq.1h3v.s6.328ff547e017 from=translated src=- shape=084d396c vocab=0bfe80ae
+-/
 theorem lambdaMin_eq_eigenvalues₀_last [DecidableEq n] [Nonempty n] {A : Matrix n n 𝕜}
     (hA : A.IsHermitian) :
     lambdaMin A = hA.eigenvalues₀ ⟨Fintype.card n - 1, Nat.sub_one_lt_of_lt Fintype.card_pos⟩ := by
@@ -93,7 +99,9 @@ theorem lambdaMin_eq_eigenvalues₀_last [DecidableEq n] [Nonempty n] {A : Matri
   exact hA.eigenvalues₀_antitone (Nat.le_sub_one_of_lt i.isLt)
 
 /-- Sorted eigenvalues depend only on the matrix: equal matrices have equal `eigenvalues₀`
-(whatever Hermitian proofs are supplied).-/
+(whatever Hermitian proofs are supplied).
+@isnad1 id=eq.3h5v.s7.bc3c2e0ac898 from=translated src=- shape=6e97db69 vocab=a7a31ecd
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_congr [DecidableEq n] {A B : Matrix n n 𝕜}
     (hA : A.IsHermitian) (hB : B.IsHermitian) (h : A = B) (i : Fin (Fintype.card n)) :
     hA.eigenvalues₀ i = hB.eigenvalues₀ i := by
@@ -101,7 +109,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_congr [DecidableEq n] {A B : Ma
 
 /-! ### The unit sphere -/
 
-/-- The Euclidean unit sphere of `n → 𝕜` is nonempty as soon as the index type is.-/
+/-- The Euclidean unit sphere of `n → 𝕜` is nonempty as soon as the index type is.
+@isnad1 id=nonempty.0h2v.s6.5605bcf3861e from=translated src=- shape=99c403ae vocab=2db39694
+-/
 theorem nonempty_unitSphere [Nonempty n] :
     Nonempty {x : n → 𝕜 // ‖WithLp.toLp 2 x‖ = 1} := by
   classical
@@ -110,7 +120,9 @@ theorem nonempty_unitSphere [Nonempty n] :
   rw [show (WithLp.toLp 2 (Pi.single i (1 : 𝕜)) : EuclideanSpace 𝕜 n) = EuclideanSpace.single i 1
     from rfl, PiLp.norm_single, norm_one]
 
-/-- The Euclidean unit sphere of `n → 𝕜` is empty when the index type is.-/
+/-- The Euclidean unit sphere of `n → 𝕜` is empty when the index type is.
+@isnad1 id=isempty.0h2v.s6.e4d109456205 from=translated src=- shape=99c403ae vocab=6b08b86a
+-/
 theorem isEmpty_unitSphere [IsEmpty n] :
     IsEmpty {x : n → 𝕜 // ‖WithLp.toLp 2 x‖ = 1} := ⟨fun x => by
   have h := x.2
@@ -121,7 +133,9 @@ theorem isEmpty_unitSphere [IsEmpty n] :
 
 /-- **Rayleigh characterisation of the smallest eigenvalue.** For a Hermitian `M` on a nonempty
 index type, the last (smallest) of Mathlib's decreasingly sorted eigenvalues is
-`λ_min(M) = inf { Re(x* M x) : ‖x‖₂ = 1 }`. Horn–Johnson 2013, Theorem 4.2.2.-/
+`λ_min(M) = inf { Re(x* M x) : ‖x‖₂ = 1 }`. Horn–Johnson 2013, Theorem 4.2.2.
+@isnad1 id=eq.2h3v.s9.213d131134aa from=translated src=- shape=1bf137e8 vocab=3928f507
+-/
 theorem _root_.Matrix.IsHermitian.eigenvalues₀_last_eq_iInf [DecidableEq n] {M : Matrix n n 𝕜}
     (hM : M.IsHermitian) (hn : 0 < Fintype.card n) :
     hM.eigenvalues₀ ⟨Fintype.card n - 1, Nat.sub_one_lt_of_lt hn⟩ =
@@ -189,7 +203,9 @@ theorem _root_.Matrix.IsHermitian.eigenvalues₀_last_eq_iInf [DecidableEq n] {M
 /-! ### Coordinates and nets -/
 
 open scoped RealInnerProductSpace in
-/-- The bilinear form of a matrix in coordinates: `⟨v, A u⟩ = ∑ᵢⱼ vᵢ Aᵢⱼ uⱼ`.-/
+/-- The bilinear form of a matrix in coordinates: `⟨v, A u⟩ = ∑ᵢⱼ vᵢ Aᵢⱼ uⱼ`.
+@isnad1 id=eq.0h5v.s13.b7d83fae9ec9 from=translated src=- shape=ee829299 vocab=bc7fb702
+-/
 theorem inner_toEuclideanLin_eq_sum [DecidableEq n] (A : Matrix m n ℝ)
     (u : EuclideanSpace ℝ n) (v : EuclideanSpace ℝ m) :
     ⟪v, (Matrix.toEuclideanLin.trans LinearMap.toContinuousLinearMap) A u⟫
@@ -203,7 +219,9 @@ open scoped Matrix.Norms.L2Operator RealInnerProductSpace in
 /-- Net argument for the spectral norm: if every pair of unit vectors `(u, v)` is `ε`-close to a
 pair in the finite set `I` (whose second components are unit vectors), then
 `(1 - 2ε)‖A‖₂ ≤ max_{(u,v) ∈ I} ⟨v, A u⟩`. Vershynin 2012, Lemma 5.4 (in this form). Helper for
-atlas `gordon`, `spectral-second-moment`.-/
+atlas `gordon`, `spectral-second-moment`.
+@isnad1 id=le.3h5v.s9.1d212a16565a from=translated src=- shape=e3ee998e vocab=c884d262
+-/
 theorem one_sub_two_mul_mul_specNorm_le_iSup [DecidableEq n] (A : Matrix m n ℝ) (ε : ℝ)
     (hε : 0 ≤ ε) (I : Finset (EuclideanSpace ℝ n × EuclideanSpace ℝ m))
     (hI : ∀ t ∈ I, ‖t.2‖ = 1)
@@ -299,7 +317,9 @@ open scoped Matrix.Norms.L2Operator in
 `‖A†‖₂² = ‖(A Aᵀ)⁻¹‖₂` with `A† = pinvR A = Aᵀ (A Aᵀ)⁻¹` (`C*`-identity `‖A†‖² = ‖(A†)ᵀ A†‖`
 and `(A†)ᵀ A† = (A Aᵀ)⁻¹`). (Without the hypothesis both sides are `0`.) HMT 2011, proof of
 Prop A.3 / Prop 10.4; helper for `pinv-spectral-tail`.
-atlas: pseudoinverse-/
+atlas: pseudoinverse
+@isnad1 id=eq.1h3v.s7.a9c6ee1db15b from=translated src=- shape=aede0870 vocab=4dc8fdad
+-/
 theorem specNorm_pinvR_sq [DecidableEq n] (A : Matrix m n ℝ) (hA : IsUnit (A * Aᵀ)) :
     specNorm (pinvR A) ^ 2 = specNorm (A * Aᵀ)⁻¹ := by
   unfold specNorm pinvR

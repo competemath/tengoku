@@ -77,7 +77,9 @@ private theorem circleIntegral_multiset_sum (c : ℂ) {r : ℝ} (hr : 0 ≤ r)
 
 /-- Integrating a polynomial's weighted logarithmic derivative around a root-free circle
 gives the sum of its enclosed roots, retaining algebraic multiplicities. The polynomial
-need not be squarefree; roots within the selected cluster may collide.-/
+need not be squarefree; roots within the selected cluster may collide.
+@isnad1 id=eq.2h3v.s8.32802b60e3ff from=translated src=- shape=d680d17e vocab=6fea6862
+-/
 theorem circleIntegral_mul_derivative_div_eq_sum_roots (p : ℂ[X]) (c : ℂ) {r : ℝ}
     (hr : 0 ≤ r) (hp : ∀ z ∈ sphere c r, p.eval z ≠ 0) :
     (∮ z in C(c, r), z * (p.derivative.eval z / p.eval z)) =
@@ -97,7 +99,9 @@ theorem circleIntegral_mul_derivative_div_eq_sum_roots (p : ℂ[X]) (c : ℂ) {r
     simp [div_eq_mul_inv]
 
 /-- The normalized weighted logarithmic derivative gives the enclosed root sum,
-with algebraic multiplicities.-/
+with algebraic multiplicities.
+@isnad1 id=eq.2h3v.s8.c2fef1fd9f33 from=translated src=- shape=3ade2a4f vocab=fe7c5f8c
+-/
 theorem two_pi_i_inv_mul_circleIntegral_mul_derivative_div_eq_sum_roots
     (p : ℂ[X]) (c : ℂ) {r : ℝ} (hr : 0 ≤ r)
     (hp : ∀ z ∈ sphere c r, p.eval z ≠ 0) :
@@ -131,7 +135,9 @@ the sum of roots inside any root-free fixed circle depends analytically on the
 parameter. No simplicity or distinctness of roots inside the circle is required.
 This is the separated-cluster holomorphy step in the planar route to Stahl's theorem.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=analytic.3h6v.s8.befd9ac76522 from=translated src=- shape=6428be07 vocab=087dacab
+-/
 theorem analyticAt_sum_roots_in_circle {ι : Type*} [Fintype ι]
     (q : ι → ℂ[X]) (a : ι → ℂ → ℂ) {u c : ℂ} {r : ℝ}
     (hr : 0 ≤ r) (ha : ∀ i, AnalyticAt ℂ (a i) u)
@@ -184,7 +190,9 @@ multiplicities are retained, and collisions within either half-plane are allowed
 The root-continuity assumption is available for characteristic polynomials from
 upper hemicontinuity of the spectrum in a Banach algebra.
 
-atlas: trace-exponential-stahl (partial)-/
+atlas: trace-exponential-stahl (partial)
+@isnad1 id=analytic.4h4v.s8.ae6aff86d086 from=translated src=- shape=d8b4538f vocab=f477ad77
+-/
 theorem analyticAt_sum_filter_roots_upper_of_upperHemicontinuous
     {ι : Type*} [Fintype ι] (q : ι → ℂ[X]) (a : ι → ℂ → ℂ) {u : ℂ}
     (ha : ∀ i, AnalyticAt ℂ (a i) u) (hp : (∑ i, a i u • q i) ≠ 0)
@@ -210,7 +218,9 @@ theorem analyticAt_sum_filter_roots_upper_of_upperHemicontinuous
   simp only [(hv z hz).1]
 
 /-- The sum of the roots strictly in the upper half-plane has nonnegative
-imaginary part, with algebraic multiplicities retained.-/
+imaginary part, with algebraic multiplicities retained.
+@isnad1 id=le.0h1v.s5.c98bcbd1c969 from=translated src=- shape=8bbd5a73 vocab=d926a81c
+-/
 theorem im_sum_filter_roots_upper_nonneg (p : ℂ[X]) :
     0 ≤ ((p.roots.filter (fun z => 0 < z.im)).sum).im := by
   change 0 ≤ Complex.imAddGroupHom ((p.roots.filter (fun z => 0 < z.im)).sum)

@@ -19,7 +19,9 @@ open Real Finset
 def sphereChernoffParameter (m x : ℝ) : ℝ := (x-m) / (2*(1-x^2))
 
 /-- The optimizing transform stays in the exact Laplace-transform domain at
-every bounded diagonal entry.-/
+every bounded diagonal entry.
+@isnad1 id=lt.4h3v.s6.ec371e6f2e35 from=translated src=- shape=cee770fd vocab=5268a544
+-/
 theorem sphereChernoffParameter_mul_sub_lt_half {m x d : ℝ}
     (hm : -1 < m) (hmx : m < x) (hx : x < 1) (hd : d ≤ 1) :
     sphereChernoffParameter m x * (d-x) < 1/2 := by
@@ -36,7 +38,9 @@ theorem sphereChernoffParameter_mul_sub_lt_half {m x d : ℝ}
   nlinarith
 
 /-- A bounded finite coefficient list with prescribed mean has the exact
-logarithmic Chernoff lower bound. No random variables occur in this lemma.-/
+logarithmic Chernoff lower bound. No random variables occur in this lemma.
+@isnad1 id=le.6h4v.s7.202d1b9780ef from=translated src=- shape=5c8381a3 vocab=f0b74b35
+-/
 theorem card_mul_sub_sq_div_two_le_sum_log_affine {ι : Type*} [Fintype ι]
     (d : ι → ℝ) {m x : ℝ} (hm : -1 < m) (_hm1 : m < 1)
     (hmx : m < x) (hx : x < 1) (hd : ∀ i, d i ∈ Set.Icc (-1 : ℝ) 1)

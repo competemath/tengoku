@@ -16,7 +16,9 @@ open scoped unitInterval
 namespace Cubical.RectangularGrid
 
 /-- If each coordinate width is at most `h`, every point of the actual
-closed cell lies within `h` of its geometric center.-/
+closed cell lies within `h` of its geometric center.
+@isnad1 id=le.4h8v.s8.e3a91d337dcc from=translated src=- shape=92855473 vocab=00ac502c
+-/
 theorem norm_cell_sub_center_le {m n : ℕ}
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : Monotone x) (hy : Monotone y) (i : Fin m) (j : Fin n) {h : ℝ}
@@ -32,7 +34,9 @@ theorem norm_cell_sub_center_le {m n : ℕ}
   exact (Complex.norm_le_abs_re_add_abs_im _).trans (by linarith)
 
 /-- Any two points of the same actual closed cell are within twice the
-common coordinate-width bound.-/
+common coordinate-width bound.
+@isnad1 id=le.4h9v.s9.6220d80adfc3 from=translated src=- shape=df27c9e1 vocab=d4a43ac3
+-/
 theorem norm_cell_sub_cell_le {m n : ℕ}
     (x : Fin (m + 1) → ℝ) (y : Fin (n + 1) → ℝ)
     (hx : Monotone x) (hy : Monotone y) (i : Fin m) (j : Fin n) {h : ℝ}

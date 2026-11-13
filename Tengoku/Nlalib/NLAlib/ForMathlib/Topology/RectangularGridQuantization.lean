@@ -20,13 +20,17 @@ namespace Cubical.RectangularGrid
 def coordinate (N : ℕ) (h : ℝ) (i : Fin (2 * N + 1)) : ℝ :=
   ((i : ℝ) - N) * h
 
-/-- A positive mesh gives strictly ordered, distinct grid coordinates.-/
+/-- A positive mesh gives strictly ordered, distinct grid coordinates.
+@isnad1 id=strictmo.1h2v.s6.11f559e6657d from=translated src=- shape=9602eb50 vocab=7e5c6b87
+-/
 theorem strictMono_coordinate (N : ℕ) {h : ℝ} (hh : 0 < h) :
     StrictMono (coordinate N h) := by
   intro i j hij
   exact mul_lt_mul_of_pos_right (sub_lt_sub_right (by exact_mod_cast hij) _) hh
 
-/-- The actual spacing between adjacent coordinates is exactly the mesh width.-/
+/-- The actual spacing between adjacent coordinates is exactly the mesh width.
+@isnad1 id=eq.0h3v.s6.a8fa2aa57bf3 from=translated src=- shape=06f2e4b7 vocab=90d3c0da
+-/
 theorem coordinate_succ_sub_castSucc (N : ℕ) (h : ℝ) (i : Fin (2 * N)) :
     coordinate N h i.succ - coordinate N h i.castSucc = h := by
   simp only [coordinate, Fin.val_succ, Fin.val_castSucc, Nat.cast_add, Nat.cast_one]
@@ -39,7 +43,9 @@ def floorIndex (N : ℕ) (u : ℝ) (hlo : -(N : ℝ) ≤ u) (hhi : u < N) : Fin 
     have hh : ⌊u⌋ < (N : ℤ) := Int.floor_lt.mpr (by exact_mod_cast hhi)
     omega⟩
 
-/-- The finite index retains the actual integer-floor coordinate.-/
+/-- The finite index retains the actual integer-floor coordinate.
+@isnad1 id=eq.2h2v.s6.fa4297d269e2 from=translated src=- shape=58b6ed52 vocab=3067ab1b
+-/
 theorem coe_floorIndex (N : ℕ) (u : ℝ) (hlo : -(N : ℝ) ≤ u) (hhi : u < N) :
     (floorIndex N u hlo hhi : ℝ) = (⌊u⌋ : ℝ) + N := by
   have hl : -(N : ℤ) ≤ ⌊u⌋ := Int.le_floor.mpr (by exact_mod_cast hlo)
@@ -49,7 +55,9 @@ theorem coe_floorIndex (N : ℕ) (u : ℝ) (hlo : -(N : ℝ) ≤ u) (hhi : u < N
   exact_mod_cast he
 
 /-- The quantized coordinate lies below the original coordinate and differs
-from it by strictly less than one actual mesh width.-/
+from it by strictly less than one actual mesh width.
+@isnad1 id=and.3h3v.s6.806a91746fcd from=translated src=- shape=433b6c7b vocab=4a7220fc
+-/
 theorem coordinate_floorIndex_error (N : ℕ) {h : ℝ} (hh : 0 < h) (r : ℝ)
     (hlo : -(N : ℝ) ≤ r / h) (hhi : r / h < N) :
     coordinate N h (floorIndex N (r / h) hlo hhi) ≤ r ∧
@@ -64,7 +72,9 @@ theorem coordinate_floorIndex_error (N : ℕ) {h : ℝ} (hh : 0 < h) (r : ℝ)
     nlinarith
 
 /-- A compact planar trace fits strictly inside some finite normalized
-integer grid box for every positive mesh width.-/
+integer grid box for every positive mesh width.
+@isnad1 id=ex.2h2v.s7.a9f5f621cbb9 from=translated src=- shape=c8fe6842 vocab=99e299bd
+-/
 theorem exists_normalized_coordinate_box {C : Set ℂ} (hC : IsCompact C)
     {h : ℝ} (hh : 0 < h) :
     ∃ N : ℕ, ∀ z ∈ C,
@@ -96,7 +106,9 @@ theorem exists_normalized_coordinate_box {C : Set ℂ} (hC : IsCompact C)
     · exact ((div_le_div_iff_of_pos_right hh).mpr hi.2).trans_lt hNr
 
 /-- An actual finite grid and a specified floor quantizer approximate every
-point of a compact planar trace by less than two mesh widths.-/
+point of a compact planar trace by less than two mesh widths.
+@isnad1 id=ex.2h2v.s8.4509082983dc from=translated src=- shape=4f23ee0a vocab=fbca5596
+-/
 theorem exists_quantizer {C : Set ℂ} (hC : IsCompact C) {h : ℝ} (hh : 0 < h) :
     ∃ N : ℕ, ∃ q : C → Fin (2 * N + 1) × Fin (2 * N + 1),
       ∀ z : C, ‖vertex (coordinate N h) (coordinate N h) (q z).1 (q z).2 - z‖ < 2 * h := by

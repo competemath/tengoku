@@ -21,12 +21,16 @@ def hermitianPartScalarProgram (imaginary : Bool) (y z : ℂ) : ScalarProgram �
   if imaginary then .mul (.input (-Complex.I/2)) (.sub (.input y) (.input z))
   else .mul (.input (1/2)) (.add (.input y) (.input z))
 
-/-- Every coordinate of the Hermitian-part product uses two scalar operations.-/
+/-- Every coordinate of the Hermitian-part product uses two scalar operations.
+@isnad1 id=eq.0h3v.s4.c36ec2c456b6 from=translated src=- shape=9477b67f vocab=0b8d1b45
+-/
 theorem cost_hermitianPartScalarProgram (imaginary : Bool) (y z : ℂ) :
     (hermitianPartScalarProgram imaginary y z).cost = 2 := by
   cases imaginary <;> rfl
 
-/-- The counted component combination is the one in the two-query program.-/
+/-- The counted component combination is the one in the two-query program.
+@isnad1 id=eq.0h3v.s6.5b6cfe53e775 from=translated src=- shape=a8f498f2 vocab=0a40b9da
+-/
 theorem run_hermitianPartScalarProgram (imaginary : Bool) (y z : ℂ) :
     (hermitianPartScalarProgram imaginary y z).run =
       if imaginary then (-Complex.I/2)*(y-z) else (1/2:ℂ)*(y+z) := by
@@ -38,12 +42,16 @@ def chebyshevStepScalarProgram (k : ℕ) (response previous : ℂ) : ScalarProgr
   if k=0 then .input response
   else .sub (.mul (.input 2) (.input response)) (.input previous)
 
-/-- Each recurrence-coordinate update uses at most two scalar operations.-/
+/-- Each recurrence-coordinate update uses at most two scalar operations.
+@isnad1 id=le.0h3v.s4.344319eb0439 from=translated src=- shape=96bff5d7 vocab=40e8a74e
+-/
 theorem cost_chebyshevStepScalarProgram_le (k : ℕ) (response previous : ℂ) :
     (chebyshevStepScalarProgram k response previous).cost ≤ 2 := by
   by_cases hk : k=0 <;> simp [chebyshevStepScalarProgram, hk, ScalarProgram.cost]
 
-/-- The counted recurrence update evaluates to the actual shared-table update.-/
+/-- The counted recurrence update evaluates to the actual shared-table update.
+@isnad1 id=eq.0h3v.s6.351a2018a05b from=translated src=- shape=bc40f9ce vocab=622d19d8
+-/
 theorem run_chebyshevStepScalarProgram (k : ℕ) (response previous : ℂ) :
     (chebyshevStepScalarProgram k response previous).run =
       if k=0 then response else 2*response-previous := by
@@ -53,11 +61,15 @@ theorem run_chebyshevStepScalarProgram (k : ℕ) (response previous : ℂ) :
 def chebyshevNormalizeScalarProgram (j : ℕ) (x : ℂ) : ScalarProgram ℂ :=
   .mul (.input (normalizedChebyshevWeight j : ℂ)) (.input x)
 
-/-- A fixed normalized mode costs one multiplication per coordinate.-/
+/-- A fixed normalized mode costs one multiplication per coordinate.
+@isnad1 id=eq.0h2v.s4.76a0a55d011b from=translated src=- shape=e12252d1 vocab=23227d38
+-/
 theorem cost_chebyshevNormalizeScalarProgram (j : ℕ) (x : ℂ) :
     (chebyshevNormalizeScalarProgram j x).cost = 1 := rfl
 
-/-- The counted readout is the native normalized polynomial-vector coordinate.-/
+/-- The counted readout is the native normalized polynomial-vector coordinate.
+@isnad1 id=eq.0h2v.s5.8743fc5ad8d3 from=translated src=- shape=8d72e98f vocab=6cd07c37
+-/
 theorem run_chebyshevNormalizeScalarProgram (j : ℕ) (x : ℂ) :
     (chebyshevNormalizeScalarProgram j x).run = (normalizedChebyshevWeight j : ℂ)*x := rfl
 
@@ -68,19 +80,25 @@ def crossGramScalarProgram {p q : Type*} (X : Matrix n p ℂ) (Y : Matrix n q �
     (fun r => X ((Fintype.equivFin n).symm r) j)
     (fun r => Y ((Fintype.equivFin n).symm r) k)
 
-/-- The scalar program computes the native cross-Gram entry.-/
+/-- The scalar program computes the native cross-Gram entry.
+@isnad1 id=eq.0h7v.s6.808841a78bc2 from=translated src=- shape=770d7476 vocab=adb967dd
+-/
 theorem run_crossGramScalarProgram {p q : Type*} (X : Matrix n p ℂ) (Y : Matrix n q ℂ)
     (j : p) (k : q) : (crossGramScalarProgram X Y j k).run = (Xᴴ * Y) j k := by
   rw [crossGramScalarProgram, run_innerProductScalarProgram]
   simp only [dotProduct, Pi.star_apply, Matrix.mul_apply, Matrix.conjTranspose_apply]
   exact (Fintype.equivFin n).symm.sum_comp (fun r => star (X r j) * Y r k)
 
-/-- Each cross-Gram entry uses exactly three operations per row.-/
+/-- Each cross-Gram entry uses exactly three operations per row.
+@isnad1 id=eq.0h7v.s5.245f450d422e from=translated src=- shape=2b613d98 vocab=3216df15
+-/
 theorem cost_crossGramScalarProgram {p q : Type*} (X : Matrix n p ℂ) (Y : Matrix n q ℂ)
     (j : p) (k : q) : (crossGramScalarProgram X Y j k).cost = 3*Fintype.card n :=
   cost_innerProductScalarProgram _ _
 
-/-- Total operation count of all the actual finite cross-Gram entry programs.-/
+/-- Total operation count of all the actual finite cross-Gram entry programs.
+@isnad1 id=eq.0h4v.s8.7dd5b5043931 from=translated src=- shape=734850ae vocab=cd2369da
+-/
 theorem sum_cost_crossGramScalarProgram (M : ℕ)
     (X Y : Matrix n (Fin (M+1)) ℂ) :
     (∑ j, ∑ k, (crossGramScalarProgram X Y j k).cost) =
@@ -112,7 +130,9 @@ def normalMixedScalarWork (M : ℕ)
     ∑ j, ∑ k, (crossGramScalarProgram X Y j k).cost
 
 /-- Every possible response history meets the explicit arithmetic budget.
-No spectral identities or idealized free matrix products are used here.-/
+No spectral identities or idealized free matrix products are used here.
+@isnad1 id=le.0h7v.s6.0a9d3246515e from=translated src=- shape=3b2a2b6c vocab=c068f5f3
+-/
 theorem normalMixedScalarWork_le_budget (M : ℕ)
     (matrixResponse adjointResponse previous : Bool → Fin M → n → ℂ)
     (X Y : Matrix n (Fin (M+1)) ℂ) :
@@ -143,7 +163,9 @@ theorem normalMixedScalarWork_le_budget (M : ℕ)
       ring
 
 /-- The explicit unit-cost budget is quadratic in degree and linear in dimension.
-atlas: normal-matrix-mixed-chebyshev-moments (partial)-/
+atlas: normal-matrix-mixed-chebyshev-moments (partial)
+@isnad1 id=le.0h2v.s5.264a7379e1ff from=translated src=- shape=fa418c75 vocab=47424fd6
+-/
 theorem normalMixedArithmeticBudget_le (n M : ℕ) :
     normalMixedArithmeticBudget n M ≤ 13*n*(M+1)^2 := by
   unfold normalMixedArithmeticBudget

@@ -16,7 +16,9 @@ open Real Set MeasureTheory
 namespace MeasureTheory
 
 /-- Exponential coordinates give an exact whole-line substitution for the
-positive half-line, with their actual Jacobian.-/
+positive half-line, with their actual Jacobian.
+@isnad1 id=eq.0h1v.s6.7e9310f3fd43 from=translated src=- shape=34229f60 vocab=7a084206
+-/
 theorem integral_Ioi_zero_eq_exp_neg_pi (g : ℝ → ℝ) :
     (∫ w in Ioi (0 : ℝ), g w) =
       ∫ t : ℝ, (π * exp (-(π * t))) * g (exp (-(π * t))) := by
@@ -43,7 +45,9 @@ theorem integral_Ioi_zero_eq_exp_neg_pi (g : ℝ → ℝ) :
   rw [hRange, Measure.restrict_univ] at hchange
   simpa only [abs_neg, abs_of_pos (mul_pos pi_pos (exp_pos _)), smul_eq_mul] using hchange
 
-/-- The negative half-line has the same positive Jacobian after reflection.-/
+/-- The negative half-line has the same positive Jacobian after reflection.
+@isnad1 id=eq.0h1v.s6.782e10be6a63 from=translated src=- shape=d6390c54 vocab=2f228606
+-/
 theorem integral_Iio_zero_eq_neg_exp_neg_pi (g : ℝ → ℝ) :
     (∫ w in Iio (0 : ℝ), g w) =
       ∫ t : ℝ, (π * exp (-(π * t))) * g (-exp (-(π * t))) := by
@@ -74,7 +78,9 @@ end MeasureTheory
 
 namespace Complex
 
-/-- The positive exponential coordinate lies on the left boundary of the strip.-/
+/-- The positive exponential coordinate lies on the left boundary of the strip.
+@isnad1 id=eq.0h1v.s5.377ddddad24a from=translated src=- shape=6997ca58 vocab=b72ee40b
+-/
 theorem hirschmanLog_positive_exp (t : ℝ) :
     log ((Real.exp (-(π * t)) : ℝ) : ℂ) * (-I) / (π : ℂ) = (t : ℂ) * I := by
   rw [← ofReal_log (Real.exp_pos _).le, Real.log_exp]
@@ -82,7 +88,9 @@ theorem hirschmanLog_positive_exp (t : ℝ) :
   field_simp
 
 /-- The principal logarithm from the upper half-plane places the negative
-exponential coordinate on the right boundary, with the same orientation.-/
+exponential coordinate on the right boundary, with the same orientation.
+@isnad1 id=eq.0h1v.s6.b39e2662580b from=translated src=- shape=db6ab551 vocab=b5d63ef8
+-/
 theorem hirschmanLog_negative_exp (t : ℝ) :
     log ((-Real.exp (-(π * t)) : ℝ) : ℂ) * (-I) / (π : ℂ) = 1 + (t : ℂ) * I := by
   have hneg : -Real.exp (-(π * t)) < 0 := neg_neg_of_pos (Real.exp_pos _)
@@ -98,7 +106,9 @@ end Complex
 
 namespace Real
 
-/-- The positive Cauchy boundary has exactly the left strip weight.-/
+/-- The positive Cauchy boundary has exactly the left strip weight.
+@isnad1 id=eq.1h2v.s7.4da360c23456 from=translated src=- shape=64747169 vocab=38dfccee
+-/
 theorem cauchyPDFReal_exp_neg_pi_mul_eq_hirschman_left {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     (π * exp (-(π * t))) * ProbabilityTheory.cauchyPDFReal (cos (π * r))
       (Real.toNNReal (sin (π * r))) (exp (-(π * t))) =
@@ -116,7 +126,9 @@ theorem cauchyPDFReal_exp_neg_pi_mul_eq_hirschman_left {r : ℝ} (hr : r ∈ Ioo
   rw [hden, mul_inv_rev, mul_inv_rev]
   field_simp
 
-/-- The negative Cauchy boundary has exactly the right strip weight.-/
+/-- The negative Cauchy boundary has exactly the right strip weight.
+@isnad1 id=eq.1h2v.s6.4b58e70ced82 from=translated src=- shape=857c740f vocab=c0485732
+-/
 theorem cauchyPDFReal_neg_exp_neg_pi_mul_eq_hirschman_right {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) (t : ℝ) :
     (π * exp (-(π * t))) * ProbabilityTheory.cauchyPDFReal (cos (π * r))
       (Real.toNNReal (sin (π * r))) (-exp (-(π * t))) = r * hirschmanDensity r t := by
@@ -138,7 +150,9 @@ end Real
 namespace Complex
 
 /-- The logarithmic image of the Cauchy boundary measure splits into exactly
-the two Stein--Hirschman weights, with no unrecorded normalization constant.-/
+the two Stein--Hirschman weights, with no unrecorded normalization constant.
+@isnad1 id=eq.2h2v.s8.ec318063d0a7 from=translated src=- shape=29db3f51 vocab=827fea77
+-/
 theorem integral_cauchy_hirschmanLog_eq_boundary_integrals {r : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) (G : ℂ → ℝ)
     (hG : Integrable (fun w : ℝ => ProbabilityTheory.cauchyPDFReal (Real.cos (π * r))
@@ -163,7 +177,9 @@ theorem integral_cauchy_hirschmanLog_eq_boundary_integrals {r : ℝ}
 
 /-- The conformal disk boundary average equals the explicit weighted averages
 on the two vertical strip boundaries. The integrability premise records only
-the actual boundary function, not an assumed interpolation inequality.-/
+the actual boundary function, not an assumed interpolation inequality.
+@isnad1 id=eq.2h2v.s8.2cc05a721834 from=translated src=- shape=f47e9746 vocab=fb91de9f
+-/
 theorem circleAverage_hirschmanDiskToStrip_eq_boundary_integrals {r : ℝ}
     (hr : r ∈ Ioo (0 : ℝ) 1) (G : ℂ → ℝ)
     (hG : Integrable (fun w : ℝ => ProbabilityTheory.cauchyPDFReal (Real.cos (π * r))

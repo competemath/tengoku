@@ -28,7 +28,9 @@ def bisectionInterval (f : ℝ → ℝ) (v lo hi : ℝ) : ℕ → ℝ × ℝ
     if f mid < v then (mid, p.2) else (p.1, mid)
 
 /-- Each bisection step halves the interval width, independently of the
-comparison oracle and without any regularity assumptions on `f`.-/
+comparison oracle and without any regularity assumptions on `f`.
+@isnad1 id=eq.0h5v.s6.23d2673ea672 from=translated src=- shape=c24074c9 vocab=7ae1e177
+-/
 theorem bisectionInterval_sub (f : ℝ → ℝ) (v lo hi : ℝ) (n : ℕ) :
     (bisectionInterval f v lo hi n).2 - (bisectionInterval f v lo hi n).1 =
       (hi - lo) / (2 : ℝ) ^ n := by
@@ -40,7 +42,9 @@ theorem bisectionInterval_sub (f : ℝ → ℝ) (v lo hi : ℝ) (n : ℕ) :
 
 /-- Bisection preserves a root of a strictly increasing function on `(a,∞)`.
 The initial lower endpoint is allowed to be exactly `a`; every midpoint lies
-strictly above `a`, so the recursion never queries a singular endpoint.-/
+strictly above `a`, so the recursion never queries a singular endpoint.
+@isnad1 id=and.5h7v.s6.44e9565fc0f0 from=translated src=- shape=398fac91 vocab=ee010637
+-/
 theorem bisectionInterval_contains_root {f : ℝ → ℝ} {a v lo hi root : ℝ}
     (hf : StrictMonoOn f (Ioi a)) (hroot : f root = v)
     (ha : a ≤ lo) (hlo : lo < root) (hhi : root ≤ hi) (n : ℕ) :
@@ -68,7 +72,9 @@ theorem bisectionInterval_contains_root {f : ℝ → ℝ} {a v lo hi root : ℝ}
     · exact ⟨hp.1, hp.2.1, le_of_not_gt (fun hlt => h (htest.mpr hlt))⟩
 
 /-- The computed upper endpoint is within the exact bisection width of the
-root. This statement covers a root at the initial upper endpoint.-/
+root. This statement covers a root at the initial upper endpoint.
+@isnad1 id=and.5h7v.s7.c45b0301f7e1 from=translated src=- shape=600d93d3 vocab=88e064c3
+-/
 theorem bisectionInterval_upper_sub_root_le {f : ℝ → ℝ} {a v lo hi root : ℝ}
     (hf : StrictMonoOn f (Ioi a)) (hroot : f root = v)
     (ha : a ≤ lo) (hlo : lo < root) (hhi : root ≤ hi) (n : ℕ) :

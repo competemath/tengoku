@@ -18,7 +18,9 @@ open Polynomial Finset Set
 namespace NLAlib
 
 /-- The real nodal product has its strict alternating sign in each ordered grid gap.
-Source: insertion into the ordered nodal-weight product.-/
+Source: insertion into the ordered nodal-weight product.
+@isnad1 id=lt.2h4v.s8.7a5a3452dfa2 from=translated src=- shape=3a1f5f2f vocab=31c9db2d
+-/
 theorem signed_eval_nodal_in_gap_pos {n : ℕ} {v : Fin (n + 2) → ℝ}
     (hv : StrictMono v) (i : Fin (n + 1)) {x : ℝ} (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
     0 < (-1 : ℝ) ^ (n + 1 - i.val) * (Lagrange.nodal univ v).eval x := by
@@ -38,7 +40,9 @@ theorem signed_eval_nodal_in_gap_pos {n : ℕ} {v : Fin (n + 2) → ℝ}
   · exact mul_pos_of_neg_of_neg h.1 (inv_lt_zero'.mp h.2)
 
 /-- The nodal product does not vanish at an interior point of an ordered node gap.
-Source: its strict alternating gap sign.-/
+Source: its strict alternating gap sign.
+@isnad1 id=ne.2h4v.s7.9d5d2e00cd8f from=translated src=- shape=99108f07 vocab=678278ad
+-/
 theorem eval_nodal_in_gap_ne_zero {n : ℕ} {v : Fin (n + 2) → ℝ}
     (hv : StrictMono v) (i : Fin (n + 1)) {x : ℝ} (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
     (Lagrange.nodal univ v).eval x ≠ 0 := by
@@ -48,7 +52,9 @@ theorem eval_nodal_in_gap_ne_zero {n : ℕ} {v : Fin (n + 2) → ℝ}
   exact lt_irrefl _ h
 
 /-- The alternating sign of a gap's nodal product is a common sign times `(-1)^i`.
-Source: the ordered gap-product sign formula.-/
+Source: the ordered gap-product sign formula.
+@isnad1 id=eq.2h4v.s8.b3d45254175f from=translated src=- shape=e731ff4a vocab=5031efc2
+-/
 theorem eval_nodal_gap_eq_sign_mul_abs {n : ℕ} {v : Fin (n + 2) → ℝ}
     (hv : StrictMono v) (i : Fin (n + 1)) {x : ℝ} (hx : x ∈ Ioo (v i.castSucc) (v i.succ)) :
     (Lagrange.nodal univ v).eval x = (-1 : ℝ) ^ (n + 1) * (-1 : ℝ) ^ i.val *

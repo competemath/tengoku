@@ -19,7 +19,9 @@ variable {𝕜 E : Type*} [RCLike 𝕜] [NormedAddCommGroup E] [InnerProductSpac
 
 /-- Projecting before an endomorphism does not change its projected output
 when the discarded orthogonal complement is invariant. Quotient-space
-identity; helper for `simultaneous-diagonalization`.-/
+identity; helper for `simultaneous-diagonalization`.
+@isnad1 id=eq.1h5v.s11.cd331ed3ac77 from=translated src=- shape=717aa3a7 vocab=9a0cb2a8
+-/
 theorem orthogonalProjectionOnto_map_starProjection_eq
     (f : Module.End 𝕜 E) (hf : Set.MapsTo f Wᗮ Wᗮ) (x : E) :
     W.orthogonalProjectionOnto (f (W.starProjection x)) = W.orthogonalProjectionOnto (f x) := by
@@ -30,7 +32,9 @@ theorem orthogonalProjectionOnto_map_starProjection_eq
 
 /-- Compressing two commuting operators onto the orthogonal complement
 of a common invariant subspace preserves their commutation. Quotient-space
-identity; helper for `simultaneous-diagonalization`.-/
+identity; helper for `simultaneous-diagonalization`.
+@isnad1 id=commute.3h5v.s12.33cce184bdeb from=translated src=- shape=30f1f68d vocab=e18552e2
+-/
 theorem commute_orthogonal_compressions_of_invariant
     (f g : Module.End 𝕜 E) (hf : Set.MapsTo f Wᗮ Wᗮ) (hg : Set.MapsTo g Wᗮ Wᗮ)
     (hcomm : Commute f g) :

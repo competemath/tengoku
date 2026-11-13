@@ -29,7 +29,9 @@ namespace Complex
 
 /-- Two complex primitives of the same function have equal increments along
 any continuous path contained in both of their open domains. The path requires
-no differentiability. The domains' intersection need not be connected.-/
+no differentiability. The domains' intersection need not be connected.
+@isnad1 id=eq.6h8v.s8.a8a2aa8f5270 from=translated src=- shape=0be0f219 vocab=47657264
+-/
 theorem sub_eq_sub_of_hasDerivAt_of_path {a b : ℂ} (γ : Path a b)
     {U V : Set ℂ} {G H g : ℂ → ℂ} (hU : IsOpen U) (hV : IsOpen V)
     (hG : ∀ z ∈ U, HasDerivAt G (g z) z)
@@ -56,7 +58,9 @@ theorem sub_eq_sub_of_hasDerivAt_of_path {a b : ℂ} (γ : Path a b)
   linear_combination h
 
 /-- The preceding chart independence applied to any closed parameter interval
-of a continuous parameterization. It is valid for repeated subdivision points.-/
+of a continuous parameterization. It is valid for repeated subdivision points.
+@isnad1 id=eq.8h8v.s8.70098b8f9692 from=translated src=- shape=52a33c50 vocab=54853bec
+-/
 theorem sub_eq_sub_of_hasDerivAt_of_continuous
     {γ : ℝ → ℂ} (hγ : Continuous γ) {u v : ℝ} (huv : u ≤ v)
     {U V : Set ℂ} {G H g : ℂ → ℂ} (hU : IsOpen U) (hV : IsOpen V)
@@ -81,7 +85,9 @@ def primitiveSubdivisionTransport (γ : ℝ → ℂ) (p : ℕ → ℝ)
 
 /-- On a fixed finite subdivision, the transport sum does not depend on the
 choice of primitive or chart. Both chart families are required to contain the
-actual continuous path on their respective subdivision intervals.-/
+actual continuous path on their respective subdivision intervals.
+@isnad1 id=eq.8h8v.s8.ebe26ec93c6b from=translated src=- shape=6c3aa38c vocab=65344dff
+-/
 theorem primitiveSubdivisionTransport_eq_of_hasDerivAt
     {γ : ℝ → ℂ} (hγ : Continuous γ) {p : ℕ → ℝ} {n : ℕ}
     {G H : ℕ → ℂ → ℂ} {U V : ℕ → Set ℂ} {g : ℂ → ℂ}
@@ -101,7 +107,9 @@ theorem primitiveSubdivisionTransport_eq_of_hasDerivAt
 
 /-- Refining a path portion lying in one primitive chart does not change its
 transport, even when each refined interval uses its own primitive chart. The
-finite increments telescope after genuine chart independence is applied.-/
+finite increments telescope after genuine chart independence is applied.
+@isnad1 id=eq.8h8v.s8.fefe8943f3c9 from=translated src=- shape=5375f36b vocab=8ae1cdfc
+-/
 theorem primitiveSubdivisionTransport_eq_sub_of_hasDerivAt
     {γ : ℝ → ℂ} (hγ : Continuous γ) {p : ℕ → ℝ} {n : ℕ}
     {G : ℂ → ℂ} {H : ℕ → ℂ → ℂ} {U : Set ℂ} {V : ℕ → Set ℂ} {g : ℂ → ℂ}
@@ -118,7 +126,9 @@ theorem primitiveSubdivisionTransport_eq_sub_of_hasDerivAt
 
 /-- The actual finite local-primitive transport equals Mathlib's native curve
 integral on a C¹ path. The integrability and fundamental-theorem hypotheses
-are derived interval by interval from the primitive charts and path regularity.-/
+are derived interval by interval from the primitive charts and path regularity.
+@isnad1 id=eq.8h8v.s9.d12b531c79e6 from=translated src=- shape=25a64498 vocab=98039076
+-/
 theorem primitiveSubdivisionTransport_eq_curveIntegral_of_hasDerivAt
     {a b : ℂ} (γ : Path a b) (hγ : ContDiffOn ℝ 1 γ.extend I)
     {p : ℕ → ℝ} {n : ℕ} {G : ℕ → ℂ → ℂ} {U : ℕ → Set ℂ} {g : ℂ → ℂ}
@@ -182,7 +192,9 @@ theorem primitiveSubdivisionTransport_eq_curveIntegral_of_hasDerivAt
 
 /-- Every continuous path inside an open holomorphy domain admits a finite
 uniform subdivision into actual open primitive charts. Both the subdivision
-and the primitive functions are derived; a scalar Cauchy formula is not assumed.-/
+and the primitive functions are derived; a scalar Cauchy formula is not assumed.
+@isnad1 id=ex.3h5v.s8.a9b5d81c4808 from=translated src=- shape=f2dc4abc vocab=6e60e724
+-/
 theorem exists_primitive_subdivision_of_differentiableOn
     {a b : ℂ} (γ : Path a b) {Ω : Set ℂ} {g : ℂ → ℂ}
     (hΩ : IsOpen Ω) (hg : DifferentiableOn ℂ g Ω) (hγΩ : ∀ t, γ t ∈ Ω) :

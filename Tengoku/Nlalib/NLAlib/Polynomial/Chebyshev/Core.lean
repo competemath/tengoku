@@ -53,6 +53,9 @@ atlas: chebyshev-amplifier-/
 def chebyshevAmplifier (α γ : ℝ) (q : ℕ) : ℝ[X] :=
   C (1 / (Chebyshev.T ℝ q).eval (1 + γ)) * (Chebyshev.T ℝ q).comp (C (1 / α) * X)
 
+/--
+@isnad1 id=eq.0h3v.s8.e99d20e39857 from=translated src=- shape=8427e17e vocab=850ee4a5
+-/
 @[simp] theorem chebyshevResidual_def (a b : ℝ) (q : ℕ) :
     chebyshevResidual a b q =
       C (1 / (Chebyshev.T ℝ q).eval ((b + a) / (b - a))) *
@@ -66,12 +69,17 @@ atlas: chebyshev-interpolation-error-/
 def chebyshevZero (q : ℕ) (k : Fin q) : ℝ :=
   Real.cos ((2 * ((k : ℕ) : ℝ) + 1) * Real.pi / (2 * q))
 
+/--
+@isnad1 id=eq.0h3v.s7.3fa19e8e09a1 from=translated src=- shape=1940587d vocab=a5f1c605
+-/
 @[simp] theorem chebyshevAmplifier_def (α γ : ℝ) (q : ℕ) :
     chebyshevAmplifier α γ q =
       C (1 / (Chebyshev.T ℝ q).eval (1 + γ)) * (Chebyshev.T ℝ q).comp (C (1 / α) * X) := rfl
 
 /-- `chebyshevResidual a b q` at `x` is `T_q((b + a − 2x)/(b − a)) / T_q((b + a)/(b − a))`.
-Atlas: `chebyshev-minimax`.-/
+Atlas: `chebyshev-minimax`.
+@isnad1 id=eq.0h4v.s7.56ac5290853a from=translated src=- shape=d260c09e vocab=5d0b821c
+-/
 theorem eval_chebyshevResidual (a b : ℝ) (q : ℕ) (x : ℝ) :
     (chebyshevResidual a b q).eval x =
       (Chebyshev.T ℝ q).eval ((b + a) / (b - a) - 2 / (b - a) * x) /
@@ -80,19 +88,25 @@ theorem eval_chebyshevResidual (a b : ℝ) (q : ℕ) (x : ℝ) :
   rw [one_div_mul_eq_div]
 
 /-- `chebyshevAmplifier α γ q` at `x` is `T_q(x/α) / T_q(1 + γ)`.
-Source: Musco–Musco (2015) [`mm15`], Lem. 4. Atlas: `chebyshev-amplifier`.-/
+Source: Musco–Musco (2015) [`mm15`], Lem. 4. Atlas: `chebyshev-amplifier`.
+@isnad1 id=eq.0h4v.s6.bd13b616c4b5 from=translated src=- shape=e999bb54 vocab=95409755
+-/
 theorem eval_chebyshevAmplifier (α γ : ℝ) (q : ℕ) (x : ℝ) :
     (chebyshevAmplifier α γ q).eval x =
       (Chebyshev.T ℝ q).eval (x / α) / (Chebyshev.T ℝ q).eval (1 + γ) := by
   simp only [chebyshevAmplifier_def, eval_mul, eval_C, eval_comp, eval_X]
   rw [one_div_mul_eq_div, one_div_mul_eq_div]
 
-/-- The Chebyshev zeros lie in `[−1, 1]`. Atlas: `chebyshev-interpolation-error`.-/
+/-- The Chebyshev zeros lie in `[−1, 1]`. Atlas: `chebyshev-interpolation-error`.
+@isnad1 id=mem.0h2v.s5.dd08e137b34a from=translated src=- shape=ba7d9b30 vocab=8ab9bc04
+-/
 theorem chebyshevZero_mem_Icc (q : ℕ) (k : Fin q) : chebyshevZero q k ∈ Set.Icc (-1 : ℝ) 1 :=
   ⟨Real.neg_one_le_cos _, Real.cos_le_one _⟩
 
 /-- The Chebyshev zeros are distinct (from Mathlib's `roots_T_real_nodup`).
-Atlas: `chebyshev-interpolation-error`.-/
+Atlas: `chebyshev-interpolation-error`.
+@isnad1 id=injectiv.0h1v.s3.d152c5820a36 from=translated src=- shape=64d36d98 vocab=63d2d63a
+-/
 theorem chebyshevZero_injective (q : ℕ) : Function.Injective (chebyshevZero q) := by
   intro i j hij
   have h := (Finset.range q).nodup_map_iff_injOn.mp (Chebyshev.roots_T_real_nodup q)
@@ -105,7 +119,9 @@ theorem chebyshevZero_injective (q : ℕ) : Function.Injective (chebyshevZero q)
 some `s` with `deg s < q`. This is the algebra behind every residual-polynomial Krylov argument:
 `x₀ + s(A) r₀ ∈ x₀ + K_q` has error `p(A)(x₀ − x⋆)`. Source: Saad (2003) [`saad03`], §6.11
 (the set `P_q^0`); Trefethen–Bau (1997) [`tb97`], Lect. 35. Promoted from the private CG lemma
-`exists_degree_lt_one_sub_eq_X_mul` (atlas `residual-polynomial`, helper).-/
+`exists_degree_lt_one_sub_eq_X_mul` (atlas `residual-polynomial`, helper).
+@isnad1 id=ex.2h3v.s8.a8c07f2947e0 from=translated src=- shape=2fa2f0ba vocab=59d7d713
+-/
 theorem exists_degree_lt_one_sub_eq_X_mul_of_eval_zero_eq_one {K : Type*} [Field K] {p : K[X]} {q : ℕ}
     (hp : p.degree ≤ q) (hp0 : p.eval 0 = 1) : ∃ s : K[X], s.degree < q ∧ 1 - p = X * s := by
   have hdvd : X ∣ 1 - p := by
@@ -123,7 +139,9 @@ theorem exists_degree_lt_one_sub_eq_X_mul_of_eval_zero_eq_one {K : Type*} [Field
 
 /-- **Residual polynomials of degree `≤ q`** are exactly the `1 − X s` with `deg s < q`:
 `deg p ≤ q ∧ p(0) = 1 ↔ ∃ s, deg s < q ∧ p = 1 − X s`. Source: Saad (2003) [`saad03`], §6.11
-(atlas `residual-polynomial`, helper).-/
+(atlas `residual-polynomial`, helper).
+@isnad1 id=iff.0h3v.s8.bb6f9398b0c9 from=translated src=- shape=5d8d3bbd vocab=59d7d713
+-/
 theorem degree_le_and_eval_zero_eq_one_iff {K : Type*} [Field K] {p : K[X]} {q : ℕ} :
     p.degree ≤ q ∧ p.eval 0 = 1 ↔ ∃ s : K[X], s.degree < q ∧ p = 1 - X * s := by
   constructor

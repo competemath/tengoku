@@ -21,7 +21,9 @@ namespace NLAlib
 
 /-- A full partition of distinct real interpolation nodes gives strict positivity from
 positive cardinal-pair coefficients. This includes evaluation at the interpolation nodes.
-Source: the finite nodal sum-of-squares certificate.-/
+Source: the finite nodal sum-of-squares certificate.
+@isnad1 id=lt.6h7v.s8.090a73e79dab from=translated src=- shape=d384cb1d vocab=33f31ee3
+-/
 theorem wronskian_lagrange_partition_pos {ι : Type*} [Fintype ι] [DecidableEq ι]
     (t : ι → ℝ) (ht : Function.Injective t) (u v : Finset ι)
     (hdis : Disjoint u v) (hcover : u ∪ v = univ) (hun : u.Nonempty) (hvn : v.Nonempty)

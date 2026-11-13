@@ -16,7 +16,9 @@ set_option autoImplicit false
 variable {A : Type*} [CStarAlgebra A]
 
 /-- The actual nonreal self-adjoint resolvent is Lipschitz between spectral
-parameters with the product of their reciprocal imaginary heights.-/
+parameters with the product of their reciprocal imaginary heights.
+@isnad1 id=le.3h4v.s7.52fe4cdc753b from=translated src=- shape=686bfed9 vocab=87747692
+-/
 theorem IsSelfAdjoint.norm_resolvent_sub_le_of_im_ne_zero
     {a : A} (ha : IsSelfAdjoint a) {z w : ℂ} (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
     ‖resolvent a z-resolvent a w‖ ≤ ‖z-w‖*(|z.im|⁻¹*|w.im|⁻¹) := by
@@ -29,7 +31,9 @@ theorem IsSelfAdjoint.norm_resolvent_sub_le_of_im_ne_zero
       (norm_nonneg _) (by positivity))
 
 /-- At fixed nonzero imaginary height, the actual norm of a self-adjoint
-resolvent has the sharp real-parameter Lipschitz constant `height^(-2)`.-/
+resolvent has the sharp real-parameter Lipschitz constant `height^(-2)`.
+@isnad1 id=le.2h5v.s7.c221725158be from=translated src=- shape=6c77a954 vocab=9709f266
+-/
 theorem IsSelfAdjoint.abs_norm_resolvent_real_sub_le
     {a : A} (ha : IsSelfAdjoint a) (x y : ℝ) {η : ℝ} (hη : η ≠ 0) :
     |‖resolvent a ((x : ℂ)+(η : ℂ)*Complex.I)‖-

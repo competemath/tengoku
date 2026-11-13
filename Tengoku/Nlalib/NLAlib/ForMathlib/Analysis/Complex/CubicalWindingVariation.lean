@@ -23,7 +23,9 @@ open scoped unitInterval Topology
 namespace Complex
 
 /-- An actual primitive integrates to zero on every finite smooth cycle.
-The native endpoint boundary cancels all endpoint terms, including corners.-/
+The native endpoint boundary cancels all endpoint terms, including corners.
+@isnad1 id=eq.5h5v.s11.ffc3bede20de from=translated src=- shape=f91b632d vocab=93c21eb6
+-/
 theorem cubicalCurveIntegral_eq_zero_of_primitive {Ω U : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     {G g : ℂ → ℂ}
@@ -42,7 +44,9 @@ theorem cubicalCurveIntegral_eq_zero_of_primitive {Ω U : Set ℂ}
   rw [he, hc, map_zero]
 
 /-- Nearby avoided targets have exactly equal actual winding integrals
-on a finite smooth cycle, by a constructed log primitive and endpoint cancellation.-/
+on a finite smooth cycle, by a constructed log primitive and endpoint cancellation.
+@isnad1 id=eq.3h4v.s10.46516de36f2f from=translated src=- shape=39b7fe7e vocab=4e6d3281
+-/
 theorem cubicalWindingIntegral_eq_of_norm_sub_lt {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -70,7 +74,9 @@ theorem cubicalWindingIntegral_eq_of_norm_sub_lt {Ω : Set ℂ}
   rw [hz]
 
 /-- The actual winding integral is constant on a target neighborhood
-disjoint from the compact contour trace.-/
+disjoint from the compact contour trace.
+@isnad1 id=eventual.3h3v.s10.dc103addc5b2 from=translated src=- shape=eedaba40 vocab=b54804c0
+-/
 theorem eventually_cubicalWindingIntegral_eq {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -91,7 +97,9 @@ theorem eventually_cubicalWindingIntegral_eq {Ω : Set ℂ}
 
 /-- The actual winding integral is locally constant on the entire
 trace complement. No classification or integer-valued winding premise is assumed.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=islocall.2h2v.s10.19527572be54 from=translated src=- shape=9d4a2d7d vocab=6a812e53
+-/
 theorem isLocallyConstant_cubicalWindingIntegral {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I) :
@@ -102,7 +110,9 @@ theorem isLocallyConstant_cubicalWindingIntegral {Ω : Set ℂ}
     (eventually_cubicalWindingIntegral_eq Γ hc hΓ u.property)
 
 /-- Actual contour length bounds winding at distant targets by
-length/(2*pi) divided by the distance from a containing ball.-/
+length/(2*pi) divided by the distance from a containing ball.
+@isnad1 id=le.3h4v.s9.953f65130544 from=translated src=- shape=329c3c51 vocab=4e9e1e2c
+-/
 theorem norm_cubicalWindingIntegral_le_div_of_trace_bound {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -123,7 +133,9 @@ theorem norm_cubicalWindingIntegral_le_div_of_trace_bound {Ω : Set ℂ}
   simpa only [cubicalWindingIntegral, div_eq_mul_inv] using hb
 
 /-- Every nonzero winding level set is bounded, directly from
-the actual contour-length estimate; a cycle assumption is unnecessary.-/
+the actual contour-length estimate; a cycle assumption is unnecessary.
+@isnad1 id=isbounde.2h3v.s9.0262c8600e3c from=translated src=- shape=648b3306 vocab=d0ca0e2e
+-/
 theorem isBounded_cubicalWindingIntegral_level_of_ne_zero {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -148,7 +160,9 @@ theorem isBounded_cubicalWindingIntegral_level_of_ne_zero {Ω : Set ℂ}
   nlinarith
 
 /-- Winding vanishes on every unbounded preconnected subset of
-the trace complement, by local constancy and bounded nonzero level sets.-/
+the trace complement, by local constancy and bounded nonzero level sets.
+@isnad1 id=eq.6h4v.s10.c26d4e0d74f7 from=translated src=- shape=3e3bcffd vocab=f98d6503
+-/
 theorem cubicalWindingIntegral_eq_zero_of_unbounded_preconnected {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -167,7 +181,9 @@ theorem cubicalWindingIntegral_eq_zero_of_unbounded_preconnected {Ω : Set ℂ}
 
 /-- Actual winding vanishes on each unbounded complementary
 component, with no Jordan separation or homotopy premise.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.4h3v.s10.2792c706c85c from=translated src=- shape=3e4cebe1 vocab=91add680
+-/
 theorem cubicalWindingIntegral_eq_zero_of_unbounded_component {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

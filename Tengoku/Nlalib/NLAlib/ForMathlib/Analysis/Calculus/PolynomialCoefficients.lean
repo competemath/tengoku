@@ -21,7 +21,9 @@ variable {𝕜 E : Type*} [NontriviallyNormedField 𝕜]
   [NormedAddCommGroup E] [NormedSpace 𝕜 E]
   {r : WithTop ℕ∞} {x : E}
 
-/-- Coefficientwise multiplication preserves smoothness of polynomial families.-/
+/-- Coefficientwise multiplication preserves smoothness of polynomial families.
+@isnad1 id=contdiff.2h7v.s8.d65e3a64ddf2 from=translated src=- shape=6c7d6489 vocab=4de05ddc
+-/
 theorem contDiffAt_coeff_mul {p q : E → 𝕜[X]}
     (hp : ∀ k, ContDiffAt 𝕜 r (fun y => (p y).coeff k) x)
     (hq : ∀ k, ContDiffAt 𝕜 r (fun y => (q y).coeff k) x) (k : ℕ) :
@@ -33,13 +35,17 @@ theorem contDiffAt_coeff_mul {p q : E → 𝕜[X]}
 def HasCoeffDerivAt (p : ℝ → ℝ[X]) (p' : ℝ[X]) (x : ℝ) : Prop :=
   ∀ k, HasDerivAt (fun y => (p y).coeff k) (p'.coeff k) x
 
-/-- A fixed polynomial has zero coefficient derivative.-/
+/-- A fixed polynomial has zero coefficient derivative.
+@isnad1 id=hascoeff.0h2v.s4.d42cebe25ec5 from=translated src=- shape=eaddce21 vocab=7a9fb155
+-/
 theorem hasCoeffDerivAt_const (p : ℝ[X]) (x : ℝ) :
     HasCoeffDerivAt (fun _ => p) 0 x := by
   intro k
   simpa using hasDerivAt_const x (p.coeff k)
 
-/-- Coefficientwise polynomial differentiation obeys the product rule.-/
+/-- Coefficientwise polynomial differentiation obeys the product rule.
+@isnad1 id=hascoeff.2h5v.s6.abaeb2b231e3 from=translated src=- shape=a8f311c3 vocab=4f0638e8
+-/
 theorem HasCoeffDerivAt.mul {p q : ℝ → ℝ[X]} {p' q' : ℝ[X]} {x : ℝ}
     (hp : HasCoeffDerivAt p p' x) (hq : HasCoeffDerivAt q q' x) :
     HasCoeffDerivAt (fun y => p y * q y) (p' * q x + p x * q') x := by
@@ -56,7 +62,9 @@ namespace Polynomial
 variable {R T : Type*} [CommRing R] [TopologicalSpace R] [IsTopologicalRing R]
   [TopologicalSpace T] {a : T}
 
-/-- Coefficientwise multiplication preserves continuity of polynomial families.-/
+/-- Coefficientwise multiplication preserves continuity of polynomial families.
+@isnad1 id=continuo.2h6v.s7.0b01da4fcca3 from=translated src=- shape=78b5af4b vocab=d02c912a
+-/
 theorem continuousAt_coeff_mul {p q : T → R[X]}
     (hp : ∀ k, ContinuousAt (fun y => (p y).coeff k) a)
     (hq : ∀ k, ContinuousAt (fun y => (q y).coeff k) a) (k : ℕ) :
@@ -65,7 +73,9 @@ theorem continuousAt_coeff_mul {p q : T → R[X]}
   exact tendsto_finsetSum _ (fun i _ => (hp i.1).mul (hq i.2))
 
 /-- Every coefficient of a finite product is continuous when every factor's
-coefficients are continuous.-/
+coefficients are continuous.
+@isnad1 id=continuo.1h7v.s6.e8d484fab7a4 from=translated src=- shape=53ee67ff vocab=22bb8b7a
+-/
 theorem continuousAt_coeff_prod {ι : Type*} (s : Finset ι) {p : ι → T → R[X]}
     (hp : ∀ i ∈ s, ∀ k, ContinuousAt (fun y => (p i y).coeff k) a) (k : ℕ) :
     ContinuousAt (fun y => (∏ i ∈ s, p i y).coeff k) a := by

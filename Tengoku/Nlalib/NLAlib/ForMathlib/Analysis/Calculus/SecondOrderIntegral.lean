@@ -52,7 +52,9 @@ theorem eq_add_deriv_add_integral_iteratedDeriv_two {f : ℝ → ℝ}
   linarith
 
 /-- The exact second-order remainder is bounded using a one-sided exponential
-bound on the second derivative. No lower bound on the derivative is needed.-/
+bound on the second derivative. No lower bound on the derivative is needed.
+@isnad1 id=le.2h3v.s7.f58024c5463f from=translated src=- shape=2aa8c8d4 vocab=830ca3e9
+-/
 theorem le_add_deriv_add_mul_expSecondRemainderCoefficient {f : ℝ → ℝ} {r c : ℝ}
     (hf : ContDiff ℝ 2 f)
     (hbound : ∀ t ∈ Icc (0 : ℝ) 1, iteratedDeriv 2 f t ≤ Real.exp (t * r) * c) :
@@ -71,7 +73,9 @@ theorem le_add_deriv_add_mul_expSecondRemainderCoefficient {f : ℝ → ℝ} {r 
         mul_le_mul_of_nonneg_left (hbound t ht) (sub_nonneg.mpr ht.2)
       _ = _ := by ring
 
-/-- The integral exponential coefficient is nonnegative at every real parameter.-/
+/-- The integral exponential coefficient is nonnegative at every real parameter.
+@isnad1 id=le.0h1v.s3.8270b70acf94 from=translated src=- shape=8a62b088 vocab=bf3bf052
+-/
 theorem expSecondRemainderCoefficient_nonneg (r : ℝ) :
     0 ≤ expSecondRemainderCoefficient r := by
   apply intervalIntegral.integral_nonneg (by norm_num)
@@ -79,7 +83,9 @@ theorem expSecondRemainderCoefficient_nonneg (r : ℝ) :
   exact mul_nonneg (sub_nonneg.mpr ht.2) (Real.exp_pos _).le
 
 /-- At the zero parameter the continuous exponential remainder coefficient
-is one half.-/
+is one half.
+@isnad1 id=eq.0h0v.s5.87102b30f0cc from=translated src=- shape=d4f6e56f vocab=b239617d
+-/
 @[simp] theorem expSecondRemainderCoefficient_zero :
     expSecondRemainderCoefficient 0 = 1 / 2 := by
   simp only [expSecondRemainderCoefficient, mul_zero, Real.exp_zero, mul_one]
@@ -89,7 +95,9 @@ is one half.-/
   norm_num [integral_id]
 
 /-- Multiplication by the squared parameter removes the integral in the
-exponential remainder coefficient. The identity also holds at zero.-/
+exponential remainder coefficient. The identity also holds at zero.
+@isnad1 id=eq.0h1v.s5.c89af36d4278 from=translated src=- shape=981b862d vocab=ec85c6ba
+-/
 theorem sq_mul_expSecondRemainderCoefficient (r : ℝ) :
     r ^ 2 * expSecondRemainderCoefficient r = Real.exp r - 1 - r := by
   have hderiv : deriv (fun t : ℝ => Real.exp (t * r)) =
@@ -117,14 +125,18 @@ theorem sq_mul_expSecondRemainderCoefficient (r : ℝ) :
   linarith
 
 /-- Away from zero the integral coefficient is the usual exponential quotient;
-the integral definition supplies its removable value at zero.-/
+the integral definition supplies its removable value at zero.
+@isnad1 id=eq.1h1v.s6.ea8b797634f8 from=translated src=- shape=03bd1673 vocab=7837b2a4
+-/
 theorem expSecondRemainderCoefficient_eq_div {r : ℝ} (hr : r ≠ 0) :
     expSecondRemainderCoefficient r = (Real.exp r - 1 - r) / r ^ 2 := by
   apply (eq_div_iff (pow_ne_zero 2 hr)).mpr
   simpa only [mul_comm] using sq_mul_expSecondRemainderCoefficient r
 
 /-- The exponential remainder coefficient is continuous at every parameter,
-including the removable point zero.-/
+including the removable point zero.
+@isnad1 id=continuo.0h0v.s3.664174e1d612 from=translated src=- shape=e3d48bcb vocab=194ce36b
+-/
 theorem continuous_expSecondRemainderCoefficient :
     Continuous expSecondRemainderCoefficient := by
   have hcont : Continuous (Function.uncurry
@@ -137,7 +149,9 @@ theorem continuous_expSecondRemainderCoefficient :
     intervalIntegral.integral_of_le (show (0 : ℝ) ≤ 1 by norm_num),
     integral_Icc_eq_integral_Ioc] using h
 
-/-- The exponential remainder coefficient is monotone in the parameter.-/
+/-- The exponential remainder coefficient is monotone in the parameter.
+@isnad1 id=monotone.0h0v.s2.24f820f7154a from=translated src=- shape=e3d48bcb vocab=7ce0c2c2
+-/
 theorem monotone_expSecondRemainderCoefficient :
     Monotone expSecondRemainderCoefficient := by
   intro r s hrs
@@ -152,7 +166,9 @@ theorem monotone_expSecondRemainderCoefficient :
       (sub_nonneg.mpr ht.2)
 
 /-- At nonnegative parameters the coefficient is at least its value one half
-at zero.-/
+at zero.
+@isnad1 id=le.1h1v.s5.08df9fb413de from=translated src=- shape=e99370bb vocab=918cd404
+-/
 theorem one_half_le_expSecondRemainderCoefficient {r : ℝ} (hr : 0 ≤ r) :
     1 / 2 ≤ expSecondRemainderCoefficient r := by
   simpa only [expSecondRemainderCoefficient_zero] using
@@ -160,7 +176,9 @@ theorem one_half_le_expSecondRemainderCoefficient {r : ℝ} (hr : 0 ≤ r) :
 
 /-- Bernstein's scalar exponential bound controls the exact integral
 remainder coefficient up to the pole at three, including the zero parameter.
-Source: Tropp (2015), Lemma 6.6.2; Tropp (2026), Section 4.9.-/
+Source: Tropp (2015), Lemma 6.6.2; Tropp (2026), Section 4.9.
+@isnad1 id=le.1h1v.s6.3ea09e8af3b7 from=translated src=- shape=6673845c vocab=4bcb5b17
+-/
 theorem expSecondRemainderCoefficient_le_div {r : ℝ} (hr : r < 3) :
     expSecondRemainderCoefficient r ≤ (1 / 2) / (1 - r / 3) := by
   by_cases hzero : r = 0

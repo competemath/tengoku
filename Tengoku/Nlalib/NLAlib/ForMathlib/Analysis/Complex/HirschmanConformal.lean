@@ -22,14 +22,18 @@ namespace Complex
 def hirschmanDiskToHalfPlane (a b : ℝ) (z : ℂ) : ℂ :=
   (a : ℂ) + (b : ℂ) * I * ((1 + z) / (1 - z))
 
-/-- The real part of the basic Cayley quotient.-/
+/-- The real part of the basic Cayley quotient.
+@isnad1 id=eq.0h1v.s6.89ccfbb9ea5a from=translated src=- shape=cb8a8628 vocab=8b12fcd7
+-/
 theorem cayleyQuotient_re (z : ℂ) :
     ((1 + z) / (1 - z)).re = (1 - normSq z) / normSq (1 - z) := by
   rw [div_re]
   simp only [add_re, sub_re, one_re, add_im, sub_im, one_im, zero_add, zero_sub, normSq_apply]
   ring
 
-/-- The imaginary part records positivity on the disk exactly.-/
+/-- The imaginary part records positivity on the disk exactly.
+@isnad1 id=eq.0h3v.s6.1f9a6bc522a2 from=translated src=- shape=84616342 vocab=c19ef80b
+-/
 theorem hirschmanDiskToHalfPlane_im (a b : ℝ) (z : ℂ) :
     (hirschmanDiskToHalfPlane a b z).im = b * (1 - normSq z) / normSq (1 - z) := by
   simp only [hirschmanDiskToHalfPlane, add_im, ofReal_im, zero_add, mul_im, mul_re,
@@ -37,7 +41,9 @@ theorem hirschmanDiskToHalfPlane_im (a b : ℝ) (z : ℂ) :
   rw [cayleyQuotient_re]
   ring
 
-/-- The entire open unit disk maps into the upper half-plane.-/
+/-- The entire open unit disk maps into the upper half-plane.
+@isnad1 id=lt.2h3v.s5.326073dbd3ab from=translated src=- shape=b60d286e vocab=ca59e62d
+-/
 theorem hirschmanDiskToHalfPlane_im_pos (a : ℝ) {b : ℝ} (hb : 0 < b)
     {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) :
     0 < (hirschmanDiskToHalfPlane a b z).im := by
@@ -54,13 +60,17 @@ theorem hirschmanDiskToHalfPlane_im_pos (a : ℝ) {b : ℝ} (hb : 0 < b)
 def hirschmanDiskToStrip (r : ℝ) (z : ℂ) : ℂ :=
   log (hirschmanDiskToHalfPlane (Real.cos (π * r)) (Real.sin (π * r)) z) * (-I) / (π : ℂ)
 
-/-- Its real part is the normalized half-plane argument.-/
+/-- Its real part is the normalized half-plane argument.
+@isnad1 id=eq.0h2v.s5.369b2c58a9fc from=translated src=- shape=38151e97 vocab=e0a49fc7
+-/
 theorem hirschmanDiskToStrip_re (r : ℝ) (z : ℂ) :
     (hirschmanDiskToStrip r z).re =
       arg (hirschmanDiskToHalfPlane (Real.cos (π * r)) (Real.sin (π * r)) z) / π := by
   simp [hirschmanDiskToStrip, div_ofReal_re, mul_re, log_im]
 
-/-- Every point of the open disk maps strictly inside the vertical strip.-/
+/-- Every point of the open disk maps strictly inside the vertical strip.
+@isnad1 id=mem.2h2v.s6.1581f0674eb2 from=translated src=- shape=2a68f355 vocab=71e744d1
+-/
 theorem hirschmanDiskToStrip_re_mem_Ioo {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1)
     {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) : (hirschmanDiskToStrip r z).re ∈ Ioo (0 : ℝ) 1 := by
   have hs : 0 < Real.sin (π * r) := Real.sin_pos_of_pos_of_lt_pi (mul_pos pi_pos hr.1)
@@ -75,7 +85,9 @@ theorem hirschmanDiskToStrip_re_mem_Ioo {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1)
   · apply (div_lt_one pi_pos).2
     exact arg_lt_pi_iff.mpr (Or.inr (ne_of_gt him))
 
-/-- The disk center maps to precisely the prescribed interpolation parameter.-/
+/-- The disk center maps to precisely the prescribed interpolation parameter.
+@isnad1 id=eq.1h1v.s5.da9361b680b4 from=translated src=- shape=ca0dc72d vocab=7c0d0d24
+-/
 theorem hirschmanDiskToStrip_zero {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     hirschmanDiskToStrip r 0 = (r : ℂ) := by
   have hcenter : hirschmanDiskToHalfPlane (Real.cos (π * r)) (Real.sin (π * r)) 0 =
@@ -87,7 +99,9 @@ theorem hirschmanDiskToStrip_zero {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
   field_simp
   simp [I_sq]
 
-/-- The disk-to-strip map is holomorphic throughout the actual open unit disk.-/
+/-- The disk-to-strip map is holomorphic throughout the actual open unit disk.
+@isnad1 id=differen.2h2v.s6.1d9622566457 from=translated src=- shape=34669669 vocab=d35914fa
+-/
 theorem differentiableAt_hirschmanDiskToStrip {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1)
     {z : ℂ} (hz : z ∈ ball (0 : ℂ) 1) : DifferentiableAt ℂ (hirschmanDiskToStrip r) z := by
   have hzn : ‖z‖ < 1 := by simpa using hz
@@ -101,6 +115,9 @@ theorem differentiableAt_hirschmanDiskToStrip {r : ℝ} (hr : r ∈ Ioo (0 : ℝ
     fun_prop (disch := exact sub_ne_zero.mpr hz1.symm)
   exact (((differentiableAt_log (Or.inr (ne_of_gt him))).comp z hM).mul_const (-I)).div_const _
 
+/--
+@isnad1 id=analytic.1h1v.s6.46cb051ae0ad from=translated src=- shape=06f70ba3 vocab=d58ecf46
+-/
 theorem analyticOnNhd_hirschmanDiskToStrip {r : ℝ} (hr : r ∈ Ioo (0 : ℝ) 1) :
     AnalyticOnNhd ℂ (hirschmanDiskToStrip r) (ball (0 : ℂ) 1) := by
   apply (analyticOnNhd_iff_differentiableOn isOpen_ball).2

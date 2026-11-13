@@ -16,11 +16,15 @@ open scoped unitInterval
 namespace Cubical
 variable {X : Type*} [TopologicalSpace X]
 
-/-- The zero chain has an explicit normalized cubical filling.-/
+/-- The zero chain has an explicit normalized cubical filling.
+@isnad1 id=isnullho.0h1v.s5.d1c10a7840ad from=translated src=- shape=a72970d9 vocab=0b2459a6
+-/
 theorem isNullHomologous_zero : IsNullHomologous (0 : OneChain X) :=
   ⟨0, 0, by simp⟩
 
-/-- Actual normalized cubical null-homology witnesses add.-/
+/-- Actual normalized cubical null-homology witnesses add.
+@isnad1 id=isnullho.2h3v.s6.76324bc1db54 from=translated src=- shape=1333e5f0 vocab=901ad147
+-/
 theorem IsNullHomologous.add {Γ Δ : OneChain X}
     (hΓ : IsNullHomologous Γ) (hΔ : IsNullHomologous Δ) : IsNullHomologous (Γ + Δ) := by
   obtain ⟨S, D, rfl⟩ := hΓ
@@ -29,7 +33,9 @@ theorem IsNullHomologous.add {Γ Δ : OneChain X}
   simp only [map_add]
   abel
 
-/-- Negating a finite filling negates its actual normalized boundary.-/
+/-- Negating a finite filling negates its actual normalized boundary.
+@isnad1 id=isnullho.1h2v.s5.ed7cd8482019 from=translated src=- shape=a3b738d9 vocab=460cbbc0
+-/
 theorem IsNullHomologous.neg {Γ : OneChain X} (hΓ : IsNullHomologous Γ) :
     IsNullHomologous (-Γ) := by
   obtain ⟨S, D, rfl⟩ := hΓ
@@ -37,13 +43,17 @@ theorem IsNullHomologous.neg {Γ : OneChain X} (hΓ : IsNullHomologous Γ) :
   simp only [map_neg]
   abel
 
-/-- Actual normalized cubical null-homology witnesses subtract.-/
+/-- Actual normalized cubical null-homology witnesses subtract.
+@isnad1 id=isnullho.2h3v.s6.7648e5d7267e from=translated src=- shape=1333e5f0 vocab=9d096937
+-/
 theorem IsNullHomologous.sub {Γ Δ : OneChain X}
     (hΓ : IsNullHomologous Γ) (hΔ : IsNullHomologous Δ) : IsNullHomologous (Γ - Δ) := by
   simpa only [sub_eq_add_neg] using hΓ.add hΔ.neg
 
 /-- Integer multiples of an actual normalized cubical filling give an
-actual filling of the corresponding integer multiple.-/
+actual filling of the corresponding integer multiple.
+@isnad1 id=isnullho.1h3v.s5.71a2bd917f89 from=translated src=- shape=bdf55afd vocab=49fa5f82
+-/
 theorem IsNullHomologous.smul {Γ : OneChain X} (hΓ : IsNullHomologous Γ) (k : ℤ) :
     IsNullHomologous (k • Γ) := by
   obtain ⟨S, D, rfl⟩ := hΓ
@@ -51,7 +61,9 @@ theorem IsNullHomologous.smul {Γ : OneChain X} (hΓ : IsNullHomologous Γ) (k :
   simp only [map_smul, smul_add]
 
 /-- Finite sums of actual normalized cubical boundaries have an actual
-finite normalized cubical filling.-/
+finite normalized cubical filling.
+@isnad1 id=isnullho.1h4v.s6.4beb5f892912 from=translated src=- shape=effb8213 vocab=f28b8620
+-/
 theorem isNullHomologous_finsetSum {ι : Type*} (s : Finset ι) (f : ι → OneChain X)
     (hf : ∀ i ∈ s, IsNullHomologous (f i)) : IsNullHomologous (∑ i ∈ s, f i) := by
   classical
@@ -79,7 +91,9 @@ def finalPart (γ : C(I, X)) (r : I) : C(I, X) :=
 
 /-- Splitting a continuous edge at any parameter, including either endpoint,
 preserves its normalized cubical homology class. An actual continuous square
-and a degenerate initial-point edge supply the filling.-/
+and a degenerate initial-point edge supply the filling.
+@isnad1 id=isnullho.0h3v.s8.ec45e8832dd5 from=translated src=- shape=c29a1ecd vocab=8e1707f5
+-/
 theorem isNullHomologous_single_sub_initialPart_sub_finalPart
     (γ : C(I, X)) (r : I) :
     IsNullHomologous (Finsupp.single γ 1 - Finsupp.single (initialPart γ r) 1 -

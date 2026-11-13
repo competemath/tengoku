@@ -19,7 +19,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteS
 
 /-- A genuine self-adjoint resolvent cannot be small on a unit vector
 whose actual shifted residual is bounded. Empty Hilbert spaces are
-automatically excluded by the unit-vector hypothesis.-/
+automatically excluded by the unit-vector hypothesis.
+@isnad1 id=le.5h5v.s10.8ba55e7c40ae from=translated src=- shape=e3a01a3d vocab=eb246d04
+-/
 theorem IsSelfAdjoint.inv_le_norm_resolvent_apply_of_residual_le
     {T : E →L[ℂ] E} (hT : IsSelfAdjoint T) {z : ℂ} (hz : z.im≠0)
     {u : E} (hu : ‖u‖=1) {L : ℝ} (hL : 0<L)

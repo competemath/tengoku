@@ -26,7 +26,9 @@ namespace Complex
 /-- A circle image sufficiently close to a real dilation can be replaced by
 the dilated circle in an exterior holomorphy domain. Negative dilation still
 preserves counterclockwise orientation. The strict closeness estimate keeps
-the entire straight free homotopy outside the forbidden disk.-/
+the entire straight free homotopy outside the forbidden disk.
+@isnad1 id=eq.5h6v.s8.1877e8af9e2a from=translated src=- shape=b4b5cafb vocab=b2c9652b
+-/
 theorem circleIntegral_comp_mul_deriv_eq_of_close_to_real_mul
     {f g : ℂ → ℂ} {R S r a : ℝ}
     (hr : 0 < r)
@@ -110,7 +112,9 @@ theorem circleIntegral_comp_mul_deriv_eq_of_close_to_real_mul
 /-- An affine asymptote with nonzero real slope suffices to replace every
 sufficiently large image circle by any fixed circle in an exterior
 holomorphy domain. This derives the geometric homotopy bound from the limit
-at infinity.-/
+at infinity.
+@isnad1 id=eventual.6h7v.s8.f9a7aeb17ee5 from=translated src=- shape=c9a64da6 vocab=3fb6b2ce
+-/
 theorem eventually_circleIntegral_comp_mul_deriv_eq_of_tendsto_affine
     {f g : ℂ → ℂ} {R S ρ a : ℝ} {q : ℂ}
     (hf : DifferentiableOn ℂ f {z | R < ‖z‖})
@@ -141,7 +145,9 @@ theorem eventually_circleIntegral_comp_mul_deriv_eq_of_tendsto_affine
 /-- An exterior holomorphic inverse coordinate changes the exponential
 circle moment into the negative exponential moment of the inverse. Both
 the common-contour replacement and integration by parts are proved; the
-only inverse premise is the pointwise identity near infinity.-/
+only inverse premise is the pointwise identity near infinity.
+@isnad1 id=eventual.7h7v.s8.8e315d27995e from=translated src=- shape=c3a5d992 vocab=d9ebadc4
+-/
 theorem eventually_circleIntegral_exp_eq_neg_circleIntegral_exp_mul_of_inverse
     {F g : ℂ → ℂ} {R S ρ a : ℝ} {q : ℂ}
     (hF : DifferentiableOn ℂ F {z | R < ‖z‖})

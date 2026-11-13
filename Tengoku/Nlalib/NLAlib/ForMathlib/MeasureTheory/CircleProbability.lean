@@ -21,7 +21,9 @@ namespace Circle
 /-- The unit circle carries its Borel measurable space.-/
 instance instMeasurableSpace : MeasurableSpace Circle := borel Circle
 
-/-- The canonical measurable space of the unit circle is its Borel space.-/
+/-- The canonical measurable space of the unit circle is its Borel space.
+@isnad1 id=borelspa.0h0v.s2.7a750251552a from=translated src=- shape=49959d42 vocab=d3c19cca
+-/
 instance instBorelSpace : BorelSpace Circle := ⟨rfl⟩
 
 private local instance : Fact (0 < 2 * π) := ⟨by positivity⟩
@@ -31,7 +33,9 @@ def probabilityMeasure : Measure Circle :=
   AddCircle.haarAddCircle.map AddCircle.homeomorphCircle'
 
 /-- Integrating over the complex unit circle is ordinary normalized angle
-integration, including for total Bochner integrals.-/
+integration, including for total Bochner integrals.
+@isnad1 id=eq.0h2v.s7.d94970951233 from=translated src=- shape=0bb4a93e vocab=655fe040
+-/
 theorem integral_probabilityMeasure {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (f : Circle → E) :
     (∫ z, f z ∂probabilityMeasure) =
@@ -45,7 +49,9 @@ theorem integral_probabilityMeasure {E : Type*} [NormedAddCommGroup E] [NormedSp
   simp only [zero_add, Function.comp_apply, AddCircle.homeomorphCircle'_apply_mk]
 
 /-- A continuous complex-plane test has the same integral under normalized
-unit-circle measure and under the native unit circle average.-/
+unit-circle measure and under the native unit circle average.
+@isnad1 id=eq.0h2v.s6.4bb28bdb6f4d from=translated src=- shape=b98d53ef vocab=2f09f629
+-/
 theorem integral_probabilityMeasure_eq_circleAverage
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] (f : ℂ → E) :
     (∫ z : Circle, f z ∂probabilityMeasure) = Real.circleAverage f 0 1 := by

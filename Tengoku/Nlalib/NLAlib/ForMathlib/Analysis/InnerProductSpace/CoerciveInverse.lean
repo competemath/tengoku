@@ -19,7 +19,9 @@ namespace ContinuousLinearMap
 
 /-- Imaginary-part coercivity bounds a negative right inverse. In particular
 this applies to the operator form of a matrix Dyson equation.
-Source: Ajanki--Erdős--Krüger, Proposition 2.1, proof of equation (4.1).-/
+Source: Ajanki--Erdős--Krüger, Proposition 2.1, proof of equation (4.1).
+@isnad1 id=le.3h4v.s9.f47f6dd5f840 from=translated src=- shape=77d85d56 vocab=abd135a9
+-/
 theorem norm_le_inv_of_im_inner_coercive
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     (T M : E →L[ℂ] E) {η : ℝ} (hη : 0 < η)

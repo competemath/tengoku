@@ -16,7 +16,9 @@ open scoped unitInterval
 namespace Complex
 
 /-- Actual finite-chain winding is constant on every preconnected set of
-targets disjoint from its actual trace.-/
+targets disjoint from its actual trace.
+@isnad1 id=eq.6h5v.s10.4519b05d189c from=translated src=- shape=d72b6105 vocab=f7e9dc74
+-/
 theorem cubicalWindingIntegral_eq_of_isPreconnected {Ω S : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)
@@ -32,7 +34,9 @@ theorem cubicalWindingIntegral_eq_of_isPreconnected {Ω S : Set ℂ}
 /-- On an actual real support interval, one winding value determines every
 other one. The interval may be a singleton; no interior regularity or
 nonzero-derivative assumption is imposed on the contour.
-atlas: gauss-remainder-contour-kernel (partial)-/
+atlas: gauss-remainder-contour-kernel (partial)
+@isnad1 id=eq.5h6v.s10.3515d76dc9f9 from=translated src=- shape=bb3fdfc4 vocab=8b14886d
+-/
 theorem cubicalWindingIntegral_eq_of_mem_real_interval {Ω : Set ℂ}
     (Γ : Cubical.OneChain Ω) (hc : Cubical.boundaryOne Γ = 0)
     (hΓ : ∀ γ ∈ Γ.support, ContDiffOn ℝ 1 (cubicalPath γ).extend I)

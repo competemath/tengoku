@@ -21,7 +21,9 @@ open scoped unitInterval
 namespace Path
 
 /-- Restricting a globally continuously differentiable parametrization to the
-unit interval computes its native curve integral by the ordinary derivative.-/
+unit interval computes its native curve integral by the ordinary derivative.
+@isnad1 id=eq.3h4v.s8.eed5f0f5f613 from=translated src=- shape=4e80554c vocab=f9e6daa0
+-/
 theorem curveIntegral_ofLine_eq_intervalIntegral
     {γ : ℝ → ℂ} (hγ : ContDiff ℝ 1 γ) {a b : ℂ}
     (h₀ : γ 0 = a) (h₁ : γ 1 = b) (f : ℂ → ℂ) :
@@ -58,14 +60,18 @@ def circlePath (c : ℂ) (r : ℝ) : Path (c + (r : ℂ)) (c + (r : ℂ)) :=
     (by simp [circleMap])
 
 /-- The native circle path agrees with the usual angular parametrization
-through angle `2πt` on its entire closed parameter interval.-/
+through angle `2πt` on its entire closed parameter interval.
+@isnad1 id=eq.1h3v.s7.899a8086f81b from=translated src=- shape=4f007142 vocab=c16b4342
+-/
 theorem circlePath_extend_apply {c : ℂ} {r t : ℝ} (ht : t ∈ I) :
     (circlePath c r).extend t = circleMap c r (2 * Real.pi * t) := by
   rw [Path.extend_apply _ ht]
   rfl
 
 /-- The native circle path is continuously differentiable up to both
-endpoints of the unit interval.-/
+endpoints of the unit interval.
+@isnad1 id=contdiff.0h2v.s6.21f4f45e2d8b from=translated src=- shape=930649a9 vocab=11cbed25
+-/
 theorem contDiffOn_circlePath_extend (c : ℂ) (r : ℝ) :
     ContDiffOn ℝ 1 (circlePath c r).extend I := by
   have h : ContDiff ℝ 1 (fun t : ℝ => circleMap c r (2 * Real.pi * t)) :=
@@ -73,7 +79,9 @@ theorem contDiffOn_circlePath_extend (c : ℂ) (r : ℝ) :
   exact h.contDiffOn.congr (fun t ht => circlePath_extend_apply ht)
 
 /-- The native circle path integral is exactly the existing circle integral,
-including its normalization and orientation.-/
+including its normalization and orientation.
+@isnad1 id=eq.0h3v.s8.7a461775483a from=translated src=- shape=366ed1ab vocab=d6c57303
+-/
 theorem curveIntegral_circlePath_eq_circleIntegral (f : ℂ → ℂ) (c : ℂ) (r : ℝ) :
     curveIntegral (fun z => f z • ContinuousLinearMap.id ℂ ℂ) (circlePath c r) =
       ∮ z in C(c, r), f z := by
@@ -94,7 +102,9 @@ theorem curveIntegral_circlePath_eq_circleIntegral (f : ℂ → ℂ) (c : ℂ) (
   simpa only [mul_zero, mul_one, circleIntegral, smul_eq_mul] using hscale
 
 /-- A holomorphic image of the circle path is continuously differentiable
-up to both endpoints of its parameter interval.-/
+up to both endpoints of its parameter interval.
+@isnad1 id=contdiff.4h4v.s8.f4273d6becfc from=translated src=- shape=3bb8acfd vocab=8ae3fb89
+-/
 theorem contDiffOn_circlePath_map_extend
     {g : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
     (hU : IsOpen U) (hg : DifferentiableOn ℂ g U)
@@ -112,7 +122,9 @@ theorem contDiffOn_circlePath_map_extend
 
 /-- Integrating over a holomorphic image of a circle gives the circle
 integral of the ordinary derivative pullback. This is an actual change of
-parametrization, without an assumed contour-integral identity.-/
+parametrization, without an assumed contour-integral identity.
+@isnad1 id=eq.4h5v.s9.6ed37d59fe67 from=translated src=- shape=cc34b292 vocab=448de06e
+-/
 theorem curveIntegral_circlePath_map_eq_circleIntegral_mul_deriv
     (f : ℂ → ℂ) {g : ℂ → ℂ} {U : Set ℂ} {c : ℂ} {r : ℝ}
     (hU : IsOpen U) (hg : DifferentiableOn ℂ g U)
@@ -157,7 +169,9 @@ end Complex
 namespace circleIntegral
 
 /-- Negating the signed radius rotates the circle's starting point by half a
-turn and preserves its integral and counterclockwise orientation.-/
+turn and preserves its integral and counterclockwise orientation.
+@isnad1 id=eq.0h3v.s5.d7e5dbb93498 from=translated src=- shape=230b236c vocab=d311d2bb
+-/
 theorem integral_neg_radius_eq (f : ℂ → ℂ) (c : ℂ) (r : ℝ) :
     (∮ z in C(c, -r), f z) = ∮ z in C(c, r), f z := by
   unfold circleIntegral

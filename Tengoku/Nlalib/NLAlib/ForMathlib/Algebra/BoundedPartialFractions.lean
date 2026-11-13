@@ -30,13 +30,17 @@ def linearPoleRemainder (v : ι → 𝕜) (s : ι → ℕ)
     ∏ k ∈ univ.erase i, (X-C (v k))^(s k)
 
 omit [DecidableEq ι] in
-/-- The repeated-pole product is monic, including the empty product.-/
+/-- The repeated-pole product is monic, including the empty product.
+@isnad1 id=monic.0h4v.s5.215e01191779 from=translated src=- shape=59f197e9 vocab=a360b779
+-/
 theorem monic_linearPoleProduct (v : ι → 𝕜) (s : ι → ℕ) :
     (linearPoleProduct v s).Monic := monic_prod_of_monic _ _
       (fun i _ => (monic_X_sub_C (v i)).pow (s i))
 
 omit [DecidableEq ι] in
-/-- The denominator degree is exactly the sum of the pole multiplicities.-/
+/-- The denominator degree is exactly the sum of the pole multiplicities.
+@isnad1 id=eq.0h4v.s5.7141667a65a4 from=translated src=- shape=7ae052f6 vocab=89c0fa9f
+-/
 @[simp] theorem natDegree_linearPoleProduct (v : ι → 𝕜) (s : ι → ℕ) :
     (linearPoleProduct v s).natDegree = ∑ i, s i := by
   rw [linearPoleProduct, natDegree_prod_of_monic _ _
@@ -44,7 +48,9 @@ omit [DecidableEq ι] in
   simp
 
 /-- Every cleared principal-part numerator has degree strictly below the
-full denominator degree, even when there are no poles.-/
+full denominator degree, even when there are no poles.
+@isnad1 id=lt.0h5v.s6.d51deab5230e from=translated src=- shape=0f9b8ca5 vocab=410486f4
+-/
 theorem degree_linearPoleRemainder_lt (v : ι → 𝕜) (s : ι → ℕ)
     (c : (i : ι) → Fin (s i) → 𝕜) :
     (linearPoleRemainder v s c).degree < (∑ i, s i : ℕ) := by
@@ -83,7 +89,9 @@ private theorem eq_C_of_degree_lt_one {p : 𝕜[X]} (hp : p.degree < (1 : WithBo
 
 /-- Every polynomial has a unique polynomial-plus-principal-part expansion
 after clearing the actual repeated-pole denominator. This is directness of
-the rational-space sum; it includes repeated poles and an empty pole family.-/
+the rational-space sum; it includes repeated poles and an empty pole family.
+@isnad1 id=existsun.1h5v.s7.907a4f4b483c from=translated src=- shape=f4dc8ffc vocab=25e9dd5f
+-/
 theorem existsUnique_eq_mul_linearPoleProduct_add_linearPoleRemainder
     (v : ι → 𝕜) (hv : Function.Injective v) (s : ι → ℕ) (p : 𝕜[X]) :
     ∃! qc : 𝕜[X] × ((i : ι) → Fin (s i) → 𝕜),
@@ -111,7 +119,9 @@ theorem existsUnique_eq_mul_linearPoleProduct_add_linearPoleRemainder
 
 /-- The bounded numerator space has exactly the advertised polynomial degree
 bound in its unique partial-fraction expansion. When the pole degree equals
-`d`, the polynomial part is necessarily zero (`degree < 0`).-/
+`d`, the polynomial part is necessarily zero (`degree < 0`).
+@isnad1 id=iff.1h7v.s7.0ef48caa3a29 from=translated src=- shape=07863e8f vocab=09ba2f33
+-/
 theorem degree_mul_linearPoleProduct_add_linearPoleRemainder_lt_iff
     (v : ι → 𝕜) (s : ι → ℕ) {d : ℕ} (hmd : (∑ i, s i) ≤ d)
     (q : 𝕜[X]) (c : (i : ι) → Fin (s i) → 𝕜) :

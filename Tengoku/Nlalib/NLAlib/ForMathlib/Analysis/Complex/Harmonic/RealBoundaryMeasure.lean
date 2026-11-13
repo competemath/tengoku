@@ -25,12 +25,16 @@ def cayleyBoundaryMeasure (μ : Measure Circle) : Measure ℝ :=
   (μ.withDensity (fun ξ : Circle => ENNReal.ofReal (2 / (1 - (ξ : ℂ).re)))).map
     cayleyBoundaryReal
 
-/-- The stereographic weight is measurable, even at the totalized value at `1`.-/
+/-- The stereographic weight is measurable, even at the totalized value at `1`.
+@isnad1 id=measurab.0h0v.s6.99a6b18f9a57 from=translated src=- shape=6233d3e2 vocab=a43bc451
+-/
 theorem measurable_cayleyBoundaryWeight :
     Measurable (fun ξ : Circle => 2 / (1 - (ξ : ℂ).re)) := by
   fun_prop
 
-/-- Integrability of the stereographic weight makes the real-line measure finite.-/
+/-- Integrability of the stereographic weight makes the real-line measure finite.
+@isnad1 id=isfinite.1h1v.s7.f91a0c9ed16e from=translated src=- shape=14bd32b4 vocab=d5f65825
+-/
 theorem isFiniteMeasure_cayleyBoundaryMeasure (μ : Measure Circle)
     (hi : Integrable (fun ξ : Circle => 2 / (1 - (ξ : ℂ).re)) μ) :
     IsFiniteMeasure (cayleyBoundaryMeasure μ) := by
@@ -43,7 +47,9 @@ theorem isFiniteMeasure_cayleyBoundaryMeasure (μ : Measure Circle)
   unfold cayleyBoundaryMeasure
   infer_instance
 
-/-- The weighted real-line mass is exactly the integral of the circle weight.-/
+/-- The weighted real-line mass is exactly the integral of the circle weight.
+@isnad1 id=eq.1h1v.s8.2e7f8730d11e from=translated src=- shape=e7c54c0a vocab=20bd5b1c
+-/
 theorem cayleyBoundaryMeasure_real_univ (μ : Measure Circle)
     (hi : Integrable (fun ξ : Circle => 2 / (1 - (ξ : ℂ).re)) μ) :
     (cayleyBoundaryMeasure μ).real univ = ∫ ξ : Circle, 2 / (1 - (ξ : ℂ).re) ∂μ := by
@@ -56,7 +62,9 @@ theorem cayleyBoundaryMeasure_real_univ (μ : Measure Circle)
     Measure.restrict_univ, ← ofReal_integral_eq_lintegral_ofReal hi hn]
   exact ENNReal.toReal_ofReal (integral_nonneg_of_ae hn)
 
-/-- Real Cauchy kernels are bounded above the real axis.-/
+/-- Real Cauchy kernels are bounded above the real axis.
+@isnad1 id=le.1h2v.s5.936b174cfb7a from=translated src=- shape=7d903e60 vocab=edc02ecf
+-/
 theorem norm_real_cauchyKernel_le (x : ℝ) {z : ℂ} (hz : 0 < z.im) :
     ‖((x : ℂ) - z)⁻¹‖ ≤ z.im⁻¹ := by
   rw [norm_inv]
@@ -65,7 +73,9 @@ theorem norm_real_cauchyKernel_le (x : ℝ) {z : ℂ} (hz : 0 < z.im) :
   simpa only [sub_im, ofReal_im, zero_sub, abs_neg, abs_of_pos hz] using h
 
 /-- Every finite positive real measure has an integrable Cauchy kernel
-at every upper-half-plane point.-/
+at every upper-half-plane point.
+@isnad1 id=integrab.1h2v.s6.171e55f5a8c6 from=translated src=- shape=84b8f8ce vocab=0063d0e1
+-/
 theorem integrable_real_cauchyKernel (μ : Measure ℝ) [IsFiniteMeasure μ]
     {z : ℂ} (hz : 0 < z.im) :
     Integrable (fun x : ℝ => ((x : ℂ) - z)⁻¹) μ := by
@@ -73,7 +83,9 @@ theorem integrable_real_cauchyKernel (μ : Measure ℝ) [IsFiniteMeasure μ]
   · exact (by fun_prop : Measurable (fun x : ℝ => ((x : ℂ) - z)⁻¹)).aestronglyMeasurable
   · exact Filter.Eventually.of_forall (fun x => norm_real_cauchyKernel_le x hz)
 
-/-- The finite Cauchy transform is bounded by mass divided by height.-/
+/-- The finite Cauchy transform is bounded by mass divided by height.
+@isnad1 id=le.1h2v.s6.cfd50fe77e7f from=translated src=- shape=eaa7f6c6 vocab=8c0360ad
+-/
 theorem norm_integral_real_cauchyKernel_le (μ : Measure ℝ) [IsFiniteMeasure μ]
     {z : ℂ} (hz : 0 < z.im) :
     ‖∫ x : ℝ, ((x : ℂ) - z)⁻¹ ∂μ‖ ≤ μ.real univ / z.im := by
@@ -84,7 +96,9 @@ theorem norm_integral_real_cauchyKernel_le (μ : Measure ℝ) [IsFiniteMeasure �
       (fun x => norm_real_cauchyKernel_le x hz)
     _ = _ := by rw [integral_const]; simp only [smul_eq_mul, div_eq_mul_inv]
 
-/-- Cauchy transforms of finite positive measures vanish on the high imaginary axis.-/
+/-- Cauchy transforms of finite positive measures vanish on the high imaginary axis.
+@isnad1 id=tendsto.0h1v.s6.4fdf9bf552a0 from=translated src=- shape=370f0ffa vocab=d52e5e0f
+-/
 theorem tendsto_integral_real_cauchyKernel_mul_I (μ : Measure ℝ) [IsFiniteMeasure μ] :
     Tendsto (fun y : ℝ => ∫ x : ℝ, ((x : ℂ) - (y : ℂ) * I)⁻¹ ∂μ)
       atTop (𝓝 0) := by

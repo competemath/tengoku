@@ -19,7 +19,9 @@ open Finset
 namespace NLAlib
 
 /-- Reinsert a neutral diagonal term into the finite nodal-weight product.
-Source: the Lagrange product formula.-/
+Source: the Lagrange product formula.
+@isnad1 id=eq.0h3v.s6.259a5e7df3b9 from=translated src=- shape=9fa95bcf vocab=e8b03105
+-/
 theorem nodalWeight_eq_prod_ite {ι : Type*} [Fintype ι] [DecidableEq ι]
     (v : ι → ℝ) (i : ι) :
     Lagrange.nodalWeight univ v i = ∏ j, if j = i then 1 else (v i - v j)⁻¹ := by
@@ -34,7 +36,9 @@ theorem nodalWeight_eq_prod_ite {ι : Type*} [Fintype ι] [DecidableEq ι]
       exact prod_congr rfl fun j hj => ite_eq_right (mem_erase.mp hj).1
 
 /-- The nodal weights of an increasing `(n+1)`-node real grid have alternating signs.
-Source: the signs of the factors in the finite Lagrange product.-/
+Source: the signs of the factors in the finite Lagrange product.
+@isnad1 id=lt.1h3v.s7.7306991f68f1 from=translated src=- shape=e2f9f4c2 vocab=b95b5bbb
+-/
 theorem signed_nodalWeight_pos {n : ℕ} {v : Fin (n + 1) → ℝ} (hv : StrictMono v)
     (i : Fin (n + 1)) : 0 < (-1 : ℝ) ^ (n - i.val) * Lagrange.nodalWeight univ v i := by
   induction n with
@@ -67,7 +71,9 @@ theorem signed_nodalWeight_pos {n : ℕ} {v : Fin (n + 1) → ℝ} (hv : StrictM
       simpa only [mul_left_comm, mul_assoc] using hprod
 
 /-- Low-degree polynomial evaluations have vanishing top barycentric coefficient.
-Source: the top coefficient in the exact Lagrange interpolation formula.-/
+Source: the top coefficient in the exact Lagrange interpolation formula.
+@isnad1 id=eq.2h3v.s7.0a8070dcdf64 from=translated src=- shape=65a8c483 vocab=6772213c
+-/
 theorem sum_eval_mul_nodalWeight_eq_zero {n : ℕ} {v : Fin (n + 1) → ℝ}
     (hv : Function.Injective v) {p : Polynomial ℝ} (hp : p.degree < n) :
     (∑ i, p.eval (v i) * Lagrange.nodalWeight univ v i) = 0 := by
@@ -78,7 +84,9 @@ theorem sum_eval_mul_nodalWeight_eq_zero {n : ℕ} {v : Fin (n + 1) → ℝ}
   simpa only [Lagrange.nodalWeight, Finset.prod_inv_distrib, div_eq_mul_inv] using hcoeff.symm
 
 /-- Alternating absolute nodal weights are the signed barycentric weights.
-Source: the alternating sign of an ordered grid's nodal weights.-/
+Source: the alternating sign of an ordered grid's nodal weights.
+@isnad1 id=eq.1h4v.s8.114e5fb27df5 from=translated src=- shape=3154c8c3 vocab=794b99b3
+-/
 theorem neg_one_pow_mul_abs_nodalWeight {n : ℕ} {v : Fin (n + 1) → ℝ}
     (hv : StrictMono v) (r : Fin (n + 1)) (i : ℕ) :
     (-1 : ℝ) ^ (r.val + i) * |Lagrange.nodalWeight univ v r| =

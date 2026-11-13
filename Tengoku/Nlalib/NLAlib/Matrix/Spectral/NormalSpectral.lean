@@ -26,7 +26,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every complex normal matrix has an orthonormal eigenbasis.
 Horn–Johnson (2013), Theorem 2.5.3; the proof uses joint eigenspaces of the
 Hermitian real and imaginary parts and includes an empty index type.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=ex.1h2v.s9.aace46b906f1 from=translated src=- shape=b6f93ecd vocab=8cc0dbfe
+-/
 theorem exists_orthonormalBasis_eigenvectors_of_normal {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) :
     ∃ (b : OrthonormalBasis n ℂ (EuclideanSpace ℂ n)) (d : n → ℂ),
@@ -77,7 +79,9 @@ open scoped Matrix.Norms.L2Operator in
 /-- Every complex normal matrix is unitarily diagonalizable.
 Horn–Johnson (2013), Theorem 2.5.3; the unitary and eigenvalue list are
 constructed from the orthonormal joint eigenbasis, including empty matrices.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=ex.1h2v.s9.07645d269cee from=translated src=- shape=3c65b69e vocab=dbe05abf
+-/
 theorem exists_unitary_diagonalization_of_normal {A : Matrix n n ℂ}
     (hA : A * Aᴴ = Aᴴ * A) :
     ∃ (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ),
@@ -103,7 +107,9 @@ theorem exists_unitary_diagonalization_of_normal {A : Matrix n n ℂ}
 open scoped Matrix.Norms.L2Operator in
 /-- A unitary diagonalization implies normality. Source: Horn–Johnson
 (2013), Theorem 2.5.3; diagonal entries may be arbitrary complex numbers.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=eq.1h4v.s9.7b81fc70d075 from=translated src=- shape=ca5c593c vocab=dbe05abf
+-/
 theorem mul_conjTranspose_eq_conjTranspose_mul_of_unitary_diagonalization
     {A : Matrix n n ℂ} (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ)
     (hA : A = (U : Matrix n n ℂ) * Matrix.diagonal d * (U : Matrix n n ℂ)ᴴ) :
@@ -125,7 +131,9 @@ theorem mul_conjTranspose_eq_conjTranspose_mul_of_unitary_diagonalization
 open scoped Matrix.Norms.L2Operator in
 /-- A complex matrix is normal exactly when it is unitarily diagonalizable.
 Source: Horn–Johnson (2013), Theorem 2.5.3.
-atlas: normal-matrices (partial)-/
+atlas: normal-matrices (partial)
+@isnad1 id=iff.0h2v.s9.1d9abf9769ce from=translated src=- shape=5e94b9cc vocab=dbe05abf
+-/
 theorem normal_iff_exists_unitary_diagonalization (A : Matrix n n ℂ) :
     A * Aᴴ = Aᴴ * A ↔ ∃ (U : Matrix.unitaryGroup n ℂ) (d : n → ℂ),
       A = (U : Matrix n n ℂ) * Matrix.diagonal d * (U : Matrix n n ℂ)ᴴ :=
