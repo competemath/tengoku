@@ -105,7 +105,7 @@ SECTION = re.compile(r"^\s*(?:@\[expose\]\s*)?(?:(?:public|noncomputable)\s+)*se
 
 def body_start(lines: list[str]) -> int:
     """the index of the first line after the header: blank lines, comments (line and block), `module`/`prelude` and imports are the header; a
-    `section` line that opens the body is part of it (the inserted commands go inside it)"""
+    `section` line that opens the body is part of it (the inserted commands go inside it); a doc comment (`/--`) starts the body"""
     depth = 0
     for i, ln in enumerate(lines):
         s = ln.strip()
@@ -114,6 +114,8 @@ def body_start(lines: list[str]) -> int:
             continue
         if not s or s.startswith("--"):
             continue
+        if s.startswith("/--"):
+            return i  # a doc comment belongs to the declaration after it: the inserted commands go in front of it, never between the two
         if s.startswith("/-"):
             depth = max(s.count("/-") - s.count("-/"), 0)
             continue
