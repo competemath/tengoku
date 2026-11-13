@@ -279,8 +279,14 @@ def qualify_roots_in_file(f: Lines, roots: set[str], ns: str, mark_open: bool = 
     touched = bool(done["declared"] or done["namespaces"] or done["dotted"] or done.get("opens"))
     first = body_start(f.text)
     mark = OPEN_MARK.format(ns=ns)
-    if mark_open and (touched or _uses_roots(f, roots)) and first < len(f.text) and mark not in f.text[first]:
-        f.insert(first, 0, mark)
+    if mark_open and (touched or _uses_roots(f, roots)) and first < len(f.text) and mark.strip() not in "\n".join(f.text):
+        # On the blank line in front of the first body line when there is one: Lean keeps the column where a declaration starts (a doc comment, or `def`) and an application on a
+        # LATER line must stand to the right of it, so `namespace … open … def x` / `… /-- doc -/` on one line breaks `(-1) ^ k * bernoulli (k + 1)` in a term body (merge queue,
+        # PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: same line fails, own line passes). Tactic blocks restart the column, which is why most modules never noticed.
+        if first > 0 and not f.text[first - 1].strip():
+            f.insert(first - 1, 0, mark.rstrip())
+        else:
+            f.insert(first, 0, mark)
         done["opened"] = True
     return done
 

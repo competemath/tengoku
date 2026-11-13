@@ -287,7 +287,9 @@ class DocComment(unittest.TestCase):
 
     def test_the_prelude_goes_in_front_of_the_doc_comment(self):
         out = self.run_text(self.TEXT)
-        self.assertIn("namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo /-- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta", out)
+        self.assertIn(
+            "\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo\n/-- the zeta value. -/\ndef _root_.Tengoku.Foo.zeta", out
+        )  # on the blank line before it
 
     def test_a_module_doc_and_a_plain_comment_stay_header(self):
         out = self.run_text(self.TEXT.replace("/-- the zeta", "/- the zeta"))
@@ -337,6 +339,41 @@ class BodyNamespace(unittest.TestCase):
 
     def test_it_is_idempotent(self):
         once = self.run_text(self.TEXT)
+        self.assertEqual(once, self.run_text(once))
+
+
+class OwnLine(unittest.TestCase):
+    """The prelude goes on the blank line in front of the first body line, not on that line: Lean keeps the column where a declaration starts, and an application on a later line has to stand to the right of it (`(-1) ^ k * bernoulli (k + 1)` in a term body failed on PadicLFunctions/KubotaLeopoldt/ZetaValues.lean:20; Leak IV: the same line fails, its own line passes)."""
+
+    BODY = "def zeta (k : Nat) : Nat :=\n  (-1 : Int).natAbs * zeta (k + 1)\n"
+
+    def run_text(self, text, roots=("zeta",)):
+        report = f"roots: {len(roots)} declarations\n" + "".join(f"root: {r}\n" for r in roots)
+        changed, _ = rt.qualify_files({"Tengoku/Foo/A.lean": text}, {"Foo": report})
+        return changed.get("Tengoku/Foo/A.lean", text)
+
+    def test_the_prelude_takes_the_blank_line_and_leaves_the_declaration_at_its_column(self):
+        text = "module\n\nimport Tengoku\n\n" + self.BODY
+        out = self.run_text(text).split("\n")
+        self.assertEqual(out[3].rstrip(), "namespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo")
+        self.assertTrue(out[4].startswith("def _root_.Tengoku.Foo.zeta"))  # `def` still at column 0
+
+    def test_without_a_blank_line_it_stays_on_the_first_body_line(self):
+        text = "module\n\nimport Tengoku\n" + self.BODY
+        out = self.run_text(text)
+        self.assertIn("\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta", out)
+
+    def test_no_line_is_added(self):
+        text = "module\n\nimport Tengoku\n\n" + self.BODY
+        out = self.run_text(text)
+        self.assertEqual(len(out.split("\n")), len(text.split("\n")) + 1)  # the one footer line; none of the module's own lines moves
+
+    def test_a_module_that_already_has_the_prelude_on_the_declaration_line_is_left_alone(self):
+        old = "module\n\nimport Tengoku\n\nnamespace Tengoku.Foo end Tengoku.Foo open Tengoku.Foo def _root_.Tengoku.Foo.zeta (k : Nat) : Nat := k\n"
+        self.assertEqual(self.run_text(old), old)
+
+    def test_it_is_idempotent(self):
+        once = self.run_text("module\n\nimport Tengoku\n\n" + self.BODY)
         self.assertEqual(once, self.run_text(once))
 
 
