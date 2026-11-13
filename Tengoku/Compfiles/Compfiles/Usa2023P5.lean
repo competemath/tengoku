@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2023, Problem 5
 
@@ -374,3 +374,4 @@ lemma trygubArr_row_valid {n q : ℕ} (hn0 : 0 < n) (_hq : 2 ≤ q)
       lia
 
 end Usa2023P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

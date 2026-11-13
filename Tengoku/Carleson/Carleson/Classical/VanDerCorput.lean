@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 /- This file formalizes section 11.4 (The proof of the van der Corput Lemma) from the paper. -/
 
 noncomputable section
@@ -26,7 +26,7 @@ lemma ContinuousOn.intervalIntegrable_Ioo_of_bound
 /--
 @isnad1 id=interval.3h5v.s6.e39e5507ec13 from=translated src=- shape=51c97a3d vocab=a3d43cc4
 -/
-lemma intervalIntegrable_continuous_mul_lipschitzOnWith
+lemma _root_.Tengoku.Carleson.intervalIntegrable_continuous_mul_lipschitzOnWith
     {a b : ℝ} {K : ℝ≥0} {f g : ℝ → ℂ} (hab : a ≤ b) (hf : Continuous f)
     (hg : LipschitzOnWith K g (Set.Ioo a b)) :
     IntervalIntegrable (fun x ↦ f x * g x) volume a b := by
@@ -59,7 +59,7 @@ lemma intervalIntegrable_continuous_mul_lipschitzOnWith
 /--
 @isnad1 id=le.3h6v.s8.0dd7fd2bd07c from=translated src=- shape=b8d5400c vocab=5d833440
 -/
-lemma van_der_Corput {a b : ℝ} (hab : a ≤ b) {n : ℤ} {φ : ℝ → ℂ} {B K : ℝ≥0}
+lemma _root_.Tengoku.Carleson.van_der_Corput {a b : ℝ} (hab : a ≤ b) {n : ℤ} {φ : ℝ → ℂ} {B K : ℝ≥0}
     (h1 : LipschitzOnWith K φ (Ioo a b)) (h2 : ∀ x ∈ Ioo a b, ‖φ x‖ ≤ B) :
     ‖∫ x in a..b, exp (I * n * x) * φ x‖ ≤
      2 * π * (b - a) * (B + K * (b - a) / 2) * (1 + |n| * (b - a))⁻¹ := by
@@ -273,3 +273,4 @@ lemma van_der_Corput {a b : ℝ} (hab : a ≤ b) {n : ℤ} {φ : ℝ → ℂ} {B
     _ = 2 * π * (b - a) * (B + K * (b - a) / 2) * (1 + |n| * (b - a))⁻¹ := by
       rw [_root_.abs_of_nonneg n_pos.le]
       ring
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

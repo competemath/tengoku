@@ -27,7 +27,7 @@ satisfying the ordered-ring axioms + "X is positive infinitesimal"
 must agree with `polyPos` (the 0₊ positivity predicate, i.e.\
 `pos P ↔ 0 < P.trailingCoeff` for nonzero `P`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial
@@ -175,3 +175,4 @@ theorem exercise_2_4
   rw [hfactor, hQ_iff, hQ0]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2004, Problem 3
 
@@ -1337,3 +1337,4 @@ abbrev answer : Set (ℕ × ℕ) :=
   {p | GoodRect p.1 p.2}
 
 end Imo2004P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

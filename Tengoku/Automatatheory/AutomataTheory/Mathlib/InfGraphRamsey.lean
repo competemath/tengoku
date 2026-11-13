@@ -10,7 +10,7 @@ import Tengoku
 This file proves a Ramsey theorem on infinite graphs.
 This result really should be in Mathlib, but it is not.
 -/
-
+namespace Tengoku.Automatatheory end Tengoku.Automatatheory open Tengoku.Automatatheory
 open Function Set
 
 section InfGraphRamsey
@@ -20,7 +20,7 @@ open Classical
 /-- The infinitary pigeonhole principle.
 @isnad1 id=ex.1h4v.s5.38ca26cf68b2 from=translated src=- shape=36c59b16 vocab=51732db1
 -/
-lemma pigeonhole_principle {X Y : Type*} [Finite Y] (f : X → Y) {s : Set X} (h_inf : s.Infinite) :
+lemma _root_.Tengoku.Automatatheory.pigeonhole_principle {X Y : Type*} [Finite Y] (f : X → Y) {s : Set X} (h_inf : s.Infinite) :
     ∃ y, ∃ t, t.Infinite ∧ t ⊆ s ∧ ∀ x ∈ t, f x = y := by
   have := h_inf.to_subtype
   obtain ⟨y, h_inf'⟩ := Finite.exists_infinite_fiber (s.domRestrict f)
@@ -31,25 +31,25 @@ lemma pigeonhole_principle {X Y : Type*} [Finite Y] (f : X → Y) {s : Set X} (h
   simpa
 
 variable {Color Vertex : Type*} [Finite Color]
-abbrev Edge := Finset Vertex
+abbrev _root_.Tengoku.Automatatheory.Edge := Finset Vertex
 variable (color : (e : Edge) → Color)
 
-structure InfVSet (Vertex : Type*) where
+structure _root_.Tengoku.Automatatheory.InfVSet (Vertex : Type*) where
   set : Set Vertex
   inf : set.Infinite
 
-structure Selection (Color Vertex : Type*) where
+structure _root_.Tengoku.Automatatheory.Selection (Color Vertex : Type*) where
   vs : InfVSet Vertex
   v : Vertex
   c : Color
 
-def selection_prop (ivs : InfVSet Vertex) (S : Selection Color Vertex) : Prop :=
+def _root_.Tengoku.Automatatheory.selection_prop (ivs : InfVSet Vertex) (S : Selection Color Vertex) : Prop :=
   S.vs.set ⊆ ivs.set ∧ S.v ∈ ivs.set \ S.vs.set ∧ ∀ u ∈ S.vs.set, color {S.v, u} = S.c
 
 /--
 @isnad1 id=ex.0h4v.s4.2caa57aed6f6 from=translated src=- shape=0ee54056 vocab=3fd0aa32
 -/
-lemma selection_exists (ivs : InfVSet Vertex) :
+lemma _root_.Tengoku.Automatatheory.selection_exists (ivs : InfVSet Vertex) :
     ∃ S : Selection Color Vertex, selection_prop color ivs S := by
   obtain ⟨v, h_v⟩ := Set.Infinite.nonempty ivs.inf
   let f u := color {v, u}
@@ -63,8 +63,9 @@ lemma selection_exists (ivs : InfVSet Vertex) :
 
 variable [Infinite Vertex]
 
-noncomputable def selection_seq : ℕ → Selection Color Vertex
+noncomputable def _root_.Tengoku.Automatatheory.selection_seq : ℕ → Selection Color Vertex
   | 0 => choose (selection_exists color (InfVSet.mk univ infinite_univ))
   | n + 1 => choose (selection_exists color (selection_seq n).vs)
 
 end InfGraphRamsey
+-- Tengoku: root names of this library moved to Tengoku.Automatatheory so they do not collide with other libraries (generated)

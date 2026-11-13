@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2014, Problem 5
 
@@ -459,3 +459,4 @@ theorem exists_partition (k : ℕ) (c : Multiset ℕ) (hpos : ∀ n ∈ c, 0 < n
   exists_partition_aux c.card k c rfl hpos hcap
 
 end Imo2014P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

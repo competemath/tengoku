@@ -24,7 +24,7 @@ Proof: `det(Mat(𝒫)*)` is linear in its last column; expanding `P_r` over the
 monomial basis gives `Σ_i m_i X^i`, and for `i > n-m` the minor `m_i` has two
 equal columns (or, for `i ≥ n`, a zero column since `deg P_r < n`), so vanishes.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial Matrix
@@ -183,3 +183,4 @@ theorem pdetRing_eq_linear_combination (hm : 0 < m) (hmn : m ≤ n) (P : Fin m �
   rw [hmat, ← RingHom.mapMatrix_apply, ← RingHom.map_det, mul_comm]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

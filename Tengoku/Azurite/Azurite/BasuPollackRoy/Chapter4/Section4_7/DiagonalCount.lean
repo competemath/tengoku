@@ -24,7 +24,7 @@ exactly the grid `{1, …, d₁} × ⋯ × {1, …, d_k}`. We prove:
   (`diagSystem_common_zero_isNonsingular`);
 * the count `d₁ ⋯ d_k` (`diagSystem_nonsingularZero_ncard`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -372,3 +372,4 @@ theorem diagSystem_nonsingularZero_ncard (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ 
   rw [Finset.card_image_of_injective _ Nat.cast_injective, Nat.card_Icc, Nat.add_sub_cancel]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

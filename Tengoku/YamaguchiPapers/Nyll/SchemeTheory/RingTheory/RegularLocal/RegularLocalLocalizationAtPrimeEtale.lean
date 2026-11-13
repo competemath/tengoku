@@ -23,7 +23,7 @@ import Tengoku.Seed.RingTheory.Unramified.LocalRing
 -/
 
 section ProofImplementation
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers 
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace isRegularLocalRing_localization_atPrime_of_etale_of_comap
 
@@ -45,7 +45,7 @@ end ChildB
 /--
 @isnad1 id=isregula.1h3v.s8.682169aaf61e from=translated src=- shape=4b44cdb9 vocab=2b7b0631
 -/
-theorem _root_.isRegularLocalRing_localization_atPrime_of_etale_of_comap
+theorem _root_.Tengoku.YamaguchiPapers.isRegularLocalRing_localization_atPrime_of_etale_of_comap
     (A B : Type*) [CommRing A] [CommRing B] [Algebra A B] [Algebra.Etale A B]
     (q : Ideal B) [q.IsPrime]
     (hreg : IsRegularLocalRing (Localization.AtPrime (q.comap (algebraMap A B)))) :
@@ -103,3 +103,4 @@ end
 end isRegularLocalRing_localization_atPrime_of_etale_of_comap
 end AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 end ProofImplementation
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

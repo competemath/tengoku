@@ -20,7 +20,7 @@ An algebraic subset of `ℙ₁(C)` (one projective line, `m = 1`, `k = 1`) is ei
 finite. Equivalently, the zero set of a finite set of homogeneous polynomials in two variables over
 `C = Ri R` is either everything or finite.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -149,3 +149,4 @@ theorem support_eq_lineMonom {P : MvPolynomial LineVar (Ri R)} {d : Fin 1 → �
       zero_ne_one, ite_false, ite_true, zero_add]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

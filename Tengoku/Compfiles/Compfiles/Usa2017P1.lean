@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2017, Problem 1
 
@@ -114,3 +114,4 @@ def build : ℕ → solution_set :=
   fun n => ⟨ (2 * n + 3, 2 * n + 5) , build_condition n ⟩
 
 end Usa2017P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2020 Problem 6
 
@@ -649,3 +649,4 @@ lemma rearr_lower {n : ℕ} (x y : Fin n → ℝ) (hx : Antitone x) (hy : Antito
   exact sub_nonneg.1 hab2
 
 end Usa2020P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

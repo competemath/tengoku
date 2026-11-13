@@ -30,7 +30,7 @@ The argument proceeds in three steps.
 3. Since both sums equal `natDegree P` and each `num ≤ Var`, equality must hold
    componentwise — in particular on the middle interval.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Theorem2_35
 
 open Polynomial Azurite.BPR
@@ -220,3 +220,4 @@ theorem varPoly_eq_posRoots_of_all_roots_real
   exact_mod_cast this
 
 end Azurite.BPR.Theorem2_35
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

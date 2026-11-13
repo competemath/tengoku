@@ -1,0 +1,92 @@
+leakscan: 103 global instances (6 can fire outside the library), 2 scoped; 324 global simp lemmas (29 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 55 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp LatticeCrypto.Poly.get_zipWith registered in Tengoku.Vcvio.LatticeCrypto.Ring.VectorBackend (declared at line 86)
+leak: simp LatticeCrypto.Poly.get_map registered in Tengoku.Vcvio.LatticeCrypto.Ring.VectorBackend (declared at line 93)
+leak: simp liftM_guard registered in Tengoku.Vcvio.ToMathlib.Control.AlternativeMonad (declared at line 38)
+leak: simp liftM_optional registered in Tengoku.Vcvio.ToMathlib.Control.AlternativeMonad (declared at line 49)
+leak: simp Option.liftM_elimM registered in Tengoku.Vcvio.ToMathlib.Control.AlternativeMonad (declared at line 67)
+leak: simp toMonadState_get_eq_monadStateOf_get registered in Tengoku.Vcvio.ToMathlib.Control.Lawful.MonadState (declared at line 21)
+leak: simp toMonadState_set_eq_monadStateOf_set registered in Tengoku.Vcvio.ToMathlib.Control.Lawful.MonadState (declared at line 25)
+leak: simp OptionT.mk_bind registered in Tengoku.Vcvio.ToMathlib.Control.OptionT (declared at line 57)
+leak: simp OptionT.liftM_elimM registered in Tengoku.Vcvio.ToMathlib.Control.OptionT (declared at line 63)
+leak: instance StateT.instMonadLift_tengoku registered in Tengoku.Vcvio.ToMathlib.Control.StateT (declared at line 24)
+leak: simp StateT.run_liftM registered in Tengoku.Vcvio.ToMathlib.Control.StateT (declared at line 33)
+leak: simp StateT.run_failure' registered in Tengoku.Vcvio.ToMathlib.Control.StateT (declared at line 47)
+leak: simp StateT.mk_pure_eq_pure registered in Tengoku.Vcvio.ToMathlib.Control.StateT (declared at line 53)
+leak: simp Fintype.card_bitVec registered in Tengoku.Vcvio.ToMathlib.Data.BitVec (declared at line 16)
+leak: simp BitVec.xor_self_xor registered in Tengoku.Vcvio.ToMathlib.Data.BitVec (declared at line 21)
+leak: instance instFinEnumBool registered in Tengoku.Vcvio.ToMathlib.Data.FinEnum (declared at line 56)
+leak: simp SetM.liftM_self registered in Tengoku.Vcvio.ToMathlib.Data.Set.Functor (declared at line 31)
+leak: simp SetM.run_pure registered in Tengoku.Vcvio.ToMathlib.Data.Set.Functor (declared at line 35)
+leak: simp SetM.run_bind registered in Tengoku.Vcvio.ToMathlib.Data.Set.Functor (declared at line 39)
+leak: simp SetM.run_map registered in Tengoku.Vcvio.ToMathlib.Data.Set.Functor (declared at line 44)
+leak: simp Vector.heq_of_toArray_eq_of_size_eq registered in Tengoku.Vcvio.ToMathlib.Data.Vector.Induction (declared at line 21)
+leak: simp Vector.getElem_eq_get registered in Tengoku.Vcvio.ToMathlib.Data.Vector.ListVector (declared at line 32)
+leak: instance instInhabitedSubtypeForallBijective registered in Tengoku.Vcvio.ToMathlib.Logic.Basic (declared at line 24)
+leak: instance Except.instMeasurableSpace registered in Tengoku.Vcvio.ToMathlib.MeasureTheory.MeasurableSpace.Except (declared at line 26)
+leak: instance Option.instMeasurableSpace registered in Tengoku.Vcvio.ToMathlib.MeasureTheory.MeasurableSpace.Option (declared at line 27)
+leak: instance PMF.instMetricSpace registered in Tengoku.Vcvio.ToMathlib.Probability.ProbabilityMassFunction.TotalVariation (declared at line 176)
+leak: simp PMF.monad_pure_eq_pure registered in Tengoku.Vcvio.ToMathlib.Probability.ProbabilityMassFunction.Lemmas (declared at line 43)
+leak: simp PMF.monad_bind_eq_bind registered in Tengoku.Vcvio.ToMathlib.Probability.ProbabilityMassFunction.Lemmas (declared at line 47)
+leak: simp PMF.some_map_apply_some registered in Tengoku.Vcvio.ToMathlib.Probability.ProbabilityMassFunction.Lemmas (declared at line 61)
+leak: simp ProbabilityTheory.uniformOn_univ_apply_singleton registered in Tengoku.Vcvio.ToMathlib.Probability.UniformOn (declared at line 30)
+leak: simp PMF.coe_le_one registered in Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF (declared in Tengoku.Seed.Probability.ProbabilityMassFunction.Basic: an `attribute` command of the library turns it on)
+leak: simp PMF.apply_ne_top registered in Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF (declared in Tengoku.Seed.Probability.ProbabilityMassFunction.Basic: an `attribute` command of the library turns it on)
+leak: simp SPMF.run_eq_toPMF registered in Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF (declared at line 68)
+leak: simp SPMF.optionTLift_eq_liftM registered in Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF (declared at line 86)
+leak: simp SPMF.PMF.map_some_apply_some registered in Tengoku.Vcvio.ToMathlib.ProbabilityTheory.SPMF (declared at line 290)
+root: negligible_iff_isLittleO_toReal
+root: MonadTransformer
+root: negligible_const_mul
+root: integral_Ioi_le_tsum_of_antitoneOn
+root: negligible_of_le
+root: map_snd_eval
+root: instMonadTransformerReaderT
+root: negligible_of_zero
+root: negligible_iff_isBigO_toReal
+root: SPMF
+root: integral_Iic_le_tsum_of_monotoneOn
+root: negligible_polynomial_mul
+root: negligible_of_eventuallyLE
+root: instMonadOfMonadTransformer
+root: liftM_orElse
+root: instMonadTransformerOptionT
+root: snd_map_prod_map_eq_map
+root: isBounded_couplings_set
+root: negligible_natMul_of_poly_bound
+root: liftM_failure
+root: toMonadState_get_eq_monadStateOf_get
+root: liftM_optional
+root: instMonadTransformerExceptT
+root: negligible_ofReal_natDiv_of_poly_bound
+root: negligible
+root: ResourceProfile
+root: negligible_add
+root: snd_map_prod_map
+root: negligible_ofReal_add
+root: negligible_zero
+root: monadLift_optional
+root: negligible_pow_mul
+root: instMonadTransformerStateT
+root: instFinEnumBool
+root: couplings_set
+root: isCompact_couplings_set
+root: instInhabitedSubtypeForallBijective
+root: negligible_ofReal_sum
+root: negligible_sum
+root: liftM_guard
+root: isClosed_couplings_set
+root: negligible_ofReal_iff
+root: LawfulMonadTransformer
+root: tsum_option
+root: monadLift_guard
+root: FinRatPMF
+root: negligible_iff_superpolynomialDecay_toReal
+root: toMonadState_set_eq_monadStateOf_set
+root: Heap
+root: mem_couplings_set_of_isCoupling
+root: map_fst_eval
+root: SymmEncAlg
+root: negligible_iff
+root: fst_map_prod_map
+root: CellSpec

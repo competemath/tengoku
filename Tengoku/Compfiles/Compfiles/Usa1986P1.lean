@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1986, Problem 1
 
@@ -142,3 +142,4 @@ abbrev does_exist_14 : Bool := false
 abbrev does_exist_21 : Bool := true
 
 end Usa1986P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

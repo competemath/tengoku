@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2003, Problem 6
 
@@ -647,3 +647,4 @@ lemma foldl_bridge (f : ZMod 6 → ℕ) (l : List (ZMod 6)) :
     exact ih _
 
 end Usa2003P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 open scoped Nat
 
 /-!
@@ -597,3 +597,4 @@ lemma main_count (n : ℕ) : (Fillings n Set.univ).ncard = (2 * n)! * 2 ^ (n ^ 2
 abbrev answer (n : ℕ) : ℕ := (2 * n)! * 2 ^ (n ^ 2)
 
 end Usa2019P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

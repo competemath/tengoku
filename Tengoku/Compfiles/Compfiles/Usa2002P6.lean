@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2002, Problem 6
 
@@ -646,3 +646,4 @@ theorem patTearing_isMaximalTearing {n : ℕ} (hn : 6 ≤ n) :
    fun _s hs => patTearing_maximal hn hs⟩
 
 end Usa2002P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

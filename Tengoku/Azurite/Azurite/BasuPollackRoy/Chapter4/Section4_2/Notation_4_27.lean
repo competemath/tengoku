@@ -28,7 +28,7 @@ stemming from the fact that the `j = 0` Sylvester-Habicht matrix
 `p`-row Q-block reversed (BPR's `SyHa` has Q-rows ascending in the
 power of `X`, ours and BPR's `Syl` have them descending).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial
@@ -308,3 +308,4 @@ theorem sRes_zero_eq_eps_mul_Res (P Q : D[X]) :
   rw [show (ε P.natDegree : D) = ((ε P.natDegree : ℤ) : D) from rfl, ← h]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -27,7 +27,7 @@ vanishes because `deg P_i ≤ n-1-ℓ` for `i > ℓ` — so its determinant is t
 of the determinants of the upper-triangular `ℓ × ℓ` leading block (whose diagonal
 holds the leading coefficients) and of the bottom-right block, which is `Mat(𝒬)*`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial Matrix
@@ -119,3 +119,4 @@ theorem pdetRing_triangular {m n ℓ : ℕ} (hℓm : ℓ < m) (hmn : m ≤ n) (P
           Finset.prod_congr rfl (fun i _ => hdiag i), ← map_prod, ← hQeq]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

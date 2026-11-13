@@ -9,12 +9,12 @@ This file gives a criterion for bounding the order of a unit in `ZMod` from belo
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 /-- If no positive power through `n` is `1` modulo `b`, then the multiplicative order exceeds
 `n`.
 @isnad1 id=lt.2h3v.s6.a14d8ea06f68 from=translated src=- shape=467b3002 vocab=26642acf
 -/
-lemma orderOf_lt_of {a b n : ℕ} [hn : Fact (b.Prime)] (h : a.Coprime b)
+lemma _root_.Tengoku.FltRegular.orderOf_lt_of {a b n : ℕ} [hn : Fact (b.Prime)] (h : a.Coprime b)
     (H : ∀ i ≤ n, 1 ≤ i → a ^ i % b ≠ 1) :
     n < orderOf (ZMod.unitOfCoprime _ h) := by
   by_contra! Habs
@@ -24,3 +24,4 @@ lemma orderOf_lt_of {a b n : ℕ} [hn : Fact (b.Prime)] (h : a.Coprime b)
   apply_fun Units.val at this
   simp only [Units.val_pow_eq_pow_val, ZMod.coe_unitOfCoprime, Units.val_one] at this
   simp [← ZMod.val_natCast, Nat.cast_pow, this, ZMod.val_one]
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

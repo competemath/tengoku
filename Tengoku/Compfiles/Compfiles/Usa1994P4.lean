@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1994, Problem 4
 
@@ -147,3 +147,4 @@ lemma sum_sq_y_le (x : ℕ → ℝ) (h : ∀ n : ℕ, Real.sqrt (n : ℝ) ≤ �
     linarith [hb1, hb2, h1, h2]
 
 end Usa1994P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

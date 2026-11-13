@@ -28,7 +28,7 @@ indexed by `I`) is `A.submatrix id (I.orderEmbOfFin _)` and
 
 See `Proposition_4_10_PLAN.md` for the proof decomposition.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Matrix Finset
@@ -238,3 +238,4 @@ theorem proposition_4_10 {n m : ℕ} (A : Matrix (Fin n) (Fin m) R)
     rfl
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

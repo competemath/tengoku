@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1985, Problem 4
 
@@ -323,3 +323,4 @@ theorem generalized (M : Finset ℕ) (k : ℕ)
     rw [← mul_pow, hk, ← pow_mul]
 
 end Imo1985P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

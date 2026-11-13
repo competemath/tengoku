@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1995, Problem 5
 
@@ -114,3 +114,4 @@ lemma sum_sum_degree_neighborFinset :
   exact Finset.sum_congr rfl fun Q _ => hswap Q
 
 end Usa1995P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

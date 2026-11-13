@@ -29,7 +29,7 @@ import Tengoku.Azurite.Azurite.BasuPollackRoy.Chapter2.Section2_1.Proposition_2_
 **Theorem 2.11 (BPR).** If R is a real closed field, then
 R[i] := R[X]/(X² + 1) is an algebraically closed field.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Theorem2_11
 
 open Polynomial Azurite.BPR
@@ -1850,3 +1850,4 @@ theorem isAlgClosed_Ri [IsRealClosed R] : IsAlgClosed (Ri R) :=
 theorem theorem_2_11_a_b [IsRealClosed R] : IsAlgClosed (Ri R) := isAlgClosed_Ri
 
 end Azurite.BPR.Theorem2_11
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

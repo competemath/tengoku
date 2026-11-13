@@ -42,7 +42,7 @@ the limb-level implementation that will use them (`docs/fft_plan.md`):
   residue of `c_j` modulo `2^{n'} + 1` determines `c_j`, by the correction of steps 12–13
   (`int_recover_of_mem_window`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace BZ
@@ -289,3 +289,4 @@ theorem int_recover_of_mem_window {c U N : ℤ} (hU0 : 0 ≤ U) (hUN : U ≤ N) 
 end BZ
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

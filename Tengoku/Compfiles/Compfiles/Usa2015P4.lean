@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2015, Problem 4
 
@@ -347,3 +347,4 @@ def quotientEquivSignatures (m n : ℕ) :
     exact Prod.ext (Subtype.ext (pilingOf_fst hcard)) (Subtype.ext (pilingOf_snd hcard.symm))
 
 end Usa2015P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

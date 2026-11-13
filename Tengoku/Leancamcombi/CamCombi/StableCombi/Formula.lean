@@ -4,7 +4,7 @@ public import Tengoku.Leancamcombi.CamCombi.StableCombi.Rel
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Leancamcombi end Tengoku.Leancamcombi open Tengoku.Leancamcombi 
 namespace FirstOrder.Language
 variable {L : Language}
 
@@ -68,3 +68,4 @@ variable {T}
 @[simp] lemma not_isOrderProp : ¬ IsOrderProp T ↔ IsStable T := by simp [← not_isStable]
 
 end FirstOrder.Language.Theory
+-- Tengoku: root names of this library moved to Tengoku.Leancamcombi so they do not collide with other libraries (generated)

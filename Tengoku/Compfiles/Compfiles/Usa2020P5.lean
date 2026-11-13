@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2020, Problem 5
 
@@ -604,3 +604,4 @@ lemma count_constrSet {n : ℕ} (hn : 2 ≤ n) :
   lia
 
 end Usa2020P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

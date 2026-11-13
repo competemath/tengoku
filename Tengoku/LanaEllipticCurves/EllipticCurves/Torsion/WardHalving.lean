@@ -86,7 +86,7 @@ the five split in two:
 * M. Ward, *Memoir on elliptic divisibility sequences*, Amer. J. Math. 70 (1948).
 * [J. Silverman, *The arithmetic of elliptic curves*][silverman2009], III.4 (Exercise 3.7).
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 namespace IsEllipticNet
 
 variable {R : Type*} [CommRing R]
@@ -1073,3 +1073,4 @@ theorem ψ_isEllipticNet_evalEval : IsEllipticNet (fun n ↦ (W.ψ n).evalEval x
 end Affine
 
 end WeierstrassCurve
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

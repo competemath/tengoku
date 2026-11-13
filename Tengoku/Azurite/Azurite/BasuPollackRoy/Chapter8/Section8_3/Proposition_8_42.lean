@@ -27,7 +27,7 @@ column holds the family `X^{q-j-1}P, …, P, Q, …, X^{p-j-1}Q`.  That last col
 entrywise as `uCol · P + wCol · Q`, where `uCol`/`wCol` are exactly the monomial last columns
 of `M_j`/`N_j` (Notation 8.41); determinant column-linearity then yields the identity.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial Matrix
@@ -498,3 +498,4 @@ theorem cofactorMat_mulVec (P Q : D[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.na
     exact (sResP_eq_cofactor P Q hQ hpq hjq).symm
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

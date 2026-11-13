@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1979, Problem 2
 
@@ -111,3 +111,4 @@ lemma one_color (e g : Fin 5 → Bool) (d : Fin 5 → Fin 5 → Bool)
       he (p + 1) t ⟨hγ.symm.trans (hv t ht).symm, (hv t ht).trans htγ.symm⟩
 
 end Imo1979P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

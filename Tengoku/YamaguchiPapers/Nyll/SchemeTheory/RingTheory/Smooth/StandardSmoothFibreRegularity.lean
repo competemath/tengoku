@@ -19,13 +19,13 @@ import Tengoku.YamaguchiPapers.Nyll.SchemeTheory.RingTheory.Smooth.MathlibRingTh
 /-!
 # Mathlib Ring Theory Smooth Field Fiber Regular Stalks Standard Smooth Reduction
 -/
-
+namespace Tengoku.YamaguchiPapers end Tengoku.YamaguchiPapers open Tengoku.YamaguchiPapers
 universe u
 
 /--
 @isnad1 id=islocali.1h4v.s6.10fc32001449 from=translated src=- shape=2f85fa6d vocab=658c5bd4
 -/
-theorem kmf2_fiber_isLocalization_primeCompl_congr {A : Type*} [CommRing A]
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_isLocalization_primeCompl_congr {A : Type*} [CommRing A]
     {I J : Ideal A} [I.IsPrime] [J.IsPrime] (h : I = J)
     (S : Type*) [CommRing S] [Algebra A S] [IsLocalization I.primeCompl S] :
     IsLocalization J.primeCompl S := by
@@ -35,7 +35,7 @@ theorem kmf2_fiber_isLocalization_primeCompl_congr {A : Type*} [CommRing A]
 /--
 @isnad1 id=smoothfi.1h0v.s6.c872c9aac238 from=translated src=- shape=5f9c8026 vocab=a4f89555
 -/
-theorem kmf2_fiber_input_of_standardSmooth_case
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_input_of_standardSmooth_case
     (hss : ∀ (k B : Type u) [Field k] [CommRing B] [Algebra k B],
         Algebra.IsStandardSmooth k B → ∀ (q : Ideal B) [q.IsPrime],
           IsRegularLocalRing (Localization.AtPrime q)) :
@@ -66,7 +66,7 @@ theorem kmf2_fiber_input_of_standardSmooth_case
 /--
 @isnad1 id=isregula.2h3v.s6.4e8af74605c0 from=translated src=- shape=842528c2 vocab=a4f89555
 -/
-theorem kmf2_fiber_standardSmooth_case_of_input
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_standardSmooth_case_of_input
     (hinput : SmoothFieldFiberRegularStalksInput.{u})
     (k B : Type u) [Field k] [CommRing B] [Algebra k B]
     (hstd : Algebra.IsStandardSmooth k B) (q : Ideal B) [q.IsPrime] :
@@ -77,7 +77,7 @@ theorem kmf2_fiber_standardSmooth_case_of_input
 /--
 @isnad1 id=iff.0h0v.s6.65e1b78bbf38 from=translated src=- shape=08c7faa3 vocab=a4f89555
 -/
-theorem kmf2_fiber_input_iff_standardSmooth_case :
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_input_iff_standardSmooth_case :
     SmoothFieldFiberRegularStalksInput.{u} ↔
       ∀ (k B : Type u) [Field k] [CommRing B] [Algebra k B],
         Algebra.IsStandardSmooth k B → ∀ (q : Ideal B) [q.IsPrime],
@@ -88,7 +88,7 @@ theorem kmf2_fiber_input_iff_standardSmooth_case :
 /--
 @isnad1 id=isregula.0h2v.s6.b1c7e45a060f from=translated src=- shape=364b0745 vocab=20243a16
 -/
-theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isPrincipalIdealRing
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isPrincipalIdealRing
     (A : Type*) [CommRing A] [IsDomain A] [IsPrincipalIdealRing A]
     (p : Ideal A) [p.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime p) := by
@@ -99,7 +99,7 @@ theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isPrincipalIdealRi
 /--
 @isnad1 id=isregula.0h1v.s4.d6692130f74c from=translated src=- shape=1666ae32 vocab=98193005
 -/
-theorem kmf2_fiber_isRegularRing_polynomial (k : Type*) [Field k] :
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_isRegularRing_polynomial (k : Type*) [Field k] :
     IsRegularRing (Polynomial k) := by
   have : IsDedekindDomain (Polynomial k) := inferInstance
   infer_instance
@@ -107,7 +107,7 @@ theorem kmf2_fiber_isRegularRing_polynomial (k : Type*) [Field k] :
 /--
 @isnad1 id=isregula.0h2v.s7.5acf560ac3dc from=translated src=- shape=c9a22574 vocab=031a53b4
 -/
-theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_polynomial
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_isRegularLocalRing_localization_atPrime_polynomial
     (k : Type*) [Field k] (p : Ideal (Polynomial k)) [p.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime p) :=
   kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isPrincipalIdealRing
@@ -116,14 +116,14 @@ theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_polynomial
 /--
 @isnad1 id=smooth.0h1v.s5.5ee536c741b5 from=translated src=- shape=84bfdc15 vocab=2eb677bd
 -/
-theorem kmf2_fiber_sat_smooth_polynomial (k : Type*) [Field k] :
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_sat_smooth_polynomial (k : Type*) [Field k] :
     Algebra.Smooth k (Polynomial k) :=
   { formallySmooth := inferInstance, finitePresentation := inferInstance }
 
 /--
 @isnad1 id=and.0h1v.s7.53e0d5c505b4 from=translated src=- shape=c8b3722e vocab=f9dad955
 -/
-theorem kmf2_fiber_gate_input_clause_polynomial (k : Type*) [Field k] :
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_gate_input_clause_polynomial (k : Type*) [Field k] :
     Algebra.Smooth k (Polynomial k) ∧
       ∀ (p : Ideal (Polynomial k)) [p.IsPrime],
         IsRegularLocalRing (Localization.AtPrime p) := by
@@ -134,7 +134,7 @@ theorem kmf2_fiber_gate_input_clause_polynomial (k : Type*) [Field k] :
 /--
 @isnad1 id=isregula.1h2v.s6.85df9254b179 from=translated src=- shape=b293c0b1 vocab=b30e7ffe
 -/
-theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isReduced_of_mem_minimalPrimes
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isReduced_of_mem_minimalPrimes
     (A : Type*) [CommRing A] [IsNoetherianRing A] [IsReduced A]
     (p : Ideal A) [p.IsPrime] (hp : p ∈ minimalPrimes A) :
     IsRegularLocalRing (Localization.AtPrime p) := by
@@ -150,7 +150,7 @@ theorem kmf2_fiber_isRegularLocalRing_localization_atPrime_of_isReduced_of_mem_m
 /--
 @isnad1 id=not.0h0v.s6.af3ad268f56e from=translated src=- shape=d8111939 vocab=39684102
 -/
-theorem kmf2_fiber_falsif_not_standardSmooth_case_dropping_standardSmooth :
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_falsif_not_standardSmooth_case_dropping_standardSmooth :
     ¬ (∀ (k B : Type) [Field k] [CommRing B] [Algebra k B] (q : Ideal B) [q.IsPrime],
         IsRegularLocalRing (Localization.AtPrime q)) :=
   SmoothFieldFiberRegularStalks.not_forall_regular_stalks_without_smooth
@@ -158,10 +158,11 @@ theorem kmf2_fiber_falsif_not_standardSmooth_case_dropping_standardSmooth :
 /--
 @isnad1 id=not.1h0v.s7.d85a3de78f01 from=translated src=- shape=653077a1 vocab=cf7a2b7e
 -/
-theorem kmf2_fiber_not_isStandardSmooth_dualNumber_of_standardSmooth_case
+theorem _root_.Tengoku.YamaguchiPapers.kmf2_fiber_not_isStandardSmooth_dualNumber_of_standardSmooth_case
     (hss : ∀ (k B : Type) [Field k] [CommRing B] [Algebra k B],
         Algebra.IsStandardSmooth k B → ∀ (q : Ideal B) [q.IsPrime],
           IsRegularLocalRing (Localization.AtPrime q)) :
     ¬ Algebra.IsStandardSmooth ℚ (DualNumber ℚ) := fun h =>
   SmoothFieldFiberRegularStalks.not_isRegularLocalRing_localization_atPrime_dualNumber ℚ
     (hss ℚ (DualNumber ℚ) h (IsLocalRing.maximalIdeal (DualNumber ℚ)))
+-- Tengoku: root names of this library moved to Tengoku.YamaguchiPapers so they do not collide with other libraries (generated)

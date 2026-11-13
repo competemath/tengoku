@@ -34,7 +34,7 @@ framework, Falcon) and masking (ML-DSA / Dilithium).
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open Real
 
 namespace LatticeCrypto
@@ -351,3 +351,4 @@ theorem discreteGaussianDist_apply_le (σ μ : ℝ) (hσ : 0 < σ)
   ENNReal.ofReal_le_ofReal (discreteGaussianPMF_le_one_div_sub_one σ μ hσ hσ' z)
 
 end LatticeCrypto
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

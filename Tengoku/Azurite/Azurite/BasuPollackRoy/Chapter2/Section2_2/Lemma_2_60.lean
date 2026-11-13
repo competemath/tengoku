@@ -41,7 +41,7 @@ encoded as `ExtendedPoint.Lt a b`. This rules out the empty-interval
 edge cases (e.g. `a = .posInf, b = .finite x`) where `σ(b) − σ(a)` need
 not be 0.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 open scoped Polynomial
 open Polynomial
 
@@ -1217,3 +1217,4 @@ theorem lemma_2_60
   exact cauchyIndexOn_swap_sum hIVP P Q hP hQ a b hab ha hb
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

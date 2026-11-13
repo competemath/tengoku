@@ -33,7 +33,7 @@ by `b₂`, giving the integer identity `C b₂ · P = Q₁ · B₂`; contents
 `Q₂ := B₂/b₂ ∈ ℤ[X]` — the book's coprimality argument packaged as a single
 divisibility.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial
@@ -138,3 +138,4 @@ theorem lemma_10_17 {P : ℤ[X]} {P₁ P₂ : ℚ[X]} (hP : P ≠ 0)
   exact ⟨A₁, A₂, c₁, c₁⁻¹, hc₁0, inv_ne_zero hc₁0, hA₁map, hA₂map, hPQQ⟩
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 namespace Imo1981P2
 
 /-!
@@ -191,3 +191,4 @@ theorem G.degree_b (rpos : 1 ≤ r) (b : powersetCard r (Icc 1 n)) : (G n r).deg
       · contradiction
 
 end Imo1981P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1975, Problem 5
 
@@ -253,3 +253,4 @@ second ace. -/
 abbrev expected (n : ℕ) : ℚ := (n + 1) / 2
 
 end Usa1975P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

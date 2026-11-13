@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1970, Problem 4
 
@@ -102,3 +102,4 @@ lemma no_partition {n : ℕ} {s1 s2 : Finset ℕ}
 abbrev SolutionSet : Finset ℕ+ := {}
 
 end Imo1970P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -17,11 +17,11 @@ Taken from [Zulip thread](https://leanprover.zulipchat.com/#narrow/channel/27067
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u v w
 
 /-- A type class for monad transformers. -/
-class MonadTransformer (t : (Type u → Type v) → Type u → Type w) where
+class _root_.Tengoku.Vcvio.MonadTransformer (t : (Type u → Type v) → Type u → Type w) where
   [mapMonad (m) [Monad m] : Monad (t m)]
   [transform (m) [Monad m] : MonadLift m (t m)]
 
@@ -31,13 +31,13 @@ variable {t : (Type u → Type v) → Type u → Type w} {m : Type u → Type v}
 instance [MonadTransformer t] [Monad m] : Monad (t m) := MonadTransformer.mapMonad m
 
 @[always_inline, inline, simp]
-abbrev MonadTransformer.liftOf [MonadTransformer t] (m) [Monad m] : m α → t m α :=
+abbrev Tengoku.Vcvio.MonadTransformer.liftOf [MonadTransformer t] (m) [Monad m] : m α → t m α :=
   (transform m).monadLift
 
 export MonadTransformer (liftOf)
 
 @[always_inline, inline, simp]
-abbrev MonadTransformer.lift [MonadTransformer t] {m} [Monad m] : m α → t m α :=
+abbrev Tengoku.Vcvio.MonadTransformer.lift [MonadTransformer t] {m} [Monad m] : m α → t m α :=
   liftOf m
 
 instance : MonadTransformer (ReaderT ρ) where
@@ -64,7 +64,7 @@ liftOf m (pure x) = pure x
 liftOf m (x >>= f) = liftOf m x >>= liftOf m ∘ f
 ```
 -/
-class LawfulMonadTransformer (t) [MonadTransformer t] : Prop where
+class _root_.Tengoku.Vcvio.LawfulMonadTransformer (t) [MonadTransformer t] : Prop where
   [monad_functor {m : Type u → Type v} [Monad m] [LawfulMonad m] : LawfulMonad (t m)]
   liftOf_pure {m : Type u → Type v} [Monad m] [LawfulMonad m] {α} (x : α) :
     liftOf m (pure x) = (pure x : t m α)
@@ -80,7 +80,7 @@ attribute [local simp] MonadLift.monadLift Bind.bind
 
 end
 
-namespace MonadTransformer
+namespace Tengoku.Vcvio.MonadTransformer
 
 /-- A monad transformer is covariant if it lifts monad morphisms to monad morphisms. -/
 class IsCovariant (t : (Type u → Type v) → Type u → Type w) [MonadTransformer t] where
@@ -89,4 +89,5 @@ class IsCovariant (t : (Type u → Type v) → Type u → Type w) [MonadTransfor
 
 instance [MonadTransformer t] [Monad m] : MonadLift m (t m) := MonadTransformer.transform m
 
-end MonadTransformer
+end Tengoku.Vcvio.MonadTransformer
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2010, Problem 2
 
@@ -735,3 +735,4 @@ lemma pair_sum_choose3 {n : ℕ} :
   rw [step1, step2, step3]
 
 end Usa2010P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

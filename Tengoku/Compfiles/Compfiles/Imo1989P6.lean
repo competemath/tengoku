@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1989, Problem 6
 
@@ -429,3 +429,4 @@ theorem embed_B.card [NeZero n] : (B n).ncard < {x | T n x}.ncard := by
   apply embed_B.not_Surjective
 
 end Imo1989P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

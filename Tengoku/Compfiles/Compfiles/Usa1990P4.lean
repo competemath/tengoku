@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1990, Problem 4
 
@@ -625,3 +625,4 @@ theorem ncard_numbers_eq (n : ℕ) (hn : 1 < n) :
 abbrev answer (n : ℕ) : ℕ := 2 ^ (n + 1) - 2 * n - 2
 
 end Usa1990P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

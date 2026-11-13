@@ -22,12 +22,12 @@ the tower maps.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Compply end Tengoku.Compply open Tengoku.Compply 
 /-- A preorder-indexed family of commutative semirings with compatible ring homomorphisms.
 
 The map from a level to itself is the identity. For `i ≤ j ≤ k`, the map from `i` to `k`
 is the composite of the maps from `i` to `j` and from `j` to `k`.-/
-class AlgebraTower {ι : Type*} [Preorder ι] (AT : ι → Type*)
+class _root_.Tengoku.Compply.AlgebraTower {ι : Type*} [Preorder ι] (AT : ι → Type*)
   [∀ i, CommSemiring (AT i)] where
   /-- Ring homomorphisms from `AT i` to `AT j` for all `i ≤ j`.-/
   protected algebraMap : ∀ i j, (h : i ≤ j) → (AT i →+* AT j)
@@ -50,26 +50,26 @@ variable {ι : Type*} [Preorder ι]
 @isnad1 id=eq.1h3v.s6.c21abba8ae34 from=translated src=- shape=958e85b2 vocab=0e3e550d
 -/
 @[simp]
-lemma AlgebraTower.algebraMap_self (i : ι) (h : i ≤ i) :
+lemma Tengoku.Compply.AlgebraTower.algebraMap_self (i : ι) (h : i ≤ i) :
     AlgebraTower.algebraMap (AT := A) i i h = RingHom.id (A i) :=
   AlgebraTower.algebraMap_self' i
 
 /-- The tower map from level `i` to itself fixes every element of that level.
 @isnad1 id=eq.1h4v.s6.327237b1a41b from=translated src=- shape=af7f6c4c vocab=7f4829dd
 -/
-lemma AlgebraTower.algebraMap_self_apply (i : ι) (h : i ≤ i) (x : A i) :
+lemma Tengoku.Compply.AlgebraTower.algebraMap_self_apply (i : ι) (h : i ≤ i) (x : A i) :
     AlgebraTower.algebraMap (AT := A) i i h x = x := by
   rw [AlgebraTower.algebraMap_self, RingHom.id_apply]
 
 @[simp]
-abbrev AlgebraTower.toAlgebra {i j : ι} (h : i ≤ j) : Algebra (A i) (A j) :=
+abbrev Tengoku.Compply.AlgebraTower.toAlgebra {i j : ι} (h : i ≤ j) : Algebra (A i) (A j) :=
   (AlgebraTower.algebraMap (i:=i) (j:=j) (h:=h)).toAlgebra
 
 /--
 @isnad1 id=isscalar.2h6v.s7.08d488861c2f from=translated src=- shape=6bad97c5 vocab=b13e853b
 -/
 @[simp]
-instance AlgebraTower.toIsScalarTower (a : AlgebraTower C) {i j k : ι}
+instance Tengoku.Compply.AlgebraTower.toIsScalarTower (a : AlgebraTower C) {i j k : ι}
     (h1 : i ≤ j) (h2 : j ≤ k) :
     letI : Algebra (C i) (C j) := by exact a.toAlgebra h1
     letI : Algebra (C j) (C k) := by exact a.toAlgebra h2
@@ -90,7 +90,7 @@ instance AlgebraTower.toIsScalarTower (a : AlgebraTower C) {i j k : ι}
       rw [mul_assoc]
   }
 
-structure AlgebraTowerEquiv (A : ι → Type*) [∀ i, CommSemiring (A i)] [a : AlgebraTower A]
+structure _root_.Tengoku.Compply.AlgebraTowerEquiv (A : ι → Type*) [∀ i, CommSemiring (A i)] [a : AlgebraTower A]
   (B : ι → Type*) [∀ i, CommSemiring (B i)] [b : AlgebraTower B]
   where
     toRingEquiv : ∀ i, (A i ≃+* B i)
@@ -101,7 +101,7 @@ structure AlgebraTowerEquiv (A : ι → Type*) [∀ i, CommSemiring (A i)] [a : 
 /--
 @isnad1 id=eq.1h7v.s9.fb71cf7b9bc7 from=translated src=- shape=8de9e4e7 vocab=53955731
 -/
-lemma AlgebraTowerEquiv.commutesRight' (e : AlgebraTowerEquiv A B)
+lemma Tengoku.Compply.AlgebraTowerEquiv.commutesRight' (e : AlgebraTowerEquiv A B)
     {i j : ι} (h : i ≤ j) (r : B i) :
   AlgebraTower.algebraMap (AT:=A) (i:=i) (j:=j) (h:=h) ((e.toRingEquiv i).symm r) =
   (e.toRingEquiv j).symm (AlgebraTower.algebraMap (AT:=B) (i:=i) (j:=j) (h:=h) r):= by
@@ -112,31 +112,31 @@ lemma AlgebraTowerEquiv.commutesRight' (e : AlgebraTowerEquiv A B)
   have h_e_r2_rfl: e.toRingEquiv i r2 = r := by exact RingEquiv.apply_symm_apply (e.toRingEquiv i) r
   rw [h_e_r2_rfl]
 
-def AlgebraTowerEquiv.symm (e : AlgebraTowerEquiv A B) : AlgebraTowerEquiv B A where
+def Tengoku.Compply.AlgebraTowerEquiv.symm (e : AlgebraTowerEquiv A B) : AlgebraTowerEquiv B A where
   toRingEquiv := fun i => (e.toRingEquiv i).symm
   commutesLeft' := fun i j h r => by exact commutesRight' e h r
 
-def AlgebraTowerEquiv.algebraMapRightUp (e : AlgebraTowerEquiv A B) (i j : ι)
+def Tengoku.Compply.AlgebraTowerEquiv.algebraMapRightUp (e : AlgebraTowerEquiv A B) (i j : ι)
     (h : i ≤ j) : (A i) →+* (B j) := by
   have hBij: B i →+* B j := AlgebraTower.algebraMap (AT:=B) (i:=i) (j:=j) (h:=h)
   have hiRingEquiv: RingEquiv (A i) (B i) := e.toRingEquiv i
   exact hBij.comp hiRingEquiv.toRingHom
 
-def AlgebraTowerEquiv.algebraMapLeftUp (e : AlgebraTowerEquiv A B) (i j : ι)
+def Tengoku.Compply.AlgebraTowerEquiv.algebraMapLeftUp (e : AlgebraTowerEquiv A B) (i j : ι)
     (h : i ≤ j) : (B i) →+* (A j) := by
   have hAij: A i →+* A j := AlgebraTower.algebraMap (AT:=A) (i:=i) (j:=j) (h:=h)
   have hjRingEquiv: RingEquiv (B i) (A i) := (e.toRingEquiv i).symm
   exact hAij.comp hjRingEquiv.toRingHom
 
-abbrev AlgebraTowerEquiv.toAlgebraOverLeft (e : AlgebraTowerEquiv A B) (i j : ι)
+abbrev Tengoku.Compply.AlgebraTowerEquiv.toAlgebraOverLeft (e : AlgebraTowerEquiv A B) (i j : ι)
     (h : i ≤ j) : Algebra (A i) (B j) := by
   exact (e.algebraMapRightUp i j h).toAlgebra
 
-abbrev AlgebraTowerEquiv.toAlgebraOverRight (e : AlgebraTowerEquiv A B) (i j : ι)
+abbrev Tengoku.Compply.AlgebraTowerEquiv.toAlgebraOverRight (e : AlgebraTowerEquiv A B) (i j : ι)
     (h : i ≤ j) : Algebra (B i) (A j) := by
   exact (e.algebraMapLeftUp i j h).toAlgebra
 
-def AlgebraTowerEquiv.toAlgEquivOverLeft (e : AlgebraTowerEquiv A B) (i j : ι) (h : i ≤ j) :
+def Tengoku.Compply.AlgebraTowerEquiv.toAlgEquivOverLeft (e : AlgebraTowerEquiv A B) (i j : ι) (h : i ≤ j) :
     letI : Algebra (A i) (A j) := by exact AlgebraTower.toAlgebra h
     letI : Algebra (A i) (B j) := by exact e.toAlgebraOverLeft i j h
     AlgEquiv (A i) (A j) (B j) := by
@@ -159,7 +159,8 @@ def AlgebraTowerEquiv.toAlgEquivOverLeft (e : AlgebraTowerEquiv A B) (i j : ι) 
   }
   exact instAlgEquiv
 
-def AlgebraTowerEquiv.toAlgEquivOverRight (e : AlgebraTowerEquiv A B) (i j : ι) (h : i ≤ j) :
+def Tengoku.Compply.AlgebraTowerEquiv.toAlgEquivOverRight (e : AlgebraTowerEquiv A B) (i j : ι) (h : i ≤ j) :
     letI : Algebra (B i) (B j) := by exact AlgebraTower.toAlgebra h
     letI : Algebra (B i) (A j) := by exact e.toAlgebraOverRight i j h
     AlgEquiv (B i) (B j) (A j) := (e.symm.toAlgEquivOverLeft i j h)
+-- Tengoku: root names of this library moved to Tengoku.Compply so they do not collide with other libraries (generated)

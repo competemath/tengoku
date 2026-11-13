@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1977, Problem 2
 
@@ -47,3 +47,4 @@ def example_16 : Fin 16 → ℝ := (example_16_int : Fin 16 → ℝ)
 abbrev max_num_terms : ℕ := 16
 
 end Imo1977P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

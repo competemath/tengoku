@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2004, Problem 4
 
@@ -1231,3 +1231,4 @@ lemma inv_prefBoard (p : Play) (hp : FollowsStrategy bobMove p) :
       exact inv_update_rows2 hih hx2 hc₂2 hb₁eq rfl
 
 end Usa2004P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1979, Problem 1
 
@@ -167,3 +167,4 @@ lemma h4 (i : ℕ) (hi : i ∈ Finset.range 330) :
 lemma prime_1979 : Nat.Prime 1979 := by norm_num1
 
 end Imo1979P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

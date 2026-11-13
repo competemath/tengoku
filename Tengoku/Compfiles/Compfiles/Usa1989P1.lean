@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1989, Problem 1
 
@@ -79,3 +79,4 @@ lemma l2 (n : ℕ) : u (n - 1) = (n + 1) * s n - 2 * n := by
 abbrev solutions : (ℕ × ℕ × ℕ × ℕ) := (1989, 1989, 1990, 2*1989)
 
 end Usa1989P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

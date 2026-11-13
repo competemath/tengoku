@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2007, Problem 5
 
@@ -113,3 +113,4 @@ theorem generalized_imo2007_p5 {n : ℤ} (hn : 1 < n) :
     (λ h1 ↦ h b ⟨hb, a, h1, bad_symm h0⟩)
 
 end Imo2007P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

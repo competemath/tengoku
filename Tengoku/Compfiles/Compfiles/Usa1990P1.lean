@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1990, Problem 1
 
@@ -121,3 +121,4 @@ theorem card_le_of_valid {S : Finset Plate} (hS : IsValid S) :
 abbrev answer : ℕ := 10 ^ 5
 
 end Usa1990P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2018, Problem 4
 
@@ -602,3 +602,4 @@ lemma not_canEnsure_101_of_benInv :
 abbrev answer : ℕ := 100
 
 end Imo2018P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

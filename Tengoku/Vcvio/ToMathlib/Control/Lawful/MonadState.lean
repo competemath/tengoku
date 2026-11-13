@@ -15,12 +15,13 @@ helper lemmas that are still locally useful under the `ToMathlib` import path.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u v
 
-@[simp] theorem toMonadState_get_eq_monadStateOf_get {m : Type u → Type v} {σ : Type u}
+@[simp] theorem _root_.Tengoku.Vcvio.toMonadState_get_eq_monadStateOf_get {m : Type u → Type v} {σ : Type u}
     [MonadStateOf σ m] : (MonadState.get : m σ) = MonadStateOf.get :=
   (monadStateOf_get_eq_get (σ := σ) (m := m)).symm
 
-@[simp] theorem toMonadState_set_eq_monadStateOf_set {m : Type u → Type v} {σ : Type u}
+@[simp] theorem _root_.Tengoku.Vcvio.toMonadState_set_eq_monadStateOf_set {m : Type u → Type v} {σ : Type u}
     [MonadStateOf σ m] : (MonadState.set : σ → m PUnit) = MonadStateOf.set := rfl
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

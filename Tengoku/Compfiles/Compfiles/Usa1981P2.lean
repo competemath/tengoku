@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1981, Problem 2
 
@@ -601,3 +601,4 @@ theorem not_valid_five {f : Fin 5 → Fin 5 → Link} (hf : Valid f) : False :=
   check5 _ (valid_mkColor hf)
 
 end Usa1981P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2021, Problem 6
 
@@ -163,3 +163,4 @@ lemma small_relation_eq_zero (hm : 2 ≤ m) (hsmall : ∀ k : Fin m, |t k| < m)
   exact small_coeffs_eq_zero_of_sum_pow_eq_zero hm m t hsmall hpoly0 k
 
 end Imo2021P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

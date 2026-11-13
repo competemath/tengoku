@@ -23,7 +23,7 @@ statement to a normalized version and establishing the required cyclotomic ideal
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open Finset Nat IsCyclotomicExtension Ideal Polynomial Int Basis FltRegular.CaseI
 
 open scoped NumberField
@@ -284,3 +284,4 @@ theorem caseI {a b c : ℤ} {p : ℕ} [Fact p.Prime] (hreg : IsRegularPrime p)
     (fun _ _ _ _ _ hreg hp5 hunit hxy hI h ↦ caseI_easier hreg hp5 hunit hxy hI h) hreg caseI
 
 end FltRegular
+-- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)

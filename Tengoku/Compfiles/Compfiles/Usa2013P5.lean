@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2013, Problem 5
 
@@ -169,3 +169,4 @@ lemma two_pow_ge_add_one (n : ℕ) : n + 1 ≤ 2 ^ n := by
     lia
 
 end Usa2013P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1994, Problem 5
 
@@ -122,3 +122,4 @@ theorem altSum_card (s : Finset ℕ) :
     · rw [Finset.sum_const, Finset.card_range, nsmul_eq_mul]
 
 end Usa1994P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

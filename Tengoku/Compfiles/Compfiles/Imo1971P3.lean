@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1971, Problem 3
 
@@ -161,3 +161,4 @@ theorem a_pairwise_coprime : pairwise_coprime_f (Set.range a) := by
   contradiction
 
 end Imo1971P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

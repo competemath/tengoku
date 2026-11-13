@@ -15,12 +15,12 @@ Semantic notions of correctness and secrecy live in separate compatibility and m
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u
 
 /-- A monad-generic symmetric encryption scheme over an ambient monad `m`, with message space `M`,
 key space `K`, and ciphertext space `C`. -/
-structure SymmEncAlg (m : Type → Type u) [Monad m] (M K C : Type) where
+structure _root_.Tengoku.Vcvio.SymmEncAlg (m : Type → Type u) [Monad m] (M K C : Type) where
   /-- Sample a key. -/
   keygen : m K
   /-- Encrypt a message under a key. -/
@@ -28,7 +28,7 @@ structure SymmEncAlg (m : Type → Type u) [Monad m] (M K C : Type) where
   /-- Decrypt a ciphertext under a key, returning `none` on failure. -/
   decrypt : K → C → m (Option M)
 
-namespace SymmEncAlg
+namespace Tengoku.Vcvio.SymmEncAlg
 
 variable {m : Type → Type u} [Monad m] {M K C : Type}
 
@@ -66,4 +66,5 @@ lemma PerfectSecrecyCipherExp_eq_bind [LawfulMonad m]
       mgen >>= fun msg ↦ encAlg.PerfectSecrecyCipherGivenMsgExp msg := by
   simp [PerfectSecrecyCipherExp, PerfectSecrecyExp_eq_bind, monad_norm]
 
-end SymmEncAlg
+end Tengoku.Vcvio.SymmEncAlg
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

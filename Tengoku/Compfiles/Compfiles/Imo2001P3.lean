@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2001, Problem 3
 
@@ -92,3 +92,4 @@ lemma card_not_easy_le_210 {α β : Type} [Fintype α] [Fintype β]
     _ = _ := by simp [← hcard_β]
 
 end Imo2001P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

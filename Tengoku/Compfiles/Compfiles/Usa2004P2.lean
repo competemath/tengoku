@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2004, Problem 2
 
@@ -362,3 +362,4 @@ lemma all_linear_comb (h0 : (0 : ℤ) ∈ S) (ha : ∀ i, a i ∈ S)
                 exact even_split h0 ha hdiff hcond IH hpT hqT hqp.symm heven
 
 end Usa2004P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

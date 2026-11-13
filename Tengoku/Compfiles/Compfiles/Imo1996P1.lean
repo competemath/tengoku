@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1996, Problem 1
 
@@ -205,3 +205,4 @@ lemma reach97 {p q : ℤ × ℤ} (h : Relation.ReflTransGen (Move 97) p q) :
 abbrev does_exist_97 : Bool := false
 
 end Imo1996P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

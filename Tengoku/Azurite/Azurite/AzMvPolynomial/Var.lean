@@ -14,7 +14,7 @@ import Tengoku.Seed.Order.Fin.Basic
 import Tengoku.Azurite.Azurite.AzPolynomial.StringLemmas
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 open AzPolynomial in
@@ -1240,3 +1240,4 @@ instance {α : Type} [ToString α] {l : List α}
 end ListVar
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

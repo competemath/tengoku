@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1974, Problem 4
 
@@ -219,3 +219,4 @@ def decomp₄ : Finset Rect :=
    ⟨4, 6, 2, 2⟩, ⟨6, 0, 2, 5⟩, ⟨6, 5, 2, 3⟩}
 
 end Imo1974P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

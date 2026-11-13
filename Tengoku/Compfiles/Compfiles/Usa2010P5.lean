@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2010, Problem 5
 Let $q = \dfrac{3p-5}{2}$ where $p$ is an odd prime, and let
@@ -57,3 +57,4 @@ lemma sum_one_div_eq_div_prod {s : Finset ℕ} {c : ℕ → ℚ} (hc : ∀ i ∈
   exact h
 
 end Usa2010P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

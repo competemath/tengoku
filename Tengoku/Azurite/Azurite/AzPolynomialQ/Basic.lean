@@ -31,7 +31,7 @@ The polynomial `p(x) = ∑ (numerators[i] / denom) * xⁱ`.
 
 The canonical form makes equality decidable by direct structural comparison.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 /-! ## Helper functions and lemmas on integer GCD via foldl -/
@@ -342,3 +342,4 @@ lemma normalize_coeff (nums : Array ℤ) (d : ℕ) (hd : 0 < d) (i : ℕ) :
 
 end AzPolynomialQ
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

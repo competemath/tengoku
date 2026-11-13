@@ -26,7 +26,7 @@ This is the transpose of Mathlib's `Matrix.vandermonde`, which uses
 `v i ^ j` (element-by-row). Since `det M = det Mᵀ`, the two
 determinants agree.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Matrix
@@ -62,3 +62,4 @@ lemma vandermondeDet_eq_mathlib {r : ℕ} (x : Fin r → R) :
   rw [vandermondeDet, vandermondeMat_eq_transpose, Matrix.det_transpose]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

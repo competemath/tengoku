@@ -16,7 +16,7 @@ Basic definitions for sphere packings and their densities.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 open BigOperators MeasureTheory Metric
 
 /-!
@@ -34,13 +34,13 @@ open BigOperators Pointwise Filter Module
 
 section Definitions
 
-structure SpherePacking (d : ℕ) where
+structure _root_.Tengoku.SpherePackingOrig.SpherePacking (d : ℕ) where
   centers : Set (EuclideanSpace ℝ (Fin d))
   separation : ℝ
   separation_pos : 0 < separation := by positivity
   centers_dist : Pairwise (separation ≤ dist · · : centers → centers → Prop)
 
-structure PeriodicSpherePacking (d : ℕ) extends SpherePacking d where
+structure _root_.Tengoku.SpherePackingOrig.PeriodicSpherePacking (d : ℕ) extends SpherePacking d where
   lattice : Submodule ℤ (EuclideanSpace ℝ (Fin d))
   lattice_action : ∀ ⦃x y⦄, x ∈ lattice → y ∈ centers → x + y ∈ centers
   lattice_discrete : DiscreteTopology lattice := by infer_instance
@@ -48,7 +48,7 @@ structure PeriodicSpherePacking (d : ℕ) extends SpherePacking d where
 
 variable {d : ℕ}
 
-theorem SpherePacking.centers_dist' (S : SpherePacking d) (x y : EuclideanSpace ℝ (Fin d))
+theorem Tengoku.SpherePackingOrig.SpherePacking.centers_dist' (S : SpherePacking d) (x y : EuclideanSpace ℝ (Fin d))
     (hx : x ∈ S.centers) (hy : y ∈ S.centers) (hxy : x ≠ y) :
     S.separation ≤ dist x y := by
   have : (⟨x, hx⟩ : S.centers) ≠ ⟨y, hy⟩ := Subtype.coe_ne_coe.mp hxy
@@ -58,15 +58,15 @@ theorem SpherePacking.centers_dist' (S : SpherePacking d) (x y : EuclideanSpace 
   simp only at this
   exact this
 
-instance PeriodicSpherePacking.instLatticeDiscrete (S : PeriodicSpherePacking d) :
+instance Tengoku.SpherePackingOrig.PeriodicSpherePacking.instLatticeDiscrete (S : PeriodicSpherePacking d) :
     DiscreteTopology S.lattice :=
   S.lattice_discrete
 
-instance PeriodicSpherePacking.instIsZLattice (S : PeriodicSpherePacking d) :
+instance Tengoku.SpherePackingOrig.PeriodicSpherePacking.instIsZLattice (S : PeriodicSpherePacking d) :
     IsZLattice ℝ S.lattice :=
   S.lattice_isZLattice
 
-instance SpherePacking.instCentersDiscrete (S : SpherePacking d) :
+instance Tengoku.SpherePackingOrig.SpherePacking.instCentersDiscrete (S : SpherePacking d) :
     DiscreteTopology S.centers := by
   simp_rw [discreteTopology_iff_isOpen_singleton, Metric.isOpen_iff]
   intro ⟨u, hu⟩ ⟨v, hv⟩ huv
@@ -78,7 +78,7 @@ instance SpherePacking.instCentersDiscrete (S : SpherePacking d) :
   contrapose! h_dist
   exact S.centers_dist <| Subtype.coe_ne_coe.mp h_dist
 
-noncomputable instance PeriodicSpherePacking.addAction (S : PeriodicSpherePacking d) :
+noncomputable instance Tengoku.SpherePackingOrig.PeriodicSpherePacking.addAction (S : PeriodicSpherePacking d) :
     AddAction S.lattice S.centers where
   vadd x y := ⟨↑x + ↑y, S.lattice_action x.prop y.prop⟩
   zero_vadd := by
@@ -92,18 +92,18 @@ noncomputable instance PeriodicSpherePacking.addAction (S : PeriodicSpherePackin
 
 alias PeriodicSpherePacking.instAddAction := PeriodicSpherePacking.addAction
 
-theorem PeriodicSpherePacking.addAction_vadd (S : PeriodicSpherePacking d)
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.addAction_vadd (S : PeriodicSpherePacking d)
     {x : S.lattice} {y : S.centers} :
       x +ᵥ y = ⟨x.val + y.val, S.lattice_action x.prop y.prop⟩ :=
   rfl
 
-abbrev SpherePacking.balls (S : SpherePacking d) : Set (EuclideanSpace ℝ (Fin d)) :=
+abbrev Tengoku.SpherePackingOrig.SpherePacking.balls (S : SpherePacking d) : Set (EuclideanSpace ℝ (Fin d)) :=
   ⋃ x : S.centers, ball (x : EuclideanSpace ℝ (Fin d)) (S.separation / 2)
 
-noncomputable def SpherePacking.finiteDensity (S : SpherePacking d) (R : ℝ) : ℝ≥0∞ :=
+noncomputable def Tengoku.SpherePackingOrig.SpherePacking.finiteDensity (S : SpherePacking d) (R : ℝ) : ℝ≥0∞ :=
   volume (S.balls ∩ ball 0 R) / (volume (ball (0 : EuclideanSpace ℝ (Fin d)) R))
 
-noncomputable def SpherePacking.density (S : SpherePacking d) : ℝ≥0∞ :=
+noncomputable def Tengoku.SpherePackingOrig.SpherePacking.density (S : SpherePacking d) : ℝ≥0∞ :=
   limsup S.finiteDensity atTop
 
 -- Here is one way to choose a basis, but I think for our purpose we can just supply one.
@@ -118,17 +118,17 @@ noncomputable def SpherePacking.density (S : SpherePacking d) : ℝ≥0∞ :=
 -- AddSubgroup.toIntSubmodule A = B ↔ A = B.toAddSubgroup := by
 -- constructor <;> rintro rfl <;> rfl
 
-theorem PeriodicSpherePacking.basis_Z_span
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.basis_Z_span
     (S : PeriodicSpherePacking d) {ι : Type*} (b : Basis ι ℤ S.lattice) :
     Submodule.span ℤ (Set.range (b.ofZLatticeBasis ℝ _)) = S.lattice :=
   Basis.ofZLatticeBasis_span ℝ S.lattice b
 
-theorem PeriodicSpherePacking.mem_basis_Z_span
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.mem_basis_Z_span
     (S : PeriodicSpherePacking d) {ι : Type*} (b : Basis ι ℤ S.lattice) (v) :
     v ∈ Submodule.span ℤ (Set.range (b.ofZLatticeBasis ℝ _)) ↔ v ∈ S.lattice :=
   SetLike.ext_iff.mp (S.basis_Z_span b) v
 
-theorem PeriodicSpherePacking.basis_R_span
+theorem Tengoku.SpherePackingOrig.PeriodicSpherePacking.basis_R_span
     (S : PeriodicSpherePacking d) {ι : Type*} (b : Basis ι ℤ S.lattice) :
     Submodule.span ℝ (Set.range (b.ofZLatticeBasis ℝ _)) = ⊤ :=
   Basis.span_eq _
@@ -141,7 +141,7 @@ open Real
 
 -- Unfortunately I can't define a SMul ℝ (SpherePacking d) because we require 0 < c
 -- Perhaps we can define a monoid action instead - Sid
-def SpherePacking.scale (S : SpherePacking d) {c : ℝ} (hc : 0 < c) : SpherePacking d where
+def Tengoku.SpherePackingOrig.SpherePacking.scale (S : SpherePacking d) {c : ℝ} (hc : 0 < c) : SpherePacking d where
   centers := c • S.centers
   separation := c * S.separation
   separation_pos := mul_pos hc S.separation_pos
@@ -156,7 +156,7 @@ def SpherePacking.scale (S : SpherePacking d) {c : ℝ} (hc : 0 < c) : SpherePac
     have := S.centers_dist this
     exact (mul_le_mul_iff_right₀ hc).mpr this
 
-lemma scale_lattice_discrete (S : PeriodicSpherePacking d) {c : ℝ} (hc : 0 < c) :
+lemma _root_.Tengoku.SpherePackingOrig.scale_lattice_discrete (S : PeriodicSpherePacking d) {c : ℝ} (hc : 0 < c) :
     DiscreteTopology ↥(c • S.lattice) := by
   letI : DiscreteTopology S.lattice := S.lattice_discrete
   change DiscreteTopology ↥((Homeomorph.smulOfNeZero c hc.ne.symm) '' (S.lattice :
@@ -164,7 +164,7 @@ lemma scale_lattice_discrete (S : PeriodicSpherePacking d) {c : ℝ} (hc : 0 < c
   exact (Homeomorph.image (Homeomorph.smulOfNeZero c hc.ne.symm)
     (S.lattice : Set (EuclideanSpace ℝ (Fin d)))).discreteTopology
 
-noncomputable def PeriodicSpherePacking.scale (S : PeriodicSpherePacking d) {c : ℝ} (hc : 0 < c) :
+noncomputable def Tengoku.SpherePackingOrig.PeriodicSpherePacking.scale (S : PeriodicSpherePacking d) {c : ℝ} (hc : 0 < c) :
   PeriodicSpherePacking d := {
   S.toSpherePacking.scale hc with
   lattice := c • S.lattice
@@ -196,13 +196,13 @@ noncomputable def PeriodicSpherePacking.scale (S : PeriodicSpherePacking d) {c :
         simpa [smul_smul, mul_inv_cancel₀ hc.ne.symm, one_smul]
 }
 
-lemma PeriodicSpherePacking.scale_toSpherePacking
+lemma Tengoku.SpherePackingOrig.PeriodicSpherePacking.scale_toSpherePacking
     {S : PeriodicSpherePacking d} {c : ℝ} (hc : 0 < c) :
     (S.scale hc).toSpherePacking = S.toSpherePacking.scale hc := by
   cases S
   rfl
 
-lemma SpherePacking.scale_balls {S : SpherePacking d} {c : ℝ} (hc : 0 < c) :
+lemma Tengoku.SpherePackingOrig.SpherePacking.scale_balls {S : SpherePacking d} {c : ℝ} (hc : 0 < c) :
     (S.scale hc).balls = c • S.balls := by
   ext x
   simp only [scale, Set.mem_iUnion, Set.iUnion_coe_set]
@@ -229,7 +229,7 @@ lemma SpherePacking.scale_balls {S : SpherePacking d} {c : ℝ} (hc : 0 < c) :
     rw [← smul_sub, norm_smul, Real.norm_eq_abs, abs_eq_self.mpr hc.le, mul_div_assoc]
     gcongr
 
-lemma PeriodicSpherePacking.scale_balls {S : PeriodicSpherePacking d} {c : ℝ} (hc : 0 < c) :
+lemma Tengoku.SpherePackingOrig.PeriodicSpherePacking.scale_balls {S : PeriodicSpherePacking d} {c : ℝ} (hc : 0 < c) :
     (S.scale hc).balls = c • S.balls := by
   exact S.scale_toSpherePacking hc ▸ SpherePacking.scale_balls (S := S.toSpherePacking) hc
 
@@ -241,18 +241,18 @@ variable {d : ℕ} (S : SpherePacking d)
 
 /-- The `PeriodicSpherePackingConstant` in dimension d is the supremum of the density of all
 periodic packings. See also `<TODO>` for specifying the separation radius of the packings. -/
-def PeriodicSpherePackingConstant (d : ℕ) : ℝ≥0∞ :=
+def _root_.Tengoku.SpherePackingOrig.PeriodicSpherePackingConstant (d : ℕ) : ℝ≥0∞ :=
   ⨆ S : PeriodicSpherePacking d, S.density
 
 /-- The `SpherePackingConstant` in dimension d is the supremum of the density of all packings. See
 also `<TODO>` for specifying the separation radius of the packings. -/
-def SpherePackingConstant (d : ℕ) : ℝ≥0∞ :=
+def _root_.Tengoku.SpherePackingOrig.SpherePackingConstant (d : ℕ) : ℝ≥0∞ :=
   ⨆ S : SpherePacking d, S.density
 
 end Density
 
 section DensityLemmas
-namespace SpherePacking
+namespace Tengoku.SpherePackingOrig.SpherePacking
 
 lemma finiteDensity_le_one {d : ℕ} (S : SpherePacking d) (R : ℝ) : S.finiteDensity R ≤ 1 := by
   rw [finiteDensity]
@@ -327,7 +327,7 @@ theorem constant_eq_constant_normalized {d : ℕ} (hd : 0 < d) :
     intro ⟨S, _⟩
     exact le_iSup density S
 
-end SpherePacking
+end Tengoku.SpherePackingOrig.SpherePacking
 end DensityLemmas
 
 section PeriodicDensity
@@ -349,7 +349,7 @@ variable {d : ℕ} (S : SpherePacking d)
 /- In this section we establish basic results about FiniteDensity and Density of different types of
 packings. -/
 
-lemma biUnion_inter_balls_subset_biUnion_balls_inter
+lemma _root_.Tengoku.SpherePackingOrig.biUnion_inter_balls_subset_biUnion_balls_inter
     (X : Set (EuclideanSpace ℝ (Fin d))) (r R : ℝ) :
     ⋃ x ∈ X ∩ ball 0 R, ball x r ⊆ (⋃ x ∈ X, ball x r) ∩ ball 0 (R + r) := by
   intro x hx
@@ -359,7 +359,7 @@ lemma biUnion_inter_balls_subset_biUnion_balls_inter
   apply lt_of_le_of_lt <| norm_le_norm_add_norm_sub' x y
   gcongr <;> tauto
 
-lemma biUnion_balls_inter_subset_biUnion_inter_balls
+lemma _root_.Tengoku.SpherePackingOrig.biUnion_balls_inter_subset_biUnion_inter_balls
     (X : Set (EuclideanSpace ℝ (Fin d))) (r R : ℝ) :
     (⋃ x ∈ X, ball x r) ∩ ball 0 (R - r) ⊆ ⋃ x ∈ X ∩ ball 0 R, ball x r := by
   intro x hx
@@ -372,7 +372,7 @@ lemma biUnion_balls_inter_subset_biUnion_inter_balls
     _ < R - r + r := by gcongr
     _ = R := by ring
 
-theorem SpherePacking.volume_iUnion_balls_eq_tsum
+theorem Tengoku.SpherePackingOrig.SpherePacking.volume_iUnion_balls_eq_tsum
     (R : ℝ) {r' : ℝ} (hr' : r' ≤ S.separation / 2) :
     volume (⋃ x : ↑(S.centers ∩ ball 0 R), ball (x : EuclideanSpace ℝ (Fin d)) r')
       = ∑' x : ↑(S.centers ∩ ball 0 R), volume (ball (x : EuclideanSpace ℝ (Fin d)) r') := by
@@ -386,7 +386,7 @@ theorem SpherePacking.volume_iUnion_balls_eq_tsum
 
 /-- This gives an upper bound on the number of points in the sphere packing X with norm less than R.
 -/
-theorem SpherePacking.inter_ball_encard_le (hd : 0 < d) (R : ℝ) :
+theorem Tengoku.SpherePackingOrig.SpherePacking.inter_ball_encard_le (hd : 0 < d) (R : ℝ) :
     (S.centers ∩ ball 0 R).encard ≤
       volume (S.balls ∩ ball 0 (R + S.separation / 2))
         / volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2)) := by
@@ -402,7 +402,7 @@ theorem SpherePacking.inter_ball_encard_le (hd : 0 < d) (R : ℝ) :
 
 /-- This gives an upper bound on the number of points in the sphere packing X with norm less than R.
 -/
-theorem SpherePacking.inter_ball_encard_ge (hd : 0 < d) (R : ℝ) :
+theorem Tengoku.SpherePackingOrig.SpherePacking.inter_ball_encard_ge (hd : 0 < d) (R : ℝ) :
     (S.centers ∩ ball 0 R).encard ≥
       volume (S.balls ∩ ball 0 (R - S.separation / 2))
         / volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2)) := by
@@ -416,7 +416,7 @@ theorem SpherePacking.inter_ball_encard_ge (hd : 0 < d) (R : ℝ) :
   · exact (volume_ball_pos _ (by linarith [S.separation_pos])).ne.symm
   · exact (volume_ball_lt_top _).ne
 
-theorem aux6 (R : ℝ) : Finite ↑(S.centers ∩ ball 0 R) := by
+theorem _root_.Tengoku.SpherePackingOrig.aux6 (R : ℝ) : Finite ↑(S.centers ∩ ball 0 R) := by
   apply Set.encard_lt_top_iff.mp
   by_cases hd : 0 < d
   · haveI : Nonempty (Fin d) := Fin.pos_iff_nonempty.mp hd
@@ -435,7 +435,7 @@ theorem aux6 (R : ℝ) : Finite ↑(S.centers ∩ ball 0 R) := by
     apply lt_of_le_of_lt (Set.encard_mono inf_le_right)
     apply lt_of_le_of_lt this (by decide)
 
-theorem SpherePacking.finiteDensity_ge (hd : 0 < d) (R : ℝ) :
+theorem Tengoku.SpherePackingOrig.SpherePacking.finiteDensity_ge (hd : 0 < d) (R : ℝ) :
     S.finiteDensity R
       ≥ (S.centers ∩ ball 0 (R - S.separation / 2)).encard
         * volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2))
@@ -449,7 +449,7 @@ theorem SpherePacking.finiteDensity_ge (hd : 0 < d) (R : ℝ) :
   · exact (volume_ball_pos _ (by linarith [S.separation_pos])).ne.symm
   · exact (volume_ball_lt_top _).ne
 
-theorem SpherePacking.finiteDensity_le (hd : 0 < d) (R : ℝ) :
+theorem Tengoku.SpherePackingOrig.SpherePacking.finiteDensity_le (hd : 0 < d) (R : ℝ) :
     S.finiteDensity R
       ≤ (S.centers ∩ ball 0 (R + S.separation / 2)).encard
         * volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2))
@@ -464,3 +464,4 @@ theorem SpherePacking.finiteDensity_le (hd : 0 < d) (R : ℝ) :
   · exact (volume_ball_lt_top _).ne
 
 end BasicResults
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1987, Problem 5
 
@@ -505,3 +505,4 @@ lemma T_alt (k : ℕ) : numGoodTriples (altSeq (2 * k + 1)) = (2 * k + 1) * k.ch
   rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul]
 
 end Usa1987P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2001, Problem 3
 
@@ -61,3 +61,4 @@ lemma usa2001_p3_lemma (a b c : ℝ) (ha : 0 ≤ a)
     _ = 2 := by norm_num
 
 end Usa2001P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

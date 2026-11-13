@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1959, Problem 2
 
@@ -141,3 +141,4 @@ abbrev solution_set_one : Set ℝ := ∅
 abbrev solution_set_two : Set ℝ := { 3 / 2 }
 
 end Imo1959P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -29,13 +29,13 @@ each is proved by comparing the two limits termwise along the truncations `[c, c
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open Filter MeasureTheory Set
 
 /-- The integral of an antitone function over `(c, ∞)` is at most the sum of its values on
 the unit grid `c, c + 1, c + 2, …`: each grid value dominates the integral over the unit
 interval to its right. -/
-theorem integral_Ioi_le_tsum_of_antitoneOn {f : ℝ → ℝ} {c : ℝ}
+theorem _root_.Tengoku.Vcvio.integral_Ioi_le_tsum_of_antitoneOn {f : ℝ → ℝ} {c : ℝ}
     (hf : AntitoneOn f (Ici c)) (hint : IntegrableOn f (Ioi c))
     (hsum : Summable fun n : ℕ => f (c + n)) :
     ∫ x in Ioi c, f x ≤ ∑' n : ℕ, f (c + n) := by
@@ -48,7 +48,7 @@ theorem integral_Ioi_le_tsum_of_antitoneOn {f : ℝ → ℝ} {c : ℝ}
 /-- The integral of a monotone function over `(-∞, c]` is at most the sum of its values on
 the unit grid `c, c - 1, c - 2, …`: each grid value dominates the integral over the unit
 interval to its left. -/
-theorem integral_Iic_le_tsum_of_monotoneOn {f : ℝ → ℝ} {c : ℝ}
+theorem _root_.Tengoku.Vcvio.integral_Iic_le_tsum_of_monotoneOn {f : ℝ → ℝ} {c : ℝ}
     (hf : MonotoneOn f (Iic c)) (hint : IntegrableOn f (Iic c))
     (hsum : Summable fun n : ℕ => f (c - n)) :
     ∫ x in Iic c, f x ≤ ∑' n : ℕ, f (c - n) := by
@@ -71,3 +71,4 @@ theorem integral_Iic_le_tsum_of_monotoneOn {f : ℝ → ℝ} {c : ℝ}
   congr 1
   rw [show N - 1 - i + 1 = N - i by omega, Nat.cast_sub hiN.le]
   ring
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

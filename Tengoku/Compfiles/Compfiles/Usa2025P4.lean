@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2025, Problem 4
 
@@ -270,3 +270,4 @@ lemma p4_lin_indep (A F P : EuclideanSpace ℝ (Fin 2))
     · exact ⟨1, by simp⟩
 
 end Usamo2025P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

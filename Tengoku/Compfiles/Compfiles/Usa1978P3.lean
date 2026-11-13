@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1978, Problem 3
 
@@ -90,3 +90,4 @@ lemma expressible_two_mul_add_nine {n : ℕ} (h : Expressible n) :
   expressible_two_mul_add (c := 3) (d := 6) h (by norm_num) (by norm_num) (by norm_num)
 
 end Usa1978P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

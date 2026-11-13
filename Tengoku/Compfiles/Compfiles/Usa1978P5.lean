@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1978, Problem 5
 
@@ -60,3 +60,4 @@ theorem card_sharedWith_le {L : Type*} (speaks : Fin 9 → Finset L)
   exact hnothree ⟨d, x.1, y.1, hdx, hdy, hxy1, f x, (hf x).1, (hf x).2, hfy⟩
 
 end Usa1978P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

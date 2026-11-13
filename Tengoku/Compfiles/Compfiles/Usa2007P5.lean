@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2007 P5
 Prove that for every nonnegative integer n, the number 7^7^n + 1 is the product of at
@@ -39,3 +39,4 @@ lemma factor_poly_bn (t : ℕ) : ((t^6 - t^5) + (t^4 - t^3) + (t^2 - t) + 1) = (
   · lia
 
 end USA2007P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

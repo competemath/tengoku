@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2006, Problem 3
 
@@ -780,3 +780,4 @@ lemma classification_iff_pbound (f : ℤ[X]) :
   ⟨fun h ↦ classification_of_pbound f.natDegree f rfl h, pbound_of_classification f⟩
 
 end Usa2006P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

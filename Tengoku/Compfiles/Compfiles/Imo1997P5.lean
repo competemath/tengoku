@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1997, Problem 5
 
@@ -67,3 +67,4 @@ lemma aux₃ {n a b c d : ℕ} (hb : b ≠ 0) (h : c ^ b = d ^ b * n ^ a) : d �
 abbrev solution_set : Set (ℕ × ℕ) := {(1, 1), (16, 2), (27, 3)}
 
 end Imo1997P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -1,0 +1,30 @@
+leakscan: 0 global instances (0 can fire outside the library), 0 scoped; 18 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 28 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: IsAddTreeBoundedWith
+root: IsTreeBoundedRelWith
+root: IsStableRelWith
+root: IsAddOrderPropWith
+root: IsAddOrderProp
+root: not_isOrderPropRel
+root: IsOrderPropRel
+root: not_isAddStableWith
+root: IsAddStableWith
+root: LYM_inequality
+root: not_isAddOrderProp
+root: IsMulStableWith
+root: IsOrderPropRelWith
+root: not_isAddOrderPropWith
+root: not_isMulStableWith
+root: IsMulStable
+root: IsAddStable
+root: IsStableRel
+root: IsMulOrderPropWith
+root: not_isAddStable
+root: not_isOrderPropRelWith
+root: not_isStableRelWith
+root: not_isMulOrderProp
+root: not_isStableRel
+root: IsMulOrderProp
+root: IsMulTreeBoundedWith
+root: not_isMulStable
+root: not_isMulOrderPropWith

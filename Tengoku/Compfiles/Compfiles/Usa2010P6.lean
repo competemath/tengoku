@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2010, Problem 6
 
@@ -846,3 +846,4 @@ lemma upper_score (T : Finset ℤ) (hT : ValidErase T) : score L0 T ≤ 43 := by
   lia
 
 end Usa2010P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

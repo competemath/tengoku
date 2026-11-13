@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2000, Problem 4
 
@@ -740,3 +740,4 @@ lemma card_valid : {g : Fin 100 → ZMod 3 | ValidPlacement g}.ncard = 12 := by
 abbrev solution_value : ℕ := 12
 
 end Imo2000P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

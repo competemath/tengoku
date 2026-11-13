@@ -1,0 +1,66 @@
+leakscan: 144 global instances (4 can fire outside the library), 0 scoped; 134 global simp lemmas (10 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 50 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp List.getLastI_append_single registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 28)
+leak: simp List.leftpad_eq_self registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 38)
+leak: simp List.rightpad_length registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 44)
+leak: simp List.rightpad_prefix registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 51)
+leak: simp List.rightpad_suffix registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 59)
+leak: simp List.rightpad_eq_self registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 67)
+leak: simp List.rightpad_twice_eq_rightpad_max registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 73)
+leak: simp List.rightpad_getD_eq_getD registered in Tengoku.Compply.CompPoly.Data.List.Lemmas (declared at line 96)
+leak: simp Array.getElem?_eq_getElem registered in Tengoku.Compply.CompPoly.Data.Array.Lemmas (declared in Init.Data.Array.Lemmas: an `attribute` command of the library turns it on)
+leak: instance instCommSemiringTensorProduct registered in Tengoku.Compply.CompPoly.Fields.Binary.Tower.TensorAlgebra (declared at line 48)
+leak: instance instAlgebraTensorProduct registered in Tengoku.Compply.CompPoly.Fields.Binary.Tower.TensorAlgebra (declared at line 49)
+leak: instance instAlgebraTensorProduct_1 registered in Tengoku.Compply.CompPoly.Fields.Binary.Tower.TensorAlgebra (declared at line 50)
+leak: instance instAlgebraTensorProduct_2 registered in Tengoku.Compply.CompPoly.Fields.Binary.Tower.TensorAlgebra (declared at line 51)
+leak: simp Array.getElem?_eq_none registered in Tengoku.Compply.CompPoly.Univariate.Raw.Core (declared in Init.Data.Array.Lemmas: an `attribute` command of the library turns it on)
+root: instAlgebraTensorProduct_2
+root: AlgebraTower
+root: instDCast₂
+root: instDCastSigmaForallForall
+root: inv_two_mul_two
+root: dcast_trans
+root: commSEquiv
+root: comp_x_square_coeff
+root: eq_poly_deg_one
+root: instDCastPSigmaPSigma
+root: instDCast₁₂
+root: cast_symm
+root: AlgebraTowerEquiv
+root: dcast_eq
+root: instDCast₂₃
+root: dcast_eq_dcast_iff
+root: coeffs_of_comp_minus_x
+root: instDCast₂PSigma
+root: comm_map_smul_add
+root: dcast_symm
+root: dcast_eq_root_cast
+root: instDCastPSigma
+root: instDCast₂Forall
+root: instDCastPSigmaForall
+root: DCast
+root: instAlgebraTensorProduct
+root: DCast₃
+root: instDCastSigmaSigma
+root: heq_of_dcast
+root: dcast₂_trans
+root: instAlgebraTensorProduct_1
+root: instDCastForallForall
+root: instDCastForall
+root: instDCast₂Sigma
+root: comm_map_smul_tmul
+root: instCommSemiringTensorProduct
+root: dcast₂_eq'
+root: NonBinaryField
+root: DCast₂
+root: dcast₃_trans
+root: two_mul_inv_two
+root: dcast₃_eq
+root: instDCast₁₃
+root: cast_eq_cast_iff
+root: dcast_fun
+root: CanonicalEuclideanDomain
+root: instDCast₃
+root: instDCast
+root: dcast₂_eq
+root: instDCastSigma

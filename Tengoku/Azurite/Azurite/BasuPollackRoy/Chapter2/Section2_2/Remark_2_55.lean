@@ -30,7 +30,7 @@ Definition 2.53):
 The companion file `Definition_2_53.lean` holds only the bare definitions
 `cauchyIndexOn`, `cauchyIndex` (BPR Definition 2.53).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial
@@ -2038,3 +2038,4 @@ theorem remark_2_55_b
   rw [h_pos_eq, h_neg_eq]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

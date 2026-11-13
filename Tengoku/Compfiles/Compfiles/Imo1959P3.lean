@@ -5,7 +5,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1959, Problem 3
 
@@ -55,3 +55,4 @@ lemma formedQuadratic_cos_two_mul (a b c x : ℝ) :
   ring
 
 end Imo1959P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

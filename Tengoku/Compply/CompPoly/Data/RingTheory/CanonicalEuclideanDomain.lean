@@ -20,7 +20,7 @@ and `Field`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Compply end Tengoku.Compply open Tengoku.Compply 
 universe u
 local infixl:50 " ≺ " => EuclideanDomain.r -- the valuation function
 
@@ -94,7 +94,7 @@ It extends `EuclideanDomain` with:
 2.  `remainder_is_canonical`: A proof that the built-in `%` operator satisfies this predicate.
 3.  `unique_division`: The `Uniqueness Axiom` stating that if `(q1, r1)` and `(q2, r2)`
     both satisfy the division equation and the canonical rule, they must be equal.-/
-class CanonicalEuclideanDomain (R : Type u) extends EuclideanDomain R where
+class _root_.Tengoku.Compply.CanonicalEuclideanDomain (R : Type u) extends EuclideanDomain R where
   is_canonical_remainder : (b : R) → (r : R) → Prop
   -- The built-in operator `remainder (%)` must obey the rule
   remainder_is_canonical : ∀ (a b : R), (hb : b ≠ 0) → is_canonical_remainder b (remainder a b)
@@ -283,7 +283,7 @@ instance Field.instCanonicalEuclideanDomainField {K : Type u} [Field K] :
       exact h_r
 end Instances
 
-namespace CanonicalEuclideanDomain
+namespace Tengoku.Compply.CanonicalEuclideanDomain
 variable {R : Type u} [CanonicalEuclideanDomain R]
 
 section DivisionUniqueness
@@ -475,4 +475,5 @@ theorem dvd_sub_mod (a b : R) :
 
 end DivisionCommonAlgebra
 
-end CanonicalEuclideanDomain
+end Tengoku.Compply.CanonicalEuclideanDomain
+-- Tengoku: root names of this library moved to Tengoku.Compply so they do not collide with other libraries (generated)

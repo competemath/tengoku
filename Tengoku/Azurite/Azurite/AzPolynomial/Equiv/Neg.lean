@@ -11,7 +11,7 @@ import Tengoku.Azurite.Azurite.AzPolynomial.Neg
 import Tengoku.Azurite.Azurite.AzPolynomial.Equiv.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 open Polynomial
 
 variable {R : Type _} [Ring R]
@@ -50,3 +50,4 @@ lemma toPoly_map_neg (l : List R) : (l.map (-·)).toPoly = - l.toPoly := by
   rw [toPoly_ofPoly, toPoly_neg, toPoly_ofPoly]
 
 end Azurite.AzPolynomial
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -16,10 +16,10 @@ values agree at every pair of successive indices.
 
 * `eq_of_forall_succ_eq_of_mem_Icc`: equality of any two values in the interval.
 -/
-
+namespace Tengoku.Tnlean end Tengoku.Tnlean open Tengoku.Tnlean
 /-- A function on a finite interval is constant when it agrees at each pair of
 successive indices.-/
-theorem eq_of_forall_succ_eq_of_mem_Icc {α : Sort*} {a n i j : ℕ}
+theorem _root_.Tengoku.Tnlean.eq_of_forall_succ_eq_of_mem_Icc {α : Sort*} {a n i j : ℕ}
     (f : (m : ℕ) → m ≤ n → α)
     (hstep : ∀ m, a ≤ m → (hm : m < n) → f m hm.le = f (m + 1) hm)
     (hai : a ≤ i) (hin : i ≤ n) (haj : a ≤ j) (hjn : j ≤ n) :
@@ -41,3 +41,4 @@ theorem eq_of_forall_succ_eq_of_mem_Icc {α : Sort*} {a n i j : ℕ}
     exact climb k i hai hjn
   · obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hji
     exact (climb k j haj hin).symm
+-- Tengoku: root names of this library moved to Tengoku.Tnlean so they do not collide with other libraries (generated)

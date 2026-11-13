@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1993, Problem 4
 
@@ -163,3 +163,4 @@ theorem gcd_eq (n : ℕ) : Nat.gcd (a n) (a (n + 1)) = Nat.gcd r s := by
 omit hr hs ha0 ha1 han
 
 end Usa1993P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

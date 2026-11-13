@@ -12,7 +12,7 @@ public import Tengoku
   `f'(α) mod p` is separable for the prime below `P`, then `S/R` is unramified at `P`.
 -/
 
-@[expose] public section
+@[expose] public section namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular
 open UniqueFactorizationMonoid Ideal
 
 attribute [local instance] FractionRing.liftAlgebra
@@ -30,7 +30,7 @@ include K L in
 injective.
 @isnad1 id=injectiv.0h4v.s7.fd33b7570daa from=translated src=- shape=4587c5a7 vocab=82cd10d7
 -/
-lemma algebraMap_injective_of_isIntegralClosure : Function.Injective (algebraMap R S) := by
+lemma _root_.Tengoku.FltRegular.algebraMap_injective_of_isIntegralClosure : Function.Injective (algebraMap R S) := by
   refine Function.Injective.of_comp (f := algebraMap S L) ?_
   rw [← RingHom.coe_comp, ← IsScalarTower.algebraMap_eq, IsScalarTower.algebraMap_eq R K L]
   exact (algebraMap K L).injective.comp (IsFractionRing.injective _ _)
@@ -38,7 +38,7 @@ lemma algebraMap_injective_of_isIntegralClosure : Function.Injective (algebraMap
 /--
 @isnad1 id=eq.1h5v.s10.ce916b2872cd from=translated src=- shape=290f15f4 vocab=3fa5bded
 -/
-lemma comap_map_eq_of_unramified [IsGalois K L] [Algebra.Unramified R S] (I : Ideal S)
+lemma _root_.Tengoku.FltRegular.comap_map_eq_of_unramified [IsGalois K L] [Algebra.Unramified R S] (I : Ideal S)
     (hI : ∀ σ : L ≃ₐ[K] L, I.comap (galRestrict R K L S σ) = I) :
     (I.comap (algebraMap R S)).map (algebraMap R S) = I := by
   classical
@@ -112,7 +112,7 @@ attribute [local instance] Ideal.Quotient.field in
 /--
 @isnad1 id=isunrami.3h6v.s9.a037601b1871 from=translated src=- shape=b814d213 vocab=cb39c1f2
 -/
-lemma isUnramifiedAt_of_Separable_minpoly' [Algebra.IsSeparable K L]
+lemma _root_.Tengoku.FltRegular.isUnramifiedAt_of_Separable_minpoly' [Algebra.IsSeparable K L]
     (P : Ideal S) [hP : P.IsPrime] (hPbot : P ≠ ⊥) (x : S)
     (hx' : Algebra.adjoin K {algebraMap S L x} = ⊤)
     (h : Polynomial.Separable ((minpoly R x).map (Ideal.Quotient.mk (P.under R)))) :
@@ -150,7 +150,7 @@ lemma isUnramifiedAt_of_Separable_minpoly' [Algebra.IsSeparable K L]
 /--
 @isnad1 id=isunrami.4h6v.s9.fb5db25f51bc from=translated src=- shape=98fdd6b7 vocab=478fc91f
 -/
-lemma isUnramifiedAt_of_Separable_minpoly [Algebra.IsSeparable K L]
+lemma _root_.Tengoku.FltRegular.isUnramifiedAt_of_Separable_minpoly [Algebra.IsSeparable K L]
     (P : Ideal S) [hP : P.IsPrime] (hPbot : P ≠ ⊥) (x : L) (hx : IsIntegral R x)
     (hx' : Algebra.adjoin K {x} = ⊤)
     (h : Polynomial.Separable ((minpoly R x).map (Ideal.Quotient.mk (P.under R)))) :
@@ -159,3 +159,4 @@ lemma isUnramifiedAt_of_Separable_minpoly [Algebra.IsSeparable K L]
     (IsIntegralClosure.algebraMap_injective S R L)] at h
   exact isUnramifiedAt_of_Separable_minpoly' K L P hPbot (IsIntegralClosure.mk' S x hx)
     (by rwa [IsIntegralClosure.algebraMap_mk']) h
+-- Tengoku: root names of this library moved to Tengoku.FltRegular so they do not collide with other libraries (generated)

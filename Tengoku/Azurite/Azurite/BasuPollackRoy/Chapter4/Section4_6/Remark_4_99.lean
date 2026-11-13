@@ -28,7 +28,7 @@ corresponding quantities for `L_f` on `Ā` (Part 1). Moreover, in a basis `ℬ` 
 multiplication table has entries in a subring `D ⊆ K`, if `f`'s coordinates are in `D`, then trace,
 det are in `D` and `χ ∈ D[T]` (Part 2).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open MvPolynomial
@@ -105,3 +105,4 @@ theorem remark_4_99_det_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPoly
 end Part2
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1986, Problem 3
 
@@ -126,3 +126,4 @@ lemma potential_measure_decreases (s : State) (i : Fin 5)
 abbrev terminates : Bool := true
 
 end Imo1986P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

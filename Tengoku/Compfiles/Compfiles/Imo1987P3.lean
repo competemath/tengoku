@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1987, Problem 3
 
@@ -135,3 +135,4 @@ lemma coef_cast_mul {n : ℕ} {x : Fin n → ℝ} {k : ℕ} (b b' : Fin n → Fi
     ring
 
 end Imo1987P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

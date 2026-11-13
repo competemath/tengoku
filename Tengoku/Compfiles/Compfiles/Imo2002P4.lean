@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2002, Problem 4
 
@@ -447,3 +447,4 @@ lemma pairSum_not_dvd_of_not_prime (n : ℕ) (hn : 1 < n) (hnp : ¬ n.Prime)
 abbrev SolutionSet : Set ℕ := {n | n.Prime}
 
 end Imo2002P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

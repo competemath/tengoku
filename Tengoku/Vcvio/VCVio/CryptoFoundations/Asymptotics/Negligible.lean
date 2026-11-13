@@ -30,47 +30,47 @@ as this is usually the situation for cryptographic reductions.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open ENNReal Asymptotics Filter
 
 /-- A function `f` is negligible if it decays faster than any polynomial function. -/
-def negligible (f : ℕ → ℝ≥0∞) : Prop :=
+def _root_.Tengoku.Vcvio.negligible (f : ℕ → ℝ≥0∞) : Prop :=
   SuperpolynomialDecay atTop (fun x => ↑x) f
 
-@[simp] theorem negligible_iff (f : ℕ → ℝ≥0∞) :
+@[simp] theorem _root_.Tengoku.Vcvio.negligible_iff (f : ℕ → ℝ≥0∞) :
     negligible f ↔ SuperpolynomialDecay atTop (fun x => ↑x) f := Iff.rfl
 
-lemma negligible_zero : negligible 0 := superpolynomialDecay_zero _ _
+lemma _root_.Tengoku.Vcvio.negligible_zero : negligible 0 := superpolynomialDecay_zero _ _
 
-lemma negligible_of_zero {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n = 0) : negligible f :=
+lemma _root_.Tengoku.Vcvio.negligible_of_zero {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n = 0) : negligible f :=
   funext hf ▸ negligible_zero
 
 /-- Negligibility is monotone under eventual domination: if `f ≤ g` for all large `n` and `g` is
 negligible, then `f` is. This is Mathlib's `SuperpolynomialDecay.trans_eventuallyLE` with `f`
 squeezed between `0` and `g`. -/
-theorem negligible_of_eventuallyLE {f g : ℕ → ℝ≥0∞} (hfg : ∀ᶠ n in atTop, f n ≤ g n)
+theorem _root_.Tengoku.Vcvio.negligible_of_eventuallyLE {f g : ℕ → ℝ≥0∞} (hfg : ∀ᶠ n in atTop, f n ≤ g n)
     (hg : negligible g) : negligible f :=
   SuperpolynomialDecay.trans_eventuallyLE (Eventually.of_forall fun _ => zero_le)
     (superpolynomialDecay_zero _ _) hg (Eventually.of_forall fun _ => zero_le) hfg
 
 /-- Negligibility is monotone: if `f ≤ g` pointwise and `g` is negligible, then `f` is. -/
-theorem negligible_of_le {f g : ℕ → ℝ≥0∞} (hfg : ∀ n, f n ≤ g n) (hg : negligible g) :
+theorem _root_.Tengoku.Vcvio.negligible_of_le {f g : ℕ → ℝ≥0∞} (hfg : ∀ n, f n ≤ g n) (hg : negligible g) :
     negligible f :=
   negligible_of_eventuallyLE (Eventually.of_forall hfg) hg
 
 /-- Sum of two negligible functions is negligible. -/
-theorem negligible_add {f g : ℕ → ℝ≥0∞} (hf : negligible f) (hg : negligible g) :
+theorem _root_.Tengoku.Vcvio.negligible_add {f g : ℕ → ℝ≥0∞} (hf : negligible f) (hg : negligible g) :
     negligible (f + g) :=
   hf.add hg
 
 /-- `ENNReal.ofReal` of a sum of two real error families is negligible when each is. -/
-theorem negligible_ofReal_add {a b : ℕ → ℝ} (ha : negligible fun n => ENNReal.ofReal (a n))
+theorem _root_.Tengoku.Vcvio.negligible_ofReal_add {a b : ℕ → ℝ} (ha : negligible fun n => ENNReal.ofReal (a n))
     (hb : negligible fun n => ENNReal.ofReal (b n)) :
     negligible fun n => ENNReal.ofReal (a n + b n) :=
   negligible_of_le (fun _ => ENNReal.ofReal_add_le) (negligible_add ha hb)
 
 /-- `ENNReal.ofReal` of a finite sum of real error families is negligible when each is. -/
-theorem negligible_ofReal_sum {ι : Type*} {s : Finset ι} {ε : ι → ℕ → ℝ}
+theorem _root_.Tengoku.Vcvio.negligible_ofReal_sum {ι : Type*} {s : Finset ι} {ε : ι → ℕ → ℝ}
     (h : ∀ i ∈ s, negligible fun n => ENNReal.ofReal (ε i n)) :
     negligible fun n => ENNReal.ofReal (∑ i ∈ s, ε i n) := by
   classical
@@ -83,7 +83,7 @@ theorem negligible_ofReal_sum {ι : Type*} {s : Finset ι} {ε : ι → ℕ → 
 
 /-- Constant multiple of a negligible function is negligible (requires `c ≠ ⊤`
 because multiplication by `⊤` is discontinuous at `0` in `ℝ≥0∞`). -/
-theorem negligible_const_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
+theorem _root_.Tengoku.Vcvio.negligible_const_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
     {c : ℝ≥0∞} (hc : c ≠ ⊤) :
     negligible (fun n => c * f n) := by
   intro p
@@ -91,7 +91,7 @@ theorem negligible_const_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
     (ENNReal.Tendsto.const_mul (hf p) (.inr hc)).congr (fun n => by rw [mul_left_comm])
 
 /-- A finite sum of negligible functions is negligible. -/
-theorem negligible_sum {ι : Type*} {s : Finset ι} {f : ι → ℕ → ℝ≥0∞}
+theorem _root_.Tengoku.Vcvio.negligible_sum {ι : Type*} {s : Finset ι} {f : ι → ℕ → ℝ≥0∞}
     (h : ∀ i ∈ s, negligible (f i)) :
     negligible (fun n => ∑ i ∈ s, f i n) := by
   classical
@@ -105,13 +105,13 @@ theorem negligible_sum {ι : Type*} {s : Finset ι} {f : ι → ℕ → ℝ≥0�
 
 /-- If `f` is negligible, then `fun n => (↑n)^d * f n` is negligible for any fixed `d`.
 Absorbs polynomial powers of the parameter into the superpolynomial decay. -/
-theorem negligible_pow_mul {f : ℕ → ℝ≥0∞} (hf : negligible f) (d : ℕ) :
+theorem _root_.Tengoku.Vcvio.negligible_pow_mul {f : ℕ → ℝ≥0∞} (hf : negligible f) (d : ℕ) :
     negligible (fun n => (↑n : ℝ≥0∞) ^ d * f n) :=
   hf.param_pow_mul d
 
 /-- If `f` is negligible, then `fun n => ↑(p.eval n) * f n` is negligible for any polynomial `p`.
 This is the key lemma for handling polynomial-loss security reductions. -/
-theorem negligible_polynomial_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
+theorem _root_.Tengoku.Vcvio.negligible_polynomial_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
     (p : Polynomial ℕ) :
     negligible (fun n => ↑(p.eval n) * f n) := by
   have heq : ∀ n, (↑(p.eval n) : ℝ≥0∞) * f n =
@@ -126,7 +126,7 @@ theorem negligible_polynomial_mul {f : ℕ → ℝ≥0∞} (hf : negligible f)
 /-- A natural-number family bounded by a polynomial times a negligible family is negligible.
 The basic closure used to absorb polynomial query / cardinality numerators into a negligible
 reciprocal-cardinality factor. -/
-theorem negligible_natMul_of_poly_bound {f : ℕ → ℝ≥0∞} (hf : negligible f)
+theorem _root_.Tengoku.Vcvio.negligible_natMul_of_poly_bound {f : ℕ → ℝ≥0∞} (hf : negligible f)
     {g : ℕ → ℕ} {p : Polynomial ℕ} (hg : ∀ n, g n ≤ p.eval n) :
     negligible (fun n => (g n : ℝ≥0∞) * f n) :=
   negligible_of_le (g := fun n => ((p.eval n : ℕ) : ℝ≥0∞) * f n)
@@ -136,7 +136,7 @@ theorem negligible_natMul_of_poly_bound {f : ℕ → ℝ≥0∞} (hf : negligibl
 /-- A slack term `numerator / cardinality` is negligible when the numerator is polynomially bounded
 and the reciprocal cardinality is negligible. The `ENNReal.ofReal` wrapper is the framework idiom
 for treating an `ℝ`-valued nonnegative error family asymptotically. -/
-theorem negligible_ofReal_natDiv_of_poly_bound {C : ℕ → ℕ}
+theorem _root_.Tengoku.Vcvio.negligible_ofReal_natDiv_of_poly_bound {C : ℕ → ℕ}
     (hC : negligible (fun n => (C n : ℝ≥0∞)⁻¹))
     {g : ℕ → ℕ} {p : Polynomial ℕ} (hg : ∀ n, g n ≤ p.eval n) :
     negligible (fun n => ENNReal.ofReal ((g n : ℝ) / (C n : ℝ))) :=
@@ -154,7 +154,7 @@ lemmas below move the statement to `ℝ` through `ENNReal.toReal`, after which M
 asymptotics apply verbatim. -/
 
 /-- A `⊤`-free family is negligible iff its `toReal` image has superpolynomial decay in `ℝ`. -/
-theorem negligible_iff_superpolynomialDecay_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
+theorem _root_.Tengoku.Vcvio.negligible_iff_superpolynomialDecay_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
     negligible f ↔ SuperpolynomialDecay atTop (Nat.cast : ℕ → ℝ) fun n => (f n).toReal := by
   simp only [negligible, SuperpolynomialDecay]
   refine forall_congr' fun k => ?_
@@ -164,20 +164,21 @@ theorem negligible_iff_superpolynomialDecay_toReal {f : ℕ → ℝ≥0∞} (hf 
 
 /-- A nonnegative real error family is negligible (through `ENNReal.ofReal`) iff it has
 superpolynomial decay in `ℝ`. -/
-theorem negligible_ofReal_iff {ε : ℕ → ℝ} (hε : ∀ n, 0 ≤ ε n) :
+theorem _root_.Tengoku.Vcvio.negligible_ofReal_iff {ε : ℕ → ℝ} (hε : ∀ n, 0 ≤ ε n) :
     negligible (fun n => ENNReal.ofReal (ε n)) ↔
       SuperpolynomialDecay atTop (Nat.cast : ℕ → ℝ) ε := by
   rw [negligible_iff_superpolynomialDecay_toReal fun n => ENNReal.ofReal_ne_top]
   simp only [ENNReal.toReal_ofReal (hε _)]
 
 /-- Negligibility as big-`O` against every integer power, on the `toReal` side. -/
-theorem negligible_iff_isBigO_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
+theorem _root_.Tengoku.Vcvio.negligible_iff_isBigO_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
     negligible f ↔ ∀ z : ℤ, (fun n => (f n).toReal) =O[atTop] fun n : ℕ => (n : ℝ) ^ z :=
   (negligible_iff_superpolynomialDecay_toReal hf).trans
     (superpolynomialDecay_iff_isBigO _ tendsto_natCast_atTop_atTop)
 
 /-- Negligibility as little-`o` against every integer power, on the `toReal` side. -/
-theorem negligible_iff_isLittleO_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
+theorem _root_.Tengoku.Vcvio.negligible_iff_isLittleO_toReal {f : ℕ → ℝ≥0∞} (hf : ∀ n, f n ≠ ⊤) :
     negligible f ↔ ∀ z : ℤ, (fun n => (f n).toReal) =o[atTop] fun n : ℕ => (n : ℝ) ^ z :=
   (negligible_iff_superpolynomialDecay_toReal hf).trans
     (superpolynomialDecay_iff_isLittleO _ tendsto_natCast_atTop_atTop)
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

@@ -3,7 +3,7 @@ module
 public import Tengoku
 
 public section
-
+namespace Tengoku.Carleson end Tengoku.Carleson open Tengoku.Carleson 
 open MeasureTheory
 
 -- Upstreaming status: looks ready for upstreaming; pay attention to the correct file to move to!
@@ -13,7 +13,7 @@ open MeasureTheory
 /--
 @isnad1 id=eq.0h4v.s7.0e9bc8f757e6 from=translated src=- shape=e1e7e9e4 vocab=1a35bfa1
 -/
-lemma starRingEnd_div_mul_eq_norm {α 𝕜 : Type*} [RCLike 𝕜] {f : α → 𝕜} (x : α) :
+lemma _root_.Tengoku.Carleson.starRingEnd_div_mul_eq_norm {α 𝕜 : Type*} [RCLike 𝕜] {f : α → 𝕜} (x : α) :
     starRingEnd 𝕜 (f x / ‖f x‖) * f x = ‖f x‖ := by
   simp only [div_eq_inv_mul, map_mul, map_inv₀, RCLike.conj_ofReal, mul_assoc, RCLike.conj_mul]
   norm_cast
@@ -25,14 +25,14 @@ lemma starRingEnd_div_mul_eq_norm {α 𝕜 : Type*} [RCLike 𝕜] {f : α → �
 /--
 @isnad1 id=eq.0h3v.s7.60f04e35f7c8 from=translated src=- shape=83faff20 vocab=e07bf56e
 -/
-lemma enorm_algebraMap' {𝕜 : Type*} (𝕜' : Type*) [NormedField 𝕜] [SeminormedRing 𝕜']
+lemma _root_.Tengoku.Carleson.enorm_algebraMap' {𝕜 : Type*} (𝕜' : Type*) [NormedField 𝕜] [SeminormedRing 𝕜']
     [NormedAlgebra 𝕜 𝕜'] [NormOneClass 𝕜'] (x : 𝕜) : ‖(algebraMap 𝕜 𝕜') x‖ₑ = ‖x‖ₑ := by
   simp [enorm_eq_nnnorm]
 
 /--
 @isnad1 id=eq.1h4v.s7.0ac05295cd53 from=translated src=- shape=8d2d666a vocab=c1520e40
 -/
-lemma enorm_integral_norm_eq_integral_enorm {α 𝕜 : Type*} [MeasurableSpace α] [RCLike 𝕜]
+lemma _root_.Tengoku.Carleson.enorm_integral_norm_eq_integral_enorm {α 𝕜 : Type*} [MeasurableSpace α] [RCLike 𝕜]
     {μ : Measure α} {f : α → 𝕜} (hf : Integrable f μ) : ‖∫ x, ‖f x‖ ∂μ‖ₑ = ∫⁻ x, ‖f x‖ₑ ∂μ := by
   simp_rw [enorm_eq_nnnorm]
   rw [lintegral_coe_eq_integral]
@@ -45,7 +45,7 @@ lemma enorm_integral_norm_eq_integral_enorm {α 𝕜 : Type*} [MeasurableSpace �
 /--
 @isnad1 id=eq.1h4v.s8.26354b933f57 from=translated src=- shape=50f4b215 vocab=b3daf716
 -/
-lemma enorm_integral_starRingEnd_mul_eq_lintegral_enorm
+lemma _root_.Tengoku.Carleson.enorm_integral_starRingEnd_mul_eq_lintegral_enorm
     {𝕜 : Type*} [RCLike 𝕜] {α : Type*} [MeasurableSpace α] {μ : Measure α} {f : α → 𝕜}
     (hf : Integrable f μ) :
     ‖∫ x, starRingEnd 𝕜 (f x / ‖f x‖) * f x ∂μ‖ₑ = ∫⁻ x, ‖f x‖ₑ ∂μ := by
@@ -55,7 +55,7 @@ lemma enorm_integral_starRingEnd_mul_eq_lintegral_enorm
 /--
 @isnad1 id=eq.0h5v.s8.dab251c3c4ef from=translated src=- shape=39661136 vocab=fb191c27
 -/
-lemma enorm_integral_mul_starRingEnd_comm
+lemma _root_.Tengoku.Carleson.enorm_integral_mul_starRingEnd_comm
     {𝕜 : Type*} [RCLike 𝕜] {α : Type*} [MeasurableSpace α] {μ : Measure α} {f g : α → 𝕜} :
     ‖∫ x, f x * starRingEnd 𝕜 (g x) ∂μ‖ₑ = ‖∫ x, g x * starRingEnd 𝕜 (f x) ∂μ‖ₑ := by
   rw [← RCLike.enorm_conj, ← integral_conj]; congr! 3; simp [mul_comm]
@@ -76,3 +76,4 @@ theorem MeasureTheory.setIntegral_union_2
   setIntegral_union hst ht hfst.left_of_union hfst.right_of_union
 
 end SetIntegral_Union_2
+-- Tengoku: root names of this library moved to Tengoku.Carleson so they do not collide with other libraries (generated)

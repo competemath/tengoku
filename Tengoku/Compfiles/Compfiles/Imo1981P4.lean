@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 namespace Imo1981P4
 
 /-!
@@ -153,3 +153,4 @@ abbrev values_a : Set ℕ := Set.Ici 4
 abbrev values_b : Set ℕ := {4}
 
 end Imo1981P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

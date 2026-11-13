@@ -1,5 +1,5 @@
 import Tengoku
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion
 open Function Set
 
 section
@@ -8,7 +8,7 @@ variable {𝕜 𝕜' E E₂ E' : Type*} [Semiring 𝕜] [PartialOrder 𝕜] --[I
   [AddCommMonoid E] [Module 𝕜 E] [AddCommMonoid E₂] [Module 𝕜 E₂] [AddCommMonoid E']
   [Semiring 𝕜'] [PartialOrder 𝕜'] [IsOrderedRing 𝕜'] [Module 𝕜' E'] (σ : 𝕜 →+*o 𝕜')
 
-def reallyConvexHull (𝕜 : Type*) {E : Type*}
+def _root_.Tengoku.SphereEversion.reallyConvexHull (𝕜 : Type*) {E : Type*}
     [Semiring 𝕜] [PartialOrder 𝕜] [AddCommMonoid E] [SMul 𝕜 E]
     (s : Set E) : Set E :=
   {e | ∃ w : E → 𝕜, 0 ≤ w ∧ support w ⊆ s ∧ ∑ᶠ x, w x = 1 ∧ e = ∑ᶠ x, w x • x}
@@ -21,20 +21,20 @@ theorem finsum.exists_ne_zero_of_sum_ne_zero {β α : Type*} {s : Finset α} {f 
 
 -- rename: `mul_support_finite_of_finprod_ne_one`?
 @[to_additive]
-theorem finite_of_finprod_ne_one {M : Type*} {ι : Sort _} [CommMonoid M] {f : ι → M}
+theorem _root_.Tengoku.SphereEversion.finite_of_finprod_ne_one {M : Type*} {ι : Sort _} [CommMonoid M] {f : ι → M}
     (h : ∏ᶠ i, f i ≠ 1) : (mulSupport f).Finite := by
   classical
   rw [finprod_def] at h
   contrapose h
   rw [dite_eq_right (by exact h)]
 
-theorem support_finite_of_finsum_eq_of_neZero {M : Type*} {ι : Sort _} [AddCommMonoid M]
+theorem _root_.Tengoku.SphereEversion.support_finite_of_finsum_eq_of_neZero {M : Type*} {ι : Sort _} [AddCommMonoid M]
     {f : ι → M} {x : M} [NeZero x] (h : ∑ᶠ i, f i = x) : (support f).Finite := by
   apply finite_of_finsum_ne_zero
   rw [h]
   apply NeZero.ne
 
-theorem sum_mem_reallyConvexHull [IsOrderedRing 𝕜]
+theorem _root_.Tengoku.SphereEversion.sum_mem_reallyConvexHull [IsOrderedRing 𝕜]
     {s : Set E} {ι : Type*} {t : Finset ι} {w : ι → 𝕜} {z : ι → E}
     (h₀ : ∀ i ∈ t, 0 ≤ w i) (h₁ : ∑ i ∈ t, w i = 1) (hz : ∀ i ∈ t, z i ∈ s) :
     ∑ i ∈ t, w i • z i ∈ reallyConvexHull 𝕜 s := by
@@ -57,22 +57,22 @@ theorem sum_mem_reallyConvexHull [IsOrderedRing 𝕜]
     rw [Finset.mem_filter] at hy
     rw [hy.2]
 
-theorem reallyConvexHull_mono : Monotone (reallyConvexHull 𝕜 : Set E → Set E) := by
+theorem _root_.Tengoku.SphereEversion.reallyConvexHull_mono : Monotone (reallyConvexHull 𝕜 : Set E → Set E) := by
   rintro s t h _ ⟨w, w_pos, supp_w, sum_w, rfl⟩
   exact ⟨w, w_pos, supp_w.trans h, sum_w, rfl⟩
 
 /-- Generalization of `Convex` to semirings. We only add the `s = ∅` clause if `𝕜` is trivial. -/
-def ReallyConvex (𝕜 : Type*) {E : Type*} [Semiring 𝕜] [PartialOrder 𝕜]
+def _root_.Tengoku.SphereEversion.ReallyConvex (𝕜 : Type*) {E : Type*} [Semiring 𝕜] [PartialOrder 𝕜]
     [AddCommMonoid E] [Module 𝕜 E] (s : Set E) : Prop :=
   s = ∅ ∨ ∀ w : E → 𝕜, 0 ≤ w → support w ⊆ s → ∑ᶠ x, w x = 1 → ∑ᶠ x, w x • x ∈ s
 
 variable {s : Set E}
 
 @[simp]
-theorem reallyConvex_empty : ReallyConvex 𝕜 (∅ : Set E) := Or.inl rfl
+theorem _root_.Tengoku.SphereEversion.reallyConvex_empty : ReallyConvex 𝕜 (∅ : Set E) := Or.inl rfl
 
 @[simp]
-theorem reallyConvex_univ : ReallyConvex 𝕜 (univ : Set E) := Or.inr fun _ _ _ _ ↦ mem_univ _
+theorem _root_.Tengoku.SphereEversion.reallyConvex_univ : ReallyConvex 𝕜 (univ : Set E) := Or.inr fun _ _ _ _ ↦ mem_univ _
 
 -- for every lemma that requires `Nontrivial` should we also add a lemma that has the condition
 -- `s.Nonempty` (or even `Nontrivial 𝕜 ∨ s.Nonempty`)?
@@ -91,7 +91,7 @@ theorem Subsingleton.reallyConvex [Subsingleton 𝕜] : ReallyConvex 𝕜 s := b
     have := Module.subsingleton 𝕜 E
     exact Subsingleton.elim ..
 
-theorem reallyConvex_iff_hull [Nontrivial 𝕜] : ReallyConvex 𝕜 s ↔ reallyConvexHull 𝕜 s ⊆ s := by
+theorem _root_.Tengoku.SphereEversion.reallyConvex_iff_hull [Nontrivial 𝕜] : ReallyConvex 𝕜 s ↔ reallyConvexHull 𝕜 s ⊆ s := by
   rw [Nontrivial.reallyConvex_iff]
   constructor
   · rintro h _ ⟨w, w_pos, supp_w, sum_w, rfl⟩
@@ -100,14 +100,14 @@ theorem reallyConvex_iff_hull [Nontrivial 𝕜] : ReallyConvex 𝕜 s ↔ really
     exact h ⟨w, w_pos, supp_w, sum_w, rfl⟩
 
 -- turn this into an iff
-theorem ReallyConvex.sum_mem [Nontrivial 𝕜] [IsOrderedRing 𝕜]
+theorem Tengoku.SphereEversion.ReallyConvex.sum_mem [Nontrivial 𝕜] [IsOrderedRing 𝕜]
     (hs : ReallyConvex 𝕜 s) {ι : Type*} {t : Finset ι} {w : ι → 𝕜} {z : ι → E}
     (h₀ : ∀ i ∈ t, 0 ≤ w i) (h₁ : ∑ i ∈ t, w i = 1) (hz : ∀ i ∈ t, z i ∈ s) :
     ∑ i ∈ t, w i • z i ∈ s :=
   reallyConvex_iff_hull.mp hs (sum_mem_reallyConvexHull h₀ h₁ hz)
 
 set_option backward.isDefEq.respectTransparency.types false in
-theorem ReallyConvex.finsum_mem [Nontrivial 𝕜] [IsOrderedRing 𝕜]
+theorem Tengoku.SphereEversion.ReallyConvex.finsum_mem [Nontrivial 𝕜] [IsOrderedRing 𝕜]
     (hs : ReallyConvex 𝕜 s) {ι : Type*} {w : ι → 𝕜} {z : ι → E}
     (h₀ : ∀ i, 0 ≤ w i) (h₁ : ∑ᶠ i, w i = 1) (hz : ∀ i ∈ support w, z i ∈ s) :
     ∑ᶠ i, w i • z i ∈ s := by
@@ -117,7 +117,7 @@ theorem ReallyConvex.finsum_mem [Nontrivial 𝕜] [IsOrderedRing 𝕜]
   · rw [← finsum_eq_sum, h₁]
   · simp_rw [Set.Finite.mem_toFinset]; exact hz
 
-theorem ReallyConvex.add_mem [IsOrderedRing 𝕜] (hs : ReallyConvex 𝕜 s) {w₁ w₂ : 𝕜} {z₁ z₂ : E}
+theorem Tengoku.SphereEversion.ReallyConvex.add_mem [IsOrderedRing 𝕜] (hs : ReallyConvex 𝕜 s) {w₁ w₂ : 𝕜} {z₁ z₂ : E}
     (hw₁ : 0 ≤ w₁) (hw₂ : 0 ≤ w₂) (hw : w₁ + w₂ = 1) (hz₁ : z₁ ∈ s) (hz₂ : z₂ ∈ s) :
     w₁ • z₁ + w₂ • z₂ ∈ s := by
   cases subsingleton_or_nontrivial 𝕜
@@ -126,7 +126,7 @@ theorem ReallyConvex.add_mem [IsOrderedRing 𝕜] (hs : ReallyConvex 𝕜 s) {w�
   suffices ∑ b : Bool, cond b w₁ w₂ • cond b z₁ z₂ ∈ s by simpa using this
   apply hs.sum_mem <;> simp [*]
 
-theorem ReallyConvex.inter {t : Set E} (hs : ReallyConvex 𝕜 s) (ht : ReallyConvex 𝕜 t) :
+theorem Tengoku.SphereEversion.ReallyConvex.inter {t : Set E} (hs : ReallyConvex 𝕜 s) (ht : ReallyConvex 𝕜 t) :
     ReallyConvex 𝕜 (s ∩ t) := by
   rcases hs with (rfl | hs); · simp
   rcases ht with (rfl | ht); · simp
@@ -136,7 +136,7 @@ theorem ReallyConvex.inter {t : Set E} (hs : ReallyConvex 𝕜 s) (ht : ReallyCo
   · apply hs <;> assumption
   · apply ht <;> assumption
 
-theorem ReallyConvex.preimageₛₗ (f : E →ₛₗ[σ.toRingHom] E') {s : Set E'} (hs : ReallyConvex 𝕜' s) :
+theorem Tengoku.SphereEversion.ReallyConvex.preimageₛₗ (f : E →ₛₗ[σ.toRingHom] E') {s : Set E'} (hs : ReallyConvex 𝕜' s) :
     ReallyConvex 𝕜 (f ⁻¹' s) := by
   -- this proof would be easier by casing on `s = ∅`, and
   cases subsingleton_or_nontrivial 𝕜'
@@ -153,7 +153,7 @@ theorem ReallyConvex.preimageₛₗ (f : E →ₛₗ[σ.toRingHom] E') {s : Set 
     · rw [← map_finsum _ h4w, h3w, map_one]
     · intro i hi; apply h2w; rw [mem_support] at hi ⊢; contrapose! hi; rw [hi, map_zero]
 
-theorem ReallyConvex.preimage [IsOrderedRing 𝕜]
+theorem Tengoku.SphereEversion.ReallyConvex.preimage [IsOrderedRing 𝕜]
     (f : E →ₗ[𝕜] E₂) {s : Set E₂} (hs : ReallyConvex 𝕜 s) :
     ReallyConvex 𝕜 (f ⁻¹' s) :=
   ReallyConvex.preimageₛₗ (OrderRingHom.id 𝕜) f hs
@@ -168,9 +168,10 @@ section
 variable (𝕜 : Type*) {E : Type*} [Field 𝕜] [LinearOrder 𝕜] [IsStrictOrderedRing 𝕜] [AddCommGroup E]
   [Module 𝕜 E]
 
-theorem reallyConvex_iff_convex {s : Set E} : ReallyConvex 𝕜 s ↔ Convex 𝕜 s := by
+theorem _root_.Tengoku.SphereEversion.reallyConvex_iff_convex {s : Set E} : ReallyConvex 𝕜 s ↔ Convex 𝕜 s := by
   refine ⟨fun h ↦ ?_, fun h ↦ ?_⟩
   · intro x hx y hy v w hv hw hvw; apply ReallyConvex.add_mem <;> assumption
   · exact Or.inr fun w hw h2w h3w ↦ h.finsum_mem hw h3w fun i hi ↦ h2w <| mem_support.mpr hi
 
 end
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

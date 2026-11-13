@@ -17,7 +17,7 @@ its little-`o` form is read off the bridge, and eventual domination suffices.
 -/
 
 public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open ENNReal Asymptotics Filter
 
 namespace VCVioTest.Negligible
@@ -39,3 +39,4 @@ example {f g : ℕ → ℝ≥0∞} (hg : negligible g) (h : ∀ n ≥ 5, f n ≤
   negligible_of_eventuallyLE (Filter.eventually_atTop.2 ⟨5, h⟩) hg
 
 end VCVioTest.Negligible
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

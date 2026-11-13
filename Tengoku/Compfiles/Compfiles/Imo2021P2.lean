@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2021, Problem 2
 
@@ -577,3 +577,4 @@ theorem imo2021_p2_finset_version {α : Type u} [DecidableEq α] (s : Finset α)
       exact h'
 
 end Imo2021P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

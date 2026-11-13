@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1985, Problem 4
 
@@ -250,3 +250,4 @@ lemma answer_card (n : ℕ) (G : SimpleGraph (Fin n)) [DecidableRel G.Adj] (p : 
   rw [hsplit, Finset.card_sdiff_of_subset hsub, hcard]
 
 end Usa1985P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

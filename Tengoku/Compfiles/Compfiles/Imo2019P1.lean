@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2019, Problem 1
 Let ℤ be the set of integers. Determine all functions f : ℤ → ℤ such that,
@@ -34,3 +34,4 @@ abbrev solution_set : Set (ℤ → ℤ) :=
   { f | (∀ z, f z = 0) ∨ ∃ c, ∀ z, f z = 2 * z + c }
 
 end Imo2019P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2017, Problem 4
 
@@ -403,3 +403,4 @@ lemma wraps_perm {l₁ l₂ : List (Fin m)} (h : List.Perm l₁ l₂) :
 end ProcessLemmas
 
 end Usa2017P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

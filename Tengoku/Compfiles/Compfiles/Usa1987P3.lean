@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1987, Problem 3
 
@@ -129,3 +129,4 @@ lemma InX.trichotomy {r : Polynomial ℝ} (hr : InX r) :
               (mul_lt_mul_of_pos_left (hgt x hx0 hx1) (sub_pos.mpr hx1)) x
 
 end Usa1987P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

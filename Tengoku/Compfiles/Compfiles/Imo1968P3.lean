@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1968, Problem 3
 
@@ -120,3 +120,4 @@ lemma sum_sol {n : ℕ} (a b c : ℝ) (x : ℕ → ℝ) : x ∈ solution_set n a
     _ = ∑ i ∈ range (n+1), x i := Eq.symm (sum_range_succ' x n)
 
 end Imo1968P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

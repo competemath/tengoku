@@ -31,7 +31,7 @@ Being a supremum of subfields, it is a subfield of the field `HahnSeries ℚ K`,
 field. (The bounded-denominator condition — exponents in `(1/q)ℤ` for a *single* `q` — is what
 distinguishes Puiseux series from arbitrary `HahnSeries ℚ K`.)
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open HahnSeries
@@ -238,3 +238,4 @@ noncomputable instance : IsStrictOrderedRing (PuiseuxSeries K) :=
 end Ordered
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1993, Problem 5
 
@@ -192,3 +192,4 @@ theorem key_ineq (x : ℕ → ℝ) (hx : ∀ n, 0 < x n)
   nlinarith [hmul, hs2]
 
 end Usa1993P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

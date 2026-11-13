@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1976, Problem 2
 
@@ -361,3 +361,4 @@ theorem P_intersect_X.spec_root {n} {npos} (pl : NicePlotOfP n npos) (i:ℕ) (hi
   exact this.right
 
 end Imo1976P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

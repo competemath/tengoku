@@ -35,7 +35,7 @@ roots; the order/real-closed structure of `R` and the choice `C = R[i]` enter th
 results (where `Her(P,Q)` is shown to have coefficients in `K` and its signature is
 computed).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open scoped Matrix
@@ -285,3 +285,4 @@ theorem HerMatrix_mem_range (P Q : D[X]) (hP : P.Monic) (i j : Fin P.natDegree) 
 end Coefficients
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

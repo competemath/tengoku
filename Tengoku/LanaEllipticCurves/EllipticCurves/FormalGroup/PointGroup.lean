@@ -32,7 +32,7 @@ unlike `substInv`, **no** invertibility hypothesis is needed — one simply nega
 ## References
 * [Silverman, *The Arithmetic of Elliptic Curves*, IV.2][silverman2009]
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open MvPowerSeries Finsupp
 
 noncomputable section
@@ -58,7 +58,7 @@ theorem PowerSeries.X_pow_succ_dvd_pow_sub_pow {B B' : PowerSeries R}
 
 /-- In an additive monoid, a right inverse (`a + -a = 0` for all `a`) is automatically a left
 inverse. -/
-theorem neg_add_cancel_of_add_neg_cancel {M : Type*} [AddMonoid M] [Neg M]
+theorem _root_.Tengoku.LanaEllipticCurves.neg_add_cancel_of_add_neg_cancel {M : Type*} [AddMonoid M] [Neg M]
     (h : ∀ a : M, a + -a = 0) (a : M) : -a + a = 0 := by
   calc -a + a = -a + a + (-a + - -a) := by rw [h (-a), add_zero]
     _ = -a + (a + -a) + - -a := by simp only [add_assoc]
@@ -306,3 +306,4 @@ instance instAddCommGroupPointOfIsComm [F.IsComm] : AddCommGroup (F.Point σ) :=
   { (inferInstance : AddGroup (F.Point σ)), (inferInstance : AddCommMonoid (F.Point σ)) with }
 
 end FormalGroup
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

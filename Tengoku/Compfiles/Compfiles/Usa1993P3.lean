@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1993, Problem 3
 
@@ -193,3 +193,4 @@ def valid (f : Set.Icc (0 : ℝ) 1 → ℝ) : Prop :=
 abbrev min_c : ℝ := 2
 
 end Usa1993P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

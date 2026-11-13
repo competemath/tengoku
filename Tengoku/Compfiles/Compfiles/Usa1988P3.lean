@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1988, Problem 3
 
@@ -54,3 +54,4 @@ lemma card_bad_pairs_le (X : Finset ℕ) (f : Finset ℕ → ℕ) :
     exact Sigma.ext hY (heq_of_eq hk)
 
 end Usa1988P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

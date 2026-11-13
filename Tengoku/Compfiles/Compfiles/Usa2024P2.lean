@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2024, Problem 2
 
@@ -2019,3 +2019,4 @@ lemma at_least_solution_elements (S : Fin 100 → Set ℤ) (hS : Good S) :
     (signatureCount_top_pos_of_good S hS)
 
 end Usa2024P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

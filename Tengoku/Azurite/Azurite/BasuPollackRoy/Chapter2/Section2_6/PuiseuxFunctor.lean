@@ -21,7 +21,7 @@ We package the coefficientwise action of a ring hom on Hahn series as a `RingHom
 (`HahnSeries.mapRingHom`) and a ring iso (`HahnSeries.mapRingEquiv`), check it commutes with the
 exponent-rescaling embedding `puiseuxEmb`, and conclude it carries the Puiseux subfield onto its
 image. -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open HahnSeries
@@ -176,3 +176,4 @@ theorem map_zeroHom_mem_puiseux {F : Type*} [FunLike F R S] [ZeroHomClass F R S]
 end Puiseux
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

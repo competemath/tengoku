@@ -32,7 +32,7 @@ This file builds `pdet` and proves it is **multilinear** and **alternating**
 `r` depends `K`-linearly only on `P r`, so `m_i` is multilinear and alternating
 in the rows, and `pdet` is a `K`-linear combination of the `m_i`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -119,3 +119,4 @@ theorem isAlternating_pdet :
   rw [hzero, zero_smul]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

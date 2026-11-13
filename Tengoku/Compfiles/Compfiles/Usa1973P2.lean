@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1973, Problem 2
 
@@ -78,3 +78,4 @@ lemma a_add_2_mod_8_mem (k : ℕ) : a (k + 2) % 8 = 3 ∨ a (k + 2) % 8 = 5 := b
   | inr h => right; exact (a_add_2_mod_8_eq k).2 h
 
 end Usa1973P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

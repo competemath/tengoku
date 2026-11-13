@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1998, Problem 4
 
@@ -585,3 +585,4 @@ lemma construction_makes_zero (s : chessboard) :
   linear_combination h1 + h2 + CharTwo.add_self_eq_zero (1 : ZMod 2)
 
 end Usa1998P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

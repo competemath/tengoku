@@ -2,7 +2,7 @@ import Tengoku.SphereEversion.SphereEversion.ToMathlib.Partition
 import Tengoku
 
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open scoped Topology Manifold ContDiff
 
 open Set Function Filter
@@ -19,7 +19,7 @@ section
 
 variable {F : Type*} [AddCommGroup F] [Module ℝ F]
 
-theorem exists_of_convex {P : (Σ x : M, Germ (𝓝 x) F) → Prop}
+theorem _root_.Tengoku.SphereEversion.exists_of_convex {P : (Σ x : M, Germ (𝓝 x) F) → Prop}
     (hP : ∀ x : M, ReallyConvex (smoothGerm I x) {φ | P ⟨x, φ⟩})
     (hP' : ∀ x : M, ∃ f : M → F, ∀ᶠ x' in 𝓝 x, P ⟨x', f⟩) : ∃ f : M → F, ∀ x, P ⟨x, f⟩ := by
   replace hP' : ∀ x : M, ∃ f : M → F, ∃ U ∈ 𝓝 x, ∀ x' ∈ U, P ⟨x', f⟩ := by
@@ -53,7 +53,7 @@ variable {G : Type*} [NormedAddCommGroup G] [NormedSpace ℝ G] {HG : Type*} [To
 variable (I)
 
 omit [FiniteDimensional ℝ E] [IsManifold I ∞ M] [SigmaCompactSpace M] [T2Space M] in
-theorem reallyConvex_contMDiffAt (x : M) (n : ℕ∞) :
+theorem _root_.Tengoku.SphereEversion.reallyConvex_contMDiffAt (x : M) (n : ℕ∞) :
     ReallyConvex (smoothGerm I x) {φ : Germ (𝓝 x) F | φ.ContMDiffAt I n} := by
   classical
   rw [Nontrivial.reallyConvex_iff]
@@ -67,7 +67,7 @@ theorem reallyConvex_contMDiffAt (x : M) (n : ℕ∞) :
   apply Filter.Germ.ContMDiffAt.sum fun φ hφ ↦ (smoothGerm.contMDiffAt _).smul (w_supp ?_)
   simpa [H] using hφ
 
-theorem exists_contMDiff_of_convex {P : M → F → Prop} (hP : ∀ x, Convex ℝ {y | P x y}) {n : ℕ∞}
+theorem _root_.Tengoku.SphereEversion.exists_contMDiff_of_convex {P : M → F → Prop} (hP : ∀ x, Convex ℝ {y | P x y}) {n : ℕ∞}
     (hP' : ∀ x : M, ∃ U ∈ 𝓝 x, ∃ f : M → F, CMDiff[U] n f ∧ ∀ x ∈ U, P x (f x)) :
     ∃ f : M → F, CMDiff n f ∧ ∀ x, P x (f x) := by
   let PP : (Σ x : M, Germ (𝓝 x) F) → Prop := fun p ↦ p.2.ContMDiffAt I n ∧ P p.1 p.2.value
@@ -88,7 +88,7 @@ theorem exists_contMDiff_of_convex {P : M → F → Prop} (hP : ∀ x, Convex �
   rcases exists_of_convex hPP hPP' with ⟨f, hf⟩
   exact ⟨f, fun x ↦ (hf x).1, fun x ↦ (hf x).2⟩
 
-theorem exists_contDiff_of_convex {P : E → F → Prop} (hP : ∀ x, Convex ℝ {y | P x y}) {n : ℕ∞}
+theorem _root_.Tengoku.SphereEversion.exists_contDiff_of_convex {P : E → F → Prop} (hP : ∀ x, Convex ℝ {y | P x y}) {n : ℕ∞}
     (hP' : ∀ x : E, ∃ U ∈ 𝓝 x, ∃ f : E → F, ContDiffOn ℝ n f U ∧ ∀ x ∈ U, P x (f x)) :
     ∃ f : E → F, ContDiff ℝ n f ∧ ∀ x, P x (f x) := by
   simp_rw [← contMDiff_iff_contDiff]
@@ -113,7 +113,7 @@ variable {H₁ M₁ H₂ M₂ : Type*}
 omit [FiniteDimensional ℝ E₁] [FiniteDimensional ℝ E₂]
   [IsManifold I₁ ∞ M₁] [IsManifold I₂ ∞ M₂] in
 set_option backward.isDefEq.respectTransparency.types false in
-theorem reallyConvex_contMDiffAtProd {x : M₁} (n : ℕ∞) :
+theorem _root_.Tengoku.SphereEversion.reallyConvex_contMDiffAtProd {x : M₁} (n : ℕ∞) :
     ReallyConvex (smoothGerm I₁ x) {φ : Germ (𝓝 x) (M₂ → F) | φ.ContMDiffAtProd I₁ I₂ n} := by
   classical
   rw [Nontrivial.reallyConvex_iff]
@@ -128,7 +128,7 @@ theorem reallyConvex_contMDiffAtProd {x : M₁} (n : ℕ∞) :
   simpa [H] using hφ
 
 omit [FiniteDimensional ℝ E₂] [IsManifold I₂ ∞ M₂] in
-theorem exists_contMDiff_of_convex₂ {P : M₁ → (M₂ → F) → Prop} [SigmaCompactSpace M₁] [T2Space M₁]
+theorem _root_.Tengoku.SphereEversion.exists_contMDiff_of_convex₂ {P : M₁ → (M₂ → F) → Prop} [SigmaCompactSpace M₁] [T2Space M₁]
     (hP : ∀ x, Convex ℝ {f | P x f}) {n : ℕ∞}
     (hP' : ∀ x : M₁, ∃ U ∈ 𝓝 x, ∃ f : M₁ → M₂ → F,
       CMDiff[U ×ˢ (univ : Set M₂)] n (uncurry f) ∧ ∀ y ∈ U, P y (f y)) :
@@ -153,7 +153,7 @@ theorem exists_contMDiff_of_convex₂ {P : M₁ → (M₂ → F) → Prop} [Sigm
   exact ⟨f, fun ⟨x, y⟩ ↦ (hf x).1 y, fun x ↦ (hf x).2⟩
 
 omit [FiniteDimensional ℝ E₂] in
-theorem exists_contDiff_of_convex₂ {P : E₁ → (E₂ → F) → Prop} (hP : ∀ x, Convex ℝ {f | P x f})
+theorem _root_.Tengoku.SphereEversion.exists_contDiff_of_convex₂ {P : E₁ → (E₂ → F) → Prop} (hP : ∀ x, Convex ℝ {f | P x f})
     {n : ℕ∞}
     (hP' : ∀ x : E₁, ∃ U ∈ 𝓝 x, ∃ f : E₁ → E₂ → F,
       ContDiffOn ℝ n (uncurry f) (U ×ˢ (univ : Set E₂)) ∧ ∀ y ∈ U, P y (f y)) :
@@ -187,7 +187,7 @@ example {f : E → ℝ} (h : ∀ x : E, ∃ U ∈ 𝓝 x, ∃ ε : ℝ, ∀ x' �
 
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
-theorem convex_setOf_imp_eq (P : Prop) (y : F) : Convex ℝ {x : F | P → x = y} := by
+theorem _root_.Tengoku.SphereEversion.convex_setOf_imp_eq (P : Prop) (y : F) : Convex ℝ {x : F | P → x = y} := by
   by_cases hP : P <;> simp [hP, convex_singleton, convex_univ]
 
 -- lemma exists_smooth_and_eqOn_aux1 {f : E → F} {ε : E → ℝ} (hf : continuous f)
@@ -206,7 +206,7 @@ theorem convex_setOf_imp_eq (P : Prop) (y : F) : Convex ℝ {x : F | P → x = y
 --   have h0 : ∀ x, dist (f x) (f x) < ε x := λ x, by simp_rw [dist_self, h2ε],
 --   refine ⟨_, (isOpen_lt (continuous_const.dist hf) hε).mem_nhds $ h0 x₀, λ x hx, hx⟩
 -- end
-theorem exists_smooth_and_eqOn {n : ℕ∞} {f : E → F} {ε : E → ℝ} (hf : Continuous f)
+theorem _root_.Tengoku.SphereEversion.exists_smooth_and_eqOn {n : ℕ∞} {f : E → F} {ε : E → ℝ} (hf : Continuous f)
     (hε : Continuous ε) (h2ε : ∀ x, 0 < ε x) {s : Set E} (hs : IsClosed s)
     (hfs : ∃ U ∈ 𝓝ˢ s, ContDiffOn ℝ n f U) :
     ∃ f' : E → F, ContDiff ℝ n f' ∧ (∀ x, dist (f' x) (f x) < ε x) ∧ EqOn f' f s := by
@@ -227,3 +227,4 @@ theorem exists_smooth_and_eqOn {n : ℕ∞} {f : E → F} {ε : E → ℝ} (hf :
   exact ⟨f', hf', fun x ↦ (hPf' x).1, fun x ↦ (hPf' x).2⟩
 
 end
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

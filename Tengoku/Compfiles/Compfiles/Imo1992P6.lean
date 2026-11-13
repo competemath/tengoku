@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1992, Problem 6
 
@@ -1122,3 +1122,4 @@ theorem imo1992_p6_c : {n | S n = n^2 - 14}.Infinite := by
 abbrev imo1992_p6_b : ℕ+ := 13
 
 end Imo1992P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

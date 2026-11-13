@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1990, Problem 5
 
@@ -807,3 +807,4 @@ abbrev bWinsSet : Finset ℕ := {2, 3, 4, 5}
 abbrev drawSet : Finset ℕ := {6, 7}
 
 end Imo1990P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

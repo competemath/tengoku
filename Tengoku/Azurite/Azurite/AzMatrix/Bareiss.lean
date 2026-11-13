@@ -28,7 +28,7 @@ import Tengoku.Seed.Data.Fin.Tuple.Basic
 import Tengoku.Seed.LinearAlgebra.Matrix.Determinant.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 variable {R : Type _} {n : Nat}
@@ -130,3 +130,4 @@ theorem AzMatrix.principalMinor_eq_top_left_det [CommRing R]
   rw [h_idx]
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

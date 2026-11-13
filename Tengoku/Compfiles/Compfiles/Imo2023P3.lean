@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2023, Problem 3
 
@@ -1041,3 +1041,4 @@ lemma backward_main {k : ℕ} (hk : 2 ≤ k) {P : Polynomial ℤ} (hmon : P.Moni
     exact backward_unbounded hk hmon hdeg hcoef hA hpos hmono hN₀
 
 end Imo2023P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

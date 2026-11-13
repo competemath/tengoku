@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1985, Problem 2
 
@@ -179,3 +179,4 @@ lemma eq_of_region2 {N : ℝ} (hN : N = 10 ^ 10) {x y : ℝ}
 abbrev answer : ℝ × ℝ := (99999.9984, 100000.0016)
 
 end Usa1985P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

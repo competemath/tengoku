@@ -23,7 +23,7 @@ BPR is recorded here (`isUnit_or_isUnit_one_add_self` and `isLocalRing_of_isUnit
 equivalent via `a ↦ -a`). That a field is a local ring is a Mathlib instance
 (`field_isLocalRing`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 variable {R : Type*} [CommRing R]
@@ -70,3 +70,4 @@ theorem exercise_4_2 :
     exact IsLocalRing.of_unique_max_ideal ⟨I, hImax, huniq⟩
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

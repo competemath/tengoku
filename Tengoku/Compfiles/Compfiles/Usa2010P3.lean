@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2010, Problem 3
 
@@ -251,3 +251,4 @@ lemma constr_ineq {i j : ℕ} (hij : i < j) :
 abbrev answer : ℝ := ∏ k ∈ Finset.range 1005, (4 * k + 3)
 
 end Usa2010P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

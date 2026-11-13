@@ -24,16 +24,16 @@ the cost profiles of the adversaries or subroutines that implement them.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 /-- Structured resource profile for open computations.
 
 `intrinsic` is the concrete cost paid by the computation itself. `usage k` counts how many times
 the computation invokes external capability `k`. -/
-@[ext] structure ResourceProfile (ω : Type*) (κ : Type*) where
+@[ext] structure _root_.Tengoku.Vcvio.ResourceProfile (ω : Type*) (κ : Type*) where
   intrinsic : ω
   usage : κ →₀ ℕ
 
-namespace ResourceProfile
+namespace Tengoku.Vcvio.ResourceProfile
 
 variable {ω κ κ' κ'' : Type*}
 
@@ -314,4 +314,5 @@ evaluating the outer profile against the scalar costs induced by the implementat
   rw [show c = ofIntrinsic c.intrinsic + ofUsage c.usage by ext <;> simp [ofUsage],
     instantiate_add, eval_add, eval_instantiate_ofIntrinsic, eval_instantiate_ofUsage, eval_add]
 
-end ResourceProfile
+end Tengoku.Vcvio.ResourceProfile
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

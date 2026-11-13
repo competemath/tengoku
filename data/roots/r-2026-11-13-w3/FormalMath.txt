@@ -1,0 +1,25 @@
+leakscan: 11 global instances (0 can fire outside the library), 0 scoped; 75 global simp lemmas (0 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 23 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+root: deriv_riemannZeta_conj
+root: ZeroFactorization
+root: norm_fOfZero_le_norm_BlaschkeOfZero
+root: finiteSetOfZeros_mono
+root: ZeroFactor
+root: BlaschkeB
+root: logDerivZeta_conj'
+root: LogOfAnalyticFunction'
+root: DiskBound
+root: BlaschkeNonzero
+root: deriv_conj_conj'
+root: CfAnalytic
+root: borelCaratheodory'
+root: logDerivZeta_conj
+root: Cf
+root: ZerosBound
+root: LogOfAnalyticFunction
+root: analyticAt_finset_prod_sub_pow
+root: SetOfZeros
+root: intervalIntegral_conj
+root: BlaschkeAnalytic
+root: BlaschkeOfZero
+root: cauchy_formula_deriv

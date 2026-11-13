@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1975, Problem 4
 
@@ -92,3 +92,4 @@ theorem Nat.clog_pow_le_clog_mul (a b c : ℕ) (hb : 1 < b) : Nat.clog b (a ^ c)
   apply Nat.le_pow_clog hb
 
 end Imo1975P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

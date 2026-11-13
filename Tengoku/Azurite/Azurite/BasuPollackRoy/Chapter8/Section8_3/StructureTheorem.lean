@@ -24,7 +24,7 @@ which the structure theorem (Proposition 8.39) invokes repeatedly:
 
 (Reversal of the family, the third use of Lemma 8.28, is `pdetRing_comp_perm`.)
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter8
 
 open Polynomial
@@ -182,3 +182,4 @@ theorem pdetRing_neg_rows {m n : ℕ} (P : Fin m → D[X]) (s : Finset (Fin m)) 
       neg_smul]
 
 end Azurite.BPR.Chapter8
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

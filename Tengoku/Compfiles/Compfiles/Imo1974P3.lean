@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1974, Problem 3
 
@@ -87,3 +87,4 @@ lemma norm_pow (m : ℕ) :
     _ = (-7) ^ m := by rw [h1]
 
 end Imo1974P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

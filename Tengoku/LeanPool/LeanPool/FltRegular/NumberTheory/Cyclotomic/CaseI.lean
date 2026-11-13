@@ -22,7 +22,7 @@ Theorem for regular primes.
 -/
 
 @[expose] public section
-
+namespace Tengoku.FltRegular end Tengoku.FltRegular open Tengoku.FltRegular 
 open scoped NumberField nonZeroDivisors
 
 variable {p : ℕ} [NeZero p] {K : Type*} [Field K] [NumberField K]
@@ -102,3 +102,4 @@ theorem exists_int_sum_eq_zero (x y i : ℤ) {u : (𝓞 K)ˣ} {α : 𝓞 K}
   exact hz ▸ hk
 
 end FltRegular.CaseI
+-- Tengoku: opens Tengoku.FltRegular: its root names moved there, and this module uses them (generated)

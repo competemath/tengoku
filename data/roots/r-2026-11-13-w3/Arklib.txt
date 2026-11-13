@@ -1,0 +1,82 @@
+leakscan: 41 global instances (6 can fire outside the library), 4 scoped; 139 global simp lemmas (14 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 8 scoped
+roots: 60 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance DFunEquiv.instForall registered in Tengoku.Arklib.ArkLib.Data.Classes.FunEquiv (declared at line 41)
+leak: instance instDistPMFOfFintype registered in Tengoku.Arklib.ArkLib.Data.Classes.Serde (declared at line 42)
+leak: instance Affine.instVAddForallAffineSubspace registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 274)
+leak: instance Affine.instFintypeSubtypeForallMemAffineSubspaceAffineSpan registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 281)
+leak: instance Affine.instFintypeAffineSubspace registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 309)
+leak: instance Affine.instNonemptyAffineSubspace_mk' registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 313)
+leak: simp Fintype.zero_lt_card registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 412)
+leak: simp Finset.card_filter_prod_self_eq registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 425)
+leak: simp Finset.card_univ_filter_eq registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 454)
+leak: simp Finset.card_prod_self_eq registered in Tengoku.Arklib.ArkLib.Data.CodingTheory.Prelims (declared at line 466)
+leak: simp Domain.CosetFftDomainClass.ne_zero registered in Tengoku.Arklib.ArkLib.Data.Domain.CosetFftDomain.Defs (declared at line 81)
+leak: simp Domain.FftDomainClass.apply_zero_eq_one registered in Tengoku.Arklib.ArkLib.Data.Domain.FftDomain.Ops (declared at line 58)
+leak: simp Domain.FftDomainClass.apply_neg_eq_inv registered in Tengoku.Arklib.ArkLib.Data.Domain.FftDomain.Ops (declared at line 84)
+leak: simp Fin.prod_Iic_zero registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 72)
+leak: simp Fin.sum_Iic_zero registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 75)
+leak: simp Fin.Ici_zero registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 114)
+leak: simp Fin.Iio_zero registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 120)
+leak: simp Fin.Iic_zero registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 126)
+leak: simp Fin.Ici_succ registered in Tengoku.Arklib.ArkLib.ToMathlib.BigOperators.Fin (declared at line 139)
+leak: simp List.take_one_eq_head registered in Tengoku.Arklib.ArkLib.ToMathlib.List.Basic (declared at line 16)
+root: hyperprismDomain
+root: monadLift_bind_map
+root: shift_left_empty
+root: monadLift_bind_fst
+root: multilinearWeight
+root: boolEmbedding_zero
+root: FunEquiv
+root: Deserialize
+root: heq_prod
+root: heq_snd
+root: mulByTwoEmbedding
+root: sum_finRangeTo_add_one
+root: Serialize
+root: linsolve_none
+root: boolEmbedding
+root: heq_fst
+root: boolDomain
+root: mul_by_2
+root: divide_by_2
+root: erase_odd_def
+root: Serde
+root: erase_even_mem
+root: points_boolDomain
+root: heq_pi
+root: Initialize
+root: instDistPMFOfFintype
+root: finRangeTo
+root: shift_left
+root: erase_odd
+root: heq_dapply
+root: SumcheckDomain
+root: heq_funext
+root: mul_by_empty
+root: shift_left_mem
+root: mul_by_2_mem
+root: erase_odd_mem
+root: mulByTwoEmbedding_apply
+root: HasSize
+root: divide_by_2_mem
+root: PrimeOrder
+root: PrimeOrderWith
+root: mul_by_2_def
+root: linsolve_some
+root: erase_even_def
+root: erase_even
+root: erase_even_empty
+root: heq_bind
+root: DFunEquiv
+root: boolEmbedding_one
+root: shift_left_def
+root: sum_finRangeTo_le_sub_of_le
+root: linsolve
+root: divide_by_2_empty
+root: multilinearCombine
+root: heq_pure
+root: DeserializeOption
+root: erase_odd_empty
+root: heq_apply
+root: divide_by_2_def
+root: hammingDist_comp_equiv

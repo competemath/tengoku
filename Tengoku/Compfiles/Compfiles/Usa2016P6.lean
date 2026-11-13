@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2016, Problem 6
 
@@ -1099,3 +1099,4 @@ lemma not_winnable_of_eq {n : ℕ} (σ : Strategy n) (hσ : σ.Valid n) :
 abbrev answer : ℕ → ℕ → Prop := fun n k ↦ k < n
 
 end Usa2016P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

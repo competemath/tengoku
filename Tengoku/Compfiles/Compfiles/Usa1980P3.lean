@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1980, Problem 3
 
@@ -26,11 +26,11 @@ open Real (sin)
 
 noncomputable section
 
-abbrev P (k: ℕ) : MvPolynomial (Fin 3) ℂ := psum (Fin 3) ℂ k
+abbrev _root_.Tengoku.Compfiles.P (k: ℕ) : MvPolynomial (Fin 3) ℂ := psum (Fin 3) ℂ k
 
-abbrev S (k : ℕ) : MvPolynomial (Fin 3) ℂ := esymm (Fin 3) ℂ k
+abbrev _root_.Tengoku.Compfiles.S (k : ℕ) : MvPolynomial (Fin 3) ℂ := esymm (Fin 3) ℂ k
 
-def f (x y z A B C : ℝ) : Fin 3 → ℂ
+def _root_.Tengoku.Compfiles.f (x y z A B C : ℝ) : Fin 3 → ℂ
 | 0 => x * exp (A * I)
 | 1 => y * exp (B * I)
 | 2 => z * exp (C * I)
@@ -42,19 +42,19 @@ variable {x y z α β γ : ℝ}
 /--
 @isnad1 id=eq.0h2v.s5.8f0a201abe96 from=translated src=- shape=b37631e0 vocab=51727154
 -/
-lemma movire (n : ℕ) (z : ℂ) : exp (z * I) ^ n = exp (↑n * z * I) := by
+lemma _root_.Tengoku.Compfiles.movire (n : ℕ) (z : ℂ) : exp (z * I) ^ n = exp (↑n * z * I) := by
   simpa [cos_add_sin_I] using cos_add_sin_mul_I_pow n z
 
 /--
 @isnad1 id=eq.0h1v.s9.d00684d0521a from=translated src=- shape=bfc0c997 vocab=756d0174
 -/
-lemma P_def (k : ℕ) : P k = X 0 ^ k + X 1 ^ k + X 2 ^ k := by
+lemma _root_.Tengoku.Compfiles.P_def (k : ℕ) : P k = X 0 ^ k + X 1 ^ k + X 2 ^ k := by
   simp [P, psum, Fin.sum_univ_three]
 
 /--
 @isnad1 id=eq.1h6v.s6.8d1887e86c20 from=translated src=- shape=ab93a20e vocab=d5447315
 -/
-lemma prod_f_im (habc: ∃ k : ℤ, α + β + γ = k * π) : (∏ i, f x y z α β γ i).im = 0 := by
+lemma _root_.Tengoku.Compfiles.prod_f_im (habc: ∃ k : ℤ, α + β + γ = k * π) : (∏ i, f x y z α β γ i).im = 0 := by
   obtain ⟨k, h⟩ := habc
   refine sq_nonneg_iff.mp ?_
   simp only [f, Fin.prod_univ_three]
@@ -74,13 +74,13 @@ lemma prod_f_im (habc: ∃ k : ℤ, α + β + γ = k * π) : (∏ i, f x y z α 
 /--
 @isnad1 id=eq.1h6v.s6.526adb864622 from=translated src=- shape=3dca9882 vocab=eca0b8a6
 -/
-lemma sum_f_im (h1: x*sin α + y*sin β + z*sin γ = 0) : (∑ i, f x y z α β γ i).im = 0 := by
+lemma _root_.Tengoku.Compfiles.sum_f_im (h1: x*sin α + y*sin β + z*sin γ = 0) : (∑ i, f x y z α β γ i).im = 0 := by
   simp [Fin.sum_univ_three, f, h1]
 
 /--
 @isnad1 id=eq.0h0v.s8.c1b24a3b2580 from=translated src=- shape=3fe749f8 vocab=a6ebc4a9
 -/
-lemma S_two : S 2 = C (1/2) * (S 1 * P 1 - P 2) := by
+lemma _root_.Tengoku.Compfiles.S_two : S 2 = C (1/2) * (S 1 * P 1 - P 2) := by
   apply_fun (C (2) * ·) using (by intro _ _; simp)
   have eq : ((2 : ℕ) : MvPolynomial (Fin 3) ℂ) = C 2 := by rfl
   have : filter (·.1 < 2) (antidiagonal 2) = {(0,2),(1,1)} := by
@@ -91,14 +91,14 @@ lemma S_two : S 2 = C (1/2) * (S 1 * P 1 - P 2) := by
 /--
 @isnad1 id=eq.0h1v.s6.fa0f21c0279f from=translated src=- shape=4c16c118 vocab=1a9168b0
 -/
-lemma S_more (k: ℕ) : S (k + 4) = 0 := by
+lemma _root_.Tengoku.Compfiles.S_more (k: ℕ) : S (k + 4) = 0 := by
   have : powersetCard (k + 4) (univ : Finset (Fin 3)) = ∅ := by simp
   simp [S, esymm, this]
 
 /--
 @isnad1 id=iff.0h7v.s8.785e0aef4c8b from=translated src=- shape=357b8a69 vocab=b6e57b3f
 -/
-lemma P_iff (n: ℕ) : x^n * sin (n*α) + y^n * sin (n*β) + z^n * sin (n*γ) = 0
+lemma _root_.Tengoku.Compfiles.P_iff (n: ℕ) : x^n * sin (n*α) + y^n * sin (n*β) + z^n * sin (n*γ) = 0
   ↔ (eval (f x y z α β γ) (P n)).im = 0 := by
   simp [P_def, f, mul_pow, movire]
   norm_cast
@@ -109,7 +109,7 @@ lemma P_iff (n: ℕ) : x^n * sin (n*α) + y^n * sin (n*β) + z^n * sin (n*γ) = 
 /--
 @isnad1 id=eq.0h0v.s8.6574372d4c49 from=translated src=- shape=e8791ba8 vocab=51517292
 -/
-lemma P_three : P 3 = S 1 * P 2 - S 2 * P 1 + S 3 * 3 := by
+lemma _root_.Tengoku.Compfiles.P_three : P 3 = S 1 * P 2 - S 2 * P 1 + S 3 * 3 := by
   have newton := mul_esymm_eq_sum (Fin 3) ℂ 3
   have : filter (·.1 < 3) (antidiagonal 3) = {(0,3),(1,2),(2,1)} := by
     simpa [Nat.antidiagonal_eq_image] using by decide
@@ -122,7 +122,7 @@ lemma P_three : P 3 = S 1 * P 2 - S 2 * P 1 + S 3 * 3 := by
 /--
 @isnad1 id=eq.0h1v.s8.9d89b3a6e7ae from=translated src=- shape=3f58693c vocab=51517292
 -/
-lemma P_more (k : ℕ) : P (k + 4) = S 1 * P (k + 3) - S 2 * P (k + 2) + S 3 * P (k + 1) := by
+lemma _root_.Tengoku.Compfiles.P_more (k : ℕ) : P (k + 4) = S 1 * P (k + 3) - S 2 * P (k + 2) + S 3 * P (k + 1) := by
   have newton := mul_esymm_eq_sum (Fin 3) ℂ (k+4)
   let s₂ := filter (fun a => a.1 < k + 4) (antidiagonal (k + 4))
   let s₁ : Finset (ℕ × ℕ) := {(0,k+4),(1,k+3),(2,k+2),(3,k+1)}
@@ -152,7 +152,7 @@ lemma P_more (k : ℕ) : P (k + 4) = S 1 * P (k + 3) - S 2 * P (k + 2) + S 3 * P
 /--
 @isnad1 id=eq.1h6v.s8.a148c9d5db89 from=translated src=- shape=cc62ef2a vocab=73b68311
 -/
-lemma P_two_im (h2: x^2 * sin (2*α) + y^2 * sin (2*β) + z^2 * sin (2*γ) = 0) : ((eval <| f x y z α β γ) (P 2)).im = 0 := by
+lemma _root_.Tengoku.Compfiles.P_two_im (h2: x^2 * sin (2*α) + y^2 * sin (2*β) + z^2 * sin (2*γ) = 0) : ((eval <| f x y z α β γ) (P 2)).im = 0 := by
   simp only [P, psum, Fin.sum_univ_three, eval_add, eval_pow, eval_X, f, mul_pow, movire]
   simp_rw [← cos_add_sin_I]
   norm_cast
@@ -163,7 +163,7 @@ lemma P_two_im (h2: x^2 * sin (2*α) + y^2 * sin (2*β) + z^2 * sin (2*γ) = 0) 
 /--
 @isnad1 id=eq.2h6v.s8.d7c01218fc6a from=translated src=- shape=bdec70fe vocab=1f4ad72d
 -/
-lemma S_two_im (h1: x*sin α + y*sin β + z*sin γ = 0)
+lemma _root_.Tengoku.Compfiles.S_two_im (h1: x*sin α + y*sin β + z*sin γ = 0)
   (h2: x^2 * sin (2*α) + y^2 * sin (2*β) + z^2 * sin (2*γ) = 0)
   : ((eval <| f x y z α β γ) (S 2)).im = 0 := by
   simp [sum_f_im h1, S_two, P_two_im h2]
@@ -171,7 +171,7 @@ lemma S_two_im (h1: x*sin α + y*sin β + z*sin γ = 0)
 /--
 @isnad1 id=eq.1h6v.s7.211c9336070a from=translated src=- shape=fd42ad6c vocab=93e86547
 -/
-lemma S_three_im (habc: ∃ k : ℤ, α + β + γ = k * π) : ((eval <| f x y z α β γ) (S 3)).im = 0 := by
+lemma _root_.Tengoku.Compfiles.S_three_im (habc: ∃ k : ℤ, α + β + γ = k * π) : ((eval <| f x y z α β γ) (S 3)).im = 0 := by
   have : powersetCard 3 (univ: Finset (Fin 3)) = {univ} := val_eq_singleton_iff.mp rfl
   simp [S, esymm, this, prod_f_im habc]
 
@@ -180,3 +180,4 @@ namespace Usa1980P3
 open Real
 
 end Usa1980P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

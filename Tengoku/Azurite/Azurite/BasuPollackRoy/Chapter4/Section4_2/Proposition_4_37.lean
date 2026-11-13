@@ -35,7 +35,7 @@ block-triangular with a `b_q^{p-r}` corner over `SyHaSquare(Q,−R,j)`
 (`DjMatrix_det_eq`). Assembling these with `ε² = 1` gives `proposition_4_37_part1`,
 and the null-row vanishing `DjMatrix_det_eq_zero` gives `proposition_4_37_part2`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial
@@ -472,3 +472,4 @@ theorem proposition_4_37_part2 (P Q : K[X]) (j : ℕ) (hQ : Q ≠ 0)
       ite_eq_right (show j ≠ Q.natDegree by omega)]
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

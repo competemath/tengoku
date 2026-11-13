@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2023, Problem 4
 
@@ -382,3 +382,4 @@ theorem imo2023_p4_generalized
     norm_cast at h9 ⊢
 
 end Imo2023P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

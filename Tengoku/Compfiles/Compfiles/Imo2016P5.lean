@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2016, Problem 5
 
@@ -458,3 +458,4 @@ lemma prod_erase_aux (x : ℝ) :
 abbrev solution_value : ℕ := 2016
 
 end Imo2016P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

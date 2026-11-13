@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2025, Problem 1
 
@@ -82,3 +82,4 @@ lemma digit_of_mod {m b E i : ℕ} (hb : 1 < b) (hm : m % b ^ (i + 1) = E) :
   exact Nat.mod_eq_of_lt (Nat.div_lt_of_lt_mul hE')
 
 end Usa2025P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

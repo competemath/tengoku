@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1996, Problem 4
 
@@ -48,3 +48,4 @@ lemma false_of_zero_eqMod_pos {p a : ℕ} (h₁ : 0 ≡ a [ZMOD p]) (h₂ : 0 < 
   exact Nat.not_le_of_lt h₃ this
 
 end Imo1996P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1974, Problem 5
 
@@ -86,3 +86,4 @@ lemma T0 : T 0 = 1 := by norm_num [T, S]
 lemma T1 : T 1 = 2 := by norm_num [T, S]
 
 end Imo1974P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

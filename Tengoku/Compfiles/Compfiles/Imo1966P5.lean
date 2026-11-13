@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1966, Problem 5
 
@@ -347,3 +347,4 @@ noncomputable abbrev solution_set {a : Fin 4 → ℝ}
   solution_set_generalized (by norm_num : 2 ≤ 4) ha
 
 end Imo1966P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

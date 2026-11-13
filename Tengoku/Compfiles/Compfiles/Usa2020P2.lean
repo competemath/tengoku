@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2020 Problem 2
 
@@ -1294,3 +1294,4 @@ theorem halfBeams_supp : Supp halfBeams := by
 abbrev solution : ℕ := 3030
 
 end Usa2020P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

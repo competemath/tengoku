@@ -1,7 +1,7 @@
 import Tengoku
 
 noncomputable section
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion 
 open Set Function
 
 open scoped Affine Matrix ContDiff
@@ -11,17 +11,17 @@ section BarycentricDet
 variable (ι R k P : Type*) {M : Type*} [Ring R] [AddCommGroup M] [Module R M] [AffineSpace M P]
 
 /-- The set of affine bases for an affine space. -/
-def affineBases : Set (ι → P) :=
+def _root_.Tengoku.SphereEversion.affineBases : Set (ι → P) :=
   {v | AffineIndependent R v ∧ affineSpan R (range v) = ⊤}
 
-theorem affineBases_findim [Fintype ι] [Field k] [Module k M] [FiniteDimensional k M]
+theorem _root_.Tengoku.SphereEversion.affineBases_findim [Fintype ι] [Field k] [Module k M] [FiniteDimensional k M]
     (h : Fintype.card ι = Module.finrank k M + 1) :
     affineBases ι k P = {v | AffineIndependent k v} := by
   ext v
   simp only [affineBases, mem_ofPred_eq, and_iff_left_iff_imp]
   exact fun h_ind ↦ h_ind.affineSpan_eq_top_iff_card_eq_finrank_add_one.mpr h
 
-theorem mem_affineBases_iff [Fintype ι] [DecidableEq ι] [Nontrivial R] (b : AffineBasis ι R P)
+theorem _root_.Tengoku.SphereEversion.mem_affineBases_iff [Fintype ι] [DecidableEq ι] [Nontrivial R] (b : AffineBasis ι R P)
     (v : ι → P) : v ∈ affineBases ι R P ↔ IsUnit (b.toMatrix v) :=
   (b.isUnit_toMatrix_iff v).symm
 
@@ -31,23 +31,23 @@ coordinates of `p` with respect to the affine basis `v`.
 
 Actually for convenience `eval_barycentric_coords` is defined even when `v` is not an affine basis.
 In this case its value should be regarded as "junk". -/
-def evalBarycentricCoords [DecidablePred (· ∈ affineBases ι R P)] (p : P) (v : ι → P) : ι → R :=
+def _root_.Tengoku.SphereEversion.evalBarycentricCoords [DecidablePred (· ∈ affineBases ι R P)] (p : P) (v : ι → P) : ι → R :=
   if h : v ∈ affineBases ι R P then ((AffineBasis.mk v h.1 h.2).coords p : ι → R) else 0
 
 @[simp]
-theorem evalBarycentricCoords_apply_of_mem_bases [DecidablePred (· ∈ affineBases ι R P)] (p : P)
+theorem _root_.Tengoku.SphereEversion.evalBarycentricCoords_apply_of_mem_bases [DecidablePred (· ∈ affineBases ι R P)] (p : P)
     {v : ι → P} (h : v ∈ affineBases ι R P) :
     evalBarycentricCoords ι R P p v = (AffineBasis.mk v h.1 h.2).coords p :=
   dite_eq_left h
 
 @[simp]
-theorem evalBarycentricCoords_apply_of_not_mem_bases [DecidablePred (· ∈ affineBases ι R P)] (p : P)
+theorem _root_.Tengoku.SphereEversion.evalBarycentricCoords_apply_of_not_mem_bases [DecidablePred (· ∈ affineBases ι R P)] (p : P)
     {v : ι → P} (h : v ∉ affineBases ι R P) : evalBarycentricCoords ι R P p v = 0 :=
   dite_eq_right h
 
 variable {ι R P}
 
-theorem evalBarycentricCoords_eq_det [Fintype ι] [DecidableEq ι] (S : Type*) [Field S] [Module S M]
+theorem _root_.Tengoku.SphereEversion.evalBarycentricCoords_eq_det [Fintype ι] [DecidableEq ι] (S : Type*) [Field S] [Module S M]
     [∀ v, Decidable (v ∈ affineBases ι S P)] (b : AffineBasis ι S P) (p : P) (v : ι → P) :
     evalBarycentricCoords ι S P p v =
       (b.toMatrix v).det⁻¹ • (b.toMatrix v)ᵀ.cramer (b.coords p) := by
@@ -112,7 +112,7 @@ variable [NormedAddCommGroup F] [NormedSpace 𝕜 F]
 -- and prove that barycentric coordinates give a continuous affine equivalence to
 -- `{ f : ι →₀ 𝕜 | f.sum = 1 }`.
 -- This should obviate the need for the finite-dimensionality assumption.
-theorem smooth_barycentric [DecidablePred (· ∈ affineBases ι 𝕜 F)] [FiniteDimensional 𝕜 F]
+theorem _root_.Tengoku.SphereEversion.smooth_barycentric [DecidablePred (· ∈ affineBases ι 𝕜 F)] [FiniteDimensional 𝕜 F]
     (h : Fintype.card ι = Module.finrank 𝕜 F + 1) {n : WithTop ℕ∞} :
     ContDiffOn 𝕜 n (uncurry (evalBarycentricCoords ι 𝕜 F)) (@univ F ×ˢ affineBases ι 𝕜 F) := by
   classical
@@ -147,3 +147,4 @@ theorem smooth_barycentric [DecidablePred (· ∈ affineBases ι 𝕜 F)] [Finit
       exact ((smooth_barycentric_coord b j').of_le le_top).comp (contDiff_pi.mp contDiff_snd j)
 
 end smooth_barycentric
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

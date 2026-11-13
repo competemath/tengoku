@@ -14,7 +14,7 @@ import Tengoku.Azurite.Azurite.AzMatrix.RowCol
 import Tengoku.Azurite.Azurite.AzVector.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} {m n : Nat}
 
@@ -52,3 +52,4 @@ theorem AzMatrix.toFn_ofCols (cols : Vector (AzVector R m) n) (i : Fin m) (j : F
   rfl
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

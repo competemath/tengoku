@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2024, Problem 4
 
@@ -343,3 +343,4 @@ with `m ≤ n + 1`. -/
 abbrev solution : ℕ → ℕ → Prop := fun m n ↦ m ≤ n + 1
 
 end Usa2024P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

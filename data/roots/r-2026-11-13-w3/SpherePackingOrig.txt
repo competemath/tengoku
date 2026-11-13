@@ -1,0 +1,56 @@
+leakscan: 17 global instances (3 can fire outside the library), 0 scoped; 20 global simp lemmas (7 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 44 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: simp ENat.summable registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.Encard (declared at line 32)
+leak: simp ENat.tsum_eq_zero registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.Encard (declared at line 59)
+leak: instance instVAddInvariantMeasureSubtypeMemSubmoduleIntOfMeasurableAddOfIsAddLeftInvariantOfIsScalarTowerReal registered in Tengoku.SpherePackingOrig.SpherePacking.Basic.PeriodicPacking (declared at line 277)
+leak: instance HDivENNReal registered in Tengoku.SpherePackingOrig.SpherePacking.Basic.PeriodicPacking (declared at line 688)
+leak: instance HMulENNReal registered in Tengoku.SpherePackingOrig.SpherePacking.Basic.PeriodicPacking (declared at line 690)
+leak: simp SchwartzMap.mk_apply registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.RadialSchwartz.SchwartzMap (declared at line 26)
+leak: simp natCast_le_coe_top registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.RadialSchwartz.SchwartzMap (declared at line 31)
+leak: simp Matrix.cons_val_five registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.Vec (declared at line 19)
+leak: simp Matrix.cons_val_six registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.Vec (declared at line 24)
+leak: simp Matrix.cons_val_seven registered in Tengoku.SpherePackingOrig.SpherePacking.ForMathlib.Vec (declared at line 29)
+root: instVAddInvariantMeasureSubtypeMemSubmoduleIntOfMeasurableAddOfIsAddLeftInvariantOfIsScalarTowerReal
+root: hasDerivAt_tsum_fun
+root: aux1
+root: HasFourierSeries
+root: RadialSchwartzMap
+root: aux7
+root: volume_ball_ratio_tendsto_nhds_one'
+root: aux6
+root: aux4'
+root: PeriodicSpherePacking
+root: hasFourierSeries_iff_has2PiFourierSeries
+root: aux2
+root: exp_upperHalfPlane_lt_one_nat
+root: HDivENNReal
+root: biUnion_inter_balls_subset_biUnion_balls_inter
+root: volume_ball_ratio_tendsto_nhds_one
+root: isBoundedAtImInfty_neg_iff
+root: cts_exp_two_pi_n
+root: iter_deriv_comp_bound3
+root: exp_upperHalfPlane_lt_one
+root: scale_lattice_discrete
+root: aux3
+root: biUnion_balls_inter_subset_biUnion_inter_balls
+root: integrableOn_exp_mul_Ici
+root: tendsto_const_mul_rpow_mul_exp_neg_atTop
+root: PeriodicSpherePackingConstant
+root: natCast_le_coe_top
+root: hasProd_le_nonneg
+root: Inv_Pow_Norm_Summable_Over_Set_Euclidean
+root: ne_zero_of_tendsto_ne_zero
+root: periodic_constant_eq_periodic_constant_normalized
+root: Exists_Inv_Pow_Norm_Summable_Over_Set_Euclidean
+root: SpherePacking
+root: coe_RadialSchwartzMap
+root: volume_ball_ratio_tendsto_nhds_one''
+root: summable_real_norm_mul_geometric_of_norm_lt_one
+root: HMulENNReal
+root: aux4
+root: tprod_le_of_nonneg_of_multipliable
+root: Has2PiFourierSeries
+root: aux4''
+root: IsDecayingMap
+root: SpherePackingConstant
+root: aux8

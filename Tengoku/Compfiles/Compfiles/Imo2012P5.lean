@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2012, Problem 5
 
@@ -40,7 +40,7 @@ variable {V P : Type*} [NormedAddCommGroup V] [InnerProductSpace ℝ V]
 /-- The converse of the **Intersecting Chords Theorem**, stated with `Sbtw`.
 @isnad1 id=or.3h7v.s8.7e070da4536b from=translated src=- shape=7820750a vocab=14c11ef2
 -/
-theorem cospherical_or_collinear_of_mul_dist_eq_mul_dist_of_sbtw
+theorem _root_.Tengoku.Compfiles.cospherical_or_collinear_of_mul_dist_eq_mul_dist_of_sbtw
   {a b c d p : P} (h : dist a p * dist b p = dist c p * dist d p)
   (hapb : Sbtw ℝ a p b) (hcpd : Sbtw ℝ c p d) :
     Cospherical {a, b, c, d} ∨ Collinear ℝ {a, b, c, d} := by
@@ -541,3 +541,4 @@ theorem MK_eq_ML : dist cfg.M cfg.K = dist cfg.M cfg.L :=
   cfg.exists_sphereWithKK'LL'.elim (fun _ hs => hs.MK_eq_ML)
 
 end Imo2012P5Cfg
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2024, Problem 1
 
@@ -227,3 +227,4 @@ lemma not_good_of_thirteen_le {n : ℕ} (hn : 13 ≤ n) : ¬ Good n := by
   lia
 
 end Usa2024P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

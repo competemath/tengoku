@@ -40,7 +40,7 @@ import Tengoku.Seed.Algebra.GroupWithZero.Units.Fintype
 import Tengoku.Seed.FieldTheory.Finite.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 namespace GG
@@ -202,3 +202,4 @@ theorem exists_pow_eq_iff_pow_card_sub_one_div_eq_one [Fintype F] {k : ℕ}
 end GG
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

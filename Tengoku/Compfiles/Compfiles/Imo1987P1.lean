@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1987, Problem 1
 
@@ -114,3 +114,4 @@ theorem main₀ (n : ℕ) : ∑ k ∈ Finset.range (n + 1), k * p (Fin n) k = n 
 end generalization
 
 end Imo1987P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2005, Problem 6
 
@@ -372,3 +372,4 @@ theorem pairCount_modEq {n : ℕ} {s : Fin n → Finset (Fin 6)} {c0 : Fin n}
   exact Int.modEq_iff_add_fac.mpr ⟨t, by linarith⟩
 
 end Imo2005P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

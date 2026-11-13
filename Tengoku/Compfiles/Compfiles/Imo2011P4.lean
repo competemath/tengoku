@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2011, Problem 4
 
@@ -784,3 +784,4 @@ lemma card_ways (n : ℕ) : Nat.card (Ways (n + 1)) = (2 * n + 1)‼ := by
 abbrev solution_value : ℕ → ℕ := fun n ↦ (2 * n - 1)‼
 
 end Imo2011P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

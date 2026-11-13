@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2023, Problem 2
 
@@ -3786,3 +3786,4 @@ theorem result : ∃ X : Pt,
 end Imo2023q2Cfg
 
 end Imo2023P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

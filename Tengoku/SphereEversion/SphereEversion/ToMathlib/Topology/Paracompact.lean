@@ -1,12 +1,12 @@
 import Tengoku
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion
 open scoped Topology
 
 open Set Function
 
 /-- We could generalise and replace `ι × ℝ` with a dependent family of types but it doesn't seem
 worth it. Proof partly based on `refinement_of_locallyCompact_sigmaCompact_of_nhds_basis_set`. -/
-theorem exists_countable_locallyFinite_cover {ι X : Type*} [TopologicalSpace X] [T2Space X]
+theorem _root_.Tengoku.SphereEversion.exists_countable_locallyFinite_cover {ι X : Type*} [TopologicalSpace X] [T2Space X]
     [LocallyCompactSpace X] [SigmaCompactSpace X] {c : ι → X} {W : ι → ℝ → Set X}
     {B : ι → ℝ → Set X} {p : ι → ℝ → Prop} (hc : Surjective c) (hW₀ : ∀ i r, p i r → c i ∈ W i r)
     (hW₁ : ∀ i r, p i r → IsOpen (W i r)) (hB : ∀ i, (𝓝 (c i)).HasBasis (p i) (B i)) :
@@ -76,3 +76,4 @@ theorem exists_countable_locallyFinite_cover {ι X : Type*} [TopologicalSpace X]
     rw [Set.not_nonempty_iff_eq_empty]
     have := Set.inter_subset_inter_left (U n) (h₂ m ⟨x, hx₁⟩)
     rwa [Set.not_nonempty_iff_eq_empty.mp hm, Set.subset_empty_iff] at this
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

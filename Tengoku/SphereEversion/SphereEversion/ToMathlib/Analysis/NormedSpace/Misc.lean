@@ -1,5 +1,5 @@
 import Tengoku
-
+namespace Tengoku.SphereEversion end Tengoku.SphereEversion open Tengoku.SphereEversion
 variable {F : Type*} [NormedAddCommGroup F] [NormedSpace ℝ F]
 
 open Set Metric
@@ -35,37 +35,38 @@ theorem OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball :
 weaker condition `range_diffeomorph_to_nhd_subset_ball` but which applies to any `NormedSpace`.
 
 In fact one could demand this stronger property but it would be more work and we don't need it. -/
-def diffeomorphToNhd (c : F) (r : ℝ) : OpenPartialHomeomorph F F :=
+def _root_.Tengoku.SphereEversion.diffeomorphToNhd (c : F) (r : ℝ) : OpenPartialHomeomorph F F :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose
 
 @[simp]
-theorem diffeomorphToNhd_source : (diffeomorphToNhd c r).source = univ :=
+theorem _root_.Tengoku.SphereEversion.diffeomorphToNhd_source : (diffeomorphToNhd c r).source = univ :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose_spec.2.2.1
 
 @[simp]
-theorem diffeomorphToNhd_apply_zero : diffeomorphToNhd c r 0 = c :=
+theorem _root_.Tengoku.SphereEversion.diffeomorphToNhd_apply_zero : diffeomorphToNhd c r 0 = c :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose_spec.2.2.2.2
 
 variable {r} in
-theorem target_diffeomorphToNhd_subset_ball (hr : 0 < r) :
+theorem _root_.Tengoku.SphereEversion.target_diffeomorphToNhd_subset_ball (hr : 0 < r) :
     (diffeomorphToNhd c r).target ⊆ ball c r :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose_spec.2.2.2.1 hr
 
 variable {r} in
 @[simp]
-theorem range_diffeomorphToNhd_subset_ball (hr : 0 < r) :
+theorem _root_.Tengoku.SphereEversion.range_diffeomorphToNhd_subset_ball (hr : 0 < r) :
     range (diffeomorphToNhd c r) ⊆ ball c r := by
   erw [← image_univ, ← diffeomorphToNhd_source c r, PartialEquiv.image_source_eq_target]
   exact target_diffeomorphToNhd_subset_ball c hr
 
 @[simp]
-theorem contDiff_diffeomorphToNhd {n : ℕ∞} :
+theorem _root_.Tengoku.SphereEversion.contDiff_diffeomorphToNhd {n : ℕ∞} :
     ContDiff ℝ n <| diffeomorphToNhd c r :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose_spec.1.of_le
     (mod_cast le_top)
 
 @[simp]
-theorem contDiffOn_diffeomorphToNhd_inv {n : ℕ∞} :
+theorem _root_.Tengoku.SphereEversion.contDiffOn_diffeomorphToNhd_inv {n : ℕ∞} :
     ContDiffOn ℝ n (diffeomorphToNhd c r).symm (diffeomorphToNhd c r).target :=
   (OpenPartialHomeomorph.exists_contDiff_source_univ_target_subset_ball c r).choose_spec.2.1.of_le
     (mod_cast le_top)
+-- Tengoku: root names of this library moved to Tengoku.SphereEversion so they do not collide with other libraries (generated)

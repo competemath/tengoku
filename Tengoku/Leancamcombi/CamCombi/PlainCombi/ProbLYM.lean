@@ -30,7 +30,7 @@ is basically the same proof, except without using probability theory.
 -/
 
 public section
-
+namespace Tengoku.Leancamcombi end Tengoku.Leancamcombi open Tengoku.Leancamcombi 
 open Finset Fintype Numbering
 
 variable {α : Type*} [Fintype α] {𝒜 : Finset (Finset α)}
@@ -38,7 +38,7 @@ variable {α : Type*} [Fintype α] {𝒜 : Finset (Finset α)}
 /-- The **Lubell-Yamamoto-Meshalkin inequality**, proved using the Katona circle method.
 @isnad1 id=le.1h2v.s6.ec92a27a752c from=translated src=- shape=1719f3c3 vocab=211b437e
 -/
-theorem LYM_inequality (h𝒜 : IsAntichain (· ⊆ ·) (𝒜 : Set (Finset α))) :
+theorem _root_.Tengoku.Leancamcombi.LYM_inequality (h𝒜 : IsAntichain (· ⊆ ·) (𝒜 : Set (Finset α))) :
     ∑ s ∈ 𝒜, ((card α).choose #s : ℚ≥0)⁻¹ ≤ 1 := by
   classical
   calc
@@ -47,3 +47,4 @@ theorem LYM_inequality (h𝒜 : IsAntichain (· ⊆ ·) (𝒜 : Set (Finset α))
       rw [dens_biUnion]
       exact fun s hs t ht hst ↦ disjoint_prefixed_prefixed (h𝒜 hs ht hst) (h𝒜 ht hs hst.symm)
     _ ≤ 1 := dens_le_one
+-- Tengoku: root names of this library moved to Tengoku.Leancamcombi so they do not collide with other libraries (generated)

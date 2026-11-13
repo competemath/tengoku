@@ -69,7 +69,7 @@ file: the sentence is false the moment a consumer lands, and nothing else re-run
   finite over `F`; that is `IntermediateField.normalClosure.is_finiteDimensional`, it needs
   `[FiniteDimensional F K]`, and a consumer wanting *finite Galois* has to ask for both.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open IntermediateField
 
 /-- **The normal closure of a separable extension is Galois.**
@@ -79,7 +79,7 @@ For `K / F` separable, `normalClosure F K (AlgebraicClosure K)` is a Galois exte
 extension to be Galois over `F`; an algebraic closure is normal but not separable over `F` in
 characteristic `p`.  ⚠️ **No finiteness anywhere**: see the module docstring for the `lake lint`
 run that removed it. -/
-theorem isGalois_normalClosure_of_isSeparable (F K : Type*) [Field F] [Field K] [Algebra F K]
+theorem _root_.Tengoku.LanaEllipticCurves.isGalois_normalClosure_of_isSeparable (F K : Type*) [Field F] [Field K] [Algebra F K]
     [Algebra.IsSeparable F K] :
     IsGalois F (normalClosure F K (AlgebraicClosure K)) := by
   haveI : Algebra.IsAlgebraic F (AlgebraicClosure K) :=
@@ -94,3 +94,4 @@ theorem isGalois_normalClosure_of_isSeparable (F K : Type*) [Field F] [Field K] 
     change Algebra.IsSeparable F ↥(⨆ f : K →ₐ[F] (AlgebraicClosure K), f.fieldRange)
     infer_instance
   exact ⟨⟩
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

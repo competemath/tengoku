@@ -53,7 +53,7 @@ above the Toom ladder in `AzNat/Mul.lean`, can use the ladder for its pointwise 
 an import cycle.  Residues are `AzNat`s and the operations allocate fresh arrays; an in-place
 limb-level version is a later optimisation (`docs/fft_plan.md`).
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 
 /-- Integers modulo `2^N + 1`, as a canonical `AzNat` residue in `[0, 2^N]`.-/
@@ -280,3 +280,4 @@ def divPow2 [NeZero N] (t : Nat) (a : AzFermat N) : AzFermat N :=
 end AzFermat
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

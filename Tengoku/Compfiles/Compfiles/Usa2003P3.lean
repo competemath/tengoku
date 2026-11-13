@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2003, Problem 3
 
@@ -522,3 +522,4 @@ theorem main_aux (n : ℕ) : 1 ≤ n → ∀ a : ℕ → ℕ, (∀ i ≤ n, a i 
             rwa [Nat.add_right_comm, Nat.sub_add_sub_cancel hkn hk2, ← hn3, Nat.sub_one_add_one_eq_of_pos hn] at hpers
 
 end Usa2003P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

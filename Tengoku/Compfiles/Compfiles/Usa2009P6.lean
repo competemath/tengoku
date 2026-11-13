@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2009, Problem 6
 
@@ -352,3 +352,4 @@ lemma normalized {s t : ℕ → ℚ} {a b : ℕ} {n : ℤ} (hn : n ≠ 0)
     exact ⟨m, by rw [hT i, div_eq_iff hd0', hm]; push_cast; ring⟩
 
 end Usa2009P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

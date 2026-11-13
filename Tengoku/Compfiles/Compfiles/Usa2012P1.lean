@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2012, Problem 1
 
@@ -240,3 +240,4 @@ lemma not_isGood_of_le_twelve {n : ℕ} (h3 : 3 ≤ n) (h12 : n ≤ 12) : ¬ IsG
   rcases hfail with d | d | d <;> linarith
 
 end Usa2012P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

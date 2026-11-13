@@ -9,7 +9,7 @@ Auxiliary lemmas about the `atImInfty` filter on the upper half-plane.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 /-
 Probably put this at Analysis/Complex/UpperHalfPlane/FunctionsBoundedAtInfty.lean
 -/
@@ -27,6 +27,7 @@ lemma Filter.tendsto_im_atImInfty : Tendsto (fun x : ℍ ↦ x.im) atImInfty atT
 
 This packages the common argument: if f = 0, then f → 0, but also f → c by hypothesis.
 By uniqueness of limits, 0 = c, contradicting c ≠ 0. -/
-lemma ne_zero_of_tendsto_ne_zero {f : ℍ → ℂ} {c : ℂ} (hc : c ≠ 0)
+lemma _root_.Tengoku.SpherePackingOrig.ne_zero_of_tendsto_ne_zero {f : ℍ → ℂ} {c : ℂ} (hc : c ≠ 0)
     (hf : Tendsto f atImInfty (nhds c)) : f ≠ 0 := fun h =>
   hc (tendsto_nhds_unique tendsto_const_nhds (h ▸ hf)).symm
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

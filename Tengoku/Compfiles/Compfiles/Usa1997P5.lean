@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1997, Problem 5
 
@@ -53,3 +53,4 @@ theorem main_sum (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) :
   add_le_add h1 (add_le_add h2 h3)
 
 end Usa1997P5
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

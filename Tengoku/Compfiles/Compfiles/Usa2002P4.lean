@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2002, Problem 4
 
@@ -126,3 +126,4 @@ lemma main_proof {f : ℝ → ℝ} (hf : FE f) (x : ℝ)  :
 abbrev solution_set : Set (ℝ → ℝ) := { f | ∃ c : ℝ, ∀ x, f x = c * x }
 
 end Usa2002P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

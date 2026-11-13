@@ -12,7 +12,7 @@ which are modeled by types `List X` and `Stream' X` respectively (X being an arb
 It is imported directly or indirectly by all other files in AutomataTheory except those
 in AutomataTheory.Mathlib.
 -/
-
+namespace Tengoku.Automatatheory end Tengoku.Automatatheory open Tengoku.Automatatheory
 open Function Set Option Stream'
 
 section List
@@ -256,7 +256,7 @@ section Misc
 /--
 @isnad1 id=ex.1h2v.s5.60695a6b2d37 from=translated src=- shape=42c974fe vocab=20988ed0
 -/
-theorem antitone_fin_eventually {n : ℕ} {f : ℕ → Fin n} (h : Antitone f) :
+theorem _root_.Tengoku.Automatatheory.antitone_fin_eventually {n : ℕ} {f : ℕ → Fin n} (h : Antitone f) :
     ∃ i : Fin n, ∃ m, ∀ k ≥ m, f k = i := by
   have h_fin : (range f).Finite := toFinite (range f)
   have h_ne : (range f).Nonempty := by use (f 0) ; simp
@@ -269,7 +269,7 @@ theorem antitone_fin_eventually {n : ℕ} {f : ℕ → Fin n} (h : Antitone f) :
 /--
 @isnad1 id=ex.1h3v.s6.a41053ff32eb from=translated src=- shape=58333780 vocab=ca6fe735
 -/
-theorem option_some_pigeonhole {X : Type*} [Finite X] {n : ℕ} (f : Fin n → Option X)
+theorem _root_.Tengoku.Automatatheory.option_some_pigeonhole {X : Type*} [Finite X] {n : ℕ} (f : Fin n → Option X)
     (h : {j | (f j).isSome}.ncard > Nat.card X) :
     ∃ j1 j2, j1 ≠ j2 ∧ ∃ x, f j1 = some x ∧ f j2 = some x := by
   have ht : (some '' (univ : Set X)).Finite := by exact toFinite (some '' univ)
@@ -285,3 +285,4 @@ theorem option_some_pigeonhole {X : Type*} [Finite X] {n : ℕ} (f : Fin n → O
   use j1, j2 ; simp [h_ne] ; use s1
 
 end Misc
+-- Tengoku: root names of this library moved to Tengoku.Automatatheory so they do not collide with other libraries (generated)

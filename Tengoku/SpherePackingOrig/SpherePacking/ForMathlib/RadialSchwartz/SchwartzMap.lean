@@ -16,7 +16,7 @@ Mathlib, in particular a constructor `SchwartzMap.mkOfCocompact` which builds a 
 from a decay condition that only needs to hold eventually at infinity (cocompactly), rather
 than for all `x`.
 -/
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig
 open ContDiff SchwartzMap
 
 variable {E F : Type*}
@@ -29,7 +29,7 @@ public lemma SchwartzMap.mk_apply {f : E → F} {smooth : ContDiff ℝ ∞ f}
   (⟨f, smooth, decay⟩ : 𝓢(E, F)) x = f x := rfl
 
 @[simp]
-public lemma natCast_le_coe_top {n : ℕ} : (n : WithTop ℕ∞) ≤ (⊤ : ℕ∞) :=
+public lemma _root_.Tengoku.SpherePackingOrig.natCast_le_coe_top {n : ℕ} : (n : WithTop ℕ∞) ≤ (⊤ : ℕ∞) :=
   WithTop.coe_le_coe.2 (by simp)
 
 open Filter Topology
@@ -59,3 +59,4 @@ public def SchwartzMap.mkOfCocompact (f : E → F) (smooth : ContDiff ℝ ∞ f)
     simp only [norm_mul, norm_pow, norm_norm, g] at hC'
     use max C C'
     grind
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

@@ -17,7 +17,7 @@ functions (like expected value) attain their supremum on this space.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 noncomputable section
 
 open Topology ENNReal NNReal Set
@@ -34,7 +34,7 @@ variable {α β : Type u} [Finite α] [Finite β]
 
 section Topology
 
-lemma map_fst_eval (c : SPMF (α × β)) (a : α) :
+lemma _root_.Tengoku.Vcvio.map_fst_eval (c : SPMF (α × β)) (a : α) :
     letI := Fintype.ofFinite β
     (Prod.fst <$> c) a = ∑ b, c (a, b) := by
   classical
@@ -65,7 +65,7 @@ lemma map_fst_eval (c : SPMF (α × β)) (a : α) :
   exact hmain
 
 open scoped Classical in
-lemma map_snd_eval (c : SPMF (α × β)) (b : β) :
+lemma _root_.Tengoku.Vcvio.map_snd_eval (c : SPMF (α × β)) (b : β) :
     letI := Fintype.ofFinite α
     (Prod.snd <$> c) b = ∑ a, c (a, b) := by
   let := Fintype.ofFinite α
@@ -97,7 +97,7 @@ lemma map_snd_eval (c : SPMF (α × β)) (b : β) :
     ∑ a, c.toPMF (some (a, b))
   exact hmain
 
-def couplings_set (p : SPMF α) (q : SPMF β) : Set (Option (α × β) → ℝ) :=
+def _root_.Tengoku.Vcvio.couplings_set (p : SPMF α) (q : SPMF β) : Set (Option (α × β) → ℝ) :=
   letI := Fintype.ofFinite α
   letI := Fintype.ofFinite β
   { c | (∀ z, 0 ≤ c z) ∧
@@ -107,7 +107,7 @@ def couplings_set (p : SPMF α) (q : SPMF β) : Set (Option (α × β) → ℝ) 
         c none = 1 - (∑ z, c (some z)) }
 
 -- 2. Prove this set is closed and bounded
-lemma isClosed_couplings_set (p : SPMF α) (q : SPMF β) :
+lemma _root_.Tengoku.Vcvio.isClosed_couplings_set (p : SPMF α) (q : SPMF β) :
     IsClosed (couplings_set p q) := by
   let := Fintype.ofFinite α
   let := Fintype.ofFinite β
@@ -146,7 +146,7 @@ lemma isClosed_couplings_set (p : SPMF α) (q : SPMF β) :
       (fun z _ => continuous_apply _)))
   exact (((h1.inter h2).inter h3).inter h4).inter h5
 
-lemma isBounded_couplings_set (p : SPMF α) (q : SPMF β) :
+lemma _root_.Tengoku.Vcvio.isBounded_couplings_set (p : SPMF α) (q : SPMF β) :
     Bornology.IsBounded (couplings_set p q) := by
   let := Fintype.ofFinite α
   let := Fintype.ofFinite β
@@ -162,14 +162,14 @@ lemma isBounded_couplings_set (p : SPMF α) (q : SPMF β) :
   rw [Real.dist_eq]
   exact abs_sub_le_iff.mpr ⟨by linarith, by linarith⟩
 
-lemma isCompact_couplings_set (p : SPMF α) (q : SPMF β) :
+lemma _root_.Tengoku.Vcvio.isCompact_couplings_set (p : SPMF α) (q : SPMF β) :
     IsCompact (couplings_set p q) := by
   let := Fintype.ofFinite α
   let := Fintype.ofFinite β
   exact Metric.isCompact_of_isClosed_isBounded (isClosed_couplings_set p q)
     (isBounded_couplings_set p q)
 
-lemma mem_couplings_set_of_isCoupling {p : SPMF α} {q : SPMF β} (c : SPMF (α × β))
+lemma _root_.Tengoku.Vcvio.mem_couplings_set_of_isCoupling {p : SPMF α} {q : SPMF β} (c : SPMF (α × β))
     (hc : SPMF.IsCoupling c p q) :
     (fun z => (c.toPMF z).toReal) ∈ couplings_set p q := by
   let := Fintype.ofFinite α
@@ -310,7 +310,7 @@ private lemma objective_eq_ofReal (c : SPMF (α × β))
               (f := fun z => (c.1 z).toReal * (f z).toReal)
               (fun z _ => mul_nonneg ENNReal.toReal_nonneg ENNReal.toReal_nonneg))
 
-lemma SPMF.exists_max_coupling {p : SPMF α} {q : SPMF β}
+lemma Tengoku.Vcvio.SPMF.exists_max_coupling {p : SPMF α} {q : SPMF β}
     (f : Option (α × β) → ℝ≥0∞) (hf : ∀ z, f z ≠ ⊤)
     (h_nonempty : Nonempty (SPMF.Coupling p q))
     (h_comp : IsCompact (couplings_set p q)) :
@@ -350,3 +350,4 @@ lemma SPMF.exists_max_coupling {p : SPMF α} {q : SPMF β}
   · exact le_iSup (f := fun c' : SPMF.Coupling p q => ∑' z, c'.1.1 z * f z) c_max_cpl
 
 end Topology
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

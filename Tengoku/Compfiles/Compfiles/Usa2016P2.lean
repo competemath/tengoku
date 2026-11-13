@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 USA Mathematical Olympiad 2016, Problem 2
 
@@ -286,3 +286,4 @@ lemma sum_add_div_le (k q : ℕ) (hq : 0 < q) :
   lia
 
 end Usa2016P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

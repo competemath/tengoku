@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2026, Problem 2
 
@@ -375,3 +375,4 @@ theorem IsPow2.pos {x : ℕ} (h : IsPow2 x) : 0 < x := by
   positivity
 
 end Usa2026P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

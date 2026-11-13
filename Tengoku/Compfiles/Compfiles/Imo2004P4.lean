@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2004, Problem 4
 
@@ -189,3 +189,4 @@ lemma key {n : ℕ} (hn : 3 ≤ n) (t : Fin n → ℝ) (ht : ∀ i, 0 < t i)
   linarith
 
 end Imo2004P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

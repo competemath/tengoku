@@ -27,7 +27,7 @@ Both the form and its rank are Mathlib notions; we expose BPR-facing names:
 * `quadraticForm M` is `Matrix.toQuadraticForm' M`, the map `x ↦ x · M · xᵗ`;
 * `quadraticFormRank M` is the rank `Matrix.rank M` of the matrix.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 variable {K : Type*} [Field K] {n : ℕ}
@@ -379,3 +379,4 @@ theorem DiagonalExpression.r_eq_quadraticFormRank {M : Matrix (Fin n) (Fin n) K}
 end Ordered
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2011, Problem 6
 
@@ -216,3 +216,4 @@ lemma sum_sq_multiplicity {α : Type*} [DecidableEq α] (As : Fin 11 → Finset 
   (sum_sq_multiplicity_eq As).trans (sum_inter_card As hcard hinter)
 
 end Usa2011P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

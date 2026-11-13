@@ -1,0 +1,60 @@
+leakscan: 127 global instances (9 can fire outside the library), 0 scoped; 158 global simp lemmas (9 trigger on nothing of the library), 0 scoped; 0 global parsers (0 reuse a token of another module or reserve a word as one), 0 scoped
+roots: 40 declarations of the library are in the root namespace (nothing in their names tells libraries apart; a second library declaring one fails to import)
+leak: instance Imo1977P2.instCoeForallIntForallReal registered in Tengoku.Compfiles.Compfiles.Imo1977P2 (declared at line 31)
+leak: instance Imo1979P6.instFintypeAnd registered in Tengoku.Compfiles.Compfiles.Imo1979P6 (declared at line 34)
+leak: instance Imo1979P6.Set.instFintypeElemOfSubtype registered in Tengoku.Compfiles.Compfiles.Imo1979P6 (declared at line 46)
+leak: simp Imo1979P6.Walk.append_getVert registered in Tengoku.Compfiles.Compfiles.Imo1979P6 (declared at line 54)
+leak: simp Imo1979P6.Walk.take_append registered in Tengoku.Compfiles.Compfiles.Imo1979P6 (declared at line 62)
+leak: simp Imo1979P6.Walk.drop_append_of_length_eq registered in Tengoku.Compfiles.Compfiles.Imo1979P6 (declared at line 73)
+leak: instance Imo1989P6.instOne registered in Tengoku.Compfiles.Compfiles.Imo1989P6 (declared at line 36)
+leak: simp Imo1989P6.one_le_val registered in Tengoku.Compfiles.Compfiles.Imo1989P6 (declared at line 59)
+leak: simp Imo1989P6.val_le_2n registered in Tengoku.Compfiles.Compfiles.Imo1989P6 (declared at line 65)
+leak: instance Imo2020P4.instFintypeEdgeSetOfFinite registered in Tengoku.Compfiles.Compfiles.Imo2020P4 (declared at line 73)
+leak: simp Imo2024P3.Condition.apply_ne_zero registered in Tengoku.Compfiles.Compfiles.Imo2024P3 (declared at line 124)
+leak: simp Imo2024P3.Condition.nth_apply_eq_zero registered in Tengoku.Compfiles.Compfiles.Imo2024P3 (declared at line 150)
+leak: simp Imo2025P4.mem_divisors_erase_one registered in Tengoku.Compfiles.Compfiles.Imo2025P4 (declared at line 46)
+leak: instance Usa1999P1.pathGraphDecidableRel registered in Tengoku.Compfiles.Compfiles.Usa1999P1 (declared at line 42)
+leak: simp Usa2006P5.natAbs_two_pow registered in Tengoku.Compfiles.Compfiles.Usa2006P5 (declared at line 62)
+leak: instance Usa2017P5.instCoeOutProdSubtypeNatMemFinsetRangeHPowOfNatInt registered in Tengoku.Compfiles.Compfiles.Usa2017P5 (declared at line 46)
+leak: instance Usa2017P5.instCoeProdNatInt_tengoku registered in Tengoku.Compfiles.Compfiles.Usa2017P5 (declared at line 48)
+leak: instance Usa2018P6.usa2018p6_aux.decInvol registered in Tengoku.Compfiles.Compfiles.Usa2018P6 (declared at line 1832)
+root: P_def
+root: sum_telescope
+root: prod_f_im
+root: trunCeil
+root: fermat_little_theorem2
+root: P_more
+root: monotone_card_pool
+root: f
+root: cospherical_or_collinear_of_mul_dist_eq_mul_dist_of_sbtw
+root: P_iff
+root: int_dvd_to_nat_dvd
+root: cases
+root: S
+root: S_three_im
+root: pool_subset_Icc
+root: exists_max_card_pool
+root: not_mem_pool_self
+root: floor_le_trunCeil
+root: Condition
+root: h
+root: P_three
+root: le_sum_pool
+root: movire
+root: pool
+root: sum_pool_le
+root: P
+root: sum_sub_sum_eq_sub
+root: sum_f_im
+root: zero_mem_pool
+root: exists_add_eq_of_mem_pool
+root: S_two_im
+root: b_pos
+root: P_two_im
+root: is_valid_c
+root: S_two
+root: fermat_little_theorem
+root: answer
+root: card_pool
+root: Bonza
+root: S_more

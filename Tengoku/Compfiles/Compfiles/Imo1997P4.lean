@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1997, Problem 4
 
@@ -342,3 +342,4 @@ lemma silver_two_pow : ∀ k, ∃ M, SilverMatrix (2 ^ k) M
       exact silver_double Nat.one_le_two_pow (silver_two_pow _)
 
 end Imo1997P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

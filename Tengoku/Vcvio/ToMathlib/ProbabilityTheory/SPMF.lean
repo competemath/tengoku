@@ -17,7 +17,7 @@ The probability of failure is the missing mass to make the `PMF` sum to `1`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 open ENNReal
 
 attribute [simp] PMF.coe_le_one PMF.apply_ne_top
@@ -54,16 +54,16 @@ end PMF
 /-- A subprobability mass function is a function `α → ℝ≥0∞` such that values have an infinite
 sum at most `1` represented by applying an `OptionT` transformer to the `PMF` monad.
 The new `failure`/`none` value holds the "missing" mass to reach the total sum of `1`. -/
-def SPMF : Type u → Type u := OptionT PMF
+def _root_.Tengoku.Vcvio.SPMF : Type u → Type u := OptionT PMF
 
 /-- View a distribution on `Option α` as a subdistribution on `α`,
 where `none` is corresponds to the missing mass. -/
-protected def SPMF.mk (p : PMF (Option α)) : SPMF α := OptionT.mk p
+protected def Tengoku.Vcvio.SPMF.mk (p : PMF (Option α)) : SPMF α := OptionT.mk p
 
 /-- View a subdistribution on `α` as a distribution on `Option α`. -/
-protected def SPMF.toPMF (p : SPMF α) : PMF (Option α) := OptionT.run p
+protected def Tengoku.Vcvio.SPMF.toPMF (p : SPMF α) : PMF (Option α) := OptionT.run p
 
-namespace SPMF
+namespace Tengoku.Vcvio.SPMF
 
 @[simp] lemma run_eq_toPMF (p : SPMF α) : p.run = p.toPMF := rfl
 
@@ -303,4 +303,5 @@ protected lemma fmap_eq_map (f : α → β) (c : SPMF α) :
   show (f <$> c : SPMF β) = SPMF.mk (PMF.map (Option.map f) c.toPMF)
   by rw [← SPMF.toPMF_inj, SPMF.toPMF_map, SPMF.toPMF_mk, PMF.monad_map_eq_map]
 
-end SPMF
+end Tengoku.Vcvio.SPMF
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

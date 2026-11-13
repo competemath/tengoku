@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # Iranian Mathematical Olympiad 1998, problem 3
 
@@ -32,3 +32,4 @@ lemma cube_root_cube (x : ℝ) (h : 0 ≤ x) : (x^(3:ℝ)) ^ ((1:ℝ)/3) = x := 
   exact Real.rpow_one x
 
 end Iran1998P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

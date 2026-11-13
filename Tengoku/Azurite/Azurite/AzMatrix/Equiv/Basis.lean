@@ -17,7 +17,7 @@ import Tengoku.Azurite.Azurite.AzMatrix.Operations
 import Tengoku.Seed.Data.Matrix.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} [Zero R] [One R] {m n : Nat}
 
@@ -51,3 +51,4 @@ theorem AzMatrix.ofFn_single (i₀ : Fin m) (j₀ : Fin n) :
       AzMatrix.single i₀ j₀ := rfl
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

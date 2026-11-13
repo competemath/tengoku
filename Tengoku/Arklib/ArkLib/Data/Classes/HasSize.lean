@@ -14,9 +14,10 @@ public import Tengoku.Seed.Logic.Embedding.Basic
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 /-- Type class for types that has an injective mapping to a vector of a given length `size` of
   another type (often `UInt8`).-/
-class HasSize (α : Type*) (β : Type*) where
+class _root_.Tengoku.Arklib.HasSize (α : Type*) (β : Type*) where
   size : Nat
   toFun : α ↪ Vector β size
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

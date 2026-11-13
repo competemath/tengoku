@@ -18,7 +18,7 @@ Modified 2026 by Anthropic PBC.
 -/
 import Tengoku.FormalMath.Zeta23.Prelude.InstancePriorities
 import Tengoku
-
+namespace Tengoku.FormalMath end Tengoku.FormalMath open Tengoku.FormalMath
 attribute [local instance 10] LieAlgebra.toModule
 
 open Nat Filter Set Function Complex Real ComplexConjugate MeasureTheory
@@ -47,7 +47,7 @@ lemma AnalyticOn.norm_le_of_norm_le_on_sphere {C r R : ℝ} {f : ℂ → ℂ} {w
 /--
 @isnad1 id=le.7h5v.s7.70ac087b6ba4 from=translated src=- shape=cf022635 vocab=73d401e6
 -/
-theorem borelCaratheodory' {M r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
+theorem _root_.Tengoku.FormalMath.borelCaratheodory' {M r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (Mpos : 0 < M) (Rpos : 0 < R) (hyp_r : r < R)
     (analytic : AnalyticOn ℂ f (Metric.ball 0 R))
     (zeroAtZero : f 0 = 0)
@@ -71,7 +71,7 @@ theorem borelCaratheodory' {M r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
 /--
 @isnad1 id=eq.4h5v.s8.c33c44df5fe1 from=translated src=- shape=13dcc0cd vocab=be3b24f3
 -/
-lemma cauchy_formula_deriv {r r' R : ℝ} {f : ℂ → ℂ} {z : ℂ}
+lemma _root_.Tengoku.FormalMath.cauchy_formula_deriv {r r' R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (r_lt_r' : r < r') (r'_lt_R : r' < R)
     (hf_on_ball : DifferentiableOn ℂ f (Metric.ball 0 R))
     (hz : z ∈ Metric.closedBall 0 r) :
@@ -84,7 +84,7 @@ lemma cauchy_formula_deriv {r r' R : ℝ} {f : ℂ → ℂ} {z : ℂ}
 /--
 @isnad1 id=ex.4h3v.s8.b1683062b8b3 from=translated src=- shape=4d826ceb vocab=0a940a4b
 -/
-theorem LogOfAnalyticFunction {r R : ℝ} {B : ℂ → ℂ}
+theorem _root_.Tengoku.FormalMath.LogOfAnalyticFunction {r R : ℝ} {B : ℂ → ℂ}
     (zero_lt_r : 0 < r) (r_lt_R : r < R)
     (BanalyticOnNhdOfDR : AnalyticOnNhd ℂ B (Metric.closedBall (0 : ℂ) R))
     (Bnonzero : ∀ z ∈ Metric.closedBall (0 : ℂ) R, B z ≠ 0) :
@@ -146,7 +146,7 @@ theorem LogOfAnalyticFunction {r R : ℝ} {B : ℂ → ℂ}
 /--
 @isnad1 id=ex.5h4v.s8.59abad1f14e2 from=translated src=- shape=6956362d vocab=0a940a4b
 -/
-theorem LogOfAnalyticFunction' {r' r R : ℝ} {B : ℂ → ℂ}
+theorem _root_.Tengoku.FormalMath.LogOfAnalyticFunction' {r' r R : ℝ} {B : ℂ → ℂ}
     (r'_pos : 0 < r') (r'_lt_r : r' < r) (r_lt_R : r < R)
     (BanalyticOnNhdOfDR : AnalyticOnNhd ℂ B (Metric.closedBall (0 : ℂ) R))
     (Bnonzero : ∀ z ∈ Metric.closedBall (0 : ℂ) r, B z ≠ 0) :
@@ -157,12 +157,12 @@ theorem LogOfAnalyticFunction' {r' r R : ℝ} {B : ℂ → ℂ}
   have BanalyticOnNhdOfDr : AnalyticOnNhd ℂ B (Metric.closedBall (0 : ℂ) r) := BanalyticOnNhdOfDR.mono (Metric.closedBall_subset_closedBall r_lt_R.le)
   exact LogOfAnalyticFunction r'_pos r'_lt_r BanalyticOnNhdOfDr Bnonzero
 
-def SetOfZeros (R : ℝ) (f : ℂ → ℂ) : Set ℂ := {ρ : ℂ | ‖ρ‖ ≤ R ∧ f ρ = 0}
+def _root_.Tengoku.FormalMath.SetOfZeros (R : ℝ) (f : ℂ → ℂ) : Set ℂ := {ρ : ℂ | ‖ρ‖ ≤ R ∧ f ρ = 0}
 
 /--
 @isnad1 id=finite.2h2v.s5.b7b566a9f7a8 from=translated src=- shape=33df2d95 vocab=4e3515ca
 -/
-lemma finiteSetOfZeros_mono {r : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.finiteSetOfZeros_mono {r : ℝ} {f : ℂ → ℂ}
     (r_lt_one : r < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite) :
     (SetOfZeros r f).Finite := by
@@ -173,7 +173,7 @@ lemma finiteSetOfZeros_mono {r : ℝ} {f : ℂ → ℂ}
   exact ⟨by linarith, hz.2⟩
 
 open Classical
-noncomputable def ZeroFactor (f : ℂ → ℂ) (z : ℂ) : ℂ :=
+noncomputable def _root_.Tengoku.FormalMath.ZeroFactor (f : ℂ → ℂ) (z : ℂ) : ℂ :=
   if h1 : AnalyticAt ℂ f z then
     if h2 : analyticOrderAt f z ≠ ⊤ then
       (h1.analyticOrderAt_ne_top.mp h2).choose z
@@ -183,7 +183,7 @@ noncomputable def ZeroFactor (f : ℂ → ℂ) (z : ℂ) : ℂ :=
 /--
 @isnad1 id=ex.4h3v.s7.dbbf277b80eb from=translated src=- shape=16a760f6 vocab=49e62988
 -/
-lemma ZeroFactorization {R : ℝ} {f : ℂ → ℂ} {ρ : ℂ}
+lemma _root_.Tengoku.FormalMath.ZeroFactorization {R : ℝ} {f : ℂ → ℂ} {ρ : ℂ}
     (RleOne : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
     (hf_neq_zero_at_zero : f 0 ≠ 0)
@@ -210,7 +210,7 @@ lemma ZeroFactorization {R : ℝ} {f : ℂ → ℂ} {ρ : ℂ}
   simp only [ZeroFactor, AnalyticAt_ρ, ↓reduceDIte, ne_eq, finiteOrder, not_false_eq_true,
     smul_eq_mul, g]
 
-noncomputable def Cf (r : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
+noncomputable def _root_.Tengoku.FormalMath.Cf (r : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
   if finite_zeros_mono : (SetOfZeros r f).Finite then
     if _ : z ∈ SetOfZeros r f then
       ZeroFactor f z / ∏ ρ ∈ (finite_zeros_mono.toFinset \ {z}), (z - ρ) ^ (analyticOrderNatAt f ρ)
@@ -221,7 +221,7 @@ noncomputable def Cf (r : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
 /--
 @isnad1 id=analytic.0h3v.s6.ca4b27e65d31 from=translated src=- shape=9678d8ad vocab=c0574293
 -/
-lemma analyticAt_finset_prod_sub_pow (s : Finset ℂ) (g : ℂ → ℕ) (w : ℂ) :
+lemma _root_.Tengoku.FormalMath.analyticAt_finset_prod_sub_pow (s : Finset ℂ) (g : ℂ → ℕ) (w : ℂ) :
     AnalyticAt ℂ (fun z => ∏ ρ ∈ s, (z - ρ) ^ g ρ) w := by
   induction s using Finset.induction with
   | empty =>
@@ -236,7 +236,7 @@ lemma analyticAt_finset_prod_sub_pow (s : Finset ℂ) (g : ℂ → ℕ) (w : ℂ
 /--
 @isnad1 id=analytic.4h3v.s7.10578b3cbbcc from=translated src=- shape=b5c286ad vocab=fbc6b46b
 -/
-lemma CfAnalytic {r R : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.CfAnalytic {r R : ℝ} {f : ℂ → ℂ}
     (r_lt_R : r < R) (R_lt_one : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
     (hf_neq_zero_at_zero : f 0 ≠ 0) :
@@ -287,7 +287,7 @@ lemma CfAnalytic {r R : ℝ} {f : ℂ → ℂ}
   · simp only [finite_zeros_mono, ↓reduceDIte]
     exact analyticAt_const
 
-noncomputable def BlaschkeB (r R : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
+noncomputable def _root_.Tengoku.FormalMath.BlaschkeB (r R : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
   if finite_zeros_mono : (SetOfZeros r f).Finite then
     (Cf r f) z * (∏ ρ ∈ finite_zeros_mono.toFinset, (R - z * (conj ρ) / R) ^ (analyticOrderNatAt f ρ))
   else 1
@@ -295,7 +295,7 @@ noncomputable def BlaschkeB (r R : ℝ) (f : ℂ → ℂ) (z : ℂ) : ℂ :=
 /--
 @isnad1 id=analytic.6h3v.s7.45b43c63373a from=translated src=- shape=53c38697 vocab=eceefbb1
 -/
-lemma BlaschkeAnalytic {r R : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.BlaschkeAnalytic {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
@@ -317,7 +317,7 @@ lemma BlaschkeAnalytic {r R : ℝ} {f : ℂ → ℂ}
 /--
 @isnad1 id=eq.5h3v.s7.0e2540420544 from=translated src=- shape=994d0802 vocab=9fcc8358
 -/
-lemma BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_one : r < 1) (r_lt_R : r < R)
     (finiteZeros : (SetOfZeros 1 f).Finite)
     (hf_neq_zero_at_zero : f 0 ≠ 0) :
@@ -339,7 +339,7 @@ lemma BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
 /--
 @isnad1 id=le.5h3v.s6.a45410c84779 from=translated src=- shape=42eb2b4e vocab=16f5307a
 -/
-lemma norm_fOfZero_le_norm_BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.norm_fOfZero_le_norm_BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
     (hf_neq_zero_at_zero : f 0 ≠ 0) :
@@ -364,7 +364,7 @@ lemma norm_fOfZero_le_norm_BlaschkeOfZero {r R : ℝ} {f : ℂ → ℂ}
 /--
 @isnad1 id=le.8h5v.s7.6355e9da3a0a from=translated src=- shape=c50bad34 vocab=1c9f226b
 -/
-lemma DiskBound {B r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
+lemma _root_.Tengoku.FormalMath.DiskBound {B r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
@@ -404,7 +404,7 @@ lemma DiskBound {B r R : ℝ} {f : ℂ → ℂ} {z : ℂ}
 /--
 @isnad1 id=ne.7h4v.s7.8369d6b4c3bd from=translated src=- shape=c4c72480 vocab=8bbefe01
 -/
-lemma BlaschkeNonzero {r R : ℝ} {f : ℂ → ℂ}
+lemma _root_.Tengoku.FormalMath.BlaschkeNonzero {r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_R : r < R) (R_lt_one : R < 1)
     (finiteZeros : (SetOfZeros 1 f).Finite)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1))
@@ -446,7 +446,7 @@ lemma BlaschkeNonzero {r R : ℝ} {f : ℂ → ℂ}
 /--
 @isnad1 id=le.8h4v.s7.4f9600ef5607 from=translated src=- shape=a2913efb vocab=f954c41a
 -/
-theorem ZerosBound {B r R : ℝ} {f : ℂ → ℂ}
+theorem _root_.Tengoku.FormalMath.ZerosBound {B r R : ℝ} {f : ℂ → ℂ}
     (r_pos : 0 < r) (r_lt_one : r < 1) (r_lt_R : r < R) (R_lt_one : R < 1)
     (hfAnalytic : AnalyticOnNhd ℂ f (Metric.closedBall (0 : ℂ) 1)) (hf0_eq_one : f 0 = 1)
     (finiteZeros : (SetOfZeros 1 f).Finite) (fz_bound : ∀ z : ℂ, ‖z‖ ≤ R → ‖f z‖ ≤ B) :
@@ -475,3 +475,4 @@ theorem ZerosBound {B r R : ℝ} {f : ℂ → ℂ}
       rw[← blaschke_eq]
       exact DiskBound r_pos r_lt_R R_lt_one finiteZeros hfAnalytic
         hf0_ne_zero fz_bound (Metric.mem_closedBall_self (le_of_lt R_pos))
+-- Tengoku: root names of this library moved to Tengoku.FormalMath so they do not collide with other libraries (generated)

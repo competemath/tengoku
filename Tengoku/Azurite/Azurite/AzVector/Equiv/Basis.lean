@@ -18,7 +18,7 @@ import Tengoku.Azurite.Azurite.AzVector.Operations
 import Tengoku.Seed.Algebra.Group.Pi.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} [Zero R] [One R] {n : Nat}
 
@@ -38,3 +38,4 @@ theorem AzVector.ofFn_indicator (i : Fin n) :
   ext j; simp [AzVector.ofFn, stdBasis, Vector.ofFn]
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

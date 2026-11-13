@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1999, Problem 4
 
@@ -53,3 +53,4 @@ theorem sum_sq_le_sq_sum_of_nonpos {ι : Type*} (s : Finset ι) (f : ι → ℝ)
   exact Finset.sum_sq_le_sq_sum_of_nonneg fun i hi ↦ neg_nonneg.mpr (hf i hi)
 
 end Usa1999P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

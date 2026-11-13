@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1990, Problem 3
 
@@ -575,3 +575,4 @@ lemma case2b (n : ℕ) (hn : Odd n) (h13 : 13 ∣ n) (h17 : n % 17 = 16) :
 end Cases
 
 end Usa1990P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1986, Problem 3
 
@@ -151,3 +151,4 @@ lemma ge_337 {n m : ℕ} (hn : 1 < n) (h : (n+1) * (2*n+1) = 6 * m^2) :
     exact no_small_solution u (by lia) w (by lia) hu2 hrel
 
 end Usa1986P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

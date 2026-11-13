@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1991, Problem 3
 
@@ -132,3 +132,4 @@ lemma eventually_constant_mod (m : ℕ) (hm : 1 ≤ m) :
         exact h
 
 end Usa1991P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

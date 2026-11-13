@@ -14,7 +14,7 @@ import Tengoku.Azurite.Azurite.AzMatrix.Operations
 import Tengoku.Seed.Algebra.Group.Pi.Basic
 
 /-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite
 variable {R : Type _} [Add R] {m n : Nat}
 
@@ -35,3 +35,4 @@ theorem AzMatrix.ofFn_add (f g : Fin m → Fin n → R) :
   apply AzMatrix.toFn_injective; ext i j; simp
 
 end Azurite
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

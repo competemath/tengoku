@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2014, Problem 2
 
@@ -302,3 +302,4 @@ lemma exists_config_no_square (hn : 2 ≤ n) :
 abbrev greatestK : ℕ → ℕ := fun n ↦ Nat.sqrt (n - 1)
 
 end Imo2014P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

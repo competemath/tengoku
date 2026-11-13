@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1985, Problem 1
 
@@ -69,3 +69,4 @@ abbrev is_valid (x : ℕ → ℤ) (y z : ℤ) : Prop :=
     ∀ i ∈ Finset.range 1985, ∀ j ∈ Finset.range 1985, i ≠ j → x i ≠ x j
 
 end Usa1985P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

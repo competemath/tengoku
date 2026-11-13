@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2024, Problem 6
 
@@ -327,3 +327,4 @@ lemma card_range_fExample : #(Set.range (fun x ↦ fExample x + fExample (-x))) 
 abbrev solution : ℕ := 2
 
 end Imo2024P6
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

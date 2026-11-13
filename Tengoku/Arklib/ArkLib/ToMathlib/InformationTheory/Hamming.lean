@@ -21,11 +21,11 @@ Intended as a candidate for upstreaming to `Mathlib.InformationTheory.Hamming`, 
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 /-- Reindexing the coordinates by an equivalence preserves Hamming distance.
 @isnad1 id=eq.0h6v.s6.e71c375e950e from=translated src=- shape=dc66c231 vocab=f7b016dd
 -/
-theorem hammingDist_comp_equiv {ι ι' α : Type*} [Fintype ι] [Fintype ι'] [DecidableEq α]
+theorem _root_.Tengoku.Arklib.hammingDist_comp_equiv {ι ι' α : Type*} [Fintype ι] [Fintype ι'] [DecidableEq α]
     (e : ι' ≃ ι) (x y : ι → α) :
     hammingDist (x ∘ e) (y ∘ e) = hammingDist x y := by
   unfold hammingDist
@@ -34,3 +34,4 @@ theorem hammingDist_comp_equiv {ι ι' α : Type*} [Fintype ι] [Fintype ι'] [D
   · intro i hi; simpa using hi
   · intro i' hi'; simp
   · intro i hi; simp
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

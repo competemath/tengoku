@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 2017, Problem 3
 
@@ -1145,3 +1145,4 @@ between her and the rabbit becomes at most 100?" is no. -/
 abbrev does_exist : Bool := false
 
 end Imo2017P3
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

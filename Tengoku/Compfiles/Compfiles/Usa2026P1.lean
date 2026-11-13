@@ -10,7 +10,7 @@ public import Tengoku
 public import Tengoku.Compfiles.Compfiles.Usa1981P5
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2026, Problem 1
 
@@ -395,3 +395,4 @@ lemma T_nonneg (n : ℕ) (y : ℝ) (hn : 2 ≤ n) (hy1 : 0 < y) (hy2 : y ≤ 1) 
     exact sub_nonneg.mpr h_sum_le
 
 end Usa2026P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

@@ -41,7 +41,7 @@ Stateful handlers can use this layer as a typed cell-keyed state convention:
 `Heap Ident` stores one value of the cell-specific type at every identifier. -/
 
 @[expose] public section
-
+namespace Tengoku.Vcvio end Tengoku.Vcvio open Tengoku.Vcvio 
 universe u v
 
 /-! ## `CellSpec` : a typed cell directory
@@ -53,7 +53,7 @@ default is what the heap holds before any cell is written.
 `Ident` lives in `Type u`, value types in `Type v`; both universes are
 independent. Sum composition (`Sum.instCellSpec` below) requires both
 operands' universes to match. -/
-class CellSpec (Ident : Type u) where
+class _root_.Tengoku.Vcvio.CellSpec (Ident : Type u) where
   /-- Value type carried by the cell at identifier `i`. -/
   type : Ident → Type v
   /-- Default value of the cell at identifier `i`, used to initialize a fresh
@@ -72,10 +72,10 @@ attribute [reducible] CellSpec.type CellSpec.default
 
 `Heap Ident` is the type of states: one cell-value per identifier. Lives in
 `Type max u v`. -/
-abbrev Heap (Ident : Type u) [CellSpec.{u, v} Ident] : Type max u v :=
+abbrev _root_.Tengoku.Vcvio.Heap (Ident : Type u) [CellSpec.{u, v} Ident] : Type max u v :=
   (i : Ident) → CellSpec.type i
 
-namespace Heap
+namespace Tengoku.Vcvio.Heap
 
 variable {Ident : Type u} [CellSpec.{u, v} Ident]
 
@@ -118,7 +118,7 @@ theorem update_idem [DecidableEq Ident] (h : Heap Ident) (i : Ident)
     (v w : CellSpec.type i) : (h.update i v).update i w = h.update i w :=
   Function.update_idem ..
 
-end Heap
+end Tengoku.Vcvio.Heap
 
 /-! ## `Sum` of identifier sets : `CellSpec` instance
 
@@ -143,7 +143,7 @@ instance PEmpty.instCellSpec : CellSpec.{u, v} PEmpty where
   type i := i.elim
   default i := i.elim
 
-namespace Heap
+namespace Tengoku.Vcvio.Heap
 
 /-! ## `Heap.split` : the canonical decomposition
 
@@ -252,7 +252,7 @@ theorem split_symm_update_inr {α β : Type u}
         simp [split, Heap.update]
       · simp [split, Heap.update, hb']
 
-end Heap
+end Tengoku.Vcvio.Heap
 
 /-! ## Sanity check: a two-cell heap
 
@@ -300,3 +300,4 @@ example :
   simp
 
 end HeapExample
+-- Tengoku: root names of this library moved to Tengoku.Vcvio so they do not collide with other libraries (generated)

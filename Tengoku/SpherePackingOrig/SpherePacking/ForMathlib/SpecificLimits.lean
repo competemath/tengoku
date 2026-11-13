@@ -16,10 +16,10 @@ Auxiliary lemmas computing specific limits used elsewhere in the project.
 -/
 
 @[expose] public section
-
+namespace Tengoku.SpherePackingOrig end Tengoku.SpherePackingOrig open Tengoku.SpherePackingOrig 
 open Filter
 
-theorem summable_real_norm_mul_geometric_of_norm_lt_one {k : ℕ} {r : ℂ}
+theorem _root_.Tengoku.SpherePackingOrig.summable_real_norm_mul_geometric_of_norm_lt_one {k : ℕ} {r : ℂ}
     (hr : ‖r‖ < 1) {u : ℕ → ℂ} (hu : u =O[atTop] (fun n ↦ (↑(n ^ k) : ℝ))) :
     Summable fun n : ℕ ↦ ‖u n * r ^ n‖ := by
   apply summable_of_isBigO_nat (g :=  (fun n ↦ ‖(↑(n ^ k) : ℂ ) * r ^ n‖))
@@ -30,3 +30,4 @@ theorem summable_real_norm_mul_geometric_of_norm_lt_one {k : ℕ} {r : ℂ}
     · push_cast at hu
       simp [hu]
     · apply Asymptotics.isBigO_refl
+-- Tengoku: root names of this library moved to Tengoku.SpherePackingOrig so they do not collide with other libraries (generated)

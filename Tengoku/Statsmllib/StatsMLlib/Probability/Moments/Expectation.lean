@@ -19,12 +19,12 @@ This module introduces no new definitions.
 * `norm_expectation_le_of_norm_le_const`: bounds the norm of an expectation.
 * `abs_expectation_le_of_abs_le_const`: scalar specialization using absolute values.
 -/
-
+namespace Tengoku.Statsmllib end Tengoku.Statsmllib open Tengoku.Statsmllib
 open MeasureTheory ProbabilityTheory
 
 variable {Ω : Type*} [MeasurableSpace Ω] {μ : Measure Ω} [IsProbabilityMeasure μ]
 
-lemma norm_expectation_le_of_norm_le_const {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
+lemma _root_.Tengoku.Statsmllib.norm_expectation_le_of_norm_le_const {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   {f : Ω → E} {C : ℝ} (h : ∀ᵐ (x : Ω) ∂μ, ‖f x‖ ≤ C) :
   ‖μ[f]‖ ≤ C := by
   calc
@@ -34,7 +34,8 @@ lemma norm_expectation_le_of_norm_le_const {E : Type*} [NormedAddCommGroup E] [N
       rw [this]
       simp
 
-lemma abs_expectation_le_of_abs_le_const
+lemma _root_.Tengoku.Statsmllib.abs_expectation_le_of_abs_le_const
   {f : Ω → ℝ} {C : ℝ} (h : ∀ᵐ (x : Ω) ∂μ, |f x| ≤ C) :
   |μ[f]| ≤ C := by
   exact @norm_expectation_le_of_norm_le_const Ω _ _ _ ℝ _ _ f C h
+-- Tengoku: root names of this library moved to Tengoku.Statsmllib so they do not collide with other libraries (generated)

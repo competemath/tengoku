@@ -8,7 +8,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # International Mathematical Olympiad 1960, Problem 1
 
@@ -113,3 +113,4 @@ theorem left_direction (n : ℕ) (spn : SolutionPredicate n) : ProblemPredicate 
   rcases spn with (rfl | rfl) <;> exact ⟨by norm_num, by decide, by norm_num; rfl⟩
 
 end Imo1960P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

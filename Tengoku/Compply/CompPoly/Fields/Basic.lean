@@ -19,9 +19,9 @@ polynomial composition with `-X` and `X²`.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Compply end Tengoku.Compply open Tengoku.Compply 
 /-- A type class for fields of characteristic ≠ 2, extending `Field`.-/
-class NonBinaryField (F : Type*) extends Field F where
+class _root_.Tengoku.Compply.NonBinaryField (F : Type*) extends Field F where
   char_neq_2 : (2 : F) ≠ 0
 
 export NonBinaryField (char_neq_2)
@@ -36,13 +36,13 @@ variable {F : Type*} [NonBinaryField F]
 @isnad1 id=eq.0h1v.s6.26b5333b1f46 from=translated src=- shape=2e52a355 vocab=b501b1e2
 -/
 @[simp]
-lemma two_mul_inv_two : (2 : F) * 2⁻¹ = 1 := by simp
+lemma _root_.Tengoku.Compply.two_mul_inv_two : (2 : F) * 2⁻¹ = 1 := by simp
 
 /--
 @isnad1 id=eq.0h1v.s6.d9f4ba175155 from=translated src=- shape=2e2f7e7d vocab=b501b1e2
 -/
 @[simp]
-lemma inv_two_mul_two : 2⁻¹ * (2 : F) = 1 := by simp
+lemma _root_.Tengoku.Compply.inv_two_mul_two : 2⁻¹ * (2 : F) = 1 := by simp
 
 end NonBinaryField
 
@@ -63,7 +63,7 @@ private lemma coeffs_of_comp_minus_x_pos_degree {f : Polynomial F} {n : ℕ} (h 
 /--
 @isnad1 id=eq.0h3v.s6.3fa3e9fc05fc from=translated src=- shape=3f6287fe vocab=0f25567e
 -/
-theorem coeffs_of_comp_minus_x {f : Polynomial F} {n : ℕ} :
+theorem _root_.Tengoku.Compply.coeffs_of_comp_minus_x {f : Polynomial F} {n : ℕ} :
     (f.comp (-X)).coeff n = if Even n then f.coeff n else -f.coeff n := by
     by_cases hpos : 0 < f.degree
     · rw [coeffs_of_comp_minus_x_pos_degree hpos]
@@ -90,7 +90,7 @@ private lemma comp_x_square_coeff_pos_deg {f : Polynomial F} {n : ℕ} (h : 0 < 
 /--
 @isnad1 id=eq.0h3v.s7.c6610dbbac4a from=translated src=- shape=32769dee vocab=26f66c7b
 -/
-theorem comp_x_square_coeff {f : Polynomial F} {n : ℕ} :
+theorem _root_.Tengoku.Compply.comp_x_square_coeff {f : Polynomial F} {n : ℕ} :
     (f.comp (X * X)).coeff n = if Even n then f.coeff (n / 2) else 0 := by
   by_cases hpos : 0 < f.degree
   · rw [comp_x_square_coeff_pos_deg hpos]
@@ -101,7 +101,7 @@ theorem comp_x_square_coeff {f : Polynomial F} {n : ℕ} :
     have : (n + 1 + 1) / 2 = n / 2 + 1 := by omega
     aesop
 
-lemma eq_poly_deg_one {a b c d : F} {x₁ x₂ : F}
+lemma _root_.Tengoku.Compply.eq_poly_deg_one {a b c d : F} {x₁ x₂ : F}
     (h1 : a + b * x₁ = c + d * x₁)
     (h2 : a + b * x₂ = c + d * x₂)
     (h1_2 : x₁ ≠ x₂) :
@@ -115,3 +115,4 @@ lemma eq_poly_deg_one {a b c d : F} {x₁ x₂ : F}
             h1_2
 
 end
+-- Tengoku: root names of this library moved to Tengoku.Compply so they do not collide with other libraries (generated)

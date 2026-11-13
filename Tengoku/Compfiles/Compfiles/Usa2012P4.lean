@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2012, Problem 4
 
@@ -216,3 +216,4 @@ abbrev solution_set : Set (ℕ → ℕ) :=
   { f | (∀ n, 0 < n → f n = 1) ∨ (∀ n, 0 < n → f n = 2) ∨ (∀ n, 0 < n → f n = n) }
 
 end Usa2012P4
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

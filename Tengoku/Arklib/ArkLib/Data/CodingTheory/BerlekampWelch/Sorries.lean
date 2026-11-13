@@ -17,7 +17,7 @@ public import Tengoku.Seed.Data.Matrix.Mul
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 variable {α : Type} {F : Type} [Field F]
 variable {n m : ℕ}
 
@@ -48,7 +48,7 @@ Returning either:
 ### Implementation Notes:
 - Marked `noncomputable` because the existence check uses classical logic.
 - Used internally by the Berlekamp-Welch decoder.-/
-noncomputable def linsolve (A : Matrix (Fin n) (Fin m) F) (b : Fin n → F) :
+noncomputable def _root_.Tengoku.Arklib.linsolve (A : Matrix (Fin n) (Fin m) F) (b : Fin n → F) :
     Option (Fin m → F) := by
     classical
     exact if h : ∃ x, A.mulVec x = b then some (Classical.choose h) else none
@@ -66,7 +66,7 @@ If `linsolve` returns `some x`, then `x` is indeed a solution to the linear syst
 - `h : linsolve A b = some x` - Proof that the solver returned this solution
 @isnad1 id=eq.1h6v.s6.96e011883b19 from=translated src=- shape=73b3549a vocab=d32add57
 -/
-theorem linsolve_some {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F} {x : Fin m → F}
+theorem _root_.Tengoku.Arklib.linsolve_some {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F} {x : Fin m → F}
     (h : linsolve A b = some x) : A.mulVec x = b := by
   unfold linsolve at h
   by_cases hex : ∃ x, A.mulVec x = b
@@ -89,10 +89,11 @@ If `linsolve` returns `none`, the linear system has no solution.
 - `h : linsolve A b = none` - Proof that the solver failed to find a solution
 @isnad1 id=not.1h5v.s6.6bb25548affa from=translated src=- shape=8915910a vocab=e527c7c3
 -/
-theorem linsolve_none {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F}
+theorem _root_.Tengoku.Arklib.linsolve_none {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F}
     (h : linsolve A b = none) : ¬∃ x, A.mulVec x = b := by
   unfold linsolve at h
   by_cases hex : ∃ x, A.mulVec x = b
   · rw [dite_eq_left hex] at h
     cases h
   · exact hex
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

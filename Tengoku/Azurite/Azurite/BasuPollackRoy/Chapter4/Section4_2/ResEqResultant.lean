@@ -29,7 +29,7 @@ machinery for `Polynomial.resultant` (`resultant_map_map`,
 `resultant_add_mul_left`, `resultant_comm`, etc.) for proving theorems
 about our `Res`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR.Chapter4
 
 open Polynomial
@@ -119,3 +119,4 @@ theorem Res_eq_resultant (P Q : D[X]) :
   exact Matrix.det_transpose _
 
 end Azurite.BPR.Chapter4
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

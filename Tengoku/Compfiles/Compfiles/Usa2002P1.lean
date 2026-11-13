@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 2002, Problem 1
 
@@ -281,3 +281,4 @@ lemma usa2002_p1_generalized
         exact Nat.le_of_lt hg
 
 end Usa2002P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

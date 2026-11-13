@@ -98,7 +98,7 @@ list of instantiations rather than a second copy of a 446-line argument.
 
 * [Silverman, *The Arithmetic of Elliptic Curves*][silverman2009], III.7.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open scoped AddSubgroup
 
 /-! ### Coefficients modulo `n` acting on `n`-torsion elements of an abelian group
@@ -114,14 +114,14 @@ section Generic
 variable {A : Type*} [AddCommGroup A]
 
 /-- Natural numbers with the same residue mod `n` act identically on an element killed by `n`. -/
-theorem nsmul_congr_of_natCast_eq {n : ℕ} {g : A} (hg : n • g = 0) {s t : ℕ}
+theorem _root_.Tengoku.LanaEllipticCurves.nsmul_congr_of_natCast_eq {n : ℕ} {g : A} (hg : n • g = 0) {s t : ℕ}
     (h : (s : ZMod n) = (t : ZMod n)) : s • g = t • g := by
   rw [nsmul_eq_mod_nsmul s hg, nsmul_eq_mod_nsmul t hg,
     (ZMod.natCast_eq_natCast_iff' s t n).mp h]
 
 /-- An integer acts on an element killed by `n` through the canonical representative of its residue
 class in `ZMod n`. -/
-theorem zsmul_eq_val_nsmul {n : ℕ} [NeZero n] {g : A} (hg : n • g = 0) (m : ℤ) :
+theorem _root_.Tengoku.LanaEllipticCurves.zsmul_eq_val_nsmul {n : ℕ} [NeZero n] {g : A} (hg : n • g = 0) (m : ℤ) :
     m • g = ((m : ZMod n)).val • g := by
   obtain ⟨c, hc⟩ : (n : ℤ) ∣ m - (((m : ZMod n)).val : ℤ) := by
     refine (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp ?_
@@ -133,7 +133,7 @@ theorem zsmul_eq_val_nsmul {n : ℕ} [NeZero n] {g : A} (hg : n • g = 0) (m : 
 
 /-- The additive homomorphism `(ZMod n)² →+ A` attached to a pair of elements of `A` killed by `n`,
 namely `(a, b) ↦ a.val • g₁ + b.val • g₂`. -/
-def zmodPairHom {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0) :
+def _root_.Tengoku.LanaEllipticCurves.zmodPairHom {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0) :
     ZMod n × ZMod n →+ A where
   toFun ab := ab.1.val • g₁ + ab.2.val • g₂
   map_zero' := by simp
@@ -149,12 +149,12 @@ def zmodPairHom {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h�
     abel
 
 @[simp]
-theorem zmodPairHom_apply {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0)
+theorem _root_.Tengoku.LanaEllipticCurves.zmodPairHom_apply {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0)
     (ab : ZMod n × ZMod n) : zmodPairHom h₁ h₂ ab = ab.1.val • g₁ + ab.2.val • g₂ := rfl
 
 /-- The `ZMod n`-coefficient map onto a pair of generators is surjective onto the subgroup they
 generate. -/
-theorem zmodPairHom_surjOn {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0)
+theorem _root_.Tengoku.LanaEllipticCurves.zmodPairHom_surjOn {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g₁ = 0) (h₂ : n • g₂ = 0)
     {x : A} (hx : x ∈ AddSubgroup.closure ({g₁, g₂} : Set A)) :
     ∃ ab : ZMod n × ZMod n, zmodPairHom h₁ h₂ ab = x := by
   obtain ⟨m, l, hml⟩ := AddSubgroup.mem_closure_pair.mp hx
@@ -162,7 +162,7 @@ theorem zmodPairHom_surjOn {n : ℕ} [NeZero n] {g₁ g₂ : A} (h₁ : n • g�
     rw [zmodPairHom_apply, ← zsmul_eq_val_nsmul h₁ m, ← zsmul_eq_val_nsmul h₂ l, hml]⟩
 
 /-- In `ZMod n × ZMod n` the two standard vectors generate. -/
-theorem closure_pair_zmod_prod (n : ℕ) [NeZero n] :
+theorem _root_.Tengoku.LanaEllipticCurves.closure_pair_zmod_prod (n : ℕ) [NeZero n] :
     AddSubgroup.closure ({((1 : ZMod n), (0 : ZMod n)), ((0 : ZMod n), (1 : ZMod n))} :
       Set (ZMod n × ZMod n)) = ⊤ := by
   have h1 : ((1 : ZMod n), (0 : ZMod n)) ∈ ({((1 : ZMod n), (0 : ZMod n)),
@@ -486,3 +486,4 @@ theorem ne_zero_and_ne_of_closure_pair_of_card {n : ℕ} [NeZero n]
     exact congrArg Prod.fst ((torsionPairHom_bijective_of_card hcard hgen).1 himg)
 
 end WeierstrassCurve.Affine
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

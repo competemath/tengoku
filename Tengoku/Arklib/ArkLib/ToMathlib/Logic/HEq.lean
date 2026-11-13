@@ -18,7 +18,7 @@ heterogeneous equality when the corresponding types are equal.
 -/
 
 @[expose] public section
-
+namespace Tengoku.Arklib end Tengoku.Arklib open Tengoku.Arklib 
 universe u v
 
 /-! ### Transports -/
@@ -29,7 +29,7 @@ universe u v
 results.
 @isnad1 id=heq.4h8v.s5.22935b0b9b18 from=translated src=- shape=05f54590 vocab=c80cf600
 -/
-theorem heq_apply {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : β = β')
+theorem _root_.Tengoku.Arklib.heq_apply {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : β = β')
     {f : α → β} {f' : α' → β'} (hf : HEq f f') {a : α} {a' : α'} (ha : HEq a a') :
     HEq (f a) (f' a') := by
   subst hα
@@ -42,7 +42,7 @@ theorem heq_apply {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : β
 equal domains and codomains are `HEq` as soon as they agree on `HEq` arguments.
 @isnad1 id=heq.3h6v.s5.815210be750a from=translated src=- shape=dcab5d74 vocab=c80cf600
 -/
-theorem heq_funext {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : β = β')
+theorem _root_.Tengoku.Arklib.heq_funext {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : β = β')
     {f : α → β} {f' : α' → β'}
     (h : ∀ (a : α) (a' : α'), HEq a a' → HEq (f a) (f' a')) : HEq f f' := by
   subst hα
@@ -53,7 +53,7 @@ theorem heq_funext {α α' : Sort u} {β β' : Sort v} (hα : α = α') (hβ : �
 propositionally equal families are `HEq` as soon as they agree pointwise.
 @isnad1 id=heq.2h5v.s5.3e08903a4eed from=translated src=- shape=cbbe5ef9 vocab=c80cf600
 -/
-theorem heq_pi {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
+theorem _root_.Tengoku.Arklib.heq_pi {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
     {f : (a : α) → β a} {g : (a : α) → β' a} (h : ∀ a, HEq (f a) (g a)) : HEq f g := by
   subst hβ
   exact heq_of_eq (funext fun a => eq_of_heq (h a))
@@ -62,7 +62,7 @@ theorem heq_pi {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
 argument.
 @isnad1 id=heq.2h6v.s5.0c258cca028c from=translated src=- shape=5f0629bc vocab=c80cf600
 -/
-theorem heq_dapply {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
+theorem _root_.Tengoku.Arklib.heq_dapply {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
     {f : (a : α) → β a} {g : (a : α) → β' a} (h : HEq f g) (a : α) : HEq (f a) (g a) := by
   subst hβ
   obtain rfl := eq_of_heq h
@@ -73,7 +73,7 @@ theorem heq_dapply {α : Sort u} {β β' : α → Sort v} (hβ : β = β')
 /-- Congruence for pairing.
 @isnad1 id=heq.4h8v.s5.20545cc329cf from=translated src=- shape=57b93933 vocab=2782f26e
 -/
-theorem heq_prod {A A' B B' : Type u} (hA : A = A') (hB : B = B')
+theorem _root_.Tengoku.Arklib.heq_prod {A A' B B' : Type u} (hA : A = A') (hB : B = B')
     {a : A} {a' : A'} (ha : HEq a a') {b : B} {b' : B'} (hb : HEq b b') :
     HEq ((a, b) : A × B) ((a', b') : A' × B') := by
   subst hA
@@ -85,7 +85,7 @@ theorem heq_prod {A A' B B' : Type u} (hA : A = A') (hB : B = B')
 /-- Congruence for the first projection.
 @isnad1 id=heq.3h6v.s5.3c3450241e07 from=translated src=- shape=4dba5fae vocab=b6dd8a29
 -/
-theorem heq_fst {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x' : A' × B'}
+theorem _root_.Tengoku.Arklib.heq_fst {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x' : A' × B'}
     (h : HEq x x') : HEq x.1 x'.1 := by
   subst hA
   subst hB
@@ -95,7 +95,7 @@ theorem heq_fst {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x
 /-- Congruence for the second projection.
 @isnad1 id=heq.3h6v.s5.b663ebd7d74b from=translated src=- shape=452a6a73 vocab=ac695630
 -/
-theorem heq_snd {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x' : A' × B'}
+theorem _root_.Tengoku.Arklib.heq_snd {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x' : A' × B'}
     (h : HEq x x') : HEq x.2 x'.2 := by
   subst hA
   subst hB
@@ -107,7 +107,7 @@ theorem heq_snd {A A' B B' : Type u} (hA : A = A') (hB : B = B') {x : A × B} {x
 /-- Congruence for `pure`.
 @isnad1 id=heq.2h5v.s5.2ddf587ee0db from=translated src=- shape=fef97e38 vocab=e654c1f6
 -/
-theorem heq_pure {M : Type u → Type v} [Monad M] {α α' : Type u} (hα : α = α')
+theorem _root_.Tengoku.Arklib.heq_pure {M : Type u → Type v} [Monad M] {α α' : Type u} (hα : α = α')
     {a : α} {a' : α'} (h : HEq a a') : HEq (pure a : M α) (pure a' : M α') := by
   subst hα
   obtain rfl := eq_of_heq h
@@ -116,7 +116,7 @@ theorem heq_pure {M : Type u → Type v} [Monad M] {α α' : Type u} (hα : α =
 /-- Congruence for `>>=`.
 @isnad1 id=heq.4h9v.s6.1902eb8f01b1 from=translated src=- shape=5ab9bce0 vocab=bb78497a
 -/
-theorem heq_bind {M : Type u → Type v} [Monad M] {α α' β β' : Type u} (hα : α = α') (hβ : β = β')
+theorem _root_.Tengoku.Arklib.heq_bind {M : Type u → Type v} [Monad M] {α α' β β' : Type u} (hα : α = α') (hβ : β = β')
     {x : M α} {x' : M α'} (hx : HEq x x') {f : α → M β} {f' : α' → M β'} (hf : HEq f f') :
     HEq (x >>= f) (x' >>= f') := by
   subst hα
@@ -124,3 +124,4 @@ theorem heq_bind {M : Type u → Type v} [Monad M] {α α' β β' : Type u} (hα
   obtain rfl := eq_of_heq hx
   obtain rfl := eq_of_heq hf
   rfl
+-- Tengoku: root names of this library moved to Tengoku.Arklib so they do not collide with other libraries (generated)

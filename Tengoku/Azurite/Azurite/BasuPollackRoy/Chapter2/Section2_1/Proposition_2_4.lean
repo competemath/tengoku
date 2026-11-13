@@ -31,7 +31,7 @@ leading term and `R = ∑_{i < p} aᵢ · xⁱ` is the remainder. Show
 `|R| < |L|` using the hypothesis, which forces
 `sign(P(x)) = sign(L)`.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial
@@ -131,3 +131,4 @@ theorem prop_2_4 (P : F[X]) (hP : P ≠ 0) (x : F)
       _ = |L| := by rw [abs_mul, abs_pow]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

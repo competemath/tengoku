@@ -64,7 +64,7 @@ translation, proved here as follows.
 
 * [J. Silverman, *The arithmetic of elliptic curves*][silverman2009], III.2, III.8.
 -/
-
+namespace Tengoku.LanaEllipticCurves end Tengoku.LanaEllipticCurves open Tengoku.LanaEllipticCurves
 open Polynomial
 
 /-- **Zariski's lemma, image form.** An `F`-algebra homomorphism from a finite-type `F`-algebra to a
@@ -72,7 +72,7 @@ field, whose kernel is a maximal ideal, has algebraic image: every value `g b` i
 base field `F`. (The residue field `A ⧸ ker g` is then a field of finite type over `F`, hence finite
 over `F` by Zariski's lemma, so integral; the value `g b` is the image of the integral element
 `b mod ker g` under the injective factor map.) -/
-lemma isAlgebraic_of_ker_maximal {F A L : Type*} [Field F] [CommRing A] [Field L]
+lemma _root_.Tengoku.LanaEllipticCurves.isAlgebraic_of_ker_maximal {F A L : Type*} [Field F] [CommRing A] [Field L]
     [Algebra F A] [Algebra F L] [Algebra.FiniteType F A]
     (g : A →ₐ[F] L) (hmax : (RingHom.ker g).IsMaximal) (b : A) :
     IsAlgebraic F (g b) := by
@@ -308,3 +308,4 @@ lemma translateEndo_genY {x₂ y₂ : F} (h₂ : W.Equation x₂ y₂) :
 
 end CoordinateRing
 end WeierstrassCurve.Affine
+-- Tengoku: root names of this library moved to Tengoku.LanaEllipticCurves so they do not collide with other libraries (generated)

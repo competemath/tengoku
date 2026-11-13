@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1997, Problem 1
 
@@ -137,3 +137,4 @@ lemma rat_cast_of_seq (p : ℕ → ℕ) (hp : ∀ k, 0 < p k) (x₀ : ℝ) :
   | k + 1, h => rat_cast_of_seq p hp x₀ k (rat_cast_of_seq_succ p hp x₀ k h)
 
 end Usa1997P1
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

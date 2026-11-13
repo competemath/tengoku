@@ -32,7 +32,7 @@ inside the open interval. Membership in the interval is not decidable
 in general, so the definition is `noncomputable` and uses classical
 decidability for the filter.
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 open scoped Polynomial
 
 namespace Azurite.BPR
@@ -113,3 +113,4 @@ theorem tarskiQueryOn_eq_card_pos_sub_card_neg (Q P : R[X]) (a b : ExtendedPoint
   rw [h_pos_eq, h_neg_eq]
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)

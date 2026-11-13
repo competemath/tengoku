@@ -9,7 +9,7 @@ module
 public import Tengoku
 
 @[expose] public section
-
+namespace Tengoku.Compfiles end Tengoku.Compfiles open Tengoku.Compfiles 
 /-!
 # USA Mathematical Olympiad 1974, Problem 2
 
@@ -50,3 +50,4 @@ lemma usa1974_p2_wlog :
     nlinarith only [hab', hbc', hab, hbc]
 
 end Usa1974P2
+-- Tengoku: root names of this library moved to Tengoku.Compfiles so they do not collide with other libraries (generated)

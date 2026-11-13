@@ -29,7 +29,7 @@ conditions `0, 1, -1`, so the covering hypothesis of Proposition 2.68 is
 automatic and the equation holds with no extra hypothesis. (Read row by
 row, this is exactly Proposition 2.65.)
 -/
-
+namespace Tengoku.Azurite end Tengoku.Azurite open Tengoku.Azurite
 namespace Azurite.BPR
 
 open Polynomial
@@ -91,3 +91,4 @@ theorem proposition_2_68_single (P Q : R[X]) :
   exact h.trans hr
 
 end Azurite.BPR
+-- Tengoku: root names of this library moved to Tengoku.Azurite so they do not collide with other libraries (generated)
